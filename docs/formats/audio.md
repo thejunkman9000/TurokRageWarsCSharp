@@ -101,8 +101,9 @@ Song 57 reports 568k ticks (suspiciously long final delay); not investigated.
 
 ## 7. Music rendering and game playback (implemented, not yet listened to)
 * `trw music [rom] [outdir]` (`tools/Trw.Tools/Audio/MusicRender.cs`, run `trw audio` first): reads `seq/song_KEY.mid`, plays it through an offline sampler built from the music bank
-  (keymap picks the sound, pitch 2^((key-keyBase)/12) with detune, ALEnvelope attack/decay/release, loop points while a note is held, CC 7/10/11) and writes `music/song_KEY.wav`
+  (keymap picks the sound, pitch 2^((key-keyBase)/12) with detune, **samples consumed at the 22050 Hz synth rate** - using the bank's nominal 44100 made everything an octave high and twice as fast (user report) - ALEnvelope attack/decay/release, loop points while a note is held, CC 7/10/11) and writes `music/song_KEY.wav`
   (32 kHz stereo, normalised) plus `song_KEY.loop.txt` (`startFrame endFrame`) when the sequence has a loop marker. Songs 50, 60, 61 are 8-12 s jingles without a loop; 56/57/58 loop the whole piece.
+  Note: measuring the looped pad samples (instruments 12/13) shows their keyBase matches 44.1 kHz playback, i.e. at 22050 they sound an octave below the nominal key; this is assumed to be what the game does (authors tuned by ear at the real output rate) - unconfirmed.
   Not modelled: pitch bend, libultra tremolo/vibrato, the tempo-scale float, release tails past the loop end. Levels are statistically sane (no clipping, steady RMS) - **never auditioned**.
 * Game side (`src/Trw.Game/GameAudio.cs`): SFX by slot WAV or by game sound id through `sfx_ids.tsv` (weighted variant, not the last one, records start after their delay, assumed unit = 1/15 s);
   music streamed with `DynamicSoundEffectInstance`, looping between the loop frames. `M` mutes music. Sound hooks live in `TrwGame.PlayEvents`; ids in `SoundIds.cs` come from `docs/formats/sound_events.md`. Music: menu 52, gameplay a random key 56..59 (no per-level table).

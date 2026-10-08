@@ -9,9 +9,28 @@ namespace Trw.Tools.Audio;
 public static class MusicRender
 {
     const int OutRate = 32000;
+    const double SynthRate = 22050.0;                     // the game audio interface / synth frequency
 
     sealed class Note { public long Tick, EndTick; public int Channel, Key, Velocity; }
     sealed record Controller(long Tick, int Number, int Value);
+
+    /// <summary>Debug listing of the music bank: instruments, sounds, keymaps, envelopes, loops.</summary>
+    public static void Dump(AudioRom rom)
+    {
+        var bank = rom.MusicBanks.Banks[0];
+        for (int i = 0; i < bank.Instruments.Count; i++)
+        {
+            var ins = bank.Instruments[i];
+            if (ins == null) { Console.WriteLine($"inst {i}: null"); continue; }
+            Console.WriteLine($"inst {i}: vol {ins.Volume} pan {ins.Pan} pri {ins.Priority} bend {ins.BendRange} sounds {ins.Sounds.Count}");
+            for (int k = 0; k < ins.Sounds.Count; k++)
+            {
+                var s = ins.Sounds[k]; var km = s.KeyMap; var e = s.Envelope; var w = s.Wave;
+                Console.WriteLine($"   [{k}] keys {km?.KeyMin}-{km?.KeyMax} base {km?.KeyBase} detune {km?.Detune} vel {km?.VelMin}-{km?.VelMax} pan {s.Pan} vol {s.Volume} | env a={e?.Attack} d={e?.Decay} r={e?.Release} av={e?.AttackVol} dv={e?.DecayVol} | wave len {w?.Len} type {w?.Type} loop {(w?.Loop != null ? w.Loop.Start + ".." + w.Loop.End + " x" + w.Loop.Count : "-")}");
+            }
+        }
+        if (bank.Percussion != null) Console.WriteLine($"percussion instrument with {bank.Percussion.Sounds.Count} sounds");
+    }
 
     /// <summary>args: [rom] [outdir]  (outdir defaults to ./extracted/audio; reads outdir/seq/*.mid, writes outdir/music/)</summary>
     public static int Run(string[] args)
@@ -20,6 +39,7 @@ public static class MusicRender
         string outDir = args.Length > 1 ? args[1] : Path.Combine("extracted", "audio");
         if (!File.Exists(romPath)) { Console.Error.WriteLine("ROM not found: " + romPath); return 1; }
         var rom = new AudioRom(File.ReadAllBytes(romPath));
+        if (args.Contains("--dump")) { Dump(rom); return 0; }
         string musicDir = Path.Combine(outDir, "music"); Directory.CreateDirectory(musicDir);
         var bank = rom.MusicBanks.Banks[0];
         var waves = new Dictionary<int, float[]>();
@@ -124,7 +144,7 @@ public static class MusicRender
                 waves[snd.Wave.Offset] = pcm = raw.Select(x => x / 32768f).ToArray();
             }
             double pitch = Math.Pow(2, ((note.Key - snd.KeyMap.KeyBase) * 100.0 + snd.KeyMap.Detune) / 1200.0);
-            double step = pitch * bank.SampleRate / OutRate;
+            double step = pitch * SynthRate / OutRate;                 // ratio 1.0 consumes samples at the synth output rate (22050 Hz, func_00257380), not the bank's nominal 44100
             double startSec = Seconds(note.Tick), noteSec = Math.Max(0.02, Seconds(Math.Max(note.EndTick, note.Tick + 1)) - startSec);
             float chanVol = Cc(note.Channel, 7, note.Tick, 100) / 127f, expr = Cc(note.Channel, 11, note.Tick, 127) / 127f, panCc = Cc(note.Channel, 10, note.Tick, 64) / 127f;
             float pan = Math.Clamp(panCc + (snd.Pan - 64) / 127f, 0, 1);
