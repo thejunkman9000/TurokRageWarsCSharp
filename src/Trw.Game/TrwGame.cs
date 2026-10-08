@@ -200,6 +200,7 @@ public sealed class TrwGame : Game
 
         if ((_opt.AutoWalk || Environment.GetEnvironmentVariable("TRW_LOG") != null) && _frame % 30 == 0)
             File.AppendAllText(Path.Combine(_opt.DataRoot, "game_log.txt"), $"frame {_frame}: feet {_player.Feet.X:F1} {_player.Feet.Y:F1} {_player.Feet.Z:F1} grounded {_player.Grounded} speed {_player.HorizontalSpeed:F0} hp {_player.Health:F0} ammo {string.Join("/", _player.Items.Ammo.Take(3))} pu {_player.Items.PowerUp} water {_player.WaterDepth:F0} weapon {Weapons[_weapon].Name} kills {_kills} falls {_player.FallRespawns}\n");
+        if (_player.TeleportRequested) { _player.TeleportRequested = false; var (sp, face) = _level.BestSpawn(); _player.Teleport(sp, face); }
         _audio.Update(_time);
         base.Update(gt);
     }
@@ -246,7 +247,7 @@ public sealed class TrwGame : Game
                 if (bot.Dead) continue;
                 if (Collision.RayCylinder(origin, dir, bot.Feet, Bot.Radius, Bot.Height) is float d && d < limit) { limit = d; target = bot; }
             }
-            if (target != null) { target.Damage(w.Damage); if (target.Dead) _kills++; if (p == 0) _audio.Play(SoundIds.ImpactCharacter, _time, 0.7f); }
+            if (target != null) { float dmg = w.Damage * (_player.Items.PowerUp == "Massive Damage" ? 11f : 1f); target.Damage(dmg); if (_player.Items.PowerUp == "Life Force Vampire") _player.Health = MathF.Min(Player.MaxHealth, _player.Health + dmg * 2f / 3f); if (target.Dead) _kills++; if (p == 0) _audio.Play(SoundIds.ImpactCharacter, _time, 0.7f); }
             else if (p == 0 && limit < 20000f) _audio.Play(SoundIds.ImpactWall, _time, 0.5f);
         }
         _audio.Play(SoundIds.MuzzleFallback, _time);

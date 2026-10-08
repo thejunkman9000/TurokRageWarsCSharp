@@ -23,11 +23,14 @@ public sealed partial class Bot
     public void Update(float dt, GameLevel level, Player player)
     {
         EvFire = false;
+        // [spec] Slow Time slows the others to x0.25, Petrify freezes them (75 ticks)
+        if (player.Items.PowerUp == "Slow Time") dt *= 0.25f;
+        else if (player.Items.PowerUp == "Petrify" && player.Items.PowerUpTicks > 75f) dt = 0f;
         _animClock += dt;
         if (Dead) return;
         var toPlayer = new Vector3(player.Feet.X - Feet.X, 0, player.Feet.Z - Feet.Z);
         float dist = toPlayer.Length();
-        bool sees = !player.Dead && CanSee(level, player, toPlayer, dist);
+        bool sees = !player.Dead && !player.Invisible && CanSee(level, player, toPlayer, dist);
         float moveForward = 0, moveStrafe = 0;
         if (sees)
         {
@@ -73,7 +76,7 @@ public sealed partial class Bot
         if (Collision.RayCylinder(from, dir, player.Feet, Player.Radius, Player.Height) is float d && d < limit)
         {
             bool wasAlive = !player.Dead;
-            player.Hurt(ShotDamage);
+            player.Hurt(ShotDamage, this);
             if (wasAlive && player.Dead) Score++;
         }
     }

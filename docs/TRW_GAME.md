@@ -24,5 +24,5 @@ WASD move, mouse look, Space jump (swim up in water), left mouse fire, 1-4 weapo
 | audio | `GameAudio.cs`, `tools/.../MusicRender.cs` | pipeline works; **not auditioned**; ids from `docs/formats/sound_events.md` (pain/death/teleport/pickups/impacts/music verified; muzzle sound is a guess because the game has no fire cue we found; water cues are hypotheses; jump/land/footsteps are silent in the game) |
 
 ## Not done
-Other weapons and projectiles, power-up effects beyond regeneration/speed burst/invulnerability, flags/CTF, scoring and game modes, menus, bot weapon choice and item seeking,
+Other weapons and projectiles, power-up effects for explosive/energy damage (Blast Shield, Energy Absorption do nothing yet) - implemented: Regeneration, Speed Burst, Invulnerability, Bullet Shield, Damage Reversal, Life Force Vampire, Massive Damage, Slow Time, Petrify, Invisibility, Teleportation, flags/CTF, scoring and game modes, menus, bot weapon choice and item seeking,
 actor lighting as the game does it, the pickup model, effect objects, real collision regions, decals/particles.

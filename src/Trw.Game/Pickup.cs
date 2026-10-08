@@ -45,6 +45,7 @@ public sealed class Pickup
                 int[] ticks = [105, 300, 225, 150, 150, 180, 225, 225, 450, 270, 180, 300, 300];
                 int i = Rng.Next(names.Length);
                 inv.PowerUp = names[i]; inv.PowerUpTicks = ticks[i];
+                if (names[i] == "Teleportation") player.TeleportRequested = true;      // moves the player to a fresh spawn point (handled by the game)
                 break;
             case 146: inv.Ammo[1] += 100; break;
             case 147: inv.Ammo[0] += 50; break;

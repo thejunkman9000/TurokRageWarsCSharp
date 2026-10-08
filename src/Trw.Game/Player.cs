@@ -31,10 +31,12 @@ public sealed class Player
     public float Yaw, Pitch;                  // forward = (sin yaw cos pitch, sin pitch, cos yaw cos pitch)
     public bool Grounded;
     public bool NoClip;
+    public bool TeleportRequested;            // set by the Teleportation power-up
     public int FallRespawns;                  // debugging: times the player fell out of the level
     public Inventory Items = new();
     public float Health = MaxHealth, WaterDepth, DeadTimer, HurtFlash;
     public bool Dead => Health <= 0;
+    public bool Invisible => Items.PowerUp == "Invisibility";
     public bool EyeUnderwater => WaterDepth > EyeHeight;
     float _lavaTimer;
     /// <summary>One-frame events for the sound layer; the game clears them after reading.</summary>
@@ -74,9 +76,12 @@ public sealed class Player
 
     public void Teleport(Vector3 feet, float yaw) { EvTeleport = true; Feet = feet; Yaw = yaw; _vy = 0; Grounded = false; _sinceGround = 0; }
 
-    public void Hurt(float hp)
+    /// <summary>Applies damage from a bullet. Power-ups per docs/GAMEPLAY_SPEC.md: Invulnerability and Bullet Shield block it, Damage Reversal hurts the attacker for 2x, Life Force Vampire heals the victim... of the
+    /// attacker side (not modelled for bots).</summary>
+    public void Hurt(float hp, Bot? attacker = null)
     {
-        if (Dead || Items.PowerUp == "Invulnerability") return;
+        if (Dead || Items.PowerUp is "Invulnerability" or "Bullet Shield") return;
+        if (Items.PowerUp == "Damage Reversal" && attacker != null) attacker.Damage(2f * hp);
         Health = MathF.Max(0, Health - hp); HurtFlash = 0.4f; if (Health <= 0) EvDeath = true; else EvHurt = true;
     }
 
