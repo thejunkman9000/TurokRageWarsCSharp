@@ -17,7 +17,7 @@ public sealed partial class Bot
     float _vy, _rangeTimer, _wanderTimer, _wanderYaw, _desiredRange = 700f, _strafeDir = 1f, _shotTimer = 1f;
     bool _moving;
 
-    public void Reset() { Health = 100f; DeadTimer = 0; Feet = Home; _vy = 0; _shotTimer = 1f; }
+    public void Reset() { Health = 100f; DeadTimer = 0; _deathClip = -1; Feet = Home; _vy = 0; _shotTimer = 1f; }
 
     /// <summary>Advances the brain and physics by dt seconds. Returns true when the bot shot at (and hit) the player.</summary>
     public void Update(float dt, GameLevel level, Player player)
@@ -27,7 +27,7 @@ public sealed partial class Bot
         if (player.Items.PowerUp == "Slow Time") dt *= 0.25f;
         else if (player.Items.PowerUp == "Petrify" && player.Items.PowerUpTicks > 75f) dt = 0f;
         _animClock += dt;
-        if (Dead) return;
+        if (Dead) { _deathClock += dt; return; }
         var toPlayer = new Vector3(player.Feet.X - Feet.X, 0, player.Feet.Z - Feet.Z);
         float dist = toPlayer.Length();
         bool sees = !player.Dead && !player.Invisible && CanSee(level, player, toPlayer, dist);

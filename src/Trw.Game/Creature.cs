@@ -95,6 +95,13 @@ public sealed class Creature
         return result;
     }
 
+    public List<int> ClipsByRole(string role)
+    {
+        var l = new List<int>();
+        for (int i = 0; i < Clips.Count; i++) if (Clips[i].Role == role) l.Add(i);
+        return l;
+    }
+
     public int ClipByRole(string role)
     {
         for (int i = 0; i < Clips.Count; i++) if (Clips[i].Role == role) return i;
@@ -203,12 +210,24 @@ public sealed partial class Bot
 
     static readonly Matrix ZUp = new(1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 0, 0, 1);           // model Z-up -> world Y-up: (x, y, z) -> (x, z, -y)
 
-    public void Damage(float hp) { if (!Dead) { Health -= hp; DeadTimer = 0; } }
+    int _deathClip = -1;
+    float _deathClock;
+
+    public void Damage(float hp)
+    {
+        if (Dead) return;
+        Health -= hp; DeadTimer = 0;
+        if (Dead)                                                             // pick one of the death clips (one-shot, holds its last frame)
+        {
+            var deaths = Mesh.ClipsByRole("death");
+            _deathClip = deaths.Count > 0 ? deaths[Random.Shared.Next(deaths.Count)] : -1; _deathClock = 0;
+        }
+    }
 
     public List<Batch> Batches(GraphicsDevice gd, string dataRoot, double time)
     {
-        int clip = _animClip >= 0 ? _animClip : Clip;
-        int frame = Mesh.FrameAt(clip, _animClock + TimeOffset);
+        int clip = Dead && _deathClip >= 0 ? _deathClip : _animClip >= 0 ? _animClip : Clip;
+        int frame = Dead && _deathClip >= 0 ? Math.Min((int)(_deathClock * 15f), Mesh.Clips[clip].Frames - 1) : Mesh.FrameAt(clip, _animClock + TimeOffset);
         Matrix toWorld = ZUp * Matrix.CreateScale(0.5f) * Matrix.CreateRotationY(Facing);
         if (float.IsNaN(_drop)) { Mesh.Pose(gd, dataRoot, Clip, 0, toWorld, Skin, out float m0); _drop = -m0; }          // lower the model until its lowest point touches the floor
         var placed = toWorld * Matrix.CreateTranslation(Feet.X, Feet.Y + _drop, Feet.Z);
