@@ -55,8 +55,9 @@ public sealed class TrwGame : Game
         _index = (index + _levels.Length) % _levels.Length;
         _level = GameLevel.Load(GraphicsDevice, _opt.DataRoot, _levels[_index]);
         var start = _level.PlayerStart;
-        // some spawn points are recorded off the floor: use the nearest floor below, else the lowest floor above (not verified against the game)
-        if (Collision.GroundHeight(_level, start, Player.Radius, start.Y + 60f) == null && Collision.LowestGroundAbove(_level, start, start.Y) is float up) start.Y = up;
+        // some spawn points are recorded off the floor (level 1: 18 units below it): snap to the floor just above, else the nearest one below, else the lowest above
+        if (Collision.GroundHeight(_level, start, Player.Radius, start.Y + 60f) is float near) start.Y = near;
+        else if (Collision.LowestGroundAbove(_level, start, start.Y) is float up) start.Y = up;
         _level.PlayerStart = start;
         _player.Respawn(start, _level.PlayerFacing);
         if (Environment.GetEnvironmentVariable("TRW_POS") is { Length: > 0 } pv)                // debugging: x,y,z,yawDegrees
