@@ -249,6 +249,7 @@ public sealed class TrwGame : Game
         foreach (var l in _level.Lifts) if (l.ModelPositions.Length > 0) extra.Add(l.Mesh());
         foreach (var tp in _level.Teleporters) extra.AddRange(tp.Batches);
         foreach (var pk in _level.Pickups) if (pk.Active) extra.Add(pk.Mesh(_time));
+        foreach (var pr in _level.Props) extra.AddRange(pr.Batches(GraphicsDevice, _opt.DataRoot));
         foreach (var bot in _level.Bots.Where(b => !b.Dead)) extra.AddRange(bot.Batches(GraphicsDevice, _opt.DataRoot, _time));
         foreach (var b in _level.Batches.Concat(extra.Where(b => !b.Translucent)).Where(b => !b.Translucent))
         {

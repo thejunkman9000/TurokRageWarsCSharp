@@ -218,3 +218,20 @@ public sealed partial class Bot
         return batches;
     }
 }
+
+/// <summary>A static decorative creature object (e.g. the flag at a flag spawner, object 184), drawn in its first idle pose.</summary>
+public sealed class Prop
+{
+    public Creature Mesh = null!;
+    public Vector3 Position;
+    public float Facing, Scale = 0.5f;
+    List<Batch>? _batches;
+    static readonly Matrix ZUp = new(1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 0, 0, 1);
+
+    public List<Batch> Batches(GraphicsDevice gd, string dataRoot)
+    {
+        if (_batches != null) return _batches;
+        var m = ZUp * Matrix.CreateScale(Scale) * Matrix.CreateRotationY(Facing) * Matrix.CreateTranslation(Position);
+        return _batches = Mesh.Pose(gd, dataRoot, Mesh.ClipByRole("idle"), 0, m, 0, out _);
+    }
+}

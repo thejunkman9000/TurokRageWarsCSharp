@@ -35,6 +35,7 @@ public sealed class GameLevel
     public List<Lift> Lifts = new();
     public List<Teleporter> Teleporters = new();
     public List<Pickup> Pickups = new();
+    public List<Prop> Props = new();                 // flag spawners (object 184, intelligence 122/123)
     public List<Bot> Bots = new();
     public Color FogColour = Color.Black;
     public float FogFar = 2816f;
@@ -152,6 +153,7 @@ public sealed class GameLevel
         level.Lifts = Lift.Load(gd, dataRoot, levelDirName);
         level.Teleporters = Teleporter.Load(gd, dataRoot, levelDirName);
         level.Pickups = Pickup.Load(dataRoot, levelDirName);
+        level.Props = LoadProps(level, dataRoot, Path.Combine(dir, "spawns.json"));
         foreach (var l in level.Lifts) l.Light = level.LightNear(l.Base + new Vector3(0, 40, 0), 300f);
         LoadBots(level, dataRoot, spawns);
 
@@ -197,6 +199,22 @@ public sealed class GameLevel
             max[r] = max.TryGetValue(r, out var b) ? Vector3.Max(b, tris[i].Max) : tris[i].Max;
         }
         return Enumerable.Range(0, n).Where(i => { int r = Find(i); var e = max[r] - min[r]; bool hasStart = start.X >= min[r].X && start.X <= max[r].X && start.Z >= min[r].Z && start.Z <= max[r].Z; return MathF.Max(e.X, e.Z) > minExtent && !hasStart; }).Select(i => tris[i]).ToArray();
+    }
+
+    static List<Prop> LoadProps(GameLevel level, string dataRoot, string spawnsPath)
+    {
+        var props = new List<Prop>();
+        if (!File.Exists(spawnsPath)) return props;
+        using var doc = JsonDocument.Parse(File.ReadAllText(spawnsPath));
+        foreach (var a in doc.RootElement.GetProperty("actors").EnumerateArray())
+        {
+            if (a.GetProperty("kind").GetString() != "pickup" || a.GetProperty("intelligence").GetInt32() is not (122 or 123)) continue;
+            var mesh = Creature.Load(dataRoot, $"obj_{a.GetProperty("object").GetInt32()}");
+            if (mesh == null) continue;
+            var p = new Vector3(a.GetProperty("x").GetSingle(), a.GetProperty("y").GetSingle(), a.GetProperty("z").GetSingle());
+            props.Add(new Prop { Mesh = mesh, Position = p, Facing = a.GetProperty("facingYaw").GetSingle() });
+        }
+        return props;
     }
 
     /// <summary>Bots idling at the deathmatch spawn points, characters cycling through the body chunks (character id -> chunk, docs/formats/creatures_export.md), skins 0..2.</summary>
