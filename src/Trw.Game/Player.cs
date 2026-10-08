@@ -31,6 +31,7 @@ public sealed class Player
     public float Yaw, Pitch;                  // forward = (sin yaw cos pitch, sin pitch, cos yaw cos pitch)
     public bool Grounded;
     public bool NoClip;
+    public Inventory Items = new();
     public float Health = MaxHealth, WaterDepth, DeadTimer, HurtFlash;
     public bool Dead => Health <= 0;
     public bool EyeUnderwater => WaterDepth > EyeHeight;
@@ -43,7 +44,7 @@ public sealed class Player
 
     public void Respawn(Vector3 position, float yaw)
     {
-        Feet = position; Yaw = yaw; Pitch = 0; _fwd = _strafe = _vy = 0; Grounded = false; _sinceGround = 0; Health = MaxHealth; DeadTimer = 0; WaterDepth = 0; _lavaTimer = 0;
+        Feet = position; Yaw = yaw; Pitch = 0; _fwd = _strafe = _vy = 0; Grounded = false; _sinceGround = 0; Health = MaxHealth; DeadTimer = 0; WaterDepth = 0; _lavaTimer = 0; Items = new();
     }
 
     /// <summary>Advances the player by <paramref name="seconds"/> using fixed 1/60 s sub-steps.</summary>
@@ -71,13 +72,20 @@ public sealed class Player
 
     public void Hurt(float hp)
     {
-        if (Dead) return;
+        if (Dead || Items.PowerUp == "Invulnerability") return;
         Health = MathF.Max(0, Health - hp); HurtFlash = 0.4f;
     }
 
     void Step(float dtSeconds, PlayerInput input, GameLevel level)
     {
         float dt = dtSeconds * TicksPerSecond;                                           // ticks
+        if (Items.PowerUpTicks > 0)                                                   // timed power-up: the ones with an obvious effect on the player are applied
+        {
+            Items.PowerUpTicks -= dt;
+            if (Items.PowerUpTicks <= 0) Items.PowerUp = "";
+            else if (Items.PowerUp == "Regeneration" && !Dead) Health = MathF.Min(MaxHealth, Health + 4f * dtSeconds);          // [spec] 4 hp/s
+            else if (Items.PowerUp == "Speed Burst") dt *= 1.333f;                                                              // [spec] dt x1.333
+        }
         if (Dead) { DeadTimer += dtSeconds; input = default; if (DeadTimer > 2f) Respawn(level.PlayerStart, level.PlayerFacing); }
         HurtFlash = MathF.Max(0, HurtFlash - dtSeconds);
         float? surface = Collision.SurfaceAbove(level.Water, Feet.X, Feet.Z, Feet.Y);

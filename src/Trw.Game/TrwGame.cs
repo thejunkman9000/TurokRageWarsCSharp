@@ -109,13 +109,14 @@ public sealed class TrwGame : Game
             if (rider) { _player.Feet += l.Delta; }
         }
         _player.Update(dt, input, _level);
+        foreach (var pk in _level.Pickups) { pk.Update(dt * 15f); if (!_player.Dead && pk.Touches(_player.Feet)) pk.Grant(_player); }
         if (!_player.Dead) foreach (var tp in _level.Teleporters) if (tp.Touches(_player.Feet)) { _player.Teleport(tp.Destination, tp.DestinationFacing); break; }
         _prev = k;
 
         Window.Title = $"{_level.Name} | pos {_player.Feet.X:F0}, {_player.Feet.Y:F0}, {_player.Feet.Z:F0} | speed {_player.HorizontalSpeed:F0} u/s | {(_player.NoClip ? "NOCLIP" : _player.Grounded ? "on ground" : "in air")} | fog {(_fog ? "on" : "off")} (F) | WASD, mouse, Space jump, N noclip, R respawn, PgUp/PgDn level";
 
         if ((_opt.AutoWalk || Environment.GetEnvironmentVariable("TRW_LOG") != null) && _frame % 30 == 0)
-            File.AppendAllText(Path.Combine(_opt.DataRoot, "game_log.txt"), $"frame {_frame}: feet {_player.Feet.X:F1} {_player.Feet.Y:F1} {_player.Feet.Z:F1} grounded {_player.Grounded} speed {_player.HorizontalSpeed:F0} hp {_player.Health:F0} water {_player.WaterDepth:F0}\n");
+            File.AppendAllText(Path.Combine(_opt.DataRoot, "game_log.txt"), $"frame {_frame}: feet {_player.Feet.X:F1} {_player.Feet.Y:F1} {_player.Feet.Z:F1} grounded {_player.Grounded} speed {_player.HorizontalSpeed:F0} hp {_player.Health:F0} ammo {string.Join("/", _player.Items.Ammo.Take(3))} pu {_player.Items.PowerUp} water {_player.WaterDepth:F0}\n");
         base.Update(gt);
     }
 
@@ -138,6 +139,7 @@ public sealed class TrwGame : Game
         var extra = new List<Batch>();
         foreach (var l in _level.Lifts) if (l.ModelPositions.Length > 0) extra.Add(l.Mesh());
         foreach (var tp in _level.Teleporters) extra.AddRange(tp.Batches);
+        foreach (var pk in _level.Pickups) if (pk.Active) extra.Add(pk.Mesh(_time));
         foreach (var bot in _level.Bots) extra.AddRange(bot.Batches(GraphicsDevice, _opt.DataRoot, _time));
         foreach (var b in _level.Batches.Concat(extra.Where(b => !b.Translucent)).Where(b => !b.Translucent))
         {
@@ -161,6 +163,10 @@ public sealed class TrwGame : Game
         if (_player.EyeUnderwater) _sprites.Draw(_white, screen, new Color(20, 60, 110) * 0.45f);
         if (_player.HurtFlash > 0) _sprites.Draw(_white, screen, new Color(200, 0, 0) * (_player.HurtFlash * 1.2f));
         if (_player.Dead) _sprites.Draw(_white, screen, new Color(120, 0, 0) * 0.6f);
+        int ax = 16, ay = GraphicsDevice.Viewport.Height - 52;                                  // ammo pips: bullet, energy, explosive; then a power-up block
+        Color[] ammoColours = [new Color(240, 210, 70), new Color(80, 160, 255), new Color(240, 140, 50)];
+        for (int i = 0; i < 3; i++) _sprites.Draw(_white, new Rectangle(ax, ay - i * 8, Math.Min(_player.Items.Ammo[i], 100) * 2, 5), ammoColours[i]);
+        if (_player.Items.PowerUpTicks > 0) _sprites.Draw(_white, new Rectangle(ax + 220, GraphicsDevice.Viewport.Height - 30, (int)(_player.Items.PowerUpTicks / 4), 14), new Color(190, 80, 230));
         int barW = 200, barH = 14, bx = 16, by = GraphicsDevice.Viewport.Height - 30;
         _sprites.Draw(_white, new Rectangle(bx - 2, by - 2, barW + 4, barH + 4), Color.Black * 0.6f);
         _sprites.Draw(_white, new Rectangle(bx, by, (int)(barW * _player.Health / Player.MaxHealth), barH), _player.Health > 30 ? new Color(60, 190, 70) : new Color(210, 50, 40));
