@@ -69,7 +69,7 @@ public sealed class Player
         if (move2.Length() > cap) { move2 *= cap / move2.Length(); }
 
         var fwd = new Vector3(MathF.Sin(Yaw), 0, MathF.Cos(Yaw));
-        var right = new Vector3(MathF.Cos(Yaw), 0, -MathF.Sin(Yaw));
+        var right = new Vector3(-MathF.Cos(Yaw), 0, MathF.Sin(Yaw));                     // screen right for forward = (sin yaw, 0, cos yaw) in XNA's right-handed view: cross(forward, up)
         var delta = (fwd * move2.X + right * move2.Y) * dt;
 
         if (NoClip)
@@ -81,6 +81,7 @@ public sealed class Player
         // horizontal move with wall push-out
         Feet.X += delta.X; Feet.Z += delta.Z;
         Collision.PushOutOfWalls(level, ref Feet, Radius, Height, StepHeight);
+        Collision.PushOutOfObjects(level, ref Feet, Radius, Height, StepHeight);
 
         // jump
         if (input.Jump)

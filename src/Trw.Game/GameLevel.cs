@@ -30,6 +30,8 @@ public sealed class GameLevel
     public Triangle[] Triangles = [];
     public Vector3 PlayerStart;
     public float PlayerFacing;                // radians about +Y; forward = (sin, 0, cos)
+    public List<Lift> Lifts = new();
+    public List<Bot> Bots = new();
     public Color FogColour = Color.Black;
     public float FogFar = 2816f;
 
@@ -128,6 +130,9 @@ public sealed class GameLevel
                 }
         }
 
+        level.Lifts = Lift.Load(gd, dataRoot, levelDirName);
+        LoadBots(level, dataRoot, spawns);
+
         // fog / clear colour of zone 0
         string lighting = Path.Combine(dataRoot, "levelgeo", "lighting.json");
         if (File.Exists(lighting) && int.TryParse(levelDirName.Split('_')[0], out int id))
@@ -146,6 +151,27 @@ public sealed class GameLevel
             }
         }
         return level;
+    }
+
+    /// <summary>Bots idling at the deathmatch spawn points, characters cycling through the body chunks (character id -> chunk, docs/formats/creatures_export.md), skins 0..2.</summary>
+    static void LoadBots(GameLevel level, string dataRoot, string spawnsPath)
+    {
+        if (!File.Exists(spawnsPath)) return;
+        int[] chunkOf = [1, 3, 4, 5, 6, 2, 7, 8, 9];
+        using var doc = JsonDocument.Parse(File.ReadAllText(spawnsPath));
+        if (!doc.RootElement.TryGetProperty("spawnPoints", out var points)) return;
+        int n = 0;
+        foreach (var sp in points.EnumerateArray())
+        {
+            var mesh = Creature.Load(dataRoot, $"obj_174_m{chunkOf[n % 9]}");
+            if (mesh != null)
+            {
+                var p = new Vector3(sp.GetProperty("x").GetSingle(), sp.GetProperty("y").GetSingle(), sp.GetProperty("z").GetSingle());
+                if (Collision.GroundHeight(level, p, 8f, p.Y + 100f) is float floor) p.Y = floor;
+                level.Bots.Add(new Bot { Mesh = mesh, Feet = p, Facing = sp.GetProperty("facingYaw").GetSingle(), Skin = n % 3, Clip = mesh.ClipByRole("idle"), TimeOffset = n * 0.13 });
+            }
+            n++;
+        }
     }
 
     sealed record MatInfo(int Texture, int Sampler, bool Translucent, float Alpha, int SortKey, bool Animated, int Frames, int StepTicks);

@@ -26,6 +26,9 @@ public static class Collision
                 if (y <= maxY && y > best) { best = y; found = true; }
             }
         }
+        foreach (var l in level.Lifts)                                                          // the top of a lift is ground
+            foreach (var p in probes)
+                if (l.Covers(p.X, p.Y) && l.Top <= maxY && l.Top > best) { best = l.Top; found = true; }
         return found ? best : null;
     }
 
@@ -52,7 +55,33 @@ public static class Collision
             if (feet.X < t.Min.X || feet.X > t.Max.X || feet.Z < t.Min.Z || feet.Z > t.Max.Z) continue;
             if (HeightAt(t, feet.X, feet.Z, out float y) && y >= fromY - 1f && y < best) best = y;
         }
+        foreach (var l in level.Lifts)
+            if (l.Covers(feet.X, feet.Z) && l.Bottom >= fromY - 1f && l.Bottom < best) best = l.Bottom;
         return float.IsPositiveInfinity(best) ? null : best;
+    }
+
+    /// <summary>Pushes the player out of lifts (boxes) and bots (cylinders) unless it can step onto them.</summary>
+    public static void PushOutOfObjects(GameLevel level, ref Vector3 feet, float radius, float height, float stepHeight)
+    {
+        foreach (var l in level.Lifts)
+        {
+            if (feet.Y + stepHeight >= l.Top || feet.Y + height <= l.Bottom) continue;
+            float cx = Math.Clamp(feet.X, l.Position.X - l.HalfX, l.Position.X + l.HalfX), cz = Math.Clamp(feet.Z, l.Position.Z - l.HalfZ, l.Position.Z + l.HalfZ);
+            float dx = feet.X - cx, dz = feet.Z - cz, d = MathF.Sqrt(dx * dx + dz * dz);
+            if (d >= radius) continue;
+            if (d > 1e-4f) { feet.X += dx / d * (radius - d); feet.Z += dz / d * (radius - d); continue; }
+            // the centre is inside the box: leave through the nearest side
+            float ex = l.HalfX - MathF.Abs(feet.X - l.Position.X), ez = l.HalfZ - MathF.Abs(feet.Z - l.Position.Z);
+            if (ex < ez) feet.X += MathF.Sign(feet.X - l.Position.X + 1e-3f) * (ex + radius); else feet.Z += MathF.Sign(feet.Z - l.Position.Z + 1e-3f) * (ez + radius);
+        }
+        foreach (var b in level.Bots)
+        {
+            if (feet.Y >= b.Feet.Y + Bot.Height - stepHeight || feet.Y + height <= b.Feet.Y) continue;
+            float dx = feet.X - b.Feet.X, dz = feet.Z - b.Feet.Z, d = MathF.Sqrt(dx * dx + dz * dz), r = radius + Bot.Radius;
+            if (d >= r) continue;
+            if (d < 1e-4f) { dx = 1; d = 1; }
+            feet.X += dx / d * (r - d); feet.Z += dz / d * (r - d);
+        }
     }
 
     /// <summary>Pushes the player horizontally out of any steep triangle that overlaps the cylinder above step height.</summary>

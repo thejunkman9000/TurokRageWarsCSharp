@@ -59,6 +59,11 @@ public sealed class TrwGame : Game
         if (Collision.GroundHeight(_level, start, Player.Radius, start.Y + 60f) == null && Collision.LowestGroundAbove(_level, start, start.Y) is float up) start.Y = up;
         _level.PlayerStart = start;
         _player.Respawn(start, _level.PlayerFacing);
+        if (Environment.GetEnvironmentVariable("TRW_POS") is { Length: > 0 } pv)                // debugging: x,y,z,yawDegrees
+        {
+            var q = pv.Split(',').Select(x => float.Parse(x, CultureInfo.InvariantCulture)).ToArray();
+            _player.Respawn(new Vector3(q[0], q[1], q[2]), MathHelper.ToRadians(q[3]));
+        }
         // let the player settle onto the floor
         for (int i = 0; i < 90; i++) _player.Update(1f / 60f, default, _level);
     }
@@ -78,27 +83,36 @@ public sealed class TrwGame : Game
         if (Pressed(k, Keys.F12)) Shot(Path.Combine(_opt.DataRoot, $"game_{_index:D2}.png"));
 
         PlayerInput input = default;
-        if (_opt.AutoWalk)                                                                       // scripted input for headless checks: walk ahead, jump once
+        if (_opt.AutoWalk && Environment.GetEnvironmentVariable("TRW_IDLE") == null)                                                                       // scripted input for headless checks: forward, strafe right, jump, turn right
         {
-            input.Forward = _frame > 5 ? 1f : 0f; input.Jump = _frame is > 60 and < 75;
-            input.LookYaw = _frame is > 100 and < 130 ? 0.03f : 0f;
+            input.Forward = _frame is > 5 and < 40 ? 1f : 0f;
+            input.Strafe = _frame is >= 40 and < 80 ? 1f : 0f;
+            input.Jump = _frame is > 90 and < 105;
+            input.LookYaw = _frame is > 120 and < 150 ? -0.03f : 0f;                              // negative = turn right (same as moving the mouse right)
         }
         else if (IsActive)
         {
             int cx = Window.ClientBounds.Width / 2, cy = Window.ClientBounds.Height / 2;
             var m = Mouse.GetState();
-            if (_focused) { input.LookYaw = (m.X - cx) * 0.0025f; input.LookPitch = -(m.Y - cy) * 0.0025f; }
+            if (_focused) { input.LookYaw = -(m.X - cx) * 0.0025f; input.LookPitch = -(m.Y - cy) * 0.0025f; }   // mouse right = yaw decreases (yaw grows towards screen left)
             Mouse.SetPosition(cx, cy); _focused = true;
             input.Forward = (k.IsKeyDown(Keys.W) ? 1f : 0f) - (k.IsKeyDown(Keys.S) ? 1f : 0f);
             input.Strafe = (k.IsKeyDown(Keys.D) ? 1f : 0f) - (k.IsKeyDown(Keys.A) ? 1f : 0f);
             input.Jump = k.IsKeyDown(Keys.Space);
+        }
+        // lifts: carry whoever stands on them, start trips when a rider has waited long enough
+        foreach (var l in _level.Lifts)
+        {
+            bool rider = _player.Grounded && !_player.NoClip && l.Covers(_player.Feet.X, _player.Feet.Z) && MathF.Abs(_player.Feet.Y - l.Top) < 4f;
+            l.Update(dt * 15f, rider);
+            if (rider) { _player.Feet += l.Delta; }
         }
         _player.Update(dt, input, _level);
         _prev = k;
 
         Window.Title = $"{_level.Name} | pos {_player.Feet.X:F0}, {_player.Feet.Y:F0}, {_player.Feet.Z:F0} | speed {_player.HorizontalSpeed:F0} u/s | {(_player.NoClip ? "NOCLIP" : _player.Grounded ? "on ground" : "in air")} | fog {(_fog ? "on" : "off")} (F) | WASD, mouse, Space jump, N noclip, R respawn, PgUp/PgDn level";
 
-        if (_opt.AutoWalk && _frame % 30 == 0)
+        if ((_opt.AutoWalk || Environment.GetEnvironmentVariable("TRW_LOG") != null) && _frame % 30 == 0)
             File.AppendAllText(Path.Combine(_opt.DataRoot, "game_log.txt"), $"frame {_frame}: feet {_player.Feet.X:F1} {_player.Feet.Y:F1} {_player.Feet.Z:F1} grounded {_player.Grounded} speed {_player.HorizontalSpeed:F0}\n");
         base.Update(gt);
     }
@@ -119,7 +133,10 @@ public sealed class TrwGame : Game
         GraphicsDevice.RasterizerState = RasterizerState.CullClockwise;                         // front faces are counter-clockwise
         GraphicsDevice.BlendState = BlendState.Opaque;
         GraphicsDevice.DepthStencilState = DepthStencilState.Default;
-        foreach (var b in _level.Batches.Where(b => !b.Translucent))
+        var extra = new List<Batch>();
+        foreach (var l in _level.Lifts) if (l.ModelPositions.Length > 0) extra.Add(l.Mesh());
+        foreach (var bot in _level.Bots) extra.AddRange(bot.Batches(GraphicsDevice, _opt.DataRoot, _time));
+        foreach (var b in _level.Batches.Concat(extra.Where(b => !b.Translucent)).Where(b => !b.Translucent))
         {
             _cutout.Texture = Current(b) ?? _white; _cutout.DiffuseColor = b.Tint; _cutout.Alpha = 1f;
             GraphicsDevice.SamplerStates[0] = _samplers[b.Sampler];
@@ -127,7 +144,7 @@ public sealed class TrwGame : Game
         }
         GraphicsDevice.BlendState = BlendState.NonPremultiplied;                                // translucent parts after the opaque ones, ordered by the game's sort key
         GraphicsDevice.DepthStencilState = DepthStencilState.DepthRead;
-        foreach (var b in _level.Batches.Where(b => b.Translucent).OrderBy(b => b.SortKey))
+        foreach (var b in _level.Batches.Concat(extra).Where(b => b.Translucent).OrderBy(b => b.SortKey))
         {
             _fx.Texture = Current(b) ?? _white; _fx.DiffuseColor = b.Tint; _fx.Alpha = b.Alpha;
             GraphicsDevice.SamplerStates[0] = _samplers[b.Sampler];
