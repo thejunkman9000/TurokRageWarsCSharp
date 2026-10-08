@@ -12,6 +12,7 @@ public sealed partial class Bot
     const float ShotInterval = 0.5f, ShotDamage = 8f, AimErrorDegrees = 15f;        // [assumed] bot fire cadence; damage 10 x 0.8 (normal difficulty scale)
     static readonly Random Rng = new();
 
+    public int Score;                             // frags (the bot killed the player)
     public bool EvFire;                           // one-frame event for the sound layer
     float _vy, _rangeTimer, _wanderTimer, _wanderYaw, _desiredRange = 700f, _strafeDir = 1f, _shotTimer = 1f;
     bool _moving;
@@ -69,7 +70,12 @@ public sealed partial class Bot
         float err = AimErrorDegrees * MathF.PI / 180f;                                // random-walk aim error [assumed uniform within +-15 deg]
         dir = Vector3.Transform(dir, Matrix.CreateRotationY((float)(Rng.NextDouble() * 2 - 1) * err) * Matrix.CreateRotationX((float)(Rng.NextDouble() * 2 - 1) * err * 0.5f));
         float limit = Collision.RayLevel(level, from, dir, 5000f) ?? 5000f;
-        if (Collision.RayCylinder(from, dir, player.Feet, Player.Radius, Player.Height) is float d && d < limit) player.Hurt(ShotDamage);
+        if (Collision.RayCylinder(from, dir, player.Feet, Player.Radius, Player.Height) is float d && d < limit)
+        {
+            bool wasAlive = !player.Dead;
+            player.Hurt(ShotDamage);
+            if (wasAlive && player.Dead) Score++;
+        }
     }
 
     void Move(float dt, GameLevel level, float forward, float strafe)

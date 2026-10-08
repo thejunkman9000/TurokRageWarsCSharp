@@ -7,7 +7,7 @@ Run: `dotnet run --project src/Trw.Game -- [--level N] [--size WxH] [--nofog] [-
 Headless checks: `--autowalk --frames N --shot file.png` (scripted input), env `TRW_POS=x,y,z,yawDeg` (placement), `TRW_IDLE`, `TRW_LOG` (position log every 30 frames), `TRW_FIRE` (hold fire), `TRW_VM=obj,scale,x,y,z` (viewmodel tuning), `TRW_WEAPON=n`, `TRW_RANDOM` (random walk to find collision holes) with `TRW_FAST` (unlimited frame rate, fixed 1/60 s steps; 6000 frames of a level run in a few seconds). The random walk over all 37 levels (6000 frames each) fell out of the level on 3, 7, 9, 14, 15, 18, 22, 23, 30 and 36 - these are ledges and pits, not confirmed collision holes.
 
 ## Controls
-WASD move, mouse look, Space jump (swim up in water), left mouse fire, 1-4 weapons (MAG 60, shotgun, assault rifle, minigun - all hitscan approximations), F fog, M music on/off, N noclip, R respawn, PgUp/PgDn level, F12 screenshot, Esc quit.
+WASD move, mouse look, Space jump (swim up in water), left mouse fire, 1-4 weapons (MAG 60, shotgun, assault rifle, minigun - all hitscan approximations), F fog, M music on/off, N noclip, R respawn, PgUp/PgDn level, F12 screenshot, Esc quit. Match: first to 10 frags or 5 minutes (assumed limits; env `TRW_FRAGS`, `TRW_MINUTES`); the end screen is green for a win, red for a loss with your frags - bot best; Enter restarts.
 
 ## What is implemented (and how sure we are)
 | area | file | status |

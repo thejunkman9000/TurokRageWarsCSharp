@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Input;
 namespace Trw.Walk;
 
 /// <summary>A walkable level: first-person controller with the game's movement constants, collision against the level triangles, the game's vertex lighting, fog,
-/// translucent animated water. WASD move, mouse look, Space jump, F fog, N noclip fly, R respawn, PgUp/PgDn level, F12 screenshot, Esc quit.</summary>
+/// translucent animated water. WASD move, mouse look, Space jump, F fog, N noclip fly, R respawn, PgUp/PgDn level, F12 screenshot, Enter restart after a match, Esc quit.</summary>
 public sealed class TrwGame : Game
 {
     public sealed record Options(string DataRoot, int Level, string? Shot, int Frames, bool AutoWalk, int Width, int Height, bool NoFog = false, bool NoSound = false, bool NoBotAi = false);
@@ -56,7 +56,12 @@ public sealed class TrwGame : Game
     int _index, _frame;
     double _nextShot;
     float _rwYaw; readonly Random _rw = new(12345);
-    int _kills;
+    int _kills, _deaths;
+    // match rules: deathmatch to a frag limit or the time limit [spec: score >= frag limit wins; the limits themselves come from the menu and are assumed here]
+    int _fragLimit = int.TryParse(Environment.GetEnvironmentVariable("TRW_FRAGS"), out int fl) ? fl : 10;
+    double _timeLimit = double.TryParse(Environment.GetEnvironmentVariable("TRW_MINUTES"), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture, out double tl) ? tl * 60 : 300;
+    double _matchTime;
+    bool _matchOver, _playerWon;
     bool _fog = true, _focused;
     double _time;
     KeyboardState _prev;
@@ -131,6 +136,18 @@ public sealed class TrwGame : Game
         if (Pressed(k, Keys.R)) _player.Respawn(_level.PlayerStart, _level.PlayerFacing);
         if (Pressed(k, Keys.F12)) Shot(Path.Combine(_opt.DataRoot, $"game_{_index:D2}.png"));
 
+        if (_matchOver)
+        {
+            if (Pressed(k, Keys.Enter)) { _matchOver = false; _matchTime = 0; _kills = _deaths = 0; LoadLevel(_index); }
+            _prev = k; _audio.Update(_time); return;
+        }
+        _matchTime += dt;
+        int botBest = _level.Bots.Count == 0 ? 0 : _level.Bots.Max(b => b.Score);
+        if (_kills >= _fragLimit || botBest >= _fragLimit || _matchTime >= _timeLimit)
+        {
+            _matchOver = true; _playerWon = _kills >= botBest;
+            _audio.PlayMusic(SoundIds.MusicMenu);
+        }
         PlayerInput input = default;
         if (_opt.AutoWalk && Environment.GetEnvironmentVariable("TRW_RANDOM") != null)           // random walk to find holes in the collision: wander, jump, turn
         {
@@ -192,7 +209,7 @@ public sealed class TrwGame : Game
     {
         // jump and landing have no sound in the game (docs/formats/sound_events.md)
         if (_player.EvHurt && Random.Shared.Next(2) == 0) _audio.Play(SoundIds.PainTurok, _time);           // V: pain voice on 50 % of hits
-        if (_player.EvDeath) { _audio.Play(SoundIds.DeathTurok, _time); _audio.Play(SoundIds.DeathThump, _time); }
+        if (_player.EvDeath) { _deaths++; _audio.Play(SoundIds.DeathTurok, _time); _audio.Play(SoundIds.DeathThump, _time); }
         if (_player.EvTeleport) _audio.Play(SoundIds.Teleport, _time);
         if (_player.EvWaterEnter) _audio.Play(SoundIds.WaterEnter, _time);
         if (_player.EvWaterLeave) _audio.Play(SoundIds.WaterLeave, _time);
@@ -317,7 +334,20 @@ public sealed class TrwGame : Game
         Hud.Number(_sprites, _white, bx + barW + 14, by - 4, 3, (int)MathF.Ceiling(_player.Health), Color.White);
         int vw = GraphicsDevice.Viewport.Width;
         Hud.Number(_sprites, _white, vw - 130, GraphicsDevice.Viewport.Height - 42, 4, _player.Items.Ammo[0], new Color(240, 210, 70));       // ammo of the current weapon (bullets)
-        Hud.Number(_sprites, _white, vw - 130, 14, 3, _kills, new Color(230, 90, 70));                                                       // frags
+        Hud.Number(_sprites, _white, vw - 130, 14, 3, _kills, new Color(230, 90, 70));
+        Hud.Number(_sprites, _white, vw - 130, 52, 2, _deaths, new Color(150, 150, 170));                                                  // deaths
+        int left = (int)Math.Max(0, _timeLimit - _matchTime);
+        int tx = Hud.Number(_sprites, _white, vw / 2 - 40, 10, 3, left / 60, Color.White);
+        _sprites.Draw(_white, new Rectangle(tx, 16, 3, 3), Color.White); _sprites.Draw(_white, new Rectangle(tx, 28, 3, 3), Color.White);
+        Hud.Number(_sprites, _white, tx + 10, 10, 3, left % 60 / 10, Color.White); Hud.Number(_sprites, _white, tx + 10 + 18, 10, 3, left % 10, Color.White);
+        if (_matchOver)
+        {
+            _sprites.Draw(_white, screen, (_playerWon ? new Color(20, 120, 40) : new Color(140, 20, 20)) * 0.55f);
+            int mx = GraphicsDevice.Viewport.Width / 2, my = GraphicsDevice.Viewport.Height / 2;
+            int ex = Hud.Number(_sprites, _white, mx - 120, my - 45, 10, _kills, Color.White);
+            _sprites.Draw(_white, new Rectangle(ex, my - 5, 40, 8), Color.White);
+            Hud.Number(_sprites, _white, ex + 60, my - 45, 10, _level.Bots.Count == 0 ? 0 : _level.Bots.Max(b => b.Score), Color.White);
+        }                                                       // frags
         _sprites.Draw(_white, new Rectangle(cx - 8, cy - 1, 6, 2), Color.White); _sprites.Draw(_white, new Rectangle(cx + 2, cy - 1, 6, 2), Color.White);
         _sprites.Draw(_white, new Rectangle(cx - 1, cy - 8, 2, 6), Color.White); _sprites.Draw(_white, new Rectangle(cx - 1, cy + 2, 2, 6), Color.White);
         _sprites.End();
