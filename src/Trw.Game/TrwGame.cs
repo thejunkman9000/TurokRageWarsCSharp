@@ -22,6 +22,10 @@ public sealed class TrwGame : Game
     GameLevel _level = null!;
     readonly Player _player = new();
     GameAudio _audio = null!;
+    Creature? _viewModel;
+    Vector3 _vmMin = new(1e9f), _vmMax = new(-1e9f);
+    readonly float[] _vmTune = [0.08f, 30f, -90f, -5f];   // scale, x, y, z offsets (view space) - tuned by eye
+    double _lastShot = -10;
     int _index, _frame;
     double _nextShot;
     int _kills;
@@ -47,6 +51,8 @@ public sealed class TrwGame : Game
         _fx = new BasicEffect(GraphicsDevice) { TextureEnabled = true, VertexColorEnabled = true, LightingEnabled = false };
         _cutout = new AlphaTestEffect(GraphicsDevice) { VertexColorEnabled = true, AlphaFunction = CompareFunction.Greater, ReferenceAlpha = 127 };
         _sprites = new SpriteBatch(GraphicsDevice);
+        _viewModel = Creature.Load(_opt.DataRoot, "obj_157");                                   // [unverified] viewmodel objects 152-173 in weapon order: 157 = MAG 60
+        if (Environment.GetEnvironmentVariable("TRW_VM") is { Length: > 0 } vm) { var q = vm.Split(','); _viewModel = Creature.Load(_opt.DataRoot, $"obj_{q[0]}"); for (int i = 1; i < q.Length && i < 5; i++) _vmTune[i - 1] = float.Parse(q[i], CultureInfo.InvariantCulture); }
         _audio = new GameAudio(_opt.DataRoot) { Enabled = !_opt.NoSound };
         _white = new Texture2D(GraphicsDevice, 1, 1); _white.SetData([Color.White]);
         var modes = new[] { TextureAddressMode.Wrap, TextureAddressMode.Mirror, TextureAddressMode.Clamp };
@@ -120,7 +126,7 @@ public sealed class TrwGame : Game
         PlayEvents();
         // hitscan MAG 60: left mouse
         bool fire = _opt.AutoWalk ? Environment.GetEnvironmentVariable("TRW_FIRE") != null : IsActive && _focused && Mouse.GetState().LeftButton == ButtonState.Pressed;
-        if (fire && !_player.Dead && _time >= _nextShot && _player.Items.Ammo[0] > 0) { _nextShot = _time + FireInterval; Fire(); }
+        if (fire && !_player.Dead && _time >= _nextShot && _player.Items.Ammo[0] > 0) { _nextShot = _time + FireInterval; _lastShot = _time; Fire(); }
         foreach (var bot in _level.Bots)
         {
             if (bot.Dead && (bot.DeadTimer += dt * 15f) > 75f) bot.Reset();
@@ -201,6 +207,28 @@ public sealed class TrwGame : Game
             _fx.Texture = Current(b) ?? _white; _fx.DiffuseColor = b.Tint; _fx.Alpha = b.Alpha;
             GraphicsDevice.SamplerStates[0] = _samplers[b.Sampler];
             foreach (var pass in _fx.CurrentTechnique.Passes) { pass.Apply(); GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleList, b.Vertices, 0, b.Vertices.Length / 3); }
+        }
+
+        if (_viewModel != null)                                                                  // first-person weapon: drawn in view space on a cleared depth buffer
+        {
+            GraphicsDevice.Clear(ClearOptions.DepthBuffer, Color.Black, 1f, 0);
+            GraphicsDevice.BlendState = BlendState.Opaque; GraphicsDevice.DepthStencilState = DepthStencilState.Default;
+            _cutout.View = Matrix.Identity; _fx.View = Matrix.Identity;
+            foreach (var fx in new IEffectFog[] { _fx, _cutout }) fx.FogEnabled = false;
+            int fireClip = _viewModel.ClipByRole("fire"), clip = _viewModel.ClipByRole("idle"), frame;
+            if (fireClip >= 0 && _time - _lastShot < _viewModel.Clips[fireClip].Frames / 15.0) { clip = fireClip; frame = (int)((_time - _lastShot) * 15); }
+            else frame = _viewModel.FrameAt(clip, _time);
+            var swap = new Matrix(1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1);              // model (x, y, z) -> view (x, z, y): model y negative = forward = view -Z
+            var toView = swap * Matrix.CreateScale(_vmTune[0]) * Matrix.CreateTranslation(_vmTune[1], _vmTune[2], _vmTune[3]);
+            foreach (var b in _viewModel.Pose(GraphicsDevice, _opt.DataRoot, clip, frame, toView, 0, out _))
+            {
+                if (_frame == 15) foreach (var v in b.Vertices) { _vmMin = Vector3.Min(_vmMin, v.Position); _vmMax = Vector3.Max(_vmMax, v.Position); }
+                if (b.Translucent) continue;
+                _cutout.Texture = b.Texture ?? _white; _cutout.DiffuseColor = b.Tint; _cutout.Alpha = 1f;
+                GraphicsDevice.SamplerStates[0] = _samplers[b.Sampler];
+                foreach (var pass in _cutout.CurrentTechnique.Passes) { pass.Apply(); GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleList, b.Vertices, 0, b.Vertices.Length / 3); }
+            }
+                    if (_frame == 15) File.AppendAllText(Path.Combine(_opt.DataRoot, "game_log.txt"), $"viewmodel bounds {_vmMin} {_vmMax}" + Environment.NewLine);
         }
 
         // HUD: water tint, damage flash, health bar, crosshair
