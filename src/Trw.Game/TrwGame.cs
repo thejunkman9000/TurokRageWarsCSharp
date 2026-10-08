@@ -114,7 +114,7 @@ public sealed class TrwGame : Game
         Window.Title = $"{_level.Name} | pos {_player.Feet.X:F0}, {_player.Feet.Y:F0}, {_player.Feet.Z:F0} | speed {_player.HorizontalSpeed:F0} u/s | {(_player.NoClip ? "NOCLIP" : _player.Grounded ? "on ground" : "in air")} | fog {(_fog ? "on" : "off")} (F) | WASD, mouse, Space jump, N noclip, R respawn, PgUp/PgDn level";
 
         if ((_opt.AutoWalk || Environment.GetEnvironmentVariable("TRW_LOG") != null) && _frame % 30 == 0)
-            File.AppendAllText(Path.Combine(_opt.DataRoot, "game_log.txt"), $"frame {_frame}: feet {_player.Feet.X:F1} {_player.Feet.Y:F1} {_player.Feet.Z:F1} grounded {_player.Grounded} speed {_player.HorizontalSpeed:F0}\n");
+            File.AppendAllText(Path.Combine(_opt.DataRoot, "game_log.txt"), $"frame {_frame}: feet {_player.Feet.X:F1} {_player.Feet.Y:F1} {_player.Feet.Z:F1} grounded {_player.Grounded} speed {_player.HorizontalSpeed:F0} hp {_player.Health:F0} water {_player.WaterDepth:F0}\n");
         base.Update(gt);
     }
 
@@ -152,9 +152,16 @@ public sealed class TrwGame : Game
             foreach (var pass in _fx.CurrentTechnique.Passes) { pass.Apply(); GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleList, b.Vertices, 0, b.Vertices.Length / 3); }
         }
 
-        // crosshair
+        // HUD: water tint, damage flash, health bar, crosshair
         _sprites.Begin();
         int cx = GraphicsDevice.Viewport.Width / 2, cy = GraphicsDevice.Viewport.Height / 2;
+        var screen = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+        if (_player.EyeUnderwater) _sprites.Draw(_white, screen, new Color(20, 60, 110) * 0.45f);
+        if (_player.HurtFlash > 0) _sprites.Draw(_white, screen, new Color(200, 0, 0) * (_player.HurtFlash * 1.2f));
+        if (_player.Dead) _sprites.Draw(_white, screen, new Color(120, 0, 0) * 0.6f);
+        int barW = 200, barH = 14, bx = 16, by = GraphicsDevice.Viewport.Height - 30;
+        _sprites.Draw(_white, new Rectangle(bx - 2, by - 2, barW + 4, barH + 4), Color.Black * 0.6f);
+        _sprites.Draw(_white, new Rectangle(bx, by, (int)(barW * _player.Health / Player.MaxHealth), barH), _player.Health > 30 ? new Color(60, 190, 70) : new Color(210, 50, 40));
         _sprites.Draw(_white, new Rectangle(cx - 8, cy - 1, 6, 2), Color.White); _sprites.Draw(_white, new Rectangle(cx + 2, cy - 1, 6, 2), Color.White);
         _sprites.Draw(_white, new Rectangle(cx - 1, cy - 8, 2, 6), Color.White); _sprites.Draw(_white, new Rectangle(cx - 1, cy + 2, 2, 6), Color.White);
         _sprites.End();

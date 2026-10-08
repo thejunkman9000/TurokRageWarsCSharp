@@ -116,6 +116,18 @@ public static class Collision
         }
     }
 
+    /// <summary>Highest surface of <paramref name="surfaces"/> over (x, z) that is at least <paramref name="minY"/>, or null.</summary>
+    public static float? SurfaceAbove(Triangle[] surfaces, float x, float z, float minY)
+    {
+        float best = float.NegativeInfinity; bool found = false;
+        foreach (var t in surfaces)
+        {
+            if (x < t.Min.X || x > t.Max.X || z < t.Min.Z || z > t.Max.Z) continue;
+            if (HeightAt(t, x, z, out float y) && y >= minY && y > best) { best = y; found = true; }
+        }
+        return found ? best : null;
+    }
+
     static bool HeightAt(Triangle t, float x, float z, out float y)
     {
         y = 0;

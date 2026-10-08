@@ -28,6 +28,7 @@ public sealed class GameLevel
     public string Name = "";
     public List<Batch> Batches = new();
     public Triangle[] Triangles = [];
+    public Triangle[] Water = [], Lava = [];     // up-facing surface triangles of the water (flags 0x548) and lava (0x148) materials; not solid for water
     public Vector3 PlayerStart;
     public float PlayerFacing;                // radians about +Y; forward = (sin, 0, cos)
     public List<Lift> Lifts = new();
@@ -115,6 +116,21 @@ public sealed class GameLevel
                 tris.Add(new Triangle(a, bb, c, n, Vector3.Min(a, Vector3.Min(bb, c)), Vector3.Max(a, Vector3.Max(bb, c))));
             }
         level.Triangles = tris.ToArray();
+        var water = new List<Triangle>(); var lava = new List<Triangle>();
+        foreach (var b in level.Batches.Where(b => b.Translucent))
+        {
+            int fl = int.TryParse(b.Name[(b.Name.LastIndexOf("_f") + 2)..], NumberStyles.HexNumber, CultureInfo.InvariantCulture, out int x) ? x : 0;
+            var target = (fl & 0x400) != 0 ? water : lava;
+            for (int i = 0; i + 2 < b.Vertices.Length; i += 3)
+            {
+                Vector3 a = b.Vertices[i].Position, bb = b.Vertices[i + 1].Position, c = b.Vertices[i + 2].Position;
+                var n = Vector3.Cross(bb - a, c - a);
+                if (n.LengthSquared() < 1e-9f) continue;
+                n.Normalize();
+                if (n.Y > 0.5f) target.Add(new Triangle(a, bb, c, n, Vector3.Min(a, Vector3.Min(bb, c)), Vector3.Max(a, Vector3.Max(bb, c))));
+            }
+        }
+        level.Water = water.ToArray(); level.Lava = lava.ToArray();
 
         // spawn
         string spawns = Path.Combine(dir, "spawns.json");
