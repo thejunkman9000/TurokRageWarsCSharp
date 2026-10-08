@@ -55,6 +55,7 @@ public sealed class TrwGame : Game
     int _weapon;
     int _index, _frame;
     double _nextShot;
+    float _rwYaw; readonly Random _rw = new(12345);
     int _kills;
     bool _fog = true, _focused;
     double _time;
@@ -66,6 +67,7 @@ public sealed class TrwGame : Game
         _opt = opt;
         _gfx = new GraphicsDeviceManager(this) { PreferredBackBufferWidth = opt.Width, PreferredBackBufferHeight = opt.Height, GraphicsProfile = GraphicsProfile.HiDef };
         IsMouseVisible = false;
+        if (Environment.GetEnvironmentVariable("TRW_FAST") != null) { IsFixedTimeStep = false; _gfx.SynchronizeWithVerticalRetrace = false; }          // headless: unlimited frame rate, fixed 1/60 s steps
         string baked = Path.Combine(opt.DataRoot, "baked");
         _levels = Directory.Exists(baked) ? Directory.GetDirectories(baked).Select(Path.GetFileName).Where(n => n != null && char.IsDigit(n[0])).OrderBy(n => n).ToArray()! : [];
         _index = Math.Clamp(opt.Level, 0, Math.Max(0, _levels.Length - 1));
@@ -113,7 +115,7 @@ public sealed class TrwGame : Game
     protected override void Update(GameTime gt)
     {
         var k = Keyboard.GetState();
-        float dt = Math.Min((float)gt.ElapsedGameTime.TotalSeconds, 0.1f);
+        float dt = Environment.GetEnvironmentVariable("TRW_FAST") != null ? 1f / 60f : Math.Min((float)gt.ElapsedGameTime.TotalSeconds, 0.1f);
         _time += dt; _frame++;
         if (k.IsKeyDown(Keys.Escape)) Exit();
         if (_levels.Length == 0) return;
@@ -130,7 +132,14 @@ public sealed class TrwGame : Game
         if (Pressed(k, Keys.F12)) Shot(Path.Combine(_opt.DataRoot, $"game_{_index:D2}.png"));
 
         PlayerInput input = default;
-        if (_opt.AutoWalk && Environment.GetEnvironmentVariable("TRW_IDLE") == null)                                                                       // scripted input for headless checks: forward, strafe right, jump, turn right
+        if (_opt.AutoWalk && Environment.GetEnvironmentVariable("TRW_RANDOM") != null)           // random walk to find holes in the collision: wander, jump, turn
+        {
+            input.Forward = 1f; input.Jump = (_frame / 40) % 3 == 0;
+            _rwYaw += (float)(_rw.NextDouble() - 0.5) * 0.06f;
+            input.LookYaw = _rwYaw * 0.5f;
+            if (_frame % 90 == 0) _rwYaw = (float)(_rw.NextDouble() - 0.5) * 0.6f;
+        }
+        else if (_opt.AutoWalk && Environment.GetEnvironmentVariable("TRW_IDLE") == null)                                                                       // scripted input for headless checks: forward, strafe right, jump, turn right
         {
             input.Forward = _frame is > 5 and < 40 ? 1f : 0f;
             input.Strafe = _frame is >= 40 and < 80 ? 1f : 0f;
@@ -173,7 +182,7 @@ public sealed class TrwGame : Game
         Window.Title = $"{_level.Name} | pos {_player.Feet.X:F0}, {_player.Feet.Y:F0}, {_player.Feet.Z:F0} | speed {_player.HorizontalSpeed:F0} u/s | {(_player.NoClip ? "NOCLIP" : _player.Grounded ? "on ground" : "in air")} | fog {(_fog ? "on" : "off")} (F) | WASD, mouse, Space jump, N noclip, R respawn, PgUp/PgDn level";
 
         if ((_opt.AutoWalk || Environment.GetEnvironmentVariable("TRW_LOG") != null) && _frame % 30 == 0)
-            File.AppendAllText(Path.Combine(_opt.DataRoot, "game_log.txt"), $"frame {_frame}: feet {_player.Feet.X:F1} {_player.Feet.Y:F1} {_player.Feet.Z:F1} grounded {_player.Grounded} speed {_player.HorizontalSpeed:F0} hp {_player.Health:F0} ammo {string.Join("/", _player.Items.Ammo.Take(3))} pu {_player.Items.PowerUp} water {_player.WaterDepth:F0} weapon {Weapons[_weapon].Name} kills {_kills}\n");
+            File.AppendAllText(Path.Combine(_opt.DataRoot, "game_log.txt"), $"frame {_frame}: feet {_player.Feet.X:F1} {_player.Feet.Y:F1} {_player.Feet.Z:F1} grounded {_player.Grounded} speed {_player.HorizontalSpeed:F0} hp {_player.Health:F0} ammo {string.Join("/", _player.Items.Ammo.Take(3))} pu {_player.Items.PowerUp} water {_player.WaterDepth:F0} weapon {Weapons[_weapon].Name} kills {_kills} falls {_player.FallRespawns}\n");
         _audio.Update(_time);
         base.Update(gt);
     }

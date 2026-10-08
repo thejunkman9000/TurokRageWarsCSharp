@@ -31,6 +31,7 @@ public sealed class Player
     public float Yaw, Pitch;                  // forward = (sin yaw cos pitch, sin pitch, cos yaw cos pitch)
     public bool Grounded;
     public bool NoClip;
+    public int FallRespawns;                  // debugging: times the player fell out of the level
     public Inventory Items = new();
     public float Health = MaxHealth, WaterDepth, DeadTimer, HurtFlash;
     public bool Dead => Health <= 0;
@@ -163,6 +164,6 @@ public sealed class Player
             if (_vy <= 0 && g2 is float gg && newY <= gg + 0.01f) { if (_vy < -51.2f * TicksPerSecond) EvLand = true; Feet.Y = gg; _vy = 0; Grounded = true; _sinceGround = 0; }
             else { Feet.Y = newY; _sinceGround += dt; }
         }
-        if (Feet.Y < -6000f) Respawn(level.PlayerStart, level.PlayerFacing);
+        if (Feet.Y < -6000f) { FallRespawns++; Respawn(level.PlayerStart, level.PlayerFacing); }
     }
 }
