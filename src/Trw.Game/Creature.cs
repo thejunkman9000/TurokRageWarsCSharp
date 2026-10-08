@@ -182,10 +182,11 @@ public sealed class Creature
 }
 
 /// <summary>A bot standing at a deathmatch spawn point in its idle animation. It is solid for the player.</summary>
-public sealed class Bot
+public sealed partial class Bot
 {
     public const float Radius = 56.32f, Height = 184.32f;      // [spec] pawn hit radius and height (bots are pawns too)
     public Vector3 Feet;
+    public Vector3 Home;                          // spawn point
     public float Facing;
     public int Skin;
     public Creature Mesh = null!;
@@ -195,8 +196,8 @@ public sealed class Bot
     public Vector3 Light = Vector3.One;           // approximate ambient light from the level's baked vertex colours
     public Creature? Weapon;                      // hand-held weapon chunk (obj_174_m16..): shares the body's skeleton and clip
     public double TimeOffset;
-    float _drop = float.NaN;
-    readonly Dictionary<int, List<Batch>> _frames = new();
+    float _drop = float.NaN, _animClock;
+    int _animClip = -1;
 
     static readonly Matrix ZUp = new(1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 0, 0, 1);           // model Z-up -> world Y-up: (x, y, z) -> (x, z, -y)
 
@@ -204,14 +205,14 @@ public sealed class Bot
 
     public List<Batch> Batches(GraphicsDevice gd, string dataRoot, double time)
     {
-        int frame = Mesh.FrameAt(Clip, time + TimeOffset);
-        if (_frames.TryGetValue(frame, out var cached)) return cached;
-        Matrix toWorld = ZUp * Matrix.CreateScale(0.5f) * Matrix.CreateRotationY(Facing) * Matrix.CreateTranslation(Feet.X, 0, Feet.Z);
-        if (float.IsNaN(_drop)) { Mesh.Pose(gd, dataRoot, Clip, 0, toWorld, Skin, out float m0); _drop = Feet.Y - m0; }          // lower the model until its lowest point touches the floor
-        var placed = toWorld * Matrix.CreateTranslation(0, _drop, 0);
-        var batches = Mesh.Pose(gd, dataRoot, Clip, frame, placed, Skin, out _);
-        if (Weapon != null) batches.AddRange(Weapon.Pose(gd, dataRoot, Clip, frame, placed, 0, out _));
+        int clip = _animClip >= 0 ? _animClip : Clip;
+        int frame = Mesh.FrameAt(clip, _animClock + TimeOffset);
+        Matrix toWorld = ZUp * Matrix.CreateScale(0.5f) * Matrix.CreateRotationY(Facing);
+        if (float.IsNaN(_drop)) { Mesh.Pose(gd, dataRoot, Clip, 0, toWorld, Skin, out float m0); _drop = -m0; }          // lower the model until its lowest point touches the floor
+        var placed = toWorld * Matrix.CreateTranslation(Feet.X, Feet.Y + _drop, Feet.Z);
+        var batches = Mesh.Pose(gd, dataRoot, clip, frame, placed, Skin, out _);
+        if (Weapon != null) batches.AddRange(Weapon.Pose(gd, dataRoot, clip, frame, placed, 0, out _));
         foreach (var b in batches) b.Tint *= Light;
-        return _frames[frame] = batches;
+        return batches;
     }
 }

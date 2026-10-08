@@ -214,7 +214,7 @@ public sealed class GameLevel
             {
                 var p = new Vector3(sp.GetProperty("x").GetSingle(), sp.GetProperty("y").GetSingle(), sp.GetProperty("z").GetSingle());
                 if (Collision.GroundHeight(level, p, 8f, p.Y + 100f) is float floor) p.Y = floor;
-                level.Bots.Add(new Bot { Mesh = mesh, Feet = p, Facing = sp.GetProperty("facingYaw").GetSingle(), Skin = n % 3, Clip = mesh.ClipByRole("idle"), Weapon = Creature.Load(dataRoot, "obj_174_m21"), TimeOffset = n * 0.13, Light = level.LightNear(p + new Vector3(0, 90, 0)) });
+                level.Bots.Add(new Bot { Mesh = mesh, Feet = p, Home = p, Facing = sp.GetProperty("facingYaw").GetSingle(), Skin = n % 3, Clip = mesh.ClipByRole("idle"), Weapon = Creature.Load(dataRoot, "obj_174_m21"), TimeOffset = n * 0.13, Light = level.LightNear(p + new Vector3(0, 90, 0)) });
             }
             n++;
         }

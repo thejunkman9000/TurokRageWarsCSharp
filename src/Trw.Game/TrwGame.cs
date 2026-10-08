@@ -9,7 +9,7 @@ namespace Trw.Walk;
 /// translucent animated water. WASD move, mouse look, Space jump, F fog, N noclip fly, R respawn, PgUp/PgDn level, F12 screenshot, Esc quit.</summary>
 public sealed class TrwGame : Game
 {
-    public sealed record Options(string DataRoot, int Level, string? Shot, int Frames, bool AutoWalk, int Width, int Height, bool NoFog = false, bool NoSound = false);
+    public sealed record Options(string DataRoot, int Level, string? Shot, int Frames, bool AutoWalk, int Width, int Height, bool NoFog = false, bool NoSound = false, bool NoBotAi = false);
 
     readonly GraphicsDeviceManager _gfx;
     readonly Options _opt;
@@ -122,7 +122,11 @@ public sealed class TrwGame : Game
         bool fire = _opt.AutoWalk ? Environment.GetEnvironmentVariable("TRW_FIRE") != null : IsActive && _focused && Mouse.GetState().LeftButton == ButtonState.Pressed;
         if (fire && !_player.Dead && _time >= _nextShot && _player.Items.Ammo[0] > 0) { _nextShot = _time + FireInterval; Fire(); }
         foreach (var bot in _level.Bots)
-            if (bot.Dead && (bot.DeadTimer += dt * 15f) > 75f) { bot.Health = 100f; bot.DeadTimer = 0; }
+        {
+            if (bot.Dead && (bot.DeadTimer += dt * 15f) > 75f) bot.Reset();
+            if (!_opt.NoBotAi) bot.Update(dt, _level, _player);
+            if (bot.EvFire) _audio.Play(SoundIds.FireMag60, _time, 0.6f);
+        }
         foreach (var pk in _level.Pickups) { pk.Update(dt * 15f); if (!_player.Dead && pk.Touches(_player.Feet)) { if (pk.Grant(_player)) _audio.Play(SoundIds.Pickup, _time); } }
         if (!_player.Dead) foreach (var tp in _level.Teleporters) if (tp.Touches(_player.Feet)) { _player.Teleport(tp.Destination, tp.DestinationFacing); break; }
         _prev = k;
