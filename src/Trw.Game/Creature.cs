@@ -11,6 +11,7 @@ public sealed class Creature
     sealed class Material { public int Texture, Flags, PartGroup, Field8; public int[] Triangles = []; public float Alpha = 1f; public Vector3 Colour1 = Vector3.One; }
     public sealed class Clip { public int Frames, Rate = 15, LoopFrame; public string Role = ""; public Matrix[][] Bones = []; }
 
+    public static bool ShowHidden;                        // debugging: draw the status/shield/flag parts too
     public static bool FlipWinding;                       // debugging / viewmodel: invert the triangle winding
     public List<Clip> Clips = new();
     Vector3[] _pos = []; Vector2[] _uv = []; int[] _bone = [];
@@ -134,7 +135,7 @@ public sealed class Creature
         var list = new List<Batch>();
         foreach (var mat in _materials)
         {
-            if (mat.PartGroup is 0x10 or 0x30 or 0x38) continue;
+            if (!ShowHidden && mat.PartGroup is 0x10 or 0x30 or 0x38) continue;
             var verts = new VertexPositionColorTexture[mat.Triangles.Length / 3 * 3];
             for (int i = 0, o = 0; i + 2 < mat.Triangles.Length; i += 3)
             {

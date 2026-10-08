@@ -28,20 +28,35 @@ public sealed class TrwGame : Game
     double _lastShot = -10;
     Matrix _vmFit = Matrix.Identity;
 
-    /// <summary>Fits a viewmodel into the lower right of the view: the model (x, y, z) -> view (x, z, y), scaled so its forward extent is about 60 units, with its
-    /// rear-bottom-right corner anchored just in front of and below the eye. (Viewmodel placement is not decoded; this is tuned by eye.)</summary>
+    /// <summary>The weapon meshes are one-sided shells: the far side was left out because the original viewmodel camera only ever sees them from one direction. Measuring which camera
+    /// directions see every triangle front-facing (docs/TRW_GAME.md) gives the same answer for all four weapons: from up, right and behind, about (0.48, 0.8, 0.36) in model space
+    /// (x right, y backwards, z up). This builds the rotation that puts the virtual camera on that axis and keeps model-up pointing up.</summary>
+    static Matrix ViewModelRotation(float yawDeg = 0, float pitchDeg = 0)
+    {
+        var zv = Vector3.Normalize(new Vector3(0.48f, 0.8f, 0.36f));                   // direction from the weapon towards the camera, in model space
+        var yv = Vector3.Normalize(Vector3.UnitZ - Vector3.Dot(Vector3.UnitZ, zv) * zv);
+        var xv = Vector3.Cross(yv, zv);
+        var basis = new Matrix(xv.X, yv.X, zv.X, 0, xv.Y, yv.Y, zv.Y, 0, xv.Z, yv.Z, zv.Z, 0, 0, 0, 0, 1);    // model -> view axes (x right, y up, z towards the viewer)
+        return basis * Matrix.CreateRotationY(MathHelper.ToRadians(yawDeg)) * Matrix.CreateRotationX(MathHelper.ToRadians(pitchDeg));
+    }
+
+    /// <summary>Scales and places the rotated viewmodel in the lower right of the view.</summary>
     void FitViewModel()
     {
         if (_viewModel == null) return;
-        var swap = new Matrix(1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1);
+        var rot = ViewModelRotation(VmYaw, VmPitch);
         int clip = _viewModel.ClipByRole("idle");
         Vector3 min = new(1e9f), max = new(-1e9f);
-        foreach (var b in _viewModel.Pose(GraphicsDevice, _opt.DataRoot, clip, 0, swap, 0, out _))
+        Creature.FlipWinding = VmFlip;
+        foreach (var b in _viewModel.Pose(GraphicsDevice, _opt.DataRoot, clip, 0, rot, 0, out _))
             foreach (var v in b.Vertices) { min = Vector3.Min(min, v.Position); max = Vector3.Max(max, v.Position); }
-        float forward = MathF.Max(1f, max.Z - min.Z), s = 52f / forward;
-        // anchor: x so the model sits right of centre, y just below the view centre, rear end (max z) 14 units in front of the eye
-        _vmFit = swap * Matrix.CreateScale(s) * Matrix.CreateTranslation(15f - (min.X + max.X) * 0.5f * s, -21f - min.Y * s, -32f - max.Z * s);
+        Creature.FlipWinding = false;
+        var centre = (min + max) / 2; float size = MathF.Max(max.X - min.X, MathF.Max(max.Y - min.Y, max.Z - min.Z)), s = VmSize / size;
+        _vmFit = rot * Matrix.CreateTranslation(-centre) * Matrix.CreateScale(s) * Matrix.CreateTranslation(VmX, VmY, -VmDepth);
     }
+    static float VmYaw = 0, VmPitch = 0, VmSize = 34f, VmX = 14f, VmY = -13f, VmDepth = 52f;
+    static bool VmFlip = false;
+
     /// <summary>Hitscan weapons. Damage per hit is from the spec (section 2); pellet count, spread, ammo cost and fire interval are assumed (cadence is not decoded).
     /// The viewmodel is object 152 + weapon index (gameplay_defs order), an unverified guess.</summary>
     sealed record WeaponDef(string Name, int ViewModel, float Damage, int Pellets, float SpreadDegrees, float Interval, int AmmoCost);
@@ -86,6 +101,7 @@ public sealed class TrwGame : Game
         _sprites = new SpriteBatch(GraphicsDevice);
         _viewModel = Creature.Load(_opt.DataRoot, $"obj_{Weapons[0].ViewModel}");                                   // [unverified] viewmodel objects 152-173 in weapon order: 157 = MAG 60
         if (Environment.GetEnvironmentVariable("TRW_VM") is { Length: > 0 } vm) { var q = vm.Split(','); _viewModel = Creature.Load(_opt.DataRoot, $"obj_{q[0]}"); for (int i = 1; i < q.Length && i < 5; i++) _vmTune[i - 1] = float.Parse(q[i], CultureInfo.InvariantCulture); }
+        if (Environment.GetEnvironmentVariable("TRW_VMT") is { Length: > 0 } vmt) { var q = vmt.Split(','); VmYaw = float.Parse(q[0], CultureInfo.InvariantCulture); VmPitch = float.Parse(q[1], CultureInfo.InvariantCulture); VmSize = float.Parse(q[2], CultureInfo.InvariantCulture); VmX = float.Parse(q[3], CultureInfo.InvariantCulture); VmY = float.Parse(q[4], CultureInfo.InvariantCulture); VmDepth = float.Parse(q[5], CultureInfo.InvariantCulture); VmFlip = q.Length > 6 && q[6] == "1"; }
         FitViewModel();
         _audio = new GameAudio(_opt.DataRoot) { Enabled = !_opt.NoSound };
         _white = new Texture2D(GraphicsDevice, 1, 1); _white.SetData([Color.White]);
@@ -302,12 +318,11 @@ public sealed class TrwGame : Game
             int fireClip = _viewModel.ClipByRole("fire"), clip = _viewModel.ClipByRole("idle"), frame;
             if (fireClip >= 0 && _time - _lastShot < _viewModel.Clips[fireClip].Frames / 15.0) { clip = fireClip; frame = (int)((_time - _lastShot) * 15); }
             else frame = _viewModel.FrameAt(clip, _time);
-            var swap = new Matrix(1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1);              // model (x, y, z) -> view (x, z, y): model y negative = forward = view -Z
-            var toView = Environment.GetEnvironmentVariable("TRW_VM") != null ? swap * Matrix.CreateScale(_vmTune[0]) * Matrix.CreateTranslation(_vmTune[1], _vmTune[2], _vmTune[3]) : _vmFit;
+            var toView = _vmFit;
             float speed = _player.HorizontalSpeed / 460f;                                         // sway while walking, kick back and up for a moment after a shot
             double since = _time - _lastShot; float kick = since < 0.12 ? (float)(1 - since / 0.12) : 0f;
             toView *= Matrix.CreateTranslation(MathF.Sin((float)_time * 7f) * 0.9f * speed, MathF.Abs(MathF.Sin((float)_time * 7f)) * 0.8f * speed + kick * 1.2f, kick * 3f);
-            Creature.FlipWinding = true;                                                  // the viewmodel mirror matrix needs the opposite winding from world objects (verified by eye: the far inside faces showed otherwise)
+            Creature.FlipWinding = VmFlip;
             var vmBatches = _viewModel.Pose(GraphicsDevice, _opt.DataRoot, clip, frame, toView, 0, out _);
             Creature.FlipWinding = false;
             foreach (var b in vmBatches)
@@ -320,6 +335,8 @@ public sealed class TrwGame : Game
             }
                     if (_frame == 15) File.AppendAllText(Path.Combine(_opt.DataRoot, "game_log.txt"), $"viewmodel bounds {_vmMin} {_vmMax}" + Environment.NewLine);
         }
+
+        if (Environment.GetEnvironmentVariable("TRW_VMVIEW") is { Length: > 0 } dbg) DrawViewModelDebug(dbg);
 
         // HUD: water tint, damage flash, health bar, crosshair
         _sprites.Begin();
@@ -357,6 +374,44 @@ public sealed class TrwGame : Game
         _sprites.End();
         base.Draw(gt);
         if (_opt.Shot != null && _frame >= _opt.Frames) { Shot(_opt.Shot); Exit(); }
+    }
+
+    /// <summary>Debug: one viewmodel drawn large and centred, TRW_VMVIEW=obj,yawDeg,pitchDeg,cullNone(0/1),showHidden(0/1),frame,flip(0/1).</summary>
+    void DrawViewModelDebug(string spec)
+    {
+        string[] q = spec.Split(',');
+        var mesh = Creature.Load(_opt.DataRoot, $"obj_{q[0]}"); if (mesh == null) return;
+        float yaw = MathHelper.ToRadians(float.Parse(q[1], CultureInfo.InvariantCulture)), pitch = MathHelper.ToRadians(float.Parse(q[2], CultureInfo.InvariantCulture));
+        bool cullNone = q.Length > 3 && q[3] == "1"; Creature.ShowHidden = q.Length > 4 && q[4] == "1";
+        int frame = q.Length > 5 ? int.Parse(q[5]) : 0; bool flip = q.Length > 6 ? q[6] == "1" : true;
+        GraphicsDevice.Clear(new Color(70, 80, 100)); GraphicsDevice.Clear(ClearOptions.DepthBuffer, Color.Black, 1f, 0);
+        var swap = ViewModelRotation(yaw * 180f / MathF.PI, pitch * 180f / MathF.PI); yaw = pitch = 0;
+        int clip = mesh.ClipByRole("idle");
+        Vector3 min = new(1e9f), max = new(-1e9f);
+        Creature.FlipWinding = flip;
+        foreach (var b in mesh.Pose(GraphicsDevice, _opt.DataRoot, clip, frame, swap, 0, out _)) foreach (var v in b.Vertices) { min = Vector3.Min(min, v.Position); max = Vector3.Max(max, v.Position); }
+        var centre = (min + max) / 2; float size = MathF.Max(max.X - min.X, MathF.Max(max.Y - min.Y, max.Z - min.Z)), s = 120f / size;
+        var m = swap * Matrix.CreateTranslation(-centre) * Matrix.CreateRotationY(yaw) * Matrix.CreateRotationX(pitch) * Matrix.CreateScale(s) * Matrix.CreateTranslation(0, 0, -170f);
+        var batches = mesh.Pose(GraphicsDevice, _opt.DataRoot, clip, frame, m, 0, out _);
+        Creature.FlipWinding = false; Creature.ShowHidden = false;
+        _cutout.View = Matrix.Identity; _fx.View = Matrix.Identity;
+        foreach (var fx in new IEffectFog[] { _fx, _cutout }) fx.FogEnabled = false;
+        GraphicsDevice.RasterizerState = cullNone ? RasterizerState.CullNone : RasterizerState.CullClockwise;
+        GraphicsDevice.BlendState = BlendState.Opaque; GraphicsDevice.DepthStencilState = DepthStencilState.Default;
+        foreach (var b in batches.Where(b => !b.Translucent))
+        {
+            _cutout.Texture = b.Texture ?? _white; _cutout.DiffuseColor = b.Tint; _cutout.Alpha = 1f;
+            GraphicsDevice.SamplerStates[0] = _samplers[b.Sampler];
+            foreach (var pass in _cutout.CurrentTechnique.Passes) { pass.Apply(); GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleList, b.Vertices, 0, b.Vertices.Length / 3); }
+        }
+        GraphicsDevice.BlendState = BlendState.NonPremultiplied; GraphicsDevice.DepthStencilState = DepthStencilState.DepthRead;
+        foreach (var b in batches.Where(b => b.Translucent))
+        {
+            _fx.Texture = b.Texture ?? _white; _fx.DiffuseColor = b.Tint; _fx.Alpha = b.Alpha;
+            GraphicsDevice.SamplerStates[0] = _samplers[b.Sampler];
+            foreach (var pass in _fx.CurrentTechnique.Passes) { pass.Apply(); GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleList, b.Vertices, 0, b.Vertices.Length / 3); }
+        }
+        GraphicsDevice.RasterizerState = RasterizerState.CullClockwise;
     }
 
     Texture2D? Current(Batch b)

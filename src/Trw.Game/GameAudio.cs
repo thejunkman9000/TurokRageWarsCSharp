@@ -113,7 +113,7 @@ public sealed class GameAudio : IDisposable
     /// <summary>Starts a song by its game key (50, 52, 56, 57, 58, 59, 60, 61, 65); -1 stops the music.</summary>
     public void PlayMusic(int key)
     {
-        if (key == CurrentSong) return;
+        if (key == CurrentSong || !Enabled) return;                 // --nosound: never opens the audio stream
         StopMusic();
         CurrentSong = key;
         if (key < 0) return;
