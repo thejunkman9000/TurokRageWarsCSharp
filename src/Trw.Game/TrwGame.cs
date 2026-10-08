@@ -271,7 +271,10 @@ public sealed class TrwGame : Game
             else frame = _viewModel.FrameAt(clip, _time);
             var swap = new Matrix(1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1);              // model (x, y, z) -> view (x, z, y): model y negative = forward = view -Z
             var toView = Environment.GetEnvironmentVariable("TRW_VM") != null ? swap * Matrix.CreateScale(_vmTune[0]) * Matrix.CreateTranslation(_vmTune[1], _vmTune[2], _vmTune[3]) : _vmFit;
-            foreach (var b in _viewModel.Pose(GraphicsDevice, _opt.DataRoot, clip, frame, toView, 0, out _))
+            Creature.FlipWinding = true;                                                  // the viewmodel mirror matrix needs the opposite winding from world objects (verified by eye: the far inside faces showed otherwise)
+            var vmBatches = _viewModel.Pose(GraphicsDevice, _opt.DataRoot, clip, frame, toView, 0, out _);
+            Creature.FlipWinding = false;
+            foreach (var b in vmBatches)
             {
                 if (_frame == 15) foreach (var v in b.Vertices) { _vmMin = Vector3.Min(_vmMin, v.Position); _vmMax = Vector3.Max(_vmMax, v.Position); }
                 if (b.Translucent) continue;

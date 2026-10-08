@@ -11,6 +11,7 @@ public sealed class Creature
     sealed class Material { public int Texture, Flags, PartGroup, Field8; public int[] Triangles = []; public float Alpha = 1f; public Vector3 Colour1 = Vector3.One; }
     public sealed class Clip { public int Frames, Rate = 15, LoopFrame; public string Role = ""; public Matrix[][] Bones = []; }
 
+    public static bool FlipWinding;                       // debugging / viewmodel: invert the triangle winding
     public List<Clip> Clips = new();
     Vector3[] _pos = []; Vector2[] _uv = []; int[] _bone = [];
     readonly List<Material> _materials = new();
@@ -122,7 +123,7 @@ public sealed class Creature
             world[i] = Vector3.Transform(Vector3.Transform(_pos[i], b >= 0 && b < bones.Length ? bones[b] : Matrix.Identity), toWorld);
             minY = MathF.Min(minY, world[i].Y);
         }
-        bool flip = toWorld.Determinant() < 0;
+        bool flip = (toWorld.Determinant() < 0) ^ FlipWinding;
         var list = new List<Batch>();
         foreach (var mat in _materials)
         {
