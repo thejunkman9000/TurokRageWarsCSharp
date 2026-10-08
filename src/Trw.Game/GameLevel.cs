@@ -131,6 +131,7 @@ public sealed class GameLevel
         }
 
         level.Lifts = Lift.Load(gd, dataRoot, levelDirName);
+        foreach (var l in level.Lifts) l.Light = level.LightNear(l.Base + new Vector3(0, 40, 0), 300f);
         LoadBots(level, dataRoot, spawns);
 
         // fog / clear colour of zone 0
@@ -168,10 +169,20 @@ public sealed class GameLevel
             {
                 var p = new Vector3(sp.GetProperty("x").GetSingle(), sp.GetProperty("y").GetSingle(), sp.GetProperty("z").GetSingle());
                 if (Collision.GroundHeight(level, p, 8f, p.Y + 100f) is float floor) p.Y = floor;
-                level.Bots.Add(new Bot { Mesh = mesh, Feet = p, Facing = sp.GetProperty("facingYaw").GetSingle(), Skin = n % 3, Clip = mesh.ClipByRole("idle"), TimeOffset = n * 0.13 });
+                level.Bots.Add(new Bot { Mesh = mesh, Feet = p, Facing = sp.GetProperty("facingYaw").GetSingle(), Skin = n % 3, Clip = mesh.ClipByRole("idle"), Weapon = Creature.Load(dataRoot, "obj_174_m21"), TimeOffset = n * 0.13, Light = level.LightNear(p + new Vector3(0, 90, 0)) });
             }
             n++;
         }
+    }
+
+    /// <summary>Approximate lighting for dynamic objects: the average baked vertex colour of the level geometry within 200 units (the game's real actor lighting is not decoded).</summary>
+    public Vector3 LightNear(Vector3 p, float radius = 200f)
+    {
+        Vector3 sum = default; int n = 0; float r2 = radius * radius;
+        foreach (var b in Batches)
+            foreach (var v in b.Vertices)
+                if (Vector3.DistanceSquared(v.Position, p) < r2) { sum += v.Color.ToVector3(); n++; }
+        return n > 0 ? Vector3.Clamp(sum / n * 1.4f, new Vector3(0.25f), Vector3.One) : Vector3.One;
     }
 
     sealed record MatInfo(int Texture, int Sampler, bool Translucent, float Alpha, int SortKey, bool Animated, int Frames, int StepTicks);

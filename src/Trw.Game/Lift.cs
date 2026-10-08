@@ -16,6 +16,7 @@ public sealed class Lift
     public Vector3[] ModelPositions = [];                         // model space, Z-up, three per triangle
     public Vector2[] ModelUvs = [];
     public Texture2D? Texture;
+    public Vector3 Light = Vector3.One;
     int _phase; float _timer;
 
     static readonly Matrix ZUp = new(1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 0, 0, 1);
@@ -46,7 +47,7 @@ public sealed class Lift
         var m = ZUp * Matrix.CreateScale(0.5f) * Matrix.CreateRotationY(Facing) * Matrix.CreateTranslation(Position);
         var v = new VertexPositionColorTexture[ModelPositions.Length];
         for (int i = 0; i < v.Length; i++) v[i] = new VertexPositionColorTexture(Vector3.Transform(ModelPositions[i], m), Color.White, ModelUvs[i]);
-        return new Batch { Vertices = v, Texture = Texture };
+        return new Batch { Vertices = v, Texture = Texture, Tint = Light };
     }
 
     static float F(string s) => float.Parse(s, CultureInfo.InvariantCulture);
@@ -99,7 +100,7 @@ public sealed class Lift
                 }
                 lift.ModelPositions = mp.ToArray(); lift.ModelUvs = mu.ToArray();
             }
-            lifts.Add(lift);
+            lifts.Add(lift);                                                                  // Light is set by GameLevel once the geometry is loaded
         }
         return lifts;
     }

@@ -190,6 +190,8 @@ public sealed class Bot
     public int Skin;
     public Creature Mesh = null!;
     public int Clip;
+    public Vector3 Light = Vector3.One;           // approximate ambient light from the level's baked vertex colours
+    public Creature? Weapon;                      // hand-held weapon chunk (obj_174_m16..): shares the body's skeleton and clip
     public double TimeOffset;
     float _drop = float.NaN;
     readonly Dictionary<int, List<Batch>> _frames = new();
@@ -202,6 +204,10 @@ public sealed class Bot
         if (_frames.TryGetValue(frame, out var cached)) return cached;
         Matrix toWorld = ZUp * Matrix.CreateScale(0.5f) * Matrix.CreateRotationY(Facing) * Matrix.CreateTranslation(Feet.X, 0, Feet.Z);
         if (float.IsNaN(_drop)) { Mesh.Pose(gd, dataRoot, Clip, 0, toWorld, Skin, out float m0); _drop = Feet.Y - m0; }          // lower the model until its lowest point touches the floor
-        return _frames[frame] = Mesh.Pose(gd, dataRoot, Clip, frame, toWorld * Matrix.CreateTranslation(0, _drop, 0), Skin, out _);
+        var placed = toWorld * Matrix.CreateTranslation(0, _drop, 0);
+        var batches = Mesh.Pose(gd, dataRoot, Clip, frame, placed, Skin, out _);
+        if (Weapon != null) batches.AddRange(Weapon.Pose(gd, dataRoot, Clip, frame, placed, 0, out _));
+        foreach (var b in batches) b.Tint *= Light;
+        return _frames[frame] = batches;
     }
 }
