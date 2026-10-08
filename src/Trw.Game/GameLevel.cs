@@ -28,6 +28,7 @@ public sealed class GameLevel
     public string Name = "";
     public List<Batch> Batches = new();
     public Triangle[] Triangles = [];
+    List<Triangle> _lavaRaw = new();
     public Triangle[] Water = [], Lava = [];     // up-facing surface triangles of the water (flags 0x548) and lava (0x148) materials; not solid for water
     public Vector3 PlayerStart;
     public float PlayerFacing;                // radians about +Y; forward = (sin, 0, cos)
@@ -130,7 +131,7 @@ public sealed class GameLevel
                 if (n.Y > 0.5f) target.Add(new Triangle(a, bb, c, n, Vector3.Min(a, Vector3.Min(bb, c)), Vector3.Max(a, Vector3.Max(bb, c))));
             }
         }
-        level.Water = water.ToArray(); level.Lava = lava.ToArray();
+        level.Water = water.ToArray(); level._lavaRaw = lava;
 
         // spawn
         string spawns = Path.Combine(dir, "spawns.json");
@@ -167,7 +168,31 @@ public sealed class GameLevel
                 }
             }
         }
+        level.Lava = LargeRegions(level._lavaRaw, 400f, level.PlayerStart);
         return level;
+    }
+
+    /// <summary>Keeps only the triangles belonging to connected regions wider than <paramref name="minExtent"/>: small lava-textured patches are decoration, and a region the player starts on (level 14's floor) is not lava.</summary>
+    static Triangle[] LargeRegions(List<Triangle> tris, float minExtent, Vector3 start)
+    {
+        int n = tris.Count;
+        var parent = Enumerable.Range(0, n).ToArray();
+        int Find(int i) { while (parent[i] != i) i = parent[i] = parent[parent[i]]; return i; }
+        var byCorner = new Dictionary<(int, int, int), int>();
+        for (int i = 0; i < n; i++)
+            foreach (var p in new[] { tris[i].A, tris[i].B, tris[i].C })
+            {
+                var key = ((int)MathF.Round(p.X), (int)MathF.Round(p.Y), (int)MathF.Round(p.Z));
+                if (byCorner.TryGetValue(key, out int other)) parent[Find(i)] = Find(other); else byCorner[key] = i;
+            }
+        var min = new Dictionary<int, Vector3>(); var max = new Dictionary<int, Vector3>();
+        for (int i = 0; i < n; i++)
+        {
+            int r = Find(i);
+            min[r] = min.TryGetValue(r, out var a) ? Vector3.Min(a, tris[i].Min) : tris[i].Min;
+            max[r] = max.TryGetValue(r, out var b) ? Vector3.Max(b, tris[i].Max) : tris[i].Max;
+        }
+        return Enumerable.Range(0, n).Where(i => { int r = Find(i); var e = max[r] - min[r]; bool hasStart = start.X >= min[r].X && start.X <= max[r].X && start.Z >= min[r].Z && start.Z <= max[r].Z; return MathF.Max(e.X, e.Z) > minExtent && !hasStart; }).Select(i => tris[i]).ToArray();
     }
 
     /// <summary>Bots idling at the deathmatch spawn points, characters cycling through the body chunks (character id -> chunk, docs/formats/creatures_export.md), skins 0..2.</summary>

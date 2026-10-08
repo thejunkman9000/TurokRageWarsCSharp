@@ -104,7 +104,7 @@ public sealed class Player
         Collision.PushOutOfObjects(level, ref Feet, Radius, Height, StepHeight);
 
         // lava: standing on (or just above) a lava surface hurts
-        if (Collision.SurfaceAbove(level.Lava, Feet.X, Feet.Z, Feet.Y - 6f) is float lavaY && Feet.Y - lavaY < 6f && !Dead)
+        if (Collision.SurfaceAbove(level.Lava, Feet.X, Feet.Z, Feet.Y - 6f) is float lavaY && MathF.Abs(Feet.Y - lavaY) < 6f && !Dead)
         {
             _lavaTimer -= dtSeconds;
             if (_lavaTimer <= 0) { Hurt(LavaHit); _lavaTimer = 1f; }
