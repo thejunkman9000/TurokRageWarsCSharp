@@ -19,10 +19,13 @@ WASD move, mouse look, Space jump (swim up in water), left mouse fire, 1-4 weapo
 | teleporters | `Teleporter.cs` | touch radius, destination, yaw from the data; no effect object |
 | pickups | `Pickup.cs` | grants and respawn times from the spec; **placeholder gem models**, touch radius assumed |
 | lava / health | `Player.cs`, `GameLevel.cs` | 70 hp per hit verified; hit cadence (1/s) and "lava = large lava-textured region" **assumed** |
-| bots | `Creature.cs`, `BotAi.cs` | idle/walk clips, detection ranges from the spec; fire cadence, aim error, damage scale simplified |
+| bots | `Creature.cs`, `BotAi.cs` | idle/walk/attack/death clips, detection ranges from the spec; fire cadence, aim error, damage scale simplified |
+| match | `TrwGame.cs` | frag limit 10 / 5 minutes (assumed), scores, timer, end screen, Enter restarts, respawn at the farthest spawn after 5 s (spec) |
+| power-ups | `Pickup.cs`, `Player.cs`, `BotAi.cs` | durations and effect rules from the spec section 4; only the effects that matter against bullets are implemented |
+| pickup model | - | object 274 is an untextured 102x102 quad (the item visual is chosen elsewhere, not decoded): gems are placeholders |
 | weapon | `TrwGame.Fire`, viewmodel in `TrwGame.Draw` | MAG 60 hitscan 10 hp verified; fire rate **assumed**; viewmodel object 157 = MAG 60 is an **unverified guess** |
 | audio | `GameAudio.cs`, `tools/.../MusicRender.cs` | pipeline works; **not auditioned**; ids from `docs/formats/sound_events.md` (pain/death/teleport/pickups/impacts/music verified; muzzle sound is a guess because the game has no fire cue we found; water cues are hypotheses; jump/land/footsteps are silent in the game) |
 
 ## Not done
-Other weapons and projectiles, power-up effects for explosive/energy damage (Blast Shield, Energy Absorption do nothing yet) - implemented: Regeneration, Speed Burst, Invulnerability, Bullet Shield, Damage Reversal, Life Force Vampire, Massive Damage, Slow Time, Petrify, Invisibility, Teleportation, flags/CTF, scoring and game modes, menus, bot weapon choice and item seeking,
+Projectile weapons (only four hitscan weapons exist), Blast Shield and Energy Absorption (no explosive/energy damage yet), flags/CTF and other game modes, menus, bot weapon choice and item seeking,
 actor lighting as the game does it, the pickup model, effect objects, real collision regions, decals/particles.
