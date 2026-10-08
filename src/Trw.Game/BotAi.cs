@@ -16,6 +16,7 @@ public sealed partial class Bot
     public bool EvFire;                           // one-frame event for the sound layer
     float _vy, _rangeTimer, _wanderTimer, _wanderYaw, _desiredRange = 700f, _strafeDir = 1f, _shotTimer = 1f;
     bool _moving;
+    float _attackUntil;                          // animation clock until which the firing pose is used
 
     public void Reset() { Health = 100f; DeadTimer = 0; _deathClip = -1; Feet = Home; _vy = 0; _shotTimer = 1f; }
 
@@ -41,7 +42,7 @@ public sealed partial class Bot
             moveForward = dist > _desiredRange + 40 ? 1f : dist < _desiredRange - 40 ? -0.7f : 0f;
             moveStrafe = 0.5f * _strafeDir;                                          // strafe magnitude skill * 0.6 [assumed skill 0.8]
             _shotTimer -= dt;
-            if (_shotTimer <= 0 && MathF.Abs(Wrap(want - Facing)) < 0.35f) { _shotTimer = ShotInterval; Shoot(level, player); }
+            if (_shotTimer <= 0 && MathF.Abs(Wrap(want - Facing)) < 0.35f) { _shotTimer = ShotInterval; _attackUntil = _animClock + 0.5f; Shoot(level, player); }
         }
         else
         {
@@ -51,7 +52,8 @@ public sealed partial class Bot
         }
         Move(dt, level, moveForward, moveStrafe);
         _moving = moveForward != 0 || moveStrafe != 0;
-        _animClip = _moving ? Mesh.ClipByRole(moveForward < 0 ? "walk_back" : "walk") : -1;
+        bool firing = _animClock < _attackUntil;
+        _animClip = firing ? Mesh.ClipByRole(_moving ? "attack_walk" : "attack") : _moving ? Mesh.ClipByRole(moveForward < 0 ? "walk_back" : "walk") : -1;
     }
 
     bool CanSee(GameLevel level, Player player, Vector3 toPlayer, float dist)
