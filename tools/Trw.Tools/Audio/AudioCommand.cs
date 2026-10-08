@@ -4,6 +4,8 @@ namespace Trw.Tools.Audio;
 
 public static class AudioCommand
 {
+    /// <summary>The synth consumes samples at its output rate (ratio 1.0 = 22050 Hz), not the bank nominal 44100; WAVs are written at this rate so they play at game speed.</summary>
+    const int SynthRate = 22050;
     const string DefaultRom = @"D:\Projects\TurokRageWars\baserom.us.v11.z64";
 
     /// <summary>args: [rom] [outdir]  (rom defaults to the repo ROM; outdir defaults to ./extracted/audio)</summary>
@@ -37,7 +39,7 @@ public static class AudioCommand
         int wrote = 0, failed = 0;
         var sounds = a.SfxInstrument.Sounds;
         for (int i = 0; i < sounds.Count; i++)
-            if (ExportSound(a, sounds[i], sb0.SampleRate, Path.Combine(sfxDir, $"sfx_slot_{i:D3}.wav"), report, "sfx slot " + i)) wrote++; else failed++;
+            if (ExportSound(a, sounds[i], SynthRate, Path.Combine(sfxDir, $"sfx_slot_{i:D3}.wav"), report, "sfx slot " + i)) wrote++; else failed++;
 
         // music instrument samples (for later synth work)
         var seen = new HashSet<int>();
@@ -49,7 +51,7 @@ public static class AudioCommand
             {
                 var s = ins.Sounds[si];
                 if (s.Wave == null || !seen.Add(s.Wave.Offset)) continue;
-                if (ExportSound(a, s, mb.SampleRate, Path.Combine(instDir, $"inst{ii:D2}_{si:D2}.wav"), report, $"inst {ii}/{si}")) wrote++; else failed++;
+                if (ExportSound(a, s, SynthRate, Path.Combine(instDir, $"inst{ii:D2}_{si:D2}.wav"), report, $"inst {ii}/{si}")) wrote++; else failed++;
             }
         }
 

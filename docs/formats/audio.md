@@ -54,7 +54,7 @@ Checks: `len` always a multiple of 9; predictor indices always < 4; scale <= 12;
 (e.g. slot 3: rms 143 133 79 39 14 9 6 2 /100), looped sustained instruments hold level, loop end ~ sample count (loop 6716..23939 of 23968),
 clipped samples 0-10 per file (noise bursts a few hundred max in long sustained loops). Slots 1 and 200 are noise-like (high diff energy) - plausible noise effects.
 **Not yet listened to** - no ear in the loop; sample **rate** is ambiguous: bank says 44100 Hz; the AI/synth runs at 22050 and sndp pitch defaults to 1.0
-(ratio relative to output rate). WAVs are written at 44100; if they sound an octave low/long, use 22050 (hypothesis).
+(ratio relative to output rate). WAVs were first written at 44100 but the synth consumes samples at 22050 Hz (confirmed for music by ear: 44100 sounded an octave high and 2x fast), so sfx and instrument WAVs are now written at 22050 Hz.
 SFX slots 28-66, 69, 71, 84, 95, 101, 118-124, 134, 137, 143-145 ... share a 32-sample silent wavetable (base 0x1781F0) = unused placeholders.
 
 ## 4. Root container @ 0x503CB8 (verified structure)
