@@ -59,14 +59,21 @@ public sealed class TrwGame : Game
 
     /// <summary>Hitscan weapons. Damage per hit is from the spec (section 2); pellet count, spread, ammo cost and fire interval are assumed (cadence is not decoded).
     /// The viewmodel is object 152 + weapon index (gameplay_defs order), an unverified guess.</summary>
-    sealed record WeaponDef(string Name, int ViewModel, float Damage, int Pellets, float SpreadDegrees, float Interval, int AmmoCost);
+    sealed record WeaponDef(string Name, int ViewModel, float Damage, int Pellets, float SpreadDegrees, float Interval, int AmmoCost, int AmmoType = 0, ProjectileDef? Shot = null);
     static readonly WeaponDef[] Weapons =
     [
         new("MAG 60", 157, 10f, 1, 0f, 0.12f, 1),
         new("SHOTGUN", 158, 6f, 8, 4f, 0.9f, 1),
         new("ASSAULT RIFLE", 159, 17f, 1, 1f, 0.09f, 1),
         new("MINIGUN", 160, 5f, 1, 2.5f, 0.05f, 2),
+        // projectile weapons: damage and splash from the spec, speed/gravity/fuse assumed; ammo types 0 bullet, 1 energy, 2 explosive
+        new("TEK CROSSBOW", 156, 0f, 1, 0f, 0.55f, 1, 0, new ProjectileDef(2400f, 0f, 20f, 0f, 0f, 4f, new Color(255, 240, 120), 6f, 820, 850)),
+        new("PLASMA RIFLE", 161, 0f, 1, 0f, 0.35f, 1, 1, new ProjectileDef(1500f, 0f, 35f, 40f, 153.6f, 4f, new Color(90, 220, 255), 9f, 1520, 1530)),
+        new("GRENADES", 164, 0f, 1, 0f, 0.8f, 1, 2, new ProjectileDef(950f, 900f, 0f, 50f, 307f, 1.6f, new Color(120, 255, 90), 8f, 1220, 1221)),
+        new("SCORPION", 165, 0f, 1, 0f, 0.9f, 1, 2, new ProjectileDef(1300f, 0f, 0f, 70f, 307f, 5f, new Color(255, 150, 50), 9f, 1330, 3302)),
     ];
+    readonly List<Projectile> _shots = new();
+    readonly List<Explosion> _explosions = new();
     int _weapon;
     int _index, _frame;
     double _nextShot;
@@ -147,6 +154,10 @@ public sealed class TrwGame : Game
         if (Pressed(k, Keys.D2)) SelectWeapon(1);
         if (Pressed(k, Keys.D3)) SelectWeapon(2);
         if (Pressed(k, Keys.D4)) SelectWeapon(3);
+        if (Pressed(k, Keys.D5)) SelectWeapon(4);
+        if (Pressed(k, Keys.D6)) SelectWeapon(5);
+        if (Pressed(k, Keys.D7)) SelectWeapon(6);
+        if (Pressed(k, Keys.D8)) SelectWeapon(7);
         if (Pressed(k, Keys.M)) _audio.MusicVolume = _audio.MusicVolume > 0 ? 0f : 0.5f;
         if (Pressed(k, Keys.N)) _player.NoClip = !_player.NoClip;
         if (Pressed(k, Keys.R)) _player.Respawn(_level.PlayerStart, _level.PlayerFacing);
@@ -200,14 +211,22 @@ public sealed class TrwGame : Game
         PlayEvents();
         // hitscan MAG 60: left mouse
         bool fire = _opt.AutoWalk ? Environment.GetEnvironmentVariable("TRW_FIRE") != null : IsActive && _focused && Mouse.GetState().LeftButton == ButtonState.Pressed;
-        if (fire && !_player.Dead && _time >= _nextShot && _player.Items.Ammo[0] < Weapons[_weapon].AmmoCost) { _nextShot = _time + 0.4; _audio.Play(SoundIds.NoAmmoClick, _time); }
-        if (fire && !_player.Dead && _time >= _nextShot && _player.Items.Ammo[0] >= Weapons[_weapon].AmmoCost) { _nextShot = _time + Weapons[_weapon].Interval; _lastShot = _time; Fire(); }
+        if (fire && !_player.Dead && _time >= _nextShot && _player.Items.Ammo[Weapons[_weapon].AmmoType] < Weapons[_weapon].AmmoCost) { _nextShot = _time + 0.4; _audio.Play(SoundIds.NoAmmoClick, _time); }
+        if (fire && !_player.Dead && _time >= _nextShot && _player.Items.Ammo[Weapons[_weapon].AmmoType] >= Weapons[_weapon].AmmoCost) { _nextShot = _time + Weapons[_weapon].Interval; _lastShot = _time; Fire(); }
         foreach (var bot in _level.Bots)
         {
             if (bot.Dead && (bot.DeadTimer += dt * 15f) > 75f) bot.Reset();
             if (!_opt.NoBotAi) bot.Update(dt, _level, _player);
             if (bot.EvFire) _audio.Play(SoundIds.MuzzleFallback, _time, 0.6f);
         }
+        for (int i = _shots.Count - 1; i >= 0; i--)
+        {
+            var s = _shots[i];
+            if (!s.Update(dt, _level, _level.Bots, out Bot? direct)) continue;
+            _shots.RemoveAt(i);
+            Explode(s, direct);
+        }
+        for (int i = _explosions.Count - 1; i >= 0; i--) { _explosions[i].Age += dt; if (_explosions[i].Done) _explosions.RemoveAt(i); }
         foreach (var pk in _level.Pickups) { pk.Update(dt * 15f); if (!_player.Dead && pk.Touches(_player.Feet)) { if (pk.Grant(_player)) _audio.Play(pk.Sound, _time); } }
         if (!_player.Dead) foreach (var tp in _level.Teleporters) if (tp.Touches(_player.Feet)) { _player.Teleport(tp.Destination, tp.DestinationFacing); break; }
         _prev = k;
@@ -233,20 +252,49 @@ public sealed class TrwGame : Game
         _player.EvJump = _player.EvLand = _player.EvHurt = _player.EvTeleport = _player.EvDeath = _player.EvWaterEnter = _player.EvWaterLeave = false;
     }
 
+    /// <summary>Direct hit damage plus splash with the spec falloff m = 1 - d / radius; the player takes a quarter of the damage from their own shots.</summary>
+    void Explode(Projectile s, Bot? direct)
+    {
+        var d = s.Def;
+        if (direct != null) { direct.Damage(d.Direct); if (direct.Dead) _kills++; }
+        if (d.Splash > 0)
+        {
+            foreach (var bot in _level.Bots)
+            {
+                if (bot.Dead) continue;
+                float dist = Vector3.Distance(s.ExplosionAt, bot.Feet + new Vector3(0, Bot.Height * 0.5f, 0));
+                if (dist >= d.SplashRadius + Bot.Radius) continue;
+                bot.Damage(d.Splash * MathF.Max(0.15f, 1f - dist / (d.SplashRadius + Bot.Radius)));
+                if (bot.Dead) _kills++;
+            }
+            float pd = Vector3.Distance(s.ExplosionAt, _player.Feet + new Vector3(0, Player.Height * 0.5f, 0));
+            if (pd < d.SplashRadius + Player.Radius) _player.Hurt(0.25f * d.Splash * MathF.Max(0.15f, 1f - pd / (d.SplashRadius + Player.Radius)));
+            _explosions.Add(new Explosion { Position = s.ExplosionAt, Radius = d.SplashRadius * 0.5f, Colour = d.Colour });
+        }
+        else _explosions.Add(new Explosion { Position = s.ExplosionAt, Radius = 14f, Colour = d.Colour });
+        _audio.Play(d.ImpactSound, _time, 0.8f);
+    }
+
     void SelectWeapon(int i)
     {
         if (i < 0 || i >= Weapons.Length || i == _weapon) return;
         _weapon = i;
         _viewModel = Creature.Load(_opt.DataRoot, $"obj_{Weapons[i].ViewModel}");
         FitViewModel();
-        _audio.Play(new[] { SoundIds.SelectMag60, SoundIds.SelectShotgun, SoundIds.SelectAssault, SoundIds.SelectMinigun }[i], _time);
+        _audio.Play(new[] { SoundIds.SelectMag60, SoundIds.SelectShotgun, SoundIds.SelectAssault, SoundIds.SelectMinigun, 1800, 1200, 1000, 3400 }[i], _time);          // select ids per weapon from docs/formats/sound_events.md
     }
 
     void Fire()
     {
         var w = Weapons[_weapon];
-        _player.Items.Ammo[0] -= w.AmmoCost;
+        _player.Items.Ammo[w.AmmoType] -= w.AmmoCost;
         var origin = _player.Eye;
+        if (w.Shot != null)
+        {
+            _shots.Add(new Projectile(w.Shot, origin + _player.Forward * 24f - new Vector3(0, 8f, 0), _player.Forward * w.Shot.Speed));
+            _audio.Play(w.Shot.FireSound, _time);
+            return;
+        }
         var rng = Random.Shared;
         for (int p = 0; p < w.Pellets; p++)
         {
@@ -291,6 +339,8 @@ public sealed class TrwGame : Game
         var extra = new List<Batch>();
         foreach (var l in _level.Lifts) if (l.ModelPositions.Length > 0) extra.Add(l.Mesh());
         foreach (var tp in _level.Teleporters) extra.AddRange(tp.Batches);
+        foreach (var sh in _shots) extra.Add(sh.Mesh());
+        foreach (var ex in _explosions) extra.Add(ex.Mesh());
         foreach (var pk in _level.Pickups) if (pk.Active) extra.Add(pk.Mesh(_time));
         foreach (var pr in _level.Props) extra.AddRange(pr.Batches(GraphicsDevice, _opt.DataRoot));
         foreach (var bot in _level.Bots.Where(b => !b.Dead || b.DeadTimer < 60f)) extra.AddRange(bot.Batches(GraphicsDevice, _opt.DataRoot, _time));
@@ -354,7 +404,7 @@ public sealed class TrwGame : Game
         _sprites.Draw(_white, new Rectangle(bx, by, (int)(barW * _player.Health / Player.MaxHealth), barH), _player.Health > 30 ? new Color(60, 190, 70) : new Color(210, 50, 40));
         Hud.Number(_sprites, _white, bx + barW + 14, by - 4, 3, (int)MathF.Ceiling(_player.Health), Color.White);
         int vw = GraphicsDevice.Viewport.Width;
-        Hud.Number(_sprites, _white, vw - 130, GraphicsDevice.Viewport.Height - 42, 4, _player.Items.Ammo[0], new Color(240, 210, 70));       // ammo of the current weapon (bullets)
+        Hud.Number(_sprites, _white, vw - 130, GraphicsDevice.Viewport.Height - 42, 4, _player.Items.Ammo[Weapons[_weapon].AmmoType], new[] { new Color(240, 210, 70), new Color(80, 160, 255), new Color(240, 140, 50) }[Weapons[_weapon].AmmoType]);       // ammo of the current weapon (bullets)
         Hud.Number(_sprites, _white, vw - 130, 14, 3, _kills, new Color(230, 90, 70));
         Hud.Number(_sprites, _white, vw - 130, 52, 2, _deaths, new Color(150, 150, 170));                                                  // deaths
         int left = (int)Math.Max(0, _timeLimit - _matchTime);

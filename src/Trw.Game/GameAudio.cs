@@ -138,6 +138,7 @@ public sealed class GameAudio : IDisposable
             string[] t = File.ReadAllText(loop).Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
             if (t.Length >= 2) { _loopStartByte = int.Parse(t[0], CultureInfo.InvariantCulture) * channels * 2; _loopEndByte = Math.Min(dataLen, int.Parse(t[1], CultureInfo.InvariantCulture) * channels * 2); }
         }
+        Console.WriteLine($"[audio] opening music stream for song {key}");
         try
         {
             _music = new DynamicSoundEffectInstance(rate, channels == 2 ? AudioChannels.Stereo : AudioChannels.Mono) { Volume = MusicVolume };

@@ -7,7 +7,7 @@ Run: `dotnet run --project src/Trw.Game -- [--level N] [--size WxH] [--nofog] [-
 Headless checks: `--autowalk --frames N --shot file.png` (scripted input), env `TRW_POS=x,y,z,yawDeg` (placement), `TRW_IDLE`, `TRW_LOG` (position log every 30 frames), `TRW_FIRE` (hold fire), `TRW_VM=obj,scale,x,y,z` (viewmodel tuning), `TRW_WEAPON=n`, `TRW_RANDOM` (random walk to find collision holes) with `TRW_FAST` (unlimited frame rate, fixed 1/60 s steps; 6000 frames of a level run in a few seconds). The random walk over all 37 levels (6000 frames each) fell out of the level on 3, 7, 9, 14, 15, 18, 22, 23, 30 and 36 - these are ledges and pits, not confirmed collision holes.
 
 ## Controls
-WASD move, mouse look, Space jump (swim up in water), left mouse fire, 1-4 weapons (MAG 60, shotgun, assault rifle, minigun - all hitscan approximations), F fog, M music on/off, N noclip, R respawn, PgUp/PgDn level, F12 screenshot, Esc quit. Match: first to 10 frags or 5 minutes (assumed limits; env `TRW_FRAGS`, `TRW_MINUTES`); the end screen is green for a win, red for a loss with your frags - bot best; Enter restarts.
+WASD move, mouse look, Space jump (swim up in water), left mouse fire, 1-8 weapons (MAG 60, shotgun, assault rifle, minigun as hitscan approximations; 5 crossbow, 6 plasma rifle, 7 grenades, 8 scorpion as projectiles with spec damage and splash, assumed speed/fuse), F fog, M music on/off, N noclip, R respawn, PgUp/PgDn level, F12 screenshot, Esc quit. Match: first to 10 frags or 5 minutes (assumed limits; env `TRW_FRAGS`, `TRW_MINUTES`); the end screen is green for a win, red for a loss with your frags - bot best; Enter restarts.
 
 ## What is implemented (and how sure we are)
 | area | file | status |
@@ -27,5 +27,5 @@ WASD move, mouse look, Space jump (swim up in water), left mouse fire, 1-4 weapo
 | audio | `GameAudio.cs`, `tools/.../MusicRender.cs` | pipeline works; **not auditioned**; ids from `docs/formats/sound_events.md` (pain/death/teleport/pickups/impacts/music verified; muzzle sound is a guess because the game has no fire cue we found; water cues are hypotheses; jump/land/footsteps are silent in the game) |
 
 ## Not done
-Projectile weapons (only four hitscan weapons exist), Blast Shield and Energy Absorption (no explosive/energy damage yet), flags/CTF and other game modes, menus, bot weapon choice and item seeking,
+Remaining weapons (freeze, flare, napalm, emaciator, inflator, chest burster, bore, mines, claws, melee), real effect objects for shots and explosions (coloured gems stand in), Blast Shield and Energy Absorption (no explosive/energy damage yet), flags/CTF and other game modes, menus, bot weapon choice and item seeking,
 actor lighting as the game does it, the pickup model, effect objects, real collision regions, decals/particles.
