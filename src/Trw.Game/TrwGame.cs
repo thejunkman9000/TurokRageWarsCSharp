@@ -304,6 +304,9 @@ public sealed class TrwGame : Game
             else frame = _viewModel.FrameAt(clip, _time);
             var swap = new Matrix(1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1);              // model (x, y, z) -> view (x, z, y): model y negative = forward = view -Z
             var toView = Environment.GetEnvironmentVariable("TRW_VM") != null ? swap * Matrix.CreateScale(_vmTune[0]) * Matrix.CreateTranslation(_vmTune[1], _vmTune[2], _vmTune[3]) : _vmFit;
+            float speed = _player.HorizontalSpeed / 460f;                                         // sway while walking, kick back and up for a moment after a shot
+            double since = _time - _lastShot; float kick = since < 0.12 ? (float)(1 - since / 0.12) : 0f;
+            toView *= Matrix.CreateTranslation(MathF.Sin((float)_time * 7f) * 0.9f * speed, MathF.Abs(MathF.Sin((float)_time * 7f)) * 0.8f * speed + kick * 1.2f, kick * 3f);
             Creature.FlipWinding = true;                                                  // the viewmodel mirror matrix needs the opposite winding from world objects (verified by eye: the far inside faces showed otherwise)
             var vmBatches = _viewModel.Pose(GraphicsDevice, _opt.DataRoot, clip, frame, toView, 0, out _);
             Creature.FlipWinding = false;
