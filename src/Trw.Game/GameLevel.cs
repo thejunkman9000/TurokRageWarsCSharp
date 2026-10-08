@@ -33,6 +33,7 @@ public sealed class GameLevel
     public Vector3 PlayerStart;
     public float PlayerFacing;                // radians about +Y; forward = (sin, 0, cos)
     public List<Lift> Lifts = new();
+    public List<Teleporter> Teleporters = new();
     public List<Bot> Bots = new();
     public Color FogColour = Color.Black;
     public float FogFar = 2816f;
@@ -148,6 +149,7 @@ public sealed class GameLevel
         }
 
         level.Lifts = Lift.Load(gd, dataRoot, levelDirName);
+        level.Teleporters = Teleporter.Load(gd, dataRoot, levelDirName);
         foreach (var l in level.Lifts) l.Light = level.LightNear(l.Base + new Vector3(0, 40, 0), 300f);
         LoadBots(level, dataRoot, spawns);
 

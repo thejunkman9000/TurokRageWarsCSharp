@@ -67,6 +67,8 @@ public sealed class Player
         return v;
     }
 
+    public void Teleport(Vector3 feet, float yaw) { Feet = feet; Yaw = yaw; _vy = 0; Grounded = false; _sinceGround = 0; }
+
     public void Hurt(float hp)
     {
         if (Dead) return;

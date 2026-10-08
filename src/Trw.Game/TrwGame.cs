@@ -109,6 +109,7 @@ public sealed class TrwGame : Game
             if (rider) { _player.Feet += l.Delta; }
         }
         _player.Update(dt, input, _level);
+        if (!_player.Dead) foreach (var tp in _level.Teleporters) if (tp.Touches(_player.Feet)) { _player.Teleport(tp.Destination, tp.DestinationFacing); break; }
         _prev = k;
 
         Window.Title = $"{_level.Name} | pos {_player.Feet.X:F0}, {_player.Feet.Y:F0}, {_player.Feet.Z:F0} | speed {_player.HorizontalSpeed:F0} u/s | {(_player.NoClip ? "NOCLIP" : _player.Grounded ? "on ground" : "in air")} | fog {(_fog ? "on" : "off")} (F) | WASD, mouse, Space jump, N noclip, R respawn, PgUp/PgDn level";
@@ -136,6 +137,7 @@ public sealed class TrwGame : Game
         GraphicsDevice.DepthStencilState = DepthStencilState.Default;
         var extra = new List<Batch>();
         foreach (var l in _level.Lifts) if (l.ModelPositions.Length > 0) extra.Add(l.Mesh());
+        foreach (var tp in _level.Teleporters) extra.AddRange(tp.Batches);
         foreach (var bot in _level.Bots) extra.AddRange(bot.Batches(GraphicsDevice, _opt.DataRoot, _time));
         foreach (var b in _level.Batches.Concat(extra.Where(b => !b.Translucent)).Where(b => !b.Translucent))
         {
