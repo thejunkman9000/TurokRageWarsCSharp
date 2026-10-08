@@ -105,6 +105,10 @@ Fog (key F11): colour = zone colour & 0xF8 (also the clear colour), starts where
 Not done: actor lighting (a per-frame ambient 56 plus one directional light from the volumes at the actor's position; actors are drawn unlit/white for now), dynamic point lights (muzzle flash, explosions),
 the underwater/lava alternative zone colours, the game's own camera (fov 75 or 47.5 degrees, near 16, far per zone).
 
+## First game project (2026-10-07)
+`src/Trw.Game` loads the baked levels and lets you walk through them with the game's movement constants (docs/WALKABLE.md). Verified headless: speed plateaus at the spec's 30.72 units per tick (461 u/s),
+jumps work, walls and ramps stop and carry the player. Assumed constants (gravity, step height, wall shape) are listed in WALKABLE.md.
+
 ## Risks
 - **Behavioural drift.** Mitigation: oracle traces, compare early and often.
 - **Audio.** Sequence/instrument formats are the least understood; rendering music through the C port avoids a synth for now. Dynamic music is lost.
