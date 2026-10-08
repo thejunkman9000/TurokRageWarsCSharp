@@ -296,6 +296,10 @@ public sealed class TrwGame : Game
         int barW = 200, barH = 14, bx = 16, by = GraphicsDevice.Viewport.Height - 30;
         _sprites.Draw(_white, new Rectangle(bx - 2, by - 2, barW + 4, barH + 4), Color.Black * 0.6f);
         _sprites.Draw(_white, new Rectangle(bx, by, (int)(barW * _player.Health / Player.MaxHealth), barH), _player.Health > 30 ? new Color(60, 190, 70) : new Color(210, 50, 40));
+        Hud.Number(_sprites, _white, bx + barW + 14, by - 4, 3, (int)MathF.Ceiling(_player.Health), Color.White);
+        int vw = GraphicsDevice.Viewport.Width;
+        Hud.Number(_sprites, _white, vw - 130, GraphicsDevice.Viewport.Height - 42, 4, _player.Items.Ammo[0], new Color(240, 210, 70));       // ammo of the current weapon (bullets)
+        Hud.Number(_sprites, _white, vw - 130, 14, 3, _kills, new Color(230, 90, 70));                                                       // frags
         _sprites.Draw(_white, new Rectangle(cx - 8, cy - 1, 6, 2), Color.White); _sprites.Draw(_white, new Rectangle(cx + 2, cy - 1, 6, 2), Color.White);
         _sprites.Draw(_white, new Rectangle(cx - 1, cy - 8, 2, 6), Color.White); _sprites.Draw(_white, new Rectangle(cx - 1, cy + 2, 2, 6), Color.White);
         _sprites.End();
