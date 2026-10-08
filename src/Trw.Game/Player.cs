@@ -88,7 +88,7 @@ public sealed class Player
             else if (Items.PowerUp == "Regeneration" && !Dead) Health = MathF.Min(MaxHealth, Health + 4f * dtSeconds);          // [spec] 4 hp/s
             else if (Items.PowerUp == "Speed Burst") dt *= 1.333f;                                                              // [spec] dt x1.333
         }
-        if (Dead) { DeadTimer += dtSeconds; input = default; if (DeadTimer > 2f) Respawn(level.PlayerStart, level.PlayerFacing); }
+        if (Dead) { DeadTimer += dtSeconds; input = default; if (DeadTimer > 5f) { var (sp, facing) = level.BestSpawn(); Respawn(sp, facing); } }
         HurtFlash = MathF.Max(0, HurtFlash - dtSeconds);
         float? surface = Collision.SurfaceAbove(level.Water, Feet.X, Feet.Z, Feet.Y);
         WaterDepth = surface is float sy ? sy - Feet.Y : 0;

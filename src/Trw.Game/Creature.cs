@@ -187,6 +187,7 @@ public sealed partial class Bot
     public const float Radius = 56.32f, Height = 184.32f;      // [spec] pawn hit radius and height (bots are pawns too)
     public Vector3 Feet;
     public Vector3 Home;                          // spawn point
+    public float HomeFacing;
     public float Facing;
     public int Skin;
     public Creature Mesh = null!;
