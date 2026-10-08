@@ -26,10 +26,36 @@ public sealed class TrwGame : Game
     Vector3 _vmMin = new(1e9f), _vmMax = new(-1e9f);
     readonly float[] _vmTune = [0.08f, 30f, -90f, -5f];   // scale, x, y, z offsets (view space) - tuned by eye
     double _lastShot = -10;
+    Matrix _vmFit = Matrix.Identity;
+
+    /// <summary>Fits a viewmodel into the lower right of the view: the model (x, y, z) -> view (x, z, y), scaled so its forward extent is about 60 units, with its
+    /// rear-bottom-right corner anchored just in front of and below the eye. (Viewmodel placement is not decoded; this is tuned by eye.)</summary>
+    void FitViewModel()
+    {
+        if (_viewModel == null) return;
+        var swap = new Matrix(1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1);
+        int clip = _viewModel.ClipByRole("idle");
+        Vector3 min = new(1e9f), max = new(-1e9f);
+        foreach (var b in _viewModel.Pose(GraphicsDevice, _opt.DataRoot, clip, 0, swap, 0, out _))
+            foreach (var v in b.Vertices) { min = Vector3.Min(min, v.Position); max = Vector3.Max(max, v.Position); }
+        float forward = MathF.Max(1f, max.Z - min.Z), s = 52f / forward;
+        // anchor: x so the model sits right of centre, y just below the view centre, rear end (max z) 14 units in front of the eye
+        _vmFit = swap * Matrix.CreateScale(s) * Matrix.CreateTranslation(15f - (min.X + max.X) * 0.5f * s, -21f - min.Y * s, -32f - max.Z * s);
+    }
+    /// <summary>Hitscan weapons. Damage per hit is from the spec (section 2); pellet count, spread, ammo cost and fire interval are assumed (cadence is not decoded).
+    /// The viewmodel is object 152 + weapon index (gameplay_defs order), an unverified guess.</summary>
+    sealed record WeaponDef(string Name, int ViewModel, float Damage, int Pellets, float SpreadDegrees, float Interval, int AmmoCost);
+    static readonly WeaponDef[] Weapons =
+    [
+        new("MAG 60", 157, 10f, 1, 0f, 0.12f, 1),
+        new("SHOTGUN", 158, 6f, 8, 4f, 0.9f, 1),
+        new("ASSAULT RIFLE", 159, 17f, 1, 1f, 0.09f, 1),
+        new("MINIGUN", 160, 5f, 1, 2.5f, 0.05f, 2),
+    ];
+    int _weapon;
     int _index, _frame;
     double _nextShot;
     int _kills;
-    const float MagDamage = 10f, FireInterval = 0.12f;      // [spec] MAG 60 primary 10 hp; fire cadence is not decoded [assumed]
     bool _fog = true, _focused;
     double _time;
     KeyboardState _prev;
@@ -51,13 +77,15 @@ public sealed class TrwGame : Game
         _fx = new BasicEffect(GraphicsDevice) { TextureEnabled = true, VertexColorEnabled = true, LightingEnabled = false };
         _cutout = new AlphaTestEffect(GraphicsDevice) { VertexColorEnabled = true, AlphaFunction = CompareFunction.Greater, ReferenceAlpha = 127 };
         _sprites = new SpriteBatch(GraphicsDevice);
-        _viewModel = Creature.Load(_opt.DataRoot, "obj_157");                                   // [unverified] viewmodel objects 152-173 in weapon order: 157 = MAG 60
+        _viewModel = Creature.Load(_opt.DataRoot, $"obj_{Weapons[0].ViewModel}");                                   // [unverified] viewmodel objects 152-173 in weapon order: 157 = MAG 60
         if (Environment.GetEnvironmentVariable("TRW_VM") is { Length: > 0 } vm) { var q = vm.Split(','); _viewModel = Creature.Load(_opt.DataRoot, $"obj_{q[0]}"); for (int i = 1; i < q.Length && i < 5; i++) _vmTune[i - 1] = float.Parse(q[i], CultureInfo.InvariantCulture); }
+        FitViewModel();
         _audio = new GameAudio(_opt.DataRoot) { Enabled = !_opt.NoSound };
         _white = new Texture2D(GraphicsDevice, 1, 1); _white.SetData([Color.White]);
         var modes = new[] { TextureAddressMode.Wrap, TextureAddressMode.Mirror, TextureAddressMode.Clamp };
         for (int m = 0; m < 3; m++) _samplers[m] = new SamplerState { Filter = TextureFilter.Point, AddressU = modes[m], AddressV = modes[m] };      // point filtering: the N64 look
         LoadLevel(_index);
+        if (int.TryParse(Environment.GetEnvironmentVariable("TRW_WEAPON"), out int w0)) SelectWeapon(w0);
     }
 
     void LoadLevel(int index)
@@ -92,6 +120,10 @@ public sealed class TrwGame : Game
         if (Pressed(k, Keys.PageUp)) LoadLevel(_index + 1);
         if (Pressed(k, Keys.PageDown)) LoadLevel(_index - 1);
         if (Pressed(k, Keys.F)) _fog = !_fog;
+        if (Pressed(k, Keys.D1)) SelectWeapon(0);
+        if (Pressed(k, Keys.D2)) SelectWeapon(1);
+        if (Pressed(k, Keys.D3)) SelectWeapon(2);
+        if (Pressed(k, Keys.D4)) SelectWeapon(3);
         if (Pressed(k, Keys.M)) _audio.MusicVolume = _audio.MusicVolume > 0 ? 0f : 0.5f;
         if (Pressed(k, Keys.N)) _player.NoClip = !_player.NoClip;
         if (Pressed(k, Keys.R)) _player.Respawn(_level.PlayerStart, _level.PlayerFacing);
@@ -126,7 +158,7 @@ public sealed class TrwGame : Game
         PlayEvents();
         // hitscan MAG 60: left mouse
         bool fire = _opt.AutoWalk ? Environment.GetEnvironmentVariable("TRW_FIRE") != null : IsActive && _focused && Mouse.GetState().LeftButton == ButtonState.Pressed;
-        if (fire && !_player.Dead && _time >= _nextShot && _player.Items.Ammo[0] > 0) { _nextShot = _time + FireInterval; _lastShot = _time; Fire(); }
+        if (fire && !_player.Dead && _time >= _nextShot && _player.Items.Ammo[0] >= Weapons[_weapon].AmmoCost) { _nextShot = _time + Weapons[_weapon].Interval; _lastShot = _time; Fire(); }
         foreach (var bot in _level.Bots)
         {
             if (bot.Dead && (bot.DeadTimer += dt * 15f) > 75f) bot.Reset();
@@ -140,7 +172,7 @@ public sealed class TrwGame : Game
         Window.Title = $"{_level.Name} | pos {_player.Feet.X:F0}, {_player.Feet.Y:F0}, {_player.Feet.Z:F0} | speed {_player.HorizontalSpeed:F0} u/s | {(_player.NoClip ? "NOCLIP" : _player.Grounded ? "on ground" : "in air")} | fog {(_fog ? "on" : "off")} (F) | WASD, mouse, Space jump, N noclip, R respawn, PgUp/PgDn level";
 
         if ((_opt.AutoWalk || Environment.GetEnvironmentVariable("TRW_LOG") != null) && _frame % 30 == 0)
-            File.AppendAllText(Path.Combine(_opt.DataRoot, "game_log.txt"), $"frame {_frame}: feet {_player.Feet.X:F1} {_player.Feet.Y:F1} {_player.Feet.Z:F1} grounded {_player.Grounded} speed {_player.HorizontalSpeed:F0} hp {_player.Health:F0} ammo {string.Join("/", _player.Items.Ammo.Take(3))} pu {_player.Items.PowerUp} water {_player.WaterDepth:F0} kills {_kills}\n");
+            File.AppendAllText(Path.Combine(_opt.DataRoot, "game_log.txt"), $"frame {_frame}: feet {_player.Feet.X:F1} {_player.Feet.Y:F1} {_player.Feet.Z:F1} grounded {_player.Grounded} speed {_player.HorizontalSpeed:F0} hp {_player.Health:F0} ammo {string.Join("/", _player.Items.Ammo.Take(3))} pu {_player.Items.PowerUp} water {_player.WaterDepth:F0} weapon {Weapons[_weapon].Name} kills {_kills}\n");
         _audio.Update(_time);
         base.Update(gt);
     }
@@ -155,18 +187,37 @@ public sealed class TrwGame : Game
         _player.EvJump = _player.EvLand = _player.EvHurt = _player.EvTeleport = false;
     }
 
+    void SelectWeapon(int i)
+    {
+        if (i < 0 || i >= Weapons.Length || i == _weapon) return;
+        _weapon = i;
+        _viewModel = Creature.Load(_opt.DataRoot, $"obj_{Weapons[i].ViewModel}");
+        FitViewModel();
+    }
+
     void Fire()
     {
-        _player.Items.Ammo[0]--;
-        var origin = _player.Eye; var dir = _player.Forward;
-        float limit = Collision.RayLevel(_level, origin, dir, 20000f) ?? 20000f;
-        Bot? target = null;
-        foreach (var bot in _level.Bots)
+        var w = Weapons[_weapon];
+        _player.Items.Ammo[0] -= w.AmmoCost;
+        var origin = _player.Eye;
+        var rng = Random.Shared;
+        for (int p = 0; p < w.Pellets; p++)
         {
-            if (bot.Dead) continue;
-            if (Collision.RayCylinder(origin, dir, bot.Feet, Bot.Radius, Bot.Height) is float d && d < limit) { limit = d; target = bot; }
+            var dir = _player.Forward;
+            if (w.SpreadDegrees > 0)
+            {
+                float s = w.SpreadDegrees * MathF.PI / 180f;
+                dir = Vector3.Normalize(Vector3.Transform(dir, Matrix.CreateRotationY((float)(rng.NextDouble() * 2 - 1) * s) * Matrix.CreateFromAxisAngle(Vector3.Cross(dir, Vector3.Up), (float)(rng.NextDouble() * 2 - 1) * s)));
+            }
+            float limit = Collision.RayLevel(_level, origin, dir, 20000f) ?? 20000f;
+            Bot? target = null;
+            foreach (var bot in _level.Bots)
+            {
+                if (bot.Dead) continue;
+                if (Collision.RayCylinder(origin, dir, bot.Feet, Bot.Radius, Bot.Height) is float d && d < limit) { limit = d; target = bot; }
+            }
+            if (target != null) { target.Damage(w.Damage); if (target.Dead) _kills++; }
         }
-        if (target != null) { target.Damage(MagDamage); if (target.Dead) _kills++; }
         _audio.Play(SoundIds.FireMag60, _time);
     }
 
@@ -219,7 +270,7 @@ public sealed class TrwGame : Game
             if (fireClip >= 0 && _time - _lastShot < _viewModel.Clips[fireClip].Frames / 15.0) { clip = fireClip; frame = (int)((_time - _lastShot) * 15); }
             else frame = _viewModel.FrameAt(clip, _time);
             var swap = new Matrix(1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1);              // model (x, y, z) -> view (x, z, y): model y negative = forward = view -Z
-            var toView = swap * Matrix.CreateScale(_vmTune[0]) * Matrix.CreateTranslation(_vmTune[1], _vmTune[2], _vmTune[3]);
+            var toView = Environment.GetEnvironmentVariable("TRW_VM") != null ? swap * Matrix.CreateScale(_vmTune[0]) * Matrix.CreateTranslation(_vmTune[1], _vmTune[2], _vmTune[3]) : _vmFit;
             foreach (var b in _viewModel.Pose(GraphicsDevice, _opt.DataRoot, clip, frame, toView, 0, out _))
             {
                 if (_frame == 15) foreach (var v in b.Vertices) { _vmMin = Vector3.Min(_vmMin, v.Position); _vmMax = Vector3.Max(_vmMax, v.Position); }

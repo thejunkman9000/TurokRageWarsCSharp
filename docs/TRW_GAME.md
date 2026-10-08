@@ -7,7 +7,7 @@ Run: `dotnet run --project src/Trw.Game -- [--level N] [--size WxH] [--nofog] [-
 Headless checks: `--autowalk --frames N --shot file.png` (scripted input), env `TRW_POS=x,y,z,yawDeg` (placement), `TRW_IDLE`, `TRW_LOG` (position log every 30 frames), `TRW_FIRE` (hold fire), `TRW_VM=obj,scale,x,y,z` (viewmodel tuning).
 
 ## Controls
-WASD move, mouse look, Space jump (swim up in water), left mouse fire, F fog, M music on/off, N noclip, R respawn, PgUp/PgDn level, F12 screenshot, Esc quit.
+WASD move, mouse look, Space jump (swim up in water), left mouse fire, 1-4 weapons (MAG 60, shotgun, assault rifle, minigun - all hitscan approximations), F fog, M music on/off, N noclip, R respawn, PgUp/PgDn level, F12 screenshot, Esc quit.
 
 ## What is implemented (and how sure we are)
 | area | file | status |
