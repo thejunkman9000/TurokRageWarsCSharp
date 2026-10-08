@@ -36,6 +36,8 @@ public sealed class Player
     public bool Dead => Health <= 0;
     public bool EyeUnderwater => WaterDepth > EyeHeight;
     float _lavaTimer;
+    /// <summary>One-frame events for the sound layer; the game clears them after reading.</summary>
+    public bool EvJump, EvLand, EvHurt, EvTeleport;
     float _fwd, _strafe, _vy, _sinceGround, _jumpHeld;
 
     public Vector3 Eye => Feet + new Vector3(0, EyeHeight, 0);
@@ -68,12 +70,12 @@ public sealed class Player
         return v;
     }
 
-    public void Teleport(Vector3 feet, float yaw) { Feet = feet; Yaw = yaw; _vy = 0; Grounded = false; _sinceGround = 0; }
+    public void Teleport(Vector3 feet, float yaw) { EvTeleport = true; Feet = feet; Yaw = yaw; _vy = 0; Grounded = false; _sinceGround = 0; }
 
     public void Hurt(float hp)
     {
         if (Dead || Items.PowerUp == "Invulnerability") return;
-        Health = MathF.Max(0, Health - hp); HurtFlash = 0.4f;
+        Health = MathF.Max(0, Health - hp); HurtFlash = 0.4f; EvHurt = true;
     }
 
     void Step(float dtSeconds, PlayerInput input, GameLevel level)
@@ -138,7 +140,7 @@ public sealed class Player
         // jump
         if (input.Jump && WaterDepth <= WadeDepth)
         {
-            if (_sinceGround <= CoyoteTicks && _jumpHeld == 0) { _vy = JumpSpeed; _jumpHeld = dt; _sinceGround = CoyoteTicks + 1; Grounded = false; }
+            if (_sinceGround <= CoyoteTicks && _jumpHeld == 0) { _vy = JumpSpeed; _jumpHeld = dt; _sinceGround = CoyoteTicks + 1; Grounded = false; EvJump = true; }
             else if (_jumpHeld > 0 && _jumpHeld < JumpHoldTicks) { _vy = JumpSpeed; _jumpHeld += dt; }
         }
         else _jumpHeld = 0;
@@ -156,7 +158,7 @@ public sealed class Player
             float newY = Feet.Y + _vy * dtSeconds;
             if (_vy > 0 && Collision.CeilingHeight(level, Feet, Radius, Feet.Y + Height) is float c && newY + Height > c) { newY = c - Height; _vy = 0; }
             float? g2 = Collision.GroundHeight(level, new Vector3(Feet.X, Feet.Y, Feet.Z), Radius, MathF.Max(Feet.Y, newY) + StepHeight * 0.1f);
-            if (_vy <= 0 && g2 is float gg && newY <= gg + 0.01f) { Feet.Y = gg; _vy = 0; Grounded = true; _sinceGround = 0; }
+            if (_vy <= 0 && g2 is float gg && newY <= gg + 0.01f) { if (_vy < -51.2f * TicksPerSecond) EvLand = true; Feet.Y = gg; _vy = 0; Grounded = true; _sinceGround = 0; }
             else { Feet.Y = newY; _sinceGround += dt; }
         }
         if (Feet.Y < -6000f) Respawn(level.PlayerStart, level.PlayerFacing);

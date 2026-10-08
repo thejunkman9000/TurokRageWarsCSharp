@@ -9,7 +9,7 @@ namespace Trw.Walk;
 /// translucent animated water. WASD move, mouse look, Space jump, F fog, N noclip fly, R respawn, PgUp/PgDn level, F12 screenshot, Esc quit.</summary>
 public sealed class TrwGame : Game
 {
-    public sealed record Options(string DataRoot, int Level, string? Shot, int Frames, bool AutoWalk, int Width, int Height, bool NoFog = false);
+    public sealed record Options(string DataRoot, int Level, string? Shot, int Frames, bool AutoWalk, int Width, int Height, bool NoFog = false, bool NoSound = false);
 
     readonly GraphicsDeviceManager _gfx;
     readonly Options _opt;
@@ -21,6 +21,7 @@ public sealed class TrwGame : Game
     Texture2D _white = null!;
     GameLevel _level = null!;
     readonly Player _player = new();
+    GameAudio _audio = null!;
     int _index, _frame;
     bool _fog = true, _focused;
     double _time;
@@ -43,6 +44,7 @@ public sealed class TrwGame : Game
         _fx = new BasicEffect(GraphicsDevice) { TextureEnabled = true, VertexColorEnabled = true, LightingEnabled = false };
         _cutout = new AlphaTestEffect(GraphicsDevice) { VertexColorEnabled = true, AlphaFunction = CompareFunction.Greater, ReferenceAlpha = 127 };
         _sprites = new SpriteBatch(GraphicsDevice);
+        _audio = new GameAudio(_opt.DataRoot) { Enabled = !_opt.NoSound };
         _white = new Texture2D(GraphicsDevice, 1, 1); _white.SetData([Color.White]);
         var modes = new[] { TextureAddressMode.Wrap, TextureAddressMode.Mirror, TextureAddressMode.Clamp };
         for (int m = 0; m < 3; m++) _samplers[m] = new SamplerState { Filter = TextureFilter.Point, AddressU = modes[m], AddressV = modes[m] };      // point filtering: the N64 look
@@ -67,6 +69,8 @@ public sealed class TrwGame : Game
         }
         // let the player settle onto the floor
         for (int i = 0; i < 90; i++) _player.Update(1f / 60f, default, _level);
+        _player.EvLand = _player.EvJump = _player.EvHurt = _player.EvTeleport = false;
+        _audio?.PlayMusic(SongForLevel(_index));
     }
 
     protected override void Update(GameTime gt)
@@ -79,6 +83,7 @@ public sealed class TrwGame : Game
         if (Pressed(k, Keys.PageUp)) LoadLevel(_index + 1);
         if (Pressed(k, Keys.PageDown)) LoadLevel(_index - 1);
         if (Pressed(k, Keys.F)) _fog = !_fog;
+        if (Pressed(k, Keys.M)) _audio.MusicVolume = _audio.MusicVolume > 0 ? 0f : 0.5f;
         if (Pressed(k, Keys.N)) _player.NoClip = !_player.NoClip;
         if (Pressed(k, Keys.R)) _player.Respawn(_level.PlayerStart, _level.PlayerFacing);
         if (Pressed(k, Keys.F12)) Shot(Path.Combine(_opt.DataRoot, $"game_{_index:D2}.png"));
@@ -109,7 +114,8 @@ public sealed class TrwGame : Game
             if (rider) { _player.Feet += l.Delta; }
         }
         _player.Update(dt, input, _level);
-        foreach (var pk in _level.Pickups) { pk.Update(dt * 15f); if (!_player.Dead && pk.Touches(_player.Feet)) pk.Grant(_player); }
+        PlayEvents();
+        foreach (var pk in _level.Pickups) { pk.Update(dt * 15f); if (!_player.Dead && pk.Touches(_player.Feet)) { if (pk.Grant(_player)) _audio.Play(SoundIds.Pickup, _time); } }
         if (!_player.Dead) foreach (var tp in _level.Teleporters) if (tp.Touches(_player.Feet)) { _player.Teleport(tp.Destination, tp.DestinationFacing); break; }
         _prev = k;
 
@@ -117,8 +123,22 @@ public sealed class TrwGame : Game
 
         if ((_opt.AutoWalk || Environment.GetEnvironmentVariable("TRW_LOG") != null) && _frame % 30 == 0)
             File.AppendAllText(Path.Combine(_opt.DataRoot, "game_log.txt"), $"frame {_frame}: feet {_player.Feet.X:F1} {_player.Feet.Y:F1} {_player.Feet.Z:F1} grounded {_player.Grounded} speed {_player.HorizontalSpeed:F0} hp {_player.Health:F0} ammo {string.Join("/", _player.Items.Ammo.Take(3))} pu {_player.Items.PowerUp} water {_player.WaterDepth:F0}\n");
+        _audio.Update(_time);
         base.Update(gt);
     }
+
+    /// <summary>Sound hooks. The game sound ids are provisional guesses until docs/formats/sound_events.md is verified.</summary>
+    void PlayEvents()
+    {
+        if (_player.EvJump) _audio.Play(SoundIds.Jump, _time);
+        if (_player.EvLand) _audio.Play(SoundIds.Land, _time);
+        if (_player.EvHurt) _audio.Play(SoundIds.Hurt, _time);
+        if (_player.EvTeleport) _audio.Play(SoundIds.Teleport, _time);
+        _player.EvJump = _player.EvLand = _player.EvHurt = _player.EvTeleport = false;
+    }
+
+    // placeholder until the level -> song mapping is decoded (docs/formats/sound_events.md): cycle through the long songs
+    static int SongForLevel(int index) => new[] { 52, 56, 57, 58, 59, 65 }[index % 6];
 
     bool Pressed(KeyboardState k, Keys key) => k.IsKeyDown(key) && !_prev.IsKeyDown(key);
 

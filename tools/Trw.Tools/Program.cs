@@ -21,6 +21,7 @@ if (args.Length == 0 || args[0] is "-h" or "--help")
           levelgeo [rom] [outdir] [--level N]  textured level meshes, collision, nav and object JSON, top-down PNGs
           spec     [outdir]         weapon, damage, pickup and rule numbers (JSON)
           audio    [rom] [outdir]   sound effects (WAV), music instruments, sequences (.mid), sfx_ids.tsv
+          music    [rom] [outdir]   render the sequences to stereo WAV with the game instrument samples (needs `audio` first)
         """);
     return args.Length == 0 ? 1 : 0;
 }
@@ -39,6 +40,7 @@ if (cmd == "anim") return Trw.Tools.Anim.AnimCommand.Run(args.Skip(1).ToArray())
 if (cmd == "levels") return Trw.Tools.Levels.LevelsCommand.Run(args.Skip(1).ToArray());
 if (cmd == "models") return Trw.Tools.Models.ModelsCommand.Run(args.Skip(1).ToArray());
 if (cmd == "audio") return Trw.Tools.Audio.AudioCommand.Run(args.Skip(1).ToArray());
+if (cmd == "music") return Trw.Tools.Audio.MusicRender.Run(args.Skip(1).ToArray());
 byte[] rom = File.ReadAllBytes(romPath);
 
 switch (cmd)
