@@ -76,6 +76,7 @@ public static class Collision
         }
         foreach (var b in level.Bots)
         {
+            if (b.Dead) continue;
             if (feet.Y >= b.Feet.Y + Bot.Height - stepHeight || feet.Y + height <= b.Feet.Y) continue;
             float dx = feet.X - b.Feet.X, dz = feet.Z - b.Feet.Z, d = MathF.Sqrt(dx * dx + dz * dz), r = radius + Bot.Radius;
             if (d >= r) continue;
@@ -126,6 +127,37 @@ public static class Collision
             if (HeightAt(t, x, z, out float y) && y >= minY && y > best) { best = y; found = true; }
         }
         return found ? best : null;
+    }
+
+    /// <summary>Distance along the ray to the nearest level triangle (Moller-Trumbore, double sided), or null.</summary>
+    public static float? RayLevel(GameLevel level, Vector3 origin, Vector3 dir, float maxDist)
+    {
+        float best = maxDist; bool hit = false;
+        foreach (var t in level.Triangles)
+        {
+            var e1 = t.B - t.A; var e2 = t.C - t.A;
+            var p = Vector3.Cross(dir, e2); float det = Vector3.Dot(e1, p);
+            if (MathF.Abs(det) < 1e-7f) continue;
+            float inv = 1f / det; var s = origin - t.A;
+            float u = Vector3.Dot(s, p) * inv; if (u < 0 || u > 1) continue;
+            var q = Vector3.Cross(s, e1); float v = Vector3.Dot(dir, q) * inv; if (v < 0 || u + v > 1) continue;
+            float d = Vector3.Dot(e2, q) * inv;
+            if (d > 0.01f && d < best) { best = d; hit = true; }
+        }
+        return hit ? best : null;
+    }
+
+    /// <summary>Distance along the ray to a vertical cylinder (centre feet, radius, height), or null.</summary>
+    public static float? RayCylinder(Vector3 origin, Vector3 dir, Vector3 feet, float radius, float height)
+    {
+        var o = new Vector2(origin.X - feet.X, origin.Z - feet.Z); var d = new Vector2(dir.X, dir.Z);
+        float a = d.LengthSquared(); if (a < 1e-9f) return null;
+        float b = 2 * Vector2.Dot(o, d), c = o.LengthSquared() - radius * radius, disc = b * b - 4 * a * c;
+        if (disc < 0) return null;
+        float t = (-b - MathF.Sqrt(disc)) / (2 * a);
+        if (t < 0) return null;
+        float y = origin.Y + dir.Y * t;
+        return y >= feet.Y && y <= feet.Y + height ? t : null;
     }
 
     static bool HeightAt(Triangle t, float x, float z, out float y)

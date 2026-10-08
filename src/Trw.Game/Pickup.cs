@@ -7,7 +7,7 @@ namespace Trw.Walk;
 /// <summary>Everything the player carries or has active: ammo counters (0 bullet, 1 energy, 2 explosive, 3..6 special), owned weapons, a timed power-up. Grants follow docs/GAMEPLAY_SPEC.md section 4.</summary>
 public sealed class Inventory
 {
-    public int[] Ammo = new int[8];
+    public int[] Ammo = [60, 0, 0, 0, 0, 0, 0, 0];                   // [assumed] starting bullet ammo
     public HashSet<string> Weapons = new() { "MAG 60" };
     public string PowerUp = "";
     public float PowerUpTicks;

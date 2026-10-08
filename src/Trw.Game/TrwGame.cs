@@ -23,6 +23,9 @@ public sealed class TrwGame : Game
     readonly Player _player = new();
     GameAudio _audio = null!;
     int _index, _frame;
+    double _nextShot;
+    int _kills;
+    const float MagDamage = 10f, FireInterval = 0.12f;      // [spec] MAG 60 primary 10 hp; fire cadence is not decoded [assumed]
     bool _fog = true, _focused;
     double _time;
     KeyboardState _prev;
@@ -115,6 +118,11 @@ public sealed class TrwGame : Game
         }
         _player.Update(dt, input, _level);
         PlayEvents();
+        // hitscan MAG 60: left mouse
+        bool fire = _opt.AutoWalk ? Environment.GetEnvironmentVariable("TRW_FIRE") != null : IsActive && _focused && Mouse.GetState().LeftButton == ButtonState.Pressed;
+        if (fire && !_player.Dead && _time >= _nextShot && _player.Items.Ammo[0] > 0) { _nextShot = _time + FireInterval; Fire(); }
+        foreach (var bot in _level.Bots)
+            if (bot.Dead && (bot.DeadTimer += dt * 15f) > 75f) { bot.Health = 100f; bot.DeadTimer = 0; }
         foreach (var pk in _level.Pickups) { pk.Update(dt * 15f); if (!_player.Dead && pk.Touches(_player.Feet)) { if (pk.Grant(_player)) _audio.Play(SoundIds.Pickup, _time); } }
         if (!_player.Dead) foreach (var tp in _level.Teleporters) if (tp.Touches(_player.Feet)) { _player.Teleport(tp.Destination, tp.DestinationFacing); break; }
         _prev = k;
@@ -122,7 +130,7 @@ public sealed class TrwGame : Game
         Window.Title = $"{_level.Name} | pos {_player.Feet.X:F0}, {_player.Feet.Y:F0}, {_player.Feet.Z:F0} | speed {_player.HorizontalSpeed:F0} u/s | {(_player.NoClip ? "NOCLIP" : _player.Grounded ? "on ground" : "in air")} | fog {(_fog ? "on" : "off")} (F) | WASD, mouse, Space jump, N noclip, R respawn, PgUp/PgDn level";
 
         if ((_opt.AutoWalk || Environment.GetEnvironmentVariable("TRW_LOG") != null) && _frame % 30 == 0)
-            File.AppendAllText(Path.Combine(_opt.DataRoot, "game_log.txt"), $"frame {_frame}: feet {_player.Feet.X:F1} {_player.Feet.Y:F1} {_player.Feet.Z:F1} grounded {_player.Grounded} speed {_player.HorizontalSpeed:F0} hp {_player.Health:F0} ammo {string.Join("/", _player.Items.Ammo.Take(3))} pu {_player.Items.PowerUp} water {_player.WaterDepth:F0}\n");
+            File.AppendAllText(Path.Combine(_opt.DataRoot, "game_log.txt"), $"frame {_frame}: feet {_player.Feet.X:F1} {_player.Feet.Y:F1} {_player.Feet.Z:F1} grounded {_player.Grounded} speed {_player.HorizontalSpeed:F0} hp {_player.Health:F0} ammo {string.Join("/", _player.Items.Ammo.Take(3))} pu {_player.Items.PowerUp} water {_player.WaterDepth:F0} kills {_kills}\n");
         _audio.Update(_time);
         base.Update(gt);
     }
@@ -135,6 +143,21 @@ public sealed class TrwGame : Game
         if (_player.EvHurt) _audio.Play(SoundIds.Hurt, _time);
         if (_player.EvTeleport) _audio.Play(SoundIds.Teleport, _time);
         _player.EvJump = _player.EvLand = _player.EvHurt = _player.EvTeleport = false;
+    }
+
+    void Fire()
+    {
+        _player.Items.Ammo[0]--;
+        var origin = _player.Eye; var dir = _player.Forward;
+        float limit = Collision.RayLevel(_level, origin, dir, 20000f) ?? 20000f;
+        Bot? target = null;
+        foreach (var bot in _level.Bots)
+        {
+            if (bot.Dead) continue;
+            if (Collision.RayCylinder(origin, dir, bot.Feet, Bot.Radius, Bot.Height) is float d && d < limit) { limit = d; target = bot; }
+        }
+        if (target != null) { target.Damage(MagDamage); if (target.Dead) _kills++; }
+        _audio.Play(SoundIds.FireMag60, _time);
     }
 
     // placeholder until the level -> song mapping is decoded (docs/formats/sound_events.md): cycle through the long songs
@@ -160,7 +183,7 @@ public sealed class TrwGame : Game
         foreach (var l in _level.Lifts) if (l.ModelPositions.Length > 0) extra.Add(l.Mesh());
         foreach (var tp in _level.Teleporters) extra.AddRange(tp.Batches);
         foreach (var pk in _level.Pickups) if (pk.Active) extra.Add(pk.Mesh(_time));
-        foreach (var bot in _level.Bots) extra.AddRange(bot.Batches(GraphicsDevice, _opt.DataRoot, _time));
+        foreach (var bot in _level.Bots.Where(b => !b.Dead)) extra.AddRange(bot.Batches(GraphicsDevice, _opt.DataRoot, _time));
         foreach (var b in _level.Batches.Concat(extra.Where(b => !b.Translucent)).Where(b => !b.Translucent))
         {
             _cutout.Texture = Current(b) ?? _white; _cutout.DiffuseColor = b.Tint; _cutout.Alpha = 1f;

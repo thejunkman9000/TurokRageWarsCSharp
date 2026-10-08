@@ -184,12 +184,14 @@ public sealed class Creature
 /// <summary>A bot standing at a deathmatch spawn point in its idle animation. It is solid for the player.</summary>
 public sealed class Bot
 {
-    public const float Radius = 40f, Height = 150f;
+    public const float Radius = 56.32f, Height = 184.32f;      // [spec] pawn hit radius and height (bots are pawns too)
     public Vector3 Feet;
     public float Facing;
     public int Skin;
     public Creature Mesh = null!;
     public int Clip;
+    public float Health = 100f, DeadTimer;            // [spec] pawns have 100 health; respawn after 75 ticks (5 s)
+    public bool Dead => Health <= 0;
     public Vector3 Light = Vector3.One;           // approximate ambient light from the level's baked vertex colours
     public Creature? Weapon;                      // hand-held weapon chunk (obj_174_m16..): shares the body's skeleton and clip
     public double TimeOffset;
@@ -197,6 +199,8 @@ public sealed class Bot
     readonly Dictionary<int, List<Batch>> _frames = new();
 
     static readonly Matrix ZUp = new(1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 0, 0, 1);           // model Z-up -> world Y-up: (x, y, z) -> (x, z, -y)
+
+    public void Damage(float hp) { if (!Dead) { Health -= hp; DeadTimer = 0; } }
 
     public List<Batch> Batches(GraphicsDevice gd, string dataRoot, double time)
     {
