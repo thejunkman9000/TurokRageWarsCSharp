@@ -158,14 +158,15 @@ public sealed class TrwGame : Game
         PlayEvents();
         // hitscan MAG 60: left mouse
         bool fire = _opt.AutoWalk ? Environment.GetEnvironmentVariable("TRW_FIRE") != null : IsActive && _focused && Mouse.GetState().LeftButton == ButtonState.Pressed;
+        if (fire && !_player.Dead && _time >= _nextShot && _player.Items.Ammo[0] < Weapons[_weapon].AmmoCost) { _nextShot = _time + 0.4; _audio.Play(SoundIds.NoAmmoClick, _time); }
         if (fire && !_player.Dead && _time >= _nextShot && _player.Items.Ammo[0] >= Weapons[_weapon].AmmoCost) { _nextShot = _time + Weapons[_weapon].Interval; _lastShot = _time; Fire(); }
         foreach (var bot in _level.Bots)
         {
             if (bot.Dead && (bot.DeadTimer += dt * 15f) > 75f) bot.Reset();
             if (!_opt.NoBotAi) bot.Update(dt, _level, _player);
-            if (bot.EvFire) _audio.Play(SoundIds.FireMag60, _time, 0.6f);
+            if (bot.EvFire) _audio.Play(SoundIds.MuzzleFallback, _time, 0.6f);
         }
-        foreach (var pk in _level.Pickups) { pk.Update(dt * 15f); if (!_player.Dead && pk.Touches(_player.Feet)) { if (pk.Grant(_player)) _audio.Play(SoundIds.Pickup, _time); } }
+        foreach (var pk in _level.Pickups) { pk.Update(dt * 15f); if (!_player.Dead && pk.Touches(_player.Feet)) { if (pk.Grant(_player)) _audio.Play(pk.Sound, _time); } }
         if (!_player.Dead) foreach (var tp in _level.Teleporters) if (tp.Touches(_player.Feet)) { _player.Teleport(tp.Destination, tp.DestinationFacing); break; }
         _prev = k;
 
@@ -180,11 +181,13 @@ public sealed class TrwGame : Game
     /// <summary>Sound hooks. The game sound ids are provisional guesses until docs/formats/sound_events.md is verified.</summary>
     void PlayEvents()
     {
-        if (_player.EvJump) _audio.Play(SoundIds.Jump, _time);
-        if (_player.EvLand) _audio.Play(SoundIds.Land, _time);
-        if (_player.EvHurt) _audio.Play(SoundIds.Hurt, _time);
+        // jump and landing have no sound in the game (docs/formats/sound_events.md)
+        if (_player.EvHurt && Random.Shared.Next(2) == 0) _audio.Play(SoundIds.PainTurok, _time);           // V: pain voice on 50 % of hits
+        if (_player.EvDeath) { _audio.Play(SoundIds.DeathTurok, _time); _audio.Play(SoundIds.DeathThump, _time); }
         if (_player.EvTeleport) _audio.Play(SoundIds.Teleport, _time);
-        _player.EvJump = _player.EvLand = _player.EvHurt = _player.EvTeleport = false;
+        if (_player.EvWaterEnter) _audio.Play(SoundIds.WaterEnter, _time);
+        if (_player.EvWaterLeave) _audio.Play(SoundIds.WaterLeave, _time);
+        _player.EvJump = _player.EvLand = _player.EvHurt = _player.EvTeleport = _player.EvDeath = _player.EvWaterEnter = _player.EvWaterLeave = false;
     }
 
     void SelectWeapon(int i)
@@ -193,6 +196,7 @@ public sealed class TrwGame : Game
         _weapon = i;
         _viewModel = Creature.Load(_opt.DataRoot, $"obj_{Weapons[i].ViewModel}");
         FitViewModel();
+        _audio.Play(new[] { SoundIds.SelectMag60, SoundIds.SelectShotgun, SoundIds.SelectAssault, SoundIds.SelectMinigun }[i], _time);
     }
 
     void Fire()
@@ -216,13 +220,14 @@ public sealed class TrwGame : Game
                 if (bot.Dead) continue;
                 if (Collision.RayCylinder(origin, dir, bot.Feet, Bot.Radius, Bot.Height) is float d && d < limit) { limit = d; target = bot; }
             }
-            if (target != null) { target.Damage(w.Damage); if (target.Dead) _kills++; }
+            if (target != null) { target.Damage(w.Damage); if (target.Dead) _kills++; if (p == 0) _audio.Play(SoundIds.ImpactCharacter, _time, 0.7f); }
+            else if (p == 0 && limit < 20000f) _audio.Play(SoundIds.ImpactWall, _time, 0.5f);
         }
-        _audio.Play(SoundIds.FireMag60, _time);
+        _audio.Play(SoundIds.MuzzleFallback, _time);
     }
 
-    // placeholder until the level -> song mapping is decoded (docs/formats/sound_events.md): cycle through the long songs
-    static int SongForLevel(int index) => new[] { 52, 56, 57, 58, 59, 65 }[index % 6];
+    // [V] gameplay music is a random key 56..59 at match start; there is no per-level song table
+    static int SongForLevel(int index) => SoundIds.MusicGameMin + Random.Shared.Next(SoundIds.MusicGameCount);
 
     bool Pressed(KeyboardState k, Keys key) => k.IsKeyDown(key) && !_prev.IsKeyDown(key);
 

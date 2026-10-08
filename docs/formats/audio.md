@@ -105,5 +105,4 @@ Song 57 reports 568k ticks (suspiciously long final delay); not investigated.
   (32 kHz stereo, normalised) plus `song_KEY.loop.txt` (`startFrame endFrame`) when the sequence has a loop marker. Songs 50, 60, 61 are 8-12 s jingles without a loop; 56/57/58 loop the whole piece.
   Not modelled: pitch bend, libultra tremolo/vibrato, the tempo-scale float, release tails past the loop end. Levels are statistically sane (no clipping, steady RMS) - **never auditioned**.
 * Game side (`src/Trw.Game/GameAudio.cs`): SFX by slot WAV or by game sound id through `sfx_ids.tsv` (weighted variant, not the last one, records start after their delay, assumed unit = 1/15 s);
-  music streamed with `DynamicSoundEffectInstance`, looping between the loop frames. `M` mutes music. Sound hooks live in `TrwGame.PlayEvents`; ids in `SoundIds.cs` are provisional
-  until `docs/formats/sound_events.md` is verified.
+  music streamed with `DynamicSoundEffectInstance`, looping between the loop frames. `M` mutes music. Sound hooks live in `TrwGame.PlayEvents`; ids in `SoundIds.cs` come from `docs/formats/sound_events.md`. Music: menu 52, gameplay a random key 56..59 (no per-level table).

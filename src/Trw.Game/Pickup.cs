@@ -23,6 +23,7 @@ public sealed class Pickup
     public float Timer;                              // ticks until it respawns
     public int RespawnMin, RespawnMax;
     public Color Colour;
+    public int Sound;                                // game sound id played on pickup
 
     const float TouchRadius = 70f;                   // [assumed] the spec gives no touch radius for pickups
     static readonly Random Rng = new();
@@ -54,6 +55,7 @@ public sealed class Pickup
                 break;
             default: return false;
         }
+        Sound = Record switch { 146 => SoundIds.EnergyRounds, 147 => SoundIds.BulletRounds, 148 => SoundIds.ExplosiveRounds, 144 => SoundIds.PowerUp, 140 or 141 or 142 or 143 => SoundIds.SpecialWeapon, _ => SoundIds.AmmoPack };
         Active = false;
         Timer = RespawnMin + (float)Rng.NextDouble() * (RespawnMax - RespawnMin);
         return true;

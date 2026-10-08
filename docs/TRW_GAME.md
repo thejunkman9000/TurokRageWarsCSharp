@@ -21,7 +21,7 @@ WASD move, mouse look, Space jump (swim up in water), left mouse fire, 1-4 weapo
 | lava / health | `Player.cs`, `GameLevel.cs` | 70 hp per hit verified; hit cadence (1/s) and "lava = large lava-textured region" **assumed** |
 | bots | `Creature.cs`, `BotAi.cs` | idle/walk clips, detection ranges from the spec; fire cadence, aim error, damage scale simplified |
 | weapon | `TrwGame.Fire`, viewmodel in `TrwGame.Draw` | MAG 60 hitscan 10 hp verified; fire rate **assumed**; viewmodel object 157 = MAG 60 is an **unverified guess** |
-| audio | `GameAudio.cs`, `tools/.../MusicRender.cs` | pipeline works; **not auditioned**; sound ids and level->song mapping provisional (`SoundIds.cs`, `SongForLevel`) |
+| audio | `GameAudio.cs`, `tools/.../MusicRender.cs` | pipeline works; **not auditioned**; ids from `docs/formats/sound_events.md` (pain/death/teleport/pickups/impacts/music verified; muzzle sound is a guess because the game has no fire cue we found; water cues are hypotheses; jump/land/footsteps are silent in the game) |
 
 ## Not done
 Other weapons and projectiles, power-up effects beyond regeneration/speed burst/invulnerability, flags/CTF, scoring and game modes, menus, bot weapon choice and item seeking,

@@ -37,7 +37,8 @@ public sealed class Player
     public bool EyeUnderwater => WaterDepth > EyeHeight;
     float _lavaTimer;
     /// <summary>One-frame events for the sound layer; the game clears them after reading.</summary>
-    public bool EvJump, EvLand, EvHurt, EvTeleport;
+    public bool EvJump, EvLand, EvHurt, EvTeleport, EvDeath, EvWaterEnter, EvWaterLeave;
+    bool _wasSwimming;
     float _fwd, _strafe, _vy, _sinceGround, _jumpHeld;
 
     public Vector3 Eye => Feet + new Vector3(0, EyeHeight, 0);
@@ -75,7 +76,7 @@ public sealed class Player
     public void Hurt(float hp)
     {
         if (Dead || Items.PowerUp == "Invulnerability") return;
-        Health = MathF.Max(0, Health - hp); HurtFlash = 0.4f; EvHurt = true;
+        Health = MathF.Max(0, Health - hp); HurtFlash = 0.4f; if (Health <= 0) EvDeath = true; else EvHurt = true;
     }
 
     void Step(float dtSeconds, PlayerInput input, GameLevel level)
@@ -93,6 +94,7 @@ public sealed class Player
         float? surface = Collision.SurfaceAbove(level.Water, Feet.X, Feet.Z, Feet.Y);
         WaterDepth = surface is float sy ? sy - Feet.Y : 0;
         bool swimming = !NoClip && WaterDepth > SwimDepth, deep = swimming && WaterDepth > DeepDepth;
+        if (swimming != _wasSwimming) { if (swimming) EvWaterEnter = true; else EvWaterLeave = true; _wasSwimming = swimming; }
         float[] cfg = deep ? Deep : swimming ? Surface : WaterDepth > WadeDepth ? Wade : [FAccel, FMax, FDecel, SAccel, SMax, SDecel];
         _fwd = Approach(_fwd, input.Forward, cfg[0], cfg[1], cfg[2], dt);
         _strafe = Approach(_strafe, deep ? 0 : input.Strafe, cfg[3], cfg[4], cfg[5], dt);
