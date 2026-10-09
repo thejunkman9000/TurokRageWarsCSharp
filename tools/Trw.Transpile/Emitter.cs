@@ -5,9 +5,6 @@ namespace Trw.Transpile;
 
 public sealed class Unsupported(string what) : Exception(what) { }
 
-/// <summary>C# parameter/return types of a function definition, used to coerce arguments at call sites.</summary>
-public sealed record Sig(string Ret, string[] Params);
-
 /// <summary>
 /// Turns one C function (clang JSON AST, MIPS o32 target) into a C# static method. All game memory goes through
 /// <c>Mem</c>; scalar locals are C# locals; pointers are <c>uint</c> guest addresses. Locals that need an address
@@ -33,6 +30,10 @@ public sealed class Emitter
     CType? returnsRecord;                      // set while emitting a function that returns a struct by value
     bool lastTerminates;
     bool noRetCast;
+    /// <summary>(callee, C# type) pairs for direct calls whose result is used; a callee defined as void but used with a value needs the original MIPS code.</summary>
+    public readonly HashSet<(string name, string ret)> ValueUsed = new();
+    /// <summary>Every function this file calls directly (so the generator can stub the ones nobody defines).</summary>
+    public readonly HashSet<string> Called = new();
 
     public Emitter(AstIndex ix, Func<string, uint?> symbolAddress, IReadOnlyDictionary<string, Sig> sigs)
     {
@@ -68,24 +69,62 @@ public sealed class Emitter
 
     // ------------------------------------------------------------------ function
 
-    public string FnName(JsonNode fn) =>
-        (string?)fn["storageClass"] == "static" ? StaticPrefix + (string)fn["name"]! : (string)fn["name"]!;
+    /// <summary>Static functions referenced while emitting (so header-defined ones can be emitted next to their user).</summary>
+    public readonly HashSet<string> ReferencedStatics = new();
 
-    /// <summary>The C# view of a definition: a struct result becomes a hidden leading <c>uint</c> parameter, struct parameters become addresses.</summary>
+    /// <summary>Overlay functions appear as func_4009F4 in some sources and func_004009F4 in others; use the long form.</summary>
+    public static string Norm(string n)
+    {
+        if (n.Length == 11 && n.StartsWith("func_")) return "func_00" + n[5..];
+        // func_802BC380 is the KSEG0 (cached) alias of the code at 0x002BC380
+        if (n.Length == 13 && n.StartsWith("func_") && "89ABab".Contains(n[5]) && uint.TryParse(n[5..], System.Globalization.NumberStyles.HexNumber, null, out var a))
+            return $"func_{a & 0x1FFFFFFF:X8}";
+        return n;
+    }
+
+    public string FnName(JsonNode fn)
+    {
+        var n = (string)fn["name"]!;
+        if (ix.AsmLabels.TryGetValue(n, out var label)) return Norm(label);
+        if (!ix.StaticFunctions.Contains(n)) return Norm(n);
+        ReferencedStatics.Add(n);
+        return StaticPrefix + n;
+    }
+
+    /// <summary>The C# view of a function: a struct result becomes a hidden leading <c>uint</c> parameter, struct parameters become addresses.</summary>
     public Sig ToSig(JsonNode fn)
     {
         var (ret, ps) = SignatureOf(fn);
         string Cs(CType t) => t.Kind == K.Record ? "uint" : t.Cs;
         var list = ps.Select(Cs).ToList();
-        if (ret.Kind == K.Record) list.Insert(0, "uint");
-        return new Sig(ret.Kind is K.Void or K.Record ? "void" : Cs(ret), list.ToArray());
+        var structs = ps.Select(p => p.Kind == K.Record ? p.Size : 0).ToList();
+        if (ret.Kind == K.Record) { list.Insert(0, "uint"); structs.Insert(0, 0); }
+        return new Sig(ret.Kind == K.Void ? "void" : Cs(ret), list.ToArray(), structs.ToArray(), ret.Kind == K.Record);
     }
-
     public (CType ret, List<CType> ps) SignatureOf(JsonNode fn)
     {
         var ft = CType.Parse((string?)fn["type"]?["desugaredQualType"] ?? (string)fn["type"]!["qualType"]!, ix);
         var ps = Kids(fn).Where(x => KindOf(x) == "ParmVarDecl").Select(TypeOf).ToList();
         return (ft.Ret ?? CType.S32, ps);
+    }
+
+    /// <summary>
+    /// <c>void f(void) { fp(); }</c> is how the decompiler shows a MIPS stub that is only <c>lw t9, fp; jr t9</c>: the real callers pass a0..a3 and the
+    /// target receives them untouched. A C prototype cannot say that, so such stubs are recompiled from the MIPS (which forwards r4..r7).
+    /// </summary>
+    static bool IsRegisterForwardingWrapper(JsonNode body)
+    {
+        var stmts = Kids(body).ToList();
+        if (stmts.Count != 1) return false;
+        var s = stmts[0];
+        if (KindOf(s) == "ReturnStmt") s = Kids(s).FirstOrDefault();
+        while (s != null && KindOf(s) is "ImplicitCastExpr" or "ParenExpr") s = Kids(s).FirstOrDefault();
+        if (s == null || KindOf(s) != "CallExpr") return false;
+        var parts = Kids(s).ToList();
+        if (parts.Count != 1) return false;                       // arguments present: the C already says what is passed
+        var callee = parts[0];
+        while (KindOf(callee) is "ImplicitCastExpr" or "ParenExpr" or "UnaryOperator" && Kids(callee).FirstOrDefault() is JsonNode inner) callee = inner;
+        return !(KindOf(callee) == "DeclRefExpr" && (string?)callee["referencedDecl"]?["kind"] == "FunctionDecl");
     }
 
     public string EmitFunction(JsonNode fn)
@@ -96,6 +135,8 @@ public sealed class Emitter
         var (ret, _) = SignatureOf(fn);
         var body = Kids(fn).First(x => KindOf(x) == "CompoundStmt");
         var ps = Kids(fn).Where(x => KindOf(x) == "ParmVarDecl").ToList();
+        if (ps.Count == 0 && IsRegisterForwardingWrapper(body))
+            throw new Unsupported("tail-jump wrapper (jr t9): forwards the caller's argument registers, which the C prototype cannot express");
         foreach (var p in ps) localIds.Add((string)p["id"]!);
         returnsRecord = ret.Kind == K.Record ? ret : null;
 
@@ -122,7 +163,7 @@ public sealed class Emitter
             else plist.Add($"{pt.Cs} {pname}");
         }
 
-        string retCs = ret.Kind is K.Void or K.Record ? "void" : ret.Cs;
+        string retCs = ret.Kind == K.Void ? "void" : ret.Kind == K.Record ? "uint" : ret.Cs;
         Line($"public static {retCs} {name}({string.Join(", ", plist)})");
         Line("{");
         indent++;
@@ -137,8 +178,31 @@ public sealed class Emitter
         Line("{");
         indent++;
         foreach (var l in prologue) Line(l);
-        foreach (var s in body["inner"]?.AsArray() ?? new JsonArray()) Stmt(s!);
-        if (ret.Kind is not (K.Void or K.Record) && !EndsWithReturn(body)) Line($"return {ret.Zero};");
+        {
+            // opt-in call tracing (TRW_TRACE_FN): the first four integer/pointer parameters as words
+            var dbgArgs = new List<string>();
+            foreach (var p in ps.Take(4))
+            {
+                var pt = TypeOf(p);
+                var pn = Id((string)p["name"]!);
+                var vn = pt.Kind == K.Record || frame.ContainsKey((string)p["id"]!) ? pn + "_in" : pn;
+                dbgArgs.Add(pt.Kind is K.Int or K.Ptr or K.Record ? $"(uint){vn}" : "0u");
+            }
+            Line($"if (Dbg.On) Dbg.Enter(\"{name}\"{(dbgArgs.Count > 0 ? ", " + string.Join(", ", dbgArgs) : "")});");
+        }
+        if (NeedsFlat(body))
+        {
+            // the C jumps into the middle of a block (or has case labels inside nested blocks): C# cannot, so lower the whole function to labels and gotos
+            FlatBody(body, ps);
+            if (ret.Kind == K.Record) Line("return _ret;");
+            else if (ret.Kind != K.Void) Line($"return {ret.Zero};");
+        }
+        else
+        {
+            foreach (var s in body["inner"]?.AsArray() ?? new JsonArray()) Stmt(s!);
+            if (ret.Kind == K.Record && !EndsWithReturn(body)) Line("return _ret;");
+            else if (ret.Kind is not (K.Void or K.Record) && !EndsWithReturn(body)) Line($"return {ret.Zero};");
+        }
         indent--;
         Line("}");
         if (frameSize > 0)
@@ -153,6 +217,207 @@ public sealed class Emitter
     }
 
     static bool EndsWithReturn(JsonNode body) => KindOf(body["inner"]?.AsArray().LastOrDefault()) == "ReturnStmt";
+
+    // ------------------------------------------------------------------ flat mode (labels and gotos only)
+
+    Dictionary<string, string> renames = new();     // local variable id -> unique C# name (flat mode hoists every local to the top)
+    int flatLabel;
+    readonly Stack<string> breakTargets = new();
+    readonly Stack<string> continueTargets = new();
+    Dictionary<JsonNode, string> caseLabels = new(ReferenceEqualityComparer.Instance);
+
+    /// <summary>Does the function contain a goto into a block that does not enclose it, or a case label that is not directly in its switch block?</summary>
+    bool NeedsFlat(JsonNode body)
+    {
+        var labelBlock = new Dictionary<string, JsonNode>();
+        var gotos = new List<(string target, List<JsonNode> chain)>();
+        var stack = new List<JsonNode>();
+        bool oddCase = false;
+        void Walk(JsonNode n)
+        {
+            var k = KindOf(n);
+            if (k == "LabelStmt")
+                labelBlock[(string)n["declId"]!] = stack.LastOrDefault(x => KindOf(x) == "CompoundStmt") ?? body;
+            else if (k == "GotoStmt") gotos.Add(((string)n["targetLabelDeclId"]!, stack.ToList()));
+            else if (k is "CaseStmt" or "DefaultStmt")
+            {
+                var parent = stack.LastOrDefault();
+                var grand = stack.Count >= 2 ? stack[^2] : null;
+                bool ok = parent != null && ((KindOf(parent) == "CompoundStmt" && KindOf(grand) == "SwitchStmt") || KindOf(parent) is "CaseStmt" or "DefaultStmt");
+                if (!ok) oddCase = true;
+            }
+            stack.Add(n);
+            foreach (var c in Kids(n)) Walk(c);
+            stack.RemoveAt(stack.Count - 1);
+        }
+        Walk(body);
+        if (oddCase) return true;
+        return gotos.Any(g => labelBlock.TryGetValue(g.target, out var blk) && !g.chain.Contains(blk));
+    }
+
+    string NewFlatLabel() => $"_f{flatLabel++}";
+
+    void FlatBody(JsonNode body, List<JsonNode> ps)
+    {
+        flatLabel = 0; renames = new(); breakTargets.Clear(); continueTargets.Clear(); caseLabels = new(ReferenceEqualityComparer.Instance);
+        var used = new HashSet<string>(ps.Select(p => (string)p["name"]!));
+        // hoist the scalar locals that do not live in the guest frame
+        void Hoist(JsonNode n)
+        {
+            if (KindOf(n) == "VarDecl" && !frame.ContainsKey((string)n["id"]!) && (string?)n["storageClass"] != "static")
+            {
+                var t = TypeOf(n);
+                if (!t.IsScalarMem) throw new Unsupported($"local of type {t.Kind} {t.Name}");
+                var nm = (string)n["name"]!;
+                var uniq = nm; int k = 2;
+                while (!used.Add(uniq)) uniq = $"{nm}_{k++}";
+                renames[(string)n["id"]!] = Id(uniq);
+                Line($"{t.Cs} {Id(uniq)} = {t.Zero};");
+            }
+            foreach (var c in Kids(n)) Hoist(c);
+        }
+        Hoist(body);
+        foreach (var s in body["inner"]?.AsArray() ?? new JsonArray()) FlatStmt(s!);
+    }
+
+    string FlatDecl(JsonNode d)
+    {
+        if (KindOf(d) != "VarDecl") throw new Unsupported($"local {KindOf(d)}");
+        if (frame.ContainsKey((string)d["id"]!)) return LocalDecl(d);       // frame locals: the initialiser is a store
+        if (InnerCount(d) == 0) return "";
+        return $"{renames[(string)d["id"]!]} = {Value(Inner(d, 0))}";
+    }
+
+    void FlatStmt(JsonNode s)
+    {
+        switch (KindOf(s))
+        {
+            case "CompoundStmt": foreach (var c in Kids(s)) FlatStmt(c); break;
+            case "NullStmt": case "<<<NULL>>>": break;
+            case "DeclStmt":
+                foreach (var d in Kids(s)) { var l = FlatDecl(d); if (l != "") Line(l + ";"); }
+                break;
+            case "ReturnStmt":
+                if (returnsRecord != null && InnerCount(s) > 0)
+                {
+                    Line($"Mem.Copy(_ret, {Addr(StripValueCast(Inner(s, 0)))}, {returnsRecord.Size});");
+                    Line("return _ret;");
+                }
+                else Line(InnerCount(s) == 0 ? "return;" : $"return {Value(Inner(s, 0))};");
+                break;
+            case "IfStmt":
+            {
+                var lelse = NewFlatLabel();
+                Line($"if (!({Cond(Inner(s, 0))})) goto {lelse};");
+                FlatStmt(Inner(s, 1));
+                if (InnerCount(s) > 2)
+                {
+                    var lend = NewFlatLabel();
+                    Line($"goto {lend};");
+                    Line($"{lelse}: ;");
+                    FlatStmt(Inner(s, 2));
+                    Line($"{lend}: ;");
+                }
+                else Line($"{lelse}: ;");
+                break;
+            }
+            case "WhileStmt":
+            {
+                var lc = NewFlatLabel(); var lb = NewFlatLabel();
+                breakTargets.Push(lb); continueTargets.Push(lc);
+                Line($"{lc}: ;");
+                Line($"if (!({Cond(Inner(s, 0))})) goto {lb};");
+                FlatStmt(Inner(s, 1));
+                Line($"goto {lc};");
+                Line($"{lb}: ;");
+                breakTargets.Pop(); continueTargets.Pop();
+                break;
+            }
+            case "DoStmt":
+            {
+                var lt = NewFlatLabel(); var lc = NewFlatLabel(); var lb = NewFlatLabel();
+                breakTargets.Push(lb); continueTargets.Push(lc);
+                Line($"{lt}: ;");
+                FlatStmt(Inner(s, 0));
+                Line($"{lc}: ;");
+                Line($"if ({Cond(Inner(s, 1))}) goto {lt};");
+                Line($"{lb}: ;");
+                breakTargets.Pop(); continueTargets.Pop();
+                break;
+            }
+            case "ForStmt":
+            {
+                var kids = s["inner"]!.AsArray().Select(x => x!).ToList();
+                if (kids.Count != 5) throw new Unsupported("for layout");
+                if (!IsNull(kids[0])) FlatStmt(KindOf(kids[0]) == "DeclStmt" ? kids[0] : WrapExpr(kids[0]));
+                var lcond = NewFlatLabel(); var lc = NewFlatLabel(); var lb = NewFlatLabel();
+                breakTargets.Push(lb); continueTargets.Push(lc);
+                Line($"{lcond}: ;");
+                if (!IsNull(kids[2])) Line($"if (!({Cond(kids[2])})) goto {lb};");
+                FlatStmt(kids[4]);
+                Line($"{lc}: ;");
+                if (!IsNull(kids[3])) foreach (var part in ForParts(kids[3])) Line(part + ";");
+                Line($"goto {lcond};");
+                Line($"{lb}: ;");
+                breakTargets.Pop(); continueTargets.Pop();
+                break;
+            }
+            case "BreakStmt": Line($"goto {breakTargets.Peek()};"); break;
+            case "ContinueStmt": Line($"goto {continueTargets.Peek()};"); break;
+            case "GotoStmt": Line($"goto {labels[(string)s["targetLabelDeclId"]!]};"); break;
+            case "LabelStmt":
+                Line($"{labels[(string)s["declId"]!]}: ;");
+                foreach (var c in Kids(s)) FlatStmt(c);
+                break;
+            case "SwitchStmt": FlatSwitch(s); break;
+            case "ExprWrapper": Line(StmtExpr(Inner(s, 0)) + ";"); break;
+            case "GCCAsmStmt": Line(AsmCopy(s) + ";"); break;
+            case "CaseStmt":
+                Line($"{caseLabels[s]}: ;");
+                FlatStmt(s["inner"]!.AsArray().Last()!);
+                break;
+            case "DefaultStmt":
+                Line($"{caseLabels[s]}: ;");
+                FlatStmt(Inner(s, 0));
+                break;
+            default:
+                Line(StmtExpr(s) + ";");
+                break;
+        }
+    }
+
+    /// <summary>An expression statement node (so it can go through FlatStmt).</summary>
+    static JsonNode WrapExpr(JsonNode e) => new JsonObject { ["kind"] = "ExprWrapper", ["inner"] = new JsonArray(e.DeepClone()) };
+
+    void FlatSwitch(JsonNode s)
+    {
+        var kids = Kids(s).ToList();
+        var body = kids[^1];
+        var cases = new List<JsonNode>();
+        void Collect(JsonNode n)
+        {
+            if (KindOf(n) is "CaseStmt" or "DefaultStmt") cases.Add(n);
+            if (KindOf(n) == "SwitchStmt") return;               // an inner switch owns its labels
+            foreach (var c in Kids(n)) Collect(c);
+        }
+        foreach (var c in Kids(body)) Collect(c);
+        if (KindOf(body) is "CaseStmt" or "DefaultStmt") Collect(body);
+        var lb = NewFlatLabel();
+        string? ldefault = null;
+        var dispatch = new StringBuilder();
+        foreach (var c in cases)
+        {
+            var l = NewFlatLabel();
+            caseLabels[c] = l;
+            if (KindOf(c) == "DefaultStmt") ldefault = l;
+            else dispatch.Append($"case {Value(Inner(c, 0))}: goto {l}; ");
+        }
+        Line($"switch ({Value(kids[^2])}) {{ {dispatch}default: goto {ldefault ?? lb}; }}");
+        breakTargets.Push(lb);
+        FlatStmt(body);
+        breakTargets.Pop();
+        Line($"{lb}: ;");
+    }
 
     /// <summary>Decides which locals live in the guest stack frame and collects goto labels.</summary>
     void PlanFrame(List<JsonNode> ps, JsonNode body)
@@ -244,7 +509,7 @@ public sealed class Emitter
                 if (returnsRecord != null && InnerCount(s) > 0)
                 {
                     Line($"Mem.Copy(_ret, {Addr(StripValueCast(Inner(s, 0)))}, {returnsRecord.Size});");
-                    Line("return;");
+                    Line("return _ret;");
                 }
                 else Line(InnerCount(s) == 0 ? "return;" : $"return {Value(Inner(s, 0))};");
                 lastTerminates = true;
@@ -286,12 +551,29 @@ public sealed class Emitter
                 foreach (var c in Kids(s)) Stmt(c);
                 break;
             case "SwitchStmt": Switch(s); break;
+            case "GCCAsmStmt": Line(AsmCopy(s) + ";"); break;
             case "CaseStmt": case "DefaultStmt":
                 throw new Unsupported("case label outside the top level of a switch");
             default:
                 Line(StmtExpr(s) + ";");
                 break;
         }
+    }
+
+    /// <summary>The C source of the file being emitted (used for the few things the AST does not carry, like inline-asm templates).</summary>
+    public string SourceText = "";
+
+    /// <summary>
+    /// `__asm__("" : "=r"(k) : "0"(value))` is the idiom for "an opaque copy of value" (the compiler must not fold it):
+    /// translate it to the assignment k = value. Any other inline assembly is not supported.
+    /// </summary>
+    string AsmCopy(JsonNode s)
+    {
+        var kids = Kids(s).ToList();
+        if (kids.Count != 2 || !SourceText.Contains("__asm__(\"\" :")) throw new Unsupported("inline assembly");
+        var dst = kids[0];
+        var val = Value(kids[1]);
+        return IsLocalRef(dst) ? $"{Value(dst)} = {val}" : $"Mem.Set({Addr(dst)}, {val})";
     }
 
     static bool IsNull(JsonNode n) => KindOf(n) == "<<<NULL>>>" || n.AsObject().Count == 0;
@@ -305,14 +587,19 @@ public sealed class Emitter
     }
 
     /// <summary>A comma-expression flattened into a C# for-header list.</summary>
-    string ForList(JsonNode e)
+    string ForList(JsonNode e) => string.Join(", ", ForParts(e));
+
+    List<string> ForParts(JsonNode e)
     {
         e = StripParens(e);
         if (KindOf(e) == "BinaryOperator" && (string)e["opcode"]! == ",")
-            return ForList(Inner(e, 0)) + ", " + ForList(Inner(e, 1));
-        return StmtExpr(e);
+        {
+            var l = ForParts(Inner(e, 0));
+            l.AddRange(ForParts(Inner(e, 1)));
+            return l;
+        }
+        return new List<string> { StmtExpr(e) };
     }
-
     void Switch(JsonNode s)
     {
         var kids = Kids(s).ToList();
@@ -512,7 +799,7 @@ public sealed class Emitter
                 return ix.EnumValues.TryGetValue((string)d["id"]!, out var v) ? v.ToString() : throw new Unsupported($"enum {name}");
             case "VarDecl":
                 if (IsGlobal(d) || frame.ContainsKey((string)d["id"]!)) return Load(e);
-                return Id(name);
+                return renames.TryGetValue((string)d["id"]!, out var rn) ? rn : Id(name);
             case "FunctionDecl": throw new Unsupported("function used as a value");
             default: throw new Unsupported($"declref {kind}");
         }
@@ -668,7 +955,11 @@ public sealed class Emitter
         switch (op)
         {
             case "+": return Value(x);
-            case "-": return $"(-{Value(x)})";
+            case "-":
+            {
+                var ut = TypeOf(e);
+                return ut.IsInt && !ut.Signed ? $"({(ut.Size == 8 ? "0UL" : "0u")} - {Value(x)})" : $"(-{Value(x)})";
+            }
             case "~": return $"(~{Value(x)})";
             case "!": return $"({Cond(x)} ? 0 : 1)";
             case "*": return Load(e);
@@ -759,7 +1050,7 @@ public sealed class Emitter
                 var f = StripParens(x);
                 if (KindOf(f) == "DeclRefExpr" && KindOf(f["referencedDecl"]) == "FunctionDecl")
                 {
-                    var fname = (string)f["referencedDecl"]!["name"]!;
+                    var fname = Norm((string)f["referencedDecl"]!["name"]!);
                     var a = symbolAddress(fname) ?? FuncAddrFromName(fname) ?? throw new Unsupported($"address of function {fname}");
                     return $"0x{a:X8}u";
                 }
@@ -785,6 +1076,18 @@ public sealed class Emitter
     {
         var callee = StripParens(Inner(e, 0));
         var argNodes = Kids(e).Skip(1).ToList();
+        if (KindOf(callee) == "ImplicitCastExpr" && (string?)callee["castKind"] == "BuiltinFnToFnPtr")
+        {
+            var bn = (string)StripParens(Inner(callee, 0))["referencedDecl"]!["name"]!;
+            if (bn.StartsWith("__builtin_")) bn = bn["__builtin_".Length..];
+            return bn switch
+            {
+                "fabsf" => $"MathF.Abs({Value(argNodes[0])})",
+                "fabs" => $"Math.Abs({Value(argNodes[0])})",
+                "sqrt" => $"Math.Sqrt({Value(argNodes[0])})",
+                _ => throw new Unsupported($"builtin {bn}"),
+            };
+        }
         if (KindOf(callee) == "ImplicitCastExpr" && (string?)callee["castKind"] == "FunctionToPointerDecay")
         {
             var d = StripParens(Inner(callee, 0));
@@ -792,12 +1095,12 @@ public sealed class Emitter
                 return DirectCall(e, d["referencedDecl"]!, argNodes);
             // (*fp)(...) : the callee is a function lvalue; its address is the pointer value
             if (KindOf(d) == "UnaryOperator" && (string)d["opcode"]! == "*")
-                return IndirectCall(Value(Inner(d, 0)), TypeOf(d), argNodes);
+                return IndirectCall(e, Value(Inner(d, 0)), TypeOf(d), argNodes);
         }
         // fp(...) where fp is a pointer-to-function value
         var ct = TypeOf(callee);
         if (ct.IsPtr && ct.Elem?.Kind == K.Func)
-            return IndirectCall(Value(callee), ct.Elem, argNodes);
+            return IndirectCall(e, Value(callee), ct.Elem, argNodes);
         throw new Unsupported("indirect call");
     }
 
@@ -805,6 +1108,8 @@ public sealed class Emitter
     {
         bool skipRetCast = noRetCast; noRetCast = false;
         var name = FnName(fnDecl);
+        if (name == "__builtin_next_arg") throw new Unsupported("variadic function (uses __builtin_next_arg)");
+        lock (Called) Called.Add(name);
         var vals = new List<string>();
         sigs.TryGetValue(name, out var sig);
         bool recRet = TypeOf(call).Kind == K.Record;
@@ -833,24 +1138,37 @@ public sealed class Emitter
         if (sig != null)
             for (int i = vals.Count; i < sig.Params.Length; i++) vals.Add($"default({sig.Params[i]})");
         var text = $"{Id(name)}({string.Join(", ", vals)})";
-        if (recRet) return $"C.Seq<uint>((object?){text}, {tmp})";
+        if (recRet) return $"C.Seq({text}, {tmp})";
         var want = TypeOf(call);
+        if (!skipRetCast && want.IsScalarMem) lock (ValueUsed) ValueUsed.Add((name, want.Cs));
         if (!skipRetCast && sig != null && sig.Ret != "void" && want.IsScalarMem && want.Cs != sig.Ret) text = $"({want.Cs})({text})";   // stale prototype disagrees with the definition
         return text;
     }
 
-    string IndirectCall(string addr, CType fn, List<JsonNode> argNodes)
+    /// <summary>A call through a code address: arguments are marshalled into the register convention (see <see cref="Abi"/>).</summary>
+    string IndirectCall(JsonNode call, string addr, CType fn, List<JsonNode> argNodes)
     {
-        if (fn.Kind != K.Func || fn.Variadic) throw new Unsupported("indirect call of a variadic/unknown function");
-        var vals = argNodes.Select(Value).ToList();
-        string ret = fn.Ret!.Kind == K.Void ? "" : fn.Ret.Cs;
-        var ptypes = fn.Params.Count == argNodes.Count ? fn.Params.Select(p => p.Cs).ToList()
-                   : argNodes.Select(a => TypeOf(a).Cs).ToList();   // unprototyped pointer type: use what the call passes
-        string dt = ret == "" ? (ptypes.Count == 0 ? "Action" : $"Action<{string.Join(", ", ptypes)}>")
-                              : $"Func<{string.Join(", ", ptypes.Append(ret))}>";
-        return $"Funcs.Get<{dt}>({addr})({string.Join(", ", vals)})";
+        if (fn.Kind != K.Func) throw new Unsupported("indirect call of an unknown function type");
+        bool discard = noRetCast; noRetCast = false;      // statement context: the result is not converted
+        var retT = TypeOf(call);
+        string? hidden = null;
+        if (retT.Kind == K.Record)
+        {
+            var off = callTemps.TryGetValue(call, out var o) ? o : throw new Unsupported("struct-returning call without a result slot");
+            hidden = off == 0 ? "_fp" : $"(_fp + {off}u)";
+        }
+        var types = argNodes.Select(a => { var t = TypeOf(a); return t.Kind == K.Record ? "uint" : t.IsScalarMem ? t.Cs : throw new Unsupported($"argument of type {t.Kind}"); }).ToArray();
+        var structs = argNodes.Select(a => { var t = TypeOf(a); return t.Kind == K.Record ? t.Size : 0; }).ToArray();
+        var values = argNodes.Select(Value).ToArray();
+        // an argument of a promoted type is already converted by sema; use the call's own argument types (prototype or not)
+        var text = Abi.IndirectCall(addr, discard || retT.Kind is K.Void ? "void" : retT.Kind == K.Record ? "uint" : retT.Cs, types, values, structs, hidden);
+        return hidden != null ? $"C.Seq({text}, {hidden})" : text;
     }
 }
+
+
+
+
 
 
 

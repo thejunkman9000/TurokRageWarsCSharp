@@ -1,0 +1,3 @@
+osStopTimer|int|uint|0|0
+osUnmapTLBAll|void|||0
+__osGetFpcCsr|uint|||0

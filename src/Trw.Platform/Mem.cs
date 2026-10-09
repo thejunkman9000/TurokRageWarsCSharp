@@ -14,6 +14,9 @@ public static class Mem
     {
         public byte[] Data = Array.Empty<byte>();
         public uint Base;
+        /// <summary>For demand-paged regions: which 4 KB pages are present, and how to bring one in (fills the page, returns false if it cannot).</summary>
+        public bool[]? Present;
+        public Func<uint, bool>? PageIn;
     }
 
     private static readonly Region?[] Slots = new Region?[256];
@@ -28,6 +31,26 @@ public static class Mem
         var r = new Region { Data = new byte[size], Base = baseAddr };
         Slots[slot] = r;
         return r.Data;
+    }
+
+    /// <summary>
+    /// Maps a region whose pages are brought in on first access by <paramref name="pageIn"/> (called with the page address; it writes the page
+    /// with <see cref="Write"/>). Accesses below <paramref name="firstPagedAddr"/> are plain memory.
+    /// </summary>
+    public static byte[] MapPaged(uint baseAddr, int size, uint firstPagedAddr, Func<uint, bool> pageIn)
+    {
+        var data = Map(baseAddr, size);
+        var r = Slots[baseAddr >> 24]!;
+        r.Present = new bool[(size + 0xFFF) >> 12];
+        for (uint p = 0; p < r.Present.Length; p++) r.Present[p] = baseAddr + (p << 12) < firstPagedAddr;
+        r.PageIn = pageIn;
+        return data;
+    }
+
+    /// <summary>Maps the 16 MB slot containing <paramref name="baseAddr"/> if nothing is mapped there yet (used for per-thread guest stacks).</summary>
+    public static void EnsureStackRegion(uint baseAddr, uint size)
+    {
+        if (Slots[baseAddr >> 24] == null) Map(baseAddr & 0xFF000000u, 0x1000000);
     }
 
     public static void Unmap(uint baseAddr) => Slots[baseAddr >> 24] = null;
@@ -45,7 +68,18 @@ public static class Mem
         if (r == null) throw new GuestFault(a, n);
         var off = a - r.Base;
         if (off > (uint)(r.Data.Length - n) || a < r.Base) throw new GuestFault(a, n);
+        if (r.Present != null) EnsurePresent(r, a, off, n);
         return r.Data.AsSpan((int)off, n);
+    }
+
+    private static void EnsurePresent(Region r, uint a, uint off, int n)
+    {
+        for (uint p = off >> 12; p <= (off + (uint)n - 1) >> 12; p++)
+        {
+            if (r.Present![p]) continue;
+            r.Present[p] = true;      // set first: PageIn writes the page through Mem
+            if (!r.PageIn!(r.Base + (p << 12))) { r.Present[p] = false; throw new GuestFault(a, n); }
+        }
     }
 
     public static bool IsMapped(uint a)
@@ -97,3 +131,5 @@ public static class Mem
         return sb.ToString();
     }
 }
+
+

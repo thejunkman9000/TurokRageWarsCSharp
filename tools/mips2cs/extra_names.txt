@@ -1,0 +1,1 @@
+# obsolete: the recompiler now follows the call graph and recompiles every assembly-only function (--all-asm)

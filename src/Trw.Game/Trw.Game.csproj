@@ -2,6 +2,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Trw.Platform\Trw.Platform.csproj" />
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
+    <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
 
   <PropertyGroup>
@@ -9,6 +11,10 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <!-- the generated code is a faithful translation: unreachable code, unused locals and unused labels are expected -->
+    <NoWarn>$(NoWarn);CS0162;CS0164;CS0168;CS0219;CS0169;CS0649;CS8981;CS8669</NoWarn>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <MonoGamePlatform>DesktopGL</MonoGamePlatform>
   </PropertyGroup>
 
 </Project>

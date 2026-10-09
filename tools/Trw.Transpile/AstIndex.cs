@@ -29,6 +29,11 @@ public sealed class AstIndex
     readonly Dictionary<string, string> typedefToRecordId = new();
     public readonly Dictionary<string, string> Typedefs = new();
     public readonly Dictionary<string, long> EnumValues = new();
+    /// <summary>Names of functions with internal linkage in this translation unit, and the bodies of those defined here or in headers.</summary>
+    public readonly HashSet<string> StaticFunctions = new();
+    /// <summary>`f32 sqrtf_(f32) __asm__("sqrtf");` : C name -> linker symbol (the AST does not carry the label text).</summary>
+    public readonly Dictionary<string, string> AsmLabels = new();
+    public readonly Dictionary<string, JsonNode> StaticDefinitions = new();
     public readonly Dictionary<string, Field> FieldsById = new();
     readonly Dictionary<string, Record> byQual = new();       // "struct (unnamed struct at f:l:c)" -> record
     readonly List<(string id, string[] chain)> indirect = new();
@@ -65,12 +70,23 @@ public sealed class AstIndex
                         Id = (string)c!["id"]!, Name = (string?)c["name"] ?? "",
                         Type = (string)c["type"]!["qualType"]!, Bitfield = c["isBitfield"]?.GetValue<bool>() == true,
                     };
-                    if (lastNested != null && (f.Type.Contains("(unnamed") || f.Type.Contains("(anonymous"))) byQual[f.Type] = lastNested;
+                    if (lastNested != null && (f.Type.Contains("(unnamed") || f.Type.Contains("(anonymous")))
+                    {
+                        var key = f.Type.StartsWith("struct ") ? f.Type[7..] : f.Type.StartsWith("union ") ? f.Type[6..] : f.Type;
+                        byQual[key] = lastNested;       // CType.Parse looks the type up without its struct/union tag
+                    }
                     r.Fields.Add(f);
                     FieldsById[f.Id] = f;
                 }
                 byId[r.Id] = r;
                 if (r.Name != "") byName[r.Name] = r;
+                break;
+            }
+            case "FunctionDecl" when (string?)n["storageClass"] == "static":
+            {
+                var fname = (string)n["name"]!;
+                StaticFunctions.Add(fname);
+                if (n["inner"]?.AsArray().Any(c => (string?)c?["kind"] == "CompoundStmt") == true) StaticDefinitions[fname] = n;
                 break;
             }
             case "TypedefDecl":
@@ -116,6 +132,16 @@ public sealed class AstIndex
         return null;
     }
 
+    /// <summary>Debug aid: every complete record with its size, alignment and field offsets (compare with clang's -fdump-record-layouts).</summary>
+    public IEnumerable<string> DumpLayouts()
+    {
+        foreach (var r in byId.Values)
+        {
+            yield return $"record {(r.Name == "" ? "<unnamed " + r.Id + ">" : r.Name)} {(r.IsUnion ? "union" : "struct")} size={r.Size} align={r.Align}";
+            foreach (var f in r.Fields) yield return $"  +{f.Offset:X} {f.Name} : {f.Type}";
+        }
+    }
+
     public Record? FindRecord(string name)
     {
         if (byName.TryGetValue(name, out var r)) return r;
@@ -123,6 +149,11 @@ public sealed class AstIndex
         if (typedefToRecordId.TryGetValue(name, out var id) && byId.TryGetValue(id, out r)) return r;
         return null;
     }
+
+    /// <summary>Problems met while computing layouts (a field type that could not be resolved would silently shrink a struct).</summary>
+    public readonly List<string> Warnings = new();
+
+    public void EnsureLayout(Record r) => Layout(r);
 
     void Layout(Record r)
     {
@@ -132,7 +163,10 @@ public sealed class AstIndex
         foreach (var f in r.Fields)
         {
             var t = CType.Parse(f.Type, this);
-            int fa = AlignOf(t), fs = t.Size;
+            if (t.Kind == K.Unknown || (t.Kind == K.Array && t.Elem!.Kind == K.Unknown))
+                Warnings.Add($"{(r.Name == "" ? "<unnamed " + r.Id + ">" : r.Name)}.{f.Name}: unresolved type '{f.Type}'");
+            int fa = AlignOf(t);
+            int fs = t.Kind == K.Record ? FindRecord(t.Name)!.Size : t.Size;      // the record may only have been laid out by the AlignOf call above
             if (f.Bitfield) { f.Offset = -1; continue; }   // bitfields are reported by the emitter when used
             align = Math.Max(align, fa);
             if (r.IsUnion) { f.Offset = 0; size = Math.Max(size, fs); }
@@ -155,6 +189,8 @@ public sealed class AstIndex
         }
     }
 }
+
+
 
 
 

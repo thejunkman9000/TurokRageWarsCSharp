@@ -54,6 +54,19 @@ public sealed class CType
         _ => "0",
     };
 
+    static List<string> SplitParams(string ptext)
+    {
+        int depth = 0, start = 0;
+        var parts = new List<string>();
+        for (int i = 0; i <= ptext.Length; i++)
+        {
+            if (i < ptext.Length && ptext[i] == '(') depth++;
+            else if (i < ptext.Length && ptext[i] == ')') depth--;
+            else if (i == ptext.Length || (ptext[i] == ',' && depth == 0)) { parts.Add(ptext[start..i].Trim()); start = i + 1; }
+        }
+        return parts;
+    }
+
     static CType ParseFunc(string q, AstIndex ix)
     {
         try { return ParseFuncCore(q, ix); }
@@ -62,6 +75,20 @@ public sealed class CType
 
     static CType ParseFuncCore(string q, AstIndex ix)
     {
+        // "void (*(Ctx **))(void)": a function that returns a pointer to a function
+        var rf = Regex.Match(q, @"^(.*?)\s*\(\*\((.*)\)\)\((.*)\)$");
+        if (rf.Success)
+        {
+            var f = new CType { Kind = K.Func, Size = 4, Name = q };
+            f.Ret = new CType { Kind = K.Ptr, Size = 4, Name = "fnptr", Elem = new CType { Kind = K.Func, Size = 4, Name = "fn" } };
+            foreach (var p in SplitParams(rf.Groups[2].Value))
+            {
+                if (p == "" || p == "void") continue;
+                if (p == "...") { f.Variadic = true; continue; }
+                f.Params.Add(Parse(p, ix));
+            }
+            return f;
+        }
         var fn = new CType { Kind = K.Func, Size = 4, Name = q };
         int fq = q.IndexOf('(');
         int star = string.CompareOrdinal(q, fq, "(*)", 0, 3) == 0 ? fq : -1;
@@ -88,13 +115,13 @@ public sealed class CType
 
     static readonly Regex Quals = new(@"\b(const|volatile|restrict|register|__restrict)\b\s*", RegexOptions.Compiled);
 
-    public static CType Parse(string q, AstIndex ix)
+    public static CType Parse(string q, AstIndex ix, bool lay = true)
     {
         q = Quals.Replace(q, "").Trim();
         int fp = q.IndexOf('(');
         int pstar = fp >= 0 && string.CompareOrdinal(q, fp, "(*)", 0, 3) == 0 ? fp : -1;   // only the first parenthesis group describes this type
         if (q.EndsWith(']') && pstar >= 0 && q[(pstar + 3)..].TrimStart().StartsWith('['))   // pointer to array: "f32 (*)[3]"
-            return new CType { Kind = K.Ptr, Size = 4, Name = q, Elem = Parse(q[..pstar] + q[(pstar + 3)..].TrimStart(), ix) };
+            return new CType { Kind = K.Ptr, Size = 4, Name = q, Elem = Parse(q[..pstar] + q[(pstar + 3)..].TrimStart(), ix, false) };
         if (q.EndsWith(']'))
         {
             var lb = q.LastIndexOf('[');
@@ -108,14 +135,14 @@ public sealed class CType
             // "void (*)(int)" is a pointer to function; "void (int)" is the function type itself
             int st = pstar;
             if (fp >= 0 && string.CompareOrdinal(q, fp, "(**)", 0, 4) == 0)           // pointer to pointer to function
-                return new CType { Kind = K.Ptr, Size = 4, Name = q, Elem = Parse(q.Remove(fp + 1, 1), ix) };
+                return new CType { Kind = K.Ptr, Size = 4, Name = q, Elem = Parse(q.Remove(fp + 1, 1), ix, false) };
             if (st >= 0 && q[(st + 3)..].TrimStart().StartsWith('['))   // pointer to array: "u8 (*)[4]"
-                return new CType { Kind = K.Ptr, Size = 4, Name = q, Elem = Parse(q[..st] + q[(st + 3)..].TrimStart(), ix) };
+                return new CType { Kind = K.Ptr, Size = 4, Name = q, Elem = Parse(q[..st] + q[(st + 3)..].TrimStart(), ix, false) };
             var fn = ParseFunc(q, ix);
             return pstar >= 0 ? new CType { Kind = K.Ptr, Size = 4, Elem = fn, Name = q } : fn;
         }
         if (q.EndsWith('*'))
-            return new CType { Kind = K.Ptr, Size = 4, Elem = Parse(q[..^1], ix), Name = q };
+            return new CType { Kind = K.Ptr, Size = 4, Elem = Parse(q[..^1], ix, false), Name = q };
 
         if (q.StartsWith("enum ")) return S32;
         switch (q)
@@ -132,13 +159,19 @@ public sealed class CType
             case "float": return new CType { Kind = K.Float, Size = 4, Name = q };
             case "double": case "long double": return new CType { Kind = K.Float, Size = 8, Name = q };
         }
-        if (ix.Typedefs.TryGetValue(q, out var td) && td != q && ix.FindRecord(q) == null) return Parse(td, ix);
+        if (ix.Typedefs.TryGetValue(q, out var td) && td != q && ix.FindRecord(q) == null) return Parse(td, ix, lay);
         var name = q.StartsWith("struct ") ? q[7..] : q.StartsWith("union ") ? q[6..] : q;
         var rec = ix.FindRecord(name);
-        if (rec != null) return new CType { Kind = K.Record, Size = rec.Size, Name = name };
+        if (rec != null)
+        {
+            if (lay) ix.EnsureLayout(rec);      // the size must be final before anyone multiplies it (arrays) or adds it (struct fields)
+            return new CType { Kind = K.Record, Size = rec.Size, Name = name };
+        }
         return new CType { Kind = K.Unknown, Size = 4, Name = q };
     }
 }
+
+
 
 
 
