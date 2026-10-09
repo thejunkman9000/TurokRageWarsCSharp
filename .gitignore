@@ -1,6 +1,8 @@
-bin/
+﻿bin/
 obj/
 .vs/
 extracted/
+content/
 *.z64
 *.rom
+
