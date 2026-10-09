@@ -40,7 +40,7 @@ public static partial class Game
                         Mem.Set((_fp + 264u), Mem.F32((o + 8u)));
                         Mem.Set(((_fp + 264u) + 4u), h);
                         Mem.Set(((_fp + 264u) + 8u), Mem.F32((o + 16u)));
-                        if ((func_0024490C(o, (o + 8u), (_fp + 264u), (float)(0x801040F0u), (uint)(fa), (uint)(fb), fc, fd, default(float), default(float)) != 0))
+                        if ((func_0024490C(o, Cpu.U2F(Mem.U32((o + 8u) + 0u)), Cpu.U2F(Mem.U32((o + 8u) + 4u)), Cpu.U2F(Mem.U32((o + 8u) + 8u)), C.Tmp(Mem.U32((_fp + 264u) + 0u), Mem.U32((_fp + 264u) + 4u), Mem.U32((_fp + 264u) + 8u)), 0x801040F0u, Cpu.U2F(Cpu.F2U(fa)), Cpu.U2F(Cpu.F2U(fb)), Cpu.U2F(Cpu.F2U(fc)), Cpu.U2F(Cpu.F2U(fd))) != 0))
                         {
                             Mem.Copy((a + 176u), ctx, 220);
                             Mem.Set((a + 60u), (uint)((uint)(Mem.U32((a + 60u))) | (uint)(8)));

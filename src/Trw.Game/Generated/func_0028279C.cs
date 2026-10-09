@@ -44,7 +44,7 @@ public static partial class Game
                         }
                         if ((s3 != 65535))
                         {
-                            func_0025DE74((int)((short)(s3)), Cpu.F2U(Mem.F32((o + 8u))), (int)(Mem.F32(((o + 8u) + 4u))), (int)(Mem.F32(((o + 8u) + 8u))));
+                            func_0025DE74((int)((uint)((short)(s3))), C.Tmp(Cpu.F2U(Mem.F32((o + 8u))), Cpu.F2U(Mem.F32(((o + 8u) + 4u))), Cpu.F2U(Mem.F32(((o + 8u) + 8u)))), (int)((uint)(0)), (int)((uint)((-1))));
                         }
                         Mem.Set((o + 92u), (uint)((uint)(Mem.U32((o + 92u))) | (uint)(256)));
                         if (((Mem.U32((o + 92u)) & (uint)(256)) != 0u))

@@ -38,7 +38,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         Content.RootDirectory = "Content";
         Window.AllowUserResizing = true;
         // the display list is interpreted the moment the game starts the task (its memory is consistent then); the window thread draws the result
-        Host.GraphicsTask = task => pendingFrame = interpreter.Run(task);
+        Host.GraphicsTask = task => { var cmds = interpreter.Run(task); RecordSignature(cmds); pendingFrame = cmds; };
     }
 
     protected override void LoadContent()
@@ -56,8 +56,66 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
 
     // scripted input for unattended runs: TRW_PAD_SCRIPT="<tick>:<BUTTON>[+<BUTTON>...]:<ticks held>,..." drives pad 0 (ticks are 60 Hz window updates).
     // BUTTON = A B Z START UP DOWN LEFT RIGHT L R CUP CDOWN CLEFT CRIGHT SUP SDOWN SLEFT SRIGHT (S* = analogue stick at full tilt)
-    private static readonly (int start, int len, ushort buttons, int sx, int sy)[] script = ParseScript(Environment.GetEnvironmentVariable("TRW_PAD_SCRIPT"));
+    private static readonly (int start, int len, ushort buttons, int sx, int sy)[] allSteps = ParseScript(Environment.GetEnvironmentVariable("TRW_PAD_SCRIPT"));
+    private static readonly (int start, int len, ushort buttons, int sx, int sy)[] script = allSteps.Where(x => x.start >= 0).ToArray();     // absolute ticks
+    private static readonly (int start, int len, ushort buttons, int sx, int sy)[] settledSteps = allSteps.Where(x => x.start < 0).ToArray(); // in order, each after the screen settled
     private static int scriptTick;
+    private static int settledIndex, settledPressFrom = -1, settledNextAllowed;
+    // screen signatures of the last display lists: the screen counts as settled when it hardly changes (animations aside) over ~40 lists
+    private static readonly long[] recentSignatures = new long[40];
+    private static int signatureCount;
+
+    private static void RecordSignature(IReadOnlyList<GfxCommand> cmds)
+    {
+        long sig = cmds.Count * 1000003L + cmds.OfType<DrawCommand>().Sum(c => (long)c.Vertices.Length);
+        lock (recentSignatures) { recentSignatures[signatureCount++ % recentSignatures.Length] = sig; lastSignature = sig; }
+    }
+
+    private static int settledSince = -1;
+    private static readonly int SettleDelay = int.TryParse(Environment.GetEnvironmentVariable("TRW_PAD_SETTLE_DELAY"), out var sd) ? sd : 150;
+    private static long lastSignature, signatureBeforePress;
+    private static bool waitingForChange;
+    private static int changeDeadline;
+
+    private static bool Settled()
+    {
+        lock (recentSignatures)
+        {
+            if (signatureCount < recentSignatures.Length) return false;
+            var distinct = recentSignatures.Distinct().ToList();
+            return distinct.Count <= 2 && distinct.All(x => x >= 1000003L * 3);     // a drawn screen (not a black frame), at most two states (blinking text)
+        }
+    }
+
+    /// <summary>The settled-step press (if any) that applies this tick.</summary>
+    private static bool SettledPress(out ushort buttons, out int sx, out int sy)
+    {
+        buttons = 0; sx = sy = 0;
+        if (settledIndex >= settledSteps.Length) return false;
+        var step = settledSteps[settledIndex];
+        if (settledPressFrom < 0)
+        {
+            if (scriptTick < Math.Max(settledNextAllowed, -1 - step.start)) return false;
+            if (waitingForChange)
+            {
+                // the press should lead to another screen: wait for the display to differ from the one that was pressed on (a cursor move may not, hence the deadline)
+                if (lastSignature == signatureBeforePress && scriptTick < changeDeadline) return false;
+                waitingForChange = false;
+                lock (recentSignatures) signatureCount = 0;
+                return false;
+            }
+            if (!Settled()) { settledSince = -1; return false; }
+            if (settledSince < 0) settledSince = scriptTick;
+            if (scriptTick < settledSince + SettleDelay) return false;        // a new screen ignores input for a moment while it animates in
+            settledSince = -1;
+            settledPressFrom = scriptTick;
+            Console.Error.WriteLine($"[pad] tick {scriptTick}: screen settled, step {settledIndex + 1}/{settledSteps.Length}");
+        }
+        if (scriptTick < settledPressFrom + step.len) { buttons = step.buttons; sx = step.sx; sy = step.sy; return true; }
+        settledPressFrom = -1; settledIndex++; settledNextAllowed = scriptTick + 60;        // let the press take effect before looking for the next screen
+        signatureBeforePress = lastSignature; waitingForChange = true; changeDeadline = scriptTick + (int.TryParse(Environment.GetEnvironmentVariable("TRW_PAD_CHANGE_WAIT"), out var cw) ? cw : 900);
+        return false;
+    }
 
     private static (int, int, ushort, int, int)[] ParseScript(string? s)
     {
@@ -65,7 +123,10 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         foreach (var item in (s ?? "").Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
         {
             var p = item.Split(':');
-            if (p.Length < 2 || !int.TryParse(p[0], out var start)) continue;
+            // S[@<tick>]:<BUTTON>[:hold] = press once the screen has settled (see Settled), not before <tick>; encoded as start = -1 - <tick>
+            bool settled = p.Length >= 2 && p[0].StartsWith('S');
+            if (p.Length < 2 || (!settled && !int.TryParse(p[0], out _))) continue;
+            int start = settled ? -1 - (p[0].Length > 2 && p[0][1] == '@' && int.TryParse(p[0][2..], out var mt) ? mt : 0) : int.Parse(p[0]);
             int len = p.Length > 2 && int.TryParse(p[2], out var l) ? l : 6, sx = 0, sy = 0; ushort b = 0;
             foreach (var name in p[1].Split('+'))
                 switch (name.ToUpperInvariant())
@@ -88,8 +149,11 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         int x = 0, y = 0;
         bool connected = false;
         if (pad == 0)
+        {
             foreach (var (start, len, b, sx, sy) in script)
                 if (scriptTick >= start && scriptTick < start + len) { buttons |= b; x += sx; y += sy; connected = true; }
+            if (SettledPress(out var sb, out var ssx, out var ssy)) { buttons |= sb; x += ssx; y += ssy; connected = true; }
+        }
         var gp = GamePad.GetState(pad);
         if (gp.IsConnected)
         {

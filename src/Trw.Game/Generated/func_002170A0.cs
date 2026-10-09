@@ -18,14 +18,14 @@ public static partial class Game
                 {
                     if (((m1 & Mem.U32(e)) != 0u))
                     {
-                        func_0024DBB0(o, (uint)(Mem.S32((o + 8u))), Mem.S32((o + 12u)), (float)(Mem.S32((o + 16u))));
+                        func_0024DBB0(o, C.Tmp((uint)(Mem.S32((o + 8u))), (uint)(Mem.S32((o + 12u))), (uint)(Mem.S32((o + 16u)))), (int)((uint)(Mem.S32((e + 4u)))), Cpu.U2F(Cpu.F2U(func_00274B00(Mem.F32(0x800C72C8u), Mem.F32(0x800C72CCu)))));
                     }
                 }
                 for (e = 0x800CE348u; (Mem.U32(e) != (uint)(0)); e += 8u)
                 {
                     if (((m2 & Mem.U32(e)) != 0u))
                     {
-                        func_0024DBB0(o, (uint)(Mem.S32((o + 8u))), Mem.S32((o + 12u)), (float)(Mem.S32((o + 16u))));
+                        func_0024DBB0(o, C.Tmp((uint)(Mem.S32((o + 8u))), (uint)(Mem.S32((o + 12u))), (uint)(Mem.S32((o + 16u)))), (int)((uint)(Mem.S32((e + 4u)))), Cpu.U2F(Cpu.F2U(func_00274B00(Mem.F32(0x800C72D0u), Mem.F32(0x800C72D4u)))));
                     }
                 }
             }

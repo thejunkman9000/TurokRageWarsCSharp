@@ -42,6 +42,7 @@ public static partial class Game
         uint task = pendingTask;
         uint type = Mem.U32(task);
         bool gfx = type == 1;
+        LogHost($"osSpTaskStartGo type={type} task={task:X8}");
         if (gfx) { gfxTasks++; graphicsTaskReady = task; Host.GraphicsTask?.Invoke(task); }
         if (type == 2) { audioTasks++; Host.AudioTask?.Invoke(Mem.U32(task + 0x30), Mem.U32(task + 0x34)); }
         // completion is delivered from the frame tick: the caller still has bookkeeping to do
@@ -185,10 +186,13 @@ public static partial class Game
     /// <summary>Called once per displayed frame by the platform loop: timers, task completions, retrace events.</summary>
     private static int tickCount, gfxTasks, audioTasks, lastState = -1;
     private static readonly bool statusLog = Environment.GetEnvironmentVariable("TRW_STATUS") != null;
+    private static readonly string? watchdogFile = Environment.GetEnvironmentVariable("TRW_WATCHDOG");     // write a thread dump here when graphics stops
+    private static int watchdogGfx, watchdogTick;
+    private static bool watchdogFired;
 
     public static void ViTick()
     {
-        tickCount++;
+        tickCount++; CurrentTick = tickCount;
         if (statusLog)
         {
             int st = Mem.S32(0x80146878);
@@ -196,11 +200,29 @@ public static partial class Game
         }
         if (statusLog && tickCount % 600 == 0)
             Console.Error.WriteLine($"[status] tick {tickCount}: gfx tasks {gfxTasks}, audio tasks {audioTasks}, state D_80146878={Mem.S32(0x80146878)} D_800D2984={Mem.S32(0x800D2984)} D_80146D68={Mem.S32(0x80146D68)} D_8014ADA0={Mem.S32(0x8014ADA0)}");
+        if (watchdogFile != null && !watchdogFired)
+        {
+            if (gfxTasks != watchdogGfx) { watchdogGfx = gfxTasks; watchdogTick = tickCount; }
+            else if (tickCount - watchdogTick > 480)       // 8 s without a graphics task while the console keeps ticking
+            {
+                watchdogFired = true;
+                File.WriteAllText(watchdogFile, $"stall: no graphics task since tick {watchdogTick}, now tick {tickCount} (gfx {gfxTasks}, audio {audioTasks})\n{DumpThreads()}");
+                Console.Error.WriteLine($"[watchdog] graphics stalled at tick {tickCount}; thread dump in {watchdogFile}");
+                try
+                {
+                    var psi = new System.Diagnostics.ProcessStartInfo("dotnet-stack", $"report -p {Environment.ProcessId}") { RedirectStandardOutput = true, UseShellExecute = false };
+                    var pr = System.Diagnostics.Process.Start(psi);
+                    if (pr != null) _ = Task.Run(() => { var text = pr.StandardOutput.ReadToEnd(); File.AppendAllText(watchdogFile, "\n--- dotnet-stack\n" + text); });
+                }
+                catch (Exception) { }
+            }
+        }
         RunTimers();
         bool? done = null;
         lock (kernelLock) { if (taskCompletions.Count > 0) done = taskCompletions.Dequeue(); }
         if (done is bool isGfx)       // one queued RSP task completion per tick: SP done, then DP done for graphics tasks
         {
+            LogHost($"completing {(isGfx ? "graphics" : "audio")} task (SP event queue {evMq[4]:X8}, DP event queue {evMq[9]:X8})");
             if (evMq[4] != 0) PostFromHost(evMq[4], evMsg[4]);                  // SP done
             if (isGfx && evMq[9] != 0) PostFromHost(evMq[9], evMsg[9]);         // DP done
         }

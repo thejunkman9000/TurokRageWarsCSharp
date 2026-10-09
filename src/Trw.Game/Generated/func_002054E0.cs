@@ -22,7 +22,7 @@ public static partial class Game
             {
                 if ((Mem.S32((info + 52u)) != (-1)))
                 {
-                    func_0025DE74((int)(Mem.S16(((info + 52u) + (uint)(1 * 2)))), Cpu.F2U(Mem.F32((actor + 8u))), (int)(Mem.F32(((actor + 8u) + 4u))), (int)(Mem.F32(((actor + 8u) + 8u))));
+                    func_0025DE74((int)((uint)((int)(Mem.S16(((info + 52u) + (uint)(1 * 2)))))), C.Tmp(Cpu.F2U(Mem.F32((actor + 8u))), Cpu.F2U(Mem.F32(((actor + 8u) + 4u))), Cpu.F2U(Mem.F32(((actor + 8u) + 8u)))), (int)((uint)(0)), (int)((uint)((-1))));
                 }
                 if ((Mem.S32((info + 48u)) != (-1)))
                 {

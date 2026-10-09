@@ -91,6 +91,18 @@ public static class C
 {
     public static T Seq<T>(object? _, T value) => value;
     public static uint Seq(uint _, uint value) => value;
+
+    // short-lived guest buffers for structs rebuilt from scalar argument words (see Trw.Transpile's MarshalByWords): a ring of 64-byte slots, so
+    // nested argument expressions each get their own; the callee copies the struct into its own frame on entry
+    public const uint TmpBase = Str.PoolBase + 0xFF000;      // the last 4 KB of the string pool region
+    private const int TmpSlots = 64, TmpSlotBytes = 64;
+    private static int tmpNext;
+    public static uint Tmp(params uint[] words)
+    {
+        uint addr = TmpBase + (uint)((Interlocked.Increment(ref tmpNext) & (TmpSlots - 1)) * TmpSlotBytes);
+        for (int i = 0; i < words.Length; i++) Mem.Set(addr + (uint)(4 * i), words[i]);
+        return addr;
+    }
 }
 
 

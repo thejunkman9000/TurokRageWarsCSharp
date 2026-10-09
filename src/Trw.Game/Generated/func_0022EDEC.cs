@@ -14,13 +14,13 @@ public static partial class Game
             switch (Mem.S32(0x80146910u))
             {
             case 0:
-                func_0025DE74(6305, Cpu.F2U(Mem.F32((actor + (uint)8))), (int)(Mem.F32((actor + (uint)12))), (int)(Mem.F32((actor + (uint)16))));
+                func_0025DE74((int)((uint)(6305)), C.Tmp(Cpu.F2U(Mem.F32((actor + (uint)8))), Cpu.F2U(Mem.F32((actor + (uint)12))), Cpu.F2U(Mem.F32((actor + (uint)16)))), (int)((actor + (uint)8)), (int)((uint)((-1))));
                 break;
             case 1:
-                func_0025DE74(6505, Cpu.F2U(Mem.F32((actor + (uint)8))), (int)(Mem.F32((actor + (uint)12))), (int)(Mem.F32((actor + (uint)16))));
+                func_0025DE74((int)((uint)(6505)), C.Tmp(Cpu.F2U(Mem.F32((actor + (uint)8))), Cpu.F2U(Mem.F32((actor + (uint)12))), Cpu.F2U(Mem.F32((actor + (uint)16)))), (int)((actor + (uint)8)), (int)((uint)((-1))));
                 break;
             case 2:
-                func_0025DE74(6405, Cpu.F2U(Mem.F32((actor + (uint)8))), (int)(Mem.F32((actor + (uint)12))), (int)(Mem.F32((actor + (uint)16))));
+                func_0025DE74((int)((uint)(6405)), C.Tmp(Cpu.F2U(Mem.F32((actor + (uint)8))), Cpu.F2U(Mem.F32((actor + (uint)12))), Cpu.F2U(Mem.F32((actor + (uint)16)))), (int)((actor + (uint)8)), (int)((uint)((-1))));
                 break;
             }
             func_00218464();

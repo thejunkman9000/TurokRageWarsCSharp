@@ -36,7 +36,7 @@ public static partial class Game
                     func_00271FD8((_fp + 32u), (_fp + 32u), (_fp + 16u));
                     Mem.Set((a + 108u), (Mem.F32((a + 108u)) + ang));
                     func_00271FA4((_fp + 16u), (_fp + 16u), (_fp + 32u));
-                    func_00243A80((int)(a), (_fp + 16u), (float)(0x80104338u), default(float), default(int));
+                    func_00243A80((int)(a), Cpu.U2F(Mem.U32((_fp + 16u) + 0u)), Cpu.U2F(Mem.U32((_fp + 16u) + 4u)), Cpu.U2F(Mem.U32((_fp + 16u) + 8u)), (int)(0x80104338u));
                     Mem.Copy((a + 28u), _fp, 12);
                     if ((((int)(Mem.U8(t)) == 1) && (Mem.S32(Mem.U32((t + 24u))) == 2)))
                     {

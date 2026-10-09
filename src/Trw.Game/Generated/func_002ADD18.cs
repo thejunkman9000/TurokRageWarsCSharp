@@ -37,7 +37,7 @@ public static partial class Game
             }
             if ((b != 0))
             {
-                func_0025DE74(b, (uint)(Mem.S32((e + 8u))), Mem.S32((e + 12u)), Mem.S32((e + 16u)));
+                func_0025DE74((int)((uint)(b)), C.Tmp((uint)(Mem.S32((e + 8u))), (uint)(Mem.S32((e + 12u))), (uint)(Mem.S32((e + 16u)))), (int)((uint)(0)), (int)((uint)((-1))));
             }
             if ((c != 0))
             {

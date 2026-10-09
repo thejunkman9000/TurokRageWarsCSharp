@@ -20,7 +20,7 @@ public static partial class Game
                 Mem.Set((o + 12u), (float)((float)(Mem.F32((o + 12u))) + (func_0024D274(o) * k)));
                 Mem.Copy((_fp + 80u), (other + 8u), 12);
                 Mem.Set(((_fp + 80u) + 4u), (float)((float)(Mem.F32(((_fp + 80u) + 4u))) + (func_0024D274(other) * k)));
-                r = func_00243A80((int)(o), (_fp + 80u), (float)(0x80103FD0u), default(float), default(int));
+                r = func_00243A80((int)(o), Cpu.U2F(Mem.U32((_fp + 80u) + 0u)), Cpu.U2F(Mem.U32((_fp + 80u) + 4u)), Cpu.U2F(Mem.U32((_fp + 80u) + 8u)), (int)(0x80103FD0u));
                 Mem.Copy(o, _fp, 80);
                 return ((r == 0) ? 1 : 0);
             }

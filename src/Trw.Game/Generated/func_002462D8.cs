@@ -49,7 +49,7 @@ public static partial class Game
                     Mem.Set(@out, ctx);
                 }
                 Mem.Copy((_fp + 16u), o, 80);
-                res = func_00243A80((int)(o), _fp, (float)(ctx), default(float), default(int));
+                res = func_00243A80((int)(o), Cpu.U2F(Mem.U32(_fp + 0u)), Cpu.U2F(Mem.U32(_fp + 4u)), Cpu.U2F(Mem.U32(_fp + 8u)), (int)(ctx));
                 Mem.Copy(o, (_fp + 16u), 80);
                 return res;
             }

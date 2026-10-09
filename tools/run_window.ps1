@@ -9,6 +9,8 @@ if ($ShotDir) {
     if (Test-Path $ShotDir) { [IO.Directory]::Delete($ShotDir, $true) }
     $env:TRW_SHOT_DIR = $ShotDir; $env:TRW_SHOT_EVERY = "$Every"; $env:TRW_SHOT_MAX = "$Max"
 }
+$wd = Join-Path $env:TEMP "trw_watchdog.txt"; if (Test-Path $wd) { Remove-Item $wd }
+$env:TRW_WATCHDOG = $wd          # thread dump when graphics tasks stop for 8 s
 $env:TRW_EXIT_AFTER = "$Seconds"
 if ($Pad) { $env:TRW_PAD_SCRIPT = $Pad }
 if ($Fast -gt 0) { $env:TRW_FAST = "$Fast" }
@@ -20,3 +22,4 @@ Write-Host "--- stderr (non-status)"
 Get-Content $err | Where-Object { $_ -notmatch '^\[status\]' } | Select-Object -First 40 | ForEach-Object { if ($_.Length -gt 400) { $_.Substring(0, 400) } else { $_ } }
 if ($Status) { Write-Host "--- status"; Get-Content $err | Where-Object { $_ -match '^\[status\]' } | Select-Object -Last 3 }
 if ($ShotDir) { Write-Host "--- $((Get-ChildItem $ShotDir -ErrorAction SilentlyContinue | Measure-Object).Count) screenshots in $ShotDir" }
+if (Test-Path $wd) { Write-Host "--- WATCHDOG (graphics stalled)"; Get-Content $wd | Select-Object -First 60 }

@@ -39,6 +39,43 @@ public static partial class Game
     [ThreadStatic] private static HThread? tlsSelf;
     private static volatile bool bootSeen;
 
+    // last host-side events (posts, task starts), kept for the watchdog dump
+    private static readonly string[] hostLog = new string[96];
+    private static int hostLogN;
+    private static readonly bool hostLogOn = Environment.GetEnvironmentVariable("TRW_WATCHDOG") != null;
+    internal static void LogHost(string s)
+    {
+        if (!hostLogOn) return;
+        lock (hostLog) hostLog[hostLogN++ % hostLog.Length] = $"tick {CurrentTick}: {s}";
+    }
+    internal static int CurrentTick;
+
+    /// <summary>Debug aid (TRW_WATCHDOG): the scheduler state of every game thread and the queue it waits on, with the queue's guest contents.</summary>
+    public static string DumpThreads()
+    {
+        var sb = new System.Text.StringBuilder();
+        lock (kernelLock)
+        {
+            sb.AppendLine($"current = T{Array.IndexOf(threads, current)}");
+            for (int i = 0; i < threads.Length; i++)
+            {
+                var h = threads[i];
+                if (h.State == 0) continue;
+                string st = h.State switch { 1 => "stopped", 2 => "ready", 3 => "running", 4 => "waiting", _ => "?" };
+                sb.Append($"T{i} id={(h.T != 0 ? Mem.S32(h.T + 0x14) : -1)} prio={h.Prio} {st} entry={Funcs.NameOf(h.Entry)}");
+                if (h.State == 4 && h.WaitQ != 0)
+                    sb.Append($" waits {(h.WaitKind == 1 ? "to receive from" : "to send to")} queue {h.WaitQ:X8} (valid {Mem.S32(h.WaitQ + 8)} first {Mem.S32(h.WaitQ + 0xC)} capacity {Mem.S32(h.WaitQ + 0x10)})");
+                sb.AppendLine();
+            }
+        }
+        lock (hostLog)
+        {
+            sb.AppendLine("--- last host events (oldest first)");
+            for (int i = Math.Max(0, hostLogN - hostLog.Length); i < hostLogN; i++) sb.AppendLine(hostLog[i % hostLog.Length]);
+        }
+        return sb.ToString();
+    }
+
     private static uint threadStackNext = 0x7F000000;
     private const uint ThreadStackSize = 0x20000;
 
@@ -191,6 +228,8 @@ public static partial class Game
         if (mq == 0) return;
         lock (kernelLock)
         {
+            LogHost($"post {mq:X8} msg={m:X8} valid={Mem.S32(mq + MQ_VALID)}/{Mem.S32(mq + MQ_COUNT)}");
+            if (Mem.S32(mq + MQ_VALID) >= Mem.S32(mq + MQ_COUNT)) LogHost($"  DROPPED: queue {mq:X8} is full");
             if (Mem.S32(mq + MQ_VALID) < Mem.S32(mq + MQ_COUNT))
             {
                 uint buf = Mem.U32(mq + MQ_MSG);

@@ -18,7 +18,7 @@ public static class Str
         {
             if (interned.TryGetValue(s, out var a)) return a;
             var bytes = Encoding.Latin1.GetBytes(s);
-            if (next + bytes.Length + 1 > PoolBase + PoolSize) throw new InvalidOperationException("string pool full");
+            if (next + bytes.Length + 1 > C.TmpBase) throw new InvalidOperationException("string pool full");
             a = next;
             Mem.Write(a, bytes);
             Mem.Set(a + (uint)bytes.Length, (byte)0);

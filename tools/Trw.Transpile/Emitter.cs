@@ -1186,13 +1186,17 @@ public sealed class Emitter
         sigs.TryGetValue(name, out var sig);
         bool recRet = TypeOf(call).Kind == K.Record;
         int shift = recRet ? 1 : 0;      // a struct result travels through a hidden first parameter
-        for (int i = 0; i < argNodes.Count; i++)
-        {
-            var v = Value(argNodes[i]);
-            var at = TypeOf(argNodes[i]);
-            if (sig != null && i + shift < sig.Params.Length && at.IsScalarMem && at.Cs != sig.Params[i + shift]) v = CoerceArg(v, at.Cs, sig, i + shift, argNodes, recRet);
-            vals.Add(v);
-        }
+        var raw = argNodes.Select(Value).ToList();
+        if (sig != null && NeedsWordMarshal(sig, argNodes, shift))
+            vals = MarshalByWords(name, sig, argNodes, raw, shift);
+        else
+            for (int i = 0; i < argNodes.Count; i++)
+            {
+                var v = raw[i];
+                var at = TypeOf(argNodes[i]);
+                if (sig != null && i + shift < sig.Params.Length && at.IsScalarMem && at.Cs != sig.Params[i + shift]) v = CoerceArg(v, at.Cs, sig, i + shift, argNodes, recRet);
+                vals.Add(v);
+            }
         // no call has run yet (arguments included), so a0-a3 still hold this function's own incoming words
         bool noCallYet = callsEmitted == 0 && loopDepth == 0 && labels.Count == 0 && !flatMode;
         // a stale prototype may pass more arguments than the definition has: the extras were never read, so drop them
@@ -1218,6 +1222,65 @@ public sealed class Emitter
         if (!skipRetCast && want.IsScalarMem) lock (ValueUsed) ValueUsed.Add((name, want.Cs));
         if (!skipRetCast && sig != null && sig.Ret != "void" && want.IsScalarMem && want.Cs != sig.Ret) text = $"({want.Cs})({text})";   // stale prototype disagrees with the definition
         return text;
+    }
+
+    /// <summary>
+    /// Does the call site disagree with the definition about which parameters are structs passed by value? (A prototype in a header can say
+    /// <c>f(p, float x, float y, float z)</c> where the definition says <c>f(p, Vec3 v)</c>: both put the three words in a1..a3.)
+    /// </summary>
+    bool NeedsWordMarshal(Sig sig, List<JsonNode> argNodes, int shift)
+    {
+        for (int i = 0; i < argNodes.Count && i + shift < sig.Params.Length; i++)
+            if ((sig.Structs[i + shift] > 0) != (TypeOf(argNodes[i]).Kind == K.Record)) return true;
+        return false;
+    }
+
+    /// <summary>
+    /// Passes the arguments the way the registers do: the call site's values are laid out as o32 argument words, and each parameter of the
+    /// definition is built from the words it occupies (a struct from consecutive words, a float from the bits of its word).
+    /// </summary>
+    List<string> MarshalByWords(string callee, Sig sig, List<JsonNode> argNodes, List<string> raw, int shift)
+    {
+        // site words
+        var words = new Dictionary<int, string>();
+        var fpArgs = new Dictionary<int, string>();                      // F12/F14 arguments by site argument index
+        var types = argNodes.Select(a => { var t = TypeOf(a); return t.Kind == K.Record ? "uint" : t.IsScalarMem ? t.Cs : throw new Unsupported($"argument of type {t.Kind}"); }).ToArray();
+        var sizes = argNodes.Select(a => { var t = TypeOf(a); return t.Kind == K.Record ? t.Size : 0; }).ToArray();
+        int word = 0;
+        for (int i = 0; i < types.Length; i++)
+        {
+            var t = types[i]; var v = raw[i];
+            bool inFpReg = Abi.IsFp(t) && (i == 0 || (i == 1 && Abi.IsFp(types[0])));
+            if (t == "double" || Abi.IsWide(t)) word = (word + 1) & ~1;
+            if (inFpReg) { fpArgs[i] = v; word += t == "double" ? 2 : 1; }
+            else if (t == "float") { words[word] = $"Cpu.F2U({v})"; word++; }
+            else if (t == "double") { words[word] = $"Cpu.D2Hi({v})"; words[word + 1] = $"Cpu.D2Lo({v})"; word += 2; }
+            else if (Abi.IsWide(t)) { words[word] = $"(uint)((ulong)({v}) >> 32)"; words[word + 1] = $"(uint)({v})"; word += 2; }
+            else if (sizes[i] > 0) { int n = (sizes[i] + 3) / 4; for (int k = 0; k < n; k++) words[word + k] = $"Mem.U32({v} + {4 * k}u)"; word += n; }
+            else { words[word] = t == "uint" ? v : $"(uint)({v})"; word++; }
+        }
+        string W(int k) => words.TryGetValue(k, out var s) ? s : "0u";
+
+        // definition parameters from those words
+        var (first, _) = Abi.Layout(sig.Params, sig.Structs);
+        var res = new List<string>();
+        for (int p = shift; p < sig.Params.Length; p++)
+        {
+            var t = sig.Params[p]; int w = first[p];
+            if (w < 0) { res.Add(fpArgs.TryGetValue(p - shift, out var fv) ? $"({t})({fv})" : $"default({t})"); continue; }
+            if (sig.Structs[p] > 0)
+            {
+                int n = (sig.Structs[p] + 3) / 4;
+                if (n > 16) throw new Unsupported($"struct of {sig.Structs[p]} bytes rebuilt from scalar arguments");
+                res.Add($"C.Tmp({string.Join(", ", Enumerable.Range(w, n).Select(W))})");
+            }
+            else if (t == "float") res.Add($"Cpu.U2F({W(w)})");
+            else if (t == "double") res.Add($"Cpu.U2D({W(w)}, {W(w + 1)})");
+            else if (t == "long") res.Add($"Cpu.Long({W(w)}, {W(w + 1)})");
+            else if (t == "ulong") res.Add($"(ulong)Cpu.Long({W(w)}, {W(w + 1)})");
+            else res.Add(t == "uint" ? W(w) : $"({t})({W(w)})");
+        }
+        return res;
     }
 
     /// <summary>
