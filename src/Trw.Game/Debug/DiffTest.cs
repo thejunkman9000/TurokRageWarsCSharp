@@ -20,6 +20,7 @@ public static class DiffTest
     private static readonly Dictionary<string, int> done = new(), calls = new();
     private static readonly int every = int.TryParse(Environment.GetEnvironmentVariable("TRW_DIFF_EVERY"), out var ev) ? ev : 1;
     private static readonly Dictionary<string, string[]> sigs = new();           // name -> [ret, p0, p1, ...]
+    private static readonly Dictionary<string, int[]> sizes = new();             // name -> struct-by-value size in bytes per parameter (0 = scalar)
     [ThreadStatic] private static bool inTest;
     /// <summary>True while a test runs on this thread (the OS layer refuses to change scheduler state then).</summary>
     public static bool Active => inTest;
@@ -43,6 +44,7 @@ public static class DiffTest
             {
                 var p = l.Split('|');
                 if (p.Length >= 3) sigs[p[0]] = new[] { p[1] }.Concat(p[2] == "" ? Array.Empty<string>() : p[2].Split(',')).ToArray();
+                if (p.Length >= 4 && p[3] != "" && p[3].Split(',').Select(x => int.TryParse(x, out var z) ? z : 0).ToArray() is { } sz && sz.Any(x => x > 4)) sizes[p[0]] = sz;
             }
         Dbg.DiffHook = Hook;
         AppDomain.CurrentDomain.ProcessExit += (_, _) => Summary();
@@ -71,10 +73,38 @@ public static class DiffTest
         if (!sigs.TryGetValue(name, out var s)) return false;
         if (s.Length - 1 > 4) return false;
         for (int i = 1; i < s.Length; i++) if (s[i] is "float" or "double" or "long" or "ulong") return false;
+        if (sizes.TryGetValue(name, out var sz))
+        {
+            // struct parameters travel as words in a0..a3 (the trace hands over the address of the callee's copy, see ExpandStructs): all words must fit the registers
+            int words = 0;
+            for (int i = 0; i < sz.Length; i++) words += sz[i] > 4 ? (sz[i] + 3) / 4 : 1;
+            if (words > 4) return false;
+        }
         return true;
     }
 
     private static readonly System.Collections.Concurrent.ConcurrentDictionary<string, byte> finished = new();     // functions that need no more attention (tested enough, or not testable)
+
+    /// <summary>The trace reports a struct-by-value parameter as the address of the callee's copy, but the original code (and the register-ABI entry the
+    /// differential test calls) receives the struct's words in consecutive argument registers: replace the address by the words.</summary>
+    private static void ExpandStructs(string name, ref uint a0, ref uint a1, ref uint a2, ref uint a3)
+    {
+        if (!sizes.TryGetValue(name, out var sz)) return;
+        var r = new[] { a0, a1, a2, a3 };
+        var o = new uint[4];
+        int slot = 0;
+        for (int i = 0; i < sz.Length && slot < 4; i++)
+        {
+            if (sz[i] > 4)
+            {
+                int n = (sz[i] + 3) / 4;
+                for (int k = 0; k < n && slot + k < 4; k++) o[slot + k] = Mem.U32(r[slot] + 4u * (uint)k);
+                slot += n;
+            }
+            else { o[slot] = r[slot]; slot++; }
+        }
+        a0 = o[0]; a1 = o[1]; a2 = o[2]; a3 = o[3];
+    }
 
     private static void Hook(string name, uint a0, uint a1, uint a2, uint a3)
     {
@@ -90,7 +120,7 @@ public static class DiffTest
             done[name] = c + 1;
         }
         inTest = true;
-        try { lock (Game.kernelLock) Run(name, addr, a0, a1, a2, a3); }       // no host thread may post a message while memory is being rolled back
+        try { lock (Game.kernelLock) { ExpandStructs(name, ref a0, ref a1, ref a2, ref a3); Run(name, addr, a0, a1, a2, a3); } }       // no host thread may post a message while memory is being rolled back
         catch (Exception e) { Inconclusive($"{e.GetType().Name} {e.Message}".Split('\n')[0]); }
         finally { inTest = false; }
     }
