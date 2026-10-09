@@ -54,10 +54,10 @@ public static partial class Game
                     Mem.Set((0x8010F0E0u + 36u), (int)((int)(Mem.S32((0x8010F0E0u + 36u))) | Mem.S32(((0x8010F328u + (uint)(i * 548)) + 36u))));
                     Mem.Set((0x8010F0E0u + 40u), (int)((int)(Mem.S32((0x8010F0E0u + 40u))) | Mem.S32(((0x8010F328u + (uint)(i * 548)) + 40u))));
                 }
-                Mem.Set((0x8010F0E0u + 196u), (byte)((sbyte)(((float)((sbyte)(Mem.U8((0x8010F0E0u + 196u)))) * Mem.F32(0x800C93E0u)))));
-                Mem.Set((0x8010F0E0u + 197u), (byte)((sbyte)(((float)((sbyte)(Mem.U8((0x8010F0E0u + 197u)))) * Mem.F32(0x800C93E0u)))));
-                Mem.Set((0x8010F0E0u + 198u), (byte)((sbyte)(((float)((sbyte)(Mem.U8((0x8010F0E0u + 198u)))) * Mem.F32(0x800C93E0u)))));
-                Mem.Set((0x8010F0E0u + 199u), (byte)((sbyte)(((float)((sbyte)(Mem.U8((0x8010F0E0u + 199u)))) * Mem.F32(0x800C93E0u)))));
+                Mem.Set((0x8010F0E0u + 196u), (byte)((sbyte)(int)(((float)((sbyte)(Mem.U8((0x8010F0E0u + 196u)))) * Mem.F32(0x800C93E0u)))));
+                Mem.Set((0x8010F0E0u + 197u), (byte)((sbyte)(int)(((float)((sbyte)(Mem.U8((0x8010F0E0u + 197u)))) * Mem.F32(0x800C93E0u)))));
+                Mem.Set((0x8010F0E0u + 198u), (byte)((sbyte)(int)(((float)((sbyte)(Mem.U8((0x8010F0E0u + 198u)))) * Mem.F32(0x800C93E0u)))));
+                Mem.Set((0x8010F0E0u + 199u), (byte)((sbyte)(int)(((float)((sbyte)(Mem.U8((0x8010F0E0u + 199u)))) * Mem.F32(0x800C93E0u)))));
                 break;
             case 1:
                 osRecvMesg(0x8010FC00u, 0x8010FBD8u, 1);

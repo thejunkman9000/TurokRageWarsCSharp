@@ -1136,7 +1136,13 @@ public sealed class Emitter
             case "NullToPointer": return "0u";
             case "IntegralToBoolean": case "PointerToBoolean": case "FloatingToBoolean":
                 return $"({Cond(e)} ? 1 : 0)";
-            case "IntegralCast": case "FloatingCast": case "IntegralToFloating": case "FloatingToIntegral":
+            case "FloatingToIntegral":
+                // the MIPS code converts through trunc.w.s: a negative float keeps its two's complement bits as an unsigned integer and narrow types wrap,
+                // where C#'s casts saturate ((uint)-1.5f is 0, (byte)300f is 255)
+                if (t.Cs == "uint") return $"Cpu.TruncU32({Value(x)})";
+                if (t.Cs is "short" or "ushort" or "sbyte" or "byte") return $"({t.Cs})(int)({Value(x)})";
+                return CastTo(t, Value(x));
+            case "IntegralCast": case "FloatingCast": case "IntegralToFloating":
             case "PointerToIntegral": case "IntegralToPointer":
                 return CastTo(t, Value(x));
             default: throw new Unsupported($"cast {kind}");

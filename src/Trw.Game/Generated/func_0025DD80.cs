@@ -20,7 +20,7 @@ public static partial class Game
                 alCSPSetChlFXMix(Mem.U32((s + 20u)), (byte)(i), (byte)(0));
             }
             f = ((float)(Mem.S32((s + 36u))) * (Mem.F32((Mem.U32(s) + 11172u)) * Mem.F32(0x800C9124u)));
-            alCSPSetVol(Mem.U32((s + 20u)), (short)((f * Mem.F32(0x800C9128u))));
+            alCSPSetVol(Mem.U32((s + 20u)), (short)(int)((f * Mem.F32(0x800C9128u))));
             Mem.Set((s + 44u), f);
         }
     }

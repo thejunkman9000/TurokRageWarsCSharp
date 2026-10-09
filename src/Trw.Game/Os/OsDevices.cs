@@ -189,7 +189,7 @@ public static partial class Game
     // ---------------------------------------------------------------------------------------------- frame tick
 
     /// <summary>Called once per displayed frame by the platform loop: timers, task completions, retrace events.</summary>
-    private static int tickCount, gfxTasks, audioTasks, lastState = -1;
+    private static int tickCount, gfxTasks, audioTasks, lastState = -1, lastScreen = -2;
     private static readonly bool statusLog = Environment.GetEnvironmentVariable("TRW_STATUS") != null;
     private static readonly string? watchdogFile = Environment.GetEnvironmentVariable("TRW_WATCHDOG");     // write a thread dump here when graphics stops
     private static readonly string? peekSpec = Environment.GetEnvironmentVariable("TRW_PEEK");
@@ -200,10 +200,14 @@ public static partial class Game
     public static void ViTick()
     {
         tickCount++; CurrentTick = tickCount;
+        Trw.Game.Debug.HeapCheck.Tick(tickCount);
         if (statusLog)
         {
             int st = Mem.S32(0x80146878);
             if (st != lastState) { Console.Error.WriteLine($"[state] tick {tickCount}: {lastState} -> {st}"); lastState = st; if (st == Dbg.ArmState) Dbg.Armed = true; }
+            int scr = Mem.S32(0x8014D098);
+            if (scr < 0) { uint mgr = Mem.U32(0x8014D080); int top; scr = mgr == 0 || Mem.IsMapped(mgr) == false || (top = Mem.S32(mgr + 4)) < 0 ? -1 : Mem.S32(Mem.U32(mgr + 0xC) + (uint)top * 0x1C + 4); }
+            if (scr != lastScreen) { Console.Error.WriteLine($"[screen] tick {tickCount}: {lastScreen} -> {scr}"); lastScreen = scr; }
         }
         if (statusLog && tickCount % 300 == 0)
             Console.Error.WriteLine($"[status] tick {tickCount}: fade t={Mem.F32(0x80146884)} (clear above {Mem.F32(0x800CA564)}, scale {Mem.F32(0x800CA568)}); gfx tasks {gfxTasks}, audio tasks {audioTasks}, state D_80146878={Mem.S32(0x80146878)} D_800D2984={Mem.S32(0x800D2984)} D_80146D68={Mem.S32(0x80146D68)} D_8014ADA0={Mem.S32(0x8014ADA0)}");

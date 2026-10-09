@@ -92,8 +92,11 @@ public static class DiffTest
         finally { inTest = false; }
     }
 
+    private static readonly bool verbose = Environment.GetEnvironmentVariable("TRW_DIFF_VERBOSE") != null;
+    private static string current = "";
     private static void Inconclusive(string why)
     {
+        if (verbose) Console.Error.WriteLine($"[diff] inconclusive {current}: {why}");
         inconclusive++; tested++;
         lock (abortReasons) { abortReasons.TryGetValue(why, out var c); abortReasons[why] = c + 1; }
     }
@@ -101,6 +104,7 @@ public static class DiffTest
     private static void Run(string name, uint addr, uint a0, uint a1, uint a2, uint a3)
     {
         var sig = sigs[name];
+        current = name;
         string ret = sig[0];
         var fpr = (ulong[])Cpu.Fpr.Clone(); uint fcsr = Cpu.Fcsr, v1 = Cpu.V1; var stk = (uint[])Cpu.Stk.Clone(); var cp0 = (uint[])Cpu.Cp0.Clone();
         void RestoreCpu() { Array.Copy(fpr, Cpu.Fpr, 32); Cpu.Fcsr = fcsr; Cpu.V1 = v1; Array.Copy(stk, Cpu.Stk, 32); Array.Copy(cp0, Cpu.Cp0, 32); }
@@ -126,7 +130,12 @@ public static class DiffTest
         Mem.JournalBegin();
         uint v0b;
         try { v0b = Funcs.CallReg(addr, a0, a1, a2, a3); }
-        catch (Exception e) { Mem.JournalUndo(Mem.JournalEnd()); RestoreCpu(); Inconclusive("translated code threw " + e.GetType().Name); return; }
+        catch (Exception e)
+        {
+            Mem.JournalUndo(Mem.JournalEnd()); RestoreCpu(); Inconclusive("translated code threw " + e.GetType().Name);
+            if (e is not TestAbort) Console.Error.WriteLine($"[diff] translated code threw {e.GetType().Name} ({e.Message.Split('\n')[0]}) in {name}({a0:X8}, {a1:X8}, {a2:X8}, {a3:X8}) although the original ran to completion ({interp.Steps} MIPS steps)");
+            return;
+        }
         var j2 = Mem.JournalEnd();
         var bytes2 = Mem.JournalBytes(j2);
         uint f0b = Cpu.W(0); ulong f0bfull = Cpu.Fpr[0];

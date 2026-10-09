@@ -16,7 +16,7 @@ public static partial class Game
                 {
                     if ((Mem.S32(o) < 1000))
                     {
-                        Mem.Set((Mem.U32((o + 12u)) + 16u), (byte)((uint)(((float)(Mem.S32(o)) * 0.255000025f))));
+                        Mem.Set((Mem.U32((o + 12u)) + 16u), (byte)(Cpu.TruncU32(((float)(Mem.S32(o)) * 0.255000025f))));
                     }
                     else
                     {
@@ -30,7 +30,7 @@ public static partial class Game
                 {
                     if ((Mem.S32(o) > 0))
                     {
-                        Mem.Set((Mem.U32((o + 12u)) + 16u), (byte)((uint)(((float)(Mem.S32(o)) * 0.255000025f))));
+                        Mem.Set((Mem.U32((o + 12u)) + 16u), (byte)(Cpu.TruncU32(((float)(Mem.S32(o)) * 0.255000025f))));
                     }
                     else
                     {

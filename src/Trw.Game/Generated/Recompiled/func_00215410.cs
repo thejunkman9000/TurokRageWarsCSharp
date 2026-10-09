@@ -161,7 +161,7 @@ public static partial class Game
                 { bool c_ = r16 == r2;  if (c_) goto L_L0021574C; }
                  goto L_L00215768;
                 L_L002156B8: ;
-                r4 = r18 + 148u; func_00219408(r4);
+                r4 = r18 + 148u; r2 = func_00219408(r4, r5, r6, r7); r3 = Cpu.V1;
                 r3 = r2;
                 r8 = Mem.U32((r3 + 0u));
                 r9 = Mem.U32((r3 + 4u));

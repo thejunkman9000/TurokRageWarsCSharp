@@ -229,9 +229,13 @@ public sealed class DisplayListInterpreter
         batch.Add(o);
     }
 
+    private int triTotal, triNear, triFace, triOut;      // debug counters (printed with TRW_GFX_LOG)
+    private int vtxLogged, vtxLoadsLogged;
     private void EmitTri(int i0, int i1, int i2)
     {
+        triTotal++;
         var vs = new[] { S.Vtx[i0], S.Vtx[i1], S.Vtx[i2] };
+        if (LogEnabled && traceDl && vtxLogged < 12) { vtxLogged++; Console.Error.WriteLine($"[tri] {i0},{i1},{i2}: " + string.Join(" | ", vs.Select(v => $"c=({v.Cx:F1},{v.Cy:F1},{v.Cz:F1},{v.Cw:F1}) st=({v.S},{v.T})"))); }
         // near-plane clip (z >= -w, w > 0)
         var poly = new V[6]; int n = 0;
         static bool Inside(in V a) => a.Cw > 1e-5f && a.Cz >= -a.Cw;
@@ -251,16 +255,17 @@ public sealed class DisplayListInterpreter
                 };
             }
         }
-        if (n < 3) return;
+        if (n < 3) { triNear++; return; }
         if ((S.Geom & 0x600) != 0)     // culling in screen space
         {
             var sx = new float[3]; var sy = new float[3];
             for (int i = 0; i < 3; i++) { sx[i] = poly[i].Cx / poly[i].Cw * S.Vsc[0] * 0.25f; sy[i] = -poly[i].Cy / poly[i].Cw * S.Vsc[1] * 0.25f; }
             float cross = (sx[1] - sx[0]) * (sy[2] - sy[0]) - (sx[2] - sx[0]) * (sy[1] - sy[0]);
             bool front = cross < 0;
-            if ((S.Geom & 0x400) != 0 && !front) return;
-            if ((S.Geom & 0x200) != 0 && front) return;
+            if ((S.Geom & 0x400) != 0 && !front) { triFace++; return; }
+            if ((S.Geom & 0x200) != 0 && front) { triFace++; return; }
         }
+        triOut++;
         SetupState(DrawMode.Combiner);
         var tile = S.Tile[S.TexTile & 7];
         if (batch.Count + 12 > 3 * 6000) Flush();
@@ -278,6 +283,12 @@ public sealed class DisplayListInterpreter
         if (v0 < 0 || v0 + n > 64) return;
         uint p = Res(w1);
         if (S.MvpDirty) { MatMul(S.Mv[S.MvTop], S.Proj, S.Mvp); S.MvpDirty = false; }
+        if (LogEnabled && traceDl && vtxLoadsLogged < 6)
+        {
+            vtxLoadsLogged++;
+            Console.Error.WriteLine($"[vtx] load {n} at {w1:X8} -> {p:X8}; first raw {(short)G16(p, 0)},{(short)G16(p, 2)},{(short)G16(p, 4)} uv {(short)G16(p, 8)},{(short)G16(p, 10)}; mvp [{string.Join(",", S.Mvp.Select(f => f.ToString("F2")))}]");
+            Console.Error.WriteLine($"[vtx]   mv [{string.Join(",", S.Mv[S.MvTop].Select(f => f.ToString("F2")))}] proj [{string.Join(",", S.Proj.Select(f => f.ToString("F2")))}] top {S.MvTop}");
+        }
         for (int i = 0; i < n; i++, p = p == 0 ? 0 : p + 16)
         {
             ref V o = ref S.Vtx[v0 + i];
@@ -553,7 +564,7 @@ public sealed class DisplayListInterpreter
         S.Vtr[0] = 640f; S.Vtr[1] = 480f; S.Vtr[2] = 511f;
         MatIdent(S.Proj); foreach (var m in S.Mv) MatIdent(m); S.MvpDirty = true;
         curValid = false; batch.Clear(); commands.Clear(); cur = new DrawState();
-        if (LogEnabled) Array.Clear(opHist);
+        if (LogEnabled) { Array.Clear(opHist); triTotal = triNear = triFace = triOut = 0; vtxLogged = 0; vtxLoadsLogged = 0; }
         bool dumpNow = DumpFlag != null && File.Exists(DumpFlag);
         if (dumpNow) { try { File.Delete(DumpFlag!); } catch (IOException) { } }
         traceDl = LogEnabled && (dumpNow || runs + 1 == DumpRun) && Environment.GetEnvironmentVariable("TRW_GFX_DL") != null;      // TRW_GFX_DL=1: print every command of the dumped list
@@ -565,7 +576,7 @@ public sealed class DisplayListInterpreter
             {
             int draws = commands.Count(c => c is DrawCommand), verts = commands.OfType<DrawCommand>().Sum(c => c.Vertices.Length);
                 var ops = string.Join(" ", Enumerable.Range(0, 256).Where(i => opHist[i] > 0).Select(i => $"{i:X2}x{opHist[i]}"));
-                Console.Error.WriteLine($"[gfx] run {runs}: task {taskAddr:X8} dl {dl:X8} size {Mem.U32(taskAddr + 0x34):X} -> {commands.Count} commands, {draws} draws, {verts} vertices; ops {ops}");
+                Console.Error.WriteLine($"[gfx] run {runs}: task {taskAddr:X8} dl {dl:X8} size {Mem.U32(taskAddr + 0x34):X} -> {commands.Count} commands, {draws} draws, {verts} vertices; triangles {triTotal} (behind the near plane {triNear}, culled by facing {triFace}, drawn {triOut}); ops {ops}");
                 Console.Error.WriteLine($"[gfx]   first words: " + string.Join(" ", Enumerable.Range(0, 8).Select(i => $"{Mem.U32(Res(dl) + (uint)i * 4):X8}")));
                 if (runs == DumpRun || dumpNow)
                 {

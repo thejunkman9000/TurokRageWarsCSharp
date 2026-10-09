@@ -100,7 +100,7 @@ public static partial class Game
                 L_I00425900: ;
                 r4 = r16;
                 L_I00425904: ;
-                r5 = (uint)17; func_0022F5B4(r4, (int)r5);
+                r5 = (uint)17; r2 = func_0022F5B4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I0042590C: ;
                 { bool c_ = r2 != 0; r4 = r16; if (c_) goto L_L00425A8C; }
                 L_I00425914: ;
@@ -111,7 +111,7 @@ public static partial class Game
                 L_I00425924: ;
                 r4 = r16;
                 L_I00425928: ;
-                r5 = (uint)6; func_0022F5B4(r4, (int)r5);
+                r5 = (uint)6; r2 = func_0022F5B4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00425930: ;
                 { bool c_ = r2 != 0; r4 = r16; if (c_) goto L_L00425A8C; }
                 L_I00425938: ;
@@ -122,7 +122,7 @@ public static partial class Game
                 L_I00425948: ;
                 r4 = r16;
                 L_I0042594C: ;
-                r5 = (uint)3; func_0022F5B4(r4, (int)r5);
+                r5 = (uint)3; r2 = func_0022F5B4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00425954: ;
                 { bool c_ = r2 != 0; r4 = r16; if (c_) goto L_L00425A8C; }
                 L_I0042595C: ;
@@ -133,7 +133,7 @@ public static partial class Game
                 L_I0042596C: ;
                 r4 = r16;
                 L_I00425970: ;
-                r5 = (uint)4; func_0022F5B4(r4, (int)r5);
+                r5 = (uint)4; r2 = func_0022F5B4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00425978: ;
                 { bool c_ = r2 != 0; r4 = r16; if (c_) goto L_L00425A8C; }
                 L_I00425980: ;
@@ -144,7 +144,7 @@ public static partial class Game
                 L_I00425990: ;
                 r4 = r16;
                 L_I00425994: ;
-                r5 = (uint)14; func_0022F5B4(r4, (int)r5);
+                r5 = (uint)14; r2 = func_0022F5B4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I0042599C: ;
                 { bool c_ = r2 != 0; r4 = r16; if (c_) goto L_L00425A8C; }
                 L_I004259A4: ;
@@ -155,7 +155,7 @@ public static partial class Game
                 L_I004259B4: ;
                 r4 = r16;
                 L_I004259B8: ;
-                r5 = (uint)1; func_0022F5B4(r4, (int)r5);
+                r5 = (uint)1; r2 = func_0022F5B4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I004259C0: ;
                 { bool c_ = r2 != 0; r4 = r16; if (c_) goto L_L00425A8C; }
                 L_I004259C8: ;
@@ -166,7 +166,7 @@ public static partial class Game
                 L_I004259D8: ;
                 r4 = r16;
                 L_I004259DC: ;
-                r5 = (uint)18; func_0022F5B4(r4, (int)r5);
+                r5 = (uint)18; r2 = func_0022F5B4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I004259E4: ;
                 { bool c_ = r2 != 0; r4 = r16; if (c_) goto L_L00425A8C; }
                 L_I004259EC: ;
@@ -177,7 +177,7 @@ public static partial class Game
                 L_I004259FC: ;
                 r4 = r16;
                 L_I00425A00: ;
-                r5 = (uint)8; func_0022F5B4(r4, (int)r5);
+                r5 = (uint)8; r2 = func_0022F5B4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00425A08: ;
                 { bool c_ = r2 != 0; r4 = r16; if (c_) goto L_L00425A8C; }
                 L_I00425A10: ;
@@ -188,7 +188,7 @@ public static partial class Game
                 L_I00425A20: ;
                 r4 = r16;
                 L_I00425A24: ;
-                r5 = (uint)9; func_0022F5B4(r4, (int)r5);
+                r5 = (uint)9; r2 = func_0022F5B4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00425A2C: ;
                 { bool c_ = r2 != 0; r4 = r16; if (c_) goto L_L00425A8C; }
                 L_I00425A34: ;
@@ -199,7 +199,7 @@ public static partial class Game
                 L_I00425A44: ;
                 r4 = r16;
                 L_I00425A48: ;
-                r5 = (uint)10; func_0022F5B4(r4, (int)r5);
+                r5 = (uint)10; r2 = func_0022F5B4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00425A50: ;
                 { bool c_ = r2 != 0; r4 = r16; if (c_) goto L_L00425A8C; }
                 L_I00425A58: ;
@@ -210,7 +210,7 @@ public static partial class Game
                 L_I00425A68: ;
                 r4 = r16;
                 L_I00425A6C: ;
-                r5 = (uint)2; func_0022F5B4(r4, (int)r5);
+                r5 = (uint)2; r2 = func_0022F5B4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00425A74: ;
                 { bool c_ = r2 != 0; r4 = r16; if (c_) goto L_L00425A8C; }
                 L_I00425A7C: ;
@@ -222,7 +222,7 @@ public static partial class Game
                 r4 = r16;
                 L_L00425A8C: ;
                 L_I00425A8C: ;
-                r5 = (uint)17; func_0022F5B4(r4, (int)r5);
+                r5 = (uint)17; r2 = func_0022F5B4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00425A94: ;
                 r18 = r2;
                 L_I00425A98: ;
@@ -230,17 +230,17 @@ public static partial class Game
                 L_I00425A9C: ;
                 { bool c_ = r18 != r2; r4 = r16; if (c_) goto L_L00425AE4; }
                 L_I00425AA4: ;
-                r5 = r2; func_0022F5B4(r4, (int)r5);
+                r5 = r2; r2 = func_0022F5B4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00425AAC: ;
                 r17 = r2;
                 L_I00425AB0: ;
                 { bool c_ = r17 != r18; r4 = r16; if (c_) goto L_L00425AE4; }
                 L_I00425AB8: ;
-                r5 = (uint)8; func_0022F5B4(r4, (int)r5);
+                r5 = (uint)8; r2 = func_0022F5B4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00425AC0: ;
                 { bool c_ = r2 != r17; r4 = r16; if (c_) goto L_L00425AE4; }
                 L_I00425AC8: ;
-                r5 = (uint)11; func_0022F5B4(r4, (int)r5);
+                r5 = (uint)11; r2 = func_0022F5B4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00425AD0: ;
                 { bool c_ = r2 != 0; r4 = r16; if (c_) goto L_L00425AE4; }
                 L_I00425AD8: ;
@@ -249,7 +249,7 @@ public static partial class Game
                 r4 = r16;
                 L_L00425AE4: ;
                 L_I00425AE4: ;
-                r5 = (uint)2; func_0022F5B4(r4, (int)r5);
+                r5 = (uint)2; r2 = func_0022F5B4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00425AEC: ;
                 r18 = r2;
                 L_I00425AF0: ;
@@ -257,17 +257,17 @@ public static partial class Game
                 L_I00425AF4: ;
                 { bool c_ = r18 != r2; r4 = r16; if (c_) goto L_L00425B3C; }
                 L_I00425AFC: ;
-                r5 = (uint)6; func_0022F5B4(r4, (int)r5);
+                r5 = (uint)6; r2 = func_0022F5B4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00425B04: ;
                 r17 = r2;
                 L_I00425B08: ;
                 { bool c_ = r17 != r18; r4 = r16; if (c_) goto L_L00425B3C; }
                 L_I00425B10: ;
-                r5 = (uint)9; func_0022F5B4(r4, (int)r5);
+                r5 = (uint)9; r2 = func_0022F5B4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00425B18: ;
                 { bool c_ = r2 != r17; r4 = r16; if (c_) goto L_L00425B3C; }
                 L_I00425B20: ;
-                r5 = (uint)12; func_0022F5B4(r4, (int)r5);
+                r5 = (uint)12; r2 = func_0022F5B4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00425B28: ;
                 { bool c_ = r2 != 0; r4 = r16; if (c_) goto L_L00425B3C; }
                 L_I00425B30: ;
@@ -276,7 +276,7 @@ public static partial class Game
                 r4 = r16;
                 L_L00425B3C: ;
                 L_I00425B3C: ;
-                r5 = (uint)3; func_0022F5B4(r4, (int)r5);
+                r5 = (uint)3; r2 = func_0022F5B4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00425B44: ;
                 r18 = r2;
                 L_I00425B48: ;
@@ -286,7 +286,7 @@ public static partial class Game
                 L_I00425B54: ;
                 r4 = r16;
                 L_I00425B58: ;
-                r5 = (uint)18; func_0022F5B4(r4, (int)r5);
+                r5 = (uint)18; r2 = func_0022F5B4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00425B60: ;
                 r17 = r2;
                 L_I00425B64: ;
@@ -294,13 +294,13 @@ public static partial class Game
                 L_I00425B6C: ;
                 r4 = r16;
                 L_I00425B70: ;
-                r5 = (uint)10; func_0022F5B4(r4, (int)r5);
+                r5 = (uint)10; r2 = func_0022F5B4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00425B78: ;
                 { bool c_ = r2 != r17; r2 = r19; if (c_) goto L_L00425BA4; }
                 L_I00425B80: ;
                 r4 = r16;
                 L_I00425B84: ;
-                r5 = (uint)13; func_0022F5B4(r4, (int)r5);
+                r5 = (uint)13; r2 = func_0022F5B4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00425B8C: ;
                 { bool c_ = r2 != 0; r2 = r19; if (c_) goto L_L00425BA4; }
                 L_I00425B94: ;

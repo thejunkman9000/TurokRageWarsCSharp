@@ -58,8 +58,8 @@ public static partial class Game
                 Mem.Set((dl + 4u), (uint)(4));
                 func_0026925C((uint)(22));
                 dl6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                Mem.Set(dl6, ((4127195136u | (((uint)((Mem.F32((a + 676u)) + Mem.F32((a + 668u)))) & (uint)(1023)) << (int)14)) | (((uint)((Mem.F32((a + 680u)) + Mem.F32((a + 672u)))) & (uint)(1023)) << (int)2)));
-                Mem.Set((dl6 + 4u), ((((uint)(Mem.F32((a + 676u))) & (uint)(1023)) << (int)14) | (((uint)(Mem.F32((a + 680u))) & (uint)(1023)) << (int)2)));
+                Mem.Set(dl6, ((4127195136u | ((Cpu.TruncU32((Mem.F32((a + 676u)) + Mem.F32((a + 668u)))) & (uint)(1023)) << (int)14)) | ((Cpu.TruncU32((Mem.F32((a + 680u)) + Mem.F32((a + 672u)))) & (uint)(1023)) << (int)2)));
+                Mem.Set((dl6 + 4u), (((Cpu.TruncU32(Mem.F32((a + 676u))) & (uint)(1023)) << (int)14) | ((Cpu.TruncU32(Mem.F32((a + 680u))) & (uint)(1023)) << (int)2)));
             }
         }
     }

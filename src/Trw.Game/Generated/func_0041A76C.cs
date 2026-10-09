@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0041A76C", (uint)o, (uint)v);
             Mem.Set((o + 80u), v);
-            Mem.Set((Mem.U32((o + 68u)) + 24u), (short)((((float)(v) / (float)(Mem.S32((o + 76u)))) * (float)(Mem.S32((o + 72u))))));
+            Mem.Set((Mem.U32((o + 68u)) + 24u), (short)(int)((((float)(v) / (float)(Mem.S32((o + 76u)))) * (float)(Mem.S32((o + 72u))))));
         }
     }
 

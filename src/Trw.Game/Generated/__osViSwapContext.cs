@@ -34,7 +34,7 @@ public static partial class Game
             if ((((int)(Mem.U16(vc)) & 4) != 0))
             {
                 yScaleLow = (Mem.U32((((modep + 40u) + (uint)(field * 20)) + 4u)) & (uint)(4095));
-                Mem.Set(((vc + 36u) + 8u), (uint)((Mem.F32((vc + 36u)) * (float)(yScaleLow))));
+                Mem.Set(((vc + 36u) + 8u), Cpu.TruncU32((Mem.F32((vc + 36u)) * (float)(yScaleLow))));
                 Mem.Set(((vc + 36u) + 8u), (uint)((uint)(Mem.U32(((vc + 36u) + 8u))) | (Mem.U32((((modep + 40u) + (uint)(field * 20)) + 4u)) & (uint)((~4095)))));
             }
             else

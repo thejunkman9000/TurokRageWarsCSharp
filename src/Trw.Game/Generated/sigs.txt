@@ -807,7 +807,7 @@ func_002191B8|void|uint,uint|0,0|0
 func_002192B4|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0,0,0|0
 func_002192C0|void|uint|0|0
 func_002193C8|void|uint,int,uint|0,0,0|0
-func_00219408|void|uint|0|0
+func_00219408|uint|uint,uint,uint,uint|0,0,0,0|0
 func_00219434|void|uint|0|0
 func_00219460|void|uint|0|0
 func_00219480|void|||0
@@ -1135,7 +1135,7 @@ func_0022F4F0|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
 func_0022F504|void|uint,int|0,0|0
 func_0022F54C|uint|uint,uint,uint,uint|0,0,0,0|0
 func_0022F594|void|uint,int|0,0|0
-func_0022F5B4|void|uint,int|0,0|0
+func_0022F5B4|uint|uint,uint,uint,uint|0,0,0,0|0
 func_0022F5D0|void|uint|0|0
 func_0022F760|uint|uint,uint,uint,uint|0,0,0,0|0
 func_0022F95C|int|uint|0|0
@@ -1940,7 +1940,7 @@ func_0025E460|void|float|0|0
 func_0025E488|void|||0
 func_0025E4AC|void|||0
 func_0025E4D0|void|||0
-func_0025E4F4|void|int|0|0
+func_0025E4F4|uint|uint,uint,uint,uint|0,0,0,0|0
 func_0025E51C|uint|uint,uint,uint,uint|0,0,0,0|0
 func_0025E520|int|uint|0|0
 func_0025E52C|int|uint|0|0
@@ -2567,7 +2567,7 @@ func_0028994C|uint|uint,uint,uint,uint|0,0,0,0|0
 func_0028A258|uint|uint,uint,uint,uint|0,0,0,0|0
 func_0028A674|void|uint|0|0
 func_0028A924|uint|uint,uint,uint,uint|0,0,0,0|0
-func_0028AFC8|void|uint,uint|0,0|0
+func_0028AFC8|uint|uint,uint,uint,uint|0,0,0,0|0
 func_0028AFE8|uint|uint,int|0,0|0
 func_0028B004|void|uint,int|0,0|0
 func_0028B13C|void|uint,int|0,0|0
@@ -2846,7 +2846,7 @@ func_00295FB4|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,
 func_00296DD0|void|uint,int,int|0,0,0|0
 func_00296DDC|void|uint,int|0,0|0
 func_00296E04|uint|uint,uint,uint,uint|0,0,0,0|0
-func_00296EC4|void|uint,int|0,0|0
+func_00296EC4|uint|uint,uint,uint,uint|0,0,0,0|0
 func_00296F7C|void|uint,uint|0,0|0
 func_00296FF8|void|||0
 func_00297008|void|int|0|0

@@ -22,7 +22,7 @@ public static partial class Game
                 {
                     Mem.Set((v + 156u), ((d - Trunc16ToF32(Mem.U16(((v + 140u) + 4u)))) / (float)(Mem.S16(((v + 140u) + 6u)))));
                     Mem.Set((v + 152u), Trunc16ToF32(Mem.U16(((v + 140u) + 2u))));
-                    Mem.Set((v + 40u), (short)(Trunc16ToF32(Mem.U16(((v + 140u) + 2u)))));
+                    Mem.Set((v + 40u), (short)(int)(Trunc16ToF32(Mem.U16(((v + 140u) + 2u)))));
                     Mem.Set((v + 136u), 1);
                     return;
                 }

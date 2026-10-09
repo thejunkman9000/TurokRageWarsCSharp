@@ -84,7 +84,7 @@ public static partial class Game
                 L_I00269B14: ;
                 r4 = r17 + 8u;
                 L_I00269B18: ;
-                r5 = r16; func_00296EC4(r4, (int)r5);
+                r5 = r16; r2 = func_00296EC4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00269B20: ;
                 r20 = r2;
                 L_I00269B24: ;

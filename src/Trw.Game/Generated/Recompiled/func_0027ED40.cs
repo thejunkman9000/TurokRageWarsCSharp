@@ -80,7 +80,7 @@ public static partial class Game
                 L_I0027EDB8: ;
                 { bool c_ = fcc; r4 = r18 + 284u; if (c_) goto L_L0027FEF8; }
                 L_I0027EDC0: ;
-                r5 = (uint)-1; func_00296EC4(r4, (int)r5);
+                r5 = (uint)-1; r2 = func_00296EC4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I0027EDC8: ;
                 r30 = r2;
                 L_I0027EDCC: ;

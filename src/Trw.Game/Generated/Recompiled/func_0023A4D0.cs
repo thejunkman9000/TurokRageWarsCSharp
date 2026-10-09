@@ -39,7 +39,7 @@ public static partial class Game
                 Mem.Set((r29 + 512u), Cpu.Fpr[22]);
                 Mem.Set((r29 + 504u), Cpu.Fpr[21]);
                 Mem.Set((r29 + 496u), Cpu.Fpr[20]);
-                r5 = (uint)-1; func_00296EC4(r4, (int)r5);
+                r5 = (uint)-1; r2 = func_00296EC4(r4, r5, r6, r7); r3 = Cpu.V1;
                 { bool c_ = r2 == 0; Mem.Set((r29 + 428u), r2); if (c_) goto L_L0023AFA0; }
                 r4 = r2;
                 r5 = r29 + 40u; func_00296F7C(r4, r5);

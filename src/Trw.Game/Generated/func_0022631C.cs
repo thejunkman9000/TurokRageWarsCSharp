@@ -22,7 +22,7 @@ public static partial class Game
                 {
                     pw = Mem.U32((a + 1500u));
                     t = func_002745D4(7.5f);
-                    v = (uint)(t);
+                    v = Cpu.TruncU32(t);
                     func_0023919C(pw, (sbyte)(255), (sbyte)(255), (sbyte)(0), (sbyte)(0), (sbyte)((int)((byte)(v))), (sbyte)(3), (sbyte)(7));
                     func_002394AC(0x80145088u, 0.0f, 204.799988f, 0.0f, 512.0f, 0, (pw + 296u));
                 }

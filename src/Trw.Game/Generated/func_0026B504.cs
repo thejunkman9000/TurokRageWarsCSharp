@@ -25,9 +25,9 @@ public static partial class Game
                     func_00273340((_fp + 32u), (_fp + 16u));
                     func_00271FD8(_fp, ((uint)(func_0022A404(0x80145040u)) + (uint)1768), (_fp + 16u));
                     func_002720EC(_fp);
-                    Mem.Set(((((0x800D1600u + 8u) + (uint)(0 * 12)) + 8u) + (uint)0), (sbyte)((Mem.F32((_fp + (uint)(0 * 4))) * Mem.F32(0x800C9758u))));
-                    Mem.Set(((((0x800D1600u + 8u) + (uint)(0 * 12)) + 8u) + (uint)1), (sbyte)((Mem.F32((_fp + (uint)(1 * 4))) * Mem.F32(0x800C9758u))));
-                    Mem.Set(((((0x800D1600u + 8u) + (uint)(0 * 12)) + 8u) + (uint)2), (sbyte)((Mem.F32((_fp + (uint)(2 * 4))) * Mem.F32(0x800C9758u))));
+                    Mem.Set(((((0x800D1600u + 8u) + (uint)(0 * 12)) + 8u) + (uint)0), (sbyte)(int)((Mem.F32((_fp + (uint)(0 * 4))) * Mem.F32(0x800C9758u))));
+                    Mem.Set(((((0x800D1600u + 8u) + (uint)(0 * 12)) + 8u) + (uint)1), (sbyte)(int)((Mem.F32((_fp + (uint)(1 * 4))) * Mem.F32(0x800C9758u))));
+                    Mem.Set(((((0x800D1600u + 8u) + (uint)(0 * 12)) + 8u) + (uint)2), (sbyte)(int)((Mem.F32((_fp + (uint)(2 * 4))) * Mem.F32(0x800C9758u))));
                     a0 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
                     Mem.Set(a0, 3674341376u);
                     Mem.Set((a0 + 4u), (uint)(24));

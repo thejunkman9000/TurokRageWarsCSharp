@@ -29,7 +29,7 @@ public static partial class Game
                     return;
                 }
             }
-            alCSPSetVol(Mem.U32((s + 20u)), (short)((f * Mem.F32(0x800C9120u))));
+            alCSPSetVol(Mem.U32((s + 20u)), (short)(int)((f * Mem.F32(0x800C9120u))));
             Mem.Set((s + 44u), f);
         }
     }

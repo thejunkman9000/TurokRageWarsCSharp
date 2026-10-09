@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024CC20_m03_f2u");
-            return (uint)(x);
+            return Cpu.TruncU32(x);
         }
     }
 
@@ -23,32 +23,32 @@ public static partial class Game
             uint af = (m + (uint)(8 * 4));
             uint e1 = 0u;
             uint e2 = 0u;
-            e1 = (uint)(Mem.F32((f + (uint)(0 * 4))));
-            e2 = (uint)(Mem.F32((f + (uint)(1 * 4))));
+            e1 = Cpu.TruncU32(Mem.F32((f + (uint)(0 * 4))));
+            e2 = Cpu.TruncU32(Mem.F32((f + (uint)(1 * 4))));
             Mem.Set(((ai += 4u) - 4u), ((e1 & 4294901760u) | (e2 >> (int)16)));
             Mem.Set(((af += 4u) - 4u), ((e1 << (int)16) | (e2 & (uint)(65535))));
-            e1 = (uint)(Mem.F32((f + (uint)(2 * 4))));
+            e1 = Cpu.TruncU32(Mem.F32((f + (uint)(2 * 4))));
             Mem.Set(((ai += 4u) - 4u), (e1 & 4294901760u));
             Mem.Set(((af += 4u) - 4u), (e1 << (int)16));
-            e1 = (uint)(Mem.F32((f + (uint)(4 * 4))));
-            e2 = (uint)(Mem.F32((f + (uint)(5 * 4))));
+            e1 = Cpu.TruncU32(Mem.F32((f + (uint)(4 * 4))));
+            e2 = Cpu.TruncU32(Mem.F32((f + (uint)(5 * 4))));
             Mem.Set(((ai += 4u) - 4u), ((e1 & 4294901760u) | (e2 >> (int)16)));
             Mem.Set(((af += 4u) - 4u), ((e1 << (int)16) | (e2 & (uint)(65535))));
-            e1 = (uint)(Mem.F32((f + (uint)(6 * 4))));
+            e1 = Cpu.TruncU32(Mem.F32((f + (uint)(6 * 4))));
             Mem.Set(((ai += 4u) - 4u), (e1 & 4294901760u));
             Mem.Set(((af += 4u) - 4u), (e1 << (int)16));
-            e1 = (uint)(Mem.F32((f + (uint)(8 * 4))));
-            e2 = (uint)(Mem.F32((f + (uint)(9 * 4))));
+            e1 = Cpu.TruncU32(Mem.F32((f + (uint)(8 * 4))));
+            e2 = Cpu.TruncU32(Mem.F32((f + (uint)(9 * 4))));
             Mem.Set(((ai += 4u) - 4u), ((e1 & 4294901760u) | (e2 >> (int)16)));
             Mem.Set(((af += 4u) - 4u), ((e1 << (int)16) | (e2 & (uint)(65535))));
-            e1 = (uint)(Mem.F32((f + (uint)(10 * 4))));
+            e1 = Cpu.TruncU32(Mem.F32((f + (uint)(10 * 4))));
             Mem.Set(((ai += 4u) - 4u), (e1 & 4294901760u));
             Mem.Set(((af += 4u) - 4u), (e1 << (int)16));
-            e1 = (uint)(Mem.F32((f + (uint)(12 * 4))));
-            e2 = (uint)(Mem.F32((f + (uint)(13 * 4))));
+            e1 = Cpu.TruncU32(Mem.F32((f + (uint)(12 * 4))));
+            e2 = Cpu.TruncU32(Mem.F32((f + (uint)(13 * 4))));
             Mem.Set(((ai += 4u) - 4u), ((e1 & 4294901760u) | (e2 >> (int)16)));
             Mem.Set(((af += 4u) - 4u), ((e1 << (int)16) | (e2 & (uint)(65535))));
-            e1 = (uint)(Mem.F32((f + (uint)(14 * 4))));
+            e1 = Cpu.TruncU32(Mem.F32((f + (uint)(14 * 4))));
             Mem.Set(((ai += 4u) - 4u), ((e1 & 4294901760u) | (uint)(1)));
             Mem.Set(((af += 4u) - 4u), (e1 << (int)16));
         }

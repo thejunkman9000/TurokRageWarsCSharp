@@ -15,12 +15,13 @@ public static class Dbg
     private static readonly int limit = int.TryParse(Environment.GetEnvironmentVariable("TRW_TRACE_LIMIT"), out var l) ? l : 200;
     private static readonly string? histPath = Environment.GetEnvironmentVariable("TRW_TRACE_HIST");
     private static readonly ConcurrentDictionary<string, int[]>? hist = histPath != null ? new() : null;
-    private static int printed;
+    private static int printed, batchPrinted;
+    private static readonly bool batchLog = Environment.GetEnvironmentVariable("TRW_BATCHLOG") != null;
 
     /// <summary>Called on every function entry when set (differential tests, see Trw.Game/Debug/DiffTest).</summary>
     public static Action<string, uint, uint, uint, uint>? DiffHook;
 
-    public static readonly bool On = names != null || hist != null || Environment.GetEnvironmentVariable("TRW_DIFF") != null;
+    public static readonly bool On = names != null || hist != null || Environment.GetEnvironmentVariable("TRW_DIFF") != null || Environment.GetEnvironmentVariable("TRW_BATCHLOG") != null;
 
     static Dbg()
     {
@@ -41,6 +42,8 @@ public static class Dbg
     public static void Enter(string name, uint a0 = 0, uint a1 = 0, uint a2 = 0, uint a3 = 0)
     {
         DiffHook?.Invoke(name, a0, a1, a2, a3);
+        if (batchLog && Armed && (name == "func_0026C020" || name == "func_0026D9D0") && Interlocked.Increment(ref batchPrinted) <= 60)
+            Console.Error.WriteLine($"[batch] {name}: DLptr={Mem.U32(0x80110634):X8} count(D_80110640)={Mem.S32(0x80110640)} model(D_8011064C)={Mem.U32(0x8011064C):X8} key(D_80110624)={Mem.S32(0x80110624):X} nres(D_801153D0)={Mem.S32(0x801153D0)} e0={Mem.U32(0x801157D8):X8},{Mem.U32(0x801157DC):X8},{Mem.U32(0x801157E0):X8},{Mem.U32(0x801157E4):X8}");
         if (hist != null) Interlocked.Increment(ref hist.GetOrAdd(name, _ => new int[1])[0]);
         if (!Wanted(name) || Interlocked.Increment(ref printed) > limit) return;
         Console.Error.WriteLine($"[call] {name}({a0:X8}, {a1:X8}, {a2:X8}, {a3:X8})");
@@ -55,6 +58,8 @@ public static class Dbg
 
     public static void Leave(string name, uint v0)
     {
+        if (batchLog && Armed && (name == "func_0026C020" || name == "func_0026D9D0") && batchPrinted < 400)
+            Console.Error.WriteLine($"[batch] leave {name}: DLptr={Mem.U32(0x80110634):X8} lists: D_80110628={Mem.U32(0x80110628):X8} D_8011063C={Mem.U32(0x8011063C):X8} D_80110630(n)={Mem.S32(0x80110630)} D_80110638(n)={Mem.S32(0x80110638)}");
         if (!Wanted(name) || printed > limit) return;
         Console.Error.WriteLine($"[ret ] {name} -> {v0:X8}");
     }

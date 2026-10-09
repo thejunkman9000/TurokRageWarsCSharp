@@ -46,6 +46,10 @@ public static class Cpu
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)] public static float U2F(uint v) => BitConverter.UInt32BitsToSingle(v);
     [MethodImpl(MethodImplOptions.AggressiveInlining)] public static uint F2U(float v) => BitConverter.SingleToUInt32Bits(v);
+
+    /// <summary>C's (unsigned)float on the original compiler: values below 2^31 go through trunc.w.s (so negatives wrap to their two's complement bits), larger ones are offset by 2^31.</summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)] public static uint TruncU32(float v) => v >= 2147483648f ? (uint)(int)(v - 2147483648f) | 0x80000000u : (uint)(int)v;
+    [MethodImpl(MethodImplOptions.AggressiveInlining)] public static uint TruncU32(double v) => v >= 2147483648.0 ? (uint)(int)(v - 2147483648.0) | 0x80000000u : (uint)(int)v;
     public static double U2D(uint hi, uint lo) => BitConverter.UInt64BitsToDouble(((ulong)hi << 32) | lo);
     public static uint D2Hi(double d) => (uint)(BitConverter.DoubleToUInt64Bits(d) >> 32);
     public static uint D2Lo(double d) => (uint)BitConverter.DoubleToUInt64Bits(d);

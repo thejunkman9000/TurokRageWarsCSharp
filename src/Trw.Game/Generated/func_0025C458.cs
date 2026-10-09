@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0025C458", (uint)s, (uint)vol);
             uint b = Mem.U32((s + 176u));
             alSndpSetSound((b + 132u), Mem.S16(((b + 220u) + (uint)(Mem.S32(s) * 2))));
-            alSndpSetVol((b + 132u), (short)(((float)(vol) * Mem.F32((s + 200u)))));
+            alSndpSetVol((b + 132u), (short)(int)(((float)(vol) * Mem.F32((s + 200u)))));
         }
     }
 

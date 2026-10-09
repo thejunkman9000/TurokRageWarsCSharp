@@ -126,7 +126,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alSeqSecToTicks", (uint)seq, 0u, (uint)tempo);
-            return (uint)(((sec * ((float)(Mem.S16((seq + 24u))) * 1.0E+6f)) / (float)(tempo)));
+            return Cpu.TruncU32(((sec * ((float)(Mem.S16((seq + 24u))) * 1.0E+6f)) / (float)(tempo)));
         }
     }
 

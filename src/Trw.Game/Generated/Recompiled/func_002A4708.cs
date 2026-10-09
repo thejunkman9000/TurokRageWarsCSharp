@@ -55,7 +55,7 @@ public static partial class Game
                 L_L002A4798: ;
                 r4 = r21 + 20u;
                 L_L002A479C: ;
-                r5 = (uint)-1; func_00296EC4(r4, (int)r5);
+                r5 = (uint)-1; r2 = func_00296EC4(r4, r5, r6, r7); r3 = Cpu.V1;
                 { bool c_ = r2 == 0; Mem.Set((r29 + 96u), r2); if (c_) goto L_L002A4D90; }
                 r4 = r2;
                 r5 = r29 + 40u; func_00296F7C(r4, r5);

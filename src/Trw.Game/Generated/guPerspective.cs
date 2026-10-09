@@ -37,7 +37,7 @@ public static partial class Game
                 }
                 else
                 {
-                    Mem.Set(perspNorm, (ushort)(((2.0f * 65536.0f) / (near + far))));
+                    Mem.Set(perspNorm, (ushort)(int)(((2.0f * 65536.0f) / (near + far))));
                     if (((int)(Mem.U16(perspNorm)) <= 0))
                     {
                         Mem.Set(perspNorm, (ushort)(1));

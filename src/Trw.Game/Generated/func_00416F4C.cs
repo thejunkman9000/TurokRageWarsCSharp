@@ -33,9 +33,9 @@ public static partial class Game
                         v = (uint)(func_002A25E4(64));
                         for (k = 0; (k < n); ++k)
                         {
-                            Mem.Set((v + (uint)(k * 16)), (short)(Mem.F32((_fp + 16u))));
-                            Mem.Set(((v + (uint)(k * 16)) + 2u), (short)(Mem.F32(((_fp + 16u) + 4u))));
-                            Mem.Set(((v + (uint)(k * 16)) + 4u), (short)(Mem.F32(((_fp + 16u) + 8u))));
+                            Mem.Set((v + (uint)(k * 16)), (short)(int)(Mem.F32((_fp + 16u))));
+                            Mem.Set(((v + (uint)(k * 16)) + 2u), (short)(int)(Mem.F32(((_fp + 16u) + 4u))));
+                            Mem.Set(((v + (uint)(k * 16)) + 4u), (short)(int)(Mem.F32(((_fp + 16u) + 8u))));
                             Mem.Set(((v + (uint)(k * 16)) + 8u), (short)(0));
                             Mem.Set(((v + (uint)(k * 16)) + 10u), (short)(0));
                             Mem.Set(((v + (uint)(k * 16)) + 12u), (byte)(255));

@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025DC54", (uint)s);
-            alCSPSetVol(Mem.U32((s + 20u)), (short)((vol * Mem.F32(0x800C9110u))));
+            alCSPSetVol(Mem.U32((s + 20u)), (short)(int)((vol * Mem.F32(0x800C9110u))));
             Mem.Set((s + 44u), vol);
         }
     }

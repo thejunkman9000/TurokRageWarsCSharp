@@ -153,7 +153,7 @@ public static partial class Game
                 { bool c_ = (int)r2 <= 0; r4 = r17; if (c_) goto L_L0021C25C; }
                 r5 = (uint)5005; r2 = (uint)func_00229BE0(r4, (int)r5);
                 r16 = r2;
-                r4 = r16; func_0025E4F4((int)r4);
+                r4 = r16; r2 = func_0025E4F4(r4, r5, r6, r7); r3 = Cpu.V1;
                 { bool c_ = r2 != 0; r2 = r17 + 8u; if (c_) goto L_L0021C258; }
                 Mem.Set((r29 + 16u), r2);
                 r2 = (uint)-1;

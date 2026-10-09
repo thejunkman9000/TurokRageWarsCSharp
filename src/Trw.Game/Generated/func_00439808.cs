@@ -18,7 +18,7 @@ public static partial class Game
             func_002A3358();
             Mem.Set((Mem.U32(0x800E5950u) + 4u), (int)((int)(Mem.S32((Mem.U32(0x800E5950u) + 4u))) + c));
             x = ((cosf(((float)(Mem.S32((Mem.U32(0x800E5950u) + 4u))) * 0.00499999989f)) * 100.0f) + 150.0f);
-            Mem.Set((Mem.U32(Mem.U32(0x800E5950u)) + 16u), (byte)((uint)(x)));
+            Mem.Set((Mem.U32(Mem.U32(0x800E5950u)) + 16u), (byte)(Cpu.TruncU32(x)));
             return 0;
         }
     }

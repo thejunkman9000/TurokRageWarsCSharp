@@ -57,7 +57,7 @@ public static partial class Game
                 { bool c_ = r16 == 0;  if (c_) goto L_L002A5758; }
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
-                r5 = r17; func_0028AFC8(r4, r5);
+                r5 = r17; r2 = func_0028AFC8(r4, r5, r6, r7); r3 = Cpu.V1;
                 r17 = r2;
                 r2 = Mem.U8((r17 + 31u));
                 r3 = Mem.U8((r17 + 32u));

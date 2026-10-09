@@ -19,7 +19,7 @@ public static partial class Game
                 uint def = 0u;
                 func_00271FD8(_fp, (uint)((a1 + 296)), (o + 8u));
                 d = (((Mem.F32((_fp + (uint)(0 * 4))) * Mem.F32((_fp + (uint)(0 * 4)))) + (Mem.F32((_fp + (uint)(1 * 4))) * Mem.F32((_fp + (uint)(1 * 4))))) + (Mem.F32((_fp + (uint)(2 * 4))) * Mem.F32((_fp + (uint)(2 * 4)))));
-                dist = (uint)(d);
+                dist = Cpu.TruncU32(d);
                 Mem.Set((o + 220u), dist);
                 def = Mem.U32((o + 24u));
                 if ((dist >= (Mem.U32((def + 36u)) * (uint)(2))))

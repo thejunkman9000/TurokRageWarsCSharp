@@ -119,8 +119,7 @@ public static class Mem
     // ---- debug: TRW_WATCH="addr:len" (hex) prints the translated call stack of every write that overlaps the range (TRW_WATCH_MAX hits, default 20) ----
     private static readonly string? watchSpec = Environment.GetEnvironmentVariable("TRW_WATCH");
     public static readonly bool WatchOn = watchSpec != null;
-    private static readonly uint watchLo = watchSpec != null ? Convert.ToUInt32(watchSpec.Split(':')[0], 16) : 0;
-    private static readonly uint watchHi = watchLo + (watchSpec != null && watchSpec.Contains(':') ? Convert.ToUInt32(watchSpec.Split(':')[1], 16) : 4);
+    private static readonly (uint lo, uint hi)[] watchRanges = watchSpec == null ? Array.Empty<(uint, uint)>() : watchSpec.Split(';', StringSplitOptions.RemoveEmptyEntries).Select(r => { var q = r.Split(':'); uint lo = Convert.ToUInt32(q[0], 16); return (lo, lo + (q.Length > 1 ? Convert.ToUInt32(q[1], 16) : 4u)); }).ToArray();     // "addr:len;addr:len"
     private static readonly int watchMax = int.TryParse(Environment.GetEnvironmentVariable("TRW_WATCH_MAX"), out var wm) ? wm : 20;
     private static int watchHits;
 
@@ -167,9 +166,12 @@ public static class Mem
 
     private static void Watch(uint a, int n)
     {
-        if (a >= watchHi || a + (uint)n <= watchLo || Interlocked.Increment(ref watchHits) > watchMax) return;
+        if (!Dbg.Armed) return;       // TRW_TRACE_ARM_STATE also delays the watch
+        bool hit = false;
+        foreach (var (lo, hi) in watchRanges) if (a < hi && a + (uint)n > lo) { hit = true; break; }
+        if (!hit || Interlocked.Increment(ref watchHits) > watchMax) return;
         var frames = new System.Diagnostics.StackTrace(2, false).GetFrames().Select(f => f.GetMethod()).Where(m => m != null && m.DeclaringType?.Name is "Game" or "Funcs" or "GameBoot").Select(m => m!.Name).Take(10);
-        Console.Error.WriteLine($"[watch] write of {n} bytes at {a:X8} (watching {watchLo:X8}..{watchHi:X8}) by {string.Join(" <- ", frames)}");
+        Console.Error.WriteLine($"[watch] write of {n} bytes at {a:X8} (was {Convert.ToHexString(At(a, n))}) by {string.Join(" <- ", frames)}");
     }
 
     // ---- bulk helpers for the platform layer (DMA, memcpy, ...) ----

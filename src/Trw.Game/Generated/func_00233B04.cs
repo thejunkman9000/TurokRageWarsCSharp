@@ -38,7 +38,7 @@ public static partial class Game
             else
             {
                 v = ((Mem.F32((o + 1336u)) / (float)(((int)(Mem.U8((o + 1355u))) + 1))) * (float)(Mem.U8((o + 1354u))));
-                Mem.Set((o + 1361u), (byte)((uint)(v)));
+                Mem.Set((o + 1361u), (byte)(Cpu.TruncU32(v)));
                 goto L_Lend;
             }
             L_L2: ;
@@ -59,7 +59,7 @@ public static partial class Game
             {
                 lv = (float)(Mem.U8((o + 1354u)));
                 v = (lv - ((Mem.F32((o + 1336u)) / (float)(((int)(Mem.U8((o + 1357u))) + 1))) * lv));
-                Mem.Set((o + 1361u), (byte)((uint)(v)));
+                Mem.Set((o + 1361u), (byte)(Cpu.TruncU32(v)));
             }
             goto L_Lend;
             L_Lend: ;

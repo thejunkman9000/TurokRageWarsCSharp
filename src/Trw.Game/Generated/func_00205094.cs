@@ -41,7 +41,7 @@ public static partial class Game
                 f = (((float)(rem) / (float)(Mem.S32((state + 8u)))) * 100.0f);
                 lim = (byte)(100);
                 Mem.Set((state + 4u), rem);
-                v = (uint)(f);
+                v = Cpu.TruncU32(f);
                 for (i = 0; (i < 4); ++i)
                 {
                     byte b = Mem.U8(((info + 80u) + (uint)i));

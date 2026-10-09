@@ -38,11 +38,11 @@ public static partial class Game
                 {
                     if ((Mem.S32((Mem.U32((a + 1500u)) + 1348u)) == 0))
                     {
-                        func_0023919C(Mem.U32((a + 1500u)), (sbyte)(128), (sbyte)(0), (sbyte)(0), (sbyte)(250), (sbyte)((int)((byte)((uint)(func_002745D4(7.5f))))), (sbyte)(0), (sbyte)((int)((byte)((uint)((((Mem.F32((a + 4568u)) * 0.0666666701f) - 1.5f) * 15.0f))))));
+                        func_0023919C(Mem.U32((a + 1500u)), (sbyte)(128), (sbyte)(0), (sbyte)(0), (sbyte)(250), (sbyte)((int)((byte)(Cpu.TruncU32(func_002745D4(7.5f))))), (sbyte)(0), (sbyte)((int)((byte)(Cpu.TruncU32((((Mem.F32((a + 4568u)) * 0.0666666701f) - 1.5f) * 15.0f))))));
                         return;
                     }
                     Mem.Set((Mem.U32((a + 1500u)) + 1348u), 3);
-                    Mem.Set((Mem.U32((a + 1500u)) + 1357u), (byte)((uint)(Mem.F32((a + 4568u)))));
+                    Mem.Set((Mem.U32((a + 1500u)) + 1357u), (byte)(Cpu.TruncU32(Mem.F32((a + 4568u)))));
                 }
             }
         }

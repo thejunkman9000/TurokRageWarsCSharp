@@ -45,6 +45,13 @@ $voidFile = Join-Path $tmp "void_used.txt"
 "# functions the C declares void but whose callers use a value (name|result type)" | Set-Content $voidFile
 $voidUsed | Sort-Object | Add-Content $voidFile
 Write-Host "void in C but used with a value: $(@($voidUsed).Count) functions -> recompiled from MIPS"
+# The same for callers in the ROM that read the result of a void-in-C function: they cannot be seen in the C (tools/retuse.py scans the assembly of every function,
+# following tail calls)
+$retUse = Join-Path $tmp "retuse.txt"
+python tools/retuse.py --asm (Join-Path $CRoot "asm") --sigs (Join-Path $tmp "sigs1.txt") --out $retUse
+$haveVoid = @{}
+foreach ($l in Get-Content $voidFile) { if ($l -and -not $l.StartsWith("#")) { $haveVoid[($l -split '\|')[0]] = 1 } }
+foreach ($l in Get-Content $retUse) { if ($l -and -not $haveVoid.ContainsKey(($l -split '\|')[0]) -and $defs.ContainsKey(($l -split '\|')[0])) { $l | Add-Content $voidFile } }
 # C functions the transpiler cannot express (asm, statement expressions, ...): the exact MIPS code stands in for them
 $needsMips = Get-Content (Join-Path $tmp "needs_mips.txt") | Where-Object { $_ }
 foreach ($n in $needsMips) { "$n|" | Add-Content $voidFile }

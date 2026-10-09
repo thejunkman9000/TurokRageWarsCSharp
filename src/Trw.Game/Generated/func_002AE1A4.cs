@@ -17,7 +17,7 @@ public static partial class Game
             if ((q != 0u))
             {
                 Mem.Set((q + 292u), (short)(0));
-                v = (uint)(func_002745D4(0.0150000006f));
+                v = Cpu.TruncU32(func_002745D4(0.0150000006f));
                 func_0023919C(Mem.U32((p + 1500u)), (sbyte)(255), (sbyte)(255), (sbyte)(255), (sbyte)(255), (sbyte)((int)((byte)(v))), (sbyte)(1), (sbyte)(0));
             }
             return 1;

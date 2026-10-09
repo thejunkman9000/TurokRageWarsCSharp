@@ -29,7 +29,7 @@ public static partial class Game
                                 Mem.Set((_fp + (uint)1), Mem.U8((p + 5u)));
                                 Mem.Set((_fp + (uint)2), Mem.U8((p + 6u)));
                                 t = ((Mem.F32((lv + 111640u)) * 255.0f) / Mem.F32(p));
-                                Mem.Set((_fp + (uint)3), (byte)((uint)(t)));
+                                Mem.Set((_fp + (uint)3), (byte)(Cpu.TruncU32(t)));
                                 func_00293100(0x8011FAC0u, _fp, 0, 0, Mem.S32(0x800E28D0u), Mem.S32(0x800E28D4u));
                             }
                         }

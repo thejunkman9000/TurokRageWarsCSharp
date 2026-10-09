@@ -14,9 +14,9 @@ public static partial class Game
             if (((int)(a) != 0))
             {
                 k = (100 - (int)(a));
-                Mem.Set(outr, (byte)((uint)((((float)(r) * 0.00999999977f) * (float)(k)))));
-                Mem.Set(outg, (byte)((uint)((((float)(g) * 0.00999999977f) * (float)(k)))));
-                Mem.Set(outb, (byte)((uint)((((float)(b) * 0.00999999977f) * (float)(k)))));
+                Mem.Set(outr, (byte)(Cpu.TruncU32((((float)(r) * 0.00999999977f) * (float)(k)))));
+                Mem.Set(outg, (byte)(Cpu.TruncU32((((float)(g) * 0.00999999977f) * (float)(k)))));
+                Mem.Set(outb, (byte)(Cpu.TruncU32((((float)(b) * 0.00999999977f) * (float)(k)))));
             }
             else
             {

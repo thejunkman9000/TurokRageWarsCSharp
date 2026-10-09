@@ -143,6 +143,9 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
     }
 
     /// <summary>N64 controller bits: A 8000, B 4000, Z 2000, Start 1000, D-pad 0800/0400/0200/0100, L 0020, R 0010, C-buttons 0008/0004/0002/0001.</summary>
+    private static readonly bool padLog = Environment.GetEnvironmentVariable("TRW_STATUS") != null;
+    private static ushort lastLoggedButtons; private static sbyte lastLoggedStickY;
+
     private static bool ReadPad(int pad, out ushort buttons, out sbyte stickX, out sbyte stickY)
     {
         buttons = 0; stickX = 0; stickY = 0;
@@ -191,6 +194,11 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         }
         stickX = (sbyte)Math.Clamp(x, -80, 80);
         stickY = (sbyte)Math.Clamp(y, -80, 80);
+        if (pad == 0 && padLog && (buttons != lastLoggedButtons || stickY != lastLoggedStickY))
+        {
+            lastLoggedButtons = buttons; lastLoggedStickY = stickY;
+            Console.Error.WriteLine($"[pad] tick {scriptTick}: buttons {buttons:X4} stick ({stickX},{stickY})");
+        }
         return connected;
     }
 

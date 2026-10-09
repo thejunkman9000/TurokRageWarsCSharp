@@ -30,9 +30,9 @@ public static partial class Game
                 func_0024BC84((_fp + 16u), (int)(actor), _fp);
                 func_00271FA4((_fp + 16u), (_fp + 16u), (actor + (uint)8));
                 Mem.Set((p + (uint)22), (short)(1));
-                Mem.Set((p + (uint)16), (short)(Mem.F32((_fp + 16u))));
-                Mem.Set((p + (uint)18), (short)((Mem.F32(((_fp + 16u) + 4u)) + (func_0024D274(actor) * 0.5f))));
-                Mem.Set((p + (uint)20), (short)(Mem.F32(((_fp + 16u) + 8u))));
+                Mem.Set((p + (uint)16), (short)(int)(Mem.F32((_fp + 16u))));
+                Mem.Set((p + (uint)18), (short)(int)((Mem.F32(((_fp + 16u) + 4u)) + (func_0024D274(actor) * 0.5f))));
+                Mem.Set((p + (uint)20), (short)(int)(Mem.F32(((_fp + 16u) + 8u))));
                 Mem.Set((p + (uint)12), 1.0f);
             }
         }
