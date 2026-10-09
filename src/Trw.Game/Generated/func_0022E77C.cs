@@ -12,7 +12,7 @@ public static partial class Game
         {
             unchecked
             {
-                if (Dbg.On) Dbg.Enter("func_0022E77C", (uint)actor, (uint)slot, (uint)id, 0u);
+                if (Dbg.On) Dbg.Enter("func_0022E77C", (uint)actor, (uint)slot, (uint)id);
                 uint p = 0u;
                 p = Mem.U32(slot);
                 if ((p == 0u))

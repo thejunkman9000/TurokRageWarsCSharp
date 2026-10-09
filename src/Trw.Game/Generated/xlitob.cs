@@ -9,7 +9,7 @@ public static partial class Game
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("lldiv", (uint)ans, (uint)num, (uint)den);
+            if (Dbg.On) Dbg.Enter("lldiv", (uint)ans);
             Mem.Set(ans, (num / den));
             Mem.Set((ans + 8u), (num % den));
         }

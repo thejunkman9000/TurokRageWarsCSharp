@@ -9,7 +9,7 @@ public static partial class Game
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("__setUsptFromTempo", (uint)seqp, 0u);
+            if (Dbg.On) Dbg.Enter("__setUsptFromTempo", (uint)seqp);
             if ((Mem.U32((seqp + 24u)) != 0u))
             {
                 Mem.Set((seqp + 36u), (int)((tempo * Mem.F32((Mem.U32((seqp + 24u)) + 20u)))));

@@ -14,7 +14,7 @@ public static partial class Game
             {
                 Mem.Set(_fp + 0u, a_in);
                 Mem.Set(_fp + 4u, b_in);
-                if (Dbg.On) Dbg.Enter("func_00274004", 0u, 0u);
+                if (Dbg.On) Dbg.Enter("func_00274004");
                 float alt = 0f;
                 float d = 0f;
                 func_00274090(_fp);

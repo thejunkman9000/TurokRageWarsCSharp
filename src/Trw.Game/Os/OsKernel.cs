@@ -31,7 +31,7 @@ public static partial class Game
     }
 
     private const int MaxThreads = 64;
-    private static readonly object kernelLock = new();
+    internal static readonly object kernelLock = new();
     private static readonly HThread[] threads = Enumerable.Range(0, MaxThreads).Select(_ => new HThread()).ToArray();
     private static HThread? current;
     private static uint seqCounter;
@@ -83,6 +83,9 @@ public static partial class Game
     private static string Who() => tlsSelf != null ? $"T{Array.IndexOf(threads, tlsSelf)}" : "T?";
     private static void TraceOs(string s) { if (traceOs) Console.Error.WriteLine($"[{Who()}] {s}"); }
 
+    /// <summary>A differential test (Debug/DiffTest) must not reach anything that changes scheduler or timer state: it aborts instead.</summary>
+    internal static void GuardTest(string what) { if (Debug.DiffTest.Active) throw new Debug.DiffTest.TestAbort(what); }
+
     private static HThread? SelfThread()
     {
         if (tlsSelf != null) return tlsSelf;
@@ -117,6 +120,7 @@ public static partial class Game
     /// <summary>Gives the baton away if someone better is runnable (or self blocked); waits until self is current again. The lock is held on entry and exit.</summary>
     private static void Reschedule(HThread self)
     {
+        GuardTest("Reschedule");
         for (;;)
         {
             var best = Pick();
@@ -154,6 +158,7 @@ public static partial class Game
     /// <summary>Wakes the highest-priority waiter on a queue; the caller holds the lock.</summary>
     private static void WakeOne(uint mq, int kind)
     {
+        GuardTest("WakeOne");
         HThread? best = null;
         foreach (var h in threads)
             if (h.State == 4 && h.WaitQ == mq && h.WaitKind == kind && (best == null || h.Prio > best.Prio)) best = h;
@@ -225,6 +230,7 @@ public static partial class Game
     /// <summary>Messages posted from host threads (VI tick, timers, DMA completion): never block.</summary>
     private static void PostFromHost(uint mq, uint m)
     {
+        GuardTest("PostFromHost");
         if (mq == 0) return;
         lock (kernelLock)
         {
@@ -252,6 +258,7 @@ public static partial class Game
 
     public static void osCreateThread(uint t, int id, uint entry, uint arg, uint sp, int pri)
     {
+        GuardTest("osCreateThread");
         TraceOs($"osCreateThread id={id} entry={Funcs.NameOf(entry)} pri={pri}");
         lock (kernelLock)
         {
@@ -302,6 +309,7 @@ public static partial class Game
 
     public static void osStartThread(uint t)
     {
+        GuardTest("osStartThread");
         TraceOs($"osStartThread {t:X8}");
         var self = SelfThread()!;
         lock (kernelLock)
@@ -318,6 +326,7 @@ public static partial class Game
 
     public static void osSetThreadPri(uint t, int pri)
     {
+        GuardTest("osSetThreadPri");
         var self = SelfThread()!;
         lock (kernelLock)
         {
@@ -329,12 +338,14 @@ public static partial class Game
 
     public static void osYieldThread()
     {
+        GuardTest("osYieldThread");
         var self = SelfThread()!;
         lock (kernelLock) { self.Seq = ++seqCounter; Reschedule(self); }
     }
 
     public static void osDestroyThread(uint t)
     {
+        GuardTest("osDestroyThread");
         lock (kernelLock)
         {
             var h = FindThread(t);
@@ -366,6 +377,7 @@ public static partial class Game
 
     public static int osSetTimer(uint t, ulong value, ulong interval, uint mq, uint msg)
     {
+        GuardTest("osSetTimer");
         Mem.Set(t + TIMER_MQ, mq); Mem.Set(t + TIMER_MSG, msg); Mem.Set(t + TIMER_INTERVAL, interval);
         lock (kernelLock)
         {
@@ -377,6 +389,7 @@ public static partial class Game
 
     public static int osStopTimer(uint t)
     {
+        GuardTest("osStopTimer");
         lock (kernelLock) foreach (var tm in timers) if (tm.Live && tm.T == t) tm.Live = false;
         return 0;
     }

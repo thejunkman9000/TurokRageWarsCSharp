@@ -12,7 +12,7 @@ public static partial class Game
         {
             unchecked
             {
-                if (Dbg.On) Dbg.Enter("alSndpSetPitch", (uint)sndp, 0u);
+                if (Dbg.On) Dbg.Enter("alSndpSetPitch", (uint)sndp);
                 uint s = Mem.U32((sndp + 64u));
                 Mem.Set(_fp, (short)(4));
                 Mem.Set((_fp + 4u), (s + (uint)(Mem.S32((sndp + 60u)) * 48)));

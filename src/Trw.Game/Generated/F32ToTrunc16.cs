@@ -13,7 +13,7 @@ public static partial class Game
             unchecked
             {
                 Mem.Set(_fp + 0u, x_in);
-                if (Dbg.On) Dbg.Enter("F32ToTrunc16", 0u);
+                if (Dbg.On) Dbg.Enter("F32ToTrunc16");
                 return Mem.U16(_fp);
             }
         }

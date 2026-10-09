@@ -12,7 +12,7 @@ public static partial class Game
         {
             unchecked
             {
-                if (Dbg.On) Dbg.Enter("func_0027246C_vproj", (uint)a, (uint)b);
+                if (Dbg.On) Dbg.Enter("func_0027246C_vproj", 0u, (uint)a, (uint)b);
                 float d = 0f;
                 d = (((Mem.F32(a) * Mem.F32(b)) + (Mem.F32((a + 4u)) * Mem.F32((b + 4u)))) + (Mem.F32((a + 8u)) * Mem.F32((b + 8u))));
                 Mem.Set(_fp, (Mem.F32(a) - (d * Mem.F32(b))));
@@ -32,7 +32,7 @@ public static partial class Game
         {
             unchecked
             {
-                if (Dbg.On) Dbg.Enter("func_0027246C", (uint)v, (uint)n);
+                if (Dbg.On) Dbg.Enter("func_0027246C", 0u, (uint)v, (uint)n);
                 float len = 0f;
                 float s = 0f;
                 Mem.Copy((_fp + 16u), C.Seq(func_0027246C_vproj(_fp, v, n), _fp), 12);

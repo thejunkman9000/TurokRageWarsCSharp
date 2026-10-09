@@ -9,7 +9,7 @@ public static partial class Game
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("guLookAtF", (uint)mf, 0u, 0u, 0u);
+            if (Dbg.On) Dbg.Enter("guLookAtF", (uint)mf);
             float len = 0f;
             float xLook = 0f;
             float yLook = 0f;
@@ -65,7 +65,7 @@ public static partial class Game
         {
             unchecked
             {
-                if (Dbg.On) Dbg.Enter("guLookAt", (uint)m, 0u, 0u, 0u);
+                if (Dbg.On) Dbg.Enter("guLookAt", (uint)m);
                 guLookAtF(_fp, xEye, yEye, zEye, xAt, yAt, zAt, xUp, yUp, zUp);
                 guMtxF2L(_fp, m);
             }

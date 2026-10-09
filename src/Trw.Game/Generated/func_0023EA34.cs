@@ -36,7 +36,7 @@ public static partial class Game
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("func_0023EA34", (uint)m, (uint)q, (uint)a2, 0u);
+            if (Dbg.On) Dbg.Enter("func_0023EA34", (uint)m, (uint)q, (uint)a2);
             uint hit = 0u;
             if ((func_002412C0(q, (m + 68u), (m + 80u), (q + 204u)) == 0))
             {

@@ -9,7 +9,7 @@ public static partial class Game
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("__floatdidf", (uint)u);
+            if (Dbg.On) Dbg.Enter("__floatdidf");
             double d = 0.0;
             int negate = 0;
             if ((u < (long)(0)))

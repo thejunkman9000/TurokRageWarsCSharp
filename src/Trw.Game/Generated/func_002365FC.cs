@@ -9,7 +9,7 @@ public static partial class Game
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("func_002365FC_approach", 0u, 0u, 0u);
+            if (Dbg.On) Dbg.Enter("func_002365FC_approach");
             if ((func_00264B8C() != 0))
             {
                 x = target;
@@ -43,7 +43,7 @@ public static partial class Game
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("func_002365FC", (uint)o, 0u, 0u, 0u);
+            if (Dbg.On) Dbg.Enter("func_002365FC", (uint)o);
             Mem.Set((o + 668u), func_002365FC_approach(Mem.F32((o + 668u)), a, 16.0f));
             Mem.Set((o + 672u), func_002365FC_approach(Mem.F32((o + 672u)), b, 16.0f));
             Mem.Set((o + 676u), func_002365FC_approach(Mem.F32((o + 676u)), c, 16.0f));

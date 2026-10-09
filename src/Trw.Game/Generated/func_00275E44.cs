@@ -43,7 +43,7 @@ public static partial class Game
         {
             unchecked
             {
-                if (Dbg.On) Dbg.Enter("func_00275E44", (uint)t, 0u, 0u);
+                if (Dbg.On) Dbg.Enter("func_00275E44", (uint)t);
                 float r = 0f;
                 if ((t == 0u))
                 {

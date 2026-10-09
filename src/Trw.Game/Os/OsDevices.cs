@@ -38,6 +38,7 @@ public static partial class Game
 
     public static void osSpTaskStartGo(uint t)
     {
+        GuardTest("osSpTaskStartGo");
         TraceOs($"osSpTaskStartGo type={Mem.U32(pendingTask)}");
         uint task = pendingTask;
         uint type = Mem.U32(task);
@@ -58,7 +59,7 @@ public static partial class Game
     private static void RomCopy(uint dst, uint dev, uint n)
     {
         var rom = Host.Rom;
-        uint off = dev >= 0x10000000 ? dev - 0x10000000 : dev & 0x0FFFFFFF;
+        uint off = dev & 0x0FFFFFFF;        // the cartridge offset; the game passes it plain, as 0x10000000+off, or as the KSEG1 address 0xB0000000+off
         if (off >= rom.Length) return;
         int len = (int)Math.Min(n, (uint)rom.Length - off);
         Mem.Write(dst, rom.AsSpan((int)off, len));
@@ -68,14 +69,18 @@ public static partial class Game
     public static int osPiStartDma(uint mb, int pri, int dir, uint dev, uint vaddr, uint n, uint mq)
     {
         TraceOs($"osPiStartDma dir={dir} dev={dev:X8} dram={vaddr:X8} size={n:X}");
+        if (dmaLog) Console.Error.WriteLine($"osPiRawStartDma dir={dir} dev={dev & 0x0FFFFFFF:X8} dram={vaddr:X8} size={n:X}");
         if (dir == 0) RomCopy(vaddr, dev, n);         // OS_READ
         Mem.Set(mb + 4, mq);
         PostFromHost(mq, mb);
         return 0;
     }
 
+    private static readonly bool dmaLog = Environment.GetEnvironmentVariable("TRW_TRACE_DMA") != null;     // same line format as the C port's log
+
     public static int osPiRawStartDma(int dir, uint dev, uint vaddr, uint n)
     {
+        if (dmaLog) Console.Error.WriteLine($"osPiRawStartDma dir={dir} dev={dev & 0x0FFFFFFF:X8} dram={vaddr:X8} size={n:X}");
         if (vaddr == 0) return -1;
         if (dir == 0) RomCopy(vaddr, dev, n);
         PostFromHost(evMq[8], evMsg[8]);              // PI interrupt: DMA finished
@@ -187,7 +192,9 @@ public static partial class Game
     private static int tickCount, gfxTasks, audioTasks, lastState = -1;
     private static readonly bool statusLog = Environment.GetEnvironmentVariable("TRW_STATUS") != null;
     private static readonly string? watchdogFile = Environment.GetEnvironmentVariable("TRW_WATCHDOG");     // write a thread dump here when graphics stops
-    private static int watchdogGfx, watchdogTick;
+    private static readonly string? peekSpec = Environment.GetEnvironmentVariable("TRW_PEEK");
+    private static bool peeked;
+    private static int peekWait, watchdogGfx, watchdogTick;
     private static bool watchdogFired;
 
     public static void ViTick()
@@ -196,10 +203,33 @@ public static partial class Game
         if (statusLog)
         {
             int st = Mem.S32(0x80146878);
-            if (st != lastState) { Console.Error.WriteLine($"[state] tick {tickCount}: {lastState} -> {st}"); lastState = st; }
+            if (st != lastState) { Console.Error.WriteLine($"[state] tick {tickCount}: {lastState} -> {st}"); lastState = st; if (st == Dbg.ArmState) Dbg.Armed = true; }
         }
-        if (statusLog && tickCount % 600 == 0)
-            Console.Error.WriteLine($"[status] tick {tickCount}: gfx tasks {gfxTasks}, audio tasks {audioTasks}, state D_80146878={Mem.S32(0x80146878)} D_800D2984={Mem.S32(0x800D2984)} D_80146D68={Mem.S32(0x80146D68)} D_8014ADA0={Mem.S32(0x8014ADA0)}");
+        if (statusLog && tickCount % 300 == 0)
+            Console.Error.WriteLine($"[status] tick {tickCount}: fade t={Mem.F32(0x80146884)} (clear above {Mem.F32(0x800CA564)}, scale {Mem.F32(0x800CA568)}); gfx tasks {gfxTasks}, audio tasks {audioTasks}, state D_80146878={Mem.S32(0x80146878)} D_800D2984={Mem.S32(0x800D2984)} D_80146D68={Mem.S32(0x80146D68)} D_8014ADA0={Mem.S32(0x8014ADA0)}");
+        if (peekSpec != null && !peeked && Mem.S32(0x80146878) == 13 && ++peekWait > 240)       // TRW_PEEK="addr:bytes;addr:bytes": dump guest memory once the match runs
+        {
+            peeked = true;
+            foreach (var raw in peekSpec.Split(';', StringSplitOptions.RemoveEmptyEntries))
+            {
+                // "addr:len" or "addr:len@offset:len2" (the second dump is at the pointer stored at addr+offset)
+                var part = raw; uint a; int n;
+                var at = raw.Split('@');
+                var kv = at[0].Split(':');
+                a = Convert.ToUInt32(kv[0], 16); n = kv.Length > 1 ? Convert.ToInt32(kv[1], 16) : 64;
+                if (at.Length > 1)
+                {
+                    var kv2 = at[1].Split(':');
+                    uint ptr = Mem.U32(a + Convert.ToUInt32(kv2[0], 16));
+                    Console.Error.WriteLine($"[peek] pointer at {a:X8}+{kv2[0]} = {ptr:X8}");
+                    a = ptr; n = kv2.Length > 1 ? Convert.ToInt32(kv2[1], 16) : 64;
+                    if (!Mem.IsMapped(a)) continue;
+                }
+                var sb = new System.Text.StringBuilder($"[peek] {a:X8}:");
+                for (int i = 0; i < n; i += 4) { if (i % 32 == 0) sb.Append("\n  +").Append(i.ToString("X3")).Append(':'); sb.Append(' ').Append(Mem.U32(a + (uint)i).ToString("X8")); }
+                Console.Error.WriteLine(sb.ToString());
+            }
+        }
         if (watchdogFile != null && !watchdogFired)
         {
             if (gfxTasks != watchdogGfx) { watchdogGfx = gfxTasks; watchdogTick = tickCount; }

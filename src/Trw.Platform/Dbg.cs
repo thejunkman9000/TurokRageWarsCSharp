@@ -17,7 +17,10 @@ public static class Dbg
     private static readonly ConcurrentDictionary<string, int[]>? hist = histPath != null ? new() : null;
     private static int printed;
 
-    public static readonly bool On = names != null || hist != null;
+    /// <summary>Called on every function entry when set (differential tests, see Trw.Game/Debug/DiffTest).</summary>
+    public static Action<string, uint, uint, uint, uint>? DiffHook;
+
+    public static readonly bool On = names != null || hist != null || Environment.GetEnvironmentVariable("TRW_DIFF") != null;
 
     static Dbg()
     {
@@ -27,14 +30,28 @@ public static class Dbg
     private static HashSet<string>? Parse(string? s) =>
         string.IsNullOrWhiteSpace(s) ? null : new HashSet<string>(s.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries));
 
-    private static bool Wanted(string name) => names != null && (all || names.Contains(name));
+    /// <summary>TRW_TRACE_ARM_STATE=<n>: the call trace stays off until the game reaches state n (see Os/OsDevices.ViTick).</summary>
+    public static volatile bool Armed = Environment.GetEnvironmentVariable("TRW_TRACE_ARM_STATE") == null;
+    public static readonly int ArmState = int.TryParse(Environment.GetEnvironmentVariable("TRW_TRACE_ARM_STATE"), out var arm) ? arm : -1;
+
+    private static readonly string[] prefixes = names == null ? Array.Empty<string>() : names.Where(n => n.EndsWith('*') && n.Length > 1).Select(n => n[..^1]).ToArray();   // "func_0044*" = prefix
+
+    private static bool Wanted(string name) => Armed && names != null && (all || names.Contains(name) || (prefixes.Length > 0 && prefixes.Any(name.StartsWith)));
 
     public static void Enter(string name, uint a0 = 0, uint a1 = 0, uint a2 = 0, uint a3 = 0)
     {
+        DiffHook?.Invoke(name, a0, a1, a2, a3);
         if (hist != null) Interlocked.Increment(ref hist.GetOrAdd(name, _ => new int[1])[0]);
         if (!Wanted(name) || Interlocked.Increment(ref printed) > limit) return;
         Console.Error.WriteLine($"[call] {name}({a0:X8}, {a1:X8}, {a2:X8}, {a3:X8})");
+        if (dumpBytes > 0 && Mem.IsMapped(a0) && Mem.IsMapped(a0 + (uint)dumpBytes - 1))       // TRW_TRACE_DUMP=<bytes>: the memory a0 points to
+        {
+            var sb = new System.Text.StringBuilder("       a0:");
+            for (int i = 0; i < dumpBytes; i += 4) { if (i % 32 == 0) sb.Append("\n       +").Append(i.ToString("X3")).Append(':'); sb.Append(' ').Append(Mem.U32(a0 + (uint)i).ToString("X8")); }
+            Console.Error.WriteLine(sb.ToString());
+        }
     }
+    private static readonly int dumpBytes = int.TryParse(Environment.GetEnvironmentVariable("TRW_TRACE_DUMP"), out var db) ? db : 0;
 
     public static void Leave(string name, uint v0)
     {

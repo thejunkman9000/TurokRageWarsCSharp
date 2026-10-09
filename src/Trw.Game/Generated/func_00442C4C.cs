@@ -9,7 +9,7 @@ public static partial class Game
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("func_00442C4C", (uint)a, 0u);
+            if (Dbg.On) Dbg.Enter("func_00442C4C", (uint)a);
             int o = 0;
             if (((int)(Mem.S16((a + 4u))) == 5))
             {

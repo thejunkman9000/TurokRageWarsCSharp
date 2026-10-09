@@ -9,7 +9,7 @@ public static partial class Game
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("func_0029BEA4_Exp_", 0u);
+            if (Dbg.On) Dbg.Enter("func_0029BEA4_Exp_");
             double y = 0.0;
             double g = 0.0;
             double px = 0.0;
@@ -41,7 +41,7 @@ public static partial class Game
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("func_0029BEA4", 0u, 0u);
+            if (Dbg.On) Dbg.Enter("func_0029BEA4");
             double w = 0.0;
             double d = 0.0;
             int i = 0;

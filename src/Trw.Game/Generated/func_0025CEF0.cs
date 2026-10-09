@@ -12,7 +12,7 @@ public static partial class Game
         {
             unchecked
             {
-                if (Dbg.On) Dbg.Enter("func_0025CEF0", (uint)f, (uint)id, 0u);
+                if (Dbg.On) Dbg.Enter("func_0025CEF0", (uint)f, (uint)id);
                 int idx = 0;
                 int sum = 0;
                 int r = 0;

@@ -12,7 +12,7 @@ public static partial class Game
         {
             unchecked
             {
-                if (Dbg.On) Dbg.Enter("func_0029FF18", (uint)m, 0u);
+                if (Dbg.On) Dbg.Enter("func_0029FF18", (uint)m);
                 uint r = 0u;
                 if ((angle != 0.0f))
                 {

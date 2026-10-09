@@ -16,6 +16,8 @@ Host.Rom = File.ReadAllBytes(romPath);
 
 GameBoot.MapMemory();
 GameBoot.LoadGuestData();
+if (args.Contains("--selftest-math")) return GameBoot.SelfTestMath();
+Trw.Game.Debug.DiffTest.Install();      // TRW_DIFF: differential tests against the ROM's machine code
 TrwWindow? window = headless ? null : new TrwWindow();      // installs the device hooks before the game starts
 GameBoot.Start();
 

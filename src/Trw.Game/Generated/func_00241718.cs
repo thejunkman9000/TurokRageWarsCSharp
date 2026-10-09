@@ -12,7 +12,7 @@ public static partial class Game
         {
             unchecked
             {
-                if (Dbg.On) Dbg.Enter("func_00241718", (uint)q, 0u, 0u);
+                if (Dbg.On) Dbg.Enter("func_00241718", (uint)q);
                 Mem.Copy(_fp + 0u, (q + 72u), 12);
                 float r = 0f;
                 if ((Mem.F32((_fp + 4u)) != 0.0f))

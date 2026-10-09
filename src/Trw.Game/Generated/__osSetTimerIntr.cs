@@ -9,7 +9,7 @@ public static partial class Game
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("__osSetTimerIntr", (uint)time);
+            if (Dbg.On) Dbg.Enter("__osSetTimerIntr");
             ulong target = 0UL;
             int saveMask = (int)(__osDisableInt());
             Mem.Set(0x8014FE30u, osGetCount());

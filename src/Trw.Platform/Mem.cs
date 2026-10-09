@@ -78,7 +78,10 @@ public static class Mem
         {
             if (r.Present![p]) continue;
             r.Present[p] = true;      // set first: PageIn writes the page through Mem
-            if (!r.PageIn!(r.Base + (p << 12))) { r.Present[p] = false; throw new GuestFault(a, n); }
+            var saved = journal; journal = null;          // a page coming in is not a write of the program (a differential test must not undo it)
+            bool ok;
+            try { ok = r.PageIn!(r.Base + (p << 12)); } finally { journal = saved; }
+            if (!ok) { r.Present[p] = false; throw new GuestFault(a, n); }
         }
     }
 
@@ -101,25 +104,82 @@ public static class Mem
     public static double F64(uint a) => BinaryPrimitives.ReadDoubleBigEndian(At(a, 8));
 
     // ---- stores: return the stored value so they can be used inside expressions, like C assignment ----
-    public static sbyte Set(uint a, sbyte v) { At(a, 1)[0] = (byte)v; return v; }
-    public static byte Set(uint a, byte v) { At(a, 1)[0] = v; return v; }
-    public static short Set(uint a, short v) { BinaryPrimitives.WriteInt16BigEndian(At(a, 2), v); return v; }
-    public static ushort Set(uint a, ushort v) { BinaryPrimitives.WriteUInt16BigEndian(At(a, 2), v); return v; }
-    public static int Set(uint a, int v) { BinaryPrimitives.WriteInt32BigEndian(At(a, 4), v); return v; }
-    public static uint Set(uint a, uint v) { BinaryPrimitives.WriteUInt32BigEndian(At(a, 4), v); return v; }
-    public static long Set(uint a, long v) { BinaryPrimitives.WriteInt64BigEndian(At(a, 8), v); return v; }
-    public static ulong Set(uint a, ulong v) { BinaryPrimitives.WriteUInt64BigEndian(At(a, 8), v); return v; }
-    public static float Set(uint a, float v) { BinaryPrimitives.WriteSingleBigEndian(At(a, 4), v); return v; }
-    public static double Set(uint a, double v) { BinaryPrimitives.WriteDoubleBigEndian(At(a, 8), v); return v; }
+    public static sbyte Set(uint a, sbyte v) { AtW(a, 1)[0] = (byte)v; return v; }
+    public static byte Set(uint a, byte v) { AtW(a, 1)[0] = v; return v; }
+    public static short Set(uint a, short v) { BinaryPrimitives.WriteInt16BigEndian(AtW(a, 2), v); return v; }
+    public static ushort Set(uint a, ushort v) { BinaryPrimitives.WriteUInt16BigEndian(AtW(a, 2), v); return v; }
+    public static int Set(uint a, int v) { BinaryPrimitives.WriteInt32BigEndian(AtW(a, 4), v); return v; }
+    public static uint Set(uint a, uint v) { BinaryPrimitives.WriteUInt32BigEndian(AtW(a, 4), v); return v; }
+    public static long Set(uint a, long v) { BinaryPrimitives.WriteInt64BigEndian(AtW(a, 8), v); return v; }
+    public static ulong Set(uint a, ulong v) { BinaryPrimitives.WriteUInt64BigEndian(AtW(a, 8), v); return v; }
+    public static float Set(uint a, float v) { BinaryPrimitives.WriteSingleBigEndian(AtW(a, 4), v); return v; }
+    public static double Set(uint a, double v) { BinaryPrimitives.WriteDoubleBigEndian(AtW(a, 8), v); return v; }
+
+
+    // ---- debug: TRW_WATCH="addr:len" (hex) prints the translated call stack of every write that overlaps the range (TRW_WATCH_MAX hits, default 20) ----
+    private static readonly string? watchSpec = Environment.GetEnvironmentVariable("TRW_WATCH");
+    public static readonly bool WatchOn = watchSpec != null;
+    private static readonly uint watchLo = watchSpec != null ? Convert.ToUInt32(watchSpec.Split(':')[0], 16) : 0;
+    private static readonly uint watchHi = watchLo + (watchSpec != null && watchSpec.Contains(':') ? Convert.ToUInt32(watchSpec.Split(':')[1], 16) : 4);
+    private static readonly int watchMax = int.TryParse(Environment.GetEnvironmentVariable("TRW_WATCH_MAX"), out var wm) ? wm : 20;
+    private static int watchHits;
+
+    // ---- debug: write journal (differential tests undo a run by replaying the old bytes) ----
+    private static volatile bool instrument = WatchOn;
+    private static List<(uint addr, byte[] old)>? journal;
+
+    public static void JournalBegin() { journal = new(); instrument = true; }
+    public static List<(uint addr, byte[] old)> JournalEnd() { var j = journal ?? new(); journal = null; instrument = WatchOn; return j; }
+
+    /// <summary>Puts the memory back as it was before the journalled writes.</summary>
+    public static void JournalUndo(List<(uint addr, byte[] old)> j)
+    {
+        for (int i = j.Count - 1; i >= 0; i--) j[i].old.CopyTo(At(j[i].addr, j[i].old.Length));
+    }
+
+    /// <summary>Current contents of every byte the journal touched, with the value it had before the first write.</summary>
+    public static Dictionary<uint, (byte initial, byte final)> JournalBytes(List<(uint addr, byte[] old)> j)
+    {
+        var d = new Dictionary<uint, (byte, byte)>();
+        foreach (var (addr, old) in j)
+            for (int k = 0; k < old.Length; k++)
+            {
+                uint a = addr + (uint)k;
+                if (!d.ContainsKey(a)) d[a] = (old[k], At(a, 1)[0]);
+                else d[a] = (d[a].Item1, At(a, 1)[0]);
+            }
+        return d;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static Span<byte> AtW(uint a, int n)
+    {
+        if (instrument) Instrumented(a, n);
+        return At(a, n);
+    }
+
+    private static void Instrumented(uint a, int n)
+    {
+        if (WatchOn) Watch(a, n);
+        var j = journal;
+        if (j != null) j.Add((a, At(a, n).ToArray()));
+    }
+
+    private static void Watch(uint a, int n)
+    {
+        if (a >= watchHi || a + (uint)n <= watchLo || Interlocked.Increment(ref watchHits) > watchMax) return;
+        var frames = new System.Diagnostics.StackTrace(2, false).GetFrames().Select(f => f.GetMethod()).Where(m => m != null && m.DeclaringType?.Name is "Game" or "Funcs" or "GameBoot").Select(m => m!.Name).Take(10);
+        Console.Error.WriteLine($"[watch] write of {n} bytes at {a:X8} (watching {watchLo:X8}..{watchHi:X8}) by {string.Join(" <- ", frames)}");
+    }
 
     // ---- bulk helpers for the platform layer (DMA, memcpy, ...) ----
-    public static void Write(uint a, ReadOnlySpan<byte> src) => src.CopyTo(At(a, src.Length));
+    public static void Write(uint a, ReadOnlySpan<byte> src) => src.CopyTo(AtW(a, src.Length));
     public static void Read(uint a, Span<byte> dst) => At(a, dst.Length).CopyTo(dst);
-    public static void Fill(uint a, int count, byte v) => At(a, count).Fill(v);
+    public static void Fill(uint a, int count, byte v) => AtW(a, count).Fill(v);
     public static void Copy(uint dst, uint src, int count)
     {
         var s = At(src, count);
-        var d = At(dst, count);
+        var d = AtW(dst, count);
         s.CopyTo(d); // Span.CopyTo handles overlap like memmove
     }
 

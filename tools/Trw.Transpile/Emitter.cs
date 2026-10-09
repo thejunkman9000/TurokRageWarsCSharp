@@ -44,6 +44,7 @@ public sealed class Emitter
     int callsEmitted;                                   // calls rendered so far: any earlier call may have clobbered a0-a3
     int loopDepth;                                      // >0 while emitting a loop (its calls repeat)
     bool flatMode, curIsStatic;
+    string[] dbgWords = new[] { "0u", "0u", "0u", "0u" };
 
     public Emitter(AstIndex ix, Func<string, uint?> symbolAddress, IReadOnlyDictionary<string, Sig> sigs, IReadOnlyDictionary<string, int>? romWords = null)
     {
@@ -204,18 +205,25 @@ public sealed class Emitter
             var full = Extend(name, baseSig);
             var (first, _2) = Abi.Layout(full.Params, full.Structs);
             int j = returnsRecord != null ? 1 : 0;
+            dbgWords = new[] { "0u", "0u", "0u", "0u" };       // the argument registers a0..a3 as the trace and the differential tests see them
             foreach (var p in ps)
             {
                 var pt = TypeOf(p);
                 var id = (string)p["id"]!;
                 if (pt.IsScalarMem && !Abi.IsFp(pt.Cs) && !Abi.IsWide(pt.Cs) && !frame.ContainsKey(id) && !writtenVars.Contains(id) && j < first.Length && first[j] >= 0 && first[j] < 4)
                     fwdParams.Add((Id((string)p["name"]!), first[j]));
+                if ((pt.Kind == K.Record || (pt.Kind is K.Int or K.Ptr && !Abi.IsWide(pt.Cs))) && j < first.Length && first[j] >= 0 && first[j] < 4)
+                {
+                    var pn = Id((string)p["name"]!);
+                    dbgWords[first[j]] = $"(uint){(pt.Kind == K.Record || frame.ContainsKey(id) ? pn + "_in" : pn)}";
+                }
                 j++;
             }
             for (int e = 0; declaredWords + e < Math.Min(romWords.GetValueOrDefault(name), 4); e++)
             {
                 plist.Add($"uint _a{declaredWords + e}");
                 fwdParams.Add(($"_a{declaredWords + e}", declaredWords + e));
+                dbgWords[declaredWords + e] = $"_a{declaredWords + e}";
             }
         }
 
@@ -235,16 +243,10 @@ public sealed class Emitter
         indent++;
         foreach (var l in prologue) Line(l);
         {
-            // opt-in call tracing (TRW_TRACE_FN): the first four integer/pointer parameters as words
-            var dbgArgs = new List<string>();
-            foreach (var p in ps.Take(4))
-            {
-                var pt = TypeOf(p);
-                var pn = Id((string)p["name"]!);
-                var vn = pt.Kind == K.Record || frame.ContainsKey((string)p["id"]!) ? pn + "_in" : pn;
-                dbgArgs.Add(pt.Kind is K.Int or K.Ptr or K.Record ? $"(uint){vn}" : "0u");
-            }
-            Line($"if (Dbg.On) Dbg.Enter(\"{name}\"{(dbgArgs.Count > 0 ? ", " + string.Join(", ", dbgArgs) : "")});");
+            // opt-in call tracing / differential tests (TRW_TRACE_FN, TRW_DIFF): the argument registers a0..a3 as words
+            int lastWord = 3;
+            while (lastWord >= 0 && dbgWords[lastWord] == "0u") lastWord--;
+            Line($"if (Dbg.On) Dbg.Enter(\"{name}\"{(lastWord >= 0 ? ", " + string.Join(", ", dbgWords.Take(lastWord + 1)) : "")});");
         }
         if (NeedsFlat(body))
         {

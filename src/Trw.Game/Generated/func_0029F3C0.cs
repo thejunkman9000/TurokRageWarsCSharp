@@ -21,7 +21,7 @@ public static partial class Game
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("func_0029F3C0_B22Sqrt", 0u);
+            if (Dbg.On) Dbg.Enter("func_0029F3C0_B22Sqrt");
             if ((x <= 0.0f))
             {
                 return 0.0f;

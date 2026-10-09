@@ -9,7 +9,7 @@ public static partial class Game
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("func_002297F0", (uint)a, 0u);
+            if (Dbg.On) Dbg.Enter("func_002297F0", (uint)a);
             float f = 0f;
             float t = 0f;
             uint v = 0u;

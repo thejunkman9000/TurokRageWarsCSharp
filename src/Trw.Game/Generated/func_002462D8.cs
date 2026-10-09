@@ -13,7 +13,7 @@ public static partial class Game
             unchecked
             {
                 Mem.Copy(_fp + 0u, v_in, 12);
-                if (Dbg.On) Dbg.Enter("func_002462D8", (uint)o, (uint)v_in, (uint)@out);
+                if (Dbg.On) Dbg.Enter("func_002462D8", (uint)o, (uint)v_in);
                 int res = 0;
                 uint ctx = 0u;
                 int r = 0;

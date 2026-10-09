@@ -9,7 +9,7 @@ public static partial class Game
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("alSynStartVoiceParams", (uint)drvr, (uint)voice, (uint)w, 0u);
+            if (Dbg.On) Dbg.Enter("alSynStartVoiceParams", (uint)drvr, (uint)voice, (uint)w);
             uint update = 0u;
             byte fx = fxmix;
             if ((Mem.U32((voice + 8u)) != 0u))

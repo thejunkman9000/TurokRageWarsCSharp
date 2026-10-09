@@ -14,7 +14,7 @@ public static partial class Game
             {
                 Mem.Copy(_fp + 0u, pos_in, 12);
                 Mem.Copy(_fp + 16u, v2_in, 12);
-                if (Dbg.On) Dbg.Enter("func_00267968", (uint)act, (uint)obj, (uint)pos_in, (uint)v2_in);
+                if (Dbg.On) Dbg.Enter("func_00267968", (uint)act, (uint)obj, (uint)pos_in);
                 uint o = 0u;
                 if ((Mem.U32((act + 1500u)) != 0u))
                 {

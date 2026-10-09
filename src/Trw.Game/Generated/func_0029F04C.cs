@@ -9,7 +9,7 @@ public static partial class Game
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("func_0029F04C", 0u);
+            if (Dbg.On) Dbg.Enter("func_0029F04C");
             if (((a > 25.1327438f) || (a < (-25.1327438f))))
             {
                 a = (float)(func_0029C278((double)(a), (double)(6.28318596f)));

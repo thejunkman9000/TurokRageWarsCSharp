@@ -30,7 +30,7 @@ public static partial class Game
         {
             unchecked
             {
-                if (Dbg.On) Dbg.Enter("func_00271058_vlerp", (uint)a, (uint)b, 0u);
+                if (Dbg.On) Dbg.Enter("func_00271058_vlerp", 0u, (uint)a, (uint)b);
                 Mem.Set(_fp, (Mem.F32(a) + (t * (Mem.F32(b) - Mem.F32(a)))));
                 Mem.Set((_fp + 4u), (Mem.F32((a + 4u)) + (t * (Mem.F32((b + 4u)) - Mem.F32((a + 4u))))));
                 Mem.Set((_fp + 8u), (Mem.F32((a + 8u)) + (t * (Mem.F32((b + 8u)) - Mem.F32((a + 8u))))));
@@ -48,7 +48,7 @@ public static partial class Game
         {
             unchecked
             {
-                if (Dbg.On) Dbg.Enter("func_00271058", (uint)v, 0u);
+                if (Dbg.On) Dbg.Enter("func_00271058", 0u, (uint)v);
                 Mem.Set((_fp + 16u), (float)(((func_00274544() % 20000) - 10000)));
                 Mem.Set(((_fp + 16u) + 4u), (float)(((func_00274544() % 20000) - 10000)));
                 Mem.Set(((_fp + 16u) + 8u), (float)(((func_00274544() % 20000) - 10000)));

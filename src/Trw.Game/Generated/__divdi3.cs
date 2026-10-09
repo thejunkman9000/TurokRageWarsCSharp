@@ -14,7 +14,7 @@ public static partial class Game
         {
             unchecked
             {
-                if (Dbg.On) Dbg.Enter("__divdi3___negdi2", (uint)u);
+                if (Dbg.On) Dbg.Enter("__divdi3___negdi2");
                 Mem.Set((_fp + 8u), u);
                 Mem.Set((_fp + 4u), (-Mem.S32(((_fp + 8u) + 4u))));
                 Mem.Set(_fp, ((-Mem.S32((_fp + 8u))) - (((uint)(Mem.S32((_fp + 4u))) > (uint)(0)) ? 1 : 0)));

@@ -12,7 +12,7 @@ public static partial class Game
         {
             unchecked
             {
-                if (Dbg.On) Dbg.Enter("func_00272284", (uint)a, (uint)b);
+                if (Dbg.On) Dbg.Enter("func_00272284", 0u, (uint)a, (uint)b);
                 float d = 0f;
                 d = (((Mem.F32(a) * Mem.F32(b)) + (Mem.F32((a + 4u)) * Mem.F32((b + 4u)))) + (Mem.F32((a + 8u)) * Mem.F32((b + 8u))));
                 Mem.Set(_fp, (Mem.F32(a) - (d * Mem.F32(b))));

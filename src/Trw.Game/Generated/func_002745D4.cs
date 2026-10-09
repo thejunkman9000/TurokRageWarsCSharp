@@ -9,7 +9,7 @@ public static partial class Game
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("func_002745D4", 0u);
+            if (Dbg.On) Dbg.Enter("func_002745D4");
             uint r = ((Mem.U32(0x80115DE4u) * 2823445331u) + (uint)(1479838765));
             uint v = ((r >> (int)16) & (uint)(32767));
             Mem.Set(0x80115DE4u, r);

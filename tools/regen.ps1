@@ -79,6 +79,7 @@ for ($round = 1; $round -le 5; $round++) {
     Write-Host "round ${round}: $($new.Count) more C functions need the MIPS"
 }
 Copy-Item $rcDir (Join-Path $gen "Recompiled") -Recurse
+Copy-Item $merged (Join-Path $gen "sigs.txt")          # signatures of every function (differential tests, Trw.Game/Debug/DiffTest)
 
 # stubs for the functions that are called but defined nowhere (the C port stubs these too)
 & (Join-Path $PSScriptRoot 'make_stubs.ps1') -Gen $gen -Merged $merged -CalledFiles @((Join-Path $tmp 'called.txt'), (Join-Path $tmp 'rc_called.txt'))

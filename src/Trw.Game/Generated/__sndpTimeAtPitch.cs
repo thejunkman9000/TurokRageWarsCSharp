@@ -9,7 +9,7 @@ public static partial class Game
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("__sndpTimeAtPitch", (uint)time, 0u);
+            if (Dbg.On) Dbg.Enter("__sndpTimeAtPitch", (uint)time);
             double ratio = 0.0;
             if ((pitch == 0.0f))
             {

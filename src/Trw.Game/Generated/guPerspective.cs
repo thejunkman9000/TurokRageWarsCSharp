@@ -9,7 +9,7 @@ public static partial class Game
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("guPerspectiveF", (uint)mf, (uint)perspNorm, 0u, 0u);
+            if (Dbg.On) Dbg.Enter("guPerspectiveF", (uint)mf, (uint)perspNorm);
             float cot = 0f;
             int i = 0;
             int j = 0;
@@ -54,7 +54,7 @@ public static partial class Game
         {
             unchecked
             {
-                if (Dbg.On) Dbg.Enter("guPerspective", (uint)m, (uint)perspNorm, 0u, 0u);
+                if (Dbg.On) Dbg.Enter("guPerspective", (uint)m, (uint)perspNorm);
                 guPerspectiveF(_fp, perspNorm, fovy, aspect, near, far, scale);
                 guMtxF2L(_fp, m);
             }

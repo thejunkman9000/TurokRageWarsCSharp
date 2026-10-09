@@ -58,6 +58,34 @@ public static class GameBoot
         Mem.Set(0x80000318, 0x800000);       // osMemSize
     }
 
+    /// <summary>--selftest-math: the game's own libm (translated from the ROM) against the host's, on a few inputs.</summary>
+    public static int SelfTestMath()
+    {
+        int bad = 0;
+        var t = new Thread(() =>
+        {
+            Stack.Init(0x7F800000, 0x100000);
+            Game.RegisterFunctions(); Game.RegisterRecompiled();
+            foreach (float x in new[] { 0f, 0.1f, 0.5f, 1f, 1.5707964f, 2f, 3.1415927f, -0.7f, -2.5f, 6f, 100f })
+            {
+                float s = Game.sinf(x), c = Game.cosf(x);
+                bool ok = Math.Abs(s - MathF.Sin(x)) < 1e-3 && Math.Abs(c - MathF.Cos(x)) < 1e-3;
+                if (!ok) bad++;
+                Console.WriteLine($"{(ok ? "ok " : "BAD")} x={x}: sinf={s} (host {MathF.Sin(x)})  cosf={c} (host {MathF.Cos(x)})");
+            }
+            foreach (float x in new[] { 0f, 1f, 2f, 9f, 0.25f })
+            {
+                float r = Game.sqrtf(x);
+                bool ok = Math.Abs(r - MathF.Sqrt(x)) < 1e-5;
+                if (!ok) bad++;
+                Console.WriteLine($"{(ok ? "ok " : "BAD")} sqrtf({x}) = {r}");
+            }
+        });
+        t.Start(); t.Join();
+        Console.WriteLine(bad == 0 ? "math self test passed" : $"math self test: {bad} mismatches");
+        return bad == 0 ? 0 : 1;
+    }
+
     /// <summary>Connects the RSP audio tasks to the audio microcode emulation.</summary>
     private static void InstallAudio()
     {

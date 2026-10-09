@@ -9,7 +9,7 @@ public static partial class Game
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("func_0025C4D4", (uint)v, 0u);
+            if (Dbg.On) Dbg.Enter("func_0025C4D4", (uint)v);
             uint m = Mem.U32((v + 176u));
             alSndpSetSound((m + 132u), (short)((int)(Mem.S16(((m + 220u) + (uint)(Mem.S32(v) * 2))))));
             alSndpSetPitch((m + 132u), ((pitch * Mem.F32((v + 52u))) * Mem.F32((v + 184u))));

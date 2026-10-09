@@ -41,7 +41,7 @@ public static partial class Game
         {
             unchecked
             {
-                if (Dbg.On) Dbg.Enter("func_0027230C_vscale", (uint)v, 0u);
+                if (Dbg.On) Dbg.Enter("func_0027230C_vscale", 0u, (uint)v);
                 Mem.Set(_fp, (Mem.F32(v) * s));
                 Mem.Set((_fp + 4u), (Mem.F32((v + 4u)) * s));
                 Mem.Set((_fp + 8u), (Mem.F32((v + 8u)) * s));
@@ -59,7 +59,7 @@ public static partial class Game
         {
             unchecked
             {
-                if (Dbg.On) Dbg.Enter("func_0027230C", (uint)v, (uint)a, (uint)b);
+                if (Dbg.On) Dbg.Enter("func_0027230C", 0u, (uint)v, (uint)a, (uint)b);
                 float d = 0f;
                 func_0027230C_vcross((_fp + 16u), a, b);
                 func_0027230C_vnorm((_fp + 16u));

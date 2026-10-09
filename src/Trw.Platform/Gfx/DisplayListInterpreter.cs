@@ -416,6 +416,7 @@ public sealed class DisplayListInterpreter
             uint w0 = Mem.U32(p), w1 = Mem.U32(p + 4);
             int op = (int)(w0 >> 24);
             if (LogEnabled) opHist[op]++;
+            if (traceDl) Console.Error.WriteLine($"[dl] {new string(' ', depth * 2)}{p:X8}: {w0:X8} {w1:X8}");
             switch (op)
             {
                 case 0xDF: return;
@@ -553,10 +554,11 @@ public sealed class DisplayListInterpreter
         MatIdent(S.Proj); foreach (var m in S.Mv) MatIdent(m); S.MvpDirty = true;
         curValid = false; batch.Clear(); commands.Clear(); cur = new DrawState();
         if (LogEnabled) Array.Clear(opHist);
-        RunDL(dl, 0);
-        Flush();
         bool dumpNow = DumpFlag != null && File.Exists(DumpFlag);
         if (dumpNow) { try { File.Delete(DumpFlag!); } catch (IOException) { } }
+        traceDl = LogEnabled && (dumpNow || runs + 1 == DumpRun) && Environment.GetEnvironmentVariable("TRW_GFX_DL") != null;      // TRW_GFX_DL=1: print every command of the dumped list
+        RunDL(dl, 0);
+        Flush();
         if (LogEnabled && (++runs <= 5 || runs % 60 == 0 || runs == DumpRun || dumpNow))
         {
             try
@@ -604,4 +606,5 @@ public sealed class DisplayListInterpreter
     private static readonly int DumpRun = int.TryParse(Environment.GetEnvironmentVariable("TRW_GFX_DUMP_RUN"), out var dr) ? dr : 60;   // display list number whose draws are listed in full
     private readonly int[] opHist = new int[256];
     private int runs;
+    private bool traceDl;
 }

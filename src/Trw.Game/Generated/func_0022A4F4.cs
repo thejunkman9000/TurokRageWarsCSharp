@@ -13,7 +13,7 @@ public static partial class Game
             unchecked
             {
                 Mem.Copy(_fp + 0u, p_in, 12);
-                if (Dbg.On) Dbg.Enter("func_0022A4F4", (uint)g, (uint)p_in, (uint)skip);
+                if (Dbg.On) Dbg.Enter("func_0022A4F4", (uint)g, (uint)p_in);
                 uint a = 0u;
                 uint best = 0u;
                 float min = Mem.F32(0x800C7DD8u);

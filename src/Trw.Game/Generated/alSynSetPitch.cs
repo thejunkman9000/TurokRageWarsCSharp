@@ -9,7 +9,7 @@ public static partial class Game
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("alSynSetPitch", (uint)drvr, (uint)voice, 0u);
+            if (Dbg.On) Dbg.Enter("alSynSetPitch", (uint)drvr, (uint)voice);
             uint update = 0u;
             if ((Mem.U32((voice + 8u)) != 0u))
             {

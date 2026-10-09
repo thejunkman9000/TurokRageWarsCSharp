@@ -85,7 +85,7 @@ public static partial class Game
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("func_00239760", (uint)o, (uint)b, (uint)str, 0u);
+            if (Dbg.On) Dbg.Enter("func_00239760", (uint)o, (uint)b, (uint)str);
             return func_00239760_spawnLines(o, b, str, 2, sc, (-1));
         }
     }

@@ -12,7 +12,7 @@ public static partial class Game
         {
             unchecked
             {
-                if (Dbg.On) Dbg.Enter("__cmpdi2", (uint)a, (uint)b);
+                if (Dbg.On) Dbg.Enter("__cmpdi2");
                 Mem.Set(_fp, a); Mem.Set((_fp + 8u), b);
                 if ((Mem.S32(_fp) < Mem.S32((_fp + 8u))))
                 {

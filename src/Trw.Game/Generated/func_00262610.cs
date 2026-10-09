@@ -9,7 +9,7 @@ public static partial class Game
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("func_00262610", (uint)c, 0u);
+            if (Dbg.On) Dbg.Enter("func_00262610", (uint)c);
             uint tbl = (func_0028FD94((uint)(func_002604BC(c)), (int)((short)(0))) + (uint)8);
             int last = ((int)(Mem.S16((c + 8u))) - 1);
             int i = (int)(t);
