@@ -17,7 +17,8 @@ public static class DiffTest
     private static readonly bool all = spec == "*";
     private static readonly HashSet<string> wanted = spec == null || all ? new() : new(spec.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries));
     private static readonly int perFunction = int.TryParse(Environment.GetEnvironmentVariable("TRW_DIFF_N"), out var n) ? n : 3;
-    private static readonly Dictionary<string, int> done = new();
+    private static readonly Dictionary<string, int> done = new(), calls = new();
+    private static readonly int every = int.TryParse(Environment.GetEnvironmentVariable("TRW_DIFF_EVERY"), out var ev) ? ev : 1;
     private static readonly Dictionary<string, string[]> sigs = new();           // name -> [ret, p0, p1, ...]
     [ThreadStatic] private static bool inTest;
     /// <summary>True while a test runs on this thread (the OS layer refuses to change scheduler state then).</summary>
@@ -82,6 +83,8 @@ public static class DiffTest
         var addr = MipsInterp.FuncAddr[name];
         lock (done)
         {
+            calls.TryGetValue(name, out var nc); calls[name] = nc + 1;
+            if (every > 1 && nc % every != 0) return;          // TRW_DIFF_EVERY=k: test every k-th call, so the samples spread over the whole run
             done.TryGetValue(name, out var c);
             if (c >= perFunction) { finished[name] = 0; return; }
             done[name] = c + 1;

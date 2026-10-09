@@ -15,6 +15,8 @@ public sealed class AudioOut : IDisposable
     private DynamicSoundEffectInstance? sound;
     private uint frequency = 32000;
     private long pushedBytes;
+    private static readonly bool statusLog = Environment.GetEnvironmentVariable("TRW_STATUS") != null;
+    private int peak, pushes;
     private const int MaxQueuedBuffers = 16;       // far behind: drop the oldest audio instead of lagging
 
     public bool Muted { get; set; }
@@ -33,6 +35,11 @@ public sealed class AudioOut : IDisposable
         for (int i = 0; i < count; i += 2) { le[i] = bigEndian[i + 1]; le[i + 1] = bigEndian[i]; }
         queue.Enqueue(le);
         pushedBytes += count;
+        if (statusLog)
+        {
+            for (int i = 0; i < count; i += 2) { int v = Math.Abs((short)((le[i + 1] << 8) | le[i])); if (v > peak) peak = v; }
+            if (++pushes % 64 == 0) { Console.Error.WriteLine($"[audio] {pushes} buffers, {pushedBytes} bytes, peak {peak} over the last 64 buffers, queued {queue.Count}"); peak = 0; }
+        }
         while (queue.Count > MaxQueuedBuffers) queue.TryDequeue(out _);
     }
 
