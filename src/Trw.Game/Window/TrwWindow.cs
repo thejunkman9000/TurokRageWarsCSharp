@@ -215,6 +215,9 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
             if (k.IsKeyDown(Keys.Z)) buttons |= 0x2000;
             if (k.IsKeyDown(Keys.X)) buttons |= 0x4000;
             if (k.IsKeyDown(Keys.C)) buttons |= 0x8000;
+            if (k.IsKeyDown(Keys.W)) buttons |= 0x0800; if (k.IsKeyDown(Keys.S)) buttons |= 0x0400; if (k.IsKeyDown(Keys.A)) buttons |= 0x0200; if (k.IsKeyDown(Keys.D)) buttons |= 0x0100;      // D-pad
+            if (k.IsKeyDown(Keys.I)) buttons |= 0x0008; if (k.IsKeyDown(Keys.K)) buttons |= 0x0004; if (k.IsKeyDown(Keys.J)) buttons |= 0x0002; if (k.IsKeyDown(Keys.L)) buttons |= 0x0001;      // C buttons
+            if (k.IsKeyDown(Keys.Q)) buttons |= 0x0020; if (k.IsKeyDown(Keys.E)) buttons |= 0x0010;      // L, R
             x += (k.IsKeyDown(Keys.Right) ? 80 : 0) - (k.IsKeyDown(Keys.Left) ? 80 : 0);
             y += (k.IsKeyDown(Keys.Up) ? 80 : 0) - (k.IsKeyDown(Keys.Down) ? 80 : 0);
         }
