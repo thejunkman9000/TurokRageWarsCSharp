@@ -21,7 +21,7 @@ public static partial class Game
                 v = (int)(Mem.S8((Mem.U32((own + 32u)) + 4u)));
                 Mem.Set((item + 20u), 0x800D7710u);
                 buf = Mem.U32(0x800D7710u);
-                func_00265904((buf + (uint)(func_00442158(default(uint)) - 1)), 0x800E0DACu, (v + 1), default(int));
+                func_00265904((buf + (uint)(func_00442158((uint)(item)) - 1)), 0x800E0DACu, (v + 1), default(int));
             }
             return 0;
         }

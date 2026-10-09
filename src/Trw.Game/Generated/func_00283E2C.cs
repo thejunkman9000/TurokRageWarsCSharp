@@ -29,7 +29,7 @@ public static partial class Game
                 }
                 if ((s3 != 65535))
                 {
-                    func_0025DE74((int)((short)(s3)), (uint)(Mem.F32((o + 8u))), (int)(Mem.F32(((o + 8u) + 4u))), (int)(Mem.F32(((o + 8u) + 8u))));
+                    func_0025DE74((int)((short)(s3)), Cpu.F2U(Mem.F32((o + 8u))), (int)(Mem.F32(((o + 8u) + 4u))), (int)(Mem.F32(((o + 8u) + 8u))));
                 }
             }
         }

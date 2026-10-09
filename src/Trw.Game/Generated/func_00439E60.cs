@@ -14,7 +14,7 @@ public static partial class Game
             Mem.Set((o + 52u), (-1));
             if ((n > 0))
             {
-                Mem.Set((o + 52u), func_0028B1F8(0x8011FE88u, default(int)));
+                Mem.Set((o + 52u), func_0028B1F8(0x8011FE88u, (int)(uint)(n)));
             }
             return Mem.S32((o + 52u));
         }

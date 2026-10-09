@@ -21,7 +21,7 @@ public static partial class Game
                 {
                     if (((Mem.S32(((Mem.U32(0x80153C10u) + (uint)(i * 28)) + 4u)) & 1) != 0))
                     {
-                        func_004196A4();
+                        func_004196A4((uint)(Mem.S32((Mem.U32(0x80153C10u) + (uint)(i * 28)))));
                         Mem.Set(((Mem.U32(0x80153C10u) + (uint)(i * 28)) + 4u), (int)((int)(Mem.S32(((Mem.U32(0x80153C10u) + (uint)(i * 28)) + 4u))) & (~1)));
                     }
                     Mem.Set((Mem.U32(0x80153C18u) + (uint)(i * 8)), 0);

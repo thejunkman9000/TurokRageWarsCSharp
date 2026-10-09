@@ -17,7 +17,7 @@ public static partial class Game
                 int n = 0;
                 uint arr = 0u;
                 i = 0;
-                func_00216488(_fp, i, arg1, (int)(102.399994f), arg2, 0);
+                func_00216488(_fp, i, arg1, (int)Cpu.F2U(102.399994f), arg2, 0);
                 n = Mem.S32((lv + 3924u));
                 arr = (lv + 3668u);
                 for (; (i < n); ++i)

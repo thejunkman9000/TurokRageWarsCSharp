@@ -5,7 +5,7 @@ namespace Trw.Game;
 
 public static partial class Game
 {
-    public static void func_0029FDA0(uint m)
+    public static void func_0029FDA0(uint m, uint _a1)
     {
         uint _fp = Stack.Alloc(64);
         try
@@ -13,7 +13,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0029FDA0", (uint)m);
-                func_0029D6A8(_fp, default(uint), default(uint), default(uint));
+                func_0029D6A8(_fp, (uint)(_a1), default(uint), default(uint));
                 func_0029DE3C(m, _fp, m);
             }
         }

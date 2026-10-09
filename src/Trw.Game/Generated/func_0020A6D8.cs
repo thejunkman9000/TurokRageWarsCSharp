@@ -16,7 +16,7 @@ public static partial class Game
             {
                 return;
             }
-            func_0020A884(ctl, default(uint));
+            func_0020A884(ctl, (uint)(cfg));
             if ((Mem.S32((ctl + 740u)) > 0))
             {
                 Mem.Set((ctl + 740u), (int)(Mem.S32((ctl + 740u)) - 1));

@@ -14,7 +14,7 @@ public static partial class Game
             if (((int)(Mem.S8((e + 203u))) != 0))
             {
                 Mem.Set((e + 316u), 2);
-                if ((func_002301E4(c, default(uint)) != 0))
+                if ((func_002301E4(c, (uint)(e)) != 0))
                 {
                     Mem.Set((e + 316u), 1);
                     func_0022AFFC(p);

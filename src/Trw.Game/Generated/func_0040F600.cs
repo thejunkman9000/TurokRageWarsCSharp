@@ -26,7 +26,7 @@ public static partial class Game
                             uint h = ((e + (uint)(k * 44)) + (uint)8);
                             if ((((int)(Mem.U16(h)) & 1) != 0))
                             {
-                                func_004196A4();
+                                func_004196A4(((e + (uint)(k * 44)) + (uint)12));
                                 Mem.Set(h, (ushort)(0));
                                 Mem.Set(((e + (uint)(k * 44)) + (uint)4), 0);
                                 Mem.Set(((Mem.U32(0x80153C28u) + (uint)(i * 1180)) + 1168u), (byte)(Mem.U8(((Mem.U32(0x80153C28u) + (uint)(i * 1180)) + 1168u)) - 1));

@@ -22,7 +22,7 @@ public static partial class Game
                 Mem.Set((p + 4800u), t);
                 if ((t <= Mem.F32(0x800CE3E4u)))
                 {
-                    func_00216488(_fp, a, (int)((Mem.U32((p + 372u)) + (uint)6400)), (int)(25.5999985f), 128, 0);
+                    func_00216488(_fp, a, (int)((Mem.U32((p + 372u)) + (uint)6400)), (int)Cpu.F2U(25.5999985f), 128, 0);
                     func_00219A40(p, (p + 368u), _fp, default(uint));
                 }
             }

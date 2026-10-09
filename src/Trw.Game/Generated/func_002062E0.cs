@@ -27,7 +27,7 @@ public static partial class Game
                         return;
                     }
                 }
-                p = func_0028FFB0(0x80131600u, (state + 292u), id, (actor + 28u), _fp, p4C, (float)(0));
+                p = func_0028FFB0(0x80131600u, (state + 292u), id, (actor + 28u), _fp, p4C, Cpu.U2F((uint)(0)));
                 if ((p != 0u))
                 {
                     Mem.Set((p + 416u), 0);

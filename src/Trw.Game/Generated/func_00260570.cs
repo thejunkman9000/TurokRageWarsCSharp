@@ -23,7 +23,7 @@ public static partial class Game
             else
             {
                 n = func_0028FD94(Mem.U32((a + 12u)), (int)(Mem.S16(((Mem.U32(a) + (uint)(idx * 4)) + 2u))));
-                func_00270B1C(@out, (float)(Mem.S32((a + 32u))), (n + (uint)(Mem.S32((a + 16u)) * 4)), (n + (uint)(Mem.S32((a + 20u)) * 4)));
+                func_00270B1C(@out, Cpu.U2F((uint)(Mem.S32((a + 32u)))), (n + (uint)(Mem.S32((a + 16u)) * 4)), (n + (uint)(Mem.S32((a + 20u)) * 4)));
             }
         }
     }

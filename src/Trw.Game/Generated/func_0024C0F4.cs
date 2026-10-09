@@ -13,11 +13,11 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0024C0F4", (uint)o, (uint)p);
-                func_0025E5D0((int)(p), 0, (float)(Mem.S32(p)), (int)((_fp + 64u)));
+                func_0025E5D0((int)(p), 0, Cpu.U2F((uint)(Mem.S32(p))), (int)((_fp + 64u)));
                 Mem.Set((_fp + 80u), Mem.F32(((_fp + 64u) + (uint)(0 * 4))));
                 Mem.Set(((_fp + 80u) + 4u), Mem.F32(((_fp + 64u) + (uint)(2 * 4))));
                 Mem.Set(((_fp + 80u) + 8u), Mem.F32(((_fp + 64u) + (uint)(1 * 4))));
-                func_00273744(_fp, (float)(Mem.S32((o + 108u))));
+                func_00273744(_fp, Cpu.U2F((uint)(Mem.S32((o + 108u)))));
                 func_00272908(_fp, (_fp + 80u), (_fp + 96u));
                 Mem.Set((_fp + 96u), (float)((float)(Mem.F32((_fp + 96u))) * Mem.F32((o + 80u))));
                 Mem.Set(((_fp + 96u) + 4u), (float)((float)(Mem.F32(((_fp + 96u) + 4u))) * Mem.F32((o + 84u))));

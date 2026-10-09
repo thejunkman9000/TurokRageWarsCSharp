@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002227D0", (uint)p, (uint)arg, (uint)st);
             ushort prev = 0;
             int old = 0;
-            if (((((((int)(Mem.U8(0x801462E5u)) == 0) || (func_0022C450(default(uint)) == 0)) || (st == 21)) || (st == 19)) || (st == 20)))
+            if (((((((int)(Mem.U8(0x801462E5u)) == 0) || (func_0022C450((uint)(p)) == 0)) || (st == 21)) || (st == 19)) || (st == 20)))
             {
                 prev = (ushort)(Mem.S16((p + 1616u)));
                 old = Mem.S32((p + 1636u));

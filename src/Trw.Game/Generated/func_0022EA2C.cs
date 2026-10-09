@@ -14,7 +14,7 @@ public static partial class Game
             float d = 0f;
             if ((((o != 0u) && (p != 0u)) && (((int)(Mem.U16((o + (uint)2))) & 64) != 0)))
             {
-                n = (int)((func_002752CC(o, (float)(Mem.S32((p + (uint)0))), (float)(Mem.S32((p + (uint)8)))) - func_00275E44(o, (float)(Mem.S32((p + (uint)0))), (float)(Mem.S32((p + (uint)8))))));
+                n = (int)((func_002752CC(o, Cpu.U2F((uint)(Mem.S32((p + (uint)0)))), Cpu.U2F((uint)(Mem.S32((p + (uint)8))))) - func_00275E44(o, Cpu.U2F((uint)(Mem.S32((p + (uint)0)))), Cpu.U2F((uint)(Mem.S32((p + (uint)8)))))));
                 if (((float)(n) < Mem.F32(0x800C7F14u)))
                 {
                     func_0025E460((Mem.F32(0x800C7F1Cu) - ((float)(n) * Mem.F32(0x800C7F18u))));

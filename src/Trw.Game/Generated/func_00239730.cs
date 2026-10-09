@@ -5,13 +5,13 @@ namespace Trw.Game;
 
 public static partial class Game
 {
-    public static uint func_00239730()
+    public static uint func_00239730(uint _a0, uint _a1, uint _a2)
     {
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00239730");
             uint o = 0u;
-            o = func_00237E70(default(uint), default(uint), default(uint), default(uint));
+            o = func_00237E70((uint)(_a0), (uint)(_a1), (uint)(_a2), default(uint));
             if ((o != 0u))
             {
                 Mem.Set((o + 32u), 1);

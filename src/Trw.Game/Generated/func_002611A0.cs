@@ -18,7 +18,7 @@ public static partial class Game
                 func_0025FFD0(_fp, (_fp + 48u), default(uint), default(uint));
                 for (i = 0; (i < count); ++i)
                 {
-                    Mem.Set(@out, func_002610AC(_fp, (int)((float)(i))));
+                    Mem.Set(@out, func_002610AC(_fp, (int)Cpu.F2U((float)(i))));
                     @out = (uint)(@out + (uint)(4 * 4));
                 }
                 Mem.Set((_fp + 48u), (uint)((uint)(Mem.U32((_fp + 48u))) + (uint)((Mem.S32((_fp + 44u)) * ((Mem.S32(_fp) * 4) + 6)))));

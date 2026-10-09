@@ -5,7 +5,7 @@ namespace Trw.Game;
 
 public static partial class Game
 {
-    public static uint func_002756F8(uint @out)
+    public static uint func_002756F8(uint @out, uint _a1)
     {
         uint _fp = Stack.Alloc(64);
         try
@@ -16,7 +16,7 @@ public static partial class Game
                 float len = 0f;
                 float t = 0f;
                 float sn = 0f;
-                func_00275120(_fp, default(uint));
+                func_00275120(_fp, (uint)(_a1));
                 t = Mem.F32(0x800C9ACCu);
                 Mem.Set((_fp + 16u), 0.0f);
                 Mem.Set(((_fp + 16u) + 4u), t);

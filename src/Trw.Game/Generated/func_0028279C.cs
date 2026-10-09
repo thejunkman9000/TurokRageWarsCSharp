@@ -44,14 +44,14 @@ public static partial class Game
                         }
                         if ((s3 != 65535))
                         {
-                            func_0025DE74((int)((short)(s3)), (uint)(Mem.F32((o + 8u))), (int)(Mem.F32(((o + 8u) + 4u))), (int)(Mem.F32(((o + 8u) + 8u))));
+                            func_0025DE74((int)((short)(s3)), Cpu.F2U(Mem.F32((o + 8u))), (int)(Mem.F32(((o + 8u) + 4u))), (int)(Mem.F32(((o + 8u) + 8u))));
                         }
                         Mem.Set((o + 92u), (uint)((uint)(Mem.U32((o + 92u))) | (uint)(256)));
                         if (((Mem.U32((o + 92u)) & (uint)(256)) != 0u))
                         {
                             if (!((Mem.U32((o + 92u)) & (uint)(2048)) != 0u))
                             {
-                                func_00279A70(o);
+                                func_00279A70(o, default(uint), default(uint), default(uint));
                                 if (((int)(Mem.U8((o + 473u))) != 0))
                                 {
                                     func_0028414C(o);

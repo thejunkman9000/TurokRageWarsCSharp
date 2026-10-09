@@ -23,7 +23,7 @@ public static partial class Game
                     switch ((int)(Mem.S16((owner + (uint)1582))))
                     {
                     case 8:
-                        func_0025DE74(2622, (uint)(Mem.F32((owner + (uint)8))), (int)(Mem.F32((owner + (uint)12))), (int)(Mem.F32((owner + (uint)16))));
+                        func_0025DE74(2622, Cpu.F2U(Mem.F32((owner + (uint)8))), (int)(Mem.F32((owner + (uint)12))), (int)(Mem.F32((owner + (uint)16))));
                         goto case 0;
                     case 0:
                     case 14:

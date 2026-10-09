@@ -18,7 +18,7 @@ public static partial class Game
                 float k = 0f;
                 if ((Mem.S32((b + 4u)) != 0))
                 {
-                    func_0024AA08(default(uint), default(uint), default(uint), default(uint));
+                    func_0024AA08((uint)(a), (uint)(unused), (uint)(b), default(uint));
                 }
                 if ((Mem.S32(b) != 0))
                 {

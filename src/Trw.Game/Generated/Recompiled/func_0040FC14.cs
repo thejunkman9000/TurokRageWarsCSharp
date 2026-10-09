@@ -96,7 +96,7 @@ public static partial class Game
                 Mem.Set((r3 + 0u), r2);
                 r4 = Mem.U32((r19 + 0u));
                 r17 = r17 + 28u;
-                r4 = r4 + r5; func_00419688();
+                r4 = r4 + r5; func_00419688(r4);
                 r2 = (uint)(int)Mem.S16((r19 - 16u));
                 r2 = (uint)((int)r16 < (int)r2 ? 1 : 0);
                 { bool c_ = r2 != 0; r18 = r18 + 28u; if (c_) goto L_L0040FD14; }

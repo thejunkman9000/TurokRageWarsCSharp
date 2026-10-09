@@ -19,7 +19,7 @@ public static partial class Game
             {
                 if ((Mem.S32((p + 1488u)) == 1))
                 {
-                    func_00238F14(h, 0, (int)(Mem.F32((s + 108u))), (int)(((Mem.F32((p + 1828u)) + Mem.F32((p + 1840u))) - Mem.F32((p + 1800u)))), (Mem.F32((p + 1832u)) + Mem.F32((p + 1844u))), (Mem.F32((p + 1836u)) + Mem.F32((p + 1848u))), (Mem.F32((s + 8u)) + Mem.F32((p + 1852u))), Mem.F32((s + 12u)), (Mem.F32((s + 16u)) + Mem.F32((p + 1860u))), (((((Mem.F32((p + 1856u)) + Mem.F32((p + 1920u))) - Mem.F32((p + 1816u))) - Mem.F32((p + 1824u))) < Mem.F32(0x800C7894u)) ? Mem.F32(0x800C7894u) : (((Mem.F32((p + 1856u)) + Mem.F32((p + 1920u))) - Mem.F32((p + 1816u))) - Mem.F32((p + 1824u)))), (s + 92u), (uint)(Mem.S32((s + 20u))), Mem.F32((p + 2028u)), Mem.F32(0x800C7898u));
+                    func_00238F14(h, 0, (int)Cpu.F2U(Mem.F32((s + 108u))), (int)Cpu.F2U(((Mem.F32((p + 1828u)) + Mem.F32((p + 1840u))) - Mem.F32((p + 1800u)))), (Mem.F32((p + 1832u)) + Mem.F32((p + 1844u))), (Mem.F32((p + 1836u)) + Mem.F32((p + 1848u))), (Mem.F32((s + 8u)) + Mem.F32((p + 1852u))), Mem.F32((s + 12u)), (Mem.F32((s + 16u)) + Mem.F32((p + 1860u))), (((((Mem.F32((p + 1856u)) + Mem.F32((p + 1920u))) - Mem.F32((p + 1816u))) - Mem.F32((p + 1824u))) < Mem.F32(0x800C7894u)) ? Mem.F32(0x800C7894u) : (((Mem.F32((p + 1856u)) + Mem.F32((p + 1920u))) - Mem.F32((p + 1816u))) - Mem.F32((p + 1824u)))), (s + 92u), (uint)(Mem.S32((s + 20u))), Mem.F32((p + 2028u)), Mem.F32(0x800C7898u));
                 }
                 else
                 {
@@ -52,7 +52,7 @@ public static partial class Game
                         }
                         a = (Mem.F32((s + 108u)) + Mem.F32(0x800CF1E4u));
                         x = (Mem.F32((s + 8u)) + (Mem.F32(0x800CF1E8u) * sinf(a)));
-                        func_00238F14(h, 1, (int)(a), (int)(0.0f), 0.0f, 0.0f, x, (Mem.F32((s + 12u)) + Mem.F32(0x800C78ACu)), (Mem.F32((s + 16u)) + (Mem.F32(0x800CF1E8u) * cosf(a))), 0.0f, (s + 92u), (uint)(Mem.S32((s + 20u))), 0.0f, Mem.F32(0x800C78B0u));
+                        func_00238F14(h, 1, (int)Cpu.F2U(a), (int)Cpu.F2U(0.0f), 0.0f, 0.0f, x, (Mem.F32((s + 12u)) + Mem.F32(0x800C78ACu)), (Mem.F32((s + 16u)) + (Mem.F32(0x800CF1E8u) * cosf(a))), 0.0f, (s + 92u), (uint)(Mem.S32((s + 20u))), 0.0f, Mem.F32(0x800C78B0u));
                     }
                 }
                 func_00234FDC(h, default(uint), default(uint), default(uint));

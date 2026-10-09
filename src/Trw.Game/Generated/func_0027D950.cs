@@ -44,7 +44,7 @@ public static partial class Game
                     return 0x8011EFF8u;
                 case (-2):
                     p = (_fp + 64u);
-                    func_002756F8(p);
+                    func_002756F8(p, (uint)(0));
                     L_common: ;
                     func_002742B4(p, _fp);
                     func_0026F690(0x8011EE30u, 0x8011EFF8u, _fp);

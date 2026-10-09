@@ -34,7 +34,7 @@ public static partial class Game
                     func_0028438C(o, t);
                     break;
                 default:
-                    func_0025DE74((int)((short)(t)), (uint)(Mem.F32((o + 8u))), (int)(Mem.F32(((o + 8u) + 4u))), (int)(Mem.F32(((o + 8u) + 8u))));
+                    func_0025DE74((int)((short)(t)), Cpu.F2U(Mem.F32((o + 8u))), (int)(Mem.F32(((o + 8u) + 4u))), (int)(Mem.F32(((o + 8u) + 8u))));
                     break;
                 }
             }

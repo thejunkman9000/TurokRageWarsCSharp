@@ -27,7 +27,7 @@ public static partial class Game
                 }
                 func_0027200C(_fp, _fp, ((func_0024D388(b) + func_0024D388(a)) + Mem.F32(0x800C72D8u)));
                 func_00271FA4((_fp + 16u), (b + 8u), _fp);
-                func_0024E78C(b, (uint)(Mem.F32((_fp + 16u))), (uint)(Mem.F32(((_fp + 16u) + 4u))), (uint)(Mem.F32(((_fp + 16u) + 8u))));
+                func_0024E78C(b, Cpu.F2U(Mem.F32((_fp + 16u))), (uint)(Mem.F32(((_fp + 16u) + 4u))), (uint)(Mem.F32(((_fp + 16u) + 8u))));
             }
         }
         finally { Stack.Free(28); }

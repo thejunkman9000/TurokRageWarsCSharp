@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0022ADE0", (uint)a);
             if ((Mem.S32((a + (uint)24)) != 0))
             {
-                return func_0024D274(default(uint));
+                return func_0024D274((uint)(a));
             }
             return Mem.F32(0x800C7DF8u);
         }

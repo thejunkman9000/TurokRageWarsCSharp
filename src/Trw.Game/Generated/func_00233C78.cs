@@ -60,7 +60,7 @@ public static partial class Game
                     {
                         func_0022A37C(0x80145040u, a);
                     }
-                    func_00245884();
+                    func_00245884(a);
                 }
             }
         }

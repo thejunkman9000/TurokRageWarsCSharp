@@ -26,11 +26,11 @@ public static partial class Game
             func_00218464();
             if (((Mem.U32((state + (uint)56)) & (uint)(32768)) != 0u))
             {
-                func_0025DE74(730, (uint)(Mem.F32((state + (uint)8))), (int)(Mem.F32((state + (uint)12))), (int)(Mem.F32((state + (uint)16))));
+                func_0025DE74(730, Cpu.F2U(Mem.F32((state + (uint)8))), (int)(Mem.F32((state + (uint)12))), (int)(Mem.F32((state + (uint)16))));
             }
             else
             {
-                func_0025DE74(732, (uint)(Mem.F32((state + (uint)8))), (int)(Mem.F32((state + (uint)12))), (int)(Mem.F32((state + (uint)16))));
+                func_0025DE74(732, Cpu.F2U(Mem.F32((state + (uint)8))), (int)(Mem.F32((state + (uint)12))), (int)(Mem.F32((state + (uint)16))));
             }
         }
     }

@@ -39,11 +39,11 @@ public static partial class Game
                     func_002227D0(a, (int)(a), 2);
                     if (((Mem.S32((tgt + 4652u)) & 512) != 0))
                     {
-                        func_00216488(_fp, (int)(Mem.U32((a + 5080u))), 197120, (int)(25.5999985f), 128, 0);
+                        func_00216488(_fp, (int)(Mem.U32((a + 5080u))), 197120, (int)Cpu.F2U(25.5999985f), 128, 0);
                     }
                     else
                     {
-                        func_00216488(_fp, (int)(Mem.U32((a + 5080u))), 17920, (int)(25.5999985f), 128, 0);
+                        func_00216488(_fp, (int)(Mem.U32((a + 5080u))), 17920, (int)Cpu.F2U(25.5999985f), 128, 0);
                     }
                     Mem.Set((a + 5080u), 0u);
                     func_00219A40(a, (a + (uint)368), _fp, default(uint));

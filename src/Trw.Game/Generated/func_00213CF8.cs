@@ -15,7 +15,7 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00213CF8", (uint)a);
                 uint t = 0u;
                 float ang = 0f;
-                t = func_0024E690(default(uint), default(uint), default(uint), default(uint));
+                t = func_0024E690((uint)(a), default(uint), default(uint), default(uint));
                 if (((t != 0u) && (Mem.S32(Mem.U32((t + 24u))) == 2)))
                 {
                     Mem.Copy((_fp + 16u), (a + 8u), 12);

@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002164A8", (uint)actor, (uint)state);
             if (((Mem.U32((state + 252u)) != 0u) && (Mem.S32((Mem.U32((state + 252u)) + 12u)) == (-1))))
             {
-                func_00217388(default(uint), default(uint));
+                func_00217388((uint)(actor), (uint)(state));
             }
             if (((int)(Mem.U8((state + 205u))) != 0))
             {

@@ -21,7 +21,7 @@ public static partial class Game
                 memset(_fp, 0, (uint)(12));
                 if (((int)(Mem.U16((o + 4u))) == 1039))
                 {
-                    func_0025DE74((int)((short)(3290)), (uint)(Mem.F32((p + 8u))), (int)(Mem.F32(((p + 8u) + 4u))), (int)(Mem.F32(((p + 8u) + 8u))));
+                    func_0025DE74((int)((short)(3290)), Cpu.F2U(Mem.F32((p + 8u))), (int)(Mem.F32(((p + 8u) + 4u))), (int)(Mem.F32(((p + 8u) + 8u))));
                     func_0022B540(p, 30.0f, 3.0f, Mem.S32((o + 300u)), 0);
                     func_0028CE70(0x8011FE88u, (int)((Mem.U32((p + 1688u)) + (uint)320)), 20, _fp, Mem.F32(0x800C9F4Cu), Mem.F32(0x800C9F50u));
                     Mem.Set((p + 4588u), Mem.F32(0x800C9F54u));
@@ -42,7 +42,7 @@ public static partial class Game
                 }
                 if ((s3 != 65535))
                 {
-                    func_0025DE74((int)((short)(s3)), (uint)(Mem.F32((o + 8u))), (int)(Mem.F32(((o + 8u) + 4u))), (int)(Mem.F32(((o + 8u) + 8u))));
+                    func_0025DE74((int)((short)(s3)), Cpu.F2U(Mem.F32((o + 8u))), (int)(Mem.F32(((o + 8u) + 4u))), (int)(Mem.F32(((o + 8u) + 8u))));
                 }
                 func_00284544(0x80121990u, o, default(uint), default(uint));
                 func_00284408(o);

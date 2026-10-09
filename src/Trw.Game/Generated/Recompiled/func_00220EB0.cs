@@ -154,7 +154,7 @@ public static partial class Game
                 L_L00221100: ;
                 r4 = r18; r2 = (uint)func_00220D20(r4);
                 r4 = r18; r2 = func_00229294(r4, r5, r6, r7); r3 = Cpu.V1;
-                r4 = r18; func_0022B5B0(r4);
+                r4 = r18; func_0022B5B0(r4, r5);
                 r4 = r18; func_0022B8D0(r4);
                 r3 = 4294770688u;
                 r2 = Mem.U32((r19 + 256u));

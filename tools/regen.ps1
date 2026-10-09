@@ -20,7 +20,9 @@ if (Test-Path $ovDir) { $files = @($files) + @(Get-ChildItem $ovDir -Filter *.c 
 $files | Set-Content $list
 
 dotnet build tools/Trw.Transpile --nologo -v q | Out-Null
-$common = @("--ast-cache", (Join-Path $env:TEMP "trw_ast"), "--root", $CRoot, "--syms", (Join-Path $CRoot "symbol_addrs.txt"), "--exclude", "tools/Trw.Transpile/shim_replaced.txt", "--override-dir", $ovDir)
+# how many argument registers the ROM code of each function reads: the C prototypes can be shorter (a (void) stub that is only `jal f` forwards a0..a3)
+python tools/arity.py --c-root $CRoot --out (Join-Path $tmp "arity.txt")
+$common = @("--ast-cache", (Join-Path $env:TEMP "trw_ast"), "--root", $CRoot, "--syms", (Join-Path $CRoot "symbol_addrs.txt"), "--exclude", "tools/Trw.Transpile/shim_replaced.txt", "--override-dir", $ovDir, "--arity-in", (Join-Path $tmp "arity.txt"))
 
 Write-Host "pass 1: signatures"
 dotnet run --project tools/Trw.Transpile --no-build -- @common --sigs-out (Join-Path $tmp "sigs1.txt") --defs-out (Join-Path $tmp "defs.txt") --used-out (Join-Path $tmp "used.txt") --called-out (Join-Path $tmp "called.txt") --mips-out (Join-Path $tmp "needs_mips.txt") "@$list" | Select-Object -First 1
@@ -48,23 +50,34 @@ $needsMips = Get-Content (Join-Path $tmp "needs_mips.txt") | Where-Object { $_ }
 foreach ($n in $needsMips) { "$n|" | Add-Content $voidFile }
 Write-Host "untranslatable C: $(@($needsMips).Count) functions -> recompiled from MIPS"
 
-Write-Host "recompiling MIPS-only functions"
 $extra = Get-Content tools/mips2cs/extra_names.txt | Where-Object { $_ }
 $rcDir = Join-Path $tmp "Recompiled"
-if (Test-Path $rcDir) { [IO.Directory]::Delete($rcDir, $true) }
 $sigs1 = Join-Path $tmp "sigs1_plus.txt"
 $m = @{}
 foreach ($f in (Join-Path $tmp "sigs1.txt"), "tools/extra_sigs.txt") { foreach ($l in Get-Content $f) { if ($l) { $m[($l -split '\|')[0]] = $l } } }
 $m.Values | Sort-Object | Set-Content $sigs1
-python tools/mips2cs/mips2cs.py --c-root $CRoot --sigs $sigs1 --out-dir $rcDir --sigs-out (Join-Path $tmp "sigs_rc.txt") --void-used $voidFile --used (Join-Path $tmp "used.txt") --called (Join-Path $tmp "called.txt") --all-asm --defs (Join-Path $tmp "defs.txt") --called-out (Join-Path $tmp "rc_called.txt") @extra
-
 $merged = Join-Path $tmp "sigs_merged.txt"
-foreach ($f in (Join-Path $tmp "sigs_rc.txt")) { foreach ($l in Get-Content $f) { if ($l) { $m[($l -split '\|')[0]] = $l } } }
-$m.Values | Sort-Object | Set-Content $merged
 
-Write-Host "pass 2: C# for the C functions"
-if (Test-Path $gen) { [IO.Directory]::Delete($gen, $true) }
-dotnet run --project tools/Trw.Transpile --no-build -- @common --exclude $voidFile --sigs-in $merged --out-dir $gen --report "@$list"
+# MIPS recompile -> signatures -> pass 2. Pass 2 can find more C functions it cannot express (a call whose argument registers hold values the C cannot
+# name); those are recompiled from the MIPS as well, so the two steps repeat until no new function turns up.
+for ($round = 1; $round -le 5; $round++) {
+    Write-Host "recompiling MIPS-only functions (round $round)"
+    if (Test-Path $rcDir) { [IO.Directory]::Delete($rcDir, $true) }
+    python tools/mips2cs/mips2cs.py --c-root $CRoot --sigs $sigs1 --out-dir $rcDir --sigs-out (Join-Path $tmp "sigs_rc.txt") --void-used $voidFile --used (Join-Path $tmp "used.txt") --called (Join-Path $tmp "called.txt") --all-asm --defs (Join-Path $tmp "defs.txt") --called-out (Join-Path $tmp "rc_called.txt") @extra
+    foreach ($l in Get-Content (Join-Path $tmp "sigs_rc.txt")) { if ($l) { $m[($l -split '\|')[0]] = $l } }
+    $m.Values | Sort-Object | Set-Content $merged
+
+    Write-Host "pass 2: C# for the C functions"
+    if (Test-Path $gen) { [IO.Directory]::Delete($gen, $true) }
+    $needs2 = Join-Path $tmp "needs_mips2.txt"
+    dotnet run --project tools/Trw.Transpile --no-build -- @common --exclude $voidFile --sigs-in $merged --out-dir $gen --mips-out $needs2 --report "@$list"
+    $already = @{}
+    foreach ($l in Get-Content $voidFile) { if ($l -and -not $l.StartsWith("#")) { $already[($l -split '\|')[0]] = 1 } }
+    $new = @(Get-Content $needs2 | Where-Object { $_ -and -not $already.ContainsKey($_) })
+    if ($new.Count -eq 0) { break }
+    foreach ($n in $new) { "$n|" | Add-Content $voidFile }
+    Write-Host "round ${round}: $($new.Count) more C functions need the MIPS"
+}
 Copy-Item $rcDir (Join-Path $gen "Recompiled") -Recurse
 
 # stubs for the functions that are called but defined nowhere (the C port stubs these too)

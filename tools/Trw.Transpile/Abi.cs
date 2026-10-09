@@ -34,6 +34,25 @@ public static class Abi
     static string W(int k) => k < 4 ? $"a{k}" : $"Cpu.Stk[{k}]";
 
     /// <summary>
+    /// Where each parameter of a signature lives: the first argument word of each (0-3 = a0-a3, 4+ = stack, -1 = F12/F14) and the number of words used.
+    /// Same rules as <see cref="AdapterBody"/> and <see cref="IndirectCall"/>.
+    /// </summary>
+    public static (int[] first, int total) Layout(string[] ps, int[] structs)
+    {
+        var first = new int[ps.Length];
+        int word = 0;
+        for (int k = 0; k < ps.Length; k++)
+        {
+            var t = ps[k];
+            bool inFpReg = IsFp(t) && (k == 0 || (k == 1 && IsFp(ps[0])));
+            if (t == "double" || IsWide(t)) word = (word + 1) & ~1;
+            first[k] = inFpReg ? -1 : word;
+            word += inFpReg ? (t == "double" ? 2 : 1) : (t == "double" || IsWide(t)) ? 2 : structs[k] > 0 ? (structs[k] + 3) / 4 : 1;
+        }
+        return (first, word);
+    }
+
+    /// <summary>
     /// Body of a register adapter: reads the arguments for <paramref name="sig"/> from registers, calls <paramref name="callee"/>, and
     /// leaves the result where the convention wants it. Returns the statements (the adapter returns the value of v0).
     /// </summary>

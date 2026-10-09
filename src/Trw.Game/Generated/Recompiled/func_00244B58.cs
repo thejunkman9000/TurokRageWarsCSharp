@@ -96,7 +96,7 @@ public static partial class Game
                 Mem.Set((r16 + 172u), r0);
                 Mem.Set((r16 + 48u), r0);
                 Mem.Set((r16 + 52u), r0);
-                Mem.Set((r16 + 64u), r2); func_0023E828();
+                Mem.Set((r16 + 64u), r2); func_0023E828(r4);
                 r17 = (uint)1;
                 r18 = r0;
                 L_L00244C9C: ;

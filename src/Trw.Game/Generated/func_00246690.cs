@@ -100,7 +100,7 @@ public static partial class Game
                 _f11: ;
                 Mem.Set((o + 472u), 0u);
                 if (!((a5 != (-1)))) goto _f12;
-                func_002193C8((o + 516u), a5);
+                func_002193C8((o + 516u), a5, (o + 8u));
                 _f12: ;
                 func_00246BD8(o, (uint)(Mem.S32((0x8011FE88u + 84u))), (uint)(Mem.S32((0x8011FE88u + 36u))), (uint)(s2));
                 if (!((s1 != 0))) goto _f13;

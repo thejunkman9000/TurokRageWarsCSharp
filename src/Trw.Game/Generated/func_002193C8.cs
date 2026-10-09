@@ -5,14 +5,14 @@ namespace Trw.Game;
 
 public static partial class Game
 {
-    public static void func_002193C8(uint e, int a)
+    public static void func_002193C8(uint e, int a, uint _a2)
     {
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002193C8", (uint)e, (uint)a);
             Mem.Set(e, (byte)(1));
             Mem.Set((e + 1u), (byte)(a));
-            Mem.Set((e + 2u), (short)(func_0028D268(0x8011FE88u, default(int), default(uint))));
+            Mem.Set((e + 2u), (short)(func_0028D268(0x8011FE88u, (int)(uint)(a), (uint)(_a2))));
             Mem.Set((e + 4u), (short)(0));
         }
     }

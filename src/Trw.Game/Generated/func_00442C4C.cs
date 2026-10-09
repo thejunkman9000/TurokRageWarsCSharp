@@ -13,7 +13,7 @@ public static partial class Game
             int o = 0;
             if (((int)(Mem.S16((a + 4u))) == 5))
             {
-                o = (int)(func_0043F290(default(uint), default(uint), default(uint), default(uint)));
+                o = (int)(func_0043F290((uint)(a), default(uint), default(uint), default(uint)));
             }
             else
             {

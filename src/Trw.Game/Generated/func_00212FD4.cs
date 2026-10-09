@@ -5,7 +5,7 @@ namespace Trw.Game;
 
 public static partial class Game
 {
-    public static void func_00212FD4(uint actor)
+    public static void func_00212FD4(uint actor, uint _a1)
     {
         uint _fp = Stack.Alloc(256);
         try

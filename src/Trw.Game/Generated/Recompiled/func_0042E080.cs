@@ -125,10 +125,10 @@ public static partial class Game
                 r18 = r0; func_0042ECF0();
                 r30 = (uint)1; goto L_L0042E280;
                 L_L0042E264: ;
-                r18 = r0; func_0042EEB8();
+                r18 = r0; func_0042EEB8(r4);
                 r30 = (uint)1; goto L_L0042E280;
                 L_L0042E274: ;
-                func_0042EE18();
+                func_0042EE18(r4);
                 r30 = (uint)1;
                 L_L0042E280: ;
                 r23 = (uint)255;

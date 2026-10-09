@@ -59,7 +59,7 @@ public static partial class Game
                                     func_00417574((uint)(r2), default(uint), default(uint), default(uint));
                                     started = 1;
                                 }
-                                func_00418E20((int)(Mem.F32((it + 4u))), (int)(Mem.F32((it + 8u))), (int)(10.0f), (int)(Mem.F32((it + 12u))), Mem.F32((it + 16u)), Mem.S32(it));
+                                func_00418E20((int)(Mem.F32((it + 4u))), (int)(Mem.F32((it + 8u))), (int)Cpu.F2U(10.0f), (int)Cpu.F2U(Mem.F32((it + 12u))), Mem.F32((it + 16u)), Mem.S32(it));
                                 Mem.Set((e + 16u), (uint)(Mem.U32((e + 16u)) + 24u));
                                 Mem.Set((e + 20u), (int)(Mem.S32((e + 20u)) - 1));
                             }

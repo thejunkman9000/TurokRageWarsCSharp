@@ -9,6 +9,7 @@ using Trw.Transpile;
 // usage: trw-transpile --root <c-repo> --out <file.cs> [--syms symbol_addrs.txt] [--sigs-in f] [--sigs-out f] [--report] <file.c | @list.txt> ...
 bool partial = false; string? overrideDir = null; string? astCache = null; string? usedOut = null, defsOut = null, calledOut = null, mipsOut = null; var excludePaths = new List<string>(); string? excludePath = null, root = null, outPath = null, outDir = null, symsPath = null, sigsIn = null, sigsOut = null;
 bool report = false;
+string? arityIn = null;
 var inputs = new List<string>();
 for (int i = 0; i < args.Length; i++)
 {
@@ -28,6 +29,7 @@ for (int i = 0; i < args.Length; i++)
         case "--syms": symsPath = args[++i]; break;
         case "--sigs-in": sigsIn = args[++i]; break;
         case "--sigs-out": sigsOut = args[++i]; break;
+        case "--arity-in": arityIn = args[++i]; break;
         case "--report": report = true; break;
         default:
             if (args[i].StartsWith('@')) inputs.AddRange(File.ReadAllLines(args[i][1..]).Where(l => l.Trim() != ""));
@@ -76,10 +78,18 @@ uint? Lookup(string name)
 
 var sigs = new Dictionary<string, Sig>();
 if (sigsIn != null && File.Exists(sigsIn))
-    foreach (var line in File.ReadLines(sigsIn))
+    foreach (var line in File.ReadLines(sigsIn).Where(l => l.Split('|').Length >= 3))
+    {
+        var (n, s) = Sig.Parse(line);      // keeps the struct sizes and the hidden result pointer, which the register layout needs
+        sigs[n] = s;
+    }
+// name -> how many of a0-a3 the ROM code of that function reads (tools/arity.py): hidden parameters the decompiled prototype lacks
+var romWords = new Dictionary<string, int>();
+if (arityIn != null && File.Exists(arityIn))
+    foreach (var line in File.ReadLines(arityIn))
     {
         var p = line.Split('|');
-        sigs[p[0]] = new Sig(p[1], p[2] == "" ? Array.Empty<string>() : p[2].Split(','));
+        if (p.Length == 2 && int.TryParse(p[1], out var w)) romWords[p[0]] = w;
     }
 
 // one result per input file, filled in parallel and assembled in input order
@@ -99,7 +109,7 @@ Parallel.For(0, inputs.Count, new ParallelOptions { MaxDegreeOfParallelism = Mat
     foreach (var kv in headerAsmLabels) ix.AsmLabels[kv.Key] = kv.Value;
     foreach (Match am in Regex.Matches(File.ReadAllText(path), @"(\w+)\s*\([^()]*\)\s*(?:__asm__|__asm|asm)\s*\(\s*""(\w+)""\s*\)\s*;"))
         ix.AsmLabels[am.Groups[1].Value] = am.Groups[2].Value;
-    var em = new Emitter(ix, Lookup, sigs) { StaticPrefix = Path.GetFileNameWithoutExtension(path) + "_", SourceText = File.ReadAllText(path) };
+    var em = new Emitter(ix, Lookup, sigs, romWords) { StaticPrefix = Path.GetFileNameWithoutExtension(path) + "_", SourceText = File.ReadAllText(path) };
     var mainName = Path.GetFileName(path);
     bool isOverrideFile = overrideDir != null && Path.GetFullPath(Path.GetDirectoryName(path)!).Equals(Path.GetFullPath(overrideDir), StringComparison.OrdinalIgnoreCase);
     string curFile = "";

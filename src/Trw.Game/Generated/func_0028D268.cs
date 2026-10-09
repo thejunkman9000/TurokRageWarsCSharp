@@ -19,7 +19,7 @@ public static partial class Game
                 uint t = 0u;
                 int n = 0;
                 uint p = 0u;
-                t = func_0028FD94(func_0028FD94(Mem.U32((lv + 124u)), default(int)), 1);
+                t = func_0028FD94(func_0028FD94(Mem.U32((lv + 124u)), (int)(uint)(unused)), 1);
                 n = Mem.S32((t + (uint)(1 * 4)));
                 p = (t + (uint)(2 * 4));
                 if ((n > 0))

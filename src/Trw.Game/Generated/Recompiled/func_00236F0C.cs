@@ -227,7 +227,7 @@ public static partial class Game
                 { bool c_ = r2 == 0;  if (c_) goto L_L002372A0; }
                 r17 = Mem.U32((r18 + 32u));
                 { bool c_ = r17 == 0; r4 = r4 - 4773u; if (c_) goto L_L002372A0; }
-                r5 = r17; func_0022A3E8();
+                r5 = r17; func_0022A3E8(r4, r5);
                 L_L002372A0: ;
                 r4 = r18 + 1428u; func_00442B44(r4);
                 r31 = Mem.U32((r29 + 32u));

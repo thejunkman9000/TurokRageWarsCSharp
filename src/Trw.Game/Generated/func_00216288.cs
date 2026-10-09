@@ -38,7 +38,7 @@ public static partial class Game
                     break;
                 case 3:
                     Mem.Copy((_fp + 32u), (o + 28u), 12);
-                    func_0024F468((_fp + 48u));
+                    func_0024F468((_fp + 48u), o);
                     break;
                 }
                 func_00280094(0x80121990u, o, o, (uint)(0), extra, a1, (_fp + 32u), (_fp + 48u), (_fp + 16u), 0, (-1), mode);

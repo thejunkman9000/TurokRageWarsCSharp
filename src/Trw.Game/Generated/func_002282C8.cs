@@ -5,7 +5,7 @@ namespace Trw.Game;
 
 public static partial class Game
 {
-    public static int func_002282C8()
+    public static int func_002282C8(uint _a0, uint _a1, uint _a2)
     {
         unchecked
         {

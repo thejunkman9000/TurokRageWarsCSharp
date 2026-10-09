@@ -14,7 +14,7 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_0024FD4C", (uint)a, (uint)r, (uint)arg2, (uint)@base);
                 float k = 0f;
-                func_0024DD00(default(uint));
+                func_0024DD00((uint)(a));
                 Mem.Set(a, (byte)(0));
                 Mem.Set((a + 4u), Mem.U16((r + 40u)));
                 Mem.Set((a + 28u), arg2);

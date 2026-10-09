@@ -86,7 +86,7 @@ public static partial class Game
                 r2 = 2148794368u;
                 r2 = r2 + 20680u;
                 { bool c_ = r19 == r2;  if (c_) goto L_L0023510C; }
-                r4 = r19; func_00245854();
+                r4 = r19; func_00245854(r4);
                 L_L0023510C: ;
                 Cpu.SetW(24, Mem.U32((r19 + 92u)));
                 Cpu.SetW(23, Mem.U32((r19 + 96u)));

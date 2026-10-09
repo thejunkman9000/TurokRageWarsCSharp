@@ -96,7 +96,7 @@ public static partial class Game
                 }
             }
             dst = Mem.U32(Mem.U32((item + 20u)));
-            dst = (uint)(dst + (uint)((func_00442158(default(uint)) - 11) * 1));
+            dst = (uint)(dst + (uint)((func_00442158((uint)(item)) - 11) * 1));
             if ((s != 0u))
             {
                 for (i = 0; (i < 11); ++i)

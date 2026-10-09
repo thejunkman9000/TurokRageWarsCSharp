@@ -35,9 +35,20 @@ public sealed class Emitter
     /// <summary>Every function this file calls directly (so the generator can stub the ones nobody defines).</summary>
     public readonly HashSet<string> Called = new();
 
-    public Emitter(AstIndex ix, Func<string, uint?> symbolAddress, IReadOnlyDictionary<string, Sig> sigs)
+    /// <summary>name -> how many of a0-a3 the ROM code reads (tools/arity.py); empty when no table was given.</summary>
+    readonly IReadOnlyDictionary<string, int> romWords;
+
+    // per-function state of the register forwarding (see LeftInRegister)
+    List<(string name, int word)> fwdParams = new();   // scalar parameters that still hold their incoming register value, and the word they arrived in
+    HashSet<string> writtenVars = new();                // variables assigned somewhere in the function
+    int callsEmitted;                                   // calls rendered so far: any earlier call may have clobbered a0-a3
+    int loopDepth;                                      // >0 while emitting a loop (its calls repeat)
+    bool flatMode, curIsStatic;
+
+    public Emitter(AstIndex ix, Func<string, uint?> symbolAddress, IReadOnlyDictionary<string, Sig> sigs, IReadOnlyDictionary<string, int>? romWords = null)
     {
         this.ix = ix; this.symbolAddress = symbolAddress; this.sigs = sigs;
+        this.romWords = romWords ?? new Dictionary<string, int>();
     }
 
     static readonly HashSet<string> Keywords = new()
@@ -91,8 +102,13 @@ public sealed class Emitter
         return StaticPrefix + n;
     }
 
-    /// <summary>The C# view of a function: a struct result becomes a hidden leading <c>uint</c> parameter, struct parameters become addresses.</summary>
-    public Sig ToSig(JsonNode fn)
+    /// <summary>
+    /// The C# view of a function: a struct result becomes a hidden leading <c>uint</c> parameter, struct parameters become addresses, and the
+    /// argument registers the ROM code reads beyond what the C prototype declares become trailing <c>uint</c> parameters (see <see cref="Extend"/>).
+    /// </summary>
+    public Sig ToSig(JsonNode fn) => Extend(FnName(fn), BaseSig(fn));
+
+    Sig BaseSig(JsonNode fn)
     {
         var (ret, ps) = SignatureOf(fn);
         string Cs(CType t) => t.Kind == K.Record ? "uint" : t.Cs;
@@ -100,6 +116,22 @@ public sealed class Emitter
         var structs = ps.Select(p => p.Kind == K.Record ? p.Size : 0).ToList();
         if (ret.Kind == K.Record) { list.Insert(0, "uint"); structs.Insert(0, 0); }
         return new Sig(ret.Kind == K.Void ? "void" : Cs(ret), list.ToArray(), structs.ToArray(), ret.Kind == K.Record);
+    }
+
+    /// <summary>
+    /// The decompiled C prototype can be shorter than the machine code: a <c>void f(void)</c> stub that is only <c>jal g</c> forwards its caller's
+    /// a0..a3 to g, and a stale prototype omits trailing arguments the body reads. The ROM listing says how many argument words the code reads
+    /// (tools/arity.py); the missing ones become trailing <c>uint</c> parameters so callers pass them and the body can forward them.
+    /// </summary>
+    Sig Extend(string name, Sig s)
+    {
+        if (!romWords.TryGetValue(name, out var rw)) return s;
+        var (_, have) = Abi.Layout(s.Params, s.Structs);
+        rw = Math.Min(rw, 4);
+        if (rw <= have) return s;
+        var ps = s.Params.ToList(); var st = s.Structs.ToList();
+        for (int w = have; w < rw; w++) { ps.Add("uint"); st.Add(0); }
+        return s with { Params = ps.ToArray(), Structs = st.ToArray() };
     }
     public (CType ret, List<CType> ps) SignatureOf(JsonNode fn)
     {
@@ -139,6 +171,8 @@ public sealed class Emitter
             throw new Unsupported("tail-jump wrapper (jr t9): forwards the caller's argument registers, which the C prototype cannot express");
         foreach (var p in ps) localIds.Add((string)p["id"]!);
         returnsRecord = ret.Kind == K.Record ? ret : null;
+        writtenVars = new(); fwdParams = new(); callsEmitted = 0; loopDepth = 0; flatMode = false;
+        curIsStatic = ix.StaticFunctions.Contains((string)fn["name"]!);
 
         PlanFrame(ps, body);
 
@@ -161,6 +195,28 @@ public sealed class Emitter
                 prologue.Add($"Mem.Set(_fp + {off}u, {pname}_in);");
             }
             else plist.Add($"{pt.Cs} {pname}");
+        }
+        {
+            // argument registers the ROM code reads beyond the C prototype become hidden trailing parameters (see Extend); the parameters that still hold
+            // their incoming value can be forwarded into calls that omit an argument (see LeftInRegister)
+            var baseSig = BaseSig(fn);
+            var (_, declaredWords) = Abi.Layout(baseSig.Params, baseSig.Structs);
+            var full = Extend(name, baseSig);
+            var (first, _2) = Abi.Layout(full.Params, full.Structs);
+            int j = returnsRecord != null ? 1 : 0;
+            foreach (var p in ps)
+            {
+                var pt = TypeOf(p);
+                var id = (string)p["id"]!;
+                if (pt.IsScalarMem && !Abi.IsFp(pt.Cs) && !Abi.IsWide(pt.Cs) && !frame.ContainsKey(id) && !writtenVars.Contains(id) && j < first.Length && first[j] >= 0 && first[j] < 4)
+                    fwdParams.Add((Id((string)p["name"]!), first[j]));
+                j++;
+            }
+            for (int e = 0; declaredWords + e < Math.Min(romWords.GetValueOrDefault(name), 4); e++)
+            {
+                plist.Add($"uint _a{declaredWords + e}");
+                fwdParams.Add(($"_a{declaredWords + e}", declaredWords + e));
+            }
         }
 
         string retCs = ret.Kind == K.Void ? "void" : ret.Kind == K.Record ? "uint" : ret.Cs;
@@ -260,6 +316,7 @@ public sealed class Emitter
     void FlatBody(JsonNode body, List<JsonNode> ps)
     {
         flatLabel = 0; renames = new(); breakTargets.Clear(); continueTargets.Clear(); caseLabels = new(ReferenceEqualityComparer.Instance);
+        flatMode = true;       // gotos and loops expressed as labels: the order of calls in the text says nothing about the order they run in
         var used = new HashSet<string>(ps.Select(p => (string)p["name"]!));
         // hoist the scalar locals that do not live in the guest frame
         void Hoist(JsonNode n)
@@ -435,6 +492,15 @@ public sealed class Emitter
                     if (KindOf(t) == "DeclRefExpr") addrTaken.Add((string)t["referencedDecl"]!["id"]!);
                     break;
                 }
+                case "BinaryOperator" when (string)n["opcode"]! == "=":
+                case "CompoundAssignOperator":
+                case "UnaryOperator" when (string)n["opcode"]! is "++" or "--":
+                {
+                    var t = n["inner"]![0]!;
+                    while (KindOf(t) is "ParenExpr" or "ImplicitCastExpr") t = t["inner"]![0]!;
+                    if (KindOf(t) == "DeclRefExpr") writtenVars.Add((string)t["referencedDecl"]!["id"]!);
+                    break;
+                }
                 case "VarDecl": decls.Add(n); localIds.Add((string)n["id"]!); break;
                 case "CallExpr" when TypeOf(n).Kind == K.Record:
                 {
@@ -520,24 +586,30 @@ public sealed class Emitter
                 if (InnerCount(s) > 2) { Line("else"); Block(Inner(s, 2)); }
                 break;
             case "WhileStmt":
+                loopDepth++;
                 Line($"while ({Cond(Inner(s, 0))})");
                 Block(Inner(s, 1));
+                loopDepth--;
                 break;
             case "DoStmt":
+                loopDepth++;
                 Line("do");
                 Block(Inner(s, 0));
                 Line($"while ({Cond(Inner(s, 1))});");
+                loopDepth--;
                 break;
             case "ForStmt":
             {
                 var kids = s["inner"]!.AsArray().Select(x => x!).ToList();   // init, (condVar), cond, inc, body; absent parts are "<<<NULL>>>"
                 if (kids.Count != 5) throw new Unsupported("for layout");
+                loopDepth++;
                 string init = IsNull(kids[0]) ? "" : KindOf(kids[0]) == "DeclStmt"
                     ? DeclList(kids[0]) : ForList(kids[0]);
                 string cond = IsNull(kids[2]) ? "" : Cond(kids[2]);
                 string inc = IsNull(kids[3]) ? "" : ForList(kids[3]);
                 Line($"for ({init}; {cond}; {inc})");
                 Block(kids[4]);
+                loopDepth--;
                 break;
             }
             case "BreakStmt": Line("break;"); lastTerminates = true; break;
@@ -1118,9 +1190,11 @@ public sealed class Emitter
         {
             var v = Value(argNodes[i]);
             var at = TypeOf(argNodes[i]);
-            if (sig != null && i + shift < sig.Params.Length && at.IsScalarMem && at.Cs != sig.Params[i + shift]) v = $"({sig.Params[i + shift]})({v})";
+            if (sig != null && i + shift < sig.Params.Length && at.IsScalarMem && at.Cs != sig.Params[i + shift]) v = CoerceArg(v, at.Cs, sig, i + shift, argNodes, recRet);
             vals.Add(v);
         }
+        // no call has run yet (arguments included), so a0-a3 still hold this function's own incoming words
+        bool noCallYet = callsEmitted == 0 && loopDepth == 0 && labels.Count == 0 && !flatMode;
         // a stale prototype may pass more arguments than the definition has: the extras were never read, so drop them
         if (sig != null)
         {
@@ -1136,13 +1210,52 @@ public sealed class Emitter
         }
         // the definition may take more parameters than a stale prototype passes; the missing ones are whatever the caller left in registers
         if (sig != null)
-            for (int i = vals.Count; i < sig.Params.Length; i++) vals.Add($"default({sig.Params[i]})");
+            for (int i = vals.Count; i < sig.Params.Length; i++) vals.Add(LeftInRegister(name, sig, i, noCallYet));
         var text = $"{Id(name)}({string.Join(", ", vals)})";
+        callsEmitted++;
         if (recRet) return $"C.Seq({text}, {tmp})";
         var want = TypeOf(call);
         if (!skipRetCast && want.IsScalarMem) lock (ValueUsed) ValueUsed.Add((name, want.Cs));
         if (!skipRetCast && sig != null && sig.Ret != "void" && want.IsScalarMem && want.Cs != sig.Ret) text = $"({want.Cs})({text})";   // stale prototype disagrees with the definition
         return text;
+    }
+
+    /// <summary>
+    /// A parameter the call site does not pass: on the console the callee reads whatever the caller left in that register. That is the caller's own
+    /// incoming argument when nothing ran in between (a stub that is only <c>jal f</c> forwards its a0..a3). Anywhere else the register content cannot
+    /// be named in C#, so the function is recompiled from the MIPS instead (<see cref="Unsupported"/> -> needs_mips).
+    /// </summary>
+    string LeftInRegister(string callee, Sig sig, int i, bool noCallYet)
+    {
+        var t = sig.Params[i];
+        var (first, _) = Abi.Layout(sig.Params, sig.Structs);
+        int w = first[i];
+        if (w < 0 || w >= 4 || !romWords.TryGetValue(callee, out var rw) || w >= rw || Abi.IsWide(t) || t == "double")
+            return $"default({t})";                                                              // F12/F14, stack words, or a word the callee never reads
+        if (noCallYet)
+            foreach (var (pn, word) in fwdParams)
+                if (word == w) return t == "float" ? $"Cpu.U2F((uint)({pn}))" : t == "uint" ? $"(uint)({pn})" : $"({t})(uint)({pn})";
+        if (curIsStatic) return $"default({t})";                                                 // statics have no MIPS twin to fall back to
+        throw new Unsupported($"argument register a{w} of the call to {callee} is read by the callee but holds a value this function cannot name");
+    }
+
+    /// <summary>
+    /// A call-site argument whose C type differs from the definition's parameter type. Between two integer types (or two float types) a numeric
+    /// conversion is right. Between an integer and a float travelling in the same general register the callee reads the raw bits
+    /// (<c>lw a1; jal f</c> / <c>mtc1 a1, f0</c>), so the value must be reinterpreted, not converted.
+    /// </summary>
+    string CoerceArg(string v, string from, Sig sig, int p, List<JsonNode> argNodes, bool recRet)
+    {
+        var to = sig.Params[p];
+        if (Abi.IsFp(from) == Abi.IsFp(to)) return $"({to})({v})";
+        var siteTypes = (recRet ? new[] { "uint" } : Array.Empty<string>()).Concat(argNodes.Select(a => { var t = TypeOf(a); return t.IsScalarMem ? t.Cs : "uint"; })).ToArray();
+        var siteStructs = (recRet ? new[] { 0 } : Array.Empty<int>()).Concat(argNodes.Select(a => { var t = TypeOf(a); return t.Kind == K.Record ? t.Size : 0; })).ToArray();
+        var (calleeFirst, _) = Abi.Layout(sig.Params, sig.Structs);
+        var (siteFirst, _2) = Abi.Layout(siteTypes, siteStructs);
+        bool sameWord = p < siteFirst.Length && calleeFirst[p] >= 0 && calleeFirst[p] == siteFirst[p]
+                        && from != "double" && to != "double" && !Abi.IsWide(from) && !Abi.IsWide(to);
+        if (!sameWord) return $"({to})({v})";                // F12/F14 slot, double or shifted layout: no per-argument typed equivalent
+        return to == "float" ? $"Cpu.U2F((uint)({v}))" : to == "uint" ? $"Cpu.F2U({v})" : $"({to})Cpu.F2U({v})";
     }
 
     /// <summary>A call through a code address: arguments are marshalled into the register convention (see <see cref="Abi"/>).</summary>
@@ -1162,6 +1275,7 @@ public sealed class Emitter
         var values = argNodes.Select(Value).ToArray();
         // an argument of a promoted type is already converted by sema; use the call's own argument types (prototype or not)
         var text = Abi.IndirectCall(addr, discard || retT.Kind is K.Void ? "void" : retT.Kind == K.Record ? "uint" : retT.Cs, types, values, structs, hidden);
+        callsEmitted++;
         return hidden != null ? $"C.Seq({text}, {hidden})" : text;
     }
 }

@@ -50,7 +50,7 @@ public static partial class Game
                 r10 = r10 + 1u;
                 r2 = (uint)((int)r10 < 8 ? 1 : 0);
                 { bool c_ = r2 != 0; r4 = r4 + 4u; if (c_) goto L_L0042C8E8; }
-                r2 = (uint)func_0042D240();
+                r2 = func_0042D240(r4, r5, r6, r7); r3 = Cpu.V1;
                 r15 = r2;
                 { bool c_ = r15 != 0; r2 = (uint)1; if (c_) goto L_L0042C964; }
                 r3 = 2148859904u;

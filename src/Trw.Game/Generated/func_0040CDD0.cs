@@ -77,7 +77,7 @@ public static partial class Game
                         Mem.Set(0x800E2AB8u, 1);
                     }
                     func_00417574((uint)(h), default(uint), default(uint), default(uint));
-                    func_00418E20((int)((float)(Mem.S32(((_fp + 56u) + (uint)(0 * 4))))), (int)((float)(Mem.S32(((_fp + 56u) + (uint)(2 * 4))))), (int)((float)(0)), (int)((float)(((Mem.S32(((_fp + 56u) + (uint)(1 * 4))) - Mem.S32(((_fp + 56u) + (uint)(0 * 4)))) + 1))), (float)(((Mem.S32(((_fp + 56u) + (uint)(3 * 4))) - Mem.S32(((_fp + 56u) + (uint)(2 * 4)))) + 1)), col);
+                    func_00418E20((int)((float)(Mem.S32(((_fp + 56u) + (uint)(0 * 4))))), (int)((float)(Mem.S32(((_fp + 56u) + (uint)(2 * 4))))), (int)Cpu.F2U((float)(0)), (int)Cpu.F2U((float)(((Mem.S32(((_fp + 56u) + (uint)(1 * 4))) - Mem.S32(((_fp + 56u) + (uint)(0 * 4)))) + 1))), (float)(((Mem.S32(((_fp + 56u) + (uint)(3 * 4))) - Mem.S32(((_fp + 56u) + (uint)(2 * 4)))) + 1)), col);
                     if ((pushed != 0))
                     {
                         func_002A2870(Mem.S32(((_fp + 72u) + (uint)(0 * 4))), Mem.S32(((_fp + 72u) + (uint)(2 * 4))), Mem.S32(((_fp + 72u) + (uint)(1 * 4))), Mem.S32(((_fp + 72u) + (uint)(3 * 4))));

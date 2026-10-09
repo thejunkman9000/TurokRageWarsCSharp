@@ -33,13 +33,13 @@ public static partial class Game
                         switch (Mem.S32((0x801468A0u + 112u)))
                         {
                         case 0:
-                            func_0025DE74(6305, (uint)(Mem.F32((actor + (uint)8))), (int)(Mem.F32((actor + (uint)12))), (int)(Mem.F32((actor + (uint)16))));
+                            func_0025DE74(6305, Cpu.F2U(Mem.F32((actor + (uint)8))), (int)(Mem.F32((actor + (uint)12))), (int)(Mem.F32((actor + (uint)16))));
                             break;
                         case 1:
-                            func_0025DE74(6505, (uint)(Mem.F32((actor + (uint)8))), (int)(Mem.F32((actor + (uint)12))), (int)(Mem.F32((actor + (uint)16))));
+                            func_0025DE74(6505, Cpu.F2U(Mem.F32((actor + (uint)8))), (int)(Mem.F32((actor + (uint)12))), (int)(Mem.F32((actor + (uint)16))));
                             break;
                         case 2:
-                            func_0025DE74(6405, (uint)(Mem.F32((actor + (uint)8))), (int)(Mem.F32((actor + (uint)12))), (int)(Mem.F32((actor + (uint)16))));
+                            func_0025DE74(6405, Cpu.F2U(Mem.F32((actor + (uint)8))), (int)(Mem.F32((actor + (uint)12))), (int)(Mem.F32((actor + (uint)16))));
                             break;
                         }
                     }

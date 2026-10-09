@@ -5,7 +5,7 @@ namespace Trw.Game;
 
 public static partial class Game
 {
-    public static void func_00204808(uint actor, uint state)
+    public static void func_00204808(uint actor, uint state, uint _a2)
     {
         unchecked
         {
@@ -17,7 +17,7 @@ public static partial class Game
                 v = 0.0f;
             }
             Mem.Set(0x800D15F0u, v);
-            func_0024A1C0(default(uint), default(int), default(uint));
+            func_0024A1C0((uint)(actor), (int)(uint)(state), (uint)(_a2));
         }
     }
 

@@ -867,7 +867,7 @@ public static partial class Game
                 r2 = r2 & r3;
                 { bool c_ = r2 == 0; r4 = r18; if (c_) goto L_L002492E0; }
                 r5 = r23;
-                r6 = r21; func_002480E0(r4, r5, r6);
+                r6 = r21; r2 = func_002480E0(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_L002492E0: ;
                 r13 = Mem.U32((r29 + 8792u));
                 { bool c_ = r23 != r13; r10 = (uint)-1; if (c_) goto L_L00249304; }

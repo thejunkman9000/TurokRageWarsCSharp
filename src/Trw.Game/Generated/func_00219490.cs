@@ -37,7 +37,7 @@ public static partial class Game
                     func_0027302C(mp, _fp);
                     if ((Mem.S32(0x800E28D8u) == 2))
                     {
-                        func_00273618(mp, (float)(Mem.S32(0x800CE72Cu)), Mem.F32(0x800C73C0u), Mem.F32(0x800C73C0u));
+                        func_00273618(mp, Cpu.U2F((uint)(Mem.S32(0x800CE72Cu))), Mem.F32(0x800C73C0u), Mem.F32(0x800C73C0u));
                     }
                     func_002702EC(mp, (o + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 16)));
                     func_00272908(_fp, (o + 168u), (_fp + 128u));

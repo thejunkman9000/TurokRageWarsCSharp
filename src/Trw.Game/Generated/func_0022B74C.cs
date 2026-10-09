@@ -15,7 +15,7 @@ public static partial class Game
             {
                 Mem.Set((a + 5040u), 0);
             }
-            func_002A125C(((a + 4932u) + (uint)(Mem.S32((a + 5040u)) * 21)), default(uint));
+            func_002A125C(((a + 4932u) + (uint)(Mem.S32((a + 5040u)) * 21)), (uint)(unused));
             if ((Mem.U32((a + 1500u)) != 0u))
             {
                 func_00239760(0x80145088u, Mem.U32((a + 1500u)), ((a + 4932u) + (uint)(Mem.S32((a + 5040u)) * 21)), x);

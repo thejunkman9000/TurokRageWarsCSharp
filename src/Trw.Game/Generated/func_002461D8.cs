@@ -17,7 +17,7 @@ public static partial class Game
                 float d = 0f;
                 uint new_var2 = 0u;
                 int s = 0;
-                float h = func_00275E44((uint)((int)(Mem.U32((o + 20u)))), (float)(Mem.S32((o + 8u))), (float)(Mem.S32((o + 16u))));
+                float h = func_00275E44((uint)((int)(Mem.U32((o + 20u)))), Cpu.U2F((uint)(Mem.S32((o + 8u)))), Cpu.U2F((uint)(Mem.S32((o + 16u)))));
                 d = (Mem.F32((o + 12u)) - h);
                 Mem.Copy(_fp, (o + 28u), 12);
                 new_var2 = o;
@@ -29,7 +29,7 @@ public static partial class Game
                 func_00243A80((int)(new_var2), (_fp + 16u), (float)(0x801040D0u), default(float), default(int));
                 Mem.Set((0x801040D0u + (uint)(0 * 4)), s);
                 Mem.Copy((new_var2 + 28u), _fp, 12);
-                Mem.Set((new_var2 + 12u), (func_00275E44((uint)((int)(Mem.U32((new_var2 + 20u)))), (float)(Mem.S32((new_var2 + 8u))), (float)(Mem.S32((new_var2 + 16u)))) + d));
+                Mem.Set((new_var2 + 12u), (func_00275E44((uint)((int)(Mem.U32((new_var2 + 20u)))), Cpu.U2F((uint)(Mem.S32((new_var2 + 8u)))), Cpu.U2F((uint)(Mem.S32((new_var2 + 16u))))) + d));
             }
         }
         finally { Stack.Free(28); }

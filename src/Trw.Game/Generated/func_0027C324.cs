@@ -57,7 +57,7 @@ public static partial class Game
                     func_0025DE74((int)((short)(s3)), 0x80104290u, 0, (-1));
                 }
                 L_tail: ;
-                func_0027200C((o + 396u), (o + 396u), (float)(Mem.S32((o + 452u))));
+                func_0027200C((o + 396u), (o + 396u), Cpu.U2F((uint)(Mem.S32((o + 452u)))));
                 Mem.Set((o + 92u), (uint)((uint)(Mem.U32((o + 92u))) | (uint)(1024)));
                 if (((int)(Mem.S8((o + 441u))) == 1))
                 {

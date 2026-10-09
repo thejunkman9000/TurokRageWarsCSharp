@@ -15,11 +15,11 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0024F624", (uint)a);
                 if ((Mem.S32(Mem.U32((a + 24u))) == 8))
                 {
-                    func_00273744(_fp, (float)(Mem.S32(0x8013B190u)));
+                    func_00273744(_fp, Cpu.U2F((uint)(Mem.S32(0x8013B190u))));
                 }
                 else
                 {
-                    func_00273744(_fp, (float)(Mem.S32((a + 372u))));
+                    func_00273744(_fp, Cpu.U2F((uint)(Mem.S32((a + 372u)))));
                 }
                 func_002734EC(_fp, Mem.F32((a + 404u)), Mem.F32((a + 404u)), Mem.F32((a + 404u)));
                 func_002725BC((a + 8u), 2.0E+4f);

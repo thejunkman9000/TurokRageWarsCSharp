@@ -57,7 +57,7 @@ public static partial class Game
                 r2 = Mem.U16((r16 + 8u));
                 r2 = r2 & 1u;
                 if (r2 == 0) { r18 = r18 + 1u; goto L_L00411644; }
-                r4 = r16 + 12u; func_004196A4();
+                r4 = r16 + 12u; func_004196A4(r4);
                 r2 = Mem.U16((r16 + 8u));
                 r2 = r2 & 65534u;
                 Mem.Set((r16 + 8u), (ushort)r2);

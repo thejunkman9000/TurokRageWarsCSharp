@@ -284,6 +284,7 @@ public static partial class Game
         Funcs.Add(0x0042E080U, "func_0042E080", (a0, a1, a2, a3) => func_0042E080(a0, a1, a2, a3));
         Funcs.Add(0x0042DBD0U, "func_0042DBD0", (a0, a1, a2, a3) => func_0042DBD0(a0, a1, a2, a3));
         Funcs.Add(0x0042DBC8U, "func_0042DBC8", (a0, a1, a2, a3) => func_0042DBC8(a0, a1, a2, a3));
+        Funcs.Add(0x0042D240U, "func_0042D240", (a0, a1, a2, a3) => func_0042D240(a0, a1, a2, a3));
         Funcs.Add(0x0042C8ACU, "func_0042C8AC", (a0, a1, a2, a3) => func_0042C8AC(a0, a1, a2, a3));
         Funcs.Add(0x0042C1F8U, "func_0042C1F8", (a0, a1, a2, a3) => func_0042C1F8(a0, a1, a2, a3));
         Funcs.Add(0x0042BD40U, "func_0042BD40", (a0, a1, a2, a3) => func_0042BD40(a0, a1, a2, a3));
@@ -324,13 +325,14 @@ public static partial class Game
         Funcs.Add(0x00422728U, "func_00422728", (a0, a1, a2, a3) => func_00422728(a0, a1, a2, a3));
         Funcs.Add(0x00422510U, "func_00422510", (a0, a1, a2, a3) => func_00422510(a0, a1, a2, a3));
         Funcs.Add(0x00422260U, "func_00422260", (a0, a1, a2, a3) => func_00422260(a0, a1, a2, a3));
+        Funcs.Add(0x004220D8U, "func_004220D8", (a0, a1, a2, a3) => func_004220D8(a0, a1, a2, a3));
         Funcs.Add(0x0042204CU, "func_0042204C", (a0, a1, a2, a3) => func_0042204C(a0, a1, a2, a3));
-        Funcs.Add(0x00421B20U, "func_00421B20", (a0, a1, a2, a3) => func_00421B20(a0, a1, a2, a3));
-        Funcs.Add(0x004215D8U, "func_004215D8", (a0, a1, a2, a3) => func_004215D8(a0, a1, a2, a3));
     }
 
     private static void RegisterRecompiled2()
     {
+        Funcs.Add(0x00421B20U, "func_00421B20", (a0, a1, a2, a3) => func_00421B20(a0, a1, a2, a3));
+        Funcs.Add(0x004215D8U, "func_004215D8", (a0, a1, a2, a3) => func_004215D8(a0, a1, a2, a3));
         Funcs.Add(0x0042144CU, "func_0042144C", (a0, a1, a2, a3) => func_0042144C(a0, a1, a2, a3));
         Funcs.Add(0x004208C0U, "func_004208C0", (a0, a1, a2, a3) => func_004208C0(a0, a1, a2, a3));
         Funcs.Add(0x00420688U, "func_00420688", (a0, a1, a2, a3) => func_00420688(a0, a1, a2, a3));
@@ -407,6 +409,7 @@ public static partial class Game
         Funcs.Add(0x0040BC2CU, "func_0040BC2C", (a0, a1, a2, a3) => func_0040BC2C(a0, a1, a2, a3));
         Funcs.Add(0x0040A83CU, "func_0040A83C", (a0, a1, a2, a3) => func_0040A83C(a0, a1, a2, a3));
         Funcs.Add(0x0040A640U, "func_0040A640", (a0, a1, a2, a3) => func_0040A640(a0, a1, a2, a3));
+        Funcs.Add(0x0040A270U, "func_0040A270", (a0, a1, a2, a3) => func_0040A270(a0, a1, a2, a3));
         Funcs.Add(0x00409AECU, "func_00409AEC", (a0, a1, a2, a3) => func_00409AEC(a0, a1, a2, a3));
         Funcs.Add(0x00408E1CU, "func_00408E1C", (a0, a1, a2, a3) => func_00408E1C(a0, a1, a2, a3));
         Funcs.Add(0x00408B34U, "func_00408B34", (a0, a1, a2, a3) => func_00408B34(a0, a1, a2, a3, Cpu.Stk[4], Cpu.Stk[5], Cpu.Stk[6]));
@@ -478,13 +481,13 @@ public static partial class Game
         Funcs.Add(0x002C3530U, "func_002C3530", (a0, a1, a2, a3) => func_002C3530(a0, a1, a2, a3, Cpu.Stk[4], Cpu.Stk[5], Cpu.Stk[6], Cpu.Stk[7], Cpu.Stk[8], Cpu.Stk[9], Cpu.Stk[10], Cpu.Stk[11], Cpu.Stk[12], Cpu.Stk[13], Cpu.Stk[14], Cpu.Stk[15], Cpu.Stk[16], Cpu.Stk[17], Cpu.Stk[18], Cpu.Stk[19], Cpu.Stk[20], Cpu.Stk[21]));
         Funcs.Add(0x002C24B8U, "func_002C24B8", (a0, a1, a2, a3) => func_002C24B8(a0, a1, a2, a3));
         Funcs.Add(0x002C2490U, "func_002C2490", (a0, a1, a2, a3) => func_002C2490(a0, a1, a2, a3));
-        Funcs.Add(0x002C2410U, "func_002C2410", (a0, a1, a2, a3) => func_002C2410(a0, a1, a2, a3, Cpu.Stk[4], Cpu.Stk[5], Cpu.Stk[6], Cpu.Stk[7], Cpu.Stk[8], Cpu.Stk[9], Cpu.Stk[10]));
-        Funcs.Add(0x002C2408U, "func_002C2408", (a0, a1, a2, a3) => func_002C2408(a0, a1, a2, a3));
-        Funcs.Add(0x002C23E0U, "func_002C23E0", (a0, a1, a2, a3) => func_002C23E0(a0, a1, a2, a3));
     }
 
     private static void RegisterRecompiled3()
     {
+        Funcs.Add(0x002C2410U, "func_002C2410", (a0, a1, a2, a3) => func_002C2410(a0, a1, a2, a3, Cpu.Stk[4], Cpu.Stk[5], Cpu.Stk[6], Cpu.Stk[7], Cpu.Stk[8], Cpu.Stk[9], Cpu.Stk[10]));
+        Funcs.Add(0x002C2408U, "func_002C2408", (a0, a1, a2, a3) => func_002C2408(a0, a1, a2, a3));
+        Funcs.Add(0x002C23E0U, "func_002C23E0", (a0, a1, a2, a3) => func_002C23E0(a0, a1, a2, a3));
         Funcs.Add(0x002C23D8U, "func_002C23D8", (a0, a1, a2, a3) => func_002C23D8(a0, a1, a2, a3));
         Funcs.Add(0x002C2370U, "func_002C2370", (a0, a1, a2, a3) => func_002C2370(a0, a1, a2, a3));
         Funcs.Add(0x002C2310U, "func_002C2310", (a0, a1, a2, a3) => func_002C2310(a0, a1, a2, a3));
@@ -632,13 +635,13 @@ public static partial class Game
         Funcs.Add(0x002BC3A0U, "func_002BC3A0", (a0, a1, a2, a3) => func_002BC3A0(a0, a1, a2, a3));
         Funcs.Add(0x002BC390U, "func_002BC390", (a0, a1, a2, a3) => func_002BC390(a0, a1, a2, a3));
         Funcs.Add(0x002BC38CU, "func_002BC38C", (a0, a1, a2, a3) => func_002BC38C(a0, a1, a2, a3));
-        Funcs.Add(0x002BC380U, "func_002BC380", (a0, a1, a2, a3) => func_002BC380_rc(a0, a1, a2, a3));
-        Funcs.Add(0x002BC37CU, "func_002BC37C", (a0, a1, a2, a3) => func_002BC37C(a0, a1, a2, a3));
-        Funcs.Add(0x002BC06CU, "func_002BC06C", (a0, a1, a2, a3) => func_002BC06C(a0, a1, a2, a3, Cpu.Stk[4], Cpu.Stk[5], Cpu.Stk[6]));
     }
 
     private static void RegisterRecompiled4()
     {
+        Funcs.Add(0x002BC380U, "func_002BC380", (a0, a1, a2, a3) => func_002BC380_rc(a0, a1, a2, a3));
+        Funcs.Add(0x002BC37CU, "func_002BC37C", (a0, a1, a2, a3) => func_002BC37C(a0, a1, a2, a3));
+        Funcs.Add(0x002BC06CU, "func_002BC06C", (a0, a1, a2, a3) => func_002BC06C(a0, a1, a2, a3, Cpu.Stk[4], Cpu.Stk[5], Cpu.Stk[6]));
         Funcs.Add(0x002BD560U, "func_002BD560", (a0, a1, a2, a3) => func_002BD560(a0, a1, a2, a3, Cpu.Stk[4], Cpu.Stk[5], Cpu.Stk[6], Cpu.Stk[7], Cpu.Stk[8], Cpu.Stk[9], Cpu.Stk[10], Cpu.Stk[11], Cpu.Stk[12], Cpu.Stk[13], Cpu.Stk[14], Cpu.Stk[15], Cpu.Stk[16], Cpu.Stk[17], Cpu.Stk[18], Cpu.Stk[19], Cpu.Stk[20], Cpu.Stk[21], Cpu.Stk[22], Cpu.Stk[23]));
         Funcs.Add(0x002BBD8CU, "func_002BBD8C", (a0, a1, a2, a3) => func_002BBD8C(a0, a1, a2, a3, Cpu.Stk[4], Cpu.Stk[5], Cpu.Stk[6]));
         Funcs.Add(0x002BBD3CU, "func_002BBD3C", (a0, a1, a2, a3) => func_002BBD3C(a0, a1, a2, a3));
@@ -786,13 +789,13 @@ public static partial class Game
         Funcs.Add(0x002B5000U, "func_002B5000", (a0, a1, a2, a3) => func_002B5000(a0, a1, a2, a3));
         Funcs.Add(0x002B4FF4U, "func_002B4FF4", (a0, a1, a2, a3) => func_002B4FF4(a0, a1, a2, a3, Cpu.Stk[4], Cpu.Stk[5], Cpu.Stk[6], Cpu.Stk[7], Cpu.Stk[8], Cpu.Stk[9], Cpu.Stk[10], Cpu.Stk[11], Cpu.Stk[12], Cpu.Stk[13], Cpu.Stk[14], Cpu.Stk[15]));
         Funcs.Add(0x002B4FB0U, "func_002B4FB0", (a0, a1, a2, a3) => func_002B4FB0(a0, a1, a2, a3, Cpu.Stk[4], Cpu.Stk[5]));
-        Funcs.Add(0x002B4F80U, "func_002B4F80", (a0, a1, a2, a3) => func_002B4F80(a0, a1, a2, a3));
-        Funcs.Add(0x002B4F7CU, "func_002B4F7C", (a0, a1, a2, a3) => func_002B4F7C(a0, a1, a2, a3));
-        Funcs.Add(0x002B4F50U, "func_002B4F50", (a0, a1, a2, a3) => func_002B4F50(a0, a1, a2, a3));
     }
 
     private static void RegisterRecompiled5()
     {
+        Funcs.Add(0x002B4F80U, "func_002B4F80", (a0, a1, a2, a3) => func_002B4F80(a0, a1, a2, a3));
+        Funcs.Add(0x002B4F7CU, "func_002B4F7C", (a0, a1, a2, a3) => func_002B4F7C(a0, a1, a2, a3));
+        Funcs.Add(0x002B4F50U, "func_002B4F50", (a0, a1, a2, a3) => func_002B4F50(a0, a1, a2, a3));
         Funcs.Add(0x002B4F00U, "func_002B4F00", (a0, a1, a2, a3) => func_002B4F00(a0, a1, a2, a3));
         Funcs.Add(0x002B4EFCU, "func_002B4EFC", (a0, a1, a2, a3) => func_002B4EFC(a0, a1, a2, a3));
         Funcs.Add(0x002B4ECCU, "func_002B4ECC", (a0, a1, a2, a3) => func_002B4ECC(a0, a1, a2, a3));
@@ -940,13 +943,13 @@ public static partial class Game
         Funcs.Add(0x00295B84U, "func_00295B84", (a0, a1, a2, a3) => func_00295B84(a0, a1, a2, a3));
         Funcs.Add(0x00295B30U, "func_00295B30", (a0, a1, a2, a3) => func_00295B30(a0, a1, a2, a3));
         Funcs.Add(0x00295B18U, "func_00295B18", (a0, a1, a2, a3) => func_00295B18(a0, a1, a2, a3));
-        Funcs.Add(0x00295B00U, "func_00295B00", (a0, a1, a2, a3) => func_00295B00(a0, a1, a2, a3));
-        Funcs.Add(0x00295AF0U, "func_00295AF0", (a0, a1, a2, a3) => func_00295AF0(a0, a1, a2, a3));
-        Funcs.Add(0x00295AE0U, "func_00295AE0", (a0, a1, a2, a3) => func_00295AE0(a0, a1, a2, a3));
     }
 
     private static void RegisterRecompiled6()
     {
+        Funcs.Add(0x00295B00U, "func_00295B00", (a0, a1, a2, a3) => func_00295B00(a0, a1, a2, a3));
+        Funcs.Add(0x00295AF0U, "func_00295AF0", (a0, a1, a2, a3) => func_00295AF0(a0, a1, a2, a3));
+        Funcs.Add(0x00295AE0U, "func_00295AE0", (a0, a1, a2, a3) => func_00295AE0(a0, a1, a2, a3));
         Funcs.Add(0x002953FCU, "func_002953FC", (a0, a1, a2, a3) => func_002953FC(a0, a1, a2, a3));
         Funcs.Add(0x00294F1CU, "func_00294F1C", (a0, a1, a2, a3) => func_00294F1C(a0, a1, a2, a3));
         Funcs.Add(0x00294C98U, "func_00294C98", (a0, a1, a2, a3) => func_00294C98(a0, a1, a2, a3));
@@ -1014,6 +1017,7 @@ public static partial class Game
         Funcs.Add(0x0027ADBCU, "func_0027ADBC", (a0, a1, a2, a3) => func_0027ADBC(a0, a1, a2, a3));
         Funcs.Add(0x0027A540U, "func_0027A540", (a0, a1, a2, a3) => func_0027A540(a0, a1, a2, a3));
         Funcs.Add(0x0027A0F4U, "func_0027A0F4", (a0, a1, a2, a3) => func_0027A0F4(a0, a1, a2, a3));
+        Funcs.Add(0x00279A70U, "func_00279A70", (a0, a1, a2, a3) => func_00279A70(a0, a1, a2, a3));
         Funcs.Add(0x00279A64U, "func_00279A64", (a0, a1, a2, a3) => func_00279A64(a0, a1, a2, a3));
         Funcs.Add(0x00279514U, "func_00279514", (a0, a1, a2, a3) => func_00279514(a0, a1, a2, a3, Cpu.Stk[4], Cpu.Stk[5], Cpu.Stk[6], Cpu.Stk[7], Cpu.Stk[8], Cpu.Stk[9], Cpu.Stk[10], Cpu.Stk[11], Cpu.Stk[12], Cpu.Stk[13], Cpu.Stk[14], Cpu.Stk[15], Cpu.Stk[16], Cpu.Stk[17], Cpu.Stk[18], Cpu.Stk[19], Cpu.Stk[20], Cpu.Stk[21], Cpu.Stk[22], Cpu.Stk[23]));
         Funcs.Add(0x00278BACU, "func_00278BAC", (a0, a1, a2, a3) => func_00278BAC(a0, a1, a2, a3));
@@ -1093,14 +1097,14 @@ public static partial class Game
         Funcs.Add(0x00260158U, "func_00260158", (a0, a1, a2, a3) => func_00260158_rc(a0, a1, a2, a3));
         Funcs.Add(0x0025FFD0U, "func_0025FFD0", (a0, a1, a2, a3) => func_0025FFD0(a0, a1, a2, a3));
         Funcs.Add(0x0025FD94U, "func_0025FD94", (a0, a1, a2, a3) => func_0025FD94(a0, a1, a2, a3));
-        Funcs.Add(0x0025F58CU, "func_0025F58C", (a0, a1, a2, a3) => func_0025F58C(a0, a1, a2, a3));
-        Funcs.Add(0x0025F454U, "func_0025F454", (a0, a1, a2, a3) => func_0025F454_rc(a0, a1, a2, a3));
-        Funcs.Add(0x0025F0F4U, "func_0025F0F4", (a0, a1, a2, a3) => func_0025F0F4(a0, a1, a2, a3, Cpu.Stk[4], Cpu.Stk[5]));
-        Funcs.Add(0x0025E5D0U, "func_0025E5D0", (a0, a1, a2, a3) => func_0025E5D0_rc(a0, a1, a2, a3));
     }
 
     private static void RegisterRecompiled7()
     {
+        Funcs.Add(0x0025F58CU, "func_0025F58C", (a0, a1, a2, a3) => func_0025F58C(a0, a1, a2, a3));
+        Funcs.Add(0x0025F454U, "func_0025F454", (a0, a1, a2, a3) => func_0025F454_rc(a0, a1, a2, a3));
+        Funcs.Add(0x0025F0F4U, "func_0025F0F4", (a0, a1, a2, a3) => func_0025F0F4(a0, a1, a2, a3, Cpu.Stk[4], Cpu.Stk[5]));
+        Funcs.Add(0x0025E5D0U, "func_0025E5D0", (a0, a1, a2, a3) => func_0025E5D0_rc(a0, a1, a2, a3));
         Funcs.Add(0x0025E51CU, "func_0025E51C", (a0, a1, a2, a3) => func_0025E51C(a0, a1, a2, a3));
         Funcs.Add(0x0025DE4CU, "func_0025DE4C", (a0, a1, a2, a3) => func_0025DE4C(a0, a1, a2, a3));
         Funcs.Add(0x0025D470U, "func_0025D470", (a0, a1, a2, a3) => func_0025D470(a0, a1, a2, a3));
@@ -1164,6 +1168,7 @@ public static partial class Game
         Funcs.Add(0x00251448U, "func_00251448", (a0, a1, a2, a3) => func_00251448(a0, a1, a2, a3));
         Funcs.Add(0x002512C8U, "func_002512C8", (a0, a1, a2, a3) => func_002512C8(a0, a1, a2, a3));
         Funcs.Add(0x00250E10U, "func_00250E10", (a0, a1, a2, a3) => func_00250E10(a0, a1, a2, a3));
+        Funcs.Add(0x00250A44U, "func_00250A44", (a0, a1, a2, a3) => func_00250A44(a0, a1, a2, a3));
         Funcs.Add(0x002508E0U, "func_002508E0", (a0, a1, a2, a3) => func_002508E0(a0, a1, a2, a3));
         Funcs.Add(0x00250028U, "func_00250028", (a0, a1, a2, a3) => func_00250028(a0, a1, a2, a3, Cpu.Stk[4], Cpu.Stk[5], Cpu.Stk[6], Cpu.Stk[7], Cpu.Stk[8], Cpu.Stk[9], Cpu.Stk[10], Cpu.Stk[11], Cpu.Stk[12], Cpu.Stk[13], Cpu.Stk[14], Cpu.Stk[15], Cpu.Stk[16], Cpu.Stk[17], Cpu.Stk[18], Cpu.Stk[19], Cpu.Stk[20], Cpu.Stk[21], Cpu.Stk[22], Cpu.Stk[23]));
         Funcs.Add(0x0024F940U, "func_0024F940", (a0, a1, a2, a3) => func_0024F940_rc(a0, a1, a2, a3, Cpu.Stk[4]));
@@ -1185,6 +1190,7 @@ public static partial class Game
         Funcs.Add(0x0024A790U, "func_0024A790", (a0, a1, a2, a3) => func_0024A790(a0, a1, a2, a3));
         Funcs.Add(0x00249E18U, "func_00249E18", (a0, a1, a2, a3) => func_00249E18(a0, a1, a2, a3));
         Funcs.Add(0x002484A0U, "func_002484A0", (a0, a1, a2, a3) => func_002484A0(a0, a1, a2, a3));
+        Funcs.Add(0x002480E0U, "func_002480E0", (a0, a1, a2, a3) => func_002480E0(a0, a1, a2, a3));
         Funcs.Add(0x00247BA4U, "func_00247BA4", (a0, a1, a2, a3) => func_00247BA4(a0, a1, a2, a3, Cpu.Stk[4], Cpu.Stk[5], Cpu.Stk[6], Cpu.Stk[7], Cpu.Stk[8], Cpu.Stk[9], Cpu.Stk[10]));
         Funcs.Add(0x002476B8U, "func_002476B8", (a0, a1, a2, a3) => func_002476B8_rc(a0, a1, a2, a3));
         Funcs.Add(0x0024714CU, "func_0024714C", (a0, a1, a2, a3) => func_0024714C(a0, a1, a2, a3));
@@ -1245,16 +1251,16 @@ public static partial class Game
         Funcs.Add(0x002372C4U, "func_002372C4", (a0, a1, a2, a3) => func_002372C4(a0, a1, a2, a3));
         Funcs.Add(0x00236F0CU, "func_00236F0C", (a0, a1, a2, a3) => func_00236F0C(a0, a1, a2, a3));
         Funcs.Add(0x00236864U, "func_00236864", (a0, a1, a2, a3) => func_00236864(a0, a1, a2, a3));
+    }
+
+    private static void RegisterRecompiled8()
+    {
         Funcs.Add(0x00235AD0U, "func_00235AD0", (a0, a1, a2, a3) => func_00235AD0(a0, a1, a2, a3));
         Funcs.Add(0x00234FDCU, "func_00234FDC", (a0, a1, a2, a3) => func_00234FDC(a0, a1, a2, a3));
         Funcs.Add(0x00234DD0U, "func_00234DD0", (a0, a1, a2, a3) => func_00234DD0(a0, a1, a2, a3));
         Funcs.Add(0x002343B8U, "func_002343B8", (a0, a1, a2, a3) => func_002343B8(a0, a1, a2, a3));
         Funcs.Add(0x00233DECU, "func_00233DEC", (a0, a1, a2, a3) => func_00233DEC(a0, a1, a2, a3));
         Funcs.Add(0x002337B8U, "func_002337B8", (a0, a1, a2, a3) => func_002337B8(a0, a1, a2, a3));
-    }
-
-    private static void RegisterRecompiled8()
-    {
         Funcs.Add(0x00232394U, "func_00232394", (a0, a1, a2, a3) => func_00232394(a0, a1, a2, a3));
         Funcs.Add(0x002321B8U, "func_002321B8", (a0, a1, a2, a3) => func_002321B8(a0, a1, a2, a3));
         Funcs.Add(0x00231F5CU, "func_00231F5C", (a0, a1, a2, a3) => func_00231F5C(a0, a1, a2, a3));
@@ -1267,6 +1273,7 @@ public static partial class Game
         Funcs.Add(0x00230048U, "func_00230048", (a0, a1, a2, a3) => func_00230048(a0, a1, a2, a3));
         Funcs.Add(0x0022FAE8U, "func_0022FAE8", (a0, a1, a2, a3) => func_0022FAE8(a0, a1, a2, a3));
         Funcs.Add(0x0022F760U, "func_0022F760", (a0, a1, a2, a3) => func_0022F760(a0, a1, a2, a3));
+        Funcs.Add(0x0022F5D0U, "func_0022F5D0", (a0, a1, a2, a3) => func_0022F5D0(a0, a1, a2, a3));
         Funcs.Add(0x0022F54CU, "func_0022F54C", (a0, a1, a2, a3) => func_0022F54C(a0, a1, a2, a3));
         Funcs.Add(0x0022F4F0U, "func_0022F4F0", (a0, a1, a2, a3) => func_0022F4F0(a0, a1, a2, a3, Cpu.Stk[4]));
         Funcs.Add(0x0022F444U, "func_0022F444", (a0, a1, a2, a3) => func_0022F444(a0, a1, a2, a3));
@@ -1291,6 +1298,7 @@ public static partial class Game
         Funcs.Add(0x00229294U, "func_00229294", (a0, a1, a2, a3) => func_00229294(a0, a1, a2, a3));
         Funcs.Add(0x00228F94U, "func_00228F94", (a0, a1, a2, a3) => func_00228F94(a0, a1, a2, a3));
         Funcs.Add(0x0022804CU, "func_0022804C", (a0, a1, a2, a3) => func_0022804C(a0, a1, a2, a3));
+        Funcs.Add(0x00227E68U, "func_00227E68", (a0, a1, a2, a3) => func_00227E68(a0, a1, a2, a3));
         Funcs.Add(0x00227160U, "func_00227160", (a0, a1, a2, a3) => func_00227160(a0, a1, a2, a3, Cpu.Stk[4], Cpu.Stk[5], Cpu.Stk[6], Cpu.Stk[7], Cpu.Stk[8], Cpu.Stk[9], Cpu.Stk[10], Cpu.Stk[11], Cpu.Stk[12], Cpu.Stk[13], Cpu.Stk[14], Cpu.Stk[15]));
         Funcs.Add(0x00227014U, "func_00227014", (a0, a1, a2, a3) => func_00227014(a0, a1, a2, a3));
         Funcs.Add(0x00226DACU, "func_00226DAC", (a0, a1, a2, a3) => func_00226DAC(a0, a1, a2, a3));
@@ -1397,6 +1405,10 @@ public static partial class Game
         Funcs.Add(0x00205F18U, "func_00205F18", (a0, a1, a2, a3) => func_00205F18(a0, a1, a2, a3));
         Funcs.Add(0x00205720U, "func_00205720", (a0, a1, a2, a3) => func_00205720(a0, a1, a2, a3));
         Funcs.Add(0x00204A68U, "func_00204A68", (a0, a1, a2, a3) => func_00204A68(a0, a1, a2, a3));
+    }
+
+    private static void RegisterRecompiled9()
+    {
         Funcs.Add(0x00204870U, "func_00204870", (a0, a1, a2, a3) => func_00204870(a0, a1, a2, a3));
         Funcs.Add(0x0020486CU, "func_0020486C", (a0, a1, a2, a3) => func_0020486C(a0, a1, a2, a3));
         Funcs.Add(0x00204868U, "func_00204868", (a0, a1, a2, a3) => func_00204868(a0, a1, a2, a3));
@@ -1405,10 +1417,6 @@ public static partial class Game
         Funcs.Add(0x00203D4CU, "func_00203D4C", (a0, a1, a2, a3) => func_00203D4C(a0, a1, a2, a3));
         Funcs.Add(0x002034A4U, "func_002034A4", (a0, a1, a2, a3) => func_002034A4(a0, a1, a2, a3));
         Funcs.Add(0x00203278U, "func_00203278", (a0, a1, a2, a3) => func_00203278(a0, a1, a2, a3));
-    }
-
-    private static void RegisterRecompiled9()
-    {
         Funcs.Add(0x00202FDCU, "func_00202FDC", (a0, a1, a2, a3) => func_00202FDC(a0, a1, a2, a3));
         Funcs.Add(0x00202E4CU, "func_00202E4C", (a0, a1, a2, a3) => func_00202E4C(a0, a1, a2, a3));
         Funcs.Add(0x00202C98U, "func_00202C98", (a0, a1, a2, a3) => func_00202C98(a0, a1, a2, a3));

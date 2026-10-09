@@ -5,7 +5,7 @@ namespace Trw.Game;
 
 public static partial class Game
 {
-    public static void func_0023ECAC(uint o)
+    public static void func_0023ECAC(uint o, uint _a1)
     {
         unchecked
         {
@@ -20,7 +20,7 @@ public static partial class Game
             Mem.Set((o + 60u), (old & 4294737919u));
             if (((old & (uint)(28672)) != 0u))
             {
-                s = func_0028B2D4(0x8011FE88u, default(uint));
+                s = func_0028B2D4(0x8011FE88u, (uint)(_a1));
                 if ((s != 0u))
                 {
                     if (((Mem.U32((s + 68u)) & (uint)(4194304)) != 0u))

@@ -40,7 +40,7 @@ public static partial class Game
                                         Mem.Set((b + 108u), (float)((float)(Mem.F32((b + 108u))) + Mem.F32(0x800C7C54u)));
                                     }
                                 }
-                                func_002748E0((b + 108u), Mem.F32((_fp + 48u)), (float)(Mem.S32(0x800CF230u)));
+                                func_002748E0((b + 108u), Mem.F32((_fp + 48u)), Cpu.U2F((uint)(Mem.S32(0x800CF230u))));
                             }
                         }
                     }

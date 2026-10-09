@@ -103,7 +103,7 @@ public static partial class Game
                         switch ((int)(Mem.U8(o)))
                         {
                         case 0:
-                            func_00250A44();
+                            func_00250A44(o, cam, default(uint), default(uint));
                             break;
                         case 3:
                             func_0024EB80(o);

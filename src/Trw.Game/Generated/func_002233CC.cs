@@ -147,7 +147,7 @@ public static partial class Game
                 func_00271FA4((p + 1768u), (p + 1768u), _fp);
                 if (!((s3 != 0))) goto _f28;
                 Mem.Set((p + 1756u), (Mem.F32((p + 1756u)) + Mem.F32(0x800C79CCu)));
-                func_0025DE74((int)(Mem.S16((@in + 34u))), (uint)(Mem.F32((a + 8u))), (int)(Mem.F32(((a + 8u) + 4u))), (int)(Mem.F32(((a + 8u) + 8u))));
+                func_0025DE74((int)(Mem.S16((@in + 34u))), Cpu.F2U(Mem.F32((a + 8u))), (int)(Mem.F32(((a + 8u) + 4u))), (int)(Mem.F32(((a + 8u) + 8u))));
                 _f28: ;
             }
         }

@@ -13,7 +13,7 @@ public static partial class Game
             float lim = 0f;
             float v = 0f;
             lim = Mem.F32(0x800C8168u);
-            v = func_00274878(Mem.F32((state + 292u)), lim, (float)(Mem.S32(0x800CF9E0u)));
+            v = func_00274878(Mem.F32((state + 292u)), lim, Cpu.U2F((uint)(Mem.S32(0x800CF9E0u))));
             Mem.Set((state + 292u), v);
             if ((lim <= v))
             {

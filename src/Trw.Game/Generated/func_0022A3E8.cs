@@ -5,12 +5,12 @@ namespace Trw.Game;
 
 public static partial class Game
 {
-    public static void func_0022A3E8()
+    public static void func_0022A3E8(uint _a0, uint _a1)
     {
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022A3E8");
-            func_00228AD0(default(int), default(uint));
+            func_00228AD0((int)(uint)(_a0), (uint)(_a1));
         }
     }
 

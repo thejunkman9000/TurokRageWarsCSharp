@@ -35,7 +35,7 @@ public static partial class Game
                     func_00272BA8(m, (_fp + 16u), (_fp + 32u));
                 }
                 func_002720EC((_fp + 32u));
-                if ((func_00277198(o, (uint)(Mem.F32((_fp + 48u))), (uint)(Mem.F32(((_fp + 48u) + 4u))), (uint)(Mem.F32(((_fp + 48u) + 8u)))) == 0))
+                if ((func_00277198(o, Cpu.F2U(Mem.F32((_fp + 48u))), (uint)(Mem.F32(((_fp + 48u) + 4u))), (uint)(Mem.F32(((_fp + 48u) + 8u)))) == 0))
                 {
                     return 0;
                 }

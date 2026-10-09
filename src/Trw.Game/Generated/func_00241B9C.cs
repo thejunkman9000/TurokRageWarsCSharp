@@ -29,7 +29,7 @@ public static partial class Game
                     {
                         saved = Mem.U32(0x80103FCCu);
                         Mem.Set(0x80103FCCu, _fp);
-                        new_var = func_00241718(ctx, (float)(Mem.S32((o + 8u))), (float)(Mem.S32((o + 16u))));
+                        new_var = func_00241718(ctx, Cpu.U2F((uint)(Mem.S32((o + 8u)))), Cpu.U2F((uint)(Mem.S32((o + 16u)))));
                         h = new_var;
                         Mem.Set((o + 52u), arg1);
                         fa = func_0024E454(o);

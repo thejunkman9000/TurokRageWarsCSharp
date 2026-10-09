@@ -22,7 +22,7 @@ public static partial class Game
                 if (((o != 0u) && ((int)(Mem.U8(o)) == 1)))
                 {
                     t = Mem.U32((o + (uint)496));
-                    func_0024795C((_fp + 112u), default(uint));
+                    func_0024795C((_fp + 112u), (uint)(o));
                     func_002742B4((_fp + 112u), (_fp + 144u));
                     Mem.Set((_fp + 64u), (float)(0));
                     Mem.Set(((_fp + 64u) + 4u), (float)(0));

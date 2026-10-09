@@ -56,16 +56,16 @@ public static partial class Game
                 r2 = r2 + r3;
                 Mem.Set((r16 + 68u), r2);
                 L_L002C3578: ;
-                { bool c_ = r20 == 0; r2 = r18 + r0; if (c_) goto L_L002C35D4; }
+                { bool c_ = r20 == 0; r2 = r18; if (c_) goto L_L002C35D4; }
                 Mem.Set((r16 + 60u), r0);
                 r8 = Mem.U32((r29 + 32u));
                 { bool c_ = r8 == 0; r2 = r22 + r17; if (c_) goto L_L002C359C; }
                 r2 = r2 - r20;
                 r6 = r2 << 1; goto L_L002C35A0;
                 L_L002C359C: ;
-                r6 = r0 + r0;
+                r6 = r0;
                 L_L002C35A0: ;
-                r5 = r18 + r0;
+                r5 = r18;
                 r18 = r18 + 8u;
                 r4 = 16711680u;
                 r4 = r4 | 65535u;
@@ -77,7 +77,7 @@ public static partial class Game
                 r2 = r2 & r4;
                 r2 = r2 | r3;
                 Mem.Set((r5 + 0u), r2);
-                r2 = r18 + r0;
+                r2 = r18;
                 L_L002C35D4: ;
                 r31 = Mem.U32((r29 + 84u));
                 r30 = Mem.U32((r29 + 80u));
