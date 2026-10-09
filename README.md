@@ -22,7 +22,7 @@ You need your own copy of the ROM (`baserom.us.v11.z64`); it is never stored in 
 dotnet run --project src/Trw.Game -- --rom path\to\baserom.us.v11.z64              # window
 dotnet run --project src/Trw.Game -- --rom path\to\baserom.us.v11.z64 --headless --seconds 10
 ```
-Keys: arrows = stick, `C` = A, `X` = B, `Z` = Z, `Enter` = Start, `W A S D` = D-pad, `I J K L` = C buttons, `Q`/`E` = L/R; gamepads work too (left stick, A/B, triggers = Z, bumpers = L/R, right stick = C buttons).
+Keys: arrows = stick, `C` = A, `X` = B, `Z` = Z, `Enter` = Start, `W A S D` = D-pad, `I J K L` = C buttons, `Q`/`E` = L/R; F11 = fullscreen; gamepads work too (left stick, A/B, triggers = Z, bumpers = L/R, right stick = C buttons).
 Status: boots to the menus and plays the 1-player trials and multiplayer matches with 3D graphics and audio (see `docs/TRANSPILER.md`).
 
 ## Regenerating the translation

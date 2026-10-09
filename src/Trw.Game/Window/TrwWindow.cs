@@ -18,6 +18,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
     private volatile IReadOnlyList<GfxCommand>? pendingFrame;
     private GfxRenderer? renderer;
     private int frame, drawnFrames, shotsTaken;
+    private bool fullscreenKeyDown;
     // previews: TRW_SHOT_DIR=<dir> [TRW_SHOT_EVERY=<display lists>] [TRW_SHOT_MAX=<files>] saves PNGs of the rendered frames
     private readonly string? shotDir = Environment.GetEnvironmentVariable("TRW_SHOT_DIR");
     private readonly int shotEvery = int.TryParse(Environment.GetEnvironmentVariable("TRW_SHOT_EVERY"), out var se) && se > 0 ? se : 30;
@@ -233,7 +234,11 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
 
     protected override void Update(GameTime gameTime)
     {
-        if (Keyboard.GetState().IsKeyDown(Keys.Escape)) Exit();
+        var ks = Keyboard.GetState();
+        if (ks.IsKeyDown(Keys.Escape)) Exit();
+        bool f11 = ks.IsKeyDown(Keys.F11) || (ks.IsKeyDown(Keys.Enter) && (ks.IsKeyDown(Keys.LeftAlt) || ks.IsKeyDown(Keys.RightAlt)));
+        if (f11 && !fullscreenKeyDown) graphics.ToggleFullScreen();       // F11 or Alt+Enter
+        fullscreenKeyDown = f11;
         if (autoExitSeconds > 0 && gameTime.TotalGameTime.TotalSeconds > autoExitSeconds) Exit();
         Game.ViTick();
         audio.Pump();
