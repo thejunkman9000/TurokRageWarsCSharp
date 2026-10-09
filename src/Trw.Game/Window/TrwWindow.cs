@@ -59,6 +59,26 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
     private static readonly (int start, int len, ushort buttons, int sx, int sy)[] allSteps = ParseScript(Environment.GetEnvironmentVariable("TRW_PAD_SCRIPT"));
     private static readonly (int start, int len, ushort buttons, int sx, int sy)[] script = allSteps.Where(x => x.start >= 0).ToArray();     // absolute ticks
     private static readonly (int start, int len, ushort buttons, int sx, int sy)[] settledSteps = allSteps.Where(x => x.start < 0).ToArray(); // in order, each after the screen settled
+    // event-relative steps, robust against slow loads: "R<screen>+<delay>:BUTTON[:hold]" presses once <delay> ticks after the UI screen became <screen>,
+    // "T<state>+<delay>:BUTTON[:hold]" once <delay> ticks after the game state became <state> (state 13 = playing)
+    private sealed class EventStep { public bool Screen; public int Id, Delay, Len; public ushort Buttons; public int Sx, Sy, FiredAt = -1; }
+    private static readonly EventStep[] eventSteps = ParseEventSteps(Environment.GetEnvironmentVariable("TRW_PAD_SCRIPT"));
+
+    private static EventStep[] ParseEventSteps(string? s)
+    {
+        var list = new List<EventStep>();
+        foreach (var item in (s ?? "").Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+        {
+            var p = item.Split(':');
+            var m = System.Text.RegularExpressions.Regex.Match(p[0], @"^([RT])(-?\d+)\+(\d+)$");
+            if (!m.Success || p.Length < 2) continue;
+            var one = ParseScript("0:" + p[1] + ":" + (p.Length > 2 ? p[2] : "6"));
+            if (one.Length == 0) continue;
+            list.Add(new EventStep { Screen = m.Groups[1].Value == "R", Id = int.Parse(m.Groups[2].Value), Delay = int.Parse(m.Groups[3].Value), Len = one[0].Item2, Buttons = one[0].Item3, Sx = one[0].Item4, Sy = one[0].Item5 });
+        }
+        return list.ToArray();
+    }
+
     private static int scriptTick;
     private static int settledIndex, settledPressFrom = -1, settledNextAllowed;
     // screen signatures of the last display lists: the screen counts as settled when it hardly changes (animations aside) over ~40 lists
@@ -125,7 +145,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
             var p = item.Split(':');
             // S[@<tick>]:<BUTTON>[:hold] = press once the screen has settled (see Settled), not before <tick>; encoded as start = -1 - <tick>
             bool settled = p.Length >= 2 && p[0].StartsWith('S');
-            if (p.Length < 2 || (!settled && !int.TryParse(p[0], out _))) continue;
+            if (p.Length < 2 || (!settled && !int.TryParse(p[0], out _))) continue;      // (R<screen>+<delay> / T<state>+<delay> items are ParseEventSteps')
             int start = settled ? -1 - (p[0].Length > 2 && p[0][1] == '@' && int.TryParse(p[0][2..], out var mt) ? mt : 0) : int.Parse(p[0]);
             int len = p.Length > 2 && int.TryParse(p[2], out var l) ? l : 6, sx = 0, sy = 0; ushort b = 0;
             foreach (var name in p[1].Split('+'))
@@ -156,6 +176,12 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
             foreach (var (start, len, b, sx, sy) in script)
                 if (scriptTick >= start && scriptTick < start + len) { buttons |= b; x += sx; y += sy; connected = true; }
             if (SettledPress(out var sb, out var ssx, out var ssy)) { buttons |= sb; x += ssx; y += ssy; connected = true; }
+            foreach (var es in eventSteps)
+            {
+                if (es.FiredAt < 0 && (es.Screen ? global::Trw.Game.Game.ScreenId == es.Id && global::Trw.Game.Game.CurrentTick - global::Trw.Game.Game.ScreenSince >= es.Delay : global::Trw.Game.Game.StateId == es.Id && global::Trw.Game.Game.CurrentTick - global::Trw.Game.Game.StateSince >= es.Delay))
+                    es.FiredAt = scriptTick;
+                if (es.FiredAt >= 0 && scriptTick >= es.FiredAt && scriptTick < es.FiredAt + es.Len) { buttons |= es.Buttons; x += es.Sx; y += es.Sy; connected = true; }
+            }
         }
         var gp = GamePad.GetState(pad);
         if (gp.IsConnected)

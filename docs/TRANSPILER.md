@@ -55,7 +55,7 @@ expression are missing (`tools/overrides/func_0040DB84.c` uses a named struct).
 | variable | effect |
 |---|---|
 | `TRW_STATUS=1` | `[state]` (game state D_80146878), `[screen]` (UI screen id), `[pad]` (pressed buttons), `[status]`, `[audio]` lines on stderr |
-| `TRW_PAD_SCRIPT` / `tools/run_window.ps1 -Pad` | scripted input: `<tick>:<BUTTON>[+..]:<hold>` or `S[@tick]:<BUTTON>:<hold>` (press once the screen settled) |
+| `TRW_PAD_SCRIPT` / `tools/run_window.ps1 -Pad` | scripted input: `<tick>:<BUTTON>[+..]:<hold>`, `S[@tick]:<BUTTON>:<hold>` (press once the screen settled) or, best, `R<screen>+<delay>:<BUTTON>:<hold>` / `T<state>+<delay>:<BUTTON>:<hold>` (press once, `delay` ticks after the UI screen / game state became that id; ids are in the `[screen]`/`[state]` log) |
 | `TRW_SHOT_DIR/EVERY/MAX`, `TRW_EXIT_AFTER` | periodic screenshots, automatic exit (`tools/run_window.ps1`) |
 | `TRW_GFX_LOG`, `TRW_GFX_DUMP_RUN=<n>`, `TRW_GFX_DL=1` | per display list statistics (ops, triangles culled/drawn), full command dump of list `n` |
 | `TRW_TRACE_FN=a,b,prefix*`, `TRW_TRACE_LIMIT`, `TRW_TRACE_ARM_STATE=<n>`, `TRW_TRACE_DUMP=<bytes>` | log calls (and results of functions that call `Dbg.Leave`, see `tools/dbg_addleave.py`) from the moment the game reaches state `n` |
@@ -64,6 +64,10 @@ expression are missing (`tools/overrides/func_0040DB84.c` uses a named struct).
 | `TRW_DIFF=name,..\|*`, `TRW_DIFF_N`, `TRW_DIFF_EVERY`, `TRW_DIFF_RET`, `TRW_DIFF_VERBOSE` | differential test: run the function on the MIPS interpreter (`Debug/MipsInterp`) and as translated C# from the same memory and compare every byte written |
 | `TRW_HEAPCHECK=1`, `TRW_BATCHLOG=1` | resource-cache overlap check, model-batch flush log |
 | `TRW_WATCHDOG=<file>` | thread dump when graphics tasks stop for 8 s |
+
+### 1-player route that works unattended
+`-Pad "150:SDOWN:5,200:A:6,R24+500:START:12,R3+300:DOWN:20,R3+700:A:12,R3+1100:A:12,R19+600:A:12,R19+1100:LEFT:20,R19+1400:A:12,R9+400:A:12,R7+500:DOWN:20,R7+800:A:12,R10+500:A:12,R10+900:A:12,R25+400:A:12,R25+800:A:12,T13+400:SUP:300,T13+1400:Z:10"`
+(screens: 24 title, 3 main menu, 19 controller-pak notice, 9 new game, 7 skins, 10 level info, 25 rumble notice; the first A after a cursor move is swallowed by the menus, hence the doubled A's).
 
 ## Finding a translation defect: the method that worked
 1. Reproduce the scenario in both ports. The C port is only run from a private copy (never from the repository directory: other sessions use it).

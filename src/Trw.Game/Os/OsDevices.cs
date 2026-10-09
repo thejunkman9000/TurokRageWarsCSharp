@@ -197,10 +197,26 @@ public static partial class Game
     private static int peekWait, watchdogGfx, watchdogTick;
     private static bool watchdogFired;
 
+    /// <summary>The game's state (D_80146878) and the UI screen id, with the tick they last changed: scripted input waits for them (TRW_PAD_SCRIPT "R&lt;screen&gt;+&lt;delay&gt;" / "T&lt;state&gt;+&lt;delay&gt;").</summary>
+    public static int StateId { get; private set; } = -1;
+    public static int ScreenId { get; private set; } = -2;
+    public static int StateSince { get; private set; }
+    public static int ScreenSince { get; private set; }
+
+    private static void TrackScreen()
+    {
+        int st = Mem.S32(0x80146878);
+        if (st != StateId) { StateId = st; StateSince = tickCount; }
+        int scr = Mem.S32(0x8014D098);
+        if (scr < 0) { uint mgr = Mem.U32(0x8014D080); int top; scr = mgr == 0 || !Mem.IsMapped(mgr) || (top = Mem.S32(mgr + 4)) < 0 ? -1 : Mem.S32(Mem.U32(mgr + 0xC) + (uint)top * 0x1C + 4); }
+        if (scr != ScreenId) { ScreenId = scr; ScreenSince = tickCount; }
+    }
+
     public static void ViTick()
     {
         tickCount++; CurrentTick = tickCount;
         Trw.Game.Debug.HeapCheck.Tick(tickCount);
+        TrackScreen();
         if (statusLog)
         {
             int st = Mem.S32(0x80146878);
