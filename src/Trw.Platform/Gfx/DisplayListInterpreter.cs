@@ -555,49 +555,53 @@ public sealed class DisplayListInterpreter
         if (LogEnabled) Array.Clear(opHist);
         RunDL(dl, 0);
         Flush();
-        if (LogEnabled && (++runs <= 5 || runs % 60 == 0))
+        bool dumpNow = DumpFlag != null && File.Exists(DumpFlag);
+        if (dumpNow) { try { File.Delete(DumpFlag!); } catch (IOException) { } }
+        if (LogEnabled && (++runs <= 5 || runs % 60 == 0 || runs == DumpRun || dumpNow))
         {
-            int draws = commands.Count(c => c is DrawCommand), verts = commands.OfType<DrawCommand>().Sum(c => c.Vertices.Length);
-            var ops = string.Join(" ", Enumerable.Range(0, 256).Where(i => opHist[i] > 0).Select(i => $"{i:X2}x{opHist[i]}"));
-            Console.Error.WriteLine($"[gfx] run {runs}: task {taskAddr:X8} dl {dl:X8} size {Mem.U32(taskAddr + 0x34):X} -> {commands.Count} commands, {draws} draws, {verts} vertices; ops {ops}");
-            Console.Error.WriteLine($"[gfx]   first words: " + string.Join(" ", Enumerable.Range(0, 8).Select(i => $"{Mem.U32(Res(dl) + (uint)i * 4):X8}")));
-            if (runs == 60)
+            try
             {
-                var seen = new HashSet<ulong>();
-                foreach (var d in commands.OfType<DrawCommand>().Where(d => d.State.Tex0 != null).Take(40))
+            int draws = commands.Count(c => c is DrawCommand), verts = commands.OfType<DrawCommand>().Sum(c => c.Vertices.Length);
+                var ops = string.Join(" ", Enumerable.Range(0, 256).Where(i => opHist[i] > 0).Select(i => $"{i:X2}x{opHist[i]}"));
+                Console.Error.WriteLine($"[gfx] run {runs}: task {taskAddr:X8} dl {dl:X8} size {Mem.U32(taskAddr + 0x34):X} -> {commands.Count} commands, {draws} draws, {verts} vertices; ops {ops}");
+                Console.Error.WriteLine($"[gfx]   first words: " + string.Join(" ", Enumerable.Range(0, 8).Select(i => $"{Mem.U32(Res(dl) + (uint)i * 4):X8}")));
+                if (runs == DumpRun || dumpNow)
                 {
-                    var t = d.State.Tex0!;
-                    if (!seen.Add(t.Key) || seen.Count > 3) continue;
-                    Console.Error.WriteLine($"[gfx]   texture {t.Width}x{t.Height} key={t.Key:X16}");
-                    for (int y = 0; y < t.Height; y++)
+                    var seen = new HashSet<ulong>();
+                    foreach (var d in commands.OfType<DrawCommand>().Where(d => d.State.Tex0 != null))
                     {
-                        var row = new System.Text.StringBuilder("[gfx]     ");
-                        for (int x = 0; x < t.Width; x++) { int i = (y * t.Width + x) * 4; row.Append($"{t.Rgba[i]:X2}{t.Rgba[i + 3]:X2} "); }
-                        Console.Error.WriteLine(row.ToString());
+                        var t = d.State.Tex0!;
+                        if (!seen.Add(t.Key)) continue;
+                        int lit = 0, opaque = 0;
+                        for (int i = 0; i < t.Width * t.Height; i++) { if ((t.Rgba[i * 4] | t.Rgba[i * 4 + 1] | t.Rgba[i * 4 + 2]) != 0) lit++; if (t.Rgba[i * 4 + 3] != 0) opaque++; }
+                        Console.Error.WriteLine($"[gfx]   texture {t.Width}x{t.Height} key={t.Key:X16} non-black {lit} non-transparent {opaque} of {t.Width * t.Height}");
                     }
                 }
+                if (runs == DumpRun || dumpNow)
+                    foreach (var c in commands)
+                    {
+                        if (c is not DrawCommand d) { Console.Error.WriteLine($"[gfx]   {c}"); continue; }
+                        var st = d.State; var v = d.Vertices;
+                        Console.Error.WriteLine($"[gfx]   draw mode={st.Mode} tex={st.TextureOn}({(st.Tex0 == null ? "-" : st.Tex0.Width + "x" + st.Tex0.Height)}) cc={st.CombineW0:X8}/{st.CombineW1:X8} other={st.OtherHigh:X8}/{st.OtherLow:X8} prim=({string.Join(",", st.Prim)}) env=({string.Join(",", st.Env)}) tex1={(st.Tex1 == null ? "-" : st.Tex1.Width + "x" + st.Tex1.Height + " key " + st.Tex1.Key.ToString("X") + " a>0:" + Enumerable.Range(0, st.Tex1.Width * st.Tex1.Height).Count(q => st.Tex1.Rgba[q * 4 + 3] != 0))} same={(st.Tex0 == st.Tex1)} bbox=({v.Min(q => q.X):F2},{v.Min(q => q.Y):F2})-({v.Max(q => q.X):F2},{v.Max(q => q.Y):F2}) col0=({v[0].R:F2},{v[0].G:F2},{v[0].B:F2},{v[0].A:F2}) n={v.Length}");
+                    }
+                if (runs <= 2)
+                    foreach (var c in commands.Take(12))
+                    {
+                        if (c is not DrawCommand d) { Console.Error.WriteLine($"[gfx]   {c}"); continue; }
+                        var st = d.State; var v = d.Vertices;
+                        Console.Error.WriteLine($"[gfx]   draw mode={st.Mode} tex={st.TextureOn} geom={st.Geom:X} cc={st.CombineW0:X8}/{st.CombineW1:X8} other={st.OtherHigh:X8}/{st.OtherLow:X8} prim=({string.Join(",", st.Prim)}) env=({string.Join(",", st.Env)}) tex0={(st.Tex0 == null ? "-" : st.Tex0.Width + "x" + st.Tex0.Height)} sc={st.ScissorX0},{st.ScissorY0}-{st.ScissorX1},{st.ScissorY1} screen={st.ScreenWidth}x{st.ScreenHeight} verts={v.Length}");
+                        for (int i = 0; i < Math.Min(6, v.Length); i++)
+                            Console.Error.WriteLine($"[gfx]     v{i}: pos=({v[i].X:F3},{v[i].Y:F3},{v[i].Z:F3},{v[i].W:F3}) col=({v[i].R:F2},{v[i].G:F2},{v[i].B:F2},{v[i].A:F2}) uv=({v[i].U:F3},{v[i].V:F3})");
+                    }
             }
-            if (runs == 60)
-                foreach (var c in commands)
-                {
-                    if (c is not DrawCommand d) { Console.Error.WriteLine($"[gfx]   {c}"); continue; }
-                    var st = d.State; var v = d.Vertices;
-                    Console.Error.WriteLine($"[gfx]   draw mode={st.Mode} tex={st.TextureOn}({(st.Tex0 == null ? "-" : st.Tex0.Width + "x" + st.Tex0.Height)}) cc={st.CombineW0:X8}/{st.CombineW1:X8} other={st.OtherHigh:X8}/{st.OtherLow:X8} prim=({string.Join(",", st.Prim)}) env=({string.Join(",", st.Env)}) bbox=({v.Min(q => q.X):F2},{v.Min(q => q.Y):F2})-({v.Max(q => q.X):F2},{v.Max(q => q.Y):F2}) col0=({v[0].R:F2},{v[0].G:F2},{v[0].B:F2},{v[0].A:F2}) n={v.Length}");
-                }
-            if (runs <= 2)
-                foreach (var c in commands.Take(12))
-                {
-                    if (c is not DrawCommand d) { Console.Error.WriteLine($"[gfx]   {c}"); continue; }
-                    var st = d.State; var v = d.Vertices;
-                    Console.Error.WriteLine($"[gfx]   draw mode={st.Mode} tex={st.TextureOn} geom={st.Geom:X} cc={st.CombineW0:X8}/{st.CombineW1:X8} other={st.OtherHigh:X8}/{st.OtherLow:X8} prim=({string.Join(",", st.Prim)}) env=({string.Join(",", st.Env)}) tex0={(st.Tex0 == null ? "-" : st.Tex0.Width + "x" + st.Tex0.Height)} sc={st.ScissorX0},{st.ScissorY0}-{st.ScissorX1},{st.ScissorY1} screen={st.ScreenWidth}x{st.ScreenHeight} verts={v.Length}");
-                    for (int i = 0; i < Math.Min(6, v.Length); i++)
-                        Console.Error.WriteLine($"[gfx]     v{i}: pos=({v[i].X:F3},{v[i].Y:F3},{v[i].Z:F3},{v[i].W:F3}) col=({v[i].R:F2},{v[i].G:F2},{v[i].B:F2},{v[i].A:F2}) uv=({v[i].U:F3},{v[i].V:F3})");
-                }
+            catch (Exception e) { Console.Error.WriteLine("[gfx] dump failed: " + e); }
         }
         return commands.ToArray();
     }
 
     private static readonly bool LogEnabled = Environment.GetEnvironmentVariable("TRW_GFX_LOG") != null;
+    private static readonly string? DumpFlag = Environment.GetEnvironmentVariable("TRW_GFX_DUMP_FLAG");   // while this file exists the next display list is listed in full (and the file removed)
+    private static readonly int DumpRun = int.TryParse(Environment.GetEnvironmentVariable("TRW_GFX_DUMP_RUN"), out var dr) ? dr : 60;   // display list number whose draws are listed in full
     private readonly int[] opHist = new int[256];
     private int runs;
 }

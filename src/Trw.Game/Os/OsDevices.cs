@@ -183,13 +183,18 @@ public static partial class Game
     // ---------------------------------------------------------------------------------------------- frame tick
 
     /// <summary>Called once per displayed frame by the platform loop: timers, task completions, retrace events.</summary>
-    private static int tickCount, gfxTasks, audioTasks;
+    private static int tickCount, gfxTasks, audioTasks, lastState = -1;
     private static readonly bool statusLog = Environment.GetEnvironmentVariable("TRW_STATUS") != null;
 
     public static void ViTick()
     {
         tickCount++;
-        if (statusLog && tickCount % 60 == 0)
+        if (statusLog)
+        {
+            int st = Mem.S32(0x80146878);
+            if (st != lastState) { Console.Error.WriteLine($"[state] tick {tickCount}: {lastState} -> {st}"); lastState = st; }
+        }
+        if (statusLog && tickCount % 600 == 0)
             Console.Error.WriteLine($"[status] tick {tickCount}: gfx tasks {gfxTasks}, audio tasks {audioTasks}, state D_80146878={Mem.S32(0x80146878)} D_800D2984={Mem.S32(0x800D2984)} D_80146D68={Mem.S32(0x80146D68)} D_8014ADA0={Mem.S32(0x8014ADA0)}");
         RunTimers();
         bool? done = null;

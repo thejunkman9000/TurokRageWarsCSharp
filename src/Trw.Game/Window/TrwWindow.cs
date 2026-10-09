@@ -29,6 +29,11 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         graphics = new GraphicsDeviceManager(this) { PreferredBackBufferWidth = 960, PreferredBackBufferHeight = 720 };
         IsFixedTimeStep = true;
         TargetElapsedTime = TimeSpan.FromSeconds(1.0 / 60);
+        if (double.TryParse(Environment.GetEnvironmentVariable("TRW_FAST"), out var speed) && speed > 1)   // test runs: retrace ticks at <speed> x 60 Hz
+        {
+            TargetElapsedTime = TimeSpan.FromSeconds(1.0 / (60 * speed));
+            graphics.SynchronizeWithVerticalRetrace = false;
+        }
         Window.Title = "Turok: Rage Wars";
         Content.RootDirectory = "Content";
         Window.AllowUserResizing = true;
