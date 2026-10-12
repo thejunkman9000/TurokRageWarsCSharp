@@ -13,8 +13,8 @@ public static partial class Game
             uint p = 0u;
             func_0029A73C();
             p = Mem.U32(0x800E5784u);
-            Mem.Set((p + 16u), (-1));
-            func_0041A4B0((uint)(Mem.S32(p)), 2);
+            new S_v2(p).fv_Set((-1));
+            func_0041A4B0((uint)(new S_v2(p).f0), 2);
             return 0;
         }
     }

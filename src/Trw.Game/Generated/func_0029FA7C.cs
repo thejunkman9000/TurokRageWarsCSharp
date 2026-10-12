@@ -10,22 +10,22 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029FA7C", (uint)d);
-            Mem.Set((((d + 16u) + (uint)(0 * 16)) + (uint)(0 * 4)), m00);
-            Mem.Set((((d + 16u) + (uint)(1 * 16)) + (uint)(0 * 4)), m01);
-            Mem.Set((((d + 16u) + (uint)(2 * 16)) + (uint)(0 * 4)), m02);
-            Mem.Set((((d + 16u) + (uint)(3 * 16)) + (uint)(0 * 4)), m03);
-            Mem.Set((((d + 16u) + (uint)(0 * 16)) + (uint)(1 * 4)), m10);
-            Mem.Set((((d + 16u) + (uint)(1 * 16)) + (uint)(1 * 4)), m11);
-            Mem.Set((((d + 16u) + (uint)(2 * 16)) + (uint)(1 * 4)), m12);
-            Mem.Set((((d + 16u) + (uint)(3 * 16)) + (uint)(1 * 4)), m13);
-            Mem.Set((((d + 16u) + (uint)(0 * 16)) + (uint)(2 * 4)), m20);
-            Mem.Set((((d + 16u) + (uint)(1 * 16)) + (uint)(2 * 4)), m21);
-            Mem.Set((((d + 16u) + (uint)(2 * 16)) + (uint)(2 * 4)), m22);
-            Mem.Set((((d + 16u) + (uint)(3 * 16)) + (uint)(2 * 4)), m23);
-            Mem.Set((((d + 16u) + (uint)(0 * 16)) + (uint)(3 * 4)), m30);
-            Mem.Set((((d + 16u) + (uint)(1 * 16)) + (uint)(3 * 4)), m31);
-            Mem.Set((((d + 16u) + (uint)(2 * 16)) + (uint)(3 * 4)), m32);
-            Mem.Set((((d + 16u) + (uint)(3 * 16)) + (uint)(3 * 4)), m33);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), m00);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(1 * 16)) + (uint)(0 * 4)), m01);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(2 * 16)) + (uint)(0 * 4)), m02);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(3 * 16)) + (uint)(0 * 4)), m03);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(0 * 16)) + (uint)(1 * 4)), m10);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), m11);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(2 * 16)) + (uint)(1 * 4)), m12);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(3 * 16)) + (uint)(1 * 4)), m13);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(0 * 16)) + (uint)(2 * 4)), m20);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(1 * 16)) + (uint)(2 * 4)), m21);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), m22);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(3 * 16)) + (uint)(2 * 4)), m23);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(0 * 16)) + (uint)(3 * 4)), m30);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(1 * 16)) + (uint)(3 * 4)), m31);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(2 * 16)) + (uint)(3 * 4)), m32);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), m33);
         }
     }
 

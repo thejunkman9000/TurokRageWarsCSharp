@@ -10,16 +10,16 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025C67C", (uint)v);
-            uint m = Mem.U32((v + 176u));
+            uint m = new SndVoice(v).mgr_;
             uint c = (m + (uint)124);
-            alSndpDeallocate((m + 132u), (short)((int)(Mem.S16(((c + 96u) + (uint)(Mem.S32(v) * 2))))));
-            Mem.Set(((c + 96u) + (uint)(Mem.S32(v) * 2)), (short)((-1)));
-            Mem.Set((v + 56u), (short)(0));
-            Mem.Set((v + 12u), (-1));
-            Mem.Set((v + 8u), (-1));
-            Mem.Set((v + 168u), (-1));
-            Mem.Set((v + 58u), (short)((-1)));
-            Mem.Set((v + 180u), (uint)((-1)));
+            alSndpDeallocate(new SndMgr(m).player.P, (short)((int)(new SndCore(c).snd[(int)(new SndVoice(v).idx)])));
+            new SndCore(c).snd.Set((int)(new SndVoice(v).idx), (short)((-1)));
+            new SndVoice(v).unk38_Set((short)(0));
+            new SndVoice(v).unkC_Set((-1));
+            new SndVoice(v).unk8_Set((-1));
+            new SndVoice(v).tag_Set((-1));
+            new SndVoice(v).unk3A_Set((short)((-1)));
+            new SndVoice(v).unkB4__Set((uint)((-1)));
         }
     }
 

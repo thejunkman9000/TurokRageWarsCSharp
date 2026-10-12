@@ -10,20 +10,20 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00444204", (uint)a, (uint)b);
-            Mem.Set((a + 121u), (byte)(134));
-            Mem.Set((a + 122u), (byte)(132));
-            Mem.Set((a + 120u), (byte)(0));
-            Mem.Set((a + 124u), (byte)(0));
-            Mem.Set((a + 123u), (byte)(0));
-            Mem.Set((a + 125u), (byte)(1));
-            Mem.Set((a + 126u), (byte)(0));
-            Mem.Set((a + 127u), b);
-            Mem.Set((a + 128u), (byte)(0));
-            Mem.Set((a + 130u), (byte)(0));
-            Mem.Set((a + 131u), (byte)(0));
-            Mem.Set((a + 129u), (byte)(0));
-            Mem.Set((a + 148u), (byte)(0));
-            Mem.Set((a + 149u), (byte)(0));
+            new O06A_v17(a).unk79_Set((byte)(134));
+            new O06A_v17(a).unk7A_Set((byte)(132));
+            new O06A_v17(a).unk78_Set((byte)(0));
+            new O06A_v17(a).unk7C_Set((byte)(0));
+            new O06A_v17(a).unk7B_Set((byte)(0));
+            new O06A_v17(a).unk7D_Set((byte)(1));
+            new O06A_v17(a).unk7E_Set((byte)(0));
+            new O06A_v17(a).unk7F_Set(b);
+            new O06A_v17(a).unk80_Set((byte)(0));
+            new O06A_v17(a).unk82_Set((byte)(0));
+            new O06A_v17(a).unk83_Set((byte)(0));
+            new O06A_v17(a).unk81_Set((byte)(0));
+            new O06A_v17(a).unk94_Set((byte)(0));
+            new O06A_v17(a).unk95_Set((byte)(0));
             func_00444260(a);
         }
     }

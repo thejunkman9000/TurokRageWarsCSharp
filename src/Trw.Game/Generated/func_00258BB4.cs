@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00258BB4", (uint)m, (uint)v);
-            Mem.Set((m + 11172u), (float)(v));
+            new SndMgr(m).unk2BA4_Set((float)(v));
         }
     }
 

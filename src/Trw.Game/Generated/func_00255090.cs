@@ -10,10 +10,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00255090", (uint)p, (uint)id);
-            osCreateMesgQueue((p + 560u), (p + (uint)584), 128);
+            osCreateMesgQueue(new B12Port(p).q.P, (p + (uint)584), 128);
             memset((p + (uint)1096), id, (uint)(4096));
-            osCreateThread(p, id, 0x00255220u, p, (p + (uint)5192), Mem.S32(0x800D2B1Cu));
-            osStartThread(p);
+            osCreateThread(new B12Port(p).thread.P, id, 0x00255220u, p, (p + (uint)5192), Mem.S32(0x800D2B1Cu));
+            osStartThread(new B12Port(p).thread.P);
         }
     }
 

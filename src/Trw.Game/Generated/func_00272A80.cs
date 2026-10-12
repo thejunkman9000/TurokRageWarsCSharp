@@ -12,16 +12,16 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00272A80", (uint)m, (uint)v, (uint)dst);
             float w = 0f;
             float inv = 0f;
-            Mem.Set(dst, ((((Mem.F32(((m + (uint)(0 * 16)) + (uint)(0 * 4))) * Mem.F32(v)) + (Mem.F32(((m + (uint)(1 * 16)) + (uint)(0 * 4))) * Mem.F32((v + 4u)))) + (Mem.F32(((m + (uint)(2 * 16)) + (uint)(0 * 4))) * Mem.F32((v + 8u)))) + Mem.F32(((m + (uint)(3 * 16)) + (uint)(0 * 4)))));
-            Mem.Set((dst + 4u), ((((Mem.F32(((m + (uint)(0 * 16)) + (uint)(1 * 4))) * Mem.F32(v)) + (Mem.F32(((m + (uint)(1 * 16)) + (uint)(1 * 4))) * Mem.F32((v + 4u)))) + (Mem.F32(((m + (uint)(2 * 16)) + (uint)(1 * 4))) * Mem.F32((v + 8u)))) + Mem.F32(((m + (uint)(3 * 16)) + (uint)(1 * 4)))));
-            Mem.Set((dst + 8u), ((((Mem.F32(((m + (uint)(0 * 16)) + (uint)(2 * 4))) * Mem.F32(v)) + (Mem.F32(((m + (uint)(1 * 16)) + (uint)(2 * 4))) * Mem.F32((v + 4u)))) + (Mem.F32(((m + (uint)(2 * 16)) + (uint)(2 * 4))) * Mem.F32((v + 8u)))) + Mem.F32(((m + (uint)(3 * 16)) + (uint)(2 * 4)))));
-            w = ((((Mem.F32(((m + (uint)(0 * 16)) + (uint)(3 * 4))) * Mem.F32(v)) + (Mem.F32(((m + (uint)(1 * 16)) + (uint)(3 * 4))) * Mem.F32((v + 4u)))) + (Mem.F32(((m + (uint)(2 * 16)) + (uint)(3 * 4))) * Mem.F32((v + 8u)))) + Mem.F32(((m + (uint)(3 * 16)) + (uint)(3 * 4))));
+            new Vec3f(dst).x_Set(((((Mem.F32(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4))) * new Vec3f(v).x) + (Mem.F32(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(0 * 4))) * new Vec3f(v).y)) + (Mem.F32(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(0 * 4))) * new Vec3f(v).z)) + Mem.F32(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(0 * 4)))));
+            new Vec3f(dst).y_Set(((((Mem.F32(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(1 * 4))) * new Vec3f(v).x) + (Mem.F32(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4))) * new Vec3f(v).y)) + (Mem.F32(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(1 * 4))) * new Vec3f(v).z)) + Mem.F32(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(1 * 4)))));
+            new Vec3f(dst).z_Set(((((Mem.F32(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(2 * 4))) * new Vec3f(v).x) + (Mem.F32(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(2 * 4))) * new Vec3f(v).y)) + (Mem.F32(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4))) * new Vec3f(v).z)) + Mem.F32(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(2 * 4)))));
+            w = ((((Mem.F32(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(3 * 4))) * new Vec3f(v).x) + (Mem.F32(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(3 * 4))) * new Vec3f(v).y)) + (Mem.F32(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(3 * 4))) * new Vec3f(v).z)) + Mem.F32(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(3 * 4))));
             if ((w != 0.0f))
             {
                 inv = (1.0f / w);
-                Mem.Set(dst, (float)((float)(Mem.F32(dst)) * inv));
-                Mem.Set((dst + 4u), (float)((float)(Mem.F32((dst + 4u))) * inv));
-                Mem.Set((dst + 8u), (float)((float)(Mem.F32((dst + 8u))) * inv));
+                new Vec3f(dst).x_Set((float)((float)(new Vec3f(dst).x) * inv));
+                new Vec3f(dst).y_Set((float)((float)(new Vec3f(dst).y) * inv));
+                new Vec3f(dst).z_Set((float)((float)(new Vec3f(dst).z) * inv));
             }
         }
     }

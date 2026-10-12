@@ -16,7 +16,7 @@ public static partial class Game
             uint p = 0u;
             uint g = 0u;
             uint s = 0u;
-            if ((Mem.S32((0x801468A0u + 124u)) == 0))
+            if ((new GameB6(0x801468A0u).unk7C == 0))
             {
                 return 0;
             }
@@ -40,14 +40,14 @@ public static partial class Game
             s = 0x801468A0u;
             for (; (i < 5); ++i)
             {
-                if ((Mem.S32(((s + 64u) + (uint)(i * 4))) >= Mem.S32((s + 124u))))
+                if ((new GameB6(s).unk40[(int)(i)] >= new GameB6(s).unk7C))
                 {
                     if ((i == want))
                     {
-                        Mem.Set((s + 168u), 1);
+                        new GameB6(s).unkA8_Set(1);
                         return 1;
                     }
-                    Mem.Set((s + 168u), 0);
+                    new GameB6(s).unkA8_Set(0);
                     g = (0x801468A0u - (uint)1496);
                     if (((int)(Mem.U8((g + (uint)13))) == 0))
                     {

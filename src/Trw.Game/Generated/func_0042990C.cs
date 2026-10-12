@@ -16,19 +16,19 @@ public static partial class Game
                 switch (func_0029AA08())
                 {
                 case 867:
-                    func_002A2B24((uint)(Mem.S32((Mem.U32(0x800E4EF0u) + 36u))), 0);
+                    func_002A2B24((uint)(new O04S4EF0c(Mem.U32(0x800E4EF0u)).unk24), 0);
                     break;
                 case 865:
-                    func_002A2B24((uint)(Mem.S32((Mem.U32(0x800E4EF0u) + 40u))), 0);
+                    func_002A2B24((uint)(new O04S4EF0c(Mem.U32(0x800E4EF0u)).unk28), 0);
                     break;
                 case 863:
-                    func_002A2B24((uint)(Mem.S32((Mem.U32(0x800E4EF0u) + 44u))), 0);
+                    func_002A2B24((uint)(new O04S4EF0c(Mem.U32(0x800E4EF0u)).unk2C), 0);
                     break;
                 case 869:
-                    func_002A2B24((uint)(Mem.S32((Mem.U32(0x800E4EF0u) + 48u))), 0);
+                    func_002A2B24((uint)(new O04S4EF0c(Mem.U32(0x800E4EF0u)).unk30), 0);
                     break;
                 case 876:
-                    func_002A2B24((uint)(Mem.S32((Mem.U32(0x800E4EF0u) + 52u))), Mem.S32((Mem.U32(0x800E4EF0u) + 60u)));
+                    func_002A2B24((uint)(new O04S4EF0c(Mem.U32(0x800E4EF0u)).unk34), new O04S4EF0c(Mem.U32(0x800E4EF0u)).unk3C);
                     break;
                 }
             }

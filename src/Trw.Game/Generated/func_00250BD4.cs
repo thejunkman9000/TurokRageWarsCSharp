@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00250BD4", (uint)o, (uint)b);
             int x = Mem.S32(Mem.U32(b));
-            int r = (int)(func_00278530((uint)(x), (uint)(Mem.S32(Mem.U32((o + 32u)))), (o + 184u), (o + 40u), (uint)(0), o));
+            int r = (int)(func_00278530((uint)(x), (uint)(Mem.S32(new B12Obj(o).unk20_)), new B12Obj(o).unkB8.P, new B12Obj(o).unk28.P, (uint)(0), o));
             return (int)(func_00253E04((uint)(0), b, (uint)(r), default(uint)));
         }
     }

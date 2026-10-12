@@ -13,16 +13,16 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 4); ++i)
             {
-                func_0040E958(func_0040ECB0((uint)(Mem.S32((Mem.U32(0x800E53C0u) + 224u))), (uint)((int)(Mem.U16((((0x800E5320u + (uint)(i * 40)) + (uint)(0 * 4)) + 2u)))), default(uint), default(uint)), 0);
-                func_0040E958(func_0040ECB0((uint)(Mem.S32((Mem.U32(0x800E53C0u) + 224u))), (uint)((int)(Mem.U16((((0x800E5320u + (uint)(i * 40)) + (uint)(1 * 4)) + 2u)))), default(uint), default(uint)), 0);
-                func_0040E958(func_0040ECB0((uint)(Mem.S32((Mem.U32(0x800E53C0u) + 224u))), (uint)((int)(Mem.U16((((0x800E5320u + (uint)(i * 40)) + (uint)(2 * 4)) + 2u)))), default(uint), default(uint)), 0);
-                func_0040E958(func_0040ECB0((uint)(Mem.S32((Mem.U32(0x800E53C0u) + 224u))), (uint)((int)(Mem.U16((((0x800E5320u + (uint)(i * 40)) + (uint)(3 * 4)) + 2u)))), default(uint), default(uint)), 0);
-                func_0040E958(func_0040ECB0((uint)(Mem.S32((Mem.U32(0x800E53C0u) + 224u))), (uint)((int)(Mem.U16((((0x800E5320u + (uint)(i * 40)) + (uint)(4 * 4)) + 2u)))), default(uint), default(uint)), 0);
-                func_0040E958(func_0040ECB0((uint)(Mem.S32((Mem.U32(0x800E53C0u) + 224u))), (uint)((int)(Mem.U16((((0x800E5320u + (uint)(i * 40)) + (uint)(5 * 4)) + 2u)))), default(uint), default(uint)), 0);
-                func_0040E958(func_0040ECB0((uint)(Mem.S32((Mem.U32(0x800E53C0u) + 224u))), (uint)((int)(Mem.U16((((0x800E5320u + (uint)(i * 40)) + (uint)(6 * 4)) + 2u)))), default(uint), default(uint)), 0);
-                func_0040E958(func_0040ECB0((uint)(Mem.S32((Mem.U32(0x800E53C0u) + 224u))), (uint)((int)(Mem.U16((((0x800E5320u + (uint)(i * 40)) + (uint)(7 * 4)) + 2u)))), default(uint), default(uint)), 0);
-                func_0040E958(func_0040ECB0((uint)(Mem.S32((Mem.U32(0x800E53C0u) + 224u))), (uint)((int)(Mem.U16((((0x800E5320u + (uint)(i * 40)) + (uint)(8 * 4)) + 2u)))), default(uint), default(uint)), 0);
-                func_0040E958(func_0040ECB0((uint)(Mem.S32((Mem.U32(0x800E53C0u) + 224u))), (uint)((int)(Mem.U16((((0x800E5320u + (uint)(i * 40)) + (uint)(9 * 4)) + 2u)))), default(uint), default(uint)), 0);
+                func_0040E958(func_0040ECB0((uint)(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new O04Row28((0x800E5320u + (uint)(i * 40))).e[(int)(0)].id)), default(uint), default(uint)), 0);
+                func_0040E958(func_0040ECB0((uint)(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new O04Row28((0x800E5320u + (uint)(i * 40))).e[(int)(1)].id)), default(uint), default(uint)), 0);
+                func_0040E958(func_0040ECB0((uint)(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new O04Row28((0x800E5320u + (uint)(i * 40))).e[(int)(2)].id)), default(uint), default(uint)), 0);
+                func_0040E958(func_0040ECB0((uint)(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new O04Row28((0x800E5320u + (uint)(i * 40))).e[(int)(3)].id)), default(uint), default(uint)), 0);
+                func_0040E958(func_0040ECB0((uint)(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new O04Row28((0x800E5320u + (uint)(i * 40))).e[(int)(4)].id)), default(uint), default(uint)), 0);
+                func_0040E958(func_0040ECB0((uint)(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new O04Row28((0x800E5320u + (uint)(i * 40))).e[(int)(5)].id)), default(uint), default(uint)), 0);
+                func_0040E958(func_0040ECB0((uint)(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new O04Row28((0x800E5320u + (uint)(i * 40))).e[(int)(6)].id)), default(uint), default(uint)), 0);
+                func_0040E958(func_0040ECB0((uint)(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new O04Row28((0x800E5320u + (uint)(i * 40))).e[(int)(7)].id)), default(uint), default(uint)), 0);
+                func_0040E958(func_0040ECB0((uint)(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new O04Row28((0x800E5320u + (uint)(i * 40))).e[(int)(8)].id)), default(uint), default(uint)), 0);
+                func_0040E958(func_0040ECB0((uint)(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new O04Row28((0x800E5320u + (uint)(i * 40))).e[(int)(9)].id)), default(uint), default(uint)), 0);
             }
             func_0042D5F8(617);
             func_0042D5F8(622);

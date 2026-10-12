@@ -11,63 +11,63 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("alSynNew", (uint)drvr, (uint)c);
             int i = 0;
-            uint hp = Mem.U32((c + 20u));
+            uint hp = new ALSynConfig(c).heap;
             uint pv = 0u;
             uint paramPtr = 0u;
             uint save = 0u;
-            Mem.Set(drvr, 0u);
-            Mem.Set((drvr + 60u), Mem.S32((c + 4u)));
-            Mem.Set((drvr + 32u), 0);
-            Mem.Set((drvr + 28u), 0);
-            Mem.Set((drvr + 68u), Mem.S32((c + 24u)));
-            Mem.Set((drvr + 72u), 160);
-            Mem.Set((drvr + 36u), Mem.U32((c + 16u)));
+            new ALSynth(drvr).head__Set(0u);
+            new ALSynth(drvr).numPVoices_Set(new ALSynConfig(c).maxPVoices);
+            new ALSynth(drvr).curSamples_Set(0);
+            new ALSynth(drvr).paramSamples_Set(0);
+            new ALSynth(drvr).outputRate_Set(new ALSynConfig(c).outputRate);
+            new ALSynth(drvr).maxOutSamples_Set(160);
+            new ALSynth(drvr).dma_Set(new ALSynConfig(c).dmaproc);
             save = alHeapDBAlloc(0u, 0, hp, 1, 28);
             alSaveNew(save);
-            Mem.Set((drvr + 56u), save);
-            Mem.Set((drvr + 52u), alHeapDBAlloc(0u, 0, hp, 1, 76));
-            Mem.Set((drvr + 64u), 1);
-            alMainBusNew(Mem.U32((drvr + 52u)), alHeapDBAlloc(0u, 0, hp, Mem.S32((c + 4u)), 4), Mem.S32((c + 4u)));
-            Mem.Set((drvr + 48u), alHeapDBAlloc(0u, 0, hp, 1, 32));
-            alAuxBusNew(Mem.U32((drvr + 48u)), alHeapDBAlloc(0u, 0, hp, Mem.S32((c + 4u)), 4), Mem.S32((c + 4u)));
-            if (((int)(Mem.U8((c + 28u))) != 0))
+            new ALSynth(drvr).saveBus__Set(save);
+            new ALSynth(drvr).mainBus__Set(alHeapDBAlloc(0u, 0, hp, 1, 76));
+            new ALSynth(drvr).maxAuxBusses_Set(1);
+            alMainBusNew(new ALSynth(drvr).mainBus_, alHeapDBAlloc(0u, 0, hp, new ALSynConfig(c).maxPVoices, 4), new ALSynConfig(c).maxPVoices);
+            new ALSynth(drvr).auxBus__Set(alHeapDBAlloc(0u, 0, hp, 1, 32));
+            alAuxBusNew(new ALSynth(drvr).auxBus_, alHeapDBAlloc(0u, 0, hp, new ALSynConfig(c).maxPVoices, 4), new ALSynConfig(c).maxPVoices);
+            if (((int)(new ALSynConfig(c).fxType) != 0))
             {
                 alSynAllocFX(drvr, (short)(0), c, hp);
             }
             else
             {
-                alAuxBusParam(Mem.U32((drvr + 48u)), 2, Mem.U32((drvr + 52u)));
+                alAuxBusParam(new ALSynth(drvr).auxBus_, 2, new ALSynth(drvr).mainBus_);
             }
-            Mem.Set((drvr + 4u), 0u);
-            Mem.Set(((drvr + 4u) + 4u), 0u);
-            Mem.Set((drvr + 20u), 0u);
-            Mem.Set(((drvr + 20u) + 4u), 0u);
-            Mem.Set((drvr + 12u), 0u);
-            Mem.Set(((drvr + 12u) + 4u), 0u);
-            pv = alHeapDBAlloc(0u, 0, hp, Mem.S32((c + 4u)), 220);
-            for (i = 0; (i < Mem.S32((c + 4u))); ++i)
+            new ALSynth(drvr).pFreeList.next__Set(0u);
+            new ALSynth(drvr).pFreeList.prev__Set(0u);
+            new ALSynth(drvr).pLameList.next__Set(0u);
+            new ALSynth(drvr).pLameList.prev__Set(0u);
+            new ALSynth(drvr).pAllocList.next__Set(0u);
+            new ALSynth(drvr).pAllocList.prev__Set(0u);
+            pv = alHeapDBAlloc(0u, 0, hp, new ALSynConfig(c).maxPVoices, 220);
+            for (i = 0; (i < new ALSynConfig(c).maxPVoices); ++i)
             {
                 uint p = (pv + (uint)(i * 220));
-                alLink(p, (drvr + 4u));
-                Mem.Set((p + 8u), 0u);
-                alLoadNew((p + 16u), Mem.U32((drvr + 36u)), hp);
-                alLoadParam((p + 16u), (uint)(1), 0u, default(uint));
-                alResampleNew((p + 88u), hp);
-                alResampleParam((p + 88u), (uint)(1), (p + 16u), default(uint));
-                alEnvmixerNew((p + 140u), hp);
-                alEnvmixerParam((p + 140u), (uint)(1), (p + 88u), default(uint));
-                alMainBusParam(Mem.U32((drvr + 52u)), 2, (p + 140u));
-                Mem.Set((p + 12u), (p + 140u));
+                alLink(new ALPVoice(p).node.P, new ALSynth(drvr).pFreeList.P);
+                new ALPVoice(p).vvoice__Set(0u);
+                alLoadNew(new ALPVoice(p).decoder.P, new ALSynth(drvr).dma, hp);
+                alLoadParam(new ALPVoice(p).decoder.P, 1, 0u);
+                alResampleNew(new ALPVoice(p).resampler.P, hp);
+                alResampleParam(new ALPVoice(p).resampler.P, 1, new ALPVoice(p).decoder.P);
+                alEnvmixerNew(new ALPVoice(p).envmixer.P, hp);
+                alEnvmixerParam(new ALPVoice(p).envmixer.P, 1, new ALPVoice(p).resampler.P);
+                alMainBusParam(new ALSynth(drvr).mainBus_, 2, new ALPVoice(p).envmixer.P);
+                new ALPVoice(p).channelKnob__Set(new ALPVoice(p).envmixer.P);
             }
-            alSaveParam(save, 1, Mem.U32((drvr + 48u)));
-            paramPtr = alHeapDBAlloc(0u, 0, hp, Mem.S32((c + 8u)), 28);
-            Mem.Set((drvr + 44u), 0u);
-            for (i = 0; (i < Mem.S32((c + 8u))); ++i)
+            alSaveParam(save, 1, new ALSynth(drvr).auxBus_);
+            paramPtr = alHeapDBAlloc(0u, 0, hp, new ALSynConfig(c).maxUpdates, 28);
+            new ALSynth(drvr).paramList__Set(0u);
+            for (i = 0; (i < new ALSynConfig(c).maxUpdates); ++i)
             {
-                Mem.Set((paramPtr + (uint)(i * 28)), Mem.U32((drvr + 44u)));
-                Mem.Set((drvr + 44u), (paramPtr + (uint)(i * 28)));
+                new ALParam((paramPtr + (uint)(i * 28))).next__Set(new ALSynth(drvr).paramList_);
+                new ALSynth(drvr).paramList__Set((paramPtr + (uint)(i * 28)));
             }
-            Mem.Set((drvr + 40u), hp);
+            new ALSynth(drvr).heap_Set(hp);
         }
     }
 

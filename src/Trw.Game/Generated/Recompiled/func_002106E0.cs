@@ -81,7 +81,7 @@ public static partial class Game
                 r4 = r16;
                 Cpu.SetS(22, Cpu.S(0)); Cpu.SetS(0, func_0024D388(r4));
                 r4 = r16;
-                Cpu.SetS(21, Cpu.S(0)); r2 = func_0024D274_rc(r4, r5, r6, r7); r3 = Cpu.V1;
+                Cpu.SetS(21, Cpu.S(0)); Cpu.SetS(0, func_0024D274(r4));
                 r4 = r16;
                 Cpu.SetS(20, Cpu.S(0)); Cpu.SetS(0, func_0024E410(r4));
                 r2 = 2148532224u;

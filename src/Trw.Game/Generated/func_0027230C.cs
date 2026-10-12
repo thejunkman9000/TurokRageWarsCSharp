@@ -10,9 +10,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0027230C_vcross", (uint)dst, (uint)a, (uint)b);
-            Mem.Set(dst, ((Mem.F32((a + 4u)) * Mem.F32((b + 8u))) - (Mem.F32((a + 8u)) * Mem.F32((b + 4u)))));
-            Mem.Set((dst + 4u), ((Mem.F32((a + 8u)) * Mem.F32(b)) - (Mem.F32(a) * Mem.F32((b + 8u)))));
-            Mem.Set((dst + 8u), ((Mem.F32(a) * Mem.F32((b + 4u))) - (Mem.F32((a + 4u)) * Mem.F32(b))));
+            new Vec3f(dst).x_Set(((new Vec3f(a).y * new Vec3f(b).z) - (new Vec3f(a).z * new Vec3f(b).y)));
+            new Vec3f(dst).y_Set(((new Vec3f(a).z * new Vec3f(b).x) - (new Vec3f(a).x * new Vec3f(b).z)));
+            new Vec3f(dst).z_Set(((new Vec3f(a).x * new Vec3f(b).y) - (new Vec3f(a).y * new Vec3f(b).x)));
         }
     }
 
@@ -23,13 +23,13 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0027230C_vnorm", (uint)v);
             float len = 0f;
             float inv = 0f;
-            len = func_002BC380((((Mem.F32(v) * Mem.F32(v)) + (Mem.F32((v + 4u)) * Mem.F32((v + 4u)))) + (Mem.F32((v + 8u)) * Mem.F32((v + 8u)))));
+            len = func_002BC380((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z)));
             if ((len != 0.0f))
             {
                 inv = (1.0f / len);
-                Mem.Set(v, (float)((float)(Mem.F32(v)) * inv));
-                Mem.Set((v + 4u), (float)((float)(Mem.F32((v + 4u))) * inv));
-                Mem.Set((v + 8u), (float)((float)(Mem.F32((v + 8u))) * inv));
+                new Vec3f(v).x_Set((float)((float)(new Vec3f(v).x) * inv));
+                new Vec3f(v).y_Set((float)((float)(new Vec3f(v).y) * inv));
+                new Vec3f(v).z_Set((float)((float)(new Vec3f(v).z) * inv));
             }
         }
     }
@@ -42,9 +42,9 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0027230C_vscale", 0u, (uint)v);
-                Mem.Set(_fp, (Mem.F32(v) * s));
-                Mem.Set((_fp + 4u), (Mem.F32((v + 4u)) * s));
-                Mem.Set((_fp + 8u), (Mem.F32((v + 8u)) * s));
+                new Vec3f(_fp).x_Set((new Vec3f(v).x * s));
+                new Vec3f(_fp).y_Set((new Vec3f(v).y * s));
+                new Vec3f(_fp).z_Set((new Vec3f(v).z * s));
                 Mem.Copy(_ret, _fp, 12);
                 return _ret;
             }
@@ -63,7 +63,7 @@ public static partial class Game
                 float d = 0f;
                 func_0027230C_vcross((_fp + 16u), a, b);
                 func_0027230C_vnorm((_fp + 16u));
-                d = (((Mem.F32(v) * Mem.F32((_fp + 16u))) + (Mem.F32((v + 4u)) * Mem.F32(((_fp + 16u) + 4u)))) + (Mem.F32((v + 8u)) * Mem.F32(((_fp + 16u) + 8u))));
+                d = (((new Vec3f(v).x * new Vec3f((_fp + 16u)).x) + (new Vec3f(v).y * new Vec3f((_fp + 16u)).y)) + (new Vec3f(v).z * new Vec3f((_fp + 16u)).z));
                 Mem.Copy(_ret, C.Seq(func_0027230C_vscale(_fp, (_fp + 16u), d), _fp), 12);
                 return _ret;
             }

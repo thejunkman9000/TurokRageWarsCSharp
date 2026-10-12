@@ -13,16 +13,16 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0024E6C8", (uint)a, (uint)@out);
-                if (((int)(Mem.U8(a)) == 1))
+                if (((int)(new Obj(a).type) == 1))
                 {
-                    func_002165F8(a, (a + 368u), _fp);
-                    Mem.Copy(@out, _fp, 12);
+                    func_002165F8(a, new Obj(a).unk170.P, _fp);
+                    Mem.Copy(@out, new B11Res(_fp).v.P, 12);
                 }
                 else
                 {
-                    Mem.Set(@out, (float)(0));
-                    Mem.Set((@out + 4u), (float)(0));
-                    Mem.Set((@out + 8u), (float)(0));
+                    new Vec3f(@out).x_Set((float)(0));
+                    new Vec3f(@out).y_Set((float)(0));
+                    new Vec3f(@out).z_Set((float)(0));
                 }
             }
         }

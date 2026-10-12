@@ -10,9 +10,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00278EEC", (uint)r);
-            Mem.Set((r + 14u), (byte)((int)(Mem.U8((r + 14u))) | 16));
+            new Rec14(r).flagsE_Set((byte)((int)(new Rec14(r).flagsE) | 16));
             func_0028BAF8(0x8011FE88u, r, 1);
-            if (((Mem.S32(0x8011FE88u) == 4) && (((int)(Mem.U8((r + 14u))) & 2) != 0)))
+            if (((new SessMgr(0x8011FE88u).mode == 4) && (((int)(new Rec14(r).flagsE) & 2) != 0)))
             {
                 func_0028C544(0x8011FE88u, r);
             }

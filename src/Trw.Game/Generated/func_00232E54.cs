@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00232E54", (uint)actor, (uint)state);
-            uint owner = Mem.U32((actor + 472u));
+            uint owner = new Actor(actor).owner_;
             uint p = 0u;
             float t = 0f;
             int c = 0;
@@ -43,7 +43,7 @@ public static partial class Game
             L_big: ;
             Mem.Set((p + (uint)360), Mem.F32(0x800C812Cu));
             L_done: ;
-            if (((int)(Mem.S8((state + 203u))) != 0))
+            if (((int)(new ActorState(state).unkCB) != 0))
             {
                 Mem.Set((state + (uint)316), 2);
                 if ((func_002301E4(actor, state) != 0))

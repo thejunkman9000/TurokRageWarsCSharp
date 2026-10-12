@@ -26,9 +26,9 @@ public static partial class Game
                 float x1 = 0f;
                 float y1 = 0f;
                 float s = 0f;
-                func_0029CBB0(Mem.F32(v), _fp, (_fp + 4u));
-                func_0029CBB0(Mem.F32((v + 4u)), (_fp + 8u), (_fp + 12u));
-                func_0029CBB0(Mem.F32((v + 8u)), (_fp + 16u), (_fp + 20u));
+                func_0029CBB0(new Vec3f(v).x, _fp, (_fp + 4u));
+                func_0029CBB0(new Vec3f(v).y, (_fp + 8u), (_fp + 12u));
+                func_0029CBB0(new Vec3f(v).z, (_fp + 16u), (_fp + 20u));
                 t = ((-Mem.F32((_fp + 8u))) * Mem.F32((_fp + 20u)));
                 if ((1.0f < t))
                 {
@@ -58,9 +58,9 @@ public static partial class Game
                     e1 = func_0029D044(((-Mem.F32((_fp + 20u))) * Mem.F32(_fp)), (Mem.F32((_fp + 20u)) * Mem.F32((_fp + 4u))));
                     e2 = 0.0f;
                 }
-                Mem.Set(v, e1);
-                Mem.Set((v + 4u), a);
-                Mem.Set((v + 8u), e2);
+                new Vec3f(v).x_Set(e1);
+                new Vec3f(v).y_Set(a);
+                new Vec3f(v).z_Set(e2);
             }
         }
         finally { Stack.Free(24); }

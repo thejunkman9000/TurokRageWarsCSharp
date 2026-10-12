@@ -13,8 +13,8 @@ public static partial class Game
             float f = 0f;
             int flag = 0;
             int i = 0;
-            f = (Mem.F32((lv + 111388u)) + Mem.F32(0x800D2988u));
-            Mem.Set((lv + 111388u), f);
+            f = (new Level(lv).unk1B31C + Mem.F32(0x800D2988u));
+            new Level(lv).unk1B31C_Set(f);
             flag = 1;
             if (!(f > 0.0f))
             {
@@ -22,11 +22,11 @@ public static partial class Game
             }
             if ((flag != 0))
             {
-                Mem.Set((lv + 111388u), (f - (float)(((int)(f) + 1))));
+                new Level(lv).unk1B31C_Set((f - (float)(((int)(f) + 1))));
             }
-            for (i = 0; (i < Mem.S32((lv + 3148u))); ++i)
+            for (i = 0; (i < new Level(lv).cntC4C); ++i)
             {
-                func_002505CC(Mem.U32(((lv + 2892u) + (uint)(i * 4))), flag);
+                func_002505CC(new Level(lv).arrB4C[(int)(i)], flag);
             }
         }
     }

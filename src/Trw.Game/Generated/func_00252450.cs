@@ -18,14 +18,14 @@ public static partial class Game
                 uint m2 = 0u;
                 while ((1 != 0))
                 {
-                    osRecvMesg((0x80103F70u + 2160u), _fp, 1);
+                    osRecvMesg(new B12Mgr(0x80103F70u).q870.P, _fp, 1);
                     if (((uint)(Mem.U32(_fp)) < (uint)(2)))
                     {
                         mask = __osDisableInt();
                         if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
                         {
                             __osRestoreInt(mask);
-                            osRecvMesg((0x80103F70u + 4560u), 0u, 1);
+                            osRecvMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
                         }
                         else
                         {
@@ -45,11 +45,11 @@ public static partial class Game
                     }
                     else
                     {
-                        Mem.Set((Mem.U32(_fp) + 16u), (uint)((uint)(Mem.U32((Mem.U32(_fp) + 16u))) & (uint)((~2))));
-                        if (((Mem.U32((Mem.U32(_fp) + 16u)) & (uint)(8)) != 0u))
+                        new B12Msg(Mem.U32(_fp)).flags_Set((uint)((uint)(new B12Msg(Mem.U32(_fp)).flags) & (uint)((~2))));
+                        if (((new B12Msg(Mem.U32(_fp)).flags & (uint)(8)) != 0u))
                         {
-                            Mem.Set((Mem.U32(_fp) + 16u), (uint)((uint)(Mem.U32((Mem.U32(_fp) + 16u))) & (uint)((~8))));
-                            if ((func_0025519C(0x8010A248u, Mem.U32(_fp), (0x80103F70u + 2160u)) != 0))
+                            new B12Msg(Mem.U32(_fp)).flags_Set((uint)((uint)(new B12Msg(Mem.U32(_fp)).flags) & (uint)((~8))));
+                            if ((func_0025519C(0x8010A248u, Mem.U32(_fp), new B12Mgr(0x80103F70u).q870.P) != 0))
                             {
                                 continue;
                             }
@@ -57,28 +57,28 @@ public static partial class Game
                             if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
                             {
                                 __osRestoreInt(mask);
-                                osRecvMesg((0x80103F70u + 4560u), 0u, 1);
+                                osRecvMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
                             }
                             else
                             {
                                 __osRestoreInt(mask);
                             }
-                            func_00255E78(((0x80103F70u + 4488u) + (uint)(2 * 20)), Mem.U32(_fp), default(uint), default(uint));
-                            func_00255C58(((0x80103F70u + 4488u) + (uint)(1 * 20)), Mem.U32(_fp), default(uint), default(uint));
-                            p = Mem.U32(Mem.U32(_fp));
-                            Mem.Set((p + 12u), (uint)((uint)(Mem.U32((p + 12u))) & (uint)((~2))));
-                            while ((Mem.S32((p + 8u)) != 0))
+                            func_00255E78((new B12Mgr(0x80103F70u).lists3.P + (uint)(2 * 20)), Mem.U32(_fp), default(uint), default(uint));
+                            func_00255C58((new B12Mgr(0x80103F70u).lists3.P + (uint)(1 * 20)), Mem.U32(_fp));
+                            p = new B12Msg(Mem.U32(_fp)).node_;
+                            new B12Node(p).flags_Set((uint)((uint)(new B12Node(p).flags) & (uint)((~2))));
+                            while ((new B12Node(p).refs != 0))
                             {
-                                Mem.Set((p + 8u), (int)(Mem.S32((p + 8u)) - 1));
-                                if ((Mem.S32((p + 8u)) == 0))
+                                new B12Node(p).refs_Set((int)(new B12Node(p).refs - 1));
+                                if ((new B12Node(p).refs == 0))
                                 {
-                                    Mem.Set((p + 12u), (uint)((uint)(Mem.U32((p + 12u))) & (uint)((~256))));
+                                    new B12Node(p).flags_Set((uint)((uint)(new B12Node(p).flags) & (uint)((~256))));
                                 }
                             }
-                            if (!((Mem.U32((p + 12u)) & (uint)(1794)) != 0u))
+                            if (!((new B12Node(p).flags & (uint)(1794)) != 0u))
                             {
                                 func_00254D70(0, p);
-                                func_00255ACC(0x801051A0u, (uint)((int)(Mem.U32(p))), default(uint), default(uint));
+                                func_00255ACC(0x801051A0u, (uint)((int)(new B12Node(p).key)), default(uint), default(uint));
                                 func_00254A70(0, p);
                             }
                             func_00254E28((uint)(0), Mem.U32(_fp));
@@ -95,12 +95,12 @@ public static partial class Game
                         }
                         else
                         {
-                            Mem.Set((Mem.U32(_fp) + 16u), (uint)((uint)(Mem.U32((Mem.U32(_fp) + 16u))) & (uint)((~4))));
+                            new B12Msg(Mem.U32(_fp)).flags_Set((uint)((uint)(new B12Msg(Mem.U32(_fp)).flags) & (uint)((~4))));
                             mask = __osDisableInt();
                             if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
                             {
                                 __osRestoreInt(mask);
-                                osRecvMesg((0x80103F70u + 4560u), 0u, 1);
+                                osRecvMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
                             }
                             else
                             {

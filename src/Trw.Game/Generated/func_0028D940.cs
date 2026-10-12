@@ -16,21 +16,21 @@ public static partial class Game
                 uint h = 0u;
                 uint r = 0u;
                 int p = 0;
-                if (((Mem.U32((o + 20u)) == 0u) || (Mem.S32((o + 24u)) != id)))
+                if (((new Obj_v2(o).unk14_ == 0u) || (new Obj_v2(o).unk18 != id)))
                 {
                     func_0028DA50(o);
-                    if ((Mem.S32((o + 12u)) != 0))
+                    if ((new Obj_v2(o).unkC != 0))
                     {
-                        h = func_002518DC((uint)(0), (uint)(Mem.S32((o + 12u))), (uint)(Mem.S32((o + 12u))), (uint)(Mem.S32((o + 16u))), (uint)(16), (uint)(0), 0u, 0x800CA380u, (uint)(1));
+                        h = func_002518DC(0, (uint)(new Obj_v2(o).unkC), new Obj_v2(o).unkC, (uint)(new Obj_v2(o).unk10), 16, (uint)(0), 0u, 0x800CA380u, 1);
                         if ((h != 0u))
                         {
-                            p = (int)(func_0028FE1C((uint)(Mem.S32(h)), (uint)(Mem.S32((o + 12u))), id, _fp));
+                            p = (int)(func_0028FE1C((uint)(Mem.S32(h)), (uint)(new Obj_v2(o).unkC), id, _fp));
                             func_002537D8(0, h);
-                            r = func_002518DC((uint)(0), (uint)(p), (uint)(p), (uint)(Mem.S32(_fp)), (uint)(16), (uint)(0), 0x00285130u, 0x800CA3ACu, (uint)(1));
-                            Mem.Set((o + 20u), r);
+                            r = func_002518DC(0, (uint)(p), p, (uint)(Mem.S32(_fp)), 16, (uint)(0), 0x00285130u, 0x800CA3ACu, 1);
+                            new Obj_v2(o).unk14__Set(r);
                             if ((r != 0u))
                             {
-                                Mem.Set((o + 24u), id);
+                                new Obj_v2(o).unk18_Set(id);
                             }
                         }
                     }

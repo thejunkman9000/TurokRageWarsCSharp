@@ -12,9 +12,9 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0022A274", (uint)g, (uint)p);
             uint a = 0u;
             func_0026D980();
-            for (a = Mem.U32((g + 32u)); (a != 0u); a = Mem.U32((a + 5856u)))
+            for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
             {
-                if ((((Mem.U32((a + 1500u)) != p) || (Mem.S32((p + 36u)) == 1)) || (func_002458F8() != 0)))
+                if ((((new Plr(a).unk5DC_ != p) || (new Pawn(p).unk24 == 1)) || (func_002458F8() != 0)))
                 {
                     func_0021C9B4(a, p);
                 }

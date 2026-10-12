@@ -13,33 +13,33 @@ public static partial class Game
             uint m = 0u;
             int saved = 0;
             int b = 0;
-            if (((Mem.S32((Mem.U32(0x8014D080u) + 4u)) >= 0) && (Mem.S32((Mem.U32(0x8014D080u) + 1328u)) != 0)))
+            if (((new SndMgr_v2(Mem.U32(0x8014D080u)).top >= 0) && (new SndMgr_v2(Mem.U32(0x8014D080u)).unk530 != 0)))
             {
-                if ((Mem.U32(((Mem.U32((Mem.U32(0x8014D080u) + 12u)) + (uint)(Mem.S32((Mem.U32(0x8014D080u) + 4u)) * 28)) + 8u)) != 0u))
+                if ((new SndStkEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).stk_ + (uint)(new SndMgr_v2(Mem.U32(0x8014D080u)).top * 28))).unk8_ != 0u))
                 {
-                    func_0029A5D4((uint)((int)(Mem.S16((Mem.U32(((Mem.U32((Mem.U32(0x8014D080u) + 12u)) + (uint)(Mem.S32((Mem.U32(0x8014D080u) + 4u)) * 28)) + 8u)) + 12u)))), (uint)(16), (uint)(0), (uint)(0), (uint)(0));
+                    func_0029A5D4((uint)((int)(new SndStkEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).stk_ + (uint)(new SndMgr_v2(Mem.U32(0x8014D080u)).top * 28))).unk8.id)), (uint)(16), (uint)(0), (uint)(0), (uint)(0));
                 }
                 b = a;
                 func_0029ACC4();
                 m = Mem.U32(0x8014D080u);
-                if ((Mem.S32((m + 4u)) != (-1)))
+                if ((new SndMgr_v2(m).top != (-1)))
                 {
-                    if ((Mem.U32(m) != 0u))
+                    if ((new SndMgr_v2(m).fn0 != 0u))
                     {
-                        saved = Mem.S32((m + 1312u));
-                        Mem.Set((m + 1312u), 0);
-                        Funcs.CallReg(Mem.U32(m), (uint)(3587), (uint)(b), (uint)(0), (uint)(0));
-                        if ((Mem.S32((Mem.U32(0x8014D080u) + 1312u)) == 1))
+                        saved = new SndMgr_v2(m).unk520;
+                        new SndMgr_v2(m).unk520_Set(0);
+                        Funcs.CallReg(new SndMgr_v2(m).fn0, (uint)(3587), (uint)(b), (uint)(0), (uint)(0));
+                        if ((new SndMgr_v2(Mem.U32(0x8014D080u)).unk520 == 1))
                         {
-                            Mem.Set((Mem.U32(0x8014D080u) + 1312u), saved);
+                            new SndMgr_v2(Mem.U32(0x8014D080u)).unk520_Set(saved);
                             goto L_done;
                         }
-                        Mem.Set((Mem.U32(0x8014D080u) + 1312u), saved);
+                        new SndMgr_v2(Mem.U32(0x8014D080u)).unk520_Set(saved);
                     }
                     func_00298310((uint)(1), (uint)(3587), (uint)(b), (uint)(0), (uint)(0));
                 }
                 L_done: ;
-                Mem.Set((Mem.U32(0x8014D080u) + 1328u), 0);
+                new SndMgr_v2(Mem.U32(0x8014D080u)).unk530_Set(0);
             }
             return 1;
         }

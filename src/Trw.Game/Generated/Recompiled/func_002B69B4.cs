@@ -36,10 +36,10 @@ public static partial class Game
                 { bool c_ = r2 == 0; r16 = r0; if (c_) goto L_L002B6A20; }
                 r4 = r18;
                 L_L002B69F4: ;
-                r5 = r16; r2 = __resetPerfChanState(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r16; __resetPerfChanState(r4, (int)r5);
                 r4 = r18;
                 r5 = r17;
-                r6 = r16; r2 = __setInstChanState(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = r16; __setInstChanState(r4, r5, (int)r6);
                 r2 = Mem.U8((r18 + 52u));
                 r16 = r16 + 1u;
                 r2 = (uint)((int)r16 < (int)r2 ? 1 : 0);
@@ -47,10 +47,10 @@ public static partial class Game
                 L_L002B6A20: ;
                 r2 = Mem.U32((r19 + 8u));
                 { bool c_ = r2 == 0; r4 = r18; if (c_) goto L_L002B6A44; }
-                r5 = r16; r2 = __resetPerfChanState(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r16; __resetPerfChanState(r4, (int)r5);
                 r4 = r18;
                 r5 = Mem.U32((r19 + 8u));
-                r6 = (uint)9; r2 = __setInstChanState(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = (uint)9; __setInstChanState(r4, r5, (int)r6);
                 L_L002B6A44: ;
                 r31 = Mem.U32((r29 + 32u));
                 r19 = Mem.U32((r29 + 28u));

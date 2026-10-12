@@ -11,9 +11,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00444364", (uint)a);
             uint r = 0x80146302u;
-            if ((Mem.U32((a + 28u)) != 0u))
+            if ((new O06A_v3(a).unk1C_ != 0u))
             {
-                uint q = Mem.U32((Mem.U32((a + 28u)) + 1496u));
+                uint q = new O06B_v14(new O06A_v3(a).unk1C_).unk5D8_;
                 if ((q != 0u))
                 {
                     r = q;

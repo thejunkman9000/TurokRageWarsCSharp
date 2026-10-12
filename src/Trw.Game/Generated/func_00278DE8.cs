@@ -13,7 +13,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00278DE8", (uint)a, (uint)arg1, (uint)arg2);
-                if (!((Mem.U32((a + 256u)) & (uint)(524288)) != 0u))
+                if (!((new ActorX(a).flags & (uint)(524288)) != 0u))
                 {
                     func_0028C248(0x8011FE88u, a, _fp, (_fp + 4u));
                     if ((Mem.S32((_fp + 4u)) != 0))

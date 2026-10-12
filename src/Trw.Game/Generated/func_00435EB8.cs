@@ -23,10 +23,10 @@ public static partial class Game
                 func_0042325C();
                 return 0;
             case 65:
-                func_00299368((uint)(31), default(uint), default(uint), default(uint));
+                func_00299368(31);
                 return 0;
             case 62:
-                func_00299368((uint)(32), default(uint), default(uint), default(uint));
+                func_00299368(32);
                 return 0;
             default:
                 return 0;

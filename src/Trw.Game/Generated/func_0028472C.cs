@@ -10,12 +10,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028472C", (uint)owner, (uint)obj);
-            uint p = Mem.U32((owner + 64532u));
+            uint p = new B19Owner(owner).lb.head_;
             if ((p != 0u))
             {
-                for (; (p != 0u); p = Mem.U32((p + 500u)))
+                for (; (p != 0u); p = new B19Obj(p).next2_)
                 {
-                    if ((Mem.U32((p + 280u)) == Mem.U32((obj + 280u))))
+                    if ((new B19Obj(p).parent_ == new B19Obj(obj).parent_))
                     {
                         break;
                     }
@@ -23,20 +23,20 @@ public static partial class Game
             }
             if ((p != 0u))
             {
-                func_00255D10((owner + 64532u), p, obj);
+                func_00255D10(new B19Owner(owner).lb.P, p, obj, default(uint));
             }
             else
             {
-                if (((Mem.U32(Mem.U32((obj + 280u))) & (uint)(8192)) != 0u))
+                if (((new B19Obj(obj).parent.flags & (uint)(8192)) != 0u))
                 {
-                    func_00255C58((owner + 64532u), obj, default(uint), default(uint));
+                    func_00255C58(new B19Owner(owner).lb.P, obj);
                 }
                 else
                 {
-                    func_00255CB4((owner + 64532u), obj, default(uint), default(uint));
+                    func_00255CB4(new B19Owner(owner).lb.P, obj, default(uint), default(uint));
                 }
             }
-            Mem.Set((obj + 92u), (uint)((uint)(Mem.U32((obj + 92u))) | (uint)(16777216)));
+            new B19Obj(obj).flags_Set((uint)((uint)(new B19Obj(obj).flags) | (uint)(16777216)));
         }
     }
 

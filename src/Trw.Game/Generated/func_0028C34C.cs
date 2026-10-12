@@ -12,21 +12,21 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0028C34C", (uint)lv, (uint)key);
             uint r = 0u;
             int n = 0;
-            n = Mem.S32((lv + 4544u));
-            r = Mem.U32((lv + 4560u));
+            n = new Level(lv).cnt11C0;
+            r = new Level(lv).recA_;
             while (((--n) != (-1)))
             {
-                if (((int)(Mem.U8((r + 15u))) == key))
+                if (((int)(new Rec14_v2(r).key) == key))
                 {
                     func_00278EEC(r);
                 }
                 r += 20u;
             }
-            n = Mem.S32((lv + 4548u));
-            r = Mem.U32((lv + 4564u));
+            n = new Level(lv).cnt11C4;
+            r = new Level(lv).recB_;
             while (((--n) != (-1)))
             {
-                if (((int)(Mem.U8((r + 15u))) == key))
+                if (((int)(new Rec14_v2(r).key) == key))
                 {
                     func_00278EEC(r);
                 }

@@ -17,41 +17,41 @@ public static partial class Game
                 Mem.Set(_fp + 0u, 0u);
                 int stolen = 0;
                 uint f = 0u;
-                Mem.Set((voice + 22u), Mem.S16(vc));
-                Mem.Set((voice + 26u), (short)(Mem.U8((vc + 4u))));
-                Mem.Set((voice + 12u), 0u);
-                Mem.Set((voice + 24u), Mem.S16((vc + 2u)));
-                Mem.Set((voice + 20u), (short)(0));
-                Mem.Set((voice + 8u), 0u);
-                stolen = _allocatePVoice(drvr, _fp, Mem.S16(vc));
+                new ALVoice(voice).priority_Set(new ALVoiceConfig(vc).priority);
+                new ALVoice(voice).unityPitch_Set((short)(new ALVoiceConfig(vc).unityPitch));
+                new ALVoice(voice).table_Set(0u);
+                new ALVoice(voice).fxBus_Set(new ALVoiceConfig(vc).fxBus);
+                new ALVoice(voice).state_Set((short)(0));
+                new ALVoice(voice).pvoice__Set(0u);
+                stolen = _allocatePVoice(drvr, _fp, new ALVoiceConfig(vc).priority);
                 if ((Mem.U32(_fp) != 0u))
                 {
-                    f = Mem.U32((Mem.U32(_fp) + 12u));
+                    f = new ALPVoice(Mem.U32(_fp)).channelKnob_;
                     if ((stolen != 0))
                     {
-                        Mem.Set((Mem.U32(_fp) + 216u), 512);
-                        Mem.Set((Mem.U32((Mem.U32(_fp) + 8u)) + 8u), 0u);
+                        new ALPVoice(Mem.U32(_fp)).offset_Set(512);
+                        new ALPVoice(Mem.U32(_fp)).vvoice.pvoice__Set(0u);
                         update = __allocParam();
-                        Mem.Set((update + 4u), Mem.S32((drvr + 28u)));
-                        Mem.Set((update + 8u), (short)(11));
-                        Mem.Set((update + 12u), 0);
-                        Mem.Set((update + 16u), (Mem.S32((Mem.U32(_fp) + 216u)) - 64));
-                        Funcs.CallReg(Mem.U32((f + 8u)), f, (uint)(3), update, 0u);
+                        new ALParam(update).delta_Set(new ALSynth(drvr).paramSamples);
+                        new ALParam(update).type_Set((short)(11));
+                        Mem.Set(new ALParam(update).data.P, 0);
+                        Mem.Set(new ALParam(update).d2.P, (new ALPVoice(Mem.U32(_fp)).offset - 64));
+                        Funcs.CallReg(new ALFilter(f).setParam, f, (uint)(3), update, 0u);
                         update = __allocParam();
                         if ((update != 0u))
                         {
-                            Mem.Set((update + 4u), (Mem.S32((drvr + 28u)) + Mem.S32((Mem.U32(_fp) + 216u))));
-                            Mem.Set((update + 8u), (short)(15));
-                            Mem.Set(update, 0u);
-                            Funcs.CallReg(Mem.U32((f + 8u)), f, (uint)(3), update, 0u);
+                            new ALParam(update).delta_Set((new ALSynth(drvr).paramSamples + new ALPVoice(Mem.U32(_fp)).offset));
+                            new ALParam(update).type_Set((short)(15));
+                            new ALParam(update).next__Set(0u);
+                            Funcs.CallReg(new ALFilter(f).setParam, f, (uint)(3), update, 0u);
                         }
                     }
                     else
                     {
-                        Mem.Set((Mem.U32(_fp) + 216u), 0);
+                        new ALPVoice(Mem.U32(_fp)).offset_Set(0);
                     }
-                    Mem.Set((Mem.U32(_fp) + 8u), voice);
-                    Mem.Set((voice + 8u), Mem.U32(_fp));
+                    new ALPVoice(Mem.U32(_fp)).vvoice__Set(voice);
+                    new ALVoice(voice).pvoice__Set(Mem.U32(_fp));
                 }
                 return ((Mem.U32(_fp) != 0u) ? 1 : 0);
             }

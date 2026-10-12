@@ -14,29 +14,29 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_00273208", (uint)m, (uint)dir);
                 Mem.Copy(_fp, (0x800C97B0u + (uint)(1 * 4)), 12);
-                if (!((Mem.F32((dir + 4u)) < 0.0f))) goto _f0;
-                if (!(((-Mem.F32((dir + 4u))) >= 0.999998986f))) goto _f1;
+                if (!((new Vec3f(dir).y < 0.0f))) goto _f0;
+                if (!(((-new Vec3f(dir).y) >= 0.999998986f))) goto _f1;
                 goto L_parallel;
                 _f1: ;
                 goto _f2;
                 _f0: ;
-                if (!((Mem.F32((dir + 4u)) >= 0.999998986f))) goto _f3;
+                if (!((new Vec3f(dir).y >= 0.999998986f))) goto _f3;
                 L_parallel: ;
-                Mem.Set(((m + (uint)(0 * 16)) + (uint)(0 * 4)), 1.0f);
-                Mem.Set(((m + (uint)(0 * 16)) + (uint)(1 * 4)), 0.0f);
-                Mem.Set(((m + (uint)(0 * 16)) + (uint)(2 * 4)), 0.0f);
+                Mem.Set(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), 1.0f);
+                Mem.Set(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(1 * 4)), 0.0f);
+                Mem.Set(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(2 * 4)), 0.0f);
                 goto L_next;
                 _f3: ;
                 _f2: ;
-                func_00272088((m + (uint)(0 * 16)), _fp, dir);
+                func_00272088((new B16Mtx(m).m.P + (uint)(0 * 16)), _fp, dir);
                 L_next: ;
-                func_00272088((m + (uint)(1 * 16)), (m + (uint)(0 * 16)), dir);
-                Mem.Copy((m + (uint)(2 * 16)), dir, 12);
-                func_002720EC((m + (uint)(0 * 16)));
-                func_002720EC((m + (uint)(1 * 16)));
-                func_002720EC((m + (uint)(2 * 16)));
-                Mem.Set(((m + (uint)(0 * 16)) + (uint)(3 * 4)), Mem.Set(((m + (uint)(1 * 16)) + (uint)(3 * 4)), Mem.Set(((m + (uint)(2 * 16)) + (uint)(3 * 4)), Mem.Set(((m + (uint)(3 * 16)) + (uint)(0 * 4)), Mem.Set(((m + (uint)(3 * 16)) + (uint)(1 * 4)), Mem.Set(((m + (uint)(3 * 16)) + (uint)(2 * 4)), 0.0f))))));
-                Mem.Set(((m + (uint)(3 * 16)) + (uint)(3 * 4)), 1.0f);
+                func_00272088((new B16Mtx(m).m.P + (uint)(1 * 16)), (new B16Mtx(m).m.P + (uint)(0 * 16)), dir);
+                Mem.Copy((new B16Mtx(m).m.P + (uint)(2 * 16)), dir, 12);
+                func_002720EC((new B16Mtx(m).m.P + (uint)(0 * 16)));
+                func_002720EC((new B16Mtx(m).m.P + (uint)(1 * 16)));
+                func_002720EC((new B16Mtx(m).m.P + (uint)(2 * 16)));
+                Mem.Set(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(3 * 4)), Mem.Set(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(3 * 4)), Mem.Set(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(3 * 4)), Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(0 * 4)), Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(1 * 4)), Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(2 * 4)), 0.0f))))));
+                Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), 1.0f);
             }
         }
         finally { Stack.Free(12); }

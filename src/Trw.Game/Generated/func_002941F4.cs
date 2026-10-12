@@ -18,12 +18,12 @@ public static partial class Game
                 Mem.Set(_fp, 0);
                 Mem.Set((_fp + 4u), 0);
                 dl = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                Mem.Set(dl, (4279238656u | (uint)(((Mem.S32(0x800E28D0u) - 1) & 4095))));
-                Mem.Set((dl + 4u), (uint)(Mem.S32((Mem.U32(0x8011FE80u) + 272u))));
+                new DlCmd(dl).w0_Set((4279238656u | (uint)(((Mem.S32(0x800E28D0u) - 1) & 4095))));
+                new DlCmd(dl).w1_Set((uint)(new B21Hdr(Mem.U32(0x8011FE80u)).unk110));
                 func_002AB940(905, 0, _fp, (_fp + 4u));
                 if (((Mem.S32(_fp) != 0) && (Mem.S32((_fp + 4u)) != 0)))
                 {
-                    func_002AA224((uint)(250));
+                    func_002AA224((uint)(250), default(uint), default(uint), default(uint));
                     func_002ABC18(905, 0, (short)(0), (short)(0), ((float)(Mem.S32(0x800E28D0u)) / (float)(Mem.S32(_fp))), ((float)(Mem.S32(0x800E28D4u)) / (float)(Mem.S32((_fp + 4u)))), 1);
                 }
             }

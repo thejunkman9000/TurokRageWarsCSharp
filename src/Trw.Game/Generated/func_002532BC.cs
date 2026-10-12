@@ -10,9 +10,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002532BC", (uint)n);
-            if ((Mem.Set((n + 8u), (int)(Mem.S32((n + 8u)) - 1)) == 0))
+            if ((new B12Node(n).refs_Set((int)(new B12Node(n).refs - 1)) == 0))
             {
-                Mem.Set((n + 12u), (uint)((uint)(Mem.U32((n + 12u))) & (uint)((~256))));
+                new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) & (uint)((~256))));
             }
         }
     }

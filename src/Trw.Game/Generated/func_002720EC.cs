@@ -12,13 +12,13 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002720EC", (uint)v);
             float len = 0f;
             float inv = 0f;
-            len = func_002BC380((((Mem.F32(v) * Mem.F32(v)) + (Mem.F32((v + 4u)) * Mem.F32((v + 4u)))) + (Mem.F32((v + 8u)) * Mem.F32((v + 8u)))));
+            len = func_002BC380((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z)));
             if ((len != 0.0f))
             {
                 inv = (1.0f / len);
-                Mem.Set(v, (float)((float)(Mem.F32(v)) * inv));
-                Mem.Set((v + 4u), (float)((float)(Mem.F32((v + 4u))) * inv));
-                Mem.Set((v + 8u), (float)((float)(Mem.F32((v + 8u))) * inv));
+                new Vec3f(v).x_Set((float)((float)(new Vec3f(v).x) * inv));
+                new Vec3f(v).y_Set((float)((float)(new Vec3f(v).y) * inv));
+                new Vec3f(v).z_Set((float)((float)(new Vec3f(v).z) * inv));
             }
         }
     }

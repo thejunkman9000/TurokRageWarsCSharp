@@ -42,24 +42,24 @@ public static partial class Game
             if (((Mem.S32(0x801462C8u) & 512) != 0))
             {
                 dl = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                Mem.Set(dl, 3875536896u);
-                Mem.Set((dl + 4u), (uint)(0));
+                new DlCmd(dl).w0_Set(3875536896u);
+                new DlCmd(dl).w1_Set((uint)(0));
                 dl = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                Mem.Set(dl, 3808430593u);
-                Mem.Set((dl + 4u), (uint)(0));
+                new DlCmd(dl).w0_Set(3808430593u);
+                new DlCmd(dl).w1_Set((uint)(0));
                 dl = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                Mem.Set(dl, 4177526784u);
-                Mem.Set((dl + 4u), (uint)((-1)));
+                new DlCmd(dl).w0_Set(4177526784u);
+                new DlCmd(dl).w1_Set((uint)((-1)));
                 dl = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                Mem.Set(dl, 3992977408u);
-                Mem.Set((dl + 4u), (uint)((-1)));
+                new DlCmd(dl).w0_Set(3992977408u);
+                new DlCmd(dl).w1_Set((uint)((-1)));
                 dl = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                Mem.Set(dl, 3791658240u);
-                Mem.Set((dl + 4u), (uint)(4));
+                new DlCmd(dl).w0_Set(3791658240u);
+                new DlCmd(dl).w1_Set((uint)(4));
                 func_0026925C((uint)(22));
                 dl6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                Mem.Set(dl6, ((4127195136u | ((Cpu.TruncU32((Mem.F32((a + 676u)) + Mem.F32((a + 668u)))) & (uint)(1023)) << (int)14)) | ((Cpu.TruncU32((Mem.F32((a + 680u)) + Mem.F32((a + 672u)))) & (uint)(1023)) << (int)2)));
-                Mem.Set((dl6 + 4u), (((Cpu.TruncU32(Mem.F32((a + 676u))) & (uint)(1023)) << (int)14) | ((Cpu.TruncU32(Mem.F32((a + 680u))) & (uint)(1023)) << (int)2)));
+                new DlCmd(dl6).w0_Set(((4127195136u | ((Cpu.TruncU32((new ViewObj(a).unk2A4 + new ViewObj(a).unk29C)) & (uint)(1023)) << (int)14)) | ((Cpu.TruncU32((new ViewObj(a).unk2A8 + new ViewObj(a).unk2A0)) & (uint)(1023)) << (int)2)));
+                new DlCmd(dl6).w1_Set((((Cpu.TruncU32(new ViewObj(a).unk2A4) & (uint)(1023)) << (int)14) | ((Cpu.TruncU32(new ViewObj(a).unk2A8) & (uint)(1023)) << (int)2)));
             }
         }
     }

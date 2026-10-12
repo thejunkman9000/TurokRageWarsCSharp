@@ -77,7 +77,7 @@ public static partial class Game
                 r4 = r16;
                 r1 = 2148335616u;
                 Cpu.SetW(20, Mem.U32((r1 - 25080u)));
-                r5 = r17 + 240u; r2 = func_00271888(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r17 + 240u; r2 = func_00271888(r4, r5);
                 Cpu.SetS(12, Cpu.S(20)); r2 = sinf_rc(r4, r5, r6, r7); r3 = Cpu.V1;
                 Cpu.SetS(12, Cpu.S(20));
                 r1 = 2148597760u;

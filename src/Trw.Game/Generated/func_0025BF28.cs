@@ -10,25 +10,25 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025BF28", (uint)p, (uint)owner);
-            uint w = (p + 4u);
-            uint v = (p + 4u);
+            uint w = new SndVoices(p).v.P;
+            uint v = new SndVoices(p).v.P;
             uint m = 0u;
             int i = 0;
             for (i = 0; (i < 17); ++i)
             {
-                if ((((Mem.S32((v + 8u)) != (-1)) && ((int)(Mem.S16((Mem.U32(p) + 258u))) != i)) && (Mem.U32((v + 180u)) == owner)))
+                if ((((new SndVoice(v).unk8 != (-1)) && ((int)(new SndMgr(new SndVoices(p).owner_).unk102) != i)) && (new SndVoice(v).unkB4_ == owner)))
                 {
-                    m = Mem.U32((v + 176u));
-                    Mem.Set((v + 172u), 1);
-                    Mem.Set((v + 80u), 0);
-                    if ((Mem.S32((v + 16u)) != Mem.S32((m + 260u))))
+                    m = new SndVoice(v).mgr_;
+                    new SndVoice(v).unkAC_Set(1);
+                    new SndVoice(v).unk50_Set(0);
+                    if ((new SndVoice(v).unk10 != new SndMgr(m).unk104))
                     {
-                        alSndpSetSound((m + 132u), (short)((int)(Mem.S16(((m + 220u) + (uint)(Mem.S32(w) * 2))))));
-                        if ((alSndpGetState((m + 132u)) != 0))
+                        alSndpSetSound(new SndMgr(m).player.P, (short)((int)(new SndMgr(m).snd[(int)(new SndVoice(w).idx)])));
+                        if ((alSndpGetState(new SndMgr(m).player.P) != 0))
                         {
-                            alSndpStop((m + 132u));
+                            alSndpStop(new SndMgr(m).player.P);
                         }
-                        Mem.Set((v + 4u), (-1));
+                        new SndVoice(v).unk4_Set((-1));
                     }
                 }
                 v += 204u;

@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0022BC04", (uint)a);
             int k = 0;
-            if ((Mem.S32((a + 5200u)) == 0))
+            if ((new Plr(a).unk1450 == 0))
             {
                 goto L_l1;
             }
@@ -28,7 +28,7 @@ public static partial class Game
                 k = 23;
             }
             L_l2: ;
-            func_0028B250(0x8011FE88u, (a + (uint)744), (uint)(((int)(Mem.U16((Mem.U32((0x800D052Cu + (uint)(Mem.S16((a + 1582u)) * 4))) + 4u))) + k)), (uint)(Mem.S32((Mem.U32((a + 1156u)) + 16u))));
+            func_0028B250(0x8011FE88u, (a + (uint)744), ((int)(new PlrDef(Mem.U32((0x800D052Cu + (uint)(new Plr(a).unk62E * 4)))).unk4) + k), new Plr(a).unk484.unk10);
         }
     }
 

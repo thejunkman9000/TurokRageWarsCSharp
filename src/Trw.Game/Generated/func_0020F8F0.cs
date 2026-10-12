@@ -11,13 +11,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0020F8F0", (uint)s);
             int i = 0;
-            if ((Mem.U32((s + 652u)) == 0u))
+            if ((new BrainB(s).target_ == 0u))
             {
                 return 0;
             }
             for (i = 0; (i < 10); ++i)
             {
-                if (((Mem.U32(((s + 60u) + (uint)(i * 4))) == Mem.U32((s + 652u))) && (Mem.S32(((s + 108u) + (uint)(i * 4))) != 0)))
+                if (((new BrainB(s).actors[(int)(i)] == new BrainB(s).target_) && (new BrainB(s).valid[(int)(i)] != 0)))
                 {
                     return 1;
                 }

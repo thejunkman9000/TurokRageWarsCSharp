@@ -15,20 +15,20 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0028E83C", (uint)e, (uint)target);
                 float dist = 0f;
                 uint t = 0u;
-                if ((((int)(Mem.U8(e)) == 1) && (Mem.S32(Mem.U32((e + 24u))) == 7)))
+                if ((((int)(Mem.U8(e)) == 1) && (new ActorDef(new Entity(e).def_).type == 7)))
                 {
-                    func_00271FD8(_fp, (e + 8u), target);
-                    dist = ((Mem.F32(_fp) * Mem.F32(_fp)) + (Mem.F32((_fp + 8u)) * Mem.F32((_fp + 8u))));
-                    Mem.Set((_fp + 4u), (float)(0));
+                    func_00271FD8(_fp, new Entity(e).pos.P, target);
+                    dist = ((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).z * new Vec3f(_fp).z));
+                    new Vec3f(_fp).y_Set((float)(0));
                     if ((262144.0f < dist))
                     {
                         return 0;
                     }
                     return 255;
                 }
-                if ((Mem.S32(Mem.U32((e + 24u))) == 1))
+                if ((new ActorDef(new Entity(e).def_).type == 1))
                 {
-                    t = (uint)(Mem.U16((e + 228u)));
+                    t = (uint)(new Entity(e).unkE4);
                     if ((((((((t == (uint)(1102)) || (t == (uint)(1107))) || (t == (uint)(1105))) || (t == (uint)(1104))) || (t == (uint)(1108))) || (t == (uint)(1109))) || (t == (uint)(1110))))
                     {
                         return 255;

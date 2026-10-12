@@ -18,16 +18,16 @@ public static partial class Game
                 return 0;
             }
             idx = (a2 & 65535);
-            if ((Mem.S32(((m + 92u) + (uint)(idx * 4))) != 0))
+            if ((new O3M7D5(m).flag[(int)(idx)] != 0))
             {
                 return 0;
             }
-            it = Mem.U32(((m + 76u) + (uint)(idx * 4)));
-            if (((it != 0u) && (((int)(Mem.S16((it + 18u))) & 16) != 0)))
+            it = new O3M7D5(m).item[(int)(idx)];
+            if (((it != 0u) && (((int)(new O3Item(it).h.unk12) & 16) != 0)))
             {
-                if ((Mem.U32(((it + 44u) + (uint)(1 * 4))) != 0u))
+                if ((new O3Item(it).nbr[(int)(1)] != 0u))
                 {
-                    func_0041B95C(m, idx, Mem.U32(((it + 44u) + (uint)(1 * 4))));
+                    func_0041B95C(m, idx, new O3Item(it).nbr[(int)(1)]);
                 }
             }
             return 0;

@@ -16,11 +16,11 @@ public static partial class Game
             Mem.Set((o + (uint)108), (-1));
             for (i = 0; (i < 4); ++i)
             {
-                Mem.Set(((o + 28u) + (uint)(i * 20)), i);
-                Mem.Set((((o + 28u) + (uint)(i * 20)) + 4u), 1);
-                Mem.Set((((o + 28u) + (uint)(i * 20)) + 12u), 0);
-                Mem.Set((((o + 28u) + (uint)(i * 20)) + 8u), ((float)(i) * a));
-                Mem.Set((((o + 28u) + (uint)(i * 20)) + 16u), b);
+                new B04Set(o).ent[(int)(i)].idx_Set(i);
+                new B04Set(o).ent[(int)(i)].one_Set(1);
+                new B04Set(o).ent[(int)(i)].zero_Set(0);
+                new B04Set(o).ent[(int)(i)].f24_Set(((float)(i) * a));
+                new B04Set(o).ent[(int)(i)].f2C_Set(b);
             }
         }
     }

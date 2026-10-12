@@ -20,7 +20,7 @@ public static partial class Game
                 for (i = 0; (i < n); ++i)
                 {
                     o = Mem.U32((arr + (uint)(i * 4)));
-                    switch ((int)(Mem.U16((o + 4u))))
+                    switch ((int)(new B19Obj(o).id))
                     {
                     case 12:
                         break;
@@ -31,12 +31,12 @@ public static partial class Game
                         for (j = 0; (j < n); ++j)
                         {
                             e = Mem.U32((arr + (uint)(j * 4)));
-                            if (((int)(Mem.U16((e + 4u))) != 87))
+                            if (((int)(new B19Obj(e).id) != 87))
                             {
-                                func_00271FD8(_fp, (e + 8u), (o + 8u));
-                                if (((((Mem.F32(_fp) * Mem.F32(_fp)) + (Mem.F32((_fp + 4u)) * Mem.F32((_fp + 4u)))) + (Mem.F32((_fp + 8u)) * Mem.F32((_fp + 8u)))) <= Mem.F32(0x800C9F8Cu)))
+                                func_00271FD8(_fp, new B19Obj(e).pos.P, new B19Obj(o).pos.P);
+                                if (((((new B19Vec3(_fp).x * new B19Vec3(_fp).x) + (new B19Vec3(_fp).y * new B19Vec3(_fp).y)) + (new B19Vec3(_fp).z * new B19Vec3(_fp).z)) <= Mem.F32(0x800C9F8Cu)))
                                 {
-                                    Mem.Set((e + 332u), (short)(1));
+                                    new B19Obj(e).unk14C_Set((short)(1));
                                 }
                             }
                         }

@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002097E8", (uint)ctl, (uint)owner);
-            Mem.Set(ctl, owner);
-            func_00208000(ctl, default(uint), default(uint), default(uint));
+            new B2Ctl(ctl).owner__Set(owner);
+            func_00208000(ctl);
         }
     }
 

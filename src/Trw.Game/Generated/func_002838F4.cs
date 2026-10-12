@@ -11,22 +11,22 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002838F4", (uint)o, (uint)def);
             int t = 0;
-            func_0027DAA4(o, (uint)(0), (uint)(0));
-            if (((int)(Mem.S8((def + 6u))) != (-1)))
+            func_0027DAA4(o, (uint)(0), (uint)(0), default(uint));
+            if (((int)(new B19Def(def).b6) != (-1)))
             {
-                func_002A5588(0x8013BA80u, o, (uint)((int)(Mem.S8((def + 6u)))), default(uint));
+                func_002A5588(0x8013BA80u, o, (uint)((int)(new B19Def(def).b6)), default(uint));
             }
-            if (((int)(Mem.S8((def + 7u))) != (-1)))
+            if (((int)(new B19Def(def).b7) != (-1)))
             {
-                Mem.Set((o + 312u), (int)(func_00268BE0(0x8013B1A8u, (uint)((int)(Mem.S8((def + 7u)))), default(uint), default(uint))));
+                new B19Obj(o).unk138_Set((int)(func_00268BE0(0x8013B1A8u, (uint)((int)(new B19Def(def).b7)), default(uint), default(uint))));
             }
             else
             {
-                Mem.Set((o + 312u), 0);
+                new B19Obj(o).unk138_Set(0);
             }
-            if ((!((Mem.U32((o + 92u)) & (uint)(2097152)) != 0u) && ((t = (int)(Mem.S16((def + 12u)))) != 0)))
+            if ((!((new B19Obj(o).flags & (uint)(2097152)) != 0u) && ((t = (int)(new B19Def(def).sC)) != 0)))
             {
-                switch ((int)(Mem.U16((o + 4u))))
+                switch ((int)(new B19Obj(o).id))
                 {
                 case 34:
                 case 95:
@@ -34,7 +34,7 @@ public static partial class Game
                     func_0028438C(o, t);
                     break;
                 default:
-                    func_0025DE74((int)((uint)((short)(t))), C.Tmp(Cpu.F2U(Mem.F32((o + 8u))), Cpu.F2U(Mem.F32(((o + 8u) + 4u))), Cpu.F2U(Mem.F32(((o + 8u) + 8u)))), (int)((uint)(0)), (int)((uint)((-1))));
+                    func_0025DE74((int)((uint)((short)(t))), C.Tmp(Cpu.F2U(new B19Obj(o).pos.x), Cpu.F2U(new B19Obj(o).pos.y), Cpu.F2U(new B19Obj(o).pos.z)), (int)((uint)(0)), (int)((uint)((-1))));
                     break;
                 }
             }

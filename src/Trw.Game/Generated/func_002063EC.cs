@@ -15,9 +15,9 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, v1_in, 12);
                 Mem.Copy(_fp + 16u, v2_in, 12);
                 if (Dbg.On) Dbg.Enter("func_002063EC", (uint)actor, (uint)state, (uint)v1_in);
-                if (((int)(func_00262D00(0x80135210u, p6C, 0, p70, p68, _fp, Mem.F32((actor + 108u)), (actor + 28u), (_fp + 16u), (state + 292u))) != 0))
+                if (((int)(func_00262D00(0x80135210u, p6C, 0, p70, p68, _fp, new B01Actor(actor).unk6C, new B01Actor(actor).vec1C.P, (_fp + 16u), new B01State(state).unk124.P)) != 0))
                 {
-                    Mem.Set((state + 296u), (Mem.S32((state + 296u)) - 1));
+                    new B01State(state).unk128.i_Set((new B01State(state).unk128.i - 1));
                 }
             }
         }

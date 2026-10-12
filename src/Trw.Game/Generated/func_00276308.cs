@@ -10,21 +10,21 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00276308", (uint)n, (uint)id);
-            ushort myid = Mem.U16(n);
-            if ((((int)(myid) == (int)(id)) && (((int)(Mem.U16((n + 2u))) & 4) != 0)))
+            ushort myid = new TNode(n).id;
+            if ((((int)(myid) == (int)(id)) && (((int)(new TNode(n).fl) & 4) != 0)))
             {
-                Mem.Set((n + 2u), (ushort)((int)(Mem.U16((n + 2u))) & (~4)));
-                if ((Mem.U32((n + 16u)) != 0u))
+                new TNode(n).fl_Set((ushort)((int)(new TNode(n).fl) & (~4)));
+                if ((new TNode(n).c0_ != 0u))
                 {
-                    func_00276308(Mem.U32((n + 16u)), myid);
+                    func_00276308(new TNode(n).c0_, myid);
                 }
-                if ((Mem.U32((n + 20u)) != 0u))
+                if ((new TNode(n).c1_ != 0u))
                 {
-                    func_00276308(Mem.U32((n + 20u)), myid);
+                    func_00276308(new TNode(n).c1_, myid);
                 }
-                if ((Mem.U32((n + 24u)) != 0u))
+                if ((new TNode(n).c2_ != 0u))
                 {
-                    func_00276308(Mem.U32((n + 24u)), myid);
+                    func_00276308(new TNode(n).c2_, myid);
                 }
             }
         }

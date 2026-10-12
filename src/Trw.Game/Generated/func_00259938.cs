@@ -10,21 +10,21 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00259938", (uint)o, (uint)key);
-            uint n = Mem.U32(((o + 4u) + 4u));
+            uint n = new P3LOwner(o).active.next_;
             uint next = 0u;
-            while ((n != (o + 4u)))
+            while ((n != new P3LOwner(o).active.P))
             {
-                next = Mem.U32((n + 4u));
-                if (((key == (-1)) || (Mem.S32((n + 176u)) != key)))
+                next = new P3LNode(n).link.next_;
+                if (((key == (-1)) || (new P3LNode(n).key != key)))
                 {
                     do
                     {
-                        Mem.Set((Mem.U32(n) + 4u), Mem.U32((n + 4u)));
-                        Mem.Set(Mem.U32((n + 4u)), Mem.U32(n));
-                        Mem.Set(n, Mem.U32((o + 216u)));
-                        Mem.Set((n + 4u), (o + 216u));
-                        Mem.Set((Mem.U32((o + 216u)) + 4u), n);
-                        Mem.Set((o + 216u), n);
+                        new P3LNode(n).link.prev.next__Set(new P3LNode(n).link.next_);
+                        new P3LNode(n).link.next.prev__Set(new P3LNode(n).link.prev_);
+                        new P3LNode(n).link.prev__Set(new P3LOwner(o).done.prev_);
+                        new P3LNode(n).link.next__Set(new P3LOwner(o).done.P);
+                        new P3LOwner(o).done.prev.next__Set(new P3LNode(n).link.P);
+                        new P3LOwner(o).done.prev__Set(new P3LNode(n).link.P);
                     }
                     while ((0 != 0));
                 }

@@ -10,11 +10,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0042B4C4");
-            Mem.Set((Mem.U32((Mem.U32(0x800E4F60u) + 1108u)) + 16u), (byte)(255));
-            Mem.Set((Mem.U32((Mem.U32(0x800E4F60u) + 1104u)) + 16u), (byte)(255));
-            func_0040E958(Mem.U32((Mem.U32(0x800E4F60u) + 1104u)), 1);
-            func_0040E958(Mem.U32((Mem.U32(0x800E4F60u) + 1108u)), 1);
-            Mem.Set((Mem.U32(0x800E4F60u) + 1132u), 0);
+            new O04ModeF60(Mem.U32(0x800E4F60u)).unk454.unk10_Set((byte)(255));
+            new O04ModeF60(Mem.U32(0x800E4F60u)).unk450.unk10_Set((byte)(255));
+            func_0040E958(new O04ModeF60(Mem.U32(0x800E4F60u)).unk450_, 1);
+            func_0040E958(new O04ModeF60(Mem.U32(0x800E4F60u)).unk454_, 1);
+            new O04ModeF60(Mem.U32(0x800E4F60u)).unk46C_Set(0);
         }
     }
 

@@ -14,10 +14,10 @@ public static partial class Game
             int i = 0;
             for (i = 0, s = 0x8010F328u; (i < 4); ++i, s += 548u)
             {
-                Mem.Set((s + 204u), v);
+                new B14Slot(s).fCC_Set(v);
                 if ((v == 0))
                 {
-                    func_00264268(s, default(uint), default(uint), default(uint));
+                    func_00264268(s);
                 }
             }
             if ((v == 0))

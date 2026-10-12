@@ -14,24 +14,24 @@ public static partial class Game
             switch (func_0029AA08())
             {
             case 316:
-                Mem.Set((Mem.U32(0x800E5780u) + 16u), (-1));
+                new O05M80_v2(Mem.U32(0x800E5780u)).f10_Set((-1));
                 break;
             case 315:
                 if ((func_00265670(0x80102B7Eu, 0) == 0))
                 {
-                    Mem.Set((Mem.U32(0x800E5780u) + 16u), 7);
+                    new O05M80_v2(Mem.U32(0x800E5780u)).f10_Set(7);
                 }
                 else
                 {
-                    Mem.Set((Mem.U32(0x800E5780u) + 16u), 30);
+                    new O05M80_v2(Mem.U32(0x800E5780u)).f10_Set(30);
                 }
                 break;
             case 314:
                 Mem.Set(0x80146418u, Mem.U8(0x80102B0Fu));
-                Mem.Set((Mem.U32(0x800E5780u) + 16u), 10);
+                new O05M80_v2(Mem.U32(0x800E5780u)).f10_Set(10);
                 break;
             }
-            func_0041A4B0(Mem.U32(Mem.U32(0x800E5780u)), 2);
+            func_0041A4B0(new O05M80_v2(Mem.U32(0x800E5780u)).f0, 2);
             return 0;
         }
     }

@@ -11,8 +11,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00419FD8", (uint)o, (uint)n);
             func_00419D04(o, n);
-            Mem.Set((o + 68u), 1);
-            Mem.Set((Mem.U32((o + 120u)) + 16u), (byte)(Mem.S32(((o + 76u) + (uint)(Mem.S32((o + 116u)) * 4)))));
+            new O3A(o).flag_Set(1);
+            new O3A(o).gobj.alpha_Set((byte)(new O3A(o).vals[(int)(new O3A(o).idx)]));
         }
     }
 

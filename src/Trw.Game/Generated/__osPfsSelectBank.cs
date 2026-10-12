@@ -16,9 +16,9 @@ public static partial class Game
                 int k = 0;
                 for (k = 0; (k < 32); ++k)
                 {
-                    Mem.Set((_fp + (uint)k), Mem.U8((pfs + 101u)));
+                    Mem.Set((_fp + (uint)k), new OSPfs(pfs).activebank);
                 }
-                return __osContRamWrite(Mem.U32((pfs + 4u)), Mem.S32((pfs + 8u)), (ushort)(1024), _fp, 0);
+                return __osContRamWrite(new OSPfs(pfs).queue_, new OSPfs(pfs).channel, (ushort)(1024), _fp, 0);
             }
         }
         finally { Stack.Free(32); }

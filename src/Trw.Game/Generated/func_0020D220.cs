@@ -11,9 +11,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0020D220_find", (uint)m, (uint)key);
             uint n = 0u;
-            for (n = Mem.U32((m + 36u)); (n != 0u); n = Mem.U32((n + 16u)))
+            for (n = new B2Mgr(m).head_; (n != 0u); n = new B2Node(n).next_)
             {
-                if ((Mem.S32(n) == key))
+                if ((new B2Node(n).id == key))
                 {
                     return n;
                 }
@@ -30,10 +30,10 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 64); ++i)
             {
-                if ((Mem.S32(((m + 56u) + (uint)(i * 4))) == (-1)))
+                if ((new B2Mgr(m).slots[(int)(i)] == (-1)))
                 {
-                    Mem.Set(((m + 56u) + (uint)(i * 4)), key);
-                    Mem.Set((func_0020D220_find(m, key) + 44u), 1);
+                    new B2Mgr(m).slots.Set((int)(i), key);
+                    new B2Node(func_0020D220_find(m, key)).unk2C_Set(1);
                     return;
                 }
             }

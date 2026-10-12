@@ -13,7 +13,7 @@ public static partial class Game
             int v = 0;
             if (((int)(Mem.U8(0x801462D5u)) == 1))
             {
-                v = (int)(Mem.U16(((uint)(func_0028D450(0x8011FE88u, Mem.S32(0x8015402Cu))) + 2u)));
+                v = (int)(new O04U16s((uint)(func_0028D450(0x8011FE88u, Mem.S32(0x8015402Cu)))).unk2);
             }
             else
             {

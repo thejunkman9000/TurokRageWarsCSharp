@@ -242,7 +242,7 @@ public static partial class Game
                 r7 = Mem.U32((r29 + 24u));
                 r4 = r16; func_002734B8(r4, Cpu.U2F(r5), Cpu.U2F(r6), Cpu.U2F(r7));
                 r4 = r19 + 32u;
-                r5 = r16; r2 = func_0026EFC8(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r16; func_0026EFC8(r4, r5);
                 L_L00277100: ;
                 r1 = 2148335616u;
                 Cpu.SetW(0, Mem.U32((r1 - 25696u)));

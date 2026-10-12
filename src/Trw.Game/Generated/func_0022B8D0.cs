@@ -14,13 +14,13 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_0022B8D0", (uint)a);
                 float n = 0f;
-                if ((Mem.F32((a + 4580u)) > 0.0f))
+                if ((new Plr(a).unk11E4 > 0.0f))
                 {
-                    n = (Mem.F32((a + 4580u)) - Mem.F32(0x800D2988u));
-                    Mem.Set((a + 4580u), n);
+                    n = (new Plr(a).unk11E4 - Mem.F32(0x800D2988u));
+                    new Plr(a).unk11E4_Set(n);
                     if (((n <= 0.0f) && !((Mem.U32(0x801462C8u) & (uint)(1)) != 0u)))
                     {
-                        func_00216488(_fp, Mem.S32((a + 5088u)), (Mem.S32((a + 372u)) + 6400), (int)Cpu.F2U(25.5999985f), 16384, 0);
+                        func_00216488(_fp, new Plr(a).unk13E0, (new Plr(a).unk174 + 6400), (int)Cpu.F2U(25.5999985f), 16384, 0);
                         func_00219A40(a, (a + (uint)368), _fp, default(uint));
                     }
                 }

@@ -15,13 +15,13 @@ public static partial class Game
             uint f = 0u;
             float sc = 0f;
             int kind = 0;
-            o = Mem.U32((a + 472u));
-            kind = (int)(Mem.S16((0x800CE8DCu + (uint)(Mem.S16((o + 1616u)) * 24))));
-            if (!(Mem.F32((o + 4568u)) > 0.0f))
+            o = new M2Act(a).owner_;
+            kind = (int)(new M2Row18((0x800CE8DCu + (uint)(new M2Own(o).unk650 * 24))).unk0);
+            if (!(new M2Own(o).unk11D8 > 0.0f))
             {
                 dt = Mem.F32(0x800D2988u);
                 sc = (dt * Mem.F32(0x800C7F80u));
-                if (((o != 0u) && ((Mem.U32((o + 4652u)) & (uint)(8192)) != 0u)))
+                if (((o != 0u) && ((new M2Own(o).unk122C & (uint)(8192)) != 0u)))
                 {
                     Mem.Set(0x800D2988u, sc);
                 }
@@ -29,33 +29,33 @@ public static partial class Game
                 {
                     Mem.Set(0x800D2988u, dt);
                 }
-                if ((Mem.F32((s + 328u)) > 0.0f))
+                if ((new M2St(s).unk148 > 0.0f))
                 {
-                    Mem.Set((s + 328u), (Mem.F32((s + 328u)) - Mem.F32(0x800D2988u)));
+                    new M2St(s).unk148_Set((new M2St(s).unk148 - Mem.F32(0x800D2988u)));
                 }
-                Mem.Set((a + 1u), (byte)(0));
-                if ((Mem.F32((s + 304u)) > 0.0f))
+                new M2Act(a).unk1_Set((byte)(0));
+                if ((new M2St(s).unk130 > 0.0f))
                 {
-                    Mem.Set((s + 304u), (Mem.F32((s + 304u)) - Mem.F32(0x800D2988u)));
+                    new M2St(s).unk130_Set((new M2St(s).unk130 - Mem.F32(0x800D2988u)));
                 }
                 if ((kind == 1))
                 {
                     func_00214178(a, s, 1);
                 }
-                if (((int)(Mem.S16((o + 1904u))) != (int)(Mem.S16((o + 1582u)))))
+                if (((int)(new M2Own(o).unk770) != (int)(new M2Own(o).unk62E)))
                 {
-                    Mem.Set((o + 2024u), 0);
+                    new M2Own(o).unk7E8_Set(0);
                     func_00214178(a, s, 1);
                 }
-                if ((Mem.U32((s + 48u)) != 0u))
+                if ((new M2St(s).link_ != 0u))
                 {
-                    f = Mem.U32((Mem.U32((s + 48u)) + 8u));
+                    f = new M2St(s).link.cb8;
                     if ((f != 0u))
                     {
                         Funcs.CallReg(f, a, s, 0u, 0u);
                     }
                 }
-                f = Mem.U32((Mem.U32((0x800D052Cu + (uint)(Mem.S16((o + 1582u)) * 4))) + 92u));
+                f = new M2Cls(Mem.U32((0x800D052Cu + (uint)(new M2Own(o).unk62E * 4)))).fn5C;
                 if ((f != 0u))
                 {
                     Funcs.CallReg(f, a, s, 0u, 0u);

@@ -13,12 +13,12 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("alCSPSetChlFXMix", (uint)seqp, (uint)chan, (uint)fxmix);
-                Mem.Set(_fp, (short)(2));
-                Mem.Set((_fp + 4u), 0);
-                Mem.Set(((_fp + 4u) + 4u), (byte)(((int)(chan) | 176)));
-                Mem.Set(((_fp + 4u) + 5u), (byte)(91));
-                Mem.Set(((_fp + 4u) + 6u), fxmix);
-                alEvtqPostEvent((seqp + 72u), _fp, 0);
+                new ALEvent(_fp).type_Set((short)(2));
+                new ALMIDIEvent(new ALEvent(_fp).msg.P).ticks_Set(0);
+                new ALMIDIEvent(new ALEvent(_fp).msg.P).status_Set((byte)(((int)(chan) | 176)));
+                new ALMIDIEvent(new ALEvent(_fp).msg.P).byte1_Set((byte)(91));
+                new ALMIDIEvent(new ALEvent(_fp).msg.P).byte2_Set(fxmix);
+                alEvtqPostEvent(new ALCSPlayer(seqp).evtq.P, _fp, 0);
             }
         }
         finally { Stack.Free(16); }

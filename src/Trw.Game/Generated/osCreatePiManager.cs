@@ -13,7 +13,7 @@ public static partial class Game
             uint savedMask = 0u;
             int oldPri = 0;
             int myPri = 0;
-            if (!(Mem.U32(0x800D8390u) != 0u))
+            if (!(new OSMgrArgs(0x800D8390u).initialized != 0u))
             {
                 osCreateMesgQueue(cmdQ, cmdBuf, cmdMsgCnt);
                 osCreateMesgQueue(0x8014E930u, 0x8014E948u, 1);
@@ -30,13 +30,13 @@ public static partial class Game
                     osSetThreadPri(0u, pri);
                 }
                 savedMask = __osDisableInt();
-                Mem.Set(0x800D8390u, (uint)(1));
-                Mem.Set((0x800D8390u + 16u), 0x8014EA58u);
-                Mem.Set((0x800D8390u + 20u), 0x002BEB30u);
-                Mem.Set((0x800D8390u + 24u), 0x002BE4A0u);
-                Mem.Set((0x800D8390u + 12u), 0x8014E930u);
-                Mem.Set((0x800D8390u + 4u), 0x8014D700u);
-                Mem.Set((0x800D8390u + 8u), cmdQ);
+                new OSMgrArgs(0x800D8390u).initialized_Set((uint)(1));
+                new OSMgrArgs(0x800D8390u).acsQueue__Set(0x8014EA58u);
+                new OSMgrArgs(0x800D8390u).dma_func_Set(0x002BEB30u);
+                new OSMgrArgs(0x800D8390u).edma_func_Set(0x002BE4A0u);
+                new OSMgrArgs(0x800D8390u).evtQueue__Set(0x8014E930u);
+                new OSMgrArgs(0x800D8390u).thread__Set(0x8014D700u);
+                new OSMgrArgs(0x800D8390u).cmdQueue__Set(cmdQ);
                 osCreateThread(0x8014D700u, 0, 0x002BE100u, 0x800D8390u, (0x8014D930u + (uint)4096), pri);
                 osStartThread(0x8014D700u);
                 __osRestoreInt(savedMask);

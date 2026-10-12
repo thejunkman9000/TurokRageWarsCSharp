@@ -10,43 +10,43 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002192C0", (uint)o);
-            uint t = func_0028D1F4(0x8011FE88u, (uint)((int)(Mem.U8((o + 1u)))), default(uint), default(uint));
-            int n = (int)(Mem.S16((t + 2u)));
-            Mem.Set((o + 4u), Mem.S16((o + 2u)));
-            switch ((int)(Mem.S8(o)))
+            uint t = func_0028D1F4(0x8011FE88u, (uint)((int)(new B04Cur(o).idx)), default(uint), default(uint));
+            int n = (int)(new B04Tab(t).count);
+            new B04Cur(o).prev_Set(new B04Cur(o).cur);
+            switch ((int)(new B04Cur(o).state))
             {
             case 1:
             case 2:
-                Mem.Set(o, (sbyte)(1));
-                Mem.Set((o + 2u), (short)(((int)(Mem.S16((o + 2u))) + 1)));
-                if (((int)(Mem.S16((o + 2u))) == n))
+                new B04Cur(o).state_Set((sbyte)(1));
+                new B04Cur(o).cur_Set((short)(((int)(new B04Cur(o).cur) + 1)));
+                if (((int)(new B04Cur(o).cur) == n))
                 {
-                    switch ((int)(Mem.S16(t)))
+                    switch ((int)(new B04Tab(t).mode))
                     {
                     case 1:
-                        Mem.Set((o + 2u), (short)(0));
+                        new B04Cur(o).cur_Set((short)(0));
                         return;
                     case 0:
-                        Mem.Set((o + 2u), (short)((n - 2)));
-                        Mem.Set(o, (sbyte)(3));
+                        new B04Cur(o).cur_Set((short)((n - 2)));
+                        new B04Cur(o).state_Set((sbyte)(3));
                         return;
                     }
                 }
                 break;
             case 3:
             case 4:
-                Mem.Set(o, (sbyte)(3));
-                Mem.Set((o + 2u), (short)(((int)(Mem.S16((o + 2u))) - 1)));
-                if (((int)(Mem.S16((o + 2u))) < 0))
+                new B04Cur(o).state_Set((sbyte)(3));
+                new B04Cur(o).cur_Set((short)(((int)(new B04Cur(o).cur) - 1)));
+                if (((int)(new B04Cur(o).cur) < 0))
                 {
-                    switch ((int)(Mem.S16(t)))
+                    switch ((int)(new B04Tab(t).mode))
                     {
                     case 0:
-                        Mem.Set((o + 2u), (short)(1));
-                        Mem.Set(o, (sbyte)(1));
+                        new B04Cur(o).cur_Set((short)(1));
+                        new B04Cur(o).state_Set((sbyte)(1));
                         return;
                     case 1:
-                        Mem.Set((o + 2u), (short)((n - 1)));
+                        new B04Cur(o).cur_Set((short)((n - 1)));
                         break;
                     }
                 }

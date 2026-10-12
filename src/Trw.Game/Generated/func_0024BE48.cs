@@ -12,11 +12,11 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0024BE48", (uint)a, (uint)on);
             if ((on != 0))
             {
-                Mem.Set((a + 736u), (uint)((uint)(Mem.U32((a + 736u))) | (uint)(2)));
+                new Obj(a).unk2E0_Set((uint)((uint)(new Obj(a).unk2E0) | (uint)(2)));
             }
             else
             {
-                Mem.Set((a + 736u), (uint)((uint)(Mem.U32((a + 736u))) & (uint)((~2))));
+                new Obj(a).unk2E0_Set((uint)((uint)(new Obj(a).unk2E0) & (uint)((~2))));
             }
         }
     }

@@ -19,12 +19,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002587C4_SndMgr_Unlock", (uint)m);
-            uint l = (m + 272u);
+            uint l = new SndMgr(m).@lock.P;
             uint mask = __osDisableInt();
-            if ((Mem.Set((l + 28u), (int)(Mem.S32((l + 28u)) - 1)) != 0))
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count - 1)) != 0))
             {
                 __osRestoreInt(mask);
-                osSendMesg(l, 0u, 1);
+                osSendMesg(new SndLock(l).q.P, 0u, 1);
             }
             else
             {

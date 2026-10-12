@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0040A614", (uint)item);
-            LevelIdToWorld(Mem.S32((Mem.U32(0x800E28BCu) + 36u)));
+            LevelIdToWorld(new O01Cfg(Mem.U32(0x800E28BCu)).unk24);
             return 0;
         }
     }

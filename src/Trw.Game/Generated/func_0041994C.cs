@@ -14,23 +14,23 @@ public static partial class Game
             uint o = 0u;
             g = func_0040ECB0((uint)((int)(func_00411E4C(func_0029A958()))), (uint)((a & 65535)), default(uint), default(uint));
             func_00411E4C(func_0029A958());
-            o = func_00252FFC((uint)(100), default(uint), default(uint), default(uint));
+            o = func_00252FFC((uint)(100));
             func_002A1748(o, 0, (uint)(100));
             Mem.Set((o + (uint)14), (short)(2911));
             Mem.Set((o + (uint)18), (short)(8));
             Mem.Set((o + (uint)12), (short)(2911));
-            Mem.Set((o + 68u), g);
-            Mem.Set((o + 84u), 0);
-            Mem.Set((o + 72u), tbl);
-            Mem.Set((o + 92u), 0);
-            Mem.Set((o + 80u), 0);
+            new O3Menu(o).g__Set(g);
+            new O3Menu(o).f54_Set(0);
+            new O3Menu(o).tbl__Set(tbl);
+            new O3Menu(o).flags_Set(0);
+            new O3Menu(o).cnt_Set(0);
             if ((Mem.S32((tbl + (uint)(0 * 4))) != (-1)))
             {
                 do
                 {
-                    Mem.Set((o + 80u), (Mem.S32((o + 80u)) + 1));
+                    new O3Menu(o).cnt_Set((new O3Menu(o).cnt + 1));
                 }
-                while ((Mem.S32((tbl + (uint)(Mem.S32((o + 80u)) * 4))) != (-1)));
+                while ((Mem.S32((tbl + (uint)(new O3Menu(o).cnt * 4))) != (-1)));
             }
             func_00419A98(o, 1);
             func_00419A5C(o, 0);

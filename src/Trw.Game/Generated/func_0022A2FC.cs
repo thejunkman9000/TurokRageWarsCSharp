@@ -13,11 +13,11 @@ public static partial class Game
             uint a = 0u;
             if ((Mem.S32(0x800D0EBCu) != 0))
             {
-                for (a = Mem.U32((g + 32u)); (a != 0u); a = Mem.U32((a + 5856u)))
+                for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
                 {
-                    if ((((Mem.U32((a + 1500u)) == p) && (Mem.S32((p + 36u)) == 0)) && ((int)(Mem.U16((a + 228u))) != Mem.S32(0x800CE47Cu))))
+                    if ((((new Plr(a).unk5DC_ == p) && (new Pawn(p).unk24 == 0)) && ((int)(new Plr(a).unkE4) != Mem.S32(0x800CE47Cu))))
                     {
-                        func_0021CBAC(a, p, default(uint), default(uint));
+                        func_0021CBAC(a, p);
                     }
                 }
             }

@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004425F8", (uint)a, (uint)cur, (uint)step, (uint)lo);
-            if ((func_002643A8(Mem.U32((a + 32u))) != 0))
+            if ((func_002643A8(new O06A_v19(a).unk20) != 0))
             {
                 cur = (int)((int)(cur) - step);
                 if ((cur < lo))
@@ -25,7 +25,7 @@ public static partial class Game
                     }
                 }
             }
-            if ((func_002643C0(Mem.U32((a + 32u))) != 0))
+            if ((func_002643C0(new O06A_v19(a).unk20) != 0))
             {
                 cur = (int)((int)(cur) + step);
                 if ((cur > hi))

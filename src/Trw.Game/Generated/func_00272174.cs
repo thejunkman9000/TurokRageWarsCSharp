@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00272174", (uint)dst, (uint)a, (uint)b);
-            float dy = (Mem.F32((b + 4u)) - Mem.F32((a + 4u)));
+            float dy = (new Vec3f(b).y - new Vec3f(a).y);
             float t = 0f;
             if ((dy == 0.0f))
             {
@@ -18,10 +18,10 @@ public static partial class Game
             }
             else
             {
-                t = ((y - Mem.F32((a + 4u))) / dy);
-                Mem.Set(dst, (Mem.F32(a) + (t * (Mem.F32(b) - Mem.F32(a)))));
-                Mem.Set((dst + 4u), y);
-                Mem.Set((dst + 8u), (Mem.F32((a + 8u)) + (t * (Mem.F32((b + 8u)) - Mem.F32((a + 8u))))));
+                t = ((y - new Vec3f(a).y) / dy);
+                new Vec3f(dst).x_Set((new Vec3f(a).x + (t * (new Vec3f(b).x - new Vec3f(a).x))));
+                new Vec3f(dst).y_Set(y);
+                new Vec3f(dst).z_Set((new Vec3f(a).z + (t * (new Vec3f(b).z - new Vec3f(a).z))));
             }
         }
     }

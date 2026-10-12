@@ -14,30 +14,30 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_00226524", (uint)a, (uint)b);
                 float d = 0f;
-                func_002231B0(a, b, 0x800CE7E4u, default(uint));
-                if ((Mem.S32((a + 4624u)) != 0))
+                func_002231B0(a, b, 0x800CE7E4u);
+                if ((new Plr(a).unk1210 != 0))
                 {
                     func_0021CF04(_fp, a, (_fp + 44u), (_fp + 16u));
                     if ((Mem.U32((_fp + 44u)) != 0u))
                     {
-                        d = func_00272768((a + 8u), (Mem.U32((_fp + 44u)) + 8u));
+                        d = func_00272768(new Plr(a).pos.P, new Plr(Mem.U32((_fp + 44u))).pos.P);
                         if (!(Mem.F32(0x800C7C3Cu) < d))
                         {
-                            if (((func_00244494(a, (a + 8u), (Mem.U32((_fp + 44u)) + 8u), 0x80103FD0u) == 0) || (Mem.U32(Mem.U32(0x80103FCCu)) == Mem.U32((_fp + 44u)))))
+                            if (((func_00244494(a, new Plr(a).pos.P, new Plr(Mem.U32((_fp + 44u))).pos.P, 0x80103FD0u) == 0) || (Mem.U32(Mem.U32(0x80103FCCu)) == Mem.U32((_fp + 44u)))))
                             {
-                                func_00271FD8((_fp + 32u), (Mem.U32((_fp + 44u)) + 8u), (a + 8u));
+                                func_00271FD8((_fp + 32u), new Plr(Mem.U32((_fp + 44u))).pos.P, new Plr(a).pos.P);
                                 Mem.Set((_fp + 48u), func_00271B18((_fp + 32u)));
-                                func_00274090((_fp + 48u));
-                                func_00274090((b + 108u));
-                                if (((Mem.F32((b + 108u)) > Mem.F32(0x800C7C40u)) && (Mem.F32((_fp + 48u)) < Mem.F32(0x800C7C44u))))
+                                func_00274090((_fp + 48u), default(uint), default(uint), default(uint));
+                                func_00274090((b + 108u), default(uint), default(uint), default(uint));
+                                if (((new Plr(b).unk6C > Mem.F32(0x800C7C40u)) && (Mem.F32((_fp + 48u)) < Mem.F32(0x800C7C44u))))
                                 {
                                     Mem.Set((_fp + 48u), (float)((float)(Mem.F32((_fp + 48u))) + Mem.F32(0x800C7C48u)));
                                 }
                                 else
                                 {
-                                    if (((Mem.F32((_fp + 48u)) > Mem.F32(0x800C7C4Cu)) && (Mem.F32((b + 108u)) < Mem.F32(0x800C7C50u))))
+                                    if (((Mem.F32((_fp + 48u)) > Mem.F32(0x800C7C4Cu)) && (new Plr(b).unk6C < Mem.F32(0x800C7C50u))))
                                     {
-                                        Mem.Set((b + 108u), (float)((float)(Mem.F32((b + 108u))) + Mem.F32(0x800C7C54u)));
+                                        new Plr(b).unk6C_Set((float)((float)(new Plr(b).unk6C) + Mem.F32(0x800C7C54u)));
                                     }
                                 }
                                 func_002748E0((b + 108u), Mem.F32((_fp + 48u)), Cpu.U2F((uint)(Mem.S32(0x800CF230u))));

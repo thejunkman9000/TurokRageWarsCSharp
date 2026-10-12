@@ -10,29 +10,29 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004379F0");
-            int t = func_0041A4F0(Mem.U32(Mem.U32(0x800E5784u)));
+            int t = func_0041A4F0(new O05M84_v2(Mem.U32(0x800E5784u)).f0_);
             switch (t)
             {
             case 3:
-                Mem.Set((Mem.U32(0x800E5784u) + 12u), (int)(Mem.S32((Mem.U32(0x800E5784u) + 12u)) - 1));
-                if ((Mem.S32((Mem.U32(0x800E5784u) + 12u)) <= 0))
+                new O05M84_v2(Mem.U32(0x800E5784u)).fC_Set((int)(new O05M84_v2(Mem.U32(0x800E5784u)).fC - 1));
+                if ((new O05M84_v2(Mem.U32(0x800E5784u)).fC <= 0))
                 {
-                    Mem.Set((Mem.U32((Mem.U32(0x800E5784u) + 8u)) + 22u), (short)(Mem.S16((Mem.U32((Mem.U32(0x800E5784u) + 8u)) + 22u)) - 1));
-                    if ((((int)(Mem.S16((Mem.U32((Mem.U32(0x800E5784u) + 8u)) + 22u))) + (int)(Mem.S16((Mem.U32((Mem.U32(0x800E5784u) + 8u)) + 26u)))) < 0))
+                    new O05Wd_v2(new O05M84_v2(Mem.U32(0x800E5784u)).f8_).h16_Set((short)(new O05Wd_v2(new O05M84_v2(Mem.U32(0x800E5784u)).f8_).h16 - 1));
+                    if ((((int)(new O05Wd_v2(new O05M84_v2(Mem.U32(0x800E5784u)).f8_).h16) + (int)(new O05Wd_v2(new O05M84_v2(Mem.U32(0x800E5784u)).f8_).h1A)) < 0))
                     {
-                        Mem.Set((Mem.U32((Mem.U32(0x800E5784u) + 8u)) + 22u), Mem.S16((Mem.U32((Mem.U32(Mem.U32(0x800E5784u)) + 68u)) + 26u)));
+                        new O05Wd_v2(new O05M84_v2(Mem.U32(0x800E5784u)).f8_).h16_Set(new O05Wd_v2(new O05M84_v2(Mem.U32(0x800E5784u)).f0.f44_).h1A);
                     }
-                    Mem.Set((Mem.U32(0x800E5784u) + 12u), t);
+                    new O05M84_v2(Mem.U32(0x800E5784u)).fC_Set(t);
                 }
                 break;
             case 4:
                 func_0029A73C();
-                if ((Mem.S32((Mem.U32(0x800E5784u) + 16u)) == (-1)))
+                if ((new O05M84_v2(Mem.U32(0x800E5784u)).f10 == (-1)))
                 {
                     func_0029A8A8();
                     return 0;
                 }
-                func_00299368((uint)(Mem.S32((Mem.U32(0x800E5784u) + 16u))), default(uint), default(uint), default(uint));
+                func_00299368(new O05M84_v2(Mem.U32(0x800E5784u)).f10);
                 break;
             default:
                 return 0;

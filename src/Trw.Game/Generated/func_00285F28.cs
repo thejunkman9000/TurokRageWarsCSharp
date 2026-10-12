@@ -15,11 +15,11 @@ public static partial class Game
             int m = 0;
             uint bits = 0u;
             int key = 0;
-            if (!((Mem.U32((p + 256u)) & (uint)(524288)) != 0u))
+            if (!((new B19Obj(p).flags100 & (uint)(524288)) != 0u))
             {
-                uint @base = Mem.U32((owner + 312u));
+                uint @base = new B19Owner(owner).base_;
                 idx = (-1);
-                if (((p >= @base) && (p <= (@base + (uint)((Mem.S32((owner + 320u)) * 744) - 744)))))
+                if (((p >= @base) && (p <= (@base + (uint)((new B19Owner(owner).cnt * 744) - 744)))))
                 {
                     idx = (int)(((uint)(((int)(p - @base))) / (uint)(744)));
                 }
@@ -32,8 +32,8 @@ public static partial class Game
             {
                 return 0;
             }
-            key = Mem.S32((owner + 111628u));
-            n = (int)(func_0028FD94((uint)((int)(func_0028FD94((uint)((int)(func_0028FD94((uint)(Mem.S32((owner + 128u))), 0))), key))), 0));
+            key = new B19Owner(owner).key;
+            n = (int)(func_0028FD94((uint)((int)(func_0028FD94((uint)((int)(func_0028FD94((uint)(new B19Owner(owner).root), 0))), key))), 0));
             func_0028FD94((uint)(n), 0);
             func_0028FDD8((uint)(n), 1);
             bits = (uint)((int)(func_0028FD94((uint)(n), 1)));

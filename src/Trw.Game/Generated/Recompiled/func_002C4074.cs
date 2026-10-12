@@ -98,7 +98,7 @@ public static partial class Game
                 Mem.Set((r29 + 32u), r8);
                 Mem.Set((r29 + 36u), r9);
                 Mem.Set((r29 + 40u), r10);
-                Mem.Set((r29 + 16u), r11); r2 = adecReadBits(r4, r5, r6, r7, Mem.U32(r29 + 16u)); r3 = Cpu.V1;
+                Mem.Set((r29 + 16u), r11); r2 = (uint)adecReadBits(r4, (ushort)r5, (ushort)r6, (short)r7, Mem.U32(r29 + 16u));
                 r2 = r2 & 65535u;
                 r8 = Mem.U32((r29 + 32u));
                 r9 = Mem.U32((r29 + 36u));
@@ -238,7 +238,7 @@ public static partial class Game
                 Mem.Set((r29 + 32u), r8);
                 Mem.Set((r29 + 36u), r9);
                 Mem.Set((r29 + 40u), r10);
-                Mem.Set((r29 + 16u), r11); r2 = adecReadBits(r4, r5, r6, r7, Mem.U32(r29 + 16u)); r3 = Cpu.V1;
+                Mem.Set((r29 + 16u), r11); r2 = (uint)adecReadBits(r4, (ushort)r5, (ushort)r6, (short)r7, Mem.U32(r29 + 16u));
                 r2 = r2 & 65535u;
                 r8 = Mem.U32((r29 + 32u));
                 r9 = Mem.U32((r29 + 36u));

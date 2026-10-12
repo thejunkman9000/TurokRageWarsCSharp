@@ -17,15 +17,15 @@ public static partial class Game
                 int i = 0;
                 byte bits = 0;
                 bits = (byte)(0);
-                pkt = 0x80154110u;
+                pkt = new OSPifRam(0x80154110u).ramarray.P;
                 for (i = 0; (i < (int)(Mem.U8(0x8014D46Cu))); ++i, pkt += 8u, status += 4u)
                 {
                     Mem.Copy(_fp, pkt, 8);
-                    Mem.Set((status + 3u), (byte)((((int)(Mem.U8((_fp + 2u))) & 192) >> (int)4)));
-                    if (((int)(Mem.U8((status + 3u))) == 0))
+                    new OSContStatus(status).errno_Set((byte)((((int)(new OSContPackedRequest(_fp).unk02) & 192) >> (int)4)));
+                    if (((int)(new OSContStatus(status).errno) == 0))
                     {
-                        Mem.Set(status, (ushort)((((int)(Mem.U8((_fp + 5u))) << (int)8) | (int)(Mem.U8((_fp + 4u))))));
-                        Mem.Set((status + 2u), Mem.U8((_fp + 6u)));
+                        new OSContStatus(status).type_Set((ushort)((((int)(new OSContPackedRequest(_fp).unk05) << (int)8) | (int)(new OSContPackedRequest(_fp).unk04))));
+                        new OSContStatus(status).status_Set(new OSContPackedRequest(_fp).unk06);
                         bits = (byte)((int)(bits) | (1 << (int)i));
                     }
                 }

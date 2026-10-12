@@ -17,11 +17,11 @@ public static partial class Game
             {
                 for (i = 0, s = 0x8010F328u; (i < 4); ++i, s += 548u)
                 {
-                    func_00264268(s, default(uint), default(uint), default(uint));
+                    func_00264268(s);
                 }
                 for (j = 0; (j < 4); ++j)
                 {
-                    Mem.Set(((0x8010F328u + (uint)(j * 548)) + 204u), Mem.S32((0x8010FC18u + (uint)(j * 4))));
+                    new B14Slot((0x8010F328u + (uint)(j * 548))).fCC_Set(Mem.S32((0x8010FC18u + (uint)(j * 4))));
                 }
                 func_00285D00(0x8010EC90u);
                 Mem.Set(0x800D0E58u, 0);

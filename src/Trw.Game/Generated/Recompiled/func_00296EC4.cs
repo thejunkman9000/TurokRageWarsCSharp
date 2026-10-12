@@ -61,7 +61,7 @@ public static partial class Game
                 r7 = Mem.U32((r7 + 4u));
                 r5 = r5 - 1u;
                 L_L00296F68: ;
-                r2 = func_002518DC(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), Mem.U32(r29 + 32u)); r3 = Cpu.V1;
+                r2 = func_002518DC((int)r4, r5, (int)r6, r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u));
                 r31 = Mem.U32((r29 + 40u));
                 r29 = r29 + 48u; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;

@@ -12,11 +12,11 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00206018", (uint)actor, (uint)state);
             if (((func_00285F28(0x8011FE88u, actor) ^ 1) == 0))
             {
-                if ((Mem.U32((state + 48u)) != 0u))
+                if ((new ActorState(state).link_ != 0u))
                 {
-                    if ((Mem.U32((Mem.U32((state + 48u)) + 8u)) != 0u))
+                    if ((new ActorState(state).link.cb != 0u))
                     {
-                        Funcs.CallReg(Mem.U32((Mem.U32((state + 48u)) + 8u)), actor, state, 0u, 0u);
+                        Funcs.CallReg(new ActorState(state).link.cb, actor, state, 0u, 0u);
                     }
                 }
             }

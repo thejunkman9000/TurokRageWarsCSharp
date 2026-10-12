@@ -40,7 +40,7 @@ public static partial class Game
             }
             while (((n--) != 0));
             c = (byte)(255);
-            p = (0x80103230u + 3064u);
+            p = new M03Ldr(0x80103230u).tlbfree.P;
             n = 255;
             do
             {
@@ -48,7 +48,7 @@ public static partial class Game
             }
             while (((n--) != 0));
             c = (byte)(255);
-            p = (0x80103230u + 2336u);
+            p = new M03Ldr(0x80103230u).slot.P;
             n = 383;
             do
             {
@@ -58,28 +58,28 @@ public static partial class Game
             osUnmapTLBAll();
             for (i = (uint)(0); (i < (uint)(24)); ++i)
             {
-                Mem.Set(((0x80103230u + 3320u) + (uint)(i * 4)), (ushort)(65535));
-                Mem.Set((((0x80103230u + 3320u) + (uint)(i * 4)) + 2u), (byte)(255));
-                Mem.Set((((0x80103230u + 3320u) + (uint)(i * 4)) + 3u), (byte)(255));
+                new M03Ldr(0x80103230u).tlbslot[(int)(i)].key_Set((ushort)(65535));
+                new M03Ldr(0x80103230u).tlbslot[(int)(i)].a_Set((byte)(255));
+                new M03Ldr(0x80103230u).tlbslot[(int)(i)].b_Set((byte)(255));
             }
-            Mem.Set(((0x80103230u + 3056u) + 4u), 0u);
-            Mem.Set((0x80103230u + 3056u), 0u);
+            new M03Ldr(0x80103230u).list.tail__Set(0u);
+            new M03Ldr(0x80103230u).list.head__Set(0u);
             for (i = (uint)(0); (i < (uint)(24)); ++i)
             {
-                Mem.Set(((0x80103230u + 2336u) + (uint)(i * 16)), 0u);
-                Mem.Set((((0x80103230u + 2336u) + (uint)(i * 16)) + 4u), 0u);
-                func_0023CB50((0x80103230u + 3056u), ((0x80103230u + 2336u) + (uint)(i * 16)));
-                Mem.Set((((0x80103230u + 2336u) + (uint)(i * 16)) + 10u), (byte)(i));
+                new M03Ldr(0x80103230u).slot[(int)(i)].next__Set(0u);
+                new M03Ldr(0x80103230u).slot[(int)(i)].prev__Set(0u);
+                func_0023CB50(new M03Ldr(0x80103230u).list.P, (new M03Ldr(0x80103230u).slot.P + (uint)(i * 16)));
+                new M03Ldr(0x80103230u).slot[(int)(i)].id_Set((byte)(i));
             }
-            osCreateMesgQueue((0x80103230u + 36u), (0x80103230u + 60u), 33);
-            osCreateMesgQueue((0x80103230u + 2720u), (0x80103230u + 2744u), 8);
-            osCreateMesgQueue((0x80103230u + 2776u), (0x80103230u + 2800u), 8);
-            Mem.Set(((0x80103230u + 3416u) + 4u), (ushort)(1024));
-            Mem.Set(((0x80103230u + 3416u) + 6u), (ushort)(256));
-            Mem.Set(((0x80103230u + 3416u) + 16u), (0x80103230u + 3064u));
-            Mem.Set((0x80103230u + 3416u), 0u);
-            Mem.Set(((0x80103230u + 3416u) + 8u), ((uint)(0x0016E000u) | 2952790016u));
-            Mem.Set(((0x80103230u + 3416u) + 26u), (ushort)(0));
+            osCreateMesgQueue(new M03Ldr(0x80103230u).loadq.P, new M03Ldr(0x80103230u).loadbuf.P, 33);
+            osCreateMesgQueue(new M03Ldr(0x80103230u).freeq.P, new M03Ldr(0x80103230u).freebuf.P, 8);
+            osCreateMesgQueue(new M03Ldr(0x80103230u).dmaq.P, new M03Ldr(0x80103230u).dmabuf.P, 8);
+            new M03Ldr(0x80103230u).region.base_Set((ushort)(1024));
+            new M03Ldr(0x80103230u).region.size_Set((ushort)(256));
+            new M03Ldr(0x80103230u).region.data__Set(new M03Ldr(0x80103230u).tlbfree.P);
+            new M03Ldr(0x80103230u).region.next__Set(0u);
+            new M03Ldr(0x80103230u).region.romAddr_Set(((uint)(0x0016E000u) | 2952790016u));
+            new M03Ldr(0x80103230u).region.mappedB_Set((ushort)(0));
             if ((func_00265370() > 5242879u))
             {
                 func_0025631C(0x801051B8u, 0x0016E000u, 0x00052860u, s4);
@@ -87,18 +87,18 @@ public static partial class Game
             if ((s4 != (uint)(0)))
             {
                 osMapTLB(0, 2088960, (uint)(4194304), (s4 + func_0023B9A0_K0()), (uint)((-1)), 7);
-                Mem.Set(((0x80103230u + 3416u) + 24u), (ushort)(1));
-                Mem.Set(((0x80103230u + 3416u) + 26u), (ushort)(1));
+                new M03Ldr(0x80103230u).region.mapped_Set((ushort)(1));
+                new M03Ldr(0x80103230u).region.mappedB_Set((ushort)(1));
             }
             for (i = (uint)(0); (i < (uint)(8)); ++i)
             {
-                osSendMesg((0x80103230u + 2720u), ((0x80103230u + 2832u) + (uint)(i * 28)), 1);
+                osSendMesg(new M03Ldr(0x80103230u).freeq.P, (new M03Ldr(0x80103230u).req.P + (uint)(i * 28)), 1);
             }
-            Mem.Set((0x80103230u + 32u), (ushort)(0));
-            osSetEventMesg((uint)(12), (0x80103230u + 36u), (0x80103230u + 32u));
-            memset((0x80103230u + 752u), 99, (uint)(512));
-            osCreateThread((0x80103230u + 192u), 99, 0x0023C914u, 0u, ((0x80103230u + 752u) + (uint)512), 147);
-            osStartThread((0x80103230u + 192u));
+            new M03Ldr(0x80103230u).evt_Set((ushort)(0));
+            osSetEventMesg((uint)(12), new M03Ldr(0x80103230u).loadq.P, (0x80103230u + 32u));
+            memset(new M03Ldr(0x80103230u).stack.P, 99, (uint)(512));
+            osCreateThread(new M03Ldr(0x80103230u).thr.P, 99, 0x0023C914u, 0u, (new M03Ldr(0x80103230u).stack.P + (uint)512), 147);
+            osStartThread(new M03Ldr(0x80103230u).thr.P);
         }
     }
 

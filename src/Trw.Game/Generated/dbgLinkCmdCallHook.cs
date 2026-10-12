@@ -41,16 +41,16 @@ public static partial class Game
                                 {
                                     res = (uint)((int)(Funcs.CallReg(Mem.U32(0x800D364Cu), Mem.U32(_fp), 0u, 0u, 0u)));
                                 }
-                                dbgLinkSendByte((uint)((byte)((res >> (int)24))), default(uint), default(uint), default(uint));
+                                dbgLinkSendByte((byte)((res >> (int)24)));
                                 if ((Mem.S32(0x8014D3E8u) == 0))
                                 {
-                                    dbgLinkSendByte((uint)((byte)(((res >> (int)16) & (uint)(255)))), default(uint), default(uint), default(uint));
+                                    dbgLinkSendByte((byte)(((res >> (int)16) & (uint)(255))));
                                     if ((Mem.S32(0x8014D3E8u) == 0))
                                     {
-                                        dbgLinkSendByte((uint)((byte)(((res >> (int)8) & (uint)(255)))), default(uint), default(uint), default(uint));
+                                        dbgLinkSendByte((byte)(((res >> (int)8) & (uint)(255))));
                                         if ((Mem.S32(0x8014D3E8u) == 0))
                                         {
-                                            dbgLinkSendByte((uint)((byte)((res & (uint)(255)))), default(uint), default(uint), default(uint));
+                                            dbgLinkSendByte((byte)((res & (uint)(255))));
                                         }
                                     }
                                 }

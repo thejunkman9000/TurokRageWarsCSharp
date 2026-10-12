@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0040A0C8_O01Pick", (uint)sel);
             uint p = 0u;
-            switch (Mem.S32(sel))
+            switch (new O01Sel(sel).v)
             {
             default:
             case 0:
@@ -46,11 +46,11 @@ public static partial class Game
                     {
                         if ((Mem.S32(0x8015375Cu) != 0))
                         {
-                            Mem.Set(_fp, Mem.S32(0x800E28C8u));
+                            new O01Sel(_fp).v_Set(Mem.S32(0x800E28C8u));
                         }
                         else
                         {
-                            Mem.Set(_fp, (int)(Mem.S8((Mem.U32((a + 32u)) + 4u))));
+                            new O01Sel(_fp).v_Set((int)(new O01Obj3(a).unk20.unk4));
                         }
                         r = func_0040A0C8_O01Pick(_fp);
                     }

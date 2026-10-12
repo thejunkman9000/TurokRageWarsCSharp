@@ -14,9 +14,9 @@ public static partial class Game
             int cnt = 0;
             if ((n < (uint)(8)))
             {
-                for (a = Mem.U32((g + 32u)); (a != 0u); a = Mem.U32((a + 5856u)))
+                for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
                 {
-                    if (((Mem.U32((a + 1500u)) != 0u) && (Mem.S32((Mem.U32((a + 1500u)) + 1380u)) == 0)))
+                    if (((new Plr(a).unk5DC_ != 0u) && (new Pawn(new Plr(a).unk5DC_).unk564 == 0)))
                     {
                         if (((uint)(cnt) == n))
                         {

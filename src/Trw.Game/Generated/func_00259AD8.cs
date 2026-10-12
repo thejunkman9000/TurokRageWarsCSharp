@@ -12,10 +12,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00259AD8", (uint)q, (uint)a);
             uint n = 0u;
             uint next = 0u;
-            for (n = Mem.U32(((q + 4u) + 4u)); (n != (q + 4u)); n = next)
+            for (n = new SndQueue(q).active.link.next_; (n != new SndQueue(q).active.P); n = next)
             {
-                next = Mem.U32((n + 4u));
-                if ((Mem.S32(((n + 8u) + 168u)) == a))
+                next = new SndNode(n).link.next_;
+                if ((new SndNode(n).body.tag == a))
                 {
                     return 1;
                 }

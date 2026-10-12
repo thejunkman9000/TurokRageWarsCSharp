@@ -12,13 +12,13 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002737D0", (uint)m);
             float s = sinf(a);
             float c = 0f;
-            Mem.Set(((m + (uint)(0 * 16)) + (uint)(3 * 4)), Mem.Set(((m + (uint)(1 * 16)) + (uint)(3 * 4)), Mem.Set(((m + (uint)(2 * 16)) + (uint)(3 * 4)), Mem.Set(((m + (uint)(3 * 16)) + (uint)(0 * 4)), Mem.Set(((m + (uint)(3 * 16)) + (uint)(1 * 4)), Mem.Set(((m + (uint)(3 * 16)) + (uint)(2 * 4)), Mem.Set(((m + (uint)(2 * 16)) + (uint)(1 * 4)), Mem.Set(((m + (uint)(1 * 16)) + (uint)(2 * 4)), Mem.Set(((m + (uint)(2 * 16)) + (uint)(0 * 4)), Mem.Set(((m + (uint)(0 * 16)) + (uint)(2 * 4)), 0.0f))))))))));
-            Mem.Set(((m + (uint)(3 * 16)) + (uint)(3 * 4)), Mem.Set(((m + (uint)(2 * 16)) + (uint)(2 * 4)), 1.0f));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(3 * 4)), Mem.Set(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(3 * 4)), Mem.Set(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(3 * 4)), Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(0 * 4)), Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(1 * 4)), Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(2 * 4)), Mem.Set(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(1 * 4)), Mem.Set(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(2 * 4)), Mem.Set(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(0 * 4)), Mem.Set(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(2 * 4)), 0.0f))))))))));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), Mem.Set(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), 1.0f));
             c = cosf(a);
-            Mem.Set(((m + (uint)(1 * 16)) + (uint)(1 * 4)), c);
-            Mem.Set(((m + (uint)(0 * 16)) + (uint)(0 * 4)), c);
-            Mem.Set(((m + (uint)(1 * 16)) + (uint)(0 * 4)), (-s));
-            Mem.Set(((m + (uint)(0 * 16)) + (uint)(1 * 4)), s);
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), c);
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), c);
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(0 * 4)), (-s));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(1 * 4)), s);
         }
     }
 

@@ -20,7 +20,7 @@ public static partial class Game
             for (i = (uint)(0); (i < Mem.U32(0x800D0930u)); ++i)
             {
                 len = 0;
-                for (p = (Mem.U32((0x80103F70u + 4644u)) + (uint)(i * 16)); (p != 0u); p = Mem.U32((p + 12u)))
+                for (p = (new B12Mgr(0x80103F70u).buckets_ + (uint)(i * 16)); (p != 0u); p = new B12Bucket(p).next_)
                 {
                     ++len;
                 }

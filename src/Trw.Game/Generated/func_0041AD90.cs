@@ -10,9 +10,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0041AD90", (uint)o, (uint)i);
-            uint g = Mem.U32((o + 68u));
+            uint g = new O3List(o).g_;
             Mem.Set((o + (uint)272), i);
-            Mem.Set((g + 56u), ((o + 72u) + (uint)(i * 20)));
+            new O3ListG(g).sel_Set((new O3List(o).ent.P + (uint)(i * 20)));
         }
     }
 

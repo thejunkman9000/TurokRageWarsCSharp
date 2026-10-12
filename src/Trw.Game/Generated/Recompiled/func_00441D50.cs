@@ -50,7 +50,7 @@ public static partial class Game
                 L_L00441DC0: ;
                 r4 = Mem.U32((r18 + 12u));
                 r5 = r29 + 80u;
-                r4 = r4 + r17; r2 = func_0043F69C(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 + r17; func_0043F69C(r4, r5);
                 r3 = Mem.U32((r29 + 100u));
                 r4 = Mem.U32((r29 + 60u));
                 r2 = (uint)((int)r4 < (int)r3 ? 1 : 0);
@@ -185,7 +185,7 @@ public static partial class Game
                 r5 = Mem.U32((r29 + 68u));
                 r6 = Mem.U32((r29 + 64u));
                 r7 = Mem.U32((r29 + 72u));
-                r2 = func_002A8DD4(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), Mem.U32(r29 + 32u), Mem.U32(r29 + 36u)); r3 = Cpu.V1;
+                func_002A8DD4((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u), (byte)Mem.U32(r29 + 24u), (byte)Mem.U32(r29 + 28u), (byte)Mem.U32(r29 + 32u), (byte)Mem.U32(r29 + 36u));
                 L_L00442000: ;
                 r31 = Mem.U32((r29 + 140u));
                 r20 = Mem.U32((r29 + 136u));

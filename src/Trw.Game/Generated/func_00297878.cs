@@ -17,7 +17,7 @@ public static partial class Game
                 func_00271FD8((_fp + 16u), c, b);
                 func_00272088(pl, (_fp + 16u), _fp);
                 func_002720EC(pl);
-                Mem.Set((pl + 12u), (((Mem.F32(pl) * Mem.F32(a)) + (Mem.F32((pl + 4u)) * Mem.F32((a + 4u)))) + (Mem.F32((pl + 8u)) * Mem.F32((a + 8u)))));
+                new B21Plane(pl).w_Set((((new B21Plane(pl).x * new Vec3f(a).x) + (new B21Plane(pl).y * new Vec3f(a).y)) + (new B21Plane(pl).z * new Vec3f(a).z)));
             }
         }
         finally { Stack.Free(28); }

@@ -14,14 +14,14 @@ public static partial class Game
             {
                 Mem.Copy(_fp + 0u, v_in, 12);
                 if (Dbg.On) Dbg.Enter("func_00239314_set", (uint)o);
-                Mem.Copy(((((o + 160u) + 4u) + (uint)(0 * 20)) + 4u), _fp, 12);
-                Mem.Set(((((o + 160u) + 4u) + (uint)(0 * 20)) + 16u), d);
-                Mem.Set((((o + 160u) + 4u) + (uint)(1 * 20)), e);
-                Mem.Set((((o + 160u) + 4u) + (uint)(2 * 20)), e);
-                Mem.Set((((o + 160u) + 4u) + (uint)(3 * 20)), e);
-                Mem.Set(((((o + 160u) + 4u) + (uint)(1 * 20)) + 4u), (a * Mem.F32(0x800C862Cu)));
-                Mem.Set(((((o + 160u) + 4u) + (uint)(2 * 20)) + 4u), (b * Mem.F32(0x800C862Cu)));
-                Mem.Set(((((o + 160u) + 4u) + (uint)(3 * 20)) + 4u), (c * Mem.F32(0x800C862Cu)));
+                Mem.Copy(new BigObj(o).co.ch[(int)(0)].v.P, _fp, 12);
+                new BigObj(o).co.ch[(int)(0)].d_Set(d);
+                new BigObj(o).co.ch[(int)(1)].mode_Set(e);
+                new BigObj(o).co.ch[(int)(2)].mode_Set(e);
+                new BigObj(o).co.ch[(int)(3)].mode_Set(e);
+                new BigObj(o).co.ch[(int)(1)].v.x_Set((a * Mem.F32(0x800C862Cu)));
+                new BigObj(o).co.ch[(int)(2)].v.x_Set((b * Mem.F32(0x800C862Cu)));
+                new BigObj(o).co.ch[(int)(3)].v.x_Set((c * Mem.F32(0x800C862Cu)));
             }
         }
         finally { Stack.Free(12); }

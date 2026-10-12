@@ -12,14 +12,14 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0041BE0C", (uint)m, (uint)a1, (uint)a2, (uint)a3);
             uint it = 0u;
             func_0029A73C();
-            if ((Mem.S32(((m + 92u) + (uint)((a2 & 65535) * 4))) != 0))
+            if ((new O3M7D5(m).flag[(int)((a2 & 65535))] != 0))
             {
                 return 0;
             }
-            it = Mem.U32(((m + 76u) + (uint)((a2 & 65535) * 4)));
+            it = new O3M7D5(m).item[(int)((a2 & 65535))];
             if ((it != 0u))
             {
-                func_0029A5D4((uint)((int)(Mem.S16((it + 12u)))), (uint)(1), (uint)(a2), (uint)(a3), (uint)(a4));
+                func_0029A5D4((uint)((int)(new O3Item(it).h.id)), (uint)(1), (uint)(a2), (uint)(a3), (uint)(a4));
             }
             return 0;
         }

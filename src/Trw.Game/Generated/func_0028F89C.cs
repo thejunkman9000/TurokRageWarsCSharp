@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0028F89C", (uint)l, (uint)n);
             uint prev = 0u;
-            uint cur = Mem.U32((l + 736u));
+            uint cur = new P4SList(l).head_;
             uint mask = osSetIntMask((uint)(1));
             while ((cur != 0u))
             {
@@ -19,16 +19,16 @@ public static partial class Game
                 {
                     if ((prev != 0u))
                     {
-                        Mem.Set(prev, Mem.U32(cur));
+                        new P4SNode(prev).next__Set(new P4SNode(cur).next_);
                     }
                     else
                     {
-                        Mem.Set((l + 736u), Mem.U32(cur));
+                        new P4SList(l).head__Set(new P4SNode(cur).next_);
                     }
                     break;
                 }
                 prev = cur;
-                cur = Mem.U32(cur);
+                cur = new P4SNode(cur).next_;
             }
             osSetIntMask(mask);
         }

@@ -21,12 +21,12 @@ public static partial class Game
                 float w1 = 0f;
                 float w2 = 0f;
                 Mem.Copy(_fp, q2, 16);
-                Mem.Set(_fp, (-Mem.F32(_fp)));
-                Mem.Set((_fp + 4u), (-Mem.F32((_fp + 4u))));
-                Mem.Set((_fp + 8u), (-Mem.F32((_fp + 8u))));
-                Mem.Set((_fp + 12u), (-Mem.F32((_fp + 12u))));
-                d1 = ((((Mem.F32(q1) * Mem.F32(q2)) + (Mem.F32((q1 + 4u)) * Mem.F32((q2 + 4u)))) + (Mem.F32((q1 + 8u)) * Mem.F32((q2 + 8u)))) + (Mem.F32((q1 + 12u)) * Mem.F32((q2 + 12u))));
-                d2 = ((((Mem.F32(q1) * Mem.F32(_fp)) + (Mem.F32((q1 + 4u)) * Mem.F32((_fp + 4u)))) + (Mem.F32((q1 + 8u)) * Mem.F32((_fp + 8u)))) + (Mem.F32((q1 + 12u)) * Mem.F32((_fp + 12u))));
+                new B16Vec4(_fp).x_Set((-new B16Vec4(_fp).x));
+                new B16Vec4(_fp).y_Set((-new B16Vec4(_fp).y));
+                new B16Vec4(_fp).z_Set((-new B16Vec4(_fp).z));
+                new B16Vec4(_fp).w_Set((-new B16Vec4(_fp).w));
+                d1 = ((((new B16Vec4(q1).x * new B16Vec4(q2).x) + (new B16Vec4(q1).y * new B16Vec4(q2).y)) + (new B16Vec4(q1).z * new B16Vec4(q2).z)) + (new B16Vec4(q1).w * new B16Vec4(q2).w));
+                d2 = ((((new B16Vec4(q1).x * new B16Vec4(_fp).x) + (new B16Vec4(q1).y * new B16Vec4(_fp).y)) + (new B16Vec4(q1).z * new B16Vec4(_fp).z)) + (new B16Vec4(q1).w * new B16Vec4(_fp).w));
                 if ((d1 < d2))
                 {
                     d1 = d2;
@@ -46,10 +46,10 @@ public static partial class Game
                 {
                     q2 = _fp;
                 }
-                Mem.Set(dst, ((w1 * Mem.F32(q1)) + (w2 * Mem.F32(q2))));
-                Mem.Set((dst + 4u), ((w1 * Mem.F32((q1 + 4u))) + (w2 * Mem.F32((q2 + 4u)))));
-                Mem.Set((dst + 8u), ((w1 * Mem.F32((q1 + 8u))) + (w2 * Mem.F32((q2 + 8u)))));
-                Mem.Set((dst + 12u), ((w1 * Mem.F32((q1 + 12u))) + (w2 * Mem.F32((q2 + 12u)))));
+                new B16Vec4(dst).x_Set(((w1 * new B16Vec4(q1).x) + (w2 * new B16Vec4(q2).x)));
+                new B16Vec4(dst).y_Set(((w1 * new B16Vec4(q1).y) + (w2 * new B16Vec4(q2).y)));
+                new B16Vec4(dst).z_Set(((w1 * new B16Vec4(q1).z) + (w2 * new B16Vec4(q2).z)));
+                new B16Vec4(dst).w_Set(((w1 * new B16Vec4(q1).w) + (w2 * new B16Vec4(q2).w)));
             }
         }
         finally { Stack.Free(16); }

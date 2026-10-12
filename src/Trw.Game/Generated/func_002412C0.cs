@@ -16,18 +16,18 @@ public static partial class Game
                 float denom = 0f;
                 float v = 0f;
                 int r = 0;
-                if ((Mem.S32((q + 8u)) == 0))
+                if ((new B09Quad(q).unk8 == 0))
                 {
                     return 0;
                 }
                 func_00271FD8(_fp, dir, org);
-                denom = (((Mem.F32((q + 72u)) * Mem.F32((_fp + (uint)(0 * 4)))) + (Mem.F32((q + 76u)) * Mem.F32((_fp + (uint)(1 * 4))))) + (Mem.F32((q + 80u)) * Mem.F32((_fp + (uint)(2 * 4)))));
+                denom = (((new B09Quad(q).nx * Mem.F32((_fp + (uint)(0 * 4)))) + (new B09Quad(q).ny * Mem.F32((_fp + (uint)(1 * 4))))) + (new B09Quad(q).nz * Mem.F32((_fp + (uint)(2 * 4)))));
                 r = 0;
                 if (!(denom >= 0.0f))
                 {
-                    func_00271FD8((_fp + 16u), org, ((q + 24u) + (uint)(0 * 12)));
+                    func_00271FD8((_fp + 16u), org, (new B09Quad(q).v.P + (uint)(0 * 12)));
                     r = 1;
-                    v = ((-(((Mem.F32((q + 72u)) * Mem.F32(((_fp + 16u) + (uint)(0 * 4)))) + (Mem.F32((q + 76u)) * Mem.F32(((_fp + 16u) + (uint)(1 * 4))))) + (Mem.F32((q + 80u)) * Mem.F32(((_fp + 16u) + (uint)(2 * 4)))))) / denom);
+                    v = ((-(((new B09Quad(q).nx * Mem.F32(((_fp + 16u) + (uint)(0 * 4)))) + (new B09Quad(q).ny * Mem.F32(((_fp + 16u) + (uint)(1 * 4))))) + (new B09Quad(q).nz * Mem.F32(((_fp + 16u) + (uint)(2 * 4)))))) / denom);
                 }
                 else
                 {

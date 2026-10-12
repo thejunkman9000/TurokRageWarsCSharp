@@ -15,8 +15,8 @@ public static partial class Game
             if ((func_0029AA08() == 115))
             {
                 p = Mem.U32(0x800E58A0u);
-                Mem.Set((p + 20u), (-1));
-                func_0041A4B0((uint)(Mem.S32(p)), 2);
+                new S_v9(p).f14_Set((-1));
+                func_0041A4B0((uint)(new S_v9(p).f0), 2);
             }
             return 0;
         }

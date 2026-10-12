@@ -16,13 +16,13 @@ public static partial class Game
             {
                 for (j = 0; (j < 3); ++j)
                 {
-                    uint e = Mem.U32(((Mem.U32((0x800D052Cu + (uint)(i * 4))) + 32u) + (uint)(j * 4)));
-                    if ((((e != 0u) && ((int)(Mem.S16((e + 4u))) == (int)(Mem.U16((o + 4u))))) && ((int)(Mem.S16(e)) == 1)))
+                    uint e = new B19Row(Mem.U32((0x800D052Cu + (uint)(i * 4)))).a[(int)(j)];
+                    if ((((e != 0u) && ((int)(new B19Ent(e).id) == (int)(new B19Obj(o).id))) && ((int)(new B19Ent(e).kind) == 1)))
                     {
                         return 1;
                     }
-                    e = Mem.U32(((Mem.U32((0x800D052Cu + (uint)(i * 4))) + 44u) + (uint)(j * 4)));
-                    if ((((e != 0u) && ((int)(Mem.S16((e + 4u))) == (int)(Mem.U16((o + 4u))))) && ((int)(Mem.S16(e)) == 1)))
+                    e = new B19Row(Mem.U32((0x800D052Cu + (uint)(i * 4)))).b[(int)(j)];
+                    if ((((e != 0u) && ((int)(new B19Ent(e).id) == (int)(new B19Obj(o).id))) && ((int)(new B19Ent(e).kind) == 1)))
                     {
                         return 1;
                     }

@@ -31,8 +31,8 @@ public static partial class Game
                         osSetThreadPri(0x8010A248u, Mem.S32(0x800D2B1Cu));
                     }
                 }
-                Mem.Set((o + 764u), (Mem.S32((o + 764u)) + 1));
-                while ((osRecvMesg((o + 120u), _fp, 0) != (-1)))
+                new Vid(o).unk2FC_Set((new Vid(o).unk2FC + 1));
+                while ((osRecvMesg(new Vid(o).q78.P, _fp, 0) != (-1)))
                 {
                     func_0028F934(o, Mem.U32(_fp));
                 }
@@ -48,10 +48,10 @@ public static partial class Game
                 if ((Mem.S32(0x8014AD90u) != 0))
                 {
                     fr = Mem.U32((0x80146970u + (uint)(Mem.S32(0x8011FAB4u) * 4)));
-                    if (!((uint)((Mem.S32(0x801469E0u) + 1)) < Mem.U32((fr + 292u))))
+                    if (!((uint)((Mem.S32(0x801469E0u) + 1)) < new Frm(fr).unk124))
                     {
-                        Mem.Set(0x80146CF0u, Mem.S32((fr + 272u)));
-                        osViSwapBuffer((uint)(Mem.S32((fr + 272u))));
+                        Mem.Set(0x80146CF0u, new Frm(fr).unk110);
+                        osViSwapBuffer((uint)(new Frm(fr).unk110));
                         Mem.Set(0x8014AD90u, (Mem.S32(0x8014AD90u) - 1));
                         Mem.Set(0x8014AD88u, (Mem.S32(0x8014AD88u) + 1));
                         Mem.Set(0x8011FAB4u, (Mem.S32(0x8011FAB4u) + 1));
@@ -61,19 +61,19 @@ public static partial class Game
                         }
                     }
                 }
-                if (((Mem.U32((o + 756u)) == 0u) && (Mem.U32((o + 760u)) == 0u)))
+                if (((new Vid(o).cur2F4_ == 0u) && (new Vid(o).next2F8_ == 0u)))
                 {
-                    j = Mem.U32((o + 744u));
-                    if ((((j != 0u) && (Mem.S32((j + 16u)) == 1)) && (Mem.U32((j + 4u)) == (uint)(50))))
+                    j = new Vid(o).head2E8_;
+                    if ((((j != 0u) && (new Job(j).unk10 == 1)) && (new Job(j).flags4 == (uint)(50))))
                     {
-                        Mem.Set((j + 4u), (uint)(2));
-                        Mem.Set((o + 756u), Mem.U32((o + 744u)));
-                        c = Mem.U32((o + 744u));
-                        k = Mem.U32(c);
-                        Mem.Set((o + 744u), k);
+                        new Job(j).flags4_Set((uint)(2));
+                        new Vid(o).cur2F4__Set(new Vid(o).head2E8_);
+                        c = new Vid(o).head2E8_;
+                        k = new Job(c).next_;
+                        new Vid(o).head2E8__Set(k);
                         if ((k == 0u))
                         {
-                            Mem.Set((o + 752u), 0u);
+                            new Vid(o).tail2F0__Set(0u);
                         }
                         func_0028ED80(o);
                     }
@@ -83,26 +83,26 @@ public static partial class Game
                 {
                     Mem.Set(0u, (byte)(0));
                 }
-                if (((Mem.S32((o + 768u)) != 0) && (Mem.U32((o + 756u)) != 0u)))
+                if (((new Vid(o).unk300 != 0) && (new Vid(o).cur2F4_ != 0u)))
                 {
                     func_0028FBB8(o);
                 }
                 else
                 {
-                    mode = ((((Mem.U32((o + 756u)) == 0u) ? 1 : 0) << (int)1) | ((Mem.U32((o + 760u)) == 0u) ? 1 : 0));
+                    mode = ((((new Vid(o).cur2F4_ == 0u) ? 1 : 0) << (int)1) | ((new Vid(o).next2F8_ == 0u) ? 1 : 0));
                     if (((int)(func_0028F524(o, (_fp + 4u), (_fp + 8u), (uint)(mode))) != mode))
                     {
                         func_0028FA40(o, Mem.U32((_fp + 4u)), Mem.U32((_fp + 8u)));
                     }
                 }
-                n = Mem.U32((o + 736u));
+                n = new Vid(o).unk2E0_;
                 while ((n != 0u))
                 {
-                    if ((Mem.S32((Mem.U32((n + 4u)) + (uint)(2 * 4))) < 2))
+                    if ((Mem.S32((new Qn(n).q_ + (uint)(2 * 4))) < 2))
                     {
-                        osSendMesg(Mem.U32((n + 4u)), o, 0);
+                        osSendMesg(new Qn(n).q_, o, 0);
                     }
-                    n = Mem.U32(n);
+                    n = new Qn(n).next_;
                 }
                 func_00263B14();
             }

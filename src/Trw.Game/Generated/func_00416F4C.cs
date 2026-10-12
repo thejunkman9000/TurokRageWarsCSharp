@@ -25,35 +25,35 @@ public static partial class Game
                         mp = (_fp + 32u);
                         func_0029FB14(mp);
                         func_004194B0(mp);
-                        Mem.Set(_fp, (float)(0));
-                        Mem.Set((_fp + 4u), (float)(0));
-                        Mem.Set((_fp + 8u), Mem.F32(0x800E142Cu));
+                        new O02V3(_fp).x_Set((float)(0));
+                        new O02V3(_fp).y_Set((float)(0));
+                        new O02V3(_fp).z_Set(Mem.F32(0x800E142Cu));
                         func_00272908(0x80145228u, _fp, (_fp + 16u));
                         n = 4;
                         v = (uint)(func_002A25E4(64));
                         for (k = 0; (k < n); ++k)
                         {
-                            Mem.Set((v + (uint)(k * 16)), (short)(int)(Mem.F32((_fp + 16u))));
-                            Mem.Set(((v + (uint)(k * 16)) + 2u), (short)(int)(Mem.F32(((_fp + 16u) + 4u))));
-                            Mem.Set(((v + (uint)(k * 16)) + 4u), (short)(int)(Mem.F32(((_fp + 16u) + 8u))));
-                            Mem.Set(((v + (uint)(k * 16)) + 8u), (short)(0));
-                            Mem.Set(((v + (uint)(k * 16)) + 10u), (short)(0));
-                            Mem.Set(((v + (uint)(k * 16)) + 12u), (byte)(255));
-                            Mem.Set(((v + (uint)(k * 16)) + 13u), (byte)(255));
-                            Mem.Set(((v + (uint)(k * 16)) + 14u), (byte)(255));
-                            Mem.Set(((v + (uint)(k * 16)) + 15u), (byte)(255));
+                            new O02Vtx((v + (uint)(k * 16))).x_Set((short)(int)(new O02V3((_fp + 16u)).x));
+                            new O02Vtx((v + (uint)(k * 16))).y_Set((short)(int)(new O02V3((_fp + 16u)).y));
+                            new O02Vtx((v + (uint)(k * 16))).z_Set((short)(int)(new O02V3((_fp + 16u)).z));
+                            new O02Vtx((v + (uint)(k * 16))).s_Set((short)(0));
+                            new O02Vtx((v + (uint)(k * 16))).t_Set((short)(0));
+                            new O02Vtx((v + (uint)(k * 16))).r_Set((byte)(255));
+                            new O02Vtx((v + (uint)(k * 16))).g_Set((byte)(255));
+                            new O02Vtx((v + (uint)(k * 16))).b_Set((byte)(255));
+                            new O02Vtx((v + (uint)(k * 16))).a_Set((byte)(255));
                         }
                         {
                             uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                            Mem.Set(_g, (uint)(((16777216 | (n << (int)12)) | (n << (int)1))));
-                            Mem.Set((_g + 4u), (uint)(v));
+                            new O02Gfx(_g).w0_Set((uint)(((16777216 | (n << (int)12)) | (n << (int)1))));
+                            new O02Gfx(_g).w1_Set((uint)(v));
                         }
                         for (k = 0; (k < n); ++k)
                         {
                             {
-                                uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                                Mem.Set(_g, (uint)((35389440 | ((k * 2) & 65535))));
-                                Mem.Set((_g + 4u), (uint)(0));
+                                uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                new O02Gfx(_g_2).w0_Set((uint)((35389440 | ((k * 2) & 65535))));
+                                new O02Gfx(_g_2).w1_Set((uint)(0));
                             }
                         }
                     }

@@ -12,25 +12,25 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002A6ED0", (uint)o);
             uint p = 0u;
             uint next = 0u;
-            p = Mem.U32((o + 30100u));
+            p = new Owner6ED0(o).head_;
             if ((p != 0u))
             {
                 do
                 {
-                    Mem.Set((p + 8u), (Mem.F32((p + 8u)) - Mem.F32(0x800D2988u)));
-                    next = Mem.U32((p + 4u));
-                    if ((Mem.F32((p + 8u)) <= 0.0f))
+                    new Part6ED0(p).time_Set((new Part6ED0(p).time - Mem.F32(0x800D2988u)));
+                    next = new Part6ED0(p).next_;
+                    if ((new Part6ED0(p).time <= 0.0f))
                     {
-                        Mem.Set((p + 8u), (Mem.F32((p + 8u)) + Mem.F32((p + 12u))));
-                        if ((Mem.F32((p + 8u)) < 0.0f))
+                        new Part6ED0(p).time_Set((new Part6ED0(p).time + new Part6ED0(p).period));
+                        if ((new Part6ED0(p).time < 0.0f))
                         {
-                            Mem.Set((p + 8u), 0.0f);
+                            new Part6ED0(p).time_Set(0.0f);
                         }
-                        Funcs.CallReg(Mem.U32((p + 24u)), p, 0u, 0u, 0u);
-                        Mem.Set((p + 16u), (Mem.S32((p + 16u)) - 1));
-                        if ((Mem.S32((p + 16u)) <= 0))
+                        Funcs.CallReg(new Part6ED0(p).cb, p, 0u, 0u, 0u);
+                        new Part6ED0(p).count_Set((new Part6ED0(p).count - 1));
+                        if ((new Part6ED0(p).count <= 0))
                         {
-                            func_00279764((o + 30088u), p);
+                            func_00279764(new Owner6ED0(o).list.P, p);
                         }
                     }
                     p = next;

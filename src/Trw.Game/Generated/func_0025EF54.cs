@@ -33,9 +33,9 @@ public static partial class Game
                     lo = func_00260670(lo, Mem.F32(0x8010EC7Cu), Mem.F32(0x8010EC80u));
                     hi = func_00260670(hi, Mem.F32(0x8010EC7Cu), Mem.F32(0x8010EC80u));
                 }
-                Mem.Set(((_fp + 16u) + 4u), lo);
-                Mem.Set(((_fp + 16u) + 8u), (hi - lo));
-                Mem.Set((_fp + 16u), func_002607D8(_fp, (uint)(6)));
+                new B14FRange((_fp + 16u)).min_Set(lo);
+                new B14FRange((_fp + 16u)).range_Set((hi - lo));
+                new B14FRange((_fp + 16u)).n_Set(func_002607D8(_fp, (uint)(6)));
                 for (i = 0; (i < count); ++i)
                 {
                     Mem.Set(@out, func_00260BA0(_fp, (_fp + 16u)));

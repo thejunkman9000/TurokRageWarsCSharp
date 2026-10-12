@@ -11,11 +11,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00258C2C", (uint)m, (uint)tag);
             func_00258C2C_SndMgr_Lock(m);
-            func_0025B610((m + 7608u), (uint)(tag), default(uint), default(uint));
-            func_00259938((m + 312u), tag);
-            Mem.Set((m + 11164u), 0);
+            func_0025B610(new SndMgr(m).pool.P, (uint)(tag), default(uint), default(uint));
+            func_00259938(new SndMgr(m).q.P, tag);
+            new SndMgr(m).unk2B9C_Set(0);
             func_00258C2C_SndMgr_Unlock(m);
-            func_0025D1DC((m + 11200u));
+            func_0025D1DC(new SndMgr(m).obj2BC0.P);
         }
     }
 
@@ -24,12 +24,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00258C2C_SndMgr_Lock", (uint)m);
-            uint l = (m + 272u);
+            uint l = new SndMgr(m).@lock.P;
             uint mask = __osDisableInt();
-            if ((Mem.Set((l + 28u), (int)(Mem.S32((l + 28u)) + 1)) != 1))
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count + 1)) != 1))
             {
                 __osRestoreInt(mask);
-                osRecvMesg(l, 0u, 1);
+                osRecvMesg(new SndLock(l).q.P, 0u, 1);
             }
             else
             {
@@ -43,12 +43,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00258C2C_SndMgr_Unlock", (uint)m);
-            uint l = (m + 272u);
+            uint l = new SndMgr(m).@lock.P;
             uint mask = __osDisableInt();
-            if ((Mem.Set((l + 28u), (int)(Mem.S32((l + 28u)) - 1)) != 0))
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count - 1)) != 0))
             {
                 __osRestoreInt(mask);
-                osSendMesg(l, 0u, 1);
+                osSendMesg(new SndLock(l).q.P, 0u, 1);
             }
             else
             {

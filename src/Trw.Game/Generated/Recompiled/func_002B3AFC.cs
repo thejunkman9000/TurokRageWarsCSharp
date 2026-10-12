@@ -26,14 +26,14 @@ public static partial class Game
                 Mem.Set((r29 + 24u), r18);
                 r18 = r5;
                 Mem.Set((r29 + 28u), r31);
-                Mem.Set((r29 + 16u), r16); r2 = __getTrackByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r29 + 16u), r16); r2 = (uint)__getTrackByte(r4, r5);
                 r16 = r2 & 255u;
                 r2 = r16 & 128u;
                 { bool c_ = r2 == 0; r2 = r16; if (c_) goto L_L002B3B58; }
                 r16 = r16 & 127u;
                 L_L002B3B30: ;
                 r4 = r17;
-                r5 = r18; r2 = __getTrackByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r18; r2 = (uint)__getTrackByte(r4, r5);
                 r2 = r2 & 255u;
                 r4 = r16 << 7;
                 r3 = r2 & 127u;

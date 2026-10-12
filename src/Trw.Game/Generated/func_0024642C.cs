@@ -17,9 +17,9 @@ public static partial class Game
                 int r = 0;
                 Mem.Copy(_fp, o, 80);
                 k = Mem.F32(0x800C8918u);
-                Mem.Set((o + 12u), (float)((float)(Mem.F32((o + 12u))) + (func_0024D274(o) * k)));
+                new B10Obj(o).fC_Set((float)((float)(new B10Obj(o).fC) + (func_0024D274(o) * k)));
                 Mem.Copy((_fp + 80u), (other + 8u), 12);
-                Mem.Set(((_fp + 80u) + 4u), (float)((float)(Mem.F32(((_fp + 80u) + 4u))) + (func_0024D274(other) * k)));
+                new Vec3f((_fp + 80u)).y_Set((float)((float)(new Vec3f((_fp + 80u)).y) + (func_0024D274(other) * k)));
                 r = func_00243A80((int)(o), Cpu.U2F(Mem.U32((_fp + 80u) + 0u)), Cpu.U2F(Mem.U32((_fp + 80u) + 4u)), Cpu.U2F(Mem.U32((_fp + 80u) + 8u)), (int)(0x80103FD0u));
                 Mem.Copy(o, _fp, 80);
                 return ((r == 0) ? 1 : 0);

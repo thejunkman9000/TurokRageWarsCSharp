@@ -17,12 +17,12 @@ public static partial class Game
             for (i = 0; (i < 4); ++i)
             {
                 row = (0x80146398u + (uint)(i * 150));
-                if ((((int)(Mem.U8((row + 120u))) == 1) && (C.Seq((object?)((slot = (Mem.U32(0x800E59E0u) + (uint)(i * 1232)))), ((Mem.S32((slot + 1236u)) == 2) ? 1 : 0)) != 0)))
+                if ((((int)(new O06R_v4(row).unk78) == 1) && (C.Seq((object?)((slot = (Mem.U32(0x800E59E0u) + (uint)(i * 1232)))), ((new O06Q(slot).unk4D4 == 2) ? 1 : 0)) != 0)))
                 {
                     for (j = 0; (j < 22); ++j)
                     {
-                        Mem.Set(((row + 76u) + (uint)j), (byte)(0));
-                        Mem.Set(((row + 98u) + (uint)j), (byte)(0));
+                        new O06R_v4(row).unk4C.Set((int)(j), (byte)(0));
+                        new O06R_v4(row).unk62.Set((int)(j), (byte)(0));
                     }
                     for (j = 0; (j < 6); ++j)
                     {
@@ -49,11 +49,11 @@ public static partial class Game
                             continue;
                         }
                         t = (uint)(((uint)((Mem.S32(((Mem.U32(0x800E59E0u) + (uint)((i * 1232) + (j * 4))) + (uint)1208)) << (int)4)) + tab));
-                        Mem.Set(((row + 76u) + (uint)Mem.S32((t + 8u))), (byte)(1));
-                        Mem.Set(((row + 98u) + (uint)Mem.S32((t + 8u))), (byte)(val));
+                        new O06R_v4(row).unk4C.Set((int)(new O06T_v2(t).unk8), (byte)(1));
+                        new O06R_v4(row).unk62.Set((int)(new O06T_v2(t).unk8), (byte)(val));
                     }
-                    Mem.Set(((row + 76u) + (uint)0), (byte)(1));
-                    Mem.Set(((row + 98u) + (uint)0), (byte)(0));
+                    new O06R_v4(row).unk4C.Set((int)(0), (byte)(1));
+                    new O06R_v4(row).unk62.Set((int)(0), (byte)(0));
                 }
             }
         }

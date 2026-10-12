@@ -10,9 +10,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002AB720", (uint)c, (uint)a, (uint)b);
-            Mem.Set((c + 64u), a);
-            Mem.Set((c + 60u), b);
-            Mem.Set((c + 68u), 100);
+            new ScriptCtx(c).unk40_Set(a);
+            new ScriptCtx(c).unk3C_Set(b);
+            new ScriptCtx(c).unk44_Set(100);
             func_002AB6FC(c, 0x800D318Cu);
         }
     }

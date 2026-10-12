@@ -27,80 +27,80 @@ public static partial class Game
                 int s0 = 0;
                 int st = 0;
                 Mem.Set((_fp + 204u), 0u);
-                pw = Mem.U32((p + 1500u));
+                pw = new B05P19(p).pawn;
                 fs1f = Mem.F32(0x800C74A4u);
                 fs2 = Mem.F32(0x800C74A8u);
                 if ((pw != 0u))
                 {
-                    if ((Mem.S32((pw + 36u)) == 1))
+                    if ((new B05Pawn(pw).unk24 == 1))
                     {
-                        func_00226DAC(p, (_fp + 64u), default(uint), default(uint));
+                        func_00226DAC(p, (_fp + 64u));
                         func_0022B134(p, (int)((_fp + 128u)));
                     }
                     else
                     {
-                        func_0027302C((_fp + 64u), (pw + 352u));
-                        Mem.Copy((_fp + 128u), (pw + 296u), 12);
+                        func_0027302C((_fp + 64u), new B05Pawn(pw).m160.P);
+                        Mem.Copy((_fp + 128u), new B05Pawn(pw).v128.P, 12);
                     }
                 }
                 else
                 {
-                    func_00226DAC(p, (_fp + 64u), default(uint), default(uint));
+                    func_00226DAC(p, (_fp + 64u));
                     func_0022B134(p, (int)((_fp + 128u)));
                 }
-                Mem.Set((_fp + 16u), 0.0f);
-                Mem.Set(((_fp + 16u) + 4u), 0.0f);
-                Mem.Set(((_fp + 16u) + 8u), Mem.F32(0x800C74ACu));
+                new Vec3f((_fp + 16u)).x_Set(0.0f);
+                new Vec3f((_fp + 16u)).y_Set(0.0f);
+                new Vec3f((_fp + 16u)).z_Set(Mem.F32(0x800C74ACu));
                 func_00272908((_fp + 64u), (_fp + 16u), (_fp + 48u));
                 if ((func_00244494(p, (_fp + 128u), (_fp + 48u), 0x80103FD0u) != 0))
                 {
-                    Mem.Copy((p + 5208u), (Mem.U32(0x80103FCCu) + 228u), 12);
-                    Mem.Copy((p + 5232u), (Mem.U32(0x80103FCCu) + 240u), 12);
-                    Mem.Set((p + 5244u), Mem.U32(Mem.U32(0x80103FCCu)));
+                    Mem.Copy(new B05P19(p).v1458.P, new B05Hit(Mem.U32(0x80103FCCu)).vE4.P, 12);
+                    Mem.Copy(new B05P19(p).v1470.P, new B05Hit(Mem.U32(0x80103FCCu)).vF0.P, 12);
+                    new B05P19(p).p147C_Set(new B05Hit(Mem.U32(0x80103FCCu)).tgt_);
                 }
                 else
                 {
-                    Mem.Copy((p + 5208u), (_fp + 48u), 12);
-                    Mem.Set((p + 5244u), 0u);
+                    Mem.Copy(new B05P19(p).v1458.P, (_fp + 48u), 12);
+                    new B05P19(p).p147C_Set(0u);
                 }
-                Mem.Set((_fp + 16u), 0.0f);
-                Mem.Set(((_fp + 16u) + 4u), 0.0f);
-                Mem.Set(((_fp + 16u) + 8u), Mem.F32(0x800C74B0u));
+                new Vec3f((_fp + 16u)).x_Set(0.0f);
+                new Vec3f((_fp + 16u)).y_Set(0.0f);
+                new Vec3f((_fp + 16u)).z_Set(Mem.F32(0x800C74B0u));
                 func_00272908((_fp + 64u), (_fp + 16u), (_fp + 48u));
-                if ((Mem.S32((p + 4624u)) != 0))
+                if ((new B05P19(p).unk1210 != 0))
                 {
-                    if (((((func_00244494(p, (_fp + 128u), (_fp + 48u), 0x801040F0u) != 0) && ((h = Mem.U32(Mem.U32(0x80103FCCu))) != 0u)) && ((int)(Mem.U8(h)) == 1)) && ((Mem.U32((h + (uint)256)) & (uint)(3145728)) != 0u)))
+                    if (((((func_00244494(p, (_fp + 128u), (_fp + 48u), 0x801040F0u) != 0) && ((h = new B05Hit(Mem.U32(0x80103FCCu)).tgt_) != 0u)) && ((int)(new B05Tgt(h).type) == 1)) && ((Mem.U32((h + (uint)256)) & (uint)(3145728)) != 0u)))
                     {
-                        func_00271FD8((_fp + 144u), (h + 8u), (p + 8u));
-                        len = sqrtf((((Mem.F32((_fp + 144u)) * Mem.F32((_fp + 144u))) + (Mem.F32(((_fp + 144u) + 4u)) * Mem.F32(((_fp + 144u) + 4u)))) + (Mem.F32(((_fp + 144u) + 8u)) * Mem.F32(((_fp + 144u) + 8u)))));
+                        func_00271FD8((_fp + 144u), new B05Tgt(h).pos.P, new B05P19(p).pos.P);
+                        len = sqrtf((((new B05Quat((_fp + 144u)).x * new B05Quat((_fp + 144u)).x) + (new B05Quat((_fp + 144u)).y * new B05Quat((_fp + 144u)).y)) + (new B05Quat((_fp + 144u)).z * new B05Quat((_fp + 144u)).z)));
                         Mem.Copy((_fp + 192u), (_fp + 16u), 12);
                         func_002720EC((_fp + 192u));
                         func_0027200C((_fp + 160u), (_fp + 192u), len);
                         func_00272908((_fp + 64u), (_fp + 160u), (_fp + 176u));
-                        Mem.Copy((p + 5220u), (_fp + 176u), 12);
+                        Mem.Copy(new B05P19(p).v1464.P, (_fp + 176u), 12);
                         func_0021D3E4(p, (_fp + 176u), (Mem.U32(0x80103FCCu) + (uint)240));
                     }
                     else
                     {
-                        Mem.Copy((p + 5220u), (p + 5208u), 12);
-                        func_0021D3E4(p, (p + 5208u), (Mem.U32(0x80103FCCu) + (uint)240));
+                        Mem.Copy(new B05P19(p).v1464.P, new B05P19(p).v1458.P, 12);
+                        func_0021D3E4(p, new B05P19(p).v1458.P, (Mem.U32(0x80103FCCu) + (uint)240));
                     }
                 }
                 else
                 {
-                    Mem.Copy((p + 5220u), (_fp + 48u), 12);
+                    Mem.Copy(new B05P19(p).v1464.P, (_fp + 48u), 12);
                 }
-                if ((((int)(Mem.S16((p + 1582u))) == 1) && (Mem.S32((p + 1428u)) == 2)))
+                if ((((int)(new B05P19(p).s62E) == 1) && (new B05P19(p).mode == 2)))
                 {
                     s4 = 710;
                 }
                 else
                 {
-                    s4 = (int)(Mem.S16((Mem.U32((0x800D052Cu + (uint)(Mem.S16((p + 1582u)) * 4))) + 14u)));
+                    s4 = (int)(new B05Row19(Mem.U32((0x800D052Cu + (uint)(new B05P19(p).s62E * 4)))).sE);
                 }
                 s5 = (s4 + 100);
                 s0 = 1;
-                if ((((int)(Mem.S16((p + 1582u))) == 1) || ((int)(Mem.S16((p + 1582u))) == 18)))
+                if ((((int)(new B05P19(p).s62E) == 1) || ((int)(new B05P19(p).s62E) == 18)))
                 {
                     fs0f = Mem.F32(0x800C74B4u);
                     fs1 = fs0f;
@@ -110,17 +110,17 @@ public static partial class Game
                     fs0f = 0.0f;
                     fs1 = 0.0f;
                 }
-                switch ((int)(Mem.S16((p + 1582u))))
+                switch ((int)(new B05P19(p).s62E))
                 {
                 case 7:
-                    if ((Mem.S32((p + 2024u)) != 0))
+                    if ((new B05P19(p).unk7E8 != 0))
                     {
                         s4 = 740;
                         s5 = (-1);
                     }
                     break;
                 case 2:
-                    if ((Mem.S32((p + 2024u)) != 0))
+                    if ((new B05P19(p).unk7E8 != 0))
                     {
                         s4 = 700;
                         s5 = (-1);
@@ -136,123 +136,123 @@ public static partial class Game
                     break;
                 }
                 func_0024795C((_fp + 144u), p);
-                Mem.Copy((p + 2008u), (_fp + 144u), 16);
-                Mem.Copy((_fp + 160u), (p + 5208u), 12);
-                Mem.Set((_fp + 160u), (float)((float)(Mem.F32((_fp + 160u))) - Mem.F32(0x800C74B8u)));
-                Mem.Copy((_fp + 176u), (p + 5208u), 12);
-                Mem.Set((_fp + 176u), (float)((float)(Mem.F32((_fp + 176u))) + Mem.F32(0x800C74B8u)));
-                Mem.Copy((_fp + 160u), (p + 5208u), 12);
-                Mem.Set(((_fp + 160u) + 8u), (float)((float)(Mem.F32(((_fp + 160u) + 8u))) - Mem.F32(0x800C74B8u)));
-                Mem.Copy((_fp + 176u), (p + 5208u), 12);
-                Mem.Set(((_fp + 176u) + 8u), (float)((float)(Mem.F32(((_fp + 176u) + 8u))) + Mem.F32(0x800C74B8u)));
-                Mem.Copy((_fp + 160u), (p + 5208u), 12);
-                Mem.Set(((_fp + 160u) + 4u), (float)((float)(Mem.F32(((_fp + 160u) + 4u))) - Mem.F32(0x800C74B8u)));
-                Mem.Copy((_fp + 176u), (p + 5208u), 12);
-                Mem.Set(((_fp + 176u) + 4u), (float)((float)(Mem.F32(((_fp + 176u) + 4u))) + Mem.F32(0x800C74B8u)));
+                Mem.Copy(new B05P19(p).q7D8.P, (_fp + 144u), 16);
+                Mem.Copy((_fp + 160u), new B05P19(p).v1458.P, 12);
+                new Vec3f((_fp + 160u)).x_Set((float)((float)(new Vec3f((_fp + 160u)).x) - Mem.F32(0x800C74B8u)));
+                Mem.Copy((_fp + 176u), new B05P19(p).v1458.P, 12);
+                new Vec3f((_fp + 176u)).x_Set((float)((float)(new Vec3f((_fp + 176u)).x) + Mem.F32(0x800C74B8u)));
+                Mem.Copy((_fp + 160u), new B05P19(p).v1458.P, 12);
+                new Vec3f((_fp + 160u)).z_Set((float)((float)(new Vec3f((_fp + 160u)).z) - Mem.F32(0x800C74B8u)));
+                Mem.Copy((_fp + 176u), new B05P19(p).v1458.P, 12);
+                new Vec3f((_fp + 176u)).z_Set((float)((float)(new Vec3f((_fp + 176u)).z) + Mem.F32(0x800C74B8u)));
+                Mem.Copy((_fp + 160u), new B05P19(p).v1458.P, 12);
+                new Vec3f((_fp + 160u)).y_Set((float)((float)(new Vec3f((_fp + 160u)).y) - Mem.F32(0x800C74B8u)));
+                Mem.Copy((_fp + 176u), new B05P19(p).v1458.P, 12);
+                new Vec3f((_fp + 176u)).y_Set((float)((float)(new Vec3f((_fp + 176u)).y) + Mem.F32(0x800C74B8u)));
                 if ((Mem.U32((_fp + 204u)) == 0u))
                 {
                     Mem.Copy(_fp, (_fp + 48u), 12);
-                    if ((((int)(Mem.U8((Mem.U32((p + 1496u)) + (uint)126))) != 0) && (s0 != 0)))
+                    if ((((int)(Mem.U8((new B05P19(p).stats + (uint)126))) != 0) && (s0 != 0)))
                     {
                         func_0021CF04((_fp + 176u), p, (_fp + 208u), (_fp + 160u));
                         if ((Mem.U32((_fp + 208u)) != 0u))
                         {
-                            Mem.Copy((p + 2008u), (_fp + 176u), 16);
+                            Mem.Copy(new B05P19(p).q7D8.P, (_fp + 176u), 16);
                         }
                     }
                     if ((Mem.U32((_fp + 204u)) == 0u))
                     {
-                        Mem.Set((p + 1940u), 0u);
+                        new B05P19(p).tgt794_Set(0u);
                     }
                 }
                 if ((s4 == (-1)))
                 {
-                    Mem.Set((p + 1928u), 0);
+                    new B05P19(p).unk788_Set(0);
                 }
                 else
                 {
-                    if ((Mem.S32((p + 1928u)) == 0))
+                    if ((new B05P19(p).unk788 == 0))
                     {
-                        Mem.Set((p + 1928u), 1);
-                        Mem.Copy((p + 1948u), (_fp + 48u), 12);
-                        Mem.Set((p + 1960u), 0.0f);
-                        Mem.Set(((p + 1960u) + 4u), 0.0f);
-                        Mem.Set(((p + 1960u) + 8u), 0.0f);
-                        Mem.Copy((p + 1984u), (_fp + 48u), 12);
-                        Mem.Set((p + 1996u), 0.0f);
-                        Mem.Set(((p + 1996u) + 4u), 0.0f);
-                        Mem.Set(((p + 1996u) + 8u), 0.0f);
+                        new B05P19(p).unk788_Set(1);
+                        Mem.Copy(new B05P19(p).v79C.P, (_fp + 48u), 12);
+                        new B05P19(p).v7A8.x_Set(0.0f);
+                        new B05P19(p).v7A8.y_Set(0.0f);
+                        new B05P19(p).v7A8.z_Set(0.0f);
+                        Mem.Copy(new B05P19(p).v7C0.P, (_fp + 48u), 12);
+                        new B05P19(p).v7CC.x_Set(0.0f);
+                        new B05P19(p).v7CC.y_Set(0.0f);
+                        new B05P19(p).v7CC.z_Set(0.0f);
                     }
                 }
                 fs0 = Mem.F32(0x800C74BCu);
-                func_00271FD8((_fp + 32u), _fp, (p + 1984u));
+                func_00271FD8((_fp + 32u), _fp, new B05P19(p).v7C0.P);
                 func_0027200C((_fp + 32u), (_fp + 32u), (fs1f * fs0));
-                func_00271FA4((p + 1996u), (p + 1996u), (_fp + 32u));
-                func_00271FA4((p + 1984u), (p + 1984u), (p + 1996u));
-                func_0027200C((p + 1996u), (p + 1996u), (fs2 * fs0));
+                func_00271FA4(new B05P19(p).v7CC.P, new B05P19(p).v7CC.P, (_fp + 32u));
+                func_00271FA4(new B05P19(p).v7C0.P, new B05P19(p).v7C0.P, new B05P19(p).v7CC.P);
+                func_0027200C(new B05P19(p).v7CC.P, new B05P19(p).v7CC.P, (fs2 * fs0));
                 if ((Mem.U32((_fp + 204u)) != 0u))
                 {
-                    Mem.Set((p + 1976u), ((int)(Mem.S16((Mem.U32((0x800D052Cu + (uint)(Mem.S16((p + 1582u)) * 4))) + 16u))) + 100));
+                    new B05P19(p).unk7B8_Set(((int)(new B05Row19(Mem.U32((0x800D052Cu + (uint)(new B05P19(p).s62E * 4)))).s10) + 100));
                 }
                 else
                 {
-                    Mem.Set((p + 1976u), s5);
+                    new B05P19(p).unk7B8_Set(s5);
                 }
-                switch (Mem.S32((p + 1928u)))
+                switch (new B05P19(p).unk788)
                 {
                 case 1:
-                    if (((Mem.U32((_fp + 204u)) == 0u) || (Mem.U32((p + 1940u)) != Mem.U32((_fp + 204u)))))
+                    if (((Mem.U32((_fp + 204u)) == 0u) || (new B05P19(p).tgt794 != Mem.U32((_fp + 204u)))))
                     {
-                        Mem.Set((p + 1940u), Mem.U32((_fp + 204u)));
-                        Mem.Set((p + 1932u), 0.0f);
+                        new B05P19(p).tgt794_Set(Mem.U32((_fp + 204u)));
+                        new B05P19(p).f78C_Set(0.0f);
                     }
-                    Mem.Set((p + 1932u), (Mem.F32((p + 1932u)) + Mem.F32(0x800D2988u)));
-                    if ((fs1 <= Mem.F32((p + 1932u))))
+                    new B05P19(p).f78C_Set((new B05P19(p).f78C + Mem.F32(0x800D2988u)));
+                    if ((fs1 <= new B05P19(p).f78C))
                     {
-                        Mem.Set((p + 1928u), 2);
-                        Mem.Set((p + 1932u), 0.0f);
+                        new B05P19(p).unk788_Set(2);
+                        new B05P19(p).f78C_Set(0.0f);
                     }
                     goto L_L82;
                 case 2:
-                    if ((Mem.U32((p + 1972u)) != Mem.U32((_fp + 204u))))
+                    if ((new B05P19(p).tgt7B4 != Mem.U32((_fp + 204u))))
                     {
-                        Mem.Set((p + 1972u), Mem.U32((_fp + 204u)));
-                        Mem.Set((p + 1932u), 0.0f);
+                        new B05P19(p).tgt7B4_Set(Mem.U32((_fp + 204u)));
+                        new B05P19(p).f78C_Set(0.0f);
                     }
                     else
                     {
-                        Mem.Set((p + 1932u), (Mem.F32((p + 1932u)) + Mem.F32(0x800D2988u)));
+                        new B05P19(p).f78C_Set((new B05P19(p).f78C + Mem.F32(0x800D2988u)));
                     }
-                    if ((((Mem.U32((_fp + 204u)) != 0u) && (Mem.U32((p + 1940u)) != Mem.U32((_fp + 204u)))) && (fs0f <= Mem.F32((p + 1932u)))))
+                    if ((((Mem.U32((_fp + 204u)) != 0u) && (new B05P19(p).tgt794 != Mem.U32((_fp + 204u)))) && (fs0f <= new B05P19(p).f78C)))
                     {
-                        Mem.Set((p + 1940u), Mem.U32((_fp + 204u)));
-                        Mem.Set((p + 1932u), 0.0f);
+                        new B05P19(p).tgt794_Set(Mem.U32((_fp + 204u)));
+                        new B05P19(p).f78C_Set(0.0f);
                     }
-                    Mem.Set((_fp + 204u), Mem.U32((p + 1940u)));
+                    Mem.Set((_fp + 204u), new B05P19(p).tgt794);
                     if ((Mem.U32((_fp + 204u)) != 0u))
                     {
-                        if (((int)(func_0021CD70(p, Mem.U32((_fp + 204u)), default(uint), default(uint))) == 0))
+                        if ((func_0021CD70(p, Mem.U32((_fp + 204u))) == 0))
                         {
-                            Mem.Set((p + 1928u), 1);
-                            Mem.Set((p + 1932u), 0.0f);
+                            new B05P19(p).unk788_Set(1);
+                            new B05P19(p).f78C_Set(0.0f);
                         }
-                        if (((int)(Mem.S16((p + 1582u))) == 18))
+                        if (((int)(new B05P19(p).s62E) == 18))
                         {
-                            Mem.Copy(_fp, (Mem.U32((_fp + 204u)) + 584u), 12);
+                            Mem.Copy(_fp, new B05Tgt(Mem.U32((_fp + 204u))).v248.P, 12);
                         }
                         else
                         {
-                            Mem.Copy(_fp, (Mem.U32((_fp + 204u)) + 8u), 12);
-                            Mem.Set((_fp + 4u), (float)((float)(Mem.F32((_fp + 4u))) + Mem.F32((Mem.U32((_fp + 204u)) + 112u))));
-                            Mem.Set((_fp + 4u), (float)((float)(Mem.F32((_fp + 4u))) + (func_0024D274(Mem.U32((_fp + 204u))) * Mem.F32(0x800C74C0u))));
+                            Mem.Copy(_fp, new B05Tgt(Mem.U32((_fp + 204u))).pos.P, 12);
+                            new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + new B05Tgt(Mem.U32((_fp + 204u))).f70));
+                            new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + (func_0024D274(Mem.U32((_fp + 204u))) * Mem.F32(0x800C74C0u))));
                         }
-                        if ((((int)(Mem.S16((p + 1582u))) == 1) && (Mem.S32((p + 1428u)) == 2)))
+                        if ((((int)(new B05P19(p).s62E) == 1) && (new B05P19(p).mode == 2)))
                         {
                             s4 = 711;
                         }
                         else
                         {
-                            s4 = (int)(Mem.S16((Mem.U32((0x800D052Cu + (uint)(Mem.S16((p + 1582u)) * 4))) + 16u)));
+                            s4 = (int)(new B05Row19(Mem.U32((0x800D052Cu + (uint)(new B05P19(p).s62E * 4)))).s10);
                         }
                     }
                     else
@@ -268,12 +268,12 @@ public static partial class Game
                     break;
                 }
                 va = (_fp + 32u);
-                func_00271FD8(va, _fp, (p + 1948u));
+                func_00271FD8(va, _fp, new B05P19(p).v79C.P);
                 func_0027200C((_fp + 32u), (_fp + 32u), fs1f);
-                func_00271FA4((p + 1960u), (p + 1960u), (_fp + 32u));
-                func_00271FA4((p + 1948u), (p + 1948u), (p + 1960u));
-                func_0027200C((p + 1960u), (p + 1960u), fs2);
-                Mem.Set((p + 1944u), s4);
+                func_00271FA4(new B05P19(p).v7A8.P, new B05P19(p).v7A8.P, (_fp + 32u));
+                func_00271FA4(new B05P19(p).v79C.P, new B05P19(p).v79C.P, new B05P19(p).v7A8.P);
+                func_0027200C(new B05P19(p).v7A8.P, new B05P19(p).v7A8.P, fs2);
+                new B05P19(p).unk798_Set(s4);
             }
         }
         finally { Stack.Free(212); }

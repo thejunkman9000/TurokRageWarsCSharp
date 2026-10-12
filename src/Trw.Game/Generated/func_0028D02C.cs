@@ -10,9 +10,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028D02C", (uint)m, (uint)id, (uint)w, (uint)h);
-            int i = Mem.S32((m + 316u));
-            int n = Mem.S32((m + 320u));
-            uint @base = Mem.U32((m + 312u));
+            int i = new P4Mgr2(m).start;
+            int n = new P4Mgr2(m).end;
+            uint @base = new P4Mgr2(m).ents_;
             int cnt = 0;
             for (; (i < n); ++i)
             {
@@ -21,11 +21,11 @@ public static partial class Game
                 {
                     return cnt;
                 }
-                if (((id == (-1)) || ((int)(Mem.U16((e + 228u))) == id)))
+                if (((id == (-1)) || ((int)(new P4Ent2(e).id) == id)))
                 {
-                    if (((w == (-1)) || (Mem.S32(Mem.U32((e + 24u))) == w)))
+                    if (((w == (-1)) || (Mem.S32(new P4Ent2(e).sub_) == w)))
                     {
-                        if (((h == (-1)) || ((int)(Mem.S16((Mem.U32((e + 24u)) + 12u))) == h)))
+                        if (((h == (-1)) || ((int)(new P4Ent2(e).sub.h0C) == h)))
                         {
                             Mem.Set(((@out += 4u) - 4u), e);
                             ++cnt;

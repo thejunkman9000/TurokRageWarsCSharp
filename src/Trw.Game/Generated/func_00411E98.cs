@@ -11,20 +11,20 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00411E98", (uint)i);
             Mem.Set((Mem.U32(0x80153C50u) + (uint)(i * 2)), (ushort)((int)(Mem.U16((Mem.U32(0x80153C50u) + (uint)(i * 2)))) - 1));
-            if (((Mem.U32(((Mem.U32(0x80153C44u) + (uint)(i * 12)) + 8u)) != 0u) && ((int)(Mem.S16((Mem.U32(0x80153C50u) + (uint)(i * 2)))) == 0)))
+            if (((new S12((Mem.U32(0x80153C44u) + (uint)(i * 12))).p != 0u) && ((int)(Mem.S16((Mem.U32(0x80153C50u) + (uint)(i * 2)))) == 0)))
             {
-                func_00254784(Mem.U32(((Mem.U32(0x80153C44u) + (uint)(i * 12)) + 8u)));
+                func_00254784(new S12((Mem.U32(0x80153C44u) + (uint)(i * 12))).p);
                 if ((Mem.S32(0x800E2AC4u) != 0))
                 {
                     if ((Mem.U32(0x80153C48u) != 0u))
                     {
-                        if ((Mem.U32(((Mem.U32(0x80153C48u) + (uint)(i * 12)) + 8u)) != 0u))
+                        if ((new S12((Mem.U32(0x80153C48u) + (uint)(i * 12))).p != 0u))
                         {
-                            func_00254784(Mem.U32(((Mem.U32(0x80153C48u) + (uint)(i * 12)) + 8u)));
+                            func_00254784(new S12((Mem.U32(0x80153C48u) + (uint)(i * 12))).p);
                         }
                     }
                 }
-                Mem.Set(((Mem.U32(0x80153C44u) + (uint)(i * 12)) + 8u), 0u);
+                new S12((Mem.U32(0x80153C44u) + (uint)(i * 12))).p_Set(0u);
             }
         }
     }

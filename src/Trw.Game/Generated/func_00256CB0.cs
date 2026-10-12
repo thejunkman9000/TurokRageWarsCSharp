@@ -44,11 +44,11 @@ public static partial class Game
                 p = Mem.U32(0x8010BDFCu);
                 _f10: ;
                 if (!((p != 0u))) goto _f12;
-                if (!((Mem.U16((p + 8u)) != 0))) goto _f13;
-                Mem.Set((p + 8u), (ushort)(Mem.U16((p + 8u)) - 1));
+                if (!((new B12Timer2(p).count != 0))) goto _f13;
+                new B12Timer2(p).count_Set((ushort)(new B12Timer2(p).count - 1));
                 _f13: ;
                 _f11: ;
-                p = Mem.U32(p);
+                p = new B12Timer2(p).next_;
                 goto _f10;
                 _f12: ;
                 _f7: ;

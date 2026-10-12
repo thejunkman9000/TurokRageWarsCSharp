@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025BB9C", (uint)v, (uint)tag);
-            Mem.Set((v + 168u), tag);
+            new SndVoice(v).tag_Set(tag);
         }
     }
 

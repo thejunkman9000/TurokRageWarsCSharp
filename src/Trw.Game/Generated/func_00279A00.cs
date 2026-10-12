@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00279A00", (uint)s);
-            Mem.Set((s + 8u), Mem.S32((s + 4u)));
-            Mem.Set((s + 12u), (Mem.U32(s) + (uint)((Mem.S32((s + 4u)) * Mem.S32(0x800D297Cu)) * 64)));
+            new MtxStack(s).left_Set(new MtxStack(s).n);
+            new MtxStack(s).cur__Set((new MtxStack(s).base_ + (uint)((new MtxStack(s).n * Mem.S32(0x800D297Cu)) * 64)));
         }
     }
 

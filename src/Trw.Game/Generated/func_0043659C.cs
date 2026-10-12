@@ -14,7 +14,7 @@ public static partial class Game
             switch (func_0029AA08())
             {
             case 985:
-                func_00299368((uint)(1), default(uint), default(uint), default(uint));
+                func_00299368(1);
                 return 0;
             case 984:
                 Mem.Set(0x80146894u, 0);
@@ -22,7 +22,7 @@ public static partial class Game
                 if ((func_0042AEB8() == 0))
                 {
                     func_0040C4A8(0);
-                    func_00299368((uint)(20), default(uint), default(uint), default(uint));
+                    func_00299368(20);
                     return 0;
                 }
                 func_0043C458(Mem.U32(0x800E5558u));

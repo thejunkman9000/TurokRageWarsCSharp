@@ -11,9 +11,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0028E6D8", (uint)lv);
             int i = 0;
-            for (i = 0; (i < Mem.S32((lv + 5380u))); ++i)
+            for (i = 0; (i < new Level(lv).cnt1504); ++i)
             {
-                uint t = func_0028FD94(Mem.U32(Mem.U32(((lv + 5384u) + (uint)(i * 12)))), 2);
+                uint t = func_0028FD94(Mem.U32(new Level(lv).ents[(int)(i)].tblp), 2);
                 if ((Mem.S32((t + (uint)(1 * 4))) != 0))
                 {
                     return 1;

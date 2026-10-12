@@ -7,12 +7,52 @@ public static partial class Game
 {
     public static int osPfsIsPlug(uint queue, uint pattern)
     {
-        unchecked
+        uint _fp = Stack.Alloc(24);
+        try
         {
-            if (Dbg.On) Dbg.Enter("osPfsIsPlug", (uint)queue, (uint)pattern);
-            Mem.Set(pattern, (byte)(0));
-            return 0;
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("osPfsIsPlug", (uint)queue, (uint)pattern);
+                int ret = 0;
+                int channel = 0;
+                byte bits = (byte)(0);
+                int crcErrorCount = 3;
+                __osSiGetAccess();
+                do
+                {
+                    __osPfsRequestData((byte)(0));
+                    ret = __osSiRawStartDma(1, 0x80154110u);
+                    osRecvMesg(queue, _fp, 1);
+                    ret = __osSiRawStartDma(0, 0x80154110u);
+                    osRecvMesg(queue, _fp, 1);
+                    __osPfsGetInitData((_fp + 4u), (_fp + 8u));
+                    for (channel = 0; (channel < (int)(Mem.U8(0x8014D46Cu))); ++channel)
+                    {
+                        if (!(((int)(new OSContStatus(((_fp + 8u) + (uint)(channel * 4))).status) & 4) != 0))
+                        {
+                            --crcErrorCount;
+                            break;
+                        }
+                    }
+                    if ((channel == (int)(Mem.U8(0x8014D46Cu))))
+                    {
+                        crcErrorCount = 0;
+                    }
+                }
+                while ((crcErrorCount > 0));
+                for (channel = 0; (channel < (int)(Mem.U8(0x8014D46Cu))); ++channel)
+                {
+                    if ((((int)(new OSContStatus(((_fp + 8u) + (uint)(channel * 4))).errno) == 0) && (((int)(new OSContStatus(((_fp + 8u) + (uint)(channel * 4))).status) & 1) != 0)))
+                    {
+                        bits = (byte)((int)(bits) | (1 << (int)channel));
+                    }
+                }
+                __osSiRelAccess();
+                Mem.Set(pattern, bits);
+                return ret;
+            }
         }
+        finally { Stack.Free(24); }
     }
 
 }

@@ -11,9 +11,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002A7440", (uint)m, (uint)a, (uint)b);
             uint n = 0u;
-            for (n = Mem.U32((m + 29992u)); (n != 0u); n = Mem.U32((n + 4u)))
+            for (n = new P4LMgr(m).head_; (n != 0u); n = new P4LN(n).next_)
             {
-                if (((Mem.S32((n + 28u)) == a) && (Mem.S32((n + 32u)) == b)))
+                if (((new P4LN(n).f1C == a) && (new P4LN(n).f20 == b)))
                 {
                     return n;
                 }

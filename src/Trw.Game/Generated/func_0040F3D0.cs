@@ -16,23 +16,23 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0040F3D0", (uint)n, (uint)c_in);
                 int pushed = 0;
                 Mem.Set(0x800E2AB8u, 0);
-                if (((int)(func_0040E154((_fp + 88u), (_fp + 40u), n, (_fp + (uint)(0 * 4)))) != 0))
+                if ((func_0040E154((_fp + 88u), (_fp + 40u), n, (new O02Ctx(_fp).w.P + (uint)(0 * 4))) != 0))
                 {
-                    if ((((int)(Mem.U16((n + 18u))) & 512) != 0))
+                    if ((((int)(new O02Node_v2(n).flags) & 512) != 0))
                     {
-                        func_002A2898(((_fp + 56u) + (uint)(0 * 4)), ((_fp + 56u) + (uint)(2 * 4)), ((_fp + 56u) + (uint)(1 * 4)), ((_fp + 56u) + (uint)(3 * 4)));
+                        func_002A2898((new O02Rect((_fp + 56u)).w.P + (uint)(0 * 4)), (new O02Rect((_fp + 56u)).w.P + (uint)(2 * 4)), (new O02Rect((_fp + 56u)).w.P + (uint)(1 * 4)), (new O02Rect((_fp + 56u)).w.P + (uint)(3 * 4)));
                         Mem.Copy((_fp + 72u), (_fp + 56u), 16);
                         if (!(func_0040F508((_fp + 72u), (_fp + 40u)) != 0))
                         {
                             return;
                         }
-                        func_002A2870(Mem.S32(((_fp + 72u) + (uint)(0 * 4))), Mem.S32(((_fp + 72u) + (uint)(2 * 4))), Mem.S32(((_fp + 72u) + (uint)(1 * 4))), Mem.S32(((_fp + 72u) + (uint)(3 * 4))));
+                        func_002A2870(new O02Rect((_fp + 72u)).w[(int)(0)], new O02Rect((_fp + 72u)).w[(int)(2)], new O02Rect((_fp + 72u)).w[(int)(1)], new O02Rect((_fp + 72u)).w[(int)(3)]);
                         pushed = 1;
                     }
-                    func_0040E87C(Mem.U32((n + 8u)), _fp);
+                    func_0040E87C(new O02Node_v2(n).child_, _fp);
                     if ((pushed != 0))
                     {
-                        func_002A2870(Mem.S32(((_fp + 56u) + (uint)(0 * 4))), Mem.S32(((_fp + 56u) + (uint)(2 * 4))), Mem.S32(((_fp + 56u) + (uint)(1 * 4))), Mem.S32(((_fp + 56u) + (uint)(3 * 4))));
+                        func_002A2870(new O02Rect((_fp + 56u)).w[(int)(0)], new O02Rect((_fp + 56u)).w[(int)(2)], new O02Rect((_fp + 56u)).w[(int)(1)], new O02Rect((_fp + 56u)).w[(int)(3)]);
                     }
                 }
             }

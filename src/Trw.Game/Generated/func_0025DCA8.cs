@@ -11,26 +11,26 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0025DCA8", (uint)s);
             float f = 0f;
-            if ((Mem.S32((s + 56u)) != 0))
+            if ((new SndSeq(s).unk38 != 0))
             {
-                f = (float)(Mem.S32((s + 36u)));
-                f = (float)((float)(f) * (Mem.F32((Mem.U32(s) + 11172u)) * Mem.F32(0x800C9114u)));
-                f = (float)((float)(f) * Mem.F32((s + 60u)));
+                f = (float)(new SndSeq(s).unk24);
+                f = (float)((float)(f) * (new SndMgr(new SndSeq(s).owner_).unk2BA4 * Mem.F32(0x800C9114u)));
+                f = (float)((float)(f) * new SndSeq(s).unk3C);
             }
             else
             {
-                f = ((float)(Mem.S32((s + 36u))) * (Mem.F32((Mem.U32(s) + 11172u)) * Mem.F32(0x800C9118u)));
-                if ((Mem.S32((Mem.U32(s) + 11192u)) != 0))
+                f = ((float)(new SndSeq(s).unk24) * (new SndMgr(new SndSeq(s).owner_).unk2BA4 * Mem.F32(0x800C9118u)));
+                if ((new SndMgr(new SndSeq(s).owner_).unk2BB8 != 0))
                 {
                     f = (float)((float)(f) * Mem.F32(0x800C911Cu));
                 }
-                if ((f == Mem.F32((s + 44u))))
+                if ((f == new SndSeq(s).vol))
                 {
                     return;
                 }
             }
-            alCSPSetVol(Mem.U32((s + 20u)), (short)(int)((f * Mem.F32(0x800C9120u))));
-            Mem.Set((s + 44u), f);
+            alCSPSetVol(new SndSeq(s).csp, (short)(int)((f * Mem.F32(0x800C9120u))));
+            new SndSeq(s).vol_Set(f);
         }
     }
 

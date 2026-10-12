@@ -24,7 +24,7 @@ public static partial class Game
                     {
                         continue;
                     }
-                    if (!((int)(dbgLinkSendByte((uint)((byte)(17)), default(uint), default(uint), default(uint))) != 0))
+                    if (!(dbgLinkSendByte((byte)(17)) != 0))
                     {
                         continue;
                     }
@@ -64,7 +64,7 @@ public static partial class Game
                                     {
                                         v = (uint)((uint)(v) | (uint)(Mem.U8((_fp + 8u))));
                                         Mem.Set(p, v);
-                                        dbgLinkSendByte((uint)(Mem.U8((uint)(Mem.U32((_fp + 4u))))), default(uint), default(uint), default(uint));
+                                        dbgLinkSendByte(Mem.U8((uint)(Mem.U32((_fp + 4u)))));
                                     }
                                 }
                             }

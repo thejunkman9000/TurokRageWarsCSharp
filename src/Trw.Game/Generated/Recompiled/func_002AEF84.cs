@@ -63,19 +63,19 @@ public static partial class Game
                 r16 = r2;
                 L_L002AF054: ;
                 r4 = r16 >> 24;
-                Mem.Set((r29 + 16u), r16); r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r29 + 16u), r16); r2 = (uint)dbgLinkSendByte((byte)r4);
                 r2 = 2148859904u;
                 r2 = Mem.U32((r2 - 11288u));
                 { bool c_ = r2 != 0; r4 = r16 >> 16; if (c_) goto L_L002AF0A8; }
-                r4 = r4 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 r2 = 2148859904u;
                 r2 = Mem.U32((r2 - 11288u));
                 { bool c_ = r2 != 0; r4 = r16 >> 8; if (c_) goto L_L002AF0A8; }
-                r4 = r4 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 r2 = 2148859904u;
                 r2 = Mem.U32((r2 - 11288u));
                 { bool c_ = r2 != 0;  if (c_) goto L_L002AF0A8; }
-                r4 = r16 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r16 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_L002AF0A8: ;
                 r5 = Mem.U32((r29 + 16u));
                 r4 = r18; r2 = (uint)dbgLinkSendBlock(r4, (int)r5);

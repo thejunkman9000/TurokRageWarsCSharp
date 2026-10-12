@@ -13,59 +13,59 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00212FD4", (uint)actor, _a1);
-                uint b = Mem.U32((Mem.U32((actor + 472u)) + 5204u));
+                uint b = new ActorB(actor).owner.brain_;
                 uint L = 0x8013B364u;
                 float d = 0f;
                 int i = 0;
                 int n = 0;
                 int id = 0;
                 int first = 0;
-                if ((Mem.S32((b + 188u)) == (-1)))
+                if ((new BrainB(b).unkBC == (-1)))
                 {
                     func_00209874(b, 2);
                     return;
                 }
-                if ((Mem.U32((b + 104u)) == 0u))
+                if ((new BrainB(b).unk68_ == 0u))
                 {
                     func_00211020(b, default(uint), default(uint), default(uint));
                     return;
                 }
-                d = func_00209948(b, Mem.S32((b + 12u)));
-                if (((Mem.S32((b + 4u)) != Mem.S32((b + 12u))) && (Mem.F32(0x800C71D0u) < d)))
+                d = func_00209948(b, new BrainB(b).unkC);
+                if (((new BrainB(b).unk4 != new BrainB(b).unkC) && (Mem.F32(0x800C71D0u) < d)))
                 {
-                    func_00208410(b, default(uint), default(uint), default(uint));
+                    func_00208410(b);
                 }
                 else
                 {
-                    if ((Mem.S32((b + 568u)) != 0))
+                    if ((new BrainB(b).unk238 != 0))
                     {
                         func_00209874(b, 8);
                     }
                     else
                     {
-                        Mem.Copy((b + 44u), (Mem.U32((b + 104u)) + 8u), 12);
+                        Mem.Copy(new BrainB(b).unk2C.P, new BrainB(b).unk68.pos.P, 12);
                     }
                 }
                 func_00211020(b, default(uint), default(uint), default(uint));
-                if ((Mem.U32((b + 104u)) != 0u))
+                if ((new BrainB(b).unk68_ != 0u))
                 {
-                    func_00208EB0(b, default(uint), default(uint), default(uint));
-                    if (((func_00272768((Mem.U32(b) + 8u), (Mem.U32((b + 104u)) + 8u)) < Mem.F32(0x800C71D4u)) && (Mem.S32((b + 568u)) == 0)))
+                    func_00208EB0(b);
+                    if (((func_00272768(new BrainB(b).actor.pos.P, new BrainB(b).unk68.pos.P) < Mem.F32(0x800C71D4u)) && (new BrainB(b).unk238 == 0)))
                     {
-                        Mem.Set((b + 568u), 1);
+                        new BrainB(b).unk238_Set(1);
                         for (i = 0; (i < 64); ++i)
                         {
                             Mem.Set((_fp + (uint)(i * 4)), (-1));
                         }
-                        func_0020B95C(L, Mem.S32((b + 12u)), Mem.S32((b + 12u)), _fp, 0);
+                        func_0020B95C(L, new BrainB(b).unkC, new BrainB(b).unkC, _fp, 0);
                         first = Mem.S32((_fp + (uint)(0 * 4)));
                         for (i = 0; (i < 64); ++i)
                         {
                             Mem.Set((_fp + (uint)(i * 4)), (-1));
                         }
-                        n = func_0020B95C(L, first, Mem.S32((b + 12u)), _fp, 0);
+                        n = func_0020B95C(L, first, new BrainB(b).unkC, _fp, 0);
                         func_00209804(b);
-                        Mem.Set((b + 12u), Mem.S32((_fp + (uint)((n - 1) * 4))));
+                        new BrainB(b).unkC_Set(Mem.S32((_fp + (uint)((n - 1) * 4))));
                     }
                 }
             }

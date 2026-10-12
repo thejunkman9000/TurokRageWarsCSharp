@@ -15,17 +15,17 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("__osPackRamWriteData", (uint)channel, (uint)address, (uint)buffer);
                 uint ptr = 0u;
                 int i = 0;
-                ptr = 0x80154110u;
-                Mem.Set((0x80154110u + 60u), (uint)(1));
-                Mem.Set(_fp, (byte)(255));
-                Mem.Set((_fp + 1u), (byte)(35));
-                Mem.Set((_fp + 2u), (byte)(1));
-                Mem.Set((_fp + 3u), (byte)(3));
-                Mem.Set((_fp + 4u), (ushort)((((int)(address) << (int)5) | (int)((byte)(__osContAddressCrc((uint)(address), default(uint), default(uint), default(uint)))))));
-                Mem.Set((_fp + 38u), (byte)(255));
+                ptr = new OSPifRam(0x80154110u).ramarray.P;
+                new OSPifRam(0x80154110u).pifstatus_Set((uint)(1));
+                new __OSContRamReadFormat(_fp).dummy_Set((byte)(255));
+                new __OSContRamReadFormat(_fp).txsize_Set((byte)(35));
+                new __OSContRamReadFormat(_fp).rxsize_Set((byte)(1));
+                new __OSContRamReadFormat(_fp).cmd_Set((byte)(3));
+                new __OSContRamReadFormat(_fp).address_Set((ushort)((((int)(address) << (int)5) | (int)((byte)(__osContAddressCrc((uint)(address), default(uint), default(uint), default(uint)))))));
+                new __OSContRamReadFormat(_fp).datacrc_Set((byte)(255));
                 for (i = 0; (i < 32); ++i)
                 {
-                    Mem.Set(((_fp + 6u) + (uint)i), Mem.U8(((buffer += 1u) - 1u)));
+                    new __OSContRamReadFormat(_fp).data.Set((int)(i), Mem.U8(((buffer += 1u) - 1u)));
                 }
                 if ((channel != 0))
                 {

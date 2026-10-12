@@ -14,7 +14,7 @@ public static partial class Game
             uint g = 0u;
             uint b = 0u;
             uint a = 0u;
-            Mem.Set(0x80153C78u, (@base + (n * (int)(Mem.S16((Mem.U32(0x80153D54u) + 8u))))));
+            Mem.Set(0x80153C78u, (@base + (n * (int)(new S_func_00413878(Mem.U32(0x80153D54u)).v))));
             Funcs.CallReg(Mem.U32(0x80153CD8u), 0u, 0u, 0u, 0u);
             Funcs.CallReg(Mem.U32(0x80153CD0u), 0u, 0u, 0u, 0u);
             r = ((Mem.S32(0x80153CB0u) < 0) ? ((Mem.U32(0x80153C68u) & (uint)(Mem.S32(0x80153C90u))) << (int)(-Mem.S32(0x80153CB0u))) : ((Mem.U32(0x80153C68u) & (uint)(Mem.S32(0x80153C90u))) >> (int)Mem.S32(0x80153CB0u)));

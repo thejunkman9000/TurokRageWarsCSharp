@@ -12,16 +12,16 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0025DD80", (uint)s);
             int i = 0;
             float f = 0f;
-            alCSeqNew(Mem.U32((s + 16u)), (uint)(Mem.S32((s + 12u))));
-            alCSPSetSeq(Mem.U32((s + 20u)), Mem.U32((s + 16u)));
-            alCSPSetBank(Mem.U32((s + 20u)), (uint)(Mem.S32((Mem.U32((s + 8u)) + (uint)(1 * 4)))));
+            alCSeqNew(new SndSeq(s).unk10, (uint)(new SndSeq(s).unkC));
+            alCSPSetSeq(new SndSeq(s).csp, new SndSeq(s).unk10);
+            alCSPSetBank(new SndSeq(s).csp, (uint)(Mem.S32((new SndSeq(s).unk8_ + (uint)(1 * 4)))));
             for (i = 0; (i < 20); ++i)
             {
-                alCSPSetChlFXMix(Mem.U32((s + 20u)), (byte)(i), (byte)(0));
+                alCSPSetChlFXMix(new SndSeq(s).csp, (byte)(i), (byte)(0));
             }
-            f = ((float)(Mem.S32((s + 36u))) * (Mem.F32((Mem.U32(s) + 11172u)) * Mem.F32(0x800C9124u)));
-            alCSPSetVol(Mem.U32((s + 20u)), (short)(int)((f * Mem.F32(0x800C9128u))));
-            Mem.Set((s + 44u), f);
+            f = ((float)(new SndSeq(s).unk24) * (new SndMgr(new SndSeq(s).owner_).unk2BA4 * Mem.F32(0x800C9124u)));
+            alCSPSetVol(new SndSeq(s).csp, (short)(int)((f * Mem.F32(0x800C9128u))));
+            new SndSeq(s).vol_Set(f);
         }
     }
 

@@ -13,22 +13,22 @@ public static partial class Game
             uint L = 0x8013B364u;
             int i = 0;
             int id = 0;
-            if ((Mem.S32((L + 4u)) >= 2))
+            if ((new EntList(L).count >= 2))
             {
-                id = Mem.S32((b + 556u));
+                id = new BrainB(b).unk22C;
                 while ((1 != 0))
                 {
                     if ((i >= 10))
                     {
                         break;
                     }
-                    id = (func_00274544() % Mem.S32((L + 4u)));
-                    if ((((int)(Mem.U16((func_0020C994(L, id) + 12u))) & 1024) != 0))
+                    id = (func_00274544() % new EntList(L).count);
+                    if ((((int)(new EntRec(func_0020C994(L, id)).flags) & 1024) != 0))
                     {
-                        id = Mem.S32((b + 556u));
+                        id = new BrainB(b).unk22C;
                     }
                     ++i;
-                    if ((id != Mem.S32((b + 556u))))
+                    if ((id != new BrainB(b).unk22C))
                     {
                         break;
                     }
@@ -39,8 +39,8 @@ public static partial class Game
             {
                 id = 1;
             }
-            Mem.Set((b + 556u), id);
-            Mem.Set((b + 12u), id);
+            new BrainB(b).unk22C_Set(id);
+            new BrainB(b).unkC_Set(id);
         }
     }
 

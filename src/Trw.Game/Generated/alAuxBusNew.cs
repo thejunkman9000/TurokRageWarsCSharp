@@ -10,10 +10,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alAuxBusNew", (uint)m, (uint)sources, (uint)maxSources);
-            alFilterNew(m, 0x002BA4CCu, 0x002BA610u, 7);
-            Mem.Set((m + 20u), 0);
-            Mem.Set((m + 24u), maxSources);
-            Mem.Set((m + 28u), sources);
+            alFilterNew(new ALBus(m).filter.P, 0x002BA4CCu, 0x002BA610u, 7);
+            new ALBus(m).sourceCount_Set(0);
+            new ALBus(m).maxSources_Set(maxSources);
+            new ALBus(m).sources_Set(sources);
         }
     }
 

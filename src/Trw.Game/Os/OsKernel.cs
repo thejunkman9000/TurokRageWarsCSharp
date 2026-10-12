@@ -81,7 +81,7 @@ public static partial class Game
 
     private static readonly bool traceOs = Environment.GetEnvironmentVariable("TRW_TRACE_OS") != null;
     private static string Who() => tlsSelf != null ? $"T{Array.IndexOf(threads, tlsSelf)}" : "T?";
-    private static void TraceOs(string s) { if (traceOs) Console.Error.WriteLine($"[{Who()}] {s}"); }
+    private static void TraceOs(string s) { if (traceOs) Console.Error.WriteLine($"[{Who()}@{CurrentTick}] {s}"); }
 
     /// <summary>A differential test (Debug/DiffTest) must not reach anything that changes scheduler or timer state: it aborts instead.</summary>
     internal static void GuardTest(string what) { if (Debug.DiffTest.Active) throw new Debug.DiffTest.TestAbort(what); }
@@ -149,8 +149,37 @@ public static partial class Game
         }
     }
 
+    // TRW_DETERMINISTIC + TRW_TICK_OPS=<n>: the retrace tick may also interrupt a game thread that computes for long without blocking (a level load
+    // spans many ticks on real hardware). The interrupt point is deterministic: the n-th scheduler-visible call (message send/receive, clock read)
+    // since the last tick parks the calling thread until the host has delivered the tick. 0 = ticks only when every thread is blocked.
+    private static readonly int opBudget = int.TryParse(Environment.GetEnvironmentVariable("TRW_TICK_OPS"), out var ob) ? ob : 0;
+    private static int opsThisTick;
+    private static volatile bool parked;
+    private static readonly ManualResetEventSlim resume = new(false);
+
+    private static void OpPoint()
+    {
+        if (opBudget <= 0 || Debug.DiffTest.Active || ++opsThisTick < opBudget) return;       // a differential test holds kernelLock: parking here would deadlock the tick
+        opsThisTick = 0;
+        resume.Reset();
+        parked = true;
+        resume.Wait();
+    }
+
+    /// <summary>Host side, before the tick's messages are posted: restarts the op count of the tick. It must happen before the post, while every game thread is
+    /// quiescent: the thread woken by the first post runs concurrently with the host, and its first ops used to be erased by a reset that came after the post
+    /// (a race that moved the park point of the tick, visible as a one-tick divergence of the digest under CPU load).</summary>
+    internal static void ResetOps() { opsThisTick = 0; }
+
+    /// <summary>Host side: lets a thread parked by <see cref="OpPoint"/> continue (called after the tick's messages were delivered).</summary>
+    internal static void ReleaseParked()
+    {
+        if (parked) { parked = false; resume.Set(); }
+    }
+
     private static void MaybeYield(HThread self)
     {
+        if (Oracle.Deterministic) OpPoint();
         if (!preempt) return;
         lock (kernelLock) { preempt = false; Reschedule(self); }
     }
@@ -208,6 +237,7 @@ public static partial class Game
         TraceOs($"osRecvMesg {mq:X8} flags={flags} valid={Mem.S32(mq + MQ_VALID)}");
         var self = SelfThread()!;
         MaybeYield(self);     // a polling thread must not starve a higher-priority thread that became ready
+        DeliverAudioCompletion(mq);
         lock (kernelLock)
         {
             while (Mem.S32(mq + MQ_VALID) == 0)
@@ -369,8 +399,8 @@ public static partial class Game
 
     // ---------------------------------------------------------------------------------------------- time and timers
 
-    public static uint osGetCount() => (uint)Host.Counter();
-    public static ulong osGetTime() { MaybeYield(SelfThread()!); return Host.Counter(); }
+    public static uint osGetCount() { TraceOs("osGetCount"); if (Oracle.Deterministic && tlsSelf != null) OpPoint(); return (uint)Host.Counter(); }
+    public static ulong osGetTime() { TraceOs("osGetTime"); MaybeYield(SelfThread()!); return Host.Counter(); }
 
     private sealed class HTimer { public uint T; public ulong Due, Interval; public bool Live; }
     private static readonly HTimer[] timers = Enumerable.Range(0, 64).Select(_ => new HTimer()).ToArray();
@@ -392,6 +422,27 @@ public static partial class Game
         GuardTest("osStopTimer");
         lock (kernelLock) foreach (var tm in timers) if (tm.Live && tm.T == t) tm.Live = false;
         return 0;
+    }
+
+    /// <summary>
+    /// TRW_DETERMINISTIC lockstep: blocks until no game thread is runnable or running (all are waiting for a message, i.e. for the next tick).
+    /// Returns false on timeout (a game thread is spinning; the run is then not reproducible).
+    /// </summary>
+    public static bool WaitQuiescent(int timeoutMs = 20000)
+    {
+        var sw = System.Diagnostics.Stopwatch.StartNew();
+        for (int spin = 0; ; spin++)
+        {
+            lock (kernelLock)
+            {
+                if (parked) return true;
+                bool busy = current != null || !bootSeen;      // before the boot thread made its first OS call nothing is registered yet
+                if (!busy) foreach (var h in threads) if (h.State == 2 || h.State == 3) { busy = true; break; }
+                if (!busy) return true;
+            }
+            if (sw.ElapsedMilliseconds > timeoutMs) return false;
+            if (spin < 200) Thread.Yield(); else Thread.Sleep(0);
+        }
     }
 
     private static void RunTimers()      // called from the platform loop once per frame

@@ -10,13 +10,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00209BE0", (uint)ctl);
-            float v = (Mem.F32(((Mem.U32((Mem.U32(ctl) + 24u)) + 20u) + 32u)) * Mem.F32(0x800C6D98u));
-            switch ((int)(Mem.U8((Mem.U32((Mem.U32(ctl) + 1496u)) + 147u))))
+            float v = (new B2Ctl(ctl).owner.def.info.unk20 * Mem.F32(0x800C6D98u));
+            switch ((int)(new B2Ctl(ctl).owner.stats.unk93))
             {
             case 1:
                 break;
             default:
-                Mem.Set((Mem.U32((Mem.U32(ctl) + 1496u)) + 147u), (byte)(0));
+                new B2Ctl(ctl).owner.stats.unk93_Set((byte)(0));
                 goto case 0;
             case 0:
                 v = (float)((float)(v) * Mem.F32(0x800C6D9Cu));

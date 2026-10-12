@@ -11,13 +11,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0020A95C", (uint)ctl, (uint)cfg);
             float k = Mem.F32(0x800C6E20u);
-            Mem.Set((ctl + 740u), Mem.S32(cfg));
-            Mem.Set((ctl + 740u), (int)((float)(Mem.S32((ctl + 740u))) + (func_002745D4(k) * (float)(Mem.S32((cfg + 4u))))));
-            Mem.Set((ctl + 744u), Mem.S32((cfg + 8u)));
-            Mem.Set((ctl + 744u), (int)((float)(Mem.S32((ctl + 744u))) + (func_002745D4(k) * (float)(Mem.S32((cfg + 12u))))));
-            if ((Mem.S32((cfg + 24u)) == 100))
+            new B2Ctl(ctl).unk2E4_Set(new B2Cfg(cfg).unk0);
+            new B2Ctl(ctl).unk2E4_Set((int)((float)(new B2Ctl(ctl).unk2E4) + (func_002745D4(k) * (float)(new B2Cfg(cfg).unk4))));
+            new B2Ctl(ctl).unk2E8_Set(new B2Cfg(cfg).unk8);
+            new B2Ctl(ctl).unk2E8_Set((int)((float)(new B2Ctl(ctl).unk2E8) + (func_002745D4(k) * (float)(new B2Cfg(cfg).unkC))));
+            if ((new B2Cfg(cfg).unk18 == 100))
             {
-                Mem.Set((ctl + 576u), 1);
+                new B2Ctl(ctl).unk240_Set(1);
             }
         }
     }

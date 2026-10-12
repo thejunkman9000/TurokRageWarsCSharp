@@ -10,12 +10,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00239D0C", (uint)o);
-            switch (Mem.S32(o))
+            switch (new ObjWave(o).type)
             {
             case 1:
-                return (sinf((Mem.F32((o + 16u)) * Mem.F32(0x800C865Cu))) * Mem.F32((o + 12u)));
+                return (sinf((new ObjWave(o).unk10 * Mem.F32(0x800C865Cu))) * new ObjWave(o).unkC);
             case 0:
-                return func_00274B00((-Mem.F32((o + 12u))), Mem.F32((o + 12u)));
+                return func_00274B00((-new ObjWave(o).unkC), new ObjWave(o).unkC);
             default:
                 return 0.0f;
             }

@@ -12,9 +12,9 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0022C640", (uint)g);
             uint p = 0u;
             int n = 0;
-            for (p = Mem.U32((g + 32u)); (p != 0u); p = Mem.U32((p + 5856u)))
+            for (p = new Game_s(g).players_; (p != 0u); p = new Player_v3(p).next_)
             {
-                if ((Mem.S32((p + 1488u)) != 0))
+                if ((new Player_v3(p).f5D0 != 0))
                 {
                     ++n;
                 }

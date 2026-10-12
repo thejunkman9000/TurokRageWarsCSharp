@@ -11,16 +11,16 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0028CC80", (uint)lv, (uint)owner);
             int i = 0;
-            int n = Mem.S32((lv + 3664u));
-            uint p = (lv + 3152u);
+            int n = new Level(lv).numActors;
+            uint p = new Level(lv).actors.P;
             if ((n > 0))
             {
                 do
                 {
                     uint a = Mem.U32(p);
-                    if ((Mem.U32((a + 472u)) == owner))
+                    if ((new Actor(a).owner_ == owner))
                     {
-                        Mem.Set((a + 472u), 0u);
+                        new Actor(a).owner__Set(0u);
                     }
                     ++i;
                     p += 4u;

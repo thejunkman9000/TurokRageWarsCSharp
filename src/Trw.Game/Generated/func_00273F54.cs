@@ -17,8 +17,8 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00273F54");
                 float alt = 0f;
                 float d = 0f;
-                func_00274090(_fp);
-                func_00274090((_fp + 4u));
+                func_00274090(_fp, default(uint), default(uint), default(uint));
+                func_00274090((_fp + 4u), default(uint), default(uint), default(uint));
                 if ((Mem.F32(_fp) > Mem.F32((_fp + 4u))))
                 {
                     alt = (Mem.F32((_fp + 4u)) + 6.28318548f);
@@ -38,7 +38,7 @@ public static partial class Game
                     }
                 }
                 Mem.Set((_fp + 8u), (Mem.F32(_fp) + (t * (Mem.F32((_fp + 4u)) - Mem.F32(_fp)))));
-                func_00274090((_fp + 8u));
+                func_00274090((_fp + 8u), default(uint), default(uint), default(uint));
                 return Mem.F32((_fp + 8u));
             }
         }

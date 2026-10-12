@@ -22,19 +22,19 @@ public static partial class Game
             j = 1;
             for (; (i < 4); ++i)
             {
-                if ((Mem.F32((q + 76u)) < 0.0f))
+                if ((new B09Quad(q).ny < 0.0f))
                 {
-                    b = ((q + 24u) + (uint)(i * 12));
-                    a = ((q + 24u) + (uint)((j & 3) * 12));
+                    b = (new B09Quad(q).v.P + (uint)(i * 12));
+                    a = (new B09Quad(q).v.P + (uint)((j & 3) * 12));
                 }
                 else
                 {
-                    a = ((q + 24u) + (uint)(i * 12));
-                    b = ((q + 24u) + (uint)((j & 3) * 12));
+                    a = (new B09Quad(q).v.P + (uint)(i * 12));
+                    b = (new B09Quad(q).v.P + (uint)((j & 3) * 12));
                 }
                 ++j;
-                ax = Mem.F32(a);
-                if (((((Mem.F32((b + 8u)) - Mem.F32((a + 8u))) * (Mem.F32(pt) - ax)) + ((ax - Mem.F32(b)) * (Mem.F32((pt + 8u)) - Mem.F32((a + 8u))))) > 0.0f))
+                ax = new B09V3(a).x;
+                if (((((new B09V3(b).z - new B09V3(a).z) * (new B09V3(pt).x - ax)) + ((ax - new B09V3(b).x) * (new B09V3(pt).z - new B09V3(a).z))) > 0.0f))
                 {
                     return 0;
                 }

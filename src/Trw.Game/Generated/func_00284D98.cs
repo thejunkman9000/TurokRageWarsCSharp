@@ -17,12 +17,12 @@ public static partial class Game
                 for (i = 0; (i < n); ++i)
                 {
                     uint o = Mem.U32((arr + (uint)(i * 4)));
-                    if (((int)(Mem.U16((o + 4u))) != 87))
+                    if (((int)(new B19Obj(o).id) != 87))
                     {
-                        func_00271FD8(_fp, (o + 8u), (@ref + 8u));
-                        if (((((Mem.F32(_fp) * Mem.F32(_fp)) + (Mem.F32((_fp + 4u)) * Mem.F32((_fp + 4u)))) + (Mem.F32((_fp + 8u)) * Mem.F32((_fp + 8u)))) <= Mem.F32(0x800C9F88u)))
+                        func_00271FD8(_fp, new B19Obj(o).pos.P, new B19Obj(@ref).pos.P);
+                        if (((((new B19Vec3(_fp).x * new B19Vec3(_fp).x) + (new B19Vec3(_fp).y * new B19Vec3(_fp).y)) + (new B19Vec3(_fp).z * new B19Vec3(_fp).z)) <= Mem.F32(0x800C9F88u)))
                         {
-                            Mem.Set((o + 332u), (short)(1));
+                            new B19Obj(o).unk14C_Set((short)(1));
                         }
                     }
                 }

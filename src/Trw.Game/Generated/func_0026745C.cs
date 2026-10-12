@@ -16,15 +16,15 @@ public static partial class Game
                 uint o = 0u;
                 int r = 0;
                 r = 0;
-                if ((((int)(Mem.U8(act)) == 1) && ((Mem.U32((act + 256u)) & (uint)(3145728)) != 0u)))
+                if ((((int)(Mem.U8(act)) == 1) && ((new Actor(act).flags & (uint)(3145728)) != 0u)))
                 {
-                    o = Mem.U32((act + 472u));
-                    if (((act == (o + (uint)744)) && ((((int)(Mem.S16((o + 1582u))) == 0) || ((int)(Mem.S16((o + 1582u))) == 17)) || ((int)(Mem.S16((o + 1582u))) == 16))))
+                    o = new Actor(act).owner_;
+                    if (((act == (o + (uint)744)) && ((((int)(new B15O(o).unk62E) == 0) || ((int)(new B15O(o).unk62E) == 17)) || ((int)(new B15O(o).unk62E) == 16))))
                     {
                         Mem.Copy(_fp, pos, 12);
-                        Mem.Copy((_fp + 16u), (o + 8u), 12);
+                        Mem.Copy((_fp + 16u), new B15O(o).pos.P, 12);
                         func_00272038(pos, 0.75f, _fp, (_fp + 16u));
-                        Mem.Set((pos + 4u), (Mem.F32((pos + 4u)) + (func_0024D274(o) * Mem.F32(0x800C9520u))));
+                        new Vec3f(pos).y_Set((new Vec3f(pos).y + (func_0024D274(o) * Mem.F32(0x800C9520u))));
                         r = 1;
                     }
                 }

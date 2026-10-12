@@ -31,126 +31,126 @@ public static partial class Game
                 if ((a != 0u))
                 {
                     Mem.Set(0x80153D58u, a);
-                    Mem.Copy(_fp, (0x800E2B20u + (uint)(Mem.U8(a) * 52)), 52);
+                    Mem.Copy(_fp, (0x800E2B20u + (uint)(new S_fmt(a).fmt * 52)), 52);
                     Mem.Copy(0x80153D20u, _fp, 52);
-                    if ((Mem.S32((_fp + (uint)(1 * 4))) != 0))
+                    if ((new S_row(_fp).w[(int)(1)] != 0))
                     {
-                        Mem.Set(0x80153C70u, Mem.S32((a + 20u)));
+                        Mem.Set(0x80153C70u, new S_fmt(a).f14);
                     }
                     else
                     {
-                        Mem.Set(0x80153C70u, Mem.S32((a + 24u)));
+                        Mem.Set(0x80153C70u, new S_fmt(a).f18);
                     }
-                    if ((Mem.S32((_fp + (uint)(1 * 4))) != 0))
+                    if ((new S_row(_fp).w[(int)(1)] != 0))
                     {
-                        Mem.Set(0x80153C88u, Mem.S32((a + 24u)));
+                        Mem.Set(0x80153C88u, new S_fmt(a).f18);
                     }
                     else
                     {
                         Mem.Set(0x80153C88u, 0);
                     }
-                    if ((Mem.S32((_fp + (uint)(3 * 4))) == 16))
+                    if ((new S_row(_fp).w[(int)(3)] == 16))
                     {
                         Mem.Set(0x80153CD4u, 0x004140ECu);
                     }
                     else
                     {
-                        if ((Mem.S32((_fp + (uint)(3 * 4))) == 24))
+                        if ((new S_row(_fp).w[(int)(3)] == 24))
                         {
                             Mem.Set(0x80153CD4u, 0x0041413Cu);
                         }
                         else
                         {
-                            if ((Mem.S32((_fp + (uint)(3 * 4))) == 32))
+                            if ((new S_row(_fp).w[(int)(3)] == 32))
                             {
                                 Mem.Set(0x80153CD4u, 0x00414114u);
                             }
                         }
                     }
-                    if ((Mem.S32((_fp + (uint)(2 * 4))) == 4))
+                    if ((new S_row(_fp).w[(int)(2)] == 4))
                     {
                         Mem.Set(0x80153CDCu, 0x004142C4u);
                     }
                     else
                     {
-                        if ((Mem.S32((_fp + (uint)(2 * 4))) == 8))
+                        if ((new S_row(_fp).w[(int)(2)] == 8))
                         {
                             Mem.Set(0x80153CDCu, 0x004142A0u);
                         }
                     }
-                    Mem.Set(0x80153CA0u, Mem.S32((_fp + (uint)(5 * 4))));
-                    Mem.Set(0x80153CA4u, Mem.S32((_fp + (uint)(6 * 4))));
-                    Mem.Set(0x80153CA8u, Mem.S32((_fp + (uint)(7 * 4))));
-                    Mem.Set(0x80153CACu, Mem.S32((_fp + (uint)(8 * 4))));
-                    Mem.Set(0x80153CC0u, Mem.S32((_fp + (uint)(9 * 4))));
-                    Mem.Set(0x80153CC4u, Mem.S32((_fp + (uint)(10 * 4))));
-                    Mem.Set(0x80153CC8u, Mem.S32((_fp + (uint)(11 * 4))));
-                    Mem.Set(0x80153CCCu, Mem.S32((_fp + (uint)(12 * 4))));
+                    Mem.Set(0x80153CA0u, new S_row(_fp).w[(int)(5)]);
+                    Mem.Set(0x80153CA4u, new S_row(_fp).w[(int)(6)]);
+                    Mem.Set(0x80153CA8u, new S_row(_fp).w[(int)(7)]);
+                    Mem.Set(0x80153CACu, new S_row(_fp).w[(int)(8)]);
+                    Mem.Set(0x80153CC0u, new S_row(_fp).w[(int)(9)]);
+                    Mem.Set(0x80153CC4u, new S_row(_fp).w[(int)(10)]);
+                    Mem.Set(0x80153CC8u, new S_row(_fp).w[(int)(11)]);
+                    Mem.Set(0x80153CCCu, new S_row(_fp).w[(int)(12)]);
                 }
                 if ((b != 0u))
                 {
                     Mem.Set(0x80153D54u, b);
-                    Mem.Copy((_fp + 56u), (0x800E2B20u + (uint)(Mem.U8(b) * 52)), 52);
+                    Mem.Copy((_fp + 56u), (0x800E2B20u + (uint)(new S_fmt(b).fmt * 52)), 52);
                     Mem.Copy(0x80153CE0u, (_fp + 56u), 52);
-                    if ((Mem.S32(((_fp + 56u) + (uint)(1 * 4))) != 0))
+                    if ((new S_row((_fp + 56u)).w[(int)(1)] != 0))
                     {
-                        Mem.Set(0x80153C64u, Mem.S32((b + 20u)));
+                        Mem.Set(0x80153C64u, new S_fmt(b).f14);
                     }
                     else
                     {
-                        Mem.Set(0x80153C64u, Mem.S32((b + 24u)));
+                        Mem.Set(0x80153C64u, new S_fmt(b).f18);
                     }
-                    if ((Mem.S32(((_fp + 56u) + (uint)(1 * 4))) != 0))
+                    if ((new S_row((_fp + 56u)).w[(int)(1)] != 0))
                     {
-                        Mem.Set(0x80153C7Cu, Mem.S32((b + 24u)));
+                        Mem.Set(0x80153C7Cu, new S_fmt(b).f18);
                     }
                     else
                     {
                         Mem.Set(0x80153C7Cu, 0);
                     }
-                    if ((Mem.S32(((_fp + 56u) + (uint)(3 * 4))) == 16))
+                    if ((new S_row((_fp + 56u)).w[(int)(3)] == 16))
                     {
                         Mem.Set(0x80153CD0u, 0x0041404Cu);
                     }
                     else
                     {
-                        if ((Mem.S32(((_fp + 56u) + (uint)(3 * 4))) == 24))
+                        if ((new S_row((_fp + 56u)).w[(int)(3)] == 24))
                         {
                             Mem.Set(0x80153CD0u, 0x004140A4u);
                         }
                         else
                         {
-                            if ((Mem.S32(((_fp + 56u) + (uint)(3 * 4))) == 32))
+                            if ((new S_row((_fp + 56u)).w[(int)(3)] == 32))
                             {
                                 Mem.Set(0x80153CD0u, 0x00414078u);
                             }
                         }
                     }
-                    if ((Mem.S32(((_fp + 56u) + (uint)(2 * 4))) == 4))
+                    if ((new S_row((_fp + 56u)).w[(int)(2)] == 4))
                     {
                         Mem.Set(0x80153CD8u, 0x004141E8u);
                     }
                     else
                     {
-                        if ((Mem.S32(((_fp + 56u) + (uint)(2 * 4))) == 8))
+                        if ((new S_row((_fp + 56u)).w[(int)(2)] == 8))
                         {
                             Mem.Set(0x80153CD8u, 0x004141B8u);
                         }
                         else
                         {
-                            if ((Mem.S32(((_fp + 56u) + (uint)(2 * 4))) == 16))
+                            if ((new S_row((_fp + 56u)).w[(int)(2)] == 16))
                             {
                                 Mem.Set(0x80153CD8u, 0x00414240u);
                             }
                             else
                             {
-                                if ((Mem.S32(((_fp + 56u) + (uint)(2 * 4))) == 24))
+                                if ((new S_row((_fp + 56u)).w[(int)(2)] == 24))
                                 {
                                     Mem.Set(0x80153CD8u, 0x00414260u);
                                 }
                                 else
                                 {
-                                    if ((Mem.S32(((_fp + 56u) + (uint)(2 * 4))) == 32))
+                                    if ((new S_row((_fp + 56u)).w[(int)(2)] == 32))
                                     {
                                         Mem.Set(0x80153CD8u, 0x00414280u);
                                     }
@@ -158,14 +158,14 @@ public static partial class Game
                             }
                         }
                     }
-                    Mem.Set(0x80153C90u, Mem.S32(((_fp + 56u) + (uint)(5 * 4))));
-                    Mem.Set(0x80153C94u, Mem.S32(((_fp + 56u) + (uint)(6 * 4))));
-                    Mem.Set(0x80153C98u, Mem.S32(((_fp + 56u) + (uint)(7 * 4))));
-                    Mem.Set(0x80153C9Cu, Mem.S32(((_fp + 56u) + (uint)(8 * 4))));
-                    Mem.Set(0x80153CB0u, Mem.S32(((_fp + 56u) + (uint)(9 * 4))));
-                    Mem.Set(0x80153CB4u, Mem.S32(((_fp + 56u) + (uint)(10 * 4))));
-                    Mem.Set(0x80153CB8u, Mem.S32(((_fp + 56u) + (uint)(11 * 4))));
-                    Mem.Set(0x80153CBCu, Mem.S32(((_fp + 56u) + (uint)(12 * 4))));
+                    Mem.Set(0x80153C90u, new S_row((_fp + 56u)).w[(int)(5)]);
+                    Mem.Set(0x80153C94u, new S_row((_fp + 56u)).w[(int)(6)]);
+                    Mem.Set(0x80153C98u, new S_row((_fp + 56u)).w[(int)(7)]);
+                    Mem.Set(0x80153C9Cu, new S_row((_fp + 56u)).w[(int)(8)]);
+                    Mem.Set(0x80153CB0u, new S_row((_fp + 56u)).w[(int)(9)]);
+                    Mem.Set(0x80153CB4u, new S_row((_fp + 56u)).w[(int)(10)]);
+                    Mem.Set(0x80153CB8u, new S_row((_fp + 56u)).w[(int)(11)]);
+                    Mem.Set(0x80153CBCu, new S_row((_fp + 56u)).w[(int)(12)]);
                 }
             }
         }

@@ -23,7 +23,7 @@ public static partial class Game
                 func_0029A8A8();
                 break;
             case 873:
-                if ((func_002A2B18((uint)(Mem.S32((Mem.U32(0x800E4EF0u) + 52u)))) > 0))
+                if ((func_002A2B18((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk34)) > 0))
                 {
                     func_004296A4();
                     func_00429834(0);
@@ -34,7 +34,7 @@ public static partial class Game
             case 874:
                 func_004296A4();
                 func_00429834(0);
-                func_0041E668(default(uint), default(uint), default(uint), default(uint));
+                func_0041E668();
                 func_0042EB68(25);
                 func_0029A8A8();
                 func_002A338C();

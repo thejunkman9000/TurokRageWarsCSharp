@@ -16,30 +16,30 @@ public static partial class Game
                 uint h = 0u;
                 uint n = 0u;
                 int s2 = 0;
-                if ((Mem.S32((o + 180u)) != 0))
+                if ((new B12Obj(o).unkB4 != 0))
                 {
-                    func_00253610(0, (uint)(Mem.S32((o + 180u))));
-                    return (uint)(Mem.S32((o + 180u)));
+                    func_00253610(0, (uint)(new B12Obj(o).unkB4));
+                    return (uint)(new B12Obj(o).unkB4);
                 }
-                if ((key != Mem.S32((o + 168u))))
+                if ((key != new B12Obj(o).unkA8))
                 {
-                    h = func_002518DC((uint)(0), (uint)(Mem.S32((o + 28u))), (uint)(Mem.S32((o + 28u))), (uint)(24), (uint)(0), (uint)(0), 0u, 0x800C8F4Cu, (uint)(1));
+                    h = func_002518DC(0, (uint)(new B12Obj(o).unk1C), new B12Obj(o).unk1C, (uint)(24), 0, (uint)(0), 0u, 0x800C8F4Cu, 1);
                     if ((h != 0u))
                     {
-                        s2 = func_0028FE08((uint)((int)(Mem.U32(h))), Mem.S32((o + 28u)), 1);
+                        s2 = func_0028FE08((uint)((int)(Mem.U32(h))), new B12Obj(o).unk1C, 1);
                         func_002537D8(0, h);
                         n = func_00254094(0, _fp, s2, 0x800C8F70u, 1);
                         if ((n != 0u))
                         {
-                            Mem.Set((o + 172u), (int)(func_0028FE1C(Mem.U32(_fp), (uint)(s2), (key % Mem.S32(Mem.U32(_fp))), (o + 176u))));
-                            Mem.Set((o + 168u), key);
+                            new B12Obj(o).unkAC_Set((int)(func_0028FE1C(Mem.U32(_fp), (uint)(s2), (key % Mem.S32(Mem.U32(_fp))), (o + 176u))));
+                            new B12Obj(o).unkA8_Set(key);
                             func_002537D8(0, n);
                         }
                     }
                 }
-                if ((Mem.S32((o + 172u)) != 0))
+                if ((new B12Obj(o).unkAC != 0))
                 {
-                    return func_002518DC((uint)(0), (uint)(Mem.S32((o + 172u))), (uint)(Mem.S32((o + 172u))), (uint)(Mem.S32((o + 176u))), (uint)(0), (uint)(0), 0x0026D7D4u, 0x800C8F84u, (uint)(0));
+                    return func_002518DC(0, (uint)(new B12Obj(o).unkAC), new B12Obj(o).unkAC, (uint)(new B12Obj(o).unkB0), 0, (uint)(0), 0x0026D7D4u, 0x800C8F84u, 0);
                 }
                 return 0u;
             }

@@ -11,11 +11,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0041B5B4", (uint)o);
             uint p = 0u;
-            for (p = Mem.U32((o + 8u)); (p != 0u); p = Mem.U32((p + 4u)))
+            for (p = new O3Bar(o).h.child_; (p != 0u); p = new O3Hdr(p).next_)
             {
-                if (((int)(Mem.U16((p + 14u))) != 8))
+                if (((int)(new O3Hdr(p).id2) != 8))
                 {
-                    Mem.Set((p + 16u), (byte)(200));
+                    new O3Hdr(p).alpha_Set((byte)(200));
                 }
             }
             return 0;

@@ -39,10 +39,10 @@ public static partial class Game
                         }
                     }
                     Mem.Copy(_fp, ptr, 40);
-                    ret = (((int)(Mem.U8((_fp + 2u))) & 192) >> (int)4);
+                    ret = (((int)(new __OSContRamReadFormat(_fp).rxsize) & 192) >> (int)4);
                     if ((ret == 0))
                     {
-                        if (((int)((byte)(__osContDataCrc(buffer, default(uint), default(uint), default(uint)))) != (int)(Mem.U8((_fp + 38u)))))
+                        if (((int)((byte)(__osContDataCrc(buffer, default(uint), default(uint), default(uint)))) != (int)(new __OSContRamReadFormat(_fp).datacrc)))
                         {
                             ret = __osPfsGetStatus(mq, channel);
                             if ((ret != 0))

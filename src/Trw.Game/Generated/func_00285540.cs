@@ -10,33 +10,33 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00285540", (uint)d, (uint)s);
-            Mem.Set(d, Mem.U32((s + 4u)));
-            Mem.Set(((d + 16u) + (uint)0), Mem.U8(((s + 12u) + (uint)0)));
-            Mem.Set(((d + 16u) + (uint)1), Mem.U8(((s + 12u) + (uint)1)));
-            Mem.Set(((d + 16u) + (uint)2), Mem.U8(((s + 12u) + (uint)2)));
-            Mem.Set(((d + 16u) + (uint)3), Mem.U8(((s + 12u) + (uint)3)));
-            Mem.Set(((d + 16u) + (uint)4), Mem.U8(((s + 12u) + (uint)4)));
-            Mem.Set(((d + 16u) + (uint)5), Mem.U8(((s + 12u) + (uint)5)));
-            Mem.Set(((d + 16u) + (uint)6), Mem.U8(((s + 12u) + (uint)6)));
-            Mem.Set(((d + 16u) + (uint)7), Mem.U8(((s + 12u) + (uint)7)));
-            Mem.Set((d + 24u), Mem.U16((s + 20u)));
-            Mem.Set((d + 26u), Mem.U16((s + 22u)));
-            Mem.Set((d + 6u), Mem.U8((s + 10u)));
-            if (((Mem.U32((s + 4u)) & (uint)(64)) != 0u))
+            new B19RecOut(d).f0_Set(new B19RecIn(s).f4);
+            new B19RecOut(d).b.Set((int)(0), new B19RecIn(s).b[(int)(0)]);
+            new B19RecOut(d).b.Set((int)(1), new B19RecIn(s).b[(int)(1)]);
+            new B19RecOut(d).b.Set((int)(2), new B19RecIn(s).b[(int)(2)]);
+            new B19RecOut(d).b.Set((int)(3), new B19RecIn(s).b[(int)(3)]);
+            new B19RecOut(d).b.Set((int)(4), new B19RecIn(s).b[(int)(4)]);
+            new B19RecOut(d).b.Set((int)(5), new B19RecIn(s).b[(int)(5)]);
+            new B19RecOut(d).b.Set((int)(6), new B19RecIn(s).b[(int)(6)]);
+            new B19RecOut(d).b.Set((int)(7), new B19RecIn(s).b[(int)(7)]);
+            new B19RecOut(d).h18_Set(new B19RecIn(s).h14);
+            new B19RecOut(d).h1A_Set(new B19RecIn(s).h16);
+            new B19RecOut(d).f6_Set(new B19RecIn(s).fA);
+            if (((new B19RecIn(s).f4 & (uint)(64)) != 0u))
             {
-                Mem.Set((d + 4u), (ushort)((((int)(Mem.U16((s + 8u))) << (int)1) | 1)));
+                new B19RecOut(d).f4_Set((ushort)((((int)(new B19RecIn(s).f8) << (int)1) | 1)));
             }
             else
             {
-                Mem.Set((d + 4u), (ushort)(((int)(Mem.U16((s + 8u))) << (int)1)));
+                new B19RecOut(d).f4_Set((ushort)(((int)(new B19RecIn(s).f8) << (int)1)));
             }
-            if ((Mem.S32(s) == (-1)))
+            if ((new B19RecIn(s).f0 == (-1)))
             {
-                Mem.Set((d + 8u), 0);
+                new B19RecOut(d).f8_Set(0);
             }
             else
             {
-                func_00296DDC((d + 8u), Mem.S32(s));
+                func_00296DDC((d + 8u), new B19RecIn(s).f0);
             }
         }
     }

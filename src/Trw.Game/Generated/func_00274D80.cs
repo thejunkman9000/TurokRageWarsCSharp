@@ -15,14 +15,14 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00274D80", (uint)a, (uint)b, (uint)@out);
                 float den = 0f;
                 int hit = 0;
-                Mem.Set(_fp, (Mem.F32(b) - Mem.F32(a)));
-                Mem.Set((_fp + 8u), (Mem.F32((b + 8u)) - Mem.F32((a + 8u))));
-                den = ((Mem.F32((b + 24u)) * Mem.F32((a + 48u))) + (Mem.F32(((b + 24u) + 8u)) * Mem.F32(((a + 48u) + 8u))));
+                new Vec3f(_fp).x_Set((new PlaneObj(b).pos.x - new RayObj(a).pos.x));
+                new Vec3f(_fp).z_Set((new PlaneObj(b).pos.z - new RayObj(a).pos.z));
+                den = ((new PlaneObj(b).nrm.x * new RayObj(a).dir.x) + (new PlaneObj(b).nrm.z * new RayObj(a).dir.z));
                 hit = 0;
                 if ((den != 0.0f))
                 {
                     hit = 1;
-                    Mem.Set(@out, (((Mem.F32(_fp) * Mem.F32((a + 48u))) + (Mem.F32((_fp + 8u)) * Mem.F32(((a + 48u) + 8u)))) / (-den)));
+                    Mem.Set(@out, (((new Vec3f(_fp).x * new RayObj(a).dir.x) + (new Vec3f(_fp).z * new RayObj(a).dir.z)) / (-den)));
                 }
                 return hit;
             }

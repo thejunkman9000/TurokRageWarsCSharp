@@ -42,7 +42,7 @@ public static partial class Game
                 r4 = r4 + 20616u;
                 r6 = 2148335616u;
                 r6 = r6 - 23028u;
-                r5 = r4 + 64u; r2 = func_00237E70(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r4 + 64u; r2 = func_00237E70(r4, r5, r6);
                 r2 = (uint)1;
                 Mem.Set((r16 + 20u), r2); goto L_L00294FB0;
                 L_L00294F98: ;
@@ -50,7 +50,7 @@ public static partial class Game
                 r4 = r4 + 20616u;
                 r6 = 2148335616u;
                 r6 = r6 - 23008u;
-                r5 = r4 + 64u; r2 = func_00237E70(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r4 + 64u; r2 = func_00237E70(r4, r5, r6);
                 L_L00294FB0: ;
                 r2 = 2148859904u;
                 r2 = r2 - 20816u;

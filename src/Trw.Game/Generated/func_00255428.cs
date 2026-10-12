@@ -15,17 +15,17 @@ public static partial class Game
             uint nx = 0u;
             p = (Mem.U32(0x80105194u) + (uint)((((((key << (int)5) ^ (key >> (int)1)) ^ (key >> (int)9)) ^ (key >> (int)17)) & Mem.U32(0x80105190u)) * 16));
             prev = 0u;
-            if ((Mem.U32(p) != key))
+            if ((new B12Bucket(p).unk0 != key))
             {
                 for (; ; )
                 {
                     prev = p;
-                    p = Mem.U32((p + 12u));
+                    p = new B12Bucket(p).next_;
                     if (!(p != 0u))
                     {
                         return;
                     }
-                    if ((Mem.U32(p) == key))
+                    if ((new B12Bucket(p).unk0 == key))
                     {
                         break;
                     }
@@ -33,12 +33,12 @@ public static partial class Game
             }
             if ((p != 0u))
             {
-                nx = Mem.U32((p + 12u));
+                nx = new B12Bucket(p).next_;
                 if ((nx != 0u))
                 {
-                    Mem.Set((p + 4u), Mem.U32((nx + 4u)));
-                    Mem.Set(p, Mem.U32(nx));
-                    Mem.Set((p + 12u), Mem.U32((nx + 12u)));
+                    new B12Bucket(p).unk4_Set(new B12Bucket(nx).unk4);
+                    new B12Bucket(p).unk0_Set(new B12Bucket(nx).unk0);
+                    new B12Bucket(p).next__Set(new B12Bucket(nx).next_);
                     {
                         uint t = p;
                         p = nx;
@@ -47,11 +47,11 @@ public static partial class Game
                 }
                 if ((prev != 0u))
                 {
-                    Mem.Set((prev + 12u), nx);
+                    new B12Bucket(prev).next__Set(nx);
                 }
-                Mem.Set((p + 4u), (uint)(0));
-                Mem.Set(p, (uint)(0));
-                Mem.Set((p + 12u), 0u);
+                new B12Bucket(p).unk4_Set((uint)(0));
+                new B12Bucket(p).unk0_Set((uint)(0));
+                new B12Bucket(p).next__Set(0u);
             }
         }
     }

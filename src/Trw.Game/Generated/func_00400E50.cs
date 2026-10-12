@@ -32,25 +32,25 @@ public static partial class Game
                 float qa = 0f;
                 if ((n == 0))
                 {
-                    Mem.Set(_fp, (float)(0));
-                    Mem.Set((_fp + 4u), (float)(0));
-                    Mem.Set((_fp + 8u), (float)(0));
+                    new O01Vec3(_fp).x_Set((float)(0));
+                    new O01Vec3(_fp).y_Set((float)(0));
+                    new O01Vec3(_fp).z_Set((float)(0));
                 }
                 else
                 {
-                    if (((n == 1) || (t <= Mem.F32(((rec + (uint)(0 * 36)) + 28u)))))
+                    if (((n == 1) || (t <= new O01SplRec((rec + (uint)(0 * 36))).t)))
                     {
-                        Mem.Set(_fp, Mem.F32((rec + (uint)(0 * 36))));
-                        Mem.Set((_fp + 4u), Mem.F32(((rec + (uint)(0 * 36)) + 4u)));
-                        Mem.Set((_fp + 8u), Mem.F32(((rec + (uint)(0 * 36)) + 8u)));
+                        new O01Vec3(_fp).x_Set(new O01SplRec((rec + (uint)(0 * 36))).x);
+                        new O01Vec3(_fp).y_Set(new O01SplRec((rec + (uint)(0 * 36))).y);
+                        new O01Vec3(_fp).z_Set(new O01SplRec((rec + (uint)(0 * 36))).z);
                     }
                     else
                     {
-                        if ((Mem.F32(((rec + (uint)((n - 1) * 36)) + 28u)) <= t))
+                        if ((new O01SplRec((rec + (uint)((n - 1) * 36))).t <= t))
                         {
-                            Mem.Set(_fp, Mem.F32((rec + (uint)((n - 1) * 36))));
-                            Mem.Set((_fp + 4u), Mem.F32(((rec + (uint)((n - 1) * 36)) + 4u)));
-                            Mem.Set((_fp + 8u), Mem.F32(((rec + (uint)((n - 1) * 36)) + 8u)));
+                            new O01Vec3(_fp).x_Set(new O01SplRec((rec + (uint)((n - 1) * 36))).x);
+                            new O01Vec3(_fp).y_Set(new O01SplRec((rec + (uint)((n - 1) * 36))).y);
+                            new O01Vec3(_fp).z_Set(new O01SplRec((rec + (uint)((n - 1) * 36))).z);
                         }
                         else
                         {
@@ -58,7 +58,7 @@ public static partial class Game
                             {
                                 p = (rec + (uint)(i * 36));
                                 q = (rec + (uint)((i + 1) * 36));
-                                if (((Mem.F32((p + 28u)) <= t) && (t < Mem.F32((q + 28u)))))
+                                if (((new O01SplRec(p).t <= t) && (t < new O01SplRec(q).t)))
                                 {
                                     break;
                                 }
@@ -68,15 +68,15 @@ public static partial class Game
                             d2 = 0.0f;
                             if ((i > 0))
                             {
-                                d0 = (Mem.F32(((rec + (uint)(i * 36)) + 24u)) - Mem.F32(((rec + (uint)((i - 1) * 36)) + 24u)));
+                                d0 = (new O01SplRec((rec + (uint)(i * 36))).arc - new O01SplRec((rec + (uint)((i - 1) * 36))).arc);
                             }
                             if ((i < (n - 1)))
                             {
-                                d1 = (Mem.F32(((rec + (uint)((i + 1) * 36)) + 24u)) - Mem.F32(((rec + (uint)(i * 36)) + 24u)));
+                                d1 = (new O01SplRec((rec + (uint)((i + 1) * 36))).arc - new O01SplRec((rec + (uint)(i * 36))).arc);
                             }
                             if ((i < (n - 2)))
                             {
-                                d2 = (Mem.F32(((rec + (uint)((i + 2) * 36)) + 24u)) - Mem.F32(((rec + (uint)((i + 1) * 36)) + 24u)));
+                                d2 = (new O01SplRec((rec + (uint)((i + 2) * 36))).arc - new O01SplRec((rec + (uint)((i + 1) * 36))).arc);
                             }
                             m0 = d1;
                             if (!(m0 <= d0))
@@ -88,11 +88,11 @@ public static partial class Game
                             {
                                 m1 = d1;
                             }
-                            A = Mem.F32((p + 24u));
-                            B = Mem.F32((q + 24u));
-                            if ((Mem.F32((p + 28u)) != Mem.F32((q + 28u))))
+                            A = new O01SplRec(p).arc;
+                            B = new O01SplRec(q).arc;
+                            if ((new O01SplRec(p).t != new O01SplRec(q).t))
                             {
-                                u = ((t - Mem.F32((p + 28u))) / (Mem.F32((q + 28u)) - Mem.F32((p + 28u))));
+                                u = ((t - new O01SplRec(p).t) / (new O01SplRec(q).t - new O01SplRec(p).t));
                             }
                             else
                             {
@@ -103,13 +103,13 @@ public static partial class Game
                             {
                                 p = (rec + (uint)(i * 36));
                                 q = (rec + (uint)((i + 1) * 36));
-                                if (((Mem.F32((p + 24u)) <= s) && (s < Mem.F32((q + 24u)))))
+                                if (((new O01SplRec(p).arc <= s) && (s < new O01SplRec(q).arc)))
                                 {
                                     break;
                                 }
                             }
-                            pa = Mem.F32((p + 24u));
-                            qa = Mem.F32((q + 24u));
+                            pa = new O01SplRec(p).arc;
+                            qa = new O01SplRec(q).arc;
                             h = (qa - pa);
                             w = 0.0f;
                             if ((h != 0.0f))
@@ -117,9 +117,9 @@ public static partial class Game
                                 w = ((s - pa) / h);
                             }
                             h2 = (h * h);
-                            Mem.Set(_fp, (((Mem.F32(p) * (Mem.F32(0x800E0B50u) - w)) + (Mem.F32(q) * w)) + ((((Mem.F32((p + 12u)) * ((((Mem.F32(0x800E0B50u) - w) * (Mem.F32(0x800E0B50u) - w)) * (Mem.F32(0x800E0B50u) - w)) - (Mem.F32(0x800E0B50u) - w))) + (Mem.F32((q + 12u)) * (((w * w) * w) - w))) * h2) * Mem.F32(0x800E0B54u))));
-                            Mem.Set((_fp + 4u), (((Mem.F32((p + 4u)) * (Mem.F32(0x800E0B50u) - w)) + (Mem.F32((q + 4u)) * w)) + ((((Mem.F32((p + 16u)) * ((((Mem.F32(0x800E0B50u) - w) * (Mem.F32(0x800E0B50u) - w)) * (Mem.F32(0x800E0B50u) - w)) - (Mem.F32(0x800E0B50u) - w))) + (Mem.F32((q + 16u)) * (((w * w) * w) - w))) * h2) * Mem.F32(0x800E0B54u))));
-                            Mem.Set((_fp + 8u), (((Mem.F32((p + 8u)) * (Mem.F32(0x800E0B50u) - w)) + (Mem.F32((q + 8u)) * w)) + ((((Mem.F32((p + 20u)) * ((((Mem.F32(0x800E0B50u) - w) * (Mem.F32(0x800E0B50u) - w)) * (Mem.F32(0x800E0B50u) - w)) - (Mem.F32(0x800E0B50u) - w))) + (Mem.F32((q + 20u)) * (((w * w) * w) - w))) * h2) * Mem.F32(0x800E0B54u))));
+                            new O01Vec3(_fp).x_Set((((new O01SplRec(p).x * (Mem.F32(0x800E0B50u) - w)) + (new O01SplRec(q).x * w)) + ((((new O01SplRec(p).cx * ((((Mem.F32(0x800E0B50u) - w) * (Mem.F32(0x800E0B50u) - w)) * (Mem.F32(0x800E0B50u) - w)) - (Mem.F32(0x800E0B50u) - w))) + (new O01SplRec(q).cx * (((w * w) * w) - w))) * h2) * Mem.F32(0x800E0B54u))));
+                            new O01Vec3(_fp).y_Set((((new O01SplRec(p).y * (Mem.F32(0x800E0B50u) - w)) + (new O01SplRec(q).y * w)) + ((((new O01SplRec(p).cy * ((((Mem.F32(0x800E0B50u) - w) * (Mem.F32(0x800E0B50u) - w)) * (Mem.F32(0x800E0B50u) - w)) - (Mem.F32(0x800E0B50u) - w))) + (new O01SplRec(q).cy * (((w * w) * w) - w))) * h2) * Mem.F32(0x800E0B54u))));
+                            new O01Vec3(_fp).z_Set((((new O01SplRec(p).z * (Mem.F32(0x800E0B50u) - w)) + (new O01SplRec(q).z * w)) + ((((new O01SplRec(p).cz * ((((Mem.F32(0x800E0B50u) - w) * (Mem.F32(0x800E0B50u) - w)) * (Mem.F32(0x800E0B50u) - w)) - (Mem.F32(0x800E0B50u) - w))) + (new O01SplRec(q).cz * (((w * w) * w) - w))) * h2) * Mem.F32(0x800E0B54u))));
                         }
                     }
                 }

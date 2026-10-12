@@ -10,34 +10,34 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00212948", (uint)actor);
-            uint b = Mem.U32((Mem.U32((actor + 472u)) + 5204u));
+            uint b = new ActorB(actor).owner.brain_;
             int c = 0;
-            if ((Mem.U32((b + 100u)) == 0u))
+            if ((new BrainB(b).unk64_ == 0u))
             {
                 func_00211020(b, default(uint), default(uint), default(uint));
                 return;
             }
-            c = Mem.S32((b + 12u));
+            c = new BrainB(b).unkC;
             if ((c == (-1)))
             {
-                func_00212670(b, default(uint), default(uint), default(uint));
-                if (((Mem.S32((b + 12u)) == c) || (Mem.S32((b + 12u)) == Mem.S32((b + 4u)))))
+                func_00212670(b);
+                if (((new BrainB(b).unkC == c) || (new BrainB(b).unkC == new BrainB(b).unk4)))
                 {
                     func_00209874(b, 4);
                     return;
                 }
             }
-            if ((Mem.F32(0x800C71B8u) < func_0027272C((Mem.U32((Mem.U32((b + 100u)) + 472u)) + 8u), (Mem.U32(b) + 8u))))
+            if ((Mem.F32(0x800C71B8u) < func_0027272C(new BrainB(b).unk64.owner.pos.P, new BrainB(b).actor.pos.P)))
             {
-                func_00209874(b, Mem.S32((b + 560u)));
+                func_00209874(b, new BrainB(b).unk230);
                 return;
             }
             func_00211020(b, default(uint), default(uint), default(uint));
-            func_00208410(b, default(uint), default(uint), default(uint));
-            func_00208EB0(b, default(uint), default(uint), default(uint));
-            if ((Mem.S32((b + 4u)) == Mem.S32((b + 12u))))
+            func_00208410(b);
+            func_00208EB0(b);
+            if ((new BrainB(b).unk4 == new BrainB(b).unkC))
             {
-                Mem.Set((b + 12u), (-1));
+                new BrainB(b).unkC_Set((-1));
             }
         }
     }

@@ -17,46 +17,46 @@ public static partial class Game
                 uint fl = 0u;
                 uint nd = 0u;
                 int i = 0;
-                tri = Mem.U32((o + 172u));
-                fl = Mem.U32((o + 64u));
+                tri = new B10Obj(o).pAC_;
+                fl = new B10Obj(o).p40_;
                 if ((tri != 0u))
                 {
                     nd = func_0028B2D4(0x8011FE88u, tri);
                     if ((nd != 0u))
                     {
-                        if (((Mem.U32(fl) & (uint)(8)) != 0u))
+                        if (((new B10Fl(fl).flags & (uint)(8)) != 0u))
                         {
-                            if (((Mem.U32(fl) & (uint)(1048576)) == (uint)(0)))
+                            if (((new B10Fl(fl).flags & (uint)(1048576)) == (uint)(0)))
                             {
-                                Mem.Set((_fp + 20u), 3);
+                                new B10Ev(_fp).nv_Set(3);
                                 for (i = 0; (i < 3); ++i)
                                 {
-                                    Mem.Set(((_fp + 24u) + (uint)((2 - i) * 12)), Mem.F32(Mem.U32(((tri + 4u) + (uint)(i * 4)))));
-                                    Mem.Set((((_fp + 24u) + (uint)((2 - i) * 12)) + 4u), (Mem.F32((Mem.U32(((tri + 4u) + (uint)(i * 4))) + 12u)) + Mem.F32((o + 28u))));
-                                    Mem.Set((((_fp + 24u) + (uint)((2 - i) * 12)) + 8u), Mem.F32((Mem.U32(((tri + 4u) + (uint)(i * 4))) + 8u)));
+                                    new B10Ev(_fp).v[(int)((2 - i))].x_Set(new B10Pt(new B10Tri(tri).pt[(int)(i)]).x);
+                                    new B10Ev(_fp).v[(int)((2 - i))].y_Set((new B10Pt(new B10Tri(tri).pt[(int)(i)]).y + new B10Obj(o).v1C.x));
+                                    new B10Ev(_fp).v[(int)((2 - i))].z_Set(new B10Pt(new B10Tri(tri).pt[(int)(i)]).z);
                                 }
                                 func_00240C9C(_fp);
-                                if ((Mem.F32((_fp + 76u)) > Mem.F32(0x800C8870u)))
+                                if ((new B10Ev(_fp).f4C > Mem.F32(0x800C8870u)))
                                 {
-                                    Mem.Set(_fp, 5);
-                                    Mem.Set((_fp + 4u), Mem.F32((fl + 24u)));
-                                    Mem.Set((_fp + 8u), (int)(Mem.S8((fl + 6u))));
-                                    Mem.Set((_fp + 84u), 0);
-                                    Mem.Set((_fp + 88u), (-1));
-                                    Mem.Set((_fp + 16u), 0);
-                                    if (((Mem.U32((nd + 68u)) & (uint)(4194304)) != 0u))
+                                    new B10Ev(_fp).type_Set(5);
+                                    new B10Ev(_fp).f4_Set(new B10Fl(fl).f18);
+                                    new B10Ev(_fp).f8_Set((int)(new B10Fl(fl).b6));
+                                    new B10Ev(_fp).f54_Set(0);
+                                    new B10Ev(_fp).f58_Set((-1));
+                                    new B10Ev(_fp).f10_Set(0);
+                                    if (((new B10Nd(nd).f44 & (uint)(4194304)) != 0u))
                                     {
-                                        Mem.Set((_fp + 12u), 7);
+                                        new B10Ev(_fp).fC_Set(7);
                                     }
                                     else
                                     {
-                                        if ((((int)(Mem.U16((nd + 82u))) & 128) != 0))
+                                        if ((((int)(new B10Nd(nd).h52) & 128) != 0))
                                         {
-                                            Mem.Set((_fp + 12u), 8);
+                                            new B10Ev(_fp).fC_Set(8);
                                         }
                                         else
                                         {
-                                            Mem.Set((_fp + 12u), 1);
+                                            new B10Ev(_fp).fC_Set(1);
                                         }
                                     }
                                     func_0023E8C4(o, _fp, 1);

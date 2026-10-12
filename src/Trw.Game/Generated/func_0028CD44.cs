@@ -10,12 +10,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028CD44", (uint)lv);
-            int n = Mem.S32((lv + 320u));
+            int n = new Level(lv).numEntities;
             int i = 0;
             for (i = 0; (i < n); ++i)
             {
-                uint e = (Mem.U32((lv + 312u)) + (uint)(i * 744));
-                if ((Mem.S32(Mem.U32((e + 24u))) == 3))
+                uint e = (new Level(lv).entities_ + (uint)(i * 744));
+                if ((new ActorDef(new Entity(e).def_).type == 3))
                 {
                     func_00285D80(lv, e, 1);
                 }

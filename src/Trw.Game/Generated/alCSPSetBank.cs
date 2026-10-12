@@ -13,9 +13,9 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("alCSPSetBank", (uint)seqp, (uint)b);
-                Mem.Set(_fp, (short)(14));
-                Mem.Set((_fp + 4u), b);
-                alEvtqPostEvent((seqp + 72u), _fp, 0);
+                new ALEvent(_fp).type_Set((short)(14));
+                Mem.Set(new ALEvent(_fp).msg.P, b);
+                alEvtqPostEvent(new ALCSPlayer(seqp).evtq.P, _fp, 0);
             }
         }
         finally { Stack.Free(16); }

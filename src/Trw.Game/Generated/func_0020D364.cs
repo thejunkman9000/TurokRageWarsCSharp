@@ -18,30 +18,30 @@ public static partial class Game
                 return 1;
             }
             {
-                if ((Mem.S32((ctl + 444u)) == 0))
+                if ((new B2Ctl(ctl).unk1BC == 0))
                 {
                     return func_0020DB14(ctl);
                 }
-                if (((Mem.S32((ctl + 448u)) != (-1)) && (Mem.S32((ctl + 456u)) == 0)))
+                if (((new B2Ctl(ctl).unk1C0 != (-1)) && (new B2Ctl(ctl).unk1C8 == 0)))
                 {
-                    for (i = 0; (i < Mem.S32((m + 12u))); ++i)
+                    for (i = 0; (i < new B2Mgr(m).count); ++i)
                     {
                         e = func_0020C9B0(m, i);
-                        if ((((int)(Mem.U16(e)) == Mem.S32((ctl + 448u))) && ((int)(Mem.U8((e + 4u))) == 6)))
+                        if ((((int)(new B2Edge(e).a) == new B2Ctl(ctl).unk1C0) && ((int)(new B2Edge(e).kind) == 6)))
                         {
-                            Mem.Set((ctl + 456u), (int)(Mem.S32((ctl + 456u)) + 1));
+                            new B2Ctl(ctl).unk1C8_Set((int)(new B2Ctl(ctl).unk1C8 + 1));
                         }
                     }
                 }
-                if (((Mem.S32((ctl + 444u)) > 0) && (Mem.S32((ctl + 444u)) < (Mem.S32((ctl + 456u)) + 1))))
+                if (((new B2Ctl(ctl).unk1BC > 0) && (new B2Ctl(ctl).unk1BC < (new B2Ctl(ctl).unk1C8 + 1))))
                 {
                     return func_0020D4AC(ctl);
                 }
-                if ((Mem.S32((ctl + 444u)) == (Mem.S32((ctl + 456u)) + 1)))
+                if ((new B2Ctl(ctl).unk1BC == (new B2Ctl(ctl).unk1C8 + 1)))
                 {
-                    return (int)(func_0020D6E4(ctl, default(uint), default(uint), default(uint)));
+                    return func_0020D6E4(ctl);
                 }
-                if ((Mem.S32((ctl + 444u)) != (Mem.S32((ctl + 456u)) + 2)))
+                if ((new B2Ctl(ctl).unk1BC != (new B2Ctl(ctl).unk1C8 + 2)))
                 {
                     return 1;
                 }

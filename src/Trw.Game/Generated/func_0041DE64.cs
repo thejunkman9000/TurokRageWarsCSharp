@@ -17,7 +17,7 @@ public static partial class Game
                 func_0041DACC(110);
                 func_0041D718();
                 func_0041D9D0();
-                Mem.Set((Mem.U32(0x800E3590u) + 236u), 0u);
+                new O3Pk(Mem.U32(0x800E3590u)).cur__Set(0u);
             }
             return 0;
         }

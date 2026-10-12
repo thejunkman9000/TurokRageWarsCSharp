@@ -22,15 +22,15 @@ public static partial class Game
                     zero = 0.0f;
                     do
                     {
-                        if ((Mem.U32((s + 28u)) == who))
+                        if ((new Slot68A0(s).owner == who))
                         {
-                            if ((zero < Mem.F32((s + 36u))))
+                            if ((zero < new Slot68A0(s).unk24))
                             {
-                                if ((zero < Mem.F32((s + 36u))))
+                                if ((zero < new Slot68A0(s).unk24))
                                 {
                                     func_00270980(_fp, src, default(uint), default(uint));
                                     k = Mem.F32(0x800CB028u);
-                                    if ((Mem.S32((Mem.U32((who + 280u)) + 20u)) != 0))
+                                    if ((new Actor68A0(who).unk118.unk14 != 0))
                                     {
                                         k = Mem.F32(0x800CB02Cu);
                                     }
@@ -40,7 +40,7 @@ public static partial class Game
                                 }
                             }
                         }
-                        s = Mem.U32((s + 4u));
+                        s = new Slot68A0(s).next_;
                     }
                     while ((s != 0u));
                 }

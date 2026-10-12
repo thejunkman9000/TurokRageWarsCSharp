@@ -12,32 +12,32 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002A697C", (uint)o, (uint)t);
             uint s = 0u;
             uint tt = 0u;
-            for (s = Mem.U32((o + 29992u)); (s != 0u); s = Mem.U32((s + 4u)))
+            for (s = new Owner697C(o).slots_; (s != 0u); s = new Slot697C(s).next_)
             {
-                tt = Mem.U32((s + 28u));
+                tt = new Slot697C(s).target_;
                 if ((tt == t))
                 {
                     if ((tt != 0u))
                     {
-                        if (((Mem.U32((s + 60u)) & (uint)(1)) != 0u))
+                        if (((new Slot697C(s).flags & (uint)(1)) != 0u))
                         {
-                            if (((int)(Mem.U8((tt + 315u))) != 0))
+                            if (((int)(new Tgt697C(tt).unk13B) != 0))
                             {
-                                Mem.Set((tt + 315u), (byte)(((int)(Mem.U8((tt + 315u))) - 1)));
+                                new Tgt697C(tt).unk13B_Set((byte)(((int)(new Tgt697C(tt).unk13B) - 1)));
                             }
                         }
-                        if (((Mem.U32((s + 60u)) & (uint)(2)) != 0u))
+                        if (((new Slot697C(s).flags & (uint)(2)) != 0u))
                         {
-                            if (((int)(Mem.U8((Mem.U32((s + 28u)) + 473u))) != 0))
+                            if (((int)(new Slot697C(s).target.unk1D9) != 0))
                             {
-                                Mem.Set((Mem.U32((s + 28u)) + 473u), (byte)(((int)(Mem.U8((Mem.U32((s + 28u)) + 473u))) - 1)));
+                                new Slot697C(s).target.unk1D9_Set((byte)(((int)(new Slot697C(s).target.unk1D9) - 1)));
                             }
                         }
                     }
-                    Mem.Set((s + 28u), 0u);
-                    if ((Mem.F32((s + 36u)) < Mem.F32((Mem.U32((s + 8u)) + 4u))))
+                    new Slot697C(s).target__Set(0u);
+                    if ((new Slot697C(s).unk24 < new Slot697C(s).cfg.unk4))
                     {
-                        Mem.Set((s + 36u), Mem.F32((Mem.U32((s + 8u)) + 4u)));
+                        new Slot697C(s).unk24_Set(new Slot697C(s).cfg.unk4);
                     }
                 }
             }

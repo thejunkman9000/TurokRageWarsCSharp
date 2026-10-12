@@ -10,13 +10,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022ED38", (uint)actor);
-            Mem.Set((actor + 256u), (uint)((uint)(Mem.U32((actor + 256u))) & (uint)((~8388608))));
+            new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~8388608))));
             Mem.Set((actor + (uint)28), 0);
             Mem.Set((actor + (uint)32), 0);
             Mem.Set((actor + (uint)36), 0);
             Mem.Set((actor + (uint)4568), 0);
             Mem.Set((actor + (uint)4604), 0);
-            Mem.Set((actor + 256u), (uint)((uint)(Mem.U32((actor + 256u))) | (uint)(16777216)));
+            new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) | (uint)(16777216)));
             if ((Mem.U32((actor + (uint)5044)) == 0x800CED30u))
             {
                 Mem.Set((actor + (uint)2156), 24100);

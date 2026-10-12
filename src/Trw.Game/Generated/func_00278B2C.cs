@@ -15,10 +15,10 @@ public static partial class Game
             uint s = 0x8011FE88u;
             i = 0;
             sum = 0;
-            for (; (i < Mem.S32((s + 5376u))); ++i)
+            for (; (i < new SessMgr(s).count); ++i)
             {
-                uint n = func_0028FD94((uint)(Mem.S32(Mem.U32(((s + 5384u) + (uint)(i * 12))))), 2);
-                sum = (int)((int)(sum) + Mem.S32((n + 4u)));
+                uint n = func_0028FD94((uint)(Mem.S32(new SessMgr(s).ent[(int)(i)].p_)), 2);
+                sum = (int)((int)(sum) + new SumNode(n).val);
             }
             return sum;
         }

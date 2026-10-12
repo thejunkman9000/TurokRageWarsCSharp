@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00239C2C", (uint)a, (uint)b);
             uint n = 0u;
-            n = Mem.U32((a + 3876u));
+            n = new LObj_v2(a).listF24_;
             if ((n != 0u))
             {
                 func_00239CD0(n);

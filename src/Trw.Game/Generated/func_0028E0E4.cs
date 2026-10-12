@@ -11,17 +11,17 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0028E0E4", (uint)lv);
             int i = 0;
-            uint e = Mem.U32((lv + 312u));
+            uint e = new Level(lv).entities_;
             Mem.Set(0x800F7D08u, 0u);
             for (i = 0; (i < 4); ++i)
             {
                 Mem.Set((0x800F7CF8u + (uint)(i * 4)), 0u);
             }
-            for (i = 0; (i < Mem.S32((lv + 320u))); ++i)
+            for (i = 0; (i < new Level(lv).numEntities); ++i)
             {
-                if ((Mem.S32(Mem.U32((e + 24u))) == 3))
+                if ((new ActorDef(new Entity(e).def_).type == 3))
                 {
-                    if (((int)(func_0028B238(0x8011FE88u, (int)(Mem.S16((Mem.U32((e + 24u)) + (uint)40))))) == 3031))
+                    if (((int)(func_0028B238(0x8011FE88u, (int)(Mem.S16((new Entity(e).def_ + (uint)40))))) == 3031))
                     {
                         Mem.Set(0x800F7D08u, e);
                         break;
@@ -29,9 +29,9 @@ public static partial class Game
                 }
                 else
                 {
-                    if ((Mem.S32(Mem.U32((e + 24u))) == 10))
+                    if ((new ActorDef(new Entity(e).def_).type == 10))
                     {
-                        switch ((int)(Mem.U16((e + 228u))))
+                        switch ((int)(new Entity(e).unkE4))
                         {
                         case 1619:
                             Mem.Set((0x800F7CF8u + (uint)(0 * 4)), e);

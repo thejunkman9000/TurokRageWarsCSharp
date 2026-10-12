@@ -11,13 +11,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00442C4C", (uint)a);
             int o = 0;
-            if (((int)(Mem.S16((a + 4u))) == 5))
+            if (((int)(new O06A_v40(a).unk4) == 5))
             {
-                o = (int)(func_0043F290((uint)(a), default(uint), default(uint), default(uint)));
+                o = (int)(func_0043F290((uint)(a)));
             }
             else
             {
-                o = Mem.S32(Mem.U32((a + 20u)));
+                o = Mem.S32(new O06A_v40(a).unk14_);
             }
             return func_00442460((uint)(o), x, x);
         }

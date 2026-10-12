@@ -15,17 +15,17 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00239668", (uint)l, (uint)pt);
                 uint n = 0u;
                 float sum = 0f;
-                if ((Mem.U32((l + 48u)) == (uint)(0)))
+                if ((new PList_v2(l).count == (uint)(0)))
                 {
                     return 0.0f;
                 }
                 sum = 0.0f;
-                for (n = Mem.U32((l + 32u)); (n != 0u); n = Mem.U32((n + 4u)))
+                for (n = new PList_v2(l).head_; (n != 0u); n = new PNode_v2(n).next_)
                 {
-                    func_00271FD8(_fp, (n + 296u), pt);
-                    sum = (float)((float)(sum) + sqrtf((((Mem.F32(_fp) * Mem.F32(_fp)) + (Mem.F32((_fp + 4u)) * Mem.F32((_fp + 4u)))) + (Mem.F32((_fp + 8u)) * Mem.F32((_fp + 8u))))));
+                    func_00271FD8(_fp, new PNode_v2(n).pos.P, pt);
+                    sum = (float)((float)(sum) + sqrtf((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z))));
                 }
-                return (sum / (float)(Mem.U32((l + 48u))));
+                return (sum / (float)(new PList_v2(l).count));
             }
         }
         finally { Stack.Free(12); }

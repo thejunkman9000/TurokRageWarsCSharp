@@ -18,45 +18,45 @@ public static partial class Game
             uint v = 0u;
             byte lim = 0;
             float f = 0f;
-            info = (Mem.U32((actor + 24u)) + 20u);
+            info = new M1Actor(actor).def.info.P;
             best = 0;
-            if (((Mem.U32(info) & (uint)(1)) != 0u))
+            if (((new M1Info(info).flags & (uint)(1)) != 0u))
             {
-                ok = (int)((((Mem.U32((ev + 12u)) >> (int)9) ^ (uint)(1)) & (uint)(1)));
+                ok = (int)((((new M1Ev(ev).flags >> (int)9) ^ (uint)(1)) & (uint)(1)));
             }
-            if (((Mem.U32(info) & (uint)(2)) != 0u))
+            if (((new M1Info(info).flags & (uint)(2)) != 0u))
             {
-                if (((Mem.U32((ev + 12u)) & (uint)(512)) != 0u))
+                if (((new M1Ev(ev).flags & (uint)(512)) != 0u))
                 {
                     ok = 1;
                 }
             }
             if ((ok != 0))
             {
-                rem = (Mem.S32((state + 4u)) - Mem.S32((ev + 4u)));
+                rem = (new M1State(state).unk4 - new M1Ev(ev).unk4);
                 if ((rem < 0))
                 {
                     rem = 0;
                 }
-                f = (((float)(rem) / (float)(Mem.S32((state + 8u)))) * 100.0f);
+                f = (((float)(rem) / (float)(new M1State(state).unk8)) * 100.0f);
                 lim = (byte)(100);
-                Mem.Set((state + 4u), rem);
+                new M1State(state).unk4_Set(rem);
                 v = Cpu.TruncU32(f);
                 for (i = 0; (i < 4); ++i)
                 {
-                    byte b = Mem.U8(((info + 80u) + (uint)i));
+                    byte b = new M1Info(info).b50[(int)(i)];
                     if (((((int)(b) < (int)(lim)) && ((int)(b) != 0)) && ((int)((byte)(v)) < (int)(b))))
                     {
                         lim = b;
                         best = i;
                     }
                 }
-                Mem.Set((state + 292u), (int)(Mem.U8(((info + 72u) + (uint)best))));
-                Mem.Set((state + 296u), (int)(Mem.U8(((info + 76u) + (uint)best))));
-                Mem.Set((actor + 1u), Mem.U8(((info + 72u) + (uint)best)));
-                if ((Mem.S32((state + 4u)) == 0))
+                new M1State(state).unk124.i_Set((int)(new M1Info(info).unk48.b[(int)(best)]));
+                new M1State(state).unk128.i_Set((int)(new M1Info(info).unk4C.b[(int)(best)]));
+                new M1Actor(actor).unk1_Set(new M1Info(info).unk48.b[(int)(best)]);
+                if ((new M1State(state).unk4 == 0))
                 {
-                    func_00214178(actor, state, (((Mem.U32((Mem.U32((actor + 24u)) + 20u)) & (uint)(64)) != 0u) ? 2 : 1));
+                    func_00214178(actor, state, (((new M1Actor(actor).def.info.flags & (uint)(64)) != 0u) ? 2 : 1));
                 }
             }
         }

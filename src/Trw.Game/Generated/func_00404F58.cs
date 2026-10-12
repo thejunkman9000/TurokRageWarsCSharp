@@ -42,7 +42,7 @@ public static partial class Game
                     memcpy(dst, buf, (uint)(size));
                 }
             }
-            func_0026456C();
+            func_0026456C(default(uint), default(uint), default(uint), default(uint));
             func_002538A8();
             if ((h != 0u))
             {

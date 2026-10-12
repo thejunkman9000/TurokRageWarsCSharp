@@ -12,14 +12,14 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0028FA40", (uint)o, (uint)cur, (uint)next);
             ulong t = 0UL;
             uint tp = 0u;
-            if ((((next != 0u) && ((Mem.U32((next + 8u)) & (uint)(32)) != 0u)) && !((Mem.U32((next + 4u)) & (uint)(16)) != 0u)))
+            if ((((next != 0u) && ((new Job_v2(next).flags8 & (uint)(32)) != 0u)) && !((new Job_v2(next).flags4 & (uint)(16)) != 0u)))
             {
                 t = osGetTime();
                 Mem.Set(0x8011F2A8u, t);
             }
             if ((cur != 0u))
             {
-                if ((Mem.S32((cur + 16u)) == 2))
+                if ((new Job_v2(cur).unk10 == 2))
                 {
                     osWritebackDCacheAll();
                     tp = (cur + (uint)16);
@@ -28,11 +28,11 @@ public static partial class Game
                     goto L_start;
                 }
                 tp = (cur + (uint)16);
-                if (((Mem.U32((cur + 8u)) & (uint)(32)) != 0u))
+                if (((new Job_v2(cur).flags8 & (uint)(32)) != 0u))
                 {
                     t = osGetTime();
                     Mem.Set(0x8011F2A0u, t);
-                    if (((Mem.U32((cur + 4u)) & (uint)(16)) != 0u))
+                    if (((new Job_v2(cur).flags4 & (uint)(16)) != 0u))
                     {
                         goto L_start;
                     }
@@ -40,21 +40,21 @@ public static partial class Game
                     Mem.Set(0x8011F298u, 0);
                 }
                 L_start: ;
-                Mem.Set((cur + 4u), (uint)((uint)(Mem.U32((cur + 4u))) & (uint)((~48))));
+                new Job_v2(cur).flags4_Set((uint)((uint)(new Job_v2(cur).flags4) & (uint)((~48))));
                 osSpTaskLoad((cur + (uint)16));
                 osSpTaskStartGo((cur + (uint)16));
-                Mem.Set((o + 756u), cur);
+                new Vid_v2(o).unk2F4__Set(cur);
                 if ((cur == next))
                 {
-                    Mem.Set((o + 760u), next);
+                    new Vid_v2(o).unk2F8__Set(next);
                 }
             }
             if (((next != 0u) && (next != cur)))
             {
-                osDpSetNextBuffer((uint)(Mem.S32((next + 56u))), Mem.U64(Mem.U32((next + 60u))));
+                osDpSetNextBuffer((uint)(new Job_v2(next).unk38), Mem.U64(new Job_v2(next).unk3C_));
                 Mem.Set(0x800D2960u, 1);
                 Mem.Set(0x800D2964u, 0);
-                Mem.Set((o + 760u), next);
+                new Vid_v2(o).unk2F8__Set(next);
             }
         }
     }

@@ -16,18 +16,18 @@ public static partial class Game
             parent = 0u;
             while ((n != 0u))
             {
-                if ((Mem.U32(n) == key))
+                if ((new B16Node(n).key == key))
                 {
                     return n;
                 }
                 parent = n;
-                if ((key < Mem.U32(n)))
+                if ((key < new B16Node(n).key))
                 {
-                    n = Mem.U32((parent + 24u));
+                    n = new B16Node(parent).left_;
                 }
                 else
                 {
-                    n = Mem.U32((parent + 28u));
+                    n = new B16Node(parent).right_;
                 }
             }
             return parent;

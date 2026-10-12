@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020F5A4", (uint)@ref);
-            uint a = Mem.U32(@ref);
+            uint a = new ActorRef(@ref).actor_;
             int r = func_0022AAC4(a, (int)(Mem.S16((a + (uint)1582))));
             switch (r)
             {

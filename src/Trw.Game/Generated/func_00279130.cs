@@ -12,10 +12,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00279130", (uint)a, (uint)p);
             func_00217388(a, (uint)(p));
             Mem.Set(p, (uint)((uint)(Mem.U32(p)) | (uint)(32)));
-            Mem.Set((a + 256u), (uint)((uint)(Mem.U32((a + 256u))) & (uint)((~65536))));
-            Mem.Set((a + 256u), (uint)((uint)(Mem.U32((a + 256u))) & (uint)((~8192))));
-            Mem.Set((a + 256u), (uint)((uint)(Mem.U32((a + 256u))) & (uint)((~256))));
-            if (((Mem.U32((a + 256u)) & (uint)(524288)) != 0u))
+            new ActorX(a).flags_Set((uint)((uint)(new ActorX(a).flags) & (uint)((~65536))));
+            new ActorX(a).flags_Set((uint)((uint)(new ActorX(a).flags) & (uint)((~8192))));
+            new ActorX(a).flags_Set((uint)((uint)(new ActorX(a).flags) & (uint)((~256))));
+            if (((new ActorX(a).flags & (uint)(524288)) != 0u))
             {
                 func_00262CA8(a);
             }

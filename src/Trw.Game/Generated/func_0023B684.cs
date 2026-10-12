@@ -10,17 +10,17 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0023B684", (uint)e, (uint)def, (uint)n);
-            Mem.Set((e + 12u), def);
-            Mem.Set((e + 16u), (ushort)(n));
-            func_00296DDC((e + 20u), (int)(Mem.S16(def)));
-            Mem.Set((e + 28u), (float)(0));
-            Mem.Set((e + 32u), (float)(0));
-            Mem.Set((e + 520u), (float)(0));
-            Mem.Set((e + 524u), (float)(0));
-            Mem.Set((e + 532u), a);
-            Mem.Set((e + 536u), b);
-            Mem.Set((e + 540u), c);
-            Mem.Set((e + 544u), d);
+            new B09Emitter(e).def__Set(def);
+            new B09Emitter(e).mask_Set((ushort)(n));
+            func_00296DDC(new B09Emitter(e).pad14.P, (int)(new B09EDef(def).id));
+            new B09Emitter(e).f1C_Set((float)(0));
+            new B09Emitter(e).f20_Set((float)(0));
+            new B09Emitter(e).f208_Set((float)(0));
+            new B09Emitter(e).f20C_Set((float)(0));
+            new B09Emitter(e).f214_Set(a);
+            new B09Emitter(e).f218_Set(b);
+            new B09Emitter(e).f21C_Set(c);
+            new B09Emitter(e).f220_Set(d);
         }
     }
 

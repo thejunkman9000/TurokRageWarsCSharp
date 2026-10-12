@@ -77,13 +77,21 @@ def load_sigs(path):
 
 SIGS = load_sigs(SIGS_PATH)
 
+FP = ('float', 'double')
 # fpsig_override.txt: name ret params... (v i f d / i f d) for prototypes that hide float parameters behind s32
 CS_OF = {'i': 'int', 'f': 'float', 'd': 'double', 'v': 'void', 'l': 'long'}
 if os.path.exists('port/fpsig_override.txt'):
     for l in open('port/fpsig_override.txt'):
         f = l.split('#')[0].split()
         if len(f) >= 2:
-            SIGS[f[0]] = Sig(CS_OF[f[1]], [CS_OF[t] for t in f[2:]])
+            _new = Sig(CS_OF[f[1]], [CS_OF[t] for t in f[2:]])
+            _old = SIGS.get(f[0])
+            # a signature taken from the matched C already knows the exact types (short, ushort, ...): keep it when it has the same shape
+            if _old is not None and len(_old.params) == len(_new.params) and not _old.hidden and not any(_old.structs) and \
+               all((a in FP) == (b in FP) for a, b in zip(_old.params, _new.params)) and (_old.ret in FP) == (_new.ret in FP) and \
+               (_old.ret == 'void') == (_new.ret == 'void'):
+                continue
+            SIGS[f[0]] = _new
 
 FP = ('float', 'double')
 WIDE = ('long', 'ulong')
@@ -589,6 +597,7 @@ def main():
              if n not in host_impl and (n in void_used or norm(n) not in defs_for_all)]
     for nm, rt in void_used.items():          # keep the C parameters, take the result type the callers expect
         cur = SIGS.get(nm)
+        if nm in host_impl: continue          # implemented by hand with its own (void) signature
         if rt and cur is not None and cur.ret == 'void':
             SIGS[nm] = Sig(rt, cur.params, cur.structs, cur.hidden)
     names = sorted(set(norm(n) for n in names))
@@ -700,11 +709,39 @@ def main():
     def read_asm(src, n):
         return synth_text[n] if src == '<synth>' else open(src, encoding='utf-8').read()
 
+    # splat sometimes cuts a function in the middle: its code runs on into the next symbol (func_00449E38 continues into func_0044A100 after its last jal;
+    # that tail stores the player's respawn key). The following symbols' code is appended as labels of the function until it ends in a return / jump
+    # (the C port's gen_recomp.py with_fallthrough, 486377e; its wip/scan_fallthrough.py lists the cases).
+    _INS = re.compile(r'\s*/\* [0-9A-F]+ ([0-9A-F]{8}) [0-9A-F]{8} \*/\s*(.*)$')
+    def _ends(text):
+        ins = [m.group(2).strip() for m in map(_INS.match, text.split('\n')) if m]
+        return not ins or any(re.match(r'(jr|j|b|eret)\b', x) or re.match(r'beq\s+\$zero,\s*\$zero', x) for x in ins[-2:])
+    ft_addrs = sorted((int(k[5:], 16), k) for k, pth in idx.items() if re.match(r'func_[0-9A-F]{8}$', k) and pth.replace(os.sep, '/').startswith('port'))
+    def with_fallthrough(name, text):
+        if not re.match(r'func_[0-9A-F]{8}$', name): return text
+        last = text; prev = name
+        for _ in range(6):
+            if _ends(last): break
+            cur = max([int(m.group(1), 16) for m in map(_INS.match, text.split('\n')) if m] or [int(name[5:], 16)])
+            nxt = next((k for a, k in ft_addrs if a > cur), None)      # the first symbol after the code already present
+            if not nxt: break
+            u = open(idx[nxt], encoding='utf-8').read()
+            ins_here = [m.group(2).strip() for m in map(_INS.match, text.split('\n')) if m]
+            if ins_here and re.match(r'(j|jal|jalr|jr|b\w*)\s', ins_here[-1] + ' '):
+                u = re.sub(r'^\s*glabel\s+' + nxt + r'\b.*$', '', u, flags=re.M)      # its first instruction is the delay slot of our last jump: no label between them
+            else:
+                u = re.sub(r'^(\s*)glabel\s+' + nxt + r'\b', r'\1alabel ' + nxt, u, flags=re.M)
+            u = re.sub(r'^\s*endlabel\b.*$', '', u, flags=re.M)
+            text = re.sub(r'^\s*endlabel\s+' + prev + r'\b.*$', '', text, flags=re.M) + '\n' + u
+            last = u; prev = nxt
+        return text
+
     # functions that have a C translation are not recompiled
     defined_c = set()
     if args.defs and os.path.exists(args.defs):
         defined_c = {l.strip() for l in open(args.defs, encoding='utf-8') if l.strip()}
     unresolved = set()
+    fallthrough_used = []; ft_raw = {}
 
     # pass 1: analysis and public names; follow the call graph into asm-only functions that nobody else defines
     pending = list(names)
@@ -716,7 +753,13 @@ def main():
         if not src:
             failed.append((n, 'no asm')); unresolved.add(n); continue
         try:
-            ANALYSES[n] = analyze(read_asm(src, n), asm_name, n)
+            raw = read_asm(src, n)
+            ft = with_fallthrough(asm_name, raw) if src != '<synth>' else raw
+            try: ANALYSES[n] = analyze(ft, asm_name, n)
+            except Exception:
+                if ft == raw: raise
+                ANALYSES[n] = analyze(raw, asm_name, n)          # the appended code cannot be translated: as before
+            if ft != raw: fallthrough_used.append(n); ft_raw[n] = (raw, asm_name)
         except Exception as e:
             failed.append((n, str(e))); continue
         if not defined_c: continue
@@ -745,7 +788,13 @@ def main():
     done = []
     for n, a in ANALYSES.items():
         try:
-            L = recompile(n, a)
+            try: L = recompile(n, a)
+            except Exception:
+                # the appended run-on code cannot be translated (e.g. a label in a delay slot): the function alone, as before, if its interface is the same
+                if n not in ft_raw: raise
+                a2 = analyze(ft_raw[n][0], ft_raw[n][1], n)
+                if a2.inargs != a.inargs: raise
+                a = a2; L = recompile(n, a); fallthrough_used.remove(n)
             if RC_SIG[n][0] != n: L += [''] + wrapper(n, SIGS[n], a.inargs)
         except Exception as e:
             failed.append((n, str(e))); continue
@@ -776,8 +825,10 @@ def main():
     if args.called_out:
         with open(args.called_out, 'w', newline='\n') as f:
             f.write('\n'.join(sorted(n for n in (unresolved | {n for n, _ in failed}) if re.fullmatch(r'[A-Za-z_]\w*', n))) + '\n')
-    print('recompiled %d, failed %d' % (len(done), len(failed)))
-    for n, why in failed[:60]: print('  FAILED', n, why)
+    print('recompiled %d, failed %d (%d followed their code into the next symbol)' % (len(done), len(failed), len(fallthrough_used)))
+    for n, why in failed:
+        if why != 'no asm': print('  FAILED', n, why)
+    print('  (%d more failed with no asm: not functions of the ROM, e.g. local static names)' % sum(1 for _, w in failed if w == 'no asm'))
 
 main()
 

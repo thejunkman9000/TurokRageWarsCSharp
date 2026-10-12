@@ -17,15 +17,15 @@ public static partial class Game
             uint arr = 0u;
             i = 0;
             best = 0u;
-            n = Mem.S32((lv + 4260u));
+            n = new Level(lv).cnt10A4;
             bestd = 3.40282347E+38f;
-            arr = (lv + 4132u);
+            arr = new Level(lv).list3.P;
             for (; (i < n); ++i)
             {
                 uint o = Mem.U32((arr + (uint)(i * 4)));
-                float dx = (Mem.F32((e + 8u)) - Mem.F32((o + 8u)));
-                float dy = (Mem.F32(((e + 8u) + 4u)) - Mem.F32(((o + 8u) + 4u)));
-                float dz = (Mem.F32(((e + 8u) + 8u)) - Mem.F32(((o + 8u) + 8u)));
+                float dx = (new Entity(e).pos.x - new Entity(o).pos.x);
+                float dy = (new Entity(e).pos.y - new Entity(o).pos.y);
+                float dz = (new Entity(e).pos.z - new Entity(o).pos.z);
                 float d = (((dx * dx) + (dy * dy)) + (dz * dz));
                 if ((d < bestd))
                 {

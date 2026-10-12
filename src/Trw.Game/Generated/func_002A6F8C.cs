@@ -10,13 +10,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A6F8C", (uint)a0, (uint)o, (uint)x);
-            int v = Mem.S32((o + 52u));
+            int v = new Obj6F8C(o).unk34;
             if ((v != (-1)))
             {
-                func_00296DDC((o + 20u), v);
+                func_00296DDC(new Obj6F8C(o).sub.P, v);
                 if ((x != 0u))
                 {
-                    func_00283038(x, (o + 20u));
+                    func_00283038(x, new Obj6F8C(o).sub.P);
                 }
             }
         }

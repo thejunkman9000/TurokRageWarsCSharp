@@ -13,16 +13,16 @@ public static partial class Game
             int i = 0;
             uint best = 0u;
             float bestd = 3.40282347E+38f;
-            int n = Mem.S32((lv + 320u));
+            int n = new Level(lv).numEntities;
             uint e = 0u;
             while ((i < n))
             {
-                e = (Mem.U32((lv + 312u)) + (uint)(i * 744));
-                if (((((e != @ref) && ((a == (-1)) || ((int)(Mem.U16((e + 228u))) == a))) && ((type == (-1)) || (Mem.S32(Mem.U32((e + 24u))) == type))) && ((needFlag == 0) || (Mem.S32((e + 372u)) != 0))))
+                e = (new Level(lv).entities_ + (uint)(i * 744));
+                if (((((e != @ref) && ((a == (-1)) || ((int)(new Entity(e).unkE4) == a))) && ((type == (-1)) || (new ActorDef(new Entity(e).def_).type == type))) && ((needFlag == 0) || (new Entity(e).unk174 != 0))))
                 {
-                    float dx = (Mem.F32((@ref + 8u)) - Mem.F32((e + 8u)));
-                    float dy = (Mem.F32(((@ref + 8u) + 4u)) - Mem.F32(((e + 8u) + 4u)));
-                    float dz = (Mem.F32(((@ref + 8u) + 8u)) - Mem.F32(((e + 8u) + 8u)));
+                    float dx = (new Entity(@ref).pos.x - new Entity(e).pos.x);
+                    float dy = (new Entity(@ref).pos.y - new Entity(e).pos.y);
+                    float dz = (new Entity(@ref).pos.z - new Entity(e).pos.z);
                     float d = (((dx * dx) + (dy * dy)) + (dz * dz));
                     if ((d < bestd))
                     {

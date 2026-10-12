@@ -11,31 +11,31 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00444260", (uint)a);
             int i = 0;
-            switch ((int)(Mem.S8((a + 127u))))
+            switch ((int)(new O06A_v24(a).unk7F))
             {
             default:
             case 0:
                 for (i = 0; (i < 8); ++i)
                 {
-                    Mem.Set(((a + 132u) + (uint)i), Mem.U8((Mem.U32(0x800D7C70u) + (uint)i)));
+                    new O06A_v24(a).unk84.Set((int)(i), Mem.U8((Mem.U32(0x800D7C70u) + (uint)i)));
                 }
                 break;
             case 1:
                 for (i = 0; (i < 8); ++i)
                 {
-                    Mem.Set(((a + 132u) + (uint)i), Mem.U8((Mem.U32(0x800D7C74u) + (uint)i)));
+                    new O06A_v24(a).unk84.Set((int)(i), Mem.U8((Mem.U32(0x800D7C74u) + (uint)i)));
                 }
                 break;
             case 2:
                 for (i = 0; (i < 8); ++i)
                 {
-                    Mem.Set(((a + 132u) + (uint)i), Mem.U8((Mem.U32(0x800D7C78u) + (uint)i)));
+                    new O06A_v24(a).unk84.Set((int)(i), Mem.U8((Mem.U32(0x800D7C78u) + (uint)i)));
                 }
                 break;
             case 3:
                 for (i = 0; (i < 8); ++i)
                 {
-                    Mem.Set(((a + 132u) + (uint)i), Mem.U8((Mem.U32(0x800D7C7Cu) + (uint)i)));
+                    new O06A_v24(a).unk84.Set((int)(i), Mem.U8((Mem.U32(0x800D7C7Cu) + (uint)i)));
                 }
                 break;
             case 4:

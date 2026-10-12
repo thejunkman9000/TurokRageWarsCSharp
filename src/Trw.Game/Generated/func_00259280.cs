@@ -15,48 +15,48 @@ public static partial class Game
             uint c = 0u;
             uint b = 0u;
             int pri = 0;
-            if ((Mem.U32(((q + 216u) + 4u)) != (q + 216u)))
+            if ((new SndQueue(q).free.link.next_ != new SndQueue(q).free.link.P))
             {
-                func_00258760(Mem.U32(q));
-                l = Mem.U32(((q + 216u) + 4u));
-                Mem.Set((Mem.U32(l) + 4u), Mem.U32((l + 4u)));
-                Mem.Set(Mem.U32((l + 4u)), Mem.U32(l));
+                func_00258760(new SndQueue(q).owner_);
+                l = new SndQueue(q).free.link.next_;
+                new SndLink(l).prev.next__Set(new SndLink(l).next_);
+                new SndLink(l).next.prev__Set(new SndLink(l).prev_);
                 n = l;
-                Mem.Set(((n + 8u) + 12u), (Mem.Set((Mem.U32(q) + 264u), (int)(Mem.S32((Mem.U32(q) + 264u)) + 1)) - 1));
-                Mem.Set(((n + 8u) + 4u), a3);
-                Mem.Set(((n + 8u) + 64u), (-1));
-                Mem.Set(((n + 8u) + 60u), (short)(a3));
-                Mem.Set(((n + 8u) + 58u), (short)(func_0025E520(info)));
-                Mem.Set(((n + 8u) + 56u), (short)((sbyte)(func_0025E538(info))));
-                Mem.Set(((n + 8u) + 20u), (int)((short)(func_0025E52C(info))));
-                Mem.Set(((n + 8u) + 84u), (byte)(func_0025E568(info)));
-                Mem.Set(((n + 8u) + 164u), (int)((short)(func_0025E598(info))));
-                Mem.Set(((n + 8u) + 32u), (short)((sbyte)(func_0025E574(info))));
-                Mem.Set(((n + 8u) + 28u), 32000);
-                Mem.Set(((n + 8u) + 24u), 32000);
-                Mem.Set(((n + 8u) + 36u), 0);
-                Mem.Set(((n + 8u) + 16u), Mem.S32((Mem.U32(q) + 260u)));
-                Mem.Copy(((n + 8u) + 68u), pos, 12);
-                Mem.Set(((n + 8u) + 80u), 0);
-                Mem.Set(((n + 8u) + 172u), 0);
-                b = (n + 8u);
-                func_0025BB9C(b, (int)(Mem.S16((Mem.U32(q) + 11148u))));
-                Mem.Set(((n + 8u) + 192u), Mem.S32((Mem.U32(q) + 11180u)));
+                new SndNode(n).body.unkC_Set((new SndMgr(new SndQueue(q).owner_).unk108_Set((int)(new SndMgr(new SndQueue(q).owner_).unk108 + 1)) - 1));
+                new SndNode(n).body.unk4_Set(a3);
+                new SndNode(n).body.unk40_Set((-1));
+                new SndNode(n).body.unk3C_Set((short)(a3));
+                new SndNode(n).body.unk3A_Set((short)(func_0025E520(info)));
+                new SndNode(n).body.unk38_Set((short)((sbyte)(func_0025E538(info))));
+                new SndNode(n).body.unk14_Set((int)((short)(func_0025E52C(info))));
+                new SndNode(n).body.unk54_Set((byte)(func_0025E568(info)));
+                new SndNode(n).body.unkA4_Set((int)((short)(func_0025E598(info))));
+                new SndNode(n).body.unk20_Set((short)((sbyte)(func_0025E574(info))));
+                new SndNode(n).body.unk1C_Set(32000);
+                new SndNode(n).body.unk18_Set(32000);
+                new SndNode(n).body.unk24_Set(0);
+                new SndNode(n).body.unk10_Set(new SndMgr(new SndQueue(q).owner_).unk104);
+                Mem.Copy(new SndNode(n).body.pos.P, pos, 12);
+                new SndNode(n).body.unk50_Set(0);
+                new SndNode(n).body.unkAC_Set(0);
+                b = new SndNode(n).body.P;
+                func_0025BB9C(b, (int)(new SndMgr(new SndQueue(q).owner_).unk2B8C));
+                new SndNode(n).body.unkC0_Set(new SndMgr(new SndQueue(q).owner_).unk2BAC);
                 func_0025BBA4(b, info, (uint)(flags));
-                pri = (int)(Mem.S16(((n + 8u) + 56u)));
-                for (c = Mem.U32(((q + 4u) + 4u)); (c != (q + 4u)); c = Mem.U32((c + 4u)))
+                pri = (int)(new SndNode(n).body.unk38);
+                for (c = new SndQueue(q).active.link.next_; (c != new SndQueue(q).active.link.P); c = new SndLink(c).next_)
                 {
-                    if (((int)(Mem.S16(((c + 8u) + 56u))) < pri))
+                    if (((int)(new SndNode(c).body.unk38) < pri))
                     {
                         break;
                     }
                 }
-                Mem.Set(n, Mem.U32(c));
-                Mem.Set((n + 4u), c);
-                Mem.Set((Mem.U32(c) + 4u), n);
-                Mem.Set(c, n);
-                func_002587C4(Mem.U32(q));
-                return Mem.S32(((n + 8u) + 12u));
+                new SndNode(n).link.prev__Set(new SndLink(c).prev_);
+                new SndNode(n).link.next__Set(c);
+                new SndLink(c).prev.next__Set(new SndNode(n).link.P);
+                new SndLink(c).prev__Set(new SndNode(n).link.P);
+                func_002587C4(new SndQueue(q).owner_);
+                return new SndNode(n).body.unkC;
             }
             return (-1);
         }

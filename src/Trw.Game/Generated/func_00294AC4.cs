@@ -10,17 +10,17 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00294AC4", (uint)g);
-            if (((Mem.S32(0x80146D68u) == 2) && (Mem.S32((g + 159184u)) == 0)))
+            if (((Mem.S32(0x80146D68u) == 2) && (new P4Game(g).f26DD0 == 0)))
             {
-                int v = Mem.S32((g + 159164u));
-                Mem.Set((g + 159152u), 0);
-                Mem.Set((g + 159160u), v);
+                int v = new P4Game(g).f26DBC;
+                new P4Game(g).f26DB0_Set(0);
+                new P4Game(g).f26DB8_Set(v);
                 func_00245690();
                 func_0025E234((-1));
                 func_00264874(0);
-                if ((Mem.U32((0x800D29D8u + (uint)(Mem.S32((g + 159160u)) * 12))) != 0u))
+                if ((new P4Hook((0x800D29D8u + (uint)(new P4Game(g).f26DB8 * 12))).fn != 0u))
                 {
-                    Funcs.CallReg(Mem.U32((0x800D29D8u + (uint)(Mem.S32((g + 159160u)) * 12))), g, 0u, 0u, 0u);
+                    Funcs.CallReg(new P4Hook((0x800D29D8u + (uint)(new P4Game(g).f26DB8 * 12))).fn, g, 0u, 0u, 0u);
                 }
             }
         }

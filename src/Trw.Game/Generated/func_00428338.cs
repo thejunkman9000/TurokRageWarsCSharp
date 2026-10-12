@@ -17,7 +17,7 @@ public static partial class Game
             }
             for (i = 0; (i < 64); ++i)
             {
-                if (((Mem.S32((0x800E4A84u + (uint)(i * 12))) == a) && (Mem.S32(((0x800E4A84u + (uint)(i * 12)) + 4u)) == b)))
+                if (((new O04Pair((0x800E4A84u + (uint)(i * 12))).a == a) && (new O04Pair((0x800E4A84u + (uint)(i * 12))).b == b)))
                 {
                     return 1;
                 }

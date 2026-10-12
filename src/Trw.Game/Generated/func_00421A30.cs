@@ -11,13 +11,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00421A30");
             func_0029A73C();
-            if ((Mem.S32((Mem.U32(0x800E4400u) + 52u)) == 0))
+            if ((new O3Pm(Mem.U32(0x800E4400u)).f34 == 0))
             {
                 func_004217EC();
             }
             else
             {
-                func_0041A4B0(Mem.U32(Mem.U32(0x800E4400u)), 2);
+                func_0041A4B0(new O3Pm(Mem.U32(0x800E4400u)).bar_, 2);
                 func_00421158();
             }
             return 0;

@@ -19,8 +19,8 @@ public static partial class Game
                 uint m2 = 0u;
                 int stmp1 = 0;
                 int stmp2 = 0;
-                m1 = ((m + (uint)(0 * 16)) + (uint)(0 * 4));
-                m2 = ((m + (uint)(2 * 16)) + (uint)(0 * 4));
+                m1 = ((new Mtx(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4));
+                m2 = ((new Mtx(m).m.P + (uint)(2 * 16)) + (uint)(0 * 4));
                 for (r = 0; (r < 4); ++r)
                 {
                     for (c = 0; (c < 2); ++c)

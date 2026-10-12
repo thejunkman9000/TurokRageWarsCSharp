@@ -17,32 +17,32 @@ public static partial class Game
                 uint q = 0u;
                 uint cm = 0u;
                 uint m = 0u;
-                o = Mem.U32((c + 472u));
-                Mem.Copy((_fp + 96u), (Mem.U32((0x800D052Cu + (uint)(Mem.S16((o + 1582u)) * 4))) + 56u), 12);
+                o = new Plr(c).unk1D8_;
+                Mem.Copy((_fp + 96u), new M2Row38(Mem.U32((0x800D052Cu + (uint)(new Plr(o).unk62E * 4)))).v38.P, 12);
                 if ((Mem.S32(0x800CF280u) != 0))
                 {
-                    Mem.Set((_fp + 96u), (-Mem.F32((_fp + 96u))));
+                    new Vec3f((_fp + 96u)).x_Set((-new Vec3f((_fp + 96u)).x));
                 }
                 if ((Mem.S32(0x800CF284u) != 0))
                 {
-                    Mem.Set(((_fp + 96u) + 4u), (-Mem.F32(((_fp + 96u) + 4u))));
+                    new Vec3f((_fp + 96u)).y_Set((-new Vec3f((_fp + 96u)).y));
                 }
                 if ((Mem.S32(0x800CF288u) != 0))
                 {
-                    Mem.Set(((_fp + 96u) + 8u), (-Mem.F32(((_fp + 96u) + 8u))));
+                    new Vec3f((_fp + 96u)).z_Set((-new Vec3f((_fp + 96u)).z));
                 }
                 func_0027200C((_fp + 80u), (c + 80u), 0.100000001f);
                 func_00272D20((_fp + 112u), Cpu.U2F(Mem.U32((_fp + 80u) + 0u)), Cpu.U2F(Mem.U32((_fp + 80u) + 4u)), Cpu.U2F(Mem.U32((_fp + 80u) + 8u)));
                 func_0027200C((_fp + 96u), (_fp + 96u), (-10.2399998f));
-                if ((Mem.U32((o + 1500u)) != 0u))
+                if ((new Plr(o).unk5DC_ != 0u))
                 {
-                    func_00273340((Mem.U32((o + 1500u)) + (uint)352), _fp);
-                    func_002742B4((Mem.U32((o + 1500u)) + (uint)320), (_fp + 16u));
+                    func_00273340((new Plr(o).unk5DC_ + (uint)352), _fp);
+                    func_002742B4((new Plr(o).unk5DC_ + (uint)320), (_fp + 16u));
                 }
                 else
                 {
-                    func_00226DAC(o, (_fp + 176u), default(uint), default(uint));
-                    func_00226C3C(o, (_fp + 240u), default(uint), default(uint));
+                    func_00226DAC(o, (_fp + 176u));
+                    func_00226C3C(o, (_fp + 240u));
                     func_00273340((_fp + 176u), _fp);
                     func_002742B4((_fp + 240u), (_fp + 16u));
                 }

@@ -16,12 +16,12 @@ public static partial class Game
             int i = 0;
             for (i = (n - 1); (i != (-1)); --i)
             {
-                x = Mem.F32(src);
-                y = Mem.F32((src + 4u));
-                z = Mem.F32((src + 8u));
-                Mem.Set(dst, ((((Mem.F32(((m + (uint)(0 * 16)) + (uint)(0 * 4))) * x) + (Mem.F32(((m + (uint)(1 * 16)) + (uint)(0 * 4))) * y)) + (Mem.F32(((m + (uint)(2 * 16)) + (uint)(0 * 4))) * z)) + Mem.F32(((m + (uint)(3 * 16)) + (uint)(0 * 4)))));
-                Mem.Set((dst + 4u), ((((Mem.F32(((m + (uint)(0 * 16)) + (uint)(1 * 4))) * x) + (Mem.F32(((m + (uint)(1 * 16)) + (uint)(1 * 4))) * y)) + (Mem.F32(((m + (uint)(2 * 16)) + (uint)(1 * 4))) * z)) + Mem.F32(((m + (uint)(3 * 16)) + (uint)(1 * 4)))));
-                Mem.Set((dst + 8u), ((((Mem.F32(((m + (uint)(0 * 16)) + (uint)(2 * 4))) * x) + (Mem.F32(((m + (uint)(1 * 16)) + (uint)(2 * 4))) * y)) + (Mem.F32(((m + (uint)(2 * 16)) + (uint)(2 * 4))) * z)) + Mem.F32(((m + (uint)(3 * 16)) + (uint)(2 * 4)))));
+                x = new Vec3f(src).x;
+                y = new Vec3f(src).y;
+                z = new Vec3f(src).z;
+                new Vec3f(dst).x_Set(((((Mem.F32(((m + (uint)(0 * 16)) + (uint)(0 * 4))) * x) + (Mem.F32(((m + (uint)(1 * 16)) + (uint)(0 * 4))) * y)) + (Mem.F32(((m + (uint)(2 * 16)) + (uint)(0 * 4))) * z)) + Mem.F32(((m + (uint)(3 * 16)) + (uint)(0 * 4)))));
+                new Vec3f(dst).y_Set(((((Mem.F32(((m + (uint)(0 * 16)) + (uint)(1 * 4))) * x) + (Mem.F32(((m + (uint)(1 * 16)) + (uint)(1 * 4))) * y)) + (Mem.F32(((m + (uint)(2 * 16)) + (uint)(1 * 4))) * z)) + Mem.F32(((m + (uint)(3 * 16)) + (uint)(1 * 4)))));
+                new Vec3f(dst).z_Set(((((Mem.F32(((m + (uint)(0 * 16)) + (uint)(2 * 4))) * x) + (Mem.F32(((m + (uint)(1 * 16)) + (uint)(2 * 4))) * y)) + (Mem.F32(((m + (uint)(2 * 16)) + (uint)(2 * 4))) * z)) + Mem.F32(((m + (uint)(3 * 16)) + (uint)(2 * 4)))));
                 src += 12u;
                 dst += 12u;
             }

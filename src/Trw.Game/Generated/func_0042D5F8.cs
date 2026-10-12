@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0042D5F8", (uint)a);
             int i = 0;
-            int h = (int)(func_0040ECB0((uint)(Mem.S32((Mem.U32(0x800E53C0u) + 224u))), (uint)((ushort)(a)), default(uint), default(uint)));
+            int h = (int)(func_0040ECB0((uint)(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unkE0), (uint)((ushort)(a)), default(uint), default(uint)));
             for (i = 0; (i < 4); ++i)
             {
                 int id = 0;

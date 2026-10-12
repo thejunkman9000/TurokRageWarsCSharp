@@ -12,23 +12,23 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0041D9D0");
             int i = 0;
             i = 0;
-            if ((Mem.U32((Mem.U32(0x800E3590u) + 236u)) == 0u))
+            if ((new O3Pk(Mem.U32(0x800E3590u)).cur_ == 0u))
             {
-                Mem.Set((Mem.U32((Mem.U32(0x800E3590u) + 240u)) + 56u), (0x800E14F8u + (uint)4));
+                new O3Pk(Mem.U32(0x800E3590u)).tgt.txt_Set((0x800E14F8u + (uint)4));
             }
             else
             {
                 for (; (i < 50); ++i)
                 {
-                    if ((Mem.S32((0x800E3594u + (uint)(i * 8))) == (int)(Mem.S16((Mem.U32((Mem.U32(0x800E3590u) + 236u)) + 12u)))))
+                    if ((new O3Tbl((0x800E3594u + (uint)(i * 8))).key == (int)(new O3Pk(Mem.U32(0x800E3590u)).cur.id)))
                     {
-                        if ((func_00265670((0x80102B4Au + (uint)(Mem.S32((Mem.U32(0x800E3590u) + 268u)) * 400)), i) == 1))
+                        if ((func_00265670((0x80102B4Au + (uint)(new O3Pk(Mem.U32(0x800E3590u)).slot * 400)), i) == 1))
                         {
-                            Mem.Set((Mem.U32((Mem.U32(0x800E3590u) + 240u)) + 56u), (uint)(Mem.S32(Mem.U32(((0x800E3594u + (uint)(i * 8)) + 4u)))));
+                            new O3Pk(Mem.U32(0x800E3590u)).tgt.txt_Set((uint)(Mem.S32(new O3Tbl((0x800E3594u + (uint)(i * 8))).val_)));
                         }
                         else
                         {
-                            Mem.Set((Mem.U32((Mem.U32(0x800E3590u) + 240u)) + 56u), (0x800E14F8u + (uint)4));
+                            new O3Pk(Mem.U32(0x800E3590u)).tgt.txt_Set((0x800E14F8u + (uint)4));
                         }
                         break;
                     }

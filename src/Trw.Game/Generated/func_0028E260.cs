@@ -12,26 +12,26 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0028E260", (uint)lv);
             int n = 0;
             int i = 0;
-            uint e = Mem.U32((lv + 312u));
+            uint e = new Level(lv).entities_;
             Mem.Set(0x800F7D0Cu, 0u);
             for (i = 0; (i < 10); ++i)
             {
                 Mem.Set((0x800F7CD0u + (uint)(i * 4)), 0u);
             }
-            for (i = 0; (i < Mem.S32((lv + 320u))); ++i)
+            for (i = 0; (i < new Level(lv).numEntities); ++i)
             {
-                if ((Mem.S32(Mem.U32((e + 24u))) == 3))
+                if ((new ActorDef(new Entity(e).def_).type == 3))
                 {
-                    if (((int)(Mem.S16((Mem.U32((e + 24u)) + (uint)40))) == 3030))
+                    if (((int)(Mem.S16((new Entity(e).def_ + (uint)40))) == 3030))
                     {
                         Mem.Set(0x800F7D0Cu, e);
                     }
                 }
                 else
                 {
-                    if ((Mem.S32(Mem.U32((e + 24u))) == 10))
+                    if ((new ActorDef(new Entity(e).def_).type == 10))
                     {
-                        if (((int)(Mem.U16((e + 228u))) == 1614))
+                        if (((int)(new Entity(e).unkE4) == 1614))
                         {
                             Mem.Set((0x800F7CD0u + (uint)(n * 4)), e);
                             ++n;

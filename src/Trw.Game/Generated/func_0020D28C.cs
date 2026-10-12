@@ -15,17 +15,17 @@ public static partial class Game
             float min = 0f;
             min = Mem.F32(0x800C6E90u);
             best = 0u;
-            for (n = Mem.U32((list + 36u)); (n != 0u); n = Mem.U32((n + 16u)))
+            for (n = new TimedList(list).head_; (n != 0u); n = new TimedNode(n).next_)
             {
-                if (((Mem.S32((n + 40u)) == 1) && ((Mem.F32((n + 36u)) < min) || (min == Mem.F32(0x800C6E90u)))))
+                if (((new TimedNode(n).unk28 == 1) && ((new TimedNode(n).unk24 < min) || (min == Mem.F32(0x800C6E90u)))))
                 {
                     best = n;
-                    min = Mem.F32((n + 36u));
+                    min = new TimedNode(n).unk24;
                 }
             }
             if ((best != 0u))
             {
-                Mem.Set((best + 40u), 0);
+                new TimedNode(best).unk28_Set(0);
             }
             return best;
         }

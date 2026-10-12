@@ -238,7 +238,7 @@ public static partial class Game
                 L_I00227240: ;
                 r4 = Mem.U8((r4 + 25310u));
                 L_I00227244: ;
-                func_002AA224(r4);
+                r2 = func_002AA224(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I0022724C: ;
                 Cpu.SetW(2, Mem.U32((r17 + 668u)));
                 L_I00227250: ;
@@ -391,7 +391,7 @@ public static partial class Game
                 L_I00227398: ;
                 r7 = (uint)1; r2 = func_0021B1E4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I002273A0: ;
-                r4 = r16; r2 = func_002266E4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r16; func_002266E4(r4);
                 L_I002273A8: ;
                 r2 = 2148794368u;
                 L_I002273AC: ;
@@ -536,7 +536,7 @@ public static partial class Game
                 L_I002274F8: ;
                 r4 = Mem.U8((r4 + 25310u));
                 L_I002274FC: ;
-                func_002AA224(r4);
+                r2 = func_002AA224(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00227504: ;
                 Cpu.SetW(3, Mem.U32((r17 + 668u)));
                 L_I00227508: ;
@@ -743,7 +743,7 @@ public static partial class Game
                 L_I002276C4: ;
                 r7 = (uint)1; r2 = func_0021B1E4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I002276CC: ;
-                r4 = r16; r2 = func_002266E4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r16; func_002266E4(r4);
                 L_L002276D4: ;
                 L_I002276D4: ;
                 { bool c_ = (int)r19 < 0; r18 = r0; if (c_) goto L_L00227E38; }
@@ -896,7 +896,7 @@ public static partial class Game
                 L_I00227838: ;
                 r4 = Mem.U8((r4 + 25310u));
                 L_I0022783C: ;
-                func_002AA224(r4);
+                r2 = func_002AA224(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00227844: ;
                 Cpu.SetW(3, Mem.U32((r17 + 668u)));
                 L_I00227848: ;
@@ -1103,7 +1103,7 @@ public static partial class Game
                 L_I00227A04: ;
                 r7 = (uint)1; r2 = func_0021B1E4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00227A0C: ;
-                r4 = r16; r2 = func_002266E4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r16; func_002266E4(r4);
                 L_L00227A14: ;
                 L_I00227A14: ;
                 { bool c_ = (int)r19 < 0; r18 = r0; if (c_) goto L_L00227E38; }
@@ -1274,7 +1274,7 @@ public static partial class Game
                 L_I00227BA4: ;
                 r4 = Mem.U8((r4 + 25310u));
                 L_I00227BA8: ;
-                func_002AA224(r4);
+                r2 = func_002AA224(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00227BB0: ;
                 Cpu.SetW(2, Mem.U32((r17 + 668u)));
                 L_I00227BB4: ;
@@ -1427,7 +1427,7 @@ public static partial class Game
                 L_I00227CFC: ;
                 r7 = (uint)1; r2 = func_0021B1E4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00227D04: ;
-                r4 = r16; r2 = func_002266E4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r16; func_002266E4(r4);
                 L_I00227D0C: ;
                  goto L_L00227D30;
                 L_L00227D14: ;

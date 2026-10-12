@@ -111,7 +111,7 @@ public static partial class Game
                 r2 = Cpu.W(2);
                 r2 = r2 & 4095u;
                 r3 = r3 | r2;
-                Mem.Set((r7 + 4u), r3); r2 = func_0041C864(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r7 + 4u), r3); func_0041C864(r4);
                 r6 = (uint)2;
                 r3 = Mem.U32((r17 + 0u));
                 r2 = 2148401152u;

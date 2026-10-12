@@ -14,68 +14,68 @@ public static partial class Game
             float lim = 0f;
             int nv = 0;
             uint a = 0u;
-            if ((Mem.S32((ctl + 748u)) > 0))
+            if ((new B2Ctl(ctl).unk2EC > 0))
             {
-                Mem.Set((ctl + 748u), (int)(Mem.S32((ctl + 748u)) - 1));
-                if ((Mem.S32((ctl + 748u)) == 0))
+                new B2Ctl(ctl).unk2EC_Set((int)(new B2Ctl(ctl).unk2EC - 1));
+                if ((new B2Ctl(ctl).unk2EC == 0))
                 {
                     k = Mem.F32(0x800C6DE4u);
                     if ((func_002745D4(k) < Mem.F32(0x800C6DE8u)))
                     {
-                        Mem.Set((ctl + 748u), (-1));
-                        Mem.Set((ctl + 740u), Mem.S32((cfg + (uint)(1 * 28))));
-                        Mem.Set((ctl + 740u), (int)((float)(Mem.S32((ctl + 740u))) + (func_002745D4(k) * (float)(Mem.S32(((cfg + (uint)(1 * 28)) + 4u))))));
-                        Mem.Set((ctl + 744u), Mem.S32(((cfg + (uint)(1 * 28)) + 8u)));
-                        Mem.Set((ctl + 744u), (int)((float)(Mem.S32((ctl + 744u))) + (func_002745D4(k) * (float)(Mem.S32(((cfg + (uint)(1 * 28)) + 12u))))));
+                        new B2Ctl(ctl).unk2EC_Set((-1));
+                        new B2Ctl(ctl).unk2E4_Set(new B2Cfg((cfg + (uint)(1 * 28))).unk0);
+                        new B2Ctl(ctl).unk2E4_Set((int)((float)(new B2Ctl(ctl).unk2E4) + (func_002745D4(k) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).unk4))));
+                        new B2Ctl(ctl).unk2E8_Set(new B2Cfg((cfg + (uint)(1 * 28))).unk8);
+                        new B2Ctl(ctl).unk2E8_Set((int)((float)(new B2Ctl(ctl).unk2E8) + (func_002745D4(k) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).unkC))));
                     }
                     else
                     {
-                        Mem.Set((ctl + 748u), Mem.S32((cfg + 16u)));
-                        Mem.Set((ctl + 748u), (int)((float)(Mem.S32((ctl + 748u))) + (func_002745D4(k) * (float)(Mem.S32((cfg + 20u))))));
+                        new B2Ctl(ctl).unk2EC_Set(new B2Cfg(cfg).unk10);
+                        new B2Ctl(ctl).unk2EC_Set((int)((float)(new B2Ctl(ctl).unk2EC) + (func_002745D4(k) * (float)(new B2Cfg(cfg).unk14))));
                     }
                 }
             }
-            if ((Mem.S32((ctl + 748u)) == (-1)))
+            if ((new B2Ctl(ctl).unk2EC == (-1)))
             {
-                Mem.Set((ctl + 744u), (int)(Mem.S32((ctl + 744u)) - 1));
-                if ((Mem.S32((ctl + 744u)) == 0))
+                new B2Ctl(ctl).unk2E8_Set((int)(new B2Ctl(ctl).unk2E8 - 1));
+                if ((new B2Ctl(ctl).unk2E8 == 0))
                 {
                     k = Mem.F32(0x800C6DECu);
-                    Mem.Set((ctl + 748u), Mem.S32((cfg + 16u)));
-                    Mem.Set((ctl + 748u), (int)((float)(Mem.S32((ctl + 748u))) + (func_002745D4(k) * (float)(Mem.S32((cfg + 20u))))));
-                    Mem.Set((ctl + 740u), Mem.S32(cfg));
-                    Mem.Set((ctl + 740u), (int)((float)(Mem.S32((ctl + 740u))) + (func_002745D4(k) * (float)(Mem.S32((cfg + 4u))))));
-                    Mem.Set((ctl + 744u), Mem.S32((cfg + 8u)));
-                    Mem.Set((ctl + 744u), (int)((float)(Mem.S32((ctl + 744u))) + (func_002745D4(k) * (float)(Mem.S32((cfg + 12u))))));
-                    Mem.Set((ctl + 576u), 0);
+                    new B2Ctl(ctl).unk2EC_Set(new B2Cfg(cfg).unk10);
+                    new B2Ctl(ctl).unk2EC_Set((int)((float)(new B2Ctl(ctl).unk2EC) + (func_002745D4(k) * (float)(new B2Cfg(cfg).unk14))));
+                    new B2Ctl(ctl).unk2E4_Set(new B2Cfg(cfg).unk0);
+                    new B2Ctl(ctl).unk2E4_Set((int)((float)(new B2Ctl(ctl).unk2E4) + (func_002745D4(k) * (float)(new B2Cfg(cfg).unk4))));
+                    new B2Ctl(ctl).unk2E8_Set(new B2Cfg(cfg).unk8);
+                    new B2Ctl(ctl).unk2E8_Set((int)((float)(new B2Ctl(ctl).unk2E8) + (func_002745D4(k) * (float)(new B2Cfg(cfg).unkC))));
+                    new B2Ctl(ctl).unk240_Set(0);
                 }
                 else
                 {
-                    Mem.Set((ctl + 576u), 1);
+                    new B2Ctl(ctl).unk240_Set(1);
                 }
             }
-            if ((Mem.S32((ctl + 740u)) > 0))
+            if ((new B2Ctl(ctl).unk2E4 > 0))
             {
-                Mem.Set((ctl + 740u), (int)(Mem.S32((ctl + 740u)) - 1));
+                new B2Ctl(ctl).unk2E4_Set((int)(new B2Ctl(ctl).unk2E4 - 1));
                 return;
             }
-            if ((Mem.S32((ctl + 576u)) > 0))
+            if ((new B2Ctl(ctl).unk240 > 0))
             {
-                nv = Mem.S32((cfg + (uint)(1 * 28)));
-                nv = (int)((float)(nv) + (func_002745D4(Mem.F32(0x800C6DF0u)) * (float)(Mem.S32(((cfg + (uint)(1 * 28)) + 4u)))));
+                nv = new B2Cfg((cfg + (uint)(1 * 28))).unk0;
+                nv = (int)((float)(nv) + (func_002745D4(Mem.F32(0x800C6DF0u)) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).unk4)));
                 lim = Mem.F32(0x800C6DF4u);
             }
             else
             {
-                nv = Mem.S32(cfg);
-                nv = (int)((float)(nv) + (func_002745D4(Mem.F32(0x800C6DF8u)) * (float)(Mem.S32((cfg + 4u)))));
+                nv = new B2Cfg(cfg).unk0;
+                nv = (int)((float)(nv) + (func_002745D4(Mem.F32(0x800C6DF8u)) * (float)(new B2Cfg(cfg).unk4)));
                 lim = Mem.F32(0x800C6DFCu);
             }
-            a = Mem.U32((Mem.U32((ctl + 100u)) + 472u));
-            if (!(lim < func_00216F44(Mem.U32(ctl), Mem.F32((a + 8u)), Mem.F32(((a + 8u) + 4u)), Mem.F32(((a + 8u) + 8u)))))
+            a = new B2Ctl(ctl).target.owner_;
+            if (!(lim < func_00216F44(new B2Ctl(ctl).owner_, C.Tmp(Cpu.F2U(new B2Actor(a).pos.x), Cpu.F2U(new B2Actor(a).pos.y), Cpu.F2U(new B2Actor(a).pos.z)))))
             {
-                Mem.Set((ctl + 572u), 1);
-                Mem.Set((ctl + 740u), nv);
+                new B2Ctl(ctl).unk23C_Set(1);
+                new B2Ctl(ctl).unk2E4_Set(nv);
             }
         }
     }

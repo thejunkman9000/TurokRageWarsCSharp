@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024E7CC", (uint)a);
             int r = 0;
-            int k = (int)(Mem.U32((a + 20u)));
+            int k = (int)(new Obj(a).unk14_);
             if ((k != 0))
             {
                 r = (int)(func_0028B2D4(0x8011FE88u, (uint)(k)));

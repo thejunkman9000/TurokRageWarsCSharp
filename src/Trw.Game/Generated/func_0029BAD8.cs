@@ -13,15 +13,15 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0029BAD8", (uint)a, (uint)b, (uint)c);
-                Mem.Set(_fp, (short)(4));
-                Mem.Set((_fp + 2u), (ushort)(a));
-                Mem.Set((_fp + 4u), (short)(1));
-                Mem.Set((_fp + 6u), b);
-                Mem.Set((_fp + 8u), 0);
-                Mem.Set((_fp + 12u), (short)(((c != 0) ? 1 : 0)));
-                Mem.Set((_fp + 14u), (short)(0));
-                Mem.Set((_fp + 16u), (short)(0));
-                Mem.Set((_fp + 18u), (short)(0));
+                new SndMsg(_fp).type_Set((short)(4));
+                new SndMsg(_fp).a_Set((ushort)(a));
+                new SndMsg(_fp).b_Set((short)(1));
+                new SndMsg(_fp).c_Set(b);
+                new SndMsg(_fp).d_Set(0);
+                new SndMsg(_fp).e_Set((short)(((c != 0) ? 1 : 0)));
+                new SndMsg(_fp).f_Set((short)(0));
+                new SndMsg(_fp).g_Set((short)(0));
+                new SndMsg(_fp).h_Set((short)(0));
                 func_0029B558(_fp);
             }
         }

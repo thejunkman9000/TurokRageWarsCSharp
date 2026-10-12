@@ -88,8 +88,8 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_00216F44", r2); Stack.Free(384); }
     }
 
-    public static float func_00216F44(uint p0, float p1, float p2, float p3)
+    public static float func_00216F44(uint p0, uint p1)
     {
-        func_00216F44_rc(p0, Cpu.F2U(p1), Cpu.F2U(p2), Cpu.F2U(p3)); return Cpu.S(0);
+        func_00216F44_rc(p0, Mem.U32(p1 + 0u), Mem.U32(p1 + 4u), Mem.U32(p1 + 8u)); return Cpu.S(0);
     }
 }

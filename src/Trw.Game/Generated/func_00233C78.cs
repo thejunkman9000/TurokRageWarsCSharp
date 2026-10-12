@@ -11,9 +11,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00233C78_findPlayer", (uint)a);
             uint p = 0u;
-            for (p = Mem.U32(0x80145060u); (p != 0u); p = Mem.U32((p + 5856u)))
+            for (p = Mem.U32(0x80145060u); (p != 0u); p = new Player_v2(p).next_)
             {
-                if ((Mem.U32((p + 1500u)) == a))
+                if ((new Player_v2(p).pawn == a))
                 {
                     return p;
                 }
@@ -35,12 +35,12 @@ public static partial class Game
                 p = func_00233C78_findPlayer(a);
                 if ((p != 0u))
                 {
-                    if (((Mem.U32((p + 56u)) & (uint)(4096)) != 0u))
+                    if (((new Player_v2(p).flags38 & (uint)(4096)) != 0u))
                     {
-                        Mem.Set((_fp + (uint)0), Mem.U8(((a + 1312u) + (uint)0)));
-                        Mem.Set((_fp + (uint)1), Mem.U8(((a + 1312u) + (uint)1)));
-                        Mem.Set((_fp + (uint)2), Mem.U8(((a + 1312u) + (uint)2)));
-                        Mem.Set((_fp + (uint)3), Mem.U8(((a + 1312u) + (uint)3)));
+                        Mem.Set((_fp + (uint)0), new PawnFx(a).rgba[(int)(0)]);
+                        Mem.Set((_fp + (uint)1), new PawnFx(a).rgba[(int)(1)]);
+                        Mem.Set((_fp + (uint)2), new PawnFx(a).rgba[(int)(2)]);
+                        Mem.Set((_fp + (uint)3), new PawnFx(a).rgba[(int)(3)]);
                         if ((Mem.S32(0x800CF228u) != 0))
                         {
                             for (i = 0; (i < 4); ++i)
@@ -54,7 +54,7 @@ public static partial class Game
                             Mem.Set((_fp + (uint)1), (byte)((int)(Mem.U8((_fp + (uint)1))) >> (int)3));
                             Mem.Set((_fp + (uint)2), (byte)((int)(Mem.U8((_fp + (uint)2))) >> (int)3));
                         }
-                        func_00293100(0x8011FAC0u, _fp, (int)(Mem.F32((a + 676u))), (int)(Mem.F32((a + 680u))), (int)((Mem.F32((a + 676u)) + Mem.F32((a + 668u)))), (int)((Mem.F32((a + 680u)) + Mem.F32((a + 672u)))));
+                        func_00293100(0x8011FAC0u, _fp, (int)(new PawnFx(a).unk2A4), (int)(new PawnFx(a).unk2A8), (int)((new PawnFx(a).unk2A4 + new PawnFx(a).unk29C)), (int)((new PawnFx(a).unk2A8 + new PawnFx(a).unk2A0)));
                     }
                     if (((func_00245788() == 0) && (func_002934DC() != 0)))
                     {

@@ -10,23 +10,23 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0023C1E0_m03_unlink", (uint)n);
-            if ((Mem.U32((n + 4u)) != 0u))
+            if ((new B09LNode(n).prev_ != 0u))
             {
-                Mem.Set(Mem.U32((n + 4u)), Mem.U32(n));
+                new B09LNode(n).prev.next__Set(new B09LNode(n).next_);
             }
             else
             {
-                Mem.Set(0x80103E20u, Mem.U32(n));
-                Mem.Set((Mem.U32(n) + 4u), 0u);
+                new B09List(0x80103E20u).head__Set(new B09LNode(n).next_);
+                new B09LNode(n).next.prev__Set(0u);
             }
-            if ((Mem.U32(n) != 0u))
+            if ((new B09LNode(n).next_ != 0u))
             {
-                Mem.Set((Mem.U32(n) + 4u), Mem.U32((n + 4u)));
+                new B09LNode(n).next.prev__Set(new B09LNode(n).prev_);
             }
             else
             {
-                Mem.Set((0x80103E20u + 4u), Mem.U32((n + 4u)));
-                Mem.Set(Mem.U32((n + 4u)), 0u);
+                new B09List(0x80103E20u).tail__Set(new B09LNode(n).prev_);
+                new B09LNode(n).prev.next__Set(0u);
             }
         }
     }
@@ -36,16 +36,16 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0023C1E0_m03_push", (uint)n);
-            Mem.Set(n, 0u);
-            Mem.Set((n + 4u), Mem.U32((0x80103E20u + 4u)));
-            if ((Mem.U32((0x80103E20u + 4u)) != 0u))
+            new B09LNode(n).next__Set(0u);
+            new B09LNode(n).prev__Set(new B09List(0x80103E20u).tail_);
+            if ((new B09List(0x80103E20u).tail_ != 0u))
             {
-                Mem.Set(Mem.U32((0x80103E20u + 4u)), n);
+                new B09List(0x80103E20u).tail.next__Set(n);
             }
-            Mem.Set((0x80103E20u + 4u), n);
-            if ((Mem.U32(0x80103E20u) == 0u))
+            new B09List(0x80103E20u).tail__Set(n);
+            if ((new B09List(0x80103E20u).head_ == 0u))
             {
-                Mem.Set(0x80103E20u, n);
+                new B09List(0x80103E20u).head__Set(n);
             }
         }
     }
@@ -68,15 +68,15 @@ public static partial class Game
                 ulong t0 = 0UL;
                 float us = 0f;
                 uint found = 0u;
-                t = __osGetCurrFaultedThread(default(uint), default(uint), default(uint), default(uint));
-                cause = (int)((Mem.U32(((t + 32u) + 256u)) & (uint)(124)));
+                t = __osGetCurrFaultedThread();
+                cause = (int)((new OSThread(t).context.cause & (uint)(124)));
                 if (((cause == 4) || (cause == 8)))
                 {
-                    Mem.Set(0x80103230u, (uint)((uint)(Mem.U32(0x80103230u)) + (uint)(1)));
-                    page = (Mem.U32(((t + 32u) + 260u)) >> (int)12);
-                    for (r = (0x80103230u + 3416u); (r != 0u); r = Mem.U32(r))
+                    new M03Ldr(0x80103230u).faults_Set((uint)((uint)(new M03Ldr(0x80103230u).faults) + (uint)(1)));
+                    page = (new OSThread(t).context.badvaddr >> (int)12);
+                    for (r = new M03Ldr(0x80103230u).region.P; (r != 0u); r = new M03Region(r).next_)
                     {
-                        if ((!(page < (uint)(Mem.U16((r + 4u)))) && (page < (uint)(((int)(Mem.U16((r + 4u))) + (int)(Mem.U16((r + 6u))))))))
+                        if ((!(page < (uint)(new M03Region(r).@base)) && (page < (uint)(((int)(new M03Region(r).@base) + (int)(new M03Region(r).size))))))
                         {
                             break;
                         }
@@ -84,40 +84,40 @@ public static partial class Game
                     found = r;
                     if ((found != 0u))
                     {
-                        Mem.Set((0x80103230u + 8u), Mem.U32(((t + 32u) + 260u)));
-                        pair = (Mem.U32((found + 16u)) + (uint)(page - (uint)(Mem.U16((found + 4u)))));
+                        new M03Ldr(0x80103230u).lastAddr_Set(new OSThread(t).context.badvaddr);
+                        pair = (new M03Region(found).data_ + (uint)(page - (uint)(new M03Region(found).@base)));
                         if (((int)(Mem.U8(pair)) != 255))
                         {
-                            n = ((0x80103230u + 2336u) + (uint)(Mem.U8(pair) * 16));
-                            if (((int)(Mem.U8((n + 11u))) == 255))
+                            n = (new M03Ldr(0x80103230u).slot.P + (uint)(Mem.U8(pair) * 16));
+                            if (((int)(new B09LNode(n).tlb) == 255))
                             {
                                 func_0023C1E0_m03_unlink(n);
                                 func_0023BD24((short)(page), n, (int)(Mem.U8((t + (uint)23))), pair);
                                 func_0023C1E0_m03_push(n);
                             }
-                            Mem.Set((t + 18u), (ushort)(2));
+                            new OSThread(t).flags_Set((ushort)(2));
                             osStartThread(t);
                             return;
                         }
-                        osRecvMesg((0x80103230u + 2720u), _fp, 1);
-                        Mem.Set((0x80103230u + 4u), (Mem.U32((0x80103230u + 4u)) + (uint)(1)));
-                        Mem.Set((Mem.U32(_fp) + 4u), (int)((Mem.U32((found + 8u)) + ((page - (uint)(Mem.U16((found + 4u)))) << (int)12))));
-                        Mem.Set((Mem.U32(_fp) + 8u), 4096);
-                        n = Mem.U32(0x80103E20u);
+                        osRecvMesg(new M03Ldr(0x80103230u).freeq.P, _fp, 1);
+                        new M03Ldr(0x80103230u).loads_Set((new M03Ldr(0x80103230u).loads + (uint)(1)));
+                        new B09LoadReq(Mem.U32(_fp)).src_Set((int)((new M03Region(found).romAddr + ((page - (uint)(new M03Region(found).@base)) << (int)12))));
+                        new B09LoadReq(Mem.U32(_fp)).len_Set(4096);
+                        n = new B09List(0x80103E20u).head_;
                         func_0023C1E0_m03_unlink(n);
                         func_0023C074(n);
-                        if (((int)(Mem.U16((n + 8u))) != 65535))
+                        if (((int)(new B09LNode(n).slot) != 65535))
                         {
-                            rr = func_0023CBB0((uint)(Mem.U16((n + 8u))));
-                            Mem.Set((Mem.U32((rr + 16u)) + (uint)((int)(Mem.U16((n + 8u))) - (int)(Mem.U16((rr + 4u))))), (byte)(255));
-                            Mem.Set((n + 8u), (ushort)(65535));
+                            rr = func_0023CBB0((uint)(new B09LNode(n).slot));
+                            Mem.Set((new M03Region(rr).data_ + (uint)((int)(new B09LNode(n).slot) - (int)(new M03Region(rr).@base))), (byte)(255));
+                            new B09LNode(n).slot_Set((ushort)(65535));
                         }
-                        Mem.Set((n + 12u), 0);
-                        Mem.Set((Mem.U32(_fp) + 16u), n);
-                        Mem.Set((Mem.U32(_fp) + 12u), (short)(page));
-                        Mem.Set((Mem.U32(_fp) + 24u), pair);
-                        Mem.Set((Mem.U32(_fp) + 20u), t);
-                        osSendMesg((0x80103230u + 2776u), Mem.U32(_fp), 1);
+                        new B09LNode(n).unkC_Set(0);
+                        new B09LoadReq(Mem.U32(_fp)).node__Set(n);
+                        new B09LoadReq(Mem.U32(_fp)).slot_Set((short)(page));
+                        new B09LoadReq(Mem.U32(_fp)).data__Set(pair);
+                        new B09LoadReq(Mem.U32(_fp)).task__Set(t);
+                        osSendMesg(new M03Ldr(0x80103230u).dmaq.P, Mem.U32(_fp), 1);
                         return;
                     }
                     t0 = osGetTime();
@@ -140,7 +140,7 @@ public static partial class Game
                 osSetIntMask((uint)(1));
                 Funcs.CallReg((uint)(2147484672u), 0u, 0u, 0u, 0u);
                 Mem.Set(0x800D0638u, (-1));
-                Mem.Set((t + 18u), (ushort)(2));
+                new OSThread(t).flags_Set((ushort)(2));
                 osStartThread(t);
             }
         }

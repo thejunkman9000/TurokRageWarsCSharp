@@ -12,26 +12,26 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0023ECAC", (uint)o, _a1);
             uint old = 0u;
             uint s = 0u;
-            if (((Mem.U32((o + 60u)) & (uint)(4096)) != 0u))
+            if (((new B09FlagObj(o).flags & (uint)(4096)) != 0u))
             {
-                Mem.Set((o + 60u), (uint)((uint)(Mem.U32((o + 60u))) & (uint)((~8192))));
+                new B09FlagObj(o).flags_Set((uint)((uint)(new B09FlagObj(o).flags) & (uint)((~8192))));
             }
-            old = Mem.U32((o + 60u));
-            Mem.Set((o + 60u), (old & 4294737919u));
+            old = new B09FlagObj(o).flags;
+            new B09FlagObj(o).flags_Set((old & 4294737919u));
             if (((old & (uint)(28672)) != 0u))
             {
                 s = func_0028B2D4(0x8011FE88u, (uint)(_a1));
                 if ((s != 0u))
                 {
-                    if (((Mem.U32((s + 68u)) & (uint)(4194304)) != 0u))
+                    if (((new B09Seat(s).flags44 & (uint)(4194304)) != 0u))
                     {
-                        Mem.Set((o + 60u), (uint)((uint)(Mem.U32((o + 60u))) | (uint)(32768)));
+                        new B09FlagObj(o).flags_Set((uint)((uint)(new B09FlagObj(o).flags) | (uint)(32768)));
                     }
                     else
                     {
-                        if ((((int)(Mem.U16((s + 82u))) & 128) != 0))
+                        if ((((int)(new B09Seat(s).h52) & 128) != 0))
                         {
-                            Mem.Set((o + 60u), (uint)((uint)(Mem.U32((o + 60u))) | (uint)(65536)));
+                            new B09FlagObj(o).flags_Set((uint)((uint)(new B09FlagObj(o).flags) | (uint)(65536)));
                         }
                     }
                 }

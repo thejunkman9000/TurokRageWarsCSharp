@@ -15,29 +15,29 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00290404", (uint)o);
                 uint t = 0u;
                 t = 0x80104438u;
-                if (!((Mem.U32((Mem.U32((o + 24u)) + 4u)) & (uint)(4)) != 0u))
+                if (!((new Def_v2(new Obj_v12(o).def_).flags & (uint)(4)) != 0u))
                 {
                     t = 0x801043F8u;
                 }
-                if ((0.0f < Mem.F32((o + 460u))))
+                if ((0.0f < new Obj_v12(o).unk1CC))
                 {
-                    Mem.Set((o + 460u), (Mem.F32((o + 460u)) - Mem.F32(0x800D2988u)));
-                    Mem.Copy(_fp, (o + 8u), 12);
+                    new Obj_v12(o).unk1CC_Set((new Obj_v12(o).unk1CC - Mem.F32(0x800D2988u)));
+                    Mem.Copy(_fp, new Obj_v12(o).pos.P, 12);
                 }
                 func_0024F490(o);
-                if ((Mem.U32((o + 24u)) != 0x8011F448u))
+                if ((new Obj_v12(o).def_ != 0x8011F448u))
                 {
-                    Mem.Set((o + 28u), 0.0f);
-                    Mem.Set((o + 32u), 0.0f);
-                    Mem.Set((o + 36u), 0.0f);
+                    new Obj_v12(o).vx_Set(0.0f);
+                    new Obj_v12(o).vy_Set(0.0f);
+                    new Obj_v12(o).vz_Set(0.0f);
                 }
-                func_00243A80((int)(o), Mem.F32((o + 8u)), Mem.F32(((o + 8u) + 4u)), Mem.F32(((o + 8u) + 8u)), (int)(t));
-                Mem.Set(((o + 380u) + (uint)(0 * 4)), (Mem.F32((o + 8u)) - 81.9199981f));
-                Mem.Set(((o + 380u) + (uint)(1 * 4)), (Mem.F32(((o + 8u) + 4u)) - 81.9199981f));
-                Mem.Set(((o + 380u) + (uint)(2 * 4)), (Mem.F32(((o + 8u) + 8u)) - 81.9199981f));
-                Mem.Set(((o + 380u) + (uint)(3 * 4)), (Mem.F32((o + 8u)) + 81.9199981f));
-                Mem.Set(((o + 380u) + (uint)(4 * 4)), (Mem.F32(((o + 8u) + 4u)) + 81.9199981f));
-                Mem.Set(((o + 380u) + (uint)(5 * 4)), (Mem.F32(((o + 8u) + 8u)) + 81.9199981f));
+                func_00243A80((int)(o), new Obj_v12(o).pos.x, new Obj_v12(o).pos.y, new Obj_v12(o).pos.z, (int)(t));
+                new Obj_v12(o).box.Set((int)(0), (new Obj_v12(o).pos.x - 81.9199981f));
+                new Obj_v12(o).box.Set((int)(1), (new Obj_v12(o).pos.y - 81.9199981f));
+                new Obj_v12(o).box.Set((int)(2), (new Obj_v12(o).pos.z - 81.9199981f));
+                new Obj_v12(o).box.Set((int)(3), (new Obj_v12(o).pos.x + 81.9199981f));
+                new Obj_v12(o).box.Set((int)(4), (new Obj_v12(o).pos.y + 81.9199981f));
+                new Obj_v12(o).box.Set((int)(5), (new Obj_v12(o).pos.z + 81.9199981f));
             }
         }
         finally { Stack.Free(12); }

@@ -10,19 +10,19 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00293EAC", (uint)g);
-            uint b = (0x80145040u + 6240u);
-            uint s = (0x80145040u + 4744u);
-            uint q = (0x80145040u + 72u);
+            uint b = new B21World(0x80145040u).blk.P;
+            uint s = new B21World(0x80145040u).sub1288.P;
+            uint q = new B21World(0x80145040u).sub48.P;
             func_0025E2F4(0);
-            Mem.Set((b + 172u), 0);
-            Mem.Set((b + 136u), 0);
-            Mem.Set((s + 178u), (byte)(1));
-            Mem.Set((s + 29u), (byte)(0));
-            Mem.Set((s + 30u), (byte)(1));
+            new B21GameBlk(b).unkAC_Set(0);
+            new B21GameBlk(b).unk88_Set(0);
+            new B21Sub1288(s).unkB2_Set((byte)(1));
+            new B21Sub1288(s).unk1D_Set((byte)(0));
+            new B21Sub1288(s).unk1E_Set((byte)(1));
             func_00293318(g, 0, 0);
             func_00286A78(0x8011FE88u, (uint)(0), (uint)(0), default(uint));
-            func_0044AFC0(q, (uint)(1), default(uint), default(uint));
-            Mem.Set((q + 352u), 0);
+            func_0044AFC0(q, 1);
+            new B21Sub48(q).unk160_Set(0);
             func_00297008(0);
         }
     }

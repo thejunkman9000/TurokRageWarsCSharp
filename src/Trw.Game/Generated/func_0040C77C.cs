@@ -11,13 +11,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0040C77C", (uint)w, (uint)cmd, (uint)a2, (uint)a3);
             uint s = w;
-            if ((Mem.S32((s + 80u)) < Mem.S32((s + 68u))))
+            if ((new O02Slider(s).val < new O02Slider(s).min))
             {
-                Mem.Set((s + 80u), Mem.S32((s + 68u)));
+                new O02Slider(s).val_Set(new O02Slider(s).min);
             }
-            if ((Mem.S32((s + 80u)) > Mem.S32((s + 72u))))
+            if ((new O02Slider(s).val > new O02Slider(s).max))
             {
-                Mem.Set((s + 80u), Mem.S32((s + 72u)));
+                new O02Slider(s).val_Set(new O02Slider(s).max);
             }
             switch (cmd)
             {
@@ -25,10 +25,10 @@ public static partial class Game
             case 8:
                 if ((a3 != 0))
                 {
-                    Mem.Set((s + 80u), (int)((int)(Mem.S32((s + 80u))) + Mem.S32((s + 76u))));
-                    if ((Mem.S32((s + 72u)) < Mem.S32((s + 80u))))
+                    new O02Slider(s).val_Set((int)((int)(new O02Slider(s).val) + new O02Slider(s).step));
+                    if ((new O02Slider(s).max < new O02Slider(s).val))
                     {
-                        Mem.Set((s + 80u), Mem.S32((s + 72u)));
+                        new O02Slider(s).val_Set(new O02Slider(s).max);
                     }
                 }
                 break;
@@ -36,53 +36,53 @@ public static partial class Game
             case 7:
                 if ((a3 != 0))
                 {
-                    Mem.Set((s + 80u), (int)((int)(Mem.S32((s + 80u))) - Mem.S32((s + 76u))));
-                    if ((Mem.S32((s + 80u)) < Mem.S32((s + 68u))))
+                    new O02Slider(s).val_Set((int)((int)(new O02Slider(s).val) - new O02Slider(s).step));
+                    if ((new O02Slider(s).val < new O02Slider(s).min))
                     {
-                        Mem.Set((s + 80u), Mem.S32((s + 68u)));
+                        new O02Slider(s).val_Set(new O02Slider(s).min);
                     }
                 }
                 break;
             case 4096:
-                return Mem.S32((s + 80u));
+                return new O02Slider(s).val;
             case 4098:
-                return Mem.S32((s + 68u));
+                return new O02Slider(s).min;
             case 4099:
-                return Mem.S32((s + 72u));
+                return new O02Slider(s).max;
             case 4102:
-                return Mem.S32((s + 76u));
+                return new O02Slider(s).step;
             case 4104:
-                return Mem.S32((s + 108u));
+                return new O02Slider(s).unk6C;
             case 4101:
-                if (((a2 >= Mem.S32((s + 68u))) && (a2 <= Mem.S32((s + 72u)))))
+                if (((a2 >= new O02Slider(s).min) && (a2 <= new O02Slider(s).max)))
                 {
-                    Mem.Set((s + 80u), a2);
+                    new O02Slider(s).val_Set(a2);
                 }
                 break;
             case 4100:
-                if ((Mem.S32((s + 68u)) < a2))
+                if ((new O02Slider(s).min < a2))
                 {
-                    Mem.Set((s + 72u), a2);
+                    new O02Slider(s).max_Set(a2);
                 }
-                if ((a3 < Mem.S32((s + 72u))))
+                if ((a3 < new O02Slider(s).max))
                 {
-                    Mem.Set((s + 68u), a3);
+                    new O02Slider(s).min_Set(a3);
                 }
                 break;
             case 4103:
-                if ((a2 < (Mem.S32((s + 72u)) - Mem.S32((s + 68u)))))
+                if ((a2 < (new O02Slider(s).max - new O02Slider(s).min)))
                 {
-                    Mem.Set((s + 76u), a2);
+                    new O02Slider(s).step_Set(a2);
                 }
                 break;
             case 4105:
-                Mem.Set((s + 108u), a2);
+                new O02Slider(s).unk6C_Set(a2);
                 break;
             default:
                 return 0;
             }
             func_0040C9D0(s);
-            func_0029A5D4((uint)(func_0029A958()), (uint)(4106), (uint)((int)(Mem.S16((w + 12u)))), (uint)(Mem.S32((s + 80u))), (uint)(0));
+            func_0029A5D4((uint)(func_0029A958()), (uint)(4106), (uint)((int)(new O02Widget(w).id)), (uint)(new O02Slider(s).val), (uint)(0));
             func_0029A73C();
             return 0;
         }

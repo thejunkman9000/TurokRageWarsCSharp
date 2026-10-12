@@ -10,37 +10,37 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00412270", (uint)p);
-            if (((int)(Mem.U8((p + 75u))) < (int)(Mem.U8((p + 77u)))))
+            if (((int)(new S_func_00412270(p).b4B) < (int)(new S_func_00412270(p).b4D)))
             {
-                Mem.Set((p + 77u), Mem.U8((p + 75u)));
+                new S_func_00412270(p).b4D_Set(new S_func_00412270(p).b4B);
             }
-            if (((int)(Mem.U8((p + 74u))) < (int)(Mem.U8((p + 76u)))))
+            if (((int)(new S_func_00412270(p).b4A) < (int)(new S_func_00412270(p).b4C)))
             {
-                Mem.Set((p + 76u), Mem.U8((p + 74u)));
+                new S_func_00412270(p).b4C_Set(new S_func_00412270(p).b4A);
             }
-            if (((int)(Mem.U8((p + 77u))) < (int)(Mem.U8((p + 81u)))))
+            if (((int)(new S_func_00412270(p).b4D) < (int)(new S_func_00412270(p).b51)))
             {
-                Mem.Set((p + 77u), Mem.U8((p + 81u)));
+                new S_func_00412270(p).b4D_Set(new S_func_00412270(p).b51);
             }
-            if (((int)(Mem.U8((p + 76u))) < (int)(Mem.U8((p + 80u)))))
+            if (((int)(new S_func_00412270(p).b4C) < (int)(new S_func_00412270(p).b50)))
             {
-                Mem.Set((p + 76u), Mem.U8((p + 80u)));
+                new S_func_00412270(p).b4C_Set(new S_func_00412270(p).b50);
             }
-            if (!(((int)(Mem.U8((p + 77u))) - (int)(Mem.U8((p + 79u)))) < ((int)(Mem.U8((p + 73u))) - (int)(Mem.U8((p + 81u))))))
+            if (!(((int)(new S_func_00412270(p).b4D) - (int)(new S_func_00412270(p).b4F)) < ((int)(new S_func_00412270(p).b49) - (int)(new S_func_00412270(p).b51))))
             {
-                Mem.Set((p + 79u), (byte)((((int)(Mem.U8((p + 77u))) - ((int)(Mem.U8((p + 73u))) - (int)(Mem.U8((p + 81u))))) + 1)));
+                new S_func_00412270(p).b4F_Set((byte)((((int)(new S_func_00412270(p).b4D) - ((int)(new S_func_00412270(p).b49) - (int)(new S_func_00412270(p).b51))) + 1)));
             }
-            if (!(((int)(Mem.U8((p + 76u))) - (int)(Mem.U8((p + 78u)))) < ((int)(Mem.U8((p + 72u))) - (int)(Mem.U8((p + 80u))))))
+            if (!(((int)(new S_func_00412270(p).b4C) - (int)(new S_func_00412270(p).b4E)) < ((int)(new S_func_00412270(p).b48) - (int)(new S_func_00412270(p).b50))))
             {
-                Mem.Set((p + 78u), (byte)((((int)(Mem.U8((p + 76u))) - ((int)(Mem.U8((p + 72u))) - (int)(Mem.U8((p + 80u))))) + 1)));
+                new S_func_00412270(p).b4E_Set((byte)((((int)(new S_func_00412270(p).b4C) - ((int)(new S_func_00412270(p).b48) - (int)(new S_func_00412270(p).b50))) + 1)));
             }
-            if (((int)(Mem.U8((p + 77u))) < (int)(Mem.U8((p + 79u)))))
+            if (((int)(new S_func_00412270(p).b4D) < (int)(new S_func_00412270(p).b4F)))
             {
-                Mem.Set((p + 79u), Mem.U8((p + 77u)));
+                new S_func_00412270(p).b4F_Set(new S_func_00412270(p).b4D);
             }
-            if (((int)(Mem.U8((p + 76u))) < (int)(Mem.U8((p + 78u)))))
+            if (((int)(new S_func_00412270(p).b4C) < (int)(new S_func_00412270(p).b4E)))
             {
-                Mem.Set((p + 78u), Mem.U8((p + 76u)));
+                new S_func_00412270(p).b4E_Set(new S_func_00412270(p).b4C);
             }
         }
     }

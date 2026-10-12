@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025C5DC", (uint)v);
-            alSndpPlay((Mem.U32((v + 176u)) + 132u));
+            alSndpPlay(new SndMgr(new SndVoice(v).mgr_).player.P);
         }
     }
 

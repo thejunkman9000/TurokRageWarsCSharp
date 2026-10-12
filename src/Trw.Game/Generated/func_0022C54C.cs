@@ -14,9 +14,9 @@ public static partial class Game
             int i = 0;
             if ((n < (uint)(8)))
             {
-                for (p = Mem.U32((group + 32u)); (p != 0u); p = Mem.U32((p + 5856u)))
+                for (p = new ActorGroup(group).head_; (p != 0u); p = new Actor(p).next_)
                 {
-                    if (((int)(Mem.U8((Mem.U32((p + 1496u)) + (uint)144))) == 0))
+                    if (((int)(Mem.U8((new Actor(p).stats_ + (uint)144))) == 0))
                     {
                         if (((uint)(i) == n))
                         {

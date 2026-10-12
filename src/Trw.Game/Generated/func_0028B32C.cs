@@ -15,7 +15,7 @@ public static partial class Game
             {
                 return (uint)((-1));
             }
-            @base = (func_0028FD94(Mem.U32((lv + 108u)), 2) + (uint)8);
+            @base = (func_0028FD94(new Level(lv).unk6C_, 2) + (uint)8);
             return ((uint)(((int)(elem - @base))) >> (int)5);
         }
     }

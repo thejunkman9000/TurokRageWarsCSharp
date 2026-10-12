@@ -15,34 +15,34 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00290C04", (uint)arg);
                 uint g = 0u;
                 uint vi = Mem.U32(0x8011FE80u);
-                func_00291BF8((uint)(arg), (uint)(0), (uint)(Mem.S32(0x800E28D0u)), (uint)(0), (uint)(Mem.S32(0x800E28D4u)), (uint)(0));
+                func_00291BF8(arg, 0, Mem.S32(0x800E28D0u), 0, Mem.S32(0x800E28D4u), 0);
                 Mem.Set(_fp, (uint)(0));
                 Mem.Set((_fp + 4u), (uint)(0));
                 g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                Mem.Set(g, 3976200192u);
-                Mem.Set((g + 4u), (uint)(((((int)(((float)((Mem.S32(0x800E28D0u) - 1)) * 4.0f)) & 4095) << (int)12) | ((int)(((float)((Mem.S32(0x800E28D4u) - 1)) * 4.0f)) & 4095))));
+                new DlCmd(g).w0_Set(3976200192u);
+                new DlCmd(g).w1_Set((uint)(((((int)(((float)((Mem.S32(0x800E28D0u) - 1)) * 4.0f)) & 4095) << (int)12) | ((int)(((float)((Mem.S32(0x800E28D4u) - 1)) * 4.0f)) & 4095))));
                 g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                Mem.Set(g, (4279238656u | (uint)(((Mem.S32(0x800E28D0u) - 1) & 4095))));
-                Mem.Set((g + 4u), Mem.U32((vi + 272u)));
+                new DlCmd(g).w0_Set((4279238656u | (uint)(((Mem.S32(0x800E28D0u) - 1) & 4095))));
+                new DlCmd(g).w1_Set(new Vi(vi).fb);
                 g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                Mem.Set(g, 3808430593u);
-                Mem.Set((g + 4u), (uint)(3145728));
+                new DlCmd(g).w0_Set(3808430593u);
+                new DlCmd(g).w1_Set((uint)(3145728));
                 g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                Mem.Set(g, 4244635647u);
-                Mem.Set((g + 4u), 4294867260u);
+                new DlCmd(g).w0_Set(4244635647u);
+                new DlCmd(g).w1_Set(4294867260u);
                 g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                Mem.Set(g, 3791650844u);
-                Mem.Set((g + 4u), (uint)(0));
+                new DlCmd(g).w0_Set(3791650844u);
+                new DlCmd(g).w1_Set((uint)(0));
                 g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                Mem.Set(g, 4143972352u);
-                Mem.Set((g + 4u), (uint)(65537));
+                new DlCmd(g).w0_Set(4143972352u);
+                new DlCmd(g).w1_Set((uint)(65537));
                 g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                Mem.Set(g, ((4127195136u | (uint)(((Mem.S32(0x800E28D0u) & 1023) << (int)14))) | (uint)(((Mem.S32(0x800E28D4u) & 1023) << (int)2))));
-                Mem.Set((g + 4u), (uint)(0));
+                new DlCmd(g).w0_Set(((4127195136u | (uint)(((Mem.S32(0x800E28D0u) & 1023) << (int)14))) | (uint)(((Mem.S32(0x800E28D4u) & 1023) << (int)2))));
+                new DlCmd(g).w1_Set((uint)(0));
                 func_002AB940(902, 0, _fp, (_fp + 4u));
                 if (((Mem.U32(_fp) != (uint)(0)) && (Mem.U32((_fp + 4u)) != (uint)(0))))
                 {
-                    func_002AA224((uint)(255));
+                    func_002AA224((uint)(255), default(uint), default(uint), default(uint));
                     func_002ABC18(902, 0, (short)(0), (short)(0), ((float)(Mem.S32(0x800E28D0u)) / (float)((int)(Mem.U32(_fp)))), ((float)(Mem.S32(0x800E28D4u)) / (float)((int)(Mem.U32((_fp + 4u))))), 1);
                 }
             }

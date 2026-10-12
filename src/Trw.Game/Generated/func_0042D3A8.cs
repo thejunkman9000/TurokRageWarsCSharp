@@ -14,14 +14,14 @@ public static partial class Game
             uint e = 0u;
             for (i = 0; (i < 8); ++i)
             {
-                int n = Mem.S32(((Mem.U32(0x800E53C0u) + 240u) + (uint)(i * 4)));
+                int n = new O04ModeS53C0(Mem.U32(0x800E53C0u)).unkF0[(int)(i)];
                 if ((n != (-1)))
                 {
                     e = (0x80146398u + (uint)(n * 150));
-                    if (((int)(Mem.U8((e + 145u))) == 0))
+                    if (((int)(new O04Ent96b(e).unk91) == 0))
                     {
-                        Mem.Set((Mem.U32(0x800E53C0u) + 780u), func_00425FDC(n));
-                        func_004260C4(n, ((Mem.U32(0x800E53C0u) + 272u) + (uint)(n * 4)));
+                        new O04ModeS53C0(Mem.U32(0x800E53C0u)).unk32C_Set(func_00425FDC(n));
+                        func_004260C4(n, (new O04ModeS53C0(Mem.U32(0x800E53C0u)).unk110.P + (uint)(n * 8)));
                         func_00425BC0(n);
                     }
                 }

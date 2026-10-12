@@ -16,12 +16,12 @@ public static partial class Game
                 float target = 0f;
                 float d = 0f;
                 target = 0.0f;
-                if (!(((int)((ushort)(((int)(Mem.S16((p + 1616u))) - 9))) < 4))) goto _f0;
+                if (!(((int)((ushort)(((int)(new Player_v3(p).state) - 9))) < 4))) goto _f0;
                 target = Mem.F32((0x800C7EE8u + (uint)(0 * 4)));
                 _f0: ;
-                Mem.Set(_fp, Mem.F32((p + 1824u)));
+                Mem.Set(_fp, new Player_v3(p).f720);
                 func_002748E0(_fp, target, 0.25f);
-                d = (Mem.F32(_fp) - Mem.F32((p + 1824u)));
+                d = (Mem.F32(_fp) - new Player_v3(p).f720);
                 if (!((d < (float)(0)))) goto _f1;
                 if (!(((-d) < Mem.F32((0x800C7EE8u + (uint)(1 * 4)))))) goto _f2;
                 goto L_zero;
@@ -33,7 +33,7 @@ public static partial class Game
                 d = (float)(0);
                 _f4: ;
                 _f3: ;
-                Mem.Set((p + 1824u), (float)((float)(Mem.F32((p + 1824u))) + d));
+                new Player_v3(p).f720_Set((float)((float)(new Player_v3(p).f720) + d));
             }
         }
         finally { Stack.Free(4); }

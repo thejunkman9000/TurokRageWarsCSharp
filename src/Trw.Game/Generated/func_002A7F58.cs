@@ -5,34 +5,57 @@ namespace Trw.Game;
 
 public static partial class Game
 {
-    public static void func_002A7F58_clr(uint s)
+    public static void func_002A7F58_clear_entry(uint e)
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("func_002A7F58_clr", (uint)s);
-            Mem.Set((s + 4u), 0);
-            Mem.Set(s, 0);
-            Mem.Set((s + 13u), (byte)(0));
-            Mem.Set((s + 24u), (short)(0));
-            Mem.Set((s + 28u), 0);
+            if (Dbg.On) Dbg.Enter("func_002A7F58_clear_entry", (uint)e);
+            new Entry_func_802A6F68_de(e).unk4_Set(0);
+            new Entry_func_802A6F68_de(e).unk0_Set(0);
+            new Entry_func_802A6F68_de(e).unkD_Set((byte)(0));
+            new Entry_func_802A6F68_de(e).unk18_Set((short)(0));
+            new Entry_func_802A6F68_de(e).unk1C_Set(0);
         }
     }
 
-    public static void func_002A7F58(uint c)
+    public static int func_002A7F58_is_restorable(uint address)
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("func_002A7F58", (uint)c);
-            int i = 0;
-            for (i = 0; (i < 4); ++i)
+            if (Dbg.On) Dbg.Enter("func_002A7F58_is_restorable", (uint)address);
+            if (((address >= (uint)(0x800D2F80u)) && (address < ((uint)(0x800D2F80u) + (uint)(16)))))
             {
-                func_002A7F58_clr(((c + 4u) + (uint)(i * 56)));
+                return 0;
             }
-            Mem.Set(c, (byte)(0));
-            Mem.Set((c + 1u), (byte)(0));
-            Mem.Set((c + 228u), (ushort)(0));
-            Mem.Set((c + 230u), (short)((-5)));
-            Mem.Set((c + 232u), 0);
+            if ((address == (uint)(0x8014D330u)))
+            {
+                return 0;
+            }
+            if ((Mem.S32(0x8014D330u) != 0))
+            {
+                return 1;
+            }
+            if (((address >= (uint)(0x8010FC40u)) && (address < ((uint)(0x8010FC40u) + (uint)(1072)))))
+            {
+                return 0;
+            }
+            if (((address >= (uint)(0x801462C8u)) && (address < ((uint)(0x801462C8u) + (uint)(1412)))))
+            {
+                return 0;
+            }
+            if (((address >= (uint)(0x800FD1F0u)) && (address < ((uint)(0x800FD1F0u) + (uint)(22528)))))
+            {
+                return 0;
+            }
+            if (((address >= (uint)(0x800F81F0u)) && (address < ((uint)(0x800F81F0u) + (uint)(20480)))))
+            {
+                return 0;
+            }
+            if (((address >= ((uint)(0x801462C8u) + (uint)(1496))) && (address <= ((uint)(0x801462C8u) + (uint)(1672)))))
+            {
+                return 0;
+            }
+            return 1;
         }
     }
 

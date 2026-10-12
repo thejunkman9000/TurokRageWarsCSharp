@@ -11,9 +11,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0025C388", (uint)e, (uint)l);
             float t = 0f;
-            uint p = (e + 52u);
-            uint q = (l + 296u);
-            float d2 = ((((Mem.F32(p) - Mem.F32(q)) * (Mem.F32(p) - Mem.F32(q))) + ((Mem.F32((p + 4u)) - Mem.F32((q + 4u))) * (Mem.F32((p + 4u)) - Mem.F32((q + 4u))))) + ((Mem.F32((p + 8u)) - Mem.F32((q + 8u))) * (Mem.F32((p + 8u)) - Mem.F32((q + 8u)))));
+            uint p = new Emitter_v3(e).pos.P;
+            uint q = new Listener(l).pos.P;
+            float d2 = ((((new Vec3f(p).x - new Vec3f(q).x) * (new Vec3f(p).x - new Vec3f(q).x)) + ((new Vec3f(p).y - new Vec3f(q).y) * (new Vec3f(p).y - new Vec3f(q).y))) + ((new Vec3f(p).z - new Vec3f(q).z) * (new Vec3f(p).z - new Vec3f(q).z)));
             if ((Mem.F32(0x800D0D10u) <= d2))
             {
                 t = 0.0f;
@@ -22,7 +22,7 @@ public static partial class Game
             {
                 t = (Mem.F32(0x800C908Cu) - (d2 / Mem.F32(0x800D0D10u)));
             }
-            switch ((int)(Mem.S8((e + 68u))))
+            switch ((int)(new Emitter_v3(e).type))
             {
             case 2:
                 break;

@@ -12,10 +12,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("alHeapDBAlloc", (uint)file, (uint)line, (uint)hp, (uint)num);
             uint ptr = 0u;
             int bytes = (((num * size) + 15) & (~15));
-            if (((Mem.U32((hp + 4u)) + (uint)bytes) <= (Mem.U32(hp) + (uint)Mem.S32((hp + 8u)))))
+            if (((new ALHeap(hp).cur_ + (uint)bytes) <= (new ALHeap(hp).base_ + (uint)new ALHeap(hp).len)))
             {
-                ptr = Mem.U32((hp + 4u));
-                Mem.Set((hp + 4u), (uint)(Mem.U32((hp + 4u)) + (uint)(bytes * 1)));
+                ptr = new ALHeap(hp).cur_;
+                new ALHeap(hp).cur__Set((uint)(new ALHeap(hp).cur_ + (uint)(bytes * 1)));
             }
             return ptr;
         }

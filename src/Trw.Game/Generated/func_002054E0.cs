@@ -10,25 +10,25 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002054E0", (uint)actor, (uint)state);
-            uint info = (Mem.U32((actor + 24u)) + (uint)20);
-            Mem.Set((actor + 256u), (uint)((uint)(Mem.U32((actor + 256u))) & 4294901759u));
+            uint info = (new B01Actor(actor).def_ + (uint)20);
+            new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & 4294901759u));
             func_00278DE8(actor, 262144, (int)(actor));
-            if ((Mem.S32((info + 44u)) == 0))
+            if ((new B01Info(info).unk2C == 0))
             {
-                Mem.Set((actor + 256u), (uint)((uint)(Mem.U32((actor + 256u))) & (uint)((~8192))));
-                Mem.Set((actor + 256u), (uint)((uint)(Mem.U32((actor + 256u))) & (uint)((~256))));
+                new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~8192))));
+                new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~256))));
             }
             if ((Mem.S32((0x8011FE88u + (uint)(0 * 4))) == 4))
             {
-                if ((Mem.S32((info + 52u)) != (-1)))
+                if ((new B01Info(info).unk34.i != (-1)))
                 {
-                    func_0025DE74((int)((uint)((int)(Mem.S16(((info + 52u) + (uint)(1 * 2)))))), C.Tmp(Cpu.F2U(Mem.F32((actor + 8u))), Cpu.F2U(Mem.F32(((actor + 8u) + 4u))), Cpu.F2U(Mem.F32(((actor + 8u) + 8u)))), (int)((uint)(0)), (int)((uint)((-1))));
+                    func_0025DE74((int)((uint)((int)(new B01Info(info).unk34.h[(int)(1)]))), C.Tmp(Cpu.F2U(new B01Actor(actor).pos.x), Cpu.F2U(new B01Actor(actor).pos.y), Cpu.F2U(new B01Actor(actor).pos.z)), (int)((uint)(0)), (int)((uint)((-1))));
                 }
-                if ((Mem.S32((info + 48u)) != (-1)))
+                if ((new B01Info(info).unk30 != (-1)))
                 {
-                    func_00216288(actor, Mem.S32((info + 48u)), (actor + 8u));
+                    func_00216288(actor, new B01Info(info).unk30, new B01Actor(actor).pos.P);
                 }
-                func_002170A0(actor, state, (uint)(8), (uint)(Mem.S32((info + 56u))), (uint)(Mem.S32((info + 60u))));
+                func_002170A0(actor, state, (uint)(8), (uint)(new B01Info(info).unk38), (uint)(new B01Info(info).unk3C));
             }
         }
     }

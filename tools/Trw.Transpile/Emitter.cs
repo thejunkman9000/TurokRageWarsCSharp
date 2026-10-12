@@ -10,7 +10,7 @@ public sealed class Unsupported(string what) : Exception(what) { }
 /// <c>Mem</c>; scalar locals are C# locals; pointers are <c>uint</c> guest addresses. Locals that need an address
 /// (structs, arrays, anything whose address is taken) live in a guest stack frame (<c>Stack.Alloc</c>).
 /// </summary>
-public sealed class Emitter
+public sealed partial class Emitter
 {
     readonly AstIndex ix;
     readonly Func<string, uint?> symbolAddress;
@@ -85,8 +85,12 @@ public sealed class Emitter
     public readonly HashSet<string> ReferencedStatics = new();
 
     /// <summary>Overlay functions appear as func_4009F4 in some sources and func_004009F4 in others; use the long form.</summary>
+    /// <summary>Names the other decompilation gave to functions of this ROM (func_802A1898_de) -> the name used here (see Program.cs).</summary>
+    public static readonly Dictionary<string, string> Aliases = new();
+
     public static string Norm(string n)
     {
+        if (Aliases.TryGetValue(n, out var alias)) return alias;
         if (n.Length == 11 && n.StartsWith("func_")) return "func_00" + n[5..];
         // func_802BC380 is the KSEG0 (cached) alias of the code at 0x002BC380
         if (n.Length == 13 && n.StartsWith("func_") && "89ABab".Contains(n[5]) && uint.TryParse(n[5..], System.Globalization.NumberStyles.HexNumber, null, out var a))
@@ -162,7 +166,7 @@ public sealed class Emitter
 
     public string EmitFunction(JsonNode fn)
     {
-        sb.Clear(); indent = 1; frame = new(); frameSize = 0; labels = new(); lastTerminates = false;
+        sb.Clear(); indent = 1; frame = new(); renames = new(); frameSize = 0; labels = new(); lastTerminates = false;
         localIds = new(); callTemps = new(ReferenceEqualityComparer.Instance);
         var name = FnName(fn);
         var (ret, _) = SignatureOf(fn);
@@ -517,6 +521,18 @@ public sealed class Emitter
             foreach (var c in Kids(n)) Scan(c);
         }
         Scan(body);
+        // C scopes are finer than C#'s: a block-scoped local may reuse the name of a local of an enclosing scope (or one that comes later), which C# rejects
+        // (CS0136). Every local gets a function-wide unique C# name.
+        {
+            var taken = new HashSet<string>(ps.Select(p => (string)p["name"]!));
+            foreach (var d in decls)
+            {
+                var nm = (string)d["name"]!;
+                var uniq = nm; int k = 2;
+                while (!taken.Add(uniq)) uniq = $"{nm}_{k++}";
+                if (uniq != nm) renames[(string)d["id"]!] = Id(uniq);
+            }
+        }
 
         void Place(JsonNode d)
         {
@@ -720,7 +736,7 @@ public sealed class Emitter
         if (KindOf(d) != "VarDecl") throw new Unsupported($"local {KindOf(d)}");
         if ((string?)d["storageClass"] == "static") throw new Unsupported("static local");
         var t = TypeOf(d);
-        var name = Id((string)d["name"]!);
+        var name = renames.TryGetValue((string)d["id"]!, out var uname) ? uname : Id((string)d["name"]!);
         if (frame.TryGetValue((string)d["id"]!, out var off))
         {
             if (InnerCount(d) == 0) return "";
@@ -921,6 +937,7 @@ public sealed class Emitter
             {
                 var f = ix.FieldsById.GetValueOrDefault((string)e["referencedMemberDecl"]!) ?? throw new Unsupported("member of anonymous/indirect field");
                 if (f.Offset < 0) throw new Unsupported($"bitfield {f.Name}");
+                if (Views != null && TryMember(e, out var av0, out var am0) && am0.T.K is 'N' or 'A') return $"{av0}.{am0.Name}.P";
                 var b = e["isArrow"]?.GetValue<bool>() == true ? Value(Inner(e, 0)) : Addr(Inner(e, 0));
                 return f.Offset == 0 ? b : $"({b} + {f.Offset}u)";
             }
@@ -991,6 +1008,7 @@ public sealed class Emitter
         if (IsLocalRef(e)) return Value(e);
         var t = TypeOf(e);
         if (t.Kind is K.Array or K.Record) throw new Unsupported($"rvalue of {t.Kind}");
+        if (Views != null && TryViewAccess(e, t, out var vr, out _)) return vr;
         return $"Mem.{Getter(t)}({Addr(e)})";
     }
 
@@ -1014,6 +1032,7 @@ public sealed class Emitter
             return $"({n} = {CastTo(t, compute(n))})";
         }
         if (HasSideEffects(lv)) throw new Unsupported("read-modify-write through an address with side effects");
+        if (Views != null && TryViewAccess(lv, t, out var vread, out var vwrite)) return vwrite(CastTo(t, compute(vread)));
         var a = Addr(lv);
         return $"Mem.Set({a}, {CastTo(t, compute($"Mem.{Getter(t)}({a})"))})";
     }
@@ -1068,6 +1087,7 @@ public sealed class Emitter
                     return $"Mem.Copy({Addr(l)}, {Addr(StripValueCast(r))}, {t.Size})";
                 if (t.Kind == K.Array) throw new Unsupported("array assignment");
                 if (IsLocalRef(l)) return $"({Value(l)} = {Value(r)})";
+                if (Views != null && TryViewAccess(l, t, out _, out var vw)) return vw(Value(r));
                 return $"Mem.Set({Addr(l)}, {Value(r)})";
             }
             case "==": case "!=": case "<": case ">": case "<=": case ">=": case "&&": case "||":

@@ -10,23 +10,23 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00443D84", (uint)a, (uint)b);
-            if ((Mem.U32((a + 28u)) != 0u))
+            if ((new O06A_v26(a).unk1C_ != 0u))
             {
-                Mem.Set((Mem.U32((a + 28u)) + 2140u), 1);
+                new O06P_v3(new O06A_v26(a).unk1C_).unk85C_Set(1);
             }
-            Mem.Set((Mem.U32((a + 12u)) + 448u), (uint)((uint)(Mem.U32((Mem.U32((a + 12u)) + 448u))) | (uint)(25165824)));
-            Mem.Set((Mem.U32((a + 12u)) + 448u), (uint)((uint)(Mem.U32((Mem.U32((a + 12u)) + 448u))) & (uint)((~16777216))));
-            Mem.Set((Mem.U32((a + 12u)) + 88u), (uint)((uint)(Mem.U32((Mem.U32((a + 12u)) + 88u))) | (uint)(25165824)));
-            Mem.Set((Mem.U32((a + 12u)) + 528u), (uint)((uint)(Mem.U32((Mem.U32((a + 12u)) + 528u))) & (uint)((~25165824))));
-            Mem.Set((Mem.U32((a + 12u)) + 568u), (uint)((uint)(Mem.U32((Mem.U32((a + 12u)) + 568u))) & (uint)((~25165824))));
-            Mem.Set((Mem.U32((a + 12u)) + 608u), (uint)((uint)(Mem.U32((Mem.U32((a + 12u)) + 608u))) & (uint)((~25165824))));
+            new O06B_v5(new O06A_v26(a).unkC_).unk1C0_Set((uint)((uint)(new O06B_v5(new O06A_v26(a).unkC_).unk1C0) | (uint)(25165824)));
+            new O06B_v5(new O06A_v26(a).unkC_).unk1C0_Set((uint)((uint)(new O06B_v5(new O06A_v26(a).unkC_).unk1C0) & (uint)((~16777216))));
+            new O06B_v5(new O06A_v26(a).unkC_).unk58_Set((uint)((uint)(new O06B_v5(new O06A_v26(a).unkC_).unk58) | (uint)(25165824)));
+            new O06B_v5(new O06A_v26(a).unkC_).unk210_Set((uint)((uint)(new O06B_v5(new O06A_v26(a).unkC_).unk210) & (uint)((~25165824))));
+            new O06B_v5(new O06A_v26(a).unkC_).unk238_Set((uint)((uint)(new O06B_v5(new O06A_v26(a).unkC_).unk238) & (uint)((~25165824))));
+            new O06B_v5(new O06A_v26(a).unkC_).unk260_Set((uint)((uint)(new O06B_v5(new O06A_v26(a).unkC_).unk260) & (uint)((~25165824))));
             if ((Mem.S32((0x801468F4u + (uint)(0 * 4))) != 0))
             {
-                Mem.Set((Mem.U32((a + 12u)) + 288u), (uint)((uint)(Mem.U32((Mem.U32((a + 12u)) + 288u))) | (uint)(16777216)));
+                new O06B_v5(new O06A_v26(a).unkC_).unk120_Set((uint)((uint)(new O06B_v5(new O06A_v26(a).unkC_).unk120) | (uint)(16777216)));
             }
             else
             {
-                Mem.Set((Mem.U32((a + 12u)) + 288u), (uint)((uint)(Mem.U32((Mem.U32((a + 12u)) + 288u))) & (uint)((~16777216))));
+                new O06B_v5(new O06A_v26(a).unkC_).unk120_Set((uint)((uint)(new O06B_v5(new O06A_v26(a).unkC_).unk120) & (uint)((~16777216))));
             }
         }
     }

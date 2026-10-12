@@ -10,12 +10,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002171C8", (uint)s);
-            uint p = Mem.U32((s + 4u));
+            uint p = new B04Seq(s).cur_;
             short v = Mem.S16(p);
-            Mem.Set((s + 4u), (p += 2u));
+            new B04Seq(s).cur__Set((p += 2u));
             if (((int)(Mem.S16(p)) == (-1)))
             {
-                Mem.Set((s + 4u), Mem.U32(s));
+                new B04Seq(s).cur__Set(new B04Seq(s).start_);
             }
             return (int)(v);
         }

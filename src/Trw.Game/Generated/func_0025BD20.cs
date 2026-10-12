@@ -12,10 +12,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0025BD20", (uint)p);
             int i = 0;
             int n = 0;
-            uint v = (p + 4u);
+            uint v = new SndVoices(p).v.P;
             for (i = 0; (i < 16); ++i)
             {
-                if (((Mem.S32((v + 8u)) != (-1)) && ((int)(Mem.S16((Mem.U32(p) + 258u))) != i)))
+                if (((new SndVoice(v).unk8 != (-1)) && ((int)(new SndMgr(new SndVoices(p).owner_).unk102) != i)))
                 {
                     func_0025AE3C(v, default(uint), default(uint), default(uint));
                     ++n;

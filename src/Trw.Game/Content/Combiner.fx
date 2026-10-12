@@ -18,6 +18,8 @@ float4 C1;
 float4 A1;
 float4 Prim;
 float4 Env;
+float4 FogC;    // fog colour
+float4 FogP;    // x: 1 = the blender mixes the fog colour in, y: 1 = the factor is the fog colour's alpha (else the vertex alpha the RSP replaced)
 float4 Flags;   // x: mode (0 combiner, 1 vertex colour, 2 copy; debug: 3 = second texture)  y: two cycles  z: alpha-test threshold  w: texture on
 
 sampler2D Tex0 : register(s0);
@@ -91,8 +93,13 @@ float4 PS(PI i) : COLOR0
         float4 o1 = cycle(C1, A1, o0, t0, t1, i.col);
         o = Flags.y > 0.5 ? o1 : o0;
     }
-    clip(o.a - Flags.z);
-    return o;
+    // fog (G_RM_FOG_SHADE_A / G_RM_FOG_PRIM_A): branch-free and written to a NEW variable: the header note above says that feeding o back into its own
+    // assignment and chained conditionals miscompile in MonoGame's GL translation (they lost the alpha, which would discard every pixel)
+    float fogOn = step(0.5, FogP.x) * step(Flags.x, 1.49);
+    float fogFactor = lerp(i.col.a, FogC.a, step(0.5, FogP.y)) * fogOn;
+    float4 res = float4(lerp(o.rgb, FogC.rgb, fogFactor), o.a);
+    clip(res.a - Flags.z);
+    return res;
 }
 
 technique Combiner

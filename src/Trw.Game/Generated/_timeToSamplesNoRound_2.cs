@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("_timeToSamplesNoRound_2", (uint)synth, (uint)micros);
-            float tmp = ((((float)(micros) * (float)(Mem.S32((synth + 68u)))) * 9.99999997E-7f) + 0.5f);
+            float tmp = ((((float)(micros) * (float)(new ALSynth(synth).outputRate)) * 9.99999997E-7f) + 0.5f);
             return (int)(tmp);
         }
     }

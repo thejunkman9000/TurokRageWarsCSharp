@@ -45,19 +45,19 @@ public static partial class Game
                 }
                 i0 = 0;
                 count = 0;
-                r = func_0028FD94((uint)(Mem.S32((ow + 104u))), 0);
+                r = func_0028FD94((uint)(new B19Owner(ow).f68), 0);
                 j0 = 0;
                 A = (r + (uint)8);
                 cols = Mem.S32((r + (uint)4));
-                r = func_0028FD94((uint)(Mem.S32((ow + 104u))), 1);
+                r = func_0028FD94((uint)(new B19Owner(ow).f68), 1);
                 B = (r + (uint)8);
                 s7 = (cols - 1);
-                r = func_0028FD94((uint)(Mem.S32((ow + 104u))), 2);
+                r = func_0028FD94((uint)(new B19Owner(ow).f68), 2);
                 rows = Mem.S32((r + (uint)4));
                 C = (r + (uint)8);
-                r = func_0028FD94((uint)(Mem.S32((ow + 104u))), 3);
+                r = func_0028FD94((uint)(new B19Owner(ow).f68), 3);
                 D = (r + (uint)8);
-                E = (func_0028FD94((uint)(Mem.S32((ow + 104u))), 4) + (uint)8);
+                E = (func_0028FD94((uint)(new B19Owner(ow).f68), 4) + (uint)8);
                 fp = (rows - 1);
                 while (((i0 < cols) && (Mem.F32((B + (uint)(i0 * 4))) < Mem.F32(0x801031F0u))))
                 {
@@ -76,10 +76,10 @@ public static partial class Game
                     --fp;
                 }
                 @out = (ow + (uint)5384);
-                if ((Mem.S32((ow + 112940u)) == 1))
+                if ((new B19Owner(ow).f1B92C == 1))
                 {
-                    ci = (int)(((Mem.F32((cam + 296u)) - Mem.F32((ow + 112912u))) / Mem.F32((ow + 112920u))));
-                    cj = (int)(((Mem.F32((cam + 304u)) - Mem.F32((ow + 112916u))) / Mem.F32((ow + 112924u))));
+                    ci = (int)(((new B19Cam(cam).x - new B19Owner(ow).f1B910) / new B19Owner(ow).f1B918));
+                    cj = (int)(((new B19Cam(cam).z - new B19Owner(ow).f1B914) / new B19Owner(ow).f1B91C));
                 }
                 else
                 {
@@ -88,14 +88,14 @@ public static partial class Game
                 }
                 if (((((ci < 0) || (ci >= cols)) || (cj < 0)) || (cj >= rows)))
                 {
-                    Mem.Set((ow + 112936u), 0);
+                    new B19Owner(ow).f1B928_Set(0);
                 }
                 else
                 {
-                    Mem.Set((ow + 112936u), 1);
-                    Mem.Set((ow + 112304u), func_002543A8((uint)(0), (uint)(Mem.S32((ow + 140u))), (uint)(((ci + (cj * cols)) + 1)), (uint)(Mem.S32((ow + 64u))), ow, 0x00285130u, 0x800CA310u));
-                    func_00253610(0, Mem.U32((ow + 112304u)));
-                    func_00297020((ow + (uint)112308), (uint)(ci), (uint)(cj), (uint)(Mem.S32(Mem.U32((ow + 112304u)))), (cam + 296u));
+                    new B19Owner(ow).f1B928_Set(1);
+                    new B19Owner(ow).f1B6B0__Set(func_002543A8((uint)(0), (uint)(new B19Owner(ow).f8C), (uint)(((ci + (cj * cols)) + 1)), (uint)(new B19Owner(ow).f40), ow, 0x00285130u, 0x800CA310u));
+                    func_00253610(0, new B19Owner(ow).f1B6B0_);
+                    func_00297020((ow + (uint)112308), ci, cj, (uint)(Mem.S32(new B19Owner(ow).f1B6B0_)), (cam + 296u));
                 }
                 for (j = j0; (j <= fp); ++j)
                 {
@@ -104,12 +104,12 @@ public static partial class Game
                     {
                         idx = (i + @base);
                         cell = (E + (uint)(idx * 20));
-                        if ((Mem.U32((cell + 16u)) == (uint)(0)))
+                        if ((new B19Cell(cell).n == (uint)(0)))
                         {
                             found = 0;
-                            for (q = cam; (q != 0u); q = Mem.U32((q + 4u)))
+                            for (q = cam; (q != 0u); q = new B19Cam(q).next_)
                             {
-                                if (((((Mem.F32((q + 872u)) < Mem.F32((cell + 8u))) && (Mem.F32(cell) < Mem.F32((q + 884u)))) && (Mem.F32((cell + 12u)) > Mem.F32((q + 880u)))) && (Mem.F32((cell + 4u)) < Mem.F32((q + 892u)))))
+                                if (((((new B19Cam(q).a < new B19Cell(cell).x1) && (new B19Cell(cell).x0 < new B19Cam(q).c)) && (new B19Cell(cell).z1 > new B19Cam(q).b)) && (new B19Cell(cell).z0 < new B19Cam(q).d)))
                                 {
                                     found = 1;
                                     break;
@@ -117,16 +117,16 @@ public static partial class Game
                             }
                             if ((found != 0))
                             {
-                                int t = (int)(func_0028FE1C((uint)(Mem.S32((ow + 100u))), (uint)(Mem.S32((ow + 48u))), idx, _fp));
-                                h = func_002518DC((uint)(0), (uint)(t), (uint)(t), (uint)(Mem.S32(_fp)), (uint)(8), ow, 0x0028795Cu, 0x800CA300u, (uint)(0));
+                                int t = (int)(func_0028FE1C((uint)(new B19Owner(ow).f64), (uint)(new B19Owner(ow).f30), idx, _fp));
+                                h = func_002518DC(0, (uint)(t), t, (uint)(Mem.S32(_fp)), 8, ow, 0x0028795Cu, 0x800CA300u, 0);
                                 if ((h != 0u))
                                 {
                                     if ((Mem.S32(Mem.U32(h)) != 0))
                                     {
-                                        Mem.Set(@out, h);
+                                        new B19Ent12(@out).pp_Set(h);
                                         Mem.Set((@out + 4u), cell);
-                                        Mem.Set((@out + 8u), (short)(i));
-                                        Mem.Set((@out + 10u), (short)(j));
+                                        new B19Ent12(@out).a_Set((short)(i));
+                                        new B19Ent12(@out).b_Set((short)(j));
                                         @out += 12u;
                                         ++count;
                                         if ((count == 128))
@@ -144,8 +144,8 @@ public static partial class Game
                     }
                 }
                 L_done: ;
-                Mem.Set((ow + 5376u), count);
-                Mem.Set((ow + 5380u), count);
+                new B19Owner(ow).ncount_Set(count);
+                new B19Owner(ow).nent_Set(count);
             }
         }
         finally { Stack.Free(4); }

@@ -28,10 +28,10 @@ public static partial class Game
             case 13:
             case 14:
             case 15:
-                Mem.Set((item + 20u), 0x800D7824u);
+                new O01Item(item).unk14__Set(0x800D7824u);
                 break;
             case 8:
-                Mem.Set((item + 20u), 0x800D7828u);
+                new O01Item(item).unk14__Set(0x800D7828u);
                 break;
             }
             return 0;

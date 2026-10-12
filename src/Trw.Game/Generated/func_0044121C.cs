@@ -12,53 +12,53 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0044121C", (uint)a, (uint)idx);
             uint e = 0u;
             int d = 0;
-            e = (Mem.U32((a + 12u)) + (uint)((int)(Mem.S16(a)) * 40));
+            e = (new O06A_v43(a).unkC_ + (uint)((int)(new O06A_v43(a).unk0) * 40));
             do
             {
-                d = (int)(Mem.S16(a));
-                Mem.Set(a, (short)((int)(Mem.S16(a)) + (int)((sbyte)(Mem.U8((e + (uint)idx))))));
-                if (((int)(Mem.S16(a)) < 0))
+                d = (int)(new O06A_v43(a).unk0);
+                new O06A_v43(a).unk0_Set((short)((int)(new O06A_v43(a).unk0) + (int)((sbyte)(Mem.U8((e + (uint)idx))))));
+                if (((int)(new O06A_v43(a).unk0) < 0))
                 {
-                    Mem.Set(a, (short)((Mem.S32((a + 16u)) - 1)));
+                    new O06A_v43(a).unk0_Set((short)((new O06A_v43(a).unk10 - 1)));
                 }
                 else
                 {
-                    if (((int)(Mem.S16(a)) >= Mem.S32((a + 16u))))
+                    if (((int)(new O06A_v43(a).unk0) >= new O06A_v43(a).unk10))
                     {
-                        Mem.Set(a, (short)(0));
+                        new O06A_v43(a).unk0_Set((short)(0));
                     }
                 }
-                e = (Mem.U32((a + 12u)) + (uint)((int)(Mem.S16(a)) * 40));
-                d = (d - (int)(Mem.S16(a)));
+                e = (new O06A_v43(a).unkC_ + (uint)((int)(new O06A_v43(a).unk0) * 40));
+                d = (d - (int)(new O06A_v43(a).unk0));
                 switch ((int)(idx))
                 {
                 case 16:
-                    if (((Mem.U32((e + 8u)) & (uint)(524288)) != 0u))
+                    if (((new O06E_v4(e).unk8 & (uint)(524288)) != 0u))
                     {
-                        Mem.Set(((e + 16u) + (uint)1), (byte)(d));
+                        new O06E_v4(e).b.Set((int)(1), (byte)(d));
                     }
                     break;
                 case 17:
-                    if (((Mem.U32((e + 8u)) & (uint)(262144)) != 0u))
+                    if (((new O06E_v4(e).unk8 & (uint)(262144)) != 0u))
                     {
-                        Mem.Set(((e + 16u) + (uint)0), (byte)(d));
+                        new O06E_v4(e).b.Set((int)(0), (byte)(d));
                     }
                     break;
                 case 18:
-                    if (((Mem.U32((e + 8u)) & (uint)(2097152)) != 0u))
+                    if (((new O06E_v4(e).unk8 & (uint)(2097152)) != 0u))
                     {
-                        Mem.Set(((e + 16u) + (uint)3), (byte)(d));
+                        new O06E_v4(e).b.Set((int)(3), (byte)(d));
                     }
                     break;
                 case 19:
-                    if (((Mem.U32((e + 8u)) & (uint)(1048576)) != 0u))
+                    if (((new O06E_v4(e).unk8 & (uint)(1048576)) != 0u))
                     {
-                        Mem.Set(((e + 16u) + (uint)2), (byte)(d));
+                        new O06E_v4(e).b.Set((int)(2), (byte)(d));
                     }
                     break;
                 }
             }
-            while ((((Mem.U32((e + 8u)) & (uint)(25165824)) != (uint)(25165824)) || (Mem.S32((Mem.U32((e + 24u)) + 28u)) == 0)));
+            while ((((new O06E_v4(e).unk8 & (uint)(25165824)) != (uint)(25165824)) || (new O06Q_v4(new O06E_v4(e).unk18_).unk1C == 0)));
         }
     }
 

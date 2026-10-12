@@ -15,7 +15,7 @@ public static partial class Game
             func_00258D70_SndMgr_Lock(m);
             for (i = 0; (i < 17); ++i)
             {
-                if ((Mem.S32(((((m + 7608u) + 4u) + (uint)(i * 204)) + 4u)) == tag))
+                if ((new SndMgr(m).pool.v[(int)(i)].unk4 == tag))
                 {
                     ++n;
                 }
@@ -30,12 +30,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00258D70_SndMgr_Lock", (uint)m);
-            uint l = (m + 272u);
+            uint l = new SndMgr(m).@lock.P;
             uint mask = __osDisableInt();
-            if ((Mem.Set((l + 28u), (int)(Mem.S32((l + 28u)) + 1)) != 1))
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count + 1)) != 1))
             {
                 __osRestoreInt(mask);
-                osRecvMesg(l, 0u, 1);
+                osRecvMesg(new SndLock(l).q.P, 0u, 1);
             }
             else
             {
@@ -49,12 +49,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00258D70_SndMgr_Unlock", (uint)m);
-            uint l = (m + 272u);
+            uint l = new SndMgr(m).@lock.P;
             uint mask = __osDisableInt();
-            if ((Mem.Set((l + 28u), (int)(Mem.S32((l + 28u)) - 1)) != 0))
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count - 1)) != 0))
             {
                 __osRestoreInt(mask);
-                osSendMesg(l, 0u, 1);
+                osSendMesg(new SndLock(l).q.P, 0u, 1);
             }
             else
             {

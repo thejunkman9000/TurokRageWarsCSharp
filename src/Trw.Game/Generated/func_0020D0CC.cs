@@ -11,9 +11,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0020D0CC_find", (uint)m, (uint)key);
             uint n = 0u;
-            for (n = Mem.U32((m + 36u)); (n != 0u); n = Mem.U32((n + 16u)))
+            for (n = new B2Mgr(m).head_; (n != 0u); n = new B2Node(n).next_)
             {
-                if ((Mem.S32(n) == key))
+                if ((new B2Node(n).id == key))
                 {
                     return n;
                 }
@@ -27,7 +27,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020D0CC", (uint)m, (uint)key);
-            func_0020C5A0(m, func_0020D0CC_find(m, key), default(uint), default(uint));
+            func_0020C5A0(m, func_0020D0CC_find(m, key));
         }
     }
 

@@ -13,7 +13,7 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 4); ++i)
             {
-                func_00264268((0x8010F328u + (uint)(i * 548)), default(uint), default(uint), default(uint));
+                func_00264268((0x8010F328u + (uint)(i * 548)));
             }
         }
     }

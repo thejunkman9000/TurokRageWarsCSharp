@@ -15,66 +15,66 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0024FD4C", (uint)a, (uint)r, (uint)arg2, (uint)@base);
                 float k = 0f;
                 func_0024DD00((uint)(a));
-                Mem.Set(a, (byte)(0));
-                Mem.Set((a + 4u), Mem.U16((r + 40u)));
-                Mem.Set((a + 28u), arg2);
-                Mem.Set((a + 168u), (-1));
-                Mem.Set((a + 172u), 0);
-                Mem.Set((a + 176u), 0);
-                Mem.Set((a + 180u), 0);
-                Mem.Set((a + 24u), func_0028CF48(0x8011FE88u, (int)(Mem.U16((r + 44u)))));
-                Mem.Set((a + 224u), (byte)(16));
-                Mem.Set((a + 220u), 0);
-                Mem.Set((Mem.U32((a + 24u)) + 36u), Cpu.TruncU32((Mem.F32((Mem.U32((a + 24u)) + 8u)) * Mem.F32((Mem.U32((a + 24u)) + 8u)))));
-                Mem.Set((a + 216u), (ushort)(Mem.U8((r + 46u))));
-                Mem.Set((_fp + (uint)(0 * 4)), ((float)((int)(Mem.S8(((r + 47u) + (uint)0)))) * 0.00787401571f));
-                Mem.Set((_fp + (uint)(1 * 4)), ((float)((int)(Mem.S8(((r + 47u) + (uint)1)))) * 0.00787401571f));
-                Mem.Set((_fp + (uint)(2 * 4)), ((float)((int)(Mem.S8(((r + 47u) + (uint)2)))) * 0.00787401571f));
-                Mem.Set((_fp + (uint)(3 * 4)), ((float)((int)(Mem.S8(((r + 47u) + (uint)3)))) * 0.00787401571f));
-                func_00274214(_fp);
+                new M03Fx(a).type_Set((byte)(0));
+                new M03Fx(a).id_Set(new M03FxRecB(r).u28);
+                new M03Fx(a).w1C_Set(arg2);
+                new M03Fx(a).hA8_Set((-1));
+                new M03Fx(a).hAC_Set(0);
+                new M03Fx(a).hB0_Set(0);
+                new M03Fx(a).hB4_Set(0);
+                new M03Fx(a).cls__Set(func_0028CF48(0x8011FE88u, (int)(new M03FxRecB(r).u2C)));
+                new M03Fx(a).bE0_Set((byte)(16));
+                new M03Fx(a).wDC_Set(0);
+                new M03Fx(a).cls.w24_Set(Cpu.TruncU32((new M03Fx(a).cls.f8 * new M03Fx(a).cls.f8)));
+                new M03Fx(a).flags_Set((ushort)(new M03FxRecB(r).flags));
+                Mem.Set((_fp + (uint)(0 * 4)), ((float)((int)(new M03FxRecB(r).q[(int)(0)])) * 0.00787401571f));
+                Mem.Set((_fp + (uint)(1 * 4)), ((float)((int)(new M03FxRecB(r).q[(int)(1)])) * 0.00787401571f));
+                Mem.Set((_fp + (uint)(2 * 4)), ((float)((int)(new M03FxRecB(r).q[(int)(2)])) * 0.00787401571f));
+                Mem.Set((_fp + (uint)(3 * 4)), ((float)((int)(new M03FxRecB(r).q[(int)(3)])) * 0.00787401571f));
+                func_00274214(_fp, default(uint), default(uint), default(uint));
                 func_002742B4(_fp, (_fp + 16u));
-                func_002734EC((_fp + 16u), Mem.F32((r + 16u)), Mem.F32((r + 20u)), Mem.F32((r + 24u)));
-                func_002734B8((_fp + 16u), Mem.F32((r + 4u)), Mem.F32(((r + 4u) + 4u)), Mem.F32(((r + 4u) + 8u)));
+                func_002734EC((_fp + 16u), new M03FxRecB(r).sx, new M03FxRecB(r).sy, new M03FxRecB(r).sz);
+                func_002734B8((_fp + 16u), new M03FxRecB(r).pos.x, new M03FxRecB(r).pos.y, new M03FxRecB(r).pos.z);
                 func_00273DDC((_fp + 16u));
-                if ((((int)(Mem.U16((a + 216u))) & 64) != 0))
+                if ((((int)(new M03Fx(a).flags) & 64) != 0))
                 {
-                    Mem.Set(((a + 184u) + (uint)(0 * 4)), (Mem.F32((r + 4u)) - 102.399994f));
-                    Mem.Set(((a + 184u) + (uint)(1 * 4)), (Mem.F32(((r + 4u) + 4u)) - 102.399994f));
-                    Mem.Set(((a + 184u) + (uint)(2 * 4)), (Mem.F32(((r + 4u) + 8u)) - 102.399994f));
-                    Mem.Set(((a + 196u) + (uint)(0 * 4)), (Mem.F32((r + 4u)) + 102.399994f));
-                    Mem.Set(((a + 196u) + (uint)(1 * 4)), (Mem.F32(((r + 4u) + 4u)) + 102.399994f));
-                    Mem.Set(((a + 196u) + (uint)(2 * 4)), (Mem.F32(((r + 4u) + 8u)) + 102.399994f));
-                    Mem.Set((a + 212u), Mem.S32((0x800D2B40u + (uint)(0 * 4))));
+                    new M03Fx(a).bmin.Set((int)(0), (new M03FxRecB(r).pos.x - 102.399994f));
+                    new M03Fx(a).bmin.Set((int)(1), (new M03FxRecB(r).pos.y - 102.399994f));
+                    new M03Fx(a).bmin.Set((int)(2), (new M03FxRecB(r).pos.z - 102.399994f));
+                    new M03Fx(a).bmax.Set((int)(0), (new M03FxRecB(r).pos.x + 102.399994f));
+                    new M03Fx(a).bmax.Set((int)(1), (new M03FxRecB(r).pos.y + 102.399994f));
+                    new M03Fx(a).bmax.Set((int)(2), (new M03FxRecB(r).pos.z + 102.399994f));
+                    new M03Fx(a).wD4_Set(Mem.S32((0x800D2B40u + (uint)(0 * 4))));
                 }
                 else
                 {
                     k = 0.5f;
-                    Mem.Set(((a + 184u) + (uint)(0 * 4)), ((Trunc16ToF32(Mem.U16(((r + 28u) + (uint)(0 * 2)))) + Mem.F32((r + 4u))) - k));
-                    Mem.Set(((a + 184u) + (uint)(1 * 4)), ((Trunc16ToF32(Mem.U16(((r + 28u) + (uint)(1 * 2)))) + Mem.F32(((r + 4u) + 4u))) - k));
-                    Mem.Set(((a + 184u) + (uint)(2 * 4)), ((Trunc16ToF32(Mem.U16(((r + 28u) + (uint)(2 * 2)))) + Mem.F32(((r + 4u) + 8u))) - k));
-                    Mem.Set(((a + 196u) + (uint)(0 * 4)), ((Trunc16ToF32(Mem.U16(((r + 28u) + (uint)(3 * 2)))) + Mem.F32((r + 4u))) + k));
-                    Mem.Set(((a + 196u) + (uint)(1 * 4)), ((Trunc16ToF32(Mem.U16(((r + 28u) + (uint)(4 * 2)))) + Mem.F32(((r + 4u) + 4u))) + k));
-                    Mem.Set(((a + 196u) + (uint)(2 * 4)), ((Trunc16ToF32(Mem.U16(((r + 28u) + (uint)(5 * 2)))) + Mem.F32(((r + 4u) + 8u))) + k));
-                    Mem.Set((a + 212u), Mem.S32(r));
+                    new M03Fx(a).bmin.Set((int)(0), ((Trunc16ToF32(new M03FxRecB(r).e[(int)(0)]) + new M03FxRecB(r).pos.x) - k));
+                    new M03Fx(a).bmin.Set((int)(1), ((Trunc16ToF32(new M03FxRecB(r).e[(int)(1)]) + new M03FxRecB(r).pos.y) - k));
+                    new M03Fx(a).bmin.Set((int)(2), ((Trunc16ToF32(new M03FxRecB(r).e[(int)(2)]) + new M03FxRecB(r).pos.z) - k));
+                    new M03Fx(a).bmax.Set((int)(0), ((Trunc16ToF32(new M03FxRecB(r).e[(int)(3)]) + new M03FxRecB(r).pos.x) + k));
+                    new M03Fx(a).bmax.Set((int)(1), ((Trunc16ToF32(new M03FxRecB(r).e[(int)(4)]) + new M03FxRecB(r).pos.y) + k));
+                    new M03Fx(a).bmax.Set((int)(2), ((Trunc16ToF32(new M03FxRecB(r).e[(int)(5)]) + new M03FxRecB(r).pos.z) + k));
+                    new M03Fx(a).wD4_Set(new M03FxRecB(r).w0);
                 }
-                func_0027302C((a + 104u), (_fp + 16u));
-                func_002702EC((_fp + 16u), (a + 40u));
-                Mem.Copy((a + 8u), (r + 4u), 12);
-                if (((int)(Mem.U16((r + 42u))) == 65535))
+                func_0027302C(new M03Fx(a).m68.P, (_fp + 16u));
+                func_002702EC((_fp + 16u), new M03Fx(a).m28.P);
+                Mem.Copy(new M03Fx(a).pos.P, new M03FxRecB(r).pos.P, 12);
+                if (((int)(new M03FxRecB(r).u2A) == 65535))
                 {
-                    Mem.Set((a + 20u), 0);
+                    new M03Fx(a).p14_Set(0);
                 }
                 else
                 {
-                    Mem.Set((a + 20u), (@base + ((int)(Mem.U16((r + 42u))) << (int)5)));
+                    new M03Fx(a).p14_Set((@base + ((int)(new M03FxRecB(r).u2A) << (int)5)));
                 }
                 Mem.Set(0x800D0910u, (Mem.S32(0x800D0910u) + 1));
                 if ((Mem.S32(0x800D0910u) == 4194303))
                 {
                     Mem.Set(0x800D0910u, 3670016);
                 }
-                Mem.Set((a + 208u), (Mem.S32(0x800D0910u) << (int)10));
-                Mem.Set((a + 218u), (byte)(((int)(Mem.U8(0x800D297Bu)) - 1)));
+                new M03Fx(a).wD0_Set((Mem.S32(0x800D0910u) << (int)10));
+                new M03Fx(a).bDA_Set((byte)(((int)(Mem.U8(0x800D297Bu)) - 1)));
             }
         }
         finally { Stack.Free(80); }

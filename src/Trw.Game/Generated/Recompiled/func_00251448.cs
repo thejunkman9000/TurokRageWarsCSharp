@@ -50,7 +50,7 @@ public static partial class Game
                 r3 = 2148532224u;
                 r3 = Mem.U32((r3 + 20864u));
                 r16 = r2;
-                Mem.Set((r16 + 16u), r3); r2 = func_00255C58(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r16 + 16u), r3); func_00255C58(r4, r5);
                 r2 = Mem.U32((r16 + 12u));
                 r3 = r17 & 12u;
                 r2 = r2 | r3;
@@ -85,7 +85,7 @@ public static partial class Game
                 r3 = 2148532224u;
                 r3 = Mem.U32((r3 + 20864u));
                 r16 = r2;
-                Mem.Set((r16 + 16u), r3); r2 = func_00255C58(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r16 + 16u), r3); func_00255C58(r4, r5);
                 r2 = Mem.U32((r16 + 12u));
                 r3 = r17 & 12u;
                 r2 = r2 | r3;

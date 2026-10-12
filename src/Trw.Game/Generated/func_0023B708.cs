@@ -10,56 +10,56 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0023B708", (uint)e, (uint)mask, 0u, (uint)flag);
-            uint def = Mem.U32((e + 12u));
+            uint def = new B09Emitter(e).def_;
             float x = 0f;
             float step = 0f;
             float t = 0f;
-            if ((((int)(Mem.U16((e + 16u))) & mask) != 0))
+            if ((((int)(new B09Emitter(e).mask) & mask) != 0))
             {
-                float up = Mem.F32((e + 520u));
-                up = (float)((float)(up) + (Mem.F32((def + 32u)) * Mem.F32(0x800D2988u)));
+                float up = new B09Emitter(e).f208;
+                up = (float)((float)(up) + (new B09EDef(def).f20 * Mem.F32(0x800D2988u)));
                 if ((Mem.F32(0x800C86E0u) < up))
                 {
                     up = Mem.F32(0x800C86E0u);
                 }
-                Mem.Set((e + 520u), up);
+                new B09Emitter(e).f208_Set(up);
             }
             else
             {
                 float dn = 0f;
-                if ((Mem.F32((e + 520u)) == 0.0f))
+                if ((new B09Emitter(e).f208 == 0.0f))
                 {
                     return 1;
                 }
-                dn = (Mem.F32((e + 520u)) - (Mem.F32((def + 32u)) * Mem.F32(0x800D2988u)));
+                dn = (new B09Emitter(e).f208 - (new B09EDef(def).f20 * Mem.F32(0x800D2988u)));
                 dn = ((dn < 0.0f) ? 0.0f : dn);
-                Mem.Set((e + 520u), dn);
+                new B09Emitter(e).f208_Set(dn);
             }
-            Mem.Set((e + 524u), (Mem.F32((e + 524u)) + ((Mem.F32(0x800D2988u) * Mem.F32((def + 16u))) * Mem.F32((e + 532u)))));
-            step = ((Mem.F32(0x800D2988u) * Mem.F32(0x800D2994u)) * Mem.F32((def + 8u)));
-            t = (Mem.F32((e + 28u)) + (step * Mem.F32(0x800C86E4u)));
-            Mem.Set((e + 28u), t);
+            new B09Emitter(e).f20C_Set((new B09Emitter(e).f20C + ((Mem.F32(0x800D2988u) * new B09EDef(def).f10) * new B09Emitter(e).f214)));
+            step = ((Mem.F32(0x800D2988u) * Mem.F32(0x800D2994u)) * new B09EDef(def).f8);
+            t = (new B09Emitter(e).f1C + (step * Mem.F32(0x800C86E4u)));
+            new B09Emitter(e).f1C_Set(t);
             if ((Mem.F32(0x800C86E8u) < t))
             {
-                Mem.Set((e + 28u), (t - Mem.F32(0x800C86E8u)));
+                new B09Emitter(e).f1C_Set((t - Mem.F32(0x800C86E8u)));
             }
-            t = (Mem.F32((e + 32u)) + (step * Mem.F32(0x800C86ECu)));
-            Mem.Set((e + 32u), t);
+            t = (new B09Emitter(e).f20 + (step * Mem.F32(0x800C86ECu)));
+            new B09Emitter(e).f20_Set(t);
             if ((Mem.F32(0x800C86E8u) < t))
             {
-                Mem.Set((e + 32u), (t - Mem.F32(0x800C86E8u)));
+                new B09Emitter(e).f20_Set((t - Mem.F32(0x800C86E8u)));
             }
-            x = (Mem.F32((def + 20u)) + Mem.F32((e + 540u)));
+            x = (new B09EDef(def).f14 + new B09Emitter(e).f21C);
             if (((flag != 0) && (Mem.S32((ctx + (uint)36)) == 0)))
             {
                 x = (float)((float)(x) + f4);
             }
             else
             {
-                byte b = Mem.U8((def + 41u));
+                byte b = new B09EDef(def).flags29;
                 if ((((int)(b) & 1) != 0))
                 {
-                    x = (float)((float)(x) + (Mem.F32((ctx + (uint)300)) * Mem.F32((def + 28u))));
+                    x = (float)((float)(x) + (Mem.F32((ctx + (uint)300)) * new B09EDef(def).f1C));
                 }
                 else
                 {
@@ -69,7 +69,7 @@ public static partial class Game
                     }
                 }
             }
-            Mem.Set((e + 528u), x);
+            new B09Emitter(e).key_Set(x);
             return 0;
         }
     }

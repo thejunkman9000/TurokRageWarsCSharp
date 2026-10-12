@@ -16,28 +16,28 @@ public static partial class Game
                 Mem.Copy(_fp + 16u, v2_in, 12);
                 if (Dbg.On) Dbg.Enter("func_00267968", (uint)act, (uint)obj, (uint)pos_in);
                 uint o = 0u;
-                if ((Mem.U32((act + 1500u)) != 0u))
+                if ((new B15Holder(act).unk5DC != 0u))
                 {
-                    o = Mem.U32((obj + 472u));
-                    Mem.Set((_fp + 32u), (-Mem.F32((_fp + 16u))));
-                    Mem.Set(((_fp + 32u) + 4u), Mem.F32(((_fp + 16u) + 4u)));
-                    Mem.Set(((_fp + 32u) + 8u), Mem.F32(((_fp + 16u) + 8u)));
+                    o = new B15OwnerRef(obj).owner_;
+                    new Vec3f((_fp + 32u)).x_Set((-new Vec3f((_fp + 16u)).x));
+                    new Vec3f((_fp + 32u)).y_Set(new Vec3f((_fp + 16u)).y);
+                    new Vec3f((_fp + 32u)).z_Set(new Vec3f((_fp + 16u)).z);
                     func_0022B08C(o, (_fp + 32u));
-                    Mem.Set((_fp + 32u), (Mem.F32((_fp + 32u)) - Mem.F32((Mem.U32((o + 1500u)) + 296u))));
-                    Mem.Set(((_fp + 32u) + 4u), (Mem.F32(((_fp + 32u) + 4u)) - Mem.F32(((Mem.U32((o + 1500u)) + 296u) + 4u))));
-                    Mem.Set(((_fp + 32u) + 8u), (Mem.F32(((_fp + 32u) + 8u)) - Mem.F32(((Mem.U32((o + 1500u)) + 296u) + 8u))));
-                    func_00271888((_fp + 80u), (_fp + 32u), default(uint), default(uint));
+                    new Vec3f((_fp + 32u)).x_Set((new Vec3f((_fp + 32u)).x - new B15Player(o).pawn.pos.x));
+                    new Vec3f((_fp + 32u)).y_Set((new Vec3f((_fp + 32u)).y - new B15Player(o).pawn.pos.y));
+                    new Vec3f((_fp + 32u)).z_Set((new Vec3f((_fp + 32u)).z - new B15Player(o).pawn.pos.z));
+                    func_00271888((_fp + 80u), (_fp + 32u));
                     func_0024E78C(obj, _fp, (_fp + 48u), (_fp + 96u));
                     Mem.Copy((_fp + 48u), _fp, 12);
-                    Mem.Set(((_fp + 48u) + 4u), (Mem.F32(((_fp + 48u) + 4u)) + Mem.F32(0x800C9538u)));
-                    Mem.Set((_fp + 64u), (float)(0));
-                    Mem.Set(((_fp + 64u) + 4u), (float)(0));
-                    Mem.Set(((_fp + 64u) + 8u), (float)(0));
+                    new Vec3f((_fp + 48u)).y_Set((new Vec3f((_fp + 48u)).y + Mem.F32(0x800C9538u)));
+                    new Vec3f((_fp + 64u)).x_Set((float)(0));
+                    new Vec3f((_fp + 64u)).y_Set((float)(0));
+                    new Vec3f((_fp + 64u)).z_Set((float)(0));
                     func_00280094(0x80121990u, obj, obj, (uint)(0), 0, 233, (_fp + 64u), (_fp + 80u), (_fp + 48u), 0, (-1), ((mode == 5) ? 3 : 1));
-                    Mem.Set((_fp + 48u), (float)(0));
-                    Mem.Set(((_fp + 48u) + 4u), (float)(0));
-                    Mem.Set(((_fp + 48u) + 8u), (float)(0));
-                    func_0028CE70(0x8011FE88u, (int)((Mem.U32((o + 1688u)) + (uint)320)), 3, (_fp + 48u), Mem.F32(0x800C953Cu), Mem.F32(0x800C9540u));
+                    new Vec3f((_fp + 48u)).x_Set((float)(0));
+                    new Vec3f((_fp + 48u)).y_Set((float)(0));
+                    new Vec3f((_fp + 48u)).z_Set((float)(0));
+                    func_0028CE70(0x8011FE88u, (int)((new B15Player(o).unk698_ + (uint)320)), 3, (_fp + 48u), Mem.F32(0x800C953Cu), Mem.F32(0x800C9540u));
                 }
             }
         }

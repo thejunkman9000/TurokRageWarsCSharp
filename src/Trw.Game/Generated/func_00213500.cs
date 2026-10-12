@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00213500", (uint)actor);
-            uint b = Mem.U32((Mem.U32((actor + 472u)) + 5204u));
+            uint b = new ActorB(actor).owner.brain_;
             uint st = 0u;
             uint a = 0u;
             uint L = 0u;
@@ -19,10 +19,10 @@ public static partial class Game
             int busy = 0;
             int busy2 = 0;
             int t = 0;
-            if (((Mem.S32((b + 4u)) == Mem.S32((b + 556u))) || (Mem.S32((b + 556u)) >= Mem.S32(0x8013B368u))))
+            if (((new BrainB(b).unk4 == new BrainB(b).unk22C) || (new BrainB(b).unk22C >= Mem.S32(0x8013B368u))))
             {
-                st = Mem.U32((Mem.U32(b) + 1496u));
-                if ((((int)(Mem.U8((st + 148u))) != 0) && ((int)(Mem.S8((st + 128u))) == 12)))
+                st = new BrainB(b).actor.stats_;
+                if ((((int)(new ActorStats(st).unk94) != 0) && ((int)(new ActorStats(st).unk80) == 12)))
                 {
                     func_00213340(b);
                 }
@@ -32,20 +32,20 @@ public static partial class Game
                     L = 0x8013B364u;
                     if ((Mem.S32(0x8013B368u) >= 2))
                     {
-                        id = Mem.S32((b + 556u));
+                        id = new BrainB(b).unk22C;
                         while ((1 != 0))
                         {
                             if ((i >= 10))
                             {
                                 break;
                             }
-                            id = (func_00274544() % Mem.S32((L + 4u)));
-                            if ((((int)(Mem.U16((func_0020C994(L, id) + 12u))) & 1024) != 0))
+                            id = (func_00274544() % new EntList(L).count);
+                            if ((((int)(new EntRec(func_0020C994(L, id)).flags) & 1024) != 0))
                             {
-                                id = Mem.S32((b + 556u));
+                                id = new BrainB(b).unk22C;
                             }
                             ++i;
-                            if ((id != Mem.S32((b + 556u))))
+                            if ((id != new BrainB(b).unk22C))
                             {
                                 break;
                             }
@@ -56,30 +56,30 @@ public static partial class Game
                     {
                         id = 1;
                     }
-                    Mem.Set((b + 556u), id);
-                    Mem.Set((b + 12u), id);
+                    new BrainB(b).unk22C_Set(id);
+                    new BrainB(b).unkC_Set(id);
                 }
             }
-            Mem.Set((b + 800u), (Mem.S32((b + 800u)) - 1));
-            if ((Mem.S32((b + 800u)) == 0))
+            new BrainB(b).unk320_Set((new BrainB(b).unk320 - 1));
+            if ((new BrainB(b).unk320 == 0))
             {
-                busy2 = ((Mem.S32((b + 788u)) != 0) ? 1 : 0);
-                a = Mem.U32(b);
-                t = (int)(Mem.S16((a + 1616u)));
+                busy2 = ((new BrainB(b).unk314 != 0) ? 1 : 0);
+                a = new BrainB(b).actor_;
+                t = (int)(new ActorB(a).unk650);
                 t = (int)((int)(t) ^ 15);
-                busy = (((Mem.U32((a + 56u)) & (uint)(12288)) != (uint)(0)) ? 1 : 0);
+                busy = (((new ActorB(a).flags38 & (uint)(12288)) != (uint)(0)) ? 1 : 0);
                 if ((((t != 0) && !(busy != 0)) && !(busy2 != 0)))
                 {
-                    Mem.Set((a + 1712u), (uint)((uint)(Mem.U32((a + 1712u))) | (uint)(16)));
+                    new ActorB(a).unk6B0_Set((uint)((uint)(new ActorB(a).unk6B0) | (uint)(16)));
                 }
             }
-            if ((Mem.S32((b + 800u)) < 0))
+            if ((new BrainB(b).unk320 < 0))
             {
-                Mem.Set((b + 800u), (((func_00274544() % 7) + 3) * 15));
+                new BrainB(b).unk320_Set((((func_00274544() % 7) + 3) * 15));
             }
             func_00211020(b, default(uint), default(uint), default(uint));
-            func_00208410(b, default(uint), default(uint), default(uint));
-            func_00208AAC(b, default(uint), default(uint), default(uint));
+            func_00208410(b);
+            func_00208AAC(b);
         }
     }
 

@@ -11,50 +11,50 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00413500", (uint)d, (uint)s);
             int n = 0;
-            if ((((int)(Mem.U8((d + 1u))) & 1) != 0))
+            if ((((int)(new S_func_00413500(d).b1) & 1) != 0))
             {
-                func_00254784((uint)(Mem.S32((d + 24u))));
+                func_00254784((uint)(new S_func_00413500(d).f18));
             }
-            if ((((int)(Mem.U8((d + 1u))) & 2) != 0))
+            if ((((int)(new S_func_00413500(d).b1) & 2) != 0))
             {
-                if ((Mem.S32((d + 16u)) > 0))
+                if ((new S_func_00413500(d).f10 > 0))
                 {
-                    func_00254784((uint)(Mem.S32((d + 20u))));
+                    func_00254784((uint)(new S_func_00413500(d).f14));
                 }
             }
             func_002A1748(d, 0, (uint)(32));
             Mem.Copy(d, s, 32);
-            if ((Mem.S32((d + 16u)) == 0))
+            if ((new S_func_00413500(d).f10 == 0))
             {
-                Mem.Set((d + 20u), 0);
+                new S_func_00413500(d).f14_Set(0);
             }
-            Mem.Set((d + 1u), (byte)(1));
-            if ((Mem.S32((d + 20u)) != 0))
+            new S_func_00413500(d).b1_Set((byte)(1));
+            if ((new S_func_00413500(d).f14 != 0))
             {
-                Mem.Set((d + 1u), (byte)(3));
+                new S_func_00413500(d).b1_Set((byte)(3));
             }
             n = func_00413728(s);
-            Mem.Set((d + 24u), (int)(func_00252FFC((uint)(n), default(uint), default(uint), default(uint))));
-            if ((Mem.S32((d + 24u)) == 0))
+            new S_func_00413500(d).f18_Set((int)(func_00252FFC((uint)(n))));
+            if ((new S_func_00413500(d).f18 == 0))
             {
                 return 1;
             }
             else
             {
-                func_002A1724((uint)(Mem.S32((d + 24u))), (uint)(Mem.S32((s + 24u))), (uint)(n));
-                if ((Mem.S32((s + 16u)) != 0))
+                func_002A1724((uint)(new S_func_00413500(d).f18), (uint)(new S_func_00413500(s).f18), (uint)(n));
+                if ((new S_func_00413500(s).f10 != 0))
                 {
                     n = func_0041371C(s);
-                    Mem.Set((d + 20u), (int)(func_00252FFC((uint)(n), default(uint), default(uint), default(uint))));
-                    if ((Mem.S32((d + 20u)) == 0))
+                    new S_func_00413500(d).f14_Set((int)(func_00252FFC((uint)(n))));
+                    if ((new S_func_00413500(d).f14 == 0))
                     {
-                        func_00254784((uint)(Mem.S32((d + 24u))));
+                        func_00254784((uint)(new S_func_00413500(d).f18));
                         func_002A1748(d, 0, (uint)(32));
                         return 1;
                     }
                     else
                     {
-                        func_002A1724((uint)(Mem.S32((d + 20u))), (uint)(Mem.S32((s + 20u))), (uint)(n));
+                        func_002A1724((uint)(new S_func_00413500(d).f14), (uint)(new S_func_00413500(s).f14), (uint)(n));
                         return 0;
                     }
                 }

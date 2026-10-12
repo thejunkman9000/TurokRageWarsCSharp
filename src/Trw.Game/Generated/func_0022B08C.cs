@@ -16,13 +16,13 @@ public static partial class Game
                 uint pt = _fp;
                 uint p = 0u;
                 Mem.Copy(_fp, v, 12);
-                if ((Mem.U32((a + 1500u)) != 0u))
+                if ((new Plr(a).unk5DC_ != 0u))
                 {
-                    p = (Mem.U32((a + 1500u)) + 352u);
+                    p = new Pawn(new Plr(a).unk5DC_).m160.P;
                 }
                 else
                 {
-                    func_00226DAC(a, (_fp + 16u), default(uint), default(uint));
+                    func_00226DAC(a, (_fp + 16u));
                     p = (_fp + 16u);
                 }
                 func_00272908(p, pt, v);

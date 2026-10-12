@@ -14,17 +14,17 @@ public static partial class Game
             uint mask = 0u;
             int delta = 0;
             mask = osSetIntMask((uint)(1));
-            item = Mem.U32((evtq + 8u));
+            item = new ALEventQueue_v2(evtq).allocList.next_;
             if ((item != 0u))
             {
-                alUnlink(item);
-                alCopy((item + 12u), evt, (int)(16u));
-                alLink(item, evtq);
-                delta = Mem.S32((item + 8u));
+                alUnlink(new ALEventQueueItem(item).node.P);
+                alCopy(new ALEventQueueItem(item).evt.P, evt, (int)(16u));
+                alLink(new ALEventQueueItem(item).node.P, new ALEventQueue_v2(evtq).freeList.P);
+                delta = new ALEventQueueItem(item).delta;
             }
             else
             {
-                Mem.Set(evt, (short)((-1)));
+                new ALEvent(evt).type_Set((short)((-1)));
                 delta = 0;
             }
             osSetIntMask(mask);

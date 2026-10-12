@@ -20,10 +20,10 @@ public static partial class Game
                 uint hi = 0u;
                 uint n = 0u;
                 float res = 0f;
-                Mem.Copy((_fp + 4u), (f + 4u), 12);
-                addr = Mem.U32(f);
-                Mem.Copy(((_fp + 16u) + 4u), (_fp + 4u), 12);
-                n = Mem.U32(((_fp + 16u) + 4u));
+                Mem.Copy(new B14Tmp(_fp).r.P, new B14FieldRd(f).r.P, 12);
+                addr = new B14FieldRd(f).addr;
+                Mem.Copy(new B14Tmp((_fp + 16u)).r.P, new B14Tmp(_fp).r.P, 12);
+                n = new B14Tmp((_fp + 16u)).r.n;
                 p = (uint)(((addr & 4026531840u) | ((addr & (uint)(268435424)) >> (int)3)));
                 sh = (addr & (uint)(31));
                 v = Mem.U32((p + (uint)(0 * 4)));
@@ -38,8 +38,8 @@ public static partial class Game
                 {
                     v = (uint)((uint)(v) & (uint)(((1 << (int)n) - 1)));
                 }
-                res = ((((float)(v) / (float)(((1 << (int)n) - 1))) * Mem.F32((((_fp + 16u) + 4u) + 8u))) + Mem.F32((((_fp + 16u) + 4u) + 4u)));
-                Mem.Set(f, (uint)((uint)(Mem.U32(f)) + Mem.U32((_fp + 4u))));
+                res = ((((float)(v) / (float)(((1 << (int)n) - 1))) * new B14Tmp((_fp + 16u)).r.range) + new B14Tmp((_fp + 16u)).r.min);
+                new B14FieldRd(f).addr_Set((uint)((uint)(new B14FieldRd(f).addr) + new B14Tmp(_fp).r.n));
                 return res;
             }
         }

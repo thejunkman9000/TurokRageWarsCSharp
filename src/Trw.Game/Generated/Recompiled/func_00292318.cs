@@ -39,12 +39,12 @@ public static partial class Game
                 r21 = r3; func_0025398C((int)r4, (int)r5);
                 func_00296FF8();
                 func_0026D844();
-                r4 = r18; r2 = func_002917E8(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r18; func_002917E8();
                 func_00265DF0();
                 func_00263C44();
                 r4 = 131072u;
                 r4 = r4 | 21960u;
-                r4 = r18 + r4; r2 = func_00236864(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r18 + r4; func_00236864(r4);
                 r4 = r18; func_0029324C();
                 r1 = 131072u;
                 r1 = r18 + r1;
@@ -100,7 +100,7 @@ public static partial class Game
                 r3 = Mem.U32((r3 + 10464u));
                 { bool c_ = r3 == 0; r2 = (uint)20; if (c_) goto L_L002925B4; }
                 { bool c_ = r3 != r2; r4 = r18; if (c_) goto L_L002924AC; }
-                r2 = func_0040C11C(r4, r5, r6, r7); r3 = Cpu.V1;
+                func_0040C11C();
                 r4 = r18;
                 L_L002924AC: ;
                 r5 = r0;
@@ -108,7 +108,7 @@ public static partial class Game
                 r7 = r5;
                 r2 = (uint)360;
                 Mem.Set((r29 + 16u), r2);
-                Mem.Set((r29 + 20u), r0); r2 = func_00291BF8(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u)); r3 = Cpu.V1;
+                Mem.Set((r29 + 20u), r0); func_00291BF8((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
                 r6 = 7798784u;
                 r6 = r6 | 50588u;
                 r7 = 4279238656u;
@@ -243,7 +243,7 @@ public static partial class Game
                 { bool c_ = r2 == 0; r6 = (uint)1; if (c_) goto L_L00292708; }
                 r5 = 2148859904u;
                 r5 = Mem.U32((r5 - 21096u));
-                r4 = r18; r2 = func_0029193C(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r18; func_0029193C(r4, r5);
                  goto L_L00292720;
                 L_L00292708: ;
                 r4 = 2148794368u;

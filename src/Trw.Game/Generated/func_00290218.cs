@@ -15,21 +15,21 @@ public static partial class Game
             uint h = 0u;
             uint n = 0u;
             int flag = 0;
-            p = Mem.U32((o + 15364u));
+            p = new NodeOwner(o).head_;
             while ((p != 0u))
             {
                 e = p;
-                p = Mem.U32((p + 476u));
+                p = new Node(p).next_;
                 flag = 0;
-                if ((0.0f < Mem.F32((e + 456u))))
+                if ((0.0f < new Entity(e).unk1C8))
                 {
-                    Mem.Set((e + 456u), (Mem.F32((e + 456u)) - Mem.F32(0x800D2988u)));
-                    if ((Mem.F32((e + 456u)) <= 0.0f))
+                    new Entity(e).unk1C8_Set((new Entity(e).unk1C8 - Mem.F32(0x800D2988u)));
+                    if ((new Entity(e).unk1C8 <= 0.0f))
                     {
                         flag = 1;
                     }
                 }
-                if (((((((Mem.F32((0x801031F0u + (uint)(3 * 4))) > Mem.F32(((e + 380u) + (uint)(0 * 4)))) && (Mem.F32((0x801031F0u + (uint)(0 * 4))) < Mem.F32(((e + 380u) + (uint)(3 * 4))))) && (Mem.F32((0x801031F0u + (uint)(5 * 4))) > Mem.F32(((e + 380u) + (uint)(2 * 4))))) && (Mem.F32((0x801031F0u + (uint)(2 * 4))) < Mem.F32(((e + 380u) + (uint)(5 * 4))))) && (Mem.F32((0x801031F0u + (uint)(4 * 4))) > Mem.F32(((e + 380u) + (uint)(1 * 4))))) && (Mem.F32((0x801031F0u + (uint)(1 * 4))) < Mem.F32(((e + 380u) + (uint)(4 * 4))))))
+                if (((((((Mem.F32((0x801031F0u + (uint)(3 * 4))) > new Entity(e).box[(int)(0)]) && (Mem.F32((0x801031F0u + (uint)(0 * 4))) < new Entity(e).box[(int)(3)])) && (Mem.F32((0x801031F0u + (uint)(5 * 4))) > new Entity(e).box[(int)(2)])) && (Mem.F32((0x801031F0u + (uint)(2 * 4))) < new Entity(e).box[(int)(5)])) && (Mem.F32((0x801031F0u + (uint)(4 * 4))) > new Entity(e).box[(int)(1)])) && (Mem.F32((0x801031F0u + (uint)(1 * 4))) < new Entity(e).box[(int)(4)])))
                 {
                 }
                 else
@@ -42,33 +42,33 @@ public static partial class Game
                 if ((flag != 0))
                 {
                     n = e;
-                    if (((Mem.U32((n + 464u)) & (uint)(1)) != 0u))
+                    if (((new Node(n).flags & (uint)(1)) != 0u))
                     {
-                        Mem.Set((n + 464u), (Mem.U32((n + 464u)) & (uint)((~1))));
-                        if ((Mem.U32((n + 468u)) != 0u))
+                        new Node(n).flags_Set((new Node(n).flags & (uint)((~1))));
+                        if ((new Node(n).counter_ != 0u))
                         {
-                            Mem.Set(Mem.U32((n + 468u)), (Mem.S32(Mem.U32((n + 468u))) - 1));
+                            Mem.Set(new Node(n).counter_, (Mem.S32(new Node(n).counter_) - 1));
                         }
-                        if ((Mem.U32((n + 472u)) != 0u))
+                        if ((new Node(n).prev_ != 0u))
                         {
-                            Mem.Set((Mem.U32((n + 472u)) + 476u), Mem.U32((n + 476u)));
+                            new Node(new Node(n).prev_).next__Set(new Node(n).next_);
                         }
-                        if ((Mem.U32((n + 476u)) != 0u))
+                        if ((new Node(n).next_ != 0u))
                         {
-                            Mem.Set((Mem.U32((n + 476u)) + 472u), Mem.U32((n + 472u)));
+                            new Node(new Node(n).next_).prev__Set(new Node(n).prev_);
                         }
-                        if ((Mem.U32((o + 15364u)) == n))
+                        if ((new NodeOwner(o).head_ == n))
                         {
-                            Mem.Set((o + 15364u), Mem.U32((n + 476u)));
+                            new NodeOwner(o).head__Set(new Node(n).next_);
                         }
-                        if ((Mem.U32((o + 15368u)) == n))
+                        if ((new NodeOwner(o).tail_ == n))
                         {
-                            Mem.Set((o + 15368u), Mem.U32((n + 472u)));
+                            new NodeOwner(o).tail__Set(new Node(n).prev_);
                         }
-                        h = Mem.U32((o + 15360u));
-                        Mem.Set((n + 472u), 0u);
-                        Mem.Set((n + 476u), h);
-                        Mem.Set((o + 15360u), n);
+                        h = new NodeOwner(o).freeList_;
+                        new Node(n).prev__Set(0u);
+                        new Node(n).next__Set(h);
+                        new NodeOwner(o).freeList__Set(n);
                     }
                 }
                 else

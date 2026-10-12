@@ -11,16 +11,16 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004434BC", (uint)a, (uint)b);
             uint p = 0u;
-            if ((Mem.U32((Mem.U32((b + 20u)) + 12u)) != 0u))
+            if ((new O06V(new O06A_v20(b).unk14_).unkC != 0u))
             {
-                Funcs.CallReg(Mem.U32((Mem.U32((b + 20u)) + 12u)), b, a, 0u, 0u);
+                Funcs.CallReg(new O06V(new O06A_v20(b).unk14_).unkC, b, a, 0u, 0u);
             }
-            p = Mem.U32((b + 32u));
-            Mem.Set((p + 176u), 0);
-            Mem.Set((p + 180u), 0);
-            Mem.Set((p + 188u), 0);
+            p = new O06A_v20(b).unk20_;
+            new O06B_v4(p).unkB0_Set(0);
+            new O06B_v4(p).unkB4_Set(0);
+            new O06B_v4(p).unkBC_Set(0);
             func_00255E78(a, b, default(uint), default(uint));
-            func_002537D8(0, (uint)(Mem.S32((b + 8u))));
+            func_002537D8(0, (uint)(new O06A_v20(b).unk8));
         }
     }
 

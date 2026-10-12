@@ -26,7 +26,7 @@ public static partial class Game
                 {
                     goto L_end;
                 }
-                dbgLinkSendByte((uint)((byte)(131)), default(uint), default(uint), default(uint));
+                dbgLinkSendByte((byte)(131));
                 if ((Mem.S32(0x8014D3E8u) != 0))
                 {
                     goto L_end;
@@ -95,7 +95,7 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("dbgHostFwrite_dbgLinkHandshake_i");
                 int ret = 0;
-                dbgLinkSendByte((uint)((byte)(16)), default(uint), default(uint), default(uint));
+                dbgLinkSendByte((byte)(16));
                 if ((Mem.S32(0x8014D3E8u) == 0))
                 {
                     dbgLinkRecvByte(_fp);
@@ -116,16 +116,16 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("dbgHostFwrite_dbgLinkSendWord_i", (uint)v);
             int ret = 0;
-            dbgLinkSendByte((uint)((byte)((v >> (int)24))), default(uint), default(uint), default(uint));
+            dbgLinkSendByte((byte)((v >> (int)24)));
             if ((Mem.S32(0x8014D3E8u) == 0))
             {
-                dbgLinkSendByte((uint)((byte)(((v >> (int)16) & (uint)(255)))), default(uint), default(uint), default(uint));
+                dbgLinkSendByte((byte)(((v >> (int)16) & (uint)(255))));
                 if ((Mem.S32(0x8014D3E8u) == 0))
                 {
-                    dbgLinkSendByte((uint)((byte)(((v >> (int)8) & (uint)(255)))), default(uint), default(uint), default(uint));
+                    dbgLinkSendByte((byte)(((v >> (int)8) & (uint)(255))));
                     if ((Mem.S32(0x8014D3E8u) == 0))
                     {
-                        dbgLinkSendByte((uint)((byte)((v & (uint)(255)))), default(uint), default(uint), default(uint));
+                        dbgLinkSendByte((byte)((v & (uint)(255))));
                         ret = ((Mem.S32(0x8014D3E8u) == 0) ? 1 : 0);
                     }
                 }

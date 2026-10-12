@@ -41,14 +41,14 @@ public static partial class Game
                 if ((e != 0u))
                 {
                     Mem.Copy(_fp, (0x800E2A10u + (uint)(Mem.S32(0x800E28D8u) * 20)), 20);
-                    Mem.Set(0x800E28E8u, Mem.S32((_fp + (uint)(0 * 4))));
-                    Mem.Set(0x800D15C0u, Mem.S32((_fp + (uint)(1 * 4))));
-                    Mem.Set(0x800D15C4u, Mem.S32((_fp + (uint)(2 * 4))));
-                    Mem.Set(0x800D15C8u, Mem.S32((_fp + (uint)(3 * 4))));
-                    new_var = e;
-                    Mem.Set(0x800D15CCu, Mem.S32((_fp + (uint)(4 * 4))));
+                    Mem.Set(0x800E28E8u, new O02Vi20(_fp).w[(int)(0)]);
+                    Mem.Set(0x800D15C0u, new O02Vi20(_fp).w[(int)(1)]);
+                    Mem.Set(0x800D15C4u, new O02Vi20(_fp).w[(int)(2)]);
+                    Mem.Set(0x800D15C8u, new O02Vi20(_fp).w[(int)(3)]);
+                    new_var = new O02Vi(e).w.P;
+                    Mem.Set(0x800D15CCu, new O02Vi20(_fp).w[(int)(4)]);
                     Mem.Set(0x800E28D0u, Mem.S32((new_var + (uint)(0 * 4))));
-                    Mem.Set(0x800E28D4u, Mem.S32((e + (uint)(1 * 4))));
+                    Mem.Set(0x800E28D4u, new O02Vi(e).w[(int)(1)]);
                     func_0040C504((uint)(Mem.S32((new_var + (uint)(0 * 4)))), Mem.S32((new_var + (uint)(1 * 4))), Mem.S32((new_var + (uint)(2 * 4))), Mem.S32((new_var + (uint)(3 * 4))), Mem.S32((new_var + (uint)(4 * 4))), Mem.S32((new_var + (uint)(5 * 4))));
                     osViSetSpecialFeatures((uint)(((Mem.S32(0x800E28E8u) != 0) ? 64 : 128)));
                     osViSetSpecialFeatures((uint)(32));

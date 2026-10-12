@@ -22,64 +22,64 @@ public static partial class Game
             func_0024B8B4(e);
             if ((func_0024D150(e) != 0))
             {
-                a = Mem.S32((lv + 2372u));
+                a = new Level(lv).cnt944;
                 if ((a != 512))
                 {
-                    Mem.Set(((lv + 324u) + (uint)(a * 4)), e);
-                    Mem.Set((lv + 2372u), (a + 1));
+                    new Level(lv).arr144.Set((int)(a), e);
+                    new Level(lv).cnt944_Set((a + 1));
                 }
             }
             if ((func_0024E1A4(e) != 0))
             {
-                b = Mem.S32((lv + 2888u));
+                b = new Level(lv).cntB48;
                 if ((b != 128))
                 {
-                    Mem.Set(((lv + 2376u) + (uint)(b * 4)), e);
-                    Mem.Set((lv + 2888u), (b + 1));
+                    new Level(lv).arr948.Set((int)(b), e);
+                    new Level(lv).cntB48_Set((b + 1));
                 }
             }
-            c = Mem.S32((lv + 3664u));
+            c = new Level(lv).numActors;
             if ((c < 128))
             {
-                Mem.Set(((lv + 3152u) + (uint)(c * 4)), e);
-                Mem.Set((lv + 3664u), (c + 1));
+                new Level(lv).actors.Set((int)(c), e);
+                new Level(lv).numActors_Set((c + 1));
             }
-            d = Mem.S32((lv + 3924u));
-            if (((d < 64) && (Mem.S32(Mem.U32((e + 24u))) == 1)))
+            d = new Level(lv).cntF54;
+            if (((d < 64) && (new ActorDef(new Entity(e).def_).type == 1)))
             {
-                Mem.Set(((lv + 3668u) + (uint)(d * 4)), e);
-                j = Mem.S32((lv + 3924u));
-                Mem.Set((e + 574u), (sbyte)(j));
-                Mem.Set((lv + 3924u), (j + 1));
+                new Level(lv).list4.Set((int)(d), e);
+                j = new Level(lv).cntF54;
+                new Entity(e).unk23E_Set((sbyte)(j));
+                new Level(lv).cntF54_Set((j + 1));
             }
-            f = Mem.S32((lv + 4060u));
-            if (((f < 32) && ((Mem.U32((e + 256u)) & (uint)(2)) != 0u)))
+            f = new Level(lv).cntFDC;
+            if (((f < 32) && ((new Entity(e).flags & (uint)(2)) != 0u)))
             {
-                Mem.Set(((lv + 3932u) + (uint)(f * 4)), e);
-                Mem.Set((lv + 4060u), (f + 1));
+                new Level(lv).arrF5C.Set((int)(f), e);
+                new Level(lv).cntFDC_Set((f + 1));
             }
-            g = Mem.S32((lv + 4128u));
-            if (((g < 16) && (Mem.S32(Mem.U32((e + 24u))) == 5)))
+            g = new Level(lv).cnt1020;
+            if (((g < 16) && (new ActorDef(new Entity(e).def_).type == 5)))
             {
-                Mem.Set(((lv + 4064u) + (uint)(g * 4)), e);
-                Mem.Set((lv + 4128u), (g + 1));
+                new Level(lv).arrFE0.Set((int)(g), e);
+                new Level(lv).cnt1020_Set((g + 1));
             }
-            h = Mem.S32((lv + 4260u));
+            h = new Level(lv).cnt10A4;
             if ((h < 32))
             {
-                if (((int)(Mem.U16((e + 228u))) == 1615))
+                if (((int)(new Entity(e).unkE4) == 1615))
                 {
-                    Mem.Set(((lv + 4132u) + (uint)(h * 4)), e);
-                    Mem.Set((lv + 4260u), (h + 1));
+                    new Level(lv).list3.Set((int)(h), e);
+                    new Level(lv).cnt10A4_Set((h + 1));
                 }
             }
-            if (((int)(Mem.U16((e + 228u))) == 1613))
+            if (((int)(new Entity(e).unkE4) == 1613))
             {
-                i = Mem.S32((lv + 4280u));
+                i = new Level(lv).cnt10B8;
                 if ((i < 4))
                 {
-                    Mem.Set(((lv + 4264u) + (uint)(i * 4)), e);
-                    Mem.Set((lv + 4280u), (i + 1));
+                    new Level(lv).arr10A8.Set((int)(i), e);
+                    new Level(lv).cnt10B8_Set((i + 1));
                 }
             }
         }

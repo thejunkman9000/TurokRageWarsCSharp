@@ -14,8 +14,8 @@ public static partial class Game
             int v = 0;
             if ((((n / 4) * 4) == (n - 1)))
             {
-                v = func_0020DD04((Mem.U32((Mem.U32(ctl) + 24u)) + 20u));
-                Mem.Set((ctl + 560u), v);
+                v = func_0020DD04(new B2Ctl(ctl).owner.def.info.P);
+                new B2Ctl(ctl).unk230_Set(v);
                 func_00209874(ctl, v);
             }
         }

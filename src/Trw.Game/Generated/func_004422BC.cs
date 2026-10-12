@@ -10,24 +10,24 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004422BC", (uint)a, (uint)b, (uint)c);
-            uint p = Mem.U32((a + 32u));
+            uint p = new O06D_v4(a).unk20_;
             uint v = func_0028CF7C(0x8011FE88u, b, c);
             if ((v == 0u))
             {
-                Mem.Set((p + 1144u), 0);
+                new O06A_v41(p).unk478_Set(0);
                 return 0u;
             }
-            Mem.Set(p, b);
-            Mem.Set((p + 1144u), 1);
-            Mem.Copy((p + 4u), v, 392);
-            Mem.Set((p + 4u), 0);
-            Mem.Set(((p + 4u) + 4u), 0);
-            Mem.Set(((p + 4u) + 20u), 0);
-            Mem.Set(((p + 4u) + 24u), 0);
-            Mem.Set(((p + 4u) + 28u), 0);
-            Mem.Set(((p + 4u) + 8u), Mem.F32(0x800E2524u));
-            Mem.Set((p + 1148u), Mem.F32(((p + 4u) + 244u)));
-            return (p + 4u);
+            new O06A_v41(p).unk0_Set(b);
+            new O06A_v41(p).unk478_Set(1);
+            Mem.Copy(new O06A_v41(p).blob.P, v, 392);
+            new O06A_v41(p).blob.unk0_Set(0);
+            new O06A_v41(p).blob.unk4_Set(0);
+            new O06A_v41(p).blob.unk14_Set(0);
+            new O06A_v41(p).blob.unk18_Set(0);
+            new O06A_v41(p).blob.unk1C_Set(0);
+            new O06A_v41(p).blob.unk8_Set(Mem.F32(0x800E2524u));
+            new O06A_v41(p).unk47C_Set(new O06A_v41(p).blob.unkF4);
+            return new O06A_v41(p).blob.P;
         }
     }
 

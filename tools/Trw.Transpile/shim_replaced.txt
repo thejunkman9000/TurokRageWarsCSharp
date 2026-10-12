@@ -1,4 +1,5 @@
 # libultra functions the host replaces (src/Trw.Game/Os): the transpiler does not emit them. Same set the C ports os_shim.c defines.
+# (osMotorInit / osMotorStart / osMotorStop are not in the list: unlike the C port, the C# build translates the libultra C, which runs over the virtual PIF in Trw.Platform/Pif.cs)
 __divdi3
 __moddi3
 __osSiRawStartDma
@@ -23,9 +24,6 @@ osGetThreadPri
 osGetTime
 osInitialize
 osJamMesg
-osMotorInit
-osMotorStart
-osMotorStop
 osPiGetStatus
 osPiRawStartDma
 osPiStartDma

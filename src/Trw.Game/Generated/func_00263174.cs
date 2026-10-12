@@ -14,8 +14,8 @@ public static partial class Game
             int v = 0;
             for (i = 0; (i < n); ++i)
             {
-                v = (int)((int)(v) | ((((int)(Mem.U8((Mem.U32(r) + (uint)(Mem.S32((r + 4u)) >> (int)3)))) >> (int)(Mem.S32((r + 4u)) & 7)) & 1) << (int)i));
-                Mem.Set((r + 4u), (int)(Mem.S32((r + 4u)) + 1));
+                v = (int)((int)(v) | ((((int)(Mem.U8((new B14BitRd(r).data_ + (uint)(new B14BitRd(r).pos >> (int)3)))) >> (int)(new B14BitRd(r).pos & 7)) & 1) << (int)i));
+                new B14BitRd(r).pos_Set((int)(new B14BitRd(r).pos + 1));
             }
             return v;
         }

@@ -16,23 +16,23 @@ public static partial class Game
                 int def = 0;
                 short r = 0;
                 func_002798CC(_fp);
-                def = Mem.S32((e + 4u));
-                while ((Mem.S32(e) != (-1)))
+                def = new B04Ent_v4(e).id;
+                while ((new B04Ent_v4(e).mask != (-1)))
                 {
-                    if (((Mem.S32(e) == 0) && ((int)(Mem.S16(_fp)) != 0)))
+                    if (((new B04Ent_v4(e).mask == 0) && ((int)(new B04SelL(_fp).cur) != 0)))
                     {
                         goto L_done;
                     }
-                    if (((mask & (uint)(Mem.S32(e))) != 0u))
+                    if (((mask & (uint)(new B04Ent_v4(e).mask)) != 0u))
                     {
-                        if ((func_002469F8(o, Mem.S32((e + 4u)), (-1)) != (-1)))
+                        if ((func_002469F8(o, new B04Ent_v4(e).id, (-1)) != (-1)))
                         {
-                            func_002798D4(_fp, (short)(Mem.S32((e + 4u))), (short)(10));
+                            func_002798D4(_fp, (short)(new B04Ent_v4(e).id), (short)(10));
                         }
                     }
                     e += 8u;
                 }
-                if (((int)(Mem.S16(_fp)) == 0))
+                if (((int)(new B04SelL(_fp).cur) == 0))
                 {
                     func_002798D4(_fp, (short)(def), (short)(10));
                 }

@@ -16,7 +16,7 @@ public static partial class Game
             float x = 0f;
             if (((v >= (int)(Mem.S8((cfg + (uint)24)))) && (v <= (int)(Mem.S8((cfg + (uint)25))))))
             {
-                owner = Mem.U32((Mem.U32((obj + (uint)8)) + 472u));
+                owner = new Actor(Mem.U32((obj + (uint)8))).owner_;
                 x = (-Mem.F32((owner + (uint)1828)));
                 if (((int)(Mem.S16((owner + (uint)1616))) == 15))
                 {

@@ -71,7 +71,7 @@ public static partial class Game
                 r5 = r18;
                 r6 = r17;
                 r16 = r20 & 255u;
-                r7 = r16; r2 = __lookupSoundQuick(r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = r16; r2 = __lookupSoundQuick(r4, (byte)r5, (byte)r6, (byte)r7);
                 r21 = r2;
                 { bool c_ = r21 == 0; r4 = r19; if (c_) goto L_L002B4C08; }
                 r5 = r18;
@@ -212,10 +212,10 @@ public static partial class Game
                 r4 = r17;
                 r16 = Mem.U8((r2 + 10u));
                 Cpu.SetS(20, Cpu.S(20) * Cpu.S(1));
-                r5 = r19; r2 = __vsPan(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r19; r2 = (uint)__vsPan(r4, r5);
                 r4 = r17;
                 r5 = r19;
-                r17 = r2; r2 = __vsVol(r4, r5, r6, r7); r3 = Cpu.V1;
+                r17 = r2; r2 = (uint)__vsVol(r4, r5);
                 r2 = r2 << 16;
                 r3 = Mem.U32((r21 + 0u));
                 r2 = (uint)((int)r2 >> 16);
@@ -261,7 +261,7 @@ public static partial class Game
                 r4 = r19;
                 L_L002B47F0: ;
                 r5 = r22 & 255u;
-                r6 = r20; r2 = __lookupVoice(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = r20; r2 = __lookupVoice(r4, (byte)r5, (byte)r6);
                 r17 = r2;
                 { bool c_ = r17 == 0; r2 = (uint)2; if (c_) goto L_L002B4C08; }
                 r3 = Mem.U8((r17 + 53u));
@@ -274,15 +274,15 @@ public static partial class Game
                 r2 = Mem.U32((r2 + 0u));
                 r4 = r19;
                 r6 = Mem.U32((r2 + 8u));
-                r5 = r17 + 4u; r2 = __seqpReleaseVoice(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r17 + 4u; __seqpReleaseVoice(r4, r5, (int)r6);
                  goto L_L002B4C08;
                 L_L002B4844: ;
                 r5 = r22 & 255u;
-                r6 = r20; r2 = __lookupVoice(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = r20; r2 = __lookupVoice(r4, (byte)r5, (byte)r6);
                 r17 = r2;
                 { bool c_ = r17 == 0; r4 = r17; if (c_) goto L_L002B4C08; }
                 r5 = r19;
-                Mem.Set((r17 + 51u), (byte)r16); r2 = __vsVol(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r17 + 51u), (byte)r16); r2 = (uint)__vsVol(r4, r5);
                 r4 = r17;
                 r16 = r2 << 16;
                 r5 = Mem.U32((r19 + 28u));
@@ -299,7 +299,7 @@ public static partial class Game
                 r2 = Mem.U8((r17 + 49u));
                 { bool c_ = r2 != r18; r4 = r17; if (c_) goto L_L002B48E4; }
                 r5 = r19;
-                Mem.Set((r17 + 51u), (byte)r21); r2 = __vsVol(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r17 + 51u), (byte)r21); r2 = (uint)__vsVol(r4, r5);
                 r4 = r17;
                 r16 = r2 << 16;
                 r5 = Mem.U32((r19 + 28u));
@@ -335,7 +335,7 @@ public static partial class Game
                 L_L002B4960: ;
                 r2 = Mem.U8((r17 + 49u));
                 { bool c_ = r2 != r16; r4 = r17; if (c_) goto L_L002B4984; }
-                r5 = r19; r2 = __vsPan(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r19; r2 = (uint)__vsPan(r4, r5);
                 r4 = Mem.U32((r19 + 20u));
                 r5 = r17 + 4u;
                 r6 = r2 & 255u; alSynSetPan(r4, r5, (byte)r6);
@@ -357,7 +357,7 @@ public static partial class Game
                 { bool c_ = r2 != r18;  if (c_) goto L_L002B4A04; }
                 r2 = Mem.U8((r17 + 52u));
                 { bool c_ = r2 == r20; r4 = r17; if (c_) goto L_L002B4A04; }
-                r5 = r19; r2 = __vsVol(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r19; r2 = (uint)__vsVol(r4, r5);
                 r4 = r17;
                 r5 = Mem.U32((r19 + 28u));
                 r16 = r2; r2 = (uint)__vsDelta(r4, (int)r5);
@@ -406,7 +406,7 @@ public static partial class Game
                 Mem.Set((r17 + 53u), (byte)r18);
                 r2 = Mem.U32((r2 + 0u));
                 r6 = Mem.U32((r2 + 8u));
-                r5 = r17 + 4u; r2 = __seqpReleaseVoice(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r17 + 4u; __seqpReleaseVoice(r4, r5, (int)r6);
                 L_L002B4AC4: ;
                 r17 = Mem.U32((r17 + 0u));
                 { bool c_ = r17 == 0;  if (c_) goto L_L002B4C08; }
@@ -444,7 +444,7 @@ public static partial class Game
                 r2 = r3 << 2;
                 r2 = r5 + r2;
                 r5 = Mem.U32((r2 + 12u));
-                r6 = r20; r2 = __setInstChanState(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = r20; __setInstChanState(r4, r5, (int)r6);
                  goto L_L002B4C08;
                 L_L002B4B78: ;
                 r3 = r3 << 7;

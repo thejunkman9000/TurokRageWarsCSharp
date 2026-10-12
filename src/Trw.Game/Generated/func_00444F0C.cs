@@ -14,12 +14,12 @@ public static partial class Game
             func_0025470C((func_0025471C() + 2));
             if ((h == (uint)(0)))
             {
-                Mem.Set((a + 20u), 0x800D7650u);
+                new O06A_v2(a).unk14_Set(0x800D7650u);
             }
             else
             {
                 int s = 0;
-                Mem.Set((a + 20u), 0x800D7654u);
+                new O06A_v2(a).unk14_Set(0x800D7654u);
                 s = Mem.S32((0x800D7654u + (uint)(0 * 4)));
                 func_00265904((uint)(((s - 4) + func_00442158(a))), 0x800E2788u, (int)(h), default(int));
             }

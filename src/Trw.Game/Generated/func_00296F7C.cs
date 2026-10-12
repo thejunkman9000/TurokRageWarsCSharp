@@ -10,18 +10,18 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00296F7C", (uint)h, (uint)t);
-            uint n = Mem.U32(h);
-            if ((Mem.S32(n) != 0))
+            uint n = new B21Holder(h).node_;
+            if ((new B21Node_v2(n).unk0 != 0))
             {
-                Mem.Set((t + 8u), func_0028FD94(n, 0));
-                Mem.Set(t, Mem.S32(func_0028FD94(n, 1)));
-                Mem.Set((t + 4u), Mem.S32(func_0028FD94(n, 2)));
+                new B21Triple(t).unk8__Set(func_0028FD94(n, 0));
+                new B21Triple(t).unk0_Set(Mem.S32(func_0028FD94(n, 1)));
+                new B21Triple(t).unk4_Set(Mem.S32(func_0028FD94(n, 2)));
             }
             else
             {
-                Mem.Set((t + 8u), 0u);
-                Mem.Set(t, 0);
-                Mem.Set((t + 4u), 0);
+                new B21Triple(t).unk8__Set(0u);
+                new B21Triple(t).unk0_Set(0);
+                new B21Triple(t).unk4_Set(0);
             }
         }
     }

@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029BA24", (uint)fn);
-            Mem.Set(Mem.U32(0x8014D0B0u), fn);
+            new SndAux(Mem.U32(0x8014D0B0u)).fn0_Set(fn);
         }
     }
 

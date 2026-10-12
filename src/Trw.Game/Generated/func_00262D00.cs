@@ -31,14 +31,14 @@ public static partial class Game
                     {
                         x = (int)(func_0028B238(0x8011FE88u, id));
                     }
-                    if (((Mem.S32(0x8013B290u) != 0) || (C.Seq((object?)((e = 0u)), ((Mem.U32((w + 24356u)) < (uint)(3)) ? 1 : 0)) != 0)))
+                    if (((Mem.S32(0x8013B290u) != 0) || (C.Seq((object?)((e = 0u)), ((new B14World2(w).freeCount < (uint)(3)) ? 1 : 0)) != 0)))
                     {
-                        e = Mem.U32((w + 24320u));
+                        e = new B14World2(w).freeHead_;
                         if ((e != 0u))
                         {
                             func_00255E78((w + 24320u), e, default(uint), default(uint));
-                            func_00255C58((w + 24340u), e, default(uint), default(uint));
-                            Mem.Set((e + 752u), counter);
+                            func_00255C58(new B14World2(w).usedList.P, e);
+                            new B14Ent3(e).counter__Set(counter);
                             if ((counter != 0u))
                             {
                                 Mem.Set(counter, (int)((int)(Mem.S32(counter)) + 1));

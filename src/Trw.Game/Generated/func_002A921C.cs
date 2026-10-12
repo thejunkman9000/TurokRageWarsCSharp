@@ -94,7 +94,7 @@ public static partial class Game
                         }
                         if (((uint)(d) < (uint)(10)))
                         {
-                            func_002AB19C(h, d, (short)((int)(x)), (short)((int)(y)), sx, sy, flt);
+                            func_002AB19C(h, d, (int)((short)((int)(x))), (short)((int)(y)), sx, sy, flt);
                         }
                         if ((rev == 0))
                         {

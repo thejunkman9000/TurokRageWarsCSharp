@@ -13,16 +13,16 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0022B68C", (uint)p, 0u, (uint)a);
-                float x = (Mem.F32((p + 4800u)) - d);
+                float x = (new Player_v3(p).f12C0 - d);
                 float t = Mem.F32(0x800CE3E4u);
                 if (!(x <= t))
                 {
                     t = x;
                 }
-                Mem.Set((p + 4800u), t);
+                new Player_v3(p).f12C0_Set(t);
                 if ((t <= Mem.F32(0x800CE3E4u)))
                 {
-                    func_00216488(_fp, a, (int)((Mem.U32((p + 372u)) + (uint)6400)), (int)Cpu.F2U(25.5999985f), 128, 0);
+                    func_00216488(_fp, a, (int)((new Player_v3(p).f174_ + (uint)6400)), (int)Cpu.F2U(25.5999985f), 128, 0);
                     func_00219A40(p, (p + 368u), _fp, default(uint));
                 }
             }

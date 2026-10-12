@@ -58,7 +58,7 @@ public static partial class Game
                 L_I002B4274: ;
                 r4 = r16;
                 L_I002B4278: ;
-                r5 = r29 + 16u; r2 = __CSPHandleMIDIMsg(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r29 + 16u; __CSPHandleMIDIMsg(r4, r5);
                 L_I002B4280: ;
                 r3 = Mem.U32((r16 + 44u));
                 L_I002B4284: ;
@@ -83,7 +83,7 @@ public static partial class Game
                 L_I002B42BC: ;
                 r4 = r16;
                 L_I002B42C0: ;
-                r5 = r29 + 16u; r2 = __CSPHandleMetaMsg(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r29 + 16u; __CSPHandleMetaMsg(r4, r5);
                 L_I002B42C8: ;
                 r3 = Mem.U32((r16 + 44u));
                 L_I002B42CC: ;

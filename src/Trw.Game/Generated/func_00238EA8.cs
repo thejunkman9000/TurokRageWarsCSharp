@@ -12,23 +12,23 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00238EA8", (uint)o);
             uint p = 0u;
             float z = 0f;
-            Mem.Set((o + 32u), 0);
-            z = Mem.F32((o + 32u));
-            Mem.Set(o, 1);
-            Mem.Set((o + 4u), 0);
-            Mem.Set((o + 8u), 0);
-            Mem.Set((o + 12u), 0);
-            Mem.Set((o + 16u), 0);
-            Mem.Set((o + 20u), 0);
-            Mem.Set((o + 24u), 0);
-            Mem.Set((o + 28u), 0);
-            p = (o + 36u);
-            Mem.Set(p, Mem.Set((p + 4u), Mem.Set((p + 8u), z)));
-            Mem.Set((o + 48u), Mem.F32(0x800C8608u));
-            Mem.Set((o + 52u), 0);
-            Mem.Set((o + 56u), z);
-            Mem.Set((o + 60u), Mem.F32(0x800C860Cu));
-            Mem.Set((o + 64u), Mem.S32((0x800D2B40u + (uint)(0 * 4))));
+            Mem.Set(new ObjInit(o).unk20.P, 0);
+            z = Mem.F32(new ObjInit(o).unk20.P);
+            new ObjInit(o).unk0_Set(1);
+            new ObjInit(o).unk4_Set(0);
+            new ObjInit(o).unk8_Set(0);
+            new ObjInit(o).unkC_Set(0);
+            new ObjInit(o).unk10_Set(0);
+            new ObjInit(o).unk14_Set(0);
+            new ObjInit(o).unk18_Set(0);
+            new ObjInit(o).unk1C_Set(0);
+            p = new ObjInit(o).v.P;
+            new Vec3f(p).x_Set(new Vec3f(p).y_Set(new Vec3f(p).z_Set(z)));
+            new ObjInit(o).unk30_Set(Mem.F32(0x800C8608u));
+            new ObjInit(o).unk34_Set(0);
+            new ObjInit(o).unk38_Set(z);
+            new ObjInit(o).unk3C_Set(Mem.F32(0x800C860Cu));
+            new ObjInit(o).unk40_Set(Mem.S32((0x800D2B40u + (uint)(0 * 4))));
         }
     }
 

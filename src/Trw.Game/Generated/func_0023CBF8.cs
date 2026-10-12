@@ -12,32 +12,32 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0023CBF8");
             uint n = Mem.U32(0x80103E20u);
             uint r = 0u;
-            if ((Mem.U32((n + 4u)) != 0u))
+            if ((new B09LNode(n).prev_ != 0u))
             {
-                Mem.Set(Mem.U32((n + 4u)), Mem.U32(n));
+                new B09LNode(n).prev.next__Set(new B09LNode(n).next_);
             }
             else
             {
-                Mem.Set(0x80103E20u, Mem.U32(n));
-                Mem.Set((Mem.U32(n) + 4u), 0u);
+                new B09List(0x80103E20u).head__Set(new B09LNode(n).next_);
+                new B09LNode(n).next.prev__Set(0u);
             }
-            if ((Mem.U32(n) != 0u))
+            if ((new B09LNode(n).next_ != 0u))
             {
-                Mem.Set((Mem.U32(n) + 4u), Mem.U32((n + 4u)));
+                new B09LNode(n).next.prev__Set(new B09LNode(n).prev_);
             }
             else
             {
-                Mem.Set((0x80103E20u + 4u), Mem.U32((n + 4u)));
-                Mem.Set(Mem.U32((n + 4u)), 0u);
+                new B09List(0x80103E20u).tail__Set(new B09LNode(n).prev_);
+                new B09LNode(n).prev.next__Set(0u);
             }
             func_0023C074(n);
-            if (((int)(Mem.U16((n + 8u))) != 65535))
+            if (((int)(new B09LNode(n).slot) != 65535))
             {
-                r = func_0023CBB0((uint)(Mem.U16((n + 8u))));
-                Mem.Set((Mem.U32((r + 16u)) + (uint)((int)(Mem.U16((n + 8u))) - (int)(Mem.U16((r + 4u))))), (byte)(255));
-                Mem.Set((n + 8u), (ushort)(65535));
+                r = func_0023CBB0((uint)(new B09LNode(n).slot));
+                Mem.Set((new B09Region(r).data_ + (uint)((int)(new B09LNode(n).slot) - (int)(new B09Region(r).@base))), (byte)(255));
+                new B09LNode(n).slot_Set((ushort)(65535));
             }
-            Mem.Set((n + 12u), 0);
+            new B09LNode(n).unkC_Set(0);
             return n;
         }
     }

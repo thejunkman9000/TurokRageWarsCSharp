@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020C078_getRec0", (uint)m, (uint)idx);
-            uint pool = Mem.U32(m);
-            return ((pool + 8u) + (uint)(idx * Mem.S32(pool)));
+            uint pool = new B2Mgr(m).pool0_;
+            return (new B2Pool(pool).data.P + (uint)(idx * new B2Pool(pool).elemSize));
         }
     }
 
@@ -20,8 +20,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020C078_getEdge", (uint)m, (uint)idx);
-            uint pool = Mem.U32((m + 8u));
-            return ((pool + 8u) + (uint)(idx * Mem.S32(pool)));
+            uint pool = new B2Mgr(m).pool8_;
+            return (new B2Pool(pool).data.P + (uint)(idx * new B2Pool(pool).elemSize));
         }
     }
 
@@ -34,18 +34,18 @@ public static partial class Game
             int cnt = 0;
             uint e = 0u;
             cnt = (k = 0);
-            for (; (k < Mem.S32((m + 12u))); ++k)
+            for (; (k < new B2Mgr(m).count); ++k)
             {
                 e = func_0020C078_getEdge(m, k);
-                if (((int)(Mem.U16(e)) == key))
+                if (((int)(new B2Edge(e).a) == key))
                 {
-                    Mem.Set((nb + (uint)(cnt * 4)), (int)(Mem.U16((e + 2u))));
+                    Mem.Set((nb + (uint)(cnt * 4)), (int)(new B2Edge(e).b));
                     Mem.Set((ei + (uint)(cnt * 4)), k);
                     ++cnt;
                 }
-                if (((int)(Mem.U16((e + 2u))) == key))
+                if (((int)(new B2Edge(e).b) == key))
                 {
-                    Mem.Set((nb + (uint)(cnt * 4)), (int)(Mem.U16(e)));
+                    Mem.Set((nb + (uint)(cnt * 4)), (int)(new B2Edge(e).a));
                     Mem.Set((ei + (uint)(cnt * 4)), k);
                     ++cnt;
                 }
@@ -70,10 +70,10 @@ public static partial class Game
                 uint src = 0u;
                 uint rec = 0u;
                 uint e = 0u;
-                for (; (i < Mem.S32((m + 12u))); ++i)
+                for (; (i < new B2Mgr(m).count); ++i)
                 {
                     e = func_0020C078_getEdge(m, i);
-                    if ((((int)(Mem.U16(e)) == goal) && ((int)(Mem.U8((e + 4u))) == (int)(kind))))
+                    if ((((int)(new B2Edge(e).a) == goal) && ((int)(new B2Edge(e).kind) == (int)(kind))))
                     {
                         return goal;
                     }

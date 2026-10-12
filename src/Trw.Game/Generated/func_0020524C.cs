@@ -17,7 +17,7 @@ public static partial class Game
             else
             {
                 func_00214178(actor, state, 0);
-                Mem.Set((actor + 256u), (uint)((uint)(Mem.U32((actor + 256u))) | (uint)(65536)));
+                new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) | (uint)(65536)));
             }
         }
     }

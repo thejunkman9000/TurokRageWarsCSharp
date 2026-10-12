@@ -57,18 +57,18 @@ public static partial class Game
             {
                 return (-2);
             }
-            if ((Mem.S32((((Mem.U32(0x800E2854u) + (uint)(pad * 516)) + 4u) + (uint)(idx * 32))) == 0))
+            if ((new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent[(int)(idx)].unk0 == 0))
             {
                 Mem.Set(valid, 0);
             }
             else
             {
                 Mem.Set(valid, 1);
-                Mem.Set(blocks, (int)(((uint)(Mem.S32((((Mem.U32(0x800E2854u) + (uint)(pad * 516)) + 4u) + (uint)(idx * 32)))) >> (int)8)));
-                memcpy(company, ((((Mem.U32(0x800E2854u) + (uint)(pad * 516)) + 4u) + (uint)(idx * 32)) + 8u), (uint)(2));
-                memcpy(game, ((((Mem.U32(0x800E2854u) + (uint)(pad * 516)) + 4u) + (uint)(idx * 32)) + 4u), (uint)(4));
-                func_0040458C_O01ConvName(((((Mem.U32(0x800E2854u) + (uint)(pad * 516)) + 4u) + (uint)(idx * 32)) + 14u), name, 17);
-                func_0040458C_O01ConvName(((((Mem.U32(0x800E2854u) + (uint)(pad * 516)) + 4u) + (uint)(idx * 32)) + 10u), ext, 4);
+                Mem.Set(blocks, (int)(((uint)(new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent[(int)(idx)].unk0) >> (int)8)));
+                memcpy(company, ((new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent.P + (uint)(idx * 32)) + 8u), (uint)(2));
+                memcpy(game, ((new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent.P + (uint)(idx * 32)) + 4u), (uint)(4));
+                func_0040458C_O01ConvName(new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent[(int)(idx)].unkE.P, name, 17);
+                func_0040458C_O01ConvName(new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent[(int)(idx)].unkA.P, ext, 4);
                 Mem.Set((game + (uint)4), (byte)(0));
                 Mem.Set((company + (uint)2), (byte)(0));
             }

@@ -10,38 +10,38 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00421ECC", (uint)o, (uint)dt);
-            if ((Mem.S32((o + 4u)) == 0))
+            if ((new O3Fd(o).done == 0))
             {
-                if ((Mem.S32((o + 8u)) == 0))
+                if ((new O3Fd(o).dir == 0))
                 {
-                    if ((Mem.S32(o) < 1000))
+                    if ((new O3Fd(o).timer < 1000))
                     {
-                        Mem.Set((Mem.U32((o + 12u)) + 16u), (byte)(Cpu.TruncU32(((float)(Mem.S32(o)) * 0.255000025f))));
+                        new O3Fd(o).item.alpha_Set((byte)(Cpu.TruncU32(((float)(new O3Fd(o).timer) * 0.255000025f))));
                     }
                     else
                     {
-                        Mem.Set((Mem.U32((o + 12u)) + 16u), (byte)(255));
-                        Mem.Set((o + 4u), 1);
+                        new O3Fd(o).item.alpha_Set((byte)(255));
+                        new O3Fd(o).done_Set(1);
                         func_002A3358();
                     }
-                    Mem.Set(o, (Mem.S32(o) + dt));
+                    new O3Fd(o).timer_Set((new O3Fd(o).timer + dt));
                 }
                 else
                 {
-                    if ((Mem.S32(o) > 0))
+                    if ((new O3Fd(o).timer > 0))
                     {
-                        Mem.Set((Mem.U32((o + 12u)) + 16u), (byte)(Cpu.TruncU32(((float)(Mem.S32(o)) * 0.255000025f))));
+                        new O3Fd(o).item.alpha_Set((byte)(Cpu.TruncU32(((float)(new O3Fd(o).timer) * 0.255000025f))));
                     }
                     else
                     {
-                        Mem.Set((Mem.U32((o + 12u)) + 16u), (byte)(0));
-                        Mem.Set((o + 4u), 1);
+                        new O3Fd(o).item.alpha_Set((byte)(0));
+                        new O3Fd(o).done_Set(1);
                         func_002A3358();
                     }
-                    Mem.Set(o, (Mem.S32(o) - dt));
+                    new O3Fd(o).timer_Set((new O3Fd(o).timer - dt));
                 }
             }
-            return Mem.S32((o + 4u));
+            return new O3Fd(o).done;
         }
     }
 

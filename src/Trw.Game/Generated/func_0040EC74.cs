@@ -10,13 +10,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0040EC74", (uint)n, (uint)px, (uint)py);
-            int x = (int)(Mem.S16((n + 20u)));
-            int y = (int)(Mem.S16((n + 22u)));
-            while ((Mem.U32(n) != 0u))
+            int x = (int)(new O02Node_v5(n).x);
+            int y = (int)(new O02Node_v5(n).y);
+            while ((new O02Node_v5(n).next_ != 0u))
             {
-                n = Mem.U32(n);
-                x = (int)((int)(x) + (int)(Mem.S16((n + 20u))));
-                y = (int)((int)(y) + (int)(Mem.S16((n + 22u))));
+                n = new O02Node_v5(n).next_;
+                x = (int)((int)(x) + (int)(new O02Node_v5(n).x));
+                y = (int)((int)(y) + (int)(new O02Node_v5(n).y));
             }
             Mem.Set(px, x);
             Mem.Set(py, y);

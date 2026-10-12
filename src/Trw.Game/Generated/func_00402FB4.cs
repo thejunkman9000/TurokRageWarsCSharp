@@ -23,8 +23,8 @@ public static partial class Game
                 int k0 = 0;
                 if ((Mem.S32(0x800E2838u) != 0))
                 {
-                    k4 = (int)(Mem.U16((sel + 4u)));
-                    k0 = (int)(Mem.U16((sel + 10u)));
+                    k4 = (int)(new O01Sel_v2(sel).unk4);
+                    k0 = (int)(new O01Sel_v2(sel).unkA);
                     p = func_0028FE1C(Mem.U32(0x8011FEFCu), Mem.U32(0x8011FEBCu), 0, _fp);
                     if ((p == 0u))
                     {
@@ -32,15 +32,15 @@ public static partial class Game
                     }
                     else
                     {
-                        r = func_002518DC((uint)(0), (uint)((int)(p)), (uint)((int)(p)), (uint)(Mem.S32(_fp)), (uint)(51), (uint)(0), 0u, 0x800E0B2Cu, (uint)(1));
+                        r = func_002518DC(0, (uint)((int)(p)), (int)(p), (uint)(Mem.S32(_fp)), 51, (uint)(0), 0u, 0x800E0B2Cu, 1);
                     }
                     n = (Mem.S32(Mem.U32(0x8011FEFCu)) - 1);
                     e = (uint)((Mem.S32(r) + 8));
                     for (i = 0; (i < n); ++i, e += 76u)
                     {
-                        if ((Mem.S32((e + 4u)) == k4))
+                        if ((new O01Rec(e).unk4 == k4))
                         {
-                            if ((Mem.S32(e) == k0))
+                            if ((new O01Rec(e).unk0 == k0))
                             {
                                 found = i;
                             }
@@ -48,10 +48,10 @@ public static partial class Game
                     }
                     if ((found != (-1)))
                     {
-                        Mem.Set((Mem.U32(0x800E2830u) + 24u), arg);
-                        Mem.Set((Mem.U32(0x800E2830u) + 216u), k0);
-                        Mem.Set((Mem.U32(0x800E2830u) + 220u), found);
-                        Mem.Set((Mem.U32(0x800E2830u) + 88u), 1);
+                        new O01Ctx(Mem.U32(0x800E2830u)).unk18_Set(arg);
+                        new O01Ctx(Mem.U32(0x800E2830u)).unkD8_Set(k0);
+                        new O01Ctx(Mem.U32(0x800E2830u)).unkDC_Set(found);
+                        new O01Ctx(Mem.U32(0x800E2830u)).unk58_Set(1);
                     }
                     func_002536F4(0, r);
                 }

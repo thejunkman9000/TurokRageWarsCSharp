@@ -21,7 +21,7 @@ public static partial class Game
                 int prev = 0;
                 if (((int)(bank) == 0))
                 {
-                    start = Mem.S32((pfs + 96u));
+                    start = new OSPfs(pfs).inode_start_page;
                 }
                 else
                 {
@@ -29,7 +29,7 @@ public static partial class Game
                 }
                 for (j = start; (j < 128); ++j)
                 {
-                    if (((int)(Mem.U16((inode + (uint)(j * 2)))) == 3))
+                    if (((int)(new __OSInode_v2(inode).inode_page[(int)(j)].@ushort) == 3))
                     {
                         break;
                     }
@@ -49,10 +49,10 @@ public static partial class Game
                 ++j;
                 for (; ((Mem.S32(decleared) < file_size_in_pages) && (j < 128)); ++j)
                 {
-                    if (((int)(Mem.U16((inode + (uint)(j * 2)))) == 3))
+                    if (((int)(new __OSInode_v2(inode).inode_page[(int)(j)].@ushort) == 3))
                     {
-                        Mem.Set((inode + (uint)(prev * 2)), bank);
-                        Mem.Set(((inode + (uint)(prev * 2)) + 1u), (byte)(j));
+                        Mem.Set(new __OSInode_v2(inode).inode_page[(int)(prev)].inode_t.P, bank);
+                        Mem.Set((new __OSInode_v2(inode).inode_page[(int)(prev)].inode_t.P + 1u), (byte)(j));
                         ret = __osClearPage(pfs, prev, _fp, bank);
                         if ((ret != 0))
                         {
@@ -68,7 +68,7 @@ public static partial class Game
                     Mem.Set(last_page, prev);
                     return ret;
                 }
-                Mem.Set((inode + (uint)(prev * 2)), (ushort)(1));
+                new __OSInode_v2(inode).inode_page[(int)(prev)].ushort_Set((ushort)(1));
                 ret = __osClearPage(pfs, prev, _fp, bank);
                 Mem.Set(last_page, 0);
                 return ret;

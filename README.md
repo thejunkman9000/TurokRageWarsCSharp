@@ -22,8 +22,25 @@ You need your own copy of the ROM (`baserom.us.v11.z64`); it is never stored in 
 dotnet run --project src/Trw.Game -- --rom path\to\baserom.us.v11.z64              # window
 dotnet run --project src/Trw.Game -- --rom path\to\baserom.us.v11.z64 --headless --seconds 10
 ```
-Keys: arrows = stick, `C` = A, `X` = B, `Z` = Z, `Enter` = Start, `W A S D` = D-pad, `I J K L` = C buttons, `Q`/`E` = L/R; F11 = fullscreen; gamepads work too (left stick, A/B, triggers = Z, bumpers = L/R, right stick = C buttons).
+Keys: arrows = stick, `C` = A, `X` = B, `Z` = Z, `Enter` = Start, `W A S D` = D-pad, `I J K L` = C buttons, `Q`/`E` = L/R; F11 = fullscreen; in a multiplayer match Tab = scoreboard, F2 = split screen / only your own view (`TRW_VIEW=local`, `TRW_LOCAL_PAD=0..3`, see `docs/TRANSPILER.md`); gamepads work too (left stick, A/B, triggers = Z, bumpers = L/R, right stick = C buttons).
+On the Controller Pak's NEW PLAYER name screen the keyboard types the name (letters, digits, space and the game's punctuation; Backspace, Enter = done,
+Escape = back where the game allows it); the keys turn into the game's own letter-cycler presses, so the letters can be seen stepping into place.
 Status: boots to the menus and plays the 1-player trials and multiplayer matches with 3D graphics and audio (see `docs/TRANSPILER.md`).
+
+## Playing online
+```
+dotnet run --project src/Trw.Game -- --rom path\to\baserom.us.v11.z64 --netplay
+```
+`--netplay` opens the online screens instead of booting straight into the game (plain `dotnet run` is unchanged). Sign in with your
+jsNetwork account or create one (the same account works in the other jsNetwork games), then **Host a game** (name, 2-4 players, optional
+password) or **Find a game** and join. In the lobby everyone sees the players in controller order: the host is player 1, the others are
+players 2-4 in the order they joined. Joiners press **Ready**; the host presses **Start**, and every machine boots the game together.
+From then on it is ordinary split-screen multiplayer on every machine: you drive your own controller with your keyboard + mouse or gamepad,
+and go through the game's own multiplayer menus together (each player confirms with their own controller).
+Everyone needs the same ROM (checked), Controller Paks are off in online sessions (no saves), nobody can join a session that has started,
+and a player who leaves keeps their character standing still. Settings: `--master <url>` or `TRW_MASTER` (the master server), `TRW_NET_DELAY`
+(input delay in 60 Hz ticks, default 3; raise it for long distances), `TRW_NET_PORT` (default 7810; open it in your router to let players
+connect directly, otherwise the master's relay carries the game). Details: `docs/NETPLAY.md`.
 
 ## Regenerating the translation
 `tools/regen.ps1` needs the C port repository (default `D:\Projects\TurokRageWars`), Python with `ziglang` (clang) and the .NET SDK.

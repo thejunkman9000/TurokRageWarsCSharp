@@ -14,7 +14,7 @@ public static partial class Game
             int i = 0;
             int row = 0;
             uint e = (0x80146398u + (uint)(a * 150));
-            if ((((int)(Mem.U8((e + 120u))) == 1) && ((int)(Mem.U8((e + 145u))) == 0)))
+            if ((((int)(new O04Ent96g(e).unk78) == 1) && ((int)(new O04Ent96g(e).unk91) == 0)))
             {
                 row = (a * 400);
                 if ((func_00265670((0x80102B4Au + (uint)row), 49) == 0))

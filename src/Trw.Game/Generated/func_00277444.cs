@@ -17,17 +17,17 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00277444", (uint)o, (uint)pos_in);
                 float t = 0f;
                 float f4 = 0f;
-                if (((int)(Mem.U8((o + 185u))) != 0))
+                if (((int)(new Probe(o).bB9) != 0))
                 {
-                    Mem.Set((_fp + 48u), (Mem.F32(_fp) * Mem.F32((m + (uint)(0 * 4)))));
-                    Mem.Set(((_fp + 48u) + 4u), (Mem.F32((_fp + 4u)) * Mem.F32((m + (uint)(5 * 4)))));
-                    Mem.Set(((_fp + 48u) + 8u), (Mem.F32((_fp + 8u)) * Mem.F32((m + (uint)(10 * 4)))));
-                    Mem.Set((_fp + 48u), (Mem.F32((_fp + 48u)) + Mem.F32((m + (uint)(12 * 4)))));
-                    Mem.Set(((_fp + 48u) + 4u), (Mem.F32(((_fp + 48u) + 4u)) + Mem.F32((m + (uint)(13 * 4)))));
-                    Mem.Set(((_fp + 48u) + 8u), (Mem.F32(((_fp + 48u) + 8u)) + Mem.F32((m + (uint)(14 * 4)))));
-                    Mem.Set((_fp + 32u), (Mem.F32((_fp + 16u)) * Mem.F32((m + (uint)(0 * 4)))));
-                    Mem.Set(((_fp + 32u) + 4u), (Mem.F32(((_fp + 16u) + 4u)) * Mem.F32((m + (uint)(5 * 4)))));
-                    Mem.Set(((_fp + 32u) + 8u), (Mem.F32(((_fp + 16u) + 8u)) * Mem.F32((m + (uint)(10 * 4)))));
+                    new Vec3f((_fp + 48u)).x_Set((new Vec3f(_fp).x * new Mat4F(m).m[(int)(0)]));
+                    new Vec3f((_fp + 48u)).y_Set((new Vec3f(_fp).y * new Mat4F(m).m[(int)(5)]));
+                    new Vec3f((_fp + 48u)).z_Set((new Vec3f(_fp).z * new Mat4F(m).m[(int)(10)]));
+                    new Vec3f((_fp + 48u)).x_Set((new Vec3f((_fp + 48u)).x + new Mat4F(m).m[(int)(12)]));
+                    new Vec3f((_fp + 48u)).y_Set((new Vec3f((_fp + 48u)).y + new Mat4F(m).m[(int)(13)]));
+                    new Vec3f((_fp + 48u)).z_Set((new Vec3f((_fp + 48u)).z + new Mat4F(m).m[(int)(14)]));
+                    new Vec3f((_fp + 32u)).x_Set((new Vec3f((_fp + 16u)).x * new Mat4F(m).m[(int)(0)]));
+                    new Vec3f((_fp + 32u)).y_Set((new Vec3f((_fp + 16u)).y * new Mat4F(m).m[(int)(5)]));
+                    new Vec3f((_fp + 32u)).z_Set((new Vec3f((_fp + 16u)).z * new Mat4F(m).m[(int)(10)]));
                 }
                 else
                 {
@@ -35,24 +35,24 @@ public static partial class Game
                     func_00272BA8(m, (_fp + 16u), (_fp + 32u));
                 }
                 func_002720EC((_fp + 32u));
-                if ((func_00277198(o, C.Tmp(Cpu.F2U(Mem.F32((_fp + 48u))), Cpu.F2U(Mem.F32(((_fp + 48u) + 4u))), Cpu.F2U(Mem.F32(((_fp + 48u) + 8u)))), (_fp + 64u), (_fp + 76u)) == 0))
+                if ((func_00277198(o, C.Tmp(Cpu.F2U(new Vec3f((_fp + 48u)).x), Cpu.F2U(new Vec3f((_fp + 48u)).y), Cpu.F2U(new Vec3f((_fp + 48u)).z)), (_fp + 64u), (_fp + 76u)) == 0))
                 {
                     return 0;
                 }
                 else
                 {
-                    t = (-(((Mem.F32((_fp + 64u)) * Mem.F32((_fp + 32u))) + (Mem.F32(((_fp + 64u) + 4u)) * Mem.F32(((_fp + 32u) + 4u)))) + (Mem.F32(((_fp + 64u) + 8u)) * Mem.F32(((_fp + 32u) + 8u)))));
+                    t = (-(((new Vec3f((_fp + 64u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 64u)).y * new Vec3f((_fp + 32u)).y)) + (new Vec3f((_fp + 64u)).z * new Vec3f((_fp + 32u)).z)));
                     if ((t < 0.0f))
                     {
                         t = 0.0f;
                     }
-                    f4 = Mem.F32((o + 4u));
+                    f4 = new Probe(o).f4;
                     Mem.Set((_fp + 76u), (Mem.F32((_fp + 76u)) * (f4 + (t * (Mem.F32(0x800C9BC8u) - f4)))));
                     if ((Mem.F32((_fp + 76u)) <= 0.0f))
                     {
                         Mem.Set((_fp + 76u), 0.0f);
                     }
-                    if (((int)(Mem.U8((o + 184u))) != 0))
+                    if (((int)(new Probe(o).bB8) != 0))
                     {
                         Mem.Set((_fp + 76u), (-Mem.F32((_fp + 76u))));
                     }
@@ -60,7 +60,7 @@ public static partial class Game
                     {
                         Mem.Set(outDist, Mem.F32((_fp + 76u)));
                     }
-                    func_0027200C(@out, (o + 8u), Mem.F32((_fp + 76u)));
+                    func_0027200C(@out, new Probe(o).v8.P, Mem.F32((_fp + 76u)));
                     return 1;
                 }
                 return 0;

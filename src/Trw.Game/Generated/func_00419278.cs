@@ -17,13 +17,13 @@ public static partial class Game
                 rgb = ((((color >> (int)16) << (int)24) | ((color & (uint)(65280)) << (int)8)) | ((color & (uint)(255)) << (int)8));
                 {
                     uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(_g, 4211081216u);
-                    Mem.Set((_g + 4u), rgb);
+                    new O3Dl(_g).w0_Set(4211081216u);
+                    new O3Dl(_g).w1_Set(rgb);
                 }
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(_g, 4194304000u);
-                    Mem.Set((_g + 4u), (rgb | (color >> (int)24)));
+                    uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new O3Dl(_g_2).w0_Set(4194304000u);
+                    new O3Dl(_g_2).w1_Set((rgb | (color >> (int)24)));
                 }
             }
         }

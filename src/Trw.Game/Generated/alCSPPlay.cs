@@ -13,8 +13,8 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("alCSPPlay", (uint)seqp);
-                Mem.Set(_fp, (short)(15));
-                alEvtqPostEvent((seqp + 72u), _fp, 0);
+                new ALEvent(_fp).type_Set((short)(15));
+                alEvtqPostEvent(new ALCSPlayer(seqp).evtq.P, _fp, 0);
             }
         }
         finally { Stack.Free(16); }

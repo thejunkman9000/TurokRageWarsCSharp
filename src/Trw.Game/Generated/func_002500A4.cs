@@ -17,58 +17,58 @@ public static partial class Game
                 uint dist = 0u;
                 int e = 0;
                 uint def = 0u;
-                func_00271FD8(_fp, (uint)((a1 + 296)), (o + 8u));
+                func_00271FD8(_fp, (uint)((a1 + 296)), new B12Obj(o).pos.P);
                 d = (((Mem.F32((_fp + (uint)(0 * 4))) * Mem.F32((_fp + (uint)(0 * 4)))) + (Mem.F32((_fp + (uint)(1 * 4))) * Mem.F32((_fp + (uint)(1 * 4))))) + (Mem.F32((_fp + (uint)(2 * 4))) * Mem.F32((_fp + (uint)(2 * 4)))));
                 dist = Cpu.TruncU32(d);
-                Mem.Set((o + 220u), dist);
-                def = Mem.U32((o + 24u));
-                if ((dist >= (Mem.U32((def + 36u)) * (uint)(2))))
+                new B12Obj(o).unkDC_Set(dist);
+                def = new B12Obj(o).def_;
+                if ((dist >= (new B12Def(def).unk24 * (uint)(2))))
                 {
-                    e = (int)(Mem.S8((def + 15u)));
+                    e = (int)(new B12Def(def).unkF);
                 }
                 else
                 {
-                    e = (int)(Mem.S8((def + 14u)));
+                    e = (int)(new B12Def(def).unkE);
                 }
                 if ((e == (-1)))
                 {
-                    if (((int)(Mem.S8((o + 224u))) <= 0))
+                    if (((int)(new B12Obj(o).unkE0) <= 0))
                     {
-                        Mem.Set((o + 224u), (sbyte)(0));
-                        Mem.Set((o + 216u), (ushort)((int)(Mem.U16((o + 216u))) | 4));
+                        new B12Obj(o).unkE0_Set((sbyte)(0));
+                        new B12Obj(o).unkD8_Set((ushort)((int)(new B12Obj(o).unkD8) | 4));
                         return 0;
                     }
-                    if ((((int)(Mem.U16((o + 216u))) & 512) != 0))
+                    if ((((int)(new B12Obj(o).unkD8) & 512) != 0))
                     {
-                        Mem.Set((o + 216u), (ushort)((int)(Mem.U16((o + 216u))) | 4));
-                        Mem.Set((o + 224u), (sbyte)(0));
+                        new B12Obj(o).unkD8_Set((ushort)((int)(new B12Obj(o).unkD8) | 4));
+                        new B12Obj(o).unkE0_Set((sbyte)(0));
                         return 0;
                     }
-                    Mem.Set((o + 224u), (sbyte)(((int)((byte)(Mem.S8((o + 224u)))) - 1)));
-                    if (((int)(Mem.S8((o + 224u))) < 0))
+                    new B12Obj(o).unkE0_Set((sbyte)(((int)((byte)(new B12Obj(o).unkE0)) - 1)));
+                    if (((int)(new B12Obj(o).unkE0) < 0))
                     {
-                        Mem.Set((o + 224u), (sbyte)(0));
+                        new B12Obj(o).unkE0_Set((sbyte)(0));
                     }
-                    Mem.Set((o + 216u), (ushort)((int)(Mem.U16((o + 216u))) | 4));
+                    new B12Obj(o).unkD8_Set((ushort)((int)(new B12Obj(o).unkD8) | 4));
                 }
                 else
                 {
-                    if (((int)(Mem.S8((o + 224u))) < 8))
+                    if (((int)(new B12Obj(o).unkE0) < 8))
                     {
-                        if ((((int)(Mem.U16((o + 216u))) & 512) != 0))
+                        if ((((int)(new B12Obj(o).unkD8) & 512) != 0))
                         {
-                            Mem.Set((o + 224u), (sbyte)(8));
-                            Mem.Set((o + 216u), (ushort)((int)(Mem.U16((o + 216u))) & (~4)));
+                            new B12Obj(o).unkE0_Set((sbyte)(8));
+                            new B12Obj(o).unkD8_Set((ushort)((int)(new B12Obj(o).unkD8) & (~4)));
                         }
                         else
                         {
-                            Mem.Set((o + 224u), (sbyte)(((int)((byte)(Mem.S8((o + 224u)))) + 1)));
-                            Mem.Set((o + 216u), (ushort)((int)(Mem.U16((o + 216u))) | 4));
+                            new B12Obj(o).unkE0_Set((sbyte)(((int)((byte)(new B12Obj(o).unkE0)) + 1)));
+                            new B12Obj(o).unkD8_Set((ushort)((int)(new B12Obj(o).unkD8) | 4));
                         }
                     }
                     else
                     {
-                        Mem.Set((o + 224u), (sbyte)(8));
+                        new B12Obj(o).unkE0_Set((sbyte)(8));
                     }
                 }
                 return 1;

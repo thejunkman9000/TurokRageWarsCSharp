@@ -10,19 +10,19 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alSndpAllocate", (uint)sndp, (uint)sound);
-            uint state = Mem.U32((sndp + 64u));
+            uint state = new ALSndPlayer(sndp).sndState_;
             short i = 0;
-            for (i = (short)(0); ((int)(i) < Mem.S32((sndp + 68u))); ++i)
+            for (i = (short)(0); ((int)(i) < new ALSndPlayer(sndp).maxSounds); ++i)
             {
-                if ((Mem.U32(((state + (uint)(i * 48)) + 28u)) == 0u))
+                if ((new ALSoundState((state + (uint)(i * 48))).sound_ == 0u))
                 {
-                    Mem.Set(((state + (uint)(i * 48)) + 28u), sound);
-                    Mem.Set(((state + (uint)(i * 48)) + 32u), (short)(5));
-                    Mem.Set(((state + (uint)(i * 48)) + 40u), 0);
-                    Mem.Set(((state + (uint)(i * 48)) + 36u), 1.0f);
-                    Mem.Set(((state + (uint)(i * 48)) + 46u), (byte)(64));
-                    Mem.Set(((state + (uint)(i * 48)) + 47u), (byte)(0));
-                    Mem.Set(((state + (uint)(i * 48)) + 44u), (short)((((int)(Mem.U8((sound + 13u))) * 32767) / 127)));
+                    new ALSoundState((state + (uint)(i * 48))).sound__Set(sound);
+                    new ALSoundState((state + (uint)(i * 48))).priority_Set((short)(5));
+                    new ALSoundState((state + (uint)(i * 48))).state_Set(0);
+                    new ALSoundState((state + (uint)(i * 48))).pitch_Set(1.0f);
+                    new ALSoundState((state + (uint)(i * 48))).pan_Set((byte)(64));
+                    new ALSoundState((state + (uint)(i * 48))).fxMix_Set((byte)(0));
+                    new ALSoundState((state + (uint)(i * 48))).vol_Set((short)((((int)(new ALSound(sound).sampleVolume) * 32767) / 127)));
                     return i;
                 }
             }

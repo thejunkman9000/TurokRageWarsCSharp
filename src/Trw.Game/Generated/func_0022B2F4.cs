@@ -17,11 +17,11 @@ public static partial class Game
                 uint best = 0u;
                 float min = 0.0f;
                 float d = 0f;
-                for (a = Mem.U32((g + 32u)); (a != 0u); a = Mem.U32((a + 5856u)))
+                for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
                 {
-                    if (((Mem.S32((a + 1488u)) != 0) && (Mem.F32((a + 4604u)) != 0.0f)))
+                    if (((new Plr(a).unk5D0 != 0) && (new Plr(a).unk11FC != 0.0f)))
                     {
-                        func_00271FD8(_fp, v, (a + 4608u));
+                        func_00271FD8(_fp, v, new Plr(a).unk1200.P);
                         d = (((Mem.F32((_fp + (uint)(0 * 4))) * Mem.F32((_fp + (uint)(0 * 4)))) + (Mem.F32((_fp + (uint)(1 * 4))) * Mem.F32((_fp + (uint)(1 * 4))))) + (Mem.F32((_fp + (uint)(2 * 4))) * Mem.F32((_fp + (uint)(2 * 4)))));
                         if (((best == 0u) || (d < min)))
                         {

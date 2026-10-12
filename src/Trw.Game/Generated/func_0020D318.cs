@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020D318", (uint)n);
-            return ((Mem.S32((n + 40u)) == 2) ? 1 : 0);
+            return ((new B2Node(n).unk28 == 2) ? 1 : 0);
         }
     }
 

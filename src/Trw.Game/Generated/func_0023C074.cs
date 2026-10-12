@@ -10,35 +10,35 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0023C074", (uint)n);
-            if (((int)(Mem.U8((n + 11u))) != 255))
+            if (((int)(new B09LNode(n).tlb) != 255))
             {
-                if ((((int)(Mem.U16((n + 8u))) & 1) != 0))
+                if ((((int)(new B09LNode(n).slot) & 1) != 0))
                 {
-                    Mem.Set(((0x80103F28u + (uint)(Mem.U8((n + 11u)) * 4)) + 3u), (byte)(255));
-                    if (((int)(Mem.U8(((0x80103F28u + (uint)(Mem.U8((n + 11u)) * 4)) + 2u))) == 255))
+                    new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).b_Set((byte)(255));
+                    if (((int)(new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).a) == 255))
                     {
-                        osUnmapTLB((int)(Mem.U8((n + 11u))));
-                        Mem.Set((0x80103F28u + (uint)(Mem.U8((n + 11u)) * 4)), (ushort)(65535));
+                        osUnmapTLB((int)(new B09LNode(n).tlb));
+                        new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).key_Set((ushort)(65535));
                     }
                     else
                     {
-                        osMapTLB((int)(Mem.U8((n + 11u))), 0, (uint)(((int)(Mem.U16((0x80103F28u + (uint)(Mem.U8((n + 11u)) * 4)))) << (int)12)), (((uint)(0x80156000u) & (uint)(67108863)) + (uint)(((int)(Mem.U8(((0x80103F28u + (uint)(Mem.U8((n + 11u)) * 4)) + 2u))) << (int)12))), (uint)((-1)), 7);
+                        osMapTLB((int)(new B09LNode(n).tlb), 0, (uint)(((int)(new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).key) << (int)12)), (((uint)(0x80156000u) & (uint)(67108863)) + (uint)(((int)(new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).a) << (int)12))), (uint)((-1)), 7);
                     }
                 }
                 else
                 {
-                    Mem.Set(((0x80103F28u + (uint)(Mem.U8((n + 11u)) * 4)) + 2u), (byte)(255));
-                    if (((int)(Mem.U8(((0x80103F28u + (uint)(Mem.U8((n + 11u)) * 4)) + 3u))) == 255))
+                    new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).a_Set((byte)(255));
+                    if (((int)(new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).b) == 255))
                     {
-                        osUnmapTLB((int)(Mem.U8((n + 11u))));
-                        Mem.Set((0x80103F28u + (uint)(Mem.U8((n + 11u)) * 4)), (ushort)(65535));
+                        osUnmapTLB((int)(new B09LNode(n).tlb));
+                        new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).key_Set((ushort)(65535));
                     }
                     else
                     {
-                        osMapTLB((int)(Mem.U8((n + 11u))), 0, (uint)(((int)(Mem.U16((0x80103F28u + (uint)(Mem.U8((n + 11u)) * 4)))) << (int)12)), (uint)((-1)), (((uint)(0x80156000u) & (uint)(67108863)) + (uint)(((int)(Mem.U8(((0x80103F28u + (uint)(Mem.U8((n + 11u)) * 4)) + 3u))) << (int)12))), 7);
+                        osMapTLB((int)(new B09LNode(n).tlb), 0, (uint)(((int)(new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).key) << (int)12)), (uint)((-1)), (((uint)(0x80156000u) & (uint)(67108863)) + (uint)(((int)(new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).b) << (int)12))), 7);
                     }
                 }
-                Mem.Set((n + 11u), (byte)(255));
+                new B09LNode(n).tlb_Set((byte)(255));
             }
         }
     }

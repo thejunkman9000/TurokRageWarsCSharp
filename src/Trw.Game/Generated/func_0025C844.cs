@@ -15,16 +15,16 @@ public static partial class Game
             uint c = 0u;
             v = (uint)(((uint)(((int)(idx) * 204)) + (uint)(p)));
             v = (v + (uint)4);
-            m = Mem.U32((v + 176u));
+            m = new SndVoice(v).mgr_;
             c = (m + (uint)124);
-            alSndpDeallocate((m + 132u), (short)((int)(Mem.S16(((c + 96u) + (uint)(Mem.S32(v) * 2))))));
-            Mem.Set(((c + 96u) + (uint)(Mem.S32(v) * 2)), (short)((-1)));
-            Mem.Set((v + 56u), (short)(0));
-            Mem.Set((v + 12u), (-1));
-            Mem.Set((v + 8u), (-1));
-            Mem.Set((v + 168u), (-1));
-            Mem.Set((v + 58u), (short)((-1)));
-            Mem.Set((v + 180u), (uint)((-1)));
+            alSndpDeallocate(new SndMgr(m).player.P, (short)((int)(new SndCore(c).snd[(int)(new SndVoice(v).idx)])));
+            new SndCore(c).snd.Set((int)(new SndVoice(v).idx), (short)((-1)));
+            new SndVoice(v).unk38_Set((short)(0));
+            new SndVoice(v).unkC_Set((-1));
+            new SndVoice(v).unk8_Set((-1));
+            new SndVoice(v).tag_Set((-1));
+            new SndVoice(v).unk3A_Set((short)((-1)));
+            new SndVoice(v).unkB4__Set((uint)((-1)));
             return 0;
         }
     }

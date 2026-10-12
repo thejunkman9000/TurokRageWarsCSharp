@@ -16,15 +16,15 @@ public static partial class Game
             func_00263760();
             Mem.Set(0x8010FBB8u, (byte)(2));
             r = (0x80153330u + (uint)(ch * 112));
-            if (((int)(Mem.U8(((0x8010FBE0u + (uint)(ch * 4)) + 3u))) != 0))
+            if (((int)(new O01Pad4((0x8010FBE0u + (uint)(ch * 4))).unk3) != 0))
             {
-                Mem.Set(r, (byte)(0));
+                new O01Rumble(r).ok_Set((byte)(0));
                 ok = 0;
             }
             else
             {
-                Mem.Set(r, (byte)(((osMotorInit(0x8010FC00u, (r + 8u), ch) == 0) ? 1 : 0)));
-                ok = (int)(Mem.U8(r));
+                new O01Rumble(r).ok_Set((byte)(((osMotorInit(0x8010FC00u, new O01Rumble(r).pfs.P, ch) == 0) ? 1 : 0)));
+                ok = (int)(new O01Rumble(r).ok);
             }
             if ((ok != 0))
             {
@@ -41,7 +41,7 @@ public static partial class Game
                     Mem.Set((0x801534F0u + (uint)(ch * 4)), 1);
                 }
             }
-            func_0026456C();
+            func_0026456C(default(uint), default(uint), default(uint), default(uint));
         }
     }
 

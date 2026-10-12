@@ -29,7 +29,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r16);
                 r2 = Mem.U32((r18 + 16u));
                 { bool c_ = r2 == 0; r2 = r0; if (c_) goto L_L002C52E4; }
-                r4 = r18; r2 = adecDecodeFrame(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r18; r2 = (uint)adecDecodeFrame(r4);
                 r17 = 2148401152u;
                 r17 = r17 - 27406u;
                 r2 = Mem.U16((r17 + 0u));
@@ -44,7 +44,7 @@ public static partial class Game
                 r4 = Mem.U16((r17 + 0u));
                 r5 = r18;
                 r4 = r4 << 9;
-                r4 = r4 + r16; r2 = adecImdctFrame(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 + r16; adecImdctFrame(r4, r5);
                 r2 = Mem.U16((r17 + 0u));
                 r3 = Mem.U32((r18 + 16u));
                 r2 = r2 << 9;

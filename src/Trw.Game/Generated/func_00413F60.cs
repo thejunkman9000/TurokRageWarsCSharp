@@ -15,10 +15,10 @@ public static partial class Game
             uint c1 = 0u;
             uint c2 = 0u;
             uint c3 = 0u;
-            c0 = ((Mem.S32((e + (uint)(9 * 4))) < 0) ? ((argb & (uint)(Mem.S32((e + (uint)(5 * 4))))) << (int)(-Mem.S32((e + (uint)(9 * 4))))) : ((argb & (uint)(Mem.S32((e + (uint)(5 * 4))))) >> (int)Mem.S32((e + (uint)(9 * 4)))));
-            c1 = ((Mem.S32((e + (uint)(10 * 4))) < 0) ? ((argb & (uint)(Mem.S32((e + (uint)(6 * 4))))) << (int)(-Mem.S32((e + (uint)(10 * 4))))) : ((argb & (uint)(Mem.S32((e + (uint)(6 * 4))))) >> (int)Mem.S32((e + (uint)(10 * 4)))));
-            c2 = ((Mem.S32((e + (uint)(11 * 4))) < 0) ? ((argb & (uint)(Mem.S32((e + (uint)(7 * 4))))) << (int)(-Mem.S32((e + (uint)(11 * 4))))) : ((argb & (uint)(Mem.S32((e + (uint)(7 * 4))))) >> (int)Mem.S32((e + (uint)(11 * 4)))));
-            c3 = ((Mem.S32((e + (uint)(12 * 4))) < 0) ? ((argb & (uint)(Mem.S32((e + (uint)(8 * 4))))) << (int)(-Mem.S32((e + (uint)(12 * 4))))) : ((argb & (uint)(Mem.S32((e + (uint)(8 * 4))))) >> (int)Mem.S32((e + (uint)(12 * 4)))));
+            c0 = ((new S_e_v2(e).w[(int)(9)] < 0) ? ((argb & (uint)(new S_e_v2(e).w[(int)(5)])) << (int)(-new S_e_v2(e).w[(int)(9)])) : ((argb & (uint)(new S_e_v2(e).w[(int)(5)])) >> (int)new S_e_v2(e).w[(int)(9)]));
+            c1 = ((new S_e_v2(e).w[(int)(10)] < 0) ? ((argb & (uint)(new S_e_v2(e).w[(int)(6)])) << (int)(-new S_e_v2(e).w[(int)(10)])) : ((argb & (uint)(new S_e_v2(e).w[(int)(6)])) >> (int)new S_e_v2(e).w[(int)(10)]));
+            c2 = ((new S_e_v2(e).w[(int)(11)] < 0) ? ((argb & (uint)(new S_e_v2(e).w[(int)(7)])) << (int)(-new S_e_v2(e).w[(int)(11)])) : ((argb & (uint)(new S_e_v2(e).w[(int)(7)])) >> (int)new S_e_v2(e).w[(int)(11)]));
+            c3 = ((new S_e_v2(e).w[(int)(12)] < 0) ? ((argb & (uint)(new S_e_v2(e).w[(int)(8)])) << (int)(-new S_e_v2(e).w[(int)(12)])) : ((argb & (uint)(new S_e_v2(e).w[(int)(8)])) >> (int)new S_e_v2(e).w[(int)(12)]));
             return ((((c3 << (int)24) | (c0 << (int)16)) | (c1 << (int)8)) | c2);
         }
     }

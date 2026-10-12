@@ -27,11 +27,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00240FB0", (uint)q, (uint)box);
-            Mem.Set((q + 20u), 4);
-            Mem.Copy(((q + 24u) + (uint)(3 * 12)), (box + (uint)(4 * 12)), 12);
-            Mem.Copy(((q + 24u) + (uint)(2 * 12)), (box + (uint)(5 * 12)), 12);
-            Mem.Copy(((q + 24u) + (uint)(1 * 12)), (box + (uint)(1 * 12)), 12);
-            Mem.Copy(((q + 24u) + (uint)(0 * 12)), (box + (uint)(0 * 12)), 12);
+            new B09Quad(q).kind_Set(4);
+            Mem.Copy((new B09Quad(q).v.P + (uint)(3 * 12)), (new B09Box(box).p.P + (uint)(4 * 12)), 12);
+            Mem.Copy((new B09Quad(q).v.P + (uint)(2 * 12)), (new B09Box(box).p.P + (uint)(5 * 12)), 12);
+            Mem.Copy((new B09Quad(q).v.P + (uint)(1 * 12)), (new B09Box(box).p.P + (uint)(1 * 12)), 12);
+            Mem.Copy((new B09Quad(q).v.P + (uint)(0 * 12)), (new B09Box(box).p.P + (uint)(0 * 12)), 12);
             func_00240FB0_m03_plane(q);
         }
     }

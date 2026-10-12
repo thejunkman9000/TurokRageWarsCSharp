@@ -11,9 +11,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0028F844", (uint)o, (uint)n, (uint)v);
             uint m = osSetIntMask((uint)(1));
-            Mem.Set((n + 4u), v);
-            Mem.Set(n, Mem.U32((o + 736u)));
-            Mem.Set((o + 736u), n);
+            new Qn_v3(n).unk4_Set(v);
+            new Qn_v3(n).next__Set(new QOwner(o).head2E0_);
+            new QOwner(o).head2E0__Set(n);
             osSetIntMask(m);
         }
     }

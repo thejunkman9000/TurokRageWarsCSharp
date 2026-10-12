@@ -17,53 +17,53 @@ public static partial class Game
                 float s = 0f;
                 uint c = 0u;
                 float w = 0f;
-                func_00271FD8(_fp, _fp, (((o + 4u) + (uint)(0 * 20)) + 4u));
-                s = sqrtf((((Mem.F32(_fp) * Mem.F32(_fp)) + (Mem.F32((_fp + 4u)) * Mem.F32((_fp + 4u)))) + (Mem.F32((_fp + 8u)) * Mem.F32((_fp + 8u)))));
-                if ((s < Mem.F32((((o + 4u) + (uint)(0 * 20)) + 16u))))
+                func_00271FD8(_fp, _fp, new ChanObj(o).ch[(int)(0)].v.P);
+                s = sqrtf((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z)));
+                if ((s < new ChanObj(o).ch[(int)(0)].d))
                 {
-                    s = func_00265734((Mem.F32(0x800C8180u) - (s / Mem.F32((((o + 4u) + (uint)(0 * 20)) + 16u)))));
-                    c = ((o + 4u) + (uint)(1 * 20));
-                    switch (Mem.S32(c))
+                    s = func_00265734((Mem.F32(0x800C8180u) - (s / new ChanObj(o).ch[(int)(0)].d)));
+                    c = (new ChanObj(o).ch.P + (uint)(1 * 20));
+                    switch (new Chan(c).mode)
                     {
                     case 1:
-                        w = (sinf((Mem.F32((c + 16u)) * Mem.F32(0x800C8184u))) * Mem.F32(((c + 4u) + 8u)));
+                        w = (sinf((new Chan(c).d * Mem.F32(0x800C8184u))) * new Chan(c).v.z);
                         break;
                     case 0:
-                        w = func_00274B00((-Mem.F32(((c + 4u) + 8u))), Mem.F32(((c + 4u) + 8u)));
+                        w = func_00274B00((-new Chan(c).v.z), new Chan(c).v.z);
                         break;
                     default:
                         w = 0.0f;
                         break;
                     }
-                    Mem.Set(@out, (Mem.F32(@out) + (w * s)));
-                    c = ((o + 4u) + (uint)(2 * 20));
-                    switch (Mem.S32(c))
+                    new Vec3f(@out).x_Set((new Vec3f(@out).x + (w * s)));
+                    c = (new ChanObj(o).ch.P + (uint)(2 * 20));
+                    switch (new Chan(c).mode)
                     {
                     case 1:
-                        w = (sinf((Mem.F32((c + 16u)) * Mem.F32(0x800C8188u))) * Mem.F32(((c + 4u) + 8u)));
+                        w = (sinf((new Chan(c).d * Mem.F32(0x800C8188u))) * new Chan(c).v.z);
                         break;
                     case 0:
-                        w = func_00274B00((-Mem.F32(((c + 4u) + 8u))), Mem.F32(((c + 4u) + 8u)));
+                        w = func_00274B00((-new Chan(c).v.z), new Chan(c).v.z);
                         break;
                     default:
                         w = 0.0f;
                         break;
                     }
-                    Mem.Set((@out + 4u), (Mem.F32((@out + 4u)) + (w * s)));
-                    c = ((o + 4u) + (uint)(3 * 20));
-                    switch (Mem.S32(c))
+                    new Vec3f(@out).y_Set((new Vec3f(@out).y + (w * s)));
+                    c = (new ChanObj(o).ch.P + (uint)(3 * 20));
+                    switch (new Chan(c).mode)
                     {
                     case 1:
-                        w = (sinf((Mem.F32((c + 16u)) * Mem.F32(0x800C818Cu))) * Mem.F32(((c + 4u) + 8u)));
+                        w = (sinf((new Chan(c).d * Mem.F32(0x800C818Cu))) * new Chan(c).v.z);
                         break;
                     case 0:
-                        w = func_00274B00((-Mem.F32(((c + 4u) + 8u))), Mem.F32(((c + 4u) + 8u)));
+                        w = func_00274B00((-new Chan(c).v.z), new Chan(c).v.z);
                         break;
                     default:
                         w = 0.0f;
                         break;
                     }
-                    Mem.Set((@out + 8u), (Mem.F32((@out + 8u)) + (w * s)));
+                    new Vec3f(@out).z_Set((new Vec3f(@out).z + (w * s)));
                 }
             }
         }

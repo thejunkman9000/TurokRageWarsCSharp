@@ -13,30 +13,30 @@ public static partial class Game
             uint t = 0u;
             uint e = 0u;
             uint found = 0u;
-            if ((Mem.S32(0x8011FE88u) == 2))
+            if ((new PathTbl(0x8011FE88u).mode == 2))
             {
                 return 1;
             }
-            if ((Mem.S32(0x8011FE88u) == 4))
+            if ((new PathTbl(0x8011FE88u).mode == 4))
             {
-                Mem.Set((a + 256u), (uint)((uint)(Mem.U32((a + 256u))) | (uint)(256)));
+                new ActorB(a).flags_Set((uint)((uint)(new ActorB(a).flags) | (uint)(256)));
             }
-            Mem.Set((s + 54u), (byte)(Mem.S8((s + 52u))));
-            Mem.Set((a + 271u), (byte)(1));
-            Mem.Set((a + 291u), (byte)(1));
-            if (((Mem.U32((s + 48u)) != 0u) && ((int)(Mem.S8((s + 52u))) == id)))
+            new StateB(s).prevId_Set((byte)(new StateB(s).id));
+            new ActorB(a).unk10F_Set((byte)(1));
+            new ActorB(a).unk123_Set((byte)(1));
+            if (((new StateB(s).cur_ != 0u) && ((int)(new StateB(s).id) == id)))
             {
                 return 1;
             }
-            t = Mem.U32((s + 44u));
+            t = new StateB(s).table_;
             found = 0u;
-            Mem.Set((s + 52u), (sbyte)(id));
-            Mem.Set((s + 64u), 0);
+            new StateB(s).id_Set((sbyte)(id));
+            new StateB(s).unk40_Set(0);
             while ((t != 0u))
             {
-                for (e = (t + 32u); (Mem.S32(e) != (-1)); e += 32u)
+                for (e = new StateTable(t).ent.P; (new StateEntry(e).id != (-1)); e += 32u)
                 {
-                    if ((Mem.S32(e) == id))
+                    if ((new StateEntry(e).id == id))
                     {
                         found = e;
                         t = 0u;
@@ -45,36 +45,36 @@ public static partial class Game
                 }
                 if ((t != 0u))
                 {
-                    t = Mem.U32(t);
+                    t = new StateTable(t).next_;
                 }
             }
             if ((found == 0u))
             {
                 return 0;
             }
-            Mem.Set((s + 48u), found);
-            Mem.Set((a + 736u), (uint)((uint)(Mem.U32((a + 736u))) & (uint)(528482431)));
-            if (!((Mem.U32((a + 256u)) & (uint)(134217728)) != 0u))
+            new StateB(s).cur__Set(found);
+            new ActorB(a).unk2E0_Set((uint)((uint)(new ActorB(a).unk2E0) & (uint)(528482431)));
+            if (!((new ActorB(a).flags & (uint)(134217728)) != 0u))
             {
-                Mem.Set((s + 203u), (byte)(0));
-                Mem.Set(s, (uint)((uint)(Mem.U32(s)) & (uint)((~1))));
+                new StateB(s).unkCB_Set((byte)(0));
+                new StateB(s).flags_Set((uint)((uint)(new StateB(s).flags) & (uint)((~1))));
             }
-            if ((Mem.U32((s + 252u)) != 0u))
+            if ((new StateB(s).unkFC != 0u))
             {
                 func_00217388(a, s);
             }
-            if ((Mem.U32((found + 4u)) != 0u))
+            if ((new StateEntry(found).fn != 0u))
             {
-                Funcs.CallReg(Mem.U32((found + 4u)), a, s, 0u, 0u);
+                Funcs.CallReg(new StateEntry(found).fn, a, s, 0u, 0u);
             }
-            Mem.Set((s + 60u), Mem.U32((found + 28u)));
-            if (((Mem.U32((s + 60u)) & (uint)(4)) != 0u))
+            new StateB(s).unk3C_Set(new StateEntry(found).flags);
+            if (((new StateB(s).unk3C & (uint)(4)) != 0u))
             {
-                Mem.Set((a + 28u), (float)(0));
-                Mem.Set(((a + 28u) + 4u), (float)(0));
-                Mem.Set(((a + 28u) + 8u), (float)(0));
+                new ActorB(a).vel.x_Set((float)(0));
+                new ActorB(a).vel.y_Set((float)(0));
+                new ActorB(a).vel.z_Set((float)(0));
             }
-            return (((int)(Mem.S8((s + 52u))) == id) ? 1 : 0);
+            return (((int)(new StateB(s).id) == id) ? 1 : 0);
         }
     }
 

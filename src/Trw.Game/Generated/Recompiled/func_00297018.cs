@@ -21,7 +21,7 @@ public static partial class Game
                 r29 = _fp + 256u;
                 L_func_00297018: ;
                 r4 = Mem.U32((r16 + 60u));
-                r2 = func_00299368(r4, r5, r6, r7); r3 = Cpu.V1;
+                func_00299368((int)r4);
                 Cpu.V1 = r3; return r2;
             }
         }

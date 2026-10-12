@@ -17,7 +17,7 @@ public static partial class Game
                 int idx = 0;
                 uint p = 0u;
                 uint fn = 0u;
-                if (!(((key == 0) || (C.Seq((object?)(C.Seq((object?)((t = Mem.U32((lv + 156u)))), (idx = func_00265508((t + (uint)(2 * 4)), Mem.S32((t + (uint)(1 * 4))), (uint)(key))))), ((idx == (-1)) ? 1 : 0)) != 0)))) goto _f0;
+                if (!(((key == 0) || (C.Seq((object?)(C.Seq((object?)((t = new Level(lv).unk9C_)), (idx = func_00265508((t + (uint)(2 * 4)), Mem.S32((t + (uint)(1 * 4))), (uint)(key))))), ((idx == (-1)) ? 1 : 0)) != 0)))) goto _f0;
                 return 0;
                 _f0: ;
                 switch (key) { case 5: goto _f2; case 7: goto _f3; default: goto _f4; }
@@ -45,8 +45,8 @@ public static partial class Game
                 _f5: ;
                 flags = (int)((int)(flags) | 4);
                 L_done: ;
-                p = func_0028FE1C(Mem.U32((lv + 92u)), Mem.U32((lv + 44u)), idx, _fp);
-                return (int)(func_002518DC((uint)(0), p, p, (uint)(Mem.S32(_fp)), (uint)(flags), lv, fn, 0x800CA2D8u, (uint)(a3)));
+                p = func_0028FE1C(new Level(lv).unk5C_, new Level(lv).unk2C_, idx, _fp);
+                return (int)(func_002518DC(0, p, (int)(p), (uint)(Mem.S32(_fp)), flags, lv, fn, 0x800CA2D8u, a3));
                 return 0;
             }
         }

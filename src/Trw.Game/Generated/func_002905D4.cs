@@ -13,12 +13,12 @@ public static partial class Game
             uint e = 0u;
             float f = 0f;
             func_0026D980();
-            e = Mem.U32((o + 15364u));
+            e = new NodeOwner(o).head_;
             while ((e != 0u))
             {
-                if (((((((Mem.F32(((p + 848u) + (uint)(3 * 4))) > Mem.F32(((e + 380u) + (uint)(0 * 4)))) && (Mem.F32(((p + 848u) + (uint)(0 * 4))) < Mem.F32(((e + 380u) + (uint)(3 * 4))))) && (Mem.F32(((p + 848u) + (uint)(5 * 4))) > Mem.F32(((e + 380u) + (uint)(2 * 4))))) && (Mem.F32(((p + 848u) + (uint)(2 * 4))) < Mem.F32(((e + 380u) + (uint)(5 * 4))))) && (Mem.F32(((p + 848u) + (uint)(4 * 4))) > Mem.F32(((e + 380u) + (uint)(1 * 4))))) && (Mem.F32(((p + 848u) + (uint)(1 * 4))) < Mem.F32(((e + 380u) + (uint)(4 * 4))))))
+                if (((((((new Probe_v2(p).box[(int)(3)] > new Entity(e).box[(int)(0)]) && (new Probe_v2(p).box[(int)(0)] < new Entity(e).box[(int)(3)])) && (new Probe_v2(p).box[(int)(5)] > new Entity(e).box[(int)(2)])) && (new Probe_v2(p).box[(int)(2)] < new Entity(e).box[(int)(5)])) && (new Probe_v2(p).box[(int)(4)] > new Entity(e).box[(int)(1)])) && (new Probe_v2(p).box[(int)(1)] < new Entity(e).box[(int)(4)])))
                 {
-                    if ((func_00297B74((p + 752u), ((e + 380u) + (uint)(0 * 4))) != 0))
+                    if ((func_00297B74(new Probe_v2(p).unk2F0.P, (new Entity(e).box.P + (uint)(0 * 4))) != 0))
                     {
                         f = Mem.F32((e + (uint)456));
                         Mem.Set(0x800D15E0u, 0);
@@ -34,7 +34,7 @@ public static partial class Game
                         Mem.Set(0x800D15E0u, 0);
                     }
                 }
-                e = Mem.U32((e + 476u));
+                e = new Node(e).next_;
             }
             func_0026D9D0();
         }

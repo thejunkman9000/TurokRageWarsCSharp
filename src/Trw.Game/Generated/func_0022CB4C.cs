@@ -15,7 +15,7 @@ public static partial class Game
             {
                 k = Mem.F32(0x800C7E5Cu);
             }
-            if ((Mem.S32((actor + 5200u)) != 0))
+            if ((new Actor(actor).unk1450 != 0))
             {
                 if ((Mem.F32((actor + (uint)1624)) >= Mem.F32(0x800C7E60u)))
                 {

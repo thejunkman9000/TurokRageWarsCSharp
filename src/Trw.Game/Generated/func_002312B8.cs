@@ -15,36 +15,36 @@ public static partial class Game
             int ok = 0;
             int t = 0;
             uint pawn = 0u;
-            o = Mem.U32((a + 472u));
-            pawn = Mem.U32((o + 1500u));
-            pv = ((pawn != 0u) ? (pawn + 296u) : (o + 8u));
-            if ((Mem.F32((o + 4568u)) > 0.100000001f))
+            o = new M2Act(a).owner_;
+            pawn = new M2Own(o).pawn_;
+            pv = ((pawn != 0u) ? new M2Pawn(pawn).unk128.P : new M2Own(o).pos.P);
+            if ((new M2Own(o).unk11D8 > 0.100000001f))
             {
                 ok = 1;
             }
             else
             {
-                if ((((Mem.U32((a + 256u)) & (uint)(3145728)) != 0u) && (Mem.S32((o + 5200u)) != 0)))
+                if ((((new M2Act(a).flags & (uint)(3145728)) != 0u) && (new M2Own(o).unk1450 != 0)))
                 {
-                    t = Mem.S32((Mem.U32((o + 5204u)) + 572u));
-                    Mem.Set((Mem.U32((o + 5204u)) + 572u), 0);
+                    t = new M2Own(o).unk1454.unk23C;
+                    new M2Own(o).unk1454.unk23C_Set(0);
                     ok = ((t == 0) ? 1 : 0);
                 }
                 else
                 {
-                    if (!((Mem.U32((o + 1708u)) & (uint)(8192)) != 0u))
+                    if (!((new M2Own(o).unk6AC & (uint)(8192)) != 0u))
                     {
                         ok = 1;
                     }
                     else
                     {
-                        if ((Mem.S32((o + 4532u)) != 0))
+                        if ((new M2Own(o).unk11B4 != 0))
                         {
                             ok = 1;
                         }
                         else
                         {
-                            ok = (((int)(func_00222A80(o, (uint)((int)(Mem.S16((o + 1582u)))), default(uint), default(uint))) == 0) ? 1 : 0);
+                            ok = (((int)(func_00222A80(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0) ? 1 : 0);
                         }
                     }
                 }
@@ -58,17 +58,17 @@ public static partial class Game
                 return;
             }
             func_002748E0((s + 296u), ((float)(Mem.S32(0x800CF5BCu)) * 0.0174532942f), 0.400000006f);
-            Mem.Set((s + 100u), (Mem.F32((s + 100u)) - Mem.F32(0x800D2988u)));
-            if ((Mem.F32((s + 100u)) <= 0.0f))
+            new M2St(s).unk64_Set((new M2St(s).unk64 - Mem.F32(0x800D2988u)));
+            if ((new M2St(s).unk64 <= 0.0f))
             {
-                Mem.Set((s + 100u), 2.5f);
-                if (((Mem.S32((o + 5200u)) == 0) && (Mem.S32(0x801450B8u) == 1)))
+                new M2St(s).unk64_Set(2.5f);
+                if (((new M2Own(o).unk1450 == 0) && (Mem.S32(0x801450B8u) == 1)))
                 {
-                    func_0021A9A4(Mem.U32((a + 472u)), (uint)(1019), default(uint), default(uint));
+                    func_0021A9A4(new M2Act(a).owner_, (uint)(1019), default(uint), default(uint));
                 }
                 else
                 {
-                    func_0021A9A4(Mem.U32((a + 472u)), (uint)(1229), default(uint), default(uint));
+                    func_0021A9A4(new M2Act(a).owner_, (uint)(1229), default(uint), default(uint));
                 }
             }
         }

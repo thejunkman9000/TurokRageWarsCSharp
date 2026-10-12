@@ -53,7 +53,7 @@ public static partial class Game
                 { bool c_ = r2 != 0; r4 = r4 + 4u; if (c_) goto L_L002B37B8; }
                 r4 = r17;
                 r5 = r18;
-                r6 = r19; r2 = __alCSeqGetTrackEvent(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = r19; r2 = (uint)__alCSeqGetTrackEvent(r4, r5, r6);
                 Mem.Set((r19 + 4u), r16);
                 r2 = Mem.U32((r17 + 12u));
                 Mem.Set((r17 + 16u), r16);

@@ -15,7 +15,7 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, pos_in, 12);
                 Mem.Copy(_fp + 16u, col_in, 7);
                 if (Dbg.On) Dbg.Enter("func_002689BC", (uint)a, (uint)b, (uint)c, (uint)pos_in);
-                Mem.Set((a + 624u), Mem.U8(((_fp + 16u) + (uint)3)));
+                new B15U8(a).unk270_Set(new B15Bytes7((_fp + 16u)).c[(int)(3)]);
             }
         }
         finally { Stack.Free(23); }

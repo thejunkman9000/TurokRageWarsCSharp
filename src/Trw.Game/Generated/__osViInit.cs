@@ -12,28 +12,28 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("__osViInit");
             memset(0x800D83E0u, 0, ((uint)(2) * 48u));
             Mem.Set(0x800D8444u, (0x800D83E0u + (uint)(1 * 48)));
-            Mem.Set((Mem.U32(0x800D8444u) + 2u), (ushort)(1));
-            Mem.Set(((0x800D83E0u + (uint)(0 * 48)) + 2u), (ushort)(1));
+            new OSViContext(Mem.U32(0x800D8444u)).retraceCount_Set((ushort)(1));
+            new OSViContext((0x800D83E0u + (uint)(0 * 48))).retraceCount_Set((ushort)(1));
             Mem.Set(0x800D8440u, (0x800D83E0u + (uint)(0 * 48)));
-            Mem.Set((Mem.U32(0x800D8444u) + 4u), (uint)(2147483648u));
-            Mem.Set(((0x800D83E0u + (uint)(0 * 48)) + 4u), (uint)(2147483648u));
+            new OSViContext(Mem.U32(0x800D8444u)).buffer_Set((uint)(2147483648u));
+            new OSViContext((0x800D83E0u + (uint)(0 * 48))).buffer_Set((uint)(2147483648u));
             if ((Mem.U32((uint)(2147484416u)) == (uint)(0)))
             {
-                Mem.Set((Mem.U32(0x800D8444u) + 8u), 0x800D84C0u);
+                new OSViContext(Mem.U32(0x800D8444u)).modep__Set(0x800D84C0u);
             }
             else
             {
                 if ((Mem.U32((uint)(2147484416u)) == (uint)(2)))
                 {
-                    Mem.Set((Mem.U32(0x800D8444u) + 8u), 0x800D8510u);
+                    new OSViContext(Mem.U32(0x800D8444u)).modep__Set(0x800D8510u);
                 }
                 else
                 {
-                    Mem.Set((Mem.U32(0x800D8444u) + 8u), 0x800D8470u);
+                    new OSViContext(Mem.U32(0x800D8444u)).modep__Set(0x800D8470u);
                 }
             }
-            Mem.Set(Mem.U32(0x800D8444u), (ushort)(32));
-            Mem.Set((Mem.U32(0x800D8444u) + 12u), Mem.U32((Mem.U32((Mem.U32(0x800D8444u) + 8u)) + 4u)));
+            new OSViContext(Mem.U32(0x800D8444u)).state_Set((ushort)(32));
+            new OSViContext(Mem.U32(0x800D8444u)).features_Set(new OSViMode(new OSViContext(Mem.U32(0x800D8444u)).modep_).comRegs.ctrl);
             while ((Mem.U32((uint)(((uint)(71303184) | 2684354560u))) >= (uint)(11)))
             {
             }

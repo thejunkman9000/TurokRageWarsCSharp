@@ -17,6 +17,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
     private readonly DisplayListInterpreter interpreter = new();
     private volatile IReadOnlyList<GfxCommand>? pendingFrame;
     private GfxRenderer? renderer;
+    private Scoreboard? scoreboard;      // Tab scoreboard + F2 split / local view (Scoreboard.cs, LocalView.cs, ViewLayout.cs)
     private int frame, drawnFrames, shotsTaken;
     private bool fullscreenKeyDown;
     // previews: TRW_SHOT_DIR=<dir> [TRW_SHOT_EVERY=<display lists>] [TRW_SHOT_MAX=<files>] saves PNGs of the rendered frames
@@ -39,18 +40,20 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         Content.RootDirectory = "Content";
         Window.AllowUserResizing = true;
         // the display list is interpreted the moment the game starts the task (its memory is consistent then); the window thread draws the result
-        Host.GraphicsTask = task => { var cmds = interpreter.Run(task); RecordSignature(cmds); pendingFrame = cmds; };
+        Host.GraphicsTask = task => { var cmds = interpreter.Run(task); Oracle.Frame(cmds); RecordSignature(cmds); pendingFrame = cmds; };
     }
 
     protected override void LoadContent()
     {
         renderer = new GfxRenderer(GraphicsDevice, Content.Load<Microsoft.Xna.Framework.Graphics.Effect>("Combiner"));
+        scoreboard = new Scoreboard(GraphicsDevice, Content.Load<SpriteFont>("Scoreboard"), Content.Load<SpriteFont>("ScoreboardTitle")); renderer.Overlay = scoreboard.Draw;
         base.LoadContent();
     }
 
     protected override void Initialize()
     {
         Host.ReadPad = ReadPad;
+        Window.TextInput += (_, e) => TextEntry.OnTextInput(e.Character, e.Key);     // typed characters (shift and layout applied) for the name entry
         audio.Hook();
         base.Initialize();
     }
@@ -80,13 +83,13 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         return list.ToArray();
     }
 
-    private static int scriptTick;
+    internal static int scriptTick;
     private static int settledIndex, settledPressFrom = -1, settledNextAllowed;
     // screen signatures of the last display lists: the screen counts as settled when it hardly changes (animations aside) over ~40 lists
     private static readonly long[] recentSignatures = new long[40];
     private static int signatureCount;
 
-    private static void RecordSignature(IReadOnlyList<GfxCommand> cmds)
+    internal static void RecordSignature(IReadOnlyList<GfxCommand> cmds)
     {
         long sig = cmds.Count * 1000003L + cmds.OfType<DrawCommand>().Sum(c => (long)c.Vertices.Length);
         lock (recentSignatures) { recentSignatures[signatureCount++ % recentSignatures.Length] = sig; lastSignature = sig; }
@@ -163,17 +166,33 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         return list.ToArray();
     }
 
+    // devices sampled by the window thread once per update and consumed by the game's pad poll (the C port samples once per poll: nothing is queued across frames,
+    // except mouse motion, which accumulates until the game polls)
+    private static readonly InputMapper[] mappers = { new(), new(), new(), new() };
+    private static readonly object deviceLock = new();
+    private static KeyboardState keyboard;
+    private static readonly bool[] mouseButtons = new bool[5];
+    private static float mouseDx, mouseDy;
+    private static int wheelUp, wheelDown;
+    private static volatile bool mouseCaptured;
+    private static long lastPoll;
+
+    /// <summary>1 free play (state 13 with only the HUD layer on the UI stack), 0 menus, -1 before the game state is known: the two binding layers (game: / menu:) of the mapping.</summary>
+    private static int GameplayContext()
+    {
+        int st = global::Trw.Game.Game.StateId, scr = global::Trw.Game.Game.ScreenId;
+        // state 13 with the HUD layer = free play (1); state 13 with any other screen id is not known to be a menu (pause screens differ per mode): -1 keeps BOTH binding layers live, so WASD still moves
+        return st < 0 ? -1 : st == 13 ? ((scr == 2 || scr == -1) ? 1 : -1) : 0;
+    }
+
     /// <summary>N64 controller bits: A 8000, B 4000, Z 2000, Start 1000, D-pad 0800/0400/0200/0100, L 0020, R 0010, C-buttons 0008/0004/0002/0001.</summary>
     private static readonly bool padLog = Environment.GetEnvironmentVariable("TRW_STATUS") != null;
     private static ushort lastLoggedButtons; private static sbyte lastLoggedStickY;
 
-    private static bool ReadPad(int pad, out ushort buttons, out sbyte stickX, out sbyte stickY)
+    /// <summary>The TRW_PAD_SCRIPT part of pad 0 (also used by the headless runner, which has no keyboard or gamepad).</summary>
+    internal static bool ScriptedPad(ref ushort buttons, ref int x, ref int y)
     {
-        buttons = 0; stickX = 0; stickY = 0;
-        int x = 0, y = 0;
         bool connected = false;
-        if (pad == 0)
-        {
             foreach (var (start, len, b, sx, sy) in script)
                 if (scriptTick >= start && scriptTick < start + len) { buttons |= b; x += sx; y += sy; connected = true; }
             if (SettledPress(out var sb, out var ssx, out var ssy)) { buttons |= sb; x += ssx; y += ssy; connected = true; }
@@ -183,45 +202,107 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
                     es.FiredAt = scriptTick;
                 if (es.FiredAt >= 0 && scriptTick >= es.FiredAt && scriptTick < es.FiredAt + es.Len) { buttons |= es.Buttons; x += es.Sx; y += es.Sy; connected = true; }
             }
-        }
-        var gp = GamePad.GetState(pad);
-        if (gp.IsConnected)
+        return connected;
+    }
+
+    // TRW_KBM_SCRIPT="T<state>+<delay>:<key>[+<key>..]|-:<hold>[:<mouse dx>[:<mouse dy>]],..." (R<screen>+<delay> too): keyboard keys (MonoGame names: W, A, Space, ...)
+    // and mouse counts per poll fed through the window's keyboard + mouse mapping (InputMapper), so the player's real input path runs in headless tests
+    private sealed class KbmStep { public bool Screen; public int Id, Delay, Len, FiredAt = -1; public string[] Keys = Array.Empty<string>(); public float Dx, Dy; }
+    private static readonly KbmStep[] kbmSteps = ParseKbm(Environment.GetEnvironmentVariable("TRW_KBM_SCRIPT"));
+
+    private static KbmStep[] ParseKbm(string? s)
+    {
+        var list = new List<KbmStep>();
+        foreach (var item in (s ?? "").Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
         {
-            connected = true;
-            var b = gp.Buttons;
-            if (b.A == ButtonState.Pressed) buttons |= 0x8000;
-            if (b.B == ButtonState.Pressed || b.X == ButtonState.Pressed) buttons |= 0x4000;
-            if (b.Start == ButtonState.Pressed) buttons |= 0x1000;
-            var d = gp.DPad;
-            if (d.Up == ButtonState.Pressed) buttons |= 0x0800;
-            if (d.Down == ButtonState.Pressed) buttons |= 0x0400;
-            if (d.Left == ButtonState.Pressed) buttons |= 0x0200;
-            if (d.Right == ButtonState.Pressed) buttons |= 0x0100;
-            if (b.LeftShoulder == ButtonState.Pressed) buttons |= 0x0020;
-            if (b.RightShoulder == ButtonState.Pressed) buttons |= 0x0010;
-            if (gp.Triggers.Left > 0.4f || gp.Triggers.Right > 0.4f) buttons |= 0x2000;
-            var rs = gp.ThumbSticks.Right;
-            if (rs.Y > 0.5f) buttons |= 0x0008;
-            if (rs.Y < -0.5f) buttons |= 0x0004;
-            if (rs.X < -0.5f) buttons |= 0x0002;
-            if (rs.X > 0.5f) buttons |= 0x0001;
-            var ls = gp.ThumbSticks.Left;
-            x += (int)(ls.X * 80); y += (int)(ls.Y * 80);
+            var p = item.Split(':');
+            var m = System.Text.RegularExpressions.Regex.Match(p[0], @"^([RT])(-?\d+)\+(\d+)$");
+            if (!m.Success || p.Length < 2) continue;
+            list.Add(new KbmStep
+            {
+                Screen = m.Groups[1].Value == "R", Id = int.Parse(m.Groups[2].Value), Delay = int.Parse(m.Groups[3].Value),
+                Keys = p[1] == "-" ? Array.Empty<string>() : p[1].Split('+'), Len = p.Length > 2 && int.TryParse(p[2], out var l) ? l : 6,
+                Dx = p.Length > 3 && float.TryParse(p[3], System.Globalization.CultureInfo.InvariantCulture, out var dx) ? dx : 0,
+                Dy = p.Length > 4 && float.TryParse(p[4], System.Globalization.CultureInfo.InvariantCulture, out var dy) ? dy : 0,
+            });
         }
-        if (pad == 0)
+        return list.ToArray();
+    }
+
+    private static void ScriptedKbm(ref ushort buttons, ref int x, ref int y)
+    {
+        if (kbmSteps.Length == 0) return;
+        var keys = new HashSet<string>(); float dx = 0, dy = 0;
+        foreach (var es in kbmSteps)
         {
-            connected = true;
-            var k = Keyboard.GetState();
-            if (k.IsKeyDown(Keys.Enter)) buttons |= 0x1000;
-            if (k.IsKeyDown(Keys.Z)) buttons |= 0x2000;
-            if (k.IsKeyDown(Keys.X)) buttons |= 0x4000;
-            if (k.IsKeyDown(Keys.C)) buttons |= 0x8000;
-            if (k.IsKeyDown(Keys.W)) buttons |= 0x0800; if (k.IsKeyDown(Keys.S)) buttons |= 0x0400; if (k.IsKeyDown(Keys.A)) buttons |= 0x0200; if (k.IsKeyDown(Keys.D)) buttons |= 0x0100;      // D-pad
-            if (k.IsKeyDown(Keys.I)) buttons |= 0x0008; if (k.IsKeyDown(Keys.K)) buttons |= 0x0004; if (k.IsKeyDown(Keys.J)) buttons |= 0x0002; if (k.IsKeyDown(Keys.L)) buttons |= 0x0001;      // C buttons
-            if (k.IsKeyDown(Keys.Q)) buttons |= 0x0020; if (k.IsKeyDown(Keys.E)) buttons |= 0x0010;      // L, R
-            x += (k.IsKeyDown(Keys.Right) ? 80 : 0) - (k.IsKeyDown(Keys.Left) ? 80 : 0);
-            y += (k.IsKeyDown(Keys.Up) ? 80 : 0) - (k.IsKeyDown(Keys.Down) ? 80 : 0);
+            if (es.FiredAt < 0 && (es.Screen ? global::Trw.Game.Game.ScreenId == es.Id && global::Trw.Game.Game.CurrentTick - global::Trw.Game.Game.ScreenSince >= es.Delay : global::Trw.Game.Game.StateId == es.Id && global::Trw.Game.Game.CurrentTick - global::Trw.Game.Game.StateSince >= es.Delay))
+                es.FiredAt = scriptTick;
+            if (es.FiredAt >= 0 && scriptTick >= es.FiredAt && scriptTick < es.FiredAt + es.Len) { keys.UnionWith(es.Keys); dx += es.Dx; dy += es.Dy; }
         }
+        var r = mappers[0].Evaluate(new InputSample { Gameplay = GameplayContext(), KeyDown = k => keys.Contains(k) && !TextEntry.Active, MouseDx = dx, MouseDy = dy, MouseValid = true });
+        buttons |= r.buttons; x += r.x; y += r.y;
+    }
+
+    internal static bool ReadPadHeadless(int pad, out ushort buttons, out sbyte stickX, out sbyte stickY)
+    {
+        buttons = 0; stickX = 0; stickY = 0;
+        if (pad != 0) { int ex = 0, ey = 0; bool c = ExtraPadScripts.Read(pad, ref buttons, ref ex, ref ey); stickX = (sbyte)Math.Clamp(ex, -80, 80); stickY = (sbyte)Math.Clamp(ey, -80, 80); return c; }   // TRW_PAD2..4_SCRIPT
+        int x = 0, y = 0;
+        ScriptedPad(ref buttons, ref x, ref y);
+        ScriptedKbm(ref buttons, ref x, ref y);
+        buttons |= TextEntry.Poll();                        // TRW_TYPE_SCRIPT
+        stickX = (sbyte)Math.Clamp(x, -80, 80); stickY = (sbyte)Math.Clamp(y, -80, 80);
+        return true;
+    }
+
+    internal static bool ReadPad(int pad, out ushort buttons, out sbyte stickX, out sbyte stickY)
+    {
+        buttons = 0; stickX = 0; stickY = 0;
+        int x = 0, y = 0;
+        bool connected = false;
+        if (pad == 0 && ScriptedPad(ref buttons, ref x, ref y)) connected = true;
+        if (pad == 0 && kbmSteps.Length > 0) { ScriptedKbm(ref buttons, ref x, ref y); connected = true; }
+        if (pad != 0 && ExtraPadScripts.Read(pad, ref buttons, ref x, ref y)) connected = true;      // TRW_PAD2..4_SCRIPT (ExtraPadScripts.cs)
+        // real devices (port of the C port's input_core mapping: kbm_fps keyboard + mouse layout and the dual-stick pad layout, see InputMapper); scripted input wins:
+        // the devices are read for a pad only while no scripted input is active on it
+        if (buttons == 0 && x == 0 && y == 0)
+        {
+            var gp = GamePad.GetState(pad, GamePadDeadZone.None);
+            var sample = new InputSample { Gameplay = GameplayContext() };
+            if (pad == 0)
+            {
+                connected = true;
+                lock (deviceLock)
+                {
+                    var ks = keyboard; sample.KeyDown = name => Enum.TryParse<Keys>(name, out var key) && ks.IsKeyDown(key) && !TextEntry.Swallows(key);   // keys typing a name are not bindings
+                    Array.Copy(mouseButtons, sample.MouseButtons, 5);
+                    sample.MouseDx = mouseDx; sample.MouseDy = mouseDy; sample.MouseValid = mouseCaptured;
+                    sample.WheelUp = wheelUp; sample.WheelDown = wheelDown;
+                    mouseDx = mouseDy = 0; wheelUp = wheelDown = 0;
+                }
+                long now = System.Diagnostics.Stopwatch.GetTimestamp();
+                if (lastPoll != 0) sample.Dt = (now - lastPoll) / (double)System.Diagnostics.Stopwatch.Frequency;
+                lastPoll = now;
+            }
+            if (gp.IsConnected)
+            {
+                connected = true;
+                var b = gp.Buttons; var d = gp.DPad;
+                sample.Pad = new PadSnapshot
+                {
+                    Connected = true, A = b.A == ButtonState.Pressed, B = b.B == ButtonState.Pressed, X = b.X == ButtonState.Pressed, Y = b.Y == ButtonState.Pressed,
+                    LB = b.LeftShoulder == ButtonState.Pressed, RB = b.RightShoulder == ButtonState.Pressed, Start = b.Start == ButtonState.Pressed, Back = b.Back == ButtonState.Pressed,
+                    DUp = d.Up == ButtonState.Pressed, DDown = d.Down == ButtonState.Pressed, DLeft = d.Left == ButtonState.Pressed, DRight = d.Right == ButtonState.Pressed,
+                    LX = gp.ThumbSticks.Left.X, LY = gp.ThumbSticks.Left.Y, RX = gp.ThumbSticks.Right.X, RY = gp.ThumbSticks.Right.Y, LT = gp.Triggers.Left, RT = gp.Triggers.Right,
+                };
+            }
+            if (connected)
+            {
+                var r = mappers[pad & 3].Evaluate(sample);
+                buttons |= r.buttons; x += r.x; y += r.y;
+            }
+        }
+        if (pad == 0) buttons |= TextEntry.Poll();         // typed name: the letter-cycler presses (TextEntry.cs)
         stickX = (sbyte)Math.Clamp(x, -80, 80);
         stickY = (sbyte)Math.Clamp(y, -80, 80);
         if (pad == 0 && padLog && (buttons != lastLoggedButtons || stickY != lastLoggedStickY))
@@ -232,15 +313,54 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         return connected;
     }
 
+    private bool escapeDown, f1Down, captureSuspended, haveMouseRef;
+    private int lastWheel;
+
+    /// <summary>Samples keyboard, mouse and wheel; the mouse is captured (hidden, centred, relative motion) while a level runs in the active window (mouse_capture = auto).</summary>
+    private void SampleDevices(KeyboardState ks)
+    {
+        var ms = Mouse.GetState();
+        bool capture = IsActive && !captureSuspended && GameplayContext() == 1;
+        int cx = Window.ClientBounds.Width / 2, cy = Window.ClientBounds.Height / 2;
+        lock (deviceLock)
+        {
+            keyboard = ks;
+            mouseButtons[0] = ms.LeftButton == ButtonState.Pressed; mouseButtons[1] = ms.RightButton == ButtonState.Pressed; mouseButtons[2] = ms.MiddleButton == ButtonState.Pressed;
+            mouseButtons[3] = ms.XButton1 == ButtonState.Pressed; mouseButtons[4] = ms.XButton2 == ButtonState.Pressed;
+            if (haveMouseRef)
+            {
+                int notches = (ms.ScrollWheelValue - lastWheel) / 120;
+                if (notches > 0) wheelUp += notches; else wheelDown -= notches;
+            }
+            lastWheel = ms.ScrollWheelValue; haveMouseRef = true;
+            if (capture)
+            {
+                if (mouseCaptured) { mouseDx += ms.X - cx; mouseDy += ms.Y - cy; }
+                Mouse.SetPosition(cx, cy);
+            }
+            else if (mouseCaptured) { mouseDx = mouseDy = 0; foreach (var m in mappers) m.ResetMouse(); }
+            if (capture != mouseCaptured) { mouseCaptured = capture; IsMouseVisible = !capture; }
+        }
+    }
+
     protected override void Update(GameTime gameTime)
     {
+        if (Net.NetPlay.LobbyUpdate(this, gameTime)) { base.Update(gameTime); return; }      // --netplay: the lobby runs until the session boots the game
         var ks = Keyboard.GetState();
-        if (ks.IsKeyDown(Keys.Escape)) Exit();
+        SampleDevices(ks);
+        scoreboard?.Update(ks, IsActive);
+        TextEntry.Sample(ks, gameTime.TotalGameTime.TotalSeconds);      // Backspace / Enter on the name entry screen
+        bool esc = ks.IsKeyDown(Keys.Escape);
+        if (esc && !escapeDown && !TextEntry.Active) { if (mouseCaptured) { captureSuspended = true; } else Exit(); }      // Esc releases a captured mouse, otherwise it quits
+        escapeDown = esc;
+        bool f1 = ks.IsKeyDown(Keys.F1);
+        if (f1 && !f1Down) captureSuspended = !captureSuspended;                                         // F1 captures / releases the mouse
+        f1Down = f1;
         bool f11 = ks.IsKeyDown(Keys.F11) || (ks.IsKeyDown(Keys.Enter) && (ks.IsKeyDown(Keys.LeftAlt) || ks.IsKeyDown(Keys.RightAlt)));
         if (f11 && !fullscreenKeyDown) graphics.ToggleFullScreen();       // F11 or Alt+Enter
         fullscreenKeyDown = f11;
         if (autoExitSeconds > 0 && gameTime.TotalGameTime.TotalSeconds > autoExitSeconds) Exit();
-        Game.ViTick();
+        if (Net.NetPlay.Enabled) Net.NetPlay.WindowTick(); else if (Oracle.Deterministic) Game.LockstepTick(); else Game.ViTick();      // netplay: the session's next tick(s)
         audio.Pump();
         frame++;
         scriptTick = frame;
@@ -250,16 +370,17 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
     protected override void UnloadContent()
     {
         audio.Dispose();
-        renderer?.Dispose();
+        renderer?.Dispose(); scoreboard?.Dispose();
         base.UnloadContent();
     }
 
     protected override void Draw(GameTime gameTime)
     {
+        if (Net.NetPlay.LobbyDraw(GraphicsDevice)) { base.Draw(gameTime); return; }
         var cmds = Interlocked.Exchange(ref pendingFrame, null);
         if (cmds != null)
         {
-            renderer!.Execute(cmds);
+            renderer!.Execute(cmds, ViewLayout.LocalRegion(cmds));
             drawnFrames++;
             if (shotDir != null && drawnFrames % shotEvery == 0 && shotsTaken < shotMax)
             {
@@ -269,6 +390,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
             }
         }
         renderer!.Present(Window.ClientBounds.Width, Window.ClientBounds.Height);
+        Net.NetPlay.OverlayDraw(GraphicsDevice);       // netplay status line (waiting, desync, a player left)
         base.Draw(gameTime);
     }
 }

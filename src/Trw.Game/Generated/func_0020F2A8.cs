@@ -21,29 +21,29 @@ public static partial class Game
                 func_0020D1FC(L);
                 for (i = 0; (i < 30); ++i)
                 {
-                    Mem.Set((_fp + (uint)(i * 4)), 0);
+                    new IdQuery(_fp).ids.Set((int)(i), 0);
                 }
-                Mem.Set((_fp + (uint)(0 * 4)), 3031);
-                if ((func_0020F150(_fp) == 0))
+                new IdQuery(_fp).ids.Set((int)(0), 3031);
+                if ((func_0020F150(new IdQuery(_fp).ids.P) == 0))
                 {
-                    Mem.Set((o + 104u), 0u);
-                    Mem.Set((o + 188u), (-1));
+                    new QueryObj(o).unk68__Set(0u);
+                    new QueryObj(o).unkBC_Set((-1));
                     return 1;
                 }
-                Mem.Set((L + 24u), (-1));
-                func_0020D0CC(L, Mem.S32((o + 4u)));
-                sel = Mem.S32((L + 24u));
+                new EntList(L).sel_Set((-1));
+                func_0020D0CC(L, new QueryObj(o).key);
+                sel = new EntList(L).sel;
                 if ((sel != (-1)))
                 {
                     n = func_0020CFE0(L, sel);
-                    Mem.Set((o + 12u), Mem.S32((L + 24u)));
-                    Mem.Set((o + 104u), Mem.U32((n + 52u)));
+                    new QueryObj(o).unkC_Set(new EntList(L).sel);
+                    new QueryObj(o).unk68__Set(new EntNode(n).owner_);
                     func_0020D114(L, (o + 20u), 4);
                 }
                 else
                 {
-                    Mem.Set((o + 104u), 0u);
-                    Mem.Set((o + 188u), sel);
+                    new QueryObj(o).unk68__Set(0u);
+                    new QueryObj(o).unkBC_Set(sel);
                 }
                 return 1;
             }

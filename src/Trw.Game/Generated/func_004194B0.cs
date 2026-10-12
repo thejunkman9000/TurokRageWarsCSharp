@@ -14,8 +14,8 @@ public static partial class Game
             guMtxF2L(m, mtx);
             {
                 uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                Mem.Set(_g, 3661103107u);
-                Mem.Set((_g + 4u), (uint)(mtx));
+                new O3Dl(_g).w0_Set(3661103107u);
+                new O3Dl(_g).w1_Set((uint)(mtx));
             }
         }
     }

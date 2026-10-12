@@ -14,7 +14,7 @@ public static partial class Game
             {
                 return (-2);
             }
-            Mem.Set(@out, ((((Mem.U32(0x800E2854u) + (uint)(pad * 516)) + 4u) + (uint)(idx * 32)) + 10u));
+            Mem.Set(@out, new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent[(int)(idx)].unkA.P);
             return 0;
         }
     }

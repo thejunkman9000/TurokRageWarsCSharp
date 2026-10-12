@@ -77,7 +77,7 @@ public static partial class Game
                 Mem.Set((r29 + 40u), r10);
                 Cpu.SetW(0, Mem.U32((r29 + 36u)));
                 Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
-                Mem.Set((r29 + 36u), Cpu.W(0)); r2 = func_0024D274_rc(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r29 + 36u), Cpu.W(0)); Cpu.SetS(0, func_0024D274(r4));
                 Cpu.SetS(0, Cpu.S(0) * Cpu.S(21));
                 Cpu.SetW(1, Mem.U32((r29 + 36u)));
                 r4 = r29 + 16u;
@@ -173,10 +173,10 @@ public static partial class Game
                 r4 = r16; func_002727B8(r4, Cpu.U2F(r5));
                  goto L_L0027B46C;
                 L_L0027B098: ;
-                r4 = r17; r2 = func_0027A0F4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r17; func_0027A0F4(r4);
                  goto L_L0027B46C;
                 L_L0027B0A8: ;
-                r4 = r17; r2 = func_0027A540(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r17; func_0027A540(r4);
                  goto L_L0027B46C;
                 L_L0027B0B8: ;
                 r4 = 2148794368u;
@@ -244,7 +244,7 @@ public static partial class Game
                 Cpu.SetW(1, Mem.U32((r29 + 36u)));
                 Cpu.SetS(1, Cpu.S(1) + Cpu.S(0));
                 r4 = r16;
-                Mem.Set((r29 + 36u), Cpu.W(1)); r2 = func_0024D274_rc(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r29 + 36u), Cpu.W(1)); Cpu.SetS(0, func_0024D274(r4));
                 r1 = 2148335616u;
                 Cpu.SetW(1, Mem.U32((r1 - 25384u)));
                 Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
@@ -258,11 +258,11 @@ public static partial class Game
                 r4 = r16; func_002720EC(r4);
                 r20 = r29 + 112u;
                 r4 = r20;
-                r5 = r16; r2 = func_00271888(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r16; r2 = func_00271888(r4, r5);
                 r19 = r29 + 96u;
                 r4 = r19;
                 r18 = r17 + 372u;
-                r5 = r18; r2 = func_00271888(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r18; r2 = func_00271888(r4, r5);
                 r8 = Mem.U32((r17 + 372u));
                 r9 = Mem.U32((r17 + 376u));
                 r10 = Mem.U32((r17 + 380u));

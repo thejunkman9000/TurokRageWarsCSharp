@@ -16,16 +16,16 @@ public static partial class Game
             uint p = 0u;
             uint d = 0u;
             i = 0;
-            n = Mem.S32((b + 4u));
-            vp = (b + 8u);
+            n = new VtxBlk(b).count;
+            vp = new VtxBlk(b).v.P;
             for (; (i < n); ++i)
             {
                 p = (vp + (uint)(i * 16));
                 d = @out;
                 @out = (uint)(@out + (uint)(4 * 1));
-                Mem.Set((d + (uint)0), (byte)((((((int)(Mem.U8(((p + 12u) + (uint)0))) < 225) ? (int)(Mem.U8(((p + 12u) + (uint)0))) : 225) > 30) ? (((int)(Mem.U8(((p + 12u) + (uint)0))) < 225) ? (int)(Mem.U8(((p + 12u) + (uint)0))) : 225) : 30)));
-                Mem.Set((d + (uint)1), (byte)((((((int)(Mem.U8(((p + 12u) + (uint)1))) < 225) ? (int)(Mem.U8(((p + 12u) + (uint)1))) : 225) > 30) ? (((int)(Mem.U8(((p + 12u) + (uint)1))) < 225) ? (int)(Mem.U8(((p + 12u) + (uint)1))) : 225) : 30)));
-                Mem.Set((d + (uint)2), (byte)((((((int)(Mem.U8(((p + 12u) + (uint)2))) < 225) ? (int)(Mem.U8(((p + 12u) + (uint)2))) : 225) > 30) ? (((int)(Mem.U8(((p + 12u) + (uint)2))) < 225) ? (int)(Mem.U8(((p + 12u) + (uint)2))) : 225) : 30)));
+                Mem.Set((d + (uint)0), (byte)((((((int)(new B17Vtx(p).col[(int)(0)]) < 225) ? (int)(new B17Vtx(p).col[(int)(0)]) : 225) > 30) ? (((int)(new B17Vtx(p).col[(int)(0)]) < 225) ? (int)(new B17Vtx(p).col[(int)(0)]) : 225) : 30)));
+                Mem.Set((d + (uint)1), (byte)((((((int)(new B17Vtx(p).col[(int)(1)]) < 225) ? (int)(new B17Vtx(p).col[(int)(1)]) : 225) > 30) ? (((int)(new B17Vtx(p).col[(int)(1)]) < 225) ? (int)(new B17Vtx(p).col[(int)(1)]) : 225) : 30)));
+                Mem.Set((d + (uint)2), (byte)((((((int)(new B17Vtx(p).col[(int)(2)]) < 225) ? (int)(new B17Vtx(p).col[(int)(2)]) : 225) > 30) ? (((int)(new B17Vtx(p).col[(int)(2)]) < 225) ? (int)(new B17Vtx(p).col[(int)(2)]) : 225) : 30)));
             }
         }
     }

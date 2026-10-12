@@ -11,9 +11,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004221A0");
             func_00422218();
-            func_0044AFC0(0x80145088u, (uint)(1), default(uint), default(uint));
-            func_0044A600((0x80145088u - (uint)72), (uint)(1), (uint)(0), default(uint));
-            func_0044E178(0x8011FE88u, (uint)((~func_004030E0(637))), (uint)(0), default(uint));
+            func_0044AFC0(0x80145088u, 1);
+            func_0044A600((0x80145088u - (uint)72), 1, 0);
+            func_0044E178(0x8011FE88u, (~func_004030E0(637)), 0);
             if ((func_0025471C() == 0))
             {
                 func_0025470C(1);

@@ -12,58 +12,58 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00233B04", (uint)o);
             float v = 0f;
             float lv = 0f;
-            if ((Mem.S32((o + 1348u)) == 1))
+            if ((new FadeObj(o).state == 1))
             {
                 goto L_L1;
             }
-            if ((Mem.S32((o + 1348u)) == 0))
+            if ((new FadeObj(o).state == 0))
             {
                 goto L_Lend;
             }
-            if ((Mem.S32((o + 1348u)) == 2))
+            if ((new FadeObj(o).state == 2))
             {
                 goto L_L2;
             }
-            if ((Mem.S32((o + 1348u)) == 3))
+            if ((new FadeObj(o).state == 3))
             {
                 goto L_L3;
             }
             goto L_Lend;
             L_L1: ;
-            if (((float)(Mem.U8((o + 1355u))) <= Mem.F32((o + 1336u))))
+            if (((float)(new FadeObj(o).t1) <= new FadeObj(o).timer))
             {
-                Mem.Set((o + 1348u), 2);
-                Mem.Set((o + 1336u), 0.0f);
+                new FadeObj(o).state_Set(2);
+                new FadeObj(o).timer_Set(0.0f);
             }
             else
             {
-                v = ((Mem.F32((o + 1336u)) / (float)(((int)(Mem.U8((o + 1355u))) + 1))) * (float)(Mem.U8((o + 1354u))));
-                Mem.Set((o + 1361u), (byte)(Cpu.TruncU32(v)));
+                v = ((new FadeObj(o).timer / (float)(((int)(new FadeObj(o).t1) + 1))) * (float)(new FadeObj(o).level));
+                new FadeObj(o).cur_Set((byte)(Cpu.TruncU32(v)));
                 goto L_Lend;
             }
             L_L2: ;
-            if (!((float)(Mem.U8((o + 1356u))) <= Mem.F32((o + 1336u))))
+            if (!((float)(new FadeObj(o).t2) <= new FadeObj(o).timer))
             {
-                Mem.Set((o + 1361u), Mem.U8((o + 1354u)));
+                new FadeObj(o).cur_Set(new FadeObj(o).level);
                 goto L_Lend;
             }
-            Mem.Set((o + 1348u), 3);
-            Mem.Set((o + 1336u), 0.0f);
+            new FadeObj(o).state_Set(3);
+            new FadeObj(o).timer_Set(0.0f);
             L_L3: ;
-            if (((float)(Mem.U8((o + 1357u))) <= Mem.F32((o + 1336u))))
+            if (((float)(new FadeObj(o).t3) <= new FadeObj(o).timer))
             {
-                Mem.Set((o + 1348u), 0);
-                Mem.Set((o + 1336u), 0.0f);
+                new FadeObj(o).state_Set(0);
+                new FadeObj(o).timer_Set(0.0f);
             }
             else
             {
-                lv = (float)(Mem.U8((o + 1354u)));
-                v = (lv - ((Mem.F32((o + 1336u)) / (float)(((int)(Mem.U8((o + 1357u))) + 1))) * lv));
-                Mem.Set((o + 1361u), (byte)(Cpu.TruncU32(v)));
+                lv = (float)(new FadeObj(o).level);
+                v = (lv - ((new FadeObj(o).timer / (float)(((int)(new FadeObj(o).t3) + 1))) * lv));
+                new FadeObj(o).cur_Set((byte)(Cpu.TruncU32(v)));
             }
             goto L_Lend;
             L_Lend: ;
-            Mem.Set((o + 1336u), (Mem.F32((o + 1336u)) + Mem.F32(0x800D2988u)));
+            new FadeObj(o).timer_Set((new FadeObj(o).timer + Mem.F32(0x800D2988u)));
         }
     }
 

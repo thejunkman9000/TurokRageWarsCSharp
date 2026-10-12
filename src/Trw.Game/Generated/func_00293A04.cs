@@ -12,29 +12,29 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00293A04", (uint)g, (uint)a, (uint)b);
             int f = (Mem.S32((0x8010F194u + (uint)(0 * 4))) & 4096);
             int old = 0;
-            if (((Mem.S32((g + 159160u)) == 11) || (Mem.S32((g + 159160u)) == 12)))
+            if (((new B21Game(g).unk26DB8 == 11) || (new B21Game(g).unk26DB8 == 12)))
             {
                 f = 0;
             }
             if (((f != 0) && (b != (-1))))
             {
-                Mem.Set((g + 159169u), (byte)(2));
-                Mem.Set((g + 159164u), b);
+                new B21Game(g).unk26DC1_Set((byte)(2));
+                new B21Game(g).unk26DBC_Set(b);
                 Mem.Set((0x8010F194u + (uint)(0 * 4)), 0);
             }
             else
             {
                 if ((func_00245804() != 0))
                 {
-                    old = Mem.S32((g + 159160u));
-                    Mem.Set((g + 159169u), (byte)(1));
-                    Mem.Set((g + 159172u), 0.0f);
-                    Mem.Set((g + 159160u), 20);
-                    Mem.Set((g + 159164u), a);
-                    Mem.Set((g + 159156u), old);
+                    old = new B21Game(g).unk26DB8;
+                    new B21Game(g).unk26DC1_Set((byte)(1));
+                    new B21Game(g).unk26DC4_Set(0.0f);
+                    new B21Game(g).unk26DB8_Set(20);
+                    new B21Game(g).unk26DBC_Set(a);
+                    new B21Game(g).unk26DB4_Set(old);
                     if ((func_00264B8C() != 0))
                     {
-                        Mem.Set((g + 159172u), Mem.F32(0x800CA58Cu));
+                        new B21Game(g).unk26DC4_Set(Mem.F32(0x800CA58Cu));
                     }
                 }
             }

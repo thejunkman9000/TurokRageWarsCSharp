@@ -15,20 +15,20 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_002752CC_tri4_normal", (uint)@out, (uint)t);
                 if ((t == 0u))
                 {
-                    Mem.Set(0x80115DF0u, (float)(0));
-                    Mem.Set((0x80115DF0u + 8u), (float)(0));
-                    Mem.Set((0x80115DF0u + 4u), Mem.F32(0x800C9AB4u));
+                    new Vec3f(0x80115DF0u).x_Set((float)(0));
+                    new Vec3f(0x80115DF0u).z_Set((float)(0));
+                    new Vec3f(0x80115DF0u).y_Set(Mem.F32(0x800C9AB4u));
                 }
                 else
                 {
                     if ((t != Mem.U32(0x800D2630u)))
                     {
-                        Mem.Set(_fp, (Mem.F32(Mem.U32(((t + 4u) + (uint)(1 * 4)))) - Mem.F32(Mem.U32(((t + 4u) + (uint)(0 * 4))))));
-                        Mem.Set((_fp + 4u), (Mem.F32((Mem.U32(((t + 4u) + (uint)(1 * 4))) + 12u)) - Mem.F32((Mem.U32(((t + 4u) + (uint)(0 * 4))) + 12u))));
-                        Mem.Set((_fp + 8u), (Mem.F32((Mem.U32(((t + 4u) + (uint)(1 * 4))) + 8u)) - Mem.F32((Mem.U32(((t + 4u) + (uint)(0 * 4))) + 8u))));
-                        Mem.Set((_fp + 16u), (Mem.F32(Mem.U32(((t + 4u) + (uint)(2 * 4)))) - Mem.F32(Mem.U32(((t + 4u) + (uint)(1 * 4))))));
-                        Mem.Set(((_fp + 16u) + 4u), (Mem.F32((Mem.U32(((t + 4u) + (uint)(2 * 4))) + 12u)) - Mem.F32((Mem.U32(((t + 4u) + (uint)(1 * 4))) + 12u))));
-                        Mem.Set(((_fp + 16u) + 8u), (Mem.F32((Mem.U32(((t + 4u) + (uint)(2 * 4))) + 8u)) - Mem.F32((Mem.U32(((t + 4u) + (uint)(1 * 4))) + 8u))));
+                        new Vec3f(_fp).x_Set((new Pt4(new Tri4(t).v[(int)(1)]).x - new Pt4(new Tri4(t).v[(int)(0)]).x));
+                        new Vec3f(_fp).y_Set((new Pt4(new Tri4(t).v[(int)(1)]).y - new Pt4(new Tri4(t).v[(int)(0)]).y));
+                        new Vec3f(_fp).z_Set((new Pt4(new Tri4(t).v[(int)(1)]).z - new Pt4(new Tri4(t).v[(int)(0)]).z));
+                        new Vec3f((_fp + 16u)).x_Set((new Pt4(new Tri4(t).v[(int)(2)]).x - new Pt4(new Tri4(t).v[(int)(1)]).x));
+                        new Vec3f((_fp + 16u)).y_Set((new Pt4(new Tri4(t).v[(int)(2)]).y - new Pt4(new Tri4(t).v[(int)(1)]).y));
+                        new Vec3f((_fp + 16u)).z_Set((new Pt4(new Tri4(t).v[(int)(2)]).z - new Pt4(new Tri4(t).v[(int)(1)]).z));
                         func_00272088(0x80115DF0u, (_fp + 16u), _fp);
                     }
                 }
@@ -56,16 +56,16 @@ public static partial class Game
                 else
                 {
                     func_002752CC_tri4_normal(_fp, t);
-                    if ((Mem.F32((_fp + 4u)) != 0.0f))
+                    if ((new Vec3f(_fp).y != 0.0f))
                     {
-                        Mem.Set((_fp + 16u), Mem.F32(Mem.U32(((t + 4u) + (uint)(0 * 4)))));
-                        Mem.Set(((_fp + 16u) + 4u), Mem.F32((Mem.U32(((t + 4u) + (uint)(0 * 4))) + 12u)));
-                        Mem.Set(((_fp + 16u) + 8u), Mem.F32((Mem.U32(((t + 4u) + (uint)(0 * 4))) + 8u)));
-                        r = (((((Mem.F32(((_fp + 16u) + 8u)) - z) * Mem.F32((_fp + 8u))) + ((Mem.F32((_fp + 16u)) - x) * Mem.F32(_fp))) + (Mem.F32(((_fp + 16u) + 4u)) * Mem.F32((_fp + 4u)))) / Mem.F32((_fp + 4u)));
+                        new Vec3f((_fp + 16u)).x_Set(new Pt4(new Tri4(t).v[(int)(0)]).x);
+                        new Vec3f((_fp + 16u)).y_Set(new Pt4(new Tri4(t).v[(int)(0)]).y);
+                        new Vec3f((_fp + 16u)).z_Set(new Pt4(new Tri4(t).v[(int)(0)]).z);
+                        r = (((((new Vec3f((_fp + 16u)).z - z) * new Vec3f(_fp).z) + ((new Vec3f((_fp + 16u)).x - x) * new Vec3f(_fp).x)) + (new Vec3f((_fp + 16u)).y * new Vec3f(_fp).y)) / new Vec3f(_fp).y);
                     }
                     else
                     {
-                        r = (((Mem.F32((Mem.U32(((t + 4u) + (uint)(0 * 4))) + 12u)) + Mem.F32((Mem.U32(((t + 4u) + (uint)(1 * 4))) + 12u))) + Mem.F32((Mem.U32(((t + 4u) + (uint)(2 * 4))) + 12u))) * Mem.F32(0x800C9AB8u));
+                        r = (((new Pt4(new Tri4(t).v[(int)(0)]).y + new Pt4(new Tri4(t).v[(int)(1)]).y) + new Pt4(new Tri4(t).v[(int)(2)]).y) * Mem.F32(0x800C9AB8u));
                     }
                 }
                 return r;

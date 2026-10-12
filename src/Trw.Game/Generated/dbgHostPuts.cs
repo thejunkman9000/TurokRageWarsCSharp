@@ -22,7 +22,7 @@ public static partial class Game
             {
                 goto L_end;
             }
-            dbgLinkSendByte((uint)((byte)(193)), default(uint), default(uint), default(uint));
+            dbgLinkSendByte((byte)(193));
             if ((Mem.S32(0x8014D3E8u) != 0))
             {
                 goto L_end;
@@ -73,7 +73,7 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("dbgHostPuts_dbgLinkHandshake_i");
                 int ret = 0;
-                dbgLinkSendByte((uint)((byte)(16)), default(uint), default(uint), default(uint));
+                dbgLinkSendByte((byte)(16));
                 if ((Mem.S32(0x8014D3E8u) == 0))
                 {
                     dbgLinkRecvByte(_fp);
@@ -98,7 +98,7 @@ public static partial class Game
             do
             {
                 c = Mem.U8(((s += 1u) - 1u));
-                dbgLinkSendByte((uint)(c), default(uint), default(uint), default(uint));
+                dbgLinkSendByte(c);
                 if ((Mem.S32(0x8014D3E8u) != 0))
                 {
                     goto L_end;

@@ -19,13 +19,13 @@ public static partial class Game
                 int t = 0;
                 for (i = 0; (i < n); ++i)
                 {
-                    t = (int)(Mem.U16(((list + (uint)(i * 28)) + 2u)));
+                    t = (int)(new B11Rec((list + (uint)(i * 28))).type);
                     if ((t < 8))
                     {
                         if ((t >= 6))
                         {
-                            func_00272908((a + 116u), ((list + (uint)(i * 28)) + 8u), _fp);
-                            func_00265E30(a, a, Mem.U16(((list + (uint)(i * 28)) + 2u)), (-1), _fp, ((list + (uint)(i * 28)) + 20u));
+                            func_00272908(new Obj(a).unk74.P, new B11Rec((list + (uint)(i * 28))).pos.P, _fp);
+                            func_00265E30(a, a, (int)(new B11Rec((list + (uint)(i * 28))).type), (-1), _fp, new B11Rec((list + (uint)(i * 28))).unk14.P);
                         }
                     }
                 }

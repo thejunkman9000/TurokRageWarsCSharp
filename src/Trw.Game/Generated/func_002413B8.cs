@@ -14,19 +14,19 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_002413B8_rayhit", (uint)q, (uint)org, (uint)dir, (uint)t);
                 float denom = 0f;
-                if ((Mem.S32((q + 8u)) == 0))
+                if ((new B09Quad(q).unk8 == 0))
                 {
                     return 0;
                 }
                 func_00271FD8(_fp, dir, org);
-                denom = (((Mem.F32((q + 72u)) * Mem.F32((_fp + (uint)(0 * 4)))) + (Mem.F32((q + 76u)) * Mem.F32((_fp + (uint)(1 * 4))))) + (Mem.F32((q + 80u)) * Mem.F32((_fp + (uint)(2 * 4)))));
+                denom = (((new B09Quad(q).nx * Mem.F32((_fp + (uint)(0 * 4)))) + (new B09Quad(q).ny * Mem.F32((_fp + (uint)(1 * 4))))) + (new B09Quad(q).nz * Mem.F32((_fp + (uint)(2 * 4)))));
                 if ((denom >= 0.0f))
                 {
                     Mem.Set(t, Mem.F32(0x800C8834u));
                     return 0;
                 }
-                func_00271FD8((_fp + 16u), org, ((q + 24u) + (uint)(0 * 12)));
-                Mem.Set(t, ((-(((Mem.F32((q + 72u)) * Mem.F32(((_fp + 16u) + (uint)(0 * 4)))) + (Mem.F32((q + 76u)) * Mem.F32(((_fp + 16u) + (uint)(1 * 4))))) + (Mem.F32((q + 80u)) * Mem.F32(((_fp + 16u) + (uint)(2 * 4)))))) / denom));
+                func_00271FD8((_fp + 16u), org, (new B09Quad(q).v.P + (uint)(0 * 12)));
+                Mem.Set(t, ((-(((new B09Quad(q).nx * Mem.F32(((_fp + 16u) + (uint)(0 * 4)))) + (new B09Quad(q).ny * Mem.F32(((_fp + 16u) + (uint)(1 * 4))))) + (new B09Quad(q).nz * Mem.F32(((_fp + 16u) + (uint)(2 * 4)))))) / denom));
                 return 1;
             }
         }

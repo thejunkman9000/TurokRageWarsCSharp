@@ -15,16 +15,16 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00275C38", (uint)@out, (uint)t);
                 if ((t == 0u))
                 {
-                    Mem.Set(0x80115E10u, (float)(0));
-                    Mem.Set((0x80115E10u + 8u), (float)(0));
-                    Mem.Set((0x80115E10u + 4u), Mem.F32(0x800C9AE0u));
+                    new Vec3f(0x80115E10u).x_Set((float)(0));
+                    new Vec3f(0x80115E10u).z_Set((float)(0));
+                    new Vec3f(0x80115E10u).y_Set(Mem.F32(0x800C9AE0u));
                 }
                 else
                 {
                     if ((t != Mem.U32(0x800D2638u)))
                     {
-                        func_00271FD8(_fp, Mem.U32(((t + 4u) + (uint)(1 * 4))), Mem.U32(((t + 4u) + (uint)(0 * 4))));
-                        func_00271FD8((_fp + 16u), Mem.U32(((t + 4u) + (uint)(2 * 4))), Mem.U32(((t + 4u) + (uint)(1 * 4))));
+                        func_00271FD8(_fp, new Tri3(t).v[(int)(1)], new Tri3(t).v[(int)(0)]);
+                        func_00271FD8((_fp + 16u), new Tri3(t).v[(int)(2)], new Tri3(t).v[(int)(1)]);
                         func_00272088(0x80115E10u, _fp, (_fp + 16u));
                     }
                 }

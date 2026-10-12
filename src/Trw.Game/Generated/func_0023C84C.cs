@@ -14,12 +14,12 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_0023C84C", (uint)arg);
                 osCreateMesgQueue(_fp, (_fp + 24u), 1);
-                Mem.Set(((_fp + 32u) + 4u), arg);
-                Mem.Set((_fp + 32u), (short)(2));
-                Mem.Set(((_fp + 32u) + 8u), _fp);
+                new B09Req((_fp + 32u)).arg_Set(arg);
+                new B09Req((_fp + 32u)).type_Set((short)(2));
+                new B09Req((_fp + 32u)).reply__Set(_fp);
                 osSendMesg(0x80103254u, (_fp + 32u), 1);
                 osRecvMesg(_fp, (_fp + 44u), 1);
-                func_002537D8(0, (uint)(Mem.S32((Mem.U32((_fp + 44u)) + 12u))));
+                func_002537D8(0, (uint)(new B09Reply(Mem.U32((_fp + 44u))).unkC));
             }
         }
         finally { Stack.Free(48); }

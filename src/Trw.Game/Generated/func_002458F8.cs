@@ -15,7 +15,7 @@ public static partial class Game
             {
                 return 0;
             }
-            v = (Mem.U32((Mem.U32(0x800E2830u) + 116u)) & (uint)(2));
+            v = (new Obj74(Mem.U32(0x800E2830u)).f74 & (uint)(2));
             return ((v != (uint)(0)) ? 1 : 0);
         }
     }

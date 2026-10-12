@@ -10,16 +10,16 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0023CB80", (uint)l, (uint)n);
-            Mem.Set((n + 4u), 0u);
-            Mem.Set(n, Mem.U32(l));
-            if ((Mem.U32(l) != 0u))
+            new DNode(n).prev__Set(0u);
+            new DNode(n).next__Set(new DList(l).head_);
+            if ((new DList(l).head_ != 0u))
             {
-                Mem.Set((Mem.U32(l) + 4u), n);
+                new DList(l).head.prev__Set(n);
             }
-            Mem.Set(l, n);
-            if ((Mem.U32((l + 4u)) == 0u))
+            new DList(l).head__Set(n);
+            if ((new DList(l).tail_ == 0u))
             {
-                Mem.Set((l + 4u), n);
+                new DList(l).tail__Set(n);
             }
         }
     }

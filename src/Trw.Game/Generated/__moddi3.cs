@@ -15,10 +15,10 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("__moddi3___negdi2");
-                Mem.Set((_fp + 8u), u);
-                Mem.Set((_fp + 4u), (-Mem.S32(((_fp + 8u) + 4u))));
-                Mem.Set(_fp, ((-Mem.S32((_fp + 8u))) - (((uint)(Mem.S32((_fp + 4u))) > (uint)(0)) ? 1 : 0)));
-                return Mem.S64(_fp);
+                new DIunion((_fp + 8u)).ll_Set(u);
+                new DIunion(_fp).s.low_Set((-new DIunion((_fp + 8u)).s.low));
+                new DIunion(_fp).s.high_Set(((-new DIunion((_fp + 8u)).s.high) - (((uint)(new DIunion(_fp).s.low) > (uint)(0)) ? 1 : 0)));
+                return new DIunion(_fp).ll;
             }
         }
         finally { Stack.Free(16); }

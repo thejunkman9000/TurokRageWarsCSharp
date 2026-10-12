@@ -13,7 +13,7 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 36); ++i)
             {
-                if ((Mem.S32((0x800E4694u + (uint)(i * 28))) == a))
+                if ((new O04Ent1C((0x800E4694u + (uint)(i * 28))).id == a))
                 {
                     return i;
                 }

@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alSndpSetSound", (uint)sndp, (uint)sndId);
-            Mem.Set((sndp + 60u), (int)(sndId));
+            new ALSndPlayer(sndp).target_Set((int)(sndId));
         }
     }
 

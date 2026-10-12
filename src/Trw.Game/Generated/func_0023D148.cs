@@ -10,88 +10,88 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0023D148", (uint)m);
-            uint d = Mem.U32((m + 64u));
+            uint d = new B09Mover(m).def_;
             float a = 0f;
             float b = 0f;
             float c = 0f;
             float dd = 0f;
             float e = 0f;
             float f = 0f;
-            func_00240C7C((m + 176u));
-            func_00271FD8((m + 92u), (m + 80u), (m + 68u));
-            Mem.Set((m + 128u), sqrtf((((Mem.F32((m + 92u)) * Mem.F32((m + 92u))) + (Mem.F32(((m + 92u) + 4u)) * Mem.F32(((m + 92u) + 4u)))) + (Mem.F32(((m + 92u) + 8u)) * Mem.F32(((m + 92u) + 8u))))));
-            if (((Mem.F32((m + 128u)) == 0.0f) && (Mem.S32((m + 4u)) == 0)))
+            func_00240C7C(new B09Mover(m).qcopy.P);
+            func_00271FD8(new B09Mover(m).v5C.P, new B09Mover(m).v50.P, new B09Mover(m).v44.P);
+            new B09Mover(m).f80_Set(sqrtf((((new B09Mover(m).v5C.x * new B09Mover(m).v5C.x) + (new B09Mover(m).v5C.y * new B09Mover(m).v5C.y)) + (new B09Mover(m).v5C.z * new B09Mover(m).v5C.z))));
+            if (((new B09Mover(m).f80 == 0.0f) && (new B09Mover(m).unk4 == 0)))
             {
                 return 0;
             }
-            if ((Mem.F32((m + 128u)) != 0.0f))
+            if ((new B09Mover(m).f80 != 0.0f))
             {
-                func_0027200C((m + 104u), (m + 92u), (Mem.F32(0x800C8720u) / Mem.F32((m + 128u))));
+                func_0027200C(new B09Mover(m).v68.P, new B09Mover(m).v5C.P, (Mem.F32(0x800C8720u) / new B09Mover(m).f80));
             }
             else
             {
-                Mem.Copy((m + 104u), (m + 92u), 12);
+                Mem.Copy(new B09Mover(m).v68.P, new B09Mover(m).v5C.P, 12);
             }
-            a = Mem.F32((m + 80u));
-            if (!(a <= Mem.F32((m + 68u))))
+            a = new B09Mover(m).v50.x;
+            if (!(a <= new B09Mover(m).v44.x))
             {
-                a = Mem.F32((m + 68u));
+                a = new B09Mover(m).v44.x;
             }
-            Mem.Set((m + 132u), a);
-            b = Mem.F32((m + 80u));
-            if (!(Mem.F32((m + 68u)) <= b))
+            new B09Mover(m).f84_Set(a);
+            b = new B09Mover(m).v50.x;
+            if (!(new B09Mover(m).v44.x <= b))
             {
-                b = Mem.F32((m + 68u));
+                b = new B09Mover(m).v44.x;
             }
-            Mem.Set((m + 144u), b);
-            c = Mem.F32(((m + 80u) + 4u));
-            if (!(c <= Mem.F32(((m + 68u) + 4u))))
+            new B09Mover(m).f90_Set(b);
+            c = new B09Mover(m).v50.y;
+            if (!(c <= new B09Mover(m).v44.y))
             {
-                c = Mem.F32(((m + 68u) + 4u));
+                c = new B09Mover(m).v44.y;
             }
-            Mem.Set((m + 136u), c);
-            dd = Mem.F32(((m + 80u) + 4u));
-            if (!(Mem.F32(((m + 68u) + 4u)) <= dd))
+            new B09Mover(m).f88_Set(c);
+            dd = new B09Mover(m).v50.y;
+            if (!(new B09Mover(m).v44.y <= dd))
             {
-                dd = Mem.F32(((m + 68u) + 4u));
+                dd = new B09Mover(m).v44.y;
             }
-            Mem.Set((m + 148u), dd);
-            e = Mem.F32(((m + 80u) + 8u));
-            if (!(e <= Mem.F32(((m + 68u) + 8u))))
+            new B09Mover(m).f94_Set(dd);
+            e = new B09Mover(m).v50.z;
+            if (!(e <= new B09Mover(m).v44.z))
             {
-                e = Mem.F32(((m + 68u) + 8u));
+                e = new B09Mover(m).v44.z;
             }
-            Mem.Set((m + 140u), e);
-            f = Mem.F32(((m + 80u) + 8u));
-            if (!(Mem.F32(((m + 68u) + 8u)) <= f))
+            new B09Mover(m).f8C_Set(e);
+            f = new B09Mover(m).v50.z;
+            if (!(new B09Mover(m).v44.z <= f))
             {
-                f = Mem.F32(((m + 68u) + 8u));
+                f = new B09Mover(m).v44.z;
             }
-            Mem.Set((m + 152u), f);
-            Mem.Set((m + 156u), Mem.F32((m + 132u)));
-            Mem.Set(((m + 156u) + 8u), Mem.F32((m + 144u)));
-            Mem.Set(((m + 156u) + 12u), Mem.F32((m + 152u)));
-            Mem.Set(((m + 156u) + 4u), Mem.F32((m + 140u)));
-            if (((Mem.U32(d) & (uint)(2097152)) != 0u))
+            new B09Mover(m).f98_Set(f);
+            new B09Mover(m).box.minx_Set(new B09Mover(m).f84);
+            new B09Mover(m).box.maxx_Set(new B09Mover(m).f90);
+            new B09Mover(m).box.maxz_Set(new B09Mover(m).f98);
+            new B09Mover(m).box.minz_Set(new B09Mover(m).f8C);
+            if (((new B09BodyDef(d).flags & (uint)(2097152)) != 0u))
             {
                 func_0023F42C(m);
             }
-            if ((Mem.F32((m + 128u)) != 0.0f))
+            if ((new B09Mover(m).f80 != 0.0f))
             {
-                if (((Mem.U32(d) & (uint)(65536)) != 0u))
+                if (((new B09BodyDef(d).flags & (uint)(65536)) != 0u))
                 {
                     func_00240250(m);
                 }
-                if (((Mem.U32(d) & (uint)(16384)) != 0u))
+                if (((new B09BodyDef(d).flags & (uint)(16384)) != 0u))
                 {
                     func_00242BE0(m, default(uint), default(uint), default(uint));
                 }
-                if (((Mem.U32(d) & (uint)(524288)) != 0u))
+                if (((new B09BodyDef(d).flags & (uint)(524288)) != 0u))
                 {
                     func_00243910(m);
                 }
             }
-            return ((Mem.S32((m + 176u)) != 0) ? 1 : 0);
+            return ((new B09Mover(m).qcopy.type0 != 0) ? 1 : 0);
         }
     }
 

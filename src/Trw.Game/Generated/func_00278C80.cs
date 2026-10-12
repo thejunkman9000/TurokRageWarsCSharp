@@ -15,44 +15,44 @@ public static partial class Game
             uint a1 = 0u;
             int v = 0;
             uint e = 0u;
-            tab = Mem.U32((0x800D28B8u + (uint)(Mem.U8((r + 17u)) * 4)));
+            tab = Mem.U32((0x800D28B8u + (uint)(new Rec14(r).b11 * 4)));
             if ((tab != 0u))
             {
-                if ((((int)(Mem.U8((0x80145088u + 4701u))) != 0) || ((a1 = Mem.U32((0x80145088u + 32u))) == 0u)))
+                if ((((int)(new GBlk(0x80145088u).f125D) != 0) || ((a1 = new GBlk(0x80145088u).u20) == 0u)))
                 {
                     a1 = (0x80145088u + 64u);
                 }
-                if ((Mem.S32(0x8011FE88u) == 4))
+                if ((new SessMgr(0x8011FE88u).mode == 4))
                 {
-                    if (((int)(Mem.U8((r + 16u))) != 0))
+                    if (((int)(new Rec14(r).b10) != 0))
                     {
-                        func_002398F8(0x80145088u, a1, Mem.S32(Mem.U32((0x800D7F84u + (uint)(Mem.U8((r + 16u)) * 8)))), (uint)(Mem.S32(0x800D2980u)), Mem.F32(0x800C9C20u));
-                        v = Mem.S32(((0x800D7F84u + (uint)(Mem.U8((r + 16u)) * 8)) + 4u));
+                        func_002398F8(0x80145088u, a1, (uint)(Mem.S32(new PtrVal((0x800D7F84u + (uint)(new Rec14(r).b10 * 8))).p_)), Mem.S32(0x800D2980u), Mem.F32(0x800C9C20u));
+                        v = new PtrVal((0x800D7F84u + (uint)(new Rec14(r).b10 * 8))).v;
                         if ((v != 0))
                         {
                             func_0025E13C(v);
                         }
                     }
-                    if (((int)(Mem.U16((r + 8u))) >= 2))
+                    if (((int)(new Rec14(r).w8) >= 2))
                     {
-                        func_004030E0((int)(Mem.U16((r + 8u))));
+                        func_004030E0((int)(new Rec14(r).w8));
                     }
                 }
-                tab = (uint)(tab + (uint)((int)(Mem.U8((r + 18u))) * 8));
+                tab = (uint)(tab + (uint)((int)(new Rec14(r).b12) * 8));
                 ent = tab;
-                if (((int)(Mem.U16((r + 10u))) == Mem.S32(0x8013B294u)))
+                if (((int)(new Rec14(r).wA) == Mem.S32(0x8013B294u)))
                 {
-                    e = (Mem.U32(0x8011FFC0u) + (uint)(Mem.U16((r + 4u)) * 744));
-                    if ((Mem.U32(ent) != 0u))
+                    e = (Mem.U32(0x8011FFC0u) + (uint)(new Rec14(r).w4 * 744));
+                    if ((new FnEnt(ent).fn0 != 0u))
                     {
-                        Funcs.CallReg(Mem.U32(ent), e, (e + 368u), r, 0u);
+                        Funcs.CallReg(new FnEnt(ent).fn0, e, (e + 368u), r, 0u);
                     }
                 }
                 else
                 {
-                    if ((Mem.U32((ent + 4u)) != 0u))
+                    if ((new FnEnt(ent).fn1 != 0u))
                     {
-                        Funcs.CallReg(Mem.U32((ent + 4u)), r, 0u, 0u, 0u);
+                        Funcs.CallReg(new FnEnt(ent).fn1, r, 0u, 0u, 0u);
                     }
                 }
             }

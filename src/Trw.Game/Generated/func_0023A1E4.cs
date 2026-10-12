@@ -14,12 +14,12 @@ public static partial class Game
             Mem.Set((o + (uint)4608), 1);
             func_0025E410((int)((o + (uint)64)));
             func_002538A8();
-            if ((Mem.S32(b) != 0))
+            if ((new ObjBuf(b).unk0 != 0))
             {
-                func_002537D8(0, (uint)(Mem.S32(b)));
-                Mem.Set(b, 0);
-                Mem.Set((b + 4u), 0);
-                Mem.Set((b + 8u), 0);
+                func_002537D8(0, (uint)(new ObjBuf(b).unk0));
+                new ObjBuf(b).unk0_Set(0);
+                new ObjBuf(b).unk4_Set(0);
+                new ObjBuf(b).unk8_Set(0);
             }
         }
     }

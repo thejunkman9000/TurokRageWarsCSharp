@@ -27,7 +27,7 @@ public static partial class Game
                     x = ((Mem.S32((p + (uint)((-1) * 4))) != 0) ? 85 : 83);
                     x = (int)((int)(x) | ((Mem.S32((p + (uint)(1 * 4))) != 0) ? 768 : 1280));
                     y = (x | ((Mem.S32(0x80153F6Cu) != 0) ? 12288 : 20480));
-                    func_004171B8((uint)((y | ((Mem.S32(0x80153F70u) != 0) ? 196608 : 327680))), default(uint), default(uint), default(uint));
+                    func_004171B8((uint)((y | ((Mem.S32(0x80153F70u) != 0) ? 196608 : 327680))));
                 }
                 else
                 {
@@ -38,7 +38,7 @@ public static partial class Game
                         x = (int)((int)(x) | ((Mem.S32((p + (uint)(1 * 4))) != 0) ? 768 : 1280));
                         t = (x | ((Mem.S32(0x80153F6Cu) != 0) ? 12288 : 20480));
                         y = t;
-                        func_004171B8((uint)((y | ((Mem.S32(0x80153F70u) != 0) ? 196608 : 327680))), default(uint), default(uint), default(uint));
+                        func_004171B8((uint)((y | ((Mem.S32(0x80153F70u) != 0) ? 196608 : 327680))));
                     }
                 }
             }

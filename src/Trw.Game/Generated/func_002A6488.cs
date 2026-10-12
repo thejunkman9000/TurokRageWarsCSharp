@@ -13,81 +13,81 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_002A6488", (uint)dl);
-                Mem.Set((_fp + 144u), 0);
-                Mem.Set((_fp + 148u), 0);
-                Mem.Set((_fp + 152u), 0);
-                Mem.Set((_fp + 160u), 0);
-                Mem.Set((_fp + 164u), Mem.F32(0x800CB020u));
-                Mem.Set((_fp + 168u), 0);
+                new Dead28(_fp).a_Set(0);
+                new Dead28(_fp).b_Set(0);
+                new Dead28(_fp).c_Set(0);
+                new Dead28(_fp).e_Set(0);
+                new Dead28(_fp).f_Set(Mem.F32(0x800CB020u));
+                new Dead28(_fp).g_Set(0);
                 {
                     uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(_g, 3875536896u);
-                    Mem.Set((_g + 4u), (uint)(0));
+                    new DlCmd(_g).w0_Set(3875536896u);
+                    new DlCmd(_g).w1_Set((uint)(0));
                 }
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(_g, 3808430593u);
-                    Mem.Set((_g + 4u), (uint)(1048576));
+                    uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_2).w0_Set(3808430593u);
+                    new DlCmd(_g_2).w1_Set((uint)(1048576));
                 }
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(_g, 4254072832u);
-                    Mem.Set((_g + 4u), (uint)(0x800D14B0u));
+                    uint _g_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_3).w0_Set(4254072832u);
+                    new DlCmd(_g_3).w1_Set((uint)(0x800D14B0u));
                 }
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(_g, 4119855104u);
-                    Mem.Set((_g + 4u), (uint)(117965312));
+                    uint _g_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_4).w0_Set(4119855104u);
+                    new DlCmd(_g_4).w1_Set((uint)(117965312));
                 }
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(_g, 3858759680u);
-                    Mem.Set((_g + 4u), (uint)(0));
+                    uint _g_5 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_5).w0_Set(3858759680u);
+                    new DlCmd(_g_5).w1_Set((uint)(0));
                 }
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(_g, 4076863488u);
-                    Mem.Set((_g + 4u), (uint)(117961728));
+                    uint _g_6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_6).w0_Set(4076863488u);
+                    new DlCmd(_g_6).w1_Set((uint)(117961728));
                 }
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(_g, 3875536896u);
-                    Mem.Set((_g + 4u), (uint)(0));
+                    uint _g_7 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_7).w0_Set(3875536896u);
+                    new DlCmd(_g_7).w1_Set((uint)(0));
                 }
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(_g, 4119331840u);
-                    Mem.Set((_g + 4u), (uint)(524800));
+                    uint _g_8 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_8).w0_Set(4119331840u);
+                    new DlCmd(_g_8).w1_Set((uint)(524800));
                 }
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(_g, 4060086272u);
-                    Mem.Set((_g + 4u), (uint)(245820));
+                    uint _g_9 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_9).w0_Set(4060086272u);
+                    new DlCmd(_g_9).w1_Set((uint)(245820));
                 }
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(_g, 4194369535u);
-                    Mem.Set((_g + 4u), 3355443350u);
+                    uint _g_10 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_10).w0_Set(4194369535u);
+                    new DlCmd(_g_10).w1_Set(3355443350u);
                 }
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(_g, 3724541952u);
-                    Mem.Set((_g + 4u), (uint)(0x800D2F18u));
+                    uint _g_11 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_11).w0_Set(3724541952u);
+                    new DlCmd(_g_11).w1_Set((uint)(0x800D2F18u));
                 }
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(_g, 3661103107u);
-                    Mem.Set((_g + 4u), (uint)(dl));
+                    uint _g_12 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_12).w0_Set(3661103107u);
+                    new DlCmd(_g_12).w1_Set((uint)(dl));
                 }
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(_g, (uint)(16793608));
-                    Mem.Set((_g + 4u), (uint)(0x801469A0u));
+                    uint _g_13 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_13).w0_Set((uint)(16793608));
+                    new DlCmd(_g_13).w1_Set((uint)(0x801469A0u));
                 }
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(_g, (uint)(100663812));
-                    Mem.Set((_g + 4u), (uint)(263680));
+                    uint _g_14 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_14).w0_Set((uint)(100663812));
+                    new DlCmd(_g_14).w1_Set((uint)(263680));
                 }
                 func_0026D8F8();
                 func_00296FF8();

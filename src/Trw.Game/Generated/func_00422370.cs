@@ -15,7 +15,7 @@ public static partial class Game
                 return 0;
             }
             func_002A3358();
-            if ((Mem.S32((Mem.U32(0x800E44A0u) + 32u)) != 1))
+            if ((new O3Q24(Mem.U32(0x800E44A0u)).f20 != 1))
             {
                 return 0;
             }

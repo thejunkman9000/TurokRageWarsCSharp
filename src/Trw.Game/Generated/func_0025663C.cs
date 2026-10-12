@@ -11,12 +11,12 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0025663C", (uint)c);
             uint mask = __osDisableInt();
-            uint n = Mem.U32((c + 20584u));
+            uint n = new B12Ctx(c).freeList.head_;
             if ((n != 0u))
             {
-                func_00255E78((c + 20584u), n, default(uint), default(uint));
-                Mem.Set((n + 20u), 1);
-                func_00255C58((c + 20604u), n, default(uint), default(uint));
+                func_00255E78(new B12Ctx(c).freeList.P, n, default(uint), default(uint));
+                new B12QNode(n).state_Set(1);
+                func_00255C58(new B12Ctx(c).usedList.P, n);
             }
             __osRestoreInt(mask);
             return n;

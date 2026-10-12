@@ -15,11 +15,11 @@ public static partial class Game
             {
                 if ((Mem.S32(0x80153780u) != 0))
                 {
-                    func_004426E4(0x8014561Cu, 0x0044F100u, Mem.S32((own + 28u)), (int)(Mem.U32((own + 32u))), 0);
+                    func_004426E4(0x8014561Cu, 0x0044F100u, new O01Owner(own).unk1C, (int)(new O01Owner(own).unk20_), 0);
                 }
                 else
                 {
-                    func_004426E4(0x8014561Cu, (uint)(Mem.S32((own + 36u))), Mem.S32((own + 28u)), (int)(Mem.U32((own + 32u))), 0);
+                    func_004426E4(0x8014561Cu, (uint)(new O01Owner(own).unk24), new O01Owner(own).unk1C, (int)(new O01Owner(own).unk20_), 0);
                 }
             }
             while ((0 != 0));

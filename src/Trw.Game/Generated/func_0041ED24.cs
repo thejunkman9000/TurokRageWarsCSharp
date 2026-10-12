@@ -12,10 +12,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0041ED24", (uint)a0, (uint)a1, (uint)dt);
             uint it = 0u;
             float v = 0f;
-            Mem.Set((Mem.U32(0x800E39C0u) + 24u), (Mem.S32((Mem.U32(0x800E39C0u) + 24u)) + dt));
-            it = func_0040ECB0((uint)(Mem.S32(((Mem.U32(0x800E39C0u) + 8u) + (uint)(Mem.S32((Mem.U32(0x800E39C0u) + 20u)) * 4)))), (uint)(914), default(uint), default(uint));
-            v = ((cosf(((float)(Mem.S32((Mem.U32(0x800E39C0u) + 24u))) * 0.00333333341f)) * 100.0f) + 150.0f);
-            Mem.Set((it + 16u), (byte)(Cpu.TruncU32(v)));
+            new O3Ps(Mem.U32(0x800E39C0u)).timer_Set((new O3Ps(Mem.U32(0x800E39C0u)).timer + dt));
+            it = func_0040ECB0((uint)(new O3Ps(Mem.U32(0x800E39C0u)).w[(int)(new O3Ps(Mem.U32(0x800E39C0u)).sel)]), (uint)(914), default(uint), default(uint));
+            v = ((cosf(((float)(new O3Ps(Mem.U32(0x800E39C0u)).timer) * 0.00333333341f)) * 100.0f) + 150.0f);
+            new O3Hdr(it).alpha_Set((byte)(Cpu.TruncU32(v)));
             return 0;
         }
     }

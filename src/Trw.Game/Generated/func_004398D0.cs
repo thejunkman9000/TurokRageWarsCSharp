@@ -17,7 +17,7 @@ public static partial class Game
                     return 0;
                 }
                 func_0029A73C();
-                func_00299368((uint)(3), default(uint), default(uint), default(uint));
+                func_00299368(3);
             }
             return 0;
         }

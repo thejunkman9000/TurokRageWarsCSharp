@@ -100,7 +100,7 @@ public static partial class Game
                 r7 = r7 + r2;
                 r7 = (uint)((int)r7 >> 1);
                 Mem.Set((r29 + 24u), Cpu.W(0));
-                Mem.Set((r29 + 28u), Cpu.W(1)); r2 = func_00291FE8_rc(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u)); r3 = Cpu.V1;
+                Mem.Set((r29 + 28u), Cpu.W(1)); func_00291FE8((int)r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u), Cpu.U2F(Mem.U32(r29 + 24u)), Cpu.U2F(Mem.U32(r29 + 28u)));
                 L_L00290BE4: ;
                 r31 = Mem.U32((r29 + 116u));
                 r20 = Mem.U32((r29 + 112u));

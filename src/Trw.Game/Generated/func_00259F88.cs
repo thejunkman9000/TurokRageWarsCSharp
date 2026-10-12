@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00259F88", (uint)o, (uint)rec);
-            uint vp = (o + 16u);
+            uint vp = new M04Emitter(o).vp.P;
             uint env = 0u;
             uint pp = 0u;
             int i = 0;
@@ -24,33 +24,33 @@ public static partial class Game
             float fs = 0f;
             uint p = 0u;
             uint q = 0u;
-            pp = Mem.U32((Mem.U32((o + 176u)) + 11144u));
-            Mem.Set((o + 200u), Mem.F32(0x800C9010u));
-            if ((Mem.S32((o + 168u)) < 256))
+            pp = new M04Emitter(o).ctx.tab2B88_;
+            new M04Emitter(o).unkC8_Set(Mem.F32(0x800C9010u));
+            if ((new M04Emitter(o).kind < 256))
             {
                 for (i = 0; (i < 31); ++i)
                 {
-                    if ((Mem.S32((o + 168u)) == (int)(Mem.F32((0x800D0A30u + (uint)(i * 8))))))
+                    if ((new M04Emitter(o).kind == (int)(new M04Tab((0x800D0A30u + (uint)(i * 8))).key)))
                     {
-                        Mem.Set((o + 200u), Mem.F32(((0x800D0A30u + (uint)(i * 8)) + 4u)));
+                        new M04Emitter(o).unkC8_Set(new M04Tab((0x800D0A30u + (uint)(i * 8))).val);
                         break;
                     }
                 }
             }
             if ((func_00245788() != 0))
             {
-                Mem.Set((o + 200u), (Mem.F32((o + 200u)) * Mem.F32(0x800C9014u)));
+                new M04Emitter(o).unkC8_Set((new M04Emitter(o).unkC8 * Mem.F32(0x800C9014u)));
             }
-            env = (o + 116u);
-            if (((int)(Mem.S16((rec + 8u))) != (-1)))
+            env = new M04Emitter(o).env2.P;
+            if (((int)(new M04Info(rec).envId) != (-1)))
             {
-                Mem.Copy(env, func_00258BE4(Mem.U32((o + 176u)), (int)(Mem.S16((rec + 8u)))), 12);
+                Mem.Copy(env, func_00258BE4(new M04Emitter(o).ctx_, (int)(new M04Info(rec).envId)), 12);
             }
             else
             {
-                Mem.Set(env, F32ToTrunc16((float)(Mem.S8((rec + 15u)))));
+                new M04Rec12(env).w0_Set(F32ToTrunc16((float)(new M04Info(rec).b0F)));
             }
-            if (((!(((int)(Mem.U16((rec + 6u))) & 2048) != 0) && (Mem.S32((o + 192u)) != 1)) && (Mem.U32((Mem.U32((o + 176u)) + 11160u)) != 0u)))
+            if (((!(((int)(new M04Info(rec).bits6) & 2048) != 0) && (new M04Emitter(o).resetFlag != 1)) && (new M04Emitter(o).ctx.tgt_ != 0u)))
             {
                 a = ((float)(Mem.U8((pp + (uint)0))) * Mem.F32(0x800C9018u));
                 b = ((float)(Mem.U8((pp + (uint)1))) * Mem.F32(0x800C9018u));
@@ -69,10 +69,10 @@ public static partial class Game
                         vf = (a + func_002745D4((b - a)));
                     }
                 }
-                p = (vp + 52u);
-                q = (Mem.U32((Mem.U32((o + 176u)) + 11160u)) + 296u);
+                p = new M04VP(vp).pos.P;
+                q = (new M04Emitter(o).ctx.tgt_ + 296u);
                 {
-                    float d2 = ((((Mem.F32(p) - Mem.F32(q)) * (Mem.F32(p) - Mem.F32(q))) + ((Mem.F32((p + 4u)) - Mem.F32((q + 4u))) * (Mem.F32((p + 4u)) - Mem.F32((q + 4u))))) + ((Mem.F32((p + 8u)) - Mem.F32((q + 8u))) * (Mem.F32((p + 8u)) - Mem.F32((q + 8u)))));
+                    float d2 = ((((new M04Vec3(p).x - new M04Vec3(q).x) * (new M04Vec3(p).x - new M04Vec3(q).x)) + ((new M04Vec3(p).y - new M04Vec3(q).y) * (new M04Vec3(p).y - new M04Vec3(q).y))) + ((new M04Vec3(p).z - new M04Vec3(q).z) * (new M04Vec3(p).z - new M04Vec3(q).z)));
                     if ((Mem.F32(0x800D0D10u) <= d2))
                     {
                         f = 0.0f;
@@ -82,10 +82,10 @@ public static partial class Game
                         f = (Mem.F32(0x800C9020u) - (d2 / Mem.F32(0x800D0D10u)));
                     }
                 }
-                switch ((int)(Mem.S8((vp + 68u))))
+                switch ((int)(new M04VP(vp).mode))
                 {
                 case 2:
-                    Mem.Set((vp + 28u), f);
+                    new M04VP(vp).scale_Set(f);
                     break;
                 case 0:
                     f = (f * f);
@@ -93,36 +93,36 @@ public static partial class Game
                     goto case 1;
                 case 1:
                     f = (f * f);
-                    Mem.Set((vp + 28u), f);
+                    new M04VP(vp).scale_Set(f);
                     break;
                 default:
                     f = 0.0f;
-                    Mem.Set((vp + 28u), 0.0f);
+                    new M04VP(vp).scale_Set(0.0f);
                     break;
                 }
-                Mem.Set((vp + 32u), f);
+                new M04VP(vp).f20_Set(f);
             }
             else
             {
                 vf = Mem.F32(0x800C9024u);
-                Mem.Set((vp + 28u), vf);
-                Mem.Set((vp + 32u), vf);
+                new M04VP(vp).scale_Set(vf);
+                new M04VP(vp).f20_Set(vf);
             }
-            if ((((int)(Mem.U16((rec + 6u))) & 4) != 0))
+            if ((((int)(new M04Info(rec).bits6) & 4) != 0))
             {
-                Mem.Set((vp + 8u), (int)(Trunc16ToF32(Mem.U16(env))));
-                fs = Trunc16ToF32(Mem.U16((env + 2u)));
-                fs = (float)((float)(fs) - Trunc16ToF32(Mem.U16((env + 4u))));
-                if (((int)(Mem.S16((env + 6u))) == 0))
+                new M04VP(vp).vol_Set((int)(Trunc16ToF32(new M04Rec12(env).w0)));
+                fs = Trunc16ToF32(new M04Rec12(env).w1);
+                fs = (float)((float)(fs) - Trunc16ToF32(new M04Rec12(env).w2));
+                if (((int)(new M04Rec12(env).w3) == 0))
                 {
-                    Mem.Set((o + 132u), 0.0f);
+                    new M04Emitter(o).env2Slope_Set(0.0f);
                 }
                 else
                 {
-                    Mem.Set((o + 132u), (fs / (float)(Mem.S16((env + 6u)))));
+                    new M04Emitter(o).env2Slope_Set((fs / (float)(new M04Rec12(env).w3)));
                 }
-                Mem.Set((o + 128u), Trunc16ToF32(Mem.U16((env + 2u))));
-                n = (int)(Trunc16ToF32(Mem.U16(env)));
+                new M04Emitter(o).env2A_Set(Trunc16ToF32(new M04Rec12(env).w1));
+                n = (int)(Trunc16ToF32(new M04Rec12(env).w0));
                 if (((float)(n) < 0.0f))
                 {
                     t = ((-n) * 2);
@@ -131,7 +131,7 @@ public static partial class Game
                 {
                     t = (n * 2);
                 }
-                Mem.Set((vp + 8u), (int)(((float)((int)(((float)(Mem.S16((0x8010BFA0u + (uint)t))) * Mem.F32((o + 128u))))) * vf)));
+                new M04VP(vp).vol_Set((int)(((float)((int)(((float)(Mem.S16((0x8010BFA0u + (uint)t))) * new M04Emitter(o).env2A))) * vf)));
                 if (((float)(n) < 0.0f))
                 {
                     t = ((-n) * 2);
@@ -140,11 +140,11 @@ public static partial class Game
                 {
                     t = (n * 2);
                 }
-                Mem.Set(env, F32ToTrunc16(((float)(Mem.S16((0x8010BFA0u + (uint)t))) * vf)));
-                Mem.Set((vp + 12u), (int)(Trunc16ToF32((ushort)(((int)(Mem.U16(env)) & 65535)))));
+                new M04Rec12(env).w0_Set(F32ToTrunc16(((float)(Mem.S16((0x8010BFA0u + (uint)t))) * vf)));
+                new M04VP(vp).wC_Set((int)(Trunc16ToF32((ushort)(((int)(new M04Rec12(env).w0) & 65535)))));
                 return;
             }
-            n = (int)(Trunc16ToF32(Mem.U16(env)));
+            n = (int)(Trunc16ToF32(new M04Rec12(env).w0));
             if (((float)(n) < 0.0f))
             {
                 t = ((-n) * 2);
@@ -154,8 +154,8 @@ public static partial class Game
                 t = (n * 2);
             }
             t = (int)(((float)(Mem.S16((0x8010BFA0u + (uint)t))) * vf));
-            Mem.Set((vp + 8u), t);
-            Mem.Set((vp + 12u), t);
+            new M04VP(vp).vol_Set(t);
+            new M04VP(vp).wC_Set(t);
         }
     }
 

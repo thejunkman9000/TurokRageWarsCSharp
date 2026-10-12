@@ -23,12 +23,12 @@ public static partial class Game
                 func_002A9700();
                 func_002ABB58(Mem.F32(0x800CB380u), Mem.F32(0x800CB380u));
                 func_002ABB2C(255, 255, 255, 200, 200, 200);
-                func_002AA224((uint)((int)(Mem.U8(0x801462DEu))));
-                if ((Mem.S32((s + 64u)) != 0))
+                func_002AA224((uint)((int)(Mem.U8(0x801462DEu))), default(uint), default(uint), default(uint));
+                if ((new Scn(s).unk40 != 0))
                 {
                     func_002A8650(s, (uint)(1), default(uint), default(uint));
                 }
-                if ((Mem.S32((s + 136u)) != 0))
+                if ((new Scn(s).unk88 != 0))
                 {
                     func_002A8650(s, (uint)(2), default(uint), default(uint));
                 }

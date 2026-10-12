@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024C654", (uint)a);
-            uint t = (uint)(Mem.S32(Mem.U32((a + 24u))));
+            uint t = (uint)(new ObjDef(new Obj(a).def_).type);
             int i = 0;
             if ((t >= (uint)(15)))
             {
@@ -18,9 +18,9 @@ public static partial class Game
             }
             if ((t == (uint)(11)))
             {
-                for (i = 0; (i < Mem.S32((0x80145040u + 8u))); ++i)
+                for (i = 0; (i < new B11PlayerList(0x80145040u).count); ++i)
                 {
-                    uint p = (Mem.U32((0x80145040u + 4u)) + (uint)(i * 5864));
+                    uint p = (new B11PlayerList(0x80145040u).head_ + (uint)(i * 5864));
                     if ((p == a))
                     {
                         return 0u;

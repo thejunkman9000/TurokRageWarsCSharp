@@ -10,18 +10,18 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002644C8", (uint)p);
-            Mem.Set((p + 198u), Mem.U8((p + 196u)));
-            Mem.Set((p + 199u), Mem.U8((p + 197u)));
-            Mem.Set((p + 172u), Mem.S32((p + 176u)));
-            Mem.Set((p + 176u), Mem.S32((p + 24u)));
-            Mem.Set((p + 180u), Mem.S32((p + 28u)));
-            Mem.Set((p + 28u), 0);
-            Mem.Set((p + 184u), Mem.S32((p + 32u)));
-            Mem.Set((p + 32u), 0);
-            Mem.Set((p + 188u), Mem.S32((p + 36u)));
-            Mem.Set((p + 36u), 0);
-            Mem.Set((p + 192u), Mem.S32((p + 40u)));
-            Mem.Set((p + 40u), 0);
+            new B14Hist(p).fC6_Set(new B14Hist(p).fC4);
+            new B14Hist(p).fC7_Set(new B14Hist(p).fC5);
+            new B14Hist(p).fAC_Set(new B14Hist(p).fB0);
+            new B14Hist(p).fB0_Set(new B14Hist(p).f18);
+            new B14Hist(p).fB4_Set(new B14Hist(p).f1C);
+            new B14Hist(p).f1C_Set(0);
+            new B14Hist(p).fB8_Set(new B14Hist(p).f20);
+            new B14Hist(p).f20_Set(0);
+            new B14Hist(p).fBC_Set(new B14Hist(p).f24);
+            new B14Hist(p).f24_Set(0);
+            new B14Hist(p).fC0_Set(new B14Hist(p).f28);
+            new B14Hist(p).f28_Set(0);
         }
     }
 

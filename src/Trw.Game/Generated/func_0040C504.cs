@@ -39,19 +39,19 @@ public static partial class Game
             }
             Mem.Set(0x80153790u, Mem.U16(((0x800E2A4Eu + (uint)(flags * 4)) + (uint)(mode * 32))));
             func_0040BE38((uint)((int)(a0)), (uint)(a1), (uint)(a2), (uint)(a3), (uint)(e), (uint)(f));
-            if (((0x801450A8u + 32u) != 0u))
+            if ((new O02CamList(0x801450A8u).cam.P != 0u))
             {
-                Mem.Set(((0x801450A8u + 32u) + 668u), (float)(Mem.S32(0x800E28D0u)));
-                Mem.Set(((0x801450A8u + 32u) + 676u), 0);
-                Mem.Set(((0x801450A8u + 32u) + 680u), 0);
-                Mem.Set(((0x801450A8u + 32u) + 672u), (float)(Mem.S32(0x800E28D4u)));
+                new O02CamList(0x801450A8u).cam.f29C_Set((float)(Mem.S32(0x800E28D0u)));
+                new O02CamList(0x801450A8u).cam.w2A4_Set(0);
+                new O02CamList(0x801450A8u).cam.w2A8_Set(0);
+                new O02CamList(0x801450A8u).cam.f2A0_Set((float)(Mem.S32(0x800E28D4u)));
             }
-            for (n = Mem.U32(0x801450A8u); (n != 0u); n = Mem.U32((n + 4u)))
+            for (n = new O02CamList(0x801450A8u).head_; (n != 0u); n = new O02Cam(n).next_)
             {
-                Mem.Set((n + 676u), 0);
-                Mem.Set((n + 680u), 0);
-                Mem.Set((n + 668u), (float)(Mem.S32(0x800E28D0u)));
-                Mem.Set((n + 672u), (float)(Mem.S32(0x800E28D4u)));
+                new O02Cam(n).w2A4_Set(0);
+                new O02Cam(n).w2A8_Set(0);
+                new O02Cam(n).f29C_Set((float)(Mem.S32(0x800E28D0u)));
+                new O02Cam(n).f2A0_Set((float)(Mem.S32(0x800E28D4u)));
             }
         }
     }

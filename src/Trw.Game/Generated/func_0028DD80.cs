@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028DD80", (uint)o, (uint)i, (uint)bit);
-            int n = (int)(func_0028FD94((uint)((int)(func_0028FD94((uint)((int)(func_0028FD94((uint)(Mem.S32((o + 128u))), 0))), i))), 0));
+            int n = (int)(func_0028FD94((uint)((int)(func_0028FD94((uint)((int)(func_0028FD94((uint)(new P4Tree(o).f80), 0))), i))), 0));
             uint bits = 0u;
             func_0028FD94((uint)(n), 0);
             func_0028FDD8((uint)(n), 1);

@@ -10,10 +10,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043F1B8", (uint)a, (uint)b);
-            uint x = Mem.U32((a + 24u));
-            int id = (int)(Mem.S16((x + 32u)));
-            int idx = (int)(Mem.S16((x + 34u)));
-            uint y = Mem.U32((b + 28u));
+            uint x = new O06A_v11(a).unk18_;
+            int id = (int)(new O06X(x).unk20);
+            int idx = (int)(new O06X(x).unk22);
+            uint y = new O06B_v7(b).unk1C_;
             int r = 0;
             switch (id)
             {
@@ -30,15 +30,15 @@ public static partial class Game
                     }
                     break;
                     L_A: ;
-                    r = ((idx < (int)(Mem.U8((y + 1613u)))) ? 1 : 0);
+                    r = ((idx < (int)(new O06Y(y).unk64D)) ? 1 : 0);
                     break;
                     L_B: ;
-                    r = (((idx - 3) < (int)(Mem.U8((y + 1614u)))) ? 1 : 0);
+                    r = (((idx - 3) < (int)(new O06Y(y).unk64E)) ? 1 : 0);
                     break;
                 }
                 break;
             case 4500:
-                r = (((int)(Mem.U8(((y + 1604u) + (uint)idx))) != 0) ? 1 : 0);
+                r = (((int)(new O06Y(y).unk644[(int)(idx)]) != 0) ? 1 : 0);
                 break;
             }
             return r;

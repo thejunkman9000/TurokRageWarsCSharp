@@ -14,16 +14,16 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_0040385C");
                 uint n = 0u;
-                if ((Mem.S32((Mem.U32(0x800E2830u) + 56u)) == 0))
+                if ((new O01Ctx(Mem.U32(0x800E2830u)).unk38 == 0))
                 {
-                    Mem.Set((_fp + 32u), (float)(0));
-                    Mem.Set(((_fp + 32u) + 4u), (float)(0));
-                    Mem.Set(((_fp + 32u) + 8u), (float)(0));
+                    new O01Vec3((_fp + 32u)).x_Set((float)(0));
+                    new O01Vec3((_fp + 32u)).y_Set((float)(0));
+                    new O01Vec3((_fp + 32u)).z_Set((float)(0));
                     Mem.Copy(_ret, (_fp + 32u), 12);
                     return _ret;
                 }
-                n = func_0028FD94(func_0028FD94(func_0028FD94(Mem.U32((Mem.U32(0x800E2830u) + 4u)), 0), 0), 0);
-                Mem.Copy((_fp + 16u), C.Seq(func_00400E50(_fp, (n + (uint)8), Mem.S32((n + 4u)), 0.0f), _fp), 12);
+                n = func_0028FD94(func_0028FD94(func_0028FD94(new O01Ctx(Mem.U32(0x800E2830u)).tree, 0), 0), 0);
+                Mem.Copy((_fp + 16u), C.Seq(func_00400E50(_fp, (n + (uint)8), new O01Node(n).unk4, 0.0f), _fp), 12);
                 Mem.Copy(_ret, (_fp + 16u), 12);
                 return _ret;
             }

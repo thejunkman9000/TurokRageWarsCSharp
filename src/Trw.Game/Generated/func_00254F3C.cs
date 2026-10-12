@@ -13,10 +13,10 @@ public static partial class Game
             uint mask = 0u;
             uint i = 0u;
             uint n = 0u;
-            if ((Mem.S32(((0x80103F70u + 1584u) + (uint)(type * 4))) != 0))
+            if ((new B12Mgr(0x80103F70u).tbl630[(int)(type)] != 0))
             {
-                Mem.Set(((0x80103F70u + 1584u) + (uint)(type * 4)), 0);
-                osSendMesg((0x80103F70u + 4592u), 0u, 1);
+                new B12Mgr(0x80103F70u).tbl630.Set((int)(type), 0);
+                osSendMesg(new B12Mgr(0x80103F70u).q11F0.P, 0u, 1);
             }
             if ((type != 0))
             {
@@ -29,7 +29,7 @@ public static partial class Game
             n = Mem.U32(0x800D0920u);
             for (i = (uint)(0); (i < n); ++i)
             {
-                Mem.Set(((Mem.U32((0x80103F70u + 1520u)) + (uint)(i * 40)) + 12u), (uint)((uint)(Mem.U32(((Mem.U32((0x80103F70u + 1520u)) + (uint)(i * 40)) + 12u))) & mask));
+                new B12Node((new B12Mgr(0x80103F70u).nodes_ + (uint)(i * 40))).flags_Set((uint)((uint)(new B12Node((new B12Mgr(0x80103F70u).nodes_ + (uint)(i * 40))).flags) & mask));
             }
             Mem.Set((0x80105134u + (uint)(type * 4)), 0);
         }

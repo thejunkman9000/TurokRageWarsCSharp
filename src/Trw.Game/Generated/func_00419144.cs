@@ -22,8 +22,8 @@ public static partial class Game
                 {
                     {
                         uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                        Mem.Set(_g, 3607101442u);
-                        Mem.Set((_g + 4u), 2147516416u);
+                        new O3Dl(_g).w0_Set(3607101442u);
+                        new O3Dl(_g).w1_Set(2147516416u);
                     }
                 }
                 else
@@ -31,9 +31,9 @@ public static partial class Game
                     if ((mode == 14))
                     {
                         {
-                            uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                            Mem.Set(_g, 3607101440u);
-                            Mem.Set((_g + 4u), 2147516416u);
+                            uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            new O3Dl(_g_2).w0_Set(3607101440u);
+                            new O3Dl(_g_2).w1_Set(2147516416u);
                         }
                     }
                 }
@@ -51,8 +51,8 @@ public static partial class Game
                 Mem.Set(0x800E32E4u, 1);
                 {
                     uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(_g, 3875536896u);
-                    Mem.Set((_g + 4u), (uint)(0));
+                    new O3Dl(_g).w0_Set(3875536896u);
+                    new O3Dl(_g).w1_Set((uint)(0));
                 }
             }
         }

@@ -15,9 +15,9 @@ public static partial class Game
             if ((((a2 >> (int)16) == (uint)(3)) && (a3 == 0)))
             {
                 e = (Mem.U32(0x800E42D0u) + (uint)(idx * 1224));
-                if (((Mem.S32((e + 20u)) == 1) && (Mem.S32((e + 16u)) != (-1))))
+                if (((new O3Pj(e).state == 1) && (new O3Pj(e).f10 != (-1))))
                 {
-                    func_00420214((uint)(idx), e, default(uint), default(uint));
+                    func_00420214(idx);
                     func_0025DF54(3708);
                 }
             }

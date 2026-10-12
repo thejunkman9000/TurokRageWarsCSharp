@@ -10,17 +10,17 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028D628", (uint)lv);
-            Mem.Set((lv + 2372u), 0);
-            Mem.Set((lv + 2888u), 0);
-            Mem.Set((lv + 3148u), 0);
-            Mem.Set((lv + 3664u), 0);
-            Mem.Set((lv + 3924u), 0);
-            Mem.Set((lv + 4060u), 0);
-            Mem.Set((lv + 4128u), 0);
-            Mem.Set((lv + 4260u), 0);
-            Mem.Set((lv + 4280u), 0);
-            Mem.Set((lv + 4284u), 0);
-            Mem.Set((lv + 5380u), 0);
+            new Level(lv).cnt944_Set(0);
+            new Level(lv).cntB48_Set(0);
+            new Level(lv).cntC4C_Set(0);
+            new Level(lv).numActors_Set(0);
+            new Level(lv).cntF54_Set(0);
+            new Level(lv).cntFDC_Set(0);
+            new Level(lv).cnt1020_Set(0);
+            new Level(lv).cnt10A4_Set(0);
+            new Level(lv).cnt10B8_Set(0);
+            new Level(lv).cnt10BC_Set(0);
+            new Level(lv).cnt1504_Set(0);
         }
     }
 

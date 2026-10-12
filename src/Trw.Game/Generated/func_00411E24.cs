@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00411E24", _a0);
             if ((Mem.S16(0x80153C2Cu) != 0))
             {
-                func_0040FA60((uint)(_a0), default(uint), default(uint), default(uint));
+                func_0040FA60((int)(uint)(_a0));
             }
         }
     }

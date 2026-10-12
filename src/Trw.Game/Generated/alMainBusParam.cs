@@ -11,10 +11,10 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("alMainBusParam", (uint)filter, (uint)paramID, (uint)param);
             uint f = filter;
-            uint s = Mem.U32((f + 28u));
+            uint s = new ALBus(f).sources;
             if ((paramID == 2))
             {
-                Mem.Set((s + (uint)((Mem.Set((f + 20u), (int)(Mem.S32((f + 20u)) + 1)) - 1) * 4)), param);
+                Mem.Set((s + (uint)((new ALBus(f).sourceCount_Set((int)(new ALBus(f).sourceCount + 1)) - 1) * 4)), param);
             }
             return 0;
         }

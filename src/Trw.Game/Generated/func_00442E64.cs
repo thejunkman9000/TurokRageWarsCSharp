@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00442E64", (uint)a, (uint)b);
             if (((int)(Mem.S16(a)) == 3))
             {
-                Mem.Set((b + 1144u), 1);
+                new O06A_v15(b).unk478_Set(1);
             }
         }
     }

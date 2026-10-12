@@ -15,30 +15,30 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00213CF8", (uint)a);
                 uint t = 0u;
                 float ang = 0f;
-                t = func_0024E690((uint)(a), default(uint), default(uint), default(uint));
-                if (((t != 0u) && (Mem.S32(Mem.U32((t + 24u))) == 2)))
+                t = (uint)(func_0024E690((uint)(a)));
+                if (((t != 0u) && (new ActorDef(new ActorB(t).def_).type == 2)))
                 {
-                    Mem.Copy((_fp + 16u), (a + 8u), 12);
+                    Mem.Copy((_fp + 16u), new ActorB(a).pos.P, 12);
                     func_0024E6C8(t, _fp);
-                    if ((!((Mem.U32((a + 56u)) & (uint)(4096)) != 0u) || (0.0f < Mem.F32((_fp + 4u)))))
+                    if ((!((new ActorB(a).flags38 & (uint)(4096)) != 0u) || (0.0f < new Vec3f(_fp).y)))
                     {
                         func_00271FA4((_fp + 16u), (_fp + 16u), _fp);
                     }
-                    Mem.Copy(_fp, (a + 28u), 12);
-                    Mem.Set((a + 28u), (float)(0));
-                    Mem.Set(((a + 28u) + 4u), (float)(0));
-                    Mem.Set(((a + 28u) + 8u), (float)(0));
-                    func_00271FD8((_fp + 32u), (_fp + 16u), (t + 8u));
+                    Mem.Copy(_fp, new ActorB(a).vel.P, 12);
+                    new ActorB(a).vel.x_Set((float)(0));
+                    new ActorB(a).vel.y_Set((float)(0));
+                    new ActorB(a).vel.z_Set((float)(0));
+                    func_00271FD8((_fp + 32u), (_fp + 16u), new ActorB(t).pos.P);
                     ang = func_0024E72C(t);
                     func_00273744((_fp + 48u), ang);
                     func_002729B4((_fp + 48u), (_fp + 32u), (_fp + 32u), 1);
-                    func_00271FA4((_fp + 32u), (_fp + 32u), (t + 8u));
+                    func_00271FA4((_fp + 32u), (_fp + 32u), new ActorB(t).pos.P);
                     func_00271FD8((_fp + 32u), (_fp + 32u), (_fp + 16u));
-                    Mem.Set((a + 108u), (Mem.F32((a + 108u)) + ang));
+                    new ActorB(a).unk6C_Set((new ActorB(a).unk6C + ang));
                     func_00271FA4((_fp + 16u), (_fp + 16u), (_fp + 32u));
                     func_00243A80((int)(a), Cpu.U2F(Mem.U32((_fp + 16u) + 0u)), Cpu.U2F(Mem.U32((_fp + 16u) + 4u)), Cpu.U2F(Mem.U32((_fp + 16u) + 8u)), (int)(0x80104338u));
-                    Mem.Copy((a + 28u), _fp, 12);
-                    if ((((int)(Mem.U8(t)) == 1) && (Mem.S32(Mem.U32((t + 24u))) == 2)))
+                    Mem.Copy(new ActorB(a).vel.P, _fp, 12);
+                    if ((((int)(new ActorB(t).type) == 1) && (new ActorDef(new ActorB(t).def_).type == 2)))
                     {
                         func_00207730();
                     }

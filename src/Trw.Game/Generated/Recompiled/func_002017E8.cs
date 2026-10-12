@@ -29,28 +29,28 @@ public static partial class Game
                 r17 = r6;
                 Mem.Set((r29 + 24u), r18);
                 Mem.Set((r29 + 28u), r31);
-                r18 = r7; r2 = func_00200568(r4, r5, r6, r7); r3 = Cpu.V1;
+                r18 = r7; func_00200568(r4, r5);
                 r4 = 2986278912u;
                 r4 = r4 | 65512u;
-                r5 = r17; r2 = func_00200568(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r17; func_00200568(r4, r5);
                 r4 = 2986278912u;
                 r4 = r4 | 65516u;
-                r5 = r18; r2 = func_00200568(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r18; func_00200568(r4, r5);
                 r4 = 2986278912u;
                 r4 = r4 | 65504u;
-                r5 = r16; r2 = func_00200568(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r16; func_00200568(r4, r5);
                 L_L00201844: ;
-                r4 = (uint)1000; r2 = func_002005DC(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = (uint)1000; func_002005DC((int)r4);
                 r4 = 2986278912u;
-                r4 = r4 | 65520u; r2 = func_002005A0(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 | 65520u; r2 = func_002005A0(r4);
                 if (r2 == 0) { r4 = 2986278912u; goto L_L00201868; }
                 throw new InvalidOperationException("MIPS break");
                 r4 = 2986278912u;
                 L_L00201868: ;
-                r4 = r4 | 65504u; r2 = func_002005A0(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 | 65504u; r2 = func_002005A0(r4);
                 { bool c_ = r2 != 0;  if (c_) goto L_L00201844; }
                 r4 = 2986278912u;
-                r4 = r4 | 65500u; r2 = func_002005A0(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 | 65500u; r2 = func_002005A0(r4);
                 r31 = Mem.U32((r29 + 28u));
                 r18 = Mem.U32((r29 + 24u));
                 r17 = Mem.U32((r29 + 20u));

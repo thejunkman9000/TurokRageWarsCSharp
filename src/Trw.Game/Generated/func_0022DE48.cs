@@ -19,17 +19,17 @@ public static partial class Game
                 float v3 = 0f;
                 float v4 = 0f;
                 float t = 0f;
-                d = ((((Mem.F32((Mem.U32((actor + 24u)) + (uint)244)) - Mem.F32((actor + (uint)1920))) - Mem.F32((actor + (uint)1816))) - Mem.F32((actor + (uint)1824))) - Mem.F32((actor + (uint)1780)));
+                d = ((((Mem.F32((new Actor(actor).def_ + (uint)244)) - Mem.F32((actor + (uint)1920))) - Mem.F32((actor + (uint)1816))) - Mem.F32((actor + (uint)1824))) - Mem.F32((actor + (uint)1780)));
                 if ((d > (float)(0)))
                 {
                     v1 = func_0024E454(o);
                     v2 = func_0024D388(o);
                     v3 = func_0024D274(o);
                     v4 = func_0024E410(o);
-                    Mem.Set(_fp, Mem.F32((o + (uint)8)));
-                    Mem.Set((_fp + 4u), (Mem.F32((o + (uint)12)) + d));
-                    Mem.Set((_fp + 8u), Mem.F32((o + (uint)16)));
-                    if ((func_0024490C(o, Mem.F32((o + (uint)8)), Mem.F32((o + (uint)12)), Mem.F32((o + (uint)16)), _fp, 0x801040F0u, v1, v2, v3, v4) != 0))
+                    new Vec3f(_fp).x_Set(Mem.F32((o + (uint)8)));
+                    new Vec3f(_fp).y_Set((Mem.F32((o + (uint)12)) + d));
+                    new Vec3f(_fp).z_Set(Mem.F32((o + (uint)16)));
+                    if ((func_0024490C(o, C.Tmp(Cpu.F2U(Mem.F32((o + (uint)8))), Cpu.F2U(Mem.F32((o + (uint)12))), Cpu.F2U(Mem.F32((o + (uint)16)))), C.Tmp(Mem.U32(_fp + 0u), Mem.U32(_fp + 4u), Mem.U32(_fp + 8u)), 0x801040F0u, Cpu.U2F(Cpu.F2U(v1)), Cpu.U2F(Cpu.F2U(v2)), Cpu.U2F(Cpu.F2U(v3)), Cpu.U2F(Cpu.F2U(v4))) != 0))
                     {
                         t = (Mem.F32((Mem.U32(0x80103FCCu) + (uint)232)) - Mem.F32((o + (uint)12)));
                         Mem.Set((actor + (uint)1772), (float)((float)(Mem.F32((actor + (uint)1772))) - (d - t)));

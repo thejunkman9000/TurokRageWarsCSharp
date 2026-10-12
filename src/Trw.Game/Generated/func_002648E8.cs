@@ -15,12 +15,12 @@ public static partial class Game
             uint s = 0u;
             for (i = 0; (i < 4); ++i)
             {
-                Mem.Set((0x8010FC18u + (uint)(i * 4)), Mem.S32(((0x8010F328u + (uint)(i * 548)) + 204u)));
+                Mem.Set((0x8010FC18u + (uint)(i * 4)), new B14Slot((0x8010F328u + (uint)(i * 548))).fCC);
             }
             func_00285D00(0x8010EC90u);
             for (j = 0, s = 0x8010F328u; (j < 4); ++j, s += 548u)
             {
-                func_00264268(s, default(uint), default(uint), default(uint));
+                func_00264268(s);
             }
             Mem.Set(0x800D0E58u, 1);
         }

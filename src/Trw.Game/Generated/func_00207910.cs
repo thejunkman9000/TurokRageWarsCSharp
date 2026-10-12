@@ -13,14 +13,14 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00207910", (uint)actor, (uint)state);
-                func_002737D0(_fp, Mem.F32(((state + 304u) + 8u)));
-                func_00273930(_fp, Mem.F32(((state + 304u) + 4u)));
-                func_00273B08(_fp, Mem.F32((actor + 108u)));
-                func_0027302C((actor + 116u), _fp);
-                func_002734EC((actor + 116u), Mem.F32((actor + 80u)), Mem.F32((actor + 84u)), Mem.F32((actor + 88u)));
-                func_002725BC((actor + 8u), 2.0E+4f);
-                func_002734B8((actor + 116u), Mem.F32((actor + 8u)), Mem.F32(((actor + 8u) + 4u)), Mem.F32(((actor + 8u) + 8u)));
-                func_00273DDC((actor + 116u));
+                func_002737D0(_fp, new B01State(state).vec130.z);
+                func_00273930(_fp, new B01State(state).vec130.y);
+                func_00273B08(_fp, new B01Actor(actor).unk6C);
+                func_0027302C(new B01Actor(actor).mtx74.P, _fp);
+                func_002734EC(new B01Actor(actor).mtx74.P, new B01Actor(actor).unk50, new B01Actor(actor).unk54, new B01Actor(actor).unk58);
+                func_002725BC(new B01Actor(actor).pos.P, 2.0E+4f);
+                func_002734B8(new B01Actor(actor).mtx74.P, new B01Actor(actor).pos.x, new B01Actor(actor).pos.y, new B01Actor(actor).pos.z);
+                func_00273DDC(new B01Actor(actor).mtx74.P);
             }
         }
         finally { Stack.Free(64); }

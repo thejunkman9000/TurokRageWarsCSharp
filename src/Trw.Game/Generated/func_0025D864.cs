@@ -13,26 +13,26 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0025D864", (uint)s, (uint)m);
-                Mem.Set(s, m);
-                Mem.Set((s + 24u), 16);
-                Mem.Set((s + 40u), (-1));
-                Mem.Set((s + 28u), 0);
-                Mem.Set(_fp, 20);
-                Mem.Set((_fp + 4u), 192);
-                Mem.Set((_fp + 8u), (byte)(20));
-                Mem.Set((_fp + 12u), (Mem.U32(s) + 7592u));
-                Mem.Set((_fp + 16u), 0u);
-                Mem.Set((_fp + 20u), 0u);
-                Mem.Set((_fp + 24u), 0u);
-                Mem.Set((s + 20u), alHeapDBAlloc(0u, 0, (Mem.U32(s) + 7592u), 1, 124));
-                alCSPNew(Mem.U32((s + 20u)), _fp, default(uint), default(uint));
-                Mem.Set((s + 16u), alHeapDBAlloc(0u, 0, (Mem.U32(s) + 7592u), 1, 248));
-                Mem.Set((s + 36u), 50);
-                Mem.Set((s + 56u), 0);
-                Mem.Set((s + 48u), Mem.F32(0x800C90E8u));
-                Mem.Set((s + 52u), Mem.F32(0x800C90ECu));
-                Mem.Set((s + 60u), Mem.F32(0x800C90E8u));
-                Mem.Set((s + 64u), Mem.F32(0x800C90E8u));
+                new SndSeq(s).owner__Set(m);
+                new SndSeq(s).unk18_Set(16);
+                new SndSeq(s).unk28_Set((-1));
+                new SndSeq(s).unk1C_Set(0);
+                new SeqpCfg(_fp).maxVoices_Set(20);
+                new SeqpCfg(_fp).maxEvents_Set(192);
+                new SeqpCfg(_fp).maxChannels_Set((byte)(20));
+                new SeqpCfg(_fp).heap__Set(new SndMgr(new SndSeq(s).owner_).heap.P);
+                new SeqpCfg(_fp).initOsc_Set(0u);
+                new SeqpCfg(_fp).updateOsc_Set(0u);
+                new SeqpCfg(_fp).stopOsc_Set(0u);
+                new SndSeq(s).csp_Set(alHeapDBAlloc(0u, 0, new SndMgr(new SndSeq(s).owner_).heap.P, 1, 124));
+                alCSPNew(new SndSeq(s).csp, _fp);
+                new SndSeq(s).unk10_Set(alHeapDBAlloc(0u, 0, new SndMgr(new SndSeq(s).owner_).heap.P, 1, 248));
+                new SndSeq(s).unk24_Set(50);
+                new SndSeq(s).unk38_Set(0);
+                new SndSeq(s).unk30_Set(Mem.F32(0x800C90E8u));
+                new SndSeq(s).unk34_Set(Mem.F32(0x800C90ECu));
+                new SndSeq(s).unk3C_Set(Mem.F32(0x800C90E8u));
+                new SndSeq(s).unk40.f_Set(Mem.F32(0x800C90E8u));
             }
         }
         finally { Stack.Free(28); }

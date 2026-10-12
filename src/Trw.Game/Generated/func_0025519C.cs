@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025519C", (uint)p, (uint)msg, (uint)reply);
-            Mem.Set((msg + 32u), reply);
-            return ((osSendMesg((p + 560u), msg, 0) != (-1)) ? 1 : 0);
+            new B12Req(msg).reply__Set(reply);
+            return ((osSendMesg(new B12Port(p).q.P, msg, 0) != (-1)) ? 1 : 0);
         }
     }
 

@@ -20,7 +20,7 @@ public static partial class Game
                 int c = 0;
                 int i = 0;
                 uint dst = 0u;
-                idx = (Mem.S32(item) - 3);
+                idx = (new O01It(item).code - 3);
                 c = 32;
                 if ((Mem.S32(0x80153784u) != 0))
                 {
@@ -32,7 +32,7 @@ public static partial class Game
                 }
                 else
                 {
-                    pad = (int)(Mem.S8((Mem.U32((own + 32u)) + 4u)));
+                    pad = (int)(new O01Own7(own).unk20.unk4);
                 }
                 r = func_0040458C(pad, idx, (_fp + 40u), _fp, (_fp + 16u), (_fp + 44u), (_fp + 24u), (_fp + 32u));
                 if (((Mem.S32((_fp + 40u)) != 0) && (r == 0)))
@@ -49,7 +49,7 @@ public static partial class Game
                     Mem.Set((_fp + 44u), 0);
                 }
                 ok = 1;
-                dst = Mem.U32(Mem.U32((item + 20u)));
+                dst = new O01It(item).unk14.buf_;
                 dst = (uint)(dst + (uint)(3 * 1));
                 for (i = 0; (i < 16); ++i)
                 {

@@ -14,18 +14,18 @@ public static partial class Game
             if (!((Mem.U32(flags) & bit) != 0u))
             {
                 Mem.Set(flags, (uint)((uint)(Mem.U32(flags)) | bit));
-                for (e = 0x800CE240u; (Mem.U32(e) != (uint)(0)); e += 8u)
+                for (e = 0x800CE240u; (new B04Ent(e).mask != (uint)(0)); e += 8u)
                 {
-                    if (((m1 & Mem.U32(e)) != 0u))
+                    if (((m1 & new B04Ent(e).mask) != 0u))
                     {
-                        func_0024DBB0(o, C.Tmp((uint)(Mem.S32((o + 8u))), (uint)(Mem.S32((o + 12u))), (uint)(Mem.S32((o + 16u)))), (int)((uint)(Mem.S32((e + 4u)))), Cpu.U2F(Cpu.F2U(func_00274B00(Mem.F32(0x800C72C8u), Mem.F32(0x800C72CCu)))));
+                        func_0024DBB0(o, C.Tmp((uint)(new B04O(o).x), (uint)(new B04O(o).y), (uint)(new B04O(o).z)), (int)((uint)(new B04Ent(e).val)), Cpu.U2F(Cpu.F2U(func_00274B00(Mem.F32(0x800C72C8u), Mem.F32(0x800C72CCu)))));
                     }
                 }
-                for (e = 0x800CE348u; (Mem.U32(e) != (uint)(0)); e += 8u)
+                for (e = 0x800CE348u; (new B04Ent(e).mask != (uint)(0)); e += 8u)
                 {
-                    if (((m2 & Mem.U32(e)) != 0u))
+                    if (((m2 & new B04Ent(e).mask) != 0u))
                     {
-                        func_0024DBB0(o, C.Tmp((uint)(Mem.S32((o + 8u))), (uint)(Mem.S32((o + 12u))), (uint)(Mem.S32((o + 16u)))), (int)((uint)(Mem.S32((e + 4u)))), Cpu.U2F(Cpu.F2U(func_00274B00(Mem.F32(0x800C72D0u), Mem.F32(0x800C72D4u)))));
+                        func_0024DBB0(o, C.Tmp((uint)(new B04O(o).x), (uint)(new B04O(o).y), (uint)(new B04O(o).z)), (int)((uint)(new B04Ent(e).val)), Cpu.U2F(Cpu.F2U(func_00274B00(Mem.F32(0x800C72D0u), Mem.F32(0x800C72D4u)))));
                     }
                 }
             }

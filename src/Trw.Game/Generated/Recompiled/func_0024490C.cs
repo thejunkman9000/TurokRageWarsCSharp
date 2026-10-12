@@ -169,8 +169,8 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_0024490C", r2); Stack.Free(736); }
     }
 
-    public static int func_0024490C(uint p0, float p1, float p2, float p3, uint p4, uint p5, float p6, float p7, float p8, float p9)
+    public static int func_0024490C(uint p0, uint p1, uint p2, uint p3, float p4, float p5, float p6, float p7)
     {
-        return (int)func_0024490C_rc(p0, Cpu.F2U(p1), Cpu.F2U(p2), Cpu.F2U(p3), Mem.U32(p4 + 0u), Mem.U32(p4 + 4u), Mem.U32(p4 + 8u), p5, Cpu.F2U(p6), Cpu.F2U(p7), Cpu.F2U(p8), Cpu.F2U(p9));
+        return (int)func_0024490C_rc(p0, Mem.U32(p1 + 0u), Mem.U32(p1 + 4u), Mem.U32(p1 + 8u), Mem.U32(p2 + 0u), Mem.U32(p2 + 4u), Mem.U32(p2 + 8u), p3, Cpu.F2U(p4), Cpu.F2U(p5), Cpu.F2U(p6), Cpu.F2U(p7));
     }
 }

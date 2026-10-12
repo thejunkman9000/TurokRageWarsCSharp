@@ -11,27 +11,27 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004391F8");
             int t = 0;
-            switch (func_0041A4F0(Mem.U32(Mem.U32(0x800E58A0u))))
+            switch (func_0041A4F0(new O05M0A(Mem.U32(0x800E58A0u)).f0))
             {
             case 3:
                 break;
             case 4:
                 func_0029A73C();
-                if ((Mem.S32((Mem.U32(0x800E58A0u) + 20u)) != (-1)))
+                if ((new O05M0A(Mem.U32(0x800E58A0u)).f14 != (-1)))
                 {
-                    func_00299368((uint)(Mem.S32((Mem.U32(0x800E58A0u) + 20u))), default(uint), default(uint), default(uint));
+                    func_00299368(new O05M0A(Mem.U32(0x800E58A0u)).f14);
                     return 0;
                 }
                 func_0029A8A8();
                 return 0;
             }
-            t = func_0041A760(Mem.U32((Mem.U32(0x800E58A0u) + 12u)));
+            t = func_0041A760(new O05M0A(Mem.U32(0x800E58A0u)).fC);
             if ((t != (int)(Mem.U8((0x801462E0u + (uint)1)))))
             {
                 Mem.Set((0x801462E0u + (uint)1), (byte)(t));
                 func_0025DF54(1120);
             }
-            t = func_0041A760(Mem.U32((Mem.U32(0x800E58A0u) + 8u)));
+            t = func_0041A760(new O05M0A(Mem.U32(0x800E58A0u)).f8);
             if ((t != (int)(Mem.U8((0x801462E0u + (uint)0)))))
             {
                 Mem.Set((0x801462E0u + (uint)0), (byte)(t));

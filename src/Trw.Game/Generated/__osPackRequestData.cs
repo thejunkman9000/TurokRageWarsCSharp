@@ -17,23 +17,23 @@ public static partial class Game
                 int i = 0;
                 for (i = 0; (i < 15); ++i)
                 {
-                    Mem.Set((0x8014D470u + (uint)(i * 4)), (uint)(0));
+                    new OSPifRam(0x8014D470u).ramarray.Set((int)(i), (uint)(0));
                 }
-                Mem.Set((0x8014D470u + 60u), (uint)(1));
-                pkt = 0x8014D470u;
-                Mem.Set(_fp, (byte)(255));
-                Mem.Set((_fp + 1u), (byte)(1));
-                Mem.Set((_fp + 2u), (byte)(3));
-                Mem.Set((_fp + 3u), cmd);
-                Mem.Set((_fp + 4u), (byte)(255));
-                Mem.Set((_fp + 5u), (byte)(255));
-                Mem.Set((_fp + 6u), (byte)(255));
-                Mem.Set((_fp + 7u), (byte)(255));
+                new OSPifRam(0x8014D470u).pifstatus_Set((uint)(1));
+                pkt = new OSPifRam(0x8014D470u).ramarray.P;
+                new OSContPackedRequest(_fp).unk00_Set((byte)(255));
+                new OSContPackedRequest(_fp).unk01_Set((byte)(1));
+                new OSContPackedRequest(_fp).unk02_Set((byte)(3));
+                new OSContPackedRequest(_fp).unk03_Set(cmd);
+                new OSContPackedRequest(_fp).unk04_Set((byte)(255));
+                new OSContPackedRequest(_fp).unk05_Set((byte)(255));
+                new OSContPackedRequest(_fp).unk06_Set((byte)(255));
+                new OSContPackedRequest(_fp).unk07_Set((byte)(255));
                 for (i = 0; (i < (int)(Mem.U8(0x8014D46Cu))); ++i)
                 {
                     Mem.Copy(((pkt += 8u) - 8u), _fp, 8);
                 }
-                Mem.Set(pkt, (byte)(254));
+                new OSContPackedRequest(pkt).unk00_Set((byte)(254));
             }
         }
         finally { Stack.Free(8); }

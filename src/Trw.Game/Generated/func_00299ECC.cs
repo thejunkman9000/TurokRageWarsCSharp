@@ -11,20 +11,20 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00299ECC");
             uint m = 0u;
-            if ((Mem.U32((Mem.U32((Mem.U32(0x8014D080u) + 12u)) + (uint)(Mem.S32((Mem.U32(0x8014D080u) + 4u)) * 28))) != 0u))
+            if ((new SndStkEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).stk_ + (uint)(new SndMgr_v2(Mem.U32(0x8014D080u)).top * 28))).ctx_ != 0u))
             {
-                func_00298EA4(Mem.S32(((Mem.U32((Mem.U32(0x8014D080u) + 12u)) + (uint)((Mem.S32((Mem.U32(0x8014D080u) + 4u)) - 1) * 28)) + 4u)));
-                func_0029AC80(((Mem.U32((Mem.U32(0x8014D080u) + 12u)) + (uint)(Mem.S32((Mem.U32(0x8014D080u) + 4u)) * 28)) + 12u));
-                func_00411E98((int)(Mem.S16((Mem.U32((Mem.U32((Mem.U32(0x8014D080u) + 12u)) + (uint)(Mem.S32((Mem.U32(0x8014D080u) + 4u)) * 28))) + 12u))));
+                func_00298EA4(new SndStkEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).stk_ + (uint)((new SndMgr_v2(Mem.U32(0x8014D080u)).top - 1) * 28))).id);
+                func_0029AC80(((new SndMgr_v2(Mem.U32(0x8014D080u)).stk_ + (uint)(new SndMgr_v2(Mem.U32(0x8014D080u)).top * 28)) + 12u));
+                func_00411E98((int)(new SndStkEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).stk_ + (uint)(new SndMgr_v2(Mem.U32(0x8014D080u)).top * 28))).ctx.id));
             }
             m = Mem.U32(0x8014D080u);
-            Mem.Set((Mem.U32((m + 12u)) + (uint)(Mem.S32((m + 4u)) * 28)), 0u);
-            Mem.Set(((Mem.U32((m + 12u)) + (uint)(Mem.S32((m + 4u)) * 28)) + 4u), 0);
-            Mem.Set(((Mem.U32((m + 12u)) + (uint)(Mem.S32((m + 4u)) * 28)) + 8u), 0u);
-            Mem.Set((m + 4u), (int)(Mem.S32((m + 4u)) - 1));
-            if ((Mem.S32((m + 4u)) < Mem.S32((m + 8u))))
+            new SndStkEnt((new SndMgr_v2(m).stk_ + (uint)(new SndMgr_v2(m).top * 28))).ctx__Set(0u);
+            new SndStkEnt((new SndMgr_v2(m).stk_ + (uint)(new SndMgr_v2(m).top * 28))).id_Set(0);
+            new SndStkEnt((new SndMgr_v2(m).stk_ + (uint)(new SndMgr_v2(m).top * 28))).unk8__Set(0u);
+            new SndMgr_v2(m).top_Set((int)(new SndMgr_v2(m).top - 1));
+            if ((new SndMgr_v2(m).top < new SndMgr_v2(m).unk8))
             {
-                Mem.Set((m + 8u), Mem.S32((m + 4u)));
+                new SndMgr_v2(m).unk8_Set(new SndMgr_v2(m).top);
             }
         }
     }

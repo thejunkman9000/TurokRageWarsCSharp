@@ -14,24 +14,24 @@ public static partial class Game
             int old = 0;
             if (((((((int)(Mem.U8(0x801462E5u)) == 0) || (func_0022C450((uint)(p)) == 0)) || (st == 21)) || (st == 19)) || (st == 20)))
             {
-                prev = (ushort)(Mem.S16((p + 1616u)));
-                old = Mem.S32((p + 1636u));
-                Mem.Set((p + 1616u), (short)(st));
-                Mem.Set((p + 1618u), (short)(prev));
-                Mem.Set((p + 1632u), old);
-                Mem.Set((p + 256u), (uint)((uint)(Mem.U32((p + 256u))) & 4286578687u));
-                if ((Mem.U32((Mem.U32((p + 5044u)) + (uint)(st * 24))) != 0u))
+                prev = (ushort)(new B05P1(p).state);
+                old = new B05P1(p).unk664;
+                new B05P1(p).state_Set((short)(st));
+                new B05P1(p).prevState_Set((short)(prev));
+                new B05P1(p).unk660_Set(old);
+                new B05P1(p).flags_Set((uint)((uint)(new B05P1(p).flags) & 4286578687u));
+                if ((new B05StEnt((new B05P1(p).states_ + (uint)(st * 24))).fn != 0u))
                 {
-                    Funcs.CallReg(Mem.U32((Mem.U32((p + 5044u)) + (uint)(st * 24))), p, (uint)(arg), 0u, 0u);
+                    Funcs.CallReg(new B05StEnt((new B05P1(p).states_ + (uint)(st * 24))).fn, p, (uint)(arg), 0u, 0u);
                 }
-                Mem.Set((p + 1636u), Mem.S32(((Mem.U32((p + 5044u)) + (uint)(Mem.S16((p + 1616u)) * 24)) + 12u)));
-                if ((Mem.S32(((Mem.U32((p + 5044u)) + (uint)(Mem.S16((p + 1616u)) * 24)) + 16u)) != 0))
+                new B05P1(p).unk664_Set(new B05StEnt((new B05P1(p).states_ + (uint)(new B05P1(p).state * 24))).unkC);
+                if ((new B05StEnt((new B05P1(p).states_ + (uint)(new B05P1(p).state * 24))).unk10 != 0))
                 {
-                    Mem.Set((p + 2156u), Mem.S32(((Mem.U32((p + 5044u)) + (uint)(Mem.S16((p + 1616u)) * 24)) + 16u)));
+                    new B05P1(p).unk86C_Set(new B05StEnt((new B05P1(p).states_ + (uint)(new B05P1(p).state * 24))).unk10);
                 }
-                if (((int)(Mem.S16((p + 1616u))) == st))
+                if (((int)(new B05P1(p).state) == st))
                 {
-                    Mem.Set((p + 1624u), 0);
+                    new B05P1(p).unk658_Set(0);
                     return 1;
                 }
             }

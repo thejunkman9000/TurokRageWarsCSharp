@@ -19,13 +19,13 @@ public static partial class Game
                 float lim = 0f;
                 float up = 0f;
                 float k = 0f;
-                if ((Mem.S32((m + 44u)) != 0))
+                if ((new B09Mover(m).unk2C != 0))
                 {
                     dt = (Mem.F32(0x800D2988u) * Mem.F32(0x800C8710u));
-                    d = Mem.U32((m + 64u));
+                    d = new B09Mover(m).def_;
                     if ((dt != 0.0f))
                     {
-                        c = Mem.F32((d + 20u));
+                        c = new B09BodyDef(d).f14;
                         c = (float)((float)(c) * Mem.F32(0x800C8714u));
                         lim = (Mem.F32(0x800C8718u) / dt);
                         if (!(c <= lim))
@@ -33,29 +33,29 @@ public static partial class Game
                             c = lim;
                         }
                         up = 0.0f;
-                        if ((Mem.S32((m + 40u)) != 0))
+                        if ((new B09Mover(m).unk28 != 0))
                         {
-                            up = Mem.F32((d + 8u));
+                            up = new B09BodyDef(d).f8;
                         }
                         if ((c == 0.0f))
                         {
-                            Mem.Set(_fp, 0.0f);
-                            Mem.Set((_fp + 4u), up);
-                            Mem.Set((_fp + 8u), 0.0f);
+                            new B09V3(_fp).x_Set(0.0f);
+                            new B09V3(_fp).y_Set(up);
+                            new B09V3(_fp).z_Set(0.0f);
                         }
                         else
                         {
-                            Mem.Set(_fp, ((-Mem.F32((m + 116u))) * c));
-                            Mem.Set((_fp + 4u), (((-Mem.F32(((m + 116u) + 4u))) * c) + up));
-                            Mem.Set((_fp + 8u), ((-Mem.F32(((m + 116u) + 8u))) * c));
+                            new B09V3(_fp).x_Set(((-new B09Mover(m).v74.x) * c));
+                            new B09V3(_fp).y_Set((((-new B09Mover(m).v74.y) * c) + up));
+                            new B09V3(_fp).z_Set(((-new B09Mover(m).v74.z) * c));
                         }
                         k = (dt * Mem.F32(0x800C871Cu));
-                        Mem.Set((m + 80u), (Mem.F32((m + 80u)) + ((Mem.F32((m + 116u)) + (Mem.F32(_fp) * k)) * dt)));
-                        Mem.Set(((m + 80u) + 4u), (Mem.F32(((m + 80u) + 4u)) + ((Mem.F32(((m + 116u) + 4u)) + (Mem.F32((_fp + 4u)) * k)) * dt)));
-                        Mem.Set(((m + 80u) + 8u), (Mem.F32(((m + 80u) + 8u)) + ((Mem.F32(((m + 116u) + 8u)) + (Mem.F32((_fp + 8u)) * k)) * dt)));
-                        Mem.Set((m + 116u), (Mem.F32((m + 116u)) + (Mem.F32(_fp) * dt)));
-                        Mem.Set(((m + 116u) + 4u), (Mem.F32(((m + 116u) + 4u)) + (Mem.F32((_fp + 4u)) * dt)));
-                        Mem.Set(((m + 116u) + 8u), (Mem.F32(((m + 116u) + 8u)) + (Mem.F32((_fp + 8u)) * dt)));
+                        new B09Mover(m).v50.x_Set((new B09Mover(m).v50.x + ((new B09Mover(m).v74.x + (new B09V3(_fp).x * k)) * dt)));
+                        new B09Mover(m).v50.y_Set((new B09Mover(m).v50.y + ((new B09Mover(m).v74.y + (new B09V3(_fp).y * k)) * dt)));
+                        new B09Mover(m).v50.z_Set((new B09Mover(m).v50.z + ((new B09Mover(m).v74.z + (new B09V3(_fp).z * k)) * dt)));
+                        new B09Mover(m).v74.x_Set((new B09Mover(m).v74.x + (new B09V3(_fp).x * dt)));
+                        new B09Mover(m).v74.y_Set((new B09Mover(m).v74.y + (new B09V3(_fp).y * dt)));
+                        new B09Mover(m).v74.z_Set((new B09Mover(m).v74.z + (new B09V3(_fp).z * dt)));
                     }
                 }
             }

@@ -13,81 +13,81 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0023DA90", (uint)m, (uint)box, (uint)t);
-                uint s = (m + 68u);
-                uint e = (m + 80u);
+                uint s = new B09Mover(m).v44.P;
+                uint e = new B09Mover(m).v50.P;
                 float tt = 0f;
-                if ((Mem.F32((box + 12u)) >= Mem.F32(s)))
+                if ((new B09Box3(box).maxx >= new B09V3(s).x))
                 {
-                    if ((Mem.F32((box + 16u)) >= Mem.F32((s + 4u))))
+                    if ((new B09Box3(box).maxy >= new B09V3(s).y))
                     {
-                        if (((((Mem.F32((box + 20u)) >= Mem.F32((s + 8u))) && (Mem.F32(box) <= Mem.F32(s))) && (Mem.F32((box + 4u)) <= Mem.F32((s + 4u)))) && (Mem.F32((box + 8u)) <= Mem.F32((s + 8u)))))
+                        if (((((new B09Box3(box).maxz >= new B09V3(s).z) && (new B09Box3(box).minx <= new B09V3(s).x)) && (new B09Box3(box).miny <= new B09V3(s).y)) && (new B09Box3(box).minz <= new B09V3(s).z)))
                         {
                             Mem.Set(t, 0.0f);
                             return 1;
                         }
                     }
                 }
-                if ((Mem.F32(s) != Mem.F32(e)))
+                if ((new B09V3(s).x != new B09V3(e).x))
                 {
-                    if ((Mem.F32(s) < Mem.F32(e)))
+                    if ((new B09V3(s).x < new B09V3(e).x))
                     {
-                        tt = ((Mem.F32(box) - Mem.F32(s)) / (Mem.F32(e) - Mem.F32(s)));
+                        tt = ((new B09Box3(box).minx - new B09V3(s).x) / (new B09V3(e).x - new B09V3(s).x));
                     }
                     else
                     {
-                        tt = ((Mem.F32(s) - Mem.F32((box + 12u))) / (Mem.F32(s) - Mem.F32(e)));
+                        tt = ((new B09V3(s).x - new B09Box3(box).maxx) / (new B09V3(s).x - new B09V3(e).x));
                     }
-                    if ((tt < Mem.F32(((m + 176u) + 204u))))
+                    if ((tt < new B09Mover(m).qcopy.t))
                     {
-                        Mem.Set((_fp + 4u), (Mem.F32((s + 4u)) + (tt * Mem.F32(((m + 92u) + 4u)))));
-                        Mem.Set((_fp + 8u), (Mem.F32((s + 8u)) + (tt * Mem.F32(((m + 92u) + 8u)))));
-                        if (((((Mem.F32((box + 4u)) <= Mem.F32((_fp + 4u))) && (Mem.F32((_fp + 4u)) <= Mem.F32((box + 16u)))) && (Mem.F32((box + 8u)) <= Mem.F32((_fp + 8u)))) && (Mem.F32((_fp + 8u)) <= Mem.F32((box + 20u)))))
+                        new B09V3(_fp).y_Set((new B09V3(s).y + (tt * new B09Mover(m).v5C.y)));
+                        new B09V3(_fp).z_Set((new B09V3(s).z + (tt * new B09Mover(m).v5C.z)));
+                        if (((((new B09Box3(box).miny <= new B09V3(_fp).y) && (new B09V3(_fp).y <= new B09Box3(box).maxy)) && (new B09Box3(box).minz <= new B09V3(_fp).z)) && (new B09V3(_fp).z <= new B09Box3(box).maxz)))
                         {
                             Mem.Set(t, tt);
                             return 1;
                         }
                     }
                 }
-                if ((Mem.F32((s + 4u)) != Mem.F32((e + 4u))))
+                if ((new B09V3(s).y != new B09V3(e).y))
                 {
-                    if ((Mem.F32((s + 4u)) < Mem.F32((e + 4u))))
+                    if ((new B09V3(s).y < new B09V3(e).y))
                     {
-                        tt = ((Mem.F32((box + 4u)) - Mem.F32((s + 4u))) / (Mem.F32((e + 4u)) - Mem.F32((s + 4u))));
+                        tt = ((new B09Box3(box).miny - new B09V3(s).y) / (new B09V3(e).y - new B09V3(s).y));
                     }
                     else
                     {
-                        tt = ((Mem.F32((s + 4u)) - Mem.F32((box + 16u))) / (Mem.F32((s + 4u)) - Mem.F32((e + 4u))));
+                        tt = ((new B09V3(s).y - new B09Box3(box).maxy) / (new B09V3(s).y - new B09V3(e).y));
                     }
-                    if ((tt < Mem.F32(((m + 176u) + 204u))))
+                    if ((tt < new B09Mover(m).qcopy.t))
                     {
-                        Mem.Set(_fp, (Mem.F32(s) + (tt * Mem.F32((m + 92u)))));
-                        Mem.Set((_fp + 8u), (Mem.F32((s + 8u)) + (tt * Mem.F32(((m + 92u) + 8u)))));
-                        if (((((Mem.F32(box) <= Mem.F32(_fp)) && (Mem.F32(_fp) <= Mem.F32((box + 12u)))) && (Mem.F32((box + 8u)) <= Mem.F32((_fp + 8u)))) && (Mem.F32((_fp + 8u)) <= Mem.F32((box + 20u)))))
+                        new B09V3(_fp).x_Set((new B09V3(s).x + (tt * new B09Mover(m).v5C.x)));
+                        new B09V3(_fp).z_Set((new B09V3(s).z + (tt * new B09Mover(m).v5C.z)));
+                        if (((((new B09Box3(box).minx <= new B09V3(_fp).x) && (new B09V3(_fp).x <= new B09Box3(box).maxx)) && (new B09Box3(box).minz <= new B09V3(_fp).z)) && (new B09V3(_fp).z <= new B09Box3(box).maxz)))
                         {
                             Mem.Set(t, tt);
                             return 1;
                         }
                     }
                 }
-                if ((Mem.F32((s + 8u)) == Mem.F32((e + 8u))))
+                if ((new B09V3(s).z == new B09V3(e).z))
                 {
                     return 0;
                 }
-                if ((Mem.F32((s + 8u)) < Mem.F32((e + 8u))))
+                if ((new B09V3(s).z < new B09V3(e).z))
                 {
-                    tt = ((Mem.F32((box + 8u)) - Mem.F32((s + 8u))) / (Mem.F32((e + 8u)) - Mem.F32((s + 8u))));
+                    tt = ((new B09Box3(box).minz - new B09V3(s).z) / (new B09V3(e).z - new B09V3(s).z));
                 }
                 else
                 {
-                    tt = ((Mem.F32((s + 8u)) - Mem.F32((box + 20u))) / (Mem.F32((s + 8u)) - Mem.F32((e + 8u))));
+                    tt = ((new B09V3(s).z - new B09Box3(box).maxz) / (new B09V3(s).z - new B09V3(e).z));
                 }
-                if (!(tt < Mem.F32(((m + 176u) + 204u))))
+                if (!(tt < new B09Mover(m).qcopy.t))
                 {
                     return 0;
                 }
-                Mem.Set(_fp, (Mem.F32(s) + (tt * Mem.F32((m + 92u)))));
-                Mem.Set((_fp + 4u), (Mem.F32((s + 4u)) + (tt * Mem.F32(((m + 92u) + 4u)))));
-                if (((((Mem.F32(box) <= Mem.F32(_fp)) && (Mem.F32(_fp) <= Mem.F32((box + 12u)))) && (Mem.F32((box + 4u)) <= Mem.F32((_fp + 4u)))) && (Mem.F32((_fp + 4u)) <= Mem.F32((box + 16u)))))
+                new B09V3(_fp).x_Set((new B09V3(s).x + (tt * new B09Mover(m).v5C.x)));
+                new B09V3(_fp).y_Set((new B09V3(s).y + (tt * new B09Mover(m).v5C.y)));
+                if (((((new B09Box3(box).minx <= new B09V3(_fp).x) && (new B09V3(_fp).x <= new B09Box3(box).maxx)) && (new B09Box3(box).miny <= new B09V3(_fp).y)) && (new B09V3(_fp).y <= new B09Box3(box).maxy)))
                 {
                     Mem.Set(t, tt);
                     return 1;

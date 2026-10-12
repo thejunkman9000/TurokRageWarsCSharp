@@ -13,18 +13,18 @@ public static partial class Game
             float s = sinf(ang);
             float c = cosf(ang);
             float x = 0f;
-            x = Mem.F32(((m + (uint)(0 * 16)) + (uint)(0 * 4)));
-            Mem.Set(((m + (uint)(0 * 16)) + (uint)(0 * 4)), ((x * c) + (Mem.F32(((m + (uint)(0 * 16)) + (uint)(2 * 4))) * s)));
-            Mem.Set(((m + (uint)(0 * 16)) + (uint)(2 * 4)), ((x * (-s)) + (Mem.F32(((m + (uint)(0 * 16)) + (uint)(2 * 4))) * c)));
-            x = Mem.F32(((m + (uint)(1 * 16)) + (uint)(0 * 4)));
-            Mem.Set(((m + (uint)(1 * 16)) + (uint)(0 * 4)), ((x * c) + (Mem.F32(((m + (uint)(1 * 16)) + (uint)(2 * 4))) * s)));
-            Mem.Set(((m + (uint)(1 * 16)) + (uint)(2 * 4)), ((x * (-s)) + (Mem.F32(((m + (uint)(1 * 16)) + (uint)(2 * 4))) * c)));
-            x = Mem.F32(((m + (uint)(2 * 16)) + (uint)(0 * 4)));
-            Mem.Set(((m + (uint)(2 * 16)) + (uint)(0 * 4)), ((x * c) + (Mem.F32(((m + (uint)(2 * 16)) + (uint)(2 * 4))) * s)));
-            Mem.Set(((m + (uint)(2 * 16)) + (uint)(2 * 4)), ((x * (-s)) + (Mem.F32(((m + (uint)(2 * 16)) + (uint)(2 * 4))) * c)));
-            x = Mem.F32(((m + (uint)(3 * 16)) + (uint)(0 * 4)));
-            Mem.Set(((m + (uint)(3 * 16)) + (uint)(0 * 4)), ((x * c) + (Mem.F32(((m + (uint)(3 * 16)) + (uint)(2 * 4))) * s)));
-            Mem.Set(((m + (uint)(3 * 16)) + (uint)(2 * 4)), ((x * (-s)) + (Mem.F32(((m + (uint)(3 * 16)) + (uint)(2 * 4))) * c)));
+            x = Mem.F32(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), ((x * c) + (Mem.F32(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(2 * 4))) * s)));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(2 * 4)), ((x * (-s)) + (Mem.F32(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(2 * 4))) * c)));
+            x = Mem.F32(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(0 * 4)));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(0 * 4)), ((x * c) + (Mem.F32(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(2 * 4))) * s)));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(2 * 4)), ((x * (-s)) + (Mem.F32(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(2 * 4))) * c)));
+            x = Mem.F32(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(0 * 4)));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(0 * 4)), ((x * c) + (Mem.F32(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4))) * s)));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), ((x * (-s)) + (Mem.F32(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4))) * c)));
+            x = Mem.F32(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(0 * 4)));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(0 * 4)), ((x * c) + (Mem.F32(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(2 * 4))) * s)));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(2 * 4)), ((x * (-s)) + (Mem.F32(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(2 * 4))) * c)));
         }
     }
 

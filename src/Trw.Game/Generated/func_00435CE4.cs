@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00435CE4");
             func_002A3224();
-            func_00299368((uint)(1), default(uint), default(uint), default(uint));
+            func_00299368(1);
         }
     }
 

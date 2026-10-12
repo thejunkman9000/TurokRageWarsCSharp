@@ -12,9 +12,9 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_004396BC", (uint)cfg);
             int i = 0;
             uint p = 0u;
-            Mem.Set(0x800E5950u, func_00252FFC((uint)(8), default(uint), default(uint), default(uint)));
-            func_0044AFC0(0x80145088u, (uint)(0), default(uint), default(uint));
-            func_0044A600((0x80145088u - (uint)72), (uint)(0), (uint)(0), default(uint));
+            Mem.Set(0x800E5950u, func_00252FFC((uint)(8)));
+            func_0044AFC0(0x80145088u, 0);
+            func_0044A600((0x80145088u - (uint)72), 0, 0);
             func_00286A78(0x8011FE88u, (uint)(0), (uint)(0), default(uint));
             if ((func_0025471C() == 0))
             {
@@ -29,10 +29,10 @@ public static partial class Game
                 Mem.Set((p + (uint)120), (byte)(0));
                 p = (uint)(p - (uint)(150 * 1));
             }
-            Mem.Set(Mem.U32(0x800E5950u), func_0040ECB0(cfg, (uint)(919), default(uint), default(uint)));
-            Mem.Set((Mem.U32(0x800E5950u) + 4u), 0);
-            Mem.Set((0x801462C8u + 36u), (byte)(10));
-            Mem.Set((0x801462C8u + 37u), (byte)(10));
+            new O05M50(Mem.U32(0x800E5950u)).f0_Set(func_0040ECB0(cfg, (uint)(919), default(uint), default(uint)));
+            new O05M50(Mem.U32(0x800E5950u)).f4_Set(0);
+            new O05GX(0x801462C8u).f24_Set((byte)(10));
+            new O05GX(0x801462C8u).f25_Set((byte)(10));
             for (i = 0; (i < 4); ++i)
             {
                 func_0022EF20((0x80102B00u + (uint)(i * 400)));

@@ -12,26 +12,26 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00286254", (uint)owner);
             int i = 0;
             uint t34 = 0u;
-            int n = Mem.S32((owner + 3664u));
+            int n = new B19Owner(owner).nobj;
             uint o = 0u;
             uint o2 = 0u;
-            uint arr = (owner + 3152u);
+            uint arr = new B19Owner(owner).arr.P;
             float sv = 0f;
             while ((i < n))
             {
                 o = Mem.U32((arr + (uint)(i * 4)));
-                if ((Mem.S32(Mem.U32((o + 24u))) != 2))
+                if ((new B19Info18(new B19Obj(o).info).type != 2))
                 {
                     break;
                 }
                 ++i;
                 o2 = o;
                 sv = Mem.F32(0x800D2988u);
-                if (!((Mem.U32((o2 + 256u)) & (uint)(1073741824)) != 0u))
+                if (!((new B19Obj(o2).flags100 & (uint)(1073741824)) != 0u))
                 {
                     func_0024BE2C(o2);
                 }
-                if (((Mem.U32((o2 + 256u)) & (uint)(1073750016)) == (uint)(8192)))
+                if (((new B19Obj(o2).flags100 & (uint)(1073750016)) == (uint)(8192)))
                 {
                     func_00246E34(o, default(uint), default(uint), default(uint));
                 }
@@ -53,7 +53,7 @@ public static partial class Game
                 case 1:
                 case 3:
                 case 4:
-                    func_00438BA4(default(uint), default(uint), default(uint), default(uint));
+                    func_00438BA4();
                     break;
                 }
             }
@@ -64,7 +64,7 @@ public static partial class Game
                 ++i;
                 sv = Mem.F32(0x800D2988u);
                 func_0024BE2C(o2);
-                if (((Mem.U32((o2 + 256u)) & (uint)(8192)) != 0u))
+                if (((new B19Obj(o2).flags100 & (uint)(8192)) != 0u))
                 {
                     func_00246E34(o2, default(uint), default(uint), default(uint));
                 }

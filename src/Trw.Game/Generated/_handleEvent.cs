@@ -13,8 +13,8 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("_handleEvent", (uint)sndp, (uint)@event);
-                uint state = Mem.U32((@event + 4u));
-                uint sound = Mem.U32((state + 28u));
+                uint state = Mem.U32(new ALEvent(@event).msg.P);
+                uint sound = new ALSndState(state).sound_;
                 byte pan = 0;
                 int vol = 0;
                 int envVol = 0;
@@ -23,10 +23,10 @@ public static partial class Game
                 float pitch = 0f;
                 short newVol = 0;
                 float newPitch = 0f;
-                switch ((int)(Mem.S16(@event)))
+                switch ((int)(new ALEvent(@event).type))
                 {
                 case 0:
-                    if ((Mem.S32((state + 40u)) != 0))
+                    if ((new ALSndState(state).state != 0))
                     {
                         break;
                     }
@@ -34,31 +34,31 @@ public static partial class Game
                     {
                         break;
                     }
-                    Mem.Set((_fp + 2u), (short)(0));
-                    Mem.Set(_fp, Mem.S16((state + 32u)));
-                    Mem.Set((_fp + 4u), (byte)(0));
-                    alSynAllocVoice(Mem.U32((sndp + 56u)), state, _fp);
-                    vol = (((int)(Mem.U8((Mem.U32(sound) + 12u))) * (int)(Mem.S16((state + 44u)))) / 127);
-                    panTmp = (short)(((int)(Mem.U8((sound + 12u))) + ((int)(Mem.U8((state + 46u))) - 64)));
+                    new ALVoiceConfig(_fp).fxBus_Set((short)(0));
+                    new ALVoiceConfig(_fp).priority_Set(new ALSndState(state).priority);
+                    new ALVoiceConfig(_fp).unityPitch_Set((byte)(0));
+                    alSynAllocVoice(new ALSndPlayer(sndp).drvr, new ALSndState(state).voice.P, _fp);
+                    vol = (((int)(new ALSndSound(sound).envelope.attackVolume) * (int)(new ALSndState(state).vol)) / 127);
+                    panTmp = (short)(((int)(new ALSndSound(sound).samplePan) + ((int)(new ALSndState(state).pan) - 64)));
                     if (((int)(panTmp) < 0))
                     {
                         panTmp = (short)(0);
                     }
                     pan = (byte)((((int)(panTmp) < 127) ? (int)(panTmp) : 127));
-                    delta = Mem.S32(Mem.U32(sound));
-                    pitch = Mem.F32((state + 36u));
-                    alSynStartVoice(Mem.U32((sndp + 56u)), state, Mem.U32((sound + 8u)));
-                    Mem.Set((state + 40u), 1);
-                    alSynSetPan(Mem.U32((sndp + 56u)), state, pan);
-                    alSynSetVol(Mem.U32((sndp + 56u)), state, (short)(vol), delta);
-                    alSynSetPitch(Mem.U32((sndp + 56u)), state, pitch);
-                    alSynSetFXMix(Mem.U32((sndp + 56u)), state, Mem.U8((state + 47u)));
-                    Mem.Set((_fp + 8u), (short)(6));
-                    Mem.Set(((_fp + 8u) + 4u), state);
-                    alEvtqPostEvent((sndp + 20u), (_fp + 8u), __sndpTimeAtPitch(Mem.S32(Mem.U32(sound)), Mem.F32((state + 36u))));
+                    delta = new ALSndSound(sound).envelope.attackTime;
+                    pitch = new ALSndState(state).pitch;
+                    alSynStartVoice(new ALSndPlayer(sndp).drvr, new ALSndState(state).voice.P, new ALSndSound(sound).wavetable);
+                    new ALSndState(state).state_Set(1);
+                    alSynSetPan(new ALSndPlayer(sndp).drvr, new ALSndState(state).voice.P, pan);
+                    alSynSetVol(new ALSndPlayer(sndp).drvr, new ALSndState(state).voice.P, (short)(vol), delta);
+                    alSynSetPitch(new ALSndPlayer(sndp).drvr, new ALSndState(state).voice.P, pitch);
+                    alSynSetFXMix(new ALSndPlayer(sndp).drvr, new ALSndState(state).voice.P, new ALSndState(state).fxMix);
+                    new ALEvent((_fp + 8u)).type_Set((short)(6));
+                    Mem.Set(new ALEvent((_fp + 8u)).msg.P, state);
+                    alEvtqPostEvent(new ALSndPlayer(sndp).evtq.P, (_fp + 8u), __sndpTimeAtPitch(new ALSndSound(sound).envelope.attackTime, new ALSndState(state).pitch));
                     break;
                 case 1:
-                    if ((Mem.S32((state + 40u)) != 1))
+                    if ((new ALSndState(state).state != 1))
                     {
                         break;
                     }
@@ -66,26 +66,26 @@ public static partial class Game
                     {
                         break;
                     }
-                    delta = __sndpTimeAtPitch(Mem.S32((Mem.U32(sound) + 8u)), Mem.F32((state + 36u)));
-                    alSynSetVol(Mem.U32((sndp + 56u)), state, (short)(0), delta);
+                    delta = __sndpTimeAtPitch(new ALSndSound(sound).envelope.releaseTime, new ALSndState(state).pitch);
+                    alSynSetVol(new ALSndPlayer(sndp).drvr, new ALSndState(state).voice.P, (short)(0), delta);
                     if ((delta != 0))
                     {
-                        Mem.Set((_fp + 8u), (short)(7));
-                        Mem.Set(((_fp + 8u) + 4u), state);
-                        alEvtqPostEvent((sndp + 20u), (_fp + 8u), delta);
-                        Mem.Set((state + 40u), 2);
+                        new ALEvent((_fp + 8u)).type_Set((short)(7));
+                        Mem.Set(new ALEvent((_fp + 8u)).msg.P, state);
+                        alEvtqPostEvent(new ALSndPlayer(sndp).evtq.P, (_fp + 8u), delta);
+                        new ALSndState(state).state_Set(2);
                     }
                     else
                     {
-                        alSynStopVoice(Mem.U32((sndp + 56u)), state);
-                        alSynFreeVoice(Mem.U32((sndp + 56u)), state);
-                        _removeEvents((sndp + 20u), state);
-                        Mem.Set((state + 40u), 0);
+                        alSynStopVoice(new ALSndPlayer(sndp).drvr, new ALSndState(state).voice.P);
+                        alSynFreeVoice(new ALSndPlayer(sndp).drvr, new ALSndState(state).voice.P);
+                        _removeEvents(new ALSndPlayer(sndp).evtq.P, state);
+                        new ALSndState(state).state_Set(0);
                     }
                     break;
                 case 2:
-                    Mem.Set((state + 46u), Mem.U8(((@event + 4u) + 4u)));
-                    if ((Mem.S32((state + 40u)) != 1))
+                    new ALSndState(state).pan_Set(Mem.U8((new ALEvent(@event).msg.P + 4u)));
+                    if ((new ALSndState(state).state != 1))
                     {
                         break;
                     }
@@ -93,39 +93,39 @@ public static partial class Game
                     {
                         break;
                     }
-                    panTmp = (short)(((int)(Mem.U8((sound + 12u))) + ((int)(Mem.U8((state + 46u))) - 64)));
+                    panTmp = (short)(((int)(new ALSndSound(sound).samplePan) + ((int)(new ALSndState(state).pan) - 64)));
                     if (((int)(panTmp) < 0))
                     {
                         panTmp = (short)(0);
                     }
                     pan = (byte)((((int)(panTmp) < 127) ? (int)(panTmp) : 127));
-                    alSynSetPan(Mem.U32((sndp + 56u)), state, pan);
+                    alSynSetPan(new ALSndPlayer(sndp).drvr, new ALSndState(state).voice.P, pan);
                     break;
                 case 4:
-                    newPitch = Mem.F32(((@event + 4u) + 4u));
-                    Mem.Set((state + 36u), newPitch);
+                    newPitch = Mem.F32((new ALEvent(@event).msg.P + 4u));
+                    new ALSndState(state).pitch_Set(newPitch);
                     if ((newPitch < 9.99999974E-5f))
                     {
-                        Mem.Set((state + 36u), 9.99999974E-5f);
+                        new ALSndState(state).pitch_Set(9.99999974E-5f);
                     }
-                    if ((Mem.S32((state + 40u)) != 1))
+                    if ((new ALSndState(state).state != 1))
                     {
                         break;
                     }
-                    alSynSetPitch(Mem.U32((sndp + 56u)), state, Mem.F32((state + 36u)));
+                    alSynSetPitch(new ALSndPlayer(sndp).drvr, new ALSndState(state).voice.P, new ALSndState(state).pitch);
                     break;
                 case 8:
-                    Mem.Set((state + 47u), Mem.U8(((@event + 4u) + 4u)));
-                    if ((Mem.S32((state + 40u)) != 1))
+                    new ALSndState(state).fxMix_Set(Mem.U8((new ALEvent(@event).msg.P + 4u)));
+                    if ((new ALSndState(state).state != 1))
                     {
                         break;
                     }
-                    alSynSetFXMix(Mem.U32((sndp + 56u)), state, Mem.U8((state + 47u)));
+                    alSynSetFXMix(new ALSndPlayer(sndp).drvr, new ALSndState(state).voice.P, new ALSndState(state).fxMix);
                     break;
                 case 3:
-                    newVol = Mem.S16(((@event + 4u) + 4u));
-                    Mem.Set((state + 44u), newVol);
-                    if ((Mem.S32((state + 40u)) != 1))
+                    newVol = Mem.S16((new ALEvent(@event).msg.P + 4u));
+                    new ALSndState(state).vol_Set(newVol);
+                    if ((new ALSndState(state).state != 1))
                     {
                         break;
                     }
@@ -133,26 +133,26 @@ public static partial class Game
                     {
                         break;
                     }
-                    envVol = (((int)(Mem.U8((Mem.U32(sound) + 13u))) * (int)(newVol)) / 127);
-                    alSynSetVol(Mem.U32((sndp + 56u)), state, (short)(envVol), 1000);
+                    envVol = (((int)(new ALSndSound(sound).envelope.decayVolume) * (int)(newVol)) / 127);
+                    alSynSetVol(new ALSndPlayer(sndp).drvr, new ALSndState(state).voice.P, (short)(envVol), 1000);
                     break;
                 case 6:
-                    if ((Mem.S32((Mem.U32(sound) + 4u)) == (-1)))
+                    if ((new ALSndSound(sound).envelope.decayTime == (-1)))
                     {
                         break;
                     }
-                    envVol = (((int)(Mem.U8((Mem.U32(sound) + 13u))) * (int)(Mem.S16((state + 44u)))) / 127);
-                    delta = __sndpTimeAtPitch(Mem.S32((Mem.U32(sound) + 4u)), Mem.F32((state + 36u)));
-                    alSynSetVol(Mem.U32((sndp + 56u)), state, (short)(envVol), delta);
-                    Mem.Set((_fp + 8u), (short)(1));
-                    Mem.Set(((_fp + 8u) + 4u), state);
-                    alEvtqPostEvent((sndp + 20u), (_fp + 8u), delta);
+                    envVol = (((int)(new ALSndSound(sound).envelope.decayVolume) * (int)(new ALSndState(state).vol)) / 127);
+                    delta = __sndpTimeAtPitch(new ALSndSound(sound).envelope.decayTime, new ALSndState(state).pitch);
+                    alSynSetVol(new ALSndPlayer(sndp).drvr, new ALSndState(state).voice.P, (short)(envVol), delta);
+                    new ALEvent((_fp + 8u)).type_Set((short)(1));
+                    Mem.Set(new ALEvent((_fp + 8u)).msg.P, state);
+                    alEvtqPostEvent(new ALSndPlayer(sndp).evtq.P, (_fp + 8u), delta);
                     break;
                 case 7:
-                    alSynStopVoice(Mem.U32((sndp + 56u)), state);
-                    alSynFreeVoice(Mem.U32((sndp + 56u)), state);
-                    _removeEvents((sndp + 20u), state);
-                    Mem.Set((state + 40u), 0);
+                    alSynStopVoice(new ALSndPlayer(sndp).drvr, new ALSndState(state).voice.P);
+                    alSynFreeVoice(new ALSndPlayer(sndp).drvr, new ALSndState(state).voice.P);
+                    _removeEvents(new ALSndPlayer(sndp).evtq.P, state);
+                    new ALSndState(state).state_Set(0);
                     break;
                 }
             }

@@ -13,7 +13,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00284AF4", (uint)o);
-                float r = (float)(Mem.S16((Mem.U32((o + 280u)) + 16u)));
+                float r = (float)(new B19Obj(o).parent.s10);
                 uint p = 0u;
                 int done = 0;
                 if (!(r <= 0.0f))
@@ -22,16 +22,16 @@ public static partial class Game
                     r = (r * r);
                     for (p = Mem.U32(0x80145060u); (p != 0u); )
                     {
-                        Mem.Copy(_fp, (p + 8u), 12);
+                        Mem.Copy(_fp, new B19Plr(p).pos.P, 12);
                         done = 0;
-                        if (((int)(Mem.U16((o + 4u))) != 1039))
+                        if (((int)(new B19Obj(o).id) != 1039))
                         {
-                            Mem.Set((_fp + 4u), (float)((float)(Mem.F32((_fp + 4u))) + (func_0024D274(p) * Mem.F32(0x800C9F84u))));
+                            new B19Vec3(_fp).y_Set((float)((float)(new B19Vec3(_fp).y) + (func_0024D274(p) * Mem.F32(0x800C9F84u))));
                         }
-                        if ((func_0027272C((o + 8u), _fp) < r))
+                        if ((func_0027272C(new B19Obj(o).pos.P, _fp) < r))
                         {
                             func_00282E6C(o, p);
-                            if (((int)(Mem.U16((o + 4u))) == 1039))
+                            if (((int)(new B19Obj(o).id) == 1039))
                             {
                                 done = 1;
                             }
@@ -42,7 +42,7 @@ public static partial class Game
                         }
                         else
                         {
-                            p = Mem.U32((p + 5856u));
+                            p = new B19Plr(p).next_;
                         }
                     }
                 }

@@ -10,10 +10,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00443030", (uint)a);
-            uint d = Mem.U32((a + 20u));
-            uint p = Funcs.CallReg(Mem.U32((d + 24u)), a, 0u, 0u, 0u);
+            uint d = new O06A_v8(a).unk14_;
+            uint p = Funcs.CallReg(new O06D(d).unk18, a, 0u, 0u, 0u);
             float r = 0f;
-            switch (Mem.S32((d + 4u)))
+            switch (new O06D(d).unk4)
             {
             default:
                 r = 0.0f;

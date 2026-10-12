@@ -16,13 +16,13 @@ public static partial class Game
             int f = 0;
             if ((i == 1))
             {
-                if (((int)(Mem.S8((a + 1540u))) != 0))
+                if (((int)(new Plr(a).unk604) != 0))
                 {
                     return (-1);
                 }
             }
             t = Mem.U32((0x800D052Cu + (uint)(i * 4)));
-            f = Mem.S32((a + 1428u));
+            f = new Plr(a).unk594;
             if ((f == 1))
             {
                 p = Mem.U32((t + (uint)32));
@@ -38,7 +38,7 @@ public static partial class Game
             }
             if ((idx != (-1)))
             {
-                return (int)(Mem.S16(((a + 1524u) + (uint)(idx * 2))));
+                return (int)(new Plr(a).unk5F4[(int)(idx)]);
             }
             return (-1);
         }

@@ -13,18 +13,18 @@ public static partial class Game
             int i = 0;
             int snd = 0;
             int idx = 0;
-            if ((Mem.U32((Mem.U32(0x800E3590u) + 236u)) == 0u))
+            if ((new O3Pk(Mem.U32(0x800E3590u)).cur_ == 0u))
             {
-                func_00439E60((Mem.U32(0x800E3590u) + 8u), 0);
+                func_00439E60(new O3Pk(Mem.U32(0x800E3590u)).sub.P, 0);
                 return;
             }
             i = 0;
             do
             {
-                if ((Mem.S32((0x800E3594u + (uint)(i * 8))) == (int)(Mem.S16((Mem.U32((Mem.U32(0x800E3590u) + 236u)) + 12u)))))
+                if ((new O3Tbl((0x800E3594u + (uint)(i * 8))).key == (int)(new O3Pk(Mem.U32(0x800E3590u)).cur.id)))
                 {
                     snd = 0;
-                    if ((func_00265670((0x80102B4Au + (uint)(Mem.S32((Mem.U32(0x800E3590u) + 268u)) * 400)), i) == 1))
+                    if ((func_00265670((0x80102B4Au + (uint)(new O3Pk(Mem.U32(0x800E3590u)).slot * 400)), i) == 1))
                     {
                         idx = 0;
                         switch (i)
@@ -76,8 +76,8 @@ public static partial class Game
                             idx = i;
                             break;
                         }
-                        func_00439E60((Mem.U32(0x800E3590u) + 8u), snd);
-                        func_00439EB4((Mem.U32(0x800E3590u) + 8u), idx);
+                        func_00439E60(new O3Pk(Mem.U32(0x800E3590u)).sub.P, snd);
+                        func_00439EB4(new O3Pk(Mem.U32(0x800E3590u)).sub.P, idx);
                         if ((func_0025471C() == 0))
                         {
                             func_0025470C(1);
@@ -85,7 +85,7 @@ public static partial class Game
                     }
                     else
                     {
-                        func_00439E60((Mem.U32(0x800E3590u) + 8u), snd);
+                        func_00439E60(new O3Pk(Mem.U32(0x800E3590u)).sub.P, snd);
                     }
                     return;
                 }

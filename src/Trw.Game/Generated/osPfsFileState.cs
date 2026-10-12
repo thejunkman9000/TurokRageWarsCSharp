@@ -17,83 +17,83 @@ public static partial class Game
                 int j = 0;
                 int blockcount = 0;
                 byte bank = 0;
-                if (((file_no >= Mem.S32((pfs + 80u))) || (file_no < 0)))
+                if (((file_no >= new OSPfs(pfs).dir_size) || (file_no < 0)))
                 {
                     return 5;
                 }
-                if (((Mem.S32(pfs) & 1) == 0))
+                if (((new OSPfs(pfs).status & 1) == 0))
                 {
                     return 5;
                 }
-                if ((__osCheckId(pfs) == 2))
+                if (((int)(__osCheckId(pfs, default(uint), default(uint), default(uint))) == 2))
                 {
                     return 2;
                 }
-                if (((int)(Mem.U8((pfs + 101u))) != 0))
+                if (((int)(new OSPfs(pfs).activebank) != 0))
                 {
-                    Mem.Set((pfs + 101u), (byte)(0));
+                    new OSPfs(pfs).activebank_Set((byte)(0));
                     ret = __osPfsSelectBank(pfs);
                     if ((ret != 0))
                     {
                         return ret;
                     }
                 }
-                ret = (int)(__osContRamRead(Mem.U32((pfs + 4u)), (uint)(Mem.S32((pfs + 8u))), (uint)((ushort)((Mem.S32((pfs + 92u)) + file_no))), (_fp + 256u)));
+                ret = (int)(__osContRamRead(new OSPfs(pfs).queue_, (uint)(new OSPfs(pfs).channel), (uint)((ushort)((new OSPfs(pfs).dir_table + file_no))), (_fp + 256u)));
                 if ((ret != 0))
                 {
                     return ret;
                 }
-                if ((((int)(Mem.U16(((_fp + 256u) + 4u))) == 0) || (Mem.U32((_fp + 256u)) == (uint)(0))))
+                if ((((int)(new __OSDir_v2((_fp + 256u)).company_code) == 0) || (new __OSDir_v2((_fp + 256u)).game_code == (uint)(0))))
                 {
                     return 5;
                 }
-                if (((int)(Mem.U16(((_fp + 256u) + 6u))) < Mem.S32((pfs + 96u))))
+                if (((int)(new __OSDir_v2((_fp + 256u)).start_page.@ushort) < new OSPfs(pfs).inode_start_page))
                 {
                     return 3;
                 }
-                Mem.Set((_fp + 296u), (ushort)(Mem.U8((((_fp + 256u) + 6u) + 1u))));
-                bank = Mem.U8(((_fp + 256u) + 6u));
+                new __OSInodeUnit_v2((_fp + 296u)).ushort_Set((ushort)(Mem.U8((new __OSDir_v2((_fp + 256u)).start_page.inode_t.P + 1u))));
+                bank = Mem.U8(new __OSDir_v2((_fp + 256u)).start_page.inode_t.P);
                 blockcount = 0;
-                while (((int)(bank) < (int)(Mem.U8((pfs + 100u)))))
+                while (((int)(bank) < (int)(new OSPfs(pfs).banks)))
                 {
-                    ret = (int)(__osPfsRWInode(pfs, _fp, (uint)((byte)(0)), (uint)(bank)));
+                    ret = __osPfsRWInode(pfs, _fp, (byte)(0), bank);
                     if ((ret != 0))
                     {
                         return ret;
                     }
-                    Mem.Copy((_fp + 288u), (_fp + (uint)(Mem.U8(((_fp + 296u) + 1u)) * 2)), 2);
+                    Mem.Copy((_fp + 288u), (new __OSInode_v2(_fp).inode_page.P + (uint)(Mem.U8((new __OSInodeUnit_v2((_fp + 296u)).inode_t.P + 1u)) * 2)), 2);
                     ++blockcount;
-                    while (((int)(Mem.U16((_fp + 288u))) >= Mem.S32((pfs + 96u))))
+                    while (((int)(new __OSInodeUnit_v2((_fp + 288u)).@ushort) >= new OSPfs(pfs).inode_start_page))
                     {
-                        Mem.Copy((_fp + 288u), (_fp + (uint)(Mem.U8(((_fp + 288u) + 1u)) * 2)), 2);
+                        Mem.Copy((_fp + 288u), (new __OSInode_v2(_fp).inode_page.P + (uint)(Mem.U8((new __OSInodeUnit_v2((_fp + 288u)).inode_t.P + 1u)) * 2)), 2);
                         ++blockcount;
-                        if (((int)(Mem.U8((_fp + 288u))) != (int)(bank)))
+                        if (((int)(Mem.U8(new __OSInodeUnit_v2((_fp + 288u)).inode_t.P)) != (int)(bank)))
                         {
-                            bank = Mem.U8((_fp + 288u));
+                            bank = Mem.U8(new __OSInodeUnit_v2((_fp + 288u)).inode_t.P);
                             Mem.Copy((_fp + 296u), (_fp + 288u), 2);
                             break;
                         }
                     }
-                    if (((int)(Mem.U16((_fp + 288u))) == 1))
+                    if (((int)(new __OSInodeUnit_v2((_fp + 288u)).@ushort) == 1))
                     {
                         goto L_done;
                     }
                 }
-                if (((int)(Mem.U16((_fp + 288u))) != 1))
+                if (((int)(new __OSInodeUnit_v2((_fp + 288u)).@ushort) != 1))
                 {
                     return 3;
                 }
                 L_done: ;
-                Mem.Set(state, (uint)((blockcount << (int)8)));
-                Mem.Set((state + 8u), Mem.U16(((_fp + 256u) + 4u)));
-                Mem.Set((state + 4u), Mem.U32((_fp + 256u)));
+                new OSPfsState(state).file_size_Set((uint)((blockcount << (int)8)));
+                new OSPfsState(state).company_code_Set(new __OSDir_v2((_fp + 256u)).company_code);
+                new OSPfsState(state).game_code_Set(new __OSDir_v2((_fp + 256u)).game_code);
                 for (j = 0; (j < 16); ++j)
                 {
-                    Mem.Set(((state + 14u) + (uint)j), Mem.U8((((_fp + 256u) + 16u) + (uint)j)));
+                    new OSPfsState(state).game_name.Set((int)(j), new __OSDir_v2((_fp + 256u)).game_name[(int)(j)]);
                 }
                 for (j = 0; (j < 4); ++j)
                 {
-                    Mem.Set(((state + 10u) + (uint)j), Mem.U8((((_fp + 256u) + 12u) + (uint)j)));
+                    new OSPfsState(state).ext_name.Set((int)(j), new __OSDir_v2((_fp + 256u)).ext_name[(int)(j)]);
                 }
                 return 0;
             }

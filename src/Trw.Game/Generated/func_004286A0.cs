@@ -18,7 +18,7 @@ public static partial class Game
             i = (n = 0);
             for (; (i < 8); ++i)
             {
-                int id = (int)(Mem.U16(((r + 6u) + (uint)(i * 2))));
+                int id = (int)(new O04Rec(r).ids[(int)(i)]);
                 if ((id < 1219))
                 {
                     continue;

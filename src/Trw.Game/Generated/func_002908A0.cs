@@ -11,26 +11,26 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002908A0", (uint)o);
             uint n = 0u;
-            if ((Mem.U32((o + 15360u)) == 0u))
+            if ((new NodeOwner(o).freeList_ == 0u))
             {
-                func_00290930(o, Mem.U32((o + 15368u)));
+                func_00290930(o, new NodeOwner(o).tail_);
             }
-            n = Mem.U32((o + 15360u));
-            Mem.Set((o + 15360u), Mem.U32((n + 476u)));
-            if ((Mem.U32((o + 15364u)) != 0u))
+            n = new NodeOwner(o).freeList_;
+            new NodeOwner(o).freeList__Set(new Node(n).next_);
+            if ((new NodeOwner(o).head_ != 0u))
             {
-                Mem.Set((Mem.U32((o + 15364u)) + 472u), n);
+                new Node(new NodeOwner(o).head_).prev__Set(n);
             }
-            Mem.Set((n + 476u), Mem.U32((o + 15364u)));
-            Mem.Set((n + 472u), 0u);
-            Mem.Set((o + 15364u), n);
-            if ((Mem.U32((o + 15368u)) == 0u))
+            new Node(n).next__Set(new NodeOwner(o).head_);
+            new Node(n).prev__Set(0u);
+            new NodeOwner(o).head__Set(n);
+            if ((new NodeOwner(o).tail_ == 0u))
             {
-                Mem.Set((o + 15368u), n);
+                new NodeOwner(o).tail__Set(n);
             }
-            Mem.Set((n + 464u), (uint)((uint)(Mem.U32((n + 464u))) | (uint)(1)));
+            new Node(n).flags_Set((uint)((uint)(new Node(n).flags) | (uint)(1)));
             func_00246174(n);
-            Mem.Set((n + 456u), 0);
+            new Node(n).unk1C8_Set(0);
             return n;
         }
     }

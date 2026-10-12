@@ -11,14 +11,14 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("alEvtqNew", (uint)evtq, (uint)items, (uint)itemCount);
             int i = 0;
-            Mem.Set((evtq + 16u), 0);
-            Mem.Set((evtq + 8u), 0u);
-            Mem.Set(((evtq + 8u) + 4u), 0u);
-            Mem.Set(evtq, 0u);
-            Mem.Set((evtq + 4u), 0u);
+            new ALEventQueue_v2(evtq).eventCount_Set(0);
+            new ALEventQueue_v2(evtq).allocList.next__Set(0u);
+            new ALEventQueue_v2(evtq).allocList.prev__Set(0u);
+            new ALEventQueue_v2(evtq).freeList.next__Set(0u);
+            new ALEventQueue_v2(evtq).freeList.prev__Set(0u);
             for (i = 0; (i < itemCount); ++i)
             {
-                alLink((items + (uint)(i * 28)), evtq);
+                alLink(new ALEventQueueItem((items + (uint)(i * 28))).node.P, new ALEventQueue_v2(evtq).freeList.P);
             }
         }
     }

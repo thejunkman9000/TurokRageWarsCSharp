@@ -11,16 +11,16 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0023E680", (uint)r, 0u, (uint)id);
             float hi = 0f;
-            Mem.Set((r + 12u), id);
-            Mem.Set((r + 8u), a);
-            Mem.Set((r + 16u), b);
-            Mem.Set((r + 20u), c);
+            new B09Range(r).id_Set(id);
+            new B09Range(r).a_Set(a);
+            new B09Range(r).b_Set(b);
+            new B09Range(r).c_Set(c);
             hi = b;
             if (!(a <= hi))
             {
                 hi = a;
             }
-            Mem.Set((r + 24u), (hi + Mem.F32(0x800C87B4u)));
+            new B09Range(r).hi_Set((hi + Mem.F32(0x800C87B4u)));
         }
     }
 

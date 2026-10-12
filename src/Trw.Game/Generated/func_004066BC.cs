@@ -18,36 +18,36 @@ public static partial class Game
             Mem.Set(0x800E28C4u, 1);
             Mem.Set(0x80153784u, 0);
             Mem.Set(0x8015375Cu, 0);
-            Mem.Set((Mem.U32((own + 12u)) + 808u), (uint)((uint)(Mem.U32((Mem.U32((own + 12u)) + 808u))) & 4278190079u));
-            pad = (int)(Mem.S8((Mem.U32((own + 32u)) + 4u)));
+            new O01Own6(own).unkC.unk328_Set((uint)((uint)(new O01Own6(own).unkC.unk328) & 4278190079u));
+            pad = (int)(new O01Own6(own).unk20.unk4);
             if ((Mem.S32(0x800E28C0u) != 0))
             {
                 Mem.Set(0x80153784u, 1);
-                func_004426E4((Mem.U32((Mem.U32((own + 28u)) + 1500u)) + (uint)1364), 0x0045077Cu, (int)(Mem.U32((own + 28u))), (int)(Mem.U32((own + 32u))), (int)(0u));
+                func_004426E4((new O01Plr2(new O01Own6(own).unk1C_).unk5DC_ + (uint)1364), 0x0045077Cu, (int)(new O01Own6(own).unk1C_), (int)(new O01Own6(own).unk20_), (int)(0u));
             }
             else
             {
                 func_00404E28(pad);
                 if ((func_00404F04(pad) == 0))
                 {
-                    func_00405F48(own, default(uint), default(uint), default(uint));
+                    func_00405F48(own);
                 }
                 else
                 {
                     Mem.Set(0x80153784u, 1);
                     if ((func_00404F3C(pad) != 0))
                     {
-                        func_004426E4(0x8014561Cu, 0x0044F67Cu, (int)(Mem.U32((own + 28u))), (int)(Mem.U32((own + 32u))), (int)(0x0045077Cu));
+                        func_004426E4(0x8014561Cu, 0x0044F67Cu, (int)(new O01Own6(own).unk1C_), (int)(new O01Own6(own).unk20_), (int)(0x0045077Cu));
                     }
                     else
                     {
                         if ((func_00405598(pad) != 0))
                         {
-                            func_004426E4(0x8014561Cu, 0x0044F994u, (int)(Mem.U32((own + 28u))), (int)(Mem.U32((own + 32u))), (int)(0x0044F0B8u));
+                            func_004426E4(0x8014561Cu, 0x0044F994u, (int)(new O01Own6(own).unk1C_), (int)(new O01Own6(own).unk20_), (int)(0x0044F0B8u));
                         }
                         else
                         {
-                            func_004426E4(0x8014561Cu, 0x0044F610u, (int)(Mem.U32((own + 28u))), (int)(Mem.U32((own + 32u))), (int)(0x0045077Cu));
+                            func_004426E4(0x8014561Cu, 0x0044F610u, (int)(new O01Own6(own).unk1C_), (int)(new O01Own6(own).unk20_), (int)(0x0045077Cu));
                         }
                     }
                 }

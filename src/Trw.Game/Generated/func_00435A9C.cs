@@ -13,7 +13,7 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 4); ++i)
             {
-                if ((((int)(Mem.S8(((0x80102B00u + (uint)(i * 400)) + 12u))) == b) && (Mem.S32(((0x80102B00u + (uint)(i * 400)) + 8u)) == a)))
+                if ((((int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bC) == b) && (new O05Rec((0x80102B00u + (uint)(i * 400))).w8 == a)))
                 {
                     return i;
                 }

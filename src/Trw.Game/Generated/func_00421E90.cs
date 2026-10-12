@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00421E90", (uint)o);
-            return Mem.S32((o + 4u));
+            return new O3Z(o).f4;
         }
     }
 

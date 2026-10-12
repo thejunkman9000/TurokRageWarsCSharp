@@ -15,20 +15,20 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0028D0E4", (uint)lv);
                 float t = 0f;
                 uint p = 0u;
-                int a = Mem.S32((lv + 111636u));
+                int a = new Level(lv).unk1B414;
                 if ((a != 0))
                 {
                     if ((a >= 0))
                     {
                         if ((a < 3))
                         {
-                            p = (0x800D2934u + (uint)(Mem.S32((lv + 111632u)) * 8));
-                            if ((Mem.F32(p) != 0.0f))
+                            p = (0x800D2934u + (uint)(new Level(lv).unk1B410 * 8));
+                            if ((new Pal(p).div != 0.0f))
                             {
-                                Mem.Set((_fp + (uint)0), Mem.U8((p + 4u)));
-                                Mem.Set((_fp + (uint)1), Mem.U8((p + 5u)));
-                                Mem.Set((_fp + (uint)2), Mem.U8((p + 6u)));
-                                t = ((Mem.F32((lv + 111640u)) * 255.0f) / Mem.F32(p));
+                                Mem.Set((_fp + (uint)0), new Pal(p).r);
+                                Mem.Set((_fp + (uint)1), new Pal(p).g);
+                                Mem.Set((_fp + (uint)2), new Pal(p).b);
+                                t = ((new Level(lv).unk1B418 * 255.0f) / new Pal(p).div);
                                 Mem.Set((_fp + (uint)3), (byte)(Cpu.TruncU32(t)));
                                 func_00293100(0x8011FAC0u, _fp, 0, 0, Mem.S32(0x800E28D0u), Mem.S32(0x800E28D4u));
                             }

@@ -32,7 +32,7 @@ public static partial class Game
                 r5 = r16 & 65535u; r2 = func_0040ECB0(r4, r5, r6, r7); r3 = Cpu.V1;
                 r17 = r2; r2 = (uint)func_0029A958();
                 r4 = r2; r2 = func_00411E4C((int)r4);
-                r4 = (uint)136; r2 = func_00252FFC(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = (uint)136; r2 = func_00252FFC(r4);
                 r16 = r2;
                 r4 = r16;
                 r5 = r0;

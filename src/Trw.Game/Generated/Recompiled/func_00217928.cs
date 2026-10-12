@@ -133,7 +133,7 @@ public static partial class Game
                 r4 = r22;
                 r5 = r29 + 96u;
                 r6 = r23;
-                r7 = r30; r2 = func_00217630(r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = r30; func_00217630(r4, r5, (int)r6, r7);
                 L_L00217B08: ;
                 r31 = Mem.U32((r29 + 1300u));
                 r30 = Mem.U32((r29 + 1296u));

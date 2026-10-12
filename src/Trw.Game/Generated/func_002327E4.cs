@@ -17,7 +17,7 @@ public static partial class Game
             {
                 return 0;
             }
-            if ((Mem.S32((actor + 5200u)) != 0))
+            if ((new Actor(actor).unk1450 != 0))
             {
                 return 1;
             }
@@ -26,14 +26,14 @@ public static partial class Game
             {
                 return 1;
             }
-            r = (int)(func_0022F54C((0x80102B00u + (uint)(Mem.S32((actor + 1492u)) * 400)), (uint)((int)(Mem.S16((actor + (uint)1582)))), default(uint), default(uint)));
+            r = (int)(func_0022F54C((0x80102B00u + (uint)(new Actor(actor).unk5D4 * 400)), (uint)((int)(Mem.S16((actor + (uint)1582)))), default(uint), default(uint)));
             if ((r == 0))
             {
                 func_0025DF54(3405);
                 if ((Mem.U32((actor + (uint)1500)) != 0u))
                 {
                     v = func_0022A590((g - (uint)4744), (int)(actor));
-                    func_002398F8((g - (uint)4672), Mem.U32((actor + (uint)1500)), Mem.S32(0x800D70E8u), (uint)(v), Mem.F32(0x800C8100u));
+                    func_002398F8((g - (uint)4672), Mem.U32((actor + (uint)1500)), (uint)(Mem.S32(0x800D70E8u)), v, Mem.F32(0x800C8100u));
                 }
             }
             return r;

@@ -13,13 +13,13 @@ public static partial class Game
             uint mask = 0u;
             uint m2 = 0u;
             int i = 0;
-            Mem.Set((0x80103F70u + 4620u), 1);
-            Mem.Set((0x80103F70u + 4624u), (uint)(Mem.U32((0x80103F70u + 4624u)) + 1));
+            new B12Mgr(0x80103F70u).f120C_Set(1);
+            new B12Mgr(0x80103F70u).stamp_Set((uint)(new B12Mgr(0x80103F70u).stamp + 1));
             mask = __osDisableInt();
             if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
             {
                 __osRestoreInt(mask);
-                osRecvMesg((0x80103F70u + 4560u), 0u, 1);
+                osRecvMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
             }
             else
             {

@@ -10,13 +10,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002790EC", (uint)a0, (uint)a1, (uint)e);
-            if (((int)(Mem.U16((e + 6u))) >= 256))
+            if (((int)(new Evt(e).id) >= 256))
             {
-                func_0025E13C((int)(Mem.U16((e + 6u))));
+                func_0025E13C((int)(new Evt(e).id));
             }
             else
             {
-                func_0025E2F4((int)(Mem.U16((e + 6u))));
+                func_0025E2F4((int)(new Evt(e).id));
             }
         }
     }

@@ -10,27 +10,27 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A6FE0", (uint)e);
-            if ((Mem.U32((e + 28u)) != 0u))
+            if ((new Emit(e).owner_ != 0u))
             {
-                if (((Mem.U32((e + 60u)) & (uint)(1)) != 0u))
+                if (((new Emit(e).flags & (uint)(1)) != 0u))
                 {
-                    if (((int)(Mem.U8((Mem.U32((e + 28u)) + 315u))) != 0))
+                    if (((int)(new Emit(e).owner.unk13B) != 0))
                     {
-                        Mem.Set((Mem.U32((e + 28u)) + 315u), (byte)(Mem.U8((Mem.U32((e + 28u)) + 315u)) - 1));
+                        new Emit(e).owner.unk13B_Set((byte)(new Emit(e).owner.unk13B - 1));
                     }
                 }
-                if (((Mem.U32((e + 60u)) & (uint)(2)) != 0u))
+                if (((new Emit(e).flags & (uint)(2)) != 0u))
                 {
-                    if (((int)(Mem.U8((Mem.U32((e + 28u)) + 473u))) != 0))
+                    if (((int)(new Emit(e).owner.unk1D9) != 0))
                     {
-                        Mem.Set((Mem.U32((e + 28u)) + 473u), (byte)(Mem.U8((Mem.U32((e + 28u)) + 473u)) - 1));
+                        new Emit(e).owner.unk1D9_Set((byte)(new Emit(e).owner.unk1D9 - 1));
                     }
                 }
             }
-            Mem.Set((e + 28u), 0u);
-            if ((Mem.F32((e + 36u)) < Mem.F32((Mem.U32((e + 8u)) + (uint)4))))
+            new Emit(e).owner__Set(0u);
+            if ((new Emit(e).unk24 < Mem.F32((new Emit(e).def_ + (uint)4))))
             {
-                Mem.Set((e + 36u), Mem.F32((Mem.U32((e + 8u)) + (uint)4)));
+                new Emit(e).unk24_Set(Mem.F32((new Emit(e).def_ + (uint)4)));
             }
         }
     }

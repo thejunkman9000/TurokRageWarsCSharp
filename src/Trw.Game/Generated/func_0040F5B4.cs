@@ -14,9 +14,9 @@ public static partial class Game
             --b;
             Mem.Set(0x800E2AB0u, a);
             Mem.Set(0x800E2AB4u, b);
-            Mem.Set(0x80153810u, Mem.Set((0x80153810u + 8u), 0));
-            Mem.Set((0x80153810u + 4u), a);
-            Mem.Set((0x80153810u + 12u), b);
+            new O02Q(0x80153810u).a_Set(new O02Q(0x80153810u).c_Set(0));
+            new O02Q(0x80153810u).b_Set(a);
+            new O02Q(0x80153810u).d_Set(b);
         }
     }
 

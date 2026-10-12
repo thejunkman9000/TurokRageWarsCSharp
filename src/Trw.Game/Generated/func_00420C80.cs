@@ -15,21 +15,21 @@ public static partial class Game
             func_0029A73C();
             idx = (int)((a2 & (uint)(65535)));
             e = (Mem.U32(0x800E42D0u) + (uint)(idx * 1224));
-            switch (Mem.S32((e + 20u)))
+            switch (new O3Pj(e).state)
             {
             case 1:
                 if (((int)(Mem.U8(0x801462D5u)) != 1))
                 {
-                    Mem.Set(((Mem.U32(0x800E42D0u) + (uint)(4 * 1224)) + 24u), 5);
-                    Mem.Set(((Mem.U32(0x800E42D0u) + (uint)(4 * 1224)) + 28u), 4);
+                    new O3Pj((Mem.U32(0x800E42D0u) + (uint)(4 * 1224))).f18_Set(5);
+                    new O3Pj((Mem.U32(0x800E42D0u) + (uint)(4 * 1224))).f1C_Set(4);
                     Mem.Set(((Mem.U32(0x800E42D0u) + (uint)(4 * 1224)) + (uint)52), 3);
                 }
                 break;
             case 3:
-                Mem.Set((e + 20u), 1);
-                func_0041B834((uint)(Mem.S32((Mem.U32(0x800E42D0u) + 4u))), idx, 0);
-                func_0041CE80((uint)((((idx * 1224) + (int)(Mem.U32(0x800E42D0u))) + 32)), 1);
-                func_004204A8((uint)(idx), default(uint), default(uint), default(uint));
+                new O3Pj(e).state_Set(1);
+                func_0041B834((uint)(new O3Pj(Mem.U32(0x800E42D0u)).menu), idx, 0);
+                func_0041CE80((uint)((((idx * 1224) + (int)(Mem.U32(0x800E42D0u))) + 32)), (uint)(1), default(uint), default(uint));
+                func_004204A8(idx);
                 break;
             }
             return 0;

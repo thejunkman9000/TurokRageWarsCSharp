@@ -21,8 +21,8 @@ public static partial class Game
             Mem.Set(0x800D2994u, v);
             Mem.Set(0x800D298Cu, v);
             Mem.Set(0x800D2990u, v);
-            func_0044E178(0x8011FE88u, (uint)(Mem.S32((g + 159192u))), (uint)(0), default(uint));
-            Mem.Set((g + 159160u), 13);
+            func_0044E178(0x8011FE88u, new B21Game(g).unk26DD8, 0);
+            new B21Game(g).unk26DB8_Set(13);
             Mem.Set(0x80154048u, 0);
         }
     }

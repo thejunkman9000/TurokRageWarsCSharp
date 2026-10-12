@@ -111,7 +111,7 @@ public static partial class Game
                 Cpu.SetW(0, Mem.U32((r29 + 60u)));
                 Cpu.SetS(0, Cpu.S(0) + Cpu.S(23));
                 r4 = r29 + 60u;
-                Mem.Set((r29 + 60u), Cpu.W(0)); func_00274090(r4);
+                Mem.Set((r29 + 60u), Cpu.W(0)); r2 = func_00274090(r4, r5, r6, r7); r3 = Cpu.V1;
                 Cpu.SetW(0, Mem.U32((r29 + 60u)));
                  goto L_L00215B58;
                 L_L00215A24: ;
@@ -205,8 +205,8 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_00215868", r2); Stack.Free(384); }
     }
 
-    public static float func_00215868(uint p0, int p1, int p2, int p3, uint p4, float p5)
+    public static float func_00215868(uint p0, uint p1, int p2, float p3)
     {
-        func_00215868_rc(p0, (uint)p1, (uint)p2, (uint)p3, p4, Cpu.F2U(p5)); return Cpu.S(0);
+        func_00215868_rc(p0, Mem.U32(p1 + 0u), Mem.U32(p1 + 4u), Mem.U32(p1 + 8u), (uint)p2, Cpu.F2U(p3)); return Cpu.S(0);
     }
 }

@@ -10,23 +10,23 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0023BD24_m03_unlink", (uint)n);
-            if ((Mem.U32((n + 4u)) != 0u))
+            if ((new B09LNode(n).prev_ != 0u))
             {
-                Mem.Set(Mem.U32((n + 4u)), Mem.U32(n));
+                new B09LNode(n).prev.next__Set(new B09LNode(n).next_);
             }
             else
             {
-                Mem.Set(0x80103E20u, Mem.U32(n));
-                Mem.Set((Mem.U32(n) + 4u), 0u);
+                new B09List(0x80103E20u).head__Set(new B09LNode(n).next_);
+                new B09LNode(n).next.prev__Set(0u);
             }
-            if ((Mem.U32(n) != 0u))
+            if ((new B09LNode(n).next_ != 0u))
             {
-                Mem.Set((Mem.U32(n) + 4u), Mem.U32((n + 4u)));
+                new B09LNode(n).next.prev__Set(new B09LNode(n).prev_);
             }
             else
             {
-                Mem.Set((0x80103E20u + 4u), Mem.U32((n + 4u)));
-                Mem.Set(Mem.U32((n + 4u)), 0u);
+                new B09List(0x80103E20u).tail__Set(new B09LNode(n).prev_);
+                new B09LNode(n).prev.next__Set(0u);
             }
         }
     }
@@ -36,16 +36,16 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0023BD24_m03_push", (uint)n);
-            Mem.Set(n, 0u);
-            Mem.Set((n + 4u), Mem.U32((0x80103E20u + 4u)));
-            if ((Mem.U32((0x80103E20u + 4u)) != 0u))
+            new B09LNode(n).next__Set(0u);
+            new B09LNode(n).prev__Set(new B09List(0x80103E20u).tail_);
+            if ((new B09List(0x80103E20u).tail_ != 0u))
             {
-                Mem.Set(Mem.U32((0x80103E20u + 4u)), n);
+                new B09List(0x80103E20u).tail.next__Set(n);
             }
-            Mem.Set((0x80103E20u + 4u), n);
-            if ((Mem.U32(0x80103E20u) == 0u))
+            new B09List(0x80103E20u).tail__Set(n);
+            if ((new B09List(0x80103E20u).head_ == 0u))
             {
-                Mem.Set(0x80103E20u, n);
+                new B09List(0x80103E20u).head__Set(n);
             }
         }
     }
@@ -62,52 +62,52 @@ public static partial class Game
             {
                 p = (pair - (uint)1);
             }
-            if ((((int)(Mem.U8((p + (uint)0))) != 255) && ((int)(Mem.U8(((0x80103B50u + (uint)(Mem.U8((p + (uint)0)) * 16)) + 11u))) != 255)))
+            if ((((int)(Mem.U8((p + (uint)0))) != 255) && ((int)(new B09LNode((0x80103B50u + (uint)(Mem.U8((p + (uint)0)) * 16))).tlb) != 255)))
             {
-                idx = (int)(Mem.U8(((0x80103B50u + (uint)(Mem.U8((p + (uint)0)) * 16)) + 11u)));
-                Mem.Set(((0x80103F28u + (uint)((short)(idx) * 4)) + 3u), Mem.U8((n + 10u)));
+                idx = (int)(new B09LNode((0x80103B50u + (uint)(Mem.U8((p + (uint)0)) * 16))).tlb);
+                new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).b_Set(new B09LNode(n).id);
             }
             else
             {
-                if ((((int)(Mem.U8((p + (uint)1))) != 255) && ((int)(Mem.U8(((0x80103B50u + (uint)(Mem.U8((p + (uint)1)) * 16)) + 11u))) != 255)))
+                if ((((int)(Mem.U8((p + (uint)1))) != 255) && ((int)(new B09LNode((0x80103B50u + (uint)(Mem.U8((p + (uint)1)) * 16))).tlb) != 255)))
                 {
-                    idx = (int)(Mem.U8(((0x80103B50u + (uint)(Mem.U8((p + (uint)1)) * 16)) + 11u)));
-                    Mem.Set(((0x80103F28u + (uint)((short)(idx) * 4)) + 2u), Mem.U8((n + 10u)));
+                    idx = (int)(new B09LNode((0x80103B50u + (uint)(Mem.U8((p + (uint)1)) * 16))).tlb);
+                    new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).a_Set(new B09LNode(n).id);
                 }
                 else
                 {
                     idx = func_0023BC64();
                     if ((((int)(slot) & 1) != 0))
                     {
-                        Mem.Set(((0x80103F28u + (uint)((short)(idx) * 4)) + 3u), Mem.U8((n + 10u)));
+                        new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).b_Set(new B09LNode(n).id);
                         if (((int)(Mem.U8((p + (uint)0))) != 255))
                         {
                             q = (0x80103B50u + (uint)(Mem.U8((p + (uint)0)) * 16));
-                            Mem.Set(((0x80103F28u + (uint)((short)(idx) * 4)) + 2u), Mem.U8((q + 10u)));
-                            Mem.Set((q + 11u), (byte)(idx));
+                            new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).a_Set(new B09LNode(q).id);
+                            new B09LNode(q).tlb_Set((byte)(idx));
                             func_0023BD24_m03_unlink(q);
                             func_0023BD24_m03_push(q);
                         }
                     }
                     else
                     {
-                        Mem.Set(((0x80103F28u + (uint)((short)(idx) * 4)) + 2u), Mem.U8((n + 10u)));
+                        new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).a_Set(new B09LNode(n).id);
                         if (((int)(Mem.U8((p + (uint)1))) != 255))
                         {
                             q = (0x80103B50u + (uint)(Mem.U8((p + (uint)1)) * 16));
-                            Mem.Set(((0x80103F28u + (uint)((short)(idx) * 4)) + 3u), Mem.U8((q + 10u)));
-                            Mem.Set((q + 11u), (byte)(idx));
+                            new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).b_Set(new B09LNode(q).id);
+                            new B09LNode(q).tlb_Set((byte)(idx));
                             func_0023BD24_m03_unlink(q);
                             func_0023BD24_m03_push(q);
                         }
                     }
-                    Mem.Set((0x80103F28u + (uint)((short)(idx) * 4)), (ushort)(((int)(slot) & 65534)));
+                    new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).key_Set((ushort)(((int)(slot) & 65534)));
                 }
             }
-            Mem.Set((n + 8u), (ushort)(slot));
-            Mem.Set((n + 11u), (byte)(idx));
-            Mem.Set(pair, Mem.U8((n + 10u)));
-            osMapTLB((int)((short)(idx)), 0, (uint)(((int)(Mem.U16((0x80103F28u + (uint)((short)(idx) * 4)))) << (int)12)), (((int)(Mem.U8(((0x80103F28u + (uint)((short)(idx) * 4)) + 2u))) != 255) ? (((uint)(0x80156000u) & (uint)(67108863)) + (uint)(((int)(Mem.U8(((0x80103F28u + (uint)((short)(idx) * 4)) + 2u))) << (int)12))) : (uint)((-1))), (((int)(Mem.U8(((0x80103F28u + (uint)((short)(idx) * 4)) + 3u))) != 255) ? (((uint)(0x80156000u) & (uint)(67108863)) + (uint)(((int)(Mem.U8(((0x80103F28u + (uint)((short)(idx) * 4)) + 3u))) << (int)12))) : (uint)((-1))), 7);
+            new B09LNode(n).slot_Set((ushort)(slot));
+            new B09LNode(n).tlb_Set((byte)(idx));
+            Mem.Set(pair, new B09LNode(n).id);
+            osMapTLB((int)((short)(idx)), 0, (uint)(((int)(new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).key) << (int)12)), (((int)(new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).a) != 255) ? (((uint)(0x80156000u) & (uint)(67108863)) + (uint)(((int)(new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).a) << (int)12))) : (uint)((-1))), (((int)(new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).b) != 255) ? (((uint)(0x80156000u) & (uint)(67108863)) + (uint)(((int)(new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).b) << (int)12))) : (uint)((-1))), 7);
         }
     }
 

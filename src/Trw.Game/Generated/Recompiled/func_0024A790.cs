@@ -64,7 +64,7 @@ public static partial class Game
                 r5 = Mem.U32((r3 + 8u));
                 r16 = r3 + r16;
                 r4 = r16;
-                r5 = r3 + r5; r2 = func_0027899C(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r3 + r5; func_0027899C(r4, r5);
                 Mem.Set((r29 + 16u), r16); goto L_L0024A86C;
                 L_L0024A868: ;
                 Mem.Set((r29 + 16u), r16);
@@ -95,7 +95,7 @@ public static partial class Game
                 Mem.Set((r29 + 80u), r8);
                 Mem.Set((r29 + 84u), r9);
                 Mem.Set((r29 + 88u), r10);
-                r4 = r17; r2 = func_0024D274_rc(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r17; Cpu.SetS(0, func_0024D274(r4));
                 r1 = 2148335616u;
                 Cpu.SetW(1, Mem.U32((r1 - 29852u)));
                 Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
@@ -136,7 +136,7 @@ public static partial class Game
                 Mem.Set((r29 + 72u), r0); r2 = func_00280094_rc(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), Mem.U32(r29 + 32u), Mem.U32(r29 + 36u), Mem.U32(r29 + 40u), Mem.U32(r29 + 44u), Mem.U32(r29 + 48u), Mem.U32(r29 + 52u), Mem.U32(r29 + 56u), Mem.U32(r29 + 60u), Mem.U32(r29 + 64u), Mem.U32(r29 + 68u), Mem.U32(r29 + 72u)); r3 = Cpu.V1;
                 r4 = 2148663296u;
                 r4 = r4 + 6544u;
-                r2 = (uint)func_0028308C(r4);
+                r2 = func_0028308C(r4, r5, r6, r7); r3 = Cpu.V1;
                 r16 = r2;
                 { bool c_ = r16 == 0; r4 = r0; if (c_) goto L_L0024A9E0; }
                 r1 = 2148335616u;
@@ -144,7 +144,7 @@ public static partial class Game
                 r4 = r17; Cpu.SetS(0, func_0024D388(r4));
                 Cpu.SetS(0, Cpu.S(0) * Cpu.S(20));
                 r4 = r17;
-                Mem.Set((r16 + 336u), Cpu.W(0)); r2 = func_0024D274_rc(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r16 + 336u), Cpu.W(0)); Cpu.SetS(0, func_0024D274(r4));
                 Cpu.SetS(0, Cpu.S(0) * Cpu.S(20));
                 Mem.Set((r16 + 340u), Cpu.W(0));
                 r4 = r0;

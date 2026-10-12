@@ -13,11 +13,11 @@ public static partial class Game
             int v = Mem.S32(0x8014D098u);
             if ((v < 0))
             {
-                if ((Mem.S32((Mem.U32(0x8014D080u) + 4u)) < 0))
+                if ((new SndMgr_v2(Mem.U32(0x8014D080u)).top < 0))
                 {
                     return (-1);
                 }
-                v = Mem.S32(((Mem.U32((Mem.U32(0x8014D080u) + 12u)) + (uint)(Mem.S32((Mem.U32(0x8014D080u) + 4u)) * 28)) + 4u));
+                v = new SndStkEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).stk_ + (uint)(new SndMgr_v2(Mem.U32(0x8014D080u)).top * 28))).id;
             }
             return v;
         }

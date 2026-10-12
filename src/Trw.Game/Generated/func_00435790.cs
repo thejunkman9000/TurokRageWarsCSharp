@@ -14,7 +14,7 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 4); ++i)
             {
-                if ((Mem.S32(((Mem.U32(0x800E54A4u) + 88u) + (uint)(i * 2920))) != 0))
+                if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].state != 0))
                 {
                     ++n;
                 }

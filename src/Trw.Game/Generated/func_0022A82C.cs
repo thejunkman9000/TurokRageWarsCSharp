@@ -11,9 +11,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0022A82C", (uint)g);
             uint a = 0u;
-            for (a = Mem.U32((g + 32u)); (a != 0u); a = Mem.U32((a + 5856u)))
+            for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).next_)
             {
-                if ((((int)(Mem.U8((Mem.U32((a + 1496u)) + 143u))) == 1) || ((int)(Mem.U8((Mem.U32((a + 1496u)) + (uint)144))) == 1)))
+                if ((((int)(new Actor(a).stats.unk8F) == 1) || ((int)(Mem.U8((new Actor(a).stats_ + (uint)144))) == 1)))
                 {
                     return a;
                 }

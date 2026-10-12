@@ -12,12 +12,12 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0024BF14", (uint)a);
             float r = Mem.F32(0x800C8C4Cu);
             uint h = 0u;
-            if (((Mem.U32((a + 256u)) & (uint)(262144)) != 0u))
+            if (((new Obj(a).flags & (uint)(262144)) != 0u))
             {
-                h = func_002518DC((uint)(0), (uint)(Mem.S32((a + 196u))), (uint)(Mem.S32((a + 196u))), (uint)(Mem.S32((a + 208u))), (uint)(4), (uint)(0), (uint)(0), 0x800C8BD8u, (uint)(1));
+                h = func_002518DC(0, (uint)(new Obj(a).unkC4), new Obj(a).unkC4, (uint)(new Obj(a).unkD0), 4, (uint)(0), (uint)(0), 0x800C8BD8u, 1);
                 if ((h != 0u))
                 {
-                    r = Trunc16ToF32(Mem.U16((func_0028FD94((uint)(Mem.S32(h)), 0) + 30u)));
+                    r = Trunc16ToF32(new B11Node(func_0028FD94((uint)(Mem.S32(h)), 0)).unk1E);
                     func_002536F4(0, h);
                 }
             }

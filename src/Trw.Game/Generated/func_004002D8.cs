@@ -20,81 +20,81 @@ public static partial class Game
                 float acc = 0.0f;
                 float z0 = 0f;
                 int i = 0;
-                X = func_00252FFC((uint)((n * 4)), default(uint), default(uint), default(uint));
-                T = func_00252FFC((uint)((n * 4)), default(uint), default(uint), default(uint));
-                Y = func_00252FFC((uint)((n * 4)), default(uint), default(uint), default(uint));
-                rec = (@out + 8u);
-                Mem.Set(@out, 36);
-                Mem.Set((@out + 4u), n);
+                X = func_00252FFC((uint)((n * 4)));
+                T = func_00252FFC((uint)((n * 4)));
+                Y = func_00252FFC((uint)((n * 4)));
+                rec = new O01Spl(@out).rec.P;
+                new O01Spl(@out).stride_Set(36);
+                new O01Spl(@out).count_Set(n);
                 if ((n == 1))
                 {
-                    Mem.Set((rec + (uint)(0 * 36)), Mem.F32((pts + (uint)(0 * 12))));
-                    Mem.Set(((rec + (uint)(0 * 36)) + 4u), Mem.F32(((pts + (uint)(0 * 12)) + 4u)));
-                    z0 = Mem.F32(((pts + (uint)(0 * 12)) + 8u));
-                    Mem.Set(((rec + (uint)(0 * 36)) + 12u), acc);
-                    Mem.Set(((rec + (uint)(0 * 36)) + 16u), acc);
-                    Mem.Set(((rec + (uint)(0 * 36)) + 20u), acc);
-                    Mem.Set(((rec + (uint)(0 * 36)) + 32u), acc);
-                    Mem.Set(((rec + (uint)(0 * 36)) + 28u), acc);
-                    Mem.Set(((rec + (uint)(0 * 36)) + 8u), z0);
+                    new O01SplRec((rec + (uint)(0 * 36))).x_Set(new O01Vec3((pts + (uint)(0 * 12))).x);
+                    new O01SplRec((rec + (uint)(0 * 36))).y_Set(new O01Vec3((pts + (uint)(0 * 12))).y);
+                    z0 = new O01Vec3((pts + (uint)(0 * 12))).z;
+                    new O01SplRec((rec + (uint)(0 * 36))).cx_Set(acc);
+                    new O01SplRec((rec + (uint)(0 * 36))).cy_Set(acc);
+                    new O01SplRec((rec + (uint)(0 * 36))).cz_Set(acc);
+                    new O01SplRec((rec + (uint)(0 * 36))).c2_Set(acc);
+                    new O01SplRec((rec + (uint)(0 * 36))).t_Set(acc);
+                    new O01SplRec((rec + (uint)(0 * 36))).z_Set(z0);
                     return;
                 }
                 for (i = 0; (i < n); ++i)
                 {
-                    Mem.Set((rec + (uint)(i * 36)), Mem.F32((pts + (uint)(i * 12))));
-                    Mem.Set(((rec + (uint)(i * 36)) + 4u), Mem.F32(((pts + (uint)(i * 12)) + 4u)));
-                    Mem.Set(((rec + (uint)(i * 36)) + 8u), Mem.F32(((pts + (uint)(i * 12)) + 8u)));
-                    Mem.Set(((rec + (uint)(i * 36)) + 28u), Mem.F32((tv + (uint)(i * 4))));
+                    new O01SplRec((rec + (uint)(i * 36))).x_Set(new O01Vec3((pts + (uint)(i * 12))).x);
+                    new O01SplRec((rec + (uint)(i * 36))).y_Set(new O01Vec3((pts + (uint)(i * 12))).y);
+                    new O01SplRec((rec + (uint)(i * 36))).z_Set(new O01Vec3((pts + (uint)(i * 12))).z);
+                    new O01SplRec((rec + (uint)(i * 36))).t_Set(Mem.F32((tv + (uint)(i * 4))));
                 }
                 for (i = 0; (i < n); ++i)
                 {
-                    Mem.Set(((rec + (uint)(i * 36)) + 24u), acc);
+                    new O01SplRec((rec + (uint)(i * 36))).arc_Set(acc);
                     if ((i == (n - 1)))
                     {
                         break;
                     }
                     func_00271FD8(_fp, (rec + (uint)(i * 36)), (rec + (uint)((i + 1) * 36)));
-                    acc = (float)((float)(acc) + sqrtf((((Mem.F32(_fp) * Mem.F32(_fp)) + (Mem.F32((_fp + 4u)) * Mem.F32((_fp + 4u)))) + (Mem.F32((_fp + 8u)) * Mem.F32((_fp + 8u))))));
+                    acc = (float)((float)(acc) + sqrtf((((new O01Vec3(_fp).x * new O01Vec3(_fp).x) + (new O01Vec3(_fp).y * new O01Vec3(_fp).y)) + (new O01Vec3(_fp).z * new O01Vec3(_fp).z))));
                 }
                 for (i = 0; (i < n); ++i)
                 {
-                    Mem.Set((X + (uint)(i * 4)), Mem.F32((rec + (uint)(i * 36))));
-                    Mem.Set((T + (uint)(i * 4)), Mem.F32(((rec + (uint)(i * 36)) + 24u)));
-                }
-                func_00400000(n, X, T, Y);
-                for (i = 0; (i < n); ++i)
-                {
-                    Mem.Set(((rec + (uint)(i * 36)) + 12u), Mem.F32((Y + (uint)(i * 4))));
-                }
-                for (i = 0; (i < n); ++i)
-                {
-                    Mem.Set((X + (uint)(i * 4)), Mem.F32(((rec + (uint)(i * 36)) + 4u)));
-                    Mem.Set((T + (uint)(i * 4)), Mem.F32(((rec + (uint)(i * 36)) + 24u)));
+                    Mem.Set((X + (uint)(i * 4)), new O01SplRec((rec + (uint)(i * 36))).x);
+                    Mem.Set((T + (uint)(i * 4)), new O01SplRec((rec + (uint)(i * 36))).arc);
                 }
                 func_00400000(n, X, T, Y);
                 for (i = 0; (i < n); ++i)
                 {
-                    Mem.Set(((rec + (uint)(i * 36)) + 16u), Mem.F32((Y + (uint)(i * 4))));
+                    new O01SplRec((rec + (uint)(i * 36))).cx_Set(Mem.F32((Y + (uint)(i * 4))));
                 }
                 for (i = 0; (i < n); ++i)
                 {
-                    Mem.Set((X + (uint)(i * 4)), Mem.F32(((rec + (uint)(i * 36)) + 8u)));
-                    Mem.Set((T + (uint)(i * 4)), Mem.F32(((rec + (uint)(i * 36)) + 24u)));
-                }
-                func_00400000(n, X, T, Y);
-                for (i = 0; (i < n); ++i)
-                {
-                    Mem.Set(((rec + (uint)(i * 36)) + 20u), Mem.F32((Y + (uint)(i * 4))));
-                }
-                for (i = 0; (i < n); ++i)
-                {
-                    Mem.Set((X + (uint)(i * 4)), Mem.F32(((rec + (uint)(i * 36)) + 24u)));
-                    Mem.Set((T + (uint)(i * 4)), Mem.F32(((rec + (uint)(i * 36)) + 28u)));
+                    Mem.Set((X + (uint)(i * 4)), new O01SplRec((rec + (uint)(i * 36))).y);
+                    Mem.Set((T + (uint)(i * 4)), new O01SplRec((rec + (uint)(i * 36))).arc);
                 }
                 func_00400000(n, X, T, Y);
                 for (i = 0; (i < n); ++i)
                 {
-                    Mem.Set(((rec + (uint)(i * 36)) + 32u), Mem.F32((Y + (uint)(i * 4))));
+                    new O01SplRec((rec + (uint)(i * 36))).cy_Set(Mem.F32((Y + (uint)(i * 4))));
+                }
+                for (i = 0; (i < n); ++i)
+                {
+                    Mem.Set((X + (uint)(i * 4)), new O01SplRec((rec + (uint)(i * 36))).z);
+                    Mem.Set((T + (uint)(i * 4)), new O01SplRec((rec + (uint)(i * 36))).arc);
+                }
+                func_00400000(n, X, T, Y);
+                for (i = 0; (i < n); ++i)
+                {
+                    new O01SplRec((rec + (uint)(i * 36))).cz_Set(Mem.F32((Y + (uint)(i * 4))));
+                }
+                for (i = 0; (i < n); ++i)
+                {
+                    Mem.Set((X + (uint)(i * 4)), new O01SplRec((rec + (uint)(i * 36))).arc);
+                    Mem.Set((T + (uint)(i * 4)), new O01SplRec((rec + (uint)(i * 36))).t);
+                }
+                func_00400000(n, X, T, Y);
+                for (i = 0; (i < n); ++i)
+                {
+                    new O01SplRec((rec + (uint)(i * 36))).c2_Set(Mem.F32((Y + (uint)(i * 4))));
                 }
                 func_00254784(X);
                 func_00254784(T);

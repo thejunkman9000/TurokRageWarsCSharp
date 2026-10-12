@@ -10,12 +10,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00205EC4", (uint)actor, (uint)state);
-            uint def = Mem.U32((actor + 24u));
-            Mem.Set((state + 44u), 0x800CD79Cu);
-            Mem.Set((state + 264u), 0x00206018u);
-            if ((((int)(Mem.U16((actor + 228u))) == 1604) || ((Mem.U32((def + 20u)) & (uint)(8)) != 0u)))
+            uint def = new Actor(actor).def_;
+            new ActorState(state).table_Set(0x800CD79Cu);
+            new ActorState(state).fn108_Set(0x00206018u);
+            if ((((int)(new Actor(actor).unkE4) == 1604) || ((new B01Def(def).flags14 & (uint)(8)) != 0u)))
             {
-                Mem.Set((actor + 256u), (uint)((uint)(Mem.U32((actor + 256u))) & (uint)((~8192))));
+                new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~8192))));
             }
         }
     }

@@ -13,12 +13,12 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00278F70", (uint)r);
-                Mem.Set((r + 14u), (byte)((int)(Mem.U8((r + 14u))) | 32));
-                if (((int)(Mem.U8((r + 17u))) == 1))
+                new Rec14(r).flagsE_Set((byte)((int)(new Rec14(r).flagsE) | 32));
+                if (((int)(new Rec14(r).b11) == 1))
                 {
                     Mem.Copy(_fp, r, 20);
-                    Mem.Set((_fp + 18u), (byte)(2));
-                    Mem.Set((_fp + 16u), (byte)(0));
+                    new Rec14(_fp).b12_Set((byte)(2));
+                    new Rec14(_fp).b10_Set((byte)(0));
                     func_00278C80(_fp);
                 }
             }

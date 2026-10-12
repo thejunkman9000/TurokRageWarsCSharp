@@ -15,14 +15,14 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00241718", (uint)q);
                 Mem.Copy(_fp + 0u, (q + 72u), 12);
                 float r = 0f;
-                if ((Mem.F32((_fp + 4u)) != 0.0f))
+                if ((new B09V3(_fp).y != 0.0f))
                 {
-                    Mem.Copy((_fp + 16u), ((q + 24u) + (uint)(0 * 12)), 12);
-                    r = (((((Mem.F32(((_fp + 16u) + 8u)) - z) * Mem.F32((_fp + 8u))) + ((Mem.F32((_fp + 16u)) - x) * Mem.F32(_fp))) + (Mem.F32(((_fp + 16u) + 4u)) * Mem.F32((_fp + 4u)))) / Mem.F32((_fp + 4u)));
+                    Mem.Copy((_fp + 16u), (new B09Quad(q).v.P + (uint)(0 * 12)), 12);
+                    r = (((((new B09V3((_fp + 16u)).z - z) * new B09V3(_fp).z) + ((new B09V3((_fp + 16u)).x - x) * new B09V3(_fp).x)) + (new B09V3((_fp + 16u)).y * new B09V3(_fp).y)) / new B09V3(_fp).y);
                 }
                 else
                 {
-                    r = Mem.F32((((q + 24u) + (uint)(0 * 12)) + 4u));
+                    r = new B09Quad(q).v[(int)(0)].y;
                 }
                 return r;
             }

@@ -11,13 +11,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00268C1C", (uint)pool, (uint)val);
             uint e = 0u;
-            e = Mem.U32((pool + 20u));
+            e = new B15Pool(pool).head_;
             if ((e != 0u))
             {
                 func_00255E78((pool + 20u), e, default(uint), default(uint));
-                func_00255C58(pool, e, default(uint), default(uint));
-                Mem.Set((e + 8u), val);
-                Mem.Set((e + 22u), (short)(0));
+                func_00255C58(pool, e);
+                new B15Ent_v2(e).unk8_Set(val);
+                new B15Ent_v2(e).unk16_Set((short)(0));
             }
             return e;
         }

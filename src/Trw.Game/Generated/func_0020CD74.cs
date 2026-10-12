@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020CD74_getRec0", (uint)m, (uint)idx);
-            uint pool = Mem.U32(m);
-            return ((pool + 8u) + (uint)(idx * Mem.S32(pool)));
+            uint pool = new B2Mgr(m).pool0_;
+            return (new B2Pool(pool).data.P + (uint)(idx * new B2Pool(pool).elemSize));
         }
     }
 
@@ -26,8 +26,8 @@ public static partial class Game
                 int r = 0;
                 int s0 = 0;
                 Mem.Copy(_fp, func_0020CD74_getRec0(m, idx), 12);
-                Mem.Set((_fp + 4u), (float)((float)(Mem.F32((_fp + 4u))) + Mem.F32(0x800C6E84u)));
-                if ((((int)(Mem.U8(a)) == 1) && ((Mem.U32((a + 256u)) & (uint)(3145728)) != 0u)))
+                new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + Mem.F32(0x800C6E84u)));
+                if ((((int)(new B2Actor(a).kind) == 1) && ((new B2Actor(a).flags & (uint)(3145728)) != 0u)))
                 {
                     Mem.Copy((_fp + 16u), 0x801040D0u, 28);
                 }
@@ -57,7 +57,7 @@ public static partial class Game
                         }
                     }
                 }
-                Mem.Set((_fp + 16u), 16384);
+                new B2Opts((_fp + 16u)).w0_Set(16384);
                 Mem.Copy((_fp + 48u), a, 80);
                 r = func_00243A80((int)(a), Cpu.U2F(Mem.U32(_fp + 0u)), Cpu.U2F(Mem.U32(_fp + 4u)), Cpu.U2F(Mem.U32(_fp + 8u)), (int)((_fp + 16u)));
                 Mem.Copy(a, (_fp + 48u), 80);

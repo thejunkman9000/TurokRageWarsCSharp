@@ -11,16 +11,16 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0042340C");
             int a = 0;
-            switch (func_0041A4F0((uint)(Mem.S32((Mem.U32(0x800E4510u) + (uint)(0 * 4))))))
+            switch (func_0041A4F0((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(0)])))
             {
             case 3:
                 break;
             case 4:
                 func_0029A73C();
-                a = Mem.S32((Mem.U32(0x800E4510u) + (uint)(8 * 4)));
+                a = new O3Words(Mem.U32(0x800E4510u)).w[(int)(8)];
                 if ((a != (-1)))
                 {
-                    func_00299368((uint)(a), default(uint), default(uint), default(uint));
+                    func_00299368(a);
                 }
                 else
                 {

@@ -18,8 +18,8 @@ public static partial class Game
                 float d = 0f;
                 float r = 0f;
                 float m = 0f;
-                func_00274090(_fp);
-                func_00274090((_fp + 4u));
+                func_00274090(_fp, default(uint), default(uint), default(uint));
+                func_00274090((_fp + 4u), default(uint), default(uint), default(uint));
                 if (!((dir > 0))) goto _f0;
                 if (!((Mem.F32((_fp + 4u)) < Mem.F32(_fp)))) goto _f1;
                 Mem.Set((_fp + 4u), (Mem.F32((_fp + 4u)) + Mem.F32(0x800C7340u)));

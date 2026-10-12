@@ -10,21 +10,21 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029A468");
-            int t = Mem.S32((Mem.U32(0x8014D080u) + 8u));
-            while ((Mem.S32((Mem.U32(0x8014D080u) + 4u)) >= t))
+            int t = new SndMgr_v2(Mem.U32(0x8014D080u)).unk8;
+            while ((new SndMgr_v2(Mem.U32(0x8014D080u)).top >= t))
             {
-                Mem.Set((Mem.U32(0x8014D080u) + 1328u), 1);
+                new SndMgr_v2(Mem.U32(0x8014D080u)).unk530_Set(1);
                 func_00299ECC();
             }
-            if ((Mem.U32(Mem.U32(0x8014D080u)) != 0u))
+            if ((new SndMgr_v2(Mem.U32(0x8014D080u)).fn0 != 0u))
             {
-                Funcs.CallReg(Mem.U32(Mem.U32(0x8014D080u)), (uint)(3589), (uint)(0), (uint)(0), (uint)(0));
+                Funcs.CallReg(new SndMgr_v2(Mem.U32(0x8014D080u)).fn0, (uint)(3589), (uint)(0), (uint)(0), (uint)(0));
             }
-            if ((Mem.U32((Mem.U32(0x8014D080u) + 1340u)) != 0u))
+            if ((new SndMgr_v2(Mem.U32(0x8014D080u)).unk53C_ != 0u))
             {
-                func_00254784(Mem.U32((Mem.U32(0x8014D080u) + 1340u)));
+                func_00254784(new SndMgr_v2(Mem.U32(0x8014D080u)).unk53C_);
             }
-            func_00254784(Mem.U32((Mem.U32(0x8014D080u) + 12u)));
+            func_00254784(new SndMgr_v2(Mem.U32(0x8014D080u)).stk_);
             func_00254784(Mem.U32(0x8014D080u));
             Mem.Set(0x8014D080u, 0u);
             func_0029BAAC();

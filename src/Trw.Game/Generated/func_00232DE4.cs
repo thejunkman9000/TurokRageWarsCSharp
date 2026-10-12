@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00232DE4", (uint)actor);
-            uint owner = Mem.U32((actor + 472u));
-            func_0044ACCC(owner, default(uint), default(uint), default(uint));
+            uint owner = new Actor(actor).owner_;
+            func_0044ACCC(owner);
             if (((int)(Mem.S16((owner + (uint)1616))) == 39))
             {
                 func_002227D0(owner, (int)(owner), 2);

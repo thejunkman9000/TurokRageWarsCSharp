@@ -13,17 +13,17 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00284200", (uint)o);
-                int n = (int)(Mem.S8((Mem.U32((Mem.U32((o + 280u)) + 56u)) + 12u)));
+                int n = (int)(new B19Obj(o).parent.info38.n);
                 uint idv = 0u;
                 int i = 0;
                 float k = 0f;
                 uint g = 0u;
                 if ((n > 0))
                 {
-                    Mem.Copy((_fp + 48u), (o + 28u), 12);
-                    func_00271888(_fp, (_fp + 48u), default(uint), default(uint));
+                    Mem.Copy((_fp + 48u), new B19Obj(o).pos2.P, 12);
+                    func_00271888(_fp, (_fp + 48u));
                     g = 0x80121990u;
-                    func_00271FD8((_fp + 16u), (o + 8u), (o + (uint)360));
+                    func_00271FD8((_fp + 16u), new B19Obj(o).pos.P, (o + (uint)360));
                     i = 1;
                     if ((i <= n))
                     {
@@ -32,8 +32,8 @@ public static partial class Game
                         {
                             func_0027200C((_fp + 32u), (_fp + 16u), ((float)(i) / k));
                             func_00271FA4((_fp + 32u), (_fp + 32u), (o + (uint)360));
-                            idv = (uint)(Mem.U16((o + 4u)));
-                            func_00280094(g, o, (uint)(Mem.S32((o + 300u))), Mem.U32((o + 304u)), (int)(Mem.U32((o + 308u))), (int)(idv), (_fp + 48u), _fp, (_fp + 32u), 0, (-1), 2154497);
+                            idv = (uint)(new B19Obj(o).id);
+                            func_00280094(g, o, (uint)(new B19Obj(o).unk12C), new B19Obj(o).unk130_, (int)(new B19Obj(o).unk134), (int)(idv), (_fp + 48u), _fp, (_fp + 32u), 0, (-1), 2154497);
                             ++i;
                         }
                         while ((i <= n));

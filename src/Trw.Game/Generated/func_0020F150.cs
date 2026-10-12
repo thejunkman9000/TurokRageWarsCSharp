@@ -16,18 +16,18 @@ public static partial class Game
             int count = 0;
             int i = 0;
             count = 0;
-            for (n = Mem.U32((L + 36u)); (n != 0u); n = Mem.U32((n + 16u)))
+            for (n = new EntList(L).head_; (n != 0u); n = new EntNode(n).next_)
             {
-                r = func_0020C994(L, Mem.S32(n));
-                if ((((int)(Mem.U16((r + 12u))) & 1) != 0))
+                r = func_0020C994(L, new EntNode(n).key);
+                if ((((int)(new EntRec(r).flags) & 1) != 0))
                 {
                     for (i = 0; (i < 30); ++i)
                     {
-                        if (((int)(Mem.U16((r + 14u))) == Mem.S32((ids + (uint)(i * 4)))))
+                        if (((int)(new EntRec(r).id) == Mem.S32((ids + (uint)(i * 4)))))
                         {
-                            if (((Mem.U32((n + 52u)) != 0u) && (Mem.S32((Mem.U32((n + 52u)) + 660u)) != 0)))
+                            if (((new EntNode(n).owner_ != 0u) && (new EntNode(n).owner.unk294 != 0)))
                             {
-                                func_0020D220(L, Mem.S32(n));
+                                func_0020D220(L, new EntNode(n).key);
                                 ++count;
                             }
                         }
@@ -36,16 +36,16 @@ public static partial class Game
             }
             if ((count == 0))
             {
-                for (n = Mem.U32((L + 36u)); (n != 0u); n = Mem.U32((n + 16u)))
+                for (n = new EntList(L).head_; (n != 0u); n = new EntNode(n).next_)
                 {
-                    r = func_0020C994(L, Mem.S32(n));
-                    if ((((int)(Mem.U16((r + 12u))) & 1) != 0))
+                    r = func_0020C994(L, new EntNode(n).key);
+                    if ((((int)(new EntRec(r).flags) & 1) != 0))
                     {
                         for (i = 0; (i < 30); ++i)
                         {
-                            if (((int)(Mem.U16((r + 14u))) == Mem.S32((ids + (uint)(i * 4)))))
+                            if (((int)(new EntRec(r).id) == Mem.S32((ids + (uint)(i * 4)))))
                             {
-                                func_0020D220(L, Mem.S32(n));
+                                func_0020D220(L, new EntNode(n).key);
                                 ++count;
                             }
                         }

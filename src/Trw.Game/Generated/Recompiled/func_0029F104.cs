@@ -36,7 +36,7 @@ public static partial class Game
                 L_L0029F148: ;
                 r1 = 2148335616u;
                 Cpu.Fpr[14] = Mem.U64((r1 - 20992u));
-                Cpu.SetD(12, (double)Cpu.S(12)); r2 = func_0029C278_rc(r4, r5, r6, r7); r3 = Cpu.V1;
+                Cpu.SetD(12, (double)Cpu.S(12)); Cpu.SetD(0, func_0029C278(Cpu.D(12), Cpu.D(14)));
                 Cpu.SetS(1, (float)Cpu.D(0)); goto L_L0029F1BC;
                 L_L0029F160: ;
                 r1 = 2148335616u;

@@ -11,20 +11,20 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00426354", (uint)p);
             int i = 0;
-            if (((int)(Mem.U8((Mem.U32((p + 1496u)) + 145u))) == 1))
+            if (((int)(new O04Plr(p).unk5D8.unk91) == 1))
             {
                 return;
             }
-            if (((int)(Mem.U8((Mem.U32((p + 1496u)) + 120u))) == 0))
+            if (((int)(new O04Plr(p).unk5D8.unk78) == 0))
             {
                 return;
             }
             for (i = 0; (i < 22); ++i)
             {
-                if (((int)(Mem.U8(((Mem.U32((p + 1496u)) + 76u) + (uint)i))) == 1))
+                if (((int)(new O04Plr(p).unk5D8.u4C[(int)(i)]) == 1))
                 {
-                    Mem.Set(((p + 1538u) + (uint)(i * 2)), Mem.U8(((Mem.U32((p + 1496u)) + 76u) + (uint)i)));
-                    Mem.Set((((p + 1538u) + (uint)(i * 2)) + 1u), Mem.U8(((Mem.U32((p + 1496u)) + 98u) + (uint)i)));
+                    new O04Plr(p).unk602[(int)(i)].a_Set(new O04Plr(p).unk5D8.u4C[(int)(i)]);
+                    new O04Plr(p).unk602[(int)(i)].b_Set(new O04Plr(p).unk5D8.u62[(int)(i)]);
                 }
             }
         }

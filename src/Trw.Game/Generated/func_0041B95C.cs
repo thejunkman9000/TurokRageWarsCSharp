@@ -11,21 +11,21 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0041B95C", (uint)m, (uint)idx, (uint)it);
             int i = 0;
-            if ((Mem.S32(((m + 92u) + (uint)(idx * 4))) == 0))
+            if ((new O3M7D5(m).flag[(int)(idx)] == 0))
             {
-                if ((Mem.U32(((m + 76u) + (uint)(idx * 4))) != 0u))
+                if ((new O3M7D5(m).item[(int)(idx)] != 0u))
                 {
-                    func_0040E9A8(Mem.U32(((m + 76u) + (uint)(idx * 4))), 0);
+                    func_0040E9A8(new O3M7D5(m).item[(int)(idx)], 0);
                 }
                 func_0040E9A8(it, 1);
-                if ((Mem.S32((m + 108u)) == 0))
+                if ((new O3M7D5(m).mode == 0))
                 {
-                    Mem.Set(((m + 76u) + (uint)(idx * 4)), it);
+                    new O3M7D5(m).item.Set((int)(idx), it);
                     return;
                 }
                 for (i = 3; (i >= 0); --i)
                 {
-                    Mem.Set(((m + 76u) + (uint)(i * 4)), it);
+                    new O3M7D5(m).item.Set((int)(i), it);
                 }
             }
         }

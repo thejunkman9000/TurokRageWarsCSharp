@@ -17,11 +17,11 @@ public static partial class Game
                 {
                     return 0;
                 }
-                Mem.Copy(_fp, (Mem.U32(ctl) + 8u), 12);
-                Mem.Copy((_fp + 16u), (target + 8u), 12);
-                Mem.Set((_fp + 4u), (float)((float)(Mem.F32((_fp + 4u))) + Mem.F32(0x800C6D7Cu)));
-                Mem.Set(((_fp + 16u) + 4u), (float)((float)(Mem.F32(((_fp + 16u) + 4u))) + Mem.F32(0x800C6D7Cu)));
-                if ((func_00244494(Mem.U32(ctl), _fp, (_fp + 16u), 0x80103FD0u) != 0))
+                Mem.Copy(_fp, new B2Ctl(ctl).owner.pos.P, 12);
+                Mem.Copy((_fp + 16u), new B2Actor(target).pos.P, 12);
+                new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + Mem.F32(0x800C6D7Cu)));
+                new Vec3f((_fp + 16u)).y_Set((float)((float)(new Vec3f((_fp + 16u)).y) + Mem.F32(0x800C6D7Cu)));
+                if ((func_00244494(new B2Ctl(ctl).owner_, _fp, (_fp + 16u), 0x80103FD0u) != 0))
                 {
                     return ((Mem.U32(Mem.U32(0x80103FCCu)) == target) ? 1 : 0);
                 }

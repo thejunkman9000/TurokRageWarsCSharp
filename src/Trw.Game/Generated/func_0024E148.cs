@@ -10,11 +10,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024E148", (uint)a);
-            if ((((int)(Mem.U8(a)) == 1) && ((Mem.U32((a + 256u)) & (uint)(3145728)) != 0u)))
+            if ((((int)(new Obj(a).type) == 1) && ((new Obj(a).flags & (uint)(3145728)) != 0u)))
             {
                 return 1;
             }
-            switch (Mem.S32(Mem.U32((a + 24u))))
+            switch (new ObjDef(new Obj(a).def_).type)
             {
             case 1:
             case 2:

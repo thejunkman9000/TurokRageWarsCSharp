@@ -16,7 +16,7 @@ public static partial class Game
             }
             if ((Mem.S32((0x80153500u + (uint)(pad * 4))) == 0))
             {
-                Mem.Set(@out, (Mem.S32((Mem.U32(0x800E2854u) + (uint)(pad * 516))) / 256));
+                Mem.Set(@out, (new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).unk0 / 256));
             }
             else
             {

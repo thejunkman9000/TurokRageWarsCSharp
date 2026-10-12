@@ -15,18 +15,18 @@ public static partial class Game
             int t = 0;
             uint arr = 0u;
             i = 0;
-            n = Mem.S32((lv + 5380u));
-            arr = (lv + 5384u);
+            n = new Level(lv).cnt1504;
+            arr = new Level(lv).ents.P;
             for (; (i < n); ++i)
             {
-                func_002536F4(0, Mem.U32((arr + (uint)(i * 12))));
+                func_002536F4(0, new Ent12((arr + (uint)(i * 12))).tblp);
             }
-            t = Mem.S32((lv + 5380u));
-            Mem.Set((lv + 2372u), 0);
-            Mem.Set((lv + 3148u), 0);
-            Mem.Set((lv + 4284u), 0);
-            Mem.Set((lv + 5380u), 0);
-            Mem.Set((lv + 5376u), t);
+            t = new Level(lv).cnt1504;
+            new Level(lv).cnt944_Set(0);
+            new Level(lv).cntC4C_Set(0);
+            new Level(lv).cnt10BC_Set(0);
+            new Level(lv).cnt1504_Set(0);
+            new Level(lv).cnt1500_Set(t);
         }
     }
 

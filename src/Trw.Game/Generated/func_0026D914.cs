@@ -13,14 +13,14 @@ public static partial class Game
             if ((Mem.S32(0x80110620u) == 0))
             {
                 uint p = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                Mem.Set(p, 3808434177u);
-                Mem.Set((p + 4u), a);
+                new DlCmd(p).w0_Set(3808434177u);
+                new DlCmd(p).w1_Set(a);
             }
             else
             {
-                uint p = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                Mem.Set(p, 3808434177u);
-                Mem.Set((p + 4u), (uint)(128));
+                uint p_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                new DlCmd(p_2).w0_Set(3808434177u);
+                new DlCmd(p_2).w1_Set((uint)(128));
             }
         }
     }

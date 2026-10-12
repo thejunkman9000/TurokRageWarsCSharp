@@ -11,23 +11,23 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0020A884", (uint)brain, (uint)cfg);
             float k = 0f;
-            if ((Mem.S32((brain + 748u)) == 0))
+            if ((new Brain(brain).unk2EC == 0))
             {
-                if (((Mem.S32((brain + 572u)) == 0) && (Mem.S32((brain + 576u)) <= 0)))
+                if (((new Brain(brain).unk23C == 0) && (new Brain(brain).unk240 <= 0)))
                 {
                     k = Mem.F32(0x800C6E1Cu);
-                    if (((func_002745D4(Mem.F32(0x800C6E18u)) + k) > (float)(Mem.S32((cfg + 24u)))))
+                    if (((func_002745D4(Mem.F32(0x800C6E18u)) + k) > (float)(new AiCfg(cfg).unk18)))
                     {
-                        Mem.Set((brain + 576u), 1);
+                        new Brain(brain).unk240_Set(1);
                         func_0020A95C(brain, cfg);
                     }
-                    Mem.Set((brain + 748u), Mem.S32((cfg + 16u)));
-                    Mem.Set((brain + 748u), (int)(((float)(Mem.S32((brain + 748u))) + (func_002745D4(k) * (float)(Mem.S32((cfg + 20u)))))));
+                    new Brain(brain).unk2EC_Set(new AiCfg(cfg).unk10);
+                    new Brain(brain).unk2EC_Set((int)(((float)(new Brain(brain).unk2EC) + (func_002745D4(k) * (float)(new AiCfg(cfg).unk14)))));
                 }
             }
             else
             {
-                Mem.Set((brain + 748u), (int)(Mem.S32((brain + 748u)) - 1));
+                new Brain(brain).unk2EC_Set((int)(new Brain(brain).unk2EC - 1));
             }
         }
     }

@@ -10,14 +10,14 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00203DF0", (uint)mtx, (uint)hit);
-            uint info = (Mem.U32((Mem.U32((hit + 8u)) + 24u)) + (uint)20);
-            if ((Mem.S32((hit + 4u)) == Mem.S32((info + 60u))))
+            uint info = (new B01Hit(hit).actor.def_ + (uint)20);
+            if ((new B01Hit(hit).unk4 == new B01Info(info).unk3C))
             {
-                func_00273930(mtx, Mem.F32((Mem.U32((hit + 8u)) + 660u)));
+                func_00273930(mtx, new B01Hit(hit).actor.unk294);
             }
-            if ((Mem.S32((hit + 4u)) == Mem.S32((info + 64u))))
+            if ((new B01Hit(hit).unk4 == new B01Info(info).unk40.i))
             {
-                func_00273CD8(mtx, (Mem.F32((Mem.U32((hit + 8u)) + 524u)) - Mem.F32((Mem.U32((hit + 8u)) + 108u))));
+                func_00273CD8(mtx, (new B01Hit(hit).actor.unk20C - new B01Hit(hit).actor.unk6C));
             }
         }
     }

@@ -2,20 +2,20 @@
 #   pass 1   Trw.Transpile  -> signatures of every function / prototype
 #   mips2cs                 -> C# for the functions that have no C source (recompiled from MIPS), plus their signatures
 #   pass 2   Trw.Transpile  -> C# for every C function, with call sites coerced to the merged signatures
-param([string]$CRoot = "D:\Projects\TurokRageWars")
+param([string]$CRoot = "D:\Projects\TurokRageWars", [string]$ForceMips = "", [switch]$StructViews)   # -StructViews: also generate Generated/Structs (typed struct views) and let the emitter use them
 $ErrorActionPreference = "Stop"
 $repo = Split-Path -Parent $PSScriptRoot
 Set-Location $repo
 $tmp = Join-Path $env:TEMP "trw_regen"; New-Item -ItemType Directory -Force $tmp | Out-Null
-$gen = Join-Path $repo "src\Trw.Game\Generated"
+$gen = Join-Path $repo "src/Trw.Game/Generated"
 
 # list of C sources
 $list = Join-Path $tmp "all.txt"
-$files = foreach ($d in "game","ovl_a","libultra") { Get-ChildItem (Join-Path $CRoot "src\$d") -Filter *.c | ForEach-Object { "src/$d/" + $_.Name } }
+$files = foreach ($d in "game","ovl_a","libultra") { Get-ChildItem (Join-Path $CRoot "src/$d") -Filter *.c | ForEach-Object { "src/$d/" + $_.Name } }
 # hand-ported native C of the C port: the RNC decompressors (their MIPS helpers share registers with their caller, which a per-function recompile cannot express)
 $files = @($files) + @("port/native/rnc.c", "port/native/rnc2_gen.c")
 # hand-checked replacements for functions whose decompiled C needs a behavioural fix (tools/overrides/<function>.c replaces <function>)
-$ovDir = Join-Path $repo "tools\overrides"
+$ovDir = Join-Path $repo "tools/overrides"
 if (Test-Path $ovDir) { $files = @($files) + @(Get-ChildItem $ovDir -Filter *.c | ForEach-Object { $_.FullName }) }
 $files | Set-Content $list
 
@@ -23,6 +23,14 @@ dotnet build tools/Trw.Transpile --nologo -v q | Out-Null
 # how many argument registers the ROM code of each function reads: the C prototypes can be shorter (a (void) stub that is only `jal f` forwards a0..a3)
 python tools/arity.py --c-root $CRoot --out (Join-Path $tmp "arity.txt")
 $common = @("--ast-cache", (Join-Path $env:TEMP "trw_ast"), "--root", $CRoot, "--syms", (Join-Path $CRoot "symbol_addrs.txt"), "--exclude", "tools/Trw.Transpile/shim_replaced.txt", "--override-dir", $ovDir, "--arity-in", (Join-Path $tmp "arity.txt"))
+
+# optional: typed struct views (docs/TRANSPILER.md, "Struct views"): Generated/Structs/*.cs + the list of structs the emitter may use
+if ($StructViews) {
+    Write-Host "struct views"
+    $svDir = Join-Path $tmp "Structs"; $svList = Join-Path $tmp "structs.txt"
+    dotnet run --project tools/Trw.Transpile --no-build -- @common --struct-views-out $svDir --struct-views-list $svList "@$list"
+    $common += @("--emit-views", $svList)
+}
 
 Write-Host "pass 1: signatures"
 dotnet run --project tools/Trw.Transpile --no-build -- @common --sigs-out (Join-Path $tmp "sigs1.txt") --defs-out (Join-Path $tmp "defs.txt") --used-out (Join-Path $tmp "used.txt") --called-out (Join-Path $tmp "called.txt") --mips-out (Join-Path $tmp "needs_mips.txt") "@$list" | Select-Object -First 1
@@ -48,7 +56,7 @@ Write-Host "void in C but used with a value: $(@($voidUsed).Count) functions -> 
 # The same for callers in the ROM that read the result of a void-in-C function: they cannot be seen in the C (tools/retuse.py scans the assembly of every function,
 # following tail calls)
 $retUse = Join-Path $tmp "retuse.txt"
-python tools/retuse.py --asm (Join-Path $CRoot "asm") --sigs (Join-Path $tmp "sigs1.txt") --out $retUse
+python tools/retuse.py --asm (Join-Path $CRoot "port/build/asm_func") (Join-Path $CRoot "port/build/asm_extra") --sigs (Join-Path $tmp "sigs1.txt") --out $retUse
 $haveVoid = @{}
 foreach ($l in Get-Content $voidFile) { if ($l -and -not $l.StartsWith("#")) { $haveVoid[($l -split '\|')[0]] = 1 } }
 foreach ($l in Get-Content $retUse) { if ($l -and -not $haveVoid.ContainsKey(($l -split '\|')[0]) -and $defs.ContainsKey(($l -split '\|')[0])) { $l | Add-Content $voidFile } }
@@ -56,6 +64,19 @@ foreach ($l in Get-Content $retUse) { if ($l -and -not $haveVoid.ContainsKey(($l
 $needsMips = Get-Content (Join-Path $tmp "needs_mips.txt") | Where-Object { $_ }
 foreach ($n in $needsMips) { "$n|" | Add-Content $voidFile }
 Write-Host "untranslatable C: $(@($needsMips).Count) functions -> recompiled from MIPS"
+
+# C functions that are deliberately translated from the MIPS instead (tools/mips2cs/force_mips.txt: "name  # why", one per line; -ForceMips <file> overrides the list)
+$forceFile = if ($ForceMips) { $ForceMips } else { Join-Path $repo "tools/mips2cs/force_mips.txt" }
+if (Test-Path $forceFile) {
+    $haveF = @{}
+    foreach ($l in Get-Content $voidFile) { if ($l -and -not $l.StartsWith("#")) { $haveF[($l -split '\|')[0]] = 1 } }
+    $nf = 0
+    foreach ($l in Get-Content $forceFile) {
+        $n = ($l -replace '#.*$', '').Trim()
+        if ($n -and $defs.ContainsKey($n) -and -not $haveF.ContainsKey($n)) { "$n|" | Add-Content $voidFile; $nf++ }
+    }
+    Write-Host "forced to MIPS ($forceFile): $nf functions"
+}
 
 $extra = Get-Content tools/mips2cs/extra_names.txt | Where-Object { $_ }
 $rcDir = Join-Path $tmp "Recompiled"
@@ -86,6 +107,7 @@ for ($round = 1; $round -le 5; $round++) {
     Write-Host "round ${round}: $($new.Count) more C functions need the MIPS"
 }
 Copy-Item $rcDir (Join-Path $gen "Recompiled") -Recurse
+if ($StructViews) { Copy-Item $svDir (Join-Path $gen "Structs") -Recurse }
 Copy-Item $merged (Join-Path $gen "sigs.txt")          # signatures of every function (differential tests, Trw.Game/Debug/DiffTest)
 
 # stubs for the functions that are called but defined nowhere (the C port stubs these too)

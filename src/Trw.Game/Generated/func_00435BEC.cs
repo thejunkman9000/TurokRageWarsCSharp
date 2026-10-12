@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00435BEC", (uint)a, (uint)b, (uint)c, (uint)d);
             int idx = (int)((c & (uint)(65535)));
-            if ((Mem.S32(((Mem.U32(0x800E54A4u) + 88u) + (uint)(idx * 2920))) == 12))
+            if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].state == 12))
             {
                 if (((c >> (int)16) == (uint)(3)))
                 {
@@ -19,8 +19,8 @@ public static partial class Game
                     {
                         if ((d >= 4))
                         {
-                            Mem.Set((((Mem.U32(0x800E54A4u) + 88u) + (uint)(idx * 2920)) + 2892u), 0);
-                            Mem.Set((((Mem.U32(0x800E54A4u) + 88u) + (uint)(idx * 2920)) + 2888u), 2);
+                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB4C_Set(0);
+                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB48_Set(2);
                         }
                     }
                 }

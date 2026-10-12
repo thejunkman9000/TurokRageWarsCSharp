@@ -13,19 +13,19 @@ public static partial class Game
             int i = 0;
             float a = Mem.F32(0x800C739Cu);
             float b = Mem.F32(0x800CE3CCu);
-            Mem.Set(o, 0);
-            Mem.Set((o + 4u), 0);
-            Mem.Set((o + 8u), 0);
-            Mem.Set((o + 12u), 0);
-            Mem.Set((o + 20u), 0);
-            Mem.Set((o + 108u), (-1));
-            Mem.Set((o + 24u), 4);
-            Mem.Set((o + 112u), (-1));
+            new B04Set_v2(o).w0_Set(0);
+            new B04Set_v2(o).w4_Set(0);
+            new B04Set_v2(o).w8_Set(0);
+            new B04Set_v2(o).wC_Set(0);
+            new B04Set_v2(o).w14_Set(0);
+            new B04Set_v2(o).w6C_Set((-1));
+            new B04Set_v2(o).w18_Set(4);
+            new B04Set_v2(o).w70_Set((-1));
             for (i = 0; (i < 4); ++i)
             {
-                Mem.Set((((o + 28u) + (uint)(i * 20)) + 12u), 0);
-                Mem.Set((((o + 28u) + (uint)(i * 20)) + 16u), b);
-                Mem.Set((((o + 28u) + (uint)(i * 20)) + 8u), (-((float)(i) * a)));
+                new B04Set_v2(o).ent[(int)(i)].zero_Set(0);
+                new B04Set_v2(o).ent[(int)(i)].f2C_Set(b);
+                new B04Set_v2(o).ent[(int)(i)].f24_Set((-((float)(i) * a)));
             }
         }
     }

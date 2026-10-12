@@ -25,13 +25,13 @@ public static partial class Game
             _f10: ;
             _f11: ;
             _f12: ;
-            return (((int)(Mem.S16(((p + 1524u) + (uint)(Mem.S16(Mem.U32((w + 32u))) * 2)))) >= (int)(Mem.S16((Mem.U32((w + 32u)) + 6u)))) ? 1 : 0);
+            return (((int)(new Player_v3(p).s5F4[(int)(new WeaponInfo2(w).req.idx)]) >= (int)(new WeaponInfo2(w).req.min)) ? 1 : 0);
             _f13: ;
-            return (((int)(Mem.S16(((p + 1524u) + (uint)(0 * 2)))) >= 3) ? 1 : 0);
+            return (((int)(new Player_v3(p).s5F4[(int)(0)]) >= 3) ? 1 : 0);
             _f14: ;
-            return (((int)(Mem.S16(((p + 1524u) + (uint)(0 * 2)))) >= 5) ? 1 : 0);
+            return (((int)(new Player_v3(p).s5F4[(int)(0)]) >= 5) ? 1 : 0);
             _f15: ;
-            if (!(((int)(Mem.S16(((p + 1524u) + (uint)(2 * 2)))) != 0))) goto _f24;
+            if (!(((int)(new Player_v3(p).s5F4[(int)(2)]) != 0))) goto _f24;
             _f16: ;
             _f17: ;
             _f18: ;
@@ -39,7 +39,7 @@ public static partial class Game
             _f20: ;
             return 1;
             _f24: ;
-            return func_002831FC(0x80121990u, (int)(p));
+            return (int)(func_002831FC(0x80121990u, p, default(uint), default(uint)));
             _f21: ;
             _f22: ;
             _f23: ;

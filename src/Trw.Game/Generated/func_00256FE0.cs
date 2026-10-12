@@ -26,28 +26,28 @@ public static partial class Game
                     }
                     while ((i < Mem.U32(0x800D0944u)));
                 }
-                p = Mem.U32(0x8010BDF4u);
+                p = new B12TimerList(0x8010BDF4u).first_;
                 if ((p != 0u))
                 {
                     do
                     {
-                        next = Mem.U32(p);
-                        if (((Mem.U32((p + 12u)) + (uint)(1)) < Mem.U32(0x800D0940u)))
+                        next = new B12Timer(p).link.next_;
+                        if (((new B12Timer(p).count + (uint)(1)) < Mem.U32(0x800D0940u)))
                         {
-                            if ((Mem.U32(0x8010BDF4u) == p))
+                            if ((new B12TimerList(0x8010BDF4u).first_ == p))
                             {
-                                Mem.Set(0x8010BDF4u, next);
+                                new B12TimerList(0x8010BDF4u).first__Set(next);
                             }
-                            alUnlink(p);
-                            if ((Mem.U32((0x8010BDF4u + 4u)) != 0u))
+                            alUnlink(new B12Timer(p).link.P);
+                            if ((new B12TimerList(0x8010BDF4u).last_ != 0u))
                             {
-                                alLink(p, Mem.U32((0x8010BDF4u + 4u)));
+                                alLink(new B12Timer(p).link.P, new B12TimerList(0x8010BDF4u).last.link.P);
                             }
                             else
                             {
-                                Mem.Set((0x8010BDF4u + 4u), p);
-                                Mem.Set(p, 0u);
-                                Mem.Set((p + 4u), 0u);
+                                new B12TimerList(0x8010BDF4u).last__Set(p);
+                                new B12Timer(p).link.next__Set(0u);
+                                new B12Timer(p).link.prev__Set(0u);
                             }
                         }
                         p = next;

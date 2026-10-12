@@ -19,19 +19,19 @@ public static partial class Game
                 float d2 = 0f;
                 float f = 0f;
                 float d = 0f;
-                for (a = Mem.U32((g + 32u)); (a != 0u); a = Mem.U32((a + 5856u)))
+                for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
                 {
-                    if ((Mem.S32((a + 1488u)) != 0))
+                    if ((new Plr(a).unk5D0 != 0))
                     {
                         c = 0;
-                        if ((Mem.F32((a + 4604u)) > 0.0f))
+                        if ((new Plr(a).unk11FC > 0.0f))
                         {
                             c = 1;
                         }
                         if ((c != 0))
                         {
-                            func_00271FD8(_fp, (a + 4608u), (b + 8u));
-                            d2 = (((Mem.F32(_fp) * Mem.F32(_fp)) + (Mem.F32((_fp + 4u)) * Mem.F32((_fp + 4u)))) + (Mem.F32((_fp + 8u)) * Mem.F32((_fp + 8u))));
+                            func_00271FD8(_fp, new Plr(a).unk1200.P, new AimB6(b).pos.P);
+                            d2 = (((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z));
                             func_002720EC(_fp);
                             any = 1;
                             if ((Mem.F32(0x800C7D08u) < d2))
@@ -41,13 +41,13 @@ public static partial class Game
                                 {
                                     f = (f * Mem.F32(0x800D2988u));
                                 }
-                                if ((Mem.S32((a + 4620u)) == 0))
+                                if ((new Plr(a).unk120C == 0))
                                 {
                                     f = (-f);
                                 }
-                                Mem.Copy((_fp + 16u), (b + 28u), 12);
+                                Mem.Copy((_fp + 16u), new AimB6(b).aim.P, 12);
                                 func_002720EC((_fp + 16u));
-                                d = (((Mem.F32(_fp) * Mem.F32((_fp + 16u))) + (Mem.F32((_fp + 4u)) * Mem.F32(((_fp + 16u) + 4u)))) + (Mem.F32((_fp + 8u)) * Mem.F32(((_fp + 16u) + 8u))));
+                                d = (((new Vec3f(_fp).x * new Vec3f((_fp + 16u)).x) + (new Vec3f(_fp).y * new Vec3f((_fp + 16u)).y)) + (new Vec3f(_fp).z * new Vec3f((_fp + 16u)).z));
                                 if ((d < 0.0f))
                                 {
                                     d = (-d);
@@ -56,15 +56,15 @@ public static partial class Game
                                 d = (d * Mem.F32(0x800C7D10u));
                                 func_0027200C(_fp, _fp, (f * d));
                             }
-                            func_00271FA4((b + 28u), (b + 28u), _fp);
+                            func_00271FA4(new AimB6(b).aim.P, new AimB6(b).aim.P, _fp);
                         }
                     }
                 }
                 if ((any != 0))
                 {
-                    Mem.Copy(_fp, (b + 28u), 12);
+                    Mem.Copy(_fp, new AimB6(b).aim.P, 12);
                     func_002720EC(_fp);
-                    Mem.Copy((b + 372u), _fp, 12);
+                    Mem.Copy(new AimB6(b).@out.P, _fp, 12);
                 }
             }
         }

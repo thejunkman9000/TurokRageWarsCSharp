@@ -82,7 +82,7 @@ public static partial class Game
                 Mem.Set((r3 + 4u), r5);
                 Mem.Set((r29 + 16u), r17);
                 r5 = Mem.U32((r19 + 24u));
-                r7 = r23; r2 = _saveBuffer(r4, r5, r6, r7, Mem.U32(r29 + 16u)); r3 = Cpu.V1;
+                r7 = r23; r2 = _saveBuffer(r4, r5, (int)r6, (int)r7, Mem.U32(r29 + 16u));
                 r17 = r2;
                 r3 = r17;
                 r2 = 33554432u;
@@ -117,7 +117,7 @@ public static partial class Game
                 r5 = r20;
                 r6 = r22 << 16;
                 r6 = (uint)((int)r6 >> 16);
-                r7 = r23; r2 = _loadBuffer(r4, r5, r6, r7, Mem.U32(r29 + 16u)); r3 = Cpu.V1;
+                r7 = r23; r2 = _loadBuffer(r4, r5, (int)r6, (int)r7, Mem.U32(r29 + 16u));
                 r17 = r2;
                 L_L002BAA5C: ;
                 r4 = r19;
@@ -126,7 +126,7 @@ public static partial class Game
                 r18 = (uint)((int)r2 >> 16);
                 r6 = r18;
                 r7 = r23;
-                Mem.Set((r29 + 16u), r17); r2 = _loadOutputBuffer(r4, r5, r6, r7, Mem.U32(r29 + 16u)); r3 = Cpu.V1;
+                Mem.Set((r29 + 16u), r17); r2 = _loadOutputBuffer(r4, r5, (int)r6, (int)r7, Mem.U32(r29 + 16u));
                 r3 = (uint)(int)Mem.S16((r16 + 8u));
                 { bool c_ = r3 == 0; r17 = r2; if (c_) goto L_L002BAADC; }
                 r5 = r17;
@@ -145,7 +145,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r17);
                 r5 = r30;
                 r6 = r18;
-                r7 = r23; r2 = _saveBuffer(r4, r5, r6, r7, Mem.U32(r29 + 16u)); r3 = Cpu.V1;
+                r7 = r23; r2 = _saveBuffer(r4, r5, (int)r6, (int)r7, Mem.U32(r29 + 16u));
                 r17 = r2;
                 L_L002BAADC: ;
                 r2 = (uint)(int)Mem.S16((r16 + 10u));
@@ -164,14 +164,14 @@ public static partial class Game
                 Mem.Set((r9 + 4u), r2);
                 r3 = r3 | r12;
                 Mem.Set((r9 + 0u), r3);
-                Mem.Set((r29 + 16u), r17); r2 = _saveBuffer(r4, r5, r6, r7, Mem.U32(r29 + 16u)); r3 = Cpu.V1;
+                Mem.Set((r29 + 16u), r17); r2 = _saveBuffer(r4, r5, (int)r6, (int)r7, Mem.U32(r29 + 16u));
                 r17 = r2;
                 L_L002BAB2C: ;
                 r4 = Mem.U32((r16 + 32u));
                 { bool c_ = r4 == 0; r5 = r21 << 16; if (c_) goto L_L002BAB4C; }
                 r5 = (uint)((int)r5 >> 16);
                 r6 = r23;
-                r7 = r17; r2 = _filterBuffer(r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = r17; r2 = _filterBuffer(r4, (int)r5, (int)r6, r7);
                 r17 = r2;
                 L_L002BAB4C: ;
                 r2 = Mem.U32((r16 + 36u));
@@ -180,7 +180,7 @@ public static partial class Game
                 r5 = r30;
                 r6 = r21 << 16;
                 r6 = (uint)((int)r6 >> 16);
-                r7 = r23; r2 = _saveBuffer(r4, r5, r6, r7, Mem.U32(r29 + 16u)); r3 = Cpu.V1;
+                r7 = r23; r2 = _saveBuffer(r4, r5, (int)r6, (int)r7, Mem.U32(r29 + 16u));
                 r17 = r2;
                 L_L002BAB74: ;
                 r2 = (uint)(int)Mem.S16((r16 + 12u));

@@ -11,20 +11,20 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00419D04", (uint)o, (uint)n);
             int i = 0;
-            Mem.Set((o + 68u), 0);
-            Mem.Set((o + 116u), 0);
+            new O3A(o).flag_Set(0);
+            new O3A(o).idx_Set(0);
             if ((n > 0))
             {
-                Mem.Set((o + 72u), n);
+                new O3A(o).count_Set(n);
             }
             else
             {
-                Mem.Set((o + 72u), ((func_00274544() % 5) + 1));
+                new O3A(o).count_Set(((func_00274544() % 5) + 1));
             }
-            for (i = 0; (i < Mem.S32((o + 72u))); ++i)
+            for (i = 0; (i < new O3A(o).count); ++i)
             {
-                Mem.Set(((o + 96u) + (uint)(i * 4)), ((func_00274544() % 3) + 1));
-                Mem.Set(((o + 76u) + (uint)(i * 4)), ((((-((func_00274544() % 40) + 30)) + (int)(Mem.U32((o + 128u)))) < 0) ? 0 : ((((-((func_00274544() % 40) + 30)) + (int)(Mem.U32((o + 128u)))) >= 256) ? 255 : ((-((func_00274544() % 40) + 30)) + (int)(Mem.U32((o + 128u)))))));
+                new O3A(o).cnts.Set((int)(i), ((func_00274544() % 3) + 1));
+                new O3A(o).vals.Set((int)(i), ((((-((func_00274544() % 40) + 30)) + (int)(new O3A(o).@base)) < 0) ? 0 : ((((-((func_00274544() % 40) + 30)) + (int)(new O3A(o).@base)) >= 256) ? 255 : ((-((func_00274544() % 40) + 30)) + (int)(new O3A(o).@base)))));
             }
         }
     }

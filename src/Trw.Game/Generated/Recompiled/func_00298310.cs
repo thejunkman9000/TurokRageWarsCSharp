@@ -300,7 +300,7 @@ public static partial class Game
                 L_I002985AC: ;
                 r4 = Mem.U32((r20 + 60u));
                 L_I002985B0: ;
-                r2 = func_00299368(r4, r5, r6, r7); r3 = Cpu.V1;
+                func_00299368((int)r4);
                 L_I002985B8: ;
                 r2 = r16; goto L_L0029861C;
                 L_L002985C0: ;

@@ -11,18 +11,18 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024E1A4", (uint)a);
             uint p = 0u;
-            if (((int)(Mem.U8(a)) != 1))
+            if (((int)(new Obj(a).type) != 1))
             {
                 return 0;
             }
-            if (!((Mem.U32((a + 256u)) & (uint)(8192)) != 0u))
+            if (!((new Obj(a).flags & (uint)(8192)) != 0u))
             {
                 return 0;
             }
-            p = Mem.U32((a + 416u));
+            p = new Obj(a).unk1A0_;
             if ((p != 0u))
             {
-                if (((Mem.U32((p + 28u)) & (uint)(65536)) != 0u))
+                if (((new B11Obj1A0(p).flags1C & (uint)(65536)) != 0u))
                 {
                     return 0;
                 }

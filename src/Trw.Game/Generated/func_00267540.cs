@@ -14,15 +14,15 @@ public static partial class Game
             {
                 return 1;
             }
-            if ((((int)(Mem.U16((a + 228u))) == (int)(Mem.U16((b + 228u)))) || !((Mem.U32((b + 256u)) & (uint)(3211264)) != 0u)))
+            if ((((int)(new P3Actor(a).id) == (int)(new P3Actor(b).id)) || !((new P3Actor(b).flags & (uint)(3211264)) != 0u)))
             {
                 return 0;
             }
-            if ((((Mem.S32(0x8013B290u) != 0) && !((Mem.U32((a + 256u)) & (uint)(3145728)) != 0u)) && !((Mem.U32((b + 256u)) & (uint)(3145728)) != 0u)))
+            if ((((Mem.S32(0x8013B290u) != 0) && !((new P3Actor(a).flags & (uint)(3145728)) != 0u)) && !((new P3Actor(b).flags & (uint)(3145728)) != 0u)))
             {
                 return 0;
             }
-            switch (Mem.S32(Mem.U32((b + 24u))))
+            switch (new P3Actor(b).info.kind)
             {
             case 1:
             case 4:

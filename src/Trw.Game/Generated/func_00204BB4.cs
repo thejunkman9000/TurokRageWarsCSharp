@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00204BB4", (uint)actor, (uint)state);
-            Mem.Set((state + 44u), 0x800CD5D0u);
-            Mem.Set((state + 264u), 0x00204C34u);
+            new ActorState(state).table_Set(0x800CD5D0u);
+            new ActorState(state).fn108_Set(0x00204C34u);
         }
     }
 

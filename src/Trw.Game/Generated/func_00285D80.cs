@@ -17,11 +17,11 @@ public static partial class Game
             int key = 0;
             uint inf = 0u;
             uint tmp = 0u;
-            if (!((Mem.U32((p + 256u)) & (uint)(524288)) != 0u))
+            if (!((new B19Obj(p).flags100 & (uint)(524288)) != 0u))
             {
-                uint @base = Mem.U32((owner + 312u));
+                uint @base = new B19Owner(owner).base_;
                 idx = (-1);
-                if (((p >= @base) && (p <= (@base + (uint)((Mem.S32((owner + 320u)) * 744) - 744)))))
+                if (((p >= @base) && (p <= (@base + (uint)((new B19Owner(owner).cnt * 744) - 744)))))
                 {
                     idx = (int)(((uint)(((int)(p - @base))) / (uint)(744)));
                 }
@@ -30,9 +30,9 @@ public static partial class Game
             {
                 idx = (-1);
             }
-            if ((((idx != (-1)) && (C.Seq((object?)((key = Mem.S32((owner + 111628u)))), ((Mem.S32(owner) != 2) ? 1 : 0)) != 0)) && (C.Seq((object?)((inf = Mem.U32(((tmp = (Mem.U32((owner + 312u)) + (uint)(idx * 744))) + 24u)))), ((((((uint)((Mem.S32(inf) - 9)) < (uint)(2)) ? 1 : 0) == 0) || !((Mem.U32((inf + 4u)) & (uint)(512)) != 0u)) ? 1 : 0)) != 0)))
+            if ((((idx != (-1)) && (C.Seq((object?)((key = new B19Owner(owner).key)), ((new B19Owner(owner).mode != 2) ? 1 : 0)) != 0)) && (C.Seq((object?)((inf = new B19Obj((tmp = (new B19Owner(owner).base_ + (uint)(idx * 744)))).info)), ((((((uint)((new B19Info18(inf).type - 9)) < (uint)(2)) ? 1 : 0) == 0) || !((new B19Info18(inf).f4 & (uint)(512)) != 0u)) ? 1 : 0)) != 0)))
             {
-                n = (int)(func_0028FD94((uint)((int)(func_0028FD94((uint)((int)(func_0028FD94((uint)(Mem.S32((owner + 128u))), 0))), key))), 0));
+                n = (int)(func_0028FD94((uint)((int)(func_0028FD94((uint)((int)(func_0028FD94((uint)(new B19Owner(owner).root), 0))), key))), 0));
                 func_0028FD94((uint)(n), 0);
                 func_0028FDD8((uint)(n), 1);
                 bits = (uint)((int)(func_0028FD94((uint)(n), 1)));

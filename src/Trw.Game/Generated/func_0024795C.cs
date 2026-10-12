@@ -18,62 +18,62 @@ public static partial class Game
                 float k = 0f;
                 float k2 = 0f;
                 float s = 0f;
-                if (((Mem.U32((o + 256u)) & (uint)(3145728)) != 0u))
+                if (((new B10Obj(o).flags100 & (uint)(3145728)) != 0u))
                 {
-                    ow = Mem.U32((o + 472u));
-                    pl = Mem.U32((ow + 1500u));
+                    ow = new B10Obj(o).p1D8_;
+                    pl = new B10Ow(ow).p5DC_;
                     if ((pl != 0u))
                     {
                         k = Mem.F32(0x800C8A40u);
                         s = sinf(k);
                         Mem.Set(0x80115DECu, s);
-                        Mem.Set((_fp + 32u), 0.0f);
-                        Mem.Set(((_fp + 32u) + 4u), s);
-                        Mem.Set(((_fp + 32u) + 8u), 0.0f);
-                        Mem.Set(((_fp + 32u) + 12u), cosf(k));
-                        func_00274108(_fp, (_fp + 32u), (pl + 320u));
+                        new B10Q4((_fp + 32u)).x_Set(0.0f);
+                        new B10Q4((_fp + 32u)).y_Set(s);
+                        new B10Q4((_fp + 32u)).z_Set(0.0f);
+                        new B10Q4((_fp + 32u)).w_Set(cosf(k));
+                        func_00274108(_fp, (_fp + 32u), new B10Pq(pl).q140.P);
                     }
                     else
                     {
                         k = Mem.F32(0x800C8A44u);
-                        func_00226C3C(ow, (_fp + 80u), default(uint), default(uint));
+                        func_00226C3C(ow, (_fp + 80u));
                         s = sinf(k);
                         Mem.Set(0x80115DECu, s);
-                        Mem.Set((_fp + 32u), 0.0f);
-                        Mem.Set(((_fp + 32u) + 4u), s);
-                        Mem.Set(((_fp + 32u) + 8u), 0.0f);
-                        Mem.Set(((_fp + 32u) + 12u), cosf(k));
+                        new B10Q4((_fp + 32u)).x_Set(0.0f);
+                        new B10Q4((_fp + 32u)).y_Set(s);
+                        new B10Q4((_fp + 32u)).z_Set(0.0f);
+                        new B10Q4((_fp + 32u)).w_Set(cosf(k));
                         func_00274108(_fp, (_fp + 32u), (_fp + 80u));
                     }
                 }
                 else
                 {
-                    if ((Mem.S32(Mem.U32((o + 24u))) == 4))
+                    if ((Mem.S32(new B10Obj(o).p18_) == 4))
                     {
-                        s = sinf((Mem.F32((o + 660u)) * Mem.F32(0x800C8A48u)));
-                        Mem.Set((_fp + 16u), s);
-                        Mem.Set(((_fp + 16u) + 4u), 0.0f);
-                        Mem.Set(((_fp + 16u) + 8u), 0.0f);
+                        s = sinf((new B10Obj(o).f294 * Mem.F32(0x800C8A48u)));
+                        new B10Q4((_fp + 16u)).x_Set(s);
+                        new B10Q4((_fp + 16u)).y_Set(0.0f);
+                        new B10Q4((_fp + 16u)).z_Set(0.0f);
                         Mem.Set(0x80115DECu, s);
-                        Mem.Set(((_fp + 16u) + 12u), cosf((Mem.F32((o + 660u)) * Mem.F32(0x800C8A48u))));
-                        s = sinf(((Mem.F32((o + 108u)) + Mem.F32(0x800C8A4Cu)) * Mem.F32(0x800C8A48u)));
-                        Mem.Set((_fp + 32u), 0.0f);
-                        Mem.Set(((_fp + 32u) + 4u), s);
-                        Mem.Set(((_fp + 32u) + 8u), 0.0f);
+                        new B10Q4((_fp + 16u)).w_Set(cosf((new B10Obj(o).f294 * Mem.F32(0x800C8A48u))));
+                        s = sinf(((new B10Obj(o).f6C + Mem.F32(0x800C8A4Cu)) * Mem.F32(0x800C8A48u)));
+                        new B10Q4((_fp + 32u)).x_Set(0.0f);
+                        new B10Q4((_fp + 32u)).y_Set(s);
+                        new B10Q4((_fp + 32u)).z_Set(0.0f);
                         Mem.Set(0x80115DECu, s);
-                        Mem.Set(((_fp + 32u) + 12u), cosf(((Mem.F32((o + 108u)) + Mem.F32(0x800C8A4Cu)) * Mem.F32(0x800C8A48u))));
+                        new B10Q4((_fp + 32u)).w_Set(cosf(((new B10Obj(o).f6C + Mem.F32(0x800C8A4Cu)) * Mem.F32(0x800C8A48u))));
                         func_00274108((_fp + 48u), (_fp + 16u), (_fp + 32u));
                         func_00203848((_fp + 64u), o, (o + 368u));
                         func_00274108(_fp, (_fp + 48u), (_fp + 64u));
                     }
                     else
                     {
-                        s = sinf(((Mem.F32((o + 108u)) + Mem.F32(0x800C8A50u)) * Mem.F32(0x800C8A54u)));
-                        Mem.Set((_fp + 32u), 0.0f);
-                        Mem.Set(((_fp + 32u) + 4u), s);
-                        Mem.Set(((_fp + 32u) + 8u), 0.0f);
+                        s = sinf(((new B10Obj(o).f6C + Mem.F32(0x800C8A50u)) * Mem.F32(0x800C8A54u)));
+                        new B10Q4((_fp + 32u)).x_Set(0.0f);
+                        new B10Q4((_fp + 32u)).y_Set(s);
+                        new B10Q4((_fp + 32u)).z_Set(0.0f);
                         Mem.Set(0x80115DECu, s);
-                        Mem.Set(((_fp + 32u) + 12u), cosf(((Mem.F32((o + 108u)) + Mem.F32(0x800C8A50u)) * Mem.F32(0x800C8A54u))));
+                        new B10Q4((_fp + 32u)).w_Set(cosf(((new B10Obj(o).f6C + Mem.F32(0x800C8A50u)) * Mem.F32(0x800C8A54u))));
                         func_00274108(_fp, (_fp + 32u), (o + 92u));
                     }
                 }

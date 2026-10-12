@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("lldiv", (uint)ans);
-            Mem.Set(ans, (num / den));
-            Mem.Set((ans + 8u), (num % den));
+            new lldiv_t(ans).quot_Set((num / den));
+            new lldiv_t(ans).rem_Set((num % den));
         }
     }
 
@@ -34,34 +34,34 @@ public static partial class Game
                 }
                 @base = (((int)(type) == 111) ? 8 : ((((int)(type) != 120) && ((int)(type) != 88)) ? 10 : 16));
                 i = 24;
-                ullval = (ulong)(Mem.S64(x));
-                if (((((int)(type) == 100) || ((int)(type) == 105)) && (Mem.S64(x) < (long)(0))))
+                ullval = (ulong)(Mem.S64(new _Pft(x).v.P));
+                if (((((int)(type) == 100) || ((int)(type) == 105)) && (Mem.S64(new _Pft(x).v.P) < (long)(0))))
                 {
                     ullval = (0UL - ullval);
                 }
-                if (((ullval != (ulong)(0)) || (Mem.S32((x + 36u)) != 0)))
+                if (((ullval != (ulong)(0)) || (new _Pft(x).prec != 0)))
                 {
                     Mem.Set((_fp + (uint)(--i)), Mem.S8((digs + (uint)(ullval % (ulong)(@base)))));
                 }
-                Mem.Set(x, (long)((ullval / (ulong)(@base))));
-                while (((Mem.S64(x) > (long)(0)) && (i > 0)))
+                Mem.Set(new _Pft(x).v.P, (long)((ullval / (ulong)(@base))));
+                while (((Mem.S64(new _Pft(x).v.P) > (long)(0)) && (i > 0)))
                 {
-                    lldiv((_fp + 24u), Mem.S64(x), (long)(@base));
-                    Mem.Set(x, Mem.S64((_fp + 24u)));
-                    Mem.Set((_fp + (uint)(--i)), Mem.S8((digs + (uint)Mem.S64(((_fp + 24u) + 8u)))));
+                    lldiv((_fp + 24u), Mem.S64(new _Pft(x).v.P), (long)(@base));
+                    Mem.Set(new _Pft(x).v.P, new lldiv_t((_fp + 24u)).quot);
+                    Mem.Set((_fp + (uint)(--i)), Mem.S8((digs + (uint)new lldiv_t((_fp + 24u)).rem)));
                 }
-                Mem.Set((x + 20u), (24 - i));
-                memcpy(Mem.U32((x + 8u)), (_fp + (uint)i), (uint)(Mem.S32((x + 20u))));
-                if ((Mem.S32((x + 20u)) < Mem.S32((x + 36u))))
+                new _Pft(x).n1_Set((24 - i));
+                memcpy(new _Pft(x).s_, (_fp + (uint)i), (uint)(new _Pft(x).n1));
+                if ((new _Pft(x).n1 < new _Pft(x).prec))
                 {
-                    Mem.Set((x + 16u), (Mem.S32((x + 36u)) - Mem.S32((x + 20u))));
+                    new _Pft(x).nz0_Set((new _Pft(x).prec - new _Pft(x).n1));
                 }
-                if (((Mem.S32((x + 36u)) < 0) && ((Mem.U32((x + 48u)) & (uint)((4 | 16))) == (uint)(16))))
+                if (((new _Pft(x).prec < 0) && ((new _Pft(x).flags & (uint)((4 | 16))) == (uint)(16))))
                 {
-                    i = (((Mem.S32((x + 40u)) - Mem.S32((x + 12u))) - Mem.S32((x + 16u))) - Mem.S32((x + 20u)));
+                    i = (((new _Pft(x).width - new _Pft(x).n0) - new _Pft(x).nz0) - new _Pft(x).n1);
                     if ((i > 0))
                     {
-                        Mem.Set((x + 16u), (int)((int)(Mem.S32((x + 16u))) + i));
+                        new _Pft(x).nz0_Set((int)((int)(new _Pft(x).nz0) + i));
                     }
                 }
             }

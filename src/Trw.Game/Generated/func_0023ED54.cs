@@ -10,21 +10,21 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0023ED54", (uint)m, (uint)h);
-            float v = Mem.F32((h + 204u));
+            float v = new B09Quad(h).t;
             int r = 0;
             if ((v <= 0.0f))
             {
-                if ((Mem.S32((h + 8u)) == 7))
+                if ((new B09Quad(h).unk8 == 7))
                 {
                     return 0;
                 }
-                if ((((uint)((Mem.S32(h) - 5)) < (uint)(2)) || ((v * Mem.F32((m + 128u))) < (-(Mem.F32(0x800D0648u) * Mem.F32(0x800C87C8u))))))
+                if ((((uint)((new B09Quad(h).type0 - 5)) < (uint)(2)) || ((v * new B09Mover(m).f80) < (-(Mem.F32(0x800D0648u) * Mem.F32(0x800C87C8u))))))
                 {
                     return 0;
                 }
             }
             r = 0;
-            if (!(Mem.F32((h + 204u)) >= Mem.F32(((m + 176u) + 204u))))
+            if (!(new B09Quad(h).t >= new B09Mover(m).qcopy.t))
             {
                 r = 1;
             }

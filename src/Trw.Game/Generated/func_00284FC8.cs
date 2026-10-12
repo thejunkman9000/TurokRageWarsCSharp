@@ -12,24 +12,24 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00284FC8", (uint)owner, (uint)key, (uint)@out);
             uint o = 0u;
             int n = 0;
-            Mem.Set(@out, (float)(0));
-            Mem.Set((@out + 4u), (float)(0));
-            Mem.Set((@out + 8u), (float)(0));
-            for (o = Mem.U32(((owner + 64552u) + (uint)(1 * 20))); (o != 0u); o = Mem.U32((o + 492u)))
+            new B19Vec3(@out).x_Set((float)(0));
+            new B19Vec3(@out).y_Set((float)(0));
+            new B19Vec3(@out).z_Set((float)(0));
+            for (o = new B19Owner(owner).slot[(int)(1)].head_; (o != 0u); o = new B19Obj(o).next_)
             {
-                if ((((((int)(Mem.U16((o + 4u))) == 1054) || ((int)(Mem.U16((o + 4u))) == 1007)) && (Mem.S32((o + 300u)) == key)) && ((Mem.U32((o + 92u)) & (uint)(256)) != 0u)))
+                if ((((((int)(new B19Obj(o).id) == 1054) || ((int)(new B19Obj(o).id) == 1007)) && (new B19Obj(o).unk12C == key)) && ((new B19Obj(o).flags & (uint)(256)) != 0u)))
                 {
-                    Mem.Set(@out, (float)((float)(Mem.F32(@out)) + Mem.F32((o + 8u))));
-                    Mem.Set((@out + 4u), (float)((float)(Mem.F32((@out + 4u))) + Mem.F32(((o + 8u) + 4u))));
-                    Mem.Set((@out + 8u), (float)((float)(Mem.F32((@out + 8u))) + Mem.F32(((o + 8u) + 8u))));
+                    new B19Vec3(@out).x_Set((float)((float)(new B19Vec3(@out).x) + new B19Obj(o).pos.x));
+                    new B19Vec3(@out).y_Set((float)((float)(new B19Vec3(@out).y) + new B19Obj(o).pos.y));
+                    new B19Vec3(@out).z_Set((float)((float)(new B19Vec3(@out).z) + new B19Obj(o).pos.z));
                     ++n;
                 }
             }
             if ((n != 0))
             {
-                Mem.Set(@out, (float)((float)(Mem.F32(@out)) / (float)(n)));
-                Mem.Set((@out + 4u), (float)((float)(Mem.F32((@out + 4u))) / (float)(n)));
-                Mem.Set((@out + 8u), (float)((float)(Mem.F32((@out + 8u))) / (float)(n)));
+                new B19Vec3(@out).x_Set((float)((float)(new B19Vec3(@out).x) / (float)(n)));
+                new B19Vec3(@out).y_Set((float)((float)(new B19Vec3(@out).y) / (float)(n)));
+                new B19Vec3(@out).z_Set((float)((float)(new B19Vec3(@out).z) / (float)(n)));
             }
         }
     }

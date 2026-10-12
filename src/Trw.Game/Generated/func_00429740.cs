@@ -11,22 +11,22 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00429740");
             int b = 0;
-            func_002A2B24((uint)(Mem.S32((Mem.U32(0x800E4EF0u) + 36u))), (int)(Mem.S8((0x801462C8u + 37u))));
-            func_002A2B24((uint)(Mem.S32((Mem.U32(0x800E4EF0u) + 40u))), (int)(Mem.S8((0x801462C8u + 36u))));
-            func_002A2B24((uint)(Mem.S32((Mem.U32(0x800E4EF0u) + 44u))), (int)(Mem.S8((0x801462C8u + 38u))));
-            func_002A2B24((uint)(Mem.S32((Mem.U32(0x800E4EF0u) + 48u))), (int)(Mem.S8((0x801462C8u + 39u))));
+            func_002A2B24((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk24), (int)(new O04Cfg(0x801462C8u).s25));
+            func_002A2B24((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk28), (int)(new O04Cfg(0x801462C8u).s24));
+            func_002A2B24((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk2C), (int)(new O04Cfg(0x801462C8u).s26));
+            func_002A2B24((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk30), (int)(new O04Cfg(0x801462C8u).s27));
             b = func_0041EBC0();
-            if ((Mem.S32((Mem.U32(0x800E4EF0u) + 56u)) < b))
+            if ((new O04S4EF0(Mem.U32(0x800E4EF0u)).unk38 < b))
             {
-                b = Mem.S32((Mem.U32(0x800E4EF0u) + 56u));
+                b = new O04S4EF0(Mem.U32(0x800E4EF0u)).unk38;
             }
             if ((b == 0))
             {
-                b = Mem.S32((Mem.U32(0x800E4EF0u) + 60u));
+                b = new O04S4EF0(Mem.U32(0x800E4EF0u)).unk3C;
             }
-            func_002A2B24((uint)(Mem.S32((Mem.U32(0x800E4EF0u) + 52u))), b);
-            func_0041AD90((uint)(Mem.S32((Mem.U32(0x800E4EF0u) + 28u))), (int)(Mem.U8((0x801462C8u + 40u))));
-            func_0041AD90((uint)(Mem.S32((Mem.U32(0x800E4EF0u) + 32u))), func_0041E790());
+            func_002A2B24((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk34), b);
+            func_0041AD90((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk1C), (int)(new O04Cfg(0x801462C8u).u28));
+            func_0041AD90((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk20), func_0041E790());
         }
     }
 

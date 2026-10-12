@@ -23,53 +23,53 @@ public static partial class Game
                 float y = 0f;
                 float z = 0f;
                 uint o = 0u;
-                if ((Mem.S32((ow + 292u)) != 0))
+                if ((new B19Owner(ow).f124 != 0))
                 {
                     {
                         uint pp = 0x80110634u;
                         uint q = (Mem.Set(pp, (uint)(Mem.U32(pp) + 8u)) - 8u);
-                        Mem.Set(q, 3724541952u);
-                        Mem.Set((q + 4u), (uint)(Mem.S32((ow + 292u))));
+                        new B19Dl(q).w0_Set(3724541952u);
+                        new B19Dl(q).w1_Set((uint)(new B19Owner(ow).f124));
                     }
                 }
-                n = Mem.S32((ow + 4284u));
+                n = new B19Owner(ow).ndraw;
                 if ((n != 0))
                 {
                     {
-                        uint pp = 0x80110634u;
-                        uint q = (Mem.Set(pp, (uint)(Mem.U32(pp) + 8u)) - 8u);
-                        Mem.Set(q, 3674472452u);
-                        Mem.Set((q + 4u), (uint)(1));
+                        uint pp_2 = 0x80110634u;
+                        uint q_2 = (Mem.Set(pp_2, (uint)(Mem.U32(pp_2) + 8u)) - 8u);
+                        new B19Dl(q_2).w0_Set(3674472452u);
+                        new B19Dl(q_2).w1_Set((uint)(1));
                     }
                     {
-                        uint pp = 0x80110634u;
-                        uint q = (Mem.Set(pp, (uint)(Mem.U32(pp) + 8u)) - 8u);
-                        Mem.Set(q, 3674472460u);
-                        Mem.Set((q + 4u), (uint)(1));
+                        uint pp_3 = 0x80110634u;
+                        uint q_3 = (Mem.Set(pp_3, (uint)(Mem.U32(pp_3) + 8u)) - 8u);
+                        new B19Dl(q_3).w0_Set(3674472460u);
+                        new B19Dl(q_3).w1_Set((uint)(1));
                     }
                     {
-                        uint pp = 0x80110634u;
-                        uint q = (Mem.Set(pp, (uint)(Mem.U32(pp) + 8u)) - 8u);
-                        Mem.Set(q, 3674472468u);
-                        Mem.Set((q + 4u), (uint)(65535));
+                        uint pp_4 = 0x80110634u;
+                        uint q_4 = (Mem.Set(pp_4, (uint)(Mem.U32(pp_4) + 8u)) - 8u);
+                        new B19Dl(q_4).w0_Set(3674472468u);
+                        new B19Dl(q_4).w1_Set((uint)(65535));
                     }
                     {
-                        uint pp = 0x80110634u;
-                        uint q = (Mem.Set(pp, (uint)(Mem.U32(pp) + 8u)) - 8u);
-                        Mem.Set(q, 3674472476u);
-                        Mem.Set((q + 4u), (uint)(65535));
+                        uint pp_5 = 0x80110634u;
+                        uint q_5 = (Mem.Set(pp_5, (uint)(Mem.U32(pp_5) + 8u)) - 8u);
+                        new B19Dl(q_5).w0_Set(3674472476u);
+                        new B19Dl(q_5).w1_Set((uint)(65535));
                     }
                     func_002390C0((_fp + 16384u), cam);
-                    sx = (Mem.F32((_fp + 16384u)) * Mem.F32(0x800CA1ECu));
+                    sx = (new B19Vec3((_fp + 16384u)).x * Mem.F32(0x800CA1ECu));
                     func_002390C0((_fp + 16384u), cam);
-                    sy = (Mem.F32(((_fp + 16384u) + 4u)) * Mem.F32(0x800CA1ECu));
+                    sy = (new B19Vec3((_fp + 16384u)).y * Mem.F32(0x800CA1ECu));
                     func_002390C0((_fp + 16384u), cam);
-                    sz = (Mem.F32(((_fp + 16384u) + 8u)) * Mem.F32(0x800CA1ECu));
+                    sz = (new B19Vec3((_fp + 16384u)).z * Mem.F32(0x800CA1ECu));
                     for (i = 0; (i < n); ++i)
                     {
-                        o = Mem.U32(((ow + 4288u) + (uint)(i * 4)));
+                        o = new B19Owner(ow).draw[(int)(i)];
                         {
-                            int t = (int)(Mem.U8(o));
+                            int t = (int)(new B19Draw(o).type);
                             if ((t == 1))
                             {
                                 goto L_bb;
@@ -82,25 +82,25 @@ public static partial class Game
                             {
                                 goto L_bb;
                             }
-                            x = ((Mem.F32((o + 184u)) + Mem.F32((o + 196u))) + sx);
-                            y = ((Mem.F32((o + 188u)) + Mem.F32((o + 200u))) + sy);
-                            z = ((Mem.F32((o + 192u)) + Mem.F32((o + 204u))) + sz);
+                            x = ((new B19Draw(o).aB8 + new B19Draw(o).aC4) + sx);
+                            y = ((new B19Draw(o).aBC + new B19Draw(o).aC8) + sy);
+                            z = ((new B19Draw(o).aC0 + new B19Draw(o).aCC) + sz);
                             goto L_jn;
                             L_bb: ;
-                            x = ((Mem.F32((o + 8u)) + Mem.F32((o + 8u))) + sx);
-                            y = ((Mem.F32((o + 12u)) + Mem.F32((o + 12u))) + sy);
-                            z = ((Mem.F32((o + 16u)) + Mem.F32((o + 16u))) + sz);
+                            x = ((new B19Draw(o).a8 + new B19Draw(o).a8) + sx);
+                            y = ((new B19Draw(o).aC + new B19Draw(o).aC) + sy);
+                            z = ((new B19Draw(o).a10 + new B19Draw(o).a10) + sz);
                             L_jn: ;
                         }
-                        Mem.Set((_fp + (uint)(i * 8)), o);
-                        Mem.Set(((_fp + (uint)(i * 8)) + 4u), (((x * x) + (y * y)) + (z * z)));
+                        new B19Sort((_fp + (uint)(i * 8))).obj__Set(o);
+                        new B19Sort((_fp + (uint)(i * 8))).key_Set((((x * x) + (y * y)) + (z * z)));
                     }
                     func_00285290(_fp, (uint)(n), (uint)(8), 0x0028E020u, 0x0028DFC0u);
                     func_0026D980();
                     for (i = 0; (i < n); ++i)
                     {
-                        o = Mem.U32((_fp + (uint)(i * 8)));
-                        switch ((int)(Mem.U8(o)))
+                        o = new B19Sort((_fp + (uint)(i * 8))).obj_;
+                        switch ((int)(new B19Draw(o).type))
                         {
                         case 0:
                             func_00250A44(o, cam, default(uint), default(uint));

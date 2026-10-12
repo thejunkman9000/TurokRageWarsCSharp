@@ -65,7 +65,7 @@ public static partial class Game
                 r17 = lo;
                 r16 = r17 << 1;
                 r5 = r16 + 8u;
-                r5 = r18 + r5; func_002AA354(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
+                r5 = r18 + r5; r2 = func_002AA354(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u)); r3 = Cpu.V1;
                 r17 = r17 >> 1;
                 r16 = r16 + r17;
                 r18 = r18 + r16;

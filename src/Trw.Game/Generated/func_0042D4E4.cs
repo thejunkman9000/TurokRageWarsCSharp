@@ -15,7 +15,7 @@ public static partial class Game
             uint p = 0u;
             int id = 0;
             int v = 0;
-            h = func_0040ECB0((uint)(Mem.S32((Mem.U32(0x800E53C0u) + 224u))), (uint)((ushort)(c)), default(uint), default(uint));
+            h = func_0040ECB0((uint)(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unkE0), (uint)((ushort)(c)), default(uint), default(uint));
             switch (b)
             {
             case 1:
@@ -34,8 +34,8 @@ public static partial class Game
             }
             p = func_0040ECB0(h, (uint)((ushort)(id)), default(uint), default(uint));
             func_0040E958(p, 1);
-            Mem.Set((p + 16u), (byte)(150));
-            switch ((int)(Mem.U8((e + 146u))))
+            new O04Sub2C(p).unk10_Set((byte)(150));
+            switch ((int)(new O04Ent96h(e).unk92))
             {
             case 0:
                 v = 99;
@@ -56,7 +56,7 @@ public static partial class Game
                 v = 96;
                 break;
             }
-            Mem.Set((p + 44u), v);
+            new O04Sub2C(p).unk2C_Set(v);
         }
     }
 

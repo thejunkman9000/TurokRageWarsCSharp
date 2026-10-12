@@ -14,11 +14,11 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_002A7394", (uint)a, (uint)e, (uint)own, (uint)d);
                 float s = 0f;
-                if (((Mem.U32((e + 28u)) == own) && (Mem.F32((e + 36u)) > 0.0f)))
+                if (((new Emit(e).owner_ == own) && (new Emit(e).unk24 > 0.0f)))
                 {
                     func_00270980(_fp, (uint)(d), default(uint), default(uint));
                     s = Mem.F32(0x800CB050u);
-                    if ((Mem.S32((Mem.U32((own + 280u)) + 20u)) != 0))
+                    if ((new EmitOwner(own).info.unk14 != 0))
                     {
                         s = Mem.F32(0x800CB054u);
                     }

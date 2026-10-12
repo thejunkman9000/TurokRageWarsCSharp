@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0042B5BC", (uint)a, (uint)b, (uint)c, (uint)d);
-            if ((Mem.S32((Mem.U32(0x800E4F60u) + 988u)) != 3))
+            if ((new O04ModeF60(Mem.U32(0x800E4F60u)).state != 3))
             {
                 return 0;
             }
@@ -27,14 +27,14 @@ public static partial class Game
                 return 0;
             }
             func_0029A73C();
-            Mem.Set((Mem.U32(0x800E4F60u) + 988u), 8);
-            func_0042A994((uint)(65), default(uint), default(uint), default(uint));
-            func_0040E958(Mem.U32((Mem.U32(0x800E4F60u) + 1088u)), 0);
-            func_0040E958(Mem.U32((Mem.U32(0x800E4F60u) + 1092u)), 0);
-            func_0040E958(Mem.U32((Mem.U32(0x800E4F60u) + 1096u)), 0);
-            func_0040E958(Mem.U32((Mem.U32(0x800E4F60u) + 1004u)), 0);
-            func_0040E958(Mem.U32((Mem.U32(0x800E4F60u) + 1008u)), 0);
-            Mem.Set((Mem.U32((Mem.U32(0x800E4F60u) + 1100u)) + 16u), (byte)(90));
+            new O04ModeF60(Mem.U32(0x800E4F60u)).state_Set(8);
+            func_0042A994(65);
+            func_0040E958(new O04ModeF60(Mem.U32(0x800E4F60u)).unk440, 0);
+            func_0040E958(new O04ModeF60(Mem.U32(0x800E4F60u)).unk444, 0);
+            func_0040E958(new O04ModeF60(Mem.U32(0x800E4F60u)).unk448_, 0);
+            func_0040E958(new O04ModeF60(Mem.U32(0x800E4F60u)).unk3EC_, 0);
+            func_0040E958(new O04ModeF60(Mem.U32(0x800E4F60u)).unk3F0, 0);
+            new O04ModeF60(Mem.U32(0x800E4F60u)).unk44C.unk10_Set((byte)(90));
             func_0025DF54(3708);
             return 0;
         }

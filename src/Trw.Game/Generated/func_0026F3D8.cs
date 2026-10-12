@@ -16,57 +16,57 @@ public static partial class Game
                 float inv = 0f;
                 float len = 0f;
                 func_00271FD8((_fp + 16u), target, eye);
-                len = func_002BC380((((Mem.F32((_fp + 16u)) * Mem.F32((_fp + 16u))) + (Mem.F32(((_fp + 16u) + 4u)) * Mem.F32(((_fp + 16u) + 4u)))) + (Mem.F32(((_fp + 16u) + 8u)) * Mem.F32(((_fp + 16u) + 8u)))));
+                len = func_002BC380((((new Vec3f((_fp + 16u)).x * new Vec3f((_fp + 16u)).x) + (new Vec3f((_fp + 16u)).y * new Vec3f((_fp + 16u)).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f((_fp + 16u)).z)));
                 if ((len > 0.00100000005f))
                 {
                     len = ((-1.0f) / len);
-                    Mem.Set((_fp + 16u), (float)((float)(Mem.F32((_fp + 16u))) * len));
-                    Mem.Set(((_fp + 16u) + 4u), (float)((float)(Mem.F32(((_fp + 16u) + 4u))) * len));
-                    Mem.Set(((_fp + 16u) + 8u), (float)((float)(Mem.F32(((_fp + 16u) + 8u))) * len));
+                    new Vec3f((_fp + 16u)).x_Set((float)((float)(new Vec3f((_fp + 16u)).x) * len));
+                    new Vec3f((_fp + 16u)).y_Set((float)((float)(new Vec3f((_fp + 16u)).y) * len));
+                    new Vec3f((_fp + 16u)).z_Set((float)((float)(new Vec3f((_fp + 16u)).z) * len));
                 }
                 else
                 {
-                    Mem.Set(((_fp + 16u) + 4u), 0.0f);
-                    Mem.Set(((_fp + 16u) + 8u), 0.0f);
-                    Mem.Set((_fp + 16u), 1.0f);
+                    new Vec3f((_fp + 16u)).y_Set(0.0f);
+                    new Vec3f((_fp + 16u)).z_Set(0.0f);
+                    new Vec3f((_fp + 16u)).x_Set(1.0f);
                 }
                 func_00272088((_fp + 32u), up, (_fp + 16u));
-                len = func_002BC380((((Mem.F32((_fp + 32u)) * Mem.F32((_fp + 32u))) + (Mem.F32(((_fp + 32u) + 4u)) * Mem.F32(((_fp + 32u) + 4u)))) + (Mem.F32(((_fp + 32u) + 8u)) * Mem.F32(((_fp + 32u) + 8u)))));
+                len = func_002BC380((((new Vec3f((_fp + 32u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 32u)).y * new Vec3f((_fp + 32u)).y)) + (new Vec3f((_fp + 32u)).z * new Vec3f((_fp + 32u)).z)));
                 if ((len > 0.00100000005f))
                 {
                     len = (1.0f / len);
-                    Mem.Set((_fp + 32u), (float)((float)(Mem.F32((_fp + 32u))) * len));
-                    Mem.Set(((_fp + 32u) + 4u), (float)((float)(Mem.F32(((_fp + 32u) + 4u))) * len));
-                    Mem.Set(((_fp + 32u) + 8u), (float)((float)(Mem.F32(((_fp + 32u) + 8u))) * len));
+                    new Vec3f((_fp + 32u)).x_Set((float)((float)(new Vec3f((_fp + 32u)).x) * len));
+                    new Vec3f((_fp + 32u)).y_Set((float)((float)(new Vec3f((_fp + 32u)).y) * len));
+                    new Vec3f((_fp + 32u)).z_Set((float)((float)(new Vec3f((_fp + 32u)).z) * len));
                 }
                 else
                 {
-                    Mem.Set(((_fp + 32u) + 4u), 0.0f);
-                    Mem.Set(((_fp + 32u) + 8u), 0.0f);
-                    Mem.Set((_fp + 32u), 1.0f);
+                    new Vec3f((_fp + 32u)).y_Set(0.0f);
+                    new Vec3f((_fp + 32u)).z_Set(0.0f);
+                    new Vec3f((_fp + 32u)).x_Set(1.0f);
                 }
                 func_00272088(_fp, (_fp + 16u), (_fp + 32u));
-                len = func_002BC380((((Mem.F32(_fp) * Mem.F32(_fp)) + (Mem.F32((_fp + 4u)) * Mem.F32((_fp + 4u)))) + (Mem.F32((_fp + 8u)) * Mem.F32((_fp + 8u)))));
+                len = func_002BC380((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z)));
                 len = (1.0f / len);
-                Mem.Set(_fp, (float)((float)(Mem.F32(_fp)) * len));
-                Mem.Set((_fp + 4u), (float)((float)(Mem.F32((_fp + 4u))) * len));
-                Mem.Set((_fp + 8u), (float)((float)(Mem.F32((_fp + 8u))) * len));
-                Mem.Set(((m + (uint)(0 * 16)) + (uint)(0 * 4)), Mem.F32((_fp + 32u)));
-                Mem.Set(((m + (uint)(1 * 16)) + (uint)(0 * 4)), Mem.F32(((_fp + 32u) + 4u)));
-                Mem.Set(((m + (uint)(2 * 16)) + (uint)(0 * 4)), Mem.F32(((_fp + 32u) + 8u)));
-                Mem.Set(((m + (uint)(3 * 16)) + (uint)(0 * 4)), (-(((Mem.F32(eye) * Mem.F32((_fp + 32u))) + (Mem.F32((eye + 4u)) * Mem.F32(((_fp + 32u) + 4u)))) + (Mem.F32((eye + 8u)) * Mem.F32(((_fp + 32u) + 8u))))));
-                Mem.Set(((m + (uint)(0 * 16)) + (uint)(1 * 4)), Mem.F32(_fp));
-                Mem.Set(((m + (uint)(1 * 16)) + (uint)(1 * 4)), Mem.F32((_fp + 4u)));
-                Mem.Set(((m + (uint)(2 * 16)) + (uint)(1 * 4)), Mem.F32((_fp + 8u)));
-                Mem.Set(((m + (uint)(3 * 16)) + (uint)(1 * 4)), (-(((Mem.F32(eye) * Mem.F32(_fp)) + (Mem.F32((eye + 4u)) * Mem.F32((_fp + 4u)))) + (Mem.F32((eye + 8u)) * Mem.F32((_fp + 8u))))));
-                Mem.Set(((m + (uint)(0 * 16)) + (uint)(2 * 4)), Mem.F32((_fp + 16u)));
-                Mem.Set(((m + (uint)(1 * 16)) + (uint)(2 * 4)), Mem.F32(((_fp + 16u) + 4u)));
-                Mem.Set(((m + (uint)(2 * 16)) + (uint)(2 * 4)), Mem.F32(((_fp + 16u) + 8u)));
-                Mem.Set(((m + (uint)(3 * 16)) + (uint)(2 * 4)), (-(((Mem.F32(eye) * Mem.F32((_fp + 16u))) + (Mem.F32((eye + 4u)) * Mem.F32(((_fp + 16u) + 4u)))) + (Mem.F32((eye + 8u)) * Mem.F32(((_fp + 16u) + 8u))))));
-                Mem.Set(((m + (uint)(0 * 16)) + (uint)(3 * 4)), 0.0f);
-                Mem.Set(((m + (uint)(1 * 16)) + (uint)(3 * 4)), 0.0f);
-                Mem.Set(((m + (uint)(2 * 16)) + (uint)(3 * 4)), 0.0f);
-                Mem.Set(((m + (uint)(3 * 16)) + (uint)(3 * 4)), 1.0f);
+                new Vec3f(_fp).x_Set((float)((float)(new Vec3f(_fp).x) * len));
+                new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) * len));
+                new Vec3f(_fp).z_Set((float)((float)(new Vec3f(_fp).z) * len));
+                Mem.Set(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), new Vec3f((_fp + 32u)).x);
+                Mem.Set(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(0 * 4)), new Vec3f((_fp + 32u)).y);
+                Mem.Set(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(0 * 4)), new Vec3f((_fp + 32u)).z);
+                Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(0 * 4)), (-(((new Vec3f(eye).x * new Vec3f((_fp + 32u)).x) + (new Vec3f(eye).y * new Vec3f((_fp + 32u)).y)) + (new Vec3f(eye).z * new Vec3f((_fp + 32u)).z))));
+                Mem.Set(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(1 * 4)), new Vec3f(_fp).x);
+                Mem.Set(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), new Vec3f(_fp).y);
+                Mem.Set(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(1 * 4)), new Vec3f(_fp).z);
+                Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(1 * 4)), (-(((new Vec3f(eye).x * new Vec3f(_fp).x) + (new Vec3f(eye).y * new Vec3f(_fp).y)) + (new Vec3f(eye).z * new Vec3f(_fp).z))));
+                Mem.Set(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(2 * 4)), new Vec3f((_fp + 16u)).x);
+                Mem.Set(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(2 * 4)), new Vec3f((_fp + 16u)).y);
+                Mem.Set(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), new Vec3f((_fp + 16u)).z);
+                Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(2 * 4)), (-(((new Vec3f(eye).x * new Vec3f((_fp + 16u)).x) + (new Vec3f(eye).y * new Vec3f((_fp + 16u)).y)) + (new Vec3f(eye).z * new Vec3f((_fp + 16u)).z))));
+                Mem.Set(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(3 * 4)), 0.0f);
+                Mem.Set(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(3 * 4)), 0.0f);
+                Mem.Set(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(3 * 4)), 0.0f);
+                Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), 1.0f);
             }
         }
         finally { Stack.Free(44); }

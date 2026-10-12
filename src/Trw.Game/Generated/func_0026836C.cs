@@ -15,22 +15,22 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, pos_in, 12);
                 Mem.Copy(_fp + 16u, k_in, 8);
                 if (Dbg.On) Dbg.Enter("func_0026836C", (uint)act, (uint)src, (uint)c, (uint)pos_in);
-                switch ((int)(Mem.U8(src)))
+                switch ((int)(new B15Src(src).type))
                 {
                 case 0:
-                    if (((int)(Mem.S8((act + (uint)1))) != Mem.S32(((_fp + 16u) + 4u))))
+                    if (((int)(Mem.S8((act + (uint)1))) != new B15Pair((_fp + 16u)).b))
                     {
                         return;
                     }
                     break;
                 case 1:
-                    if (((Mem.U32((src + 380u)) & (uint)((1 << (int)Mem.S32(((_fp + 16u) + 4u))))) == (uint)(0)))
+                    if (((new B15Src(src).unk17C & (uint)((1 << (int)new B15Pair((_fp + 16u)).b))) == (uint)(0)))
                     {
                         return;
                     }
                     break;
                 }
-                func_00216288(act, Mem.S32((_fp + 16u)), _fp);
+                func_00216288(act, new B15Pair((_fp + 16u)).a, _fp);
             }
         }
         finally { Stack.Free(24); }

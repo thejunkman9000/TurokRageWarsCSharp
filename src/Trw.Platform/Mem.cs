@@ -123,12 +123,20 @@ public static class Mem
     private static readonly int watchMax = int.TryParse(Environment.GetEnvironmentVariable("TRW_WATCH_MAX"), out var wm) ? wm : 20;
     private static int watchHits;
 
+    // ---- debug: TRW_WLOG="file:from-to" logs "addr size" of every non-stack store made while the retrace counter (Mem.WTick) is in [from, to] ----
+    public static volatile int WTick;
+    private static readonly string? wlogSpec = Environment.GetEnvironmentVariable("TRW_WLOG");
+    private static readonly StreamWriter? wlog = wlogSpec == null ? null : new StreamWriter(wlogSpec.Split(':')[0], false) { NewLine = "\n", AutoFlush = false };
+    private static readonly (int lo, int hi) wlogRange = wlogSpec == null ? (0, 0) : (int.Parse(wlogSpec.Split(':')[1].Split('-')[0]), int.Parse(wlogSpec.Split(':')[1].Split('-')[1]));
+    public static void WLogFlush() { lock (gateW) wlog?.Flush(); }
+    private static readonly object gateW = new();
+
     // ---- debug: write journal (differential tests undo a run by replaying the old bytes) ----
-    private static volatile bool instrument = WatchOn;
+    private static volatile bool instrument = WatchOn || Environment.GetEnvironmentVariable("TRW_WLOG") != null;
     private static List<(uint addr, byte[] old)>? journal;
 
     public static void JournalBegin() { journal = new(); instrument = true; }
-    public static List<(uint addr, byte[] old)> JournalEnd() { var j = journal ?? new(); journal = null; instrument = WatchOn; return j; }
+    public static List<(uint addr, byte[] old)> JournalEnd() { var j = journal ?? new(); journal = null; instrument = WatchOn || wlog != null; return j; }
 
     /// <summary>Puts the memory back as it was before the journalled writes.</summary>
     public static void JournalUndo(List<(uint addr, byte[] old)> j)
@@ -160,6 +168,7 @@ public static class Mem
     private static void Instrumented(uint a, int n)
     {
         if (WatchOn) Watch(a, n);
+        if (wlog != null && WTick >= wlogRange.lo && WTick <= wlogRange.hi && (a < 0x7E000000 || a >= 0x80000000)) lock (gateW) wlog.WriteLine($"{a:X8} {n}");
         var j = journal;
         if (j != null) j.Add((a, At(a, n).ToArray()));
     }

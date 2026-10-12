@@ -14,11 +14,11 @@ public static partial class Game
             switch (func_0029AA08())
             {
             case 971:
-                func_0040E958((uint)(Mem.S32((Mem.U32(0x800E3518u) + 8u))), 0);
+                func_0040E958((uint)(new O3Pg(Mem.U32(0x800E3518u)).w2), 0);
                 func_0041BF10(default(uint), default(uint), default(uint), default(uint));
                 break;
             case 970:
-                func_0041C1E4();
+                func_0041C1E4(default(uint), default(uint), default(uint), default(uint));
                 break;
             case 967:
                 func_0041C2C4();
@@ -29,7 +29,7 @@ public static partial class Game
                 Mem.Set(0x8014AD94u, 0);
                 Mem.Set(0x800E3514u, 1);
                 func_00435190(6);
-                func_00299368((uint)(19), default(uint), default(uint), default(uint));
+                func_00299368(19);
                 break;
             }
             return 0;

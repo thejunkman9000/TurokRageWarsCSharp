@@ -20,29 +20,29 @@ public static partial class Game
             g = Mem.U8(0x801462D5u);
             if (((int)(g) != 1))
             {
-                d = (Mem.U32((a + 24u)) + 264u);
+                d = new Plr(a).unk18.unk108.P;
                 v = Mem.S32((d + (uint)(i * 4)));
             }
             else
             {
                 v = Mem.S32((0x800CE3E8u + (uint)(i * 4)));
-                if ((Mem.S32((a + 5200u)) == 0))
+                if ((new Plr(a).unk1450 == 0))
                 {
                     if ((i == 0))
                     {
-                        v = (int)((int)(v) + (int)(Mem.U8(((0x80102B10u + (uint)(Mem.S32((a + 1492u)) * 400)) + (uint)5))));
+                        v = (int)((int)(v) + (int)(Mem.U8(((0x80102B10u + (uint)(new Plr(a).unk5D4 * 400)) + (uint)5))));
                     }
                     else
                     {
                         if ((i == (int)(g)))
                         {
-                            v = (int)((int)(v) + (int)(Mem.U8(((0x80102B10u + (uint)(Mem.S32((a + 1492u)) * 400)) + (uint)6))));
+                            v = (int)((int)(v) + (int)(Mem.U8(((0x80102B10u + (uint)(new Plr(a).unk5D4 * 400)) + (uint)6))));
                         }
                         else
                         {
                             if ((i == 2))
                             {
-                                v = (int)((int)(v) + (int)(Mem.U8(((0x80102B10u + (uint)(Mem.S32((a + 1492u)) * 400)) + (uint)4))));
+                                v = (int)((int)(v) + (int)(Mem.U8(((0x80102B10u + (uint)(new Plr(a).unk5D4 * 400)) + (uint)4))));
                             }
                         }
                     }

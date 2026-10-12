@@ -11,19 +11,19 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00246174", (uint)o);
             func_0024DD00(o);
-            Mem.Set((o + 28u), 0);
-            Mem.Set((o + 32u), 0);
-            Mem.Set((o + 36u), 0);
-            Mem.Set((o + 40u), 0);
-            Mem.Set((o + 44u), 0);
-            Mem.Set((o + 48u), 0);
-            Mem.Set((o + 52u), 0);
-            Mem.Set((o + 56u), 0);
-            Mem.Set((o + 60u), (-1));
-            Mem.Set((o + 64u), 0);
-            Mem.Set((o + 68u), 0);
-            Mem.Set((o + 76u), 0);
-            Mem.Set((o + 72u), Mem.F32(0x800C8914u));
+            new B10Init(o).f1C_Set(0);
+            new B10Init(o).f20_Set(0);
+            new B10Init(o).f24_Set(0);
+            new B10Init(o).f28_Set(0);
+            new B10Init(o).f2C_Set(0);
+            new B10Init(o).f30_Set(0);
+            new B10Init(o).f34_Set(0);
+            new B10Init(o).f38_Set(0);
+            new B10Init(o).f3C_Set((-1));
+            new B10Init(o).f40_Set(0);
+            new B10Init(o).f44_Set(0);
+            new B10Init(o).f4C_Set(0);
+            new B10Init(o).f48_Set(Mem.F32(0x800C8914u));
         }
     }
 

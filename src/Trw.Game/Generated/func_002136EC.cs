@@ -10,14 +10,14 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002136EC", (uint)actor);
-            uint b = Mem.U32((Mem.U32((actor + 472u)) + 5204u));
+            uint b = new ActorB(actor).owner.brain_;
             uint st = 0u;
             uint L = 0u;
             int i = 0;
             int id = 0;
-            Mem.Set((b + 544u), 0);
-            st = Mem.U32((Mem.U32(b) + 1496u));
-            if ((((int)(Mem.U8((st + 148u))) != 0) && ((int)(Mem.S8((st + 128u))) == 12)))
+            new BrainB(b).unk220_Set(0);
+            st = new BrainB(b).actor.stats_;
+            if ((((int)(new ActorStats(st).unk94) != 0) && ((int)(new ActorStats(st).unk80) == 12)))
             {
                 func_00213340(b);
             }
@@ -27,20 +27,20 @@ public static partial class Game
                 L = 0x8013B364u;
                 if ((Mem.S32(0x8013B368u) >= 2))
                 {
-                    id = Mem.S32((b + 556u));
+                    id = new BrainB(b).unk22C;
                     while ((1 != 0))
                     {
                         if ((i >= 10))
                         {
                             break;
                         }
-                        id = (func_00274544() % Mem.S32((L + 4u)));
-                        if ((((int)(Mem.U16((func_0020C994(L, id) + 12u))) & 1024) != 0))
+                        id = (func_00274544() % new EntList(L).count);
+                        if ((((int)(new EntRec(func_0020C994(L, id)).flags) & 1024) != 0))
                         {
-                            id = Mem.S32((b + 556u));
+                            id = new BrainB(b).unk22C;
                         }
                         ++i;
-                        if ((id != Mem.S32((b + 556u))))
+                        if ((id != new BrainB(b).unk22C))
                         {
                             break;
                         }
@@ -51,11 +51,11 @@ public static partial class Game
                 {
                     id = 1;
                 }
-                Mem.Set((b + 556u), id);
-                Mem.Set((b + 12u), id);
+                new BrainB(b).unk22C_Set(id);
+                new BrainB(b).unkC_Set(id);
             }
             func_00209988(b);
-            Mem.Set((b + 800u), (-1));
+            new BrainB(b).unk320_Set((-1));
         }
     }
 

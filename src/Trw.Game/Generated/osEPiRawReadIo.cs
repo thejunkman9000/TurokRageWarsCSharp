@@ -22,51 +22,51 @@ public static partial class Game
             {
                 stat = Mem.U32((uint)(((uint)(73400336) | 2684354560u)));
             }
-            domain = (uint)(Mem.U8((pihandle + 9u)));
+            domain = (uint)(new OSPiHandle(pihandle).domain);
             if ((Mem.U32((0x800D83B0u + (uint)(domain * 4))) != pihandle))
             {
                 cHandle = Mem.U32((0x800D83B0u + (uint)(domain * 4)));
                 if ((domain == (uint)(0)))
                 {
-                    if (((int)(Mem.U8((cHandle + 5u))) != (int)(Mem.U8((pihandle + 5u)))))
+                    if (((int)(new OSPiHandle(cHandle).latency) != (int)(new OSPiHandle(pihandle).latency)))
                     {
-                        Mem.Set((uint)(((uint)(73400340) | 2684354560u)), (uint)(Mem.U8((pihandle + 5u))));
+                        Mem.Set((uint)(((uint)(73400340) | 2684354560u)), (uint)(new OSPiHandle(pihandle).latency));
                     }
-                    if (((int)(Mem.U8((cHandle + 6u))) != (int)(Mem.U8((pihandle + 6u)))))
+                    if (((int)(new OSPiHandle(cHandle).pageSize) != (int)(new OSPiHandle(pihandle).pageSize)))
                     {
-                        Mem.Set((uint)(((uint)(73400348) | 2684354560u)), (uint)(Mem.U8((pihandle + 6u))));
+                        Mem.Set((uint)(((uint)(73400348) | 2684354560u)), (uint)(new OSPiHandle(pihandle).pageSize));
                     }
-                    if (((int)(Mem.U8((cHandle + 7u))) != (int)(Mem.U8((pihandle + 7u)))))
+                    if (((int)(new OSPiHandle(cHandle).relDuration) != (int)(new OSPiHandle(pihandle).relDuration)))
                     {
-                        Mem.Set((uint)(((uint)(73400352) | 2684354560u)), (uint)(Mem.U8((pihandle + 7u))));
+                        Mem.Set((uint)(((uint)(73400352) | 2684354560u)), (uint)(new OSPiHandle(pihandle).relDuration));
                     }
-                    if (((int)(Mem.U8((cHandle + 8u))) != (int)(Mem.U8((pihandle + 8u)))))
+                    if (((int)(new OSPiHandle(cHandle).pulse) != (int)(new OSPiHandle(pihandle).pulse)))
                     {
-                        Mem.Set((uint)(((uint)(73400344) | 2684354560u)), (uint)(Mem.U8((pihandle + 8u))));
+                        Mem.Set((uint)(((uint)(73400344) | 2684354560u)), (uint)(new OSPiHandle(pihandle).pulse));
                     }
                 }
                 else
                 {
-                    if (((int)(Mem.U8((cHandle + 5u))) != (int)(Mem.U8((pihandle + 5u)))))
+                    if (((int)(new OSPiHandle(cHandle).latency) != (int)(new OSPiHandle(pihandle).latency)))
                     {
-                        Mem.Set((uint)(((uint)(73400356) | 2684354560u)), (uint)(Mem.U8((pihandle + 5u))));
+                        Mem.Set((uint)(((uint)(73400356) | 2684354560u)), (uint)(new OSPiHandle(pihandle).latency));
                     }
-                    if (((int)(Mem.U8((cHandle + 6u))) != (int)(Mem.U8((pihandle + 6u)))))
+                    if (((int)(new OSPiHandle(cHandle).pageSize) != (int)(new OSPiHandle(pihandle).pageSize)))
                     {
-                        Mem.Set((uint)(((uint)(73400364) | 2684354560u)), (uint)(Mem.U8((pihandle + 6u))));
+                        Mem.Set((uint)(((uint)(73400364) | 2684354560u)), (uint)(new OSPiHandle(pihandle).pageSize));
                     }
-                    if (((int)(Mem.U8((cHandle + 7u))) != (int)(Mem.U8((pihandle + 7u)))))
+                    if (((int)(new OSPiHandle(cHandle).relDuration) != (int)(new OSPiHandle(pihandle).relDuration)))
                     {
-                        Mem.Set((uint)(((uint)(73400368) | 2684354560u)), (uint)(Mem.U8((pihandle + 7u))));
+                        Mem.Set((uint)(((uint)(73400368) | 2684354560u)), (uint)(new OSPiHandle(pihandle).relDuration));
                     }
-                    if (((int)(Mem.U8((cHandle + 8u))) != (int)(Mem.U8((pihandle + 8u)))))
+                    if (((int)(new OSPiHandle(cHandle).pulse) != (int)(new OSPiHandle(pihandle).pulse)))
                     {
-                        Mem.Set((uint)(((uint)(73400360) | 2684354560u)), (uint)(Mem.U8((pihandle + 8u))));
+                        Mem.Set((uint)(((uint)(73400360) | 2684354560u)), (uint)(new OSPiHandle(pihandle).pulse));
                     }
                 }
                 Mem.Set((0x800D83B0u + (uint)(domain * 4)), pihandle);
             }
-            Mem.Set(data, Mem.U32((uint)(((Mem.U32((pihandle + 12u)) | devAddr) | 2684354560u))));
+            Mem.Set(data, Mem.U32((uint)(((new OSPiHandle(pihandle).baseAddress | devAddr) | 2684354560u))));
             return 0;
         }
     }

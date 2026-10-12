@@ -13,13 +13,13 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0022B5FC", (uint)a, 0u, (uint)y);
-                float v = (Mem.F32((a + 4800u)) + x);
+                float v = (new Plr(a).unk12C0 + x);
                 float t = Mem.F32(0x800CE3E0u);
                 if (!(t <= v))
                 {
                     t = v;
                 }
-                Mem.Set((a + 4800u), t);
+                new Plr(a).unk12C0_Set(t);
                 if ((Mem.F32(0x800CE3E0u) <= t))
                 {
                     func_00216488(_fp, y, 262144, (int)Cpu.F2U(25.5999985f), 128, 0);

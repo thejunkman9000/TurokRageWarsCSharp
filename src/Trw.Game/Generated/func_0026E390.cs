@@ -12,20 +12,20 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0026E390");
             uint g = 0u;
             g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-            Mem.Set(g, 3909091328u);
-            Mem.Set((g + 4u), (uint)(0));
+            new DlCmd(g).w0_Set(3909091328u);
+            new DlCmd(g).w1_Set((uint)(0));
             g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-            Mem.Set(g, 3774873600u);
-            Mem.Set((g + 4u), (uint)(0x000E0470u));
+            new DlCmd(g).w0_Set(3774873600u);
+            new DlCmd(g).w1_Set((uint)(0x000E0470u));
             g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-            Mem.Set(g, 3707766783u);
-            Mem.Set((g + 4u), (uint)(0x000DE0A0u));
+            new DlCmd(g).w0_Set(3707766783u);
+            new DlCmd(g).w1_Set((uint)(0x000DE0A0u));
             g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-            Mem.Set(g, 3724541952u);
-            Mem.Set((g + 4u), (uint)(0x800D0F10u));
+            new DlCmd(g).w0_Set(3724541952u);
+            new DlCmd(g).w1_Set((uint)(0x800D0F10u));
             g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-            Mem.Set(g, 3724541952u);
-            Mem.Set((g + 4u), (uint)(0x800D0F40u));
+            new DlCmd(g).w0_Set(3724541952u);
+            new DlCmd(g).w1_Set((uint)(0x800D0F40u));
         }
     }
 

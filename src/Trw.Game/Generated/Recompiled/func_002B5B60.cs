@@ -40,7 +40,7 @@ public static partial class Game
                 { bool c_ = r16 == r2; r4 = r17 + 72u; if (c_) goto L_L002B5D0C; }
                  goto L_L002B5D34;
                 L_L002B5BC8: ;
-                r5 = r29 + 16u; r2 = __handleMIDIMsg(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r29 + 16u; __handleMIDIMsg(r4, r5);
                 r2 = Mem.U32((r17 + 44u));
                 r18 = Mem.U32((r17 + 24u));
                 { bool c_ = r2 != r16;  if (c_) goto L_L002B5D4C; }
@@ -68,7 +68,7 @@ public static partial class Game
                 Mem.Set((r29 + 32u), (ushort)r0); goto L_L002B5CEC;
                 L_L002B5C58: ;
                 r4 = r17;
-                r5 = r29 + 16u; r2 = __handleMetaMsg(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r29 + 16u; __handleMetaMsg(r4, r5);
                 r3 = (uint)1;
                 r2 = Mem.U32((r17 + 44u));
                 r16 = Mem.U32((r17 + 24u));

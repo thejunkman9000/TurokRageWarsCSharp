@@ -32,7 +32,7 @@ public static partial class Game
                 Mem.Copy(_fp + 16u, blk_in, 8);
                 if (Dbg.On) Dbg.Enter("func_002683F0", (uint)a, (uint)b, (uint)c, (uint)pos_in);
                 float d = 0f;
-                d = (Mem.F32(((a + 8u) + 4u)) - Mem.F32((_fp + 4u)));
+                d = (new B15Src(a).pos.y - new Vec3f(_fp).y);
                 if ((((d < 0.0f) ? (((-d) <= Mem.F32(0x800C9560u)) ? 1 : 0) : ((d <= Mem.F32(0x800C9564u)) ? 1 : 0)) != 0))
                 {
                     func_002683F0_w(a, b, c, _fp, (_fp + 16u));

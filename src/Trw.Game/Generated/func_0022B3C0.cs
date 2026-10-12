@@ -16,7 +16,7 @@ public static partial class Game
                 func_00273208(_fp, v);
                 func_0027200C((_fp + 64u), v, 5.11999989f);
                 func_00271FA4((_fp + 64u), (_fp + 64u), (a + (uint)4608));
-                func_002734B8(_fp, Mem.F32((_fp + 64u)), Mem.F32(((_fp + 64u) + 4u)), Mem.F32(((_fp + 64u) + 8u)));
+                func_002734B8(_fp, new Vec3f((_fp + 64u)).x, new Vec3f((_fp + 64u)).y, new Vec3f((_fp + 64u)).z);
                 func_00273DDC(_fp);
                 func_002702EC(_fp, (a + (uint)5632));
             }

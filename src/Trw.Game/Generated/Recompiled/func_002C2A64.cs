@@ -364,7 +364,7 @@ public static partial class Game
                 L_I002C2D50: ;
                 r2 = r7 + r2;
                 L_I002C2D54: ;
-                Mem.Set((r4 + 8u), r2); r2 = _Ldtob(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r4 + 8u), r2); _Ldtob(r4, (byte)r5);
                 L_I002C2D5C: ;
                  goto L_L002C2EC0;
                 L_L002C2D64: ;

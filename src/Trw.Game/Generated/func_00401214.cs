@@ -20,11 +20,11 @@ public static partial class Game
                 int seg = 0;
                 int i = 0;
                 uint n = 0u;
-                while ((i < Mem.S32(func_0028FD94(Mem.U32((Mem.U32(0x800E2830u) + 4u)), 0))))
+                while ((i < new O01Node(func_0028FD94(new O01Ctx(Mem.U32(0x800E2830u)).tree, 0)).unk0))
                 {
                     seg = i;
-                    n = func_0028FD94(func_0028FD94(func_0028FD94(Mem.U32((Mem.U32(0x800E2830u) + 4u)), 0), seg), 0);
-                    cnt = Mem.S32((n + 4u));
+                    n = func_0028FD94(func_0028FD94(func_0028FD94(new O01Ctx(Mem.U32(0x800E2830u)).tree, 0), seg), 0);
+                    cnt = new O01Node(n).unk4;
                     keys = (n + (uint)8);
                     cumBefore = cumAfter;
                     cumAfter = (cumBefore + Mem.F32(((keys + (uint)(cnt * 36)) - (uint)8)));
@@ -35,7 +35,7 @@ public static partial class Game
                             break;
                         }
                     }
-                    if ((seg == (Mem.S32(func_0028FD94(Mem.U32((Mem.U32(0x800E2830u) + 4u)), 0)) - 1)))
+                    if ((seg == (new O01Node(func_0028FD94(new O01Ctx(Mem.U32(0x800E2830u)).tree, 0)).unk0 - 1)))
                     {
                         if ((cumAfter < t))
                         {
@@ -51,8 +51,8 @@ public static partial class Game
                     }
                     i = (seg + 1);
                 }
-                n = func_0028FD94(func_0028FD94(func_0028FD94(Mem.U32((Mem.U32(0x800E2830u) + 4u)), 0), seg), 2);
-                if ((Mem.S32(n) != 0))
+                n = func_0028FD94(func_0028FD94(func_0028FD94(new O01Ctx(Mem.U32(0x800E2830u)).tree, 0), seg), 2);
+                if ((new O01Node(n).unk0 != 0))
                 {
                     t = cumBefore;
                 }

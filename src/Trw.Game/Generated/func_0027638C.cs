@@ -10,24 +10,24 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0027638C", (uint)n, 0u, (uint)id);
-            if (((int)(Mem.U16(n)) == (int)(id)))
+            if (((int)(new TNode(n).id) == (int)(id)))
             {
-                if ((((Mem.F32((Mem.U32((n + 4u)) + 4u)) != val) || (Mem.F32((Mem.U32((n + 8u)) + 4u)) != val)) || (Mem.F32((Mem.U32((n + 12u)) + 4u)) != val)))
+                if ((((new TNode(n).s0.v != val) || (new TNode(n).s1.v != val)) || (new TNode(n).s2.v != val)))
                 {
-                    Mem.Set((Mem.U32((n + 4u)) + 4u), val);
-                    Mem.Set((Mem.U32((n + 8u)) + 4u), val);
-                    Mem.Set((Mem.U32((n + 12u)) + 4u), val);
-                    if ((Mem.U32((n + 16u)) != 0u))
+                    new TNode(n).s0.v_Set(val);
+                    new TNode(n).s1.v_Set(val);
+                    new TNode(n).s2.v_Set(val);
+                    if ((new TNode(n).c0_ != 0u))
                     {
-                        func_0027638C(Mem.U32((n + 16u)), val, id);
+                        func_0027638C(new TNode(n).c0_, val, id);
                     }
-                    if ((Mem.U32((n + 20u)) != 0u))
+                    if ((new TNode(n).c1_ != 0u))
                     {
-                        func_0027638C(Mem.U32((n + 20u)), val, id);
+                        func_0027638C(new TNode(n).c1_, val, id);
                     }
-                    if ((Mem.U32((n + 24u)) != 0u))
+                    if ((new TNode(n).c2_ != 0u))
                     {
-                        func_0027638C(Mem.U32((n + 24u)), val, id);
+                        func_0027638C(new TNode(n).c2_, val, id);
                     }
                 }
             }

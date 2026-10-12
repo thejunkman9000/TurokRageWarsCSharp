@@ -18,14 +18,14 @@ public static partial class Game
                 float min = 0f;
                 float d = 0f;
                 func_002725BC(pt, 2.0E+4f);
-                if ((Mem.S32((l + 4608u)) == 0))
+                if ((new PList(l).unk1200 == 0))
                 {
                     min = Mem.F32(0x800C8638u);
                     best = 0u;
-                    for (n = Mem.U32((l + 32u)); (n != 0u); n = Mem.U32((n + 4u)))
+                    for (n = new PList(l).head_; (n != 0u); n = new PNode_v2(n).next_)
                     {
-                        func_00271FD8(_fp, pt, (n + 296u));
-                        d = (((Mem.F32(_fp) * Mem.F32(_fp)) + (Mem.F32((_fp + 4u)) * Mem.F32((_fp + 4u)))) + (Mem.F32((_fp + 8u)) * Mem.F32((_fp + 8u))));
+                        func_00271FD8(_fp, pt, new PNode_v2(n).pos.P);
+                        d = (((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z));
                         if ((d < min))
                         {
                             best = n;

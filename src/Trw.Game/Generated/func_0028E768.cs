@@ -15,18 +15,18 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0028E768", (uint)e, (uint)target);
                 float dist = 0f;
                 uint t = 0u;
-                func_00271FD8(_fp, (e + 8u), target);
-                dist = (((Mem.F32(_fp) * Mem.F32(_fp)) + (Mem.F32((_fp + 4u)) * Mem.F32((_fp + 4u)))) + (Mem.F32((_fp + 8u)) * Mem.F32((_fp + 8u))));
-                if ((Mem.S32(Mem.U32((e + 24u))) == 1))
+                func_00271FD8(_fp, new Entity(e).pos.P, target);
+                dist = (((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z));
+                if ((new ActorDef(new Entity(e).def_).type == 1))
                 {
-                    t = (uint)(Mem.U16((e + 228u)));
+                    t = (uint)(new Entity(e).unkE4);
                     if ((((((((t == (uint)(1102)) || (t == (uint)(1107))) || (t == (uint)(1105))) || (t == (uint)(1104))) || (t == (uint)(1108))) || (t == (uint)(1109))) || (t == (uint)(1110))))
                     {
                         return 0;
                     }
-                    if ((Mem.S32((e + 372u)) != 0))
+                    if ((new Entity(e).unk174 != 0))
                     {
-                        if (((int)(Mem.S8((e + 420u))) != 61))
+                        if (((int)(new Entity(e).unk1A4) != 61))
                         {
                             if ((dist <= 6553600.0f))
                             {

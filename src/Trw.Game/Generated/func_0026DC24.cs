@@ -18,7 +18,7 @@ public static partial class Game
             }
             if ((((Mem.U32(0x8011064Cu) != p) || (Mem.S32(0x80110624u) != key)) || (Mem.S32(0x80110640u) == 32)))
             {
-                func_0026BC60(default(uint), default(uint), default(uint), default(uint));
+                func_0026BC60();
                 if ((Mem.S32(0x801153D0u) == 256))
                 {
                     return;
@@ -29,10 +29,10 @@ public static partial class Game
             Mem.Set(0x8011064Cu, p);
             Mem.Set(0x80110624u, key);
             e = (0x801157D8u + (uint)((Mem.Set(0x80110640u, (int)(Mem.S32(0x80110640u) + 1)) - 1) * 16));
-            Mem.Set(e, b);
-            Mem.Set((e + 12u), c);
-            Mem.Set((e + 4u), d);
-            Mem.Set((e + 8u), (int)(node));
+            new B16QEntry(e).a_Set(b);
+            new B16QEntry(e).d_Set(c);
+            new B16QEntry(e).b_Set(d);
+            new B16QEntry(e).c_Set((int)(node));
         }
     }
 

@@ -10,10 +10,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00423280");
-            Mem.Set((0x801462C8u + 27u), (byte)(func_0041AD84((uint)(Mem.S32((Mem.U32(0x800E4510u) + (uint)(3 * 4)))))));
-            Mem.Set((0x801462C8u + 31u), (byte)(func_0041AD84((uint)(Mem.S32((Mem.U32(0x800E4510u) + (uint)(4 * 4)))))));
-            Mem.Set((0x801462C8u + 1408u), (byte)(func_0041AD84((uint)(Mem.S32((Mem.U32(0x800E4510u) + (uint)(5 * 4)))))));
-            Mem.Set((0x801462C8u + 16u), func_0041A760((uint)(Mem.S32((Mem.U32(0x800E4510u) + (uint)(2 * 4))))));
+            new O3Cfg(0x801462C8u).f1B_Set((byte)(func_0041AD84((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(3)]))));
+            new O3Cfg(0x801462C8u).f1F_Set((byte)(func_0041AD84((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(4)]))));
+            new O3Cfg(0x801462C8u).f580_Set((byte)(func_0041AD84((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(5)]))));
+            new O3Cfg(0x801462C8u).f10_Set(func_0041A760((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(2)])));
         }
     }
 

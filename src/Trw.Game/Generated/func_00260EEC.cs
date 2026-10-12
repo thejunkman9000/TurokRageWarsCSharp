@@ -14,8 +14,8 @@ public static partial class Game
             {
                 Mem.Copy(_fp + 0u, w_in, 12);
                 if (Dbg.On) Dbg.Enter("func_00260EEC", (uint)p, (uint)a, (uint)w_in);
-                Mem.Set(p, a);
-                Mem.Copy((p + 4u), _fp, 12);
+                new T4(p).a_Set(a);
+                Mem.Copy(new T4(p).w.P, _fp, 12);
             }
         }
         finally { Stack.Free(12); }

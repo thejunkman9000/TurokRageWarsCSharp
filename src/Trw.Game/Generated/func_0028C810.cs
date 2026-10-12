@@ -25,13 +25,13 @@ public static partial class Game
                 bestd = 9999999;
                 i = zero;
                 best = (uint)(zero);
-                if ((Mem.S32((lv + 112292u)) > zero))
+                if ((new Level(lv).n2 > zero))
                 {
                     do
                     {
-                        e = Mem.U32(((lv + 112228u) + (uint)(i * 4)));
-                        func_00271FD8(_fp, (e + 8u), (tgt + 8u));
-                        dist = (int)(sqrtf((((Mem.F32(_fp) * Mem.F32(_fp)) + (Mem.F32((_fp + 4u)) * Mem.F32((_fp + 4u)))) + (Mem.F32((_fp + 8u)) * Mem.F32((_fp + 8u))))));
+                        e = new Level(lv).list2[(int)(i)];
+                        func_00271FD8(_fp, new Entity(e).pos.P, new Entity(tgt).pos.P);
+                        dist = (int)(sqrtf((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z))));
                         if ((bestd >= dist))
                         {
                             best = e;
@@ -39,7 +39,7 @@ public static partial class Game
                         }
                         ++i;
                     }
-                    while ((i < Mem.S32((lv + 112292u))));
+                    while ((i < new Level(lv).n2));
                 }
                 return best;
             }

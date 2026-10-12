@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002331EC", (uint)actor, (uint)state);
-            uint owner = Mem.U32((actor + 472u));
+            uint owner = new Actor(actor).owner_;
             uint o2 = 0u;
             if ((Mem.S32((state + (uint)316)) == 2))
             {
@@ -18,20 +18,20 @@ public static partial class Game
                 return;
             }
             Mem.Set((state + (uint)100), Mem.F32(0x800C8138u));
-            if (((Mem.S32((owner + 5200u)) == 0) && (Mem.S32(0x801450B8u) == 1)))
+            if (((new Actor(owner).unk1450 == 0) && (Mem.S32(0x801450B8u) == 1)))
             {
-                func_0021A9A4(Mem.U32((actor + 472u)), (uint)(1019), default(uint), default(uint));
+                func_0021A9A4(new Actor(actor).owner_, (uint)(1019), default(uint), default(uint));
             }
             else
             {
-                func_0021A9A4(Mem.U32((actor + 472u)), (uint)(1229), default(uint), default(uint));
+                func_0021A9A4(new Actor(actor).owner_, (uint)(1229), default(uint), default(uint));
             }
             func_00214178(actor, state, 4);
             func_0022AE90(owner, 2423);
             func_0022AF64(owner, 2420);
-            o2 = Mem.U32((actor + 472u));
+            o2 = new Actor(actor).owner_;
             Mem.Set((state + (uint)304), (Mem.F32((Mem.U32((0x800D052Cu + (uint)(Mem.S16((o2 + (uint)1582)) * 4))) + (uint)24)) * Mem.F32(0x800C813Cu)));
-            if ((((int)(Mem.S16((o2 + (uint)1582))) == 8) && (Mem.S32((o2 + 4544u)) == 0)))
+            if ((((int)(Mem.S16((o2 + (uint)1582))) == 8) && (new Actor(o2).unk11C0 == 0)))
             {
                 func_0022AF64(o2, 2620);
             }

@@ -10,16 +10,16 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024F848", (uint)a);
-            uint d = Mem.U32((a + 24u));
+            uint d = new Obj(a).def_;
             int r = 0;
             int id = 0;
             uint f = 0u;
-            if ((Mem.S32(d) == 12))
+            if ((new ObjDef(d).type == 12))
             {
                 return 0;
             }
-            r = (int)(Mem.S8((d + 14u)));
-            id = (int)(func_0028B238(0x8011FE88u, (int)(Mem.U16((a + 4u)))));
+            r = (int)(new ObjDef(d).unkE);
+            id = (int)(func_0028B238(0x8011FE88u, (int)(new Obj(a).unk4)));
             if ((id < 1707))
             {
                 if ((id >= 1705))

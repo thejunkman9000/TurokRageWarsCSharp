@@ -19,9 +19,9 @@ public static partial class Game
             }
             for (i = 0; (i < 3); ++i)
             {
-                a = Mem.U32(((p + 4u) + (uint)(i * 4)));
-                b = Mem.U32(((p + 4u) + (uint)(((i + 1) % 3) * 4)));
-                if (((((Mem.F32((b + 8u)) - Mem.F32((a + 8u))) * (x - Mem.F32(a))) + ((Mem.F32(a) - Mem.F32(b)) * (z - Mem.F32((a + 8u))))) < 0.0f))
+                a = new Poly3(p).v[(int)(i)];
+                b = new Poly3(p).v[(int)(((i + 1) % 3))];
+                if (((((new Pt3(b).z - new Pt3(a).z) * (x - new Pt3(a).x)) + ((new Pt3(a).x - new Pt3(b).x) * (z - new Pt3(a).z))) < 0.0f))
                 {
                     return 0;
                 }

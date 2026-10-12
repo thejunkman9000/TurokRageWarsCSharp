@@ -11,19 +11,19 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004350D0", (uint)idx);
             byte c = 0;
-            Mem.Set(((Mem.U32(0x800E54A4u) + 44u) + (uint)(idx * 4)), 0);
-            func_0041B87C(Mem.U32((Mem.U32(0x800E54A4u) + 4u)), idx);
-            if (((int)(Mem.U8(((((Mem.U32(0x800E54A4u) + 88u) + (uint)(idx * 2920)) + 2868u) + (uint)(Mem.S32((((Mem.U32(0x800E54A4u) + 88u) + (uint)(idx * 2920)) + 2884u)) * 2)))) == 0))
+            new O05Lobby(Mem.U32(0x800E54A4u)).h.w2C.Set((int)(idx), 0);
+            func_0041B87C(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, idx);
+            if (((int)(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].name[(int)((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 * 2))]) == 0))
             {
-                Mem.Set(((((Mem.U32(0x800E54A4u) + 88u) + (uint)(idx * 2920)) + 2868u) + (uint)(Mem.S32((((Mem.U32(0x800E54A4u) + 88u) + (uint)(idx * 2920)) + 2884u)) * 2)), (byte)(65));
+                new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].name.Set((int)((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 * 2)), (byte)(65));
             }
-            c = Mem.U8(((((Mem.U32(0x800E54A4u) + 88u) + (uint)(idx * 2920)) + 2868u) + (uint)(Mem.S32((((Mem.U32(0x800E54A4u) + 88u) + (uint)(idx * 2920)) + 2884u)) * 2)));
+            c = new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].name[(int)((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 * 2))];
             --c;
             if (((int)(c) < 32))
             {
                 c = (byte)(90);
             }
-            Mem.Set(((((Mem.U32(0x800E54A4u) + 88u) + (uint)(idx * 2920)) + 2868u) + (uint)(Mem.S32((((Mem.U32(0x800E54A4u) + 88u) + (uint)(idx * 2920)) + 2884u)) * 2)), c);
+            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].name.Set((int)((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 * 2)), c);
         }
     }
 

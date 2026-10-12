@@ -14,9 +14,9 @@ public static partial class Game
             {
                 Mem.Copy(_fp + 0u, v_in, 12);
                 if (Dbg.On) Dbg.Enter("func_0028BFB4", (uint)lv, (uint)a1, (uint)v_in);
-                Mem.Set((_fp + 16u), (float)(0));
-                Mem.Set(((_fp + 16u) + 4u), (float)(0));
-                Mem.Set(((_fp + 16u) + 8u), (float)(0));
+                new Vec3f((_fp + 16u)).x_Set((float)(0));
+                new Vec3f((_fp + 16u)).y_Set((float)(0));
+                new Vec3f((_fp + 16u)).z_Set((float)(0));
                 func_0028FFB0((lv + (uint)71544), (uint)(0), x, (_fp + 16u), _fp, a1, f);
             }
         }

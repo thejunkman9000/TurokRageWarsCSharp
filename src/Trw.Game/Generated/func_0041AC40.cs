@@ -15,16 +15,16 @@ public static partial class Game
             uint o = 0u;
             src = func_0040ECB0((uint)((int)(func_00411E4C(func_0029A958()))), (uint)((a & 65535)), default(uint), default(uint));
             s = (int)(func_00411E4C(func_0029A958()));
-            o = func_00252FFC((uint)(280), default(uint), default(uint), default(uint));
+            o = func_00252FFC((uint)(280));
             func_002A1748(o, 0, (uint)(280));
             Mem.Copy(o, src, 44);
-            Mem.Set((o + 14u), (ushort)(2916));
-            Mem.Copy((o + 44u), (src + 44u), 20);
-            Mem.Set((o + 68u), func_0040ECB0((uint)(s), (uint)((b & 65535)), default(uint), default(uint)));
-            Mem.Set((o + 272u), 0);
-            Mem.Set((o + 276u), 0);
+            new O3LC(o).h.id2_Set((ushort)(2916));
+            Mem.Copy(new O3LC(o).col.P, new O3LC(src).col.P, 20);
+            new O3LC(o).g__Set(func_0040ECB0((uint)(s), (uint)((b & 65535)), default(uint), default(uint)));
+            new O3LC(o).sel_Set(0);
+            new O3LC(o).cnt_Set(0);
             func_0040EF24(src, o, default(uint), default(uint));
-            Mem.Set((src + 12u), (short)((-1)));
+            new O3LC(src).h.id_Set((short)((-1)));
             func_0040F004((uint)(s), src, o, default(uint));
             return o;
         }

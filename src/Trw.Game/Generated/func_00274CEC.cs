@@ -12,21 +12,21 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00274CEC", (uint)o);
             float len2 = 0f;
             float z = 0f;
-            len2 = (((Mem.F32((o + 24u)) * Mem.F32((o + 24u))) + (Mem.F32(((o + 24u) + 4u)) * Mem.F32(((o + 24u) + 4u)))) + (Mem.F32(((o + 24u) + 8u)) * Mem.F32(((o + 24u) + 8u))));
+            len2 = (((new VelObj(o).vel.x * new VelObj(o).vel.x) + (new VelObj(o).vel.y * new VelObj(o).vel.y)) + (new VelObj(o).vel.z * new VelObj(o).vel.z));
             z = 0.0f;
             if ((len2 != 0.0f))
             {
                 len2 = (Mem.F32(0x800C9A94u) / func_002BC380(len2));
-                z = (Mem.F32(((o + 24u) + 8u)) * len2);
-                Mem.Set((o + 36u), (Mem.F32((o + 24u)) * len2));
-                Mem.Set(((o + 36u) + 4u), (Mem.F32(((o + 24u) + 4u)) * len2));
+                z = (new VelObj(o).vel.z * len2);
+                new VelObj(o).dir.x_Set((new VelObj(o).vel.x * len2));
+                new VelObj(o).dir.y_Set((new VelObj(o).vel.y * len2));
             }
             else
             {
-                Mem.Set((o + 36u), 0.0f);
-                Mem.Set(((o + 36u) + 4u), 0.0f);
+                new VelObj(o).dir.x_Set(0.0f);
+                new VelObj(o).dir.y_Set(0.0f);
             }
-            Mem.Set(((o + 36u) + 8u), z);
+            new VelObj(o).dir.z_Set(z);
         }
     }
 

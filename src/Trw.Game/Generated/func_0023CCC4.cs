@@ -16,28 +16,28 @@ public static partial class Game
             int i = 0;
             uint page = 0u;
             r = 0x80103F88u;
-            page = ((uint)(Mem.S32((req + 4u))) >> (int)12);
+            page = ((uint)(new B09FreeReq(req).addr) >> (int)12);
             prev = 0u;
-            for (; (r != 0u); r = Mem.U32(r))
+            for (; (r != 0u); r = new B09Region(r).next_)
             {
-                if (((uint)(Mem.U16((r + 4u))) == page))
+                if (((uint)(new B09Region(r).@base) == page))
                 {
                     break;
                 }
                 prev = r;
             }
-            Mem.Set(prev, Mem.U32(r));
-            p = Mem.U32((r + 16u));
-            for (i = 0; (i < (int)(Mem.U16((r + 6u)))); ++i)
+            new B09Region(prev).next__Set(new B09Region(r).next_);
+            p = new B09Region(r).data_;
+            for (i = 0; (i < (int)(new B09Region(r).size)); ++i)
             {
                 if (((int)(Mem.U8(p)) != 255))
                 {
                     func_0023C074((0x80103B50u + (uint)(Mem.U8(p) * 16)));
-                    Mem.Set(((0x80103B50u + (uint)(Mem.U8(p) * 16)) + 8u), (ushort)(65535));
+                    new B09LNode((0x80103B50u + (uint)(Mem.U8(p) * 16))).slot_Set((ushort)(65535));
                 }
                 p += 1u;
             }
-            osSendMesg(Mem.U32((req + 8u)), r, 1);
+            osSendMesg(new B09FreeReq(req).reply_, r, 1);
         }
     }
 

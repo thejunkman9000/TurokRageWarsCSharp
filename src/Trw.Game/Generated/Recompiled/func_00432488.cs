@@ -242,7 +242,7 @@ public static partial class Game
                 L_I0043267C: ;
                 r4 = r4 + r16;
                 L_I00432680: ;
-                r4 = r4 + 2896u; r2 = func_0042EB94(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 + 2896u; func_0042EB94(r4, r5, r6);
                 L_I00432688: ;
                 r4 = 2148401152u;
                 L_I0043268C: ;
@@ -442,7 +442,7 @@ public static partial class Game
                 L_I00432840: ;
                 r6 = r2; func_0041B95C(r4, (int)r5, r6);
                 L_I00432848: ;
-                r4 = r19; r2 = func_0043407C(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r19; func_0043407C((int)r4);
                 L_I00432850: ;
                 r2 = r19 << 3; goto L_L00433524;
                 L_L00432858: ;

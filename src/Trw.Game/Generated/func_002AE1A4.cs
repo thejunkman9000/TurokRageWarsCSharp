@@ -12,13 +12,13 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002AE1A4", (uint)p);
             uint q = 0u;
             uint v = 0u;
-            q = Mem.U32((p + 1500u));
-            Mem.Set((p + 5844u), ((Mem.S32((p + 5844u)) == 0) ? 1 : 0));
+            q = new Plr24b(p).unk5DC_;
+            new Plr24b(p).unk16D4_Set(((new Plr24b(p).unk16D4 == 0) ? 1 : 0));
             if ((q != 0u))
             {
-                Mem.Set((q + 292u), (short)(0));
+                new Sub24(q).unk124_Set((short)(0));
                 v = Cpu.TruncU32(func_002745D4(0.0150000006f));
-                func_0023919C(Mem.U32((p + 1500u)), (sbyte)(255), (sbyte)(255), (sbyte)(255), (sbyte)(255), (sbyte)((int)((byte)(v))), (sbyte)(1), (sbyte)(0));
+                func_0023919C(new Plr24b(p).unk5DC_, (sbyte)(255), (sbyte)(255), (sbyte)(255), (sbyte)(255), (sbyte)((int)((byte)(v))), (sbyte)(1), (sbyte)(0));
             }
             return 1;
         }

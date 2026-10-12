@@ -13,9 +13,9 @@ public static partial class Game
             int i = 0;
             int n = 0;
             n = 0;
-            for (i = 0; (i < Mem.S32((o + 72u))); ++i)
+            for (i = 0; (i < new O3Arr_v3(o).cnt); ++i)
             {
-                if ((Mem.S32(((o + 92u) + (uint)(i * 4))) != 0))
+                if ((new O3Arr_v3(o).arr[(int)(i)] != 0))
                 {
                     ++n;
                 }

@@ -15,25 +15,25 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("alSndpNew", (uint)sndp, (uint)c);
                 uint i = 0u;
                 uint state = 0u;
-                Mem.Set((sndp + 68u), Mem.S32(c));
-                Mem.Set((sndp + 60u), (-1));
-                Mem.Set((sndp + 72u), 16000);
-                state = alHeapDBAlloc(0u, 0, Mem.U32((c + 8u)), 1, (int)(((uint)(Mem.S32(c)) * 48u)));
-                Mem.Set((sndp + 64u), state);
-                for (i = (uint)(0); (i < (uint)(Mem.S32(c))); ++i)
+                new ALSndPlayer(sndp).maxSounds_Set(new ALSndpConfig(c).maxSounds);
+                new ALSndPlayer(sndp).target_Set((-1));
+                new ALSndPlayer(sndp).frameTime_Set(16000);
+                state = alHeapDBAlloc(0u, 0, new ALSndpConfig(c).heap_, 1, (int)(((uint)(new ALSndpConfig(c).maxSounds) * 48u)));
+                new ALSndPlayer(sndp).sndState__Set(state);
+                for (i = (uint)(0); (i < (uint)(new ALSndpConfig(c).maxSounds)); ++i)
                 {
-                    Mem.Set((state + 28u), 0u);
+                    new ALSndState(state).sound__Set(0u);
                     state += 48u;
                 }
-                alEvtqNew((sndp + 20u), alHeapDBAlloc(0u, 0, Mem.U32((c + 8u)), 1, (int)(((uint)(Mem.S32((c + 4u))) * 28u))), Mem.S32((c + 4u)));
-                Mem.Set(sndp, 0u);
-                Mem.Set((sndp + 4u), sndp);
-                Mem.Set((sndp + 56u), Mem.U32(0x800D80A0u));
-                Mem.Set((sndp + 8u), 0x002B7C8Cu);
-                alSynAddPlayer(Mem.U32((sndp + 56u)), sndp);
-                Mem.Set(_fp, (short)(5));
-                alEvtqPostEvent((sndp + 20u), _fp, Mem.S32((sndp + 72u)));
-                Mem.Set((sndp + 76u), alEvtqNextEvent((sndp + 20u), (sndp + 40u)));
+                alEvtqNew(new ALSndPlayer(sndp).evtq.P, alHeapDBAlloc(0u, 0, new ALSndpConfig(c).heap_, 1, (int)(((uint)(new ALSndpConfig(c).maxEvents) * 28u))), new ALSndpConfig(c).maxEvents);
+                new ALSndPlayer(sndp).node.next__Set(0u);
+                new ALSndPlayer(sndp).node.clientData_Set(sndp);
+                new ALSndPlayer(sndp).drvr_Set(Mem.U32(0x800D80A0u));
+                new ALSndPlayer(sndp).node.handler_Set(0x002B7C8Cu);
+                alSynAddPlayer(new ALSndPlayer(sndp).drvr, new ALSndPlayer(sndp).node.P);
+                new ALEvent(_fp).type_Set((short)(5));
+                alEvtqPostEvent(new ALSndPlayer(sndp).evtq.P, _fp, new ALSndPlayer(sndp).frameTime);
+                new ALSndPlayer(sndp).nextDelta_Set(alEvtqNextEvent(new ALSndPlayer(sndp).evtq.P, new ALSndPlayer(sndp).nextEvent.P));
             }
         }
         finally { Stack.Free(16); }

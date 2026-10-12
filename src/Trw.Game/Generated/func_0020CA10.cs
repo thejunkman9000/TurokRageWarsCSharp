@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020CA10_getRec0", (uint)m, (uint)idx);
-            uint pool = Mem.U32(m);
-            return ((pool + 8u) + (uint)(idx * Mem.S32(pool)));
+            uint pool = new B2Mgr(m).pool0_;
+            return (new B2Pool(pool).data.P + (uint)(idx * new B2Pool(pool).elemSize));
         }
     }
 
@@ -21,30 +21,30 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0020CA10", (uint)n, (uint)idx);
             uint r = 0u;
-            Mem.Set(n, idx);
-            Mem.Set((n + 8u), (-1));
-            Mem.Set((n + 12u), 0);
-            Mem.Set((n + 16u), 0u);
-            Mem.Set((n + 4u), Mem.F32(0x800C6E7Cu));
+            new B2Node(n).id_Set(idx);
+            new B2Node(n).unk8_Set((-1));
+            new B2Node(n).unkC_Set(0);
+            new B2Node(n).next__Set(0u);
+            new B2Node(n).unk4_Set(Mem.F32(0x800C6E7Cu));
             r = func_0020CA10_getRec0(0x8013B364u, idx);
-            if ((((int)(Mem.U16((r + 12u))) & 2) != 0))
+            if ((((int)(new B2Rec(r).flags) & 2) != 0))
             {
-                Mem.Set((n + 20u), Mem.F32(0x800C6E80u));
+                new B2Node(n).unk14_Set(Mem.F32(0x800C6E80u));
             }
-            Mem.Set((n + 52u), 0u);
-            Mem.Set((n + 56u), 0);
-            Mem.Set((n + 60u), 0);
-            Mem.Set((n + 64u), 0u);
-            Mem.Set((n + 68u), (float)(0));
-            Mem.Set(((n + 68u) + 4u), (float)(0));
-            Mem.Set(((n + 68u) + 8u), (float)(0));
-            if ((((int)(Mem.U16((r + 12u))) & 64) != 0))
+            new B2Node(n).unk34__Set(0u);
+            new B2Node(n).unk38_Set(0);
+            new B2Node(n).unk3C_Set(0);
+            new B2Node(n).unk40__Set(0u);
+            new B2Node(n).v44.x_Set((float)(0));
+            new B2Node(n).v44.y_Set((float)(0));
+            new B2Node(n).v44.z_Set((float)(0));
+            if ((((int)(new B2Rec(r).flags) & 64) != 0))
             {
-                Mem.Set((n + 56u), ((func_00274544() % 5) + 5));
+                new B2Node(n).unk38_Set(((func_00274544() % 5) + 5));
             }
-            if ((((int)(Mem.U16((r + 12u))) & 128) != 0))
+            if ((((int)(new B2Rec(r).flags) & 128) != 0))
             {
-                Mem.Set((n + 60u), ((func_00274544() % 5) + 5));
+                new B2Node(n).unk3C_Set(((func_00274544() % 5) + 5));
             }
         }
     }

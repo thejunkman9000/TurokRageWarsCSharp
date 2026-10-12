@@ -10,12 +10,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020520C", (uint)arg0, (uint)state);
-            Mem.Set((state + 44u), 0x800CD670u);
-            Mem.Set((state + 264u), 0x002052C4u);
-            Mem.Set((state + 268u), 0x00205628u);
-            Mem.Set((state + 272u), (0x00205094u + (uint)12));
-            Mem.Set((state + 292u), 0);
-            Mem.Set((state + 296u), (int)((sbyte)(Mem.U8((arg0 + (uint)3)))));
+            new ActorState(state).table_Set(0x800CD670u);
+            new ActorState(state).fn108_Set(0x002052C4u);
+            new ActorState(state).fn10C_Set(0x00205628u);
+            new ActorState(state).fn110_Set((0x00205094u + (uint)12));
+            new ActorState(state).unk124_Set(0);
+            Mem.Set(new ActorState(state).unk128.P, (int)((sbyte)(Mem.U8((arg0 + (uint)3)))));
         }
     }
 

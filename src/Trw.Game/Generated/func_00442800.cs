@@ -27,14 +27,14 @@ public static partial class Game
             int i = 0;
             uint r = 0u;
             int s = 0;
-            int p1 = Mem.S32((c + 24u));
-            int p2 = Mem.S32((c + 28u));
-            int p3 = Mem.S32((c + 32u));
-            int p4 = Mem.S32((c + 36u));
-            size = (((int)(Mem.S16((b + 4u))) * 40) + 472);
-            for (i = 0; (i < (int)(Mem.S16((b + 4u)))); ++i)
+            int p1 = new O06C(c).unk18;
+            int p2 = new O06C(c).unk1C;
+            int p3 = new O06C(c).unk20;
+            int p4 = new O06C(c).unk24;
+            size = (((int)(new O06B_v3(b).unk4) * 40) + 472);
+            for (i = 0; (i < (int)(new O06B_v3(b).unk4)); ++i)
             {
-                size = (int)((int)(size) + func_00442800_O06_ItemSize((Mem.U32(b) + (uint)(i * 36))));
+                size = (int)((int)(size) + func_00442800_O06_ItemSize((new O06B_v3(b).unk0_ + (uint)(i * 36))));
             }
             r = func_002533DC(0, size, (uint)(59), (int)((0x800E2518u + (uint)4)));
             if ((r == 0u))
@@ -46,14 +46,14 @@ public static partial class Game
             {
                 return 0;
             }
-            func_00440F10((uint)(s), r, b, (uint)(p1), (uint)(p2), (uint)(p3), (uint)(p4), a);
-            func_00255C58(a, (uint)(s), default(uint), default(uint));
+            func_00440F10((uint)(s), r, b, p1, p2, (uint)(p3), p4, a);
+            func_00255C58(a, (uint)(s));
             {
-                short t = (short)(((int)(Mem.S16((a + 20u))) + 1));
-                Mem.Set((a + 20u), t);
+                short t = (short)(((int)(new O06A_v6(a).unk14) + 1));
+                new O06A_v6(a).unk14_Set(t);
                 if (((int)(t) >= 4))
                 {
-                    Mem.Set((a + 20u), (short)(0));
+                    new O06A_v6(a).unk14_Set((short)(0));
                 }
             }
             return s;

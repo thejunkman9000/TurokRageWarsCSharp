@@ -10,32 +10,32 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00207C94", (uint)actor, (uint)state);
-            uint info = (Mem.U32((actor + 24u)) + 20u);
-            int flags = (int)(Mem.U32((info + 36u)));
+            uint info = new ActorDef(new Actor(actor).def_).info.P;
+            int flags = (int)(new ActorInfo(info).flags24);
             int ok = 1;
             if (((flags & 32) != 0))
             {
-                uint f = (Mem.U32(state) & (uint)(131072));
+                uint f = (new ActorState(state).flags & (uint)(131072));
                 ok = ((f != (uint)(0)) ? 1 : 0);
             }
-            if ((((flags & 512) != 0) && !((Mem.U32((actor + 56u)) & (uint)(64)) != 0u)))
+            if ((((flags & 512) != 0) && !((new Actor(actor).flags38 & (uint)(64)) != 0u)))
             {
                 ok = 0;
             }
-            if ((((Mem.U32((info + 36u)) & (uint)(2048)) != 0u) && ((Mem.U32((actor + 56u)) & (uint)(64)) != 0u)))
+            if ((((new ActorInfo(info).flags24 & (uint)(2048)) != 0u) && ((new Actor(actor).flags38 & (uint)(64)) != 0u)))
             {
                 ok = 0;
             }
             if ((ok != 0))
             {
-                if ((Mem.F32((state + 64u)) >= Mem.F32((info + 80u))))
+                if ((new ActorState(state).unk40 >= new ActorInfo(info).unk50))
                 {
                     func_00214178(actor, state, 3);
                 }
             }
             else
             {
-                Mem.Set((state + 64u), (float)(0));
+                new ActorState(state).unk40_Set((float)(0));
             }
         }
     }

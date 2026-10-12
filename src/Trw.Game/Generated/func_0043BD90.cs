@@ -13,7 +13,7 @@ public static partial class Game
             int i = (c & 65535);
             int k = 0;
             uint p0 = (Mem.U32(0x800E59E0u) + (uint)(i * 1232));
-            if ((Mem.S32((p0 + 1200u)) != 1))
+            if ((new O06P_v2(p0).unk4B0 != 1))
             {
                 return 0;
             }
@@ -29,12 +29,12 @@ public static partial class Game
             func_0043B8C8((uint)(i), default(uint), default(uint), default(uint));
             for (k = 0; (k < 6); ++k)
             {
-                func_0043B67C((uint)(i), (uint)(k), (uint)(Mem.S32(((Mem.U32(0x800E59E0u) + (uint)((i * 1232) + (k * 4))) + (uint)1208))), default(uint));
+                func_0043B67C(i, k, Mem.S32(((Mem.U32(0x800E59E0u) + (uint)((i * 1232) + (k * 4))) + (uint)1208)));
             }
             {
                 int off = (i * 1232);
-                int c2 = Mem.S32(((Mem.U32(0x800E59E0u) + (uint)off) + 1204u));
-                func_0043B67C((uint)(i), (uint)(c2), (uint)(Mem.S32(((Mem.U32(0x800E59E0u) + (uint)((c2 * 4) + off)) + (uint)1208))), default(uint));
+                int c2 = new O06P_v2((Mem.U32(0x800E59E0u) + (uint)off)).unk4B4;
+                func_0043B67C(i, c2, Mem.S32(((Mem.U32(0x800E59E0u) + (uint)((c2 * 4) + off)) + (uint)1208)));
             }
             func_0025DF54(3708);
             return 0;

@@ -22,7 +22,7 @@ public static partial class Game
                 L_func_002C4F2C: ;
                 r29 = r29 - 24u;
                 Mem.Set((r29 + 16u), r31);
-                r2 = adecDecodeFrame(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = (uint)adecDecodeFrame(r4);
                 r2 = r2 << 16;
                 r2 = (uint)((int)r2 >> 16);
                 r2 = ~(r0 | r2);

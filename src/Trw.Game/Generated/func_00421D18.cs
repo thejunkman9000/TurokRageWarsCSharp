@@ -30,12 +30,12 @@ public static partial class Game
                 n = 2;
                 L_go: ;
                 func_00435190(n);
-                Mem.Set((Mem.U32(0x800E4450u) + 16u), 19);
+                new O3Pn(Mem.U32(0x800E4450u)).f10_Set(19);
                 goto L_fin;
             case 934:
-                Mem.Set((Mem.U32(0x800E4450u) + 16u), (-1));
+                new O3Pn(Mem.U32(0x800E4450u)).f10_Set((-1));
                 L_fin: ;
-                func_0041A4B0(Mem.U32(Mem.U32(0x800E4450u)), 2);
+                func_0041A4B0(new O3Pn(Mem.U32(0x800E4450u)).bar_, 2);
                 break;
             default:
                 return 0;

@@ -27,9 +27,9 @@ public static partial class Game
                     Mem.Set((_fp + (uint)(i * 4)), (-1));
                 }
                 L1 = 0x8013B364u;
-                for (i = 0; (i < Mem.S32((L1 + 4u))); ++i)
+                for (i = 0; (i < new EntList(L1).count); ++i)
                 {
-                    if ((((int)(Mem.U16((func_0020C994(L1, i) + 12u))) & 2048) != 0))
+                    if ((((int)(new EntRec(func_0020C994(L1, i)).flags) & 2048) != 0))
                     {
                         Mem.Set((_fp + (uint)(n * 4)), i);
                         ++n;
@@ -41,20 +41,20 @@ public static partial class Game
                     k = 0;
                     if ((Mem.S32(0x8013B368u) >= 2))
                     {
-                        id = Mem.S32((b + 556u));
+                        id = new BrainB(b).unk22C;
                         while ((1 != 0))
                         {
                             if ((k >= 10))
                             {
                                 break;
                             }
-                            id = (func_00274544() % Mem.S32((L + 4u)));
-                            if ((((int)(Mem.U16((func_0020C994(L, id) + 12u))) & 1024) != 0))
+                            id = (func_00274544() % new EntList(L).count);
+                            if ((((int)(new EntRec(func_0020C994(L, id)).flags) & 1024) != 0))
                             {
-                                id = Mem.S32((b + 556u));
+                                id = new BrainB(b).unk22C;
                             }
                             ++k;
-                            if ((id != Mem.S32((b + 556u))))
+                            if ((id != new BrainB(b).unk22C))
                             {
                                 break;
                             }
@@ -65,15 +65,15 @@ public static partial class Game
                     {
                         id = 1;
                     }
-                    Mem.Set((b + 556u), id);
-                    Mem.Set((b + 12u), id);
+                    new BrainB(b).unk22C_Set(id);
+                    new BrainB(b).unkC_Set(id);
                 }
                 else
                 {
                     sel = Mem.S32((_fp + (uint)((func_00274544() % n) * 4)));
                 }
-                Mem.Set((b + 556u), sel);
-                Mem.Set((b + 12u), sel);
+                new BrainB(b).unk22C_Set(sel);
+                new BrainB(b).unkC_Set(sel);
             }
         }
         finally { Stack.Free(128); }

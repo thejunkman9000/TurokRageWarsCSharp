@@ -51,7 +51,7 @@ public static partial class Game
                 L_L00448230: ;
                 r4 = r18;
                 r5 = r29 + 16u;
-                r6 = r0; r2 = __osPfsRWInode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = r0; r2 = (uint)__osPfsRWInode(r4, r5, (byte)r6, (byte)r7);
                 { bool c_ = r2 == 0; r5 = r16; if (c_) goto L_L00448250; }
                 { bool c_ = r2 != r22;  if (c_) goto L_L004482E0; }
                 L_L00448250: ;

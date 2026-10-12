@@ -14,7 +14,7 @@ public static partial class Game
             int n = 0;
             for (i = 0; (i < 50); ++i)
             {
-                if ((func_00265670(((0x80102B10u + (uint)(a * 400)) + 58u), i) == 1))
+                if ((func_00265670(new O04Row190((0x80102B10u + (uint)(a * 400))).unk3A.P, i) == 1))
                 {
                     ++n;
                 }

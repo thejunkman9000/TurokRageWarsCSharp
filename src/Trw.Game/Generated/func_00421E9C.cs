@@ -10,18 +10,18 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00421E9C", (uint)o, (uint)v);
-            if ((Mem.S32((o + 8u)) != v))
+            if ((new O3Z(o).f8 != v))
             {
-                Mem.Set((o + 8u), v);
+                new O3Z(o).f8_Set(v);
                 if ((v == 0))
                 {
-                    Mem.Set(o, 0);
+                    new O3Z(o).f0_Set(0);
                 }
                 else
                 {
-                    Mem.Set(o, 1000);
+                    new O3Z(o).f0_Set(1000);
                 }
-                Mem.Set((o + 4u), 0);
+                new O3Z(o).f4_Set(0);
             }
         }
     }

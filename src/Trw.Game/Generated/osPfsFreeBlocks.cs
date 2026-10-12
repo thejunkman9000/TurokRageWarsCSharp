@@ -18,25 +18,25 @@ public static partial class Game
                 int offset = 0;
                 int free_pages = 0;
                 int ret = 0;
-                if (((Mem.S32(pfs) & 1) == 0))
+                if (((new OSPfs(pfs).status & 1) == 0))
                 {
                     return 5;
                 }
-                if ((__osCheckId(pfs) == 2))
+                if (((int)(__osCheckId(pfs, default(uint), default(uint), default(uint))) == 2))
                 {
                     return 2;
                 }
-                for (bank = (byte)(0); ((int)(bank) < (int)(Mem.U8((pfs + 100u)))); ++bank)
+                for (bank = (byte)(0); ((int)(bank) < (int)(new OSPfs(pfs).banks)); ++bank)
                 {
-                    ret = (int)(__osPfsRWInode(pfs, _fp, (uint)((byte)(0)), (uint)(bank)));
+                    ret = __osPfsRWInode(pfs, _fp, (byte)(0), bank);
                     if ((ret != 0))
                     {
                         return ret;
                     }
-                    offset = (((int)(bank) == 0) ? Mem.S32((pfs + 96u)) : 1);
+                    offset = (((int)(bank) == 0) ? new OSPfs(pfs).inode_start_page : 1);
                     for (j = offset; (j < 128); ++j)
                     {
-                        if (((int)(Mem.U16((_fp + (uint)(j * 2)))) == 3))
+                        if (((int)(new __OSInode_v2(_fp).inode_page[(int)(j)].@ushort) == 3))
                         {
                             ++free_pages;
                         }

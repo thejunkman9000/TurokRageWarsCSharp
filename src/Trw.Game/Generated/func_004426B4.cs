@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004426B4", (uint)a);
             func_00255C40(a, 464, 468);
-            Mem.Set((a + 20u), (short)(0));
+            new O06A_v6(a).unk14_Set((short)(0));
         }
     }
 

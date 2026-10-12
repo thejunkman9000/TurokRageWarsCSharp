@@ -36,15 +36,48 @@ public sealed class AstIndex
     public readonly Dictionary<string, JsonNode> StaticDefinitions = new();
     public readonly Dictionary<string, Field> FieldsById = new();
     readonly Dictionary<string, Record> byQual = new();       // "struct (unnamed struct at f:l:c)" -> record
-    readonly List<(string id, string[] chain)> indirect = new();
+    readonly List<(string id, string[]? chain, Record parent, string name)> indirect = new();
 
     public AstIndex(JsonNode root)
     {
         Walk(root);
         foreach (var r in byId.Values) Layout(r);
-        foreach (var (id, chain) in indirect)
-            if (chain.All(c => FieldsById.ContainsKey(c)))
+        foreach (var (id, chain, parent, iname) in indirect)
+            if (chain == null)
+            {
+                // newer clang omits "chain": find the member by name inside the anonymous struct/union members of the parent
+                var hit = FindInAnon(parent, iname);
+                if (hit != null) FieldsById[id] = new Field { Id = id, Offset = hit.Value.off, Name = hit.Value.f.Name, Type = hit.Value.f.Type, Bitfield = hit.Value.f.Bitfield };
+            }
+            else if (chain.All(c => FieldsById.ContainsKey(c)))
                 FieldsById[id] = new Field { Id = id, Offset = chain.Sum(c => FieldsById[c].Offset), Name = FieldsById[chain[^1]].Name, Type = FieldsById[chain[^1]].Type, Bitfield = chain.Any(c => FieldsById[c].Bitfield) };
+    }
+
+    public IEnumerable<Record> Records => byId.Values;
+
+    /// <summary>Typedef names that stand for the record (typedefs of anonymous structs are the only name those have).</summary>
+    public List<string> TypedefNamesOf(Record r)
+    {
+        var l = typedefToRecordId.Where(kv => kv.Value == r.Id).Select(kv => kv.Key).ToList();
+        if (r.Name != "")      // `typedef struct Tag Name;` before the definition: the typedef refers to the forward declaration
+            foreach (var kv in Typedefs)
+                if ((kv.Value == "struct " + r.Name || kv.Value == "union " + r.Name) && !l.Contains(kv.Key)) l.Add(kv.Key);
+        return l;
+    }
+
+    (Field f, int off)? FindInAnon(Record rec, string name)
+    {
+        foreach (var f in rec.Fields)
+        {
+            if (f.Name != "") continue;
+            var key = f.Type.StartsWith("struct ") ? f.Type[7..] : f.Type.StartsWith("union ") ? f.Type[6..] : f.Type;
+            if (!byQual.TryGetValue(key, out var nested)) continue;
+            foreach (var g in nested.Fields)
+                if (g.Name == name) return (g, (int)(f.Offset + g.Offset));
+            var deeper = FindInAnon(nested, name);
+            if (deeper != null) return (deeper.Value.f, (int)(f.Offset + deeper.Value.off));
+        }
+        return null;
     }
 
     void Walk(JsonNode n)
@@ -61,7 +94,7 @@ public sealed class AstIndex
                     if ((string?)c?["kind"] == "RecordDecl" && (string?)c["name"] == null) { Walk(c); lastNested = byId.GetValueOrDefault((string)c["id"]!); continue; }
                     if ((string?)c?["kind"] == "IndirectFieldDecl")
                     {
-                        indirect.Add(((string)c["id"]!, c["chain"]!.AsArray().Select(x => (string)x!["id"]!).ToArray()));
+                        indirect.Add(((string)c["id"]!, c["chain"]?.AsArray().Select(x => (string)x!["id"]!).ToArray(), r, (string?)c["name"] ?? ""));
                         continue;
                     }
                     if ((string?)c?["kind"] != "FieldDecl") continue;
@@ -72,7 +105,8 @@ public sealed class AstIndex
                     };
                     if (lastNested != null && (f.Type.Contains("(unnamed") || f.Type.Contains("(anonymous")))
                     {
-                        var key = f.Type.StartsWith("struct ") ? f.Type[7..] : f.Type.StartsWith("union ") ? f.Type[6..] : f.Type;
+                        var ft = System.Text.RegularExpressions.Regex.Replace(f.Type, @"(\s*\*|\s*\[\d*\])+$", "");       // "struct (unnamed struct at f:l:c)[8]" is an array of the record
+                        var key = ft.StartsWith("struct ") ? ft[7..] : ft.StartsWith("union ") ? ft[6..] : ft;
                         byQual[key] = lastNested;       // CType.Parse looks the type up without its struct/union tag
                     }
                     r.Fields.Add(f);
@@ -113,7 +147,8 @@ public sealed class AstIndex
         foreach (var c in n["inner"]?.AsArray() ?? new JsonArray())
         {
             if (c == null) continue;
-            if ((string?)c["kind"] == "EnumDecl") continue;
+            // a typedef of a pointer, function pointer or array is not the record it mentions ("typedef int (*Fn)(Msg *)" is 4 bytes, not sizeof(Msg))
+            if ((string?)c["kind"] is "EnumDecl" or "PointerType" or "FunctionProtoType" or "FunctionNoProtoType" or "ConstantArrayType" or "IncompleteArrayType" or "VariableArrayType" or "BlockPointerType" or "ReferenceType") continue;
             var r = FindRecordRef(c);
             if (r != null) return r;
         }

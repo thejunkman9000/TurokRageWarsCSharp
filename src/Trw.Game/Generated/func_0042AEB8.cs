@@ -64,10 +64,10 @@ public static partial class Game
             i = 0;
             do
             {
-                if ((key == Mem.S32((0x800E4F64u + (uint)(i * 16)))))
+                if ((key == new O04E16b((0x800E4F64u + (uint)(i * 16))).k))
                 {
                     found = 1;
-                    r = Mem.S32(((0x800E4F64u + (uint)(i * 16)) + 12u));
+                    r = new O04E16b((0x800E4F64u + (uint)(i * 16))).v;
                 }
                 ++i;
             }
@@ -86,7 +86,7 @@ public static partial class Game
             int s1 = 0;
             int s2 = 0;
             int s3 = 0;
-            if (((int)(func_0042B11C(default(uint), default(uint), default(uint), default(uint))) == 0))
+            if ((func_0042B11C() == 0))
             {
                 s5 = 1;
                 s1 = 0;

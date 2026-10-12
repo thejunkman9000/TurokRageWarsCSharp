@@ -11,10 +11,10 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("dbgLinkSendHalf", (uint)v);
             int ret = 0;
-            dbgLinkSendByte((uint)((byte)((((int)(v) >> (int)8) & 255))), default(uint), default(uint), default(uint));
+            dbgLinkSendByte((byte)((((int)(v) >> (int)8) & 255)));
             if ((Mem.S32(0x8014D3E8u) == 0))
             {
-                dbgLinkSendByte((uint)((byte)(((int)(v) & 255))), default(uint), default(uint), default(uint));
+                dbgLinkSendByte((byte)(((int)(v) & 255)));
                 ret = ((Mem.S32(0x8014D3E8u) == 0) ? 1 : 0);
             }
             return ret;

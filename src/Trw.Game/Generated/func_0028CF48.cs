@@ -14,7 +14,7 @@ public static partial class Game
             {
                 return 0u;
             }
-            return func_0028FD94(Mem.U32((lv + 120u)), idx);
+            return func_0028FD94(new Level(lv).unk78_, idx);
         }
     }
 

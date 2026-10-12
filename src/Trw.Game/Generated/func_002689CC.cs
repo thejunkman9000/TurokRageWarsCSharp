@@ -15,11 +15,11 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, pos_in, 12);
                 if (Dbg.On) Dbg.Enter("func_002689CC", (uint)a, (uint)b, (uint)c, (uint)pos_in);
                 func_00217388(a, (a + 368u));
-                Mem.Set((a + 368u), (uint)((uint)(Mem.U32((a + 368u))) | (uint)(32)));
-                Mem.Set((a + 256u), (uint)((uint)(Mem.U32((a + 256u))) & (uint)((~65536))));
-                Mem.Set((a + 256u), (uint)((uint)(Mem.U32((a + 256u))) & (uint)((~8192))));
-                Mem.Set((a + 256u), (uint)((uint)(Mem.U32((a + 256u))) & (uint)((~256))));
-                if (((Mem.U32((a + 256u)) & (uint)(524288)) != 0u))
+                new B15A(a).unk170_Set((uint)((uint)(new B15A(a).unk170) | (uint)(32)));
+                new B15A(a).flags_Set((uint)((uint)(new B15A(a).flags) & (uint)((~65536))));
+                new B15A(a).flags_Set((uint)((uint)(new B15A(a).flags) & (uint)((~8192))));
+                new B15A(a).flags_Set((uint)((uint)(new B15A(a).flags) & (uint)((~256))));
+                if (((new B15A(a).flags & (uint)(524288)) != 0u))
                 {
                     func_00262CA8(a);
                 }

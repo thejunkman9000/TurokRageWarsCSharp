@@ -125,7 +125,7 @@ public static partial class Game
                 Mem.Set((r1 + 13588u), r2);
                 L_L0041C118: ;
                 r4 = (uint)6; func_00435190((int)r4);
-                r4 = (uint)19; r2 = func_00299368(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = (uint)19; func_00299368((int)r4);
                  goto L_L0041C1CC;
                 L_L0041C130: ;
                 { bool c_ = r17 != r16;  if (c_) goto L_L0041C148; }

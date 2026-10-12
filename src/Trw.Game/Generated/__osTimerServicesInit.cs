@@ -13,12 +13,12 @@ public static partial class Game
             Mem.Set(0x8014FE28u, (ulong)(0));
             Mem.Set(0x8014FE20u, (uint)(0));
             Mem.Set(0x8014FE24u, (uint)(0));
-            Mem.Set((Mem.U32(0x800D92B0u) + 4u), Mem.U32(0x800D92B0u));
-            Mem.Set(Mem.U32(0x800D92B0u), Mem.U32((Mem.U32(0x800D92B0u) + 4u)));
-            Mem.Set((Mem.U32(0x800D92B0u) + 16u), (ulong)(0));
-            Mem.Set((Mem.U32(0x800D92B0u) + 8u), Mem.U64((Mem.U32(0x800D92B0u) + 16u)));
-            Mem.Set((Mem.U32(0x800D92B0u) + 24u), 0u);
-            Mem.Set((Mem.U32(0x800D92B0u) + 28u), 0u);
+            new OSTimer(Mem.U32(0x800D92B0u)).prev__Set(Mem.U32(0x800D92B0u));
+            new OSTimer(Mem.U32(0x800D92B0u)).next__Set(new OSTimer(Mem.U32(0x800D92B0u)).prev_);
+            new OSTimer(Mem.U32(0x800D92B0u)).remaining_Set((ulong)(0));
+            new OSTimer(Mem.U32(0x800D92B0u)).interval_Set(new OSTimer(Mem.U32(0x800D92B0u)).remaining);
+            new OSTimer(Mem.U32(0x800D92B0u)).mq__Set(0u);
+            new OSTimer(Mem.U32(0x800D92B0u)).msg_Set(0u);
         }
     }
 

@@ -10,9 +10,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00232C78", (uint)c, (uint)e);
-            uint p = Mem.U32((c + 472u));
-            Mem.Set((e + 304u), (Mem.F32((Mem.U32((0x800D052Cu + (uint)(Mem.S16((p + 1582u)) * 4))) + 24u)) * Mem.F32(0x800C8110u)));
-            if ((((int)(Mem.S16((p + 1582u))) == 8) && (Mem.S32((p + 4544u)) == 0)))
+            uint p = new PlayerCtl(c).player_;
+            new PlayerEvt(e).f130_Set((new WeaponInfo_v2(Mem.U32((0x800D052Cu + (uint)(new Player_v3(p).weapon * 4)))).f18 * Mem.F32(0x800C8110u)));
+            if ((((int)(new Player_v3(p).weapon) == 8) && (new Player_v3(p).f11C0 == 0)))
             {
                 func_0022AF64(p, 2620);
             }

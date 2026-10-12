@@ -59,16 +59,16 @@ public static partial class Game
                     for (i = 0; (i < n); ++i)
                     {
                         t = (Mem.S32((_fp + (uint)(i * 4))) / 10);
-                        Mem.Set(((0x80153F80u + (uint)(i * 28)) + 8u), 4);
-                        Mem.Set(((0x80153F80u + (uint)(i * 28)) + 4u), t);
-                        Mem.Set(((0x80153F80u + (uint)(i * 28)) + 12u), t);
+                        new O3Plr((0x80153F80u + (uint)(i * 28))).f8_Set(4);
+                        new O3Plr((0x80153F80u + (uint)(i * 28))).type_Set(t);
+                        new O3Plr((0x80153F80u + (uint)(i * 28))).fC_Set(t);
                         do
                         {
                             r = (func_00274544() % 17);
-                            Mem.Set((0x80153F80u + (uint)(i * 28)), Mem.S32(((0x800E381Cu + (uint)(t * 136)) + (uint)(r * 8))));
-                            func_002A125C(((0x80153F80u + (uint)(i * 28)) + 16u), Mem.U32(Mem.U32((((0x800E381Cu + (uint)(t * 136)) + (uint)(r * 8)) + 4u))));
+                            new O3Plr((0x80153F80u + (uint)(i * 28))).id_Set(new O3Chr(((0x800E381Cu + (uint)(t * 136)) + (uint)(r * 8))).ch);
+                            func_002A125C(new O3Plr((0x80153F80u + (uint)(i * 28))).name.P, Mem.U32(new O3Chr(((0x800E381Cu + (uint)(t * 136)) + (uint)(r * 8))).s));
                         }
-                        while ((Mem.S32((0x80153F80u + (uint)(i * 28))) == (-1)));
+                        while ((new O3Plr((0x80153F80u + (uint)(i * 28))).id == (-1)));
                     }
                 }
             }

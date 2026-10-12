@@ -15,23 +15,23 @@ public static partial class Game
             int m = 0;
             if ((n != 0))
             {
-                Mem.Set(box, Mem.F32(pts));
-                Mem.Set((box + 4u), Mem.F32((pts + 4u)));
-                Mem.Set((box + 8u), Mem.F32((pts + 8u)));
-                Mem.Set((box + 12u), Mem.F32(pts));
-                Mem.Set(((box + 12u) + 4u), Mem.F32((pts + 4u)));
-                Mem.Set(((box + 12u) + 8u), Mem.F32((pts + 8u)));
+                new Box3(box).mn.x_Set(new Vec3f(pts).x);
+                new Box3(box).mn.y_Set(new Vec3f(pts).y);
+                new Box3(box).mn.z_Set(new Vec3f(pts).z);
+                new Box3(box).mx.x_Set(new Vec3f(pts).x);
+                new Box3(box).mx.y_Set(new Vec3f(pts).y);
+                new Box3(box).mx.z_Set(new Vec3f(pts).z);
                 m = (n - 1);
                 pts += 12u;
                 for (i = 0; (i < m); ++i)
                 {
                     p = (pts + (uint)(i * 12));
-                    Mem.Set(box, (!(Mem.F32(p) <= Mem.F32(box)) ? Mem.F32(box) : Mem.F32(p)));
-                    Mem.Set((box + 4u), (!(Mem.F32((p + 4u)) <= Mem.F32((box + 4u))) ? Mem.F32((box + 4u)) : Mem.F32((p + 4u))));
-                    Mem.Set((box + 8u), (!(Mem.F32((p + 8u)) <= Mem.F32((box + 8u))) ? Mem.F32((box + 8u)) : Mem.F32((p + 8u))));
-                    Mem.Set((box + 12u), (!(Mem.F32((box + 12u)) <= Mem.F32(p)) ? Mem.F32((box + 12u)) : Mem.F32(p)));
-                    Mem.Set(((box + 12u) + 4u), (!(Mem.F32(((box + 12u) + 4u)) <= Mem.F32((p + 4u))) ? Mem.F32(((box + 12u) + 4u)) : Mem.F32((p + 4u))));
-                    Mem.Set(((box + 12u) + 8u), (!(Mem.F32(((box + 12u) + 8u)) <= Mem.F32((p + 8u))) ? Mem.F32(((box + 12u) + 8u)) : Mem.F32((p + 8u))));
+                    new Box3(box).mn.x_Set((!(new Vec3f(p).x <= new Box3(box).mn.x) ? new Box3(box).mn.x : new Vec3f(p).x));
+                    new Box3(box).mn.y_Set((!(new Vec3f(p).y <= new Box3(box).mn.y) ? new Box3(box).mn.y : new Vec3f(p).y));
+                    new Box3(box).mn.z_Set((!(new Vec3f(p).z <= new Box3(box).mn.z) ? new Box3(box).mn.z : new Vec3f(p).z));
+                    new Box3(box).mx.x_Set((!(new Box3(box).mx.x <= new Vec3f(p).x) ? new Box3(box).mx.x : new Vec3f(p).x));
+                    new Box3(box).mx.y_Set((!(new Box3(box).mx.y <= new Vec3f(p).y) ? new Box3(box).mx.y : new Vec3f(p).y));
+                    new Box3(box).mx.z_Set((!(new Box3(box).mx.z <= new Vec3f(p).z) ? new Box3(box).mx.z : new Vec3f(p).z));
                 }
             }
         }

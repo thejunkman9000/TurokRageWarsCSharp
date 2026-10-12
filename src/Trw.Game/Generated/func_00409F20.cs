@@ -19,8 +19,8 @@ public static partial class Game
             }
             else
             {
-                v = (int)(Mem.S8((Mem.U32((a + 32u)) + 4u)));
-                r = Mem.S32((a + 28u));
+                v = (int)(new O01Obj(a).unk20.unk4);
+                r = new O01Obj(a).unk1C;
             }
             Mem.Set(@out, v);
             return r;

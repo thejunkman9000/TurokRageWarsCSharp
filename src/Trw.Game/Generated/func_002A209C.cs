@@ -10,13 +10,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A209C");
-            if ((Mem.S32((0x800D2BB0u + 16u)) != 1))
+            if ((new StreamBuf(0x800D2BB0u).open != 1))
             {
-                Mem.Set((0x800D2BB0u + 8u), 569925);
-                Mem.Set(0x800D2BB0u, (uint)((int)(func_00252FFC((uint)(569925), default(uint), default(uint), default(uint)))));
-                func_0025631C(0x801051B8u, (uint)(2097152), (uint)(Mem.S32((0x800D2BB0u + 8u))), (uint)((int)(Mem.U32(0x800D2BB0u))));
-                Mem.Set((0x800D2BB0u + 12u), 0);
-                Mem.Set((0x800D2BB0u + 16u), 1);
+                new StreamBuf(0x800D2BB0u).size_Set(569925);
+                new StreamBuf(0x800D2BB0u).buf__Set((uint)((int)(func_00252FFC((uint)(569925)))));
+                func_0025631C(0x801051B8u, (uint)(2097152), (uint)(new StreamBuf(0x800D2BB0u).size), (uint)((int)(new StreamBuf(0x800D2BB0u).buf_)));
+                new StreamBuf(0x800D2BB0u).unkC_Set(0);
+                new StreamBuf(0x800D2BB0u).open_Set(1);
             }
         }
     }

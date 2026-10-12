@@ -11,9 +11,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00224028", (uint)obj);
             float v = 0f;
-            if ((Mem.U32((obj + 24u)) != 0u))
+            if ((new B05Obj(obj).def_ != 0u))
             {
-                v = (Mem.F32((Mem.U32((obj + 24u)) + 244u)) * Mem.F32(0x800C7A38u));
+                v = (new B05Obj(obj).def.unkF4 * Mem.F32(0x800C7A38u));
             }
             else
             {

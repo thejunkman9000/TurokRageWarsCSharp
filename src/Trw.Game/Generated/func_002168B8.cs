@@ -14,7 +14,7 @@ public static partial class Game
             float v = 0f;
             float a = 0f;
             if (!((t != 0u))) goto _f0;
-            r = func_00215868(o, Mem.S32((t + 8u)), Mem.S32((t + 12u)), Mem.S32((t + 16u)), t, Mem.F32(0x800C72B8u));
+            r = func_00215868(o, C.Tmp((uint)(new B04Tg(t).x), (uint)(new B04Tg(t).y), (uint)(new B04Tg(t).z)), (int)(t), Cpu.U2F(Cpu.F2U(Mem.F32(0x800C72B8u))));
             v = r;
             if (!((lim < r))) goto _f1;
             r = lim;

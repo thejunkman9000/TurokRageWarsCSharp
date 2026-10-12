@@ -13,27 +13,27 @@ public static partial class Game
             Mem.Set((Mem.U32(0x80153C50u) + (uint)(i * 2)), (ushort)(Mem.U16((Mem.U32(0x80153C50u) + (uint)(i * 2))) + 1));
             if ((Mem.S32(0x80153C54u) == 1))
             {
-                if ((Mem.U32(((Mem.U32(0x80153C44u) + (uint)(i * 12)) + 8u)) != 0u))
+                if ((new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).p != 0u))
                 {
-                    func_002A1724(Mem.U32(((Mem.U32(0x80153C44u) + (uint)(i * 12)) + 8u)), Mem.U32(((Mem.U32(0x80153C48u) + (uint)(i * 12)) + 8u)), (uint)(Mem.S32(((Mem.U32(0x80153C44u) + (uint)(i * 12)) + 4u))));
-                    func_0040F75C(Mem.U32(((Mem.U32(0x80153C44u) + (uint)(i * 12)) + 8u)), (int)(Mem.U32(((Mem.U32(0x80153C44u) + (uint)(i * 12)) + 8u))), (Mem.S32((Mem.U32(0x80153C44u) + (uint)(i * 12))) - Mem.S32((Mem.U32(0x80153C44u) + (uint)(0 * 12)))));
+                    func_002A1724(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).p, new S12_v2((Mem.U32(0x80153C48u) + (uint)(i * 12))).p, (uint)(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).cnt));
+                    func_0040F75C(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).p, (int)(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).p), (new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).off - new S12_v2((Mem.U32(0x80153C44u) + (uint)(0 * 12))).off));
                 }
             }
-            if ((Mem.U32(((Mem.U32(0x80153C44u) + (uint)(i * 12)) + 8u)) == 0u))
+            if ((new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).p == 0u))
             {
                 func_002A28CC();
-                Mem.Set(((Mem.U32(0x80153C44u) + (uint)(i * 12)) + 8u), func_00252FFC((uint)(Mem.S32(((Mem.U32(0x80153C44u) + (uint)(i * 12)) + 4u))), default(uint), default(uint), default(uint)));
-                Mem.Set(0x801539B0u, (int)(func_002A1E8C((0x801539B0u + 4u), 0x800E10E0u, default(uint), default(uint))));
-                func_002A1F60((uint)(Mem.S32(0x801539B0u)), (uint)((Mem.S32((0x801539B0u + 576u)) + Mem.S32((Mem.U32(0x80153C44u) + (uint)(i * 12))))), (uint)(0), default(uint));
-                func_002A1ED4(Mem.U32(((Mem.U32(0x80153C44u) + (uint)(i * 12)) + 8u)), Mem.S32(((Mem.U32(0x80153C44u) + (uint)(i * 12)) + 4u)), 1, Mem.S32(0x801539B0u));
+                new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).p_Set(func_00252FFC((uint)(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).cnt)));
+                new S_G_v2(0x801539B0u).h_Set((int)(func_002A1E8C(new S_G_v2(0x801539B0u).b4.P, 0x800E10E0u, default(uint), default(uint))));
+                func_002A1F60((uint)(new S_G_v2(0x801539B0u).h), (uint)((new S_G_v2(0x801539B0u).f240 + new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).off)), (uint)(0), default(uint));
+                func_002A1ED4(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).p, new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).cnt, 1, new S_G_v2(0x801539B0u).h);
                 if ((Mem.S32(0x800E2AC4u) != 0))
                 {
-                    Mem.Set(((Mem.U32(0x80153C48u) + (uint)(i * 12)) + 8u), (int)(func_00252FFC((uint)(Mem.S32(((Mem.U32(0x80153C44u) + (uint)(i * 12)) + 4u))), default(uint), default(uint), default(uint))));
-                    func_002A1724(Mem.U32(((Mem.U32(0x80153C48u) + (uint)(i * 12)) + 8u)), Mem.U32(((Mem.U32(0x80153C44u) + (uint)(i * 12)) + 8u)), (uint)(Mem.S32(((Mem.U32(0x80153C44u) + (uint)(i * 12)) + 4u))));
+                    Mem.Set(((Mem.U32(0x80153C48u) + (uint)(i * 12)) + 8u), (int)(func_00252FFC((uint)(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).cnt))));
+                    func_002A1724(new S12_v2((Mem.U32(0x80153C48u) + (uint)(i * 12))).p, new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).p, (uint)(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).cnt));
                 }
-                func_002A1EB0((uint)(Mem.S32(0x801539B0u)), default(uint), default(uint), default(uint));
-                Mem.Set(0x801539B0u, 0);
-                func_0040F75C(Mem.U32(((Mem.U32(0x80153C44u) + (uint)(i * 12)) + 8u)), (int)(Mem.U32(((Mem.U32(0x80153C44u) + (uint)(i * 12)) + 8u))), (Mem.S32((Mem.U32(0x80153C44u) + (uint)(i * 12))) - Mem.S32((Mem.U32(0x80153C44u) + (uint)(0 * 12)))));
+                func_002A1EB0((uint)(new S_G_v2(0x801539B0u).h), default(uint), default(uint), default(uint));
+                new S_G_v2(0x801539B0u).h_Set(0);
+                func_0040F75C(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).p, (int)(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).p), (new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).off - new S12_v2((Mem.U32(0x80153C44u) + (uint)(0 * 12))).off));
                 func_002A28CC();
             }
         }

@@ -11,39 +11,39 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0023F634", (uint)b, (uint)o);
             float m = 0f;
-            uint fp = Mem.U32((b + 64u));
-            Mem.Set(o, Mem.F32((b + 12u)));
-            Mem.Set((o + 44u), (Mem.U32(fp) & (uint)(1024)));
-            Mem.Set((o + 4u), Mem.F32((b + 20u)));
-            Mem.Set((o + 8u), (Mem.F32((o + 4u)) + Mem.F32((b + 16u))));
-            Mem.Set((o + 16u), (Mem.F32((b + 72u)) + Mem.F32((o + 4u))));
-            Mem.Set((o + 12u), (Mem.F32((b + 72u)) + Mem.F32((o + 8u))));
-            Mem.Set((o + 24u), (Mem.F32((b + 84u)) + Mem.F32((o + 4u))));
-            Mem.Set((o + 20u), (Mem.F32((b + 84u)) + Mem.F32((o + 8u))));
-            m = Mem.F32((b + 80u));
-            if (!(m <= Mem.F32((b + 68u))))
+            uint fp = new B09Body(b).def_;
+            new B09Bounds(o).r_Set(new B09Body(b).fC);
+            new B09Bounds(o).flag_Set((new B09BodyDef(fp).flags & (uint)(1024)));
+            new B09Bounds(o).c4_Set(new B09Body(b).f14);
+            new B09Bounds(o).c8_Set((new B09Bounds(o).c4 + new B09Body(b).f10));
+            new B09Bounds(o).c10_Set((new B09Body(b).f48 + new B09Bounds(o).c4));
+            new B09Bounds(o).cC_Set((new B09Body(b).f48 + new B09Bounds(o).c8));
+            new B09Bounds(o).c18_Set((new B09Body(b).f54 + new B09Bounds(o).c4));
+            new B09Bounds(o).c14_Set((new B09Body(b).f54 + new B09Bounds(o).c8));
+            m = new B09Body(b).f50;
+            if (!(m <= new B09Body(b).f44))
             {
-                m = Mem.F32((b + 68u));
+                m = new B09Body(b).f44;
             }
-            Mem.Set((o + 28u), (m - Mem.F32(o)));
-            m = Mem.F32((b + 80u));
-            if (!(Mem.F32((b + 68u)) <= m))
+            new B09Bounds(o).c1C_Set((m - new B09Bounds(o).r));
+            m = new B09Body(b).f50;
+            if (!(new B09Body(b).f44 <= m))
             {
-                m = Mem.F32((b + 68u));
+                m = new B09Body(b).f44;
             }
-            Mem.Set((o + 36u), (m + Mem.F32(o)));
-            m = Mem.F32((b + 88u));
-            if (!(m <= Mem.F32((b + 76u))))
+            new B09Bounds(o).c24_Set((m + new B09Bounds(o).r));
+            m = new B09Body(b).f58;
+            if (!(m <= new B09Body(b).f4C))
             {
-                m = Mem.F32((b + 76u));
+                m = new B09Body(b).f4C;
             }
-            Mem.Set((o + 32u), (m - Mem.F32(o)));
-            m = Mem.F32((b + 88u));
-            if (!(Mem.F32((b + 76u)) <= m))
+            new B09Bounds(o).c20_Set((m - new B09Bounds(o).r));
+            m = new B09Body(b).f58;
+            if (!(new B09Body(b).f4C <= m))
             {
-                m = Mem.F32((b + 76u));
+                m = new B09Body(b).f4C;
             }
-            Mem.Set((o + 40u), (m + Mem.F32(o)));
+            new B09Bounds(o).c28_Set((m + new B09Bounds(o).r));
         }
     }
 

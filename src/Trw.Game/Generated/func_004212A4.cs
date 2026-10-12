@@ -20,29 +20,29 @@ public static partial class Game
                     n = (int)((int)(n) + func_004261E4(i));
                 }
             }
-            if ((Mem.S32((Mem.U32(0x800E4400u) + 56u)) == 1))
+            if ((new O3Pm(Mem.U32(0x800E4400u)).f38 == 1))
             {
                 n = 40;
             }
-            func_0040E9D0(func_0040ECB0(Mem.U32((Mem.U32(0x800E4400u) + 8u)), (uint)(948), default(uint), default(uint)), 1);
-            func_0040E9D0(func_0040ECB0(Mem.U32((Mem.U32(0x800E4400u) + 8u)), (uint)(945), default(uint), default(uint)), 1);
-            func_0040E9D0(func_0040ECB0(Mem.U32((Mem.U32(0x800E4400u) + 8u)), (uint)(941), default(uint), default(uint)), 1);
-            func_0040E9D0(func_0040ECB0(Mem.U32((Mem.U32(0x800E4400u) + 8u)), (uint)(943), default(uint), default(uint)), 1);
+            func_0040E9D0(func_0040ECB0(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(948), default(uint), default(uint)), 1);
+            func_0040E9D0(func_0040ECB0(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(945), default(uint), default(uint)), 1);
+            func_0040E9D0(func_0040ECB0(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(941), default(uint), default(uint)), 1);
+            func_0040E9D0(func_0040ECB0(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(943), default(uint), default(uint)), 1);
             if ((n >= 10))
             {
-                func_0040E9D0(func_0040ECB0(Mem.U32((Mem.U32(0x800E4400u) + 8u)), (uint)(945), default(uint), default(uint)), 0);
+                func_0040E9D0(func_0040ECB0(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(945), default(uint), default(uint)), 0);
             }
             if ((n >= 6))
             {
-                func_0040E9D0(func_0040ECB0(Mem.U32((Mem.U32(0x800E4400u) + 8u)), (uint)(948), default(uint), default(uint)), 0);
+                func_0040E9D0(func_0040ECB0(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(948), default(uint), default(uint)), 0);
             }
             if ((n >= 12))
             {
-                func_0040E9D0(func_0040ECB0(Mem.U32((Mem.U32(0x800E4400u) + 8u)), (uint)(941), default(uint), default(uint)), 0);
+                func_0040E9D0(func_0040ECB0(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(941), default(uint), default(uint)), 0);
             }
             if ((n >= 14))
             {
-                func_0040E9D0(func_0040ECB0(Mem.U32((Mem.U32(0x800E4400u) + 8u)), (uint)(943), default(uint), default(uint)), 0);
+                func_0040E9D0(func_0040ECB0(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(943), default(uint), default(uint)), 0);
             }
         }
     }

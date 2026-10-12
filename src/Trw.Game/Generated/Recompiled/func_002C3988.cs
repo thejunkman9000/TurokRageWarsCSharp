@@ -64,7 +64,7 @@ public static partial class Game
                 L_L002C3A30: ;
                 r2 = Mem.U32((r20 + 56u));
                 { bool c_ = r2 != 0; r18 = r21; if (c_) goto L_L002C3A64; }
-                r2 = adecNextFrame(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = adecNextFrame();
                 r1 = 2148401152u;
                 Mem.Set((r1 - 27808u), r2);
                 { bool c_ = r2 == 0; r4 = r2; if (c_) goto L_L002C39F4; }

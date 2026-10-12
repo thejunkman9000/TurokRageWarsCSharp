@@ -10,18 +10,18 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00254A70", (uint)unused, (uint)n);
-            func_00255E78(((0x80103F70u + 1536u) + (uint)(0 * 20)), n, default(uint), default(uint));
-            if (((Mem.U32((n + 12u)) & (uint)(4096)) != 0u))
+            func_00255E78((new B12Mgr(0x80103F70u).lists.P + (uint)(0 * 20)), n, default(uint), default(uint));
+            if (((new B12Node(n).flags & (uint)(4096)) != 0u))
             {
-                func_00255E78(((0x80103F70u + 1536u) + (uint)(1 * 20)), n, default(uint), default(uint));
+                func_00255E78((new B12Mgr(0x80103F70u).lists.P + (uint)(1 * 20)), n, default(uint), default(uint));
             }
-            if ((Mem.U32((0x80103F70u + 1528u)) == n))
+            if ((new B12Mgr(0x80103F70u).cur_ == n))
             {
-                Mem.Set((0x80103F70u + 1528u), 0u);
+                new B12Mgr(0x80103F70u).cur__Set(0u);
             }
-            Mem.Set((n + 12u), (uint)(0));
-            Mem.Set((Mem.U32((0x80103F70u + 1524u)) + (uint)(Mem.S32((0x80103F70u + 4556u)) * 4)), n);
-            Mem.Set((0x80103F70u + 4556u), (int)(Mem.S32((0x80103F70u + 4556u)) + 1));
+            new B12Node(n).flags_Set((uint)(0));
+            Mem.Set((new B12Mgr(0x80103F70u).stk + (uint)(new B12Mgr(0x80103F70u).cnt * 4)), n);
+            new B12Mgr(0x80103F70u).cnt_Set((int)(new B12Mgr(0x80103F70u).cnt + 1));
         }
     }
 

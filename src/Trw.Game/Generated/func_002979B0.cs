@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002979B0", (uint)a, (uint)b);
-            return ((((Mem.F32(a) * Mem.F32(b)) + (Mem.F32((a + 4u)) * Mem.F32((b + 4u)))) + (Mem.F32((a + 8u)) * Mem.F32((b + 8u)))) - Mem.F32((a + 12u)));
+            return ((((new B21Plane(a).x * new Vec3f(b).x) + (new B21Plane(a).y * new Vec3f(b).y)) + (new B21Plane(a).z * new Vec3f(b).z)) - new B21Plane(a).w);
         }
     }
 

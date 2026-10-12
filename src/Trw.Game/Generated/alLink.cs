@@ -10,13 +10,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alLink", (uint)ln, (uint)to);
-            Mem.Set(ln, Mem.U32(to));
-            Mem.Set((ln + 4u), to);
-            if ((Mem.U32(to) != 0u))
+            new ALLink(ln).next__Set(new ALLink(to).next_);
+            new ALLink(ln).prev__Set(to);
+            if ((new ALLink(to).next_ != 0u))
             {
-                Mem.Set((Mem.U32(to) + 4u), ln);
+                new ALLink(to).next.prev__Set(ln);
             }
-            Mem.Set(to, ln);
+            new ALLink(to).next__Set(ln);
         }
     }
 

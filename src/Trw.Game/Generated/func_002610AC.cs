@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002610AC", (uint)t, (uint)x);
-            return func_00260158(t, x);
+            return func_00260158(t, Cpu.U2F((uint)(x)));
         }
     }
 

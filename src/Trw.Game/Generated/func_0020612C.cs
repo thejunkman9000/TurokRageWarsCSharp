@@ -10,33 +10,33 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020612C", (uint)actor, (uint)state);
-            uint info = (Mem.U32((actor + 24u)) + (uint)20);
-            if ((Mem.S32((info + 4u)) == 0))
+            uint info = (new B01Actor(actor).def_ + (uint)20);
+            if ((new B01Info(info).unk4 == 0))
             {
-                if (((int)(Mem.S16((info + 20u))) == (-1)))
+                if (((int)(new B01Info(info).unk14) == (-1)))
                 {
-                    Mem.Set((state + 64u), 0.0f);
+                    new B01State(state).unk40_Set(0.0f);
                     return;
                 }
-                if (((int)(Mem.S16((info + 22u))) == (-1)))
+                if (((int)(new B01Info(info).unk16) == (-1)))
                 {
-                    Mem.Set((state + 64u), 0.0f);
+                    new B01State(state).unk40_Set(0.0f);
                     return;
                 }
             }
-            if ((Mem.S32((state + 292u)) == (int)(Mem.S16((info + 10u)))))
+            if ((new B01State(state).unk124.i == (int)(new B01Info(info).unkA)))
             {
-                Mem.Set((state + 64u), 0.0f);
+                new B01State(state).unk40_Set(0.0f);
                 return;
             }
-            if ((((Mem.U32(info) & (uint)(1)) != 0u) || (Mem.S32((state + 296u)) > 0)))
+            if ((((new B01Info(info).flags & (uint)(1)) != 0u) || (new B01State(state).unk128.i > 0)))
             {
-                if ((((Mem.U32(info) & (uint)(2)) != 0u) && ((Mem.U32((actor + 256u)) & (uint)(512)) != 0u)))
+                if ((((new B01Info(info).flags & (uint)(2)) != 0u) && ((new B01Actor(actor).flags & (uint)(512)) != 0u)))
                 {
-                    Mem.Set((state + 64u), 0.0f);
+                    new B01State(state).unk40_Set(0.0f);
                     return;
                 }
-                if ((Mem.F32((state + 64u)) >= Mem.F32((state + 100u))))
+                if ((new B01State(state).unk40 >= new B01State(state).unk64))
                 {
                     func_00214178(actor, state, 1);
                 }

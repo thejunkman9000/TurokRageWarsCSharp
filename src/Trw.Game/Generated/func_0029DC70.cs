@@ -77,9 +77,9 @@ public static partial class Game
                 e1 = func_0029D044((-Mem.F32((m + (uint)(9 * 4)))), Mem.F32((m + (uint)(5 * 4))));
                 e2 = 0.0f;
             }
-            Mem.Set(@out, e1);
-            Mem.Set((@out + 4u), a);
-            Mem.Set((@out + 8u), e2);
+            new Vec3f(@out).x_Set(e1);
+            new Vec3f(@out).y_Set(a);
+            new Vec3f(@out).z_Set(e2);
         }
     }
 

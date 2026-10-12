@@ -16,7 +16,7 @@ public static partial class Game
                 Mem.Set((actor + (uint)4664), (-1));
                 Mem.Set((actor + (uint)4656), 0);
                 Mem.Set((actor + (uint)4652), (uint)((uint)(Mem.U32((actor + (uint)4652))) & (uint)((~32))));
-                func_0044A4C0(actor, default(uint), default(uint), default(uint));
+                func_0044A4C0(actor);
                 Mem.Set((actor + (uint)80), Mem.F32(0x800C7EB0u));
                 Mem.Set((actor + (uint)84), Mem.F32(0x800C7EB0u));
                 Mem.Set((actor + (uint)88), Mem.F32(0x800C7EB0u));
@@ -24,8 +24,8 @@ public static partial class Game
             else
             {
                 func_002636D0((actor + (uint)1672));
-                Mem.Set((Mem.U32((actor + 5204u)) + 572u), 0);
-                Mem.Set((Mem.U32((actor + 5204u)) + 576u), 0);
+                new Brain(new Actor(actor).brain_).unk23C_Set(0);
+                new Brain(new Actor(actor).brain_).unk240_Set(0);
             }
         }
     }

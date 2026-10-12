@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00271B18", (uint)v);
-            float x = Mem.F32(v);
-            float z = Mem.F32((v + 8u));
+            float x = new Vec3f(v).x;
+            float z = new Vec3f(v).z;
             float len = 0f;
             float r = 0f;
             float res = 0f;

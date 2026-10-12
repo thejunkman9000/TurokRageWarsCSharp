@@ -14,8 +14,8 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_00239234", (uint)o, (uint)b, (uint)outx, (uint)outy);
                 func_00272A80((o + (uint)480), (uint)(b), _fp);
-                Mem.Set(outx, ((Mem.F32(_fp) * (float)((Mem.S32(0x800E28D0u) / 2))) + (float)((Mem.S32(0x800E28D0u) / 2))));
-                Mem.Set(outy, ((Mem.F32((_fp + 4u)) * (float)(((-Mem.S32(0x800E28D4u)) / 2))) + (float)((Mem.S32(0x800E28D4u) / 2))));
+                Mem.Set(outx, ((new Vec3f(_fp).x * (float)((Mem.S32(0x800E28D0u) / 2))) + (float)((Mem.S32(0x800E28D0u) / 2))));
+                Mem.Set(outy, ((new Vec3f(_fp).y * (float)(((-Mem.S32(0x800E28D4u)) / 2))) + (float)((Mem.S32(0x800E28D4u) / 2))));
             }
         }
         finally { Stack.Free(12); }

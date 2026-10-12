@@ -16,20 +16,20 @@ public static partial class Game
             uint nextItem = 0u;
             uint mask = 0u;
             mask = osSetIntMask((uint)(1));
-            thisNode = Mem.U32((evtq + 8u));
+            thisNode = new ALEventQueue_v2(evtq).allocList.next_;
             while ((thisNode != 0u))
             {
-                nextNode = Mem.U32(thisNode);
+                nextNode = new ALLink(thisNode).next_;
                 thisItem = thisNode;
                 nextItem = nextNode;
-                if (((int)(Mem.S16((thisItem + 12u))) == (int)(type)))
+                if (((int)(new ALEventQueueItem(thisItem).evt.type) == (int)(type)))
                 {
                     if ((nextItem != 0u))
                     {
-                        Mem.Set((nextItem + 8u), (int)((int)(Mem.S32((nextItem + 8u))) + Mem.S32((thisItem + 8u))));
+                        new ALEventQueueItem(nextItem).delta_Set((int)((int)(new ALEventQueueItem(nextItem).delta) + new ALEventQueueItem(thisItem).delta));
                     }
                     alUnlink(thisNode);
-                    alLink(thisNode, evtq);
+                    alLink(thisNode, new ALEventQueue_v2(evtq).freeList.P);
                 }
                 thisNode = nextNode;
             }

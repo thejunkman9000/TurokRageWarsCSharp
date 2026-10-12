@@ -10,11 +10,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0021290C", (uint)actor);
-            uint brain = Mem.U32((Mem.U32((actor + 472u)) + 5204u));
-            Mem.Set((brain + 544u), 0);
+            uint brain = new Actor(new Actor(actor).owner_).brain_;
+            new Brain(brain).unk220_Set(0);
             func_00209988(brain);
-            Mem.Set((brain + 764u), 0);
-            Mem.Set((brain + 12u), (-1));
+            new Brain(brain).unk2FC_Set(0);
+            new Brain(brain).unkC_Set((-1));
         }
     }
 

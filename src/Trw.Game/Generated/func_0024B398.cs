@@ -19,19 +19,19 @@ public static partial class Game
                 byte t = 0;
                 int e = 0;
                 float fs0 = 0f;
-                s2 = (int)(func_0028CF48(0x8011FE88u, (int)(Mem.U16((p + 34u)))));
-                if (((int)(Mem.U16((p + 32u))) == 65535))
+                s2 = (int)(func_0028CF48(0x8011FE88u, (int)(new B11Spawn(p).u22)));
+                if (((int)(new B11Spawn(p).u20) == 65535))
                 {
                     s1 = 0;
                 }
                 else
                 {
-                    s1 = (int)(func_0028B370(0x8011FE88u, (int)(Mem.U16((p + 32u)))));
+                    s1 = (int)(func_0028B370(0x8011FE88u, (int)(new B11Spawn(p).u20)));
                 }
-                fs0 = ((float)((int)(Mem.S16((p + 36u)))) * Mem.F32(0x800C8C3Cu));
-                Mem.Set(_fp, Mem.Set((_fp + 4u), Mem.Set((_fp + 8u), 0.0f)));
+                fs0 = ((float)((int)(new B11Spawn(p).s24)) * Mem.F32(0x800C8C3Cu));
+                new Vec3f(_fp).x_Set(new Vec3f(_fp).y_Set(new Vec3f(_fp).z_Set(0.0f)));
                 a3 = func_00285F28(0x8011FE88u, (uint)(arg0));
-                func_00246690((uint)(arg0), (int)(Mem.U16((p + 28u))), (int)(Mem.U16((p + 30u))), Mem.S32(p), (uint)(s2), (((int)(Mem.U8((p + 39u))) == 255) ? (-1) : (int)(Mem.U8((p + 39u)))), (uint)(s1), fs0, (p + 4u), (uint)((int)(Mem.U8((p + 38u)))), (p + 16u), _fp);
+                func_00246690((uint)(arg0), (int)(new B11Spawn(p).u1C), (int)(new B11Spawn(p).u1E), new B11Spawn(p).unk0, (uint)(s2), (((int)(new B11Spawn(p).u27) == 255) ? (-1) : (int)(new B11Spawn(p).u27)), (uint)(s1), fs0, new B11Spawn(p).v4.P, (uint)((int)(new B11Spawn(p).u26)), new B11Spawn(p).v10.P, _fp);
             }
         }
         finally { Stack.Free(12); }

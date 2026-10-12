@@ -30,11 +30,11 @@ public static partial class Game
                     id = 743;
                     break;
                 }
-                if ((((((int)(Mem.S8(((0x80102B00u + (uint)(i * 400)) + 14u))) == 0) && ((int)(Mem.S8(((0x80102B00u + (uint)(i * 400)) + 13u))) == k)) && ((int)(Mem.U8(((0x801462C8u + 328u) + (uint)(i * 150)))) == 1)) && ((int)(Mem.U8((((0x801462C8u + 328u) + (uint)(i * 150)) + 25u))) == 0)))
+                if ((((((int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bE) == 0) && ((int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bD) == k)) && ((int)(new O05GameState(0x801462C8u).rec[(int)(i)].b0) == 1)) && ((int)(new O05GameState(0x801462C8u).rec[(int)(i)].b19) == 0)))
                 {
-                    uint w = func_0040ECB0(Mem.U32((((Mem.U32(0x800E54A4u) + 88u) + (uint)(k * 2920)) + 12u)), (uint)(id), default(uint), default(uint));
+                    uint w = func_0040ECB0(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fC, (uint)(id), default(uint), default(uint));
                     ++n;
-                    Mem.Set((w + 56u), (0x80102B00u + (uint)(i * 400)));
+                    new O05Wd(w).f38_Set((0x80102B00u + (uint)(i * 400)));
                 }
             }
         }

@@ -15,9 +15,9 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, pos_in, 12);
                 Mem.Copy(_fp + 16u, blk_in, 8);
                 if (Dbg.On) Dbg.Enter("func_00267214", (uint)a, (uint)b, (uint)c, (uint)pos_in);
-                if ((Mem.U32((0x800D1380u + (uint)(c * 8))) != 0u))
+                if ((new B15Disp((0x800D1380u + (uint)(c * 8))).fn != 0u))
                 {
-                    Funcs.CallRegX(Mem.U32((0x800D1380u + (uint)(c * 8))), (uint)(a), (uint)(b), (uint)(c), Mem.U32(_fp + 0u), new uint[] { Mem.U32(_fp + 4u), Mem.U32(_fp + 8u), Mem.U32((_fp + 16u) + 0u), Mem.U32((_fp + 16u) + 4u) });
+                    Funcs.CallRegX(new B15Disp((0x800D1380u + (uint)(c * 8))).fn, (uint)(a), (uint)(b), (uint)(c), Mem.U32(_fp + 0u), new uint[] { Mem.U32(_fp + 4u), Mem.U32(_fp + 8u), Mem.U32((_fp + 16u) + 0u), Mem.U32((_fp + 16u) + 4u) });
                 }
             }
         }

@@ -15,13 +15,13 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, v_in, 12);
                 Mem.Copy(_fp + 16u, k_in, 8);
                 if (Dbg.On) Dbg.Enter("func_002686EC", (uint)a, (uint)src, (uint)c, (uint)v_in);
-                Mem.Set((_fp + 40u), (float)(0));
-                Mem.Set(((_fp + 40u) + 4u), (float)(0));
-                Mem.Set(((_fp + 40u) + 8u), (float)(0));
-                Mem.Set((_fp + 24u), Mem.F32(((_fp + 16u) + 4u)));
-                Mem.Set(((_fp + 24u) + 4u), Mem.F32(((_fp + 16u) + 4u)));
-                Mem.Set(((_fp + 24u) + 8u), Mem.F32(((_fp + 16u) + 4u)));
-                func_0028FFB0(0x80131600u, (uint)(0), Mem.S32((_fp + 16u)), (_fp + 40u), (src + 8u), 0, 0.0f);
+                new Vec3f((_fp + 40u)).x_Set((float)(0));
+                new Vec3f((_fp + 40u)).y_Set((float)(0));
+                new Vec3f((_fp + 40u)).z_Set((float)(0));
+                new Vec3f((_fp + 24u)).x_Set(new B15PairF((_fp + 16u)).b);
+                new Vec3f((_fp + 24u)).y_Set(new B15PairF((_fp + 16u)).b);
+                new Vec3f((_fp + 24u)).z_Set(new B15PairF((_fp + 16u)).b);
+                func_0028FFB0(0x80131600u, (uint)(0), new B15PairF((_fp + 16u)).a, (_fp + 40u), new B15Src(src).pos.P, 0, 0.0f);
             }
         }
         finally { Stack.Free(52); }

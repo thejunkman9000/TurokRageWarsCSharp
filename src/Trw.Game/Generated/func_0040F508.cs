@@ -15,38 +15,38 @@ public static partial class Game
             int x1 = 0;
             int y0 = 0;
             int y1 = 0;
-            x0 = Mem.S32((a + (uint)(0 * 4)));
-            if ((x0 < Mem.S32((b + (uint)(0 * 4)))))
+            x0 = new O02Rect(a).w[(int)(0)];
+            if ((x0 < new O02Rect(b).w[(int)(0)]))
             {
-                x0 = Mem.S32((b + (uint)(0 * 4)));
+                x0 = new O02Rect(b).w[(int)(0)];
             }
-            Mem.Set((a + (uint)(0 * 4)), x0);
-            x1 = Mem.S32((a + (uint)(1 * 4)));
-            if ((Mem.S32((b + (uint)(1 * 4))) < x1))
+            new O02Rect(a).w.Set((int)(0), x0);
+            x1 = new O02Rect(a).w[(int)(1)];
+            if ((new O02Rect(b).w[(int)(1)] < x1))
             {
-                x1 = Mem.S32((b + (uint)(1 * 4)));
+                x1 = new O02Rect(b).w[(int)(1)];
             }
-            Mem.Set((a + (uint)(1 * 4)), x1);
-            y0 = Mem.S32((a + (uint)(2 * 4)));
-            if ((y0 < Mem.S32((b + (uint)(2 * 4)))))
+            new O02Rect(a).w.Set((int)(1), x1);
+            y0 = new O02Rect(a).w[(int)(2)];
+            if ((y0 < new O02Rect(b).w[(int)(2)]))
             {
-                y0 = Mem.S32((b + (uint)(2 * 4)));
+                y0 = new O02Rect(b).w[(int)(2)];
             }
-            Mem.Set((a + (uint)(2 * 4)), y0);
-            y1 = Mem.S32((a + (uint)(3 * 4)));
-            if ((Mem.S32((b + (uint)(3 * 4))) < y1))
+            new O02Rect(a).w.Set((int)(2), y0);
+            y1 = new O02Rect(a).w[(int)(3)];
+            if ((new O02Rect(b).w[(int)(3)] < y1))
             {
-                y1 = Mem.S32((b + (uint)(3 * 4)));
+                y1 = new O02Rect(b).w[(int)(3)];
             }
-            Mem.Set((a + (uint)(3 * 4)), y1);
-            if ((Mem.S32((a + (uint)(1 * 4))) < (Mem.S32((a + (uint)(0 * 4))) + 1)))
+            new O02Rect(a).w.Set((int)(3), y1);
+            if ((new O02Rect(a).w[(int)(1)] < (new O02Rect(a).w[(int)(0)] + 1)))
             {
-                Mem.Set((a + (uint)(1 * 4)), (Mem.S32((a + (uint)(0 * 4))) + 1));
+                new O02Rect(a).w.Set((int)(1), (new O02Rect(a).w[(int)(0)] + 1));
                 ok = 0;
             }
-            if ((Mem.S32((a + (uint)(3 * 4))) < (Mem.S32((a + (uint)(2 * 4))) + 1)))
+            if ((new O02Rect(a).w[(int)(3)] < (new O02Rect(a).w[(int)(2)] + 1)))
             {
-                Mem.Set((a + (uint)(3 * 4)), (Mem.S32((a + (uint)(2 * 4))) + 1));
+                new O02Rect(a).w.Set((int)(3), (new O02Rect(a).w[(int)(2)] + 1));
                 ok = 0;
             }
             return ok;

@@ -22,8 +22,8 @@ public static partial class Game
                     n = Mem.U32(list);
                     while ((n != 0u))
                     {
-                        next = Mem.U32((n + 4u));
-                        if ((Mem.S32((n + 72u)) == key))
+                        next = new Node6D28(n).next_;
+                        if ((new Node6D28(n).key == key))
                         {
                             func_00255E78(list, n, default(uint), default(uint));
                             func_00255CB4((o + (uint)38312), n, default(uint), default(uint));

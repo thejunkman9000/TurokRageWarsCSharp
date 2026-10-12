@@ -232,7 +232,7 @@ public static partial class Game
                 L_I002BAE24: ;
                 r4 = Mem.U32((r2 + 32u));
                 L_I002BAE28: ;
-                r2 = init_lpfilter(r4, r5, r6, r7); r3 = Cpu.V1;
+                init_lpfilter(r4);
                 L_L002BAE30: ;
                 L_I002BAE30: ;
                 r31 = Mem.U32((r29 + 16u));

@@ -10,13 +10,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028F9EC", (uint)unused, (uint)s);
-            if (((Mem.U32((s + 4u)) & (uint)(3)) != (uint)(0)))
+            if (((new VSwap_v2(s).flags4 & (uint)(3)) != (uint)(0)))
             {
                 return 0;
             }
-            if (((Mem.S32((s + 16u)) == 1) && ((Mem.U32((s + 8u)) & (uint)(96)) == (uint)(96))))
+            if (((new VSwap_v2(s).mode == 1) && ((new VSwap_v2(s).flags8 & (uint)(96)) == (uint)(96))))
             {
-                osViSwapBuffer(Mem.U32((s + 12u)));
+                osViSwapBuffer(new VSwap_v2(s).buf);
             }
             return 1;
         }

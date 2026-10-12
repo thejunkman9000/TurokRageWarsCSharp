@@ -13,7 +13,7 @@ public static partial class Game
             float k = 0f;
             float s = 0f;
             float c = 0f;
-            Mem.Set((actor + 256u), (uint)((uint)(Mem.U32((actor + 256u))) | (uint)(8388608)));
+            new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) | (uint)(8388608)));
             Mem.Set((actor + (uint)468), Mem.F32(0x800C7EB8u));
             if (((int)(Mem.S16((actor + (uint)1618))) == 15))
             {

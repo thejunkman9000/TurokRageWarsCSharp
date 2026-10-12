@@ -10,38 +10,38 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0021321C", (uint)actor);
-            uint b = Mem.U32((Mem.U32((actor + 472u)) + 5204u));
+            uint b = new ActorB(actor).owner.brain_;
             uint a = 0u;
             int busy = 0;
             int t = 0;
-            if (((int)(Mem.U8((Mem.U32((Mem.U32(b) + 1496u)) + 143u))) == 0))
+            if (((int)(new BrainB(b).actor.stats.unk8F) == 0))
             {
                 func_00209874(b, 2);
                 return;
             }
             func_00211020(b, default(uint), default(uint), default(uint));
-            Mem.Set((b + 800u), (Mem.S32((b + 800u)) - 1));
-            if ((Mem.S32((b + 800u)) == 0))
+            new BrainB(b).unk320_Set((new BrainB(b).unk320 - 1));
+            if ((new BrainB(b).unk320 == 0))
             {
-                a = Mem.U32(b);
-                t = (int)(Mem.S16((a + 1616u)));
+                a = new BrainB(b).actor_;
+                t = (int)(new ActorB(a).unk650);
                 t = (int)((int)(t) ^ 15);
-                busy = (((Mem.U32((a + 56u)) & (uint)(12288)) != (uint)(0)) ? 1 : 0);
+                busy = (((new ActorB(a).flags38 & (uint)(12288)) != (uint)(0)) ? 1 : 0);
                 if (((t != 0) && !(busy != 0)))
                 {
-                    Mem.Set((a + 1712u), (uint)((uint)(Mem.U32((a + 1712u))) | (uint)(16)));
+                    new ActorB(a).unk6B0_Set((uint)((uint)(new ActorB(a).unk6B0) | (uint)(16)));
                 }
             }
-            if ((Mem.S32((b + 800u)) < 0))
+            if ((new BrainB(b).unk320 < 0))
             {
-                Mem.Set((b + 800u), (((func_00274544() % 5) + 3) * 15));
+                new BrainB(b).unk320_Set((((func_00274544() % 5) + 3) * 15));
             }
-            if ((func_00209948(b, Mem.S32((b + 12u))) < Mem.F32(0x800C71E0u)))
+            if ((func_00209948(b, new BrainB(b).unkC) < Mem.F32(0x800C71E0u)))
             {
-                Mem.Set((Mem.U32(b) + 1712u), (uint)((uint)(Mem.U32((Mem.U32(b) + 1712u))) | (uint)(16)));
+                new BrainB(b).actor.unk6B0_Set((uint)((uint)(new BrainB(b).actor.unk6B0) | (uint)(16)));
             }
-            func_00208410(b, default(uint), default(uint), default(uint));
-            func_00208AAC(b, default(uint), default(uint), default(uint));
+            func_00208410(b);
+            func_00208AAC(b);
         }
     }
 

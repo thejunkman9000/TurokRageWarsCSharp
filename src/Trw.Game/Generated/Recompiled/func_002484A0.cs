@@ -72,7 +72,7 @@ public static partial class Game
                 r19 = r9 & 1u;
                 r6 = r5;
                 r8 = r8 ^ 9u;
-                r17 = (uint)(r8 < (uint)(1) ? 1 : 0); r2 = func_002518DC(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), Mem.U32(r29 + 32u)); r3 = Cpu.V1;
+                r17 = (uint)(r8 < (uint)(1) ? 1 : 0); r2 = func_002518DC((int)r4, r5, (int)r6, r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u));
                 r20 = r16;
                 { bool c_ = r2 == 0; Mem.Set((r29 + 8780u), r2); if (c_) goto L_L00249DCC; }
                 r10 = r18 + 260u;
@@ -1404,7 +1404,7 @@ public static partial class Game
                 Cpu.SetW(0, Mem.U32((r2 + 56u)));
                 Mem.Set((r18 + 112u), Cpu.W(0)); goto L_L00249CB4;
                 L_L00249BE0: ;
-                r4 = r18; r2 = func_0024D274_rc(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r18; Cpu.SetS(0, func_0024D274(r4));
                 Cpu.SetW(1, Mem.U32((r29 + 156u)));
                 r1 = 2148335616u;
                 Cpu.SetW(2, Mem.U32((r1 - 30012u)));
@@ -1467,7 +1467,7 @@ public static partial class Game
                 r5 = r17;
                 r6 = r29 + 104u;
                 r7 = r18;
-                Mem.Set((r29 + 16u), r2); r2 = func_0026E5E0(r4, r5, r6, r7, Mem.U32(r29 + 16u)); r3 = Cpu.V1;
+                Mem.Set((r29 + 16u), r2); func_0026E5E0(r4, (int)r5, r6, r7, Mem.U32(r29 + 16u));
                 L_L00249D14: ;
                 r2 = Mem.U8((r18 + 315u));
                 { bool c_ = r2 == 0; r5 = r18; if (c_) goto L_L00249D30; }
@@ -1487,7 +1487,7 @@ public static partial class Game
                 Cpu.SetW(0, Mem.U32((r29 + 8300u)));
                 Cpu.SetW(1, Mem.U32((r18 + 112u)));
                 Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
-                Mem.Set((r29 + 8300u), Cpu.W(0)); r2 = func_0024D274_rc(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r29 + 8300u), Cpu.W(0)); Cpu.SetS(0, func_0024D274(r4));
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
                 r5 = r29 + 8296u;

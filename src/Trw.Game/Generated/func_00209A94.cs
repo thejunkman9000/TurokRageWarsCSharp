@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00209A94", (uint)ctl);
-            switch (Mem.S32((ctl + 540u)))
+            switch (new B2Ctl(ctl).curId)
             {
             case 1:
             case 3:

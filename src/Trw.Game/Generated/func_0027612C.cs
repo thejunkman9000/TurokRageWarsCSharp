@@ -16,10 +16,10 @@ public static partial class Game
             float dz = 0f;
             float len = 0f;
             float r = 0f;
-            a = Mem.U32(((p + 4u) + (uint)(i * 4)));
-            b = Mem.U32(((p + 4u) + (uint)(((i + 1) % 3) * 4)));
-            dx = (Mem.F32(b) - Mem.F32(a));
-            dz = (Mem.F32((b + 8u)) - Mem.F32((a + 8u)));
+            a = new Poly3(p).v[(int)(i)];
+            b = new Poly3(p).v[(int)(((i + 1) % 3))];
+            dx = (new Pt3(b).x - new Pt3(a).x);
+            dz = (new Pt3(b).z - new Pt3(a).z);
             len = func_002BC380(((dx * dx) + (dz * dz)));
             if ((len == 0.0f))
             {

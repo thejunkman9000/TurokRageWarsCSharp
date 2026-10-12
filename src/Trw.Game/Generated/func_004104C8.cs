@@ -17,14 +17,14 @@ public static partial class Game
             uint e = 0u;
             uint q = 0u;
             t = func_002A2934();
-            if ((Mem.S32((0x80153C0Cu + 72u)) == 0))
+            if ((new S_v(0x80153C0Cu).mode == 0))
             {
-                for (i = 0; (i < (int)(Mem.S16(0x80153C0Cu))); ++i)
+                for (i = 0; (i < (int)(new S_v(0x80153C0Cu).n)); ++i)
                 {
-                    if (((Mem.S32(((Mem.U32(0x80153C10u) + (uint)(i * 28)) + 4u)) & 1) != 0))
+                    if (((new S_o((Mem.U32(0x80153C10u) + (uint)(i * 28))).flags & 1) != 0))
                     {
                         q = (Mem.U32(0x80153C18u) + (uint)(i * 8));
-                        if ((((Mem.S32(q) != (-1)) && ((int)(Mem.S16((q + 4u))) == 0)) && (Mem.S32(q) < t)))
+                        if ((((new S_e(q).id != (-1)) && ((int)(new S_e(q).cnt) == 0)) && (new S_e(q).id < t)))
                         {
                             func_00411B70(i);
                             return;
@@ -33,11 +33,11 @@ public static partial class Game
                 }
                 for (i = 0; (i < (int)(Mem.S16(0x80153C20u))); ++i)
                 {
-                    if ((((int)(Mem.U8(((Mem.U32(0x80153C28u) + (uint)(i * 1180)) + 1168u))) != 0) && (Mem.S32((Mem.U32(0x80153C28u) + (uint)(i * 1180))) != 0)))
+                    if ((((int)(new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).b490) != 0) && (new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).w0 != 0)))
                     {
-                        for (j = 0; (j < (int)(Mem.S16((Mem.U32(((Mem.U32(0x80153C28u) + (uint)(i * 1180)) + 1164u)) + 14u)))); ++j)
+                        for (j = 0; (j < (int)(Mem.S16((new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).p48C + 14u)))); ++j)
                         {
-                            e = Mem.U32((Mem.U32(((Mem.U32(0x80153C28u) + (uint)(i * 1180)) + 1156u)) + (uint)(j * 4)));
+                            e = Mem.U32((new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).p484 + (uint)(j * 4)));
                             for (k = 0; (k < 96); ++k)
                             {
                                 uint h = ((e + (uint)(k * 44)) + (uint)8);
@@ -48,8 +48,8 @@ public static partial class Game
                                         func_004196A4(((e + (uint)(k * 44)) + (uint)12));
                                         Mem.Set(h, (ushort)(((int)(Mem.U16(h)) & 65534)));
                                         Mem.Set(((e + (uint)(k * 44)) + (uint)4), 0);
-                                        Mem.Set(((Mem.U32(0x80153C28u) + (uint)(i * 1180)) + 1168u), (byte)(Mem.U8(((Mem.U32(0x80153C28u) + (uint)(i * 1180)) + 1168u)) - 1));
-                                        if (((int)(Mem.U8(((Mem.U32(0x80153C28u) + (uint)(i * 1180)) + 1168u))) != 0))
+                                        new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).b490_Set((byte)(new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).b490 - 1));
+                                        if (((int)(new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).b490) != 0))
                                         {
                                             return;
                                         }
@@ -57,10 +57,10 @@ public static partial class Game
                                 }
                             }
                         }
-                        if (((int)(Mem.U8(((Mem.U32(0x80153C28u) + (uint)(i * 1180)) + 1168u))) == 0))
+                        if (((int)(new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).b490) == 0))
                         {
-                            func_00411598((uint)(i), default(uint), default(uint), default(uint));
-                            Mem.Set((Mem.U32(0x80153C28u) + (uint)(i * 1180)), 0);
+                            func_00411598(i);
+                            new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).w0_Set(0);
                         }
                     }
                 }

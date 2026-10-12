@@ -25,16 +25,16 @@ public static partial class Game
                     {
                         return;
                     }
-                    Mem.Set(n, (src + (total - rem)));
-                    Mem.Set((n + 4u), (dst + (total - rem)));
+                    new B12QNode(n).src_Set((src + (total - rem)));
+                    new B12QNode(n).dst_Set((dst + (total - rem)));
                     chunk = (uint)(8192);
                     if ((rem <= (uint)(8192)))
                     {
                         chunk = rem;
                     }
-                    Mem.Set((n + 8u), chunk);
-                    Mem.Set((n + 12u), _fp);
-                    osJamMesg((c + 560u), n, 1);
+                    new B12QNode(n).len_Set(chunk);
+                    new B12QNode(n).reply__Set(_fp);
+                    osJamMesg(new B12Ctx(c).q.P, n, 1);
                     osRecvMesg(_fp, (_fp + 28u), 1);
                     rem = (uint)((uint)(rem) - chunk);
                 }

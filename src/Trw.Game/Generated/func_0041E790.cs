@@ -21,9 +21,9 @@ public static partial class Game
             pts = 0;
             for (i = 0; (i < 3); ++i)
             {
-                if ((Mem.S32((0x80153F80u + (uint)(i * 28))) >= 0))
+                if ((new O3Plr((0x80153F80u + (uint)(i * 28))).id >= 0))
                 {
-                    switch (Mem.S32(((0x80153F80u + (uint)(i * 28)) + 4u)))
+                    switch (new O3Plr((0x80153F80u + (uint)(i * 28))).type)
                     {
                     case 0:
                         pts = 5;
@@ -41,7 +41,7 @@ public static partial class Game
             n = 0;
             for (j = 0; (j < 3); ++j)
             {
-                if ((Mem.S32((0x80153F80u + (uint)(j * 28))) >= 0))
+                if ((new O3Plr((0x80153F80u + (uint)(j * 28))).id >= 0))
                 {
                     ++n;
                 }

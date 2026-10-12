@@ -21,15 +21,15 @@ public static partial class Game
             int i = 0;
             byte lim = 0;
             byte lim2 = 0;
-            Mem.Copy(cell, g, 44);
-            Mem.Set((cell + 44u), Mem.U8((g + 84u)));
-            Mem.Set((cell + 45u), Mem.U8((g + 85u)));
-            lim = Mem.U8((g + 81u));
+            Mem.Copy(cell, new S_grid(g).h.P, 44);
+            new S_cell2(cell).b2C_Set(new S_grid(g).b54);
+            new S_cell2(cell).b2D_Set(new S_grid(g).b55);
+            lim = new S_grid(g).b51;
             if ((col < (uint)(lim)))
             {
                 c = (int)(col);
-                Mem.Set((cell + 44u), Mem.U8((g + 82u)));
-                Mem.Set((cell + 45u), Mem.U8((g + 83u)));
+                new S_cell2(cell).b2C_Set(new S_grid(g).b52);
+                new S_cell2(cell).b2D_Set(new S_grid(g).b53);
                 ci = (-1);
                 if ((c != 0))
                 {
@@ -39,18 +39,18 @@ public static partial class Game
             else
             {
                 ci = (-1);
-                c = (int)(((col - (uint)(lim)) + (uint)(Mem.U8((g + 79u)))));
+                c = (int)(((col - (uint)(lim)) + (uint)(new S_grid(g).b4F)));
                 if (((int)(lim) != 0))
                 {
                     ci = (int)(col);
                 }
             }
-            lim = Mem.U8((g + 80u));
+            lim = new S_grid(g).b50;
             if ((row < (uint)(lim)))
             {
                 r = (int)(row);
-                Mem.Set((cell + 44u), Mem.U8((g + 82u)));
-                Mem.Set((cell + 45u), Mem.U8((g + 83u)));
+                new S_cell2(cell).b2C_Set(new S_grid(g).b52);
+                new S_cell2(cell).b2D_Set(new S_grid(g).b53);
                 ri = (-1);
                 if ((r != 0))
                 {
@@ -60,7 +60,7 @@ public static partial class Game
             else
             {
                 ri = (-1);
-                r = (int)(((row - (uint)(lim)) + (uint)(Mem.U8((g + 78u)))));
+                r = (int)(((row - (uint)(lim)) + (uint)(new S_grid(g).b4E)));
                 if (((int)(lim) != 0))
                 {
                     ri = (int)(row);
@@ -68,9 +68,9 @@ public static partial class Game
             }
             sy = (sx = 0);
             n = ci;
-            if (((int)(Mem.U8((g + 81u))) < ci))
+            if (((int)(new S_grid(g).b51) < ci))
             {
-                n = (int)(Mem.U8((g + 81u)));
+                n = (int)(new S_grid(g).b51);
             }
             if ((ci != (-1)))
             {
@@ -79,16 +79,16 @@ public static partial class Game
                 {
                     do
                     {
-                        sx = (int)((int)(sx) + Mem.S32((Mem.U32((g + 88u)) + (uint)(i * 4))));
+                        sx = (int)((int)(sx) + Mem.S32((new S_grid(g).colw_ + (uint)(i * 4))));
                         ++i;
                     }
                     while ((i < n));
                 }
             }
             n = ri;
-            if (((int)(Mem.U8((g + 80u))) < ri))
+            if (((int)(new S_grid(g).b50) < ri))
             {
-                n = (int)(Mem.U8((g + 80u)));
+                n = (int)(new S_grid(g).b50);
             }
             if ((ri != (-1)))
             {
@@ -97,51 +97,51 @@ public static partial class Game
                 {
                     do
                     {
-                        sy = (int)((int)(sy) + Mem.S32((Mem.U32((g + 92u)) + (uint)(i * 4))));
+                        sy = (int)((int)(sy) + Mem.S32((new S_grid(g).rowh_ + (uint)(i * 4))));
                         ++i;
                     }
                     while ((i < n));
                 }
             }
-            lim = Mem.U8((g + 81u));
+            lim = new S_grid(g).b51;
             if (((int)(lim) < ci))
             {
-                sx = (int)((int)(sx) + ((ci - (int)(lim)) * Mem.S32((Mem.U32((g + 88u)) + (uint)(((int)(lim) - 1) * 4)))));
+                sx = (int)((int)(sx) + ((ci - (int)(lim)) * Mem.S32((new S_grid(g).colw_ + (uint)(((int)(lim) - 1) * 4)))));
             }
-            lim2 = Mem.U8((g + 80u));
+            lim2 = new S_grid(g).b50;
             if (((int)(lim2) < ri))
             {
-                sy = (int)((int)(sy) + ((ri - (int)(lim2)) * Mem.S32((Mem.U32((g + 92u)) + (uint)(((int)(lim2) - 1) * 4)))));
+                sy = (int)((int)(sy) + ((ri - (int)(lim2)) * Mem.S32((new S_grid(g).rowh_ + (uint)(((int)(lim2) - 1) * 4)))));
             }
             if ((col < (uint)(lim)))
             {
-                Mem.Set((cell + 24u), Mem.U16((Mem.U32((g + 88u)) + (uint)(((col * (uint)(2)) + (uint)(1)) * 2))));
+                new S_cell2(cell).f18_Set(Mem.U16((new S_grid(g).colw_ + (uint)(((col * (uint)(2)) + (uint)(1)) * 2))));
             }
             else
             {
-                Mem.Set((cell + 24u), Mem.U16((Mem.U32((g + 88u)) + (uint)((((int)(lim) * 2) - 1) * 2))));
+                new S_cell2(cell).f18_Set(Mem.U16((new S_grid(g).colw_ + (uint)((((int)(lim) * 2) - 1) * 2))));
             }
-            if ((row < (uint)(Mem.U8((g + 80u)))))
+            if ((row < (uint)(new S_grid(g).b50)))
             {
-                Mem.Set((cell + 26u), Mem.U16((Mem.U32((g + 92u)) + (uint)(((row * (uint)(2)) + (uint)(1)) * 2))));
+                new S_cell2(cell).f1A_Set(Mem.U16((new S_grid(g).rowh_ + (uint)(((row * (uint)(2)) + (uint)(1)) * 2))));
             }
             else
             {
-                Mem.Set((cell + 26u), Mem.U16((Mem.U32((g + 92u)) + (uint)((((int)(Mem.U8((g + 80u))) * 2) - 1) * 2))));
+                new S_cell2(cell).f1A_Set(Mem.U16((new S_grid(g).rowh_ + (uint)((((int)(new S_grid(g).b50) * 2) - 1) * 2))));
             }
-            Mem.Set((cell + 56u), Mem.S32((Mem.U32((g + 68u)) + (uint)((((r * (int)(Mem.U8((g + 75u)))) + c) * 2) * 4))));
-            if (((r == (int)(Mem.U8((g + 76u)))) && (c == (int)(Mem.U8((g + 77u))))))
+            new S_cell2(cell).f38_Set(Mem.S32((new S_grid(g).cells_ + (uint)((((r * (int)(new S_grid(g).b4B)) + c) * 2) * 4))));
+            if (((r == (int)(new S_grid(g).b4C)) && (c == (int)(new S_grid(g).b4D))))
             {
-                Mem.Set((cell + 46u), Mem.U8((g + 86u)));
-                Mem.Set((cell + 47u), Mem.U8((g + 87u)));
+                new S_cell2(cell).b2E_Set(new S_grid(g).b56);
+                new S_cell2(cell).b2F_Set(new S_grid(g).b57);
             }
             else
             {
-                Mem.Set((cell + 46u), Mem.U8((cell + 44u)));
-                Mem.Set((cell + 47u), Mem.U8((cell + 45u)));
+                new S_cell2(cell).b2E_Set(new S_cell2(cell).b2C);
+                new S_cell2(cell).b2F_Set(new S_cell2(cell).b2D);
             }
-            Mem.Set((cell + 20u), (ushort)((int)(Mem.U16((cell + 20u))) + sx));
-            Mem.Set((cell + 22u), (ushort)((int)(Mem.U16((cell + 22u))) + sy));
+            new S_cell2(cell).f14_Set((ushort)((int)(new S_cell2(cell).f14) + sx));
+            new S_cell2(cell).f16_Set((ushort)((int)(new S_cell2(cell).f16) + sy));
         }
     }
 

@@ -15,7 +15,7 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, v_in, 12);
                 if (Dbg.On) Dbg.Enter("func_0028CE70", (uint)lv, (uint)a1, (uint)id, (uint)v_in);
                 int i = 0;
-                uint t = Mem.U32((lv + 168u));
+                uint t = new Level(lv).unkA8_;
                 int n = Mem.S32((t + (uint)(1 * 4)));
                 if ((func_00265570((t + (uint)(2 * 4)), n, (uint)(id), (_fp + 12u), (_fp + 16u)) != 0))
                 {
@@ -24,7 +24,7 @@ public static partial class Game
                     {
                         do
                         {
-                            uint tbl = Mem.U32((lv + 172u));
+                            uint tbl = new Level(lv).unkAC_;
                             func_00285B34(a1, (tbl + (uint)((i * Mem.S32((tbl + (uint)(0 * 4)))) + 8)), _fp, f6, f7, 0);
                             ++i;
                         }

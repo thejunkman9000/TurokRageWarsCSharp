@@ -12,15 +12,15 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0028F98C", (uint)s);
             if ((s != 0u))
             {
-                if ((Mem.U32((s + 12u)) == Mem.U32(0x80146CF8u)))
+                if ((new VSwap(s).buf == Mem.U32(0x80146CF8u)))
                 {
                     return 0u;
                 }
-                if ((Mem.U32((s + 12u)) == osViGetCurrentFramebuffer()))
+                if ((new VSwap(s).buf == osViGetCurrentFramebuffer()))
                 {
                     return 0u;
                 }
-                if ((Mem.U32((s + 12u)) != Mem.U32(0x80146CF0u)))
+                if ((new VSwap(s).buf != Mem.U32(0x80146CF0u)))
                 {
                     return s;
                 }

@@ -11,12 +11,12 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00286050", (uint)ow);
             int old = Mem.S32(0x800D2640u);
-            Mem.Set(0x800D2640u, Mem.S32((0x801462C8u + 16u)));
-            if (((Mem.U32(0x801462C8u) & (uint)(16384)) != 0u))
+            Mem.Set(0x800D2640u, new B19Inp(0x801462C8u).val);
+            if (((new B19Inp(0x801462C8u).flags & (uint)(16384)) != 0u))
             {
-                Mem.Set(0x800D2640u, (Mem.S32((0x801462C8u + 16u)) | 256));
+                Mem.Set(0x800D2640u, (new B19Inp(0x801462C8u).val | 256));
             }
-            if (((Mem.U32(0x801462C8u) & (uint)(32768)) != 0u))
+            if (((new B19Inp(0x801462C8u).flags & (uint)(32768)) != 0u))
             {
                 Mem.Set(0x800D2640u, (int)((int)(Mem.S32(0x800D2640u)) | 512));
             }
@@ -31,30 +31,30 @@ public static partial class Game
             }
             func_0028A674(ow);
             func_0028D628(ow);
-            Mem.Set((ow + 288u), 0);
-            Mem.Set((ow + 292u), 0);
+            new B19Owner(ow).f120_Set(0);
+            new B19Owner(ow).f124_Set(0);
             func_00279A00((ow + (uint)296));
-            func_00253B5C(0, (uint)(Mem.S32((ow + 232u))));
+            func_00253B5C(0, (uint)(new B19Owner(ow).fE8));
             func_002A66EC(0x8013BA80u);
             func_0022A144(0x80145040u);
             func_00287EE8(ow);
             func_00288440(ow);
             func_0028D5F8(ow);
-            if (((Mem.S32((ow + 111636u)) == 0) && (Mem.S32(0x80146894u) == 0)))
+            if (((new B19Owner(ow).f1B414 == 0) && (Mem.S32(0x80146894u) == 0)))
             {
                 func_002A6670((int)(0x8013BA80u));
                 func_00286254(ow);
                 func_00290218((ow + (uint)71544));
-                Mem.Set((ow + 111368u), (Mem.F32((ow + 111368u)) + (Mem.F32(0x800D2988u) * Mem.F32(0x800CA1D4u))));
+                new B19Owner(ow).f1B308_Set((new B19Owner(ow).f1B308 + (Mem.F32(0x800D2988u) * Mem.F32(0x800CA1D4u))));
                 func_0028C5E8(ow);
             }
-            func_00281C74((ow + (uint)6920), default(uint), default(uint), default(uint));
-            if ((Mem.S32((ow + 111636u)) == 0))
+            func_00281C74((ow + (uint)6920));
+            if ((new B19Owner(ow).f1B414 == 0))
             {
                 func_002285C4(0x80145040u);
             }
-            func_00236F0C(0x80145088u, ow, default(uint), default(uint));
-            if (((Mem.S32((ow + 111636u)) == 0) && (Mem.S32((0x80145088u + 6156u)) == 0)))
+            func_00236F0C(0x80145088u, (int)(ow));
+            if (((new B19Owner(ow).f1B414 == 0) && (new B19Glo(0x80145088u).f180C == 0)))
             {
                 func_0028D658(ow);
             }

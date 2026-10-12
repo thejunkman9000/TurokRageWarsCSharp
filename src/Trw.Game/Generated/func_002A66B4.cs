@@ -11,13 +11,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002A66B4", (uint)p, (uint)n);
             uint r = 0u;
-            if ((Mem.S32((p + 9608u)) < n))
+            if ((new EntPool(p).cnt < n))
             {
                 return 0u;
             }
-            r = Mem.U32((p + 9612u));
-            Mem.Set((p + 9608u), (int)((int)(Mem.S32((p + 9608u))) - n));
-            Mem.Set((p + 9612u), (uint)(Mem.U32((p + 9612u)) + (uint)((n * 16) * 1)));
+            r = new EntPool(p).cur_;
+            new EntPool(p).cnt_Set((int)((int)(new EntPool(p).cnt) - n));
+            new EntPool(p).cur__Set((uint)(new EntPool(p).cur_ + (uint)((n * 16) * 1)));
             return r;
         }
     }

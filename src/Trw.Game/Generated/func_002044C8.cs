@@ -13,15 +13,15 @@ public static partial class Game
             if ((func_00285F28(0x8011FE88u, actor) == 1))
             {
                 func_00214178(actor, state, 1);
-                switch ((int)(Mem.U16((actor + 228u))))
+                switch ((int)(new B01Actor(actor).unkE4))
                 {
                 case 1612:
-                    Mem.Set((actor + 256u), (uint)((uint)(Mem.U32((actor + 256u))) & (uint)((~8192))));
-                    Mem.Set((actor + 256u), (uint)((uint)(Mem.U32((actor + 256u))) & (uint)((~256))));
+                    new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~8192))));
+                    new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~256))));
                     break;
                 case 1611:
                 case 1614:
-                    Mem.Set((actor + 256u), (uint)((uint)(Mem.U32((actor + 256u))) & 4160749567u));
+                    new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & 4160749567u));
                     break;
                 }
             }

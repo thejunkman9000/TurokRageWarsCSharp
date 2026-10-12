@@ -20,44 +20,44 @@ public static partial class Game
                 float z = 0f;
                 float w = 0f;
                 float dist = 0f;
-                Mem.Set((t + 36u), a);
-                Mem.Set((t + 40u), b);
-                Mem.Set((t + 44u), c);
-                Mem.Set((t + 48u), d);
-                Mem.Set((t + 52u), e);
-                Mem.Set((t + 56u), f);
-                Mem.Set((t + 60u), g);
-                Mem.Set((t + 64u), h);
-                Mem.Set((t + 68u), i);
-                Mem.Copy((t + 72u), _fp, 16);
-                Mem.Set((t + 88u), n);
-                Mem.Set((t + 92u), j);
-                Mem.Set((t + 96u), k);
+                new Tracker(t).unk24_Set(a);
+                new Tracker(t).unk28_Set(b);
+                new Tracker(t).unk2C_Set(c);
+                new Tracker(t).unk30_Set(d);
+                new Tracker(t).unk34_Set(e);
+                new Tracker(t).unk38_Set(f);
+                new Tracker(t).unk3C_Set(g);
+                new Tracker(t).unk40_Set(h);
+                new Tracker(t).unk44_Set(i);
+                Mem.Copy(new Tracker(t).unk48.P, _fp, 16);
+                new Tracker(t).unk58__Set(n);
+                new Tracker(t).unk5C_Set(j);
+                new Tracker(t).unk60_Set(k);
                 if ((func_00245788() != 0))
                 {
-                    Mem.Set((t + 88u), func_002866F8(0x8011FE88u, (t + 56u)));
+                    new Tracker(t).unk58__Set(func_002866F8(0x8011FE88u, (t + 56u)));
                 }
-                node = Mem.U32((t + 88u));
-                x = Mem.F32((t + 56u));
-                y = Mem.F32((t + 60u));
-                z = Mem.F32((t + 64u));
-                w = Mem.F32((t + 68u));
-                Mem.Set((t + 100u), Mem.S32(0x800D2B40u));
+                node = new Tracker(t).unk58_;
+                x = new Tracker(t).unk38;
+                y = new Tracker(t).unk3C;
+                z = new Tracker(t).unk40;
+                w = new Tracker(t).unk44;
+                new Tracker(t).unk64_Set(Mem.S32(0x800D2B40u));
                 if (((node != 0u) && (func_00245788() == 0)))
                 {
                     dist = (((y + w) - func_00275E44(node, x, z)) * Mem.F32(0x800C8610u));
                     if (((dist < Mem.F32(0x800C8614u)) && (Mem.F32(0x800C8618u) < dist)))
                     {
-                        Mem.Set((t + 100u), Mem.S32((node + 28u)));
+                        new Tracker(t).unk64_Set(new SurfNode(node).unk1C);
                     }
                 }
                 if ((func_00245788() != 0))
                 {
-                    Mem.Set((t + 100u), Mem.S32(0x800D2B40u));
+                    new Tracker(t).unk64_Set(Mem.S32(0x800D2B40u));
                 }
-                if ((Mem.F32((t + 92u)) > 0.0f))
+                if ((new Tracker(t).unk5C > 0.0f))
                 {
-                    Mem.Set((t + 100u), Mem.S32(0x800D2B40u));
+                    new Tracker(t).unk64_Set(Mem.S32(0x800D2B40u));
                 }
             }
         }

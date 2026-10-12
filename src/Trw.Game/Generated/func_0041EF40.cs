@@ -17,14 +17,14 @@ public static partial class Game
             }
             {
                 func_0029A73C();
-                it = func_0040ECB0((uint)(Mem.S32(((Mem.U32(0x800E39C0u) + 8u) + (uint)(Mem.S32((Mem.U32(0x800E39C0u) + 20u)) * 4)))), (uint)(914), default(uint), default(uint));
-                Mem.Set((it + 16u), (byte)(255));
+                it = func_0040ECB0((uint)(new O3Ps(Mem.U32(0x800E39C0u)).w[(int)(new O3Ps(Mem.U32(0x800E39C0u)).sel)]), (uint)(914), default(uint), default(uint));
+                new O3Hdr(it).alpha_Set((byte)(255));
                 func_0040E958(it, 0);
-                Mem.Set((Mem.U32(0x800E39C0u) + 20u), ((Mem.S32((Mem.U32(0x800E39C0u) + 20u)) + 1) % Mem.S32((Mem.U32(0x800E39C0u) + 28u))));
-                it = func_0040ECB0((uint)(Mem.S32(((Mem.U32(0x800E39C0u) + 8u) + (uint)(Mem.S32((Mem.U32(0x800E39C0u) + 20u)) * 4)))), (uint)(914), default(uint), default(uint));
-                Mem.Set((it + 16u), (byte)(255));
+                new O3Ps(Mem.U32(0x800E39C0u)).sel_Set(((new O3Ps(Mem.U32(0x800E39C0u)).sel + 1) % new O3Ps(Mem.U32(0x800E39C0u)).cnt));
+                it = func_0040ECB0((uint)(new O3Ps(Mem.U32(0x800E39C0u)).w[(int)(new O3Ps(Mem.U32(0x800E39C0u)).sel)]), (uint)(914), default(uint), default(uint));
+                new O3Hdr(it).alpha_Set((byte)(255));
                 func_0040E958(it, 1);
-                Mem.Set((Mem.U32(0x800E39C0u) + 24u), 0);
+                new O3Ps(Mem.U32(0x800E39C0u)).timer_Set(0);
                 func_0025DF54(3712);
             }
             return 0;

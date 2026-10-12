@@ -13,8 +13,8 @@ public static partial class Game
             if ((((c >> (int)16) == (uint)(3)) && (d == 0)))
             {
                 func_0029A73C();
-                Mem.Set((Mem.U32(0x800E4690u) + 2440u), 8);
-                Mem.Set((Mem.U32((Mem.U32(0x800E4690u) + 2640u)) + 16u), (byte)(90));
+                new O04ModeS4690(Mem.U32(0x800E4690u)).unk988_Set(8);
+                new O04ModeS4690(Mem.U32(0x800E4690u)).unkA50.unk10_Set((byte)(90));
                 func_0025DF54(3708);
             }
             return 0;

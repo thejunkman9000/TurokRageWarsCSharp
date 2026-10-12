@@ -11,16 +11,16 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00436988", (uint)k);
             uint r = (0x80146398u + (uint)(k * 150));
-            Mem.Set(((0x80102B00u + (uint)(k * 400)) + 393u), (sbyte)(func_0041AD84(Mem.U32((Mem.U32(0x800E5690u) + 20u)))));
-            Mem.Set(((0x80102B00u + (uint)(k * 400)) + 394u), (byte)(func_0041AD84(Mem.U32((Mem.U32(0x800E5690u) + 16u)))));
-            Mem.Set(((0x80102B00u + (uint)(k * 400)) + 395u), (byte)(func_0041A760(Mem.U32((Mem.U32(0x800E5690u) + 8u)))));
-            Mem.Set(((0x80102B00u + (uint)(k * 400)) + 396u), (byte)(func_0041A760(Mem.U32((Mem.U32(0x800E5690u) + 12u)))));
-            Mem.Set(((0x80102B00u + (uint)(k * 400)) + 397u), (byte)(func_0041AD84(Mem.U32((Mem.U32(0x800E5690u) + 24u)))));
-            Mem.Set((r + 123u), (byte)(Mem.S8(((0x80102B00u + (uint)(k * 400)) + 393u))));
-            Mem.Set((r + 125u), Mem.U8(((0x80102B00u + (uint)(k * 400)) + 394u)));
-            Mem.Set((r + 121u), Mem.U8(((0x80102B00u + (uint)(k * 400)) + 395u)));
-            Mem.Set((r + 122u), Mem.U8(((0x80102B00u + (uint)(k * 400)) + 396u)));
-            Mem.Set((r + 130u), Mem.U8(((0x80102B00u + (uint)(k * 400)) + 397u)));
+            new O05Rec((0x80102B00u + (uint)(k * 400))).b189_Set((sbyte)(func_0041AD84(new O05M90(Mem.U32(0x800E5690u)).f14)));
+            new O05Rec((0x80102B00u + (uint)(k * 400))).b18A_Set((byte)(func_0041AD84(new O05M90(Mem.U32(0x800E5690u)).f10)));
+            new O05Rec((0x80102B00u + (uint)(k * 400))).b18B_Set((byte)(func_0041A760(new O05M90(Mem.U32(0x800E5690u)).f8)));
+            new O05Rec((0x80102B00u + (uint)(k * 400))).b18C_Set((byte)(func_0041A760(new O05M90(Mem.U32(0x800E5690u)).fC)));
+            new O05Rec((0x80102B00u + (uint)(k * 400))).b18D_Set((byte)(func_0041AD84(new O05M90(Mem.U32(0x800E5690u)).f18)));
+            new O05R150b(r).b7B_Set((byte)(new O05Rec((0x80102B00u + (uint)(k * 400))).b189));
+            new O05R150b(r).b7D_Set(new O05Rec((0x80102B00u + (uint)(k * 400))).b18A);
+            new O05R150b(r).b79_Set(new O05Rec((0x80102B00u + (uint)(k * 400))).b18B);
+            new O05R150b(r).b7A_Set(new O05Rec((0x80102B00u + (uint)(k * 400))).b18C);
+            new O05R150b(r).b82_Set(new O05Rec((0x80102B00u + (uint)(k * 400))).b18D);
         }
     }
 

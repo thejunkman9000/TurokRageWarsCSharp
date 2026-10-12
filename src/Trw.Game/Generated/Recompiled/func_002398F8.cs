@@ -50,7 +50,7 @@ public static partial class Game
                 r4 = r19 + 3648u;
                 r5 = r16; r2 = func_00255E78(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r20 + 3876u;
-                r5 = r16; r2 = func_00255C58(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r16; func_00255C58(r4, r5);
                 r16 = r17;
                 L_L00239984: ;
                 { bool c_ = r16 != 0; r6 = r18; if (c_) goto L_L00239958; }
@@ -142,8 +142,8 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_002398F8", r2); Stack.Free(384); }
     }
 
-    public static void func_002398F8(uint p0, uint p1, int p2, uint p3, float p4)
+    public static uint func_002398F8(uint p0, uint p1, uint p2, int p3, float p4)
     {
-        func_002398F8_rc(p0, p1, (uint)p2, p3, Cpu.F2U(p4));
+        return func_002398F8_rc(p0, p1, p2, (uint)p3, Cpu.F2U(p4));
     }
 }

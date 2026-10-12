@@ -12,19 +12,19 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_004263BC", (uint)p);
             int i = 0;
             uint r = 0u;
-            if ((((int)(Mem.U8((Mem.U32((p + 1496u)) + 145u))) == 1) || ((int)(Mem.U8((Mem.U32((p + 1496u)) + 120u))) == 0)))
+            if ((((int)(new O04Plr(p).unk5D8.unk91) == 1) || ((int)(new O04Plr(p).unk5D8.unk78) == 0)))
             {
                 return;
             }
             r = (uint)(func_0028D450(0x8011FE88u, Mem.S32(0x8015402Cu)));
             for (i = 0; (i < 8); ++i)
             {
-                int id = (int)(Mem.U16(((r + 6u) + (uint)(i * 2))));
+                int id = (int)(new O04Rec(r).ids[(int)(i)]);
                 if ((id >= 1219))
                 {
                     id = (int)((int)(id) - 1219);
-                    Mem.Set(((p + 1538u) + (uint)(id * 2)), (byte)(1));
-                    Mem.Set((((p + 1538u) + (uint)(id * 2)) + 1u), (byte)(i));
+                    new O04Plr(p).unk602[(int)(id)].a_Set((byte)(1));
+                    new O04Plr(p).unk602[(int)(id)].b_Set((byte)(i));
                 }
             }
         }

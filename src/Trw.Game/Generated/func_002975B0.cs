@@ -17,7 +17,7 @@ public static partial class Game
                 func_00271FD8((_fp + 16u), c, b);
                 func_00272088(pl, (_fp + 16u), _fp);
                 func_002720EC(pl);
-                Mem.Set((pl + 12u), (((Mem.F32(pl) * Mem.F32(a)) + (Mem.F32((pl + 4u)) * Mem.F32((a + 4u)))) + (Mem.F32((pl + 8u)) * Mem.F32((a + 8u)))));
+                new B21Plane(pl).w_Set((((new B21Plane(pl).x * new Vec3f(a).x) + (new B21Plane(pl).y * new Vec3f(a).y)) + (new B21Plane(pl).z * new Vec3f(a).z)));
             }
         }
         finally { Stack.Free(28); }
@@ -33,10 +33,10 @@ public static partial class Game
             func_002975B0_MkPlane((pl + (uint)(1 * 16)), p1, p5, p3);
             func_002975B0_MkPlane((pl + (uint)(4 * 16)), p1, p3, p2);
             func_002975B0_MkPlane((pl + (uint)(3 * 16)), p1, p4, p5);
-            Mem.Set((pl + (uint)(5 * 16)), (-Mem.F32((pl + (uint)(2 * 16)))));
-            Mem.Set(((pl + (uint)(5 * 16)) + 4u), (-Mem.F32(((pl + (uint)(2 * 16)) + 4u))));
-            Mem.Set(((pl + (uint)(5 * 16)) + 8u), (-Mem.F32(((pl + (uint)(2 * 16)) + 8u))));
-            Mem.Set(((pl + (uint)(5 * 16)) + 12u), (((Mem.F32((pl + (uint)(5 * 16))) * Mem.F32(p1)) + (Mem.F32(((pl + (uint)(5 * 16)) + 4u)) * Mem.F32((p1 + 4u)))) + (Mem.F32(((pl + (uint)(5 * 16)) + 8u)) * Mem.F32((p1 + 8u)))));
+            new B21Plane((pl + (uint)(5 * 16))).x_Set((-new B21Plane((pl + (uint)(2 * 16))).x));
+            new B21Plane((pl + (uint)(5 * 16))).y_Set((-new B21Plane((pl + (uint)(2 * 16))).y));
+            new B21Plane((pl + (uint)(5 * 16))).z_Set((-new B21Plane((pl + (uint)(2 * 16))).z));
+            new B21Plane((pl + (uint)(5 * 16))).w_Set((((new B21Plane((pl + (uint)(5 * 16))).x * new Vec3f(p1).x) + (new B21Plane((pl + (uint)(5 * 16))).y * new Vec3f(p1).y)) + (new B21Plane((pl + (uint)(5 * 16))).z * new Vec3f(p1).z)));
         }
     }
 

@@ -16,28 +16,28 @@ public static partial class Game
                 uint e = 0u;
                 if ((mode == 1))
                 {
-                    Mem.Set(((Mem.U32(0x80153C18u) + (uint)(i * 8)) + 4u), (short)(0));
+                    new S_e((Mem.U32(0x80153C18u) + (uint)(i * 8))).cnt_Set((short)(0));
                     do
                     {
-                        Mem.Set((Mem.U32(0x80153C18u) + (uint)(i * 8)), 0);
+                        new S_e((Mem.U32(0x80153C18u) + (uint)(i * 8))).id_Set(0);
                     }
                     while ((0 != 0));
                 }
                 e = (uint)(((i * 8) + (int)(Mem.U32(0x80153C18u))));
-                if ((Mem.S32(e) != (-1)))
+                if ((new S_e(e).id != (-1)))
                 {
-                    if (((int)(Mem.S16((e + 4u))) > 0))
+                    if (((int)(new S_e(e).cnt) > 0))
                     {
-                        Mem.Set((e + 4u), (short)(((int)(Mem.S16((e + 4u))) - 1)));
+                        new S_e(e).cnt_Set((short)(((int)(new S_e(e).cnt) - 1)));
                     }
                     else
                     {
-                        if (((Mem.S32(((Mem.U32(0x80153C10u) + (uint)(i * 28)) + 4u)) & 1) != 0))
+                        if (((new S_o_v2((Mem.U32(0x80153C10u) + (uint)(i * 28))).flags & 1) != 0))
                         {
-                            func_004196A4((uint)(Mem.S32((Mem.U32(0x80153C10u) + (uint)(i * 28)))));
-                            Mem.Set(((Mem.U32(0x80153C10u) + (uint)(i * 28)) + 4u), (int)((int)(Mem.S32(((Mem.U32(0x80153C10u) + (uint)(i * 28)) + 4u))) & (~1)));
+                            func_004196A4((uint)(new S_o_v2((Mem.U32(0x80153C10u) + (uint)(i * 28))).p));
+                            new S_o_v2((Mem.U32(0x80153C10u) + (uint)(i * 28))).flags_Set((int)((int)(new S_o_v2((Mem.U32(0x80153C10u) + (uint)(i * 28))).flags) & (~1)));
                         }
-                        Mem.Set((Mem.U32(0x80153C18u) + (uint)(i * 8)), 0);
+                        new S_e((Mem.U32(0x80153C18u) + (uint)(i * 8))).id_Set(0);
                     }
                 }
             }

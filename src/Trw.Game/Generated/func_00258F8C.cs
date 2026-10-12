@@ -12,16 +12,16 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00258F8C", (uint)a);
             int i = 0;
             int j = 0;
-            for (i = 0; (i < (int)(Mem.S16((a + 14u)))); ++i)
+            for (i = 0; (i < (int)(new P3SortArr(a).count)); ++i)
             {
-                for (j = (i + 1); (j < (int)(Mem.S16((a + 14u)))); ++j)
+                for (j = (i + 1); (j < (int)(new P3SortArr(a).count)); ++j)
                 {
-                    uint x = Mem.U32(((a + 16u) + (uint)(j * 4)));
-                    uint y = Mem.U32(((a + 16u) + (uint)(i * 4)));
+                    uint x = new P3SortArr(a).v[(int)(j)];
+                    uint y = new P3SortArr(a).v[(int)(i)];
                     if ((x < y))
                     {
-                        Mem.Set(((a + 16u) + (uint)(i * 4)), x);
-                        Mem.Set(((a + 16u) + (uint)(j * 4)), y);
+                        new P3SortArr(a).v.Set((int)(i), x);
+                        new P3SortArr(a).v.Set((int)(j), y);
                     }
                 }
             }

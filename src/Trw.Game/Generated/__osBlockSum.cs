@@ -15,7 +15,7 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("__osBlockSum", (uint)pfs, (uint)page, (uint)sum, (uint)bank);
                 int ret = 0;
                 int i = 0;
-                Mem.Set((pfs + 101u), bank);
+                new OSPfs(pfs).activebank_Set(bank);
                 ret = __osPfsSelectBank(pfs);
                 if ((ret != 0))
                 {
@@ -23,16 +23,16 @@ public static partial class Game
                 }
                 for (i = 0; (i < 8); ++i)
                 {
-                    ret = (int)(__osContRamRead(Mem.U32((pfs + 4u)), (uint)(Mem.S32((pfs + 8u))), (uint)((ushort)((((int)(page) * 8) + i))), _fp));
+                    ret = (int)(__osContRamRead(new OSPfs(pfs).queue_, (uint)(new OSPfs(pfs).channel), (uint)((ushort)((((int)(page) * 8) + i))), _fp));
                     if ((ret != 0))
                     {
-                        Mem.Set((pfs + 101u), (byte)(0));
+                        new OSPfs(pfs).activebank_Set((byte)(0));
                         __osPfsSelectBank(pfs);
                         return ret;
                     }
-                    Mem.Set(sum, (ushort)((int)(Mem.U16(sum)) + (int)((ushort)(__osSumcalc(_fp, (uint)(32), default(uint), default(uint))))));
+                    Mem.Set(sum, (ushort)((int)(Mem.U16(sum)) + (int)(__osSumcalc(_fp, 32))));
                 }
-                Mem.Set((pfs + 101u), (byte)(0));
+                new OSPfs(pfs).activebank_Set((byte)(0));
                 return __osPfsSelectBank(pfs);
             }
         }

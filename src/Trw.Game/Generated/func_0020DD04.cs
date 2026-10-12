@@ -18,9 +18,9 @@ public static partial class Game
             int total = 0;
             int r = 0;
             int v = 0;
-            a = (int)(Mem.F32((info + 44u)));
-            b = (int)(Mem.F32((info + 48u)));
-            c = (int)(Mem.F32((info + 52u)));
+            a = (int)(new B2Info(info).unk2C);
+            b = (int)(new B2Info(info).unk30);
+            c = (int)(new B2Info(info).unk34);
             t1 = 0;
             if ((a > 0))
             {

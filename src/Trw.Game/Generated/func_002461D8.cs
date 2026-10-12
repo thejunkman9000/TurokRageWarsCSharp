@@ -17,19 +17,19 @@ public static partial class Game
                 float d = 0f;
                 uint new_var2 = 0u;
                 int s = 0;
-                float h = func_00275E44((uint)((int)(Mem.U32((o + 20u)))), Cpu.U2F((uint)(Mem.S32((o + 8u)))), Cpu.U2F((uint)(Mem.S32((o + 16u)))));
-                d = (Mem.F32((o + 12u)) - h);
-                Mem.Copy(_fp, (o + 28u), 12);
+                float h = func_00275E44((uint)((int)(new B10Obj(o).p14_)), Cpu.U2F((uint)(new B10Obj(o).u8)), Cpu.U2F((uint)(new B10Obj(o).u10)));
+                d = (new B10Obj(o).fC - h);
+                Mem.Copy(_fp, new B10Obj(o).v1C.P, 12);
                 new_var2 = o;
-                Mem.Set((new_var2 + 28u), Mem.Set((((new_var = new_var2) + 28u) + 4u), Mem.Set(((new_var2 + 28u) + 8u), 0.0f)));
-                Mem.Set((_fp + 16u), x);
-                Mem.Set(((_fp + 16u) + 4u), Mem.F32((new_var2 + 12u)));
-                Mem.Set(((_fp + 16u) + 8u), z);
+                new B10Obj(new_var2).v1C.x_Set(new B10Obj((new_var = new_var2)).v1C.y_Set(new B10Obj(new_var2).v1C.z_Set(0.0f)));
+                new Vec3f((_fp + 16u)).x_Set(x);
+                new Vec3f((_fp + 16u)).y_Set(new B10Obj(new_var2).fC);
+                new Vec3f((_fp + 16u)).z_Set(z);
                 s = Mem.S32((0x801040D0u + (uint)(0 * 4)));
                 func_00243A80((int)(new_var2), Cpu.U2F(Mem.U32((_fp + 16u) + 0u)), Cpu.U2F(Mem.U32((_fp + 16u) + 4u)), Cpu.U2F(Mem.U32((_fp + 16u) + 8u)), (int)(0x801040D0u));
                 Mem.Set((0x801040D0u + (uint)(0 * 4)), s);
-                Mem.Copy((new_var2 + 28u), _fp, 12);
-                Mem.Set((new_var2 + 12u), (func_00275E44((uint)((int)(Mem.U32((new_var2 + 20u)))), Cpu.U2F((uint)(Mem.S32((new_var2 + 8u)))), Cpu.U2F((uint)(Mem.S32((new_var2 + 16u))))) + d));
+                Mem.Copy(new B10Obj(new_var2).v1C.P, _fp, 12);
+                new B10Obj(new_var2).fC_Set((func_00275E44((uint)((int)(new B10Obj(new_var2).p14_)), Cpu.U2F((uint)(new B10Obj(new_var2).u8)), Cpu.U2F((uint)(new B10Obj(new_var2).u10))) + d));
             }
         }
         finally { Stack.Free(28); }

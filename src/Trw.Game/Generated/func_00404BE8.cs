@@ -61,9 +61,9 @@ public static partial class Game
                 {
                     if ((Mem.S32((0x801534F0u + (uint)(pad * 4))) == 3))
                     {
-                        Mem.Set((_fp + 16u), ((((Mem.U32(0x800E2854u) + (uint)(pad * 516)) + 4u) + (uint)(i * 32)) + 14u));
+                        new O01Pp((_fp + 16u)).p__Set(new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent[(int)(i)].unkE.P);
                     }
-                    func_00404BE8_O01ConvName(Mem.U32((_fp + 16u)), _fp, 16);
+                    func_00404BE8_O01ConvName(new O01Pp((_fp + 16u)).p_, _fp, 16);
                     if ((func_002A137C(_fp, name) == 0))
                     {
                         if ((outIdx != 0u))

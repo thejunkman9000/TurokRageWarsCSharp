@@ -11,22 +11,22 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0040332C_O01KindOk", (uint)a);
             int r = 0;
-            switch ((int)(Mem.U8((a + 17u))))
+            switch ((int)(new O01Kind(a).kind))
             {
             case 1:
-                if (((int)(Mem.U8((a + 18u))) == 5))
+                if (((int)(new O01Kind(a).val) == 5))
                 {
                     r = 1;
                 }
                 break;
             case 9:
-                if (((int)(Mem.U8((a + 18u))) == 4))
+                if (((int)(new O01Kind(a).val) == 4))
                 {
                     r = 1;
                 }
                 break;
             case 10:
-                if (((int)(Mem.U8((a + 18u))) == 3))
+                if (((int)(new O01Kind(a).val) == 3))
                 {
                     r = 1;
                 }
@@ -46,21 +46,21 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0040332C");
             int any = 0;
             int i = 0;
-            uint n = func_0028FD94(Mem.U32((Mem.U32(0x800E2830u) + 4u)), 2);
-            int cnt = Mem.S32((n + 4u));
+            uint n = func_0028FD94(new O01Ctx(Mem.U32(0x800E2830u)).tree, 2);
+            int cnt = new O01Node(n).unk4;
             uint ents = (n + (uint)8);
             uint e = 0u;
             uint k = 0u;
             for (i = 0; (i < cnt); ++i)
             {
                 e = (ents + (uint)(i * 12));
-                if ((Mem.S32((e + 4u)) == 0))
+                if ((new O01Ent12(e).unk4 == 0))
                 {
-                    k = (Mem.U32((0x8011FE88u + 4560u)) + (uint)(Mem.S32((e + 8u)) * 20));
+                    k = (new O01G(0x8011FE88u).unk11D0_ + (uint)(new O01Ent12(e).unk8 * 20));
                 }
                 else
                 {
-                    k = (Mem.U32((0x8011FE88u + 4564u)) + (uint)(Mem.S32((e + 8u)) * 20));
+                    k = (new O01G(0x8011FE88u).unk11D4_ + (uint)(new O01Ent12(e).unk8 * 20));
                 }
                 if ((func_0040332C_O01KindOk(k) != 0))
                 {

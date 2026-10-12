@@ -18,26 +18,26 @@ public static partial class Game
             func_0020D014(L);
             func_0020D1FC(L);
             count = 0;
-            for (n = Mem.U32(0x8013B388u); (n != 0u); n = Mem.U32((n + 16u)))
+            for (n = Mem.U32(0x8013B388u); (n != 0u); n = new EntNode(n).next_)
             {
-                r = func_0020C994(L2, Mem.S32(n));
-                if ((((((int)(Mem.U16((r + 12u))) & 1) != 0) && ((int)(Mem.U16((r + 14u))) == 1614)) && ((int)(Mem.S8((Mem.U32((n + 52u)) + 420u))) == 0)))
+                r = func_0020C994(L2, new EntNode(n).key);
+                if ((((((int)(new EntRec(r).flags) & 1) != 0) && ((int)(new EntRec(r).id) == 1614)) && ((int)(new EntNode(n).owner.unk1A4) == 0)))
                 {
-                    func_0020D220(L2, Mem.S32(n));
+                    func_0020D220(L2, new EntNode(n).key);
                     ++count;
                 }
             }
             if ((count == 0))
             {
-                Mem.Set((o + 104u), 0u);
-                Mem.Set((o + 188u), (-1));
+                new QueryObj(o).unk68__Set(0u);
+                new QueryObj(o).unkBC_Set((-1));
                 return 1;
             }
-            Mem.Set((L + 24u), (-1));
-            func_0020D0CC(L, Mem.S32((o + 4u)));
-            if ((Mem.S32((L + 24u)) != (-1)))
+            new EntList(L).sel_Set((-1));
+            func_0020D0CC(L, new QueryObj(o).key);
+            if ((new EntList(L).sel != (-1)))
             {
-                Mem.Set((o + 12u), Mem.S32((L + 24u)));
+                new QueryObj(o).unkC_Set(new EntList(L).sel);
                 func_0020D114(L, (o + 20u), 4);
             }
             return 1;

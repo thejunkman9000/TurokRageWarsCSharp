@@ -16,9 +16,9 @@ public static partial class Game
             {
                 for (i = 0; (i < 10); ++i)
                 {
-                    if ((Mem.U32(((ctl + 60u) + (uint)(i * 4))) != 0u))
+                    if ((new B2Ctl(ctl).a3C[(int)(i)] != 0u))
                     {
-                        Mem.Set((func_0020CFE0(m, Mem.S32((Mem.U32((Mem.U32((Mem.U32(((ctl + 60u) + (uint)(i * 4))) + 472u)) + 5204u)) + 4u))) + 24u), Mem.F32(0x800C6FCCu));
+                        new B2Node(func_0020CFE0(m, new B2Actor(new B2Ctl(ctl).a3C[(int)(i)]).owner.brain.key)).unk18_Set(Mem.F32(0x800C6FCCu));
                     }
                 }
             }

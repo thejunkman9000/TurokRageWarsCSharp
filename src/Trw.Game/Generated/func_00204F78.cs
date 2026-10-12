@@ -10,13 +10,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00204F78", (uint)unused, (uint)state);
-            if (((val == 0.0f) || (Mem.F32((state + 100u)) < val)))
+            if (((val == 0.0f) || (new B01State(state).unk64 < val)))
             {
-                if ((Mem.F32((state + 100u)) == 0.0f))
+                if ((new B01State(state).unk64 == 0.0f))
                 {
-                    Mem.Set((state + 64u), 0.0f);
+                    new B01State(state).unk40_Set(0.0f);
                 }
-                Mem.Set((state + 100u), val);
+                new B01State(state).unk64_Set(val);
             }
         }
     }

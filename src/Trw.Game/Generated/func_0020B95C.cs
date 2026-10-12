@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020B95C_getRec0", (uint)m, (uint)idx);
-            uint pool = Mem.U32(m);
-            return ((pool + 8u) + (uint)(idx * Mem.S32(pool)));
+            uint pool = new B2Mgr(m).pool0_;
+            return (new B2Pool(pool).data.P + (uint)(idx * new B2Pool(pool).elemSize));
         }
     }
 
@@ -20,8 +20,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020B95C_getEdge", (uint)m, (uint)idx);
-            uint pool = Mem.U32((m + 8u));
-            return ((pool + 8u) + (uint)(idx * Mem.S32(pool)));
+            uint pool = new B2Mgr(m).pool8_;
+            return (new B2Pool(pool).data.P + (uint)(idx * new B2Pool(pool).elemSize));
         }
     }
 
@@ -68,25 +68,25 @@ public static partial class Game
             }
             k = 0;
             cnt = 0;
-            for (; (k < Mem.S32((m + 12u))); ++k)
+            for (; (k < new B2Mgr(m).count); ++k)
             {
                 e = func_0020B95C_getEdge(m, k);
                 if ((mode != 0))
                 {
-                    if (((int)(Mem.U16((e + 2u))) == a))
+                    if (((int)(new B2Edge(e).b) == a))
                     {
-                        Mem.Set((@out + (uint)(cnt * 4)), (int)(Mem.U16(e)));
+                        Mem.Set((@out + (uint)(cnt * 4)), (int)(new B2Edge(e).a));
                         ++cnt;
                     }
-                    if (((int)(Mem.U16(e)) == a))
+                    if (((int)(new B2Edge(e).a) == a))
                     {
-                        if ((func_0020B95C_isBi(Mem.U8((e + 4u))) != 0))
+                        if ((func_0020B95C_isBi(new B2Edge(e).kind) != 0))
                         {
-                            Mem.Set((@out + (uint)(cnt * 4)), (int)(Mem.U16((e + 2u))));
+                            Mem.Set((@out + (uint)(cnt * 4)), (int)(new B2Edge(e).b));
                             ++cnt;
                         }
                     }
-                    if ((((((goal != (-1)) && ((int)(Mem.U16(e)) == a)) && ((int)(Mem.U16((e + 2u))) == goal)) && (src != 0u)) && (((int)(Mem.U16((src + (uint)12))) & 2) != 0)))
+                    if ((((((goal != (-1)) && ((int)(new B2Edge(e).a) == a)) && ((int)(new B2Edge(e).b) == goal)) && (src != 0u)) && (((int)(Mem.U16((src + (uint)12))) & 2) != 0)))
                     {
                         Mem.Set((@out + (uint)(cnt * 4)), goal);
                         ++cnt;
@@ -94,16 +94,16 @@ public static partial class Game
                 }
                 else
                 {
-                    if ((((int)(Mem.U16(e)) == a) && ((int)(Mem.U8((e + 4u))) != 6)))
+                    if ((((int)(new B2Edge(e).a) == a) && ((int)(new B2Edge(e).kind) != 6)))
                     {
-                        Mem.Set((@out + (uint)(cnt * 4)), (int)(Mem.U16((e + 2u))));
+                        Mem.Set((@out + (uint)(cnt * 4)), (int)(new B2Edge(e).b));
                         ++cnt;
                     }
-                    if (((int)(Mem.U16((e + 2u))) == a))
+                    if (((int)(new B2Edge(e).b) == a))
                     {
-                        if ((func_0020B95C_isBi(Mem.U8((e + 4u))) != 0))
+                        if ((func_0020B95C_isBi(new B2Edge(e).kind) != 0))
                         {
-                            Mem.Set((@out + (uint)(cnt * 4)), (int)(Mem.U16(e)));
+                            Mem.Set((@out + (uint)(cnt * 4)), (int)(new B2Edge(e).a));
                             ++cnt;
                         }
                     }

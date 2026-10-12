@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00232C58", (uint)c);
-            func_0044ACCC(Mem.U32((c + 472u)), default(uint), default(uint), default(uint));
+            func_0044ACCC(new PlayerCtl(c).player_);
         }
     }
 

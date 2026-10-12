@@ -18,24 +18,24 @@ public static partial class Game
                 uint p = 0u;
                 uint r = 0u;
                 func_00255C40(_fp, 32, 36);
-                if ((((flag == 0) && (Mem.U32((0x80103F70u + 1528u)) != 0u)) || (C.Seq((object?)(Mem.Set((0x80103F70u + 1528u), Mem.U32(((0x80103F70u + 1536u) + (uint)(1 * 20))))), ((Mem.U32(((0x80103F70u + 1536u) + (uint)(1 * 20))) != 0u) ? 1 : 0)) != 0)))
+                if ((((flag == 0) && (new B12Mgr(0x80103F70u).cur_ != 0u)) || (C.Seq((object?)(new B12Mgr(0x80103F70u).cur__Set(new B12Mgr(0x80103F70u).lists[(int)(1)].head_)), ((new B12Mgr(0x80103F70u).lists[(int)(1)].head_ != 0u) ? 1 : 0)) != 0)))
                 {
                     uint c = (0x80103F70u + 1528u);
                     uint firstp = 0x801051A8u;
                     uint heap = (firstp - (uint)8);
                     do
                     {
-                        n = Mem.U32(c);
-                        Mem.Set(c, Mem.U32((n + 36u)));
-                        if ((!((Mem.U32((n + 12u)) & (uint)(1793)) != 0u) && ((Mem.U32(firstp) + (uint)(32)) < Mem.U32(n))))
+                        n = new B12Cache(c).cur_;
+                        new B12Cache(c).cur__Set(new B12Node(n).next_);
+                        if ((!((new B12Node(n).flags & (uint)(1793)) != 0u) && ((Mem.U32(firstp) + (uint)(32)) < new B12Node(n).key)))
                         {
-                            func_00255ACC(heap, Mem.U32(n), default(uint), default(uint));
-                            r = func_002558C0(heap, (uint)(Mem.S32((n + 4u))));
-                            if ((r < Mem.U32(n)))
+                            func_00255ACC(heap, new B12Node(n).key, default(uint), default(uint));
+                            r = func_002558C0(heap, (uint)(new B12Node(n).unk4), default(uint), default(uint));
+                            if ((r < new B12Node(n).key))
                             {
-                                func_00265398(r, Mem.U32(n), (int)((uint)(Mem.S32((n + 4u)))));
-                                Mem.Set(n, r);
-                                func_00255E78((c + 28u), n, default(uint), default(uint));
+                                func_00265398(r, new B12Node(n).key, (int)((uint)(new B12Node(n).unk4)));
+                                new B12Node(n).key_Set(r);
+                                func_00255E78(new B12Cache(c).l1.P, n, default(uint), default(uint));
                                 func_00255CB4(_fp, n, default(uint), default(uint));
                             }
                             if ((flag == 0))
@@ -44,34 +44,34 @@ public static partial class Game
                             }
                         }
                     }
-                    while ((Mem.U32((0x80103F70u + 1528u)) != 0u));
+                    while ((new B12Mgr(0x80103F70u).cur_ != 0u));
                 }
-                n = Mem.U32(_fp);
+                n = new B12List(_fp).head_;
                 if ((n != 0u))
                 {
                     do
                     {
-                        next = Mem.U32((n + 36u));
-                        func_00255F10(_fp);
-                        p = Mem.U32(((0x80103F70u + 1536u) + (uint)(1 * 20)));
+                        next = new B12Node(n).next_;
+                        func_00255F10(_fp, default(uint), default(uint), default(uint));
+                        p = new B12Mgr(0x80103F70u).lists[(int)(1)].head_;
                         if ((p != 0u))
                         {
                             do
                             {
-                                if ((Mem.U32(p) > Mem.U32(n)))
+                                if ((new B12Node(p).key > new B12Node(n).key))
                                 {
-                                    func_00255D10(((0x80103F70u + 1536u) + (uint)(1 * 20)), p, n);
+                                    func_00255D10((new B12Mgr(0x80103F70u).lists.P + (uint)(1 * 20)), p, n, default(uint));
                                     break;
                                 }
-                                p = Mem.U32((p + 36u));
+                                p = new B12Node(p).next_;
                             }
                             while ((p != 0u));
                         }
                         if (!(p != 0u))
                         {
-                            func_00255CB4(((0x80103F70u + 1536u) + (uint)(1 * 20)), n, default(uint), default(uint));
+                            func_00255CB4((new B12Mgr(0x80103F70u).lists.P + (uint)(1 * 20)), n, default(uint), default(uint));
                         }
-                        Mem.Set((n + 12u), (uint)((uint)(Mem.U32((n + 12u))) | (uint)(4096)));
+                        new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) | (uint)(4096)));
                         n = next;
                     }
                     while ((n != 0u));

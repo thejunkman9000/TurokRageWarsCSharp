@@ -11,9 +11,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0020EA10", (uint)ctl);
             float v = 0f;
-            if ((Mem.S32((0x801468A0u + 120u)) != 0))
+            if ((new B2GameFlags(0x801468A0u).unk78 != 0))
             {
-                if (((int)(Mem.U8((Mem.U32((Mem.U32(ctl) + 1496u)) + 143u))) == 0))
+                if (((int)(new B2Ctl(ctl).owner.stats.unk8F) == 0))
                 {
                     if (((int)(func_0022A82C((0x801468A0u - (uint)6240))) == 0))
                     {

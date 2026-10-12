@@ -10,11 +10,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00206724", (uint)actor, (uint)state);
-            if ((Mem.U32((state + 48u)) != 0u))
+            if ((new ActorState(state).link_ != 0u))
             {
-                if ((Mem.U32((Mem.U32((state + 48u)) + 8u)) != 0u))
+                if ((new ActorState(state).link.cb != 0u))
                 {
-                    Funcs.CallReg(Mem.U32((Mem.U32((state + 48u)) + 8u)), 0u, 0u, 0u, 0u);
+                    Funcs.CallReg(new ActorState(state).link.cb, 0u, 0u, 0u, 0u);
                 }
             }
         }

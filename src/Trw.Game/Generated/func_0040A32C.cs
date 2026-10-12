@@ -14,13 +14,13 @@ public static partial class Game
             int v = 0;
             if ((Mem.S32(0x8015375Cu) != 0))
             {
-                Mem.Set((item + 20u), 0x800D7E14u);
+                new O01Item(item).unk14__Set(0x800D7E14u);
             }
             else
             {
-                v = (int)(Mem.S8((Mem.U32((own + 32u)) + 4u)));
-                Mem.Set((item + 20u), 0x800D7710u);
-                buf = Mem.U32(0x800D7710u);
+                v = (int)(new O01Owner(own).unk20.unk4);
+                new O01Item(item).unk14__Set(0x800D7710u);
+                buf = new O01Text(0x800D7710u).buf_;
                 func_00265904((buf + (uint)(func_00442158((uint)(item)) - 1)), 0x800E0DACu, (v + 1), default(int));
             }
             return 0;

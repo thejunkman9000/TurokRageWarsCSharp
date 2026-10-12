@@ -12,22 +12,22 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00233428", (uint)actor, (uint)state);
             uint p = 0u;
             int id = 0;
-            p = Mem.U32((actor + 472u));
-            id = (int)(Mem.S16((0x800CE8DCu + (uint)(Mem.S16((p + 1616u)) * 24))));
-            if ((((Mem.F32((p + 4568u)) <= 0.0f) && (((int)(Mem.U8((Mem.U32((p + 1496u)) + 143u))) == 0) || (Mem.S32(0x801468F4u) == 0))) && ((Mem.U32((p + 1708u)) & (uint)(16384)) != 0u)))
+            p = new Actor(actor).owner_;
+            id = (int)(new Row24((0x800CE8DCu + (uint)(new Player_v2(p).unk650 * 24))).unk0);
+            if ((((new Player_v2(p).unk11D8 <= 0.0f) && (((int)(new Player_v2(p).stats.unk8F) == 0) || (Mem.S32(0x801468F4u) == 0))) && ((new Player_v2(p).flags6AC & (uint)(16384)) != 0u)))
             {
                 func_0022B180((int)(p));
             }
-            if (((int)(func_00222A80(p, (uint)((int)(Mem.S16((p + 1582u)))), default(uint), default(uint))) == 0))
+            if (((int)(func_00222A80(p, (uint)((int)(new Player_v2(p).unk62E)), default(uint), default(uint))) == 0))
             {
-                if ((func_002831FC(0x80121990u, (int)(p)) == 0))
+                if (((int)(func_002831FC(0x80121990u, p, default(uint), default(uint))) == 0))
                 {
-                    Mem.Set((p + 1904u), (short)(func_0022F95C(p)));
+                    new Player_v2(p).unk770_Set((short)(func_0022F95C(p)));
                 }
             }
             else
             {
-                if (((func_002301E4(actor, state) == 0) && !((Mem.U32((actor + 256u)) & (uint)(1024)) != 0u)))
+                if (((func_002301E4(actor, state) == 0) && !((new Actor(actor).flags & (uint)(1024)) != 0u)))
                 {
                     func_00214178(actor, state, id);
                 }

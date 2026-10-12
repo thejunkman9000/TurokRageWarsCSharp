@@ -15,12 +15,12 @@ public static partial class Game
             int count = 0;
             uint r = 0u;
             count = 0;
-            for (n = Mem.U32((L + 36u)); (n != 0u); n = Mem.U32((n + 16u)))
+            for (n = new EntList(L).head_; (n != 0u); n = new EntNode(n).next_)
             {
-                r = func_0020C994(L, Mem.S32(n));
-                if ((((((int)(Mem.U16((r + 12u))) & 1) != 0) && ((int)(Mem.U16((r + 14u))) == 1614)) && ((int)(Mem.S8((Mem.U32((n + 52u)) + 420u))) == 0)))
+                r = func_0020C994(L, new EntNode(n).key);
+                if ((((((int)(new EntRec(r).flags) & 1) != 0) && ((int)(new EntRec(r).id) == 1614)) && ((int)(new EntNode(n).owner.unk1A4) == 0)))
                 {
-                    func_0020D220(L, Mem.S32(n));
+                    func_0020D220(L, new EntNode(n).key);
                     ++count;
                 }
             }

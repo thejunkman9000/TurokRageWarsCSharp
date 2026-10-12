@@ -10,21 +10,21 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0023DF60_can_hit", (uint)m, (uint)h);
-            float v = Mem.F32((h + 204u));
+            float v = new B09Quad(h).t;
             int r = 0;
             if ((v <= 0.0f))
             {
-                if ((Mem.S32((h + 8u)) == 7))
+                if ((new B09Quad(h).unk8 == 7))
                 {
                     return 0;
                 }
-                if ((((uint)((Mem.S32(h) - 5)) < (uint)(2)) || ((v * Mem.F32((m + 128u))) < (-(Mem.F32(0x800D0648u) * Mem.F32(0x800C8780u))))))
+                if ((((uint)((new B09Quad(h).type0 - 5)) < (uint)(2)) || ((v * new B09Mover(m).f80) < (-(Mem.F32(0x800D0648u) * Mem.F32(0x800C8780u))))))
                 {
                     return 0;
                 }
             }
             r = 1;
-            if ((Mem.F32((h + 204u)) >= Mem.F32(((m + 176u) + 204u))))
+            if ((new B09Quad(h).t >= new B09Mover(m).qcopy.t))
             {
                 r = 0;
             }
@@ -48,12 +48,12 @@ public static partial class Game
                 }
                 else
                 {
-                    Mem.Set((_fp + 32u), 0.0f);
-                    Mem.Set(((_fp + 32u) + 4u), 0.0f);
-                    Mem.Set(((_fp + 32u) + 8u), 0.0f);
+                    new B09V3((_fp + 32u)).x_Set(0.0f);
+                    new B09V3((_fp + 32u)).y_Set(0.0f);
+                    new B09V3((_fp + 32u)).z_Set(0.0f);
                 }
-                func_00271FA4(_fp, (m + 68u), (_fp + 32u));
-                func_00271FA4((_fp + 16u), (m + 80u), (_fp + 32u));
+                func_00271FA4(_fp, new B09Mover(m).v44.P, (_fp + 32u));
+                func_00271FA4((_fp + 16u), new B09Mover(m).v50.P, (_fp + 32u));
                 if ((func_002412C0(q, _fp, (_fp + 16u), (q + 204u)) == 0))
                 {
                     return 0;
@@ -62,16 +62,16 @@ public static partial class Game
                 {
                     return 0;
                 }
-                func_00272038((_fp + 48u), Mem.F32((q + 204u)), _fp, (_fp + 16u));
+                func_00272038((_fp + 48u), new B09Quad(q).t, _fp, (_fp + 16u));
                 if ((func_002406C0(q, (_fp + 48u), scale) == 0))
                 {
                     return 0;
                 }
-                hit = (q + 208u);
-                func_00272038(hit, Mem.F32((q + 204u)), (m + 68u), (m + 80u));
+                hit = new B09Quad(q).hit.P;
+                func_00272038(hit, new B09Quad(q).t, new B09Mover(m).v44.P, new B09Mover(m).v50.P);
                 if ((copy != 0))
                 {
-                    Mem.Copy((m + 176u), q, 220);
+                    Mem.Copy(new B09Mover(m).qcopy.P, q, 220);
                 }
                 return 1;
             }

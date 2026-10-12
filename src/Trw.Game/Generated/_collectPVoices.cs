@@ -11,10 +11,10 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("_collectPVoices", (uint)drvr);
             uint dl = 0u;
-            while (((dl = Mem.U32((drvr + 20u))) != 0u))
+            while (((dl = new ALSynth(drvr).pLameList.next_) != 0u))
             {
                 alUnlink(dl);
-                alLink(dl, (drvr + 4u));
+                alLink(dl, new ALSynth(drvr).pFreeList.P);
             }
         }
     }

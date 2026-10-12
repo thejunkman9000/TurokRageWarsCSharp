@@ -13,18 +13,18 @@ public static partial class Game
             uint h = (uint)(((int)(Mem.U16(0x801462DCu)) >> (int)4));
             if ((h == (uint)(0)))
             {
-                Mem.Set((a + 20u), 0x800D7618u);
+                new O06A_v2(a).unk14_Set(0x800D7618u);
             }
             else
             {
                 if ((h == (uint)(16)))
                 {
-                    Mem.Set((a + 20u), 0x800D761Cu);
+                    new O06A_v2(a).unk14_Set(0x800D761Cu);
                 }
                 else
                 {
                     int s = 0;
-                    Mem.Set((a + 20u), 0x800D7620u);
+                    new O06A_v2(a).unk14_Set(0x800D7620u);
                     s = Mem.S32((0x800D7620u + (uint)(0 * 4)));
                     func_00265904((uint)(((s - 2) + func_00442158(a))), 0x800E2780u, (int)(h), default(int));
                 }

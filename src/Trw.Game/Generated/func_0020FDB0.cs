@@ -20,11 +20,11 @@ public static partial class Game
                 int w = 0;
                 int pick = 0;
                 int t = 0;
-                if ((Mem.S32((Mem.U32(c) + 5200u)) == 0))
+                if ((new CtlB(c).actor.unk1450 == 0))
                 {
                     return;
                 }
-                if ((Mem.S32((Mem.U32(c) + 1504u)) == 14))
+                if ((new CtlB(c).actor.unk5E0 == 14))
                 {
                     func_002100E0(c);
                     return;
@@ -33,7 +33,7 @@ public static partial class Game
                 cur = 0;
                 for (i = (uint)(0); (i < (uint)(8)); ++i)
                 {
-                    w = Mem.S32(((Mem.U32((Mem.U32(c) + 24u)) + (uint)(i << (int)2)) + (uint)76));
+                    w = Mem.S32(((new CtlB(c).actor.def_ + (uint)(i << (int)2)) + (uint)76));
                     w = (int)((int)(w) - 1219);
                     if ((w < 0))
                     {
@@ -43,13 +43,13 @@ public static partial class Game
                     {
                         continue;
                     }
-                    if ((func_0022EAFC(Mem.U32(c), w) == 0))
+                    if ((func_0022EAFC(new CtlB(c).actor_, w) == 0))
                     {
                         continue;
                     }
                     if (((uint)(w) >= (uint)(2)))
                     {
-                        t = (int)(Mem.U8((Mem.U32((Mem.U32(c) + 1496u)) + 147u)));
+                        t = (int)(new CtlB(c).actor.stats.unk93);
                         if ((t == 1))
                         {
                             goto L_b17;
@@ -68,9 +68,9 @@ public static partial class Game
                                 goto L_add;
                             }
                         }
-                        Mem.Set((Mem.U32((Mem.U32(c) + 1496u)) + 147u), (byte)(0));
+                        new CtlB(c).actor.stats.unk93_Set((byte)(0));
                         L_b14: ;
-                        if (((int)(Mem.S16(Mem.U32((Mem.U32((0x800D052Cu + (uint)(w * 4))) + 32u)))) == 1))
+                        if (((int)(new WpnDesc(Mem.U32((0x800D052Cu + (uint)(w * 4)))).info.type) == 1))
                         {
                             continue;
                         }
@@ -79,7 +79,7 @@ public static partial class Game
                             w = 5;
                         }
                         L_b17: ;
-                        if (((int)(Mem.S16(Mem.U32((Mem.U32((0x800D052Cu + (uint)(w * 4))) + 32u)))) == 2))
+                        if (((int)(new WpnDesc(Mem.U32((0x800D052Cu + (uint)(w * 4)))).info.type) == 2))
                         {
                             continue;
                         }
@@ -87,18 +87,18 @@ public static partial class Game
                     L_add: ;
                     Mem.Set((_fp + (uint)(n * 4)), w);
                     ++n;
-                    if ((w == (int)(Mem.S16((Mem.U32(c) + 1582u)))))
+                    if ((w == (int)(new CtlB(c).actor.unk62E)))
                     {
                         cur = 1;
                     }
                 }
                 if ((cur != 0))
                 {
-                    if ((((int)(Mem.S16((Mem.U32(c) + 1582u))) == 4) && (Mem.S32((Mem.U32(c) + 1428u)) == 2)))
+                    if ((((int)(new CtlB(c).actor.unk62E) == 4) && (new CtlB(c).actor.unk594 == 2)))
                     {
                         return;
                     }
-                    if ((func_002831FC(0x80121990u, (int)(Mem.U32(c))) > 0))
+                    if (((int)(func_002831FC(0x80121990u, new CtlB(c).actor_, default(uint), default(uint))) > 0))
                     {
                         return;
                     }
@@ -110,10 +110,10 @@ public static partial class Game
                 if ((n != (uint)(0)))
                 {
                     pick = Mem.S32((_fp + (uint)(((uint)(func_00274544()) % n) * 4)));
-                    Mem.Set((Mem.U32(c) + 1904u), (short)(pick));
-                    if ((pick != (int)(Mem.S16((Mem.U32(c) + 1582u)))))
+                    new CtlB(c).actor.unk770_Set((short)(pick));
+                    if ((pick != (int)(new CtlB(c).actor.unk62E)))
                     {
-                        Mem.Set((c + 740u), 0);
+                        new CtlB(c).unk2E4_Set(0);
                     }
                 }
             }

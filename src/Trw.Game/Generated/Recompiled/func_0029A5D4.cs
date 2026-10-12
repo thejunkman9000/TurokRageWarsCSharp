@@ -84,7 +84,7 @@ public static partial class Game
                 r4 = r18;
                 r5 = r20;
                 r6 = r21;
-                r7 = r19; r2 = func_00298A34(r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = r19; r2 = (uint)func_00298A34(r4, (int)r5, (int)r6, (int)r7);
                 r5 = r2; goto L_L0029A714;
                 L_L0029A6FC: ;
                 r4 = r17;

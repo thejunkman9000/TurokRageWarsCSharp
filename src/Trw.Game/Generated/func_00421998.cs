@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00421998");
             func_0029A73C();
-            if ((Mem.S32((Mem.U32(0x800E4400u) + 52u)) == 0))
+            if ((new O3Pm(Mem.U32(0x800E4400u)).f34 == 0))
             {
                 func_004217EC();
             }
@@ -20,11 +20,11 @@ public static partial class Game
                 switch (func_0029AA08())
                 {
                 case 940:
-                    func_0041A4B0(Mem.U32(Mem.U32(0x800E4400u)), 2);
+                    func_0041A4B0(new O3Pm(Mem.U32(0x800E4400u)).bar_, 2);
                     func_00421158();
                     break;
                 case 950:
-                    func_0042144C(default(uint), default(uint), default(uint), default(uint));
+                    func_0042144C();
                     break;
                 }
             }

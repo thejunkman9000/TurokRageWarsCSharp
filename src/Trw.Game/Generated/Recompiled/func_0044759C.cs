@@ -49,7 +49,7 @@ public static partial class Game
                 r7 = r29 + 16u; r2 = __osContRamRead(r4, r5, r6, r7); r3 = Cpu.V1;
                 r16 = r2;
                 { bool c_ = r16 != 0; r4 = r29 + 16u; if (c_) goto L_L004475E0; }
-                r5 = (uint)32; r2 = __osSumcalc(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = (uint)32; r2 = (uint)__osSumcalc(r4, (int)r5);
                 r3 = Mem.U16((r20 + 0u));
                 r17 = r17 + 1u;
                 r3 = r3 + r2;

@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00241604", (uint)unused, (uint)a, 0u, (uint)b);
-            float dx = (Mem.F32(a) - Mem.F32(b));
-            float dz = (Mem.F32((a + 8u)) - Mem.F32((b + 8u)));
+            float dx = (new P2Vec3(a).x - new P2Vec3(b).x);
+            float dz = (new P2Vec3(a).z - new P2Vec3(b).z);
             return ((((dx * dx) + (dz * dz)) <= (r * r)) ? 1 : 0);
         }
     }

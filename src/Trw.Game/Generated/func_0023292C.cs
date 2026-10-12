@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0023292C", (uint)actor, (uint)state, (uint)obj);
-            uint owner = Mem.U32((actor + 472u));
+            uint owner = new Actor(actor).owner_;
             uint pawn = Mem.U32((owner + (uint)1500));
             int id = (-1);
             int w = 0;

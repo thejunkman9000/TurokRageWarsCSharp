@@ -13,19 +13,19 @@ public static partial class Game
             uint m = 0x8013B364u;
             if ((m != 0u))
             {
-                if ((Mem.S32((obj + 16u)) == (-1)))
+                if ((new B2Edge2(obj).dst == (-1)))
                 {
                     return 1;
                 }
-                if ((Mem.S32((obj + 4u)) == Mem.S32((obj + 16u))))
+                if ((new B2Edge2(obj).src == new B2Edge2(obj).dst))
                 {
                     return 1;
                 }
-                if ((func_0020D1CC(m, Mem.S32((obj + 4u)), Mem.S32((obj + 16u))) != 0))
+                if ((func_0020D1CC(m, new B2Edge2(obj).src, new B2Edge2(obj).dst) != 0))
                 {
                     return 1;
                 }
-                Mem.Set((obj + 12u), (int)(func_0020BC50(m, (uint)(Mem.S32((obj + 4u))), (uint)(Mem.S32((obj + 16u))), obj)));
+                new B2Edge2(obj).unkC_Set((int)(func_0020BC50(m, (uint)(new B2Edge2(obj).src), (uint)(new B2Edge2(obj).dst), obj)));
             }
             return 1;
         }

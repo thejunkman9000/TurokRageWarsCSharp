@@ -18,39 +18,39 @@ public static partial class Game
             int count = 0;
             uint nd = 0u;
             Mem.Set(0x800D15E0u, 3);
-            Mem.Set(((0x8013B2D8u + 16u) + (uint)4), (byte)(0));
-            Mem.Set(((0x8013B2D8u + 16u) + (uint)5), (byte)(0));
-            Mem.Set(((0x8013B2D8u + 16u) + (uint)6), (byte)(0));
-            Mem.Set(0x8013B2D8u, (uint)((uint)(Mem.U32(0x8013B2D8u)) | (uint)(5122)));
+            new B16Env(0x8013B2D8u).b.Set((int)(4), (byte)(0));
+            new B16Env(0x8013B2D8u).b.Set((int)(5), (byte)(0));
+            new B16Env(0x8013B2D8u).b.Set((int)(6), (byte)(0));
+            new B16Env(0x8013B2D8u).flags_Set((uint)((uint)(new B16Env(0x8013B2D8u).flags) | (uint)(5122)));
             Mem.Set((0x800D15E0u + (uint)(1 * 4)), (float)(r));
             Mem.Set((0x800D15E0u + (uint)(2 * 4)), (float)(g));
             Mem.Set((0x800D15E0u + (uint)(3 * 4)), (float)(b));
             Mem.Set((0x800D15E0u + (uint)(4 * 4)), (float)(a));
-            Mem.Set(((0x8013B2D8u + 16u) + (uint)7), a);
+            new B16Env(0x8013B2D8u).b.Set((int)(7), a);
             n = ((n + 1) % 18);
-            if (((Mem.U32(0x800E28A4u) - (((uint)(Mem.U32(0x80110634u)) - (uint)(Mem.U32((Mem.U32(0x8011FE80u) + 276u)))) >> (int)3)) >= (uint)(3000)))
+            if (((Mem.U32(0x800E28A4u) - (((uint)(Mem.U32(0x80110634u)) - (uint)(new B16Gfx(Mem.U32(0x8011FE80u)).base_)) >> (int)3)) >= (uint)(3000)))
             {
                 if (((int)(func_00269A80(0x8013B2D8u, (uint)(n), default(uint), default(uint))) != 0))
                 {
                     {
                         uint q = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                        Mem.Set(q, 3791650844u);
-                        Mem.Set((q + 4u), (uint)(202919384));
+                        new DlCmd(q).w0_Set(3791650844u);
+                        new DlCmd(q).w1_Set((uint)(202919384));
                     }
                     func_00268CE0((uint)(1));
                     root = Mem.U32(p);
                     func_00253B5C(0, p);
                     if ((flag != 0))
                     {
-                        uint q = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                        Mem.Set(q, 3674603524u);
-                        Mem.Set((q + 4u), (uint)(seg));
+                        uint q_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new DlCmd(q_2).w0_Set(3674603524u);
+                        new DlCmd(q_2).w1_Set((uint)(seg));
                     }
                     else
                     {
-                        uint q = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                        Mem.Set(q, 3661103107u);
-                        Mem.Set((q + 4u), (uint)(seg));
+                        uint q_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new DlCmd(q_3).w0_Set(3661103107u);
+                        new DlCmd(q_3).w1_Set((uint)(seg));
                     }
                     nd = node;
                     if ((nd == 0u))
@@ -58,9 +58,9 @@ public static partial class Game
                         nd = func_0028FD94(root, 0);
                     }
                     {
-                        uint q = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                        Mem.Set(q, 3674603528u);
-                        Mem.Set((q + 4u), (uint)(nd));
+                        uint q_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new DlCmd(q_4).w0_Set(3674603528u);
+                        new DlCmd(q_4).w1_Set((uint)(nd));
                     }
                     nn = func_0028FD94(root, 2);
                     count = Mem.S32((nn + (uint)(0 * 4)));
@@ -75,9 +75,9 @@ public static partial class Game
                         if (((((int)(Mem.U8((e + (uint)6))) & 56) == 56) && ((int)(func_00269A80(e, (uint)(n), default(uint), default(uint))) != 0)))
                         {
                             uint w = func_0028FD94(c, 1);
-                            uint q = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                            Mem.Set(q, 3724541952u);
-                            Mem.Set((q + 4u), (uint)(w));
+                            uint q_5 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            new DlCmd(q_5).w0_Set(3724541952u);
+                            new DlCmd(q_5).w1_Set((uint)(w));
                         }
                     }
                 }

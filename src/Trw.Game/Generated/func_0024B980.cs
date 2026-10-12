@@ -10,24 +10,24 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024B980", (uint)a, (uint)unused, (uint)c, (uint)src);
-            Mem.Copy(((a + 320u) + (uint)(Mem.S32(0x800D297Cu) * 24)), src, 24);
-            if (((int)(Mem.S8((a + 1u))) != (-1)))
+            Mem.Copy((new Actor_v2(a).seg.P + (uint)(Mem.S32(0x800D297Cu) * 24)), src, 24);
+            if (((int)(new Actor_v2(a).f1) != (-1)))
             {
-                Mem.Set((a + 380u), (uint)((1 << (int)(int)(Mem.S8((a + 1u))))));
-                if ((Mem.S32((c + 4u)) != 0))
+                new Actor_v2(a).f17C_Set((uint)((1 << (int)(int)(new Actor_v2(a).f1))));
+                if ((new ActorCmd(c).f4 != 0))
                 {
                     func_0024AA08((uint)(a), (uint)(unused), (uint)(c), default(uint));
                 }
-                if ((Mem.S32(c) != 0))
+                if ((new ActorCmd(c).f0 != 0))
                 {
-                    if ((Mem.U32((c + 12u)) != 0u))
+                    if ((new ActorCmd(c).fC != 0u))
                     {
-                        func_0026DA4C(Mem.U32((c + 12u)), Mem.S32((a + 180u)), 1, (int)(((a + 320u) + (uint)(Mem.S32(0x800D297Cu) * 24))), (uint)(0), (int)(Mem.S8((a + 3u))));
+                        func_0026DA4C(new ActorCmd(c).fC, new Actor_v2(a).fB4, 1, (int)((new Actor_v2(a).seg.P + (uint)(Mem.S32(0x800D297Cu) * 24))), (uint)(0), (int)(new Actor_v2(a).f3));
                         func_0024C444(a, c);
                     }
                     else
                     {
-                        func_0026DA4C(Mem.U32((c + 12u)), Mem.S32((a + 180u)), 1, (int)(((a + 320u) + (uint)(Mem.S32(0x800D297Cu) * 24))), (uint)(0), (int)(Mem.S8((a + 3u))));
+                        func_0026DA4C(new ActorCmd(c).fC, new Actor_v2(a).fB4, 1, (int)((new Actor_v2(a).seg.P + (uint)(Mem.S32(0x800D297Cu) * 24))), (uint)(0), (int)(new Actor_v2(a).f3));
                         func_0024C444(a, c);
                     }
                 }

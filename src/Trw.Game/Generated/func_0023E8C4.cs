@@ -10,21 +10,21 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0023E8C4_can_hit", (uint)m, (uint)h);
-            float v = Mem.F32((h + 204u));
+            float v = new B09Quad(h).t;
             int r = 0;
             if ((v <= 0.0f))
             {
-                if ((Mem.S32((h + 8u)) == 7))
+                if ((new B09Quad(h).unk8 == 7))
                 {
                     return 0;
                 }
-                if ((((uint)((Mem.S32(h) - 5)) < (uint)(2)) || ((v * Mem.F32((m + 128u))) < (-(Mem.F32(0x800D0648u) * Mem.F32(0x800C87C0u))))))
+                if ((((uint)((new B09Quad(h).type0 - 5)) < (uint)(2)) || ((v * new B09Mover(m).f80) < (-(Mem.F32(0x800D0648u) * Mem.F32(0x800C87C0u))))))
                 {
                     return 0;
                 }
             }
             r = 1;
-            if ((Mem.F32((h + 204u)) >= Mem.F32(((m + 176u) + 204u))))
+            if ((new B09Quad(h).t >= new B09Mover(m).qcopy.t))
             {
                 r = 0;
             }
@@ -38,7 +38,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0023E8C4", (uint)m, (uint)q, (uint)copy);
             uint hit = 0u;
-            if ((func_002412C0(q, (m + 68u), (m + 80u), (q + 204u)) == 0))
+            if ((func_002412C0(q, new B09Mover(m).v44.P, new B09Mover(m).v50.P, (q + 204u)) == 0))
             {
                 return 0;
             }
@@ -46,15 +46,15 @@ public static partial class Game
             {
                 return 0;
             }
-            hit = (q + 208u);
-            func_00272038(hit, Mem.F32((q + 204u)), (m + 68u), (m + 80u));
-            if (((int)(func_002414E4(q, hit, default(uint), default(uint))) == 0))
+            hit = new B09Quad(q).hit.P;
+            func_00272038(hit, new B09Quad(q).t, new B09Mover(m).v44.P, new B09Mover(m).v50.P);
+            if ((func_002414E4(q, hit) == 0))
             {
                 return 0;
             }
             if ((copy != 0))
             {
-                Mem.Copy((m + 176u), q, 220);
+                Mem.Copy(new B09Mover(m).qcopy.P, q, 220);
             }
             return 1;
         }

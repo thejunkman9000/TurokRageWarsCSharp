@@ -10,43 +10,43 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002169AC", (uint)self, (uint)c, (uint)t);
-            if ((Mem.S32((c + 4u)) == 0))
+            if ((new B04Cfg(c).unk4 == 0))
             {
                 return 6;
             }
             if ((t == 0u))
             {
-                if ((Mem.S8((c + 148u)) != 0))
+                if ((new B04Cfg(c).unk94 != 0))
                 {
                     return 4;
                 }
                 return 3;
             }
-            if ((t == Mem.U32((c + 104u))))
+            if ((t == new B04Cfg(c).unk68_))
             {
                 return 2;
             }
-            if ((Mem.S32(Mem.U32((t + 24u))) == 5))
+            if ((new ActorDef(new B04Act(t).def_).type == 5))
             {
                 return 5;
             }
-            if (((int)(Mem.U16((t + 228u))) == 1615))
+            if (((int)(new B04Act(t).unkE4) == 1615))
             {
                 return 7;
             }
             if ((Mem.S32(0x8013B290u) == 0))
             {
-                if (((Mem.U32((t + 256u)) & (uint)(3145728)) != 0u))
+                if (((new B04Act(t).flags & (uint)(3145728)) != 0u))
                 {
-                    uint o = Mem.U32((t + 472u));
-                    if (((Mem.U32((o + 1940u)) == self) && (Mem.S32((o + 1928u)) == 2)))
+                    uint o = new B04Act(t).owner_;
+                    if (((new B04Act(o).unk794_ == self) && (new B04Act(o).unk788 == 2)))
                     {
                         return 1;
                     }
                 }
-                if (((Mem.U32((self + 736u)) & (uint)(2)) != 0u))
+                if (((new B04Act(self).unk2E0 & (uint)(2)) != 0u))
                 {
-                    if (((int)(Mem.U16((self + 228u))) != 202))
+                    if (((int)(new B04Act(self).unkE4) != 202))
                     {
                         return 1;
                     }

@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00282D0C", (uint)o);
             int i = 0;
             int j = 0;
-            if (((int)(Mem.U16((o + 4u))) == 1063))
+            if (((int)(new B19Obj(o).id) == 1063))
             {
                 return 1;
             }
@@ -20,13 +20,13 @@ public static partial class Game
             {
                 for (j = 0; (j < 3); ++j)
                 {
-                    uint e = Mem.U32(((Mem.U32((0x800D052Cu + (uint)(i * 4))) + 32u) + (uint)(j * 4)));
-                    if ((((e != 0u) && ((int)(Mem.S16((e + 4u))) == (int)(Mem.U16((o + 4u))))) && ((int)(Mem.S16(e)) == 0)))
+                    uint e = new B19Row(Mem.U32((0x800D052Cu + (uint)(i * 4)))).a[(int)(j)];
+                    if ((((e != 0u) && ((int)(new B19Ent(e).id) == (int)(new B19Obj(o).id))) && ((int)(new B19Ent(e).kind) == 0)))
                     {
                         return 1;
                     }
-                    e = Mem.U32(((Mem.U32((0x800D052Cu + (uint)(i * 4))) + 44u) + (uint)(j * 4)));
-                    if ((((e != 0u) && ((int)(Mem.S16((e + 4u))) == (int)(Mem.U16((o + 4u))))) && ((int)(Mem.S16(e)) == 0)))
+                    e = new B19Row(Mem.U32((0x800D052Cu + (uint)(i * 4)))).b[(int)(j)];
+                    if ((((e != 0u) && ((int)(new B19Ent(e).id) == (int)(new B19Obj(o).id))) && ((int)(new B19Ent(e).kind) == 0)))
                     {
                         return 1;
                     }

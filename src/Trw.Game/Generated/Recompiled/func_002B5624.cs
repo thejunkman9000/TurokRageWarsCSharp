@@ -63,7 +63,7 @@ public static partial class Game
                  switch (r2) { case 2840100u: goto L_I002B5624; case 2840104u: goto L_I002B5628; case 2840108u: goto L_I002B562C; case 2840112u: goto L_I002B5630; case 2840116u: goto L_I002B5634; case 2840120u: goto L_I002B5638; case 2840124u: goto L_I002B563C; case 2840128u: goto L_I002B5640; case 2840132u: goto L_I002B5644; case 2840136u: goto L_I002B5648; case 2840140u: goto L_I002B564C; case 2840144u: goto L_I002B5650; case 2840148u: goto L_I002B5654; case 2840152u: goto L_I002B5658; case 2840156u: goto L_I002B565C; case 2840160u: goto L_I002B5660; case 2840168u: goto L_I002B5668; case 2840172u: goto L_I002B566C; case 2840176u: goto L_I002B5670; case 2840180u: goto L_I002B5674; case 2840188u: goto L_I002B567C; case 2840196u: goto L_I002B5684; case 2840204u: goto L_I002B568C; case 2840208u: goto L_I002B5690; case 2840212u: goto L_I002B5694; case 2840216u: goto L_I002B5698; case 2840220u: goto L_I002B569C; case 2840228u: goto L_I002B56A4; case 2840236u: goto L_I002B56AC; case 2840240u: goto L_I002B56B0; case 2840244u: goto L_I002B56B4; case 2840252u: goto L_I002B56BC; case 2840256u: goto L_I002B56C0; case 2840264u: goto L_I002B56C8; case 2840268u: goto L_I002B56CC; case 2840272u: goto L_I002B56D0; case 2840280u: goto L_I002B56D8; case 2840288u: goto L_I002B56E0; case 2840292u: goto L_I002B56E4; case 2840300u: goto L_I002B56EC; case 2840308u: goto L_I002B56F4; case 2840312u: goto L_I002B56F8; case 2840316u: goto L_I002B56FC; case 2840320u: goto L_I002B5700; case 2840328u: goto L_I002B5708; case 2840332u: goto L_I002B570C; case 2840336u: goto L_I002B5710; case 2840340u: goto L_I002B5714; case 2840344u: goto L_I002B5718; case 2840348u: goto L_I002B571C; case 2840352u: goto L_I002B5720; case 2840356u: goto L_I002B5724; case 2840360u: goto L_I002B5728; case 2840368u: goto L_I002B5730; case 2840372u: goto L_I002B5734; case 2840376u: goto L_I002B5738; case 2840380u: goto L_I002B573C; case 2840384u: goto L_I002B5740; case 2840392u: goto L_I002B5748; case 2840400u: goto L_I002B5750; case 2840404u: goto L_I002B5754; case 2840408u: goto L_I002B5758; case 2840412u: goto L_I002B575C; case 2840416u: goto L_I002B5760; case 2840424u: goto L_I002B5768; case 2840428u: goto L_I002B576C; case 2840432u: goto L_I002B5770; case 2840436u: goto L_I002B5774; case 2840440u: goto L_I002B5778; case 2840448u: goto L_I002B5780; case 2840452u: goto L_I002B5784; case 2840456u: goto L_I002B5788; case 2840464u: goto L_I002B5790; case 2840468u: goto L_I002B5794; case 2840472u: goto L_I002B5798; case 2840476u: goto L_I002B579C; case 2840480u: goto L_I002B57A0; case 2840484u: goto L_I002B57A4; case 2840488u: goto L_I002B57A8; case 2840492u: goto L_I002B57AC; case 2840500u: goto L_I002B57B4; case 2840504u: goto L_I002B57B8; case 2840508u: goto L_I002B57BC; case 2840512u: goto L_I002B57C0; case 2840520u: goto L_I002B57C8; case 2840524u: goto L_I002B57CC; case 2840528u: goto L_I002B57D0; case 2840532u: goto L_I002B57D4; case 2840540u: goto L_I002B57DC; case 2840544u: goto L_I002B57E0; case 2840548u: goto L_I002B57E4; case 2840552u: goto L_I002B57E8; case 2840556u: goto L_I002B57EC; case 2840560u: goto L_I002B57F0; case 2840564u: goto L_I002B57F4; case 2840572u: goto L_I002B57FC; case 2840580u: goto L_I002B5804; case 2840584u: goto L_I002B5808; case 2840588u: goto L_I002B580C; case 2840592u: goto L_I002B5810; case 2840596u: goto L_I002B5814; case 2840600u: goto L_I002B5818; case 2840608u: goto L_I002B5820; case 2840612u: goto L_I002B5824; case 2840616u: goto L_I002B5828; case 2840620u: goto L_I002B582C; case 2840624u: goto L_I002B5830; case 2840628u: goto L_I002B5834; case 2840632u: goto L_I002B5838; case 2840636u: goto L_I002B583C; case 2840640u: goto L_I002B5840; case 2840644u: goto L_I002B5844; case 2840648u: goto L_I002B5848; case 2840652u: goto L_I002B584C; case 2840656u: goto L_I002B5850; case 2840660u: goto L_I002B5854; case 2840668u: goto L_I002B585C; case 2840672u: goto L_I002B5860; case 2840676u: goto L_I002B5864; case 2840680u: goto L_I002B5868; case 2840684u: goto L_I002B586C; case 2840688u: goto L_I002B5870; case 2840692u: goto L_I002B5874; case 2840696u: goto L_I002B5878; case 2840704u: goto L_I002B5880; case 2840712u: goto L_I002B5888; case 2840716u: goto L_I002B588C; case 2840724u: goto L_I002B5894; case 2840732u: goto L_I002B589C; case 2840736u: goto L_I002B58A0; case 2840744u: goto L_I002B58A8; case 2840752u: goto L_I002B58B0; case 2840756u: goto L_I002B58B4; case 2840764u: goto L_I002B58BC; case 2840768u: goto L_I002B58C0; case 2840776u: goto L_I002B58C8; case 2840784u: goto L_I002B58D0; case 2840788u: goto L_I002B58D4; case 2840792u: goto L_I002B58D8; case 2840800u: goto L_I002B58E0; case 2840804u: goto L_I002B58E4; case 2840812u: goto L_I002B58EC; case 2840816u: goto L_I002B58F0; case 2840820u: goto L_I002B58F4; case 2840828u: goto L_I002B58FC; case 2840832u: goto L_I002B5900; case 2840840u: goto L_I002B5908; case 2840844u: goto L_I002B590C; case 2840852u: goto L_I002B5914; case 2840860u: goto L_I002B591C; case 2840864u: goto L_I002B5920; case 2840872u: goto L_I002B5928; case 2840876u: goto L_I002B592C; case 2840884u: goto L_I002B5934; case 2840888u: goto L_I002B5938; case 2840896u: goto L_I002B5940; case 2840900u: goto L_I002B5944; case 2840908u: goto L_I002B594C; case 2840912u: goto L_I002B5950; case 2840916u: goto L_I002B5954; case 2840924u: goto L_I002B595C; case 2840928u: goto L_I002B5960; case 2840936u: goto L_I002B5968; case 2840940u: goto L_I002B596C; case 2840948u: goto L_I002B5974; case 2840952u: goto L_I002B5978; case 2840956u: goto L_I002B597C; case 2840960u: goto L_I002B5980; case 2840968u: goto L_I002B5988; case 2840972u: goto L_I002B598C; case 2840980u: goto L_I002B5994; case 2840984u: goto L_I002B5998; case 2840992u: goto L_I002B59A0; case 2840996u: goto L_I002B59A4; case 2841004u: goto L_I002B59AC; case 2841008u: goto L_I002B59B0; case 2841012u: goto L_I002B59B4; case 2841016u: goto L_I002B59B8; case 2841020u: goto L_I002B59BC; case 2841024u: goto L_I002B59C0; case 2841028u: goto L_I002B59C4; case 2841032u: goto L_I002B59C8; case 2841040u: goto L_I002B59D0; case 2841048u: goto L_I002B59D8; case 2841052u: goto L_I002B59DC; case 2841056u: goto L_I002B59E0; case 2841064u: goto L_I002B59E8; case 2841068u: goto L_I002B59EC; case 2841076u: goto L_I002B59F4; case 2841080u: goto L_I002B59F8; case 2841084u: goto L_I002B59FC; case 2841088u: goto L_I002B5A00; case 2841096u: goto L_I002B5A08; case 2841100u: goto L_I002B5A0C; case 2841104u: goto L_I002B5A10; case 2841108u: goto L_I002B5A14; case 2841116u: goto L_I002B5A1C; case 2841120u: goto L_I002B5A20; case 2841128u: goto L_I002B5A28; case 2841136u: goto L_I002B5A30; case 2841140u: goto L_I002B5A34; case 2841144u: goto L_I002B5A38; case 2841148u: goto L_I002B5A3C; case 2841152u: goto L_I002B5A40; case 2841156u: goto L_I002B5A44; case 2841164u: goto L_I002B5A4C; case 2841168u: goto L_I002B5A50; case 2841172u: goto L_I002B5A54; case 2841176u: goto L_I002B5A58; case 2841180u: goto L_I002B5A5C; case 2841184u: goto L_I002B5A60; case 2841192u: goto L_I002B5A68; case 2841196u: goto L_I002B5A6C; case 2841204u: goto L_I002B5A74; case 2841208u: goto L_I002B5A78; case 2841212u: goto L_I002B5A7C; case 2841216u: goto L_I002B5A80; case 2841220u: goto L_I002B5A84; case 2841228u: goto L_I002B5A8C; case 2841232u: goto L_I002B5A90; case 2841236u: goto L_I002B5A94; case 2841240u: goto L_I002B5A98; case 2841244u: goto L_I002B5A9C; case 2841252u: goto L_I002B5AA4; case 2841256u: goto L_I002B5AA8; case 2841264u: goto L_I002B5AB0; case 2841272u: goto L_I002B5AB8; case 2841280u: goto L_I002B5AC0; case 2841284u: goto L_I002B5AC4; case 2841292u: goto L_I002B5ACC; case 2841296u: goto L_I002B5AD0; case 2841300u: goto L_I002B5AD4; case 2841304u: goto L_I002B5AD8; case 2841308u: goto L_I002B5ADC; case 2841316u: goto L_I002B5AE4; case 2841320u: goto L_I002B5AE8; case 2841324u: goto L_I002B5AEC; case 2841332u: goto L_I002B5AF4; case 2841340u: goto L_I002B5AFC; case 2841344u: goto L_I002B5B00; case 2841348u: goto L_I002B5B04; case 2841352u: goto L_I002B5B08; case 2841356u: goto L_I002B5B0C; case 2841364u: goto L_I002B5B14; case 2841368u: goto L_I002B5B18; case 2841376u: goto L_I002B5B20; case 2841380u: goto L_I002B5B24; case 2841388u: goto L_I002B5B2C; case 2841392u: goto L_I002B5B30; case 2841396u: goto L_I002B5B34; case 2841400u: goto L_I002B5B38; case 2841404u: goto L_I002B5B3C; case 2841408u: goto L_I002B5B40; case 2841412u: goto L_I002B5B44; case 2841416u: goto L_I002B5B48; case 2841420u: goto L_I002B5B4C; case 2841424u: goto L_I002B5B50; case 2841428u: goto L_I002B5B54; case 2841432u: goto L_I002B5B58; default: throw new InvalidOperationException($"bad jump table target {r2:X8} in func_002B5624"); }
                 L_L002B567C: ;
                 L_I002B567C: ;
-                r4 = r18; r2 = __handleNextSeqEvent(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r18; __handleNextSeqEvent(r4);
                 L_I002B5684: ;
                 r4 = r18 + 72u; goto L_L002B5B18;
                 L_L002B568C: ;
@@ -97,7 +97,7 @@ public static partial class Game
                 L_I002B56D0: ;
                 { bool c_ = r2 == 0; r4 = r18; if (c_) goto L_L002B56E0; }
                 L_I002B56D8: ;
-                r5 = r17; r2 = __seqpStopOsc(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r17; __seqpStopOsc(r4, r5);
                 L_L002B56E0: ;
                 L_I002B56E0: ;
                 r4 = r18;
@@ -132,7 +132,7 @@ public static partial class Game
                 L_I002B5724: ;
                 r2 = r2 + r19;
                 L_I002B5728: ;
-                Mem.Set((r4 + 36u), r2); r2 = __vsVol(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r4 + 36u), r2); r2 = (uint)__vsVol(r4, r5);
                 L_I002B5730: ;
                 r5 = r16;
                 L_I002B5734: ;
@@ -188,7 +188,7 @@ public static partial class Game
                 L_I002B57A8: ;
                 r5 = r18;
                 L_I002B57AC: ;
-                Mem.Set((r6 + 0u), (byte)r3); r2 = __vsVol(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r6 + 0u), (byte)r3); r2 = (uint)__vsVol(r4, r5);
                 L_I002B57B4: ;
                 r4 = r17;
                 L_I002B57B8: ;
@@ -284,14 +284,14 @@ public static partial class Game
                 L_I002B5888: ;
                 r4 = r18;
                 L_I002B588C: ;
-                r5 = r18 + 56u; r2 = __handleMIDIMsg(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r18 + 56u; __handleMIDIMsg(r4, r5);
                 L_I002B5894: ;
                 r4 = r18 + 72u; goto L_L002B5B18;
                 L_L002B589C: ;
                 L_I002B589C: ;
                 r4 = r18;
                 L_I002B58A0: ;
-                r5 = r18 + 56u; r2 = __handleMetaMsg(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r18 + 56u; __handleMetaMsg(r4, r5);
                 L_I002B58A8: ;
                 r4 = r18 + 72u; goto L_L002B5B18;
                 L_L002B58B0: ;
@@ -302,7 +302,7 @@ public static partial class Game
                 L_I002B58BC: ;
                 Mem.Set((r18 + 44u), r21);
                 L_I002B58C0: ;
-                r4 = r18; r2 = __postNextSeqEvent(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r18; __postNextSeqEvent(r4);
                 L_I002B58C8: ;
                 r4 = r18 + 72u; goto L_L002B5B18;
                 L_L002B58D0: ;
@@ -332,7 +332,7 @@ public static partial class Game
                 L_I002B590C: ;
                 { bool c_ = r2 == 0; r4 = r18; if (c_) goto L_L002B591C; }
                 L_I002B5914: ;
-                r5 = r17; r2 = __seqpStopOsc(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r17; __seqpStopOsc(r4, r5);
                 L_L002B591C: ;
                 L_I002B591C: ;
                 r4 = r18;
@@ -374,7 +374,7 @@ public static partial class Game
                 L_I002B597C: ;
                 r5 = r16;
                 L_I002B5980: ;
-                r6 = (uint)50000; r2 = __voiceNeedsNoteKillOff(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = (uint)50000; r2 = (uint)__voiceNeedsNoteKillOff(r4, r5, (int)r6);
                 L_I002B5988: ;
                 r2 = r2 & 255u;
                 L_I002B598C: ;
@@ -382,7 +382,7 @@ public static partial class Game
                 L_I002B5994: ;
                 r5 = r16;
                 L_I002B5998: ;
-                r6 = (uint)50000; r2 = __seqpReleaseVoice(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = (uint)50000; __seqpReleaseVoice(r4, r5, (int)r6);
                 L_L002B59A0: ;
                 L_I002B59A0: ;
                 r17 = Mem.U32((r17 + 0u));
@@ -418,7 +418,7 @@ public static partial class Game
                 r4 = r17;
                 L_L002B59EC: ;
                 L_I002B59EC: ;
-                r5 = r18; r2 = __vsVol(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r18; r2 = (uint)__vsVol(r4, r5);
                 L_I002B59F4: ;
                 r4 = r17;
                 L_I002B59F8: ;
@@ -498,7 +498,7 @@ public static partial class Game
                 L_I002B5AA8: ;
                 { bool c_ = r5 == 0; r4 = r18 + 72u; if (c_) goto L_L002B5B18; }
                 L_I002B5AB0: ;
-                r4 = r18; r2 = __initFromBank(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r18; __initFromBank(r4, r5);
                 L_I002B5AB8: ;
                 r4 = r18 + 72u; goto L_L002B5B18;
                 L_L002B5AC0: ;
@@ -522,7 +522,7 @@ public static partial class Game
                 L_I002B5AE8: ;
                 r4 = r18;
                 L_I002B5AEC: ;
-                Mem.Set((r18 + 32u), r5); r2 = __initFromBank(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r18 + 32u), r5); __initFromBank(r4, r5);
                 L_I002B5AF4: ;
                 r4 = r18 + 72u; goto L_L002B5B18;
                 L_L002B5AFC: ;

@@ -10,9 +10,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002734B8", (uint)m);
-            Mem.Set(((m + (uint)(3 * 16)) + (uint)(0 * 4)), (float)((float)(Mem.F32(((m + (uint)(3 * 16)) + (uint)(0 * 4)))) + x));
-            Mem.Set(((m + (uint)(3 * 16)) + (uint)(1 * 4)), (float)((float)(Mem.F32(((m + (uint)(3 * 16)) + (uint)(1 * 4)))) + y));
-            Mem.Set(((m + (uint)(3 * 16)) + (uint)(2 * 4)), (float)((float)(Mem.F32(((m + (uint)(3 * 16)) + (uint)(2 * 4)))) + z));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(0 * 4)), (float)((float)(Mem.F32(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(0 * 4)))) + x));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(1 * 4)), (float)((float)(Mem.F32(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(1 * 4)))) + y));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(2 * 4)), (float)((float)(Mem.F32(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(2 * 4)))) + z));
         }
     }
 

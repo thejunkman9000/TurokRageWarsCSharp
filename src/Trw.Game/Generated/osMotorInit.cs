@@ -15,21 +15,21 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("osMotorInit___osMakeMotorData", (uint)channel, (uint)address, (uint)buf, (uint)mdata);
                 uint ptr = 0u;
                 int i = 0;
-                ptr = mdata;
+                ptr = new OSPifRam(mdata).ramarray.P;
                 for (i = 0; (i < 15); ++i)
                 {
-                    Mem.Set((mdata + (uint)(i * 4)), (uint)(0));
+                    new OSPifRam(mdata).ramarray.Set((int)(i), (uint)(0));
                 }
-                Mem.Set((mdata + 60u), (uint)(1));
-                Mem.Set(_fp, (byte)(255));
-                Mem.Set((_fp + 1u), (byte)(35));
-                Mem.Set((_fp + 2u), (byte)(1));
-                Mem.Set((_fp + 3u), (byte)(3));
-                Mem.Set((_fp + 4u), (ushort)((((int)(address) << (int)5) | (int)((byte)(__osContAddressCrc((uint)(address), default(uint), default(uint), default(uint)))))));
-                Mem.Set((_fp + 38u), (byte)(255));
+                new OSPifRam(mdata).pifstatus_Set((uint)(1));
+                new __OSContRamReadFormat(_fp).dummy_Set((byte)(255));
+                new __OSContRamReadFormat(_fp).txsize_Set((byte)(35));
+                new __OSContRamReadFormat(_fp).rxsize_Set((byte)(1));
+                new __OSContRamReadFormat(_fp).cmd_Set((byte)(3));
+                new __OSContRamReadFormat(_fp).address_Set((ushort)((((int)(address) << (int)5) | (int)((byte)(__osContAddressCrc((uint)(address), default(uint), default(uint), default(uint)))))));
+                new __OSContRamReadFormat(_fp).datacrc_Set((byte)(255));
                 for (i = 0; (i < 32); ++i)
                 {
-                    Mem.Set(((_fp + 6u) + (uint)i), Mem.U8(((buf += 1u) - 1u)));
+                    new __OSContRamReadFormat(_fp).data.Set((int)(i), Mem.U8(((buf += 1u) - 1u)));
                 }
                 if ((channel != 0))
                 {
@@ -44,6 +44,89 @@ public static partial class Game
             }
         }
         finally { Stack.Free(40); }
+    }
+
+    public static int osMotorInit(uint mq, uint pfs, int channel)
+    {
+        uint _fp = Stack.Alloc(32);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("osMotorInit", (uint)mq, (uint)pfs, (uint)channel);
+                int ret = 0;
+                int i = 0;
+                new OSPfs(pfs).queue__Set(mq);
+                new OSPfs(pfs).channel_Set(channel);
+                new OSPfs(pfs).status_Set(0);
+                new OSPfs(pfs).activebank_Set((byte)(128));
+                for (i = 0; (i < 32); ++i)
+                {
+                    Mem.Set((_fp + (uint)i), (byte)(254));
+                }
+                ret = __osContRamWrite(mq, channel, (ushort)(1024), _fp, 0);
+                if ((ret == 2))
+                {
+                    ret = __osContRamWrite(mq, channel, (ushort)(1024), _fp, 0);
+                }
+                if ((ret != 0))
+                {
+                    return ret;
+                }
+                ret = (int)(__osContRamRead(mq, (uint)(channel), (uint)((ushort)(1024)), _fp));
+                if ((ret == 2))
+                {
+                    ret = 4;
+                }
+                if ((ret != 0))
+                {
+                    return ret;
+                }
+                if (((int)(Mem.U8((_fp + (uint)(32 - 1)))) == 254))
+                {
+                    return 11;
+                }
+                for (i = 0; (i < 32); ++i)
+                {
+                    Mem.Set((_fp + (uint)i), (byte)(128));
+                }
+                ret = __osContRamWrite(mq, channel, (ushort)(1024), _fp, 0);
+                if ((ret == 2))
+                {
+                    ret = __osContRamWrite(mq, channel, (ushort)(1024), _fp, 0);
+                }
+                if ((ret != 0))
+                {
+                    return ret;
+                }
+                ret = (int)(__osContRamRead(mq, (uint)(channel), (uint)((ushort)(1024)), _fp));
+                if ((ret == 2))
+                {
+                    ret = 4;
+                }
+                if ((ret != 0))
+                {
+                    return ret;
+                }
+                if (((int)(Mem.U8((_fp + (uint)(32 - 1)))) != 128))
+                {
+                    return 11;
+                }
+                if (!(Mem.S32((0x800D8380u + (uint)(channel * 4))) != 0))
+                {
+                    for (i = 0; (i < 32); ++i)
+                    {
+                        Mem.Set((0x8014D5C0u + (uint)i), (byte)(1));
+                        Mem.Set((0x8014D6E0u + (uint)i), (byte)(0));
+                    }
+                    osMotorInit___osMakeMotorData(channel, (ushort)(1536), 0x8014D5C0u, (0x8014D4C0u + (uint)(channel * 64)));
+                    osMotorInit___osMakeMotorData(channel, (ushort)(1536), 0x8014D6E0u, (0x8014D5E0u + (uint)(channel * 64)));
+                    Mem.Set((0x800D8380u + (uint)(channel * 4)), 1);
+                }
+                return 0;
+            }
+        }
+        finally { Stack.Free(32); }
     }
 
 }

@@ -10,13 +10,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00297930", (uint)pl, (uint)a, (uint)b);
-            float d1 = (((Mem.F32(pl) * Mem.F32(a)) + (Mem.F32((pl + 4u)) * Mem.F32((a + 4u)))) + (Mem.F32((pl + 8u)) * Mem.F32((a + 8u))));
-            float d2 = (((Mem.F32(pl) * Mem.F32(b)) + (Mem.F32((pl + 4u)) * Mem.F32((b + 4u)))) + (Mem.F32((pl + 8u)) * Mem.F32((b + 8u))));
+            float d1 = (((new B21Plane(pl).x * new Vec3f(a).x) + (new B21Plane(pl).y * new Vec3f(a).y)) + (new B21Plane(pl).z * new Vec3f(a).z));
+            float d2 = (((new B21Plane(pl).x * new Vec3f(b).x) + (new B21Plane(pl).y * new Vec3f(b).y)) + (new B21Plane(pl).z * new Vec3f(b).z));
             if ((d2 == d1))
             {
                 return Mem.F32(0x800CA6A0u);
             }
-            return ((Mem.F32((pl + 12u)) - d1) / (d2 - d1));
+            return ((new B21Plane(pl).w - d1) / (d2 - d1));
         }
     }
 

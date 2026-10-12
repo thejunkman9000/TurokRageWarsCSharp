@@ -10,30 +10,30 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0041B768", (uint)own, (uint)idx, (uint)id);
-            uint m = Mem.U32((own + 8u));
+            uint m = new O3Own(own).child_;
             uint it = 0u;
             int i = 0;
-            if ((Mem.S32(((m + 92u) + (uint)(idx * 4))) == 0))
+            if ((new O3M7D5(m).flag[(int)(idx)] == 0))
             {
-                if ((Mem.U32(((m + 76u) + (uint)(idx * 4))) != 0u))
+                if ((new O3M7D5(m).item[(int)(idx)] != 0u))
                 {
-                    func_0029A5D4((uint)((int)(Mem.S16((Mem.U32(((m + 76u) + (uint)(idx * 4))) + 12u)))), (uint)(16), (uint)(0), (uint)(0), (uint)(0));
+                    func_0029A5D4((uint)((int)(new O3Item(new O3M7D5(m).item[(int)(idx)]).h.id)), (uint)(16), (uint)(0), (uint)(0), (uint)(0));
                 }
-                it = func_0040ECB0((uint)((int)(Mem.U32((m + 68u)))), (uint)((id & 65535)), default(uint), default(uint));
-                func_0029A5D4((uint)((int)(Mem.S16((it + 12u)))), (uint)(15), (uint)(0), (uint)(0), (uint)(0));
-                if ((Mem.S32((m + 108u)) == 0))
+                it = func_0040ECB0((uint)((int)(new O3M7D5(m).own_)), (uint)((id & 65535)), default(uint), default(uint));
+                func_0029A5D4((uint)((int)(new O3Item(it).h.id)), (uint)(15), (uint)(0), (uint)(0), (uint)(0));
+                if ((new O3M7D5(m).mode == 0))
                 {
-                    Mem.Set(((m + 76u) + (uint)(idx * 4)), it);
+                    new O3M7D5(m).item.Set((int)(idx), it);
                 }
                 else
                 {
                     for (i = 3; (i >= 0); --i)
                     {
-                        Mem.Set(((m + 76u) + (uint)(i * 4)), it);
+                        new O3M7D5(m).item.Set((int)(i), it);
                     }
                 }
             }
-            Mem.Set(((m + 92u) + (uint)(idx * 4)), 0);
+            new O3M7D5(m).flag.Set((int)(idx), 0);
         }
     }
 

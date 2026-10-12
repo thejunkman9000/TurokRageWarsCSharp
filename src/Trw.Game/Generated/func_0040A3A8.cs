@@ -16,11 +16,11 @@ public static partial class Game
             {
                 if ((Mem.S32(0x8015377Cu) != 0))
                 {
-                    Mem.Set((item + 20u), 0x800D7768u);
+                    new O01Item(item).unk14__Set(0x800D7768u);
                 }
                 else
                 {
-                    Mem.Set((item + 20u), 0x800D7770u);
+                    new O01Item(item).unk14__Set(0x800D7770u);
                 }
             }
             else
@@ -29,22 +29,22 @@ public static partial class Game
                 {
                     if (((uint)(d) < (uint)(16)))
                     {
-                        Mem.Set((item + 20u), 0x800D777Cu);
+                        new O01Item(item).unk14__Set(0x800D777Cu);
                         return 0;
                     }
                     if ((c == 21))
                     {
-                        Mem.Set((item + 20u), 0x800D7E14u);
+                        new O01Item(item).unk14__Set(0x800D7E14u);
                     }
                     else
                     {
                         if ((Mem.S32(0x8015377Cu) != 0))
                         {
-                            Mem.Set((item + 20u), 0x800D776Cu);
+                            new O01Item(item).unk14__Set(0x800D776Cu);
                         }
                         else
                         {
-                            Mem.Set((item + 20u), 0x800D7774u);
+                            new O01Item(item).unk14__Set(0x800D7774u);
                         }
                     }
                 }
@@ -52,7 +52,7 @@ public static partial class Game
                 {
                     if ((Mem.S32(0x8015375Cu) != 0))
                     {
-                        Mem.Set((item + 20u), 0x800D778Cu);
+                        new O01Item(item).unk14__Set(0x800D778Cu);
                     }
                 }
             }

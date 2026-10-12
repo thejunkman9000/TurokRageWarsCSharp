@@ -13,11 +13,11 @@ public static partial class Game
             uint o = 0u;
             float d = 0f;
             Mem.Set(@out, Mem.F32(0x800C9F90u));
-            for (o = Mem.U32((owner + 64532u)); (o != 0u); o = Mem.U32((o + 500u)))
+            for (o = new B19Owner(owner).lb.head_; (o != 0u); o = new B19Obj(o).next2_)
             {
-                if (((Mem.S32((o + 300u)) != (int)(obj)) && ((Mem.U32((o + 92u)) & (uint)(256)) != 0u)))
+                if (((new B19Obj(o).unk12C != (int)(obj)) && ((new B19Obj(o).flags & (uint)(256)) != 0u)))
                 {
-                    d = func_0027272C((o + 8u), (obj + 8u));
+                    d = func_0027272C(new B19Obj(o).pos.P, new B19Obj(obj).pos.P);
                     if ((d < Mem.F32(@out)))
                     {
                         Mem.Set(@out, d);

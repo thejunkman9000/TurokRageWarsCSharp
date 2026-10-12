@@ -15,28 +15,28 @@ public static partial class Game
             if ((ctl != 0u))
             {
                 func_0020A884(ctl, (uint)(cfg));
-                if ((Mem.S32((ctl + 740u)) > 0))
+                if ((new B2Ctl(ctl).unk2E4 > 0))
                 {
-                    Mem.Set((ctl + 740u), (int)(Mem.S32((ctl + 740u)) - 1));
+                    new B2Ctl(ctl).unk2E4_Set((int)(new B2Ctl(ctl).unk2E4 - 1));
                     return;
                 }
-                if ((Mem.S32((ctl + 740u)) == 0))
+                if ((new B2Ctl(ctl).unk2E4 == 0))
                 {
-                    Mem.Set((ctl + 572u), 1);
-                    Mem.Set((ctl + 744u), (int)(Mem.S32((ctl + 744u)) - 1));
+                    new B2Ctl(ctl).unk23C_Set(1);
+                    new B2Ctl(ctl).unk2E8_Set((int)(new B2Ctl(ctl).unk2E8 - 1));
                 }
-                if ((Mem.S32((ctl + 744u)) == 0))
+                if ((new B2Ctl(ctl).unk2E8 == 0))
                 {
-                    Mem.Set((ctl + 740u), (-1));
-                    t = Mem.U32((Mem.U32((ctl + 100u)) + 472u));
-                    dist = func_00216F44(Mem.U32(ctl), Mem.F32((t + 8u)), Mem.F32(((t + 8u) + 4u)), Mem.F32(((t + 8u) + 8u)));
+                    new B2Ctl(ctl).unk2E4_Set((-1));
+                    t = new B2Ctl(ctl).target.owner_;
+                    dist = func_00216F44(new B2Ctl(ctl).owner_, C.Tmp(Cpu.F2U(new B2Actor(t).pos.x), Cpu.F2U(new B2Actor(t).pos.y), Cpu.F2U(new B2Actor(t).pos.z)));
                     if ((func_0020AA0C(ctl) < dist))
                     {
-                        Mem.Set((ctl + 572u), 1);
+                        new B2Ctl(ctl).unk23C_Set(1);
                     }
                     else
                     {
-                        Mem.Set((ctl + 572u), 0);
+                        new B2Ctl(ctl).unk23C_Set(0);
                         func_0020A95C(ctl, cfg);
                     }
                 }

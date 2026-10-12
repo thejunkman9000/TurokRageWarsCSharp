@@ -21,7 +21,7 @@ public static partial class Game
             n = 0;
             for (i = 0; (i < 50); ++i)
             {
-                if ((func_00265670(((0x80102B10u + (uint)(a * 400)) + 58u), i) == 1))
+                if ((func_00265670(new O04Row190t((0x80102B10u + (uint)(a * 400))).unk3A.P, i) == 1))
                 {
                     ++n;
                 }
@@ -140,7 +140,7 @@ public static partial class Game
                 s = Mem.U32(0x800D7278u);
                 break;
             }
-            Mem.Set(((0x80102B10u + (uint)(a * 400)) + 21u), (byte)(lv));
+            new O04Row190t((0x80102B10u + (uint)(a * 400))).unk15_Set((byte)(lv));
             return s;
         }
     }

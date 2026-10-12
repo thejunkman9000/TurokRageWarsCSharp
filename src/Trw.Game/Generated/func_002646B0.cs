@@ -14,7 +14,7 @@ public static partial class Game
             int n = 0;
             for (i = 0; (i < 4); ++i)
             {
-                if ((((((int)(Mem.U8(((0x8010FBE0u + (uint)(i * 4)) + (uint)3))) >> (int)3) ^ 1) & 1) != 0))
+                if ((((((int)(new Q4((0x8010FBE0u + (uint)(i * 4))).b[(int)(3)]) >> (int)3) ^ 1) & 1) != 0))
                 {
                     ++n;
                 }

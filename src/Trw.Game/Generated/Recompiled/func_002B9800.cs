@@ -274,7 +274,7 @@ public static partial class Game
                 L_I002B9A24: ;
                 Mem.Set((r29 + 20u), r19);
                 L_I002B9A28: ;
-                Mem.Set((r29 + 16u), r8); r2 = _pullSubFrame(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u)); r3 = Cpu.V1;
+                Mem.Set((r29 + 16u), r8); r2 = _pullSubFrame(r4, r5, r6, (int)r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u));
                 L_I002B9A30: ;
                 r5 = Mem.U32((r16 + 48u));
                 L_I002B9A34: ;
@@ -347,7 +347,7 @@ public static partial class Game
                 L_I002B9AC0: ;
                 Cpu.SetS(12, (float)(int)Cpu.W(12));
                 L_I002B9AC4: ;
-                r2 = _getVol_rc(r4, r5, r6, r7); r3 = Cpu.V1;
+                Cpu.SetS(0, _getVol(Cpu.S(12), (int)r5, (short)r6, (ushort)r7));
                 L_I002B9ACC: ;
                 r5 = Mem.U32((r16 + 48u));
                 L_I002B9AD0: ;
@@ -365,7 +365,7 @@ public static partial class Game
                 L_I002B9AE8: ;
                 Cpu.SetS(12, (float)(int)Cpu.W(12));
                 L_I002B9AEC: ;
-                Mem.Set((r16 + 28u), (ushort)r2); r2 = _getVol_rc(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r16 + 28u), (ushort)r2); Cpu.SetS(0, _getVol(Cpu.S(12), (int)r5, (short)r6, (ushort)r7));
                 L_I002B9AF4: ;
                 Cpu.SetW(1, (uint)(int)Cpu.S(0));
                 L_I002B9AF8: ;
@@ -503,7 +503,7 @@ public static partial class Game
                 L_I002B9C18: ;
                 Mem.Set((r29 + 20u), r19);
                 L_I002B9C1C: ;
-                Mem.Set((r29 + 16u), r8); r2 = _pullSubFrame(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u)); r3 = Cpu.V1;
+                Mem.Set((r29 + 16u), r8); r2 = _pullSubFrame(r4, r5, r6, (int)r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u));
                 L_I002B9C24: ;
                 r19 = r2;
                 L_I002B9C28: ;
@@ -545,7 +545,7 @@ public static partial class Game
                 L_I002B9C78: ;
                 Mem.Set((r29 + 20u), r19);
                 L_I002B9C7C: ;
-                Mem.Set((r29 + 16u), r8); r2 = _pullSubFrame(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u)); r3 = Cpu.V1;
+                Mem.Set((r29 + 16u), r8); r2 = _pullSubFrame(r4, r5, r6, (int)r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u));
                 L_I002B9C84: ;
                 r19 = r2;
                 L_I002B9C88: ;
@@ -603,7 +603,7 @@ public static partial class Game
                 L_I002B9CF4: ;
                 Mem.Set((r29 + 20u), r19);
                 L_I002B9CF8: ;
-                Mem.Set((r29 + 16u), r8); r2 = _pullSubFrame(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u)); r3 = Cpu.V1;
+                Mem.Set((r29 + 16u), r8); r2 = _pullSubFrame(r4, r5, r6, (int)r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u));
                 L_I002B9D00: ;
                 r3 = Mem.U32((r16 + 48u));
                 L_I002B9D04: ;

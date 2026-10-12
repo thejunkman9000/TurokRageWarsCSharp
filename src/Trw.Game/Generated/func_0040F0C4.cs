@@ -18,19 +18,19 @@ public static partial class Game
                 uint c = 0u;
                 pa = a;
                 L_L1: ;
-                if (((int)(Mem.U16((pa + 14u))) == 2))
+                if (((int)(new S_func_0040F0C4(pa).type) == 2))
                 {
                     goto L_L2;
                 }
-                pa = Mem.U32(pa);
+                pa = new S_func_0040F0C4(pa).parent_;
                 goto L_L1;
                 L_L2: ;
-                pa = Mem.U32(a);
-                c = Mem.U32((pa + 8u));
+                pa = new S_func_0040F0C4(a).parent_;
+                c = new S_func_0040F0C4(pa).child_;
                 pa = 0u;
                 goto L_L3;
                 L_L4: ;
-                c = Mem.U32((pa + 4u));
+                c = new S_func_0040F0C4(pa).next_;
                 L_L3: ;
                 if ((c == a))
                 {
@@ -42,12 +42,12 @@ public static partial class Game
                     goto L_L4;
                 }
                 L_L5: ;
-                pb = Mem.U32(b);
-                c = Mem.U32((pb + 8u));
+                pb = new S_func_0040F0C4(b).parent_;
+                c = new S_func_0040F0C4(pb).child_;
                 pb = 0u;
                 goto L_L6;
                 L_L7: ;
-                c = Mem.U32((pb + 4u));
+                c = new S_func_0040F0C4(pb).next_;
                 L_L6: ;
                 if ((c == b))
                 {
@@ -61,25 +61,25 @@ public static partial class Game
                 L_L8: ;
                 if ((pa != 0u))
                 {
-                    Mem.Set((pa + 4u), b);
+                    new S_func_0040F0C4(pa).next__Set(b);
                 }
                 else
                 {
-                    Mem.Set((Mem.U32(a) + 8u), b);
+                    new S_func_0040F0C4(a).parent.child__Set(b);
                 }
                 if ((pb != 0u))
                 {
-                    Mem.Set((pb + 4u), a);
+                    new S_func_0040F0C4(pb).next__Set(a);
                 }
                 else
                 {
-                    Mem.Set((Mem.U32(b) + 8u), a);
+                    new S_func_0040F0C4(b).parent.child__Set(a);
                 }
                 Mem.Copy(_fp, a, 44);
-                Mem.Set((a + 4u), Mem.U32((b + 4u)));
-                Mem.Set(a, Mem.U32(b));
-                Mem.Set((b + 4u), Mem.U32((_fp + 4u)));
-                Mem.Set(b, Mem.U32(_fp));
+                new S_func_0040F0C4(a).next__Set(new S_func_0040F0C4(b).next_);
+                new S_func_0040F0C4(a).parent__Set(new S_func_0040F0C4(b).parent_);
+                new S_func_0040F0C4(b).next__Set(new S_func_0040F0C4(_fp).next_);
+                new S_func_0040F0C4(b).parent__Set(new S_func_0040F0C4(_fp).parent_);
             }
         }
         finally { Stack.Free(44); }

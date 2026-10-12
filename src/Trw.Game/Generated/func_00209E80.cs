@@ -15,14 +15,14 @@ public static partial class Game
             int slot = 0;
             if ((ctl != 0u))
             {
-                o = Mem.U32(ctl);
-                if ((Mem.F32((o + 4568u)) > 0.0f))
+                o = new B2Ctl(ctl).owner_;
+                if ((new B2Actor(o).unk11D8 > 0.0f))
                 {
                     return;
                 }
-                slot = Mem.S32((o + 1428u));
+                slot = new B2Actor(o).unk594;
                 slot = (int)((int)(slot) - 1);
-                w = (int)(Mem.S16((o + 1582u)));
+                w = (int)(new B2Actor(o).unk62E);
                 switch (Mem.U32(((0x800CDA40u + (uint)(w * 8)) + (uint)(slot * 4))))
                 {
                 case (uint)(0):
@@ -35,7 +35,7 @@ public static partial class Game
                     func_0020A7B0(ctl, ((0x800F7D20u + (uint)(w * 56)) + (uint)(slot * 28)));
                     break;
                 case (uint)(8):
-                    Mem.Set((ctl + 576u), 1);
+                    new B2Ctl(ctl).unk240_Set(1);
                     break;
                 case (uint)(5):
                     func_0020A028(ctl, (0x800F7D20u + (uint)(w * 56)));
@@ -49,11 +49,11 @@ public static partial class Game
                 default:
                     return;
                 }
-                if ((Mem.S32((ctl + 576u)) > 0))
+                if ((new B2Ctl(ctl).unk240 > 0))
                 {
-                    Mem.Set((Mem.U32(ctl) + 1712u), (uint)((uint)(Mem.U32((Mem.U32(ctl) + 1712u))) | (uint)(16384)));
-                    Mem.Set((Mem.U32(ctl) + 1708u), (uint)((uint)(Mem.U32((Mem.U32(ctl) + 1708u))) | (uint)(16384)));
-                    Mem.Set((ctl + 576u), (int)(Mem.S32((ctl + 576u)) - 1));
+                    new B2Ctl(ctl).owner.unk6B0_Set((uint)((uint)(new B2Ctl(ctl).owner.unk6B0) | (uint)(16384)));
+                    new B2Ctl(ctl).owner.unk6AC_Set((uint)((uint)(new B2Ctl(ctl).owner.unk6AC) | (uint)(16384)));
+                    new B2Ctl(ctl).unk240_Set((int)(new B2Ctl(ctl).unk240 - 1));
                 }
             }
         }

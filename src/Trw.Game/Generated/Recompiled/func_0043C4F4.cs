@@ -473,7 +473,7 @@ public static partial class Game
                 L_I0043C918: ;
                 Mem.Set((r1 + 25318u), (byte)r2);
                 L_I0043C91C: ;
-                r4 = r17; r2 = func_0043DEDC(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r17; func_0043DEDC(r4);
                 L_I0043C924: ;
                 r4 = 2148663296u;
                 L_I0043C928: ;
@@ -492,7 +492,7 @@ public static partial class Game
                 L_I0043C950: ;
                 r4 = r4 - 376u;
                 L_I0043C954: ;
-                r6 = (uint)2; r2 = func_0044E178(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = (uint)2; func_0044E178(r4, (int)r5, (int)r6);
                 L_I0043C95C: ;
                 r2 = r0; goto L_L0043CB64;
                 L_L0043C964: ;
@@ -507,7 +507,7 @@ public static partial class Game
                 L_I0043C974: ;
                 Mem.Set((r3 + 29u), (byte)r0);
                 L_I0043C978: ;
-                Mem.Set((r3 + 30u), (byte)r2); r2 = func_0043DEDC(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r3 + 30u), (byte)r2); func_0043DEDC(r4);
                 L_I0043C980: ;
                 r4 = 2148663296u;
                 L_I0043C984: ;
@@ -758,7 +758,7 @@ public static partial class Game
                 L_I0043CBD8: ;
                 { bool c_ = !fcc; r18 = r7; if (c_) goto L_L0043CCD4; }
                 L_I0043CBE0: ;
-                r5 = r0; r2 = func_00442F4C(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r0; r2 = func_00442F4C(r4);
                 L_I0043CBE8: ;
                 Cpu.SetW(20, Mem.U32((r2 + 4u)));
                 L_I0043CBEC: ;
@@ -869,7 +869,7 @@ public static partial class Game
                 L_I0043CCC8: ;
                 r5 = Mem.U32((r17 + 32u));
                 L_I0043CCCC: ;
-                r4 = r16; r2 = func_002A8DD4(r4, r5, r6, r7, Mem.U32(r29 + 16u), 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
+                r4 = r16; func_002A8DD4((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u), (byte)Mem.U32(r29 + 24u), (byte)Mem.U32(r29 + 28u), (byte)Mem.U32(r29 + 32u), (byte)Mem.U32(r29 + 36u));
                 L_L0043CCD4: ;
                 L_I0043CCD4: ;
                 r4 = r19;

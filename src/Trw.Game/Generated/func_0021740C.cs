@@ -15,19 +15,19 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0021740C", (uint)a, (uint)unused, (uint)b, (uint)c);
                 if ((c != 0u))
                 {
-                    func_00271FD8(_fp, (b + 8u), (c + 8u));
-                    Mem.Set((_fp + 4u), (float)(0));
+                    func_00271FD8(_fp, new B04Ob(b).pos.P, new B04Ob(c).pos.P);
+                    new Vec3f(_fp).y_Set((float)(0));
                     func_002720EC(_fp);
                 }
                 else
                 {
-                    Mem.Set(_fp, (float)(0));
-                    Mem.Set((_fp + 4u), (float)(0));
-                    Mem.Set((_fp + 8u), (float)(0));
+                    new Vec3f(_fp).x_Set((float)(0));
+                    new Vec3f(_fp).y_Set((float)(0));
+                    new Vec3f(_fp).z_Set((float)(0));
                 }
                 func_0027200C(_fp, _fp, ((func_0024D388(b) + func_0024D388(a)) + Mem.F32(0x800C72D8u)));
-                func_00271FA4((_fp + 16u), (b + 8u), _fp);
-                func_0024E78C(b, C.Tmp(Cpu.F2U(Mem.F32((_fp + 16u))), Cpu.F2U(Mem.F32(((_fp + 16u) + 4u))), Cpu.F2U(Mem.F32(((_fp + 16u) + 8u)))), (uint)(e), (uint)(f));
+                func_00271FA4((_fp + 16u), new B04Ob(b).pos.P, _fp);
+                func_0024E78C(b, C.Tmp(Cpu.F2U(new Vec3f((_fp + 16u)).x), Cpu.F2U(new Vec3f((_fp + 16u)).y), Cpu.F2U(new Vec3f((_fp + 16u)).z)), (uint)(e), (uint)(f));
             }
         }
         finally { Stack.Free(28); }

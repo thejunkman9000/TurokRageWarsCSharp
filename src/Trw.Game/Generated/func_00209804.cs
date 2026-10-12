@@ -14,7 +14,7 @@ public static partial class Game
             int v = (-1);
             for (i = 3; (i >= 0); --i)
             {
-                Mem.Set(((ctl + 20u) + (uint)(i * 4)), v);
+                new B2Ctl(ctl).q.Set((int)(i), v);
             }
         }
     }

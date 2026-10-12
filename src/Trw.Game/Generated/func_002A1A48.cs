@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A1A48", (uint)b);
-            osCreateMesgQueue(b, (b + 24u), 1);
-            osSendMesg(b, (uint)(1), 1);
+            osCreateMesgQueue(new MsgBox(b).q.P, (b + 24u), 1);
+            osSendMesg(new MsgBox(b).q.P, (uint)(1), 1);
         }
     }
 

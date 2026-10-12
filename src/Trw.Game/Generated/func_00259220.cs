@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00259220", (uint)m, (uint)tag);
             int i = 0;
             int n = 0;
-            if (((int)(Mem.S16((m + 258u))) != (-1)))
+            if (((int)(new SndMgr(m).unk102) != (-1)))
             {
                 return 1;
             }
@@ -21,7 +21,7 @@ public static partial class Game
                 n = 0;
                 for (i = 0; (i < 17); ++i)
                 {
-                    if ((Mem.S32(((((m + 7608u) + 4u) + (uint)(i * 204)) + 168u)) == tag))
+                    if ((new SndMgr(m).pool.v[(int)(i)].tag == tag))
                     {
                         ++n;
                     }

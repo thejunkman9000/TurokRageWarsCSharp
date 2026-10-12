@@ -12,11 +12,11 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0029A58C", (uint)on);
             if ((on != 0))
             {
-                Mem.Set((Mem.U32(0x8014D080u) + 1324u), (int)((int)(Mem.S32((Mem.U32(0x8014D080u) + 1324u))) | 1));
+                new SndMgr_v2(Mem.U32(0x8014D080u)).unk52C_Set((int)((int)(new SndMgr_v2(Mem.U32(0x8014D080u)).unk52C) | 1));
             }
             else
             {
-                Mem.Set((Mem.U32(0x8014D080u) + 1324u), (int)((int)(Mem.S32((Mem.U32(0x8014D080u) + 1324u))) & (~1)));
+                new SndMgr_v2(Mem.U32(0x8014D080u)).unk52C_Set((int)((int)(new SndMgr_v2(Mem.U32(0x8014D080u)).unk52C) & (~1)));
             }
         }
     }

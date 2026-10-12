@@ -14,15 +14,15 @@ public static partial class Game
             offset = (int)(((uint)(16) - ((uint)(@base) & (uint)(15))));
             if ((offset != 16))
             {
-                Mem.Set(hp, (@base + (uint)offset));
+                new ALHeap(hp).base__Set((@base + (uint)offset));
             }
             else
             {
-                Mem.Set(hp, @base);
+                new ALHeap(hp).base__Set(@base);
             }
-            Mem.Set((hp + 4u), Mem.U32(hp));
-            Mem.Set((hp + 8u), len);
-            Mem.Set((hp + 12u), 0);
+            new ALHeap(hp).cur__Set(new ALHeap(hp).base_);
+            new ALHeap(hp).len_Set(len);
+            new ALHeap(hp).count_Set(0);
         }
     }
 

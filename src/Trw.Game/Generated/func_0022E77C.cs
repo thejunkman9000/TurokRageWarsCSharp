@@ -24,15 +24,15 @@ public static partial class Game
                     }
                 }
                 Mem.Set(slot, p);
-                Mem.Set(_fp, (float)(0));
-                Mem.Set((_fp + 4u), (float)(0));
-                Mem.Set((_fp + 8u), z);
+                new Vec3f(_fp).x_Set((float)(0));
+                new Vec3f(_fp).y_Set((float)(0));
+                new Vec3f(_fp).z_Set(z);
                 func_0024BC84((_fp + 16u), (int)(actor), _fp);
                 func_00271FA4((_fp + 16u), (_fp + 16u), (actor + (uint)8));
                 Mem.Set((p + (uint)22), (short)(1));
-                Mem.Set((p + (uint)16), (short)(int)(Mem.F32((_fp + 16u))));
-                Mem.Set((p + (uint)18), (short)(int)((Mem.F32(((_fp + 16u) + 4u)) + (func_0024D274(actor) * 0.5f))));
-                Mem.Set((p + (uint)20), (short)(int)(Mem.F32(((_fp + 16u) + 8u))));
+                Mem.Set((p + (uint)16), (short)(int)(new Vec3f((_fp + 16u)).x));
+                Mem.Set((p + (uint)18), (short)(int)((new Vec3f((_fp + 16u)).y + (func_0024D274(actor) * 0.5f))));
+                Mem.Set((p + (uint)20), (short)(int)(new Vec3f((_fp + 16u)).z));
                 Mem.Set((p + (uint)12), 1.0f);
             }
         }

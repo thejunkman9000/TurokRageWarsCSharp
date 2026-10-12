@@ -14,11 +14,11 @@ public static partial class Game
             {
                 return 1;
             }
-            if ((((Mem.U32((a + 256u)) & (uint)(3145728)) != 0u) && (Mem.S32((c + 5200u)) != 0)))
+            if ((((new Actor(a).flags & (uint)(3145728)) != 0u) && (new Actor(c).unk1450 != 0)))
             {
-                uint b = Mem.U32((c + 5204u));
-                int t = Mem.S32((b + 572u));
-                Mem.Set((b + 572u), 0);
+                uint b = new Actor(c).brain_;
+                int t = new Brain(b).unk23C;
+                new Brain(b).unk23C_Set(0);
                 return ((t == 0) ? 1 : 0);
             }
             if (((Mem.U32((c + (uint)1708)) & (uint)(8192)) != 0u))

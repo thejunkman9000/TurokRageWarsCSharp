@@ -19,15 +19,15 @@ public static partial class Game
             }
             else
             {
-                if ((Mem.U32((own + 28u)) != 0u))
+                if ((new O01Own2(own).unk1C_ != 0u))
                 {
-                    p = (Mem.U32((Mem.U32((own + 28u)) + 1500u)) + (uint)1364);
+                    p = (new O01Own2(own).unk1C.unk5DC_ + (uint)1364);
                 }
                 else
                 {
                     p = 0x8014561Cu;
                 }
-                func_004426E4(p, (uint)(Mem.S32((own + 36u))), (int)(Mem.U32((own + 28u))), (int)(Mem.U32((own + 32u))), 0);
+                func_004426E4(p, (uint)(new O01Own2(own).unk24), (int)(new O01Own2(own).unk1C_), (int)(new O01Own2(own).unk20), 0);
             }
             return 1;
         }

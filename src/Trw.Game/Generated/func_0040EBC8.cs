@@ -13,8 +13,8 @@ public static partial class Game
             int f = 0;
             while ((n != 0u))
             {
-                f = (int)((int)(f) | (int)(Mem.U16((n + 18u))));
-                n = Mem.U32(n);
+                f = (int)((int)(f) | (int)(new S_func_0040EBC8(n).flags));
+                n = new S_func_0040EBC8(n).next_;
             }
             return f;
         }

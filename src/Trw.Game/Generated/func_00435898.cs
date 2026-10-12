@@ -10,15 +10,15 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00435898", (uint)k);
-            int a = Mem.S32(((Mem.U32(0x800E54A4u) + 11768u) + (uint)(k * 12)));
-            int b = Mem.S32((((Mem.U32(0x800E54A4u) + 11768u) + (uint)(k * 12)) + 4u));
+            int a = new O05Lobby(Mem.U32(0x800E54A4u)).slot[(int)(k)].a;
+            int b = new O05Lobby(Mem.U32(0x800E54A4u)).slot[(int)(k)].b;
             uint rec = (0x80102B00u + (uint)(k * 400));
             if ((a != (-1)))
             {
-                func_002A1724(rec, ((((Mem.U32(0x800E54A4u) + 88u) + (uint)(a * 2920)) + 24u) + (uint)(b * 400)), (uint)(400));
-                Mem.Set((rec + 12u), (sbyte)(b));
+                func_002A1724(rec, (new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(a)].rec.P + (uint)(b * 400)), (uint)(400));
+                new O05Rec(rec).bC_Set((sbyte)(b));
             }
-            Mem.Set((rec + 13u), (sbyte)(a));
+            new O05Rec(rec).bD_Set((sbyte)(a));
         }
     }
 

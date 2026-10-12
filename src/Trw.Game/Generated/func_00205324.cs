@@ -12,25 +12,25 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00205324", (uint)actor, (uint)state);
             uint info = 0u;
             int mode = 0;
-            info = (Mem.U32((actor + 24u)) + 20u);
+            info = new M1Actor(actor).def.info.P;
             func_00285D80(0x8011FE88u, actor, 1);
             func_00278DE8(actor, 262144, (int)(actor));
-            if (!((Mem.S32((state + 4u)) == 0))) goto _f0;
-            Mem.Set((actor + 256u), (uint)((uint)(Mem.U32((actor + 256u))) & (uint)((~65536))));
+            if (!((new M1State(state).unk4 == 0))) goto _f0;
+            new M1Actor(actor).flags_Set((uint)((uint)(new M1Actor(actor).flags) & (uint)((~65536))));
             _f0: ;
-            if (!((Mem.S32((info + 24u)) == 0))) goto _f1;
-            Mem.Set((actor + 256u), (uint)((uint)(Mem.U32((actor + 256u))) & (uint)((~8192))));
-            Mem.Set((actor + 256u), (uint)((uint)(Mem.U32((actor + 256u))) & (uint)((~256))));
+            if (!((new M1Info(info).unk18 == 0))) goto _f1;
+            new M1Actor(actor).flags_Set((uint)((uint)(new M1Actor(actor).flags) & (uint)((~8192))));
+            new M1Actor(actor).flags_Set((uint)((uint)(new M1Actor(actor).flags) & (uint)((~256))));
             _f1: ;
             mode = Mem.S32((0x8011FE88u + (uint)(0 * 4)));
             if (!((mode == 4))) goto _f2;
-            if (!((Mem.S32((info + 32u)) != (-1)))) goto _f3;
-            func_0025DE74((int)(Mem.S16(((info + 32u) + (uint)(1 * 2)))), (actor + 8u), 0, (-1));
+            if (!((new M1Info(info).unk20.i != (-1)))) goto _f3;
+            func_0025DE74((int)(new M1Info(info).unk20.h[(int)(1)]), new M1Actor(actor).pos.P, 0, (-1));
             _f3: ;
-            if (!((Mem.S32((info + 28u)) != (-1)))) goto _f4;
-            func_00216288(actor, Mem.S32((info + 28u)), (actor + 8u));
+            if (!((new M1Info(info).unk1C != (-1)))) goto _f4;
+            func_00216288(actor, new M1Info(info).unk1C, new M1Actor(actor).pos.P);
             _f4: ;
-            func_002170A0(actor, state, (uint)(4), (uint)(Mem.S32((info + 36u))), (uint)(Mem.S32((info + 40u))));
+            func_002170A0(actor, state, (uint)(4), (uint)(new M1Info(info).unk24.i), (uint)(new M1Info(info).unk28.i));
             func_002A6D28(0x8013BA80u, (int)(actor));
             if (!((Mem.S32((0x8011FE88u + (uint)(0 * 4))) != mode))) goto _f5;
             goto L_L;
@@ -38,8 +38,8 @@ public static partial class Game
             goto _f6;
             _f2: ;
             L_L: ;
-            Mem.Set((actor + 256u), (uint)((uint)(Mem.U32((actor + 256u))) & (uint)((~256))));
-            Mem.Set((actor + 256u), (uint)((uint)(Mem.U32((actor + 256u))) | (uint)(134217728)));
+            new M1Actor(actor).flags_Set((uint)((uint)(new M1Actor(actor).flags) & (uint)((~256))));
+            new M1Actor(actor).flags_Set((uint)((uint)(new M1Actor(actor).flags) | (uint)(134217728)));
             _f6: ;
         }
     }

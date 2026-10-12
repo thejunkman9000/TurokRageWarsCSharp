@@ -10,11 +10,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002551C8", (uint)p);
-            while ((Mem.S32(((p + 560u) + 8u)) != 0))
+            while ((new B12Port(p).q.validCount != 0))
             {
-                osSetThreadPri(p, Mem.S32(0x800D2B28u));
+                osSetThreadPri(new B12Port(p).thread.P, Mem.S32(0x800D2B28u));
             }
-            osSetThreadPri(p, Mem.S32(0x800D2B1Cu));
+            osSetThreadPri(new B12Port(p).thread.P, Mem.S32(0x800D2B1Cu));
         }
     }
 

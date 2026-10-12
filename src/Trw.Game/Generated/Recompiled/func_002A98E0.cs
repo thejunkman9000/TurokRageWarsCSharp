@@ -695,7 +695,7 @@ public static partial class Game
                 L_I002A9EA4: ;
                 Mem.Set((r29 + 20u), Cpu.W(0));
                 L_I002A9EA8: ;
-                Mem.Set((r29 + 24u), r2); r2 = func_002AB19C_rc(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
+                Mem.Set((r29 + 24u), r2); func_002AB19C((int)r4, (int)r5, (int)r6, (short)r7, Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), (int)Mem.U32(r29 + 24u));
                 L_L002A9EB0: ;
                 L_I002A9EB0: ;
                 Cpu.SetS(0, Cpu.S(20) * Cpu.S(21));
@@ -750,8 +750,8 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_002A98E0", r2); Stack.Free(384); }
     }
 
-    public static void func_002A98E0(int p0, float p1, float p2, float p3, float p4, int p5, int p6, int p7)
+    public static void func_002A98E0(uint p0, float p1, float p2, float p3, float p4, int p5, int p6, int p7)
     {
-        func_002A98E0_rc((uint)p0, Cpu.F2U(p1), Cpu.F2U(p2), Cpu.F2U(p3), Cpu.F2U(p4), (uint)p5, (uint)p6, (uint)p7);
+        func_002A98E0_rc(p0, Cpu.F2U(p1), Cpu.F2U(p2), Cpu.F2U(p3), Cpu.F2U(p4), (uint)p5, (uint)p6, (uint)p7);
     }
 }

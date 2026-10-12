@@ -13,41 +13,41 @@ public static partial class Game
             float ang = 0f;
             float @base = 0f;
             float r = 0f;
-            if (!(Mem.F32((p + 4568u)) > 0.0f))
+            if (!(new B05P9(p).f11D8 > 0.0f))
             {
                 func_002748E0((p + 1836u), 0.0f, 0.25f);
                 func_002748E0((p + 1832u), 0.0f, 0.5f);
-                Mem.Set((p + 1840u), func_00274810(Mem.F32((p + 1840u)), Mem.F32(0x800C7A04u)));
-                Mem.Set((p + 1844u), func_00274810(Mem.F32((p + 1844u)), Mem.F32(0x800C7A04u)));
-                Mem.Set((p + 1848u), func_00274810(Mem.F32((p + 1848u)), Mem.F32(0x800C7A04u)));
-                if ((Mem.F32((p + 1884u)) > Mem.F32(0x800C7A08u)))
+                new B05P9(p).f730_Set(func_00274810(new B05P9(p).f730, Mem.F32(0x800C7A04u)));
+                new B05P9(p).f734_Set(func_00274810(new B05P9(p).f734, Mem.F32(0x800C7A04u)));
+                new B05P9(p).f738_Set(func_00274810(new B05P9(p).f738, Mem.F32(0x800C7A04u)));
+                if ((new B05P9(p).f75C > Mem.F32(0x800C7A08u)))
                 {
-                    Mem.Set((p + 1884u), Mem.F32(0x800C7A08u));
+                    new B05P9(p).f75C_Set(Mem.F32(0x800C7A08u));
                 }
-                if ((Mem.F32((p + 1880u)) > Mem.F32(0x800C7A0Cu)))
+                if ((new B05P9(p).f758 > Mem.F32(0x800C7A0Cu)))
                 {
-                    Mem.Set((p + 1880u), Mem.F32(0x800C7A0Cu));
+                    new B05P9(p).f758_Set(Mem.F32(0x800C7A0Cu));
                 }
-                Mem.Set((p + 1884u), func_00274810(Mem.F32((p + 1884u)), Mem.F32(0x800C7A10u)));
-                Mem.Set((p + 1880u), func_00274810(Mem.F32((p + 1880u)), Mem.F32(0x800C7A14u)));
-                if ((Mem.F32((p + 1880u)) < Mem.F32(0x800C7A18u)))
+                new B05P9(p).f75C_Set(func_00274810(new B05P9(p).f75C, Mem.F32(0x800C7A10u)));
+                new B05P9(p).f758_Set(func_00274810(new B05P9(p).f758, Mem.F32(0x800C7A14u)));
+                if ((new B05P9(p).f758 < Mem.F32(0x800C7A18u)))
                 {
-                    Mem.Set((p + 1880u), 0.0f);
-                    Mem.Set((p + 1884u), 0.0f);
+                    new B05P9(p).f758_Set(0.0f);
+                    new B05P9(p).f75C_Set(0.0f);
                 }
-                ang = ((Mem.F32((p + 1624u)) * Mem.F32((p + 1884u))) * Mem.F32(0x800C7A1Cu));
-                if ((Mem.U32((p + 24u)) != 0u))
+                ang = ((new B05P9(p).f658 * new B05P9(p).f75C) * Mem.F32(0x800C7A1Cu));
+                if ((new B05P9(p).def != 0u))
                 {
-                    @base = (Mem.F32((Mem.U32((p + 24u)) + 244u)) * Mem.F32(0x800C7A20u));
+                    @base = (new B05Def9(new B05P9(p).def).unkF4 * Mem.F32(0x800C7A20u));
                 }
                 else
                 {
                     @base = Mem.F32(0x800C7A24u);
                 }
-                func_002748E0((p + 1856u), (@base + (Mem.F32((p + 1880u)) * (sinf(ang) * Mem.F32(0x800C7A28u)))), Mem.F32(0x800C7A2Cu));
-                r = (Mem.F32((p + 1880u)) * (cosf(ang) * Mem.F32(0x800C7A30u)));
-                func_002748E0((p + 1852u), ((-sinf((Mem.F32((s + 108u)) + Mem.F32(0x800C7A34u)))) * r), Mem.F32(0x800C7A2Cu));
-                func_002748E0((p + 1860u), ((-cosf((Mem.F32((s + 108u)) + Mem.F32(0x800C7A34u)))) * r), Mem.F32(0x800C7A2Cu));
+                func_002748E0((p + 1856u), (@base + (new B05P9(p).f758 * (sinf(ang) * Mem.F32(0x800C7A28u)))), Mem.F32(0x800C7A2Cu));
+                r = (new B05P9(p).f758 * (cosf(ang) * Mem.F32(0x800C7A30u)));
+                func_002748E0((p + 1852u), ((-sinf((new B05S9(s).ang + Mem.F32(0x800C7A34u)))) * r), Mem.F32(0x800C7A2Cu));
+                func_002748E0((p + 1860u), ((-cosf((new B05S9(s).ang + Mem.F32(0x800C7A34u)))) * r), Mem.F32(0x800C7A2Cu));
             }
         }
     }

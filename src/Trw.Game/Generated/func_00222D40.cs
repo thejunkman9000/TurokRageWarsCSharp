@@ -19,28 +19,28 @@ public static partial class Game
             gm = (int)(Mem.U8(0x801462D5u));
             if ((gm != 1))
             {
-                r = Mem.S32(((Mem.U32((p + 24u)) + 264u) + (uint)(idx * 4)));
+                r = new B05P3_v2(p).tbl.lim[(int)(idx)];
             }
             else
             {
                 r = Mem.S32((0x800CE3E8u + (uint)(idx * 4)));
-                if ((Mem.S32((p + 5200u)) == 0))
+                if ((new B05P3_v2(p).unk1450 == 0))
                 {
                     if ((idx == 0))
                     {
-                        r = (int)((int)(r) + (int)(Mem.U8(((0x80102B10u + (uint)(Mem.S32((p + 1492u)) * 400)) + 5u))));
+                        r = (int)((int)(r) + (int)(new B05Row((0x80102B10u + (uint)(new B05P3_v2(p).row * 400))).b5));
                     }
                     else
                     {
                         if ((idx == gm))
                         {
-                            r = (int)((int)(r) + (int)(Mem.U8(((0x80102B10u + (uint)(Mem.S32((p + 1492u)) * 400)) + 6u))));
+                            r = (int)((int)(r) + (int)(new B05Row((0x80102B10u + (uint)(new B05P3_v2(p).row * 400))).b6));
                         }
                         else
                         {
                             if ((idx == 2))
                             {
-                                r = (int)((int)(r) + (int)(Mem.U8(((0x80102B10u + (uint)(Mem.S32((p + 1492u)) * 400)) + 4u))));
+                                r = (int)((int)(r) + (int)(new B05Row((0x80102B10u + (uint)(new B05P3_v2(p).row * 400))).b4));
                             }
                         }
                     }
@@ -63,8 +63,8 @@ public static partial class Game
             {
                 return 0;
             }
-            idx = (int)(Mem.S16((e + 12u)));
-            cp = ((p + 1524u) + (uint)(idx * 2));
+            idx = (int)(new B05Ent2(e).idx);
+            cp = (new B05P3_v2(p).cnt.P + (uint)(idx * 2));
             return (((int)(Mem.S16(cp)) < func_00222D40_getLimit(p, idx)) ? 1 : 0);
         }
     }

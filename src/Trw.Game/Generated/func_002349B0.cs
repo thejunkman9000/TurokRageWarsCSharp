@@ -19,87 +19,87 @@ public static partial class Game
                 float fs1 = 0f;
                 float fs1f = 0f;
                 uint n = 0u;
-                if ((Mem.S32((o + 124u)) != 0))
+                if ((new CamObj_v2(o).unk7C != 0))
                 {
-                    fs1 = Mem.F32((o + 44u));
-                    fs1f = Mem.F32((o + 52u));
+                    fs1 = new CamObj_v2(o).unk2C;
+                    fs1f = new CamObj_v2(o).unk34;
                     if ((func_00245788() == 0))
                     {
                         func_00239E94(o, (_fp + 464u));
-                        fs1f = (float)((float)(fs1f) + Mem.F32(((_fp + 464u) + 8u)));
+                        fs1f = (float)((float)(fs1f) + new Vec3f((_fp + 464u)).z);
                         k = 0.5f;
-                        fs1 = (float)((float)(fs1) + Mem.F32((_fp + 464u)));
+                        fs1 = (float)((float)(fs1) + new Vec3f((_fp + 464u)).x);
                         Mem.Set(0x80115DECu, sinf((fs1f * k)));
-                        Mem.Set((_fp + 32u), (float)(0));
-                        Mem.Set(((_fp + 32u) + 4u), (float)(0));
-                        Mem.Set(((_fp + 32u) + 8u), Mem.F32(0x80115DECu));
-                        Mem.Set(((_fp + 32u) + 12u), cosf((fs1f * k)));
+                        new Quat((_fp + 32u)).x_Set((float)(0));
+                        new Quat((_fp + 32u)).y_Set((float)(0));
+                        new Quat((_fp + 32u)).z_Set(Mem.F32(0x80115DECu));
+                        new Quat((_fp + 32u)).w_Set(cosf((fs1f * k)));
                         Mem.Set(0x80115DECu, sinf((fs1 * k)));
-                        Mem.Set(_fp, Mem.F32(0x80115DECu));
-                        Mem.Set((_fp + 4u), (float)(0));
-                        Mem.Set((_fp + 8u), (float)(0));
-                        Mem.Set((_fp + 12u), cosf((fs1 * k)));
-                        Mem.Set(0x80115DECu, sinf(((Mem.F32((o + 40u)) + Mem.F32((o + 48u))) * k)));
-                        Mem.Set((_fp + 16u), (float)(0));
-                        Mem.Set(((_fp + 16u) + 4u), Mem.F32(0x80115DECu));
-                        Mem.Set(((_fp + 16u) + 8u), (float)(0));
-                        Mem.Set(((_fp + 16u) + 12u), cosf(((Mem.F32((o + 40u)) + Mem.F32((o + 48u))) * k)));
+                        new Quat(_fp).x_Set(Mem.F32(0x80115DECu));
+                        new Quat(_fp).y_Set((float)(0));
+                        new Quat(_fp).z_Set((float)(0));
+                        new Quat(_fp).w_Set(cosf((fs1 * k)));
+                        Mem.Set(0x80115DECu, sinf(((new CamObj_v2(o).unk28 + new CamObj_v2(o).unk30) * k)));
+                        new Quat((_fp + 16u)).x_Set((float)(0));
+                        new Quat((_fp + 16u)).y_Set(Mem.F32(0x80115DECu));
+                        new Quat((_fp + 16u)).z_Set((float)(0));
+                        new Quat((_fp + 16u)).w_Set(cosf(((new CamObj_v2(o).unk28 + new CamObj_v2(o).unk30) * k)));
                         func_00274108((_fp + 48u), _fp, (_fp + 16u));
-                        func_00274108((o + 336u), (_fp + 48u), (o + 72u));
-                        func_00274108((o + 320u), (_fp + 32u), (o + 336u));
+                        func_00274108(new CamObj_v2(o).unk150.P, (_fp + 48u), new CamObj_v2(o).quat48.P);
+                        func_00274108(new CamObj_v2(o).unk140.P, (_fp + 32u), new CamObj_v2(o).unk150.P);
                         func_00274108((_fp + 64u), (_fp + 32u), (_fp + 48u));
                         func_002742B4((_fp + 64u), (_fp + 80u));
-                        func_00272CD0((_fp + 144u), 0.0f, Mem.F32((o + 68u)), 0.0f);
-                        func_002742B4((o + 72u), (_fp + 208u));
-                        Mem.Set((_fp + 480u), 0.0f);
-                        Mem.Set(((_fp + 480u) + 4u), 0.0f);
-                        Mem.Set(((_fp + 480u) + 8u), 0.0f);
-                        func_00233920((o + 160u), ((((o + 160u) + 4u) + (uint)(0 * 20)) + 4u), (_fp + 480u));
-                        func_002337C0((((o + 160u) + 4u) + (uint)(1 * 20)));
-                        func_002337C0((((o + 160u) + 4u) + (uint)(2 * 20)));
-                        func_002337C0((((o + 160u) + 4u) + (uint)(3 * 20)));
+                        func_00272CD0((_fp + 144u), 0.0f, new CamObj_v2(o).unk44, 0.0f);
+                        func_002742B4(new CamObj_v2(o).quat48.P, (_fp + 208u));
+                        new Vec3f((_fp + 480u)).x_Set(0.0f);
+                        new Vec3f((_fp + 480u)).y_Set(0.0f);
+                        new Vec3f((_fp + 480u)).z_Set(0.0f);
+                        func_00233920(new CamObj_v2(o).chans.P, new CamObj_v2(o).chans.ch[(int)(0)].v.P, (_fp + 480u));
+                        func_002337C0((new CamObj_v2(o).chans.ch.P + (uint)(1 * 20)));
+                        func_002337C0((new CamObj_v2(o).chans.ch.P + (uint)(2 * 20)));
+                        func_002337C0((new CamObj_v2(o).chans.ch.P + (uint)(3 * 20)));
                         if ((o != 0x801450C8u))
                         {
-                            for (n = Mem.U32((0x801450C8u + (uint)4524)); (n != 0u); n = Mem.U32((n + 4u)))
+                            for (n = Mem.U32((0x801450C8u + (uint)4524)); (n != 0u); n = new EmitNode_v2(n).next4_)
                             {
-                                func_00233920(n, (o + 56u), (_fp + 480u));
+                                func_00233920(n, new CamObj_v2(o).pos38.P, (_fp + 480u));
                             }
                         }
                         func_0026F690((_fp + 336u), (_fp + 80u), (_fp + 208u));
                         func_00272908((_fp + 336u), (_fp + 480u), (_fp + 496u));
                         func_0026F690((_fp + 336u), (_fp + 80u), (_fp + 144u));
                         func_0026F690((_fp + 400u), (_fp + 336u), (_fp + 208u));
-                        func_00272CD0((_fp + 272u), (Mem.F32((o + 56u)) + Mem.F32((_fp + 496u))), ((Mem.F32(((o + 56u) + 4u)) + Mem.F32(((_fp + 464u) + 4u))) + Mem.F32(((_fp + 496u) + 4u))), (Mem.F32(((o + 56u) + 8u)) + Mem.F32(((_fp + 496u) + 8u))));
-                        func_0026F690((o + 352u), (_fp + 400u), (_fp + 272u));
+                        func_00272CD0((_fp + 272u), (new CamObj_v2(o).pos38.x + new Vec3f((_fp + 496u)).x), ((new CamObj_v2(o).pos38.y + new Vec3f((_fp + 464u)).y) + new Vec3f((_fp + 496u)).y), (new CamObj_v2(o).pos38.z + new Vec3f((_fp + 496u)).z));
+                        func_0026F690(new CamObj_v2(o).unk160.P, (_fp + 400u), (_fp + 272u));
                     }
                     else
                     {
-                        Mem.Set(0x80115DECu, sinf((Mem.F32((o + 52u)) * 0.5f)));
-                        Mem.Set((_fp + 32u), (float)(0));
-                        Mem.Set(((_fp + 32u) + 4u), (float)(0));
-                        Mem.Set(((_fp + 32u) + 8u), Mem.F32(0x80115DECu));
-                        Mem.Set(((_fp + 32u) + 12u), cosf((Mem.F32((o + 52u)) * 0.5f)));
-                        Mem.Set(0x80115DECu, sinf((Mem.F32((o + 44u)) * 0.5f)));
-                        Mem.Set(_fp, Mem.F32(0x80115DECu));
-                        Mem.Set((_fp + 4u), (float)(0));
-                        Mem.Set((_fp + 8u), (float)(0));
-                        Mem.Set((_fp + 12u), cosf((Mem.F32((o + 44u)) * 0.5f)));
-                        sn = sinf(((Mem.F32((o + 40u)) + Mem.F32((o + 48u))) * 0.5f));
-                        Mem.Set((_fp + 16u), (float)(0));
-                        Mem.Set(((_fp + 16u) + 4u), sn);
-                        Mem.Set(((_fp + 16u) + 8u), (float)(0));
+                        Mem.Set(0x80115DECu, sinf((new CamObj_v2(o).unk34 * 0.5f)));
+                        new Quat((_fp + 32u)).x_Set((float)(0));
+                        new Quat((_fp + 32u)).y_Set((float)(0));
+                        new Quat((_fp + 32u)).z_Set(Mem.F32(0x80115DECu));
+                        new Quat((_fp + 32u)).w_Set(cosf((new CamObj_v2(o).unk34 * 0.5f)));
+                        Mem.Set(0x80115DECu, sinf((new CamObj_v2(o).unk2C * 0.5f)));
+                        new Quat(_fp).x_Set(Mem.F32(0x80115DECu));
+                        new Quat(_fp).y_Set((float)(0));
+                        new Quat(_fp).z_Set((float)(0));
+                        new Quat(_fp).w_Set(cosf((new CamObj_v2(o).unk2C * 0.5f)));
+                        sn = sinf(((new CamObj_v2(o).unk28 + new CamObj_v2(o).unk30) * 0.5f));
+                        new Quat((_fp + 16u)).x_Set((float)(0));
+                        new Quat((_fp + 16u)).y_Set(sn);
+                        new Quat((_fp + 16u)).z_Set((float)(0));
                         Mem.Set(0x80115DECu, sn);
-                        Mem.Set(((_fp + 16u) + 12u), cosf(((Mem.F32((o + 40u)) + Mem.F32((o + 48u))) * 0.5f)));
+                        new Quat((_fp + 16u)).w_Set(cosf(((new CamObj_v2(o).unk28 + new CamObj_v2(o).unk30) * 0.5f)));
                         func_00274108((_fp + 48u), _fp, (_fp + 16u));
-                        Mem.Copy((o + 336u), (_fp + 48u), 16);
-                        func_00274108((o + 320u), (_fp + 32u), (o + 336u));
+                        Mem.Copy(new CamObj_v2(o).unk150.P, (_fp + 48u), 16);
+                        func_00274108(new CamObj_v2(o).unk140.P, (_fp + 32u), new CamObj_v2(o).unk150.P);
                         func_002742B4((_fp + 48u), (_fp + 80u));
-                        func_00272CD0((_fp + 272u), Mem.F32((o + 56u)), Mem.F32(((o + 56u) + 4u)), Mem.F32(((o + 56u) + 8u)));
-                        func_0026F690((o + 352u), (_fp + 80u), (_fp + 272u));
+                        func_00272CD0((_fp + 272u), new CamObj_v2(o).pos38.x, new CamObj_v2(o).pos38.y, new CamObj_v2(o).pos38.z);
+                        func_0026F690(new CamObj_v2(o).unk160.P, (_fp + 80u), (_fp + 272u));
                     }
-                    Mem.Set(((o + 304u) + 4u), fs1);
-                    Mem.Set(((o + 304u) + 12u), fs1f);
-                    Mem.Set(((o + 304u) + 8u), Mem.F32((o + 40u)));
+                    new CamObj_v2(o).unk130.y_Set(fs1);
+                    new CamObj_v2(o).unk130.w_Set(fs1f);
+                    new CamObj_v2(o).unk130.z_Set(new CamObj_v2(o).unk28);
                 }
             }
         }

@@ -16,14 +16,14 @@ public static partial class Game
                 uint p = _fp;
                 int n = 0;
                 int two = 0;
-                Mem.Set(p, (int)(Mem.F32((o + 48u))));
-                switch ((int)(Mem.U8((d + 30u))))
+                Mem.Set(p, (int)(new Obj5124(o).unk30));
+                switch ((int)(new Def5124(d).mode))
                 {
                 case 0:
                     if ((Mem.S32(p) >= (Mem.S32(lenp) - 1)))
                     {
                         Mem.Set(p, (Mem.S32(lenp) - 1));
-                        Mem.Set((o + 44u), (float)(Mem.S32(lenp)));
+                        new Obj5124(o).unk2C_Set((float)(Mem.S32(lenp)));
                     }
                     break;
                 case 1:
@@ -58,11 +58,11 @@ public static partial class Game
                     Mem.Set(p, (func_00274544() % Mem.S32(lenp)));
                     break;
                 case 5:
-                    if ((Mem.S32((o + 56u)) == (-1)))
+                    if ((new Obj5124(o).unk38 == (-1)))
                     {
-                        Mem.Set((o + 56u), (func_00274544() % Mem.S32(lenp)));
+                        new Obj5124(o).unk38_Set((func_00274544() % Mem.S32(lenp)));
                     }
-                    Mem.Set(p, Mem.S32((o + 56u)));
+                    Mem.Set(p, new Obj5124(o).unk38);
                     break;
                 }
                 return Mem.S32(_fp);

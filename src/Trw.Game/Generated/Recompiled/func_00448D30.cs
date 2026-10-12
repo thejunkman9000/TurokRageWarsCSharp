@@ -37,7 +37,7 @@ public static partial class Game
                 r17 = r5;
                 Mem.Set((r29 + 80u), r31);
                 Mem.Set((r29 + 72u), r22);
-                Mem.Set((r29 + 48u), r16); r2 = (uint)__osCheckId(r4);
+                Mem.Set((r29 + 48u), r16); r2 = __osCheckId(r4, r5, r6, r7); r3 = Cpu.V1;
                 r3 = (uint)2;
                 { bool c_ = r2 == r3; r2 = r3; if (c_) goto L_L00448E78; }
                 r2 = Mem.U32((r18 + 80u));

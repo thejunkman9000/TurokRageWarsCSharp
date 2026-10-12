@@ -41,7 +41,7 @@ public static partial class Game
                 if (r2 == 0) { r3 = (uint)1; goto L_L00419720; }
                 L_L00419720: ;
                 { bool c_ = r3 == 0;  if (c_) goto L_L00419730; }
-                r4 = r17; r2 = func_00419510(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r17; func_00419510(r4);
                 L_L00419730: ;
                 r31 = Mem.U32((r29 + 24u));
                 r17 = Mem.U32((r29 + 20u));

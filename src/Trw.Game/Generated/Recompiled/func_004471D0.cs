@@ -39,7 +39,7 @@ public static partial class Game
                 r2 = Mem.U32((r18 + 0u));
                 r2 = r2 & 1u;
                 { bool c_ = r2 == 0; r2 = (uint)5; if (c_) goto L_L004473D8; }
-                r4 = r18; r2 = (uint)__osCheckId(r4);
+                r4 = r18; r2 = __osCheckId(r4, r5, r6, r7); r3 = Cpu.V1;
                 r3 = (uint)2;
                 { bool c_ = r2 == r3; r2 = r3; if (c_) goto L_L004473D8; }
                 r2 = Mem.U8((r18 + 101u));
@@ -80,7 +80,7 @@ public static partial class Game
                 L_L004472E0: ;
                 r5 = r29 + 32u;
                 r6 = r0;
-                r7 = r16; r2 = __osPfsRWInode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = r16; r2 = (uint)__osPfsRWInode(r4, r5, (byte)r6, (byte)r7);
                 { bool c_ = r2 != 0; r4 = r18; if (c_) goto L_L004473D8; }
                 r5 = r29 + 32u;
                 r6 = r17;
@@ -91,7 +91,7 @@ public static partial class Game
                 { bool c_ = r2 != 0; r4 = r18; if (c_) goto L_L004473D8; }
                 r5 = r29 + 32u;
                 r6 = (uint)1;
-                r7 = r16; r2 = __osPfsRWInode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = r16; r2 = (uint)__osPfsRWInode(r4, r5, (byte)r6, (byte)r7);
                 { bool c_ = r2 != 0;  if (c_) goto L_L004473D8; }
                 r2 = Mem.U16((r29 + 326u));
                 { bool c_ = r2 == r21;  if (c_) goto L_L0044735C; }

@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0041A4B0", (uint)o, (uint)v);
-            Mem.Set((o + 88u), v);
+            new O3B60(o).state_Set(v);
             switch (v)
             {
             case 1:

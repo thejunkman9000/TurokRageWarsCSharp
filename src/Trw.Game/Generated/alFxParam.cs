@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("alFxParam", (uint)filter, (uint)paramID, (uint)param);
             if ((paramID == 1))
             {
-                Mem.Set(filter, param);
+                new ALFilter(filter).source__Set(param);
             }
             return 0;
         }

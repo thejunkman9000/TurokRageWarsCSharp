@@ -16,23 +16,23 @@ public static partial class Game
                 Mem.Copy(_fp + 16u, k_in, 8);
                 if (Dbg.On) Dbg.Enter("func_00267EE8", (uint)a, (uint)src, (uint)c, (uint)pos_in);
                 uint p = 0u;
-                if ((((int)(Mem.U8(src)) == 1) && ((Mem.U32((src + 256u)) & (uint)(3145728)) != 0u)))
+                if ((((int)(Mem.U8(src)) == 1) && ((new Actor(src).flags & (uint)(3145728)) != 0u)))
                 {
-                    p = Mem.U32((Mem.U32((src + 472u)) + (uint)1500));
+                    p = Mem.U32((new Actor(src).owner_ + (uint)1500));
                     if ((p == 0u))
                     {
                         goto L_tail;
                     }
-                    func_00237E70(0x80145088u, p, (uint)(Mem.S32(Mem.U32((0x800D7F84u + (uint)(Mem.S32((_fp + 16u)) * 8))))), default(uint));
+                    func_00237E70(0x80145088u, p, (uint)(Mem.S32(new B15Snd((0x800D7F84u + (uint)(new B15Idx((_fp + 16u)).idx * 8))).a_)));
                 }
                 else
                 {
-                    func_00237E70(0x80145088u, (0x80145088u + (uint)64), (uint)(Mem.S32(Mem.U32((0x800D7F84u + (uint)(Mem.S32((_fp + 16u)) * 8))))), default(uint));
+                    func_00237E70(0x80145088u, (0x80145088u + (uint)64), (uint)(Mem.S32(new B15Snd((0x800D7F84u + (uint)(new B15Idx((_fp + 16u)).idx * 8))).a_)));
                 }
                 L_tail: ;
-                if ((Mem.S32(((0x800D7F84u + (uint)(Mem.S32((_fp + 16u)) * 8)) + 4u)) != 0))
+                if ((new B15Snd((0x800D7F84u + (uint)(new B15Idx((_fp + 16u)).idx * 8))).b != 0))
                 {
-                    func_0025E13C(Mem.S32(((0x800D7F84u + (uint)(Mem.S32((_fp + 16u)) * 8)) + 4u)));
+                    func_0025E13C(new B15Snd((0x800D7F84u + (uint)(new B15Idx((_fp + 16u)).idx * 8))).b);
                 }
             }
         }

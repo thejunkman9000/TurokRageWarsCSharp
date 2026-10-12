@@ -20,22 +20,22 @@ public static partial class Game
             for (i = 0; (i < n); r += 20u, ++i)
             {
                 ok = 1;
-                if ((Mem.S32(0x8011FE88u) != 4))
+                if ((new SessMgr(0x8011FE88u).mode != 4))
                 {
                     ok = ((func_0028BBE8(0x8011FE88u, r) == 0) ? 1 : 0);
                 }
                 if ((ok != 0))
                 {
                     hit = 1;
-                    fe = Mem.U8((r + 14u));
-                    if (((!(((int)(fe) & 32) != 0) && (m3 != (uint)(0))) && (((uint)(Mem.S32(r)) & m3) != 0u)))
+                    fe = new Rec14(r).flagsE;
+                    if (((!(((int)(fe) & 32) != 0) && (m3 != (uint)(0))) && (((uint)(new Rec14(r).w0) & m3) != 0u)))
                     {
-                        Mem.Set((r + 14u), (byte)(((int)(fe) | 64)));
-                        if (((int)(Mem.U8((r + 15u))) != 0))
+                        new Rec14(r).flagsE_Set((byte)(((int)(fe) | 64)));
+                        if (((int)(new Rec14(r).b0F) != 0))
                         {
-                            if ((func_0028C400(0x8011FE88u, (int)(Mem.U8((r + 15u)))) != 0))
+                            if ((func_0028C400(0x8011FE88u, (int)(new Rec14(r).b0F)) != 0))
                             {
-                                func_0028C490(0x8011FE88u, (int)(Mem.U8((r + 15u))));
+                                func_0028C490(0x8011FE88u, (int)(new Rec14(r).b0F));
                             }
                         }
                         else
@@ -46,17 +46,17 @@ public static partial class Game
                     }
                     if ((m2 != (uint)(0)))
                     {
-                        v = ((uint)(Mem.S32(r)) & m2);
+                        v = ((uint)(new Rec14(r).w0) & m2);
                         hit = ((v != (uint)(0)) ? 1 : 0);
                     }
                     if ((m3 != (uint)(0)))
                     {
-                        if ((((uint)(Mem.S32(r)) & m3) == (uint)(0)))
+                        if ((((uint)(new Rec14(r).w0) & m3) == (uint)(0)))
                         {
                             hit = 0;
                         }
                     }
-                    v = ((uint)(Mem.S32(r)) & m5);
+                    v = ((uint)(new Rec14(r).w0) & m5);
                     if ((v != (uint)(0)))
                     {
                         if (((v & m4) == (uint)(0)))
@@ -74,16 +74,16 @@ public static partial class Game
                     }
                     if ((hit != 0))
                     {
-                        if (((int)(Mem.U8((r + 15u))) != 0))
+                        if (((int)(new Rec14(r).b0F) != 0))
                         {
-                            if (!(((int)(Mem.U8((r + 14u))) & 128) != 0))
+                            if (!(((int)(new Rec14(r).flagsE) & 128) != 0))
                             {
                                 func_0028BAF8(0x8011FE88u, r, 1);
-                                Mem.Set((r + 14u), (byte)((int)(Mem.U8((r + 14u))) | 128));
-                                func_0028BD28(0x8011FE88u, (int)(Mem.U8((r + 15u))));
-                                if ((func_0028BD88(0x8011FE88u, (int)(Mem.U8((r + 15u)))) != 0))
+                                new Rec14(r).flagsE_Set((byte)((int)(new Rec14(r).flagsE) | 128));
+                                func_0028BD28(0x8011FE88u, (int)(new Rec14(r).b0F));
+                                if ((func_0028BD88(0x8011FE88u, (int)(new Rec14(r).b0F)) != 0))
                                 {
-                                    func_0028C34C(0x8011FE88u, (int)(Mem.U8((r + 15u))));
+                                    func_0028C34C(0x8011FE88u, (int)(new Rec14(r).b0F));
                                 }
                             }
                         }

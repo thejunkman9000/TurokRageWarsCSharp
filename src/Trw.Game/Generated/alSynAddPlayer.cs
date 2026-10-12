@@ -12,9 +12,9 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("alSynAddPlayer", (uint)drvr, (uint)client);
             uint mask = 0u;
             mask = osSetIntMask((uint)(1));
-            Mem.Set((client + 16u), Mem.S32((drvr + 32u)));
-            Mem.Set(client, Mem.U32(drvr));
-            Mem.Set(drvr, client);
+            new ALPlayer(client).samplesLeft_Set(new ALSynth(drvr).curSamples);
+            new ALPlayer(client).next__Set(new ALSynth(drvr).head_);
+            new ALSynth(drvr).head__Set(client);
             osSetIntMask(mask);
         }
     }

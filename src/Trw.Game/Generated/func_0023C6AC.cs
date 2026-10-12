@@ -17,7 +17,7 @@ public static partial class Game
             uint n = 0u;
             for (i = 0; (i < 24); ++i)
             {
-                uint v = Mem.U32((0x80103B5Cu + (uint)(i * 16)));
+                uint v = new SlotCnt((0x80103B5Cu + (uint)(i * 16))).cnt;
                 if ((v > max))
                 {
                     max = v;
@@ -26,17 +26,17 @@ public static partial class Game
                 {
                     min = v;
                 }
-                Mem.Set((0x80103B5Cu + (uint)(i * 16)), (v + (uint)(1)));
+                new SlotCnt((0x80103B5Cu + (uint)(i * 16))).cnt_Set((v + (uint)(1)));
             }
             total = (uint)(0);
-            for (n = 0x80103F88u; (n != 0u); n = Mem.U32(n))
+            for (n = 0x80103F88u; (n != 0u); n = new BlkNode(n).next_)
             {
-                total = (uint)((uint)(total) + (uint)(((int)(Mem.U16((n + 6u))) << (int)12)));
+                total = (uint)((uint)(total) + (uint)(((int)(new BlkNode(n).pages) << (int)12)));
             }
-            Mem.Set((0x80103240u + 12u), total);
-            Mem.Set(0x80103240u, max);
-            Mem.Set((0x80103240u + 4u), min);
-            Mem.Set((0x80103240u + 8u), Mem.S32((Mem.U32(0x80103E20u) + 12u)));
+            new BlkStats(0x80103240u).total_Set(total);
+            new BlkStats(0x80103240u).max_Set(max);
+            new BlkStats(0x80103240u).min_Set(min);
+            new BlkStats(0x80103240u).f8_Set(new Obj0C(Mem.U32(0x80103E20u)).fC);
         }
     }
 

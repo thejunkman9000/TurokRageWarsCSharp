@@ -11,9 +11,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00284890", (uint)o);
             float r = 0.0f;
-            if ((Mem.S32((Mem.U32((o + 280u)) + 20u)) == 0))
+            if ((new B19Obj(o).parent.unk14 == 0))
             {
-                r = Mem.F32((o + 388u));
+                r = new B19Obj(o).unk184;
             }
             return r;
         }

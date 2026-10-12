@@ -10,12 +10,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00254DD0");
-            uint n = Mem.U32((0x801050F8u + (uint)(0 * 20)));
+            uint n = new B12List((0x801050F8u + (uint)(0 * 20))).head_;
             if ((n != 0u))
             {
                 func_00255E78((0x801050F8u + (uint)(0 * 20)), n, default(uint), default(uint));
-                Mem.Set((n + 16u), (uint)(1));
-                func_00255C58((0x801050F8u + (uint)(1 * 20)), n, default(uint), default(uint));
+                new B12Node(n).unk10_Set((uint)(1));
+                func_00255C58((0x801050F8u + (uint)(1 * 20)), n);
             }
             return n;
         }

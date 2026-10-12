@@ -26,57 +26,57 @@ public static partial class Game
             {
                 do
                 {
-                    if ((Mem.S32((m + 4u)) != 1))
+                    if ((new B14Mgr(m).b != 1))
                     {
-                        if ((Mem.S32((m + 4u)) >= 2))
+                        if ((new B14Mgr(m).b >= 2))
                         {
-                            Mem.Set((m + 4u), 0);
+                            new B14Mgr(m).b_Set(0);
                         }
                         else
                         {
-                            if ((Mem.S32((m + 4u)) != 0))
+                            if ((new B14Mgr(m).b != 0))
                             {
-                                Mem.Set((m + 4u), 0);
+                                new B14Mgr(m).b_Set(0);
                             }
                             else
                             {
-                                Mem.Set((m + 4u), 1);
+                                new B14Mgr(m).b_Set(1);
                             }
                         }
                     }
                     else
                     {
-                        Mem.Set((m + 4u), 2);
+                        new B14Mgr(m).b_Set(2);
                     }
                 }
                 while ((0 != 0));
-                func_00264D00(default(uint), default(uint), default(uint), default(uint));
-                Mem.Set((m + 12u), Mem.S32(0x8013B2BCu));
-                if (((int)(Mem.U8((0x801462C8u + 29u))) == 0))
+                func_00264D00();
+                new B14Mgr(m).d_Set(Mem.S32(0x8013B2BCu));
+                if (((int)(new B14G2(0x801462C8u).f1D) == 0))
                 {
                     p = (uint)(func_0022A404((0x801462C8u - (uint)4744)));
                     if ((p != 0u))
                     {
-                        if (((Mem.S32((m + 4u)) == 1) && ((Mem.S32(0x8013B2BCu) != Mem.S32((p + 1516u))) || ((uint)(((int)(Mem.U16((p + 1616u))) - 22)) < (uint)(12)))))
+                        if (((new B14Mgr(m).b == 1) && ((Mem.S32(0x8013B2BCu) != new B14Pl_v2(p).f5EC) || ((uint)(((int)(new B14Pl_v2(p).f650) - 22)) < (uint)(12)))))
                         {
-                            Mem.Set((m + 4u), 2);
+                            new B14Mgr(m).b_Set(2);
                         }
-                        Mem.Set((m + 12u), Mem.S32((p + 1516u)));
+                        new B14Mgr(m).d_Set(new B14Pl_v2(p).f5EC);
                     }
                 }
             }
             else
             {
-                Mem.Set((m + 4u), 0);
+                new B14Mgr(m).b_Set(0);
             }
-            if ((Mem.S32((m + 4u)) != 0))
+            if ((new B14Mgr(m).b != 0))
             {
-                Mem.Set((m + 8u), 240);
-                Mem.Set(m, 1);
+                new B14Mgr(m).c_Set(240);
+                new B14Mgr(m).a_Set(1);
                 return;
             }
-            Mem.Set((m + 8u), 0);
-            Mem.Set(m, 0);
+            new B14Mgr(m).c_Set(0);
+            new B14Mgr(m).a_Set(0);
         }
     }
 

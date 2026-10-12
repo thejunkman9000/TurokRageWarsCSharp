@@ -17,7 +17,7 @@ public static partial class Game
                 int res = 0;
                 uint ctx = 0u;
                 int r = 0;
-                if ((((int)(Mem.U8(o)) == 1) && ((Mem.U32((o + 256u)) & (uint)(3145728)) != 0u)))
+                if ((((int)(new B10Obj(o).type) == 1) && ((new B10Obj(o).flags100 & (uint)(3145728)) != 0u)))
                 {
                     ctx = 0x801040D0u;
                 }

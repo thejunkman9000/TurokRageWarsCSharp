@@ -16,15 +16,15 @@ public static partial class Game
             int sum = 0;
             int i = 0;
             uint idx = 0u;
-            for (a = Mem.U32((g + 32u)); (a != 0u); a = Mem.U32((a + 5856u)))
+            for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
             {
-                idx = (((uint)(a) - (uint)(Mem.U32((g + 4u)))) / (uint)(5864));
+                idx = (((uint)(a) - (uint)(new PlrGroup(g).unk4_)) / (uint)(5864));
                 sum = 0;
                 for (i = 0; (i < 8); ++i)
                 {
                     if (((uint)(i) != idx))
                     {
-                        sum = (int)((int)(sum) + (int)(Mem.S16(((Mem.U32((a + 1496u)) + 60u) + (uint)(i * 2)))));
+                        sum = (int)((int)(sum) + (int)(new Plr(a).stats.unk3C[(int)(i)]));
                         if ((max < sum))
                         {
                             max = sum;

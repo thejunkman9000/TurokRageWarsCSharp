@@ -11,10 +11,10 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0025D404", (uint)fx);
             uint p = 0u;
-            if (((Mem.S32((fx + 8u)) != 2) && (Mem.S32((fx + 8u)) != 0)))
+            if (((new SndFx(fx).unk8 != 2) && (new SndFx(fx).unk8 != 0)))
             {
-                Mem.Set((fx + 8u), 2);
-                p = func_00258D60(Mem.U32(fx));
+                new SndFx(fx).unk8_Set(2);
+                p = func_00258D60(new SndFx(fx).owner_);
                 alSndpSetSound(p, (short)((int)(Mem.S16(((fx + 28u) + (uint)(1 * 2))))));
                 alSndpStop(p);
             }

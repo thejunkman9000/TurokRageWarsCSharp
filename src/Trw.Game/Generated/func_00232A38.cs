@@ -11,9 +11,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00232A38", (uint)a0, (uint)state);
             float k = Mem.F32(0x800C8108u);
-            Mem.Set((state + 44u), 0x800CF298u);
-            Mem.Set((state + 264u), 0x0022FC10u);
-            Mem.Set((state + 268u), 0x0023292Cu);
+            new ActorState(state).table_Set(0x800CF298u);
+            new ActorState(state).fn108_Set(0x0022FC10u);
+            new ActorState(state).fn10C_Set(0x0023292Cu);
             Mem.Set((state + (uint)292), 0);
             Mem.Set((state + (uint)296), 0);
             Mem.Set((state + (uint)304), 0);

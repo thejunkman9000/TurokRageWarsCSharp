@@ -71,7 +71,7 @@ public static partial class Game
                 Mem.Set((r29 + 84u), r0);
                 Mem.Set((r29 + 88u), r0); goto L_L00441844;
                 L_L0044183C: ;
-                r5 = r29 + 80u; r2 = func_0043F69C(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r29 + 80u; func_0043F69C(r4, r5);
                 L_L00441844: ;
                 r3 = Mem.U32((r29 + 100u));
                 r4 = Mem.U32((r29 + 60u));
@@ -180,7 +180,7 @@ public static partial class Game
                 r2 = Mem.U32((r16 + 8u));
                 r2 = r2 & r21;
                 { bool c_ = r2 == 0; r4 = r16; if (c_) goto L_L00441A34; }
-                r5 = r29 + 80u; r2 = func_0043F69C(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r29 + 80u; func_0043F69C(r4, r5);
                 Mem.Set((r29 + 84u), r0);
                 Mem.Set((r29 + 88u), r0);
                 Cpu.SetW(0, Mem.U32((r22 + 676u)));
@@ -193,7 +193,7 @@ public static partial class Game
                 Mem.Set((r29 + 108u), Cpu.W(5));
                 r3 = r29 + 120u; goto L_L00441A40;
                 L_L00441A34: ;
-                r5 = r29 + 80u; r2 = func_0043F69C(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r29 + 80u; func_0043F69C(r4, r5);
                 r3 = r29 + 120u;
                 L_L00441A40: ;
                 r2 = r29 + 80u;
@@ -353,7 +353,7 @@ public static partial class Game
                 r2 = r2 & 255u;
                 L_L00441CC8: ;
                 Mem.Set((r29 + 36u), r2);
-                r4 = r3; r2 = func_002A8DD4(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), Mem.U32(r29 + 32u), Mem.U32(r29 + 36u)); r3 = Cpu.V1;
+                r4 = r3; func_002A8DD4((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u), (byte)Mem.U32(r29 + 24u), (byte)Mem.U32(r29 + 28u), (byte)Mem.U32(r29 + 32u), (byte)Mem.U32(r29 + 36u));
                 r2 = (uint)-1;
                 r1 = 2148401152u;
                 Mem.Set((r1 + 24176u), r2);

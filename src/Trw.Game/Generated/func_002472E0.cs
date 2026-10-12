@@ -26,94 +26,94 @@ public static partial class Game
                 float tmp = 0f;
                 if ((Mem.S32((0x8011FE88u + (uint)(0 * 4))) == 4))
                 {
-                    if (((int)(Mem.S8((o + 271u))) == 0))
+                    if (((int)(new B10Obj(o).b10F) == 0))
                     {
-                        Mem.Set((o + 270u), (sbyte)(1));
+                        new B10Obj(o).b10E_Set((sbyte)(1));
                     }
-                    if (((int)(Mem.S8(((o + 280u) + 11u))) == 0))
+                    if (((int)(new B10Obj(o).an118.b123) == 0))
                     {
-                        Mem.Set(((o + 280u) + 10u), (sbyte)(1));
+                        new B10Obj(o).an118.b122_Set((sbyte)(1));
                     }
-                    if (!((((int)(Mem.S8((o + 271u))) != 0) || ((Mem.U32((o + 256u)) & (uint)(1024)) != 0u)) && ((Mem.U32((o + 256u)) & (uint)(8192)) != 0u)))
+                    if (!((((int)(new B10Obj(o).b10F) != 0) || ((new B10Obj(o).flags100 & (uint)(1024)) != 0u)) && ((new B10Obj(o).flags100 & (uint)(8192)) != 0u)))
                     {
                         return;
                     }
                 }
-                r = func_002518DC((uint)(0), (uint)(Mem.S32((o + 200u))), (uint)(Mem.S32((o + 200u))), (uint)(((((int)(Mem.S8((o + 230u))) * 4) + 15) & (~7))), (uint)(4), (uint)(0), (uint)(0), 0x800C8A24u, (uint)(0));
+                r = func_002518DC(0, (uint)(new B10Obj(o).fC8), new B10Obj(o).fC8, (uint)(((((int)(new B10Obj(o).bE6) * 4) + 15) & (~7))), 4, (uint)(0), (uint)(0), 0x800C8A24u, 0);
                 s3 = (o + 260u);
                 if ((r != 0u))
                 {
-                    s2 = (o + 280u);
-                    func_00261690(s3, (uint)((int)(Mem.U32(r))), (uint)(Mem.S32((o + 200u))), (uint)(1), (_fp + 128u), s2);
+                    s2 = new B10Obj(o).an118.P;
+                    func_00261690(s3, (uint)((int)(Mem.U32(r))), (uint)(new B10Obj(o).fC8), (uint)(1), (_fp + 128u), s2);
                     if ((func_002624F8(s3) != 0))
                     {
                         func_0026195C(s3, _fp, (_fp + 132u), o);
                         fs0 = Mem.F32((_fp + 132u));
                         Mem.Copy((_fp + 32u), _fp, 12);
-                        if (((Mem.S32((_fp + 128u)) != 0) && ((int)(Mem.S16((s2 + 4u))) != (-1))))
+                        if (((Mem.S32((_fp + 128u)) != 0) && ((int)(new B10An(s2).h4) != (-1))))
                         {
                             cv = func_00262584(s3, default(uint), default(uint), default(uint));
-                            if ((Mem.U16(cv) != 0))
+                            if ((new B10Cv(cv).h0 != 0))
                             {
-                                Mem.Set((o + 256u), (uint)((uint)(Mem.U32((o + 256u))) | (uint)(1024)));
-                                Mem.Set((o + 300u), (short)(Mem.U16(cv)));
-                                Mem.Set((o + 308u), (float)(0));
-                                Mem.Set((o + 312u), Mem.U8((cv + 5u)));
-                                Mem.Set((o + 313u), Mem.U8((cv + 7u)));
+                                new B10Obj(o).flags100_Set((uint)((uint)(new B10Obj(o).flags100) | (uint)(1024)));
+                                new B10Obj(o).h12C_Set((short)(new B10Cv(cv).h0));
+                                new B10Obj(o).f134_Set((float)(0));
+                                new B10Obj(o).b138_Set(new B10Cv(cv).b5);
+                                new B10Obj(o).b139_Set(new B10Cv(cv).b7);
                             }
                             else
                             {
-                                Mem.Set((o + 256u), (uint)((uint)(Mem.U32((o + 256u))) & (uint)((~1024))));
+                                new B10Obj(o).flags100_Set((uint)((uint)(new B10Obj(o).flags100) & (uint)((~1024))));
                             }
                         }
-                        if (((Mem.U32((o + 256u)) & (uint)(1024)) != 0u))
+                        if (((new B10Obj(o).flags100 & (uint)(1024)) != 0u))
                         {
-                            func_00261690(s2, (uint)((int)(Mem.U32(r))), (uint)(Mem.S32((o + 200u))), (uint)(0), 0u, 0u);
+                            func_00261690(s2, (uint)((int)(Mem.U32(r))), (uint)(new B10Obj(o).fC8), (uint)(0), 0u, 0u);
                             if ((func_002624F8(s2) != 0))
                             {
-                                fv0 = (Mem.F32((o + 308u)) + Mem.F32(0x800D2988u));
-                                fv1f = (float)(Mem.S16((o + 300u)));
-                                Mem.Set((o + 308u), fv0);
+                                fv0 = (new B10Obj(o).f134 + Mem.F32(0x800D2988u));
+                                fv1f = (float)(new B10Obj(o).h12C);
+                                new B10Obj(o).f134_Set(fv0);
                                 if ((fv1f < fv0))
                                 {
-                                    Mem.Set((o + 256u), (uint)((uint)(Mem.U32((o + 256u))) & (uint)((~1024))));
+                                    new B10Obj(o).flags100_Set((uint)((uint)(new B10Obj(o).flags100) & (uint)((~1024))));
                                 }
                                 else
                                 {
-                                    fv1 = (float)(Mem.U8((o + 313u)));
-                                    ft0 = (float)(Mem.U8((o + 312u)));
+                                    fv1 = (float)(new B10Obj(o).b139);
+                                    ft0 = (float)(new B10Obj(o).b138);
                                     t = (fv0 / (fv1f + Mem.F32(0x800D2988u)));
-                                    Mem.Set((o + 304u), (((((((fv1 + Mem.F32(0x800C8A38u)) + ft0) * t) * t) * t) + ((((Mem.F32(0x800C8A3Cu) - fv1) - (2.0f * ft0)) * t) * t)) + (ft0 * t)));
-                                    func_0026195C((o + 280u), (_fp + 16u), (_fp + 136u), o);
-                                    func_00272038((_fp + 32u), Mem.F32((o + 304u)), (_fp + 16u), _fp);
-                                    fs0 = func_00273F54(Mem.F32((o + 304u)), Mem.F32((_fp + 136u)), Mem.F32((_fp + 132u)));
+                                    new B10Obj(o).f130_Set((((((((fv1 + Mem.F32(0x800C8A38u)) + ft0) * t) * t) * t) + ((((Mem.F32(0x800C8A3Cu) - fv1) - (2.0f * ft0)) * t) * t)) + (ft0 * t)));
+                                    func_0026195C(new B10Obj(o).an118.P, (_fp + 16u), (_fp + 136u), o);
+                                    func_00272038((_fp + 32u), new B10Obj(o).f130, (_fp + 16u), _fp);
+                                    fs0 = func_00273F54(new B10Obj(o).f130, Mem.F32((_fp + 136u)), Mem.F32((_fp + 132u)));
                                 }
                                 func_002624C8(s2);
                             }
                             else
                             {
-                                Mem.Set((o + 256u), (uint)((uint)(Mem.U32((o + 256u))) & (uint)((~1024))));
+                                new B10Obj(o).flags100_Set((uint)((uint)(new B10Obj(o).flags100) & (uint)((~1024))));
                             }
                         }
                         func_002624C8(s3);
-                        if (((Mem.U32((o + 256u)) & (uint)(131072)) != 0u))
+                        if (((new B10Obj(o).flags100 & (uint)(131072)) != 0u))
                         {
-                            Mem.Set((o + 108u), (Mem.F32((o + 108u)) - fs0));
-                            func_00274090((o + 108u));
-                            tmp = Mem.F32(((_fp + 32u) + 4u));
-                            Mem.Set(((_fp + 32u) + 4u), (float)(0));
-                            Mem.Set(((_fp + 32u) + 8u), tmp);
-                            func_00273744((_fp + 64u), Mem.F32((o + 108u)));
+                            new B10Obj(o).f6C_Set((new B10Obj(o).f6C - fs0));
+                            func_00274090((o + 108u), default(uint), default(uint), default(uint));
+                            tmp = new Vec3f((_fp + 32u)).y;
+                            new Vec3f((_fp + 32u)).y_Set((float)(0));
+                            new Vec3f((_fp + 32u)).z_Set(tmp);
+                            func_00273744((_fp + 64u), new B10Obj(o).f6C);
                             func_00272908((_fp + 64u), (_fp + 32u), (_fp + 48u));
-                            Mem.Set((o + (uint)8), (Mem.F32((o + (uint)8)) + (Mem.F32((_fp + 48u)) * Mem.F32((o + (uint)80)))));
-                            Mem.Set((o + (uint)16), (Mem.F32((o + (uint)16)) + (Mem.F32(((_fp + 48u) + 8u)) * Mem.F32((o + (uint)88)))));
+                            Mem.Set((o + (uint)8), (Mem.F32((o + (uint)8)) + (new Vec3f((_fp + 48u)).x * Mem.F32((o + (uint)80)))));
+                            Mem.Set((o + (uint)16), (Mem.F32((o + (uint)16)) + (new Vec3f((_fp + 48u)).z * Mem.F32((o + (uint)88)))));
                         }
                         else
                         {
-                            if ((!((Mem.U32((o + 256u)) & (uint)(3145728)) != 0u) && ((int)(Mem.U16((o + 228u))) == 311)))
+                            if ((!((new B10Obj(o).flags100 & (uint)(3145728)) != 0u) && ((int)(new B10Obj(o).hE4) == 311)))
                             {
-                                Mem.Set((o + 108u), (Mem.F32((o + 108u)) - fs0));
-                                func_00274090((o + 108u));
+                                new B10Obj(o).f6C_Set((new B10Obj(o).f6C - fs0));
+                                func_00274090((o + 108u), default(uint), default(uint), default(uint));
                             }
                         }
                     }

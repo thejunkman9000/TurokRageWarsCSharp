@@ -38,14 +38,14 @@ public static partial class Game
                 L_b3: ;
                 a0 = 300;
                 L_join: ;
-                if ((((Mem.S32(0x8014694Cu) == 0) && (a1 == 1)) && ((float)((a0 * 15)) < Mem.F32(0x800D2CA0u))))
+                if ((((Mem.S32(0x8014694Cu) == 0) && (a1 == 1)) && ((float)((a0 * 15)) < new TimerVar(0x800D2CA0u).t)))
                 {
-                    func_0042E7CC((uint)(a0), default(uint), default(uint), default(uint));
+                    func_0042E7CC();
                     func_0042E080(default(uint), default(uint), default(uint), default(uint));
                     func_002A33F8(0.0f);
                 }
-                Mem.Set(0x800D2CA0u, (Mem.F32(0x800D2CA0u) + Mem.F32(0x800D2988u)));
-                fl = Mem.S32((0x800D2CA0u + 4u));
+                new TimerVar(0x800D2CA0u).t_Set((new TimerVar(0x800D2CA0u).t + Mem.F32(0x800D2988u)));
+                fl = new TimerVar(0x800D2CA0u).flag;
                 if ((fl == 1))
                 {
                     Mem.Set(0x800D0E54u, (Mem.S32(0x800D0E54u) - 1));

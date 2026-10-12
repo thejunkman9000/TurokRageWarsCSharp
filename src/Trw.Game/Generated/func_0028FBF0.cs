@@ -17,22 +17,22 @@ public static partial class Game
                 Mem.Set(_fp, 0u);
                 Mem.Set((_fp + 4u), 0);
                 Mem.Set((_fp + 8u), 0);
-                while ((osRecvMesg((o + 120u), _fp, 0) != (-1)))
+                while ((osRecvMesg(new Vid_v3(o).q78.P, _fp, 0) != (-1)))
                 {
-                    if ((((Mem.S32((Mem.U32(_fp) + 16u)) == 1) && ((Mem.U32((Mem.U32(_fp) + 8u)) & (uint)(32)) != 0u)) && (Mem.S32(0x800D2954u) == 0)))
+                    if ((((new Msg(Mem.U32(_fp)).unk10 == 1) && ((new Msg(Mem.U32(_fp)).flags8 & (uint)(32)) != 0u)) && (Mem.S32(0x800D2954u) == 0)))
                     {
                         Mem.Set(0x800D2954u, 2);
                         osSetThreadPri(0x8010A248u, Mem.S32(0x800D2B28u));
                     }
                     func_0028F934(o, Mem.U32(_fp));
                 }
-                if (((Mem.S32((o + 768u)) != 0) && (Mem.S32((o + 756u)) != 0)))
+                if (((new Vid_v3(o).unk300 != 0) && (new Vid_v3(o).unk2F4 != 0)))
                 {
                     func_0028FBB8(o);
                 }
                 else
                 {
-                    mode = ((((Mem.S32((o + 756u)) == 0) ? 1 : 0) << (int)1) | ((Mem.S32((o + 760u)) == 0) ? 1 : 0));
+                    mode = ((((new Vid_v3(o).unk2F4 == 0) ? 1 : 0) << (int)1) | ((new Vid_v3(o).unk2F8 == 0) ? 1 : 0));
                     if (((int)(func_0028F524(o, (_fp + 4u), (_fp + 8u), (uint)(mode))) != mode))
                     {
                         func_0028FA40(o, (uint)(Mem.S32((_fp + 4u))), (uint)(Mem.S32((_fp + 8u))));

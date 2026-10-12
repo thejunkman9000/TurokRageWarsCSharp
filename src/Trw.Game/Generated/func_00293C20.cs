@@ -11,22 +11,22 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00293C20", (uint)g);
             uint b = 0u;
-            if ((Mem.S32((g + 159188u)) == 0))
+            if ((new B21Game(g).unk26DD4 == 0))
             {
-                b = (0x80145040u + 6240u);
-                Mem.Set(b, (float)((float)(Mem.F32(b)) + Mem.F32(0x800D2988u)));
-                if ((Mem.F32(b) >= Mem.F32(0x800CA598u)))
+                b = new B21World(0x80145040u).blk.P;
+                new B21GameBlk(b).unk0_Set((float)((float)(new B21GameBlk(b).unk0) + Mem.F32(0x800D2988u)));
+                if ((new B21GameBlk(b).unk0 >= Mem.F32(0x800CA598u)))
                 {
-                    Mem.Set(b, (float)((float)(Mem.F32(b)) - Mem.F32(0x800CA598u)));
-                    Mem.Set((b + 4u), (float)((float)(Mem.F32((b + 4u))) + Mem.F32(0x800CA59Cu)));
-                    if ((Mem.F32((b + 4u)) >= Mem.F32(0x800CA5A0u)))
+                    new B21GameBlk(b).unk0_Set((float)((float)(new B21GameBlk(b).unk0) - Mem.F32(0x800CA598u)));
+                    new B21GameBlk(b).unk4_Set((float)((float)(new B21GameBlk(b).unk4) + Mem.F32(0x800CA59Cu)));
+                    if ((new B21GameBlk(b).unk4 >= Mem.F32(0x800CA5A0u)))
                     {
-                        Mem.Set((b + 4u), (float)((float)(Mem.F32((b + 4u))) - Mem.F32(0x800CA5A0u)));
-                        Mem.Set((b + 8u), (float)((float)(Mem.F32((b + 8u))) + Mem.F32(0x800CA59Cu)));
-                        if ((Mem.F32((b + 8u)) >= Mem.F32(0x800CA5A0u)))
+                        new B21GameBlk(b).unk4_Set((float)((float)(new B21GameBlk(b).unk4) - Mem.F32(0x800CA5A0u)));
+                        new B21GameBlk(b).unk8_Set((float)((float)(new B21GameBlk(b).unk8) + Mem.F32(0x800CA59Cu)));
+                        if ((new B21GameBlk(b).unk8 >= Mem.F32(0x800CA5A0u)))
                         {
-                            Mem.Set((b + 8u), (float)((float)(Mem.F32((b + 8u))) - Mem.F32(0x800CA5A0u)));
-                            Mem.Set((b + 12u), (float)((float)(Mem.F32((b + 12u))) + Mem.F32(0x800CA59Cu)));
+                            new B21GameBlk(b).unk8_Set((float)((float)(new B21GameBlk(b).unk8) - Mem.F32(0x800CA5A0u)));
+                            new B21GameBlk(b).unkC_Set((float)((float)(new B21GameBlk(b).unkC) + Mem.F32(0x800CA59Cu)));
                         }
                     }
                 }

@@ -10,36 +10,36 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029B558", (uint)m);
-            if ((Mem.U32(Mem.U32(0x8014D0B0u)) != 0u))
+            if ((new SndAux(Mem.U32(0x8014D0B0u)).fn0 != 0u))
             {
-                if (((int)(Funcs.CallReg(Mem.U32(Mem.U32(0x8014D0B0u)), m, 0u, 0u, 0u)) == 1))
+                if (((int)(Funcs.CallReg(new SndAux(Mem.U32(0x8014D0B0u)).fn0, m, 0u, 0u, 0u)) == 1))
                 {
                     return;
                 }
             }
-            switch ((int)(Mem.S16((m + 4u))))
+            switch ((int)(new SndMsg(m).b))
             {
             case 0:
                 {
-                    uint v = (((uint)((ushort)(Mem.S16(m))) << (int)16) | (uint)(Mem.U16((m + 2u))));
+                    uint v = (((uint)((ushort)(new SndMsg(m).type)) << (int)16) | (uint)(new SndMsg(m).a));
                     int id = func_0029A958();
-                    func_0029A5D4((uint)(id), (uint)(17), (uint)((int)(v)), (uint)((int)(Mem.S16((m + 12u)))), (uint)((int)(Mem.S16((m + 6u)))));
+                    func_0029A5D4((uint)(id), (uint)(17), (uint)((int)(v)), (uint)((int)(new SndMsg(m).e)), (uint)((int)(new SndMsg(m).c)));
                     break;
                 }
                 goto case 1;
             case 1:
-                if (((int)(Mem.S16(m)) == 4))
+                if (((int)(new SndMsg(m).type) == 4))
                 {
-                    Mem.Set(m, (short)(3));
-                    func_0029AE80(m, default(uint), default(uint), default(uint));
+                    new SndMsg(m).type_Set((short)(3));
+                    func_0029AE80(m);
                 }
                 break;
             case 2:
             case 3:
             case 4:
-                if (((int)(Mem.S16(m)) == 4))
+                if (((int)(new SndMsg(m).type) == 4))
                 {
-                    Mem.Set(m, (short)(3));
+                    new SndMsg(m).type_Set((short)(3));
                     func_0029B324(m, default(uint), default(uint), default(uint));
                 }
                 break;

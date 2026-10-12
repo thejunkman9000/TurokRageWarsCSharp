@@ -12,16 +12,16 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00245990");
             uint p = Mem.U32(0x800E2830u);
             float t = 0f;
-            if ((Mem.S32((p + 56u)) == 0))
+            if ((new B10Ctl(p).f38 == 0))
             {
                 return Mem.F32(0x800C88C4u);
             }
-            t = Mem.F32((p + 256u));
+            t = new B10Ctl(p).f100;
             if ((t > Mem.F32(0x800C88C8u)))
             {
                 return t;
             }
-            return func_0040184C(Mem.F32((p + 28u)));
+            return func_0040184C(new B10Ctl(p).f1C);
         }
     }
 

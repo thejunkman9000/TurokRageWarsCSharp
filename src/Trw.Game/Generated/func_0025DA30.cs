@@ -14,17 +14,17 @@ public static partial class Game
             uint r = 0u;
             uint n = 0u;
             int res = 0;
-            i = func_00265508(Mem.U32((Mem.U32(s) + 11104u)), Mem.S32((Mem.U32(s) + 11108u)), (uint)(key));
+            i = func_00265508(new SndMgr(new SndSeq(s).owner_).unk2B60, new SndMgr(new SndSeq(s).owner_).unk2B64, (uint)(key));
             if ((i != (-1)))
             {
                 i = (int)((int)(i) << (int)1);
-                r = func_0028FD94(Mem.U32((Mem.U32(s) + 11088u)), (i | 1));
-                n = func_0028FD94(Mem.U32((Mem.U32(s) + 11088u)), i);
-                Mem.Set((s + 36u), Mem.S32(n));
-                Mem.Set((s + 48u), Trunc16ToF32(Mem.U16((n + 4u))));
-                if ((Mem.F32((s + 48u)) <= 0.0f))
+                r = func_0028FD94(new SndMgr(new SndSeq(s).owner_).node2B50, (i | 1));
+                n = func_0028FD94(new SndMgr(new SndSeq(s).owner_).node2B50, i);
+                new SndSeq(s).unk24_Set(new SndNodeRec(n).w0);
+                new SndSeq(s).unk30_Set(Trunc16ToF32(new SndNodeRec(n).h4));
+                if ((new SndSeq(s).unk30 <= 0.0f))
                 {
-                    Mem.Set((s + 48u), Mem.F32(0x800C90F8u));
+                    new SndSeq(s).unk30_Set(Mem.F32(0x800C90F8u));
                 }
                 res = (int)(r);
             }
@@ -32,7 +32,7 @@ public static partial class Game
             {
                 res = 0;
             }
-            Mem.Set((s + 12u), res);
+            new SndSeq(s).unkC_Set(res);
             return ((res != 0) ? 1 : 0);
         }
     }

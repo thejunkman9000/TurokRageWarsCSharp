@@ -10,30 +10,30 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002742B4", (uint)q, (uint)m);
-            float x = Mem.F32(q);
-            float y = Mem.F32((q + 4u));
-            float z = Mem.F32((q + 8u));
-            float w = Mem.F32((q + 12u));
+            float x = new B16Vec4(q).x;
+            float y = new B16Vec4(q).y;
+            float z = new B16Vec4(q).z;
+            float w = new B16Vec4(q).w;
             float xx = (x * x);
             float yy = (y * y);
             float zz = (z * z);
             float ww = (w * w);
-            Mem.Set(((m + (uint)(0 * 16)) + (uint)(0 * 4)), (((ww + xx) - yy) - zz));
-            Mem.Set(((m + (uint)(0 * 16)) + (uint)(1 * 4)), (((2.0f * x) * y) + ((2.0f * w) * z)));
-            Mem.Set(((m + (uint)(0 * 16)) + (uint)(2 * 4)), (((2.0f * x) * z) - ((2.0f * w) * y)));
-            Mem.Set(((m + (uint)(0 * 16)) + (uint)(3 * 4)), 0.0f);
-            Mem.Set(((m + (uint)(1 * 16)) + (uint)(0 * 4)), (((2.0f * x) * y) - ((2.0f * w) * z)));
-            Mem.Set(((m + (uint)(1 * 16)) + (uint)(1 * 4)), (((ww - xx) + yy) - zz));
-            Mem.Set(((m + (uint)(1 * 16)) + (uint)(2 * 4)), (((2.0f * y) * z) + ((2.0f * w) * x)));
-            Mem.Set(((m + (uint)(1 * 16)) + (uint)(3 * 4)), 0.0f);
-            Mem.Set(((m + (uint)(2 * 16)) + (uint)(0 * 4)), (((2.0f * x) * z) + ((2.0f * w) * y)));
-            Mem.Set(((m + (uint)(2 * 16)) + (uint)(1 * 4)), (((2.0f * y) * z) - ((2.0f * w) * x)));
-            Mem.Set(((m + (uint)(2 * 16)) + (uint)(2 * 4)), (((ww - xx) - yy) + zz));
-            Mem.Set(((m + (uint)(2 * 16)) + (uint)(3 * 4)), 0.0f);
-            Mem.Set(((m + (uint)(3 * 16)) + (uint)(0 * 4)), 0.0f);
-            Mem.Set(((m + (uint)(3 * 16)) + (uint)(1 * 4)), 0.0f);
-            Mem.Set(((m + (uint)(3 * 16)) + (uint)(2 * 4)), 0.0f);
-            Mem.Set(((m + (uint)(3 * 16)) + (uint)(3 * 4)), 1.0f);
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), (((ww + xx) - yy) - zz));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(1 * 4)), (((2.0f * x) * y) + ((2.0f * w) * z)));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(2 * 4)), (((2.0f * x) * z) - ((2.0f * w) * y)));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(3 * 4)), 0.0f);
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(0 * 4)), (((2.0f * x) * y) - ((2.0f * w) * z)));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), (((ww - xx) + yy) - zz));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(2 * 4)), (((2.0f * y) * z) + ((2.0f * w) * x)));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(3 * 4)), 0.0f);
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(0 * 4)), (((2.0f * x) * z) + ((2.0f * w) * y)));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(1 * 4)), (((2.0f * y) * z) - ((2.0f * w) * x)));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), (((ww - xx) - yy) + zz));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(3 * 4)), 0.0f);
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(0 * 4)), 0.0f);
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(1 * 4)), 0.0f);
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(2 * 4)), 0.0f);
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), 1.0f);
         }
     }
 

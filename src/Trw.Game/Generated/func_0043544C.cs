@@ -15,11 +15,11 @@ public static partial class Game
             for (i = 0; ((i < 4) && !(found != 0)); ++i)
             {
                 uint p = (Mem.U32(0x800E54A4u) + (uint)(i * 12));
-                if (((Mem.S32((p + 11768u)) == a) && (Mem.S32(((p + 11768u) + 4u)) == b)))
+                if (((new O05SlotAt(p).s.a == a) && (new O05SlotAt(p).s.b == b)))
                 {
                     found = 1;
-                    Mem.Set((p + 11768u), (-1));
-                    Mem.Set(((p + 11768u) + 8u), 2);
+                    new O05SlotAt(p).s.a_Set((-1));
+                    new O05SlotAt(p).s.c_Set(2);
                 }
             }
             return found;

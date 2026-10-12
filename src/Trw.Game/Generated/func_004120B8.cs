@@ -13,12 +13,12 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < (int)(Mem.S16(0x80153C0Cu))); ++i)
             {
-                if (((Mem.S32(((Mem.U32(0x80153C10u) + (uint)(i * 28)) + 4u)) & 1) != 0))
+                if (((new S_o((Mem.U32(0x80153C10u) + (uint)(i * 28))).flags & 1) != 0))
                 {
                     uint e = (Mem.U32(0x80153C18u) + (uint)(i * 8));
-                    if ((Mem.S32(e) != (-1)))
+                    if ((new S_e(e).id != (-1)))
                     {
-                        if (((int)(Mem.S16((e + 4u))) == 0))
+                        if (((int)(new S_e(e).cnt) == 0))
                         {
                             func_00411B70(i);
                         }

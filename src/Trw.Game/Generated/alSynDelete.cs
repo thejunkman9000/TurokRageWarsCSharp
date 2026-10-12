@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alSynDelete", (uint)drvr);
-            Mem.Set(drvr, 0u);
+            new ALSynth(drvr).head__Set(0u);
         }
     }
 

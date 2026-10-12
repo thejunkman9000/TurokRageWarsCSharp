@@ -10,9 +10,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00212C04", (uint)actor);
-            uint b = Mem.U32((Mem.U32((actor + 472u)) + 5204u));
+            uint b = new Actor(new Actor(actor).owner_).brain_;
             uint t = func_0022A82C(0x80145040u);
-            if ((t == Mem.U32(b)))
+            if ((t == new BrainB(b).actor_))
             {
                 func_00209874(b, 10);
             }
@@ -25,9 +25,9 @@ public static partial class Game
                 else
                 {
                     func_00211020(b, default(uint), default(uint), default(uint));
-                    func_00209948(b, Mem.S32((b + 12u)));
-                    func_00208410(b, default(uint), default(uint), default(uint));
-                    func_00208EB0(b, default(uint), default(uint), default(uint));
+                    func_00209948(b, new BrainB(b).unkC);
+                    func_00208410(b);
+                    func_00208EB0(b);
                 }
             }
         }

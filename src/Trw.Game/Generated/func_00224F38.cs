@@ -15,26 +15,26 @@ public static partial class Game
             float K = 0f;
             float f = 0f;
             float t = 0f;
-            if ((Mem.F32((a + 1736u)) == 0.0f))
+            if ((new Plr(a).unk6C8 == 0.0f))
             {
-                Mem.Set((a + 1616u), (short)(11));
+                new Plr(a).unk650_Set((short)(11));
             }
             else
             {
-                Mem.Set((a + 1616u), (short)(12));
+                new Plr(a).unk650_Set((short)(12));
             }
-            func_002231B0(a, b, 0x800CE874u, default(uint));
-            Mem.Set((a + 1840u), ((2.0f * sinf((Mem.F32((a + 1624u)) * 0.069813177f))) * 0.0174532942f));
-            Mem.Set((a + 1844u), ((2.0f * sinf((Mem.F32((a + 1624u)) * 0.0872664749f))) * 0.0174532942f));
-            Mem.Set((a + 1848u), ((2.0f * sinf((Mem.F32((a + 1624u)) * 0.104719765f))) * 0.0174532942f));
-            func_002238BC(a, b, 0x800CE850u, default(uint));
-            if ((!((Mem.U32((b + 56u)) & (uint)(4096)) != 0u) && (2.0f < Mem.F32((a + 1624u)))))
+            func_002231B0(a, b, 0x800CE874u);
+            new Plr(a).unk730_Set(((2.0f * sinf((new Plr(a).unk658 * 0.069813177f))) * 0.0174532942f));
+            new Plr(a).unk734_Set(((2.0f * sinf((new Plr(a).unk658 * 0.0872664749f))) * 0.0174532942f));
+            new Plr(a).unk738_Set(((2.0f * sinf((new Plr(a).unk658 * 0.104719765f))) * 0.0174532942f));
+            func_002238BC(a, b, 0x800CE850u);
+            if ((!((new Plr(b).flags38 & (uint)(4096)) != 0u) && (2.0f < new Plr(a).unk658)))
             {
                 func_00218464();
-                Mem.Set((b + 32u), 0);
-                func_0025DE74((int)((uint)((short)(734))), C.Tmp(Cpu.F2U(Mem.F32((b + 8u))), Cpu.F2U(Mem.F32(((b + 8u) + 4u))), Cpu.F2U(Mem.F32(((b + 8u) + 8u)))), (int)((uint)(0)), (int)((uint)((-1))));
-                Mem.Set((a + 2112u), 0);
-                if (((Mem.U32((b + 56u)) & (uint)(3)) != 0u))
+                new Plr(b).unk20_Set(0);
+                func_0025DE74((int)((uint)((short)(734))), C.Tmp(Cpu.F2U(new Plr(b).pos.x), Cpu.F2U(new Plr(b).pos.y), Cpu.F2U(new Plr(b).pos.z)), (int)((uint)(0)), (int)((uint)((-1))));
+                new Plr(a).unk840_Set(0);
+                if (((new Plr(b).flags38 & (uint)(3)) != 0u))
                 {
                     func_002227D0(a, (int)(b), 2);
                 }
@@ -44,11 +44,11 @@ public static partial class Game
                 }
             }
             v = 0;
-            if ((Mem.S32((a + 2156u)) == 4420))
+            if ((new Plr(a).unk86C == 4420))
             {
-                v = (((int)(Mem.S8((a + 270u))) == 0) ? 1 : 0);
+                v = (((int)(new Plr(a).unk10E) == 0) ? 1 : 0);
             }
-            if (((int)(Mem.U16((a + 228u))) == Mem.S32(0x800CE47Cu)))
+            if (((int)(new Plr(a).unkE4) == Mem.S32(0x800CE47Cu)))
             {
                 k = 2210;
             }
@@ -58,7 +58,7 @@ public static partial class Game
                 {
                     goto L_skip;
                 }
-                f = Mem.F32((a + 1728u));
+                f = new Plr(a).unk6C0;
                 if ((1.02400005f <= f))
                 {
                     k = 2210;
@@ -72,15 +72,15 @@ public static partial class Game
                     }
                 }
             }
-            Mem.Set((a + 2156u), k);
+            new Plr(a).unk86C_Set(k);
             L_skip: ;
-            t = (Mem.F32((a + 4548u)) + Mem.F32(0x800D2988u));
-            Mem.Set((a + 4548u), t);
-            if (((5.11999989f < Mem.F32((a + 1736u))) && (45.0f < t)))
+            t = (new Plr(a).unk11C4 + Mem.F32(0x800D2988u));
+            new Plr(a).unk11C4_Set(t);
+            if (((5.11999989f < new Plr(a).unk6C8) && (45.0f < t)))
             {
-                Mem.Set((a + 4548u), func_002745D4(15.0f));
-                func_0025DE74((int)((uint)(Mem.S16(0x800CE872u))), C.Tmp(Cpu.F2U(Mem.F32((b + 8u))), Cpu.F2U(Mem.F32(((b + 8u) + 4u))), Cpu.F2U(Mem.F32(((b + 8u) + 8u)))), (int)((uint)(0)), (int)((uint)((-1))));
-                func_0025DE74((int)((uint)((short)(736))), C.Tmp(Cpu.F2U(Mem.F32((b + 8u))), Cpu.F2U(Mem.F32(((b + 8u) + 4u))), Cpu.F2U(Mem.F32(((b + 8u) + 8u)))), (int)((uint)(0)), (int)((uint)((-1))));
+                new Plr(a).unk11C4_Set(func_002745D4(15.0f));
+                func_0025DE74((int)((uint)(Mem.S16(0x800CE872u))), C.Tmp(Cpu.F2U(new Plr(b).pos.x), Cpu.F2U(new Plr(b).pos.y), Cpu.F2U(new Plr(b).pos.z)), (int)((uint)(0)), (int)((uint)((-1))));
+                func_0025DE74((int)((uint)((short)(736))), C.Tmp(Cpu.F2U(new Plr(b).pos.x), Cpu.F2U(new Plr(b).pos.y), Cpu.F2U(new Plr(b).pos.z)), (int)((uint)(0)), (int)((uint)((-1))));
             }
         }
     }

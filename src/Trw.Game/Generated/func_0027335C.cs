@@ -13,18 +13,18 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0027335C", (uint)m, (uint)@out);
-                Mem.Set(_fp, Mem.F32(((m + (uint)(0 * 16)) + (uint)(0 * 4))));
-                Mem.Set((_fp + 4u), Mem.F32(((m + (uint)(0 * 16)) + (uint)(1 * 4))));
-                Mem.Set((_fp + 8u), Mem.F32(((m + (uint)(0 * 16)) + (uint)(2 * 4))));
-                Mem.Set(@out, func_002BC380((((Mem.F32(_fp) * Mem.F32(_fp)) + (Mem.F32((_fp + 4u)) * Mem.F32((_fp + 4u)))) + (Mem.F32((_fp + 8u)) * Mem.F32((_fp + 8u))))));
-                Mem.Set(_fp, Mem.F32(((m + (uint)(1 * 16)) + (uint)(0 * 4))));
-                Mem.Set((_fp + 4u), Mem.F32(((m + (uint)(1 * 16)) + (uint)(1 * 4))));
-                Mem.Set((_fp + 8u), Mem.F32(((m + (uint)(1 * 16)) + (uint)(2 * 4))));
-                Mem.Set((@out + 4u), func_002BC380((((Mem.F32(_fp) * Mem.F32(_fp)) + (Mem.F32((_fp + 4u)) * Mem.F32((_fp + 4u)))) + (Mem.F32((_fp + 8u)) * Mem.F32((_fp + 8u))))));
-                Mem.Set(_fp, Mem.F32(((m + (uint)(2 * 16)) + (uint)(0 * 4))));
-                Mem.Set((_fp + 4u), Mem.F32(((m + (uint)(2 * 16)) + (uint)(1 * 4))));
-                Mem.Set((_fp + 8u), Mem.F32(((m + (uint)(2 * 16)) + (uint)(2 * 4))));
-                Mem.Set((@out + 8u), func_002BC380((((Mem.F32(_fp) * Mem.F32(_fp)) + (Mem.F32((_fp + 4u)) * Mem.F32((_fp + 4u)))) + (Mem.F32((_fp + 8u)) * Mem.F32((_fp + 8u))))));
+                new Vec3f(_fp).x_Set(Mem.F32(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4))));
+                new Vec3f(_fp).y_Set(Mem.F32(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(1 * 4))));
+                new Vec3f(_fp).z_Set(Mem.F32(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(2 * 4))));
+                new Vec3f(@out).x_Set(func_002BC380((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z))));
+                new Vec3f(_fp).x_Set(Mem.F32(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(0 * 4))));
+                new Vec3f(_fp).y_Set(Mem.F32(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4))));
+                new Vec3f(_fp).z_Set(Mem.F32(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(2 * 4))));
+                new Vec3f(@out).y_Set(func_002BC380((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z))));
+                new Vec3f(_fp).x_Set(Mem.F32(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(0 * 4))));
+                new Vec3f(_fp).y_Set(Mem.F32(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(1 * 4))));
+                new Vec3f(_fp).z_Set(Mem.F32(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4))));
+                new Vec3f(@out).z_Set(func_002BC380((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z))));
             }
         }
         finally { Stack.Free(12); }

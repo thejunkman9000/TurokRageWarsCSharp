@@ -12,39 +12,39 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0024F490", (uint)a);
             uint d = 0u;
             float t = 0f;
-            Mem.Set((a + 1u), (sbyte)(func_0024F848(a)));
-            Mem.Set((a + 3u), Mem.U8((Mem.U32((a + 24u)) + (uint)18)));
+            new ObjFx(a).unk1_Set((sbyte)(func_0024F848(a)));
+            new ObjFx(a).unk3_Set(Mem.U8((new ObjFx(a).def_ + (uint)18)));
             if ((Mem.S32(0x80146894u) == 0))
             {
-                d = Mem.U32((a + 24u));
-                if ((Mem.S32(d) == 12))
+                d = new ObjFx(a).def_;
+                if ((new ObjDef(d).type == 12))
                 {
-                    Mem.Set((a + 420u), (Mem.F32(0x800D2988u) * Mem.F32((d + 32u))));
+                    new ObjFx(a).unk1A4_Set((Mem.F32(0x800D2988u) * new ObjDef(d).unk20));
                 }
                 else
                 {
-                    if ((((int)(Mem.U16((a + 412u))) & 16) != 0))
+                    if ((((int)(new ObjFx(a).unk19C) & 16) != 0))
                     {
-                        t = (Mem.F32((a + 416u)) + (Mem.F32(0x800D2988u) * Mem.F32(0x800C8EE0u)));
-                        Mem.Set((a + 416u), t);
+                        t = (new ObjFx(a).unk1A0 + (Mem.F32(0x800D2988u) * Mem.F32(0x800C8EE0u)));
+                        new ObjFx(a).unk1A0_Set(t);
                         if ((t < Mem.F32(0x800C8EE4u)))
                         {
-                            Mem.Set((a + 404u), (t * Mem.F32(0x800C8EE8u)));
+                            new ObjFx(a).unk194_Set((t * Mem.F32(0x800C8EE8u)));
                         }
                         else
                         {
-                            Mem.Set((a + 412u), (ushort)((int)(Mem.U16((a + 412u))) & (~16)));
-                            Mem.Set((a + 404u), Mem.F32(0x800C8EECu));
+                            new ObjFx(a).unk19C_Set((ushort)((int)(new ObjFx(a).unk19C) & (~16)));
+                            new ObjFx(a).unk194_Set(Mem.F32(0x800C8EECu));
                         }
                     }
                 }
-                if ((Mem.U32((a + 20u)) != 0u))
+                if ((new ObjFx(a).unk14_ != 0u))
                 {
-                    Mem.Set((a + 448u), Mem.S32((Mem.U32((a + 20u)) + 28u)));
+                    new ObjFx(a).unk1C0_Set(new ObjFx(a).unk14.unk1C);
                 }
                 else
                 {
-                    Mem.Set((a + 448u), Mem.S32(0x800D2B40u));
+                    new ObjFx(a).unk1C0_Set(Mem.S32(0x800D2B40u));
                 }
             }
         }

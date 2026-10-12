@@ -13,13 +13,13 @@ public static partial class Game
             short r = 0;
             if (((int)(Mem.U8((0x801462E5u + (uint)0))) != 0))
             {
-                if ((((int)(Mem.U8((0x801462E5u - (uint)16))) == 1) && (Mem.S32((actor + 5200u)) == 0)))
+                if ((((int)(Mem.U8((0x801462E5u - (uint)16))) == 1) && (new Actor(actor).unk1450 == 0)))
                 {
-                    Mem.Set((actor + (uint)4924), (((int)((byte)(func_0022F444((0x80102B00u + (uint)(Mem.S32((actor + 1492u)) * 400)), (uint)((int)(Mem.S8((Mem.U32((actor + 1496u)) + 128u)))), default(uint), default(uint)))) >> (int)1) + 1));
+                    Mem.Set((actor + (uint)4924), (((int)((byte)(func_0022F444((0x80102B00u + (uint)(new Actor(actor).unk5D4 * 400)), (int)(new Actor(actor).stats.unk80)))) >> (int)1) + 1));
                 }
                 if (((int)(Mem.U8((0x801462D5u + (uint)0))) == 4))
                 {
-                    if ((Mem.S32((actor + 5200u)) == 0))
+                    if ((new Actor(actor).unk1450 == 0))
                     {
                         if ((Mem.U32(0x800E4680u) != 0u))
                         {

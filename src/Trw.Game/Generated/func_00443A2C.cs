@@ -10,22 +10,22 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00443A2C", (uint)a);
-            uint p = Mem.U32((a + 28u));
+            uint p = new O06A_v27(a).unk1C_;
             int r = 0;
-            if ((Mem.S32((p + 5200u)) == 0))
+            if ((new O06P_v5(p).unk1450 == 0))
             {
                 if ((func_0022B168(p) != 0))
                 {
-                    Mem.Set((p + 4928u), (int)(Mem.S32((p + 4928u)) + 1));
-                    if ((Mem.S32((p + 4928u)) >= 76))
+                    new O06P_v5(p).unk1340_Set((int)(new O06P_v5(p).unk1340 + 1));
+                    if ((new O06P_v5(p).unk1340 >= 76))
                     {
-                        func_0044A37C(Mem.U32((a + 28u)), default(uint), default(uint), default(uint));
+                        func_0044A37C(new O06A_v27(a).unk1C_);
                         return 1;
                     }
                 }
             }
             r = 0;
-            if ((((Mem.S32((0x801468A0u + 40u)) != 0) || (Mem.S32((0x801468A0u + 28u)) != 0)) || (Mem.S32((0x801468A0u + 32u)) != 0)))
+            if ((((new O06G(0x801468A0u).unk28 != 0) || (new O06G(0x801468A0u).unk1C != 0)) || (new O06G(0x801468A0u).unk20 != 0)))
             {
                 r = 1;
             }

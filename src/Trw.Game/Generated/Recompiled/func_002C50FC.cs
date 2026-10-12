@@ -29,7 +29,7 @@ public static partial class Game
                 Mem.Set((r29 + 20u), r3);
                 r5 = Mem.U32((r2 + 12u));
                 r7 = Mem.U32((r2 + 0u));
-                r2 = mdctFft(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u)); r3 = Cpu.V1;
+                mdctFft(r4, (int)r5, (int)r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u));
                 r31 = Mem.U32((r29 + 24u));
                 r29 = r29 + 32u; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;

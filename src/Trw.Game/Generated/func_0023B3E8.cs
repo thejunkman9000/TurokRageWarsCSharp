@@ -18,79 +18,79 @@ public static partial class Game
                 int nn = 0;
                 int nf = 0;
                 int i = 0;
-                if (((Mem.S32((sc + 2244u)) != 0) && (Mem.S32((cam + 288u)) == 0)))
+                if (((new B09Scene(sc).unk8C4 != 0) && (new B09Cam(cam).unk120 == 0)))
                 {
                     {
                         uint p = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                        Mem.Set(p, 3875536896u);
-                        Mem.Set((p + 4u), (uint)(0));
+                        new DlCmd(p).w0_Set(3875536896u);
+                        new DlCmd(p).w1_Set((uint)(0));
                     }
                     {
-                        uint p = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                        Mem.Set(p, 3661103107u);
-                        Mem.Set((p + 4u), (uint)(0x80146D20u));
+                        uint p_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new DlCmd(p_2).w0_Set(3661103107u);
+                        new DlCmd(p_2).w1_Set((uint)(0x80146D20u));
                     }
                     {
-                        uint p = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                        Mem.Set(p, 3674472452u);
-                        Mem.Set((p + 4u), (uint)(2));
+                        uint p_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new DlCmd(p_3).w0_Set(3674472452u);
+                        new DlCmd(p_3).w1_Set((uint)(2));
                     }
                     {
-                        uint p = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                        Mem.Set(p, 3674472460u);
-                        Mem.Set((p + 4u), (uint)(2));
+                        uint p_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new DlCmd(p_4).w0_Set(3674472460u);
+                        new DlCmd(p_4).w1_Set((uint)(2));
                     }
                     {
-                        uint p = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                        Mem.Set(p, 3674472468u);
-                        Mem.Set((p + 4u), (uint)(65534));
+                        uint p_5 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new DlCmd(p_5).w0_Set(3674472468u);
+                        new DlCmd(p_5).w1_Set((uint)(65534));
                     }
                     {
-                        uint p = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                        Mem.Set(p, 3674472476u);
-                        Mem.Set((p + 4u), (uint)(65534));
+                        uint p_6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new DlCmd(p_6).w0_Set(3674472476u);
+                        new DlCmd(p_6).w1_Set((uint)(65534));
                     }
                     {
-                        uint p = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                        Mem.Set(p, 3657367551u);
-                        Mem.Set((p + 4u), (uint)(0));
+                        uint p_7 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new DlCmd(p_7).w0_Set(3657367551u);
+                        new DlCmd(p_7).w1_Set((uint)(0));
                     }
                     {
-                        uint p = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                        Mem.Set(p, 3808430593u);
-                        Mem.Set((p + 4u), (uint)(0));
+                        uint p_8 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new DlCmd(p_8).w0_Set(3808430593u);
+                        new DlCmd(p_8).w1_Set((uint)(0));
                     }
                     func_0026925C((uint)(13));
                     {
-                        uint p = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                        Mem.Set(p, 3657038847u);
-                        Mem.Set((p + 4u), (uint)(0));
+                        uint p_9 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new DlCmd(p_9).w0_Set(3657038847u);
+                        new DlCmd(p_9).w1_Set((uint)(0));
                     }
                     {
-                        uint p = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                        Mem.Set(p, 3657433087u);
-                        Mem.Set((p + 4u), (uint)(2097156));
+                        uint p_10 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new DlCmd(p_10).w0_Set(3657433087u);
+                        new DlCmd(p_10).w1_Set((uint)(2097156));
                     }
                     {
-                        uint p = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                        Mem.Set(p, 3808431104u);
-                        Mem.Set((p + 4u), (uint)(524288));
+                        uint p_11 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new DlCmd(p_11).w0_Set(3808431104u);
+                        new DlCmd(p_11).w1_Set((uint)(524288));
                     }
                     {
-                        uint p = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                        Mem.Set(p, 3808432641u);
-                        Mem.Set((p + 4u), (uint)(8192));
+                        uint p_12 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new DlCmd(p_12).w0_Set(3808432641u);
+                        new DlCmd(p_12).w1_Set((uint)(8192));
                     }
                     nn = 0;
                     nf = nn;
-                    e = Mem.U32((sc + 2228u));
+                    e = new B09Scene(sc).emitters_;
                     if ((e != 0u))
                     {
                         uint pf = (_fp + 16u);
                         uint pn = _fp;
                         do
                         {
-                            if ((Mem.F32((e + 528u)) > Mem.F32((cam + 300u))))
+                            if ((new B09Emitter(e).key > new B09Cam(cam).depth))
                             {
                                 Mem.Set(pn, e);
                                 pn += 4u;
@@ -102,7 +102,7 @@ public static partial class Game
                                 pf += 4u;
                                 ++nf;
                             }
-                            e = Mem.U32((e + 4u));
+                            e = new B09Emitter(e).next_;
                         }
                         while ((e != 0u));
                     }

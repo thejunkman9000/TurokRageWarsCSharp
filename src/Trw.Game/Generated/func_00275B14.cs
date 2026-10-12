@@ -11,19 +11,19 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00275B14", (uint)d, (uint)s, (uint)verts, (uint)unused);
             int i = 0;
-            Mem.Set(d, Mem.U16(s));
-            Mem.Set((d + 2u), Mem.U16((s + 2u)));
-            Mem.Set((d + 28u), Mem.S32((s + 16u)));
+            new TriDst(d).w0_Set(new TriSrc(s).w0);
+            new TriDst(d).w2_Set(new TriSrc(s).w2);
+            new TriDst(d).p1C_Set(new TriSrc(s).p10);
             for (i = 0; (i < 3); ++i)
             {
-                Mem.Set(((d + 4u) + (uint)(i * 4)), (verts + (uint)((int)(Mem.U16(((s + 4u) + (uint)(i * 2)))) * 16)));
-                if (((int)(Mem.U16(((s + 10u) + (uint)(i * 2)))) == 65535))
+                new TriDst(d).v.Set((int)(i), (verts + (uint)((int)(new TriSrc(s).vi[(int)(i)]) * 16)));
+                if (((int)(new TriSrc(s).ei[(int)(i)]) == 65535))
                 {
-                    Mem.Set(((d + 16u) + (uint)(i * 4)), 0u);
+                    new TriDst(d).e.Set((int)(i), 0u);
                 }
                 else
                 {
-                    Mem.Set(((d + 16u) + (uint)(i * 4)), (edges + (uint)((int)(Mem.U16(((s + 10u) + (uint)(i * 2)))) * 32)));
+                    new TriDst(d).e.Set((int)(i), (edges + (uint)((int)(new TriSrc(s).ei[(int)(i)]) * 32)));
                 }
             }
         }

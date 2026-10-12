@@ -13,17 +13,17 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < n); ++i)
             {
-                if ((Mem.F32(((@in + (uint)(i * 12)) + 8u)) > Mem.F32(0x800CAE38u)))
+                if ((new Vec3f((@in + (uint)(i * 12))).z > Mem.F32(0x800CAE38u)))
                 {
-                    Mem.Set((@out + (uint)(i * 12)), (ox + (sx * (Mem.F32((@in + (uint)(i * 12))) / Mem.F32(((@in + (uint)(i * 12)) + 8u))))));
-                    Mem.Set(((@out + (uint)(i * 12)) + 4u), (oy + (sy * (Mem.F32(((@in + (uint)(i * 12)) + 4u)) / Mem.F32(((@in + (uint)(i * 12)) + 8u))))));
-                    Mem.Set(((@out + (uint)(i * 12)) + 8u), Mem.F32(((@in + (uint)(i * 12)) + 8u)));
+                    new Vec3f((@out + (uint)(i * 12))).x_Set((ox + (sx * (new Vec3f((@in + (uint)(i * 12))).x / new Vec3f((@in + (uint)(i * 12))).z))));
+                    new Vec3f((@out + (uint)(i * 12))).y_Set((oy + (sy * (new Vec3f((@in + (uint)(i * 12))).y / new Vec3f((@in + (uint)(i * 12))).z))));
+                    new Vec3f((@out + (uint)(i * 12))).z_Set(new Vec3f((@in + (uint)(i * 12))).z);
                 }
                 else
                 {
-                    Mem.Set((@out + (uint)(i * 12)), (float)(0));
-                    Mem.Set(((@out + (uint)(i * 12)) + 4u), (float)(0));
-                    Mem.Set(((@out + (uint)(i * 12)) + 8u), (float)(0));
+                    new Vec3f((@out + (uint)(i * 12))).x_Set((float)(0));
+                    new Vec3f((@out + (uint)(i * 12))).y_Set((float)(0));
+                    new Vec3f((@out + (uint)(i * 12))).z_Set((float)(0));
                 }
             }
         }

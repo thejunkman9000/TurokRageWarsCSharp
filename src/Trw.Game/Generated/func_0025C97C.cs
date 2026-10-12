@@ -10,18 +10,18 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025C97C", (uint)l, (uint)id, (uint)pos, (uint)a);
-            uint n = Mem.U32(l);
+            uint n = new P3SList(l).first_;
             if ((n != 0u))
             {
                 func_00255E78(l, n, default(uint), default(uint));
-                func_00255CB4((l + 20u), n, default(uint), default(uint));
-                Mem.Set((n + 12u), (-1));
-                Mem.Set((n + 8u), (-1));
-                Mem.Set((n + 8u), func_0025DE74((int)((short)(id)), pos, a, b));
-                Mem.Set(0x800D0D50u, Mem.S32((n + 8u)));
-                Mem.Set((n + 12u), id);
-                Mem.Copy((n + 16u), pos, 12);
-                Mem.Set((n + 28u), a);
+                func_00255CB4(new P3SList(l).list2.P, n, default(uint), default(uint));
+                new P3SNode(n).id_Set((-1));
+                new P3SNode(n).handle_Set((-1));
+                new P3SNode(n).handle_Set(func_0025DE74((int)((short)(id)), pos, a, b));
+                Mem.Set(0x800D0D50u, new P3SNode(n).handle);
+                new P3SNode(n).id_Set(id);
+                Mem.Copy(new P3SNode(n).pos.P, pos, 12);
+                new P3SNode(n).arg_Set(a);
             }
             return n;
         }

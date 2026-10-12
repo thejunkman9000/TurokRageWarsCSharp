@@ -31,7 +31,7 @@ public static partial class Game
                     id = 671;
                     break;
                 }
-                w = func_0040ECB0(Mem.U32(Mem.U32(0x800E54A4u)), (uint)(id), default(uint), default(uint));
+                w = func_0040ECB0(new O05Lobby(Mem.U32(0x800E54A4u)).h.f0, (uint)(id), default(uint), default(uint));
                 if ((func_00264634(i) == 1))
                 {
                     func_0040E9D0(w, 0);
@@ -40,14 +40,14 @@ public static partial class Game
                 {
                     func_0040E9D0(w, 1);
                 }
-                o = Mem.U32((w + 8u));
-                if (((k != (-1)) && (w == func_0041B87C(Mem.U32((Mem.U32(0x800E54A4u) + 4u)), k))))
+                o = new O05WdA(w).f8;
+                if (((k != (-1)) && (w == func_0041B87C(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k))))
                 {
-                    Mem.Set((o + 56u), ((((Mem.U32(0x800E54A4u) + 88u) + (uint)(k * 2920)) + 24u) + (uint)(Mem.S32((((Mem.U32(0x800E54A4u) + 88u) + (uint)(k * 2920)) + 2796u)) * 400)));
+                    new O05Wd(o).f38_Set((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].rec.P + (uint)(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fAEC * 400)));
                 }
                 else
                 {
-                    Mem.Set((o + 56u), 0u);
+                    new O05Wd(o).f38_Set(0u);
                 }
             }
         }

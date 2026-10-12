@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024CA00", (uint)s, (uint)idx, (uint)@out);
-            int key = (int)(Mem.S16(((Mem.U32(s) + (uint)(idx * 4)) + 2u)));
+            int key = (int)(new B11Key((new B11Trk(s).keys_ + (uint)(idx * 4))).b);
             uint n = 0u;
             uint a = 0u;
             uint b = 0u;
@@ -18,18 +18,18 @@ public static partial class Game
             uint r = 0u;
             if ((key == (-1)))
             {
-                r = (Mem.U32((s + 4u)) + (uint)(idx * 20));
-                Mem.Set((@out + (uint)(0 * 4)), ((float)((int)(Mem.S16(((r + 12u) + (uint)(0 * 2))))) * Mem.F32(0x800C8C68u)));
-                Mem.Set((@out + (uint)(1 * 4)), ((float)((int)(Mem.S16(((r + 12u) + (uint)(1 * 2))))) * Mem.F32(0x800C8C68u)));
-                Mem.Set((@out + (uint)(2 * 4)), ((float)((int)(Mem.S16(((r + 12u) + (uint)(2 * 2))))) * Mem.F32(0x800C8C68u)));
-                Mem.Set((@out + (uint)(3 * 4)), ((float)((int)(Mem.S16(((r + 12u) + (uint)(3 * 2))))) * Mem.F32(0x800C8C68u)));
+                r = (new B11Trk(s).vals_ + (uint)(idx * 20));
+                Mem.Set((@out + (uint)(0 * 4)), ((float)((int)(new B11Val(r).q[(int)(0)])) * Mem.F32(0x800C8C68u)));
+                Mem.Set((@out + (uint)(1 * 4)), ((float)((int)(new B11Val(r).q[(int)(1)])) * Mem.F32(0x800C8C68u)));
+                Mem.Set((@out + (uint)(2 * 4)), ((float)((int)(new B11Val(r).q[(int)(2)])) * Mem.F32(0x800C8C68u)));
+                Mem.Set((@out + (uint)(3 * 4)), ((float)((int)(new B11Val(r).q[(int)(3)])) * Mem.F32(0x800C8C68u)));
             }
             else
             {
-                n = func_0028FD94((uint)(Mem.S32((s + 12u))), key);
-                a = (n + (uint)(Mem.S32((s + 16u)) * 4));
-                b = (n + (uint)(Mem.S32((s + 20u)) * 4));
-                t = Mem.F32((s + 32u));
+                n = func_0028FD94((uint)(new B11Trk(s).nodeC), key);
+                a = (n + (uint)(new B11Trk(s).unk10 * 4));
+                b = (n + (uint)(new B11Trk(s).unk14 * 4));
+                t = new B11Trk(s).t;
                 Mem.Set((@out + (uint)(0 * 4)), (Mem.F32((a + (uint)(0 * 4))) + (t * (Mem.F32((b + (uint)(0 * 4))) - Mem.F32((a + (uint)(0 * 4)))))));
                 Mem.Set((@out + (uint)(1 * 4)), (Mem.F32((a + (uint)(1 * 4))) + (t * (Mem.F32((b + (uint)(1 * 4))) - Mem.F32((a + (uint)(1 * 4)))))));
                 Mem.Set((@out + (uint)(2 * 4)), (Mem.F32((a + (uint)(2 * 4))) + (t * (Mem.F32((b + (uint)(2 * 4))) - Mem.F32((a + (uint)(2 * 4)))))));

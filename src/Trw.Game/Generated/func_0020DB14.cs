@@ -13,17 +13,17 @@ public static partial class Game
             uint m = 0x8013B364u;
             int i = 0;
             int j = 0;
-            Mem.Set((ctl + 448u), (-1));
-            Mem.Set((ctl + 456u), 0);
+            new B2Ctl(ctl).unk1C0_Set((-1));
+            new B2Ctl(ctl).unk1C8_Set(0);
             for (i = 0; (i < 4); ++i)
             {
-                for (j = 0; (j < Mem.S32((m + 12u))); ++j)
+                for (j = 0; (j < new B2Mgr(m).count); ++j)
                 {
                     uint e = func_0020C9B0(m, j);
-                    if ((((int)(Mem.U16(e)) == Mem.S32(((ctl + 20u) + (uint)(i * 4)))) && ((int)(Mem.U8((e + 4u))) == 6)))
+                    if ((((int)(new B2Edge(e).a) == new B2Ctl(ctl).q[(int)(i)]) && ((int)(new B2Edge(e).kind) == 6)))
                     {
-                        Mem.Set((ctl + 444u), (int)(Mem.S32((ctl + 444u)) + 1));
-                        Mem.Set((ctl + 448u), Mem.S32(((ctl + 20u) + (uint)(i * 4))));
+                        new B2Ctl(ctl).unk1BC_Set((int)(new B2Ctl(ctl).unk1BC + 1));
+                        new B2Ctl(ctl).unk1C0_Set(new B2Ctl(ctl).q[(int)(i)]);
                         return 0;
                     }
                 }

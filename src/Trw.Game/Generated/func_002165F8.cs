@@ -10,17 +10,17 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002165F8", (uint)a, (uint)b, (uint)o);
-            func_00271FD8(o, (a + 8u), (b + 72u));
-            Mem.Copy((o + 12u), o, 12);
-            func_002720EC((o + 12u));
-            Mem.Set((o + 24u), sqrtf((((Mem.F32(o) * Mem.F32(o)) + (Mem.F32((o + 4u)) * Mem.F32((o + 4u)))) + (Mem.F32((o + 8u)) * Mem.F32((o + 8u))))));
-            Mem.Set(((o + 28u) + 4u), (float)(0));
-            Mem.Set((o + 28u), Mem.F32(o));
-            Mem.Set(((o + 28u) + 8u), Mem.F32((o + 8u)));
-            Mem.Copy((o + 40u), (o + 28u), 12);
-            func_002720EC((o + 40u));
-            Mem.Set((o + 52u), sqrtf((((Mem.F32((o + 28u)) * Mem.F32((o + 28u))) + (Mem.F32(((o + 28u) + 4u)) * Mem.F32(((o + 28u) + 4u)))) + (Mem.F32(((o + 28u) + 8u)) * Mem.F32(((o + 28u) + 8u))))));
-            Mem.Set((o + 56u), (Mem.F32((a + 108u)) - Mem.F32((b + 96u))));
+            func_00271FD8(o, new B04A(a).pos.P, new B04B(b).pos.P);
+            Mem.Copy(new B04Dir(o).n.P, new B04Dir(o).d.P, 12);
+            func_002720EC(new B04Dir(o).n.P);
+            new B04Dir(o).len_Set(sqrtf((((new B04Dir(o).d.x * new B04Dir(o).d.x) + (new B04Dir(o).d.y * new B04Dir(o).d.y)) + (new B04Dir(o).d.z * new B04Dir(o).d.z))));
+            new B04Dir(o).e.y_Set((float)(0));
+            new B04Dir(o).e.x_Set(new B04Dir(o).d.x);
+            new B04Dir(o).e.z_Set(new B04Dir(o).d.z);
+            Mem.Copy(new B04Dir(o).e2.P, new B04Dir(o).e.P, 12);
+            func_002720EC(new B04Dir(o).e2.P);
+            new B04Dir(o).elen_Set(sqrtf((((new B04Dir(o).e.x * new B04Dir(o).e.x) + (new B04Dir(o).e.y * new B04Dir(o).e.y)) + (new B04Dir(o).e.z * new B04Dir(o).e.z))));
+            new B04Dir(o).dy_Set((new B04A(a).unk6C - new B04B(b).unk60));
         }
     }
 

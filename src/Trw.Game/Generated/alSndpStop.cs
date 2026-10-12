@@ -13,10 +13,10 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("alSndpStop", (uint)sndp);
-                uint s = Mem.U32((sndp + 64u));
-                Mem.Set(_fp, (short)(1));
-                Mem.Set((_fp + 4u), (s + (uint)(Mem.S32((sndp + 60u)) * 48)));
-                alEvtqPostEvent((sndp + 20u), _fp, 0);
+                uint s = new ALSndPlayer(sndp).sndState_;
+                new ALEvent(_fp).type_Set((short)(1));
+                Mem.Set(new ALEvent(_fp).msg.P, (s + (uint)(new ALSndPlayer(sndp).target * 48)));
+                alEvtqPostEvent(new ALSndPlayer(sndp).evtq.P, _fp, 0);
             }
         }
         finally { Stack.Free(16); }

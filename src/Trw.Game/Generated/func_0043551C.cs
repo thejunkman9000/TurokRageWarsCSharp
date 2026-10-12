@@ -18,7 +18,7 @@ public static partial class Game
                 {
                     break;
                 }
-                if ((Mem.S32(((Mem.U32(0x800E54A4u) + (uint)(i * 12)) + 11768u)) != (-1)))
+                if ((new O05SlotAt((Mem.U32(0x800E54A4u) + (uint)(i * 12))).s.a != (-1)))
                 {
                     r = 0;
                 }

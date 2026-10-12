@@ -13,23 +13,23 @@ public static partial class Game
             float cur = 0f;
             float tgt = 0f;
             float n = 0f;
-            if (((Mem.S32((s + 28u)) & 2) != 0))
+            if (((new SndSeq(s).unk1C & 2) != 0))
             {
-                alCSPSetVol(Mem.U32((s + 20u)), Mem.S16(((s + 32u) + (uint)(1 * 2))));
-                Mem.Set((s + 32u), (int)(((float)(Mem.S32((s + 32u))) - Mem.F32((s + 52u)))));
-                if ((Mem.S32((s + 32u)) <= 0))
+                alCSPSetVol(new SndSeq(s).csp, Mem.S16(((s + 32u) + (uint)(1 * 2))));
+                new SndSeq(s).unk20_Set((int)(((float)(new SndSeq(s).unk20) - new SndSeq(s).unk34)));
+                if ((new SndSeq(s).unk20 <= 0))
                 {
-                    Mem.Set((s + 32u), 0);
-                    alCSPStop(Mem.U32((s + 20u)));
-                    Mem.Set((s + 28u), (int)((int)(Mem.S32((s + 28u))) | 4));
+                    new SndSeq(s).unk20_Set(0);
+                    alCSPStop(new SndSeq(s).csp);
+                    new SndSeq(s).unk1C_Set((int)((int)(new SndSeq(s).unk1C) | 4));
                 }
             }
             else
             {
-                if ((Mem.S32((s + 56u)) != 0))
+                if ((new SndSeq(s).unk38 != 0))
                 {
-                    cur = Mem.F32((s + 60u));
-                    tgt = Mem.F32((s + 64u));
+                    cur = new SndSeq(s).unk3C;
+                    tgt = new SndSeq(s).unk40.f;
                     if ((tgt < cur))
                     {
                         n = (cur - Mem.F32(0x800C90F0u));
@@ -37,7 +37,7 @@ public static partial class Game
                         {
                             n = tgt;
                         }
-                        Mem.Set((s + 60u), n);
+                        new SndSeq(s).unk3C_Set(n);
                     }
                     else
                     {
@@ -48,7 +48,7 @@ public static partial class Game
                             {
                                 n = tgt;
                             }
-                            Mem.Set((s + 60u), n);
+                            new SndSeq(s).unk3C_Set(n);
                         }
                     }
                 }

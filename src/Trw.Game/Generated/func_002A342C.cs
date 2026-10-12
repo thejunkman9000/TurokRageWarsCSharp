@@ -13,7 +13,7 @@ public static partial class Game
             func_0029A468();
             func_0041023C();
             func_002A276C();
-            func_00414404(default(uint), default(uint), default(uint), default(uint));
+            func_00414404();
             Mem.Set((0x800D2C90u + (uint)(2 * 4)), 0);
             func_002A338C();
             Mem.Set((0x800D2C90u + (uint)(0 * 4)), 0);

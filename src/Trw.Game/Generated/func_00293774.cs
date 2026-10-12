@@ -10,15 +10,15 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00293774", (uint)g, (uint)a);
-            int old = Mem.S32((g + 159160u));
-            Mem.Set((g + 159169u), (byte)(1));
-            Mem.Set((g + 159172u), 0.0f);
-            Mem.Set((g + 159160u), 20);
-            Mem.Set((g + 159164u), a);
-            Mem.Set((g + 159156u), old);
+            int old = new B21Game(g).unk26DB8;
+            new B21Game(g).unk26DC1_Set((byte)(1));
+            new B21Game(g).unk26DC4_Set(0.0f);
+            new B21Game(g).unk26DB8_Set(20);
+            new B21Game(g).unk26DBC_Set(a);
+            new B21Game(g).unk26DB4_Set(old);
             if ((func_00264B8C() != 0))
             {
-                Mem.Set((g + 159172u), Mem.F32(0x800CA584u));
+                new B21Game(g).unk26DC4_Set(Mem.F32(0x800CA584u));
             }
         }
     }

@@ -15,22 +15,22 @@ public static partial class Game
             float sp = 0f;
             int v = 0;
             int d = 0;
-            e = Mem.U32((s + 48u));
+            e = new StateB(s).cur_;
             if ((e == 0u))
             {
                 return;
             }
-            if (((int)(Mem.S8((s + 53u))) != (int)(Mem.S8((s + 52u)))))
+            if (((int)(new StateB(s).unk35) != (int)(new StateB(s).id)))
             {
-                f = Mem.F32((e + 20u));
+                f = new StateEntry(e).speed;
                 if ((f >= 0.0f))
                 {
-                    Mem.Set((s + 196u), f);
+                    new StateB(s).unkC4_Set(f);
                 }
-                Mem.Set((s + 56u), Mem.U32((s + 60u)));
-                Mem.Set((s + 60u), Mem.U32((e + 28u)));
-                Mem.Set((a + 270u), (sbyte)(0));
-                v = (int)(Mem.U32((e + 16u)));
+                new StateB(s).unk38_Set(new StateB(s).unk3C);
+                new StateB(s).unk3C_Set(new StateEntry(e).flags);
+                new ActorB(a).unk10E_Set((sbyte)(0));
+                v = (int)(new StateEntry(e).anim);
                 if ((v != 0))
                 {
                     if ((func_00265898((uint)(v)) != 0))
@@ -39,79 +39,79 @@ public static partial class Game
                     }
                     else
                     {
-                        if (((int)(func_002657A4((uint)(v), default(uint), default(uint), default(uint))) != 0))
+                        if ((func_002657A4((uint)(v)) != 0))
                         {
-                            v = (int)(func_0024B728(a, (uint)(v), (int)(Mem.S8((s + 202u)))));
+                            v = (int)(func_0024B728(a, (uint)(v), (int)(new StateB(s).unkCA)));
                         }
                     }
                     if ((v != 0))
                     {
                         if ((v != (-1)))
                         {
-                            Mem.Set((s + 202u), (sbyte)(func_002469F8(a, v, (int)(Mem.S8((s + 202u))))));
-                            Mem.Set((s + 200u), (short)(v));
-                            if (((int)(Mem.S16((a + 264u))) == (int)(Mem.S8((s + 202u)))))
+                            new StateB(s).unkCA_Set((sbyte)(func_002469F8(a, v, (int)(new StateB(s).unkCA))));
+                            new StateB(s).unkC8_Set((short)(v));
+                            if (((int)(new ActorB(a).unk108) == (int)(new StateB(s).unkCA)))
                             {
-                                Mem.Set((a + 260u), 0.0f);
+                                new ActorB(a).unk104_Set(0.0f);
                             }
                         }
-                        Mem.Set((s + 203u), (byte)(0));
-                        Mem.Set(s, (uint)((uint)(Mem.U32(s)) & (uint)((~1))));
+                        new StateB(s).unkCB_Set((byte)(0));
+                        new StateB(s).flags_Set((uint)((uint)(new StateB(s).flags) & (uint)((~1))));
                     }
                 }
-                Mem.Set((s + 53u), Mem.S8((s + 52u)));
+                new StateB(s).unk35_Set(new StateB(s).id);
             }
             else
             {
-                if ((((int)(Mem.S8((s + 202u))) == (-1)) || ((int)(Mem.S16((s + 200u))) == (-1))))
+                if ((((int)(new StateB(s).unkCA) == (-1)) || ((int)(new StateB(s).unkC8) == (-1))))
                 {
-                    Mem.Set((s + 203u), (byte)(((int)(Mem.U8((s + 203u))) + 1)));
-                    Mem.Set(s, (uint)((uint)(Mem.U32(s)) | (uint)(1)));
+                    new StateB(s).unkCB_Set((byte)(((int)(new StateB(s).unkCB) + 1)));
+                    new StateB(s).flags_Set((uint)((uint)(new StateB(s).flags) | (uint)(1)));
                 }
                 else
                 {
-                    if (((int)(Mem.S16((a + 264u))) == (int)(Mem.S8((s + 202u)))))
+                    if (((int)(new ActorB(a).unk108) == (int)(new StateB(s).unkCA)))
                     {
-                        if (!((Mem.U32(s) & (uint)(1)) != 0u))
+                        if (!((new StateB(s).flags & (uint)(1)) != 0u))
                         {
-                            d = ((int)(Mem.S16((a + 268u))) - Mem.S32((e + 24u)));
-                            if (((float)((uint)(d)) <= Mem.F32((a + 260u))))
+                            d = ((int)(new ActorB(a).unk10C) - new StateEntry(e).len);
+                            if (((float)((uint)(d)) <= new ActorB(a).unk104))
                             {
-                                Mem.Set((s + 203u), (byte)(((int)(Mem.U8((s + 203u))) + 1)));
-                                Mem.Set(s, (uint)((uint)(Mem.U32(s)) | (uint)(1)));
+                                new StateB(s).unkCB_Set((byte)(((int)(new StateB(s).unkCB) + 1)));
+                                new StateB(s).flags_Set((uint)((uint)(new StateB(s).flags) | (uint)(1)));
                             }
                         }
-                        if (((int)(Mem.S8((a + 270u))) != 0))
+                        if (((int)(new ActorB(a).unk10E) != 0))
                         {
-                            Mem.Set((a + 270u), (sbyte)(0));
-                            if (!((Mem.U32(s) & (uint)(1)) != 0u))
+                            new ActorB(a).unk10E_Set((sbyte)(0));
+                            if (!((new StateB(s).flags & (uint)(1)) != 0u))
                             {
-                                Mem.Set((s + 203u), (byte)(((int)(Mem.U8((s + 203u))) + 1)));
+                                new StateB(s).unkCB_Set((byte)(((int)(new StateB(s).unkCB) + 1)));
                             }
-                            Mem.Set(s, (uint)((uint)(Mem.U32(s)) & (uint)((~1))));
+                            new StateB(s).flags_Set((uint)((uint)(new StateB(s).flags) & (uint)((~1))));
                         }
                     }
                 }
             }
-            if (((Mem.U32((s + 60u)) & (uint)(16)) != 0u))
+            if (((new StateB(s).unk3C & (uint)(16)) != 0u))
             {
-                sp = Mem.F32((s + 196u));
+                sp = new StateB(s).unkC4;
             }
             else
             {
-                sp = (Mem.F32((s + 192u)) * Mem.F32((s + 196u)));
+                sp = (new StateB(s).unkC0 * new StateB(s).unkC4);
             }
             Mem.Set(0x800D2988u, (float)((float)(Mem.F32(0x800D2988u)) * sp));
-            func_0024B6E4(a, (int)(Mem.S8((s + 202u))), (int)(((Mem.U32((s + 60u)) >> (int)5) & (uint)(1))));
-            if ((((int)(Mem.S8((s + 202u))) != (-1)) && ((int)(Mem.S16((a + 266u))) != (int)(Mem.S8((s + 202u))))))
+            func_0024B6E4(a, (int)(new StateB(s).unkCA), (int)(((new StateB(s).unk3C >> (int)5) & (uint)(1))));
+            if ((((int)(new StateB(s).unkCA) != (-1)) && ((int)(new ActorB(a).unk10A) != (int)(new StateB(s).unkCA))))
             {
-                Mem.Set((s + 203u), (byte)(0));
-                Mem.Set(s, (uint)((uint)(Mem.U32(s)) & (uint)((~1))));
-                Mem.Set((a + 270u), (sbyte)(0));
+                new StateB(s).unkCB_Set((byte)(0));
+                new StateB(s).flags_Set((uint)((uint)(new StateB(s).flags) & (uint)((~1))));
+                new ActorB(a).unk10E_Set((sbyte)(0));
             }
-            if (((Mem.U32((a + 256u)) & (uint)(134217728)) != 0u))
+            if (((new ActorB(a).flags & (uint)(134217728)) != 0u))
             {
-                Mem.Set((s + 203u), (byte)(((int)(Mem.U8((s + 203u))) + 1)));
+                new StateB(s).unkCB_Set((byte)(((int)(new StateB(s).unkCB) + 1)));
             }
         }
     }

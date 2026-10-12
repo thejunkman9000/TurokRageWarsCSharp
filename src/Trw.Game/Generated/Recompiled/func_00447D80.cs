@@ -32,11 +32,11 @@ public static partial class Game
                 Mem.Set((r29 + 1136u), r20);
                 Mem.Set((r29 + 1132u), r19);
                 Mem.Set((r29 + 1124u), r17);
-                Mem.Set((r29 + 1120u), r16); r2 = (uint)__osCheckId(r4);
+                Mem.Set((r29 + 1120u), r16); r2 = __osCheckId(r4, r5, r6, r7); r3 = Cpu.V1;
                 r3 = r2;
                 r2 = (uint)2;
                 { bool c_ = r3 != r2;  if (c_) goto L_L00447DD4; }
-                r4 = r18; r2 = __osGetId_b(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r18; r2 = (uint)__osGetId_b(r4);
                 r3 = r2;
                 L_L00447DD4: ;
                 { bool c_ = r3 == 0; r4 = r18; if (c_) goto L_L00447DE4; }
@@ -74,7 +74,7 @@ public static partial class Game
                 { bool c_ = r2 == r7; r4 = r18; if (c_) goto L_L00447E9C; }
                 r19 = r3;
                 r5 = r29 + 280u;
-                r6 = r0; r2 = __osPfsRWInode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = r0; r2 = (uint)__osPfsRWInode(r4, r5, (byte)r6, (byte)r7);
                 r3 = r2;
                 { bool c_ = r3 == 0; r4 = r18; if (c_) goto L_L00447EA0; }
                 { bool c_ = r3 != r22; r2 = r3; if (c_) goto L_L0044818C; }
@@ -174,7 +174,7 @@ public static partial class Game
                 r5 = r29 + 280u;
                 r6 = r0;
                 r16 = r19 & 255u;
-                r7 = r16; r2 = __osPfsRWInode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = r16; r2 = (uint)__osPfsRWInode(r4, r5, (byte)r6, (byte)r7);
                 r3 = r2;
                 { bool c_ = r3 == 0;  if (c_) goto L_L0044805C; }
                 { bool c_ = r3 != r30; r2 = r3; if (c_) goto L_L0044818C; }
@@ -236,7 +236,7 @@ public static partial class Game
                 r4 = r18;
                 r5 = r29 + 24u;
                 r6 = (uint)1;
-                r7 = r19 & 255u; r2 = __osPfsRWInode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = r19 & 255u; r2 = (uint)__osPfsRWInode(r4, r5, (byte)r6, (byte)r7);
                 r3 = r2;
                 { bool c_ = r3 != 0; r19 = r19 + 1u; if (c_) goto L_L00447DDC; }
                 r3 = Mem.U8((r18 + 100u));

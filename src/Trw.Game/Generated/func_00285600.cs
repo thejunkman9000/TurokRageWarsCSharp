@@ -14,13 +14,13 @@ public static partial class Game
             {
                 Mem.Copy(_fp + 0u, p_in, 4);
                 if (Dbg.On) Dbg.Enter("func_00285600", (uint)p_in);
-                Mem.Set(_fp + 4u, ((int)(Mem.U16(_fp)) << (int)16));
+                Mem.Set(_fp + 4u, ((int)(new B19Pair(_fp).a) << (int)16));
                 uint r = 0u;
-                if (((int)(Mem.U16((_fp + 2u))) == 0))
+                if (((int)(new B19Pair(_fp).b) == 0))
                 {
                     return Mem.F32((_fp + 4u));
                 }
-                Mem.Set((_fp + 8u), ((int)(Mem.U16((_fp + 2u))) << (int)16));
+                Mem.Set((_fp + 8u), ((int)(new B19Pair(_fp).b) << (int)16));
                 Mem.Set(0x80115DE4u, ((Mem.U32(0x80115DE4u) * 2823445331u) + (uint)(1479838765)));
                 r = ((Mem.U32(0x80115DE4u) >> (int)16) & (uint)(32767));
                 return (Mem.F32((_fp + 4u)) + (((float)(r) * Mem.F32((_fp + 8u))) * Mem.F32(0x800C9FA8u)));

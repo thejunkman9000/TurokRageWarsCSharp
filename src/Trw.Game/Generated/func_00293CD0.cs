@@ -10,38 +10,38 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00293CD0", (uint)g);
-            uint b = (0x80145040u + 6240u);
+            uint b = new B21World(0x80145040u).blk.P;
             float t = 0f;
-            if ((Mem.S32((b + 172u)) == 1))
+            if ((new B21GameBlk(b).unkAC == 1))
             {
-                t = Mem.F32((g + 159152u));
+                t = new B21Game(g).unk26DB0;
                 if ((Mem.F32(0x800CA5A4u) < t))
                 {
                     if ((Mem.F32(0x800CA5A8u) < t))
                     {
-                        Mem.Set((b + 172u), 0);
+                        new B21GameBlk(b).unkAC_Set(0);
                         func_002A3224();
-                        func_00299368((uint)(2), default(uint), default(uint), default(uint));
+                        func_00299368(2);
                         func_0040C4A8(0);
                         func_00293774(g, 1);
-                        Mem.Set((g + 159152u), 0.0f);
+                        new B21Game(g).unk26DB0_Set(0.0f);
                     }
                     else
                     {
                         if ((Mem.S32(0x8010F190u) != 0))
                         {
-                            Mem.Set((b + 172u), 0);
+                            new B21GameBlk(b).unkAC_Set(0);
                             func_002A3224();
-                            func_00299368((uint)(2), default(uint), default(uint), default(uint));
+                            func_00299368(2);
                             func_00293774(g, 8);
-                            Mem.Set((g + 159152u), 0.0f);
+                            new B21Game(g).unk26DB0_Set(0.0f);
                         }
                     }
                 }
             }
-            func_00286050((g + 968u));
+            func_00286050(new B21Game(g).sub3C8.P);
             func_002394A4();
-            func_002AB794((g + 113912u));
+            func_002AB794(new B21Game(g).sub1BCF8.P);
             func_00294F1C(default(uint), default(uint), default(uint), default(uint));
             func_00293378(g);
         }

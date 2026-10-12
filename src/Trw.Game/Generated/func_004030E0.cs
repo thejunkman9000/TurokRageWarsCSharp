@@ -30,7 +30,7 @@ public static partial class Game
                 }
                 else
                 {
-                    r = func_002518DC((uint)(0), (uint)((int)(p)), (uint)((int)(p)), (uint)(Mem.S32(_fp)), (uint)(51), (uint)(0), 0u, 0x800E0B2Cu, (uint)(1));
+                    r = func_002518DC(0, (uint)((int)(p)), (int)(p), (uint)(Mem.S32(_fp)), 51, (uint)(0), 0u, 0x800E0B2Cu, 1);
                 }
                 ents = (uint)((Mem.S32(r) + 8));
                 i = 0;
@@ -38,21 +38,21 @@ public static partial class Game
                 for (; (i < n); ++i)
                 {
                     e = (ents + (uint)(i * 76));
-                    if ((Mem.S32((e + 8u)) == a))
+                    if ((new O01Rec(e).unk8 == a))
                     {
-                        if (((Mem.S32((e + 12u)) & 3) == 0))
+                        if (((new O01Rec(e).unkC & 3) == 0))
                         {
-                            Mem.Set((Mem.U32(0x800E2830u) + 216u), Mem.S32(e));
+                            new O01Ctx(Mem.U32(0x800E2830u)).unkD8_Set(new O01Rec(e).unk0);
                         }
-                        Mem.Set((Mem.U32(0x800E2830u) + 224u), a);
-                        Mem.Set((Mem.U32(0x800E2830u) + 220u), i);
-                        Mem.Set((Mem.U32(0x800E2830u) + 88u), 1);
+                        new O01Ctx(Mem.U32(0x800E2830u)).unkE0_Set(a);
+                        new O01Ctx(Mem.U32(0x800E2830u)).unkDC_Set(i);
+                        new O01Ctx(Mem.U32(0x800E2830u)).unk58_Set(1);
                         break;
                     }
                 }
                 func_002536F4(0, r);
                 func_00245AB8();
-                return Mem.S32((Mem.U32(0x800E2830u) + 216u));
+                return new O01Ctx(Mem.U32(0x800E2830u)).unkD8;
             }
         }
         finally { Stack.Free(4); }

@@ -13,9 +13,9 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00442224", (uint)a, (uint)b, (uint)c, (uint)d);
-                Mem.Set((_fp + (uint)0), Mem.U8((a + 23u)));
+                Mem.Set((_fp + (uint)0), new O06A_v35(a).unk17);
                 Mem.Set((_fp + (uint)1), (byte)(0));
-                func_0043FFAC(a, (uint)(b), (uint)(c), (uint)(d), _fp, (uint)(0));
+                func_0043FFAC(a, (uint)(b), (uint)(c), (uint)(d), (int)(_fp), 0);
             }
         }
         finally { Stack.Free(2); }

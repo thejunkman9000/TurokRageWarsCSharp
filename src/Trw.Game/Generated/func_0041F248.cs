@@ -17,10 +17,10 @@ public static partial class Game
             found = 0;
             for (i = 0; ((i < 17) && (found == 0)); ++i)
             {
-                if ((Mem.S32((0x800E3A50u + (uint)(i * 112))) == key))
+                if ((new O3Row((0x800E3A50u + (uint)(i * 112))).f0 == key))
                 {
                     found = 1;
-                    res = Mem.S32(((0x800E3A50u + (uint)(i * 112)) + 4u));
+                    res = new O3Row((0x800E3A50u + (uint)(i * 112))).f4;
                 }
             }
             return res;

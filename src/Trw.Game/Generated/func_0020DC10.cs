@@ -10,11 +10,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020DC10", (uint)ctl);
-            if ((Mem.U32((ctl + 100u)) == 0u))
+            if ((new B2Ctl(ctl).target_ == 0u))
             {
                 return 1;
             }
-            if (((Mem.S32((ctl + 540u)) < 3) || (Mem.S32((ctl + 540u)) > 5)))
+            if (((new B2Ctl(ctl).curId < 3) || (new B2Ctl(ctl).curId > 5)))
             {
                 func_0020DC60(ctl);
                 return 1;

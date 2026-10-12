@@ -15,35 +15,35 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_002A7164", (uint)e, (uint)n);
                 uint o = 0u;
                 float s = 0f;
-                o = Mem.U32((n + 176u));
+                o = new EmitNode(n).unkB0_;
                 if ((o != 0u))
                 {
                     if ((o == (uint)((-1))))
                     {
-                        Mem.Copy(((n + 40u) + (uint)(Mem.S32(0x800D297Cu) * 64)), ((n + 40u) + (uint)((Mem.S32(0x800D297Cu) ^ 1) * 64)), 64);
-                        Mem.Set((n + 176u), 0u);
+                        Mem.Copy((new EmitNode(n).mtx.P + (uint)(Mem.S32(0x800D297Cu) * 64)), (new EmitNode(n).mtx.P + (uint)((Mem.S32(0x800D297Cu) ^ 1) * 64)), 64);
+                        new EmitNode(n).unkB0__Set(0u);
                     }
                     else
                     {
                         func_00270980(_fp, (o + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 96)), default(uint), default(uint));
                         s = Mem.F32(0x800CB048u);
-                        if ((Mem.S32((Mem.U32((o + 280u)) + 20u)) != 0))
+                        if ((new EmitOwner(o).info.unk14 != 0))
                         {
                             s = Mem.F32(0x800CB04Cu);
                         }
                         func_002734EC(_fp, s, s, s);
                         func_00272898(_fp);
-                        func_00273340(_fp, (n + 16u));
-                        if (((Mem.U32((e + 60u)) & (uint)(4)) != 0u))
+                        func_00273340(_fp, new EmitNode(n).v10.P);
+                        if (((new Emit(e).flags & (uint)(4)) != 0u))
                         {
-                            func_0027335C(_fp, (n + 28u));
+                            func_0027335C(_fp, new EmitNode(n).v1C.P);
                         }
                         else
                         {
-                            func_002702EC(_fp, ((n + 40u) + (uint)(Mem.S32(0x800D297Cu) * 64)));
+                            func_002702EC(_fp, (new EmitNode(n).mtx.P + (uint)(Mem.S32(0x800D297Cu) * 64)));
                         }
                     }
-                    Mem.Set((n + 8u), Mem.F32((Mem.U32((e + 8u)) + (uint)8)));
+                    new EmitNode(n).unk8_Set(Mem.F32((new Emit(e).def_ + (uint)8)));
                 }
             }
         }

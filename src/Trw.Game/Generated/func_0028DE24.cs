@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028DE24", (uint)lv, (uint)a, (uint)bit);
-            uint t = func_0028FD94(func_0028FD94(func_0028FD94(Mem.U32((lv + 128u)), 0), a), 1);
+            uint t = func_0028FD94(func_0028FD94(func_0028FD94(new Level(lv).unk80_, 0), a), 1);
             uint bits = 0u;
             int m = 0;
             func_0028FD94(t, 0);

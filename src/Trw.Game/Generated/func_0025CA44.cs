@@ -15,12 +15,12 @@ public static partial class Game
             {
                 return 0;
             }
-            for (n = Mem.U32((l + 20u)); (n != 0u); n = Mem.U32((n + 4u)))
+            for (n = new SndPlaylist(l).head_; (n != 0u); n = new SndListNode(n).next_)
             {
                 if ((n == target))
                 {
-                    func_0025E194(Mem.S32((n + 8u)));
-                    Mem.Set(0x800D0D54u, Mem.S32((n + 8u)));
+                    func_0025E194(new SndListNode(n).id);
+                    Mem.Set(0x800D0D54u, new SndListNode(n).id);
                     func_00255E78((l + 20u), n, default(uint), default(uint));
                     func_00255CB4(l, n, default(uint), default(uint));
                     return 1;

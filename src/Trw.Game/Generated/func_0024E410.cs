@@ -11,14 +11,14 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024E410", (uint)a);
             uint d = 0u;
-            if (((int)(Mem.U8(a)) == 1))
+            if (((int)(new Obj(a).type) == 1))
             {
-                return Mem.F32((a + 112u));
+                return new Obj(a).unk70;
             }
-            d = Mem.U32((a + 24u));
-            if ((Mem.S32(d) == 0))
+            d = new Obj(a).def_;
+            if ((new ObjDef(d).type == 0))
             {
-                return Mem.F32((d + 32u));
+                return new ObjDef(d).unk20;
             }
             return 0.0f;
         }

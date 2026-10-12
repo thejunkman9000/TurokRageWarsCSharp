@@ -11,22 +11,22 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00403E10", (uint)a);
             int r = 0;
-            switch ((int)(Mem.U8((a + 17u))))
+            switch ((int)(new O01Kind(a).kind))
             {
             case 1:
-                if (((int)(Mem.U8((a + 18u))) == 5))
+                if (((int)(new O01Kind(a).val) == 5))
                 {
                     r = 1;
                 }
                 break;
             case 9:
-                if (((int)(Mem.U8((a + 18u))) == 4))
+                if (((int)(new O01Kind(a).val) == 4))
                 {
                     r = 1;
                 }
                 break;
             case 10:
-                if (((int)(Mem.U8((a + 18u))) == 3))
+                if (((int)(new O01Kind(a).val) == 3))
                 {
                     r = 1;
                 }

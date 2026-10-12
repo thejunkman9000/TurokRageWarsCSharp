@@ -14,23 +14,23 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_0024B52C", (uint)a);
                 float s = 0f;
-                Mem.Copy((_fp + 32u), (a + 92u), 16);
+                Mem.Copy((_fp + 32u), new Obj(a).q5C.P, 16);
                 if ((func_00245788() != 0))
                 {
                     func_0024D718((_fp + 32u), a);
                 }
-                s = sinf((Mem.F32((a + 108u)) * Mem.F32(0x800C8C40u)));
-                Mem.Set(_fp, (float)(0));
-                Mem.Set((_fp + 4u), s);
-                Mem.Set((_fp + 8u), (float)(0));
+                s = sinf((new Obj(a).unk6C.f * Mem.F32(0x800C8C40u)));
+                new Quat4(_fp).x_Set((float)(0));
+                new Quat4(_fp).y_Set(s);
+                new Quat4(_fp).z_Set((float)(0));
                 Mem.Set(0x80115DECu, s);
-                Mem.Set((_fp + 12u), cosf((Mem.F32((a + 108u)) * Mem.F32(0x800C8C40u))));
+                new Quat4(_fp).w_Set(cosf((new Obj(a).unk6C.f * Mem.F32(0x800C8C40u))));
                 func_00274108((_fp + 16u), _fp, (_fp + 32u));
-                func_002742B4((_fp + 16u), (a + 116u));
-                func_002734EC((a + 116u), Mem.F32((a + 80u)), Mem.F32((a + 84u)), Mem.F32((a + 88u)));
-                func_002725BC((a + 8u), 2.0E+4f);
-                func_002734B8((a + 116u), Mem.F32((a + 8u)), Mem.F32(((a + 8u) + 4u)), Mem.F32(((a + 8u) + 8u)));
-                func_00273DDC((a + 116u));
+                func_002742B4((_fp + 16u), new Obj(a).unk74.P);
+                func_002734EC(new Obj(a).unk74.P, new Obj(a).unk50, new Obj(a).unk54, new Obj(a).unk58);
+                func_002725BC(new Obj(a).pos.P, 2.0E+4f);
+                func_002734B8(new Obj(a).unk74.P, new Obj(a).pos.x, new Obj(a).pos.y, new Obj(a).pos.z);
+                func_00273DDC(new Obj(a).unk74.P);
             }
         }
         finally { Stack.Free(48); }

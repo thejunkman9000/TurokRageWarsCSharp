@@ -11,12 +11,12 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0042BC34");
             func_0029A73C();
-            if ((Mem.S32((Mem.U32(0x800E4F60u) + 988u)) != 3))
+            if ((new O04ModeF60(Mem.U32(0x800E4F60u)).state != 3))
             {
                 return 0;
             }
-            Mem.Set((Mem.U32(0x800E4F60u) + 988u), 5);
-            Mem.Set((Mem.U32(0x800E4F60u) + 992u), 4);
+            new O04ModeF60(Mem.U32(0x800E4F60u)).state_Set(5);
+            new O04ModeF60(Mem.U32(0x800E4F60u)).unk3E0_Set(4);
             return 0;
         }
     }

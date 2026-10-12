@@ -10,31 +10,31 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00204FC4", (uint)actor, (uint)state);
-            if (((int)(Mem.S8((actor + 230u))) == 1))
+            if (((int)(new B01Actor(actor).unkE6) == 1))
             {
                 return 1;
             }
-            if (((int)(Mem.S16((actor + 264u))) != (int)((sbyte)(Mem.U8((state + 202u))))))
+            if (((int)(new B01Actor(actor).unk108) != (int)((sbyte)(new B01State(state).unkCA))))
             {
                 goto L_zero;
             }
-            if (((int)(Mem.S16((actor + 266u))) != (int)((sbyte)(Mem.U8((state + 202u))))))
+            if (((int)(new B01Actor(actor).unk10A) != (int)((sbyte)(new B01State(state).unkCA))))
             {
                 goto L_zero;
             }
-            if ((((int)(Mem.S8((state + 203u))) != 0) && !((Mem.U32((actor + 256u)) & (uint)(1024)) != 0u)))
+            if ((((int)(new B01State(state).unkCB) != 0) && !((new B01Actor(actor).flags & (uint)(1024)) != 0u)))
             {
                 return 1;
             }
-            if ((((int)(Mem.S16((actor + 268u))) < 3) && ((Mem.U32((actor + 256u)) & (uint)(1024)) != 0u)))
+            if ((((int)(new B01Actor(actor).unk10C) < 3) && ((new B01Actor(actor).flags & (uint)(1024)) != 0u)))
             {
-                if ((((float)(Mem.S16((actor + 300u))) * scale) <= Mem.F32((actor + 308u))))
+                if ((((float)(new B01Actor(actor).unk12C) * scale) <= new B01Actor(actor).unk134))
                 {
                     return 1;
                 }
                 return 0;
             }
-            if ((((float)(Mem.S16((actor + 268u))) * scale) <= Mem.F32((actor + 260u))))
+            if ((((float)(new B01Actor(actor).unk10C) * scale) <= new B01Actor(actor).unk104))
             {
                 return 1;
             }

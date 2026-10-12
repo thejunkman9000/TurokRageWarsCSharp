@@ -14,11 +14,11 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_00274DFC", (uint)a, (uint)b);
                 int r = 0;
-                Mem.Copy(_fp, (a + 48u), 12);
-                Mem.Set((_fp + 16u), (Mem.F32(b) - Mem.F32(a)));
-                Mem.Set(((_fp + 16u) + 8u), (Mem.F32((b + 8u)) - Mem.F32((a + 8u))));
+                Mem.Copy(_fp, new RayObj(a).dir.P, 12);
+                new Vec3f((_fp + 16u)).x_Set((new PlaneObj(b).pos.x - new RayObj(a).pos.x));
+                new Vec3f((_fp + 16u)).z_Set((new PlaneObj(b).pos.z - new RayObj(a).pos.z));
                 r = 0;
-                if (!(((Mem.F32(_fp) * Mem.F32((_fp + 16u))) + (Mem.F32((_fp + 8u)) * Mem.F32(((_fp + 16u) + 8u)))) <= 0.0f))
+                if (!(((new Vec3f(_fp).x * new Vec3f((_fp + 16u)).x) + (new Vec3f(_fp).z * new Vec3f((_fp + 16u)).z)) <= 0.0f))
                 {
                     r = 1;
                 }

@@ -20,7 +20,7 @@ public static partial class Game
                     mode = 3;
                 }
             }
-            if ((Mem.F32((g + 159152u)) > Mem.F32(0x800CA5B0u)))
+            if ((new B21Game(g).unk26DB0 > Mem.F32(0x800CA5B0u)))
             {
                 Mem.Set(0x800D29CCu, 0);
             }

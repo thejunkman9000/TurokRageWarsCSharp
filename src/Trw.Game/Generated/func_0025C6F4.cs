@@ -12,37 +12,37 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0025C6F4", (uint)v, (uint)info);
             float d = 0f;
             short id = 0;
-            Mem.Set((v + 40u), (short)(64));
-            id = Mem.S16((info + 12u));
+            new SndVoice(v).pan_Set((short)(64));
+            id = new SndInfo(info).wC;
             if (((int)(id) != (-1)))
             {
-                Mem.Copy((v + 140u), func_00258C14(Mem.U32((v + 176u)), (int)(id)), 12);
-                d = Trunc16ToF32(Mem.U16(((v + 140u) + 2u)));
+                Mem.Copy(new SndVoice(v).env.P, func_00258C14(new SndVoice(v).mgr_, (int)(id)), 12);
+                d = Trunc16ToF32(new SndVoice(v).env.a);
                 do
                 {
-                    Mem.Set((v + 156u), ((d - Trunc16ToF32(Mem.U16(((v + 140u) + 4u)))) / (float)(Mem.S16(((v + 140u) + 6u)))));
-                    Mem.Set((v + 152u), Trunc16ToF32(Mem.U16(((v + 140u) + 2u))));
-                    Mem.Set((v + 40u), (short)(int)(Trunc16ToF32(Mem.U16(((v + 140u) + 2u)))));
-                    Mem.Set((v + 136u), 1);
+                    new SndVoice(v).unk9C_Set(((d - Trunc16ToF32(new SndVoice(v).env.b)) / (float)(new SndVoice(v).env.c)));
+                    new SndVoice(v).unk98_Set(Trunc16ToF32(new SndVoice(v).env.a));
+                    new SndVoice(v).pan_Set((short)(int)(Trunc16ToF32(new SndVoice(v).env.a)));
+                    new SndVoice(v).unk88_Set(1);
                     return;
                 }
                 while ((0 != 0));
             }
             else
             {
-                Mem.Set((v + 136u), 0);
-                if ((Mem.S32((v + 168u)) < 256))
+                new SndVoice(v).unk88_Set(0);
+                if ((new SndVoice(v).tag < 256))
                 {
-                    if (((Mem.S32((v + 192u)) == 0) && (func_00258D4C(Mem.U32((v + 176u))) != 0)))
+                    if (((new SndVoice(v).unkC0 == 0) && (func_00258D4C(new SndVoice(v).mgr_) != 0)))
                     {
-                        Mem.Set((v + 40u), (short)((sbyte)(Mem.U8((Mem.U32((v + 176u)) + 11156u)))));
+                        new SndVoice(v).pan_Set((short)((sbyte)(new SndMgr(new SndVoice(v).mgr_).unk2B94)));
                     }
                 }
                 else
                 {
-                    if (((Mem.S32((v + 192u)) == 0) && (func_00258D4C(Mem.U32((v + 176u))) != 0)))
+                    if (((new SndVoice(v).unkC0 == 0) && (func_00258D4C(new SndVoice(v).mgr_) != 0)))
                     {
-                        Mem.Set((v + 40u), (short)(func_00259B30((v + 68u), (uint)(Mem.S32((Mem.U32((v + 176u)) + 11160u))), default(uint), default(uint))));
+                        new SndVoice(v).pan_Set((short)(func_00259B30(new SndVoice(v).pos.P, (uint)(new SndMgr(new SndVoice(v).mgr_).unk2B98), default(uint), default(uint))));
                     }
                 }
             }

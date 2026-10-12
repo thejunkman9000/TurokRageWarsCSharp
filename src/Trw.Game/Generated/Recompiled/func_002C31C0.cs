@@ -49,7 +49,7 @@ public static partial class Game
                 r18 = r18 + 8u;
                 r4 = Mem.U32((r2 + 16u));
                 r5 = Mem.U32((r16 + 44u));
-                r4 = r4 + 8u; r2 = func_002570E0(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 + 8u; r2 = func_002570E0(r4, r5);
                 r4 = r0;
                 Mem.Set((r17 + 4u), r2);
                 r5 = Mem.U32((r16 + 56u));
@@ -82,7 +82,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r2 = Mem.U32((r16 + 64u));
                 r5 = r16;
-                Mem.Set((r29 + 24u), r2); r2 = _decodeChunk(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
+                Mem.Set((r29 + 24u), r2); r2 = _decodeChunk(r4, r5, (int)r6, (int)r7, (short)Mem.U32(r29 + 16u), (short)Mem.U32(r29 + 20u), Mem.U32(r29 + 24u));
                 r3 = Mem.U32((r16 + 60u));
                 { bool c_ = r3 == 0; r18 = r2; if (c_) goto L_L002C32EC; }
                 r2 = Mem.U16((r16 + 62u));
@@ -151,7 +151,7 @@ public static partial class Game
                 r2 = Mem.U32((r16 + 64u));
                 r7 = r7 + r19;
                 r2 = r2 | 2u;
-                Mem.Set((r29 + 24u), r2); r2 = _decodeChunk(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
+                Mem.Set((r29 + 24u), r2); r2 = _decodeChunk(r4, r5, (int)r6, (int)r7, (short)Mem.U32(r29 + 16u), (short)Mem.U32(r29 + 20u), Mem.U32(r29 + 24u));
                 r18 = r2;
                 r5 = r18;
                 r6 = 16711680u;
@@ -220,7 +220,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r2 = Mem.U32((r16 + 64u));
                 r6 = r17 - r20;
-                Mem.Set((r29 + 24u), r2); r2 = _decodeChunk(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
+                Mem.Set((r29 + 24u), r2); r2 = _decodeChunk(r4, r5, (int)r6, (int)r7, (short)Mem.U32(r29 + 16u), (short)Mem.U32(r29 + 20u), Mem.U32(r29 + 24u));
                 r3 = Mem.U32((r16 + 60u));
                 { bool c_ = r3 == 0; r18 = r2; if (c_) goto L_L002C3524; }
                 r2 = Mem.U16((r16 + 62u));

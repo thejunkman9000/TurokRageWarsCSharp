@@ -17,7 +17,7 @@ public static partial class Game
                 int i = 0;
                 int id = 0;
                 uint n = 0u;
-                if ((Mem.U32((ctl + 104u)) != 0u))
+                if ((new B2Ctl(ctl).unk68_ != 0u))
                 {
                     return 1;
                 }
@@ -26,7 +26,7 @@ public static partial class Game
                 {
                     Mem.Set((_fp + (uint)(i * 4)), 0);
                 }
-                switch (Mem.S32((ctl + 188u)))
+                switch (new B2Ctl(ctl).unkBC)
                 {
                 case 0:
                     Mem.Set((_fp + (uint)(0 * 4)), 3014);
@@ -75,28 +75,28 @@ public static partial class Game
                     func_0020D1FC(m);
                     if ((func_0020F150(_fp) == 0))
                     {
-                        Mem.Set((ctl + 104u), 0u);
-                        Mem.Set((ctl + 188u), (-1));
+                        new B2Ctl(ctl).unk68__Set(0u);
+                        new B2Ctl(ctl).unkBC_Set((-1));
                         return 1;
                     }
-                    Mem.Set((m + 24u), (-1));
-                    func_0020D0CC(m, Mem.S32((ctl + 4u)));
-                    id = Mem.S32((m + 24u));
+                    new B2Mgr(m).unk18_Set((-1));
+                    func_0020D0CC(m, new B2Ctl(ctl).unk4);
+                    id = new B2Mgr(m).unk18;
                     if ((id != (-1)))
                     {
                         n = func_0020CFE0(m, id);
-                        Mem.Set((ctl + 12u), Mem.S32((m + 24u)));
-                        Mem.Set((ctl + 104u), Mem.U32((n + 52u)));
-                        func_0020D114(m, (ctl + 20u), 4);
+                        new B2Ctl(ctl).unkC_Set(new B2Mgr(m).unk18);
+                        new B2Ctl(ctl).unk68__Set(new B2Node(n).unk34_);
+                        func_0020D114(m, new B2Ctl(ctl).q.P, 4);
                         return 1;
                     }
-                    Mem.Set((ctl + 104u), 0u);
-                    Mem.Set((ctl + 188u), id);
+                    new B2Ctl(ctl).unk68__Set(0u);
+                    new B2Ctl(ctl).unkBC_Set(id);
                 }
                 else
                 {
-                    Mem.Set((ctl + 104u), 0u);
-                    Mem.Set((ctl + 188u), (-1));
+                    new B2Ctl(ctl).unk68__Set(0u);
+                    new B2Ctl(ctl).unkBC_Set((-1));
                 }
                 return 1;
             }

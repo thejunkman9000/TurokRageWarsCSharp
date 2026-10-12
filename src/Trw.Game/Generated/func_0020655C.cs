@@ -13,9 +13,9 @@ public static partial class Game
             uint a = 0u;
             if ((id == 2127))
             {
-                for (a = Mem.U32(0x8013B124u); (a != 0u); a = Mem.U32((a + 748u)))
+                for (a = Mem.U32(0x8013B124u); (a != 0u); a = new Actor(a).next2EC_)
                 {
-                    if ((Mem.S32(Mem.U32((a + 24u))) == 4))
+                    if ((new ActorDef(new Actor(a).def_).type == 4))
                     {
                         return 0;
                     }

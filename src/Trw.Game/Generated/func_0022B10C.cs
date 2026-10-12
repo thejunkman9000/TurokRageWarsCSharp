@@ -10,13 +10,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022B10C", (uint)actor, (uint)amount);
-            ushort v = (ushort)(((int)(Mem.U16((actor + 5848u))) + amount));
-            Mem.Set((actor + 5848u), v);
+            ushort v = (ushort)(((int)(new Actor(actor).unk16D8) + amount));
+            new Actor(actor).unk16D8_Set(v);
             if (((int)(v) > 100))
             {
                 v = (ushort)(100);
             }
-            Mem.Set((actor + 5848u), v);
+            new Actor(actor).unk16D8_Set(v);
         }
     }
 

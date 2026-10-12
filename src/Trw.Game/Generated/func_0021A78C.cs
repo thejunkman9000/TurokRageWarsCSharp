@@ -51,18 +51,18 @@ public static partial class Game
             Mem.Set((a + (uint)1856), func_0022ADAC(a));
             c1 = Mem.F32(0x800C73E8u);
             Mem.Set((a + (uint)1860), 0);
-            Mem.Set((a + (uint)1864), Mem.Set(((a + (uint)1864) + 4u), Mem.Set(((a + (uint)1864) + 8u), 0)));
+            new V3i((a + (uint)1864)).x_Set(new V3i((a + (uint)1864)).y_Set(new V3i((a + (uint)1864)).z_Set(0)));
             Mem.Set((a + (uint)1876), c1);
             Mem.Set((a + (uint)1920), 0);
             Mem.Set((a + (uint)1924), c1);
-            Mem.Copy((a + (uint)1768), (a + 8u), 12);
-            Mem.Copy((a + (uint)1784), (a + 8u), 12);
+            Mem.Copy((a + (uint)1768), new B04P9h(a).pos.P, 12);
+            Mem.Copy((a + (uint)1784), new B04P9h(a).pos.P, 12);
             Mem.Set((a + (uint)1624), 0);
             Mem.Set((a + (uint)1640), 0);
             Mem.Set((a + (uint)1644), 0);
-            if ((Mem.U32((a + 24u)) != 0u))
+            if ((new B04P9h(a).def_ != 0u))
             {
-                Mem.Set((a + (uint)1780), Mem.F32((Mem.U32((a + 24u)) + 244u)));
+                Mem.Set((a + (uint)1780), new B04Def9(new B04P9h(a).def_).unkF4);
             }
             else
             {
@@ -87,7 +87,7 @@ public static partial class Game
             Mem.Set((new_var3 + (uint)1944), (-1));
             Mem.Set((new_var3 + (uint)1964), Mem.Set((a + (uint)1960), Mem.Set((new_var3 + (uint)1956), Mem.Set((new_var3 + (uint)1952), Mem.Set((a + (uint)1948), 0)))));
             new_var2 = new_var3;
-            Mem.Set((new_var2 + (uint)2008), Mem.Set(((new_var2 + (uint)2008) + 4u), Mem.Set(((new_var2 + (uint)2008) + 8u), fs)));
+            new Vec3f((new_var2 + (uint)2008)).x_Set(new Vec3f((new_var2 + (uint)2008)).y_Set(new Vec3f((new_var2 + (uint)2008)).z_Set(fs)));
             Mem.Set((new_var2 + (uint)2020), c2);
             Mem.Set((new_var3 + (uint)1972), 0);
             Mem.Set((new_var2 + (uint)1976), (-1));
@@ -103,7 +103,7 @@ public static partial class Game
             Mem.Set((new_var2 + (uint)2108), fs);
             Mem.Set((new_var2 + (uint)2112), fs);
             Mem.Set((new_var3 + (uint)2120), 0);
-            Mem.Set((Mem.U32((new_var3 + (uint)1496)) + 141u), (byte)(0));
+            new B04St9(Mem.U32((new_var3 + (uint)1496))).unk8D_Set((byte)(0));
             Mem.Set((new_var3 + (uint)1796), fs);
             Mem.Set((new_var2 + (uint)5844), 0);
         }

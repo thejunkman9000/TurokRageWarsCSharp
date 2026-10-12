@@ -15,16 +15,16 @@ public static partial class Game
             {
                 return 0;
             }
-            if ((Mem.S32((Mem.U32(0x800E54A4u) + 76u)) == 3))
+            if ((new O05Lobby(Mem.U32(0x800E54A4u)).h.f4C == 3))
             {
                 for (i = 0; (i < 4); ++i)
                 {
-                    if ((Mem.S32((((Mem.U32(0x800E54A4u) + 88u) + (uint)(i * 2920)) + 20u)) > 0))
+                    if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].f14 > 0))
                     {
-                        Mem.Set((((Mem.U32(0x800E54A4u) + 88u) + (uint)(i * 2920)) + 20u), (int)(Mem.S32((((Mem.U32(0x800E54A4u) + 88u) + (uint)(i * 2920)) + 20u)) - 1));
-                        if ((Mem.S32((((Mem.U32(0x800E54A4u) + 88u) + (uint)(i * 2920)) + 20u)) == 0))
+                        new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].f14_Set((int)(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].f14 - 1));
+                        if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].f14 == 0))
                         {
-                            Mem.Set((((Mem.U32(0x800E54A4u) + 88u) + (uint)(i * 2920)) + 20u), (-1));
+                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].f14_Set((-1));
                             func_002A338C();
                             func_00404E28(i);
                             func_004337EC((uint)(i), default(uint), default(uint), default(uint));
@@ -33,17 +33,17 @@ public static partial class Game
                     }
                 }
             }
-            if ((func_0043C4E8((Mem.U32(0x800E54A4u) + 8u)) != 1))
+            if ((func_0043C4E8(new O05Lobby(Mem.U32(0x800E54A4u)).h.blk8.P) != 1))
             {
                 return 0;
             }
-            func_0043C260((Mem.U32(0x800E54A4u) + 8u), default(uint), default(uint), default(uint));
-            func_0043C484((Mem.U32(0x800E54A4u) + 8u));
-            if ((func_0043C4E8((Mem.U32(0x800E54A4u) + 8u)) != 2))
+            func_0043C260(new O05Lobby(Mem.U32(0x800E54A4u)).h.blk8.P);
+            func_0043C484(new O05Lobby(Mem.U32(0x800E54A4u)).h.blk8.P);
+            if ((func_0043C4E8(new O05Lobby(Mem.U32(0x800E54A4u)).h.blk8.P) != 2))
             {
                 return 0;
             }
-            if ((Mem.S32((Mem.U32(0x800E54A4u) + 84u)) != 5))
+            if ((new O05Lobby(Mem.U32(0x800E54A4u)).h.f54 != 5))
             {
                 return 0;
             }
@@ -59,7 +59,7 @@ public static partial class Game
             case 1:
             case 3:
             case 4:
-                func_00438BD0(default(uint), default(uint), default(uint), default(uint));
+                func_00438BD0();
                 break;
             }
             return 0;

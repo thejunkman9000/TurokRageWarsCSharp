@@ -190,7 +190,7 @@ public static partial class Game
                 r5 = r29 + 336u;
                 L_L0027DE8C: ;
                 L_I0027DE8C: ;
-                r6 = r29 + 368u; func_0027DAA4(r4, r5, r6);
+                r6 = r29 + 368u; r2 = func_0027DAA4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I0027DE94: ;
                 r2 = Mem.U32((r20 + 92u));
                 L_I0027DE98: ;
@@ -968,7 +968,7 @@ public static partial class Game
                 r4 = r20;
                 L_L0027E5CC: ;
                 L_I0027E5CC: ;
-                r5 = r22; r2 = func_0027D950(r4, r5);
+                r5 = r22; r2 = func_0027D950(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I0027E5D4: ;
                 { bool c_ = r2 == 0; r5 = r29 + 144u; if (c_) goto L_L0027E5F0; }
                 L_I0027E5DC: ;
@@ -1135,8 +1135,8 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_0027DD1C", r2); Stack.Free(792); }
     }
 
-    public static void func_0027DD1C(uint p0, int p1, uint p2, float p3)
+    public static void func_0027DD1C(uint p0, uint p1, uint p2, float p3)
     {
-        func_0027DD1C_rc(p0, (uint)p1, p2, Cpu.F2U(p3));
+        func_0027DD1C_rc(p0, p1, p2, Cpu.F2U(p3));
     }
 }

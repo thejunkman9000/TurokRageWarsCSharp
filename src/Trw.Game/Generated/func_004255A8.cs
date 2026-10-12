@@ -23,7 +23,7 @@ public static partial class Game
                     r = Mem.U32(0x800D7510u);
                     break;
                 case 5002:
-                    if (!(((int)(func_0022F444(p, (uint)((int)(Mem.U8((p + 15u)))), default(uint), default(uint))) & 1) != 0))
+                    if (!((func_0022F444(p, (int)(new O04Row190r(p).unkF)) & 1) != 0))
                     {
                         r = Mem.U32(0x800D7518u);
                     }

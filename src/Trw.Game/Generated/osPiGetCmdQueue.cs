@@ -10,11 +10,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("osPiGetCmdQueue");
-            if (!(Mem.U32(0x800D8390u) != 0u))
+            if (!(new OSMgrArgs(0x800D8390u).initialized != 0u))
             {
                 return 0u;
             }
-            return Mem.U32((0x800D8390u + 8u));
+            return new OSMgrArgs(0x800D8390u).cmdQueue_;
         }
     }
 

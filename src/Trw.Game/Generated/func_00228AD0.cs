@@ -18,8 +18,8 @@ public static partial class Game
             float ft0 = 0f;
             if (((func_00245774() == 0) && (func_00245788() == 0)))
             {
-                func_002AA224((uint)(Mem.U8((0x801462DEu + (uint)0))));
-                if ((!(Mem.F32((0x801462DEu + (uint)1494)) <= 0.0f) && (((C.Seq((object?)(C.Seq((object?)(C.Seq((object?)(C.Seq((object?)(C.Seq((object?)((fs2 = (Mem.F32((0x801462DEu + (uint)1494)) * Mem.F32(0x800C7CCCu)))), (fs0 = (Mem.F32((b + 668u)) / (float)(Mem.S32(0x800E28D0u)))))), (ft0 = (float)((int)((fs2 * Mem.F32(0x800C7CD0u))))))), (fs1f = (Mem.F32((b + 672u)) / (float)(Mem.S32(0x800E28D4u)))))), (fs2 = (fs2 - (ft0 * Mem.F32(0x800C7CD4u)))))), ((ft0 < Mem.F32(0x800C7CD8u)) ? 0 : 1)) != 0) || !(fs2 < Mem.F32(0x800C7CDCu))) || ((Mem.U32(0x800D2980u) % (uint)(15)) >= (uint)(5)))))
+                func_002AA224((uint)(Mem.U8((0x801462DEu + (uint)0))), default(uint), default(uint), default(uint));
+                if ((!(Mem.F32((0x801462DEu + (uint)1494)) <= 0.0f) && (((C.Seq((object?)(C.Seq((object?)(C.Seq((object?)(C.Seq((object?)(C.Seq((object?)((fs2 = (Mem.F32((0x801462DEu + (uint)1494)) * Mem.F32(0x800C7CCCu)))), (fs0 = (new HudInB6(b).unk29C / (float)(Mem.S32(0x800E28D0u)))))), (ft0 = (float)((int)((fs2 * Mem.F32(0x800C7CD0u))))))), (fs1f = (new HudInB6(b).unk2A0 / (float)(Mem.S32(0x800E28D4u)))))), (fs2 = (fs2 - (ft0 * Mem.F32(0x800C7CD4u)))))), ((ft0 < Mem.F32(0x800C7CD8u)) ? 0 : 1)) != 0) || !(fs2 < Mem.F32(0x800C7CDCu))) || ((Mem.U32(0x800D2980u) % (uint)(15)) >= (uint)(5)))))
                 {
                     if ((Mem.S32(0x801450B8u) == 1))
                     {

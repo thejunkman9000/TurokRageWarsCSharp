@@ -11,11 +11,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00254C10", (uint)unused, (uint)n);
             uint c = 0u;
-            for (c = Mem.U32(0x80104584u); (c != 0u); c = Mem.U32((c + 36u)))
+            for (c = new List_v2(0x80104584u).head_; (c != 0u); c = new PNode(c).next_)
             {
-                if ((Mem.U32(c) > Mem.U32(n)))
+                if ((new PNode(c).key > new PNode(n).key))
                 {
-                    func_00255D10(0x80104584u, c, n);
+                    func_00255D10(0x80104584u, c, n, default(uint));
                     break;
                 }
             }
@@ -23,7 +23,7 @@ public static partial class Game
             {
                 func_00255CB4(0x80104584u, n, default(uint), default(uint));
             }
-            Mem.Set((n + 12u), (uint)((uint)(Mem.U32((n + 12u))) | (uint)(4096)));
+            new PNode(n).fC_Set((uint)((uint)(new PNode(n).fC) | (uint)(4096)));
         }
     }
 

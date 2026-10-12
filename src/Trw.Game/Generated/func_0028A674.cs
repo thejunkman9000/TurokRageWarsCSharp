@@ -15,75 +15,75 @@ public static partial class Game
             float t = 0f;
             int v = 0;
             int a1 = 0;
-            p = (0x800D2934u + (uint)(Mem.S32((lv + 111632u)) * 8));
-            switch (Mem.S32((lv + 111636u)))
+            p = (0x800D2934u + (uint)(new Level(lv).unk1B410 * 8));
+            switch (new Level(lv).unk1B414)
             {
             case 1:
-                if ((Mem.F32((lv + 111640u)) == Mem.F32(p)))
+                if ((new Level(lv).unk1B418 == new Pal(p).div))
                 {
-                    if ((Mem.S32((lv + 111672u)) == 999))
+                    if ((new Level(lv).unk1B438 == 999))
                     {
                         func_004037D4();
                         func_004030E0(400);
                     }
-                    if ((Mem.S32((lv + 111632u)) == 0))
+                    if ((new Level(lv).unk1B410 == 0))
                     {
-                        Mem.Set((lv + 111636u), 0);
+                        new Level(lv).unk1B414_Set(0);
                     }
                     else
                     {
-                        Mem.Set((lv + 111636u), 2);
+                        new Level(lv).unk1B414_Set(2);
                     }
-                    v = Mem.S32((lv + 111672u));
+                    v = new Level(lv).unk1B438;
                     if ((v < 0))
                     {
-                        Mem.Set((lv + 111672u), (~v));
-                        Mem.Set((lv + 111644u), 0);
+                        new Level(lv).unk1B438_Set((~v));
+                        new Level(lv).unk1B41C_Set(0);
                     }
                     else
                     {
-                        Mem.Set((lv + 111644u), (int)(func_0044DE70(lv, (uint)((-1)), (uint)(v), (lv + 111648u), (uint)(1))));
+                        new Level(lv).unk1B41C_Set(func_0044DE70(lv, (-1), v, new Level(lv).unk1B420.P, 1));
                     }
-                    Mem.Set((lv + 111668u), Mem.S32((lv + 111672u)));
-                    if ((Mem.S32((lv + 111644u)) != 0))
+                    new Level(lv).unk1B434_Set(new Level(lv).unk1B438);
+                    if ((new Level(lv).unk1B41C != 0))
                     {
-                        a1 = (int)(Mem.S16((lv + 111664u)));
+                        a1 = (int)(new Level(lv).unk1B430);
                     }
                     else
                     {
-                        a1 = Mem.S32((lv + 111672u));
+                        a1 = new Level(lv).unk1B438;
                     }
-                    func_00286A78(lv, (uint)(a1), (uint)(Mem.S32((lv + 111644u))), default(uint));
+                    func_00286A78(lv, (uint)(a1), (uint)(new Level(lv).unk1B41C), default(uint));
                     g = 0x801462C8u;
-                    if (((Mem.S32((lv + 111692u)) != Mem.S32((g + 4u))) && (func_002934DC() != 0)))
+                    if (((new Level(lv).unk1B44C != new G462(g).unk4) && (func_002934DC() != 0)))
                     {
                         func_00239760((g - (uint)4672), (g - (uint)4608), (uint)(Mem.S32(0x800D7AC8u)), 4.0f);
-                        Mem.Set((lv + 111692u), Mem.S32((g + 4u)));
+                        new Level(lv).unk1B44C_Set(new G462(g).unk4);
                         return;
                     }
                 }
                 else
                 {
-                    Mem.Set((lv + 111640u), (Mem.F32((lv + 111640u)) + Mem.F32(0x800D2988u)));
-                    if ((Mem.F32(p) < Mem.F32((lv + 111640u))))
+                    new Level(lv).unk1B418_Set((new Level(lv).unk1B418 + Mem.F32(0x800D2988u)));
+                    if ((new Pal(p).div < new Level(lv).unk1B418))
                     {
-                        Mem.Set((lv + 111640u), Mem.F32(p));
+                        new Level(lv).unk1B418_Set(new Pal(p).div);
                         return;
                     }
                     return;
                 }
                 break;
             case 2:
-                if ((Mem.F32((lv + 111640u)) == 0.0f))
+                if ((new Level(lv).unk1B418 == 0.0f))
                 {
-                    Mem.Set((lv + 111636u), 0);
+                    new Level(lv).unk1B414_Set(0);
                     return;
                 }
-                t = (Mem.F32((lv + 111640u)) - Mem.F32(0x800D2988u));
-                Mem.Set((lv + 111640u), t);
+                t = (new Level(lv).unk1B418 - Mem.F32(0x800D2988u));
+                new Level(lv).unk1B418_Set(t);
                 if ((t < 0.0f))
                 {
-                    Mem.Set((lv + 111640u), 0.0f);
+                    new Level(lv).unk1B418_Set(0.0f);
                 }
                 break;
             case 0:

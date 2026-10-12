@@ -14,9 +14,9 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_00241250", (uint)q, (uint)pt);
                 int r = 0;
-                func_00271FD8(_fp, pt, ((q + 24u) + (uint)(0 * 12)));
+                func_00271FD8(_fp, pt, (new B09Quad(q).v.P + (uint)(0 * 12)));
                 r = 0;
-                if (!((((Mem.F32((q + 72u)) * Mem.F32((_fp + (uint)(0 * 4)))) + (Mem.F32((q + 76u)) * Mem.F32((_fp + (uint)(1 * 4))))) + (Mem.F32((q + 80u)) * Mem.F32((_fp + (uint)(2 * 4))))) >= 0.0f))
+                if (!((((new B09Quad(q).nx * Mem.F32((_fp + (uint)(0 * 4)))) + (new B09Quad(q).ny * Mem.F32((_fp + (uint)(1 * 4))))) + (new B09Quad(q).nz * Mem.F32((_fp + (uint)(2 * 4))))) >= 0.0f))
                 {
                     r = 1;
                 }

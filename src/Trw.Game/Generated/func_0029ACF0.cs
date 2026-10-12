@@ -17,31 +17,31 @@ public static partial class Game
             if ((n != 0u))
             {
                 m = Mem.U32(0x8014D080u);
-                saved = Mem.S32((m + 1312u));
-                Mem.Set((m + 1312u), 0);
+                saved = new SndMgr_v2(m).unk520;
+                new SndMgr_v2(m).unk520_Set(0);
                 p = (m + 1312u);
-                if ((Mem.U32((n + 4u)) != 0u))
+                if ((new SndCtx(n).child1_ != 0u))
                 {
-                    func_0029ACF0(Mem.U32((n + 4u)), cmd, a, b, c, (depth + 1));
+                    func_0029ACF0(new SndCtx(n).child1_, cmd, a, b, c, (depth + 1));
                 }
-                if ((Mem.S32((m + 1312u)) == 0))
+                if ((new SndMgr_v2(m).unk520 == 0))
                 {
-                    if ((Mem.U32((n + 8u)) != 0u))
+                    if ((new SndCtx(n).child2_ != 0u))
                     {
-                        func_0029ACF0(Mem.U32((n + 8u)), cmd, a, b, c, (depth + 1));
+                        func_0029ACF0(new SndCtx(n).child2_, cmd, a, b, c, (depth + 1));
                     }
-                    if ((Mem.S32((m + 1312u)) == 0))
+                    if ((new SndMgr_v2(m).unk520 == 0))
                     {
-                        if ((((depth > 0) && ((int)(Mem.S16((n + 12u))) != (-1))) && ((int)(Mem.U16((n + 14u))) > 8)))
+                        if ((((depth > 0) && ((int)(new SndCtx(n).id) != (-1))) && ((int)(new SndCtx(n).unkE) > 8)))
                         {
                             ok = 1;
-                            if (((cmd == 3592) && (((int)(Mem.U16((n + 18u))) | 2) == 0)))
+                            if (((cmd == 3592) && (((int)(new SndCtx(n).flags12) | 2) == 0)))
                             {
                                 ok = 0;
                             }
                             else
                             {
-                                if (((cmd == 3593) && (((int)(Mem.U16((n + 18u))) | 4) == 0)))
+                                if (((cmd == 3593) && (((int)(new SndCtx(n).flags12) | 4) == 0)))
                                 {
                                     ok = 0;
                                 }
@@ -49,7 +49,7 @@ public static partial class Game
                             if ((ok != 0))
                             {
                                 func_0029A958();
-                                func_0029A5D4((uint)((int)(Mem.S16((n + 12u)))), (uint)(cmd), (uint)(a), (uint)(b), (uint)(c));
+                                func_0029A5D4((uint)((int)(new SndCtx(n).id)), (uint)(cmd), (uint)(a), (uint)(b), (uint)(c));
                             }
                         }
                         Mem.Set(p, saved);

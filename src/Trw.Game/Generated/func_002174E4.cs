@@ -13,21 +13,21 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_002174E4", (uint)src, (uint)unused, (uint)dst);
-                Mem.Copy(_fp, (src + 8u), 12);
-                Mem.Set((_fp + 16u), (float)(0));
-                Mem.Set(((_fp + 16u) + 4u), (float)(0));
-                Mem.Set(((_fp + 16u) + 8u), (float)(0));
-                Mem.Set(dst, 3);
-                Mem.Set((dst + 4u), 0);
-                Mem.Set((dst + 8u), 0);
-                Mem.Copy((dst + 12u), _fp, 12);
-                Mem.Copy((dst + 24u), (_fp + 16u), 12);
-                Mem.Set((dst + 36u), 0);
-                Mem.Set(((_fp + 16u) + 4u), (float)(0));
-                Mem.Set((_fp + 4u), (float)(0));
-                Mem.Copy((dst + 40u), _fp, 12);
-                Mem.Copy((dst + 52u), (_fp + 16u), 12);
-                Mem.Set((dst + 64u), 0);
+                Mem.Copy(_fp, new VecSrc(src).v.P, 12);
+                new Vec3f((_fp + 16u)).x_Set((float)(0));
+                new Vec3f((_fp + 16u)).y_Set((float)(0));
+                new Vec3f((_fp + 16u)).z_Set((float)(0));
+                new VecDst(dst).unk0_Set(3);
+                new VecDst(dst).unk4_Set(0);
+                new VecDst(dst).unk8_Set(0);
+                Mem.Copy(new VecDst(dst).a.P, _fp, 12);
+                Mem.Copy(new VecDst(dst).b.P, (_fp + 16u), 12);
+                new VecDst(dst).unk24_Set(0);
+                new Vec3f((_fp + 16u)).y_Set((float)(0));
+                new Vec3f(_fp).y_Set((float)(0));
+                Mem.Copy(new VecDst(dst).c.P, _fp, 12);
+                Mem.Copy(new VecDst(dst).d.P, (_fp + 16u), 12);
+                new VecDst(dst).unk40_Set(0);
             }
         }
         finally { Stack.Free(28); }

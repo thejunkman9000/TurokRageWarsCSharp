@@ -13,40 +13,40 @@ public static partial class Game
             float k = 0f;
             float t = 0f;
             float g = 0f;
-            if ((Mem.F32((c + 4u)) > Mem.F32(((c + 4u) + 4u))))
+            if ((new Chan(c).v.x > new Chan(c).v.y))
             {
-                Mem.Set(((c + 4u) + 4u), Mem.F32((c + 4u)));
+                new Chan(c).v.y_Set(new Chan(c).v.x);
             }
-            if ((Mem.F32(((c + 4u) + 8u)) == 0.0f))
+            if ((new Chan(c).v.z == 0.0f))
             {
-                Mem.Set((c + 16u), Mem.F32(0x800C8170u));
+                new Chan(c).d_Set(Mem.F32(0x800C8170u));
             }
-            t = (Mem.F32(((c + 4u) + 4u)) + Mem.F32(((c + 4u) + 4u)));
-            if ((Mem.F32(((c + 4u) + 8u)) < t))
+            t = (new Chan(c).v.y + new Chan(c).v.y);
+            if ((new Chan(c).v.z < t))
             {
-                Mem.Set(((c + 4u) + 8u), t);
+                new Chan(c).v.z_Set(t);
             }
             g = Mem.F32(0x800D2988u);
             k = Mem.F32(0x800C8174u);
-            Mem.Set((c + 4u), func_00274810(Mem.F32((c + 4u)), (g * k)));
-            Mem.Set(((c + 4u) + 4u), func_00274810(Mem.F32(((c + 4u) + 4u)), (Mem.F32(0x800D2988u) * k)));
-            switch (Mem.S32(c))
+            new Chan(c).v.x_Set(func_00274810(new Chan(c).v.x, (g * k)));
+            new Chan(c).v.y_Set(func_00274810(new Chan(c).v.y, (Mem.F32(0x800D2988u) * k)));
+            switch (new Chan(c).mode)
             {
             case 1:
-                if ((Mem.F32(((c + 4u) + 8u)) > 0.0f))
+                if ((new Chan(c).v.z > 0.0f))
                 {
-                    Mem.Set((c + 16u), (Mem.F32((c + 16u)) + ((2.0f * Mem.F32(((c + 4u) + 8u))) * (Mem.F32(0x800D2988u) * k))));
-                    Mem.Set(((c + 4u) + 8u), func_00274810(Mem.F32(((c + 4u) + 8u)), Mem.F32(0x800C8178u)));
+                    new Chan(c).d_Set((new Chan(c).d + ((2.0f * new Chan(c).v.z) * (Mem.F32(0x800D2988u) * k))));
+                    new Chan(c).v.z_Set(func_00274810(new Chan(c).v.z, Mem.F32(0x800C8178u)));
                 }
                 break;
             case 0:
-                if ((Mem.F32(((c + 4u) + 8u)) > 0.0f))
+                if ((new Chan(c).v.z > 0.0f))
                 {
-                    Mem.Set(((c + 4u) + 8u), func_00274810(Mem.F32(((c + 4u) + 8u)), Mem.F32(0x800C817Cu)));
+                    new Chan(c).v.z_Set(func_00274810(new Chan(c).v.z, Mem.F32(0x800C817Cu)));
                 }
                 break;
             }
-            return ((Mem.F32(((c + 4u) + 8u)) == 0.0f) ? 1 : 0);
+            return ((new Chan(c).v.z == 0.0f) ? 1 : 0);
         }
     }
 

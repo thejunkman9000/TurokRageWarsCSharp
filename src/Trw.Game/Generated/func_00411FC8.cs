@@ -11,8 +11,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00411FC8");
             int i = 0;
-            Mem.Set((0x80153C40u + 20u), 1);
-            for (i = 0; (i < (int)(Mem.S16(0x80153C40u))); ++i)
+            new S_vars(0x80153C40u).mode_Set(1);
+            for (i = 0; (i < (int)(new S_vars(0x80153C40u).n)); ++i)
             {
                 func_0041174C(i);
             }
@@ -22,7 +22,7 @@ public static partial class Game
             }
             for (i = 0; (i < (int)(Mem.S16(0x80153C20u))); ++i)
             {
-                func_00410FD4((uint)(0), (uint)(i), (uint)(0), default(uint));
+                func_00410FD4((byte)(0), i, 0);
             }
         }
     }

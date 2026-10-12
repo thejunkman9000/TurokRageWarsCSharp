@@ -34,9 +34,9 @@ public static partial class Game
                         b = _fp;
                     }
                 }
-                ap = ((a + (uint)(0 * 16)) + (uint)(0 * 4));
-                dp = ((d + (uint)(0 * 16)) + (uint)(0 * 4));
-                bp = ((b + (uint)(0 * 16)) + (uint)(0 * 4));
+                ap = ((new B22Mtx(a).m.P + (uint)(0 * 16)) + (uint)(0 * 4));
+                dp = ((new B22Mtx(d).m.P + (uint)(0 * 16)) + (uint)(0 * 4));
+                bp = ((new B22Mtx(b).m.P + (uint)(0 * 16)) + (uint)(0 * 4));
                 for (i = 0; (i < 4); ++i)
                 {
                     Mem.Set((dp + (uint)(0 * 4)), ((((Mem.F32((ap + (uint)(0 * 4))) * Mem.F32((bp + (uint)(0 * 4)))) + (Mem.F32((ap + (uint)(4 * 4))) * Mem.F32((bp + (uint)(1 * 4))))) + (Mem.F32((ap + (uint)(8 * 4))) * Mem.F32((bp + (uint)(2 * 4))))) + (Mem.F32((ap + (uint)(12 * 4))) * Mem.F32((bp + (uint)(3 * 4))))));

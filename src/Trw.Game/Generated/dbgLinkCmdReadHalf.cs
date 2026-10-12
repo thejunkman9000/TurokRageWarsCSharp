@@ -38,10 +38,10 @@ public static partial class Game
                                 v = (uint)((uint)(v) | (uint)(Mem.U8((_fp + 4u))));
                                 Mem.Set(p, v);
                                 h = Mem.U16((uint)(Mem.U32(_fp)));
-                                dbgLinkSendByte((uint)((byte)(((int)(h) >> (int)8))), default(uint), default(uint), default(uint));
+                                dbgLinkSendByte((byte)(((int)(h) >> (int)8)));
                                 if ((Mem.S32(0x8014D3E8u) == 0))
                                 {
-                                    dbgLinkSendByte((uint)((byte)(((int)(h) & 255))), default(uint), default(uint), default(uint));
+                                    dbgLinkSendByte((byte)(((int)(h) & 255)));
                                     ret = ((Mem.S32(0x8014D3E8u) == 0) ? 1 : 0);
                                 }
                             }

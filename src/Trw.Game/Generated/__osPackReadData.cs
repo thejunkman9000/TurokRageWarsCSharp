@@ -15,24 +15,24 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("__osPackReadData");
                 uint pkt = 0u;
                 int i = 0;
-                pkt = (0x8014D470u + (uint)(0 * 8));
+                pkt = new OSContPackedStruct((0x8014D470u + (uint)(0 * 8))).read.P;
                 for (i = 0; (i < 15); ++i)
                 {
                     Mem.Set((0x8014D470u + (uint)(i * 4)), (uint)(0));
                 }
                 Mem.Set(0x8014D4ACu, (uint)(1));
-                Mem.Set(_fp, (byte)(255));
-                Mem.Set((_fp + 1u), (byte)(1));
-                Mem.Set((_fp + 2u), (byte)(4));
-                Mem.Set((_fp + 3u), (byte)(1));
-                Mem.Set((_fp + 4u), (ushort)(65535));
-                Mem.Set((_fp + 6u), (sbyte)((-1)));
-                Mem.Set((_fp + 7u), (sbyte)((-1)));
+                new OSContPackedRead(_fp).unk00_Set((byte)(255));
+                new OSContPackedRead(_fp).unk01_Set((byte)(1));
+                new OSContPackedRead(_fp).unk02_Set((byte)(4));
+                new OSContPackedRead(_fp).unk03_Set((byte)(1));
+                new OSContPackedRead(_fp).button_Set((ushort)(65535));
+                new OSContPackedRead(_fp).rawStickX_Set((sbyte)((-1)));
+                new OSContPackedRead(_fp).rawStickY_Set((sbyte)((-1)));
                 for (i = 0; (i < (int)(Mem.U8(0x8014D46Cu))); ++i)
                 {
                     Mem.Copy(((pkt += 8u) - 8u), _fp, 8);
                 }
-                Mem.Set(pkt, (byte)(254));
+                new OSContPackedRead(pkt).unk00_Set((byte)(254));
             }
         }
         finally { Stack.Free(8); }

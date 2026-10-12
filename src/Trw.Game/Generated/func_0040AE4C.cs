@@ -14,52 +14,52 @@ public static partial class Game
             {
             default:
             case 0:
-                Mem.Set((item + 20u), 0x800D7830u);
+                new O01Item(item).unk14__Set(0x800D7830u);
                 break;
             case 1:
-                Mem.Set((item + 20u), 0x800D7844u);
+                new O01Item(item).unk14__Set(0x800D7844u);
                 break;
             case 2:
-                Mem.Set((item + 20u), 0x800D7858u);
+                new O01Item(item).unk14__Set(0x800D7858u);
                 break;
             case 3:
-                Mem.Set((item + 20u), 0x800D7880u);
+                new O01Item(item).unk14__Set(0x800D7880u);
                 break;
             case 4:
-                Mem.Set((item + 20u), 0x800D786Cu);
+                new O01Item(item).unk14__Set(0x800D786Cu);
                 break;
             case 5:
-                Mem.Set((item + 20u), 0x800D7894u);
+                new O01Item(item).unk14__Set(0x800D7894u);
                 break;
             case 6:
-                Mem.Set((item + 20u), 0x800D78A8u);
+                new O01Item(item).unk14__Set(0x800D78A8u);
                 break;
             case 7:
-                Mem.Set((item + 20u), 0x800D78BCu);
+                new O01Item(item).unk14__Set(0x800D78BCu);
                 break;
             case 8:
-                Mem.Set((item + 20u), 0x800D78D0u);
+                new O01Item(item).unk14__Set(0x800D78D0u);
                 break;
             case 9:
-                Mem.Set((item + 20u), 0x800D78E4u);
+                new O01Item(item).unk14__Set(0x800D78E4u);
                 break;
             case 10:
-                Mem.Set((item + 20u), 0x800D78F8u);
+                new O01Item(item).unk14__Set(0x800D78F8u);
                 break;
             case 11:
-                Mem.Set((item + 20u), 0x800D790Cu);
+                new O01Item(item).unk14__Set(0x800D790Cu);
                 break;
             case 12:
-                Mem.Set((item + 20u), 0x800D7920u);
+                new O01Item(item).unk14__Set(0x800D7920u);
                 break;
             case 13:
-                Mem.Set((item + 20u), 0x800D7934u);
+                new O01Item(item).unk14__Set(0x800D7934u);
                 break;
             case 14:
-                Mem.Set((item + 20u), 0x800D7948u);
+                new O01Item(item).unk14__Set(0x800D7948u);
                 break;
             case 15:
-                Mem.Set((item + 20u), 0x800D795Cu);
+                new O01Item(item).unk14__Set(0x800D795Cu);
                 break;
             }
             return 0;

@@ -10,14 +10,14 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002393C8", (uint)p);
-            Mem.Set((p + 252u), 0);
-            Mem.Set((p + 256u), 0);
-            Mem.Set((p + 260u), 0);
-            Mem.Set((p + 264u), 0);
-            Mem.Set((p + 268u), 0);
-            Mem.Set((p + 280u), 0);
-            Mem.Set((p + 272u), Mem.F32(0x800C8630u));
-            Mem.Set((p + 276u), Mem.F32(0x800C8630u));
+            new ModeBlk2(p).unkFC_Set(0);
+            new ModeBlk2(p).unk100_Set(0);
+            new ModeBlk2(p).unk104_Set(0);
+            new ModeBlk2(p).unk108_Set(0);
+            new ModeBlk2(p).unk10C_Set(0);
+            new ModeBlk2(p).unk118_Set(0);
+            new ModeBlk2(p).unk110_Set(Mem.F32(0x800C8630u));
+            new ModeBlk2(p).unk114_Set(Mem.F32(0x800C8630u));
         }
     }
 

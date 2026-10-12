@@ -10,38 +10,38 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002164A8", (uint)actor, (uint)state);
-            if (((Mem.U32((state + 252u)) != 0u) && (Mem.S32((Mem.U32((state + 252u)) + 12u)) == (-1))))
+            if (((new M1State(state).unkFC_ != 0u) && (new M1State(state).unkFC.unkC == (-1))))
             {
                 func_00217388((uint)(actor), (uint)(state));
             }
-            if (((int)(Mem.U8((state + 205u))) != 0))
+            if (((int)(new M1State(state).unkCD) != 0))
             {
-                Mem.Set((state + 205u), (byte)(Mem.U8((state + 205u)) - 1));
+                new M1State(state).unkCD_Set((byte)(new M1State(state).unkCD - 1));
                 Mem.Set(0x800D2988u, 0.0f);
                 return;
             }
-            if (((Mem.S32((actor + 412u)) != 0) && (Mem.U32((actor + 24u)) != 0u)))
+            if (((new M1Actor(actor).unk19C != 0) && (new M1Actor(actor).def_ != 0u)))
             {
-                if ((Mem.S32(Mem.U32((actor + 24u))) == 2))
+                if ((new M1Actor(actor).def.kind == 2))
                 {
-                    Mem.Copy((state + 72u), (actor + 8u), 12);
-                    Mem.Set((state + 96u), Mem.F32((actor + 108u)));
+                    Mem.Copy(new M1State(state).v48.P, new M1Actor(actor).pos.P, 12);
+                    new M1State(state).f60_Set(new M1Actor(actor).f6C);
                 }
-                Mem.Copy((state + 84u), (actor + 8u), 12);
-                Mem.Set((state + 64u), (Mem.F32((state + 64u)) + Mem.F32(0x800D2988u)));
-                if (((Mem.U32((actor + 256u)) & (uint)(65536)) != 0u))
+                Mem.Copy(new M1State(state).v54.P, new M1Actor(actor).pos.P, 12);
+                new M1State(state).f40_Set((new M1State(state).f40 + Mem.F32(0x800D2988u)));
+                if (((new M1Actor(actor).flags & (uint)(65536)) != 0u))
                 {
                     func_00213CF8(actor);
                 }
-                if ((Mem.U32((state + 264u)) != 0u))
+                if ((new M1State(state).fn108 != 0u))
                 {
-                    Funcs.CallReg(Mem.U32((state + 264u)), actor, state, 0u, 0u);
+                    Funcs.CallReg(new M1State(state).fn108, actor, state, 0u, 0u);
                 }
                 func_00213ED4(actor, state);
-                if ((Mem.S32(Mem.U32((actor + 24u))) != 2))
+                if ((new M1Actor(actor).def.kind != 2))
                 {
-                    Mem.Copy((state + 72u), (actor + 8u), 12);
-                    Mem.Set((state + 96u), Mem.F32((actor + 108u)));
+                    Mem.Copy(new M1State(state).v48.P, new M1Actor(actor).pos.P, 12);
+                    new M1State(state).f60_Set(new M1Actor(actor).f6C);
                 }
             }
         }

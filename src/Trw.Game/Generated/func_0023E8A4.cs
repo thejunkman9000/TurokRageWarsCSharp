@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0023E8A4", (uint)dst, (uint)src);
-            Mem.Copy((dst + 396u), (src + 72u), 12);
+            Mem.Copy(new B09Obj(dst).v18C.P, new B09Obj(src).v48.P, 12);
         }
     }
 

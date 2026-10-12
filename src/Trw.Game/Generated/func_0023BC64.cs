@@ -10,20 +10,20 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0023BC64");
-            short idx = (short)((Mem.Set(0x80103FA0u, (ushort)(Mem.U16(0x80103FA0u) + 1)) - 1));
-            if (((int)((short)(Mem.U16(0x80103FA0u))) >= 24))
+            short idx = (short)((new B09SlotCtl(0x80103FA0u).cur_Set((ushort)(new B09SlotCtl(0x80103FA0u).cur + 1)) - 1));
+            if (((int)((short)(new B09SlotCtl(0x80103FA0u).cur)) >= 24))
             {
-                Mem.Set(0x80103FA0u, Mem.U16((0x80103FA0u + 2u)));
+                new B09SlotCtl(0x80103FA0u).cur_Set(new B09SlotCtl(0x80103FA0u).start);
             }
-            if (((int)(Mem.U8(((0x80103F28u + (uint)(idx * 4)) + 2u))) != 255))
+            if (((int)(new B09SlotA((0x80103F28u + (uint)(idx * 4))).a) != 255))
             {
-                Mem.Set(((0x80103B50u + (uint)(Mem.U8(((0x80103F28u + (uint)(idx * 4)) + 2u)) * 16)) + 11u), (byte)(255));
-                Mem.Set(((0x80103F28u + (uint)(idx * 4)) + 2u), (byte)(255));
+                new B09LNode((0x80103B50u + (uint)(new B09SlotA((0x80103F28u + (uint)(idx * 4))).a * 16))).tlb_Set((byte)(255));
+                new B09SlotA((0x80103F28u + (uint)(idx * 4))).a_Set((byte)(255));
             }
-            if (((int)(Mem.U8(((0x80103F28u + (uint)(idx * 4)) + 3u))) != 255))
+            if (((int)(new B09SlotA((0x80103F28u + (uint)(idx * 4))).b) != 255))
             {
-                Mem.Set(((0x80103B50u + (uint)(Mem.U8(((0x80103F28u + (uint)(idx * 4)) + 3u)) * 16)) + 11u), (byte)(255));
-                Mem.Set(((0x80103F28u + (uint)(idx * 4)) + 3u), (byte)(255));
+                new B09LNode((0x80103B50u + (uint)(new B09SlotA((0x80103F28u + (uint)(idx * 4))).b * 16))).tlb_Set((byte)(255));
+                new B09SlotA((0x80103F28u + (uint)(idx * 4))).b_Set((byte)(255));
             }
             return (int)(idx);
         }

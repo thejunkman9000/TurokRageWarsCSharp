@@ -13,27 +13,27 @@ public static partial class Game
             uint n = 0u;
             uint next = 0u;
             uint p = 0u;
-            for (n = Mem.U32(a); (n != 0u); n = next)
+            for (n = new O06H(a).unk0_; (n != 0u); n = next)
             {
-                next = Mem.U32((n + 468u));
-                if (((((int)(Mem.S16((n + 40u))) == 2) && (a != 0x8014561Cu)) && (Mem.S32((0x8014561Cu + 16u)) != 0)))
+                next = new O06N(n).unk1D4_;
+                if (((((int)(new O06N(n).unk28) == 2) && (a != 0x8014561Cu)) && (new O06H(0x8014561Cu).unk10 != 0)))
                 {
                     continue;
                 }
-                if (((int)(func_00441384(n, a, default(uint), default(uint))) == 0))
+                if ((func_00441384(n, a) == 0))
                 {
                     continue;
                 }
-                if ((Mem.U32((Mem.U32((n + 20u)) + 12u)) != 0u))
+                if ((new O06V(new O06N(n).unk14_).unkC != 0u))
                 {
-                    Funcs.CallReg(Mem.U32((Mem.U32((n + 20u)) + 12u)), n, a, 0u, 0u);
+                    Funcs.CallReg(new O06V(new O06N(n).unk14_).unkC, n, a, 0u, 0u);
                 }
-                p = Mem.U32((n + 32u));
-                Mem.Set((p + 176u), 0);
-                Mem.Set((p + 180u), 0);
-                Mem.Set((p + 188u), 0);
+                p = new O06N(n).unk20_;
+                new O06B_v4(p).unkB0_Set(0);
+                new O06B_v4(p).unkB4_Set(0);
+                new O06B_v4(p).unkBC_Set(0);
                 func_00255E78(a, n, default(uint), default(uint));
-                func_002537D8(0, (uint)(Mem.S32((n + 8u))));
+                func_002537D8(0, (uint)(new O06N(n).unk8));
             }
         }
     }

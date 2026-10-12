@@ -10,33 +10,33 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028F934", (uint)o, (uint)n);
-            if ((Mem.S32((n + 16u)) == 2))
+            if ((new Qn_v2(n).kind == 2))
             {
-                if ((Mem.U32((o + 748u)) != 0u))
+                if ((new QOwner_v2(o).tail2EC_ != 0u))
                 {
-                    Mem.Set(Mem.U32((o + 748u)), n);
+                    new Qn_v2(new QOwner_v2(o).tail2EC_).next__Set(n);
                 }
                 else
                 {
-                    Mem.Set((o + 740u), n);
+                    new QOwner_v2(o).head2E4__Set(n);
                 }
-                Mem.Set((o + 748u), n);
-                Mem.Set((o + 768u), 1);
+                new QOwner_v2(o).tail2EC__Set(n);
+                new QOwner_v2(o).unk300_Set(1);
             }
             else
             {
-                if ((Mem.U32((o + 752u)) != 0u))
+                if ((new QOwner_v2(o).tail2F0_ != 0u))
                 {
-                    Mem.Set(Mem.U32((o + 752u)), n);
+                    new Qn_v2(new QOwner_v2(o).tail2F0_).next__Set(n);
                 }
                 else
                 {
-                    Mem.Set((o + 744u), n);
+                    new QOwner_v2(o).head2E8__Set(n);
                 }
-                Mem.Set((o + 752u), n);
+                new QOwner_v2(o).tail2F0__Set(n);
             }
-            Mem.Set(n, 0u);
-            Mem.Set((n + 4u), (int)((Mem.U32((n + 8u)) & (uint)(3))));
+            new Qn_v2(n).next__Set(0u);
+            new Qn_v2(n).unk4_Set((int)((new Qn_v2(n).flags8 & (uint)(3))));
         }
     }
 

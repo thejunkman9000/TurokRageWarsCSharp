@@ -11,25 +11,25 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002172D0", (uint)src, (uint)owner, (uint)id);
             uint s0 = (uint)((-1));
-            if ((Mem.U32((owner + 252u)) != 0u))
+            if ((new SndOwner(owner).unkFC_ != 0u))
             {
-                if ((Mem.S32((Mem.U32((owner + 252u)) + 12u)) == id))
+                if ((new SndOwner(owner).unkFC.unkC == id))
                 {
                     return;
                 }
-                func_0025CA44((uint)((int)(func_0025CC8C())), Mem.U32((owner + 252u)));
+                func_0025CA44((uint)((int)(func_0025CC8C())), new SndOwner(owner).unkFC_);
             }
-            switch ((int)(Mem.U8(src)))
+            switch ((int)(new SndSrc(src).type))
             {
             case 1:
             case 2:
                 s0 = src;
                 break;
             case 0:
-                s0 = Mem.U32((src + 208u));
+                s0 = new SndSrc(src).unkD0;
                 break;
             }
-            Mem.Set((owner + 252u), func_0025C97C((uint)((int)(func_0025CC8C())), id, (src + 8u), (int)((src + 8u)), (int)(s0)));
+            new SndOwner(owner).unkFC__Set(func_0025C97C((uint)((int)(func_0025CC8C())), id, new SndSrc(src).pos.P, (int)(new SndSrc(src).pos.P), (int)(s0)));
         }
     }
 

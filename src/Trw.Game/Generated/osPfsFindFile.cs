@@ -17,25 +17,25 @@ public static partial class Game
                 int ret = 0;
                 int k = 0;
                 int mismatch = 0;
-                if ((__osCheckId(pfs) == 2))
+                if (((int)(__osCheckId(pfs, default(uint), default(uint), default(uint))) == 2))
                 {
                     return 2;
                 }
-                for (j = 0; (j < Mem.S32((pfs + 80u))); ++j)
+                for (j = 0; (j < new OSPfs(pfs).dir_size); ++j)
                 {
-                    ret = (int)(__osContRamRead(Mem.U32((pfs + 4u)), (uint)(Mem.S32((pfs + 8u))), (uint)((ushort)((Mem.S32((pfs + 92u)) + j))), _fp));
+                    ret = (int)(__osContRamRead(new OSPfs(pfs).queue_, (uint)(new OSPfs(pfs).channel), (uint)((ushort)((new OSPfs(pfs).dir_table + j))), _fp));
                     if ((ret != 0))
                     {
                         return ret;
                     }
-                    if ((((int)(Mem.U16((_fp + 4u))) == (int)(company_code)) && (Mem.U32(_fp) == game_code)))
+                    if ((((int)(new __OSDir_v2(_fp).company_code) == (int)(company_code)) && (new __OSDir_v2(_fp).game_code == game_code)))
                     {
                         mismatch = 0;
                         if ((game_name != 0u))
                         {
                             for (k = 0; (k < 16); ++k)
                             {
-                                if (((int)(Mem.U8(((_fp + 16u) + (uint)k))) != (int)(Mem.U8((game_name + (uint)k)))))
+                                if (((int)(new __OSDir_v2(_fp).game_name[(int)(k)]) != (int)(Mem.U8((game_name + (uint)k)))))
                                 {
                                     mismatch = 1;
                                     break;
@@ -50,7 +50,7 @@ public static partial class Game
                             }
                             for (k = 0; (k < 4); ++k)
                             {
-                                if (((int)(Mem.U8(((_fp + 12u) + (uint)k))) != (int)(Mem.U8((ext_name + (uint)k)))))
+                                if (((int)(new __OSDir_v2(_fp).ext_name[(int)(k)]) != (int)(Mem.U8((ext_name + (uint)k)))))
                                 {
                                     mismatch = 1;
                                     break;

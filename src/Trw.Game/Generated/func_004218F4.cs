@@ -10,24 +10,24 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004218F4");
-            switch (func_0041A4F0(Mem.U32(Mem.U32(0x800E4400u))))
+            switch (func_0041A4F0(new O3Pm(Mem.U32(0x800E4400u)).bar_))
             {
             case 3:
-                if ((Mem.S32((Mem.U32(0x800E4400u) + 52u)) == 0))
+                if ((new O3Pm(Mem.U32(0x800E4400u)).f34 == 0))
                 {
                     func_00421844();
                     return 0;
                 }
                 if ((Mem.S32(0x8010F190u) == 1075))
                 {
-                    Mem.Set((Mem.U32(0x800E4400u) + 56u), 1);
+                    new O3Pm(Mem.U32(0x800E4400u)).f38_Set(1);
                     func_004212A4();
                     return 0;
                 }
                 return 0;
             case 4:
                 func_0029A73C();
-                func_00299368((uint)(3), default(uint), default(uint), default(uint));
+                func_00299368(3);
                 return 0;
             default:
                 return 0;

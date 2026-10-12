@@ -12,20 +12,20 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_004305D8", (uint)a, (uint)b, (uint)c, (uint)ev);
             int k = (int)((c & (uint)(65535)));
             uint s = 0u;
-            switch (Mem.S32(((Mem.U32(0x800E54A4u) + 88u) + (uint)(k * 2920))))
+            switch (new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state)
             {
             case 12:
                 if ((func_0029EB58(e5) < func_0029AB4C()))
                 {
-                    Mem.Set((((Mem.U32(0x800E54A4u) + 88u) + (uint)(k * 2920)) + 2892u), 0);
-                    Mem.Set((((Mem.U32(0x800E54A4u) + 88u) + (uint)(k * 2920)) + 2888u), 2);
+                    new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fB4C_Set(0);
+                    new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fB48_Set(2);
                 }
                 if ((ev != 1))
                 {
                     return 0;
                 }
                 func_0029A73C();
-                Mem.Set((((Mem.U32(0x800E54A4u) + 88u) + (uint)(k * 2920)) + 2888u), 1);
+                new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fB48_Set(1);
                 func_00435010(k);
                 func_0025DF54(3713);
                 return 0;
@@ -36,11 +36,11 @@ public static partial class Game
                 }
                 func_0029A73C();
                 func_0043442C(k, 0);
-                Mem.Set(((Mem.U32(0x800E54A4u) + 44u) + (uint)(k * 4)), 0);
+                new O05Lobby(Mem.U32(0x800E54A4u)).h.w2C.Set((int)(k), 0);
                 func_0025DF54(3700);
                 return 0;
             case 13:
-                if ((Mem.S32((((Mem.U32(0x800E54A4u) + 88u) + (uint)(k * 2920)) + 4u)) != 6))
+                if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f4 != 6))
                 {
                     return 0;
                 }
@@ -49,23 +49,23 @@ public static partial class Game
                     return 0;
                 }
                 func_0029A73C();
-                s = Mem.U32((func_0041B87C(Mem.U32((Mem.U32(0x800E54A4u) + 4u)), k) + 44u));
+                s = new O05Ch_v2(func_0041B87C(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k)).f2C_;
                 while ((func_0040EC50(s) != 0))
                 {
-                    s = Mem.U32((s + 44u));
+                    s = new O05Ch_v2(s).f2C_;
                 }
-                func_0041B95C(Mem.U32((Mem.U32(0x800E54A4u) + 4u)), k, s);
+                func_0041B95C(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k, s);
                 func_0025DF54(3700);
                 return 0;
             case 22:
                 if ((ev == 1))
                 {
-                    s = Mem.U32((func_0041B87C(Mem.U32((Mem.U32(0x800E54A4u) + 4u)), k) + 44u));
+                    s = new O05Ch_v2(func_0041B87C(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k)).f2C_;
                     while ((func_0040EC50(s) != 0))
                     {
-                        s = Mem.U32((s + 44u));
+                        s = new O05Ch_v2(s).f2C_;
                     }
-                    func_0041B95C(Mem.U32((Mem.U32(0x800E54A4u) + 4u)), k, s);
+                    func_0041B95C(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k, s);
                     func_00433DA8(k);
                 }
                 func_0029A73C();
@@ -73,12 +73,12 @@ public static partial class Game
             case 27:
                 if ((ev == 1))
                 {
-                    s = Mem.U32((func_0041B87C(Mem.U32((Mem.U32(0x800E54A4u) + 4u)), k) + 44u));
+                    s = new O05Ch_v2(func_0041B87C(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k)).f2C_;
                     while ((func_0040EC50(s) != 0))
                     {
-                        s = Mem.U32((s + 44u));
+                        s = new O05Ch_v2(s).f2C_;
                     }
-                    func_0041B95C(Mem.U32((Mem.U32(0x800E54A4u) + 4u)), k, s);
+                    func_0041B95C(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k, s);
                     func_00433F14(k);
                 }
                 func_0029A73C();

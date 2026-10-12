@@ -18,38 +18,38 @@ public static partial class Game
                 int mode = 1;
                 int extra = 0;
                 func_0024E78C(o, _fp, (_fp + 16u), (_fp + 64u));
-                switch ((int)(Mem.U8(o)))
+                switch ((int)(new B04Ent_v3(o).type))
                 {
                 case 2:
                 case 0:
-                    Mem.Set((_fp + 32u), Mem.Set(((_fp + 32u) + 4u), Mem.Set(((_fp + 32u) + 8u), 0.0f)));
-                    Mem.Set((_fp + 48u), Mem.Set(((_fp + 48u) + 4u), Mem.Set(((_fp + 48u) + 8u), 0.0f)));
-                    Mem.Set(((_fp + 48u) + 12u), Mem.F32(0x800C72B4u));
+                    new Vec3f((_fp + 32u)).x_Set(new Vec3f((_fp + 32u)).y_Set(new Vec3f((_fp + 32u)).z_Set(0.0f)));
+                    new B04Vec4((_fp + 48u)).x_Set(new B04Vec4((_fp + 48u)).y_Set(new B04Vec4((_fp + 48u)).z_Set(0.0f)));
+                    new B04Vec4((_fp + 48u)).w_Set(Mem.F32(0x800C72B4u));
                     break;
                 case 1:
                     e = o;
-                    Mem.Copy((_fp + 32u), (e + 28u), 12);
+                    Mem.Copy((_fp + 32u), new B04Ent_v3(e).pos.P, 12);
                     func_0024795C((_fp + 48u), e);
-                    extra = Mem.S32((e + 496u));
+                    extra = new B04Ent_v3(e).unk1F0;
                     if ((func_0024BE70(e) == 5))
                     {
                         mode = 3;
                     }
                     break;
                 case 3:
-                    Mem.Copy((_fp + 32u), (o + 28u), 12);
+                    Mem.Copy((_fp + 32u), new B04Ent_v3(o).pos.P, 12);
                     func_0024F468((_fp + 48u), o);
                     break;
                 }
                 func_00280094(0x80121990u, o, o, (uint)(0), extra, a1, (_fp + 32u), (_fp + 48u), (_fp + 16u), 0, (-1), mode);
-                if ((((int)(Mem.U8(o)) == 1) && ((int)(Mem.U16((e + 228u))) == 1036)))
+                if ((((int)(new B04Ent_v3(o).type) == 1) && ((int)(new B04Ent_v3(e).unkE4) == 1036)))
                 {
-                    int v = (Mem.S32((e + 668u)) - 1);
+                    int v = (new B04Ent_v3(e).unk29C - 1);
                     if ((v < 0))
                     {
                         v = 0;
                     }
-                    Mem.Set((e + 668u), v);
+                    new B04Ent_v3(e).unk29C_Set(v);
                 }
             }
         }

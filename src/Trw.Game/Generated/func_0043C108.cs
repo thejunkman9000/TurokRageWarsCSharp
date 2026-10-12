@@ -17,17 +17,17 @@ public static partial class Game
             i = (c & 65535);
             m = Mem.U32(0x800E59E0u);
             p = (m + (uint)(i * 1232));
-            switch (Mem.S32((p + 1200u)))
+            switch (new O06P(p).unk4B0)
             {
             case 1:
-                Mem.Set((m + 4952u), 5);
-                Mem.Set((m + 4956u), 4);
-                Mem.Set((m + 4968u), 7);
+                new O06M_v2(m).unk1358_Set(5);
+                new O06M_v2(m).unk135C_Set(4);
+                new O06M_v2(m).unk1368_Set(7);
                 break;
             case 2:
-                Mem.Set((p + 1200u), 0);
-                func_0041B834((uint)(Mem.S32((m + 4u))), i, 0);
-                func_0041CE80(((Mem.U32(0x800E59E0u) + (uint)8) + (uint)(i * 1232)), 1);
+                new O06P(p).unk4B0_Set(0);
+                func_0041B834((uint)(new O06M_v2(m).unk4), i, 0);
+                func_0041CE80(((Mem.U32(0x800E59E0u) + (uint)8) + (uint)(i * 1232)), (uint)(1), default(uint), default(uint));
                 func_0043B2AC(i);
                 break;
             }

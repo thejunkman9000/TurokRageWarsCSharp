@@ -22,8 +22,8 @@ public static partial class Game
             {
                 return 0;
             }
-            row = Mem.S32(((0x80153F80u + (uint)(Mem.S32((Mem.U32(0x800E39C0u) + 20u)) * 28)) + 4u));
-            col = func_0041ECB4(row, Mem.S32((0x80153F80u + (uint)(Mem.S32((Mem.U32(0x800E39C0u) + 20u)) * 28))));
+            row = new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).type;
+            col = func_0041ECB4(row, new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).id);
             do
             {
                 --row;
@@ -36,14 +36,14 @@ public static partial class Game
                         col = 16;
                     }
                 }
-                key = Mem.S32(((0x800E381Cu + (uint)(row * 136)) + (uint)(col * 8)));
+                key = new O3Chr(((0x800E381Cu + (uint)(row * 136)) + (uint)(col * 8))).ch;
             }
             while ((key == (-1)));
-            Mem.Set(((0x80153F80u + (uint)(Mem.S32((Mem.U32(0x800E39C0u) + 20u)) * 28)) + 4u), row);
-            Mem.Set((0x80153F80u + (uint)(Mem.S32((Mem.U32(0x800E39C0u) + 20u)) * 28)), key);
-            func_002A125C(((0x80153F80u + (uint)(Mem.S32((Mem.U32(0x800E39C0u) + 20u)) * 28)) + 16u), Mem.U32(Mem.U32(((0x800E381Cu + (uint)(((row * 17) + key) * 8)) + 4u))));
-            Mem.Set(((0x80153F80u + (uint)(Mem.S32((Mem.U32(0x800E39C0u) + 20u)) * 28)) + 12u), row);
-            func_0041E478(Mem.S32((Mem.U32(0x800E39C0u) + 20u)));
+            new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).type_Set(row);
+            new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).id_Set(key);
+            func_002A125C(new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).name.P, Mem.U32(new O3Chr((0x800E381Cu + (uint)(((row * 17) + key) * 8))).s));
+            new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).fC_Set(row);
+            func_0041E478(new O3Ps(Mem.U32(0x800E39C0u)).sel);
             func_0025DF54(3713);
             return 0;
         }

@@ -26,13 +26,13 @@ public static partial class Game
                 }
                 else
                 {
-                    pad = (int)(Mem.S8((Mem.U32((own + 32u)) + 4u)));
+                    pad = (int)(new O01OwnF(own).unk20.unk4);
                 }
                 Mem.Copy(_fp, 0x800E0DA8u, 4);
-                bp = _fp;
+                bp = new O01B4(_fp).c.P;
                 if ((Mem.S32(0x80153750u) != 0))
                 {
-                    Mem.Set((item + 20u), 0x800D7780u);
+                    new O01ItemF(item).unk14__Set(0x800D7780u);
                     if ((func_00405160(pad, (_fp + 4u)) == 0))
                     {
                         if ((Mem.S32(0x8015377Cu) != 0))
@@ -43,21 +43,21 @@ public static partial class Game
                         {
                             need = (int)(func_004057EC((uint)((Mem.S32(0x8011FECCu) + 1552))));
                         }
-                        dst = Mem.U32(Mem.U32((item + 20u)));
-                        func_00265904(_fp, 0x800E0DA4u, Mem.S32((_fp + 4u)), default(int));
+                        dst = new O01ItemF(item).unk14.buf_;
+                        func_00265904(new O01B4(_fp).c.P, 0x800E0DA4u, Mem.S32((_fp + 4u)), default(int));
                         dst = (uint)(dst + (uint)(14 * 1));
-                        Mem.Set(dst, Mem.S8((_fp + (uint)0)));
+                        Mem.Set(dst, new O01B4(_fp).c[(int)(0)]);
                         dst += 1u;
-                        Mem.Set(dst, Mem.S8((_fp + (uint)1)));
+                        Mem.Set(dst, new O01B4(_fp).c[(int)(1)]);
                         dst += 1u;
-                        Mem.Set(dst, Mem.S8((_fp + (uint)2)));
-                        func_00265904(_fp, 0x800E0DA4u, need, default(int));
+                        Mem.Set(dst, new O01B4(_fp).c[(int)(2)]);
+                        func_00265904(new O01B4(_fp).c.P, 0x800E0DA4u, need, default(int));
                         dst = (uint)(dst + (uint)(15 * 1));
-                        Mem.Set(dst, Mem.S8((_fp + (uint)0)));
+                        Mem.Set(dst, new O01B4(_fp).c[(int)(0)]);
                         dst += 1u;
-                        Mem.Set(dst, Mem.S8((_fp + (uint)1)));
+                        Mem.Set(dst, new O01B4(_fp).c[(int)(1)]);
                         dst += 1u;
-                        Mem.Set(dst, Mem.S8((_fp + (uint)2)));
+                        Mem.Set(dst, new O01B4(_fp).c[(int)(2)]);
                     }
                 }
                 else
@@ -77,32 +77,32 @@ public static partial class Game
                             goto L_none;
                         }
                     }
-                    Mem.Set((item + 20u), t);
+                    new O01ItemF(item).unk14__Set(t);
                     r = func_00405160(pad, (_fp + 4u));
                     need = (int)(func_004057EC((uint)((Mem.S32(0x8011FECCu) + 1552))));
-                    dst = Mem.U32(Mem.U32((item + 20u)));
+                    dst = new O01ItemF(item).unk14.buf_;
                     if ((r == 0))
                     {
                         dst = (uint)(dst + (uint)(14 * 1));
                         fmt = 0x800E0DA4u;
                         func_00265904(bp, fmt, Mem.S32((_fp + 4u)), default(int));
-                        Mem.Set(dst, Mem.S8((_fp + (uint)0)));
+                        Mem.Set(dst, new O01B4(_fp).c[(int)(0)]);
                         dst += 1u;
-                        Mem.Set(dst, Mem.S8((_fp + (uint)1)));
+                        Mem.Set(dst, new O01B4(_fp).c[(int)(1)]);
                         dst += 1u;
-                        Mem.Set(dst, Mem.S8((_fp + (uint)2)));
+                        Mem.Set(dst, new O01B4(_fp).c[(int)(2)]);
                         func_00265904(bp, 0x800E0DA4u, need, default(int));
                         dst = (uint)(dst + (uint)(15 * 1));
-                        Mem.Set(dst, Mem.S8((_fp + (uint)0)));
+                        Mem.Set(dst, new O01B4(_fp).c[(int)(0)]);
                         dst += 1u;
-                        Mem.Set(dst, Mem.S8((_fp + (uint)1)));
+                        Mem.Set(dst, new O01B4(_fp).c[(int)(1)]);
                         dst += 1u;
-                        Mem.Set(dst, Mem.S8((_fp + (uint)2)));
+                        Mem.Set(dst, new O01B4(_fp).c[(int)(2)]);
                     }
                 }
                 goto L_done;
                 L_none: ;
-                Mem.Set((item + 20u), 0x800D7E14u);
+                new O01ItemF(item).unk14__Set(0x800D7E14u);
                 L_done: ;
                 return 0;
                 return 0;

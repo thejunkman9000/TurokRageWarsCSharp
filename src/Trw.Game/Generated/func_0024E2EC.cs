@@ -10,26 +10,26 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024E2EC", (uint)a);
-            switch (Mem.S32(Mem.U32((a + 24u))))
+            switch (new ObjDef(new Obj(a).def_).type)
             {
             case 11:
-                return Mem.F32((Mem.U32((a + 24u)) + 236u));
+                return new ObjDef(new Obj(a).def_).unkEC;
             case 1:
-                return Mem.F32((Mem.U32((a + 24u)) + 44u));
+                return new ObjDef(new Obj(a).def_).unk2C;
             case 2:
-                if (((int)(Mem.U16((Mem.U32((a + 24u)) + 24u))) == 0))
+                if (((int)(new ObjDef(new Obj(a).def_).u18.h) == 0))
                 {
                     return Mem.F32(0x800C8E5Cu);
                 }
-                return Mem.F32((Mem.U32((a + 24u)) + 28u));
+                return new ObjDef(new Obj(a).def_).unk1C;
             case 5:
-                return Mem.F32((Mem.U32((a + 24u)) + 24u));
+                return new ObjDef(new Obj(a).def_).u18.f;
             case 8:
-                if (((Mem.U32((Mem.U32((a + 24u)) + 20u)) & (uint)(1)) != 0u))
+                if (((new ObjDef(new Obj(a).def_).flags14 & (uint)(1)) != 0u))
                 {
                     return Mem.F32(0x800C8E60u);
                 }
-                return Mem.F32((Mem.U32((a + 24u)) + 24u));
+                return new ObjDef(new Obj(a).def_).u18.f;
             default:
                 return Mem.F32(0x800C8E64u);
             }

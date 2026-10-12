@@ -10,30 +10,30 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002043E0", (uint)actor, (uint)state);
-            uint info = (Mem.U32((actor + 24u)) + (uint)20);
-            if ((Mem.U32((state + 48u)) != 0u))
+            uint info = (new B01Actor(actor).def_ + (uint)20);
+            if ((new B01State(state).link_ != 0u))
             {
-                if ((Mem.U32((Mem.U32((state + 48u)) + 8u)) != 0u))
+                if ((new B01State(state).link.cb != 0u))
                 {
                     if ((state != 0u))
                     {
-                        Funcs.CallReg(Mem.U32((Mem.U32((state + 48u)) + 8u)), 0u, 0u, 0u, 0u);
+                        Funcs.CallReg(new B01State(state).link.cb, 0u, 0u, 0u, 0u);
                     }
                     else
                     {
-                        Funcs.CallReg(Mem.U32((Mem.U32((state + 48u)) + 8u)), 0u, 0u, 0u, 0u);
+                        Funcs.CallReg(new B01State(state).link.cb, 0u, 0u, 0u, 0u);
                     }
                 }
             }
-            if (((int)(Mem.S8((state + 52u))) == 0))
+            if (((int)(new B01State(state).unk34) == 0))
             {
-                Mem.Set((actor + 1u), Mem.U8(((info + 12u) + (uint)2)));
-                Mem.Set((actor + 3u), (sbyte)(Mem.U8(((info + 12u) + (uint)3))));
+                new B01Actor(actor).unk1_Set(new B01Info(info).unkC.b[(int)(2)]);
+                new B01Actor(actor).unk3_Set((sbyte)(new B01Info(info).unkC.b[(int)(3)]));
             }
             else
             {
-                Mem.Set((actor + 1u), Mem.U8((info + 26u)));
-                Mem.Set((actor + 3u), (sbyte)(Mem.U8((info + 27u))));
+                new B01Actor(actor).unk1_Set(new B01Info(info).unk1A);
+                new B01Actor(actor).unk3_Set((sbyte)(new B01Info(info).unk1B));
             }
         }
     }

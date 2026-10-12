@@ -14,7 +14,7 @@ public static partial class Game
             float x = 0f;
             float y = 0f;
             uint v = 0u;
-            Mem.Set(p, m);
+            new SndVoices(p).owner__Set(m);
             for (i = 0; (i <= 90); ++i)
             {
                 x = ((float)(i) * Mem.F32(0x800C906Cu));
@@ -25,25 +25,25 @@ public static partial class Game
             {
                 v = (uint)(((uint)((i * 204)) + (uint)(p)));
                 v = (v + (uint)4);
-                Mem.Set(v, i);
-                Mem.Set((v + 176u), m);
-                Mem.Set((v + 12u), (-1));
-                Mem.Set((v + 8u), (-1));
-                Mem.Set((v + 58u), (short)((-1)));
-                Mem.Set((v + 56u), (short)(0));
-                Mem.Set((v + 64u), (-1));
-                Mem.Set((v + 20u), 0);
-                Mem.Set((v + 44u), Mem.F32(0x800C9074u));
-                Mem.Set((v + 88u), 0);
-                Mem.Set((v + 92u), 0);
-                Mem.Set((v + 52u), Mem.F32(0x800C9074u));
-                Mem.Set((v + 164u), 0);
-                Mem.Set((v + 172u), 0);
-                Mem.Set((v + 180u), (uint)((-1)));
-                Mem.Set((v + 184u), Mem.F32(0x800C9074u));
-                Mem.Set((v + 188u), 0);
-                Mem.Set((v + 192u), 0);
-                Mem.Set((v + 196u), 1);
+                new SndVoice(v).idx_Set(i);
+                new SndVoice(v).mgr__Set(m);
+                new SndVoice(v).unkC_Set((-1));
+                new SndVoice(v).unk8_Set((-1));
+                new SndVoice(v).unk3A_Set((short)((-1)));
+                new SndVoice(v).unk38_Set((short)(0));
+                new SndVoice(v).unk40_Set((-1));
+                new SndVoice(v).unk14_Set(0);
+                new SndVoice(v).unk2C_Set(Mem.F32(0x800C9074u));
+                new SndVoice(v).unk58_Set(0);
+                new SndVoice(v).unk5C_Set(0);
+                new SndVoice(v).unk34_Set(Mem.F32(0x800C9074u));
+                new SndVoice(v).unkA4_Set(0);
+                new SndVoice(v).unkAC_Set(0);
+                new SndVoice(v).unkB4__Set((uint)((-1)));
+                new SndVoice(v).unkB8_Set(Mem.F32(0x800C9074u));
+                new SndVoice(v).unkBC_Set(0);
+                new SndVoice(v).unkC0_Set(0);
+                new SndVoice(v).unkC4_Set(1);
             }
         }
     }

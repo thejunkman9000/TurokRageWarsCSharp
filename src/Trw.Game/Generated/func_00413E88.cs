@@ -15,10 +15,10 @@ public static partial class Game
             uint g = ((argb & (uint)(65280)) >> (int)8);
             uint b = (argb & (uint)(255));
             uint a = (argb >> (int)24);
-            r = ((Mem.S32((e + (uint)(9 * 4))) < 0) ? ((r >> (int)(-Mem.S32((e + (uint)(9 * 4))))) & (uint)(Mem.S32((e + (uint)(5 * 4))))) : ((r << (int)Mem.S32((e + (uint)(9 * 4)))) & (uint)(Mem.S32((e + (uint)(5 * 4))))));
-            g = ((Mem.S32((e + (uint)(10 * 4))) < 0) ? ((g >> (int)(-Mem.S32((e + (uint)(10 * 4))))) & (uint)(Mem.S32((e + (uint)(6 * 4))))) : ((g << (int)Mem.S32((e + (uint)(10 * 4)))) & (uint)(Mem.S32((e + (uint)(6 * 4))))));
-            b = ((Mem.S32((e + (uint)(11 * 4))) < 0) ? ((b >> (int)(-Mem.S32((e + (uint)(11 * 4))))) & (uint)(Mem.S32((e + (uint)(7 * 4))))) : ((b << (int)Mem.S32((e + (uint)(11 * 4)))) & (uint)(Mem.S32((e + (uint)(7 * 4))))));
-            a = ((Mem.S32((e + (uint)(12 * 4))) < 0) ? ((a >> (int)(-Mem.S32((e + (uint)(12 * 4))))) & (uint)(Mem.S32((e + (uint)(8 * 4))))) : ((a << (int)Mem.S32((e + (uint)(12 * 4)))) & (uint)(Mem.S32((e + (uint)(8 * 4))))));
+            r = ((new S_func_00413E88(e).w[(int)(9)] < 0) ? ((r >> (int)(-new S_func_00413E88(e).w[(int)(9)])) & (uint)(new S_func_00413E88(e).w[(int)(5)])) : ((r << (int)new S_func_00413E88(e).w[(int)(9)]) & (uint)(new S_func_00413E88(e).w[(int)(5)])));
+            g = ((new S_func_00413E88(e).w[(int)(10)] < 0) ? ((g >> (int)(-new S_func_00413E88(e).w[(int)(10)])) & (uint)(new S_func_00413E88(e).w[(int)(6)])) : ((g << (int)new S_func_00413E88(e).w[(int)(10)]) & (uint)(new S_func_00413E88(e).w[(int)(6)])));
+            b = ((new S_func_00413E88(e).w[(int)(11)] < 0) ? ((b >> (int)(-new S_func_00413E88(e).w[(int)(11)])) & (uint)(new S_func_00413E88(e).w[(int)(7)])) : ((b << (int)new S_func_00413E88(e).w[(int)(11)]) & (uint)(new S_func_00413E88(e).w[(int)(7)])));
+            a = ((new S_func_00413E88(e).w[(int)(12)] < 0) ? ((a >> (int)(-new S_func_00413E88(e).w[(int)(12)])) & (uint)(new S_func_00413E88(e).w[(int)(8)])) : ((a << (int)new S_func_00413E88(e).w[(int)(12)]) & (uint)(new S_func_00413E88(e).w[(int)(8)])));
             return (((r | g) | b) | a);
         }
     }

@@ -24,7 +24,7 @@ public static partial class Game
             uint g3 = 0u;
             uint g4 = 0u;
             uint p = 0u;
-            if ((((uint)(Mem.S32(0x800E28A4u)) - (((uint)(Mem.U32(0x80110634u)) - (uint)(Mem.U32((Mem.U32(0x8011FE80u) + 276u)))) >> (int)3)) < (uint)(3000)))
+            if ((((uint)(Mem.S32(0x800E28A4u)) - (((uint)(Mem.U32(0x80110634u)) - (uint)(new B15GfxCtx(Mem.U32(0x8011FE80u)).start_)) >> (int)3)) < (uint)(3000)))
             {
                 return;
             }
@@ -33,14 +33,14 @@ public static partial class Game
             if ((flag != 0))
             {
                 g1 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                Mem.Set(g1, 3674603524u);
-                Mem.Set((g1 + 4u), (uint)(mtx));
+                Mem.Set(new P4Gfx(g1).words.P, 3674603524u);
+                Mem.Set((new P4Gfx(g1).words.P + 4u), (uint)(mtx));
             }
             else
             {
                 g2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                Mem.Set(g2, 3661103107u);
-                Mem.Set((g2 + 4u), (uint)(mtx));
+                Mem.Set(new P4Gfx(g2).words.P, 3661103107u);
+                Mem.Set((new P4Gfx(g2).words.P + 4u), (uint)(mtx));
             }
             p = a5;
             if ((p == 0u))
@@ -48,8 +48,8 @@ public static partial class Game
                 p = func_0028FD94(root, 0);
             }
             g3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-            Mem.Set(g3, 3674603528u);
-            Mem.Set((g3 + 4u), (uint)(p));
+            Mem.Set(new P4Gfx(g3).words.P, 3674603528u);
+            Mem.Set((new P4Gfx(g3).words.P + 4u), (uint)(p));
             arr = func_0028FD94(root, 2);
             n = Mem.S32(arr);
             for (i = 0; (i < n); ++i)
@@ -61,30 +61,30 @@ public static partial class Game
                     func_0026B504(mtx, lights, info);
                 }
                 ok = 1;
-                switch (((int)(Mem.U8((info + 6u))) & 3))
+                switch (((int)(new B15Info(info).flags) & 3))
                 {
                 case 2:
-                    if (!(((int)(Mem.U8((info + 6u))) & 4) != 0))
+                    if (!(((int)(new B15Info(info).flags) & 4) != 0))
                     {
-                        v = (ushort)(((int)(Mem.U16((pad + 258u))) & 8));
+                        v = (ushort)(((int)(new B15Pad(pad).buttons) & 8));
                     }
                     else
                     {
-                        v = (ushort)(((int)(Mem.U16((pad + 258u))) & 2));
+                        v = (ushort)(((int)(new B15Pad(pad).buttons) & 2));
                     }
                     goto L_test;
                 case 3:
-                    if (!(((int)(Mem.U8((info + 6u))) & 4) != 0))
+                    if (!(((int)(new B15Info(info).flags) & 4) != 0))
                     {
-                        v = (ushort)(((int)(Mem.U16((pad + 258u))) & 128));
+                        v = (ushort)(((int)(new B15Pad(pad).buttons) & 128));
                     }
                     else
                     {
-                        v = (ushort)(((int)(Mem.U16((pad + 258u))) & 32));
+                        v = (ushort)(((int)(new B15Pad(pad).buttons) & 32));
                     }
                     goto L_test;
                 case 1:
-                    v = (ushort)(((int)(Mem.U16((pad + 258u))) & 256));
+                    v = (ushort)(((int)(new B15Pad(pad).buttons) & 256));
                     L_test: ;
                     if (((int)(v) == 0))
                     {
@@ -96,8 +96,8 @@ public static partial class Game
                 {
                     dl = func_0028FD94(part, 1);
                     g4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(g4, 3724541952u);
-                    Mem.Set((g4 + 4u), (uint)(dl));
+                    Mem.Set(new P4Gfx(g4).words.P, 3724541952u);
+                    Mem.Set((new P4Gfx(g4).words.P + 4u), (uint)(dl));
                 }
             }
         }

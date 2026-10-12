@@ -12,15 +12,15 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002A72AC", (uint)e);
             uint n = 0u;
             float acc = 0f;
-            if ((Mem.F32((e + 76u)) > 0.0f))
+            if ((new Emit(e).unk4C > 0.0f))
             {
-                n = Mem.U32((e + 64u));
+                n = new Emit(e).list_;
                 acc = 0.0f;
                 while ((n != 0u))
                 {
-                    Mem.Set((n + 168u), (acc / Mem.F32((e + 76u))));
-                    acc = (float)((float)(acc) + Mem.F32((n + 172u)));
-                    n = Mem.U32((n + 4u));
+                    new EmitNode(n).unkA8_Set((acc / new Emit(e).unk4C));
+                    acc = (float)((float)(acc) + new EmitNode(n).unkAC);
+                    n = new EmitNode(n).next_;
                 }
             }
         }

@@ -46,7 +46,7 @@ public static partial class Game
                 Cpu.SetS(1, Cpu.S(1) + Cpu.S(0));
                 r1 = 2148270080u;
                 Cpu.SetW(20, Mem.U32((r1 + 29224u)));
-                Mem.Set((r29 + 20u), Cpu.W(1)); r2 = func_0024D274_rc(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r29 + 20u), Cpu.W(1)); Cpu.SetS(0, func_0024D274(r4));
                 Cpu.SetS(0, Cpu.S(0) * Cpu.S(20));
                 Cpu.SetW(1, Mem.U32((r29 + 20u)));
                 Cpu.SetS(1, Cpu.S(1) + Cpu.S(0));
@@ -61,7 +61,7 @@ public static partial class Game
                 Cpu.SetW(1, Mem.U32((r16 + 112u)));
                 Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
                 r4 = r16;
-                Mem.Set((r29 + 36u), Cpu.W(0)); r2 = func_0024D274_rc(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r29 + 36u), Cpu.W(0)); Cpu.SetS(0, func_0024D274(r4));
                 Cpu.SetS(0, Cpu.S(0) * Cpu.S(20));
                 Cpu.SetW(1, Mem.U32((r29 + 36u)));
                 r4 = r29 + 48u;
@@ -197,8 +197,8 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_00214310", r2); Stack.Free(520); }
     }
 
-    public static int func_00214310(int p0, int p1, float p2, float p3, float p4)
+    public static int func_00214310(uint p0, uint p1, float p2, float p3, float p4)
     {
-        return (int)func_00214310_rc((uint)p0, (uint)p1, Cpu.F2U(p2), Cpu.F2U(p3), Cpu.F2U(p4));
+        return (int)func_00214310_rc(p0, p1, Cpu.F2U(p2), Cpu.F2U(p3), Cpu.F2U(p4));
     }
 }

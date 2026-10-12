@@ -13,22 +13,22 @@ public static partial class Game
             int i = 0;
             float a = Mem.F32(0x800C733Cu);
             float b = Mem.F32(0x800CE38Cu);
-            Mem.Set(o, 0);
-            Mem.Set((o + 4u), 0);
-            Mem.Set((o + 8u), 0);
-            Mem.Set((o + 12u), 0);
-            Mem.Set((o + 20u), 0);
+            new B04Set3(o).w0_Set(0);
+            new B04Set3(o).w4_Set(0);
+            new B04Set3(o).w8_Set(0);
+            new B04Set3(o).wC_Set(0);
+            new B04Set3(o).w14_Set(0);
             Mem.Set((o + (uint)892), (-1));
             Mem.Set((o + (uint)896), 1);
-            Mem.Set((o + 904u), (-1));
-            Mem.Set((o + 24u), 0);
-            Mem.Set((o + 908u), 0);
-            Mem.Set((o + 912u), (-1));
+            new B04Set3(o).w388_Set((-1));
+            new B04Set3(o).w18_Set(0);
+            new B04Set3(o).w38C_Set(0);
+            new B04Set3(o).w390_Set((-1));
             for (i = 0; (i < 36); ++i)
             {
-                Mem.Set((((o + 40u) + (uint)(i * 24)) + 4u), 0);
-                Mem.Set((((o + 40u) + (uint)(i * 24)) + 8u), b);
-                Mem.Set(((o + 40u) + (uint)(i * 24)), (-((float)(i) * a)));
+                new B04Set3(o).ent[(int)(i)].z2C_Set(0);
+                new B04Set3(o).ent[(int)(i)].f30_Set(b);
+                new B04Set3(o).ent[(int)(i)].f28_Set((-((float)(i) * a)));
             }
         }
     }

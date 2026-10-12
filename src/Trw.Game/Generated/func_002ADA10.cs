@@ -14,7 +14,7 @@ public static partial class Game
             uint p = 0x800D3390u;
             for (i = 2; (i != (-1)); --i)
             {
-                if (((int)(Mem.S16((p + 4u))) == id))
+                if (((int)(new Row10(p).id) == id))
                 {
                     return p;
                 }

@@ -10,9 +10,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00423370");
-            Mem.Set((0x801462C8u + 27u), (byte)(func_0041AD84((uint)(Mem.S32((Mem.U32(0x800E4518u) + (uint)(21 * 4)))))));
-            Mem.Set((0x801462C8u + 1408u), (byte)(func_0041AD84((uint)(Mem.S32((Mem.U32(0x800E4518u) + (uint)(22 * 4)))))));
-            Mem.Set((0x801462C8u + 16u), func_0041A760((uint)(Mem.S32((Mem.U32(0x800E4518u) + (uint)(20 * 4))))));
+            new O3Cfg(0x801462C8u).f1B_Set((byte)(func_0041AD84((uint)(new O3Words(Mem.U32(0x800E4518u)).w[(int)(21)]))));
+            new O3Cfg(0x801462C8u).f580_Set((byte)(func_0041AD84((uint)(new O3Words(Mem.U32(0x800E4518u)).w[(int)(22)]))));
+            new O3Cfg(0x801462C8u).f10_Set(func_0041A760((uint)(new O3Words(Mem.U32(0x800E4518u)).w[(int)(20)])));
         }
     }
 

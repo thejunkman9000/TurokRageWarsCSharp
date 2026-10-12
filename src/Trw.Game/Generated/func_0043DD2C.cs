@@ -10,87 +10,87 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043DD2C", (uint)a);
-            switch (Mem.S32(a))
+            switch (new O06A_v28(a).unk0)
             {
             default:
             case 2:
                 if ((Mem.U8(0x801462F5u) != 0))
                 {
-                    Mem.Set((a + 20u), 0x800D7D40u);
+                    new O06A_v28(a).unk14_Set(0x800D7D40u);
                 }
                 else
                 {
-                    Mem.Set((a + 20u), 0x800D7D44u);
+                    new O06A_v28(a).unk14_Set(0x800D7D44u);
                 }
                 break;
             case 3:
                 if ((Mem.U8(0x801462F6u) != 0))
                 {
-                    Mem.Set((a + 20u), 0x800D7D48u);
+                    new O06A_v28(a).unk14_Set(0x800D7D48u);
                 }
                 else
                 {
-                    Mem.Set((a + 20u), 0x800D7D4Cu);
+                    new O06A_v28(a).unk14_Set(0x800D7D4Cu);
                 }
                 break;
             case 4:
                 if ((Mem.U8(0x801462F7u) != 0))
                 {
-                    Mem.Set((a + 20u), 0x800D7D50u);
+                    new O06A_v28(a).unk14_Set(0x800D7D50u);
                 }
                 else
                 {
-                    Mem.Set((a + 20u), 0x800D7D54u);
+                    new O06A_v28(a).unk14_Set(0x800D7D54u);
                 }
                 break;
             case 5:
                 if ((Mem.U8(0x801462F8u) != 0))
                 {
-                    Mem.Set((a + 20u), 0x800D7D58u);
+                    new O06A_v28(a).unk14_Set(0x800D7D58u);
                 }
                 else
                 {
-                    Mem.Set((a + 20u), 0x800D7D5Cu);
+                    new O06A_v28(a).unk14_Set(0x800D7D5Cu);
                 }
                 break;
             case 6:
                 if ((Mem.U8(0x801462F9u) != 0))
                 {
-                    Mem.Set((a + 20u), 0x800D7D60u);
+                    new O06A_v28(a).unk14_Set(0x800D7D60u);
                 }
                 else
                 {
-                    Mem.Set((a + 20u), 0x800D7D64u);
+                    new O06A_v28(a).unk14_Set(0x800D7D64u);
                 }
                 break;
             case 7:
                 if ((Mem.U8(0x801462FAu) != 0))
                 {
-                    Mem.Set((a + 20u), 0x800D7D68u);
+                    new O06A_v28(a).unk14_Set(0x800D7D68u);
                 }
                 else
                 {
-                    Mem.Set((a + 20u), 0x800D7D6Cu);
+                    new O06A_v28(a).unk14_Set(0x800D7D6Cu);
                 }
                 break;
             case 8:
                 if ((Mem.U8(0x801462FBu) != 0))
                 {
-                    Mem.Set((a + 20u), 0x800D7D70u);
+                    new O06A_v28(a).unk14_Set(0x800D7D70u);
                 }
                 else
                 {
-                    Mem.Set((a + 20u), 0x800D7D74u);
+                    new O06A_v28(a).unk14_Set(0x800D7D74u);
                 }
                 break;
             case 9:
                 if ((Mem.U8(0x801462FDu) != 0))
                 {
-                    Mem.Set((a + 20u), 0x800D7D78u);
+                    new O06A_v28(a).unk14_Set(0x800D7D78u);
                 }
                 else
                 {
-                    Mem.Set((a + 20u), 0x800D7D7Cu);
+                    new O06A_v28(a).unk14_Set(0x800D7D7Cu);
                 }
                 break;
             }

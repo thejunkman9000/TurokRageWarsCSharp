@@ -17,7 +17,7 @@ public sealed class DisplayListInterpreter
         public uint Geom, OmL, OmH, CombW0, CombW1;
         public uint Cimg, Zimg, Timg, TimgW; public int TimgFmt, TimgSiz;
         public uint Fill; public float[] Prim = new float[4], Env = new float[4];
-        public Tile[] Tile = new Tile[8]; public byte[] Tmem = new byte[4096]; public int Tluts;
+        public Tile[] Tile = new Tile[8]; public byte[] Tmem = new byte[4096]; public uint[] TmemSrc = new uint[512]; public int Tluts;
         public float[][] Mv = Enumerable.Range(0, 10).Select(_ => new float[16]).ToArray(); public int MvTop;
         public float[] Proj = new float[16], Mvp = new float[16]; public bool MvpDirty;
         public int[] Sc = new int[4]; public float[] Vsc = new float[4], Vtr = new float[4];
@@ -27,6 +27,10 @@ public sealed class DisplayListInterpreter
     }
 
     private RdpState S = new();
+    // G_MW_FOG and G_SETFOGCOLOR survive display lists (the RSP/RDP keep them), so they live outside the per-list state
+    private int fogMul, fogOff; private readonly float[] fogCol = { 0, 0, 0, 1 };
+    private bool zClearQuad;       // FillRect is drawing the far-plane quad that clears part of the z-buffer
+    private static readonly bool fogDisabled = Environment.GetEnvironmentVariable("TRW_NOFOG") == "1";
     private readonly uint[] segbase = new uint[16];
     private float screenW = 480f, screenH = 360f;      // the game switches the colour image width between screens (480 in matches, 284 in menus): follows SETCIMG
 
@@ -139,13 +143,13 @@ public sealed class DisplayListInterpreter
             int n = t.Siz == 0 ? 16 : 256;
             for (int i = 0; i < n * 8; i++) Mix(S.Tmem[(0x800 + (t.Siz == 0 ? t.Pal * 128 : 0) + i) & 0xFFF]);
         }
-        if (texCache.TryGetValue(key, out var hit)) return hit;
+        if (texCache.TryGetValue(key, out var hit)) { hit.Src = S.TmemSrc[t.Tmem & 511]; return hit; }
         var px = new byte[w * h * 4];
         for (int y = 0; y < h; y++)
             for (int x = 0; x < w; x++)
                 DecodeTexel(t, x, y, px, (y * w + x) * 4);
         if (texCache.Count > 4000) texCache.Clear();
-        var tex = new DecodedTexture { Width = w, Height = h, Rgba = px, Key = key };
+        var tex = new DecodedTexture { Width = w, Height = h, Rgba = px, Key = key, Src = S.TmemSrc[t.Tmem & 511] };
         texCache[key] = tex;
         return tex;
     }
@@ -169,13 +173,19 @@ public sealed class DisplayListInterpreter
         Geom = s.Geom, OtherLow = s.OtherLow, OtherHigh = s.OtherHigh, CombineW0 = s.CombineW0, CombineW1 = s.CombineW1,
         Prim = (float[])s.Prim.Clone(), Env = (float[])s.Env.Clone(), Mode = s.Mode, TextureOn = s.TextureOn, Tex0 = s.Tex0, Tex1 = s.Tex1,
         Linear = s.Linear, AddressU = s.AddressU, AddressV = s.AddressV,
+        FogColor = (float[])s.FogColor.Clone(), FogMix = s.FogMix, FogAlphaFromColor = s.FogAlphaFromColor, ZClear = s.ZClear,
     };
 
     private void SetupState(DrawMode mode)
     {
         var n = new DrawState { Geom = S.Geom, OtherLow = S.OmL, OtherHigh = S.OmH, CombineW0 = S.CombW0, CombineW1 = S.CombW1, Mode = mode };
-        Array.Copy(S.Prim, n.Prim, 4); Array.Copy(S.Env, n.Env, 4);
+        Array.Copy(S.Prim, n.Prim, 4); Array.Copy(S.Env, n.Env, 4); Array.Copy(fogCol, n.FogColor, 4);
         int cycle = (int)((S.OmH >> 20) & 3);
+        {   // blender cycle 1 = (fog colour * factor + colour * (1 - factor)): P = CLR_FOG (3), A = A_SHADE (2) / A_FOG (1), M = CLR_IN (0), B = 1-A (0)
+            n.FogMix = RdpMath.FogMix(S.OmH, S.OmL, !fogDisabled, out bool fogA);
+            n.FogAlphaFromColor = fogA;
+        }
+        n.ZClear = zClearQuad;
         if (cycle == 2 && mode == DrawMode.Combiner) n.Mode = DrawMode.Copy;
         var t = S.Tile[S.TexTile & 7];
         n.TextureOn = S.TexOn != 0 && mode != DrawMode.VertexColor;
@@ -197,19 +207,19 @@ public sealed class DisplayListInterpreter
                 TileDims(t1, out int w1, out int h1);
                 n.Tex1 = GetTexture(t1, w1, h1);
             }
-            n.Linear = ((S.OmH >> 12) & 3) != 0;
-            n.AddressU = t.MaskS == 0 ? 2 : (t.CmS & 2) != 0 ? 2 : (t.CmS & 1) != 0 ? 1 : 0;
-            n.AddressV = t.MaskT == 0 ? 2 : (t.CmT & 2) != 0 ? 2 : (t.CmT & 1) != 0 ? 1 : 0;
+            n.Linear = RdpMath.LinearFilter(S.OmH);
+            n.AddressU = RdpMath.AddressMode(t.MaskS, t.CmS);
+            n.AddressV = RdpMath.AddressMode(t.MaskT, t.CmT);
         }
         else { n.AddressU = n.AddressV = 2; }
         bool same = curValid && cur.Geom == n.Geom && cur.OtherLow == n.OtherLow && cur.OtherHigh == n.OtherHigh && cur.CombineW0 == n.CombineW0 &&
-                    cur.CombineW1 == n.CombineW1 && cur.Mode == n.Mode && cur.Prim.AsSpan().SequenceEqual(n.Prim) && cur.Env.AsSpan().SequenceEqual(n.Env) &&
+                    cur.CombineW1 == n.CombineW1 && cur.Mode == n.Mode && cur.FogMix == n.FogMix && cur.FogAlphaFromColor == n.FogAlphaFromColor && cur.FogColor.AsSpan().SequenceEqual(n.FogColor) && cur.Prim.AsSpan().SequenceEqual(n.Prim) && cur.Env.AsSpan().SequenceEqual(n.Env) &&
                     cur.Tex0 == n.Tex0 && cur.Tex1 == n.Tex1 && cur.Linear == n.Linear && cur.AddressU == n.AddressU && cur.AddressV == n.AddressV &&
-                    cur.TextureOn == n.TextureOn;
+                    cur.TextureOn == n.TextureOn && cur.ZClear == n.ZClear;
         if (!same) { Flush(); cur = n; curValid = true; }
     }
 
-    private void PushVtx(in V v, float tw, float th, float uls, float ult)
+    private void PushVtx(in V v, float tw, float th, float uls, float ult, float fs, float ft)
     {
         float invw = 1f / v.Cw;
         float nx = v.Cx * invw, ny = v.Cy * invw, nz = v.Cz * invw;
@@ -223,9 +233,10 @@ public sealed class DisplayListInterpreter
             X = (px / screenW * 2f - 1f) * v.Cw, Y = (1f - py / screenH * 2f) * v.Cw, Z = zs * v.Cw, W = v.Cw,
             R = v.R, G = v.G, B = v.B, A = v.A,
         };
-        float sScale = S.TexScaleS / 65536f, tScale = S.TexScaleT / 65536f;
-        o.U = (v.S / 32f * sScale - uls / 4f) / tw;
-        o.V = (v.T / 32f * tScale - ult / 4f) / th;
+        // v.S / v.T are final S10.5: scaled by G_TEXTURE when the vertex was loaded (the RSP does it at load time), or written as final values by G_MODIFYVTX;
+        // the tile's shift field scales them as the RDP does
+        o.U = (v.S / 32f * fs - uls / 4f) / tw;
+        o.V = (v.T / 32f * ft - ult / 4f) / th;
         batch.Add(o);
     }
 
@@ -268,12 +279,13 @@ public sealed class DisplayListInterpreter
         triOut++;
         SetupState(DrawMode.Combiner);
         var tile = S.Tile[S.TexTile & 7];
+        float fs = RdpMath.ShiftFactor(tile.ShiftS), ft = RdpMath.ShiftFactor(tile.ShiftT);
         if (batch.Count + 12 > 3 * 6000) Flush();
         for (int k = 1; k + 1 < n; k++)
         {
-            PushVtx(poly[0], curTexW, curTexH, tile.Uls, tile.Ult);
-            PushVtx(poly[k], curTexW, curTexH, tile.Uls, tile.Ult);
-            PushVtx(poly[k + 1], curTexW, curTexH, tile.Uls, tile.Ult);
+            PushVtx(poly[0], curTexW, curTexH, tile.Uls, tile.Ult, fs, ft);
+            PushVtx(poly[k], curTexW, curTexH, tile.Uls, tile.Ult, fs, ft);
+            PushVtx(poly[k + 1], curTexW, curTexH, tile.Uls, tile.Ult, fs, ft);
         }
     }
 
@@ -296,7 +308,7 @@ public sealed class DisplayListInterpreter
             var m = S.Mvp;
             o.Cx = x * m[0] + y * m[4] + z * m[8] + m[12]; o.Cy = x * m[1] + y * m[5] + z * m[9] + m[13];
             o.Cz = x * m[2] + y * m[6] + z * m[10] + m[14]; o.Cw = x * m[3] + y * m[7] + z * m[11] + m[15];
-            o.S = (short)G16(p, 8); o.T = (short)G16(p, 10);
+            o.S = (short)G16(p, 8) * (S.TexScaleS / 65536f); o.T = (short)G16(p, 10) * (S.TexScaleT / 65536f);      // G_TEXTURE scales s/t at vertex load; G_MODIFYVTX later overwrites them with final values
             if ((S.Geom & 0x20000) != 0)       // lighting: the colour bytes are a normal
             {
                 var mv = S.Mv[S.MvTop];
@@ -315,6 +327,10 @@ public sealed class DisplayListInterpreter
             }
             else { o.R = G8(p, 12) / 255f; o.G = G8(p, 13) / 255f; o.B = G8(p, 14) / 255f; }
             o.A = G8(p, 15) / 255f;
+            if ((S.Geom & 0x10000) != 0 && !fogDisabled)      // G_FOG: the RSP replaces the vertex alpha with the fog factor clamp(z_ndc * fm + fo, 0, 255)
+            {
+                o.A = RdpMath.FogAlpha(o.Cw > 1e-6f ? o.Cz / o.Cw : -1f, fogMul, fogOff);
+            }
         }
     }
 
@@ -324,15 +340,36 @@ public sealed class DisplayListInterpreter
         ushort c16 = (ushort)(col >> 16);
         float r = ((c16 >> 11) & 31) / 31f, g = ((c16 >> 6) & 31) / 31f, b = ((c16 >> 1) & 31) / 31f;
         bool full = x0 <= 0 && y0 <= 0 && x1 >= screenW - 1 && y1 >= screenH - 1;
+        float fx0 = x0 / screenW * 2 - 1, fx1 = (x1 + 1) / screenW * 2 - 1, fy0 = 1 - y0 / screenH * 2, fy1 = 1 - (y1 + 1) / screenH * 2;
         if (S.Cimg == S.Zimg)
         {
-            if (full) { Flush(); commands.Add(new ClearDepthCommand()); }
+            Flush();
+            if (full) { commands.Add(new ClearDepthCommand()); return; }
+            // split-screen viewports clear only their quadrant of the z-buffer (4-player: 240x178 fills); ignoring those left stale depth from the previous
+            // frame, so every moving view lost most of its geometry to the fill colour. A far-plane quad that always passes writes depth only (the renderer
+            // turns colour writes off for DrawState.ZClear).
+            zClearQuad = true; SetupState(DrawMode.VertexColor);
+            GfxVertex Z(float x, float y) => new() { X = x, Y = y, Z = 1, W = 1, R = 1, G = 1, B = 1, A = 1 };
+            var z0 = Z(fx0, fy0); var z1 = Z(fx1, fy0); var z2 = Z(fx1, fy1); var z3 = Z(fx0, fy1);
+            batch.Add(z0); batch.Add(z1); batch.Add(z2); batch.Add(z0); batch.Add(z2); batch.Add(z3);
+            Flush(); zClearQuad = false;
+            return;
+        }
+        int cycle = (int)((S.OmH >> 20) & 3);
+        if (cycle == 0 || cycle == 1)
+        {   // 1-cycle / 2-cycle rectangles go through the colour combiner and the blender on the RDP (only FILL mode writes the fill colour): the boss
+            // shield / health bars are G_FILLRECTs with a PRIM combiner and came out in the (black) fill colour (C port 974d220, checked against Project64)
+            uint cg = S.Geom, cl = S.OmL; int ct = S.TexOn; S.Geom &= ~1u; S.OmL &= ~0x4000u; S.TexOn = 0;
+            SetupState(DrawMode.Combiner);
+            S.Geom = cg; S.OmL = cl; S.TexOn = ct;
+            GfxVertex C(float x, float y) => new() { X = x, Y = y, Z = 0, W = 1, R = 1, G = 1, B = 1, A = 1 };
+            var c0 = C(fx0, fy0); var c1 = C(fx1, fy0); var c2 = C(fx1, fy1); var c3 = C(fx0, fy1);
+            batch.Add(c0); batch.Add(c1); batch.Add(c2); batch.Add(c0); batch.Add(c2); batch.Add(c3);
             return;
         }
         if (full) { Flush(); commands.Add(new ClearColorCommand(r, g, b)); return; }
         uint sg = S.Geom, sl = S.OmL; S.Geom &= ~1u; S.OmL &= ~0x4000u;
         SetupState(DrawMode.VertexColor);
-        float fx0 = x0 / screenW * 2 - 1, fx1 = (x1 + 1) / screenW * 2 - 1, fy0 = 1 - y0 / screenH * 2, fy1 = 1 - (y1 + 1) / screenH * 2;
         GfxVertex Q(float x, float y) => new() { X = x, Y = y, Z = 0, W = 1, R = r, G = g, B = b, A = 1 };
         var q0 = Q(fx0, fy0); var q1 = Q(fx1, fy0); var q2 = Q(fx1, fy1); var q3 = Q(fx0, fy1);
         batch.Add(q0); batch.Add(q1); batch.Add(q2); batch.Add(q0); batch.Add(q2); batch.Add(q3);
@@ -344,19 +381,21 @@ public sealed class DisplayListInterpreter
         int xh = (int)((w0 >> 12) & 0xFFF), yh = (int)(w0 & 0xFFF), tile = (int)((w1 >> 24) & 7), xl = (int)((w1 >> 12) & 0xFFF), yl = (int)(w1 & 0xFFF);
         float s0 = (short)(h1w1 >> 16), t0 = (short)(h1w1 & 0xFFFF), dsdx = (short)(h2w1 >> 16), dtdy = (short)(h2w1 & 0xFFFF);
         int cycle = (int)((S.OmH >> 20) & 3); float sp = cycle == 2 ? 0.25f : 1f;
-        int save = S.TexTile; S.TexTile = tile; uint sg = S.Geom; S.Geom &= ~1u;
+        int save = S.TexTile; S.TexTile = tile; uint sg = S.Geom, sl = S.OmL, sh = S.OmH; S.Geom &= ~1u;
+        if (RdpMath.ForcePointForOneToOneRect(dsdx, dtdy)) S.OmH &= ~(3u << 12);      // 1:1 copies: point sampling reproduces the RDP's texel-centre fetch on the upscaled target
         SetupState(cycle == 2 ? DrawMode.Copy : DrawMode.Combiner);
         var t = S.Tile[tile & 7];
         float x0 = xl / 4f, y0 = yl / 4f, x1 = xh / 4f, y1 = yh / 4f;
         if (cycle >= 2) { x1 += 1; y1 += 1; }
         float s1 = s0 + (x1 - x0) * dsdx * sp / 1024f * 32f, t1 = t0 + (y1 - y0) * dtdy / 1024f * 32f;
-        float Uvx(float s) => (s / 32f - t.Uls / 4f) / curTexW;
-        float Uvy(float tt) => (tt / 32f - t.Ult / 4f) / curTexH;
+        float fS = RdpMath.ShiftFactor(t.ShiftS), fT = RdpMath.ShiftFactor(t.ShiftT);
+        float Uvx(float s) => (s / 32f * fS - t.Uls / 4f) / curTexW;
+        float Uvy(float tt) => (tt / 32f * fT - t.Ult / 4f) / curTexH;
         float X0 = x0 / screenW * 2 - 1, X1 = x1 / screenW * 2 - 1, Y0 = 1 - y0 / screenH * 2, Y1 = 1 - y1 / screenH * 2;
         GfxVertex Q(float x, float y, float u, float v) => new() { X = x, Y = y, Z = 0, W = 1, R = 1, G = 1, B = 1, A = 1, U = u, V = v };
         var q0 = Q(X0, Y0, Uvx(s0), Uvy(t0)); var q1 = Q(X1, Y0, Uvx(s1), Uvy(t0)); var q2 = Q(X1, Y1, Uvx(s1), Uvy(t1)); var q3 = Q(X0, Y1, Uvx(s0), Uvy(t1));
         batch.Add(q0); batch.Add(q1); batch.Add(q2); batch.Add(q0); batch.Add(q2); batch.Add(q3);
-        S.TexTile = save; S.Geom = sg;
+        S.TexTile = save; S.Geom = sg; S.OmL = sl; S.OmH = sh;
     }
 
     // ---------------------------------------------------------------------------------------------- texture loads
@@ -367,8 +406,10 @@ public sealed class DisplayListInterpreter
         int bpt = S.TimgSiz == 0 ? 1 : S.TimgSiz == 1 ? 1 : S.TimgSiz == 2 ? 2 : 4;
         int texels = lrs + 1;
         int bytes = S.TimgSiz == 0 ? (texels + 1) / 2 : texels * bpt;
+        if (bytes > 4096) bytes = 4096;                          // TMEM is 4 KB: a bigger load wraps on hardware
         uint addr = S.Timg + (uint)(S.TimgSiz == 0 ? (ult * (int)S.TimgW + uls) / 2 : (ult * (int)S.TimgW + uls) * bpt);
         uint src = Res(addr);
+        S.TmemSrc[S.Tile[tile].Tmem & 511] = src;
         int words = (bytes + 7) / 8;
         for (int j = 0; j < words; j++)
         {
@@ -389,7 +430,9 @@ public sealed class DisplayListInterpreter
         int bpt = S.TimgSiz == 2 ? 2 : S.TimgSiz == 3 ? 4 : 1; int w = lrs - uls + 1, h = lrt - ult + 1;
         int rowBytes = S.TimgSiz == 0 ? (w + 1) / 2 : w * bpt; int line = S.Tile[tile].Line * 8;
         int srcStride = S.TimgSiz == 0 ? (int)S.TimgW / 2 : (int)S.TimgW * bpt;
+        if (w <= 0 || h <= 0 || rowBytes > 4096) return;        // lrs < uls: the RDP loads nothing
         uint baseA = S.Timg + (uint)((S.TimgSiz == 0 ? uls / 2 : uls * bpt) + ult * srcStride);
+        S.TmemSrc[S.Tile[tile].Tmem & 511] = Res(baseA);
         for (int r = 0; r < h; r++)
         {
             uint src = Res(baseA + (uint)(r * srcStride));
@@ -418,7 +461,7 @@ public sealed class DisplayListInterpreter
 
     private void RunDL(uint addr, int depth)
     {
-        if (depth > 12) return;
+        if (depth > 18) return;      // F3DEX2 keeps an 18-entry display-list stack; the 4th split-screen view reaches its weapon list 13 deep
         uint p = Res(addr);
         if (p == 0) return;
         for (int guard = 0; guard < 200000; guard++, p += 8)
@@ -432,8 +475,14 @@ public sealed class DisplayListInterpreter
             {
                 case 0xDF: return;
                 case 0xDE:
+                    if (((w0 >> 16) & 1) != 0)       // G_DL branch: continue in the new list without using a stack level (a recursive branch pushed the 4th player's weapon past the depth limit)
+                    {
+                        uint np = Res(w1);
+                        if (np == 0) return;
+                        p = np - 8;
+                        break;
+                    }
                     RunDL(w1, depth + 1);
-                    if (((w0 >> 16) & 1) != 0) return;       // branch (no return)
                     break;
                 case 0x01: LoadVtx(w0, w1); break;
                 case 0x02:       // G_MODIFYVTX: overwrite colour / texture coordinates / screen position of a loaded vertex
@@ -480,6 +529,7 @@ public sealed class DisplayListInterpreter
                     int idx = (int)((w0 >> 16) & 0xFF), off = (int)(w0 & 0xFFFF);
                     if (idx == 6) segbase[(off >> 2) & 15] = w1 & 0xFFFFFF;
                     else if (idx == 2) S.NumLights = (int)(w1 / 24) > 7 ? 7 : (int)(w1 / 24);
+                    else if (idx == 8) { fogMul = (short)(w1 >> 16); fogOff = (short)(w1 & 0xFFFF); }      // G_MW_FOG
                     break;
                 }
                 case 0xDC:
@@ -512,6 +562,7 @@ public sealed class DisplayListInterpreter
                     break;
                 }
                 case 0xFC: S.CombW0 = w0 & 0xFFFFFF; S.CombW1 = w1; break;
+                case 0xF8: fogCol[0] = (w1 >> 24) / 255f; fogCol[1] = ((w1 >> 16) & 255) / 255f; fogCol[2] = ((w1 >> 8) & 255) / 255f; fogCol[3] = (w1 & 255) / 255f; break;      // G_SETFOGCOLOR
                 case 0xFA: S.Prim[0] = (w1 >> 24) / 255f; S.Prim[1] = ((w1 >> 16) & 255) / 255f; S.Prim[2] = ((w1 >> 8) & 255) / 255f; S.Prim[3] = (w1 & 255) / 255f; break;
                 case 0xFB: S.Env[0] = (w1 >> 24) / 255f; S.Env[1] = ((w1 >> 16) & 255) / 255f; S.Env[2] = ((w1 >> 8) & 255) / 255f; S.Env[3] = (w1 & 255) / 255f; break;
                 case 0xF7: S.Fill = w1; break;

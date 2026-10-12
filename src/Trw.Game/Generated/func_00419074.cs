@@ -19,15 +19,15 @@ public static partial class Game
                 case 6:
                     {
                         uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                        Mem.Set(_g, 3808431104u);
-                        Mem.Set((_g + 4u), (uint)(524288));
+                        new O3Dl(_g).w0_Set(3808431104u);
+                        new O3Dl(_g).w1_Set((uint)(524288));
                     }
                     break;
                 case 7:
                     {
-                        uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                        Mem.Set(_g, 3808431104u);
-                        Mem.Set((_g + 4u), (uint)(0));
+                        uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new O3Dl(_g_2).w0_Set(3808431104u);
+                        new O3Dl(_g_2).w1_Set((uint)(0));
                     }
                     break;
                 }
@@ -45,8 +45,8 @@ public static partial class Game
                 Mem.Set(0x800E32E4u, 1);
                 {
                     uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(_g, 3875536896u);
-                    Mem.Set((_g + 4u), (uint)(0));
+                    new O3Dl(_g).w0_Set(3875536896u);
+                    new O3Dl(_g).w1_Set((uint)(0));
                 }
             }
         }

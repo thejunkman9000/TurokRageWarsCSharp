@@ -18,15 +18,15 @@ public static partial class Game
                 if (((t != 0u) && (Mem.S32((o + (uint)36)) == 0)))
                 {
                     Mem.Copy(_fp, t, 80);
-                    Mem.Copy((t + 8u), (o + 296u), 12);
-                    r = func_00243A80((int)(t), Mem.F32((a + 8u)), Mem.F32(((a + 8u) + 4u)), Mem.F32(((a + 8u) + 8u)), (int)(0x80104030u));
+                    Mem.Copy(new B19Box(t).pos.P, (o + 296u), 12);
+                    r = func_00243A80((int)(t), new B19Box(a).pos.x, new B19Box(a).pos.y, new B19Box(a).pos.z, (int)(0x80104030u));
                     Mem.Copy(t, _fp, 80);
                 }
                 else
                 {
                     Mem.Copy(_fp, a, 80);
-                    Mem.Copy((_fp + 8u), (o + 296u), 12);
-                    r = func_00243A80((int)(_fp), Mem.F32((a + 8u)), Mem.F32(((a + 8u) + 4u)), Mem.F32(((a + 8u) + 8u)), (int)(0x80104030u));
+                    Mem.Copy(new B19Box(_fp).pos.P, (o + 296u), 12);
+                    r = func_00243A80((int)(_fp), new B19Box(a).pos.x, new B19Box(a).pos.y, new B19Box(a).pos.z, (int)(0x80104030u));
                 }
                 return ((r == 0) ? 1 : 0);
             }

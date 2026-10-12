@@ -18,7 +18,7 @@ public static partial class Game
                 int r = 0;
                 if ((Mem.S32(0x80146890u) == 0))
                 {
-                    Mem.Set(_fp, Mem.Set((_fp + 4u), Mem.Set((_fp + 8u), 0.0f)));
+                    new Vec3f(_fp).x_Set(new Vec3f(_fp).y_Set(new Vec3f(_fp).z_Set(0.0f)));
                     saved = func_00258D30(0x8010C080u);
                     func_00258D28(0x8010C080u, 1);
                     new_var = func_0025828C(0x8010C080u, id, _fp, 0);

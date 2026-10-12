@@ -15,25 +15,25 @@ public static partial class Game
             float ty = 0f;
             float k = 0f;
             tx = (ty = 0.0f);
-            r = func_0028B2D4(0x8011FE88u, (uint)(Mem.S32((o + 88u))));
+            r = func_0028B2D4(0x8011FE88u, (uint)(new ObjF4(o).unk58));
             if ((r == 0u))
             {
-                Mem.Set(@out, ty);
-                Mem.Set((@out + 4u), ty);
-                Mem.Set((@out + 8u), ty);
+                new Vec3f(@out).x_Set(ty);
+                new Vec3f(@out).y_Set(ty);
+                new Vec3f(@out).z_Set(ty);
                 return;
             }
-            if (((Mem.U32((r + 68u)) & (uint)(65536)) != 0u))
+            if (((new Row44(r).unk44 & (uint)(65536)) != 0u))
             {
                 tx = Mem.F32(0x800C8668u);
                 ty = Mem.F32(0x800C866Cu);
             }
-            Mem.Set((o + 244u), (Mem.F32((o + 244u)) + ((tx - Mem.F32((o + 244u))) * Mem.F32(0x800C8670u))));
+            new ObjF4(o).unkF4_Set((new ObjF4(o).unkF4 + ((tx - new ObjF4(o).unkF4) * Mem.F32(0x800C8670u))));
             k = Mem.F32(0x800C8674u);
-            Mem.Set((o + 248u), (Mem.F32((o + 248u)) + ((ty - Mem.F32((o + 248u))) * Mem.F32(0x800C8678u))));
-            Mem.Set(@out, func_00274B00(((-Mem.F32((o + 244u))) * k), (Mem.F32((o + 244u)) * k)));
-            Mem.Set((@out + 4u), func_00274B00(0.0f, (Mem.F32((o + 248u)) * Mem.F32(0x800C867Cu))));
-            Mem.Set((@out + 8u), func_00274B00(((-Mem.F32((o + 244u))) * k), (Mem.F32((o + 244u)) * k)));
+            new ObjF4(o).unkF8_Set((new ObjF4(o).unkF8 + ((ty - new ObjF4(o).unkF8) * Mem.F32(0x800C8678u))));
+            new Vec3f(@out).x_Set(func_00274B00(((-new ObjF4(o).unkF4) * k), (new ObjF4(o).unkF4 * k)));
+            new Vec3f(@out).y_Set(func_00274B00(0.0f, (new ObjF4(o).unkF8 * Mem.F32(0x800C867Cu))));
+            new Vec3f(@out).z_Set(func_00274B00(((-new ObjF4(o).unkF4) * k), (new ObjF4(o).unkF4 * k)));
         }
     }
 

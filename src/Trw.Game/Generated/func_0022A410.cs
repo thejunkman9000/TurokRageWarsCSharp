@@ -11,13 +11,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0022A410", (uint)g);
             uint a = 0u;
-            if (((Mem.S32((0x801468A0u + 84u)) != 0) && (Mem.S32((0x801468A0u + 104u)) != 0)))
+            if (((new GameFlags(0x801468A0u).unk54 != 0) && (new GameFlags(0x801468A0u).unk68 != 0)))
             {
                 return 0u;
             }
-            for (a = Mem.U32((g + 32u)); (a != 0u); a = Mem.U32((a + 5856u)))
+            for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).next_)
             {
-                if (((int)(Mem.U8((Mem.U32((a + 1496u)) + 143u))) == 1))
+                if (((int)(new Actor(a).stats.unk8F) == 1))
                 {
                     return a;
                 }

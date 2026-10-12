@@ -17,17 +17,17 @@ public static partial class Game
                 int dt = 0;
                 int i = 0;
                 uint m = Mem.U32(0x8014D080u);
-                Mem.Set(_fp, Mem.S32((m + 1332u)));
-                Mem.Set((_fp + 4u), Mem.S32((m + 1336u)));
-                Mem.Set((_fp + 20u), (byte)(255));
-                Mem.Set((_fp + 8u), 0);
-                Mem.Set((_fp + 12u), 1.0f);
-                Mem.Set((_fp + 16u), 1.0f);
+                new B22Viewport(_fp).x_Set(new SndMgr_v2(m).unk534);
+                new B22Viewport(_fp).y_Set(new SndMgr_v2(m).unk538);
+                new B22Viewport(_fp).alpha_Set((byte)(255));
+                new B22Viewport(_fp).unk8_Set(0);
+                new B22Viewport(_fp).sx_Set(1.0f);
+                new B22Viewport(_fp).sy_Set(1.0f);
                 Mem.Set(0x8014D084u, 0);
-                Mem.Set((_fp + 24u), Mem.S32((m + 1332u)));
-                Mem.Set((_fp + 32u), Mem.S32((m + 1336u)));
-                Mem.Set((_fp + 28u), (Mem.S32(0x8014D088u) - 1));
-                Mem.Set((_fp + 36u), (Mem.S32(0x8014D08Cu) - 1));
+                new B22Viewport(_fp).x2_Set(new SndMgr_v2(m).unk534);
+                new B22Viewport(_fp).y2_Set(new SndMgr_v2(m).unk538);
+                new B22Viewport(_fp).w_Set((Mem.S32(0x8014D088u) - 1));
+                new B22Viewport(_fp).h_Set((Mem.S32(0x8014D08Cu) - 1));
                 now = (int)((func_002A28CC() * Mem.F64(0x800CA810u)));
                 if ((Mem.S32(0x800D2B50u) == 0))
                 {
@@ -35,16 +35,16 @@ public static partial class Game
                 }
                 dt = (now - Mem.S32(0x800D2B50u));
                 Mem.Set(0x800D2B50u, now);
-                func_0029864C((uint)(0), (uint)(3594), (uint)(0), _fp, (uint)(dt));
-                for (i = Mem.S32((Mem.U32(0x8014D080u) + 8u)); (i <= Mem.S32((Mem.U32(0x8014D080u) + 4u))); ++i)
+                func_0029864C(0, 3594, 0, (int)(_fp), dt);
+                for (i = new SndMgr_v2(Mem.U32(0x8014D080u)).unk8; (i <= new SndMgr_v2(Mem.U32(0x8014D080u)).top); ++i)
                 {
                     func_002A28F4();
-                    func_0040E6FC(Mem.U32((Mem.U32((Mem.U32(0x8014D080u) + 12u)) + (uint)(i * 28))), _fp);
+                    func_0040E6FC(new SndStkEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).stk_ + (uint)(i * 28))).ctx_, _fp);
                     func_0040E914();
                     func_002A28FC();
-                    func_0040E154((_fp + 40u), (_fp + 56u), Mem.U32((Mem.U32((Mem.U32(0x8014D080u) + 12u)) + (uint)(i * 28))), _fp);
+                    func_0040E154((_fp + 40u), (_fp + 56u), new SndStkEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).stk_ + (uint)(i * 28))).ctx_, _fp);
                 }
-                func_0029864C((uint)(0), (uint)(3594), (uint)(1), 0u, (uint)(dt));
+                func_0029864C(0, 3594, 1, (int)(0u), dt);
                 Mem.Set(0x8014D0A0u, 0);
             }
         }

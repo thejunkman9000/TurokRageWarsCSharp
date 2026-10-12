@@ -13,7 +13,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0028403C", (uint)o);
-                return (int)(((Mem.U32((o + 92u)) >> (int)2) & (uint)(1)));
+                return (int)(((new B19Obj(o).flags >> (int)2) & (uint)(1)));
             }
         }
         finally { Stack.Free(16); }

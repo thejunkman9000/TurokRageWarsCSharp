@@ -18,7 +18,7 @@ public static partial class Game
             {
                 if ((succ == thread))
                 {
-                    Mem.Set(pred, Mem.U32(thread));
+                    Mem.Set(pred, new OSThread(thread).next_);
                     return;
                 }
                 pred = succ;

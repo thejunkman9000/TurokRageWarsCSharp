@@ -20,15 +20,15 @@ public static partial class Game
             Mem.Set(0x8010EC74u, 0);
             Mem.Set(0x8010EC7Cu, Mem.F32(0x800C9288u));
             Mem.Set(0x8010EC80u, Mem.F32(0x800C928Cu));
-            Mem.Set(0x8010EC70u, Mem.F32((h + 12u)));
-            if (((int)(func_0025F0F4(a1, b1, (uint)(Mem.S32((h + 20u))), (uint)(3), (uint)(Mem.S32(h)), (uint)(Mem.S32((h + 8u))))) != 0))
+            Mem.Set(0x8010EC70u, new B14Hdr(h).fC);
+            if ((func_0025F0F4((int)(a1), b1, new B14Hdr(h).f14, 3, new B14Hdr(h).f0, new B14Hdr(h).f8) != 0))
             {
                 Mem.Set(0x8010EC78u, 0);
                 Mem.Set(0x8010EC74u, 1);
                 Mem.Set(0x8010EC7Cu, Mem.F32(0x800C9290u));
                 Mem.Set(0x8010EC80u, Mem.F32(0x800C9294u));
-                Mem.Set(0x8010EC70u, Mem.F32((h + 12u)));
-                r = (((int)(func_0025F0F4(a2, b2, (uint)(Mem.S32((h + 16u))), (uint)(4), (uint)(Mem.S32(h)), (uint)(Mem.S32((h + 8u))))) != 0) ? 1 : 0);
+                Mem.Set(0x8010EC70u, new B14Hdr(h).fC);
+                r = ((func_0025F0F4((int)(a2), b2, new B14Hdr(h).f10, 4, new B14Hdr(h).f0, new B14Hdr(h).f8) != 0) ? 1 : 0);
             }
             else
             {

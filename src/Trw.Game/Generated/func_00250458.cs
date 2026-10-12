@@ -19,26 +19,26 @@ public static partial class Game
             int off = 0;
             uint src = 0u;
             int len = 0;
-            if (!(((int)(Mem.U16((o + 216u))) & 64) != 0))
+            if (!(((int)(new B12Obj(o).unkD8) & 64) != 0))
             {
-                s4 = (int)(Mem.S8((Mem.U32((o + 24u)) + 18u)));
-                h = (int)(func_00250754(o, (int)(Mem.S8((Mem.U32((o + 24u)) + 14u)))));
+                s4 = (int)(new B12Obj(o).def.unk12);
+                h = (int)(func_00250754(o, (int)(new B12Obj(o).def.unkE)));
                 if ((h != 0))
                 {
-                    r = func_00251F0C((uint)(0), (uint)((int)((Mem.U32((o + 208u)) | (uint)(Mem.S32(0x800D2640u))))), (uint)(h), (uint)((int)(Mem.U32((o + 32u)))), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(0));
+                    r = func_00251F0C((uint)(0), (uint)((int)((new B12Obj(o).unkD0 | (uint)(Mem.S32(0x800D2640u))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(0));
                     if ((r != 0u))
                     {
                         func_00253B5C(0, r);
-                        blk = (uint)(Mem.U32(r));
+                        blk = (uint)(new B12Node(r).key);
                         if ((Mem.S32((blk + (uint)(0 * 4))) == 1))
                         {
                             off = Mem.S32((blk + (uint)(1 * 4)));
                             len = Mem.S32((blk + (uint)(2 * 4)));
                             data = (blk + (uint)off);
                             src = (blk + (uint)len);
-                            if (((int)(Mem.U8((o + 218u))) != (int)(Mem.U8(0x800D297Bu))))
+                            if (((int)(new B12Obj(o).unkDA) != (int)(Mem.U8(0x800D297Bu))))
                             {
-                                func_0027899C(data, src, default(uint), default(uint));
+                                func_0027899C(data, src);
                             }
                             v1 = data;
                         }
@@ -48,16 +48,16 @@ public static partial class Game
                         }
                         if ((Mem.S32(0x800D15E0u) != 0))
                         {
-                            func_0026DA4C((uint)(h), (int)((o + 40u)), 0, 0, v1, s4);
+                            func_0026DA4C((uint)(h), (int)(new B12Obj(o).unk28.P), 0, 0, v1, s4);
                         }
                         else
                         {
-                            func_0026DC24((uint)(h), (int)((o + 40u)), 0, 0, v1, s4);
+                            func_0026DC24((uint)(h), (int)(new B12Obj(o).unk28.P), 0, 0, v1, s4);
                         }
                         func_002536F4(0, r);
                     }
                     func_002536F4(0, (uint)(h));
-                    Mem.Set((o + 218u), Mem.U8(0x800D297Bu));
+                    new B12Obj(o).unkDA_Set(Mem.U8(0x800D297Bu));
                 }
             }
         }

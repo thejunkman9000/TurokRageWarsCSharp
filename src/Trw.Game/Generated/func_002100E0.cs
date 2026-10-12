@@ -15,13 +15,13 @@ public static partial class Game
             {
                 do
                 {
-                    w = func_00232AAC(Mem.U32(c));
+                    w = func_00232AAC(new CtlB(c).actor_);
                 }
                 while ((w >= 16));
-                Mem.Set((Mem.U32(c) + 1904u), (short)(w));
-                if ((w != (int)(Mem.S16((Mem.U32(c) + 1582u)))))
+                new CtlB(c).actor.unk770_Set((short)(w));
+                if ((w != (int)(new CtlB(c).actor.unk62E)))
                 {
-                    Mem.Set((c + 740u), 0);
+                    new CtlB(c).unk2E4_Set(0);
                 }
             }
         }

@@ -15,34 +15,34 @@ public static partial class Game
             uint v = 0u;
             uint w = 0u;
             uint pw = 0u;
-            if ((((((x != 0.0f) && !(75.0f <= Mem.F32((a + 4568u)))) && !(Mem.F32((a + 1648u)) > 0.0f)) && (((Mem.S32((0x801468A0u + 152u)) == 0) || ((int)(Mem.S8((Mem.U32((a + 1496u)) + 128u))) != 11)) || (Mem.S32((0x801468A0u + 160u)) <= 0))) && !((Mem.S32((a + 4652u)) & 32768) != 0)))
+            if ((((((x != 0.0f) && !(75.0f <= new Plr(a).unk11D8)) && !(new Plr(a).unk670 > 0.0f)) && (((new GameB6(0x801468A0u).unk98 == 0) || ((int)(new Plr(a).stats.unk80) != 11)) || (new GameB6(0x801468A0u).unkA0 <= 0))) && !((new Plr(a).unk122C & 32768) != 0)))
             {
-                f = (Mem.F32((a + 4568u)) + (x * 15.0f));
+                f = (new Plr(a).unk11D8 + (x * 15.0f));
                 if ((75.0f < f))
                 {
                     f = 75.0f;
                 }
-                Mem.Set((a + 4568u), f);
+                new Plr(a).unk11D8_Set(f);
                 func_00214178((a + (uint)744), (a + (uint)1112), 2);
-                if ((Mem.S32((a + 4624u)) != 0))
+                if ((new Plr(a).unk1210 != 0))
                 {
-                    if ((Mem.S32((a + 1508u)) != 0))
+                    if ((new Plr(a).unk5E4 != 0))
                     {
                         func_002227D0(a, (int)(a), 2);
                     }
-                    Mem.Set((a + 4624u), 0);
-                    Mem.Set((a + 4628u), 0);
+                    new Plr(a).unk1210_Set(0);
+                    new Plr(a).unk1214_Set(0);
                 }
-                Mem.Set((a + 256u), (uint)((uint)(Mem.U32((a + 256u))) & 4278190079u));
-                if ((Mem.U32((a + 1500u)) != 0u))
+                new Plr(a).flags100_Set((uint)((uint)(new Plr(a).flags100) & 4278190079u));
+                if ((new Plr(a).unk5DC_ != 0u))
                 {
-                    if ((Mem.S32((Mem.U32((a + 1500u)) + 1348u)) == 0))
+                    if ((new Pawn(new Plr(a).unk5DC_).unk544 == 0))
                     {
-                        func_0023919C(Mem.U32((a + 1500u)), (sbyte)(128), (sbyte)(0), (sbyte)(0), (sbyte)(250), (sbyte)((int)((byte)(Cpu.TruncU32(func_002745D4(7.5f))))), (sbyte)(0), (sbyte)((int)((byte)(Cpu.TruncU32((((Mem.F32((a + 4568u)) * 0.0666666701f) - 1.5f) * 15.0f))))));
+                        func_0023919C(new Plr(a).unk5DC_, (sbyte)(128), (sbyte)(0), (sbyte)(0), (sbyte)(250), (sbyte)((int)((byte)(Cpu.TruncU32(func_002745D4(7.5f))))), (sbyte)(0), (sbyte)((int)((byte)(Cpu.TruncU32((((new Plr(a).unk11D8 * 0.0666666701f) - 1.5f) * 15.0f))))));
                         return;
                     }
-                    Mem.Set((Mem.U32((a + 1500u)) + 1348u), 3);
-                    Mem.Set((Mem.U32((a + 1500u)) + 1357u), (byte)(Cpu.TruncU32(Mem.F32((a + 4568u)))));
+                    new Pawn(new Plr(a).unk5DC_).unk544_Set(3);
+                    new Pawn(new Plr(a).unk5DC_).unk54D_Set((byte)(Cpu.TruncU32(new Plr(a).unk11D8)));
                 }
             }
         }

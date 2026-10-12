@@ -10,15 +10,15 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0042ED84");
-            if ((Mem.U8((0x801462C8u + 13u)) != 0))
+            if ((new O04Cfg(0x801462C8u).unkD != 0))
             {
-                func_0042EF50((float)(Mem.U8((Mem.U32(0x800E4680u) + 36u))), 0, (int)(Mem.U8((Mem.U32(0x800E4680u) + 33u))), (int)(Mem.U8((Mem.U32(0x800E4680u) + 35u))), 0, 1, 1);
+                func_0042EF50((float)(new O04ModeS4680(Mem.U32(0x800E4680u)).u24), 0, (int)(new O04ModeS4680(Mem.U32(0x800E4680u)).u21), (int)(new O04ModeS4680(Mem.U32(0x800E4680u)).u23), 0, 1, 1);
             }
             else
             {
-                func_0042EF50((float)(Mem.S8((0x801462C8u + 36u))), 0, (int)(Mem.S8((0x801462C8u + 39u))), (int)(Mem.S8((0x801462C8u + 38u))), 0, 1, 1);
+                func_0042EF50((float)(new O04Cfg(0x801462C8u).s24), 0, (int)(new O04Cfg(0x801462C8u).s27), (int)(new O04Cfg(0x801462C8u).s26), 0, 1, 1);
             }
-            func_0044EACC(0x8011FAC0u, (uint)(func_0042F014()), default(uint), default(uint));
+            func_0044EACC(0x8011FAC0u, func_0042F014());
         }
     }
 

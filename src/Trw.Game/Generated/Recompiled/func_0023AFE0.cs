@@ -229,7 +229,7 @@ public static partial class Game
                 r3 = r3 & r2;
                 Mem.Set((r21 + 2248u), (ushort)r3); r2 = func_00255E78(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r21 + 2208u;
-                r5 = r16; r2 = func_00255C58(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r16; func_00255C58(r4, r5);
                 L_L0023B39C: ;
                 r16 = r17;
                 { bool c_ = r16 != 0;  if (c_) goto L_L0023B1F8; }

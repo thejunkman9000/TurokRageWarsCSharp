@@ -31,7 +31,7 @@ public static partial class Game
                 Mem.Set((r29 + 36u), r31);
                 r4 = r16; r2 = func_00255E78(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r16 - 20u;
-                r5 = r17; r2 = func_00255C58(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r17; func_00255C58(r4, r5);
                 r2 = Mem.U32((r17 + 0u));
                 if (r2 == 0) { r4 = r0; goto L_L002529C0; }
                 r5 = Mem.U32((r17 + 8u));

@@ -14,9 +14,9 @@ public static partial class Game
             {
                 Mem.Copy(_fp + 0u, pos_in, 12);
                 if (Dbg.On) Dbg.Enter("func_002684F8", (uint)a, (uint)b, (uint)c, (uint)pos_in);
-                if (((int)(Mem.U8(a)) == 1))
+                if (((int)(new B15Flags(a).type) == 1))
                 {
-                    Mem.Set((a + 736u), (uint)((uint)(Mem.U32((a + 736u))) & (uint)((~(1 << (int)bit)))));
+                    new B15Flags(a).unk2E0_Set((uint)((uint)(new B15Flags(a).unk2E0) & (uint)((~(1 << (int)bit)))));
                 }
             }
         }

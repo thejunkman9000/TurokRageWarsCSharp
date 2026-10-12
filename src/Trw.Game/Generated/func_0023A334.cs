@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0023A334_takeNode", (uint)o, (uint)b);
             uint n = 0u;
-            n = Mem.U32((o + 3876u));
+            n = new TextSrc(o).freeF24_;
             if ((n != 0u))
             {
                 func_00239CD0(n);
@@ -57,19 +57,19 @@ public static partial class Game
                             n = func_0023A334_takeNode(o, b);
                             if ((n != 0u))
                             {
-                                Mem.Set((n + 20u), type);
-                                Mem.Set((n + 36u), start);
-                                Mem.Set((n + 24u), 0);
-                                Mem.Set((n + 16u), 1.0f);
-                                Mem.Set((n + 28u), id);
-                                Mem.Set((n + 32u), 0);
-                                Mem.Set((n + 40u), 0);
-                                Mem.Set((n + 44u), 0);
-                                Mem.Set((n + 56u), 1.0f);
-                                Mem.Set((n + 60u), 1.0f);
-                                Mem.Set((n + 48u), (float)((Mem.S32(0x800E28D0u) / 2)));
-                                Mem.Set((n + 52u), (float)((Mem.S32(0x800E28D4u) - 80)));
-                                Mem.Set((n + 12u), (sc * 15.0f));
+                                new TextNode(n).unk14_Set(type);
+                                new TextNode(n).unk24__Set(start);
+                                new TextNode(n).unk18_Set(0);
+                                new TextNode(n).unk10_Set(1.0f);
+                                new TextNode(n).unk1C_Set(id);
+                                new TextNode(n).unk20_Set(0);
+                                new TextNode(n).unk28_Set(0);
+                                new TextNode(n).unk2C_Set(0);
+                                new TextNode(n).unk38_Set(1.0f);
+                                new TextNode(n).unk3C_Set(1.0f);
+                                new TextNode(n).unk30_Set((float)((Mem.S32(0x800E28D0u) / 2)));
+                                new TextNode(n).unk34_Set((float)((Mem.S32(0x800E28D4u) - 80)));
+                                new TextNode(n).unkC_Set((sc * 15.0f));
                             }
                             start = (p + (uint)1);
                         }

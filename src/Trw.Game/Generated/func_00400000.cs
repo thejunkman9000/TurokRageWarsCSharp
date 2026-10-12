@@ -20,9 +20,9 @@ public static partial class Game
                 Mem.Set((y2 + (uint)(0 * 4)), (float)(0));
                 return;
             }
-            A = func_00252FFC((uint)((n * 4)), default(uint), default(uint), default(uint));
-            B = func_00252FFC((uint)((n * 4)), default(uint), default(uint), default(uint));
-            C = func_00252FFC((uint)((n * 4)), default(uint), default(uint), default(uint));
+            A = func_00252FFC((uint)((n * 4)));
+            B = func_00252FFC((uint)((n * 4)));
+            C = func_00252FFC((uint)((n * 4)));
             for (i = 1; (i < (n - 1)); ++i)
             {
                 Mem.Set((A + (uint)(i * 4)), ((Mem.F32((t + (uint)((i + 1) * 4))) - Mem.F32((t + (uint)((i - 1) * 4)))) * 2.0f));

@@ -21,7 +21,7 @@ public static partial class Game
                 first = (uint)(0);
                 Mem.Set(_fp, 0u);
                 vc = __osViGetCurrentContext();
-                Mem.Set(0x8014EAD0u, Mem.U16((vc + 2u)));
+                Mem.Set(0x8014EAD0u, new OSViContext(vc).retraceCount);
                 if (((int)(Mem.U16(0x8014EAD0u)) == 0))
                 {
                     Mem.Set(0x8014EAD0u, (ushort)(1));
@@ -29,8 +29,8 @@ public static partial class Game
                 dm = arg;
                 while ((1 != 0))
                 {
-                    osRecvMesg(Mem.U32((dm + 12u)), _fp, 1);
-                    switch ((int)(Mem.U16(Mem.U32(_fp))))
+                    osRecvMesg(new OSMgrArgs(dm).evtQueue_, _fp, 1);
+                    switch ((int)(new OSIoMesg(Mem.U32(_fp)).hdr.type))
                     {
                     case 13:
                         __osViSwapContext();
@@ -38,11 +38,11 @@ public static partial class Game
                         if (((int)(Mem.U16(0x8014EAD0u)) == 0))
                         {
                             vc = __osViGetCurrentContext();
-                            if ((Mem.U32((vc + 16u)) != 0u))
+                            if ((new OSViContext(vc).mq_ != 0u))
                             {
-                                osSendMesg(Mem.U32((vc + 16u)), Mem.U32((vc + 20u)), 0);
+                                osSendMesg(new OSViContext(vc).mq_, new OSViContext(vc).msg, 0);
                             }
-                            Mem.Set(0x8014EAD0u, Mem.U16((vc + 2u)));
+                            Mem.Set(0x8014EAD0u, new OSViContext(vc).retraceCount);
                         }
                         Mem.Set(0x8014FE24u, (uint)(Mem.U32(0x8014FE24u) + 1));
                         if ((first != 0u))

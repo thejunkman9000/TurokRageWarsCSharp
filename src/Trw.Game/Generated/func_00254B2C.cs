@@ -13,11 +13,11 @@ public static partial class Game
             uint p = 0u;
             if ((flag != 0))
             {
-                p = func_002559D4(0x801051A0u, size);
+                p = func_002559D4(0x801051A0u, size, default(uint), default(uint));
             }
             else
             {
-                p = func_002558C0(0x801051A0u, size);
+                p = func_002558C0(0x801051A0u, size, default(uint), default(uint));
             }
             if ((p == (uint)(0)))
             {
@@ -32,11 +32,11 @@ public static partial class Game
                 {
                     if ((flag != 0))
                     {
-                        p = func_002559D4(0x801051A0u, size);
+                        p = func_002559D4(0x801051A0u, size, default(uint), default(uint));
                     }
                     else
                     {
-                        p = func_002558C0(0x801051A0u, size);
+                        p = func_002558C0(0x801051A0u, size, default(uint), default(uint));
                     }
                 }
             }

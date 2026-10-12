@@ -12,10 +12,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_004351A0", (uint)k);
             float x = 0f;
             byte v = 0;
-            x = ((cosf(((float)(k) + ((float)(Mem.S32(((Mem.U32(0x800E54A4u) + 44u) + (uint)(k * 4)))) * 0.00333333341f))) * 100.0f) + 150.0f);
+            x = ((cosf(((float)(k) + ((float)(new O05Lobby(Mem.U32(0x800E54A4u)).h.w2C[(int)(k)]) * 0.00333333341f))) * 100.0f) + 150.0f);
             v = (byte)(Cpu.TruncU32(x));
-            Mem.Set((func_0040ECB0(Mem.U32((((Mem.U32(0x800E54A4u) + 88u) + (uint)(k * 2920)) + 16u)), (uint)(706), default(uint), default(uint)) + 16u), v);
-            Mem.Set((func_0040ECB0(Mem.U32((((Mem.U32(0x800E54A4u) + 88u) + (uint)(k * 2920)) + 16u)), (uint)(707), default(uint), default(uint)) + 16u), v);
+            new O05Obj10(func_0040ECB0(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f10, (uint)(706), default(uint), default(uint))).b10_Set(v);
+            new O05Obj10(func_0040ECB0(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f10, (uint)(707), default(uint), default(uint))).b10_Set(v);
         }
     }
 

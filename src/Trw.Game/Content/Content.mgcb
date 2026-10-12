@@ -12,3 +12,31 @@
 /processor:EffectProcessor
 /processorParam:DebugMode=Auto
 /build:Combiner.fx
+
+#begin Scoreboard.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Color
+/build:Scoreboard.spritefont
+
+#begin NetFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Color
+/build:NetFont.spritefont
+
+#begin NetTitle.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Color
+/build:NetTitle.spritefont
+
+#begin ScoreboardTitle.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Color
+/build:ScoreboardTitle.spritefont

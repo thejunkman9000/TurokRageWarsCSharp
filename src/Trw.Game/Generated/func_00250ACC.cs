@@ -14,10 +14,10 @@ public static partial class Game
             int r = 0;
             if ((h != 0))
             {
-                Mem.Set((o + 180u), h);
+                new B12Obj(o).unkB4_Set(h);
                 Mem.Set(@out, h);
                 @out = func_0026E27C((uint)(h), a1, (@out + (uint)(1 * 4)));
-                r = (int)(func_00251F0C((uint)(0), (uint)((int)((Mem.U32((o + 208u)) | (uint)(Mem.S32(0x800D2640u))))), (uint)(h), (uint)((int)(Mem.U32((o + 32u)))), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(1)));
+                r = (int)(func_00251F0C((uint)(0), (uint)((int)((new B12Obj(o).unkD0 | (uint)(Mem.S32(0x800D2640u))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(1)));
                 if ((r != 0))
                 {
                     Mem.Set(@out, r);

@@ -15,9 +15,9 @@ public static partial class Game
             uint n = Mem.U32(0x800D0920u);
             for (i = (uint)(0); (i < n); ++i)
             {
-                Mem.Set(((Mem.U32((0x80103F70u + 1520u)) + (uint)(i * 40)) + 12u), (uint)((uint)(Mem.U32(((Mem.U32((0x80103F70u + 1520u)) + (uint)(i * 40)) + 12u))) & mask));
+                new B12Node((new B12Mgr(0x80103F70u).nodes_ + (uint)(i * 40))).flags_Set((uint)((uint)(new B12Node((new B12Mgr(0x80103F70u).nodes_ + (uint)(i * 40))).flags) & mask));
             }
-            Mem.Set(((0x80103F70u + 4548u) + (uint)(type * 4)), 0);
+            new B12Mgr(0x80103F70u).tbl11C4.Set((int)(type), 0);
         }
     }
 

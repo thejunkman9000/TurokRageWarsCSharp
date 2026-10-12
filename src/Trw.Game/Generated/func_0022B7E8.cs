@@ -11,22 +11,22 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0022B7E8", (uint)a, (uint)b);
             uint name = 0u;
-            if ((Mem.F32((a + 4580u)) == 0.0f))
+            if ((new Plr(a).unk11E4 == 0.0f))
             {
                 func_0025DF54(2885);
-                Mem.Set((a + 5088u), (int)(b));
-                Mem.Set((a + 4580u), Mem.F32(0x800C7E0Cu));
-                if ((Mem.U32((a + 1500u)) != 0u))
+                new Plr(a).unk13E0_Set((int)(b));
+                new Plr(a).unk11E4_Set(Mem.F32(0x800C7E0Cu));
+                if ((new Plr(a).unk5DC_ != 0u))
                 {
-                    func_00237E70(0x80145088u, Mem.U32((a + 1500u)), Mem.U32(0x800D71E0u), default(uint));
-                    if (((b != 0u) && ((int)(Mem.U8(b)) == 1)))
+                    func_00237E70(0x80145088u, new Plr(a).unk5DC_, Mem.U32(0x800D71E0u));
+                    if (((b != 0u) && ((int)(new Plr(b).unk0) == 1)))
                     {
-                        if (((Mem.U32((b + 256u)) & (uint)(3145728)) != 0u))
+                        if (((new Plr(b).flags100 & (uint)(3145728)) != 0u))
                         {
-                            name = (a + 5100u);
-                            sprintf(name, Mem.U32(0x800D71E8u), (Mem.U32((b + 1496u)) + (uint)132), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-                            func_00237E70(0x80145088u, Mem.U32((a + 1500u)), name, default(uint));
-                            func_00237E70(0x80145088u, Mem.U32((a + 1500u)), Mem.U32(0x800D71ECu), default(uint));
+                            name = new Plr(a).unk13EC.P;
+                            sprintf(name, Mem.U32(0x800D71E8u), (new Plr(b).stats_ + (uint)132), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                            func_00237E70(0x80145088u, new Plr(a).unk5DC_, name);
+                            func_00237E70(0x80145088u, new Plr(a).unk5DC_, Mem.U32(0x800D71ECu));
                         }
                     }
                 }

@@ -10,9 +10,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00272768", (uint)a, (uint)b);
-            float dx = (Mem.F32(a) - Mem.F32(b));
-            float dy = (Mem.F32((a + 4u)) - Mem.F32((b + 4u)));
-            float dz = (Mem.F32((a + 8u)) - Mem.F32((b + 8u)));
+            float dx = (new Vec3f(a).x - new Vec3f(b).x);
+            float dy = (new Vec3f(a).y - new Vec3f(b).y);
+            float dz = (new Vec3f(a).z - new Vec3f(b).z);
             return func_002BC380((((dx * dx) + (dy * dy)) + (dz * dz)));
         }
     }

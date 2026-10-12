@@ -11,21 +11,21 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002549C8", (uint)unused, (uint)flags);
             uint n = 0u;
-            if ((Mem.S32((0x80103F70u + 4556u)) == 0))
+            if ((new PoolMgr(0x80103F70u).cnt == 0))
             {
                 return 0u;
             }
-            Mem.Set((0x80103F70u + 4556u), (int)(Mem.S32((0x80103F70u + 4556u)) - 1));
-            n = Mem.U32((Mem.U32(0x80104564u) + (uint)(Mem.S32((0x80103F70u + 4556u)) * 4)));
-            Mem.Set((n + 12u), (uint)(2048));
-            Mem.Set((n + 8u), 0);
-            Mem.Set(n, (uint)(0));
-            Mem.Set((n + 36u), 0u);
-            Mem.Set((n + 32u), 0u);
-            Mem.Set((n + 20u), 0);
-            Mem.Set((n + 16u), Mem.S32((0x80103F70u + 4624u)));
-            func_00255C58((0x80103F70u + (uint)1536), n, default(uint), default(uint));
-            Mem.Set((n + 12u), (uint)((uint)(Mem.U32((n + 12u))) | (flags & (uint)(12))));
+            new PoolMgr(0x80103F70u).cnt_Set((int)(new PoolMgr(0x80103F70u).cnt - 1));
+            n = Mem.U32((Mem.U32(0x80104564u) + (uint)(new PoolMgr(0x80103F70u).cnt * 4)));
+            new PNode(n).fC_Set((uint)(2048));
+            new PNode(n).f8_Set(0);
+            new PNode(n).key_Set((uint)(0));
+            new PNode(n).next__Set(0u);
+            new PNode(n).prev__Set(0u);
+            new PNode(n).f14_Set(0);
+            new PNode(n).f10_Set(new PoolMgr(0x80103F70u).f10);
+            func_00255C58((0x80103F70u + (uint)1536), n);
+            new PNode(n).fC_Set((uint)((uint)(new PNode(n).fC) | (flags & (uint)(12))));
             return n;
         }
     }

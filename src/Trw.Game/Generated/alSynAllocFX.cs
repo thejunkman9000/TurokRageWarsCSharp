@@ -10,10 +10,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alSynAllocFX", (uint)drvr, (uint)bus, (uint)c, (uint)hp);
-            alFxNew(((Mem.U32((drvr + 52u)) + (uint)(bus * 76)) + 32u), c, hp, default(uint));
-            alFxParam(((Mem.U32((drvr + 52u)) + (uint)(bus * 76)) + 32u), 1, (Mem.U32((drvr + 52u)) + (uint)(bus * 76)));
-            alAuxBusParam(Mem.U32((drvr + 48u)), 2, ((Mem.U32((drvr + 52u)) + (uint)(bus * 76)) + 32u));
-            return ((Mem.U32((drvr + 52u)) + (uint)(bus * 76)) + 32u);
+            alFxNew(new ALSynFxBus((new ALSynth(drvr).mainBus_ + (uint)(bus * 76))).fx.P, c, hp);
+            alFxParam(new ALSynFxBus((new ALSynth(drvr).mainBus_ + (uint)(bus * 76))).fx.P, 1, (new ALSynth(drvr).mainBus_ + (uint)(bus * 76)));
+            alAuxBusParam(new ALSynth(drvr).auxBus_, 2, new ALSynFxBus((new ALSynth(drvr).mainBus_ + (uint)(bus * 76))).fx.P);
+            return new ALSynFxBus((new ALSynth(drvr).mainBus_ + (uint)(bus * 76))).fx.P;
         }
     }
 

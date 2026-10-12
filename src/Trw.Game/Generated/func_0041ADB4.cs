@@ -11,8 +11,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0041ADB4", (uint)o, (uint)src);
             uint s = o;
-            func_002A125C(((o + 72u) + (uint)(Mem.S32((s + 276u)) * 20)), src);
-            Mem.Set((s + 276u), (Mem.S32((s + 276u)) + 1));
+            func_002A125C((new O3List(o).ent.P + (uint)(new O3ListSel(s).cnt * 20)), src);
+            new O3ListSel(s).cnt_Set((new O3ListSel(s).cnt + 1));
         }
     }
 

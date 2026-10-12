@@ -11,10 +11,10 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024BE70", (uint)a);
             int r = (-1);
-            uint p = func_0024BFC4(a, (int)(Mem.S8((a + 1u))));
+            uint p = func_0024BFC4(a, (int)(new Obj(a).unk1));
             if ((p != 0u))
             {
-                r = (int)(Mem.U8((func_0028FD94((uint)(Mem.S32(p)), 5) + 110u)));
+                r = (int)(new B11Node(func_0028FD94((uint)(Mem.S32(p)), 5)).unk6E);
                 func_002536F4(0, p);
             }
             return r;

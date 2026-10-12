@@ -17,8 +17,8 @@ public static partial class Game
                 Mem.Copy(_fp, actor, 80);
                 Mem.Set((actor + (uint)12), (float)((float)(Mem.F32((actor + (uint)12))) + (func_0024D274(actor) * Mem.F32(0x800C7F04u))));
                 Mem.Set((actor + (uint)12), (float)((float)(Mem.F32((actor + (uint)12))) + Mem.F32((actor + (uint)112))));
-                func_00243A80((int)(actor), Mem.F32(p), Mem.F32((p + 4u)), Mem.F32((p + 8u)), (int)(0x80104030u));
-                moved = ((((Mem.F32(p) != Mem.F32((actor + (uint)8))) || (Mem.F32((p + 4u)) != Mem.F32((actor + (uint)12)))) || (Mem.F32((p + 8u)) != Mem.F32((actor + (uint)16)))) ? 1 : 0);
+                func_00243A80((int)(actor), new Vec3f(p).x, new Vec3f(p).y, new Vec3f(p).z, (int)(0x80104030u));
+                moved = ((((new Vec3f(p).x != Mem.F32((actor + (uint)8))) || (new Vec3f(p).y != Mem.F32((actor + (uint)12)))) || (new Vec3f(p).z != Mem.F32((actor + (uint)16)))) ? 1 : 0);
                 Mem.Copy(p, (actor + (uint)8), 12);
                 Mem.Copy(actor, _fp, 80);
                 return moved;

@@ -11,15 +11,15 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0022A738", (uint)g);
             uint a = 0u;
-            if (((Mem.S32((0x801468A0u + 28u)) == 0) && (Mem.S32((0x801468A0u + 32u)) == 0)))
+            if (((new GameB6(0x801468A0u).unk1C == 0) && (new GameB6(0x801468A0u).unk20 == 0)))
             {
                 func_00264874(0);
-                if ((Mem.S32((0x801468A0u + 36u)) != 0))
+                if ((new GameB6(0x801468A0u).unk24 != 0))
                 {
-                    if ((Mem.S32((0x801468A0u + 40u)) == 0))
+                    if ((new GameB6(0x801468A0u).unk28 == 0))
                     {
-                        Mem.Set((0x801468A0u + 40u), 1);
-                        for (a = Mem.U32((g + 32u)); (a != 0u); a = Mem.U32((a + 5856u)))
+                        new GameB6(0x801468A0u).unk28_Set(1);
+                        for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).next_)
                         {
                             func_002227D0(a, (int)(a), 21);
                         }
@@ -27,17 +27,17 @@ public static partial class Game
                 }
                 else
                 {
-                    Mem.Set((0x801468A0u + 28u), 1);
-                    for (a = Mem.U32((g + 32u)); (a != 0u); a = Mem.U32((a + 5856u)))
+                    new GameB6(0x801468A0u).unk1C_Set(1);
+                    for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).next_)
                     {
                         func_002227D0(a, (int)(a), 21);
                     }
                 }
-                Mem.Set((0x801468A0u + 28u), 1);
-                for (a = Mem.U32((g + 32u)); (a != 0u); a = Mem.U32((a + 5856u)))
+                new GameB6(0x801468A0u).unk1C_Set(1);
+                for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).next_)
                 {
                     Mem.Set((a + (uint)2140), 0);
-                    Mem.Set((Mem.U32((a + 1496u)) + 142u), (byte)(1));
+                    new Actor(a).stats.unk8E_Set((byte)(1));
                 }
             }
         }

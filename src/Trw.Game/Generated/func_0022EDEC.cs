@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022EDEC", (uint)actor);
-            Mem.Set((Mem.U32((actor + 1496u)) + (uint)143), (byte)(1));
+            Mem.Set((new Actor(actor).stats_ + (uint)143), (byte)(1));
             switch (Mem.S32(0x80146910u))
             {
             case 0:
@@ -27,7 +27,7 @@ public static partial class Game
             Mem.Set((actor + (uint)4532), 0);
             func_00214178((actor + (uint)744), (actor + (uint)1112), 1);
             func_0021B1E4(actor, (uint)(Mem.S32((actor + (uint)1516))), (uint)(0), (uint)(1));
-            func_002266E4(actor, default(uint), default(uint), default(uint));
+            func_002266E4(actor);
         }
     }
 

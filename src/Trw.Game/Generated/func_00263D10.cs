@@ -10,42 +10,42 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00263D10", (uint)c);
-            int port = (int)(Mem.S8((c + 4u)));
-            int v = ((((int)(Mem.U8(((0x8010FBE0u + (uint)(port * 4)) + (uint)3))) >> (int)3) ^ 1) & 1);
+            int port = (int)(new B14Ctl(c).port);
+            int v = ((((int)(new B14PortFlags((0x8010FBE0u + (uint)(port * 4))).b[(int)(3)]) >> (int)3) ^ 1) & 1);
             int i = 0;
-            if (((v != 0) && (Mem.S32(c) == 0)))
+            if (((v != 0) && (new B14Ctl(c).f0 == 0)))
             {
-                Mem.Set((c + 4u), (sbyte)(port));
-                Mem.Set(c, 0);
-                Mem.Set((c + 200u), 0);
-                Mem.Set((c + 204u), 0);
-                Mem.Set((c + 544u), 0);
-                Mem.Set((c + 8u), 0);
-                Mem.Set((c + 12u), 0);
-                Mem.Set((c + 16u), 0);
-                Mem.Set((c + 196u), (byte)(0));
-                Mem.Set((c + 197u), (byte)(0));
-                Mem.Set((c + 198u), (byte)(0));
-                Mem.Set((c + 199u), (byte)(0));
-                Mem.Set((c + 20u), 0);
-                Mem.Set((c + 24u), 0);
-                Mem.Set((c + 28u), 0);
-                Mem.Set((c + 32u), 0);
-                Mem.Set((c + 36u), 0);
-                Mem.Set((c + 40u), 0);
+                new B14Ctl(c).port_Set((sbyte)(port));
+                new B14Ctl(c).f0_Set(0);
+                new B14Ctl(c).fC8_Set(0);
+                new B14Ctl(c).fCC_Set(0);
+                new B14Ctl(c).f220_Set(0);
+                new B14Ctl(c).f8_Set(0);
+                new B14Ctl(c).fC_Set(0);
+                new B14Ctl(c).f10_Set(0);
+                new B14Ctl(c).fC4_Set((byte)(0));
+                new B14Ctl(c).fC5_Set((byte)(0));
+                new B14Ctl(c).fC6_Set((byte)(0));
+                new B14Ctl(c).fC7_Set((byte)(0));
+                new B14Ctl(c).f14_Set(0);
+                new B14Ctl(c).f18_Set(0);
+                new B14Ctl(c).f1C_Set(0);
+                new B14Ctl(c).f20_Set(0);
+                new B14Ctl(c).f24_Set(0);
+                new B14Ctl(c).f28_Set(0);
                 for (i = 0; (i < 32); ++i)
                 {
-                    Mem.Set(((c + 44u) + (uint)(i * 4)), (byte)(0));
-                    Mem.Set((((c + 44u) + (uint)(i * 4)) + 1u), (byte)(0));
-                    Mem.Set((((c + 44u) + (uint)(i * 4)) + 2u), (byte)(48));
-                    Mem.Set((((c + 44u) + (uint)(i * 4)) + 3u), (byte)(0));
+                    new B14Ctl(c).ent[(int)(i)].a_Set((byte)(0));
+                    new B14Ctl(c).ent[(int)(i)].b_Set((byte)(0));
+                    new B14Ctl(c).ent[(int)(i)].c_Set((byte)(48));
+                    new B14Ctl(c).ent[(int)(i)].d_Set((byte)(0));
                 }
-                Mem.Set(c, ((((int)(Mem.U8(((0x8010FBE0u + (uint)(port * 4)) + (uint)3))) >> (int)3) ^ 1) & 1));
-                Mem.Set((c + 208u), 0);
-                Mem.Set((c + 212u), 0);
-                func_00285A94((c + 320u), (c + 364u), (uint)(3), default(uint));
+                new B14Ctl(c).f0_Set(((((int)(new B14PortFlags((0x8010FBE0u + (uint)(port * 4))).b[(int)(3)]) >> (int)3) ^ 1) & 1));
+                Mem.Set(new B14Ctl(c).fD0.P, 0);
+                Mem.Set(new B14Ctl(c).fD4.P, 0);
+                func_00285A94(new B14Ctl(c).blkA.P, new B14Ctl(c).blkB.P, (uint)(3), default(uint));
             }
-            Mem.Set(c, v);
+            new B14Ctl(c).f0_Set(v);
         }
     }
 

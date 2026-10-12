@@ -15,7 +15,7 @@ public static partial class Game
             {
                 return 0;
             }
-            return (int)(Mem.U8((r + 88u)));
+            return (int)(new Rec5A(r).b58);
         }
     }
 

@@ -10,9 +10,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00273340", (uint)src, (uint)dst);
-            Mem.Set(dst, Mem.F32(((src + (uint)(3 * 16)) + (uint)(0 * 4))));
-            Mem.Set((dst + 4u), Mem.F32(((src + (uint)(3 * 16)) + (uint)(1 * 4))));
-            Mem.Set((dst + 8u), Mem.F32(((src + (uint)(3 * 16)) + (uint)(2 * 4))));
+            new Vec3f(dst).x_Set(Mem.F32(((new B16Mtx(src).m.P + (uint)(3 * 16)) + (uint)(0 * 4))));
+            new Vec3f(dst).y_Set(Mem.F32(((new B16Mtx(src).m.P + (uint)(3 * 16)) + (uint)(1 * 4))));
+            new Vec3f(dst).z_Set(Mem.F32(((new B16Mtx(src).m.P + (uint)(3 * 16)) + (uint)(2 * 4))));
         }
     }
 

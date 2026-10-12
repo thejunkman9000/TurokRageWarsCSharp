@@ -18,24 +18,24 @@ public static partial class Game
                 int off = 0;
                 if ((which != 0))
                 {
-                    a = Mem.S32((lv + 4556u));
-                    b = Mem.S32((lv + 4548u));
+                    a = new Level(lv).unk11CC;
+                    b = new Level(lv).cnt11C4;
                 }
                 else
                 {
-                    a = Mem.S32((lv + 4552u));
-                    b = Mem.S32((lv + 4544u));
+                    a = new Level(lv).unk11C8;
+                    b = new Level(lv).cnt11C0;
                 }
                 if ((func_00265570((uint)(a), b, (uint)(id), _fp, (_fp + 4u)) != 0))
                 {
                     off = (Mem.S32(_fp) * 20);
                     if ((which != 0))
                     {
-                        Mem.Set(outRecs, (Mem.U32((lv + 4564u)) + (uint)off));
+                        Mem.Set(outRecs, (new Level(lv).recB_ + (uint)off));
                     }
                     else
                     {
-                        Mem.Set(outRecs, (Mem.U32((lv + 4560u)) + (uint)off));
+                        Mem.Set(outRecs, (new Level(lv).recA_ + (uint)off));
                     }
                     Mem.Set(outCount, ((Mem.S32((_fp + 4u)) - Mem.S32(_fp)) + 1));
                 }

@@ -10,9 +10,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002328C8", (uint)actor, (uint)state);
-            uint owner = Mem.U32((actor + 472u));
+            uint owner = new Actor(actor).owner_;
             Mem.Set((state + (uint)304), (Mem.F32((Mem.U32((0x800D052Cu + (uint)(Mem.S16((owner + (uint)1582)) * 4))) + (uint)24)) * Mem.F32(0x800C8104u)));
-            if ((((int)(Mem.S16((owner + (uint)1582))) == 5) && (Mem.S32((owner + 4544u)) == 0)))
+            if ((((int)(Mem.S16((owner + (uint)1582))) == 5) && (new Actor(owner).unk11C0 == 0)))
             {
                 func_0022AF64(owner, 1130);
             }

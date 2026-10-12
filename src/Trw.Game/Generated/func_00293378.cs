@@ -18,7 +18,7 @@ public static partial class Game
                 Mem.Set((_fp + (uint)0), (byte)(0));
                 Mem.Set((_fp + (uint)1), (byte)(0));
                 Mem.Set((_fp + (uint)2), (byte)(0));
-                t = Mem.F32((g + 159172u));
+                t = new B21Game(g).unk26DC4;
                 if (!((t < 0.0f))) goto _f0;
                 goto L_c255;
                 _f0: ;

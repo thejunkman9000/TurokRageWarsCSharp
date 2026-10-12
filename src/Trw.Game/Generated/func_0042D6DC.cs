@@ -18,19 +18,19 @@ public static partial class Game
                 s1 = func_0043C4E8(Mem.U32(0x800E53C0u));
                 if ((s1 == c))
                 {
-                    func_0043C260(Mem.U32(0x800E53C0u), default(uint), default(uint), default(uint));
+                    func_0043C260(Mem.U32(0x800E53C0u));
                     func_0043C484(Mem.U32(0x800E53C0u));
                     if ((func_0043C4E8(Mem.U32(0x800E53C0u)) == 2))
                     {
-                        v = Mem.S32((Mem.U32(0x800E53C0u) + 28u));
+                        v = new O04ModeS53C0(Mem.U32(0x800E53C0u)).unk1C;
                         if ((v != 0))
                         {
                             if ((v == s1))
                             {
                                 func_0040C4A8(0);
                                 func_0040E958((uint)(a), 1);
-                                func_0044AFC0(0x80145088u, (uint)(0), default(uint), default(uint));
-                                func_0044A600((0x80145088u - (uint)72), (uint)(0), (uint)(0), default(uint));
+                                func_0044AFC0(0x80145088u, 0);
+                                func_0044A600((0x80145088u - (uint)72), 0, 0);
                                 func_00286A78(0x8011FE88u, (uint)(0), (uint)(0), default(uint));
                                 Mem.Set((0x80145088u + (uint)6128), 8);
                             }
@@ -56,7 +56,7 @@ public static partial class Game
                                 Mem.Set(0x80146918u, 0);
                                 Mem.Set(0x801468F4u, 0);
                             }
-                            func_00299368((uint)(a0), default(uint), default(uint), default(uint));
+                            func_00299368(a0);
                         }
                     }
                 }

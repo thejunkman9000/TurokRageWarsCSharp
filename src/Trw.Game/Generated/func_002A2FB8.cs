@@ -12,8 +12,8 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002A2FB8", (uint)o, (uint)a1, (uint)a2, (uint)a3);
             if (((((a2 >> (int)16) == (uint)(3)) && (a3 < 8)) && (a3 >= 6)))
             {
-                Mem.Set((o + 92u), 2);
-                Mem.Set((o + 72u), 0);
+                new StateObj(o).unk5C_Set(2);
+                new StateObj(o).unk48_Set(0);
             }
             return 0;
         }

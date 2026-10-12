@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00445E28", (uint)a, (uint)b);
             int v = Mem.S32(0x800E63B8u);
-            if (((Mem.U32((Mem.U32((b + 32u)) + 176u)) & (uint)(131586)) != 0u))
+            if (((new O06B_v17(new O06A_v42(b).unk20_).unkB0 & (uint)(131586)) != 0u))
             {
                 --v;
                 if ((v < 0))
@@ -26,7 +26,7 @@ public static partial class Game
                     }
                 }
             }
-            if (((Mem.U32((Mem.U32((b + 32u)) + 176u)) & (uint)(315649)) != 0u))
+            if (((new O06B_v17(new O06A_v42(b).unk20_).unkB0 & (uint)(315649)) != 0u))
             {
                 ++v;
                 if ((v >= 23))

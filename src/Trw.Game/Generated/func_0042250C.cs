@@ -11,34 +11,34 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0042250C");
             int t = 0;
-            Mem.Set(0x800E4510u, func_00252FFC((uint)(40), default(uint), default(uint), default(uint)));
-            Mem.Set((Mem.U32(0x800E4510u) + (uint)(0 * 4)), (int)(func_0041A300(77, 78)));
+            Mem.Set(0x800E4510u, func_00252FFC((uint)(40)));
+            new O3Words(Mem.U32(0x800E4510u)).w.Set((int)(0), (int)(func_0041A300(77, 78)));
             func_0041B190(87);
             func_0041B190(88);
-            Mem.Set((Mem.U32(0x800E4510u) + (uint)(3 * 4)), (int)(func_0041AC40(89, 90)));
-            func_0041ADB4((uint)(Mem.S32((Mem.U32(0x800E4510u) + (uint)(3 * 4)))), Mem.U32((0x800D749Cu + (uint)(0 * 4))));
-            func_0041ADB4((uint)(Mem.S32((Mem.U32(0x800E4510u) + (uint)(3 * 4)))), Mem.U32((0x800D74A4u + (uint)(0 * 4))));
-            func_0041ADB4((uint)(Mem.S32((Mem.U32(0x800E4510u) + (uint)(3 * 4)))), Mem.U32((0x800D74A8u + (uint)(0 * 4))));
-            func_0041AD90((uint)(Mem.S32((Mem.U32(0x800E4510u) + (uint)(3 * 4)))), (int)(Mem.U8((0x801462C8u + 27u))));
-            Mem.Set((Mem.U32(0x800E4510u) + (uint)(4 * 4)), (int)(func_0041AC40(85, 86)));
-            func_0041ADB4((uint)(Mem.S32((Mem.U32(0x800E4510u) + (uint)(4 * 4)))), Mem.U32((0x800D74ACu + (uint)(0 * 4))));
-            func_0041ADB4((uint)(Mem.S32((Mem.U32(0x800E4510u) + (uint)(4 * 4)))), Mem.U32((0x800D74B0u + (uint)(0 * 4))));
-            func_0041AD90((uint)(Mem.S32((Mem.U32(0x800E4510u) + (uint)(4 * 4)))), (int)(Mem.U8((0x801462C8u + 31u))));
-            Mem.Set((Mem.U32(0x800E4510u) + (uint)(5 * 4)), (int)(func_0041AC40(81, 82)));
-            func_0041ADB4((uint)(Mem.S32((Mem.U32(0x800E4510u) + (uint)(5 * 4)))), Mem.U32((0x800D74B4u + (uint)(0 * 4))));
+            new O3Words(Mem.U32(0x800E4510u)).w.Set((int)(3), (int)(func_0041AC40(89, 90)));
+            func_0041ADB4((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(3)]), Mem.U32((0x800D749Cu + (uint)(0 * 4))));
+            func_0041ADB4((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(3)]), Mem.U32((0x800D74A4u + (uint)(0 * 4))));
+            func_0041ADB4((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(3)]), Mem.U32((0x800D74A8u + (uint)(0 * 4))));
+            func_0041AD90((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(3)]), (int)(new O3Cfg(0x801462C8u).f1B));
+            new O3Words(Mem.U32(0x800E4510u)).w.Set((int)(4), (int)(func_0041AC40(85, 86)));
+            func_0041ADB4((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(4)]), Mem.U32((0x800D74ACu + (uint)(0 * 4))));
+            func_0041ADB4((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(4)]), Mem.U32((0x800D74B0u + (uint)(0 * 4))));
+            func_0041AD90((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(4)]), (int)(new O3Cfg(0x801462C8u).f1F));
+            new O3Words(Mem.U32(0x800E4510u)).w.Set((int)(5), (int)(func_0041AC40(81, 82)));
+            func_0041ADB4((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(5)]), Mem.U32((0x800D74B4u + (uint)(0 * 4))));
             if (((int)(func_00265370()) != 4194304))
             {
-                func_0041ADB4((uint)(Mem.S32((Mem.U32(0x800E4510u) + (uint)(5 * 4)))), Mem.U32((0x800D74B8u + (uint)(0 * 4))));
-                func_0041ADB4((uint)(Mem.S32((Mem.U32(0x800E4510u) + (uint)(5 * 4)))), Mem.U32((0x800D74BCu + (uint)(0 * 4))));
+                func_0041ADB4((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(5)]), Mem.U32((0x800D74B8u + (uint)(0 * 4))));
+                func_0041ADB4((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(5)]), Mem.U32((0x800D74BCu + (uint)(0 * 4))));
             }
-            func_0041AD90((uint)(Mem.S32((Mem.U32(0x800E4510u) + (uint)(5 * 4)))), (int)(Mem.U8((0x801462C8u + 1408u))));
-            Mem.Set((Mem.U32(0x800E4510u) + (uint)(2 * 4)), (int)(func_0041A600(83, 84, 128)));
-            func_0041A76C((uint)(Mem.S32((Mem.U32(0x800E4510u) + (uint)(2 * 4)))), Mem.S32((0x801462C8u + 16u)));
+            func_0041AD90((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(5)]), (int)(new O3Cfg(0x801462C8u).f580));
+            new O3Words(Mem.U32(0x800E4510u)).w.Set((int)(2), (int)(func_0041A600(83, 84, 128)));
+            func_0041A76C((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(2)]), new O3Cfg(0x801462C8u).f10);
             func_0041B190(80);
             t = (int)(func_00419ED4((uint)(79), (uint)(110), default(uint), default(uint)));
-            Mem.Set((Mem.U32(0x800E4510u) + (uint)(9 * 4)), 3);
-            Mem.Set((Mem.U32(0x800E4510u) + (uint)(1 * 4)), t);
-            Mem.Set((Mem.U32(0x800E4510u) + (uint)(8 * 4)), (-1));
+            new O3Words(Mem.U32(0x800E4510u)).w.Set((int)(9), 3);
+            new O3Words(Mem.U32(0x800E4510u)).w.Set((int)(1), t);
+            new O3Words(Mem.U32(0x800E4510u)).w.Set((int)(8), (-1));
             return 0;
         }
     }

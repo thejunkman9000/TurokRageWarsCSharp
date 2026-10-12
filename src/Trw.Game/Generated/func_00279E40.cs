@@ -16,51 +16,51 @@ public static partial class Game
                 int n = 0;
                 float f = 0f;
                 float tmp = 0f;
-                n = (int)(Mem.S8((Mem.U32((Mem.U32((a + 280u)) + 44u)) + 24u)));
+                n = (int)(new ActorX(a).ch118.p2C.b18);
                 f = Mem.F32(0x800C9C30u);
                 if ((n != 0))
                 {
-                    if ((Mem.F32((a + 320u)) < (float)(n)))
+                    if ((new ActorX(a).f140 < (float)(n)))
                     {
-                        f = (Mem.F32((a + 320u)) / (float)(n));
+                        f = (new ActorX(a).f140 / (float)(n));
                     }
                 }
                 f = (f * scale);
-                Mem.Copy((_fp + 32u), (a + 372u), 12);
-                if ((Mem.F32((a + 428u)) > 0.0f))
+                Mem.Copy((_fp + 32u), new ActorX(a).v174.P, 12);
+                if ((new ActorX(a).f1AC > 0.0f))
                 {
-                    Mem.Set(_fp, 0.0f);
-                    Mem.Set((_fp + 8u), 0.0f);
-                    Mem.Set((_fp + 4u), Mem.F32(0x800C9C34u));
+                    new Vec3f(_fp).x_Set(0.0f);
+                    new Vec3f(_fp).z_Set(0.0f);
+                    new Vec3f(_fp).y_Set(Mem.F32(0x800C9C34u));
                     func_00272088((_fp + 16u), _fp, (_fp + 32u));
-                    func_0027200C((_fp + 48u), (_fp + 16u), ((sinf(Mem.F32((a + 412u))) * Mem.F32((a + 428u))) * f));
-                    Mem.Set((a + 412u), (float)((float)(Mem.F32((a + 412u))) + ((Mem.F32((a + 420u)) * f) * Mem.F32(0x800D2988u))));
-                    tmp = Mem.F32((a + 412u));
-                    func_0027200C((_fp + 64u), (_fp + 16u), ((sinf(tmp) * Mem.F32((a + 428u))) * f));
-                    func_00271FD8((a + 28u), (a + 28u), (_fp + 48u));
-                    func_00271FA4((a + 28u), (a + 28u), (_fp + 64u));
+                    func_0027200C((_fp + 48u), (_fp + 16u), ((sinf(new ActorX(a).f19C) * new ActorX(a).f1AC) * f));
+                    new ActorX(a).f19C_Set((float)((float)(new ActorX(a).f19C) + ((new ActorX(a).f1A4 * f) * Mem.F32(0x800D2988u))));
+                    tmp = new ActorX(a).f19C;
+                    func_0027200C((_fp + 64u), (_fp + 16u), ((sinf(tmp) * new ActorX(a).f1AC) * f));
+                    func_00271FD8(new ActorX(a).vel.P, new ActorX(a).vel.P, (_fp + 48u));
+                    func_00271FA4(new ActorX(a).vel.P, new ActorX(a).vel.P, (_fp + 64u));
                 }
                 else
                 {
-                    Mem.Set((a + 412u), (Mem.F32((a + 412u)) + ((Mem.F32((a + 420u)) * f) * Mem.F32(0x800D2988u))));
+                    new ActorX(a).f19C_Set((new ActorX(a).f19C + ((new ActorX(a).f1A4 * f) * Mem.F32(0x800D2988u))));
                 }
-                if ((Mem.F32((a + 432u)) > 0.0f))
+                if ((new ActorX(a).f1B0 > 0.0f))
                 {
-                    Mem.Set(_fp, 0.0f);
-                    Mem.Set((_fp + 8u), 0.0f);
-                    Mem.Set((_fp + 4u), Mem.F32(0x800C9C38u));
+                    new Vec3f(_fp).x_Set(0.0f);
+                    new Vec3f(_fp).z_Set(0.0f);
+                    new Vec3f(_fp).y_Set(Mem.F32(0x800C9C38u));
                     func_00272088((_fp + 80u), _fp, (_fp + 32u));
                     func_00272088((_fp + 16u), (_fp + 80u), (_fp + 32u));
-                    func_0027200C((_fp + 48u), (_fp + 16u), ((sinf(Mem.F32((a + 416u))) * Mem.F32((a + 432u))) * f));
-                    Mem.Set((a + 416u), (float)((float)(Mem.F32((a + 416u))) + ((Mem.F32((a + 424u)) * f) * Mem.F32(0x800D2988u))));
-                    tmp = Mem.F32((a + 416u));
-                    func_0027200C((_fp + 64u), (_fp + 16u), ((sinf(tmp) * Mem.F32((a + 432u))) * f));
-                    func_00271FD8((a + 28u), (a + 28u), (_fp + 48u));
-                    func_00271FA4((a + 28u), (a + 28u), (_fp + 64u));
+                    func_0027200C((_fp + 48u), (_fp + 16u), ((sinf(new ActorX(a).f1A0) * new ActorX(a).f1B0) * f));
+                    new ActorX(a).f1A0_Set((float)((float)(new ActorX(a).f1A0) + ((new ActorX(a).f1A8 * f) * Mem.F32(0x800D2988u))));
+                    tmp = new ActorX(a).f1A0;
+                    func_0027200C((_fp + 64u), (_fp + 16u), ((sinf(tmp) * new ActorX(a).f1B0) * f));
+                    func_00271FD8(new ActorX(a).vel.P, new ActorX(a).vel.P, (_fp + 48u));
+                    func_00271FA4(new ActorX(a).vel.P, new ActorX(a).vel.P, (_fp + 64u));
                 }
                 else
                 {
-                    Mem.Set((a + 416u), (Mem.F32((a + 416u)) + ((Mem.F32((a + 424u)) * f) * Mem.F32(0x800D2988u))));
+                    new ActorX(a).f1A0_Set((new ActorX(a).f1A0 + ((new ActorX(a).f1A8 * f) * Mem.F32(0x800D2988u))));
                 }
             }
         }

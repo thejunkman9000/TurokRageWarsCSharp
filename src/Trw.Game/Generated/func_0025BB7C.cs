@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025BB7C", (uint)v, (uint)pos, (uint)a);
-            Mem.Copy((v + 68u), pos, 12);
-            Mem.Set((v + 80u), a);
+            Mem.Copy(new SndVoice(v).pos.P, pos, 12);
+            new SndVoice(v).unk50_Set(a);
         }
     }
 

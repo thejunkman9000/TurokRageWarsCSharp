@@ -16,11 +16,11 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0040E87C", (uint)n, (uint)b_in);
                 while ((n != 0u))
                 {
-                    if ((((int)(Mem.U16((n + 18u))) & 8) != 0))
+                    if ((((int)(new O02Node_v4(n).flags) & 8) != 0))
                     {
                         func_0040DB84(n, _fp);
                     }
-                    n = Mem.U32((n + 4u));
+                    n = new O02Node_v4(n).next_;
                 }
             }
         }

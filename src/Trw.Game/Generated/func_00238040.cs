@@ -21,78 +21,78 @@ public static partial class Game
             {
                 func_002A94E8();
                 func_002A97F0();
-                n = Mem.U32((b + 3648u));
+                n = new TextSrc_v4(b).listE40_;
                 if ((n != 0u))
                 {
-                    p = Mem.U32((n + 4u));
-                    Mem.Set((n + 52u), ((float)(Mem.S32(0x800E28D4u)) * 0.810000002f));
+                    p = new TextNode_v4(n).next4_;
+                    new TextNode_v4(n).unk34_Set(((float)(Mem.S32(0x800E28D4u)) * 0.810000002f));
                     while ((p != 0u))
                     {
-                        Mem.Set((p + 52u), (Mem.F32((n + 52u)) + dy));
+                        new TextNode_v4(p).unk34_Set((new TextNode_v4(n).unk34 + dy));
                         n = p;
-                        p = Mem.U32((p + 4u));
+                        p = new TextNode_v4(p).next4_;
                     }
                 }
-                for (p = Mem.U32((b + 3652u)); (p != 0u); p = Mem.U32(p))
+                for (p = new TextSrc_v4(b).listE44_; (p != 0u); p = new TextNode_v4(p).next0_)
                 {
-                    func_002A9F18(Mem.U32((p + 36u)), (int)(Mem.F32((p + 48u))), (int)(Mem.F32((p + 52u))), Mem.S32((p + 24u)), 1, 1, 1.0f, 1.0f);
+                    func_002A9F18(new TextNode_v4(p).unk24_, (int)(new TextNode_v4(p).unk30), (int)(new TextNode_v4(p).unk34), new TextNode_v4(p).unk18, 1, 1, 1.0f, 1.0f);
                 }
-                for (p = Mem.U32((b + 3652u)); (p != 0u); p = Mem.U32(p))
+                for (p = new TextSrc_v4(b).listE44_; (p != 0u); p = new TextNode_v4(p).next0_)
                 {
                     {
                         n = p;
                         step = (Mem.F32(0x800D2988u) * 0.0666666701f);
-                        switch (Mem.S32((p + 20u)))
+                        switch (new TextNode_v4(p).unk14)
                         {
                         case 2:
-                            Mem.Set((p + 24u), (int)((sinf((Mem.F32((p + 40u)) * 1.57079637f)) * 255.0f)));
-                            Mem.Set((p + 40u), (Mem.F32((p + 40u)) + step));
-                            if ((1.0f < Mem.F32((p + 40u))))
+                            new TextNode_v4(p).unk18_Set((int)((sinf((new TextNode_v4(p).unk28 * 1.57079637f)) * 255.0f)));
+                            new TextNode_v4(p).unk28_Set((new TextNode_v4(p).unk28 + step));
+                            if ((1.0f < new TextNode_v4(p).unk28))
                             {
-                                Mem.Set((p + 20u), 3);
-                                Mem.Set((p + 40u), 0.0f);
+                                new TextNode_v4(p).unk14_Set(3);
+                                new TextNode_v4(p).unk28_Set(0.0f);
                             }
                             break;
                         case 1:
-                            Mem.Set((p + 24u), 0);
+                            new TextNode_v4(p).unk18_Set(0);
                             break;
                         case 3:
-                            Mem.Set((p + 24u), 255);
+                            new TextNode_v4(p).unk18_Set(255);
                             break;
                         case 4:
-                            Mem.Set((p + 24u), (int)((cosf((Mem.F32((p + 40u)) * 1.57079637f)) * 255.0f)));
-                            Mem.Set((p + 40u), (Mem.F32((p + 40u)) + step));
-                            if ((1.0f < Mem.F32((p + 40u))))
+                            new TextNode_v4(p).unk18_Set((int)((cosf((new TextNode_v4(p).unk28 * 1.57079637f)) * 255.0f)));
+                            new TextNode_v4(p).unk28_Set((new TextNode_v4(p).unk28 + step));
+                            if ((1.0f < new TextNode_v4(p).unk28))
                             {
-                                for (q = Mem.U32((b + 3648u)); (q != 0u); q = Mem.U32((q + 4u)))
+                                for (q = new TextSrc_v4(b).listE40_; (q != 0u); q = new TextNode_v4(q).next4_)
                                 {
-                                    if ((Mem.S32((q + 20u)) == 1))
+                                    if ((new TextNode_v4(q).unk14 == 1))
                                     {
-                                        Mem.Set((q + 20u), 2);
-                                        Mem.Set((q + 40u), 0.0f);
+                                        new TextNode_v4(q).unk14_Set(2);
+                                        new TextNode_v4(q).unk28_Set(0.0f);
                                     }
                                 }
-                                Mem.Set((n + 20u), 0);
-                                Mem.Set((n + 40u), 0.0f);
+                                new TextNode_v4(n).unk14_Set(0);
+                                new TextNode_v4(n).unk28_Set(0.0f);
                             }
                             break;
                         default:
-                            Mem.Set((n + 24u), 0);
-                            Mem.Set((n + 20u), 0);
+                            new TextNode_v4(n).unk18_Set(0);
+                            new TextNode_v4(n).unk14_Set(0);
                             break;
                         }
                     }
                 }
-                p = Mem.U32((b + 3652u));
+                p = new TextSrc_v4(b).listE44_;
                 if ((p != 0u))
                 {
                     do
                     {
-                        next = Mem.U32(p);
-                        if ((Mem.S32((p + 20u)) == 0))
+                        next = new TextNode_v4(p).next0_;
+                        if ((new TextNode_v4(p).unk14 == 0))
                         {
                             func_00255E78((b + 3648u), p, default(uint), default(uint));
-                            func_00255C58((o + 3876u), p, default(uint), default(uint));
+                            func_00255C58((o + 3876u), p);
                         }
                         p = next;
                     }

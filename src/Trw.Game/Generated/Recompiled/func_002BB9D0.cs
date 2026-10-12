@@ -6,7 +6,7 @@ namespace Trw.Game;
 
 public static partial class Game
 {
-    public static uint func_002BB9D0(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5, uint a6, uint a7, uint a8, uint a9)
+    public static uint func_002BB9D0_rc(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5, uint a6, uint a7, uint a8, uint a9)
     {
         uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
         uint lo = 0, hi = 0; bool fcc = false;
@@ -159,5 +159,10 @@ public static partial class Game
             }
         }
         finally { if (Dbg.On) Dbg.Leave("func_002BB9D0", r2); Stack.Free(384); }
+    }
+
+    public static int func_002BB9D0(int p0, float p1, float p2, float p3, float p4, float p5, float p6, float p7, float p8, float p9)
+    {
+        return (int)func_002BB9D0_rc((uint)p0, Cpu.F2U(p1), Cpu.F2U(p2), Cpu.F2U(p3), Cpu.F2U(p4), Cpu.F2U(p5), Cpu.F2U(p6), Cpu.F2U(p7), Cpu.F2U(p8), Cpu.F2U(p9));
     }
 }

@@ -15,7 +15,7 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0042AB70");
                 uint s = 0u;
                 uint tbl = 0u;
-                switch (Mem.S32((Mem.U32(0x800E4F60u) + 1076u)))
+                switch (new O04ModeF60(Mem.U32(0x800E4F60u)).unk434)
                 {
                 case 3:
                     tbl = 0x800E51E4u;
@@ -32,17 +32,17 @@ public static partial class Game
                 default:
                     return;
                 }
-                Mem.Set((Mem.U32(0x800E4F60u) + 1084u), func_0040ECB0(Mem.U32(Mem.U32(0x800E4F60u)), (uint)((int)(Mem.U16(((tbl + (uint)(Mem.S32((Mem.U32(0x800E4F60u) + 1080u)) * 4)) + 2u)))), default(uint), default(uint)));
-                if ((Mem.S32((Mem.U32(0x800E4F60u) + 1080u)) == 0))
+                new O04ModeF60(Mem.U32(0x800E4F60u)).unk43C__Set(func_0040ECB0(new O04ModeF60(Mem.U32(0x800E4F60u)).unk0, (uint)((int)(new O04HW((tbl + (uint)(new O04ModeF60(Mem.U32(0x800E4F60u)).unk438 * 4))).b)), default(uint), default(uint)));
+                if ((new O04ModeF60(Mem.U32(0x800E4F60u)).unk438 == 0))
                 {
-                    func_002A125C((Mem.U32(0x800E4F60u) + 1012u), Mem.U32(0x800D7500u));
+                    func_002A125C(new O04ModeF60(Mem.U32(0x800E4F60u)).unk3F4.P, Mem.U32(0x800D7500u));
                 }
                 else
                 {
-                    func_0028D35C(0x8011FE88u, func_0042B398((int)(func_0042B474((uint)(Mem.S32((Mem.U32(0x800E4F60u) + 1076u))), default(uint), default(uint), default(uint))), Mem.S32((Mem.U32(0x800E4F60u) + 1080u))), _fp, 63);
-                    func_002A125C((Mem.U32(0x800E4F60u) + 1012u), func_002A1494(_fp));
+                    func_0028D35C(0x8011FE88u, func_0042B398(func_0042B474(new O04ModeF60(Mem.U32(0x800E4F60u)).unk434), new O04ModeF60(Mem.U32(0x800E4F60u)).unk438), _fp, 63);
+                    func_002A125C(new O04ModeF60(Mem.U32(0x800E4F60u)).unk3F4.P, func_002A1494(_fp));
                 }
-                Mem.Set((Mem.U32((Mem.U32(0x800E4F60u) + 1004u)) + 56u), (Mem.U32(0x800E4F60u) + 1012u));
+                new O04ModeF60(Mem.U32(0x800E4F60u)).unk3EC.unk38_Set(new O04ModeF60(Mem.U32(0x800E4F60u)).unk3F4.P);
                 func_00245B18();
             }
         }

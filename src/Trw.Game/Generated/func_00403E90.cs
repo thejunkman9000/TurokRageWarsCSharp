@@ -24,27 +24,27 @@ public static partial class Game
                     pfs = (0x80153510u + (uint)(pad * 104));
                     for (; (i < 16); ++i)
                     {
-                        r = osPfsFileState(pfs, i, (((Mem.U32(0x800E2854u) + (uint)(pad * 516)) + 4u) + (uint)(i * 32)));
+                        r = osPfsFileState(pfs, i, (new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent.P + (uint)(i * 32)));
                         if (((r != 0) && (r != 5)))
                         {
-                            r = osPfsFileState(pfs, i, (((Mem.U32(0x800E2854u) + (uint)(pad * 516)) + 4u) + (uint)(i * 32)));
+                            r = osPfsFileState(pfs, i, (new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent.P + (uint)(i * 32)));
                         }
                         if ((r == 5))
                         {
                             q = (uint)((((uint)((pad * 516)) + (uint)(Mem.U32(0x800E2854u))) + (uint)((i * 32))));
-                            Mem.Set(((q + 14u) + (uint)0), (byte)(0));
-                            Mem.Set((q + 4u), 0);
-                            Mem.Set((q + 8u), 0);
-                            Mem.Set((q + 12u), (ushort)(0));
+                            new O01E2(q).unkE.Set((int)(0), (byte)(0));
+                            new O01E2(q).unk4_Set(0);
+                            new O01E2(q).unk8_Set(0);
+                            new O01E2(q).unkC_Set((ushort)(0));
                             n = (uint)((((uint)((pad * 516)) + (uint)(Mem.U32(0x800E2854u))) + (uint)((i * 32))));
-                            Mem.Set(((n + 18u) + (uint)0), (byte)(0));
+                            new O01E2(n).unk12.Set((int)(0), (byte)(0));
                         }
                     }
                 }
                 r = osPfsFreeBlocks((0x80153510u + (uint)(pad * 104)), _fp);
                 if ((r == 0))
                 {
-                    Mem.Set((Mem.U32(0x800E2854u) + (uint)(pad * 516)), Mem.S32(_fp));
+                    new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).unk0_Set(Mem.S32(_fp));
                 }
                 return r;
             }

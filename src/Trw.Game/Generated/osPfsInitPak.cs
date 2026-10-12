@@ -7,11 +7,81 @@ public static partial class Game
 {
     public static int osPfsInitPak(uint queue, uint pfs, int channel)
     {
-        unchecked
+        uint _fp = Stack.Alloc(72);
+        try
         {
-            if (Dbg.On) Dbg.Enter("osPfsInitPak", (uint)queue, (uint)pfs, (uint)channel);
-            return 1;
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("osPfsInitPak", (uint)queue, (uint)pfs, (uint)channel);
+                int ret = 0;
+                uint id = 0u;
+                int k = 0;
+                __osSiGetAccess();
+                ret = __osPfsGetStatus(queue, channel);
+                __osSiRelAccess();
+                if ((ret != 0))
+                {
+                    return ret;
+                }
+                new OSPfs(pfs).queue__Set(queue);
+                new OSPfs(pfs).channel_Set(channel);
+                new OSPfs(pfs).status_Set(0);
+                new OSPfs(pfs).activebank_Set((byte)(0));
+                ret = __osPfsSelectBank(pfs);
+                if ((ret != 0))
+                {
+                    return ret;
+                }
+                ret = (int)(__osContRamRead(new OSPfs(pfs).queue_, (uint)(new OSPfs(pfs).channel), (uint)((ushort)(1)), (_fp + 8u)));
+                if ((ret != 0))
+                {
+                    return ret;
+                }
+                __osIdCheckSum((_fp + 8u), _fp, (_fp + 2u));
+                id = (_fp + 8u);
+                if ((((int)(new __OSPackId(id).checksum) != (int)(Mem.U16(_fp))) || ((int)(new __OSPackId(id).inverted_checksum) != (int)(Mem.U16((_fp + 2u))))))
+                {
+                    ret = __osCheckPackId(pfs, (_fp + 8u));
+                    if ((ret != 0))
+                    {
+                        return ret;
+                    }
+                }
+                if ((((int)(new __OSPackId(id).deviceid) & 1) == 0))
+                {
+                    ret = __osRepairPackId(pfs, id, (_fp + 40u));
+                    if ((ret != 0))
+                    {
+                        return ret;
+                    }
+                    id = (_fp + 40u);
+                    if ((((int)(new __OSPackId(id).deviceid) & 1) == 0))
+                    {
+                        return 11;
+                    }
+                }
+                for (k = 0; (k < 32); ++k)
+                {
+                    new OSPfs(pfs).id.Set((int)(k), Mem.U8((id + (uint)k)));
+                }
+                new OSPfs(pfs).version_Set((int)(new __OSPackId(id).version));
+                new OSPfs(pfs).banks_Set(new __OSPackId(id).banks);
+                new OSPfs(pfs).dir_size_Set(16);
+                new OSPfs(pfs).inode_table_Set(8);
+                new OSPfs(pfs).inode_start_page_Set((((int)(new OSPfs(pfs).banks) * 2) + 3));
+                new OSPfs(pfs).minode_table_Set((((int)(new OSPfs(pfs).banks) + 1) * 8));
+                new OSPfs(pfs).dir_table_Set((new OSPfs(pfs).minode_table + ((int)(new OSPfs(pfs).banks) * 8)));
+                ret = (int)(__osContRamRead(new OSPfs(pfs).queue_, (uint)(new OSPfs(pfs).channel), (uint)((ushort)(7)), new OSPfs(pfs).label.P));
+                if ((ret != 0))
+                {
+                    return ret;
+                }
+                ret = osPfsChecker(pfs);
+                new OSPfs(pfs).status_Set((int)((int)(new OSPfs(pfs).status) | 1));
+                return ret;
+            }
         }
+        finally { Stack.Free(72); }
     }
 
 }

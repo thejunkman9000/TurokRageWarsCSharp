@@ -16,24 +16,24 @@ public static partial class Game
                 uint s = 0u;
                 float k = 0f;
                 float zero = 0f;
-                s = Mem.U32((o + 29992u));
+                s = new Owner67D0(o).slots_;
                 if ((s != 0u))
                 {
                     zero = 0.0f;
                     k = Mem.F32(0x800CB024u);
                     do
                     {
-                        if ((Mem.S32((s + 28u)) == key))
+                        if ((new Slot67D0(s).owner == key))
                         {
-                            if ((zero < Mem.F32((s + 36u))))
+                            if ((zero < new Slot67D0(s).unk24))
                             {
-                                func_0027302C(_fp, (tbl + (uint)(Mem.S32((Mem.U32((s + 8u)) + 12u)) << (int)6)));
+                                func_0027302C(_fp, (tbl + (uint)(new Slot67D0(s).shape.unkC << (int)6)));
                                 func_002734EC(_fp, k, k, k);
                                 func_00272898(_fp);
                                 func_002A35C0(o, s, _fp, default(uint));
                             }
                         }
-                        s = Mem.U32((s + 4u));
+                        s = new Slot67D0(s).next_;
                     }
                     while ((s != 0u));
                 }

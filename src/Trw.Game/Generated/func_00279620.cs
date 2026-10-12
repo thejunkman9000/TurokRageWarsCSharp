@@ -11,30 +11,30 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00279620", (uint)p, (uint)mem, (uint)stride, (uint)n);
             uint u = 0u;
-            Mem.Set(p, 0u);
-            Mem.Set((p + 4u), 0u);
-            Mem.Set((p + 8u), 0);
-            u = (p + 12u);
-            Mem.Set(u, 0u);
-            Mem.Set((u + 4u), 0u);
-            Mem.Set((u + 8u), 0);
+            new NodePool(p).freel.head__Set(0u);
+            new NodePool(p).freel.tail__Set(0u);
+            new NodePool(p).freel.count_Set(0);
+            u = new NodePool(p).usedl.P;
+            new DLList(u).head__Set(0u);
+            new DLList(u).tail__Set(0u);
+            new DLList(u).count_Set(0);
             while (((n--) != 0u))
             {
-                if ((Mem.S32((p + 8u)) == 0))
+                if ((new DLList(new NodePool(p).freel.P).count == 0))
                 {
-                    Mem.Set(p, mem);
-                    Mem.Set((p + 4u), mem);
-                    Mem.Set(mem, 0u);
-                    Mem.Set((mem + 4u), 0u);
+                    new DLList(new NodePool(p).freel.P).head__Set(mem);
+                    new DLList(new NodePool(p).freel.P).tail__Set(mem);
+                    new DLNode(mem).prev__Set(0u);
+                    new DLNode(mem).next__Set(0u);
                 }
                 else
                 {
-                    Mem.Set(mem, Mem.U32((p + 4u)));
-                    Mem.Set((mem + 4u), 0u);
-                    Mem.Set((Mem.U32((p + 4u)) + 4u), mem);
-                    Mem.Set((p + 4u), mem);
+                    new DLNode(mem).prev__Set(new DLList(new NodePool(p).freel.P).tail_);
+                    new DLNode(mem).next__Set(0u);
+                    new DLList(new NodePool(p).freel.P).tail.next__Set(mem);
+                    new DLList(new NodePool(p).freel.P).tail__Set(mem);
                 }
-                Mem.Set((p + 8u), (int)(Mem.S32((p + 8u)) + 1));
+                new DLList(new NodePool(p).freel.P).count_Set((int)(new DLList(new NodePool(p).freel.P).count + 1));
                 mem = (mem + (uint)stride);
             }
         }

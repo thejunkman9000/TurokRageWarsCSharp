@@ -13,26 +13,26 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00283BF0", (uint)o, (uint)m, (uint)t);
-                uint g = Mem.U32(0x801041F0u);
+                uint g = new B19Glob(0x801041F0u).g;
                 if ((m != 0u))
                 {
-                    func_0026EFC8((_fp + 64u), m, default(uint), default(uint));
+                    func_0026EFC8((_fp + 64u), m);
                 }
                 else
                 {
-                    func_00270980(_fp, (Mem.U32((g + 180u)) + (uint)(Mem.S32((0x801041F0u + 20u)) << (int)6)), default(uint), default(uint));
-                    func_0026EFC8((_fp + 64u), _fp, default(uint), default(uint));
+                    func_00270980(_fp, (new B19GObj(g).mtx_ + (uint)(new B19Glob(0x801041F0u).idx << (int)6)), default(uint), default(uint));
+                    func_0026EFC8((_fp + 64u), _fp);
                 }
                 func_00272908((_fp + 64u), 0x801041F8u, (o + (uint)80));
-                Mem.Copy((_fp + 128u), (0x801041F8u + 208u), 12);
+                Mem.Copy((_fp + 128u), new B19Src(0x801041F8u).b.P, 12);
                 func_002720EC((_fp + 128u));
-                func_00272BA8((_fp + 64u), (_fp + 128u), (o + 28u));
-                Mem.Set((o + 308u), g);
-                Mem.Set((o + 92u), (uint)((uint)(Mem.U32((o + 92u))) | (uint)(65536)));
-                Mem.Set((o + 465u), Mem.U8((0x801041F8u + 15u)));
-                if ((((int)(Mem.U16((o + 4u))) == 86) && (t == 2)))
+                func_00272BA8((_fp + 64u), (_fp + 128u), new B19Obj(o).pos2.P);
+                new B19Obj(o).unk134_Set(g);
+                new B19Obj(o).flags_Set((uint)((uint)(new B19Obj(o).flags) | (uint)(65536)));
+                new B19Obj(o).unk1D1_Set(new B19Src(0x801041F8u).fF);
+                if ((((int)(new B19Obj(o).id) == 86) && (t == 2)))
                 {
-                    Mem.Set((o + 92u), (uint)((uint)(Mem.U32((o + 92u))) | (uint)(67108864)));
+                    new B19Obj(o).flags_Set((uint)((uint)(new B19Obj(o).flags) | (uint)(67108864)));
                 }
             }
         }

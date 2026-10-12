@@ -19,14 +19,14 @@ public static partial class Game
                     func_0029CBB0(angle, (_fp + 64u), (_fp + 68u));
                     r = _fp;
                     func_002A1748(r, 0, (uint)(64));
-                    Mem.Set(((_fp + (uint)(0 * 16)) + (uint)(0 * 4)), Mem.F32(0x800CAE58u));
-                    Mem.Set(((r + (uint)(1 * 16)) + (uint)(1 * 4)), Mem.F32(0x800CAE58u));
-                    Mem.Set(((r + (uint)(2 * 16)) + (uint)(2 * 4)), Mem.F32(0x800CAE58u));
-                    Mem.Set(((r + (uint)(3 * 16)) + (uint)(3 * 4)), Mem.F32(0x800CAE58u));
-                    Mem.Set(((_fp + (uint)(0 * 16)) + (uint)(0 * 4)), Mem.F32((_fp + 68u)));
-                    Mem.Set(((_fp + (uint)(1 * 16)) + (uint)(0 * 4)), (-Mem.F32((_fp + 64u))));
-                    Mem.Set(((_fp + (uint)(0 * 16)) + (uint)(1 * 4)), Mem.F32((_fp + 64u)));
-                    Mem.Set(((_fp + (uint)(1 * 16)) + (uint)(1 * 4)), Mem.F32((_fp + 68u)));
+                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), Mem.F32(0x800CAE58u));
+                    Mem.Set(((new Mtx4f(r).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), Mem.F32(0x800CAE58u));
+                    Mem.Set(((new Mtx4f(r).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), Mem.F32(0x800CAE58u));
+                    Mem.Set(((new Mtx4f(r).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), Mem.F32(0x800CAE58u));
+                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), Mem.F32((_fp + 68u)));
+                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(1 * 16)) + (uint)(0 * 4)), (-Mem.F32((_fp + 64u))));
+                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(0 * 16)) + (uint)(1 * 4)), Mem.F32((_fp + 64u)));
+                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), Mem.F32((_fp + 68u)));
                     func_0029DE3C(m, r, m);
                 }
             }

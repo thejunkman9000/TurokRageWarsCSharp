@@ -12,11 +12,11 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0040AACC", (uint)item, (uint)own);
             if ((Mem.S32(0x80153730u) != 0))
             {
-                func_004426E4(0x8014561Cu, 0x0044F0B8u, Mem.S32((own + 28u)), (int)(Mem.U32((own + 32u))), 0);
+                func_004426E4(0x8014561Cu, 0x0044F0B8u, new O01Owner(own).unk1C, (int)(new O01Owner(own).unk20_), 0);
             }
             else
             {
-                func_004426E4(0x8014561Cu, (uint)(Mem.S32((own + 36u))), Mem.S32((own + 28u)), (int)(Mem.U32((own + 32u))), 0);
+                func_004426E4(0x8014561Cu, (uint)(new O01Owner(own).unk24), new O01Owner(own).unk1C, (int)(new O01Owner(own).unk20_), 0);
             }
             return 1;
         }

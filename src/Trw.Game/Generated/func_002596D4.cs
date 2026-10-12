@@ -10,9 +10,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002596D4_qinit", (uint)n, (uint)m);
-            Mem.Set((n + 4u), n);
-            Mem.Set(n, n);
-            func_0025B718((n + 8u), m, (-1));
+            new SndNode(n).link.next__Set(new SndNode(n).link.P);
+            new SndNode(n).link.prev__Set(new SndNode(n).link.P);
+            func_0025B718(new SndNode(n).body.P, m, (-1));
         }
     }
 
@@ -21,11 +21,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002596D4_qadd", (uint)head, (uint)n);
-            uint p = Mem.U32(head);
-            Mem.Set((n + 4u), head);
-            Mem.Set(n, p);
-            Mem.Set((Mem.U32(head) + 4u), n);
-            Mem.Set(head, n);
+            uint p = new SndLink(head).prev_;
+            new SndLink(n).next__Set(head);
+            new SndLink(n).prev__Set(p);
+            new SndLink(head).prev.next__Set(n);
+            new SndLink(head).prev__Set(n);
         }
     }
 
@@ -35,13 +35,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002596D4", (uint)q, (uint)m);
             int i = 0;
-            Mem.Set(q, m);
-            func_002596D4_qinit((q + 4u), m);
-            func_002596D4_qinit((q + 216u), m);
+            new SndQueue(q).owner__Set(m);
+            func_002596D4_qinit(new SndQueue(q).active.P, m);
+            func_002596D4_qinit(new SndQueue(q).free.P, m);
             for (i = 0; (i < 32); ++i)
             {
-                func_002596D4_qinit(((q + 428u) + (uint)(i * 212)), m);
-                func_002596D4_qadd(Mem.U32(((q + 216u) + 4u)), ((q + 428u) + (uint)(i * 212)));
+                func_002596D4_qinit((new SndQueue(q).nodes.P + (uint)(i * 212)), m);
+                func_002596D4_qadd(new SndQueue(q).free.link.next_, new SndQueue(q).nodes[(int)(i)].link.P);
             }
         }
     }

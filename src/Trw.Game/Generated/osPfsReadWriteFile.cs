@@ -12,19 +12,19 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("osPfsReadWriteFile_next_page", (uint)pfs, (uint)cbank, (uint)inode, (uint)curr);
             int ret = 0;
             byte b = 0;
-            if (((int)(Mem.U8(curr)) != (int)(Mem.U8(cbank))))
+            if (((int)(Mem.U8(new __OSInodeUnit_v2(curr).inode_t.P)) != (int)(Mem.U8(cbank))))
             {
-                Mem.Set(cbank, Mem.U8(curr));
-                ret = (int)(__osPfsRWInode(pfs, inode, (uint)((byte)(0)), (uint)(Mem.U8(cbank))));
+                Mem.Set(cbank, Mem.U8(new __OSInodeUnit_v2(curr).inode_t.P));
+                ret = __osPfsRWInode(pfs, inode, (byte)(0), Mem.U8(cbank));
                 if ((ret != 0))
                 {
                     return ret;
                 }
             }
-            Mem.Copy(curr, (inode + (uint)(Mem.U8((curr + 1u)) * 2)), 2);
-            if ((((((int)(Mem.U16(curr)) < Mem.S32((pfs + 96u))) || ((int)(Mem.U8(curr)) >= (int)(Mem.U8((pfs + 100u))))) || ((int)(Mem.U8((curr + 1u))) == 0)) || ((int)((sbyte)(Mem.U8((curr + 1u)))) < 0)))
+            Mem.Copy(curr, (new __OSInode_v2(inode).inode_page.P + (uint)(Mem.U8((new __OSInodeUnit_v2(curr).inode_t.P + 1u)) * 2)), 2);
+            if ((((((int)(new __OSInodeUnit_v2(curr).@ushort) < new OSPfs(pfs).inode_start_page) || ((int)(Mem.U8(new __OSInodeUnit_v2(curr).inode_t.P)) >= (int)(new OSPfs(pfs).banks))) || ((int)(Mem.U8((new __OSInodeUnit_v2(curr).inode_t.P + 1u))) == 0)) || ((int)((sbyte)(Mem.U8((new __OSInodeUnit_v2(curr).inode_t.P + 1u)))) < 0)))
             {
-                if (((int)(Mem.U16(curr)) == 1))
+                if (((int)(new __OSInodeUnit_v2(curr).@ushort) == 1))
                 {
                     return 5;
                 }
@@ -47,7 +47,7 @@ public static partial class Game
                 int size_in_blocks = 0;
                 uint buf = 0u;
                 int addr = 0;
-                if (((file_no >= Mem.S32((pfs + 80u))) || (file_no < 0)))
+                if (((file_no >= new OSPfs(pfs).dir_size) || (file_no < 0)))
                 {
                     return 5;
                 }
@@ -59,47 +59,47 @@ public static partial class Game
                 {
                     return 5;
                 }
-                if (((Mem.S32(pfs) & 1) == 0))
+                if (((new OSPfs(pfs).status & 1) == 0))
                 {
                     return 5;
                 }
-                if ((__osCheckId(pfs) == 2))
+                if (((int)(__osCheckId(pfs, default(uint), default(uint), default(uint))) == 2))
                 {
                     return 2;
                 }
-                if (((int)(Mem.U8((pfs + 101u))) != 0))
+                if (((int)(new OSPfs(pfs).activebank) != 0))
                 {
-                    Mem.Set((pfs + 101u), (byte)(0));
+                    new OSPfs(pfs).activebank_Set((byte)(0));
                     ret = __osPfsSelectBank(pfs);
                     if ((ret != 0))
                     {
                         return ret;
                     }
                 }
-                ret = (int)(__osContRamRead(Mem.U32((pfs + 4u)), (uint)(Mem.S32((pfs + 8u))), (uint)((ushort)((Mem.S32((pfs + 92u)) + file_no))), _fp));
+                ret = (int)(__osContRamRead(new OSPfs(pfs).queue_, (uint)(new OSPfs(pfs).channel), (uint)((ushort)((new OSPfs(pfs).dir_table + file_no))), _fp));
                 if ((ret != 0))
                 {
                     return ret;
                 }
-                if ((((int)(Mem.U16((_fp + 4u))) == 0) || (Mem.U32(_fp) == (uint)(0))))
+                if ((((int)(new __OSDir_v2(_fp).company_code) == 0) || (new __OSDir_v2(_fp).game_code == (uint)(0))))
                 {
                     return 5;
                 }
-                if ((((((int)(Mem.U16((_fp + 6u))) < Mem.S32((pfs + 96u))) || ((int)(Mem.U8((_fp + 6u))) >= (int)(Mem.U8((pfs + 100u))))) || ((int)(Mem.U8(((_fp + 6u) + 1u))) == 0)) || ((int)((sbyte)(Mem.U8(((_fp + 6u) + 1u)))) < 0)))
+                if ((((((int)(new __OSDir_v2(_fp).start_page.@ushort) < new OSPfs(pfs).inode_start_page) || ((int)(Mem.U8(new __OSDir_v2(_fp).start_page.inode_t.P)) >= (int)(new OSPfs(pfs).banks))) || ((int)(Mem.U8((new __OSDir_v2(_fp).start_page.inode_t.P + 1u))) == 0)) || ((int)((sbyte)(Mem.U8((new __OSDir_v2(_fp).start_page.inode_t.P + 1u)))) < 0)))
                 {
-                    if (((int)(Mem.U16((_fp + 6u))) == 1))
+                    if (((int)(new __OSDir_v2(_fp).start_page.@ushort) == 1))
                     {
                         return 5;
                     }
                     return 3;
                 }
-                if ((((int)(flag) == 0) && (((int)(Mem.U8((_fp + 8u))) & 2) == 0)))
+                if ((((int)(flag) == 0) && (((int)(new __OSDir_v2(_fp).status) & 2) == 0)))
                 {
                     return 6;
                 }
                 Mem.Set((_fp + 288u), (byte)(255));
                 offset_in_blocks = (offset / 32);
-                Mem.Set((_fp + 296u), Mem.U16((_fp + 6u)));
+                new __OSInodeUnit_v2((_fp + 296u)).ushort_Set(new __OSDir_v2(_fp).start_page.@ushort);
                 while ((offset_in_blocks >= 8))
                 {
                     ret = osPfsReadWriteFile_next_page(pfs, (_fp + 288u), (_fp + 32u), (_fp + 296u));
@@ -122,23 +122,23 @@ public static partial class Game
                         }
                         offset_in_blocks = 0;
                     }
-                    if (((int)(Mem.U8((pfs + 101u))) != (int)(Mem.U8((_fp + 296u)))))
+                    if (((int)(new OSPfs(pfs).activebank) != (int)(Mem.U8(new __OSInodeUnit_v2((_fp + 296u)).inode_t.P))))
                     {
-                        Mem.Set((pfs + 101u), Mem.U8((_fp + 296u)));
+                        new OSPfs(pfs).activebank_Set(Mem.U8(new __OSInodeUnit_v2((_fp + 296u)).inode_t.P));
                         ret = __osPfsSelectBank(pfs);
                         if ((ret != 0))
                         {
                             return ret;
                         }
                     }
-                    addr = (((int)(Mem.U8(((_fp + 296u) + 1u))) * 8) + offset_in_blocks);
+                    addr = (((int)(Mem.U8((new __OSInodeUnit_v2((_fp + 296u)).inode_t.P + 1u))) * 8) + offset_in_blocks);
                     if (((int)(flag) == 0))
                     {
-                        ret = (int)(__osContRamRead(Mem.U32((pfs + 4u)), (uint)(Mem.S32((pfs + 8u))), (uint)((ushort)(addr)), buf));
+                        ret = (int)(__osContRamRead(new OSPfs(pfs).queue_, (uint)(new OSPfs(pfs).channel), (uint)((ushort)(addr)), buf));
                     }
                     else
                     {
-                        ret = __osContRamWrite(Mem.U32((pfs + 4u)), Mem.S32((pfs + 8u)), (ushort)(addr), buf, 0);
+                        ret = __osContRamWrite(new OSPfs(pfs).queue_, new OSPfs(pfs).channel, (ushort)(addr), buf, 0);
                     }
                     if ((ret != 0))
                     {
@@ -148,16 +148,16 @@ public static partial class Game
                     --size_in_blocks;
                     ++offset_in_blocks;
                 }
-                if ((((int)(flag) == 1) && (((int)(Mem.U8((_fp + 8u))) & 2) == 0)))
+                if ((((int)(flag) == 1) && (((int)(new __OSDir_v2(_fp).status) & 2) == 0)))
                 {
-                    Mem.Set((_fp + 8u), (byte)((int)(Mem.U8((_fp + 8u))) | 2));
-                    Mem.Set((pfs + 101u), (byte)(0));
+                    new __OSDir_v2(_fp).status_Set((byte)((int)(new __OSDir_v2(_fp).status) | 2));
+                    new OSPfs(pfs).activebank_Set((byte)(0));
                     ret = __osPfsSelectBank(pfs);
                     if ((ret != 0))
                     {
                         return ret;
                     }
-                    ret = __osContRamWrite(Mem.U32((pfs + 4u)), Mem.S32((pfs + 8u)), (ushort)((Mem.S32((pfs + 92u)) + file_no)), _fp, 0);
+                    ret = __osContRamWrite(new OSPfs(pfs).queue_, new OSPfs(pfs).channel, (ushort)((new OSPfs(pfs).dir_table + file_no)), _fp, 0);
                     if ((ret != 0))
                     {
                         return ret;

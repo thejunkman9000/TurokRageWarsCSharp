@@ -16,21 +16,21 @@ public static partial class Game
                 uint sndp = node;
                 do
                 {
-                    switch ((int)(Mem.S16((sndp + 40u))))
+                    switch ((int)(new ALSndPlayer(sndp).nextEvent.type))
                     {
                     case 5:
-                        Mem.Set(_fp, (short)(5));
-                        alEvtqPostEvent((sndp + 20u), _fp, Mem.S32((sndp + 72u)));
+                        new ALEvent(_fp).type_Set((short)(5));
+                        alEvtqPostEvent(new ALSndPlayer(sndp).evtq.P, _fp, new ALSndPlayer(sndp).frameTime);
                         break;
                     default:
-                        _handleEvent(sndp, (sndp + 40u));
+                        _handleEvent(sndp, new ALSndPlayer(sndp).nextEvent.P);
                         break;
                     }
-                    Mem.Set((sndp + 76u), alEvtqNextEvent((sndp + 20u), (sndp + 40u)));
+                    new ALSndPlayer(sndp).nextDelta_Set(alEvtqNextEvent(new ALSndPlayer(sndp).evtq.P, new ALSndPlayer(sndp).nextEvent.P));
                 }
-                while ((Mem.S32((sndp + 76u)) == 0));
-                Mem.Set((sndp + 80u), (int)((int)(Mem.S32((sndp + 80u))) + Mem.S32((sndp + 76u))));
-                return Mem.S32((sndp + 76u));
+                while ((new ALSndPlayer(sndp).nextDelta == 0));
+                new ALSndPlayer(sndp).curTime_Set((int)((int)(new ALSndPlayer(sndp).curTime) + new ALSndPlayer(sndp).nextDelta));
+                return new ALSndPlayer(sndp).nextDelta;
             }
         }
         finally { Stack.Free(16); }

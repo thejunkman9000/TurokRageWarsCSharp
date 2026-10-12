@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0022F95C", (uint)p);
             int prio = 0;
             int w = 0;
-            prio = (int)(Mem.S8(((p + (uint)((int)(Mem.S16((p + 1582u))) << (int)1)) + (uint)1539)));
+            prio = (int)(Mem.S8(((p + (uint)((int)(new Plr(p).unk62E) << (int)1)) + (uint)1539)));
             if ((prio < 0))
             {
                 prio = 0;
@@ -26,12 +26,12 @@ public static partial class Game
             {
                 for (w = 0; (w < 22); ++w)
                 {
-                    if ((prio == (int)(Mem.S8((((p + (uint)1538) + (uint)(w * 2)) + 1u)))))
+                    if ((prio == (int)(new M2WSlot(((p + (uint)1538) + (uint)(w * 2))).b)))
                     {
                         break;
                     }
                 }
-                if ((((w < 22) && (func_0022EAFC(p, w) != 0)) && ((w != 6) || ((int)(Mem.S16(((p + 1524u) + (uint)(0 * 2)))) >= 11))))
+                if ((((w < 22) && (func_0022EAFC(p, w) != 0)) && ((w != 6) || ((int)(new Plr(p).unk5F4[(int)(0)]) >= 11))))
                 {
                     if (((Mem.S32((p + (uint)5200)) == 0) || (w < 18)))
                     {
@@ -40,7 +40,7 @@ public static partial class Game
                 }
                 ++prio;
             }
-            prio = (int)(Mem.S8(((p + (uint)((int)(Mem.S16((p + 1582u))) << (int)1)) + (uint)1539)));
+            prio = (int)(Mem.S8(((p + (uint)((int)(new Plr(p).unk62E) << (int)1)) + (uint)1539)));
             if ((prio < 0))
             {
                 prio = 0;
@@ -54,14 +54,14 @@ public static partial class Game
             {
                 for (w = 0; (w < 22); ++w)
                 {
-                    if ((prio == (int)(Mem.S8((((p + (uint)1538) + (uint)(w * 2)) + 1u)))))
+                    if ((prio == (int)(new M2WSlot(((p + (uint)1538) + (uint)(w * 2))).b)))
                     {
                         break;
                     }
                 }
                 if (((w < 22) && (func_0022EAFC(p, w) != 0)))
                 {
-                    if (((w != 6) || ((int)(Mem.S16(((p + 1524u) + (uint)(0 * 2)))) >= 11)))
+                    if (((w != 6) || ((int)(new Plr(p).unk5F4[(int)(0)]) >= 11)))
                     {
                         return w;
                     }

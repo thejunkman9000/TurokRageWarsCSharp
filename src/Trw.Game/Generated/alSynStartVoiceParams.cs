@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("alSynStartVoiceParams", (uint)drvr, (uint)voice, (uint)w);
             uint update = 0u;
             byte fx = fxmix;
-            if ((Mem.U32((voice + 8u)) != 0u))
+            if ((new ALVoice(voice).pvoice_ != 0u))
             {
                 update = __allocParam();
                 if ((update != 0u))
@@ -21,17 +21,17 @@ public static partial class Game
                     {
                         fx = (byte)((-(int)((sbyte)(fxmix))));
                     }
-                    Mem.Set((update + 4u), (Mem.S32((drvr + 28u)) + Mem.S32((Mem.U32((voice + 8u)) + 216u))));
-                    Mem.Set(update, 0u);
-                    Mem.Set((update + 8u), (short)(13));
-                    Mem.Set((update + 10u), Mem.S16((voice + 26u)));
-                    Mem.Set(((update + 16u) + 2u), pan);
-                    Mem.Set((update + 16u), vol);
-                    Mem.Set(((update + 16u) + 3u), fx);
-                    Mem.Set((update + 12u), pitch);
-                    Mem.Set((update + 20u), _timeToSamplesNoRound(drvr, t));
-                    Mem.Set((update + 24u), w);
-                    Funcs.CallReg(Mem.U32((Mem.U32((Mem.U32((voice + 8u)) + 12u)) + 8u)), Mem.U32((Mem.U32((voice + 8u)) + 12u)), (uint)(3), update, 0u);
+                    new ALParam(update).delta_Set((new ALSynth(drvr).paramSamples + new ALVoice(voice).pvoice.offset));
+                    new ALParam(update).next__Set(0u);
+                    new ALParam(update).type_Set((short)(13));
+                    new ALParam(update).moredata_Set(new ALVoice(voice).unityPitch);
+                    Mem.Set((new ALParam(update).d2.P + 2u), pan);
+                    Mem.Set(new ALParam(update).d2.P, vol);
+                    Mem.Set((new ALParam(update).d2.P + 3u), fx);
+                    Mem.Set(new ALParam(update).data.P, pitch);
+                    new ALParam(update).samples_Set(_timeToSamplesNoRound(drvr, t));
+                    new ALParam(update).wave_Set(w);
+                    Funcs.CallReg(new ALVoice(voice).pvoice.channelKnob.setParam, new ALVoice(voice).pvoice.channelKnob_, (uint)(3), update, 0u);
                 }
             }
         }

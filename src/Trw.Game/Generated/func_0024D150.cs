@@ -13,15 +13,15 @@ public static partial class Game
             uint o = 0u;
             uint f = 0u;
             uint g = 0u;
-            switch (Mem.S32(Mem.U32((a + 24u))))
+            switch (new ObjDef(new Obj(a).def_).type)
             {
             case 11:
-                if ((((int)(Mem.U8(a)) == 1) && ((Mem.U32((a + 256u)) & (uint)(3145728)) != 0u)))
+                if ((((int)(new Obj(a).type) == 1) && ((new Obj(a).flags & (uint)(3145728)) != 0u)))
                 {
-                    o = Mem.U32((a + 472u));
+                    o = new Obj(a).unk1D8_;
                     if (((int)(Mem.U8(0x801462E5u)) != 0))
                     {
-                        if ((Mem.S32((o + 2140u)) != 0))
+                        if ((new B11Own(o).unk85C != 0))
                         {
                             return 0;
                         }
@@ -31,44 +31,44 @@ public static partial class Game
             case 8:
                 return 1;
             case 0:
-                return (int)((Mem.U32((Mem.U32((a + 24u)) + 20u)) & (uint)(2)));
+                return (int)((new ObjDef(new Obj(a).def_).flags14 & (uint)(2)));
             case 2:
-                if (((int)(Mem.U8(a)) != 1))
+                if (((int)(new Obj(a).type) != 1))
                 {
                     return 0;
                 }
-                return (int)((Mem.U32((a + 256u)) & (uint)(65536)));
+                return (int)((new Obj(a).flags & (uint)(65536)));
             case 1:
-                if (((int)(Mem.U8(a)) != 1))
+                if (((int)(new Obj(a).type) != 1))
                 {
                     return 0;
                 }
-                if (!((Mem.U32((a + 256u)) & (uint)(8192)) != 0u))
+                if (!((new Obj(a).flags & (uint)(8192)) != 0u))
                 {
                     return 0;
                 }
-                if ((Mem.U32((a + 416u)) == 0u))
+                if ((new Obj(a).unk1A0_ == 0u))
                 {
                     return 0;
                 }
-                g = (Mem.U32((Mem.U32((a + 416u)) + 28u)) & (uint)(65536));
+                g = (new Obj(a).unk1A0.flags1C & (uint)(65536));
                 return ((g == (uint)(0)) ? 1 : 0);
             case 4:
             case 5:
             case 7:
             case 10:
-                if (((int)(Mem.U8(a)) != 1))
+                if (((int)(new Obj(a).type) != 1))
                 {
                     return 0;
                 }
-                f = Mem.U32((a + 256u));
+                f = new Obj(a).flags;
                 if (!((f & (uint)(8192)) != 0u))
                 {
                     return 0;
                 }
                 return (int)((f & (uint)(65536)));
             case 12:
-                return (int)((Mem.U32((Mem.U32((a + 24u)) + 20u)) & (uint)(1)));
+                return (int)((new ObjDef(new Obj(a).def_).flags14 & (uint)(1)));
             default:
                 return 0;
             }

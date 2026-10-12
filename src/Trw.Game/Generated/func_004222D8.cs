@@ -18,7 +18,7 @@ public static partial class Game
             {
                 return 0;
             }
-            func_0043C260(Mem.U32(0x800E44A0u), default(uint), default(uint), default(uint));
+            func_0043C260(Mem.U32(0x800E44A0u));
             func_0043C484(Mem.U32(0x800E44A0u));
             if ((func_0043C4E8(Mem.U32(0x800E44A0u)) != 2))
             {

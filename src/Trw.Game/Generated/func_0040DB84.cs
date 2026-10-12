@@ -15,23 +15,23 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, c_in, 40);
                 if (Dbg.On) Dbg.Enter("func_0040DB84_ovr_c638", (uint)n, (uint)c_in);
                 int pushed = 0;
-                if (((int)(func_0040E154((_fp + 56u), (_fp + 40u), n, (_fp + (uint)(0 * 4)))) != 0))
+                if ((func_0040E154((_fp + 56u), (_fp + 40u), n, (new O02Ctx(_fp).w.P + (uint)(0 * 4))) != 0))
                 {
-                    if ((((int)(Mem.U16((n + 18u))) & 512) != 0))
+                    if ((((int)(new O02Node(n).flags) & 512) != 0))
                     {
-                        func_002A2898(((_fp + 72u) + (uint)(0 * 4)), ((_fp + 72u) + (uint)(2 * 4)), ((_fp + 72u) + (uint)(1 * 4)), ((_fp + 72u) + (uint)(3 * 4)));
+                        func_002A2898((new O02Rect((_fp + 72u)).w.P + (uint)(0 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(2 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(1 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(3 * 4)));
                         Mem.Copy((_fp + 88u), (_fp + 72u), 16);
                         if (!(func_0040F508((_fp + 88u), (_fp + 40u)) != 0))
                         {
                             return;
                         }
-                        func_002A2870(Mem.S32(((_fp + 88u) + (uint)(0 * 4))), Mem.S32(((_fp + 88u) + (uint)(2 * 4))), Mem.S32(((_fp + 88u) + (uint)(1 * 4))), Mem.S32(((_fp + 88u) + (uint)(3 * 4))));
+                        func_002A2870(new O02Rect((_fp + 88u)).w[(int)(0)], new O02Rect((_fp + 88u)).w[(int)(2)], new O02Rect((_fp + 88u)).w[(int)(1)], new O02Rect((_fp + 88u)).w[(int)(3)]);
                         pushed = 1;
                     }
-                    func_0040E87C(Mem.U32((n + 8u)), _fp);
+                    func_0040E87C(new O02Node(n).child_, _fp);
                     if ((pushed != 0))
                     {
-                        func_002A2870(Mem.S32(((_fp + 72u) + (uint)(0 * 4))), Mem.S32(((_fp + 72u) + (uint)(2 * 4))), Mem.S32(((_fp + 72u) + (uint)(1 * 4))), Mem.S32(((_fp + 72u) + (uint)(3 * 4))));
+                        func_002A2870(new O02Rect((_fp + 72u)).w[(int)(0)], new O02Rect((_fp + 72u)).w[(int)(2)], new O02Rect((_fp + 72u)).w[(int)(1)], new O02Rect((_fp + 72u)).w[(int)(3)]);
                     }
                 }
             }
@@ -50,23 +50,23 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0040DB84_ovr_f3d0", (uint)n, (uint)c_in);
                 int pushed = 0;
                 Mem.Set(0x800E2AB8u, 0);
-                if (((int)(func_0040E154((_fp + 88u), (_fp + 40u), n, (_fp + (uint)(0 * 4)))) != 0))
+                if ((func_0040E154((_fp + 88u), (_fp + 40u), n, (new O02Ctx(_fp).w.P + (uint)(0 * 4))) != 0))
                 {
-                    if ((((int)(Mem.U16((n + 18u))) & 512) != 0))
+                    if ((((int)(new O02Node(n).flags) & 512) != 0))
                     {
-                        func_002A2898(((_fp + 56u) + (uint)(0 * 4)), ((_fp + 56u) + (uint)(2 * 4)), ((_fp + 56u) + (uint)(1 * 4)), ((_fp + 56u) + (uint)(3 * 4)));
+                        func_002A2898((new O02Rect((_fp + 56u)).w.P + (uint)(0 * 4)), (new O02Rect((_fp + 56u)).w.P + (uint)(2 * 4)), (new O02Rect((_fp + 56u)).w.P + (uint)(1 * 4)), (new O02Rect((_fp + 56u)).w.P + (uint)(3 * 4)));
                         Mem.Copy((_fp + 72u), (_fp + 56u), 16);
                         if (!(func_0040F508((_fp + 72u), (_fp + 40u)) != 0))
                         {
                             return;
                         }
-                        func_002A2870(Mem.S32(((_fp + 72u) + (uint)(0 * 4))), Mem.S32(((_fp + 72u) + (uint)(2 * 4))), Mem.S32(((_fp + 72u) + (uint)(1 * 4))), Mem.S32(((_fp + 72u) + (uint)(3 * 4))));
+                        func_002A2870(new O02Rect((_fp + 72u)).w[(int)(0)], new O02Rect((_fp + 72u)).w[(int)(2)], new O02Rect((_fp + 72u)).w[(int)(1)], new O02Rect((_fp + 72u)).w[(int)(3)]);
                         pushed = 1;
                     }
-                    func_0040E87C(Mem.U32((n + 8u)), _fp);
+                    func_0040E87C(new O02Node(n).child_, _fp);
                     if ((pushed != 0))
                     {
-                        func_002A2870(Mem.S32(((_fp + 56u) + (uint)(0 * 4))), Mem.S32(((_fp + 56u) + (uint)(2 * 4))), Mem.S32(((_fp + 56u) + (uint)(1 * 4))), Mem.S32(((_fp + 56u) + (uint)(3 * 4))));
+                        func_002A2870(new O02Rect((_fp + 56u)).w[(int)(0)], new O02Rect((_fp + 56u)).w[(int)(2)], new O02Rect((_fp + 56u)).w[(int)(1)], new O02Rect((_fp + 56u)).w[(int)(3)]);
                     }
                 }
             }
@@ -84,27 +84,27 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, c_in, 40);
                 if (Dbg.On) Dbg.Enter("func_0040DB84_ovr_f2b0", (uint)n, (uint)c_in);
                 uint s = 0u;
-                if (((int)(func_0040E154((_fp + 40u), (_fp + 56u), n, _fp)) != 0))
+                if ((func_0040E154((_fp + 40u), (_fp + 56u), n, _fp) != 0))
                 {
-                    if (((Mem.S32((_fp + 8u)) & 256) != 0))
+                    if (((new S_ctx2(_fp).w2 & 256) != 0))
                     {
-                        s = Mem.U32((n + 52u));
+                        s = new O02Node(n).f34;
                     }
                     else
                     {
-                        if (((Mem.S32((_fp + 8u)) & 64) != 0))
+                        if (((new S_ctx2(_fp).w2 & 64) != 0))
                         {
-                            s = Mem.U32((n + 48u));
+                            s = new O02Node(n).f30;
                         }
                         else
                         {
-                            s = Mem.U32((n + 44u));
+                            s = new O02Node(n).f2C;
                         }
                     }
                     if ((s != 0u))
                     {
-                        Mem.Set(_fp, (int)((int)(Mem.S32(_fp)) - (int)(((float)((int)(Mem.S16((s + 20u)))) * Mem.F32((_fp + 12u))))));
-                        Mem.Set((_fp + 4u), (int)((int)(Mem.S32((_fp + 4u))) - (int)(((float)((int)(Mem.S16((s + 22u)))) * Mem.F32((_fp + 16u))))));
+                        new S_ctx2(_fp).w0_Set((int)((int)(new S_ctx2(_fp).w0) - (int)(((float)((int)(new O02XY(s).x)) * new S_ctx2(_fp).f3))));
+                        new S_ctx2(_fp).w1_Set((int)((int)(new S_ctx2(_fp).w1) - (int)(((float)((int)(new O02XY(s).y)) * new S_ctx2(_fp).f4))));
                         func_0040DB84(s, _fp);
                     }
                 }
@@ -123,7 +123,7 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, c_in, 40);
                 if (Dbg.On) Dbg.Enter("func_0040DB84", (uint)n, (uint)c_in);
                 int f = 0;
-                switch ((int)(Mem.U16((n + 14u))))
+                switch ((int)(new O02Node(n).type))
                 {
                 case 3:
                     func_0040CDD0(n, _fp);
@@ -144,7 +144,7 @@ public static partial class Game
                     func_0040DB84_ovr_c638(n, _fp);
                     break;
                 default:
-                    f = (func_0029A838((int)(Mem.U16((n + 14u)))) & 1);
+                    f = (func_0029A838((int)(new O02Node(n).type)) & 1);
                     if (!(f != 0))
                     {
                         func_002A28FC();

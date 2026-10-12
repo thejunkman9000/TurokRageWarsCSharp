@@ -10,12 +10,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00412C8C", (uint)p, (uint)a, (uint)b, (uint)d);
-            int cur = (int)(Mem.U8((p + 77u)));
+            int cur = (int)(new S_func_00412C8C(p).b4D);
             if ((d != 0))
             {
-                if (((int)(Mem.U8((p + 81u))) < cur))
+                if (((int)(new S_func_00412C8C(p).b51) < cur))
                 {
-                    Mem.Set((p + 77u), (byte)((cur - 1)));
+                    new S_func_00412C8C(p).b4D_Set((byte)((cur - 1)));
                 }
             }
             func_00412270(p);

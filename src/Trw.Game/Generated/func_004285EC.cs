@@ -16,7 +16,7 @@ public static partial class Game
             uint c = 0u;
             func_004288E0();
             i = (n = 0);
-            row = (Mem.S32((Mem.U32(0x800E4690u) + 2652u)) * 150);
+            row = (new O04ModeS4690(Mem.U32(0x800E4690u)).unkA5C * 150);
             c = 0x801462C8u;
             for (; (i < 22); ++i)
             {

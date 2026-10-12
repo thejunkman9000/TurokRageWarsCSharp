@@ -23,21 +23,21 @@ public static partial class Game
                 float s = 0f;
                 func_0026D8F8();
                 func_00296FF8();
-                if ((Mem.S32((a + 452u)) != 0))
+                if ((new Obj(a).unk1C4 != 0))
                 {
                     d1 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(d1, 3724541952u);
-                    Mem.Set((d1 + 4u), (uint)(Mem.S32((a + 452u))));
+                    new M03Dl(d1).w0_Set(3724541952u);
+                    new M03Dl(d1).w1_Set((uint)(new Obj(a).unk1C4));
                     return;
                 }
-                h = func_0024F6DC(a, (int)(Mem.S8((a + 1u))));
+                h = func_0024F6DC(a, (int)(new Obj(a).unk1));
                 if ((h != 0u))
                 {
-                    Mem.Set((a + 452u), (int)(Mem.U32(0x80110634u)));
+                    new Obj(a).unk1C4_Set((int)(Mem.U32(0x80110634u)));
                     d2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(d2, 3724607488u);
-                    Mem.Set((d2 + 4u), (uint)(0));
-                    if ((Mem.S32(Mem.U32((a + 24u))) == 8))
+                    new M03Dl(d2).w0_Set(3724607488u);
+                    new M03Dl(d2).w1_Set((uint)(0));
+                    if ((Mem.S32(new Obj(a).def_) == 8))
                     {
                         func_00273744(_fp, Mem.F32(0x8013B190u));
                     }
@@ -45,26 +45,26 @@ public static partial class Game
                     {
                         func_00273744(_fp, Mem.F32((a + (uint)372)));
                     }
-                    func_002734EC(_fp, Mem.F32((a + 404u)), Mem.F32((a + 404u)), Mem.F32((a + 404u)));
-                    func_002725BC((a + 8u), 2.0E+4f);
-                    func_002734B8(_fp, Mem.F32((a + 8u)), (Mem.F32(((a + 8u) + 4u)) + Mem.F32((a + (uint)408))), Mem.F32(((a + 8u) + 8u)));
+                    func_002734EC(_fp, new Obj(a).unk194, new Obj(a).unk194, new Obj(a).unk194);
+                    func_002725BC(new Obj(a).pos.P, 2.0E+4f);
+                    func_002734B8(_fp, new Obj(a).pos.x, (new Obj(a).pos.y + Mem.F32((a + (uint)408))), new Obj(a).pos.z);
                     func_00273DDC(_fp);
                     func_002702EC(_fp, (a + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 104)));
                     new_var = 0;
-                    if ((Mem.S32(Mem.U32((a + 24u))) != 12))
+                    if ((Mem.S32(new Obj(a).def_) != 12))
                     {
-                        func_0026DA4C(h, (int)((a + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 104))), new_var, (int)((a + (uint)424)), (uint)(new_var), (int)(Mem.S8((a + 3u))));
+                        func_0026DA4C(h, (int)((a + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 104))), new_var, (int)((a + (uint)424)), (uint)(new_var), (int)(new Obj(a).unk3));
                         func_0024ED80(a, h);
                     }
                     d3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(d3, 3741319168u);
-                    Mem.Set((d3 + 4u), (uint)(0));
+                    new M03Dl(d3).w0_Set(3741319168u);
+                    new M03Dl(d3).w1_Set((uint)(0));
                     e = (Mem.Set(((a + 452u) + (uint)(new_var * 4)), (uint)(Mem.U32(((a + 452u) + (uint)(new_var * 4))) + 8u)) - 8u);
-                    Mem.Set(e, 3724607488u);
-                    Mem.Set((e + 4u), (uint)(Mem.U32(0x80110634u)));
+                    new M03Dl(e).w0_Set(3724607488u);
+                    new M03Dl(e).w1_Set((uint)(Mem.U32(0x80110634u)));
                     d4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(d4, 3724541952u);
-                    Mem.Set((d4 + 4u), (uint)(Mem.S32((a + 452u))));
+                    new M03Dl(d4).w0_Set(3724541952u);
+                    new M03Dl(d4).w1_Set((uint)(new Obj(a).unk1C4));
                     func_002536F4(0, h);
                 }
             }

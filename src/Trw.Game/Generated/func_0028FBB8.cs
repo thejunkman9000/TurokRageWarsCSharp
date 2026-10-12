@@ -10,10 +10,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028FBB8", (uint)o);
-            uint t = Mem.U32((o + 756u));
-            if ((Mem.S32((t + 16u)) == 1))
+            uint t = new Obj_v8(o).task_;
+            if ((new SpTask(t).state == 1))
             {
-                Mem.Set((t + 4u), (uint)((uint)(Mem.U32((t + 4u))) | (uint)(16)));
+                new SpTask(t).flags_Set((uint)((uint)(new SpTask(t).flags) | (uint)(16)));
                 osSpTaskYield();
             }
         }

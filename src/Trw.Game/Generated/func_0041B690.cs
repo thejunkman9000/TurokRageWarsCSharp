@@ -11,17 +11,17 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0041B690", (uint)own, (uint)n);
             uint o = 0u;
-            o = func_00252FFC((uint)(112), default(uint), default(uint), default(uint));
+            o = func_00252FFC((uint)(112));
             func_002A1748(o, 0, (uint)(112));
-            Mem.Copy(o, Mem.U32((own + 8u)), 44);
-            Mem.Set((o + 14u), (ushort)(2005));
-            Mem.Set((o + 18u), (short)(8));
-            Mem.Set((o + 72u), n);
-            Mem.Set((o + 68u), own);
-            Mem.Set((o + 12u), (short)(31313));
-            Mem.Set((o + 108u), 0);
-            func_0040EE64(Mem.U32((own + 8u)), o, default(uint), default(uint));
-            return Mem.Set((own + 68u), o);
+            Mem.Copy(o, new O3Own(own).child_, 44);
+            new O3M7D5(o).h.id2_Set((ushort)(2005));
+            new O3M7D5(o).h.unk12_Set((short)(8));
+            new O3M7D5(o).cnt_Set(n);
+            new O3M7D5(o).own__Set(own);
+            new O3M7D5(o).h.id_Set((short)(31313));
+            new O3M7D5(o).mode_Set(0);
+            func_0040EE64(new O3Own(own).child_, o, default(uint), default(uint));
+            return new O3Own(own).cur__Set(o);
         }
     }
 

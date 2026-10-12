@@ -5,14 +5,14 @@ A matching C decompilation can end a function with a call whose value the origin
 ROM's f returns g's result): the C draft carries no result, so the translation loses it, and a caller that reads $v0/$f0 after `jal f` computes with garbage.
 The functions listed here are recompiled from the MIPS (tools/regen.ps1 appends them to the void-used list), which keeps the register contents exact.
 
-usage: retuse.py --asm <dir with *.s> --sigs <name|ret|params|...> --out <file with name|type lines>
+usage: retuse.py --asm <dirs with *.s> --sigs <name|ret|params|...> --out <file with name|type lines>
 A call counts as using the result when, after `jal f` (and its delay slot) and before the next call/jump/branch target, $v0 or $fv0 is read before it is
 written. A `jr $ra` directly after counts when the calling function itself returns a value (or has been flagged: the check repeats until nothing changes),
 which finds chains of tail calls."""
 import argparse, glob, os, re
 
 ap = argparse.ArgumentParser()
-ap.add_argument('--asm', required=True)
+ap.add_argument('--asm', required=True, nargs='+')
 ap.add_argument('--sigs', required=True)
 ap.add_argument('--out', required=True)
 args = ap.parse_args()
@@ -92,7 +92,7 @@ def scan(body):
 
 funcs = {}           # name -> body
 cur = None
-for path in sorted(glob.glob(os.path.join(args.asm, '*.s'))):
+for path in sorted(p for d in args.asm for p in glob.glob(os.path.join(d, '*.s'))):
     for line in open(path, encoding='utf-8', errors='replace'):
         s = line.strip()
         m = re.match(r'^(glabel|alabel)\s+(\S+)', s)

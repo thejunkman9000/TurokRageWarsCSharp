@@ -10,10 +10,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024E534", (uint)a);
-            uint d = Mem.U32((a + 24u));
-            if ((Mem.S32(d) == 1))
+            uint d = new Obj(a).def_;
+            if ((new ObjDef(d).type == 1))
             {
-                return Mem.F32((d + 80u));
+                return new ObjDef(d).unk50;
             }
             return 0.0f;
         }

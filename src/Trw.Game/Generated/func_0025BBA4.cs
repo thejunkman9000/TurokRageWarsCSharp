@@ -15,36 +15,36 @@ public static partial class Game
             short id = 0;
             func_00259C7C(o, a1, a2, default(uint));
             func_00259F88(o, a1);
-            Mem.Set(((o + 16u) + 24u), (short)(64));
-            id = Mem.S16((a1 + 12u));
+            new M04Emitter(o).vp.pan_Set((short)(64));
+            id = new M04EmArg(a1).id;
             if (((int)(id) != (-1)))
             {
-                r = func_00258C14(Mem.U32((o + 176u)), (int)(id));
-                Mem.Copy((o + 140u), r, 12);
-                f = Trunc16ToF32(Mem.U16(((o + 140u) + 2u)));
+                r = func_00258C14(new M04Emitter(o).ctx_, (int)(id));
+                Mem.Copy(new M04Emitter(o).rec.P, r, 12);
+                f = Trunc16ToF32(new M04Emitter(o).rec.w1);
                 do
                 {
-                    Mem.Set((o + 156u), ((f - Trunc16ToF32(Mem.U16(((o + 140u) + 4u)))) / (float)(Mem.S16(((o + 140u) + 6u)))));
-                    Mem.Set((o + 152u), Trunc16ToF32(Mem.U16(((o + 140u) + 2u))));
-                    Mem.Set(((o + 16u) + 24u), (short)((int)(Trunc16ToF32(Mem.U16(((o + 140u) + 2u))))));
-                    Mem.Set((o + 136u), 1);
+                    new M04Emitter(o).envSlope_Set(((f - Trunc16ToF32(new M04Emitter(o).rec.w2)) / (float)(new M04Emitter(o).rec.w3)));
+                    new M04Emitter(o).env0_Set(Trunc16ToF32(new M04Emitter(o).rec.w1));
+                    new M04Emitter(o).vp.pan_Set((short)((int)(Trunc16ToF32(new M04Emitter(o).rec.w1))));
+                    new M04Emitter(o).hasEnv_Set(1);
                     return;
                 }
                 while ((0 != 0));
             }
-            Mem.Set((o + 136u), 0);
-            if ((Mem.S32((o + 168u)) < 256))
+            new M04Emitter(o).hasEnv_Set(0);
+            if ((new M04Emitter(o).kind < 256))
             {
-                if (((Mem.S32((o + 192u)) == 0) && (func_00258D4C(Mem.U32((o + 176u))) != 0)))
+                if (((new M04Emitter(o).resetFlag == 0) && (func_00258D4C(new M04Emitter(o).ctx_) != 0)))
                 {
-                    Mem.Set(((o + 16u) + 24u), (short)(Mem.S8((Mem.U32((o + 176u)) + 11156u))));
+                    new M04Emitter(o).vp.pan_Set((short)(new M04Emitter(o).ctx.defaultPan));
                 }
             }
             else
             {
-                if (((Mem.S32((o + 192u)) == 0) && (func_00258D4C(Mem.U32((o + 176u))) != 0)))
+                if (((new M04Emitter(o).resetFlag == 0) && (func_00258D4C(new M04Emitter(o).ctx_) != 0)))
                 {
-                    Mem.Set(((o + 16u) + 24u), (short)((int)(func_00259B30((o + (uint)68), Mem.U32((Mem.U32((o + 176u)) + 11160u)), default(uint), default(uint)))));
+                    new M04Emitter(o).vp.pan_Set((short)((int)(func_00259B30((o + (uint)68), new M04Emitter(o).ctx.tgt_, default(uint), default(uint)))));
                 }
             }
         }

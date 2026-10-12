@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00294980", (uint)g);
-            uint s = (0x80145040u + 4744u);
-            Mem.Set((s + 29u), (byte)(0));
+            uint s = new B21World(0x80145040u).sub1288.P;
+            new B21Sub1288(s).unk1D_Set((byte)(0));
             Mem.Set(0x800D29D0u, 0);
             Mem.Set(0x8011FAB0u, 0);
             Mem.Set(0x8014AD78u, (float)(Mem.S32(0x800E28D4u)));

@@ -13,12 +13,12 @@ public static partial class Game
             int best = (-1);
             float min = Mem.F32(0x800C7004u);
             int i = 0;
-            for (i = 0; (i < Mem.S32((s + 56u))); ++i)
+            for (i = 0; (i < new BrainB(s).count); ++i)
             {
-                if (((Mem.U32((Mem.U32(((s + 60u) + (uint)(i * 4))) + 256u)) & (uint)(3145728)) != 0u))
+                if (((new ActorB(new BrainB(s).actors[(int)(i)]).flags & (uint)(3145728)) != 0u))
                 {
-                    float v = (float)(Mem.S32(((s + 148u) + (uint)(i * 4))));
-                    if ((((v < min) || (min == Mem.F32(0x800C7004u))) && (Mem.S32(((s + 108u) + (uint)(i * 4))) != 0)))
+                    float v = (float)(new BrainB(s).value[(int)(i)]);
+                    if ((((v < min) || (min == Mem.F32(0x800C7004u))) && (new BrainB(s).valid[(int)(i)] != 0)))
                     {
                         min = v;
                         best = i;

@@ -15,24 +15,24 @@ public static partial class Game
             int r = 0;
             total = 0;
             start = p;
-            while (((int)(Mem.S16(p)) != (-1)))
+            while (((int)(new WEnt(p).id) != (-1)))
             {
-                total = (int)((int)(total) + (int)(Mem.S16((p + 2u))));
+                total = (int)((int)(total) + (int)(new WEnt(p).w));
                 p += 4u;
             }
             r = (func_00274544() % total);
             p = start;
             total = 0;
-            while (((int)(Mem.S16(p)) != (-1)))
+            while (((int)(new WEnt(p).id) != (-1)))
             {
-                total = (int)((int)(total) + (int)(Mem.S16((p + 2u))));
+                total = (int)((int)(total) + (int)(new WEnt(p).w));
                 if ((total >= r))
                 {
                     break;
                 }
                 p += 4u;
             }
-            return Mem.S16(p);
+            return new WEnt(p).id;
         }
     }
 

@@ -11,15 +11,15 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00245B64");
             uint p = Mem.U32(0x800E2830u);
-            if ((Mem.S32((p + 68u)) == 0))
+            if ((new B10Ctl(p).f44 == 0))
             {
-                uint fn = Mem.U32((p + 16u));
+                uint fn = new B10Ctl(p).fn10;
                 if ((fn != 0u))
                 {
-                    Mem.Set((p + 16u), 0u);
+                    new B10Ctl(p).fn10_Set(0u);
                     Funcs.CallReg(fn, 0u, 0u, 0u, 0u);
                 }
-                Mem.Set((Mem.U32(0x800E2830u) + 68u), 1);
+                new B10Ctl(Mem.U32(0x800E2830u)).f44_Set(1);
             }
         }
     }

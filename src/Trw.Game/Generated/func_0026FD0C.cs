@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0026FD0C", (uint)mf, (uint)m);
-            uint ai = m;
-            uint af = (m + 32u);
+            uint ai = new B16MtxFx(m).i.P;
+            uint af = new B16MtxFx(m).f.P;
             uint e1 = 0u;
             uint e2 = 0u;
             e1 = Cpu.TruncU32((Mem.F32((mf + (uint)(0 * 4))) * 65536.0f));

@@ -14,12 +14,12 @@ public static partial class Game
             if ((((a2 >> (int)16) == (uint)(3)) && (a3 == 0)))
             {
                 func_0029A73C();
-                Mem.Set(((0x80153F80u + (uint)(Mem.S32((Mem.U32(0x800E39C0u) + 20u)) * 28)) + 8u), ((Mem.S32(((0x80153F80u + (uint)(Mem.S32((Mem.U32(0x800E39C0u) + 20u)) * 28)) + 8u)) + 1) % 5));
-                func_0041E478(Mem.S32((Mem.U32(0x800E39C0u) + 20u)));
+                new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).f8_Set(((new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).f8 + 1) % 5));
+                func_0041E478(new O3Ps(Mem.U32(0x800E39C0u)).sel);
                 if ((func_0029A9A0(0) == 22))
                 {
-                    j = Mem.S32((Mem.U32(0x800E39C0u) + 20u));
-                    Mem.Set(((0x80146398u + (uint)((7 - j) * 150)) + 146u), (byte)(Mem.S32(((0x80153F80u + (uint)(j * 28)) + 8u))));
+                    j = new O3Ps(Mem.U32(0x800E39C0u)).sel;
+                    new O3Pl4((0x80146398u + (uint)((7 - j) * 150))).f92_Set((byte)(new O3Plr((0x80153F80u + (uint)(j * 28))).f8));
                 }
             }
             return 0;

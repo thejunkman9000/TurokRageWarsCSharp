@@ -13,23 +13,23 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00283E2C", (uint)o);
-                uint par = Mem.U32((o + 280u));
+                uint par = new B19Obj(o).parent_;
                 int k = ((func_0028403C(o) != 0) ? 13 : 11);
-                int s2 = (int)(Mem.U16(((Mem.U32((par + 24u)) + 112u) + (uint)(k * 2))));
-                int a2 = (int)(Mem.U16(((Mem.U32((par + 24u)) + 140u) + (uint)(k * 2))));
-                Mem.Copy(_fp + 0u, (Mem.U32((par + 24u)) + (uint)(k * 8)), 8);
-                int s3 = (int)(Mem.U16(((Mem.U32((par + 24u)) + 168u) + (uint)(k * 2))));
+                int s2 = (int)(new B19Parent(par).tbl.w70[(int)(k)]);
+                int a2 = (int)(new B19Parent(par).tbl.w8C[(int)(k)]);
+                Mem.Copy(_fp + 0u, (new B19Parent(par).tbl.rec.P + (uint)(k * 8)), 8);
+                int s3 = (int)(new B19Parent(par).tbl.wA8[(int)(k)]);
                 if ((a2 != 65535))
                 {
-                    func_00265E30(o, o, (ushort)(a2), (-1), (o + 8u), _fp);
+                    func_00265E30(o, o, a2, (-1), new B19Obj(o).pos.P, _fp);
                 }
                 if ((s2 != 65535))
                 {
-                    func_00279BB0(o, s2, (int)(Mem.S8((o + 464u))), 1);
+                    func_00279BB0(o, s2, (int)(new B19Obj(o).unk1D0), 1);
                 }
                 if ((s3 != 65535))
                 {
-                    func_0025DE74((int)((uint)((short)(s3))), C.Tmp(Cpu.F2U(Mem.F32((o + 8u))), Cpu.F2U(Mem.F32(((o + 8u) + 4u))), Cpu.F2U(Mem.F32(((o + 8u) + 8u)))), (int)((o + 8u)), (int)(o));
+                    func_0025DE74((int)((uint)((short)(s3))), C.Tmp(Cpu.F2U(new B19Obj(o).pos.x), Cpu.F2U(new B19Obj(o).pos.y), Cpu.F2U(new B19Obj(o).pos.z)), (int)(new B19Obj(o).pos.P), (int)(o));
                 }
             }
         }

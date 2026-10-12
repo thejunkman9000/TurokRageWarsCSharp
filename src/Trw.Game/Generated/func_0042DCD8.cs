@@ -17,26 +17,26 @@ public static partial class Game
                 return 0;
             }
             func_002A3358();
-            r = func_0041A4F0((uint)(Mem.S32(Mem.U32(0x800E5430u))));
+            r = func_0041A4F0((uint)(new O04ModeS5430(Mem.U32(0x800E5430u)).unk0));
             switch (r)
             {
             case 3:
-                Mem.Set((Mem.U32(0x800E5430u) + 12u), (Mem.S32((Mem.U32(0x800E5430u) + 12u)) - 1));
-                if ((Mem.S32((Mem.U32(0x800E5430u) + 12u)) <= 0))
+                new O04ModeS5430(Mem.U32(0x800E5430u)).unkC_Set((new O04ModeS5430(Mem.U32(0x800E5430u)).unkC - 1));
+                if ((new O04ModeS5430(Mem.U32(0x800E5430u)).unkC <= 0))
                 {
-                    Mem.Set((Mem.U32((Mem.U32(0x800E5430u) + 8u)) + 22u), (ushort)(((int)(Mem.U16((Mem.U32((Mem.U32(0x800E5430u) + 8u)) + 22u))) - 1)));
-                    if ((((int)((short)(Mem.U16((Mem.U32((Mem.U32(0x800E5430u) + 8u)) + 22u)))) + (int)(Mem.S16((Mem.U32((Mem.U32(0x800E5430u) + 8u)) + 26u)))) < 0))
+                    new O04ModeS5430(Mem.U32(0x800E5430u)).unk8.unk16_Set((ushort)(((int)(new O04ModeS5430(Mem.U32(0x800E5430u)).unk8.unk16) - 1)));
+                    if ((((int)((short)(new O04ModeS5430(Mem.U32(0x800E5430u)).unk8.unk16)) + (int)(new O04ModeS5430(Mem.U32(0x800E5430u)).unk8.unk1A)) < 0))
                     {
-                        Mem.Set((Mem.U32((Mem.U32(0x800E5430u) + 8u)) + 22u), (ushort)(Mem.S16((Mem.U32(((uint)(Mem.S32(Mem.U32(0x800E5430u))) + 68u)) + 26u))));
+                        new O04ModeS5430(Mem.U32(0x800E5430u)).unk8.unk16_Set((ushort)(new O04Obj44((uint)(new O04ModeS5430(Mem.U32(0x800E5430u)).unk0)).unk44.unk1A));
                     }
-                    Mem.Set((Mem.U32(0x800E5430u) + 12u), 3);
+                    new O04ModeS5430(Mem.U32(0x800E5430u)).unkC_Set(3);
                 }
                 break;
             case 4:
                 func_0029A73C();
-                if ((Mem.S32((Mem.U32(0x800E5430u) + 16u)) != (-1)))
+                if ((new O04ModeS5430(Mem.U32(0x800E5430u)).unk10 != (-1)))
                 {
-                    func_00299368((uint)(Mem.S32((Mem.U32(0x800E5430u) + 16u))), default(uint), default(uint), default(uint));
+                    func_00299368(new O04ModeS5430(Mem.U32(0x800E5430u)).unk10);
                     return 0;
                 }
                 func_0029A8A8();

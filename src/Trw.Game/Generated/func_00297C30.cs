@@ -18,7 +18,7 @@ public static partial class Game
             float nx = 0f;
             float ny = 0f;
             float nz = 0f;
-            nx = Mem.F32(pl);
+            nx = new B21Plane(pl).x;
             x = (Mem.F32((box + (uint)(0 * 4))) * nx);
             b = (Mem.F32((box + (uint)(3 * 4))) * nx);
             if (!(x <= b))
@@ -26,7 +26,7 @@ public static partial class Game
                 x = b;
             }
             d = x;
-            ny = Mem.F32((pl + 4u));
+            ny = new B21Plane(pl).y;
             y = (Mem.F32((box + (uint)(1 * 4))) * ny);
             b = (Mem.F32((box + (uint)(4 * 4))) * ny);
             if (!(y <= b))
@@ -34,7 +34,7 @@ public static partial class Game
                 y = b;
             }
             d = (float)((float)(d) + y);
-            nz = Mem.F32((pl + 8u));
+            nz = new B21Plane(pl).z;
             z = (Mem.F32((box + (uint)(2 * 4))) * nz);
             b = (Mem.F32((box + (uint)(5 * 4))) * nz);
             if (!(z <= b))
@@ -42,7 +42,7 @@ public static partial class Game
                 z = b;
             }
             d = (float)((float)(d) + z);
-            return ((d <= Mem.F32((pl + 12u))) ? 1 : 0);
+            return ((d <= new B21Plane(pl).w) ? 1 : 0);
         }
     }
 

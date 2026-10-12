@@ -17,7 +17,7 @@ public static partial class Game
             int lim = 0;
             int below = 0;
             int gm = 0;
-            cp = ((p + 1524u) + (uint)(idx * 2));
+            cp = (new B05P3(p).cnt.P + (uint)(idx * 2));
             if ((idx == (-1)))
             {
                 lim = 0;
@@ -27,28 +27,28 @@ public static partial class Game
                 gm = (int)(Mem.U8(0x801462D5u));
                 if ((gm != 1))
                 {
-                    lim = Mem.S32(((Mem.U32((p + 24u)) + 264u) + (uint)(idx * 4)));
+                    lim = new B05P3(p).tbl.lim[(int)(idx)];
                 }
                 else
                 {
                     lim = Mem.S32((0x800CE3E8u + (uint)(idx * 4)));
-                    if ((Mem.S32((p + 5200u)) == 0))
+                    if ((new B05P3(p).unk1450 == 0))
                     {
                         if ((idx == 0))
                         {
-                            lim = (int)((int)(lim) + (int)(Mem.U8(((0x80102B10u + (uint)(Mem.S32((p + 1492u)) * 400)) + 5u))));
+                            lim = (int)((int)(lim) + (int)(new B05Row((0x80102B10u + (uint)(new B05P3(p).row * 400))).b5));
                         }
                         else
                         {
                             if ((idx == gm))
                             {
-                                lim = (int)((int)(lim) + (int)(Mem.U8(((0x80102B10u + (uint)(Mem.S32((p + 1492u)) * 400)) + 6u))));
+                                lim = (int)((int)(lim) + (int)(new B05Row((0x80102B10u + (uint)(new B05P3(p).row * 400))).b6));
                             }
                             else
                             {
                                 if ((idx == 2))
                                 {
-                                    lim = (int)((int)(lim) + (int)(Mem.U8(((0x80102B10u + (uint)(Mem.S32((p + 1492u)) * 400)) + 4u))));
+                                    lim = (int)((int)(lim) + (int)(new B05Row((0x80102B10u + (uint)(new B05P3(p).row * 400))).b4));
                                 }
                             }
                         }
@@ -64,13 +64,13 @@ public static partial class Game
                     switch (idx)
                     {
                     case 0:
-                        Mem.Set((p + 3264u), 1);
+                        new B05P3(p).unkCC0_Set(1);
                         break;
                     case 1:
-                        Mem.Set((p + 3264u), 5);
+                        new B05P3(p).unkCC0_Set(5);
                         break;
                     case 2:
-                        Mem.Set((p + 3264u), 4);
+                        new B05P3(p).unkCC0_Set(4);
                         break;
                     }
                 }

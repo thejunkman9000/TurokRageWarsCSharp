@@ -13,33 +13,33 @@ public static partial class Game
             uint tp = 0u;
             tp = 0x8014EA90u;
             memcpy(tp, intp, 64u);
-            if ((Mem.U32((tp + 16u)) != 0u))
+            if ((new OSTask(tp).t.ucode_ != 0u))
             {
-                Mem.Set((tp + 16u), (uint)(osVirtualToPhysical(Mem.U32((tp + 16u)))));
+                new OSTask(tp).t.ucode__Set((uint)(osVirtualToPhysical(new OSTask(tp).t.ucode_)));
             }
-            if ((Mem.U32((tp + 24u)) != 0u))
+            if ((new OSTask(tp).t.ucode_data_ != 0u))
             {
-                Mem.Set((tp + 24u), (uint)(osVirtualToPhysical(Mem.U32((tp + 24u)))));
+                new OSTask(tp).t.ucode_data__Set((uint)(osVirtualToPhysical(new OSTask(tp).t.ucode_data_)));
             }
-            if ((Mem.U32((tp + 32u)) != 0u))
+            if ((new OSTask(tp).t.dram_stack_ != 0u))
             {
-                Mem.Set((tp + 32u), (uint)(osVirtualToPhysical(Mem.U32((tp + 32u)))));
+                new OSTask(tp).t.dram_stack__Set((uint)(osVirtualToPhysical(new OSTask(tp).t.dram_stack_)));
             }
-            if ((Mem.U32((tp + 40u)) != 0u))
+            if ((new OSTask(tp).t.output_buff_ != 0u))
             {
-                Mem.Set((tp + 40u), (uint)(osVirtualToPhysical(Mem.U32((tp + 40u)))));
+                new OSTask(tp).t.output_buff__Set((uint)(osVirtualToPhysical(new OSTask(tp).t.output_buff_)));
             }
-            if ((Mem.U32((tp + 44u)) != 0u))
+            if ((new OSTask(tp).t.output_buff_size_ != 0u))
             {
-                Mem.Set((tp + 44u), (uint)(osVirtualToPhysical(Mem.U32((tp + 44u)))));
+                new OSTask(tp).t.output_buff_size__Set((uint)(osVirtualToPhysical(new OSTask(tp).t.output_buff_size_)));
             }
-            if ((Mem.U32((tp + 48u)) != 0u))
+            if ((new OSTask(tp).t.data_ptr_ != 0u))
             {
-                Mem.Set((tp + 48u), (uint)(osVirtualToPhysical(Mem.U32((tp + 48u)))));
+                new OSTask(tp).t.data_ptr__Set((uint)(osVirtualToPhysical(new OSTask(tp).t.data_ptr_)));
             }
-            if ((Mem.U32((tp + 56u)) != 0u))
+            if ((new OSTask(tp).t.yield_data_ptr_ != 0u))
             {
-                Mem.Set((tp + 56u), (uint)(osVirtualToPhysical(Mem.U32((tp + 56u)))));
+                new OSTask(tp).t.yield_data_ptr__Set((uint)(osVirtualToPhysical(new OSTask(tp).t.yield_data_ptr_)));
             }
             return tp;
         }

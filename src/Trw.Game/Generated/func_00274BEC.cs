@@ -10,14 +10,14 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00274BEC", (uint)s, (uint)a, (uint)b);
-            Mem.Copy(s, a, 12);
-            Mem.Copy((s + 12u), b, 12);
-            Mem.Set((s + 24u), (Mem.F32(b) - Mem.F32(a)));
-            Mem.Set(((s + 24u) + 4u), (Mem.F32((b + 4u)) - Mem.F32((a + 4u))));
-            Mem.Set(((s + 24u) + 8u), (Mem.F32((b + 8u)) - Mem.F32((a + 8u))));
-            Mem.Set((s + 48u), Mem.F32(((s + 24u) + 8u)));
-            Mem.Set((s + 52u), 0.0f);
-            Mem.Set((s + 56u), (-Mem.F32((s + 24u))));
+            Mem.Copy(new P3Seg(s).p0.P, a, 12);
+            Mem.Copy(new P3Seg(s).p1.P, b, 12);
+            new P3Seg(s).d.x_Set((new P3Vec3(b).x - new P3Vec3(a).x));
+            new P3Seg(s).d.y_Set((new P3Vec3(b).y - new P3Vec3(a).y));
+            new P3Seg(s).d.z_Set((new P3Vec3(b).z - new P3Vec3(a).z));
+            new P3Seg(s).n0_Set(new P3Seg(s).d.z);
+            new P3Seg(s).n1_Set(0.0f);
+            new P3Seg(s).n2_Set((-new P3Seg(s).d.x));
         }
     }
 

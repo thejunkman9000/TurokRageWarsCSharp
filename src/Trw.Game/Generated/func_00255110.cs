@@ -14,10 +14,10 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_00255110", (uint)p, (uint)m);
                 osCreateMesgQueue(_fp, (_fp + 24u), 1);
-                Mem.Set((m + 32u), _fp);
+                new B12Req(m).reply__Set(_fp);
                 Mem.Set(0x800D2954u, 2);
-                osSetThreadPri(p, Mem.S32(0x800D2B28u));
-                osJamMesg((p + 560u), m, 1);
+                osSetThreadPri(new B12Port(p).thread.P, Mem.S32(0x800D2B28u));
+                osJamMesg(new B12Port(p).q.P, m, 1);
                 osRecvMesg(_fp, (_fp + 28u), 1);
                 return 1;
             }

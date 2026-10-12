@@ -11,8 +11,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00254E28", (uint)unused, (uint)n);
             func_00255E78(0x8010510Cu, n, default(uint), default(uint));
-            Mem.Set((n + 16u), 0);
-            func_00255C58((0x8010510Cu - (uint)20), n, default(uint), default(uint));
+            new PNode(n).f10_Set(0);
+            func_00255C58((0x8010510Cu - (uint)20), n);
         }
     }
 

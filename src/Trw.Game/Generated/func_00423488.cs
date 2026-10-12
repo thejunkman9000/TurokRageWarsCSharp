@@ -18,13 +18,13 @@ public static partial class Game
             switch (id)
             {
             case 80:
-                Mem.Set((Mem.U32(0x800E4510u) + (uint)(8 * 4)), (-1));
+                new O3Words(Mem.U32(0x800E4510u)).w.Set((int)(8), (-1));
                 break;
             case 87:
-                Mem.Set((Mem.U32(0x800E4510u) + (uint)(8 * 4)), 6);
+                new O3Words(Mem.U32(0x800E4510u)).w.Set((int)(8), 6);
                 break;
             case 88:
-                Mem.Set((Mem.U32(0x800E4510u) + (uint)(8 * 4)), 5);
+                new O3Words(Mem.U32(0x800E4510u)).w.Set((int)(8), 5);
                 break;
             default:
                 ok = 0;
@@ -33,7 +33,7 @@ public static partial class Game
             if ((ok == 1))
             {
                 func_00423280();
-                func_0041A4B0((uint)(Mem.S32((Mem.U32(0x800E4510u) + (uint)(0 * 4)))), 2);
+                func_0041A4B0((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(0)]), 2);
             }
             return 0;
         }

@@ -24,7 +24,7 @@ public static partial class Game
                 found = 0;
                 for (j = 0; (j < n); ++j)
                 {
-                    if (((((Mem.F32(p) * Mem.F32((pts + (uint)(j * 12)))) + (Mem.F32((p + 4u)) * Mem.F32(((pts + (uint)(j * 12)) + 4u)))) + (Mem.F32((p + 8u)) * Mem.F32(((pts + (uint)(j * 12)) + 8u)))) <= Mem.F32((p + 12u))))
+                    if (((((new B21Plane(p).x * new Vec3f((pts + (uint)(j * 12))).x) + (new B21Plane(p).y * new Vec3f((pts + (uint)(j * 12))).y)) + (new B21Plane(p).z * new Vec3f((pts + (uint)(j * 12))).z)) <= new B21Plane(p).w))
                     {
                         found = 1;
                         break;

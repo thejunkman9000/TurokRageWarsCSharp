@@ -12,9 +12,9 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00245788");
             uint p = Mem.U32(0x800E2830u);
             int r = 0;
-            if ((Mem.S32((p + 56u)) != 0))
+            if ((new B10Ctl(p).f38 != 0))
             {
-                if (((Mem.F32((p + 28u)) >= Mem.F32((p + 48u))) && (Mem.F32((p + 28u)) <= Mem.F32((p + 52u)))))
+                if (((new B10Ctl(p).f1C >= new B10Ctl(p).f30) && (new B10Ctl(p).f1C <= new B10Ctl(p).f34)))
                 {
                     r = 1;
                 }

@@ -18,7 +18,7 @@ public static partial class Game
                 {
                     p = 0x800D2BB8u;
                     Mem.Set(p, 569925);
-                    Mem.Set(0x800D2BB0u, (int)(func_00252FFC((uint)(Mem.S32(0x800D2BB8u)), default(uint), default(uint), default(uint))));
+                    Mem.Set(0x800D2BB0u, (int)(func_00252FFC((uint)(Mem.S32(0x800D2BB8u)))));
                     func_0025631C(0x801051B8u, (uint)(2097152), (uint)(Mem.S32(0x800D2BB8u)), (uint)(Mem.S32(0x800D2BB0u)));
                     Mem.Set(0x800D2BBCu, 0);
                     Mem.Set((p + (uint)(2 * 4)), 1);

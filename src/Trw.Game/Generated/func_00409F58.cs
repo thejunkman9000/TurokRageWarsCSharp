@@ -17,7 +17,7 @@ public static partial class Game
             }
             else
             {
-                ch = (int)(Mem.S8((Mem.U32((a + 32u)) + 4u)));
+                ch = (int)(new O01Obj(a).unk20.unk4);
             }
             func_00404E28(ch);
         }

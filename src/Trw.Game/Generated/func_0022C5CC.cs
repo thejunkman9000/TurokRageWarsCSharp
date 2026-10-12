@@ -11,10 +11,10 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0022C5CC", (uint)group);
             uint p = 0u;
-            for (p = Mem.U32((group + 32u)); (p != 0u); p = Mem.U32((p + 5856u)))
+            for (p = new ActorGroup(group).head_; (p != 0u); p = new Actor(p).next_)
             {
-                Mem.Set((Mem.U32((p + 1496u)) + (uint)143), (byte)(0));
-                func_002266E4(p, default(uint), default(uint), default(uint));
+                Mem.Set((new Actor(p).stats_ + (uint)143), (byte)(0));
+                func_002266E4(p);
             }
         }
     }

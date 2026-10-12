@@ -11,46 +11,46 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00257BD4", (uint)m, (uint)info, (uint)id, (uint)a3);
             uint v = 0u;
-            Mem.Set((m + 11160u), (int)(func_00239594(0x80145088u, (uint)(id))));
-            if ((((int)(Mem.U16((info + 6u))) & 1) != 0))
+            new SndMgr(m).unk2B98_Set((int)(func_00239594(0x80145088u, (uint)(id))));
+            if ((((int)(new SndInfo(info).bits6) & 1) != 0))
             {
-                if ((func_0025BA6C((m + 7608u), (int)(Mem.S16((m + 11148u)))) != 0))
+                if ((func_0025BA6C(new SndMgr(m).pool.P, (int)(new SndMgr(m).unk2B8C)) != 0))
                 {
                     return (-1);
                 }
-                if ((func_0025C12C((uint)(id), (uint)((Mem.S32((m + 11160u)) + 296))) == 0.0f))
+                if ((func_0025C12C((uint)(id), (uint)((new SndMgr(m).unk2B98 + 296))) == 0.0f))
                 {
                     return (-1);
                 }
             }
-            if ((((int)(Mem.U16((info + 6u))) & 4096) != 0))
+            if ((((int)(new SndInfo(info).bits6) & 4096) != 0))
             {
-                if ((Mem.S32((m + 11152u)) != (-1)))
+                if ((new SndMgr(m).unk2B90 != (-1)))
                 {
-                    if ((func_0025BDCC((m + 7608u), (int)(Mem.S16((m + 11148u))), (uint)(Mem.S32((m + 11152u)))) != (-1)))
+                    if ((func_0025BDCC(new SndMgr(m).pool.P, (int)(new SndMgr(m).unk2B8C), (uint)(new SndMgr(m).unk2B90)) != (-1)))
                     {
                         return (-1);
                     }
                 }
             }
-            if (((int)(Mem.S16((info + 2u))) != 0))
+            if (((int)(new SndInfo(info).w2) != 0))
             {
-                return func_00259280((m + 312u), info, (uint)(id), a3, a5);
+                return func_00259280(new SndMgr(m).q.P, info, (uint)(id), a3, a5);
             }
-            if ((((int)(Mem.U16((info + 6u))) & 64) != 0))
+            if ((((int)(new SndInfo(info).bits6) & 64) != 0))
             {
-                func_0025B940((m + 7608u), (uint)(Mem.S16((m + 11148u))), (uint)(Mem.S16(info)), default(uint));
+                func_0025B940(new SndMgr(m).pool.P, new SndMgr(m).unk2B8C, new SndInfo(info).w0);
             }
-            v = func_0025B1E8((m + 7608u), info, (uint)(a3), (uint)(a4));
+            v = func_0025B1E8(new SndMgr(m).pool.P, info, a3, a4);
             if ((v == 0u))
             {
                 return (-1);
             }
             func_0025BB7C(v, (uint)(id), a6);
-            func_0025BB9C(v, (int)(Mem.S16((m + 11148u))));
+            func_0025BB9C(v, (int)(new SndMgr(m).unk2B8C));
             func_0025BBA4(v, info, (uint)(a5));
             func_00257BD4_SndMgr_Lock(m);
-            func_00257814(m, (uint)(Mem.S32((v + 12u))), (uint)(0), (uint)(id));
+            func_00257814(m, (uint)(new SndVoice(v).unkC), (uint)(0), (uint)(id));
             func_00257BD4_SndMgr_Unlock(m);
             return 0;
         }
@@ -61,12 +61,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00257BD4_SndMgr_Lock", (uint)m);
-            uint l = (m + 272u);
+            uint l = new SndMgr(m).@lock.P;
             uint mask = __osDisableInt();
-            if ((Mem.Set((l + 28u), (int)(Mem.S32((l + 28u)) + 1)) != 1))
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count + 1)) != 1))
             {
                 __osRestoreInt(mask);
-                osRecvMesg(l, 0u, 1);
+                osRecvMesg(new SndLock(l).q.P, 0u, 1);
             }
             else
             {
@@ -80,12 +80,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00257BD4_SndMgr_Unlock", (uint)m);
-            uint l = (m + 272u);
+            uint l = new SndMgr(m).@lock.P;
             uint mask = __osDisableInt();
-            if ((Mem.Set((l + 28u), (int)(Mem.S32((l + 28u)) - 1)) != 0))
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count - 1)) != 0))
             {
                 __osRestoreInt(mask);
-                osSendMesg(l, 0u, 1);
+                osSendMesg(new SndLock(l).q.P, 0u, 1);
             }
             else
             {

@@ -15,32 +15,32 @@ public static partial class Game
             n = (((int)(Mem.U8(0x801462E2u)) - 128) / 8);
             if ((n == 0))
             {
-                Mem.Set((a + 20u), 0x800D7DE0u);
+                new O06A_v2(a).unk14_Set(0x800D7DE0u);
             }
             else
             {
                 if ((n == 15))
                 {
-                    Mem.Set((a + 20u), 0x800D7DDCu);
+                    new O06A_v2(a).unk14_Set(0x800D7DDCu);
                 }
                 else
                 {
                     if ((n == (-16)))
                     {
-                        Mem.Set((a + 20u), 0x800D7DD8u);
+                        new O06A_v2(a).unk14_Set(0x800D7DD8u);
                     }
                     else
                     {
                         if ((n > 0))
                         {
                             s = Mem.S32((0x800D7DE4u + (uint)(0 * 4)));
-                            Mem.Set((a + 20u), 0x800D7DE4u);
+                            new O06A_v2(a).unk14_Set(0x800D7DE4u);
                             func_00265904((uint)(((s - 4) + func_00442158(a))), 0x800E27E0u, n, default(int));
                         }
                         else
                         {
                             s = Mem.S32((0x800D7DE4u + (uint)(0 * 4)));
-                            Mem.Set((a + 20u), 0x800D7DE4u);
+                            new O06A_v2(a).unk14_Set(0x800D7DE4u);
                             func_00265904((uint)(((s - 4) + func_00442158(a))), 0x800E27E8u, n, default(int));
                         }
                     }

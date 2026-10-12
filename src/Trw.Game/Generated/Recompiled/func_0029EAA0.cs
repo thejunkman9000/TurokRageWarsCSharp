@@ -56,9 +56,9 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_0029EAA0", r2); Stack.Free(384); }
     }
 
-    public static double func_0029EAA0(double p0, int p1)
+    public static double func_0029EAA0(double p0, uint p1)
     {
         Cpu.SetD(12, p0);
-        func_0029EAA0_rc(0u, 0u, (uint)p1, 0u); return Cpu.D(0);
+        func_0029EAA0_rc(0u, 0u, p1, 0u); return Cpu.D(0);
     }
 }

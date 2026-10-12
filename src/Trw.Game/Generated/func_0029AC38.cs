@@ -10,11 +10,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029AC38", (uint)b, (uint)size);
-            if ((Mem.U32(b) == 0u))
+            if ((new B22Buf(b).data_ == 0u))
             {
-                Mem.Set(b, func_00252FFC((uint)(size), default(uint), default(uint), default(uint)));
-                Mem.Set((b + 12u), 0);
-                Mem.Set((b + 4u), size);
+                new B22Buf(b).data__Set(func_00252FFC((uint)(size)));
+                new B22Buf(b).wrpos_Set(0);
+                new B22Buf(b).size_Set(size);
             }
         }
     }

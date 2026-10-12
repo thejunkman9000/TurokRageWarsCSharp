@@ -12,20 +12,20 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("__nextSampleTime", (uint)drvr, (uint)client);
             uint c = 0u;
             int delta = 2147483647;
-            if ((Mem.U32(drvr) == 0u))
+            if ((new ALSynth(drvr).head_ == 0u))
             {
                 __assert(Str.Lit("EX"), Str.Lit("audio/synthesizer.c"), (uint)(307), default(uint));
             }
             Mem.Set(client, 0u);
-            for (c = Mem.U32(drvr); (c != 0u); c = Mem.U32(c))
+            for (c = new ALSynth(drvr).head_; (c != 0u); c = new ALPlayer(c).next_)
             {
-                if (((Mem.S32((c + 16u)) - Mem.S32((drvr + 32u))) < delta))
+                if (((new ALPlayer(c).samplesLeft - new ALSynth(drvr).curSamples) < delta))
                 {
                     Mem.Set(client, c);
-                    delta = (Mem.S32((c + 16u)) - Mem.S32((drvr + 32u)));
+                    delta = (new ALPlayer(c).samplesLeft - new ALSynth(drvr).curSamples);
                 }
             }
-            return Mem.S32((Mem.U32(client) + 16u));
+            return new ALPlayer(Mem.U32(client)).samplesLeft;
         }
     }
 

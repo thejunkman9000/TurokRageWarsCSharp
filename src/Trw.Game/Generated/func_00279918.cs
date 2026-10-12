@@ -14,31 +14,31 @@ public static partial class Game
             uint start = 0u;
             int total = 0;
             int r = 0;
-            if (((int)(Mem.S16(b)) == 0))
+            if (((int)(new PBuf_v2(b).n) == 0))
             {
                 return (short)((-1));
             }
-            p = (start = (b + 2u));
+            p = (start = new PBuf_v2(b).e.P);
             total = 0;
-            Mem.Set(((b + 2u) + (uint)(Mem.S16(b) * 4)), (short)((-1)));
-            while (((int)(Mem.S16(p)) != (-1)))
+            new PBuf_v2(b).e[(int)(new PBuf_v2(b).n)].id_Set((short)((-1)));
+            while (((int)(new WEnt(p).id) != (-1)))
             {
-                total = (int)((int)(total) + (int)(Mem.S16((p + 2u))));
+                total = (int)((int)(total) + (int)(new WEnt(p).w));
                 p += 4u;
             }
             r = (func_00274544() % total);
             p = start;
             total = 0;
-            while (((int)(Mem.S16(p)) != (-1)))
+            while (((int)(new WEnt(p).id) != (-1)))
             {
-                total = (int)((int)(total) + (int)(Mem.S16((p + 2u))));
+                total = (int)((int)(total) + (int)(new WEnt(p).w));
                 if ((total >= r))
                 {
                     break;
                 }
                 p += 4u;
             }
-            return Mem.S16(p);
+            return new WEnt(p).id;
         }
     }
 

@@ -10,19 +10,19 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024E8A8", (uint)a);
-            uint b = Mem.U32((a + 20u));
-            float hi = Mem.F32((Mem.U32((b + 8u)) + 4u));
+            uint b = new Obj(a).unk14_;
+            float hi = new B11Box(b).p8.y;
             float lo = 0f;
-            if (!(hi <= Mem.F32((Mem.U32((b + 4u)) + 4u))))
+            if (!(hi <= new B11Box(b).p4.y))
             {
-                hi = Mem.F32((Mem.U32((b + 4u)) + 4u));
+                hi = new B11Box(b).p4.y;
             }
-            lo = Mem.F32((Mem.U32((b + 12u)) + 4u));
+            lo = new B11Box(b).pC.y;
             if (!(lo <= hi))
             {
                 lo = hi;
             }
-            return (Mem.F32(((a + 8u) + 4u)) - lo);
+            return (new Obj(a).pos.y - lo);
         }
     }
 

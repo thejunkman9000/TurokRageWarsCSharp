@@ -18,26 +18,26 @@ public static partial class Game
                 int i = 0;
                 int found = 0;
                 uint e = 0u;
-                if (((int)(func_0040E154((_fp + 56u), (_fp + 40u), n, (_fp + (uint)(0 * 4)))) != 0))
+                if ((func_0040E154((_fp + 56u), (_fp + 40u), n, (new O02Ctx(_fp).w.P + (uint)(0 * 4))) != 0))
                 {
                     {
-                        int t = ((int)(Mem.U8(((n + 44u) + (uint)(0 * 4)))) | (int)(Mem.U8(((n + 44u) + (uint)(1 * 4)))));
-                        t = (int)((int)(t) | (int)(Mem.U8(((n + 44u) + (uint)(2 * 4)))));
-                        t = (int)((int)(t) | (int)(Mem.U8(((n + 44u) + (uint)(3 * 4)))));
+                        int t = ((int)(Mem.U8((new O02Quad(n).col.P + (uint)(0 * 4)))) | (int)(Mem.U8((new O02Quad(n).col.P + (uint)(1 * 4)))));
+                        t = (int)((int)(t) | (int)(Mem.U8((new O02Quad(n).col.P + (uint)(2 * 4)))));
+                        t = (int)((int)(t) | (int)(Mem.U8((new O02Quad(n).col.P + (uint)(3 * 4)))));
                         if ((t == 0))
                         {
                             return;
                         }
                     }
-                    if ((((int)(Mem.U16((n + 18u))) & 512) != 0))
+                    if ((((int)(new O02Quad(n).flags) & 512) != 0))
                     {
-                        func_002A2898(((_fp + 72u) + (uint)(0 * 4)), ((_fp + 72u) + (uint)(2 * 4)), ((_fp + 72u) + (uint)(1 * 4)), ((_fp + 72u) + (uint)(3 * 4)));
+                        func_002A2898((new O02Rect((_fp + 72u)).w.P + (uint)(0 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(2 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(1 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(3 * 4)));
                         Mem.Copy((_fp + 88u), (_fp + 72u), 16);
                         if (!(func_0040F508((_fp + 88u), (_fp + 40u)) != 0))
                         {
                             return;
                         }
-                        func_002A2870(Mem.S32(((_fp + 88u) + (uint)(0 * 4))), Mem.S32(((_fp + 88u) + (uint)(2 * 4))), Mem.S32(((_fp + 88u) + (uint)(1 * 4))), Mem.S32(((_fp + 88u) + (uint)(3 * 4))));
+                        func_002A2870(new O02Rect((_fp + 88u)).w[(int)(0)], new O02Rect((_fp + 88u)).w[(int)(2)], new O02Rect((_fp + 88u)).w[(int)(1)], new O02Rect((_fp + 88u)).w[(int)(3)]);
                         pushed = 1;
                     }
                     i = 0;
@@ -47,19 +47,19 @@ public static partial class Game
                         do
                         {
                             e = (0x80153820u + (uint)(i * 24));
-                            if ((Mem.S32(((_fp + 56u) + (uint)(1 * 4))) < Mem.S32((e + (uint)(0 * 4)))))
+                            if ((new O02Rect((_fp + 56u)).w[(int)(1)] < new O02Ent(e).b[(int)(0)]))
                             {
                                 goto L_nx;
                             }
-                            if ((Mem.S32((e + (uint)(1 * 4))) < Mem.S32(((_fp + 56u) + (uint)(0 * 4)))))
+                            if ((new O02Ent(e).b[(int)(1)] < new O02Rect((_fp + 56u)).w[(int)(0)]))
                             {
                                 goto L_nx;
                             }
-                            if ((Mem.S32(((_fp + 56u) + (uint)(3 * 4))) < Mem.S32((e + (uint)(2 * 4)))))
+                            if ((new O02Rect((_fp + 56u)).w[(int)(3)] < new O02Ent(e).b[(int)(2)]))
                             {
                                 goto L_nx;
                             }
-                            if ((Mem.S32((e + (uint)(3 * 4))) < Mem.S32(((_fp + 56u) + (uint)(2 * 4)))))
+                            if ((new O02Ent(e).b[(int)(3)] < new O02Rect((_fp + 56u)).w[(int)(2)]))
                             {
                                 goto L_nx;
                             }
@@ -78,14 +78,14 @@ public static partial class Game
                     if (((Mem.S32(0x800E2ABCu) != 341299) || (Mem.S32(0x800E2AB8u) == 0)))
                     {
                         Mem.Set(0x800E2ABCu, 341299);
-                        func_004171B8((uint)(341299), default(uint), default(uint), default(uint));
+                        func_004171B8((uint)(341299));
                         Mem.Set(0x800E2AB8u, 1);
                     }
-                    func_00417574((uint)(0), default(uint), default(uint), default(uint));
-                    func_00418E60((float)(Mem.S32(((_fp + 56u) + (uint)(0 * 4)))), (float)(Mem.S32(((_fp + 56u) + (uint)(2 * 4)))), (float)(0), (float)(((Mem.S32(((_fp + 56u) + (uint)(1 * 4))) - Mem.S32(((_fp + 56u) + (uint)(0 * 4)))) + 1)), (float)(((Mem.S32(((_fp + 56u) + (uint)(3 * 4))) - Mem.S32(((_fp + 56u) + (uint)(2 * 4)))) + 1)), ((Mem.U32(((n + 44u) + (uint)(0 * 4))) & (uint)(16777215)) | (uint)(((((int)(Mem.U8((_fp + 20u))) * (int)((Mem.U32(((n + 44u) + (uint)(0 * 4))) >> (int)24))) / 255) << (int)24))), ((Mem.U32(((n + 44u) + (uint)(1 * 4))) & (uint)(16777215)) | (uint)(((((int)(Mem.U8((_fp + 20u))) * (int)((Mem.U32(((n + 44u) + (uint)(1 * 4))) >> (int)24))) / 255) << (int)24))), ((Mem.U32(((n + 44u) + (uint)(2 * 4))) & (uint)(16777215)) | (uint)(((((int)(Mem.U8((_fp + 20u))) * (int)((Mem.U32(((n + 44u) + (uint)(2 * 4))) >> (int)24))) / 255) << (int)24))), ((Mem.U32(((n + 44u) + (uint)(3 * 4))) & (uint)(16777215)) | (uint)(((((int)(Mem.U8((_fp + 20u))) * (int)((Mem.U32(((n + 44u) + (uint)(3 * 4))) >> (int)24))) / 255) << (int)24))));
+                    func_00417574((uint)(0));
+                    func_00418E60((float)(new O02Rect((_fp + 56u)).w[(int)(0)]), (float)(new O02Rect((_fp + 56u)).w[(int)(2)]), (int)Cpu.F2U((float)(0)), (float)(((new O02Rect((_fp + 56u)).w[(int)(1)] - new O02Rect((_fp + 56u)).w[(int)(0)]) + 1)), (int)Cpu.F2U((float)(((new O02Rect((_fp + 56u)).w[(int)(3)] - new O02Rect((_fp + 56u)).w[(int)(2)]) + 1))), (int)(((Mem.U32((new O02Quad(n).col.P + (uint)(0 * 4))) & (uint)(16777215)) | (uint)(((((int)(new O02Ctx(_fp).col) * (int)((Mem.U32((new O02Quad(n).col.P + (uint)(0 * 4))) >> (int)24))) / 255) << (int)24)))), (int)(((Mem.U32((new O02Quad(n).col.P + (uint)(1 * 4))) & (uint)(16777215)) | (uint)(((((int)(new O02Ctx(_fp).col) * (int)((Mem.U32((new O02Quad(n).col.P + (uint)(1 * 4))) >> (int)24))) / 255) << (int)24)))), (int)(((Mem.U32((new O02Quad(n).col.P + (uint)(2 * 4))) & (uint)(16777215)) | (uint)(((((int)(new O02Ctx(_fp).col) * (int)((Mem.U32((new O02Quad(n).col.P + (uint)(2 * 4))) >> (int)24))) / 255) << (int)24)))), (int)(((Mem.U32((new O02Quad(n).col.P + (uint)(3 * 4))) & (uint)(16777215)) | (uint)(((((int)(new O02Ctx(_fp).col) * (int)((Mem.U32((new O02Quad(n).col.P + (uint)(3 * 4))) >> (int)24))) / 255) << (int)24)))));
                     if ((pushed != 0))
                     {
-                        func_002A2870(Mem.S32(((_fp + 72u) + (uint)(0 * 4))), Mem.S32(((_fp + 72u) + (uint)(2 * 4))), Mem.S32(((_fp + 72u) + (uint)(1 * 4))), Mem.S32(((_fp + 72u) + (uint)(3 * 4))));
+                        func_002A2870(new O02Rect((_fp + 72u)).w[(int)(0)], new O02Rect((_fp + 72u)).w[(int)(2)], new O02Rect((_fp + 72u)).w[(int)(1)], new O02Rect((_fp + 72u)).w[(int)(3)]);
                     }
                 }
             }

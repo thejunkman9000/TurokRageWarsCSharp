@@ -22,17 +22,17 @@ public static partial class Game
                 {
                     return 5;
                 }
-                if (((Mem.S32(pfs) & 1) == 0))
+                if (((new OSPfs(pfs).status & 1) == 0))
                 {
                     return 5;
                 }
-                if ((__osCheckId(pfs) == 2))
+                if (((int)(__osCheckId(pfs, default(uint), default(uint), default(uint))) == 2))
                 {
                     return 2;
                 }
-                if (((int)(Mem.U8((pfs + 101u))) != 0))
+                if (((int)(new OSPfs(pfs).activebank) != 0))
                 {
-                    Mem.Set((pfs + 101u), (byte)(0));
+                    new OSPfs(pfs).activebank_Set((byte)(0));
                     ret = __osPfsSelectBank(pfs);
                     if ((ret != 0))
                     {
@@ -48,16 +48,16 @@ public static partial class Game
                 {
                     return 5;
                 }
-                ret = (int)(__osContRamRead(Mem.U32((pfs + 4u)), (uint)(Mem.S32((pfs + 8u))), (uint)((ushort)((Mem.S32((pfs + 92u)) + Mem.S32(_fp)))), (_fp + 264u)));
+                ret = (int)(__osContRamRead(new OSPfs(pfs).queue_, (uint)(new OSPfs(pfs).channel), (uint)((ushort)((new OSPfs(pfs).dir_table + Mem.S32(_fp)))), (_fp + 264u)));
                 if ((ret != 0))
                 {
                     return ret;
                 }
-                startpage = Mem.U8((((_fp + 264u) + 6u) + 1u));
-                bank = Mem.U8(((_fp + 264u) + 6u));
-                while (((int)(bank) < (int)(Mem.U8((pfs + 100u)))))
+                startpage = Mem.U8((new __OSDir_v2((_fp + 264u)).start_page.inode_t.P + 1u));
+                bank = Mem.U8(new __OSDir_v2((_fp + 264u)).start_page.inode_t.P);
+                while (((int)(bank) < (int)(new OSPfs(pfs).banks)))
                 {
-                    ret = (int)(__osPfsRWInode(pfs, (_fp + 8u), (uint)((byte)(0)), (uint)(bank)));
+                    ret = __osPfsRWInode(pfs, (_fp + 8u), (byte)(0), bank);
                     if ((ret != 0))
                     {
                         return ret;
@@ -67,36 +67,36 @@ public static partial class Game
                     {
                         return ret;
                     }
-                    ret = (int)(__osPfsRWInode(pfs, (_fp + 8u), (uint)((byte)(1)), (uint)(bank)));
+                    ret = __osPfsRWInode(pfs, (_fp + 8u), (byte)(1), bank);
                     if ((ret != 0))
                     {
                         return ret;
                     }
-                    if (((int)(Mem.U16((_fp + 296u))) == 1))
+                    if (((int)(new __OSInodeUnit_v2((_fp + 296u)).@ushort) == 1))
                     {
                         break;
                     }
-                    bank = Mem.U8((_fp + 296u));
-                    startpage = Mem.U8(((_fp + 296u) + 1u));
+                    bank = Mem.U8(new __OSInodeUnit_v2((_fp + 296u)).inode_t.P);
+                    startpage = Mem.U8((new __OSInodeUnit_v2((_fp + 296u)).inode_t.P + 1u));
                 }
-                if (((int)(bank) >= (int)(Mem.U8((pfs + 100u)))))
+                if (((int)(bank) >= (int)(new OSPfs(pfs).banks)))
                 {
                     return 3;
                 }
-                Mem.Set((_fp + 264u), (uint)(0));
-                Mem.Set(((_fp + 264u) + 4u), (ushort)(0));
-                Mem.Set(((_fp + 264u) + 6u), (ushort)(0));
-                Mem.Set(((_fp + 264u) + 10u), (ushort)(0));
+                new __OSDir_v2((_fp + 264u)).game_code_Set((uint)(0));
+                new __OSDir_v2((_fp + 264u)).company_code_Set((ushort)(0));
+                new __OSDir_v2((_fp + 264u)).start_page.ushort_Set((ushort)(0));
+                new __OSDir_v2((_fp + 264u)).data_sum_Set((ushort)(0));
                 for (j = 0; (j < 16); ++j)
                 {
-                    Mem.Set((((_fp + 264u) + 16u) + (uint)j), (byte)(0));
+                    new __OSDir_v2((_fp + 264u)).game_name.Set((int)(j), (byte)(0));
                 }
                 for (j = 0; (j < 4); ++j)
                 {
-                    Mem.Set((((_fp + 264u) + 12u) + (uint)j), (byte)(0));
+                    new __OSDir_v2((_fp + 264u)).ext_name.Set((int)(j), (byte)(0));
                 }
-                Mem.Set(((_fp + 264u) + 8u), (byte)(0));
-                return __osContRamWrite(Mem.U32((pfs + 4u)), Mem.S32((pfs + 8u)), (ushort)((Mem.S32((pfs + 92u)) + Mem.S32(_fp))), (_fp + 264u), 0);
+                new __OSDir_v2((_fp + 264u)).status_Set((byte)(0));
+                return __osContRamWrite(new OSPfs(pfs).queue_, new OSPfs(pfs).channel, (ushort)((new OSPfs(pfs).dir_table + Mem.S32(_fp))), (_fp + 264u), 0);
             }
         }
         finally { Stack.Free(300); }

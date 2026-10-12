@@ -14,44 +14,44 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_004387F4");
                 uint w = 0u;
-                int sel = Mem.S32((Mem.U32(0x800E5830u) + 392u));
-                int v = Mem.S32(((Mem.U32(0x800E5830u) + 156u) + (uint)(sel * 20)));
+                int sel = new O05M30(Mem.U32(0x800E5830u)).f188;
+                int v = new O05M30(Mem.U32(0x800E5830u)).ent[(int)(sel)].v9C;
                 if ((v >= 0))
                 {
-                    w = func_0040ECB0(Mem.U32((Mem.U32(0x800E5830u) + 32u)), (uint)(642), default(uint), default(uint));
+                    w = func_0040ECB0(new O05M30(Mem.U32(0x800E5830u)).f20, (uint)(642), default(uint), default(uint));
                     func_0040E958(w, 1);
-                    Mem.Set((w + 16u), (byte)(175));
-                    Mem.Set((w + 56u), Mem.U32((((Mem.U32(0x800E5830u) + 156u) + (uint)(sel * 20)) + 16u)));
+                    new O05ItemWd(w).b10_Set((byte)(175));
+                    new O05ItemWd(w).f38_Set(new O05M30(Mem.U32(0x800E5830u)).ent[(int)(sel)].ac);
                     if ((((((((v == 5001) || (v == 5002)) || (v == 5023)) || (v == 5024)) || (v == 5057)) || (v == 5016)) || (v == 5053)))
                     {
-                        Mem.Set((_fp + 8u), Mem.Set((_fp + 4u), Mem.Set(_fp, 0.300000012f)));
+                        new O05Vec3(_fp).z_Set(new O05Vec3(_fp).y_Set(new O05Vec3(_fp).x_Set(0.300000012f)));
                     }
                     else
                     {
-                        Mem.Set((_fp + 8u), Mem.Set((_fp + 4u), Mem.Set(_fp, 0.00899999961f)));
+                        new O05Vec3(_fp).z_Set(new O05Vec3(_fp).y_Set(new O05Vec3(_fp).x_Set(0.00899999961f)));
                     }
-                    Mem.Set((_fp + 32u), (float)(0));
-                    Mem.Set(((_fp + 32u) + 4u), (float)(0));
-                    Mem.Set(((_fp + 32u) + 8u), (float)(0));
-                    Mem.Set((_fp + 48u), (float)(0));
-                    Mem.Set(((_fp + 48u) + 4u), 3.0f);
-                    Mem.Set(((_fp + 48u) + 8u), (float)(0));
-                    Mem.Set((_fp + 16u), (float)(0));
-                    Mem.Set(((_fp + 16u) + 4u), (-5.0f));
-                    Mem.Set(((_fp + 16u) + 8u), (-100.0f));
+                    new O05Vec3((_fp + 32u)).x_Set((float)(0));
+                    new O05Vec3((_fp + 32u)).y_Set((float)(0));
+                    new O05Vec3((_fp + 32u)).z_Set((float)(0));
+                    new O05Vec3((_fp + 48u)).x_Set((float)(0));
+                    new O05Vec3((_fp + 48u)).y_Set(3.0f);
+                    new O05Vec3((_fp + 48u)).z_Set((float)(0));
+                    new O05Vec3((_fp + 16u)).x_Set((float)(0));
+                    new O05Vec3((_fp + 16u)).y_Set((-5.0f));
+                    new O05Vec3((_fp + 16u)).z_Set((-100.0f));
                     if (((v == 5008) || (v == 5010)))
                     {
-                        Mem.Set((_fp + 16u), (float)(0));
-                        Mem.Set(((_fp + 16u) + 4u), (-30.0f));
-                        Mem.Set(((_fp + 16u) + 8u), (-100.0f));
-                        Mem.Set((_fp + 8u), Mem.Set((_fp + 4u), Mem.Set(_fp, 0.300000012f)));
+                        new O05Vec3((_fp + 16u)).x_Set((float)(0));
+                        new O05Vec3((_fp + 16u)).y_Set((-30.0f));
+                        new O05Vec3((_fp + 16u)).z_Set((-100.0f));
+                        new O05Vec3(_fp).z_Set(new O05Vec3(_fp).y_Set(new O05Vec3(_fp).x_Set(0.300000012f)));
                     }
-                    func_00439D3C((Mem.U32(0x800E5830u) + 200u), 0, _fp, (_fp + 16u));
-                    func_00439DC0((Mem.U32(0x800E5830u) + 200u), (_fp + 32u));
-                    func_00439E10((Mem.U32(0x800E5830u) + 200u), (_fp + 48u));
-                    func_00439E60((Mem.U32(0x800E5830u) + 200u), v);
-                    Mem.Set((((Mem.U32(0x800E5830u) + 156u) + (uint)(sel * 20)) + 4u), 0);
-                    Mem.Set((((Mem.U32(0x800E5830u) + 156u) + (uint)(sel * 20)) + 8u), 10);
+                    func_00439D3C(new O05M30(Mem.U32(0x800E5830u)).obj.P, 0, _fp, (_fp + 16u));
+                    func_00439DC0(new O05M30(Mem.U32(0x800E5830u)).obj.P, (_fp + 32u));
+                    func_00439E10(new O05M30(Mem.U32(0x800E5830u)).obj.P, (_fp + 48u));
+                    func_00439E60(new O05M30(Mem.U32(0x800E5830u)).obj.P, v);
+                    new O05M30(Mem.U32(0x800E5830u)).ent[(int)(sel)].a0_Set(0);
+                    new O05M30(Mem.U32(0x800E5830u)).ent[(int)(sel)].a4_Set(10);
                 }
             }
         }

@@ -11,18 +11,18 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0024F590", (uint)a);
             float t = 0f;
-            if ((((int)(Mem.U16((a + 412u))) & 16) != 0))
+            if ((((int)(new ObjFx(a).unk19C) & 16) != 0))
             {
-                t = (Mem.F32((a + 416u)) + (Mem.F32(0x800D2988u) * Mem.F32(0x800C8EF0u)));
-                Mem.Set((a + 416u), t);
+                t = (new ObjFx(a).unk1A0 + (Mem.F32(0x800D2988u) * Mem.F32(0x800C8EF0u)));
+                new ObjFx(a).unk1A0_Set(t);
                 if ((t < Mem.F32(0x800C8EF4u)))
                 {
-                    Mem.Set((a + 404u), (t * Mem.F32(0x800C8EF8u)));
+                    new ObjFx(a).unk194_Set((t * Mem.F32(0x800C8EF8u)));
                 }
                 else
                 {
-                    Mem.Set((a + 412u), (ushort)((int)(Mem.U16((a + 412u))) & (~16)));
-                    Mem.Set((a + 404u), Mem.F32(0x800C8EFCu));
+                    new ObjFx(a).unk19C_Set((ushort)((int)(new ObjFx(a).unk19C) & (~16)));
+                    new ObjFx(a).unk194_Set(Mem.F32(0x800C8EFCu));
                 }
             }
         }

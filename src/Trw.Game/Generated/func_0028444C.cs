@@ -14,30 +14,30 @@ public static partial class Game
             uint l = 0u;
             uint m = 0u;
             int i = 0;
-            if ((Mem.U32((owner + 64512u)) == 0u))
+            if ((new B19Owner(owner).la.head_ == 0u))
             {
                 for (i = 0; (i <= (a & 255)); ++i)
                 {
                     l = ((owner + (uint)(i * 20)) + (uint)64552);
-                    if ((Mem.U32((l + 4u)) != 0u))
+                    if ((new B19List(l).tail_ != 0u))
                     {
-                        func_00284544(owner, Mem.U32((l + 4u)), default(uint), default(uint));
+                        func_00284544(owner, new B19List(l).tail_, default(uint), default(uint));
                         break;
                     }
                 }
             }
-            o = Mem.U32((owner + 64512u));
+            o = new B19Owner(owner).la.head_;
             if ((o == 0u))
             {
                 return 0u;
             }
-            func_00255E78((owner + 64512u), o, default(uint), default(uint));
-            m = ((owner + 64552u) + (uint)((a & 255) * 20));
-            func_00255C58(m, o, default(uint), default(uint));
-            Mem.Set((o + 484u), m);
-            Mem.Set((o + 500u), 0u);
-            Mem.Set((o + 496u), 0);
-            Mem.Set((o + 92u), (uint)(256));
+            func_00255E78(new B19Owner(owner).la.P, o, default(uint), default(uint));
+            m = (new B19Owner(owner).slot.P + (uint)((a & 255) * 20));
+            func_00255C58(m, o);
+            new B19Obj(o).slotp__Set(m);
+            new B19Obj(o).next2__Set(0u);
+            new B19Obj(o).unk1F0_Set(0);
+            new B19Obj(o).flags_Set((uint)(256));
             return o;
         }
     }

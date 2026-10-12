@@ -13,10 +13,10 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 3); ++i)
             {
-                Mem.Set((0x80153F80u + (uint)(i * 28)), (-1));
-                Mem.Set(((0x80153F80u + (uint)(i * 28)) + 4u), 0);
-                Mem.Set(((0x80153F80u + (uint)(i * 28)) + 8u), 0);
-                Mem.Set(((0x80153F80u + (uint)(i * 28)) + 12u), 0);
+                new O3Plr((0x80153F80u + (uint)(i * 28))).id_Set((-1));
+                new O3Plr((0x80153F80u + (uint)(i * 28))).type_Set(0);
+                new O3Plr((0x80153F80u + (uint)(i * 28))).f8_Set(0);
+                new O3Plr((0x80153F80u + (uint)(i * 28))).fC_Set(0);
             }
         }
     }

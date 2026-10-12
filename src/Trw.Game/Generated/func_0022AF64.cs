@@ -13,7 +13,7 @@ public static partial class Game
             uint p = 0u;
             if (((Mem.S32(0x8013B29Cu) == 0) && (Mem.S32(0x80146894u) == 0)))
             {
-                p = ((Mem.U32((a + 1500u)) != 0u) ? (Mem.U32((a + 1500u)) + 296u) : (a + (uint)8));
+                p = ((new Plr(a).unk5DC_ != 0u) ? new Pawn(new Plr(a).unk5DC_).pos128.P : (a + (uint)8));
                 func_0025CA44((uint)((int)(func_0025CC8C())), (uint)(Mem.S32((a + (uint)4544))));
                 Mem.Set((a + (uint)4544), (int)(func_0025C97C((uint)((int)(func_0025CC8C())), b, p, (int)(p), (int)(a))));
             }

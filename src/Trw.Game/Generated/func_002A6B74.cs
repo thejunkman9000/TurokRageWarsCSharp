@@ -10,14 +10,14 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A6B74", (uint)o, (uint)a, (uint)b, (uint)c);
-            uint e = func_002796AC((o + 30088u));
+            uint e = func_002796AC(new Obj7588(o).sub.P);
             if ((e != 0u))
             {
-                Mem.Set((e + 24u), a);
-                Mem.Set((e + 20u), b);
-                Mem.Set((e + 8u), 0);
-                Mem.Set((e + 12u), d);
-                Mem.Set((e + 16u), c);
+                new Ent6B74(e).unk18_Set(a);
+                new Ent6B74(e).unk14_Set(b);
+                new Ent6B74(e).unk8_Set(0);
+                new Ent6B74(e).unkC_Set(d);
+                new Ent6B74(e).unk10_Set(c);
             }
         }
     }

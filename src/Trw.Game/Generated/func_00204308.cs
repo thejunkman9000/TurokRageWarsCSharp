@@ -10,27 +10,27 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00204308", (uint)actor, (uint)state, (uint)other);
-            uint info = (Mem.U32((actor + 24u)) + (uint)20);
-            if (((int)(Mem.S16((info + 22u))) != 0))
+            uint info = (new B01Actor(actor).def_ + (uint)20);
+            if (((int)(new B01Info(info).unk16) != 0))
             {
-                if ((((int)(Mem.S8((state + 52u))) == 0) && ((int)(Mem.U8(other)) == 1)))
+                if ((((int)(new B01State(state).unk34) == 0) && ((int)(new B01Other(other).kind) == 1)))
                 {
-                    if (((Mem.U32((other + 256u)) & (uint)(3145728)) != 0u))
+                    if (((new B01Other(other).flags & (uint)(3145728)) != 0u))
                     {
-                        int idx = (int)(Mem.S16((info + 24u)));
-                        uint ow = Mem.U32((other + 472u));
+                        int idx = (int)(new B01Info(info).unk18);
+                        uint ow = new B01Other(other).owner_;
                         if ((idx != 0))
                         {
-                            uint p = Mem.U32((ow + 1500u));
+                            uint p = new B01Owner(ow).pawn;
                             uint who = 0x801450C8u;
                             if ((p != 0u))
                             {
                                 who = p;
                             }
-                            func_002398F8(0x80145088u, who, Mem.S32(Mem.U32((0x800D7F84u + (uint)(idx * 8)))), actor, 4.0f);
-                            if ((Mem.S32(((0x800D7F84u + (uint)(Mem.S16((info + 24u)) * 8)) + 4u)) != 0))
+                            func_002398F8(0x80145088u, who, (uint)(Mem.S32(new B01Slot((0x800D7F84u + (uint)(idx * 8))).a_)), (int)(actor), 4.0f);
+                            if ((new B01Slot((0x800D7F84u + (uint)(new B01Info(info).unk18 * 8))).b != 0))
                             {
-                                func_0025E13C(Mem.S32(((0x800D7F84u + (uint)(Mem.S16((info + 24u)) * 8)) + 4u)));
+                                func_0025E13C(new B01Slot((0x800D7F84u + (uint)(new B01Info(info).unk18 * 8))).b);
                             }
                         }
                         return 0;

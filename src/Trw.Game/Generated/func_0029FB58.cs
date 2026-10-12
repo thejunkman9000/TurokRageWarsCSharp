@@ -17,9 +17,9 @@ public static partial class Game
             {
                 for (j = (i + 1); (j < 4); ++j)
                 {
-                    t = Mem.F32(((m + (uint)(j * 16)) + (uint)(i * 4)));
-                    Mem.Set(((m + (uint)(j * 16)) + (uint)(i * 4)), Mem.F32(((m + (uint)(i * 16)) + (uint)(j * 4))));
-                    Mem.Set(((m + (uint)(i * 16)) + (uint)(j * 4)), t);
+                    t = Mem.F32(((new Mtx4f(m).m.P + (uint)(j * 16)) + (uint)(i * 4)));
+                    Mem.Set(((new Mtx4f(m).m.P + (uint)(j * 16)) + (uint)(i * 4)), Mem.F32(((new Mtx4f(m).m.P + (uint)(i * 16)) + (uint)(j * 4))));
+                    Mem.Set(((new Mtx4f(m).m.P + (uint)(i * 16)) + (uint)(j * 4)), t);
                 }
             }
         }

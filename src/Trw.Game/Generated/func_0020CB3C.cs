@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020CB3C_getRec0", (uint)m, (uint)idx);
-            uint pool = Mem.U32(m);
-            return ((pool + 8u) + (uint)(idx * Mem.S32(pool)));
+            uint pool = new B2Mgr(m).pool0_;
+            return (new B2Pool(pool).data.P + (uint)(idx * new B2Pool(pool).elemSize));
         }
     }
 
@@ -27,10 +27,10 @@ public static partial class Game
                 float bestd = 0.0f;
                 int i = 0;
                 float d2 = 0f;
-                for (i = 0; (i < Mem.S32((m + 4u))); ++i)
+                for (i = 0; (i < new B2Mgr(m).unk4); ++i)
                 {
                     func_00271FD8(_fp, p, func_0020CB3C_getRec0(m, i));
-                    d2 = (((Mem.F32(_fp) * Mem.F32(_fp)) + (Mem.F32((_fp + 4u)) * Mem.F32((_fp + 4u)))) + (Mem.F32((_fp + 8u)) * Mem.F32((_fp + 8u))));
+                    d2 = (((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z));
                     if (((best < 0) || (d2 < bestd)))
                     {
                         best = i;

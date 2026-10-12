@@ -17,16 +17,16 @@ public static partial class Game
             }
             else
             {
-                pad = (int)(Mem.S8((Mem.U32((o + 32u)) + 4u)));
+                pad = (int)(new O01Own3(o).unk20.unk4);
             }
             if (((int)(func_00406178(o, (uint)(pad), (uint)(1), default(uint))) == 0))
             {
-                func_004426E4(0x8014561Cu, 0x0044FAD8u, (int)(Mem.U32((o + 28u))), (int)(Mem.U32((o + 32u))), Mem.S32((o + 36u)));
+                func_004426E4(0x8014561Cu, 0x0044FAD8u, (int)(new O01Own3(o).unk1C_), (int)(new O01Own3(o).unk20_), new O01Own3(o).unk24);
             }
             else
             {
                 Mem.Set(0x80153784u, 1);
-                func_004426E4(0x8014561Cu, (uint)(Mem.S32((o + 36u))), (int)(Mem.U32((o + 28u))), (int)(Mem.U32((o + 32u))), 0);
+                func_004426E4(0x8014561Cu, (uint)(new O01Own3(o).unk24), (int)(new O01Own3(o).unk1C_), (int)(new O01Own3(o).unk20_), 0);
             }
             do
             {

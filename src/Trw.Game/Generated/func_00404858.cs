@@ -22,14 +22,14 @@ public static partial class Game
             Mem.Set(0x8010FBB8u, (byte)(2));
             if ((r == 0))
             {
-                r = osPfsDeleteFile((0x80153510u + (uint)(pad * 104)), Mem.U16(((((Mem.U32(0x800E2854u) + (uint)(pad * 516)) + 4u) + (uint)(idx * 32)) + 8u)), (uint)(Mem.S32(((((Mem.U32(0x800E2854u) + (uint)(pad * 516)) + 4u) + (uint)(idx * 32)) + 4u))), ((((Mem.U32(0x800E2854u) + (uint)(pad * 516)) + 4u) + (uint)(idx * 32)) + 14u), ((((Mem.U32(0x800E2854u) + (uint)(pad * 516)) + 4u) + (uint)(idx * 32)) + 10u));
+                r = osPfsDeleteFile((0x80153510u + (uint)(pad * 104)), new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent[(int)(idx)].unk8, (uint)(new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent[(int)(idx)].unk4), new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent[(int)(idx)].unkE.P, new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent[(int)(idx)].unkA.P);
                 if ((r != 0))
                 {
                     r = (-1);
                 }
                 func_00404018(pad);
             }
-            func_0026456C();
+            func_0026456C(default(uint), default(uint), default(uint), default(uint));
             return r;
         }
     }

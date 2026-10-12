@@ -12,13 +12,13 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00250950", (uint)o);
             int h = 0;
             int r = 0;
-            if (!(((int)(Mem.U16((o + 216u))) & 64) != 0))
+            if (!(((int)(new B12Obj(o).unkD8) & 64) != 0))
             {
-                h = (int)(func_00250754(o, (int)(Mem.S8((o + 1u)))));
+                h = (int)(func_00250754(o, (int)(new B12Obj(o).unk1)));
                 if ((h != 0))
                 {
                     func_0026E158((uint)(h));
-                    r = (int)(func_00251F0C((uint)(0), (uint)((int)((Mem.U32((o + 208u)) | (uint)(Mem.S32(0x800D2640u))))), (uint)(h), (uint)((int)(Mem.U32((o + 32u)))), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(0)));
+                    r = (int)(func_00251F0C((uint)(0), (uint)((int)((new B12Obj(o).unkD0 | (uint)(Mem.S32(0x800D2640u))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(0)));
                     if ((r != 0))
                     {
                         func_002536F4(0, (uint)(r));

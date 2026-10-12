@@ -10,26 +10,26 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alEnvmixerNew", (uint)e, (uint)hp);
-            alFilterNew(e, 0x002B9800u, 0x002BA288u, 4);
-            Mem.Set((e + 20u), alHeapDBAlloc(0u, 0, hp, 1, 80));
-            Mem.Set((e + 56u), 1);
-            Mem.Set((e + 72u), 0);
-            Mem.Set((e + 26u), (short)(1));
-            Mem.Set((e + 40u), (short)(1));
-            Mem.Set((e + 46u), (short)(1));
-            Mem.Set((e + 28u), (short)(1));
-            Mem.Set((e + 30u), (short)(1));
-            Mem.Set((e + 32u), (short)(0));
-            Mem.Set((e + 34u), (short)(0));
-            Mem.Set((e + 38u), (short)(1));
-            Mem.Set((e + 36u), (short)(0));
-            Mem.Set((e + 36u), (short)(0));
-            Mem.Set((e + 48u), 0);
-            Mem.Set((e + 52u), 0);
-            Mem.Set((e + 24u), (short)(0));
-            Mem.Set((e + 60u), 0);
-            Mem.Set((e + 64u), 0);
-            Mem.Set((e + 68u), 0);
+            alFilterNew(new ALEnvMixer(e).filter.P, 0x002B9800u, 0x002BA288u, 4);
+            new ALEnvMixer(e).state_Set(alHeapDBAlloc(0u, 0, hp, 1, 80));
+            new ALEnvMixer(e).first_Set(1);
+            new ALEnvMixer(e).motion_Set(0);
+            new ALEnvMixer(e).f1A_Set((short)(1));
+            new ALEnvMixer(e).f28_Set((short)(1));
+            new ALEnvMixer(e).f2E_Set((short)(1));
+            new ALEnvMixer(e).f1C_Set((short)(1));
+            new ALEnvMixer(e).f1E_Set((short)(1));
+            new ALEnvMixer(e).f20_Set((short)(0));
+            new ALEnvMixer(e).f22_Set((short)(0));
+            new ALEnvMixer(e).f26_Set((short)(1));
+            Mem.Set(new ALEnvMixer(e).f24.P, (short)(0));
+            Mem.Set(new ALEnvMixer(e).f24.P, (short)(0));
+            new ALEnvMixer(e).f30_Set(0);
+            new ALEnvMixer(e).f34_Set(0);
+            new ALEnvMixer(e).f18_Set((short)(0));
+            new ALEnvMixer(e).f3C_Set(0);
+            new ALEnvMixer(e).f40_Set(0);
+            new ALEnvMixer(e).f44_Set(0);
         }
     }
 

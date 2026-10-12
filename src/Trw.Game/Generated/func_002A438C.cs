@@ -17,15 +17,15 @@ public static partial class Game
                 uint n = 0u;
                 uint p = 0u;
                 uint q = 0u;
-                if ((Mem.S32((slot + 72u)) < 2))
+                if ((new S438C(slot).unk48 < 2))
                 {
                     return;
                 }
-                e = Mem.U32((slot + 64u));
-                n = Mem.U32((e + 4u));
+                e = new S438C(slot).list_;
+                n = new E438C(e).next_;
                 if ((e != 0u))
                 {
-                    func_00272D20(_fp, Mem.F32((e + 28u)), Mem.F32((e + 32u)), Mem.F32((e + 36u)));
+                    func_00272D20(_fp, new E438C(e).unk1C, new E438C(e).unk20, new E438C(e).unk24);
                 }
                 else
                 {
@@ -46,13 +46,13 @@ public static partial class Game
                 {
                     goto L_copy;
                 }
-                if (((Mem.F32((e + 16u)) == Mem.F32((n + 16u))) && (Mem.F32(((e + 16u) + 4u)) == Mem.F32(((n + 16u) + 4u)))))
+                if (((new E438C(e).pos.x == new E438C(n).pos.x) && (new E438C(e).pos.y == new E438C(n).pos.y)))
                 {
                     L_again: ;
-                    if ((Mem.F32(((p + 16u) + 8u)) == Mem.F32(((q + 16u) + 8u))))
+                    if ((new E438C(p).pos.z == new E438C(q).pos.z))
                     {
                         p = q;
-                        q = Mem.U32((q + 4u));
+                        q = new E438C(q).next_;
                         if ((p == 0u))
                         {
                             goto L_copy;
@@ -61,7 +61,7 @@ public static partial class Game
                         {
                             goto L_check;
                         }
-                        if (((Mem.F32((p + 16u)) == Mem.F32((q + 16u))) && (Mem.F32(((p + 16u) + 4u)) == Mem.F32(((q + 16u) + 4u)))))
+                        if (((new E438C(p).pos.x == new E438C(q).pos.x) && (new E438C(p).pos.y == new E438C(q).pos.y)))
                         {
                             goto L_again;
                         }
@@ -79,22 +79,22 @@ public static partial class Game
                 func_002A41D8(p, q, arg, _fp);
                 goto L_next;
                 L_copy: ;
-                Mem.Set((_fp + 48u), Mem.F32((e + 16u)));
-                Mem.Set(((_fp + 48u) + 4u), Mem.F32(((e + 16u) + 4u)));
-                Mem.Set(((_fp + 48u) + 8u), Mem.F32(((e + 16u) + 8u)));
+                new Vec3f((_fp + 48u)).x_Set(new E438C(e).pos.x);
+                new Vec3f((_fp + 48u)).y_Set(new E438C(e).pos.y);
+                new Vec3f((_fp + 48u)).z_Set(new E438C(e).pos.z);
                 L_next: ;
-                func_002702EC(_fp, ((e + 40u) + (uint)(Mem.S32(0x800D297Cu) * 64)));
+                func_002702EC(_fp, (new E438C(e).m28.P + (uint)(Mem.S32(0x800D297Cu) * 64)));
                 e = n;
-                n = Mem.U32((e + 4u));
+                n = new E438C(e).next_;
                 if ((e != 0u))
                 {
                     goto L_loop;
                 }
                 L_tail: ;
-                Mem.Set((_fp + 48u), Mem.F32((e + 16u)));
-                Mem.Set(((_fp + 48u) + 4u), Mem.F32(((e + 16u) + 4u)));
-                Mem.Set(((_fp + 48u) + 8u), Mem.F32(((e + 16u) + 8u)));
-                func_002702EC(_fp, ((e + 40u) + (uint)(Mem.S32(0x800D297Cu) * 64)));
+                new Vec3f((_fp + 48u)).x_Set(new E438C(e).pos.x);
+                new Vec3f((_fp + 48u)).y_Set(new E438C(e).pos.y);
+                new Vec3f((_fp + 48u)).z_Set(new E438C(e).pos.z);
+                func_002702EC(_fp, (new E438C(e).m28.P + (uint)(Mem.S32(0x800D297Cu) * 64)));
             }
         }
         finally { Stack.Free(60); }

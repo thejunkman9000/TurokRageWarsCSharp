@@ -10,14 +10,14 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A2DE4", (uint)o);
-            uint n = Mem.U32((o + 8u));
-            Mem.Set((o + 92u), 2);
-            Mem.Set((o + 72u), 0);
-            for (; (n != 0u); n = Mem.U32((n + 4u)))
+            uint n = new StateObj(o).list_;
+            new StateObj(o).unk5C_Set(2);
+            new StateObj(o).unk48_Set(0);
+            for (; (n != 0u); n = new SubNode(n).next_)
             {
-                if (((int)(Mem.U16((n + 14u))) != 8))
+                if (((int)(new SubNode(n).unkE) != 8))
                 {
-                    Mem.Set((n + 16u), (byte)(100));
+                    new SubNode(n).unk10_Set((byte)(100));
                 }
             }
             return 0;

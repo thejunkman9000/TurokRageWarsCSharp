@@ -26,21 +26,21 @@ public static partial class Game
             n = func_00251448((uint)(0), (uint)(34), default(uint), default(uint));
             if ((n != 0u))
             {
-                Mem.Set((n + 8u), (int)(Mem.S32((n + 8u)) + 1));
-                Mem.Set((n + 12u), (uint)((uint)(Mem.U32((n + 12u))) | (uint)(256)));
-                Mem.Set(n, (uint)((int)(func_00254B2C(0, (uint)(a2), ((34 >> (int)5) & 1), (uint)(34)))));
-                if ((Mem.U32(n) != 0u))
+                new B12Node(n).refs_Set((int)(new B12Node(n).refs + 1));
+                new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) | (uint)(256)));
+                new B12Node(n).key_Set((uint)((int)(func_00254B2C(0, (uint)(a2), ((34 >> (int)5) & 1), (uint)(34)))));
+                if ((new B12Node(n).key != 0u))
                 {
-                    Mem.Set((n + 4u), a2);
-                    Mem.Set((n + 12u), (uint)((uint)(Mem.U32((n + 12u))) | (uint)(34)));
+                    new B12Node(n).unk4_Set(a2);
+                    new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) | (uint)(34)));
                     func_00254C10((uint)(0), n);
                 }
                 else
                 {
-                    Mem.Set((n + 8u), (int)(Mem.S32((n + 8u)) - 1));
-                    if ((Mem.S32((n + 8u)) == 0))
+                    new B12Node(n).refs_Set((int)(new B12Node(n).refs - 1));
+                    if ((new B12Node(n).refs == 0))
                     {
-                        Mem.Set((n + 12u), (uint)((uint)(Mem.U32((n + 12u))) & (uint)((~256))));
+                        new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) & (uint)((~256))));
                     }
                     func_00254A70(0, n);
                     n = 0u;

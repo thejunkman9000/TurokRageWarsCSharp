@@ -13,7 +13,7 @@ public static partial class Game
             func_0025E2F4((-1));
             func_0025E3A4();
             func_0025E35C();
-            func_0044E9A0(0x8011FAC0u, default(uint), default(uint), default(uint));
+            func_0044E9A0(0x8011FAC0u);
             return 1;
         }
     }

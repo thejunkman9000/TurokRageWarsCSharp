@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022C6D4_isBusy", (uint)p);
-            if (((((int)(Mem.S16((p + 1616u))) == 21) || ((int)(Mem.S16((p + 1616u))) == 19)) || ((int)(Mem.S16((p + 1616u))) == 20)))
+            if (((((int)(new Player_v3(p).state) == 21) || ((int)(new Player_v3(p).state) == 19)) || ((int)(new Player_v3(p).state) == 20)))
             {
                 return 1;
             }
@@ -27,13 +27,13 @@ public static partial class Game
             {
                 return 0;
             }
-            if (((Mem.U32((o + 56u)) & (uint)(131072)) != 0u))
+            if (((new ObjDef_v2(o).f38 & (uint)(131072)) != 0u))
             {
-                if (((int)(Mem.S16((p + 1616u))) == 13))
+                if (((int)(new Player_v3(p).state) == 13))
                 {
                     return 0;
                 }
-                if (((int)(Mem.S16((p + 1616u))) == 14))
+                if (((int)(new Player_v3(p).state) == 14))
                 {
                     return 0;
                 }

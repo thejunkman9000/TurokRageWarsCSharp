@@ -13,16 +13,16 @@ public static partial class Game
             float sq = 0f;
             float len = 0f;
             float s = 0f;
-            sq = (((Mem.F32(v) * Mem.F32(v)) + (Mem.F32((v + 4u)) * Mem.F32((v + 4u)))) + (Mem.F32((v + 8u)) * Mem.F32((v + 8u))));
+            sq = (((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z));
             if (((maxLen * maxLen) < sq))
             {
                 len = func_002BC380(sq);
                 if ((len != 0.0f))
                 {
                     s = (maxLen / len);
-                    Mem.Set(v, (float)((float)(Mem.F32(v)) * s));
-                    Mem.Set((v + 4u), (float)((float)(Mem.F32((v + 4u))) * s));
-                    Mem.Set((v + 8u), (float)((float)(Mem.F32((v + 8u))) * s));
+                    new Vec3f(v).x_Set((float)((float)(new Vec3f(v).x) * s));
+                    new Vec3f(v).y_Set((float)((float)(new Vec3f(v).y) * s));
+                    new Vec3f(v).z_Set((float)((float)(new Vec3f(v).z) * s));
                     return 1;
                 }
             }

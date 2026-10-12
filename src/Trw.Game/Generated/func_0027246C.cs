@@ -14,10 +14,10 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_0027246C_vproj", 0u, (uint)a, (uint)b);
                 float d = 0f;
-                d = (((Mem.F32(a) * Mem.F32(b)) + (Mem.F32((a + 4u)) * Mem.F32((b + 4u)))) + (Mem.F32((a + 8u)) * Mem.F32((b + 8u))));
-                Mem.Set(_fp, (Mem.F32(a) - (d * Mem.F32(b))));
-                Mem.Set((_fp + 4u), (Mem.F32((a + 4u)) - (d * Mem.F32((b + 4u)))));
-                Mem.Set((_fp + 8u), (Mem.F32((a + 8u)) - (d * Mem.F32((b + 8u)))));
+                d = (((new Vec3f(a).x * new Vec3f(b).x) + (new Vec3f(a).y * new Vec3f(b).y)) + (new Vec3f(a).z * new Vec3f(b).z));
+                new Vec3f(_fp).x_Set((new Vec3f(a).x - (d * new Vec3f(b).x)));
+                new Vec3f(_fp).y_Set((new Vec3f(a).y - (d * new Vec3f(b).y)));
+                new Vec3f(_fp).z_Set((new Vec3f(a).z - (d * new Vec3f(b).z)));
                 Mem.Copy(_ret, _fp, 12);
                 return _ret;
             }
@@ -36,13 +36,13 @@ public static partial class Game
                 float len = 0f;
                 float s = 0f;
                 Mem.Copy((_fp + 16u), C.Seq(func_0027246C_vproj(_fp, v, n), _fp), 12);
-                len = func_002BC380((((Mem.F32((_fp + 16u)) * Mem.F32((_fp + 16u))) + (Mem.F32(((_fp + 16u) + 4u)) * Mem.F32(((_fp + 16u) + 4u)))) + (Mem.F32(((_fp + 16u) + 8u)) * Mem.F32(((_fp + 16u) + 8u)))));
+                len = func_002BC380((((new Vec3f((_fp + 16u)).x * new Vec3f((_fp + 16u)).x) + (new Vec3f((_fp + 16u)).y * new Vec3f((_fp + 16u)).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f((_fp + 16u)).z)));
                 if ((len != 0.0f))
                 {
-                    s = (func_002BC380((((Mem.F32(v) * Mem.F32(v)) + (Mem.F32((v + 4u)) * Mem.F32((v + 4u)))) + (Mem.F32((v + 8u)) * Mem.F32((v + 8u))))) / len);
-                    Mem.Set((_fp + 16u), (float)((float)(Mem.F32((_fp + 16u))) * s));
-                    Mem.Set(((_fp + 16u) + 4u), (float)((float)(Mem.F32(((_fp + 16u) + 4u))) * s));
-                    Mem.Set(((_fp + 16u) + 8u), (float)((float)(Mem.F32(((_fp + 16u) + 8u))) * s));
+                    s = (func_002BC380((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z))) / len);
+                    new Vec3f((_fp + 16u)).x_Set((float)((float)(new Vec3f((_fp + 16u)).x) * s));
+                    new Vec3f((_fp + 16u)).y_Set((float)((float)(new Vec3f((_fp + 16u)).y) * s));
+                    new Vec3f((_fp + 16u)).z_Set((float)((float)(new Vec3f((_fp + 16u)).z) * s));
                 }
                 Mem.Copy(_ret, (_fp + 16u), 12);
                 return _ret;

@@ -10,22 +10,22 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00243864", (uint)o);
-            uint x = Mem.U32((o + 88u));
-            uint p = Mem.U32((x + 180u));
+            uint x = new B10Obj(o).p58_;
+            uint p = new B10X(x).pB4;
             uint node = 0u;
             uint t = 0u;
             int n = 0;
             int i = 0;
             if ((p != 0u))
             {
-                func_0026F690((o + 100u), (x + 104u), (o + 12u));
+                func_0026F690((o + 100u), new B10X(x).m68.P, (o + 12u));
                 node = Mem.U32(p);
-                Mem.Set((o + 164u), func_0028FD94(node, 0));
+                new B10Obj(o).pA4__Set(func_0028FD94(node, 0));
                 t = func_0028FD94(node, 2);
                 n = Mem.S32(t);
                 for (i = 0; (i < n); ++i)
                 {
-                    func_00242FD8(o, func_0028FD94(t, i), default(uint), default(uint));
+                    func_00242FD8(o, func_0028FD94(t, i));
                 }
             }
         }

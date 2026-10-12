@@ -10,11 +10,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A6A54", (uint)o);
-            if ((Mem.F32((o + 36u)) != 0.0f))
+            if ((new Obj6A54(o).unk24 != 0.0f))
             {
-                Mem.Set((0x800D15E4u + (uint)(0 * 4)), Mem.F32((o + 52u)));
-                Mem.Set((0x800D15E4u + (uint)(1 * 4)), Mem.F32((o + 56u)));
-                Mem.Set((0x800D15E4u + (uint)(2 * 4)), Mem.F32((o + 60u)));
+                Mem.Set((0x800D15E4u + (uint)(0 * 4)), new Obj6A54(o).unk34);
+                Mem.Set((0x800D15E4u + (uint)(1 * 4)), new Obj6A54(o).unk38);
+                Mem.Set((0x800D15E4u + (uint)(2 * 4)), new Obj6A54(o).unk3C);
             }
             else
             {
@@ -22,8 +22,8 @@ public static partial class Game
                 Mem.Set((0x800D15E4u + (uint)(1 * 4)), 0.0f);
                 Mem.Set((0x800D15E4u + (uint)(2 * 4)), 0.0f);
             }
-            Mem.Set((0x800D15F0u + (uint)(0 * 4)), Mem.F32((o + 36u)));
-            Mem.Set((0x800D15F0u + (uint)(1 * 4)), Mem.F32((o + 20u)));
+            Mem.Set((0x800D15F0u + (uint)(0 * 4)), new Obj6A54(o).unk24);
+            Mem.Set((0x800D15F0u + (uint)(1 * 4)), new Obj6A54(o).unk14);
         }
     }
 

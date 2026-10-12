@@ -188,7 +188,7 @@ public static partial class Game
                 L_L002385EC: ;
                 r5 = r16; r2 = func_00255E78(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r23 + 3876u;
-                r5 = r16; r2 = func_00255C58(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r16; func_00255C58(r4, r5);
                 L_L00238600: ;
                 r1 = 2148335616u;
                 Cpu.SetW(0, Mem.U32((r1 - 31432u)));

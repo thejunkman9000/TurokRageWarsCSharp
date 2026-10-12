@@ -14,11 +14,11 @@ public static partial class Game
             uint r = 0u;
             int buf = 0;
             size = (n * 3800);
-            Mem.Set((p + 8u), n);
+            new PoolRef(p).unk8_Set(n);
             r = func_002533DC(0, size, (uint)(35), (int)((0x800C83C0u + (uint)(1 * 4))));
-            Mem.Set(p, r);
+            new PoolRef(p).unk0__Set(r);
             buf = Mem.S32((r + (uint)(0 * 4)));
-            Mem.Set((p + 4u), buf);
+            new PoolRef(p).unk4_Set(buf);
             memset((uint)(buf), 0, (uint)(size));
         }
     }

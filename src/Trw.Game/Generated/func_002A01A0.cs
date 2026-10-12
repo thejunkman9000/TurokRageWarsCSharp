@@ -16,12 +16,12 @@ public static partial class Game
             float z = 0f;
             for (i = 0; (i < n); ++i)
             {
-                x = Mem.F32((@in + (uint)(i * 12)));
-                y = Mem.F32(((@in + (uint)(i * 12)) + 4u));
-                z = Mem.F32(((@in + (uint)(i * 12)) + 8u));
-                Mem.Set((@out + (uint)(i * 12)), ((((Mem.F32(((m + (uint)(0 * 16)) + (uint)(0 * 4))) * x) + (Mem.F32(((m + (uint)(1 * 16)) + (uint)(0 * 4))) * y)) + (Mem.F32(((m + (uint)(2 * 16)) + (uint)(0 * 4))) * z)) + Mem.F32(((m + (uint)(3 * 16)) + (uint)(0 * 4)))));
-                Mem.Set(((@out + (uint)(i * 12)) + 4u), ((((Mem.F32(((m + (uint)(0 * 16)) + (uint)(1 * 4))) * x) + (Mem.F32(((m + (uint)(1 * 16)) + (uint)(1 * 4))) * y)) + (Mem.F32(((m + (uint)(2 * 16)) + (uint)(1 * 4))) * z)) + Mem.F32(((m + (uint)(3 * 16)) + (uint)(1 * 4)))));
-                Mem.Set(((@out + (uint)(i * 12)) + 8u), ((((Mem.F32(((m + (uint)(0 * 16)) + (uint)(2 * 4))) * x) + (Mem.F32(((m + (uint)(1 * 16)) + (uint)(2 * 4))) * y)) + (Mem.F32(((m + (uint)(2 * 16)) + (uint)(2 * 4))) * z)) + Mem.F32(((m + (uint)(3 * 16)) + (uint)(2 * 4)))));
+                x = new Vec3f((@in + (uint)(i * 12))).x;
+                y = new Vec3f((@in + (uint)(i * 12))).y;
+                z = new Vec3f((@in + (uint)(i * 12))).z;
+                new Vec3f((@out + (uint)(i * 12))).x_Set(((((Mem.F32(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4))) * x) + (Mem.F32(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(0 * 4))) * y)) + (Mem.F32(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(0 * 4))) * z)) + Mem.F32(((new Mtx4f(m).m.P + (uint)(3 * 16)) + (uint)(0 * 4)))));
+                new Vec3f((@out + (uint)(i * 12))).y_Set(((((Mem.F32(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(1 * 4))) * x) + (Mem.F32(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4))) * y)) + (Mem.F32(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(1 * 4))) * z)) + Mem.F32(((new Mtx4f(m).m.P + (uint)(3 * 16)) + (uint)(1 * 4)))));
+                new Vec3f((@out + (uint)(i * 12))).z_Set(((((Mem.F32(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(2 * 4))) * x) + (Mem.F32(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(2 * 4))) * y)) + (Mem.F32(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4))) * z)) + Mem.F32(((new Mtx4f(m).m.P + (uint)(3 * 16)) + (uint)(2 * 4)))));
             }
         }
     }

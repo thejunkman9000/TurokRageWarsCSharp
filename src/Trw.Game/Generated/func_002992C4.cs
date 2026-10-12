@@ -14,30 +14,30 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 64); ++i)
             {
-                if ((Mem.S32(((Mem.U32(0x8014D080u) + 28u) + (uint)(i * 20))) == id))
+                if ((new P4SlotTbl(Mem.U32(0x8014D080u)).ent[(int)(i)].id == id))
                 {
                     idx = i;
                     break;
                 }
-                if (((Mem.S32(((Mem.U32(0x8014D080u) + 28u) + (uint)(i * 20))) == (-1)) && (idx == (-1))))
+                if (((new P4SlotTbl(Mem.U32(0x8014D080u)).ent[(int)(i)].id == (-1)) && (idx == (-1))))
                 {
                     idx = i;
                 }
             }
             if ((a != 0))
             {
-                Mem.Set(((Mem.U32(0x8014D080u) + 28u) + (uint)(idx * 20)), id);
-                Mem.Set((((Mem.U32(0x8014D080u) + 28u) + (uint)(idx * 20)) + 4u), a);
-                Mem.Set((((Mem.U32(0x8014D080u) + 28u) + (uint)(idx * 20)) + 12u), b);
-                Mem.Set((((Mem.U32(0x8014D080u) + 28u) + (uint)(idx * 20)) + 8u), 0);
-                Mem.Set((((Mem.U32(0x8014D080u) + 28u) + (uint)(idx * 20)) + 16u), c);
+                new P4SlotTbl(Mem.U32(0x8014D080u)).ent[(int)(idx)].id_Set(id);
+                new P4SlotTbl(Mem.U32(0x8014D080u)).ent[(int)(idx)].f4_Set(a);
+                new P4SlotTbl(Mem.U32(0x8014D080u)).ent[(int)(idx)].fC_Set(b);
+                new P4SlotTbl(Mem.U32(0x8014D080u)).ent[(int)(idx)].f8_Set(0);
+                new P4SlotTbl(Mem.U32(0x8014D080u)).ent[(int)(idx)].f10_Set(c);
             }
             else
             {
-                Mem.Set(((Mem.U32(0x8014D080u) + 28u) + (uint)(idx * 20)), (-1));
-                Mem.Set((((Mem.U32(0x8014D080u) + 28u) + (uint)(idx * 20)) + 4u), 0);
-                Mem.Set((((Mem.U32(0x8014D080u) + 28u) + (uint)(idx * 20)) + 12u), 0);
-                Mem.Set((((Mem.U32(0x8014D080u) + 28u) + (uint)(idx * 20)) + 8u), 0);
+                new P4SlotTbl(Mem.U32(0x8014D080u)).ent[(int)(idx)].id_Set((-1));
+                new P4SlotTbl(Mem.U32(0x8014D080u)).ent[(int)(idx)].f4_Set(0);
+                new P4SlotTbl(Mem.U32(0x8014D080u)).ent[(int)(idx)].fC_Set(0);
+                new P4SlotTbl(Mem.U32(0x8014D080u)).ent[(int)(idx)].f8_Set(0);
             }
         }
     }

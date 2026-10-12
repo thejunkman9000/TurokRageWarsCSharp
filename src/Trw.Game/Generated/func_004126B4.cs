@@ -17,9 +17,9 @@ public static partial class Game
                 uint r = 0u;
                 uint col = 0u;
                 uint p = o;
-                for (r = (uint)(0); (r < (uint)(Mem.U8((p + 72u)))); ++r)
+                for (r = (uint)(0); (r < (uint)(new S_func_004126B4(p).rows)); ++r)
                 {
-                    for (col = (uint)(0); (col < (uint)(Mem.U8((p + 73u)))); ++col)
+                    for (col = (uint)(0); (col < (uint)(new S_func_004126B4(p).cols)); ++col)
                     {
                         func_0041234C(p, (_fp + 40u), (uint)((int)(r)), (uint)((int)(col)));
                         func_0040D350((_fp + 40u), _fp);

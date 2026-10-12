@@ -16,7 +16,7 @@ public static partial class Game
             i = (sum = 0);
             while ((i < len))
             {
-                sum = (int)((int)(sum) + (int)(Mem.S8(((t + 8u) + (uint)(((int)(Mem.U8(((str += 1u) - 1u))) - 32) * 4)))));
+                sum = (int)((int)(sum) + (int)(Mem.S8((new T(t).e.P + (uint)(((int)(Mem.U8(((str += 1u) - 1u))) - 32) * 8)))));
                 ++i;
             }
             ++sum;

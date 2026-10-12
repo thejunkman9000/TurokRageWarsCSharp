@@ -10,17 +10,17 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0040A500", (uint)item);
-            switch (Mem.U32((Mem.U32(0x800E28BCu) + 144u)))
+            switch (new O01Cfg(Mem.U32(0x800E28BCu)).unk90)
             {
             default:
             case (uint)(0):
-                Mem.Set((item + 20u), 0x800D77D4u);
+                new O01Item(item).unk14__Set(0x800D77D4u);
                 break;
             case (uint)(16):
-                Mem.Set((item + 20u), 0x800D77D8u);
+                new O01Item(item).unk14__Set(0x800D77D8u);
                 break;
             case (uint)(32):
-                Mem.Set((item + 20u), 0x800D77DCu);
+                new O01Item(item).unk14__Set(0x800D77DCu);
                 break;
             }
             return 0;

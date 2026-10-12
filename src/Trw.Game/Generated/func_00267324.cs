@@ -19,22 +19,22 @@ public static partial class Game
                 uint s = 0u;
                 vol = Mem.F32(0x800C9514u);
                 s = (uint)((-1));
-                if ((Mem.S32((0x801462C8u + 1484u)) == 0))
+                if ((new B15Globals(0x801462C8u).unk5CC == 0))
                 {
                     if ((src != 0u))
                     {
-                        switch ((int)(Mem.U8(src)))
+                        switch ((int)(new B15Src(src).type))
                         {
                         case 1:
-                            if ((Mem.S32(Mem.U32((src + 24u))) == 1))
+                            if ((new B15Src(src).def.type == 1))
                             {
-                                if (((Mem.U32(0x801462C8u) & (uint)(64)) != 0u))
+                                if (((new B15Globals(0x801462C8u).flags0 & (uint)(64)) != 0u))
                                 {
                                     vol = Mem.F32(0x800C9518u);
                                 }
                                 else
                                 {
-                                    if (((Mem.U32(0x801462C8u) & (uint)(32)) != 0u))
+                                    if (((new B15Globals(0x801462C8u).flags0 & (uint)(32)) != 0u))
                                     {
                                         vol = Mem.F32(0x800C951Cu);
                                     }
@@ -46,11 +46,11 @@ public static partial class Game
                             s = src;
                             break;
                         case 0:
-                            s = Mem.U32((src + 208u));
+                            s = new B15Src(src).unkD0;
                             break;
                         }
                     }
-                    func_0025DEE0((int)(Mem.S16(((_fp + 16u) + 2u))), _fp, 0, (int)(s), vol);
+                    func_0025DEE0((int)(new B15Blk8((_fp + 16u)).b), _fp, 0, (int)(s), vol);
                 }
             }
         }

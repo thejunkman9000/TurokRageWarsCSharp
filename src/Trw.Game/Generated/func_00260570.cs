@@ -12,18 +12,18 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00260570", (uint)a, (uint)idx, (uint)@out);
             uint n = 0u;
             uint v = 0u;
-            if (((int)(Mem.S16(((Mem.U32(a) + (uint)(idx * 4)) + 2u))) == (-1)))
+            if (((int)(new B14Key((new B14Anim2(a).keys_ + (uint)(idx * 4))).b) == (-1)))
             {
-                v = (Mem.U32((a + 4u)) + (uint)(idx * 20));
-                Mem.Set((@out + (uint)(0 * 4)), ((float)((int)(Mem.S16(((v + 12u) + (uint)(0 * 2))))) * Mem.F32(0x800C925Cu)));
-                Mem.Set((@out + (uint)(1 * 4)), ((float)((int)(Mem.S16(((v + 12u) + (uint)(1 * 2))))) * Mem.F32(0x800C925Cu)));
-                Mem.Set((@out + (uint)(2 * 4)), ((float)((int)(Mem.S16(((v + 12u) + (uint)(2 * 2))))) * Mem.F32(0x800C925Cu)));
-                Mem.Set((@out + (uint)(3 * 4)), ((float)((int)(Mem.S16(((v + 12u) + (uint)(3 * 2))))) * Mem.F32(0x800C925Cu)));
+                v = (new B14Anim2(a).vals_ + (uint)(idx * 20));
+                Mem.Set((@out + (uint)(0 * 4)), ((float)((int)(new B14Val20(v).q[(int)(0)])) * Mem.F32(0x800C925Cu)));
+                Mem.Set((@out + (uint)(1 * 4)), ((float)((int)(new B14Val20(v).q[(int)(1)])) * Mem.F32(0x800C925Cu)));
+                Mem.Set((@out + (uint)(2 * 4)), ((float)((int)(new B14Val20(v).q[(int)(2)])) * Mem.F32(0x800C925Cu)));
+                Mem.Set((@out + (uint)(3 * 4)), ((float)((int)(new B14Val20(v).q[(int)(3)])) * Mem.F32(0x800C925Cu)));
             }
             else
             {
-                n = func_0028FD94(Mem.U32((a + 12u)), (int)(Mem.S16(((Mem.U32(a) + (uint)(idx * 4)) + 2u))));
-                func_00270B1C(@out, Cpu.U2F((uint)(Mem.S32((a + 32u)))), (n + (uint)(Mem.S32((a + 16u)) * 4)), (n + (uint)(Mem.S32((a + 20u)) * 4)));
+                n = func_0028FD94(new B14Anim2(a).tree, (int)(new B14Key((new B14Anim2(a).keys_ + (uint)(idx * 4))).b));
+                func_00270B1C(@out, Cpu.U2F((uint)(new B14Anim2(a).t)), (n + (uint)(new B14Anim2(a).lo * 4)), (n + (uint)(new B14Anim2(a).hi * 4)));
             }
         }
     }

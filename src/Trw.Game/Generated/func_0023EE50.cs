@@ -10,25 +10,25 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0023EE50", (uint)r);
-            while ((Mem.U32(r) != 0u))
+            while ((new B09InRec(r).dst_ != 0u))
             {
-                uint o = Mem.U32(r);
-                Mem.Set(Mem.U32(0x80103FCCu), 0);
-                Mem.Set((Mem.U32(0x80103FCCu) + 20u), (-1));
-                Mem.Set((Mem.U32(0x80103FCCu) + 136u), 0);
-                Mem.Set((Mem.U32(0x80103FCCu) + 156u), 0);
-                Mem.Set((Mem.U32(0x80103FCCu) + 176u), 0);
-                Mem.Set((Mem.U32(0x80103FCCu) + 180u), 0);
-                Mem.Set((Mem.U32(0x80103FCCu) + 196u), 0);
-                Mem.Set(o, Mem.S32((r + 4u)));
-                Mem.Set((o + 4u), Mem.U8((r + 11u)));
-                Mem.Set((o + 5u), Mem.U8((r + 15u)));
-                Mem.Set((o + 6u), Mem.U8((r + 19u)));
-                Mem.Set((o + 8u), Mem.F32((r + 20u)));
-                Mem.Set((o + 12u), Mem.F32((r + 24u)));
-                Mem.Set((o + 16u), Mem.F32((r + 28u)));
-                Mem.Set((o + 20u), Mem.F32((r + 32u)));
-                Mem.Set((o + 24u), Mem.F32((r + 36u)));
+                uint o = new B09InRec(r).dst_;
+                new B09Obj2(Mem.U32(0x80103FCCu)).unk0_Set(0);
+                new B09Obj2(Mem.U32(0x80103FCCu)).unk14_Set((-1));
+                new B09Obj2(Mem.U32(0x80103FCCu)).unk88_Set(0);
+                new B09Obj2(Mem.U32(0x80103FCCu)).unk9C_Set(0);
+                new B09Obj2(Mem.U32(0x80103FCCu)).unkB0_Set(0);
+                new B09Obj2(Mem.U32(0x80103FCCu)).unkB4_Set(0);
+                new B09Obj2(Mem.U32(0x80103FCCu)).unkC4_Set(0);
+                new B09Out(o).w0_Set(new B09InRec(r).w4);
+                new B09Out(o).b4_Set(new B09InRec(r).bB);
+                new B09Out(o).b5_Set(new B09InRec(r).bF);
+                new B09Out(o).b6_Set(new B09InRec(r).b13);
+                new B09Out(o).f8_Set(new B09InRec(r).f14);
+                new B09Out(o).fC_Set(new B09InRec(r).f18);
+                new B09Out(o).f10_Set(new B09InRec(r).f1C);
+                new B09Out(o).f14_Set(new B09InRec(r).f20);
+                new B09Out(o).f18_Set(new B09InRec(r).f24);
                 r += 40u;
             }
         }

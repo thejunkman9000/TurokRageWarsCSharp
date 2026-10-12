@@ -18,8 +18,8 @@ public static partial class Game
                 uint arr = 0u;
                 i = 0;
                 func_00216488(_fp, i, arg1, (int)Cpu.F2U(102.399994f), arg2, 0);
-                n = Mem.S32((lv + 3924u));
-                arr = (lv + 3668u);
+                n = new Level(lv).cntF54;
+                arr = new Level(lv).list4.P;
                 for (; (i < n); ++i)
                 {
                     uint a = Mem.U32((arr + (uint)(i * 4)));

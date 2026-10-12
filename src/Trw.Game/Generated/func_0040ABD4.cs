@@ -11,10 +11,10 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0040ABD4", (uint)item);
             uint f = 0u;
-            Mem.Set((Mem.U32((item + 12u)) + 288u), (uint)((uint)(Mem.U32((Mem.U32((item + 12u)) + 288u))) & 4227858431u));
-            f = Mem.U32((item + 12u));
+            new O01Item(item).unkC.unk120_Set((uint)((uint)(new O01Item(item).unkC.unk120) & 4227858431u));
+            f = new O01Item(item).unkC_;
             Mem.Set(0x80153788u, 8);
-            Mem.Set((f + 288u), (uint)((uint)(Mem.U32((f + 288u))) | (uint)(8)));
+            new O01Flags(f).unk120_Set((uint)((uint)(new O01Flags(f).unk120) | (uint)(8)));
             return (int)(func_00264A1C(f, default(uint), default(uint), default(uint)));
         }
     }

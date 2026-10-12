@@ -17,35 +17,35 @@ public static partial class Game
             {
                 return 0;
             }
-            s0 = Mem.S32(((0x800E4694u + (uint)(Mem.S32((Mem.U32(0x800E4690u) + 2628u)) * 28)) + 20u));
+            s0 = new O04Nav((0x800E4694u + (uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA44 * 28))).unk14;
             if ((s0 == (-1)))
             {
                 return 0;
             }
-            s1 = func_00265670((Mem.U32(0x800E4690u) + 2676u), s0);
+            s1 = func_00265670(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, s0);
             if ((s1 != d))
             {
                 return 0;
             }
             func_0025DF54(3709);
-            if ((func_00265670((Mem.U32(0x800E4690u) + 2681u), Mem.S32((Mem.U32(0x800E4690u) + 2628u))) == s1))
+            if ((func_00265670(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA79.P, new O04ModeS4690(Mem.U32(0x800E4690u)).unkA44) == s1))
             {
-                Mem.Set((Mem.U32((Mem.U32(0x800E4690u) + 2632u)) + 16u), (byte)(70));
+                new O04ModeS4690(Mem.U32(0x800E4690u)).unkA48.unk10_Set((byte)(70));
             }
             else
             {
-                Mem.Set((Mem.U32((Mem.U32(0x800E4690u) + 2632u)) + 16u), (byte)(170));
+                new O04ModeS4690(Mem.U32(0x800E4690u)).unkA48.unk10_Set((byte)(170));
             }
-            Mem.Set((Mem.U32(0x800E4690u) + 2628u), s0);
-            Mem.Set((Mem.U32(0x800E4690u) + 2632u), func_0040ECB0((uint)(a), (uint)((int)(Mem.U16(((0x800E4694u + (uint)(s0 * 28)) + 2u)))), default(uint), default(uint)));
+            new O04ModeS4690(Mem.U32(0x800E4690u)).unkA44_Set(s0);
+            new O04ModeS4690(Mem.U32(0x800E4690u)).unkA48__Set(func_0040ECB0((uint)(a), (uint)((int)(new O04Nav((0x800E4694u + (uint)(s0 * 28))).unk2)), default(uint), default(uint)));
             func_0042829C();
-            if (((int)(Mem.U8((0x801462C8u + 13u))) != 2))
+            if (((int)(new O04Cfg(0x801462C8u).unkD) != 2))
             {
                 func_00428388();
-                Mem.Set((Mem.U32(0x800E4690u) + 2668u), 0);
-                func_00427CE8(default(uint), default(uint), default(uint), default(uint));
+                new O04ModeS4690(Mem.U32(0x800E4690u)).unkA6C_Set(0);
+                func_00427CE8();
             }
-            if (((int)(Mem.U8((0x801462C8u + 13u))) == 4))
+            if (((int)(new O04Cfg(0x801462C8u).unkD) == 4))
             {
                 func_00427B98();
             }

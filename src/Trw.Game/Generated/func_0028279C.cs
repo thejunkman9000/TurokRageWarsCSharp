@@ -21,58 +21,58 @@ public static partial class Game
                 int a2 = 0;
                 int s3 = 0;
                 int cnt = 0;
-                o = Mem.U32(((owner + 64552u) + (uint)(1 * 20)));
+                o = new B19Owner(owner).slot[(int)(1)].head_;
                 while ((o != 0u))
                 {
-                    next = Mem.U32((o + 492u));
-                    if (((((int)(Mem.U16((o + 4u))) == 1054) && ((Mem.U32((o + 92u)) & (uint)(256)) != 0u)) && (Mem.S32((o + 300u)) == key)))
+                    next = new B19Obj(o).next_;
+                    if (((((int)(new B19Obj(o).id) == 1054) && ((new B19Obj(o).flags & (uint)(256)) != 0u)) && (new B19Obj(o).unk12C == key)))
                     {
-                        Mem.Set((o + 92u), (uint)((uint)(Mem.U32((o + 92u))) & (uint)((~256))));
-                        par = Mem.U32((o + 280u));
+                        new B19Obj(o).flags_Set((uint)((uint)(new B19Obj(o).flags) & (uint)((~256))));
+                        par = new B19Obj(o).parent_;
                         k = ((func_0028403C(o) != 0) ? 12 : 10);
-                        s2 = (int)(Mem.U16(((Mem.U32((par + 24u)) + 112u) + (uint)(k * 2))));
-                        a2 = (int)(Mem.U16(((Mem.U32((par + 24u)) + 140u) + (uint)(k * 2))));
-                        Mem.Copy(_fp, (Mem.U32((par + 24u)) + (uint)(k * 8)), 8);
-                        s3 = (int)(Mem.U16(((Mem.U32((par + 24u)) + 168u) + (uint)(k * 2))));
+                        s2 = (int)(new B19Parent(par).tbl.w70[(int)(k)]);
+                        a2 = (int)(new B19Parent(par).tbl.w8C[(int)(k)]);
+                        Mem.Copy(_fp, (new B19Parent(par).tbl.rec.P + (uint)(k * 8)), 8);
+                        s3 = (int)(new B19Parent(par).tbl.wA8[(int)(k)]);
                         if ((a2 != 65535))
                         {
-                            func_00265E30(o, o, (ushort)(a2), (-1), (o + 8u), _fp);
+                            func_00265E30(o, o, a2, (-1), new B19Obj(o).pos.P, _fp);
                         }
                         if ((s2 != 65535))
                         {
-                            func_00279BB0(o, s2, (int)(Mem.S8((o + 464u))), 1);
+                            func_00279BB0(o, s2, (int)(new B19Obj(o).unk1D0), 1);
                         }
                         if ((s3 != 65535))
                         {
-                            func_0025DE74((int)((uint)((short)(s3))), C.Tmp(Cpu.F2U(Mem.F32((o + 8u))), Cpu.F2U(Mem.F32(((o + 8u) + 4u))), Cpu.F2U(Mem.F32(((o + 8u) + 8u)))), (int)((uint)(0)), (int)((uint)((-1))));
+                            func_0025DE74((int)((uint)((short)(s3))), C.Tmp(Cpu.F2U(new B19Obj(o).pos.x), Cpu.F2U(new B19Obj(o).pos.y), Cpu.F2U(new B19Obj(o).pos.z)), (int)((uint)(0)), (int)((uint)((-1))));
                         }
-                        Mem.Set((o + 92u), (uint)((uint)(Mem.U32((o + 92u))) | (uint)(256)));
-                        if (((Mem.U32((o + 92u)) & (uint)(256)) != 0u))
+                        new B19Obj(o).flags_Set((uint)((uint)(new B19Obj(o).flags) | (uint)(256)));
+                        if (((new B19Obj(o).flags & (uint)(256)) != 0u))
                         {
-                            if (!((Mem.U32((o + 92u)) & (uint)(2048)) != 0u))
+                            if (!((new B19Obj(o).flags & (uint)(2048)) != 0u))
                             {
                                 func_00279A70(o, default(uint), default(uint), default(uint));
-                                if (((int)(Mem.U8((o + 473u))) != 0))
+                                if (((int)(new B19Obj(o).unk1D9) != 0))
                                 {
                                     func_0028414C(o);
                                     func_002A52E4(0x8013BA80u, o, default(uint), default(uint));
                                 }
-                                if ((Mem.S32((o + 312u)) != 0))
+                                if ((new B19Obj(o).unk138 != 0))
                                 {
-                                    func_00268C7C(0x8013B1A8u, (uint)(Mem.S32((o + 312u))));
-                                    Mem.Set((o + 312u), 0);
+                                    func_00268C7C(0x8013B1A8u, (uint)(new B19Obj(o).unk138));
+                                    new B19Obj(o).unk138_Set(0);
                                 }
-                                if ((Mem.U32((o + 304u)) != 0u))
+                                if ((new B19Obj(o).unk130_ != 0u))
                                 {
-                                    Mem.Set(Mem.U32((o + 304u)), (int)((int)(Mem.S32(Mem.U32((o + 304u)))) - 1));
+                                    Mem.Set(new B19Obj(o).unk130_, (int)((int)(Mem.S32(new B19Obj(o).unk130_)) - 1));
                                 }
-                                Mem.Set((o + 92u), (uint)((uint)(Mem.U32((o + 92u))) & 4261412607u));
-                                func_00255E78(Mem.U32((o + 484u)), o, default(uint), default(uint));
-                                Mem.Set((o + 484u), 0u);
-                                func_00255C58((owner + 64512u), o, default(uint), default(uint));
-                                if (((Mem.U32((o + 92u)) & (uint)(16777216)) != 0u))
+                                new B19Obj(o).flags_Set((uint)((uint)(new B19Obj(o).flags) & 4261412607u));
+                                func_00255E78(new B19Obj(o).slotp_, o, default(uint), default(uint));
+                                new B19Obj(o).slotp__Set(0u);
+                                func_00255C58(new B19Owner(owner).la.P, o);
+                                if (((new B19Obj(o).flags & (uint)(16777216)) != 0u))
                                 {
-                                    func_00255E78((owner + 64532u), o, default(uint), default(uint));
+                                    func_00255E78(new B19Owner(owner).lb.P, o, default(uint), default(uint));
                                 }
                             }
                         }

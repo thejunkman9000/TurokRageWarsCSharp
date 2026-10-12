@@ -11,9 +11,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0023CBB0", (uint)addr);
             uint r = 0u;
-            for (r = 0x80103F88u; (r != 0u); r = Mem.U32(r))
+            for (r = 0x80103F88u; (r != 0u); r = new B09Region(r).next_)
             {
-                if (((addr >= (uint)(Mem.U16((r + 4u)))) && (addr < (uint)(((int)(Mem.U16((r + 4u))) + (int)(Mem.U16((r + 6u))))))))
+                if (((addr >= (uint)(new B09Region(r).@base)) && (addr < (uint)(((int)(new B09Region(r).@base) + (int)(new B09Region(r).size))))))
                 {
                     break;
                 }

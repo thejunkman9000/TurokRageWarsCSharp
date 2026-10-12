@@ -13,7 +13,7 @@ public static partial class Game
             if ((Mem.U32(0x800D80A0u) == 0u))
             {
                 Mem.Set(0x800D80A0u, glob);
-                alSynNew(glob, config);
+                alSynNew(new ALGlobals(glob).drvr.P, config);
             }
         }
     }

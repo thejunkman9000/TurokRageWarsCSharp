@@ -11,18 +11,18 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00273E90", (uint)m);
             float t = 0f;
-            t = Mem.F32(((m + (uint)(0 * 16)) + (uint)(1 * 4)));
-            Mem.Set(((m + (uint)(0 * 16)) + (uint)(1 * 4)), Mem.F32(((m + (uint)(0 * 16)) + (uint)(2 * 4))));
-            Mem.Set(((m + (uint)(0 * 16)) + (uint)(2 * 4)), t);
-            t = Mem.F32(((m + (uint)(1 * 16)) + (uint)(1 * 4)));
-            Mem.Set(((m + (uint)(1 * 16)) + (uint)(1 * 4)), Mem.F32(((m + (uint)(1 * 16)) + (uint)(2 * 4))));
-            Mem.Set(((m + (uint)(1 * 16)) + (uint)(2 * 4)), t);
-            t = Mem.F32(((m + (uint)(2 * 16)) + (uint)(1 * 4)));
-            Mem.Set(((m + (uint)(2 * 16)) + (uint)(1 * 4)), Mem.F32(((m + (uint)(2 * 16)) + (uint)(2 * 4))));
-            Mem.Set(((m + (uint)(2 * 16)) + (uint)(2 * 4)), t);
-            t = Mem.F32(((m + (uint)(3 * 16)) + (uint)(1 * 4)));
-            Mem.Set(((m + (uint)(3 * 16)) + (uint)(1 * 4)), Mem.F32(((m + (uint)(3 * 16)) + (uint)(2 * 4))));
-            Mem.Set(((m + (uint)(3 * 16)) + (uint)(2 * 4)), t);
+            t = Mem.F32(((new P3Mtx(m).m.P + (uint)(0 * 16)) + (uint)(1 * 4)));
+            Mem.Set(((new P3Mtx(m).m.P + (uint)(0 * 16)) + (uint)(1 * 4)), Mem.F32(((new P3Mtx(m).m.P + (uint)(0 * 16)) + (uint)(2 * 4))));
+            Mem.Set(((new P3Mtx(m).m.P + (uint)(0 * 16)) + (uint)(2 * 4)), t);
+            t = Mem.F32(((new P3Mtx(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4)));
+            Mem.Set(((new P3Mtx(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), Mem.F32(((new P3Mtx(m).m.P + (uint)(1 * 16)) + (uint)(2 * 4))));
+            Mem.Set(((new P3Mtx(m).m.P + (uint)(1 * 16)) + (uint)(2 * 4)), t);
+            t = Mem.F32(((new P3Mtx(m).m.P + (uint)(2 * 16)) + (uint)(1 * 4)));
+            Mem.Set(((new P3Mtx(m).m.P + (uint)(2 * 16)) + (uint)(1 * 4)), Mem.F32(((new P3Mtx(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4))));
+            Mem.Set(((new P3Mtx(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), t);
+            t = Mem.F32(((new P3Mtx(m).m.P + (uint)(3 * 16)) + (uint)(1 * 4)));
+            Mem.Set(((new P3Mtx(m).m.P + (uint)(3 * 16)) + (uint)(1 * 4)), Mem.F32(((new P3Mtx(m).m.P + (uint)(3 * 16)) + (uint)(2 * 4))));
+            Mem.Set(((new P3Mtx(m).m.P + (uint)(3 * 16)) + (uint)(2 * 4)), t);
         }
     }
 

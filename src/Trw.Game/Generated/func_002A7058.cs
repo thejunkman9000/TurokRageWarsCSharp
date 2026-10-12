@@ -11,27 +11,27 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002A7058", (uint)e, (uint)e2, (uint)o);
             float t = 0f;
-            Mem.Set((o + 4u), (int)((Mem.U32((e + 8u)) + 36u)));
-            Mem.Set(o, (int)(Mem.U8((Mem.U32((e + 8u)) + 35u))));
-            if (((Mem.U32((e + 60u)) & (uint)(2)) != 0u))
+            new EmitOut(o).unk4_Set((int)((new Emit(e).def_ + 36u)));
+            new EmitOut(o).unk0_Set((int)(new Emit(e).def.unk23));
+            if (((new Emit(e).flags & (uint)(2)) != 0u))
             {
-                Mem.Set((o + 8u), Mem.S32((e + 12u)));
-                Mem.Set((o + 12u), Mem.S32((e + 16u)));
+                new EmitOut(o).unk8_Set(new Emit(e).unkC);
+                new EmitOut(o).unkC_Set(new Emit(e).unk10);
             }
             else
             {
-                Mem.Set((o + 8u), Mem.S32((e + 12u)));
-                Mem.Set((o + 12u), Mem.S32((e + 12u)));
+                new EmitOut(o).unk8_Set(new Emit(e).unkC);
+                new EmitOut(o).unkC_Set(new Emit(e).unkC);
             }
-            Mem.Set((o + 16u), ((float)((int)(Mem.U8((Mem.U32((e + 8u)) + 33u)))) * Mem.F32(0x800CB03Cu)));
-            Mem.Set((o + 20u), ((float)((int)(Mem.U8((Mem.U32((e + 8u)) + 34u)))) * Mem.F32(0x800CB03Cu)));
+            new EmitOut(o).unk10_Set(((float)((int)(new Emit(e).def.unk21)) * Mem.F32(0x800CB03Cu)));
+            new EmitOut(o).unk14_Set(((float)((int)(new Emit(e).def.unk22)) * Mem.F32(0x800CB03Cu)));
             if ((e2 != 0u))
             {
-                t = (float)((1 << (int)((int)(Mem.U8((Mem.U32((e2 + 8u)) + 2u))) + 5)));
-                Mem.Set((o + 24u), t);
-                Mem.Set((o + 24u), ((t * (float)((int)(Mem.U8((Mem.U32((e + 8u)) + 29u))))) - Mem.F32(0x800CB040u)));
-                Mem.Set((o + 28u), (float)((1 << (int)((int)(Mem.U8((Mem.U32((e2 + 8u)) + 3u))) + 5))));
-                Mem.Set((o + 32u), (Mem.F32(0x800CB044u) / ((float)(Mem.S32(o)) - Mem.F32(0x800CB044u))));
+                t = (float)((1 << (int)((int)(new Emit(e2).def.unk2) + 5)));
+                new EmitOut(o).unk18_Set(t);
+                new EmitOut(o).unk18_Set(((t * (float)((int)(new Emit(e).def.unk1D))) - Mem.F32(0x800CB040u)));
+                new EmitOut(o).unk1C_Set((float)((1 << (int)((int)(new Emit(e2).def.unk3) + 5))));
+                new EmitOut(o).unk20_Set((Mem.F32(0x800CB044u) / ((float)(new EmitOut(o).unk0) - Mem.F32(0x800CB044u))));
             }
         }
     }

@@ -13,12 +13,12 @@ public static partial class Game
             int t = func_0029EB58(arg);
             if ((t < func_0029AB4C()))
             {
-                Mem.Set((o + 92u), 2);
-                Mem.Set((o + 72u), 0);
+                new StateObj(o).unk5C_Set(2);
+                new StateObj(o).unk48_Set(0);
             }
             if ((mode == 1))
             {
-                Mem.Set((o + 92u), 0);
+                new StateObj(o).unk5C_Set(0);
                 func_002A2D14(o);
                 func_0025DF54(3713);
                 return 0;

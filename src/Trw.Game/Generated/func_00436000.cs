@@ -10,20 +10,20 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00436000", (uint)cfg);
-            Mem.Set(0x800E5554u, func_00252FFC((uint)(32), default(uint), default(uint), default(uint)));
+            Mem.Set(0x800E5554u, func_00252FFC((uint)(32)));
             func_002A3358();
-            Mem.Set((Mem.U32(0x800E5554u) + 28u), (-1));
+            new O05W20(Mem.U32(0x800E5554u)).f1C_Set((-1));
             func_0043C3F0(Mem.U32(0x800E5554u), 103, 0, 0, 0);
             if ((func_0040C4F4() == 1))
             {
-                Mem.Set((cfg + 20u), (short)(98));
-                Mem.Set((cfg + 22u), (short)(69));
+                new O05Cfg(cfg).h14_Set((short)(98));
+                new O05Cfg(cfg).h16_Set((short)(69));
             }
             else
             {
                 if ((func_0040C4F4() == 2))
                 {
-                    Mem.Set((cfg + 20u), (short)(105));
+                    new O05Cfg(cfg).h14_Set((short)(105));
                 }
             }
             return 0;

@@ -14,17 +14,17 @@ public static partial class Game
             uint m = 0u;
             v = (uint)(((uint)(((int)(idx) * 204)) + (uint)(p)));
             v = (v + (uint)4);
-            m = Mem.U32((v + 176u));
-            Mem.Set((v + 172u), 1);
-            Mem.Set((v + 80u), 0);
-            if ((Mem.S32((v + 16u)) != Mem.S32((m + 260u))))
+            m = new SndVoice(v).mgr_;
+            new SndVoice(v).unkAC_Set(1);
+            new SndVoice(v).unk50_Set(0);
+            if ((new SndVoice(v).unk10 != new SndMgr(m).unk104))
             {
-                alSndpSetSound((m + 132u), (short)((int)(Mem.S16(((m + 220u) + (uint)(Mem.S32(v) * 2))))));
-                if ((alSndpGetState((m + 132u)) != 0))
+                alSndpSetSound(new SndMgr(m).player.P, (short)((int)(new SndMgr(m).snd[(int)(new SndVoice(v).idx)])));
+                if ((alSndpGetState(new SndMgr(m).player.P) != 0))
                 {
-                    alSndpStop((m + 132u));
+                    alSndpStop(new SndMgr(m).player.P);
                 }
-                Mem.Set((v + 4u), (-1));
+                new SndVoice(v).unk4_Set((-1));
             }
         }
     }

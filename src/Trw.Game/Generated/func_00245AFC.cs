@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00245AFC");
-            return Mem.S32((Mem.U32(0x800E2830u) + 224u));
+            return new B10Ctl(Mem.U32(0x800E2830u)).fE0;
         }
     }
 

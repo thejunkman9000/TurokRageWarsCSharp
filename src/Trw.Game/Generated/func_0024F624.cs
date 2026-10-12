@@ -13,19 +13,19 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0024F624", (uint)a);
-                if ((Mem.S32(Mem.U32((a + 24u))) == 8))
+                if ((new ActorInfo_v2(new Actor_v2(a).info_).kind == 8))
                 {
                     func_00273744(_fp, Cpu.U2F((uint)(Mem.S32(0x8013B190u))));
                 }
                 else
                 {
-                    func_00273744(_fp, Cpu.U2F((uint)(Mem.S32((a + 372u)))));
+                    func_00273744(_fp, Cpu.U2F((uint)(new Actor_v2(a).f174)));
                 }
-                func_002734EC(_fp, Mem.F32((a + 404u)), Mem.F32((a + 404u)), Mem.F32((a + 404u)));
-                func_002725BC((a + 8u), 2.0E+4f);
-                func_002734B8(_fp, Mem.F32((a + 8u)), (Mem.F32(((a + 8u) + 4u)) + Mem.F32((a + 408u))), Mem.F32(((a + 8u) + 8u)));
+                func_002734EC(_fp, new Actor_v2(a).f194, new Actor_v2(a).f194, new Actor_v2(a).f194);
+                func_002725BC(new Actor_v2(a).pos.P, 2.0E+4f);
+                func_002734B8(_fp, new Actor_v2(a).pos.x, (new Actor_v2(a).pos.y + new Actor_v2(a).f198), new Actor_v2(a).pos.z);
                 func_00273DDC(_fp);
-                func_002702EC(_fp, ((a + 104u) + (uint)(Mem.S32(0x800D297Cu) * 64)));
+                func_002702EC(_fp, (new Actor_v2(a).mtx.P + (uint)(Mem.S32(0x800D297Cu) * 64)));
             }
         }
         finally { Stack.Free(64); }

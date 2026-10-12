@@ -212,7 +212,7 @@ public static partial class Game
                 L_I00298018: ;
                 r4 = Mem.U32((r16 + 60u));
                 L_I0029801C: ;
-                r2 = func_00299368(r4, r5, r6, r7); r3 = Cpu.V1;
+                func_00299368((int)r4);
                 L_I00298024: ;
                 r2 = r0; goto L_L002982E0;
                 L_L0029802C: ;
@@ -437,7 +437,7 @@ public static partial class Game
                 L_I0029826C: ;
                 r4 = Mem.U32((r16 + 60u));
                 L_I00298270: ;
-                r2 = func_00299368(r4, r5, r6, r7); r3 = Cpu.V1;
+                func_00299368((int)r4);
                 L_I00298278: ;
                 Mem.Set((r21 + 0u), r30); goto L_L002982DC;
                 L_L00298280: ;

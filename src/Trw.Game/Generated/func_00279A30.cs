@@ -12,11 +12,11 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00279A30", (uint)s, (uint)n);
             uint r = 0u;
             r = 0u;
-            if ((Mem.S32((s + 8u)) >= n))
+            if ((new MtxStack(s).left >= n))
             {
-                r = Mem.U32((s + 12u));
-                Mem.Set((s + 12u), (r + (uint)(n * 64)));
-                Mem.Set((s + 8u), (int)((int)(Mem.S32((s + 8u))) - n));
+                r = new MtxStack(s).cur_;
+                new MtxStack(s).cur__Set((r + (uint)(n * 64)));
+                new MtxStack(s).left_Set((int)((int)(new MtxStack(s).left) - n));
             }
             return r;
         }

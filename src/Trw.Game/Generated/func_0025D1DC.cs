@@ -11,15 +11,15 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0025D1DC", (uint)s);
             uint sndp = 0u;
-            func_00258760(Mem.U32(s));
-            if (((Mem.S32((s + 8u)) != 2) && (Mem.S32((s + 8u)) != 0)))
+            func_00258760(new P3SndObj(s).owner);
+            if (((new P3SndObj(s).state != 2) && (new P3SndObj(s).state != 0)))
             {
-                Mem.Set((s + 8u), 2);
-                sndp = func_00258D60(Mem.U32(s));
-                alSndpSetSound(sndp, Mem.S16((s + 30u)));
+                new P3SndObj(s).state_Set(2);
+                sndp = func_00258D60(new P3SndObj(s).owner);
+                alSndpSetSound(sndp, new P3SndObj(s).sndId);
                 alSndpStop(sndp);
             }
-            func_002587C4(Mem.U32(s));
+            func_002587C4(new P3SndObj(s).owner);
         }
     }
 

@@ -16,20 +16,20 @@ public static partial class Game
             {
                 if ((x != 0f))
                 {
-                    e = ((a + 4680u) + (uint)(i * 24));
+                    e = (new Plr(a).ent.P + (uint)(i * 24));
                 }
                 else
                 {
-                    e = ((a + 4680u) + (uint)(i * 24));
+                    e = (new Plr(a).ent.P + (uint)(i * 24));
                 }
-                if ((Mem.F32((e + 4u)) <= 0.0f))
+                if ((new PlrEnt(e).unk4 <= 0.0f))
                 {
-                    Mem.Set((e + 8u), c);
-                    Mem.Set((e + 12u), x);
-                    Mem.Set((e + 16u), 0.0f);
-                    Mem.Set((e + 20u), d);
-                    Mem.Set((e + 4u), (y * Mem.F32(0x800C7E00u)));
-                    Mem.Set(e, (x / Mem.F32((e + 4u))));
+                    new PlrEnt(e).unk8_Set(c);
+                    new PlrEnt(e).unkC_Set(x);
+                    new PlrEnt(e).unk10_Set(0.0f);
+                    new PlrEnt(e).unk14_Set(d);
+                    new PlrEnt(e).unk4_Set((y * Mem.F32(0x800C7E00u)));
+                    new PlrEnt(e).unk0_Set((x / new PlrEnt(e).unk4));
                     return;
                 }
             }

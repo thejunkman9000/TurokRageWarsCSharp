@@ -10,12 +10,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00203E78", (uint)actor, (uint)a, (uint)b);
-            int v = (Mem.S32((a + 4u)) - Mem.S32((b + 4u)));
+            int v = (new ActorState(a).unk4 - new ActorState(b).unk4);
             if ((v < 0))
             {
                 v = 0;
             }
-            Mem.Set((a + 4u), v);
+            new ActorState(a).unk4_Set(v);
             if ((v == 0))
             {
                 func_00214178(actor, a, 64);

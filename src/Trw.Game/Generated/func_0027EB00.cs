@@ -31,34 +31,34 @@ public static partial class Game
                     {
                         return;
                     }
-                    func_00272908((b + (uint)544), (o + 8u), _fp);
-                    f = Mem.F32((_fp + 8u));
+                    func_00272908((b + (uint)544), new B18Actor(o).pos.P, _fp);
+                    f = new Vec3f(_fp).z;
                     if ((f < 0.0f))
                     {
                         f = (-f);
                     }
-                    func_0027DD1C(o, s3, b, f);
+                    func_0027DD1C(o, (uint)(s3), b, f);
                 }
-                if ((Mem.S32((o + 272u)) == 0))
+                if ((new B18Actor(o).unk110 == 0))
                 {
-                    p = func_002518DC((uint)(0), (uint)(Mem.S32((Mem.U32((o + 280u)) + 20u))), (uint)(Mem.S32((Mem.U32((o + 280u)) + 20u))), (uint)(24), (uint)(0), (uint)(0), 0u, 0x800C9E28u, (uint)(1));
+                    p = func_002518DC(0, (uint)(new B18Actor(o).unk118.unk14), new B18Actor(o).unk118.unk14, (uint)(24), 0, (uint)(0), 0u, 0x800C9E28u, 1);
                     if ((p != 0u))
                     {
-                        s1 = func_0028FE08((uint)(Mem.S32(p)), Mem.S32((Mem.U32((o + 280u)) + 20u)), 1);
+                        s1 = func_0028FE08((uint)(Mem.S32(p)), new B18Actor(o).unk118.unk14, 1);
                         func_002537D8(0, p);
                         q = func_00254094(0, (_fp + 12u), s1, 0x800C9E40u, 1);
                         if ((q != 0u))
                         {
-                            Mem.Set((o + 272u), (int)(func_0028FE1C(Mem.U32((_fp + 12u)), (uint)(s1), (zero % Mem.S32(Mem.U32((_fp + 12u)))), (o + 276u))));
+                            new B18Actor(o).unk110_Set((int)(func_0028FE1C(Mem.U32((_fp + 12u)), (uint)(s1), (zero % Mem.S32(Mem.U32((_fp + 12u)))), (o + 276u))));
                             func_002537D8(0, q);
                         }
                     }
-                    if ((Mem.S32((o + 272u)) == 0))
+                    if ((new B18Actor(o).unk110 == 0))
                     {
                         return;
                     }
                 }
-                p = func_002518DC((uint)(0), (uint)(Mem.S32((o + 272u))), (uint)(Mem.S32((o + 272u))), (uint)(Mem.S32((o + 276u))), (uint)(0), (uint)(0), 0x0026D7F4u, 0x800C9E58u, (uint)(1));
+                p = func_002518DC(0, (uint)(new B18Actor(o).unk110), new B18Actor(o).unk110, (uint)(new B18Actor(o).unk114), 0, (uint)(0), 0x0026D7F4u, 0x800C9E58u, 1);
                 if ((p != 0u))
                 {
                     func_0026DC24(p, s3, 0, (int)((o + (uint)((Mem.S32(0x800D297Cu) * 24) + 224))), (uint)(0), (-1));

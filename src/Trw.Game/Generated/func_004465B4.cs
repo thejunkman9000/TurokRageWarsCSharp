@@ -11,25 +11,25 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004465B4", (uint)a, (uint)b);
             int n = func_0022A590(0x80145040u, Mem.S32((b + (uint)28)));
-            float v = (Mem.F32(((0x800E63C0u + (uint)(n * 24)) + 4u)) + Mem.F32(0x800D2988u));
-            Mem.Set(((0x800E63C0u + (uint)(n * 24)) + 4u), v);
+            float v = (new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk4 + Mem.F32(0x800D2988u));
+            new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk4_Set(v);
             if ((Mem.F32(0x800E2810u) <= v))
             {
-                Mem.Set(((0x800E63C0u + (uint)(n * 24)) + 4u), (v - Mem.F32(0x800E2810u)));
+                new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk4_Set((v - Mem.F32(0x800E2810u)));
             }
-            if (((int)(Mem.S16(b)) == 1))
+            if (((int)(new O06A2(b).unk0) == 1))
             {
-                if (((func_002643A8(Mem.U32((b + 32u))) != 0) && (Mem.S32((0x800E63C0u + (uint)(n * 24))) > 0)))
+                if (((func_002643A8(new O06A2(b).unk20) != 0) && (new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0 > 0)))
                 {
-                    Mem.Set((0x800E63C0u + (uint)(n * 24)), (int)(Mem.S32((0x800E63C0u + (uint)(n * 24))) - 1));
-                    Mem.Set(((0x800E63C0u + (uint)(n * 24)) + 4u), (float)(0));
+                    new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0_Set((int)(new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0 - 1));
+                    new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk4_Set((float)(0));
                 }
                 else
                 {
-                    if (((func_002643C0(Mem.U32((b + 32u))) != 0) && (Mem.S32((0x800E63C0u + (uint)(n * 24))) < Mem.S32(((0x800E63C0u + (uint)(n * 24)) + 8u)))))
+                    if (((func_002643C0(new O06A2(b).unk20) != 0) && (new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0 < new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk8)))
                     {
-                        Mem.Set((0x800E63C0u + (uint)(n * 24)), (int)(Mem.S32((0x800E63C0u + (uint)(n * 24))) + 1));
-                        Mem.Set(((0x800E63C0u + (uint)(n * 24)) + 4u), (float)(0));
+                        new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0_Set((int)(new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0 + 1));
+                        new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk4_Set((float)(0));
                     }
                 }
             }

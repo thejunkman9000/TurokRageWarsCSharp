@@ -11,12 +11,12 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00434B58", (uint)k);
             int r = 0;
-            int sel = Mem.S32((((Mem.U32(0x800E54A4u) + 88u) + (uint)(k * 2920)) + 2796u));
+            int sel = new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fAEC;
             int found = 0;
             int idx = 0;
             int i = 0;
             int v = 0;
-            if ((Mem.S32(((((Mem.U32(0x800E54A4u) + 88u) + (uint)(k * 2920)) + 2800u) + (uint)(sel * 4))) == 1))
+            if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].tabAF0[(int)(sel)] == 1))
             {
                 found = (-1);
                 for (i = 0; (i < 4); ++i)
@@ -25,7 +25,7 @@ public static partial class Game
                     {
                         break;
                     }
-                    if ((Mem.S32(((Mem.U32(0x800E54A4u) + 11768u) + (uint)(i * 12))) == (-1)))
+                    if ((new O05Lobby(Mem.U32(0x800E54A4u)).slot[(int)(i)].a == (-1)))
                     {
                         found = i;
                     }
@@ -36,13 +36,13 @@ public static partial class Game
                     v = func_004353C0();
                     if ((v >= 0))
                     {
-                        Mem.Set(((Mem.U32(0x800E54A4u) + 11768u) + (uint)(v * 12)), 0);
-                        Mem.Set((((Mem.U32(0x800E54A4u) + 11768u) + (uint)(v * 12)) + 4u), idx);
-                        Mem.Set((((Mem.U32(0x800E54A4u) + 11768u) + (uint)(v * 12)) + 8u), 1);
+                        new O05Lobby(Mem.U32(0x800E54A4u)).slot[(int)(v)].a_Set(0);
+                        new O05Lobby(Mem.U32(0x800E54A4u)).slot[(int)(v)].b_Set(idx);
+                        new O05Lobby(Mem.U32(0x800E54A4u)).slot[(int)(v)].c_Set(1);
                     }
-                    func_002A1724((0x80102B00u + (uint)(found * 400)), ((((Mem.U32(0x800E54A4u) + 88u) + (uint)(k * 2920)) + 24u) + (uint)(sel * 400)), (uint)(400));
-                    Mem.Set(((0x80102B00u + (uint)(found * 400)) + 13u), (sbyte)(k));
-                    Mem.Set((((Mem.U32(0x800E54A4u) + 88u) + (uint)(k * 2920)) + 4u), 0);
+                    func_002A1724((0x80102B00u + (uint)(found * 400)), (new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].rec.P + (uint)(sel * 400)), (uint)(400));
+                    new O05Rec((0x80102B00u + (uint)(found * 400))).bD_Set((sbyte)(k));
+                    new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f4_Set(0);
                     func_00433DA8((idx = (-1)));
                     r = 1;
                 }

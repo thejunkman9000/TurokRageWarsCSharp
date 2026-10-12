@@ -10,23 +10,23 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0023EBEC", (uint)o, (uint)e);
-            uint f = (Mem.U32((o + 60u)) & (uint)((~3584)));
+            uint f = (new B09FlagObj(o).flags & (uint)((~3584)));
             uint m = 0u;
-            Mem.Set((o + 60u), f);
-            m = Mem.U32((e + 16u));
+            new B09FlagObj(o).flags_Set(f);
+            m = new B09Evt(e).mask;
             if (((m & (uint)(536870912)) != 0u))
             {
-                Mem.Set((o + 60u), (f | (uint)(512)));
+                new B09FlagObj(o).flags_Set((f | (uint)(512)));
                 return;
             }
             if (((m & (uint)(1073741824)) != 0u))
             {
-                Mem.Set((o + 60u), (f | (uint)(1024)));
+                new B09FlagObj(o).flags_Set((f | (uint)(1024)));
                 return;
             }
             if (((int)(m) < 0))
             {
-                Mem.Set((o + 60u), (f | (uint)(2048)));
+                new B09FlagObj(o).flags_Set((f | (uint)(2048)));
             }
         }
     }

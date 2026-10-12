@@ -10,17 +10,17 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028C5E8", (uint)m);
-            uint n = Mem.U32((m + 4568u));
+            uint n = new P4Mgr5(m).head_;
             int expired = 0;
             while ((n != 0u))
             {
-                uint o = Mem.U32((n + 8u));
-                uint next = Mem.U32((n + 4u));
+                uint o = new P4LNode(n).obj_;
+                uint next = new P4LNode(n).next_;
                 int done = expired;
-                if ((((int)(Mem.U8((o + 14u))) & 2) != 0))
+                if ((((int)(new P4Obj5(o).flags) & 2) != 0))
                 {
-                    Mem.Set((n + 12u), (float)((float)(Mem.F32((n + 12u))) - Mem.F32(0x800D2988u)));
-                    if ((Mem.F32((n + 12u)) <= 0.0f))
+                    new P4LNode(n).timer_Set((float)((float)(new P4LNode(n).timer) - Mem.F32(0x800D2988u)));
+                    if ((new P4LNode(n).timer <= 0.0f))
                     {
                         done = 1;
                         expired = done;
@@ -33,7 +33,7 @@ public static partial class Game
                 if ((expired != 0))
                 {
                     func_00255E78((m + (uint)4568), n, default(uint), default(uint));
-                    func_00255C58((m + (uint)4588), n, default(uint), default(uint));
+                    func_00255C58((m + (uint)4588), n);
                 }
                 n = next;
                 expired = 0;

@@ -18,29 +18,29 @@ public static partial class Game
                 float sn = 0f;
                 func_00275120(_fp, (uint)(_a1));
                 t = Mem.F32(0x800C9ACCu);
-                Mem.Set((_fp + 16u), 0.0f);
-                Mem.Set(((_fp + 16u) + 4u), t);
-                Mem.Set(((_fp + 16u) + 8u), 0.0f);
+                new Vec3f((_fp + 16u)).x_Set(0.0f);
+                new Vec3f((_fp + 16u)).y_Set(t);
+                new Vec3f((_fp + 16u)).z_Set(0.0f);
                 func_00272088((_fp + 32u), (_fp + 16u), _fp);
-                len = func_002BC380((((Mem.F32((_fp + 32u)) * Mem.F32((_fp + 32u))) + (Mem.F32(((_fp + 32u) + 4u)) * Mem.F32(((_fp + 32u) + 4u)))) + (Mem.F32(((_fp + 32u) + 8u)) * Mem.F32(((_fp + 32u) + 8u)))));
+                len = func_002BC380((((new Vec3f((_fp + 32u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 32u)).y * new Vec3f((_fp + 32u)).y)) + (new Vec3f((_fp + 32u)).z * new Vec3f((_fp + 32u)).z)));
                 if ((len == 0.0f))
                 {
-                    Mem.Set(((_fp + 48u) + 8u), 0.0f);
-                    Mem.Set(((_fp + 48u) + 4u), 0.0f);
-                    Mem.Set((_fp + 48u), 0.0f);
-                    Mem.Set(((_fp + 48u) + 12u), t);
+                    new Quat((_fp + 48u)).z_Set(0.0f);
+                    new Quat((_fp + 48u)).y_Set(0.0f);
+                    new Quat((_fp + 48u)).x_Set(0.0f);
+                    new Quat((_fp + 48u)).w_Set(t);
                 }
                 else
                 {
                     t = (t / len);
                     func_0027200C((_fp + 32u), (_fp + 32u), t);
-                    t = (func_00274640((((Mem.F32((_fp + 16u)) * Mem.F32(_fp)) + (Mem.F32(((_fp + 16u) + 4u)) * Mem.F32((_fp + 4u)))) + (Mem.F32(((_fp + 16u) + 8u)) * Mem.F32((_fp + 8u))))) * Mem.F32(0x800C9AD0u));
+                    t = (func_00274640((((new Vec3f((_fp + 16u)).x * new Vec3f(_fp).x) + (new Vec3f((_fp + 16u)).y * new Vec3f(_fp).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f(_fp).z))) * Mem.F32(0x800C9AD0u));
                     sn = sinf(t);
                     Mem.Set(0x80115DECu, sn);
-                    Mem.Set((_fp + 48u), (Mem.F32((_fp + 32u)) * sn));
-                    Mem.Set(((_fp + 48u) + 4u), (Mem.F32(((_fp + 32u) + 4u)) * sn));
-                    Mem.Set(((_fp + 48u) + 8u), (Mem.F32(((_fp + 32u) + 8u)) * sn));
-                    Mem.Set(((_fp + 48u) + 12u), cosf(t));
+                    new Quat((_fp + 48u)).x_Set((new Vec3f((_fp + 32u)).x * sn));
+                    new Quat((_fp + 48u)).y_Set((new Vec3f((_fp + 32u)).y * sn));
+                    new Quat((_fp + 48u)).z_Set((new Vec3f((_fp + 32u)).z * sn));
+                    new Quat((_fp + 48u)).w_Set(cosf(t));
                 }
                 Mem.Copy(@out, (_fp + 48u), 16);
                 return @out;

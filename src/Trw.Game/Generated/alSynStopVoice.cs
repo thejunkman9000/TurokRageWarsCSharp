@@ -11,15 +11,15 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("alSynStopVoice", (uint)drvr, (uint)voice);
             uint update = 0u;
-            if ((Mem.U32((voice + 8u)) != 0u))
+            if ((new ALVoice(voice).pvoice_ != 0u))
             {
                 update = __allocParam();
                 if ((update != 0u))
                 {
-                    Mem.Set((update + 4u), (Mem.S32((drvr + 28u)) + Mem.S32((Mem.U32((voice + 8u)) + 216u))));
-                    Mem.Set((update + 8u), (short)(15));
-                    Mem.Set(update, 0u);
-                    Funcs.CallReg(Mem.U32((Mem.U32((Mem.U32((voice + 8u)) + 12u)) + 8u)), Mem.U32((Mem.U32((voice + 8u)) + 12u)), (uint)(3), update, 0u);
+                    new ALParam(update).delta_Set((new ALSynth(drvr).paramSamples + new ALVoice(voice).pvoice.offset));
+                    new ALParam(update).type_Set((short)(15));
+                    new ALParam(update).next__Set(0u);
+                    Funcs.CallReg(new ALVoice(voice).pvoice.channelKnob.setParam, new ALVoice(voice).pvoice.channelKnob_, (uint)(3), update, 0u);
                 }
             }
         }

@@ -10,9 +10,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00443B94", (uint)a, (uint)b);
-            int n = func_0022A590(0x80145040u, Mem.S32((b + 28u)));
-            int h = (int)(Mem.S16(((0x80146398u + (uint)(n * 150)) + 4u)));
-            int s = Mem.S32(Mem.U32((a + 20u)));
+            int n = func_0022A590(0x80145040u, new O06B_v2(b).unk1C);
+            int h = (int)(new O06R((0x80146398u + (uint)(n * 150))).unk4);
+            int s = Mem.S32(new O06A_v7(a).unk14_);
             func_00265904((uint)(((s - 4) + func_00442158(a))), 0x800E2730u, h, default(int));
             return 0;
         }

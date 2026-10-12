@@ -16,44 +16,44 @@ public static partial class Game
             uint nextItem = 0u;
             int postAtEnd = 0;
             mask = osSetIntMask((uint)(1));
-            item = Mem.U32(evtq);
+            item = new ALEventQueue_v2(evtq).freeList.next_;
             if ((item == 0u))
             {
                 osSetIntMask(mask);
                 return;
             }
-            alUnlink(item);
-            alCopy(evt, (item + 12u), (int)(16u));
+            alUnlink(new ALEventQueueItem(item).node.P);
+            alCopy(evt, new ALEventQueueItem(item).evt.P, (int)(16u));
             if ((delta == 2147483647))
             {
                 postAtEnd = (-1);
             }
-            for (node = (evtq + 8u); (node != 0u); node = Mem.U32(node))
+            for (node = new ALEventQueue_v2(evtq).allocList.P; (node != 0u); node = new ALLink(node).next_)
             {
-                if ((Mem.U32(node) == 0u))
+                if ((new ALLink(node).next_ == 0u))
                 {
                     if ((postAtEnd != 0))
                     {
-                        Mem.Set((item + 8u), 0);
+                        new ALEventQueueItem(item).delta_Set(0);
                     }
                     else
                     {
-                        Mem.Set((item + 8u), delta);
+                        new ALEventQueueItem(item).delta_Set(delta);
                     }
-                    alLink(item, node);
+                    alLink(new ALEventQueueItem(item).node.P, node);
                     break;
                 }
                 else
                 {
-                    nextItem = Mem.U32(node);
-                    if ((delta < Mem.S32((nextItem + 8u))))
+                    nextItem = new ALLink(node).next_;
+                    if ((delta < new ALEventQueueItem(nextItem).delta))
                     {
-                        Mem.Set((item + 8u), delta);
-                        Mem.Set((nextItem + 8u), (int)((int)(Mem.S32((nextItem + 8u))) - delta));
-                        alLink(item, node);
+                        new ALEventQueueItem(item).delta_Set(delta);
+                        new ALEventQueueItem(nextItem).delta_Set((int)((int)(new ALEventQueueItem(nextItem).delta) - delta));
+                        alLink(new ALEventQueueItem(item).node.P, node);
                         break;
                     }
-                    delta = (int)((int)(delta) - Mem.S32((nextItem + 8u)));
+                    delta = (int)((int)(delta) - new ALEventQueueItem(nextItem).delta);
                 }
             }
             osSetIntMask(mask);

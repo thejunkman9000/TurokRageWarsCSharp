@@ -11,20 +11,20 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0020D014", (uint)m);
             uint n = 0u;
-            for (n = Mem.U32((m + 36u)); (n != 0u); n = Mem.U32((n + 16u)))
+            for (n = new B2Mgr(m).head_; (n != 0u); n = new B2Node(n).next_)
             {
-                Mem.Set((n + 4u), Mem.F32(0x800C6E88u));
-                Mem.Set((n + 8u), (-1));
-                Mem.Set((n + 24u), (float)(0));
-                Mem.Set((n + 28u), (float)(0));
-                Mem.Set((n + 32u), (float)(0));
-                Mem.Set((n + 36u), (float)(0));
-                Mem.Set((n + 40u), 0);
-                Mem.Set((n + 44u), 0);
-                Mem.Set((n + 48u), 0u);
+                new B2Node(n).unk4_Set(Mem.F32(0x800C6E88u));
+                new B2Node(n).unk8_Set((-1));
+                new B2Node(n).unk18_Set((float)(0));
+                new B2Node(n).unk1C_Set((float)(0));
+                new B2Node(n).unk20_Set((float)(0));
+                new B2Node(n).unk24_Set((float)(0));
+                new B2Node(n).unk28_Set(0);
+                new B2Node(n).unk2C_Set(0);
+                new B2Node(n).link30__Set(0u);
             }
-            Mem.Set((m + 28u), Mem.F32(0x800C6E8Cu));
-            Mem.Set((m + 32u), (-1));
+            new B2Mgr(m).unk1C_Set(Mem.F32(0x800C6E8Cu));
+            new B2Mgr(m).unk20_Set((-1));
         }
     }
 

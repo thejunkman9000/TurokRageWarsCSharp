@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0022EF20", (uint)p);
             int i = 0;
             memset(p, 0, (uint)(8));
-            Mem.Set((p + 14u), (byte)(0));
+            new M2Cfg(p).unkE_Set((byte)(0));
             func_0022F304(p, (byte)(0));
             func_0022F328(p, (byte)(0));
             func_0022F34C(p, (byte)(0));
@@ -30,15 +30,15 @@ public static partial class Game
             func_0022F394(p, 10, 2);
             func_0022F394(p, 17, 2);
             func_0022F394(p, 18, 2);
-            Mem.Set((p + 23u), (byte)(0));
-            Mem.Set((p + 15u), (byte)(0));
-            Mem.Set((p + 116u), 0);
-            Mem.Set((p + 108u), 0);
-            Mem.Set((p + 112u), 0);
-            Mem.Set((p + 37u), (byte)(0));
-            Mem.Set((p + 8u), 0);
-            Mem.Set((p + 12u), (byte)(0));
-            Mem.Set((p + 13u), (sbyte)((-1)));
+            new M2Cfg(p).unk17_Set((byte)(0));
+            new M2Cfg(p).unkF_Set((byte)(0));
+            new M2Cfg(p).unk74_Set(0);
+            new M2Cfg(p).unk6C_Set(0);
+            new M2Cfg(p).unk70_Set(0);
+            new M2Cfg(p).unk25_Set((byte)(0));
+            new M2Cfg(p).unk8_Set(0);
+            new M2Cfg(p).unkC_Set((byte)(0));
+            new M2Cfg(p).unkD_Set((sbyte)((-1)));
             memset((p + (uint)38), 0, (uint)(36));
             memset((p + (uint)125), 0, (uint)(1));
             memset((p + (uint)81), 0, (uint)(3));
@@ -62,14 +62,14 @@ public static partial class Game
             memset((p + (uint)131), 0, (uint)(5));
             for (i = 0; (i < 36); ++i)
             {
-                Mem.Set(((p + 148u) + (uint)(i * 4)), 0);
+                new M2Cfg(p).arr94.Set((int)(i), 0);
             }
             memset((p + (uint)292), 0, (uint)(1));
-            Mem.Set((p + 394u), (byte)(1));
-            Mem.Set((p + 395u), (byte)(134));
-            Mem.Set((p + 393u), (byte)(0));
-            Mem.Set((p + 396u), (byte)(132));
-            Mem.Set((p + 397u), (byte)(0));
+            new M2Cfg(p).unk18A_Set((byte)(1));
+            new M2Cfg(p).unk18B_Set((byte)(134));
+            new M2Cfg(p).unk189_Set((byte)(0));
+            new M2Cfg(p).unk18C_Set((byte)(132));
+            new M2Cfg(p).unk18D_Set((byte)(0));
         }
     }
 

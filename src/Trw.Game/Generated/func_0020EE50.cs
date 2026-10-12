@@ -11,9 +11,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0020EE50", (uint)ctl);
             uint n = 0u;
-            for (n = Mem.U32(0x8013B388u); (n != 0u); n = Mem.U32((n + 16u)))
+            for (n = Mem.U32(0x8013B388u); (n != 0u); n = new B2Node(n).next_)
             {
-                Mem.Set((n + 24u), (Mem.F32((n + 24u)) + ((float)((Mem.S32((n + 56u)) * 30)) * Mem.F32(0x800C6FD0u))));
+                new B2Node(n).unk18_Set((new B2Node(n).unk18 + ((float)((new B2Node(n).unk38 * 30)) * Mem.F32(0x800C6FD0u))));
             }
         }
     }

@@ -20,7 +20,7 @@ public static partial class Game
                 ret = __osSiRawStartDma(0, 0x80154110u);
                 osRecvMesg(queue, _fp, 1);
                 __osPfsGetOneChannelData(channel, (_fp + 8u));
-                if (((((int)(Mem.U8(((_fp + 8u) + 2u))) & 1) != 0) && (((int)(Mem.U8(((_fp + 8u) + 2u))) & 2) != 0)))
+                if (((((int)(new OSContStatus((_fp + 8u)).status) & 1) != 0) && (((int)(new OSContStatus((_fp + 8u)).status) & 2) != 0)))
                 {
                     return 2;
                 }
@@ -28,7 +28,7 @@ public static partial class Game
                 {
                     return 1;
                 }
-                if ((((int)(Mem.U8(((_fp + 8u) + 2u))) & 4) != 0))
+                if ((((int)(new OSContStatus((_fp + 8u)).status) & 4) != 0))
                 {
                     return 4;
                 }

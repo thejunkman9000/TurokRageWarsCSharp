@@ -17,18 +17,18 @@ public static partial class Game
             func_0029324C();
             if ((func_00264B8C() != 0))
             {
-                Mem.Set((g + 159192u), func_00264B7C());
+                new B21Game(g).unk26DD8_Set(func_00264B7C());
             }
-            b = (0x80145040u + 6240u);
-            Mem.Set((b + 32u), 0);
-            Mem.Set((b + 100u), 3);
-            s = (0x80145040u + 4744u);
-            Mem.Set((s + 29u), (byte)(1));
-            Mem.Set((s + 30u), (byte)(8));
-            func_00293318(g, (int)(Mem.U8((g + 157734u))), 0);
+            b = new B21World(0x80145040u).blk.P;
+            new B21GameBlk(b).unk20_Set(0);
+            new B21GameBlk(b).unk64_Set(3);
+            s = new B21World(0x80145040u).sub1288.P;
+            new B21Sub1288(s).unk1D_Set((byte)(1));
+            new B21Sub1288(s).unk1E_Set((byte)(8));
+            func_00293318(g, (int)(new B21Game(g).unk26826), 0);
             if ((func_00264B8C() != 0))
             {
-                func_00264BAC(default(uint), default(uint), default(uint), default(uint));
+                func_00264BAC();
             }
             func_0023EDF0();
             func_002954E0();
@@ -37,8 +37,8 @@ public static partial class Game
             Mem.Set(0x800D2994u, v);
             Mem.Set(0x800D298Cu, v);
             Mem.Set(0x800D2990u, v);
-            func_0044DC48(0x8011FE88u, (uint)(Mem.S32((g + 964u))), default(uint), default(uint));
-            func_0044E178(0x8011FE88u, (uint)(Mem.S32((g + 159192u))), (uint)(0), default(uint));
+            func_0044DC48(0x8011FE88u);
+            func_0044E178(0x8011FE88u, new B21Game(g).unk26DD8, 0);
         }
     }
 

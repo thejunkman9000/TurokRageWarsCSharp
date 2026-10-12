@@ -19,7 +19,7 @@ public static partial class Game
                 uint t = 0u;
                 int n = 0;
                 uint p = 0u;
-                t = func_0028FD94(func_0028FD94(Mem.U32((lv + 124u)), (int)(uint)(unused)), 1);
+                t = func_0028FD94(func_0028FD94(new Level(lv).unk7C_, (int)(uint)(unused)), 1);
                 n = Mem.S32((t + (uint)(1 * 4)));
                 p = (t + (uint)(2 * 4));
                 if ((n > 0))
@@ -28,7 +28,7 @@ public static partial class Game
                     {
                         float dd = 0f;
                         func_00271FD8(_fp, pt, p);
-                        dd = (((Mem.F32(_fp) * Mem.F32(_fp)) + (Mem.F32((_fp + 4u)) * Mem.F32((_fp + 4u)))) + (Mem.F32((_fp + 8u)) * Mem.F32((_fp + 8u))));
+                        dd = (((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z));
                         if (((bestIdx < 0.0f) || (dd < bestD)))
                         {
                             bestIdx = (float)(i);

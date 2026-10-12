@@ -73,7 +73,7 @@ public static partial class Game
                 L_I002AFA04: ;
                 { bool c_ = r3 != r2;  if (c_) goto L_L002AF9F0; }
                 L_I002AFA0C: ;
-                r4 = (uint)17; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = (uint)17; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002AFA14: ;
                 { bool c_ = r2 == 0;  if (c_) goto L_L002AF9F0; }
                 L_I002AFA1C: ;
@@ -161,7 +161,7 @@ public static partial class Game
                 L_I002AFB00: ;
                 r4 = Mem.U8((r16 + 0u));
                 L_I002AFB04: ;
-                r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002AFB0C: ;
                  goto L_L002AF9F0;
                 L_L002AFB14: ;
@@ -430,7 +430,7 @@ public static partial class Game
                 L_I002AFDBC: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002AFF84; }
                 L_I002AFDC4: ;
-                r4 = (uint)16; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = (uint)16; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002AFDCC: ;
                 r2 = 2148859904u;
                 L_I002AFDD0: ;
@@ -455,7 +455,7 @@ public static partial class Game
                 L_I002AFE00: ;
                 { bool c_ = r16 == 0;  if (c_) goto L_L002AFF84; }
                 L_I002AFE08: ;
-                r4 = (uint)128; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = (uint)128; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002AFE10: ;
                 r2 = 2148859904u;
                 L_I002AFE14: ;
@@ -470,7 +470,7 @@ public static partial class Game
                 L_I002AFE28: ;
                 r16 = r2 & 255u;
                 L_I002AFE2C: ;
-                r4 = r16; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r16; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002AFE34: ;
                 r2 = 2148859904u;
                 L_I002AFE38: ;
@@ -487,7 +487,7 @@ public static partial class Game
                 L_I002AFE54: ;
                 r16 = r2 & 255u;
                 L_I002AFE58: ;
-                r4 = r16; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r16; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002AFE60: ;
                 r2 = 2148859904u;
                 L_I002AFE64: ;
@@ -746,7 +746,7 @@ public static partial class Game
                 L_I002B00B8: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002B0208; }
                 L_I002B00C0: ;
-                r4 = (uint)16; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = (uint)16; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B00C8: ;
                 r2 = 2148859904u;
                 L_I002B00CC: ;
@@ -771,7 +771,7 @@ public static partial class Game
                 L_I002B00FC: ;
                 { bool c_ = r16 == 0;  if (c_) goto L_L002B0208; }
                 L_I002B0104: ;
-                r4 = (uint)129; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = (uint)129; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B010C: ;
                 r2 = 2148859904u;
                 L_I002B0110: ;
@@ -779,7 +779,7 @@ public static partial class Game
                 L_I002B0114: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002B0208; }
                 L_I002B011C: ;
-                r4 = r21 >> 24; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r21 >> 24; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0124: ;
                 r2 = 2148859904u;
                 L_I002B0128: ;
@@ -787,7 +787,7 @@ public static partial class Game
                 L_I002B012C: ;
                 { bool c_ = r2 != 0; r4 = r21 >> 16; if (c_) goto L_L002B0208; }
                 L_I002B0134: ;
-                r4 = r4 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B013C: ;
                 r2 = 2148859904u;
                 L_I002B0140: ;
@@ -795,7 +795,7 @@ public static partial class Game
                 L_I002B0144: ;
                 { bool c_ = r2 != 0; r4 = r21 >> 8; if (c_) goto L_L002B0208; }
                 L_I002B014C: ;
-                r4 = r4 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0154: ;
                 r2 = 2148859904u;
                 L_I002B0158: ;
@@ -803,7 +803,7 @@ public static partial class Game
                 L_I002B015C: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002B0208; }
                 L_I002B0164: ;
-                r4 = r21 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r21 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B016C: ;
                 r2 = 2148859904u;
                 L_I002B0170: ;
@@ -1022,7 +1022,7 @@ public static partial class Game
                 L_I002B0350: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002B0558; }
                 L_I002B0358: ;
-                r4 = (uint)16; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = (uint)16; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0360: ;
                 r2 = 2148859904u;
                 L_I002B0364: ;
@@ -1047,7 +1047,7 @@ public static partial class Game
                 L_I002B0394: ;
                 { bool c_ = r16 == 0;  if (c_) goto L_L002B0558; }
                 L_I002B039C: ;
-                r4 = (uint)130; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = (uint)130; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B03A4: ;
                 r2 = 2148859904u;
                 L_I002B03A8: ;
@@ -1055,7 +1055,7 @@ public static partial class Game
                 L_I002B03AC: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002B0558; }
                 L_I002B03B4: ;
-                r4 = r22 >> 24; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r22 >> 24; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B03BC: ;
                 r2 = 2148859904u;
                 L_I002B03C0: ;
@@ -1063,7 +1063,7 @@ public static partial class Game
                 L_I002B03C4: ;
                 { bool c_ = r2 != 0; r4 = r22 >> 16; if (c_) goto L_L002B0558; }
                 L_I002B03CC: ;
-                r4 = r4 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B03D4: ;
                 r2 = 2148859904u;
                 L_I002B03D8: ;
@@ -1071,7 +1071,7 @@ public static partial class Game
                 L_I002B03DC: ;
                 { bool c_ = r2 != 0; r4 = r22 >> 8; if (c_) goto L_L002B0558; }
                 L_I002B03E4: ;
-                r4 = r4 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B03EC: ;
                 r2 = 2148859904u;
                 L_I002B03F0: ;
@@ -1079,7 +1079,7 @@ public static partial class Game
                 L_I002B03F4: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002B0558; }
                 L_I002B03FC: ;
-                r4 = r22 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r22 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0404: ;
                 r2 = 2148859904u;
                 L_I002B0408: ;
@@ -1091,7 +1091,7 @@ public static partial class Game
                 L_I002B0418: ;
                 r16 = lo;
                 L_I002B041C: ;
-                r4 = r16 >> 24; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r16 >> 24; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0424: ;
                 r2 = 2148859904u;
                 L_I002B0428: ;
@@ -1099,7 +1099,7 @@ public static partial class Game
                 L_I002B042C: ;
                 { bool c_ = r2 != 0; r4 = r16 >> 16; if (c_) goto L_L002B0558; }
                 L_I002B0434: ;
-                r4 = r4 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B043C: ;
                 r2 = 2148859904u;
                 L_I002B0440: ;
@@ -1107,7 +1107,7 @@ public static partial class Game
                 L_I002B0444: ;
                 { bool c_ = r2 != 0; r4 = r16 >> 8; if (c_) goto L_L002B0558; }
                 L_I002B044C: ;
-                r4 = r4 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0454: ;
                 r2 = 2148859904u;
                 L_I002B0458: ;
@@ -1115,7 +1115,7 @@ public static partial class Game
                 L_I002B045C: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002B0558; }
                 L_I002B0464: ;
-                r4 = r16 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r16 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B046C: ;
                 r2 = 2148859904u;
                 L_I002B0470: ;
@@ -1372,7 +1372,7 @@ public static partial class Game
                 L_I002B06AC: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002B08AC; }
                 L_I002B06B4: ;
-                r4 = (uint)16; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = (uint)16; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B06BC: ;
                 r2 = 2148859904u;
                 L_I002B06C0: ;
@@ -1397,7 +1397,7 @@ public static partial class Game
                 L_I002B06F0: ;
                 { bool c_ = r16 == 0;  if (c_) goto L_L002B08AC; }
                 L_I002B06F8: ;
-                r4 = (uint)131; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = (uint)131; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0700: ;
                 r2 = 2148859904u;
                 L_I002B0704: ;
@@ -1405,7 +1405,7 @@ public static partial class Game
                 L_I002B0708: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002B08AC; }
                 L_I002B0710: ;
-                r4 = r22 >> 24; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r22 >> 24; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0718: ;
                 r2 = 2148859904u;
                 L_I002B071C: ;
@@ -1413,7 +1413,7 @@ public static partial class Game
                 L_I002B0720: ;
                 { bool c_ = r2 != 0; r4 = r22 >> 16; if (c_) goto L_L002B08AC; }
                 L_I002B0728: ;
-                r4 = r4 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0730: ;
                 r2 = 2148859904u;
                 L_I002B0734: ;
@@ -1421,7 +1421,7 @@ public static partial class Game
                 L_I002B0738: ;
                 { bool c_ = r2 != 0; r4 = r22 >> 8; if (c_) goto L_L002B08AC; }
                 L_I002B0740: ;
-                r4 = r4 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0748: ;
                 r2 = 2148859904u;
                 L_I002B074C: ;
@@ -1429,7 +1429,7 @@ public static partial class Game
                 L_I002B0750: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002B08AC; }
                 L_I002B0758: ;
-                r4 = r22 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r22 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0760: ;
                 r2 = 2148859904u;
                 L_I002B0764: ;
@@ -1443,7 +1443,7 @@ public static partial class Game
                 L_I002B0778: ;
                 r16 = lo;
                 L_I002B077C: ;
-                r4 = r16 >> 24; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r16 >> 24; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0784: ;
                 r2 = 2148859904u;
                 L_I002B0788: ;
@@ -1451,7 +1451,7 @@ public static partial class Game
                 L_I002B078C: ;
                 { bool c_ = r2 != 0; r4 = r16 >> 16; if (c_) goto L_L002B08AC; }
                 L_I002B0794: ;
-                r4 = r4 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B079C: ;
                 r2 = 2148859904u;
                 L_I002B07A0: ;
@@ -1459,7 +1459,7 @@ public static partial class Game
                 L_I002B07A4: ;
                 { bool c_ = r2 != 0; r4 = r16 >> 8; if (c_) goto L_L002B08AC; }
                 L_I002B07AC: ;
-                r4 = r4 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B07B4: ;
                 r2 = 2148859904u;
                 L_I002B07B8: ;
@@ -1467,7 +1467,7 @@ public static partial class Game
                 L_I002B07BC: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002B08AC; }
                 L_I002B07C4: ;
-                r4 = r16 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r16 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B07CC: ;
                 r2 = 2148859904u;
                 L_I002B07D0: ;
@@ -1718,7 +1718,7 @@ public static partial class Game
                 L_I002B0A00: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002B0CCC; }
                 L_I002B0A08: ;
-                r4 = (uint)16; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = (uint)16; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0A10: ;
                 r2 = 2148859904u;
                 L_I002B0A14: ;
@@ -1743,7 +1743,7 @@ public static partial class Game
                 L_I002B0A44: ;
                 { bool c_ = r16 == 0;  if (c_) goto L_L002B0CCC; }
                 L_I002B0A4C: ;
-                r4 = (uint)132; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = (uint)132; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0A54: ;
                 r2 = 2148859904u;
                 L_I002B0A58: ;
@@ -1751,7 +1751,7 @@ public static partial class Game
                 L_I002B0A5C: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002B0CCC; }
                 L_I002B0A64: ;
-                r4 = r22 >> 24; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r22 >> 24; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0A6C: ;
                 r2 = 2148859904u;
                 L_I002B0A70: ;
@@ -1759,7 +1759,7 @@ public static partial class Game
                 L_I002B0A74: ;
                 { bool c_ = r2 != 0; r4 = r22 >> 16; if (c_) goto L_L002B0CCC; }
                 L_I002B0A7C: ;
-                r4 = r4 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0A84: ;
                 r2 = 2148859904u;
                 L_I002B0A88: ;
@@ -1767,7 +1767,7 @@ public static partial class Game
                 L_I002B0A8C: ;
                 { bool c_ = r2 != 0; r4 = r22 >> 8; if (c_) goto L_L002B0CCC; }
                 L_I002B0A94: ;
-                r4 = r4 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0A9C: ;
                 r2 = 2148859904u;
                 L_I002B0AA0: ;
@@ -1775,7 +1775,7 @@ public static partial class Game
                 L_I002B0AA4: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002B0CCC; }
                 L_I002B0AAC: ;
-                r4 = r22 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r22 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0AB4: ;
                 r2 = 2148859904u;
                 L_I002B0AB8: ;
@@ -1783,7 +1783,7 @@ public static partial class Game
                 L_I002B0ABC: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002B0CCC; }
                 L_I002B0AC4: ;
-                r4 = r23 >> 24; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r23 >> 24; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0ACC: ;
                 r2 = 2148859904u;
                 L_I002B0AD0: ;
@@ -1791,7 +1791,7 @@ public static partial class Game
                 L_I002B0AD4: ;
                 { bool c_ = r2 != 0; r4 = r23 >> 16; if (c_) goto L_L002B0CCC; }
                 L_I002B0ADC: ;
-                r4 = r4 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0AE4: ;
                 r2 = 2148859904u;
                 L_I002B0AE8: ;
@@ -1799,7 +1799,7 @@ public static partial class Game
                 L_I002B0AEC: ;
                 { bool c_ = r2 != 0; r4 = r23 >> 8; if (c_) goto L_L002B0CCC; }
                 L_I002B0AF4: ;
-                r4 = r4 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0AFC: ;
                 r2 = 2148859904u;
                 L_I002B0B00: ;
@@ -1807,7 +1807,7 @@ public static partial class Game
                 L_I002B0B04: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002B0CCC; }
                 L_I002B0B0C: ;
-                r4 = r23 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r23 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0B14: ;
                 r2 = 2148859904u;
                 L_I002B0B18: ;
@@ -1815,7 +1815,7 @@ public static partial class Game
                 L_I002B0B1C: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002B0CCC; }
                 L_I002B0B24: ;
-                r4 = r30 >> 24; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r30 >> 24; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0B2C: ;
                 r2 = 2148859904u;
                 L_I002B0B30: ;
@@ -1823,7 +1823,7 @@ public static partial class Game
                 L_I002B0B34: ;
                 { bool c_ = r2 != 0; r4 = r30 >> 16; if (c_) goto L_L002B0CCC; }
                 L_I002B0B3C: ;
-                r4 = r4 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0B44: ;
                 r2 = 2148859904u;
                 L_I002B0B48: ;
@@ -1831,7 +1831,7 @@ public static partial class Game
                 L_I002B0B4C: ;
                 { bool c_ = r2 != 0; r4 = r30 >> 8; if (c_) goto L_L002B0CCC; }
                 L_I002B0B54: ;
-                r4 = r4 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0B5C: ;
                 r2 = 2148859904u;
                 L_I002B0B60: ;
@@ -1839,7 +1839,7 @@ public static partial class Game
                 L_I002B0B64: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002B0CCC; }
                 L_I002B0B6C: ;
-                r4 = r30 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r30 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0B74: ;
                 r2 = 2148859904u;
                 L_I002B0B78: ;
@@ -2132,7 +2132,7 @@ public static partial class Game
                 L_I002B0E10: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002B1020; }
                 L_I002B0E18: ;
-                r4 = (uint)16; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = (uint)16; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0E20: ;
                 r2 = 2148859904u;
                 L_I002B0E24: ;
@@ -2157,7 +2157,7 @@ public static partial class Game
                 L_I002B0E54: ;
                 { bool c_ = r16 == 0;  if (c_) goto L_L002B1020; }
                 L_I002B0E5C: ;
-                r4 = (uint)133; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = (uint)133; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0E64: ;
                 r2 = 2148859904u;
                 L_I002B0E68: ;
@@ -2165,7 +2165,7 @@ public static partial class Game
                 L_I002B0E6C: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002B1020; }
                 L_I002B0E74: ;
-                r4 = r22 >> 24; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r22 >> 24; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0E7C: ;
                 r2 = 2148859904u;
                 L_I002B0E80: ;
@@ -2173,7 +2173,7 @@ public static partial class Game
                 L_I002B0E84: ;
                 { bool c_ = r2 != 0; r4 = r22 >> 16; if (c_) goto L_L002B1020; }
                 L_I002B0E8C: ;
-                r4 = r4 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0E94: ;
                 r2 = 2148859904u;
                 L_I002B0E98: ;
@@ -2181,7 +2181,7 @@ public static partial class Game
                 L_I002B0E9C: ;
                 { bool c_ = r2 != 0; r4 = r22 >> 8; if (c_) goto L_L002B1020; }
                 L_I002B0EA4: ;
-                r4 = r4 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0EAC: ;
                 r2 = 2148859904u;
                 L_I002B0EB0: ;
@@ -2189,7 +2189,7 @@ public static partial class Game
                 L_I002B0EB4: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002B1020; }
                 L_I002B0EBC: ;
-                r4 = r22 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r22 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B0EC4: ;
                 r2 = 2148859904u;
                 L_I002B0EC8: ;
@@ -2476,7 +2476,7 @@ public static partial class Game
                 L_I002B1154: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002B12A4; }
                 L_I002B115C: ;
-                r4 = (uint)16; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = (uint)16; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B1164: ;
                 r2 = 2148859904u;
                 L_I002B1168: ;
@@ -2501,7 +2501,7 @@ public static partial class Game
                 L_I002B1198: ;
                 { bool c_ = r16 == 0;  if (c_) goto L_L002B12A4; }
                 L_I002B11A0: ;
-                r4 = (uint)192; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = (uint)192; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B11A8: ;
                 r2 = 2148859904u;
                 L_I002B11AC: ;
@@ -2509,7 +2509,7 @@ public static partial class Game
                 L_I002B11B0: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002B12A4; }
                 L_I002B11B8: ;
-                r4 = r21 >> 24; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r21 >> 24; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B11C0: ;
                 r2 = 2148859904u;
                 L_I002B11C4: ;
@@ -2517,7 +2517,7 @@ public static partial class Game
                 L_I002B11C8: ;
                 { bool c_ = r2 != 0; r4 = r21 >> 16; if (c_) goto L_L002B12A4; }
                 L_I002B11D0: ;
-                r4 = r4 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B11D8: ;
                 r2 = 2148859904u;
                 L_I002B11DC: ;
@@ -2525,7 +2525,7 @@ public static partial class Game
                 L_I002B11E0: ;
                 { bool c_ = r2 != 0; r4 = r21 >> 8; if (c_) goto L_L002B12A4; }
                 L_I002B11E8: ;
-                r4 = r4 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B11F0: ;
                 r2 = 2148859904u;
                 L_I002B11F4: ;
@@ -2533,7 +2533,7 @@ public static partial class Game
                 L_I002B11F8: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002B12A4; }
                 L_I002B1200: ;
-                r4 = r21 & 255u; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r21 & 255u; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B1208: ;
                 r2 = 2148859904u;
                 L_I002B120C: ;
@@ -2740,7 +2740,7 @@ public static partial class Game
                 L_I002B13D4: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002B14F0; }
                 L_I002B13DC: ;
-                r4 = (uint)16; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = (uint)16; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B13E4: ;
                 r2 = 2148859904u;
                 L_I002B13E8: ;
@@ -2765,7 +2765,7 @@ public static partial class Game
                 L_I002B1418: ;
                 { bool c_ = r16 == 0;  if (c_) goto L_L002B14F0; }
                 L_I002B1420: ;
-                r4 = (uint)193; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = (uint)193; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B1428: ;
                 r2 = 2148859904u;
                 L_I002B142C: ;
@@ -2780,7 +2780,7 @@ public static partial class Game
                 L_I002B1440: ;
                 r16 = r2 & 255u;
                 L_I002B1444: ;
-                r4 = r16; r2 = dbgLinkSendByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r16; r2 = (uint)dbgLinkSendByte((byte)r4);
                 L_I002B144C: ;
                 r2 = 2148859904u;
                 L_I002B1450: ;

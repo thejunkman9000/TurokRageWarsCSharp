@@ -12,11 +12,11 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0041AA90", (uint)o, (uint)a1, (uint)a2, (uint)a3);
             if ((func_0029EB58(a4) < func_0029AB4C()))
             {
-                Mem.Set((o + 84u), 2);
+                new O3Bar(o).f54_Set(2);
             }
             if ((a3 == 1))
             {
-                Mem.Set((o + 84u), a3);
+                new O3Bar(o).f54_Set(a3);
                 func_0041A990(o);
                 return 0;
             }

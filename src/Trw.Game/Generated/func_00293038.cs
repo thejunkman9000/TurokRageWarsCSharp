@@ -17,10 +17,10 @@ public static partial class Game
             idx = (Mem.U32(0x800D2978u) % Mem.U32(0x800E28A0u));
             Mem.Set(0x800D2980u, (int)(Mem.S32(0x800D2980u) + 1));
             Mem.Set(0x800D297Cu, (int)((int)(Mem.S32(0x800D297Cu)) ^ 1));
-            s = Mem.Set((g + 960u), (g + (uint)(idx * 320)));
-            Mem.Set((s + 276u), ((Mem.S32(0x800D297Cu) != 0) ? Mem.S32(0x801536F4u) : Mem.S32(0x801536F0u)));
-            t = Mem.U32((g + 960u));
-            Mem.Set((t + 280u), ((Mem.S32(0x800D297Cu) != 0) ? Mem.S32(0x801536BCu) : Mem.S32(0x801536C0u)));
+            s = new B21Game(g).curSlot__Set((new B21Game(g).slots.P + (uint)(idx * 320)));
+            new B21Slot(s).unk114_Set(((Mem.S32(0x800D297Cu) != 0) ? Mem.S32(0x801536F4u) : Mem.S32(0x801536F0u)));
+            t = new B21Game(g).curSlot_;
+            new B21Slot(t).unk118_Set(((Mem.S32(0x800D297Cu) != 0) ? Mem.S32(0x801536BCu) : Mem.S32(0x801536C0u)));
         }
     }
 

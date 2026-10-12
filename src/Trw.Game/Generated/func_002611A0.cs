@@ -15,13 +15,13 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_002611A0", (uint)pcur, (uint)@out, (uint)count);
                 int i = 0;
                 Mem.Set((_fp + 48u), Mem.U32(pcur));
-                func_0025FFD0(_fp, (_fp + 48u), default(uint), default(uint));
+                func_0025FFD0(_fp, (_fp + 48u));
                 for (i = 0; (i < count); ++i)
                 {
                     Mem.Set(@out, func_002610AC(_fp, (int)Cpu.F2U((float)(i))));
                     @out = (uint)(@out + (uint)(4 * 4));
                 }
-                Mem.Set((_fp + 48u), (uint)((uint)(Mem.U32((_fp + 48u))) + (uint)((Mem.S32((_fp + 44u)) * ((Mem.S32(_fp) * 4) + 6)))));
+                Mem.Set((_fp + 48u), (uint)((uint)(Mem.U32((_fp + 48u))) + (uint)((new B14Trk(_fp).f2C * ((new B14Trk(_fp).bits * 4) + 6)))));
                 Mem.Set(pcur, Mem.U32((_fp + 48u)));
             }
         }

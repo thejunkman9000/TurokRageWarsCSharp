@@ -22,4 +22,12 @@ public static partial class Game
         }
     }
 
+    public static void func_00276610()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00276610");
+        }
+    }
+
 }

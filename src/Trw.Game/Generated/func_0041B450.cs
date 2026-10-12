@@ -15,20 +15,20 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, x_in, 40);
                 if (Dbg.On) Dbg.Enter("func_0041B450", (uint)self, (uint)x_in);
                 int flag = 0;
-                if (((int)(func_0040E154((_fp + 40u), (_fp + 56u), self, _fp)) != 0))
+                if ((func_0040E154((_fp + 40u), (_fp + 56u), self, _fp) != 0))
                 {
-                    if ((((int)(Mem.S16((self + 18u))) & 512) != 0))
+                    if ((((int)(new O3Hdr(self).unk12) & 512) != 0))
                     {
-                        func_002A2898(((_fp + 72u) + (uint)(0 * 4)), ((_fp + 72u) + (uint)(2 * 4)), ((_fp + 72u) + (uint)(1 * 4)), ((_fp + 72u) + (uint)(3 * 4)));
+                        func_002A2898((new O3Q4((_fp + 72u)).w.P + (uint)(0 * 4)), (new O3Q4((_fp + 72u)).w.P + (uint)(2 * 4)), (new O3Q4((_fp + 72u)).w.P + (uint)(1 * 4)), (new O3Q4((_fp + 72u)).w.P + (uint)(3 * 4)));
                         Mem.Copy((_fp + 88u), (_fp + 72u), 16);
                         func_0040F508((_fp + 88u), (_fp + 56u));
                         flag = 1;
-                        func_002A2870(Mem.S32(((_fp + 88u) + (uint)(0 * 4))), Mem.S32(((_fp + 88u) + (uint)(2 * 4))), Mem.S32(((_fp + 88u) + (uint)(1 * 4))), Mem.S32(((_fp + 88u) + (uint)(3 * 4))));
+                        func_002A2870(new O3Q4((_fp + 88u)).w[(int)(0)], new O3Q4((_fp + 88u)).w[(int)(2)], new O3Q4((_fp + 88u)).w[(int)(1)], new O3Q4((_fp + 88u)).w[(int)(3)]);
                     }
-                    func_0040E87C(Mem.U32((self + 8u)), _fp);
+                    func_0040E87C(new O3Hdr(self).child_, _fp);
                     if ((flag != 0))
                     {
-                        func_002A2870(Mem.S32(((_fp + 72u) + (uint)(0 * 4))), Mem.S32(((_fp + 72u) + (uint)(2 * 4))), Mem.S32(((_fp + 72u) + (uint)(1 * 4))), Mem.S32(((_fp + 72u) + (uint)(3 * 4))));
+                        func_002A2870(new O3Q4((_fp + 72u)).w[(int)(0)], new O3Q4((_fp + 72u)).w[(int)(2)], new O3Q4((_fp + 72u)).w[(int)(1)], new O3Q4((_fp + 72u)).w[(int)(3)]);
                     }
                 }
             }

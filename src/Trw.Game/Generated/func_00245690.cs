@@ -14,15 +14,15 @@ public static partial class Game
             {
                 func_00245B64();
                 func_00245BB0();
-                if ((Mem.U32(Mem.U32(0x800E2830u)) != 0u))
+                if ((new B10Ctl(Mem.U32(0x800E2830u)).p0 != 0u))
                 {
-                    func_002537D8(0, Mem.U32(Mem.U32(0x800E2830u)));
+                    func_002537D8(0, new B10Ctl(Mem.U32(0x800E2830u)).p0);
                 }
-                Mem.Set(Mem.U32(0x800E2830u), 0u);
-                Mem.Set((Mem.U32(0x800E2830u) + 4u), 0);
-                Mem.Set((Mem.U32(0x800E2830u) + 56u), 0);
-                Mem.Set((Mem.U32(0x800E2830u) + 60u), 0);
-                Mem.Set((Mem.U32(0x800E2830u) + 96u), 0);
+                new B10Ctl(Mem.U32(0x800E2830u)).p0_Set(0u);
+                new B10Ctl(Mem.U32(0x800E2830u)).f4_Set(0);
+                new B10Ctl(Mem.U32(0x800E2830u)).f38_Set(0);
+                new B10Ctl(Mem.U32(0x800E2830u)).f3C_Set(0);
+                new B10Ctl(Mem.U32(0x800E2830u)).f60_Set(0);
             }
         }
     }

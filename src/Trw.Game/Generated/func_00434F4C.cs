@@ -10,14 +10,14 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00434F4C", (uint)idx);
-            int pl = Mem.S32(((Mem.U32(0x800E54A4u) + 11768u) + (uint)(0 * 12)));
-            func_0041B834(Mem.U32((Mem.U32(0x800E54A4u) + 4u)), pl, 0);
-            Mem.Set(((Mem.U32(0x800E54A4u) + 88u) + (uint)(idx * 2920)), 17);
-            Mem.Set((((Mem.U32(0x800E54A4u) + 88u) + (uint)(idx * 2920)) + 2864u), 0);
-            Mem.Set((((Mem.U32(0x800E54A4u) + 88u) + (uint)(pl * 2920)) + 20u), 2);
-            Mem.Set(((Mem.U32(0x800E54A4u) + 88u) + (uint)(pl * 2920)), 2);
-            Mem.Set((((Mem.U32(0x800E54A4u) + 88u) + (uint)(pl * 2920)) + 8u), 13);
-            Mem.Set((((Mem.U32(0x800E54A4u) + 88u) + (uint)(pl * 2920)) + 4u), 3);
+            int pl = new O05Lobby(Mem.U32(0x800E54A4u)).slot[(int)(0)].a;
+            func_0041B834(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, pl, 0);
+            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].state_Set(17);
+            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB30_Set(0);
+            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(pl)].f14_Set(2);
+            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(pl)].state_Set(2);
+            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(pl)].f8_Set(13);
+            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(pl)].f4_Set(3);
             func_00432488((uint)(pl), default(uint), default(uint), default(uint));
             func_00433F14((-1));
         }

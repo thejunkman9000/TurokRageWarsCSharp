@@ -13,16 +13,16 @@ public static partial class Game
             switch ((int)(Mem.U8(0x801462D5u)))
             {
             case 1:
-                func_002656A8(((0x80102B00u + (uint)(a * 400)) + 126u), Mem.S32(0x8015402Cu), 1);
+                func_002656A8(new O04Row190e((0x80102B00u + (uint)(a * 400))).unk7E.P, Mem.S32(0x8015402Cu), 1);
                 break;
             case 2:
-                func_002656A8(((0x80102B00u + (uint)(a * 400)) + 131u), Mem.S32(0x8015402Cu), 1);
+                func_002656A8(new O04Row190e((0x80102B00u + (uint)(a * 400))).unk83.P, Mem.S32(0x8015402Cu), 1);
                 break;
             case 3:
-                func_002656A8(((0x80102B00u + (uint)(a * 400)) + 136u), Mem.S32(0x8015402Cu), 1);
+                func_002656A8(new O04Row190e((0x80102B00u + (uint)(a * 400))).unk88.P, Mem.S32(0x8015402Cu), 1);
                 break;
             case 4:
-                func_002656A8(((0x80102B00u + (uint)(a * 400)) + 141u), Mem.S32(0x8015402Cu), 1);
+                func_002656A8(new O04Row190e((0x80102B00u + (uint)(a * 400))).unk8D.P, Mem.S32(0x8015402Cu), 1);
                 break;
             }
         }

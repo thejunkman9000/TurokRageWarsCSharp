@@ -13,38 +13,38 @@ public static partial class Game
             int t = 0;
             int dx = 0;
             int dy = 0;
-            if (!((((float)((x - Mem.S32((o + 8u)))) < 0.0f) ? (-(x - Mem.S32((o + 8u)))) : (x - Mem.S32((o + 8u)))) < 9))
+            if (!((((float)((x - new B21Grid(o).x)) < 0.0f) ? (-(x - new B21Grid(o).x)) : (x - new B21Grid(o).x)) < 9))
             {
                 return;
             }
-            if (!((((float)((y - Mem.S32((o + 12u)))) < 0.0f) ? (-(y - Mem.S32((o + 12u)))) : (y - Mem.S32((o + 12u)))) < 9))
+            if (!((((float)((y - new B21Grid(o).y)) < 0.0f) ? (-(y - new B21Grid(o).y)) : (y - new B21Grid(o).y)) < 9))
             {
                 return;
             }
-            dx = (x - Mem.S32((o + 8u)));
-            dy = ((y - Mem.S32((o + 12u))) + 8);
-            t = (int)(Mem.S16(((o + 24u) + (uint)(((8 + dx) + (dy * 17)) * 2))));
+            dx = (x - new B21Grid(o).x);
+            dy = ((y - new B21Grid(o).y) + 8);
+            t = (int)(new B21Grid(o).map[(int)(((8 + dx) + (dy * 17)))]);
             if ((t == (-2)))
             {
-                Mem.Set((o + 16u), 1);
+                new B21Grid(o).unk10_Set(1);
             }
             else
             {
                 if ((t == (-3)))
                 {
-                    Mem.Set((o + 16u), 0);
+                    new B21Grid(o).unk10_Set(0);
                 }
                 else
                 {
                     if ((t == (-1)))
                     {
-                        Mem.Set((o + 16u), 3);
+                        new B21Grid(o).unk10_Set(3);
                     }
                     else
                     {
-                        Mem.Set((o + 16u), 2);
-                        Mem.Set((o + 4u), t);
-                        Mem.Set((o + 20u), func_00263174(o, 9));
+                        new B21Grid(o).unk10_Set(2);
+                        new B21Grid(o).unk4_Set(t);
+                        new B21Grid(o).unk14_Set(func_00263174(o, 9));
                     }
                 }
             }

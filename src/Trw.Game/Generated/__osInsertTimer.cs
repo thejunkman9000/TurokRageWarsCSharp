@@ -14,18 +14,18 @@ public static partial class Game
             ulong remaining = 0UL;
             int saveMask = 0;
             saveMask = (int)(__osDisableInt());
-            for (cur = Mem.U32(Mem.U32(0x800D92B0u)), remaining = Mem.U64((timer + 16u)); ((cur != Mem.U32(0x800D92B0u)) && (remaining > Mem.U64((cur + 16u)))); remaining = (ulong)((ulong)(remaining) - Mem.U64((cur + 16u))), cur = Mem.U32(cur))
+            for (cur = new OSTimer(Mem.U32(0x800D92B0u)).next_, remaining = new OSTimer(timer).remaining; ((cur != Mem.U32(0x800D92B0u)) && (remaining > new OSTimer(cur).remaining)); remaining = (ulong)((ulong)(remaining) - new OSTimer(cur).remaining), cur = new OSTimer(cur).next_)
             {
             }
-            Mem.Set((timer + 16u), remaining);
+            new OSTimer(timer).remaining_Set(remaining);
             if ((cur != Mem.U32(0x800D92B0u)))
             {
-                Mem.Set((cur + 16u), (ulong)((ulong)(Mem.U64((cur + 16u))) - remaining));
+                new OSTimer(cur).remaining_Set((ulong)((ulong)(new OSTimer(cur).remaining) - remaining));
             }
-            Mem.Set(timer, cur);
-            Mem.Set((timer + 4u), Mem.U32((cur + 4u)));
-            Mem.Set(Mem.U32((cur + 4u)), timer);
-            Mem.Set((cur + 4u), timer);
+            new OSTimer(timer).next__Set(cur);
+            new OSTimer(timer).prev__Set(new OSTimer(cur).prev_);
+            new OSTimer(cur).prev.next__Set(timer);
+            new OSTimer(cur).prev__Set(timer);
             __osRestoreInt((uint)(saveMask));
             return remaining;
         }

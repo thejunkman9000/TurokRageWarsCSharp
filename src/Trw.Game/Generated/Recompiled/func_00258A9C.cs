@@ -40,7 +40,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r6 = Mem.U32((r29 + 48u));
                 r7 = Mem.U32((r29 + 52u));
-                r2 = func_00257DF4_rc(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), 0u, 0u, 0u, 0u); r3 = Cpu.V1;
+                { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); r2 = (uint)func_00257DF4(r4, (int)r5, s2_, (int)Mem.U32(r29 + 20u), (int)Mem.U32(r29 + 24u)); Stack.Free(12); }
                 r1 = 2148335616u;
                 Cpu.SetW(0, Mem.U32((r1 - 28716u)));
                 Mem.Set((r16 + 11196u), Cpu.W(0));

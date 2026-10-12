@@ -12,10 +12,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0028C0E4", (uint)lv, (uint)id);
             uint found = 0u;
             int i = 0;
-            for (i = 0; (i < Mem.S32((lv + 112224u))); ++i)
+            for (i = 0; (i < new Level(lv).n1); ++i)
             {
-                uint a = Mem.U32(((lv + 112160u) + (uint)(i * 4)));
-                if (((int)(Mem.S16((Mem.U32((a + 24u)) + 12u))) == id))
+                uint a = new Level(lv).list1[(int)(i)];
+                if (((int)(new DefC_v2(new Entity(a).def_).unkC) == id))
                 {
                     found = a;
                     break;

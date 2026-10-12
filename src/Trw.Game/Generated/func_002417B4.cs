@@ -10,14 +10,14 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002417B4", (uint)q);
-            float r = sqrtf(((Mem.F32((q + 72u)) * Mem.F32((q + 72u))) + (Mem.F32((q + 80u)) * Mem.F32((q + 80u)))));
+            float r = sqrtf(((new B09Quad(q).nx * new B09Quad(q).nx) + (new B09Quad(q).nz * new B09Quad(q).nz)));
             float a = 0f;
             if ((r == 0.0f))
             {
                 return 0.0f;
             }
-            a = func_00274640((Mem.F32((q + 80u)) / r));
-            if (!(Mem.F32((q + 72u)) > 0.0f))
+            a = func_00274640((new B09Quad(q).nz / r));
+            if (!(new B09Quad(q).nx > 0.0f))
             {
                 a = (-a);
             }

@@ -13,16 +13,16 @@ public static partial class Game
             uint i = 0u;
             if ((b != 0u))
             {
-                if ((Mem.U32(b) != 0u))
+                if ((new BrainB(b).actor_ != 0u))
                 {
                     for (i = (uint)(0); (i < (uint)(8)); ++i)
                     {
-                        Mem.Set(((b + 464u) + (uint)(i * 4)), Mem.F32(0x800C70F0u));
-                        Mem.Set(((b + 496u) + (uint)(i * 4)), Mem.F32(0x800C70F0u));
+                        new BrainB(b).fa.Set((int)(i), Mem.F32(0x800C70F0u));
+                        new BrainB(b).fb.Set((int)(i), Mem.F32(0x800C70F0u));
                     }
-                    Mem.Set((b + 460u), 0);
-                    Mem.Set((b + 648u), 1);
-                    Mem.Set((b + 528u), Mem.F32(0x800C70F4u));
+                    new BrainB(b).step_Set(0);
+                    new BrainB(b).unk288_Set(1);
+                    new BrainB(b).unk210_Set(Mem.F32(0x800C70F4u));
                 }
             }
         }

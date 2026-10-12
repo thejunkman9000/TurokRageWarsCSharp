@@ -13,31 +13,31 @@ public static partial class Game
             uint p = 0x80146302u;
             int n = 0;
             int s = 0;
-            if ((Mem.U32((b + 28u)) != 0u))
+            if ((new O06A_v5(b).unk1C_ != 0u))
             {
-                uint q = Mem.U32((Mem.U32((b + 28u)) + 1496u));
+                uint q = new O06B(new O06A_v5(b).unk1C_).unk5D8_;
                 if ((q != 0u))
                 {
                     p = q;
                 }
             }
-            n = (((int)(Mem.U8((p + 121u))) - 128) / 8);
+            n = (((int)(new O06C_v13(p).unk79) - 128) / 8);
             if ((n == 0))
             {
-                Mem.Set((a + 20u), 0x800D7624u);
+                new O06A_v5(a).unk14_Set(0x800D7624u);
             }
             else
             {
                 if ((n > 0))
                 {
                     s = Mem.S32((0x800D7628u + (uint)(0 * 4)));
-                    Mem.Set((a + 20u), 0x800D7628u);
+                    new O06A_v5(a).unk14_Set(0x800D7628u);
                     func_00265904((uint)(((s - 4) + func_00442158(a))), 0x800E2788u, n, default(int));
                 }
                 else
                 {
                     s = Mem.S32((0x800D7628u + (uint)(0 * 4)));
-                    Mem.Set((a + 20u), 0x800D7628u);
+                    new O06A_v5(a).unk14_Set(0x800D7628u);
                     func_00265904((uint)(((s - 4) + func_00442158(a))), 0x800E2790u, n, default(int));
                 }
             }

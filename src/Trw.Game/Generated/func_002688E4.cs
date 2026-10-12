@@ -18,18 +18,18 @@ public static partial class Game
                 uint o = 0u;
                 float r = 0f;
                 float d = 0f;
-                if ((((int)(Mem.U8(act)) == 1) && ((Mem.U32((act + 256u)) & (uint)(3145728)) != 0u)))
+                if ((((int)(Mem.U8(act)) == 1) && ((new Actor(act).flags & (uint)(3145728)) != 0u)))
                 {
-                    o = Mem.U32((act + 472u));
-                    if ((Mem.S32((o + 5844u)) != 0))
+                    o = new Actor(act).owner_;
+                    if ((new B15Own_v3(o).unk16D4 != 0))
                     {
-                        r = ((float)(Mem.S32((_fp + 16u))) * Mem.F32(0x800C9574u));
+                        r = ((float)(new B15Pair((_fp + 16u)).a) * Mem.F32(0x800C9574u));
                         func_00271FD8((_fp + 24u), (o + (uint)8), (src + (uint)8));
                         r = (r * r);
-                        d = (((Mem.F32((_fp + 24u)) * Mem.F32((_fp + 24u))) + (Mem.F32(((_fp + 24u) + 4u)) * Mem.F32(((_fp + 24u) + 4u)))) + (Mem.F32(((_fp + 24u) + 8u)) * Mem.F32(((_fp + 24u) + 8u))));
+                        d = (((new Vec3f((_fp + 24u)).x * new Vec3f((_fp + 24u)).x) + (new Vec3f((_fp + 24u)).y * new Vec3f((_fp + 24u)).y)) + (new Vec3f((_fp + 24u)).z * new Vec3f((_fp + 24u)).z));
                         if (!(r < d))
                         {
-                            func_0022B10C(o, (int)((ushort)((int)((((r - d) / r) * (float)(Mem.S32(((_fp + 16u) + 4u))))))));
+                            func_0022B10C(o, (int)((ushort)((int)((((r - d) / r) * (float)(new B15Pair((_fp + 16u)).b))))));
                         }
                     }
                 }

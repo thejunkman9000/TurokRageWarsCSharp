@@ -101,7 +101,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), Cpu.W(7));
                 Cpu.SetW(7, (uint)(int)Cpu.S(0));
                 Mem.Set((r29 + 20u), Cpu.W(7));
-                r7 = r0; r2 = func_00295FB4(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), Mem.U32(r29 + 32u)); r3 = Cpu.V1;
+                r7 = r0; func_00295FB4(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u), (int)Mem.U32(r29 + 24u), (int)Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u));
                 r2 = Mem.U32((r29 + 48u));
                 r1 = 2148335616u;
                 Cpu.SetW(23, Mem.U32((r1 - 31068u)));

@@ -20,15 +20,15 @@ public static partial class Game
                 int cnt = 0;
                 int i = 0;
                 int start = 0;
-                if (((Mem.U32((o + 256u)) & (uint)(262144)) != 0u))
+                if (((new B10Obj(o).flags100 & (uint)(262144)) != 0u))
                 {
-                    r = func_002518DC((uint)(0), (uint)(Mem.S32((o + 196u))), (uint)(Mem.S32((o + 196u))), (uint)(Mem.S32((o + 208u))), (uint)(0), (uint)(0), (uint)(0), 0x800C8954u, (uint)(1));
+                    r = func_002518DC(0, (uint)(new B10Obj(o).fC4), new B10Obj(o).fC4, (uint)(new B10Obj(o).fD0), 0, (uint)(0), (uint)(0), 0x800C8954u, 1);
                     if ((r != 0u))
                     {
                         node = func_0028FD94(Mem.U32(r), 1);
                         tab = (node + (uint)8);
-                        cnt = Mem.S32((node + 4u));
-                        i = func_00265508(tab, (int)(Mem.S8((o + 230u))), (uint)(key));
+                        cnt = new B10Nd2(node).cnt;
+                        i = func_00265508(tab, (int)(new B10Obj(o).bE6), (uint)(key));
                         if ((i != (-1)))
                         {
                             start = i;
@@ -55,7 +55,7 @@ public static partial class Game
                                     ++i;
                                 }
                             }
-                            if (((int)(Mem.S16(_fp)) == 0))
+                            if (((int)(new B10Lst(_fp).h0) == 0))
                             {
                                 func_002798D4(_fp, (short)(start), (short)(10));
                             }

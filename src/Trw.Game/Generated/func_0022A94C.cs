@@ -11,24 +11,24 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0022A94C", (uint)a);
             uint e = (a + (uint)744);
-            int saved = Mem.S32((a + 2156u));
+            int saved = new Plr(a).unk86C;
             float f = Mem.F32(0x800D2988u);
-            Mem.Set((e + 736u), 16);
-            Mem.Set((e + 256u), (uint)((uint)(Mem.U32((e + 256u))) & 4294836223u));
+            new PlrObj(e).unk2E0_Set(16);
+            new PlrObj(e).flags100_Set((uint)((uint)(new PlrObj(e).flags100) & 4294836223u));
             func_0024BE2C(e);
-            if ((Mem.F32((a + 4568u)) <= 0.0f))
+            if ((new Plr(a).unk11D8 <= 0.0f))
             {
                 func_00246E34(e, default(uint), default(uint), default(uint));
             }
             Mem.Set(0x800D2988u, f);
-            if ((saved != Mem.S32((a + 2156u))))
+            if ((saved != new Plr(a).unk86C))
             {
-                Mem.Set((a + 270u), (sbyte)(0));
+                new Plr(a).unk10E_Set((sbyte)(0));
             }
-            Mem.Copy((a + 752u), (a + 8u), 12);
-            Mem.Set((a + 852u), Mem.F32((a + 108u)));
-            Mem.Set((a + 764u), Mem.S32((a + 20u)));
-            Mem.Copy((a + 836u), (a + 92u), 16);
+            Mem.Copy(new Plr(a).unk2F0.P, new Plr(a).pos.P, 12);
+            new Plr(a).unk354_Set(new Plr(a).unk6C);
+            new Plr(a).unk2FC_Set(new Plr(a).unk14);
+            Mem.Copy(new Plr(a).unk344.P, new Plr(a).unk5C.P, 16);
         }
     }
 

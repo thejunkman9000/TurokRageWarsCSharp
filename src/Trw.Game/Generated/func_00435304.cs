@@ -18,7 +18,7 @@ public static partial class Game
                 {
                     break;
                 }
-                if (((int)(Mem.S8((((((Mem.U32(0x800E54A4u) + 88u) + (uint)(idx * 2920)) + 24u) + (uint)(i * 400)) + 13u))) == (-1)))
+                if (((int)(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].rec[(int)(i)].bD) == (-1)))
                 {
                     r = i;
                 }

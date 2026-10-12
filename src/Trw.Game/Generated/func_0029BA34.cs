@@ -16,7 +16,7 @@ public static partial class Game
             {
                 for (j = 0; (j < 4); ++j)
                 {
-                    Mem.Set((((Mem.U32(0x8014D0B0u) + 3092u) + (uint)(i * 4)) + (uint)j), (byte)(0));
+                    Mem.Set(((new SndAux(Mem.U32(0x8014D0B0u)).tbl.P + (uint)(i * 4)) + (uint)j), (byte)(0));
                 }
             }
         }

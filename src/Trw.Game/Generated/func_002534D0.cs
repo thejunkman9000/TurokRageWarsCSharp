@@ -26,11 +26,11 @@ public static partial class Game
             n = func_00251448((uint)(0), (uint)(0), default(uint), default(uint));
             if ((n != 0u))
             {
-                Mem.Set(n, (uint)((int)(func_002555D0(0x801051A0u, (uint)(ptr), (uint)(size), default(uint)))));
-                if ((Mem.U32(n) != 0u))
+                new B12Node(n).key_Set((uint)((int)(func_002555D0(0x801051A0u, (uint)(ptr), (uint)(size)))));
+                if ((new B12Node(n).key != 0u))
                 {
-                    Mem.Set((n + 4u), size);
-                    Mem.Set((n + 12u), (uint)((uint)(Mem.U32((n + 12u))) | (uint)(3)));
+                    new B12Node(n).unk4_Set(size);
+                    new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) | (uint)(3)));
                     func_00254C10((uint)(0), n);
                 }
                 else

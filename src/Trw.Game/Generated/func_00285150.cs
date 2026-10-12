@@ -15,23 +15,23 @@ public static partial class Game
             uint dst = 0u;
             int ok = 0;
             src = Mem.U32(a);
-            r = Mem.U32(src);
-            if (!(((Mem.U32(r) & (uint)((~255))) == (uint)(1380860672)))) goto _f0;
+            r = new B19Src2(src).data_;
+            if (!(((new B19Rnc(r).magic & (uint)((~255))) == (uint)(1380860672)))) goto _f0;
             if (!((pre != 0))) goto _f1;
-            dst = func_002545A0(0, (int)(a), Mem.S32((r + 4u)));
+            dst = func_002545A0(0, (int)(a), new B19Rnc(r).unpacked);
             goto _f2;
             _f1: ;
-            dst = func_00254420(0, a, Mem.S32((r + 4u)));
+            dst = func_00254420(0, a, new B19Rnc(r).unpacked);
             _f2: ;
             if (!((dst == 0u))) goto _f3;
             goto L_bad;
             _f3: ;
             switch ((int)(Mem.U8((r + (uint)3)))) { case 1: goto _f5; case 2: goto _f6; default: goto _f4; }
             _f5: ;
-            rncUnpackMethod1((r + (uint)18), (uint)(Mem.S32(dst)), Mem.S32((r + 8u)), Mem.S32((r + 4u)));
+            rncUnpackMethod1((r + (uint)18), (uint)(Mem.S32(dst)), new B19Rnc(r).packed, new B19Rnc(r).unpacked);
             goto _f4;
             _f6: ;
-            rncUnpackMethod2(r, (uint)(Mem.S32(dst)), Mem.S32((r + 8u)), Mem.S32((r + 4u)));
+            rncUnpackMethod2(r, (uint)(Mem.S32(dst)), new B19Rnc(r).packed, new B19Rnc(r).unpacked);
             goto _f4;
             _f4: ;
             ok = 1;
@@ -39,7 +39,7 @@ public static partial class Game
             _f0: ;
             ok = 1;
             if (!((pre == 0))) goto _f7;
-            dst = func_00254420(0, a, Mem.S32((src + 4u)));
+            dst = func_00254420(0, a, new B19Src2(src).size);
             if (!((dst == 0u))) goto _f8;
             ok = 0;
             _f9: ;
@@ -48,7 +48,7 @@ public static partial class Game
             if ((0 != 0)) goto _f9;
             _f11: ;
             _f8: ;
-            memcpy((uint)(Mem.S32(dst)), Mem.U32(Mem.U32(a)), (uint)(Mem.S32((Mem.U32(a) + 4u))));
+            memcpy((uint)(Mem.S32(dst)), new B19Src2(Mem.U32(a)).data_, (uint)(new B19Src2(Mem.U32(a)).size));
             ok = 1;
             goto L_tail;
             L_bad: ;

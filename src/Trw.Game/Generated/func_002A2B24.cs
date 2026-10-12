@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A2B24", (uint)o, (uint)n);
-            Mem.Set((o + 88u), n);
-            func_002A1C08((o + 96u), 0x800CAF20u, (uint)(n), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            new AnimObj(o).unk58_Set(n);
+            func_002A1C08(new AnimObj(o).buf.P, 0x800CAF20u, (uint)(n), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
         }
     }
 

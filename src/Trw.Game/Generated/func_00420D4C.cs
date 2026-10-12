@@ -14,20 +14,20 @@ public static partial class Game
             int v = 0;
             uint e = 0u;
             idx = (int)((a2 & (uint)(65535)));
-            v = func_0041B890((uint)(Mem.S32((Mem.U32(0x800E42D0u) + 4u))), idx);
+            v = func_0041B890((uint)(new O3Pj(Mem.U32(0x800E42D0u)).menu), idx);
             func_0029A73C();
             e = (Mem.U32(0x800E42D0u) + (uint)(idx * 1224));
-            if ((Mem.S32((e + 20u)) == 1))
+            if ((new O3Pj(e).state == 1))
             {
                 if ((v == 129))
                 {
-                    func_00420688((uint)(idx), (uint)(Mem.S32((e + 16u))), default(uint), default(uint));
+                    func_00420688(idx, new O3Pj(e).f10);
                 }
                 else
                 {
-                    if ((func_0040EC50((uint)((int)(func_0041B87C((uint)(Mem.S32((Mem.U32(0x800E42D0u) + 4u))), idx)))) == 0))
+                    if ((func_0040EC50((uint)((int)(func_0041B87C((uint)(new O3Pj(Mem.U32(0x800E42D0u)).menu), idx)))) == 0))
                     {
-                        func_00420688((uint)(idx), (uint)(v), default(uint), default(uint));
+                        func_00420688(idx, v);
                     }
                 }
             }

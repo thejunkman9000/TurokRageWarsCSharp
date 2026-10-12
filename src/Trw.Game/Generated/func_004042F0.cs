@@ -61,7 +61,7 @@ public static partial class Game
                     pfs = (0x80153510u + (uint)(pad * 104));
                     ccode = (ushort)((((int)(Mem.U8((company + (uint)0))) << (int)8) | (int)(Mem.U8((company + (uint)1)))));
                     gcode = (uint)((((((int)(Mem.U8((game + (uint)0))) << (int)24) | ((int)(Mem.U8((game + (uint)1))) << (int)16)) | ((int)(Mem.U8((game + (uint)2))) << (int)8)) | (int)(Mem.U8((game + (uint)3)))));
-                    r = (int)(osPfsAllocateFile(pfs, (uint)(ccode), gcode, _fp, (_fp + 16u), (uint)(size), outFileNo));
+                    r = osPfsAllocateFile(pfs, ccode, gcode, _fp, (_fp + 16u), size, outFileNo);
                     zero = 0;
                     if ((r != zero))
                     {
@@ -78,7 +78,7 @@ public static partial class Game
                     }
                     func_00404018(pad);
                 }
-                func_0026456C();
+                func_0026456C(default(uint), default(uint), default(uint), default(uint));
                 return r;
             }
         }

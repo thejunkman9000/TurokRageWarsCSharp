@@ -17,7 +17,7 @@ public static partial class Game
                 uint mode = 0u;
                 while ((1 != 0))
                 {
-                    osRecvMesg((o + 64u), _fp, 1);
+                    osRecvMesg(new Vid_v4(o).q40.P, _fp, 1);
                     switch (Mem.S32(_fp))
                     {
                     case 666:
@@ -53,13 +53,13 @@ public static partial class Game
                         func_0025E338();
                         func_0025E234((-1));
                         func_0025CC0C((uint)((int)(func_0025CC8C())));
-                        n = Mem.U32((o + 736u));
+                        n = new Vid_v4(o).unk2E0_;
                         Mem.Set(0x800D2958u, 1);
                         Mem.Set(0x800D295Cu, 20);
                         while ((n != 0u))
                         {
-                            osSendMesg(Mem.U32((n + 4u)), (o + 32u), 0);
-                            n = Mem.U32(n);
+                            osSendMesg(new Qn(n).q_, (o + 32u), 0);
+                            n = new Qn(n).next_;
                         }
                         break;
                     case 6:

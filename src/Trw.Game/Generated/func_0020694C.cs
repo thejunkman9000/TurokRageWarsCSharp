@@ -10,17 +10,17 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020694C", (uint)actor, (uint)state, (uint)evt);
-            int n = (int)(Mem.S8((actor + 231u)));
+            int n = (int)(new B01Actor(actor).unkE7);
             int i = 0;
             for (i = 0; (i < n); ++i)
             {
                 int p = (int)(func_0024BFC4(actor, i));
                 if ((p != 0))
                 {
-                    Mem.Set((evt + 12u), p);
-                    Mem.Set((evt + 16u), p);
+                    new B01Evt(evt).unkC_Set(p);
+                    new B01Evt(evt).unk10_Set(p);
                     func_0024AA08(actor, state, evt, default(uint));
-                    func_0026DA4C((uint)(p), Mem.S32((actor + 180u)), 1, (int)(((actor + 320u) + (uint)(Mem.S32(0x800D297Cu) * 24))), (uint)(0), (int)(Mem.S8((actor + 3u))));
+                    func_0026DA4C((uint)(p), new B01Actor(actor).unkB4, 1, (int)((new B01Actor(actor).seg.P + (uint)(Mem.S32(0x800D297Cu) * 24))), (uint)(0), (int)(new B01Actor(actor).unk3));
                 }
             }
         }

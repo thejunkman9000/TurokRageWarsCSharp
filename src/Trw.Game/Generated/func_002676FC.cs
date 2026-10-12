@@ -30,21 +30,21 @@ public static partial class Game
                 s6 = (s3 = 1);
                 own = 0u;
                 vol = Mem.F32(0x800C952Cu);
-                if (((Mem.U32((a + 256u)) & (uint)(3145728)) != 0u))
+                if (((new B15Act2(a).flags & (uint)(3145728)) != 0u))
                 {
-                    own = Mem.U32((a + 472u));
+                    own = new B15Act2(a).owner_;
                 }
                 if ((((int)(Mem.U8(0x801462E5u)) != 0) && ((flags & (uint)(512)) != 0u)))
                 {
                     s3 = 0;
                 }
-                if (((int)(Mem.U8(src)) == 2))
+                if (((int)(new B15Act2(src).type) == 2))
                 {
-                    if ((((int)(Mem.U16((src + 4u))) == 1028) || ((int)(Mem.U16((src + 4u))) == 1026)))
+                    if ((((int)(new B15Act2(src).unk4) == 1028) || ((int)(new B15Act2(src).unk4) == 1026)))
                     {
                         isFx = 1;
                     }
-                    if ((((((int)(Mem.U8(src)) == 2) && (Mem.U32(0x801041F0u) == a)) && (Mem.S32((0x801041F0u + 20u)) != (-1))) && (C.Seq((object?)((e = (0x801041F0u + 24u))), ((isFx == 0) ? 1 : 0)) != 0)))
+                    if ((((((int)(new B15Act2(src).type) == 2) && (new B15Slot(0x801041F0u).owner == a)) && (new B15Slot(0x801041F0u).unk14 != (-1))) && (C.Seq((object?)((e = new B15Slot(0x801041F0u).eff.P)), ((isFx == 0) ? 1 : 0)) != 0)))
                     {
                         s4 = 0;
                         goto L_have;
@@ -62,7 +62,7 @@ public static partial class Game
                 Mem.Set(@out, e);
                 if (((s3 != 0) && (e != 0u)))
                 {
-                    vol = (float)((float)(vol) * Mem.F32((e + 104u)));
+                    vol = (float)((float)(vol) * new B15Eff(e).unk68);
                 }
                 if ((s4 != 0))
                 {
@@ -72,22 +72,22 @@ public static partial class Game
                     }
                     else
                     {
-                        Mem.Copy((_fp + 16u), (a + 8u), 12);
-                        fs0 = (Mem.F32(((a + 8u) + 4u)) + Mem.F32((a + (uint)112)));
+                        Mem.Copy((_fp + 16u), new B15Act2(a).pos.P, 12);
+                        fs0 = (new B15Act2(a).pos.y + Mem.F32((a + (uint)112)));
                         t = (fs0 + func_0024D274(a));
-                        if ((t < Mem.F32((_fp + 4u))))
+                        if ((t < new Vec3f(_fp).y))
                         {
-                            Mem.Set(((_fp + 16u) + 4u), t);
+                            new Vec3f((_fp + 16u)).y_Set(t);
                         }
                         else
                         {
-                            if ((Mem.F32((_fp + 4u)) < fs0))
+                            if ((new Vec3f(_fp).y < fs0))
                             {
-                                Mem.Set(((_fp + 16u) + 4u), fs0);
+                                new Vec3f((_fp + 16u)).y_Set(fs0);
                             }
                             else
                             {
-                                Mem.Set(((_fp + 16u) + 4u), Mem.F32((_fp + 4u)));
+                                new Vec3f((_fp + 16u)).y_Set(new Vec3f(_fp).y);
                             }
                         }
                         fs0 = (f6C + func_0024D388(a));

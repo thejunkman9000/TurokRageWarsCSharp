@@ -22,29 +22,29 @@ public static partial class Game
             uint @base = 0u;
             uint bb = 0u;
             int cnt2 = 0;
-            x = Mem.F32(p);
-            cnt = Mem.S32((ow + 5380u));
-            z = Mem.F32((p + 8u));
+            x = new B19Vec3(p).x;
+            cnt = new B19Owner(ow).nent;
+            z = new B19Vec3(p).z;
             for (i = 0; (i < cnt); ++i)
             {
-                b = Mem.U32((((ow + 5384u) + (uint)(i * 12)) + 4u));
-                if ((Mem.F32((b + 8u)) < x))
+                b = new B19Owner(ow).ent[(int)(i)].box_;
+                if ((new B19Rng(b).x1 < x))
                 {
                     continue;
                 }
-                if ((x < Mem.F32(b)))
+                if ((x < new B19Rng(b).x0))
                 {
                     continue;
                 }
-                if ((Mem.F32((b + 12u)) < z))
+                if ((new B19Rng(b).z1 < z))
                 {
                     continue;
                 }
-                if ((z < Mem.F32((b + 4u))))
+                if ((z < new B19Rng(b).z0))
                 {
                     continue;
                 }
-                found = ((ow + 5384u) + (uint)(i * 12));
+                found = (new B19Owner(ow).ent.P + (uint)(i * 12));
                 break;
             }
             if ((found == 0u))
@@ -52,14 +52,14 @@ public static partial class Game
                 Mem.Set(nout, 0);
                 return;
             }
-            set = func_0028FD94((uint)(Mem.S32(Mem.U32(found))), 2);
-            @base = (set + 8u);
-            cnt2 = Mem.S32((set + 4u));
+            set = func_0028FD94((uint)(Mem.S32(new B19Ent12(found).pp)), 2);
+            @base = new B19Set(set).it.P;
+            cnt2 = new B19Set(set).cnt;
             for (i = 0; (i < cnt2); ++i)
             {
                 it = (@base + (uint)(i * 192));
-                bb = (it + 160u);
-                if (((((((Mem.F32(((bb + 12u) + (uint)(0 * 4))) > Mem.F32(p)) && (Mem.F32(((bb + 12u) + (uint)(1 * 4))) > Mem.F32((p + 4u)))) && (Mem.F32(((bb + 12u) + (uint)(2 * 4))) > Mem.F32((p + 8u)))) && (Mem.F32(((it + 160u) + (uint)(0 * 4))) <= Mem.F32(p))) && (Mem.F32((bb + (uint)(1 * 4))) <= Mem.F32((p + 4u)))) && (Mem.F32((bb + (uint)(2 * 4))) <= Mem.F32((p + 8u)))))
+                bb = new B19Item(it).bb.P;
+                if (((((((new B19Aabb(bb).mx[(int)(0)] > new B19Vec3(p).x) && (new B19Aabb(bb).mx[(int)(1)] > new B19Vec3(p).y)) && (new B19Aabb(bb).mx[(int)(2)] > new B19Vec3(p).z)) && (new B19Item(it).bb.mn[(int)(0)] <= new B19Vec3(p).x)) && (new B19Aabb(bb).mn[(int)(1)] <= new B19Vec3(p).y)) && (new B19Aabb(bb).mn[(int)(2)] <= new B19Vec3(p).z)))
                 {
                     Mem.Set((@out + (uint)(n * 4)), it);
                     ++n;

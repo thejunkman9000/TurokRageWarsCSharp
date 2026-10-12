@@ -10,13 +10,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029AA80_SlotC", (uint)id);
-            uint s = (Mem.U32(0x8014D080u) + 28u);
+            uint s = new SndMgr_v2(Mem.U32(0x8014D080u)).slot.P;
             int i = 0;
             for (i = 0; (i < 64); ++i)
             {
-                if ((Mem.S32(s) == id))
+                if ((new SndSlot(s).id == id))
                 {
-                    return Mem.S32((s + 12u));
+                    return new SndSlot(s).unkC;
                 }
                 s += 20u;
             }
@@ -33,7 +33,7 @@ public static partial class Game
             {
                 Mem.Copy(_fp + 0u, vp_in, 40);
                 if (Dbg.On) Dbg.Enter("func_0029AA80", (uint)c, (uint)vp_in);
-                uint fn = (uint)(func_0029AA80_SlotC((int)(Mem.U16((c + 14u)))));
+                uint fn = (uint)(func_0029AA80_SlotC((int)(new SndCtx(c).unkE)));
                 if ((fn != 0u))
                 {
                     Funcs.CallRegX(fn, c, Mem.U32(_fp + 0u), Mem.U32(_fp + 4u), Mem.U32(_fp + 8u), new uint[] { Mem.U32(_fp + 12u), Mem.U32(_fp + 16u), Mem.U32(_fp + 20u), Mem.U32(_fp + 24u), Mem.U32(_fp + 28u), Mem.U32(_fp + 32u), Mem.U32(_fp + 36u) });

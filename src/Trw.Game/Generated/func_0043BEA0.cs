@@ -19,11 +19,11 @@ public static partial class Game
             }
             i = (c & 65535);
             p = (Mem.U32(0x800E59E0u) + (uint)(i * 1232));
-            if ((Mem.S32((p + 1236u)) == 0))
+            if ((new O06Q(p).unk4D4 == 0))
             {
                 return 0;
             }
-            if ((Mem.S32((p + 1200u)) != d))
+            if ((new O06P(p).unk4B0 != d))
             {
                 return 0;
             }

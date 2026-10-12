@@ -10,12 +10,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alFilterNew", (uint)f, (uint)handler, (uint)setParam, (uint)type);
-            Mem.Set(f, 0u);
-            Mem.Set((f + 4u), handler);
-            Mem.Set((f + 8u), setParam);
-            Mem.Set((f + 12u), (short)(0));
-            Mem.Set((f + 14u), (short)(0));
-            Mem.Set((f + 16u), type);
+            new ALFilter(f).source__Set(0u);
+            new ALFilter(f).handler_Set(handler);
+            new ALFilter(f).setParam_Set(setParam);
+            new ALFilter(f).inp_Set((short)(0));
+            new ALFilter(f).outp_Set((short)(0));
+            new ALFilter(f).type_Set(type);
         }
     }
 

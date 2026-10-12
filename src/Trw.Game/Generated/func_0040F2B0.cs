@@ -15,27 +15,27 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, c_in, 40);
                 if (Dbg.On) Dbg.Enter("func_0040F2B0", (uint)n, (uint)c_in);
                 uint s = 0u;
-                if (((int)(func_0040E154((_fp + 40u), (_fp + 56u), n, _fp)) != 0))
+                if ((func_0040E154((_fp + 40u), (_fp + 56u), n, _fp) != 0))
                 {
-                    if (((Mem.S32((_fp + 8u)) & 256) != 0))
+                    if (((new S_ctx(_fp).w2 & 256) != 0))
                     {
-                        s = Mem.U32((n + 52u));
+                        s = new S_func_0040F2B0(n).f34_;
                     }
                     else
                     {
-                        if (((Mem.S32((_fp + 8u)) & 64) != 0))
+                        if (((new S_ctx(_fp).w2 & 64) != 0))
                         {
-                            s = Mem.U32((n + 48u));
+                            s = new S_func_0040F2B0(n).f30_;
                         }
                         else
                         {
-                            s = Mem.U32((n + 44u));
+                            s = new S_func_0040F2B0(n).f2C_;
                         }
                     }
                     if ((s != 0u))
                     {
-                        Mem.Set(_fp, (int)((int)(Mem.S32(_fp)) - (int)(((float)((int)(Mem.S16((s + 20u)))) * Mem.F32((_fp + 12u))))));
-                        Mem.Set((_fp + 4u), (int)((int)(Mem.S32((_fp + 4u))) - (int)(((float)((int)(Mem.S16((s + 22u)))) * Mem.F32((_fp + 16u))))));
+                        new S_ctx(_fp).w0_Set((int)((int)(new S_ctx(_fp).w0) - (int)(((float)((int)(new S_sub(s).x)) * new S_ctx(_fp).f3))));
+                        new S_ctx(_fp).w1_Set((int)((int)(new S_ctx(_fp).w1) - (int)(((float)((int)(new S_sub(s).y)) * new S_ctx(_fp).f4))));
                         func_0040DB84(s, _fp);
                     }
                 }

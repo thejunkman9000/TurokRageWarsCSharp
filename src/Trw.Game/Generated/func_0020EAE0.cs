@@ -15,47 +15,47 @@ public static partial class Game
             {
                 return 1;
             }
-            if ((Mem.S32((ctl + 12u)) == (-1)))
+            if ((new B2Ctl(ctl).unkC == (-1)))
             {
                 return 1;
             }
-            if ((Mem.S32((ctl + 4u)) == Mem.S32((ctl + 12u))))
+            if ((new B2Ctl(ctl).unk4 == new B2Ctl(ctl).unkC))
             {
                 return 1;
             }
-            if ((((Mem.S32((ctl + 40u)) == Mem.S32((ctl + 12u))) && (Mem.S32(((ctl + 20u) + (uint)(0 * 4))) != (-1))) && (Mem.S32(((ctl + 20u) + (uint)(1 * 4))) != (-1))))
+            if ((((new B2Ctl(ctl).unk28 == new B2Ctl(ctl).unkC) && (new B2Ctl(ctl).q[(int)(0)] != (-1))) && (new B2Ctl(ctl).q[(int)(1)] != (-1))))
             {
-                if ((Mem.S32((ctl + 4u)) == Mem.S32(((ctl + 20u) + (uint)(0 * 4)))))
+                if ((new B2Ctl(ctl).unk4 == new B2Ctl(ctl).q[(int)(0)]))
                 {
                     return 1;
                 }
-                if ((func_0020CC0C(m, Mem.S32((ctl + 4u)), Mem.S32(((ctl + 20u) + (uint)(0 * 4)))) != (-1)))
+                if ((func_0020CC0C(m, new B2Ctl(ctl).unk4, new B2Ctl(ctl).q[(int)(0)]) != (-1)))
                 {
                     return 1;
                 }
             }
             func_0020D014(m);
-            if ((Mem.S32((ctl + 756u)) != 0))
+            if ((new B2Ctl(ctl).unk2F4 != 0))
             {
                 func_0020EDCC(ctl);
             }
-            if ((Mem.S32((ctl + 760u)) != 0))
+            if ((new B2Ctl(ctl).unk2F8 != 0))
             {
                 func_0020EE50(ctl);
             }
-            if ((Mem.S32((ctl + 764u)) != 0))
+            if ((new B2Ctl(ctl).unk2FC != 0))
             {
                 func_0020EEA4(ctl);
             }
-            func_0020EC14(ctl, default(uint), default(uint), default(uint));
+            func_0020EC14(ctl);
             func_0020D1FC(m);
-            func_0020D220(m, Mem.S32((ctl + 12u)));
-            Mem.Set((m + 24u), (-1));
-            func_0020D0CC(m, Mem.S32((ctl + 4u)));
-            func_0020D114(m, (ctl + 20u), 4);
-            Mem.Set((ctl + 444u), 0);
-            Mem.Set((ctl + 448u), (-1));
-            Mem.Set((ctl + 40u), Mem.S32((ctl + 12u)));
+            func_0020D220(m, new B2Ctl(ctl).unkC);
+            new B2Mgr(m).unk18_Set((-1));
+            func_0020D0CC(m, new B2Ctl(ctl).unk4);
+            func_0020D114(m, new B2Ctl(ctl).q.P, 4);
+            new B2Ctl(ctl).unk1BC_Set(0);
+            new B2Ctl(ctl).unk1C0_Set((-1));
+            new B2Ctl(ctl).unk28_Set(new B2Ctl(ctl).unkC);
             return 1;
         }
     }

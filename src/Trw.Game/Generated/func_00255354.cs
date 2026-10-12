@@ -14,39 +14,39 @@ public static partial class Game
             uint prev = 0u;
             uint idx = 0u;
             b = (Mem.U32(0x80105194u) + (uint)((((((key << (int)5) ^ (key >> (int)1)) ^ (key >> (int)9)) ^ (key >> (int)17)) & Mem.U32(0x80105190u)) * 16));
-            if ((Mem.U32((b + 4u)) == (uint)(0)))
+            if ((new B12Bucket(b).unk4 == (uint)(0)))
             {
-                Mem.Set(b, key);
-                Mem.Set((b + 4u), (uint)(val));
+                new B12Bucket(b).unk0_Set(key);
+                new B12Bucket(b).unk4_Set((uint)(val));
                 return;
             }
             do
             {
-                if ((Mem.U32(b) == key))
+                if ((new B12Bucket(b).unk0 == key))
                 {
-                    Mem.Set((b + 4u), (uint)(val));
+                    new B12Bucket(b).unk4_Set((uint)(val));
                     return;
                 }
                 prev = b;
-                b = Mem.U32((b + 12u));
+                b = new B12Bucket(b).next_;
             }
             while ((b != 0u));
-            idx = (uint)((Mem.S32((prev + 8u)) | 1));
-            if ((Mem.U32(((Mem.U32(0x80105194u) + (uint)(idx * 16)) + 4u)) != (uint)(0)))
+            idx = (uint)((new B12Bucket(prev).id | 1));
+            if ((new B12Bucket((Mem.U32(0x80105194u) + (uint)(idx * 16))).unk4 != (uint)(0)))
             {
                 for (; ; )
                 {
                     idx = (uint)((uint)(idx) + (uint)(2));
                     idx = (uint)((uint)(idx) & Mem.U32(0x80105198u));
-                    if ((Mem.U32(((Mem.U32(0x80105194u) + (uint)(idx * 16)) + 4u)) == (uint)(0)))
+                    if ((new B12Bucket((Mem.U32(0x80105194u) + (uint)(idx * 16))).unk4 == (uint)(0)))
                     {
                         break;
                     }
                 }
             }
-            Mem.Set((Mem.U32(0x80105194u) + (uint)(idx * 16)), key);
-            Mem.Set(((Mem.U32(0x80105194u) + (uint)(idx * 16)) + 4u), (uint)(val));
-            Mem.Set((prev + 12u), (Mem.U32(0x80105194u) + (uint)(idx * 16)));
+            new B12Bucket((Mem.U32(0x80105194u) + (uint)(idx * 16))).unk0_Set(key);
+            new B12Bucket((Mem.U32(0x80105194u) + (uint)(idx * 16))).unk4_Set((uint)(val));
+            new B12Bucket(prev).next__Set((Mem.U32(0x80105194u) + (uint)(idx * 16)));
         }
     }
 

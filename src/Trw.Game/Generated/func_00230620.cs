@@ -12,41 +12,41 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00230620", (uint)a, (uint)s);
             uint o = 0u;
             int kind = 0;
-            o = Mem.U32((a + 472u));
-            kind = (int)(Mem.S16((0x800CE8DCu + (uint)(Mem.S16((o + 1616u)) * 24))));
-            if (((((int)(Mem.S8((s + 203u))) != 0) && ((int)(func_00222A80(o, (uint)((int)(Mem.S16((o + 1582u)))), default(uint), default(uint))) == 0)) && (Mem.S32((s + 316u)) == 2)))
+            o = new M2Act(a).owner_;
+            kind = (int)(new M2Row18((0x800CE8DCu + (uint)(new M2Own(o).unk650 * 24))).unk0);
+            if (((((int)(new M2St(s).unkCB) != 0) && ((int)(func_00222A80(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0)) && (new M2St(s).unk13C == 2)))
             {
-                Mem.Set((s + 316u), 1);
-                if (((int)(func_00222A80(o, (uint)((int)(Mem.S16((o + 1582u)))), default(uint), default(uint))) == 0))
+                new M2St(s).unk13C_Set(1);
+                if (((int)(func_00222A80(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
                 {
-                    Mem.Set((o + 1904u), (short)(func_0022F95C(o)));
+                    new M2Own(o).unk770_Set((short)(func_0022F95C(o)));
                 }
             }
             func_0022B9B4(o);
-            Mem.Set((o + 4604u), 0);
-            Mem.Set((Mem.U32((o + 1688u)) + 360u), (float)(0));
-            Mem.Set((s + 312u), 0);
-            if (((Mem.S32((0x801468A0u + 84u)) != 0) && ((int)(Mem.U8((Mem.U32((o + 1496u)) + 143u))) != 0)))
+            new M2Own(o).unk11FC_Set(0);
+            new M2Own(o).unk698.unk168_Set((float)(0));
+            new M2St(s).unk138_Set(0);
+            if (((new M2G(0x801468A0u).unk54 != 0) && ((int)(new M2Own(o).stats.unk8F) != 0)))
             {
-                if (((Mem.U32((o + 1712u)) & (uint)(8192)) != 0u))
+                if (((new M2Own(o).unk6B0 & (uint)(8192)) != 0u))
                 {
-                    switch (Mem.S32((0x801468A0u + 112u)))
+                    switch (new M2G(0x801468A0u).unk70)
                     {
                     case 0:
-                        func_0025DE74(6305, (o + 8u), (int)((o + 8u)), (-1));
+                        func_0025DE74(6305, new M2Own(o).pos.P, (int)(new M2Own(o).pos.P), (-1));
                         break;
                     case 1:
-                        func_0025DE74(6505, (o + 8u), (int)((o + 8u)), (-1));
+                        func_0025DE74(6505, new M2Own(o).pos.P, (int)(new M2Own(o).pos.P), (-1));
                         break;
                     case 2:
-                        func_0025DE74(6405, (o + 8u), (int)((o + 8u)), (-1));
+                        func_0025DE74(6405, new M2Own(o).pos.P, (int)(new M2Own(o).pos.P), (-1));
                         break;
                     }
                 }
             }
             else
             {
-                if ((((kind != 1) && (kind != 7)) && ((int)(Mem.S8((s + 203u))) != 0)))
+                if ((((kind != 1) && (kind != 7)) && ((int)(new M2St(s).unkCB) != 0)))
                 {
                     func_0022FD9C(a, s);
                 }

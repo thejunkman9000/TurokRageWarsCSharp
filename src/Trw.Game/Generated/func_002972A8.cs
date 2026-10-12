@@ -13,17 +13,17 @@ public static partial class Game
             int t = 0;
             int dx = 0;
             int dy = 0;
-            if (!((((float)((x - Mem.S32((o + 8u)))) < 0.0f) ? (-(x - Mem.S32((o + 8u)))) : (x - Mem.S32((o + 8u)))) < 9))
+            if (!((((float)((x - new B21Grid_v2(o).x)) < 0.0f) ? (-(x - new B21Grid_v2(o).x)) : (x - new B21Grid_v2(o).x)) < 9))
             {
                 return 0;
             }
-            if (!((((float)((y - Mem.S32((o + 12u)))) < 0.0f) ? (-(y - Mem.S32((o + 12u)))) : (y - Mem.S32((o + 12u)))) < 9))
+            if (!((((float)((y - new B21Grid_v2(o).y)) < 0.0f) ? (-(y - new B21Grid_v2(o).y)) : (y - new B21Grid_v2(o).y)) < 9))
             {
                 return 0;
             }
-            dx = ((x - Mem.S32((o + 8u))) + 8);
-            dy = ((y - Mem.S32((o + 12u))) + 8);
-            t = (int)(Mem.S16(((o + 24u) + (uint)((dx + (dy * 17)) * 2))));
+            dx = ((x - new B21Grid_v2(o).x) + 8);
+            dy = ((y - new B21Grid_v2(o).y) + 8);
+            t = (int)(new B21Grid_v2(o).map[(int)((dx + (dy * 17)))]);
             if ((t == (-2)))
             {
                 return 1;

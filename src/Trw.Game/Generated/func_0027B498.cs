@@ -71,36 +71,36 @@ public static partial class Game
             {
                 if (((int)(Mem.U8(Mem.U32(0x801041F0u))) == 1))
                 {
-                    p = Mem.U32((o + 300u));
+                    p = new M5Obj_v2(o).tgt_;
                     if ((((p != 0u) && ((int)(Mem.U8((p + (uint)0))) == (int)(Mem.U8((Mem.U32(0x801041F0u) + (uint)0))))) && ((Mem.U32((p + (uint)256)) & (uint)(3145728)) != 0u)))
                     {
-                        if ((func_0027B498_clsA(Mem.U16((o + 4u))) != 0))
+                        if ((func_0027B498_clsA(new M5Obj_v2(o).type) != 0))
                         {
                             func_00278DE8(Mem.U32(0x801041F0u), 8, (int)(o));
                         }
-                        if ((func_0027B498_clsB(Mem.U16((o + 4u))) != 0))
+                        if ((func_0027B498_clsB(new M5Obj_v2(o).type) != 0))
                         {
                             func_00278DE8(Mem.U32(0x801041F0u), 4, (int)(o));
                         }
-                        if ((func_0027B498_clsC(Mem.U16((o + 4u))) != 0))
+                        if ((func_0027B498_clsC(new M5Obj_v2(o).type) != 0))
                         {
                             func_00278DE8(Mem.U32(0x801041F0u), 16, (int)(o));
                         }
                     }
                     else
                     {
-                        k = Mem.S32(Mem.U32((o + 24u)));
+                        k = Mem.S32(new M5Obj_v2(o).def_);
                         if (((k == 1) || (k == 4)))
                         {
-                            if ((func_0027B498_clsA(Mem.U16((o + 4u))) != 0))
+                            if ((func_0027B498_clsA(new M5Obj_v2(o).type) != 0))
                             {
                                 func_00278DE8(Mem.U32(0x801041F0u), 128, (int)(o));
                             }
-                            if ((func_0027B498_clsB(Mem.U16((o + 4u))) != 0))
+                            if ((func_0027B498_clsB(new M5Obj_v2(o).type) != 0))
                             {
                                 func_00278DE8(Mem.U32(0x801041F0u), 64, (int)(o));
                             }
-                            if ((func_0027B498_clsC(Mem.U16((o + 4u))) != 0))
+                            if ((func_0027B498_clsC(new M5Obj_v2(o).type) != 0))
                             {
                                 func_00278DE8(Mem.U32(0x801041F0u), 256, (int)(o));
                             }

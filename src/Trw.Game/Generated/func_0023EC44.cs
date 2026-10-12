@@ -12,22 +12,22 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0023EC44", (uint)o, (uint)e);
             uint old = 0u;
             uint f = 0u;
-            if (((Mem.U32((o + 60u)) & (uint)(4096)) != 0u))
+            if (((new B09FlagObj(o).flags & (uint)(4096)) != 0u))
             {
-                Mem.Set((o + 60u), (uint)((uint)(Mem.U32((o + 60u))) & (uint)((~8192))));
+                new B09FlagObj(o).flags_Set((uint)((uint)(new B09FlagObj(o).flags) & (uint)((~8192))));
             }
-            old = Mem.U32((o + 60u));
+            old = new B09FlagObj(o).flags;
             f = (old & 4294737919u);
-            Mem.Set((o + 60u), f);
+            new B09FlagObj(o).flags_Set(f);
             if (((old & (uint)(28672)) != 0u))
             {
-                switch (Mem.S32((e + 12u)))
+                switch (new B09Evt(e).kind)
                 {
                 case 8:
-                    Mem.Set((o + 60u), (f | (uint)(65536)));
+                    new B09FlagObj(o).flags_Set((f | (uint)(65536)));
                     return;
                 case 7:
-                    Mem.Set((o + 60u), (f | (uint)(32768)));
+                    new B09FlagObj(o).flags_Set((f | (uint)(32768)));
                     break;
                 }
             }

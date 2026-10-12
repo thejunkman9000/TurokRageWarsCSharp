@@ -36,14 +36,14 @@ public static partial class Game
                 { bool c_ = r3 == 0; r2 = (uint)2; if (c_) goto L_L0025CEC8; }
                 { bool c_ = r3 == r2; r2 = (uint)3; if (c_) goto L_L0025CD18; }
                 { bool c_ = r3 != r2;  if (c_) goto L_L0025CEC8; }
-                r2 = adecGetStopFlag(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = adecGetStopFlag();
                  goto L_L0025CEC8;
                 L_L0025CD18: ;
                 r5 = (uint)(int)Mem.S16((r16 + 30u));
                 r4 = r17; alSndpSetSound(r4, (short)r5);
                 r4 = r17; r2 = (uint)alSndpGetState(r4);
                 { bool c_ = r2 != 0;  if (c_) goto L_L0025CEC8; }
-                r2 = adecClearStopFlag(r4, r5, r6, r7); r3 = Cpu.V1;
+                adecClearStopFlag();
                 r2 = Mem.U32((r16 + 12u));
                 if ((int)r2 < 0) { Mem.Set((r16 + 8u), r0); goto L_L0025CEC8; }
                 Mem.Set((r16 + 8u), r18); goto L_L0025CEC8;
@@ -83,7 +83,7 @@ public static partial class Game
                 r4 = r2;
                 r5 = (uint)22050;
                 r6 = r29 + 16u;
-                Mem.Set((r19 - 4u), r4); r2 = adecStreamOpen(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r19 - 4u), r4); r2 = adecStreamOpen(r4, r5, r6);
                 r3 = 2148335616u;
                 r3 = Mem.U32((r3 + 3448u));
                 r4 = r17;

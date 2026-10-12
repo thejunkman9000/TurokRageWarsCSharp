@@ -15,7 +15,7 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, v_in, 12);
                 if (Dbg.On) Dbg.Enter("func_002062E0", (uint)actor, (uint)state, (uint)v_in);
                 uint p = 0u;
-                if ((((id == 3031) && (Mem.S32((0x801468A0u + 120u)) != 0)) && (Mem.S32((0x801468A0u + 128u)) != 0)))
+                if ((((id == 3031) && (new B01Game(0x801468A0u).unk78 != 0)) && (new B01Game(0x801468A0u).unk80 != 0)))
                 {
                     return;
                 }
@@ -27,12 +27,12 @@ public static partial class Game
                         return;
                     }
                 }
-                p = func_0028FFB0(0x80131600u, (state + 292u), id, (actor + 28u), _fp, p4C, Cpu.U2F((uint)(0)));
+                p = func_0028FFB0(0x80131600u, new B01State(state).unk124.P, id, new B01Actor(actor).vec1C.P, _fp, p4C, Cpu.U2F((uint)(0)));
                 if ((p != 0u))
                 {
-                    Mem.Set((p + 416u), 0);
-                    Mem.Set((state + 296u), (Mem.S32((state + 296u)) - 1));
-                    func_00216288(p, 285, (p + 8u));
+                    new B01Actor(p).unk1A0_Set(0);
+                    new B01State(state).unk128.i_Set((new B01State(state).unk128.i - 1));
+                    func_00216288(p, 285, new B01Actor(p).pos.P);
                 }
             }
         }

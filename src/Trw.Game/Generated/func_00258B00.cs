@@ -15,14 +15,14 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00258B00", (uint)m);
                 uint o = 0u;
                 uint p = 0u;
-                if (((((Mem.S32(0x800D0960u) != 0) && (Mem.S32((m + 11188u)) != 0)) && (func_002934DC() != 0)) && (Mem.S32((m + 308u)) > 0)))
+                if (((((Mem.S32(0x800D0960u) != 0) && (new SndMgr(m).unk2BB4 != 0)) && (func_002934DC() != 0)) && (new SndMgr(m).unk134 > 0)))
                 {
-                    Mem.Set(_fp, Mem.Set((_fp + 4u), Mem.Set((_fp + 8u), 0.0f)));
+                    new Vec3f(_fp).x_Set(new Vec3f(_fp).y_Set(new Vec3f(_fp).z_Set(0.0f)));
                     o = func_00239594(0x80145088u, _fp);
-                    p = (o + 296u);
-                    if (((Mem.S32((m + 260u)) & 3) == 0))
+                    p = new PosObj(o).pos.P;
+                    if (((new SndMgr(m).unk104 & 3) == 0))
                     {
-                        func_00257DF4(m, Mem.S32((m + 308u)), p, 0, (-1));
+                        func_00257DF4(m, new SndMgr(m).unk134, p, 0, (-1));
                     }
                 }
             }

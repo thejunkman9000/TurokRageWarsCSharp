@@ -10,40 +10,40 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002ADE28", (uint)e, (uint)f, (uint)c);
-            uint b = (Mem.U32((c + 24u)) + 20u);
+            uint b = new Ctx24(c).unk18.b.P;
             uint p = 0u;
             int bb = 0;
             int cc = 0;
-            switch ((int)((short)(((int)(Mem.U16((f + 4u))) - 1800))))
+            switch ((int)((short)(((int)(new Fx24_v5(f).unk4) - 1800))))
             {
             case 0:
-                Mem.Set((e + 1648u), Mem.F32(0x800CB468u));
+                new Ent24(e).unk670_Set(Mem.F32(0x800CB468u));
                 break;
             case 1:
-                Mem.Set((e + 1652u), Mem.F32(0x800CB46Cu));
+                new Ent24(e).unk674_Set(Mem.F32(0x800CB46Cu));
                 break;
             case 2:
             case 3:
-                Mem.Set((e + 1656u), (float)((float)(Mem.F32((e + 1656u))) + Mem.F32((b + 12u))));
+                new Ent24(e).unk678_Set((float)((float)(new Ent24(e).unk678) + new Blk24b(b).unkC));
                 break;
             case 7:
-                func_002A7FA8((e + (uint)3392), 1, 0, 2045, 0, 0.0f, 0, (int)(0x002AE1A4u), (int)(0x002AE254u));
+                func_002A7FA8((e + (uint)3392), 1, 0, 2045, 0, 0.0f, 0, 0x002AE1A4u, 0x002AE254u);
                 break;
             }
-            p = Mem.U32(f);
-            bb = (int)(Mem.S16((f + 6u)));
-            cc = (int)(Mem.S16((f + 8u)));
-            if ((Mem.S32((e + 1500u)) != 0))
+            p = new Fx24_v5(f).unk0_;
+            bb = (int)(new Fx24_v5(f).unk6);
+            cc = (int)(new Fx24_v5(f).unk8);
+            if ((new Ent24(e).unk5DC != 0))
             {
-                func_0023919C((uint)(Mem.S32((e + 1500u))), (sbyte)(128), (sbyte)(50), (sbyte)(50), (sbyte)(75), (sbyte)(0), (sbyte)(0), (sbyte)(2));
+                func_0023919C((uint)(new Ent24(e).unk5DC), (sbyte)(128), (sbyte)(50), (sbyte)(50), (sbyte)(75), (sbyte)(0), (sbyte)(0), (sbyte)(2));
                 if ((p != 0u))
                 {
-                    func_00237E70(0x80145088u, (uint)(Mem.S32((e + 1500u))), (uint)(Mem.S32(p)), default(uint));
+                    func_00237E70(0x80145088u, (uint)(new Ent24(e).unk5DC), (uint)(Mem.S32(p)));
                 }
             }
             if ((bb != 0))
             {
-                func_0025DE74((int)((uint)(bb)), C.Tmp((uint)(Mem.S32((e + 8u))), (uint)(Mem.S32((e + 12u))), (uint)(Mem.S32((e + 16u)))), (int)((uint)(0)), (int)((uint)((-1))));
+                func_0025DE74((int)((uint)(bb)), C.Tmp((uint)(new Ent24(e).unk8), (uint)(new Ent24(e).unkC), (uint)(new Ent24(e).unk10)), (int)((uint)(0)), (int)((uint)((-1))));
             }
             if ((cc != 0))
             {

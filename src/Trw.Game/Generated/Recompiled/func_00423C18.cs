@@ -110,7 +110,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r2 = (uint)((int)r2 < 4 ? 1 : 0);
                 { bool c_ = r2 != 0;  if (c_) goto L_L00423CCC; }
-                r4 = (uint)28; r2 = func_00252FFC(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = (uint)28; r2 = func_00252FFC(r4);
                 r1 = 2148401152u;
                 Mem.Set((r1 + 17920u), r2);
                 r19 = r0; func_002A3358();

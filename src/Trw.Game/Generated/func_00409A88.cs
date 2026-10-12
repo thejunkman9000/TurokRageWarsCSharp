@@ -10,16 +10,16 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00409A88", (uint)a);
-            uint p = Mem.U32((a + 1496u));
+            uint p = new O01Actor(a).save_;
             int i = 0;
-            Mem.Set((p + 128u), Mem.U8((0x80153738u + 8u)));
-            Mem.Set((p + (uint)(0 * 2)), Mem.U16((0x80153738u + (uint)(0 * 2))));
-            Mem.Set((p + (uint)(1 * 2)), Mem.U16((0x80153738u + (uint)(1 * 2))));
-            Mem.Set((p + (uint)(2 * 2)), Mem.U16((0x80153738u + (uint)(2 * 2))));
-            Mem.Set((p + (uint)(3 * 2)), Mem.U16((0x80153738u + (uint)(3 * 2))));
+            new O01SaveSrc(p).b0_Set(new O01Save(0x80153738u).b0);
+            new O01SaveSrc(p).w.Set((int)(0), new O01Save(0x80153738u).w[(int)(0)]);
+            new O01SaveSrc(p).w.Set((int)(1), new O01Save(0x80153738u).w[(int)(1)]);
+            new O01SaveSrc(p).w.Set((int)(2), new O01Save(0x80153738u).w[(int)(2)]);
+            new O01SaveSrc(p).w.Set((int)(3), new O01Save(0x80153738u).w[(int)(3)]);
             for (i = 0; (i < 8); ++i)
             {
-                Mem.Set(((p + 132u) + (uint)i), Mem.U8((0x80153744u + (uint)i)));
+                new O01SaveSrc(p).tail.Set((int)(i), Mem.U8((0x80153744u + (uint)i)));
             }
         }
     }

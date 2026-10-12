@@ -16,38 +16,38 @@ public static partial class Game
                 Mem.Set(0x8014D3D0u, 1);
                 {
                     uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(_g, 4254072832u);
-                    Mem.Set((_g + 4u), (uint)(tex));
+                    Mem.Set(new P4Gfx(_g).words.P, 4254072832u);
+                    Mem.Set((new P4Gfx(_g).words.P + 4u), (uint)(tex));
                 }
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(_g, 4119855360u);
-                    Mem.Set((_g + 4u), (uint)(117489728));
+                    uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    Mem.Set(new P4Gfx(_g_2).words.P, 4119855360u);
+                    Mem.Set((new P4Gfx(_g_2).words.P + 4u), (uint)(117489728));
                 }
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(_g, 3858759680u);
-                    Mem.Set((_g + 4u), (uint)(0));
+                    uint _g_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    Mem.Set(new P4Gfx(_g_3).words.P, 3858759680u);
+                    Mem.Set((new P4Gfx(_g_3).words.P + 4u), (uint)(0));
                 }
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(_g, 4076863488u);
-                    Mem.Set((_g + 4u), (uint)(117569536));
+                    uint _g_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    Mem.Set(new P4Gfx(_g_4).words.P, 4076863488u);
+                    Mem.Set((new P4Gfx(_g_4).words.P + 4u), (uint)(117569536));
                 }
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(_g, 3875536896u);
-                    Mem.Set((_g + 4u), (uint)(0));
+                    uint _g_5 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    Mem.Set(new P4Gfx(_g_5).words.P, 3875536896u);
+                    Mem.Set((new P4Gfx(_g_5).words.P + 4u), (uint)(0));
                 }
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(_g, 4118807296u);
-                    Mem.Set((_g + 4u), (uint)(49216));
+                    uint _g_6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    Mem.Set(new P4Gfx(_g_6).words.P, 4118807296u);
+                    Mem.Set((new P4Gfx(_g_6).words.P + 4u), (uint)(49216));
                 }
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(_g, 4060086272u);
-                    Mem.Set((_g + 4u), (uint)(245788));
+                    uint _g_7 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    Mem.Set(new P4Gfx(_g_7).words.P, 4060086272u);
+                    Mem.Set((new P4Gfx(_g_7).words.P + 4u), (uint)(245788));
                 }
             }
         }

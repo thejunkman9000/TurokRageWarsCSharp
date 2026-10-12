@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A1A84", (uint)b);
-            osRecvMesg(b, (b + 24u), 1);
+            osRecvMesg(new MsgBox(b).q.P, (b + 24u), 1);
         }
     }
 

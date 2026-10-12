@@ -15,14 +15,14 @@ public static partial class Game
             float v = 0f;
             int ok = 0;
             int t = 0;
-            o = Mem.U32((a + 472u));
-            if (((int)(Mem.S8((s + 52u))) != 4))
+            o = new M2Act(a).owner_;
+            if (((int)(new M2St(s).unk34) != 4))
             {
-                Mem.Set((s + 296u), func_00274810(Mem.F32((s + 296u)), 0.0136135686f));
+                new M2St(s).unk128_Set(func_00274810(new M2St(s).unk128, 0.0136135686f));
             }
-            Mem.Set((s + 292u), (Mem.F32((s + 292u)) + (2.0f * (Mem.F32((s + 296u)) * Mem.F32(0x800D2988u)))));
-            v = Mem.F32((s + 296u));
-            sub = Mem.U32((o + 1688u));
+            new M2St(s).unk124_Set((new M2St(s).unk124 + (2.0f * (new M2St(s).unk128 * Mem.F32(0x800D2988u)))));
+            v = new M2St(s).unk128;
+            sub = new M2Own(o).unk698_;
             if ((v < 0.0f))
             {
                 if ((1.0f < ((-v) * 1.79049289f)))
@@ -37,28 +37,28 @@ public static partial class Game
                     goto L_A;
                 }
             }
-            v = Mem.F32((s + 296u));
+            v = new M2St(s).unk128;
             if ((v < 0.0f))
             {
-                Mem.Set((sub + 360u), ((-v) * 1.79049289f));
+                new M2Sub698(sub).unk168_Set(((-v) * 1.79049289f));
             }
             else
             {
-                Mem.Set((sub + 360u), (v * 1.79049289f));
+                new M2Sub698(sub).unk168_Set((v * 1.79049289f));
             }
             goto L_done;
             L_A: ;
-            Mem.Set((sub + 360u), 1.0f);
+            new M2Sub698(sub).unk168_Set(1.0f);
             L_done: ;
-            if (((Mem.U32((o + 1708u)) & (uint)(16384)) != 0u))
+            if (((new M2Own(o).unk6AC & (uint)(16384)) != 0u))
             {
-                if ((Mem.F32((o + 4568u)) > 0.0f))
+                if ((new M2Own(o).unk11D8 > 0.0f))
                 {
                     ok = 0;
                 }
                 else
                 {
-                    if ((Mem.S32((o + 5200u)) != 0))
+                    if ((new M2Own(o).unk1450 != 0))
                     {
                         ok = 1;
                     }
@@ -70,27 +70,27 @@ public static partial class Game
                         }
                         else
                         {
-                            t = (int)(func_0022F54C((0x80102B00u + (uint)(Mem.S32((o + 1492u)) * 400)), (uint)((int)(Mem.S16((o + 1582u)))), default(uint), default(uint)));
+                            t = (int)(func_0022F54C((0x80102B00u + (uint)(new M2Own(o).unk5D4 * 400)), (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint)));
                             if ((t == 0))
                             {
                                 func_0025DF54(3405);
-                                if ((Mem.U32((o + 1500u)) != 0u))
+                                if ((new M2Own(o).pawn_ != 0u))
                                 {
-                                    func_002398F8(0x80145088u, Mem.U32((o + 1500u)), Mem.S32(0x800D70E8u), (uint)(func_0022A590(0x80145040u, (int)(o))), 1.0f);
+                                    func_002398F8(0x80145088u, new M2Own(o).pawn_, (uint)(Mem.S32(0x800D70E8u)), func_0022A590(0x80145040u, (int)(o)), 1.0f);
                                 }
                             }
                             ok = t;
                         }
                     }
                 }
-                if (((ok != 0) && ((int)(Mem.S16((o + 1526u))) > 0)))
+                if (((ok != 0) && ((int)(new M2Own(o).unk5F6) > 0)))
                 {
-                    if (!((Mem.U32((o + 4652u)) & (uint)(99328)) != 0u))
+                    if (!((new M2Own(o).unk122C & (uint)(99328)) != 0u))
                     {
                         func_0025DF54(1980);
                     }
-                    Mem.Set((o + 4652u), (Mem.U32((o + 4652u)) | (uint)(99328)));
-                    Mem.Set((o + 4656u), 25.0f);
+                    new M2Own(o).unk122C_Set((new M2Own(o).unk122C | (uint)(99328)));
+                    new M2Own(o).unk1230_Set(25.0f);
                 }
             }
         }

@@ -12,13 +12,13 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043AED0", (uint)k, (uint)dir);
             int s1 = 0;
             uint w = 0u;
-            s1 = Mem.S32((((Mem.U32(0x800E59E0u) + 8u) + (uint)(k * 1232)) + 1196u));
-            w = func_0040ECB0(Mem.U32(Mem.U32(0x800E59E0u)), (uint)((int)(Mem.U16(((0x800E5A1Au + (uint)(k * 76)) + (uint)((s1 * 2) * 2))))), default(uint), default(uint));
+            s1 = new O05L2(Mem.U32(0x800E59E0u)).row[(int)(k)].f4AC;
+            w = func_0040ECB0(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E5A1Au + (uint)(k * 76))).w[(int)((s1 * 2))])), default(uint), default(uint));
             func_0040E9A8(w, 0);
-            Mem.Set((w + 16u), (byte)(35));
+            new O05Wb(w).b10_Set((byte)(35));
             if ((s1 != 5))
             {
-                func_0040E958(func_0040ECB0(Mem.U32(Mem.U32(0x800E59E0u)), (uint)((int)(Mem.U16(((0x800E5A06u + (uint)(k * 76)) + (uint)((s1 * 2) * 2))))), default(uint), default(uint)), 0);
+                func_0040E958(func_0040ECB0(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E5A06u + (uint)(k * 76))).w[(int)((s1 * 2))])), default(uint), default(uint)), 0);
             }
             if ((dir == 1))
             {
@@ -29,7 +29,7 @@ public static partial class Game
                 else
                 {
                     --s1;
-                    if ((Mem.S32((((Mem.U32(0x800E59E0u) + 8u) + (uint)(k * 1232)) + 1228u)) == 1))
+                    if ((new O05L2(Mem.U32(0x800E59E0u)).row[(int)(k)].f4CC == 1))
                     {
                         if ((s1 >= 3))
                         {
@@ -47,7 +47,7 @@ public static partial class Game
                 else
                 {
                     ++s1;
-                    if ((Mem.S32((((Mem.U32(0x800E59E0u) + 8u) + (uint)(k * 1232)) + 1228u)) == 1))
+                    if ((new O05L2(Mem.U32(0x800E59E0u)).row[(int)(k)].f4CC == 1))
                     {
                         if ((s1 >= 3))
                         {

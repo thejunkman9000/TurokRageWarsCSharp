@@ -10,11 +10,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00216488", (uint)p, (uint)a, (uint)b, (uint)c);
-            Mem.Set(p, a);
-            Mem.Set((p + 4u), b);
-            Mem.Set((p + 8u), c);
-            Mem.Set((p + 12u), d);
-            Mem.Set((p + 16u), e);
+            new B04Five(p).a_Set(a);
+            new B04Five(p).b_Set(b);
+            new B04Five(p).c_Set(c);
+            new B04Five(p).d_Set(d);
+            new B04Five(p).e_Set(e);
         }
     }
 

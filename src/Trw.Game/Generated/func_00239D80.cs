@@ -10,25 +10,25 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00239D80", (uint)o);
-            uint c1 = ((o + 4u) + (uint)(1 * 20));
-            uint c2 = ((o + 4u) + (uint)(2 * 20));
-            uint c3 = ((o + 4u) + (uint)(3 * 20));
-            Mem.Set((((o + 4u) + (uint)(0 * 20)) + 4u), (float)(0));
-            Mem.Set(((((o + 4u) + (uint)(0 * 20)) + 4u) + 4u), (float)(0));
-            Mem.Set(((((o + 4u) + (uint)(0 * 20)) + 4u) + 8u), (float)(0));
-            Mem.Set((((o + 4u) + (uint)(0 * 20)) + 16u), Mem.F32(0x800C8660u));
-            Mem.Set((c1 + 4u), (float)(0));
-            Mem.Set(((c1 + 4u) + 4u), (float)(0));
-            Mem.Set(((c1 + 4u) + 8u), (float)(0));
-            Mem.Set((c1 + 16u), (float)(0));
-            Mem.Set((c2 + 4u), (float)(0));
-            Mem.Set(((c2 + 4u) + 4u), (float)(0));
-            Mem.Set(((c2 + 4u) + 8u), (float)(0));
-            Mem.Set((c2 + 16u), (float)(0));
-            Mem.Set((c3 + 4u), (float)(0));
-            Mem.Set(((c3 + 4u) + 4u), (float)(0));
-            Mem.Set(((c3 + 4u) + 8u), (float)(0));
-            Mem.Set((c3 + 16u), (float)(0));
+            uint c1 = (new ChanObj(o).ch.P + (uint)(1 * 20));
+            uint c2 = (new ChanObj(o).ch.P + (uint)(2 * 20));
+            uint c3 = (new ChanObj(o).ch.P + (uint)(3 * 20));
+            new ChanObj(o).ch[(int)(0)].v.x_Set((float)(0));
+            new ChanObj(o).ch[(int)(0)].v.y_Set((float)(0));
+            new ChanObj(o).ch[(int)(0)].v.z_Set((float)(0));
+            new ChanObj(o).ch[(int)(0)].d_Set(Mem.F32(0x800C8660u));
+            new Chan(c1).v.x_Set((float)(0));
+            new Chan(c1).v.y_Set((float)(0));
+            new Chan(c1).v.z_Set((float)(0));
+            new Chan(c1).d_Set((float)(0));
+            new Chan(c2).v.x_Set((float)(0));
+            new Chan(c2).v.y_Set((float)(0));
+            new Chan(c2).v.z_Set((float)(0));
+            new Chan(c2).d_Set((float)(0));
+            new Chan(c3).v.x_Set((float)(0));
+            new Chan(c3).v.y_Set((float)(0));
+            new Chan(c3).v.z_Set((float)(0));
+            new Chan(c3).d_Set((float)(0));
         }
     }
 

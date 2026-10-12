@@ -15,11 +15,11 @@ public static partial class Game
             int i = 0;
             if ((Mem.S32(0x80153774u) != 0))
             {
-                Mem.Set((item + 20u), 0x800D77FCu);
+                new O01Item(item).unk14__Set(0x800D77FCu);
             }
             else
             {
-                Mem.Set((item + 20u), 0x800D7804u);
+                new O01Item(item).unk14__Set(0x800D7804u);
                 switch ((int)(Mem.S8((0x80153720u + (uint)0))))
                 {
                 default:
@@ -49,7 +49,7 @@ public static partial class Game
                     src = Mem.U32(0x800D7A48u);
                     break;
                 }
-                dst = Mem.U32(Mem.U32((item + 20u)));
+                dst = new O01Item(item).unk14.buf_;
                 dst = (uint)(dst + (uint)((func_00442158((uint)(item)) - 11) * 1));
                 for (i = 0; (i < 11); ++i)
                 {

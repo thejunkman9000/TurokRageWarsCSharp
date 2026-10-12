@@ -57,7 +57,7 @@ public static partial class Game
                 r2 = Mem.U32((r6 + 16u));
                 r3 = r3 | 1296u;
                 Mem.Set((r3 + 0u), r2);
-                r2 = __osLeoResume(r4, r5, r6, r7); r3 = Cpu.V1;
+                __osLeoResume();
                 r6 = 2757754880u;
                 r6 = r6 | 16u;
                 r5 = 1048576u;

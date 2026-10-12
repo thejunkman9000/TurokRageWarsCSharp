@@ -19,21 +19,21 @@ public static partial class Game
                 float ang = 0f;
                 float s = 0f;
                 t = 0u;
-                if (((o != 0u) && ((int)(Mem.U8(o)) == 1)))
+                if (((o != 0u) && ((int)(new Obj(o).type) == 1)))
                 {
                     t = Mem.U32((o + (uint)496));
                     func_0024795C((_fp + 112u), (uint)(o));
                     func_002742B4((_fp + 112u), (_fp + 144u));
-                    Mem.Set((_fp + 64u), (float)(0));
-                    Mem.Set(((_fp + 64u) + 4u), (float)(0));
-                    Mem.Set(((_fp + 64u) + 8u), Mem.F32(0x800C8D74u));
+                    new Vec3f((_fp + 64u)).x_Set((float)(0));
+                    new Vec3f((_fp + 64u)).y_Set((float)(0));
+                    new Vec3f((_fp + 64u)).z_Set(Mem.F32(0x800C8D74u));
                     func_00272908((_fp + 144u), (_fp + 64u), (_fp + 48u));
                 }
                 else
                 {
-                    Mem.Set((_fp + 48u), 0.0f);
-                    Mem.Set(((_fp + 48u) + 4u), 0.0f);
-                    Mem.Set(((_fp + 48u) + 8u), Mem.F32(0x800C8D78u));
+                    new Vec3f((_fp + 48u)).x_Set(0.0f);
+                    new Vec3f((_fp + 48u)).y_Set(0.0f);
+                    new Vec3f((_fp + 48u)).z_Set(Mem.F32(0x800C8D78u));
                 }
                 if ((t == 0u))
                 {
@@ -45,29 +45,29 @@ public static partial class Game
                     if ((t == 0u))
                     {
                         float zero = 0.0f;
-                        Mem.Set(((_fp + 128u) + 8u), zero);
-                        Mem.Set(((_fp + 128u) + 4u), zero);
-                        Mem.Set((_fp + 128u), zero);
-                        Mem.Set(((_fp + 128u) + 12u), Mem.F32(0x800C8D7Cu));
+                        new Quat4((_fp + 128u)).z_Set(zero);
+                        new Quat4((_fp + 128u)).y_Set(zero);
+                        new Quat4((_fp + 128u)).x_Set(zero);
+                        new Quat4((_fp + 128u)).w_Set(Mem.F32(0x800C8D7Cu));
                         Mem.Copy(_ret, (_fp + 128u), 16);
                         return _ret;
                     }
                 }
-                Mem.Copy((_fp + 16u), (t + 8u), 12);
-                Mem.Set(((_fp + 16u) + 4u), (float)((float)(Mem.F32(((_fp + 16u) + 4u))) + Mem.F32((t + 112u))));
-                Mem.Set(((_fp + 16u) + 4u), (float)((float)(Mem.F32(((_fp + 16u) + 4u))) + (func_0024D274(t) * Mem.F32(0x800C8D80u))));
+                Mem.Copy((_fp + 16u), new Obj(t).pos.P, 12);
+                new Vec3f((_fp + 16u)).y_Set((float)((float)(new Vec3f((_fp + 16u)).y) + new Obj(t).unk70));
+                new Vec3f((_fp + 16u)).y_Set((float)((float)(new Vec3f((_fp + 16u)).y) + (func_0024D274(t) * Mem.F32(0x800C8D80u))));
                 func_00271FD8((_fp + 32u), (_fp + 16u), _fp);
                 func_002720EC((_fp + 32u));
                 func_00272088((_fp + 80u), (_fp + 48u), (_fp + 32u));
                 func_002720EC((_fp + 80u));
-                ang = (func_00274640((((Mem.F32((_fp + 48u)) * Mem.F32((_fp + 32u))) + (Mem.F32(((_fp + 48u) + 4u)) * Mem.F32(((_fp + 32u) + 4u)))) + (Mem.F32(((_fp + 48u) + 8u)) * Mem.F32(((_fp + 32u) + 8u))))) * Mem.F32(0x800C8D84u));
+                ang = (func_00274640((((new Vec3f((_fp + 48u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 48u)).y * new Vec3f((_fp + 32u)).y)) + (new Vec3f((_fp + 48u)).z * new Vec3f((_fp + 32u)).z))) * Mem.F32(0x800C8D84u));
                 s = sinf(ang);
                 Mem.Set(0x80115DECu, s);
-                Mem.Set((_fp + 96u), (Mem.F32((_fp + 80u)) * s));
-                Mem.Set(((_fp + 96u) + 4u), (Mem.F32(((_fp + 80u) + 4u)) * s));
-                Mem.Set(((_fp + 96u) + 8u), (Mem.F32(((_fp + 80u) + 8u)) * s));
-                Mem.Set(((_fp + 96u) + 12u), cosf(ang));
-                if (((o != 0u) && ((int)(Mem.U8(o)) == 1)))
+                new Quat4((_fp + 96u)).x_Set((new Vec3f((_fp + 80u)).x * s));
+                new Quat4((_fp + 96u)).y_Set((new Vec3f((_fp + 80u)).y * s));
+                new Quat4((_fp + 96u)).z_Set((new Vec3f((_fp + 80u)).z * s));
+                new Quat4((_fp + 96u)).w_Set(cosf(ang));
+                if (((o != 0u) && ((int)(new Obj(o).type) == 1)))
                 {
                     func_00274108((_fp + 128u), (_fp + 112u), (_fp + 96u));
                 }

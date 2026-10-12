@@ -15,10 +15,10 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00255220", (uint)p);
                 while ((1 != 0))
                 {
-                    osRecvMesg((p + 560u), _fp, 1);
-                    Mem.Set((p + 5192u), Mem.S32(0x800D2978u));
-                    Funcs.CallReg(Mem.U32((Mem.U32(_fp) + 20u)), Mem.U32((Mem.U32(_fp) + 24u)), Mem.U32(_fp), 0u, 0u);
-                    osSendMesg(Mem.U32((Mem.U32(_fp) + 32u)), Mem.U32(_fp), 1);
+                    osRecvMesg(new B12Port(p).q.P, _fp, 1);
+                    new B12Port(p).unk1448_Set(Mem.S32(0x800D2978u));
+                    Funcs.CallReg(new B12Req(Mem.U32(_fp)).fn, new B12Req(Mem.U32(_fp)).arg, Mem.U32(_fp), 0u, 0u);
+                    osSendMesg(new B12Req(Mem.U32(_fp)).reply_, Mem.U32(_fp), 1);
                 }
             }
         }

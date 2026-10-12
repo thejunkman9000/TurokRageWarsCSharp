@@ -20,7 +20,7 @@ public static partial class Game
             {
                 for (i = 0; (i < 16); ++i)
                 {
-                    if ((Mem.S32((((Mem.U32(0x800E2854u) + (uint)(pad * 516)) + 4u) + (uint)(i * 32))) == 0))
+                    if ((new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent[(int)(i)].unk0 == 0))
                     {
                         Mem.Set(cnt, (int)(Mem.S32(cnt) + 1));
                     }

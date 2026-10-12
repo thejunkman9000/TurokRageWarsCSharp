@@ -13,25 +13,25 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("__cmpdi2");
-                Mem.Set(_fp, a); Mem.Set((_fp + 8u), b);
-                if ((Mem.S32(_fp) < Mem.S32((_fp + 8u))))
+                new DIunion(_fp).ll_Set(a); new DIunion((_fp + 8u)).ll_Set(b);
+                if ((new DIunion(_fp).s.high < new DIunion((_fp + 8u)).s.high))
                 {
                     return 0;
                 }
                 else
                 {
-                    if ((Mem.S32(_fp) > Mem.S32((_fp + 8u))))
+                    if ((new DIunion(_fp).s.high > new DIunion((_fp + 8u)).s.high))
                     {
                         return 2;
                     }
                 }
-                if (((uint)(Mem.S32((_fp + 4u))) < (uint)(Mem.S32(((_fp + 8u) + 4u)))))
+                if (((uint)(new DIunion(_fp).s.low) < (uint)(new DIunion((_fp + 8u)).s.low)))
                 {
                     return 0;
                 }
                 else
                 {
-                    if (((uint)(Mem.S32((_fp + 4u))) > (uint)(Mem.S32(((_fp + 8u) + 4u)))))
+                    if (((uint)(new DIunion(_fp).s.low) > (uint)(new DIunion((_fp + 8u)).s.low)))
                     {
                         return 2;
                     }

@@ -13,12 +13,12 @@ public static partial class Game
             uint thisNode = 0u;
             uint nextNode = 0u;
             uint mask = osSetIntMask((uint)(1));
-            thisNode = Mem.U32((evtq + 8u));
+            thisNode = new ALEventQueue_v2(evtq).allocList.next_;
             while ((thisNode != 0u))
             {
-                nextNode = Mem.U32(thisNode);
+                nextNode = new ALLink(thisNode).next_;
                 alUnlink(thisNode);
-                alLink(thisNode, evtq);
+                alLink(thisNode, new ALEventQueue_v2(evtq).freeList.P);
                 thisNode = nextNode;
             }
             osSetIntMask(mask);

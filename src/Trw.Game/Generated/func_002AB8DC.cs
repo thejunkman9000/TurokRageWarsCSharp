@@ -23,8 +23,8 @@ public static partial class Game
                 i = (idx % (int)(Mem.S16(t)));
                 p = (t + (uint)8);
                 e = (uint)(((uint)((i * 8)) + (uint)(p)));
-                b = Mem.U8((e + 4u));
-                off = Mem.S32(e);
+                b = new TabEnt(e).unk4;
+                off = new TabEnt(e).off;
                 Mem.Set(out2, b);
                 Mem.Set(@out, (t + (uint)off));
             }

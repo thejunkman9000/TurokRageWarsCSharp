@@ -13,13 +13,13 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_002947DC", (uint)g, (uint)a);
-                if (!((int)(func_0044DE70(0x8011FE88u, (uint)((-1)), (uint)(a), _fp, (uint)(1))) != 0))
+                if (!(func_0044DE70(0x8011FE88u, (-1), a, _fp, 1) != 0))
                 {
                     a = 0;
                 }
-                Mem.Set((g + 159169u), (byte)(2));
-                Mem.Set((g + 159192u), a);
-                Mem.Set((g + 159164u), 14);
+                new B21Game(g).unk26DC1_Set((byte)(2));
+                new B21Game(g).unk26DD8_Set(a);
+                new B21Game(g).unk26DBC_Set(14);
             }
         }
         finally { Stack.Free(24); }

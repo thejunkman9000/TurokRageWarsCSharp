@@ -14,57 +14,57 @@ public static partial class Game
             byte type = 0;
             int deltaTicks = 0;
             deltaTicks = __alSeqReadVarLen(seq);
-            Mem.Set((seq + 12u), (int)((int)(Mem.S32((seq + 12u))) + deltaTicks));
+            new ALSeq(seq).lastTicks_Set((int)((int)(new ALSeq(seq).lastTicks) + deltaTicks));
             status = __alSeqReadByte(seq);
             if (((int)(status) == 255))
             {
                 type = __alSeqReadByte(seq);
                 if (((int)(type) == 81))
                 {
-                    Mem.Set(@event, (short)(3));
-                    Mem.Set((@event + 4u), deltaTicks);
-                    Mem.Set(((@event + 4u) + 4u), status);
-                    Mem.Set(((@event + 4u) + 5u), type);
-                    Mem.Set(((@event + 4u) + 6u), __alSeqReadByte(seq));
-                    Mem.Set(((@event + 4u) + 7u), __alSeqReadByte(seq));
-                    Mem.Set(((@event + 4u) + 8u), __alSeqReadByte(seq));
-                    Mem.Set(((@event + 4u) + 9u), __alSeqReadByte(seq));
+                    new ALEvent(@event).type_Set((short)(3));
+                    new ALTempoEvent(new ALEvent(@event).msg.P).ticks_Set(deltaTicks);
+                    new ALTempoEvent(new ALEvent(@event).msg.P).status_Set(status);
+                    new ALTempoEvent(new ALEvent(@event).msg.P).type_Set(type);
+                    new ALTempoEvent(new ALEvent(@event).msg.P).len_Set(__alSeqReadByte(seq));
+                    new ALTempoEvent(new ALEvent(@event).msg.P).byte1_Set(__alSeqReadByte(seq));
+                    new ALTempoEvent(new ALEvent(@event).msg.P).byte2_Set(__alSeqReadByte(seq));
+                    new ALTempoEvent(new ALEvent(@event).msg.P).byte3_Set(__alSeqReadByte(seq));
                 }
                 else
                 {
                     if (((int)(type) == 47))
                     {
-                        Mem.Set(@event, (short)(4));
-                        Mem.Set((@event + 4u), deltaTicks);
-                        Mem.Set(((@event + 4u) + 4u), status);
-                        Mem.Set(((@event + 4u) + 5u), type);
-                        Mem.Set(((@event + 4u) + 6u), __alSeqReadByte(seq));
+                        new ALEvent(@event).type_Set((short)(4));
+                        new ALTempoEvent(new ALEvent(@event).msg.P).ticks_Set(deltaTicks);
+                        new ALTempoEvent(new ALEvent(@event).msg.P).status_Set(status);
+                        new ALTempoEvent(new ALEvent(@event).msg.P).type_Set(type);
+                        new ALTempoEvent(new ALEvent(@event).msg.P).len_Set(__alSeqReadByte(seq));
                     }
                 }
-                Mem.Set((seq + 26u), (ushort)(0));
+                new ALSeq(seq).lastStatus_Set((ushort)(0));
             }
             else
             {
-                Mem.Set(@event, (short)(1));
-                Mem.Set((@event + 4u), deltaTicks);
+                new ALEvent(@event).type_Set((short)(1));
+                new ALMIDIEvent(new ALEvent(@event).msg.P).ticks_Set(deltaTicks);
                 if ((((int)(status) & 128) != 0))
                 {
-                    Mem.Set(((@event + 4u) + 4u), status);
-                    Mem.Set(((@event + 4u) + 5u), __alSeqReadByte(seq));
-                    Mem.Set((seq + 26u), (ushort)(status));
+                    new ALMIDIEvent(new ALEvent(@event).msg.P).status_Set(status);
+                    new ALMIDIEvent(new ALEvent(@event).msg.P).byte1_Set(__alSeqReadByte(seq));
+                    new ALSeq(seq).lastStatus_Set((ushort)(status));
                 }
                 else
                 {
-                    Mem.Set(((@event + 4u) + 4u), (byte)(Mem.U16((seq + 26u))));
-                    Mem.Set(((@event + 4u) + 5u), status);
+                    new ALMIDIEvent(new ALEvent(@event).msg.P).status_Set((byte)(new ALSeq(seq).lastStatus));
+                    new ALMIDIEvent(new ALEvent(@event).msg.P).byte1_Set(status);
                 }
-                if (((((int)(Mem.U8(((@event + 4u) + 4u))) & 240) != 192) && (((int)(Mem.U8(((@event + 4u) + 4u))) & 240) != 208)))
+                if (((((int)(new ALMIDIEvent(new ALEvent(@event).msg.P).status) & 240) != 192) && (((int)(new ALMIDIEvent(new ALEvent(@event).msg.P).status) & 240) != 208)))
                 {
-                    Mem.Set(((@event + 4u) + 6u), __alSeqReadByte(seq));
+                    new ALMIDIEvent(new ALEvent(@event).msg.P).byte2_Set(__alSeqReadByte(seq));
                 }
                 else
                 {
-                    Mem.Set(((@event + 4u) + 6u), (byte)(0));
+                    new ALMIDIEvent(new ALEvent(@event).msg.P).byte2_Set((byte)(0));
                 }
             }
         }
@@ -75,11 +75,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alSeqNew", (uint)seq, (uint)ptr, (uint)len);
-            Mem.Set(seq, ptr);
-            Mem.Set((seq + 16u), (uint)(len));
-            Mem.Set((seq + 26u), (ushort)(0));
-            Mem.Set((seq + 12u), 0);
-            Mem.Set((seq + 8u), ptr);
+            new ALSeq(seq).base__Set(ptr);
+            new ALSeq(seq).len_Set((uint)(len));
+            new ALSeq(seq).lastStatus_Set((ushort)(0));
+            new ALSeq(seq).lastTicks_Set(0);
+            new ALSeq(seq).curPtr__Set(ptr);
             if ((__alSeqReadWord(seq) == 1297377380))
             {
                 __alSeqReadWord(seq);
@@ -87,14 +87,14 @@ public static partial class Game
                 {
                     if (((int)(__alSeqReadShort(seq)) == 1))
                     {
-                        Mem.Set((seq + 24u), __alSeqReadShort(seq));
-                        if ((((int)(Mem.S16((seq + 24u))) & 32768) == 0))
+                        new ALSeq(seq).division_Set(__alSeqReadShort(seq));
+                        if ((((int)(new ALSeq(seq).division) & 32768) == 0))
                         {
-                            Mem.Set((seq + 20u), (1.0f / (float)(Mem.S16((seq + 24u)))));
+                            new ALSeq(seq).qnpt_Set((1.0f / (float)(new ALSeq(seq).division)));
                             if ((__alSeqReadWord(seq) == 1297379947))
                             {
                                 __alSeqReadWord(seq);
-                                Mem.Set((seq + 4u), Mem.U32((seq + 8u)));
+                                new ALSeq(seq).trackStart__Set(new ALSeq(seq).curPtr_);
                             }
                         }
                     }
@@ -108,7 +108,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alSeqGetTicks", (uint)seq);
-            return Mem.S32((seq + 12u));
+            return new ALSeq(seq).lastTicks;
         }
     }
 
@@ -117,7 +117,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alSeqTicksToSec", (uint)seq, (uint)ticks, (uint)tempo);
-            return (((float)(ticks) * (float)(tempo)) / ((float)(Mem.S16((seq + 24u))) * 1.0E+6f));
+            return (((float)(ticks) * (float)(tempo)) / ((float)(new ALSeq(seq).division) * 1.0E+6f));
         }
     }
 
@@ -126,7 +126,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alSeqSecToTicks", (uint)seq, 0u, (uint)tempo);
-            return Cpu.TruncU32(((sec * ((float)(Mem.S16((seq + 24u))) * 1.0E+6f)) / (float)(tempo)));
+            return Cpu.TruncU32(((sec * ((float)(new ALSeq(seq).division) * 1.0E+6f)) / (float)(tempo)));
         }
     }
 
@@ -146,41 +146,41 @@ public static partial class Game
                 ushort saveStatus = 0;
                 if ((ticks == (uint)(0)))
                 {
-                    Mem.Set(m, Mem.U32((seq + 4u)));
-                    Mem.Set((m + 12u), (ushort)(0));
-                    Mem.Set((m + 4u), 0);
-                    Mem.Set((m + 8u), 0);
+                    new ALSeqMarker(m).curPtr__Set(new ALSeq(seq).trackStart_);
+                    new ALSeqMarker(m).lastStatus_Set((ushort)(0));
+                    new ALSeqMarker(m).lastTicks_Set(0);
+                    new ALSeqMarker(m).curTicks_Set(0);
                 }
                 else
                 {
-                    savePtr = Mem.U32((seq + 8u));
-                    saveStatus = Mem.U16((seq + 26u));
-                    saveTicks = Mem.S32((seq + 12u));
-                    Mem.Set((seq + 26u), (ushort)(0));
-                    Mem.Set((seq + 12u), 0);
-                    Mem.Set((seq + 8u), Mem.U32((seq + 4u)));
+                    savePtr = new ALSeq(seq).curPtr_;
+                    saveStatus = new ALSeq(seq).lastStatus;
+                    saveTicks = new ALSeq(seq).lastTicks;
+                    new ALSeq(seq).lastStatus_Set((ushort)(0));
+                    new ALSeq(seq).lastTicks_Set(0);
+                    new ALSeq(seq).curPtr__Set(new ALSeq(seq).trackStart_);
                     do
                     {
-                        ptr = Mem.U32((seq + 8u));
-                        status = Mem.U16((seq + 26u));
-                        lastTicks = Mem.S32((seq + 12u));
+                        ptr = new ALSeq(seq).curPtr_;
+                        status = new ALSeq(seq).lastStatus;
+                        lastTicks = new ALSeq(seq).lastTicks;
                         alSeqNextEvent(seq, _fp);
-                        if (((int)(Mem.S16(_fp)) == 4))
+                        if (((int)(new ALEvent(_fp).type) == 4))
                         {
-                            ptr = Mem.U32((seq + 8u));
-                            status = Mem.U16((seq + 26u));
-                            lastTicks = Mem.S32((seq + 12u));
+                            ptr = new ALSeq(seq).curPtr_;
+                            status = new ALSeq(seq).lastStatus;
+                            lastTicks = new ALSeq(seq).lastTicks;
                             break;
                         }
                     }
-                    while (((uint)(Mem.S32((seq + 12u))) < ticks));
-                    Mem.Set(m, ptr);
-                    Mem.Set((m + 12u), status);
-                    Mem.Set((m + 4u), lastTicks);
-                    Mem.Set((m + 8u), Mem.S32((seq + 12u)));
-                    Mem.Set((seq + 8u), savePtr);
-                    Mem.Set((seq + 26u), saveStatus);
-                    Mem.Set((seq + 12u), saveTicks);
+                    while (((uint)(new ALSeq(seq).lastTicks) < ticks));
+                    new ALSeqMarker(m).curPtr__Set(ptr);
+                    new ALSeqMarker(m).lastStatus_Set(status);
+                    new ALSeqMarker(m).lastTicks_Set(lastTicks);
+                    new ALSeqMarker(m).curTicks_Set(new ALSeq(seq).lastTicks);
+                    new ALSeq(seq).curPtr__Set(savePtr);
+                    new ALSeq(seq).lastStatus_Set(saveStatus);
+                    new ALSeq(seq).lastTicks_Set(saveTicks);
                 }
             }
         }
@@ -192,9 +192,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alSeqSetLoc", (uint)seq, (uint)m);
-            Mem.Set((seq + 8u), Mem.U32(m));
-            Mem.Set((seq + 26u), Mem.U16((m + 12u)));
-            Mem.Set((seq + 12u), Mem.S32((m + 4u)));
+            new ALSeq(seq).curPtr__Set(new ALSeqMarker(m).curPtr_);
+            new ALSeq(seq).lastStatus_Set(new ALSeqMarker(m).lastStatus);
+            new ALSeq(seq).lastTicks_Set(new ALSeqMarker(m).lastTicks);
         }
     }
 
@@ -203,9 +203,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alSeqGetLoc", (uint)seq, (uint)m);
-            Mem.Set(m, Mem.U32((seq + 8u)));
-            Mem.Set((m + 12u), Mem.U16((seq + 26u)));
-            Mem.Set((m + 4u), Mem.S32((seq + 12u)));
+            new ALSeqMarker(m).curPtr__Set(new ALSeq(seq).curPtr_);
+            new ALSeqMarker(m).lastStatus_Set(new ALSeq(seq).lastStatus);
+            new ALSeqMarker(m).lastTicks_Set(new ALSeq(seq).lastTicks);
         }
     }
 
@@ -214,13 +214,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("__alSeqNextDelta", (uint)seq, (uint)pDeltaTicks);
-            uint tmp = Mem.U32((seq + 8u));
-            if ((tmp >= (Mem.U32(seq) + (uint)Mem.U32((seq + 16u)))))
+            uint tmp = new ALSeq(seq).curPtr_;
+            if ((tmp >= (new ALSeq(seq).base_ + (uint)new ALSeq(seq).len)))
             {
                 return 0;
             }
             Mem.Set(pDeltaTicks, __alSeqReadVarLen(seq));
-            Mem.Set((seq + 8u), tmp);
+            new ALSeq(seq).curPtr__Set(tmp);
             return 1;
         }
     }
@@ -232,14 +232,14 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("__alSeqReadVarLen", (uint)seq);
             int value = 0;
             uint c = 0u;
-            c = (uint)(Mem.U8((Mem.Set((seq + 8u), (uint)(Mem.U32((seq + 8u)) + 1u)) - 1u)));
+            c = (uint)(Mem.U8((new ALSeq(seq).curPtr__Set((uint)(new ALSeq(seq).curPtr_ + 1u)) - 1u)));
             value = (int)(c);
             if (((value & 128) != 0))
             {
                 value = (int)((int)(value) & 127);
                 do
                 {
-                    c = (uint)(Mem.U8((Mem.Set((seq + 8u), (uint)(Mem.U32((seq + 8u)) + 1u)) - 1u)));
+                    c = (uint)(Mem.U8((new ALSeq(seq).curPtr__Set((uint)(new ALSeq(seq).curPtr_ + 1u)) - 1u)));
                     value = (int)(((uint)((value << (int)7)) + (c & (uint)(127))));
                 }
                 while (((c & (uint)(128)) != 0u));
@@ -253,7 +253,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("__alSeqReadByte", (uint)seq);
-            return Mem.U8((Mem.Set((seq + 8u), (uint)(Mem.U32((seq + 8u)) + 1u)) - 1u));
+            return Mem.U8((new ALSeq(seq).curPtr__Set((uint)(new ALSeq(seq).curPtr_ + 1u)) - 1u));
         }
     }
 
@@ -263,9 +263,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("__alSeqReadShort", (uint)seq);
             int v = 0;
-            v = (int)(Mem.U8((Mem.Set((seq + 8u), (uint)(Mem.U32((seq + 8u)) + 1u)) - 1u)));
+            v = (int)(Mem.U8((new ALSeq(seq).curPtr__Set((uint)(new ALSeq(seq).curPtr_ + 1u)) - 1u)));
             v = (v << (int)8);
-            v = (int)((int)(v) | (int)(Mem.U8((Mem.Set((seq + 8u), (uint)(Mem.U32((seq + 8u)) + 1u)) - 1u))));
+            v = (int)((int)(v) | (int)(Mem.U8((new ALSeq(seq).curPtr__Set((uint)(new ALSeq(seq).curPtr_ + 1u)) - 1u))));
             return (short)(v);
         }
     }
@@ -276,10 +276,10 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("__alSeqReadWord", (uint)seq);
             int v = 0;
-            v = ((int)(Mem.U8((Mem.Set((seq + 8u), (uint)(Mem.U32((seq + 8u)) + 1u)) - 1u))) << (int)24);
-            v = (int)((int)(v) | ((int)(Mem.U8((Mem.Set((seq + 8u), (uint)(Mem.U32((seq + 8u)) + 1u)) - 1u))) << (int)16));
-            v = (int)((int)(v) | ((int)(Mem.U8((Mem.Set((seq + 8u), (uint)(Mem.U32((seq + 8u)) + 1u)) - 1u))) << (int)8));
-            v = (int)((int)(v) | (int)(Mem.U8((Mem.Set((seq + 8u), (uint)(Mem.U32((seq + 8u)) + 1u)) - 1u))));
+            v = ((int)(Mem.U8((new ALSeq(seq).curPtr__Set((uint)(new ALSeq(seq).curPtr_ + 1u)) - 1u))) << (int)24);
+            v = (int)((int)(v) | ((int)(Mem.U8((new ALSeq(seq).curPtr__Set((uint)(new ALSeq(seq).curPtr_ + 1u)) - 1u))) << (int)16));
+            v = (int)((int)(v) | ((int)(Mem.U8((new ALSeq(seq).curPtr__Set((uint)(new ALSeq(seq).curPtr_ + 1u)) - 1u))) << (int)8));
+            v = (int)((int)(v) | (int)(Mem.U8((new ALSeq(seq).curPtr__Set((uint)(new ALSeq(seq).curPtr_ + 1u)) - 1u))));
             return v;
         }
     }

@@ -14,21 +14,21 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_0041DC3C");
                 func_002A33BC(1);
-                Mem.Set((_fp + 32u), (float)(0));
-                Mem.Set(((_fp + 32u) + 4u), (float)(0));
-                Mem.Set(((_fp + 32u) + 8u), (float)(0));
-                Mem.Set((_fp + 48u), (float)(0));
-                Mem.Set(((_fp + 48u) + 8u), (float)(0));
-                Mem.Set(_fp, 0.140000001f);
-                Mem.Set((_fp + 4u), 0.140000001f);
-                Mem.Set((_fp + 8u), 0.140000001f);
-                Mem.Set(((_fp + 48u) + 4u), 5.0f);
-                Mem.Set((_fp + 16u), 17.0f);
-                Mem.Set(((_fp + 16u) + 4u), (-10.0f));
-                Mem.Set(((_fp + 16u) + 8u), (-50.0f));
-                func_00439D3C((Mem.U32(0x800E3590u) + 8u), 0, _fp, (_fp + 16u));
-                func_00439DC0((Mem.U32(0x800E3590u) + 8u), (_fp + 32u));
-                func_00439E10((Mem.U32(0x800E3590u) + 8u), (_fp + 48u));
+                new O3Vec3((_fp + 32u)).x_Set((float)(0));
+                new O3Vec3((_fp + 32u)).y_Set((float)(0));
+                new O3Vec3((_fp + 32u)).z_Set((float)(0));
+                new O3Vec3((_fp + 48u)).x_Set((float)(0));
+                new O3Vec3((_fp + 48u)).z_Set((float)(0));
+                new O3Vec3(_fp).x_Set(0.140000001f);
+                new O3Vec3(_fp).y_Set(0.140000001f);
+                new O3Vec3(_fp).z_Set(0.140000001f);
+                new O3Vec3((_fp + 48u)).y_Set(5.0f);
+                new O3Vec3((_fp + 16u)).x_Set(17.0f);
+                new O3Vec3((_fp + 16u)).y_Set((-10.0f));
+                new O3Vec3((_fp + 16u)).z_Set((-50.0f));
+                func_00439D3C(new O3Pk(Mem.U32(0x800E3590u)).sub.P, 0, _fp, (_fp + 16u));
+                func_00439DC0(new O3Pk(Mem.U32(0x800E3590u)).sub.P, (_fp + 32u));
+                func_00439E10(new O3Pk(Mem.U32(0x800E3590u)).sub.P, (_fp + 48u));
                 func_0025DF54(3704);
                 return 0;
             }

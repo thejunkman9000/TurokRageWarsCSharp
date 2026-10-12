@@ -10,25 +10,25 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028C544", (uint)lv, (uint)s);
-            uint n = Mem.U32((lv + 4588u));
+            uint n = new Level(lv).unk11EC_;
             float f = 0f;
             if ((n != 0u))
             {
                 func_00255E78((lv + 4588u), n, default(uint), default(uint));
-                func_00255C58((lv + 4568u), n, default(uint), default(uint));
-                Mem.Set((n + 8u), s);
+                func_00255C58((lv + 4568u), n);
+                new Obj2(n).unk8_Set(s);
             }
             else
             {
-                n = Mem.U32((lv + 4572u));
-                func_00278C80(Mem.U32((n + 8u)));
-                Mem.Set((n + 8u), s);
+                n = new Level(lv).unk11DC_;
+                func_00278C80(new Obj2(n).unk8);
+                new Obj2(n).unk8_Set(s);
             }
-            f = Trunc16ToF32(Mem.U16((s + 12u)));
-            Mem.Set((n + 12u), f);
-            if ((((int)(Mem.U8((s + 14u))) & 2) != 0))
+            f = Trunc16ToF32(new SndDesc(s).unkC);
+            new Obj2(n).unkC_Set(f);
+            if ((((int)(new SndDesc(s).unkE) & 2) != 0))
             {
-                Mem.Set((n + 12u), (f * 15.0f));
+                new Obj2(n).unkC_Set((f * 15.0f));
             }
         }
     }

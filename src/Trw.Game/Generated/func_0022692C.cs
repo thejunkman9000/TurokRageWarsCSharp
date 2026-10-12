@@ -18,15 +18,15 @@ public static partial class Game
             int s2 = (n * 816);
             int i = 0;
             blk = func_002533DC(0, (s1 + s2), (uint)(35), (int)(0x800C7C58u));
-            Mem.Set(g, blk);
-            Mem.Set((g + 8u), n);
+            new PlrGroup(g).unk0__Set(blk);
+            new PlrGroup(g).unk8_Set(n);
             @base = (uint)(Mem.S32((blk + (uint)(0 * 4))));
             brain = (@base + (uint)s1);
-            memset(Mem.Set((g + 4u), @base), 0, (uint)(s1));
+            memset(new PlrGroup(g).unk4__Set(@base), 0, (uint)(s1));
             memset(brain, 0, (uint)(s2));
             for (i = 0; (i < n); ++i)
             {
-                Mem.Set(((Mem.U32((g + 4u)) + (uint)(i * 5864)) + 5204u), (brain + (uint)(i * 816)));
+                new Plr((new PlrGroup(g).unk4_ + (uint)(i * 5864))).brain__Set((brain + (uint)(i * 816)));
             }
         }
     }

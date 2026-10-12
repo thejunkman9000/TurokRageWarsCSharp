@@ -10,15 +10,15 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A0080", (uint)m, (uint)a, (uint)b, (uint)c);
-            Mem.Set(a, Mem.F32(((m + (uint)(0 * 16)) + (uint)(0 * 4))));
-            Mem.Set((a + 4u), Mem.F32(((m + (uint)(1 * 16)) + (uint)(0 * 4))));
-            Mem.Set((a + 8u), Mem.F32(((m + (uint)(2 * 16)) + (uint)(0 * 4))));
-            Mem.Set(b, Mem.F32(((m + (uint)(0 * 16)) + (uint)(1 * 4))));
-            Mem.Set((b + 4u), Mem.F32(((m + (uint)(1 * 16)) + (uint)(1 * 4))));
-            Mem.Set((b + 8u), Mem.F32(((m + (uint)(2 * 16)) + (uint)(1 * 4))));
-            Mem.Set(c, Mem.F32(((m + (uint)(0 * 16)) + (uint)(2 * 4))));
-            Mem.Set((c + 4u), Mem.F32(((m + (uint)(1 * 16)) + (uint)(2 * 4))));
-            Mem.Set((c + 8u), Mem.F32(((m + (uint)(2 * 16)) + (uint)(2 * 4))));
+            new Vec3f(a).x_Set(Mem.F32(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4))));
+            new Vec3f(a).y_Set(Mem.F32(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(0 * 4))));
+            new Vec3f(a).z_Set(Mem.F32(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(0 * 4))));
+            new Vec3f(b).x_Set(Mem.F32(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(1 * 4))));
+            new Vec3f(b).y_Set(Mem.F32(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4))));
+            new Vec3f(b).z_Set(Mem.F32(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(1 * 4))));
+            new Vec3f(c).x_Set(Mem.F32(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(2 * 4))));
+            new Vec3f(c).y_Set(Mem.F32(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(2 * 4))));
+            new Vec3f(c).z_Set(Mem.F32(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4))));
         }
     }
 

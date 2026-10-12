@@ -18,16 +18,16 @@ public static partial class Game
             }
             else
             {
-                v = (int)(Mem.S8((Mem.U32((own + 32u)) + 4u)));
+                v = (int)(new O01Owner(own).unk20.unk4);
             }
             if ((Mem.S32(0x80153734u) != 0))
             {
-                Mem.Set((item + 20u), 0x800D7978u);
+                new O01Item(item).unk14__Set(0x800D7978u);
             }
             else
             {
-                Mem.Set((item + 20u), 0x800D7984u);
-                buf = Mem.U32(0x800D7984u);
+                new O01Item(item).unk14__Set(0x800D7984u);
+                buf = new O01Text(0x800D7984u).buf_;
                 func_00265904((buf + (uint)(func_00442158((uint)(item)) - 2)), 0x800E0DCCu, (v + 1), default(int));
             }
             return 0;

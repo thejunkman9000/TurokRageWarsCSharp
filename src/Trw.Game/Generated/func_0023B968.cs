@@ -11,8 +11,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0023B968", (uint)a, (uint)b);
             int r = 1;
-            float ka = Mem.F32((Mem.U32(a) + 528u));
-            float kb = Mem.F32((Mem.U32(b) + 528u));
+            float ka = new B09SortObj(Mem.U32(a)).key;
+            float kb = new B09SortObj(Mem.U32(b)).key;
             if ((ka < kb))
             {
                 r = (-1);

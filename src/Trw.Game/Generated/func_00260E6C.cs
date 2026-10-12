@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00260E6C", (uint)a, (uint)idx);
-            uint bits = Mem.U32((a + 4u));
-            uint addr = (Mem.U32(a) + (bits * (uint)(idx)));
+            uint bits = new B14BitArr(a).bits;
+            uint addr = (new B14BitArr(a).addr + (bits * (uint)(idx)));
             uint p = (uint)(((addr & 4026531840u) | ((addr & (uint)(268435424)) >> (int)3)));
             uint sh = (addr & (uint)(31));
             uint v = Mem.U32((p + (uint)(0 * 4)));

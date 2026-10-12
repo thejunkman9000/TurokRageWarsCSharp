@@ -15,20 +15,20 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0022BC84", (uint)actor, (uint)arg1);
                 uint p = 0u;
                 uint owner = 0u;
-                if (((Mem.U32((actor + 256u)) & (uint)(262144)) != 0u))
+                if (((new Actor(actor).flags & (uint)(262144)) != 0u))
                 {
-                    p = func_002518DC((uint)(0), (uint)(Mem.S32((actor + (uint)196))), (uint)(Mem.S32((actor + (uint)196))), (uint)(Mem.S32((actor + (uint)208))), (uint)(4), (uint)(0), (uint)(0), 0x800C7CB0u, (uint)(1));
+                    p = func_002518DC(0, (uint)(Mem.S32((actor + (uint)196))), Mem.S32((actor + (uint)196)), (uint)(Mem.S32((actor + (uint)208))), 4, (uint)(0), (uint)(0), 0x800C7CB0u, 1);
                     if ((p != 0u))
                     {
-                        owner = Mem.U32((actor + 472u));
+                        owner = new Actor(actor).owner_;
                         func_0024B4E4(actor, (int)(func_0028FD94(Mem.U32((p + (uint)0)), 0)));
                         if ((arg1 != 0))
                         {
                             if ((Mem.U32((owner + (uint)1500)) != 0u))
                             {
-                                Mem.Set(_fp, (Mem.F32((Mem.U32((owner + (uint)1500)) + (uint)296)) - Mem.F32((actor + (uint)8))));
-                                Mem.Set((_fp + 4u), (float)(0));
-                                Mem.Set((_fp + 8u), (Mem.F32((Mem.U32((owner + (uint)1500)) + (uint)304)) - Mem.F32((actor + (uint)16))));
+                                new Vec3f(_fp).x_Set((Mem.F32((Mem.U32((owner + (uint)1500)) + (uint)296)) - Mem.F32((actor + (uint)8))));
+                                new Vec3f(_fp).y_Set((float)(0));
+                                new Vec3f(_fp).z_Set((Mem.F32((Mem.U32((owner + (uint)1500)) + (uint)304)) - Mem.F32((actor + (uint)16))));
                                 func_0024ADC0(actor, _fp, (uint)(arg1), default(uint));
                             }
                         }

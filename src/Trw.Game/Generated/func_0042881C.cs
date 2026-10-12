@@ -13,26 +13,26 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 8); ++i)
             {
-                if ((Mem.S32(((0x800E5B44u + (uint)(i * 16)) + 8u)) == a))
+                if ((new O04Pair16((0x800E5B44u + (uint)(i * 16))).k == a))
                 {
-                    return Mem.S32((0x800E5B44u + (uint)(i * 16)));
+                    return new O04Pair16((0x800E5B44u + (uint)(i * 16))).v;
                 }
             }
             for (i = 0; (i < 4); ++i)
             {
-                if ((Mem.S32(((0x800E5BC4u + (uint)(i * 16)) + 8u)) == a))
+                if ((new O04Pair16((0x800E5BC4u + (uint)(i * 16))).k == a))
                 {
-                    return Mem.S32((0x800E5BC4u + (uint)(i * 16)));
+                    return new O04Pair16((0x800E5BC4u + (uint)(i * 16))).v;
                 }
             }
             for (i = 0; (i < 3); ++i)
             {
-                if ((Mem.S32(((0x800E5B14u + (uint)(i * 16)) + 8u)) == a))
+                if ((new O04Pair16((0x800E5B14u + (uint)(i * 16))).k == a))
                 {
-                    return Mem.S32((0x800E5B14u + (uint)(i * 16)));
+                    return new O04Pair16((0x800E5B14u + (uint)(i * 16))).v;
                 }
             }
-            return Mem.S32((0x800E5BC4u + (uint)(0 * 16)));
+            return new O04Pair16((0x800E5BC4u + (uint)(0 * 16))).v;
         }
     }
 

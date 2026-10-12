@@ -13,16 +13,16 @@ public static partial class Game
             int i = 0;
             uint r = 0u;
             int row = 0;
-            if ((((int)(Mem.U8((Mem.U32((p + 1496u)) + 145u))) == 1) || ((int)(Mem.U8((Mem.U32((p + 1496u)) + 120u))) == 0)))
+            if ((((int)(new O04Plr2(p).unk5D8.unk91) == 1) || ((int)(new O04Plr2(p).unk5D8.unk78) == 0)))
             {
                 return;
             }
             i = 0;
-            r = Mem.U32((p + 24u));
-            row = (int)(Mem.S8((Mem.U32((p + 1496u)) + 127u)));
+            r = new O04Plr2(p).unk18_;
+            row = (int)(new O04Plr2(p).unk5D8.unk7F);
             do
             {
-                int id = Mem.S32(((r + 76u) + (uint)(i * 4)));
+                int id = new O04Rec4C(r).ids[(int)(i)];
                 if ((id >= 1219))
                 {
                     int t = 0;
@@ -30,8 +30,8 @@ public static partial class Game
                     t = func_0022F4CC((0x80102B00u + (uint)(row * 400)), id);
                     if ((t == 1))
                     {
-                        Mem.Set(((p + 1538u) + (uint)(id * 2)), (byte)(t));
-                        Mem.Set((((p + 1538u) + (uint)(id * 2)) + 1u), (byte)(i));
+                        new O04Plr2(p).unk602[(int)(id)].a_Set((byte)(t));
+                        new O04Plr2(p).unk602[(int)(id)].b_Set((byte)(i));
                     }
                 }
                 ++i;

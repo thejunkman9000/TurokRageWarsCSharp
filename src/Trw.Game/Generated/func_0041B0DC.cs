@@ -16,13 +16,13 @@ public static partial class Game
             {
                 return 0;
             }
-            g = Mem.U32((o + 68u));
-            Mem.Set((s + 272u), (Mem.S32((s + 272u)) - 1));
-            if ((Mem.S32((s + 272u)) < 0))
+            g = new O3List(o).g_;
+            new O3ListSel(s).sel_Set((new O3ListSel(s).sel - 1));
+            if ((new O3ListSel(s).sel < 0))
             {
-                Mem.Set((s + 272u), (Mem.S32((s + 276u)) - 1));
+                new O3ListSel(s).sel_Set((new O3ListSel(s).cnt - 1));
             }
-            Mem.Set((g + 56u), ((o + 72u) + (uint)(Mem.S32((s + 272u)) * 20)));
+            new O3ListG(g).sel_Set((new O3List(o).ent.P + (uint)(new O3ListSel(s).sel * 20)));
             func_0025DF54(3713);
             return 0;
         }

@@ -12,15 +12,15 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002938E8", (uint)g, 0u, (uint)a, (uint)b);
             if (((Mem.S32((0x8010F194u + (uint)(0 * 4))) != 0) && (b != (-1))))
             {
-                Mem.Set((g + 159169u), (byte)(2));
-                Mem.Set((g + 159164u), b);
+                new B21Game(g).unk26DC1_Set((byte)(2));
+                new B21Game(g).unk26DBC_Set(b);
                 Mem.Set((0x8010F194u + (uint)(0 * 4)), 0);
                 return 1;
             }
-            if (((x * Mem.F32(0x800CA588u)) < Mem.F32((g + 159152u))))
+            if (((x * Mem.F32(0x800CA588u)) < new B21Game(g).unk26DB0))
             {
-                Mem.Set((g + 159169u), (byte)(2));
-                Mem.Set((g + 159164u), a);
+                new B21Game(g).unk26DC1_Set((byte)(2));
+                new B21Game(g).unk26DBC_Set(a);
                 return 1;
             }
             return 0;

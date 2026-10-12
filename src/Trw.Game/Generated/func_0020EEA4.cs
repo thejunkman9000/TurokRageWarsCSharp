@@ -13,14 +13,14 @@ public static partial class Game
             uint m = 0x8013B364u;
             uint n = 0u;
             uint r = 0u;
-            for (n = Mem.U32((m + 36u)); (n != 0u); n = Mem.U32((n + 16u)))
+            for (n = new B2Mgr(m).head_; (n != 0u); n = new B2Node(n).next_)
             {
-                r = func_0020C994(m, Mem.S32(n));
-                if ((((int)(Mem.U16((r + 12u))) & 1) != 0))
+                r = func_0020C994(m, new B2Node(n).id);
+                if ((((int)(new B2Rec(r).flags) & 1) != 0))
                 {
-                    if (((func_0020F55C((int)(Mem.U16((r + 14u)))) != 0) || (func_0020F57C((int)(Mem.U16((r + 14u)))) != 0)))
+                    if (((func_0020F55C((int)(new B2Rec(r).id)) != 0) || (func_0020F57C((int)(new B2Rec(r).id)) != 0)))
                     {
-                        Mem.Set((n + 24u), (float)((float)(Mem.F32((n + 24u))) + Mem.F32(0x800C6FD4u)));
+                        new B2Node(n).unk18_Set((float)((float)(new B2Node(n).unk18) + Mem.F32(0x800C6FD4u)));
                     }
                 }
             }

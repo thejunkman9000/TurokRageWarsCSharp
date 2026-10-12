@@ -15,10 +15,10 @@ public static partial class Game
                 if ((func_00245754() != 0))
                 {
                     uint p = Mem.U32(0x800E2830u);
-                    if ((Mem.S32((p + 96u)) == 0))
+                    if ((new B10Ctl(p).f60 == 0))
                     {
-                        Mem.Set((p + 96u), 1);
-                        Mem.Set((p + 100u), Mem.F32(0x800C88C0u));
+                        new B10Ctl(p).f60_Set(1);
+                        new B10Ctl(p).f64_Set(Mem.F32(0x800C88C0u));
                     }
                 }
             }

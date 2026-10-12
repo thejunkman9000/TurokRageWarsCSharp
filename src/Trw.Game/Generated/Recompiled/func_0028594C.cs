@@ -26,9 +26,9 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r16);
                 r16 = r0;
                 Mem.Set((r29 + 24u), r31);
-                r4 = r17 + 32u; r2 = func_00264E10(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r17 + 32u; r2 = (uint)func_00264E10(r4);
                 if (r2 != 0) { r16 = (uint)1; goto L_L00285988; }
-                r4 = r17 + 44u; r2 = func_00264E10(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r17 + 44u; r2 = (uint)func_00264E10(r4);
                 { bool c_ = r2 == 0; r2 = r16; if (c_) goto L_L0028598C; }
                 r16 = (uint)1;
                 L_L00285988: ;

@@ -10,13 +10,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00232B54", (uint)actor, (uint)state);
-            uint owner = Mem.U32((actor + 472u));
+            uint owner = new Actor(actor).owner_;
             Mem.Set((owner + (uint)1928), 1);
             Mem.Set((owner + (uint)1940), 0);
             Mem.Set((owner + (uint)1932), 0);
             Mem.Set((state + (uint)292), 0);
             Mem.Set((state + (uint)296), 0);
-            if (((int)(Mem.S8((state + 203u))) != 0))
+            if (((int)(new ActorState(state).unkCB) != 0))
             {
                 if ((func_002301E4(actor, state) == 0))
                 {

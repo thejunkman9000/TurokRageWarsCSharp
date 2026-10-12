@@ -14,7 +14,7 @@ public static partial class Game
             int v = (-1);
             for (i = 63; (i >= 0); --i)
             {
-                Mem.Set(((m + 56u) + (uint)(i * 4)), v);
+                new B2Mgr(m).slots.Set((int)(i), v);
             }
         }
     }

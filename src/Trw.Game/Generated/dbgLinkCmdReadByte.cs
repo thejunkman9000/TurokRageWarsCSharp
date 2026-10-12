@@ -36,7 +36,7 @@ public static partial class Game
                             {
                                 v = (uint)((uint)(v) | (uint)(Mem.U8((_fp + 4u))));
                                 Mem.Set(p, v);
-                                dbgLinkSendByte((uint)(Mem.U8((uint)(Mem.U32(_fp)))), default(uint), default(uint), default(uint));
+                                dbgLinkSendByte(Mem.U8((uint)(Mem.U32(_fp))));
                                 ret = ((Mem.S32(0x8014D3E8u) == 0) ? 1 : 0);
                             }
                         }

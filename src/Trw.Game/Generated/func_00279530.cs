@@ -10,21 +10,21 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00279530", (uint)l, (uint)n);
-            if ((Mem.S32((l + 8u)) == 0))
+            if ((new P3List2(l).count == 0))
             {
-                Mem.Set(l, n);
-                Mem.Set((l + 4u), n);
-                Mem.Set(n, 0u);
-                Mem.Set((n + 4u), 0u);
+                new P3List2(l).head__Set(n);
+                new P3List2(l).tail__Set(n);
+                new P3Node(n).next__Set(0u);
+                new P3Node(n).prev__Set(0u);
             }
             else
             {
-                Mem.Set((n + 4u), Mem.U32(l));
-                Mem.Set(n, 0u);
-                Mem.Set(Mem.U32(l), n);
-                Mem.Set(l, n);
+                new P3Node(n).prev__Set(new P3List2(l).head_);
+                new P3Node(n).next__Set(0u);
+                new P3List2(l).head.next__Set(n);
+                new P3List2(l).head__Set(n);
             }
-            Mem.Set((l + 8u), (int)(Mem.S32((l + 8u)) + 1));
+            new P3List2(l).count_Set((int)(new P3List2(l).count + 1));
         }
     }
 

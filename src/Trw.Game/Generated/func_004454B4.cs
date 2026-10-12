@@ -10,17 +10,17 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004454B4", (uint)a);
-            uint s = Mem.U32(Mem.U32((a + 20u)));
-            if ((Mem.S32((a + 28u)) == (-1)))
+            uint s = Mem.U32(new O06A_v4(a).unk14);
+            if ((new O06A_v4(a).unk1C == (-1)))
             {
-                Mem.Set((a + 28u), (int)(Mem.U8(0x800D0EE0u)));
+                new O06A_v4(a).unk1C_Set((int)(Mem.U8(0x800D0EE0u)));
             }
             else
             {
-                Mem.Set(0x800D0EE0u, (byte)(Mem.S32((a + 28u))));
+                Mem.Set(0x800D0EE0u, (byte)(new O06A_v4(a).unk1C));
             }
             Mem.Set(0x800D0EE4u, Mem.U8(0x800D0EE0u));
-            sprintf(((s - (uint)3) + (uint)func_00442158(a)), 0x800E27D8u, (uint)(Mem.S32((a + 28u))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            sprintf(((s - (uint)3) + (uint)func_00442158(a)), 0x800E27D8u, (uint)(new O06A_v4(a).unk1C), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             return 0;
         }
     }

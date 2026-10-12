@@ -20,39 +20,39 @@ public static partial class Game
                 uint e = 0u;
                 int i = 0;
                 int cur = 0;
-                if (((((int)(Mem.S8((b + 52u))) != 60) && ((int)(Mem.S8((b + 18u))) < 23)) && ((n = func_0024BFC4(a, (int)(Mem.S8((a + 1u))))) != 0u)))
+                if (((((int)(new B10Pb(b).b34) != 60) && ((int)(new B10Pb(b).b12) < 23)) && ((n = func_0024BFC4(a, (int)(new B10Pa(a).b1))) != 0u)))
                 {
                     node = func_0028FD94(Mem.U32(n), 5);
                     e = (node + (uint)((idx * Mem.S32(node)) + 8));
                     cur = idx;
-                    if ((((int)(Mem.U8((e + 101u))) & 3) == 3))
+                    if ((((int)(new B10Ent2(e).b65) & 3) == 3))
                     {
                         func_002536F4(0, n);
                         return;
                     }
                     for (i = 0; (i < 4); ++i)
                     {
-                        Mem.Set(((b + 20u) + (uint)i), (sbyte)(cur));
-                        cur = (int)(Mem.S8((e + 100u)));
+                        new B10Pb(b).b14.Set((int)(i), (sbyte)(cur));
+                        cur = (int)(new B10Ent2(e).b64);
                         if ((cur != (-1)))
                         {
                             e = (node + (uint)((cur * Mem.S32(node)) + 8));
                         }
                     }
                     func_002536F4(0, n);
-                    Mem.Set((b + 18u), (sbyte)(25));
-                    Mem.Set((_fp + 48u), Mem.F32((c + 48u)));
-                    Mem.Set(((_fp + 48u) + 4u), Mem.F32((c + 52u)));
-                    Mem.Set(((_fp + 48u) + 8u), Mem.F32((c + 56u)));
+                    new B10Pb(b).b12_Set((sbyte)(25));
+                    new Vec3f((_fp + 48u)).x_Set(new B10Pc(c).f30);
+                    new Vec3f((_fp + 48u)).y_Set(new B10Pc(c).f34);
+                    new Vec3f((_fp + 48u)).z_Set(new B10Pc(c).f38);
                     func_00271FD8(_fp, _fp, (_fp + 48u));
                     func_00272088((_fp + 32u), _fp, (_fp + 16u));
                     func_002720EC((_fp + 32u));
                     func_002720EC(_fp);
                     func_002720EC((_fp + 16u));
                     func_00272088((_fp + 64u), (_fp + 32u), _fp);
-                    func_0027200C((_fp + 32u), (_fp + 32u), (((Mem.F32((_fp + 64u)) * Mem.F32((_fp + 16u))) + (Mem.F32(((_fp + 64u) + 4u)) * Mem.F32(((_fp + 16u) + 4u)))) + (Mem.F32(((_fp + 64u) + 8u)) * Mem.F32(((_fp + 16u) + 8u)))));
+                    func_0027200C((_fp + 32u), (_fp + 32u), (((new Vec3f((_fp + 64u)).x * new Vec3f((_fp + 16u)).x) + (new Vec3f((_fp + 64u)).y * new Vec3f((_fp + 16u)).y)) + (new Vec3f((_fp + 64u)).z * new Vec3f((_fp + 16u)).z)));
                     func_002720EC((_fp + 32u));
-                    Mem.Copy((b + 24u), (_fp + 32u), 12);
+                    Mem.Copy(new B10Pb(b).v18.P, (_fp + 32u), 12);
                 }
             }
         }

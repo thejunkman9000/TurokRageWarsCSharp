@@ -3,7 +3,7 @@ using Xunit;
 
 public class MemTests
 {
-    static MemTests() { Mem.Map(0x80000000, 0x1000); }
+    static MemTests() { if (!Mem.IsMapped(0x80000000)) Mem.Map(0x80000000, 0x1000); }
 
     [Fact]
     public void WordsAreBigEndianInTheBackingStore()

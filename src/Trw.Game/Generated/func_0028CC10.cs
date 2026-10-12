@@ -12,24 +12,24 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0028CC10", (uint)m, (uint)key);
             int i = 0;
             uint found = 0u;
-            int n = Mem.S32((m + 3664u));
-            uint list = (m + 3152u);
+            int n = new P4Mgr(m).count;
+            uint list = new P4Mgr(m).list.P;
             for (i = 0, found = 0u; (i < n); ++i)
             {
                 uint e = Mem.U32((list + (uint)(i * 4)));
-                if ((Mem.U32((e + 472u)) == key))
+                if ((new P4Node(e).prev_ == key))
                 {
                     found = e;
-                    Mem.Set((found + 472u), 0u);
+                    new P4Node(found).prev__Set(0u);
                     break;
                 }
             }
             for (i = 0; (i < n); ++i)
             {
-                uint e = Mem.U32((list + (uint)(i * 4)));
-                if ((Mem.U32((e + 472u)) == key))
+                uint e_2 = Mem.U32((list + (uint)(i * 4)));
+                if ((new P4Node(e_2).prev_ == key))
                 {
-                    Mem.Set((e + 472u), found);
+                    new P4Node(e_2).prev__Set(found);
                 }
             }
             return found;

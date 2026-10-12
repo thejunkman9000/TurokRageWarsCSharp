@@ -63,7 +63,7 @@ public static partial class Game
                 func_0023C1E0();
                  goto L_L0023C980;
                 L_L0023C9E4: ;
-                r2 = func_0023CE8C(r4, r5, r6, r7); r3 = Cpu.V1;
+                func_0023CE8C(r4);
                  goto L_L0023C980;
                 L_L0023C9F4: ;
                 r2 = func_0023CDC4(r4, r5, r6, r7); r3 = Cpu.V1;

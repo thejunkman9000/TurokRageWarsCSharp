@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00229BE0", (uint)a, (uint)@base);
             int off = 0;
-            if (((int)(Mem.U16((a + 228u))) == Mem.S32((0x800CE474u + (uint)(2 * 4)))))
+            if (((int)(new Plr(a).unkE4) == Mem.S32((0x800CE474u + (uint)(2 * 4)))))
             {
                 switch (Mem.S32(0x80146910u))
                 {
@@ -32,22 +32,22 @@ public static partial class Game
             }
             else
             {
-                if (((int)(Mem.U16((a + 228u))) == Mem.S32((0x800CE474u + (uint)(0 * 4)))))
+                if (((int)(new Plr(a).unkE4) == Mem.S32((0x800CE474u + (uint)(0 * 4)))))
                 {
                     off = 400;
                 }
                 else
                 {
-                    if (((int)(Mem.U16((a + 228u))) == Mem.S32((0x800CE474u + (uint)(1 * 4)))))
+                    if (((int)(new Plr(a).unkE4) == Mem.S32((0x800CE474u + (uint)(1 * 4)))))
                     {
                         off = 1000;
                     }
                     else
                     {
-                        switch ((int)(Mem.S8((Mem.U32((a + 1496u)) + 128u))))
+                        switch ((int)(new Plr(a).stats.unk80))
                         {
                         default:
-                            Mem.Set((Mem.U32((a + 1496u)) + 128u), (sbyte)(0));
+                            new Plr(a).stats.unk80_Set((sbyte)(0));
                             goto case 0;
                         case 0:
                             off = 0;

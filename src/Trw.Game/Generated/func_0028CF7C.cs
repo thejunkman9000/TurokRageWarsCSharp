@@ -10,17 +10,17 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028CF7C", (uint)lv, (uint)a, (uint)b);
-            int n = Mem.S32((Mem.U32((lv + 120u)) + (uint)(0 * 4)));
+            int n = Mem.S32((new Level(lv).unk78_ + (uint)(0 * 4)));
             int i = 0;
             uint e = 0u;
             if ((n > 0))
             {
                 do
                 {
-                    e = func_0028FD94(Mem.U32((lv + 120u)), i);
-                    if (((a == (-1)) || (Mem.S32(e) == a)))
+                    e = func_0028FD94(new Level(lv).unk78_, i);
+                    if (((a == (-1)) || (new Ent_v2(e).key == a)))
                     {
-                        if (((b == (-1)) || ((int)(Mem.S16((e + 12u))) == b)))
+                        if (((b == (-1)) || ((int)(new Ent_v2(e).unkC) == b)))
                         {
                             return e;
                         }

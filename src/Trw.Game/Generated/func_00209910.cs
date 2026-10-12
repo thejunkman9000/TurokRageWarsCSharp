@@ -13,7 +13,7 @@ public static partial class Game
             float v = (x * Mem.F32(0x800C6D78u));
             if ((ctl != 0u))
             {
-                Mem.Set((Mem.U32(ctl) + 1696u), (-v));
+                new B2Ctl(ctl).owner.unk6A0_Set((-v));
             }
         }
     }

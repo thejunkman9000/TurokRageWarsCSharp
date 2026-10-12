@@ -11,23 +11,23 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0040C9D0", (uint)w);
             int t = 0;
-            if (((Mem.S32((w + 108u)) & 1) != 0))
+            if (((new O02Bar(w).flags & 1) != 0))
             {
-                t = (((Mem.S32((w + 96u)) - Mem.S32((w + 88u))) * (Mem.S32((w + 80u)) - Mem.S32((w + 68u)))) / (Mem.S32((w + 72u)) - Mem.S32((w + 68u))));
-                Mem.Set((Mem.U32((w + 104u)) + 22u), (ushort)(t));
-                Mem.Set((Mem.U32((w + 104u)) + 26u), (ushort)(((int)(Mem.U16(((w + 96u) + 2u))) - t)));
-                if ((Mem.U32((w + 100u)) != 0u))
+                t = (((Mem.S32(new O02Bar(w).u60.P) - new O02Bar(w).f58) * (new O02Bar(w).val - new O02Bar(w).min)) / (new O02Bar(w).max - new O02Bar(w).min));
+                new O02Bar(w).thumb.f16_Set((ushort)(t));
+                new O02Bar(w).thumb.f1A_Set((ushort)(((int)(Mem.U16((new O02Bar(w).u60.P + 2u))) - t)));
+                if ((new O02Bar(w).child64_ != 0u))
                 {
-                    Mem.Set((Mem.U32((w + 100u)) + 22u), (ushort)((t - ((int)((short)(Mem.U16((Mem.U32((w + 100u)) + 26u)))) / 2))));
+                    new O02Bar(w).child64.f16_Set((ushort)((t - ((int)((short)(new O02Bar(w).child64.f1A)) / 2))));
                 }
             }
             else
             {
-                t = (((Mem.S32((w + 92u)) - Mem.S32((w + 84u))) * (Mem.S32((w + 80u)) - Mem.S32((w + 68u)))) / (Mem.S32((w + 72u)) - Mem.S32((w + 68u))));
-                Mem.Set((Mem.U32((w + 104u)) + 24u), (ushort)(t));
-                if ((Mem.U32((w + 100u)) != 0u))
+                t = (((new O02Bar(w).f5C - new O02Bar(w).f54) * (new O02Bar(w).val - new O02Bar(w).min)) / (new O02Bar(w).max - new O02Bar(w).min));
+                new O02Bar(w).thumb.f18_Set((ushort)(t));
+                if ((new O02Bar(w).child64_ != 0u))
                 {
-                    Mem.Set((Mem.U32((w + 100u)) + 20u), (ushort)(((int)(Mem.U16((Mem.U32((w + 104u)) + 20u))) - (t - ((int)((short)(Mem.U16((Mem.U32((w + 100u)) + 24u)))) / 2)))));
+                    new O02Bar(w).child64.f14_Set((ushort)(((int)(new O02Bar(w).thumb.f14) - (t - ((int)((short)(new O02Bar(w).child64.f18)) / 2)))));
                 }
             }
         }

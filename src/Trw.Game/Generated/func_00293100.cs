@@ -23,16 +23,16 @@ public static partial class Game
             if (((int)(Mem.U8((col + (uint)3))) != 0))
             {
                 d1 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                Mem.Set(d1, 3875536896u);
-                Mem.Set((d1 + 4u), (uint)(0));
+                new DlCmd(d1).w0_Set(3875536896u);
+                new DlCmd(d1).w1_Set((uint)(0));
                 d2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                Mem.Set(d2, 3808430593u);
-                Mem.Set((d2 + 4u), (uint)(0));
+                new DlCmd(d2).w0_Set(3808430593u);
+                new DlCmd(d2).w1_Set((uint)(0));
                 func_0026925C((uint)(19));
                 func_00268CE0((uint)(25));
                 d = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                Mem.Set(d, 4194369535u);
-                Mem.Set((d + 4u), (uint)((((((int)(Mem.U8((col + (uint)0))) << (int)24) | ((int)(Mem.U8((col + (uint)1))) << (int)16)) | ((int)(Mem.U8((col + (uint)2))) << (int)8)) | (int)(Mem.U8((col + (uint)3))))));
+                new DlCmd(d).w0_Set(4194369535u);
+                new DlCmd(d).w1_Set((uint)((((((int)(Mem.U8((col + (uint)0))) << (int)24) | ((int)(Mem.U8((col + (uint)1))) << (int)16)) | ((int)(Mem.U8((col + (uint)2))) << (int)8)) | (int)(Mem.U8((col + (uint)3))))));
                 d = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
                 x1 = lrx;
                 if ((x1 < 0))
@@ -46,7 +46,7 @@ public static partial class Game
                     y1 = 0;
                 }
                 t = ((uint)(((y1 & 1023) << (int)2)) | 4127195136u);
-                Mem.Set(d, (w | t));
+                new DlCmd(d).w0_Set((w | t));
                 x0 = ulx;
                 if ((x0 < 0))
                 {
@@ -58,7 +58,7 @@ public static partial class Game
                 {
                     y0 = 0;
                 }
-                Mem.Set((d + 4u), (w2 | (uint)(((y0 & 1023) << (int)2))));
+                new DlCmd(d).w1_Set((w2 | (uint)(((y0 & 1023) << (int)2))));
             }
         }
     }

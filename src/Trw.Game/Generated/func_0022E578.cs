@@ -12,11 +12,11 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0022E578", (uint)g, (uint)v);
             uint p = 0u;
             float sum = 0.0f;
-            for (p = Mem.U32((g + 32u)); (p != 0u); p = Mem.U32((p + 5856u)))
+            for (p = new Game_s(g).players_; (p != 0u); p = new Player_v3(p).next_)
             {
-                if ((Mem.U32((p + 1500u)) != 0u))
+                if ((new Player_v3(p).pawn_ != 0u))
                 {
-                    sum = (float)((float)(sum) + func_00272768(v, (p + 8u)));
+                    sum = (float)((float)(sum) + func_00272768(v, new Player_v3(p).pos.P));
                 }
             }
             return sum;

@@ -11,13 +11,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00421E00", (uint)obj, (uint)msg, (uint)a2, (uint)a3);
             int i = 0;
-            for (i = 0; (Mem.U32(((0x800E4454u + (uint)(i * 12)) + 8u)) != 0u); ++i)
+            for (i = 0; (new O3Msg((0x800E4454u + (uint)(i * 12))).fn != 0u); ++i)
             {
-                if ((Mem.S32((0x800E4454u + (uint)(i * 12))) == msg))
+                if ((new O3Msg((0x800E4454u + (uint)(i * 12))).msg == msg))
                 {
-                    if (((Mem.S32(((0x800E4454u + (uint)(i * 12)) + 4u)) == (int)(Mem.S16((obj + 12u)))) || (Mem.S32(((0x800E4454u + (uint)(i * 12)) + 4u)) == 30000)))
+                    if (((new O3Msg((0x800E4454u + (uint)(i * 12))).type == (int)(new O3Hdr(obj).id)) || (new O3Msg((0x800E4454u + (uint)(i * 12))).type == 30000)))
                     {
-                        return (int)(Funcs.CallRegX(Mem.U32(((0x800E4454u + (uint)(i * 12)) + 8u)), obj, (uint)(msg), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
+                        return (int)(Funcs.CallRegX(new O3Msg((0x800E4454u + (uint)(i * 12))).fn, obj, (uint)(msg), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
                     }
                 }
             }

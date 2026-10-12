@@ -10,13 +10,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025D178", (uint)fx, (uint)m);
-            Mem.Set(fx, m);
-            Mem.Set((fx + 4u), (-1));
-            Mem.Set((fx + 12u), (-1));
-            Mem.Set((fx + 8u), 0);
-            Mem.Set((fx + 20u), 0);
-            Mem.Set((fx + 24u), 64);
-            Mem.Set((fx + 28u), (int)(alSndpAllocate(func_00258D60(Mem.U32(fx)), 0x800D0D78u)));
+            new SndFx(fx).owner__Set(m);
+            new SndFx(fx).unk4_Set((-1));
+            new SndFx(fx).unkC_Set((-1));
+            new SndFx(fx).unk8_Set(0);
+            new SndFx(fx).unk14_Set(0);
+            new SndFx(fx).unk18_Set(64);
+            new SndFx(fx).sndId_Set((int)(alSndpAllocate(func_00258D60(new SndFx(fx).owner_), 0x800D0D78u)));
         }
     }
 

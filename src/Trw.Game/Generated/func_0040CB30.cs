@@ -28,16 +28,16 @@ public static partial class Game
                     if (((Mem.S32(0x800E2ABCu) != 340787) || (Mem.S32(0x800E2AB8u) == 0)))
                     {
                         Mem.Set(0x800E2ABCu, 340787);
-                        func_004171B8((uint)(340787), default(uint), default(uint), default(uint));
+                        func_004171B8((uint)(340787));
                         Mem.Set(0x800E2AB8u, 1);
                     }
-                    func_002A2898((_fp + (uint)(0 * 4)), (_fp + (uint)(2 * 4)), (_fp + (uint)(1 * 4)), (_fp + (uint)(3 * 4)));
+                    func_002A2898((new O02Rect(_fp).w.P + (uint)(0 * 4)), (new O02Rect(_fp).w.P + (uint)(2 * 4)), (new O02Rect(_fp).w.P + (uint)(1 * 4)), (new O02Rect(_fp).w.P + (uint)(3 * 4)));
                     func_002A2870(Mem.S32(0x80153810u), Mem.S32(0x80153818u), Mem.S32(0x80153814u), Mem.S32(0x8015381Cu));
                     for (i = 0; (i < Mem.S32(0x80153800u)); ++i)
                     {
-                        it = Mem.U32(((0x80153820u + (uint)(i * 24)) + 16u));
-                        lo = (ushort)((((int)(lo) < (int)(Mem.U16((it + 20u)))) ? (int)(lo) : (int)(Mem.U16((it + 20u)))));
-                        hi = (ushort)((((int)(Mem.U16(((it + (uint)((Mem.S32(((0x80153820u + (uint)(i * 24)) + 20u)) - 1) * 24)) + 20u))) < (int)(hi)) ? (int)(hi) : (int)(Mem.U16(((it + (uint)((Mem.S32(((0x80153820u + (uint)(i * 24)) + 20u)) - 1) * 24)) + 20u)))));
+                        it = new O02Ent((0x80153820u + (uint)(i * 24))).items_;
+                        lo = (ushort)((((int)(lo) < (int)(new O02Item(it).f14)) ? (int)(lo) : (int)(new O02Item(it).f14)));
+                        hi = (ushort)((((int)(new O02Item((it + (uint)((new O02Ent((0x80153820u + (uint)(i * 24))).count - 1) * 24))).f14) < (int)(hi)) ? (int)(hi) : (int)(new O02Item((it + (uint)((new O02Ent((0x80153820u + (uint)(i * 24))).count - 1) * 24))).f14)));
                     }
                     for (i = (int)(lo); (i <= (int)(hi)); ++i)
                     {
@@ -45,28 +45,28 @@ public static partial class Game
                         for (j = 0; (j < Mem.S32(0x80153800u)); ++j)
                         {
                             e = (0x80153820u + (uint)(j * 24));
-                            while (((i == (int)(Mem.U16((Mem.U32((e + 16u)) + 20u)))) && (Mem.S32((e + 20u)) > 0)))
+                            while (((i == (int)(new O02Ent(e).items.f14)) && (new O02Ent(e).count > 0)))
                             {
-                                it = Mem.U32((e + 16u));
+                                it = new O02Ent(e).items_;
                                 if (!(started != 0))
                                 {
-                                    int r2 = (int)(func_00410FD4((uint)((i & 255)), (uint)(Mem.S32(0x801539A0u)), (uint)(Mem.S32(0x801539A4u)), default(uint)));
+                                    int r2 = (int)(func_00410FD4((byte)((i & 255)), Mem.S32(0x801539A0u), Mem.S32(0x801539A4u)));
                                     if (!(r2 != 0))
                                     {
                                         j = Mem.S32(0x80153800u);
                                         break;
                                     }
-                                    func_00417574((uint)(r2), default(uint), default(uint), default(uint));
+                                    func_00417574((uint)(r2));
                                     started = 1;
                                 }
-                                func_00418E20((int)(Mem.F32((it + 4u))), (int)(Mem.F32((it + 8u))), (int)Cpu.F2U(10.0f), (int)Cpu.F2U(Mem.F32((it + 12u))), Mem.F32((it + 16u)), Mem.S32(it));
-                                Mem.Set((e + 16u), (uint)(Mem.U32((e + 16u)) + 24u));
-                                Mem.Set((e + 20u), (int)(Mem.S32((e + 20u)) - 1));
+                                func_00418E20((int)(new O02Item(it).f4), (int)(new O02Item(it).f8), (int)Cpu.F2U(10.0f), (int)Cpu.F2U(new O02Item(it).fC), new O02Item(it).f10, new O02Item(it).w0);
+                                new O02Ent(e).items__Set((uint)(new O02Ent(e).items_ + 24u));
+                                new O02Ent(e).count_Set((int)(new O02Ent(e).count - 1));
                             }
                         }
                     }
                     p = _fp;
-                    func_002A2870(Mem.S32((_fp + (uint)(0 * 4))), Mem.S32((p + (uint)(2 * 4))), Mem.S32((p + (uint)(1 * 4))), Mem.S32((p + (uint)(3 * 4))));
+                    func_002A2870(new O02Rect(_fp).w[(int)(0)], new O02Rect(p).w[(int)(2)], new O02Rect(p).w[(int)(1)], new O02Rect(p).w[(int)(3)]);
                     Mem.Set(0x80153800u, 0);
                 }
             }

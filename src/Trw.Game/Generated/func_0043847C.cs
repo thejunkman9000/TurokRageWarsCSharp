@@ -10,68 +10,68 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043847C");
-            int sel = Mem.S32((Mem.U32(0x800E5830u) + 148u));
+            int sel = new O05M30_v2(Mem.U32(0x800E5830u)).f94;
             uint r = (0x80146398u + (uint)(sel * 150));
             uint w = 0u;
             uint w6 = 0u;
             int a = 0;
             byte col = (byte)(175);
             uint fmt = Str.Lit("%d");
-            w = func_0040ECB0(Mem.U32((Mem.U32(0x800E5830u) + 32u)), (uint)(633), default(uint), default(uint));
+            w = func_0040ECB0(new O05M30_v2(Mem.U32(0x800E5830u)).f20, (uint)(633), default(uint), default(uint));
             func_0040E958(w, 1);
-            Mem.Set((w + 16u), (byte)(150));
-            Mem.Set((w + 44u), (uint)(Mem.S32((0x800E3A58u + (uint)(func_0041F1B0((int)(Mem.S8((r + 128u)))) * 112)))));
-            w = func_0040ECB0(Mem.U32((Mem.U32(0x800E5830u) + 32u)), (uint)(634), default(uint), default(uint));
+            new O05Wd2(w).b10_Set((byte)(150));
+            new O05Wd2(w).f2C_Set((uint)(new O05T112((0x800E3A58u + (uint)(func_0041F1B0((int)(new O05R150c(r).b80)) * 112))).f0));
+            w = func_0040ECB0(new O05M30_v2(Mem.U32(0x800E5830u)).f20, (uint)(634), default(uint), default(uint));
             func_0040E958(w, 1);
-            Mem.Set((w + 16u), col);
-            Mem.Set((w + 56u), (0x80102B00u + (uint)(sel * 400)));
-            w = func_0040ECB0(Mem.U32((Mem.U32(0x800E5830u) + 32u)), (uint)(635), default(uint), default(uint));
+            new O05Wd2(w).b10_Set(col);
+            new O05Wd2(w).f38_Set((0x80102B00u + (uint)(sel * 400)));
+            w = func_0040ECB0(new O05M30_v2(Mem.U32(0x800E5830u)).f20, (uint)(635), default(uint), default(uint));
             func_0040E958(w, 1);
-            Mem.Set((w + 16u), (byte)(115));
-            Mem.Set((w + 56u), func_00424FC8(sel));
-            w = func_0040ECB0(Mem.U32((Mem.U32(0x800E5830u) + 32u)), (uint)(636), default(uint), default(uint));
+            new O05Wd2(w).b10_Set((byte)(115));
+            new O05Wd2(w).f38_Set(func_00424FC8(sel));
+            w = func_0040ECB0(new O05M30_v2(Mem.U32(0x800E5830u)).f20, (uint)(636), default(uint), default(uint));
             func_0040E958(w, 1);
-            Mem.Set((w + 16u), col);
-            func_002A1C08((Mem.U32(0x800E5830u) + 40u), fmt, (uint)((int)(Mem.S16((r + 4u)))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-            Mem.Set((w + 56u), (Mem.U32(0x800E5830u) + 40u));
-            w = func_0040ECB0(Mem.U32((Mem.U32(0x800E5830u) + 32u)), (uint)(637), default(uint), default(uint));
+            new O05Wd2(w).b10_Set(col);
+            func_002A1C08(new O05M30_v2(Mem.U32(0x800E5830u)).buf28.P, fmt, (uint)((int)(new O05R150c(r).h4)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            new O05Wd2(w).f38_Set(new O05M30_v2(Mem.U32(0x800E5830u)).buf28.P);
+            w = func_0040ECB0(new O05M30_v2(Mem.U32(0x800E5830u)).f20, (uint)(637), default(uint), default(uint));
             func_0040E958(w, 1);
-            Mem.Set((w + 16u), col);
-            func_002A1C08((Mem.U32(0x800E5830u) + 50u), fmt, (uint)(((int)(Mem.S16((r + 2u))) + (int)(Mem.S16(r)))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-            Mem.Set((w + 56u), (Mem.U32(0x800E5830u) + 50u));
-            w = func_0040ECB0(Mem.U32((Mem.U32(0x800E5830u) + 32u)), (uint)(638), default(uint), default(uint));
+            new O05Wd2(w).b10_Set(col);
+            func_002A1C08(new O05M30_v2(Mem.U32(0x800E5830u)).buf32.P, fmt, (uint)(((int)(new O05R150c(r).h2) + (int)(new O05R150c(r).h0))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            new O05Wd2(w).f38_Set(new O05M30_v2(Mem.U32(0x800E5830u)).buf32.P);
+            w = func_0040ECB0(new O05M30_v2(Mem.U32(0x800E5830u)).f20, (uint)(638), default(uint), default(uint));
             func_0040E958(w, 1);
-            Mem.Set((w + 16u), col);
+            new O05Wd2(w).b10_Set(col);
             a = 0;
             if ((Mem.S32((0x80103140u + (uint)(sel * 4))) > 0))
             {
                 a = ((Mem.S32((0x80102AE0u + (uint)(sel * 4))) * 100) / Mem.S32((0x80103140u + (uint)(sel * 4))));
             }
-            func_002A1C08((Mem.U32(0x800E5830u) + 60u), Str.Lit("%d%%"), (uint)(a), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-            Mem.Set((w + 56u), (Mem.U32(0x800E5830u) + 60u));
-            w = func_0040ECB0(Mem.U32((Mem.U32(0x800E5830u) + 32u)), (uint)(639), default(uint), default(uint));
+            func_002A1C08(new O05M30_v2(Mem.U32(0x800E5830u)).buf3C.P, Str.Lit("%d%%"), (uint)(a), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            new O05Wd2(w).f38_Set(new O05M30_v2(Mem.U32(0x800E5830u)).buf3C.P);
+            w = func_0040ECB0(new O05M30_v2(Mem.U32(0x800E5830u)).f20, (uint)(639), default(uint), default(uint));
             func_0040E958(w, 1);
-            Mem.Set((w + 16u), col);
+            new O05Wd2(w).b10_Set(col);
             w6 = w;
             switch (Mem.S32(0x80154028u))
             {
             case 0:
-                func_002A1C08((Mem.U32(0x800E5830u) + 70u), fmt, (uint)((int)(Mem.S16((r + 8u)))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                func_002A1C08(new O05M30_v2(Mem.U32(0x800E5830u)).buf46.P, fmt, (uint)((int)(new O05R150c(r).h8)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                 break;
             case 1:
-                func_002A1C08((Mem.U32(0x800E5830u) + 70u), fmt, (uint)((int)(Mem.S16((r + 6u)))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                func_002A1C08(new O05M30_v2(Mem.U32(0x800E5830u)).buf46.P, fmt, (uint)((int)(new O05R150c(r).h6)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                 break;
             default:
-                func_002A1C08((Mem.U32(0x800E5830u) + 70u), Str.Lit("%d"), (uint)(0), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                func_002A1C08(new O05M30_v2(Mem.U32(0x800E5830u)).buf46.P, Str.Lit("%d"), (uint)(0), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                 break;
             }
-            Mem.Set((w6 + 56u), (Mem.U32(0x800E5830u) + 70u));
-            if ((Mem.S32((Mem.U32(0x800E5830u) + 152u)) != (-1)))
+            new O05Wd2(w6).f38_Set(new O05M30_v2(Mem.U32(0x800E5830u)).buf46.P);
+            if ((new O05M30_v2(Mem.U32(0x800E5830u)).f98 != (-1)))
             {
-                w = func_0040ECB0(Mem.U32((Mem.U32(0x800E5830u) + 32u)), (uint)(640), default(uint), default(uint));
-                Mem.Set((w + 16u), (byte)(150));
+                w = func_0040ECB0(new O05M30_v2(Mem.U32(0x800E5830u)).f20, (uint)(640), default(uint), default(uint));
+                new O05Wd2(w).b10_Set((byte)(150));
                 func_0040E958(w, 1);
-                Mem.Set((w + 44u), (uint)(Mem.S32((0x800E4200u + (uint)(Mem.S32((Mem.U32(0x800E5830u) + 152u)) * 4)))));
+                new O05Wd2(w).f2C_Set((uint)(Mem.S32((0x800E4200u + (uint)(new O05M30_v2(Mem.U32(0x800E5830u)).f98 * 4)))));
             }
         }
     }

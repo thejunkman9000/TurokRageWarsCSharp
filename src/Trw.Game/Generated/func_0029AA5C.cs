@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029AA5C", (uint)a, (uint)b);
-            Mem.Set(a, Mem.S32((Mem.U32(0x8014D080u) + 1332u)));
-            Mem.Set(b, Mem.S32((Mem.U32(0x8014D080u) + 1336u)));
+            Mem.Set(a, new SndMgr_v2(Mem.U32(0x8014D080u)).unk534);
+            Mem.Set(b, new SndMgr_v2(Mem.U32(0x8014D080u)).unk538);
         }
     }
 

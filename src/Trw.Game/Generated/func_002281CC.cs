@@ -16,11 +16,11 @@ public static partial class Game
             int i = 0;
             uint gp = 0u;
             int t = 0;
-            if ((Mem.S32((0x801468A0u + 88u)) == 0))
+            if ((new GameB6(0x801468A0u).unk58 == 0))
             {
                 return 0;
             }
-            for (a = Mem.U32((g + 32u)); (a != 0u); a = Mem.U32((a + 5856u)))
+            for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
             {
                 idx = func_0022A590(g, (int)(a));
                 sum = 0;
@@ -28,8 +28,8 @@ public static partial class Game
                 {
                     if ((i != idx))
                     {
-                        sum = (int)((int)(sum) + (int)(Mem.S16(((Mem.U32((a + 1496u)) + 28u) + (uint)(i * 2)))));
-                        if ((sum >= Mem.S32((0x801468A0u + 88u))))
+                        sum = (int)((int)(sum) + (int)(new Plr(a).stats.unk1C[(int)(i)]));
+                        if ((sum >= new GameB6(0x801468A0u).unk58))
                         {
                             gp = (0x801468A0u - (uint)1496);
                             t = (int)(Mem.U8((gp + (uint)13)));
@@ -37,12 +37,12 @@ public static partial class Game
                             {
                                 return 1;
                             }
-                            if ((Mem.S32((a + 1492u)) < 4))
+                            if ((new Plr(a).unk5D4 < 4))
                             {
-                                Mem.Set((0x801468A0u + 168u), 1);
+                                new GameB6(0x801468A0u).unkA8_Set(1);
                                 return 1;
                             }
-                            Mem.Set((0x801468A0u + 168u), 0);
+                            new GameB6(0x801468A0u).unkA8_Set(0);
                             if ((t != 1))
                             {
                                 return 1;

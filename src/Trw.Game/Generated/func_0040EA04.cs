@@ -14,35 +14,35 @@ public static partial class Game
             {
                 Mem.Copy(_fp + 0u, s_in, 40);
                 if (Dbg.On) Dbg.Enter("func_0040EA04", (uint)hit, (uint)n, (uint)s_in);
-                if ((Mem.U32(hit) == 0u))
+                if ((new S_hit(hit).hit_ == 0u))
                 {
-                    if ((Mem.U32((n + 4u)) != 0u))
+                    if ((new S_n(n).a_ != 0u))
                     {
-                        func_0040EA04(hit, Mem.U32((n + 4u)), _fp, px, py);
+                        func_0040EA04(hit, new S_n(n).a_, _fp, px, py);
                     }
-                    if ((Mem.U32(hit) == 0u))
+                    if ((new S_hit(hit).hit_ == 0u))
                     {
-                        Mem.Set(_fp, (int)((int)(Mem.S32(_fp)) + (int)(Mem.S16((n + 20u)))));
-                        Mem.Set((_fp + 4u), (int)((int)(Mem.S32((_fp + 4u))) + (int)(Mem.S16((n + 22u)))));
-                        if ((Mem.U32((n + 8u)) != 0u))
+                        new S_st(_fp).x_Set((int)((int)(new S_st(_fp).x) + (int)(new S_n(n).x)));
+                        new S_st(_fp).y_Set((int)((int)(new S_st(_fp).y) + (int)(new S_n(n).y)));
+                        if ((new S_n(n).b_ != 0u))
                         {
-                            func_0040EA04(hit, Mem.U32((n + 8u)), _fp, px, py);
+                            func_0040EA04(hit, new S_n(n).b_, _fp, px, py);
                         }
-                        if ((Mem.U32(hit) == 0u))
+                        if ((new S_hit(hit).hit_ == 0u))
                         {
-                            if (((int)(Mem.S16((n + 12u))) != (-1)))
+                            if (((int)(new S_n(n).id) != (-1)))
                             {
-                                if (!(px < Mem.S32(_fp)))
+                                if (!(px < new S_st(_fp).x))
                                 {
-                                    if (!((Mem.S32(_fp) + (int)(Mem.S16((n + 24u)))) < px))
+                                    if (!((new S_st(_fp).x + (int)(new S_n(n).w)) < px))
                                     {
-                                        if (!(py < Mem.S32((_fp + 4u))))
+                                        if (!(py < new S_st(_fp).y))
                                         {
-                                            if (!((Mem.S32((_fp + 4u)) + (int)(Mem.S16((n + 26u)))) < py))
+                                            if (!((new S_st(_fp).y + (int)(new S_n(n).h)) < py))
                                             {
-                                                if ((func_0029A7E4((int)(Mem.U16((n + 14u)))) != 0))
+                                                if ((func_0029A7E4((int)(new S_n(n).type)) != 0))
                                                 {
-                                                    Mem.Set(hit, n);
+                                                    new S_hit(hit).hit__Set(n);
                                                 }
                                             }
                                         }

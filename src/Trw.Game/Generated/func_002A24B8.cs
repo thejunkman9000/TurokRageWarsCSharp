@@ -14,39 +14,39 @@ public static partial class Game
             int d = (v - Mem.S32(0x8014D328u));
             Mem.Set(0x8014D320u, (Mem.S32(0x8014D320u) - 1));
             Mem.Set(0x8014D328u, v);
-            Mem.Set(0x800D2BE8u, (Mem.F32(0x800D2BE8u) + (float)((-d))));
-            if ((Mem.F32(0x800D2BE8u) < Mem.F32(0x800CAF10u)))
+            new MinMaxF(0x800D2BE8u).cur_Set((new MinMaxF(0x800D2BE8u).cur + (float)((-d))));
+            if ((new MinMaxF(0x800D2BE8u).cur < Mem.F32(0x800CAF10u)))
             {
-                Mem.Set(0x800D2BE8u, Mem.F32(0x800CAF10u));
+                new MinMaxF(0x800D2BE8u).cur_Set(Mem.F32(0x800CAF10u));
             }
-            if ((Mem.F32(0x800D2BE8u) > Mem.F32(0x800CAF14u)))
+            if ((new MinMaxF(0x800D2BE8u).cur > Mem.F32(0x800CAF14u)))
             {
-                Mem.Set(0x800D2BE8u, Mem.F32(0x800CAF14u));
+                new MinMaxF(0x800D2BE8u).cur_Set(Mem.F32(0x800CAF14u));
             }
-            if ((Mem.F32(0x800D2BE8u) < Mem.F32((0x800D2BE8u + 4u))))
+            if ((new MinMaxF(0x800D2BE8u).cur < new MinMaxF(0x800D2BE8u).lo))
             {
-                Mem.Set((0x800D2BE8u + 4u), Mem.F32(0x800D2BE8u));
+                new MinMaxF(0x800D2BE8u).lo_Set(new MinMaxF(0x800D2BE8u).cur);
             }
-            if ((Mem.F32((0x800D2BE8u + 8u)) < Mem.F32(0x800D2BE8u)))
+            if ((new MinMaxF(0x800D2BE8u).hi < new MinMaxF(0x800D2BE8u).cur))
             {
-                Mem.Set((0x800D2BE8u + 8u), Mem.F32(0x800D2BE8u));
+                new MinMaxF(0x800D2BE8u).hi_Set(new MinMaxF(0x800D2BE8u).cur);
             }
-            Mem.Set(0x800D2BDCu, (Mem.F32(0x800D2BDCu) + (float)(d)));
-            if ((Mem.F32(0x800D2BDCu) < Mem.F32(0x800CAF10u)))
+            new MinMaxF(0x800D2BDCu).cur_Set((new MinMaxF(0x800D2BDCu).cur + (float)(d)));
+            if ((new MinMaxF(0x800D2BDCu).cur < Mem.F32(0x800CAF10u)))
             {
-                Mem.Set(0x800D2BDCu, Mem.F32(0x800CAF10u));
+                new MinMaxF(0x800D2BDCu).cur_Set(Mem.F32(0x800CAF10u));
             }
-            if ((Mem.F32(0x800D2BDCu) > Mem.F32(0x800CAF14u)))
+            if ((new MinMaxF(0x800D2BDCu).cur > Mem.F32(0x800CAF14u)))
             {
-                Mem.Set(0x800D2BDCu, Mem.F32(0x800CAF14u));
+                new MinMaxF(0x800D2BDCu).cur_Set(Mem.F32(0x800CAF14u));
             }
-            if ((Mem.F32(0x800D2BDCu) < Mem.F32((0x800D2BDCu + 4u))))
+            if ((new MinMaxF(0x800D2BDCu).cur < new MinMaxF(0x800D2BDCu).lo))
             {
-                Mem.Set((0x800D2BDCu + 4u), Mem.F32(0x800D2BDCu));
+                new MinMaxF(0x800D2BDCu).lo_Set(new MinMaxF(0x800D2BDCu).cur);
             }
-            if ((Mem.F32((0x800D2BDCu + 8u)) < Mem.F32(0x800D2BDCu)))
+            if ((new MinMaxF(0x800D2BDCu).hi < new MinMaxF(0x800D2BDCu).cur))
             {
-                Mem.Set((0x800D2BDCu + 8u), Mem.F32(0x800D2BDCu));
+                new MinMaxF(0x800D2BDCu).hi_Set(new MinMaxF(0x800D2BDCu).cur);
             }
         }
     }

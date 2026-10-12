@@ -14,19 +14,19 @@ public static partial class Game
             uint n = 0u;
             uint next = 0u;
             int r = 0;
-            for (n = Mem.U32((pool + 20u)); (n != 0u); n = next)
+            for (n = new B19Pool(pool).head_; (n != 0u); n = next)
             {
                 next = Mem.U32((n + (uint)4));
                 r = 0;
-                if ((((int)(func_00264E10((n + (uint)32), default(uint), default(uint), default(uint))) != 0) || ((int)(func_00264E10((n + (uint)44), default(uint), default(uint), default(uint))) != 0)))
+                if (((func_00264E10((n + (uint)32)) != 0) || (func_00264E10((n + (uint)44)) != 0)))
                 {
                     r = 1;
                 }
                 if ((r != 0))
                 {
-                    if ((Mem.U32((n + 56u)) != 0u))
+                    if ((new B19Spawn(n).link != 0u))
                     {
-                        Mem.Set(Mem.U32((n + 56u)), 0u);
+                        Mem.Set(new B19Spawn(n).link, 0u);
                     }
                     func_00255E78((pool + 20u), n, default(uint), default(uint));
                     func_00255CB4(pool, n, default(uint), default(uint));

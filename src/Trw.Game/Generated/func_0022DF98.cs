@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0022DF98", (uint)actor);
             float f = 0.0f;
             uint q = 0u;
-            if (((((int)(Mem.S16((Mem.U32((0x800D052Cu + (uint)(Mem.S16((actor + (uint)1582)) * 4))) + (uint)8))) > 0) && (Mem.S32((actor + (uint)2024)) != 0)) && ((Mem.S32(0x801468F4u) == 0) || ((int)(Mem.U8((Mem.U32((actor + 1496u)) + (uint)143))) == 0))))
+            if (((((int)(Mem.S16((Mem.U32((0x800D052Cu + (uint)(Mem.S16((actor + (uint)1582)) * 4))) + (uint)8))) > 0) && (Mem.S32((actor + (uint)2024)) != 0)) && ((Mem.S32(0x801468F4u) == 0) || ((int)(Mem.U8((new Actor(actor).stats_ + (uint)143))) == 0))))
             {
             }
             else
@@ -24,7 +24,7 @@ public static partial class Game
                     Mem.Set((q + (uint)180), 3);
                 }
             }
-            if ((Mem.S32((actor + 1508u)) != 0))
+            if ((new Actor(actor).unk5E4 != 0))
             {
                 if ((Mem.S32((actor + (uint)2024)) != 0))
                 {

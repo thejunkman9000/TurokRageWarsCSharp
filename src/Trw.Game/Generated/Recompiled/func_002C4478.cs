@@ -36,7 +36,7 @@ public static partial class Game
                 r7 = r0;
                 r2 = (uint)1;
                 Mem.Set((r3 + 0u), (ushort)r2);
-                Mem.Set((r29 + 16u), r17); r2 = adecReadBits(r4, r5, r6, r7, Mem.U32(r29 + 16u)); r3 = Cpu.V1;
+                Mem.Set((r29 + 16u), r17); r2 = (uint)adecReadBits(r4, (ushort)r5, (ushort)r6, (short)r7, Mem.U32(r29 + 16u));
                 r2 = r2 << 16;
                 { bool c_ = (int)r2 <= 0; r7 = r0; if (c_) goto L_L002C45EC; }
                 r2 = Mem.U32((r16 + 12u));
@@ -68,7 +68,7 @@ public static partial class Game
                 r4 = r16;
                 r5 = r17 + 24u;
                 r6 = (uint)16;
-                r7 = r29 + 24u; r2 = adecHuffDecode(r4, r5, r6, r7, Mem.U32(r29 + 16u)); r3 = Cpu.V1;
+                r7 = r29 + 24u; r2 = (uint)adecHuffDecode(r4, r5, (short)r6, r7, Mem.U32(r29 + 16u));
                 r2 = r2 << 16;
                 r3 = (uint)((int)r2 >> 16);
                 r2 = (uint)16;
@@ -101,7 +101,7 @@ public static partial class Game
                 r4 = r16;
                 r5 = r17 + 184u;
                 r6 = (uint)256;
-                r7 = r29 + 24u; r2 = adecHuffDecode(r4, r5, r6, r7, Mem.U32(r29 + 16u)); r3 = Cpu.V1;
+                r7 = r29 + 24u; r2 = (uint)adecHuffDecode(r4, r5, (short)r6, r7, Mem.U32(r29 + 16u));
                 r2 = r2 << 16;
                 r3 = (uint)((int)r2 >> 16);
                 r2 = (uint)256;

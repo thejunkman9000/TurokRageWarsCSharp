@@ -14,9 +14,9 @@ public static partial class Game
             uint m = 0u;
             v = (uint)(((uint)(((int)(idx) * 204)) + (uint)(p)));
             v = (v + (uint)4);
-            m = Mem.U32((v + 176u));
-            alSndpSetSound((m + 132u), (short)((int)(Mem.S16(((m + 220u) + (uint)(Mem.S32(v) * 2))))));
-            return alSndpGetState((m + 132u));
+            m = new SndVoice(v).mgr_;
+            alSndpSetSound(new SndMgr(m).player.P, (short)((int)(new SndMgr(m).snd[(int)(new SndVoice(v).idx)])));
+            return alSndpGetState(new SndMgr(m).player.P);
         }
     }
 

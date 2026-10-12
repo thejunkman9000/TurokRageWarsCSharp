@@ -13,17 +13,17 @@ public static partial class Game
             if (!((b == 0u))) goto _f0;
             goto L_L;
             _f0: ;
-            if (!((Mem.U32(b) == 0u))) goto _f1;
+            if (!((new BrainB(b).actor_ == 0u))) goto _f1;
             goto L_L;
             _f1: ;
-            if (!((Mem.S32((b + 460u)) >= 8))) goto _f2;
-            Mem.Set((b + 460u), 0);
+            if (!((new BrainB(b).step >= 8))) goto _f2;
+            new BrainB(b).step_Set(0);
             L_L: ;
             return 1;
             _f2: ;
-            func_002106E0(Mem.U32(b), (uint)(Mem.S32((b + 460u))), default(uint), default(uint));
-            func_00210964(Mem.U32(b), (uint)(Mem.S32((b + 460u))), default(uint), default(uint));
-            Mem.Set((b + 460u), (int)(Mem.S32((b + 460u)) + 1));
+            func_002106E0(new BrainB(b).actor_, (uint)(new BrainB(b).step), default(uint), default(uint));
+            func_00210964(new BrainB(b).actor_, (uint)(new BrainB(b).step), default(uint), default(uint));
+            new BrainB(b).step_Set((int)(new BrainB(b).step + 1));
             return 0;
             return 0;
         }

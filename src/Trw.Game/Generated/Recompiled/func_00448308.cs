@@ -61,7 +61,7 @@ public static partial class Game
                 r2 = Mem.U8((r19 + 256u));
                 { bool c_ = r7 == r2; r4 = r20; if (c_) goto L_L004483D4; }
                 r5 = r19;
-                r6 = r0; r2 = __osPfsRWInode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = r0; r2 = (uint)__osPfsRWInode(r4, r5, (byte)r6, (byte)r7);
                 r3 = r2;
                 { bool c_ = r3 == 0; r2 = (uint)3; if (c_) goto L_L004483D0; }
                 { bool c_ = r3 != r2; r2 = r3; if (c_) goto L_L0044843C; }

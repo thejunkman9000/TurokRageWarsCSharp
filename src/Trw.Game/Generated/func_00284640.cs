@@ -15,9 +15,9 @@ public static partial class Game
             for (i = 0; (i <= (int)(idx)); ++i)
             {
                 l = ((owner + (uint)(i * 20)) + (uint)64552);
-                if ((Mem.U32((l + 4u)) != 0u))
+                if ((new B19List(l).tail_ != 0u))
                 {
-                    func_00284544(owner, Mem.U32((l + 4u)), default(uint), default(uint));
+                    func_00284544(owner, new B19List(l).tail_, default(uint), default(uint));
                     return;
                 }
             }

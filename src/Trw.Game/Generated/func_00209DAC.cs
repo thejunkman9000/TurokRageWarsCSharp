@@ -12,10 +12,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00209DAC", (uint)ctl);
             float k = 0f;
             float f = 0f;
-            switch ((int)(Mem.U8((Mem.U32((Mem.U32(ctl) + 1496u)) + 147u))))
+            switch ((int)(new B2Ctl(ctl).owner.stats.unk93))
             {
             default:
-                Mem.Set((Mem.U32((Mem.U32(ctl) + 1496u)) + 147u), (byte)(0));
+                new B2Ctl(ctl).owner.stats.unk93_Set((byte)(0));
                 goto case 0;
             case 0:
                 k = Mem.F32(0x800CDA30u);
@@ -27,7 +27,7 @@ public static partial class Game
                 k = Mem.F32(0x800CDA38u);
                 break;
             }
-            f = Mem.F32((ctl + 580u));
+            f = new B2Ctl(ctl).unk244;
             if ((f < func_00274B00((-k), k)))
             {
                 f = (float)((float)(f) + Mem.F32(0x800C6DB0u));
@@ -36,7 +36,7 @@ public static partial class Game
             {
                 f = (float)((float)(f) - Mem.F32(0x800C6DB4u));
             }
-            Mem.Set((ctl + 580u), f);
+            new B2Ctl(ctl).unk244_Set(f);
             return f;
         }
     }

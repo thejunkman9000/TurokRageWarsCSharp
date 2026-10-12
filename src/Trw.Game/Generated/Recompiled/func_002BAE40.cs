@@ -42,7 +42,7 @@ public static partial class Game
                 r16 = Mem.U32((r19 + 4u));
                 r2 = Mem.U32((r19 + 0u));
                 r5 = r20;
-                r16 = r16 - r2; r2 = _doModFunc(r4, r5, r6, r7); r3 = Cpu.V1;
+                r16 = r16 - r2; Cpu.SetS(0, _doModFunc(r4, (int)r5));
                 Cpu.SetW(1, r16);
                 Cpu.SetS(1, (float)(int)Cpu.W(1));
                 r1 = 2148335616u;
@@ -84,7 +84,7 @@ public static partial class Game
                 r7 = (uint)((int)r7 >> 1);
                 r16 = r7 << 1;
                 r5 = r5 - r16;
-                r7 = r17 + r7; r2 = _loadBuffer(r4, r5, r6, r7, Mem.U32(r29 + 16u)); r3 = Cpu.V1;
+                r7 = r17 + r7; r2 = _loadBuffer(r4, r5, (int)r6, (int)r7, Mem.U32(r29 + 16u));
                 r18 = r2;
                 r4 = r18;
                 r18 = r18 + 8u;
@@ -127,7 +127,7 @@ public static partial class Game
                 r7 = r20;
                 Mem.Set((r29 + 16u), r18);
                 r5 = r5 << 1;
-                r5 = r2 - r5; r2 = _loadBuffer(r4, r5, r6, r7, Mem.U32(r29 + 16u)); r3 = Cpu.V1;
+                r5 = r2 - r5; r2 = _loadBuffer(r4, r5, (int)r6, (int)r7, Mem.U32(r29 + 16u));
                 r18 = r2;
                 L_L002BB004: ;
                 r2 = r18;

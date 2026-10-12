@@ -191,7 +191,7 @@ public static partial class Game
                 r4 = r17;
                 r5 = r21;
                 r6 = Mem.U32((r29 + 192u));
-                r7 = r22; func_0041CE88(r4);
+                r7 = r22; r2 = func_0041CE88(r4, r5, r6, r7); r3 = Cpu.V1;
                 r2 = r18;
                 L_L0041CDF8: ;
                 r31 = Mem.U32((r29 + 172u));
@@ -230,8 +230,8 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_0041CB48", r2); Stack.Free(400); }
     }
 
-    public static void func_0041CB48(uint p0, int p1, int p2, int p3, int p4, uint p5, uint p6, float p7, int p8)
+    public static uint func_0041CB48(uint p0, int p1, int p2, int p3, int p4, uint p5, uint p6, float p7, int p8)
     {
-        func_0041CB48_rc(p0, (uint)p1, (uint)p2, (uint)p3, (uint)p4, Mem.U32(p5 + 0u), Mem.U32(p5 + 4u), Mem.U32(p5 + 8u), Mem.U32(p6 + 0u), Mem.U32(p6 + 4u), Mem.U32(p6 + 8u), Cpu.F2U(p7), (uint)p8);
+        return func_0041CB48_rc(p0, (uint)p1, (uint)p2, (uint)p3, (uint)p4, Mem.U32(p5 + 0u), Mem.U32(p5 + 4u), Mem.U32(p5 + 8u), Mem.U32(p6 + 0u), Mem.U32(p6 + 4u), Mem.U32(p6 + 8u), Cpu.F2U(p7), (uint)p8);
     }
 }

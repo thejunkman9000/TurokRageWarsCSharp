@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alSndpGetState", (uint)sndp);
-            return Mem.S32(((Mem.U32((sndp + 64u)) + (uint)(Mem.S32((sndp + 60u)) * 48)) + 40u));
+            return new ALSoundState((new ALSndPlayer(sndp).sndState_ + (uint)(new ALSndPlayer(sndp).target * 48))).state;
         }
     }
 

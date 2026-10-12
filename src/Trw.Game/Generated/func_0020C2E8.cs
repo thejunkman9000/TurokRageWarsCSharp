@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020C2E8_getRec0", (uint)m, (uint)idx);
-            uint pool = Mem.U32(m);
-            return ((pool + 8u) + (uint)(idx * Mem.S32(pool)));
+            uint pool = new B2Mgr(m).pool0_;
+            return (new B2Pool(pool).data.P + (uint)(idx * new B2Pool(pool).elemSize));
         }
     }
 
@@ -20,8 +20,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020C2E8_getEdge", (uint)m, (uint)idx);
-            uint pool = Mem.U32((m + 8u));
-            return ((pool + 8u) + (uint)(idx * Mem.S32(pool)));
+            uint pool = new B2Mgr(m).pool8_;
+            return (new B2Pool(pool).data.P + (uint)(idx * new B2Pool(pool).elemSize));
         }
     }
 
@@ -34,18 +34,18 @@ public static partial class Game
             int cnt = 0;
             uint e = 0u;
             cnt = (k = 0);
-            for (; (k < Mem.S32((m + 12u))); ++k)
+            for (; (k < new B2Mgr(m).count); ++k)
             {
                 e = func_0020C2E8_getEdge(m, k);
-                if (((int)(Mem.U16(e)) == key))
+                if (((int)(new B2Edge(e).a) == key))
                 {
-                    Mem.Set((nb + (uint)(cnt * 4)), (int)(Mem.U16((e + 2u))));
+                    Mem.Set((nb + (uint)(cnt * 4)), (int)(new B2Edge(e).b));
                     Mem.Set((ei + (uint)(cnt * 4)), k);
                     ++cnt;
                 }
-                if (((int)(Mem.U16((e + 2u))) == key))
+                if (((int)(new B2Edge(e).b) == key))
                 {
-                    Mem.Set((nb + (uint)(cnt * 4)), (int)(Mem.U16(e)));
+                    Mem.Set((nb + (uint)(cnt * 4)), (int)(new B2Edge(e).a));
                     Mem.Set((ei + (uint)(cnt * 4)), k);
                     ++cnt;
                 }
@@ -71,12 +71,12 @@ public static partial class Game
                 int cnt = 0;
                 int key = 0;
                 best = Mem.F32(0x800C6E68u);
-                src = func_0020C2E8_getRec0(m, Mem.S32(obj));
+                src = func_0020C2E8_getRec0(m, new B2Edge2(obj).id0);
                 for (i = 0; (i < 64); ++i)
                 {
-                    if ((Mem.S32(((m + 56u) + (uint)(i * 4))) != (-1)))
+                    if ((new B2Mgr(m).slots[(int)(i)] != (-1)))
                     {
-                        d = func_00272768(src, func_0020C2E8_getRec0(m, Mem.S32(((m + 56u) + (uint)(i * 4)))));
+                        d = func_00272768(src, func_0020C2E8_getRec0(m, new B2Mgr(m).slots[(int)(i)]));
                         if (((d < best) || (best == Mem.F32(0x800C6E68u))))
                         {
                             best = d;
@@ -88,19 +88,19 @@ public static partial class Game
                     Mem.Set((_fp + (uint)(i * 4)), (-1));
                     Mem.Set(((_fp + 256u) + (uint)(i * 4)), (-1));
                 }
-                key = Mem.S32(obj);
+                key = new B2Edge2(obj).id0;
                 cnt = func_0020C2E8_adj(m, key, _fp, (_fp + 256u));
                 for (j = 0; (j < cnt); ++j)
                 {
                     e = func_0020C2E8_getEdge(m, Mem.S32(((_fp + 256u) + (uint)(j * 4))));
-                    if ((((int)(Mem.U8((e + 4u))) == 9) && ((int)(Mem.U16(e)) == Mem.S32(obj))))
+                    if ((((int)(new B2Edge(e).kind) == 9) && ((int)(new B2Edge(e).a) == new B2Edge2(obj).id0)))
                     {
-                        src = func_0020C2E8_getRec0(m, (int)(Mem.U16((e + 2u))));
+                        src = func_0020C2E8_getRec0(m, (int)(new B2Edge(e).b));
                         for (i = 0; (i < 64); ++i)
                         {
-                            if ((Mem.S32(((m + 56u) + (uint)(i * 4))) != (-1)))
+                            if ((new B2Mgr(m).slots[(int)(i)] != (-1)))
                             {
-                                d = func_00272768(src, func_0020C2E8_getRec0(m, Mem.S32(((m + 56u) + (uint)(i * 4)))));
+                                d = func_00272768(src, func_0020C2E8_getRec0(m, new B2Mgr(m).slots[(int)(i)]));
                                 if (((d < best) || (best == Mem.F32(0x800C6E6Cu))))
                                 {
                                     best = d;

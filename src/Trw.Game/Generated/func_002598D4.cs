@@ -12,17 +12,17 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002598D4", (uint)q, (uint)a);
             uint n = 0u;
             uint next = 0u;
-            for (n = Mem.U32(((q + 4u) + 4u)); (n != (q + 4u)); n = next)
+            for (n = new SndQueue(q).active.link.next_; (n != new SndQueue(q).active.P); n = next)
             {
-                next = Mem.U32((n + 4u));
-                if ((Mem.S32(((n + 8u) + 4u)) == a))
+                next = new SndNode(n).link.next_;
+                if ((new SndNode(n).body.unk4 == a))
                 {
-                    Mem.Set((Mem.U32(n) + 4u), Mem.U32((n + 4u)));
-                    Mem.Set(Mem.U32((n + 4u)), Mem.U32(n));
-                    Mem.Set(n, Mem.U32((q + 216u)));
-                    Mem.Set((n + 4u), (q + 216u));
-                    Mem.Set((Mem.U32((q + 216u)) + 4u), n);
-                    Mem.Set((q + 216u), n);
+                    new SndNode(n).link.prev.next__Set(new SndNode(n).link.next_);
+                    new SndNode(n).link.next.prev__Set(new SndNode(n).link.prev_);
+                    new SndNode(n).link.prev__Set(new SndQueue(q).free.link.prev_);
+                    new SndNode(n).link.next__Set(new SndQueue(q).free.link.P);
+                    new SndQueue(q).free.link.prev.next__Set(new SndNode(n).link.P);
+                    new SndQueue(q).free.link.prev__Set(new SndNode(n).link.P);
                 }
             }
         }

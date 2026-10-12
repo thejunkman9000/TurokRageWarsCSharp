@@ -10,12 +10,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00258760", (uint)o);
-            uint l = (o + 272u);
+            uint l = new P3LockOwner(o).@lock.P;
             uint mask = __osDisableInt();
-            if ((Mem.Set((l + 28u), (int)(Mem.S32((l + 28u)) + 1)) != 1))
+            if ((new P3Lock(l).count_Set((int)(new P3Lock(l).count + 1)) != 1))
             {
                 __osRestoreInt(mask);
-                osRecvMesg(l, 0u, 1);
+                osRecvMesg(new P3Lock(l).q.P, 0u, 1);
             }
             else
             {

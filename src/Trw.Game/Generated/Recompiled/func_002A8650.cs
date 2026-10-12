@@ -167,7 +167,7 @@ public static partial class Game
                 r2 = r2 & 255u;
                 Mem.Set((r29 + 28u), r2); r2 = func_002ABA44(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u)); r3 = Cpu.V1;
                 r4 = Mem.U8((r30 + 0u));
-                func_002AA224(r4);
+                r2 = func_002AA224(r4, r5, r6, r7); r3 = Cpu.V1;
                 r2 = (uint)1;
                 { bool c_ = r23 != r2; r4 = (uint)514; if (c_) goto L_L002A89E8; }
                 r1 = 2148335616u;

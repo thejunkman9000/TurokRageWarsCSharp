@@ -17,17 +17,17 @@ public static partial class Game
                 uint h = 0u;
                 uint b = 0u;
                 int n = 0;
-                r = func_0028FE08(Mem.U32((lv + 76u)), (int)(Mem.U32((lv + 28u))), idx);
+                r = func_0028FE08(new Level(lv).unk4C_, (int)(new Level(lv).unk1C_), idx);
                 h = func_00254224(0, _fp, r, 0x800CA200u);
                 b = func_002543A8((uint)(0), (uint)(Mem.S32(_fp)), (uint)(8), (uint)(r), lv, (uint)(0), (0x800CA370u + (uint)(1 * 4)));
-                n = Mem.S32((b + 4u));
+                n = new Blk_v2(b).size;
                 if ((maxSize < n))
                 {
                     n = maxSize;
                 }
-                memcpy(dst, Mem.U32(b), (uint)(n));
+                memcpy(dst, new Blk_v2(b).data, (uint)(n));
                 func_002537D8(0, b);
-                if ((Mem.S32((lv + 111628u)) != idx))
+                if ((new Level(lv).unk1B40C != idx))
                 {
                     func_002537D8(0, h);
                 }

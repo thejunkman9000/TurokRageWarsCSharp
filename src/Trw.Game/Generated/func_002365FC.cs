@@ -44,10 +44,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002365FC", (uint)o);
-            Mem.Set((o + 668u), func_002365FC_approach(Mem.F32((o + 668u)), a, 16.0f));
-            Mem.Set((o + 672u), func_002365FC_approach(Mem.F32((o + 672u)), b, 16.0f));
-            Mem.Set((o + 676u), func_002365FC_approach(Mem.F32((o + 676u)), c, 16.0f));
-            Mem.Set((o + 680u), func_002365FC_approach(Mem.F32((o + 680u)), d, 16.0f));
+            new TargetObj(o).unk29C_Set(func_002365FC_approach(new TargetObj(o).unk29C, a, 16.0f));
+            new TargetObj(o).unk2A0_Set(func_002365FC_approach(new TargetObj(o).unk2A0, b, 16.0f));
+            new TargetObj(o).unk2A4_Set(func_002365FC_approach(new TargetObj(o).unk2A4, c, 16.0f));
+            new TargetObj(o).unk2A8_Set(func_002365FC_approach(new TargetObj(o).unk2A8, d, 16.0f));
         }
     }
 

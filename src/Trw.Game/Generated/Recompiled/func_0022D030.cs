@@ -37,11 +37,11 @@ public static partial class Game
                 r4 = r16;
                 r6 = 2148335616u;
                 r6 = r6 - 6004u;
-                r5 = r17; r2 = func_002231B0(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r17; func_002231B0(r4, r5, r6);
                 r4 = r16;
                 r6 = 2148335616u;
                 r6 = r6 - 5980u;
-                r5 = r17; r2 = func_002238BC(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r17; func_002238BC(r4, r5, r6);
                 r3 = Mem.U32((r16 + 2156u));
                 r2 = (uint)4420;
                 { bool c_ = r3 != r2; r4 = r0; if (c_) goto L_L0022D0AC; }

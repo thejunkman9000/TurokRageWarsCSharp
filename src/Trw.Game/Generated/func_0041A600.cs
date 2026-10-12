@@ -16,19 +16,19 @@ public static partial class Game
             uint g = 0u;
             src = func_0040ECB0((uint)((int)(func_00411E4C(func_0029A958()))), (uint)((a & 65535)), default(uint), default(uint));
             s = (int)(func_00411E4C(func_0029A958()));
-            o = func_00252FFC((uint)(88), default(uint), default(uint), default(uint));
+            o = func_00252FFC((uint)(88));
             func_002A1748(o, 0, (uint)(88));
             Mem.Copy(o, src, 44);
-            Mem.Set((o + 14u), (ushort)(2915));
-            Mem.Copy((o + 44u), (src + 44u), 20);
+            new O3Bar(o).h.id2_Set((ushort)(2915));
+            Mem.Copy(new O3Bar(o).col.P, new O3Bar(src).col.P, 20);
             g = func_0040ECB0((uint)(s), (uint)((b & 65535)), default(uint), default(uint));
-            Mem.Set((o + 68u), g);
-            Mem.Set((o + 72u), (int)(Mem.S16((g + 24u))));
-            Mem.Set((o + 76u), max);
-            Mem.Set((o + 80u), 0);
-            Mem.Set((o + 84u), 2);
+            new O3Bar(o).g__Set(g);
+            new O3Bar(o).width_Set((int)(new O3BarG(g).w));
+            new O3Bar(o).max_Set(max);
+            new O3Bar(o).val_Set(0);
+            new O3Bar(o).f54_Set(2);
             func_0040EF24(src, o, default(uint), default(uint));
-            Mem.Set((src + 12u), (short)((-1)));
+            new O3Bar(src).h.id_Set((short)((-1)));
             func_0040F004((uint)(s), src, o, default(uint));
             return o;
         }

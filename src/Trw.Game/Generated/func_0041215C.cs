@@ -12,40 +12,40 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0041215C", (uint)n, (uint)a, (uint)b);
             if ((n != 0u))
             {
-                if (((Mem.U32((n + 4u)) != 0u) && (b != 0)))
+                if (((new S_func_0041215C(n).next_ != 0u) && (b != 0)))
                 {
-                    func_0041215C(Mem.U32((n + 4u)), a, b);
+                    func_0041215C(new S_func_0041215C(n).next_, a, b);
                 }
-                if ((Mem.U32((n + 8u)) != 0u))
+                if ((new S_func_0041215C(n).child_ != 0u))
                 {
-                    func_0041215C(Mem.U32((n + 8u)), a, b);
+                    func_0041215C(new S_func_0041215C(n).child_, a, b);
                 }
-                switch ((int)(Mem.U16((n + 14u))))
+                switch ((int)(new S_func_0041215C(n).type))
                 {
                 case 3:
                     if ((a != 0))
                     {
-                        func_004106F4(Mem.U32((n + 44u)), (uint)(3), default(uint), default(uint));
+                        func_004106F4(new S_func_0041215C(n).f2C_, (uint)(3), default(uint), default(uint));
                     }
                     else
                     {
-                        func_00411B70((int)(Mem.U32((n + 44u))));
+                        func_00411B70((int)(new S_func_0041215C(n).f2C_));
                     }
                     break;
                 case 4:
                     break;
                 case 8:
-                    if ((Mem.U32((n + 44u)) != 0u))
+                    if ((new S_func_0041215C(n).f2C_ != 0u))
                     {
-                        func_0041215C(Mem.U32((n + 44u)), a, 0);
+                        func_0041215C(new S_func_0041215C(n).f2C_, a, 0);
                     }
-                    if ((Mem.U32((n + 52u)) != 0u))
+                    if ((new S_func_0041215C(n).f34_ != 0u))
                     {
-                        func_0041215C(Mem.U32((n + 52u)), a, 0);
+                        func_0041215C(new S_func_0041215C(n).f34_, a, 0);
                     }
-                    if ((Mem.U32((n + 48u)) != 0u))
+                    if ((new S_func_0041215C(n).f30_ != 0u))
                     {
-                        func_0041215C(Mem.U32((n + 48u)), a, 0);
+                        func_0041215C(new S_func_0041215C(n).f30_, a, 0);
                     }
                     break;
                 }

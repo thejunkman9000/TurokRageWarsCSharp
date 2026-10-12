@@ -21,6 +21,8 @@ public static class DiffTest
     private static readonly int every = int.TryParse(Environment.GetEnvironmentVariable("TRW_DIFF_EVERY"), out var ev) ? ev : 1;
     private static readonly Dictionary<string, string[]> sigs = new();           // name -> [ret, p0, p1, ...]
     private static readonly Dictionary<string, int[]> sizes = new();             // name -> struct-by-value size in bytes per parameter (0 = scalar)
+    // TRW_DIFF_WINDOW=a-b: only calls made while the retrace counter is in [a, b] are tested (TRW_DIFF_N then counts per function inside the window)
+    private static readonly (int lo, int hi)? window = Environment.GetEnvironmentVariable("TRW_DIFF_WINDOW") is { } w && w.Split('-') is { Length: 2 } wp && int.TryParse(wp[0], out var wlo) && int.TryParse(wp[1], out var whi) ? (wlo, whi) : null;
     [ThreadStatic] private static bool inTest;
     /// <summary>True while a test runs on this thread (the OS layer refuses to change scheduler state then).</summary>
     public static bool Active => inTest;
@@ -108,8 +110,13 @@ public static class DiffTest
 
     private static void Hook(string name, uint a0, uint a1, uint a2, uint a3)
     {
-        if (!ready || inTest || !Dbg.Armed || finished.ContainsKey(name)) return;       // Dbg.Armed: TRW_TRACE_ARM_STATE=<n> starts the tests once the game reaches state n
-        if ((!all && !wanted.Contains(name)) || !MipsInterp.FuncAddr.ContainsKey(name) || !Testable(name)) { finished[name] = 0; return; }
+        if (!ready || inTest || !Dbg.Armed || finished.ContainsKey(name)) return;
+        if (window is { } win && (Game.CurrentTick < win.lo || Game.CurrentTick > win.hi)) return;       // Dbg.Armed: TRW_TRACE_ARM_STATE=<n> starts the tests once the game reaches state n
+        if ((!all && !wanted.Contains(name)) || !MipsInterp.FuncAddr.ContainsKey(name) || !Testable(name))
+        {
+            if (verbose && (all || wanted.Contains(name)) && !finished.ContainsKey(name)) Console.Error.WriteLine($"[diff] skipped {name}: " + (!MipsInterp.FuncAddr.ContainsKey(name) ? "not in the listing" : !sigs.ContainsKey(name) ? "no signature" : "signature not testable (more than 4 words, float or 64-bit parameters, large structs)"));
+            finished[name] = 0; return;
+        }
         var addr = MipsInterp.FuncAddr[name];
         lock (done)
         {
@@ -181,7 +188,7 @@ public static class DiffTest
         var keys = new HashSet<uint>(bytes1!.Keys); keys.UnionWith(bytes2.Keys);
         foreach (var k in keys.OrderBy(x => x))
         {
-            if (k >= 0x7E000000) continue;                                  // guest stacks and temp rings differ by design
+            if (k >= 0x7E000000 && k < 0x80000000) continue;                                  // guest stacks and temp rings differ by design
             byte init = bytes1.TryGetValue(k, out var b1) ? b1.initial : bytes2[k].initial;
             byte x = bytes1.TryGetValue(k, out var u1) ? u1.final : init, y = bytes2.TryGetValue(k, out var u2) ? u2.final : init;
             if (x != y) diffs.Add($"{k:X8}: original {x:X2} translation {y:X2} (was {init:X2})");

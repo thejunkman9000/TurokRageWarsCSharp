@@ -12,10 +12,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00295924");
             if (((Mem.Set(0x800D2AECu, (int)(Mem.S32(0x800D2AECu) + 1)) - 1) >= 3))
             {
-                int t = Mem.S32(0x8014AEC0u);
-                Mem.Set((0x8014AEC0u + 4u), 1);
+                int t = new B21Cnt(0x8014AEC0u).unk0;
+                new B21Cnt(0x8014AEC0u).unk4_Set(1);
                 Mem.Set(0x800D2AECu, 0);
-                Mem.Set(0x8014AEC0u, (t - 1));
+                new B21Cnt(0x8014AEC0u).unk0_Set((t - 1));
             }
         }
     }

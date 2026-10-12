@@ -20,17 +20,17 @@ public static partial class Game
                     k = Mem.F32(0x800C7E54u);
                 }
                 Mem.Set((state + (uint)32), (k * Mem.F32((Mem.U32((state + (uint)24)) + (uint)32))));
-                p = func_0024E690(state, default(uint), default(uint), default(uint));
+                p = (uint)(func_0024E690(state));
                 if ((p != 0u))
                 {
                     func_0024E6C8(p, _fp);
                     func_00271FA4((state + (uint)28), (state + (uint)28), _fp);
                 }
-                if (((int)(Mem.U8((Mem.U32((actor + 1496u)) + (uint)143))) == 1))
+                if (((int)(Mem.U8((new Actor(actor).stats_ + (uint)143))) == 1))
                 {
-                    if ((Mem.S32((0x801468A0u + 84u)) != 0))
+                    if ((new B07Game(0x801468A0u).unk54 != 0))
                     {
-                        switch (Mem.S32((0x801468A0u + 112u)))
+                        switch (new B07Game(0x801468A0u).unk70)
                         {
                         case 0:
                             func_0025DE74((int)((uint)(6305)), C.Tmp(Cpu.F2U(Mem.F32((actor + (uint)8))), Cpu.F2U(Mem.F32((actor + (uint)12))), Cpu.F2U(Mem.F32((actor + (uint)16)))), (int)((actor + (uint)8)), (int)((uint)((-1))));

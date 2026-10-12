@@ -10,13 +10,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029A838", (uint)id);
-            uint s = (Mem.U32(0x8014D080u) + 28u);
+            uint s = new SndMgr_v2(Mem.U32(0x8014D080u)).slot.P;
             int i = 0;
             for (i = 0; (i < 64); ++i)
             {
-                if ((Mem.S32(s) == id))
+                if ((new SndSlot(s).id == id))
                 {
-                    return Mem.S32((s + 16u));
+                    return new SndSlot(s).unk10;
                 }
                 s += 20u;
             }

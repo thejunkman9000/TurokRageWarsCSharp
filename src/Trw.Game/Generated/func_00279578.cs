@@ -10,21 +10,21 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00279578", (uint)l, (uint)n);
-            if ((Mem.S32((l + 8u)) == 0))
+            if ((new DLList(l).count == 0))
             {
-                Mem.Set(l, n);
-                Mem.Set((l + 4u), n);
-                Mem.Set(n, 0u);
-                Mem.Set((n + 4u), 0u);
+                new DLList(l).head__Set(n);
+                new DLList(l).tail__Set(n);
+                new DLNode(n).prev__Set(0u);
+                new DLNode(n).next__Set(0u);
             }
             else
             {
-                Mem.Set(n, Mem.U32((l + 4u)));
-                Mem.Set((n + 4u), 0u);
-                Mem.Set((Mem.U32((l + 4u)) + 4u), n);
-                Mem.Set((l + 4u), n);
+                new DLNode(n).prev__Set(new DLList(l).tail_);
+                new DLNode(n).next__Set(0u);
+                new DLList(l).tail.next__Set(n);
+                new DLList(l).tail__Set(n);
             }
-            Mem.Set((l + 8u), (int)(Mem.S32((l + 8u)) + 1));
+            new DLList(l).count_Set((int)(new DLList(l).count + 1));
         }
     }
 

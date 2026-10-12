@@ -11,16 +11,16 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00285D00", (uint)p);
             uint mask = __osDisableInt();
-            uint n = Mem.U32((p + 20u));
+            uint n = new B19Pool(p).head_;
             uint next = 0u;
             while ((n != 0u))
             {
-                next = Mem.U32((n + 4u));
+                next = new B19PNode(n).next_;
                 func_00255E78((p + 20u), n, default(uint), default(uint));
                 func_00255CB4(p, n, default(uint), default(uint));
                 n = next;
             }
-            Mem.Set((p + 40u), 0);
+            new B19Pool(p).count_Set(0);
             __osRestoreInt(mask);
         }
     }

@@ -13,7 +13,7 @@ public static partial class Game
             memset(0x800EBC80u, 1, (uint)(32768));
             osCreateThread(0x8011F880u, 1, 0x00293518u, arg, 0x800F3C80u, Mem.S32(0x800D2B24u));
             osStartThread(0x8011F880u);
-            Mem.Set((a + 159176u), 0);
+            new P4ThrOwner(a).f26DC8_Set(0);
             osSetThreadPri(0u, Mem.S32(0x800D2B10u));
             for (; ; )
             {

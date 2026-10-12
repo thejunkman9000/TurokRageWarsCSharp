@@ -13,14 +13,14 @@ public static partial class Game
             uint d = 0u;
             float lo = 0f;
             float hi = 0f;
-            switch (Mem.S32(Mem.U32((a + 24u))))
+            switch (new ObjDef(new Obj(a).def_).type)
             {
             case 11:
-                if (((((int)(Mem.U8(a)) == 1) && ((Mem.U32((a + 256u)) & (uint)(3145728)) != 0u)) && (Mem.U32((Mem.U32((a + 472u)) + 2060u)) != 0u)))
+                if (((((int)(new Obj(a).type) == 1) && ((new Obj(a).flags & (uint)(3145728)) != 0u)) && (new Obj(a).unk1D8.unk80C_ != 0u)))
                 {
                     return Mem.F32(0x800C8D6Cu);
                 }
-                return Mem.F32((Mem.U32((a + 24u)) + 236u));
+                return new ObjDef(new Obj(a).def_).unkEC;
             case 0:
             case 5:
             case 8:
@@ -28,29 +28,29 @@ public static partial class Game
             case 12:
             case 13:
             case 14:
-                return Mem.F32((Mem.U32((a + 24u)) + 24u));
+                return new ObjDef(new Obj(a).def_).u18.f;
             case 1:
             case 4:
-                return Mem.F32((Mem.U32((a + 24u)) + 40u));
+                return new ObjDef(new Obj(a).def_).unk28;
             case 2:
-                d = Mem.U32((a + 24u));
-                if (((int)(Mem.U16((d + 24u))) == 2))
+                d = new Obj(a).def_;
+                if (((int)(new ObjDef(d).u18.h) == 2))
                 {
-                    lo = Mem.F32((d + 32u));
-                    if (!(Mem.F32((d + 28u)) <= lo))
+                    lo = new ObjDef(d).unk20;
+                    if (!(new ObjDef(d).unk1C <= lo))
                     {
-                        lo = Mem.F32((d + 28u));
+                        lo = new ObjDef(d).unk1C;
                     }
-                    hi = Mem.F32((d + 40u));
+                    hi = new ObjDef(d).unk28;
                     if (!(lo <= hi))
                     {
                         hi = lo;
                     }
                     return (hi * Mem.F32(0x800C8D70u));
                 }
-                return Mem.F32((d + 28u));
+                return new ObjDef(d).unk1C;
             case 7:
-                return Mem.F32((Mem.U32((a + 24u)) + 28u));
+                return new ObjDef(new Obj(a).def_).unk1C;
             default:
                 return 0.0f;
             }

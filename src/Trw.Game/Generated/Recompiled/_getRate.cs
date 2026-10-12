@@ -21,7 +21,7 @@ public static partial class Game
                 r29 = _fp + 256u;
                 Mem.Set(r29 + 16u, a4);
                 Mem.Set(r29 + 20u, a5);
-                L__getRate: ;
+                L_func_002BA038: ;
                 r29 = r29 - 72u;
                 r2 = Mem.U32((r29 + 88u));
                 r1 = 2148335616u;
@@ -32,12 +32,12 @@ public static partial class Game
                 Cpu.SetS(0, Cpu.S(0) / Cpu.S(1));
                 { bool c_ = r2 != 0; Cpu.SetD(2, (double)Cpu.S(0)); if (c_) goto L_L002BA088; }
                 fcc = Cpu.D(12) <= Cpu.D(14);
-                { bool c_ = !fcc; r2 = r0 | 65535u; if (c_) goto L_L002BA07C; }
+                { bool c_ = !fcc; r2 = (uint)65535; if (c_) goto L_L002BA07C; }
                 Mem.Set((r5 + 0u), (ushort)r2);
-                r2 = r0 + 32767u; goto L_L002BA280;
+                r2 = (uint)32767; goto L_L002BA280;
                 L_L002BA07C: ;
                 Mem.Set((r5 + 0u), (ushort)r0);
-                r2 = r0 + r0; goto L_L002BA280;
+                r2 = r0; goto L_L002BA280;
                 L_L002BA088: ;
                 r1 = 2148335616u;
                 Cpu.Fpr[1] = Mem.U64((r1 - 14096u));
@@ -49,7 +49,7 @@ public static partial class Game
                 fcc = Cpu.D(12) <= Cpu.D(0);
                 if (fcc) { Cpu.Fpr[12] = Cpu.Fpr[1]; goto L_L002BA0B8; }
                 L_L002BA0B8: ;
-                r3 = r29 + r0;
+                r3 = r29;
                 r2 = 2148335616u;
                 r2 = r2 - 14168u;
                 r4 = r2 + 64u;
@@ -162,10 +162,10 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("_getRate", r2); Stack.Free(384); }
     }
 
-    public static int _getRate(double p0, double p1, int p2, int p3)
+    public static short _getRate(double p0, double p1, int p2, uint p3)
     {
         Cpu.SetD(12, p0);
         Cpu.SetD(14, p1);
-        return (int)_getRate_rc(0u, 0u, 0u, 0u, (uint)p2, (uint)p3);
+        return (short)_getRate_rc(0u, 0u, 0u, 0u, (uint)p2, p3);
     }
 }

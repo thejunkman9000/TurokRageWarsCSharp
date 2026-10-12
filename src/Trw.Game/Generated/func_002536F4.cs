@@ -22,10 +22,10 @@ public static partial class Game
             {
                 __osRestoreInt(mask);
             }
-            Mem.Set((n + 8u), (int)(Mem.S32((n + 8u)) - 1));
-            if ((Mem.S32((n + 8u)) == 0))
+            new B12Node(n).refs_Set((int)(new B12Node(n).refs - 1));
+            if ((new B12Node(n).refs == 0))
             {
-                Mem.Set((n + 12u), (uint)((uint)(Mem.U32((n + 12u))) & (uint)((~256))));
+                new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) & (uint)((~256))));
             }
             m2 = __osDisableInt();
             if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))

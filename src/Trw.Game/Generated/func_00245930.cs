@@ -11,11 +11,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00245930");
             uint p = Mem.U32(0x800E2830u);
-            if ((Mem.S32((p + 56u)) == 0))
+            if ((new B10Ctl(p).f38 == 0))
             {
                 return 0;
             }
-            return Mem.S32((p + 172u));
+            return new B10Ctl(p).fAC;
         }
     }
 

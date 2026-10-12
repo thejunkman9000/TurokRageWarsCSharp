@@ -14,7 +14,7 @@ public static partial class Game
             {
                 Mem.Copy(_fp + 0u, pos_in, 12);
                 if (Dbg.On) Dbg.Enter("func_002688AC", (uint)a, (uint)src, (uint)c, (uint)pos_in);
-                if (((src != 0u) && ((int)(Mem.U8(src)) == 1)))
+                if (((src != 0u) && ((int)(new B15Src(src).type) == 1)))
                 {
                     func_00217388(src, (src + (uint)368));
                 }

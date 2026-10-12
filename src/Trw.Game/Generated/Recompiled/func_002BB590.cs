@@ -36,7 +36,7 @@ public static partial class Game
                 r4 = Mem.U32((r17 + 52u));
                 r16 = r16 << 2;
                 r4 = r4 + r16;
-                r4 = r4 + 32u; r2 = alFxNew(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 + 32u; alFxNew(r4, r5, r6);
                 r6 = Mem.U32((r17 + 52u));
                 r5 = (uint)1;
                 r6 = r6 + r16;

@@ -13,17 +13,17 @@ public static partial class Game
             int t = 0;
             int dx = 0;
             int dy = 0;
-            if (!((((float)((x - Mem.S32((o + 8u)))) < 0.0f) ? (-(x - Mem.S32((o + 8u)))) : (x - Mem.S32((o + 8u)))) < 9))
+            if (!((((float)((x - new B21Grid(o).x)) < 0.0f) ? (-(x - new B21Grid(o).x)) : (x - new B21Grid(o).x)) < 9))
             {
                 return 0;
             }
-            if (!((((float)((y - Mem.S32((o + 12u)))) < 0.0f) ? (-(y - Mem.S32((o + 12u)))) : (y - Mem.S32((o + 12u)))) < 9))
+            if (!((((float)((y - new B21Grid(o).y)) < 0.0f) ? (-(y - new B21Grid(o).y)) : (y - new B21Grid(o).y)) < 9))
             {
                 return 0;
             }
-            dx = (x - Mem.S32((o + 8u)));
-            dy = ((y - Mem.S32((o + 12u))) + 8);
-            t = (int)(Mem.S16(((o + 24u) + (uint)(((8 + dx) + (dy * 17)) * 2))));
+            dx = (x - new B21Grid(o).x);
+            dy = ((y - new B21Grid(o).y) + 8);
+            t = (int)(new B21Grid(o).map[(int)(((8 + dx) + (dy * 17)))]);
             if ((t == (-2)))
             {
                 return 1;
@@ -34,7 +34,7 @@ public static partial class Game
             }
             {
                 int u = (k + 9);
-                Mem.Set((o + 4u), (t + u));
+                new B21Grid(o).unk4_Set((t + u));
             }
             return ((func_00263174(o, 1) != 0) ? 1 : 0);
         }

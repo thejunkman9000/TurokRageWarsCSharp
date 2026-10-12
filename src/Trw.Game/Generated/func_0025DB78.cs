@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025DB78", (uint)s);
-            Mem.Set((s + 40u), (-1));
-            alCSPStop(Mem.U32((s + 20u)));
+            new SndSeq(s).unk28_Set((-1));
+            alCSPStop(new SndSeq(s).csp);
         }
     }
 

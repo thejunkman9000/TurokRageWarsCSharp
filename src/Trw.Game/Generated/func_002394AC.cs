@@ -14,14 +14,14 @@ public static partial class Game
             {
                 Mem.Copy(_fp + 0u, v_in, 12);
                 if (Dbg.On) Dbg.Enter("func_002394AC_setChans", (uint)co);
-                Mem.Copy((((co + 4u) + (uint)(0 * 20)) + 4u), _fp, 12);
-                Mem.Set((((co + 4u) + (uint)(0 * 20)) + 16u), d);
-                Mem.Set(((co + 4u) + (uint)(1 * 20)), e);
-                Mem.Set(((co + 4u) + (uint)(2 * 20)), e);
-                Mem.Set(((co + 4u) + (uint)(3 * 20)), e);
-                Mem.Set((((co + 4u) + (uint)(1 * 20)) + 4u), (a * Mem.F32(0x800C8634u)));
-                Mem.Set((((co + 4u) + (uint)(2 * 20)) + 4u), (b * Mem.F32(0x800C8634u)));
-                Mem.Set((((co + 4u) + (uint)(3 * 20)) + 4u), (c * Mem.F32(0x800C8634u)));
+                Mem.Copy(new ChanObj(co).ch[(int)(0)].v.P, _fp, 12);
+                new ChanObj(co).ch[(int)(0)].d_Set(d);
+                new ChanObj(co).ch[(int)(1)].mode_Set(e);
+                new ChanObj(co).ch[(int)(2)].mode_Set(e);
+                new ChanObj(co).ch[(int)(3)].mode_Set(e);
+                new ChanObj(co).ch[(int)(1)].v.x_Set((a * Mem.F32(0x800C8634u)));
+                new ChanObj(co).ch[(int)(2)].v.x_Set((b * Mem.F32(0x800C8634u)));
+                new ChanObj(co).ch[(int)(3)].v.x_Set((c * Mem.F32(0x800C8634u)));
             }
         }
         finally { Stack.Free(12); }
@@ -37,15 +37,15 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, v_in, 12);
                 if (Dbg.On) Dbg.Enter("func_002394AC", (uint)o);
                 uint n = 0u;
-                n = Mem.U32((o + 4568u));
+                n = new SlotObj(o).free11D8_;
                 if ((n != 0u))
                 {
                     func_00255E78((o + 4568u), n, default(uint), default(uint));
-                    func_00255C58((o + 4588u), n, default(uint), default(uint));
+                    func_00255C58((o + 4588u), n);
                 }
                 else
                 {
-                    n = Mem.U32((o + 4592u));
+                    n = new SlotObj(o).cur11F0_;
                 }
                 func_002394AC_setChans(n, a, b, c, d, e, _fp);
             }

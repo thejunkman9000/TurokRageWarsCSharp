@@ -223,7 +223,7 @@ public static partial class Game
                 L_I002BA9B8: ;
                 r5 = Mem.U32((r19 + 24u));
                 L_I002BA9BC: ;
-                r7 = r23; r2 = _saveBuffer(r4, r5, r6, r7, 0u); r3 = Cpu.V1;
+                r7 = r23; r2 = _saveBuffer(r4, r5, (int)r6, (int)r7, Mem.U32(r29 + 16u));
                 L_I002BA9C4: ;
                 r17 = r2;
                 L_I002BA9C8: ;
@@ -291,7 +291,7 @@ public static partial class Game
                 L_I002BAA4C: ;
                 r6 = (uint)((int)r6 >> 16);
                 L_I002BAA50: ;
-                r7 = r23; r2 = _loadBuffer(r4, r5, r6, r7, 0u); r3 = Cpu.V1;
+                r7 = r23; r2 = _loadBuffer(r4, r5, (int)r6, (int)r7, Mem.U32(r29 + 16u));
                 L_I002BAA58: ;
                 r17 = r2;
                 L_L002BAA5C: ;
@@ -308,7 +308,7 @@ public static partial class Game
                 L_I002BAA70: ;
                 r7 = r23;
                 L_I002BAA74: ;
-                Mem.Set((r29 + 16u), r17); r2 = _loadOutputBuffer(r4, r5, r6, r7, 0u); r3 = Cpu.V1;
+                Mem.Set((r29 + 16u), r17); r2 = _loadOutputBuffer(r4, r5, (int)r6, (int)r7, Mem.U32(r29 + 16u));
                 L_I002BAA7C: ;
                 r3 = (uint)(int)Mem.S16((r16 + 8u));
                 L_I002BAA80: ;
@@ -346,7 +346,7 @@ public static partial class Game
                 L_I002BAACC: ;
                 r6 = r18;
                 L_I002BAAD0: ;
-                r7 = r23; r2 = _saveBuffer(r4, r5, r6, r7, 0u); r3 = Cpu.V1;
+                r7 = r23; r2 = _saveBuffer(r4, r5, (int)r6, (int)r7, Mem.U32(r29 + 16u));
                 L_I002BAAD8: ;
                 r17 = r2;
                 L_L002BAADC: ;
@@ -383,7 +383,7 @@ public static partial class Game
                 L_I002BAB1C: ;
                 Mem.Set((r9 + 0u), r3);
                 L_I002BAB20: ;
-                Mem.Set((r29 + 16u), r17); r2 = _saveBuffer(r4, r5, r6, r7, 0u); r3 = Cpu.V1;
+                Mem.Set((r29 + 16u), r17); r2 = _saveBuffer(r4, r5, (int)r6, (int)r7, Mem.U32(r29 + 16u));
                 L_I002BAB28: ;
                 r17 = r2;
                 L_L002BAB2C: ;
@@ -396,7 +396,7 @@ public static partial class Game
                 L_I002BAB3C: ;
                 r6 = r23;
                 L_I002BAB40: ;
-                r7 = r17; r2 = _filterBuffer(r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = r17; r2 = _filterBuffer(r4, (int)r5, (int)r6, r7);
                 L_I002BAB48: ;
                 r17 = r2;
                 L_L002BAB4C: ;
@@ -413,7 +413,7 @@ public static partial class Game
                 L_I002BAB64: ;
                 r6 = (uint)((int)r6 >> 16);
                 L_I002BAB68: ;
-                r7 = r23; r2 = _saveBuffer(r4, r5, r6, r7, 0u); r3 = Cpu.V1;
+                r7 = r23; r2 = _saveBuffer(r4, r5, (int)r6, (int)r7, Mem.U32(r29 + 16u));
                 L_I002BAB70: ;
                 r17 = r2;
                 L_L002BAB74: ;
@@ -744,7 +744,7 @@ public static partial class Game
                 L_I002BAE24: ;
                 r4 = Mem.U32((r2 + 32u));
                 L_I002BAE28: ;
-                r2 = init_lpfilter(r4, r5, r6, r7); r3 = Cpu.V1;
+                init_lpfilter(r4);
                 L_L002BAE30: ;
                 L_I002BAE30: ;
                 r31 = Mem.U32((r29 + 16u));

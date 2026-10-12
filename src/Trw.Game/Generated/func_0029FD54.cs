@@ -16,12 +16,12 @@ public static partial class Game
             {
                 for (j = 0; (j < 3); ++j)
                 {
-                    Mem.Set(((m + (uint)(j * 16)) + (uint)(i * 4)), (float)(0));
+                    Mem.Set(((new Mtx4f(m).m.P + (uint)(j * 16)) + (uint)(i * 4)), (float)(0));
                 }
             }
-            Mem.Set(((m + (uint)(0 * 16)) + (uint)(0 * 4)), Mem.F32(0x800CAE4Cu));
-            Mem.Set(((m + (uint)(1 * 16)) + (uint)(1 * 4)), Mem.F32(0x800CAE4Cu));
-            Mem.Set(((m + (uint)(2 * 16)) + (uint)(2 * 4)), Mem.F32(0x800CAE4Cu));
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), Mem.F32(0x800CAE4Cu));
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), Mem.F32(0x800CAE4Cu));
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), Mem.F32(0x800CAE4Cu));
         }
     }
 

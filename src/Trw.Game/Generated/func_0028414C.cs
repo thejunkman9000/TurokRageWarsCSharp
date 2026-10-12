@@ -25,11 +25,11 @@ public static partial class Game
                     {
                         y = (-y);
                     }
-                    func_0027DD1C(o, (int)(((o + (uint)96) + (uint)(Mem.S32(0x800D297Cu) * 64))), owner, y);
+                    func_0027DD1C(o, ((o + (uint)96) + (uint)(Mem.S32(0x800D297Cu) * 64)), owner, y);
                 }
                 else
                 {
-                    func_0027DD1C(o, (int)(((o + (uint)96) + (uint)(Mem.S32(0x800D297Cu) * 64))), 0u, 0.0f);
+                    func_0027DD1C(o, ((o + (uint)96) + (uint)(Mem.S32(0x800D297Cu) * 64)), 0u, 0.0f);
                 }
                 Mem.Set((o + (uint)92), (int)((int)(Mem.S32((o + (uint)92))) | 1048576));
             }

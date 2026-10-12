@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029A8E0", (uint)c, (uint)a, (uint)b, (uint)d);
-            uint fn = (uint)(func_0029A7E4((int)(Mem.U16((c + 14u)))));
+            uint fn = (uint)(func_0029A7E4((int)(new SndCtx(c).unkE)));
             if ((fn != 0u))
             {
                 return (int)(Funcs.CallRegX(fn, c, (uint)(a), (uint)(b), (uint)(d), new uint[] { (uint)(e) }));

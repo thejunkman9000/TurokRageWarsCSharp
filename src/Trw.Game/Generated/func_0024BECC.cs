@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024BECC", (uint)a);
-            return sqrtf(((((Mem.F32((a + 80u)) * Mem.F32((a + 80u))) + (Mem.F32((a + 84u)) * Mem.F32((a + 84u)))) + (Mem.F32((a + 88u)) * Mem.F32((a + 88u)))) * Mem.F32(0x800C8C48u)));
+            return sqrtf(((((new Obj(a).unk50 * new Obj(a).unk50) + (new Obj(a).unk54 * new Obj(a).unk54)) + (new Obj(a).unk58 * new Obj(a).unk58)) * Mem.F32(0x800C8C48u)));
         }
     }
 

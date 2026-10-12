@@ -10,12 +10,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028469C", (uint)owner, (uint)key, (uint)par);
-            uint o = Mem.U32(((owner + 64552u) + (uint)((int)(Mem.S8((Mem.U32((par + 56u)) + 8u))) * 20)));
+            uint o = new B19List((new B19Owner(owner).slot.P + (uint)((int)(new B19Parent(par).info38.idx) * 20))).head_;
             if ((par != 0u))
             {
-                for (; (o != 0u); o = Mem.U32((o + 492u)))
+                for (; (o != 0u); o = new B19Obj(o).next_)
                 {
-                    if (((Mem.S32((o + 292u)) == key) && (Mem.U32((o + 280u)) == par)))
+                    if (((new B19Obj(o).unk124 == key) && (new B19Obj(o).parent_ == par)))
                     {
                         return o;
                     }
@@ -23,9 +23,9 @@ public static partial class Game
             }
             else
             {
-                for (; (o != 0u); o = Mem.U32((o + 492u)))
+                for (; (o != 0u); o = new B19Obj(o).next_)
                 {
-                    if ((Mem.S32((o + 292u)) == key))
+                    if ((new B19Obj(o).unk124 == key))
                     {
                         return o;
                     }

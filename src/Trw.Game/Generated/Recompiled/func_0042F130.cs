@@ -43,7 +43,7 @@ public static partial class Game
                 L_I0042F158: ;
                 Mem.Set((r29 + 32u), r18);
                 L_I0042F15C: ;
-                Mem.Set((r29 + 28u), r17); r2 = func_00252FFC(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r29 + 28u), r17); r2 = func_00252FFC(r4);
                 L_I0042F164: ;
                 r4 = r2 + 8u;
                 L_I0042F168: ;

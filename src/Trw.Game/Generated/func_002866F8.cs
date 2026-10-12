@@ -29,40 +29,40 @@ public static partial class Game
                 return 0u;
             }
             best = 0.0f;
-            tri = (uint)(((int)(func_0028FD94((uint)(Mem.S32((ow + 108u))), 2)) + 8));
+            tri = (uint)(((int)(func_0028FD94((uint)(new B19Owner(ow).f6C), 2)) + 8));
             idx = 0;
             i = 0;
             bestt = 0u;
-            cells = (uint)((int)(func_0028FD94((uint)(Mem.S32((ow + 108u))), 3)));
-            n = Mem.S32((cells + 4u));
-            cb = (cells + 8u);
+            cells = (uint)((int)(func_0028FD94((uint)(new B19Owner(ow).f6C), 3)));
+            n = new B19Cells(cells).cnt;
+            cb = new B19Cells(cells).c.P;
             if ((n > 0))
             {
                 do
                 {
                     c = (cb + (uint)(i * 20));
-                    if (((((Mem.F32(p) >= Mem.F32(c)) && (Mem.F32(p) <= Mem.F32((c + 8u)))) && (Mem.F32((p + 8u)) >= Mem.F32((c + 4u)))) && (Mem.F32((p + 8u)) <= Mem.F32((c + 12u)))))
+                    if (((((new B19Vec3(p).x >= new B19Cell(c).x0) && (new B19Vec3(p).x <= new B19Cell(c).x1)) && (new B19Vec3(p).z >= new B19Cell(c).z0)) && (new B19Vec3(p).z <= new B19Cell(c).z1)))
                     {
-                        if ((Mem.U32((c + 16u)) != (uint)(0)))
+                        if ((new B19Cell(c).n != (uint)(0)))
                         {
                             j = (uint)(0);
                             t = (uint)(((uint)((idx * 32)) + (uint)(tri)));
                             do
                             {
-                                if ((func_00275B80(t, Mem.F32(p), Mem.F32((p + 8u))) != 0))
+                                if ((func_00275B80(t, new B19Vec3(p).x, new B19Vec3(p).z) != 0))
                                 {
-                                    h = func_00275E44(t, Mem.F32(p), Mem.F32((p + 8u)));
-                                    if ((((int)(Mem.U16((t + 2u))) & 64) != 0))
+                                    h = func_00275E44(t, new B19Vec3(p).x, new B19Vec3(p).z);
+                                    if ((((int)(new B19Tri(t).fl) & 64) != 0))
                                     {
-                                        top = func_002752CC(t, Mem.F32(p), Mem.F32((p + 8u)));
-                                        if (((h <= Mem.F32((p + 4u))) && (Mem.F32((p + 4u)) <= top)))
+                                        top = func_002752CC(t, new B19Vec3(p).x, new B19Vec3(p).z);
+                                        if (((h <= new B19Vec3(p).y) && (new B19Vec3(p).y <= top)))
                                         {
                                             return t;
                                         }
                                     }
                                     else
                                     {
-                                        d = (Mem.F32((p + 4u)) - h);
+                                        d = (new B19Vec3(p).y - h);
                                         if ((d < 0.0f))
                                         {
                                             d = (-d);
@@ -78,12 +78,12 @@ public static partial class Game
                                 ++idx;
                                 ++j;
                             }
-                            while ((j < Mem.U32((c + 16u))));
+                            while ((j < new B19Cell(c).n));
                         }
                     }
                     else
                     {
-                        idx = (int)((uint)(idx) + Mem.U32((c + 16u)));
+                        idx = (int)((uint)(idx) + new B19Cell(c).n);
                     }
                     ++i;
                 }

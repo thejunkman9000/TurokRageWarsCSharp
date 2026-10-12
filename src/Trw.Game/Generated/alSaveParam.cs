@@ -14,10 +14,10 @@ public static partial class Game
             switch (paramID)
             {
             case 1:
-                Mem.Set(f, param);
+                new ALSave(f).filter.source__Set(param);
                 break;
             case 6:
-                Mem.Set((f + 20u), (int)(param));
+                new ALSave(f).dramout_Set((int)(param));
                 break;
             }
             return 0;

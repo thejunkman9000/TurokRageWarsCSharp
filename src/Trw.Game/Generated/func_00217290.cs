@@ -14,8 +14,8 @@ public static partial class Game
             {
                 Mem.Copy(_fp + 0u, v_in, 12);
                 if (Dbg.On) Dbg.Enter("func_00217290", (uint)p, (uint)v_in);
-                float dx = (Mem.F32(_fp) - Mem.F32((p + 8u)));
-                float dz = (Mem.F32((_fp + 8u)) - Mem.F32((p + 16u)));
+                float dx = (new Vec3f(_fp).x - new B04Pos(p).x);
+                float dz = (new Vec3f(_fp).z - new B04Pos(p).z);
                 return ((dx * dx) + (dz * dz));
             }
         }

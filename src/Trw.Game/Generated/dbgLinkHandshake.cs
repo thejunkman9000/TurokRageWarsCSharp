@@ -14,7 +14,7 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("dbgLinkHandshake");
                 int ret = 0;
-                dbgLinkSendByte((uint)((byte)(16)), default(uint), default(uint), default(uint));
+                dbgLinkSendByte((byte)(16));
                 if ((Mem.S32(0x8014D3E8u) == 0))
                 {
                     dbgLinkRecvByte(_fp);

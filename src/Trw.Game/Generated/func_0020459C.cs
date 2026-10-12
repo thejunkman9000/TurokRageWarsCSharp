@@ -10,14 +10,14 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020459C", (uint)actor);
-            int v = (int)(Mem.S16(((Mem.U32((actor + 24u)) + 20u) + 12u)));
+            int v = (int)(new ActorDef(new Actor(actor).def_).info.unkC);
             if ((v != 0))
             {
-                Mem.Set((actor + 256u), (uint)((uint)(Mem.U32((actor + 256u))) | (uint)(8192)));
+                new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) | (uint)(8192)));
             }
             else
             {
-                Mem.Set((actor + 256u), (uint)((uint)(Mem.U32((actor + 256u))) & (uint)((~8192))));
+                new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~8192))));
             }
             return v;
         }

@@ -20,11 +20,11 @@ public static partial class Game
             {
             case 626:
                 func_0043C458(Mem.U32(0x800E5830u));
-                Mem.Set((Mem.U32(0x800E5830u) + 28u), 0);
+                new O05W30(Mem.U32(0x800E5830u)).f1C_Set(0);
                 break;
             case 627:
                 func_00435190(5);
-                func_00299368((uint)(19), default(uint), default(uint), default(uint));
+                func_00299368(19);
                 return 0;
             case 631:
                 func_0042EB68(33);

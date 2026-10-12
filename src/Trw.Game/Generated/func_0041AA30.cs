@@ -11,13 +11,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0041AA30", (uint)o);
             uint p = 0u;
-            Mem.Set((o + 84u), 2);
+            new O3Bar(o).f54_Set(2);
             func_0025DF54(3700);
-            for (p = Mem.U32((o + 8u)); (p != 0u); p = Mem.U32((p + 4u)))
+            for (p = new O3Bar(o).h.child_; (p != 0u); p = new O3Hdr(p).next_)
             {
-                if (((int)(Mem.U16((p + 14u))) != 8))
+                if (((int)(new O3Hdr(p).id2) != 8))
                 {
-                    Mem.Set((p + 16u), (byte)(100));
+                    new O3Hdr(p).alpha_Set((byte)(100));
                 }
             }
             return 0;

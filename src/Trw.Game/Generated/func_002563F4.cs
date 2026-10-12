@@ -18,12 +18,12 @@ public static partial class Game
                 n = func_0025663C(c);
                 if ((n != 0u))
                 {
-                    Mem.Set(n, src);
-                    Mem.Set((n + 4u), dst);
-                    Mem.Set((n + 8u), total);
-                    Mem.Set((n + 12u), reply);
-                    Mem.Set((n + 16u), replyMsg);
-                    osJamMesg((c + 560u), n, 1);
+                    new B12QNode(n).src_Set(src);
+                    new B12QNode(n).dst_Set(dst);
+                    new B12QNode(n).len_Set(total);
+                    new B12QNode(n).reply__Set(reply);
+                    new B12QNode(n).replyMsg_Set(replyMsg);
+                    osJamMesg(new B12Ctx(c).q.P, n, 1);
                 }
             }
             else
@@ -36,26 +36,26 @@ public static partial class Game
                     {
                         break;
                     }
-                    Mem.Set(n, (src + (total - rem)));
-                    Mem.Set((n + 4u), (dst + (total - rem)));
+                    new B12QNode(n).src_Set((src + (total - rem)));
+                    new B12QNode(n).dst_Set((dst + (total - rem)));
                     chunk = (uint)(8192);
                     if ((rem <= (uint)(8192)))
                     {
                         chunk = rem;
                     }
                     rem = (uint)((uint)(rem) - chunk);
-                    Mem.Set((n + 8u), chunk);
+                    new B12QNode(n).len_Set(chunk);
                     if ((rem != (uint)(0)))
                     {
-                        Mem.Set((n + 12u), 0u);
-                        Mem.Set((n + 16u), 0u);
+                        new B12QNode(n).reply__Set(0u);
+                        new B12QNode(n).replyMsg_Set(0u);
                     }
                     else
                     {
-                        Mem.Set((n + 12u), reply);
-                        Mem.Set((n + 16u), replyMsg);
+                        new B12QNode(n).reply__Set(reply);
+                        new B12QNode(n).replyMsg_Set(replyMsg);
                     }
-                    osSendMesg((c + 560u), n, 1);
+                    osSendMesg(new B12Ctx(c).q.P, n, 1);
                 }
                 while (((n != 0u) && (rem != (uint)(0))));
             }

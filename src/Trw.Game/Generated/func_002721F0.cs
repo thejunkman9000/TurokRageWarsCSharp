@@ -15,11 +15,11 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_002721F0", 0u, (uint)a, (uint)b);
                 float dot = 0f;
                 float d = 0f;
-                dot = (((Mem.F32(a) * Mem.F32(b)) + (Mem.F32((a + 4u)) * Mem.F32((b + 4u)))) + (Mem.F32((a + 8u)) * Mem.F32((b + 8u))));
+                dot = (((new Vec3f(a).x * new Vec3f(b).x) + (new Vec3f(a).y * new Vec3f(b).y)) + (new Vec3f(a).z * new Vec3f(b).z));
                 d = ((t * dot) + dot);
-                Mem.Set(_fp, (Mem.F32(a) - (d * Mem.F32(b))));
-                Mem.Set((_fp + 4u), (Mem.F32((a + 4u)) - (d * Mem.F32((b + 4u)))));
-                Mem.Set((_fp + 8u), (Mem.F32((a + 8u)) - (d * Mem.F32((b + 8u)))));
+                new Vec3f(_fp).x_Set((new Vec3f(a).x - (d * new Vec3f(b).x)));
+                new Vec3f(_fp).y_Set((new Vec3f(a).y - (d * new Vec3f(b).y)));
+                new Vec3f(_fp).z_Set((new Vec3f(a).z - (d * new Vec3f(b).z)));
                 Mem.Copy(_ret, _fp, 12);
                 return _ret;
             }

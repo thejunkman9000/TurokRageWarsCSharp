@@ -2,14 +2,19 @@
 # Each gets a typed overload (when a signature is known, for the translated C callers) and a register-style overload
 # (uint a0..a3, for recompiled MIPS callers). Calls are logged once and return 0.
 param(
-    [string]$Gen = "src\Trw.Game\Generated",
-    [string]$Merged = (Join-Path $env:TEMP "trw_regen\sigs_merged.txt"),
-    [string[]]$CalledFiles = @((Join-Path $env:TEMP "trw_regen\called.txt"), (Join-Path $env:TEMP "trw_regen\rc_called.txt"))
+    [string]$Gen = "src/Trw.Game/Generated",
+    [string]$Merged = (Join-Path $env:TEMP "trw_regen/sigs_merged.txt"),
+    [string[]]$CalledFiles = @((Join-Path $env:TEMP "trw_regen/called.txt"), (Join-Path $env:TEMP "trw_regen/rc_called.txt"))
 )
 $ErrorActionPreference = "Stop"
 $defined = @{}
-foreach ($f in (Get-ChildItem $Gen -Recurse -Filter *.cs | Where-Object { $_.Name -ne "_Stubs.cs" }) + (Get-ChildItem "src\Trw.Game\Os" -Filter *.cs)) {
+foreach ($f in (Get-ChildItem $Gen -Recurse -Filter *.cs | Where-Object { $_.Name -ne "_Stubs.cs" }) + (Get-ChildItem "src/Trw.Game/Os" -Filter *.cs)) {
     foreach ($mm in [regex]::Matches([IO.File]::ReadAllText($f.FullName), 'public static [\w<>\[\]]+ (\w+)\(')) { $defined[$mm.Groups[1].Value] = 1 }
+}
+# identifiers that actually occur in the generated code (a name only listed as "called" by a C function that itself could not be translated needs no stub)
+$referenced = New-Object 'System.Collections.Generic.HashSet[string]'
+foreach ($f in (Get-ChildItem $Gen -Recurse -Filter *.cs | Where-Object { $_.Name -ne "_Stubs.cs" }) + (Get-ChildItem "src/Trw.Game/Os" -Filter *.cs)) {
+    foreach ($mm in [regex]::Matches([regex]::Replace([IO.File]::ReadAllText($f.FullName), '//[^\n]*', ''), '([A-Za-z_]\w*)\s*\(')) { [void]$referenced.Add($mm.Groups[1].Value) }
 }
 $sigMap = @{}
 foreach ($l in Get-Content $Merged) { if ($l) { $sigMap[($l -split '\|')[0]] = $l } }
@@ -18,14 +23,14 @@ $sb = New-Object System.Text.StringBuilder
 $n = 0
 $called = $CalledFiles | Where-Object { Test-Path $_ } | ForEach-Object { Get-Content $_ } | Where-Object { $_ } | Sort-Object -Unique
 foreach ($c in $called) {
-    if ($defined.ContainsKey($c)) { continue }
+    if ($defined.ContainsKey($c) -or -not $referenced.Contains($c)) { continue }
     $ret = $null; $types = @()
     if ($sigMap.ContainsKey($c)) {
         $p = $sigMap[$c] -split '\|'
         $ret = $p[1]
         if ($p[2]) { $types = @($p[2] -split ',') }
     }
-    $genericIsTyped = $ret -eq "uint" -and $types.Count -eq 4 -and (@($types | Where-Object { $_ -ne "uint" }).Count -eq 0)
+    $genericIsTyped = $ret -and $types.Count -eq 4 -and (@($types | Where-Object { $_ -ne "uint" }).Count -eq 0)
     if ($ret -and -not $genericIsTyped) {
         $ps = @(); $i = 0; foreach ($t in $types) { $ps += "$t a$i"; $i++ }
         $body = if ($ret -eq "void") { "Stub(`"$c`");" } else { "Stub(`"$c`"); return default;" }

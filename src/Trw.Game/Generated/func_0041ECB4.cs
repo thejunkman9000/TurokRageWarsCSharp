@@ -13,7 +13,7 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 17); ++i)
             {
-                if ((Mem.S32(((0x800E381Cu + (uint)(row * 136)) + (uint)(i * 8))) == ch))
+                if ((new O3Chr(((0x800E381Cu + (uint)(row * 136)) + (uint)(i * 8))).ch == ch))
                 {
                     return i;
                 }

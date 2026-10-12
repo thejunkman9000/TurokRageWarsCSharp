@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0023E854", (uint)a, (uint)b);
             int r = 0;
-            if ((((Mem.F32((a + 396u)) == Mem.F32((b + 72u))) && (Mem.F32(((a + 396u) + 4u)) == Mem.F32(((b + 72u) + 4u)))) && (Mem.F32(((a + 396u) + 8u)) == Mem.F32(((b + 72u) + 8u)))))
+            if ((((Mem.F32(new B09Obj(a).v18C.P) == Mem.F32(new B09Obj(b).v48.P)) && (Mem.F32((new B09Obj(a).v18C.P + 4u)) == Mem.F32((new B09Obj(b).v48.P + 4u)))) && (Mem.F32((new B09Obj(a).v18C.P + 8u)) == Mem.F32((new B09Obj(b).v48.P + 8u)))))
             {
                 r = 1;
             }

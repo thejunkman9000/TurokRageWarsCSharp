@@ -10,11 +10,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022A8B8", (uint)g);
-            uint a = Mem.U32((g + 32u));
+            uint a = new ActorGroup(g).head_;
             while ((a != 0u))
             {
-                Mem.Set((a + 1648u), v);
-                a = Mem.U32((a + 5856u));
+                new Actor(a).unk670_Set(v);
+                a = new Actor(a).next_;
             }
         }
     }

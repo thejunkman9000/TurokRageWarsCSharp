@@ -15,25 +15,25 @@ public static partial class Game
             float fy = 0f;
             float t1 = 0f;
             float t2 = 0f;
-            if ((((func_002934DC() != 0) && ((Mem.U32((a + 8u)) & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(0x801462E5u)) != 0) && ((int)(Mem.U32((a + 8u))) < 0)) && ((int)(func_00265370()) == 4194304))))
+            if ((((func_002934DC() != 0) && ((new O06A_v9(a).unk8 & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(0x801462E5u)) != 0) && ((int)(new O06A_v9(a).unk8) < 0)) && ((int)(func_00265370()) == 4194304))))
             {
-                Mem.Set((d + 60u), 1);
+                new O06D_v6(d).unk3C_Set(1);
                 if ((Mem.S32(0x800E5E70u) != 3))
                 {
                     Mem.Set(0x800E5E70u, 3);
                 }
                 func_002AB9E4();
-                t1 = ((float)(Mem.S32((b + 4u))) * Mem.F32((b + 12u)));
-                t2 = ((float)(Mem.S32((b + 8u))) * Mem.F32((b + 16u)));
-                fy = (float)(Mem.S32((b + 28u)));
-                fx = (float)(Mem.S32((b + 20u)));
+                t1 = ((float)(new O06B_v11(b).unk4) * new O06B_v11(b).unkC);
+                t2 = ((float)(new O06B_v11(b).unk8) * new O06B_v11(b).unk10);
+                fy = (float)(new O06B_v11(b).unk1C);
+                fx = (float)(new O06B_v11(b).unk14);
                 fx = (fx + t1);
                 fy = (fy + t2);
                 if ((Mem.S32((0x80146894u + (uint)(0 * 4))) != 0))
                 {
                     if (((int)(Mem.U8((0x80146894u + (uint)(-1455)))) != 0))
                     {
-                        if (((int)(Mem.U32((a + 8u))) < 0))
+                        if (((int)(new O06A_v9(a).unk8) < 0))
                         {
                             alpha = 255;
                         }
@@ -51,16 +51,16 @@ public static partial class Game
                 {
                     alpha = 128;
                 }
-                func_002A8DD4((uint)(Mem.S32((b + 20u))), (uint)(Mem.S32((b + 28u))), (uint)((int)(fx)), (uint)((int)(fy)), (uint)(1), (uint)(0), (uint)(0), (uint)(0), (uint)(0), (uint)(alpha));
+                func_002A8DD4(new O06B_v11(b).unk14, new O06B_v11(b).unk1C, (int)(fx), (int)(fy), 1, 0, (byte)(0), (byte)(0), (byte)(0), (byte)(alpha));
             }
             else
             {
                 if ((Mem.S32(0x800E5E70u) != 3))
                 {
                     Mem.Set(0x800E5E70u, 3);
-                    func_002AA224((uint)((int)((Mem.F32((d + 48u)) * (Mem.F32((d + 52u)) * Mem.F32(0x800E24ACu))))));
+                    func_002AA224((uint)((int)((new O06D_v6(d).unk30 * (new O06D_v6(d).unk34 * Mem.F32(0x800E24ACu))))), default(uint), default(uint), default(uint));
                 }
-                func_002ABC18(Mem.S32((a + 20u)), 0, (short)(Mem.S32((b + 20u))), (short)(Mem.S32((b + 28u))), Mem.F32((b + 12u)), Mem.F32((b + 16u)), 1);
+                func_002ABC18(new O06A_v9(a).unk14, 0, (short)(new O06B_v11(b).unk14), (short)(new O06B_v11(b).unk1C), new O06B_v11(b).unkC, new O06B_v11(b).unk10, 1);
             }
         }
     }

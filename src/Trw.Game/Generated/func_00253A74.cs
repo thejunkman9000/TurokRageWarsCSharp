@@ -17,19 +17,19 @@ public static partial class Game
             if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
             {
                 __osRestoreInt(mask);
-                osRecvMesg((0x80103F70u + 4560u), 0u, 1);
+                osRecvMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
             }
             else
             {
                 __osRestoreInt(mask);
             }
-            r = Mem.S32(((0x80103F70u + 1576u) + (uint)(Mem.S32((0x80103F70u + 1592u)) * 4)));
-            Mem.Set((0x80103F70u + 1592u), (-1));
+            r = new B12Mgr(0x80103F70u).tbl628[(int)(new B12Mgr(0x80103F70u).f638)];
+            new B12Mgr(0x80103F70u).f638_Set((-1));
             m2 = __osDisableInt();
             if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
             {
                 __osRestoreInt(m2);
-                osSendMesg((0x80103F70u + 4560u), 0u, 1);
+                osSendMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
             }
             else
             {

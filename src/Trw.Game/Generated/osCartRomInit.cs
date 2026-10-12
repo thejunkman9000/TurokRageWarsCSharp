@@ -15,20 +15,20 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("osCartRomInit");
                 uint saveMask = 0u;
                 Mem.Set(_fp, (uint)(0));
-                if ((Mem.U32((0x8014E950u + 12u)) != 2952790016u))
+                if ((new OSPiHandle(0x8014E950u).baseAddress != 2952790016u))
                 {
-                    Mem.Set((0x8014E950u + 4u), (byte)(0));
-                    Mem.Set((0x8014E950u + 12u), 2952790016u);
+                    new OSPiHandle(0x8014E950u).type_Set((byte)(0));
+                    new OSPiHandle(0x8014E950u).baseAddress_Set(2952790016u);
                     osPiRawReadIo((uint)(0), _fp);
-                    Mem.Set((0x8014E950u + 5u), (byte)((Mem.U32(_fp) & (uint)(255))));
-                    Mem.Set((0x8014E950u + 8u), (byte)(((Mem.U32(_fp) >> (int)8) & (uint)(255))));
-                    Mem.Set((0x8014E950u + 6u), (byte)(((Mem.U32(_fp) >> (int)16) & (uint)(15))));
-                    Mem.Set((0x8014E950u + 7u), (byte)(((Mem.U32(_fp) >> (int)20) & (uint)(15))));
-                    Mem.Set((0x8014E950u + 9u), (byte)(0));
-                    Mem.Set((0x8014E950u + 16u), (uint)(0));
-                    memset((0x8014E950u + 20u), 0, 96u);
+                    new OSPiHandle(0x8014E950u).latency_Set((byte)((Mem.U32(_fp) & (uint)(255))));
+                    new OSPiHandle(0x8014E950u).pulse_Set((byte)(((Mem.U32(_fp) >> (int)8) & (uint)(255))));
+                    new OSPiHandle(0x8014E950u).pageSize_Set((byte)(((Mem.U32(_fp) >> (int)16) & (uint)(15))));
+                    new OSPiHandle(0x8014E950u).relDuration_Set((byte)(((Mem.U32(_fp) >> (int)20) & (uint)(15))));
+                    new OSPiHandle(0x8014E950u).domain_Set((byte)(0));
+                    new OSPiHandle(0x8014E950u).speed_Set((uint)(0));
+                    memset(new OSPiHandle(0x8014E950u).transferInfo.P, 0, 96u);
                     saveMask = __osDisableInt();
-                    Mem.Set(0x8014E950u, Mem.U32(0x800D83ACu));
+                    new OSPiHandle(0x8014E950u).next__Set(Mem.U32(0x800D83ACu));
                     Mem.Set(0x800D83ACu, 0x8014E950u);
                     __osRestoreInt(saveMask);
                 }

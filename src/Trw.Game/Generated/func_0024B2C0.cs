@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024B2C0", (uint)a);
-            uint t = (uint)(Mem.S32(Mem.U32((a + 24u))));
+            uint t = (uint)(new ObjDef(new Obj(a).def_).type);
             uint d = 0u;
             uint p = 0u;
             int i = 0;
@@ -40,13 +40,13 @@ public static partial class Game
                 d = Mem.U32((0x800D0680u + (uint)(t * 4)));
             }
             L_have: ;
-            if (((d != 0u) && (Mem.U32((d + 4u)) != 0u)))
+            if (((d != 0u) && (new B11Desc(d).cb != 0u)))
             {
-                Funcs.CallReg(Mem.U32((d + 4u)), a, (a + 368u), 0u, 0u);
+                Funcs.CallReg(new B11Desc(d).cb, a, new Obj(a).unk170.P, 0u, 0u);
             }
-            if (((Mem.U32((a + 256u)) & (uint)(134217728)) != 0u))
+            if (((new Obj(a).flags & (uint)(134217728)) != 0u))
             {
-                Mem.Set((a + 571u), (byte)(Mem.U8((a + 571u)) + 1));
+                new Obj(a).unk23B_Set((byte)(new Obj(a).unk23B + 1));
             }
         }
     }

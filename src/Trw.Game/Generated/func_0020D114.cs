@@ -11,9 +11,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0020D114_find", (uint)m, (uint)key);
             uint n = 0u;
-            for (n = Mem.U32((m + 36u)); (n != 0u); n = Mem.U32((n + 16u)))
+            for (n = new B2Mgr(m).head_; (n != 0u); n = new B2Node(n).next_)
             {
-                if ((Mem.S32(n) == key))
+                if ((new B2Node(n).id == key))
                 {
                     return n;
                 }
@@ -35,10 +35,10 @@ public static partial class Game
                 Mem.Set((@out + (uint)(i * 4)), (-1));
             }
             done = 0;
-            node = func_0020D114_find(m, Mem.S32((m + 24u)));
-            if ((Mem.U32((node + 48u)) == 0u))
+            node = func_0020D114_find(m, new B2Mgr(m).unk18);
+            if ((new B2Node(node).link30_ == 0u))
             {
-                Mem.Set((@out + (uint)(0 * 4)), Mem.S32(node));
+                Mem.Set((@out + (uint)(0 * 4)), new B2Node(node).id);
                 return;
             }
             while (!(done != 0))
@@ -47,9 +47,9 @@ public static partial class Game
                 {
                     Mem.Set((@out + (uint)(i * 4)), Mem.S32((@out + (uint)((i - 1) * 4))));
                 }
-                Mem.Set((@out + (uint)(0 * 4)), Mem.S32(node));
-                node = Mem.U32((node + 48u));
-                if ((Mem.U32((node + 48u)) == 0u))
+                Mem.Set((@out + (uint)(0 * 4)), new B2Node(node).id);
+                node = new B2Node(node).link30_;
+                if ((new B2Node(node).link30_ == 0u))
                 {
                     done = 1;
                 }

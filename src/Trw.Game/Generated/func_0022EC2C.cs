@@ -16,7 +16,7 @@ public static partial class Game
             {
                 c = (((int)(Mem.S8((actor + (uint)270))) == 0) ? 1 : 0);
             }
-            if (((uint)(Mem.U16((actor + 228u))) == Mem.U32(0x800CE47Cu)))
+            if (((uint)(new Actor(actor).unkE4) == Mem.U32(0x800CE47Cu)))
             {
                 Mem.Set((actor + (uint)2156), 2210);
                 return;

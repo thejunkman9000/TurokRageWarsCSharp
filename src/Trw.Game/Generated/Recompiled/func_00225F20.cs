@@ -78,7 +78,7 @@ public static partial class Game
                 r4 = r16;
                 r6 = 2148335616u;
                 r6 = r6 - 6124u;
-                r5 = r18; r2 = func_002231B0(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r18; func_002231B0(r4, r5, r6);
                 r2 = Mem.U32((r16 + 1720u));
                 r2 = r2 & 8u;
                 { bool c_ = r2 == 0; r19 = r0; if (c_) goto L_L00226058; }

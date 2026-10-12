@@ -18,10 +18,10 @@ public static partial class Game
             case 893:
                 func_002A338C();
                 func_0043C458(Mem.U32(0x800E4518u));
-                Mem.Set((Mem.U32(0x800E4518u) + 28u), 1);
-                Mem.Set((Mem.U32(0x800E4518u) + 96u), (-1));
-                func_0040E958(Mem.U32((Mem.U32(0x800E4518u) + 68u)), 1);
-                func_0040E958(Mem.U32((Mem.U32(0x800E4518u) + 76u)), 1);
+                new O04ModeS4518(Mem.U32(0x800E4518u)).unk1C_Set(1);
+                new O04ModeS4518(Mem.U32(0x800E4518u)).unk60_Set((-1));
+                func_0040E958(new O04ModeS4518(Mem.U32(0x800E4518u)).unk44, 1);
+                func_0040E958(new O04ModeS4518(Mem.U32(0x800E4518u)).unk4C, 1);
                 func_00245B18();
                 break;
             case 896:
@@ -31,15 +31,15 @@ public static partial class Game
                 func_002A338C();
                 if ((func_0042AEB8() == 0))
                 {
-                    Mem.Set((Mem.U32(0x800E4518u) + 48u), 5);
-                    Mem.Set((Mem.U32(0x800E4518u) + 52u), 4);
-                    Mem.Set((Mem.U32(0x800E4518u) + 96u), 20);
+                    new O04ModeS4518(Mem.U32(0x800E4518u)).unk30_Set(5);
+                    new O04ModeS4518(Mem.U32(0x800E4518u)).unk34_Set(4);
+                    new O04ModeS4518(Mem.U32(0x800E4518u)).unk60_Set(20);
                 }
                 else
                 {
                     func_0043C458(Mem.U32(0x800E4518u));
-                    Mem.Set((Mem.U32(0x800E4518u) + 28u), 1);
-                    Mem.Set((Mem.U32(0x800E4518u) + 96u), 0);
+                    new O04ModeS4518(Mem.U32(0x800E4518u)).unk1C_Set(1);
+                    new O04ModeS4518(Mem.U32(0x800E4518u)).unk60_Set(0);
                 }
                 break;
             case 887:

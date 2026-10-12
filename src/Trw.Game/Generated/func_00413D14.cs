@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00413D14", (uint)@base, (uint)n, (uint)v);
             Mem.Set(0x80153C8Cu, v);
-            Mem.Set(0x80153C84u, (@base + (n * (int)(Mem.S16((Mem.U32(0x80153D58u) + 8u))))));
+            Mem.Set(0x80153C84u, (@base + (n * (int)(new S_func_00413D14(Mem.U32(0x80153D58u)).v))));
             Funcs.CallReg(Mem.U32(0x80153CDCu), 0u, 0u, 0u, 0u);
         }
     }

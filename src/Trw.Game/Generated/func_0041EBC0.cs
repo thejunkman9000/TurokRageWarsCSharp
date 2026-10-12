@@ -14,7 +14,7 @@ public static partial class Game
             int n = 0;
             for (i = 0; (i < 3); ++i)
             {
-                if ((Mem.S32((0x80153F80u + (uint)(i * 28))) >= 0))
+                if ((new O3Slot((0x80153F80u + (uint)(i * 28))).v >= 0))
                 {
                     ++n;
                 }

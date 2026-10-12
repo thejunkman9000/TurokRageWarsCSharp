@@ -14,7 +14,7 @@ public static partial class Game
             {
             default:
             case 0:
-                Mem.Set((item + 20u), 0x800D781Cu);
+                new O01Item(item).unk14__Set(0x800D781Cu);
                 break;
             case 5:
             case 6:
@@ -22,7 +22,7 @@ public static partial class Game
             case 10:
             case 12:
             case 15:
-                Mem.Set((item + 20u), 0x800D7820u);
+                new O01Item(item).unk14__Set(0x800D7820u);
                 break;
             }
             return 0;

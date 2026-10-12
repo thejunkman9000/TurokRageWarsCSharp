@@ -19,27 +19,27 @@ public static partial class Game
                 int r = 0;
                 int j = 0;
                 lst = last;
-                if ((Mem.S32((m + 11092u)) != 0))
+                if ((new SndMgr(m).unk2B54 != 0))
                 {
-                    if ((func_00265570(Mem.U32((m + 11096u)), Mem.S32((m + 11092u)), (uint)((short)(key)), _fp, (_fp + 4u)) != 0))
+                    if ((func_00265570(new SndMgr(m).unk2B58, new SndMgr(m).unk2B54, (uint)((short)(key)), _fp, (_fp + 4u)) != 0))
                     {
                         if ((Mem.S32(_fp) != Mem.S32((_fp + 4u))))
                         {
                             for (j = Mem.S32(_fp); (j <= Mem.S32((_fp + 4u))); ++j)
                             {
-                                total = (int)((int)(total) + (Mem.S32((Mem.U32((m + 11100u)) + (uint)(j * 4))) * 10));
+                                total = (int)((int)(total) + (Mem.S32((new SndMgr(m).unk2B5C_ + (uint)(j * 4))) * 10));
                             }
                             r = (func_00274544() % total);
                             total = 0;
                             for (i = Mem.S32(_fp); (i < Mem.S32((_fp + 4u))); ++i)
                             {
-                                total = (int)((int)(total) + (Mem.S32((Mem.U32((m + 11100u)) + (uint)(i * 4))) * 10));
+                                total = (int)((int)(total) + (Mem.S32((new SndMgr(m).unk2B5C_ + (uint)(i * 4))) * 10));
                                 if ((total >= r))
                                 {
                                     break;
                                 }
                             }
-                            if ((((int)((short)(lst)) != 0) && (i == Mem.S32((m + 304u)))))
+                            if ((((int)((short)(lst)) != 0) && (i == new SndMgr(m).unk130)))
                             {
                                 if ((i == Mem.S32((_fp + 4u))))
                                 {

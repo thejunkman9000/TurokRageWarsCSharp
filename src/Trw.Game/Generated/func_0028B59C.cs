@@ -13,8 +13,8 @@ public static partial class Game
             uint t = 0u;
             uint bits = 0u;
             int m = 0;
-            int idx = Mem.S32((lv + 111628u));
-            t = func_0028FD94(func_0028FD94(func_0028FD94(Mem.U32((lv + 132u)), 0), idx), 0);
+            int idx = new Level(lv).unk1B40C;
+            t = func_0028FD94(func_0028FD94(func_0028FD94(new Level(lv).unk84_, 0), idx), 0);
             func_0028FD94(t, 0);
             func_0028FDD8(t, 1);
             bits = func_0028FD94(t, 1);

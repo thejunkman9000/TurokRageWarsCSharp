@@ -40,9 +40,9 @@ public static partial class Game
                 float t = 0f;
                 uint n = 0u;
                 int i = 0;
-                Mem.Set((_fp + 4u), a);
-                Mem.Set((_fp + 8u), (b - a));
-                t = (Mem.F32((_fp + 8u)) / (rate + rate));
+                new B14Span(_fp).start_Set(a);
+                new B14Span(_fp).len_Set((b - a));
+                t = (new B14Span(_fp).len / (rate + rate));
                 if ((t <= 0.0f))
                 {
                     n = (uint)(((int)(t) + 1));
@@ -56,7 +56,7 @@ public static partial class Game
                         n = (uint)((i + 2));
                     }
                 }
-                Mem.Set(_fp, func_002608EC_b14_log2c(n));
+                new B14Span(_fp).bits_Set(func_002608EC_b14_log2c(n));
                 Mem.Copy(_ret, _fp, 12);
                 return _ret;
             }

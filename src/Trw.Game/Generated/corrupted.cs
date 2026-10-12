@@ -24,36 +24,36 @@ public static partial class Game
                 byte fb = 0;
                 ushort us = 0;
                 cnt = 0;
-                us = Mem.U16(_fp);
-                idx = (((int)(Mem.U8((_fp + 1u))) >> (int)2) + (((int)(Mem.U8(_fp)) & 7) << (int)5));
-                fb = Mem.U8(_fp);
-                for (bank = (byte)(0); ((int)(bank) < (int)(Mem.U8((pfs + 100u)))); ++bank)
+                us = new __OSInodeUnit_v2(_fp).@ushort;
+                idx = (((int)(Mem.U8((new __OSInodeUnit_v2(_fp).inode_t.P + 1u))) >> (int)2) + (((int)(Mem.U8(new __OSInodeUnit_v2(_fp).inode_t.P)) & 7) << (int)5));
+                fb = Mem.U8(new __OSInodeUnit_v2(_fp).inode_t.P);
+                for (bank = (byte)(0); ((int)(bank) < (int)(new OSPfs(pfs).banks)); ++bank)
                 {
                     if (((int)(bank) == 0))
                     {
-                        offset = Mem.S32((pfs + 96u));
+                        offset = new OSPfs(pfs).inode_start_page;
                     }
                     else
                     {
                         offset = 1;
                     }
                     b = (int)(bank);
-                    if (((b != (int)(Mem.U8(_fp))) && !((((int)(Mem.U8(((cache + 257u) + (uint)idx))) >> (int)(b & 7)) & 1) != 0)))
+                    if (((b != (int)(Mem.U8(new __OSInodeUnit_v2(_fp).inode_t.P))) && !((((int)(new __OSInodeCache(cache).map[(int)(idx)]) >> (int)(b & 7)) & 1) != 0)))
                     {
                         continue;
                     }
-                    if (((int)(bank) != (int)(Mem.U8((cache + 256u)))))
+                    if (((int)(bank) != (int)(new __OSInodeCache(cache).bank)))
                     {
-                        ret = (int)(__osPfsRWInode(pfs, cache, (uint)((byte)(0)), (uint)(bank)));
+                        ret = __osPfsRWInode(pfs, new __OSInodeCache(cache).inode.P, (byte)(0), bank);
                         if (((ret != 0) && (ret != 3)))
                         {
                             return ret;
                         }
-                        Mem.Set((cache + 256u), bank);
+                        new __OSInodeCache(cache).bank_Set(bank);
                     }
                     for (j = offset; ((cnt < 2) && (j < 128)); ++j)
                     {
-                        if (((int)(Mem.U16((cache + (uint)(j * 2)))) == (int)(Mem.U16(_fp))))
+                        if (((int)(new __OSInodeCache(cache).inode.inode_page[(int)(j)].@ushort) == (int)(new __OSInodeUnit_v2(_fp).@ushort)))
                         {
                             ++cnt;
                         }

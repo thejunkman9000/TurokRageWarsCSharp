@@ -11,10 +11,10 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00239730", _a0, _a1, _a2);
             uint o = 0u;
-            o = func_00237E70((uint)(_a0), (uint)(_a1), (uint)(_a2), default(uint));
+            o = func_00237E70((uint)(_a0), (uint)(_a1), (uint)(_a2));
             if ((o != 0u))
             {
-                Mem.Set((o + 32u), 1);
+                new Obj20(o).unk20_Set(1);
             }
             return o;
         }

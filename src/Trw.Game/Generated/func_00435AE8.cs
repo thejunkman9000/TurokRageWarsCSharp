@@ -14,9 +14,9 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 4); ++i)
             {
-                if ((((int)(Mem.S8(((0x80102B00u + (uint)(i * 400)) + 14u))) == 0) && ((int)(Mem.S8(((0x80102B00u + (uint)(i * 400)) + 13u))) == idx)))
+                if ((((int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bE) == 0) && ((int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bD) == idx)))
                 {
-                    if ((Mem.S32(((0x80102B00u + (uint)(i * 400)) + 8u)) != Mem.S32((((Mem.U32(0x800E54A4u) + 88u) + (uint)(idx * 2920)) + 2916u))))
+                    if ((new O05Rec((0x80102B00u + (uint)(i * 400))).w8 != new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB64))
                     {
                         r = 0;
                     }

@@ -13,13 +13,13 @@ public static partial class Game
             float t = 0f;
             float k = 0f;
             int kind = 0;
-            Mem.Set((actor + 256u), (uint)((uint)(Mem.U32((actor + 256u))) & (uint)((~8388608))));
+            new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~8388608))));
             Mem.Set((actor + (uint)28), 0);
             Mem.Set((actor + (uint)32), 0);
             Mem.Set((actor + (uint)36), 0);
             Mem.Set((actor + (uint)4568), 0);
             Mem.Set((actor + (uint)4604), 0);
-            Mem.Set((actor + 256u), (uint)((uint)(Mem.U32((actor + 256u))) | (uint)(16777216)));
+            new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) | (uint)(16777216)));
             if ((Mem.U32((actor + (uint)5044)) == 0x800CED30u))
             {
                 Mem.Set((actor + (uint)2156), 24100);
@@ -31,11 +31,11 @@ public static partial class Game
             t = (Mem.F32((actor + (uint)2144)) + Mem.F32(0x800D2988u));
             k = Mem.F32(0x800C7EA4u);
             Mem.Set((actor + (uint)2144), t);
-            if (((k < t) || ((Mem.S32((0x801468A0u + 40u)) != 0) && (Mem.S32((0x801468A0u + 28u)) != 0))))
+            if (((k < t) || ((new B07Game(0x801468A0u).unk28 != 0) && (new B07Game(0x801468A0u).unk1C != 0))))
             {
-                if ((Mem.S32((0x801468A0u + 40u)) != 0))
+                if ((new B07Game(0x801468A0u).unk28 != 0))
                 {
-                    if ((Mem.S32((0x801468A0u + 28u)) == 0))
+                    if ((new B07Game(0x801468A0u).unk1C == 0))
                     {
                         func_002227D0(actor, (int)(actor), 20);
                     }

@@ -25,103 +25,103 @@ public static partial class Game
             n = c;
             if ((n >= 2))
             {
-                Mem.Set(((r + 87u) + (uint)(87 - 87)), (byte)(2));
+                new O04Row190s(r).b.Set((int)((87 - 87)), (byte)(2));
             }
             if ((n >= 4))
             {
-                Mem.Set(((r + 87u) + (uint)(92 - 87)), (byte)(2));
+                new O04Row190s(r).b.Set((int)((92 - 87)), (byte)(2));
             }
             if ((n >= 6))
             {
-                Mem.Set(((r + 87u) + (uint)(88 - 87)), (byte)(2));
+                new O04Row190s(r).b.Set((int)((88 - 87)), (byte)(2));
             }
             if ((n >= 8))
             {
-                Mem.Set(((r + 87u) + (uint)(96 - 87)), (byte)(2));
+                new O04Row190s(r).b.Set((int)((96 - 87)), (byte)(2));
             }
             if ((n >= 10))
             {
-                Mem.Set(((r + 87u) + (uint)(89 - 87)), (byte)(2));
+                new O04Row190s(r).b.Set((int)((89 - 87)), (byte)(2));
             }
             if ((n >= 12))
             {
-                Mem.Set(((r + 87u) + (uint)(90 - 87)), (byte)(2));
+                new O04Row190s(r).b.Set((int)((90 - 87)), (byte)(2));
             }
             if ((n >= 14))
             {
-                Mem.Set(((r + 87u) + (uint)(97 - 87)), (byte)(2));
+                new O04Row190s(r).b.Set((int)((97 - 87)), (byte)(2));
             }
             if ((n >= 16))
             {
-                Mem.Set(((r + 87u) + (uint)(93 - 87)), (byte)(2));
+                new O04Row190s(r).b.Set((int)((93 - 87)), (byte)(2));
             }
             if ((n >= 18))
             {
-                Mem.Set(((r + 87u) + (uint)(104 - 87)), (byte)(2));
+                new O04Row190s(r).b.Set((int)((104 - 87)), (byte)(2));
             }
             if ((n >= 20))
             {
-                Mem.Set(((r + 87u) + (uint)(94 - 87)), (byte)(2));
+                new O04Row190s(r).b.Set((int)((94 - 87)), (byte)(2));
             }
             if ((n >= 22))
             {
-                Mem.Set(((r + 87u) + (uint)(91 - 87)), (byte)(2));
+                new O04Row190s(r).b.Set((int)((91 - 87)), (byte)(2));
             }
             if ((n >= 24))
             {
-                Mem.Set(((r + 87u) + (uint)(95 - 87)), (byte)(2));
+                new O04Row190s(r).b.Set((int)((95 - 87)), (byte)(2));
             }
             if ((n >= 26))
             {
-                Mem.Set(((r + 87u) + (uint)(105 - 87)), (byte)(2));
+                new O04Row190s(r).b.Set((int)((105 - 87)), (byte)(2));
             }
             if ((n >= 28))
             {
-                Mem.Set(((r + 87u) + (uint)(87 - 87)), (byte)(3));
+                new O04Row190s(r).b.Set((int)((87 - 87)), (byte)(3));
             }
             if ((n >= 30))
             {
-                Mem.Set(((r + 87u) + (uint)(92 - 87)), (byte)(3));
+                new O04Row190s(r).b.Set((int)((92 - 87)), (byte)(3));
             }
             if ((n >= 32))
             {
-                Mem.Set(((r + 87u) + (uint)(88 - 87)), (byte)(3));
+                new O04Row190s(r).b.Set((int)((88 - 87)), (byte)(3));
             }
             if ((n >= 34))
             {
-                Mem.Set(((r + 87u) + (uint)(96 - 87)), (byte)(3));
+                new O04Row190s(r).b.Set((int)((96 - 87)), (byte)(3));
             }
             if ((n >= 36))
             {
-                Mem.Set(((r + 87u) + (uint)(89 - 87)), (byte)(3));
+                new O04Row190s(r).b.Set((int)((89 - 87)), (byte)(3));
             }
             if ((n >= 38))
             {
-                Mem.Set(((r + 87u) + (uint)(90 - 87)), (byte)(3));
+                new O04Row190s(r).b.Set((int)((90 - 87)), (byte)(3));
             }
             if ((n >= 40))
             {
-                Mem.Set(((r + 87u) + (uint)(97 - 87)), (byte)(3));
+                new O04Row190s(r).b.Set((int)((97 - 87)), (byte)(3));
             }
             if ((n >= 42))
             {
-                Mem.Set(((r + 87u) + (uint)(104 - 87)), (byte)(3));
+                new O04Row190s(r).b.Set((int)((104 - 87)), (byte)(3));
             }
             if ((n >= 44))
             {
-                Mem.Set(((r + 87u) + (uint)(94 - 87)), (byte)(3));
+                new O04Row190s(r).b.Set((int)((94 - 87)), (byte)(3));
             }
             if ((n >= 46))
             {
-                Mem.Set(((r + 87u) + (uint)(91 - 87)), (byte)(3));
+                new O04Row190s(r).b.Set((int)((91 - 87)), (byte)(3));
             }
             if ((n >= 48))
             {
-                Mem.Set(((r + 87u) + (uint)(95 - 87)), (byte)(3));
+                new O04Row190s(r).b.Set((int)((95 - 87)), (byte)(3));
             }
             if ((n >= 50))
             {
-                Mem.Set(((r + 87u) + (uint)(105 - 87)), (byte)(3));
+                new O04Row190s(r).b.Set((int)((105 - 87)), (byte)(3));
             }
         }
     }

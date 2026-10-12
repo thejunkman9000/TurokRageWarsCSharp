@@ -41,7 +41,7 @@ public static partial class Game
                 r6 = r18;
                 Mem.Set((r29 + 140u), r7);
                 Mem.Set((r29 + 124u), r31);
-                r7 = r29 + 132u; r2 = func_0040E154(r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = r29 + 132u; r2 = (uint)func_0040E154(r4, r5, r6, r7);
                 { bool c_ = r2 == 0;  if (c_) goto L_L0040C764; }
                 r2 = Mem.U16((r18 + 18u));
                 r2 = r2 & 512u;

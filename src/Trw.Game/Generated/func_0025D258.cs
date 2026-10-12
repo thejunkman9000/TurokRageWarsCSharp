@@ -16,7 +16,7 @@ public static partial class Game
                 int total = 0;
                 int i = 0;
                 int r = 0;
-                if ((func_00265570(Mem.U32((Mem.U32(fx) + 11104u)), Mem.S32((Mem.U32(fx) + 11108u)), (uint)((short)(key)), _fp, (_fp + 4u)) == 0))
+                if ((func_00265570(new SndMgr(new SndFx(fx).owner_).unk2B60, new SndMgr(new SndFx(fx).owner_).unk2B64, (uint)((short)(key)), _fp, (_fp + 4u)) == 0))
                 {
                     return (-1);
                 }

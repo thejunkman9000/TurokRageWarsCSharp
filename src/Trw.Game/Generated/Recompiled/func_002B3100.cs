@@ -29,13 +29,13 @@ public static partial class Game
                 r18 = r6;
                 Mem.Set((r29 + 36u), r31);
                 Mem.Set((r29 + 32u), r20);
-                Mem.Set((r29 + 16u), r16); r2 = __getTrackByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r29 + 16u), r16); r2 = (uint)__getTrackByte(r4, r5);
                 r16 = r2;
                 r20 = r16 & 255u;
                 r2 = (uint)255;
                 { bool c_ = r20 != r2; r2 = (uint)1; if (c_) goto L_L002B32B0; }
                 r4 = r17;
-                r5 = r19; r2 = __getTrackByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r19; r2 = (uint)__getTrackByte(r4, r5);
                 r6 = r2;
                 r3 = r6 & 255u;
                 r2 = (uint)81;
@@ -45,13 +45,13 @@ public static partial class Game
                 r2 = (uint)3;
                 Mem.Set((r18 + 0u), (ushort)r2);
                 Mem.Set((r18 + 8u), (byte)r16);
-                Mem.Set((r18 + 9u), (byte)r6); r2 = __getTrackByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r18 + 9u), (byte)r6); r2 = (uint)__getTrackByte(r4, r5);
                 r4 = r17;
                 r5 = r19;
-                Mem.Set((r18 + 11u), (byte)r2); r2 = __getTrackByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r18 + 11u), (byte)r2); r2 = (uint)__getTrackByte(r4, r5);
                 r4 = r17;
                 r5 = r19;
-                Mem.Set((r18 + 12u), (byte)r2); r2 = __getTrackByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r18 + 12u), (byte)r2); r2 = (uint)__getTrackByte(r4, r5);
                 Mem.Set((r18 + 13u), (byte)r2);
                 r2 = r17 + r19;
                 Mem.Set((r2 + 168u), (byte)r0); goto L_L002B333C;
@@ -70,9 +70,9 @@ public static partial class Game
                 L_L002B31E4: ;
                 { bool c_ = r3 != r2; r2 = (uint)45; if (c_) goto L_L002B3218; }
                 r4 = r17;
-                r5 = r19; r2 = __getTrackByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r19; r2 = (uint)__getTrackByte(r4, r5);
                 r4 = r17;
-                r5 = r19; r2 = __getTrackByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r19; r2 = (uint)__getTrackByte(r4, r5);
                 r2 = r17 + r19;
                 Mem.Set((r2 + 168u), (byte)r0);
                 r2 = (uint)19;
@@ -119,7 +119,7 @@ public static partial class Game
                 r2 = r16 & 128u;
                 { bool c_ = r2 == 0; r4 = r17; if (c_) goto L_L002B32DC; }
                 r5 = r19;
-                Mem.Set((r18 + 8u), (byte)r16); r2 = __getTrackByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r18 + 8u), (byte)r16); r2 = (uint)__getTrackByte(r4, r5);
                 Mem.Set((r18 + 9u), (byte)r2);
                 r2 = r17 + r19;
                 Mem.Set((r2 + 168u), (byte)r16); goto L_L002B32EC;
@@ -134,7 +134,7 @@ public static partial class Game
                 r2 = (uint)192;
                 { bool c_ = r3 == r2; r2 = (uint)208; if (c_) goto L_L002B3338; }
                 { bool c_ = r3 == r2; r4 = r17; if (c_) goto L_L002B3338; }
-                r5 = r19; r2 = __getTrackByte(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r19; r2 = (uint)__getTrackByte(r4, r5);
                 r3 = Mem.U8((r18 + 8u));
                 Mem.Set((r18 + 10u), (byte)r2);
                 r2 = (uint)144;
@@ -269,7 +269,7 @@ public static partial class Game
                 { bool c_ = r2 != 0; r4 = r4 + 4u; if (c_) goto L_L002B34D8; }
                 r4 = r29 + 32u;
                 r5 = r20;
-                r6 = r17; r2 = __alCSeqGetTrackEvent(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = r17; r2 = (uint)__alCSeqGetTrackEvent(r4, r5, r6);
                 Mem.Set((r17 + 4u), r16);
                 r2 = Mem.U32((r29 + 44u));
                 Mem.Set((r29 + 48u), r16);

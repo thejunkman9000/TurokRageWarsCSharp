@@ -17,18 +17,18 @@ public static partial class Game
             int ok2 = 0;
             int v = 0;
             func_00223E10(p, a);
-            ang0 = Mem.F32((a + 108u));
-            high = ((Mem.F32((p + 1816u)) > Mem.F32(0x800C7A90u)) ? 1 : 0);
+            ang0 = new B05A11(a).ang;
+            high = ((new B05P11(p).f718 > Mem.F32(0x800C7A90u)) ? 1 : 0);
             if ((high != 0))
             {
-                func_002231B0(p, a, 0x800CE7FCu, default(uint));
+                func_002231B0(p, a, 0x800CE7FCu);
             }
             else
             {
-                func_002231B0(p, a, 0x800CE7E4u, default(uint));
+                func_002231B0(p, a, 0x800CE7E4u);
             }
-            dang = (Mem.F32((a + 108u)) - ang0);
-            if (((((((Mem.S32((p + 2024u)) == 0) && !(Mem.F32((p + 1764u)) > Mem.F32(0x800C7A94u))) && !((Mem.U32((a + 56u)) & (uint)(786432)) != 0u)) && ((Mem.U32((Mem.U32((a + 24u)) + 20u)) & (uint)(2)) != 0u)) && ((Mem.U32((p + 1712u)) & (uint)(16)) != 0u)) && (Mem.F32((p + 4568u)) <= 0.0f)))
+            dang = (new B05A11(a).ang - ang0);
+            if (((((((new B05P11(p).unk7E8 == 0) && !(new B05P11(p).f6E4 > Mem.F32(0x800C7A94u))) && !((new B05A11(a).flags38 & (uint)(786432)) != 0u)) && ((new B05Def11(new B05A11(a).def).flags14 & (uint)(2)) != 0u)) && ((new B05P11(p).flags6B0 & (uint)(16)) != 0u)) && (new B05P11(p).f11D8 <= 0.0f)))
             {
                 func_002227D0(p, (int)(a), 5);
                 ok2 = 1;
@@ -39,103 +39,103 @@ public static partial class Game
             }
             if ((ok2 == 0))
             {
-                if (((Mem.F32((p + 1700u)) != 0.0f) || ((Mem.S32((p + 2024u)) != 2) && (Mem.F32((p + 1704u)) != 0.0f))))
+                if (((new B05P11(p).f6A4 != 0.0f) || ((new B05P11(p).unk7E8 != 2) && (new B05P11(p).f6A8 != 0.0f))))
                 {
                     func_002227D0(p, (int)(a), 3);
                 }
                 ok = 1;
-                if (((Mem.S32((p + 2156u)) == 4400) || (Mem.S32((p + 2156u)) == 4405)))
+                if (((new B05P11(p).st == 4400) || (new B05P11(p).st == 4405)))
                 {
-                    if (((int)(Mem.S8((p + 270u))) == 0))
+                    if (((int)(new B05P11(p).b10E) == 0))
                     {
                         ok = 0;
                     }
                 }
-                if (((Mem.S32((p + 2156u)) == 24150) || (Mem.S32((p + 2156u)) == 24158)))
+                if (((new B05P11(p).st == 24150) || (new B05P11(p).st == 24158)))
                 {
-                    if (((int)(Mem.S8((p + 270u))) == 0))
+                    if (((int)(new B05P11(p).b10E) == 0))
                     {
                         ok = 0;
                     }
                 }
-                if (((Mem.S32((p + 2156u)) == 4000) || (Mem.S32((p + 2156u)) == 4100)))
+                if (((new B05P11(p).st == 4000) || (new B05P11(p).st == 4100)))
                 {
-                    if (((int)(Mem.S8((p + 270u))) == 0))
+                    if (((int)(new B05P11(p).b10E) == 0))
                     {
                         ok = 0;
                     }
                 }
                 if ((ok != 0))
                 {
-                    if (((int)(Mem.U16((p + 228u))) == Mem.S32(0x800CE47Cu)))
+                    if (((int)(new B05P11(p).unkE4) == Mem.S32(0x800CE47Cu)))
                     {
-                        if (((Mem.S32((p + 2156u)) == 1) && (Mem.F32((p + 260u)) >= Mem.F32(0x800C7A98u))))
+                        if (((new B05P11(p).st == 1) && (new B05P11(p).f104 >= Mem.F32(0x800C7A98u))))
                         {
-                            Mem.Set((p + 2156u), 2);
+                            new B05P11(p).st_Set(2);
                         }
                         else
                         {
-                            if (((Mem.S32((p + 2156u)) == 2) && (Mem.F32((p + 260u)) >= Mem.F32(0x800C7A9Cu))))
+                            if (((new B05P11(p).st == 2) && (new B05P11(p).f104 >= Mem.F32(0x800C7A9Cu))))
                             {
-                                Mem.Set((p + 2156u), 1);
+                                new B05P11(p).st_Set(1);
                             }
                             else
                             {
-                                if (((uint)((Mem.S32((p + 2156u)) - 1)) >= (uint)(2)))
+                                if (((uint)((new B05P11(p).st - 1)) >= (uint)(2)))
                                 {
-                                    Mem.Set((p + 2156u), 1);
+                                    new B05P11(p).st_Set(1);
                                 }
                             }
                         }
                     }
                     else
                     {
-                        if ((Mem.U32((p + 5044u)) == 0x800CED30u))
+                        if ((new B05P11(p).tab13B4 == 0x800CED30u))
                         {
-                            if (((Mem.U32((a + 56u)) & (uint)(786432)) != 0u))
+                            if (((new B05A11(a).flags38 & (uint)(786432)) != 0u))
                             {
-                                Mem.Set((p + 2156u), 2600);
+                                new B05P11(p).st_Set(2600);
                             }
                             else
                             {
                                 if ((Mem.F32(0x800C7AA0u) < dang))
                                 {
-                                    Mem.Set((p + 2156u), 24102);
+                                    new B05P11(p).st_Set(24102);
                                 }
                                 else
                                 {
                                     if ((dang < Mem.F32(0x800C7AA4u)))
                                     {
-                                        Mem.Set((p + 2156u), 24101);
+                                        new B05P11(p).st_Set(24101);
                                     }
                                     else
                                     {
-                                        Mem.Set((p + 2156u), 24100);
+                                        new B05P11(p).st_Set(24100);
                                     }
                                 }
                             }
                         }
                         else
                         {
-                            if (((Mem.U32((a + 56u)) & (uint)(786432)) != 0u))
+                            if (((new B05A11(a).flags38 & (uint)(786432)) != 0u))
                             {
-                                Mem.Set((p + 2156u), 2600);
+                                new B05P11(p).st_Set(2600);
                             }
                             else
                             {
                                 if ((Mem.F32(0x800C7AA8u) < dang))
                                 {
-                                    Mem.Set((p + 2156u), 2910);
+                                    new B05P11(p).st_Set(2910);
                                 }
                                 else
                                 {
                                     if ((dang < Mem.F32(0x800C7AACu)))
                                     {
-                                        Mem.Set((p + 2156u), 2900);
+                                        new B05P11(p).st_Set(2900);
                                     }
                                     else
                                     {
-                                        Mem.Set((p + 2156u), 1);
+                                        new B05P11(p).st_Set(1);
                                     }
                                 }
                             }

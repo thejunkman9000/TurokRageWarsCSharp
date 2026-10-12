@@ -16,30 +16,30 @@ public static partial class Game
             int c = 0;
             uint arr = 0u;
             func_0026D980();
-            n = Mem.S32((lv + 3664u));
+            n = new Level(lv).numActors;
             g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-            Mem.Set(g, 3674472452u);
-            Mem.Set((g + 4u), (uint)(5));
+            new DlCmd(g).w0_Set(3674472452u);
+            new DlCmd(g).w1_Set((uint)(5));
             g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-            Mem.Set(g, 3674472460u);
-            Mem.Set((g + 4u), (uint)(5));
+            new DlCmd(g).w0_Set(3674472460u);
+            new DlCmd(g).w1_Set((uint)(5));
             g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-            Mem.Set(g, 3674472468u);
-            Mem.Set((g + 4u), (uint)(65531));
+            new DlCmd(g).w0_Set(3674472468u);
+            new DlCmd(g).w1_Set((uint)(65531));
             g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-            Mem.Set(g, 3674472476u);
-            Mem.Set((g + 4u), (uint)(65531));
-            arr = (lv + 3152u);
+            new DlCmd(g).w0_Set(3674472476u);
+            new DlCmd(g).w1_Set((uint)(65531));
+            arr = new Level(lv).actors.P;
             for (i = 0; (i < n); ++i)
             {
                 uint e = Mem.U32((arr + (uint)(i * 4)));
-                if (((Mem.U32((e + 256u)) & (uint)(4)) != 0u))
+                if (((new Entity(e).flags & (uint)(4)) != 0u))
                 {
-                    c = Mem.S32((lv + 4284u));
+                    c = new Level(lv).cnt10BC;
                     if ((c != 64))
                     {
-                        Mem.Set(((lv + 4288u) + (uint)(c * 4)), e);
-                        Mem.Set((lv + 4284u), (c + 1));
+                        new Level(lv).arr10C0.Set((int)(c), e);
+                        new Level(lv).cnt10BC_Set((c + 1));
                     }
                 }
                 else

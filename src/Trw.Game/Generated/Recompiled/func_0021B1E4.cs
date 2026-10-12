@@ -36,7 +36,7 @@ public static partial class Game
                 Mem.Set((r29 + 692u), r17);
                 Mem.Set((r29 + 736u), Cpu.Fpr[21]);
                 Mem.Set((r29 + 728u), Cpu.Fpr[20]);
-                Mem.Set((r29 + 752u), r6); r2 = func_0044ACCC(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r29 + 752u), r6); func_0044ACCC(r4);
                 r4 = Mem.U32((r20 + 1688u));
                 r5 = r0; func_00264808(r4, (int)r5);
                 r17 = 2148663296u;
@@ -53,7 +53,7 @@ public static partial class Game
                 r16 = r29 + 48u;
                 r7 = r16;
                 r2 = (uint)32;
-                Mem.Set((r29 + 16u), r2); r2 = func_0044DE70(r4, r5, r6, r7, Mem.U32(r29 + 16u)); r3 = Cpu.V1;
+                Mem.Set((r29 + 16u), r2); r2 = (uint)func_0044DE70(r4, (int)r5, (int)r6, r7, (int)Mem.U32(r29 + 16u));
                 r21 = (uint)-1;
                 r23 = r2;
                 Cpu.SetW(21, r0);
@@ -114,7 +114,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r5 = (uint)-1;
                 r6 = r30;
-                r7 = r29 + 24u; r2 = func_0044DE70(r4, r5, r6, r7, Mem.U32(r29 + 16u)); r3 = Cpu.V1;
+                r7 = r29 + 24u; r2 = (uint)func_0044DE70(r4, (int)r5, (int)r6, r7, (int)Mem.U32(r29 + 16u));
                 { bool c_ = r2 == 0;  if (c_) goto L_L0021B404; }
                 r3 = (uint)(int)Mem.S16((r29 + 40u));
                 r2 = 2148794368u;
@@ -140,14 +140,14 @@ public static partial class Game
                 r4 = r20;
                 L_L0021B3F0: ;
                 Mem.Set((r20 + 764u), r2);
-                Mem.Set((r20 + 20u), r2); r2 = func_00449E38(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r20 + 20u), r2); func_00449E38(r4);
                  goto L_L0021B418;
                 L_L0021B404: ;
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
                 L_L0021B40C: ;
                 r6 = Mem.U32((r29 + 752u));
-                r5 = r30; r2 = func_0044E178(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r30; func_0044E178(r4, (int)r5, (int)r6);
                 L_L0021B418: ;
                 r4 = 2148794368u;
                 r4 = r4 - 19612u;

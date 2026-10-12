@@ -23,7 +23,7 @@ public static partial class Game
                 r29 = r29 - 24u;
                 r4 = (uint)40;
                 Mem.Set((r29 + 20u), r31);
-                Mem.Set((r29 + 16u), r16); r2 = func_00252FFC(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r29 + 16u), r16); r2 = func_00252FFC(r4);
                 r4 = (uint)77;
                 r1 = 2148401152u;
                 Mem.Set((r1 + 17680u), r2);

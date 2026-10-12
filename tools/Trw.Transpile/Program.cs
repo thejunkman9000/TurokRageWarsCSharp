@@ -10,6 +10,7 @@ using Trw.Transpile;
 bool partial = false; string? overrideDir = null; string? astCache = null; string? usedOut = null, defsOut = null, calledOut = null, mipsOut = null; var excludePaths = new List<string>(); string? excludePath = null, root = null, outPath = null, outDir = null, symsPath = null, sigsIn = null, sigsOut = null;
 bool report = false;
 string? arityIn = null;
+string? svOut = null, svList = null, emitViews = null;      // typed struct views (StructViews.cs)
 var inputs = new List<string>();
 for (int i = 0; i < args.Length; i++)
 {
@@ -31,6 +32,9 @@ for (int i = 0; i < args.Length; i++)
         case "--sigs-out": sigsOut = args[++i]; break;
         case "--arity-in": arityIn = args[++i]; break;
         case "--report": report = true; break;
+        case "--struct-views-out": svOut = args[++i]; break;      // write the C# struct views here (then stop: no functions are emitted)
+        case "--struct-views-list": svList = args[++i]; break;    // where to write the list of structs that have a view (default <dir>/structs.txt)
+        case "--emit-views": emitViews = args[++i]; break;        // use the views of that list in the emitted code; "false" = old Mem.* output
         default:
             if (args[i].StartsWith('@')) inputs.AddRange(File.ReadAllLines(args[i][1..]).Where(l => l.Trim() != ""));
             else inputs.Add(args[i]);
@@ -67,9 +71,47 @@ if (symsPath != null)
         var m = Regex.Match(line, @"^\s*(\w+)\s*=\s*0x([0-9A-Fa-f]+)");
         if (m.Success) symbols[m.Groups[1].Value] = uint.Parse(m.Groups[2].Value, NumberStyles.HexNumber);
     }
+// The sources ported from the other decompilation (the `their` headers) name functions and data after that tree's release (func_802A1898_de, D_80123456_de):
+// their_syms.ld / their_alias.ld map those names to this ROM's addresses. Data names become symbols; a function name becomes an alias of the function at that
+// address (the C port's own name from symbol_addrs.txt, or func_<address>), so a call to func_802A1898_de calls func_002A2898.
+if (symsPath != null)
+{
+    var dir = Path.GetDirectoryName(symsPath)!;
+    var byAddr = new Dictionary<uint, string>();
+    foreach (var line in File.ReadLines(symsPath))
+    {
+        var m = Regex.Match(line, @"^\s*(\w+)\s*=\s*0x([0-9A-Fa-f]+)\s*;.*type:func");
+        if (m.Success) byAddr.TryAdd(uint.Parse(m.Groups[2].Value, NumberStyles.HexNumber), m.Groups[1].Value);
+    }
+    // what the C port's linker script defines outright (a PROVIDE below only fills names that are still undefined, as in ld)
+    foreach (var ld in new[] { "undefined_syms_auto.txt", "undefined_funcs_auto.txt", "c_syms.ld", "extra_syms.ld", "hardware_regs.ld" })
+    {
+        var path = Path.Combine(dir, ld);
+        if (!File.Exists(path)) continue;
+        foreach (var line in File.ReadLines(path))
+            foreach (Match m in Regex.Matches(line, @"(?<![\w.])(\w+)\s*=\s*0x([0-9A-Fa-f]+)\s*;"))
+                symbols.TryAdd(m.Groups[1].Value, uint.Parse(m.Groups[2].Value, NumberStyles.HexNumber));
+    }
+    foreach (var ld in new[] { "their_alias.ld", "their_syms.ld" })
+    {
+        var path = Path.Combine(dir, ld);
+        if (!File.Exists(path)) continue;
+        foreach (var line in File.ReadLines(path))
+        {
+            var m = Regex.Match(line, @"^\s*PROVIDE\((\w+)\s*=\s*0x([0-9A-Fa-f]+)\)");
+            if (!m.Success) continue;
+            var n = m.Groups[1].Value; var a = uint.Parse(m.Groups[2].Value, NumberStyles.HexNumber);
+            symbols.TryAdd(n, a);
+            if (n.StartsWith("func_") && !Regex.IsMatch(n, @"^func_[0-9A-Fa-f]{8}$") && !byAddr.ContainsValue(n))
+                Emitter.Aliases.TryAdd(n, byAddr.TryGetValue(a, out var canon) ? canon : $"func_{a:X8}");
+        }
+    }
+}
 uint? Lookup(string name)
 {
     name = Emitter.Norm(name);
+    // the linker's symbol table first: a name the other decompilation chose (D_800CD890) is not necessarily the address it stands for (0x800D2B00)
+    if (symbols.TryGetValue(name, out var defined)) return defined;
     var m = Regex.Match(name, @"^(?:D|func)_([0-9A-Fa-f]{8})[a-z]?$|^D_([0-9A-Fa-f]{1,7})$");
     if (m.Success && !m.Groups[1].Success) return uint.Parse(m.Groups[2].Value, NumberStyles.HexNumber);
     if (m.Success) return uint.Parse(m.Groups[1].Value, NumberStyles.HexNumber);
@@ -92,6 +134,8 @@ if (arityIn != null && File.Exists(arityIn))
         if (p.Length == 2 && int.TryParse(p[1], out var w)) romWords[p[0]] = w;
     }
 
+var viewSet = emitViews != null && emitViews != "false" ? ViewSet.Load(emitViews) : null;
+var svGen = svOut != null ? new StructViewGen() : null;
 // one result per input file, filled in parallel and assembled in input order
 var results = new FileResult[inputs.Count];
 Parallel.For(0, inputs.Count, new ParallelOptions { MaxDegreeOfParallelism = Math.Max(2, Environment.ProcessorCount - 2) }, idx =>
@@ -103,21 +147,27 @@ Parallel.For(0, inputs.Count, new ParallelOptions { MaxDegreeOfParallelism = Mat
     try { ast = ParseAst(root, path, astCache, headerStamp); }
     catch (Exception ex) { res.Fail("clang: " + ex.Message.Split('\n')[0], file); return; }
     var ix = new AstIndex(ast);
+    if (svGen != null) { svGen.Add(ix); return; }
     foreach (var w in ix.Warnings) res.Warnings.Add(w);
     if (Environment.GetEnvironmentVariable("TRW_DUMP_LAYOUTS") is string dumpFile)
         lock (typeof(Program)) File.AppendAllLines(dumpFile, new[] { "# file " + file }.Concat(ix.DumpLayouts()));
     foreach (var kv in headerAsmLabels) ix.AsmLabels[kv.Key] = kv.Value;
     foreach (Match am in Regex.Matches(File.ReadAllText(path), @"(\w+)\s*\([^()]*\)\s*(?:__asm__|__asm|asm)\s*\(\s*""(\w+)""\s*\)\s*;"))
         ix.AsmLabels[am.Groups[1].Value] = am.Groups[2].Value;
-    var em = new Emitter(ix, Lookup, sigs, romWords) { StaticPrefix = Path.GetFileNameWithoutExtension(path) + "_", SourceText = File.ReadAllText(path) };
+    var em = new Emitter(ix, Lookup, sigs, romWords) { StaticPrefix = Path.GetFileNameWithoutExtension(path) + "_", SourceText = File.ReadAllText(path), Views = viewSet };
     var mainName = Path.GetFileName(path);
     bool isOverrideFile = overrideDir != null && Path.GetFullPath(Path.GetDirectoryName(path)!).Equals(Path.GetFullPath(overrideDir), StringComparison.OrdinalIgnoreCase);
     string curFile = "";
     var emitted = new HashSet<string>();
+    var fnText = new Dictionary<string, (bool isStatic, string text)>();      // successfully emitted functions of this file
+    var badStatics = new HashSet<string>();                                   // static (inline) helpers the emitter could not express
     void EmitOne(JsonNode n)
     {
         var name = em.FnName(n);
         if (!emitted.Add(name)) return;
+        // functions named after the German release (func_8xxxxxxx_de): their addresses do not exist in this ROM, and the draft C of such files is written against
+        // types that clang cannot resolve; the US function of the file (func_<file stem>) is recompiled from its MIPS instead
+        if (Regex.IsMatch((string)n["name"]!, @"^func_8[0-9A-Fa-f]{7}_de") && !ix.StaticFunctions.Contains((string)n["name"]!)) return;   // a static inline helper of the file is not a duplicate: callers in the file need its body
         // a hand-checked override (tools/overrides/<function>.c) replaces the function from the decompilation
         if (!isOverrideFile && overrideNames.Contains(name) && !ix.StaticFunctions.Contains((string)n["name"]!)) { try { res.Sigs.Add((name, em.ToSig(n))); } catch (Exception) { } res.Defs.Add(name); return; }
         if (!ix.StaticFunctions.Contains((string)n["name"]!)) res.Defs.Add(name);
@@ -128,7 +178,9 @@ Parallel.For(0, inputs.Count, new ParallelOptions { MaxDegreeOfParallelism = Mat
         }
         try
         {
-            res.Text.Append(em.EmitFunction(n)).Append('\n');
+            var fnBody = em.EmitFunction(n);
+            fnText[name] = (ix.StaticFunctions.Contains((string)n["name"]!), fnBody);
+            res.Text.Append(fnBody).Append('\n');
             res.Ok++;
             var sig = em.ToSig(n);
             res.Sigs.Add((name, sig));
@@ -142,7 +194,8 @@ Parallel.For(0, inputs.Count, new ParallelOptions { MaxDegreeOfParallelism = Mat
             res.Fail(why, name);
             res.Text.Append($"    // TODO not transpiled: {name} ({why})\n\n");
             // a function the C cannot express: the exact MIPS code stands in for it (see regen.ps1)
-            if (!ix.StaticFunctions.Contains((string)n["name"]!))
+            if (ix.StaticFunctions.Contains((string)n["name"]!)) badStatics.Add(name);
+            else
             {
                 res.NeedsMips.Add(name);
                 try { res.Sigs.Add((name, em.ToSig(n))); } catch (Exception) { }
@@ -176,10 +229,26 @@ Parallel.For(0, inputs.Count, new ParallelOptions { MaxDegreeOfParallelism = Mat
         foreach (var sname in em.ReferencedStatics.ToList())
             if (ix.StaticDefinitions.TryGetValue(sname, out var def) && !emitted.Contains(em.FnName(def))) { EmitOne(def); more = true; }
     }
+    // a static inline helper that cannot be expressed has no code of its own in the ROM (it was inlined into its users): every function that calls it
+    // (directly or through another helper) is recompiled from the MIPS instead
+    for (bool more = badStatics.Count > 0; more;)
+    {
+        more = false;
+        foreach (var (fname, (isStatic, text)) in fnText.ToList())
+        {
+            if (badStatics.Contains(fname) || res.NeedsMips.Contains(fname)) continue;
+            var hit = badStatics.FirstOrDefault(b => Regex.IsMatch(text, @"\b" + Regex.Escape(b) + @"\("));
+            if (hit == null) continue;
+            more = true;
+            if (isStatic) { badStatics.Add(fname); res.Text.Replace(text, $"    // not emitted: {fname} depends on the inline helper {hit}\n"); }
+            else { res.NeedsMips.Add(fname); res.Fail("calls the inline helper that cannot be expressed: " + hit, fname); }
+        }
+    }
     foreach (var u in em.ValueUsed) res.Used.Add(u);
     foreach (var c in em.Called) res.Called.Add(c);
 });
 
+if (svGen != null) { svGen.Write(svOut!, svList ?? Path.Combine(svOut!, "structs.txt"), Console.Out); return 0; }
 var outText = new StringBuilder();
 outText.Append("// <auto-generated> by Trw.Transpile from the decompiled C. Edit freely: this file is the source now. </auto-generated>\n");
 outText.Append("using Trw.Platform;\n\nnamespace Trw.Game;\n\npublic static partial class Game\n{\n");
@@ -244,12 +313,33 @@ if (report)
         Console.WriteLine($"  {who.Count,5}  {why}   e.g. {string.Join(", ", who.Take(3))}");
 return 0;
 
+// The C port compiles most of its files in "sn" mode (mode_map.txt, tools/cc.sh): against the headers of the other decompilation (include/their, or include/their2
+// for a source marked `their2` in its first three lines) and with these defines. Without them 180+ sources do not even find their headers, clang drops every
+// statement it cannot type and the translation of such a function silently loses code (e.g. func_0044DE04 came out empty).
+static List<string> SnFlags(string root, string cfile)
+{
+    var flags = new List<string>();
+    var map = Path.Combine(root, "mode_map.txt");
+    if (!File.Exists(map)) return flags;
+    lock (SnInfo.Modes)
+    {
+        if (SnInfo.Modes.Count == 0)
+            foreach (var l in File.ReadLines(map)) { var p = l.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries); if (p.Length >= 2) SnInfo.Modes[p[0]] = p[1]; }
+    }
+    if (!SnInfo.Modes.TryGetValue(Path.GetFileNameWithoutExtension(cfile), out var mode) || !mode.StartsWith("sn")) return flags;
+    var head = File.ReadLines(cfile).Take(3);
+    flags.Add(head.Any(h => h.Contains("their2")) ? "-Iinclude/their2" : "-Iinclude/their");
+    flags.AddRange(new[] { "-DF3DEX_GBI_2", "-DVERSION_US_REV1", "-D__UNBAKE_STDARG_GCC" });
+    return flags;
+}
+
 static JsonNode ParseAst(string root, string cfile, string? cacheDir, DateTime headerStamp)
 {
+    var extraFlags = SnFlags(root, cfile);
     string? cachePath = null;
     if (cacheDir != null)
     {
-        cachePath = Path.Combine(cacheDir, Path.GetRelativePath(root, cfile).Replace('\\', '_').Replace('/', '_') + ".json.gz");
+        cachePath = Path.Combine(cacheDir, Path.GetRelativePath(root, cfile).Replace('\\', '_').Replace('/', '_') + (extraFlags.Count > 0 ? ".sn" : "") + ".json.gz");
         var need = File.GetLastWriteTimeUtc(cfile) > headerStamp ? File.GetLastWriteTimeUtc(cfile) : headerStamp;
         if (File.Exists(cachePath) && File.GetLastWriteTimeUtc(cachePath) >= need)
         {
@@ -263,13 +353,14 @@ static JsonNode ParseAst(string root, string cfile, string? cacheDir, DateTime h
         StandardOutputEncoding = Encoding.UTF8,
     };
     foreach (var a in new[] { "-m", "ziglang", "cc", "-target", "mips-linux-gnueabi", "-fsyntax-only", "-w", "-std=gnu89",
-                 "-D_LANGUAGE_C", "-DTARGET_PC", "-DM2CTX", "-Iinclude", "-Xclang", "-ast-dump=json", cfile })
+                 "-D_LANGUAGE_C", "-DTARGET_PC", "-DM2CTX", "-Iinclude" }.Concat(extraFlags).Concat(new[] { "-Xclang", "-ast-dump=json", cfile }))
         psi.ArgumentList.Add(a);
     using var p = Process.Start(psi)!;
     var err = p.StandardError.ReadToEndAsync();
     var json = p.StandardOutput.ReadToEnd();
     p.WaitForExit();
     if (json.Length == 0) throw new Exception(err.Result.Trim());
+    if (err.Result.Contains("fatal error:")) Console.Error.WriteLine("[ast] " + Path.GetFileName(cfile) + ": " + err.Result.Split('\n').First(l => l.Contains("fatal error:")).Trim());
     if (cachePath != null)
     {
         var tmp = cachePath + ".tmp" + Environment.CurrentManagedThreadId;
@@ -282,6 +373,8 @@ static JsonNode ParseAst(string root, string cfile, string? cacheDir, DateTime h
     }
     return JsonNode.Parse(json, null, new System.Text.Json.JsonDocumentOptions { MaxDepth = 4096 })!;
 }
+
+static class SnInfo { public static readonly Dictionary<string, string> Modes = new(); }
 
 sealed class FileResult
 {

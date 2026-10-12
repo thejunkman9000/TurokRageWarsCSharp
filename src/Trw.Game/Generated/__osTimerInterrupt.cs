@@ -13,13 +13,13 @@ public static partial class Game
             uint timer = 0u;
             uint count = 0u;
             uint elapsed = 0u;
-            if ((Mem.U32(Mem.U32(0x800D92B0u)) == Mem.U32(0x800D92B0u)))
+            if ((new OSTimer(Mem.U32(0x800D92B0u)).next_ == Mem.U32(0x800D92B0u)))
             {
                 return;
             }
             while ((1 != 0))
             {
-                timer = Mem.U32(Mem.U32(0x800D92B0u));
+                timer = new OSTimer(Mem.U32(0x800D92B0u)).next_;
                 if ((timer == Mem.U32(0x800D92B0u)))
                 {
                     __osSetCompare((uint)(0), default(uint), default(uint), default(uint));
@@ -29,25 +29,25 @@ public static partial class Game
                 count = osGetCount();
                 elapsed = (count - Mem.U32(0x8014FE30u));
                 Mem.Set(0x8014FE30u, count);
-                if (((ulong)(elapsed) < Mem.U64((timer + 16u))))
+                if (((ulong)(elapsed) < new OSTimer(timer).remaining))
                 {
-                    Mem.Set((timer + 16u), (ulong)((ulong)(Mem.U64((timer + 16u))) - (ulong)(elapsed)));
-                    __osSetTimerIntr(Mem.U64((timer + 16u)));
+                    new OSTimer(timer).remaining_Set((ulong)((ulong)(new OSTimer(timer).remaining) - (ulong)(elapsed)));
+                    __osSetTimerIntr(new OSTimer(timer).remaining);
                     return;
                 }
                 else
                 {
-                    Mem.Set(Mem.U32((timer + 4u)), Mem.U32(timer));
-                    Mem.Set((Mem.U32(timer) + 4u), Mem.U32((timer + 4u)));
-                    Mem.Set(timer, 0u);
-                    Mem.Set((timer + 4u), 0u);
-                    if ((Mem.U32((timer + 24u)) != 0u))
+                    new OSTimer(timer).prev.next__Set(new OSTimer(timer).next_);
+                    new OSTimer(timer).next.prev__Set(new OSTimer(timer).prev_);
+                    new OSTimer(timer).next__Set(0u);
+                    new OSTimer(timer).prev__Set(0u);
+                    if ((new OSTimer(timer).mq_ != 0u))
                     {
-                        osSendMesg(Mem.U32((timer + 24u)), Mem.U32((timer + 28u)), 0);
+                        osSendMesg(new OSTimer(timer).mq_, new OSTimer(timer).msg, 0);
                     }
-                    if ((Mem.U64((timer + 8u)) != (ulong)(0)))
+                    if ((new OSTimer(timer).interval != (ulong)(0)))
                     {
-                        Mem.Set((timer + 16u), Mem.U64((timer + 8u)));
+                        new OSTimer(timer).remaining_Set(new OSTimer(timer).interval);
                         __osInsertTimer(timer);
                     }
                 }

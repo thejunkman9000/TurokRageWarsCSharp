@@ -56,7 +56,7 @@ public static partial class Game
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
                 r5 = ~(r0 | r16);
-                r6 = r0; r2 = func_0044E178(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = r0; func_0044E178(r4, (int)r5, (int)r6);
                 Mem.Set((r17 + 140u), Cpu.W(20));
                 Mem.Set((r17 + 144u), Cpu.W(21));
                 r31 = Mem.U32((r29 + 24u));

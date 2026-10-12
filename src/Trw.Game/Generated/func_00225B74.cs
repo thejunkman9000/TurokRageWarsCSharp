@@ -16,19 +16,19 @@ public static partial class Game
             int i = 0;
             uint r = 0u;
             uint c = 0u;
-            if ((Mem.S32((a + 20u)) != 0))
+            if ((new Plr(a).unk14 != 0))
             {
-                r = func_0028B2D4(0x8011FE88u, (uint)(Mem.S32((a + 20u))));
+                r = func_0028B2D4(0x8011FE88u, (uint)(new Plr(a).unk14));
                 if ((r != 0u))
                 {
-                    flags = Mem.U32((r + 68u));
+                    flags = new RecB6(r).unk44;
                 }
             }
             if ((Mem.S32(0x8013B290u) != 0))
             {
                 ok = 0;
             }
-            t = (Mem.S32((a + 1636u)) & 32768);
+            t = (new Plr(a).flags664 & 32768);
             if ((t != 0))
             {
                 ok = 0;
@@ -57,17 +57,17 @@ public static partial class Game
             {
                 ok = 0;
             }
-            Mem.Set((a + 2128u), ok);
+            new Plr(a).unk850_Set(ok);
             if ((ok != 0))
             {
                 if ((ev == 50))
                 {
                     Mem.Set(0x800CF228u, 1);
-                    if ((Mem.U32((a + 1500u)) != 0u))
+                    if ((new Plr(a).unk5DC_ != 0u))
                     {
                         for (i = 0; (i < 4); ++i)
                         {
-                            Mem.Set((0x80102AD8u + (uint)i), Mem.U8(((Mem.U32((a + 1500u)) + 1312u) + (uint)i)));
+                            Mem.Set((0x80102AD8u + (uint)i), new Pawn(new Plr(a).unk5DC_).unk520[(int)(i)]);
                         }
                     }
                 }
@@ -78,9 +78,9 @@ public static partial class Game
             c = func_0028CF7C(0x8011FE88u, (-1), 3141);
             if ((c != 0u))
             {
-                Mem.Set((a + 80u), Mem.F32((c + 252u)));
-                Mem.Set((a + 84u), Mem.F32((c + 256u)));
-                Mem.Set((a + 88u), Mem.F32((c + 260u)));
+                new Plr(a).unk50_Set(new PlrCls(c).unkFC);
+                new Plr(a).unk54_Set(new PlrCls(c).unk100);
+                new Plr(a).unk58_Set(new PlrCls(c).unk104);
             }
         }
     }

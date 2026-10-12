@@ -10,19 +10,19 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("rnc_rnc_consume", (uint)b, (uint)n);
-            Mem.Set((b + 4u), (int)((int)(Mem.S32((b + 4u))) - n));
-            if ((Mem.S32((b + 4u)) < 0))
+            new RncBits(b).t7_Set((int)((int)(new RncBits(b).t7) - n));
+            if ((new RncBits(b).t7 < 0))
             {
                 uint o = 0u;
-                Mem.Set((b + 4u), (int)((int)(Mem.S32((b + 4u))) + n));
-                Mem.Set(b, (uint)((uint)(Mem.U32(b)) >> (int)(Mem.S32((b + 4u)) & 31)));
-                o = Mem.U32((b + 8u));
-                Mem.Set(b, (uint)((uint)(Mem.U32(b)) | (((uint)(Mem.U8((o + (uint)3))) << (int)24) | ((uint)(Mem.U8((o + (uint)2))) << (int)16))));
-                Mem.Set((b + 8u), (o + (uint)2));
-                n = (int)((int)(n) - Mem.S32((b + 4u)));
-                Mem.Set((b + 4u), (16 - n));
+                new RncBits(b).t7_Set((int)((int)(new RncBits(b).t7) + n));
+                new RncBits(b).t6_Set((uint)((uint)(new RncBits(b).t6) >> (int)(new RncBits(b).t7 & 31)));
+                o = new RncBits(b).s3_;
+                new RncBits(b).t6_Set((uint)((uint)(new RncBits(b).t6) | (((uint)(Mem.U8((o + (uint)3))) << (int)24) | ((uint)(Mem.U8((o + (uint)2))) << (int)16))));
+                new RncBits(b).s3__Set((o + (uint)2));
+                n = (int)((int)(n) - new RncBits(b).t7);
+                new RncBits(b).t7_Set((16 - n));
             }
-            Mem.Set(b, (uint)((uint)(Mem.U32(b)) >> (int)(n & 31)));
+            new RncBits(b).t6_Set((uint)((uint)(new RncBits(b).t6) >> (int)(n & 31)));
         }
     }
 
@@ -31,7 +31,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("rnc_rnc_input_bits", (uint)b, (uint)mask, (uint)n);
-            uint r = (Mem.U32(b) & mask);
+            uint r = (new RncBits(b).t6 & mask);
             rnc_rnc_consume(b, n);
             return r;
         }
@@ -53,7 +53,7 @@ public static partial class Game
                 s0 = (uint)(s0 + (uint)(2 * 1));
                 ushort c = Mem.U16(s0);
                 s0 = (uint)(s0 + (uint)(2 * 1));
-                t0 = ((uint)(m) & Mem.U32(b));
+                t0 = ((uint)(m) & new RncBits(b).t6);
                 if (((t0 - (uint)(c)) == (uint)(0)))
                 {
                     break;
@@ -67,7 +67,7 @@ public static partial class Game
                 return bits;
             }
             nb = (bits - (uint)(1));
-            t0 = ((uint)(Mem.U16((s0 + (uint)62))) & Mem.U32(b));
+            t0 = ((uint)(Mem.U16((s0 + (uint)62))) & new RncBits(b).t6);
             rnc_rnc_consume(b, (int)(nb));
             return (t0 | (1u << (int)nb));
         }
@@ -166,9 +166,9 @@ public static partial class Game
                 uint @out = dst;
                 uint dst_end = (dst + (uint)unpacked);
                 port_rnc_log(Str.Lit("rnc1 in"), src, dst, packed, unpacked, 0);
-                Mem.Set((_fp + 8u), src);
-                Mem.Set(_fp, (((uint)(Mem.U8((src + (uint)1))) << (int)8) | (uint)(Mem.U8((src + (uint)0)))));
-                Mem.Set((_fp + 4u), 0);
+                new RncBits(_fp).s3__Set(src);
+                new RncBits(_fp).t6_Set((((uint)(Mem.U8((src + (uint)1))) << (int)8) | (uint)(Mem.U8((src + (uint)0)))));
+                new RncBits(_fp).t7_Set(0);
                 rnc_rnc_input_bits(_fp, (uint)(2), 2);
                 do
                 {
@@ -189,12 +189,12 @@ public static partial class Game
                             }
                             do
                             {
-                                Mem.Set(((@out += 1u) - 1u), Mem.U8((Mem.Set((_fp + 8u), (uint)(Mem.U32((_fp + 8u)) + 1u)) - 1u)));
+                                Mem.Set(((@out += 1u) - 1u), Mem.U8((new RncBits(_fp).s3__Set((uint)(new RncBits(_fp).s3_ + 1u)) - 1u)));
                             }
                             while (((cnt--) != 0));
                             {
-                                uint w = (((uint)(Mem.U8((Mem.U32((_fp + 8u)) + (uint)1))) << (int)8) | (uint)(Mem.U8((Mem.U32((_fp + 8u)) + (uint)0))));
-                                Mem.Set(_fp, ((Mem.U32(_fp) & (((uint)(1) << (int)(Mem.S32((_fp + 4u)) & 31)) - (uint)(1))) | (w << (int)(Mem.S32((_fp + 4u)) & 31))));
+                                uint w = (((uint)(Mem.U8((new RncBits(_fp).s3_ + (uint)1))) << (int)8) | (uint)(Mem.U8((new RncBits(_fp).s3_ + (uint)0))));
+                                new RncBits(_fp).t6_Set(((new RncBits(_fp).t6 & (((uint)(1) << (int)(new RncBits(_fp).t7 & 31)) - (uint)(1))) | (w << (int)(new RncBits(_fp).t7 & 31))));
                             }
                         }
                         if ((t4 == (uint)(0)))
@@ -220,7 +220,7 @@ public static partial class Game
                         }
                     }
                 }
-                while ((Mem.U32((_fp + 8u)) < end_in));
+                while ((new RncBits(_fp).s3_ < end_in));
                 if ((((int)(@out - dst)) != unpacked))
                 {
                     port_rnc_log(Str.Lit("rnc1 size mismatch"), src, dst, packed, unpacked, ((int)(@out - dst)));

@@ -14,9 +14,9 @@ public static partial class Game
             int n = 0;
             if ((Mem.S32(0x800E28E0u) < 2))
             {
-                a = Mem.S32((Mem.U32(0x800E3518u) + 24u));
-                n = (Mem.S32((Mem.U32(0x800E3518u) + 20u)) + 1);
-                Mem.Set((Mem.U32(0x800E3518u) + 20u), n);
+                a = new O3Pg(Mem.U32(0x800E3518u)).f18;
+                n = (new O3Pg(Mem.U32(0x800E3518u)).f14 + 1);
+                new O3Pg(Mem.U32(0x800E3518u)).f14_Set(n);
                 if ((a == 0))
                 {
                     if ((n < 6))

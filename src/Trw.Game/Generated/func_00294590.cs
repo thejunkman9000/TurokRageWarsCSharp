@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00294590", (uint)g);
             func_0028D8E8();
-            func_0029397C(g, (Mem.S32((g + 159192u)) + 601));
+            func_0029397C(g, (new B21Game(g).unk26DD8 + 601));
         }
     }
 

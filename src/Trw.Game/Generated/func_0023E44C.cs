@@ -10,59 +10,59 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0023E44C", (uint)a);
-            switch (Mem.S32((a + 176u)))
+            switch (new B09SrcObj(a).type)
             {
             case 1:
             case 2:
             case 3:
             case 4:
-                Mem.Set(Mem.U32(0x80103FCCu), (int)(Mem.U32((a + 260u))));
-                if ((Mem.U32((a + 260u)) != 0u))
+                new B09Obj2(Mem.U32(0x80103FCCu)).unk0_Set((int)(new B09SrcObj(a).ref_));
+                if ((new B09SrcObj(a).ref_ != 0u))
                 {
-                    Mem.Set((Mem.U32(0x80103FCCu) + 4u), Mem.S32((Mem.U32((a + 260u)) + 20u)));
+                    new B09Obj2(Mem.U32(0x80103FCCu)).unk4_Set(new B09SrcObj(a).@ref.w14);
                 }
                 else
                 {
-                    Mem.Set((Mem.U32(0x80103FCCu) + 4u), 0);
+                    new B09Obj2(Mem.U32(0x80103FCCu)).unk4_Set(0);
                 }
-                Mem.Copy((Mem.U32(0x80103FCCu) + 8u), (a + 384u), 12);
-                Mem.Set((Mem.U32(0x80103FCCu) + 20u), (-1));
+                Mem.Copy(new B09Obj2(Mem.U32(0x80103FCCu)).v8.P, new B09SrcObj(a).v180.P, 12);
+                new B09Obj2(Mem.U32(0x80103FCCu)).unk14_Set((-1));
                 break;
             case 5:
-                if ((Mem.U32((a + 260u)) != 0u))
+                if ((new B09SrcObj(a).ref_ != 0u))
                 {
-                    Mem.Set((Mem.U32(0x80103FCCu) + 196u), Mem.S32((Mem.U32((a + 260u)) + 20u)));
+                    new B09Obj2(Mem.U32(0x80103FCCu)).unkC4_Set(new B09SrcObj(a).@ref.w14);
                 }
                 else
                 {
-                    Mem.Set((Mem.U32(0x80103FCCu) + 196u), 0);
+                    new B09Obj2(Mem.U32(0x80103FCCu)).unkC4_Set(0);
                 }
-                Mem.Copy((Mem.U32(0x80103FCCu) + 200u), (a + 384u), 12);
-                Mem.Set((Mem.U32(0x80103FCCu) + 212u), Mem.S32((a + 188u)));
+                Mem.Copy(new B09Obj2(Mem.U32(0x80103FCCu)).vC8.P, new B09SrcObj(a).v180.P, 12);
+                new B09Obj2(Mem.U32(0x80103FCCu)).unkD4_Set(new B09SrcObj(a).unkBC);
                 break;
             case 7:
-                Mem.Set(Mem.U32(0x80103FCCu), (int)(Mem.U32((a + 260u))));
-                Mem.Set((Mem.U32(0x80103FCCu) + 4u), Mem.S32((Mem.U32((a + 260u)) + 20u)));
-                Mem.Copy((Mem.U32(0x80103FCCu) + 8u), (a + 384u), 12);
-                Mem.Set((Mem.U32(0x80103FCCu) + 20u), (-1));
+                new B09Obj2(Mem.U32(0x80103FCCu)).unk0_Set((int)(new B09SrcObj(a).ref_));
+                new B09Obj2(Mem.U32(0x80103FCCu)).unk4_Set(new B09SrcObj(a).@ref.w14);
+                Mem.Copy(new B09Obj2(Mem.U32(0x80103FCCu)).v8.P, new B09SrcObj(a).v180.P, 12);
+                new B09Obj2(Mem.U32(0x80103FCCu)).unk14_Set((-1));
                 break;
             case 8:
-                Mem.Set(Mem.U32(0x80103FCCu), (int)(Mem.U32((a + 260u))));
-                Mem.Set((Mem.U32(0x80103FCCu) + 4u), Mem.S32((Mem.U32((a + 260u)) + 20u)));
-                Mem.Copy((Mem.U32(0x80103FCCu) + 8u), (a + 384u), 12);
-                Mem.Set((Mem.U32(0x80103FCCu) + 20u), Mem.S32((a + 264u)));
-                Mem.Copy((Mem.U32(0x80103FCCu) + 24u), (a + 268u), 112);
+                new B09Obj2(Mem.U32(0x80103FCCu)).unk0_Set((int)(new B09SrcObj(a).ref_));
+                new B09Obj2(Mem.U32(0x80103FCCu)).unk4_Set(new B09SrcObj(a).@ref.w14);
+                Mem.Copy(new B09Obj2(Mem.U32(0x80103FCCu)).v8.P, new B09SrcObj(a).v180.P, 12);
+                new B09Obj2(Mem.U32(0x80103FCCu)).unk14_Set(new B09SrcObj(a).unk108);
+                Mem.Copy(new B09Obj2(Mem.U32(0x80103FCCu)).blk18.P, new B09SrcObj(a).blk10C.P, 112);
                 break;
             case 9:
-                Mem.Set((Mem.U32(0x80103FCCu) + 136u), (int)(Mem.U32((a + 260u))));
-                Mem.Set((Mem.U32(0x80103FCCu) + 140u), Mem.S32((Mem.U32((a + 260u)) + 20u)));
-                Mem.Copy((Mem.U32(0x80103FCCu) + 144u), (a + 384u), 12);
+                new B09Obj2(Mem.U32(0x80103FCCu)).unk88_Set((int)(new B09SrcObj(a).ref_));
+                new B09Obj2(Mem.U32(0x80103FCCu)).unk8C_Set(new B09SrcObj(a).@ref.w14);
+                Mem.Copy(new B09Obj2(Mem.U32(0x80103FCCu)).v90.P, new B09SrcObj(a).v180.P, 12);
                 break;
             }
-            Mem.Copy((Mem.U32(0x80103FCCu) + 240u), (a + 248u), 12);
-            Mem.Copy((Mem.U32(0x80103FCCu) + 228u), (a + 384u), 12);
-            Mem.Set((Mem.U32(0x80103FCCu) + 252u), Mem.S32((a + 176u)));
-            Mem.Set((Mem.U32(0x80103FCCu) + 256u), Mem.S32((a + 192u)));
+            Mem.Copy(new B09Obj2(Mem.U32(0x80103FCCu)).vF0.P, new B09SrcObj(a).vF8.P, 12);
+            Mem.Copy(new B09Obj2(Mem.U32(0x80103FCCu)).vE4.P, new B09SrcObj(a).v180.P, 12);
+            new B09Obj2(Mem.U32(0x80103FCCu)).unkFC_Set(new B09SrcObj(a).type);
+            new B09Obj2(Mem.U32(0x80103FCCu)).unk100_Set(new B09SrcObj(a).unkC0);
         }
     }
 

@@ -10,15 +10,15 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alResampleNew", (uint)f, (uint)hp);
-            alFilterNew(f, 0x002BA640u, 0x002BA800u, 1);
-            Mem.Set((f + 20u), alHeapDBAlloc(0u, 0, hp, 1, 32));
-            Mem.Set((f + 32u), 0);
-            Mem.Set((f + 36u), 1);
-            Mem.Set((f + 48u), 0);
-            Mem.Set((f + 28u), 0);
-            Mem.Set((f + 40u), 0u);
-            Mem.Set((f + 44u), 0u);
-            Mem.Set((f + 24u), 1.0f);
+            alFilterNew(new ALResampler(f).filter.P, 0x002BA640u, 0x002BA800u, 1);
+            new ALResampler(f).state_Set(alHeapDBAlloc(0u, 0, hp, 1, 32));
+            new ALResampler(f).delta_Set(0);
+            new ALResampler(f).first_Set(1);
+            new ALResampler(f).motion_Set(0);
+            new ALResampler(f).upitch_Set(0);
+            new ALResampler(f).ctrlList_Set(0u);
+            new ALResampler(f).ctrlTail_Set(0u);
+            new ALResampler(f).ratio_Set(1.0f);
         }
     }
 

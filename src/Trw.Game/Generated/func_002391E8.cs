@@ -17,9 +17,9 @@ public static partial class Game
                 Mem.Set(b, (byte)(0));
                 return;
             }
-            Mem.Set(r, (byte)(((int)(Mem.U8((o + 1312u))) & 248)));
-            Mem.Set(g, (byte)(((int)(Mem.U8((o + 1313u))) & 248)));
-            Mem.Set(b, (byte)(((int)(Mem.U8((o + 1314u))) & 248)));
+            Mem.Set(r, (byte)(((int)(new ObjRGB(o).r) & 248)));
+            Mem.Set(g, (byte)(((int)(new ObjRGB(o).g) & 248)));
+            Mem.Set(b, (byte)(((int)(new ObjRGB(o).b) & 248)));
         }
     }
 

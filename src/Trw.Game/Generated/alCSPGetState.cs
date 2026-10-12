@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alCSPGetState", (uint)seqp);
-            return Mem.S32((seqp + 44u));
+            return new ALCSPlayer(seqp).state;
         }
     }
 

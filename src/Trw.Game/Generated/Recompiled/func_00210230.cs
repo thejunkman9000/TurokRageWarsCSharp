@@ -70,7 +70,7 @@ public static partial class Game
                 Cpu.SetW(1, (uint)(int)Cpu.S(0));
                 Mem.Set((r17 + 148u), Cpu.W(1));
                 r4 = r19;
-                r5 = r18; r2 = func_0021035C(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r18; r2 = (uint)func_0021035C(r4, (int)r5);
                 Mem.Set((r17 + 108u), r2);
                 r17 = r17 + 4u;
                 r18 = r18 + 1u;

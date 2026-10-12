@@ -11,13 +11,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00444A90", (uint)a, (uint)b);
             byte x = 0;
-            Mem.Set(0x801462DCu, (ushort)(func_0044252C((uint)(b), (int)(Mem.U16(0x801462DCu)), 16, 0, 256, 0)));
+            new O06D_v5(0x801462DCu).unk0_Set((ushort)(func_0044252C((uint)(b), (int)(new O06D_v5(0x801462DCu).unk0), 16, 0, 256, 0)));
             x = (byte)(255);
-            if (((int)(Mem.U16(0x801462DCu)) < 255))
+            if (((int)(new O06D_v5(0x801462DCu).unk0) < 255))
             {
-                x = (byte)(Mem.U16(0x801462DCu));
+                x = (byte)(new O06D_v5(0x801462DCu).unk0);
             }
-            Mem.Set((0x801462DCu + 2u), x);
+            new O06D_v5(0x801462DCu).unk2_Set(x);
             return 0;
         }
     }

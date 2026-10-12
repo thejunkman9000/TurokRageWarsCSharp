@@ -16,13 +16,13 @@ public static partial class Game
                 float num = 0f;
                 float den = 0f;
                 float t = 0f;
-                Mem.Set(_fp, (Mem.F32(q) - Mem.F32(p)));
-                Mem.Set((_fp + 4u), (Mem.F32((q + 4u)) - Mem.F32((p + 4u))));
-                Mem.Set((_fp + 8u), (Mem.F32((q + 8u)) - Mem.F32((p + 8u))));
-                num = (((nx * Mem.F32(p)) + (ny * Mem.F32((p + 4u)))) + (nz * Mem.F32((p + 8u))));
+                new Vec3f(_fp).x_Set((new Vec3f(q).x - new Vec3f(p).x));
+                new Vec3f(_fp).y_Set((new Vec3f(q).y - new Vec3f(p).y));
+                new Vec3f(_fp).z_Set((new Vec3f(q).z - new Vec3f(p).z));
+                num = (((nx * new Vec3f(p).x) + (ny * new Vec3f(p).y)) + (nz * new Vec3f(p).z));
                 num = (num + d);
                 num = (-num);
-                den = (((nx * Mem.F32(_fp)) + (ny * Mem.F32((_fp + 4u)))) + (nz * Mem.F32((_fp + 8u))));
+                den = (((nx * new Vec3f(_fp).x) + (ny * new Vec3f(_fp).y)) + (nz * new Vec3f(_fp).z));
                 if (((den < 0.00100000005f) && (den > (-0.00100000005f))))
                 {
                     t = 0.5f;
@@ -31,9 +31,9 @@ public static partial class Game
                 {
                     t = (num / den);
                 }
-                Mem.Set(@out, (Mem.F32(p) + (t * Mem.F32(_fp))));
-                Mem.Set((@out + 4u), (Mem.F32((p + 4u)) + (t * Mem.F32((_fp + 4u)))));
-                Mem.Set((@out + 8u), (Mem.F32((p + 8u)) + (t * Mem.F32((_fp + 8u)))));
+                new Vec3f(@out).x_Set((new Vec3f(p).x + (t * new Vec3f(_fp).x)));
+                new Vec3f(@out).y_Set((new Vec3f(p).y + (t * new Vec3f(_fp).y)));
+                new Vec3f(@out).z_Set((new Vec3f(p).z + (t * new Vec3f(_fp).z)));
             }
         }
         finally { Stack.Free(12); }

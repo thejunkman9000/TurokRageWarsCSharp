@@ -2,6 +2,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Trw.Platform\Trw.Platform.csproj" />
+    <ProjectReference Include="..\Trw.Structs\Trw.Structs.csproj" />
+    <!-- typed struct views live in their own assembly (Trw.Structs) -->
+    <Compile Remove="Generated\Structs\**" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
@@ -16,6 +19,16 @@
     <InvariantGlobalization>true</InvariantGlobalization>
     <MonoGamePlatform>DesktopGL</MonoGamePlatform>
   </PropertyGroup>
+
+  <!-- Online play (docs/NETPLAY.md): accounts and lobbies through the jsNetwork master (D:\Projects\jsLibs, a sibling checkout; override with
+       the JsLibsDir property overrides the path). Without it the game still builds: netplay then works only with direct connections (net-direct / net-listen switches). -->
+  <PropertyGroup>
+    <JsLibsDir Condition="'$(JsLibsDir)' == ''">$(MSBuildThisFileDirectory)..\..\..\jsLibs\</JsLibsDir>
+    <DefineConstants Condition="Exists('$(JsLibsDir)jsNetwork.Client\jsNetwork.Client.csproj')">$(DefineConstants);TRW_JSNETWORK</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup Condition="Exists('$(JsLibsDir)jsNetwork.Client\jsNetwork.Client.csproj')">
+    <ProjectReference Include="$(JsLibsDir)jsNetwork.Client\jsNetwork.Client.csproj" />
+  </ItemGroup>
 
 </Project>
 

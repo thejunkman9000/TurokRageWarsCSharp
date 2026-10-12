@@ -13,7 +13,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0024BCF8", (uint)a);
-                uint b = Mem.U32((a + 20u));
+                uint b = new Obj(a).unk14_;
                 float t = 0f;
                 float hi = 0f;
                 float t2 = 0f;
@@ -24,36 +24,36 @@ public static partial class Game
                 {
                     return 0;
                 }
-                t = Mem.F32((Mem.U32((b + 8u)) + 4u));
-                if (!(Mem.F32((Mem.U32((b + 4u)) + 4u)) <= t))
+                t = new B11Box(b).p8.y;
+                if (!(new B11Box(b).p4.y <= t))
                 {
-                    t = Mem.F32((Mem.U32((b + 4u)) + 4u));
+                    t = new B11Box(b).p4.y;
                 }
-                hi = Mem.F32((Mem.U32((b + 12u)) + 4u));
+                hi = new B11Box(b).pC.y;
                 if (!(t <= hi))
                 {
                     hi = t;
                 }
-                t2 = Mem.F32((Mem.U32((b + 8u)) + 4u));
-                if (!(t2 <= Mem.F32((Mem.U32((b + 4u)) + 4u))))
+                t2 = new B11Box(b).p8.y;
+                if (!(t2 <= new B11Box(b).p4.y))
                 {
-                    t2 = Mem.F32((Mem.U32((b + 4u)) + 4u));
+                    t2 = new B11Box(b).p4.y;
                 }
-                lo = Mem.F32((Mem.U32((b + 12u)) + 4u));
+                lo = new B11Box(b).pC.y;
                 if (!(lo <= t2))
                 {
                     lo = t2;
                 }
-                if ((hi < Mem.F32(((a + 8u) + 4u))))
+                if ((hi < new Obj(a).pos.y))
                 {
                     return 0;
                 }
-                if ((Mem.F32(((a + 8u) + 4u)) < lo))
+                if ((new Obj(a).pos.y < lo))
                 {
                     return 0;
                 }
-                s = sinf(Mem.F32((a + 108u)));
-                c = cosf(Mem.F32((a + 108u)));
+                s = sinf(new Obj(a).unk6C.f);
+                c = cosf(new Obj(a).unk6C.f);
                 func_00275C38(_fp, b);
                 return ((((Mem.F32((_fp + (uint)(0 * 4))) * (-s)) + (Mem.F32((_fp + (uint)(2 * 4))) * (-c))) < 0.0f) ? 1 : 0);
             }

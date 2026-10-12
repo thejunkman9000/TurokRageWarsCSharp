@@ -10,20 +10,20 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002AC96C_fx", (uint)e, (uint)f);
-            uint p = Mem.U32(f);
-            int b = (int)(Mem.S16((f + 6u)));
-            int c = (int)(Mem.S16((f + 8u)));
-            if ((Mem.S32((e + 1500u)) != 0))
+            uint p = new Fx24(f).unk0_;
+            int b = (int)(new Fx24(f).unk6);
+            int c = (int)(new Fx24(f).unk8);
+            if ((new Ent24(e).unk5DC != 0))
             {
-                func_0023919C((uint)(Mem.S32((e + 1500u))), (sbyte)(128), (sbyte)(50), (sbyte)(50), (sbyte)(75), (sbyte)(0), (sbyte)(0), (sbyte)(2));
+                func_0023919C((uint)(new Ent24(e).unk5DC), (sbyte)(128), (sbyte)(50), (sbyte)(50), (sbyte)(75), (sbyte)(0), (sbyte)(0), (sbyte)(2));
                 if ((p != 0u))
                 {
-                    func_00237E70(0x80145088u, (uint)(Mem.S32((e + 1500u))), (uint)(Mem.S32(p)), default(uint));
+                    func_00237E70(0x80145088u, (uint)(new Ent24(e).unk5DC), (uint)(Mem.S32(p)));
                 }
             }
             if ((b != 0))
             {
-                func_0025DE74((int)((uint)(b)), C.Tmp((uint)(Mem.S32((e + 8u))), (uint)(Mem.S32((e + 12u))), (uint)(Mem.S32((e + 16u)))), (int)((uint)(0)), (int)((uint)((-1))));
+                func_0025DE74((int)((uint)(b)), C.Tmp((uint)(new Ent24(e).unk8), (uint)(new Ent24(e).unkC), (uint)(new Ent24(e).unk10)), (int)((uint)(0)), (int)((uint)((-1))));
             }
             if ((c != 0))
             {
@@ -42,41 +42,41 @@ public static partial class Game
             int idx = 0;
             uint cfg = 0u;
             int a1 = 0;
-            a1 = (int)(Mem.S16((f + 14u)));
+            a1 = (int)(new Fx24(f).unkE);
             r = 0;
-            if (!(((((a1 == (-1)) || ((int)(Mem.S8(((e + 1538u) + (uint)(Mem.S16((f + 12u)) * 2)))) == 0)) || (C.Seq((object?)((r = func_00222BC4(e, a1, (int)(Mem.S16((f + 16u)))))), ((r != 0) ? 1 : 0)) != 0)) || ((((int)(Mem.U8((0x801462C8u + 29u))) != 0) && ((int)(Mem.U8((Mem.U32((e + 1496u)) + 143u))) != 0)) && (Mem.S32((0x801462C8u + 1580u)) != 0))))) goto _f0;
+            if (!(((((a1 == (-1)) || ((int)(new Ent24(e).slot[(int)(new Fx24(f).unkC)].a) == 0)) || (C.Seq((object?)((r = func_00222BC4(e, a1, (int)(new Fx24(f).unk10)))), ((r != 0) ? 1 : 0)) != 0)) || ((((int)(new Glob24(0x801462C8u).unk1D) != 0) && ((int)(new Ent24(e).unk5D8.unk8F) != 0)) && (new Glob24(0x801462C8u).unk62C != 0))))) goto _f0;
             if (!(((int)(Mem.U8(0x801462E5u)) != 0))) goto _f1;
-            if (!(((Mem.U32((Mem.U32((0x800D052Cu + (uint)(Mem.S16((f + 12u)) * 4))) + 20u)) & (uint)(8)) == (uint)(0)))) goto _f2;
+            if (!(((new Cfg24(Mem.U32((0x800D052Cu + (uint)(new Fx24(f).unkC * 4)))).unk14 & (uint)(8)) == (uint)(0)))) goto _f2;
             return 0;
             _f2: ;
             goto L_B;
             _f1: ;
-            if (!(((Mem.U32((Mem.U32((0x800D052Cu + (uint)(Mem.S16((f + 12u)) * 4))) + 20u)) & (uint)(8)) != (uint)(0)))) goto _f3;
+            if (!(((new Cfg24(Mem.U32((0x800D052Cu + (uint)(new Fx24(f).unkC * 4)))).unk14 & (uint)(8)) != (uint)(0)))) goto _f3;
             return 0;
             _f3: ;
             L_B: ;
-            old = (int)(Mem.S8(((e + 1538u) + (uint)(Mem.S16((f + 12u)) * 2))));
-            Mem.Set(((e + 1538u) + (uint)(Mem.S16((f + 12u)) * 2)), (sbyte)(1));
-            idx = (int)(Mem.S16((f + 12u)));
+            old = (int)(new Ent24(e).slot[(int)(new Fx24(f).unkC)].a);
+            new Ent24(e).slot[(int)(new Fx24(f).unkC)].a_Set((sbyte)(1));
+            idx = (int)(new Fx24(f).unkC);
             cfg = Mem.U32((0x800D052Cu + (uint)(idx * 4)));
-            if (!(((int)(Mem.S16((e + 1582u))) < idx))) goto _f4;
-            if (!(((Mem.U32((e + 56u)) & (uint)(4096)) != 0u))) goto _f5;
-            if (!(((Mem.U32((cfg + 20u)) & (uint)(2)) != 0u))) goto _f6;
+            if (!(((int)(new Ent24(e).unk62E) < idx))) goto _f4;
+            if (!(((new Ent24(e).unk38 & (uint)(4096)) != 0u))) goto _f5;
+            if (!(((new Cfg24(cfg).unk14 & (uint)(2)) != 0u))) goto _f6;
             goto L_C;
             _f6: ;
             goto _f7;
             _f5: ;
-            if (!(((Mem.U32((cfg + 20u)) & (uint)(1)) != 0u))) goto _f8;
+            if (!(((new Cfg24(cfg).unk14 & (uint)(1)) != 0u))) goto _f8;
             L_C: ;
             if (!((((int)(Mem.U8(0x801462E5u)) == 0) && (old == 0)))) goto _f9;
-            Mem.Set((e + 1904u), (ushort)(Mem.S16((f + 12u))));
+            new Ent24(e).unk770_Set((ushort)(new Fx24(f).unkC));
             _f9: ;
             _f8: ;
             _f7: ;
             _f4: ;
             func_002AC96C_fx(e, f);
             if (!((r == 0))) goto _f10;
-            func_00222BC4(e, (int)(Mem.S16((f + 14u))), (int)(Mem.S16((f + 16u))));
+            func_00222BC4(e, (int)(new Fx24(f).unkE), (int)(new Fx24(f).unk10));
             _f10: ;
             return 1;
             _f0: ;

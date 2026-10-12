@@ -68,7 +68,7 @@ public static partial class Game
                 func_00404E28((int)r4);
                 r4 = r16; r2 = (uint)func_00404F04((int)r4);
                 { bool c_ = r2 != 0; r18 = (uint)1; if (c_) goto L_L004071D4; }
-                r4 = r17; r2 = func_00405F48(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r17; func_00405F48(r4);
                  goto L_L00407278;
                 L_L004071D4: ;
                 r1 = 2148859904u;

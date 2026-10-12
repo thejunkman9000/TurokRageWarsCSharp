@@ -13,7 +13,7 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 6); ++i)
             {
-                if (!((((Mem.F32((pl + (uint)(i * 16))) * Mem.F32(p)) + (Mem.F32(((pl + (uint)(i * 16)) + 4u)) * Mem.F32((p + 4u)))) + (Mem.F32(((pl + (uint)(i * 16)) + 8u)) * Mem.F32((p + 8u)))) <= Mem.F32(((pl + (uint)(i * 16)) + 12u))))
+                if (!((((new B21Plane((pl + (uint)(i * 16))).x * new Vec3f(p).x) + (new B21Plane((pl + (uint)(i * 16))).y * new Vec3f(p).y)) + (new B21Plane((pl + (uint)(i * 16))).z * new Vec3f(p).z)) <= new B21Plane((pl + (uint)(i * 16))).w))
                 {
                     return 0;
                 }

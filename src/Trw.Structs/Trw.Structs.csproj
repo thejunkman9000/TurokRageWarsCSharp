@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- typed struct views (Generated/Structs): a separate assembly so that the C# compiler handles the 17k tiny view types and the game code separately -->
+  <ItemGroup>
+    <ProjectReference Include="..\Trw.Platform\Trw.Platform.csproj" />
+    <Compile Include="..\Trw.Game\Generated\Structs\*.cs" />
+  </ItemGroup>
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <NoWarn>$(NoWarn);CS0162;CS0164;CS0168;CS0219;CS0169;CS0649;CS8981;CS8669;CS0108</NoWarn>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <RootNamespace>Trw.Game</RootNamespace>
+  </PropertyGroup>
+</Project>

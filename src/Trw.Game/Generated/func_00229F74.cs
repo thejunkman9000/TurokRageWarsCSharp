@@ -15,29 +15,29 @@ public static partial class Game
             uint o2 = 0u;
             float x = 0f;
             float y = 0f;
-            o = Mem.U32(b);
+            o = new HitB6(b).unk0_;
             if ((o != 0u))
             {
-                if (((int)(Mem.U8(o)) != 1))
+                if (((int)(new Plr(o).unk0) != 1))
                 {
-                    if (((int)(Mem.U8(o)) == 2))
+                    if (((int)(new Plr(o).unk0) == 2))
                     {
-                        o2 = Mem.U32((o + 300u));
-                        if (((o2 != 0u) && ((int)(Mem.U8(o2)) == 1)))
+                        o2 = new Plr(o).unk12C_;
+                        if (((o2 != 0u) && ((int)(new Plr(o2).unk0) == 1)))
                         {
-                            if (((Mem.U32((o2 + 256u)) & (uint)(3145728)) != 0u))
+                            if (((new Plr(o2).flags100 & (uint)(3145728)) != 0u))
                             {
                                 tgt = o2;
                                 if ((tgt == a))
                                 {
-                                    Mem.Set((b + 4u), (int)(((((float)(Mem.S32((b + 4u))) * Mem.F32(0x800C7DB4u)) * Mem.F32(0x800C7DB8u)) * Mem.F32(0x800C7DBCu))));
+                                    new HitB6(b).unk4_Set((int)(((((float)(new HitB6(b).unk4) * Mem.F32(0x800C7DB4u)) * Mem.F32(0x800C7DB8u)) * Mem.F32(0x800C7DBCu))));
                                 }
                             }
                             else
                             {
-                                if (((int)(Mem.U16((o2 + 228u))) == 1036))
+                                if (((int)(new Plr(o2).unkE4) == 1036))
                                 {
-                                    tgt = Mem.U32((o2 + 472u));
+                                    tgt = new Plr(o2).unk1D8_;
                                 }
                             }
                         }
@@ -45,9 +45,9 @@ public static partial class Game
                 }
                 else
                 {
-                    if (((Mem.U32((o + 256u)) & (uint)(3145728)) != 0u))
+                    if (((new Plr(o).flags100 & (uint)(3145728)) != 0u))
                     {
-                        tgt = Mem.U32((o + 472u));
+                        tgt = new Plr(o).unk1D8_;
                     }
                 }
             }
@@ -57,32 +57,32 @@ public static partial class Game
             }
             if ((tgt != 0u))
             {
-                if ((Mem.S32((tgt + 5200u)) != 0))
+                if ((new Plr(tgt).unk1450 != 0))
                 {
-                    switch ((int)(Mem.U8((Mem.U32((tgt + 1496u)) + 147u))))
+                    switch ((int)(new Plr(tgt).stats.unk93))
                     {
                     case 2:
                         break;
                     default:
-                        Mem.Set((Mem.U32((tgt + 1496u)) + 147u), (byte)(0));
+                        new Plr(tgt).stats.unk93_Set((byte)(0));
                         goto case 0;
                     case 0:
-                        x = ((float)(Mem.S32((b + 4u))) * Mem.F32(0x800C7DC0u));
+                        x = ((float)(new HitB6(b).unk4) * Mem.F32(0x800C7DC0u));
                         y = Mem.F32(0x800C7DC4u);
                         x = (x * y);
                         goto L_common;
                     case 1:
-                        x = ((float)(Mem.S32((b + 4u))) * Mem.F32(0x800C7DC8u));
+                        x = ((float)(new HitB6(b).unk4) * Mem.F32(0x800C7DC8u));
                         y = Mem.F32(0x800C7DCCu);
                         x = (x * y);
                         L_common: ;
-                        Mem.Set((b + 4u), (int)((x * Mem.F32(0x800C7DD0u))));
+                        new HitB6(b).unk4_Set((int)((x * Mem.F32(0x800C7DD0u))));
                         break;
                     }
                 }
-                if (((((Mem.S32((0x801468A0u + 36u)) != 0) && ((int)(Mem.U8((0x801468A0u + (uint)(-1456)))) == 0)) && ((Mem.S32((tgt + 5200u)) == 0) || (Mem.S32((a + 5200u)) == 0))) && ((int)(Mem.U8((Mem.U32((a + 1496u)) + 146u))) == (int)(Mem.U8((Mem.U32((tgt + 1496u)) + 146u))))))
+                if (((((new GameB6(0x801468A0u).unk24 != 0) && ((int)(Mem.U8((0x801468A0u + (uint)(-1456)))) == 0)) && ((new Plr(tgt).unk1450 == 0) || (new Plr(a).unk1450 == 0))) && ((int)(new Plr(a).stats.unk92) == (int)(new Plr(tgt).stats.unk92))))
                 {
-                    Mem.Set((b + 4u), 0);
+                    new HitB6(b).unk4_Set(0);
                 }
             }
         }

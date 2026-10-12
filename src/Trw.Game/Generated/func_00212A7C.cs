@@ -10,34 +10,34 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00212A7C", (uint)actor);
-            uint b = Mem.U32((Mem.U32((actor + 472u)) + 5204u));
+            uint b = new ActorB(actor).owner.brain_;
             uint L = 0x8013B364u;
             uint r = 0u;
             int i = 0;
             int busy = 0;
             float range = 0f;
-            if ((Mem.S32((b + 12u)) == (-1)))
+            if ((new BrainB(b).unkC == (-1)))
             {
                 func_0020D014(L);
                 func_0020D1FC(L);
                 range = Mem.F32(0x800C71BCu);
-                for (i = 0; (i < Mem.S32((L + 4u))); ++i)
+                for (i = 0; (i < new EntList(L).count); ++i)
                 {
                     r = func_0020C994(L, i);
-                    if (((func_0027272C((Mem.U32(b) + 8u), r) < range) && !((Mem.U32((r + (uint)12)) & (uint)(70254592)) != 0u)))
+                    if (((func_0027272C(new BrainB(b).actor.pos.P, r) < range) && !((Mem.U32((r + (uint)12)) & (uint)(70254592)) != 0u)))
                     {
                         func_0020D220(L, i);
                     }
                 }
-                func_0020D0CC(L, Mem.S32((b + 4u)));
+                func_0020D0CC(L, new BrainB(b).unk4);
                 func_0020D114(L, (b + 20u), 4);
-                Mem.Set((b + 40u), Mem.Set((b + 12u), Mem.S32((L + 24u))));
+                new BrainB(b).unk28_Set(new BrainB(b).unkC_Set(new EntList(L).sel));
             }
             func_00211020(b, default(uint), default(uint), default(uint));
-            func_00208410(b, default(uint), default(uint), default(uint));
-            func_00208AAC(b, default(uint), default(uint), default(uint));
-            busy = (((Mem.U32((Mem.U32(b) + 56u)) & (uint)(12288)) != (uint)(0)) ? 1 : 0);
-            if (((Mem.S32((b + 4u)) == Mem.S32((b + 12u))) && !(busy != 0)))
+            func_00208410(b);
+            func_00208AAC(b);
+            busy = (((new BrainB(b).actor.flags38 & (uint)(12288)) != (uint)(0)) ? 1 : 0);
+            if (((new BrainB(b).unk4 == new BrainB(b).unkC) && !(busy != 0)))
             {
                 func_0020FA10(b);
             }

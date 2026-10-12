@@ -26,7 +26,7 @@ public static partial class Game
                 r4 = (uint)456;
                 Mem.Set((r29 + 100u), r31);
                 Mem.Set((r29 + 92u), r17);
-                Mem.Set((r29 + 88u), r16); r2 = func_00252FFC(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r29 + 88u), r16); r2 = func_00252FFC(r4);
                 r4 = r18;
                 r5 = r0;
                 r1 = 2148401152u;
@@ -139,7 +139,7 @@ public static partial class Game
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 22576u));
                 r4 = Mem.U32((r2 + 148u));
-                r2 = func_004251F4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = (uint)func_004251F4((int)r4);
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 22576u));
                 r4 = r2;
@@ -277,7 +277,7 @@ public static partial class Game
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 22576u));
                 r4 = Mem.U32((r2 + 148u));
-                r2 = func_00425854(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = (uint)func_00425854((int)r4);
                 { bool c_ = (int)r2 < 0;  if (c_) goto L_L004382FC; }
                 r4 = r2; r2 = (uint)func_0041F1B0((int)r4);
                 r3 = r2 << 3;

@@ -10,13 +10,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alSndpDeallocate", (uint)sndp, (uint)track);
-            uint update = (uint)((((uint)(track) * 48u) + (uint)((int)(Mem.U32((sndp + 64u))))));
-            if ((Mem.S32((update + 40u)) == 0))
+            uint update = (uint)((((uint)(track) * 48u) + (uint)((int)(new ALSndPlayer(sndp).sndState_))));
+            if ((new ALSoundState(update).state == 0))
             {
-                Mem.Set((update + 28u), 0u);
-                if ((Mem.S32((sndp + 60u)) == (int)(track)))
+                new ALSoundState(update).sound__Set(0u);
+                if ((new ALSndPlayer(sndp).target == (int)(track)))
                 {
-                    Mem.Set((sndp + 60u), (-1));
+                    new ALSndPlayer(sndp).target_Set((-1));
                 }
             }
         }

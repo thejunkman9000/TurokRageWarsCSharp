@@ -15,7 +15,7 @@ public static partial class Game
             {
                 return 0u;
             }
-            memcpy(0x80153FE0u, (((g + 22u) + (uint)(b * 840)) + (uint)(c * 42)), (uint)(42));
+            memcpy(0x80153FE0u, ((new O04Grid(g).tbl.P + (uint)(b * 840)) + (uint)(c * 42)), (uint)(42));
             return 0x80153FE0u;
         }
     }

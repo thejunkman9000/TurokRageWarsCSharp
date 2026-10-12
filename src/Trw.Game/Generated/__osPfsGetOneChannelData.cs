@@ -21,11 +21,11 @@ public static partial class Game
                     ptr += 1u;
                 }
                 Mem.Copy(_fp, ptr, 6);
-                Mem.Set((data + 3u), (byte)((((int)(Mem.U8((_fp + 1u))) & 192) >> (int)4)));
-                if (((int)(Mem.U8((data + 3u))) == 0))
+                new OSContStatus(data).errno_Set((byte)((((int)(new PfsRespFormat(_fp).rxsize) & 192) >> (int)4)));
+                if (((int)(new OSContStatus(data).errno) == 0))
                 {
-                    Mem.Set(data, (ushort)((((int)(Mem.U8((_fp + 4u))) << (int)8) | (int)(Mem.U8((_fp + 3u))))));
-                    Mem.Set((data + 2u), Mem.U8((_fp + 5u)));
+                    new OSContStatus(data).type_Set((ushort)((((int)(new PfsRespFormat(_fp).typel) << (int)8) | (int)(new PfsRespFormat(_fp).typeh))));
+                    new OSContStatus(data).status_Set(new PfsRespFormat(_fp).status);
                 }
             }
         }

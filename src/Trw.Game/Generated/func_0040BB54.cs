@@ -14,17 +14,17 @@ public static partial class Game
             {
             default:
             case 0:
-                Mem.Set((item + 20u), 0x800D7A08u);
+                new O01Item(item).unk14__Set(0x800D7A08u);
                 break;
             case 3:
-                Mem.Set((item + 20u), 0x800D7A08u);
+                new O01Item(item).unk14__Set(0x800D7A08u);
                 break;
             case 4:
-                Mem.Set((item + 20u), 0x800D7A08u);
+                new O01Item(item).unk14__Set(0x800D7A08u);
                 break;
             case 1:
             case 2:
-                Mem.Set((item + 20u), 0x800D7A00u);
+                new O01Item(item).unk14__Set(0x800D7A00u);
                 break;
             }
             return 0;

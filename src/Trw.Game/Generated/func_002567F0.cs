@@ -23,7 +23,7 @@ public static partial class Game
             func_00255090(0x8010A248u, 3);
             func_00256220(0x801051B8u, 4);
             func_0023B9A0();
-            func_00250E10((uint)(0), (uint)(5), default(uint), default(uint));
+            func_00250E10(0, 5);
         }
     }
 

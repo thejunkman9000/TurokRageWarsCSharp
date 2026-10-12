@@ -13,11 +13,11 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0024E58C", (uint)a, (uint)b, (uint)c);
-                Mem.Set(_fp, Mem.F32(b));
-                Mem.Set((_fp + 4u), (float)(0));
-                Mem.Set((_fp + 8u), Mem.F32((b + 8u)));
+                new Vec3f(_fp).x_Set(new Vec3f(b).x);
+                new Vec3f(_fp).y_Set((float)(0));
+                new Vec3f(_fp).z_Set(new Vec3f(b).z);
                 func_0024E78C(a, _fp, c, (_fp + 12u));
-                Mem.Set((c + 4u), func_00275E44(Mem.U32((_fp + 12u)), Mem.F32(c), Mem.F32((c + 8u))));
+                new Vec3f(c).y_Set(func_00275E44(Mem.U32((_fp + 12u)), new Vec3f(c).x, new Vec3f(c).z));
             }
         }
         finally { Stack.Free(16); }

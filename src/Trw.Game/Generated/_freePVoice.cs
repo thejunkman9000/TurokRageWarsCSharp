@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("_freePVoice", (uint)drvr, (uint)pvoice);
-            alUnlink(pvoice);
-            alLink(pvoice, (drvr + 20u));
+            alUnlink(new ALPVoice(pvoice).node.P);
+            alLink(new ALPVoice(pvoice).node.P, new ALSynth(drvr).pLameList.P);
         }
     }
 

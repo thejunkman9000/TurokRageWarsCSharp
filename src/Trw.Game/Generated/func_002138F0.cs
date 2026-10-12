@@ -22,32 +22,32 @@ public static partial class Game
                 float c = 0f;
                 float f = 0f;
                 int v = 0;
-                Mem.Set((s + 12u), (-1));
-                Mem.Set((s + 256u), (byte)(0));
-                Mem.Set((s + 258u), (short)((-1)));
+                new StateB(s).unkC_Set((-1));
+                new StateB(s).unk100_Set((byte)(0));
+                new StateB(s).unk102_Set((short)((-1)));
                 c = a;
                 if ((def != 0u))
                 {
-                    t1 = (int)(Mem.S8((def + 18u)));
-                    t0 = (int)(Mem.S8((def + 14u)));
-                    a3 = (int)(Mem.S8((def + 16u)));
-                    switch (Mem.S32(def))
+                    t1 = (int)(new DefC_v3(def).unk12);
+                    t0 = (int)(new DefC_v3(def).unkE);
+                    a3 = (int)(new DefC_v3(def).unk10);
+                    switch (new DefC_v3(def).type)
                     {
                     case 1:
-                        v = Mem.S32((def + 24u));
+                        v = new DefC_v3(def).unk18;
                         c = (float)((uint)(v));
-                        a = (float)(Mem.U8((def + 65u)));
-                        b = (float)(Mem.U8((def + 64u)));
+                        a = (float)(new DefC_v3(def).unk41);
+                        b = (float)(new DefC_v3(def).unk40);
                         break;
                     case 4:
-                        v = Mem.S32((def + 24u));
+                        v = new DefC_v3(def).unk18;
                         c = (float)((uint)(v));
                         break;
                     case 7:
                         c = (float)(Mem.S16((def + (uint)24)));
                         break;
                     }
-                    if (((Mem.S32(def) == 1) || (Mem.S32(def) == 4)))
+                    if (((new DefC_v3(def).type == 1) || (new DefC_v3(def).type == 4)))
                     {
                         switch (Mem.S32(0x801462D0u))
                         {
@@ -67,14 +67,14 @@ public static partial class Game
                         }
                     }
                 }
-                Mem.Set((sp + 3u), (sbyte)(t1));
-                Mem.Set((sp + 1u), (sbyte)(t0));
-                Mem.Set((sp + 2u), (sbyte)(a3));
-                Mem.Set((s + 4u), (int)(c));
-                Mem.Set((s + 16u), (sbyte)((int)(a)));
-                Mem.Set((s + 204u), (sbyte)((int)(b)));
-                Mem.Set((s + 4u), (Mem.S32((s + 4u)) << (int)8));
-                Mem.Set((s + 8u), Mem.S32((s + 4u)));
+                new SpawnTail(sp).unk3_Set((sbyte)(t1));
+                new SpawnTail(sp).unk1_Set((sbyte)(t0));
+                new SpawnTail(sp).unk2_Set((sbyte)(a3));
+                new StateB(s).unk4_Set((int)(c));
+                new StateB(s).unk10_Set((sbyte)((int)(a)));
+                new StateB(s).unkCC_Set((sbyte)((int)(b)));
+                new StateB(s).unk4_Set((new StateB(s).unk4 << (int)8));
+                new StateB(s).unk8_Set(new StateB(s).unk4);
             }
         }
         finally { Stack.Free(12); }

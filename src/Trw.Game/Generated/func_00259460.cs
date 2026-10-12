@@ -18,32 +18,32 @@ public static partial class Game
             uint v = 0u;
             short idx = 0;
             int old = 0;
-            func_00258760(Mem.U32(q));
-            ids = (Mem.U32(q) + 220u);
-            player = (Mem.U32(q) + 132u);
-            bank = (uint)(Mem.S32((Mem.U32((Mem.U32(q) + 124u)) + (uint)(3 * 4))));
-            for (n = Mem.U32(((q + 4u) + 4u)); (n != (q + 4u)); n = next)
+            func_00258760(new SndQueue(q).owner_);
+            ids = new SndMgr(new SndQueue(q).owner_).snd.P;
+            player = new SndMgr(new SndQueue(q).owner_).player.P;
+            bank = (uint)(Mem.S32((new SndMgr(new SndQueue(q).owner_).unk7C_ + (uint)(3 * 4))));
+            for (n = new SndQueue(q).active.link.next_; (n != new SndQueue(q).active.P); n = next)
             {
-                next = Mem.U32((n + 4u));
-                if ((Mem.S32(((n + 8u) + 20u)) != 0))
+                next = new SndNode(n).link.next_;
+                if ((new SndNode(n).body.unk14 != 0))
                 {
-                    if ((Mem.Set(((n + 8u) + 20u), (int)(Mem.S32(((n + 8u) + 20u)) - 1)) == 0))
+                    if ((new SndNode(n).body.unk14_Set((int)(new SndNode(n).body.unk14 - 1)) == 0))
                     {
-                        Mem.Set(((n + 8u) + 16u), Mem.S32((Mem.U32(q) + 260u)));
-                        Mem.Set(((n + 8u) + 64u), (Mem.Set((Mem.U32(q) + 264u), (int)(Mem.S32((Mem.U32(q) + 264u)) + 1)) - 1));
-                        Mem.Set(((n + 8u) + 160u), 0);
+                        new SndNode(n).body.unk10_Set(new SndMgr(new SndQueue(q).owner_).unk104);
+                        new SndNode(n).body.unk40_Set((new SndMgr(new SndQueue(q).owner_).unk108_Set((int)(new SndMgr(new SndQueue(q).owner_).unk108 + 1)) - 1));
+                        new SndNode(n).body.unkA0_Set(0);
                     }
                     continue;
                 }
-                if (((Mem.S32((Mem.U32(q) + 260u)) - Mem.S32(((n + 8u) + 16u))) >= 16))
+                if (((new SndMgr(new SndQueue(q).owner_).unk104 - new SndNode(n).body.unk10) >= 16))
                 {
-                    Mem.Set((Mem.U32(n) + 4u), next);
-                    Mem.Set(Mem.U32((n + 4u)), Mem.U32(n));
-                    func_00259460_SndLink_AddTail((q + 216u), n);
+                    new SndNode(n).link.prev.next__Set(next);
+                    new SndNode(n).link.next.prev__Set(new SndNode(n).link.prev_);
+                    func_00259460_SndLink_AddTail(new SndQueue(q).free.link.P, new SndNode(n).link.P);
                 }
                 else
                 {
-                    idx = (short)((int)(func_0025B054((Mem.U32(q) + 7608u), (uint)(Mem.S16(((n + 8u) + 60u))), (uint)(Mem.S16(((n + 8u) + 58u))), (uint)(Mem.S16(((n + 8u) + 56u))))));
+                    idx = (short)(func_0025B054(new SndMgr(new SndQueue(q).owner_).pool.P, (int)(new SndNode(n).body.unk3C), (int)(new SndNode(n).body.unk3A), new SndNode(n).body.unk38, 0));
                     if ((((int)(idx) == (-1)) || ((int)(idx) == 16)))
                     {
                         break;
@@ -53,26 +53,26 @@ public static partial class Game
                     {
                         break;
                     }
-                    Mem.Set((ids + (uint)(idx * 2)), alSndpAllocate(player, (uint)(Mem.S32(((bank + (uint)((int)(Mem.S16(((n + 8u) + 58u))) << (int)2)) + (uint)16)))));
+                    Mem.Set((ids + (uint)(idx * 2)), alSndpAllocate(player, (uint)(Mem.S32(((bank + (uint)((int)(new SndNode(n).body.unk3A) << (int)2)) + (uint)16)))));
                     if (((int)(Mem.S16((ids + (uint)(idx * 2)))) == old))
                     {
                         break;
                     }
-                    v = ((Mem.U32(q) + (uint)7612) + (uint)((int)(idx) * 204));
-                    memcpy(v, (n + 8u), (uint)(204));
-                    Mem.Set((v + 12u), Mem.S32(((n + 8u) + 64u)));
-                    Mem.Set((v + 8u), (int)(Mem.S16((ids + (uint)(idx * 2)))));
-                    Mem.Set((v + 16u), Mem.S32((Mem.U32(q) + 260u)));
-                    Mem.Set(v, (int)(idx));
-                    func_00257814(Mem.U32(q), (uint)(Mem.S32((v + 12u))), (uint)(0), (v + 68u));
-                    Mem.Set(((n + 8u) + 64u), old);
-                    Mem.Set(((n + 8u) + 56u), (short)(old));
-                    Mem.Set((Mem.U32(n) + 4u), Mem.U32((n + 4u)));
-                    Mem.Set(Mem.U32((n + 4u)), Mem.U32(n));
-                    func_00259460_SndLink_AddTail((q + 216u), n);
+                    v = ((new SndQueue(q).owner_ + (uint)7612) + (uint)((int)(idx) * 204));
+                    memcpy(v, new SndNode(n).body.P, (uint)(204));
+                    new SndVoice(v).unkC_Set(new SndNode(n).body.unk40);
+                    new SndVoice(v).unk8_Set((int)(Mem.S16((ids + (uint)(idx * 2)))));
+                    new SndVoice(v).unk10_Set(new SndMgr(new SndQueue(q).owner_).unk104);
+                    new SndVoice(v).idx_Set((int)(idx));
+                    func_00257814(new SndQueue(q).owner_, (uint)(new SndVoice(v).unkC), (uint)(0), new SndVoice(v).pos.P);
+                    new SndNode(n).body.unk40_Set(old);
+                    new SndNode(n).body.unk38_Set((short)(old));
+                    new SndNode(n).link.prev.next__Set(new SndNode(n).link.next_);
+                    new SndNode(n).link.next.prev__Set(new SndNode(n).link.prev_);
+                    func_00259460_SndLink_AddTail(new SndQueue(q).free.link.P, new SndNode(n).link.P);
                 }
             }
-            func_002587C4(Mem.U32(q));
+            func_002587C4(new SndQueue(q).owner_);
         }
     }
 
@@ -81,10 +81,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00259460_SndLink_AddTail", (uint)head, (uint)n);
-            Mem.Set(n, Mem.U32(head));
-            Mem.Set((n + 4u), head);
-            Mem.Set((Mem.U32(head) + 4u), n);
-            Mem.Set(head, n);
+            new SndLink(n).prev__Set(new SndLink(head).prev_);
+            new SndLink(n).next__Set(head);
+            new SndLink(head).prev.next__Set(n);
+            new SndLink(head).prev__Set(n);
         }
     }
 

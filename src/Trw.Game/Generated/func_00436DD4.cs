@@ -14,10 +14,10 @@ public static partial class Game
             func_0029A73C();
             if ((func_0029AA08() == 96))
             {
-                func_00436988(Mem.S32((Mem.U32(0x800E5690u) + 40u)));
+                func_00436988(new O05M90_v5(Mem.U32(0x800E5690u)).f28);
                 p = Mem.U32(0x800E5690u);
-                Mem.Set((p + 32u), (-1));
-                func_0041A4B0(Mem.U32(p), 2);
+                new O05M90_v5(p).f20_Set((-1));
+                func_0041A4B0(new O05M90_v5(p).f0, 2);
             }
             return 0;
         }

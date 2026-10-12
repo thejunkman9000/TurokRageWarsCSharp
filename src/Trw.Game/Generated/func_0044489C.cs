@@ -13,13 +13,13 @@ public static partial class Game
             switch ((int)(Mem.U8(0x801462E3u)))
             {
             case 0:
-                Mem.Set((a + 20u), 0x800D7604u);
+                new O06A_v2(a).unk14_Set(0x800D7604u);
                 break;
             case 1:
-                Mem.Set((a + 20u), 0x800D7608u);
+                new O06A_v2(a).unk14_Set(0x800D7608u);
                 break;
             case 2:
-                Mem.Set((a + 20u), 0x800D760Cu);
+                new O06A_v2(a).unk14_Set(0x800D760Cu);
                 break;
             }
             return 0;

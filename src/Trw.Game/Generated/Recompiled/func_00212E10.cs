@@ -103,9 +103,9 @@ public static partial class Game
                 r5 = r2; r2 = (uint)func_0020CB3C(r4, r5);
                 Mem.Set((r17 + 12u), r2);
                 L_L00212F8C: ;
-                r4 = r17; r2 = func_00208410(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r17; func_00208410(r4);
                 r4 = r17; r2 = func_00211020(r4, r5, r6, r7); r3 = Cpu.V1;
-                r4 = r17; r2 = func_00208AAC(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r17; func_00208AAC(r4);
                 r31 = Mem.U32((r29 + 28u));
                 r18 = Mem.U32((r29 + 24u));
                 r17 = Mem.U32((r29 + 20u));

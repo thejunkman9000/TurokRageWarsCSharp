@@ -11,10 +11,10 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0025BB5C", (uint)p);
             int i = 0;
-            uint v = (p + 4u);
+            uint v = new SndVoices(p).v.P;
             for (i = 16; (i >= 0); --i)
             {
-                Mem.Set((v + 80u), 0);
+                new SndVoice(v).unk50_Set(0);
                 v += 204u;
             }
         }

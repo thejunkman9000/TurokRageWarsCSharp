@@ -11,54 +11,54 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002228E4", (uint)p, (uint)s, (uint)x);
             float v = 0f;
-            if (((int)(Mem.U16((p + 1616u))) < 2))
+            if (((int)(new B05P7(p).state) < 2))
             {
-                Mem.Set((p + 1924u), Mem.F32(0x800C7938u));
+                new B05P7(p).f784_Set(Mem.F32(0x800C7938u));
                 return;
             }
-            v = Mem.F32((Mem.U32((s + 24u)) + 28u));
-            Mem.Set((p + 1924u), v);
-            if ((Mem.S32((p + 5200u)) != 0))
+            v = new B05Src7(s).def.unk1C;
+            new B05P7(p).f784_Set(v);
+            if ((new B05P7(p).unk1450 != 0))
             {
-                switch ((int)(Mem.U8((Mem.U32((p + 1496u)) + 147u))))
+                switch ((int)(new B05P7(p).stats.unk93))
                 {
                 case 2:
                     break;
                 default:
-                    Mem.Set((Mem.U32((p + 1496u)) + 147u), (byte)(0));
+                    new B05P7(p).stats.unk93_Set((byte)(0));
                     goto case 0;
                 case 0:
-                    Mem.Set((p + 1924u), (Mem.F32((p + 1924u)) * Mem.F32(0x800C793Cu)));
+                    new B05P7(p).f784_Set((new B05P7(p).f784 * Mem.F32(0x800C793Cu)));
                     break;
                 case 1:
-                    Mem.Set((p + 1924u), (v * Mem.F32(0x800C7940u)));
+                    new B05P7(p).f784_Set((v * Mem.F32(0x800C7940u)));
                     break;
                 }
-                if ((Mem.S32((p + 5200u)) != 0))
+                if ((new B05P7(p).unk1450 != 0))
                 {
-                    switch ((int)(Mem.U8((Mem.U32((p + 1496u)) + 147u))))
+                    switch ((int)(new B05P7(p).stats.unk93))
                     {
                     case 2:
                         break;
                     default:
-                        Mem.Set((Mem.U32((p + 1496u)) + 147u), (byte)(0));
+                        new B05P7(p).stats.unk93_Set((byte)(0));
                         goto case 0;
                     case 0:
-                        Mem.Set((p + 1924u), (Mem.F32((p + 1924u)) * Mem.F32(0x800C7944u)));
+                        new B05P7(p).f784_Set((new B05P7(p).f784 * Mem.F32(0x800C7944u)));
                         break;
                     case 1:
-                        Mem.Set((p + 1924u), (Mem.F32((p + 1924u)) * Mem.F32(0x800C7948u)));
+                        new B05P7(p).f784_Set((new B05P7(p).f784 * Mem.F32(0x800C7948u)));
                         break;
                     }
                 }
             }
-            if (((int)(Mem.U8((0x801462C8u + 29u))) != 0))
+            if (((int)(new B05Cfg7(0x801462C8u).unk1D) != 0))
             {
-                Mem.Set((p + 1924u), (Mem.F32((p + 1924u)) * Mem.F32((0x801462C8u + 32u))));
+                new B05P7(p).f784_Set((new B05P7(p).f784 * new B05Cfg7(0x801462C8u).unk20));
             }
-            if (((!((Mem.U32((s + 56u)) & (uint)(3)) != 0u) && (x != 0u)) && ((func_0024E61C(s) != 0) || (((int)(Mem.U16((x + 82u))) & 2048) != 0))))
+            if (((!((new B05Src7(s).flags38 & (uint)(3)) != 0u) && (x != 0u)) && ((func_0024E61C(s) != 0) || (((int)(new B05X7(x).unk52) & 2048) != 0))))
             {
-                Mem.Set((p + 1924u), (Mem.F32((p + 1924u)) * Mem.F32((x + 48u))));
+                new B05P7(p).f784_Set((new B05P7(p).f784 * new B05X7(x).unk30));
             }
         }
     }

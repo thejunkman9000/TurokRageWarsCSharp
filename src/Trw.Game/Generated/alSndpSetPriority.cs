@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alSndpSetPriority", (uint)sndp, (uint)sndId, (uint)priority);
-            Mem.Set(((Mem.U32((sndp + 64u)) + (uint)(sndId * 48)) + 32u), (short)(priority));
+            new ALSoundState((new ALSndPlayer(sndp).sndState_ + (uint)(sndId * 48))).priority_Set((short)(priority));
         }
     }
 

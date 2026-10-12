@@ -103,7 +103,7 @@ public static partial class Game
                 Cpu.SetD(0, Cpu.D(0) - Cpu.D(12));
                 Cpu.SetD(12, Cpu.D(12) / Cpu.D(0));
                 Cpu.SetD(12, Cpu.D(12) + Cpu.D(5));
-                r6 = r6 + 1u; r2 = func_0029BBA0_rc(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = r6 + 1u; Cpu.SetD(0, func_0029BBA0(Cpu.D(12), (int)r6));
                 Cpu.Fpr[1] = Cpu.Fpr[0];
                 L_L0029CF70: ;
                 r1 = 2148335616u;

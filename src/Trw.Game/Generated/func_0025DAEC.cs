@@ -11,17 +11,17 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0025DAEC", (uint)s);
             float f = 0f;
-            Mem.Set((s + 28u), 2);
-            Mem.Set((s + 24u), 32);
-            Mem.Set((s + 32u), (int)((Mem.F32((s + 44u)) * Mem.F32(0x800C90FCu))));
-            f = Mem.F32((s + 48u));
+            new SndSeq(s).unk1C_Set(2);
+            new SndSeq(s).unk18_Set(32);
+            new SndSeq(s).unk20_Set((int)((new SndSeq(s).vol * Mem.F32(0x800C90FCu))));
+            f = new SndSeq(s).unk30;
             if (!(Mem.F32(0x800C9100u) <= f))
             {
                 f = Mem.F32(0x800C9100u);
             }
-            Mem.Set((s + 48u), f);
-            Mem.Set((s + 40u), 0);
-            Mem.Set((s + 52u), ((float)(Mem.S32((s + 32u))) / (f * Mem.F32(0x800C9104u))));
+            new SndSeq(s).unk30_Set(f);
+            new SndSeq(s).unk28_Set(0);
+            new SndSeq(s).unk34_Set(((float)(new SndSeq(s).unk20) / (f * Mem.F32(0x800C9104u))));
         }
     }
 

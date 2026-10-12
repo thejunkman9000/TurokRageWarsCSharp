@@ -15,17 +15,17 @@ public static partial class Game
             uint b2 = 0u;
             int m = 0;
             uint def = 0u;
-            if ((Mem.S32(lv) == 2))
+            if ((new Level(lv).unk0 == 2))
             {
                 return;
             }
-            if ((Mem.S32((lv + 111628u)) == a))
+            if ((new Level(lv).unk1B40C == a))
             {
                 {
-                    uint e = (Mem.U32((lv + 312u)) + (uint)(bit * 744));
-                    def = Mem.U32((e + 24u));
+                    uint e = (new Level(lv).entities_ + (uint)(bit * 744));
+                    def = new Entity(e).def_;
                 }
-                if (((uint)((Mem.S32(def) - 9)) < (uint)(2)))
+                if (((uint)((new ActorDef(def).type - 9)) < (uint)(2)))
                 {
                     if (((Mem.U32((def + (uint)4)) & (uint)(512)) != 0u))
                     {
@@ -33,7 +33,7 @@ public static partial class Game
                     }
                 }
             }
-            t = func_0028FD94(func_0028FD94(func_0028FD94(Mem.U32((lv + 128u)), 0), a), 0);
+            t = func_0028FD94(func_0028FD94(func_0028FD94(new Level(lv).unk80_, 0), a), 0);
             func_0028FD94(t, 0);
             func_0028FDD8(t, 1);
             bits = func_0028FD94(t, 1);

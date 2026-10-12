@@ -13,16 +13,16 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0028357C", (uint)o, (uint)arg);
-                if (((Mem.U32(Mem.U32((o + 280u))) & (uint)(16)) != 0u))
+                if (((new B19Obj(o).parent.flags & (uint)(16)) != 0u))
                 {
                     Mem.Copy((_fp + 16u), 0x801042C8u, 12);
                 }
                 else
                 {
-                    Mem.Copy((_fp + 16u), (o + 28u), 12);
+                    Mem.Copy((_fp + 16u), new B19Obj(o).pos2.P, 12);
                 }
-                func_00271888(_fp, (_fp + 16u), default(uint), default(uint));
-                func_00280094(0x80121990u, o, (uint)(Mem.S32((o + 300u))), Mem.U32((o + 304u)), (int)(Mem.U32((o + 308u))), arg, (_fp + 16u), _fp, 0x801042A8u, 0, (-3), (int)(((Mem.U32((o + 92u)) & (uint)(2097158)) | (uint)(1))));
+                func_00271888(_fp, (_fp + 16u));
+                func_00280094(0x80121990u, o, (uint)(new B19Obj(o).unk12C), new B19Obj(o).unk130_, (int)(new B19Obj(o).unk134), arg, (_fp + 16u), _fp, new B19Q(0x801042A8u).v.P, 0, (-3), (int)(((new B19Obj(o).flags & (uint)(2097158)) | (uint)(1))));
             }
         }
         finally { Stack.Free(28); }

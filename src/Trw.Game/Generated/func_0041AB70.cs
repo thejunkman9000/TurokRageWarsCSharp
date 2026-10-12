@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0041AB70", (uint)o, (uint)a1, (uint)a2, (uint)a3);
             if (((((a2 >> (int)16) == (uint)(3)) && (a3 < 8)) && (a3 >= 6)))
             {
-                Mem.Set((o + 84u), 2);
+                new O3Bar(o).f54_Set(2);
             }
             return 0;
         }

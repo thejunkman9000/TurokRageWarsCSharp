@@ -13,7 +13,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("alAudioFrame", (uint)cmdList, (uint)cmdLen, (uint)outBuf, (uint)outLen);
-                uint drvr = Mem.U32(0x800D80A0u);
+                uint drvr = new ALGlobals(Mem.U32(0x800D80A0u)).drvr.P;
                 Mem.Set(_fp + 4u, (short)(0));
                 int samplesLeft = outLen;
                 uint cmdp = cmdList;
@@ -21,40 +21,40 @@ public static partial class Game
                 int samples = 0;
                 uint sink = 0u;
                 int delta = 0;
-                if ((Mem.U32(drvr) == 0u))
+                if ((new ALSynth(drvr).head_ == 0u))
                 {
                     Mem.Set(cmdLen, 0);
                     return cmdList;
                 }
-                Mem.Set((drvr + 28u), __nextSampleTime(drvr, _fp));
-                while (((Mem.S32((drvr + 28u)) - Mem.S32((drvr + 32u))) < samplesLeft))
+                new ALSynth(drvr).paramSamples_Set(__nextSampleTime(drvr, _fp));
+                while (((new ALSynth(drvr).paramSamples - new ALSynth(drvr).curSamples) < samplesLeft))
                 {
-                    Mem.Set((drvr + 28u), (int)((int)(Mem.S32((drvr + 28u))) & (~15)));
-                    delta = (int)(Funcs.CallReg(Mem.U32((Mem.U32(_fp) + 8u)), Mem.U32(_fp), 0u, 0u, 0u));
-                    Mem.Set((Mem.U32(_fp) + 16u), (int)((int)(Mem.S32((Mem.U32(_fp) + 16u))) + _timeToSamplesNoRound_2(drvr, delta)));
-                    Mem.Set((drvr + 28u), __nextSampleTime(drvr, _fp));
+                    new ALSynth(drvr).paramSamples_Set((int)((int)(new ALSynth(drvr).paramSamples) & (~15)));
+                    delta = (int)(Funcs.CallReg(new ALPlayer(Mem.U32(_fp)).handler, Mem.U32(_fp), 0u, 0u, 0u));
+                    new ALPlayer(Mem.U32(_fp)).samplesLeft_Set((int)((int)(new ALPlayer(Mem.U32(_fp)).samplesLeft) + _timeToSamplesNoRound_2(drvr, delta)));
+                    new ALSynth(drvr).paramSamples_Set(__nextSampleTime(drvr, _fp));
                 }
-                Mem.Set((drvr + 28u), (int)((int)(Mem.S32((drvr + 28u))) & (~15)));
+                new ALSynth(drvr).paramSamples_Set((int)((int)(new ALSynth(drvr).paramSamples) & (~15)));
                 while ((samplesLeft > 0))
                 {
-                    if ((samplesLeft > Mem.S32((drvr + 72u))))
+                    if ((samplesLeft > new ALSynth(drvr).maxOutSamples))
                     {
-                        samples = Mem.S32((drvr + 72u));
+                        samples = new ALSynth(drvr).maxOutSamples;
                     }
                     else
                     {
                         samples = samplesLeft;
                     }
-                    Mem.Set(cmdp, (uint)(117440512));
-                    Mem.Set((cmdp + 4u), (uint)(0));
-                    sink = Mem.U32((drvr + 56u));
-                    Funcs.CallReg(Mem.U32((sink + 8u)), sink, (uint)(6), lOutBuf, 0u);
-                    cmdp = Funcs.CallRegX(Mem.U32((sink + 4u)), sink, (_fp + 4u), (uint)(samples), (uint)(Mem.S32((drvr + 32u))), new uint[] { (cmdp + (uint)(1 * 8)) });
+                    new Acmd_v2(cmdp).w0_Set((uint)(117440512));
+                    new Acmd_v2(cmdp).w1_Set((uint)(0));
+                    sink = new ALSynth(drvr).saveBus_;
+                    Funcs.CallReg(new ALFilter(sink).setParam, sink, (uint)(6), lOutBuf, 0u);
+                    cmdp = Funcs.CallRegX(new ALFilter(sink).handler, sink, (_fp + 4u), (uint)(samples), (uint)(new ALSynth(drvr).curSamples), new uint[] { (cmdp + (uint)(1 * 8)) });
                     do
                     {
                         samplesLeft = (int)((int)(samplesLeft) - samples);
                         lOutBuf = (uint)(lOutBuf + (uint)((samples << (int)1) * 2));
-                        Mem.Set((drvr + 32u), (int)((int)(Mem.S32((drvr + 32u))) + samples));
+                        new ALSynth(drvr).curSamples_Set((int)((int)(new ALSynth(drvr).curSamples) + samples));
                     }
                     while ((0 != 0));
                 }

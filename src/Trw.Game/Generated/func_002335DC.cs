@@ -13,30 +13,30 @@ public static partial class Game
             uint p = 0u;
             uint q = 0u;
             int c = 0;
-            p = Mem.U32((actor + 472u));
+            p = new Actor(actor).owner_;
             if (((int)(Mem.S8((state + 52u))) == 5))
             {
-                func_002748E0((state + 296u), ((float)(Mem.S32(0x800CF518u)) * Mem.F32(0x800C8148u)), 0.400000006f);
+                func_002748E0(new ActorState(state).unk128.P, ((float)(Mem.S32(0x800CF518u)) * Mem.F32(0x800C8148u)), 0.400000006f);
             }
             else
             {
-                func_002748E0((state + 296u), 0.0f, 0.400000006f);
+                func_002748E0(new ActorState(state).unk128.P, 0.0f, 0.400000006f);
             }
-            q = Mem.U32((p + 1688u));
-            if (!(((Mem.F32((state + 296u)) < 0.0f) ? ((Mem.F32(0x800C8150u) < ((-Mem.F32((state + 296u))) * Mem.F32(0x800C814Cu))) ? 1 : 0) : ((Mem.F32(0x800C8158u) < (Mem.F32((state + 296u)) * Mem.F32(0x800C8154u))) ? 1 : 0)) != 0))
+            q = new PlayerA(p).unk698_;
+            if (!(((Mem.F32(new ActorState(state).unk128.P) < 0.0f) ? ((Mem.F32(0x800C8150u) < ((-Mem.F32(new ActorState(state).unk128.P)) * Mem.F32(0x800C814Cu))) ? 1 : 0) : ((Mem.F32(0x800C8158u) < (Mem.F32(new ActorState(state).unk128.P) * Mem.F32(0x800C8154u))) ? 1 : 0)) != 0))
             {
-                if ((Mem.F32((state + 296u)) < 0.0f))
+                if ((Mem.F32(new ActorState(state).unk128.P) < 0.0f))
                 {
-                    Mem.Set((q + 360u), ((-Mem.F32((state + 296u))) * Mem.F32(0x800C815Cu)));
+                    new Ptr168(q).unk168_Set(((-Mem.F32(new ActorState(state).unk128.P)) * Mem.F32(0x800C815Cu)));
                 }
                 else
                 {
-                    Mem.Set((q + 360u), (Mem.F32((state + 296u)) * Mem.F32(0x800C8160u)));
+                    new Ptr168(q).unk168_Set((Mem.F32(new ActorState(state).unk128.P) * Mem.F32(0x800C8160u)));
                 }
             }
             else
             {
-                Mem.Set((q + 360u), Mem.F32(0x800C8164u));
+                new Ptr168(q).unk168_Set(Mem.F32(0x800C8164u));
             }
         }
     }

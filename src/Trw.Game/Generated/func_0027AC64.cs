@@ -17,20 +17,20 @@ public static partial class Game
                 float s = 0f;
                 float lim = 0f;
                 float len = 0f;
-                if (((Mem.U32((a + 308u)) != 0u) && (Mem.F32((a + 320u)) > Mem.F32(0x800C9CB8u))))
+                if (((new ActorX(a).p134_ != 0u) && (new ActorX(a).f140 > Mem.F32(0x800C9CB8u))))
                 {
-                    func_0027A9B8(a, (Mem.U32((a + 308u)) + (uint)8));
+                    func_0027A9B8(a, (new ActorX(a).p134_ + (uint)8));
                     return;
                 }
-                s = Trunc16ToF32(Mem.U16((Mem.U32((Mem.U32((a + 280u)) + 48u)) + 16u)));
+                s = Trunc16ToF32(new DefC(new ActorX(a).ch118.p30_).w10);
                 if ((s != 0.0f))
                 {
-                    Mem.Copy((_fp + 16u), (a + 372u), 12);
+                    Mem.Copy((_fp + 16u), new ActorX(a).v174.P, 12);
                     func_0027200C(_fp, (_fp + 16u), s);
-                    func_00271FA4((a + 28u), (a + 28u), _fp);
-                    v = (a + 28u);
-                    len = func_002BC380((((Mem.F32((a + 28u)) * Mem.F32((a + 28u))) + (Mem.F32(((a + 28u) + 4u)) * Mem.F32(((a + 28u) + 4u)))) + (Mem.F32(((a + 28u) + 8u)) * Mem.F32(((a + 28u) + 8u)))));
-                    lim = Trunc16ToF32(Mem.U16((Mem.U32((Mem.U32((a + 280u)) + 48u)) + 18u)));
+                    func_00271FA4(new ActorX(a).vel.P, new ActorX(a).vel.P, _fp);
+                    v = new ActorX(a).vel.P;
+                    len = func_002BC380((((new ActorX(a).vel.x * new ActorX(a).vel.x) + (new ActorX(a).vel.y * new ActorX(a).vel.y)) + (new ActorX(a).vel.z * new ActorX(a).vel.z)));
+                    lim = Trunc16ToF32(new DefC(new ActorX(a).ch118.p30_).w12);
                     if ((s > 0.0f))
                     {
                         if (!(lim < len))

@@ -10,11 +10,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00256E8C", (uint)@out);
-            if (((int)(Mem.U8(0x8010BDF0u)) == 0))
+            if (((int)(new Ctx256(0x8010BDF0u).inited) == 0))
             {
-                Mem.Set((0x8010BDF0u + 8u), 0x8010B928u);
-                Mem.Set((0x8010BDF0u + 4u), 0);
-                Mem.Set(0x8010BDF0u, (byte)(1));
+                new Ctx256(0x8010BDF0u).f8_Set(0x8010B928u);
+                new Ctx256(0x8010BDF0u).f4_Set(0);
+                new Ctx256(0x8010BDF0u).inited_Set((byte)(1));
             }
             Mem.Set(@out, 0x8010BDF0u);
             return 0x00257210u;

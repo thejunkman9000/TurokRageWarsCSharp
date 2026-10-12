@@ -13,19 +13,19 @@ public static partial class Game
             uint t = 0u;
             if ((parent != 0u))
             {
-                if ((Mem.U32(n) < Mem.U32(parent)))
+                if ((new B16Node_v2(n).key < new B16Node_v2(parent).key))
                 {
-                    Mem.Set((parent + 24u), n);
-                    Mem.Set((n + 28u), 0u);
-                    Mem.Set((n + 24u), 0u);
-                    Mem.Set((n + 20u), parent);
-                    Mem.Set((n + 16u), Mem.U32((parent + 16u)));
-                    t = Mem.U32((parent + 16u));
+                    new B16Node_v2(parent).left__Set(n);
+                    new B16Node_v2(n).right__Set(0u);
+                    new B16Node_v2(n).left__Set(0u);
+                    new B16Node_v2(n).next__Set(parent);
+                    new B16Node_v2(n).prev__Set(new B16Node_v2(parent).prev_);
+                    t = new B16Node_v2(parent).prev_;
                     if ((t != 0u))
                     {
-                        Mem.Set((t + 20u), n);
+                        new B16Node_v2(t).next__Set(n);
                     }
-                    Mem.Set((parent + 16u), n);
+                    new B16Node_v2(parent).prev__Set(n);
                     if ((Mem.U32(first) == parent))
                     {
                         Mem.Set(first, n);
@@ -33,27 +33,27 @@ public static partial class Game
                 }
                 else
                 {
-                    Mem.Set((parent + 28u), n);
-                    Mem.Set((n + 28u), 0u);
-                    Mem.Set((n + 24u), 0u);
-                    Mem.Set((n + 20u), Mem.U32((parent + 20u)));
-                    t = Mem.U32((parent + 20u));
+                    new B16Node_v2(parent).right__Set(n);
+                    new B16Node_v2(n).right__Set(0u);
+                    new B16Node_v2(n).left__Set(0u);
+                    new B16Node_v2(n).next__Set(new B16Node_v2(parent).next_);
+                    t = new B16Node_v2(parent).next_;
                     if ((t != 0u))
                     {
-                        Mem.Set((t + 16u), n);
+                        new B16Node_v2(t).prev__Set(n);
                     }
-                    Mem.Set((n + 16u), parent);
-                    Mem.Set((parent + 20u), n);
+                    new B16Node_v2(n).prev__Set(parent);
+                    new B16Node_v2(parent).next__Set(n);
                 }
             }
             else
             {
                 Mem.Set(root, n);
                 Mem.Set(first, n);
-                Mem.Set((n + 28u), 0u);
-                Mem.Set((n + 24u), 0u);
-                Mem.Set((n + 20u), 0u);
-                Mem.Set((n + 16u), 0u);
+                new B16Node_v2(n).right__Set(0u);
+                new B16Node_v2(n).left__Set(0u);
+                new B16Node_v2(n).next__Set(0u);
+                new B16Node_v2(n).prev__Set(0u);
             }
         }
     }

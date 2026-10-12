@@ -10,9 +10,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alSaveNew", (uint)f);
-            alFilterNew(f, 0x002BB448u, 0x002BB550u, 3);
-            Mem.Set((f + 20u), 0);
-            Mem.Set((f + 24u), 1);
+            alFilterNew(new ALSave(f).filter.P, 0x002BB448u, 0x002BB550u, 3);
+            new ALSave(f).dramout_Set(0);
+            new ALSave(f).first_Set(1);
         }
     }
 

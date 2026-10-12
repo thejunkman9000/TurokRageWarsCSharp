@@ -21,11 +21,11 @@ public static partial class Game
                 float dy = 0f;
                 float dz = 0f;
                 float d = 0f;
-                for (a = Mem.U32((g + 32u)); (a != 0u); a = Mem.U32((a + 5856u)))
+                for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
                 {
-                    dx = (Mem.F32((a + 8u)) - Mem.F32(_fp));
-                    dy = (Mem.F32(((a + 8u) + 4u)) - Mem.F32((_fp + 4u)));
-                    dz = (Mem.F32(((a + 8u) + 8u)) - Mem.F32((_fp + 8u)));
+                    dx = (new Plr(a).pos.x - new Vec3f(_fp).x);
+                    dy = (new Plr(a).pos.y - new Vec3f(_fp).y);
+                    dz = (new Plr(a).pos.z - new Vec3f(_fp).z);
                     d = (((dx * dx) + (dy * dy)) + (dz * dz));
                     if ((d < min))
                     {

@@ -13,7 +13,7 @@ public static partial class Game
             if ((((a2 >> (int)16) == (uint)(3)) && (a3 == 11)))
             {
                 func_0029A73C();
-                Mem.Set((Mem.U32(0x800E44A0u) + 32u), 1);
+                new O3Q24(Mem.U32(0x800E44A0u)).f20_Set(1);
             }
             return 0;
         }

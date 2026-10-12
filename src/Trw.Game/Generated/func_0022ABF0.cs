@@ -13,8 +13,8 @@ public static partial class Game
             int r = 0;
             uint st = 0u;
             sbyte t = 0;
-            if (!(((Mem.S32(0x80146938u) != 0) && ((int)(Mem.U8(((st = Mem.U32((a + 1496u))) + 148u))) != 0)))) goto _f0;
-            t = Mem.S8((st + 128u));
+            if (!(((Mem.S32(0x80146938u) != 0) && ((int)(new ActorStats((st = new Actor(a).stats_)).unk94) != 0)))) goto _f0;
+            t = new ActorStats(st).unk80;
             if (!(((int)(t) == 11))) goto _f1;
             goto L_A;
             _f1: ;
@@ -39,10 +39,10 @@ public static partial class Game
             goto _f8;
             _f0: ;
             L_C: ;
-            r = (Mem.S32(((Mem.U32((a + 24u)) + 20u) + 4u)) << (int)8);
+            r = (new ActorDef(new Actor(a).def_).info.unk4 << (int)8);
             _f8: ;
-            if (!((((int)(Mem.U8(0x801462D5u)) == 1) && (Mem.S32((a + 5200u)) == 0)))) goto _f9;
-            r = (int)((int)(r) + Mem.S32((0x80102B10u + (uint)(Mem.S32((a + 1492u)) * 400))));
+            if (!((((int)(Mem.U8(0x801462D5u)) == 1) && (new Actor(a).unk1450 == 0)))) goto _f9;
+            r = (int)((int)(r) + new ActorRow400((0x80102B10u + (uint)(new Actor(a).unk5D4 * 400))).unk0);
             _f9: ;
             return r;
             return 0;

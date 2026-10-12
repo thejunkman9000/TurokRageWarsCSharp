@@ -16,19 +16,19 @@ public static partial class Game
                 int s1 = 0;
                 int k = 0;
                 uint e = 0u;
-                if (((int)(Mem.U8((0x801462C8u + 13u))) != 4))
+                if (((int)(new O04Cfg(0x801462C8u).unkD) != 4))
                 {
                     return;
                 }
-                s1 = Mem.S32((Mem.U32(0x800E4690u) + 2628u));
-                e = ((0x801462C8u + (uint)208) + (uint)(Mem.S32((Mem.U32(0x800E4690u) + 2652u)) * 150));
+                s1 = new O04ModeS4690(Mem.U32(0x800E4690u)).unkA44;
+                e = ((0x801462C8u + (uint)208) + (uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA5C * 150));
                 func_004286A0(s1);
-                Mem.Set((e + 128u), (sbyte)(Mem.U8(((uint)(func_0028D450(0x8011FE88u, s1)) + 4u))));
-                k = func_0041F1B0((int)(Mem.S8((e + 128u))));
-                Mem.Set(_fp, Mem.F32(((0x800E3A58u + (uint)(k * 112)) + 4u)));
-                Mem.Set((_fp + 4u), Mem.F32(((0x800E3A58u + (uint)(k * 112)) + 4u)));
-                Mem.Set((_fp + 8u), Mem.F32(((0x800E3A58u + (uint)(k * 112)) + 4u)));
-                func_0041CB48((Mem.U32(0x800E4690u) + 32u), 9, ((int)(Mem.S8((e + 128u))) + 911), 75, 24000, _fp, ((0x800E3A58u + (uint)(k * 112)) + 36u), Mem.F32(((0x800E3A58u + (uint)(k * 112)) + 20u)), Mem.S32(((0x800E3A58u + (uint)(k * 112)) + 84u)));
+                new O04Ent96j(e).unk80_Set((sbyte)(new O04Rec4((uint)(func_0028D450(0x8011FE88u, s1))).unk4));
+                k = func_0041F1B0((int)(new O04Ent96j(e).unk80));
+                new O04V3(_fp).x_Set(new O04Tbl70((0x800E3A58u + (uint)(k * 112))).unk4);
+                new O04V3(_fp).y_Set(new O04Tbl70((0x800E3A58u + (uint)(k * 112))).unk4);
+                new O04V3(_fp).z_Set(new O04Tbl70((0x800E3A58u + (uint)(k * 112))).unk4);
+                func_0041CB48(new O04ModeS4690(Mem.U32(0x800E4690u)).unk20.P, 9, ((int)(new O04Ent96j(e).unk80) + 911), 75, 24000, _fp, new O04Tbl70((0x800E3A58u + (uint)(k * 112))).unk24.P, new O04Tbl70((0x800E3A58u + (uint)(k * 112))).unk14, new O04Tbl70((0x800E3A58u + (uint)(k * 112))).unk54);
             }
         }
         finally { Stack.Free(12); }

@@ -19,30 +19,30 @@ public static partial class Game
                 int a2 = 0;
                 int s3 = 0;
                 memset(_fp, 0, (uint)(12));
-                if (((int)(Mem.U16((o + 4u))) == 1039))
+                if (((int)(new B19Obj(o).id) == 1039))
                 {
-                    func_0025DE74((int)((uint)((short)(3290))), C.Tmp(Cpu.F2U(Mem.F32((p + 8u))), Cpu.F2U(Mem.F32(((p + 8u) + 4u))), Cpu.F2U(Mem.F32(((p + 8u) + 8u)))), (int)((p + 8u)), (int)((uint)((-1))));
-                    func_0022B540(p, 30.0f, 3.0f, Mem.S32((o + 300u)), 0);
-                    func_0028CE70(0x8011FE88u, (int)((Mem.U32((p + 1688u)) + (uint)320)), 20, _fp, Mem.F32(0x800C9F4Cu), Mem.F32(0x800C9F50u));
-                    Mem.Set((p + 4588u), Mem.F32(0x800C9F54u));
+                    func_0025DE74((int)((uint)((short)(3290))), C.Tmp(Cpu.F2U(new B19Plr(p).pos.x), Cpu.F2U(new B19Plr(p).pos.y), Cpu.F2U(new B19Plr(p).pos.z)), (int)(new B19Plr(p).pos.P), (int)((uint)((-1))));
+                    func_0022B540(p, 30.0f, 3.0f, new B19Obj(o).unk12C, 0);
+                    func_0028CE70(0x8011FE88u, (int)((new B19Plr(p).f698_ + (uint)320)), 20, _fp, Mem.F32(0x800C9F4Cu), Mem.F32(0x800C9F50u));
+                    new B19Plr(p).f11EC_Set(Mem.F32(0x800C9F54u));
                 }
-                par = Mem.U32((o + 280u));
+                par = new B19Obj(o).parent_;
                 k = ((func_0028403C(o) != 0) ? 12 : 10);
-                s2 = (int)(Mem.U16(((Mem.U32((par + 24u)) + 112u) + (uint)(k * 2))));
-                a2 = (int)(Mem.U16(((Mem.U32((par + 24u)) + 140u) + (uint)(k * 2))));
-                Mem.Copy((_fp + 16u), (Mem.U32((par + 24u)) + (uint)(k * 8)), 8);
-                s3 = (int)(Mem.U16(((Mem.U32((par + 24u)) + 168u) + (uint)(k * 2))));
+                s2 = (int)(new B19Parent(par).tbl.w70[(int)(k)]);
+                a2 = (int)(new B19Parent(par).tbl.w8C[(int)(k)]);
+                Mem.Copy((_fp + 16u), (new B19Parent(par).tbl.rec.P + (uint)(k * 8)), 8);
+                s3 = (int)(new B19Parent(par).tbl.wA8[(int)(k)]);
                 if ((a2 != 65535))
                 {
-                    func_00265E30(o, o, (ushort)(a2), (-1), (o + 8u), (_fp + 16u));
+                    func_00265E30(o, o, a2, (-1), new B19Obj(o).pos.P, (_fp + 16u));
                 }
                 if ((s2 != 65535))
                 {
-                    func_00279BB0(o, s2, (int)(Mem.S8((o + 464u))), 1);
+                    func_00279BB0(o, s2, (int)(new B19Obj(o).unk1D0), 1);
                 }
                 if ((s3 != 65535))
                 {
-                    func_0025DE74((int)((uint)((short)(s3))), C.Tmp(Cpu.F2U(Mem.F32((o + 8u))), Cpu.F2U(Mem.F32(((o + 8u) + 4u))), Cpu.F2U(Mem.F32(((o + 8u) + 8u)))), (int)(0u), (int)((uint)((-1))));
+                    func_0025DE74((int)((uint)((short)(s3))), C.Tmp(Cpu.F2U(new B19Obj(o).pos.x), Cpu.F2U(new B19Obj(o).pos.y), Cpu.F2U(new B19Obj(o).pos.z)), (int)(0u), (int)((uint)((-1))));
                 }
                 func_00284544(0x80121990u, o, default(uint), default(uint));
                 func_00284408(o);

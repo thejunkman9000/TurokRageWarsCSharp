@@ -11,11 +11,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0029ABEC", (uint)b, (uint)dst, (uint)n);
             uint d = 0u;
-            int o = Mem.S32((b + 8u));
-            d = Mem.U32(b);
+            int o = new B22Buf(b).rdpos;
+            d = new B22Buf(b).data_;
             d = (d + (uint)o);
             func_002A1724(dst, d, (uint)(n));
-            Mem.Set((b + 8u), (int)((int)(Mem.S32((b + 8u))) + n));
+            new B22Buf(b).rdpos_Set((int)((int)(new B22Buf(b).rdpos) + n));
         }
     }
 

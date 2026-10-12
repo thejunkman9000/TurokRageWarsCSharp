@@ -12,8 +12,8 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00276544", (uint)r, (uint)n, (uint)pts);
             if ((n != 0))
             {
-                Mem.Set(r, Mem.Set((r + 8u), Mem.F32(pts)));
-                Mem.Set((r + 4u), Mem.Set((r + 12u), Mem.F32((pts + 8u))));
+                new Rect4(r).x0_Set(new Rect4(r).x1_Set(new Vec3f(pts).x));
+                new Rect4(r).z0_Set(new Rect4(r).z1_Set(new Vec3f(pts).z));
                 func_00276580(r, (n - 1), (pts + (uint)(1 * 12)));
             }
         }

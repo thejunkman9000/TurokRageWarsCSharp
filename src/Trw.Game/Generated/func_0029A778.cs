@@ -12,26 +12,26 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0029A778", (uint)id, (uint)kind, (uint)val);
             int idx = (-1);
             int i = 0;
-            uint p = (Mem.U32(0x8014D080u) + 28u);
+            uint p = new P4SlotTbl(Mem.U32(0x8014D080u)).ent.P;
             uint e = 0u;
             for (i = 0; (i < 64); ++i, p += 20u)
             {
-                if ((Mem.S32(p) == id))
+                if ((new P4SlotEnt(p).id == id))
                 {
                     idx = i;
                     break;
                 }
             }
-            e = ((Mem.U32(0x8014D080u) + 28u) + (uint)(idx * 20));
+            e = (new P4SlotTbl(Mem.U32(0x8014D080u)).ent.P + (uint)(idx * 20));
             if ((kind == 1))
             {
-                Mem.Set((e + 4u), val);
-                Mem.Set((e + 8u), 0);
+                new P4SlotEnt(e).f4_Set(val);
+                new P4SlotEnt(e).f8_Set(0);
             }
             else
             {
                 p = e;
-                Mem.Set((p + 8u), val);
+                new P4SlotEnt(p).f8_Set(val);
             }
         }
     }

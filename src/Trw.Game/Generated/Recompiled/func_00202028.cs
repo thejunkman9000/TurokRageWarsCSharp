@@ -87,7 +87,7 @@ public static partial class Game
                 { bool c_ = r17 != 0; r19 = r19 + r2; if (c_) goto L_L00202080; }
                 r2 = r19; goto L_L00202164;
                 L_L002020F8: ;
-                r2 = func_00200500(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = (uint)func_00200500();
                 { bool c_ = r17 == 0; r20 = r2; if (c_) goto L_L00202158; }
                 r21 = (uint)32768;
                 L_L0020210C: ;
@@ -97,7 +97,7 @@ public static partial class Game
                 L_L0020211C: ;
                 r4 = 2986278912u;
                 r5 = r18;
-                r6 = r16; r2 = func_00200D18(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = r16; func_00200D18(r4, r5, r6);
                 r4 = (uint)1542;
                 r5 = r22;
                 r6 = r16;
@@ -107,7 +107,7 @@ public static partial class Game
                 r17 = r17 - r2;
                 { bool c_ = r17 != 0; r19 = r19 + r2; if (c_) goto L_L0020210C; }
                 L_L00202158: ;
-                r4 = r20; r2 = func_00200538(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r20; func_00200538((int)r4);
                 L_L00202160: ;
                 r2 = r19;
                 L_L00202164: ;

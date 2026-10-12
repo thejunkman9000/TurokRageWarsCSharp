@@ -13,10 +13,10 @@ public static partial class Game
             uint n = 0u;
             Mem.Set(sum, (uint)(0));
             Mem.Set(max, (uint)(0));
-            for (n = Mem.U32((l + 8u)); (n != 0u); n = Mem.U32((n + 4u)))
+            for (n = new B12BlkList(l).first_; (n != 0u); n = new B12Blk(n).next_)
             {
-                Mem.Set(sum, (uint)((uint)(Mem.U32(sum)) + Mem.U32((n + 20u))));
-                Mem.Set(max, ((Mem.U32(max) > Mem.U32((n + 20u))) ? Mem.U32(max) : Mem.U32((n + 20u))));
+                Mem.Set(sum, (uint)((uint)(Mem.U32(sum)) + new B12Blk(n).size));
+                Mem.Set(max, ((Mem.U32(max) > new B12Blk(n).size) ? Mem.U32(max) : new B12Blk(n).size));
             }
         }
     }

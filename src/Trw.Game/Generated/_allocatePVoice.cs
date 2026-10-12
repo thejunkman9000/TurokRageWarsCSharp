@@ -13,21 +13,21 @@ public static partial class Game
             uint dl = 0u;
             uint pv = 0u;
             int stolen = 0;
-            if ((((dl = Mem.U32((drvr + 20u))) != 0u) || ((dl = Mem.U32((drvr + 4u))) != 0u)))
+            if ((((dl = new ALSynth(drvr).pLameList.next_) != 0u) || ((dl = new ALSynth(drvr).pFreeList.next_) != 0u)))
             {
                 Mem.Set(pvoice, dl);
                 alUnlink(dl);
-                alLink(dl, (drvr + 12u));
+                alLink(dl, new ALSynth(drvr).pAllocList.P);
             }
             else
             {
-                for (dl = Mem.U32((drvr + 12u)); (dl != 0u); dl = Mem.U32(dl))
+                for (dl = new ALSynth(drvr).pAllocList.next_; (dl != 0u); dl = new ALLink(dl).next_)
                 {
                     pv = dl;
-                    if ((((int)(Mem.S16((Mem.U32((pv + 8u)) + 22u))) <= (int)(priority)) && (Mem.S32((pv + 216u)) == 0)))
+                    if ((((int)(new ALPVoice(pv).vvoice.priority) <= (int)(priority)) && (new ALPVoice(pv).offset == 0)))
                     {
                         Mem.Set(pvoice, pv);
-                        priority = Mem.S16((Mem.U32((pv + 8u)) + 22u));
+                        priority = new ALPVoice(pv).vvoice.priority;
                         stolen = 1;
                     }
                 }

@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("__freeParam", (uint)param);
-            Mem.Set(param, Mem.U32((Mem.U32(0x800D80A0u) + 44u)));
-            Mem.Set((Mem.U32(0x800D80A0u) + 44u), param);
+            new ALParam(param).next__Set(new ALGlobals(Mem.U32(0x800D80A0u)).drvr.paramList_);
+            new ALGlobals(Mem.U32(0x800D80A0u)).drvr.paramList__Set(param);
         }
     }
 

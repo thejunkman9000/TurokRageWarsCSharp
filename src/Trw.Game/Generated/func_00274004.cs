@@ -17,8 +17,8 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00274004");
                 float alt = 0f;
                 float d = 0f;
-                func_00274090(_fp);
-                func_00274090((_fp + 4u));
+                func_00274090(_fp, default(uint), default(uint), default(uint));
+                func_00274090((_fp + 4u), default(uint), default(uint), default(uint));
                 if ((Mem.F32(_fp) > Mem.F32((_fp + 4u))))
                 {
                     alt = (Mem.F32((_fp + 4u)) + 6.28318548f);

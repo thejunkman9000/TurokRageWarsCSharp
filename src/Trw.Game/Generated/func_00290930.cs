@@ -10,32 +10,32 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00290930", (uint)l, (uint)n);
-            if (((Mem.S32((n + 464u)) & 1) != 0))
+            if (((new P4Node(n).flags & 1) != 0))
             {
-                Mem.Set((n + 464u), (int)((int)(Mem.S32((n + 464u))) & (~1)));
-                if ((Mem.U32((n + 468u)) != 0u))
+                new P4Node(n).flags_Set((int)((int)(new P4Node(n).flags) & (~1)));
+                if ((new P4Node(n).counter_ != 0u))
                 {
-                    Mem.Set(Mem.U32((n + 468u)), (int)(Mem.S32(Mem.U32((n + 468u))) - 1));
+                    Mem.Set(new P4Node(n).counter_, (int)(Mem.S32(new P4Node(n).counter_) - 1));
                 }
-                if ((Mem.U32((n + 472u)) != 0u))
+                if ((new P4Node(n).prev_ != 0u))
                 {
-                    Mem.Set((Mem.U32((n + 472u)) + 476u), Mem.U32((n + 476u)));
+                    new P4Node(n).prev.next__Set(new P4Node(n).next_);
                 }
-                if ((Mem.U32((n + 476u)) != 0u))
+                if ((new P4Node(n).next_ != 0u))
                 {
-                    Mem.Set((Mem.U32((n + 476u)) + 472u), Mem.U32((n + 472u)));
+                    new P4Node(n).next.prev__Set(new P4Node(n).prev_);
                 }
-                if ((Mem.U32((l + 15364u)) == n))
+                if ((new P4List(l).cur0_ == n))
                 {
-                    Mem.Set((l + 15364u), Mem.U32((n + 476u)));
+                    new P4List(l).cur0__Set(new P4Node(n).next_);
                 }
-                if ((Mem.U32((l + 15368u)) == n))
+                if ((new P4List(l).cur1_ == n))
                 {
-                    Mem.Set((l + 15368u), Mem.U32((n + 472u)));
+                    new P4List(l).cur1__Set(new P4Node(n).prev_);
                 }
-                Mem.Set((n + 476u), Mem.U32((l + 15360u)));
-                Mem.Set((n + 472u), 0u);
-                Mem.Set((l + 15360u), n);
+                new P4Node(n).next__Set(new P4List(l).head_);
+                new P4Node(n).prev__Set(0u);
+                new P4List(l).head__Set(n);
             }
         }
     }

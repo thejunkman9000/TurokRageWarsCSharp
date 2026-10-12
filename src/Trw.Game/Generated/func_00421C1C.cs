@@ -20,31 +20,31 @@ public static partial class Game
                 return 0;
             }
             func_002A3358();
-            st = func_0041A4F0(Mem.U32(Mem.U32(0x800E4450u)));
+            st = func_0041A4F0(new O3Pn_v2(Mem.U32(0x800E4450u)).bar_);
             switch (st)
             {
             case 3:
-                t = (Mem.S32((Mem.U32(0x800E4450u) + 12u)) - 1);
-                Mem.Set((Mem.U32(0x800E4450u) + 12u), t);
+                t = (new O3Pn_v2(Mem.U32(0x800E4450u)).fC - 1);
+                new O3Pn_v2(Mem.U32(0x800E4450u)).fC_Set(t);
                 if ((t <= 0))
                 {
-                    Mem.Set((Mem.U32((Mem.U32(0x800E4450u) + 8u)) + 22u), (short)(((int)(Mem.S16((Mem.U32((Mem.U32(0x800E4450u) + 8u)) + 22u))) - 1)));
-                    sp = Mem.U32((Mem.U32(0x800E4450u) + 8u));
-                    if ((((int)(Mem.S16((sp + 22u))) + (int)(Mem.S16((sp + 26u)))) < 0))
+                    new O3Pn_v2(Mem.U32(0x800E4450u)).w8.f16_Set((short)(((int)(new O3Pn_v2(Mem.U32(0x800E4450u)).w8.f16) - 1)));
+                    sp = new O3Pn_v2(Mem.U32(0x800E4450u)).w8_;
+                    if ((((int)(new O3Spr(sp).f16) + (int)(new O3Spr(sp).f1A)) < 0))
                     {
-                        Mem.Set((sp + 22u), Mem.S16((Mem.U32((Mem.U32(Mem.U32(0x800E4450u)) + 68u)) + (uint)26)));
+                        new O3Spr(sp).f16_Set(Mem.S16((new O3Pn_v2(Mem.U32(0x800E4450u)).bar.g_ + (uint)26)));
                     }
-                    Mem.Set((Mem.U32(0x800E4450u) + 12u), st);
+                    new O3Pn_v2(Mem.U32(0x800E4450u)).fC_Set(st);
                 }
                 return 0;
             case 4:
                 func_0029A73C();
-                a = Mem.S32((Mem.U32(0x800E4450u) + 16u));
+                a = new O3Pn_v2(Mem.U32(0x800E4450u)).f10;
                 if ((a == (-1)))
                 {
                     a = 3;
                 }
-                func_00299368((uint)(a), default(uint), default(uint), default(uint));
+                func_00299368(a);
                 return 0;
             default:
                 return 0;

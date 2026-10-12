@@ -15,12 +15,12 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, v_in, 12);
                 if (Dbg.On) Dbg.Enter("func_00277198", (uint)o, (uint)v_in);
                 float s = 0.0f;
-                if ((((((!(Mem.F32(_fp) >= Mem.F32(0x800C9BB0u)) && !(Mem.F32(_fp) <= Mem.F32(0x800C9BB4u))) && !(Mem.F32((_fp + 4u)) >= Mem.F32(0x800C9BB0u))) && !(Mem.F32((_fp + 4u)) <= Mem.F32(0x800C9BB4u))) && !(Mem.F32((_fp + 8u)) >= Mem.F32(0x800C9BB0u))) && !(Mem.F32((_fp + 8u)) <= Mem.F32(0x800C9BB4u))))
+                if ((((((!(new M5Vec3(_fp).x >= Mem.F32(0x800C9BB0u)) && !(new M5Vec3(_fp).x <= Mem.F32(0x800C9BB4u))) && !(new M5Vec3(_fp).y >= Mem.F32(0x800C9BB0u))) && !(new M5Vec3(_fp).y <= Mem.F32(0x800C9BB4u))) && !(new M5Vec3(_fp).z >= Mem.F32(0x800C9BB0u))) && !(new M5Vec3(_fp).z <= Mem.F32(0x800C9BB4u))))
                 {
-                    switch ((int)(Mem.U8((o + 187u))))
+                    switch ((int)(new M5Shape(o).mode))
                     {
                     case 0:
-                        s = (((Mem.F32(_fp) * Mem.F32(_fp)) + (Mem.F32((_fp + 4u)) * Mem.F32((_fp + 4u)))) + (Mem.F32((_fp + 8u)) * Mem.F32((_fp + 8u))));
+                        s = (((new M5Vec3(_fp).x * new M5Vec3(_fp).x) + (new M5Vec3(_fp).y * new M5Vec3(_fp).y)) + (new M5Vec3(_fp).z * new M5Vec3(_fp).z));
                         if ((Mem.F32(0x800C9BB0u) < s))
                         {
                             goto L_fail;
@@ -28,66 +28,66 @@ public static partial class Game
                         s = Mem.F32((0x800D2648u + (uint)((int)((s * Mem.F32(0x800C9BB8u))) * 4)));
                         break;
                     case 2:
-                        if ((Mem.F32(_fp) <= 0.0f))
+                        if ((new M5Vec3(_fp).x <= 0.0f))
                         {
                             goto L_fail;
                         }
-                        s = ((Mem.F32((_fp + 4u)) * Mem.F32((_fp + 4u))) + (Mem.F32((_fp + 8u)) * Mem.F32((_fp + 8u))));
-                        if (((Mem.F32(_fp) * Mem.F32(_fp)) < s))
+                        s = ((new M5Vec3(_fp).y * new M5Vec3(_fp).y) + (new M5Vec3(_fp).z * new M5Vec3(_fp).z));
+                        if (((new M5Vec3(_fp).x * new M5Vec3(_fp).x) < s))
                         {
                             goto L_fail;
                         }
                         s = Mem.F32((0x800D274Cu + (uint)((int)((s * Mem.F32(0x800C9BBCu))) * 4)));
-                        s = (s / Mem.F32(_fp));
+                        s = (s / new M5Vec3(_fp).x);
                         break;
                     case 1:
                         {
-                            float t = Mem.F32(_fp);
+                            float t = new M5Vec3(_fp).x;
                             if ((t < 0.0f))
                             {
                                 t = (-t);
                             }
-                            Mem.Set(_fp, t);
+                            new M5Vec3(_fp).x_Set(t);
                         }
                         {
-                            float t = Mem.F32((_fp + 4u));
-                            if ((t < 0.0f))
+                            float t_2 = new M5Vec3(_fp).y;
+                            if ((t_2 < 0.0f))
                             {
-                                t = (-t);
+                                t_2 = (-t_2);
                             }
-                            Mem.Set((_fp + 4u), t);
+                            new M5Vec3(_fp).y_Set(t_2);
                         }
                         {
-                            float t = Mem.F32((_fp + 8u));
-                            if ((t < 0.0f))
+                            float t_3 = new M5Vec3(_fp).z;
+                            if ((t_3 < 0.0f))
                             {
-                                t = (-t);
+                                t_3 = (-t_3);
                             }
-                            Mem.Set((_fp + 8u), t);
+                            new M5Vec3(_fp).z_Set(t_3);
                         }
-                        s = Mem.F32((_fp + 8u));
-                        if (!(Mem.F32((_fp + 4u)) <= s))
+                        s = new M5Vec3(_fp).z;
+                        if (!(new M5Vec3(_fp).y <= s))
                         {
-                            s = Mem.F32((_fp + 4u));
+                            s = new M5Vec3(_fp).y;
                         }
-                        if (!(Mem.F32(_fp) <= s))
+                        if (!(new M5Vec3(_fp).x <= s))
                         {
-                            s = Mem.F32(_fp);
+                            s = new M5Vec3(_fp).x;
                         }
                         break;
                     }
                     s = (Mem.F32(0x800C9BC0u) - s);
-                    if ((s < Mem.F32(o)))
+                    if ((s < new M5Shape(o).f0))
                     {
-                        s = (s / Mem.F32(o));
+                        s = (s / new M5Shape(o).f0);
                     }
                     else
                     {
                         s = Mem.F32(0x800C9BC0u);
                     }
-                    if (((int)(Mem.U8((o + 187u))) == 1))
+                    if (((int)(new M5Shape(o).mode) == 1))
                     {
-                        Mem.Copy(@out, (o + 20u), 12);
+                        Mem.Copy(@out, new M5Shape(o).pos.P, 12);
                     }
                     else
                     {
@@ -98,9 +98,9 @@ public static partial class Game
                     return 1;
                 }
                 L_fail: ;
-                Mem.Set((@out + 4u), 0.0f);
-                Mem.Set((@out + 8u), 0.0f);
-                Mem.Set(@out, Mem.F32(0x800C9BC4u));
+                new M5Vec3(@out).y_Set(0.0f);
+                new M5Vec3(@out).z_Set(0.0f);
+                new M5Vec3(@out).x_Set(Mem.F32(0x800C9BC4u));
                 Mem.Set(res, 0.0f);
                 return 0;
             }

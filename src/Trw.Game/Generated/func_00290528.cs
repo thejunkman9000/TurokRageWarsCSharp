@@ -10,38 +10,38 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00290528", (uint)n);
-            uint f = Mem.U32((n + 464u));
+            uint f = new Node(n).flags;
             uint h = 0u;
             if (((f & (uint)(1)) != 0u))
             {
-                Mem.Set((n + 464u), (f & (uint)((~1))));
-                if ((Mem.U32((n + 468u)) != 0u))
+                new Node(n).flags_Set((f & (uint)((~1))));
+                if ((new Node(n).counter_ != 0u))
                 {
-                    Mem.Set(Mem.U32((n + 468u)), (Mem.S32(Mem.U32((n + 468u))) - 1));
+                    Mem.Set(new Node(n).counter_, (Mem.S32(new Node(n).counter_) - 1));
                 }
                 do
                 {
-                    if ((Mem.U32((n + 472u)) != 0u))
+                    if ((new Node(n).prev_ != 0u))
                     {
-                        Mem.Set((Mem.U32((n + 472u)) + 476u), Mem.U32((n + 476u)));
+                        new Node(new Node(n).prev_).next__Set(new Node(n).next_);
                     }
-                    if ((Mem.U32((n + 476u)) != 0u))
+                    if ((new Node(n).next_ != 0u))
                     {
-                        Mem.Set((Mem.U32((n + 476u)) + 472u), Mem.U32((n + 472u)));
+                        new Node(new Node(n).next_).prev__Set(new Node(n).prev_);
                     }
                     if ((Mem.U32(0x80135204u) == n))
                     {
-                        Mem.Set(0x80135204u, Mem.U32((n + 476u)));
+                        Mem.Set(0x80135204u, new Node(n).next_);
                     }
                     if ((Mem.U32(0x80135208u) == n))
                     {
-                        Mem.Set(0x80135208u, Mem.U32((n + 472u)));
+                        Mem.Set(0x80135208u, new Node(n).prev_);
                     }
                     h = Mem.U32(0x80135200u);
                 }
                 while ((0 != 0));
-                Mem.Set((n + 472u), 0u);
-                Mem.Set((n + 476u), h);
+                new Node(n).prev__Set(0u);
+                new Node(n).next__Set(h);
                 Mem.Set(0x80135200u, n);
             }
         }

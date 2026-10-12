@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00243840", (uint)a, (uint)b);
             int r = 1;
-            if ((Mem.F32((a + 4u)) < Mem.F32((b + 4u))))
+            if ((new B10Vec(a).y < new B10Vec(b).y))
             {
                 r = (-1);
             }

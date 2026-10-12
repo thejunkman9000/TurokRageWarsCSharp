@@ -10,13 +10,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00264F00", (uint)o);
-            uint s = Mem.U32(o);
-            switch (Mem.S32(s))
+            uint s = new B14Smp(o).src_;
+            switch (new B14Src(s).type)
             {
             case 0:
-                return ((float)(Mem.U8(((s + (uint)(int)(((Mem.F32((o + 4u)) * Mem.F32(0x800C940Cu)) / Mem.F32((s + 20u))))) + (uint)4))) * Mem.F32(0x800C9410u));
+                return ((float)(Mem.U8(((s + (uint)(int)(((new B14Smp(o).f4 * Mem.F32(0x800C940Cu)) / new B14Src(s).f14))) + (uint)4))) * Mem.F32(0x800C9410u));
             case 1:
-                return Mem.F32((o + 8u));
+                return new B14Smp(o).f8;
             default:
                 return 0.0f;
             }

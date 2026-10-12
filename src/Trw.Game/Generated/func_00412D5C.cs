@@ -13,7 +13,7 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 36); ++i)
             {
-                if (((((((Mem.S32(((0x800E2B20u + (uint)(i * 52)) + (uint)(1 * 4))) == Mem.S32((p + (uint)(1 * 4)))) && (Mem.S32(((0x800E2B20u + (uint)(i * 52)) + (uint)(2 * 4))) == Mem.S32((p + (uint)(2 * 4))))) && (Mem.S32(((0x800E2B20u + (uint)(i * 52)) + (uint)(5 * 4))) == Mem.S32((p + (uint)(5 * 4))))) && (Mem.S32(((0x800E2B20u + (uint)(i * 52)) + (uint)(6 * 4))) == Mem.S32((p + (uint)(6 * 4))))) && (Mem.S32(((0x800E2B20u + (uint)(i * 52)) + (uint)(7 * 4))) == Mem.S32((p + (uint)(7 * 4))))) && (Mem.S32(((0x800E2B20u + (uint)(i * 52)) + (uint)(8 * 4))) == Mem.S32((p + (uint)(8 * 4))))))
+                if (((((((new S_func_00412D5C((0x800E2B20u + (uint)(i * 52))).w[(int)(1)] == new S_func_00412D5C(p).w[(int)(1)]) && (new S_func_00412D5C((0x800E2B20u + (uint)(i * 52))).w[(int)(2)] == new S_func_00412D5C(p).w[(int)(2)])) && (new S_func_00412D5C((0x800E2B20u + (uint)(i * 52))).w[(int)(5)] == new S_func_00412D5C(p).w[(int)(5)])) && (new S_func_00412D5C((0x800E2B20u + (uint)(i * 52))).w[(int)(6)] == new S_func_00412D5C(p).w[(int)(6)])) && (new S_func_00412D5C((0x800E2B20u + (uint)(i * 52))).w[(int)(7)] == new S_func_00412D5C(p).w[(int)(7)])) && (new S_func_00412D5C((0x800E2B20u + (uint)(i * 52))).w[(int)(8)] == new S_func_00412D5C(p).w[(int)(8)])))
                 {
                     return i;
                 }

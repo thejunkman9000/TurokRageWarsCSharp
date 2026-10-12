@@ -22,7 +22,7 @@ public static partial class Game
                 int st = 0;
                 uint pl = 0u;
                 sum = 0;
-                ok = func_00265570((uint)((int)(Mem.U32((Mem.U32(f) + 11104u)))), Mem.S32((Mem.U32(f) + 11108u)), (uint)((short)(id)), _fp, (_fp + 4u));
+                ok = func_00265570((uint)((int)(new SndMgr(new M04FxB(f).owner_).unk2B60)), new SndMgr(new M04FxB(f).owner_).unk2B64, (uint)((short)(id)), _fp, (_fp + 4u));
                 if ((ok == 0))
                 {
                     idx = (-1);
@@ -59,13 +59,13 @@ public static partial class Game
                     return (-1);
                 }
                 sum = 0;
-                func_00258D60(Mem.U32(f));
-                func_00258760(Mem.U32(f));
-                Mem.Set((f + 12u), id);
-                Mem.Set((f + 16u), idx);
-                Mem.Set((f + 4u), (Mem.S32((f + 4u)) + 1));
-                ret = Mem.S32((f + 4u));
-                if ((func_00265570((uint)((int)(Mem.U32((Mem.U32(f) + 11104u)))), Mem.S32((Mem.U32(f) + 11108u)), (uint)(Mem.S16((f + (uint)14))), (_fp + 8u), (_fp + 12u)) != 0))
+                func_00258D60(new M04FxB(f).owner_);
+                func_00258760(new M04FxB(f).owner_);
+                new M04FxB(f).unkC_Set(id);
+                new M04FxB(f).idx_Set(idx);
+                new M04FxB(f).unk4_Set((new M04FxB(f).unk4 + 1));
+                ret = new M04FxB(f).unk4;
+                if ((func_00265570((uint)((int)(new SndMgr(new M04FxB(f).owner_).unk2B60)), new SndMgr(new M04FxB(f).owner_).unk2B64, (uint)(Mem.S16((f + (uint)14))), (_fp + 8u), (_fp + 12u)) != 0))
                 {
                     if ((Mem.S32((_fp + 8u)) != Mem.S32((_fp + 12u))))
                     {
@@ -85,24 +85,24 @@ public static partial class Game
                         }
                     }
                 }
-                Mem.Set((f + 24u), 64);
-                Mem.Set((f + 20u), (int)((v * Mem.F32(0x800C90A4u))));
-                st = Mem.S32((f + 8u));
+                new M04FxB(f).unk18_Set(64);
+                new M04FxB(f).vol_Set((int)((v * Mem.F32(0x800C90A4u))));
+                st = new M04FxB(f).state;
                 if (((st == 3) || (st == 1)))
                 {
                     if (((st != 2) && (st != 0)))
                     {
-                        Mem.Set((f + 8u), 2);
-                        pl = func_00258D60(Mem.U32(f));
-                        alSndpSetSound(pl, Mem.S16((f + 30u)));
+                        new M04FxB(f).state_Set(2);
+                        pl = func_00258D60(new M04FxB(f).owner_);
+                        alSndpSetSound(pl, new M04FxB(f).snd);
                         alSndpStop(pl);
                     }
                 }
                 else
                 {
-                    Mem.Set((f + 8u), 1);
+                    new M04FxB(f).state_Set(1);
                 }
-                func_002587C4(Mem.U32(f));
+                func_002587C4(new M04FxB(f).owner_);
                 return ret;
             }
         }

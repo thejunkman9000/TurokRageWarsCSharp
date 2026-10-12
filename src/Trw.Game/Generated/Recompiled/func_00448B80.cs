@@ -37,7 +37,7 @@ public static partial class Game
                 r3 = r2;
                 { bool c_ = r3 != 0; r4 = r29 + 16u; if (c_) goto L_L00448D1C; }
                 r5 = r29 + 80u;
-                r6 = r29 + 82u; r2 = __osIdCheckSum(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = r29 + 82u; r2 = (uint)__osIdCheckSum(r4, r5, r6);
                 r3 = Mem.U16((r29 + 44u));
                 r2 = Mem.U16((r29 + 80u));
                 { bool c_ = r3 != r2; r16 = r29 + 16u; if (c_) goto L_L00448BFC; }
@@ -46,13 +46,13 @@ public static partial class Game
                 { bool c_ = r3 == r2;  if (c_) goto L_L00448C44; }
                 L_L00448BFC: ;
                 r4 = r17;
-                r5 = r16; r2 = __osCheckPackId(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r16; r2 = (uint)__osCheckPackId(r4, r5);
                 r3 = r2;
                 r2 = (uint)10;
                 { bool c_ = r3 != r2; r4 = r17; if (c_) goto L_L00448C3C; }
                 r5 = r16;
                 r16 = r29 + 48u;
-                r6 = r16; r2 = __osRepairPackId(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = r16; r2 = (uint)__osRepairPackId(r4, r5, r6);
                 r3 = r2;
                 { bool c_ = r3 == 0;  if (c_) goto L_L00448C44; }
                  goto L_L00448D1C;
@@ -65,7 +65,7 @@ public static partial class Game
                 r4 = r17;
                 r5 = r16;
                 r16 = r29 + 48u;
-                r6 = r16; r2 = __osRepairPackId(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = r16; r2 = (uint)__osRepairPackId(r4, r5, r6);
                 r3 = r2;
                 { bool c_ = r3 != 0;  if (c_) goto L_L00448D1C; }
                 r2 = Mem.U16((r29 + 72u));

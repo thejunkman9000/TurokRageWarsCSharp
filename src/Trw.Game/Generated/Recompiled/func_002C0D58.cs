@@ -21,7 +21,7 @@ public static partial class Game
                 r29 = _fp + 256u;
                 L_func_002C0D58: ;
                 Mem.Set((r16 + 0u), r2);
-                r2 = __osLeoAbnormalResume(r4, r5, r6, r7); r3 = Cpu.V1;
+                __osLeoAbnormalResume();
                 Cpu.V1 = r3; return r2;
             }
         }

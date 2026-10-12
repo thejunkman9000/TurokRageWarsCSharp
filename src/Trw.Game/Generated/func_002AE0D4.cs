@@ -10,17 +10,17 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002AE0D4", (uint)e, (uint)p, (uint)b, (uint)c);
-            if ((Mem.S32((e + 1500u)) != 0))
+            if ((new Ent24(e).unk5DC != 0))
             {
-                func_0023919C((uint)(Mem.S32((e + 1500u))), (sbyte)(128), (sbyte)(50), (sbyte)(50), (sbyte)(75), (sbyte)(0), (sbyte)(0), (sbyte)(2));
+                func_0023919C((uint)(new Ent24(e).unk5DC), (sbyte)(128), (sbyte)(50), (sbyte)(50), (sbyte)(75), (sbyte)(0), (sbyte)(0), (sbyte)(2));
                 if ((p != 0u))
                 {
-                    func_00237E70(0x80145088u, (uint)(Mem.S32((e + 1500u))), (uint)(Mem.S32(p)), default(uint));
+                    func_00237E70(0x80145088u, (uint)(new Ent24(e).unk5DC), (uint)(Mem.S32(p)));
                 }
             }
             if ((b != 0))
             {
-                func_0025DE74((int)((uint)((short)(b))), C.Tmp((uint)(Mem.S32((e + 8u))), (uint)(Mem.S32((e + 12u))), (uint)(Mem.S32((e + 16u)))), (int)((uint)(0)), (int)((uint)((-1))));
+                func_0025DE74((int)((uint)((short)(b))), C.Tmp((uint)(new Ent24(e).unk8), (uint)(new Ent24(e).unkC), (uint)(new Ent24(e).unk10)), (int)((uint)(0)), (int)((uint)((-1))));
             }
             if ((c != 0))
             {

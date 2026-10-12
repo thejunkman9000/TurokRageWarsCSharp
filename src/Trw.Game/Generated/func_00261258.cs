@@ -17,7 +17,7 @@ public static partial class Game
                 for (i = 0; (i < n); ++i)
                 {
                     Mem.Set(_fp + 0u, (int)(func_002607D8(bits, (uint)(32))));
-                    Mem.Set((@out + (uint)(i * 16)), Mem.F32(_fp));
+                    new P3Slot16((@out + (uint)(i * 16))).v_Set(Mem.F32(_fp));
                 }
             }
         }

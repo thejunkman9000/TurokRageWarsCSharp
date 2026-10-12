@@ -17,48 +17,48 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0026852C", (uint)src, (uint)tgt, (uint)c, (uint)pos_in);
                 uint fx = 0u;
                 uint o = 0u;
-                if (((int)(Mem.U8(src)) == 0))
+                if (((int)(new B15Spawner(src).type) == 0))
                 {
-                    Mem.Set((_fp + 40u), (float)(0));
-                    Mem.Set(((_fp + 40u) + 4u), (float)(0));
-                    Mem.Set(((_fp + 40u) + 8u), (float)(0));
+                    new Vec3f((_fp + 40u)).x_Set((float)(0));
+                    new Vec3f((_fp + 40u)).y_Set((float)(0));
+                    new Vec3f((_fp + 40u)).z_Set((float)(0));
                 }
                 else
                 {
-                    Mem.Copy((_fp + 40u), (src + 28u), 12);
+                    Mem.Copy((_fp + 40u), new B15Spawner(src).vel.P, 12);
                 }
-                Mem.Copy(_fp, (src + 8u), 12);
-                Mem.Set((_fp + 24u), Mem.F32(((_fp + 16u) + 4u)));
-                Mem.Set(((_fp + 24u) + 4u), Mem.F32(((_fp + 16u) + 4u)));
-                Mem.Set(((_fp + 24u) + 8u), Mem.F32(((_fp + 16u) + 4u)));
-                if ((Mem.S32((_fp + 16u)) == 1036))
+                Mem.Copy(_fp, new B15Spawner(src).pos.P, 12);
+                new Vec3f((_fp + 24u)).x_Set(new B15PairF((_fp + 16u)).b);
+                new Vec3f((_fp + 24u)).y_Set(new B15PairF((_fp + 16u)).b);
+                new Vec3f((_fp + 24u)).z_Set(new B15PairF((_fp + 16u)).b);
+                if ((new B15PairF((_fp + 16u)).a == 1036))
                 {
-                    Mem.Copy(_fp, (Mem.U32(0x80103FCCu) + 228u), 12);
-                    Mem.Set((_fp + 40u), (float)(0));
-                    Mem.Set(((_fp + 40u) + 4u), (float)(0));
-                    Mem.Set(((_fp + 40u) + 8u), (float)(0));
+                    Mem.Copy(_fp, new B15Cam(Mem.U32(0x80103FCCu)).posE4.P, 12);
+                    new Vec3f((_fp + 40u)).x_Set((float)(0));
+                    new Vec3f((_fp + 40u)).y_Set((float)(0));
+                    new Vec3f((_fp + 40u)).z_Set((float)(0));
                 }
-                fx = func_002627C0(0x80135210u, Mem.S32((_fp + 16u)), Mem.S32((src + 20u)), _fp, 0, (_fp + 40u), (_fp + 24u), 0);
+                fx = func_002627C0(0x80135210u, new B15PairF((_fp + 16u)).a, new B15Spawner(src).unk14, _fp, 0, (_fp + 40u), (_fp + 24u), 0);
                 if ((fx != 0u))
                 {
-                    if ((Mem.S32((_fp + 16u)) == 1036))
+                    if ((new B15PairF((_fp + 16u)).a == 1036))
                     {
-                        Mem.Set((fx + 472u), func_002833A4(tgt));
-                        Mem.Set((fx + 672u), Mem.F32((Mem.U32(0x80103FCCu) + 240u)));
-                        Mem.Set(((fx + 672u) + 4u), Mem.F32(((Mem.U32(0x80103FCCu) + 240u) + 4u)));
-                        Mem.Set(((fx + 672u) + 8u), Mem.F32(((Mem.U32(0x80103FCCu) + 240u) + 8u)));
+                        new B15Fx(fx).unk1D8_Set(func_002833A4(tgt));
+                        new B15Fx(fx).vec2A0.x_Set(new B15Cam(Mem.U32(0x80103FCCu)).vecF0.x);
+                        new B15Fx(fx).vec2A0.y_Set(new B15Cam(Mem.U32(0x80103FCCu)).vecF0.y);
+                        new B15Fx(fx).vec2A0.z_Set(new B15Cam(Mem.U32(0x80103FCCu)).vecF0.z);
                     }
                     else
                     {
-                        if (((uint)((Mem.S32((_fp + 16u)) - 1140)) < (uint)(4)))
+                        if (((uint)((new B15PairF((_fp + 16u)).a - 1140)) < (uint)(4)))
                         {
-                            if ((((int)(Mem.U8(tgt)) == 1) && ((Mem.U32((tgt + 256u)) & (uint)(3145728)) != 0u)))
+                            if ((((int)(new B15Tgt(tgt).type) == 1) && ((new B15Tgt(tgt).flags & (uint)(3145728)) != 0u)))
                             {
-                                o = Mem.U32((tgt + 472u));
+                                o = new B15Tgt(tgt).owner_;
                                 if ((o != 0u))
                                 {
-                                    Mem.Set((o + 4584u), fx);
-                                    Mem.Set((fx + 108u), Mem.F32((o + 108u)));
+                                    new B15Own(o).unk11E8__Set(fx);
+                                    new B15Fx(fx).unk6C_Set(new B15Own(o).unk6C);
                                 }
                             }
                             else

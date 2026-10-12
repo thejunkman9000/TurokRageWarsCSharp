@@ -13,13 +13,13 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0028BDE4", (uint)lv, (uint)key, (uint)a2, (uint)a3);
-                uint t = Mem.U32((lv + 152u));
+                uint t = new Level(lv).unk98_;
                 int idx = func_00265508((t + (uint)(2 * 4)), Mem.S32((t + (uint)(1 * 4))), (uint)(key));
                 uint p = 0u;
                 if ((idx != (-1)))
                 {
-                    p = func_0028FE1C(Mem.U32((lv + 88u)), Mem.U32((lv + 40u)), idx, _fp);
-                    return (int)(func_002518DC((uint)(0), p, p, (uint)(Mem.S32(_fp)), (uint)(a2), (uint)(0), 0x00285130u, 0x800CA2C8u, (uint)(a3)));
+                    p = func_0028FE1C(new Level(lv).unk58_, new Level(lv).unk28_, idx, _fp);
+                    return (int)(func_002518DC(0, p, (int)(p), (uint)(Mem.S32(_fp)), a2, (uint)(0), 0x00285130u, 0x800CA2C8u, a3));
                 }
                 return 0;
             }

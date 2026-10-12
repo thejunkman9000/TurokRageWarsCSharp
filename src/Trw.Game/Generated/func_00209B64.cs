@@ -10,14 +10,14 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00209B64", (uint)@ref);
-            uint a = Mem.U32(@ref);
-            float v = (Mem.F32(((Mem.U32((a + 24u)) + 20u) + 20u)) * Mem.F32(0x800C6D8Cu));
-            switch ((int)(Mem.U8((Mem.U32((a + 1496u)) + 147u))))
+            uint a = new ActorRef(@ref).actor_;
+            float v = (new ActorDef(new Actor(a).def_).info.unk14 * Mem.F32(0x800C6D8Cu));
+            switch ((int)(new Actor(a).stats.unk93))
             {
             case 1:
                 break;
             default:
-                Mem.Set((Mem.U32((Mem.U32(@ref) + 1496u)) + 147u), (byte)(0));
+                new Actor(new ActorRef(@ref).actor_).stats.unk93_Set((byte)(0));
                 goto case 0;
             case 0:
                 v = (float)((float)(v) * Mem.F32(0x800C6D90u));

@@ -11,32 +11,32 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0020388C", (uint)actor, (uint)state);
             float new_var = 0f;
-            Mem.Set((state + 44u), 0x800CD3C0u);
-            Mem.Set((state + 264u), 0x002039F8u);
-            Mem.Set((state + 272u), 0x00203E78u);
-            Mem.Set((state + 284u), 0x00202E4Cu);
-            Mem.Set((state + 288u), 0x00203DF0u);
-            if (((int)(Mem.U16((actor + 228u))) == 1036))
+            new B01State(state).table_Set(0x800CD3C0u);
+            new B01State(state).fn108_Set(0x002039F8u);
+            new B01State(state).fn110_Set(0x00203E78u);
+            new B01State(state).fn11C_Set(0x00202E4Cu);
+            new B01State(state).fn120_Set(0x00203DF0u);
+            if (((int)(new B01Actor(actor).unkE4) == 1036))
             {
                 if ((0x00203DF0u != 0u))
                 {
                     new_var = 1.57079649f;
-                    Mem.Set((state + 304u), 0.0f);
-                    Mem.Set(((state + 304u) + 8u), 0.0f);
-                    Mem.Set((state + 300u), 200);
-                    Mem.Set((state + 316u), 0.0f);
-                    Mem.Set(((state + 304u) + 4u), 1.0f);
-                    Mem.Set((state + 292u), (-new_var));
+                    new B01State(state).vec130.x_Set(0.0f);
+                    new B01State(state).vec130.z_Set(0.0f);
+                    new B01State(state).unk12C.i_Set(200);
+                    new B01State(state).unk13C_Set(0.0f);
+                    new B01State(state).vec130.y_Set(1.0f);
+                    new B01State(state).unk124.f_Set((-new_var));
                 }
                 else
                 {
                     new_var = 1.57079649f;
-                    Mem.Set((state + 304u), 0.0f);
-                    Mem.Set(((state + 304u) + 8u), 0.0f);
-                    Mem.Set((state + 300u), 200);
-                    Mem.Set((state + 316u), 0.0f);
-                    Mem.Set(((state + 304u) + 4u), 1.0f);
-                    Mem.Set((state + 292u), (-new_var));
+                    new B01State(state).vec130.x_Set(0.0f);
+                    new B01State(state).vec130.z_Set(0.0f);
+                    new B01State(state).unk12C.i_Set(200);
+                    new B01State(state).unk13C_Set(0.0f);
+                    new B01State(state).vec130.y_Set(1.0f);
+                    new B01State(state).unk124.f_Set((-new_var));
                 }
             }
         }

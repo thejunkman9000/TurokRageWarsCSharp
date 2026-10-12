@@ -12,20 +12,20 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0022A67C", (uint)g);
             uint a = 0u;
             int count = 0;
-            if ((((((func_00245788() == 0) && (func_00245774() == 0)) && (Mem.S32(0x8013B29Cu) == 0)) && (Mem.S32((0x801468A0u + 32u)) == 0)) && (Mem.S32((0x801468A0u + 28u)) != 0)))
+            if ((((((func_00245788() == 0) && (func_00245774() == 0)) && (Mem.S32(0x8013B29Cu) == 0)) && (new GameFlags(0x801468A0u).unk20 == 0)) && (new GameFlags(0x801468A0u).unk1C != 0)))
             {
                 count = 0;
-                for (a = Mem.U32((g + 32u)); (a != 0u); a = Mem.U32((a + 5856u)))
+                for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).next_)
                 {
-                    if (((int)(Mem.U8((Mem.U32((a + 1496u)) + 142u))) == 1))
+                    if (((int)(new Actor(a).stats.unk8E) == 1))
                     {
                         ++count;
                     }
                 }
                 if ((count > 0))
                 {
-                    Mem.Set((0x801468A0u + 32u), 1);
-                    Mem.Set((0x801468A0u + 28u), 0);
+                    new GameFlags(0x801468A0u).unk20_Set(1);
+                    new GameFlags(0x801468A0u).unk1C_Set(0);
                     return 1;
                 }
             }

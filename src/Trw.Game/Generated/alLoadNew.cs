@@ -10,13 +10,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alLoadNew", (uint)f, (uint)dma, (uint)hp);
-            alFilterNew(f, 0x002C31B8u, 0x002C3B94u, 0);
-            Mem.Set((f + 20u), alHeapDBAlloc(0u, 0, hp, 1, 32));
-            Mem.Set((f + 24u), alHeapDBAlloc(0u, 0, hp, 1, 32));
-            Mem.Set((f + 48u), Funcs.CallReg(dma, (f + 52u), 0u, 0u, 0u));
-            Mem.Set((f + 60u), 0);
-            Mem.Set((f + 64u), 1);
-            Mem.Set((f + 68u), 0u);
+            alFilterNew(new ALLoadFilter(f).filter.P, 0x002C31C0u, 0x002C3B94u, 0);
+            new ALLoadFilter(f).state_Set(alHeapDBAlloc(0u, 0, hp, 1, 32));
+            new ALLoadFilter(f).lstate_Set(alHeapDBAlloc(0u, 0, hp, 1, 32));
+            new ALLoadFilter(f).dma_Set(Funcs.CallReg(dma, new ALLoadFilter(f).dmaState.P, 0u, 0u, 0u));
+            new ALLoadFilter(f).lastsam_Set(0);
+            new ALLoadFilter(f).first_Set(1);
+            new ALLoadFilter(f).memin_Set(0u);
         }
     }
 

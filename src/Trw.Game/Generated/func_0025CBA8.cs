@@ -11,14 +11,14 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0025CBA8", (uint)l);
             uint n = 0u;
-            if ((Mem.S32((l + 40u)) == 0))
+            if ((new SndPlaylist(l).unk28 == 0))
             {
-                for (n = Mem.U32((l + 20u)); (n != 0u); n = Mem.U32((n + 4u)))
+                for (n = new SndPlaylist(l).head_; (n != 0u); n = new SndListNode(n).next_)
                 {
-                    if ((func_0025E114(Mem.S32((n + 8u))) == 0))
+                    if ((func_0025E114(new SndListNode(n).id) == 0))
                     {
-                        Mem.Set((n + 12u), (-1));
-                        Mem.Set((n + 8u), (-1));
+                        new SndListNode(n).unkC_Set((-1));
+                        new SndListNode(n).id_Set((-1));
                     }
                 }
             }

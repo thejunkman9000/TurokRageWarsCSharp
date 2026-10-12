@@ -12,16 +12,16 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0023919C", (uint)o, (uint)a, (uint)b, (uint)c);
             if ((o != 0u))
             {
-                Mem.Set((o + 1360u), d);
-                Mem.Set((o + 1354u), a);
-                Mem.Set((o + 1358u), b);
-                Mem.Set((o + 1359u), c);
-                Mem.Set((o + 1361u), (sbyte)(0));
-                Mem.Set((o + 1355u), e);
-                Mem.Set((o + 1356u), f);
-                Mem.Set((o + 1357u), g);
-                Mem.Set((o + 1336u), 0);
-                Mem.Set((o + 1348u), 1);
+                new Obj538(o).unk550_Set(d);
+                new Obj538(o).unk54A_Set(a);
+                new Obj538(o).unk54E_Set(b);
+                new Obj538(o).unk54F_Set(c);
+                new Obj538(o).unk551_Set((sbyte)(0));
+                new Obj538(o).unk54B_Set(e);
+                new Obj538(o).unk54C_Set(f);
+                new Obj538(o).unk54D_Set(g);
+                new Obj538(o).unk538_Set(0);
+                new Obj538(o).unk544_Set(1);
             }
         }
     }

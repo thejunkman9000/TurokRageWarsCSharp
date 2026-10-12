@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alSynSetPriority", (uint)drvr, (uint)voice, (uint)priority);
-            Mem.Set((voice + 22u), priority);
+            new ALVoice(voice).priority_Set(priority);
         }
     }
 

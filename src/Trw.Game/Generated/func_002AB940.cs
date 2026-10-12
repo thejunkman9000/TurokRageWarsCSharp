@@ -22,8 +22,8 @@ public static partial class Game
                     {
                         func_002AB8DC((uint)(h), idx, _fp, (_fp + 4u));
                         q = Mem.U32(_fp);
-                        Mem.Set(out1, (int)(Mem.U16((q + 4u))));
-                        Mem.Set(out2, (int)(Mem.U16((q + 6u))));
+                        Mem.Set(out1, (int)(new TabInfo(q).unk4));
+                        Mem.Set(out2, (int)(new TabInfo(q).unk6));
                         func_002536F4(0, (uint)(h));
                     }
                 }

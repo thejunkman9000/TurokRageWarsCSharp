@@ -14,21 +14,21 @@ public static partial class Game
             int want = (-1);
             int r = 0;
             int b = 0;
-            if (((Mem.S32((0x801468A0u + 36u)) != 0) || (Mem.S32((0x801468A0u + 120u)) != 0)))
+            if (((new GameB6(0x801468A0u).unk24 != 0) || (new GameB6(0x801468A0u).unk78 != 0)))
             {
-                want = (int)(Mem.U8((Mem.U32((func_002392DC(p) + 1496u)) + 146u)));
+                want = (int)(new Plr(func_002392DC(p)).stats.unk92);
             }
             func_0026D980();
-            for (a = Mem.U32((g + 32u)); (a != 0u); a = Mem.U32((a + 5856u)))
+            for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
             {
                 b = 0;
-                if ((Mem.F32((a + 4604u)) > 0.0f))
+                if ((new Plr(a).unk11FC > 0.0f))
                 {
                     b = 1;
                 }
                 if ((b != 0))
                 {
-                    if ((Mem.S32((a + 4620u)) != 0))
+                    if ((new Plr(a).unk120C != 0))
                     {
                         r = func_0028B1F8(0x8011FE88u, 3204);
                     }
@@ -41,13 +41,13 @@ public static partial class Game
                         func_0026DF30(func_0028C174(0x8011FE88u, r), (int)((a + (uint)5632)), (int)(0x800D0EF8u), 0, (-1));
                     }
                 }
-                if ((((Mem.U32((a + 1500u)) != 0u) && (Mem.S32((a + 4624u)) != 0)) && (Mem.U32((a + 1500u)) == p)))
+                if ((((new Plr(a).unk5DC_ != 0u) && (new Plr(a).unk1210 != 0)) && (new Plr(a).unk5DC_ == p)))
                 {
-                    func_0022F760((a + (uint)744), (a + (uint)1112), default(uint), default(uint));
+                    func_0022F760((a + (uint)744));
                 }
-                if (((((Mem.S32((0x801468A0u + 36u)) != 0) || (Mem.S32((0x801468A0u + 120u)) != 0)) && ((int)(Mem.U8((Mem.U32((a + 1496u)) + 146u))) == want)) && (func_002392DC(p) != a)))
+                if (((((new GameB6(0x801468A0u).unk24 != 0) || (new GameB6(0x801468A0u).unk78 != 0)) && ((int)(new Plr(a).stats.unk92) == want)) && (func_002392DC(p) != a)))
                 {
-                    func_00229CFC(a, default(uint), default(uint), default(uint));
+                    func_00229CFC(a);
                 }
             }
             func_0026D9D0();

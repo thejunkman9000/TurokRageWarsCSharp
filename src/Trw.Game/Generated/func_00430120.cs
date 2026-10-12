@@ -12,25 +12,25 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00430120", (uint)a, (uint)b, (uint)c, (uint)d);
             int idx = (int)((c & (uint)(65535)));
             uint obj = 0u;
-            if ((Mem.S32(((Mem.U32(0x800E54A4u) + 88u) + (uint)(idx * 2920))) != 12))
+            if ((new LR(Mem.U32(0x800E54A4u)).plr[(int)(idx)].state != 12))
             {
                 return 0;
             }
             obj = func_0041B87C(Mem.U32((Mem.U32(0x800E54A4u) + (uint)4)), idx);
-            Mem.Set((((Mem.U32(0x800E54A4u) + 88u) + (uint)(idx * 2920)) + 2892u), 0);
-            Mem.Set((((Mem.U32(0x800E54A4u) + 88u) + (uint)(idx * 2920)) + 2888u), 2);
+            new LR(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB4C_Set(0);
+            new LR(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB48_Set(2);
             if ((d == 1))
             {
-                int v = (Mem.S32((((Mem.U32(0x800E54A4u) + 88u) + (uint)(idx * 2920)) + 2884u)) + 1);
+                int v = (new LR(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 + 1);
                 if ((v < 7))
                 {
-                    Mem.Set((((Mem.U32(0x800E54A4u) + 88u) + (uint)(idx * 2920)) + 2884u), v);
+                    new LR(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44_Set(v);
                 }
-                if (((int)(Mem.U8(((Mem.U32(0x800E54A4u) + (uint)((idx * 2920) + (Mem.S32((((Mem.U32(0x800E54A4u) + 88u) + (uint)(idx * 2920)) + 2884u)) * 2))) + (uint)2956))) == 0))
+                if (((int)(Mem.U8(((Mem.U32(0x800E54A4u) + (uint)((idx * 2920) + (new LR(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 * 2))) + (uint)2956))) == 0))
                 {
-                    Mem.Set(((Mem.U32(0x800E54A4u) + (uint)((idx * 2920) + (Mem.S32((((Mem.U32(0x800E54A4u) + 88u) + (uint)(idx * 2920)) + 2884u)) * 2))) + (uint)2956), (byte)(65));
+                    Mem.Set(((Mem.U32(0x800E54A4u) + (uint)((idx * 2920) + (new LR(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 * 2))) + (uint)2956), (byte)(65));
                 }
-                Mem.Set((obj + 16u), (byte)(255));
+                new O05Obj10(obj).b10_Set((byte)(255));
                 func_0025DF54(3700);
             }
             return 0;

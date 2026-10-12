@@ -53,7 +53,7 @@ public static partial class Game
                 r4 = r29 + 64u;
                 r5 = r29 + 16u;
                 r6 = r17;
-                r7 = r29 + 148u; r2 = func_0040E154(r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = r29 + 148u; r2 = (uint)func_0040E154(r4, r5, r6, r7);
                 { bool c_ = r2 == 0;  if (c_) goto L_L0040DB54; }
                 r2 = Mem.U16((r17 + 18u));
                 r2 = r2 & 512u;

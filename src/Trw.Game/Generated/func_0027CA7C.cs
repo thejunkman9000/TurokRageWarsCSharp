@@ -23,35 +23,35 @@ public static partial class Game
                 {
                     idx = 0;
                 }
-                c = Mem.U32((o + 280u));
-                s2 = (int)(Mem.U16(((Mem.U32((c + 24u)) + 112u) + (uint)(idx * 2))));
-                v1 = (int)(Mem.U16(((Mem.U32((c + 24u)) + 140u) + (uint)(idx * 2))));
-                Mem.Copy(_fp, (Mem.U32((c + 24u)) + (uint)(idx * 8)), 8);
-                s3 = (int)(Mem.U16(((Mem.U32((c + 24u)) + 168u) + (uint)(idx * 2))));
+                c = new B18Obj(o).cfg_;
+                s2 = (int)(new B18Cfg(c).tab.a70[(int)(idx)]);
+                v1 = (int)(new B18Cfg(c).tab.a8C[(int)(idx)]);
+                Mem.Copy(_fp, (new B18Cfg(c).tab.vec.P + (uint)(idx * 8)), 8);
+                s3 = (int)(new B18Cfg(c).tab.aA8[(int)(idx)]);
                 if ((v1 != 65535))
                 {
-                    func_00265E30(o, o, (ushort)(v1), (-1), 0x801042A8u, _fp);
+                    func_00265E30(o, o, (int)((ushort)(v1)), (-1), 0x801042A8u, _fp);
                 }
                 if ((s2 != 65535))
                 {
-                    if (((Mem.U32(Mem.U32((o + 280u))) & (uint)(16)) != 0u))
+                    if (((new B18Obj(o).cfg.flags & (uint)(16)) != 0u))
                     {
                         Mem.Copy((_fp + 24u), 0x801042C8u, 12);
                     }
                     else
                     {
-                        Mem.Copy((_fp + 24u), (o + 28u), 12);
+                        Mem.Copy((_fp + 24u), new B18Obj(o).unk1C.P, 12);
                     }
-                    func_00271888((_fp + 8u), (_fp + 24u), default(uint), default(uint));
-                    func_00280094(0x80121990u, o, (uint)(Mem.S32((o + 300u))), (uint)(Mem.S32((o + 304u))), Mem.S32((o + 308u)), s2, (_fp + 24u), (_fp + 8u), 0x801042A8u, 0, (-2), (int)(((Mem.U32((o + 92u)) & (uint)(2097158)) | (uint)(1))));
+                    func_00271888((_fp + 8u), (_fp + 24u));
+                    func_00280094(0x80121990u, o, (uint)(new B18Obj(o).unk12C), (uint)(new B18Obj(o).unk130), new B18Obj(o).unk134, s2, (_fp + 24u), (_fp + 8u), 0x801042A8u, 0, (-2), (int)(((new B18Obj(o).flags & (uint)(2097158)) | (uint)(1))));
                 }
                 if ((s3 != 65535))
                 {
                     func_0025DE74((int)((short)(s3)), 0x801042A8u, 0, (-1));
                 }
-                func_0027200C((o + 396u), (o + 396u), Cpu.U2F((uint)(Mem.S32((o + 452u)))));
-                Mem.Set((o + 92u), (uint)((uint)(Mem.U32((o + 92u))) | (uint)(512)));
-                if (((int)(Mem.S8((o + 442u))) == 1))
+                func_0027200C(new B18Obj(o).unk18C.P, new B18Obj(o).unk18C.P, Cpu.U2F((uint)(new B18Obj(o).unk1C4)));
+                new B18Obj(o).flags_Set((uint)((uint)(new B18Obj(o).flags) | (uint)(512)));
+                if (((int)(new B18Obj(o).unk1BA) == 1))
                 {
                     func_00284544(0x80121990u, o, default(uint), default(uint));
                     func_00284408(o);

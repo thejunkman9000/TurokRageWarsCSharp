@@ -16,23 +16,23 @@ public static partial class Game
                 uint phys = 0u;
                 int end = 0;
                 func_00256FE0();
-                phys = osVirtualToPhysical(Mem.U32(t));
-                Mem.Set((t + 4u), (short)(Mem.U16(0x8010BE9Au)));
+                phys = osVirtualToPhysical(new B12AiCtx(t).buf);
+                new B12AiCtx(t).frames_Set((short)(Mem.U16(0x8010BE9Au)));
                 func_0025E4AC();
-                end = (int)(alAudioFrame((uint)(Mem.S32((0x8010BE20u + (uint)(Mem.S32(0x800D0948u) * 4)))), _fp, phys, (int)(Mem.S16((t + 4u)))));
+                end = (int)(alAudioFrame((uint)(Mem.S32((0x8010BE20u + (uint)(Mem.S32(0x800D0948u) * 4)))), _fp, phys, (int)(new B12AiCtx(t).frames)));
                 func_0025E4D0();
                 if ((Mem.S32(_fp) == 0))
                 {
                     return 0;
                 }
-                Mem.Set((t + 72u), Mem.S32((0x8010BE20u + (uint)(Mem.S32(0x800D0948u) * 4))));
-                Mem.Set((t + 76u), (((end - Mem.S32((0x8010BE20u + (uint)(Mem.S32(0x800D0948u) * 4)))) >> (int)3) * 8));
+                new B12AiCtx(t).cmdList_Set(Mem.S32((0x8010BE20u + (uint)(Mem.S32(0x800D0948u) * 4))));
+                new B12AiCtx(t).cmdLen_Set((((end - Mem.S32((0x8010BE20u + (uint)(Mem.S32(0x800D0948u) * 4)))) >> (int)3) * 8));
                 osWritebackDCacheAll();
-                func_0028FD2C(0x801469E8u, (t + 8u));
+                func_0028FD2C(0x801469E8u, new B12AiCtx(t).msg.P);
                 Mem.Set(0x800D0948u, (int)((int)(Mem.S32(0x800D0948u)) ^ 1));
                 func_0025E25C();
                 osRecvMesg(0x8010BE80u, (_fp + 4u), 1);
-                osAiSetNextBuffer(Mem.U32(t), (uint)(((int)(Mem.S16((t + 4u))) * 4)));
+                osAiSetNextBuffer(new B12AiCtx(t).buf, (uint)(((int)(new B12AiCtx(t).frames) * 4)));
                 return 1;
             }
         }

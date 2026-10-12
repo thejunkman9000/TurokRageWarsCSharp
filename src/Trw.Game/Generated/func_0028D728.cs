@@ -11,12 +11,12 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0028D728", (uint)lv, (uint)e);
             uint @base = 0u;
-            if (((Mem.U32((e + 256u)) & (uint)(524288)) != 0u))
+            if (((new Entity(e).flags & (uint)(524288)) != 0u))
             {
                 return (-1);
             }
-            @base = Mem.U32((lv + 312u));
-            if (((e >= @base) && ((@base + (uint)((Mem.S32((lv + 320u)) - 1) * 744)) >= e)))
+            @base = new Level(lv).entities_;
+            if (((e >= @base) && ((@base + (uint)((new Level(lv).numEntities - 1) * 744)) >= e)))
             {
                 return (int)(((uint)(((int)(e - @base))) / (uint)(744)));
             }

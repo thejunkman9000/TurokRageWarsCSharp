@@ -12,19 +12,19 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("__osClearPage", (uint)pfs, (uint)page, (uint)data, (uint)bank);
             int ret = 0;
             int i = 0;
-            Mem.Set((pfs + 101u), bank);
+            new OSPfs(pfs).activebank_Set(bank);
             ret = __osPfsSelectBank(pfs);
             if ((ret == 0))
             {
                 for (i = 0; (i < 8); ++i)
                 {
-                    ret = __osContRamWrite(Mem.U32((pfs + 4u)), Mem.S32((pfs + 8u)), (ushort)(((page * 8) + i)), data, 0);
+                    ret = __osContRamWrite(new OSPfs(pfs).queue_, new OSPfs(pfs).channel, (ushort)(((page * 8) + i)), data, 0);
                     if ((ret != 0))
                     {
                         break;
                     }
                 }
-                Mem.Set((pfs + 101u), (byte)(0));
+                new OSPfs(pfs).activebank_Set((byte)(0));
                 ret = __osPfsSelectBank(pfs);
             }
             return ret;

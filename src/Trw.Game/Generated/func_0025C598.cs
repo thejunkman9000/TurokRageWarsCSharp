@@ -10,9 +10,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025C598", (uint)v);
-            uint m = Mem.U32((v + 176u));
-            alSndpSetSound((m + 132u), (short)((int)(Mem.S16(((m + 220u) + (uint)(Mem.S32(v) * 2))))));
-            return alSndpGetState((m + 132u));
+            uint m = new SndVoice(v).mgr_;
+            alSndpSetSound(new SndMgr(m).player.P, (short)((int)(new SndMgr(m).snd[(int)(new SndVoice(v).idx)])));
+            return alSndpGetState(new SndMgr(m).player.P);
         }
     }
 

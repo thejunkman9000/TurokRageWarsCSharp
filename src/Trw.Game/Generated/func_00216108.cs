@@ -34,19 +34,19 @@ public static partial class Game
             case 1122:
             case 1123:
             case 1126:
-                if (((int)(Mem.U8(a)) == 1))
+                if (((int)(new ActorB(a).type) == 1))
                 {
-                    if (((Mem.U32((a + 256u)) & (uint)(3145728)) != 0u))
+                    if (((new ActorB(a).flags & (uint)(3145728)) != 0u))
                     {
-                        if (((Mem.U32((a + 4652u)) & (uint)(99328)) != 0u))
+                        if (((new ActorB(a).unk122C & (uint)(99328)) != 0u))
                         {
                             return 9;
                         }
-                        if ((Mem.S32((0x801468A0u + 152u)) != 0))
+                        if ((new GameFlagsC(0x801468A0u).unk98 != 0))
                         {
-                            if (((int)(Mem.S8((Mem.U32((a + 1496u)) + 128u))) == 11))
+                            if (((int)(new ActorB(a).stats.unk80) == 11))
                             {
-                                if ((Mem.S32((0x801468A0u + 160u)) > 0))
+                                if ((new GameFlagsC(0x801468A0u).unkA0 > 0))
                                 {
                                     return 9;
                                 }

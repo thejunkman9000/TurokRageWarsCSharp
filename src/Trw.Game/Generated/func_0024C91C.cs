@@ -10,24 +10,24 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024C91C", (uint)s, (uint)idx, (uint)@out);
-            int key = (int)(Mem.S16((Mem.U32(s) + (uint)(idx * 4))));
+            int key = (int)(new B11Key((new B11Trk(s).keys_ + (uint)(idx * 4))).a);
             uint n = 0u;
             uint a = 0u;
             uint b = 0u;
             float t = 0f;
             if ((key == (-1)))
             {
-                Mem.Copy(@out, (Mem.U32((s + 4u)) + (uint)(idx * 20)), 12);
+                Mem.Copy(@out, new B11Val((new B11Trk(s).vals_ + (uint)(idx * 20))).v.P, 12);
             }
             else
             {
-                n = func_0028FD94((uint)(Mem.S32((s + 8u))), key);
-                a = (n + (uint)(Mem.S32((s + 24u)) * 4));
-                b = (n + (uint)(Mem.S32((s + 28u)) * 4));
-                t = Mem.F32((s + 32u));
-                Mem.Set(@out, (Mem.F32((a + (uint)(0 * 4))) + (t * (Mem.F32((b + (uint)(0 * 4))) - Mem.F32((a + (uint)(0 * 4)))))));
-                Mem.Set((@out + 4u), (Mem.F32((a + (uint)(1 * 4))) + (t * (Mem.F32((b + (uint)(1 * 4))) - Mem.F32((a + (uint)(1 * 4)))))));
-                Mem.Set((@out + 8u), (Mem.F32((a + (uint)(2 * 4))) + (t * (Mem.F32((b + (uint)(2 * 4))) - Mem.F32((a + (uint)(2 * 4)))))));
+                n = func_0028FD94((uint)(new B11Trk(s).node8), key);
+                a = (n + (uint)(new B11Trk(s).unk18 * 4));
+                b = (n + (uint)(new B11Trk(s).unk1C * 4));
+                t = new B11Trk(s).t;
+                new Vec3f(@out).x_Set((Mem.F32((a + (uint)(0 * 4))) + (t * (Mem.F32((b + (uint)(0 * 4))) - Mem.F32((a + (uint)(0 * 4)))))));
+                new Vec3f(@out).y_Set((Mem.F32((a + (uint)(1 * 4))) + (t * (Mem.F32((b + (uint)(1 * 4))) - Mem.F32((a + (uint)(1 * 4)))))));
+                new Vec3f(@out).z_Set((Mem.F32((a + (uint)(2 * 4))) + (t * (Mem.F32((b + (uint)(2 * 4))) - Mem.F32((a + (uint)(2 * 4)))))));
             }
         }
     }

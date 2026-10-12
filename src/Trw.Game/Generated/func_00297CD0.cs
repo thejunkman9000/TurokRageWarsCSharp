@@ -14,10 +14,10 @@ public static partial class Game
             uint l = 0u;
             uint c = 0u;
             int id = 0;
-            n = Mem.U32(((Mem.U32((Mem.U32(0x8014D080u) + 12u)) + (uint)(Mem.S32((Mem.U32(0x8014D080u) + 4u)) * 28)) + 8u));
+            n = new B21Ent((new B21Menu(Mem.U32(0x8014D080u)).ents_ + (uint)(new B21Menu(Mem.U32(0x8014D080u)).cur * 28))).node_;
             id = (-1);
-            l = (n + 44u);
-            if (((n != 0u) && (((int)(Mem.U16((n + 18u))) & 16) != 0)))
+            l = new B21Node(n).link.P;
+            if (((n != 0u) && (((int)(new B21Node(n).flags) & 16) != 0)))
             {
                 switch (dir)
                 {
@@ -25,22 +25,22 @@ public static partial class Game
                     while ((Mem.U32((l + (uint)(0 * 4))) != 0u))
                     {
                         c = Mem.U32((l + (uint)(0 * 4)));
-                        if (!(((int)(Mem.U16((c + 18u))) & 256) != 0))
+                        if (!(((int)(new B21Node(c).flags) & 256) != 0))
                         {
-                            id = (int)(Mem.S16((c + 12u)));
+                            id = (int)(new B21Node(c).id);
                             break;
                         }
-                        l = (c + 44u);
+                        l = new B21Node(c).link.P;
                     }
                     break;
                 case 6:
                     while ((Mem.U32((l + (uint)(1 * 4))) != 0u))
                     {
                         c = Mem.U32((l + (uint)(1 * 4)));
-                        l = (c + 44u);
-                        if (!(((int)(Mem.U16((c + 18u))) & 256) != 0))
+                        l = new B21Node(c).link.P;
+                        if (!(((int)(new B21Node(c).flags) & 256) != 0))
                         {
-                            id = (int)(Mem.S16((c + 12u)));
+                            id = (int)(new B21Node(c).id);
                             break;
                         }
                     }
@@ -49,10 +49,10 @@ public static partial class Game
                     while ((Mem.U32((l + (uint)(2 * 4))) != 0u))
                     {
                         c = Mem.U32((l + (uint)(2 * 4)));
-                        l = (c + 44u);
-                        if (!(((int)(Mem.U16((c + 18u))) & 256) != 0))
+                        l = new B21Node(c).link.P;
+                        if (!(((int)(new B21Node(c).flags) & 256) != 0))
                         {
-                            id = (int)(Mem.S16((c + 12u)));
+                            id = (int)(new B21Node(c).id);
                             break;
                         }
                     }
@@ -61,10 +61,10 @@ public static partial class Game
                     while ((Mem.U32((l + (uint)(3 * 4))) != 0u))
                     {
                         c = Mem.U32((l + (uint)(3 * 4)));
-                        l = (c + 44u);
-                        if (!(((int)(Mem.U16((c + 18u))) & 256) != 0))
+                        l = new B21Node(c).link.P;
+                        if (!(((int)(new B21Node(c).flags) & 256) != 0))
                         {
-                            id = (int)(Mem.S16((c + 12u)));
+                            id = (int)(new B21Node(c).id);
                             break;
                         }
                     }

@@ -34,11 +34,11 @@ public static partial class Game
                 func_0029CBB0(angle, _fp, (_fp + 4u));
                 nv = Mem.F32((_fp + 4u));
                 t = (Mem.F32(0x800CAE5Cu) - nv);
-                x = Mem.F32(axis);
+                x = new Vec3f(axis).x;
                 tx = (t * x);
-                y = Mem.F32((axis + 4u));
+                y = new Vec3f(axis).y;
                 ty = (t * y);
-                z = Mem.F32((axis + 8u));
+                z = new Vec3f(axis).z;
                 tz = (t * z);
                 txx = (tx * x);
                 txy = (tx * y);
@@ -50,22 +50,22 @@ public static partial class Game
                 ys = (Mem.F32(_fp) * y);
                 zs = (Mem.F32(_fp) * z);
                 zero = 0.0f;
-                Mem.Set(((m + (uint)(3 * 16)) + (uint)(2 * 4)), zero);
-                Mem.Set(((m + (uint)(3 * 16)) + (uint)(1 * 4)), zero);
-                Mem.Set(((m + (uint)(3 * 16)) + (uint)(0 * 4)), zero);
-                Mem.Set(((m + (uint)(2 * 16)) + (uint)(3 * 4)), zero);
-                Mem.Set(((m + (uint)(1 * 16)) + (uint)(3 * 4)), zero);
-                Mem.Set(((m + (uint)(0 * 16)) + (uint)(3 * 4)), zero);
-                Mem.Set(((m + (uint)(3 * 16)) + (uint)(3 * 4)), Mem.F32(0x800CAE5Cu));
-                Mem.Set(((m + (uint)(0 * 16)) + (uint)(0 * 4)), (txx + Mem.F32((_fp + 4u))));
-                Mem.Set(((m + (uint)(0 * 16)) + (uint)(1 * 4)), (txy + zs));
-                Mem.Set(((m + (uint)(0 * 16)) + (uint)(2 * 4)), (txz - ys));
-                Mem.Set(((m + (uint)(1 * 16)) + (uint)(0 * 4)), (txy - zs));
-                Mem.Set(((m + (uint)(1 * 16)) + (uint)(1 * 4)), (tyy + nv));
-                Mem.Set(((m + (uint)(1 * 16)) + (uint)(2 * 4)), (tyz + xs));
-                Mem.Set(((m + (uint)(2 * 16)) + (uint)(0 * 4)), (txz + ys));
-                Mem.Set(((m + (uint)(2 * 16)) + (uint)(1 * 4)), (tyz - xs));
-                Mem.Set(((m + (uint)(2 * 16)) + (uint)(2 * 4)), (tzz + nv));
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(3 * 16)) + (uint)(2 * 4)), zero);
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(3 * 16)) + (uint)(1 * 4)), zero);
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(3 * 16)) + (uint)(0 * 4)), zero);
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(3 * 4)), zero);
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(3 * 4)), zero);
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(3 * 4)), zero);
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), Mem.F32(0x800CAE5Cu));
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), (txx + Mem.F32((_fp + 4u))));
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(1 * 4)), (txy + zs));
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(2 * 4)), (txz - ys));
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(0 * 4)), (txy - zs));
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), (tyy + nv));
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(2 * 4)), (tyz + xs));
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(0 * 4)), (txz + ys));
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(1 * 4)), (tyz - xs));
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), (tzz + nv));
             }
         }
         finally { Stack.Free(8); }

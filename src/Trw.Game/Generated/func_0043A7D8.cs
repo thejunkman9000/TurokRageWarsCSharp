@@ -13,34 +13,34 @@ public static partial class Game
             int row = 0;
             int col = 0;
             uint p = 0u;
-            switch (Mem.S32((Mem.U32(0x800E59E0u) + 4952u)))
+            switch (new O05L2(Mem.U32(0x800E59E0u)).f1358)
             {
             case 7:
                 break;
             case 6:
                 break;
             case 1:
-                Mem.Set((Mem.U32((Mem.U32(0x800E59E0u) + 4936u)) + 20u), (ushort)((int)(Mem.U16((Mem.U32((Mem.U32(0x800E59E0u) + 4936u)) + 20u))) + (int)(Mem.U16((Mem.U32(0x800E59E0u) + 4942u)))));
-                Mem.Set((Mem.U32((Mem.U32(0x800E59E0u) + 4944u)) + 20u), (ushort)((int)(Mem.U16((Mem.U32((Mem.U32(0x800E59E0u) + 4944u)) + 20u))) - (int)(Mem.U16((Mem.U32(0x800E59E0u) + 4950u)))));
-                Mem.Set((Mem.U32(0x800E59E0u) + 4956u), (int)(Mem.S32((Mem.U32(0x800E59E0u) + 4956u)) - 1));
-                if ((Mem.S32((Mem.U32(0x800E59E0u) + 4956u)) <= 0))
+                new O05Wh(new O05L2(Mem.U32(0x800E59E0u)).f1348).h14_Set((ushort)((int)(new O05Wh(new O05L2(Mem.U32(0x800E59E0u)).f1348).h14) + (int)(new O05L2(Mem.U32(0x800E59E0u)).h134E)));
+                new O05Wh(new O05L2(Mem.U32(0x800E59E0u)).f1350).h14_Set((ushort)((int)(new O05Wh(new O05L2(Mem.U32(0x800E59E0u)).f1350).h14) - (int)(new O05L2(Mem.U32(0x800E59E0u)).h1356)));
+                new O05L2(Mem.U32(0x800E59E0u)).f135C_Set((int)(new O05L2(Mem.U32(0x800E59E0u)).f135C - 1));
+                if ((new O05L2(Mem.U32(0x800E59E0u)).f135C <= 0))
                 {
                     func_0025DF54(3705);
-                    func_0040E958(Mem.U32((Mem.U32(0x800E59E0u) + 4964u)), 1);
-                    func_00419FD8(Mem.U32((Mem.U32(0x800E59E0u) + 4960u)), 4);
-                    Mem.Set((Mem.U32(0x800E59E0u) + 4952u), 4);
-                    Mem.Set((Mem.U32(0x800E59E0u) + 4956u), 4);
+                    func_0040E958(new O05L2(Mem.U32(0x800E59E0u)).f1364, 1);
+                    func_00419FD8(new O05L2(Mem.U32(0x800E59E0u)).f1360, 4);
+                    new O05L2(Mem.U32(0x800E59E0u)).f1358_Set(4);
+                    new O05L2(Mem.U32(0x800E59E0u)).f135C_Set(4);
                 }
                 break;
             case 2:
-                Mem.Set((Mem.U32((Mem.U32(0x800E59E0u) + 4936u)) + 20u), (ushort)((int)(Mem.U16((Mem.U32((Mem.U32(0x800E59E0u) + 4936u)) + 20u))) - (int)(Mem.U16((Mem.U32(0x800E59E0u) + 4942u)))));
-                Mem.Set((Mem.U32((Mem.U32(0x800E59E0u) + 4944u)) + 20u), (ushort)((int)(Mem.U16((Mem.U32((Mem.U32(0x800E59E0u) + 4944u)) + 20u))) + (int)(Mem.U16((Mem.U32(0x800E59E0u) + 4950u)))));
-                Mem.Set((Mem.U32(0x800E59E0u) + 4956u), (int)(Mem.S32((Mem.U32(0x800E59E0u) + 4956u)) - 1));
-                if ((Mem.S32((Mem.U32(0x800E59E0u) + 4956u)) <= 0))
+                new O05Wh(new O05L2(Mem.U32(0x800E59E0u)).f1348).h14_Set((ushort)((int)(new O05Wh(new O05L2(Mem.U32(0x800E59E0u)).f1348).h14) - (int)(new O05L2(Mem.U32(0x800E59E0u)).h134E)));
+                new O05Wh(new O05L2(Mem.U32(0x800E59E0u)).f1350).h14_Set((ushort)((int)(new O05Wh(new O05L2(Mem.U32(0x800E59E0u)).f1350).h14) + (int)(new O05L2(Mem.U32(0x800E59E0u)).h1356)));
+                new O05L2(Mem.U32(0x800E59E0u)).f135C_Set((int)(new O05L2(Mem.U32(0x800E59E0u)).f135C - 1));
+                if ((new O05L2(Mem.U32(0x800E59E0u)).f135C <= 0))
                 {
-                    Mem.Set((Mem.U32(0x800E59E0u) + 4952u), 3);
+                    new O05L2(Mem.U32(0x800E59E0u)).f1358_Set(3);
                     func_0029A73C();
-                    func_00299368((uint)(Mem.S32((Mem.U32(0x800E59E0u) + 4968u))), default(uint), default(uint), default(uint));
+                    func_00299368(new O05L2(Mem.U32(0x800E59E0u)).f1368);
                     return 0;
                 }
                 break;
@@ -50,33 +50,33 @@ public static partial class Game
             case 4:
                 {
                     uint q = Mem.U32(0x800E59E0u);
-                    int y = Mem.S32((q + 4956u));
+                    int y = new O05L2(q).f135C;
                     int x = (y - 1);
                     int t = ((x >= 0) ? (y - ((y >= x) ? 1 : 0)) : 0);
-                    Mem.Set((q + 4956u), t);
+                    new O05L2(q).f135C_Set(t);
                 }
-                if ((Mem.S32((Mem.U32(0x800E59E0u) + 4956u)) <= 0))
+                if ((new O05L2(Mem.U32(0x800E59E0u)).f135C <= 0))
                 {
-                    if ((func_00419FB8(Mem.U32((Mem.U32(0x800E59E0u) + 4960u))) != 0))
+                    if ((func_00419FB8(new O05L2(Mem.U32(0x800E59E0u)).f1360) != 0))
                     {
-                        func_00419FA4(Mem.U32((Mem.U32(0x800E59E0u) + 4960u)));
-                        Mem.Set((Mem.U32(0x800E59E0u) + 4952u), 3);
+                        func_00419FA4(new O05L2(Mem.U32(0x800E59E0u)).f1360);
+                        new O05L2(Mem.U32(0x800E59E0u)).f1358_Set(3);
                     }
                 }
                 break;
             case 5:
                 func_0025DF54(3704);
                 p = Mem.U32(0x800E59E0u);
-                Mem.Set((p + 4952u), 2);
-                Mem.Set((p + 4956u), 4);
-                func_0040E958(Mem.U32((p + 4964u)), 0);
+                new O05L2(p).f1358_Set(2);
+                new O05L2(p).f135C_Set(4);
+                func_0040E958(new O05L2(p).f1364, 0);
                 for (row = 0; (row < 4); ++row)
                 {
                     for (col = 0; (col < 5); ++col)
                     {
-                        func_0040E958(func_0040ECB0(Mem.U32(Mem.U32(0x800E59E0u)), (uint)((int)(Mem.U16(((0x800E5A06u + (uint)(row * 76)) + (uint)((col * 2) * 2))))), default(uint), default(uint)), 0);
+                        func_0040E958(func_0040ECB0(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E5A06u + (uint)(row * 76))).w[(int)((col * 2))])), default(uint), default(uint)), 0);
                     }
-                    func_0040E958(Mem.U32((((Mem.U32(0x800E59E0u) + 8u) + (uint)(row * 1232)) + 1224u)), 0);
+                    func_0040E958(new O05L2(Mem.U32(0x800E59E0u)).row[(int)(row)].f4C8, 0);
                 }
                 break;
             }

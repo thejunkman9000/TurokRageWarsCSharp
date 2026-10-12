@@ -23,7 +23,7 @@ public static partial class Game
                     for (i = 0; (i < 8); ++i)
                     {
                         e = (0x80146398u + (uint)(i * 150));
-                        if ((((int)(Mem.U8((e + 120u))) != 0) && ((int)(Mem.S8((e + 128u))) == r)))
+                        if ((((int)(new O04Ent96c(e).unk78) != 0) && ((int)(new O04Ent96c(e).unk80) == r)))
                         {
                             ok = 0;
                         }

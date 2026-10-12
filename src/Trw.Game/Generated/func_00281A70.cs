@@ -15,30 +15,30 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00281A70", (uint)unused, (uint)o, (uint)arr, (uint)n);
                 int i = 0;
                 int cnt = 0;
-                cnt = Mem.S32((0x8011FE88u + 3924u));
+                cnt = new B18Mgr(0x8011FE88u).count;
                 for (i = 0; (i < cnt); ++i)
                 {
-                    uint e = Mem.U32(((0x8011FE88u + 3668u) + (uint)(i * 4)));
-                    if ((Mem.S32((e + 372u)) > 0))
+                    uint e = new B18Mgr(0x8011FE88u).ents[(int)(i)];
+                    if ((new B18Ent(e).unk174 > 0))
                     {
-                        func_00271FD8(_fp, (e + 8u), (o + 8u));
-                        if (((((Mem.F32(_fp) * Mem.F32(_fp)) + (Mem.F32((_fp + 4u)) * Mem.F32((_fp + 4u)))) + (Mem.F32((_fp + 8u)) * Mem.F32((_fp + 8u)))) <= 65536.0f))
+                        func_00271FD8(_fp, new B18Ent(e).pos.P, new B18Ent(o).pos.P);
+                        if (((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z)) <= 65536.0f))
                         {
-                            Mem.Set((o + 332u), (short)(1));
+                            new B18Ent(o).unk14C_Set((short)(1));
                             return;
                         }
                     }
                 }
                 {
                     uint p = 0u;
-                    for (p = Mem.U32(0x80145060u); (p != 0u); p = Mem.U32((p + 5856u)))
+                    for (p = Mem.U32(0x80145060u); (p != 0u); p = new B18Ent(p).next_)
                     {
-                        if (((Mem.U32((o + 300u)) != p) && (Mem.S32((p + 1508u)) > 0)))
+                        if (((new B18Ent(o).unk12C_ != p) && (new B18Ent(p).unk5E4 > 0)))
                         {
-                            func_00271FD8(_fp, (p + 8u), (o + 8u));
-                            if (((((Mem.F32(_fp) * Mem.F32(_fp)) + (Mem.F32((_fp + 4u)) * Mem.F32((_fp + 4u)))) + (Mem.F32((_fp + 8u)) * Mem.F32((_fp + 8u)))) <= 65536.0f))
+                            func_00271FD8(_fp, new B18Ent(p).pos.P, new B18Ent(o).pos.P);
+                            if (((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z)) <= 65536.0f))
                             {
-                                Mem.Set((o + 332u), (short)(1));
+                                new B18Ent(o).unk14C_Set((short)(1));
                                 return;
                             }
                         }
@@ -46,13 +46,13 @@ public static partial class Game
                 }
                 for (i = 0; (i < n); ++i)
                 {
-                    uint e = Mem.U32((arr + (uint)(i * 4)));
-                    if (((e != o) && (((int)(Mem.U16((e + 4u))) == 12) || ((int)(Mem.U16((e + 4u))) == 34))))
+                    uint e_2 = Mem.U32((arr + (uint)(i * 4)));
+                    if (((e_2 != o) && (((int)(new B18Ent(e_2).type) == 12) || ((int)(new B18Ent(e_2).type) == 34))))
                     {
-                        func_00271FD8(_fp, (e + 8u), (o + 8u));
-                        if (((((Mem.F32(_fp) * Mem.F32(_fp)) + (Mem.F32((_fp + 4u)) * Mem.F32((_fp + 4u)))) + (Mem.F32((_fp + 8u)) * Mem.F32((_fp + 8u)))) <= 262144.0f))
+                        func_00271FD8(_fp, new B18Ent(e_2).pos.P, new B18Ent(o).pos.P);
+                        if (((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z)) <= 262144.0f))
                         {
-                            Mem.Set((o + 332u), (short)(1));
+                            new B18Ent(o).unk14C_Set((short)(1));
                             return;
                         }
                     }

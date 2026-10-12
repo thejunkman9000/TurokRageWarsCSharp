@@ -24,39 +24,39 @@ public static partial class Game
                 int n = 0;
                 float bestd = 0f;
                 float dist = 0f;
-                mats = Mem.S32((a + 180u));
+                mats = new Obj(a).unkB4;
                 if ((mats == 0))
                 {
-                    mats = Mem.S32((a + 184u));
+                    mats = new Obj(a).unkB8;
                     if ((mats == 0))
                     {
                         return 0;
                     }
                 }
-                h = func_0024BFC4(a, (int)(Mem.S8((a + 1u))));
+                h = func_0024BFC4(a, (int)(new Obj(a).unk1));
                 if ((h == 0u))
                 {
                     return 0;
                 }
                 t = func_0028FD94((uint)(Mem.S32(h)), 5);
-                n = Mem.S32((t + 4u));
+                n = new M03Tbl(t).count;
                 bestd = Mem.F32(0x800C8BD0u);
                 best = 0u;
                 for (i = 0; (i < n); ++i)
                 {
-                    e = (t + (uint)((i * Mem.S32(t)) + 8));
-                    if (((Mem.U32((e + 108u)) & Mem.U32((a + 380u))) != 0u))
+                    e = (t + (uint)((i * new M03Tbl(t).stride) + 8));
+                    if (((new M03Ent(e).mask & new Obj(a).unk17C) != 0u))
                     {
-                        Mem.Copy((_fp + 16u), (e + (uint)(0 * 12)), 12);
+                        Mem.Copy((_fp + 16u), (new M03Ent(e).p.P + (uint)(0 * 12)), 12);
                         for (k = 1; (k < 8); ++k)
                         {
-                            func_00271FA4((_fp + 16u), (_fp + 16u), (e + (uint)(k * 12)));
+                            func_00271FA4((_fp + 16u), (_fp + 16u), (new M03Ent(e).p.P + (uint)(k * 12)));
                         }
                         func_0027200C((_fp + 16u), (_fp + 16u), 0.125f);
                         func_00270980((_fp + 48u), (uint)((mats + (i * 64))), default(uint), default(uint));
                         func_00272908((_fp + 48u), (_fp + 16u), (_fp + 32u));
                         func_00271FD8((_fp + 32u), (_fp + 32u), _fp);
-                        dist = (((Mem.F32((_fp + 32u)) * Mem.F32((_fp + 32u))) + (Mem.F32(((_fp + 32u) + 4u)) * Mem.F32(((_fp + 32u) + 4u)))) + (Mem.F32(((_fp + 32u) + 8u)) * Mem.F32(((_fp + 32u) + 8u))));
+                        dist = (((new M03V3((_fp + 32u)).x * new M03V3((_fp + 32u)).x) + (new M03V3((_fp + 32u)).y * new M03V3((_fp + 32u)).y)) + (new M03V3((_fp + 32u)).z * new M03V3((_fp + 32u)).z));
                         if ((dist < bestd))
                         {
                             best = e;
@@ -67,7 +67,7 @@ public static partial class Game
                 if ((best != 0u))
                 {
                     Mem.Copy(@out, best, 112);
-                    if ((((Mem.U32((a + 256u)) & (uint)(3145728)) != 0u) && ((int)(Mem.U8(0x801462E5u)) == 0)))
+                    if ((((new Obj(a).flags & (uint)(3145728)) != 0u) && ((int)(Mem.U8(0x801462E5u)) == 0)))
                     {
                         Mem.Set((@out + (uint)104), Mem.F32(0x800C8BD4u));
                     }

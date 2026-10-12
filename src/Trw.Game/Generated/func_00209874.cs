@@ -10,15 +10,15 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00209874", (uint)ctl, (uint)id);
-            uint tbl = Mem.U32((ctl + 532u));
+            uint tbl = new B2Ctl(ctl).tbl_;
             uint found = 0u;
             uint e = 0u;
-            Mem.Set((ctl + 540u), id);
+            new B2Ctl(ctl).curId_Set(id);
             while ((tbl != 0u))
             {
-                for (e = (tbl + 32u); (Mem.S32(e) != (-1)); e += 32u)
+                for (e = new B2AnimTbl(tbl).ent.P; (new B2AnimEnt(e).id != (-1)); e += 32u)
                 {
-                    if ((Mem.S32(e) == id))
+                    if ((new B2AnimEnt(e).id == id))
                     {
                         found = e;
                         tbl = 0u;
@@ -27,17 +27,17 @@ public static partial class Game
                 }
                 if ((tbl != 0u))
                 {
-                    tbl = Mem.U32(tbl);
+                    tbl = new B2AnimTbl(tbl).next_;
                 }
             }
             if ((found == 0u))
             {
                 return 0;
             }
-            Mem.Set((ctl + 536u), found);
-            if ((Mem.U32((found + 4u)) != 0u))
+            new B2Ctl(ctl).cur__Set(found);
+            if ((new B2AnimEnt(found).cb != 0u))
             {
-                Funcs.CallReg(Mem.U32((found + 4u)), Mem.U32(ctl), (uint)(0), 0u, 0u);
+                Funcs.CallReg(new B2AnimEnt(found).cb, new B2Ctl(ctl).owner_, (uint)(0), 0u, 0u);
             }
             return 1;
         }

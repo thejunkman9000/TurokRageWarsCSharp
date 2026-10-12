@@ -10,24 +10,24 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004137A0", (uint)p, (uint)a, (uint)b, (uint)c);
-            Mem.Set(p, (byte)(a));
-            Mem.Set((p + 4u), (short)(b));
-            Mem.Set((p + 6u), (short)(c));
-            Mem.Set((p + 1u), (byte)(0));
-            Mem.Set((p + 2u), (short)(j));
-            Mem.Set((p + 8u), (short)(d));
-            Mem.Set((p + 10u), (short)(e));
-            Mem.Set((p + 24u), g);
-            Mem.Set((p + 12u), f);
-            Mem.Set((p + 20u), i);
-            Mem.Set((p + 16u), h);
+            new S_func_004137A0(p).b0_Set((byte)(a));
+            new S_func_004137A0(p).f4_Set((short)(b));
+            new S_func_004137A0(p).f6_Set((short)(c));
+            new S_func_004137A0(p).b1_Set((byte)(0));
+            new S_func_004137A0(p).f2_Set((short)(j));
+            new S_func_004137A0(p).f8_Set((short)(d));
+            new S_func_004137A0(p).fA_Set((short)(e));
+            new S_func_004137A0(p).f18_Set(g);
+            new S_func_004137A0(p).fC_Set(f);
+            new S_func_004137A0(p).f14_Set(i);
+            new S_func_004137A0(p).f10_Set(h);
             if ((flag1 != 0))
             {
-                Mem.Set((p + 1u), (byte)(1));
+                new S_func_004137A0(p).b1_Set((byte)(1));
             }
             if ((flag2 != 0))
             {
-                Mem.Set((p + 1u), (byte)((int)(Mem.U8((p + 1u))) | 2));
+                new S_func_004137A0(p).b1_Set((byte)((int)(new S_func_004137A0(p).b1) | 2));
             }
         }
     }

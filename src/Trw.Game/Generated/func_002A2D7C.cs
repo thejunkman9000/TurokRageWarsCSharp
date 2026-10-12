@@ -10,24 +10,24 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A2D7C", (uint)o);
-            if ((Mem.S32((o + 84u)) == 0))
+            if ((new AnimObj(o).unk54 == 0))
             {
-                if ((Mem.S32((o + 88u)) < Mem.S32((o + 76u))))
+                if ((new AnimObj(o).unk58 < new AnimObj(o).unk4C))
                 {
-                    func_002A2B24(o, (Mem.S32((o + 88u)) + 1));
+                    func_002A2B24(o, (new AnimObj(o).unk58 + 1));
                 }
             }
             else
             {
-                if ((Mem.S32((o + 88u)) == Mem.S32((o + 76u))))
+                if ((new AnimObj(o).unk58 == new AnimObj(o).unk4C))
                 {
-                    Mem.Set((o + 88u), Mem.S32((o + 80u)));
+                    new AnimObj(o).unk58_Set(new AnimObj(o).unk50);
                 }
                 else
                 {
-                    Mem.Set((o + 88u), (Mem.S32((o + 88u)) + 1));
+                    new AnimObj(o).unk58_Set((new AnimObj(o).unk58 + 1));
                 }
-                func_002A2B24(o, Mem.S32((o + 88u)));
+                func_002A2B24(o, new AnimObj(o).unk58);
             }
         }
     }

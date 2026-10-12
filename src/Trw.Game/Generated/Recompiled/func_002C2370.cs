@@ -42,7 +42,7 @@ public static partial class Game
                 { bool c_ = r1 != 0; r8 = r8 + 16u; if (c_) goto L_L002C23C0; }
                 Cpu.V1 = r3; return r2;
                 r2 = r2 | 2u;
-                r2 = _decodeChunk(r4, r5, r6, r7, 0u, 0u, 0u); r3 = Cpu.V1;
+                r2 = _decodeChunk(r4, r5, (int)r6, (int)r7, (short)Mem.U32(r29 + 16u), (short)Mem.U32(r29 + 20u), Mem.U32(r29 + 24u));
                 Cpu.V1 = r3; return r2;
             }
         }

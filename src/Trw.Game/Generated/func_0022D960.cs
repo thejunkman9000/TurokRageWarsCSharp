@@ -22,11 +22,11 @@ public static partial class Game
                     Mem.Set((actor + (uint)2048), Mem.F32((obj + (uint)8)));
                     Mem.Set((actor + (uint)2052), Mem.F32((obj + (uint)12)));
                     Mem.Set((actor + (uint)2056), Mem.F32((obj + (uint)16)));
-                    Mem.Set(_fp, Mem.F32((p + (uint)52)));
-                    Mem.Set((_fp + 4u), Mem.F32((p + (uint)56)));
-                    Mem.Set((_fp + 8u), Mem.F32((p + (uint)60)));
+                    new Vec3f(_fp).x_Set(Mem.F32((p + (uint)52)));
+                    new Vec3f(_fp).y_Set(Mem.F32((p + (uint)56)));
+                    new Vec3f(_fp).z_Set(Mem.F32((p + (uint)60)));
                     func_00271FD8((_fp + 16u), _fp, (actor + (uint)2048));
-                    Mem.Set(((_fp + 16u) + 4u), (float)(0));
+                    new Vec3f((_fp + 16u)).y_Set((float)(0));
                     Mem.Set((actor + (uint)2040), func_00271B18((_fp + 16u)));
                 }
             }

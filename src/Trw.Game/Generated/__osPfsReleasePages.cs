@@ -15,50 +15,50 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("__osPfsReleasePages", (uint)pfs, (uint)inode, (uint)initial_page, (uint)sum);
                 int ret = 0;
                 int offset = 0;
-                Mem.Set(_fp, Mem.U16((inode + (uint)(initial_page * 2))));
-                if (((int)(Mem.U16(_fp)) != 1))
+                new __OSInodeUnit_v2(_fp).ushort_Set(new __OSInode_v2(inode).inode_page[(int)(initial_page)].@ushort);
+                if (((int)(new __OSInodeUnit_v2(_fp).@ushort) != 1))
                 {
-                    offset = (((int)(Mem.U8(_fp)) == 0) ? Mem.S32((pfs + 96u)) : 1);
+                    offset = (((int)(Mem.U8(new __OSInodeUnit_v2(_fp).inode_t.P)) == 0) ? new OSPfs(pfs).inode_start_page : 1);
                 }
                 else
                 {
-                    offset = (((int)(bank) == 0) ? Mem.S32((pfs + 96u)) : 1);
+                    offset = (((int)(bank) == 0) ? new OSPfs(pfs).inode_start_page : 1);
                 }
-                if ((((int)(Mem.U8((_fp + 1u))) < offset) && ((int)(Mem.U16(_fp)) != 1)))
+                if ((((int)(Mem.U8((new __OSInodeUnit_v2(_fp).inode_t.P + 1u))) < offset) && ((int)(new __OSInodeUnit_v2(_fp).@ushort) != 1)))
                 {
                     return 3;
                 }
                 Mem.Copy(final_page, _fp, 2);
                 if ((flag == 1))
                 {
-                    Mem.Set((inode + (uint)(initial_page * 2)), (ushort)(3));
+                    new __OSInode_v2(inode).inode_page[(int)(initial_page)].ushort_Set((ushort)(3));
                 }
                 ret = __osBlockSum(pfs, initial_page, sum, bank);
                 if ((ret != 0))
                 {
                     return ret;
                 }
-                if (((int)(Mem.U16(_fp)) == 1))
+                if (((int)(new __OSInodeUnit_v2(_fp).@ushort) == 1))
                 {
                     return 0;
                 }
-                if (((int)(Mem.U16(_fp)) >= Mem.S32((pfs + 96u))))
+                if (((int)(new __OSInodeUnit_v2(_fp).@ushort) >= new OSPfs(pfs).inode_start_page))
                 {
                     do
                     {
                         Mem.Copy((_fp + 8u), _fp, 2);
-                        Mem.Copy(_fp, (inode + (uint)(Mem.U8(((_fp + 8u) + 1u)) * 2)), 2);
-                        Mem.Set((inode + (uint)(Mem.U8(((_fp + 8u) + 1u)) * 2)), (ushort)(3));
-                        ret = __osBlockSum(pfs, Mem.U8(((_fp + 8u) + 1u)), sum, bank);
+                        Mem.Copy(_fp, (new __OSInode_v2(inode).inode_page.P + (uint)(Mem.U8((new __OSInodeUnit_v2((_fp + 8u)).inode_t.P + 1u)) * 2)), 2);
+                        new __OSInode_v2(inode).inode_page[(int)(Mem.U8((new __OSInodeUnit_v2((_fp + 8u)).inode_t.P + 1u)))].ushort_Set((ushort)(3));
+                        ret = __osBlockSum(pfs, Mem.U8((new __OSInodeUnit_v2((_fp + 8u)).inode_t.P + 1u)), sum, bank);
                         if ((ret != 0))
                         {
                             return ret;
                         }
                     }
-                    while ((((int)(Mem.U8(_fp)) == (int)(bank)) && ((int)(Mem.U16(_fp)) >= Mem.S32((pfs + 96u)))));
-                    if ((((int)(Mem.U16(_fp)) >= Mem.S32((pfs + 96u))) && ((int)(Mem.U8(_fp)) == (int)(bank))))
+                    while ((((int)(Mem.U8(new __OSInodeUnit_v2(_fp).inode_t.P)) == (int)(bank)) && ((int)(new __OSInodeUnit_v2(_fp).@ushort) >= new OSPfs(pfs).inode_start_page)));
+                    if ((((int)(new __OSInodeUnit_v2(_fp).@ushort) >= new OSPfs(pfs).inode_start_page) && ((int)(Mem.U8(new __OSInodeUnit_v2(_fp).inode_t.P)) == (int)(bank))))
                     {
-                        Mem.Set((inode + (uint)(Mem.U8((_fp + 1u)) * 2)), (ushort)(3));
+                        new __OSInode_v2(inode).inode_page[(int)(Mem.U8((new __OSInodeUnit_v2(_fp).inode_t.P + 1u)))].ushort_Set((ushort)(3));
                     }
                 }
                 Mem.Copy(final_page, _fp, 2);

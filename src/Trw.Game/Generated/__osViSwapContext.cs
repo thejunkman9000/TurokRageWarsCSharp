@@ -19,56 +19,56 @@ public static partial class Game
             uint buffer = 0u;
             field = (uint)(0);
             vc = Mem.U32(0x800D8444u);
-            modep = Mem.U32((vc + 8u));
+            modep = new OSViContext(vc).modep_;
             field = (Mem.U32((uint)(((uint)(71303184) | 2684354560u))) & (uint)(1));
-            buffer = osVirtualToPhysical(Mem.U32((vc + 4u)));
-            origin = (buffer + Mem.U32(((modep + 40u) + (uint)(field * 20))));
-            if ((((int)(Mem.U16(vc)) & 2) != 0))
+            buffer = osVirtualToPhysical(new OSViContext(vc).buffer);
+            origin = (buffer + new OSViMode(modep).fldRegs[(int)(field)].origin);
+            if ((((int)(new OSViContext(vc).state) & 2) != 0))
             {
-                Mem.Set(((vc + 24u) + 8u), (uint)((uint)(Mem.U32(((vc + 24u) + 8u))) | (Mem.U32(((modep + 4u) + 28u)) & (uint)((~4095)))));
+                new OSViContext(vc).x.scale_Set((uint)((uint)(new OSViContext(vc).x.scale) | (new OSViMode(modep).comRegs.xScale & (uint)((~4095)))));
             }
             else
             {
-                Mem.Set(((vc + 24u) + 8u), Mem.U32(((modep + 4u) + 28u)));
+                new OSViContext(vc).x.scale_Set(new OSViMode(modep).comRegs.xScale);
             }
-            if ((((int)(Mem.U16(vc)) & 4) != 0))
+            if ((((int)(new OSViContext(vc).state) & 4) != 0))
             {
-                yScaleLow = (Mem.U32((((modep + 40u) + (uint)(field * 20)) + 4u)) & (uint)(4095));
-                Mem.Set(((vc + 36u) + 8u), Cpu.TruncU32((Mem.F32((vc + 36u)) * (float)(yScaleLow))));
-                Mem.Set(((vc + 36u) + 8u), (uint)((uint)(Mem.U32(((vc + 36u) + 8u))) | (Mem.U32((((modep + 40u) + (uint)(field * 20)) + 4u)) & (uint)((~4095)))));
+                yScaleLow = (new OSViMode(modep).fldRegs[(int)(field)].yScale & (uint)(4095));
+                new OSViContext(vc).y.scale_Set(Cpu.TruncU32((new OSViContext(vc).y.factor * (float)(yScaleLow))));
+                new OSViContext(vc).y.scale_Set((uint)((uint)(new OSViContext(vc).y.scale) | (new OSViMode(modep).fldRegs[(int)(field)].yScale & (uint)((~4095)))));
             }
             else
             {
-                Mem.Set(((vc + 36u) + 8u), Mem.U32((((modep + 40u) + (uint)(field * 20)) + 4u)));
+                new OSViContext(vc).y.scale_Set(new OSViMode(modep).fldRegs[(int)(field)].yScale);
             }
-            hStart = Mem.U32(((modep + 4u) + 24u));
-            if ((((int)(Mem.U16(vc)) & 32) != 0))
+            hStart = new OSViMode(modep).comRegs.hStart;
+            if ((((int)(new OSViContext(vc).state) & 32) != 0))
             {
                 hStart = (uint)(0);
             }
-            if ((((int)(Mem.U16(vc)) & 64) != 0))
+            if ((((int)(new OSViContext(vc).state) & 64) != 0))
             {
-                Mem.Set(((vc + 36u) + 8u), (uint)(0));
-                origin = osVirtualToPhysical(Mem.U32((vc + 4u)));
+                new OSViContext(vc).y.scale_Set((uint)(0));
+                origin = osVirtualToPhysical(new OSViContext(vc).buffer);
             }
-            if ((((int)(Mem.U16(vc)) & 128) != 0))
+            if ((((int)(new OSViContext(vc).state) & 128) != 0))
             {
-                Mem.Set(((vc + 36u) + 8u), (uint)((((int)(Mem.U16(((vc + 36u) + 4u))) << (int)16) & 67043328)));
-                origin = osVirtualToPhysical(Mem.U32((vc + 4u)));
+                new OSViContext(vc).y.scale_Set((uint)((((int)(new OSViContext(vc).y.offset) << (int)16) & 67043328)));
+                origin = osVirtualToPhysical(new OSViContext(vc).buffer);
             }
             Mem.Set((uint)(((uint)(71303172) | 2684354560u)), origin);
-            Mem.Set((uint)(((uint)(71303176) | 2684354560u)), Mem.U32(((modep + 4u) + 4u)));
-            Mem.Set((uint)(((uint)(71303188) | 2684354560u)), Mem.U32(((modep + 4u) + 8u)));
-            Mem.Set((uint)(((uint)(71303192) | 2684354560u)), Mem.U32(((modep + 4u) + 12u)));
-            Mem.Set((uint)(((uint)(71303196) | 2684354560u)), Mem.U32(((modep + 4u) + 16u)));
-            Mem.Set((uint)(((uint)(71303200) | 2684354560u)), Mem.U32(((modep + 4u) + 20u)));
+            Mem.Set((uint)(((uint)(71303176) | 2684354560u)), new OSViMode(modep).comRegs.width);
+            Mem.Set((uint)(((uint)(71303188) | 2684354560u)), new OSViMode(modep).comRegs.burst);
+            Mem.Set((uint)(((uint)(71303192) | 2684354560u)), new OSViMode(modep).comRegs.vSync);
+            Mem.Set((uint)(((uint)(71303196) | 2684354560u)), new OSViMode(modep).comRegs.hSync);
+            Mem.Set((uint)(((uint)(71303200) | 2684354560u)), new OSViMode(modep).comRegs.leap);
             Mem.Set((uint)(((uint)(71303204) | 2684354560u)), hStart);
-            Mem.Set((uint)(((uint)(71303208) | 2684354560u)), Mem.U32((((modep + 40u) + (uint)(field * 20)) + 8u)));
-            Mem.Set((uint)(((uint)(71303212) | 2684354560u)), Mem.U32((((modep + 40u) + (uint)(field * 20)) + 12u)));
-            Mem.Set((uint)(((uint)(71303180) | 2684354560u)), Mem.U32((((modep + 40u) + (uint)(field * 20)) + 16u)));
-            Mem.Set((uint)(((uint)(71303216) | 2684354560u)), Mem.U32(((vc + 24u) + 8u)));
-            Mem.Set((uint)(((uint)(71303220) | 2684354560u)), Mem.U32(((vc + 36u) + 8u)));
-            Mem.Set((uint)(((uint)(71303168) | 2684354560u)), Mem.U32((vc + 12u)));
+            Mem.Set((uint)(((uint)(71303208) | 2684354560u)), new OSViMode(modep).fldRegs[(int)(field)].vStart);
+            Mem.Set((uint)(((uint)(71303212) | 2684354560u)), new OSViMode(modep).fldRegs[(int)(field)].vBurst);
+            Mem.Set((uint)(((uint)(71303180) | 2684354560u)), new OSViMode(modep).fldRegs[(int)(field)].vIntr);
+            Mem.Set((uint)(((uint)(71303216) | 2684354560u)), new OSViContext(vc).x.scale);
+            Mem.Set((uint)(((uint)(71303220) | 2684354560u)), new OSViContext(vc).y.scale);
+            Mem.Set((uint)(((uint)(71303168) | 2684354560u)), new OSViContext(vc).features);
             Mem.Set(0x800D8444u, Mem.U32(0x800D8440u));
             Mem.Set(0x800D8440u, vc);
             Mem.Copy(Mem.U32(0x800D8444u), Mem.U32(0x800D8440u), 48);

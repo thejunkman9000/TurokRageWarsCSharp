@@ -27,69 +27,69 @@ public static partial class Game
                 {
                     return 0u;
                 }
-                if ((Mem.U32((o + 15360u)) == 0u))
+                if ((new NodeOwner(o).freeList_ == 0u))
                 {
-                    func_00290930(o, Mem.U32((o + 15368u)));
+                    func_00290930(o, new NodeOwner(o).tail_);
                 }
-                n = Mem.U32((o + 15360u));
-                Mem.Set((o + 15360u), Mem.U32((n + 476u)));
-                if ((Mem.U32((o + 15364u)) != 0u))
+                n = new NodeOwner(o).freeList_;
+                new NodeOwner(o).freeList__Set(new Spawn_v2(n).next1DC_);
+                if ((new NodeOwner(o).head_ != 0u))
                 {
-                    Mem.Set((Mem.U32((o + 15364u)) + 472u), n);
+                    new Node(new NodeOwner(o).head_).prev__Set(n);
                 }
-                Mem.Set((n + 476u), Mem.U32((o + 15364u)));
-                Mem.Set((n + 472u), 0u);
-                Mem.Set((o + 15364u), n);
-                if ((Mem.U32((o + 15368u)) == 0u))
+                new Spawn_v2(n).next1DC__Set(new NodeOwner(o).head_);
+                new Spawn_v2(n).prev1D8__Set(0u);
+                new NodeOwner(o).head__Set(n);
+                if ((new NodeOwner(o).tail_ == 0u))
                 {
-                    Mem.Set((o + 15368u), n);
+                    new NodeOwner(o).tail__Set(n);
                 }
-                Mem.Set((n + 464u), (uint)((uint)(Mem.U32((n + 464u))) | (uint)(1)));
+                new Spawn_v2(n).flags1D0_Set((uint)((uint)(new Spawn_v2(n).flags1D0) | (uint)(1)));
                 func_00246174(n);
-                Mem.Set((n + 456u), (float)(0));
+                new Spawn_v2(n).unk1C8_Set((float)(0));
                 r = func_0028C174(0x8011FE88u, idx);
-                Mem.Set((n + 468u), counter);
+                new Spawn_v2(n).counter1D4__Set(counter);
                 if ((counter != 0u))
                 {
                     Mem.Set(counter, (Mem.S32(counter) + 1));
                 }
                 if (((int)(Mem.U8(0x801462E5u)) != 0))
                 {
-                    Mem.Set((n + 24u), 0x8011F2C0u);
+                    new Spawn_v2(n).def__Set(0x8011F2C0u);
                 }
                 else
                 {
-                    Mem.Set((n + 24u), 0x8011F448u);
+                    new Spawn_v2(n).def__Set(0x8011F448u);
                 }
-                Mem.Set((n + 456u), f);
-                Mem.Set((n + 460u), 0);
-                Mem.Set((n + 4u), (short)(idx));
-                Mem.Set(((_fp + 16u) + 4u), (Mem.F32(((_fp + 16u) + 4u)) + 10.2399998f));
-                Mem.Copy((n + 8u), (_fp + 16u), 12);
-                Mem.Set((n + 372u), 0);
-                Mem.Set((n + 376u), 0);
-                Mem.Set((n + 360u), 0);
-                Mem.Set((n + 364u), 1.0f);
-                Mem.Set((n + 368u), 0);
-                Mem.Set(((n + 380u) + (uint)(0 * 4)), (Mem.F32((_fp + 16u)) - 81.9199981f));
-                Mem.Set(((n + 380u) + (uint)(1 * 4)), (Mem.F32(((_fp + 16u) + 4u)) - 81.9199981f));
-                Mem.Set(((n + 380u) + (uint)(2 * 4)), (Mem.F32(((_fp + 16u) + 8u)) - 81.9199981f));
-                Mem.Set(((n + 380u) + (uint)(3 * 4)), (Mem.F32((_fp + 16u)) + 81.9199981f));
-                Mem.Set(((n + 380u) + (uint)(4 * 4)), (Mem.F32(((_fp + 16u) + 4u)) + 81.9199981f));
-                Mem.Set(((n + 380u) + (uint)(5 * 4)), (Mem.F32(((_fp + 16u) + 8u)) + 81.9199981f));
-                Mem.Set((n + 80u), r);
-                Mem.Set((n + 84u), (-1));
-                Mem.Set((n + 88u), 0);
-                Mem.Set((n + 92u), 0);
-                Mem.Set((n + 20u), val);
-                Mem.Set((n + 404u), 0);
-                Mem.Set((n + 412u), (short)(26));
-                Mem.Copy((n + 28u), _fp, 12);
-                Mem.Set((n + 452u), 0);
-                Mem.Set((_fp + 32u), Mem.F32((n + 8u)));
-                Mem.Set(((_fp + 32u) + 4u), (Mem.F32(((n + 8u) + 4u)) + (func_0024D274(n) * 0.5f)));
-                Mem.Set(((_fp + 32u) + 8u), Mem.F32(((n + 8u) + 8u)));
-                func_0028C6B0(0x8011FE88u, (_fp + 32u), (n + 424u));
+                new Spawn_v2(n).unk1C8_Set(f);
+                new Spawn_v2(n).unk1CC_Set(0);
+                new Spawn_v2(n).unk4_Set((short)(idx));
+                new Vec3f((_fp + 16u)).y_Set((new Vec3f((_fp + 16u)).y + 10.2399998f));
+                Mem.Copy(new Spawn_v2(n).pos.P, (_fp + 16u), 12);
+                new Spawn_v2(n).unk174_Set(0);
+                new Spawn_v2(n).unk178_Set(0);
+                new Spawn_v2(n).unk168_Set(0);
+                new Spawn_v2(n).unk16C_Set(1.0f);
+                new Spawn_v2(n).unk170_Set(0);
+                new Spawn_v2(n).box.Set((int)(0), (new Vec3f((_fp + 16u)).x - 81.9199981f));
+                new Spawn_v2(n).box.Set((int)(1), (new Vec3f((_fp + 16u)).y - 81.9199981f));
+                new Spawn_v2(n).box.Set((int)(2), (new Vec3f((_fp + 16u)).z - 81.9199981f));
+                new Spawn_v2(n).box.Set((int)(3), (new Vec3f((_fp + 16u)).x + 81.9199981f));
+                new Spawn_v2(n).box.Set((int)(4), (new Vec3f((_fp + 16u)).y + 81.9199981f));
+                new Spawn_v2(n).box.Set((int)(5), (new Vec3f((_fp + 16u)).z + 81.9199981f));
+                new Spawn_v2(n).unk50_Set(r);
+                new Spawn_v2(n).unk54_Set((-1));
+                new Spawn_v2(n).unk58_Set(0);
+                new Spawn_v2(n).unk5C_Set(0);
+                new Spawn_v2(n).unk14_Set(val);
+                new Spawn_v2(n).unk194_Set(0);
+                new Spawn_v2(n).unk19C_Set((short)(26));
+                Mem.Copy(new Spawn_v2(n).vel.P, _fp, 12);
+                new Spawn_v2(n).unk1C4_Set(0);
+                new Vec3f((_fp + 32u)).x_Set(new Spawn_v2(n).pos.x);
+                new Vec3f((_fp + 32u)).y_Set((new Spawn_v2(n).pos.y + (func_0024D274(n) * 0.5f)));
+                new Vec3f((_fp + 32u)).z_Set(new Spawn_v2(n).pos.z);
+                func_0028C6B0(0x8011FE88u, (_fp + 32u), new Spawn_v2(n).unk1A8.P);
                 return n;
             }
         }

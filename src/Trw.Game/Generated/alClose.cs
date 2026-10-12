@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("alClose", (uint)glob);
             if ((Mem.U32(0x800D80A0u) != 0u))
             {
-                alSynDelete(glob);
+                alSynDelete(new ALGlobals(glob).drvr.P);
                 Mem.Set(0x800D80A0u, 0u);
             }
         }

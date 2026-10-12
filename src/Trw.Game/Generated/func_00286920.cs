@@ -14,49 +14,49 @@ public static partial class Game
             int i = 0;
             uint p = 0u;
             uint inf = 0u;
-            p = Mem.U32((owner + 312u));
-            Mem.Set((owner + 112224u), 0);
+            p = new B19Owner(owner).base_;
+            new B19Owner(owner).listcnt_Set(0);
             for (i = 15; (i >= 0); --i)
             {
-                Mem.Set(((owner + 112160u) + (uint)(i * 4)), 0u);
+                new B19Owner(owner).list.Set((int)(i), 0u);
             }
-            for (i = 0; (i < Mem.S32((owner + 320u))); ++i)
+            for (i = 0; (i < new B19Owner(owner).cnt); ++i)
             {
-                inf = Mem.U32((p + 24u));
-                if ((Mem.S32(inf) == 13))
+                inf = new B19Obj(p).info;
+                if ((new B19Info18(inf).type == 13))
                 {
-                    if (((Mem.U32(0x800E4680u) != 0u) && ((uint)((Mem.S32((inf + 32u)) - 3380)) < (uint)(4))))
+                    if (((Mem.U32(0x800E4680u) != 0u) && ((uint)((new B19Info18(inf).f20 - 3380)) < (uint)(4))))
                     {
-                        switch ((int)(Mem.S16((inf + 12u))))
+                        switch ((int)(new B19Info18(inf).sC))
                         {
                         case 3371:
                             if (((int)(Mem.U8((Mem.U32(0x800E4680u) + (uint)1))) == 0))
                             {
-                                Mem.Set((inf + 4u), (uint)((uint)(Mem.U32((inf + 4u))) | (uint)(4)));
+                                new B19Info18(inf).f4_Set((uint)((uint)(new B19Info18(inf).f4) | (uint)(4)));
                             }
                             else
                             {
-                                Mem.Set((inf + 4u), (uint)((uint)(Mem.U32((inf + 4u))) & (uint)((~4))));
+                                new B19Info18(inf).f4_Set((uint)((uint)(new B19Info18(inf).f4) & (uint)((~4))));
                             }
                             break;
                         case 3372:
                         case 3373:
                         case 3374:
-                            if (((int)(Mem.U8((Mem.U32(0x800E4680u) + (uint)((int)(Mem.S16((Mem.U32((p + 24u)) + 12u))) - 3370)))) == 0))
+                            if (((int)(Mem.U8((Mem.U32(0x800E4680u) + (uint)((int)(new B19Info18(new B19Obj(p).info).sC) - 3370)))) == 0))
                             {
-                                Mem.Set((Mem.U32((p + 24u)) + 4u), (uint)((uint)(Mem.U32((Mem.U32((p + 24u)) + 4u))) | (uint)(4)));
+                                new B19Info18(new B19Obj(p).info).f4_Set((uint)((uint)(new B19Info18(new B19Obj(p).info).f4) | (uint)(4)));
                             }
                             else
                             {
-                                Mem.Set((Mem.U32((p + 24u)) + 4u), (uint)((uint)(Mem.U32((Mem.U32((p + 24u)) + 4u))) & (uint)((~4))));
+                                new B19Info18(new B19Obj(p).info).f4_Set((uint)((uint)(new B19Info18(new B19Obj(p).info).f4) & (uint)((~4))));
                             }
                             break;
                         default:
-                            Mem.Set((Mem.U32((p + 24u)) + 4u), (uint)((uint)(Mem.U32((Mem.U32((p + 24u)) + 4u))) & (uint)((~4))));
+                            new B19Info18(new B19Obj(p).info).f4_Set((uint)((uint)(new B19Info18(new B19Obj(p).info).f4) & (uint)((~4))));
                             break;
                         }
                     }
-                    Mem.Set(((owner + 112160u) + (uint)(n * 4)), p);
+                    new B19Owner(owner).list.Set((int)(n), p);
                     ++n;
                 }
                 if ((n >= 16))
@@ -65,7 +65,7 @@ public static partial class Game
                 }
                 p = (p + (uint)744);
             }
-            Mem.Set((owner + 112224u), n);
+            new B19Owner(owner).listcnt_Set(n);
         }
     }
 

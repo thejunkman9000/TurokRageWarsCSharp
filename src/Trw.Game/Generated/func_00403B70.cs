@@ -12,8 +12,8 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00403B70", (uint)t);
             uint x = func_0028FD94(t, 0);
             uint y = func_0028FD94(t, 2);
-            int a = (Mem.S32((x + 4u)) * 9);
-            int b = (Mem.S32((y + 4u)) * 9);
+            int a = (new O01Node(x).unk4 * 9);
+            int b = (new O01Node(y).unk4 * 9);
             return (((b + a) * 4) + 48);
         }
     }

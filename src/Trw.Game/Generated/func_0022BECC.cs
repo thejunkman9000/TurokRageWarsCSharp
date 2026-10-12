@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022BECC", (uint)actor);
-            return (((int)(Mem.S16((Mem.U32((0x800D052Cu + (uint)(Mem.S16((actor + (uint)1582)) * 4))) + 8u))) > 0) ? 1 : 0);
+            return (((int)(new B07Weapon(Mem.U32((0x800D052Cu + (uint)(Mem.S16((actor + (uint)1582)) * 4)))).unk8) > 0) ? 1 : 0);
         }
     }
 

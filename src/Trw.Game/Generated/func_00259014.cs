@@ -16,10 +16,10 @@ public static partial class Game
             {
                 return (-1);
             }
-            v = ((m + 7608u) + 4u);
+            v = new SndMgr(m).pool.v.P;
             for (i = 0; (i < 17); ++i)
             {
-                if ((Mem.S32((v + 12u)) == id))
+                if ((new SndVoice(v).unkC == id))
                 {
                     return i;
                 }

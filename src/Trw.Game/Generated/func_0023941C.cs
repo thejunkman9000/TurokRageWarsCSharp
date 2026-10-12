@@ -12,8 +12,8 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0023941C", (uint)@base);
             uint dl = 0u;
             dl = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-            Mem.Set(dl, 3661103111u);
-            Mem.Set((dl + 4u), (uint)((@base + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 1096))));
+            new DlCmd(dl).w0_Set(3661103111u);
+            new DlCmd(dl).w1_Set((uint)((@base + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 1096))));
         }
     }
 

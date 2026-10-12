@@ -416,8 +416,8 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_00238660", r2); Stack.Free(504); }
     }
 
-    public static void func_00238660(int p0, float p1, float p2, float p3, int p4, int p5)
+    public static void func_00238660(uint p0, float p1, float p2, float p3, int p4)
     {
-        func_00238660_rc((uint)p0, Cpu.F2U(p1), Cpu.F2U(p2), Cpu.F2U(p3), (uint)p4);
+        func_00238660_rc(p0, Cpu.F2U(p1), Cpu.F2U(p2), Cpu.F2U(p3), (uint)p4);
     }
 }

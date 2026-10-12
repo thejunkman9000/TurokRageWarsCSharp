@@ -13,14 +13,14 @@ public static partial class Game
             uint n3 = 0u;
             uint p = 0u;
             int s1 = 0;
-            if (((Mem.U32((a + 380u)) & (uint)((1 << (int)bit))) != 0u))
+            if (((new Obj(a).unk17C & (uint)((1 << (int)bit))) != 0u))
             {
                 n3 = func_0028FD94(node, 3);
-                s1 = Mem.S32((n3 + 4u));
+                s1 = new B11Node(n3).unk4;
                 if ((s1 != 0))
                 {
-                    p = (n3 + 8u);
-                    func_0026E5E0(p, (uint)(s1), (uint)(c), a, func_0028FD94(node, 5));
+                    p = new B11Node(n3).unk8.P;
+                    func_0026E5E0(p, s1, (uint)(c), a, func_0028FD94(node, 5));
                 }
             }
         }

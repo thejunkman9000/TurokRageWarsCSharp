@@ -10,27 +10,27 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00203908", (uint)actor, (uint)state);
-            uint info = (Mem.U32((actor + 24u)) + (uint)20);
-            if (((int)(Mem.U16((actor + 228u))) == 1036))
+            uint info = (new B01Actor(actor).def_ + (uint)20);
+            if (((int)(new B01Actor(actor).unkE4) == 1036))
             {
-                Mem.Set((state + 292u), (-1.57079649f));
+                new B01State(state).unk124.f_Set((-1.57079649f));
             }
             else
             {
-                Mem.Set((state + 292u), 0);
+                new B01State(state).unk124.i_Set(0);
             }
-            Mem.Set((state + 296u), 0);
-            Mem.Set((state + 100u), Mem.F32((info + 108u)));
+            new B01State(state).unk128.i_Set(0);
+            new B01State(state).unk64_Set(new B01Info(info).unk6C);
             if ((func_00285F28(0x8011FE88u, actor) == 0))
             {
-                if (((Mem.U32(info) & (uint)(4096)) != 0u))
+                if (((new B01Info(info).flags & (uint)(4096)) != 0u))
                 {
-                    Mem.Set((actor + 256u), (uint)((uint)(Mem.U32((actor + 256u))) & (uint)((~8192))));
-                    Mem.Set((actor + 256u), (uint)((uint)(Mem.U32((actor + 256u))) & (uint)((~256))));
+                    new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~8192))));
+                    new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~256))));
                 }
-                if (((Mem.U32(info) & (uint)(2048)) != 0u))
+                if (((new B01Info(info).flags & (uint)(2048)) != 0u))
                 {
-                    Mem.Set((actor + 256u), (uint)((uint)(Mem.U32((actor + 256u))) & (uint)((~256))));
+                    new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~256))));
                     func_00214178(actor, state, 0);
                 }
                 else
@@ -42,7 +42,7 @@ public static partial class Game
             {
                 func_00214178(actor, state, 64);
             }
-            Mem.Set((state + 55u), (sbyte)(0));
+            new B01State(state).unk37_Set((sbyte)(0));
         }
     }
 

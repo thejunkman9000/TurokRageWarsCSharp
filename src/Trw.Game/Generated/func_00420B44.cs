@@ -15,7 +15,7 @@ public static partial class Game
             n = 0;
             for (i = 0; (i < 4); ++i)
             {
-                if (((uint)((Mem.S32(((Mem.U32(0x800E42D0u) + (uint)(i * 1224)) + 20u)) - 1)) < (uint)(2)))
+                if (((uint)((new O3Pj((Mem.U32(0x800E42D0u) + (uint)(i * 1224))).state - 1)) < (uint)(2)))
                 {
                     ++n;
                 }

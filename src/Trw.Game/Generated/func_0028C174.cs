@@ -10,10 +10,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028C174", (uint)lv, (uint)idx);
-            uint tbl = Mem.U32((lv + 84u));
+            uint tbl = new Level(lv).unk54_;
             if ((idx < Mem.S32((tbl + (uint)(0 * 4)))))
             {
-                return func_0028FE08(tbl, (int)(Mem.U32((lv + 36u))), idx);
+                return func_0028FE08(tbl, (int)(new Level(lv).unk24_), idx);
             }
             return 0;
         }

@@ -11,23 +11,23 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00217388", (uint)src, (uint)d);
             uint p = 0u;
-            switch ((int)(Mem.U8(src)))
+            switch ((int)(new B04Src(src).type))
             {
             case 1:
             case 2:
                 p = src;
                 break;
             case 0:
-                p = Mem.U32((src + 208u));
+                p = new B04Src(src).unkD0;
                 break;
             }
-            if ((Mem.U32((d + 252u)) != 0u))
+            if ((new B04Dst(d).unkFC != 0u))
             {
                 func_0025E1E4(p);
-                if ((Mem.U32((d + 252u)) != 0u))
+                if ((new B04Dst(d).unkFC != 0u))
                 {
-                    func_0025CA44((uint)((int)(func_0025CC8C())), Mem.U32((d + 252u)));
-                    Mem.Set((d + 252u), 0u);
+                    func_0025CA44((uint)((int)(func_0025CC8C())), new B04Dst(d).unkFC);
+                    new B04Dst(d).unkFC_Set(0u);
                 }
             }
         }

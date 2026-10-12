@@ -6,7 +6,7 @@ namespace Trw.Game;
 
 public static partial class Game
 {
-    public static uint func_00215B90(uint a0, uint a1, uint a2, uint a3)
+    public static uint func_00215B90_rc(uint a0, uint a1, uint a2, uint a3)
     {
         uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
         uint lo = 0, hi = 0; bool fcc = false;
@@ -67,11 +67,11 @@ public static partial class Game
                 Cpu.SetW(1, Mem.U32((r17 + 12u)));
                 Cpu.SetW(0, Mem.U32((r17 + 112u)));
                 r4 = r17;
-                Cpu.SetS(20, Cpu.S(1) + Cpu.S(0)); r2 = func_0024D274_rc(r4, r5, r6, r7); r3 = Cpu.V1;
+                Cpu.SetS(20, Cpu.S(1) + Cpu.S(0)); Cpu.SetS(0, func_0024D274(r4));
                 Cpu.SetW(1, Mem.U32((r18 + 8u)));
                 r4 = r18;
                 Mem.Set((r29 + 88u), Cpu.W(1));
-                Cpu.SetS(21, Cpu.S(20) + Cpu.S(0)); r2 = func_0024D274_rc(r4, r5, r6, r7); r3 = Cpu.V1;
+                Cpu.SetS(21, Cpu.S(20) + Cpu.S(0)); Cpu.SetS(0, func_0024D274(r4));
                 r1 = 2148270080u;
                 Cpu.SetW(1, Mem.U32((r1 + 29320u)));
                 Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
@@ -310,5 +310,10 @@ public static partial class Game
             }
         }
         finally { if (Dbg.On) Dbg.Leave("func_00215B90", r2); Stack.Free(440); }
+    }
+
+    public static int func_00215B90(uint p0, int p1, uint p2, float p3)
+    {
+        return (int)func_00215B90_rc(p0, (uint)p1, p2, Cpu.F2U(p3));
     }
 }

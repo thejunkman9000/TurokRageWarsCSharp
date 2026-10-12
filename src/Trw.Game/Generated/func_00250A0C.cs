@@ -10,11 +10,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00250A0C", (uint)o);
-            if ((((int)(Mem.U16((o + 216u))) & 64) != 0))
+            if ((((int)(new B12Obj(o).unkD8) & 64) != 0))
             {
                 return 0;
             }
-            return (int)(Mem.S8((Mem.U32((o + 24u)) + 18u)));
+            return (int)(new B12Obj(o).def.unk12);
         }
     }
 

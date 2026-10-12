@@ -15,26 +15,26 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, c_in, 40);
                 if (Dbg.On) Dbg.Enter("func_0040E6FC", (uint)n, (uint)c_in);
                 int pushed = 0;
-                if ((((int)(Mem.U16((n + 18u))) & 8) != 0))
+                if ((((int)(new S_func_0040E6FC(n).flags) & 8) != 0))
                 {
                     Mem.Copy((_fp + 104u), _fp, 40);
-                    if (((int)(func_0040E154((_fp + 56u), (_fp + 40u), n, ((_fp + 104u) + (uint)(0 * 4)))) != 0))
+                    if ((func_0040E154((_fp + 56u), (_fp + 40u), n, (new O02Ctx((_fp + 104u)).w.P + (uint)(0 * 4))) != 0))
                     {
-                        if (((Mem.S32(((_fp + 104u) + (uint)(2 * 4))) & 512) != 0))
+                        if (((new O02Ctx((_fp + 104u)).w[(int)(2)] & 512) != 0))
                         {
-                            func_002A2898(((_fp + 72u) + (uint)(0 * 4)), ((_fp + 72u) + (uint)(2 * 4)), ((_fp + 72u) + (uint)(1 * 4)), ((_fp + 72u) + (uint)(3 * 4)));
+                            func_002A2898((new O02Rect((_fp + 72u)).w.P + (uint)(0 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(2 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(1 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(3 * 4)));
                             Mem.Copy((_fp + 88u), (_fp + 72u), 16);
                             if (!(func_0040F508((_fp + 88u), (_fp + 40u)) != 0))
                             {
                                 return;
                             }
-                            func_002A2870(Mem.S32(((_fp + 88u) + (uint)(0 * 4))), Mem.S32(((_fp + 88u) + (uint)(2 * 4))), Mem.S32(((_fp + 88u) + (uint)(1 * 4))), Mem.S32(((_fp + 88u) + (uint)(3 * 4))));
+                            func_002A2870(new O02Rect((_fp + 88u)).w[(int)(0)], new O02Rect((_fp + 88u)).w[(int)(2)], new O02Rect((_fp + 88u)).w[(int)(1)], new O02Rect((_fp + 88u)).w[(int)(3)]);
                             pushed = 1;
                         }
                         func_0040DB84(n, _fp);
                         if ((pushed != 0))
                         {
-                            func_002A2870(Mem.S32(((_fp + 72u) + (uint)(0 * 4))), Mem.S32(((_fp + 72u) + (uint)(2 * 4))), Mem.S32(((_fp + 72u) + (uint)(1 * 4))), Mem.S32(((_fp + 72u) + (uint)(3 * 4))));
+                            func_002A2870(new O02Rect((_fp + 72u)).w[(int)(0)], new O02Rect((_fp + 72u)).w[(int)(2)], new O02Rect((_fp + 72u)).w[(int)(1)], new O02Rect((_fp + 72u)).w[(int)(3)]);
                         }
                     }
                 }

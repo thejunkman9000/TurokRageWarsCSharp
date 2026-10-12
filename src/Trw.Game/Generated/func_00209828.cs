@@ -13,10 +13,10 @@ public static partial class Game
             int i = 0;
             for (i = 1; (i < 4); ++i)
             {
-                Mem.Set(((ctl + 20u) + (uint)((i - 1) * 4)), Mem.S32(((ctl + 20u) + (uint)(i * 4))));
+                new B2Ctl(ctl).q.Set((int)((i - 1)), new B2Ctl(ctl).q[(int)(i)]);
             }
-            Mem.Set(((ctl + 20u) + (uint)(3 * 4)), (-1));
-            return ((Mem.S32(((ctl + 20u) + (uint)(0 * 4))) != (-1)) ? 1 : 0);
+            new B2Ctl(ctl).q.Set((int)(3), (-1));
+            return ((new B2Ctl(ctl).q[(int)(0)] != (-1)) ? 1 : 0);
         }
     }
 

@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002567C4", (uint)l);
-            Mem.Set((l + 28u), 0);
-            osCreateMesgQueue(l, (l + 24u), 1);
+            new P3Lock(l).count_Set(0);
+            osCreateMesgQueue(new P3Lock(l).q.P, (l + 24u), 1);
         }
     }
 

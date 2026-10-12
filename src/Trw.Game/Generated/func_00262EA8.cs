@@ -13,34 +13,34 @@ public static partial class Game
             uint e = 0u;
             uint next = 0u;
             int inside = 0;
-            e = Mem.U32((w + 24340u));
+            e = new B14World(w).listB_;
             while ((e != 0u))
             {
-                next = Mem.U32((e + 748u));
+                next = new B14Ent2(e).next_;
                 inside = 0;
-                if (((((((Mem.F32((0x801031F0u + (uint)(3 * 4))) > Mem.F32((e + 232u))) && (Mem.F32((0x801031F0u + (uint)(0 * 4))) < Mem.F32((e + 244u)))) && (Mem.F32((0x801031F0u + (uint)(5 * 4))) > Mem.F32((e + 240u)))) && (Mem.F32((0x801031F0u + (uint)(2 * 4))) < Mem.F32((e + 252u)))) && (Mem.F32((0x801031F0u + (uint)(4 * 4))) > Mem.F32((e + 236u)))) && (Mem.F32((0x801031F0u + (uint)(1 * 4))) < Mem.F32((e + 248u)))))
+                if (((((((Mem.F32((0x801031F0u + (uint)(3 * 4))) > new B14Ent2(e).minx) && (Mem.F32((0x801031F0u + (uint)(0 * 4))) < new B14Ent2(e).maxx)) && (Mem.F32((0x801031F0u + (uint)(5 * 4))) > new B14Ent2(e).minz)) && (Mem.F32((0x801031F0u + (uint)(2 * 4))) < new B14Ent2(e).maxz)) && (Mem.F32((0x801031F0u + (uint)(4 * 4))) > new B14Ent2(e).miny)) && (Mem.F32((0x801031F0u + (uint)(1 * 4))) < new B14Ent2(e).maxy)))
                 {
                     inside = 1;
                 }
                 if ((inside != 0))
                 {
                     func_0028C910(arg, e);
-                    if (((Mem.U32((e + 752u)) != 0u) && (Mem.S32((e + 372u)) == 0)))
+                    if (((new B14Ent2(e).counter_ != 0u) && (new B14Ent2(e).f174 == 0)))
                     {
-                        Mem.Set(Mem.U32((e + 752u)), (int)((int)(Mem.S32(Mem.U32((e + 752u)))) - 1));
-                        Mem.Set((e + 752u), 0u);
+                        Mem.Set(new B14Ent2(e).counter_, (int)((int)(Mem.S32(new B14Ent2(e).counter_)) - 1));
+                        new B14Ent2(e).counter__Set(0u);
                     }
                 }
                 else
                 {
-                    Mem.Set((e + 372u), 0);
-                    Mem.Set((e + 256u), (uint)((uint)(Mem.U32((e + 256u))) & (uint)((~512))));
-                    if ((Mem.U32((e + 752u)) != 0u))
+                    new B14Ent2(e).f174_Set(0);
+                    new B14Ent2(e).flags_Set((uint)((uint)(new B14Ent2(e).flags) & (uint)((~512))));
+                    if ((new B14Ent2(e).counter_ != 0u))
                     {
-                        Mem.Set(Mem.U32((e + 752u)), (int)((int)(Mem.S32(Mem.U32((e + 752u)))) - 1));
+                        Mem.Set(new B14Ent2(e).counter_, (int)((int)(Mem.S32(new B14Ent2(e).counter_)) - 1));
                     }
                     func_00255E78((w + 24340u), e, default(uint), default(uint));
-                    func_00255CB4((w + 24320u), e, default(uint), default(uint));
+                    func_00255CB4(new B14World(w).listA.P, e, default(uint), default(uint));
                 }
                 e = next;
             }

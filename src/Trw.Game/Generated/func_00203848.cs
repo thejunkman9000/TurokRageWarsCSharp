@@ -13,9 +13,9 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00203848", (uint)dst, (uint)unused, (uint)state);
-                Mem.Set(_fp, Mem.F32((state + 304u)));
-                Mem.Set((_fp + 4u), Mem.F32(((state + 304u) + 4u)));
-                Mem.Set((_fp + 8u), Mem.F32(((state + 304u) + 8u)));
+                new Vec3f(_fp).x_Set(new B01State(state).vec130.x);
+                new Vec3f(_fp).y_Set(new B01State(state).vec130.y);
+                new Vec3f(_fp).z_Set(new B01State(state).vec130.z);
                 func_00202CA0(dst, _fp);
                 return dst;
             }

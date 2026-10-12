@@ -22,34 +22,34 @@ public static partial class Game
                 int idx = 0;
                 uint lim = 0u;
                 ulong d = 0UL;
-                j = Mem.U32((o + 760u));
+                j = new Vid(o).next2F8_;
                 Mem.Set(_fp, 0u);
                 Mem.Set((_fp + 4u), 0u);
-                Mem.Set((j + 4u), (uint)((uint)(Mem.U32((j + 4u))) & (uint)((~1))));
-                if ((Mem.S32((j + 16u)) == 1))
+                new Job(j).flags4_Set((uint)((uint)(new Job(j).flags4) & (uint)((~1))));
+                if ((new Job(j).unk10 == 1))
                 {
-                    if (((Mem.U32((j + 8u)) & (uint)(32)) != 0u))
+                    if (((new Job(j).flags8 & (uint)(32)) != 0u))
                     {
                         Mem.Set(0x800D29A4u, ((float)((((osGetTime() - Mem.U64(0x8011F2A8u)) * (ulong)(64)) / (ulong)(3))) * 9.99999997E-7f));
                     }
-                    Mem.Set((o + 760u), 0u);
+                    new Vid(o).next2F8__Set(0u);
                     do
                     {
-                        if (((Mem.U32((j + 8u)) & (uint)(32)) != 0u))
+                        if (((new Job(j).flags8 & (uint)(32)) != 0u))
                         {
                             @base = 0x8011FAC0u;
-                            fb = (uint)(Mem.U32((j + 12u)));
-                            if ((fb == Mem.U32(((@base + (uint)(0 * 320)) + 272u))))
+                            fb = (uint)(new Job(j).unkC);
+                            if ((fb == new View_v3((@base + (uint)(0 * 320))).fb))
                             {
                                 s = @base;
                                 goto L_sel;
                             }
-                            if ((fb == Mem.U32(((@base + (uint)(1 * 320)) + 272u))))
+                            if ((fb == new View_v3((@base + (uint)(1 * 320))).fb))
                             {
                                 s = (@base + (uint)(1 * 320));
                                 goto L_sel;
                             }
-                            if ((fb != Mem.U32(((@base + (uint)(2 * 320)) + 272u))))
+                            if ((fb != new View_v3((@base + (uint)(2 * 320))).fb))
                             {
                                 s = @base;
                             }
@@ -63,7 +63,7 @@ public static partial class Game
                             Mem.Set(0x8014696Cu, Mem.S32(0x8011FAB8u));
                             Mem.Set(0x8011FAB8u, Mem.S32(0x80146D64u));
                             Mem.Set(0x80146D64u, (Mem.S32(0x801469E0u) + 1));
-                            if (!((uint)(Mem.S32(0x80146D64u)) < Mem.U32((s + 292u))))
+                            if (!((uint)(Mem.S32(0x80146D64u)) < new View_v3(s).unk124))
                             {
                                 t = Mem.S32(0x8014AD90u);
                                 if ((t != 0))
@@ -72,8 +72,8 @@ public static partial class Game
                                 }
                                 if ((Mem.S32(0x8014AD88u) == 0))
                                 {
-                                    Mem.Set(0x80146CF0u, (int)(Mem.U32((s + 272u))));
-                                    osViSwapBuffer((uint)(Mem.U32((s + 272u))));
+                                    Mem.Set(0x80146CF0u, (int)(new View_v3(s).fb));
+                                    osViSwapBuffer((uint)(new View_v3(s).fb));
                                     Mem.Set(0x8014AD88u, (Mem.S32(0x8014AD88u) + 1));
                                     goto L_done;
                                 }
@@ -95,7 +95,7 @@ public static partial class Game
                     while ((0 != 0));
                 }
                 func_0028F9EC((int)(o), j);
-                mode = ((((Mem.U32((o + 756u)) == 0u) ? 1 : 0) << (int)1) | ((Mem.U32((o + 760u)) == 0u) ? 1 : 0));
+                mode = ((((new Vid(o).cur2F4_ == 0u) ? 1 : 0) << (int)1) | ((new Vid(o).next2F8_ == 0u) ? 1 : 0));
                 if (((int)(func_0028F524(o, _fp, (_fp + 4u), (uint)(mode))) != mode))
                 {
                     func_0028FA40(o, Mem.U32(_fp), Mem.U32((_fp + 4u)));

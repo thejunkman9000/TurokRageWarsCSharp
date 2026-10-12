@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020D1CC", (uint)m, (uint)i, (uint)j);
-            uint pool = Mem.U32((m + 16u));
-            return (int)(Mem.U8(((((pool + 8u) + (uint)0) + (uint)(((i * Mem.S32((m + 4u))) + j) * Mem.S32(pool))) + (uint)0)));
+            uint pool = new B2Mgr(m).unk10_;
+            return (int)(Mem.U8((((new B2Pool(pool).data.P + (uint)0) + (uint)(((i * new B2Mgr(m).unk4) + j) * new B2Pool(pool).elemSize)) + (uint)0)));
         }
     }
 

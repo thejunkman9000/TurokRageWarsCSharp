@@ -95,7 +95,7 @@ public static partial class Game
                     }
                 }
             }
-            dst = Mem.U32(Mem.U32((item + 20u)));
+            dst = new O01Item(item).unk14.buf_;
             dst = (uint)(dst + (uint)((func_00442158((uint)(item)) - 11) * 1));
             if ((s != 0u))
             {

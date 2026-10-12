@@ -10,21 +10,21 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024CB3C", (uint)s, (uint)idx, (uint)@out);
-            int key = (int)(Mem.S16(((Mem.U32(s) + (uint)(idx * 4)) + 2u)));
+            int key = (int)(new B11Key((new B11Trk(s).keys_ + (uint)(idx * 4))).b);
             uint n = 0u;
             uint r = 0u;
             if ((key == (-1)))
             {
-                r = (Mem.U32((s + 4u)) + (uint)(idx * 20));
-                Mem.Set((@out + (uint)(0 * 4)), ((float)((int)(Mem.S16(((r + 12u) + (uint)(0 * 2))))) * Mem.F32(0x800C8C6Cu)));
-                Mem.Set((@out + (uint)(1 * 4)), ((float)((int)(Mem.S16(((r + 12u) + (uint)(1 * 2))))) * Mem.F32(0x800C8C6Cu)));
-                Mem.Set((@out + (uint)(2 * 4)), ((float)((int)(Mem.S16(((r + 12u) + (uint)(2 * 2))))) * Mem.F32(0x800C8C6Cu)));
-                Mem.Set((@out + (uint)(3 * 4)), ((float)((int)(Mem.S16(((r + 12u) + (uint)(3 * 2))))) * Mem.F32(0x800C8C6Cu)));
+                r = (new B11Trk(s).vals_ + (uint)(idx * 20));
+                Mem.Set((@out + (uint)(0 * 4)), ((float)((int)(new B11Val(r).q[(int)(0)])) * Mem.F32(0x800C8C6Cu)));
+                Mem.Set((@out + (uint)(1 * 4)), ((float)((int)(new B11Val(r).q[(int)(1)])) * Mem.F32(0x800C8C6Cu)));
+                Mem.Set((@out + (uint)(2 * 4)), ((float)((int)(new B11Val(r).q[(int)(2)])) * Mem.F32(0x800C8C6Cu)));
+                Mem.Set((@out + (uint)(3 * 4)), ((float)((int)(new B11Val(r).q[(int)(3)])) * Mem.F32(0x800C8C6Cu)));
             }
             else
             {
-                n = func_0028FD94((uint)(Mem.S32((s + 12u))), key);
-                func_00270B1C(@out, Mem.F32((s + 32u)), (n + (uint)(Mem.S32((s + 16u)) * 4)), (n + (uint)(Mem.S32((s + 20u)) * 4)));
+                n = func_0028FD94((uint)(new B11Trk(s).nodeC), key);
+                func_00270B1C(@out, new B11Trk(s).t, (n + (uint)(new B11Trk(s).unk10 * 4)), (n + (uint)(new B11Trk(s).unk14 * 4)));
             }
         }
     }

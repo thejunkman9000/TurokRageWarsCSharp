@@ -16,11 +16,11 @@ public static partial class Game
                 Mem.Set(0x800D2974u, 0);
             }
             func_00264CD8();
-            st = Mem.S32((g + 159160u));
-            if ((Mem.U32((0x800D29DCu + (uint)(st * 12))) != 0u))
+            st = new B21Game(g).unk26DB8;
+            if ((new B21StateEnt((0x800D29DCu + (uint)(st * 12))).fn != 0u))
             {
-                Funcs.CallReg(Mem.U32((0x800D29DCu + (uint)(st * 12))), g, 0u, 0u, 0u);
-                st = Mem.S32((g + 159160u));
+                Funcs.CallReg(new B21StateEnt((0x800D29DCu + (uint)(st * 12))).fn, g, 0u, 0u, 0u);
+                st = new B21Game(g).unk26DB8;
             }
             if ((st != 20))
             {

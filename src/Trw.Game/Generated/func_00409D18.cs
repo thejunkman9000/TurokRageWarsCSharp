@@ -14,7 +14,7 @@ public static partial class Game
             {
                 return Mem.S32(0x800E28C8u);
             }
-            return (int)(Mem.S8((Mem.U32((o + 32u)) + 4u)));
+            return (int)(new O01Obj3(o).unk20.unk4);
         }
     }
 

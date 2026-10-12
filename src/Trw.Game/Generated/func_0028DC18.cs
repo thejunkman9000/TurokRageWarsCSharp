@@ -16,11 +16,11 @@ public static partial class Game
             int m = 0;
             if ((sel != 0))
             {
-                @base = Mem.U32((lv + 128u));
+                @base = new Level(lv).unk80_;
             }
             else
             {
-                @base = Mem.U32((lv + 132u));
+                @base = new Level(lv).unk84_;
             }
             t = func_0028FD94(func_0028FD94(func_0028FD94(@base, 0), b), c);
             func_0028FD94(t, 0);

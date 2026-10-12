@@ -42,10 +42,10 @@ public static partial class Game
             i = 0;
             do
             {
-                if ((key == Mem.S32((0x800E4F64u + (uint)(i * 16)))))
+                if ((key == new O04E16b((0x800E4F64u + (uint)(i * 16))).k))
                 {
                     found = 1;
-                    r = Mem.S32(((0x800E4F64u + (uint)(i * 16)) + 12u));
+                    r = new O04E16b((0x800E4F64u + (uint)(i * 16))).v;
                 }
                 ++i;
             }

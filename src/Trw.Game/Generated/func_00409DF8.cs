@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00409DF8", (uint)a);
-            if (((Mem.U32((Mem.U32((a + 32u)) + 176u)) & (uint)(4096)) != (uint)(0)))
+            if (((new O01Obj(a).unk20.unkB0 & (uint)(4096)) != (uint)(0)))
             {
                 if ((Mem.S32(0x800E28CCu) == 0))
                 {

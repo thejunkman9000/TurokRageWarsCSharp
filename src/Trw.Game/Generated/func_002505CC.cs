@@ -20,11 +20,11 @@ public static partial class Game
                 uint p = 0u;
                 int i = 0;
                 int cnt = 0;
-                h = func_002518DC((uint)(0), (uint)(Mem.S32((o + 28u))), (uint)(Mem.S32((o + 28u))), (uint)(24), (uint)(4), (uint)(0), (uint)(0), 0x800C8F4Cu, (uint)(0));
+                h = func_002518DC(0, (uint)(new B12Obj(o).unk1C), new B12Obj(o).unk1C, (uint)(24), 4, (uint)(0), (uint)(0), 0x800C8F4Cu, 0);
                 if ((h != 0u))
                 {
-                    r = (int)(func_0028FE1C(Mem.U32(h), (uint)(Mem.S32((o + 28u))), 3, _fp));
-                    n = func_002518DC((uint)(0), (uint)(r), (uint)(r), (uint)(Mem.S32(_fp)), (uint)(0), (uint)(0), (uint)(0), 0x800C8F60u, (uint)(0));
+                    r = (int)(func_0028FE1C(Mem.U32(h), (uint)(new B12Obj(o).unk1C), 3, _fp));
+                    n = func_002518DC(0, (uint)(r), r, (uint)(Mem.S32(_fp)), 0, (uint)(0), (uint)(0), 0x800C8F60u, 0);
                     if ((n != 0u))
                     {
                         @base = Mem.U32(n);
@@ -32,10 +32,10 @@ public static partial class Game
                         p = (@base + (uint)(2 * 4));
                         for (i = 0; (i < cnt); ++i)
                         {
-                            if (((flag != 0) || ((int)(Mem.U16(((p + (uint)(i * 28)) + 2u))) == 8)))
+                            if (((flag != 0) || ((int)(new B12Rec((p + (uint)(i * 28))).unk2) == 8)))
                             {
-                                func_00272908((o + (uint)104), ((p + (uint)(i * 28)) + 8u), (_fp + 8u));
-                                func_00265E30(o, o, (ushort)((int)(Mem.U16(((p + (uint)(i * 28)) + 2u)))), (-1), (_fp + 8u), ((p + (uint)(i * 28)) + 20u));
+                                func_00272908((o + (uint)104), new B12Rec((p + (uint)(i * 28))).unk8.P, (_fp + 8u));
+                                func_00265E30(o, o, (int)(new B12Rec((p + (uint)(i * 28))).unk2), (-1), (_fp + 8u), new B12Rec((p + (uint)(i * 28))).tail.P);
                             }
                         }
                         func_002536F4(0, n);

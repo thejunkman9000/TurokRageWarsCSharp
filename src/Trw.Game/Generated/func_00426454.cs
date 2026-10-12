@@ -14,7 +14,7 @@ public static partial class Game
             int n = 0;
             int i = 0;
             uint e = 0u;
-            if ((((int)(Mem.S8((0x801462C8u + 36u))) <= 0) && ((int)(Mem.S8((0x801462C8u + 37u))) <= 0)))
+            if ((((int)(new O04P(0x801462C8u).a) <= 0) && ((int)(new O04P(0x801462C8u).b) <= 0)))
             {
                 return 0;
             }
@@ -23,7 +23,7 @@ public static partial class Game
             e = 0x80146398u;
             for (i = 0; (i < 8); ++i)
             {
-                if (((((int)(Mem.U8(((e + (uint)(i * 150)) + 120u))) == 1) && ((int)(Mem.U8(((e + (uint)(i * 150)) + 145u))) != (int)(Mem.U8(((e + (uint)(i * 150)) + 120u))))) && (Mem.S32((0x80103140u + (uint)(i * 4))) >= 76)))
+                if (((((int)(new O04Ent96((e + (uint)(i * 150))).unk78) == 1) && ((int)(new O04Ent96((e + (uint)(i * 150))).unk91) != (int)(new O04Ent96((e + (uint)(i * 150))).unk78))) && (Mem.S32((0x80103140u + (uint)(i * 4))) >= 76)))
                 {
                     ++n;
                 }

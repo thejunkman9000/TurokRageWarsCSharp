@@ -25,35 +25,35 @@ public static partial class Game
             uint g3 = 0u;
             uint g4 = 0u;
             uint p = 0u;
-            if (((((uint)(Mem.S32(0x800E28A4u)) - (((uint)(Mem.U32(0x80110634u)) - (uint)(Mem.U32((Mem.U32(0x8011FE80u) + 276u)))) >> (int)3)) >= (uint)(3000)) && ((int)(func_00269A80(0x8013B2D8u, (uint)(a5), default(uint), default(uint))) != 0)))
+            if (((((uint)(Mem.S32(0x800E28A4u)) - (((uint)(Mem.U32(0x80110634u)) - (uint)(new B15GfxCtx(Mem.U32(0x8011FE80u)).start_)) >> (int)3)) >= (uint)(3000)) && ((int)(func_00269A80(0x8013B2D8u, (uint)(a5), default(uint), default(uint))) != 0)))
             {
                 g0 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                Mem.Set(g0, 3791650844u);
-                Mem.Set((g0 + 4u), (uint)(202919760));
+                Mem.Set(new P4Gfx(g0).words.P, 3791650844u);
+                Mem.Set((new P4Gfx(g0).words.P + 4u), (uint)(202919760));
                 func_00268CE0((uint)(2));
                 if ((flag != 0))
                 {
                     g1 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(g1, 3674603524u);
-                    Mem.Set((g1 + 4u), (uint)(mtx));
+                    Mem.Set(new P4Gfx(g1).words.P, 3674603524u);
+                    Mem.Set((new P4Gfx(g1).words.P + 4u), (uint)(mtx));
                 }
                 else
                 {
                     g2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(g2, 3661103107u);
-                    Mem.Set((g2 + 4u), (uint)(mtx));
+                    Mem.Set(new P4Gfx(g2).words.P, 3661103107u);
+                    Mem.Set((new P4Gfx(g2).words.P + 4u), (uint)(mtx));
                 }
                 if ((lights != 0u))
                 {
                     l0 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(l0, 3674341376u);
-                    Mem.Set((l0 + 4u), (uint)(24));
+                    Mem.Set(new P4Gfx(l0).words.P, 3674341376u);
+                    Mem.Set((new P4Gfx(l0).words.P + 4u), (uint)(24));
                     l1 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(l1, 3691513354u);
-                    Mem.Set((l1 + 4u), (uint)(((lights + 8u) + (uint)(0 * 12))));
+                    Mem.Set(new P4Gfx(l1).words.P, 3691513354u);
+                    Mem.Set((new P4Gfx(l1).words.P + 4u), (uint)((new B15Lights1(lights).l.P + (uint)(0 * 12))));
                     l2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(l2, 3691514122u);
-                    Mem.Set((l2 + 4u), (uint)(lights));
+                    Mem.Set(new P4Gfx(l2).words.P, 3691514122u);
+                    Mem.Set((new P4Gfx(l2).words.P + 4u), (uint)(lights));
                 }
                 func_00253B5C(0, a0);
                 p = a4;
@@ -63,8 +63,8 @@ public static partial class Game
                     p = func_0028FD94(root, 0);
                 }
                 g3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                Mem.Set(g3, 3674603528u);
-                Mem.Set((g3 + 4u), (uint)(p));
+                Mem.Set(new P4Gfx(g3).words.P, 3674603528u);
+                Mem.Set((new P4Gfx(g3).words.P + 4u), (uint)(p));
                 arr = func_0028FD94(root, 2);
                 n = Mem.S32(arr);
                 for (i = 0; (i < n); ++i)
@@ -73,8 +73,8 @@ public static partial class Game
                     func_0028FD94(part, 0);
                     dl = func_0028FD94(part, 1);
                     g4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                    Mem.Set(g4, 3724541952u);
-                    Mem.Set((g4 + 4u), (uint)(dl));
+                    Mem.Set(new P4Gfx(g4).words.P, 3724541952u);
+                    Mem.Set((new P4Gfx(g4).words.P + 4u), (uint)(dl));
                 }
             }
         }

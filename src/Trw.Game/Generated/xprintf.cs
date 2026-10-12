@@ -10,93 +10,93 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("xprintf__Putfld", (uint)x, (uint)pap, (uint)code, (uint)ac);
-            Mem.Set((x + 12u), Mem.Set((x + 16u), Mem.Set((x + 20u), Mem.Set((x + 24u), Mem.Set((x + 28u), Mem.Set((x + 32u), 0))))));
+            new _Pft(x).n0_Set(new _Pft(x).nz0_Set(new _Pft(x).n1_Set(new _Pft(x).nz1_Set(new _Pft(x).n2_Set(new _Pft(x).nz2_Set(0))))));
             switch ((int)(code))
             {
             case 99:
-                Mem.Set((ac + (uint)(Mem.Set((x + 12u), (int)(Mem.S32((x + 12u)) + 1)) - 1)), (byte)(Mem.S32((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 4u) - (uint)(1)) & (~(4u - (uint)(1)))) + 4u))) - (uint)4u))));
+                Mem.Set((ac + (uint)(new _Pft(x).n0_Set((int)(new _Pft(x).n0 + 1)) - 1)), (byte)(Mem.S32((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 4u) - (uint)(1)) & (~(4u - (uint)(1)))) + 4u))) - (uint)4u))));
                 break;
             case 100:
             case 105:
-                if (((int)(Mem.U8((x + 52u))) == 108))
+                if (((int)(new _Pft(x).qual) == 108))
                 {
-                    Mem.Set(x, (long)(Mem.S32((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 4u) - (uint)(1)) & (~(4u - (uint)(1)))) + 4u))) - (uint)4u))));
+                    Mem.Set(new _Pft(x).v.P, (long)(Mem.S32((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 4u) - (uint)(1)) & (~(4u - (uint)(1)))) + 4u))) - (uint)4u))));
                 }
                 else
                 {
-                    if (((int)(Mem.U8((x + 52u))) == 76))
+                    if (((int)(new _Pft(x).qual) == 76))
                     {
-                        Mem.Set(x, Mem.S64((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 8u) - (uint)(1)) & (~(8u - (uint)(1)))) + 8u))) - (uint)8u)));
+                        Mem.Set(new _Pft(x).v.P, Mem.S64((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 8u) - (uint)(1)) & (~(8u - (uint)(1)))) + 8u))) - (uint)8u)));
                     }
                     else
                     {
-                        Mem.Set(x, (long)(Mem.S32((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 4u) - (uint)(1)) & (~(4u - (uint)(1)))) + 4u))) - (uint)4u))));
+                        Mem.Set(new _Pft(x).v.P, (long)(Mem.S32((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 4u) - (uint)(1)) & (~(4u - (uint)(1)))) + 4u))) - (uint)4u))));
                     }
                 }
-                if (((int)(Mem.U8((x + 52u))) == 104))
+                if (((int)(new _Pft(x).qual) == 104))
                 {
-                    Mem.Set(x, (long)((short)(Mem.S64(x))));
+                    Mem.Set(new _Pft(x).v.P, (long)((short)(Mem.S64(new _Pft(x).v.P))));
                 }
-                if ((Mem.S64(x) < (long)(0)))
+                if ((Mem.S64(new _Pft(x).v.P) < (long)(0)))
                 {
-                    Mem.Set((ac + (uint)(Mem.Set((x + 12u), (int)(Mem.S32((x + 12u)) + 1)) - 1)), (byte)(45));
+                    Mem.Set((ac + (uint)(new _Pft(x).n0_Set((int)(new _Pft(x).n0 + 1)) - 1)), (byte)(45));
                 }
                 else
                 {
-                    if (((Mem.U32((x + 48u)) & (uint)(2)) != 0u))
+                    if (((new _Pft(x).flags & (uint)(2)) != 0u))
                     {
-                        Mem.Set((ac + (uint)(Mem.Set((x + 12u), (int)(Mem.S32((x + 12u)) + 1)) - 1)), (byte)(43));
+                        Mem.Set((ac + (uint)(new _Pft(x).n0_Set((int)(new _Pft(x).n0 + 1)) - 1)), (byte)(43));
                     }
                     else
                     {
-                        if (((Mem.U32((x + 48u)) & (uint)(1)) != 0u))
+                        if (((new _Pft(x).flags & (uint)(1)) != 0u))
                         {
-                            Mem.Set((ac + (uint)(Mem.Set((x + 12u), (int)(Mem.S32((x + 12u)) + 1)) - 1)), (byte)(32));
+                            Mem.Set((ac + (uint)(new _Pft(x).n0_Set((int)(new _Pft(x).n0 + 1)) - 1)), (byte)(32));
                         }
                     }
                 }
-                Mem.Set((x + 8u), (ac + (uint)Mem.S32((x + 12u))));
+                new _Pft(x).s__Set((ac + (uint)new _Pft(x).n0));
                 _Litob(x, code);
                 break;
             case 111:
             case 117:
             case 120:
             case 88:
-                if (((int)(Mem.U8((x + 52u))) == 108))
+                if (((int)(new _Pft(x).qual) == 108))
                 {
-                    Mem.Set(x, (long)(Mem.S32((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 4u) - (uint)(1)) & (~(4u - (uint)(1)))) + 4u))) - (uint)4u))));
+                    Mem.Set(new _Pft(x).v.P, (long)(Mem.S32((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 4u) - (uint)(1)) & (~(4u - (uint)(1)))) + 4u))) - (uint)4u))));
                 }
                 else
                 {
-                    if (((int)(Mem.U8((x + 52u))) == 76))
+                    if (((int)(new _Pft(x).qual) == 76))
                     {
-                        Mem.Set(x, Mem.S64((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 8u) - (uint)(1)) & (~(8u - (uint)(1)))) + 8u))) - (uint)8u)));
+                        Mem.Set(new _Pft(x).v.P, Mem.S64((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 8u) - (uint)(1)) & (~(8u - (uint)(1)))) + 8u))) - (uint)8u)));
                     }
                     else
                     {
-                        Mem.Set(x, (long)(Mem.S32((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 4u) - (uint)(1)) & (~(4u - (uint)(1)))) + 4u))) - (uint)4u))));
+                        Mem.Set(new _Pft(x).v.P, (long)(Mem.S32((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 4u) - (uint)(1)) & (~(4u - (uint)(1)))) + 4u))) - (uint)4u))));
                     }
                 }
-                if (((int)(Mem.U8((x + 52u))) == 104))
+                if (((int)(new _Pft(x).qual) == 104))
                 {
-                    Mem.Set(x, (long)((ushort)(Mem.S64(x))));
+                    Mem.Set(new _Pft(x).v.P, (long)((ushort)(Mem.S64(new _Pft(x).v.P))));
                 }
                 else
                 {
-                    if (((int)(Mem.U8((x + 52u))) == 0))
+                    if (((int)(new _Pft(x).qual) == 0))
                     {
-                        Mem.Set(x, (long)((uint)(Mem.S64(x))));
+                        Mem.Set(new _Pft(x).v.P, (long)((uint)(Mem.S64(new _Pft(x).v.P))));
                     }
                 }
-                if (((Mem.U32((x + 48u)) & (uint)(8)) != 0u))
+                if (((new _Pft(x).flags & (uint)(8)) != 0u))
                 {
-                    Mem.Set((ac + (uint)(Mem.Set((x + 12u), (int)(Mem.S32((x + 12u)) + 1)) - 1)), (byte)(48));
+                    Mem.Set((ac + (uint)(new _Pft(x).n0_Set((int)(new _Pft(x).n0 + 1)) - 1)), (byte)(48));
                     if ((((int)(code) == 120) || ((int)(code) == 88)))
                     {
-                        Mem.Set((ac + (uint)(Mem.Set((x + 12u), (int)(Mem.S32((x + 12u)) + 1)) - 1)), code);
+                        Mem.Set((ac + (uint)(new _Pft(x).n0_Set((int)(new _Pft(x).n0 + 1)) - 1)), code);
                     }
                 }
-                Mem.Set((x + 8u), (ac + (uint)Mem.S32((x + 12u))));
+                new _Pft(x).s__Set((ac + (uint)new _Pft(x).n0));
                 _Litob(x, code);
                 break;
             case 101:
@@ -104,70 +104,70 @@ public static partial class Game
             case 102:
             case 103:
             case 71:
-                Mem.Set(x, Mem.F64((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 8u) - (uint)(1)) & (~(8u - (uint)(1)))) + 8u))) - (uint)8u)));
-                if ((((int)(Mem.U16((x + (uint)(0 * 2)))) & 32768) != 0))
+                Mem.Set(new _Pft(x).v.P, Mem.F64((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 8u) - (uint)(1)) & (~(8u - (uint)(1)))) + 8u))) - (uint)8u)));
+                if ((((int)(Mem.U16((new _Pft(x).v.P + (uint)(0 * 2)))) & 32768) != 0))
                 {
-                    Mem.Set((ac + (uint)(Mem.Set((x + 12u), (int)(Mem.S32((x + 12u)) + 1)) - 1)), (byte)(45));
+                    Mem.Set((ac + (uint)(new _Pft(x).n0_Set((int)(new _Pft(x).n0 + 1)) - 1)), (byte)(45));
                 }
                 else
                 {
-                    if (((Mem.U32((x + 48u)) & (uint)(2)) != 0u))
+                    if (((new _Pft(x).flags & (uint)(2)) != 0u))
                     {
-                        Mem.Set((ac + (uint)(Mem.Set((x + 12u), (int)(Mem.S32((x + 12u)) + 1)) - 1)), (byte)(43));
+                        Mem.Set((ac + (uint)(new _Pft(x).n0_Set((int)(new _Pft(x).n0 + 1)) - 1)), (byte)(43));
                     }
                     else
                     {
-                        if (((Mem.U32((x + 48u)) & (uint)(1)) != 0u))
+                        if (((new _Pft(x).flags & (uint)(1)) != 0u))
                         {
-                            Mem.Set((ac + (uint)(Mem.Set((x + 12u), (int)(Mem.S32((x + 12u)) + 1)) - 1)), (byte)(32));
+                            Mem.Set((ac + (uint)(new _Pft(x).n0_Set((int)(new _Pft(x).n0 + 1)) - 1)), (byte)(32));
                         }
                     }
                 }
-                Mem.Set((x + 8u), (ac + (uint)Mem.S32((x + 12u))));
-                _Ldtob(x, (uint)(code), default(uint), default(uint));
+                new _Pft(x).s__Set((ac + (uint)new _Pft(x).n0));
+                _Ldtob(x, code);
                 break;
             case 110:
-                if (((int)(Mem.U8((x + 52u))) == 104))
+                if (((int)(new _Pft(x).qual) == 104))
                 {
-                    Mem.Set(Mem.U32((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 4u) - (uint)(1)) & (~(4u - (uint)(1)))) + 4u))) - (uint)4u)), (short)(Mem.U32((x + 44u))));
+                    Mem.Set(Mem.U32((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 4u) - (uint)(1)) & (~(4u - (uint)(1)))) + 4u))) - (uint)4u)), (short)(new _Pft(x).nchar));
                 }
                 else
                 {
-                    if (((int)(Mem.U8((x + 52u))) == 108))
+                    if (((int)(new _Pft(x).qual) == 108))
                     {
-                        Mem.Set(Mem.U32((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 4u) - (uint)(1)) & (~(4u - (uint)(1)))) + 4u))) - (uint)4u)), (int)(Mem.U32((x + 44u))));
+                        Mem.Set(Mem.U32((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 4u) - (uint)(1)) & (~(4u - (uint)(1)))) + 4u))) - (uint)4u)), (int)(new _Pft(x).nchar));
                     }
                     else
                     {
-                        if (((int)(Mem.U8((x + 52u))) == 76))
+                        if (((int)(new _Pft(x).qual) == 76))
                         {
-                            Mem.Set(Mem.U32((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 4u) - (uint)(1)) & (~(4u - (uint)(1)))) + 4u))) - (uint)4u)), (long)(Mem.U32((x + 44u))));
+                            Mem.Set(Mem.U32((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 4u) - (uint)(1)) & (~(4u - (uint)(1)))) + 4u))) - (uint)4u)), (long)(new _Pft(x).nchar));
                         }
                         else
                         {
-                            Mem.Set(Mem.U32((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 4u) - (uint)(1)) & (~(4u - (uint)(1)))) + 4u))) - (uint)4u)), (int)(Mem.U32((x + 44u))));
+                            Mem.Set(Mem.U32((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 4u) - (uint)(1)) & (~(4u - (uint)(1)))) + 4u))) - (uint)4u)), (int)(new _Pft(x).nchar));
                         }
                     }
                 }
                 break;
             case 112:
-                Mem.Set(x, (long)((int)(Mem.U32((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 4u) - (uint)(1)) & (~(4u - (uint)(1)))) + 4u))) - (uint)4u)))));
-                Mem.Set((x + 8u), (ac + (uint)Mem.S32((x + 12u))));
+                Mem.Set(new _Pft(x).v.P, (long)((int)(Mem.U32((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 4u) - (uint)(1)) & (~(4u - (uint)(1)))) + 4u))) - (uint)4u)))));
+                new _Pft(x).s__Set((ac + (uint)new _Pft(x).n0));
                 _Litob(x, (byte)(120));
                 break;
             case 115:
-                Mem.Set((x + 8u), Mem.U32((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 4u) - (uint)(1)) & (~(4u - (uint)(1)))) + 4u))) - (uint)4u)));
-                Mem.Set((x + 20u), (int)(strlen(Mem.U32((x + 8u)))));
-                if (((Mem.S32((x + 36u)) >= 0) && (Mem.S32((x + 36u)) < Mem.S32((x + 20u)))))
+                new _Pft(x).s__Set(Mem.U32((Mem.Set(pap, (uint)((((((uint)(Mem.U32(pap)) + 4u) - (uint)(1)) & (~(4u - (uint)(1)))) + 4u))) - (uint)4u)));
+                new _Pft(x).n1_Set((int)(strlen(new _Pft(x).s_)));
+                if (((new _Pft(x).prec >= 0) && (new _Pft(x).prec < new _Pft(x).n1)))
                 {
-                    Mem.Set((x + 20u), Mem.S32((x + 36u)));
+                    new _Pft(x).n1_Set(new _Pft(x).prec);
                 }
                 break;
             case 37:
-                Mem.Set((ac + (uint)(Mem.Set((x + 12u), (int)(Mem.S32((x + 12u)) + 1)) - 1)), (byte)(37));
+                Mem.Set((ac + (uint)(new _Pft(x).n0_Set((int)(new _Pft(x).n0 + 1)) - 1)), (byte)(37));
                 break;
             default:
-                Mem.Set((ac + (uint)(Mem.Set((x + 12u), (int)(Mem.S32((x + 12u)) + 1)) - 1)), code);
+                Mem.Set((ac + (uint)(new _Pft(x).n0_Set((int)(new _Pft(x).n0 + 1)) - 1)), code);
                 break;
             }
         }

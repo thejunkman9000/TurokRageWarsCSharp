@@ -14,20 +14,20 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_00293268", (uint)g, (uint)a);
                 uint b = 0u;
-                if (!((int)(func_0044DE70(0x8011FE88u, (uint)((-1)), (uint)(a), _fp, (uint)(1))) != 0))
+                if (!(func_0044DE70(0x8011FE88u, (-1), a, _fp, 1) != 0))
                 {
                     a = 0;
                 }
-                b = (0x80145040u + 6240u);
-                Mem.Set(b, (float)(0));
-                Mem.Set((b + 4u), (float)(0));
-                Mem.Set((b + 8u), (float)(0));
-                Mem.Set((b + 12u), (float)(0));
-                Mem.Set((b + 136u), 0);
-                Mem.Set((g + 159169u), (byte)(2));
-                Mem.Set((g + 159192u), a);
-                Mem.Set((g + 159196u), 1);
-                Mem.Set((g + 159164u), 13);
+                b = new B21World(0x80145040u).blk.P;
+                new B21GameBlk(b).unk0_Set((float)(0));
+                new B21GameBlk(b).unk4_Set((float)(0));
+                new B21GameBlk(b).unk8_Set((float)(0));
+                new B21GameBlk(b).unkC_Set((float)(0));
+                new B21GameBlk(b).unk88_Set(0);
+                new B21Game(g).unk26DC1_Set((byte)(2));
+                new B21Game(g).unk26DD8_Set(a);
+                new B21Game(g).unk26DDC_Set(1);
+                new B21Game(g).unk26DBC_Set(13);
             }
         }
         finally { Stack.Free(24); }
