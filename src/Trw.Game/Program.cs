@@ -31,6 +31,7 @@ if (headless && (Oracle.Deterministic || Oracle.Enabled))
     var interp = new Trw.Platform.Gfx.DisplayListInterpreter();
     Host.GraphicsTask = task => { var cmds = interp.Run(task); Oracle.Frame(cmds); TrwWindow.RecordSignature(cmds); };
     Host.ReadPad = TrwWindow.ReadPadHeadless;
+    Host.ReadMouse = TrwWindow.ReadMouse;
     if (Oracle.Deterministic) Game.WaitQuiescent();       // the boot thread runs until it first waits for a retrace
     var swo = System.Diagnostics.Stopwatch.StartNew();
     for (int t = 0; t < ticks; t++)

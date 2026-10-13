@@ -77,6 +77,7 @@ public static class NetPlay
         if (cfg.DigestLog != null) digestLog = new StreamWriter(cfg.DigestLog) { AutoFlush = false, NewLine = "\n" };
         current = NetFrame.Empty(0, room.Occupied);       // osContInit at power-on, before the first retrace
         Host.ReadPad = ReadPad;
+        Host.ReadMouse = ReadMouse;
         GameBoot.Start();
         Game.WaitQuiescent();                              // the boot thread runs until it first waits for a retrace (as in the oracle runner)
         booted = true;
@@ -94,6 +95,19 @@ public static class NetPlay
         return true;
     }
 
+    /// <summary>The native mouse look of the running tick's frame: handed out once per tick and pad (the game may read the controllers more than once per tick).</summary>
+    private static void ReadMouse(int pad, out float yaw, out float pitch, out bool active)
+    {
+        yaw = pitch = 0; active = false;
+        var f = current;
+        if ((uint)pad > 3 || (f.Connected & (1 << pad)) == 0) return;
+        active = f.Pads[pad].Mouse;
+        if (mouseTick[pad] == f.Tick) return;
+        mouseTick[pad] = f.Tick;
+        yaw = f.Pads[pad].Yaw; pitch = f.Pads[pad].Pitch;
+    }
+    private static readonly int[] mouseTick = { -1, -1, -1, -1 };
+
     /// <summary>This machine's player: keyboard + mouse through InputMapper and the first gamepad, as offline; scripted input (TRW_PAD_SCRIPT /
     /// TRW_KBM_SCRIPT) alone when set, so tests are not disturbed by whatever devices the machine has.</summary>
     private static PadInput SampleLocal(int tick)
@@ -102,7 +116,8 @@ public static class NetPlay
         ushort b; sbyte x, y;
         if (window == null || scriptedInput) TrwWindow.ReadPadHeadless(0, out b, out x, out y);
         else TrwWindow.ReadPad(0, out b, out x, out y);
-        return new PadInput(b, x, y);
+        TrwWindow.ReadMouse(0, out float yaw, out float pitch, out bool mouse);          // the native mouse look sampled with the pad (TrwWindow.ReadPad / ReadPadHeadless)
+        return new PadInput(b, x, y, yaw, pitch, mouse);
     }
 
     /// <summary>Runs ticks whose frame is known: at most <paramref name="max"/>, and a second one only when the next frame is already waiting (catching up).

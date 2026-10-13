@@ -56,6 +56,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
     protected override void Initialize()
     {
         Host.ReadPad = ReadPad;
+        Host.ReadMouse = ReadMouse;
         Window.TextInput += (_, e) => TextEntry.OnTextInput(e.Character, e.Key);     // typed characters (shift and layout applied) for the name entry
         audio.Hook();
         base.Initialize();
@@ -242,8 +243,40 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
                 es.FiredAt = scriptTick;
             if (es.FiredAt >= 0 && scriptTick >= es.FiredAt && scriptTick < es.FiredAt + es.Len) { keys.UnionWith(es.Keys); dx += es.Dx; dy += es.Dy; }
         }
-        var r = mappers[0].Evaluate(new InputSample { Gameplay = GameplayContext(), KeyDown = k => keys.Contains(k) && !TextEntry.Active, MouseDx = dx, MouseDy = dy, MouseValid = true });
+        bool native = NativeRoute(dx, dy, true);
+        var r = mappers[0].Evaluate(new InputSample { Gameplay = GameplayContext(), KeyDown = k => keys.Contains(k) && !TextEntry.Active, MouseDx = dx, MouseDy = dy, MouseValid = !native });
         buttons |= r.buttons; x += r.x; y += r.y;
+        wheelOpen = (r.buttons & 0x8000) != 0;
+    }
+
+    // native mouse look (Os/MouseLook.cs): pad 0's mouse motion turns the view directly (degrees: InputMapper.DegPerCount x MouseSens per count) instead of driving
+    // the stick, except while the weapon button is held (the wheel is open: the mouse then moves the stick to pick a weapon, as in the C port) and outside free play
+    private static float nativeYaw, nativePitch;
+    private static bool wheelOpen;
+    private static bool NativeRoute(float dx, float dy, bool valid)
+    {
+        if (!global::Trw.Game.Game.NativeMouse || !valid || wheelOpen || GameplayContext() != 1) return false;
+        var m = mappers[0];
+        lock (deviceLock) { nativeYaw += dx * InputMapper.DegPerCount * m.MouseSens; nativePitch += dy * InputMapper.DegPerCount * m.MouseSens * (m.MouseInvertY ? -1f : 1f); }
+        return true;
+    }
+
+    private static bool NativeRouteLocked(float dx, float dy)      // NativeRoute for a caller that already holds deviceLock
+    {
+        if (!global::Trw.Game.Game.NativeMouse || wheelOpen || GameplayContext() != 1) return false;
+        var m = mappers[0];
+        nativeYaw += dx * InputMapper.DegPerCount * m.MouseSens; nativePitch += dy * InputMapper.DegPerCount * m.MouseSens * (m.MouseInvertY ? -1f : 1f);
+        return true;
+    }
+
+    /// <summary><see cref="Host.ReadMouse"/>: the native mouse look of pad 0 since the previous controller read (degrees right / down).</summary>
+    internal static void ReadMouse(int pad, out float yawDeg, out float pitchDeg, out bool active)
+    {
+        yawDeg = pitchDeg = 0; active = false;
+        if (pad != 0 || !global::Trw.Game.Game.NativeMouse) return;
+        // played with the mouse: captured in free play (the window), or a test script that moves the mouse
+        active = (mouseCaptured || kbmSteps.Any(s => s.Dx != 0 || s.Dy != 0)) && GameplayContext() == 1;
+        lock (deviceLock) { yawDeg = nativeYaw; pitchDeg = nativePitch; nativeYaw = nativePitch = 0; }
     }
 
     internal static bool ReadPadHeadless(int pad, out ushort buttons, out sbyte stickX, out sbyte stickY)
@@ -280,6 +313,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
                     var ks = keyboard; sample.KeyDown = name => Enum.TryParse<Keys>(name, out var key) && ks.IsKeyDown(key) && !TextEntry.Swallows(key);   // keys typing a name are not bindings
                     Array.Copy(mouseButtons, sample.MouseButtons, 5);
                     sample.MouseDx = mouseDx; sample.MouseDy = mouseDy; sample.MouseValid = mouseCaptured;
+                    if (mouseCaptured && NativeRouteLocked(mouseDx, mouseDy)) sample.MouseValid = false;     // native look: the motion turns the view, not the stick
                     sample.WheelUp = wheelUp; sample.WheelDown = wheelDown;
                     mouseDx = mouseDy = 0; wheelUp = wheelDown = 0;
                 }
@@ -303,6 +337,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
             {
                 var r = mappers[pad & 3].Evaluate(sample);
                 buttons |= r.buttons; x += r.x; y += r.y;
+                if (pad == 0) wheelOpen = (r.buttons & 0x8000) != 0;
             }
         }
         if (pad == 0) buttons |= TextEntry.Poll();         // typed name: the letter-cycler presses (TextEntry.cs)
@@ -316,7 +351,22 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         return connected;
     }
 
-    private bool escapeDown, f1Down, captureSuspended, haveMouseRef;
+    private bool escapeDown, f1Down, captureSuspended, haveMouseRef, relMouse;
+
+    /// <summary>SDL2 (MonoGame DesktopGL's platform layer) relative mouse mode, called directly: MonoGame does not expose it.</summary>
+    private static class Sdl
+    {
+        [System.Runtime.InteropServices.DllImport("SDL2", CallingConvention = System.Runtime.InteropServices.CallingConvention.Cdecl)] private static extern int SDL_SetRelativeMouseMode(int enabled);
+        [System.Runtime.InteropServices.DllImport("SDL2", CallingConvention = System.Runtime.InteropServices.CallingConvention.Cdecl)] private static extern uint SDL_GetRelativeMouseState(out int x, out int y);
+        private static bool broken = Environment.GetEnvironmentVariable("TRW_MOUSE_WARP") == "1";      // TRW_MOUSE_WARP=1: the old centre-warp capture
+        public static bool SetRelative(bool on)
+        {
+            if (broken) return false;
+            try { bool ok = SDL_SetRelativeMouseMode(on ? 1 : 0) == 0; if (on && ok) SDL_GetRelativeMouseState(out _, out _); return ok; }   // drop the motion gathered before
+            catch (Exception e) when (e is DllNotFoundException or EntryPointNotFoundException) { broken = true; Console.Error.WriteLine($"[mouse] SDL relative mode unavailable ({e.GetType().Name}): centre-warp capture"); return false; }
+        }
+        public static void RelativeMotion(out int x, out int y) { x = y = 0; if (!broken) try { SDL_GetRelativeMouseState(out x, out y); } catch (Exception) { broken = true; } }
+    }
     private int lastWheel;
 
     /// <summary>Samples keyboard, mouse and wheel; the mouse is captured (hidden, centred, relative motion) while a level runs in the active window (mouse_capture = auto).</summary>
@@ -338,10 +388,13 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
             lastWheel = ms.ScrollWheelValue; haveMouseRef = true;
             if (capture)
             {
-                if (mouseCaptured) { mouseDx += ms.X - cx; mouseDy += ms.Y - cy; }
-                Mouse.SetPosition(cx, cy);
+                // SDL relative mode (the usual FPS capture): the cursor is hidden and held in the window, the motion is the raw device motion (no pointer
+                // acceleration) and cannot leave the window between two frames; without SDL the cursor is warped back to the centre every frame
+                if (!mouseCaptured) { relMouse = Sdl.SetRelative(true); Console.Error.WriteLine($"[mouse] captured ({(relMouse ? "SDL relative mode" : "centre warp")}){(global::Trw.Game.Game.NativeMouse ? ", native look" : ", mouse drives the stick")}"); }
+                if (relMouse) { Sdl.RelativeMotion(out int rx, out int ry); if (mouseCaptured) { mouseDx += rx; mouseDy += ry; } }
+                else { if (mouseCaptured) { mouseDx += ms.X - cx; mouseDy += ms.Y - cy; } Mouse.SetPosition(cx, cy); }
             }
-            else if (mouseCaptured) { mouseDx = mouseDy = 0; foreach (var m in mappers) m.ResetMouse(); }
+            else if (mouseCaptured) { mouseDx = mouseDy = 0; foreach (var m in mappers) m.ResetMouse(); if (relMouse) { Sdl.SetRelative(false); relMouse = false; Mouse.SetPosition(cx, cy); } }
             if (capture != mouseCaptured) { mouseCaptured = capture; IsMouseVisible = !capture; }
         }
     }

@@ -123,6 +123,18 @@ Saves are raw 32 KiB `.mpk` images in Project64's layout and naming (`Turok; Rag
 | `TRW_PAK1`..`TRW_PAK4=<file>` | explicit image file per port |
 | `TRW_PAK_DELAY=<ms>`, `TRW_PAKLOG=1` | write-back debounce; log every accessory transaction |
 
+## Mouse look (`Os/MouseLook.cs`)
+A true FPS mouse, the port of the C port's native controls. Capture: in free play the window switches SDL2 to relative mouse mode (cursor hidden and held in the
+window, raw device motion without pointer acceleration; Esc / F1 release it, `TRW_MOUSE_WARP=1` = the old centre-warp capture). Look: pad 0's mouse motion
+(0.05 degrees per count x `MouseSens`) is not converted into stick values any more; the game's view update func_002231B0 (`tools/overrides/func_002231B0.c`)
+calls `trw_mouse_look` after its own turn / tilt: the actor turns by exactly the motion (x the game's turn-speed slider: 1/8 x .. 8 x, centre 1 x) and the view
+tilt is set to an absolute pitch kept per controller slot, within the game's look limits (x the look-speed slider); `trw_mouse_reset` clears it on death and
+in cut-scenes. Only real controller slots get it (bots carry AI controller objects), and only while that pad is played with the mouse (a pad / stick player
+keeps the game's own look). While the weapon button is held the mouse moves the stick instead (the weapon wheel). The motion is latched with each controller
+read (`Host.ReadMouse`: the last 4 reads, so a skipped view update does not end in a jump) and travels in the netplay input (protocol 2), so every machine turns
+every player identically (tested: 2 headless peers with mouse scripts, 9 500 ticks, digests equal). `TRW_NATIVE_MOUSE=0` restores the stick emulation,
+`TRW_LOOKLOG=1` logs what the hook does. Test scripts: the `<mouse dx>:<mouse dy>` fields of `TRW_KBM_SCRIPT` steps (counts per poll).
+
 ## Typing a player name (`Window/TextEntry.cs`)
 The game's only text entry is the NEW PLAYER name of the pak screen (UI screen 19): a letter cycler in the lobby block `*D_800E54A4`, player record
 `+0x58 + pad * 0xB68` (`O05Plr`), active while its state (`+0`) is 12. The name is 7 slots of `{glyph, 0}` at `+0xB34`, the cursor slot at `+0xB44`; D-pad

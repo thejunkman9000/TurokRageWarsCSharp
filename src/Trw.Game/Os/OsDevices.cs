@@ -180,6 +180,7 @@ public static partial class Game
             if (!PadConnected(i)) continue;
             ushort b = 0; sbyte x = 0, y = 0;
             Host.ReadPad?.Invoke(i, out b, out x, out y);
+            if (Host.ReadMouse != null) { Host.ReadMouse(i, out float yaw, out float pitch, out bool act); MouseLatch(i, yaw, pitch, act); }      // native mouse look (Os/MouseLook.cs)
             Mem.Set(pad + (uint)(i * 6), b);
             Mem.Set(pad + (uint)(i * 6) + 2, x);
             Mem.Set(pad + (uint)(i * 6) + 3, y);

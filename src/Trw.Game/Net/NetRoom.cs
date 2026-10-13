@@ -217,7 +217,7 @@ public sealed class NetHostRoom : NetRoom
                     break;
                 case NetWire.Input when who != null:
                 {
-                    int tick = r.I32(); var p = new PadInput((ushort)r.U16(), (sbyte)r.I8(), (sbyte)r.I8());
+                    int tick = r.I32(); var p = new PadInput((ushort)r.U16(), (sbyte)r.I8(), (sbyte)r.I8(), BitConverter.Int32BitsToSingle(r.I32()), BitConverter.Int32BitsToSingle(r.I32()), r.U8() != 0);
                     lock (gate)
                     {
                         if (!Started || who.Pad < 0 || (DroppedMask & (1 << who.Pad)) != 0 || tick < nextBuild || tick >= nextBuild + Ring / 2) break;
@@ -484,7 +484,7 @@ public sealed class NetClientRoom : NetRoom
     public void SetReady(bool ready) => link.Send(new WireWriter(NetWire.Ready).U8(ready ? 1 : 0).ToArray());
 
     public override void SubmitLocalInput(int tick, PadInput input) =>
-        link.Send(new WireWriter(NetWire.Input).I32(tick).U16(input.Buttons).I8(input.X).I8(input.Y).ToArray());
+        link.Send(new WireWriter(NetWire.Input).I32(tick).U16(input.Buttons).I8(input.X).I8(input.Y).I32(BitConverter.SingleToInt32Bits(input.Yaw)).I32(BitConverter.SingleToInt32Bits(input.Pitch)).U8(input.Mouse ? 1 : 0).ToArray());
 
     public override void SubmitDigest(int tick, ulong[] digest) => link.Send(DigestMessage(tick, digest));
 

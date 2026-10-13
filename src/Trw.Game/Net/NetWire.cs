@@ -11,7 +11,7 @@ namespace Trw.Game.Net;
 public static class NetWire
 {
     /// <summary>Bumped whenever a message changes; peers with a different version refuse each other in HELLO.</summary>
-    public const int ProtocolVersion = 1;
+    public const int ProtocolVersion = 2;       // 2: pad input carries the native mouse look (yaw / pitch floats)
     public const int MaxBody = 16 * 1024;
 
     // lobby
@@ -98,7 +98,8 @@ public ref struct WireReader
 }
 
 /// <summary>One pad's input for one tick: exactly what <c>osContGetReadData</c> stores for it.</summary>
-public readonly record struct PadInput(ushort Buttons, sbyte X, sbyte Y);
+/// <summary>One pad's input for a tick: buttons, stick, and the native mouse look (degrees right / down since the previous tick, Os/MouseLook.cs).</summary>
+public readonly record struct PadInput(ushort Buttons, sbyte X, sbyte Y, float Yaw = 0, float Pitch = 0, bool Mouse = false);
 
 /// <summary>The merged input of one tick, the same on every peer: which pads are plugged in and what each reads.</summary>
 public sealed class NetFrame
@@ -113,14 +114,14 @@ public sealed class NetFrame
     public byte[] Encode()
     {
         var w = new WireWriter(NetWire.Frame).I32(Tick).U8(Connected).U8(Dropped);
-        foreach (var p in Pads) w.U16(p.Buttons).I8(p.X).I8(p.Y);
+        foreach (var p in Pads) w.U16(p.Buttons).I8(p.X).I8(p.Y).I32(BitConverter.SingleToInt32Bits(p.Yaw)).I32(BitConverter.SingleToInt32Bits(p.Pitch)).U8(p.Mouse ? 1 : 0);
         return w.ToArray();
     }
 
     public static NetFrame Decode(ref WireReader r)
     {
         var f = new NetFrame { Tick = r.I32(), Connected = (byte)r.U8(), Dropped = (byte)r.U8() };
-        for (int i = 0; i < 4; i++) f.Pads[i] = new PadInput((ushort)r.U16(), (sbyte)r.I8(), (sbyte)r.I8());
+        for (int i = 0; i < 4; i++) f.Pads[i] = new PadInput((ushort)r.U16(), (sbyte)r.I8(), (sbyte)r.I8(), BitConverter.Int32BitsToSingle(r.I32()), BitConverter.Int32BitsToSingle(r.I32()), r.U8() != 0);
         return f;
     }
 }

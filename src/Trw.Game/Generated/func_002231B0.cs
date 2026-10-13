@@ -18,6 +18,7 @@ public static partial class Game
             float spd = 0f;
             float w = 0f;
             float x = 0f;
+            trw_mouse_reset(p);
             if (((new B05P10(p).unk11B4 == 0) && !(new B05P10(p).f11D8 > 0.0f)))
             {
                 om = (new B05P10(p).f7EC * 0.990000009f);
@@ -58,6 +59,7 @@ public static partial class Game
                     x = ((w * 0.716197133f) * new B05In10(@in).f14);
                 }
                 func_002748E0((p + 1828u), (x * 0.0174532942f), spd);
+                trw_mouse_look(p, a, @in, h);
             }
         }
     }

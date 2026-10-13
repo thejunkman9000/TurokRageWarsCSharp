@@ -32,6 +32,11 @@ public static class Host
     public delegate bool PadReader(int pad, out ushort buttons, out sbyte stickX, out sbyte stickY);
     public static PadReader? ReadPad;
 
+    /// <summary>Native mouse look of pad 0-3, read right after that pad's <see cref="ReadPad"/> at the game's controller read: degrees turned right
+    /// (<paramref name="yawDeg"/>) and down (<paramref name="pitchDeg"/>) since the previous read. Part of the controller sample, so netplay carries it.</summary>
+    public delegate void MouseReader(int pad, out float yawDeg, out float pitchDeg, out bool active);   // active: this pad is played with the mouse (the look is applied)
+    public static MouseReader? ReadMouse;
+
     /// <summary>High-resolution clock in CP0 counter ticks (46.875 MHz).</summary>
     public static Func<ulong> Counter = DefaultCounter;
 
