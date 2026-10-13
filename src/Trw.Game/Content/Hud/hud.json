@@ -1,0 +1,69 @@
+// The port HUD's layout (docs/HUD.md). This default reproduces the game's own HUD (func_0021EED8 and callees) at 4:3.
+// Positions are in the 480x360 HUD frame of a view (a 2-player half maps it at half height, like the game), offsets of the
+// game's formulas: "origin" is a position the game computes (it follows the game's slide-in animations), x / y are added to it.
+// kh / ks are the game's two scale factors (1.5 / 1 in hi-res, 1 / 0.75 otherwise).
+// Copy this file next to the executable as hud.json (or point TRW_HUD_LAYOUT at a file) to change it; it reloads when saved (or press F6).
+{
+  "version": 1,
+  "elements": [
+    // ---- kept as the game draws them: the crosshair, the hurt flash, zoom / power-up / status icons, team overlays, the names ticker and messages (text)
+    { "id": "game-view", "kind": "game", "match": ["crosshair", "flash", "zoom", "status", "pips", "team", "text", "other"] },
+    { "id": "game-shared", "kind": "game", "pass": "shared", "match": ["text", "other", "crosshair", "flash"] },
+
+    // ---- health, bottom left (func_0021EED8: number at health mover - (3, 4) * kh, alpha = the HUD fade)
+    { "id": "health", "kind": "number", "value": "health", "origin": "health", "x": "-3*kh", "y": "-4*kh", "scale": "kh",
+      "alpha": "hudFade", "when": "!hideHud" },
+
+    // ---- frags, top right: the animated skull (team games: the team icon) and the score
+    { "id": "frags", "kind": "number", "value": "frags", "origin": "score", "x": "48*ks", "y": "22*ks", "scale": "ks",
+      "alpha": "alpha", "when": "!hideHud && hudShown" },
+    { "id": "frags-icon", "kind": "sprite", "sprite": "teams ? 0x204 : 0x1FA", "frame": "score.state < 2 ? 0 : score.frame",
+      "origin": "score", "x": "8*ks", "y": "16*ks", "scale": ["ks", "ks*1.5"], "alpha": "alpha", "when": "!hideHud && hudShown" },
+    { "id": "frags-marker", "kind": "sprite", "sprite": "0x202", "origin": "score", "x": 0, "y": "11*ks", "scale": ["ks", "ks*1.5"],
+      "alpha": "alpha", "when": "!hideHud && hudShown && markers" },
+
+    // ---- 1-player trials: the remaining tries with the hourglass, top left
+    { "id": "trial", "kind": "number", "value": "trialCount", "origin": "lives", "x": 0, "y": "22*ks", "scale": "ks",
+      "alpha": "alpha", "when": "hudShown && (trialKind == 1 || trialKind == 4) && !hideLives" },
+    { "id": "trial-icon", "kind": "sprite", "sprite": "0x1F6", "origin": "lives", "x": "20*ks", "y": "16*ks", "scale": ["ks", "ks*1.5"],
+      "alpha": "alpha", "when": "hudShown && (trialKind == 1 || trialKind == 4) && !hideLives" },
+    { "id": "trial-marker", "kind": "sprite", "sprite": "0x203", "origin": "lives", "x": "40*ks", "y": "11*ks", "scale": ["ks", "ks*1.5"],
+      "alpha": "alpha", "when": "hudShown && (trialKind == 1 || trialKind == 4) && !hideLives && markers" },
+
+    // ---- lives (modes without the score HUD)
+    { "id": "lives-icon", "kind": "sprite", "sprite": "0x12C", "origin": "lives", "x": 18, "y": 28, "alpha": "hudFade", "when": "!hudShown && lives.anim && lives.shown" },
+    { "id": "lives-icon2", "kind": "sprite", "sprite": "0x1F6", "origin": "lives", "alpha": "hudFade", "when": "!hudShown && lives.anim && lives.shown" },
+    { "id": "lives", "kind": "number", "value": "lives", "origin": "lives", "x": 30, "y": 24, "alpha": "hudFade", "when": "!hudShown && lives.anim && lives.shown" },
+
+    // ---- count rule / squad score, under the frags
+    { "id": "count", "kind": "number", "value": "count", "origin": "count", "x": "48*ks", "y": "20*ks", "scale": "ks", "alpha": "alpha",
+      "when": "!hideHud && hudShown && countRule" },
+    { "id": "count-icon", "kind": "sprite", "sprite": "0x1FD", "frame": "count.state < 2 ? 0 : count.frame", "origin": "count", "x": "8*ks", "y": "16*ks",
+      "scale": "ks", "alpha": "alpha", "when": "!hideHud && hudShown && countRule" },
+    { "id": "squad", "kind": "number", "value": "squadScore", "origin": "squad", "x": "48*ks", "y": "20*ks", "scale": "ks", "alpha": "alpha",
+      "when": "!hideHud && hudShown && !countRule && squads" },
+    { "id": "squad-icon", "kind": "sprite", "sprite": "0x201", "frame": "squad.state < 2 ? 0 : squad.frame", "origin": "squad", "x": "8*ks", "y": "16*ks",
+      "scale": ["ks", "ks*1.5"], "alpha": "alpha", "when": "!hideHud && hudShown && !countRule && squads" },
+
+    // ---- ammo: up to three counters with their icons, sliding in from the bottom left when a count changes (func_0021EA30)
+    { "id": "ammo1-icon", "kind": "sprite", "sprite": "0xBEA", "origin": "ammo1", "x": -32, "y": -8, "alpha": "hudFade", "when": "!hideHud && ammo1.shown" },
+    { "id": "ammo1", "kind": "number", "value": "ammo1", "origin": "ammo1", "x": -6, "y": -4, "scale": ["hires ? 1 : 0.9", 1], "alpha": "hudFade", "when": "!hideHud && ammo1.shown" },
+    { "id": "ammo2-icon", "kind": "sprite", "sprite": "0xBEB", "origin": "ammo2", "x": -32, "y": -8, "alpha": "hudFade", "when": "!hideHud && ammo2.shown" },
+    { "id": "ammo2", "kind": "number", "value": "ammo2", "origin": "ammo2", "x": -6, "y": -4, "scale": ["hires ? 1 : 0.9", 1], "alpha": "hudFade", "when": "!hideHud && ammo2.shown" },
+    { "id": "ammo3-icon", "kind": "sprite", "sprite": "0xBEC", "origin": "ammo3", "x": -32, "y": -8, "alpha": "hudFade", "when": "!hideHud && ammo3.shown" },
+    { "id": "ammo3", "kind": "number", "value": "ammo3", "origin": "ammo3", "x": -6, "y": -4, "scale": ["hires ? 1 : 0.9", 1], "alpha": "hudFade", "when": "!hideHud && ammo3.shown" },
+
+    // ---- the match clock (shared pass, func_00228AD0): minutes right-aligned before the colon, seconds with two digits after it
+    { "id": "clock-min", "kind": "number", "pass": "shared", "value": "clock.min", "align": "right", "origin": "clock", "x": -7,
+      "alpha": "hudFade", "when": "clock.shown" },
+    { "id": "clock-sec", "kind": "number", "pass": "shared", "value": "clock.sec", "digits": 2, "origin": "clock", "x": 2,
+      "alpha": "hudFade", "when": "clock.shown" },
+
+    // ---- examples (off): a health bar, a frag-limit line, a port-drawn crosshair
+    { "id": "example-health-bar", "kind": "bar", "show": false, "value": "health", "max": 100, "anchor": "bottom-left", "x": 16, "y": -14,
+      "width": 80, "height": 5, "color": "#E04020", "back": "#00000080", "alpha": "hudFade" },
+    { "id": "example-fraglimit", "kind": "text", "show": false, "text": "LIMIT {fraglimit}", "font": "Scoreboard", "size": 14, "align": "right",
+      "anchor": "top-right", "x": -16, "y": 56, "color": "gold", "when": "fraglimit > 0" },
+    { "id": "example-crosshair", "kind": "crosshair", "show": false, "style": "cross", "size": 5, "gap": 2, "thickness": 1, "color": "#40FF40C0" }
+  ]
+}

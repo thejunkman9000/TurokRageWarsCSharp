@@ -12,7 +12,7 @@ decompiled C (and, for the functions that only exist as machine code, from the R
 | `tools/mips2cs` | MIPS -> C# for functions without C source (reuses the C port's asm parser and analysis) |
 | `tools/regen.ps1` | regenerates `src/Trw.Game/Generated` end to end (`arity.py`, `retuse.py`: what the ROM does with registers that the C does not say) |
 | `tools/run_window.ps1` | unattended runs: scripted input, screenshots, logs |
-| `tests/` | unit tests for the platform layer |
+| `tests/` | unit tests for the platform layer and the port HUD's layout (`Trw.Game.Tests`) |
 | `docs/TRANSPILER.md` | design notes and status |
 
 ## Running
@@ -25,6 +25,7 @@ dotnet run --project src/Trw.Game -- --rom path\to\baserom.us.v11.z64 --headless
 Keys: arrows = stick, `C` = A, `X` = B, `Z` = Z, `Enter` = Start, `W A S D` = D-pad, `I J K L` = C buttons, `Q`/`E` = L/R; F11 = fullscreen; in a multiplayer match Tab = scoreboard, F2 = split screen / only your own view (`TRW_VIEW=local`, `TRW_LOCAL_PAD=0..3`, see `docs/TRANSPILER.md`); the 3D is widescreen at the window's shape (resize freely; `TRW_WIDESCREEN=0` for the original 4:3); gamepads work too (left stick, A/B, triggers = Z, bumpers = L/R, right stick = C buttons).
 On the Controller Pak's NEW PLAYER name screen the keyboard types the name (letters, digits, space and the game's punctuation; Backspace, Enter = done,
 Escape = back where the game allows it); the keys turn into the game's own letter-cycler presses, so the letters can be seen stepping into place.
+The in-game HUD is drawn by the port from a layout file (`Content/Hud/hud.json`, or your own `hud.json` next to the executable / `TRW_HUD_LAYOUT`): the default reproduces the original HUD with the game's own sprites, and elements can be moved, recoloured, removed or added by editing the file (it reloads when saved; F6 reloads, F7 switches to the game's own HUD draws, `TRW_HUD=game` starts with them). See `docs/HUD.md`.
 Status: boots to the menus and plays the 1-player trials and multiplayer matches with 3D graphics and audio (see `docs/TRANSPILER.md`).
 
 ## Playing online

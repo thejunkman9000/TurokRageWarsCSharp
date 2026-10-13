@@ -53,10 +53,13 @@ public sealed class GfxRenderer : IDisposable
         public VertexDeclaration VertexDeclaration => Decl;
     }
 
+    private readonly PortHud.HudLayer hud;               // the port-drawn HUD (TRW_HUD=port|game, docs/HUD.md)
+
     public GfxRenderer(GraphicsDevice device, Effect combiner)
     {
         this.device = device;
         this.combiner = combiner;
+        hud = new PortHud.HudLayer(device);
         target = new RenderTarget2D(device, InternalWidth, InternalHeight, false, SurfaceFormat.Color, DepthFormat.Depth24);
         sprites = new SpriteBatch(device);
         white = new Texture2D(device, 1, 1);
@@ -126,14 +129,20 @@ public sealed class GfxRenderer : IDisposable
         }
         device.Viewport = new Viewport(0, 0, targetW, targetH);
         if (!anyFrame) { device.Clear(Environment.GetEnvironmentVariable("TRW_GFX_BG") != null ? new Color(0, 0, 90) : Color.Black); anyFrame = true; }
-        foreach (var c in commands)
+        // port HUD (Hud/HudLayer.cs, docs/HUD.md): the game's 2D HUD draws it replaces are left out, its own draws follow each HUD section
+        bool portHud = hud.Begin(commands);
+        for (int i = 0; i < commands.Count; i++)
         {
-            switch (c)
+            switch (commands[i])
             {
                 case ClearColorCommand cc: device.Clear(ClearOptions.Target, new Color(cc.R, cc.G, cc.B, 1f), 1f, 0); break;
                 case ClearDepthCommand: device.Clear(ClearOptions.DepthBuffer, Color.Black, 1f, 0); break;
-                case DrawCommand d: Draw(d); break;
+                case DrawCommand d:
+                    if (!portHud || d.Hud == 0) Draw(d);
+                    else if (hud.Map(d) is { } kept) Draw(kept);
+                    break;
             }
+            if (portHud && hud.After(i) is { } extra) foreach (var d in extra) Draw(d);
         }
         device.SetRenderTarget(null);
     }
@@ -349,7 +358,7 @@ public sealed class GfxRenderer : IDisposable
 
     public void Dispose()
     {
-        target.Dispose(); localTarget?.Dispose(); wideTarget?.Dispose(); sprites.Dispose(); white.Dispose();
+        target.Dispose(); localTarget?.Dispose(); wideTarget?.Dispose(); sprites.Dispose(); white.Dispose(); hud.Dispose();
         foreach (var t in textures.Values) t.Dispose();
     }
 }

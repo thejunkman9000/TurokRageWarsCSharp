@@ -97,6 +97,7 @@ public readonly struct ActorB { public readonly uint P; ... public int unk5E4 { 
 | `TRW_PAD2_SCRIPT`..`TRW_PAD4_SCRIPT` | scripted input for pads 2-4 (`Window/ExtraPadScripts.cs`): the `<tick>:`, `R<screen>+<delay>:` and `T<state>+<delay>:` steps of `TRW_PAD_SCRIPT`; a pad with a script is plugged in for the whole run |
 | `TRW_PAD2_HUNT=1`..`TRW_PAD4_HUNT=1` | in a match that pad turns to the nearest other player, walks up to it and fires (test aid) |
 | `TRW_MATCH_LOG=1`, `TRW_VIEW_LOG=1`, `TRW_SCORE_SHOT_DIR=<dir>` | player list / score records of a match (`[match]`), local-view regions (`[view]`), a screenshot whenever a score record changes |
+| `TRW_HUD=game\|port`, `TRW_HUD_LAYOUT=<file>`, `TRW_HUD_LOG=1`, `TRW_HUD_VERIFY=1` | the game's own HUD draws / the port-drawn HUD from a layout file (default port), the HUD draws and values (`[hud]`), port quads vs the game draws they replace (`[hud-verify]`); see `docs/HUD.md` |
 
 ### 1-player route that works unattended
 `-Pad "150:SDOWN:5,200:A:6,R24+500:START:12,R3+300:DOWN:20,R3+700:A:12,R3+1100:A:12,R19+600:A:12,R19+1100:LEFT:20,R19+1400:A:12,R9+400:A:12,R7+500:DOWN:20,R7+800:A:12,R10+500:A:12,R10+900:A:12,R25+400:A:12,R25+800:A:12,T13+400:SUP:300,T13+1400:Z:10"`

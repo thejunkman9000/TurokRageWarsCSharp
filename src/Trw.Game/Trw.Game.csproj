@@ -7,6 +7,8 @@
     <Compile Remove="Generated\Structs\**" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
     <MonoGameContentReference Include="Content\Content.mgcb" />
+    <!-- the port HUD's default layout (docs/HUD.md), editable next to the executable -->
+    <None Include="Content\Hud\hud.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
   <PropertyGroup>

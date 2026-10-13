@@ -163,7 +163,7 @@ public sealed class DisplayListInterpreter
         // the scissor in force at draw time
         st.ScissorX0 = S.Sc[0]; st.ScissorY0 = S.Sc[1]; st.ScissorX1 = S.Sc[2]; st.ScissorY1 = S.Sc[3];
         st.ScreenWidth = screenW; st.ScreenHeight = screenH;
-        commands.Add(new DrawCommand(st, batch.ToArray()));
+        commands.Add(new DrawCommand(st, batch.ToArray()) { Hud = hudTag, HudData = hudData });
         batch.Clear();
         cur = CloneState(st);          // later draws must not alias the state captured in the command
     }
@@ -512,6 +512,8 @@ public sealed class DisplayListInterpreter
                 {
                     int f = (int)(w0 & 0xFF) ^ 1; var m = new float[16];
                     LoadMtx(Res(w1), m);
+                    // HUD tagging (presentation only, see HudMarker): the game's HUD code starts by loading its own projection matrix
+                    if ((f & 4) != 0 && HudMarker != null && HudMarker(Res(w1)) is { } mk && mk.Tag != hudTag) { Flush(); hudTag = mk.Tag; hudData = mk.Data; }
                     if ((f & 4) != 0) { if ((f & 2) != 0) Array.Copy(m, S.Proj, 16); else MatMul(m, S.Proj, S.Proj); }
                     else
                     {
@@ -614,7 +616,7 @@ public sealed class DisplayListInterpreter
         for (int i = 0; i < 4; i++) S.Vsc[i] = i == 0 ? 640f : i == 1 ? 480f : i == 2 ? 511f : 0f;
         S.Vtr[0] = 640f; S.Vtr[1] = 480f; S.Vtr[2] = 511f;
         MatIdent(S.Proj); foreach (var m in S.Mv) MatIdent(m); S.MvpDirty = true;
-        curValid = false; batch.Clear(); commands.Clear(); cur = new DrawState();
+        curValid = false; batch.Clear(); commands.Clear(); cur = new DrawState(); hudTag = 0; hudData = null;
         if (LogEnabled) { Array.Clear(opHist); triTotal = triNear = triFace = triOut = 0; vtxLogged = 0; vtxLoadsLogged = 0; }
         bool dumpNow = DumpFlag != null && File.Exists(DumpFlag);
         if (dumpNow) { try { File.Delete(DumpFlag!); } catch (IOException) { } }
@@ -662,6 +664,15 @@ public sealed class DisplayListInterpreter
         }
         return commands.ToArray();
     }
+
+    /// <summary>HUD tagging hook (presentation only; null = off, the default, which leaves the command stream exactly as before). Called with the RDRAM
+    /// address of every projection-matrix G_MTX; returns the tag the following draws get in <see cref="DrawCommand.Hud"/> (0 = not HUD) with an object they
+    /// carry in <see cref="DrawCommand.HudData"/>, or null to keep the current tag. A tag change flushes the batch, so with the hook installed the stream may
+    /// be split into more commands (the oracle runs without it). Trw.Game/Hud/HudTagger.cs: the game's HUD (func_0022A37C -> func_0023941C) loads the view's
+    /// 2D projection at camera + 0x448 (+0x40 per frame parity); the next view's world pass loads camera + 0x380.</summary>
+    public static Func<uint, (int Tag, object? Data)?>? HudMarker;
+    private int hudTag;
+    private object? hudData;
 
     private static readonly bool LogEnabled = Environment.GetEnvironmentVariable("TRW_GFX_LOG") != null;
     private static readonly string? DumpFlag = Environment.GetEnvironmentVariable("TRW_GFX_DUMP_FLAG");   // while this file exists the next display list is listed in full (and the file removed)

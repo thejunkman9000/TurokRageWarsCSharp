@@ -46,4 +46,11 @@ public abstract record GfxCommand;
 public sealed record ClearColorCommand(float R, float G, float B) : GfxCommand;
 public sealed record ClearDepthCommand : GfxCommand;
 /// <summary>Draw triangles (3 vertices each) with the given state.</summary>
-public sealed record DrawCommand(DrawState State, GfxVertex[] Vertices) : GfxCommand;
+public sealed record DrawCommand(DrawState State, GfxVertex[] Vertices) : GfxCommand
+{
+    /// <summary>Presentation only (the oracle does not hash it): the draw was made by the game's HUD code. 0 = not HUD, otherwise the tag the
+    /// <see cref="DisplayListInterpreter.HudMarker"/> hook returned for the HUD section the draw belongs to (Trw.Game/Hud: view index + 1, or the shared pass).</summary>
+    public int Hud { get; init; }
+    /// <summary>Presentation only: what the hook attached to that HUD section when the list was interpreted (Trw.Game: the HUD values of that moment).</summary>
+    public object? HudData { get; init; }
+}

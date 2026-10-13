@@ -378,9 +378,12 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         lock (deviceLock)
         {
             keyboard = ks;
-            mouseButtons[0] = ms.LeftButton == ButtonState.Pressed; mouseButtons[1] = ms.RightButton == ButtonState.Pressed; mouseButtons[2] = ms.MiddleButton == ButtonState.Pressed;
-            mouseButtons[3] = ms.XButton1 == ButtonState.Pressed; mouseButtons[4] = ms.XButton2 == ButtonState.Pressed;
-            if (haveMouseRef)
+            // an unfocused window takes no input: clicks and keys typed into another program must not become presses (MonoGame reports the global state)
+            bool act = IsActive;
+            if (!act) keyboard = default;
+            mouseButtons[0] = act && ms.LeftButton == ButtonState.Pressed; mouseButtons[1] = act && ms.RightButton == ButtonState.Pressed; mouseButtons[2] = act && ms.MiddleButton == ButtonState.Pressed;
+            mouseButtons[3] = act && ms.XButton1 == ButtonState.Pressed; mouseButtons[4] = act && ms.XButton2 == ButtonState.Pressed;
+            if (haveMouseRef && act)
             {
                 int notches = (ms.ScrollWheelValue - lastWheel) / 120;
                 if (notches > 0) wheelUp += notches; else wheelDown -= notches;
