@@ -146,15 +146,14 @@ Purely presentation: nothing here writes guest memory or reaches the game's inpu
 * **Split screen** (the game's): every camera of the match (list at 0x801450A8, next at +4, f32 width/height/x/y at +0x29C) gets a `G_MOVEMEM` viewport, a `G_SETSCISSOR`
   and a FILL rectangle that clears its part of the z-buffer (func_00235AD0), plus a 2-pixel frame (func_002372C4). 2 players: 480x178.5 halves (player 1 top);
   3-4 players: 240x178.5 quadrants (1 top left, 2 top right, 3 bottom left, 4 bottom right). The match clock is drawn afterwards with the full-screen scissor across the border.
-* **Widescreen** (default on; `TRW_WIDESCREEN=0` keeps 4:3, `TRW_ASPECT=<w/h>` sets the starting aspect, `TRW_WINDOW=<w>x<h>` the window): in a level (game state 8 / 13) the
-  game's own cameras are built for the window's aspect, Hor+: two hooks in the recompiled func_00234FDC (`tools/mips2cs/hooks.txt`, `Runtime/Widescreen.cs`) replace the
-  aspect the function picks (view w/h when split, 2.667 for 2-player halves, 1.333 otherwise) and widen the horizontal tan extent by the same factor, so the vertical view
-  is the game's and the culling frustum (camera +0x6C..+0x78) widens with the picture; the weapon viewmodel projection (aspect 1.0) gets the same factor. Split views
-  keep their share (view aspect x window / (4/3)); the local view builds every camera for the whole picture (full height). The renderer draws such frames into a target
-  of the window's aspect: perspective draws fill it, 2D (W = 1: HUD, rectangles) keeps its shape, centred horizontally and anchored to the top / middle / bottom
-  (glyph runs stay together), draws spanning the whole width stretch (fades, backgrounds). Menus stay 4:3. At 4:3 nothing changes (the ROM's values, the oracle).
-  Netplay: the values reach guest RAM, so the host's aspect and view mode travel in the START message and are locked on every peer (F2 and window resizes
-  no longer change them; the picture letterboxes). Tested: 2 headless peers with different `TRW_ASPECT`, 10 500 ticks, digests equal.
+* **Widescreen, per machine** (default on; `TRW_WIDESCREEN=0` presents the original 4:3, `TRW_WINDOW=<w>x<h>` the starting window size): every player picks their
+  own window size / aspect / view mode, nothing of it reaches guest RAM, so netplay peers stay identical whatever they choose. Game side, the same everywhere: the
+  camera setup (recompiled func_00234FDC) keeps the frustum extents at the far plane in the camera (+0x74 horizontal, +0x78 vertical), which the culling reads; a
+  hook (`tools/mips2cs/hooks.txt`, `Runtime/Widescreen.cs`) widens them by fixed factors (x3 horizontal = up to 32:9, x2 vertical = a 2-player half shown full height),
+  the projection matrix stays the game's (oracle runs keep the ROM's culling). Presentation, per machine (`GfxRenderer`): in a level (state 8 / 13) the frame renders
+  into a target of the window's aspect and each perspective draw is rescaled about the centre of its view (= its scissor) from the game's projection aspect to the
+  aspect the view has on this screen: x when wider (Hor+), y when taller (Vert+: the own view of a 2-player half). 2D (W = 1: HUD, rectangles) keeps its shape,
+  centred horizontally and anchored to the top / middle / bottom (glyph runs stay together); draws spanning the whole width stretch. Menus stay 4:3.
 * `tools/mips2cs/hooks.txt`: `function|instruction address|C# statement` inserts port code after an instruction of a recompiled function (kept for presentation only).
 * **Local view** (`TRW_VIEW=local`, **F2** toggles split / local while the window runs): only the local player's view is drawn, scaled to the window. The renderer takes that
   camera's scissor rectangle (the n-th camera belongs to the n-th human player by controller port) and remaps every vertex (clip space: `x' = kx*x - bx*w`) and every scissor

@@ -30,8 +30,8 @@ public sealed class GfxRenderer : IDisposable
     // local view (ViewLayout.cs): the local player's region of the N64 screen is drawn into its own target, sized for the window
     private RenderTarget2D? localTarget;
     private bool lastLocal;                                          // the frame in the targets is a local view
-    // widescreen (Runtime/Widescreen.cs): in a level the cameras are built for the window's aspect, so the frame renders into a target of that aspect;
-    // 3D (perspective draws) fills it, 2D (HUD: W = 1) keeps its 4:3 shape, centred horizontally, anchored vertically; draws spanning the whole width stretch
+    // widescreen (Runtime/Widescreen.cs), per machine: in a level the frame renders into a target of the window's aspect; perspective draws are rescaled about
+    // their view's centre to the aspect that view has here (Hor+ / Vert+), 2D (HUD: W = 1) keeps its 4:3 shape, centred horizontally, anchored vertically
     private RenderTarget2D? wideTarget;
     private bool lastWide;
     private float frameAspect = 4f / 3f;                             // aspect the 2D of the current frame was authored at (4:3, or the local view's region)
@@ -92,8 +92,8 @@ public sealed class GfxRenderer : IDisposable
         {
             region = r;
             frameAspect = r.Aspect;
-            // the cameras are built for the whole picture in local view (Widescreen.LocalFill): the target takes that aspect, not the region's
-            var (w, h) = ViewLayout.TargetSize(r, windowW, windowH, Scale, LocalView.Stretch, Widescreen.ScreenAspect);
+            // widescreen: the own view fills the window's shape (its 3D is widened / heightened to it in Draw); otherwise the region's own aspect, letterboxed
+            var (w, h) = ViewLayout.TargetSize(r, windowW, windowH, Scale, LocalView.Stretch, Widescreen.Allowed ? windowW / (float)Math.Max(1, windowH) : 0);
             if (localTarget == null || localTarget.Width != w || localTarget.Height != h)
             {
                 localTarget?.Dispose();
@@ -104,9 +104,9 @@ public sealed class GfxRenderer : IDisposable
             device.SetRenderTarget(localTarget);
             targetW = w; targetH = h;
         }
-        else if (Widescreen.Active && Widescreen.InLevel && Widescreen.ScreenAspect > 4f / 3f + 0.01f)
+        else if (Widescreen.Allowed && Widescreen.InLevel && windowW / (float)Math.Max(1, windowH) > 4f / 3f + 0.01f)
         {
-            int h = InternalHeight, w = Math.Min(4096, (int)MathF.Round(h * Widescreen.ScreenAspect));
+            int h = InternalHeight, w = Math.Min(4096, (int)MathF.Round(h * windowW / (float)Math.Max(1, windowH)));
             if (wideTarget == null || wideTarget.Width != w || wideTarget.Height != h)
             {
                 wideTarget?.Dispose();
@@ -185,6 +185,7 @@ public sealed class GfxRenderer : IDisposable
         var src = MemoryMarshal.Cast<GfxVertex, GpuVertex>(d.Vertices.AsSpan());
         if (scratch.Length < src.Length) scratch = new GpuVertex[Math.Max(src.Length, scratch.Length * 2)];      // reused: no allocation per draw
         src.CopyTo(scratch);
+        if ((lastWide || lastLocal) && IsPerspective(d.Vertices)) WidenView(st, src.Length);
         if (lastLocal)
         {   // clip-space remap of the region onto the whole target: ndc' = k * (ndc - region's low edge) - 1, i.e. x' = kx * x - bx * w (z, w unchanged)
             float sw = st.ScreenWidth, sh = st.ScreenHeight;
@@ -210,6 +211,28 @@ public sealed class GfxRenderer : IDisposable
     {
         foreach (ref readonly var p in v.AsSpan()) if (MathF.Abs(p.W - 1f) > 1e-4f) return true;
         return false;
+    }
+
+    /// <summary>A perspective draw built for its view's aspect (the game's projection: the view rectangle = the draw's scissor) shown at the aspect that view has
+    /// in this target: rescaled about the view's centre, x when the view is wider here (Hor+: more to the sides), y when taller (Vert+). The game's culling was
+    /// widened by fixed factors (Widescreen.WidenCulling), so the extra picture has its geometry. Clip space: z and w are untouched.</summary>
+    private void WidenView(DrawState st, int n)
+    {
+        float sw = st.ScreenWidth, sh = st.ScreenHeight;
+        float vx0 = st.ScissorX0 / 4f, vy0 = st.ScissorY0 / 4f, vx1 = st.ScissorX1 / 4f, vy1 = st.ScissorY1 / 4f;
+        if (vx1 - vx0 < 8 || vy1 - vy0 < 8) return;
+        float ap = (vx1 - vx0) / (vy1 - vy0);                                                  // the game built the view for this aspect
+        float shown = lastLocal ? targetW / (float)targetH                                   // the own view fills the target
+                                : ap * (targetW / (float)targetH) / (sw / sh);               // a view keeps its share of the (wider) screen
+        float sx = shown > ap ? ap / shown : 1f, sy = shown < ap ? shown / ap : 1f;
+        if (sx > 0.9999f && sy > 0.9999f) return;
+        float cx = (vx0 + vx1) / sw - 1f, cy = 1f - (vy0 + vy1) / sh;                        // the view's centre in NDC
+        for (int i = 0; i < n; i++)
+        {
+            ref var p = ref scratch[i].Position;
+            p.X = cx * p.W + (p.X - cx * p.W) * sx;
+            p.Y = cy * p.W + (p.Y - cy * p.W) * sy;
+        }
     }
 
     /// <summary>2D in a target wider (or taller) than the frame it was authored for: undistorted, centred horizontally, anchored to the top / middle /
@@ -283,7 +306,6 @@ public sealed class GfxRenderer : IDisposable
         device.Clear(Color.Black);
         if (windowWidth > 0 && windowHeight > 0) { windowW = windowWidth; windowH = windowHeight; }
         if (!anyFrame) return;
-        if (!Trw.Game.Net.NetSession.Active && windowWidth > 0 && windowHeight > 0) Widescreen.SetScreenAspect(windowWidth / (float)windowHeight);     // offline the window decides; netplay: the session
         var frame = lastLocal && localTarget != null ? localTarget : lastWide && wideTarget != null ? wideTarget : target;
         Rectangle dest;
         if (frame == localTarget && LocalView.Stretch) dest = new Rectangle(0, 0, windowWidth, windowHeight);

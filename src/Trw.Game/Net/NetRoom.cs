@@ -295,11 +295,6 @@ public sealed class NetHostRoom : NetRoom
             nextBuild = InputDelay + 1;
             var w = new WireWriter(NetWire.Start).U8(InputDelay).U16(HashEvery).U8(members.Count);
             foreach (var m in members) w.U8(m.MemberId).Str(m.Name);
-            // presentation settings that reach guest RAM (the cameras are built for them: Runtime/Widescreen.cs): the host's, the same for everyone
-            bool local = Environment.GetEnvironmentVariable("TRW_VIEW") is { } tv ? tv.Equals("local", StringComparison.OrdinalIgnoreCase) : true;
-            float aspect = Widescreen.ScreenAspect;
-            w.I32(BitConverter.SingleToInt32Bits(aspect)).U8(local ? 1 : 0);
-            Widescreen.ApplySession(aspect, local);
             Broadcast(w.ToArray());
             Started = true;
             Console.Error.WriteLine($"[net] start: {members.Count} players ({string.Join(", ", Names.Take(members.Count))}), input delay {InputDelay}, digest every {HashEvery} tick(s)");
@@ -453,8 +448,6 @@ public sealed class NetClientRoom : NetRoom
                         members.Clear(); Occupied = 0;
                         for (int i = 0; i < n; i++) { members.Add(new RosterEntry { MemberId = r.U8(), Name = r.Str(), Ready = true }); Names[i] = members[i].Name; Occupied |= (byte)(1 << i); }
                     }
-                    float aspect = BitConverter.Int32BitsToSingle(r.I32()); bool local = r.U8() != 0;
-                    Widescreen.ApplySession(aspect, local);
                     Started = true;
                     Console.Error.WriteLine($"[net] start: {n} players ({string.Join(", ", Names.Take(n))}), I am player {LocalPad + 1}, input delay {delay}");
                     break;
