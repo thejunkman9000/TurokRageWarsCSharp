@@ -20,7 +20,13 @@ public static partial class Game
                 r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
                 r29 = _fp + 256u;
                 L_func_00255C3C: ;
-                r6 = (uint)10240;
+                r6 = r0 + 10240u;
+                L_func_00255C40: ;
+                Mem.Set((r4 + 8u), r5);
+                Mem.Set((r4 + 12u), r6);
+                Mem.Set((r4 + 4u), r0);
+                Mem.Set((r4 + 0u), r0);
+                Mem.Set((r4 + 16u), r0); Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

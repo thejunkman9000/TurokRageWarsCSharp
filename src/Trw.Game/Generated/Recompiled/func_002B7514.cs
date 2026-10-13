@@ -22,7 +22,17 @@ public static partial class Game
                 L_func_002B7514: ;
                 r4 = Mem.U32((r2 + 12u));
                 r2 = Mem.U32((r4 + 8u));
-                r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                r3 = Mem.U32((r4 + 0u)); r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                { bool c_ = r3 == 0;  if (c_) goto L_L002B7534; }
+                r2 = Mem.U32((r4 + 4u));
+                Mem.Set((r3 + 4u), r2);
+                L_L002B7534: ;
+                r3 = Mem.U32((r4 + 4u));
+                { bool c_ = r3 == 0;  if (c_) goto L_L002B7548; }
+                r2 = Mem.U32((r4 + 0u));
+                Mem.Set((r3 + 0u), r2);
+                L_L002B7548: ;
+                Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

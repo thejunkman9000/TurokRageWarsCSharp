@@ -25,7 +25,7 @@ public static partial class Game
                         return ret;
                     }
                 }
-                ret = (int)(__osContRamRead(new OSPfs(pfs).queue_, (uint)(new OSPfs(pfs).channel), (uint)((ushort)(1)), (_fp + 8u)));
+                ret = __osContRamRead(new OSPfs(pfs).queue_, new OSPfs(pfs).channel, (ushort)(1), (_fp + 8u));
                 if ((ret != 0))
                 {
                     return ret;
@@ -76,7 +76,7 @@ public static partial class Game
                 new OSPfs(pfs).inode_start_page_Set((((int)(new OSPfs(pfs).banks) * 2) + 3));
                 new OSPfs(pfs).minode_table_Set((((int)(new OSPfs(pfs).banks) + 1) * 8));
                 new OSPfs(pfs).dir_table_Set((new OSPfs(pfs).minode_table + ((int)(new OSPfs(pfs).banks) * 8)));
-                ret = (int)(__osContRamRead(new OSPfs(pfs).queue_, (uint)(new OSPfs(pfs).channel), (uint)((ushort)(7)), new OSPfs(pfs).label.P));
+                ret = __osContRamRead(new OSPfs(pfs).queue_, new OSPfs(pfs).channel, (ushort)(7), new OSPfs(pfs).label.P);
                 if ((ret != 0))
                 {
                     return ret;

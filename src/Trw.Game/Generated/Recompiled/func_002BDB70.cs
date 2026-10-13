@@ -41,7 +41,7 @@ public static partial class Game
                 r4 = r16 & 65535u;
                 Mem.Set((r29 + 16u), (byte)r17);
                 Mem.Set((r29 + 18u), (byte)r3);
-                Mem.Set((r29 + 19u), (byte)r2); r2 = __osContAddressCrc(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r29 + 19u), (byte)r2); r2 = (uint)__osContAddressCrc(r4);
                 r4 = r0;
                 r5 = r29 + 16u;
                 r16 = r16 << 5;
@@ -122,6 +122,24 @@ public static partial class Game
                 r29 = r29 + 80u; Cpu.V1 = r3; return r2;
                 r3 = 2148401152u;
                 r3 = r3 - 31792u;
+                L_func_002BDD10: ;
+                r5 = r0;
+                r7 = (uint)15;
+                L_L002BDD18: ;
+                r2 = r5 & 16u;
+                { bool c_ = r2 == 0; r6 = r0; if (c_) goto L_L002BDD28; }
+                r6 = (uint)21;
+                L_L002BDD28: ;
+                r5 = r5 << 1;
+                r3 = r4 >> 10;
+                r4 = r4 << 1;
+                r2 = r5 & 255u;
+                r3 = r3 & 1u;
+                r2 = r2 | r3;
+                r2 = r2 ^ r6;
+                r7 = r7 - 1u;
+                { bool c_ = (int)r7 >= 0; r5 = r2; if (c_) goto L_L002BDD18; }
+                r2 = r2 & 31u; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

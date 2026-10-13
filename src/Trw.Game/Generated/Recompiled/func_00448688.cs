@@ -64,6 +64,7 @@ public static partial class Game
                 L_L00448730: ;
                 Mem.Set((r4 + 0u), (byte)r9);
                 r29 = r29 + 8u; Cpu.V1 = r3; return r2;
+                r16 = r16 + 1u;
                 Cpu.V1 = r3; return r2;
             }
         }

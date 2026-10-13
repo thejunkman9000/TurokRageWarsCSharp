@@ -157,7 +157,7 @@ Purely presentation: nothing here writes guest memory or reaches the game's inpu
   and the clock, in the game's fonts (`Content/Fonts/Peaceful Wars*.ttf`, `Scoreboard.spritefont` / `ScoreboardTitle.spritefont`). `TRW_SCOREBOARD=1` keeps it up for the whole match (screenshots).
   Score data (guest RAM, read live): records of 0x96 bytes at 0x80146398 (= `D_801462C8` + 0xD0), one per player slot, reached from the player actor (list `D_80145060`,
   next +0x16E0, record pointer +0x5D8, controller object +0x698: port = (ptr - 0x8010F328) / 0x224, bots have none); s16 +0x04 = frags (the frag-limit test func_0022804C and the HUD read it),
-  s16 +0x00 = deaths, name at +0x84. Match rules at 0x801468A0: f32 +0x14 clock (15 per second), s32 +0x18 frag limit.
+  s16 +0x02 = deaths (killed by another player; the results screen's DEATHS column), s16 +0x00 = suicides (a suicide also takes a frag), name at +0x84. Verified in bot matches with `TRW_MATCH_LOG=1`: a kill raised the killer's +0x04 and the victim's +0x02 (results screen: the same numbers), a suicide raised +0x00 and dropped +0x04 to -1. Match rules at 0x801468A0: f32 +0x14 clock (15 per second), s32 +0x18 frag limit.
 
 ## Finding a translation defect: the method that worked
 1. Reproduce the scenario in both ports. The C port is only run from a private copy (never from the repository directory: other sessions use it).

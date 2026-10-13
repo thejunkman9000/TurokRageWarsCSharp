@@ -20,7 +20,16 @@ public static partial class Game
                 r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
                 r29 = _fp + 256u;
                 L_func_002C200C: ;
-                { var v_ = __divdi3(Cpu.Long(r4, r5), Cpu.Long(r6, r7)); r2 = (uint)((ulong)v_ >> 32); r3 = (uint)v_; }
+                r2 = Cpu.Cp0[12]; { var v_ = __divdi3(Cpu.Long(r4, r5), Cpu.Long(r6, r7)); r2 = (uint)((ulong)v_ >> 32); r3 = (uint)v_; }
+                Cpu.V1 = r3; return r2;
+                r6 = r16;
+                L_func_002C2020: ;
+                r8 = Cpu.Cp0[12];
+                r1 = (uint)-2;
+                r9 = r8 & r1;
+                Cpu.Cp0[12] = r9;
+                r2 = r8 & 1u;
+                Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

@@ -42,7 +42,7 @@ public static partial class Game
                     ret = (((int)(new __OSContRamReadFormat(_fp).rxsize) & 192) >> (int)4);
                     if ((ret == 0))
                     {
-                        if (((int)((byte)(__osContDataCrc(buffer, default(uint), default(uint), default(uint)))) != (int)(new __OSContRamReadFormat(_fp).datacrc)))
+                        if (((int)(__osContDataCrc(buffer)) != (int)(new __OSContRamReadFormat(_fp).datacrc)))
                         {
                             ret = __osPfsGetStatus(mq, channel);
                             if ((ret != 0))

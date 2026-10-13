@@ -22,6 +22,56 @@ public static partial class Game
                 L_func_002BEE78: ;
                 r4 = 2148401152u;
                 r4 = Mem.U32((r4 - 28000u));
+                L_func_002BEE80: ;
+                r29 = r29 - 32u;
+                r5 = r4;
+                Mem.Set((r29 + 16u), r16);
+                r16 = 2148859904u;
+                r16 = r16 - 5488u;
+                r4 = r16;
+                r6 = (uint)64;
+                Mem.Set((r29 + 24u), r31);
+                Mem.Set((r29 + 20u), r17); r2 = memcpy(r4, r5, r6);
+                r4 = Mem.U32((r16 + 16u));
+                { bool c_ = r4 == 0; r17 = r16; if (c_) goto L_L002BEEC0; }
+                r2 = osVirtualToPhysical(r4);
+                Mem.Set((r16 + 16u), r2);
+                L_L002BEEC0: ;
+                r4 = Mem.U32((r16 + 24u));
+                { bool c_ = r4 == 0;  if (c_) goto L_L002BEED8; }
+                r2 = osVirtualToPhysical(r4);
+                Mem.Set((r16 + 24u), r2);
+                L_L002BEED8: ;
+                r4 = Mem.U32((r16 + 32u));
+                { bool c_ = r4 == 0;  if (c_) goto L_L002BEEF0; }
+                r2 = osVirtualToPhysical(r4);
+                Mem.Set((r16 + 32u), r2);
+                L_L002BEEF0: ;
+                r4 = Mem.U32((r16 + 40u));
+                { bool c_ = r4 == 0;  if (c_) goto L_L002BEF08; }
+                r2 = osVirtualToPhysical(r4);
+                Mem.Set((r16 + 40u), r2);
+                L_L002BEF08: ;
+                r4 = Mem.U32((r16 + 44u));
+                { bool c_ = r4 == 0;  if (c_) goto L_L002BEF20; }
+                r2 = osVirtualToPhysical(r4);
+                Mem.Set((r16 + 44u), r2);
+                L_L002BEF20: ;
+                r4 = Mem.U32((r16 + 48u));
+                { bool c_ = r4 == 0;  if (c_) goto L_L002BEF38; }
+                r2 = osVirtualToPhysical(r4);
+                Mem.Set((r16 + 48u), r2);
+                L_L002BEF38: ;
+                r4 = Mem.U32((r16 + 56u));
+                { bool c_ = r4 == 0; r2 = r17; if (c_) goto L_L002BEF54; }
+                r2 = osVirtualToPhysical(r4);
+                Mem.Set((r16 + 56u), r2);
+                r2 = r17;
+                L_L002BEF54: ;
+                r31 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

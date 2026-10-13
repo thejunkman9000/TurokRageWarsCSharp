@@ -40,10 +40,10 @@ __osCheckId|uint|uint,uint,uint,uint|0,0,0,0|0
 __osCheckPackId|int|uint,uint|0,0|0
 __osCleanupThread|uint|uint,uint,uint,uint|0,0,0,0|0
 __osClearPage|int|uint,int,uint,byte|0,0,0,0|0
-__osContAddressCrc|uint|uint,uint,uint,uint|0,0,0,0|0
-__osContDataCrc|uint|uint,uint,uint,uint|0,0,0,0|0
+__osContAddressCrc|byte|uint|0|0
+__osContDataCrc|byte|uint|0|0
 __osContGetInitData|void|uint,uint|0,0|0
-__osContRamRead|uint|uint,uint,uint,uint|0,0,0,0|0
+__osContRamRead|int|uint,int,ushort,uint|0,0,0,0|0
 __osContRamWrite|int|uint,int,ushort,uint,int|0,0,0,0,0|0
 __osDequeueThread|void|uint,uint|0,0|0
 __osDevMgrMain|void|uint|0|0
@@ -746,7 +746,6 @@ func_00210E88|int|uint|0|0
 func_00210EFC|int|float|0|0
 func_00210FE8|int|int|0|0
 func_00211000|int|int|0|0
-func_00211014|uint|uint,uint,uint,uint|0,0,0,0|0
 func_00211020|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002110C4|void|uint|0|0
 func_0021111C|uint|uint,uint,uint,uint|0,0,0,0|0
@@ -789,6 +788,7 @@ func_00213340|void|uint|0|0
 func_00213500|void|uint|0|0
 func_002136EC|void|uint|0|0
 func_00213810|void|uint|0|0
+func_002138E8|uint|uint,uint,uint,uint,uint,uint|0,0,0,0,0,0|0
 func_002138F0|void|uint,uint,uint,uint|0,0,12,0|0
 func_00213AAC|uint|uint,uint,uint,uint|0,0,0,0|0
 func_00213CF8|void|uint|0|0
@@ -860,7 +860,7 @@ func_00219124|void|uint|0|0
 func_0021917C|int|uint,uint|0,0|0
 func_002191B0|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002191B8|void|uint,uint|0,0|0
-func_002192B4|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0,0,0|0
+func_002192B4|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
 func_002192C0|void|uint|0|0
 func_002193C8|void|uint,int,uint|0,0,0|0
 func_00219408|uint|uint,uint,uint,uint|0,0,0,0|0
@@ -1354,6 +1354,7 @@ func_0023B8E8|void|uint,int|0,0|0
 func_0023B928|void|uint,uint|0,0|0
 func_0023B93C|int|uint,uint|0,0|0
 func_0023B968|int|uint,uint|0,0|0
+func_0023B994|uint|uint,uint,uint,uint|0,0,0,0|0
 func_0023B9A0_K0|uint|||0
 func_0023B9A0|void|||0
 func_0023BC64|int|||0
@@ -1425,7 +1426,7 @@ func_00240250|void|uint|0|0
 func_00240528|void|uint,uint|0,0|0
 func_002405EC|void|uint,uint|0,0|0
 func_00240628|int|uint,uint|0,0|0
-func_0024064C|uint|uint,uint,uint,uint|0,0,0,0|0
+func_0024064C|uint|uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0|0
 func_00240650|int|int,uint,int,int,uint|0,12,0,0,0|0
 func_00240688|int|uint,int,uint,int,int,uint|0,0,12,0,0,0|0
 func_002406BC|uint|uint,uint,uint,uint|0,0,0,0|0
@@ -1474,7 +1475,7 @@ func_00243804|void|uint,uint|0,0|0
 func_00243840|int|uint,uint|0,0|0
 func_00243864|void|uint|0|0
 func_00243910|void|uint|0|0
-func_00243A78|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0|0
+func_00243A78|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
 func_00243A80_rc|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
 func_00243A80|int|int,float,float,float,int|0,0,0,0,0|0
 func_00244494_rc|uint|uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0|0
@@ -1690,7 +1691,7 @@ func_0024F624|void|uint|0|0
 func_0024F6DC|uint|uint,int|0,0|0
 func_0024F848|int|uint|0|0
 func_0024F8CC|void|uint,uint|0,0|0
-func_0024F934|uint|uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0|0
+func_0024F934|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
 func_0024F940_func_80250BF0_de|int|||0
 func_0024F940|void|uint,uint,int,uint,float|0,0,0,0,0|0
 func_0024FD4C|void|uint,uint,int,int|0,0,0,0|0
@@ -1907,7 +1908,7 @@ func_00259058|int|uint,int,int|0,0,0|0
 func_002591C0|void|uint,short|0,0|0
 func_002591F0|void|uint,short|0,0|0
 func_00259220|int|uint,int|0,0|0
-func_00259278|uint|uint,uint,uint,uint|0,0,0,0|0
+func_00259278|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
 func_00259280|int|uint,uint,uint,int,int|0,0,0,0,0|0
 func_00259460_SndLink_AddTail|void|uint,uint|0,0|0
 func_00259460|void|uint|0|0
@@ -2120,7 +2121,7 @@ func_0026156C|int|float|0|0
 func_002615D4|float|int,int,int,int,int,float|0,0,0,0,0,0|0
 func_0026162C|int|int|0|0
 func_00261634|uint|uint|0|0
-func_00261688|uint|uint,uint,uint,uint|0,0,0,0|0
+func_00261688|uint|uint,uint,uint,uint,uint,uint|0,0,0,0,0,0|0
 func_00261690_load|int|uint,int,int,int|0,0,0,0|0
 func_00261690|uint|uint,uint,uint,uint,uint,uint|0,0,0,0,0,0|0
 func_0026195C|uint|uint,uint,uint,uint|0,0,0,0|0
@@ -2134,7 +2135,6 @@ func_002625B8|uint|uint|0|0
 func_002625E4|int|uint|0|0
 func_00262610|float|uint,float|0,0|0
 func_002626BC|int|uint,int,int,int|0,0,0,0|0
-func_002627B4|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002627C0_rc|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0,0,0,0,0,0|0
 func_002627C0_spawn_effect|uint|uint,int,int,int,int,uint,float,uint,uint,uint|0,0,0,0,0,12,0,12,12,0|0
 func_002627C0_take_effect|uint|uint,uint|0,0|0
@@ -2237,7 +2237,7 @@ func_0026595C|void|uint,uint,int,int,int,int|0,0,0,0,0,0|0
 func_00265984|int|int|0|0
 func_00265A00|void|uint|0|0
 func_00265DF0|void|||0
-func_00265E28|uint|uint,uint,uint,uint|0,0,0,0|0
+func_00265E28|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0|0
 func_00265E30_send_|void|uint,uint,int,uint,uint|0,0,0,12,8|0
 func_00265E30|void|uint,uint,int,int,uint,uint|0,0,0,0,12,8|0
 func_002661FC_chk|int|uint,uint|0,0|0
@@ -2350,7 +2350,7 @@ func_0026E4C0|void|uint|0|0
 func_0026E4D0|void|||0
 func_0026E4F8|uint|uint,uint|0,0|0
 func_0026E540|void|uint,uint,uint,uint|0,0,0,0|0
-func_0026E5DC|uint|uint,uint,uint,uint|0,0,0,0|0
+func_0026E5DC|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
 func_0026E5E0|void|uint,int,uint,uint,uint|0,0,0,0,0|0
 func_0026EE90|void|uint,uint,uint|0,0,0|0
 func_0026EFC8|void|uint,uint|0,0|0
@@ -2990,7 +2990,7 @@ func_00296EC4|uint|uint,uint,uint,uint|0,0,0,0|0
 func_00296F7C|void|uint,uint|0,0|0
 func_00296FF8|void|||0
 func_00297008|void|int|0|0
-func_00297018|uint|uint,uint,uint,uint|0,0,0,0|0
+func_00297018|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
 func_00297020|void|uint,int,int,uint,uint|0,0,0,0,0|0
 func_002972A8|int|uint,int,int|0,0,0|0
 func_00297390|int|uint,int,int,int|0,0,0,0|0
@@ -3505,15 +3505,15 @@ func_002B4F50|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002B4F7C|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002B4F80|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002B4FB0|uint|uint,uint,uint,uint,uint,uint|0,0,0,0,0,0|0
-func_002B4FF4|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0|0
+func_002B4FF4|uint|uint,uint,uint,uint,uint,uint|0,0,0,0,0,0|0
 func_002B5000|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002B5030|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002B5090|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002B510C|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002B51A4|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002B5328|uint|uint,uint,uint,uint|0,0,0,0|0
-func_002B53E0|uint|uint,uint,uint,uint|0,0,0,0|0
-func_002B540C|uint|uint,uint,uint,uint|0,0,0,0|0
+func_002B53E0|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
+func_002B540C|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
 func_002B5410|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
 func_002B5458|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002B5460|uint|uint,uint,uint,uint|0,0,0,0|0
@@ -3552,7 +3552,7 @@ func_002B7520|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002B7550|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002B7570|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002B75A0|uint|uint,uint,uint,uint|0,0,0,0|0
-func_002B75DC|uint|uint,uint,uint,uint|0,0,0,0|0
+func_002B75DC|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
 func_002B75E0|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
 func_002B7698|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
 func_002B76A0|uint|uint,uint,uint,uint|0,0,0,0|0
@@ -3618,7 +3618,7 @@ func_002B9580|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002B95DC|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002B9668|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002B96AC|uint|uint,uint,uint,uint|0,0,0,0|0
-func_002B975C|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
+func_002B975C|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002B97F8|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002B9800|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
 func_002B9D4C|uint|uint,uint,uint,uint,uint,uint|0,0,0,0,0,0|0
@@ -3629,14 +3629,14 @@ func_002BA358_rc|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002BA358|float|float,int,int,int|0,0,0,0|0
 func_002BA3D0_rc|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002BA3D0|double|double,int|0,0|0
-func_002BA484_rc|uint|uint,uint,uint,uint|0,0,0,0|0
+func_002BA484_rc|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
 func_002BA484|double|double,int|0,0|0
-func_002BA4A4|uint|uint,uint,uint,uint|0,0,0,0|0
+func_002BA4A4|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
 func_002BA4B0|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
 func_002BA4D0|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
-func_002BA610|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
+func_002BA610|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002BA640|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
-func_002BA800|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
+func_002BA800|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002BA8C0|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
 func_002BAC64|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002BAE40|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
@@ -3652,7 +3652,7 @@ func_002BB590|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002BB624|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002BB630_rc|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0,0|0
 func_002BB630|float|float|0|0
-func_002BB734|uint|uint,uint,uint,uint|0,0,0,0|0
+func_002BB734|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0,0|0
 func_002BB9D0_rc|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0,0|0
 func_002BB9D0|int|int,float,float,float,float,float,float,float,float,float|0,0,0,0,0,0,0,0,0,0|0
 func_002BBC50|uint|uint,uint,uint,uint|0,0,0,0|0
@@ -3667,11 +3667,11 @@ func_002BC38C|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002BC390|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002BC3A0|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002BC3A4|uint|uint,uint,uint,uint|0,0,0,0|0
-func_002BC3D0|uint|uint,uint,uint,uint|0,0,0,0|0
-func_002BC3E0|uint|uint,uint,uint,uint|0,0,0,0|0
-func_002BC4C8|uint|uint,uint,uint,uint|0,0,0,0|0
-func_002BC4D0|uint|uint,uint,uint,uint|0,0,0,0|0
-func_002BC55C|uint|uint,uint,uint,uint|0,0,0,0|0
+func_002BC3D0|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0|0
+func_002BC3E0|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0|0
+func_002BC4C8|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0|0
+func_002BC4D0|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0|0
+func_002BC55C|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0|0
 func_002BC560|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0|0
 func_002BC574|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0|0
 func_002BC580|uint|uint,uint,uint,uint|0,0,0,0|0
@@ -3691,8 +3691,8 @@ func_002BCD20|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002BCEE4|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002BD560|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0|0
 func_002BD590|uint|uint,uint,uint,uint|0,0,0,0|0
-func_002BD7C0|uint|uint,uint,uint,uint|0,0,0,0|0
-func_002BD948|uint|uint,uint,uint,uint|0,0,0,0|0
+func_002BD7C0|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
+func_002BD948|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
 func_002BD950|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
 func_002BDB70|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002BDD08|uint|uint,uint,uint,uint|0,0,0,0|0
@@ -3704,6 +3704,7 @@ func_002BDE98|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002BDEA0|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002BDEB4|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002BE038|uint|uint,uint,uint,uint|0,0,0,0|0
+func_002BE498|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002BE680|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002BE814|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002BE820|uint|uint,uint,uint,uint|0,0,0,0|0
@@ -3712,7 +3713,7 @@ func_002BEA40|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002BEB28|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002BEB30|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002BEC10|uint|uint,uint,uint,uint|0,0,0,0|0
-func_002BECA4|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
+func_002BECA4|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002BECB0|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002BED04|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002BED70|uint|uint,uint,uint,uint|0,0,0,0|0
@@ -3783,6 +3784,7 @@ func_002C09A0|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002C0AE8|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002C0B3C|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002C0CB0|uint|uint,uint,uint,uint|0,0,0,0|0
+func_002C0D10|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002C0D58|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002C0D60|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002C1648|uint|uint,uint,uint,uint|0,0,0,0|0
@@ -3797,8 +3799,6 @@ func_002C200C|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002C2010|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002C201C|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002C2020|uint|uint,uint,uint,uint|0,0,0,0|0
-func_002C2040|uint|uint,uint,uint,uint|0,0,0,0|0
-func_002C205C|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002C20F8|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0|0
 func_002C2100|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002C2168|uint|uint,uint,uint,uint|0,0,0,0|0
@@ -3809,10 +3809,10 @@ func_002C2250|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002C2260|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002C2308|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002C2310|uint|uint,uint,uint,uint|0,0,0,0|0
-func_002C2370|uint|uint,uint,uint,uint|0,0,0,0|0
-func_002C23D8|uint|uint,uint,uint,uint|0,0,0,0|0
-func_002C23E0|uint|uint,uint,uint,uint|0,0,0,0|0
-func_002C2408|uint|uint,uint,uint,uint|0,0,0,0|0
+func_002C2370|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0,0,0|0
+func_002C23D8|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0,0,0|0
+func_002C23E0|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0,0,0|0
+func_002C2408|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0,0,0|0
 func_002C2410|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0,0,0|0
 func_002C2468|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002C2490|uint|uint,uint,uint,uint|0,0,0,0|0
@@ -3821,9 +3821,9 @@ func_002C24F0|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002C2520|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0,0,0|0
 func_002C2A64|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002C2ED0|uint|uint,uint,uint,uint|0,0,0,0|0
-func_002C31A8|uint|uint,uint,uint,uint|0,0,0,0|0
+func_002C31A8|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
 func_002C31B0|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
-func_002C31B8|uint|uint,uint,uint,uint|0,0,0,0|0
+func_002C31B8|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
 func_002C31C0|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
 func_002C3530|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0|0
 func_002C3604|uint|uint,uint,uint,uint,uint|0,0,0,0,0|0
@@ -3836,6 +3836,7 @@ func_002C4604|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002C476C|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002C48F4|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002C4A18|uint|uint,uint,uint,uint,uint,uint|0,0,0,0,0,0|0
+func_002C4B9C|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002C4F2C|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002C4F58|uint|uint,uint,uint,uint|0,0,0,0|0
 func_002C5020|uint|uint,uint,uint,uint|0,0,0,0|0
@@ -3902,7 +3903,6 @@ func_00403D4C|int|int|0|0
 func_00403D9C|uint|int|0|0
 func_00403DE8|uint|||0
 func_00403E10|int|uint|0|0
-func_00403E88|uint|uint,uint,uint,uint|0,0,0,0|0
 func_00403E90|int|int|0|0
 func_00404018|int|int|0|0
 func_004041E8|void|||0
@@ -4256,7 +4256,7 @@ func_004143C8|uint|||0
 func_004143E0|void|||0
 func_00414404|void|||0
 func_00414430|double|||0
-func_0041447C|uint|uint,uint,uint,uint|0,0,0,0|0
+func_0041447C|uint|uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0|0
 func_00414480_rc|uint|uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0|0
 func_00414480|int|uint,double,byte,int,int|0,0,0,0,0|0
 func_00414D4C_pad|void|uint,uint,int|0,0,0|0
@@ -4411,11 +4411,11 @@ func_0041C4EC|int|||0
 func_0041C4F4|int|||0
 func_0041C514|int|||0
 func_0041C5EC|int|uint,int,int,int,int|0,0,0,0,0|0
-func_0041C67C|uint|uint,uint,uint,uint|0,0,0,0|0
 func_0041C680|void|uint,int,int,int|0,0,0,0|0
 func_0041C864|void|uint|0|0
 func_0041CB48_rc|uint|uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0,0,0,0,0,0|0
 func_0041CB48|uint|uint,int,int,int,int,uint,uint,float,int|0,0,0,0,0,12,12,0,0|0
+func_0041CE20|uint|uint,uint,uint,uint|0,0,0,0|0
 func_0041CE80|uint|uint,uint,uint,uint|0,0,0,0|0
 func_0041CE88|uint|uint,uint,uint,uint|0,0,0,0|0
 func_0041CEA8|uint|uint,uint,uint,uint|0,0,0,0|0
@@ -5168,8 +5168,8 @@ func_00444DD8|int|uint|0|0
 func_00444E68|int|||0
 func_00444EC0|int|int,int|0,0|0
 func_00444F0C|int|uint|0|0
-func_00444F98|uint|uint,uint,uint,uint|0,0,0,0|0
-func_00444F9C|uint|uint,uint,uint,uint|0,0,0,0|0
+func_00444F98|uint|uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0|0
+func_00444F9C|uint|uint,uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0,0|0
 func_00444FA0|int|uint,uint,int,int,int,int,int,float|0,0,0,0,0,0,0,0|0
 func_00445200|int|||0
 func_00445240|void|uint|0|0
@@ -5233,7 +5233,7 @@ func_00446A54|int|int,uint,int|0,0,0|0
 func_00446B44|int|||0
 func_00446B7C|uint|uint,uint,uint,uint|0,0,0,0|0
 func_00446B80|uint|uint,uint,uint,uint|0,0,0,0|0
-func_00446BC4|uint|uint,uint,uint,uint|0,0,0,0|0
+func_00446BC4|uint|uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0|0
 func_00446BD0|uint|uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0|0
 func_00446F74|uint|uint,uint,uint,uint,uint,uint,uint|0,0,0,0,0,0,0|0
 func_00447140|uint|uint,uint,uint,uint|0,0,0,0|0
@@ -5252,7 +5252,7 @@ func_004485EC|uint|uint,uint,uint,uint|0,0,0,0|0
 func_00448688|uint|uint,uint,uint,uint|0,0,0,0|0
 func_0044873C|uint|uint,uint,uint,uint|0,0,0,0|0
 func_00448B80|uint|uint,uint,uint,uint|0,0,0,0|0
-func_00448D30|uint|uint,uint,uint,uint,uint,uint|0,0,0,0,0,0|0
+func_00448D30|uint|uint,uint,uint,uint|0,0,0,0|0
 func_00448EA4|uint|uint,uint,uint,uint|0,0,0,0|0
 func_00448EB0|uint|uint,uint,uint,uint|0,0,0,0|0
 func_00449198|uint|uint,uint,uint,uint|0,0,0,0|0
@@ -6915,6 +6915,7 @@ pad_0BEA6C|uint|uint,uint,uint,uint|0,0,0,0|0
 pad_0BEA98|uint|uint,uint,uint,uint|0,0,0,0|0
 pad_0BEAB4|uint|uint,uint,uint,uint|0,0,0,0|0
 pad_0BEC38|uint|uint,uint,uint,uint|0,0,0,0|0
+pad_0BF098|uint|uint,uint,uint,uint|0,0,0,0|0
 pad_0BF274|uint|uint,uint,uint,uint|0,0,0,0|0
 pad_0BF414|uint|uint,uint,uint,uint|0,0,0,0|0
 pad_0BF634|uint|uint,uint,uint,uint|0,0,0,0|0

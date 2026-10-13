@@ -22,7 +22,75 @@ public static partial class Game
                 L_func_002A2264: ;
                 r4 = 2148335616u;
                 r4 = r4 - 20688u;
-                r2 = func_0040FC14(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = 2148859904u; r2 = func_0040FC14(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = Mem.U32((r4 - 11564u));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 20736u)));
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 - 11568u));
+                r5 = 2148335616u;
+                r5 = r5 + 11228u;
+                r1 = 2148859904u;
+                Mem.Set((r1 - 11488u), r0);
+                Cpu.SetW(0, r4);
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                r2 = r2 << 2;
+                r1 = 2148335616u;
+                r1 = r1 + r2;
+                r3 = Mem.U32((r1 + 11220u));
+                fcc = Cpu.S(0) < Cpu.S(1);
+                r2 = r3;
+                r2 = r2 + r4;
+                Mem.Set((r5 + 0u), Cpu.W(0));
+                r1 = 2148859904u;
+                Mem.Set((r1 - 11480u), r3);
+                r1 = 2148859904u;
+                Mem.Set((r1 - 11484u), r2);
+                r1 = 2148859904u;
+                Mem.Set((r1 - 11552u), r3);
+                if (fcc) { Mem.Set((r5 + 0u), Cpu.W(1)); goto L_L002A22E0; }
+                L_L002A22E0: ;
+                Cpu.SetW(0, Mem.U32((r5 + 0u)));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 20732u)));
+                fcc = Cpu.S(1) < Cpu.S(0);
+                if (fcc) { Mem.Set((r5 + 0u), Cpu.W(1)); goto L_L002A22FC; }
+                L_L002A22FC: ;
+                Cpu.SetW(1, Mem.U32((r5 + 0u)));
+                Cpu.SetW(0, Mem.U32((r5 + 4u)));
+                fcc = Cpu.S(1) < Cpu.S(0);
+                if (fcc) { Mem.Set((r5 + 4u), Cpu.W(1)); goto L_L002A2314; }
+                L_L002A2314: ;
+                Cpu.SetW(0, Mem.U32((r5 + 8u)));
+                fcc = Cpu.S(0) < Cpu.S(1);
+                if (fcc) { Mem.Set((r5 + 8u), Cpu.W(1)); goto L_L002A2328; }
+                L_L002A2328: ;
+                r2 = 2148335616u;
+                r2 = r2 + 11240u;
+                Mem.Set((r2 + 0u), r0);
+                Cpu.SetW(1, Mem.U32((r2 + 0u)));
+                Cpu.SetW(0, Mem.U32((r2 + 4u)));
+                fcc = Cpu.S(1) < Cpu.S(0);
+                { bool c_ = !fcc; Cpu.SetS(2, Cpu.S(1)); if (c_) goto L_L002A2350; }
+                Mem.Set((r2 + 4u), Cpu.W(1));
+                L_L002A2350: ;
+                Cpu.SetW(0, Mem.U32((r2 + 8u)));
+                fcc = Cpu.S(0) < Cpu.S(1);
+                if (fcc) { Mem.Set((r2 + 8u), Cpu.W(1)); goto L_L002A2364; }
+                L_L002A2364: ;
+                r2 = 2148335616u;
+                r2 = r2 + 11252u;
+                Cpu.SetW(0, Mem.U32((r2 + 4u)));
+                Cpu.SetS(1, Cpu.S(2));
+                fcc = Cpu.S(1) < Cpu.S(0);
+                { bool c_ = !fcc; Mem.Set((r2 + 0u), Cpu.W(2)); if (c_) goto L_L002A2388; }
+                Mem.Set((r2 + 4u), Cpu.W(1));
+                L_L002A2388: ;
+                Cpu.SetW(0, Mem.U32((r2 + 8u)));
+                fcc = Cpu.S(0) < Cpu.S(1);
+                if (fcc) { Mem.Set((r2 + 8u), Cpu.W(1)); goto L_L002A239C; }
+                L_L002A239C: ;
+                Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

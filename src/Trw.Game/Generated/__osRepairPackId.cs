@@ -73,7 +73,7 @@ public static partial class Game
                     {
                         return ret;
                     }
-                    ret = (int)(__osContRamRead(new OSPfs(pfs).queue_, (uint)(new OSPfs(pfs).channel), (uint)((ushort)(0)), _fp));
+                    ret = __osContRamRead(new OSPfs(pfs).queue_, new OSPfs(pfs).channel, (ushort)(0), _fp);
                     if ((ret != 0))
                     {
                         return ret;
@@ -88,7 +88,7 @@ public static partial class Game
                     {
                         return ret;
                     }
-                    ret = (int)(__osContRamRead(new OSPfs(pfs).queue_, (uint)(new OSPfs(pfs).channel), (uint)((ushort)(0)), (_fp + 32u)));
+                    ret = __osContRamRead(new OSPfs(pfs).queue_, new OSPfs(pfs).channel, (ushort)(0), (_fp + 32u));
                     if ((ret != 0))
                     {
                         return ret;
@@ -112,7 +112,7 @@ public static partial class Game
                         {
                             return ret;
                         }
-                        ret = (int)(__osContRamRead(new OSPfs(pfs).queue_, (uint)(new OSPfs(pfs).channel), (uint)((ushort)(0)), _fp));
+                        ret = __osContRamRead(new OSPfs(pfs).queue_, new OSPfs(pfs).channel, (ushort)(0), _fp);
                         if ((ret != 0))
                         {
                             return ret;
@@ -146,7 +146,7 @@ public static partial class Game
                         return ret;
                     }
                 }
-                ret = (int)(__osContRamRead(new OSPfs(pfs).queue_, (uint)(new OSPfs(pfs).channel), (uint)((ushort)(1)), _fp));
+                ret = __osContRamRead(new OSPfs(pfs).queue_, new OSPfs(pfs).channel, (ushort)(1), _fp);
                 if ((ret != 0))
                 {
                     return ret;
@@ -191,7 +191,7 @@ public static partial class Game
                 i = 1;
                 for (; (i < 4); ++i)
                 {
-                    ret = (int)(__osContRamRead(new OSPfs(pfs).queue_, (uint)(new OSPfs(pfs).channel), (uint)(Mem.U16(((_fp + 8u) + (uint)(i * 2)))), temp));
+                    ret = __osContRamRead(new OSPfs(pfs).queue_, new OSPfs(pfs).channel, Mem.U16(((_fp + 8u) + (uint)(i * 2))), temp);
                     if ((ret != 0))
                     {
                         return ret;
@@ -243,7 +243,7 @@ public static partial class Game
                         return ret;
                     }
                 }
-                ret = (int)(__osContRamRead(new OSPfs(pfs).queue_, (uint)(new OSPfs(pfs).channel), (uint)((ushort)(1)), (_fp + 8u)));
+                ret = __osContRamRead(new OSPfs(pfs).queue_, new OSPfs(pfs).channel, (ushort)(1), (_fp + 8u));
                 if ((ret != 0))
                 {
                     return ret;
@@ -294,7 +294,7 @@ public static partial class Game
                 new OSPfs(pfs).inode_start_page_Set((((int)(new OSPfs(pfs).banks) * 2) + 3));
                 new OSPfs(pfs).minode_table_Set((((int)(new OSPfs(pfs).banks) + 1) * 8));
                 new OSPfs(pfs).dir_table_Set((new OSPfs(pfs).minode_table + ((int)(new OSPfs(pfs).banks) * 8)));
-                ret = (int)(__osContRamRead(new OSPfs(pfs).queue_, (uint)(new OSPfs(pfs).channel), (uint)((ushort)(7)), new OSPfs(pfs).label.P));
+                ret = __osContRamRead(new OSPfs(pfs).queue_, new OSPfs(pfs).channel, (ushort)(7), new OSPfs(pfs).label.P);
                 if ((ret != 0))
                 {
                     return ret;
@@ -347,7 +347,7 @@ public static partial class Game
                 }
                 else
                 {
-                    ret = (int)(__osContRamRead(new OSPfs(pfs).queue_, (uint)(new OSPfs(pfs).channel), (uint)((ushort)(((new OSPfs(pfs).inode_table + ((int)(bank) * 8)) + j))), address));
+                    ret = __osContRamRead(new OSPfs(pfs).queue_, new OSPfs(pfs).channel, (ushort)(((new OSPfs(pfs).inode_table + ((int)(bank) * 8)) + j)), address);
                 }
                 if ((ret != 0))
                 {
@@ -362,7 +362,7 @@ public static partial class Game
                     for (j = 0; (j < 8); ++j)
                     {
                         address = (inode + (uint)(j * 32));
-                        ret = (int)(__osContRamRead(new OSPfs(pfs).queue_, (uint)(new OSPfs(pfs).channel), (uint)((ushort)(((new OSPfs(pfs).minode_table + ((int)(bank) * 8)) + j))), address));
+                        ret = __osContRamRead(new OSPfs(pfs).queue_, new OSPfs(pfs).channel, (ushort)(((new OSPfs(pfs).minode_table + ((int)(bank) * 8)) + j)), address);
                     }
                     if (((int)(sum) != (int)(Mem.U8((new __OSInode_v2(inode).inode_page[(int)(0)].inode_t.P + 1u)))))
                     {

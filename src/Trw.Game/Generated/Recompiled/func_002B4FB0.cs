@@ -40,6 +40,17 @@ public static partial class Game
                 r2 = r2 | 1u;
                 Mem.Set((r17 + 55u), (byte)r2);
                 Cpu.SetW(0, Mem.U32((r29 + 60u)));
+                L_func_002B5000: ;
+                r29 = r29 - 40u;
+                r2 = (uint)13;
+                r4 = r4 + 72u;
+                Mem.Set((r29 + 20u), r5);
+                r5 = r29 + 16u;
+                r6 = r0;
+                Mem.Set((r29 + 32u), r31);
+                Mem.Set((r29 + 16u), (ushort)r2); alEvtqPostEvent(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

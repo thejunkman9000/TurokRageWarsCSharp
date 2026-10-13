@@ -21,7 +21,7 @@ public static partial class Game
                 new __OSContRamReadFormat(_fp).txsize_Set((byte)(35));
                 new __OSContRamReadFormat(_fp).rxsize_Set((byte)(1));
                 new __OSContRamReadFormat(_fp).cmd_Set((byte)(3));
-                new __OSContRamReadFormat(_fp).address_Set((ushort)((((int)(address) << (int)5) | (int)((byte)(__osContAddressCrc((uint)(address), default(uint), default(uint), default(uint)))))));
+                new __OSContRamReadFormat(_fp).address_Set((ushort)((((int)(address) << (int)5) | (int)(__osContAddressCrc((uint)(address))))));
                 new __OSContRamReadFormat(_fp).datacrc_Set((byte)(255));
                 for (i = 0; (i < 32); ++i)
                 {

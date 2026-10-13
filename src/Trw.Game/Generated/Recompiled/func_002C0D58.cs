@@ -20,8 +20,14 @@ public static partial class Game
                 r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
                 r29 = _fp + 256u;
                 L_func_002C0D58: ;
+                L_I002C0D58: ;
                 Mem.Set((r16 + 0u), r2);
-                __osLeoAbnormalResume();
+                L_I002C0D5C: ;
+                r26 = 2883584u; __osLeoAbnormalResume();
+                L_I002C0D64: ;
+                r26 = r26 + 3440u;
+                L_I002C0D68: ;
+                 switch (r26) { case 2887000u: goto L_I002C0D58; case 2887004u: goto L_I002C0D5C; case 2887012u: goto L_I002C0D64; case 2887016u: goto L_I002C0D68; default: throw new InvalidOperationException($"bad jump table target {r26:X8} in func_002C0D58"); }
                 Cpu.V1 = r3; return r2;
             }
         }

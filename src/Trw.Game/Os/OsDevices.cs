@@ -56,10 +56,13 @@ public static partial class Game
 
     private static volatile bool audioDonePending;
 
+    private static bool QueueHasRoom(uint mq, int n) => Mem.S32(mq + MQ_VALID) + n <= Mem.S32(mq + MQ_COUNT);
+
     /// <summary>osRecvMesg hook: an audio task has finished and the receiver waits on the SP-done event queue, so deliver its SP-done message now.</summary>
     private static void DeliverAudioCompletion(uint mq)
     {
         if (!audioDonePending || mq != evMq[4] || mq == 0) return;
+        if (!QueueHasRoom(mq, 1)) return;      // full of retraces the starved scheduler has not read yet: retry at its next osRecvMesg instead of dropping it
         audioDonePending = false;
         audioDone++;
         LogHost("completing audio task at osRecvMesg");
@@ -287,10 +290,12 @@ public static partial class Game
         Oracle.Tick(tickCount);
     }
 
+    private static readonly int dumpAt = int.TryParse(Environment.GetEnvironmentVariable("TRW_DUMP_AT"), out var da) ? da : -1;
     public static void ViTick()
     {
         tickCount++; CurrentTick = tickCount; Mem.WTick = tickCount; if (tickCount > 0 && Environment.GetEnvironmentVariable("TRW_WLOG") != null) Mem.WLogFlush();
         if (Oracle.Deterministic) Host.DetAdvance(tickCount);
+        if (tickCount == dumpAt) Console.Error.WriteLine($"[dump] tick {tickCount}\n{DumpThreads()}");      // TRW_DUMP_AT=<tick>: scheduler state of every game thread
         Trw.Game.Debug.HeapCheck.Tick(tickCount);
         TrackScreen();
         if (statusLog)
@@ -352,7 +357,17 @@ public static partial class Game
         try {
         RunTimers();
         bool? done = null;
-        lock (kernelLock) { if (taskCompletions.Count > 0) done = taskCompletions.Dequeue(); }
+        // a task completion is never dropped: on a busy host the scheduler can fall behind and its event queue fill up with retraces (the hardware drops those
+        // too), and a lost SP / DP done left the scheduler waiting for the RSP forever (every thread blocked, no graphics, no audio). Wait for room instead.
+        lock (kernelLock)
+        {
+            if (taskCompletions.Count > 0)
+            {
+                bool g = taskCompletions.Peek();
+                int need = g && evMq[9] == evMq[4] ? 2 : 1;
+                if ((evMq[4] == 0 || QueueHasRoom(evMq[4], need)) && (!g || evMq[9] == 0 || evMq[9] == evMq[4] || QueueHasRoom(evMq[9], 1))) done = taskCompletions.Dequeue();
+            }
+        }
         if (done is bool isGfx)       // one queued RSP task completion per tick: SP done, then DP done for graphics tasks
         {
             LogHost($"completing {(isGfx ? "graphics" : "audio")} task (SP event queue {evMq[4]:X8}, DP event queue {evMq[9]:X8})");

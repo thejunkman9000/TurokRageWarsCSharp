@@ -31,6 +31,25 @@ public static partial class Game
                 L_L002B4EF4: ;
                 Mem.Set((r4 + 36u), r2); Cpu.V1 = r3; return r2;
                 Mem.Set((r17 + 53u), (byte)r0);
+                L_func_002B4F00: ;
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 14720u)));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 14716u)));
+                { bool c_ = (int)r4 >= 0;  if (c_) goto L_L002B4F24; }
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 14712u)));
+                r4 = 0u - r4;
+                L_L002B4F24: ;
+                { bool c_ = r4 == 0; r2 = r4 & 1u; if (c_) goto L_L002B4F48; }
+                L_L002B4F2C: ;
+                { bool c_ = r2 == 0; r4 = (uint)((int)r4 >> 1); if (c_) goto L_L002B4F38; }
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                L_L002B4F38: ;
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(1));
+                { bool c_ = r4 != 0; r2 = r4 & 1u; if (c_) goto L_L002B4F2C; }
+                L_L002B4F48: ;
+                Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

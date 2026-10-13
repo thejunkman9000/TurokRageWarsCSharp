@@ -34,6 +34,7 @@ public static partial class Game
         RegisterFunctions23();
         RegisterFunctions24();
         RegisterFunctions25();
+        RegisterFunctions26();
     }
 
     private static void RegisterFunctions0()
@@ -13597,6 +13598,26 @@ public static partial class Game
             var v_ = __osDpDeviceBusy();
             return (uint)v_;
         });
+        Funcs.Add(0x002BCD20u, "osMotorStop", (a0, a1, a2, a3) =>
+        {
+            var v_ = osMotorStop(a0);
+            return (uint)v_;
+        });
+        Funcs.Add(0x002BCEE4u, "osMotorStart", (a0, a1, a2, a3) =>
+        {
+            var v_ = osMotorStart(a0);
+            return (uint)v_;
+        });
+        Funcs.Add(0x002BD0A8u, "osMotorInit", (a0, a1, a2, a3) =>
+        {
+            var v_ = osMotorInit(a0, a1, (int)a2);
+            return (uint)v_;
+        });
+        Funcs.Add(0x002BD590u, "__osContRamRead", (a0, a1, a2, a3) =>
+        {
+            var v_ = __osContRamRead(a0, (int)a1, (ushort)a2, a3);
+            return (uint)v_;
+        });
         Funcs.Add(0x002BD7C0u, "__osPackRamReadData", (a0, a1, a2, a3) =>
         {
             __osPackRamReadData((int)a0, (ushort)a1);
@@ -13612,6 +13633,16 @@ public static partial class Game
             __osPackRamWriteData((int)a0, (ushort)a1, a2);
             return 0;
         });
+        Funcs.Add(0x002BDD10u, "__osContAddressCrc", (a0, a1, a2, a3) =>
+        {
+            var v_ = __osContAddressCrc(a0);
+            return (uint)v_;
+        });
+        Funcs.Add(0x002BDD58u, "__osContDataCrc", (a0, a1, a2, a3) =>
+        {
+            var v_ = __osContDataCrc(a0);
+            return (uint)v_;
+        });
         Funcs.Add(0x002BDE70u, "osPiGetCmdQueue", (a0, a1, a2, a3) =>
         {
             var v_ = osPiGetCmdQueue();
@@ -13626,6 +13657,11 @@ public static partial class Game
         {
             var v_ = osCartRomInit();
             return v_;
+        });
+        Funcs.Add(0x002BE100u, "__osDevMgrMain", (a0, a1, a2, a3) =>
+        {
+            __osDevMgrMain(a0);
+            return 0;
         });
         Funcs.Add(0x002BE4A0u, "osEPiRawStartDma", (a0, a1, a2, a3) =>
         {
@@ -14223,6 +14259,10 @@ public static partial class Game
             var v_ = func_00405290((int)a0);
             return (uint)v_;
         });
+    }
+
+    private static void RegisterFunctions18()
+    {
         Funcs.Add(0x00405338u, "func_00405338", (a0, a1, a2, a3) =>
         {
             var v_ = func_00405338((int)a0, (int)a1, a2);
@@ -14258,10 +14298,6 @@ public static partial class Game
             func_00405648(a0, a1, (int)a2);
             return 0;
         });
-    }
-
-    private static void RegisterFunctions18()
-    {
         Funcs.Add(0x0040570Cu, "func_0040570C", (a0, a1, a2, a3) =>
         {
             func_0040570C(a0, a1, (int)a2);
@@ -15061,6 +15097,10 @@ public static partial class Game
             var v_ = func_0040EBC8(a0);
             return (uint)v_;
         });
+    }
+
+    private static void RegisterFunctions19()
+    {
         Funcs.Add(0x0040EBE8u, "func_0040EBE8", (a0, a1, a2, a3) =>
         {
             var v_ = func_0040EBE8(a0);
@@ -15096,10 +15136,6 @@ public static partial class Game
             var v_ = func_0040F1E0((int)a0, a1, (int)a2);
             return (uint)v_;
         });
-    }
-
-    private static void RegisterFunctions19()
-    {
         Funcs.Add(0x0040F27Cu, "func_0040F27C", (a0, a1, a2, a3) =>
         {
             func_0040F27C(a0, (int)a1, (int)a2);
@@ -15851,6 +15887,10 @@ public static partial class Game
             func_0041991C();
             return 0;
         });
+    }
+
+    private static void RegisterFunctions20()
+    {
         Funcs.Add(0x0041994Cu, "func_0041994C", (a0, a1, a2, a3) =>
         {
             var v_ = func_0041994C((int)a0, a1);
@@ -15886,10 +15926,6 @@ public static partial class Game
             var v_ = func_00419A8C(a0);
             return (uint)v_;
         });
-    }
-
-    private static void RegisterFunctions20()
-    {
         Funcs.Add(0x00419A98u, "func_00419A98", (a0, a1, a2, a3) =>
         {
             func_00419A98(a0, (int)a1);
@@ -16653,6 +16689,10 @@ public static partial class Game
             var v_ = func_00420BE8((int)a0, (int)a1, a2, (int)a3);
             return (uint)v_;
         });
+    }
+
+    private static void RegisterFunctions21()
+    {
         Funcs.Add(0x00420C60u, "func_00420C60", (a0, a1, a2, a3) =>
         {
             var v_ = func_00420C60();
@@ -16688,10 +16728,6 @@ public static partial class Game
             var v_ = func_00420E00(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
             return (uint)v_;
         });
-    }
-
-    private static void RegisterFunctions21()
-    {
         Funcs.Add(0x00420E90u, "func_00420E90", (a0, a1, a2, a3) =>
         {
             var v_ = func_00420E90((int)a0);
@@ -17407,6 +17443,10 @@ public static partial class Game
             var v_ = func_0042B474((int)a0);
             return (uint)v_;
         });
+    }
+
+    private static void RegisterFunctions22()
+    {
         Funcs.Add(0x0042B4BCu, "func_0042B4BC", (a0, a1, a2, a3) =>
         {
             var v_ = func_0042B4BC();
@@ -17442,10 +17482,6 @@ public static partial class Game
             var v_ = func_0042B6B4((int)a0, (int)a1, (int)a2, (int)a3);
             return (uint)v_;
         });
-    }
-
-    private static void RegisterFunctions22()
-    {
         Funcs.Add(0x0042B824u, "func_0042B824", (a0, a1, a2, a3) =>
         {
             var v_ = func_0042B824((int)a0, (int)a1, (int)a2, (int)a3);
@@ -18161,6 +18197,10 @@ public static partial class Game
             var v_ = func_004372F4((int)a0, (int)a1, (int)a2, (int)a3);
             return (uint)v_;
         });
+    }
+
+    private static void RegisterFunctions23()
+    {
         Funcs.Add(0x004373A4u, "func_004373A4", (a0, a1, a2, a3) =>
         {
             var v_ = func_004373A4((int)a0, (int)a1, (int)a2, (int)a3);
@@ -18196,10 +18236,6 @@ public static partial class Game
             var v_ = func_00437790();
             return (uint)v_;
         });
-    }
-
-    private static void RegisterFunctions23()
-    {
         Funcs.Add(0x00437868u, "func_00437868", (a0, a1, a2, a3) =>
         {
             var v_ = func_00437868(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
@@ -18940,6 +18976,10 @@ public static partial class Game
             var v_ = func_0043E244();
             return (uint)v_;
         });
+    }
+
+    private static void RegisterFunctions24()
+    {
         Funcs.Add(0x0043E24Cu, "func_0043E24C", (a0, a1, a2, a3) =>
         {
             var v_ = func_0043E24C();
@@ -18975,10 +19015,6 @@ public static partial class Game
             var v_ = func_0043E4A4((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
-    }
-
-    private static void RegisterFunctions24()
-    {
         Funcs.Add(0x0043E4D0u, "func_0043E4D0", (a0, a1, a2, a3) =>
         {
             var v_ = func_0043E4D0(a0, a1);
@@ -19694,6 +19730,10 @@ public static partial class Game
             var v_ = func_00444960(a0);
             return (uint)v_;
         });
+    }
+
+    private static void RegisterFunctions25()
+    {
         Funcs.Add(0x004449FCu, "func_004449FC", (a0, a1, a2, a3) =>
         {
             var v_ = func_004449FC(a0);
@@ -19729,10 +19769,6 @@ public static partial class Game
             var v_ = func_00444D58(a0, a1);
             return (uint)v_;
         });
-    }
-
-    private static void RegisterFunctions25()
-    {
         Funcs.Add(0x00444DA4u, "func_00444DA4", (a0, a1, a2, a3) =>
         {
             var v_ = func_00444DA4((int)a0, a1);
@@ -20451,6 +20487,10 @@ public static partial class Game
             func_0044E8B0(a0);
             return 0;
         });
+    }
+
+    private static void RegisterFunctions26()
+    {
         Funcs.Add(0x0044E910u, "func_0044E910", (a0, a1, a2, a3) =>
         {
             var v_ = func_0044E910();

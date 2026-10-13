@@ -47,14 +47,6 @@ public static partial class Game
                 r16 = Mem.U32((r29 + 16u));
                 r2 = r3;
                 r29 = r29 + 24u; Cpu.V1 = r3; return r2;
-                r29 = r29 - 24u;
-                Mem.Set((r29 + 16u), r16);
-                Mem.Set((r29 + 20u), r31);
-                r16 = r6; r2 = memcpy(r4, r5, r6);
-                r2 = r2 + r16;
-                r31 = Mem.U32((r29 + 20u));
-                r16 = Mem.U32((r29 + 16u));
-                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

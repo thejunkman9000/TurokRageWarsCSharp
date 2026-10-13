@@ -23,7 +23,7 @@ public static partial class Game
                 }
                 for (j = 0; (j < new OSPfs(pfs).dir_size); ++j)
                 {
-                    ret = (int)(__osContRamRead(new OSPfs(pfs).queue_, (uint)(new OSPfs(pfs).channel), (uint)((ushort)((new OSPfs(pfs).dir_table + j))), _fp));
+                    ret = __osContRamRead(new OSPfs(pfs).queue_, new OSPfs(pfs).channel, (ushort)((new OSPfs(pfs).dir_table + j)), _fp);
                     if ((ret != 0))
                     {
                         return ret;

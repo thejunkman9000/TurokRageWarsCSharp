@@ -19,7 +19,7 @@ public static partial class Game
             s4 = 0;
             if ((new Q04Pan2(p).hdr.f14 != 0u))
             {
-                s4 = (int)(Funcs.CallReg(new Q04Pan2(p).hdr.f14, p, a1, 0u, 0u));       // the ROM calls f14 with a0/a1 still holding this function's arguments (tools/overrides/func_00441384.c)
+                s4 = (int)(Funcs.CallReg(new Q04Pan2(p).hdr.f14, p, a1, 0u, 0u));
             }
             i = new Q04Pan2(p).n;
             it = new Q04Pan2(p).items_;

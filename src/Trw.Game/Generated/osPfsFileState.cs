@@ -38,7 +38,7 @@ public static partial class Game
                         return ret;
                     }
                 }
-                ret = (int)(__osContRamRead(new OSPfs(pfs).queue_, (uint)(new OSPfs(pfs).channel), (uint)((ushort)((new OSPfs(pfs).dir_table + file_no))), (_fp + 256u)));
+                ret = __osContRamRead(new OSPfs(pfs).queue_, new OSPfs(pfs).channel, (ushort)((new OSPfs(pfs).dir_table + file_no)), (_fp + 256u));
                 if ((ret != 0))
                 {
                     return ret;

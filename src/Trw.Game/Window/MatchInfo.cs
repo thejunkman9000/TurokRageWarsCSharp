@@ -9,7 +9,7 @@ namespace Trw.Game;
 /// <item>player actors: list head <c>D_80145060</c>, next pointer at +0x16E0, the score record pointer at +0x5D8 and the controller object at +0x698
 /// (controller objects are 0x224 bytes from 0x8010F328: port = (ptr - 0x8010F328) / 0x224; bots have none).</item>
 /// <item>cameras (the split-screen views): see <see cref="Views"/>.</item>
-/// <item>score records: <c>D_80146398</c> = <c>D_801462C8</c> + 0xD0, 8 records of 0x96 bytes; s16 +0x04 frags (the frag limit compares it), s16 +0x00 deaths (a bot's suicide in a match: +0x04 0 -> -1, +0x00 0 -> 1), see <see cref="Fields"/>.</item>
+/// <item>score records: <c>D_80146398</c> = <c>D_801462C8</c> + 0xD0, 8 records of 0x96 bytes; s16 +0x04 frags (the frag limit compares it), s16 +0x02 deaths (killed by another player: the results screen's DEATHS column), s16 +0x00 suicides (a suicide: +0x00 +1 and frags -1), see <see cref="Fields"/>.</item>
 /// </list>
 /// </summary>
 internal static class MatchInfo
@@ -17,14 +17,14 @@ internal static class MatchInfo
     public const uint PlayerListHead = 0x80145060, RosterBase = 0x80146398, RosterStride = 0x96, ControllerBase = 0x8010F328, ControllerStride = 0x224;
     public const uint ActNext = 0x16E0, ActStats = 0x5D8, ActPad = 0x698;
     /// <summary>Offsets in a score record (s16 unless noted). Frags: compared with the frag limit (func_0022804C) and shown by the HUD (func_0021EED8).</summary>
-    public static class Fields { public const uint Frags = 0x04, Deaths = 0x00, Name = 0x84 /* char[11] */, Team = 0x92 /* u8 */; }
+    public static class Fields { public const uint Frags = 0x04, Deaths = 0x02, Suicides = 0x00, Name = 0x84 /* char[11] */, Team = 0x92 /* u8 */; }
 
     public struct Player
     {
         public int Index;          // order in the game's player list
         public int Port;           // controller port 0..3, -1 = bot / no controller
         public uint Actor, Stats;
-        public int Frags, Deaths, Team, Record;
+        public int Frags, Deaths, Suicides, Team, Record;
         public string Name;
     }
 
@@ -46,7 +46,7 @@ internal static class MatchInfo
                 if (st >= RosterBase && st < RosterBase + 8 * RosterStride && Ram(st, (int)RosterStride))
                 {
                     p.Stats = st; p.Record = (int)((st - RosterBase) / RosterStride);
-                    p.Frags = Mem.S16(st + Fields.Frags); p.Deaths = Mem.S16(st + Fields.Deaths);
+                    p.Frags = Mem.S16(st + Fields.Frags); p.Deaths = Mem.S16(st + Fields.Deaths); p.Suicides = Mem.S16(st + Fields.Suicides);
                     p.Team = Mem.U8(st + Fields.Team);
                     var name = new char[11]; int n = 0;
                     for (; n < 11; n++) { byte c = Mem.U8(st + Fields.Name + (uint)n); if (c == 0) break; name[n] = c >= 32 && c < 127 ? (char)c : '?'; }
@@ -117,7 +117,7 @@ internal static class MatchInfo
             lastLog = Game.CurrentTick;
             Console.Error.WriteLine($"[match] tick {Game.CurrentTick}: {ps.Count} players{(changed ? " (score records changed)" : "")}; views: {string.Join(" ", Views().Select(v => $"[{v.X},{v.Y} {v.W}x{v.H}]"))}");
             foreach (var p in ps)
-                Console.Error.WriteLine($"[match]   #{p.Index} actor {p.Actor:X8} port {p.Port} record {p.Record} '{p.Name}' frags {p.Frags} deaths {p.Deaths} team {p.Team}");
+                Console.Error.WriteLine($"[match]   #{p.Index} actor {p.Actor:X8} port {p.Port} record {p.Record} '{p.Name}' frags {p.Frags} deaths {p.Deaths} suicides {p.Suicides} team {p.Team}");
             Console.Error.Write(rec);
         }
         lastRecords = rec;

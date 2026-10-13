@@ -52,6 +52,52 @@ public static partial class Game
                 Cpu.Fpr[20] = Mem.U64((r29 + 32u));
                 r29 = r29 + 40u; Cpu.V1 = r3; return r2;
                 r17 = r6;
+                L_func_002B8540: ;
+                Mem.Set((r5 + 22u), (ushort)r6); Cpu.V1 = r3; return r2;
+                r6 = 2883584u;
+                r6 = r6 - 23024u;
+                L_func_002B8550: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r20);
+                r20 = r4;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r5;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r6;
+                Mem.Set((r29 + 36u), r31);
+                Mem.Set((r29 + 28u), r19);
+                Mem.Set((r29 + 16u), r16);
+                r2 = Mem.U32((r17 + 8u));
+                { bool c_ = r2 == 0; r19 = r7; if (c_) goto L_L002B85E8; }
+                r2 = __allocParam();
+                r16 = r2;
+                { bool c_ = r16 == 0; r4 = r20; if (c_) goto L_L002B85E8; }
+                r5 = r19;
+                r2 = Mem.U32((r17 + 8u));
+                r3 = Mem.U32((r4 + 28u));
+                r6 = Mem.U32((r2 + 216u));
+                r2 = (uint)11;
+                Mem.Set((r16 + 8u), (ushort)r2);
+                r2 = r18 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                Mem.Set((r16 + 12u), r2);
+                r3 = r3 + r6;
+                Mem.Set((r16 + 4u), r3); r2 = (uint)_timeToSamplesNoRound(r4, (int)r5);
+                Mem.Set((r16 + 16u), r2);
+                Mem.Set((r16 + 0u), r0);
+                r2 = Mem.U32((r17 + 8u));
+                r4 = Mem.U32((r2 + 12u));
+                r5 = (uint)3;
+                r2 = Mem.U32((r4 + 8u));
+                r6 = r16; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B85E8: ;
+                r31 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

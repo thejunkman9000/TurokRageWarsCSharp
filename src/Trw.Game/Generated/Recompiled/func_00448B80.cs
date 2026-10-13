@@ -33,7 +33,7 @@ public static partial class Game
                 L_L00448BB4: ;
                 r4 = Mem.U32((r17 + 4u));
                 r5 = Mem.U32((r17 + 8u));
-                r7 = r29 + 16u; r2 = __osContRamRead(r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = r29 + 16u; r2 = (uint)__osContRamRead(r4, (int)r5, (ushort)r6, r7);
                 r3 = r2;
                 { bool c_ = r3 != 0; r4 = r29 + 16u; if (c_) goto L_L00448D1C; }
                 r5 = r29 + 80u;
@@ -104,7 +104,7 @@ public static partial class Game
                 r3 = r3 << 3;
                 Mem.Set((r17 + 88u), r2);
                 r2 = r2 + r3;
-                Mem.Set((r17 + 92u), r2); r2 = __osContRamRead(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r17 + 92u), r2); r2 = (uint)__osContRamRead(r4, (int)r5, (ushort)r6, r7);
                 r3 = r2;
                 if (r3 == 0) { r2 = r0; goto L_L00448D1C; }
                 L_L00448D1C: ;

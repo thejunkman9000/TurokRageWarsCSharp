@@ -6,7 +6,7 @@ namespace Trw.Game;
 
 public static partial class Game
 {
-    public static uint func_002BC3D0(uint a0, uint a1, uint a2, uint a3)
+    public static uint func_002BC3D0(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5, uint a6, uint a7, uint a8, uint a9, uint a10, uint a11, uint a12, uint a13, uint a14, uint a15, uint a16, uint a17)
     {
         uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
         uint lo = 0, hi = 0; bool fcc = false;
@@ -19,11 +19,124 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_002BC3D0", a0, a1, a2, a3);
                 r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
                 r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                Mem.Set(r29 + 20u, a5);
+                Mem.Set(r29 + 24u, a6);
+                Mem.Set(r29 + 28u, a7);
+                Mem.Set(r29 + 32u, a8);
+                Mem.Set(r29 + 36u, a9);
+                Mem.Set(r29 + 40u, a10);
+                Mem.Set(r29 + 44u, a11);
+                Mem.Set(r29 + 48u, a12);
+                Mem.Set(r29 + 52u, a13);
+                Mem.Set(r29 + 56u, a14);
+                Mem.Set(r29 + 60u, a15);
+                Mem.Set(r29 + 64u, a16);
+                Mem.Set(r29 + 68u, a17);
                 L_func_002BC3D0: ;
                 Cpu.Fpr[0] = Mem.U64((r1 - 13456u));
                 Cpu.SetD(1, Cpu.D(1) + Cpu.D(0));
                 Cpu.SetS(0, (float)Cpu.D(1));
                 r1 = 2148335616u;
+                L_func_002BC3E0: ;
+                Cpu.SetW(1, Mem.U32((r1 - 13448u)));
+                Cpu.SetS(0, Cpu.S(2) / Cpu.S(0));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 13444u)));
+                fcc = Cpu.S(1) <= Cpu.S(0);
+                if (fcc) { Cpu.SetS(0, Cpu.S(0) - Cpu.S(1)); goto L_L002BC414; }
+                Cpu.SetW(3, (uint)(int)Cpu.S(0));
+                r6 = Cpu.W(3);
+                r2 = (uint)(r6 < (uint)(132) ? 1 : 0); goto L_L002BC428;
+                L_L002BC414: ;
+                r2 = 2147483648u;
+                Cpu.SetW(3, (uint)(int)Cpu.S(0));
+                r6 = Cpu.W(3);
+                r6 = r6 | r2;
+                r2 = (uint)(r6 < (uint)(132) ? 1 : 0);
+                L_L002BC428: ;
+                { bool c_ = r2 == 0; r2 = 1041170432u; if (c_) goto L_L002BC438; }
+                r2 = (uint)-1; Cpu.V1 = r3; return r2;
+                L_L002BC438: ;
+                r2 = r2 | 33761u;
+                { ulong p_ = (ulong)r6 * r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r8 = hi;
+                r7 = r8 >> 4;
+                r2 = r7 & 255u;
+                r2 = (uint)(r2 < (uint)(17) ? 1 : 0);
+                if (r2 == 0) { r7 = (uint)16; goto L_L002BC458; }
+                L_L002BC458: ;
+                r3 = 2756706304u;
+                r3 = r3 | 16u;
+                r4 = 2756706304u;
+                r4 = r4 | 20u;
+                r5 = 2756706304u;
+                r5 = r5 | 8u;
+                r2 = r6 - 1u;
+                Mem.Set((r3 + 0u), r2);
+                r2 = r7 & 255u;
+                r2 = r2 - 1u;
+                Mem.Set((r4 + 0u), r2);
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 - 28032u));
+                r3 = (uint)1;
+                Mem.Set((r5 + 0u), r3);
+                if (r6 != 0) { lo = (uint)Cpu.SDiv((int)r2, (int)r6); hi = (uint)Cpu.SRem((int)r2, (int)r6); }
+                { bool c_ = r6 != 0;  if (c_) goto L_L002BC4A4; }
+                throw new InvalidOperationException("MIPS break");
+                L_L002BC4A4: ;
+                r1 = (uint)-1;
+                { bool c_ = r6 != r1; r1 = 2147483648u; if (c_) goto L_L002BC4BC; }
+                { bool c_ = r2 != r1;  if (c_) goto L_L002BC4BC; }
+                throw new InvalidOperationException("MIPS break");
+                L_L002BC4BC: ;
+                r2 = lo;
+                Cpu.V1 = r3; return r2;
+                Cpu.Swr(r9, (r4 + 7u));
+                Cpu.Swl(r10, (r4 + 8u));
+                L_func_002BC4D0: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r5;
+                r3 = 2148401152u;
+                r3 = r3 - 31904u;
+                Mem.Set((r29 + 24u), r31);
+                Mem.Set((r29 + 16u), r16);
+                r2 = Mem.U8((r3 + 0u));
+                { bool c_ = r2 == 0; r16 = r4; if (c_) goto L_L002BC4FC; }
+                r16 = r16 - 8192u;
+                L_L002BC4FC: ;
+                r2 = r4 + r17;
+                r2 = r2 & 8191u;
+                if (r2 != 0) { Mem.Set((r3 + 0u), (byte)r0); goto L_L002BC514; }
+                r2 = (uint)1;
+                Mem.Set((r3 + 0u), (byte)r2);
+                L_L002BC514: ;
+                r2 = (uint)__osAiDeviceBusy();
+                { bool c_ = r2 != 0; r2 = (uint)-1; if (c_) goto L_L002BC548; }
+                r4 = r16; r2 = osVirtualToPhysical(r4);
+                r5 = 2756706304u;
+                r5 = r5 | 4u;
+                r4 = r2;
+                r2 = r0;
+                r3 = 2756706304u;
+                Mem.Set((r3 + 0u), r4);
+                Mem.Set((r5 + 0u), r17);
+                L_L002BC548: ;
+                r31 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                r2 = r0;
+                L_func_002BC560: ;
+                r2 = 2756706304u;
+                r2 = r2 | 12u;
+                r2 = Mem.U32((r2 + 0u));
+                r2 = (uint)((int)r2 < 0 ? 1 : 0); Cpu.V1 = r3; return r2;
+                r17 = Mem.U32((r29 + 100u));
+                r16 = Mem.U32((r29 + 96u));
+                Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

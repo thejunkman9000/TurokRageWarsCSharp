@@ -23,6 +23,13 @@ public static partial class Game
                 r2 = Cpu.Cp0[12];
                 Cpu.V1 = r3; return r2;
                 r6 = r16;
+                L_func_002C2020: ;
+                r8 = Cpu.Cp0[12];
+                r1 = (uint)-2;
+                r9 = r8 & r1;
+                Cpu.Cp0[12] = r9;
+                r2 = r8 & 1u;
+                Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

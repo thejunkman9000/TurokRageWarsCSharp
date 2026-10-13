@@ -76,7 +76,7 @@ public static partial class Game
                         return ret;
                     }
                 }
-                ret = (int)(__osContRamRead(new OSPfs(pfs).queue_, (uint)(new OSPfs(pfs).channel), (uint)((ushort)((new OSPfs(pfs).dir_table + file_no))), _fp));
+                ret = __osContRamRead(new OSPfs(pfs).queue_, new OSPfs(pfs).channel, (ushort)((new OSPfs(pfs).dir_table + file_no)), _fp);
                 if ((ret != 0))
                 {
                     return ret;
@@ -134,7 +134,7 @@ public static partial class Game
                     addr = (((int)(Mem.U8((new __OSInodeUnit_v2((_fp + 296u)).inode_t.P + 1u))) * 8) + offset_in_blocks);
                     if (((int)(flag) == 0))
                     {
-                        ret = (int)(__osContRamRead(new OSPfs(pfs).queue_, (uint)(new OSPfs(pfs).channel), (uint)((ushort)(addr)), buf));
+                        ret = __osContRamRead(new OSPfs(pfs).queue_, new OSPfs(pfs).channel, (ushort)(addr), buf);
                     }
                     else
                     {

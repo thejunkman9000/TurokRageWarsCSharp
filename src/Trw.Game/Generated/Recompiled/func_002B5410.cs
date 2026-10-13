@@ -40,6 +40,19 @@ public static partial class Game
                 r2 = r7; Cpu.V1 = r3; return r2;
                 r4 = r18;
                 r2 = Mem.U32((r17 + 32u));
+                L_func_002B5460: ;
+                r3 = r5 & 15u;
+                r2 = (uint)16;
+                r3 = r2 - r3;
+                { bool c_ = r3 == r2; r2 = r5 + r3; if (c_) goto L_L002B547C; }
+                Mem.Set((r4 + 0u), r2); goto L_L002B5480;
+                L_L002B547C: ;
+                Mem.Set((r4 + 0u), r5);
+                L_L002B5480: ;
+                r2 = Mem.U32((r4 + 0u));
+                Mem.Set((r4 + 8u), r6);
+                Mem.Set((r4 + 12u), r0);
+                Mem.Set((r4 + 4u), r2); Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

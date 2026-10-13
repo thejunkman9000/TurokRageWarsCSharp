@@ -21,6 +21,10 @@ public static partial class Game
                 r29 = _fp + 256u;
                 L_func_002C224C: ;
                 r2 = r21 + r5;
+                L_func_002C2250: ;
+                r2 = Cpu.Fcsr;
+                Cpu.Fcsr = r4;
+                Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

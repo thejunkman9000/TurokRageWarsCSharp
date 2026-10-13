@@ -34,6 +34,53 @@ public static partial class Game
                 r16 = Mem.U32((r29 + 16u));
                 r29 = r29 + 24u; Cpu.V1 = r3; return r2;
                 r2 = Mem.U32((r4 + 8u));
+                L_func_002B75E0: ;
+                r2 = Mem.U32((r4 + 68u));
+                r9 = Mem.U32((r4 + 64u));
+                { bool c_ = (int)r2 <= 0; r8 = r0; if (c_) goto L_L002B7690; }
+                r11 = (uint)5;
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 14496u)));
+                r12 = (uint)64;
+                r10 = 2164391936u;
+                r10 = r10 | 1033u;
+                r2 = r8 << 16;
+                L_L002B760C: ;
+                r7 = (uint)((int)r2 >> 16);
+                r2 = r7 << 1;
+                r2 = r2 + r7;
+                r2 = r2 << 4;
+                r6 = r2 + r9;
+                r2 = Mem.U32((r6 + 28u));
+                { bool c_ = r2 != 0; r2 = r8 + 1u; if (c_) goto L_L002B7674; }
+                Mem.Set((r6 + 28u), r5);
+                Mem.Set((r6 + 32u), (ushort)r11);
+                Mem.Set((r6 + 40u), r0);
+                Mem.Set((r6 + 36u), Cpu.W(0));
+                Mem.Set((r6 + 46u), (byte)r12);
+                Mem.Set((r6 + 47u), (byte)r0);
+                r2 = Mem.U8((r5 + 13u));
+                r3 = r2 << 15;
+                r3 = r3 - r2;
+                { long p_ = (long)(int)r3 * (int)r10; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r2 = r7;
+                r13 = hi;
+                r4 = r13 + r3;
+                r4 = (uint)((int)r4 >> 6);
+                r3 = (uint)((int)r3 >> 31);
+                r4 = r4 - r3;
+                Mem.Set((r6 + 44u), (ushort)r4); Cpu.V1 = r3; return r2;
+                L_L002B7674: ;
+                r8 = r2;
+                r2 = r2 << 16;
+                r3 = Mem.U32((r4 + 68u));
+                r2 = (uint)((int)r2 >> 16);
+                r2 = (uint)((int)r2 < (int)r3 ? 1 : 0);
+                { bool c_ = r2 != 0; r2 = r8 << 16; if (c_) goto L_L002B760C; }
+                L_L002B7690: ;
+                r2 = (uint)-1; Cpu.V1 = r3; return r2;
+                r16 = Mem.U32((r29 + 16u));
+                Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

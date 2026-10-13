@@ -38,7 +38,7 @@ public static partial class Game
                 ret = (((int)(new __OSContRamReadFormat(_fp).rxsize) & 192) >> (int)4);
                 if ((ret == 0))
                 {
-                    if (((int)((byte)(__osContDataCrc(0x8014D5C0u, default(uint), default(uint), default(uint)))) != (int)(new __OSContRamReadFormat(_fp).datacrc)))
+                    if (((int)(__osContDataCrc(0x8014D5C0u)) != (int)(new __OSContRamReadFormat(_fp).datacrc)))
                     {
                         ret = 4;
                     }

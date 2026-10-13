@@ -21,6 +21,7 @@ public static partial class Game
                 r29 = _fp + 256u;
                 L_func_00446B7C: ;
                 r2 = r2 & 192u;
+                L_func_00446B80: ;
                 r4 = r4 << 4;
                 r4 = r4 >> 4;
                 r2 = r0 - 8u;
@@ -30,9 +31,6 @@ public static partial class Game
                 Cpu.Cp0[18] = r4;
                 r0 = Cpu.Cp0[19];
                 Cpu.V1 = r3; return r2;
-                Mem.Set((r29 + 100u), r19);
-                r19 = r6;
-                Mem.Set((r29 + 104u), r31);
                 Cpu.V1 = r3; return r2;
             }
         }

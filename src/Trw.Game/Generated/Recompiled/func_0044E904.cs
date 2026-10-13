@@ -20,6 +20,42 @@ public static partial class Game
                 r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
                 r29 = _fp + 256u;
                 L_func_0044E904: ;
+                L_func_0044E910: ;
+                r6 = r0;
+                r7 = (uint)255;
+                r2 = 2148794368u;
+                r2 = r2 + 27040u;
+                r5 = r2;
+                r4 = (uint)-1;
+                r2 = (uint)1;
+                r3 = (uint)1024;
+                Mem.Set((r5 + 0u), (ushort)r4);
+                Mem.Set((r5 + 4u), (ushort)r2);
+                Mem.Set((r5 + 8u), (ushort)r0);
+                Mem.Set((r5 + 10u), (ushort)r0);
+                Mem.Set((r5 + 16u), (ushort)r2);
+                Mem.Set((r5 + 20u), (ushort)r2);
+                Mem.Set((r5 + 24u), (ushort)r3);
+                Mem.Set((r5 + 26u), (ushort)r0);
+                Mem.Set((r5 + 32u), (ushort)r2);
+                Mem.Set((r5 + 36u), (ushort)r4);
+                Mem.Set((r5 + 40u), (ushort)r3);
+                Mem.Set((r5 + 42u), (ushort)r3);
+                Mem.Set((r5 + 48u), (ushort)r4);
+                Mem.Set((r5 + 52u), (ushort)r4);
+                Mem.Set((r5 + 56u), (ushort)r0);
+                Mem.Set((r5 + 58u), (ushort)r3);
+                L_L0044E970: ;
+                Mem.Set((r5 + 2u), (ushort)r0);
+                Mem.Set((r5 + 6u), (ushort)r0);
+                Mem.Set((r5 + 12u), (byte)r7);
+                Mem.Set((r5 + 13u), (byte)r7);
+                Mem.Set((r5 + 14u), (byte)r7);
+                Mem.Set((r5 + 15u), (byte)r7);
+                r6 = r6 + 1u;
+                r2 = (uint)((int)r6 < 4 ? 1 : 0);
+                { bool c_ = r2 != 0; r5 = r5 + 16u; if (c_) goto L_L0044E970; }
+                Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

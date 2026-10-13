@@ -22,6 +22,24 @@ public static partial class Game
                 L_func_002B8078: ;
                 r17 = (uint)2;
                 r18 = 2148401152u;
+                L_func_002B8080: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r4;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r5;
+                Mem.Set((r29 + 24u), r31);
+                r4 = (uint)1; r2 = osSetIntMask(r4);
+                r3 = Mem.U32((r17 + 32u));
+                Mem.Set((r16 + 16u), r3);
+                r3 = Mem.U32((r17 + 0u));
+                r4 = r2;
+                Mem.Set((r16 + 0u), r3);
+                Mem.Set((r17 + 0u), r16); r2 = osSetIntMask(r4);
+                r31 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

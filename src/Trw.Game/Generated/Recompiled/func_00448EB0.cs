@@ -56,7 +56,7 @@ public static partial class Game
                 { bool c_ = r2 != 0; r6 = r0; if (c_) goto L_L00449170; }
                 r4 = Mem.U32((r18 + 4u));
                 r5 = Mem.U32((r18 + 8u));
-                r7 = r29 + 24u; r2 = __osContRamRead(r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = r29 + 24u; r2 = (uint)__osContRamRead(r4, (int)r5, (ushort)r6, r7);
                 { bool c_ = r2 != 0; r16 = (uint)1; if (c_) goto L_L00449170; }
                 r2 = r17 | 128u;
                 Mem.Set((r29 + 24u), (byte)r2);
@@ -76,7 +76,7 @@ public static partial class Game
                 { bool c_ = r2 != 0; r6 = r0; if (c_) goto L_L00449170; }
                 r4 = Mem.U32((r18 + 4u));
                 r5 = Mem.U32((r18 + 8u));
-                r7 = r29 + 56u; r2 = __osContRamRead(r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = r29 + 56u; r2 = (uint)__osContRamRead(r4, (int)r5, (ushort)r6, r7);
                 { bool c_ = r2 != 0; r16 = r0; if (c_) goto L_L00449170; }
                 r2 = r21 + r16;
                 L_L00448FC4: ;
@@ -96,7 +96,7 @@ public static partial class Game
                 { bool c_ = r2 != 0; r6 = r0; if (c_) goto L_L00449170; }
                 r4 = Mem.U32((r18 + 4u));
                 r5 = Mem.U32((r18 + 8u));
-                r7 = r19; r2 = __osContRamRead(r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = r19; r2 = (uint)__osContRamRead(r4, (int)r5, (ushort)r6, r7);
                 { bool c_ = r2 != 0;  if (c_) goto L_L00449170; }
                 r3 = Mem.U8((r29 + 24u));
                 r2 = (uint)128;
@@ -157,7 +157,7 @@ public static partial class Game
                 r6 = (uint)1;
                 r4 = Mem.U32((r18 + 4u));
                 r5 = Mem.U32((r18 + 8u));
-                r7 = r29 + 24u; r2 = __osContRamRead(r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = r29 + 24u; r2 = (uint)__osContRamRead(r4, (int)r5, (ushort)r6, r7);
                 { bool c_ = r2 == 0; r16 = r0; if (c_) goto L_L00449144; }
                  goto L_L00449170;
                 L_L0044913C: ;

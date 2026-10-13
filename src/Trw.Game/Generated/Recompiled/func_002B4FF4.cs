@@ -6,7 +6,7 @@ namespace Trw.Game;
 
 public static partial class Game
 {
-    public static uint func_002B4FF4(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5, uint a6, uint a7, uint a8, uint a9, uint a10, uint a11, uint a12, uint a13, uint a14, uint a15)
+    public static uint func_002B4FF4(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5)
     {
         uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
         uint lo = 0, hi = 0; bool fcc = false;
@@ -21,20 +21,21 @@ public static partial class Game
                 r29 = _fp + 256u;
                 Mem.Set(r29 + 16u, a4);
                 Mem.Set(r29 + 20u, a5);
-                Mem.Set(r29 + 24u, a6);
-                Mem.Set(r29 + 28u, a7);
-                Mem.Set(r29 + 32u, a8);
-                Mem.Set(r29 + 36u, a9);
-                Mem.Set(r29 + 40u, a10);
-                Mem.Set(r29 + 44u, a11);
-                Mem.Set(r29 + 48u, a12);
-                Mem.Set(r29 + 52u, a13);
-                Mem.Set(r29 + 56u, a14);
-                Mem.Set(r29 + 60u, a15);
                 L_func_002B4FF4: ;
                 r2 = r2 | 1u;
                 Mem.Set((r17 + 55u), (byte)r2);
                 Cpu.SetW(0, Mem.U32((r29 + 60u)));
+                L_func_002B5000: ;
+                r29 = r29 - 40u;
+                r2 = (uint)13;
+                r4 = r4 + 72u;
+                Mem.Set((r29 + 20u), r5);
+                r5 = r29 + 16u;
+                r6 = r0;
+                Mem.Set((r29 + 32u), r31);
+                Mem.Set((r29 + 16u), (ushort)r2); alEvtqPostEvent(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

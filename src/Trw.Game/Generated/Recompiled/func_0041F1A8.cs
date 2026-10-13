@@ -20,6 +20,25 @@ public static partial class Game
                 r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
                 r29 = _fp + 256u;
                 L_func_0041F1A8: ;
+                L_func_0041F1B0: ;
+                r7 = r0;
+                r6 = r7;
+                r3 = r7;
+                r5 = r7;
+                L_L0041F1C0: ;
+                r1 = 2148401152u;
+                r1 = r1 + r5;
+                r2 = Mem.U32((r1 + 14932u));
+                if (r2 != r4) { r3 = r3 + 1u; goto L_L0041F1E0; }
+                r6 = (uint)1;
+                r7 = r3;
+                r3 = r3 + 1u;
+                L_L0041F1E0: ;
+                r2 = (uint)((int)r3 < 17 ? 1 : 0);
+                { bool c_ = r2 == 0; r5 = r5 + 112u; if (c_) goto L_L0041F1F4; }
+                { bool c_ = r6 == 0;  if (c_) goto L_L0041F1C0; }
+                L_L0041F1F4: ;
+                r2 = r7; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

@@ -155,6 +155,65 @@ public static partial class Game
                 Cpu.Fpr[20] = Mem.U64((r29 + 40u));
                 r29 = r29 + 128u; Cpu.V1 = r3; return r2;
                 { bool c_ = r2 != 0; r8 = r8 + 4u; if (c_) goto L_L002BBBDC; }
+                L_func_002BBC50: ;
+                r29 = r29 - 64u;
+                r6 = r0;
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 13616u)));
+                r9 = r29;
+                r8 = r29;
+                L_L002BBC68: ;
+                r3 = r0;
+                r7 = r9;
+                r5 = r8;
+                L_L002BBC74: ;
+                if (r6 != r3) { Mem.Set((r5 + 0u), r0); goto L_L002BBC80; }
+                Mem.Set((r7 + 0u), Cpu.W(0));
+                L_L002BBC80: ;
+                r3 = r3 + 1u;
+                r2 = (uint)((int)r3 < 4 ? 1 : 0);
+                { bool c_ = r2 != 0; r5 = r5 + 4u; if (c_) goto L_L002BBC74; }
+                r9 = r9 + 20u;
+                r6 = r6 + 1u;
+                r2 = (uint)((int)r6 < 4 ? 1 : 0);
+                { bool c_ = r2 != 0; r8 = r8 + 16u; if (c_) goto L_L002BBC68; }
+                r8 = r4;
+                r9 = r8 + 32u;
+                r11 = r0;
+                r1 = 2148335616u;
+                Cpu.SetW(2, Mem.U32((r1 - 13612u)));
+                r12 = 4294901760u;
+                r10 = r29;
+                L_L002BBCC0: ;
+                r7 = r0;
+                r6 = r10;
+                L_L002BBCC8: ;
+                Cpu.SetW(1, Mem.U32((r6 + 0u)));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(2));
+                Cpu.SetW(0, Mem.U32((r6 + 4u)));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(2));
+                r6 = r6 + 8u;
+                r7 = r7 + 1u;
+                Cpu.SetW(3, (uint)(int)Cpu.S(1));
+                r4 = Cpu.W(3);
+                Cpu.SetW(3, (uint)(int)Cpu.S(0));
+                r5 = Cpu.W(3);
+                r2 = r4 & r12;
+                r3 = r5 >> 16;
+                r2 = r2 | r3;
+                Mem.Set((r8 + 0u), r2);
+                r8 = r8 + 4u;
+                r4 = r4 << 16;
+                r4 = r4 & r12;
+                r5 = r5 & 65535u;
+                r4 = r4 | r5;
+                Mem.Set((r9 + 0u), r4);
+                r2 = (uint)((int)r7 < 2 ? 1 : 0);
+                { bool c_ = r2 != 0; r9 = r9 + 4u; if (c_) goto L_L002BBCC8; }
+                r11 = r11 + 1u;
+                r2 = (uint)((int)r11 < 4 ? 1 : 0);
+                { bool c_ = r2 != 0; r10 = r10 + 16u; if (c_) goto L_L002BBCC0; }
+                r29 = r29 + 64u; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

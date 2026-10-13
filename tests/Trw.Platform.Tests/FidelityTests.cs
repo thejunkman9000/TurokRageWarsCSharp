@@ -236,8 +236,12 @@ public class AudioInterfaceTests
         f.Queue(100 + AiFifo.CountHz / 2, 22050 * 4);          // half a second later: ends at t+2 s, not t+1.5 s
         Assert.Equal(0x80000000u, f.Status(100 + AiFifo.CountHz / 2));
         Assert.True(f.DmaDoneDue(100 + AiFifo.CountHz * 2));
-        Assert.False(f.DmaDoneDue(100 + AiFifo.CountHz * 2 + AiFifo.CountHz / 30));
+        // real time (not lockstep): the interrupt keeps coming after the queue ran dry, otherwise a host stall longer than the queued audio silenced the game for good
+        Assert.True(f.DmaDoneDue(100 + AiFifo.CountHz * 2 + AiFifo.CountHz / 30));
     }
+
+    [Fact]
+    public void AiFifoRaisesNoInterruptBeforeAudioStarts() => Assert.False(new AiFifo().DmaDoneDue(AiFifo.CountHz));
 
     [Fact]
     public void RingWaitsForAPrebufferAndFallsBackAfterAnUnderrun()

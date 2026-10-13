@@ -20,7 +20,8 @@ public static partial class Game
                 r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
                 r29 = _fp + 256u;
                 L_func_0023CFB8: ;
-                r6 = r17; func_00271FA4(r4, r5, r6);
+                r6 = r17 + r0; func_00271FA4(r4, r5, r6);
+                L_func_0023CFC0: ;
                 Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }

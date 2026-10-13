@@ -19,7 +19,7 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("sinf", a0, a1, a2, a3);
                 r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
                 r29 = _fp + 256u;
-                L_sinf: ;
+                L_func_002BC200: ;
                 Mem.Set((r29 + 0u), Cpu.W(12));
                 r2 = Mem.U32((r29 + 0u));
                 r3 = (uint)((int)r2 >> 22);
@@ -107,6 +107,16 @@ public static partial class Game
                 r1 = 2148335616u;
                 Cpu.SetW(0, Mem.U32((r1 - 13472u)));
                 L_L002BC374: ;
+                Cpu.V1 = r3; return r2;
+                r10 = Mem.U32((r5 + 8u));
+                L_func_002BC380: ;
+                Cpu.SetS(0, MathF.Sqrt(Cpu.S(12)));
+                Cpu.V1 = r3; return r2;
+                Mem.Set((r6 + 8u), r10);
+                L_func_002BC390: ;
+                r2 = 2756706304u;
+                r2 = r2 | 12u;
+                r2 = Mem.U32((r2 + 0u));
                 Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }

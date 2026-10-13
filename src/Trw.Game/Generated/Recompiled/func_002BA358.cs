@@ -48,53 +48,6 @@ public static partial class Game
                 L_L002BA3C4: ;
                 Cpu.SetS(0, Cpu.S(12) * Cpu.S(2));
                 Cpu.V1 = r3; return r2;
-                r1 = 2148335616u;
-                Cpu.Fpr[0] = Mem.U64((r1 - 13984u));
-                fcc = Cpu.D(12) == Cpu.D(0);
-                { bool c_ = !fcc; Mem.Set((r6 + 0u), r0); if (c_) goto L_L002BA3F0; }
-                Cpu.Fpr[0] = Cpu.Fpr[12]; Cpu.V1 = r3; return r2;
-                L_L002BA3F0: ;
-                r1 = 2148335616u;
-                Cpu.Fpr[0] = Mem.U64((r1 - 13976u));
-                Cpu.SetD(1, Math.Abs(Cpu.D(12)));
-                fcc = Cpu.D(0) <= Cpu.D(1);
-                { bool c_ = !fcc;  if (c_) goto L_L002BA430; }
-                r1 = 2148335616u;
-                Cpu.Fpr[2] = Mem.U64((r1 - 13968u));
-                L_L002BA414: ;
-                Cpu.SetD(1, Cpu.D(1) * Cpu.D(2));
-                r2 = Mem.U32((r6 + 0u));
-                r2 = r2 + 1u;
-                fcc = Cpu.D(0) <= Cpu.D(1);
-                { bool c_ = fcc; Mem.Set((r6 + 0u), r2); if (c_) goto L_L002BA414; }
-                L_L002BA430: ;
-                r1 = 2148335616u;
-                Cpu.Fpr[0] = Mem.U64((r1 - 13960u));
-                fcc = Cpu.D(1) < Cpu.D(0);
-                { bool c_ = !fcc;  if (c_) goto L_L002BA464; }
-                L_L002BA448: ;
-                r2 = Mem.U32((r6 + 0u));
-                Cpu.SetD(1, Cpu.D(1) + Cpu.D(1));
-                r2 = r2 - 1u;
-                fcc = Cpu.D(1) < Cpu.D(0);
-                { bool c_ = fcc; Mem.Set((r6 + 0u), r2); if (c_) goto L_L002BA448; }
-                L_L002BA464: ;
-                r1 = 2148335616u;
-                Cpu.Fpr[0] = Mem.U64((r1 - 13952u));
-                fcc = Cpu.D(0) < Cpu.D(12);
-                if (!fcc) { Cpu.SetD(1, -Cpu.D(1)); goto L_L002BA47C; }
-                L_L002BA47C: ;
-                Cpu.Fpr[0] = Cpu.Fpr[1]; Cpu.V1 = r3; return r2;
-                { bool c_ = r6 == 0; r2 = (uint)1; if (c_) goto L_L002BA49C; }
-                r2 = r2 << (int)(r6 & 31);
-                Cpu.SetW(0, r2);
-                Cpu.SetD(0, (double)(int)Cpu.W(0));
-                Cpu.SetD(12, Cpu.D(12) * Cpu.D(0));
-                L_L002BA49C: ;
-                Cpu.Fpr[0] = Cpu.Fpr[12]; Cpu.V1 = r3; return r2;
-                r4 = r17;
-                r5 = r19;
-                r6 = r18;
                 Cpu.V1 = r3; return r2;
             }
         }

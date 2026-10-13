@@ -20,7 +20,103 @@ public static partial class Game
                 r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
                 r29 = _fp + 256u;
                 L_func_00285D7C: ;
-                r4 = r19;
+                r4 = r19 + r0;
+                L_func_00285D80: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 24u), r18);
+                Mem.Set((r29 + 28u), r31);
+                Mem.Set((r29 + 20u), r17);
+                Mem.Set((r29 + 16u), r16);
+                r2 = Mem.U32((r5 + 256u));
+                r3 = 524288u;
+                r2 = r2 & r3;
+                { bool c_ = r2 != 0; r18 = r6; if (c_) goto L_L00285E00; }
+                r6 = Mem.U32((r4 + 312u));
+                r2 = (uint)(r5 < r6 ? 1 : 0);
+                { bool c_ = r2 != 0; r17 = (uint)-1; if (c_) goto L_L00285E04; }
+                r2 = Mem.U32((r4 + 320u));
+                r3 = r2 << 1;
+                r3 = r3 + r2;
+                r2 = r3 << 5;
+                r2 = r2 - r3;
+                r2 = r2 << 3;
+                r2 = r2 - 744u;
+                r2 = r6 + r2;
+                r2 = (uint)(r2 < r5 ? 1 : 0);
+                { bool c_ = r2 != 0; r2 = (uint)-1; if (c_) goto L_L00285E08; }
+                r3 = r5 - r6;
+                r2 = 2955673600u;
+                r2 = r2 | 2819u;
+                { ulong p_ = (ulong)r3 * r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r7 = hi;
+                r17 = r7 >> 9; goto L_L00285E04;
+                L_L00285E00: ;
+                r17 = (uint)-1;
+                L_L00285E04: ;
+                r2 = (uint)-1;
+                L_L00285E08: ;
+                { bool c_ = r17 == r2; r3 = (uint)2; if (c_) goto L_L00285F10; }
+                r2 = Mem.U32((r4 + 0u));
+                r1 = 131072u;
+                r1 = r4 + r1;
+                r16 = Mem.U32((r1 - 19444u));
+                { bool c_ = r2 == r3; r2 = r17 << 1; if (c_) goto L_L00285F10; }
+                r2 = r2 + r17;
+                r3 = r2 << 5;
+                r3 = r3 - r2;
+                r2 = Mem.U32((r4 + 312u));
+                r3 = r3 << 3;
+                r2 = r2 + r3;
+                r3 = Mem.U32((r2 + 24u));
+                r2 = Mem.U32((r3 + 0u));
+                r2 = r2 - 9u;
+                r2 = (uint)(r2 < (uint)(2) ? 1 : 0);
+                { bool c_ = r2 == 0;  if (c_) goto L_L00285E68; }
+                r2 = Mem.U32((r3 + 4u));
+                r2 = r2 & 512u;
+                { bool c_ = r2 != 0;  if (c_) goto L_L00285F10; }
+                L_L00285E68: ;
+                r4 = Mem.U32((r4 + 128u));
+                r5 = r0; r2 = func_0028FD94(r4, (int)r5);
+                r4 = r2;
+                r5 = r16; r2 = func_0028FD94(r4, (int)r5);
+                r4 = r2;
+                r5 = r0; r2 = func_0028FD94(r4, (int)r5);
+                r16 = r2;
+                r4 = r16;
+                r5 = r0; r2 = func_0028FD94(r4, (int)r5);
+                r4 = r16;
+                r5 = (uint)1; r2 = (uint)func_0028FDD8(r4, (int)r5);
+                r4 = r16;
+                r5 = (uint)1; r2 = func_0028FD94(r4, (int)r5);
+                r5 = r2;
+                r3 = r17 & 7u;
+                r2 = (uint)1;
+                { bool c_ = r18 == 0; r4 = r2 << (int)(r3 & 31); if (c_) goto L_L00285EEC; }
+                { bool c_ = (int)r17 >= 0; r3 = r17; if (c_) goto L_L00285ED4; }
+                r3 = r17 + 7u;
+                L_L00285ED4: ;
+                r3 = (uint)((int)r3 >> 3);
+                r3 = r5 + r3;
+                r2 = Mem.U8((r3 + 0u));
+                r2 = r2 | r4;
+                Mem.Set((r3 + 0u), (byte)r2); goto L_L00285F10;
+                L_L00285EEC: ;
+                r2 = r17;
+                if ((int)r2 < 0) { r2 = r2 + 7u; goto L_L00285EF8; }
+                L_L00285EF8: ;
+                r2 = (uint)((int)r2 >> 3);
+                r2 = r5 + r2;
+                r3 = Mem.U8((r2 + 0u));
+                r4 = ~(r0 | r4);
+                r3 = r3 & r4;
+                Mem.Set((r2 + 0u), (byte)r3);
+                L_L00285F10: ;
+                r31 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

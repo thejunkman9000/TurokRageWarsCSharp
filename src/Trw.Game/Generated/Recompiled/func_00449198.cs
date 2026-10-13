@@ -48,7 +48,7 @@ public static partial class Game
                 r4 = Mem.U32((r19 + 4u));
                 r5 = Mem.U32((r19 + 8u));
                 r6 = Mem.U16((r16 + 0u));
-                r7 = r20; r2 = __osContRamRead(r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = r20; r2 = (uint)__osContRamRead(r4, (int)r5, (ushort)r6, r7);
                 { bool c_ = r2 != 0; r6 = r29 + 32u; if (c_) goto L_L004492E4; }
                 r5 = r29 + 34u;
                 r4 = r0;

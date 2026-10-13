@@ -51,6 +51,29 @@ public static partial class Game
                 Cpu.Fpr[20] = Mem.U64((r29 + 24u));
                 r29 = r29 + 32u; Cpu.V1 = r3; return r2;
                 Mem.Set((r18 + 0u), r4);
+                L_func_002B7E50: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r31);
+                r2 = Mem.U32((r4 + 60u));
+                r5 = Mem.U32((r4 + 64u));
+                r3 = r2 << 1;
+                r3 = r3 + r2;
+                r3 = r3 << 4;
+                r3 = r3 + r5;
+                r2 = Mem.U32((r3 + 40u));
+                { bool c_ = r2 != 0; r6 = r0; if (c_) goto L_L002B7EA4; }
+                Mem.Set((r29 + 16u), (ushort)r0);
+                r3 = Mem.U32((r4 + 60u));
+                r4 = r4 + 20u;
+                r2 = r3 << 1;
+                r2 = r2 + r3;
+                r2 = r2 << 4;
+                r2 = r5 + r2;
+                r5 = r29 + 16u;
+                Mem.Set((r29 + 20u), r2); alEvtqPostEvent(r4, r5, (int)r6);
+                L_L002B7EA4: ;
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

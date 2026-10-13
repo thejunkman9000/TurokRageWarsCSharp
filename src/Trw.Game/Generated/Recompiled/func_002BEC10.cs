@@ -58,6 +58,25 @@ public static partial class Game
                 Mem.Set((r19 + 0u), r7);
                 r25 = Mem.U32((r29 + 16u));
                 r13 = r13 | 52u;
+                L_func_002BECB0: ;
+                r29 = r29 - 24u;
+                r2 = (uint)1;
+                Mem.Set((r29 + 16u), r16);
+                r16 = 2148859904u;
+                r16 = r16 - 5512u;
+                r4 = r16;
+                r5 = 2148859904u;
+                r5 = r5 - 5520u;
+                Mem.Set((r29 + 20u), r31);
+                r1 = 2148401152u;
+                Mem.Set((r1 - 31792u), r2);
+                r6 = r2; osCreateMesgQueue(r4, r5, (int)r6);
+                r4 = r16;
+                r5 = r0;
+                r6 = r5; r2 = (uint)osSendMesg(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

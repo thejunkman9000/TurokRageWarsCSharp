@@ -23,7 +23,7 @@ public static partial class Game
                 }
                 for (i = 0; (i < 8); ++i)
                 {
-                    ret = (int)(__osContRamRead(new OSPfs(pfs).queue_, (uint)(new OSPfs(pfs).channel), (uint)((ushort)((((int)(page) * 8) + i))), _fp));
+                    ret = __osContRamRead(new OSPfs(pfs).queue_, new OSPfs(pfs).channel, (ushort)((((int)(page) * 8) + i)), _fp);
                     if ((ret != 0))
                     {
                         new OSPfs(pfs).activebank_Set((byte)(0));

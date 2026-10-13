@@ -23,6 +23,11 @@ public static partial class Game
                 Cpu.SetS(0, MathF.Sqrt(Cpu.S(12)));
                 Cpu.V1 = r3; return r2;
                 Mem.Set((r6 + 8u), r10);
+                L_func_002BC390: ;
+                r2 = 2756706304u;
+                r2 = r2 | 12u;
+                r2 = Mem.U32((r2 + 0u));
+                Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

@@ -50,6 +50,7 @@ public static partial class Game
                 Cpu.V1 = r3; return r2;
                 r2 = r7 & 255u;
                 r2 = (uint)(r2 < (uint)(17) ? 1 : 0);
+                L_func_002BB450: ;
                 r29 = r29 - 56u;
                 Mem.Set((r29 + 44u), r21);
                 r21 = r4;

@@ -21,6 +21,19 @@ public static partial class Game
                 r29 = _fp + 256u;
                 L_func_002C1FFC: ;
                 r19 = Mem.U32((r21 + 4u));
+                L_func_002C2000: ;
+                r2 = Cpu.Fcsr;
+                Cpu.V1 = r3; return r2;
+                r2 = Cpu.Cp0[12]; { var v_ = __divdi3(Cpu.Long(r4, r5), Cpu.Long(r6, r7)); r2 = (uint)((ulong)v_ >> 32); r3 = (uint)v_; }
+                Cpu.V1 = r3; return r2;
+                r6 = r16;
+                L_func_002C2020: ;
+                r8 = Cpu.Cp0[12];
+                r1 = (uint)-2;
+                r9 = r8 & r1;
+                Cpu.Cp0[12] = r9;
+                r2 = r8 & 1u;
+                Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

@@ -36,8 +36,6 @@ public static partial class Game
                 r5 = r29 + 16u; alEvtqPostEvent(r4, r5, (int)r6);
                 r31 = Mem.U32((r29 + 32u));
                 r29 = r29 + 40u; Cpu.V1 = r3; return r2;
-                r17 = (uint)2;
-                r18 = 2148401152u;
                 Cpu.V1 = r3; return r2;
             }
         }

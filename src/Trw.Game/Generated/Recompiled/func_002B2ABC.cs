@@ -406,6 +406,140 @@ public static partial class Game
                 r2 = (uint)0;
                 Cpu.V1 = r3; return r2;
                 Mem.Set((r29 + 16u), (ushort)r2); alEvtqPostEvent(r4, r5, (int)r6);
+                L_func_002B3100: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r4;
+                Mem.Set((r29 + 28u), r19);
+                r19 = r5;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r6;
+                Mem.Set((r29 + 36u), r31);
+                Mem.Set((r29 + 32u), r20);
+                Mem.Set((r29 + 16u), r16); r2 = (uint)__getTrackByte(r4, r5);
+                r16 = r2;
+                r20 = r16 & 255u;
+                r2 = (uint)255;
+                { bool c_ = r20 != r2; r2 = (uint)1; if (c_) goto L_L002B32B0; }
+                r4 = r17;
+                r5 = r19; r2 = (uint)__getTrackByte(r4, r5);
+                r6 = r2;
+                r3 = r6 & 255u;
+                r2 = (uint)81;
+                { bool c_ = r3 != r2; r2 = (uint)47; if (c_) goto L_L002B31AC; }
+                r4 = r17;
+                r5 = r19;
+                r2 = (uint)3;
+                Mem.Set((r18 + 0u), (ushort)r2);
+                Mem.Set((r18 + 8u), (byte)r16);
+                Mem.Set((r18 + 9u), (byte)r6); r2 = (uint)__getTrackByte(r4, r5);
+                r4 = r17;
+                r5 = r19;
+                Mem.Set((r18 + 11u), (byte)r2); r2 = (uint)__getTrackByte(r4, r5);
+                r4 = r17;
+                r5 = r19;
+                Mem.Set((r18 + 12u), (byte)r2); r2 = (uint)__getTrackByte(r4, r5);
+                Mem.Set((r18 + 13u), (byte)r2);
+                r2 = r17 + r19;
+                Mem.Set((r2 + 168u), (byte)r0); goto L_L002B333C;
+                L_L002B31AC: ;
+                { bool c_ = r3 != r2; r2 = (uint)46; if (c_) goto L_L002B31E4; }
+                r2 = (uint)1;
+                r3 = Mem.U32((r17 + 4u));
+                r2 = r2 << (int)(r19 & 31);
+                r3 = r3 ^ r2;
+                { bool c_ = r3 == 0; Mem.Set((r17 + 4u), r3); if (c_) goto L_L002B31D8; }
+                r2 = (uint)18;
+                Mem.Set((r18 + 0u), (ushort)r2); goto L_L002B333C;
+                L_L002B31D8: ;
+                r2 = (uint)4;
+                Mem.Set((r18 + 0u), (ushort)r2); goto L_L002B333C;
+                L_L002B31E4: ;
+                { bool c_ = r3 != r2; r2 = (uint)45; if (c_) goto L_L002B3218; }
+                r4 = r17;
+                r5 = r19; r2 = (uint)__getTrackByte(r4, r5);
+                r4 = r17;
+                r5 = r19; r2 = (uint)__getTrackByte(r4, r5);
+                r2 = r17 + r19;
+                Mem.Set((r2 + 168u), (byte)r0);
+                r2 = (uint)19;
+                Mem.Set((r18 + 0u), (ushort)r2); goto L_L002B333C;
+                L_L002B3218: ;
+                { bool c_ = r3 != r2; r2 = r19 << 2; if (c_) goto L_L002B333C; }
+                r7 = r17 + r2;
+                r6 = Mem.U32((r7 + 24u));
+                r4 = Mem.U8((r6 + 0u));
+                r6 = r6 + 1u;
+                r2 = Mem.U8((r6 + 0u));
+                r3 = r2 & 255u;
+                { bool c_ = r3 != 0;  if (c_) goto L_L002B324C; }
+                r2 = r6 + 5u;
+                Mem.Set((r6 + 0u), (byte)r4); goto L_L002B3298;
+                L_L002B324C: ;
+                { bool c_ = r3 == r20; r2 = r2 - 1u; if (c_) goto L_L002B3258; }
+                Mem.Set((r6 + 0u), (byte)r2);
+                L_L002B3258: ;
+                r6 = r6 + 1u;
+                r2 = Mem.U8((r6 + 0u));
+                r6 = r6 + 1u;
+                r3 = Mem.U8((r6 + 0u));
+                r6 = r6 + 1u;
+                r4 = Mem.U8((r6 + 0u));
+                r6 = r6 + 1u;
+                r5 = Mem.U8((r6 + 0u));
+                r6 = r6 + 1u;
+                r2 = r2 << 24;
+                r3 = r3 << 16;
+                r2 = r2 + r3;
+                r4 = r4 << 8;
+                r2 = r2 + r4;
+                r2 = r2 + r5;
+                r2 = r6 - r2;
+                L_L002B3298: ;
+                Mem.Set((r7 + 24u), r2);
+                r2 = r17 + r19;
+                Mem.Set((r2 + 168u), (byte)r0);
+                r2 = (uint)20;
+                Mem.Set((r18 + 0u), (ushort)r2); goto L_L002B333C;
+                L_L002B32B0: ;
+                Mem.Set((r18 + 0u), (ushort)r2);
+                r2 = r16 & 128u;
+                { bool c_ = r2 == 0; r4 = r17; if (c_) goto L_L002B32DC; }
+                r5 = r19;
+                Mem.Set((r18 + 8u), (byte)r16); r2 = (uint)__getTrackByte(r4, r5);
+                Mem.Set((r18 + 9u), (byte)r2);
+                r2 = r17 + r19;
+                Mem.Set((r2 + 168u), (byte)r16); goto L_L002B32EC;
+                L_L002B32DC: ;
+                r2 = r17 + r19;
+                r2 = Mem.U8((r2 + 168u));
+                Mem.Set((r18 + 9u), (byte)r16);
+                Mem.Set((r18 + 8u), (byte)r2);
+                L_L002B32EC: ;
+                r2 = Mem.U8((r18 + 8u));
+                r3 = r2 & 240u;
+                r2 = (uint)192;
+                { bool c_ = r3 == r2; r2 = (uint)208; if (c_) goto L_L002B3338; }
+                { bool c_ = r3 == r2; r4 = r17; if (c_) goto L_L002B3338; }
+                r5 = r19; r2 = (uint)__getTrackByte(r4, r5);
+                r3 = Mem.U8((r18 + 8u));
+                Mem.Set((r18 + 10u), (byte)r2);
+                r2 = (uint)144;
+                r3 = r3 & 240u;
+                { bool c_ = r3 != r2; r4 = r17; if (c_) goto L_L002B333C; }
+                r5 = r19; r2 = __readVarLen(r4, r5);
+                Mem.Set((r18 + 12u), r2); goto L_L002B333C;
+                L_L002B3338: ;
+                Mem.Set((r18 + 10u), (byte)r0);
+                L_L002B333C: ;
+                r31 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r2 = (uint)1;
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

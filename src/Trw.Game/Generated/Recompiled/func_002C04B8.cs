@@ -21,6 +21,93 @@ public static partial class Game
                 r29 = _fp + 256u;
                 L_func_002C04B8: ;
                 r27 = Cpu.Fcsr;
+                L_func_002C04C0: ;
+                r29 = r29 - 24u;
+                Mem.Set((r29 + 16u), r16);
+                Mem.Set((r29 + 20u), r31);
+                r16 = r4; r2 = __osDisableInt();
+                r4 = 2148401152u;
+                r4 = r4 - 28024u;
+                r16 = ~(r0 | r16);
+                r3 = Mem.U32((r4 + 0u));
+                r16 = r16 | 1025u;
+                r3 = r3 & r16;
+                Mem.Set((r4 + 0u), r3);
+                r4 = r2; __osRestoreInt(r4);
+                r31 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                r1 = 67108864u;
+                r27 = r27 & r1;
+                L_func_002C0510: ;
+                r29 = r29 - 48u;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 36u), r21);
+                r21 = r5;
+                Mem.Set((r29 + 32u), r20);
+                r20 = r6;
+                Mem.Set((r29 + 40u), r31);
+                Mem.Set((r29 + 28u), r19);
+                Mem.Set((r29 + 24u), r18);
+                Mem.Set((r29 + 20u), r17); r2 = __osDisableInt();
+                r3 = Mem.U32((r16 + 8u));
+                r4 = Mem.U32((r16 + 16u));
+                r3 = (uint)((int)r3 < (int)r4 ? 1 : 0);
+                { bool c_ = r3 != 0; r17 = r2; if (c_) goto L_L002C0598; }
+                r19 = (uint)1;
+                r18 = (uint)8;
+                L_L002C055C: ;
+                { bool c_ = r20 == r19; r4 = r16 + 4u; if (c_) goto L_L002C0574; }
+                r4 = r17; __osRestoreInt(r4);
+                r2 = (uint)-1; goto L_L002C061C;
+                L_L002C0574: ;
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 - 28000u));
+                Mem.Set((r2 + 16u), (ushort)r18); __osEnqueueAndYield(r4);
+                r2 = Mem.U32((r16 + 8u));
+                r3 = Mem.U32((r16 + 16u));
+                r2 = (uint)((int)r2 < (int)r3 ? 1 : 0);
+                { bool c_ = r2 == 0;  if (c_) goto L_L002C055C; }
+                L_L002C0598: ;
+                r3 = Mem.U32((r16 + 12u));
+                r4 = Mem.U32((r16 + 8u));
+                r2 = Mem.U32((r16 + 16u));
+                r3 = r3 + r4;
+                if (r2 != 0) { lo = (uint)Cpu.SDiv((int)r3, (int)r2); hi = (uint)Cpu.SRem((int)r3, (int)r2); }
+                { bool c_ = r2 != 0;  if (c_) goto L_L002C05B8; }
+                throw new InvalidOperationException("MIPS break");
+                L_L002C05B8: ;
+                r1 = (uint)-1;
+                { bool c_ = r2 != r1; r1 = 2147483648u; if (c_) goto L_L002C05D0; }
+                { bool c_ = r3 != r1;  if (c_) goto L_L002C05D0; }
+                throw new InvalidOperationException("MIPS break");
+                L_L002C05D0: ;
+                r2 = hi;
+                r3 = Mem.U32((r16 + 20u));
+                r2 = r2 << 2;
+                r2 = r2 + r3;
+                Mem.Set((r2 + 0u), r21);
+                r2 = Mem.U32((r16 + 8u));
+                r3 = Mem.U32((r16 + 0u));
+                r2 = r2 + 1u;
+                Mem.Set((r16 + 8u), r2);
+                r2 = Mem.U32((r3 + 0u));
+                { bool c_ = r2 == 0;  if (c_) goto L_L002C0610; }
+                r4 = r16; r2 = __osPopThread(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r2; osStartThread(r4);
+                L_L002C0610: ;
+                r4 = r17; __osRestoreInt(r4);
+                r2 = r0;
+                L_L002C061C: ;
+                r31 = Mem.U32((r29 + 40u));
+                r21 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 48u; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

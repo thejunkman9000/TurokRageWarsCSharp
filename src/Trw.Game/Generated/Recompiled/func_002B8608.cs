@@ -22,6 +22,40 @@ public static partial class Game
                 L_func_002B8608: ;
                 r7 = (uint)1;
                 r4 = r0;
+                L_func_002B8610: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r4;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r5;
+                Mem.Set((r29 + 28u), r31);
+                Mem.Set((r29 + 24u), r18);
+                r2 = Mem.U32((r16 + 8u));
+                { bool c_ = r2 == 0; r18 = r6; if (c_) goto L_L002B868C; }
+                r2 = __allocParam();
+                r6 = r2;
+                { bool c_ = r6 == 0;  if (c_) goto L_L002B868C; }
+                r2 = Mem.U32((r16 + 8u));
+                r3 = Mem.U32((r17 + 28u));
+                r4 = Mem.U32((r2 + 216u));
+                r2 = (uint)14;
+                Mem.Set((r6 + 8u), (ushort)r2);
+                Mem.Set((r6 + 12u), r18);
+                Mem.Set((r6 + 0u), r0);
+                r3 = r3 + r4;
+                Mem.Set((r6 + 4u), r3);
+                r2 = Mem.U16((r16 + 26u));
+                Mem.Set((r6 + 10u), (ushort)r2);
+                r2 = Mem.U32((r16 + 8u));
+                r4 = Mem.U32((r2 + 12u));
+                r2 = Mem.U32((r4 + 8u));
+                r5 = (uint)3; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B868C: ;
+                r31 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
             }
         }

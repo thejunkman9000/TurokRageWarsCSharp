@@ -111,7 +111,7 @@ public static partial class Game
                 r2 = r2 & 192u;
                 r16 = r2 >> 4;
                 if (r16 != 0) { r16 = (uint)1; goto L_L002BD774; }
-                r4 = r29 + 22u; r2 = __osContDataCrc(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r29 + 22u; r2 = (uint)__osContDataCrc(r4);
                 r3 = Mem.U8((r29 + 54u));
                 r2 = r2 & 255u;
                 { bool c_ = r2 == r3; r4 = r23; if (c_) goto L_L002BD74C; }

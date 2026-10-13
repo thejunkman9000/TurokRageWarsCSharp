@@ -19,7 +19,9 @@ public sealed class AiFifo
     {
         if (end < now) end = now;
         end += (ulong)(bytes / 4) * CountHz / Frequency;
+        started = true;
     }
+    private bool started;
 
     /// <summary>osAiGetStatus: FULL (0x80000000) while more than two frames plus 100 ms are still queued, else 0.</summary>
     public uint Status(ulong now)
@@ -29,7 +31,11 @@ public sealed class AiFifo
     }
 
     /// <summary>The AI DMA-done interrupt (OS_EVENT_AI = 6) is posted on retraces while audio is queued (about one per frame).</summary>
-    public bool DmaDoneDue(ulong now) => end + CountHz / 60 > now;
+    /// In the real-time window it is posted on every retrace once audio has started: when the host stalls for longer than the queued audio lasts (a busy PC)
+    /// the queue runs dry between two retraces, and if the last interrupt came while the FIFO still reported FULL the game queued nothing; with the
+    /// interrupt tied to queued audio none was posted again, the game's audio thread (which refills on it) waited forever and the sound stopped for good.
+    /// Lockstep runs (oracle, netplay) keep the original rule, so their digests are unchanged.
+    public bool DmaDoneDue(ulong now) => end + CountHz / 60 > now || (started && !Oracle.Deterministic);
 }
 
 /// <summary>

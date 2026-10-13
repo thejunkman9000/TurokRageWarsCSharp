@@ -33,14 +33,14 @@ public static partial class Game
                 L_L00449880: ;
                 r4 = Mem.U32((r16 + 4u));
                 r5 = Mem.U32((r16 + 8u));
-                r7 = r29 + 16u; r2 = __osContRamRead(r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = r29 + 16u; r2 = (uint)__osContRamRead(r4, (int)r5, (ushort)r6, r7);
                 r3 = r2;
                 { bool c_ = r3 == 0; r2 = (uint)2; if (c_) goto L_L004498D4; }
                 { bool c_ = r3 != r2; r2 = r3; if (c_) goto L_L00449904; }
                 r6 = (uint)1;
                 r4 = Mem.U32((r16 + 4u));
                 r5 = Mem.U32((r16 + 8u));
-                r7 = r29 + 16u; r2 = __osContRamRead(r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = r29 + 16u; r2 = (uint)__osContRamRead(r4, (int)r5, (ushort)r6, r7);
                 r3 = r2;
                 { bool c_ = r3 == 0; r5 = r0; if (c_) goto L_L004498D8; }
                  goto L_L00449904;

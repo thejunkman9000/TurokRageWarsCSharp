@@ -26,6 +26,7 @@ public static partial class Game
                 r18 = r18 - 19612u;
                 L_I0020DDDC: ;
                 Mem.Set((r29 + 28u), r31);
+                L_func_0020DDE0: ;
                 L_I0020DDE0: ;
                 r29 = r29 - 120u;
                 L_I0020DDE4: ;
