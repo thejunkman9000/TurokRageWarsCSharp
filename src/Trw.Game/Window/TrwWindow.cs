@@ -57,6 +57,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
     {
         Host.ReadPad = ReadPad;
         Host.ReadMouse = ReadMouse;
+        ApplyMouseSettings();
         Window.TextInput += (_, e) => TextEntry.OnTextInput(e.Character, e.Key);     // typed characters (shift and layout applied) for the name entry
         audio.Hook();
         base.Initialize();
@@ -351,7 +352,12 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         return connected;
     }
 
-    private bool escapeDown, f1Down, captureSuspended, haveMouseRef, relMouse;
+    private bool escapeDown, f1Down, captureSuspended, haveMouseRef, relMouse, sensDownHeld, sensUpHeld, clickResume;
+
+    private static void ApplyMouseSettings()
+    {
+        foreach (var m in mappers) { m.MouseSens = UserSettings.Current.MouseSensitivity; m.MouseInvertY = UserSettings.Current.MouseInvertY; }
+    }
 
     /// <summary>SDL2 (MonoGame DesktopGL's platform layer) relative mouse mode, called directly: MonoGame does not expose it.</summary>
     private static class Sdl
@@ -373,6 +379,10 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
     private void SampleDevices(KeyboardState ks)
     {
         var ms = Mouse.GetState();
+        // a click into the window during free play takes the mouse back after Esc / F1 released it (that click does not reach the game)
+        if (captureSuspended && IsActive && GameplayContext() == 1 && ms.LeftButton == ButtonState.Pressed && Window.ClientBounds.Contains(Window.ClientBounds.X + ms.X, Window.ClientBounds.Y + ms.Y))
+        { captureSuspended = false; clickResume = true; }
+        if (clickResume && ms.LeftButton == ButtonState.Released) clickResume = false;
         bool capture = IsActive && !captureSuspended && GameplayContext() == 1;
         int cx = Window.ClientBounds.Width / 2, cy = Window.ClientBounds.Height / 2;
         lock (deviceLock)
@@ -381,7 +391,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
             // an unfocused window takes no input: clicks and keys typed into another program must not become presses (MonoGame reports the global state)
             bool act = IsActive;
             if (!act) keyboard = default;
-            mouseButtons[0] = act && ms.LeftButton == ButtonState.Pressed; mouseButtons[1] = act && ms.RightButton == ButtonState.Pressed; mouseButtons[2] = act && ms.MiddleButton == ButtonState.Pressed;
+            mouseButtons[0] = act && !clickResume && ms.LeftButton == ButtonState.Pressed; mouseButtons[1] = act && ms.RightButton == ButtonState.Pressed; mouseButtons[2] = act && ms.MiddleButton == ButtonState.Pressed;
             mouseButtons[3] = act && ms.XButton1 == ButtonState.Pressed; mouseButtons[4] = act && ms.XButton2 == ButtonState.Pressed;
             if (haveMouseRef && act)
             {
@@ -393,12 +403,12 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
             {
                 // SDL relative mode (the usual FPS capture): the cursor is hidden and held in the window, the motion is the raw device motion (no pointer
                 // acceleration) and cannot leave the window between two frames; without SDL the cursor is warped back to the centre every frame
-                if (!mouseCaptured) { relMouse = Sdl.SetRelative(true); Console.Error.WriteLine($"[mouse] captured ({(relMouse ? "SDL relative mode" : "centre warp")}){(global::Trw.Game.Game.NativeMouse ? ", native look" : ", mouse drives the stick")}"); }
+                if (!mouseCaptured) { relMouse = Sdl.SetRelative(true); Console.Error.WriteLine($"[mouse] tick {global::Trw.Game.Game.CurrentTick}: captured ({(relMouse ? "SDL relative mode" : "centre warp")}){(global::Trw.Game.Game.NativeMouse ? ", native look" : ", mouse drives the stick")}"); }
                 if (relMouse) { Sdl.RelativeMotion(out int rx, out int ry); if (mouseCaptured) { mouseDx += rx; mouseDy += ry; } }
                 else { if (mouseCaptured) { mouseDx += ms.X - cx; mouseDy += ms.Y - cy; } Mouse.SetPosition(cx, cy); }
             }
             else if (mouseCaptured) { mouseDx = mouseDy = 0; foreach (var m in mappers) m.ResetMouse(); if (relMouse) { Sdl.SetRelative(false); relMouse = false; Mouse.SetPosition(cx, cy); } }
-            if (capture != mouseCaptured) { mouseCaptured = capture; IsMouseVisible = !capture; }
+            if (capture != mouseCaptured) { mouseCaptured = capture; IsMouseVisible = !capture; if (!capture) Console.Error.WriteLine($"[mouse] tick {global::Trw.Game.Game.CurrentTick}: released"); }
         }
     }
 
@@ -415,6 +425,16 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         bool f1 = ks.IsKeyDown(Keys.F1);
         if (f1 && !f1Down) captureSuspended = !captureSuspended;                                         // F1 captures / releases the mouse
         f1Down = f1;
+        // - / = : mouse sensitivity down / up by 1.25 x (saved in the user settings; shown on screen)
+        bool sDown = IsActive && ks.IsKeyDown(Keys.OemMinus), sUp = IsActive && (ks.IsKeyDown(Keys.OemPlus));
+        if ((sDown && !sensDownHeld) || (sUp && !sensUpHeld))
+        {
+            var us = UserSettings.Current;
+            us.MouseSensitivity = Math.Clamp(us.MouseSensitivity * (sUp ? 1.25f : 0.8f), 0.05f, 50f);
+            us.Save(); ApplyMouseSettings();
+            Scoreboard.Toast($"MOUSE SENSITIVITY {us.MouseSensitivity:0.##}");
+        }
+        sensDownHeld = sDown; sensUpHeld = sUp;
         bool f11 = ks.IsKeyDown(Keys.F11) || (ks.IsKeyDown(Keys.Enter) && (ks.IsKeyDown(Keys.LeftAlt) || ks.IsKeyDown(Keys.RightAlt)));
         if (f11 && !fullscreenKeyDown) graphics.ToggleFullScreen();       // F11 or Alt+Enter
         fullscreenKeyDown = f11;

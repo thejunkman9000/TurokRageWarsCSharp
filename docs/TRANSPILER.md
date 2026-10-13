@@ -126,7 +126,9 @@ Saves are raw 32 KiB `.mpk` images in Project64's layout and naming (`Turok; Rag
 
 ## Mouse look (`Os/MouseLook.cs`)
 A true FPS mouse, the port of the C port's native controls. Capture: in free play the window switches SDL2 to relative mouse mode (cursor hidden and held in the
-window, raw device motion without pointer acceleration; Esc / F1 release it, `TRW_MOUSE_WARP=1` = the old centre-warp capture). Look: pad 0's mouse motion
+window, raw device motion without pointer acceleration; Esc / F1 release it, a click into the window takes it back (that click does not fire),
+`TRW_MOUSE_WARP=1` = the old centre-warp capture). Sensitivity: `%LOCALAPPDATA%\TurokRageWars\settings.json` (`MouseSensitivity`, default 2 = 0.1 degrees per
+count; `MouseInvertY`), `-` / `=` in the window change it by 1.25 x (saved, shown on screen), `TRW_MOUSE_SENS` overrides it for a run. Look: pad 0's mouse motion
 (0.05 degrees per count x `MouseSens`) is not converted into stick values any more; the game's view update func_002231B0 (`tools/overrides/func_002231B0.c`)
 calls `trw_mouse_look` after its own turn / tilt: the actor turns by exactly the motion (x the game's turn-speed slider: 1/8 x .. 8 x, centre 1 x) and the view
 tilt is set to an absolute pitch kept per controller slot, within the game's look limits (x the look-speed slider); `trw_mouse_reset` clears it on death and

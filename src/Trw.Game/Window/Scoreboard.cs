@@ -53,8 +53,22 @@ public sealed class Scoreboard : IDisposable
     private struct Row { public string Name; public int Frags, Deaths, Port, Index, Team; public bool Bot; }
 
     /// <summary>Draws the panel into the current render target (the back buffer, or a screenshot target) of <paramref name="w"/> x <paramref name="h"/> pixels.</summary>
+    private static string? toastText;
+    private static long toastUntil;
+    /// <summary>A short notice at the top of the picture for about two seconds (e.g. the mouse sensitivity after - / =).</summary>
+    public static void Toast(string text) { toastText = text; toastUntil = Environment.TickCount64 + 2000; }
+
     public void Draw(Rectangle picture, int w, int h)
     {
+        if (font != null && toastText != null && Environment.TickCount64 < toastUntil)
+        {
+            batch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullNone);
+            var sz = font.MeasureString(toastText);
+            var pos = new Vector2(picture.X + (picture.Width - sz.X) / 2, picture.Y + picture.Height * 0.12f);
+            batch.Draw(white, new Rectangle((int)pos.X - 12, (int)pos.Y - 6, (int)sz.X + 24, (int)sz.Y + 12), Panel);
+            batch.DrawString(font, toastText, pos, Gold);
+            batch.End();
+        }
         if (font == null || w < 64 || h < 64 || !MatchInfo.InMatch) return;
         if (ViewLayout.Last != null) DrawClock(picture);
         if (!Visible) return;
