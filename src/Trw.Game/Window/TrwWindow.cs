@@ -403,12 +403,12 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
             {
                 // SDL relative mode (the usual FPS capture): the cursor is hidden and held in the window, the motion is the raw device motion (no pointer
                 // acceleration) and cannot leave the window between two frames; without SDL the cursor is warped back to the centre every frame
-                if (!mouseCaptured) { relMouse = Sdl.SetRelative(true); Console.Error.WriteLine($"[mouse] tick {global::Trw.Game.Game.CurrentTick}: captured ({(relMouse ? "SDL relative mode" : "centre warp")}){(global::Trw.Game.Game.NativeMouse ? ", native look" : ", mouse drives the stick")}"); }
+                if (!mouseCaptured) { relMouse = Sdl.SetRelative(true); Console.Error.WriteLine($"[mouse] tick {(global::Trw.Game.Game.CurrentTick)}: captured ({(relMouse ? "SDL relative mode" : "centre warp")}){(global::Trw.Game.Game.NativeMouse ? ", native look" : ", mouse drives the stick")}"); }
                 if (relMouse) { Sdl.RelativeMotion(out int rx, out int ry); if (mouseCaptured) { mouseDx += rx; mouseDy += ry; } }
                 else { if (mouseCaptured) { mouseDx += ms.X - cx; mouseDy += ms.Y - cy; } Mouse.SetPosition(cx, cy); }
             }
             else if (mouseCaptured) { mouseDx = mouseDy = 0; foreach (var m in mappers) m.ResetMouse(); if (relMouse) { Sdl.SetRelative(false); relMouse = false; Mouse.SetPosition(cx, cy); } }
-            if (capture != mouseCaptured) { mouseCaptured = capture; IsMouseVisible = !capture; if (!capture) Console.Error.WriteLine($"[mouse] tick {global::Trw.Game.Game.CurrentTick}: released"); }
+            if (capture != mouseCaptured) { mouseCaptured = capture; IsMouseVisible = !capture; if (!capture) Console.Error.WriteLine($"[mouse] tick {(global::Trw.Game.Game.CurrentTick)}: released"); }
         }
     }
 
