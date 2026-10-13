@@ -91,7 +91,9 @@ public sealed class GfxRenderer : IDisposable
         if (local is { } r)
         {
             region = r;
-            frameAspect = r.Aspect;
+            // the HUD of the own view is presented as a full-screen 4:3 layout: a 2-player half draws it at half height (the game's split-screen look), and
+            // with the half mapped onto the whole picture that squash cancels out, giving the 1-player proportions (quadrants are 4:3 already)
+            frameAspect = 4f / 3f;
             // widescreen: the own view fills the window's shape (its 3D is widened / heightened to it in Draw); otherwise the region's own aspect, letterboxed
             var (w, h) = ViewLayout.TargetSize(r, windowW, windowH, Scale, LocalView.Stretch, Widescreen.Allowed ? windowW / (float)Math.Max(1, windowH) : 0);
             if (localTarget == null || localTarget.Width != w || localTarget.Height != h)
@@ -241,10 +243,12 @@ public sealed class GfxRenderer : IDisposable
     private void Keep2DShape(int n)
     {
         float at = targetW / (float)targetH, af = frameAspect;
-        float sx = at > af ? af / at : 1f, sy = at < af ? at / af : 1f;
-        if (sx > 0.999f && sy > 0.999f) return;
         float x0 = float.MaxValue, x1 = float.MinValue, y0 = float.MaxValue, y1 = float.MinValue;
         for (int i = 0; i < n; i++) { var p = scratch[i].Position; float w = p.W != 0 ? p.W : 1f; float x = p.X / w, y = p.Y / w; if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+        // own view: the crosshair (a small 2D draw at the view's centre) is drawn at its normal shape even in a 2-player half, unlike the rest of the HUD: keep it as drawn
+        if (lastLocal && MathF.Abs((x0 + x1) * 0.5f) < 0.08f && MathF.Abs((y0 + y1) * 0.5f) < 0.12f && x1 - x0 < 0.3f && y1 - y0 < 0.4f) af = region.Aspect;
+        float sx = at > af ? af / at : 1f, sy = at < af ? at / af : 1f;
+        if (sx > 0.999f && sy > 0.999f) return;
         if (x1 - x0 >= 1.9f) sx = 1f;
         if (y1 - y0 >= 1.9f) sy = 1f;
         float cy = (y0 + y1) * 0.5f, ay = cy > 1f / 3f ? 1f : cy < -1f / 3f ? -1f : 0f;
