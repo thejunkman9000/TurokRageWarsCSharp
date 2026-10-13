@@ -389,6 +389,16 @@ def analyze(text, name, sig_name=None):
 
 # ----------------------------------------------------------------------------------------------- emission
 
+# tools/mips2cs/hooks.txt: "function|instruction address (hex)|C# statement" inserts port code right after that instruction of a recompiled function
+# (presentation features that must change a value the ROM computes, e.g. the widescreen camera aspect; keep them few and documented)
+HOOKS = {}
+_hp = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'hooks.txt')
+if os.path.exists(_hp):
+    for _l in open(_hp, encoding='utf-8'):
+        _l = _l.strip()
+        if _l and not _l.startswith('#'):
+            _f, _a, _c = _l.split('|', 2)
+            HOOKS[(_f.strip(), int(_a, 16))] = _c.strip()
 NULLGUARD = set(open('port/recomp_nullguard.txt').read().split()) if os.path.exists('port/recomp_nullguard.txt') else set()
 ANALYSES = {}      # name -> Analysis, for every function being recompiled
 RC_SIG = {}        # name -> (callable C# name, number of register parameters)
@@ -507,7 +517,10 @@ def recompile(name, a):
                 elif 0x10 <= off < 0x70 and off not in saved_slots:
                     pending.add(('sp', off))
                     if m == 'sdc1': pending.add(('sp', off + 4))
-        body.append(gen_ins(m, ops)); i += 1
+        body.append(gen_ins(m, ops))
+        hk = HOOKS.get((name, it[3])) if len(it) > 3 else None
+        if hk: body.append(hk)          # tools/mips2cs/hooks.txt: port code after this instruction
+        i += 1
 
     stk_words = max(a.frame // 4 + 16 + 8, 64)
     total_bytes = (stk_words + 32) * 4

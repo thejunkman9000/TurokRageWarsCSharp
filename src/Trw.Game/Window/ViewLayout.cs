@@ -69,9 +69,10 @@ public static class ViewLayout
     /// <summary>Size of the offscreen target for a local view presented in a window of <paramref name="winW"/> x <paramref name="winH"/>:
     /// the letterboxed destination size (so the view is rendered at the window's resolution), never below the split-screen density
     /// (<paramref name="scale"/> target pixels per N64 pixel), at most 4096 wide.</summary>
-    public static (int w, int h) TargetSize(ViewRegion r, int winW, int winH, int scale, bool stretch)
+    public static (int w, int h) TargetSize(ViewRegion r, int winW, int winH, int scale, bool stretch, float pictureAspect = 0)
     {
-        float aspect = stretch ? (float)winW / Math.Max(1, winH) : r.Aspect;
+        // the cameras are built for the whole picture in local view (Widescreen.LocalFill): pictureAspect; otherwise the region's own (or stretched to the window)
+        float aspect = stretch ? (float)winW / Math.Max(1, winH) : pictureAspect > 0 ? pictureAspect : r.Aspect;
         float fitW = Math.Min(winW, winH * aspect);
         float w = Math.Max(fitW, r.Width * scale);
         w = Math.Min(w, 4096f);

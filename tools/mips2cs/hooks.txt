@@ -1,0 +1,4 @@
+# function|address of the instruction the code follows (hex)|C# statement (see the HOOKS loader in mips2cs.py)
+# Widescreen / local view (src/Trw.Game/Runtime/Widescreen.cs): the camera's aspect and horizontal extent, then the viewmodel projection's aspect.
+func_00234FDC|002355B0|Widescreen.CamAspect(r19);
+func_00234FDC|00235910|r7 = Widescreen.ViewmodelAspect(r7);

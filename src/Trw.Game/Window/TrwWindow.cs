@@ -28,7 +28,10 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
 
     public TrwWindow()
     {
-        graphics = new GraphicsDeviceManager(this) { PreferredBackBufferWidth = 960, PreferredBackBufferHeight = 720 };
+        // TRW_WINDOW=<w>x<h> sets the initial client size (default 960x720)
+        int ww = 960, wh = 720;
+        if (Environment.GetEnvironmentVariable("TRW_WINDOW") is { } ws && ws.Split('x') is { Length: 2 } wp && int.TryParse(wp[0], out var pw) && int.TryParse(wp[1], out var ph) && pw >= 160 && ph >= 120) { ww = pw; wh = ph; }
+        graphics = new GraphicsDeviceManager(this) { PreferredBackBufferWidth = ww, PreferredBackBufferHeight = wh };
         IsFixedTimeStep = true;
         TargetElapsedTime = TimeSpan.FromSeconds(1.0 / 60);
         if (double.TryParse(Environment.GetEnvironmentVariable("TRW_FAST"), out var speed) && speed > 1)   // test runs: retrace ticks at <speed> x 60 Hz

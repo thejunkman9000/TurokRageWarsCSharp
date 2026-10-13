@@ -39,7 +39,7 @@ public sealed class Scoreboard : IDisposable
     {
         tabHeld = active && ks.IsKeyDown(Keys.Tab);
         bool f2 = active && ks.IsKeyDown(Keys.F2);
-        if (f2 && !f2Down)
+        if (f2 && !f2Down && !Widescreen.Locked)      // a netplay session fixes the view mode (it reaches guest RAM: the cameras are built for it)
         {
             LocalView.Enabled = !LocalView.Enabled;
             Console.Error.WriteLine($"[view] {(LocalView.Enabled ? "local view (pad " + LocalView.Pad + ")" : "split screen")}");

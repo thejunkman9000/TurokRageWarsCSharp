@@ -30,6 +30,11 @@ public sealed class GfxRenderer : IDisposable
     // local view (ViewLayout.cs): the local player's region of the N64 screen is drawn into its own target, sized for the window
     private RenderTarget2D? localTarget;
     private bool lastLocal;                                          // the frame in the targets is a local view
+    // widescreen (Runtime/Widescreen.cs): in a level the cameras are built for the window's aspect, so the frame renders into a target of that aspect;
+    // 3D (perspective draws) fills it, 2D (HUD: W = 1) keeps its 4:3 shape, centred horizontally, anchored vertically; draws spanning the whole width stretch
+    private RenderTarget2D? wideTarget;
+    private bool lastWide;
+    private float frameAspect = 4f / 3f;                             // aspect the 2D of the current frame was authored at (4:3, or the local view's region)
     private ViewRegion region;
     private int targetW = InternalWidth, targetH = InternalHeight;    // size of the target the current frame renders into
     private int windowW = 960, windowH = 720;                        // window client size at the last Present
@@ -81,10 +86,14 @@ public sealed class GfxRenderer : IDisposable
     public void Execute(IReadOnlyList<GfxCommand> commands, ViewRegion? local = null)
     {
         lastLocal = local != null;
+        lastWide = false;
+        frameAspect = 4f / 3f;
         if (local is { } r)
         {
             region = r;
-            var (w, h) = ViewLayout.TargetSize(r, windowW, windowH, Scale, LocalView.Stretch);
+            frameAspect = r.Aspect;
+            // the cameras are built for the whole picture in local view (Widescreen.LocalFill): the target takes that aspect, not the region's
+            var (w, h) = ViewLayout.TargetSize(r, windowW, windowH, Scale, LocalView.Stretch, Widescreen.ScreenAspect);
             if (localTarget == null || localTarget.Width != w || localTarget.Height != h)
             {
                 localTarget?.Dispose();
@@ -94,6 +103,19 @@ public sealed class GfxRenderer : IDisposable
             }
             device.SetRenderTarget(localTarget);
             targetW = w; targetH = h;
+        }
+        else if (Widescreen.Active && Widescreen.InLevel && Widescreen.ScreenAspect > 4f / 3f + 0.01f)
+        {
+            int h = InternalHeight, w = Math.Min(4096, (int)MathF.Round(h * Widescreen.ScreenAspect));
+            if (wideTarget == null || wideTarget.Width != w || wideTarget.Height != h)
+            {
+                wideTarget?.Dispose();
+                wideTarget = new RenderTarget2D(device, w, h, false, SurfaceFormat.Color, DepthFormat.Depth24);
+                device.SetRenderTarget(wideTarget);
+                device.Clear(Color.Black);
+            }
+            device.SetRenderTarget(wideTarget);
+            targetW = w; targetH = h; lastWide = true;
         }
         else
         {
@@ -174,11 +196,40 @@ public sealed class GfxRenderer : IDisposable
                 p.X = kx * p.X - bx * p.W; p.Y = ky * p.Y - by * p.W;
             }
         }
+        if ((lastWide || lastLocal) && !IsPerspective(d.Vertices)) Keep2DShape(src.Length);
         var verts = scratch;
         foreach (var pass in combiner.CurrentTechnique.Passes)
         {
             pass.Apply();
             device.DrawUserPrimitives(PrimitiveType.TriangleList, verts, 0, src.Length / 3);
+        }
+    }
+
+    /// <summary>A draw built by a perspective projection (W varies): the 3D world, weapons, models. 2D (texture / fill rectangles, orthographic HUD) has W = 1.</summary>
+    private static bool IsPerspective(GfxVertex[] v)
+    {
+        foreach (ref readonly var p in v.AsSpan()) if (MathF.Abs(p.W - 1f) > 1e-4f) return true;
+        return false;
+    }
+
+    /// <summary>2D in a target wider (or taller) than the frame it was authored for: undistorted, centred horizontally, anchored to the top / middle /
+    /// bottom vertically (rows of text share their anchor; per-glyph horizontal anchoring would tear strings apart). A draw spanning (almost) the whole
+    /// width or height stretches in that direction (fades, backgrounds, view clears).</summary>
+    private void Keep2DShape(int n)
+    {
+        float at = targetW / (float)targetH, af = frameAspect;
+        float sx = at > af ? af / at : 1f, sy = at < af ? at / af : 1f;
+        if (sx > 0.999f && sy > 0.999f) return;
+        float x0 = float.MaxValue, x1 = float.MinValue, y0 = float.MaxValue, y1 = float.MinValue;
+        for (int i = 0; i < n; i++) { var p = scratch[i].Position; float w = p.W != 0 ? p.W : 1f; float x = p.X / w, y = p.Y / w; if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+        if (x1 - x0 >= 1.9f) sx = 1f;
+        if (y1 - y0 >= 1.9f) sy = 1f;
+        float cy = (y0 + y1) * 0.5f, ay = cy > 1f / 3f ? 1f : cy < -1f / 3f ? -1f : 0f;
+        for (int i = 0; i < n; i++)
+        {
+            ref var p = ref scratch[i].Position;
+            p.X *= sx;
+            p.Y = ay * p.W + (p.Y - ay * p.W) * sy;
         }
     }
 
@@ -211,7 +262,7 @@ public sealed class GfxRenderer : IDisposable
             foreach (var c in px) { hist.TryGetValue(c.PackedValue, out var n); hist[c.PackedValue] = n + 1; }
             Console.Error.WriteLine("[gfx] target colours: " + string.Join(", ", hist.OrderByDescending(k => k.Value).Take(6).Select(k => $"{k.Key:X8}x{k.Value}")));
         }
-        var frame = lastLocal && localTarget != null ? localTarget : target;          // a local view is saved at its own aspect
+        var frame = lastLocal && localTarget != null ? localTarget : lastWide && wideTarget != null ? wideTarget : target;          // a local / wide view is saved at its own aspect
         int height = Math.Max(1, (int)((long)width * frame.Height / frame.Width));
         using var small = new RenderTarget2D(device, width, height, false, SurfaceFormat.Color, DepthFormat.None);
         device.SetRenderTarget(small);
@@ -232,7 +283,8 @@ public sealed class GfxRenderer : IDisposable
         device.Clear(Color.Black);
         if (windowWidth > 0 && windowHeight > 0) { windowW = windowWidth; windowH = windowHeight; }
         if (!anyFrame) return;
-        var frame = lastLocal && localTarget != null ? localTarget : target;
+        if (!Trw.Game.Net.NetSession.Active && windowWidth > 0 && windowHeight > 0) Widescreen.SetScreenAspect(windowWidth / (float)windowHeight);     // offline the window decides; netplay: the session
+        var frame = lastLocal && localTarget != null ? localTarget : lastWide && wideTarget != null ? wideTarget : target;
         Rectangle dest;
         if (frame == localTarget && LocalView.Stretch) dest = new Rectangle(0, 0, windowWidth, windowHeight);
         else
@@ -271,7 +323,7 @@ public sealed class GfxRenderer : IDisposable
 
     public void Dispose()
     {
-        target.Dispose(); localTarget?.Dispose(); sprites.Dispose(); white.Dispose();
+        target.Dispose(); localTarget?.Dispose(); wideTarget?.Dispose(); sprites.Dispose(); white.Dispose();
         foreach (var t in textures.Values) t.Dispose();
     }
 }

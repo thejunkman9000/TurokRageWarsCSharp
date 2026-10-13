@@ -342,6 +342,7 @@ public static partial class Game
                 Cpu.SetW(20, Mem.U32((r1 - 31892u)));
                 Cpu.SetS(21, Cpu.S(21) / Cpu.S(0));
                 Cpu.SetS(20, Cpu.S(21) * Cpu.S(20));
+                Widescreen.CamAspect(r19);
                 Cpu.SetW(0, Mem.U32((r19 + 132u)));
                 Cpu.SetS(21, Cpu.S(20) / Cpu.S(23));
                 Cpu.SetS(21, Cpu.S(21) / Cpu.S(0));
@@ -531,6 +532,7 @@ public static partial class Game
                 Cpu.SetW(5, r3);
                 Cpu.SetS(5, (float)(int)Cpu.W(5));
                 r7 = Cpu.W(5);
+                r7 = Widescreen.ViewmodelAspect(r7);
                 Mem.Set((r29 + 16u), Cpu.W(21));
                 Mem.Set((r29 + 24u), Cpu.W(20));
                 Mem.Set((r29 + 20u), Cpu.W(0)); guPerspectiveF(r4, r5, Cpu.U2F(r6), Cpu.U2F(r7), Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), Cpu.U2F(Mem.U32(r29 + 24u)));
