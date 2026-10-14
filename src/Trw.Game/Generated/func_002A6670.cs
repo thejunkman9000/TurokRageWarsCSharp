@@ -14,7 +14,7 @@ public static partial class Game
             if ((Mem.S32(0x80146894u) == 0))
             {
                 func_002A6DF8((uint)(a));
-                func_002A6ED0((uint)(a));
+                func_002A6ED0((uint)(a), default(uint), default(uint), default(uint));
             }
         }
     }

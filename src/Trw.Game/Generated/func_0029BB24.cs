@@ -22,7 +22,7 @@ public static partial class Game
                 new SndMsg(_fp).f_Set((short)((b * 100)));
                 new SndMsg(_fp).g_Set((short)((c * 100)));
                 new SndMsg(_fp).h_Set((short)(0));
-                func_0029B558(_fp);
+                func_0029B558(_fp, default(uint), default(uint), default(uint));
             }
         }
         finally { Stack.Free(20); }

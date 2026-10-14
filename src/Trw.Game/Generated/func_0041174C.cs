@@ -25,7 +25,7 @@ public static partial class Game
                 new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).p_Set(func_00252FFC((uint)(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).cnt)));
                 new S_G_v2(0x801539B0u).h_Set((int)(func_002A1E8C(new S_G_v2(0x801539B0u).b4.P, 0x800E10E0u, default(uint), default(uint))));
                 func_002A1F60((uint)(new S_G_v2(0x801539B0u).h), (uint)((new S_G_v2(0x801539B0u).f240 + new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).off)), (uint)(0), default(uint));
-                func_002A1ED4(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).p, new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).cnt, 1, new S_G_v2(0x801539B0u).h);
+                func_002A1ED4(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).p, (uint)(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).cnt), (uint)(1), (uint)(new S_G_v2(0x801539B0u).h));
                 if ((Mem.S32(0x800E2AC4u) != 0))
                 {
                     Mem.Set(((Mem.U32(0x80153C48u) + (uint)(i * 12)) + 8u), (int)(func_00252FFC((uint)(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).cnt))));

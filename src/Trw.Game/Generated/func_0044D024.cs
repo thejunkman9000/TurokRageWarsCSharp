@@ -14,8 +14,8 @@ public static partial class Game
             uint g = 0u;
             uint bits = 0u;
             int mask = 0;
-            index = new S6World(world).group;
-            g = func_0028FD94(func_0028FD94(func_0028FD94(new S6World(world).tree, 0), index), 0);
+            index = new S6World_v2(world).group;
+            g = func_0028FD94(func_0028FD94(func_0028FD94(new S6World_v2(world).tree, 0), index), 0);
             func_0028FD94(g, 0);
             func_0028FDD8(g, 1);
             bits = func_0028FD94(g, 1);
@@ -101,11 +101,11 @@ public static partial class Game
                             for (j = 0; (j < 3); ++j)
                             {
                                 y = new S6Vtx(new S6Face(face).vtx[(int)(j)]).y;
-                                if (!(y <= new S6World(world).minY))
+                                if (!(y <= new S6World_v2(world).minY))
                                 {
-                                    y = new S6World(world).minY;
+                                    y = new S6World_v2(world).minY;
                                 }
-                                new S6World(world).minY_Set(y);
+                                new S6World_v2(world).minY_Set(y);
                             }
                             if ((func_0044D024_sectionHas(world, i) != 0))
                             {

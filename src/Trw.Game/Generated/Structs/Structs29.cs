@@ -5352,17 +5352,77 @@ public readonly struct S6Vtx
     [MethodImpl(Inl)] public float w_Set(float v) => Mem.Set(P + 0xCu, v);
 }
 
-/// <summary>struct S6World, 0x1B620 bytes, at a guest address.</summary>
+/// <summary>struct S6World, 0x1200 bytes, at a guest address.</summary>
 public readonly struct S6World
 {
     public readonly uint P;
     [MethodImpl(Inl)] public S6World(uint p) { P = p; }
+    public const int SizeOf = 4608;
+    public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
+    /// <summary>The i-th struct of an array that starts here.</summary>
+    [MethodImpl(Inl)] public S6World At(int i) => new(P + (uint)(i * 4608));
+    [MethodImpl(Inl)] public static implicit operator uint(S6World v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator S6World(uint p) => new(p);
+    // +0x0
+    public U8x32 pad0 { [MethodImpl(Inl)] get => new(P); }
+    // +0x20
+    public S6Nd first
+    {
+        [MethodImpl(Inl)] get => new(Mem.U32(P + 0x20u));
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x20u, value.P);
+    }
+    public uint first_
+    {
+        [MethodImpl(Inl)] get => Mem.U32(P + 0x20u);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x20u, value);
+    }
+    [MethodImpl(Inl)] public uint first__Set(uint v) => Mem.Set(P + 0x20u, v);
+    // +0x24
+    public U8x12 pad24 { [MethodImpl(Inl)] get => new(P + 0x24u); }
+    // +0x30
+    public uint mode
+    {
+        [MethodImpl(Inl)] get => Mem.U32(P + 0x30u);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x30u, value);
+    }
+    [MethodImpl(Inl)] public uint mode_Set(uint v) => Mem.Set(P + 0x30u, v);
+    // +0x34
+    public uint oldMode
+    {
+        [MethodImpl(Inl)] get => Mem.U32(P + 0x34u);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x34u, value);
+    }
+    [MethodImpl(Inl)] public uint oldMode_Set(uint v) => Mem.Set(P + 0x34u, v);
+    // +0x38
+    public int cnt
+    {
+        [MethodImpl(Inl)] get => Mem.S32(P + 0x38u);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x38u, value);
+    }
+    [MethodImpl(Inl)] public int cnt_Set(int v) => Mem.Set(P + 0x38u, v);
+    // +0x3C
+    public U8x4 pad3C { [MethodImpl(Inl)] get => new(P + 0x3Cu); }
+    // +0x40
+    public S6Nd nd { [MethodImpl(Inl)] get => new(P + 0x40u); }
+    // +0x3C0
+    public U8x3608 pad3C0 { [MethodImpl(Inl)] get => new(P + 0x3C0u); }
+    // +0x11D8
+    public U8x20 listA { [MethodImpl(Inl)] get => new(P + 0x11D8u); }
+    // +0x11EC
+    public U8x20 listB { [MethodImpl(Inl)] get => new(P + 0x11ECu); }
+}
+
+/// <summary>struct S6World, 0x1B620 bytes, at a guest address.</summary>
+public readonly struct S6World_v2
+{
+    public readonly uint P;
+    [MethodImpl(Inl)] public S6World_v2(uint p) { P = p; }
     public const int SizeOf = 112160;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public S6World At(int i) => new(P + (uint)(i * 112160));
-    [MethodImpl(Inl)] public static implicit operator uint(S6World v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator S6World(uint p) => new(p);
+    [MethodImpl(Inl)] public S6World_v2 At(int i) => new(P + (uint)(i * 112160));
+    [MethodImpl(Inl)] public static implicit operator uint(S6World_v2 v) => v.P;
+    [MethodImpl(Inl)] public static explicit operator S6World_v2(uint p) => new(p);
     // +0x0
     public S8x132 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x84
@@ -5468,66 +5528,6 @@ public readonly struct S6World
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1B61Cu, value);
     }
     [MethodImpl(Inl)] public int unk1B61C_Set(int v) => Mem.Set(P + 0x1B61Cu, v);
-}
-
-/// <summary>struct S6World, 0x1200 bytes, at a guest address.</summary>
-public readonly struct S6World_v2
-{
-    public readonly uint P;
-    [MethodImpl(Inl)] public S6World_v2(uint p) { P = p; }
-    public const int SizeOf = 4608;
-    public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
-    /// <summary>The i-th struct of an array that starts here.</summary>
-    [MethodImpl(Inl)] public S6World_v2 At(int i) => new(P + (uint)(i * 4608));
-    [MethodImpl(Inl)] public static implicit operator uint(S6World_v2 v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator S6World_v2(uint p) => new(p);
-    // +0x0
-    public U8x32 pad0 { [MethodImpl(Inl)] get => new(P); }
-    // +0x20
-    public S6Nd first
-    {
-        [MethodImpl(Inl)] get => new(Mem.U32(P + 0x20u));
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x20u, value.P);
-    }
-    public uint first_
-    {
-        [MethodImpl(Inl)] get => Mem.U32(P + 0x20u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x20u, value);
-    }
-    [MethodImpl(Inl)] public uint first__Set(uint v) => Mem.Set(P + 0x20u, v);
-    // +0x24
-    public U8x12 pad24 { [MethodImpl(Inl)] get => new(P + 0x24u); }
-    // +0x30
-    public uint mode
-    {
-        [MethodImpl(Inl)] get => Mem.U32(P + 0x30u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x30u, value);
-    }
-    [MethodImpl(Inl)] public uint mode_Set(uint v) => Mem.Set(P + 0x30u, v);
-    // +0x34
-    public uint oldMode
-    {
-        [MethodImpl(Inl)] get => Mem.U32(P + 0x34u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x34u, value);
-    }
-    [MethodImpl(Inl)] public uint oldMode_Set(uint v) => Mem.Set(P + 0x34u, v);
-    // +0x38
-    public int cnt
-    {
-        [MethodImpl(Inl)] get => Mem.S32(P + 0x38u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x38u, value);
-    }
-    [MethodImpl(Inl)] public int cnt_Set(int v) => Mem.Set(P + 0x38u, v);
-    // +0x3C
-    public U8x4 pad3C { [MethodImpl(Inl)] get => new(P + 0x3Cu); }
-    // +0x40
-    public S6Nd nd { [MethodImpl(Inl)] get => new(P + 0x40u); }
-    // +0x3C0
-    public U8x3608 pad3C0 { [MethodImpl(Inl)] get => new(P + 0x3C0u); }
-    // +0x11D8
-    public U8x20 listA { [MethodImpl(Inl)] get => new(P + 0x11D8u); }
-    // +0x11EC
-    public U8x20 listB { [MethodImpl(Inl)] get => new(P + 0x11ECu); }
 }
 
 /// <summary>struct S705Meta, 0x20 bytes, at a guest address.</summary>

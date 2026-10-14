@@ -48,36 +48,36 @@ public static partial class Game
                         Mem.Set((hdr + (uint)(1 * 4)), count);
                         recs = (node + (uint)8);
                         actors = (hdr + (uint)(2 * 4));
-                        if ((new S6World(world).ready == 0))
+                        if ((new S6World_v2(world).ready == 0))
                         {
-                            new S6World(world).key_Set(func_0044E038(world, (node + (uint)12), new S6World(world).group, new S6World(world).cache.P));
-                            if ((new S6World(world).key != 0))
+                            new S6World_v2(world).key_Set(func_0044E038(world, (node + (uint)12), new S6World_v2(world).group, new S6World_v2(world).cache.P));
+                            if ((new S6World_v2(world).key != 0))
                             {
-                                new S6World(world).ready_Set(1);
+                                new S6World_v2(world).ready_Set(1);
                             }
                         }
                         idx = 0;
                         nobj = 0;
-                        if ((new S6World(world).ready != 0))
+                        if ((new S6World_v2(world).ready != 0))
                         {
-                            nobj = func_0044DE70(world, new S6World(world).group, new S6World(world).key, _fp, 8);
+                            nobj = func_0044DE70(world, new S6World_v2(world).group, new S6World_v2(world).key, _fp, 8);
                         }
-                        new S6World(world).actors__Set(actors);
-                        new S6World(world).nActors_Set(count);
+                        new S6World_v2(world).actors__Set(actors);
+                        new S6World_v2(world).nActors_Set(count);
                         for (i = 0; (i < count); ++i)
                         {
                             rec = (recs + (uint)(i * 40));
                             actor = (actors + (uint)(i * 744));
                             new S6Actor(actor).def__Set(func_0028CF48(world, (int)(new S6Rec(rec).id)));
                         }
-                        new S6World(world).nSpawned_Set(0);
+                        new S6World_v2(world).nSpawned_Set(0);
                         for (i = 0; (i < count); ++i)
                         {
                             rec = (recs + (uint)(i * 40));
                             func_0024B398((int)((actors + (uint)(i * 744))), rec);
                             if (((Mem.S32(func_0028CF48(world, (int)(new S6Rec(rec).id))) == 11) || (i == 0)))
                             {
-                                new S6World(world).nSpawned_Set((int)(new S6World(world).nSpawned + 1));
+                                new S6World_v2(world).nSpawned_Set((int)(new S6World_v2(world).nSpawned + 1));
                                 Mem.Copy(0x80145100u, new S6Rec(rec).pos.P, 12);
                                 new S6V3(0x80145100u).y_Set((float)((float)(new S6V3(0x80145100u).y) + 204.799988f));
                                 Mem.Set(0x80145120u, (int)(func_002866F8(world, new S6Rec(rec).pos.P)));
@@ -87,7 +87,7 @@ public static partial class Game
                                     cfg = (cfg0 + (uint)(p * 150));
                                     if ((nobj != 0))
                                     {
-                                        if (((((int)(new S6Cfg(cfg).kind) == 12) && (Mem.S32((pl + (uint)5200)) != 0)) && (new S6World(world).group == 9)))
+                                        if (((((int)(new S6Cfg(cfg).kind) == 12) && (Mem.S32((pl + (uint)5200)) != 0)) && (new S6World_v2(world).group == 9)))
                                         {
                                             func_0044DE70(world, 9, 3101, (_fp + 160u), 1);
                                             obj = (_fp + 160u);
@@ -100,9 +100,9 @@ public static partial class Game
                                         func_00274090((obj + 12u), default(uint), default(uint), default(uint));
                                         new S6Rec(rec).angle_Set((short)(int)(((((-3.14159274f) > ((3.14159274f < new S6Obj(obj).ang) ? 3.14159274f : new S6Obj(obj).ang)) ? (-3.14159274f) : ((3.14159274f < new S6Obj(obj).ang) ? 3.14159274f : new S6Obj(obj).ang)) * 10430.0596f)));
                                         Mem.Copy(new S6Rec(rec).pos.P, new S6Obj(obj).pos.P, 12);
-                                        new S6World(world).unk1B614_Set(0);
-                                        new S6World(world).unk1B618_Set(0);
-                                        new S6World(world).unk1B61C_Set(0);
+                                        new S6World_v2(world).unk1B614_Set(0);
+                                        new S6World_v2(world).unk1B618_Set(0);
+                                        new S6World_v2(world).unk1B61C_Set(0);
                                         ++idx;
                                         if ((idx >= nobj))
                                         {
@@ -113,14 +113,14 @@ public static partial class Game
                                 }
                             }
                         }
-                        for (i = new S6World(world).nSpawned; (i < count); ++i)
+                        for (i = new S6World_v2(world).nSpawned; (i < count); ++i)
                         {
                             actor = (actors + (uint)(i * 744));
                             best = 3.40282347E+38f;
                             new S6Actor(actor).nearest__Set(0u);
                             if ((func_0024DDA4(actor) != 0))
                             {
-                                for (j = new S6World(world).nSpawned; (j < count); ++j)
+                                for (j = new S6World_v2(world).nSpawned; (j < count); ++j)
                                 {
                                     other = (actors + (uint)(j * 744));
                                     if ((((Mem.S32(new S6Actor(actor).def_) == Mem.S32(new S6Actor(other).def_)) && (func_0024DD7C(other) != 0)) && (actor != other)))
@@ -145,7 +145,7 @@ public static partial class Game
                         }
                     }
                     func_00253CB0((uint)(0), handle, blk, default(uint));
-                    new S6World(world).unkF58_Set(0);
+                    new S6World_v2(world).unkF58_Set(0);
                 }
             }
         }

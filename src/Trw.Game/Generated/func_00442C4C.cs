@@ -13,7 +13,7 @@ public static partial class Game
             int o = 0;
             if (((int)(new O06A_v40(a).unk4) == 5))
             {
-                o = (int)(func_0043F290((uint)(a)));
+                o = (int)(func_0043F290((uint)(a), default(uint), default(uint), default(uint)));
             }
             else
             {

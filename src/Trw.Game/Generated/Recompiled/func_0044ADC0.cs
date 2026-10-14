@@ -98,7 +98,7 @@ public static partial class Game
                 Mem.Set((r2 + 4u), Cpu.W(20));
                 Mem.Set((r2 + 8u), Cpu.W(20));
                 Mem.Set((r2 + 12u), Cpu.W(20));
-                Mem.Set((r2 + 16u), Cpu.W(20)); func_002390E4(r4, (short)r5);
+                Mem.Set((r2 + 16u), Cpu.W(20)); r2 = func_002390E4(r4, r5, r6, r7); r3 = Cpu.V1;
                 r5 = r0;
                 r6 = (uint)1023;
                 r2 = 2148401152u;

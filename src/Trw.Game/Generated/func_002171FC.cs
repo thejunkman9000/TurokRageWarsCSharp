@@ -5,13 +5,11 @@ namespace Trw.Game;
 
 public static partial class Game
 {
-    public static void func_002171FC(uint actor, uint state, uint a2 = 0, uint a3 = 0)
+    public static void func_002171FC(uint actor, uint state, uint a2, uint a3)
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("func_002171FC", (uint)actor, (uint)state, a2, a3);
-            // tools/overrides/func_002171FC.c: the ROM jumps to the handler with a0..a3 untouched, and the callers rely on it (func_0028CCB8 and the
-            // recompiled func_00266830 pass a scratch buffer that func_00219A40, the usual fn110, reads as its third parameter)
+            if (Dbg.On) Dbg.Enter("func_002171FC", (uint)actor, (uint)state, (uint)a2, (uint)a3);
             if ((new ActorState(state).fn110 != 0u))
             {
                 Funcs.CallReg(new ActorState(state).fn110, actor, state, a2, a3);

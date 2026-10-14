@@ -31,7 +31,7 @@ public static partial class Game
             bx = 0.0f;
             ay = (float)(Mem.S32(0x800E28D4u));
             by = 0.0f;
-            if ((new S6World_v2(w).mode >= (uint)(2)))
+            if ((new S6World(w).mode >= (uint)(2)))
             {
                 bx = Mem.F32(0x800D05CCu);
                 ay = (float)((float)(ay) - Mem.F32(0x800D05C8u));
@@ -58,22 +58,22 @@ public static partial class Game
                     }
                     if ((ok != 0))
                     {
-                        func_00255E78(new S6World_v2(w).listB.P, n, default(uint), default(uint));
-                        func_00255C58(new S6World_v2(w).listA.P, n);
+                        func_00255E78(new S6World(w).listB.P, n, default(uint), default(uint));
+                        func_00255C58(new S6World(w).listA.P, n);
                     }
                     n = nx;
                 }
                 while ((n != 0u));
             }
-            p = new S6World_v2(w).nd.P;
+            p = new S6World(w).nd.P;
             new S6Nd(p).r0_Set((float)(Mem.S32(0x800E28D0u)));
             new S6Nd(p).r1_Set((float)(Mem.S32(0x800E28D4u)));
             new S6Nd(p).r2_Set((float)(0));
             new S6Nd(p).r3_Set((float)(0));
             if (((func_00245788() == 0) && (func_00245774() == 0)))
             {
-                p = new S6World_v2(w).first_;
-                switch (new S6World_v2(w).mode)
+                p = new S6World(w).first_;
+                switch (new S6World(w).mode)
                 {
                 case (uint)(1):
                     new S6Nd(p).r0_Set(sx);
@@ -185,11 +185,11 @@ public static partial class Game
                     break;
                 }
             }
-            Mem.Copy(0x80103208u, new S6World_v2(w).nd.bbA.P, 24);
-            Mem.Copy(0x801031F0u, new S6World_v2(w).nd.bbB.P, 24);
+            Mem.Copy(0x80103208u, new S6World(w).nd.bbA.P, 24);
+            Mem.Copy(0x801031F0u, new S6World(w).nd.bbB.P, 24);
             Mem.Set(0x80103220u, (uint)(Mem.S32(0x800D2B40u)));
-            func_00234FDC(new S6World_v2(w).nd.P, default(uint), default(uint), default(uint));
-            p = new S6World_v2(w).first_;
+            func_00234FDC(new S6World(w).nd.P, default(uint), default(uint), default(uint));
+            p = new S6World(w).first_;
             if ((p != 0u))
             {
                 if (((Mem.S32(0x80146894u) != 0) || (func_00245840() != 0)))
@@ -291,15 +291,15 @@ public static partial class Game
                     while ((p != 0u));
                 }
             }
-            if ((new S6World_v2(w).oldMode != new S6World_v2(w).mode))
+            if ((new S6World(w).oldMode != new S6World(w).mode))
             {
-                new S6World_v2(w).cnt_Set(2);
-                new S6World_v2(w).oldMode_Set(new S6World_v2(w).mode);
+                new S6World(w).cnt_Set(2);
+                new S6World(w).oldMode_Set(new S6World(w).mode);
                 return;
             }
-            if ((new S6World_v2(w).cnt != 0))
+            if ((new S6World(w).cnt != 0))
             {
-                new S6World_v2(w).cnt_Set((new S6World_v2(w).cnt - 1));
+                new S6World(w).cnt_Set((new S6World(w).cnt - 1));
             }
         }
     }

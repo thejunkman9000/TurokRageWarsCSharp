@@ -114,7 +114,7 @@ public static partial class Game
                         uint st_2 = (g - (uint)(136 * 4));
                         func_002A1F60((uint)(Mem.S32((g + (uint)((-136) * 4)))), (uint)((Mem.S32((st_2 + (uint)592)) + new S705Obj(o2).meta.@base)), (uint)(0), default(uint));
                     }
-                    func_002A1ED4((uint)(new S705Obj((new S705Pool(0x80153C20u).entries_ + (uint)(idx * 1180))).off[(int)(0)]), sz, 1, Mem.S32((g + (uint)((-136) * 4))));
+                    func_002A1ED4((uint)(new S705Obj((new S705Pool(0x80153C20u).entries_ + (uint)(idx * 1180))).off[(int)(0)]), (uint)(sz), (uint)(1), (uint)(Mem.S32((g + (uint)((-136) * 4)))));
                     for (i = 0; (i < 96); ++i)
                     {
                         t = Mem.Set((_fp + (uint)(i * 4)), ((int)(new S705Obj(o2).rec[(int)(i)].c) * (int)(new S705Obj(o2).rec[(int)(i)].h)));

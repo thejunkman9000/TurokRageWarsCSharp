@@ -14,7 +14,7 @@ public static partial class Game
             uint s = 0u;
             if (((int)(new O06A_v25(a).unk4) == 5))
             {
-                s = func_0043F290((uint)(a));
+                s = func_0043F290((uint)(a), default(uint), default(uint), default(uint));
             }
             else
             {

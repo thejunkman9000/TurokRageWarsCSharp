@@ -139,7 +139,7 @@ public static partial class Game
             new Shared_MenuEntry(temp_a0_2).focus__Set(new Shared_MenuDefinition(temp_v0).unk44_);
             Mem.Set(0x8014D090u, new Shared_MenuDefinition(temp_v0).unk44_);
             var_s1 = temp_v0;
-            func_00298DBC();
+            func_00298DBC(default(uint), default(uint), default(uint), default(uint));
             if (!(((((int)(new Shared_MenuDefinition(var_s1).unk12) >> (int)12) & 1) != 0))) goto _f15;
             load_flag = 1;
             temp_s2 = new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4;
@@ -158,7 +158,7 @@ public static partial class Game
             Mem.Set(0x8014D090u, new Shared_MenuDefinition(temp_v0_3).unk44_);
             new Shared_MenuManager(Mem.U32(0x8014D080u)).unk540_Set(0);
             var_s1 = temp_v0_3;
-            func_00298DBC();
+            func_00298DBC(default(uint), default(uint), default(uint), default(uint));
             goto L_loop_18;
             _f16: ;
             new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4_Set(temp_s2);

@@ -84,7 +84,7 @@ public static partial class Game
                         fs = new Q04Ent_v2(E).f4;
                         if (((int)(new Q04Item(it).w4) == 5))
                         {
-                            p = func_0043F290(it);
+                            p = func_0043F290(it, default(uint), default(uint), default(uint));
                         }
                         else
                         {
@@ -95,7 +95,7 @@ public static partial class Game
                     else
                     {
                         n = 0;
-                        p = (((int)(new Q04Item(it).w4) == 5) ? func_0043F290(it) : Mem.U32((uint)(new Q04Item(it).f14)));
+                        p = (((int)(new Q04Item(it).w4) == 5) ? func_0043F290(it, default(uint), default(uint), default(uint)) : Mem.U32((uint)(new Q04Item(it).f14)));
                         for (; (((p != 0u) && ((int)(Mem.U8(p)) != 0)) && ((int)(Mem.U8(p)) != 10)); p += 1u)
                         {
                             ++n;

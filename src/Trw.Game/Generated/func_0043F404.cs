@@ -73,36 +73,4 @@ public static partial class Game
         }
     }
 
-    public static int func_0043F404(uint a, uint b)
-    {
-        unchecked
-        {
-            if (Dbg.On) Dbg.Enter("func_0043F404", (uint)a, (uint)b);
-            uint d = new O06A_v8(a).unk14_;
-            float v = 0f;
-            v = func_0043F404_func_00443030(a);
-            if ((func_002643A8(new O06B_v20(b).unk20) != 0))
-            {
-                v = (float)((float)(v) - new O06D_v3(d).unk10);
-                if ((v < new O06D_v3(d).unk8))
-                {
-                    v = new O06D_v3(d).unk8;
-                }
-            }
-            else
-            {
-                if ((func_002643C0(new O06B_v20(b).unk20) != 0))
-                {
-                    v = (float)((float)(v) + new O06D_v3(d).unk10);
-                    if ((new O06D_v3(d).unkC < v))
-                    {
-                        v = new O06D_v3(d).unkC;
-                    }
-                }
-            }
-            func_0043F404_func_00443120(a, v);
-            return 0;
-        }
-    }
-
 }
