@@ -33,7 +33,8 @@ public sealed class GfxRenderer : IDisposable
     // widescreen (Runtime/Widescreen.cs), per machine: in a level the frame renders into a target of the window's aspect; perspective draws are rescaled about
     // their view's centre to the aspect that view has here (Hor+ / Vert+), 2D (HUD: W = 1) keeps its 4:3 shape, centred horizontally, anchored vertically
     private RenderTarget2D? wideTarget;
-    private bool lastWide;
+    private bool lastWide, prevWide;
+    private static readonly bool wideLog = Environment.GetEnvironmentVariable("TRW_WIDE_LOG") == "1";      // TRW_WIDE_LOG=1: when frames switch between wide and 4:3
     private float frameAspect = 4f / 3f;                             // aspect the 2D of the current frame was authored at (4:3, or the local view's region)
     private ViewRegion region;
     private int targetW = InternalWidth, targetH = InternalHeight;    // size of the target the current frame renders into
@@ -109,7 +110,9 @@ public sealed class GfxRenderer : IDisposable
             device.SetRenderTarget(localTarget);
             targetW = w; targetH = h;
         }
-        else if (Widescreen.Allowed && Widescreen.InLevel && windowW / (float)Math.Max(1, windowH) > 4f / 3f + 0.01f)
+        // game state 20 is the fade between two states (e.g. the intro camera -> the match): it keeps the shape of the frame before, so the picture
+        // does not flip to 4:3 for half a second on the way into a level
+        else if (Widescreen.Allowed && (Widescreen.InLevel || (prevWide && Trw.Platform.Mem.S32(0x80146878) == 20)) && windowW / (float)Math.Max(1, windowH) > 4f / 3f + 0.01f)
         {
             int h = InternalHeight, w = Math.Min(4096, (int)MathF.Round(h * windowW / (float)Math.Max(1, windowH)));
             if (wideTarget == null || wideTarget.Width != w || wideTarget.Height != h)
@@ -127,6 +130,8 @@ public sealed class GfxRenderer : IDisposable
             device.SetRenderTarget(target);
             targetW = InternalWidth; targetH = InternalHeight;
         }
+        if (lastWide != prevWide && wideLog) Console.Error.WriteLine($"[wide] tick {Game.CurrentTick}: {(lastWide ? "wide" : "4:3")} (state {Trw.Platform.Mem.S32(0x80146878)}, screen {Game.ScreenId}, local {lastLocal})");
+        prevWide = lastWide;
         device.Viewport = new Viewport(0, 0, targetW, targetH);
         if (!anyFrame) { device.Clear(Environment.GetEnvironmentVariable("TRW_GFX_BG") != null ? new Color(0, 0, 90) : Color.Black); anyFrame = true; }
         // port HUD (Hud/HudLayer.cs, docs/HUD.md): the game's 2D HUD draws it replaces are left out, its own draws follow each HUD section
