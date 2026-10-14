@@ -11,6 +11,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0042EB80", (uint)a, (uint)b);
             uint p = 0x8015402Cu;
+            b = trw_arena_index(a, b);       // tools/overrides/func_0042EB80.c: TRW_ARENA test switch (Os/TestHooks.cs)
+            a = trw_arena_type(a);
             Mem.Set(p, b);
             Mem.Set((p + (uint)((-1) * 4)), a);
         }

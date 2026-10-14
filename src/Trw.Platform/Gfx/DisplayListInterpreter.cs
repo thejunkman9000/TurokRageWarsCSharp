@@ -29,7 +29,8 @@ public sealed class DisplayListInterpreter
     private RdpState S = new();
     // G_MW_FOG and G_SETFOGCOLOR survive display lists (the RSP/RDP keep them), so they live outside the per-list state
     private int fogMul, fogOff; private readonly float[] fogCol = { 0, 0, 0, 1 };
-    private bool zClearQuad;       // FillRect is drawing the far-plane quad that clears part of the z-buffer
+    private bool zClearQuad;
+    private static readonly HashSet<string>? fillLog = Environment.GetEnvironmentVariable("TRW_FILLRECT_LOG") == "1" ? new() : null;     // TRW_FILLRECT_LOG=1: each distinct 1/2-cycle fill rectangle state once       // FillRect is drawing the far-plane quad that clears part of the z-buffer
     private static readonly bool fogDisabled = Environment.GetEnvironmentVariable("TRW_NOFOG") == "1";
     private readonly uint[] segbase = new uint[16];
     private float screenW = 480f, screenH = 360f;      // the game switches the colour image width between screens (480 in matches, 284 in menus): follows SETCIMG
@@ -357,11 +358,12 @@ public sealed class DisplayListInterpreter
         }
         int cycle = (int)((S.OmH >> 20) & 3);
         if (cycle == 0 || cycle == 1)
-        {   // 1-cycle / 2-cycle rectangles go through the colour combiner and the blender on the RDP (only FILL mode writes the fill colour): the boss
+        {
+            if (fillLog != null) { var key = $"cyc{cycle} omH {S.OmH:X8} omL {S.OmL:X8} comb {S.CombW0:X8}:{S.CombW1:X8} prim {string.Join(",", S.Prim.Select(v => (int)(v * 255)))} env {string.Join(",", S.Env.Select(v => (int)(v * 255)))} rect {x0},{y0}-{x1},{y1}"; lock (fillLog) if (fillLog.Add(key)) Console.Error.WriteLine("[fillrect] " + key); }   // 1-cycle / 2-cycle rectangles go through the colour combiner and the blender on the RDP (only FILL mode writes the fill colour): the boss
             // shield / health bars are G_FILLRECTs with a PRIM combiner and came out in the (black) fill colour (C port 974d220, checked against Project64)
-            uint cg = S.Geom, cl = S.OmL; int ct = S.TexOn; S.Geom &= ~1u; S.OmL &= ~0x4000u; S.TexOn = 0;
+            uint cg = S.Geom; int ct = S.TexOn; S.Geom &= ~1u; S.TexOn = 0;      // FORCE_BL stays: the underwater tint is a full-screen PRIM rectangle at alpha 0.5 (drawn opaque it hid the level)
             SetupState(DrawMode.Combiner);
-            S.Geom = cg; S.OmL = cl; S.TexOn = ct;
+            S.Geom = cg; S.TexOn = ct;
             GfxVertex C(float x, float y) => new() { X = x, Y = y, Z = 0, W = 1, R = 1, G = 1, B = 1, A = 1 };
             var c0 = C(fx0, fy0); var c1 = C(fx1, fy0); var c2 = C(fx1, fy1); var c3 = C(fx0, fy1);
             batch.Add(c0); batch.Add(c1); batch.Add(c2); batch.Add(c0); batch.Add(c2); batch.Add(c3);
@@ -531,7 +533,7 @@ public sealed class DisplayListInterpreter
                     int idx = (int)((w0 >> 16) & 0xFF), off = (int)(w0 & 0xFFFF);
                     if (idx == 6) segbase[(off >> 2) & 15] = w1 & 0xFFFFFF;
                     else if (idx == 2) S.NumLights = (int)(w1 / 24) > 7 ? 7 : (int)(w1 / 24);
-                    else if (idx == 8) { fogMul = (short)(w1 >> 16); fogOff = (short)(w1 & 0xFFFF); }      // G_MW_FOG
+                    else if (idx == 8) { fogMul = (short)(w1 >> 16); fogOff = (short)(w1 & 0xFFFF); if (traceDl) Console.Error.WriteLine($"[gfx]   G_MW_FOG fm {fogMul} fo {fogOff}"); }      // G_MW_FOG
                     break;
                 }
                 case 0xDC:
@@ -648,7 +650,7 @@ public sealed class DisplayListInterpreter
                     {
                         if (c is not DrawCommand d) { Console.Error.WriteLine($"[gfx]   {c}"); continue; }
                         var st = d.State; var v = d.Vertices;
-                        Console.Error.WriteLine($"[gfx]   draw mode={st.Mode} tex={st.TextureOn}({(st.Tex0 == null ? "-" : st.Tex0.Width + "x" + st.Tex0.Height)}) cc={st.CombineW0:X8}/{st.CombineW1:X8} other={st.OtherHigh:X8}/{st.OtherLow:X8} prim=({string.Join(",", st.Prim)}) env=({string.Join(",", st.Env)}) tex1={(st.Tex1 == null ? "-" : st.Tex1.Width + "x" + st.Tex1.Height + " key " + st.Tex1.Key.ToString("X") + " a>0:" + Enumerable.Range(0, st.Tex1.Width * st.Tex1.Height).Count(q => st.Tex1.Rgba[q * 4 + 3] != 0))} same={(st.Tex0 == st.Tex1)} bbox=({v.Min(q => q.X):F2},{v.Min(q => q.Y):F2})-({v.Max(q => q.X):F2},{v.Max(q => q.Y):F2}) col0=({v[0].R:F2},{v[0].G:F2},{v[0].B:F2},{v[0].A:F2}) n={v.Length}");
+                        Console.Error.WriteLine($"[gfx]   draw mode={st.Mode} tex={st.TextureOn}({(st.Tex0 == null ? "-" : st.Tex0.Width + "x" + st.Tex0.Height)}) cc={st.CombineW0:X8}/{st.CombineW1:X8} other={st.OtherHigh:X8}/{st.OtherLow:X8} prim=({string.Join(",", st.Prim)}) env=({string.Join(",", st.Env)}) tex1={(st.Tex1 == null ? "-" : st.Tex1.Width + "x" + st.Tex1.Height + " key " + st.Tex1.Key.ToString("X") + " a>0:" + Enumerable.Range(0, st.Tex1.Width * st.Tex1.Height).Count(q => st.Tex1.Rgba[q * 4 + 3] != 0))} same={(st.Tex0 == st.Tex1)} bbox=({v.Min(q => q.X):F2},{v.Min(q => q.Y):F2})-({v.Max(q => q.X):F2},{v.Max(q => q.Y):F2}) col0=({v[0].R:F2},{v[0].G:F2},{v[0].B:F2},{v[0].A:F2}) n={v.Length} fog={st.FogMix}/{st.FogAlphaFromColor}/({string.Join(",", st.FogColor)}) a0..={string.Join(",", v.Take(6).Select(q => q.A.ToString("F2")))}");
                     }
                 if (runs <= 2)
                     foreach (var c in commands.Take(12))

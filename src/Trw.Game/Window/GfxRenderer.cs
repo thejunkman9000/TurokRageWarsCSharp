@@ -313,6 +313,9 @@ public sealed class GfxRenderer : IDisposable
         sprites.End();
         Overlay?.Invoke(new Rectangle(0, 0, width, height), width, height);            // the screenshot shows what the window shows
         device.SetRenderTarget(null);
+        var shot = new Color[width * height]; small.GetData(shot);      // the frame's alpha is whatever the blended draws left: a PNG must be opaque, like the window
+        for (int i = 0; i < shot.Length; i++) shot[i].A = 255;
+        small.SetData(shot);
         using var fs = File.Create(path);
         small.SaveAsPng(fs, width, height);
     }

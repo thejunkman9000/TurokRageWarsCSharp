@@ -352,6 +352,7 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
         return connected;
     }
 
+    private bool f12Down, shotRequested;
     private bool escapeDown, f1Down, captureSuspended, haveMouseRef, relMouse, sensDownHeld, sensUpHeld, clickResume;
 
     private static void ApplyMouseSettings()
@@ -435,6 +436,9 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
             Scoreboard.Toast($"MOUSE SENSITIVITY {us.MouseSensitivity:0.##}");
         }
         sensDownHeld = sDown; sensUpHeld = sUp;
+        bool f12 = IsActive && ks.IsKeyDown(Keys.F12);
+        if (f12 && !f12Down) shotRequested = true;                                                    // F12: screenshot of the next drawn frame
+        f12Down = f12;
         bool f11 = ks.IsKeyDown(Keys.F11) || (ks.IsKeyDown(Keys.Enter) && (ks.IsKeyDown(Keys.LeftAlt) || ks.IsKeyDown(Keys.RightAlt)));
         if (f11 && !fullscreenKeyDown) graphics.ToggleFullScreen();       // F11 or Alt+Enter
         fullscreenKeyDown = f11;
@@ -466,6 +470,20 @@ public sealed class TrwWindow : Microsoft.Xna.Framework.Game
                 Directory.CreateDirectory(shotDir);
                 renderer.SavePng(Path.Combine(shotDir, $"frame_{drawnFrames:D5}.png"));
                 shotsTaken++;
+            }
+            if (shotRequested)
+            {   // F12: the frame just drawn, at the window's width, into screenshots\ next to the game (also logs the game state, for bug reports)
+                shotRequested = false;
+                try
+                {
+                    var dir = Path.Combine(AppContext.BaseDirectory, "screenshots"); Directory.CreateDirectory(dir);
+                    var file = Path.Combine(dir, $"turok_{DateTime.Now:yyyyMMdd_HHmmss}.png");
+                    renderer.SavePng(file, Math.Max(640, Window.ClientBounds.Width));
+                    Console.Error.WriteLine($"[shot] {file} (tick {(global::Trw.Game.Game.CurrentTick)}, state {(global::Trw.Game.Game.StateId)}, screen {(global::Trw.Game.Game.ScreenId)})");
+                    Scoreboard.Toast("SCREENSHOT SAVED");
+                    if (Environment.GetEnvironmentVariable("TRW_GFX_DUMP_FLAG") is { Length: > 0 } flag) File.WriteAllText(flag, "");   // with TRW_GFX_LOG: list the next display list in full
+                }
+                catch (Exception e) { Console.Error.WriteLine($"[shot] failed: {e.Message}"); }
             }
         }
         renderer!.Present(Window.ClientBounds.Width, Window.ClientBounds.Height);

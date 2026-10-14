@@ -75,8 +75,13 @@ public static partial class Game
 
     // ---------------------------------------------------------------------------------------------- cartridge DMA
 
+    // TRW_ROMLOG=<lo>-<hi> (hex ROM offsets): log the cartridge reads that touch that range (which level / asset gets loaded)
+    private static readonly (uint lo, uint hi)? romLog = Environment.GetEnvironmentVariable("TRW_ROMLOG") is { } rs && rs.Split('-') is { Length: 2 } rp
+        && uint.TryParse(rp[0], System.Globalization.NumberStyles.HexNumber, null, out var rlo) && uint.TryParse(rp[1], System.Globalization.NumberStyles.HexNumber, null, out var rhi) ? (rlo, rhi) : null;
+
     private static void RomCopy(uint dst, uint dev, uint n)
     {
+        if (romLog is { } rl && (dev & 0x0FFFFFFF) < rl.hi && (dev & 0x0FFFFFFF) + n > rl.lo) Console.Error.WriteLine($"[rom] tick {CurrentTick}: read {dev & 0x0FFFFFFF:X6}+{n:X} -> {dst:X8}");
         var rom = Host.Rom;
         uint off = dev & 0x0FFFFFFF;        // the cartridge offset; the game passes it plain, as 0x10000000+off, or as the KSEG1 address 0xB0000000+off
         if (off >= rom.Length) return;
