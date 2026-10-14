@@ -1694,7 +1694,7 @@ public static partial class Game
         });
         Funcs.Add(0x002171FCu, "func_002171FC", (a0, a1, a2, a3) =>
         {
-            func_002171FC(a0, a1);
+            func_002171FC(a0, a1, a2, a3);
             return 0;
         });
         Funcs.Add(0x00217224u, "func_00217224", (a0, a1, a2, a3) =>

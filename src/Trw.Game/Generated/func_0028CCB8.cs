@@ -23,7 +23,7 @@ public static partial class Game
                 for (; (i < n); ++i)
                 {
                     uint a = Mem.U32((arr + (uint)(i * 4)));
-                    func_002171FC(a, (a + (uint)368));
+                    func_002171FC(a, (a + (uint)368), _fp);      // the buffer func_00216488 filled (sp+24 in the ROM, a2 of the call)
                 }
             }
         }

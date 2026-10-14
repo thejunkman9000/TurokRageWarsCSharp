@@ -24,8 +24,10 @@ public static class Widescreen
     /// <summary>TRW_WIDESCREEN=0: present the game's 4:3 picture (pillarboxed) whatever the window shape.</summary>
     public static readonly bool Allowed = Environment.GetEnvironmentVariable("TRW_WIDESCREEN") != "0";
 
-    /// <summary>The game is in a level (8 = recorded demo, 13 = playing): only then are frames presented wide; menus stay 4:3.</summary>
-    public static bool InLevel => Mem.S32(0x80146878) is 8 or 13;       // D_80146878 = the game state
+    /// <summary>A level is on screen without a menu: game state 8 (recorded demo) or 13 (playing) AND the UI shows only the HUD layer (screen 2) or nothing (-1).
+    /// Only then are frames presented wide; the title screen and the menus (which run inside state 8, the attract sequence: screens 24, 3, 19, ...) and menus
+    /// opened over a match stay 4:3, pillarboxed.</summary>
+    public static bool InLevel => Mem.S32(0x80146878) is 8 or 13 && Game.ScreenId is -1 or 2;       // D_80146878 = the game state
 
     /// <summary>Hook after func_00234FDC 0x00235610 (camera r19: +0x74 just stored; $f0 = the +0x78 value stored in the next call's delay slot).
     /// Fixed factors, independent of this machine's window, so netplay peers stay identical.</summary>

@@ -827,7 +827,7 @@ func_00217074|void|uint,float|0,0|0
 func_002170A0|void|uint,uint,uint,uint,uint|0,0,0,0,0|0
 func_002171BC|void|uint,int|0,0|0
 func_002171C8|int|uint|0|0
-func_002171FC|void|uint,uint|0,0|0
+func_002171FC|void|uint,uint,uint,uint|0,0,0,0|0
 func_00217224|float|uint,uint|0,12|0
 func_00217290|float|uint,uint|0,12|0
 func_002172C4|void|int,int,int|0,0,0|0
