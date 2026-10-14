@@ -21,6 +21,10 @@ public static class Widescreen
     public const float Native = 4f / 3f;
     public const float CullH = 3f, CullV = 2f;
 
+    /// <summary>TRW_WIDE_CULL=0 keeps the ROM's culling (the picture edges then lose geometry in wide windows; for comparisons with the ROM). Netplay peers
+    /// must agree on it, as on every setting that reaches guest RAM.</summary>
+    public static readonly bool WideCulling = Environment.GetEnvironmentVariable("TRW_WIDE_CULL") != "0";
+
     /// <summary>TRW_WIDESCREEN=0: present the game's 4:3 picture (pillarboxed) whatever the window shape.</summary>
     public static readonly bool Allowed = Environment.GetEnvironmentVariable("TRW_WIDESCREEN") != "0";
 
@@ -33,7 +37,7 @@ public static class Widescreen
     /// Fixed factors, independent of this machine's window, so netplay peers stay identical.</summary>
     public static void WidenCulling(uint cam)
     {
-        if (Oracle.Enabled) return;
+        if (Oracle.Enabled || !WideCulling) return;
         Mem.Set(cam + 0x74, Mem.F32(cam + 0x74) * CullH);
         Cpu.SetS(0, Cpu.S(0) * CullV);
     }
