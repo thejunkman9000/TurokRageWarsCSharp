@@ -1306,7 +1306,7 @@ public static partial class Game
                     }
                     if (((int)(new Rec14(r).w8) >= 2))
                     {
-                        func_004030E0((int)(new Rec14(r).w8));
+                        Flyby_QueueById((int)(new Rec14(r).w8));
                     }
                 }
                 tab = (uint)(tab + (uint)((int)(new Rec14(r).b12) * 8));
@@ -2110,7 +2110,7 @@ public static partial class Game
                 r12 = hi;
                 r4 = (uint)((int)r12 >> 2);
                 r4 = r4 - r2;
-                r4 = r4 + 601u; r2 = func_004037E8(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r4 + 601u; r2 = Flyby_QueueByIdOnce(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_L00286B6C: ;
                 r2 = Flyby_BuildMatchGoalText(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_L00286B74: ;
@@ -4750,8 +4750,8 @@ public static partial class Game
                 {
                     if ((new Level(lv).unk1B438 == 999))
                     {
-                        func_004037D4();
-                        func_004030E0(400);
+                        Flyby_SetFlagB4_004037D4();
+                        Flyby_QueueById(400);
                     }
                     if ((new Level(lv).unk1B410 == 0))
                     {
@@ -6856,6 +6856,64 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_00290A70", r2); Stack.Free(384); }
     }
 
+    // ==== func_002B2378 @ 0x002B2378 [MIPS]
+    public static uint LevelIdToWorld_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B2378", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B2378: ;
+                r2 = (uint)1999;
+                { bool c_ = r4 == r2; r2 = (uint)2999; if (c_) goto L_L002B23B4; }
+                { bool c_ = r4 == r2; r2 = (uint)3999; if (c_) goto L_L002B23B4; }
+                { bool c_ = r4 == r2; r2 = (uint)4999; if (c_) goto L_L002B23B4; }
+                { bool c_ = r4 == r2; r2 = (uint)5999; if (c_) goto L_L002B23B4; }
+                { bool c_ = r4 == r2; r2 = (uint)6999; if (c_) goto L_L002B23B4; }
+                { bool c_ = r4 == r2; r2 = (uint)99; if (c_) goto L_L002B23B4; }
+                { bool c_ = r4 != r2; r2 = r4 - 1000u; if (c_) goto L_L002B23BC; }
+                L_L002B23B4: ;
+                r2 = r0; Cpu.V1 = r3; return r2;
+                L_L002B23BC: ;
+                r2 = (uint)(r2 < (uint)(1000) ? 1 : 0);
+                { bool c_ = r2 == 0; r2 = r4 - 2000u; if (c_) goto L_L002B23D0; }
+                r2 = (uint)1; Cpu.V1 = r3; return r2;
+                L_L002B23D0: ;
+                r2 = (uint)(r2 < (uint)(1000) ? 1 : 0);
+                { bool c_ = r2 == 0; r2 = r4 - 3000u; if (c_) goto L_L002B23E4; }
+                r2 = (uint)2; Cpu.V1 = r3; return r2;
+                L_L002B23E4: ;
+                r2 = (uint)(r2 < (uint)(1000) ? 1 : 0);
+                { bool c_ = r2 == 0; r2 = r4 - 4000u; if (c_) goto L_L002B23F8; }
+                r2 = (uint)3; Cpu.V1 = r3; return r2;
+                L_L002B23F8: ;
+                r2 = (uint)(r2 < (uint)(1000) ? 1 : 0);
+                { bool c_ = r2 == 0; r2 = r4 - 5000u; if (c_) goto L_L002B240C; }
+                r2 = (uint)4; Cpu.V1 = r3; return r2;
+                L_L002B240C: ;
+                r2 = (uint)(r2 < (uint)(1000) ? 1 : 0);
+                { bool c_ = r2 != 0; r2 = (uint)5; if (c_) goto L_L002B2430; }
+                r3 = r4 - 6000u;
+                r3 = (uint)(r3 < (uint)(1000) ? 1 : 0);
+                { bool c_ = r3 != 0; r2 = (uint)6; if (c_) goto L_L002B2430; }
+                r2 = (uint)-1; Cpu.V1 = r3; return r2;
+                L_L002B2430: ;
+                Cpu.V1 = r3; return r2;
+                r1 = 2148335616u;
+                Cpu.Fpr[0] = Mem.U64((r1 - 15040u));
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B2378", r2); Stack.Free(384); }
+    }
+
     // ==== func_0044C250 @ 0x0044C250 [C]
     public static void Scene_HelperA_0044C250(uint lv, uint @out, int id)
     {
@@ -6979,7 +7037,7 @@ public static partial class Game
                 v = Resource_GetCartridgeKeyNoSize(Mem.U32(_fp), data, 18);
                 new S5Scene(lv).f34_Set(v);
                 Resource_LoadIndexTableSync(0, (lv + 116u), v, Str.Lit("Cinemas index"));
-                func_00403BE0();
+                Flyby_LoadIndexResource_00403BE0();
                 p = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(19), (uint)(data), lv, 0x00285130u, Str.Lit("link group types"));
                 new S5Scene(lv).fB0_Set(Mem.U32(p));
                 new S5Scene(lv).fC_Set(0);
@@ -7292,7 +7350,7 @@ public static partial class Game
             if ((Level_IsRestartPending() == 0))
             {
                 temp_v0 = ResourceCache_Hash(0, (uint)(new State_func_8044D054_de(arg0).unk38), new State_func_8044D054_de(arg0).unk38, (uint)(new State_func_8044D054_de(arg0).unk44), 0, (uint)(0), 0x00285130u, 0x800CA1A0u, 1);
-                func_002C2490(0x800FD1F0u, (uint)(Mem.S32(temp_v0)), (uint)(22528), default(uint));
+                memcpy_Recompiled(0x800FD1F0u, (uint)(Mem.S32(temp_v0)), (uint)(22528), default(uint));
                 ResourcePool_Release((int)(0u), temp_v0);
                 new State_func_8044D054_de(arg0).unk4_Set(1);
             }
@@ -7310,7 +7368,7 @@ public static partial class Game
             if ((Level_IsRestartPending() == 0))
             {
                 resource = ResourceCache_Hash(0, (uint)(new State_func_8044D0F0_de(state).resource), new State_func_8044D0F0_de(state).resource, (uint)(new State_func_8044D0F0_de(state).bank), 0, (uint)(0), 0x00285130u, 0x800CA1BCu, 1);
-                func_002C2490(0x800F81F0u, (uint)(Mem.S32(resource)), (uint)(20480), default(uint));
+                memcpy_Recompiled(0x800F81F0u, (uint)(Mem.S32(resource)), (uint)(20480), default(uint));
                 ResourcePool_Release(0, resource);
             }
         }

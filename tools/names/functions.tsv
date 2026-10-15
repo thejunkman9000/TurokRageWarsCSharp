@@ -2750,33 +2750,33 @@ func_002AE254	0x002AE254	Pickup_InfraRedKeepActive	Player/Items.cs	medium	InfraR
 func_002AE25C	0x002AE25C	DevLink_ResetDbgPort_Entry_002AE25C	Debug/DevLink.cs	high	split piece: one sll then falls into DevLink_ResetDbgPort at 0x002AE260
 func_002AE260	0x002AE260	DevLink_ResetDbgPort	Debug/DevLink.cs	medium	clears D_8014D3E0..E4, writes 0 to the 0xB2000000..10 registers with PI idle waits, sets bit 0x40 of register 8; callers dbgLinkServerLoop, func_002AF990
 dbgLinkRecvByte	0x002AE380				
-func_002AE380	0x002AE380				
+func_002AE380	0x002AE380	dbgLinkRecvByte_Recompiled	Debug/DevLink.cs	high	recompiled MIPS twin of the library function dbgLinkRecvByte at the same address
 dbgLinkSendByte	0x002AE5AC				
-func_002AE5AC	0x002AE5AC				
+func_002AE5AC	0x002AE5AC	dbgLinkSendByte_Recompiled	Debug/DevLink.cs	high	recompiled MIPS twin of the library function dbgLinkSendByte at the same address
 dbgLinkRecvBlock	0x002AE834				
-func_002AE834	0x002AE834				
+func_002AE834	0x002AE834	dbgLinkRecvBlock_Recompiled	Debug/DevLink.cs	high	recompiled MIPS twin of the library function dbgLinkRecvBlock at the same address
 dbgLinkSendBlock	0x002AEAB4				
-func_002AEAB4	0x002AEAB4				
+func_002AEAB4	0x002AEAB4	dbgLinkSendBlock_Recompiled	Debug/DevLink.cs	high	recompiled MIPS twin of the library function dbgLinkSendBlock at the same address
 dbgLinkCmdCallHook	0x002AEE48				
-func_002AEE48	0x002AEE48				
+func_002AEE48	0x002AEE48	dbgLinkCmdCallHook_Recompiled	Debug/DevLink.cs	high	recompiled MIPS twin of the library function dbgLinkCmdCallHook at the same address
 dbgLinkCmdSendVersion	0x002AEF84				
-func_002AEF84	0x002AEF84				
+func_002AEF84	0x002AEF84	dbgLinkCmdSendVersion_Recompiled	Debug/DevLink.cs	high	recompiled MIPS twin of the library function dbgLinkCmdSendVersion at the same address
 dbgLinkCmdWriteHalf	0x002AF0E4				
-func_002AF0E4	0x002AF0E4				
+func_002AF0E4	0x002AF0E4	dbgLinkCmdWriteHalf_Recompiled	Debug/DevLink.cs	high	recompiled MIPS twin of the library function dbgLinkCmdWriteHalf at the same address
 dbgLinkCmdWriteWord	0x002AF1F0				
-func_002AF1F0	0x002AF1F0				
+func_002AF1F0	0x002AF1F0	dbgLinkCmdWriteWord_Recompiled	Debug/DevLink.cs	high	recompiled MIPS twin of the library function dbgLinkCmdWriteWord at the same address
 dbgLinkCmdReadHalf	0x002AF33C				
-func_002AF33C	0x002AF33C				
+func_002AF33C	0x002AF33C	dbgLinkCmdReadHalf_Recompiled	Debug/DevLink.cs	high	recompiled MIPS twin of the library function dbgLinkCmdReadHalf at the same address
 dbgLinkCmdReadWord	0x002AF424				
-func_002AF424	0x002AF424				
+func_002AF424	0x002AF424	dbgLinkCmdReadWord_Recompiled	Debug/DevLink.cs	high	recompiled MIPS twin of the library function dbgLinkCmdReadWord at the same address
 dbgLinkCmdWriteBlock	0x002AF544				
-func_002AF544	0x002AF544				
+func_002AF544	0x002AF544	dbgLinkCmdWriteBlock_Recompiled	Debug/DevLink.cs	high	recompiled MIPS twin of the library function dbgLinkCmdWriteBlock at the same address
 dbgLinkCmdReadBlock	0x002AF6A0				
-func_002AF6A0	0x002AF6A0				
+func_002AF6A0	0x002AF6A0	dbgLinkCmdReadBlock_Recompiled	Debug/DevLink.cs	high	recompiled MIPS twin of the library function dbgLinkCmdReadBlock at the same address
 dbgLinkCmdLoadProgram	0x002AF7F8				
-func_002AF7F8	0x002AF7F8				
+func_002AF7F8	0x002AF7F8	dbgLinkCmdLoadProgram_Recompiled	Debug/DevLink.cs	high	recompiled MIPS twin of the library function dbgLinkCmdLoadProgram at the same address
 dbgLinkServerLoop	0x002AF990				
-func_002AF990	0x002AF990				
+func_002AF990	0x002AF990	dbgLinkServerLoop_Recompiled	Debug/DevLink.cs	high	recompiled MIPS twin of the library function dbgLinkServerLoop at the same address
 dbgHostFopen	0x002AFCE4				
 dbgHostFclose	0x002AFFEC				
 dbgHostFread	0x002B026C				
@@ -2787,7 +2787,7 @@ dbgHostSendWord	0x002B1088
 dbgHostPuts	0x002B1308				
 dbgLinkNop	0x002B1554				
 dbgLinkSetCallHook	0x002B155C				
-func_002B155C	0x002B155C				
+func_002B155C	0x002B155C	dbgLinkSetCallHook_Recompiled	Debug/DevLink.cs	high	recompiled MIPS twin of the library function dbgLinkSetCallHook at the same address
 dbgLinkRecvHalf	0x002B156C				
 dbgLinkRecvWord	0x002B15EC				
 dbgLinkRecvString	0x002B16B4				
@@ -2812,869 +2812,869 @@ dbgPortSetIntRxData	0x002B1F20
 dbgPortSetFifoRxReset	0x002B1F74				
 dbgPortWriteData	0x002B1FCC				
 dbgPortGetOverrun	0x002B2010				
-func_002B2048	0x002B2048				
+func_002B2048	0x002B2048	DevLink_ReturnOne_002B2048	Debug/DevLink.cs	low	pad_0B2C48 between dbgPortGetOverrun and dbgLinkCmdExec: jr ra; li v0,1 (8-byte stub returning 1, no callers)
 dbgLinkCmdExec	0x002B2050				
 dbgLinkCmdWriteByte	0x002B2134				
 dbgLinkCmdReadByte	0x002B2214				
 dbgLinkHandshake	0x002B22E4				
 F32ToTrunc16	0x002B2340				
 Trunc16ToF32	0x002B2350				
-func_002B2350	0x002B2350				
-func_002B2368	0x002B2368				
+func_002B2350	0x002B2350	Trunc16ToF32_Recompiled	Math/MathLib.cs	high	recompiled MIPS twin of the library function Trunc16ToF32 at the same address
+func_002B2368	0x002B2368	padding_002B2368_Recompiled	System/LowLevel.cs	medium	recompiled copy of the libultra padding_002B2368 words (addu s5,a1; sw s7,0x134(sp); jr ra) between Trunc16ToF32 and LevelIdToWorld
 padding_002B2368	0x002B2368				
 LevelIdToWorld	0x002B2378				
-func_002B2378	0x002B2378				
-func_002B2438	0x002B2438				
-func_002B2590	0x002B2590				
+func_002B2378	0x002B2378	LevelIdToWorld_Recompiled	World/Level.cs	high	recompiled MIPS twin of the library function LevelIdToWorld at the same address (level id 1000s..6000s -> world 1..6, x999/99 -> 0, else -1)
+func_002B2438	0x002B2438	osMapTLB_Head_002B2438	System/LowLevel.cs	medium	pad_0B3038: lui/ldc1 D_800CC540 with no jr ra, falls into osMapTLB at 0x2B2440 (alignment garbage, no callers)
+func_002B2590	0x002B2590	rncUnpackMethod1_Recompiled	System/Resource.cs	high	recompiled MIPS twin of the library function rncUnpackMethod1 at the same address
 rncUnpackMethod1	0x002B2590				
-func_002B2600	0x002B2600				
+func_002B2600	0x002B2600	rncUnpackMethod1Body_Recompiled	System/Resource.cs	high	recompiled MIPS twin of the library function rncUnpackMethod1Body at the same address
 rncUnpackMethod1Body	0x002B2600				
-func_002B276C	0x002B276C				
+func_002B276C	0x002B276C	rncReadHuffCode_Recompiled	System/Resource.cs	high	recompiled MIPS twin of the library function rncReadHuffCode at the same address
 rncReadHuffCode	0x002B276C				
-func_002B2810	0x002B2810				
+func_002B2810	0x002B2810	rncInputBits_Recompiled	System/Resource.cs	high	recompiled MIPS twin of the library function rncInputBits at the same address
 rncInputBits	0x002B2810				
-func_002B2838	0x002B2838				
+func_002B2838	0x002B2838	rncRefillBitBuf_Recompiled	System/Resource.cs	high	recompiled MIPS twin of the library function rncRefillBitBuf at the same address
 rncRefillBitBuf	0x002B2838				
-func_002B2870	0x002B2870				
+func_002B2870	0x002B2870	rncMakeHuffTable_Recompiled	System/Resource.cs	high	recompiled MIPS twin of the library function rncMakeHuffTable at the same address
 rncMakeHuffTable	0x002B2870				
 dbgSetWatchpoint	0x002B29C4				
-func_002B2A0C	0x002B2A0C				
-func_002B2A10	0x002B2A10				
+func_002B2A0C	0x002B2A0C	rncUnpackMethod2_Head	System/Resource.cs	high	4-byte MIPS head (move t1,a0) falling into rncUnpackMethod2 (0x2B2A10)
+func_002B2A10	0x002B2A10	rncUnpackMethod2_Recompiled	System/Resource.cs	high	recompiled MIPS twin of the library function rncUnpackMethod2 at the same address
 rncUnpackMethod2	0x002B2A10				
-func_002B2ABC	0x002B2ABC				
+func_002B2ABC	0x002B2ABC	rncUnpackMethod2Body_Recompiled	System/Resource.cs	high	recompiled MIPS twin of the library function rncUnpackMethod2Body at the same address
 rncUnpackMethod2Body	0x002B2ABC				
-func_002B30F8	0x002B30F8				
+func_002B30F8	0x002B30F8	__alCSeqGetTrackEvent_Head	Audio/Sound.cs	high	8-byte MIPS head (tail words of the previous function) falling into __alCSeqGetTrackEvent (0x2B3100)
 __alCSeqGetTrackEvent	0x002B3100				
-func_002B3100	0x002B3100				
+func_002B3100	0x002B3100	__alCSeqGetTrackEvent_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __alCSeqGetTrackEvent at the same address
 alCSeqNewMarker	0x002B3360				
-func_002B3360	0x002B3360				
+func_002B3360	0x002B3360	alCSeqNewMarker_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alCSeqNewMarker at the same address
 __getTrackByte	0x002B35D0				
-func_002B35D0	0x002B35D0				
+func_002B35D0	0x002B35D0	__getTrackByte_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __getTrackByte at the same address
 alCSeqNew	0x002B3688				
-func_002B3688	0x002B3688				
+func_002B3688	0x002B3688	alCSeqNew_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alCSeqNew at the same address
 alCSeqNextEvent	0x002B378C				
-func_002B378C	0x002B378C				
+func_002B378C	0x002B378C	alCSeqNextEvent_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alCSeqNextEvent at the same address
 alCSeqGetTicks	0x002B3880				
 alCSeqTicksToSec	0x002B388C				
 alCSeqSecToTicks	0x002B38F4				
 alCSeqSetLoc	0x002B3998				
 alCSeqGetLoc	0x002B3A0C				
 __alCSeqNextDelta	0x002B3A80				
-func_002B3A80	0x002B3A80				
+func_002B3A80	0x002B3A80	__alCSeqNextDelta_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __alCSeqNextDelta at the same address
 __readVarLen	0x002B3AFC				
-func_002B3AFC	0x002B3AFC				
+func_002B3AFC	0x002B3AFC	__readVarLen_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __readVarLen at the same address
 alCSPGetState	0x002B3B70				
-func_002B3B70	0x002B3B70				
-func_002B3B7C	0x002B3B7C				
+func_002B3B70	0x002B3B70	alCSPGetState_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alCSPGetState at the same address
+func_002B3B7C	0x002B3B7C	alCSPNew_Head	Audio/Sound.cs	high	4-byte MIPS head falling into alCSPNew (0x2B3B80)
 alCSPNew	0x002B3B80				
-func_002B3B80	0x002B3B80				
+func_002B3B80	0x002B3B80	alCSPNew_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alCSPNew at the same address
 __CSPVoiceHandler	0x002B3CF0				
-func_002B3CF0	0x002B3CF0				
+func_002B3CF0	0x002B3CF0	__CSPVoiceHandler_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __CSPVoiceHandler at the same address
 __CSPHandleNextSeqEvent	0x002B4220				
-func_002B4220	0x002B4220				
+func_002B4220	0x002B4220	__CSPHandleNextSeqEvent_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __CSPHandleNextSeqEvent at the same address
 __CSPHandleMIDIMsg	0x002B43B0				
-func_002B43B0	0x002B43B0				
+func_002B43B0	0x002B43B0	__CSPHandleMIDIMsg_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __CSPHandleMIDIMsg at the same address
 __CSPHandleMetaMsg	0x002B4C3C				
-func_002B4C3C	0x002B4C3C				
+func_002B4C3C	0x002B4C3C	__CSPHandleMetaMsg_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __CSPHandleMetaMsg at the same address
 __CSPPostNextSeqEvent	0x002B4DD0				
-func_002B4DD0	0x002B4DD0				
+func_002B4DD0	0x002B4DD0	__CSPPostNextSeqEvent_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __CSPPostNextSeqEvent at the same address
 __CSPRepostEvent	0x002B4E3C				
-func_002B4E3C	0x002B4E3C				
+func_002B4E3C	0x002B4E3C	__CSPRepostEvent_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __CSPRepostEvent at the same address
 __setUsptFromTempo_2	0x002B4ECC				
-func_002B4ECC	0x002B4ECC				
-func_002B4EFC	0x002B4EFC				
+func_002B4ECC	0x002B4ECC	__setUsptFromTempo_2_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __setUsptFromTempo_2 at the same address
+func_002B4EFC	0x002B4EFC	alCents2Ratio_Head	Audio/Sound.cs	high	4-byte MIPS head (sb zero,0x35(s1)) falling into alCents2Ratio (0x2B4F00)
 alCents2Ratio	0x002B4F00				
-func_002B4F00	0x002B4F00				
+func_002B4F00	0x002B4F00	alCents2Ratio_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alCents2Ratio at the same address
 alCSPPlay	0x002B4F50				
-func_002B4F50	0x002B4F50				
-func_002B4F7C	0x002B4F7C				
+func_002B4F50	0x002B4F50	alCSPPlay_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alCSPPlay at the same address
+func_002B4F7C	0x002B4F7C	alCSPSetBank_Head	Audio/Sound.cs	high	4-byte MIPS head falling into alCSPSetBank (0x2B4F80)
 alCSPSetBank	0x002B4F80				
-func_002B4F80	0x002B4F80				
+func_002B4F80	0x002B4F80	alCSPSetBank_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alCSPSetBank at the same address
 alCSPSetChlFXMix	0x002B4FB0				
-func_002B4FB0	0x002B4FB0				
-func_002B4FF4	0x002B4FF4				
+func_002B4FB0	0x002B4FB0	alCSPSetChlFXMix_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alCSPSetChlFXMix at the same address
+func_002B4FF4	0x002B4FF4	alCSPSetSeq_Head	Audio/Sound.cs	high	12-byte MIPS head falling into alCSPSetSeq (0x2B5000)
 alCSPSetSeq	0x002B5000				
-func_002B5000	0x002B5000				
+func_002B5000	0x002B5000	alCSPSetSeq_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alCSPSetSeq at the same address
 alCSPSetVol	0x002B5030				
-func_002B5030	0x002B5030				
+func_002B5030	0x002B5030	alCSPSetVol_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alCSPSetVol at the same address
 alCSPStop	0x002B5060				
 alEvtqNew	0x002B5090				
-func_002B5090	0x002B5090				
+func_002B5090	0x002B5090	alEvtqNew_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alEvtqNew at the same address
 alEvtqNextEvent	0x002B510C				
-func_002B510C	0x002B510C				
+func_002B510C	0x002B510C	alEvtqNextEvent_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alEvtqNextEvent at the same address
 alEvtqPostEvent	0x002B51A4				
-func_002B51A4	0x002B51A4				
+func_002B51A4	0x002B51A4	alEvtqPostEvent_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alEvtqPostEvent at the same address
 alEvtqFlush	0x002B52B0				
 alEvtqFlushType	0x002B5328				
-func_002B5328	0x002B5328				
+func_002B5328	0x002B5328	alEvtqFlushType_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alEvtqFlushType at the same address
 alCopy	0x002B53E0				
-func_002B53E0	0x002B53E0				
-func_002B540C	0x002B540C				
+func_002B53E0	0x002B53E0	alCopy_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alCopy at the same address
+func_002B540C	0x002B540C	alHeapDBAlloc_Head	Audio/Sound.cs	high	4-byte MIPS head falling into alHeapDBAlloc (0x2B5410)
 alHeapDBAlloc	0x002B5410				
-func_002B5410	0x002B5410				
-func_002B5458	0x002B5458				
+func_002B5410	0x002B5410	alHeapDBAlloc_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alHeapDBAlloc at the same address
+func_002B5458	0x002B5458	alHeapInit_Head	Audio/Sound.cs	high	8-byte MIPS head falling into alHeapInit (0x2B5460)
 alHeapInit	0x002B5460				
-func_002B5460	0x002B5460				
+func_002B5460	0x002B5460	alHeapInit_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alHeapInit at the same address
 alSeqpNew	0x002B5494				
-func_002B5494	0x002B5494				
+func_002B5494	0x002B5494	alSeqpNew_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSeqpNew at the same address
 __voiceHandler	0x002B5624				
-func_002B5624	0x002B5624				
+func_002B5624	0x002B5624	__voiceHandler_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __voiceHandler at the same address
 __handleNextSeqEvent	0x002B5B60				
-func_002B5B60	0x002B5B60				
+func_002B5B60	0x002B5B60	__handleNextSeqEvent_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __handleNextSeqEvent at the same address
 __handleMIDIMsg	0x002B5D64				
-func_002B5D64	0x002B5D64				
-func_002B65BC	0x002B65BC				
+func_002B5D64	0x002B5D64	__handleMIDIMsg_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __handleMIDIMsg at the same address
+func_002B65BC	0x002B65BC	__handleMIDIMsg_Tail	Audio/Sound.cs	high	epilogue fragment of __handleMIDIMsg (restores ra/s0-s7/f20 of its 112-byte frame and returns), split off before __mapVoice
 __mapVoice	0x002B65EC				
-func_002B65EC	0x002B65EC				
+func_002B65EC	0x002B65EC	__mapVoice_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __mapVoice at the same address
 __unmapVoice	0x002B663C				
-func_002B663C	0x002B663C				
+func_002B663C	0x002B663C	__unmapVoice_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __unmapVoice at the same address
 __voiceNeedsNoteKillOff	0x002B66A0				
-func_002B66A0	0x002B66A0				
+func_002B66A0	0x002B66A0	__voiceNeedsNoteKillOff_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __voiceNeedsNoteKillOff at the same address
 __lookupVoice	0x002B6750				
-func_002B6750	0x002B6750				
+func_002B6750	0x002B6750	__lookupVoice_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __lookupVoice at the same address
 __lookupSoundQuick	0x002B67B0				
-func_002B67B0	0x002B67B0				
+func_002B67B0	0x002B67B0	__lookupSoundQuick_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __lookupSoundQuick at the same address
 __vsVol	0x002B68E4				
-func_002B68E4	0x002B68E4				
+func_002B68E4	0x002B68E4	__vsVol_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __vsVol at the same address
 __vsDelta	0x002B6958				
-func_002B6958	0x002B6958				
+func_002B6958	0x002B6958	__vsDelta_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __vsDelta at the same address
 __vsPan	0x002B6974				
-func_002B6974	0x002B6974				
+func_002B6974	0x002B6974	__vsPan_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __vsPan at the same address
 __initFromBank	0x002B69B4				
-func_002B69B4	0x002B69B4				
+func_002B69B4	0x002B69B4	__initFromBank_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __initFromBank at the same address
 __initChanState	0x002B6A60				
-func_002B6A60	0x002B6A60				
+func_002B6A60	0x002B6A60	__initChanState_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __initChanState at the same address
 __resetPerfChanState	0x002B6B10				
-func_002B6B10	0x002B6B10				
+func_002B6B10	0x002B6B10	__resetPerfChanState_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __resetPerfChanState at the same address
 __setInstChanState	0x002B6B90				
-func_002B6B90	0x002B6B90				
+func_002B6B90	0x002B6B90	__setInstChanState_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __setInstChanState at the same address
 __seqpReleaseVoice	0x002B6BE4				
-func_002B6BE4	0x002B6BE4				
+func_002B6BE4	0x002B6BE4	__seqpReleaseVoice_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __seqpReleaseVoice at the same address
 __seqpStopOsc	0x002B6D04				
-func_002B6D04	0x002B6D04				
+func_002B6D04	0x002B6D04	__seqpStopOsc_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __seqpStopOsc at the same address
 __postNextSeqEvent	0x002B6DF4				
-func_002B6DF4	0x002B6DF4				
+func_002B6DF4	0x002B6DF4	__postNextSeqEvent_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __postNextSeqEvent at the same address
 __handleMetaMsg	0x002B6EBC				
-func_002B6EBC	0x002B6EBC				
+func_002B6EBC	0x002B6EBC	__handleMetaMsg_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __handleMetaMsg at the same address
 __setUsptFromTempo	0x002B6F20				
-func_002B6F20	0x002B6F20				
+func_002B6F20	0x002B6F20	__setUsptFromTempo_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __setUsptFromTempo at the same address
 alSeqNextEvent	0x002B6F50				
-func_002B6F50	0x002B6F50				
+func_002B6F50	0x002B6F50	alSeqNextEvent_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSeqNextEvent at the same address
 alSeqNew	0x002B70B8				
 alSeqGetTicks	0x002B7198				
-func_002B7198	0x002B7198				
+func_002B7198	0x002B7198	alSeqGetTicks_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSeqGetTicks at the same address
 alSeqTicksToSec	0x002B71A4				
 alSeqSecToTicks	0x002B71F0				
 alSeqNewMarker	0x002B7278				
 alSeqSetLoc	0x002B738C				
-func_002B738C	0x002B738C				
+func_002B738C	0x002B738C	alSeqSetLoc_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSeqSetLoc at the same address
 alSeqGetLoc	0x002B73A8				
 __alSeqNextDelta	0x002B73C4				
-func_002B73C4	0x002B73C4				
+func_002B73C4	0x002B73C4	__alSeqNextDelta_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __alSeqNextDelta at the same address
 __alSeqReadVarLen	0x002B742C				
-func_002B742C	0x002B742C				
+func_002B742C	0x002B742C	__alSeqReadVarLen_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __alSeqReadVarLen at the same address
 __alSeqReadByte	0x002B7480				
-func_002B7480	0x002B7480				
+func_002B7480	0x002B7480	__alSeqReadByte_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __alSeqReadByte at the same address
 __alSeqReadShort	0x002B7494				
-func_002B7494	0x002B7494				
+func_002B7494	0x002B7494	__alSeqReadShort_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __alSeqReadShort at the same address
 __alSeqReadWord	0x002B74C4				
-func_002B74C4	0x002B74C4				
-func_002B7514	0x002B7514				
+func_002B74C4	0x002B74C4	__alSeqReadWord_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __alSeqReadWord at the same address
+func_002B7514	0x002B7514	alUnlink_Head	Audio/Sound.cs	high	12-byte MIPS head falling into alUnlink (0x2B7520): node->next->prev / node->prev->next
 alUnlink	0x002B7520				
-func_002B7520	0x002B7520				
+func_002B7520	0x002B7520	alUnlink_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alUnlink at the same address
 alLink	0x002B7550				
-func_002B7550	0x002B7550				
+func_002B7550	0x002B7550	alLink_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alLink at the same address
 alInit	0x002B7570				
-func_002B7570	0x002B7570				
+func_002B7570	0x002B7570	alInit_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alInit at the same address
 alClose	0x002B75A0				
-func_002B75A0	0x002B75A0				
-func_002B75DC	0x002B75DC				
+func_002B75A0	0x002B75A0	alClose_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alClose at the same address
+func_002B75DC	0x002B75DC	alSndpAllocate_Head	Audio/Sound.cs	high	4-byte MIPS head falling into alSndpAllocate (0x2B75E0)
 alSndpAllocate	0x002B75E0				
-func_002B75E0	0x002B75E0				
-func_002B7698	0x002B7698				
+func_002B75E0	0x002B75E0	alSndpAllocate_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSndpAllocate at the same address
+func_002B7698	0x002B7698	alSndpAllocate_Tail	Audio/Sound.cs	medium	8-byte epilogue piece (lw s0,0x10(sp); jr ra) after alSndpAllocate, before alSndpDeallocate
 alSndpDeallocate	0x002B76A0				
-func_002B76A0	0x002B76A0				
-func_002B76E4	0x002B76E4				
+func_002B76A0	0x002B76A0	alSndpDeallocate_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSndpDeallocate at the same address
+func_002B76E4	0x002B76E4	alSndpGetState_Head_002B76E4	Audio/Sound.cs	low	12 bytes of stray prologue-like words (sw s7/ra) between alSndpDeallocate and alSndpGetState (0x2B76F0); no callers
 alSndpGetState	0x002B76F0				
 alSndpNew	0x002B7720				
-func_002B7720	0x002B7720				
+func_002B7720	0x002B7720	alSndpNew_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSndpNew at the same address
 _handleEvent	0x002B7850				
-func_002B7850	0x002B7850				
+func_002B7850	0x002B7850	_handleEvent_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function _handleEvent at the same address
 _sndpVoiceHandler	0x002B7C8C				
 _removeEvents	0x002B7D18				
-func_002B7D18	0x002B7D18				
+func_002B7D18	0x002B7D18	_removeEvents_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function _removeEvents at the same address
 __sndpTimeAtPitch	0x002B7DC0				
-func_002B7DC0	0x002B7DC0				
-func_002B7E48	0x002B7E48				
-func_002B7E4C	0x002B7E4C				
+func_002B7DC0	0x002B7DC0	__sndpTimeAtPitch_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __sndpTimeAtPitch at the same address
+func_002B7E48	0x002B7E48	alSndpPlay_Head_002B7E48	Audio/Sound.cs	high	8-byte MIPS head falling into alSndpPlay (0x2B7E50)
+func_002B7E4C	0x002B7E4C	alSndpPlay_Head_002B7E4C	Audio/Sound.cs	high	4-byte MIPS head (sw a0,0(s2)) falling into alSndpPlay (0x2B7E50)
 alSndpPlay	0x002B7E50				
-func_002B7E50	0x002B7E50				
+func_002B7E50	0x002B7E50	alSndpPlay_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSndpPlay at the same address
 alSndpSetFXMix	0x002B7EB0				
-func_002B7EB0	0x002B7EB0				
-func_002B7EFC	0x002B7EFC				
+func_002B7EB0	0x002B7EB0	alSndpSetFXMix_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSndpSetFXMix at the same address
+func_002B7EFC	0x002B7EFC	alSndpSetPan_Head	Audio/Sound.cs	high	4-byte MIPS head falling into alSndpSetPan (0x2B7F00)
 alSndpSetPan	0x002B7F00				
-func_002B7F00	0x002B7F00				
-func_002B7F4C	0x002B7F4C				
+func_002B7F00	0x002B7F00	alSndpSetPan_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSndpSetPan at the same address
+func_002B7F4C	0x002B7F4C	alSndpSetPitch_Head	Audio/Sound.cs	high	4-byte MIPS head falling into alSndpSetPitch (0x2B7F50)
 alSndpSetPitch	0x002B7F50				
-func_002B7F50	0x002B7F50				
-func_002B7F9C	0x002B7F9C				
+func_002B7F50	0x002B7F50	alSndpSetPitch_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSndpSetPitch at the same address
+func_002B7F9C	0x002B7F9C	alSndpSetPriority_Head	Audio/Sound.cs	high	4-byte MIPS head falling into alSndpSetPriority (0x2B7FA0)
 alSndpSetPriority	0x002B7FA0				
-func_002B7FA0	0x002B7FA0				
-func_002B7FC8	0x002B7FC8				
+func_002B7FA0	0x002B7FA0	alSndpSetPriority_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSndpSetPriority at the same address
+func_002B7FC8	0x002B7FC8	alSndpSetSound_Head	Audio/Sound.cs	high	8-byte MIPS head falling into alSndpSetSound (0x2B7FD0)
 alSndpSetSound	0x002B7FD0				
-func_002B7FD0	0x002B7FD0				
+func_002B7FD0	0x002B7FD0	alSndpSetSound_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSndpSetSound at the same address
 alSndpSetVol	0x002B7FE0				
-func_002B7FE0	0x002B7FE0				
-func_002B802C	0x002B802C				
+func_002B7FE0	0x002B7FE0	alSndpSetVol_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSndpSetVol at the same address
+func_002B802C	0x002B802C	alSndpStop_Head	Audio/Sound.cs	high	4-byte MIPS head falling into alSndpStop (0x2B8030)
 alSndpStop	0x002B8030				
-func_002B8030	0x002B8030				
-func_002B8078	0x002B8078				
+func_002B8030	0x002B8030	alSndpStop_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSndpStop at the same address
+func_002B8078	0x002B8078	alSynAddPlayer_Head	Audio/Sound.cs	high	sndp_linker_fragment_B8C78: 8-byte head falling into alSynAddPlayer (0x2B8080)
 sndp_linker_fragment_B8C78	0x002B8078				
 alSynAddPlayer	0x002B8080				
-func_002B8080	0x002B8080				
+func_002B8080	0x002B8080	alSynAddPlayer_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSynAddPlayer at the same address
 alSynAllocVoice	0x002B80D0				
-func_002B80D0	0x002B80D0				
+func_002B80D0	0x002B80D0	alSynAllocVoice_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSynAllocVoice at the same address
 _allocatePVoice	0x002B8200				
-func_002B8200	0x002B8200				
-func_002B82B8	0x002B82B8				
+func_002B8200	0x002B8200	_allocatePVoice_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function _allocatePVoice at the same address
+func_002B82B8	0x002B82B8	alSynDelete_Head	Audio/Sound.cs	high	8-byte MIPS head falling into alSynDelete (0x2B82C0)
 alSynDelete	0x002B82C0				
-func_002B82C0	0x002B82C0				
-func_002B82C8	0x002B82C8				
+func_002B82C0	0x002B82C0	alSynDelete_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSynDelete at the same address
+func_002B82C8	0x002B82C8	alSynFreeVoice_Head	Audio/Sound.cs	high	8-byte MIPS head falling into alSynFreeVoice (0x2B82D0; __allocParam / _freePVoice body)
 alSynFreeVoice	0x002B82D0				
-func_002B82D0	0x002B82D0				
+func_002B82D0	0x002B82D0	alSynFreeVoice_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSynFreeVoice at the same address
 synth_linker_fragment_B8F6C	0x002B836C				
 alSynSetFXMix	0x002B8370				
-func_002B8370	0x002B8370				
+func_002B8370	0x002B8370	alSynSetFXMix_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSynSetFXMix at the same address
 alSynSetPan	0x002B8420				
-func_002B8420	0x002B8420				
+func_002B8420	0x002B8420	alSynSetPan_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSynSetPan at the same address
 alSynSetPitch	0x002B84B0				
-func_002B84B0	0x002B84B0				
-func_002B853C	0x002B853C				
+func_002B84B0	0x002B84B0	alSynSetPitch_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSynSetPitch at the same address
+func_002B853C	0x002B853C	alSynSetPriority_Head	Audio/Sound.cs	high	4-byte MIPS head falling into alSynSetPriority (0x2B8540)
 alSynSetPriority	0x002B8540				
-func_002B8540	0x002B8540				
-func_002B8548	0x002B8548				
+func_002B8540	0x002B8540	alSynSetPriority_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSynSetPriority at the same address
+func_002B8548	0x002B8548	alSynSetVol_Head	Audio/Sound.cs	high	8-byte MIPS head falling into alSynSetVol (0x2B8550)
 alSynSetVol	0x002B8550				
-func_002B8550	0x002B8550				
-func_002B8608	0x002B8608				
+func_002B8550	0x002B8550	alSynSetVol_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSynSetVol at the same address
+func_002B8608	0x002B8608	alSynStartVoice_Head	Audio/Sound.cs	high	synth_linker_fragment_B9208: 8-byte head falling into alSynStartVoice (0x2B8610)
 synth_linker_fragment_B9208	0x002B8608				
 alSynStartVoice	0x002B8610				
-func_002B8610	0x002B8610				
-func_002B86A4	0x002B86A4				
+func_002B8610	0x002B8610	alSynStartVoice_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSynStartVoice at the same address
+func_002B86A4	0x002B86A4	alSynStartVoice_Tail_002B86A4	Audio/Sound.cs	low	synth_linker_fragment_B92A4: addiu sp,24; jr ra between alSynStartVoice and alSynStartVoiceParams (stray epilogue, no callers)
 synth_linker_fragment_B92A4	0x002B86A4				
 synth_linker_fragment_B92AC	0x002B86AC				
 alSynStartVoiceParams	0x002B86B0				
-func_002B86B0	0x002B86B0				
-func_002B87B4	0x002B87B4				
+func_002B86B0	0x002B86B0	alSynStartVoiceParams_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSynStartVoiceParams at the same address
+func_002B87B4	0x002B87B4	alSynStopVoice_Head	Audio/Sound.cs	high	12-byte MIPS head falling into alSynStopVoice (0x2B87C0)
 alSynStopVoice	0x002B87C0				
-func_002B87C0	0x002B87C0				
-func_002B883C	0x002B883C				
+func_002B87C0	0x002B87C0	alSynStopVoice_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSynStopVoice at the same address
+func_002B883C	0x002B883C	alSynNew_Head	Audio/Sound.cs	high	4-byte MIPS head falling into alSynNew (0x2B8840)
 alSynNew	0x002B8840				
-func_002B8840	0x002B8840				
+func_002B8840	0x002B8840	alSynNew_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alSynNew at the same address
 alAudioFrame	0x002B8B14				
-func_002B8B14	0x002B8B14				
+func_002B8B14	0x002B8B14	alAudioFrame_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function alAudioFrame at the same address
 __allocParam	0x002B8CC8				
-func_002B8CC8	0x002B8CC8				
+func_002B8CC8	0x002B8CC8	__allocParam_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __allocParam at the same address
 __freeParam	0x002B8CF4				
-func_002B8CF4	0x002B8CF4				
+func_002B8CF4	0x002B8CF4	__freeParam_Recompiled	Audio/Sound.cs	high	recompiled MIPS twin of the library function __freeParam at the same address
 _freePVoice	0x002B8D0C				
-func_002B8D0C	0x002B8D0C				
+func_002B8D0C	0x002B8D0C	_freePVoice_Recompiled	Audio/Sound.cs	high	recompiled copy of _freePVoice at the same address (0x002B8D0C)
 _collectPVoices	0x002B8D4C				
-func_002B8D4C	0x002B8D4C				
+func_002B8D4C	0x002B8D4C	_collectPVoices_Recompiled	Audio/Sound.cs	high	recompiled copy of _collectPVoices at the same address (0x002B8D4C)
 _timeToSamplesNoRound	0x002B8DA0				
-func_002B8DA0	0x002B8DA0				
+func_002B8DA0	0x002B8DA0	_timeToSamplesNoRound_Recompiled	Audio/Sound.cs	high	recompiled copy of _timeToSamplesNoRound at the same address (0x002B8DA0)
 __nextSampleTime	0x002B8DE0				
-func_002B8DE0	0x002B8DE0				
+func_002B8DE0	0x002B8DE0	__nextSampleTime_Recompiled	Audio/Sound.cs	high	recompiled copy of __nextSampleTime at the same address (0x002B8DE0)
 _timeToSamplesNoRound_2	0x002B8E88				
-func_002B8E88	0x002B8E88				
+func_002B8E88	0x002B8E88	_timeToSamplesNoRound_2_Recompiled	Audio/Sound.cs	high	recompiled copy of _timeToSamplesNoRound_2 at the same address (0x002B8E88)
 alMainBusPull	0x002B8EC4				
-func_002B8ED0	0x002B8ED0				
+func_002B8ED0	0x002B8ED0	alMainBusPull_Recompiled	Audio/Sound.cs	high	real start of alMainBusPull per yaml (0xB9AD0; the tsv row at 0x2B8EC4 includes pad_0B9AC4); builds the main-bus mix command list
 alMainBusParam	0x002B8FAC				
-func_002B8FAC	0x002B8FAC				
-func_002B8FDC	0x002B8FDC				
+func_002B8FAC	0x002B8FAC	alMainBusParam_Recompiled	Audio/Sound.cs	high	recompiled copy of alMainBusParam at the same address (0x002B8FAC)
+func_002B8FDC	0x002B8FDC	alFxNew_Entry_002B8FDC	Audio/Sound.cs	medium	pad_0B9BDC: one lui then falls into alFxNew (calls alHeapDBAlloc/alFilterNew)
 alFxNew	0x002B8FE0				
-func_002B8FE0	0x002B8FE0				
+func_002B8FE0	0x002B8FE0	alFxNew_Recompiled	Audio/Sound.cs	high	recompiled copy of alFxNew at the same address (0x002B8FE0)
 alLoadNew	0x002B9474				
-func_002B9474	0x002B9474				
+func_002B9474	0x002B9474	alLoadNew_Recompiled	Audio/Sound.cs	high	recompiled copy of alLoadNew at the same address (0x002B9474)
 alAuxBusNew	0x002B9524				
-func_002B9524	0x002B9524				
+func_002B9524	0x002B9524	alAuxBusNew_Recompiled	Audio/Sound.cs	high	recompiled copy of alAuxBusNew at the same address (0x002B9524)
 alMainBusNew	0x002B9580				
-func_002B9580	0x002B9580				
+func_002B9580	0x002B9580	alMainBusNew_Recompiled	Audio/Sound.cs	high	recompiled copy of alMainBusNew at the same address (0x002B9580)
 alResampleNew	0x002B95DC				
-func_002B95DC	0x002B95DC				
+func_002B95DC	0x002B95DC	alResampleNew_Recompiled	Audio/Sound.cs	high	recompiled copy of alResampleNew at the same address (0x002B95DC)
 alSaveNew	0x002B9668				
-func_002B9668	0x002B9668				
+func_002B9668	0x002B9668	alSaveNew_Recompiled	Audio/Sound.cs	high	recompiled copy of alSaveNew at the same address (0x002B9668)
 alEnvmixerNew	0x002B96AC				
-func_002B96AC	0x002B96AC				
-func_002B975C	0x002B975C				
+func_002B96AC	0x002B96AC	alEnvmixerNew_Recompiled	Audio/Sound.cs	high	recompiled copy of alEnvmixerNew at the same address (0x002B96AC)
+func_002B975C	0x002B975C	init_lpfilter_Recompiled	Audio/Sound.cs	high	recompiled copy of init_lpfilter at the same address (0x002B975C)
 init_lpfilter	0x002B975C				
-func_002B97F8	0x002B97F8				
+func_002B97F8	0x002B97F8	init_lpfilter_Tail_002B97F8	Audio/Sound.cs	medium	pad_0BA3F8: sp+=64 and return, epilogue tail of init_lpfilter
 alEnvmixerPull	0x002B9800				
-func_002B9800	0x002B9800				
+func_002B9800	0x002B9800	alEnvmixerPull_Recompiled	Audio/Sound.cs	high	recompiled copy of alEnvmixerPull at the same address (0x002B9800)
 _pullSubFrame	0x002B9D4C				
-func_002B9D4C	0x002B9D4C				
+func_002B9D4C	0x002B9D4C	_pullSubFrame_Recompiled	Audio/Sound.cs	high	recompiled copy of _pullSubFrame at the same address (0x002B9D4C)
 _getRate	0x002BA038				
-func_002BA038	0x002BA038				
+func_002BA038	0x002BA038	_getRate_Recompiled	Audio/Sound.cs	high	recompiled copy of _getRate at the same address (0x002BA038)
 alEnvmixerParam	0x002BA288				
-func_002BA288	0x002BA288				
+func_002BA288	0x002BA288	alEnvmixerParam_Recompiled	Audio/Sound.cs	high	recompiled copy of alEnvmixerParam at the same address (0x002BA288)
 _getVol	0x002BA358				
-func_002BA358	0x002BA358				
-func_002BA3D0	0x002BA3D0				
+func_002BA358	0x002BA358	_getVol_Recompiled	Audio/Sound.cs	high	recompiled copy of _getVol at the same address (0x002BA358)
+func_002BA3D0	0x002BA3D0	libm_frexp_Recompiled	Lib/LibC.cs	high	recompiled copy of libm_frexp at the same address (0x002BA3D0)
 libm_frexp	0x002BA3D0				
-func_002BA484	0x002BA484				
+func_002BA484	0x002BA484	libm_ldexp_Recompiled	Lib/LibC.cs	high	recompiled copy of libm_ldexp at the same address (0x002BA484)
 libm_ldexp	0x002BA484				
-func_002BA4A4	0x002BA4A4				
+func_002BA4A4	0x002BA4A4	alFilterNew_Entry_002BA4A4	Audio/Sound.cs	medium	pad_0BB0A4 falling into alFilterNew (stores to filter fields 0..16)
 alFilterNew	0x002BA4B0				
-func_002BA4B0	0x002BA4B0				
+func_002BA4B0	0x002BA4B0	alFilterNew_Recompiled	Audio/Sound.cs	high	recompiled copy of alFilterNew at the same address (0x002BA4B0)
 alAuxBusPull	0x002BA4CC				
-func_002BA4D0	0x002BA4D0				
+func_002BA4D0	0x002BA4D0	alAuxBusPull_Recompiled	Audio/Sound.cs	high	real start of alAuxBusPull per yaml (0xBB0D0); aux bus pull loop over its sources
 alAuxBusParam	0x002BA610				
-func_002BA610	0x002BA610				
+func_002BA610	0x002BA610	alAuxBusParam_Recompiled	Audio/Sound.cs	high	recompiled copy of alAuxBusParam at the same address (0x002BA610)
 alResamplePull	0x002BA640				
-func_002BA640	0x002BA640				
+func_002BA640	0x002BA640	alResamplePull_Recompiled	Audio/Sound.cs	high	recompiled copy of alResamplePull at the same address (0x002BA640)
 alResampleParam	0x002BA800				
-func_002BA800	0x002BA800				
+func_002BA800	0x002BA800	alResampleParam_Recompiled	Audio/Sound.cs	high	recompiled copy of alResampleParam at the same address (0x002BA800)
 alFxPull	0x002BA8C0				
-func_002BA8C0	0x002BA8C0				
+func_002BA8C0	0x002BA8C0	alFxPull_Recompiled	Audio/Sound.cs	high	recompiled copy of alFxPull at the same address (0x002BA8C0)
 alFxParamHdl	0x002BAC64				
-func_002BAC64	0x002BAC64				
+func_002BAC64	0x002BAC64	alFxParamHdl_Recompiled	Audio/Sound.cs	high	recompiled copy of alFxParamHdl at the same address (0x002BAC64)
 _loadOutputBuffer	0x002BAE40				
-func_002BAE40	0x002BAE40				
+func_002BAE40	0x002BAE40	_loadOutputBuffer_Recompiled	Audio/Sound.cs	high	recompiled copy of _loadOutputBuffer at the same address (0x002BAE40)
 _saveBuffer	0x002BB038				
-func_002BB038	0x002BB038				
+func_002BB038	0x002BB038	_saveBuffer_Recompiled	Audio/Sound.cs	high	recompiled copy of _saveBuffer at the same address (0x002BB038)
 alFxParam	0x002BB1A8				
-func_002BB1A8	0x002BB1A8				
+func_002BB1A8	0x002BB1A8	alFxParam_Recompiled	Audio/Sound.cs	high	recompiled copy of alFxParam at the same address (0x002BB1A8)
 _loadBuffer	0x002BB1BC				
-func_002BB1BC	0x002BB1BC				
+func_002BB1BC	0x002BB1BC	_loadBuffer_Recompiled	Audio/Sound.cs	high	recompiled copy of _loadBuffer at the same address (0x002BB1BC)
 _filterBuffer	0x002BB32C				
-func_002BB32C	0x002BB32C				
+func_002BB32C	0x002BB32C	_filterBuffer_Recompiled	Audio/Sound.cs	high	recompiled copy of _filterBuffer at the same address (0x002BB32C)
 _doModFunc	0x002BB3D0				
-func_002BB3D0	0x002BB3D0				
+func_002BB3D0	0x002BB3D0	_doModFunc_Recompiled	Audio/Sound.cs	high	recompiled copy of _doModFunc at the same address (0x002BB3D0)
 alSavePull	0x002BB448				
-func_002BB450	0x002BB450				
+func_002BB450	0x002BB450	alSavePull_Recompiled	Audio/Sound.cs	high	real start of alSavePull per yaml (0xBC050); calls __assert, pulls the source into the save buffer
 alSaveParam	0x002BB550				
-func_002BB550	0x002BB550				
-func_002BB584	0x002BB584				
+func_002BB550	0x002BB550	alSaveParam_Recompiled	Audio/Sound.cs	high	recompiled copy of alSaveParam at the same address (0x002BB550)
+func_002BB584	0x002BB584	alSynAllocFX_Entry_002BB584	Audio/Sound.cs	medium	pad_0BC184 falling into alSynAllocFX (calls alFxNew/alFxParam/alAuxBusParam)
 alSynAllocFX	0x002BB590				
-func_002BB590	0x002BB590				
-func_002BB624	0x002BB624				
+func_002BB590	0x002BB590	alSynAllocFX_Recompiled	Audio/Sound.cs	high	recompiled copy of alSynAllocFX at the same address (0x002BB590)
+func_002BB624	0x002BB624	libaudio_fragment_0BC224_Recompiled	Audio/Sound.cs	high	recompiled copy of libaudio_fragment_0BC224 at the same address (0x002BB624)
 libaudio_fragment_0BC224	0x002BB624				
 cosf	0x002BB630				
-func_002BB630	0x002BB630				
-func_002BB734	0x002BB734				
+func_002BB630	0x002BB630	cosf_Recompiled	Lib/LibC.cs	high	recompiled copy of cosf at the same address (0x002BB630)
+func_002BB734	0x002BB734	guLookAt_Entry_002BB734	Lib/LibC.cs	medium	pad_0BC334 falling into the guLookAt unit (FP saves, calls guMtxIdentF)
 guLookAt	0x002BB740				
-func_002BB9D0	0x002BB9D0				
+func_002BB9D0	0x002BB9D0	guLookAtF_Recompiled	Lib/LibC.cs	high	recompiled copy of guLookAtF at the same address (0x002BB9D0)
 guLookAtF	0x002BB9D0				
-func_002BBC50	0x002BBC50				
+func_002BBC50	0x002BBC50	guMtxIdent_Recompiled	Lib/LibC.cs	high	recompiled copy of guMtxIdent at the same address (0x002BBC50)
 guMtxIdent	0x002BBC50				
-func_002BBD3C	0x002BBD3C				
+func_002BBD3C	0x002BBD3C	guMtxIdentF_Recompiled	Lib/LibC.cs	high	recompiled copy of guMtxIdentF at the same address (0x002BBD3C)
 guMtxIdentF	0x002BBD3C				
-func_002BBD8C	0x002BBD8C				
+func_002BBD8C	0x002BBD8C	guMtxF2L_Recompiled	Lib/LibC.cs	high	recompiled copy of guMtxF2L at the same address (0x002BBD8C)
 guMtxF2L	0x002BBD8C				
 guMtxL2F	0x002BBE24				
 guPerspective	0x002BBEC0				
-func_002BC06C	0x002BC06C				
+func_002BC06C	0x002BC06C	guPerspectiveF_Recompiled	Lib/LibC.cs	high	recompiled copy of guPerspectiveF at the same address (0x002BC06C)
 guPerspectiveF	0x002BC06C				
 sinf	0x002BC200				
-func_002BC37C	0x002BC37C				
-func_002BC380	0x002BC380				
+func_002BC37C	0x002BC37C	sinf_Tail_002BC37C	Lib/LibC.cs	medium	pad_0BCF7C: single load and return after sinf
+func_002BC380	0x002BC380	sqrtf_Recompiled	Lib/LibC.cs	high	recompiled copy of sqrtf at the same address (0x002BC380)
 sqrtf	0x002BC380				
-func_002BC38C	0x002BC38C				
-func_002BC390	0x002BC390				
-func_002BC3A0	0x002BC3A0				
-func_002BC3A4	0x002BC3A4				
-func_002BC3D0	0x002BC3D0				
-func_002BC3E0	0x002BC3E0				
-func_002BC4C8	0x002BC4C8				
-func_002BC4D0	0x002BC4D0				
-func_002BC55C	0x002BC55C				
+func_002BC38C	0x002BC38C	osAiGetStatus_Entry_002BC38C	System/LowLevel.cs	medium	one store then falls into osAiGetStatus (reads AI_STATUS 0xA450000C)
+func_002BC390	0x002BC390	osAiGetStatus_Recompiled	System/LowLevel.cs	high	yaml osAiGetStatus (0xBCF90): returns the AI_STATUS register 0xA450000C
+func_002BC3A0	0x002BC3A0	osAiGetStatus_Tail_002BC3A0	System/LowLevel.cs	medium	last slot of osAiGetStatus + pad_0BCFA4 (junk lui/addiu, returns)
+func_002BC3A4	0x002BC3A4	osAiGetStatus_Tail_002BC3A4	System/LowLevel.cs	medium	pad_0BCFA4 after osAiGetStatus (junk instructions, returns)
+func_002BC3D0	0x002BC3D0	osAiSetFrequency_Tail_002BC3D0	System/LowLevel.cs	medium	starts mid osAiSetFrequency (yaml 0x2BC3B0): FP divide of the clock, dacRate<132 check
+func_002BC3E0	0x002BC3E0	osAiSetFrequency_Tail_002BC3E0	System/LowLevel.cs	medium	starts mid osAiSetFrequency (yaml 0x2BC3B0): same body as func_002BC3D0, 4 insns later
+func_002BC4C8	0x002BC4C8	osAiSetNextBuffer_Entry_002BC4C8	System/LowLevel.cs	medium	pad_0BD0C8 (swr/swl) falling into osAiSetNextBuffer
+func_002BC4D0	0x002BC4D0	osAiSetNextBuffer_Recompiled	System/LowLevel.cs	high	yaml osAiSetNextBuffer (0xBD0D0): 8K-boundary fix (-0x2000), __osAiDeviceBusy check
+func_002BC55C	0x002BC55C	__osAiDeviceBusy_Entry_002BC55C	System/LowLevel.cs	medium	pad_0BD15C falling into __osAiDeviceBusy (AI_STATUS < 0)
 __osAiDeviceBusy	0x002BC560				
-func_002BC560	0x002BC560				
-func_002BC574	0x002BC574				
-func_002BC580	0x002BC580				
-func_002BC630	0x002BC630				
-func_002BC6C4	0x002BC6C4				
+func_002BC560	0x002BC560	__osAiDeviceBusy_Recompiled	System/LowLevel.cs	high	recompiled copy of __osAiDeviceBusy at the same address (0x002BC560)
+func_002BC574	0x002BC574	__osAiDeviceBusy_Tail_002BC574	System/LowLevel.cs	medium	pad_0BD174 after __osAiDeviceBusy (junk s0/s1 restores, returns)
+func_002BC580	0x002BC580	osContStartQuery_Recompiled	System/LowLevel.cs	high	yaml osContStartQuery (0xBD180): __osSiGetAccess, __osPackRequestData, __osSiRawStartDma
+func_002BC630	0x002BC630	osContStartReadData_Recompiled	System/LowLevel.cs	high	yaml osContStartReadData (0xBD230): __osSiGetAccess, __osPackReadData, SI DMA write
+func_002BC6C4	0x002BC6C4	osContGetReadData_Recompiled	System/LowLevel.cs	high	yaml osContGetReadData (0xBD2C4): unpacks the 8-byte pif records for each controller
 __osPackReadData	0x002BC75C				
-func_002BC75C	0x002BC75C				
-func_002BC7A0	0x002BC7A0				
-func_002BC860	0x002BC860				
+func_002BC75C	0x002BC75C	__osPackReadData_Recompiled	System/LowLevel.cs	high	recompiled copy of __osPackReadData at the same address (0x002BC75C)
+func_002BC7A0	0x002BC7A0	__osPackReadData_Tail_002BC7A0	System/LowLevel.cs	medium	starts mid __osPackReadData (0x2BC75C): fills the read-data pif blocks with 0xFF
+func_002BC860	0x002BC860	osContReset_Tail_002BC860	System/LowLevel.cs	medium	starts mid osContReset (yaml 0xBD410 = 0x2BC810): SI DMA + osRecvMesg pairs, __osPackRequestData
 __osPackResetData	0x002BC91C				
-func_002BC91C	0x002BC91C				
-func_002BC950	0x002BC950				
+func_002BC91C	0x002BC91C	__osPackResetData_Recompiled	System/LowLevel.cs	high	recompiled copy of __osPackResetData at the same address (0x002BC91C)
+func_002BC950	0x002BC950	osContInit_Recompiled	System/LowLevel.cs	high	yaml osContInit (0xBD550): __osSiCreateAccessQueue, __osPackRequestData, __osContGetInitData
 __osPackRequestData	0x002BCAF0				
-func_002BCAF0	0x002BCAF0				
+func_002BCAF0	0x002BCAF0	__osPackRequestData_Recompiled	System/LowLevel.cs	high	recompiled copy of __osPackRequestData at the same address (0x002BCAF0)
 __osContGetInitData	0x002BCBA8				
-func_002BCBA8	0x002BCBA8				
-func_002BCC5C	0x002BCC5C				
-func_002BCC60	0x002BCC60				
-func_002BCCFC	0x002BCCFC				
+func_002BCBA8	0x002BCBA8	__osContGetInitData_Recompiled	System/LowLevel.cs	high	recompiled copy of __osContGetInitData at the same address (0x002BCBA8)
+func_002BCC5C	0x002BCC5C	__osContGetInitData_Tail_002BCC5C	System/LowLevel.cs	medium	pad_0BD85C: one swl and return after __osContGetInitData
+func_002BCC60	0x002BCC60	osDpSetNextBuffer_Recompiled	System/LowLevel.cs	high	yaml osDpSetNextBuffer (0xBD860): __osDpDeviceBusy, writes DPC registers 0xA410000C
+func_002BCCFC	0x002BCCFC	osDpSetNextBuffer_Tail_002BCCFC	System/LowLevel.cs	medium	pad_0BD8FC: junk restore and return after osDpSetNextBuffer
 __osDpDeviceBusy	0x002BCD00				
-func_002BCD20	0x002BCD20				
+func_002BCD20	0x002BCD20	osMotorStop_Recompiled	System/LowLevel.cs	high	recompiled copy of osMotorStop at the same address (0x002BCD20)
 osMotorStop	0x002BCD20				
-func_002BCEE4	0x002BCEE4				
+func_002BCEE4	0x002BCEE4	osMotorStart_Recompiled	System/LowLevel.cs	high	recompiled copy of osMotorStart at the same address (0x002BCEE4)
 osMotorStart	0x002BCEE4				
 osMotorInit	0x002BD0A8				
-func_002BD560	0x002BD560				
+func_002BD560	0x002BD560	osMotorInit_Tail_002BD560	System/LowLevel.cs	low	epilogue (restore s0-s5/ra, sp+=128) just before pad_0BE184, end of the osMotorInit unit
 __osContRamRead	0x002BD590				
-func_002BD590	0x002BD590				
+func_002BD590	0x002BD590	__osContRamRead_Recompiled	System/LowLevel.cs	high	recompiled copy of __osContRamRead at the same address (0x002BD590)
 __osPackRamReadData	0x002BD7C0				
-func_002BD7C0	0x002BD7C0				
-func_002BD948	0x002BD948				
+func_002BD7C0	0x002BD7C0	__osPackRamReadData_Recompiled	System/LowLevel.cs	high	recompiled copy of __osPackRamReadData at the same address (0x002BD7C0)
+func_002BD948	0x002BD948	__osContRamWrite_Entry_002BD948	System/LowLevel.cs	medium	pad_0BE548 falling into __osContRamWrite (__osPackRamWriteData, __osContDataCrc)
 __osContRamWrite	0x002BD950				
-func_002BD950	0x002BD950				
+func_002BD950	0x002BD950	__osContRamWrite_Recompiled	System/LowLevel.cs	high	recompiled copy of __osContRamWrite at the same address (0x002BD950)
 __osPackRamWriteData	0x002BDB70				
-func_002BDB70	0x002BDB70				
-func_002BDD08	0x002BDD08				
+func_002BDB70	0x002BDB70	__osPackRamWriteData_Recompiled	System/LowLevel.cs	high	recompiled copy of __osPackRamWriteData at the same address (0x002BDB70)
+func_002BDD08	0x002BDD08	__osContAddressCrc_Entry_002BDD08	System/LowLevel.cs	medium	pad_0BE908 falling into __osContAddressCrc (CRC poly 0x15 loop)
 __osContAddressCrc	0x002BDD10				
-func_002BDD10	0x002BDD10				
+func_002BDD10	0x002BDD10	__osContAddressCrc_Recompiled	System/LowLevel.cs	high	recompiled copy of __osContAddressCrc at the same address (0x002BDD10)
 __osContDataCrc	0x002BDD58				
-func_002BDDC0	0x002BDDC0				
-func_002BDE6C	0x002BDE6C				
-func_002BDE70	0x002BDE70				
+func_002BDDC0	0x002BDDC0	osPiStartDma_Recompiled	System/LowLevel.cs	high	yaml osPiStartDma (0xBE9C0): -1 if PI manager inactive, mesg type 11/12 request, osPiGetCmdQueue
+func_002BDE6C	0x002BDE6C	osPiStartDma_Tail_002BDE6C	System/LowLevel.cs	medium	pad_0BEA6C: one and-3 and return after osPiStartDma
+func_002BDE70	0x002BDE70	osPiGetCmdQueue_Recompiled	System/LowLevel.cs	high	recompiled copy of osPiGetCmdQueue at the same address (0x002BDE70)
 osPiGetCmdQueue	0x002BDE70				
-func_002BDE98	0x002BDE98				
-func_002BDEA0	0x002BDEA0				
-func_002BDEB4	0x002BDEB4				
+func_002BDE98	0x002BDE98	osPiGetCmdQueue_Tail_002BDE98	System/LowLevel.cs	medium	pad_0BEA98: junk and return after osPiGetCmdQueue
+func_002BDEA0	0x002BDEA0	osPiGetStatus_Recompiled	System/LowLevel.cs	high	yaml osPiGetStatus (0xBEAA0): returns the PI_STATUS register 0xA4600010
+func_002BDEB4	0x002BDEB4	osPiGetStatus_Tail_002BDEB4	System/LowLevel.cs	medium	pad_0BEAB4: junk osVirtualToPhysical store and return
 osCreatePiManager	0x002BDEC0				
-func_002BE038	0x002BE038				
+func_002BE038	0x002BE038	osCreatePiManager_Tail_002BE038	System/LowLevel.cs	medium	pad_0BEC38: junk and return after osCreatePiManager
 osCartRomInit	0x002BE040				
 __osDevMgrMain	0x002BE100				
-func_002BE498	0x002BE498				
+func_002BE498	0x002BE498	__osDevMgrMain_Tail_002BE498	System/LowLevel.cs	medium	pad_0BF098: junk and return after __osDevMgrMain
 osEPiRawStartDma	0x002BE4A0				
-func_002BE680	0x002BE680				
+func_002BE680	0x002BE680	osEPiRawReadIo_Recompiled	System/LowLevel.cs	high	recompiled copy of osEPiRawReadIo at the same address (0x002BE680)
 osEPiRawReadIo	0x002BE680				
-func_002BE814	0x002BE814				
-func_002BE820	0x002BE820				
+func_002BE814	0x002BE814	osEPiRawWriteIo_Entry_002BE814	System/LowLevel.cs	medium	pad_0BF414 falling into osEPiRawWriteIo (PI_STATUS busy wait)
+func_002BE820	0x002BE820	osEPiRawWriteIo_Recompiled	System/LowLevel.cs	high	recompiled copy of osEPiRawWriteIo at the same address (0x002BE820)
 osEPiRawWriteIo	0x002BE820				
 osDriveRomInit	0x002BE960				
-func_002BEA34	0x002BEA34				
+func_002BEA34	0x002BEA34	__osPiCreateAccessQueue_Entry_002BEA34	System/LowLevel.cs	medium	pad_0BF634 falling into __osPiCreateAccessQueue (piacs)
 __osPiCreateAccessQueue	0x002BEA40				
-func_002BEA40	0x002BEA40				
+func_002BEA40	0x002BEA40	__osPiCreateAccessQueue_Recompiled	System/LowLevel.cs	high	recompiled copy of __osPiCreateAccessQueue at the same address (0x002BEA40)
 __osPiGetAccess	0x002BEA94				
 __osPiRelAccess	0x002BEB00				
-func_002BEB28	0x002BEB28				
-func_002BEB30	0x002BEB30				
-func_002BEC10	0x002BEC10				
+func_002BEB28	0x002BEB28	osPiRawStartDma_Entry_002BEB28	System/LowLevel.cs	medium	pad_0BF728 falling into osPiRawStartDma
+func_002BEB30	0x002BEB30	osPiRawStartDma_Recompiled	System/LowLevel.cs	high	yaml osPiRawStartDma (0xBF730): PI_STATUS busy wait, programs the PI DMA, __assert
+func_002BEC10	0x002BEC10	osPiRawReadIo_Recompiled	System/LowLevel.cs	high	recompiled copy of osPiRawReadIo at the same address (0x002BEC10)
 osPiRawReadIo	0x002BEC10				
-func_002BECA4	0x002BECA4				
+func_002BECA4	0x002BECA4	__osSiCreateAccessQueue_Entry_002BECA4	System/LowLevel.cs	medium	pad_0BF8A4 falling into __osSiCreateAccessQueue (siacs)
 __osSiCreateAccessQueue	0x002BECB0				
-func_002BECB0	0x002BECB0				
+func_002BECB0	0x002BECB0	__osSiCreateAccessQueue_Recompiled	System/LowLevel.cs	high	recompiled copy of __osSiCreateAccessQueue at the same address (0x002BECB0)
 __osSiGetAccess	0x002BED04				
-func_002BED04	0x002BED04				
+func_002BED04	0x002BED04	__osSiGetAccess_Recompiled	System/LowLevel.cs	high	recompiled copy of __osSiGetAccess at the same address (0x002BED04)
 __osSiRelAccess	0x002BED70				
-func_002BED70	0x002BED70				
-func_002BED98	0x002BED98				
+func_002BED70	0x002BED70	__osSiRelAccess_Recompiled	System/LowLevel.cs	high	recompiled copy of __osSiRelAccess at the same address (0x002BED70)
+func_002BED98	0x002BED98	__osSiRelAccess_Tail_002BED98	System/LowLevel.cs	medium	pad_0BF998: junk and return after the siacs unit
 __osSiDeviceBusy	0x002BEE60				
-func_002BEE60	0x002BEE60				
-func_002BEE78	0x002BEE78				
+func_002BEE60	0x002BEE60	__osSiDeviceBusy_Recompiled	System/LowLevel.cs	high	recompiled copy of __osSiDeviceBusy at the same address (0x002BEE60)
+func_002BEE78	0x002BEE78	_VirtualToPhysicalTask_Entry_002BEE78	System/LowLevel.cs	medium	pad_0BFA78 falling into _VirtualToPhysicalTask (memcpy 64-byte task, osVirtualToPhysical)
 _VirtualToPhysicalTask	0x002BEE80				
-func_002BEE80	0x002BEE80				
-func_002BEF68	0x002BEF68				
-func_002BF06C	0x002BF06C				
-func_002BF098	0x002BF098				
+func_002BEE80	0x002BEE80	_VirtualToPhysicalTask_Recompiled	System/LowLevel.cs	high	recompiled copy of _VirtualToPhysicalTask at the same address (0x002BEE80)
+func_002BEF68	0x002BEF68	osSpTaskLoad_Recompiled	System/LowLevel.cs	high	yaml osSpTaskLoad (0xBFB68): _VirtualToPhysicalTask, yield flag, __osSpRawStartDma, __osSpSetPc
+func_002BF06C	0x002BF06C	osSpTaskStartGo_Recompiled	System/LowLevel.cs	high	yaml osSpTaskStartGo (0xBFC6C): waits on __osSpDeviceBusy then __osSpSetStatus(0x125)
+func_002BF098	0x002BF098	__osSpDeviceBusy_Entry_002BF098	System/LowLevel.cs	medium	pad_0BFC98 falling into __osSpDeviceBusy (SP_STATUS & 0x1C)
 __osSpDeviceBusy	0x002BF0A0				
-func_002BF0A0	0x002BF0A0				
-func_002BF0B8	0x002BF0B8				
+func_002BF0A0	0x002BF0A0	__osSpDeviceBusy_Recompiled	System/LowLevel.cs	high	recompiled copy of __osSpDeviceBusy at the same address (0x002BF0A0)
+func_002BF0B8	0x002BF0B8	__osSpDeviceBusy_Tail_002BF0B8	System/LowLevel.cs	medium	pad_0BFCB8: junk and return after __osSpDeviceBusy
 __osSpRawStartDma	0x002BF0C0				
-func_002BF0C0	0x002BF0C0				
-func_002BF1BC	0x002BF1BC				
+func_002BF0C0	0x002BF0C0	__osSpRawStartDma_Recompiled	System/LowLevel.cs	high	recompiled copy of __osSpRawStartDma at the same address (0x002BF0C0)
+func_002BF1BC	0x002BF1BC	__osSpRawStartDma_Tail_002BF1BC	System/LowLevel.cs	medium	pad_0BFDBC: one or and return after __osSpRawStartDma
 __osSpSetPc	0x002BF1C0				
-func_002BF1C0	0x002BF1C0				
-func_002BF1EC	0x002BF1EC				
+func_002BF1C0	0x002BF1C0	__osSpSetPc_Recompiled	System/LowLevel.cs	high	recompiled copy of __osSpSetPc at the same address (0x002BF1C0)
+func_002BF1EC	0x002BF1EC	__osSpSetPc_Tail_002BF1EC	System/LowLevel.cs	medium	pad_0BFDEC: junk store and return after __osSpSetPc
 __osSpSetStatus	0x002BF1F0				
-func_002BF1F0	0x002BF1F0				
-func_002BF204	0x002BF204				
-func_002BF210	0x002BF210				
-func_002BF22C	0x002BF22C				
-func_002BF230	0x002BF230				
-func_002BF27C	0x002BF27C				
+func_002BF1F0	0x002BF1F0	__osSpSetStatus_Recompiled	System/LowLevel.cs	high	recompiled copy of __osSpSetStatus at the same address (0x002BF1F0)
+func_002BF204	0x002BF204	__osSpSetStatus_Tail_002BF204	System/LowLevel.cs	medium	pad_0BFE04: junk and return after __osSpSetStatus
+func_002BF210	0x002BF210	osSpTaskYield_Recompiled	System/LowLevel.cs	high	yaml osSpTaskYield (0xBFE10): __osSpSetStatus(0x400 = SP_SET_SIG0)
+func_002BF22C	0x002BF22C	osSpTaskYield_Tail_002BF22C	System/LowLevel.cs	medium	pad_0BFE2C: junk and return after osSpTaskYield
+func_002BF230	0x002BF230	osSpTaskYielded_Recompiled	System/LowLevel.cs	high	__osSpGetStatus, SP_STATUS_YIELDED (0x80) -> task flags |= yielded bit, &= ~2; sits between osSpTaskYield and __osSpGetStatus (yaml game/func_002BF230)
+func_002BF27C	0x002BF27C	osSpTaskYielded_Tail_002BF27C	System/LowLevel.cs	medium	pad_0BFE7C: junk store and return after osSpTaskYielded
 __osSpGetStatus	0x002BF280				
 __osViInit	0x002BF300				
-func_002BF300	0x002BF300				
-func_002BF3FC	0x002BF3FC				
-func_002BF400	0x002BF400				
-func_002BF438	0x002BF438				
-func_002BF440	0x002BF440				
+func_002BF300	0x002BF300	__osViInit_Recompiled	System/LowLevel.cs	high	recompiled copy of __osViInit at the same address (0x002BF300)
+func_002BF3FC	0x002BF3FC	osViGetCurrentFramebuffer_Entry_002BF3FC	System/LowLevel.cs	medium	pad_0BFFFC falling into osViGetCurrentFramebuffer
+func_002BF400	0x002BF400	osViGetCurrentFramebuffer_Recompiled	System/LowLevel.cs	high	yaml osViGetCurrentFramebuffer (0xC0000): returns __osViCurr->framep under __osDisableInt
+func_002BF438	0x002BF438	osCreateViManager_Entry_002BF438	System/LowLevel.cs	medium	pad_0C0038 (break) falling into osCreateViManager
+func_002BF440	0x002BF440	osCreateViManager_Recompiled	System/LowLevel.cs	high	yaml osCreateViManager (0xC0040): __osTimerServicesInit, __osViInit, creates the VI manager thread
 __osViGetCurrentContext	0x002BF730				
-func_002BF730	0x002BF730				
-func_002BF740	0x002BF740				
-func_002BF798	0x002BF798				
-func_002BF7A0	0x002BF7A0				
-func_002BF7EC	0x002BF7EC				
-func_002BF7F0	0x002BF7F0				
-func_002BF9A4	0x002BF9A4				
-func_002BF9B0	0x002BF9B0				
-func_002BF9F4	0x002BF9F4				
-func_002BF9F8	0x002BF9F8				
+func_002BF730	0x002BF730	__osViGetCurrentContext_Recompiled	System/LowLevel.cs	high	recompiled copy of __osViGetCurrentContext at the same address (0x002BF730)
+func_002BF740	0x002BF740	osViSetEvent_Recompiled	System/LowLevel.cs	high	yaml osViSetEvent (0xC0340): sets __osViNext msgq/msg/retraceCount under __osDisableInt
+func_002BF798	0x002BF798	osViSetEvent_Tail_002BF798	System/LowLevel.cs	medium	pad_0C0398: junk restore and return after osViSetEvent
+func_002BF7A0	0x002BF7A0	osViSetMode_Recompiled	System/LowLevel.cs	high	yaml osViSetMode (0xC03A0): __osViNext->modep = mode, state = 1, control = comRegs.ctrl
+func_002BF7EC	0x002BF7EC	osViSetMode_Tail_002BF7EC	System/LowLevel.cs	medium	pad_0C03EC: junk store and return after osViSetMode
+func_002BF7F0	0x002BF7F0	osViSetSpecialFeatures_Recompiled	System/LowLevel.cs	high	yaml osViSetSpecialFeatures (0xC03F0): gamma/dither/divot flag bits in __osViNext->control
+func_002BF9A4	0x002BF9A4	osViSetYScale_Tail_002BF9A4	System/LowLevel.cs	medium	pad_0C05A4: junk and return after osViSetYScale
+func_002BF9B0	0x002BF9B0	osViSwapBuffer_Recompiled	System/LowLevel.cs	high	yaml osViSwapBuffer (0xC05B0): __osViNext->framep = fb, state |= 0x10
+func_002BF9F4	0x002BF9F4	osViSwapBuffer_Tail_002BF9F4	System/LowLevel.cs	medium	pad_0C05F4: bare return after osViSwapBuffer
+func_002BF9F8	0x002BF9F8	osViSwapBuffer_Tail_002BF9F8	System/LowLevel.cs	medium	pad_0C05F4: junk osGetCount call and return, before __osViSwapContext
 __osViSwapContext	0x002BFA00				
-func_002BFA00	0x002BFA00				
-func_002BFD3C	0x002BFD3C				
+func_002BFA00	0x002BFA00	__osViSwapContext_Recompiled	System/LowLevel.cs	high	recompiled copy of __osViSwapContext at the same address (0x002BFA00)
+func_002BFD3C	0x002BFD3C	__osViSwapContext_Tail_002BFD3C	System/LowLevel.cs	medium	pad_0C093C: one halfword store and return after __osViSwapContext
 __assert	0x002BFD40				
-func_002BFD40	0x002BFD40				
-func_002BFD48	0x002BFD48				
+func_002BFD40	0x002BFD40	__assert_Recompiled	System/LowLevel.cs	high	recompiled copy of __assert at the same address (0x002BFD40)
+func_002BFD48	0x002BFD48	__assert_Tail_002BFD48	System/LowLevel.cs	medium	junk restore of s0/ra and return inside pad_0C093C after __assert
 __osGetCurrFaultedThread	0x002BFE60				
-func_002BFE60	0x002BFE60				
-func_002BFE70	0x002BFE70				
-func_002BFE8C	0x002BFE8C				
-func_002BFE90	0x002BFE90				
-func_002BFEAC	0x002BFEAC				
-func_002BFEB0	0x002BFEB0				
-func_002BFF2C	0x002BFF2C				
-func_002BFF30	0x002BFF30				
+func_002BFE60	0x002BFE60	__osGetCurrFaultedThread_Recompiled	System/LowLevel.cs	high	recompiled copy of __osGetCurrFaultedThread at the same address (0x002BFE60)
+func_002BFE70	0x002BFE70	osGetThreadId_Recompiled	System/LowLevel.cs	high	yaml osGetThreadId (0xC0A70): t ? t : __osRunningThread, returns t->id (+0x14)
+func_002BFE8C	0x002BFE8C	osGetThreadPri_Entry_002BFE8C	System/LowLevel.cs	medium	pad_0C0A8C falling into osGetThreadPri
+func_002BFE90	0x002BFE90	osGetThreadPri_Recompiled	System/LowLevel.cs	high	yaml osGetThreadPri (0xC0A90): t ? t : __osRunningThread, returns t->priority (+4)
+func_002BFEAC	0x002BFEAC	osGetTime_Entry_002BFEAC	System/LowLevel.cs	medium	pad_0C0AAC falling into osGetTime
+func_002BFEB0	0x002BFEB0	osGetTime_Recompiled	System/LowLevel.cs	high	yaml osGetTime (0xC0AB0): __osDisableInt, osGetCount minus base counter plus current time
+func_002BFF2C	0x002BFF2C	osInitialize_Head_002BFF2C	System/LowLevel.cs	medium	alignment pad 0C0B2C: one stray store then falls into osInitialize (func_002BFF30)
+func_002BFF30	0x002BFF30	osInitialize_Recompiled	System/LowLevel.cs	high	recompiled copy of osInitialize at the same address (ROM 0xC0B30, yaml unit libultra/osInitialize); sets SR/FPCSR, polls PIF via __osSiRawReadIo
 __osSiRawReadIo	0x002C0150				
-func_002C0150	0x002C0150				
+func_002C0150	0x002C0150	__osSiRawReadIo_Recompiled	System/LowLevel.cs	high	recompiled copy of __osSiRawReadIo at the same address (ROM 0xC0D50, yaml unit libultra/__osSiRawReadIo)
 __osSiRawWriteIo	0x002C01E0				
-func_002C01E0	0x002C01E0				
-func_002C024C	0x002C024C				
-func_002C0390	0x002C0390				
-func_002C04B4	0x002C04B4				
-func_002C04B8	0x002C04B8				
+func_002C01E0	0x002C01E0	__osSiRawWriteIo_Recompiled	System/LowLevel.cs	high	recompiled copy of __osSiRawWriteIo at the same address (ROM 0xC0DE0, yaml unit libultra/__osSiRawWriteIo)
+func_002C024C	0x002C024C	__osSiRawWriteIo_Tail_002C024C	System/LowLevel.cs	medium	pad 0C0E4C after __osSiRawWriteIo: one junk instruction then return; no callers
+func_002C0390	0x002C0390	osRecvMesg_Recompiled	System/LowLevel.cs	high	recompiled copy of osRecvMesg at the same address (ROM 0xC0F90, yaml unit libultra/osRecvMesg); validCount wait loop, __osEnqueueAndYield
+func_002C04B4	0x002C04B4	__osResetGlobalIntMask_Head_002C04B4	System/LowLevel.cs	medium	pad 0C10B4: falls straight into __osResetGlobalIntMask
+func_002C04B8	0x002C04B8	__osResetGlobalIntMask_Head_002C04B8	System/LowLevel.cs	medium	pad 0C10B4+4: junk cfc1 then falls into __osResetGlobalIntMask
 __osResetGlobalIntMask	0x002C04C0				
-func_002C04C0	0x002C04C0				
-func_002C0508	0x002C0508				
-func_002C0510	0x002C0510				
-func_002C0640	0x002C0640				
-func_002C069C	0x002C069C				
+func_002C04C0	0x002C04C0	__osResetGlobalIntMask_Recompiled	System/LowLevel.cs	high	recompiled copy of __osResetGlobalIntMask at the same address (ROM 0xC10C0, yaml unit libultra/__osResetGlobalIntMask)
+func_002C0508	0x002C0508	osSendMesg_Head_002C0508	System/LowLevel.cs	medium	pad 0C1108: two junk instructions then falls into osSendMesg
+func_002C0510	0x002C0510	osSendMesg_Recompiled	System/LowLevel.cs	high	recompiled copy of osSendMesg at the same address (ROM 0xC1110, yaml unit libultra/osSendMesg); validCount < msgCount wait loop
+func_002C0640	0x002C0640	osSetEventMesg_Recompiled	System/LowLevel.cs	high	recompiled copy of osSetEventMesg at the same address (ROM 0xC1240, yaml unit libultra/osSetEventMesg)
+func_002C069C	0x002C069C	__osSetGlobalIntMask_Head_002C069C	System/LowLevel.cs	medium	pad 0C129C: one junk instruction then falls into __osSetGlobalIntMask
 __osSetGlobalIntMask	0x002C06A0				
-func_002C06A0	0x002C06A0				
-func_002C06E0	0x002C06E0				
-func_002C07A4	0x002C07A4				
-func_002C07B0	0x002C07B0				
-func_002C083C	0x002C083C				
+func_002C06A0	0x002C06A0	__osSetGlobalIntMask_Recompiled	System/LowLevel.cs	high	recompiled copy of __osSetGlobalIntMask at the same address (ROM 0xC12A0, yaml unit libultra/__osSetGlobalIntMask)
+func_002C06E0	0x002C06E0	osSetThreadPri_Recompiled	System/LowLevel.cs	high	recompiled copy of osSetThreadPri at the same address (ROM 0xC12E0, yaml unit libultra/osSetThreadPri)
+func_002C07A4	0x002C07A4	osSetThreadPri_Tail_002C07A4	System/LowLevel.cs	medium	pad 0C13A4 after osSetThreadPri: junk FPR loads then return; no callers
+func_002C07B0	0x002C07B0	osSetTimer_Recompiled	System/LowLevel.cs	high	recompiled copy of osSetTimer at the same address (ROM 0xC13B0, yaml unit libultra/osSetTimer)
+func_002C083C	0x002C083C	osSetTimer_Tail_002C083C	System/LowLevel.cs	medium	pad 0C143C after osSetTimer: one junk instruction then return; no callers
 __osDequeueThread	0x002C0960				
-func_002C0960	0x002C0960				
+func_002C0960	0x002C0960	__osDequeueThread_Recompiled	System/LowLevel.cs	high	recompiled copy of __osDequeueThread at the same address (ROM 0xC1560, yaml unit libultra/__osDequeueThread)
 __osTimerInterrupt	0x002C09A0				
-func_002C09A0	0x002C09A0				
+func_002C09A0	0x002C09A0	__osTimerInterrupt_Recompiled	System/LowLevel.cs	high	recompiled copy of __osTimerInterrupt at the same address (ROM 0xC15A0, yaml unit libultra/__osTimerInterrupt)
 __osTimerServicesInit	0x002C0AE8				
-func_002C0AE8	0x002C0AE8				
+func_002C0AE8	0x002C0AE8	__osTimerServicesInit_Recompiled	System/LowLevel.cs	high	recompiled copy of __osTimerServicesInit at the same address (ROM 0xC16E8, yaml unit libultra/__osTimerServicesInit)
 __osSetTimerIntr	0x002C0B3C				
-func_002C0B3C	0x002C0B3C				
+func_002C0B3C	0x002C0B3C	__osSetTimerIntr_Recompiled	System/LowLevel.cs	high	recompiled copy of __osSetTimerIntr at the same address (ROM 0xC173C, yaml unit libultra/__osSetTimerIntr)
 __osInsertTimer	0x002C0B9C				
-func_002C0CB0	0x002C0CB0				
-func_002C0D10	0x002C0D10				
-func_002C0D58	0x002C0D58				
+func_002C0CB0	0x002C0CB0	osVirtualToPhysical_Recompiled	System/LowLevel.cs	high	recompiled copy of osVirtualToPhysical at the same address (ROM 0xC18B0, yaml unit libultra/osVirtualToPhysical)
+func_002C0D10	0x002C0D10	osYieldThread_Recompiled	System/LowLevel.cs	high	recompiled copy of osYieldThread at the same address (ROM 0xC1910, yaml unit libultra/osYieldThread)
+func_002C0D58	0x002C0D58	__osExceptionPreamble_Head_002C0D58	System/LowLevel.cs	medium	pad 0C1958 just before exceptasm (__osExceptionPreamble): junk fragment; no callers
 __osExceptionPreamble	0x002C0D60				
-func_002C0D60	0x002C0D60				
+func_002C0D60	0x002C0D60	__osExceptionPreamble_Recompiled	System/LowLevel.cs	high	recompiled copy of __osExceptionPreamble at the same address (ROM 0xC1960, yaml unit libultra/__osExceptionPreamble)
 __osPopThread	0x002C1648				
-func_002C1648	0x002C1648				
+func_002C1648	0x002C1648	__osPopThread_Recompiled	System/LowLevel.cs	high	recompiled copy of __osPopThread at the same address (ROM 0xC2248, yaml unit libultra/__osPopThread)
 __osCleanupThread	0x002C185C				
 __osLeoInterrupt	0x002C1870				
-func_002C1D68	0x002C1D68				
+func_002C1D68	0x002C1D68	__osLeoInterrupt_Tail_002C1D68	System/LowLevel.cs	medium	__osLeoInterrupt+0x4F8: register-restore epilogue only (split piece)
 __osLeoAbnormalResume	0x002C1D80				
-func_002C1D80	0x002C1D80				
+func_002C1D80	0x002C1D80	__osLeoAbnormalResume_Recompiled	System/LowLevel.cs	high	recompiled copy of __osLeoAbnormalResume at the same address (ROM 0xC2980, yaml unit libultra/__osLeoAbnormalResume)
 __osLeoResume	0x002C1E54				
-func_002C1E54	0x002C1E54				
-func_002C1F0C	0x002C1F0C				
-func_002C1FF0	0x002C1FF0				
-func_002C1FFC	0x002C1FFC				
-func_002C2000	0x002C2000				
-func_002C200C	0x002C200C				
+func_002C1E54	0x002C1E54	__osLeoResume_Recompiled	System/LowLevel.cs	high	recompiled copy of __osLeoResume at the same address (ROM 0xC2A54, yaml unit libultra/__osLeoResume)
+func_002C1F0C	0x002C1F0C	__osLeoResume_Tail_002C1F0C	System/LowLevel.cs	medium	pad 0C2B0C after the __osLeoInterrupt unit: one junk store then return; no callers
+func_002C1FF0	0x002C1FF0	osGetCount_Recompiled	System/LowLevel.cs	high	recompiled copy of osGetCount at the same address (ROM 0xC2BF0, yaml unit libultra/osGetCount); reads Cp0 Count
+func_002C1FFC	0x002C1FFC	osGetCount_Tail_002C1FFC	System/LowLevel.cs	medium	osGetCount+0xC pad: junk load then falls into __osGetFpcCsr
+func_002C2000	0x002C2000	__osGetFpcCsr_Recompiled	System/LowLevel.cs	high	recompiled copy of __osGetFpcCsr at the same address (ROM 0xC2C00, yaml unit libultra/__osGetFpcCsr)
+func_002C200C	0x002C200C	__osGetFpcCsr_Tail_002C200C	System/LowLevel.cs	medium	__osGetFpcCsr+0xC pad: junk then falls into __osGetSR
 __osGetSR	0x002C2010				
-func_002C2010	0x002C2010				
-func_002C201C	0x002C201C				
-func_002C2020	0x002C2020				
-func_002C2040	0x002C2040				
-func_002C205C	0x002C205C				
-func_002C20F8	0x002C20F8				
-func_002C2100	0x002C2100				
-func_002C2168	0x002C2168				
-func_002C2238	0x002C2238				
+func_002C2010	0x002C2010	__osGetSR_Recompiled	System/LowLevel.cs	high	recompiled copy of __osGetSR at the same address (ROM 0xC2C10, yaml unit libultra/__osGetSR)
+func_002C201C	0x002C201C	__osGetSR_Tail_002C201C	System/LowLevel.cs	medium	__osGetSR+0xC pad: junk then falls into __osDisableInt
+func_002C2020	0x002C2020	__osDisableInt_Recompiled	System/LowLevel.cs	high	recompiled copy of __osDisableInt at the same address (ROM 0xC2C20, yaml unit libultra/__osDisableInt); clears SR.IE, returns old IE
+func_002C2040	0x002C2040	__osRestoreInt_Recompiled	System/LowLevel.cs	high	recompiled copy of __osRestoreInt at the same address (ROM 0xC2C40, yaml unit libultra/__osRestoreInt) (kept in Preserved/)
+func_002C205C	0x002C205C	__osRestoreInt_Tail_002C205C	System/LowLevel.cs	medium	__osRestoreInt+0x1C: junk byte store then return; no callers (Preserved/)
+func_002C20F8	0x002C20F8	osInvalDCache_Tail_002C20F8	System/LowLevel.cs	medium	osInvalDCache+0x98: two junk loads then return; no callers
+func_002C2100	0x002C2100	osInvalICache_Recompiled	System/LowLevel.cs	high	recompiled copy of osInvalICache at the same address (ROM 0xC2D00, yaml unit libultra/osInvalICache); 16KB/32-byte line loop
+func_002C2168	0x002C2168	osInvalICache_Tail_002C2168	System/LowLevel.cs	medium	osInvalICache+0x68: junk moves then return; no callers
+func_002C2238	0x002C2238	__osProbeTLB_Tail_002C2238	System/LowLevel.cs	medium	__osProbeTLB+0xC8: junk then falls into __osSetCompare
 __osSetCompare	0x002C2240				
-func_002C2240	0x002C2240				
-func_002C224C	0x002C224C				
-func_002C2250	0x002C2250				
-func_002C2260	0x002C2260				
-func_002C2308	0x002C2308				
+func_002C2240	0x002C2240	__osSetCompare_Recompiled	System/LowLevel.cs	high	recompiled copy of __osSetCompare at the same address (ROM 0xC2E40, yaml unit libultra/__osSetCompare)
+func_002C224C	0x002C224C	__osSetCompare_Tail_002C224C	System/LowLevel.cs	medium	__osSetCompare+0xC pad: junk then falls into __osSetFpcCsr
+func_002C2250	0x002C2250	__osSetFpcCsr_Recompiled	System/LowLevel.cs	high	recompiled copy of __osSetFpcCsr at the same address (ROM 0xC2E50, yaml unit libultra/__osSetFpcCsr)
+func_002C2260	0x002C2260	osSetIntMask_Recompiled	System/LowLevel.cs	high	recompiled copy of osSetIntMask at the same address (ROM 0xC2E60, yaml unit libultra/osSetIntMask); combines SR and __OSGlobalIntMask
+func_002C2308	0x002C2308	osSetIntMask_Tail_002C2308	System/LowLevel.cs	medium	osSetIntMask+0xA8: junk then falls into __osSetSR
 __osSetSR	0x002C2310				
-func_002C2310	0x002C2310				
-func_002C2370	0x002C2370				
-func_002C23D8	0x002C23D8				
-func_002C23E0	0x002C23E0				
-func_002C2408	0x002C2408				
-func_002C2410	0x002C2410				
+func_002C2310	0x002C2310	__osSetSR_Recompiled	System/LowLevel.cs	high	recompiled copy of __osSetSR at the same address (ROM 0xC2F10, yaml unit libultra/__osSetSR)
+func_002C2370	0x002C2370	osWritebackDCache_Recompiled	System/LowLevel.cs	high	recompiled copy of osWritebackDCache at the same address (ROM 0xC2F70, yaml unit libultra/osWritebackDCache); 8KB/16-byte line loop
+func_002C23D8	0x002C23D8	osWritebackDCache_Tail_002C23D8	System/LowLevel.cs	medium	osWritebackDCache+0x68: junk then falls into osWritebackDCacheAll
+func_002C23E0	0x002C23E0	osWritebackDCacheAll_Recompiled	System/LowLevel.cs	high	recompiled copy of osWritebackDCacheAll at the same address (ROM 0xC2FE0, yaml unit libultra/osWritebackDCacheAll)
+func_002C2408	0x002C2408	osWritebackDCacheAll_Tail_002C2408	System/LowLevel.cs	medium	osWritebackDCacheAll+0x28 pad: junk then falls into sprintf
+func_002C2410	0x002C2410	sprintf_Recompiled	Lib/LibC.cs	high	recompiled copy of sprintf at the same address (calls _Printf with proutSprintf, NUL-terminates)
 sprintf	0x002C2410				
-func_002C2468	0x002C2468				
+func_002C2468	0x002C2468	sprintf_proutSprintf_Recompiled	Lib/LibC.cs	high	recompiled copy of sprintf_proutSprintf at the same address (memcpy output callback)
 sprintf_proutSprintf	0x002C2468				
-func_002C2490	0x002C2490				
+func_002C2490	0x002C2490	memcpy_Recompiled	Lib/LibC.cs	high	recompiled copy of memcpy at the same address (string unit)
 memcpy	0x002C2490				
-func_002C24B8	0x002C24B8				
+func_002C24B8	0x002C24B8	strchr_Recompiled	Lib/LibC.cs	high	recompiled copy of strchr at the same address
 strchr	0x002C24B8				
-func_002C24F0	0x002C24F0				
+func_002C24F0	0x002C24F0	strlen_Recompiled	Lib/LibC.cs	high	recompiled copy of strlen at the same address (byte scan to NUL)
 strlen	0x002C24F0				
 _Printf	0x002C2520				
-func_002C2520	0x002C2520				
-func_002C2A64	0x002C2A64				
+func_002C2520	0x002C2520	_Printf_Recompiled	Lib/LibC.cs	high	recompiled copy of _Printf at the same address (format loop, calls func_002C2A64 per field)
+func_002C2A64	0x002C2A64	_Putfld_Recompiled	Lib/LibC.cs	high	xprintf+0x544: the static _Putfld (switch on conversion char - 0x25, calls _Litob/_Ldtob); called only by _Printf; C version in Generated/xprintf.cs
 _Litob	0x002C2ED0				
-func_002C2ED0	0x002C2ED0				
+func_002C2ED0	0x002C2ED0	_Litob_Recompiled	Lib/LibC.cs	high	recompiled copy of _Litob at the same address (yaml unit libultra/xlitob)
 lldiv	0x002C3120				
-func_002C31A8	0x002C31A8				
+func_002C31A8	0x002C31A8	_Ldtob_Head_002C31A8	Lib/LibC.cs	medium	pad 0C3DA8 after xlitob: junk then falls into _Ldtob
 _Ldtob	0x002C31B0				
-func_002C31B0	0x002C31B0				
-func_002C31B8	0x002C31B8				
+func_002C31B0	0x002C31B0	_Ldtob_Recompiled	Lib/LibC.cs	high	recompiled copy of _Ldtob (stub) at the same address
+func_002C31B8	0x002C31B8	alAdpcmPull_Head_002C31B8	Audio/Sound.cs	medium	pad 0C3DB8: junk then falls into alAdpcmPull
 alAdpcmPull	0x002C31C0				
-func_002C31C0	0x002C31C0				
-func_002C3530	0x002C3530				
+func_002C31C0	0x002C31C0	alAdpcmPull_Recompiled	Audio/Sound.cs	high	recompiled copy of alAdpcmPull at the same address
+func_002C3530	0x002C3530	alAdpcmPull_Entry_002C3530	Audio/Sound.cs	medium	alAdpcmPull+0x370: mid-loop entry (updates f3C/f38/f44 sample counters, emits ADPCM commands); only reached from junk after strlen
 alRaw16Pull	0x002C3604				
-func_002C3604	0x002C3604				
+func_002C3604	0x002C3604	alRaw16Pull_Recompiled	Audio/Sound.cs	high	recompiled copy of alRaw16Pull at the same address
 alAdecPull	0x002C3988				
-func_002C3988	0x002C3988				
+func_002C3988	0x002C3988	alAdecPull_Recompiled	Audio/Sound.cs	high	recompiled copy of alAdecPull at the same address (functions.tsv SDK row)
 alLoadParam	0x002C3B94				
-func_002C3B94	0x002C3B94				
+func_002C3B94	0x002C3B94	alLoadParam_Recompiled	Audio/Sound.cs	high	recompiled copy of alLoadParam at the same address (functions.tsv SDK row)
 _decodeChunk	0x002C3D24				
 adecReadBits	0x002C3EA0				
-func_002C3EA0	0x002C3EA0				
+func_002C3EA0	0x002C3EA0	adecReadBits_Recompiled	Audio/Sound.cs	high	recompiled copy of adecReadBits at the same address (functions.tsv SDK row)
 adecHuffDecode	0x002C4074				
-func_002C4074	0x002C4074				
+func_002C4074	0x002C4074	adecHuffDecode_Recompiled	Audio/Sound.cs	high	recompiled copy of adecHuffDecode at the same address (functions.tsv SDK row)
 adecDecodeFrame	0x002C4478				
-func_002C4478	0x002C4478				
-func_002C4604	0x002C4604				
+func_002C4478	0x002C4478	adecDecodeFrame_Recompiled	Audio/Sound.cs	high	recompiled copy of adecDecodeFrame at the same address (functions.tsv SDK row)
+func_002C4604	0x002C4604	mdctInitTwiddles_Recompiled	Audio/Sound.cs	high	recompiled copy of mdctInitTwiddles at the same address (functions.tsv SDK row)
 mdctInitTwiddles	0x002C4604				
-func_002C476C	0x002C476C				
+func_002C476C	0x002C476C	mdctFftInit_Recompiled	Audio/Sound.cs	high	recompiled copy of mdctFftInit at the same address (functions.tsv SDK row)
 mdctFftInit	0x002C476C				
 adecDequantize	0x002C48F4				
-func_002C48F4	0x002C48F4				
-func_002C4A18	0x002C4A18				
+func_002C48F4	0x002C48F4	adecDequantize_Recompiled	Audio/Sound.cs	high	recompiled copy of adecDequantize at the same address (functions.tsv SDK row)
+func_002C4A18	0x002C4A18	mdctFft_Recompiled	Audio/Sound.cs	high	recompiled copy of mdctFft at the same address (functions.tsv SDK row)
 mdctFft	0x002C4A18				
 adecImdctFrame	0x002C4B9C				
-func_002C4B9C	0x002C4B9C				
+func_002C4B9C	0x002C4B9C	adecImdctFrame_Recompiled	Audio/Sound.cs	high	recompiled copy of adecImdctFrame at the same address (functions.tsv SDK row)
 adecDecodeFrameOk	0x002C4F2C				
-func_002C4F2C	0x002C4F2C				
-func_002C4F58	0x002C4F58				
+func_002C4F2C	0x002C4F2C	adecDecodeFrameOk_Recompiled	Audio/Sound.cs	high	recompiled copy of adecDecodeFrameOk at the same address (functions.tsv SDK row)
+func_002C4F58	0x002C4F58	mdctBuildBitrevTable_Recompiled	Audio/Sound.cs	high	recompiled copy of mdctBuildBitrevTable at the same address (functions.tsv SDK row)
 mdctBuildBitrevTable	0x002C4F58				
-func_002C5020	0x002C5020				
+func_002C5020	0x002C5020	mdctPackSpectrum_Recompiled	Audio/Sound.cs	high	recompiled copy of mdctPackSpectrum at the same address (functions.tsv SDK row)
 mdctPackSpectrum	0x002C5020				
-func_002C5080	0x002C5080				
+func_002C5080	0x002C5080	mdctTwiddleMul_Recompiled	Audio/Sound.cs	high	recompiled copy of mdctTwiddleMul at the same address (functions.tsv SDK row)
 mdctTwiddleMul	0x002C5080				
-func_002C50FC	0x002C50FC				
+func_002C50FC	0x002C50FC	mdctFftCtx_Recompiled	Audio/Sound.cs	high	recompiled copy of mdctFftCtx at the same address (functions.tsv SDK row)
 mdctFftCtx	0x002C50FC				
 adecRoundClampS16	0x002C5134				
-func_002C5134	0x002C5134				
+func_002C5134	0x002C5134	adecRoundClampS16_Recompiled	Audio/Sound.cs	high	recompiled copy of adecRoundClampS16 at the same address (functions.tsv SDK row)
 adecStreamOpen	0x002C51A0				
-func_002C51A0	0x002C51A0				
+func_002C51A0	0x002C51A0	adecStreamOpen_Recompiled	Audio/Sound.cs	high	recompiled copy of adecStreamOpen at the same address (functions.tsv SDK row)
 adecNextFrame	0x002C525C				
-func_002C525C	0x002C525C				
+func_002C525C	0x002C525C	adecNextFrame_Recompiled	Audio/Sound.cs	high	recompiled copy of adecNextFrame at the same address (functions.tsv SDK row)
 adecGetStopFlag	0x002C52FC				
-func_002C52FC	0x002C52FC				
+func_002C52FC	0x002C52FC	adecGetStopFlag_Recompiled	Audio/Sound.cs	high	recompiled copy of adecGetStopFlag at the same address (functions.tsv SDK row)
 adecClearStopFlag	0x002C530C				
-func_002C530C	0x002C530C				
-func_002C531C	0x002C531C				
-func_002C5320	0x002C5320				
-func_002C590C	0x002C590C				
-func_002C5910	0x002C5910				
-func_002C5E88	0x002C5E88				
+func_002C530C	0x002C530C	adecClearStopFlag_Recompiled	Audio/Sound.cs	high	recompiled copy of adecClearStopFlag at the same address (functions.tsv SDK row)
+func_002C531C	0x002C531C	__divdi3_Head_002C531C	Lib/LibC.cs	medium	pad 0C5F1C: one junk shift then falls into __divdi3
+func_002C5320	0x002C5320	__divdi3_Recompiled	Lib/LibC.cs	high	recompiled copy of __divdi3 (yaml unit libultra/__divdi3, ROM 0xC5F20): sign fixup then 64-bit divide
+func_002C590C	0x002C590C	__divdi3_Tail_002C590C	Lib/LibC.cs	medium	pad 0C650C after __divdi3: bare return; no callers
+func_002C5910	0x002C5910	__moddi3_Recompiled	Lib/LibC.cs	high	recompiled copy of __moddi3 (yaml unit libultra/__moddi3, ROM 0xC6510)
+func_002C5E88	0x002C5E88	__moddi3_Tail_002C5E88	Lib/LibC.cs	medium	pad 0C6A88 after __moddi3: bare return; no callers
 __cmpdi2	0x002C6920				
-func_002C6920	0x002C6920				
+func_002C6920	0x002C6920	__cmpdi2_Recompiled	Lib/LibC.cs	high	recompiled copy of __cmpdi2 at the same address
 __floatdidf	0x002C6970				
-func_002C6970	0x002C6970				
+func_002C6970	0x002C6970	__floatdidf_Recompiled	Lib/LibC.cs	high	recompiled copy of __floatdidf at the same address
 __floatdisf	0x002C6A00				
-func_00400000	0x00400000				
-func_004002D8	0x004002D8				
-func_0040067C	0x0040067C				
-func_004009F4	0x004009F4				
-func_00400E50	0x00400E50				
-func_00400EF0	0x00400EF0				
-func_00401214	0x00401214				
-func_004013BC	0x004013BC				
-func_00401564	0x00401564				
-func_0040170C	0x0040170C				
-func_0040184C	0x0040184C				
-func_00401980	0x00401980				
+func_00400000	0x00400000	Flyby_SplineSecondDerivs	World/Flyby.cs	high	natural cubic spline: tridiagonal solve of second derivatives y2[] for n samples (x,t); temp arrays via ResourcePool_Malloc
+func_004002D8	0x004002D8	Flyby_BuildSplineTrack	World/Flyby.cs	high	fills a [stride 0x24,count] key table: xyz, time, cumulative arc length (sqrtf of Vec_Sub), then Flyby_SplineSecondDerivs for x/y/z and time-vs-arc
+func_0040067C	0x0040067C	Flyby_OnPathLoaded	World/Flyby.cs	medium	load callback passed to ResourceCache by func_004009F4: unpacks (RNC) the raw path, builds chunk tables and runs Flyby_BuildSplineTrack for each segment camera/target track
+func_004009F4	0x004009F4	Flyby_LoadAndStart	World/Flyby.cs	medium	called by Flyby_RunPending(id): loads path resource id+1 (callback Flyby_OnPathLoaded), sums segment lengths into window f30/f34, clock f1C, copies the 0x4C record, sets active f38=1
+func_00400E50	0x00400E50	Flyby_EvalSpline	World/Flyby.cs	high	evaluates a spline key table at time t: time->arc remap then cubic spline ((1-w), w^3-w, h^2/6) of x/y/z; clamps to the ends
+func_00400EF0	0x00400EF0	Flyby_EvalSpline_Entry_00400EF0	World/Flyby.cs	medium	Flyby_EvalSpline+0xA0: mid-function entry (segment search loop over 0x24-byte keys)
+func_00401214	0x00401214	Flyby_EvalCameraPos	World/Flyby.cs	medium	finds the segment of tree[0] containing t, evaluates its track 0 spline (hold flag [2].f0); Flyby_UpdateCamera uses it as the eye position
+func_004013BC	0x004013BC	Flyby_EvalTargetPos	World/Flyby.cs	medium	same as Flyby_EvalCameraPos on track 1 (hold flag [2].f4); Flyby_UpdateCamera uses it as the look-at point
+func_00401564	0x00401564	Flyby_EvalFadeColor	World/Flyby.cs	medium	linear interpolation of the xyz of tree[1] keys (x,y,z,w,time) at t; Flyby_DrawOverlay turns it into the fill RGB
+func_0040170C	0x0040170C	Flyby_EvalFadeAlpha	World/Flyby.cs	medium	lerp of the w of tree[1] keys at t, scaled by D_800E2848 and clamped to [0,1]; Flyby_DrawOverlay alpha
+func_0040184C	0x0040184C	Flyby_EvalFieldOfView	World/Flyby.cs	medium	smoothstep interpolation of tree[3] (val,time) keys; default constant when empty; caller Flyby_GetFieldOfView
+func_00401980	0x00401980	Flyby_UpdateCamera	World/Flyby.cs	medium	via Flyby_Hook_00245854 while in window: eye/target from the splines, optional actor-relative rotation (f74 bits), collision-clamps the eye (Collision_MoveActor), writes yaw/pitch/position to the view
 func_00401D74	0x00401D74	View_DrawInsetBorder	Ui/Widgets.cs	medium	harvest: src/ovl_a/func_00401D74.c comment: draw the inset viewport border with black bands and a one-pixel outline
-func_0040293C	0x0040293C				
-func_00402BA0	0x00402BA0				
-func_00402FB4	0x00402FB4				
-func_004030E0	0x004030E0				
-func_00403200	0x00403200				
-func_0040332C	0x0040332C				
-func_00403458	0x00403458				
-func_00403658	0x00403658				
-func_004037D4	0x004037D4				
-func_004037E8	0x004037E8				
-func_0040385C	0x0040385C				
-func_0040390C	0x0040390C				
-func_004039C4	0x004039C4				
-func_00403A64	0x00403A64				
-func_00403A90	0x00403A90				
-func_00403ADC	0x00403ADC				
-func_00403B04	0x00403B04				
-func_00403B0C	0x00403B0C				
-func_00403B2C	0x00403B2C				
-func_00403B70	0x00403B70				
-func_00403BCC	0x00403BCC				
-func_00403BE0	0x00403BE0				
-func_00403C58	0x00403C58				
-func_00403C98	0x00403C98				
-func_00403CBC	0x00403CBC				
-func_00403CFC	0x00403CFC				
-func_00403D4C	0x00403D4C				
-func_00403D9C	0x00403D9C				
-func_00403DE8	0x00403DE8				
-func_00403E10	0x00403E10				
-func_00403E88	0x00403E88				
-func_00403E90	0x00403E90				
-func_00404018	0x00404018				
-func_004041E8	0x004041E8				
-func_004042F0	0x004042F0				
-func_0040458C	0x0040458C				
-func_00404858	0x00404858				
-func_00404958	0x00404958				
-func_00404BE8	0x00404BE8				
-func_00404D84	0x00404D84				
-func_00404DDC	0x00404DDC				
-func_00404E28	0x00404E28				
-func_00404EB0	0x00404EB0				
-func_00404F04	0x00404F04				
-func_00404F3C	0x00404F3C				
-func_00404F58	0x00404F58				
-func_004050CC	0x004050CC				
-func_00405160	0x00405160				
-func_004051D4	0x004051D4				
-func_00405290	0x00405290				
-func_00405338	0x00405338				
-func_0040538C	0x0040538C				
-func_004053E0	0x004053E0				
-func_00405454	0x00405454				
-func_00405598	0x00405598				
+func_0040293C	0x0040293C	Flyby_DrawLetterbox	World/Flyby.cs	medium	bar height from screen size and window fade-in/out, emits two black G_FILLRECTs top/bottom and View_DrawInsetBorder
+func_00402BA0	0x00402BA0	Flyby_DrawOverlay	World/Flyby.cs	medium	via Flyby_Hook_00245884: Gfx_FillRectBlended over the viewport with Flyby_EvalFadeColor/Alpha (f60/f64 fade), then Flyby_DrawLetterbox if D_800E2844
+func_00402FB4	0x00402FB4	Flyby_QueueByTrigger	World/Flyby.cs	medium	finds the index record matching the trigger record ids (+4,+0xA), stores actor f18, id fD8, index fDC, pending f58=1; callers AnimProp/LevelEvent StartCinema, Flyby_FireTrackEvents
+func_004030E0	0x004030E0	Flyby_QueueById	World/Flyby.cs	medium	finds the index record with f8 == id, sets fE0/fDC/pending f58 (fD8 unless flags&3), Flyby_ClearText, returns fD8; callers State_LoadScene, Level_UpdateTransitionFade
+func_00403200	0x00403200	Flyby_QueueByName	World/Flyby.cs	medium	finds the index record whose name at +0x18 matches (Str_Compare) and queues it (fE0, fD8, fDC, f58=1)
+func_0040332C	0x0040332C	Flyby_HasNoChainedFlyby	World/Flyby.cs	medium	returns 1 unless an event of track 2 refers to a record of kind 1/5, 9/4 or 10/3 (Flyby_IsChainRecord); called by Flyby_OnWindowStart
+func_00403458	0x00403458	Flyby_FireTrackEvents	World/Flyby.cs	medium	while active: track-2 events whose time passed (or window ended) either queue the next flyby (Flyby_QueueByTrigger) or Level_ActivateTriggerRecord; marks them fired
+func_00403658	0x00403658	Flyby_GetStartAngles	World/Flyby.cs	medium	pitch/yaw (Vec_GetPitch/Vec_GetYaw) from the first segment camera point to its target at t=0
+func_004037D4	0x004037D4	Flyby_SetFlagB4_004037D4	World/Flyby.cs	low	sets fB4 = 1; Level_UpdateTransitionFade calls it before Flyby_QueueById(0x190)
+func_004037E8	0x004037E8	Flyby_QueueByIdOnce	World/Flyby.cs	medium	for ids 0x259..0x25E tests/sets a once bit in player data +0x638, then Flyby_QueueById; caller Level_Load
+func_0040385C	0x0040385C	Flyby_GetStartCameraPos	World/Flyby.cs	medium	Flyby_EvalSpline of segment 0 camera track at t=0, or 0,0,0 when inactive
+func_0040390C	0x0040390C	Flyby_GetStartTargetPos	World/Flyby.cs	medium	Flyby_EvalSpline of segment 0 target track at t=0, or (D_800E0CAC,0,0) when inactive
+func_004039C4	0x004039C4	Flyby_GetTotalDuration	World/Flyby.cs	medium	sums the last key time of every segment camera track
+func_00403A64	0x00403A64	Flyby_GetSegmentCount	World/Flyby.cs	high	returns tree[0].count (segment count); used by Flyby_LoadAndStart
+func_00403A90	0x00403A90	Flyby_GetSegmentCameraTrack	World/Flyby.cs	medium	returns tree[0][seg][0] (camera key table)
+func_00403ADC	0x00403ADC	Flyby_GetFadeTrack	World/Flyby.cs	medium	returns tree[1] (colour/alpha keys read by Flyby_EvalFadeColor/Alpha)
+func_00403B04	0x00403B04	Flyby_GetTrackKeys	World/Flyby.cs	medium	returns p + 8 (the keys after a [stride,count] table header)
+func_00403B0C	0x00403B0C	Bits_TestOvlA	Lib/Bits.cs	high	overlay copy of Bits_Test: bits[bit>>3] & (1<<(bit&7))
+func_00403B2C	0x00403B2C	Bits_AssignOvlA	Lib/Bits.cs	high	overlay copy of Bits_Assign: set or clear bit (bit>>3, 1<<(bit&7)) by flag
+func_00403B70	0x00403B70	Flyby_GetSegmentSplineSize	World/Flyby.cs	medium	(count0*9 + count2*9)*4 + 0x30: byte size of a segment spline block, same formula as Flyby_OnPathLoaded
+func_00403BCC	0x00403BCC	Flyby_GetRecordCount	World/Flyby.cs	medium	*D_8011FEFC - 1: entries in the flyby index table searched by the Flyby_QueueBy* functions
+func_00403BE0	0x00403BE0	Flyby_LoadIndexResource_00403BE0	World/Flyby.cs	low	loads resource 0 of the level table D_8011FE88 f74/f34 (Flyby_LoadAndStart loads id+1 from the same table); caller Scene_LoadLevelData_0044C410
+func_00403C58	0x00403C58	Flyby_SplineCubicTerm	World/Flyby.cs	medium	a*((1-t)^3-(1-t)) + b*(t^3-t): the cubic spline correction term
+func_00403C98	0x00403C98	Flyby_Lerp	World/Flyby.cs	medium	a*(1-t) + b*t
+func_00403CBC	0x00403CBC	Flyby_GetSegment	World/Flyby.cs	medium	returns tree[0][seg]
+func_00403CFC	0x00403CFC	Flyby_GetSegmentHoldCamera_00403CFC	World/Flyby.cs	low	returns tree[0][seg][2].f0 (Flyby_EvalCameraPos freezes at the segment start when set)
+func_00403D4C	0x00403D4C	Flyby_GetSegmentHoldTarget_00403D4C	World/Flyby.cs	low	returns tree[0][seg][2].f4 (Flyby_EvalTargetPos freezes at the segment start when set)
+func_00403D9C	0x00403D9C	Flyby_GetSegmentTargetTrack	World/Flyby.cs	medium	returns tree[0][seg][1] (target key table)
+func_00403DE8	0x00403DE8	Flyby_GetFovTrack	World/Flyby.cs	medium	returns tree[3] (field-of-view keys read by Flyby_EvalFieldOfView)
+func_00403E10	0x00403E10	Flyby_IsChainRecord	World/Flyby.cs	medium	kind/val pairs 1/5, 9/4, 10/3 -> 1: the trigger record kinds that start another flyby (same test inline in Flyby_FireTrackEvents)
+func_00403E88	0x00403E88	Flyby_IsChainRecord_Tail_00403E88	World/Flyby.cs	low	8 bytes between Flyby_IsChainRecord and Pak_ReadDirectory: decodes to a jump into func_00404EB0; junk/pad (Preserved/)
+func_00403E90	0x00403E90	Pak_ReadDirectory	Save/ControllerPak.cs	high	osPfsFileState for the 16 notes of the pad into the 0x204-byte per-pad table D_800E2854 (clears missing), osPfsFreeBlocks into its f0
+func_00404018	0x00404018	Pak_Mount	Save/ControllerPak.cs	high	osPfsInitPak with up to 4 retries, maps results to status D_80153500 (-2/-3/-4/-5), then Pak_ReadDirectory; returns 1 when usable
+func_004041E8	0x004041E8	Pak_DetectAll	Save/ControllerPak.cs	high	for the 4 ports: osMotorInit -> type 2 (rumble), else Pak_Mount -> 3 (controller pak), else 1; under Pad_TryAcquire/Pad_Release
+func_004042F0	0x004042F0	Pak_WriteNewFile	Save/ControllerPak.cs	high	converts name/ext to N64 font codes, osPfsAllocateFile (size rounded to 256) then osPfsReadWriteFile write; deletes on failure; remounts
+func_0040458C	0x0040458C	Pak_GetFileInfo	Save/ControllerPak.cs	high	from the directory table: valid flag, size in blocks (>>8), company/game codes, name and extension converted to ASCII
+func_00404858	0x00404858	Pak_DeleteFile	Save/ControllerPak.cs	high	osPfsDeleteFile of directory entry idx (company, game, name, ext), then Pak_Mount
+func_00404958	0x00404958	Pak_SaveFileVerified	Save/ControllerPak.cs	high	Pak_WriteNewFile with the game company code, reads it back (osPfsReadWriteFile) and Mem_Compare; deletes and retries up to 4 times
+func_00404BE8	0x00404BE8	Pak_FindFile	Save/ControllerPak.cs	high	compares each of the 16 note names (converted to ASCII) with name via strcmp, returns 1 and the index when found
+func_00404D84	0x00404D84	Pak_AllocDirectory	Save/ControllerPak.cs	high	ResourcePool_Alloc 0x810 bytes for the 4-pad directory table D_800E2854, memset 0, D_800E2850 = 1
+func_00404DDC	0x00404DDC	Pak_FreeDirectory	Save/ControllerPak.cs	high	ResourcePool_Purge + Release of the directory table, clears D_800E2854/58 and D_800E2850
+func_00404E28	0x00404E28	Pak_DetectPort	Save/ControllerPak.cs	high	single-port Pak_DetectAll: osMotorInit -> 2, Pak_Mount -> 3, else 1 into D_801534F0[ch]; called by many menus
+func_00404EB0	0x00404EB0	Pak_DetectPort_Tail_00404EB0	Save/ControllerPak.cs	medium	Pak_DetectPort+0x88: tail (Pak_Mount result -> type 3/1, store, Pad_Release)
+func_00404F04	0x00404F04	CPak_GetStatus	Save/ControllerPak.cs	high	returns pak status D_80153500[pad] when accessory D_801534F0[pad]==3 (controller pak), else -2; used by every pak menu path
+func_00404F3C	0x00404F3C	CPak_IsRumblePak	Save/ControllerPak.cs	high	D_801534F0[pad]==2 (rumble pak detected by osMotorInit in func_00404E28); callers show the rumble-pak error dialogs
+func_00404F58	0x00404F58	CPak_ReadFile	Save/ControllerPak.cs	high	allocs a 256-rounded temp buffer 'Mempak read temp data', osPfsReadWriteFile(read) of file_no then memcpy to dst
+func_004050CC	0x004050CC	CPak_CountFreeNotes	Save/ControllerPak.cs	high	counts the 16 directory entries of D_800E2854[pad] whose size word is 0
+func_00405160	0x00405160	CPak_GetFreePages	Save/ControllerPak.cs	high	*out = D_800E2854[pad].unk0 / 256 (free bytes in pages) when status is 0
+func_004051D4	0x004051D4	CPak_RepairId	Save/ControllerPak.cs	high	under the pad lock: when status is -4 (damaged ID) calls __osGetId to repair, then re-reads the directory (func_00404018); caller confirm-yes case 0
+func_00405290	0x00405290	CPak_ForceRepairId	Save/ControllerPak.cs	high	same as CPak_RepairId but calls __osGetId unconditionally; caller PlayerMenu_StepStateMachine
+func_00405338	0x00405338	CPak_GetNoteNameRaw	Save/ControllerPak.cs	high	*out = directory entry idx +0xE (raw N64-charset game_name)
+func_0040538C	0x0040538C	CPak_GetNoteExtRaw	Save/ControllerPak.cs	high	*out = directory entry idx +0xA (raw ext_name)
+func_004053E0	0x004053E0	CPak_GetNotePages	Save/ControllerPak.cs	high	*out = CPak_BytesToPages(entry size word)
+func_00405454	0x00405454	CPak_FindFreeExtension	Save/ControllerPak.cs	high	collects used ext letters (ext[0]-'A') of all 16 notes into a mask and returns the first unused letter A..P in ext
+func_00405598	0x00405598	CPak_IsDamaged	Save/ControllerPak.cs	high	controller pak present and status == -4 (PFS_ERR_ID_FATAL); callers open the repair prompt 0x44F994
 func_004055D4	0x004055D4	Rumble_InitPak	Player/Controls.cs	medium	harvest: code: osMotorInit for controller ch into the rumble record 0x80153330 + ch*112
-func_00405648	0x00405648				
-func_0040570C	0x0040570C				
-func_004057BC	0x004057BC				
-func_004057EC	0x004057EC				
-func_004057F8	0x004057F8				
-func_004058A0	0x004058A0				
+func_00405648	0x00405648	CPak_DecodeName	Save/ControllerPak.cs	high	maps N64 pak charset codes (<0x42) through D_800E285C to ASCII, '~' for invalid, trims trailing blanks
+func_0040570C	0x0040570C	CPak_EncodeName	Save/ControllerPak.cs	high	uppercases each char (Str_CharToUpper) and finds its index in the 0x42-entry charset D_800E285C
+func_004057BC	0x004057BC	CPak_HasInvalidChar	Save/ControllerPak.cs	high	returns 1 if any of n+1 bytes is '~' (the decode marker for unknown chars)
+func_004057EC	0x004057EC	CPak_BytesToPages	Save/ControllerPak.cs	high	(n + 0xFF) >> 8: byte size to 256-byte pak pages
+func_004057F8	0x004057F8	CPak_Crc32	Save/ControllerPak.cs	high	builds the 0xEDB88320 table on the stack and computes CRC-32 (overlay copy of Crc32_Compute); checksums the pak notes
+func_004058A0	0x004058A0	CPak_GetWord2850_004058A0	Save/ControllerPak.cs	low	returns D_800E2850 (word just before the pak directory pointer D_800E2854); no callers
 func_004058B0	0x004058B0	FramePool_Reinit	System/Memory.cs	medium	harvest: src/ovl_a/func_004058B0.c comment: pool re-initialisation: frees old buffers, reallocates the frame-buffer pool and display-list handles
-func_00405CA8	0x00405CA8				
-func_00405CDC	0x00405CDC				
-func_00405DB4	0x00405DB4				
-func_00405DC0	0x00405DC0				
-func_00405F48	0x00405F48				
-func_00406178	0x00406178				
-func_00406434	0x00406434				
-func_004066BC	0x004066BC				
-func_00406858	0x00406858				
-func_004069F4	0x004069F4				
-func_00406F7C	0x00406F7C				
-func_004070F4	0x004070F4				
-func_00407290	0x00407290				
-func_00407578	0x00407578				
-func_00407748	0x00407748				
-func_00407F6C	0x00407F6C				
-func_00408118	0x00408118				
-func_004082FC	0x004082FC				
-func_004085E0	0x004085E0				
-func_00408870	0x00408870				
-func_00408AC4	0x00408AC4				
-func_00408B34	0x00408B34				
-func_00408C78	0x00408C78				
-func_00408E1C	0x00408E1C				
-func_00409170	0x00409170				
-func_00409474	0x00409474				
-func_00409770	0x00409770				
-func_00409800	0x00409800				
-func_00409814	0x00409814				
-func_00409824	0x00409824				
-func_004098B0	0x004098B0				
-func_004098D0	0x004098D0				
-func_004098E4	0x004098E4				
-func_004098F8	0x004098F8				
-func_00409990	0x00409990				
-func_00409A18	0x00409A18				
-func_00409A88	0x00409A88				
-func_00409AEC	0x00409AEC				
-func_00409C08	0x00409C08				
-func_00409C38	0x00409C38				
-func_00409D18	0x00409D18				
-func_00409DF8	0x00409DF8				
-func_00409E3C	0x00409E3C				
-func_00409F20	0x00409F20				
-func_00409F58	0x00409F58				
-func_00409F98	0x00409F98				
-func_00409FCC	0x00409FCC				
-func_0040A064	0x0040A064				
-func_0040A0C8	0x0040A0C8				
-func_0040A1DC	0x0040A1DC				
-func_0040A270	0x0040A270				
-func_0040A32C	0x0040A32C				
-func_0040A3A8	0x0040A3A8				
-func_0040A484	0x0040A484				
-func_0040A4A8	0x0040A4A8				
-func_0040A4BC	0x0040A4BC				
-func_0040A4CC	0x0040A4CC				
-func_0040A500	0x0040A500				
-func_0040A55C	0x0040A55C				
-func_0040A5B8	0x0040A5B8				
-func_0040A614	0x0040A614				
-func_0040A640	0x0040A640				
-func_0040A6D4	0x0040A6D4				
-func_0040A708	0x0040A708				
-func_0040A774	0x0040A774				
-func_0040A790	0x0040A790				
-func_0040A7A8	0x0040A7A8				
-func_0040A7E8	0x0040A7E8				
-func_0040A83C	0x0040A83C				
-func_0040A928	0x0040A928				
-func_0040AA20	0x0040AA20				
-func_0040AA78	0x0040AA78				
-func_0040AACC	0x0040AACC				
-func_0040AB38	0x0040AB38				
-func_0040AB48	0x0040AB48				
-func_0040AB5C	0x0040AB5C				
-func_0040AB70	0x0040AB70				
-func_0040AB84	0x0040AB84				
-func_0040AB98	0x0040AB98				
-func_0040ABAC	0x0040ABAC				
-func_0040ABC0	0x0040ABC0				
-func_0040ABD4	0x0040ABD4				
-func_0040AC20	0x0040AC20				
-func_0040AC3C	0x0040AC3C				
-func_0040AC5C	0x0040AC5C				
-func_0040AC70	0x0040AC70				
-func_0040AC84	0x0040AC84				
-func_0040AC98	0x0040AC98				
-func_0040ACAC	0x0040ACAC				
-func_0040ACC0	0x0040ACC0				
-func_0040ACD4	0x0040ACD4				
-func_0040AD20	0x0040AD20				
-func_0040AE4C	0x0040AE4C				
-func_0040AF78	0x0040AF78				
-func_0040B0A4	0x0040B0A4				
-func_0040B1D0	0x0040B1D0				
-func_0040B2FC	0x0040B2FC				
-func_0040B348	0x0040B348				
-func_0040B428	0x0040B428				
-func_0040B444	0x0040B444				
-func_0040B45C	0x0040B45C				
-func_0040B490	0x0040B490				
-func_0040B4C4	0x0040B4C4				
-func_0040B560	0x0040B560				
-func_0040B60C	0x0040B60C				
-func_0040B6C8	0x0040B6C8				
-func_0040B74C	0x0040B74C				
-func_0040B780	0x0040B780				
-func_0040B860	0x0040B860				
-func_0040B878	0x0040B878				
-func_0040B894	0x0040B894				
-func_0040B8B0	0x0040B8B0				
-func_0040B8CC	0x0040B8CC				
-func_0040B8E8	0x0040B8E8				
-func_0040B964	0x0040B964				
-func_0040B9E0	0x0040B9E0				
-func_0040BA5C	0x0040BA5C				
-func_0040BAD8	0x0040BAD8				
-func_0040BB54	0x0040BB54				
-func_0040BBC0	0x0040BBC0				
-func_0040BC2C	0x0040BC2C				
-func_0040BC30	0x0040BC30				
+func_00405CA8	0x00405CA8	FramePool_Init	System/Memory.cs	medium	zeroes the 8-word pool record (handles +4,+8,+0xC..+0x14,+0x18,+0x1C); Game_Init calls it on 0x801536C8 right before FramePool_Reinit
+func_00405CDC	0x00405CDC	FramePool_Free	System/Memory.cs	medium	ResourcePool_Release of every handle of the same pool record (+4,+8,+0x18,+0x1C,+0xC[3]) then clears them
+func_00405DB4	0x00405DB4	GameSave_BuildHead_00405DB4	Save/GameSave.cs	medium	prologue-less split piece (loads s1 then falls into GameSave_Build at 0x00405DC0)
+func_00405DC0	0x00405DC0	GameSave_Build	Save/GameSave.cs	high	allocs 'Single Save Block' (D_8011FECC+0x610) into D_800E28B0/B8, copies player +0x5E0 block, settings D_801462C8, floats D_801468A0 and the D_800FD1F0 data; caller save-game menu
+func_00405F48	0x00405F48	PakMenu_RefreshNoteItemFlags	Menus/PakMenu.cs	medium	for the 16 notes of the current pak sets/clears flag 0x1000000 on menu items 3..18 depending on whether the note is this game's (code NRWE/company 51, name)
+func_00406178	0x00406178	PakMenu_CheckPak	Menus/PakMenu.cs	high	re-probes the pak (func_00404E28), and on pak changed / rumble pak / no pak / damaged pak opens the matching message (0x44F6E8, 0x44F634.., 0x44F610, 0x44F994); returns nonzero on failure
+func_00406434	0x00406434	PakMenu_OpenSavePlayer	Menus/PakMenu.cs	medium	open handler of descriptor 0x44F0DC: save mode + per-player flag, captures the player record into D_80153738 with CPak_Crc32 seed 4, or shows pak errors
+func_004066BC	0x004066BC	PakMenu_OpenLoadPlayer	Menus/PakMenu.cs	medium	open handler of descriptor 0x44F0B8: load mode + per-player flag (D_80153760=1, D_8015377C=1), refreshes the note list or shows pak errors
+func_00406858	0x00406858	PakMenu_CheckPortForSave	Menus/PakMenu.cs	medium	boot check for one port: 1 if a RAGE WARS/TUROK 2 note exists or there are free notes and pages for the save block; else records the needed pages
+func_004069F4	0x004069F4	PakMenu_OpenBootCheck	Menus/PakMenu.cs	medium	open handler of descriptor 0x44F148: Pad_AnyConnected, scans ports for a pak with an existing note or room, opens no-pak (0x44F6C4) / pak-full confirms (0x44FAFC, 0x44FB20)
+func_00406F7C	0x00406F7C	PakMenu_OpenSaveGame	Menus/PakMenu.cs	medium	open handler of descriptor 0x44F124: save mode, builds the game save block (GameSave_Build) and its CRC (seed 0xB) at +0x60C
+func_004070F4	0x004070F4	PakMenu_OpenLoadGame	Menus/PakMenu.cs	medium	open handler of descriptor 0x44F100: load mode (D_800E28C4=2), refreshes note flags or shows pak errors; return menu 0x450BD0
+func_00407290	0x00407290	PakMenu_WritePlayerNote	Menus/PakMenu.cs	high	checks free pages/notes, picks a free ext, writes the 0x18-byte RAGE WARS note (func_00404958, code NRWE); messages saved (0x44F778) / failed (0x44F808) / full (0x44F5EC)
+func_00407578	0x00407578	PakMenu_WriteGameNote	Menus/PakMenu.cs	high	same for the game save block (D_8011FECC+0x610 bytes) named TUROK 2; full -> confirm 0x44FAFC
+func_00407748	0x00407748	PakMenu_OnNoteSelect	Menus/PakMenu.cs	high	select handler of the 16 note rows: reads the note (CPak_ReadFile), verifies size/CRC, stores D_80153718 / game buffer, opens info screen, corrupt note -> confirm delete 0x44FB68
+func_00407F6C	0x00407F6C	PakMenu_FormatNoteLabel	Menus/PakMenu.cs	high	label callback of the note rows (44EE24..): copies the decoded note name (16) and ext (4) into the row text
+func_00408118	0x00408118	PakMenu_FormatFreePagesLabel	Menus/PakMenu.cs	medium	label callback (44F064): picks the free/needed text by mode and fills page counts with '%3d' (CPak_GetFreePages, CPak_BytesToPages)
+func_004082FC	0x004082FC	PakMenu_OnActionSelect	Menus/PakMenu.cs	medium	select handler of the action row (label PakMenu_FormatActionLabel): save player note / save game (overwrite confirm 0x44FB44) / boot mode: next pak port
+func_004085E0	0x004085E0	PakMenu_OnExitSelect	Menus/PakMenu.cs	medium	select handler of the last row: frees note buffers, clears boot flags or reopens the parent menu (per-player menu / 0x450BD0 / 0x450758)
+func_00408870	0x00408870	PakMenu_OnGameNoteYes	Menus/PakMenu.cs	high	'yes' of the game-note info screen: load applies the saved block (player +0x5E0, settings, D_800FD1F0) and opens msg 9; delete removes the note (msgs 12/14)
+func_00408AC4	0x00408AC4	PakMenu_FormatRankLabel	Menus/PakMenu.cs	high	label 'rank' (44F3E8): picks one of 12 rank titles by frags D_8015371C thresholds 50..9999, copies 11 chars
+func_00408B34	0x00408B34	PakMenu_FormatRankLabelEntry_00408B34	Menus/PakMenu.cs	medium	mid-function piece of PakMenu_FormatRankLabel (threshold chain on frags, no prologue)
+func_00408C78	0x00408C78	PakMenu_OnPlayerNoteYes	Menus/PakMenu.cs	high	'yes' of the player-note info screen: load restores the player record from D_80153738 and applies the character (func_0044AD14); delete removes the note (msgs 12/14)
+func_00408E1C	0x00408E1C	PakMenu_OnMessageOk	Menus/PakMenu.cs	high	'ok' select of the message box (layout 0x44F4CC): per message id D_80153788 restarts the level, resets rumble, returns to the parent menu
+func_00409170	0x00409170	PakMenu_OnConfirmYes	Menus/PakMenu.cs	high	'yes' of the confirm dialog by D_80153778: 0 repair pak (CPak_RepairId), 3 delete + rewrite game note, 4 delete corrupt note, 1/2 continue without saving
+func_00409474	0x00409474	PakMenu_OnConfirmNo	Menus/PakMenu.cs	high	'no' of the confirm dialog: returns to the previous menu (boot: D_8014ADA0=1)
+func_00409770	0x00409770	PakMenu_SelectFirstPakPort	Menus/PakMenu.cs	high	when D_800E28C8 == -1 picks the first port whose CPak_GetStatus != -2 (or -1)
+func_00409800	0x00409800	PakMenu_HasPakPort	Menus/PakMenu.cs	high	D_800E28C8 != -1
+func_00409814	0x00409814	PakMenu_ClearSkipPak	Menus/PakMenu.cs	medium	D_800E28C0 = 0 (set by 'continue without pak'); callers that open the pak menus
+func_00409824	0x00409824	CPak_IsOwnNoteCode	Save/ControllerPak.cs	high	game code length 4 == 'NRWE' and company length 2 == '51'
+func_004098B0	0x004098B0	GameSave_GetBufferSize	Save/GameSave.cs	high	0 -> D_8011FECC+0x610 (full save block), else pages << 8
+func_004098D0	0x004098D0	GameSave_SetChecksum	Save/GameSave.cs	medium	stores v at buf + D_8011FECC + 0x60C (the CRC word at the end of the save block)
+func_004098E4	0x004098E4	GameSave_GetStoredChecksum	Save/GameSave.cs	medium	returns the word at p + size(*p) - 4 (stored CRC of a loaded block)
+func_004098F8	0x004098F8	GameSave_AllocBuffer	Save/GameSave.cs	high	allocs 'Single Save Block' of pages<<8 or the full size into *slot, returns the cleared buffer
+func_00409990	0x00409990	GameSave_FreeBuffers	Save/GameSave.cs	high	releases D_800E28B0 / D_800E28B4 and clears both handles and data pointers D_800E28B8 / D_800E28BC
+func_00409A18	0x00409A18	GameSave_CapturePlayerRecord	Save/GameSave.cs	high	copies the player's save record (byte + 4 words + 8 bytes) into the pak note buffer D_80153738/D_80153744
+func_00409A88	0x00409A88	GameSave_RestorePlayerRecord	Save/GameSave.cs	high	inverse of GameSave_CapturePlayerRecord
+func_00409AEC	0x00409AEC	GameSave_Apply	Save/GameSave.cs	high	copies the loaded block D_800E28BC back: player +0x5E0, settings D_801462C8, floats D_801468A0, D_800FD1F0 data (keeps D_80146848)
+func_00409C08	0x00409C08	PakMenu_GetPad	Menus/PakMenu.cs	high	boot mode -> D_800E28C8, else the menu owner's pad (+0x20 +4)
+func_00409C38	0x00409C38	PakMenu_UpdatePlayerScreen	Menus/PakMenu.cs	medium	update callback of the player-note screens (0x44F0B8/0x44F0DC): on pak change runs PakMenu_CheckPak and closes (D_80153784)
+func_00409D18	0x00409D18	PakMenu_UpdateGameScreen	Menus/PakMenu.cs	medium	update callback of the game-note screens (0x44F100/0x44F124), same body as PakMenu_UpdatePlayerScreen
+func_00409DF8	0x00409DF8	PakMenu_PollStartSkip	Menus/PakMenu.cs	medium	button 0x1000 (START) on the owner pad sets the skip flag D_80146D60 once (D_800E28CC); returns it
+func_00409E3C	0x00409E3C	PakMenu_UpdateBootCheck	Menus/PakMenu.cs	medium	update callback of the boot pak screen 0x44F148: closes when not skipping (D_8014ADA0) or when the pak changes
+func_00409F20	0x00409F20	PakMenu_GetPadAndPlayer	Menus/PakMenu.cs	high	*out = pad (boot: D_800E28C8), returns owner player +0x1C (0 in boot mode)
+func_00409F58	0x00409F58	PakMenu_ProbePak	Menus/PakMenu.cs	high	func_00404E28 (accessory probe) on the menu's pad
+func_00409F98	0x00409F98	PakMenu_ExitToLevel_00409F98	Menus/PakMenu.cs	low	Pad_DisableStatusPoll(pad) + Level_SetTransitionState(D_8011FE88, D_8013B2C8, 2); same as the message-5 path of PakMenu_OnMessageOk
+func_00409FCC	0x00409FCC	CPak_FindNoteByName	Save/ControllerPak.cs	high	decodes the 16 note names (CPak_GetNoteNameRaw/CPak_DecodeName) and compares with name; returns 1 and the index
+func_0040A064	0x0040A064	PakMenu_GetPlayerMenu	Menus/PakMenu.cs	high	returns the per-pad menu descriptor 0x451820/44/68/8C
+func_0040A0C8	0x0040A0C8	PakMenu_GetParentMenu	Menus/PakMenu.cs	high	by mode returns the menu to return to: per-player menu, 0x450BD0 / 0x45077C (load), 0x44F148 (boot)
+func_0040A1DC	0x0040A1DC	CPak_FindNextPakPort	Save/ControllerPak.cs	high	from cur+1 wraps over the 4 ports for one with CPak_GetStatus != -2, -1 if none
+func_0040A270	0x0040A270	PakMenu_FormatActionLabel	Menus/PakMenu.cs	medium	label of the action row (44F088): save texts by mode, boot mode prints the port number '%1d'
+func_0040A32C	0x0040A32C	PakMenu_FormatPlayerLabel	Menus/PakMenu.cs	medium	label (44EDDC): '%1d' player number (owner pad + 1), blank in boot mode
+func_0040A3A8	0x0040A3A8	PakMenu_FormatTitleLabel	Menus/PakMenu.cs	medium	label (44EE00): title text by mode (load/save, player/game, boot); note rows 3..18 and code 21 special cases
+func_0040A484	0x0040A484	PakMenu_FormatExitLabel	Menus/PakMenu.cs	medium	label of the exit row (44F0AC): boot mode uses D_800D7794
+func_0040A4A8	0x0040A4A8	PakMenu_OpenGameNoteLoad	Menus/PakMenu.cs	high	open handler of game-note info screen 0x44F2D4: D_80153780 = 1 (load)
+func_0040A4BC	0x0040A4BC	PakMenu_OpenGameNoteDelete	Menus/PakMenu.cs	high	open handler of game-note info screen 0x44F2F8: D_80153780 = 0 (delete)
+func_0040A4CC	0x0040A4CC	PakMenu_FormatGameNoteTitle	Menus/PakMenu.cs	high	label: 'note info' when loading, else 'delete note'
+func_0040A500	0x0040A500	PakMenu_FormatDifficultyLabel	Menus/PakMenu.cs	high	label: 'difficulty : easy/normal/hard' by loaded block +0x90 (0/16/32)
+func_0040A55C	0x0040A55C	PakMenu_FormatHealthLabel	Menus/PakMenu.cs	high	label 'health :' with '%3d' of loaded block +0x1C >> 8
+func_0040A5B8	0x0040A5B8	PakMenu_FormatLivesLabel	Menus/PakMenu.cs	high	label 'lives :' with '%2d' of loaded block +0x22
+func_0040A614	0x0040A614	PakMenu_FormatLevelLabel	Menus/PakMenu.cs	medium	label: LevelIdToWorld(loaded block +0x24)
+func_0040A640	0x0040A640	PakMenu_FormatTimeLabel	Menus/PakMenu.cs	high	label 'time :000.00.00' from loaded block +0xC/+0x10/+0x14 (Str_FormatRet3)
+func_0040A6D4	0x0040A6D4	PakMenu_FormatGameNotePrompt	Menus/PakMenu.cs	high	label: 'load?' or 'delete?' by D_80153780
+func_0040A708	0x0040A708	PakMenu_OnGameNoteNo	Menus/PakMenu.cs	high	'no' of the game-note info screen: back to the load-game menu 0x44F100 or the parent
+func_0040A774	0x0040A774	PakMenu_OpenPlayerNoteLoad	Menus/PakMenu.cs	high	open handler of player-note info 0x44F460: D_80153730 = 1 (load)
+func_0040A790	0x0040A790	PakMenu_OpenPlayerNoteDelete	Menus/PakMenu.cs	high	open handler 0x44F484: D_80153730 = 0, D_80153774 = 0 (delete)
+func_0040A7A8	0x0040A7A8	PakMenu_OpenForeignNoteDelete	Menus/PakMenu.cs	medium	open handler 0x44F4A8: D_80153774 = 1 (other-game note), hides the stat rows (flags 0x01800000)
+func_0040A7E8	0x0040A7E8	PakMenu_FormatPlayerNoteTitle	Menus/PakMenu.cs	high	label: 'note info' / 'delete note' by D_80153730 / D_80153774
+func_0040A83C	0x0040A83C	PakMenu_FormatPlayerNameLabel	Menus/PakMenu.cs	high	label 'name :' right-aligned 8-char name D_80153724 (trailing blanks trimmed); foreign note uses the name/ext header
+func_0040A928	0x0040A928	PakMenu_FormatPlayerTypeLabel	Menus/PakMenu.cs	medium	label 'type :' picks one of 5 11-char texts by the record's character id D_80153720
+func_0040AA20	0x0040AA20	PakMenu_FormatFragsLabel	Menus/PakMenu.cs	high	label 'frags :' with '%04d' of D_8015371C
+func_0040AA78	0x0040AA78	PakMenu_FormatPlayerNotePrompt	Menus/PakMenu.cs	high	label: 'load?' / 'delete?' by D_80153730 / D_80153774
+func_0040AACC	0x0040AACC	PakMenu_OnPlayerNoteNo	Menus/PakMenu.cs	high	'no' of the player-note info screen: back to the load-player menu 0x44F0B8 or the parent
+func_0040AB38	0x0040AB38	PakMenu_OpenMsgPakFull	Menus/PakMenu.cs	medium	message id 0 (descriptor 0x44F5EC): opened by PakMenu_WritePlayerNote when there are no free pages/notes
+func_0040AB48	0x0040AB48	PakMenu_OpenMsgNoPak	Menus/PakMenu.cs	medium	message id 1 (0x44F610): opened when no controller pak is found
+func_0040AB5C	0x0040AB5C	PakMenu_OpenMsgRumbleBoot	Menus/PakMenu.cs	medium	message id 2 (0x44F634): rumble pak instead of controller pak, boot check
+func_0040AB70	0x0040AB70	PakMenu_OpenMsgRumbleSave	Menus/PakMenu.cs	medium	message id 3 (0x44F658): rumble pak instead of controller pak, save menus
+func_0040AB84	0x0040AB84	PakMenu_OpenMsgRumbleLoad	Menus/PakMenu.cs	medium	message id 4 (0x44F67C): rumble pak instead of controller pak, load menus
+func_0040AB98	0x0040AB98	PakMenu_OpenMsg5_0040AB98	Menus/PakMenu.cs	low	message id 5 (0x44F6A0, header 'important'); ok resets rumble and restarts the level; no user found
+func_0040ABAC	0x0040ABAC	PakMenu_OpenMsgNoPakAtBoot	Menus/PakMenu.cs	medium	message id 6 (0x44F6C4): opened by PakMenu_OpenBootCheck when no port has a pak
+func_0040ABC0	0x0040ABC0	PakMenu_OpenMsgPakChanged	Menus/PakMenu.cs	medium	message id 7 (0x44F6E8): opened by PakMenu_CheckPak when the pak was swapped
+func_0040ABD4	0x0040ABD4	PakMenu_OpenMsgNoController	Menus/PakMenu.cs	medium	message id 8 (0x44F70C): opened by PakMenu_OpenBootCheck when Pad_AnyConnected is 0; clears flag 0x04000000, ok cannot close (returns 0)
+func_0040AC20	0x0040AC20	PakMenu_OpenMsgGameLoaded	Menus/PakMenu.cs	medium	message id 9, D_80153758 = 0 (0x44F730): opened after a game note is loaded
+func_0040AC3C	0x0040AC3C	PakMenu_OpenMsgGameLoadedAlt_0040AC3C	Menus/PakMenu.cs	low	message id 9 with D_80153758 = 1 (0x44F754), opened from func_0043EB20
+func_0040AC5C	0x0040AC5C	PakMenu_OpenMsgPlayerSaved	Menus/PakMenu.cs	medium	message id 10 (0x44F778): PakMenu_WritePlayerNote success
+func_0040AC70	0x0040AC70	PakMenu_OpenMsg11_0040AC70	Menus/PakMenu.cs	low	message id 11 (0x44F79C); no user found
+func_0040AC84	0x0040AC84	PakMenu_OpenMsgNoteDeleted	Menus/PakMenu.cs	medium	message id 12 (0x44F7C0): delete succeeded
+func_0040AC98	0x0040AC98	PakMenu_OpenMsgSaveFailed	Menus/PakMenu.cs	medium	message id 13 (0x44F808): PakMenu_WritePlayerNote write error
+func_0040ACAC	0x0040ACAC	PakMenu_OpenMsgDeleteFailed	Menus/PakMenu.cs	medium	message id 14 (0x44F82C): delete failed
+func_0040ACC0	0x0040ACC0	PakMenu_OpenMsgPakRepaired	Menus/PakMenu.cs	medium	message id 15 (0x44F7E4): CPak_RepairId succeeded
+func_0040ACD4	0x0040ACD4	PakMenu_FormatMsgHeader	Menus/PakMenu.cs	high	message box label: 'error' or 'important' (ids 5,6,9,10,12,15) by D_80153788
+func_0040AD20	0x0040AD20	PakMenu_FormatMsgLine1	Menus/PakMenu.cs	high	message box line 1: entry 0 of the 5-line text table D_800D782C + id*0x14
+func_0040AE4C	0x0040AE4C	PakMenu_FormatMsgLine2	Menus/PakMenu.cs	high	message box line 2 (table D_800D7830 + id*0x14)
+func_0040AF78	0x0040AF78	PakMenu_FormatMsgLine3	Menus/PakMenu.cs	high	message box line 3 (table D_800D7834 + id*0x14)
+func_0040B0A4	0x0040B0A4	PakMenu_FormatMsgLine4	Menus/PakMenu.cs	high	message box line 4 (table D_800D7838 + id*0x14)
+func_0040B1D0	0x0040B1D0	PakMenu_FormatMsgLine5	Menus/PakMenu.cs	high	message box line 5 (table D_800D783C + id*0x14)
+func_0040B2FC	0x0040B2FC	PakMenu_FormatMsgOkLabel	Menus/PakMenu.cs	high	message box button: 'ok', blank for id 8 (no controller)
+func_0040B348	0x0040B348	PakMenu_UpdateRepairDialog	Menus/PakMenu.cs	medium	update callback of the repair dialog (layout 0x44F850): closes (D_80153768) when the pak changes
+func_0040B428	0x0040B428	PakMenu_OpenRepairFailed	Menus/PakMenu.cs	medium	open handler 0x44F970 (D_80153734 = 1): shown when CPak_RepairId fails
+func_0040B444	0x0040B444	PakMenu_OpenRepairPrompt	Menus/PakMenu.cs	medium	open handler 0x44F994 (D_80153734 = 0): damaged pak (status -4) prompt
+func_0040B45C	0x0040B45C	PakMenu_FormatRepairLine1	Menus/PakMenu.cs	medium	repair dialog text line 1 by D_80153734
+func_0040B490	0x0040B490	PakMenu_FormatRepairLine2	Menus/PakMenu.cs	medium	repair dialog text line 2 by D_80153734
+func_0040B4C4	0x0040B4C4	PakMenu_FormatRepairLine3	Menus/PakMenu.cs	medium	repair dialog line 3: prompt variant prints the port number '%1d.'
+func_0040B560	0x0040B560	PakMenu_OnRepairYes	Menus/PakMenu.cs	medium	'yes' of the repair dialog: rechecks the pak then opens confirm 0 (0x44FAD8, repair)
+func_0040B60C	0x0040B60C	PakMenu_OnRepairNo	Menus/PakMenu.cs	medium	'no' of the repair dialog: closes and returns to the parent menu
+func_0040B6C8	0x0040B6C8	PakMenu_OnContinueWithoutPak	Menus/PakMenu.cs	medium	last row of the repair dialog: D_800E28C0 = 1 (skip the pak), boot: D_8014ADA0 = 1, else back to the parent
+func_0040B74C	0x0040B74C	PakMenu_FormatContinueLabel	Menus/PakMenu.cs	medium	label of that row, text by load mode D_80153760
+func_0040B780	0x0040B780	PakMenu_UpdateConfirmDialog	Menus/PakMenu.cs	medium	update callback of the confirm dialog (layout 0x44F9B8): closes (D_80153770) when the pak changes
+func_0040B860	0x0040B860	PakMenu_OpenConfirmRepair	Menus/PakMenu.cs	medium	confirm id 0 (0x44FAD8): repair pak, from PakMenu_OnRepairYes
+func_0040B878	0x0040B878	PakMenu_OpenConfirmPakFull	Menus/PakMenu.cs	medium	confirm id 1 (0x44FAFC): no room for any note (boot / game save); yes continues without saving
+func_0040B894	0x0040B894	PakMenu_OpenConfirmNoRoomForGame	Menus/PakMenu.cs	medium	confirm id 2 (0x44FB20): room for the player note but not the game save (boot check)
+func_0040B8B0	0x0040B8B0	PakMenu_OpenConfirmOverwrite	Menus/PakMenu.cs	medium	confirm id 3 (0x44FB44): a game note exists; yes deletes and rewrites it
+func_0040B8CC	0x0040B8CC	PakMenu_OpenConfirmDeleteCorrupt	Menus/PakMenu.cs	medium	confirm id 4 (0x44FB68): note failed size/CRC check; yes deletes note D_80153754
+func_0040B8E8	0x0040B8E8	PakMenu_FormatConfirmLine1	Menus/PakMenu.cs	high	confirm dialog line 1: table D_800D7998 + id*0x14 by D_80153778
+func_0040B964	0x0040B964	PakMenu_FormatConfirmLine2	Menus/PakMenu.cs	high	confirm dialog line 2 (table D_800D799C)
+func_0040B9E0	0x0040B9E0	PakMenu_FormatConfirmLine3	Menus/PakMenu.cs	high	confirm dialog line 3 (table D_800D79A0)
+func_0040BA5C	0x0040BA5C	PakMenu_FormatConfirmLine4	Menus/PakMenu.cs	high	confirm dialog line 4 (table D_800D79A4)
+func_0040BAD8	0x0040BAD8	PakMenu_FormatConfirmLine5	Menus/PakMenu.cs	high	confirm dialog line 5 (table D_800D79A8)
+func_0040BB54	0x0040BB54	PakMenu_FormatConfirmYesLabel	Menus/PakMenu.cs	high	label of the row whose select is PakMenu_OnConfirmYes; text by confirm id
+func_0040BBC0	0x0040BBC0	PakMenu_FormatConfirmNoLabel	Menus/PakMenu.cs	high	label of the row whose select is PakMenu_OnConfirmNo; text by confirm id
+func_0040BC2C	0x0040BC2C	Video_ApplyResolutionHead_0040BC2C	System/Video.cs	medium	4-byte split piece just before Video_ApplyResolution (move into s1, falls through)
+func_0040BC30	0x0040BC30	Video_ApplyResolution	System/Video.cs	high	default mode by RAM size (Mem_GetRamSize), picks the NTSC/PAL table entry of D_800E28D8, sets screen size D_800E28D0/D4, Vi mode and osViSetSpecialFeatures
 func_0040BE38	0x0040BE38	Vi_EditMode	System/Video.cs	medium	harvest: FINDINGS: the os.vi mode setter func_0040BE38 is an OSViMode edit (memcpy of a table entry + hStart/vStart)
-func_0040C11C	0x0040C11C				
-func_0040C354	0x0040C354				
-func_0040C378	0x0040C378				
-func_0040C398	0x0040C398				
-func_0040C43C	0x0040C43C				
-func_0040C4A8	0x0040C4A8				
-func_0040C4F4	0x0040C4F4				
-func_0040C504	0x0040C504				
-func_0040C638	0x0040C638				
-func_0040C640	0x0040C640				
+func_0040C11C	0x0040C11C	Video_BeginResolutionChange	System/Video.cs	medium	Game_RenderFrame at countdown 20: unless a mode was requested steps D_800E28D8 to the next mode fitting RAM, screen size = max of old/new mode
+func_0040C354	0x0040C354	Video_SetResolution	System/Video.cs	high	D_800E28D8 = mode; Video_ApplyResolution
+func_0040C378	0x0040C378	Video_RequestNextResolution	System/Video.cs	medium	starts the change countdown D_800E28E0 = 20 if idle (no mode given: Video_BeginResolutionChange cycles)
+func_0040C398	0x0040C398	Video_UpdateResolution	System/Video.cs	high	scheduler thread: default mode on first use, applies D_800E28D8 when the countdown is < 5 and it differs from D_800E28DC
+func_0040C43C	0x0040C43C	Video_GetResolutionLabel	System/Video.cs	high	returns 'Resolution : lo-rez / hi-rez / hi-rez-lb / lo-rez-lb' text by D_800E28D8
+func_0040C4A8	0x0040C4A8	Video_RequestResolution	System/Video.cs	high	if idle and different: remember old mode, D_800E28D8 = mode, D_800E28E4 = 1, countdown 20; MatchSetup_SetDefaults passes 0
+func_0040C4F4	0x0040C4F4	Video_GetResolution	System/Video.cs	high	returns D_800E28D8; callers Hud_DrawAmmo, BossBar_Draw
+func_0040C504	0x0040C504	Video_SetViModeAndViewports	System/Video.cs	medium	picks the VI mode id D_80153790 from TV type/width/flags, Vi_EditMode, then sets every camera's viewport size (+0x29C/+0x2A0) to the screen size
+func_0040C638	0x0040C638	UiNode_DrawChildrenClipped	Ui/Widgets.cs	medium	UiNode_ComputeRect; when node flag 0x200 intersects the clip rect (Ui_GetClipRect/Ui_SetClipRect), draws the children (func_0040E87C), restores the clip
+func_0040C640	0x0040C640	UiNode_ReturnZero_0040C640	Ui/Widgets.cs	low	returns 0; no callers or table references found
 func_0040C648	0x0040C648				
 func_0040C77C	0x0040C77C				
 func_0040C9C8	0x0040C9C8				

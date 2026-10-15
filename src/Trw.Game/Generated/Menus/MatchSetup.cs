@@ -317,7 +317,7 @@ public static partial class Game
             {
                 Resource_SetLoadFlags(1);
             }
-            func_0040C4A8(0);
+            Video_RequestResolution(0);
             Menu_DisableInput();
             i = 7;
             p = (0x80145088u + (uint)5930);

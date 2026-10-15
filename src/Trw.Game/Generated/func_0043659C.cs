@@ -21,7 +21,7 @@ public static partial class Game
                 Menu_DisableInput();
                 if ((MatchSetup_PickRandomArena() == 0))
                 {
-                    func_0040C4A8(0);
+                    Video_RequestResolution(0);
                     Menu_GotoScreen(20);
                     return 0;
                 }

@@ -36,7 +36,7 @@ public static partial class Game
             if ((Mem.S32(0x8011FE88u) == 4))
             {
                 Flyby_SetDefaultView();
-                func_00402FB4(a, (uint)(c));
+                Flyby_QueueByTrigger(a, (uint)(c));
             }
         }
     }
@@ -50,7 +50,7 @@ public static partial class Game
             if ((Mem.S32(0x8011FE88u) == 4))
             {
                 Flyby_SetDefaultView();
-                func_00402FB4(0, a);
+                Flyby_QueueByTrigger(0, a);
             }
         }
     }

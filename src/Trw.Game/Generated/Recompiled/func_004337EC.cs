@@ -39,7 +39,7 @@ public static partial class Game
                 L_I0043380C: ;
                 Mem.Set((r29 + 32u), r18);
                 L_I00433810: ;
-                Mem.Set((r29 + 24u), r16); r2 = (uint)func_00404F04((int)r4);
+                Mem.Set((r29 + 24u), r16); r2 = (uint)CPak_GetStatus((int)r4);
                 L_I00433818: ;
                 r19 = r2 + 5u;
                 L_I0043381C: ;
@@ -105,7 +105,7 @@ public static partial class Game
                 L_I004338A0: ;
                 r4 = Mem.U32((r4 + 30464u));
                 L_I004338A4: ;
-                r6 = r29 + 16u; r2 = (uint)func_00404BE8(r4, (int)r5, r6);
+                r6 = r29 + 16u; r2 = (uint)Pak_FindFile(r4, (int)r5, r6);
                 L_I004338AC: ;
                 { bool c_ = r2 != r18;  if (c_) goto L_L004339CC; }
                 L_I004338B4: ;

@@ -14,14 +14,14 @@ public static partial class Game
             Mem.Set(Mem.U32(0x800E5550u), 0);
             Audio_StopAllExcept((-1));
             Rumble_Suspend();
-            if ((func_0040C4F4() == 1))
+            if ((Video_GetResolution() == 1))
             {
                 new O05Cfg(cfg).h14_Set((short)(98));
                 new O05Cfg(cfg).h16_Set((short)(69));
             }
             else
             {
-                if ((func_0040C4F4() == 2))
+                if ((Video_GetResolution() == 2))
                 {
                     new O05Cfg(cfg).h14_Set((short)(105));
                 }

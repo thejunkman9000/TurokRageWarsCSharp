@@ -51,10 +51,10 @@ public static partial class Game
                 { bool c_ = r2 != r17;  if (c_) goto L_L0041C034; }
                 r4 = 2148401152u;
                 r4 = Mem.U32((r4 + 13584u));
-                func_00404E28((int)r4);
+                Pak_DetectPort((int)r4);
                 r4 = 2148401152u;
                 r4 = Mem.U32((r4 + 13584u));
-                r2 = (uint)func_00404F04((int)r4);
+                r2 = (uint)CPak_GetStatus((int)r4);
                 r3 = r2;
                 r2 = (uint)-1;
                 if (r3 == r2) { r18 = (uint)1; goto L_L0041C034; }
@@ -64,7 +64,7 @@ public static partial class Game
                 r4 = Mem.U32((r4 + 30464u));
                 r5 = 2148401152u;
                 r5 = Mem.U32((r5 + 13584u));
-                r6 = r29 + 16u; r2 = (uint)func_00404BE8(r4, (int)r5, r6);
+                r6 = r29 + 16u; r2 = (uint)Pak_FindFile(r4, (int)r5, r6);
                 { bool c_ = r2 != 0;  if (c_) goto L_L0041C034; }
                 r4 = 2148401152u;
                 r4 = Mem.U32((r4 + 13584u));
@@ -242,7 +242,7 @@ public static partial class Game
             if ((new S1008Menu(Mem.U32(0x800E3590u)).state == 3))
             {
                 new S1008Menu(Mem.U32(0x800E3590u)).clock_Set((int)((int)(new S1008Menu(Mem.U32(0x800E3590u)).clock) + arg2));
-                new S1008Menu(Mem.U32(0x800E3590u)).cursor.style_Set((byte)(int)(((func_002BB630(((float)(new S1008Menu(Mem.U32(0x800E3590u)).clock) * 0.00333333341f)) * 30.0f) + 220.0f)));
+                new S1008Menu(Mem.U32(0x800E3590u)).cursor.style_Set((byte)(int)(((cosf_Recompiled(((float)(new S1008Menu(Mem.U32(0x800E3590u)).clock) * 0.00333333341f)) * 30.0f) + 220.0f)));
                 node = func_0041B87C(new S1008Menu(Mem.U32(0x800E3590u)).handle, 0);
                 if ((node != new S1008Menu(Mem.U32(0x800E3590u)).focus_))
                 {
@@ -1757,7 +1757,7 @@ public static partial class Game
                 L_I004314CC: ;
                 r5 = Mem.U32((r3 + 2864u));
                 L_I004314D0: ;
-                r4 = r18; r2 = (uint)func_00404858((int)r4, (int)r5);
+                r4 = r18; r2 = (uint)Pak_DeleteFile((int)r4, (int)r5);
                 L_I004314D8: ;
                 { bool c_ = r2 != 0; r5 = r17 + 88u; if (c_) goto L_L004315BC; }
                 L_I004314E0: ;
@@ -1861,7 +1861,7 @@ public static partial class Game
                 r2 = (uint)4; goto L_L00432300;
                 L_L004315BC: ;
                 L_I004315BC: ;
-                r4 = r18; func_00404E28((int)r4);
+                r4 = r18; Pak_DetectPort((int)r4);
                 L_I004315C4: ;
                 r4 = r18; r2 = func_004337EC(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I004315CC: ;
@@ -3250,7 +3250,7 @@ public static partial class Game
                 L_I00432278: ;
                 { bool c_ = r4 != r2; r2 = r0; if (c_) goto L_L00432310; }
                 L_I00432280: ;
-                r4 = r18; r2 = (uint)func_00405290((int)r4);
+                r4 = r18; r2 = (uint)CPak_ForceRepairId((int)r4);
                 L_I00432288: ;
                 { bool c_ = r2 == 0; r4 = r18; if (c_) goto L_L004322CC; }
                 L_I00432290: ;

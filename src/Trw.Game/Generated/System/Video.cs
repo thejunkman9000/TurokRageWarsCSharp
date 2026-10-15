@@ -139,6 +139,206 @@ public static partial class Game
         }
     }
 
+    // ==== func_0040BC2C @ 0x0040BC2C [MIPS]
+    public static uint Video_ApplyResolutionHead_0040BC2C(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0040BC2C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_0040BC2C: ;
+                r17 = r3 + r0;
+                L_func_0040BC30: ;
+                r29 = r29 - 56u;
+                Mem.Set((r29 + 48u), r16);
+                r16 = r0;
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 10456u));
+                r2 = (uint)2;
+                r1 = 2148794368u;
+                Mem.Set((r1 + 20672u), r2);
+                r2 = (uint)-1;
+                { bool c_ = r3 != r2; Mem.Set((r29 + 52u), r31); if (c_) goto L_L0040BC98; }
+                r2 = Mem_GetRamSize();
+                r3 = 4194304u;
+                { bool c_ = r2 == r3; r2 = (uint)1; if (c_) goto L_L0040BC80; }
+                r1 = 2148401152u;
+                Mem.Set((r1 + 10456u), r2);
+                 goto L_L0040BC88;
+                L_L0040BC80: ;
+                r1 = 2148401152u;
+                Mem.Set((r1 + 10456u), r0);
+                L_L0040BC88: ;
+                r2 = 2148401152u;
+                r2 = Mem.U8((r2 + 10459u));
+                r1 = 2148794368u;
+                Mem.Set((r1 + 26696u), (byte)r2);
+                L_L0040BC98: ;
+                r3 = 2147483648u;
+                r3 = Mem.U32((r3 + 768u));
+                r2 = (uint)1;
+                { bool c_ = r3 == r2; r2 = (uint)((int)r3 < 2 ? 1 : 0); if (c_) goto L_L0040BCD4; }
+                if (r2 == 0) { r2 = (uint)2; goto L_L0040BCC4; }
+                { bool c_ = r3 == 0;  if (c_) goto L_L0040BCF4; }
+                 goto L_L0040BD14;
+                L_L0040BCC4: ;
+                { bool c_ = r3 == r2;  if (c_) goto L_L0040BCF4; }
+                 goto L_L0040BD14;
+                L_L0040BCD4: ;
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 10456u));
+                r3 = r2 << 3;
+                r3 = r3 - r2;
+                r2 = 2148401152u;
+                r2 = r2 + 10488u;
+                r3 = r3 << 2; goto L_L0040BD10;
+                L_L0040BCF4: ;
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 10456u));
+                r3 = r2 << 3;
+                r3 = r3 - r2;
+                r3 = r3 << 2;
+                r2 = 2148401152u;
+                r2 = r2 + 10628u;
+                L_L0040BD10: ;
+                r16 = r3 + r2;
+                L_L0040BD14: ;
+                { bool c_ = r16 == 0;  if (c_) goto L_L0040BE28; }
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 10456u));
+                r2 = r3 << 2;
+                r2 = r2 + r3;
+                r2 = r2 << 2;
+                r1 = 2148401152u;
+                r1 = r1 + r2;
+                r8 = Mem.U32((r1 + 10768u));
+                r1 = 2148401152u;
+                r1 = r1 + r2;
+                r9 = Mem.U32((r1 + 10772u));
+                r1 = 2148401152u;
+                r1 = r1 + r2;
+                r10 = Mem.U32((r1 + 10776u));
+                r1 = 2148401152u;
+                r1 = r1 + r2;
+                r11 = Mem.U32((r1 + 10780u));
+                Mem.Set((r29 + 24u), r8);
+                Mem.Set((r29 + 28u), r9);
+                Mem.Set((r29 + 32u), r10);
+                Mem.Set((r29 + 36u), r11);
+                r1 = 2148401152u;
+                r1 = r1 + r2;
+                r8 = Mem.U32((r1 + 10784u));
+                Mem.Set((r29 + 40u), r8);
+                r2 = Mem.U32((r29 + 24u));
+                r3 = Mem.U32((r29 + 28u));
+                r4 = Mem.U32((r29 + 32u));
+                r5 = Mem.U32((r29 + 36u));
+                r6 = Mem.U32((r29 + 40u));
+                r1 = 2148401152u;
+                Mem.Set((r1 + 10472u), r2);
+                r2 = Mem.U32((r16 + 16u));
+                r1 = 2148335616u;
+                Mem.Set((r1 + 5568u), r3);
+                r1 = 2148335616u;
+                Mem.Set((r1 + 5572u), r4);
+                r1 = 2148335616u;
+                Mem.Set((r1 + 5576u), r5);
+                r1 = 2148335616u;
+                Mem.Set((r1 + 5580u), r6);
+                r4 = Mem.U32((r16 + 0u));
+                r3 = Mem.U32((r16 + 4u));
+                Mem.Set((r29 + 16u), r2);
+                r2 = Mem.U32((r16 + 20u));
+                r1 = 2148401152u;
+                Mem.Set((r1 + 10452u), r3);
+                r1 = 2148401152u;
+                Mem.Set((r1 + 10448u), r4);
+                Mem.Set((r29 + 20u), r2);
+                r4 = Mem.U32((r16 + 0u));
+                r5 = Mem.U32((r16 + 4u));
+                r6 = Mem.U32((r16 + 8u));
+                r7 = Mem.U32((r16 + 12u));
+                Video_SetViModeAndViewports(r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 10472u));
+                { bool c_ = r2 == 0; r4 = (uint)128; if (c_) goto L_L0040BE10; }
+                r4 = (uint)64;
+                L_L0040BE10: ;
+                osViSetSpecialFeatures(r4);
+                r4 = (uint)32; osViSetSpecialFeatures(r4);
+                r4 = (uint)2; osViSetSpecialFeatures(r4);
+                L_L0040BE28: ;
+                r31 = Mem.U32((r29 + 52u));
+                r16 = Mem.U32((r29 + 48u));
+                r29 = r29 + 56u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0040BC2C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_0040BC30 @ 0x0040BC30 [C]
+    public static void Video_ApplyResolution()
+    {
+        uint _fp = Stack.Alloc(20);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0040BC30");
+                uint e = 0u;
+                uint new_var = 0u;
+                Mem.Set(0x801450C0u, 2);
+                if ((Mem.S32(0x800E28D8u) == (-1)))
+                {
+                    if (((int)(Mem_GetRamSize()) != 4194304))
+                    {
+                        Mem.Set(0x800E28D8u, 1);
+                    }
+                    else
+                    {
+                        Mem.Set(0x800E28D8u, 0);
+                    }
+                    Mem.Set(0x80146848u, Mem.U8(0x800E28DBu));
+                }
+                switch (Mem.S32(0x80000300u))
+                {
+                case 1:
+                    e = (0x800E28F8u + (uint)(Mem.S32(0x800E28D8u) * 28));
+                    break;
+                case 0:
+                case 2:
+                    e = (0x800E2984u + (uint)(Mem.S32(0x800E28D8u) * 28));
+                    break;
+                }
+                if ((e != 0u))
+                {
+                    Mem.Copy(_fp, (0x800E2A10u + (uint)(Mem.S32(0x800E28D8u) * 20)), 20);
+                    Mem.Set(0x800E28E8u, new O02Vi20(_fp).w[(int)(0)]);
+                    Mem.Set(0x800D15C0u, new O02Vi20(_fp).w[(int)(1)]);
+                    Mem.Set(0x800D15C4u, new O02Vi20(_fp).w[(int)(2)]);
+                    Mem.Set(0x800D15C8u, new O02Vi20(_fp).w[(int)(3)]);
+                    new_var = new O02Vi(e).w.P;
+                    Mem.Set(0x800D15CCu, new O02Vi20(_fp).w[(int)(4)]);
+                    Mem.Set(0x800E28D0u, Mem.S32((new_var + (uint)(0 * 4))));
+                    Mem.Set(0x800E28D4u, new O02Vi(e).w[(int)(1)]);
+                    Video_SetViModeAndViewports((uint)(Mem.S32((new_var + (uint)(0 * 4)))), Mem.S32((new_var + (uint)(1 * 4))), Mem.S32((new_var + (uint)(2 * 4))), Mem.S32((new_var + (uint)(3 * 4))), Mem.S32((new_var + (uint)(4 * 4))), Mem.S32((new_var + (uint)(5 * 4))));
+                    osViSetSpecialFeatures((uint)(((Mem.S32(0x800E28E8u) != 0) ? 64 : 128)));
+                    osViSetSpecialFeatures((uint)(32));
+                    osViSetSpecialFeatures((uint)(2));
+                }
+            }
+        }
+        finally { Stack.Free(20); }
+    }
+
     // ==== func_0040BE38 @ 0x0040BE38 [MIPS]
     public static uint Vi_EditMode(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5)
     {
@@ -340,5 +540,215 @@ public static partial class Game
             }
         }
         finally { if (Dbg.On) Dbg.Leave("func_0040BE38", r2); Stack.Free(384); }
+    }
+
+    // ==== func_0040C11C @ 0x0040C11C [C]
+    public static void Video_BeginResolutionChange()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0040C11C");
+            int mode = 0;
+            uint row = 0u;
+            int lim = 0;
+            int a = 0;
+            int b = 0;
+            int c = 0;
+            int d = 0;
+            switch (Mem.S32(0x80000300u))
+            {
+            case 0:
+            case 2:
+                mode = 1;
+                goto case 1;
+            case 1:
+                break;
+            }
+            row = ((0x800E28F8u + (uint)(mode * 140)) + (uint)(Mem.S32(0x800E28D8u) * 28));
+            if (((int)(Mem_GetRamSize()) != 4194304))
+            {
+                lim = 172800;
+            }
+            else
+            {
+                lim = 63072;
+            }
+            if ((Mem.S32(0x800E28E4u) == 0))
+            {
+                Mem.Set(0x800E28D8u, ((Mem.S32(0x800E28D8u) + 1) % Mem.S32((0x800E28F0u + (uint)(mode * 4)))));
+                while ((lim < (Mem.S32((row + (uint)(0 * 4))) * Mem.S32((row + (uint)(1 * 4))))))
+                {
+                    Mem.Set(0x800E28D8u, ((Mem.S32(0x800E28D8u) + 1) % Mem.S32((0x800E28F0u + (uint)(mode * 4)))));
+                }
+            }
+            else
+            {
+                Mem.Set(0x800E28E4u, 0);
+            }
+            b = new Q01Mode(((0x800E28F8u + (uint)(mode * 140)) + (uint)(Mem.S32(0x800E28DCu) * 28))).w;
+            a = new Q01Mode(((0x800E28F8u + (uint)(mode * 140)) + (uint)(Mem.S32(0x800E28D8u) * 28))).w;
+            if ((a < b))
+            {
+                a = b;
+            }
+            Mem.Set(0x800E28D0u, a);
+            c = new Q01Mode(((0x800E28F8u + (uint)(mode * 140)) + (uint)(Mem.S32(0x800E28D8u) * 28))).h;
+            d = new Q01Mode(((0x800E28F8u + (uint)(mode * 140)) + (uint)(Mem.S32(0x800E28DCu) * 28))).h;
+            if ((c < d))
+            {
+                c = d;
+            }
+            Mem.Set(0x800E28D4u, c);
+        }
+    }
+
+    // ==== func_0040C354 @ 0x0040C354 [C]
+    public static void Video_SetResolution(int mode)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0040C354", (uint)mode);
+            Mem.Set(0x800E28D8u, mode);
+            Video_ApplyResolution();
+        }
+    }
+
+    // ==== func_0040C378 @ 0x0040C378 [C]
+    public static void Video_RequestNextResolution()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0040C378");
+            if ((Mem.S32(0x800E28E0u) == 0))
+            {
+                Mem.Set(0x800E28E0u, 20);
+            }
+        }
+    }
+
+    // ==== func_0040C398 @ 0x0040C398 [C]
+    public static void Video_UpdateResolution()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0040C398");
+            if ((Mem.S32(0x800E28D8u) == (-1)))
+            {
+                if (((int)(Mem_GetRamSize()) != 4194304))
+                {
+                    Mem.Set(0x800E28D8u, 1);
+                }
+                else
+                {
+                    Mem.Set(0x800E28D8u, 0);
+                }
+                Mem.Set(0x80146848u, Mem.U8(0x800E28DBu));
+            }
+            if (((Mem.S32(0x800E28E0u) < 5) && (Mem.S32(0x800E28DCu) != Mem.S32(0x800E28D8u))))
+            {
+                Video_ApplyResolution();
+                Mem.Set(0x800E28DCu, Mem.S32(0x800E28D8u));
+            }
+        }
+    }
+
+    // ==== func_0040C43C @ 0x0040C43C [C]
+    public static uint Video_GetResolutionLabel()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0040C43C");
+            switch (Mem.S32(0x800E28D8u))
+            {
+            case 0:
+            default:
+                return 0x800D763Cu;
+            case 1:
+                return 0x800D7640u;
+            case 2:
+                return 0x800D7644u;
+            case 3:
+                return 0x800D764Cu;
+            }
+            return 0u;
+        }
+    }
+
+    // ==== func_0040C4A8 @ 0x0040C4A8 [C]
+    public static void Video_RequestResolution(int mode)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0040C4A8", (uint)mode);
+            if (((Mem.S32(0x800E28E0u) == 0) && (mode != Mem.S32(0x800E28D8u))))
+            {
+                Mem.Set(0x800E28E4u, 1);
+                Mem.Set(0x800E28DCu, Mem.S32(0x800E28D8u));
+                Mem.Set(0x800E28D8u, mode);
+                Mem.Set(0x800E28E0u, 20);
+            }
+        }
+    }
+
+    // ==== func_0040C4F4 @ 0x0040C4F4 [C]
+    public static int Video_GetResolution()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0040C4F4");
+            return Mem.S32(0x800E28D8u);
+        }
+    }
+
+    // ==== func_0040C504 @ 0x0040C504 [C]
+    public static void Video_SetViModeAndViewports(uint a0, int a1, int a2, int a3, int e, int f)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0040C504", (uint)a0, (uint)a1, (uint)a2, (uint)a3);
+            int flags = 0;
+            int mode = 0;
+            int low = 0;
+            uint n = 0u;
+            switch (Mem.S32(0x80000300u))
+            {
+            case 0:
+                mode = 1;
+                break;
+            case 1:
+                break;
+            case 2:
+                mode = 2;
+                break;
+            }
+            if ((a0 >= (uint)(321)))
+            {
+                flags = (int)((int)(flags) | 4);
+            }
+            if ((Mem.S32(0x800D15C4u) != 0))
+            {
+                flags = (int)((int)(flags) | 2);
+            }
+            if ((a0 >= (uint)(321)))
+            {
+                flags = (int)((int)(flags) | 1);
+            }
+            Mem.Set(0x80153790u, Mem.U16(((0x800E2A4Eu + (uint)(flags * 4)) + (uint)(mode * 32))));
+            Vi_EditMode((uint)((int)(a0)), (uint)(a1), (uint)(a2), (uint)(a3), (uint)(e), (uint)(f));
+            if ((new O02CamList(0x801450A8u).cam.P != 0u))
+            {
+                new O02CamList(0x801450A8u).cam.f29C_Set((float)(Mem.S32(0x800E28D0u)));
+                new O02CamList(0x801450A8u).cam.w2A4_Set(0);
+                new O02CamList(0x801450A8u).cam.w2A8_Set(0);
+                new O02CamList(0x801450A8u).cam.f2A0_Set((float)(Mem.S32(0x800E28D4u)));
+            }
+            for (n = new O02CamList(0x801450A8u).head_; (n != 0u); n = new O02Cam(n).next_)
+            {
+                new O02Cam(n).w2A4_Set(0);
+                new O02Cam(n).w2A8_Set(0);
+                new O02Cam(n).f29C_Set((float)(Mem.S32(0x800E28D0u)));
+                new O02Cam(n).f2A0_Set((float)(Mem.S32(0x800E28D4u)));
+            }
+        }
     }
 }

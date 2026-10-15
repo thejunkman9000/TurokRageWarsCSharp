@@ -171,7 +171,7 @@ public static partial class Game
                 r5 = r29 + 140u;
                 L_L002C2778: ;
                 r6 = Mem.U8((r18 + 0u));
-                r7 = r29 + 72u; r2 = func_002C2A64(r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = r29 + 72u; r2 = _Putfld_Recompiled(r4, r5, r6, r7); r3 = Cpu.V1;
                 r3 = Mem.U32((r29 + 28u));
                 r2 = Mem.U32((r29 + 32u));
                 r3 = r3 + r2;

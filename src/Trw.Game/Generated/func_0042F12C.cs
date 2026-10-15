@@ -202,8 +202,8 @@ public static partial class Game
                 {
                     for (i = 0; (i < 4); ++i)
                     {
-                        func_00404E28(i);
-                        m2 = func_00404F04(i);
+                        Pak_DetectPort(i);
+                        m2 = CPak_GetStatus(i);
                         if (((m2 >= (-4)) && ((m2 < (-2)) || (((m2 <= 0) ? ((m2 >= (-1)) ? 1 : 0) : 0) != 0))))
                         {
                             new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(i)].f14_Set(2);
@@ -215,8 +215,8 @@ public static partial class Game
                 }
                 else
                 {
-                    func_00404E28(Mem.S32(0x800E3510u));
-                    m2 = func_00404F04(Mem.S32(0x800E3510u));
+                    Pak_DetectPort(Mem.S32(0x800E3510u));
+                    m2 = CPak_GetStatus(Mem.S32(0x800E3510u));
                     if (((m2 >= (-4)) && ((m2 < (-2)) || (((m2 <= 0) ? ((m2 >= (-1)) ? 1 : 0) : 0) != 0))))
                     {
                         new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(Mem.S32(0x800E3510u))].f14_Set(2);
@@ -234,7 +234,7 @@ public static partial class Game
                 PlayerMenu_RefreshPanel((uint)(0), default(uint), default(uint), default(uint));
                 break;
             }
-            func_0040C4A8(0);
+            Video_RequestResolution(0);
             Menu_DisableInput();
             Menu_SetPeriodicStateKick_002A3410(0);
             Audio_PlaySound2D(3704);

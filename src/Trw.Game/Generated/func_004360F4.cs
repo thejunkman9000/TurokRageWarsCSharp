@@ -23,7 +23,7 @@ public static partial class Game
                 {
                     return 0;
                 }
-                func_0040C4A8(0);
+                Video_RequestResolution(0);
                 Menu_ConsumeEvent();
                 g = 0x80146894u;
                 Mem.Set((g + (uint)(0 * 4)), 0);

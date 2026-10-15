@@ -173,7 +173,7 @@ public static partial class Game
                 L_L00291450: ;
                 r16 = 2148859904u;
                 r16 = r16 + 14024u;
-                r4 = r16; func_00405CA8(r4);
+                r4 = r16; FramePool_Init(r4);
                 r4 = r16; FramePool_Reinit(r4);
                 r4 = 2148859904u;
                 r4 = Mem.U32((r4 + 14072u));
@@ -280,7 +280,7 @@ public static partial class Game
                 L_L0029163C: ;
                 r4 = r4 | 48376u;
                 r4 = r18 + r4; func_0044ECB0(r4);
-                r17 = (uint)1; func_00404D84();
+                r17 = (uint)1; Pak_AllocDirectory();
                 Menu_InitFrontendOnce();
                 r4 = (uint)2; Menu_GotoScreen((int)r4);
                 r2 = (uint)3;

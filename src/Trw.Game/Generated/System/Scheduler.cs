@@ -72,7 +72,7 @@ public static partial class Game
                  goto L_L0028E9F4;
                 L_L0028E9FC: ;
                 r4 = r17; Sched_HandleRetrace(r4);
-                func_0040C398();
+                Video_UpdateResolution();
                 r4 = r17 + 64u; goto L_L0028E928;
                 L_L0028EA14: ;
                 r4 = r17; Sched_HandleSpDone(r4);
@@ -146,7 +146,7 @@ public static partial class Game
                             }
                         }
                         Sched_HandleRetrace(o);
-                        func_0040C398();
+                        Video_UpdateResolution();
                         break;
                     case 667:
                         Sched_HandleSpDone(o);

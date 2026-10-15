@@ -58,4 +58,36 @@ public static partial class Game
             Mem.Set((p + (uint)i), (byte)((int)(Mem.U8((p + (uint)i))) ^ m));
         }
     }
+
+    // ==== func_00403B0C @ 0x00403B0C [C]
+    public static int Bits_TestOvlA(uint bits, int bit)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00403B0C", (uint)bits, (uint)bit);
+            int i = (bit >> (int)3);
+            int m = (1 << (int)(bit & 7));
+            return ((int)(Mem.U8((bits + (uint)i))) & m);
+        }
+    }
+
+    // ==== func_00403B2C @ 0x00403B2C [C]
+    public static void Bits_AssignOvlA(uint bits, int bit, int set)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00403B2C", (uint)bits, (uint)bit, (uint)set);
+            int i = (bit >> (int)3);
+            int m = (1 << (int)(bit & 7));
+            uint b2 = bits;
+            if ((set != 0))
+            {
+                Mem.Set((bits + (uint)i), (byte)((int)(Mem.U8((bits + (uint)i))) | m));
+            }
+            else
+            {
+                Mem.Set((b2 + (uint)i), (byte)((int)(Mem.U8((b2 + (uint)i))) & (~m)));
+            }
+        }
+    }
 }

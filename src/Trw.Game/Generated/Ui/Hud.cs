@@ -511,7 +511,7 @@ public static partial class Game
                 r1 = 2148401152u;
                 Cpu.SetW(0, Mem.U32((r1 + 10452u)));
                 Cpu.SetS(0, (float)(int)Cpu.W(0));
-                Cpu.SetS(22, Cpu.S(1) / Cpu.S(0)); r2 = (uint)func_0040C4F4();
+                Cpu.SetS(22, Cpu.S(1) / Cpu.S(0)); r2 = (uint)Video_GetResolution();
                 { bool c_ = r2 != 0;  if (c_) goto L_L0021EAB4; }
                 r1 = 2148270080u;
                 Cpu.SetW(25, Mem.U32((r1 + 30388u)));
@@ -533,7 +533,7 @@ public static partial class Game
                 r2 = Mem.U32((r17 + 5048u));
                 { bool c_ = r2 == 0;  if (c_) goto L_L0021EB28; }
                 L_L0021EAEC: ;
-                r2 = (uint)func_0040C4F4();
+                r2 = (uint)Video_GetResolution();
                 { bool c_ = r2 != 0; r4 = r17 + 3628u; if (c_) goto L_L0021EB0C; }
                 r5 = 2148335616u;
                 r5 = r5 - 6964u;
@@ -553,7 +553,7 @@ public static partial class Game
                 r2 = Mem.U32((r17 + 5052u));
                 { bool c_ = r2 == 0;  if (c_) goto L_L0021EB80; }
                 L_L0021EB44: ;
-                r2 = (uint)func_0040C4F4();
+                r2 = (uint)Video_GetResolution();
                 { bool c_ = r2 != 0; r4 = r17 + 3688u; if (c_) goto L_L0021EB64; }
                 r5 = 2148335616u;
                 r5 = r5 - 6852u;
@@ -573,7 +573,7 @@ public static partial class Game
                 r2 = Mem.U32((r17 + 5056u));
                 { bool c_ = r2 == 0;  if (c_) goto L_L0021EBD8; }
                 L_L0021EB9C: ;
-                r2 = (uint)func_0040C4F4();
+                r2 = (uint)Video_GetResolution();
                 { bool c_ = r2 != 0; r4 = r17 + 3748u; if (c_) goto L_L0021EBBC; }
                 r5 = 2148335616u;
                 r5 = r5 - 6740u;

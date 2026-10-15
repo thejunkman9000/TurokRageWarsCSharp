@@ -2287,7 +2287,7 @@ public static partial class Game
                 Mem.Set((_fp + (uint)(0 * 4)), (float)(new Scene_func_8044BE04_de(scene).light.dir[(int)(0)]));
                 Mem.Set((_fp + (uint)(1 * 4)), (float)(new Scene_func_8044BE04_de(scene).light.dir[(int)(1)]));
                 Mem.Set((_fp + (uint)(2 * 4)), (float)(new Scene_func_8044BE04_de(scene).light.dir[(int)(2)]));
-                length = func_002BC380((((Mem.F32((_fp + (uint)(0 * 4))) * Mem.F32((_fp + (uint)(0 * 4)))) + (Mem.F32((_fp + (uint)(1 * 4))) * Mem.F32((_fp + (uint)(1 * 4))))) + (Mem.F32((_fp + (uint)(2 * 4))) * Mem.F32((_fp + (uint)(2 * 4))))));
+                length = sqrtf_Recompiled((((Mem.F32((_fp + (uint)(0 * 4))) * Mem.F32((_fp + (uint)(0 * 4)))) + (Mem.F32((_fp + (uint)(1 * 4))) * Mem.F32((_fp + (uint)(1 * 4))))) + (Mem.F32((_fp + (uint)(2 * 4))) * Mem.F32((_fp + (uint)(2 * 4))))));
                 if ((length != 0.0f))
                 {
                     Vec_Scale(_fp, _fp, (127.0f / length));

@@ -287,7 +287,7 @@ public static partial class Game
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 17920u));
                 r2 = (uint)3;
-                Mem.Set((r3 + 20u), r2); func_0040C4A8((int)r4);
+                Mem.Set((r3 + 20u), r2); Video_RequestResolution((int)r4);
                 r31 = Mem.U32((r29 + 48u));
                 r21 = Mem.U32((r29 + 44u));
                 r20 = Mem.U32((r29 + 40u));

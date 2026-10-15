@@ -13,7 +13,7 @@ public static partial class Game
             func_00422218();
             CameraManager_Init(0x80145088u, 1);
             func_0044A600((0x80145088u - (uint)72), 1, 0);
-            Level_SetTransitionState_0044E178(0x8011FE88u, (~func_004030E0(637)), 0);
+            Level_SetTransitionState_0044E178(0x8011FE88u, (~Flyby_QueueById(637)), 0);
             if ((Resource_GetLoadFlags() == 0))
             {
                 Resource_SetLoadFlags(1);

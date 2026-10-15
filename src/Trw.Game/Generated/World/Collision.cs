@@ -8134,7 +8134,7 @@ public static partial class Game
                 new Vec3f((_fp + 16u)).y_Set(h);
                 new Vec3f((_fp + 16u)).z_Set(0.0f);
                 Vec_Cross((_fp + 32u), (_fp + 16u), _fp);
-                len = func_002BC380((((new Vec3f((_fp + 32u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 32u)).y * new Vec3f((_fp + 32u)).y)) + (new Vec3f((_fp + 32u)).z * new Vec3f((_fp + 32u)).z)));
+                len = sqrtf_Recompiled((((new Vec3f((_fp + 32u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 32u)).y * new Vec3f((_fp + 32u)).y)) + (new Vec3f((_fp + 32u)).z * new Vec3f((_fp + 32u)).z)));
                 if ((len == 0.0f))
                 {
                     new Quat((_fp + 48u)).z_Set(0.0f);
@@ -8179,7 +8179,7 @@ public static partial class Game
                 new Vec3f((_fp + 16u)).y_Set(t);
                 new Vec3f((_fp + 16u)).z_Set(0.0f);
                 Vec_Cross((_fp + 32u), (_fp + 16u), _fp);
-                len = func_002BC380((((new Vec3f((_fp + 32u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 32u)).y * new Vec3f((_fp + 32u)).y)) + (new Vec3f((_fp + 32u)).z * new Vec3f((_fp + 32u)).z)));
+                len = sqrtf_Recompiled((((new Vec3f((_fp + 32u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 32u)).y * new Vec3f((_fp + 32u)).y)) + (new Vec3f((_fp + 32u)).z * new Vec3f((_fp + 32u)).z)));
                 if ((len == 0.0f))
                 {
                     new Quat((_fp + 48u)).z_Set(0.0f);
@@ -8594,7 +8594,7 @@ public static partial class Game
             b = new Poly3(p).v[(int)(((i + 1) % 3))];
             dx = (new Pt3(b).x - new Pt3(a).x);
             dz = (new Pt3(b).z - new Pt3(a).z);
-            len = func_002BC380(((dx * dx) + (dz * dz)));
+            len = sqrtf_Recompiled(((dx * dx) + (dz * dz)));
             if ((len == 0.0f))
             {
                 return 0.0f;

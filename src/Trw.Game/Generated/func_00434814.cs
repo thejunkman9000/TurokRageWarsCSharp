@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00434814", (uint)idx, (uint)a);
             int ok = 0;
             uint buf = new O05Lobby(Mem.U32(0x800E54A4u)).recs.P;
-            if (((func_00404F58(idx, a, buf, 1608) == 0) && ((int)(func_004057F8(buf, 1600, (uint)(7))) == Mem.S32((buf + (uint)((1604 / 4) * 4))))))
+            if (((CPak_ReadFile(idx, a, buf, 1608) == 0) && ((int)(CPak_Crc32(buf, 1600, (uint)(7))) == Mem.S32((buf + (uint)((1604 / 4) * 4))))))
             {
                 Mem_Copy(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].rec.P, new O05Lobby(Mem.U32(0x800E54A4u)).recs.P, (uint)(1600));
                 new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB64_Set(new O05Lobby(Mem.U32(0x800E54A4u)).f3468);
@@ -22,11 +22,11 @@ public static partial class Game
             {
                 if ((new O05Lobby(Mem.U32(0x800E54A4u)).f3468 != 0))
                 {
-                    func_00404858(idx, a);
+                    Pak_DeleteFile(idx, a);
                 }
                 else
                 {
-                    func_00404858(idx, a);
+                    Pak_DeleteFile(idx, a);
                 }
             }
             if ((ok == 0))

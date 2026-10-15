@@ -22,7 +22,7 @@ public static partial class Game
             func_0040E958((uint)(new O3Pg(Mem.U32(0x800E3518u)).w4), 0);
             new O3Pg(Mem.U32(0x800E3518u)).f14_Set(0);
             new O3Pg(Mem.U32(0x800E3518u)).f18_Set(0);
-            func_0040C4A8(0);
+            Video_RequestResolution(0);
             Menu_DisableInput();
             Mem.Set(0x800E28C8u, (-1));
             Mem.Set(0x80146D70u, 0);

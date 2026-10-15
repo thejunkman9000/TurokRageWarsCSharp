@@ -169,7 +169,7 @@ public static partial class Game
                     if (((uint)(new B12DbEnt(e).len) != len))
                     {
                         new B12DbEnt(e).len_Set((ushort)(len));
-                        func_002C2490(new B12DbEnt(e).data.P, src, len, default(uint));
+                        memcpy_Recompiled(new B12DbEnt(e).data.P, src, len, default(uint));
                         osWritebackDCache(new B12DbEnt(e).data.P, (int)(len));
                     }
                     return osVirtualToPhysical(new B12DbEnt(e).data.P);
@@ -190,7 +190,7 @@ public static partial class Game
             new B12DbEnt(free).key__Set(src);
             new B12DbEnt(free).state_Set((ushort)(3));
             new B12DbEnt(free).len_Set((ushort)(len));
-            func_002C2490(d, src, len, default(uint));
+            memcpy_Recompiled(d, src, len, default(uint));
             return osVirtualToPhysical(d);
         }
     }
@@ -6336,5 +6336,19287 @@ public static partial class Game
             }
         }
         finally { if (Dbg.On) Dbg.Leave("func_0028B264", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B30F8 @ 0x002B30F8 [MIPS]
+    public static uint __alCSeqGetTrackEvent_Head(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B30F8", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B30F8: ;
+                Mem.Set((r29 + 16u), (ushort)r2); alEvtqPostEvent(r4, r5, (int)r6);
+                L_func_002B3100: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r4;
+                Mem.Set((r29 + 28u), r19);
+                r19 = r5;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r6;
+                Mem.Set((r29 + 36u), r31);
+                Mem.Set((r29 + 32u), r20);
+                Mem.Set((r29 + 16u), r16); r2 = (uint)__getTrackByte(r4, r5);
+                r16 = r2;
+                r20 = r16 & 255u;
+                r2 = (uint)255;
+                { bool c_ = r20 != r2; r2 = (uint)1; if (c_) goto L_L002B32B0; }
+                r4 = r17;
+                r5 = r19; r2 = (uint)__getTrackByte(r4, r5);
+                r6 = r2;
+                r3 = r6 & 255u;
+                r2 = (uint)81;
+                { bool c_ = r3 != r2; r2 = (uint)47; if (c_) goto L_L002B31AC; }
+                r4 = r17;
+                r5 = r19;
+                r2 = (uint)3;
+                Mem.Set((r18 + 0u), (ushort)r2);
+                Mem.Set((r18 + 8u), (byte)r16);
+                Mem.Set((r18 + 9u), (byte)r6); r2 = (uint)__getTrackByte(r4, r5);
+                r4 = r17;
+                r5 = r19;
+                Mem.Set((r18 + 11u), (byte)r2); r2 = (uint)__getTrackByte(r4, r5);
+                r4 = r17;
+                r5 = r19;
+                Mem.Set((r18 + 12u), (byte)r2); r2 = (uint)__getTrackByte(r4, r5);
+                Mem.Set((r18 + 13u), (byte)r2);
+                r2 = r17 + r19;
+                Mem.Set((r2 + 168u), (byte)r0); goto L_L002B333C;
+                L_L002B31AC: ;
+                { bool c_ = r3 != r2; r2 = (uint)46; if (c_) goto L_L002B31E4; }
+                r2 = (uint)1;
+                r3 = Mem.U32((r17 + 4u));
+                r2 = r2 << (int)(r19 & 31);
+                r3 = r3 ^ r2;
+                { bool c_ = r3 == 0; Mem.Set((r17 + 4u), r3); if (c_) goto L_L002B31D8; }
+                r2 = (uint)18;
+                Mem.Set((r18 + 0u), (ushort)r2); goto L_L002B333C;
+                L_L002B31D8: ;
+                r2 = (uint)4;
+                Mem.Set((r18 + 0u), (ushort)r2); goto L_L002B333C;
+                L_L002B31E4: ;
+                { bool c_ = r3 != r2; r2 = (uint)45; if (c_) goto L_L002B3218; }
+                r4 = r17;
+                r5 = r19; r2 = (uint)__getTrackByte(r4, r5);
+                r4 = r17;
+                r5 = r19; r2 = (uint)__getTrackByte(r4, r5);
+                r2 = r17 + r19;
+                Mem.Set((r2 + 168u), (byte)r0);
+                r2 = (uint)19;
+                Mem.Set((r18 + 0u), (ushort)r2); goto L_L002B333C;
+                L_L002B3218: ;
+                { bool c_ = r3 != r2; r2 = r19 << 2; if (c_) goto L_L002B333C; }
+                r7 = r17 + r2;
+                r6 = Mem.U32((r7 + 24u));
+                r4 = Mem.U8((r6 + 0u));
+                r6 = r6 + 1u;
+                r2 = Mem.U8((r6 + 0u));
+                r3 = r2 & 255u;
+                { bool c_ = r3 != 0;  if (c_) goto L_L002B324C; }
+                r2 = r6 + 5u;
+                Mem.Set((r6 + 0u), (byte)r4); goto L_L002B3298;
+                L_L002B324C: ;
+                { bool c_ = r3 == r20; r2 = r2 - 1u; if (c_) goto L_L002B3258; }
+                Mem.Set((r6 + 0u), (byte)r2);
+                L_L002B3258: ;
+                r6 = r6 + 1u;
+                r2 = Mem.U8((r6 + 0u));
+                r6 = r6 + 1u;
+                r3 = Mem.U8((r6 + 0u));
+                r6 = r6 + 1u;
+                r4 = Mem.U8((r6 + 0u));
+                r6 = r6 + 1u;
+                r5 = Mem.U8((r6 + 0u));
+                r6 = r6 + 1u;
+                r2 = r2 << 24;
+                r3 = r3 << 16;
+                r2 = r2 + r3;
+                r4 = r4 << 8;
+                r2 = r2 + r4;
+                r2 = r2 + r5;
+                r2 = r6 - r2;
+                L_L002B3298: ;
+                Mem.Set((r7 + 24u), r2);
+                r2 = r17 + r19;
+                Mem.Set((r2 + 168u), (byte)r0);
+                r2 = (uint)20;
+                Mem.Set((r18 + 0u), (ushort)r2); goto L_L002B333C;
+                L_L002B32B0: ;
+                Mem.Set((r18 + 0u), (ushort)r2);
+                r2 = r16 & 128u;
+                { bool c_ = r2 == 0; r4 = r17; if (c_) goto L_L002B32DC; }
+                r5 = r19;
+                Mem.Set((r18 + 8u), (byte)r16); r2 = (uint)__getTrackByte(r4, r5);
+                Mem.Set((r18 + 9u), (byte)r2);
+                r2 = r17 + r19;
+                Mem.Set((r2 + 168u), (byte)r16); goto L_L002B32EC;
+                L_L002B32DC: ;
+                r2 = r17 + r19;
+                r2 = Mem.U8((r2 + 168u));
+                Mem.Set((r18 + 9u), (byte)r16);
+                Mem.Set((r18 + 8u), (byte)r2);
+                L_L002B32EC: ;
+                r2 = Mem.U8((r18 + 8u));
+                r3 = r2 & 240u;
+                r2 = (uint)192;
+                { bool c_ = r3 == r2; r2 = (uint)208; if (c_) goto L_L002B3338; }
+                { bool c_ = r3 == r2; r4 = r17; if (c_) goto L_L002B3338; }
+                r5 = r19; r2 = (uint)__getTrackByte(r4, r5);
+                r3 = Mem.U8((r18 + 8u));
+                Mem.Set((r18 + 10u), (byte)r2);
+                r2 = (uint)144;
+                r3 = r3 & 240u;
+                { bool c_ = r3 != r2; r4 = r17; if (c_) goto L_L002B333C; }
+                r5 = r19; r2 = __readVarLen(r4, r5);
+                Mem.Set((r18 + 12u), r2); goto L_L002B333C;
+                L_L002B3338: ;
+                Mem.Set((r18 + 10u), (byte)r0);
+                L_L002B333C: ;
+                r31 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r2 = (uint)1;
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B30F8", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B3100 @ 0x002B3100 [MIPS]
+    public static uint __alCSeqGetTrackEvent_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B3100", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B3100: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r4;
+                Mem.Set((r29 + 28u), r19);
+                r19 = r5;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r6;
+                Mem.Set((r29 + 36u), r31);
+                Mem.Set((r29 + 32u), r20);
+                Mem.Set((r29 + 16u), r16); r2 = (uint)__getTrackByte(r4, r5);
+                r16 = r2;
+                r20 = r16 & 255u;
+                r2 = (uint)255;
+                { bool c_ = r20 != r2; r2 = (uint)1; if (c_) goto L_L002B32B0; }
+                r4 = r17;
+                r5 = r19; r2 = (uint)__getTrackByte(r4, r5);
+                r6 = r2;
+                r3 = r6 & 255u;
+                r2 = (uint)81;
+                { bool c_ = r3 != r2; r2 = (uint)47; if (c_) goto L_L002B31AC; }
+                r4 = r17;
+                r5 = r19;
+                r2 = (uint)3;
+                Mem.Set((r18 + 0u), (ushort)r2);
+                Mem.Set((r18 + 8u), (byte)r16);
+                Mem.Set((r18 + 9u), (byte)r6); r2 = (uint)__getTrackByte(r4, r5);
+                r4 = r17;
+                r5 = r19;
+                Mem.Set((r18 + 11u), (byte)r2); r2 = (uint)__getTrackByte(r4, r5);
+                r4 = r17;
+                r5 = r19;
+                Mem.Set((r18 + 12u), (byte)r2); r2 = (uint)__getTrackByte(r4, r5);
+                Mem.Set((r18 + 13u), (byte)r2);
+                r2 = r17 + r19;
+                Mem.Set((r2 + 168u), (byte)r0); goto L_L002B333C;
+                L_L002B31AC: ;
+                { bool c_ = r3 != r2; r2 = (uint)46; if (c_) goto L_L002B31E4; }
+                r2 = (uint)1;
+                r3 = Mem.U32((r17 + 4u));
+                r2 = r2 << (int)(r19 & 31);
+                r3 = r3 ^ r2;
+                { bool c_ = r3 == 0; Mem.Set((r17 + 4u), r3); if (c_) goto L_L002B31D8; }
+                r2 = (uint)18;
+                Mem.Set((r18 + 0u), (ushort)r2); goto L_L002B333C;
+                L_L002B31D8: ;
+                r2 = (uint)4;
+                Mem.Set((r18 + 0u), (ushort)r2); goto L_L002B333C;
+                L_L002B31E4: ;
+                { bool c_ = r3 != r2; r2 = (uint)45; if (c_) goto L_L002B3218; }
+                r4 = r17;
+                r5 = r19; r2 = (uint)__getTrackByte(r4, r5);
+                r4 = r17;
+                r5 = r19; r2 = (uint)__getTrackByte(r4, r5);
+                r2 = r17 + r19;
+                Mem.Set((r2 + 168u), (byte)r0);
+                r2 = (uint)19;
+                Mem.Set((r18 + 0u), (ushort)r2); goto L_L002B333C;
+                L_L002B3218: ;
+                { bool c_ = r3 != r2; r2 = r19 << 2; if (c_) goto L_L002B333C; }
+                r7 = r17 + r2;
+                r6 = Mem.U32((r7 + 24u));
+                r4 = Mem.U8((r6 + 0u));
+                r6 = r6 + 1u;
+                r2 = Mem.U8((r6 + 0u));
+                r3 = r2 & 255u;
+                { bool c_ = r3 != 0;  if (c_) goto L_L002B324C; }
+                r2 = r6 + 5u;
+                Mem.Set((r6 + 0u), (byte)r4); goto L_L002B3298;
+                L_L002B324C: ;
+                { bool c_ = r3 == r20; r2 = r2 - 1u; if (c_) goto L_L002B3258; }
+                Mem.Set((r6 + 0u), (byte)r2);
+                L_L002B3258: ;
+                r6 = r6 + 1u;
+                r2 = Mem.U8((r6 + 0u));
+                r6 = r6 + 1u;
+                r3 = Mem.U8((r6 + 0u));
+                r6 = r6 + 1u;
+                r4 = Mem.U8((r6 + 0u));
+                r6 = r6 + 1u;
+                r5 = Mem.U8((r6 + 0u));
+                r6 = r6 + 1u;
+                r2 = r2 << 24;
+                r3 = r3 << 16;
+                r2 = r2 + r3;
+                r4 = r4 << 8;
+                r2 = r2 + r4;
+                r2 = r2 + r5;
+                r2 = r6 - r2;
+                L_L002B3298: ;
+                Mem.Set((r7 + 24u), r2);
+                r2 = r17 + r19;
+                Mem.Set((r2 + 168u), (byte)r0);
+                r2 = (uint)20;
+                Mem.Set((r18 + 0u), (ushort)r2); goto L_L002B333C;
+                L_L002B32B0: ;
+                Mem.Set((r18 + 0u), (ushort)r2);
+                r2 = r16 & 128u;
+                { bool c_ = r2 == 0; r4 = r17; if (c_) goto L_L002B32DC; }
+                r5 = r19;
+                Mem.Set((r18 + 8u), (byte)r16); r2 = (uint)__getTrackByte(r4, r5);
+                Mem.Set((r18 + 9u), (byte)r2);
+                r2 = r17 + r19;
+                Mem.Set((r2 + 168u), (byte)r16); goto L_L002B32EC;
+                L_L002B32DC: ;
+                r2 = r17 + r19;
+                r2 = Mem.U8((r2 + 168u));
+                Mem.Set((r18 + 9u), (byte)r16);
+                Mem.Set((r18 + 8u), (byte)r2);
+                L_L002B32EC: ;
+                r2 = Mem.U8((r18 + 8u));
+                r3 = r2 & 240u;
+                r2 = (uint)192;
+                { bool c_ = r3 == r2; r2 = (uint)208; if (c_) goto L_L002B3338; }
+                { bool c_ = r3 == r2; r4 = r17; if (c_) goto L_L002B3338; }
+                r5 = r19; r2 = (uint)__getTrackByte(r4, r5);
+                r3 = Mem.U8((r18 + 8u));
+                Mem.Set((r18 + 10u), (byte)r2);
+                r2 = (uint)144;
+                r3 = r3 & 240u;
+                { bool c_ = r3 != r2; r4 = r17; if (c_) goto L_L002B333C; }
+                r5 = r19; r2 = __readVarLen(r4, r5);
+                Mem.Set((r18 + 12u), r2); goto L_L002B333C;
+                L_L002B3338: ;
+                Mem.Set((r18 + 10u), (byte)r0);
+                L_L002B333C: ;
+                r31 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r2 = (uint)1;
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B3100", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B3360 @ 0x002B3360 [MIPS]
+    public static uint alCSeqNewMarker_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(544);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 544, 0);
+                if (Dbg.On) Dbg.Enter("func_002B3360", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 416u;
+                L_func_002B3360: ;
+                r29 = r29 - 320u;
+                Mem.Set((r29 + 300u), r21);
+                r21 = r5;
+                Mem.Set((r29 + 308u), r23);
+                r23 = r6;
+                Mem.Set((r29 + 280u), r16);
+                r16 = r0;
+                Mem.Set((r29 + 304u), r22);
+                r22 = (uint)1;
+                Mem.Set((r29 + 292u), r19);
+                r19 = r29 + 32u;
+                Mem.Set((r29 + 284u), r17);
+                r17 = r19;
+                Mem.Set((r29 + 312u), r31);
+                Mem.Set((r29 + 296u), r20);
+                Mem.Set((r29 + 288u), r18);
+                r18 = Mem.U32((r4 + 0u));
+                r2 = r22;
+                Mem.Set((r29 + 36u), r0);
+                Mem.Set((r29 + 48u), r0);
+                Mem.Set((r29 + 44u), r0);
+                Mem.Set((r29 + 52u), r2);
+                Mem.Set((r29 + 32u), r18);
+                L_L002B33BC: ;
+                r2 = r19 + r16;
+                Mem.Set((r2 + 168u), (byte)r0);
+                Mem.Set((r17 + 88u), r0);
+                Mem.Set((r2 + 152u), (byte)r0);
+                r2 = Mem.U32((r29 + 32u));
+                r3 = r16 << 2;
+                r2 = r2 + r3;
+                r6 = Mem.U32((r2 + 0u));
+                { bool c_ = r6 == 0; r4 = r29 + 32u; if (c_) goto L_L002B340C; }
+                r5 = r16;
+                r2 = Mem.U32((r29 + 36u));
+                r3 = r22 << (int)(r16 & 31);
+                r2 = r2 | r3;
+                Mem.Set((r29 + 36u), r2);
+                r2 = r18 + r6;
+                Mem.Set((r17 + 24u), r2); r2 = __readVarLen(r4, r5);
+                Mem.Set((r17 + 184u), r2); goto L_L002B3410;
+                L_L002B340C: ;
+                Mem.Set((r17 + 24u), r0);
+                L_L002B3410: ;
+                r16 = r16 + 1u;
+                r2 = (uint)(r16 < (uint)(16) ? 1 : 0);
+                { bool c_ = r2 != 0; r17 = r17 + 4u; if (c_) goto L_L002B33BC; }
+                r2 = Mem.U32((r29 + 32u));
+                r2 = Mem.U32((r2 + 64u));
+                Cpu.SetW(1, r2);
+                Cpu.SetD(1, (double)(int)Cpu.W(1));
+                { bool c_ = (int)r2 >= 0; r19 = r29 + 32u; if (c_) goto L_L002B3444; }
+                r1 = 2148335616u;
+                Cpu.Fpr[0] = Mem.U64((r1 - 15040u));
+                Cpu.SetD(1, Cpu.D(1) + Cpu.D(0));
+                L_L002B3444: ;
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 15032u)));
+                Cpu.SetS(1, (float)Cpu.D(1));
+                Cpu.SetS(0, Cpu.S(0) / Cpu.S(1));
+                Mem.Set((r29 + 40u), Cpu.W(0));
+                L_L002B3458: ;
+                r2 = Mem.U32((r29 + 36u));
+                r7 = r0;
+                Mem.Set((r21 + 0u), r2);
+                r2 = Mem.U32((r29 + 44u));
+                r6 = r19;
+                Mem.Set((r21 + 4u), r2);
+                r2 = Mem.U32((r29 + 48u));
+                r5 = r21;
+                Mem.Set((r21 + 8u), r2);
+                L_L002B347C: ;
+                r2 = Mem.U32((r6 + 24u));
+                Mem.Set((r5 + 12u), r2);
+                r2 = Mem.U32((r6 + 88u));
+                Mem.Set((r5 + 76u), r2);
+                r2 = r19 + r7;
+                r4 = Mem.U8((r2 + 152u));
+                r3 = r21 + r7;
+                Mem.Set((r3 + 140u), (byte)r4);
+                r2 = Mem.U8((r2 + 168u));
+                r7 = r7 + 1u;
+                Mem.Set((r3 + 156u), (byte)r2);
+                r2 = Mem.U32((r6 + 184u));
+                r6 = r6 + 4u;
+                Mem.Set((r5 + 172u), r2);
+                r2 = (uint)((int)r7 < 16 ? 1 : 0);
+                { bool c_ = r2 != 0; r5 = r5 + 4u; if (c_) goto L_L002B347C; }
+                r17 = r29 + 16u;
+                r16 = (uint)-1;
+                r6 = Mem.U32((r29 + 48u));
+                r5 = r0;
+                r18 = r29 + 32u;
+                r4 = r18;
+                L_L002B34D8: ;
+                r2 = Mem.U32((r29 + 36u));
+                r2 = r2 >> (int)(r5 & 31);
+                r2 = r2 & 1u;
+                if (r2 == 0) { r5 = r5 + 1u; goto L_L002B3520; }
+                r2 = Mem.U32((r29 + 52u));
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B3504; }
+                r2 = Mem.U32((r4 + 184u));
+                r2 = r2 - r6;
+                Mem.Set((r4 + 184u), r2);
+                L_L002B3504: ;
+                r3 = Mem.U32((r4 + 184u));
+                r2 = (uint)(r3 < r16 ? 1 : 0);
+                if (r2 == 0) { r5 = r5 + 1u; goto L_L002B3520; }
+                r16 = r3;
+                r20 = r5;
+                r5 = r5 + 1u;
+                L_L002B3520: ;
+                r2 = (uint)(r5 < (uint)(16) ? 1 : 0);
+                { bool c_ = r2 != 0; r4 = r4 + 4u; if (c_) goto L_L002B34D8; }
+                r4 = r29 + 32u;
+                r5 = r20;
+                r6 = r17; r2 = (uint)__alCSeqGetTrackEvent(r4, r5, r6);
+                Mem.Set((r17 + 4u), r16);
+                r2 = Mem.U32((r29 + 44u));
+                Mem.Set((r29 + 48u), r16);
+                r2 = r2 + r16;
+                Mem.Set((r29 + 44u), r2);
+                r3 = (uint)(int)Mem.S16((r17 + 0u));
+                r2 = (uint)18;
+                { bool c_ = r3 == r2; r4 = r29 + 32u; if (c_) goto L_L002B357C; }
+                r5 = r20; r2 = __readVarLen(r4, r5);
+                r4 = r20 << 2;
+                r4 = r18 + r4;
+                r3 = Mem.U32((r4 + 184u));
+                r3 = r3 + r2;
+                Mem.Set((r4 + 184u), r3);
+                L_L002B357C: ;
+                r3 = (uint)(int)Mem.S16((r29 + 16u));
+                r2 = (uint)1;
+                Mem.Set((r29 + 52u), r2);
+                r2 = (uint)4;
+                { bool c_ = r3 == r2;  if (c_) goto L_L002B35A4; }
+                r2 = Mem.U32((r29 + 44u));
+                r2 = (uint)(r2 < r23 ? 1 : 0);
+                { bool c_ = r2 != 0;  if (c_) goto L_L002B3458; }
+                L_L002B35A4: ;
+                r31 = Mem.U32((r29 + 312u));
+                r23 = Mem.U32((r29 + 308u));
+                r22 = Mem.U32((r29 + 304u));
+                r21 = Mem.U32((r29 + 300u));
+                r20 = Mem.U32((r29 + 296u));
+                r19 = Mem.U32((r29 + 292u));
+                r18 = Mem.U32((r29 + 288u));
+                r17 = Mem.U32((r29 + 284u));
+                r16 = Mem.U32((r29 + 280u));
+                r29 = r29 + 320u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B3360", r2); Stack.Free(544); }
+    }
+
+    // ==== func_002B35D0 @ 0x002B35D0 [MIPS]
+    public static uint __getTrackByte_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B35D0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B35D0: ;
+                r8 = r4 + r5;
+                r2 = Mem.U8((r8 + 152u));
+                { bool c_ = r2 == 0; r3 = r5 << 2; if (c_) goto L_L002B35F8; }
+                r3 = r4 + r3;
+                r2 = Mem.U32((r3 + 88u));
+                r4 = Mem.U8((r2 + 0u));
+                r2 = r2 + 1u;
+                Mem.Set((r3 + 88u), r2); goto L_L002B3674;
+                L_L002B35F8: ;
+                r2 = r5 << 2;
+                r7 = r4 + r2;
+                r6 = Mem.U32((r7 + 24u));
+                r4 = Mem.U8((r6 + 0u));
+                r2 = r6 + 1u;
+                Mem.Set((r7 + 24u), r2);
+                r2 = (uint)254;
+                r5 = r4 & 255u;
+                { bool c_ = r5 != r2; r2 = r6 + 2u; if (c_) goto L_L002B3680; }
+                r3 = Mem.U8((r6 + 1u));
+                r3 = r3 & 255u;
+                { bool c_ = r3 == r5; Mem.Set((r7 + 24u), r2); if (c_) goto L_L002B3680; }
+                r3 = r3 << 8;
+                r4 = Mem.U8((r6 + 2u));
+                r2 = r6 + 3u;
+                Mem.Set((r7 + 24u), r2);
+                r5 = Mem.U8((r6 + 3u));
+                r2 = r6 + 4u;
+                Mem.Set((r7 + 24u), r2);
+                r4 = r4 & 255u;
+                r3 = r3 + r4;
+                r3 = r3 + 4u;
+                r2 = r2 - r3;
+                Mem.Set((r7 + 88u), r2);
+                Mem.Set((r8 + 152u), (byte)r5);
+                r2 = Mem.U32((r7 + 88u));
+                r4 = Mem.U8((r2 + 0u));
+                r2 = r2 + 1u;
+                Mem.Set((r7 + 88u), r2);
+                L_L002B3674: ;
+                r2 = Mem.U8((r8 + 152u));
+                r2 = r2 - 1u;
+                Mem.Set((r8 + 152u), (byte)r2);
+                L_L002B3680: ;
+                r2 = r4; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B35D0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B3688 @ 0x002B3688 [MIPS]
+    public static uint alCSeqNew_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B3688", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B3688: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r4;
+                Mem.Set((r29 + 28u), r19);
+                r19 = r5;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r0;
+                Mem.Set((r29 + 32u), r20);
+                r20 = (uint)1;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r18;
+                r2 = r20;
+                Mem.Set((r29 + 36u), r31);
+                Mem.Set((r18 + 0u), r19);
+                Mem.Set((r18 + 4u), r0);
+                Mem.Set((r18 + 16u), r0);
+                Mem.Set((r18 + 12u), r0);
+                Mem.Set((r18 + 20u), r2);
+                L_L002B36D0: ;
+                r2 = r18 + r16;
+                Mem.Set((r2 + 168u), (byte)r0);
+                Mem.Set((r17 + 88u), r0);
+                Mem.Set((r2 + 152u), (byte)r0);
+                r2 = Mem.U32((r18 + 0u));
+                r3 = r16 << 2;
+                r2 = r2 + r3;
+                r4 = Mem.U32((r2 + 0u));
+                { bool c_ = r4 == 0; r3 = r20 << (int)(r16 & 31); if (c_) goto L_L002B3720; }
+                r2 = Mem.U32((r18 + 4u));
+                r5 = r16;
+                r2 = r2 | r3;
+                Mem.Set((r18 + 4u), r2);
+                r2 = r19 + r4;
+                r4 = r18;
+                Mem.Set((r17 + 24u), r2); r2 = __readVarLen(r4, r5);
+                Mem.Set((r17 + 184u), r2); goto L_L002B3724;
+                L_L002B3720: ;
+                Mem.Set((r17 + 24u), r0);
+                L_L002B3724: ;
+                r16 = r16 + 1u;
+                r2 = (uint)(r16 < (uint)(16) ? 1 : 0);
+                { bool c_ = r2 != 0; r17 = r17 + 4u; if (c_) goto L_L002B36D0; }
+                r2 = Mem.U32((r18 + 0u));
+                r2 = Mem.U32((r2 + 64u));
+                Cpu.SetW(1, r2);
+                Cpu.SetD(1, (double)(int)Cpu.W(1));
+                { bool c_ = (int)r2 >= 0;  if (c_) goto L_L002B3758; }
+                r1 = 2148335616u;
+                Cpu.Fpr[0] = Mem.U64((r1 - 15024u));
+                Cpu.SetD(1, Cpu.D(1) + Cpu.D(0));
+                L_L002B3758: ;
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 15016u)));
+                Cpu.SetS(1, (float)Cpu.D(1));
+                Cpu.SetS(0, Cpu.S(0) / Cpu.S(1));
+                Mem.Set((r18 + 8u), Cpu.W(0));
+                r31 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B3688", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B378C @ 0x002B378C [MIPS]
+    public static uint alCSeqNextEvent_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B378C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B378C: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r4;
+                Mem.Set((r29 + 28u), r19);
+                r19 = r5;
+                Mem.Set((r29 + 16u), r16);
+                r16 = (uint)-1;
+                r5 = r0;
+                Mem.Set((r29 + 32u), r31);
+                Mem.Set((r29 + 24u), r18);
+                r6 = Mem.U32((r17 + 16u));
+                L_L002B37B8: ;
+                r2 = Mem.U32((r17 + 4u));
+                r2 = r2 >> (int)(r5 & 31);
+                r2 = r2 & 1u;
+                if (r2 == 0) { r5 = r5 + 1u; goto L_L002B3800; }
+                r2 = Mem.U32((r17 + 20u));
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B37E4; }
+                r2 = Mem.U32((r4 + 184u));
+                r2 = r2 - r6;
+                Mem.Set((r4 + 184u), r2);
+                L_L002B37E4: ;
+                r3 = Mem.U32((r4 + 184u));
+                r2 = (uint)(r3 < r16 ? 1 : 0);
+                if (r2 == 0) { r5 = r5 + 1u; goto L_L002B3800; }
+                r16 = r3;
+                r18 = r5;
+                r5 = r5 + 1u;
+                L_L002B3800: ;
+                r2 = (uint)(r5 < (uint)(16) ? 1 : 0);
+                { bool c_ = r2 != 0; r4 = r4 + 4u; if (c_) goto L_L002B37B8; }
+                r4 = r17;
+                r5 = r18;
+                r6 = r19; r2 = (uint)__alCSeqGetTrackEvent(r4, r5, r6);
+                Mem.Set((r19 + 4u), r16);
+                r2 = Mem.U32((r17 + 12u));
+                Mem.Set((r17 + 16u), r16);
+                r2 = r2 + r16;
+                Mem.Set((r17 + 12u), r2);
+                r3 = (uint)(int)Mem.S16((r19 + 0u));
+                r2 = (uint)18;
+                { bool c_ = r3 == r2; r4 = r17; if (c_) goto L_L002B385C; }
+                r5 = r18; r2 = __readVarLen(r4, r5);
+                r4 = r18 << 2;
+                r4 = r17 + r4;
+                r3 = Mem.U32((r4 + 184u));
+                r3 = r3 + r2;
+                Mem.Set((r4 + 184u), r3);
+                L_L002B385C: ;
+                r2 = (uint)1;
+                Mem.Set((r17 + 20u), r2);
+                r31 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                r2 = Mem.U32((r4 + 12u));
+                Cpu.V1 = r3; return r2;
+                Cpu.SetW(1, r6);
+                Cpu.SetD(1, (double)(int)Cpu.W(1));
+                Cpu.SetW(3, r5);
+                Cpu.SetS(3, (float)(int)Cpu.W(3));
+                { bool c_ = (int)r6 >= 0;  if (c_) goto L_L002B38B0; }
+                r1 = 2148335616u;
+                Cpu.Fpr[0] = Mem.U64((r1 - 15008u));
+                Cpu.SetD(1, Cpu.D(1) + Cpu.D(0));
+                L_L002B38B0: ;
+                r2 = Mem.U32((r4 + 0u));
+                Cpu.SetS(0, (float)Cpu.D(1));
+                r2 = Mem.U32((r2 + 64u));
+                Cpu.SetS(3, Cpu.S(3) * Cpu.S(0));
+                Cpu.SetW(2, r2);
+                Cpu.SetD(2, (double)(int)Cpu.W(2));
+                { bool c_ = (int)r2 >= 0;  if (c_) goto L_L002B38DC; }
+                r1 = 2148335616u;
+                Cpu.Fpr[0] = Mem.U64((r1 - 15000u));
+                Cpu.SetD(2, Cpu.D(2) + Cpu.D(0));
+                L_L002B38DC: ;
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 14992u)));
+                Cpu.SetS(0, (float)Cpu.D(2));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                Cpu.SetS(0, Cpu.S(3) / Cpu.S(0)); Cpu.V1 = r3; return r2;
+                r2 = Mem.U32((r4 + 0u));
+                r2 = Mem.U32((r2 + 64u));
+                Cpu.SetW(3, r5);
+                Cpu.SetW(2, r2);
+                Cpu.SetD(2, (double)(int)Cpu.W(2));
+                { bool c_ = (int)r2 >= 0;  if (c_) goto L_L002B391C; }
+                r1 = 2148335616u;
+                Cpu.Fpr[0] = Mem.U64((r1 - 14984u));
+                Cpu.SetD(2, Cpu.D(2) + Cpu.D(0));
+                L_L002B391C: ;
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 14976u)));
+                Cpu.SetS(0, (float)Cpu.D(2));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                Cpu.SetW(1, r6);
+                Cpu.SetD(1, (double)(int)Cpu.W(1));
+                Cpu.SetS(2, Cpu.S(3) * Cpu.S(0));
+                if ((int)r6 >= 0) { Cpu.SetS(0, (float)Cpu.D(1)); goto L_L002B3950; }
+                r1 = 2148335616u;
+                Cpu.Fpr[0] = Mem.U64((r1 - 14968u));
+                Cpu.SetD(1, Cpu.D(1) + Cpu.D(0));
+                Cpu.SetS(0, (float)Cpu.D(1));
+                L_L002B3950: ;
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 14960u)));
+                Cpu.SetS(0, Cpu.S(2) / Cpu.S(0));
+                fcc = Cpu.S(1) <= Cpu.S(0);
+                if (fcc) { Cpu.SetS(0, Cpu.S(0) - Cpu.S(1)); goto L_L002B397C; }
+                Cpu.SetW(4, (uint)(int)Cpu.S(0));
+                r5 = Cpu.W(4);
+                r2 = r5; Cpu.V1 = r3; return r2;
+                L_L002B397C: ;
+                r2 = 2147483648u;
+                Cpu.SetW(4, (uint)(int)Cpu.S(0));
+                r5 = Cpu.W(4);
+                r5 = r5 | r2;
+                r2 = r5;
+                Cpu.V1 = r3; return r2;
+                r9 = r4;
+                r2 = Mem.U32((r5 + 0u));
+                r8 = r0;
+                Mem.Set((r9 + 4u), r2);
+                r2 = Mem.U32((r5 + 4u));
+                r7 = r5;
+                Mem.Set((r9 + 12u), r2);
+                r2 = Mem.U32((r5 + 8u));
+                r6 = r9;
+                Mem.Set((r9 + 16u), r2);
+                L_L002B39C0: ;
+                r2 = Mem.U32((r7 + 12u));
+                Mem.Set((r6 + 24u), r2);
+                r2 = Mem.U32((r7 + 76u));
+                r3 = r5 + r8;
+                Mem.Set((r6 + 88u), r2);
+                r2 = Mem.U8((r3 + 140u));
+                r4 = r9 + r8;
+                Mem.Set((r4 + 152u), (byte)r2);
+                r2 = Mem.U8((r3 + 156u));
+                r8 = r8 + 1u;
+                Mem.Set((r4 + 168u), (byte)r2);
+                r2 = Mem.U32((r7 + 172u));
+                r7 = r7 + 4u;
+                Mem.Set((r6 + 184u), r2);
+                r2 = (uint)((int)r8 < 16 ? 1 : 0);
+                { bool c_ = r2 != 0; r6 = r6 + 4u; if (c_) goto L_L002B39C0; }
+                Cpu.V1 = r3; return r2;
+                r9 = r4;
+                r2 = Mem.U32((r9 + 4u));
+                r8 = r0;
+                Mem.Set((r5 + 0u), r2);
+                r2 = Mem.U32((r9 + 12u));
+                r7 = r9;
+                Mem.Set((r5 + 4u), r2);
+                r2 = Mem.U32((r9 + 16u));
+                r6 = r5;
+                Mem.Set((r5 + 8u), r2);
+                L_L002B3A34: ;
+                r2 = Mem.U32((r7 + 24u));
+                Mem.Set((r6 + 12u), r2);
+                r2 = Mem.U32((r7 + 88u));
+                r3 = r9 + r8;
+                Mem.Set((r6 + 76u), r2);
+                r2 = Mem.U8((r3 + 152u));
+                r4 = r5 + r8;
+                Mem.Set((r4 + 140u), (byte)r2);
+                r2 = Mem.U8((r3 + 168u));
+                r8 = r8 + 1u;
+                Mem.Set((r4 + 156u), (byte)r2);
+                r2 = Mem.U32((r7 + 184u));
+                r7 = r7 + 4u;
+                Mem.Set((r6 + 172u), r2);
+                r2 = (uint)((int)r8 < 16 ? 1 : 0);
+                { bool c_ = r2 != 0; r6 = r6 + 4u; if (c_) goto L_L002B3A34; }
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B378C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B3A80 @ 0x002B3A80 [MIPS]
+    public static uint __alCSeqNextDelta_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B3A80", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B3A80: ;
+                r2 = Mem.U32((r4 + 4u));
+                r9 = Mem.U32((r4 + 16u));
+                { bool c_ = r2 != 0; r8 = (uint)-1; if (c_) goto L_L002B3A98; }
+                r2 = r0; Cpu.V1 = r3; return r2;
+                L_L002B3A98: ;
+                r7 = r0;
+                r6 = r4;
+                L_L002B3AA0: ;
+                r2 = Mem.U32((r4 + 4u));
+                r2 = r2 >> (int)(r7 & 31);
+                r2 = r2 & 1u;
+                if (r2 == 0) { r7 = r7 + 1u; goto L_L002B3AE0; }
+                r2 = Mem.U32((r4 + 20u));
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B3ACC; }
+                r2 = Mem.U32((r6 + 184u));
+                r2 = r2 - r9;
+                Mem.Set((r6 + 184u), r2);
+                L_L002B3ACC: ;
+                r3 = Mem.U32((r6 + 184u));
+                r2 = (uint)(r3 < r8 ? 1 : 0);
+                if (r2 != 0) { r8 = r3; goto L_L002B3ADC; }
+                L_L002B3ADC: ;
+                r7 = r7 + 1u;
+                L_L002B3AE0: ;
+                r2 = (uint)(r7 < (uint)(16) ? 1 : 0);
+                { bool c_ = r2 != 0; r6 = r6 + 4u; if (c_) goto L_L002B3AA0; }
+                r2 = (uint)1;
+                Mem.Set((r4 + 20u), r0);
+                Mem.Set((r5 + 0u), r8); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B3A80", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B3AFC @ 0x002B3AFC [MIPS]
+    public static uint __readVarLen_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B3AFC", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B3AFC: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r4;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r5;
+                Mem.Set((r29 + 28u), r31);
+                Mem.Set((r29 + 16u), r16); r2 = (uint)__getTrackByte(r4, r5);
+                r16 = r2 & 255u;
+                r2 = r16 & 128u;
+                { bool c_ = r2 == 0; r2 = r16; if (c_) goto L_L002B3B58; }
+                r16 = r16 & 127u;
+                L_L002B3B30: ;
+                r4 = r17;
+                r5 = r18; r2 = (uint)__getTrackByte(r4, r5);
+                r2 = r2 & 255u;
+                r4 = r16 << 7;
+                r3 = r2 & 127u;
+                r2 = r2 & 128u;
+                { bool c_ = r2 != 0; r16 = r4 + r3; if (c_) goto L_L002B3B30; }
+                r2 = r16;
+                L_L002B3B58: ;
+                r31 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B3AFC", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B3B70 @ 0x002B3B70 [MIPS]
+    public static uint alCSPGetState_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B3B70", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B3B70: ;
+                r2 = Mem.U32((r4 + 44u));
+                Cpu.V1 = r3; return r2;
+                r2 = r22 & 255u;
+                L_func_002B3B80: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 24u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 28u), r17);
+                r17 = r5;
+                Mem.Set((r29 + 36u), r31);
+                Mem.Set((r29 + 32u), r18);
+                r18 = Mem.U32((r17 + 12u));
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 - 32608u));
+                r2 = (uint)255;
+                Mem.Set((r16 + 48u), (ushort)r2);
+                r2 = (uint)488;
+                Mem.Set((r16 + 36u), r2);
+                r2 = (uint)32767;
+                Mem.Set((r16 + 50u), (ushort)r2);
+                r2 = (uint)16000;
+                Mem.Set((r16 + 32u), r0);
+                Mem.Set((r16 + 24u), r0);
+                Mem.Set((r16 + 40u), r0);
+                Mem.Set((r16 + 44u), r0);
+                Mem.Set((r16 + 92u), r2);
+                Mem.Set((r16 + 28u), r0);
+                Mem.Set((r16 + 20u), r3);
+                r2 = Mem.U32((r17 + 16u));
+                r4 = r0;
+                Mem.Set((r16 + 112u), r2);
+                r2 = Mem.U32((r17 + 20u));
+                r5 = r4;
+                Mem.Set((r16 + 116u), r2);
+                r3 = Mem.U32((r17 + 24u));
+                r2 = (uint)9;
+                Mem.Set((r16 + 56u), (ushort)r2);
+                Mem.Set((r16 + 120u), r3);
+                r2 = Mem.U8((r17 + 8u));
+                r6 = r18;
+                Mem.Set((r16 + 52u), (byte)r2);
+                r7 = Mem.U8((r17 + 8u));
+                r2 = (uint)16;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = r16;
+                Mem.Set((r16 + 96u), r2); __initChanState(r4);
+                r4 = r0;
+                r5 = r4;
+                r2 = (uint)56;
+                Mem.Set((r29 + 16u), r2);
+                r7 = Mem.U32((r17 + 0u));
+                r6 = r18; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                Mem.Set((r16 + 108u), r0);
+                r3 = Mem.U32((r17 + 0u));
+                { bool c_ = (int)r3 <= 0; r4 = r0; if (c_) goto L_L002B3C80; }
+                r3 = r2;
+                L_L002B3C60: ;
+                r2 = Mem.U32((r16 + 108u));
+                r4 = r4 + 1u;
+                Mem.Set((r3 + 0u), r2);
+                Mem.Set((r16 + 108u), r3);
+                r2 = Mem.U32((r17 + 0u));
+                r2 = (uint)((int)r4 < (int)r2 ? 1 : 0);
+                { bool c_ = r2 != 0; r3 = r3 + 56u; if (c_) goto L_L002B3C60; }
+                L_L002B3C80: ;
+                r4 = r0;
+                r5 = r4;
+                r2 = (uint)28;
+                Mem.Set((r16 + 100u), r0);
+                Mem.Set((r16 + 104u), r0);
+                Mem.Set((r29 + 16u), r2);
+                r7 = Mem.U32((r17 + 4u));
+                r6 = r18; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = r16 + 72u;
+                r6 = Mem.U32((r17 + 4u));
+                r5 = r2; alEvtqNew(r4, r5, (int)r6);
+                r5 = r16;
+                r4 = 2148401152u;
+                r4 = Mem.U32((r4 - 32608u));
+                r2 = 2818048u;
+                r2 = r2 + 15600u;
+                Mem.Set((r5 + 0u), r0);
+                Mem.Set((r5 + 8u), r2);
+                Mem.Set((r5 + 4u), r5); alSynAddPlayer(r4, r5);
+                r31 = Mem.U32((r29 + 36u));
+                r18 = Mem.U32((r29 + 32u));
+                r17 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B3B70", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B3B7C @ 0x002B3B7C [MIPS]
+    public static uint alCSPNew_Head(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B3B7C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B3B7C: ;
+                r2 = r22 & 255u;
+                L_func_002B3B80: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 24u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 28u), r17);
+                r17 = r5;
+                Mem.Set((r29 + 36u), r31);
+                Mem.Set((r29 + 32u), r18);
+                r18 = Mem.U32((r17 + 12u));
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 - 32608u));
+                r2 = (uint)255;
+                Mem.Set((r16 + 48u), (ushort)r2);
+                r2 = (uint)488;
+                Mem.Set((r16 + 36u), r2);
+                r2 = (uint)32767;
+                Mem.Set((r16 + 50u), (ushort)r2);
+                r2 = (uint)16000;
+                Mem.Set((r16 + 32u), r0);
+                Mem.Set((r16 + 24u), r0);
+                Mem.Set((r16 + 40u), r0);
+                Mem.Set((r16 + 44u), r0);
+                Mem.Set((r16 + 92u), r2);
+                Mem.Set((r16 + 28u), r0);
+                Mem.Set((r16 + 20u), r3);
+                r2 = Mem.U32((r17 + 16u));
+                r4 = r0;
+                Mem.Set((r16 + 112u), r2);
+                r2 = Mem.U32((r17 + 20u));
+                r5 = r4;
+                Mem.Set((r16 + 116u), r2);
+                r3 = Mem.U32((r17 + 24u));
+                r2 = (uint)9;
+                Mem.Set((r16 + 56u), (ushort)r2);
+                Mem.Set((r16 + 120u), r3);
+                r2 = Mem.U8((r17 + 8u));
+                r6 = r18;
+                Mem.Set((r16 + 52u), (byte)r2);
+                r7 = Mem.U8((r17 + 8u));
+                r2 = (uint)16;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = r16;
+                Mem.Set((r16 + 96u), r2); __initChanState(r4);
+                r4 = r0;
+                r5 = r4;
+                r2 = (uint)56;
+                Mem.Set((r29 + 16u), r2);
+                r7 = Mem.U32((r17 + 0u));
+                r6 = r18; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                Mem.Set((r16 + 108u), r0);
+                r3 = Mem.U32((r17 + 0u));
+                { bool c_ = (int)r3 <= 0; r4 = r0; if (c_) goto L_L002B3C80; }
+                r3 = r2;
+                L_L002B3C60: ;
+                r2 = Mem.U32((r16 + 108u));
+                r4 = r4 + 1u;
+                Mem.Set((r3 + 0u), r2);
+                Mem.Set((r16 + 108u), r3);
+                r2 = Mem.U32((r17 + 0u));
+                r2 = (uint)((int)r4 < (int)r2 ? 1 : 0);
+                { bool c_ = r2 != 0; r3 = r3 + 56u; if (c_) goto L_L002B3C60; }
+                L_L002B3C80: ;
+                r4 = r0;
+                r5 = r4;
+                r2 = (uint)28;
+                Mem.Set((r16 + 100u), r0);
+                Mem.Set((r16 + 104u), r0);
+                Mem.Set((r29 + 16u), r2);
+                r7 = Mem.U32((r17 + 4u));
+                r6 = r18; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = r16 + 72u;
+                r6 = Mem.U32((r17 + 4u));
+                r5 = r2; alEvtqNew(r4, r5, (int)r6);
+                r5 = r16;
+                r4 = 2148401152u;
+                r4 = Mem.U32((r4 - 32608u));
+                r2 = 2818048u;
+                r2 = r2 + 15600u;
+                Mem.Set((r5 + 0u), r0);
+                Mem.Set((r5 + 8u), r2);
+                Mem.Set((r5 + 4u), r5); alSynAddPlayer(r4, r5);
+                r31 = Mem.U32((r29 + 36u));
+                r18 = Mem.U32((r29 + 32u));
+                r17 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B3B7C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B3B80 @ 0x002B3B80 [MIPS]
+    public static uint alCSPNew_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B3B80", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B3B80: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 24u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 28u), r17);
+                r17 = r5;
+                Mem.Set((r29 + 36u), r31);
+                Mem.Set((r29 + 32u), r18);
+                r18 = Mem.U32((r17 + 12u));
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 - 32608u));
+                r2 = (uint)255;
+                Mem.Set((r16 + 48u), (ushort)r2);
+                r2 = (uint)488;
+                Mem.Set((r16 + 36u), r2);
+                r2 = (uint)32767;
+                Mem.Set((r16 + 50u), (ushort)r2);
+                r2 = (uint)16000;
+                Mem.Set((r16 + 32u), r0);
+                Mem.Set((r16 + 24u), r0);
+                Mem.Set((r16 + 40u), r0);
+                Mem.Set((r16 + 44u), r0);
+                Mem.Set((r16 + 92u), r2);
+                Mem.Set((r16 + 28u), r0);
+                Mem.Set((r16 + 20u), r3);
+                r2 = Mem.U32((r17 + 16u));
+                r4 = r0;
+                Mem.Set((r16 + 112u), r2);
+                r2 = Mem.U32((r17 + 20u));
+                r5 = r4;
+                Mem.Set((r16 + 116u), r2);
+                r3 = Mem.U32((r17 + 24u));
+                r2 = (uint)9;
+                Mem.Set((r16 + 56u), (ushort)r2);
+                Mem.Set((r16 + 120u), r3);
+                r2 = Mem.U8((r17 + 8u));
+                r6 = r18;
+                Mem.Set((r16 + 52u), (byte)r2);
+                r7 = Mem.U8((r17 + 8u));
+                r2 = (uint)16;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = r16;
+                Mem.Set((r16 + 96u), r2); __initChanState(r4);
+                r4 = r0;
+                r5 = r4;
+                r2 = (uint)56;
+                Mem.Set((r29 + 16u), r2);
+                r7 = Mem.U32((r17 + 0u));
+                r6 = r18; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                Mem.Set((r16 + 108u), r0);
+                r3 = Mem.U32((r17 + 0u));
+                { bool c_ = (int)r3 <= 0; r4 = r0; if (c_) goto L_L002B3C80; }
+                r3 = r2;
+                L_L002B3C60: ;
+                r2 = Mem.U32((r16 + 108u));
+                r4 = r4 + 1u;
+                Mem.Set((r3 + 0u), r2);
+                Mem.Set((r16 + 108u), r3);
+                r2 = Mem.U32((r17 + 0u));
+                r2 = (uint)((int)r4 < (int)r2 ? 1 : 0);
+                { bool c_ = r2 != 0; r3 = r3 + 56u; if (c_) goto L_L002B3C60; }
+                L_L002B3C80: ;
+                r4 = r0;
+                r5 = r4;
+                r2 = (uint)28;
+                Mem.Set((r16 + 100u), r0);
+                Mem.Set((r16 + 104u), r0);
+                Mem.Set((r29 + 16u), r2);
+                r7 = Mem.U32((r17 + 4u));
+                r6 = r18; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = r16 + 72u;
+                r6 = Mem.U32((r17 + 4u));
+                r5 = r2; alEvtqNew(r4, r5, (int)r6);
+                r5 = r16;
+                r4 = 2148401152u;
+                r4 = Mem.U32((r4 - 32608u));
+                r2 = 2818048u;
+                r2 = r2 + 15600u;
+                Mem.Set((r5 + 0u), r0);
+                Mem.Set((r5 + 8u), r2);
+                Mem.Set((r5 + 4u), r5); alSynAddPlayer(r4, r5);
+                r31 = Mem.U32((r29 + 36u));
+                r18 = Mem.U32((r29 + 32u));
+                r17 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B3B80", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B3CF0 @ 0x002B3CF0 [MIPS]
+    public static uint __CSPVoiceHandler_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B3CF0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B3CF0: ;
+                L_I002B3CF0: ;
+                r29 = r29 - 80u;
+                L_I002B3CF4: ;
+                Mem.Set((r29 + 72u), Cpu.Fpr[20]);
+                L_I002B3CF8: ;
+                r1 = 2148335616u;
+                L_I002B3CFC: ;
+                Cpu.SetW(20, Mem.U32((r1 - 14920u)));
+                L_I002B3D00: ;
+                Mem.Set((r29 + 48u), r18);
+                L_I002B3D04: ;
+                r18 = r4;
+                L_I002B3D08: ;
+                Mem.Set((r29 + 64u), r22);
+                L_I002B3D0C: ;
+                r22 = (uint)1;
+                L_I002B3D10: ;
+                Mem.Set((r29 + 60u), r21);
+                L_I002B3D14: ;
+                r21 = r18 + 72u;
+                L_I002B3D18: ;
+                Mem.Set((r29 + 68u), r31);
+                L_I002B3D1C: ;
+                Mem.Set((r29 + 56u), r20);
+                L_I002B3D20: ;
+                Mem.Set((r29 + 52u), r19);
+                L_I002B3D24: ;
+                Mem.Set((r29 + 44u), r17);
+                L_I002B3D28: ;
+                Mem.Set((r29 + 40u), r16);
+                L_L002B3D2C: ;
+                L_I002B3D2C: ;
+                r3 = (uint)(int)Mem.S16((r18 + 56u));
+                L_I002B3D30: ;
+                r2 = (uint)(r3 < (uint)(24) ? 1 : 0);
+                L_I002B3D34: ;
+                { bool c_ = r2 == 0; r2 = r3 << 2; if (c_) goto L_L002B41D0; }
+                L_I002B3D3C: ;
+                r1 = 2148335616u;
+                L_I002B3D40: ;
+                r1 = r1 + r2;
+                L_I002B3D44: ;
+                r2 = Mem.U32((r1 - 14912u));
+                L_I002B3D48: ;
+                 switch (r2) { case 2833648u: goto L_I002B3CF0; case 2833652u: goto L_I002B3CF4; case 2833656u: goto L_I002B3CF8; case 2833660u: goto L_I002B3CFC; case 2833664u: goto L_I002B3D00; case 2833668u: goto L_I002B3D04; case 2833672u: goto L_I002B3D08; case 2833676u: goto L_I002B3D0C; case 2833680u: goto L_I002B3D10; case 2833684u: goto L_I002B3D14; case 2833688u: goto L_I002B3D18; case 2833692u: goto L_I002B3D1C; case 2833696u: goto L_I002B3D20; case 2833700u: goto L_I002B3D24; case 2833704u: goto L_I002B3D28; case 2833708u: goto L_I002B3D2C; case 2833712u: goto L_I002B3D30; case 2833716u: goto L_I002B3D34; case 2833724u: goto L_I002B3D3C; case 2833728u: goto L_I002B3D40; case 2833732u: goto L_I002B3D44; case 2833736u: goto L_I002B3D48; case 2833744u: goto L_I002B3D50; case 2833752u: goto L_I002B3D58; case 2833760u: goto L_I002B3D60; case 2833764u: goto L_I002B3D64; case 2833768u: goto L_I002B3D68; case 2833772u: goto L_I002B3D6C; case 2833776u: goto L_I002B3D70; case 2833784u: goto L_I002B3D78; case 2833792u: goto L_I002B3D80; case 2833796u: goto L_I002B3D84; case 2833800u: goto L_I002B3D88; case 2833808u: goto L_I002B3D90; case 2833812u: goto L_I002B3D94; case 2833820u: goto L_I002B3D9C; case 2833824u: goto L_I002B3DA0; case 2833828u: goto L_I002B3DA4; case 2833836u: goto L_I002B3DAC; case 2833844u: goto L_I002B3DB4; case 2833848u: goto L_I002B3DB8; case 2833856u: goto L_I002B3DC0; case 2833864u: goto L_I002B3DC8; case 2833868u: goto L_I002B3DCC; case 2833872u: goto L_I002B3DD0; case 2833876u: goto L_I002B3DD4; case 2833884u: goto L_I002B3DDC; case 2833888u: goto L_I002B3DE0; case 2833892u: goto L_I002B3DE4; case 2833896u: goto L_I002B3DE8; case 2833900u: goto L_I002B3DEC; case 2833904u: goto L_I002B3DF0; case 2833908u: goto L_I002B3DF4; case 2833912u: goto L_I002B3DF8; case 2833916u: goto L_I002B3DFC; case 2833924u: goto L_I002B3E04; case 2833928u: goto L_I002B3E08; case 2833932u: goto L_I002B3E0C; case 2833936u: goto L_I002B3E10; case 2833940u: goto L_I002B3E14; case 2833948u: goto L_I002B3E1C; case 2833956u: goto L_I002B3E24; case 2833960u: goto L_I002B3E28; case 2833964u: goto L_I002B3E2C; case 2833968u: goto L_I002B3E30; case 2833972u: goto L_I002B3E34; case 2833980u: goto L_I002B3E3C; case 2833984u: goto L_I002B3E40; case 2833988u: goto L_I002B3E44; case 2833992u: goto L_I002B3E48; case 2833996u: goto L_I002B3E4C; case 2834004u: goto L_I002B3E54; case 2834008u: goto L_I002B3E58; case 2834012u: goto L_I002B3E5C; case 2834020u: goto L_I002B3E64; case 2834024u: goto L_I002B3E68; case 2834028u: goto L_I002B3E6C; case 2834032u: goto L_I002B3E70; case 2834036u: goto L_I002B3E74; case 2834040u: goto L_I002B3E78; case 2834044u: goto L_I002B3E7C; case 2834048u: goto L_I002B3E80; case 2834056u: goto L_I002B3E88; case 2834060u: goto L_I002B3E8C; case 2834064u: goto L_I002B3E90; case 2834068u: goto L_I002B3E94; case 2834076u: goto L_I002B3E9C; case 2834080u: goto L_I002B3EA0; case 2834084u: goto L_I002B3EA4; case 2834088u: goto L_I002B3EA8; case 2834096u: goto L_I002B3EB0; case 2834100u: goto L_I002B3EB4; case 2834104u: goto L_I002B3EB8; case 2834108u: goto L_I002B3EBC; case 2834112u: goto L_I002B3EC0; case 2834116u: goto L_I002B3EC4; case 2834120u: goto L_I002B3EC8; case 2834128u: goto L_I002B3ED0; case 2834136u: goto L_I002B3ED8; case 2834140u: goto L_I002B3EDC; case 2834144u: goto L_I002B3EE0; case 2834148u: goto L_I002B3EE4; case 2834152u: goto L_I002B3EE8; case 2834156u: goto L_I002B3EEC; case 2834164u: goto L_I002B3EF4; case 2834168u: goto L_I002B3EF8; case 2834172u: goto L_I002B3EFC; case 2834176u: goto L_I002B3F00; case 2834180u: goto L_I002B3F04; case 2834184u: goto L_I002B3F08; case 2834188u: goto L_I002B3F0C; case 2834192u: goto L_I002B3F10; case 2834196u: goto L_I002B3F14; case 2834200u: goto L_I002B3F18; case 2834204u: goto L_I002B3F1C; case 2834208u: goto L_I002B3F20; case 2834212u: goto L_I002B3F24; case 2834216u: goto L_I002B3F28; case 2834224u: goto L_I002B3F30; case 2834228u: goto L_I002B3F34; case 2834232u: goto L_I002B3F38; case 2834236u: goto L_I002B3F3C; case 2834240u: goto L_I002B3F40; case 2834244u: goto L_I002B3F44; case 2834248u: goto L_I002B3F48; case 2834252u: goto L_I002B3F4C; case 2834260u: goto L_I002B3F54; case 2834268u: goto L_I002B3F5C; case 2834272u: goto L_I002B3F60; case 2834280u: goto L_I002B3F68; case 2834288u: goto L_I002B3F70; case 2834292u: goto L_I002B3F74; case 2834300u: goto L_I002B3F7C; case 2834308u: goto L_I002B3F84; case 2834312u: goto L_I002B3F88; case 2834316u: goto L_I002B3F8C; case 2834324u: goto L_I002B3F94; case 2834328u: goto L_I002B3F98; case 2834336u: goto L_I002B3FA0; case 2834340u: goto L_I002B3FA4; case 2834344u: goto L_I002B3FA8; case 2834348u: goto L_I002B3FAC; case 2834356u: goto L_I002B3FB4; case 2834360u: goto L_I002B3FB8; case 2834364u: goto L_I002B3FBC; case 2834368u: goto L_I002B3FC0; case 2834376u: goto L_I002B3FC8; case 2834380u: goto L_I002B3FCC; case 2834388u: goto L_I002B3FD4; case 2834396u: goto L_I002B3FDC; case 2834400u: goto L_I002B3FE0; case 2834408u: goto L_I002B3FE8; case 2834412u: goto L_I002B3FEC; case 2834420u: goto L_I002B3FF4; case 2834428u: goto L_I002B3FFC; case 2834432u: goto L_I002B4000; case 2834436u: goto L_I002B4004; case 2834444u: goto L_I002B400C; case 2834448u: goto L_I002B4010; case 2834456u: goto L_I002B4018; case 2834460u: goto L_I002B401C; case 2834464u: goto L_I002B4020; case 2834472u: goto L_I002B4028; case 2834476u: goto L_I002B402C; case 2834484u: goto L_I002B4034; case 2834488u: goto L_I002B4038; case 2834496u: goto L_I002B4040; case 2834504u: goto L_I002B4048; case 2834508u: goto L_I002B404C; case 2834516u: goto L_I002B4054; case 2834520u: goto L_I002B4058; case 2834528u: goto L_I002B4060; case 2834536u: goto L_I002B4068; case 2834540u: goto L_I002B406C; case 2834548u: goto L_I002B4074; case 2834552u: goto L_I002B4078; case 2834560u: goto L_I002B4080; case 2834564u: goto L_I002B4084; case 2834572u: goto L_I002B408C; case 2834576u: goto L_I002B4090; case 2834584u: goto L_I002B4098; case 2834588u: goto L_I002B409C; case 2834596u: goto L_I002B40A4; case 2834600u: goto L_I002B40A8; case 2834604u: goto L_I002B40AC; case 2834608u: goto L_I002B40B0; case 2834616u: goto L_I002B40B8; case 2834620u: goto L_I002B40BC; case 2834628u: goto L_I002B40C4; case 2834632u: goto L_I002B40C8; case 2834640u: goto L_I002B40D0; case 2834644u: goto L_I002B40D4; case 2834652u: goto L_I002B40DC; case 2834656u: goto L_I002B40E0; case 2834660u: goto L_I002B40E4; case 2834664u: goto L_I002B40E8; case 2834668u: goto L_I002B40EC; case 2834672u: goto L_I002B40F0; case 2834676u: goto L_I002B40F4; case 2834680u: goto L_I002B40F8; case 2834688u: goto L_I002B4100; case 2834696u: goto L_I002B4108; case 2834700u: goto L_I002B410C; case 2834704u: goto L_I002B4110; case 2834708u: goto L_I002B4114; case 2834712u: goto L_I002B4118; case 2834716u: goto L_I002B411C; case 2834724u: goto L_I002B4124; case 2834728u: goto L_I002B4128; case 2834736u: goto L_I002B4130; case 2834740u: goto L_I002B4134; case 2834744u: goto L_I002B4138; case 2834748u: goto L_I002B413C; case 2834752u: goto L_I002B4140; case 2834760u: goto L_I002B4148; case 2834764u: goto L_I002B414C; case 2834768u: goto L_I002B4150; case 2834772u: goto L_I002B4154; case 2834776u: goto L_I002B4158; case 2834784u: goto L_I002B4160; case 2834788u: goto L_I002B4164; case 2834796u: goto L_I002B416C; case 2834804u: goto L_I002B4174; case 2834812u: goto L_I002B417C; case 2834816u: goto L_I002B4180; case 2834824u: goto L_I002B4188; case 2834828u: goto L_I002B418C; case 2834832u: goto L_I002B4190; case 2834836u: goto L_I002B4194; case 2834840u: goto L_I002B4198; case 2834848u: goto L_I002B41A0; case 2834852u: goto L_I002B41A4; case 2834856u: goto L_I002B41A8; case 2834864u: goto L_I002B41B0; case 2834872u: goto L_I002B41B8; case 2834876u: goto L_I002B41BC; case 2834880u: goto L_I002B41C0; case 2834884u: goto L_I002B41C4; case 2834888u: goto L_I002B41C8; case 2834896u: goto L_I002B41D0; case 2834900u: goto L_I002B41D4; case 2834908u: goto L_I002B41DC; case 2834912u: goto L_I002B41E0; case 2834920u: goto L_I002B41E8; case 2834924u: goto L_I002B41EC; case 2834928u: goto L_I002B41F0; case 2834932u: goto L_I002B41F4; case 2834936u: goto L_I002B41F8; case 2834940u: goto L_I002B41FC; case 2834944u: goto L_I002B4200; case 2834948u: goto L_I002B4204; case 2834952u: goto L_I002B4208; case 2834956u: goto L_I002B420C; case 2834960u: goto L_I002B4210; case 2834964u: goto L_I002B4214; case 2834968u: goto L_I002B4218; default: throw new InvalidOperationException($"bad jump table target {r2:X8} in func_002B3CF0"); }
+                L_L002B3D50: ;
+                L_I002B3D50: ;
+                r4 = r18; __CSPHandleNextSeqEvent(r4);
+                L_I002B3D58: ;
+                r4 = r18 + 72u; goto L_L002B41D4;
+                L_L002B3D60: ;
+                L_I002B3D60: ;
+                r4 = r18 + 72u;
+                L_I002B3D64: ;
+                r2 = (uint)9;
+                L_I002B3D68: ;
+                Mem.Set((r29 + 16u), (ushort)r2);
+                L_I002B3D6C: ;
+                r6 = Mem.U32((r18 + 92u));
+                L_I002B3D70: ;
+                r5 = r29 + 16u; alEvtqPostEvent(r4, r5, (int)r6);
+                L_I002B3D78: ;
+                r4 = r18 + 72u; goto L_L002B41D4;
+                L_L002B3D80: ;
+                L_I002B3D80: ;
+                r16 = Mem.U32((r18 + 60u));
+                L_I002B3D84: ;
+                r4 = Mem.U32((r18 + 20u));
+                L_I002B3D88: ;
+                r5 = r16; alSynStopVoice(r4, r5);
+                L_I002B3D90: ;
+                r4 = Mem.U32((r18 + 20u));
+                L_I002B3D94: ;
+                r5 = r16; alSynFreeVoice(r4, r5);
+                L_I002B3D9C: ;
+                r17 = Mem.U32((r16 + 16u));
+                L_I002B3DA0: ;
+                r2 = Mem.U8((r17 + 55u));
+                L_I002B3DA4: ;
+                { bool c_ = r2 == 0; r4 = r18; if (c_) goto L_L002B3DB4; }
+                L_I002B3DAC: ;
+                r5 = r17; __seqpStopOsc(r4, r5);
+                L_L002B3DB4: ;
+                L_I002B3DB4: ;
+                r4 = r18;
+                L_I002B3DB8: ;
+                r5 = r16; __unmapVoice(r4, r5);
+                L_I002B3DC0: ;
+                r4 = r18 + 72u; goto L_L002B41D4;
+                L_L002B3DC8: ;
+                L_I002B3DC8: ;
+                r16 = Mem.U32((r18 + 60u));
+                L_I002B3DCC: ;
+                r17 = Mem.U32((r16 + 16u));
+                L_I002B3DD0: ;
+                r2 = Mem.U8((r17 + 52u));
+                L_I002B3DD4: ;
+                { bool c_ = r2 != 0; r2 = (uint)1; if (c_) goto L_L002B3DE0; }
+                L_I002B3DDC: ;
+                Mem.Set((r17 + 52u), (byte)r2);
+                L_L002B3DE0: ;
+                L_I002B3DE0: ;
+                r19 = Mem.U32((r18 + 64u));
+                L_I002B3DE4: ;
+                r2 = Mem.U32((r18 + 28u));
+                L_I002B3DE8: ;
+                r4 = r17;
+                L_I002B3DEC: ;
+                r2 = r2 + r19;
+                L_I002B3DF0: ;
+                Mem.Set((r4 + 36u), r2);
+                L_I002B3DF4: ;
+                r2 = Mem.U8((r18 + 68u));
+                L_I002B3DF8: ;
+                r5 = r18;
+                L_I002B3DFC: ;
+                Mem.Set((r4 + 48u), (byte)r2); r2 = (uint)__vsVol(r4, r5);
+                L_I002B3E04: ;
+                r5 = r16;
+                L_I002B3E08: ;
+                r2 = r2 << 16;
+                L_I002B3E0C: ;
+                r6 = (uint)((int)r2 >> 16);
+                L_I002B3E10: ;
+                r4 = Mem.U32((r18 + 20u));
+                L_I002B3E14: ;
+                r7 = r19; alSynSetVol(r4, r5, (short)r6, (int)r7);
+                L_I002B3E1C: ;
+                r4 = r18 + 72u; goto L_L002B41D4;
+                L_L002B3E24: ;
+                L_I002B3E24: ;
+                r5 = r29 + 32u;
+                L_I002B3E28: ;
+                r17 = Mem.U32((r18 + 60u));
+                L_I002B3E2C: ;
+                r20 = Mem.U32((r18 + 64u));
+                L_I002B3E30: ;
+                r2 = Mem.U32((r18 + 116u));
+                L_I002B3E34: ;
+                r4 = r20; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_I002B3E3C: ;
+                r19 = r2;
+                L_I002B3E40: ;
+                Cpu.SetW(0, Mem.U32((r29 + 32u)));
+                L_I002B3E44: ;
+                fcc = Cpu.S(20) <= Cpu.S(0);
+                L_I002B3E48: ;
+                L_I002B3E4C: ;
+                { bool c_ = fcc; r6 = r17 + 54u; if (c_) goto L_L002B3E64; }
+                L_I002B3E54: ;
+                Cpu.SetW(2, (uint)(int)Cpu.S(0));
+                L_I002B3E58: ;
+                r3 = Cpu.W(2);
+                L_I002B3E5C: ;
+                r4 = r17; goto L_L002B3E7C;
+                L_L002B3E64: ;
+                L_I002B3E64: ;
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(20));
+                L_I002B3E68: ;
+                r2 = 2147483648u;
+                L_I002B3E6C: ;
+                Cpu.SetW(2, (uint)(int)Cpu.S(0));
+                L_I002B3E70: ;
+                r3 = Cpu.W(2);
+                L_I002B3E74: ;
+                r3 = r3 | r2;
+                L_I002B3E78: ;
+                r4 = r17;
+                L_L002B3E7C: ;
+                L_I002B3E7C: ;
+                r5 = r18;
+                L_I002B3E80: ;
+                Mem.Set((r6 + 0u), (byte)r3); r2 = (uint)__vsVol(r4, r5);
+                L_I002B3E88: ;
+                r4 = r17;
+                L_I002B3E8C: ;
+                r16 = r2 << 16;
+                L_I002B3E90: ;
+                r5 = Mem.U32((r18 + 28u));
+                L_I002B3E94: ;
+                r16 = (uint)((int)r16 >> 16); r2 = (uint)__vsDelta(r4, (int)r5);
+                L_I002B3E9C: ;
+                r5 = r17 + 4u;
+                L_I002B3EA0: ;
+                r6 = r16;
+                L_I002B3EA4: ;
+                r4 = Mem.U32((r18 + 20u));
+                L_I002B3EA8: ;
+                r7 = r2; alSynSetVol(r4, r5, (short)r6, (int)r7);
+                L_I002B3EB0: ;
+                r4 = r18 + 72u;
+                L_I002B3EB4: ;
+                r5 = r29 + 16u;
+                L_I002B3EB8: ;
+                r6 = r19;
+                L_I002B3EBC: ;
+                r2 = (uint)22;
+                L_I002B3EC0: ;
+                Mem.Set((r29 + 16u), (ushort)r2);
+                L_I002B3EC4: ;
+                Mem.Set((r29 + 20u), r17);
+                L_I002B3EC8: ;
+                Mem.Set((r29 + 24u), r20); alEvtqPostEvent(r4, r5, (int)r6);
+                L_I002B3ED0: ;
+                r4 = r18 + 72u; goto L_L002B41D4;
+                L_L002B3ED8: ;
+                L_I002B3ED8: ;
+                r5 = r29 + 32u;
+                L_I002B3EDC: ;
+                r20 = Mem.U32((r18 + 64u));
+                L_I002B3EE0: ;
+                r17 = Mem.U32((r18 + 60u));
+                L_I002B3EE4: ;
+                r2 = Mem.U32((r18 + 116u));
+                L_I002B3EE8: ;
+                r16 = Mem.U8((r18 + 68u));
+                L_I002B3EEC: ;
+                r4 = r20; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_I002B3EF4: ;
+                Cpu.SetW(0, Mem.U32((r29 + 32u)));
+                L_I002B3EF8: ;
+                Cpu.SetW(1, Mem.U32((r17 + 40u)));
+                L_I002B3EFC: ;
+                r3 = r16 & 255u;
+                L_I002B3F00: ;
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
+                L_I002B3F04: ;
+                Mem.Set((r17 + 44u), Cpu.W(0));
+                L_I002B3F08: ;
+                r4 = Mem.U32((r18 + 96u));
+                L_I002B3F0C: ;
+                r3 = r3 << 4;
+                L_I002B3F10: ;
+                r3 = r3 + r4;
+                L_I002B3F14: ;
+                Cpu.SetW(0, Mem.U32((r3 + 12u)));
+                L_I002B3F18: ;
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
+                L_I002B3F1C: ;
+                r19 = r2;
+                L_I002B3F20: ;
+                r4 = Mem.U32((r18 + 20u));
+                L_I002B3F24: ;
+                r6 = Cpu.W(1);
+                L_I002B3F28: ;
+                r5 = r17 + 4u; alSynSetPitch(r4, r5, Cpu.U2F(r6));
+                L_I002B3F30: ;
+                r4 = r18 + 72u;
+                L_I002B3F34: ;
+                r5 = r29 + 16u;
+                L_I002B3F38: ;
+                r6 = r19;
+                L_I002B3F3C: ;
+                r2 = (uint)23;
+                L_I002B3F40: ;
+                Mem.Set((r29 + 16u), (ushort)r2);
+                L_I002B3F44: ;
+                Mem.Set((r29 + 20u), r17);
+                L_I002B3F48: ;
+                Mem.Set((r29 + 24u), r20);
+                L_I002B3F4C: ;
+                Mem.Set((r29 + 28u), (byte)r16); alEvtqPostEvent(r4, r5, (int)r6);
+                L_I002B3F54: ;
+                r4 = r18 + 72u; goto L_L002B41D4;
+                L_L002B3F5C: ;
+                L_I002B3F5C: ;
+                r4 = r18;
+                L_I002B3F60: ;
+                r5 = r18 + 56u; __CSPHandleMIDIMsg(r4, r5);
+                L_I002B3F68: ;
+                r4 = r18 + 72u; goto L_L002B41D4;
+                L_L002B3F70: ;
+                L_I002B3F70: ;
+                r4 = r18;
+                L_I002B3F74: ;
+                r5 = r18 + 56u; __CSPHandleMetaMsg(r4, r5);
+                L_I002B3F7C: ;
+                r4 = r18 + 72u; goto L_L002B41D4;
+                L_L002B3F84: ;
+                L_I002B3F84: ;
+                r2 = Mem.U16((r18 + 60u));
+                L_I002B3F88: ;
+                r17 = Mem.U32((r18 + 100u));
+                L_I002B3F8C: ;
+                { bool c_ = r17 == 0; Mem.Set((r18 + 50u), (ushort)r2); if (c_) goto L_L002B41D0; }
+                L_I002B3F94: ;
+                r4 = r17;
+                L_L002B3F98: ;
+                L_I002B3F98: ;
+                r5 = r18; r2 = (uint)__vsVol(r4, r5);
+                L_I002B3FA0: ;
+                r4 = r17;
+                L_I002B3FA4: ;
+                r16 = r2 << 16;
+                L_I002B3FA8: ;
+                r5 = Mem.U32((r18 + 28u));
+                L_I002B3FAC: ;
+                r16 = (uint)((int)r16 >> 16); r2 = (uint)__vsDelta(r4, (int)r5);
+                L_I002B3FB4: ;
+                r5 = r17 + 4u;
+                L_I002B3FB8: ;
+                r6 = r16;
+                L_I002B3FBC: ;
+                r4 = Mem.U32((r18 + 20u));
+                L_I002B3FC0: ;
+                r7 = r2; alSynSetVol(r4, r5, (short)r6, (int)r7);
+                L_I002B3FC8: ;
+                r17 = Mem.U32((r17 + 0u));
+                L_I002B3FCC: ;
+                { bool c_ = r17 != 0; r4 = r17; if (c_) goto L_L002B3F98; }
+                L_I002B3FD4: ;
+                r4 = r18 + 72u; goto L_L002B41D4;
+                L_L002B3FDC: ;
+                L_I002B3FDC: ;
+                r2 = Mem.U32((r18 + 44u));
+                L_I002B3FE0: ;
+                { bool c_ = r2 == r22; r4 = r18 + 72u; if (c_) goto L_L002B41D4; }
+                L_I002B3FE8: ;
+                Mem.Set((r18 + 44u), r22);
+                L_I002B3FEC: ;
+                r4 = r18; __CSPPostNextSeqEvent(r4);
+                L_I002B3FF4: ;
+                r4 = r18 + 72u; goto L_L002B41D4;
+                L_L002B3FFC: ;
+                L_I002B3FFC: ;
+                r3 = Mem.U32((r18 + 44u));
+                L_I002B4000: ;
+                r2 = (uint)2;
+                L_I002B4004: ;
+                { bool c_ = r3 != r2; r4 = r18 + 72u; if (c_) goto L_L002B41D4; }
+                L_I002B400C: ;
+                r17 = Mem.U32((r18 + 100u));
+                L_I002B4010: ;
+                if (r17 == 0) { Mem.Set((r18 + 44u), r0); goto L_L002B41D4; }
+                L_I002B4018: ;
+                r16 = r17 + 4u;
+                L_L002B401C: ;
+                L_I002B401C: ;
+                r4 = Mem.U32((r18 + 20u));
+                L_I002B4020: ;
+                r5 = r16; alSynStopVoice(r4, r5);
+                L_I002B4028: ;
+                r4 = Mem.U32((r18 + 20u));
+                L_I002B402C: ;
+                r5 = r16; alSynFreeVoice(r4, r5);
+                L_I002B4034: ;
+                r2 = Mem.U8((r17 + 55u));
+                L_I002B4038: ;
+                { bool c_ = r2 == 0; r4 = r18; if (c_) goto L_L002B4048; }
+                L_I002B4040: ;
+                r5 = r17; __seqpStopOsc(r4, r5);
+                L_L002B4048: ;
+                L_I002B4048: ;
+                r4 = r18;
+                L_I002B404C: ;
+                r5 = r16; __unmapVoice(r4, r5);
+                L_I002B4054: ;
+                r17 = Mem.U32((r18 + 100u));
+                L_I002B4058: ;
+                { bool c_ = r17 != 0; r16 = r17 + 4u; if (c_) goto L_L002B401C; }
+                L_I002B4060: ;
+                Mem.Set((r18 + 44u), r0); goto L_L002B41D0;
+                L_L002B4068: ;
+                L_I002B4068: ;
+                r2 = Mem.U32((r18 + 44u));
+                L_I002B406C: ;
+                { bool c_ = r2 != r22; r4 = r18 + 72u; if (c_) goto L_L002B41D4; }
+                L_I002B4074: ;
+                r4 = r21;
+                L_I002B4078: ;
+                r5 = r0; alEvtqFlushType(r4, (short)r5);
+                L_I002B4080: ;
+                r4 = r21;
+                L_I002B4084: ;
+                r5 = (uint)21; alEvtqFlushType(r4, (short)r5);
+                L_I002B408C: ;
+                r4 = r21;
+                L_I002B4090: ;
+                r5 = (uint)2; alEvtqFlushType(r4, (short)r5);
+                L_I002B4098: ;
+                r17 = Mem.U32((r18 + 100u));
+                L_I002B409C: ;
+                { bool c_ = r17 == 0; r4 = r18 + 72u; if (c_) goto L_L002B40E0; }
+                L_I002B40A4: ;
+                r4 = r18;
+                L_L002B40A8: ;
+                L_I002B40A8: ;
+                r16 = r17 + 4u;
+                L_I002B40AC: ;
+                r5 = r16;
+                L_I002B40B0: ;
+                r6 = (uint)50000; r2 = (uint)__voiceNeedsNoteKillOff(r4, r5, (int)r6);
+                L_I002B40B8: ;
+                r2 = r2 & 255u;
+                L_I002B40BC: ;
+                { bool c_ = r2 == 0; r4 = r18; if (c_) goto L_L002B40D0; }
+                L_I002B40C4: ;
+                r5 = r16;
+                L_I002B40C8: ;
+                r6 = (uint)50000; __seqpReleaseVoice(r4, r5, (int)r6);
+                L_L002B40D0: ;
+                L_I002B40D0: ;
+                r17 = Mem.U32((r17 + 0u));
+                L_I002B40D4: ;
+                { bool c_ = r17 != 0; r4 = r18; if (c_) goto L_L002B40A8; }
+                L_I002B40DC: ;
+                r4 = r18 + 72u;
+                L_L002B40E0: ;
+                L_I002B40E0: ;
+                r5 = r29 + 16u;
+                L_I002B40E4: ;
+                r6 = 2147418112u;
+                L_I002B40E8: ;
+                r6 = r6 | 65535u;
+                L_I002B40EC: ;
+                r2 = (uint)2;
+                L_I002B40F0: ;
+                Mem.Set((r18 + 44u), r2);
+                L_I002B40F4: ;
+                r2 = (uint)16;
+                L_I002B40F8: ;
+                Mem.Set((r29 + 16u), (ushort)r2); alEvtqPostEvent(r4, r5, (int)r6);
+                L_I002B4100: ;
+                r4 = r18 + 72u; goto L_L002B41D4;
+                L_L002B4108: ;
+                L_I002B4108: ;
+                r2 = Mem.U8((r18 + 60u));
+                L_I002B410C: ;
+                r3 = Mem.U32((r18 + 96u));
+                L_I002B4110: ;
+                r4 = Mem.U8((r18 + 61u));
+                L_I002B4114: ;
+                r2 = r2 << 4;
+                L_I002B4118: ;
+                r2 = r2 + r3;
+                L_I002B411C: ;
+                Mem.Set((r2 + 8u), (byte)r4); goto L_L002B41D0;
+                L_L002B4124: ;
+                L_I002B4124: ;
+                r2 = Mem.U32((r18 + 44u));
+                L_I002B4128: ;
+                { bool c_ = r2 != r22;  if (c_) goto L_L002B4148; }
+                L_I002B4130: ;
+                r4 = 2148335616u;
+                L_I002B4134: ;
+                r4 = r4 - 14944u;
+                L_I002B4138: ;
+                r5 = 2148335616u;
+                L_I002B413C: ;
+                r5 = r5 - 14940u;
+                L_I002B4140: ;
+                r6 = (uint)295; r2 = __assert(r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B4148: ;
+                L_I002B4148: ;
+                r5 = 1223950336u;
+                L_I002B414C: ;
+                r5 = r5 | 9216u;
+                L_I002B4150: ;
+                r2 = Mem.U32((r18 + 60u));
+                L_I002B4154: ;
+                r4 = r18;
+                L_I002B4158: ;
+                Mem.Set((r18 + 24u), r2); __setUsptFromTempo_2(r4, Cpu.U2F(r5));
+                L_I002B4160: ;
+                r5 = Mem.U32((r18 + 32u));
+                L_I002B4164: ;
+                { bool c_ = r5 == 0; r4 = r18 + 72u; if (c_) goto L_L002B41D4; }
+                L_I002B416C: ;
+                r4 = r18; __initFromBank(r4, r5);
+                L_I002B4174: ;
+                r4 = r18 + 72u; goto L_L002B41D4;
+                L_L002B417C: ;
+                L_I002B417C: ;
+                r2 = Mem.U32((r18 + 44u));
+                L_I002B4180: ;
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B41A0; }
+                L_I002B4188: ;
+                r4 = 2148335616u;
+                L_I002B418C: ;
+                r4 = r4 - 14944u;
+                L_I002B4190: ;
+                r5 = 2148335616u;
+                L_I002B4194: ;
+                r5 = r5 - 14940u;
+                L_I002B4198: ;
+                r6 = (uint)304; r2 = __assert(r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B41A0: ;
+                L_I002B41A0: ;
+                r5 = Mem.U32((r18 + 60u));
+                L_I002B41A4: ;
+                r4 = r18;
+                L_I002B41A8: ;
+                Mem.Set((r18 + 32u), r5); __initFromBank(r4, r5);
+                L_I002B41B0: ;
+                r4 = r18 + 72u; goto L_L002B41D4;
+                L_L002B41B8: ;
+                L_I002B41B8: ;
+                r4 = 2148335616u;
+                L_I002B41BC: ;
+                r4 = r4 - 14944u;
+                L_I002B41C0: ;
+                r5 = 2148335616u;
+                L_I002B41C4: ;
+                r5 = r5 - 14940u;
+                L_I002B41C8: ;
+                r6 = (uint)314; r2 = __assert(r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B41D0: ;
+                L_I002B41D0: ;
+                r4 = r18 + 72u;
+                L_L002B41D4: ;
+                L_I002B41D4: ;
+                r5 = r18 + 56u; r2 = (uint)alEvtqNextEvent(r4, r5);
+                L_I002B41DC: ;
+                r4 = r2;
+                L_I002B41E0: ;
+                { bool c_ = r4 == 0; Mem.Set((r18 + 40u), r4); if (c_) goto L_L002B3D2C; }
+                L_I002B41E8: ;
+                r3 = Mem.U32((r18 + 28u));
+                L_I002B41EC: ;
+                r3 = r3 + r4;
+                L_I002B41F0: ;
+                Mem.Set((r18 + 28u), r3);
+                L_I002B41F4: ;
+                r31 = Mem.U32((r29 + 68u));
+                L_I002B41F8: ;
+                r22 = Mem.U32((r29 + 64u));
+                L_I002B41FC: ;
+                r21 = Mem.U32((r29 + 60u));
+                L_I002B4200: ;
+                r20 = Mem.U32((r29 + 56u));
+                L_I002B4204: ;
+                r19 = Mem.U32((r29 + 52u));
+                L_I002B4208: ;
+                r18 = Mem.U32((r29 + 48u));
+                L_I002B420C: ;
+                r17 = Mem.U32((r29 + 44u));
+                L_I002B4210: ;
+                r16 = Mem.U32((r29 + 40u));
+                L_I002B4214: ;
+                Cpu.Fpr[20] = Mem.U64((r29 + 72u));
+                L_I002B4218: ;
+                r29 = r29 + 80u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B3CF0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B4220 @ 0x002B4220 [MIPS]
+    public static uint __CSPHandleNextSeqEvent_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B4220", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B4220: ;
+                L_I002B4220: ;
+                r29 = r29 - 72u;
+                L_I002B4224: ;
+                Mem.Set((r29 + 64u), r16);
+                L_I002B4228: ;
+                r16 = r4;
+                L_I002B422C: ;
+                Mem.Set((r29 + 68u), r31);
+                L_I002B4230: ;
+                r4 = Mem.U32((r16 + 24u));
+                L_I002B4234: ;
+                { bool c_ = r4 == 0;  if (c_) goto L_L002B43A0; }
+                L_I002B423C: ;
+                r5 = r29 + 16u; r2 = (uint)alCSeqNextEvent(r4, r5);
+                L_I002B4244: ;
+                r2 = Mem.U16((r29 + 16u));
+                L_I002B4248: ;
+                r2 = r2 - 1u;
+                L_I002B424C: ;
+                r2 = r2 << 16;
+                L_I002B4250: ;
+                r3 = (uint)((int)r2 >> 16);
+                L_I002B4254: ;
+                r2 = (uint)(r3 < (uint)(20) ? 1 : 0);
+                L_I002B4258: ;
+                { bool c_ = r2 == 0; r2 = r3 << 2; if (c_) goto L_L002B4388; }
+                L_I002B4260: ;
+                r1 = 2148335616u;
+                L_I002B4264: ;
+                r1 = r1 + r2;
+                L_I002B4268: ;
+                r2 = Mem.U32((r1 - 14816u));
+                L_I002B426C: ;
+                 switch (r2) { case 2834976u: goto L_I002B4220; case 2834980u: goto L_I002B4224; case 2834984u: goto L_I002B4228; case 2834988u: goto L_I002B422C; case 2834992u: goto L_I002B4230; case 2834996u: goto L_I002B4234; case 2835004u: goto L_I002B423C; case 2835012u: goto L_I002B4244; case 2835016u: goto L_I002B4248; case 2835020u: goto L_I002B424C; case 2835024u: goto L_I002B4250; case 2835028u: goto L_I002B4254; case 2835032u: goto L_I002B4258; case 2835040u: goto L_I002B4260; case 2835044u: goto L_I002B4264; case 2835048u: goto L_I002B4268; case 2835052u: goto L_I002B426C; case 2835060u: goto L_I002B4274; case 2835064u: goto L_I002B4278; case 2835072u: goto L_I002B4280; case 2835076u: goto L_I002B4284; case 2835080u: goto L_I002B4288; case 2835088u: goto L_I002B4290; case 2835092u: goto L_I002B4294; case 2835100u: goto L_I002B429C; case 2835108u: goto L_I002B42A4; case 2835112u: goto L_I002B42A8; case 2835120u: goto L_I002B42B0; case 2835124u: goto L_I002B42B4; case 2835132u: goto L_I002B42BC; case 2835136u: goto L_I002B42C0; case 2835144u: goto L_I002B42C8; case 2835148u: goto L_I002B42CC; case 2835152u: goto L_I002B42D0; case 2835160u: goto L_I002B42D8; case 2835164u: goto L_I002B42DC; case 2835172u: goto L_I002B42E4; case 2835180u: goto L_I002B42EC; case 2835184u: goto L_I002B42F0; case 2835192u: goto L_I002B42F8; case 2835196u: goto L_I002B42FC; case 2835204u: goto L_I002B4304; case 2835208u: goto L_I002B4308; case 2835212u: goto L_I002B430C; case 2835216u: goto L_I002B4310; case 2835220u: goto L_I002B4314; case 2835224u: goto L_I002B4318; case 2835228u: goto L_I002B431C; case 2835232u: goto L_I002B4320; case 2835240u: goto L_I002B4328; case 2835248u: goto L_I002B4330; case 2835252u: goto L_I002B4334; case 2835256u: goto L_I002B4338; case 2835264u: goto L_I002B4340; case 2835268u: goto L_I002B4344; case 2835276u: goto L_I002B434C; case 2835284u: goto L_I002B4354; case 2835288u: goto L_I002B4358; case 2835296u: goto L_I002B4360; case 2835300u: goto L_I002B4364; case 2835304u: goto L_I002B4368; case 2835308u: goto L_I002B436C; case 2835312u: goto L_I002B4370; case 2835316u: goto L_I002B4374; case 2835320u: goto L_I002B4378; case 2835328u: goto L_I002B4380; case 2835336u: goto L_I002B4388; case 2835340u: goto L_I002B438C; case 2835344u: goto L_I002B4390; case 2835348u: goto L_I002B4394; case 2835352u: goto L_I002B4398; case 2835360u: goto L_I002B43A0; case 2835364u: goto L_I002B43A4; case 2835368u: goto L_I002B43A8; default: throw new InvalidOperationException($"bad jump table target {r2:X8} in func_002B4220"); }
+                L_L002B4274: ;
+                L_I002B4274: ;
+                r4 = r16;
+                L_I002B4278: ;
+                r5 = r29 + 16u; __CSPHandleMIDIMsg(r4, r5);
+                L_I002B4280: ;
+                r3 = Mem.U32((r16 + 44u));
+                L_I002B4284: ;
+                r2 = (uint)1;
+                L_I002B4288: ;
+                { bool c_ = r3 != r2;  if (c_) goto L_L002B43A0; }
+                L_I002B4290: ;
+                r4 = Mem.U32((r16 + 24u));
+                L_I002B4294: ;
+                { bool c_ = r4 == 0;  if (c_) goto L_L002B43A0; }
+                L_I002B429C: ;
+                r5 = r29 + 48u; r2 = (uint)__alCSeqNextDelta(r4, r5);
+                L_I002B42A4: ;
+                r2 = r2 & 255u;
+                L_I002B42A8: ;
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B43A0; }
+                L_I002B42B0: ;
+                r2 = Mem.U32((r29 + 48u));
+                L_I002B42B4: ;
+                Mem.Set((r29 + 32u), (ushort)r0); goto L_L002B4368;
+                L_L002B42BC: ;
+                L_I002B42BC: ;
+                r4 = r16;
+                L_I002B42C0: ;
+                r5 = r29 + 16u; __CSPHandleMetaMsg(r4, r5);
+                L_I002B42C8: ;
+                r3 = Mem.U32((r16 + 44u));
+                L_I002B42CC: ;
+                r2 = (uint)1;
+                L_I002B42D0: ;
+                { bool c_ = r3 != r2;  if (c_) goto L_L002B43A0; }
+                L_I002B42D8: ;
+                r4 = Mem.U32((r16 + 24u));
+                L_I002B42DC: ;
+                { bool c_ = r4 == 0;  if (c_) goto L_L002B43A0; }
+                L_I002B42E4: ;
+                r5 = r29 + 52u; r2 = (uint)__alCSeqNextDelta(r4, r5);
+                L_I002B42EC: ;
+                r2 = r2 & 255u;
+                L_I002B42F0: ;
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B43A0; }
+                L_I002B42F8: ;
+                r2 = Mem.U32((r29 + 52u));
+                L_I002B42FC: ;
+                Mem.Set((r29 + 32u), (ushort)r0); goto L_L002B4368;
+                L_L002B4304: ;
+                L_I002B4304: ;
+                r4 = r16 + 72u;
+                L_I002B4308: ;
+                r5 = r29 + 16u;
+                L_I002B430C: ;
+                r6 = 2147418112u;
+                L_I002B4310: ;
+                r6 = r6 | 65535u;
+                L_I002B4314: ;
+                r2 = (uint)2;
+                L_I002B4318: ;
+                Mem.Set((r16 + 44u), r2);
+                L_I002B431C: ;
+                r2 = (uint)16;
+                L_I002B4320: ;
+                Mem.Set((r29 + 16u), (ushort)r2); alEvtqPostEvent(r4, r5, (int)r6);
+                L_I002B4328: ;
+                 goto L_L002B43A0;
+                L_L002B4330: ;
+                L_I002B4330: ;
+                r3 = Mem.U32((r16 + 44u));
+                L_I002B4334: ;
+                r2 = (uint)1;
+                L_I002B4338: ;
+                { bool c_ = r3 != r2;  if (c_) goto L_L002B43A0; }
+                L_I002B4340: ;
+                r4 = Mem.U32((r16 + 24u));
+                L_I002B4344: ;
+                { bool c_ = r4 == 0;  if (c_) goto L_L002B43A0; }
+                L_I002B434C: ;
+                r5 = r29 + 56u; r2 = (uint)__alCSeqNextDelta(r4, r5);
+                L_I002B4354: ;
+                r2 = r2 & 255u;
+                L_I002B4358: ;
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B43A0; }
+                L_I002B4360: ;
+                r2 = Mem.U32((r29 + 56u));
+                L_I002B4364: ;
+                Mem.Set((r29 + 32u), (ushort)r0);
+                L_L002B4368: ;
+                L_I002B4368: ;
+                r6 = Mem.U32((r16 + 36u));
+                L_I002B436C: ;
+                { long p_ = (long)(int)r2 * (int)r6; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                L_I002B4370: ;
+                r4 = r16 + 72u;
+                L_I002B4374: ;
+                r6 = lo;
+                L_I002B4378: ;
+                r5 = r29 + 32u; alEvtqPostEvent(r4, r5, (int)r6);
+                L_I002B4380: ;
+                 goto L_L002B43A0;
+                L_L002B4388: ;
+                L_I002B4388: ;
+                r4 = 2148335616u;
+                L_I002B438C: ;
+                r4 = r4 - 14944u;
+                L_I002B4390: ;
+                r5 = 2148335616u;
+                L_I002B4394: ;
+                r5 = r5 - 14940u;
+                L_I002B4398: ;
+                r6 = (uint)400; r2 = __assert(r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B43A0: ;
+                L_I002B43A0: ;
+                r31 = Mem.U32((r29 + 68u));
+                L_I002B43A4: ;
+                r16 = Mem.U32((r29 + 64u));
+                L_I002B43A8: ;
+                r29 = r29 + 72u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B4220", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B43B0 @ 0x002B43B0 [MIPS]
+    public static uint __CSPHandleMIDIMsg_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B43B0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B43B0: ;
+                r29 = r29 - 112u;
+                Mem.Set((r29 + 76u), r19);
+                r19 = r4;
+                Mem.Set((r29 + 96u), r30);
+                r30 = r5 + 4u;
+                Mem.Set((r29 + 100u), r31);
+                Mem.Set((r29 + 92u), r23);
+                Mem.Set((r29 + 88u), r22);
+                Mem.Set((r29 + 84u), r21);
+                Mem.Set((r29 + 80u), r20);
+                Mem.Set((r29 + 72u), r18);
+                Mem.Set((r29 + 68u), r17);
+                Mem.Set((r29 + 64u), r16);
+                Mem.Set((r29 + 104u), Cpu.Fpr[20]);
+                r2 = Mem.U8((r5 + 8u));
+                r22 = Mem.U8((r5 + 9u));
+                r16 = Mem.U8((r5 + 10u));
+                r20 = r2 & 15u;
+                r3 = r2 & 240u;
+                r21 = r22;
+                r2 = (uint)176;
+                { bool c_ = r3 == r2; r18 = r16; if (c_) goto L_L002B48F8; }
+                r2 = (uint)((int)r3 < 177 ? 1 : 0);
+                { bool c_ = r2 == 0; r2 = (uint)144; if (c_) goto L_L002B444C; }
+                { bool c_ = r3 == r2; r2 = (uint)((int)r3 < 145 ? 1 : 0); if (c_) goto L_L002B4484; }
+                { bool c_ = r2 == 0; r2 = (uint)128; if (c_) goto L_L002B4438; }
+                { bool c_ = r3 == r2; r4 = r19; if (c_) goto L_L002B47F0; }
+                 goto L_L002B4C08;
+                L_L002B4438: ;
+                r2 = (uint)160;
+                { bool c_ = r3 == r2; r4 = r19; if (c_) goto L_L002B4844; }
+                 goto L_L002B4C08;
+                L_L002B444C: ;
+                r2 = (uint)208;
+                { bool c_ = r3 == r2; r2 = (uint)((int)r3 < 209 ? 1 : 0); if (c_) goto L_L002B4898; }
+                { bool c_ = r2 == 0; r2 = (uint)192; if (c_) goto L_L002B4470; }
+                { bool c_ = r3 == r2;  if (c_) goto L_L002B4B20; }
+                 goto L_L002B4C08;
+                L_L002B4470: ;
+                r2 = (uint)224;
+                { bool c_ = r3 == r2; r3 = r16 & 255u; if (c_) goto L_L002B4B78; }
+                 goto L_L002B4C08;
+                L_L002B4484: ;
+                r17 = r16 & 255u;
+                { bool c_ = r17 == 0; r2 = (uint)1; if (c_) goto L_L002B47EC; }
+                r3 = Mem.U32((r19 + 44u));
+                { bool c_ = r3 != r2; r4 = r19; if (c_) goto L_L002B4C08; }
+                r18 = r22 & 255u;
+                r5 = r18;
+                r6 = r17;
+                r16 = r20 & 255u;
+                r7 = r16; r2 = __lookupSoundQuick(r4, (byte)r5, (byte)r6, (byte)r7);
+                r21 = r2;
+                { bool c_ = r21 == 0; r4 = r19; if (c_) goto L_L002B4C08; }
+                r5 = r18;
+                r6 = r17;
+                r2 = Mem.U32((r19 + 96u));
+                r18 = r16 << 4;
+                r2 = r18 + r2;
+                r2 = Mem.U8((r2 + 8u));
+                r7 = r16;
+                Mem.Set((r29 + 50u), (ushort)r0);
+                Mem.Set((r29 + 52u), (byte)r0);
+                Mem.Set((r29 + 48u), (ushort)r2); r2 = __mapVoice(r4, (byte)r5, (byte)r6, (byte)r7);
+                r17 = r2;
+                { bool c_ = r17 == 0; r23 = r17 + 4u; if (c_) goto L_L002B4C08; }
+                r5 = r23;
+                r4 = Mem.U32((r19 + 20u));
+                r6 = r29 + 48u; r2 = (uint)alSynAllocVoice(r4, r5, r6);
+                Mem.Set((r17 + 32u), r21);
+                Mem.Set((r17 + 52u), (byte)r0);
+                r2 = Mem.U32((r19 + 96u));
+                r2 = r18 + r2;
+                r2 = Mem.U8((r2 + 11u));
+                r2 = (uint)(r2 < (uint)(64) ? 1 : 0);
+                if (r2 != 0) { Mem.Set((r17 + 53u), (byte)r0); goto L_L002B4530; }
+                r2 = (uint)2;
+                Mem.Set((r17 + 53u), (byte)r2);
+                L_L002B4530: ;
+                r2 = Mem.U32((r21 + 4u));
+                r3 = r22 & 255u;
+                r4 = Mem.U8((r2 + 5u));
+                r2 = Mem.U8((r2 + 4u));
+                r4 = r4 << 24;
+                r4 = (uint)((int)r4 >> 24);
+                r3 = r3 - r2;
+                r2 = r3 << 1;
+                r2 = r2 + r3;
+                r2 = r2 << 3;
+                r2 = r2 + r3;
+                r2 = r2 << 2;
+                r4 = r4 + r2;
+                r4 = r4 << 16;
+                r4 = (uint)((int)r4 >> 16); Cpu.SetS(0, alCents2Ratio((int)r4));
+                Mem.Set((r17 + 40u), Cpu.W(0));
+                r2 = Mem.U32((r21 + 0u));
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 14736u)));
+                r2 = Mem.U8((r2 + 12u));
+                Mem.Set((r17 + 48u), (byte)r2);
+                r3 = Mem.U32((r21 + 0u));
+                r2 = Mem.U32((r19 + 28u));
+                r3 = Mem.U32((r3 + 0u));
+                Mem.Set((r17 + 55u), (byte)r0);
+                r2 = r2 + r3;
+                Mem.Set((r17 + 36u), r2);
+                r3 = Mem.U32((r19 + 96u));
+                r2 = r20 << 4;
+                r2 = r2 + r3;
+                r16 = Mem.U32((r2 + 0u));
+                Mem.Set((r29 + 60u), Cpu.W(0));
+                r2 = Mem.U8((r16 + 4u));
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B4628; }
+                r2 = Mem.U32((r19 + 112u));
+                { bool c_ = r2 == 0; r4 = r29 + 56u; if (c_) goto L_L002B4628; }
+                r2 = Mem.U8((r16 + 6u));
+                r6 = Mem.U8((r16 + 4u));
+                r7 = Mem.U8((r16 + 5u));
+                Mem.Set((r29 + 16u), r2);
+                r2 = Mem.U8((r16 + 7u));
+                Mem.Set((r29 + 20u), r2);
+                r2 = Mem.U32((r19 + 112u));
+                r5 = r29 + 60u; r2 = Funcs.CallRegX(r2, r4, r5, r6, r7, new uint[] { Mem.U32(r29 + 16u), Mem.U32(r29 + 20u) }); r3 = Cpu.V1;
+                r18 = r2;
+                { bool c_ = r18 == 0; r4 = r19 + 72u; if (c_) goto L_L002B4628; }
+                r5 = r29 + 32u;
+                r6 = r18;
+                r3 = Mem.U32((r29 + 56u));
+                r2 = (uint)22;
+                Mem.Set((r29 + 32u), (ushort)r2);
+                Mem.Set((r29 + 36u), r17);
+                Mem.Set((r29 + 40u), r3); alEvtqPostEvent(r4, r5, (int)r6);
+                r2 = Mem.U8((r17 + 55u));
+                r2 = r2 | 1u;
+                Mem.Set((r17 + 55u), (byte)r2);
+                L_L002B4628: ;
+                Cpu.SetW(0, Mem.U32((r29 + 60u)));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 14732u)));
+                fcc = Cpu.S(1) <= Cpu.S(0);
+                { bool c_ = fcc; r4 = r17 + 54u; if (c_) goto L_L002B4654; }
+                Cpu.SetW(2, (uint)(int)Cpu.S(0));
+                r3 = Cpu.W(2);
+                 goto L_L002B4668;
+                L_L002B4654: ;
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(1));
+                r2 = 2147483648u;
+                Cpu.SetW(2, (uint)(int)Cpu.S(0));
+                r3 = Cpu.W(2);
+                r3 = r3 | r2;
+                L_L002B4668: ;
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 14728u)));
+                Mem.Set((r4 + 0u), (byte)r3);
+                Mem.Set((r29 + 60u), Cpu.W(0));
+                r2 = Mem.U8((r16 + 8u));
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B46F0; }
+                r2 = Mem.U32((r19 + 112u));
+                { bool c_ = r2 == 0; r4 = r29 + 56u; if (c_) goto L_L002B46F0; }
+                r2 = Mem.U8((r16 + 10u));
+                r6 = Mem.U8((r16 + 8u));
+                r7 = Mem.U8((r16 + 9u));
+                Mem.Set((r29 + 16u), r2);
+                r2 = Mem.U8((r16 + 11u));
+                Mem.Set((r29 + 20u), r2);
+                r2 = Mem.U32((r19 + 112u));
+                r5 = r29 + 60u; r2 = Funcs.CallRegX(r2, r4, r5, r6, r7, new uint[] { Mem.U32(r29 + 16u), Mem.U32(r29 + 20u) }); r3 = Cpu.V1;
+                r18 = r2;
+                { bool c_ = r18 == 0; r4 = r19 + 72u; if (c_) goto L_L002B46F0; }
+                r5 = r29 + 32u;
+                r6 = r18;
+                r3 = Mem.U32((r29 + 56u));
+                r2 = (uint)23;
+                Mem.Set((r29 + 32u), (ushort)r2);
+                Mem.Set((r29 + 36u), r17);
+                Mem.Set((r29 + 44u), (byte)r20);
+                Mem.Set((r29 + 40u), r3); alEvtqPostEvent(r4, r5, (int)r6);
+                r2 = Mem.U8((r17 + 55u));
+                r2 = r2 | 2u;
+                Mem.Set((r17 + 55u), (byte)r2);
+                L_L002B46F0: ;
+                Cpu.SetW(1, Mem.U32((r29 + 60u)));
+                r2 = r20 << 4;
+                Mem.Set((r17 + 44u), Cpu.W(1));
+                r3 = Mem.U32((r19 + 96u));
+                Cpu.SetW(20, Mem.U32((r17 + 40u)));
+                r2 = r2 + r3;
+                Cpu.SetW(0, Mem.U32((r2 + 12u)));
+                Cpu.SetS(20, Cpu.S(20) * Cpu.S(0));
+                r4 = r17;
+                r16 = Mem.U8((r2 + 10u));
+                Cpu.SetS(20, Cpu.S(20) * Cpu.S(1));
+                r5 = r19; r2 = (uint)__vsPan(r4, r5);
+                r4 = r17;
+                r5 = r19;
+                r17 = r2; r2 = (uint)__vsVol(r4, r5);
+                r2 = r2 << 16;
+                r3 = Mem.U32((r21 + 0u));
+                r2 = (uint)((int)r2 >> 16);
+                r18 = Mem.U32((r3 + 0u));
+                r16 = r16 & 255u;
+                Mem.Set((r29 + 16u), r2);
+                r2 = r17 & 255u;
+                Mem.Set((r29 + 20u), r2);
+                Mem.Set((r29 + 24u), r16);
+                Mem.Set((r29 + 28u), r18);
+                r4 = Mem.U32((r19 + 20u));
+                r6 = Mem.U32((r21 + 8u));
+                r7 = Cpu.W(20);
+                r5 = r23; alSynStartVoiceParams(r4, r5, r6, Cpu.U2F(r7), (short)Mem.U32(r29 + 16u), (byte)Mem.U32(r29 + 20u), (byte)Mem.U32(r29 + 24u), (int)Mem.U32(r29 + 28u));
+                r2 = (uint)6;
+                Mem.Set((r29 + 32u), (ushort)r2);
+                Mem.Set((r29 + 36u), r23);
+                r2 = Mem.U32((r21 + 0u));
+                r16 = r19 + 72u;
+                r2 = Mem.U8((r2 + 13u));
+                r4 = r16;
+                Mem.Set((r29 + 44u), (byte)r2);
+                r2 = Mem.U32((r21 + 0u));
+                r5 = r29 + 32u;
+                r2 = Mem.U32((r2 + 4u));
+                r6 = r18;
+                Mem.Set((r29 + 40u), r2); alEvtqPostEvent(r4, r5, (int)r6);
+                r2 = Mem.U32((r30 + 8u));
+                { bool c_ = r2 == 0; r2 = (uint)21; if (c_) goto L_L002B4C08; }
+                Mem.Set((r29 + 32u), (ushort)r2);
+                r2 = r20 | 128u;
+                Mem.Set((r29 + 40u), (byte)r2);
+                Mem.Set((r29 + 41u), (byte)r22);
+                Mem.Set((r29 + 42u), (byte)r0);
+                r2 = Mem.U32((r19 + 36u));
+                r6 = Mem.U32((r30 + 8u));
+                { long p_ = (long)(int)r2 * (int)r6; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r4 = r16;
+                r6 = lo;
+                r5 = r29 + 32u; alEvtqPostEvent(r4, r5, (int)r6);
+                 goto L_L002B4C08;
+                L_L002B47EC: ;
+                r4 = r19;
+                L_L002B47F0: ;
+                r5 = r22 & 255u;
+                r6 = r20; r2 = __lookupVoice(r4, (byte)r5, (byte)r6);
+                r17 = r2;
+                { bool c_ = r17 == 0; r2 = (uint)2; if (c_) goto L_L002B4C08; }
+                r3 = Mem.U8((r17 + 53u));
+                { bool c_ = r3 != r2; r3 = (uint)3; if (c_) goto L_L002B4820; }
+                r2 = (uint)4;
+                Mem.Set((r17 + 53u), (byte)r2); goto L_L002B4C08;
+                L_L002B4820: ;
+                r2 = Mem.U32((r17 + 32u));
+                Mem.Set((r17 + 53u), (byte)r3);
+                r2 = Mem.U32((r2 + 0u));
+                r4 = r19;
+                r6 = Mem.U32((r2 + 8u));
+                r5 = r17 + 4u; __seqpReleaseVoice(r4, r5, (int)r6);
+                 goto L_L002B4C08;
+                L_L002B4844: ;
+                r5 = r22 & 255u;
+                r6 = r20; r2 = __lookupVoice(r4, (byte)r5, (byte)r6);
+                r17 = r2;
+                { bool c_ = r17 == 0; r4 = r17; if (c_) goto L_L002B4C08; }
+                r5 = r19;
+                Mem.Set((r17 + 51u), (byte)r16); r2 = (uint)__vsVol(r4, r5);
+                r4 = r17;
+                r16 = r2 << 16;
+                r5 = Mem.U32((r19 + 28u));
+                r16 = (uint)((int)r16 >> 16); r2 = (uint)__vsDelta(r4, (int)r5);
+                r5 = r17 + 4u;
+                r6 = r16;
+                r4 = Mem.U32((r19 + 20u));
+                r7 = r2; alSynSetVol(r4, r5, (short)r6, (int)r7);
+                 goto L_L002B4C08;
+                L_L002B4898: ;
+                r17 = Mem.U32((r19 + 100u));
+                { bool c_ = r17 == 0; r18 = r20 & 255u; if (c_) goto L_L002B4C08; }
+                L_L002B48A4: ;
+                r2 = Mem.U8((r17 + 49u));
+                { bool c_ = r2 != r18; r4 = r17; if (c_) goto L_L002B48E4; }
+                r5 = r19;
+                Mem.Set((r17 + 51u), (byte)r21); r2 = (uint)__vsVol(r4, r5);
+                r4 = r17;
+                r16 = r2 << 16;
+                r5 = Mem.U32((r19 + 28u));
+                r16 = (uint)((int)r16 >> 16); r2 = (uint)__vsDelta(r4, (int)r5);
+                r5 = r17 + 4u;
+                r6 = r16;
+                r4 = Mem.U32((r19 + 20u));
+                r7 = r2; alSynSetVol(r4, r5, (short)r6, (int)r7);
+                L_L002B48E4: ;
+                r17 = Mem.U32((r17 + 0u));
+                { bool c_ = r17 == 0;  if (c_) goto L_L002B4C08; }
+                 goto L_L002B48A4;
+                L_L002B48F8: ;
+                r3 = r22 & 255u;
+                r2 = (uint)16;
+                { bool c_ = r3 == r2; r2 = (uint)((int)r3 < 17 ? 1 : 0); if (c_) goto L_L002B4A18; }
+                { bool c_ = r2 == 0; r2 = (uint)7; if (c_) goto L_L002B4928; }
+                { bool c_ = r3 == r2; r2 = (uint)10; if (c_) goto L_L002B4998; }
+                { bool c_ = r3 == r2; r6 = r20 & 255u; if (c_) goto L_L002B4944; }
+                 goto L_L002B4C08;
+                L_L002B4928: ;
+                r2 = (uint)64;
+                { bool c_ = r3 == r2; r2 = (uint)91; if (c_) goto L_L002B4A2C; }
+                { bool c_ = r3 == r2; r6 = r20 & 255u; if (c_) goto L_L002B4AD8; }
+                 goto L_L002B4C08;
+                L_L002B4944: ;
+                r3 = Mem.U32((r19 + 96u));
+                r2 = r6 << 4;
+                r2 = r2 + r3;
+                Mem.Set((r2 + 7u), (byte)r16);
+                r17 = Mem.U32((r19 + 100u));
+                { bool c_ = r17 == 0; r16 = r6; if (c_) goto L_L002B4C08; }
+                L_L002B4960: ;
+                r2 = Mem.U8((r17 + 49u));
+                { bool c_ = r2 != r16; r4 = r17; if (c_) goto L_L002B4984; }
+                r5 = r19; r2 = (uint)__vsPan(r4, r5);
+                r4 = Mem.U32((r19 + 20u));
+                r5 = r17 + 4u;
+                r6 = r2 & 255u; alSynSetPan(r4, r5, (byte)r6);
+                L_L002B4984: ;
+                r17 = Mem.U32((r17 + 0u));
+                { bool c_ = r17 == 0;  if (c_) goto L_L002B4C08; }
+                 goto L_L002B4960;
+                L_L002B4998: ;
+                r6 = r20 & 255u;
+                r3 = Mem.U32((r19 + 96u));
+                r2 = r6 << 4;
+                r2 = r2 + r3;
+                Mem.Set((r2 + 9u), (byte)r16);
+                r17 = Mem.U32((r19 + 100u));
+                { bool c_ = r17 == 0; r18 = r6; if (c_) goto L_L002B4C08; }
+                r20 = (uint)3;
+                L_L002B49BC: ;
+                r2 = Mem.U8((r17 + 49u));
+                { bool c_ = r2 != r18;  if (c_) goto L_L002B4A04; }
+                r2 = Mem.U8((r17 + 52u));
+                { bool c_ = r2 == r20; r4 = r17; if (c_) goto L_L002B4A04; }
+                r5 = r19; r2 = (uint)__vsVol(r4, r5);
+                r4 = r17;
+                r5 = Mem.U32((r19 + 28u));
+                r16 = r2; r2 = (uint)__vsDelta(r4, (int)r5);
+                r5 = r17 + 4u;
+                r6 = r16 << 16;
+                r6 = (uint)((int)r6 >> 16);
+                r4 = Mem.U32((r19 + 20u));
+                r7 = r2; alSynSetVol(r4, r5, (short)r6, (int)r7);
+                L_L002B4A04: ;
+                r17 = Mem.U32((r17 + 0u));
+                { bool c_ = r17 == 0;  if (c_) goto L_L002B4C08; }
+                 goto L_L002B49BC;
+                L_L002B4A18: ;
+                r3 = Mem.U32((r19 + 96u));
+                r2 = r20 << 4;
+                r2 = r2 + r3;
+                Mem.Set((r2 + 8u), (byte)r16); goto L_L002B4C08;
+                L_L002B4A2C: ;
+                r6 = r20 & 255u;
+                r3 = Mem.U32((r19 + 96u));
+                r2 = r6 << 4;
+                r2 = r2 + r3;
+                Mem.Set((r2 + 11u), (byte)r16);
+                r17 = Mem.U32((r19 + 100u));
+                { bool c_ = r17 == 0; r20 = r6; if (c_) goto L_L002B4C08; }
+                r18 = (uint)3;
+                r2 = r16 & 255u;
+                r16 = (uint)(r2 < (uint)(64) ? 1 : 0);
+                r23 = (uint)2;
+                r22 = (uint)2;
+                r21 = (uint)4;
+                L_L002B4A64: ;
+                r2 = Mem.U8((r17 + 49u));
+                { bool c_ = r2 != r20;  if (c_) goto L_L002B4AC4; }
+                r2 = Mem.U8((r17 + 53u));
+                { bool c_ = r2 == r18;  if (c_) goto L_L002B4AC4; }
+                { bool c_ = r16 != 0;  if (c_) goto L_L002B4A94; }
+                if (r2 == 0) { Mem.Set((r17 + 53u), (byte)r23); goto L_L002B4AC4; }
+                 goto L_L002B4AC4;
+                L_L002B4A94: ;
+                { bool c_ = r2 != r22;  if (c_) goto L_L002B4AA4; }
+                Mem.Set((r17 + 53u), (byte)r0); goto L_L002B4AC4;
+                L_L002B4AA4: ;
+                { bool c_ = r2 != r21; r4 = r19; if (c_) goto L_L002B4AC4; }
+                r2 = Mem.U32((r17 + 32u));
+                Mem.Set((r17 + 53u), (byte)r18);
+                r2 = Mem.U32((r2 + 0u));
+                r6 = Mem.U32((r2 + 8u));
+                r5 = r17 + 4u; __seqpReleaseVoice(r4, r5, (int)r6);
+                L_L002B4AC4: ;
+                r17 = Mem.U32((r17 + 0u));
+                { bool c_ = r17 == 0;  if (c_) goto L_L002B4C08; }
+                 goto L_L002B4A64;
+                L_L002B4AD8: ;
+                r3 = Mem.U32((r19 + 96u));
+                r2 = r6 << 4;
+                r2 = r2 + r3;
+                Mem.Set((r2 + 10u), (byte)r16);
+                r17 = Mem.U32((r19 + 100u));
+                { bool c_ = r17 == 0; r16 = r6; if (c_) goto L_L002B4C08; }
+                L_L002B4AF4: ;
+                r2 = Mem.U8((r17 + 49u));
+                { bool c_ = r2 != r16; r5 = r17 + 4u; if (c_) goto L_L002B4B0C; }
+                r4 = Mem.U32((r19 + 20u));
+                r6 = r18 & 255u; alSynSetFXMix(r4, r5, (byte)r6);
+                L_L002B4B0C: ;
+                r17 = Mem.U32((r17 + 0u));
+                { bool c_ = r17 == 0;  if (c_) goto L_L002B4C08; }
+                 goto L_L002B4AF4;
+                L_L002B4B20: ;
+                r2 = Mem.U32((r19 + 32u));
+                { bool c_ = r2 != 0;  if (c_) goto L_L002B4B44; }
+                r4 = 2148335616u;
+                r4 = r4 - 14944u;
+                r5 = 2148335616u;
+                r5 = r5 - 14940u;
+                r6 = (uint)711; r2 = __assert(r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B4B44: ;
+                r5 = Mem.U32((r19 + 32u));
+                r2 = (uint)(int)Mem.S16((r5 + 0u));
+                r3 = r22 & 255u;
+                r2 = (uint)((int)r3 < (int)r2 ? 1 : 0);
+                { bool c_ = r2 == 0; r4 = r19; if (c_) goto L_L002B4C08; }
+                r2 = r3 << 2;
+                r2 = r5 + r2;
+                r5 = Mem.U32((r2 + 12u));
+                r6 = r20; __setInstChanState(r4, r5, (int)r6);
+                 goto L_L002B4C08;
+                L_L002B4B78: ;
+                r3 = r3 << 7;
+                r2 = r22 & 255u;
+                r3 = r3 + r2;
+                r18 = r20 & 255u;
+                r2 = Mem.U32((r19 + 96u));
+                r16 = r18 << 4;
+                r2 = r16 + r2;
+                r2 = (uint)(int)Mem.S16((r2 + 4u));
+                r3 = r3 - 8192u;
+                { long p_ = (long)(int)r2 * (int)r3; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r2 = lo;
+                if ((int)r2 < 0) { r2 = r2 + 8191u; goto L_L002B4BAC; }
+                L_L002B4BAC: ;
+                r4 = (uint)((int)r2 >> 13); Cpu.SetS(0, alCents2Ratio((int)r4));
+                r2 = Mem.U32((r19 + 96u));
+                Cpu.SetS(20, Cpu.S(0));
+                r2 = r16 + r2;
+                Mem.Set((r2 + 12u), Cpu.W(20));
+                r17 = Mem.U32((r19 + 100u));
+                { bool c_ = r17 == 0; r16 = r18; if (c_) goto L_L002B4C08; }
+                L_L002B4BD0: ;
+                r2 = Mem.U8((r17 + 49u));
+                { bool c_ = r2 != r16;  if (c_) goto L_L002B4BFC; }
+                Cpu.SetW(0, Mem.U32((r17 + 40u)));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(20));
+                Cpu.SetW(1, Mem.U32((r17 + 44u)));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                r4 = Mem.U32((r19 + 20u));
+                r6 = Cpu.W(0);
+                r5 = r17 + 4u; alSynSetPitch(r4, r5, Cpu.U2F(r6));
+                L_L002B4BFC: ;
+                r17 = Mem.U32((r17 + 0u));
+                { bool c_ = r17 != 0;  if (c_) goto L_L002B4BD0; }
+                L_L002B4C08: ;
+                r31 = Mem.U32((r29 + 100u));
+                r30 = Mem.U32((r29 + 96u));
+                r23 = Mem.U32((r29 + 92u));
+                r22 = Mem.U32((r29 + 88u));
+                r21 = Mem.U32((r29 + 84u));
+                r20 = Mem.U32((r29 + 80u));
+                r19 = Mem.U32((r29 + 76u));
+                r18 = Mem.U32((r29 + 72u));
+                r17 = Mem.U32((r29 + 68u));
+                r16 = Mem.U32((r29 + 64u));
+                Cpu.Fpr[20] = Mem.U64((r29 + 104u));
+                r29 = r29 + 112u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B43B0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B4C3C @ 0x002B4C3C [MIPS]
+    public static uint __CSPHandleMetaMsg_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B4C3C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B4C3C: ;
+                r29 = r29 - 64u;
+                Mem.Set((r29 + 52u), r21);
+                r21 = r4;
+                Mem.Set((r29 + 40u), r18);
+                r18 = r0;
+                Mem.Set((r29 + 44u), r19);
+                Mem.Set((r29 + 60u), r31);
+                Mem.Set((r29 + 56u), r22);
+                Mem.Set((r29 + 48u), r20);
+                Mem.Set((r29 + 36u), r17);
+                Mem.Set((r29 + 32u), r16);
+                r3 = Mem.U8((r5 + 8u));
+                r2 = (uint)255;
+                { bool c_ = r3 != r2; r19 = r18; if (c_) goto L_L002B4DA8; }
+                r3 = Mem.U8((r5 + 9u));
+                r2 = (uint)81;
+                { bool c_ = r3 != r2;  if (c_) goto L_L002B4DA8; }
+                r2 = Mem.U8((r5 + 11u));
+                r3 = Mem.U8((r5 + 12u));
+                r5 = Mem.U8((r5 + 13u));
+                r2 = r2 << 16;
+                r3 = r3 << 8;
+                r2 = r2 | r3;
+                r2 = r2 | r5;
+                Cpu.SetW(0, r2);
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                r5 = Cpu.W(0);
+                r20 = Mem.U32((r21 + 36u));
+                __setUsptFromTempo_2(r4, Cpu.U2F(r5));
+                r16 = Mem.U32((r21 + 80u));
+                if (r16 == 0) { r16 = r19; goto L_L002B4D40; }
+                r22 = (uint)21;
+                L_L002B4CCC: ;
+                r17 = Mem.U32((r16 + 0u));
+                r2 = Mem.U32((r16 + 8u));
+                r3 = (uint)(int)Mem.S16((r16 + 12u));
+                { bool c_ = r3 != r22; r18 = r18 + r2; if (c_) goto L_L002B4D30; }
+                r4 = r16; alUnlink(r4);
+                { bool c_ = r19 == 0; r4 = r16; if (c_) goto L_L002B4D00; }
+                r5 = r19; alLink(r4, r5);
+                r4 = r18; goto L_L002B4D10;
+                L_L002B4D00: ;
+                r19 = r16;
+                Mem.Set((r16 + 0u), r0);
+                Mem.Set((r16 + 4u), r0);
+                r4 = r18;
+                L_L002B4D10: ;
+                if (r17 == 0) { Mem.Set((r16 + 8u), r4); goto L_L002B4D30; }
+                r3 = Mem.U32((r16 + 8u));
+                r2 = Mem.U32((r17 + 8u));
+                r18 = r4 - r3;
+                r2 = r2 + r3;
+                Mem.Set((r17 + 8u), r2);
+                Mem.Set((r16 + 8u), r4);
+                L_L002B4D30: ;
+                r16 = r17;
+                { bool c_ = r16 != 0;  if (c_) goto L_L002B4CCC; }
+                r16 = r19;
+                L_L002B4D40: ;
+                { bool c_ = r16 == 0;  if (c_) goto L_L002B4DA8; }
+                L_L002B4D48: ;
+                r2 = Mem.U32((r16 + 8u));
+                if (r20 != 0) { lo = (uint)Cpu.SDiv((int)r2, (int)r20); hi = (uint)Cpu.SRem((int)r2, (int)r20); }
+                { bool c_ = r20 != 0;  if (c_) goto L_L002B4D5C; }
+                throw new InvalidOperationException("MIPS break");
+                L_L002B4D5C: ;
+                r1 = (uint)-1;
+                { bool c_ = r20 != r1; r1 = 2147483648u; if (c_) goto L_L002B4D74; }
+                { bool c_ = r2 != r1;  if (c_) goto L_L002B4D74; }
+                throw new InvalidOperationException("MIPS break");
+                L_L002B4D74: ;
+                r2 = lo;
+                r3 = Mem.U32((r21 + 36u));
+                { long p_ = (long)(int)r2 * (int)r3; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r4 = r21 + 72u;
+                r5 = r16;
+                r17 = Mem.U32((r16 + 0u));
+                r2 = lo;
+                Mem.Set((r5 + 8u), r2); __CSPRepostEvent(r4, r5);
+                r16 = r17;
+                { bool c_ = r16 != 0;  if (c_) goto L_L002B4D48; }
+                L_L002B4DA8: ;
+                r31 = Mem.U32((r29 + 60u));
+                r22 = Mem.U32((r29 + 56u));
+                r21 = Mem.U32((r29 + 52u));
+                r20 = Mem.U32((r29 + 48u));
+                r19 = Mem.U32((r29 + 44u));
+                r18 = Mem.U32((r29 + 40u));
+                r17 = Mem.U32((r29 + 36u));
+                r16 = Mem.U32((r29 + 32u));
+                r29 = r29 + 64u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B4C3C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B4DD0 @ 0x002B4DD0 [MIPS]
+    public static uint __CSPPostNextSeqEvent_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B4DD0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B4DD0: ;
+                r29 = r29 - 48u;
+                Mem.Set((r29 + 40u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 44u), r31);
+                r3 = Mem.U32((r16 + 44u));
+                r2 = (uint)1;
+                { bool c_ = r3 != r2;  if (c_) goto L_L002B4E2C; }
+                r4 = Mem.U32((r16 + 24u));
+                { bool c_ = r4 == 0;  if (c_) goto L_L002B4E2C; }
+                r5 = r29 + 32u; r2 = (uint)__alCSeqNextDelta(r4, r5);
+                r2 = r2 & 255u;
+                { bool c_ = r2 == 0; r4 = r16 + 72u; if (c_) goto L_L002B4E2C; }
+                r2 = Mem.U32((r29 + 32u));
+                Mem.Set((r29 + 16u), (ushort)r0);
+                r6 = Mem.U32((r16 + 36u));
+                { long p_ = (long)(int)r2 * (int)r6; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r6 = lo;
+                r5 = r29 + 16u; alEvtqPostEvent(r4, r5, (int)r6);
+                L_L002B4E2C: ;
+                r31 = Mem.U32((r29 + 44u));
+                r16 = Mem.U32((r29 + 40u));
+                r29 = r29 + 48u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B4DD0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B4E3C @ 0x002B4E3C [MIPS]
+    public static uint __CSPRepostEvent_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B4E3C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B4E3C: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r5;
+                Mem.Set((r29 + 24u), r31);
+                r4 = (uint)1; r2 = osSetIntMask(r4);
+                r5 = r16 + 8u;
+                { bool c_ = r5 == 0; r16 = r2; if (c_) goto L_L002B4EB0; }
+                L_L002B4E68: ;
+                r6 = Mem.U32((r5 + 0u));
+                { bool c_ = r6 == 0;  if (c_) goto L_L002B4E8C; }
+                r4 = Mem.U32((r17 + 8u));
+                r3 = Mem.U32((r6 + 8u));
+                r2 = (uint)((int)r4 < (int)r3 ? 1 : 0);
+                { bool c_ = r2 == 0; r2 = r3 - r4; if (c_) goto L_L002B4E9C; }
+                Mem.Set((r6 + 8u), r2);
+                L_L002B4E8C: ;
+                r4 = r17; alLink(r4, r5);
+                 goto L_L002B4EB0;
+                L_L002B4E9C: ;
+                r2 = r4 - r3;
+                Mem.Set((r17 + 8u), r2);
+                r5 = Mem.U32((r5 + 0u));
+                { bool c_ = r5 != 0;  if (c_) goto L_L002B4E68; }
+                L_L002B4EB0: ;
+                r4 = r16; r2 = osSetIntMask(r4);
+                r31 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B4E3C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B4ECC @ 0x002B4ECC [MIPS]
+    public static uint __setUsptFromTempo_2_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B4ECC", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B4ECC: ;
+                r2 = Mem.U32((r4 + 24u));
+                Cpu.SetW(1, r5);
+                if (r2 == 0) { r2 = (uint)488; goto L_L002B4EF4; }
+                Cpu.SetW(0, Mem.U32((r2 + 8u)));
+                Cpu.SetS(0, Cpu.S(1) * Cpu.S(0));
+                Cpu.SetW(2, (uint)(int)Cpu.S(0));
+                Mem.Set((r4 + 36u), Cpu.W(2));
+                Cpu.V1 = r3; return r2;
+                L_L002B4EF4: ;
+                Mem.Set((r4 + 36u), r2); Cpu.V1 = r3; return r2;
+                Mem.Set((r17 + 53u), (byte)r0);
+                L_func_002B4F00: ;
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 14720u)));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 14716u)));
+                { bool c_ = (int)r4 >= 0;  if (c_) goto L_L002B4F24; }
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 14712u)));
+                r4 = 0u - r4;
+                L_L002B4F24: ;
+                { bool c_ = r4 == 0; r2 = r4 & 1u; if (c_) goto L_L002B4F48; }
+                L_L002B4F2C: ;
+                { bool c_ = r2 == 0; r4 = (uint)((int)r4 >> 1); if (c_) goto L_L002B4F38; }
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                L_L002B4F38: ;
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(1));
+                { bool c_ = r4 != 0; r2 = r4 & 1u; if (c_) goto L_L002B4F2C; }
+                L_L002B4F48: ;
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B4ECC", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B4EFC @ 0x002B4EFC [MIPS]
+    public static uint alCents2Ratio_Head(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B4EFC", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B4EFC: ;
+                Mem.Set((r17 + 53u), (byte)r0);
+                L_func_002B4F00: ;
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 14720u)));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 14716u)));
+                { bool c_ = (int)r4 >= 0;  if (c_) goto L_L002B4F24; }
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 14712u)));
+                r4 = 0u - r4;
+                L_L002B4F24: ;
+                { bool c_ = r4 == 0; r2 = r4 & 1u; if (c_) goto L_L002B4F48; }
+                L_L002B4F2C: ;
+                { bool c_ = r2 == 0; r4 = (uint)((int)r4 >> 1); if (c_) goto L_L002B4F38; }
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                L_L002B4F38: ;
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(1));
+                { bool c_ = r4 != 0; r2 = r4 & 1u; if (c_) goto L_L002B4F2C; }
+                L_L002B4F48: ;
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B4EFC", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B4F00 @ 0x002B4F00 [MIPS]
+    public static uint alCents2Ratio_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B4F00", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B4F00: ;
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 14720u)));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 14716u)));
+                { bool c_ = (int)r4 >= 0;  if (c_) goto L_L002B4F24; }
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 14712u)));
+                r4 = 0u - r4;
+                L_L002B4F24: ;
+                { bool c_ = r4 == 0; r2 = r4 & 1u; if (c_) goto L_L002B4F48; }
+                L_L002B4F2C: ;
+                { bool c_ = r2 == 0; r4 = (uint)((int)r4 >> 1); if (c_) goto L_L002B4F38; }
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                L_L002B4F38: ;
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(1));
+                { bool c_ = r4 != 0; r2 = r4 & 1u; if (c_) goto L_L002B4F2C; }
+                L_L002B4F48: ;
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B4F00", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B4F50 @ 0x002B4F50 [MIPS]
+    public static uint alCSPPlay_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B4F50", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B4F50: ;
+                r29 = r29 - 40u;
+                r2 = (uint)15;
+                r4 = r4 + 72u;
+                r5 = r29 + 16u;
+                r6 = r0;
+                Mem.Set((r29 + 32u), r31);
+                Mem.Set((r29 + 16u), (ushort)r2); alEvtqPostEvent(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                r2 = r21 << 4;
+                L_func_002B4F80: ;
+                r29 = r29 - 40u;
+                r2 = (uint)14;
+                r4 = r4 + 72u;
+                Mem.Set((r29 + 20u), r5);
+                r5 = r29 + 16u;
+                r6 = r0;
+                Mem.Set((r29 + 32u), r31);
+                Mem.Set((r29 + 16u), (ushort)r2); alEvtqPostEvent(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B4F50", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B4F7C @ 0x002B4F7C [MIPS]
+    public static uint alCSPSetBank_Head(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B4F7C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B4F7C: ;
+                r2 = r21 << 4;
+                L_func_002B4F80: ;
+                r29 = r29 - 40u;
+                r2 = (uint)14;
+                r4 = r4 + 72u;
+                Mem.Set((r29 + 20u), r5);
+                r5 = r29 + 16u;
+                r6 = r0;
+                Mem.Set((r29 + 32u), r31);
+                Mem.Set((r29 + 16u), (ushort)r2); alEvtqPostEvent(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B4F7C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B4F80 @ 0x002B4F80 [MIPS]
+    public static uint alCSPSetBank_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B4F80", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B4F80: ;
+                r29 = r29 - 40u;
+                r2 = (uint)14;
+                r4 = r4 + 72u;
+                Mem.Set((r29 + 20u), r5);
+                r5 = r29 + 16u;
+                r6 = r0;
+                Mem.Set((r29 + 32u), r31);
+                Mem.Set((r29 + 16u), (ushort)r2); alEvtqPostEvent(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B4F80", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B4FB0 @ 0x002B4FB0 [MIPS]
+    public static uint alCSPSetChlFXMix_Recompiled(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B4FB0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                Mem.Set(r29 + 20u, a5);
+                L_func_002B4FB0: ;
+                r29 = r29 - 40u;
+                r2 = (uint)2;
+                r5 = r5 | 176u;
+                Mem.Set((r29 + 16u), (ushort)r2);
+                r2 = (uint)91;
+                r4 = r4 + 72u;
+                Mem.Set((r29 + 24u), (byte)r5);
+                r5 = r29 + 16u;
+                Mem.Set((r29 + 26u), (byte)r6);
+                r6 = r0;
+                Mem.Set((r29 + 32u), r31);
+                Mem.Set((r29 + 20u), r0);
+                Mem.Set((r29 + 25u), (byte)r2); alEvtqPostEvent(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                r2 = r2 | 1u;
+                Mem.Set((r17 + 55u), (byte)r2);
+                Cpu.SetW(0, Mem.U32((r29 + 60u)));
+                L_func_002B5000: ;
+                r29 = r29 - 40u;
+                r2 = (uint)13;
+                r4 = r4 + 72u;
+                Mem.Set((r29 + 20u), r5);
+                r5 = r29 + 16u;
+                r6 = r0;
+                Mem.Set((r29 + 32u), r31);
+                Mem.Set((r29 + 16u), (ushort)r2); alEvtqPostEvent(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B4FB0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B4FF4 @ 0x002B4FF4 [MIPS]
+    public static uint alCSPSetSeq_Head(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B4FF4", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                Mem.Set(r29 + 20u, a5);
+                L_func_002B4FF4: ;
+                r2 = r2 | 1u;
+                Mem.Set((r17 + 55u), (byte)r2);
+                Cpu.SetW(0, Mem.U32((r29 + 60u)));
+                L_func_002B5000: ;
+                r29 = r29 - 40u;
+                r2 = (uint)13;
+                r4 = r4 + 72u;
+                Mem.Set((r29 + 20u), r5);
+                r5 = r29 + 16u;
+                r6 = r0;
+                Mem.Set((r29 + 32u), r31);
+                Mem.Set((r29 + 16u), (ushort)r2); alEvtqPostEvent(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B4FF4", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B5000 @ 0x002B5000 [MIPS]
+    public static uint alCSPSetSeq_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B5000", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B5000: ;
+                r29 = r29 - 40u;
+                r2 = (uint)13;
+                r4 = r4 + 72u;
+                Mem.Set((r29 + 20u), r5);
+                r5 = r29 + 16u;
+                r6 = r0;
+                Mem.Set((r29 + 32u), r31);
+                Mem.Set((r29 + 16u), (ushort)r2); alEvtqPostEvent(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B5000", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B5030 @ 0x002B5030 [MIPS]
+    public static uint alCSPSetVol_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B5030", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B5030: ;
+                r29 = r29 - 40u;
+                r2 = (uint)10;
+                r4 = r4 + 72u;
+                Mem.Set((r29 + 20u), (ushort)r5);
+                r5 = r29 + 16u;
+                r6 = r0;
+                Mem.Set((r29 + 32u), r31);
+                Mem.Set((r29 + 16u), (ushort)r2); alEvtqPostEvent(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B5030", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B5090 @ 0x002B5090 [MIPS]
+    public static uint alEvtqNew_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B5090", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B5090: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r4;
+                r4 = r5;
+                Mem.Set((r29 + 28u), r19);
+                r19 = r6;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r0;
+                Mem.Set((r29 + 32u), r31);
+                Mem.Set((r29 + 16u), r16);
+                Mem.Set((r18 + 16u), r0);
+                Mem.Set((r18 + 8u), r0);
+                Mem.Set((r18 + 12u), r0);
+                Mem.Set((r18 + 0u), r0);
+                { bool c_ = (int)r19 <= 0; Mem.Set((r18 + 4u), r0); if (c_) goto L_L002B50F0; }
+                r16 = r4;
+                L_L002B50D4: ;
+                r4 = r16;
+                r5 = r18; alLink(r4, r5);
+                r17 = r17 + 1u;
+                r2 = (uint)((int)r17 < (int)r19 ? 1 : 0);
+                { bool c_ = r2 != 0; r16 = r16 + 28u; if (c_) goto L_L002B50D4; }
+                L_L002B50F0: ;
+                r31 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B5090", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B510C @ 0x002B510C [MIPS]
+    public static uint alEvtqNextEvent_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B510C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B510C: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 28u), r19);
+                r19 = r4;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r5;
+                r4 = (uint)1;
+                Mem.Set((r29 + 32u), r31);
+                Mem.Set((r29 + 24u), r18);
+                Mem.Set((r29 + 16u), r16); r2 = osSetIntMask(r4);
+                r16 = Mem.U32((r19 + 8u));
+                { bool c_ = r16 == 0; r18 = r2; if (c_) goto L_L002B5170; }
+                r4 = r16; alUnlink(r4);
+                r4 = r16 + 12u;
+                r5 = r17;
+                r6 = (uint)16; alCopy(r4, r5, (int)r6);
+                r4 = r16;
+                r5 = r19; alLink(r4, r5);
+                r16 = Mem.U32((r16 + 8u));
+                 goto L_L002B517C;
+                L_L002B5170: ;
+                r2 = (uint)-1;
+                Mem.Set((r17 + 0u), (ushort)r2);
+                r16 = r0;
+                L_L002B517C: ;
+                r4 = r18; r2 = osSetIntMask(r4);
+                r2 = r16;
+                r31 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B510C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B51A4 @ 0x002B51A4 [MIPS]
+    public static uint alEvtqPostEvent_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B51A4", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B51A4: ;
+                r29 = r29 - 48u;
+                Mem.Set((r29 + 32u), r20);
+                r20 = r4;
+                Mem.Set((r29 + 28u), r19);
+                r19 = r5;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r6;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r0;
+                r4 = (uint)1;
+                Mem.Set((r29 + 40u), r31);
+                Mem.Set((r29 + 36u), r21);
+                Mem.Set((r29 + 16u), r16); r2 = osSetIntMask(r4);
+                r16 = Mem.U32((r20 + 0u));
+                { bool c_ = r16 != 0; r21 = r2; if (c_) goto L_L002B520C; }
+                 goto L_L002B5284;
+                L_L002B51F0: ;
+                Mem.Set((r4 + 8u), r17);
+                r2 = Mem.U32((r6 + 8u));
+                r2 = r2 - r17;
+                Mem.Set((r6 + 8u), r2); alLink(r4, r5);
+                 goto L_L002B5284;
+                L_L002B520C: ;
+                r4 = r16; alUnlink(r4);
+                r4 = r19;
+                r5 = r16 + 12u;
+                r6 = (uint)16; alCopy(r4, r5, (int)r6);
+                r2 = 2147418112u;
+                r2 = r2 | 65535u;
+                if (r17 == r2) { r18 = (uint)-1; goto L_L002B5234; }
+                L_L002B5234: ;
+                r5 = r20 + 8u;
+                { bool c_ = r5 == 0;  if (c_) goto L_L002B5284; }
+                L_L002B5240: ;
+                r6 = Mem.U32((r5 + 0u));
+                { bool c_ = r6 != 0;  if (c_) goto L_L002B5268; }
+                if (r18 == 0) { Mem.Set((r16 + 8u), r17); goto L_L002B5258; }
+                Mem.Set((r16 + 8u), r0);
+                L_L002B5258: ;
+                r4 = r16; alLink(r4, r5);
+                 goto L_L002B5284;
+                L_L002B5268: ;
+                r3 = Mem.U32((r6 + 8u));
+                r2 = (uint)((int)r17 < (int)r3 ? 1 : 0);
+                { bool c_ = r2 != 0; r4 = r16; if (c_) goto L_L002B51F0; }
+                r17 = r17 - r3;
+                r5 = r6; goto L_L002B5240;
+                L_L002B5284: ;
+                r4 = r21; r2 = osSetIntMask(r4);
+                r31 = Mem.U32((r29 + 40u));
+                r21 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 48u; Cpu.V1 = r3; return r2;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r4;
+                r4 = (uint)1;
+                Mem.Set((r29 + 32u), r31);
+                Mem.Set((r29 + 28u), r19);
+                Mem.Set((r29 + 20u), r17);
+                Mem.Set((r29 + 16u), r16); r2 = osSetIntMask(r4);
+                r17 = Mem.U32((r18 + 8u));
+                { bool c_ = r17 == 0; r19 = r2; if (c_) goto L_L002B5304; }
+                L_L002B52E0: ;
+                r16 = Mem.U32((r17 + 0u));
+                r4 = r17; alUnlink(r4);
+                r4 = r17;
+                r5 = r18; alLink(r4, r5);
+                r17 = r16;
+                { bool c_ = r17 != 0;  if (c_) goto L_L002B52E0; }
+                L_L002B5304: ;
+                r4 = r19; r2 = osSetIntMask(r4);
+                r31 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B51A4", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B5328 @ 0x002B5328 [MIPS]
+    public static uint alEvtqFlushType_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B5328", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B5328: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 28u), r19);
+                r19 = r4;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r5;
+                r4 = (uint)1;
+                Mem.Set((r29 + 36u), r31);
+                Mem.Set((r29 + 32u), r20);
+                Mem.Set((r29 + 24u), r18);
+                Mem.Set((r29 + 16u), r16); r2 = osSetIntMask(r4);
+                r16 = Mem.U32((r19 + 8u));
+                { bool c_ = r16 == 0; r20 = r2; if (c_) goto L_L002B53B0; }
+                r2 = r17 << 16;
+                r18 = (uint)((int)r2 >> 16);
+                L_L002B5368: ;
+                r2 = (uint)(int)Mem.S16((r16 + 12u));
+                r17 = Mem.U32((r16 + 0u));
+                if (r2 != r18) { r16 = r17; goto L_L002B53A8; }
+                { bool c_ = r17 == 0;  if (c_) goto L_L002B5390; }
+                r2 = Mem.U32((r17 + 8u));
+                r3 = Mem.U32((r16 + 8u));
+                r2 = r2 + r3;
+                Mem.Set((r17 + 8u), r2);
+                L_L002B5390: ;
+                r4 = r16; alUnlink(r4);
+                r4 = r16;
+                r5 = r19; alLink(r4, r5);
+                r16 = r17;
+                L_L002B53A8: ;
+                { bool c_ = r16 != 0;  if (c_) goto L_L002B5368; }
+                L_L002B53B0: ;
+                r4 = r20; r2 = osSetIntMask(r4);
+                r31 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                { Mem.Set((r2 + 8u), (byte)r16); r2 = __handleMIDIMsg_Tail(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u, 0u, 0u, 0u, 0u, 0u, 0u, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1; Cpu.V1 = r3; return r2; }
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B5328", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B53E0 @ 0x002B53E0 [MIPS]
+    public static uint alCopy_Recompiled(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B53E0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_002B53E0: ;
+                { bool c_ = (int)r6 <= 0; r3 = r0; if (c_) goto L_L002B5404; }
+                L_L002B53E8: ;
+                r2 = Mem.U8((r4 + 0u));
+                r4 = r4 + 1u;
+                r3 = r3 + 1u;
+                Mem.Set((r5 + 0u), (byte)r2);
+                r2 = (uint)((int)r3 < (int)r6 ? 1 : 0);
+                { bool c_ = r2 != 0; r5 = r5 + 1u; if (c_) goto L_L002B53E8; }
+                L_L002B5404: ;
+                Cpu.V1 = r3; return r2;
+                r22 = (uint)2;
+                L_func_002B5410: ;
+                r2 = Mem.U32((r29 + 16u));
+                { long p_ = (long)(int)r7 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r5 = Mem.U32((r6 + 4u));
+                r4 = Mem.U32((r6 + 8u));
+                r2 = (uint)-16;
+                r8 = lo;
+                r3 = r8 + 15u;
+                r3 = r3 & r2;
+                r2 = Mem.U32((r6 + 0u));
+                r3 = r5 + r3;
+                r2 = r2 + r4;
+                r2 = (uint)(r2 < r3 ? 1 : 0);
+                { bool c_ = r2 != 0; r7 = r0; if (c_) goto L_L002B5450; }
+                r7 = r5;
+                Mem.Set((r6 + 4u), r3);
+                L_L002B5450: ;
+                r2 = r7; Cpu.V1 = r3; return r2;
+                r4 = r18;
+                r2 = Mem.U32((r17 + 32u));
+                L_func_002B5460: ;
+                r3 = r5 & 15u;
+                r2 = (uint)16;
+                r3 = r2 - r3;
+                { bool c_ = r3 == r2; r2 = r5 + r3; if (c_) goto L_L002B547C; }
+                Mem.Set((r4 + 0u), r2); goto L_L002B5480;
+                L_L002B547C: ;
+                Mem.Set((r4 + 0u), r5);
+                L_L002B5480: ;
+                r2 = Mem.U32((r4 + 0u));
+                Mem.Set((r4 + 8u), r6);
+                Mem.Set((r4 + 12u), r0);
+                Mem.Set((r4 + 4u), r2); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B53E0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B540C @ 0x002B540C [MIPS]
+    public static uint alHeapDBAlloc_Head(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B540C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_002B540C: ;
+                r22 = r0 + 2u;
+                L_func_002B5410: ;
+                r2 = Mem.U32((r29 + 16u));
+                { long p_ = (long)(int)r7 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r5 = Mem.U32((r6 + 4u));
+                r4 = Mem.U32((r6 + 8u));
+                r2 = (uint)-16;
+                r8 = lo;
+                r3 = r8 + 15u;
+                r3 = r3 & r2;
+                r2 = Mem.U32((r6 + 0u));
+                r3 = r5 + r3;
+                r2 = r2 + r4;
+                r2 = (uint)(r2 < r3 ? 1 : 0);
+                { bool c_ = r2 != 0; r7 = r0; if (c_) goto L_L002B5450; }
+                r7 = r5;
+                Mem.Set((r6 + 4u), r3);
+                L_L002B5450: ;
+                r2 = r7; Cpu.V1 = r3; return r2;
+                r4 = r18;
+                r2 = Mem.U32((r17 + 32u));
+                L_func_002B5460: ;
+                r3 = r5 & 15u;
+                r2 = (uint)16;
+                r3 = r2 - r3;
+                { bool c_ = r3 == r2; r2 = r5 + r3; if (c_) goto L_L002B547C; }
+                Mem.Set((r4 + 0u), r2); goto L_L002B5480;
+                L_L002B547C: ;
+                Mem.Set((r4 + 0u), r5);
+                L_L002B5480: ;
+                r2 = Mem.U32((r4 + 0u));
+                Mem.Set((r4 + 8u), r6);
+                Mem.Set((r4 + 12u), r0);
+                Mem.Set((r4 + 4u), r2); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B540C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B5410 @ 0x002B5410 [MIPS]
+    public static uint alHeapDBAlloc_Recompiled(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B5410", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_002B5410: ;
+                r2 = Mem.U32((r29 + 16u));
+                { long p_ = (long)(int)r7 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r5 = Mem.U32((r6 + 4u));
+                r4 = Mem.U32((r6 + 8u));
+                r2 = (uint)-16;
+                r8 = lo;
+                r3 = r8 + 15u;
+                r3 = r3 & r2;
+                r2 = Mem.U32((r6 + 0u));
+                r3 = r5 + r3;
+                r2 = r2 + r4;
+                r2 = (uint)(r2 < r3 ? 1 : 0);
+                { bool c_ = r2 != 0; r7 = r0; if (c_) goto L_L002B5450; }
+                r7 = r5;
+                Mem.Set((r6 + 4u), r3);
+                L_L002B5450: ;
+                r2 = r7; Cpu.V1 = r3; return r2;
+                r4 = r18;
+                r2 = Mem.U32((r17 + 32u));
+                L_func_002B5460: ;
+                r3 = r5 & 15u;
+                r2 = (uint)16;
+                r3 = r2 - r3;
+                { bool c_ = r3 == r2; r2 = r5 + r3; if (c_) goto L_L002B547C; }
+                Mem.Set((r4 + 0u), r2); goto L_L002B5480;
+                L_L002B547C: ;
+                Mem.Set((r4 + 0u), r5);
+                L_L002B5480: ;
+                r2 = Mem.U32((r4 + 0u));
+                Mem.Set((r4 + 8u), r6);
+                Mem.Set((r4 + 12u), r0);
+                Mem.Set((r4 + 4u), r2); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B5410", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B5458 @ 0x002B5458 [MIPS]
+    public static uint alHeapInit_Head(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B5458", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B5458: ;
+                r4 = r18 + r0;
+                r2 = Mem.U32((r17 + 32u));
+                L_func_002B5460: ;
+                r3 = r5 & 15u;
+                r2 = (uint)16;
+                r3 = r2 - r3;
+                { bool c_ = r3 == r2; r2 = r5 + r3; if (c_) goto L_L002B547C; }
+                Mem.Set((r4 + 0u), r2); goto L_L002B5480;
+                L_L002B547C: ;
+                Mem.Set((r4 + 0u), r5);
+                L_L002B5480: ;
+                r2 = Mem.U32((r4 + 0u));
+                Mem.Set((r4 + 8u), r6);
+                Mem.Set((r4 + 12u), r0);
+                Mem.Set((r4 + 4u), r2); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B5458", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B5460 @ 0x002B5460 [MIPS]
+    public static uint alHeapInit_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B5460", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B5460: ;
+                r3 = r5 & 15u;
+                r2 = (uint)16;
+                r3 = r2 - r3;
+                { bool c_ = r3 == r2; r2 = r5 + r3; if (c_) goto L_L002B547C; }
+                Mem.Set((r4 + 0u), r2); goto L_L002B5480;
+                L_L002B547C: ;
+                Mem.Set((r4 + 0u), r5);
+                L_L002B5480: ;
+                r2 = Mem.U32((r4 + 0u));
+                Mem.Set((r4 + 8u), r6);
+                Mem.Set((r4 + 12u), r0);
+                Mem.Set((r4 + 4u), r2); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B5460", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B5494 @ 0x002B5494 [MIPS]
+    public static uint alSeqpNew_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B5494", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B5494: ;
+                r2 = r2 + r3;
+                Mem.Set((r2 + 10u), (byte)r16);
+                r17 = Mem.U32((r18 + 100u));
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 24u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 28u), r17);
+                r17 = r5;
+                Mem.Set((r29 + 36u), r31);
+                Mem.Set((r29 + 32u), r18);
+                r18 = Mem.U32((r17 + 12u));
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 - 32608u));
+                r2 = (uint)255;
+                Mem.Set((r16 + 48u), (ushort)r2);
+                r2 = (uint)488;
+                Mem.Set((r16 + 36u), r2);
+                r2 = (uint)32767;
+                Mem.Set((r16 + 32u), r0);
+                Mem.Set((r16 + 24u), r0);
+                Mem.Set((r16 + 40u), r0);
+                Mem.Set((r16 + 44u), r0);
+                Mem.Set((r16 + 50u), (ushort)r2);
+                Mem.Set((r16 + 20u), r3);
+                r3 = Mem.U8((r17 + 9u));
+                r2 = (uint)16000;
+                Mem.Set((r16 + 92u), r2);
+                Mem.Set((r16 + 28u), r0);
+                Mem.Set((r16 + 53u), (byte)r3);
+                r2 = Mem.U32((r17 + 16u));
+                r4 = r0;
+                Mem.Set((r16 + 112u), r2);
+                r2 = Mem.U32((r17 + 20u));
+                r5 = r4;
+                Mem.Set((r16 + 116u), r2);
+                r3 = Mem.U32((r17 + 24u));
+                r2 = (uint)9;
+                Mem.Set((r16 + 124u), r0);
+                Mem.Set((r16 + 128u), r0);
+                Mem.Set((r16 + 132u), r0);
+                Mem.Set((r16 + 56u), (ushort)r2);
+                Mem.Set((r16 + 120u), r3);
+                r2 = Mem.U8((r17 + 8u));
+                r6 = r18;
+                Mem.Set((r16 + 52u), (byte)r2);
+                r7 = Mem.U8((r17 + 8u));
+                r2 = (uint)16;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = r16;
+                Mem.Set((r16 + 96u), r2); __initChanState(r4);
+                r4 = r0;
+                r5 = r4;
+                r2 = (uint)56;
+                Mem.Set((r29 + 16u), r2);
+                r7 = Mem.U32((r17 + 0u));
+                r6 = r18; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                Mem.Set((r16 + 108u), r0);
+                r3 = Mem.U32((r17 + 0u));
+                { bool c_ = (int)r3 <= 0; r4 = r0; if (c_) goto L_L002B55B4; }
+                r3 = r2;
+                L_L002B5594: ;
+                r2 = Mem.U32((r16 + 108u));
+                r4 = r4 + 1u;
+                Mem.Set((r3 + 0u), r2);
+                Mem.Set((r16 + 108u), r3);
+                r2 = Mem.U32((r17 + 0u));
+                r2 = (uint)((int)r4 < (int)r2 ? 1 : 0);
+                { bool c_ = r2 != 0; r3 = r3 + 56u; if (c_) goto L_L002B5594; }
+                L_L002B55B4: ;
+                r4 = r0;
+                r5 = r4;
+                r2 = (uint)28;
+                Mem.Set((r16 + 100u), r0);
+                Mem.Set((r16 + 104u), r0);
+                Mem.Set((r29 + 16u), r2);
+                r7 = Mem.U32((r17 + 4u));
+                r6 = r18; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = r16 + 72u;
+                r6 = Mem.U32((r17 + 4u));
+                r5 = r2; alEvtqNew(r4, r5, (int)r6);
+                r5 = r16;
+                r4 = 2148401152u;
+                r4 = Mem.U32((r4 - 32608u));
+                r2 = 2818048u;
+                r2 = r2 + 22052u;
+                Mem.Set((r5 + 0u), r0);
+                Mem.Set((r5 + 8u), r2);
+                Mem.Set((r5 + 4u), r5); alSynAddPlayer(r4, r5);
+                r31 = Mem.U32((r29 + 36u));
+                r18 = Mem.U32((r29 + 32u));
+                r17 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B5494", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B5624 @ 0x002B5624 [MIPS]
+    public static uint __voiceHandler_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B5624", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B5624: ;
+                L_I002B5624: ;
+                r29 = r29 - 80u;
+                L_I002B5628: ;
+                Mem.Set((r29 + 72u), Cpu.Fpr[20]);
+                L_I002B562C: ;
+                r1 = 2148335616u;
+                L_I002B5630: ;
+                Cpu.SetW(20, Mem.U32((r1 - 14680u)));
+                L_I002B5634: ;
+                Mem.Set((r29 + 48u), r18);
+                L_I002B5638: ;
+                r18 = r4;
+                L_I002B563C: ;
+                Mem.Set((r29 + 60u), r21);
+                L_I002B5640: ;
+                r21 = (uint)1;
+                L_I002B5644: ;
+                Mem.Set((r29 + 64u), r31);
+                L_I002B5648: ;
+                Mem.Set((r29 + 56u), r20);
+                L_I002B564C: ;
+                Mem.Set((r29 + 52u), r19);
+                L_I002B5650: ;
+                Mem.Set((r29 + 44u), r17);
+                L_I002B5654: ;
+                Mem.Set((r29 + 40u), r16);
+                L_L002B5658: ;
+                L_I002B5658: ;
+                r3 = (uint)(int)Mem.S16((r18 + 56u));
+                L_I002B565C: ;
+                r2 = (uint)(r3 < (uint)(24) ? 1 : 0);
+                L_I002B5660: ;
+                { bool c_ = r2 == 0; r2 = r3 << 2; if (c_) goto L_L002B5B14; }
+                L_I002B5668: ;
+                r1 = 2148335616u;
+                L_I002B566C: ;
+                r1 = r1 + r2;
+                L_I002B5670: ;
+                r2 = Mem.U32((r1 - 14672u));
+                L_I002B5674: ;
+                 switch (r2) { case 2840100u: goto L_I002B5624; case 2840104u: goto L_I002B5628; case 2840108u: goto L_I002B562C; case 2840112u: goto L_I002B5630; case 2840116u: goto L_I002B5634; case 2840120u: goto L_I002B5638; case 2840124u: goto L_I002B563C; case 2840128u: goto L_I002B5640; case 2840132u: goto L_I002B5644; case 2840136u: goto L_I002B5648; case 2840140u: goto L_I002B564C; case 2840144u: goto L_I002B5650; case 2840148u: goto L_I002B5654; case 2840152u: goto L_I002B5658; case 2840156u: goto L_I002B565C; case 2840160u: goto L_I002B5660; case 2840168u: goto L_I002B5668; case 2840172u: goto L_I002B566C; case 2840176u: goto L_I002B5670; case 2840180u: goto L_I002B5674; case 2840188u: goto L_I002B567C; case 2840196u: goto L_I002B5684; case 2840204u: goto L_I002B568C; case 2840208u: goto L_I002B5690; case 2840212u: goto L_I002B5694; case 2840216u: goto L_I002B5698; case 2840220u: goto L_I002B569C; case 2840228u: goto L_I002B56A4; case 2840236u: goto L_I002B56AC; case 2840240u: goto L_I002B56B0; case 2840244u: goto L_I002B56B4; case 2840252u: goto L_I002B56BC; case 2840256u: goto L_I002B56C0; case 2840264u: goto L_I002B56C8; case 2840268u: goto L_I002B56CC; case 2840272u: goto L_I002B56D0; case 2840280u: goto L_I002B56D8; case 2840288u: goto L_I002B56E0; case 2840292u: goto L_I002B56E4; case 2840300u: goto L_I002B56EC; case 2840308u: goto L_I002B56F4; case 2840312u: goto L_I002B56F8; case 2840316u: goto L_I002B56FC; case 2840320u: goto L_I002B5700; case 2840328u: goto L_I002B5708; case 2840332u: goto L_I002B570C; case 2840336u: goto L_I002B5710; case 2840340u: goto L_I002B5714; case 2840344u: goto L_I002B5718; case 2840348u: goto L_I002B571C; case 2840352u: goto L_I002B5720; case 2840356u: goto L_I002B5724; case 2840360u: goto L_I002B5728; case 2840368u: goto L_I002B5730; case 2840372u: goto L_I002B5734; case 2840376u: goto L_I002B5738; case 2840380u: goto L_I002B573C; case 2840384u: goto L_I002B5740; case 2840392u: goto L_I002B5748; case 2840400u: goto L_I002B5750; case 2840404u: goto L_I002B5754; case 2840408u: goto L_I002B5758; case 2840412u: goto L_I002B575C; case 2840416u: goto L_I002B5760; case 2840424u: goto L_I002B5768; case 2840428u: goto L_I002B576C; case 2840432u: goto L_I002B5770; case 2840436u: goto L_I002B5774; case 2840440u: goto L_I002B5778; case 2840448u: goto L_I002B5780; case 2840452u: goto L_I002B5784; case 2840456u: goto L_I002B5788; case 2840464u: goto L_I002B5790; case 2840468u: goto L_I002B5794; case 2840472u: goto L_I002B5798; case 2840476u: goto L_I002B579C; case 2840480u: goto L_I002B57A0; case 2840484u: goto L_I002B57A4; case 2840488u: goto L_I002B57A8; case 2840492u: goto L_I002B57AC; case 2840500u: goto L_I002B57B4; case 2840504u: goto L_I002B57B8; case 2840508u: goto L_I002B57BC; case 2840512u: goto L_I002B57C0; case 2840520u: goto L_I002B57C8; case 2840524u: goto L_I002B57CC; case 2840528u: goto L_I002B57D0; case 2840532u: goto L_I002B57D4; case 2840540u: goto L_I002B57DC; case 2840544u: goto L_I002B57E0; case 2840548u: goto L_I002B57E4; case 2840552u: goto L_I002B57E8; case 2840556u: goto L_I002B57EC; case 2840560u: goto L_I002B57F0; case 2840564u: goto L_I002B57F4; case 2840572u: goto L_I002B57FC; case 2840580u: goto L_I002B5804; case 2840584u: goto L_I002B5808; case 2840588u: goto L_I002B580C; case 2840592u: goto L_I002B5810; case 2840596u: goto L_I002B5814; case 2840600u: goto L_I002B5818; case 2840608u: goto L_I002B5820; case 2840612u: goto L_I002B5824; case 2840616u: goto L_I002B5828; case 2840620u: goto L_I002B582C; case 2840624u: goto L_I002B5830; case 2840628u: goto L_I002B5834; case 2840632u: goto L_I002B5838; case 2840636u: goto L_I002B583C; case 2840640u: goto L_I002B5840; case 2840644u: goto L_I002B5844; case 2840648u: goto L_I002B5848; case 2840652u: goto L_I002B584C; case 2840656u: goto L_I002B5850; case 2840660u: goto L_I002B5854; case 2840668u: goto L_I002B585C; case 2840672u: goto L_I002B5860; case 2840676u: goto L_I002B5864; case 2840680u: goto L_I002B5868; case 2840684u: goto L_I002B586C; case 2840688u: goto L_I002B5870; case 2840692u: goto L_I002B5874; case 2840696u: goto L_I002B5878; case 2840704u: goto L_I002B5880; case 2840712u: goto L_I002B5888; case 2840716u: goto L_I002B588C; case 2840724u: goto L_I002B5894; case 2840732u: goto L_I002B589C; case 2840736u: goto L_I002B58A0; case 2840744u: goto L_I002B58A8; case 2840752u: goto L_I002B58B0; case 2840756u: goto L_I002B58B4; case 2840764u: goto L_I002B58BC; case 2840768u: goto L_I002B58C0; case 2840776u: goto L_I002B58C8; case 2840784u: goto L_I002B58D0; case 2840788u: goto L_I002B58D4; case 2840792u: goto L_I002B58D8; case 2840800u: goto L_I002B58E0; case 2840804u: goto L_I002B58E4; case 2840812u: goto L_I002B58EC; case 2840816u: goto L_I002B58F0; case 2840820u: goto L_I002B58F4; case 2840828u: goto L_I002B58FC; case 2840832u: goto L_I002B5900; case 2840840u: goto L_I002B5908; case 2840844u: goto L_I002B590C; case 2840852u: goto L_I002B5914; case 2840860u: goto L_I002B591C; case 2840864u: goto L_I002B5920; case 2840872u: goto L_I002B5928; case 2840876u: goto L_I002B592C; case 2840884u: goto L_I002B5934; case 2840888u: goto L_I002B5938; case 2840896u: goto L_I002B5940; case 2840900u: goto L_I002B5944; case 2840908u: goto L_I002B594C; case 2840912u: goto L_I002B5950; case 2840916u: goto L_I002B5954; case 2840924u: goto L_I002B595C; case 2840928u: goto L_I002B5960; case 2840936u: goto L_I002B5968; case 2840940u: goto L_I002B596C; case 2840948u: goto L_I002B5974; case 2840952u: goto L_I002B5978; case 2840956u: goto L_I002B597C; case 2840960u: goto L_I002B5980; case 2840968u: goto L_I002B5988; case 2840972u: goto L_I002B598C; case 2840980u: goto L_I002B5994; case 2840984u: goto L_I002B5998; case 2840992u: goto L_I002B59A0; case 2840996u: goto L_I002B59A4; case 2841004u: goto L_I002B59AC; case 2841008u: goto L_I002B59B0; case 2841012u: goto L_I002B59B4; case 2841016u: goto L_I002B59B8; case 2841020u: goto L_I002B59BC; case 2841024u: goto L_I002B59C0; case 2841028u: goto L_I002B59C4; case 2841032u: goto L_I002B59C8; case 2841040u: goto L_I002B59D0; case 2841048u: goto L_I002B59D8; case 2841052u: goto L_I002B59DC; case 2841056u: goto L_I002B59E0; case 2841064u: goto L_I002B59E8; case 2841068u: goto L_I002B59EC; case 2841076u: goto L_I002B59F4; case 2841080u: goto L_I002B59F8; case 2841084u: goto L_I002B59FC; case 2841088u: goto L_I002B5A00; case 2841096u: goto L_I002B5A08; case 2841100u: goto L_I002B5A0C; case 2841104u: goto L_I002B5A10; case 2841108u: goto L_I002B5A14; case 2841116u: goto L_I002B5A1C; case 2841120u: goto L_I002B5A20; case 2841128u: goto L_I002B5A28; case 2841136u: goto L_I002B5A30; case 2841140u: goto L_I002B5A34; case 2841144u: goto L_I002B5A38; case 2841148u: goto L_I002B5A3C; case 2841152u: goto L_I002B5A40; case 2841156u: goto L_I002B5A44; case 2841164u: goto L_I002B5A4C; case 2841168u: goto L_I002B5A50; case 2841172u: goto L_I002B5A54; case 2841176u: goto L_I002B5A58; case 2841180u: goto L_I002B5A5C; case 2841184u: goto L_I002B5A60; case 2841192u: goto L_I002B5A68; case 2841196u: goto L_I002B5A6C; case 2841204u: goto L_I002B5A74; case 2841208u: goto L_I002B5A78; case 2841212u: goto L_I002B5A7C; case 2841216u: goto L_I002B5A80; case 2841220u: goto L_I002B5A84; case 2841228u: goto L_I002B5A8C; case 2841232u: goto L_I002B5A90; case 2841236u: goto L_I002B5A94; case 2841240u: goto L_I002B5A98; case 2841244u: goto L_I002B5A9C; case 2841252u: goto L_I002B5AA4; case 2841256u: goto L_I002B5AA8; case 2841264u: goto L_I002B5AB0; case 2841272u: goto L_I002B5AB8; case 2841280u: goto L_I002B5AC0; case 2841284u: goto L_I002B5AC4; case 2841292u: goto L_I002B5ACC; case 2841296u: goto L_I002B5AD0; case 2841300u: goto L_I002B5AD4; case 2841304u: goto L_I002B5AD8; case 2841308u: goto L_I002B5ADC; case 2841316u: goto L_I002B5AE4; case 2841320u: goto L_I002B5AE8; case 2841324u: goto L_I002B5AEC; case 2841332u: goto L_I002B5AF4; case 2841340u: goto L_I002B5AFC; case 2841344u: goto L_I002B5B00; case 2841348u: goto L_I002B5B04; case 2841352u: goto L_I002B5B08; case 2841356u: goto L_I002B5B0C; case 2841364u: goto L_I002B5B14; case 2841368u: goto L_I002B5B18; case 2841376u: goto L_I002B5B20; case 2841380u: goto L_I002B5B24; case 2841388u: goto L_I002B5B2C; case 2841392u: goto L_I002B5B30; case 2841396u: goto L_I002B5B34; case 2841400u: goto L_I002B5B38; case 2841404u: goto L_I002B5B3C; case 2841408u: goto L_I002B5B40; case 2841412u: goto L_I002B5B44; case 2841416u: goto L_I002B5B48; case 2841420u: goto L_I002B5B4C; case 2841424u: goto L_I002B5B50; case 2841428u: goto L_I002B5B54; case 2841432u: goto L_I002B5B58; default: throw new InvalidOperationException($"bad jump table target {r2:X8} in func_002B5624"); }
+                L_L002B567C: ;
+                L_I002B567C: ;
+                r4 = r18; __handleNextSeqEvent(r4);
+                L_I002B5684: ;
+                r4 = r18 + 72u; goto L_L002B5B18;
+                L_L002B568C: ;
+                L_I002B568C: ;
+                r4 = r18 + 72u;
+                L_I002B5690: ;
+                r2 = (uint)9;
+                L_I002B5694: ;
+                Mem.Set((r29 + 16u), (ushort)r2);
+                L_I002B5698: ;
+                r6 = Mem.U32((r18 + 92u));
+                L_I002B569C: ;
+                r5 = r29 + 16u; alEvtqPostEvent(r4, r5, (int)r6);
+                L_I002B56A4: ;
+                r4 = r18 + 72u; goto L_L002B5B18;
+                L_L002B56AC: ;
+                L_I002B56AC: ;
+                r16 = Mem.U32((r18 + 60u));
+                L_I002B56B0: ;
+                r4 = Mem.U32((r18 + 20u));
+                L_I002B56B4: ;
+                r5 = r16; alSynStopVoice(r4, r5);
+                L_I002B56BC: ;
+                r4 = Mem.U32((r18 + 20u));
+                L_I002B56C0: ;
+                r5 = r16; alSynFreeVoice(r4, r5);
+                L_I002B56C8: ;
+                r17 = Mem.U32((r16 + 16u));
+                L_I002B56CC: ;
+                r2 = Mem.U8((r17 + 55u));
+                L_I002B56D0: ;
+                { bool c_ = r2 == 0; r4 = r18; if (c_) goto L_L002B56E0; }
+                L_I002B56D8: ;
+                r5 = r17; __seqpStopOsc(r4, r5);
+                L_L002B56E0: ;
+                L_I002B56E0: ;
+                r4 = r18;
+                L_I002B56E4: ;
+                r5 = r16; __unmapVoice(r4, r5);
+                L_I002B56EC: ;
+                r4 = r18 + 72u; goto L_L002B5B18;
+                L_L002B56F4: ;
+                L_I002B56F4: ;
+                r16 = Mem.U32((r18 + 60u));
+                L_I002B56F8: ;
+                r17 = Mem.U32((r16 + 16u));
+                L_I002B56FC: ;
+                r2 = Mem.U8((r17 + 52u));
+                L_I002B5700: ;
+                { bool c_ = r2 != 0; r2 = (uint)1; if (c_) goto L_L002B570C; }
+                L_I002B5708: ;
+                Mem.Set((r17 + 52u), (byte)r2);
+                L_L002B570C: ;
+                L_I002B570C: ;
+                r19 = Mem.U32((r18 + 64u));
+                L_I002B5710: ;
+                r2 = Mem.U8((r18 + 68u));
+                L_I002B5714: ;
+                r4 = r17;
+                L_I002B5718: ;
+                Mem.Set((r4 + 48u), (byte)r2);
+                L_I002B571C: ;
+                r2 = Mem.U32((r18 + 28u));
+                L_I002B5720: ;
+                r5 = r18;
+                L_I002B5724: ;
+                r2 = r2 + r19;
+                L_I002B5728: ;
+                Mem.Set((r4 + 36u), r2); r2 = (uint)__vsVol(r4, r5);
+                L_I002B5730: ;
+                r5 = r16;
+                L_I002B5734: ;
+                r2 = r2 << 16;
+                L_I002B5738: ;
+                r6 = (uint)((int)r2 >> 16);
+                L_I002B573C: ;
+                r4 = Mem.U32((r18 + 20u));
+                L_I002B5740: ;
+                r7 = r19; alSynSetVol(r4, r5, (short)r6, (int)r7);
+                L_I002B5748: ;
+                r4 = r18 + 72u; goto L_L002B5B18;
+                L_L002B5750: ;
+                L_I002B5750: ;
+                r5 = r29 + 32u;
+                L_I002B5754: ;
+                r17 = Mem.U32((r18 + 60u));
+                L_I002B5758: ;
+                r20 = Mem.U32((r18 + 64u));
+                L_I002B575C: ;
+                r2 = Mem.U32((r18 + 116u));
+                L_I002B5760: ;
+                r4 = r20; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_I002B5768: ;
+                r19 = r2;
+                L_I002B576C: ;
+                Cpu.SetW(0, Mem.U32((r29 + 32u)));
+                L_I002B5770: ;
+                fcc = Cpu.S(20) <= Cpu.S(0);
+                L_I002B5774: ;
+                L_I002B5778: ;
+                { bool c_ = fcc; r6 = r17 + 54u; if (c_) goto L_L002B5790; }
+                L_I002B5780: ;
+                Cpu.SetW(2, (uint)(int)Cpu.S(0));
+                L_I002B5784: ;
+                r3 = Cpu.W(2);
+                L_I002B5788: ;
+                r4 = r17; goto L_L002B57A8;
+                L_L002B5790: ;
+                L_I002B5790: ;
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(20));
+                L_I002B5794: ;
+                r2 = 2147483648u;
+                L_I002B5798: ;
+                Cpu.SetW(2, (uint)(int)Cpu.S(0));
+                L_I002B579C: ;
+                r3 = Cpu.W(2);
+                L_I002B57A0: ;
+                r3 = r3 | r2;
+                L_I002B57A4: ;
+                r4 = r17;
+                L_L002B57A8: ;
+                L_I002B57A8: ;
+                r5 = r18;
+                L_I002B57AC: ;
+                Mem.Set((r6 + 0u), (byte)r3); r2 = (uint)__vsVol(r4, r5);
+                L_I002B57B4: ;
+                r4 = r17;
+                L_I002B57B8: ;
+                r16 = r2 << 16;
+                L_I002B57BC: ;
+                r5 = Mem.U32((r18 + 28u));
+                L_I002B57C0: ;
+                r16 = (uint)((int)r16 >> 16); r2 = (uint)__vsDelta(r4, (int)r5);
+                L_I002B57C8: ;
+                r5 = r17 + 4u;
+                L_I002B57CC: ;
+                r6 = r16;
+                L_I002B57D0: ;
+                r4 = Mem.U32((r18 + 20u));
+                L_I002B57D4: ;
+                r7 = r2; alSynSetVol(r4, r5, (short)r6, (int)r7);
+                L_I002B57DC: ;
+                r4 = r18 + 72u;
+                L_I002B57E0: ;
+                r5 = r29 + 16u;
+                L_I002B57E4: ;
+                r6 = r19;
+                L_I002B57E8: ;
+                r2 = (uint)22;
+                L_I002B57EC: ;
+                Mem.Set((r29 + 16u), (ushort)r2);
+                L_I002B57F0: ;
+                Mem.Set((r29 + 20u), r17);
+                L_I002B57F4: ;
+                Mem.Set((r29 + 24u), r20); alEvtqPostEvent(r4, r5, (int)r6);
+                L_I002B57FC: ;
+                r4 = r18 + 72u; goto L_L002B5B18;
+                L_L002B5804: ;
+                L_I002B5804: ;
+                r5 = r29 + 32u;
+                L_I002B5808: ;
+                r20 = Mem.U32((r18 + 64u));
+                L_I002B580C: ;
+                r17 = Mem.U32((r18 + 60u));
+                L_I002B5810: ;
+                r2 = Mem.U32((r18 + 116u));
+                L_I002B5814: ;
+                r16 = Mem.U8((r18 + 68u));
+                L_I002B5818: ;
+                r4 = r20; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_I002B5820: ;
+                Cpu.SetW(0, Mem.U32((r29 + 32u)));
+                L_I002B5824: ;
+                Cpu.SetW(1, Mem.U32((r17 + 40u)));
+                L_I002B5828: ;
+                r3 = r16 & 255u;
+                L_I002B582C: ;
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
+                L_I002B5830: ;
+                Mem.Set((r17 + 44u), Cpu.W(0));
+                L_I002B5834: ;
+                r4 = Mem.U32((r18 + 96u));
+                L_I002B5838: ;
+                r3 = r3 << 4;
+                L_I002B583C: ;
+                r3 = r3 + r4;
+                L_I002B5840: ;
+                Cpu.SetW(0, Mem.U32((r3 + 12u)));
+                L_I002B5844: ;
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
+                L_I002B5848: ;
+                r19 = r2;
+                L_I002B584C: ;
+                r4 = Mem.U32((r18 + 20u));
+                L_I002B5850: ;
+                r6 = Cpu.W(1);
+                L_I002B5854: ;
+                r5 = r17 + 4u; alSynSetPitch(r4, r5, Cpu.U2F(r6));
+                L_I002B585C: ;
+                r4 = r18 + 72u;
+                L_I002B5860: ;
+                r5 = r29 + 16u;
+                L_I002B5864: ;
+                r6 = r19;
+                L_I002B5868: ;
+                r2 = (uint)23;
+                L_I002B586C: ;
+                Mem.Set((r29 + 16u), (ushort)r2);
+                L_I002B5870: ;
+                Mem.Set((r29 + 20u), r17);
+                L_I002B5874: ;
+                Mem.Set((r29 + 24u), r20);
+                L_I002B5878: ;
+                Mem.Set((r29 + 28u), (byte)r16); alEvtqPostEvent(r4, r5, (int)r6);
+                L_I002B5880: ;
+                r4 = r18 + 72u; goto L_L002B5B18;
+                L_L002B5888: ;
+                L_I002B5888: ;
+                r4 = r18;
+                L_I002B588C: ;
+                r5 = r18 + 56u; __handleMIDIMsg(r4, r5);
+                L_I002B5894: ;
+                r4 = r18 + 72u; goto L_L002B5B18;
+                L_L002B589C: ;
+                L_I002B589C: ;
+                r4 = r18;
+                L_I002B58A0: ;
+                r5 = r18 + 56u; __handleMetaMsg(r4, r5);
+                L_I002B58A8: ;
+                r4 = r18 + 72u; goto L_L002B5B18;
+                L_L002B58B0: ;
+                L_I002B58B0: ;
+                r2 = Mem.U32((r18 + 44u));
+                L_I002B58B4: ;
+                { bool c_ = r2 == r21; r4 = r18 + 72u; if (c_) goto L_L002B5B18; }
+                L_I002B58BC: ;
+                Mem.Set((r18 + 44u), r21);
+                L_I002B58C0: ;
+                r4 = r18; __postNextSeqEvent(r4);
+                L_I002B58C8: ;
+                r4 = r18 + 72u; goto L_L002B5B18;
+                L_L002B58D0: ;
+                L_I002B58D0: ;
+                r3 = Mem.U32((r18 + 44u));
+                L_I002B58D4: ;
+                r2 = (uint)2;
+                L_I002B58D8: ;
+                { bool c_ = r3 != r2; r4 = r18 + 72u; if (c_) goto L_L002B5B18; }
+                L_I002B58E0: ;
+                r17 = Mem.U32((r18 + 100u));
+                L_I002B58E4: ;
+                if (r17 == 0) { Mem.Set((r18 + 28u), r0); goto L_L002B5938; }
+                L_I002B58EC: ;
+                r16 = r17 + 4u;
+                L_L002B58F0: ;
+                L_I002B58F0: ;
+                r4 = Mem.U32((r18 + 20u));
+                L_I002B58F4: ;
+                r5 = r16; alSynStopVoice(r4, r5);
+                L_I002B58FC: ;
+                r4 = Mem.U32((r18 + 20u));
+                L_I002B5900: ;
+                r5 = r16; alSynFreeVoice(r4, r5);
+                L_I002B5908: ;
+                r2 = Mem.U8((r17 + 55u));
+                L_I002B590C: ;
+                { bool c_ = r2 == 0; r4 = r18; if (c_) goto L_L002B591C; }
+                L_I002B5914: ;
+                r5 = r17; __seqpStopOsc(r4, r5);
+                L_L002B591C: ;
+                L_I002B591C: ;
+                r4 = r18;
+                L_I002B5920: ;
+                r5 = r16; __unmapVoice(r4, r5);
+                L_I002B5928: ;
+                r17 = Mem.U32((r18 + 100u));
+                L_I002B592C: ;
+                { bool c_ = r17 != 0; r16 = r17 + 4u; if (c_) goto L_L002B58F0; }
+                L_I002B5934: ;
+                Mem.Set((r18 + 28u), r0);
+                L_L002B5938: ;
+                L_I002B5938: ;
+                Mem.Set((r18 + 44u), r0); goto L_L002B5B14;
+                L_L002B5940: ;
+                L_I002B5940: ;
+                r2 = Mem.U32((r18 + 44u));
+                L_I002B5944: ;
+                { bool c_ = r2 != r21; r4 = r18 + 72u; if (c_) goto L_L002B5B18; }
+                L_I002B594C: ;
+                r16 = r18 + 72u;
+                L_I002B5950: ;
+                r4 = r16;
+                L_I002B5954: ;
+                r5 = r0; alEvtqFlushType(r4, (short)r5);
+                L_I002B595C: ;
+                r4 = r16;
+                L_I002B5960: ;
+                r5 = (uint)2; alEvtqFlushType(r4, (short)r5);
+                L_I002B5968: ;
+                r17 = Mem.U32((r18 + 100u));
+                L_I002B596C: ;
+                { bool c_ = r17 == 0; r4 = r18 + 72u; if (c_) goto L_L002B59B0; }
+                L_I002B5974: ;
+                r4 = r18;
+                L_L002B5978: ;
+                L_I002B5978: ;
+                r16 = r17 + 4u;
+                L_I002B597C: ;
+                r5 = r16;
+                L_I002B5980: ;
+                r6 = (uint)50000; r2 = (uint)__voiceNeedsNoteKillOff(r4, r5, (int)r6);
+                L_I002B5988: ;
+                r2 = r2 & 255u;
+                L_I002B598C: ;
+                { bool c_ = r2 == 0; r4 = r18; if (c_) goto L_L002B59A0; }
+                L_I002B5994: ;
+                r5 = r16;
+                L_I002B5998: ;
+                r6 = (uint)50000; __seqpReleaseVoice(r4, r5, (int)r6);
+                L_L002B59A0: ;
+                L_I002B59A0: ;
+                r17 = Mem.U32((r17 + 0u));
+                L_I002B59A4: ;
+                { bool c_ = r17 != 0; r4 = r18; if (c_) goto L_L002B5978; }
+                L_I002B59AC: ;
+                r4 = r18 + 72u;
+                L_L002B59B0: ;
+                L_I002B59B0: ;
+                r5 = r29 + 16u;
+                L_I002B59B4: ;
+                r6 = 2147418112u;
+                L_I002B59B8: ;
+                r6 = r6 | 65535u;
+                L_I002B59BC: ;
+                r2 = (uint)2;
+                L_I002B59C0: ;
+                Mem.Set((r18 + 44u), r2);
+                L_I002B59C4: ;
+                r2 = (uint)16;
+                L_I002B59C8: ;
+                Mem.Set((r29 + 16u), (ushort)r2); alEvtqPostEvent(r4, r5, (int)r6);
+                L_I002B59D0: ;
+                r4 = r18 + 72u; goto L_L002B5B18;
+                L_L002B59D8: ;
+                L_I002B59D8: ;
+                r2 = Mem.U16((r18 + 60u));
+                L_I002B59DC: ;
+                r17 = Mem.U32((r18 + 100u));
+                L_I002B59E0: ;
+                { bool c_ = r17 == 0; Mem.Set((r18 + 50u), (ushort)r2); if (c_) goto L_L002B5B14; }
+                L_I002B59E8: ;
+                r4 = r17;
+                L_L002B59EC: ;
+                L_I002B59EC: ;
+                r5 = r18; r2 = (uint)__vsVol(r4, r5);
+                L_I002B59F4: ;
+                r4 = r17;
+                L_I002B59F8: ;
+                r16 = r2 << 16;
+                L_I002B59FC: ;
+                r5 = Mem.U32((r18 + 28u));
+                L_I002B5A00: ;
+                r16 = (uint)((int)r16 >> 16); r2 = (uint)__vsDelta(r4, (int)r5);
+                L_I002B5A08: ;
+                r5 = r17 + 4u;
+                L_I002B5A0C: ;
+                r6 = r16;
+                L_I002B5A10: ;
+                r4 = Mem.U32((r18 + 20u));
+                L_I002B5A14: ;
+                r7 = r2; alSynSetVol(r4, r5, (short)r6, (int)r7);
+                L_I002B5A1C: ;
+                r17 = Mem.U32((r17 + 0u));
+                L_I002B5A20: ;
+                { bool c_ = r17 != 0; r4 = r17; if (c_) goto L_L002B59EC; }
+                L_I002B5A28: ;
+                r4 = r18 + 72u; goto L_L002B5B18;
+                L_L002B5A30: ;
+                L_I002B5A30: ;
+                r2 = Mem.U32((r18 + 60u));
+                L_I002B5A34: ;
+                r3 = Mem.U32((r18 + 64u));
+                L_I002B5A38: ;
+                r4 = Mem.U32((r18 + 68u));
+                L_I002B5A3C: ;
+                Mem.Set((r18 + 124u), r2);
+                L_I002B5A40: ;
+                Mem.Set((r18 + 128u), r3);
+                L_I002B5A44: ;
+                Mem.Set((r18 + 132u), r4); goto L_L002B5B14;
+                L_L002B5A4C: ;
+                L_I002B5A4C: ;
+                r2 = Mem.U8((r18 + 60u));
+                L_I002B5A50: ;
+                r3 = Mem.U32((r18 + 96u));
+                L_I002B5A54: ;
+                r4 = Mem.U8((r18 + 61u));
+                L_I002B5A58: ;
+                r2 = r2 << 4;
+                L_I002B5A5C: ;
+                r2 = r2 + r3;
+                L_I002B5A60: ;
+                Mem.Set((r2 + 8u), (byte)r4); goto L_L002B5B14;
+                L_L002B5A68: ;
+                L_I002B5A68: ;
+                r2 = Mem.U32((r18 + 44u));
+                L_I002B5A6C: ;
+                { bool c_ = r2 != r21;  if (c_) goto L_L002B5A8C; }
+                L_I002B5A74: ;
+                r4 = 2148335616u;
+                L_I002B5A78: ;
+                r4 = r4 - 14704u;
+                L_I002B5A7C: ;
+                r5 = 2148335616u;
+                L_I002B5A80: ;
+                r5 = r5 - 14700u;
+                L_I002B5A84: ;
+                r6 = (uint)296; r2 = __assert(r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B5A8C: ;
+                L_I002B5A8C: ;
+                r5 = 1223950336u;
+                L_I002B5A90: ;
+                r5 = r5 | 9216u;
+                L_I002B5A94: ;
+                r2 = Mem.U32((r18 + 60u));
+                L_I002B5A98: ;
+                r4 = r18;
+                L_I002B5A9C: ;
+                Mem.Set((r18 + 24u), r2); __setUsptFromTempo(r4, Cpu.U2F(r5));
+                L_I002B5AA4: ;
+                r5 = Mem.U32((r18 + 32u));
+                L_I002B5AA8: ;
+                { bool c_ = r5 == 0; r4 = r18 + 72u; if (c_) goto L_L002B5B18; }
+                L_I002B5AB0: ;
+                r4 = r18; __initFromBank(r4, r5);
+                L_I002B5AB8: ;
+                r4 = r18 + 72u; goto L_L002B5B18;
+                L_L002B5AC0: ;
+                L_I002B5AC0: ;
+                r2 = Mem.U32((r18 + 44u));
+                L_I002B5AC4: ;
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B5AE4; }
+                L_I002B5ACC: ;
+                r4 = 2148335616u;
+                L_I002B5AD0: ;
+                r4 = r4 - 14704u;
+                L_I002B5AD4: ;
+                r5 = 2148335616u;
+                L_I002B5AD8: ;
+                r5 = r5 - 14700u;
+                L_I002B5ADC: ;
+                r6 = (uint)305; r2 = __assert(r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B5AE4: ;
+                L_I002B5AE4: ;
+                r5 = Mem.U32((r18 + 60u));
+                L_I002B5AE8: ;
+                r4 = r18;
+                L_I002B5AEC: ;
+                Mem.Set((r18 + 32u), r5); __initFromBank(r4, r5);
+                L_I002B5AF4: ;
+                r4 = r18 + 72u; goto L_L002B5B18;
+                L_L002B5AFC: ;
+                L_I002B5AFC: ;
+                r4 = 2148335616u;
+                L_I002B5B00: ;
+                r4 = r4 - 14704u;
+                L_I002B5B04: ;
+                r5 = 2148335616u;
+                L_I002B5B08: ;
+                r5 = r5 - 14700u;
+                L_I002B5B0C: ;
+                r6 = (uint)315; r2 = __assert(r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B5B14: ;
+                L_I002B5B14: ;
+                r4 = r18 + 72u;
+                L_L002B5B18: ;
+                L_I002B5B18: ;
+                r5 = r18 + 56u; r2 = (uint)alEvtqNextEvent(r4, r5);
+                L_I002B5B20: ;
+                r4 = r2;
+                L_I002B5B24: ;
+                { bool c_ = r4 == 0; Mem.Set((r18 + 40u), r4); if (c_) goto L_L002B5658; }
+                L_I002B5B2C: ;
+                r3 = Mem.U32((r18 + 28u));
+                L_I002B5B30: ;
+                r3 = r3 + r4;
+                L_I002B5B34: ;
+                Mem.Set((r18 + 28u), r3);
+                L_I002B5B38: ;
+                r31 = Mem.U32((r29 + 64u));
+                L_I002B5B3C: ;
+                r21 = Mem.U32((r29 + 60u));
+                L_I002B5B40: ;
+                r20 = Mem.U32((r29 + 56u));
+                L_I002B5B44: ;
+                r19 = Mem.U32((r29 + 52u));
+                L_I002B5B48: ;
+                r18 = Mem.U32((r29 + 48u));
+                L_I002B5B4C: ;
+                r17 = Mem.U32((r29 + 44u));
+                L_I002B5B50: ;
+                r16 = Mem.U32((r29 + 40u));
+                L_I002B5B54: ;
+                Cpu.Fpr[20] = Mem.U64((r29 + 72u));
+                L_I002B5B58: ;
+                r29 = r29 + 80u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B5624", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B5B60 @ 0x002B5B60 [MIPS]
+    public static uint __handleNextSeqEvent_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B5B60", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B5B60: ;
+                r29 = r29 - 72u;
+                Mem.Set((r29 + 60u), r17);
+                r17 = r4;
+                Mem.Set((r29 + 68u), r31);
+                Mem.Set((r29 + 64u), r18);
+                Mem.Set((r29 + 56u), r16);
+                r4 = Mem.U32((r17 + 24u));
+                { bool c_ = r4 == 0;  if (c_) goto L_L002B5D4C; }
+                r5 = r29 + 16u; alSeqNextEvent(r4, r5);
+                r16 = (uint)(int)Mem.S16((r29 + 16u));
+                r2 = (uint)3;
+                { bool c_ = r16 == r2; r2 = (uint)((int)r16 < 4 ? 1 : 0); if (c_) goto L_L002B5C58; }
+                { bool c_ = r2 == 0; r2 = (uint)1; if (c_) goto L_L002B5BB4; }
+                { bool c_ = r16 == r2; r4 = r17; if (c_) goto L_L002B5BC8; }
+                 goto L_L002B5D34;
+                L_L002B5BB4: ;
+                r2 = (uint)4;
+                { bool c_ = r16 == r2; r4 = r17 + 72u; if (c_) goto L_L002B5D0C; }
+                 goto L_L002B5D34;
+                L_L002B5BC8: ;
+                r5 = r29 + 16u; __handleMIDIMsg(r4, r5);
+                r2 = Mem.U32((r17 + 44u));
+                r18 = Mem.U32((r17 + 24u));
+                { bool c_ = r2 != r16;  if (c_) goto L_L002B5D4C; }
+                { bool c_ = r18 == 0; r4 = r18; if (c_) goto L_L002B5D4C; }
+                r5 = r29 + 48u; r2 = (uint)__alSeqNextDelta(r4, r5);
+                r2 = r2 & 255u;
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B5D4C; }
+                r2 = Mem.U32((r17 + 132u));
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B5C4C; }
+                r4 = r18; r2 = (uint)alSeqGetTicks(r4);
+                r3 = Mem.U32((r17 + 128u));
+                r4 = Mem.U32((r29 + 48u));
+                r3 = Mem.U32((r3 + 8u));
+                r2 = r2 + r4;
+                r2 = (uint)((int)r2 < (int)r3 ? 1 : 0);
+                { bool c_ = r2 != 0;  if (c_) goto L_L002B5C4C; }
+                r5 = Mem.U32((r17 + 124u));
+                r4 = r18; alSeqSetLoc(r4, r5);
+                r3 = Mem.U32((r17 + 132u));
+                r2 = (uint)-1;
+                { bool c_ = r3 == r2; r2 = r3 + r2; if (c_) goto L_L002B5C4C; }
+                Mem.Set((r17 + 132u), r2);
+                L_L002B5C4C: ;
+                r2 = Mem.U32((r29 + 48u));
+                Mem.Set((r29 + 32u), (ushort)r0); goto L_L002B5CEC;
+                L_L002B5C58: ;
+                r4 = r17;
+                r5 = r29 + 16u; __handleMetaMsg(r4, r5);
+                r3 = (uint)1;
+                r2 = Mem.U32((r17 + 44u));
+                r16 = Mem.U32((r17 + 24u));
+                { bool c_ = r2 != r3;  if (c_) goto L_L002B5D4C; }
+                { bool c_ = r16 == 0; r4 = r16; if (c_) goto L_L002B5D4C; }
+                r5 = r29 + 52u; r2 = (uint)__alSeqNextDelta(r4, r5);
+                r2 = r2 & 255u;
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B5D4C; }
+                r2 = Mem.U32((r17 + 132u));
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B5CE4; }
+                r4 = r16; r2 = (uint)alSeqGetTicks(r4);
+                r3 = Mem.U32((r17 + 128u));
+                r4 = Mem.U32((r29 + 52u));
+                r3 = Mem.U32((r3 + 8u));
+                r2 = r2 + r4;
+                r2 = (uint)((int)r2 < (int)r3 ? 1 : 0);
+                { bool c_ = r2 != 0;  if (c_) goto L_L002B5CE4; }
+                r5 = Mem.U32((r17 + 124u));
+                r4 = r16; alSeqSetLoc(r4, r5);
+                r3 = Mem.U32((r17 + 132u));
+                r2 = (uint)-1;
+                { bool c_ = r3 == r2; r2 = r3 + r2; if (c_) goto L_L002B5CE4; }
+                Mem.Set((r17 + 132u), r2);
+                L_L002B5CE4: ;
+                r2 = Mem.U32((r29 + 52u));
+                Mem.Set((r29 + 32u), (ushort)r0);
+                L_L002B5CEC: ;
+                r6 = Mem.U32((r17 + 36u));
+                { long p_ = (long)(int)r2 * (int)r6; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r4 = r17 + 72u;
+                r6 = lo;
+                r5 = r29 + 32u; alEvtqPostEvent(r4, r5, (int)r6);
+                 goto L_L002B5D4C;
+                L_L002B5D0C: ;
+                r5 = r29 + 16u;
+                r6 = 2147418112u;
+                r6 = r6 | 65535u;
+                r2 = (uint)2;
+                Mem.Set((r17 + 44u), r2);
+                r2 = (uint)16;
+                Mem.Set((r29 + 16u), (ushort)r2); alEvtqPostEvent(r4, r5, (int)r6);
+                 goto L_L002B5D4C;
+                L_L002B5D34: ;
+                r4 = 2148335616u;
+                r4 = r4 - 14704u;
+                r5 = 2148335616u;
+                r5 = r5 - 14700u;
+                r6 = (uint)412; r2 = __assert(r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B5D4C: ;
+                r31 = Mem.U32((r29 + 68u));
+                r18 = Mem.U32((r29 + 64u));
+                r17 = Mem.U32((r29 + 60u));
+                r16 = Mem.U32((r29 + 56u));
+                r29 = r29 + 72u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B5B60", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B5D64 @ 0x002B5D64 [MIPS]
+    public static uint __handleMIDIMsg_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B5D64", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B5D64: ;
+                r29 = r29 - 112u;
+                Mem.Set((r29 + 64u), r16);
+                r16 = r5;
+                Mem.Set((r29 + 96u), r31);
+                Mem.Set((r29 + 92u), r23);
+                Mem.Set((r29 + 88u), r22);
+                Mem.Set((r29 + 84u), r21);
+                Mem.Set((r29 + 80u), r20);
+                Mem.Set((r29 + 76u), r19);
+                Mem.Set((r29 + 72u), r18);
+                Mem.Set((r29 + 68u), r17);
+                Mem.Set((r29 + 104u), Cpu.Fpr[20]);
+                r2 = Mem.U16((r16 + 0u));
+                r2 = r2 - 1u;
+                r2 = (uint)(r2 < (uint)(2) ? 1 : 0);
+                { bool c_ = r2 != 0; r18 = r4; if (c_) goto L_L002B5DC0; }
+                r4 = 2148335616u;
+                r4 = r4 - 14704u;
+                r5 = 2148335616u;
+                r5 = r5 - 14700u;
+                r6 = (uint)436; r2 = __assert(r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B5DC0: ;
+                r2 = Mem.U8((r16 + 8u));
+                r20 = Mem.U8((r16 + 9u));
+                r16 = Mem.U8((r16 + 10u));
+                r21 = r2 & 15u;
+                r3 = r2 & 240u;
+                r22 = r20;
+                r2 = (uint)176;
+                { bool c_ = r3 == r2; r19 = r16; if (c_) goto L_L002B628C; }
+                r2 = (uint)((int)r3 < 177 ? 1 : 0);
+                { bool c_ = r2 == 0; r2 = (uint)144; if (c_) goto L_L002B5E24; }
+                { bool c_ = r3 == r2; r2 = (uint)((int)r3 < 145 ? 1 : 0); if (c_) goto L_L002B5E5C; }
+                { bool c_ = r2 == 0; r2 = (uint)128; if (c_) goto L_L002B5E10; }
+                { bool c_ = r3 == r2; r4 = r18; if (c_) goto L_L002B6184; }
+                 goto L_L002B65BC;
+                L_L002B5E10: ;
+                r2 = (uint)160;
+                { bool c_ = r3 == r2; r4 = r18; if (c_) goto L_L002B61D8; }
+                 goto L_L002B65BC;
+                L_L002B5E24: ;
+                r2 = (uint)208;
+                { bool c_ = r3 == r2; r2 = (uint)((int)r3 < 209 ? 1 : 0); if (c_) goto L_L002B622C; }
+                { bool c_ = r2 == 0; r2 = (uint)192; if (c_) goto L_L002B5E48; }
+                { bool c_ = r3 == r2;  if (c_) goto L_L002B64D4; }
+                 goto L_L002B65BC;
+                L_L002B5E48: ;
+                r2 = (uint)224;
+                { bool c_ = r3 == r2; r3 = r16 & 255u; if (c_) goto L_L002B652C; }
+                 goto L_L002B65BC;
+                L_L002B5E5C: ;
+                r17 = r16 & 255u;
+                { bool c_ = r17 == 0; r2 = (uint)1; if (c_) goto L_L002B6180; }
+                r3 = Mem.U32((r18 + 44u));
+                { bool c_ = r3 != r2; r4 = r18; if (c_) goto L_L002B65BC; }
+                r19 = r20 & 255u;
+                r5 = r19;
+                r6 = r17;
+                r16 = r21 & 255u;
+                r7 = r16; r2 = __lookupSoundQuick(r4, (byte)r5, (byte)r6, (byte)r7);
+                r22 = r2;
+                { bool c_ = r22 == 0; r4 = r18; if (c_) goto L_L002B65BC; }
+                r5 = r19;
+                r6 = r17;
+                r2 = Mem.U32((r18 + 96u));
+                r19 = r16 << 4;
+                r2 = r19 + r2;
+                r2 = Mem.U8((r2 + 8u));
+                r7 = r16;
+                Mem.Set((r29 + 50u), (ushort)r0);
+                Mem.Set((r29 + 52u), (byte)r0);
+                Mem.Set((r29 + 48u), (ushort)r2); r2 = __mapVoice(r4, (byte)r5, (byte)r6, (byte)r7);
+                r17 = r2;
+                { bool c_ = r17 == 0; r23 = r17 + 4u; if (c_) goto L_L002B65BC; }
+                r5 = r23;
+                r4 = Mem.U32((r18 + 20u));
+                r6 = r29 + 48u; r2 = (uint)alSynAllocVoice(r4, r5, r6);
+                Mem.Set((r17 + 32u), r22);
+                Mem.Set((r17 + 52u), (byte)r0);
+                r2 = Mem.U32((r18 + 96u));
+                r2 = r19 + r2;
+                r2 = Mem.U8((r2 + 11u));
+                r2 = (uint)(r2 < (uint)(64) ? 1 : 0);
+                if (r2 != 0) { Mem.Set((r17 + 53u), (byte)r0); goto L_L002B5F08; }
+                r2 = (uint)2;
+                Mem.Set((r17 + 53u), (byte)r2);
+                L_L002B5F08: ;
+                r2 = Mem.U32((r22 + 4u));
+                r3 = r20 & 255u;
+                r4 = Mem.U8((r2 + 5u));
+                r2 = Mem.U8((r2 + 4u));
+                r4 = r4 << 24;
+                r4 = (uint)((int)r4 >> 24);
+                r3 = r3 - r2;
+                r2 = r3 << 1;
+                r2 = r2 + r3;
+                r2 = r2 << 3;
+                r2 = r2 + r3;
+                r2 = r2 << 2;
+                r4 = r4 + r2;
+                r4 = r4 << 16;
+                r4 = (uint)((int)r4 >> 16); Cpu.SetS(0, alCents2Ratio((int)r4));
+                Mem.Set((r17 + 40u), Cpu.W(0));
+                r2 = Mem.U32((r22 + 0u));
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 14576u)));
+                r2 = Mem.U8((r2 + 12u));
+                Mem.Set((r17 + 48u), (byte)r2);
+                r3 = Mem.U32((r22 + 0u));
+                r2 = Mem.U32((r18 + 28u));
+                r3 = Mem.U32((r3 + 0u));
+                Mem.Set((r17 + 55u), (byte)r0);
+                r2 = r2 + r3;
+                Mem.Set((r17 + 36u), r2);
+                r3 = Mem.U32((r18 + 96u));
+                r2 = r21 << 4;
+                r2 = r2 + r3;
+                r16 = Mem.U32((r2 + 0u));
+                Mem.Set((r29 + 60u), Cpu.W(0));
+                r2 = Mem.U8((r16 + 4u));
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B5FFC; }
+                r2 = Mem.U32((r18 + 112u));
+                { bool c_ = r2 == 0; r4 = r29 + 56u; if (c_) goto L_L002B5FFC; }
+                r2 = Mem.U8((r16 + 6u));
+                r6 = Mem.U8((r16 + 4u));
+                r7 = Mem.U8((r16 + 5u));
+                Mem.Set((r29 + 16u), r2);
+                r2 = Mem.U8((r16 + 7u));
+                Mem.Set((r29 + 20u), r2);
+                r2 = Mem.U32((r18 + 112u));
+                r5 = r29 + 60u; r2 = Funcs.CallRegX(r2, r4, r5, r6, r7, new uint[] { Mem.U32(r29 + 16u), Mem.U32(r29 + 20u) }); r3 = Cpu.V1;
+                r6 = r2;
+                { bool c_ = r6 == 0; r4 = r18 + 72u; if (c_) goto L_L002B5FFC; }
+                r5 = r29 + 32u;
+                r3 = Mem.U32((r29 + 56u));
+                r2 = (uint)22;
+                Mem.Set((r29 + 32u), (ushort)r2);
+                Mem.Set((r29 + 36u), r17);
+                Mem.Set((r29 + 40u), r3); alEvtqPostEvent(r4, r5, (int)r6);
+                r2 = Mem.U8((r17 + 55u));
+                r2 = r2 | 1u;
+                Mem.Set((r17 + 55u), (byte)r2);
+                L_L002B5FFC: ;
+                Cpu.SetW(0, Mem.U32((r29 + 60u)));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 14572u)));
+                fcc = Cpu.S(1) <= Cpu.S(0);
+                { bool c_ = fcc; r4 = r17 + 54u; if (c_) goto L_L002B6028; }
+                Cpu.SetW(2, (uint)(int)Cpu.S(0));
+                r3 = Cpu.W(2);
+                 goto L_L002B603C;
+                L_L002B6028: ;
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(1));
+                r2 = 2147483648u;
+                Cpu.SetW(2, (uint)(int)Cpu.S(0));
+                r3 = Cpu.W(2);
+                r3 = r3 | r2;
+                L_L002B603C: ;
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 14568u)));
+                Mem.Set((r4 + 0u), (byte)r3);
+                Mem.Set((r29 + 60u), Cpu.W(0));
+                r2 = Mem.U8((r16 + 8u));
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B60C0; }
+                r2 = Mem.U32((r18 + 112u));
+                { bool c_ = r2 == 0; r4 = r29 + 56u; if (c_) goto L_L002B60C0; }
+                r2 = Mem.U8((r16 + 10u));
+                r6 = Mem.U8((r16 + 8u));
+                r7 = Mem.U8((r16 + 9u));
+                Mem.Set((r29 + 16u), r2);
+                r2 = Mem.U8((r16 + 11u));
+                Mem.Set((r29 + 20u), r2);
+                r2 = Mem.U32((r18 + 112u));
+                r5 = r29 + 60u; r2 = Funcs.CallRegX(r2, r4, r5, r6, r7, new uint[] { Mem.U32(r29 + 16u), Mem.U32(r29 + 20u) }); r3 = Cpu.V1;
+                r6 = r2;
+                { bool c_ = r6 == 0; r4 = r18 + 72u; if (c_) goto L_L002B60C0; }
+                r5 = r29 + 32u;
+                r3 = Mem.U32((r29 + 56u));
+                r2 = (uint)23;
+                Mem.Set((r29 + 32u), (ushort)r2);
+                Mem.Set((r29 + 36u), r17);
+                Mem.Set((r29 + 44u), (byte)r21);
+                Mem.Set((r29 + 40u), r3); alEvtqPostEvent(r4, r5, (int)r6);
+                r2 = Mem.U8((r17 + 55u));
+                r2 = r2 | 2u;
+                Mem.Set((r17 + 55u), (byte)r2);
+                L_L002B60C0: ;
+                Cpu.SetW(1, Mem.U32((r29 + 60u)));
+                r2 = r21 << 4;
+                Mem.Set((r17 + 44u), Cpu.W(1));
+                r3 = Mem.U32((r18 + 96u));
+                Cpu.SetW(20, Mem.U32((r17 + 40u)));
+                r2 = r2 + r3;
+                Cpu.SetW(0, Mem.U32((r2 + 12u)));
+                Cpu.SetS(20, Cpu.S(20) * Cpu.S(0));
+                r4 = r17;
+                r16 = Mem.U8((r2 + 10u));
+                Cpu.SetS(20, Cpu.S(20) * Cpu.S(1));
+                r5 = r18; r2 = (uint)__vsPan(r4, r5);
+                r4 = r17;
+                r5 = r18;
+                r17 = r2; r2 = (uint)__vsVol(r4, r5);
+                r2 = r2 << 16;
+                r3 = Mem.U32((r22 + 0u));
+                r2 = (uint)((int)r2 >> 16);
+                r6 = Mem.U32((r3 + 0u));
+                r16 = r16 & 255u;
+                Mem.Set((r29 + 16u), r2);
+                r2 = r17 & 255u;
+                Mem.Set((r29 + 20u), r2);
+                Mem.Set((r29 + 24u), r16);
+                Mem.Set((r29 + 28u), r6);
+                r4 = Mem.U32((r18 + 20u));
+                r6 = Mem.U32((r22 + 8u));
+                r7 = Cpu.W(20);
+                r5 = r23; alSynStartVoiceParams(r4, r5, r6, Cpu.U2F(r7), (short)Mem.U32(r29 + 16u), (byte)Mem.U32(r29 + 20u), (byte)Mem.U32(r29 + 24u), (int)Mem.U32(r29 + 28u));
+                r2 = (uint)6;
+                Mem.Set((r29 + 32u), (ushort)r2);
+                Mem.Set((r29 + 36u), r23);
+                r2 = Mem.U32((r22 + 0u));
+                r2 = Mem.U8((r2 + 13u));
+                Mem.Set((r29 + 44u), (byte)r2);
+                r2 = Mem.U32((r22 + 0u));
+                r2 = Mem.U32((r2 + 4u));
+                Mem.Set((r29 + 40u), r2);
+                r2 = Mem.U32((r22 + 0u));
+                r4 = r18 + 72u;
+                r6 = Mem.U32((r2 + 0u));
+                r5 = r29 + 32u; alEvtqPostEvent(r4, r5, (int)r6);
+                 goto L_L002B65BC;
+                L_L002B6180: ;
+                r4 = r18;
+                L_L002B6184: ;
+                r5 = r20 & 255u;
+                r6 = r21; r2 = __lookupVoice(r4, (byte)r5, (byte)r6);
+                r17 = r2;
+                { bool c_ = r17 == 0; r2 = (uint)2; if (c_) goto L_L002B65BC; }
+                r3 = Mem.U8((r17 + 53u));
+                { bool c_ = r3 != r2; r3 = (uint)3; if (c_) goto L_L002B61B4; }
+                r2 = (uint)4;
+                Mem.Set((r17 + 53u), (byte)r2); goto L_L002B65BC;
+                L_L002B61B4: ;
+                r2 = Mem.U32((r17 + 32u));
+                Mem.Set((r17 + 53u), (byte)r3);
+                r2 = Mem.U32((r2 + 0u));
+                r4 = r18;
+                r6 = Mem.U32((r2 + 8u));
+                r5 = r17 + 4u; __seqpReleaseVoice(r4, r5, (int)r6);
+                 goto L_L002B65BC;
+                L_L002B61D8: ;
+                r5 = r20 & 255u;
+                r6 = r21; r2 = __lookupVoice(r4, (byte)r5, (byte)r6);
+                r17 = r2;
+                { bool c_ = r17 == 0; r4 = r17; if (c_) goto L_L002B65BC; }
+                r5 = r18;
+                Mem.Set((r17 + 51u), (byte)r16); r2 = (uint)__vsVol(r4, r5);
+                r4 = r17;
+                r16 = r2 << 16;
+                r5 = Mem.U32((r18 + 28u));
+                r16 = (uint)((int)r16 >> 16); r2 = (uint)__vsDelta(r4, (int)r5);
+                r5 = r17 + 4u;
+                r6 = r16;
+                r4 = Mem.U32((r18 + 20u));
+                r7 = r2; alSynSetVol(r4, r5, (short)r6, (int)r7);
+                 goto L_L002B65BC;
+                L_L002B622C: ;
+                r17 = Mem.U32((r18 + 100u));
+                { bool c_ = r17 == 0; r19 = r21 & 255u; if (c_) goto L_L002B65BC; }
+                L_L002B6238: ;
+                r2 = Mem.U8((r17 + 49u));
+                { bool c_ = r2 != r19; r4 = r17; if (c_) goto L_L002B6278; }
+                r5 = r18;
+                Mem.Set((r17 + 51u), (byte)r22); r2 = (uint)__vsVol(r4, r5);
+                r4 = r17;
+                r16 = r2 << 16;
+                r5 = Mem.U32((r18 + 28u));
+                r16 = (uint)((int)r16 >> 16); r2 = (uint)__vsDelta(r4, (int)r5);
+                r5 = r17 + 4u;
+                r6 = r16;
+                r4 = Mem.U32((r18 + 20u));
+                r7 = r2; alSynSetVol(r4, r5, (short)r6, (int)r7);
+                L_L002B6278: ;
+                r17 = Mem.U32((r17 + 0u));
+                { bool c_ = r17 == 0;  if (c_) goto L_L002B65BC; }
+                 goto L_L002B6238;
+                L_L002B628C: ;
+                r3 = r20 & 255u;
+                r2 = (uint)((int)r3 < 28 ? 1 : 0);
+                { bool c_ = r2 == 0; r2 = (uint)((int)r3 < 20 ? 1 : 0); if (c_) goto L_L002B62D8; }
+                { bool c_ = r2 == 0; r2 = (uint)10; if (c_) goto L_L002B65BC; }
+                { bool c_ = r3 == r2; r2 = (uint)((int)r3 < 11 ? 1 : 0); if (c_) goto L_L002B62FC; }
+                { bool c_ = r2 == 0; r2 = (uint)7; if (c_) goto L_L002B62C4; }
+                { bool c_ = r3 == r2; r6 = r21 & 255u; if (c_) goto L_L002B6354; }
+                 goto L_L002B65BC;
+                L_L002B62C4: ;
+                r2 = (uint)16;
+                { bool c_ = r3 == r2; r2 = r21 << 4; if (c_) goto L_L002B63D0; }
+                 goto L_L002B65BC;
+                L_L002B62D8: ;
+                r2 = (uint)91;
+                { bool c_ = r3 == r2; r2 = (uint)((int)r3 < 92 ? 1 : 0); if (c_) goto L_L002B6488; }
+                { bool c_ = r2 == 0; r2 = (uint)64; if (c_) goto L_L002B65BC; }
+                { bool c_ = r3 == r2; r6 = r21 & 255u; if (c_) goto L_L002B63E0; }
+                 goto L_L002B65BC;
+                L_L002B62FC: ;
+                r6 = r21 & 255u;
+                r3 = Mem.U32((r18 + 96u));
+                r2 = r6 << 4;
+                r2 = r2 + r3;
+                Mem.Set((r2 + 7u), (byte)r16);
+                r17 = Mem.U32((r18 + 100u));
+                { bool c_ = r17 == 0; r16 = r6; if (c_) goto L_L002B65BC; }
+                L_L002B631C: ;
+                r2 = Mem.U8((r17 + 49u));
+                { bool c_ = r2 != r16; r4 = r17; if (c_) goto L_L002B6340; }
+                r5 = r18; r2 = (uint)__vsPan(r4, r5);
+                r4 = Mem.U32((r18 + 20u));
+                r5 = r17 + 4u;
+                r6 = r2 & 255u; alSynSetPan(r4, r5, (byte)r6);
+                L_L002B6340: ;
+                r17 = Mem.U32((r17 + 0u));
+                { bool c_ = r17 == 0;  if (c_) goto L_L002B65BC; }
+                 goto L_L002B631C;
+                L_L002B6354: ;
+                r3 = Mem.U32((r18 + 96u));
+                r2 = r6 << 4;
+                r2 = r2 + r3;
+                Mem.Set((r2 + 9u), (byte)r16);
+                r17 = Mem.U32((r18 + 100u));
+                { bool c_ = r17 == 0; r19 = r6; if (c_) goto L_L002B65BC; }
+                r20 = (uint)3;
+                L_L002B6374: ;
+                r2 = Mem.U8((r17 + 49u));
+                { bool c_ = r2 != r19;  if (c_) goto L_L002B63BC; }
+                r2 = Mem.U8((r17 + 52u));
+                { bool c_ = r2 == r20; r4 = r17; if (c_) goto L_L002B63BC; }
+                r5 = r18; r2 = (uint)__vsVol(r4, r5);
+                r4 = r17;
+                r5 = Mem.U32((r18 + 28u));
+                r16 = r2; r2 = (uint)__vsDelta(r4, (int)r5);
+                r5 = r17 + 4u;
+                r6 = r16 << 16;
+                r6 = (uint)((int)r6 >> 16);
+                r4 = Mem.U32((r18 + 20u));
+                r7 = r2; alSynSetVol(r4, r5, (short)r6, (int)r7);
+                L_L002B63BC: ;
+                r17 = Mem.U32((r17 + 0u));
+                { bool c_ = r17 == 0;  if (c_) goto L_L002B65BC; }
+                 goto L_L002B6374;
+                L_L002B63D0: ;
+                r3 = Mem.U32((r18 + 96u));
+                r2 = r2 + r3;
+                Mem.Set((r2 + 8u), (byte)r16); goto L_L002B65BC;
+                L_L002B63E0: ;
+                r3 = Mem.U32((r18 + 96u));
+                r2 = r6 << 4;
+                r2 = r2 + r3;
+                Mem.Set((r2 + 11u), (byte)r16);
+                r17 = Mem.U32((r18 + 100u));
+                { bool c_ = r17 == 0; r20 = r6; if (c_) goto L_L002B65BC; }
+                r19 = (uint)3;
+                r2 = r16 & 255u;
+                r16 = (uint)(r2 < (uint)(64) ? 1 : 0);
+                r23 = (uint)2;
+                r22 = (uint)2;
+                r21 = (uint)4;
+                L_L002B6414: ;
+                r2 = Mem.U8((r17 + 49u));
+                { bool c_ = r2 != r20;  if (c_) goto L_L002B6474; }
+                r2 = Mem.U8((r17 + 53u));
+                { bool c_ = r2 == r19;  if (c_) goto L_L002B6474; }
+                { bool c_ = r16 != 0;  if (c_) goto L_L002B6444; }
+                if (r2 == 0) { Mem.Set((r17 + 53u), (byte)r23); goto L_L002B6474; }
+                 goto L_L002B6474;
+                L_L002B6444: ;
+                { bool c_ = r2 != r22;  if (c_) goto L_L002B6454; }
+                Mem.Set((r17 + 53u), (byte)r0); goto L_L002B6474;
+                L_L002B6454: ;
+                { bool c_ = r2 != r21; r4 = r18; if (c_) goto L_L002B6474; }
+                r2 = Mem.U32((r17 + 32u));
+                Mem.Set((r17 + 53u), (byte)r19);
+                r2 = Mem.U32((r2 + 0u));
+                r6 = Mem.U32((r2 + 8u));
+                r5 = r17 + 4u; __seqpReleaseVoice(r4, r5, (int)r6);
+                L_L002B6474: ;
+                r17 = Mem.U32((r17 + 0u));
+                { bool c_ = r17 == 0;  if (c_) goto L_L002B65BC; }
+                 goto L_L002B6414;
+                L_L002B6488: ;
+                r6 = r21 & 255u;
+                r3 = Mem.U32((r18 + 96u));
+                r2 = r6 << 4;
+                r2 = r2 + r3;
+                Mem.Set((r2 + 10u), (byte)r16);
+                r17 = Mem.U32((r18 + 100u));
+                { bool c_ = r17 == 0; r16 = r6; if (c_) goto L_L002B65BC; }
+                L_L002B64A8: ;
+                r2 = Mem.U8((r17 + 49u));
+                { bool c_ = r2 != r16; r5 = r17 + 4u; if (c_) goto L_L002B64C0; }
+                r4 = Mem.U32((r18 + 20u));
+                r6 = r19 & 255u; alSynSetFXMix(r4, r5, (byte)r6);
+                L_L002B64C0: ;
+                r17 = Mem.U32((r17 + 0u));
+                { bool c_ = r17 == 0;  if (c_) goto L_L002B65BC; }
+                 goto L_L002B64A8;
+                L_L002B64D4: ;
+                r2 = Mem.U32((r18 + 32u));
+                { bool c_ = r2 != 0;  if (c_) goto L_L002B64F8; }
+                r4 = 2148335616u;
+                r4 = r4 - 14704u;
+                r5 = 2148335616u;
+                r5 = r5 - 14700u;
+                r6 = (uint)714; r2 = __assert(r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B64F8: ;
+                r5 = Mem.U32((r18 + 32u));
+                r2 = (uint)(int)Mem.S16((r5 + 0u));
+                r3 = r20 & 255u;
+                r2 = (uint)((int)r3 < (int)r2 ? 1 : 0);
+                { bool c_ = r2 == 0; r4 = r18; if (c_) goto L_L002B65BC; }
+                r2 = r3 << 2;
+                r2 = r5 + r2;
+                r5 = Mem.U32((r2 + 12u));
+                r6 = r21; __setInstChanState(r4, r5, (int)r6);
+                 goto L_L002B65BC;
+                L_L002B652C: ;
+                r3 = r3 << 7;
+                r2 = r20 & 255u;
+                r3 = r3 + r2;
+                r19 = r21 & 255u;
+                r2 = Mem.U32((r18 + 96u));
+                r16 = r19 << 4;
+                r2 = r16 + r2;
+                r2 = (uint)(int)Mem.S16((r2 + 4u));
+                r3 = r3 - 8192u;
+                { long p_ = (long)(int)r2 * (int)r3; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r2 = lo;
+                if ((int)r2 < 0) { r2 = r2 + 8191u; goto L_L002B6560; }
+                L_L002B6560: ;
+                r4 = (uint)((int)r2 >> 13); Cpu.SetS(0, alCents2Ratio((int)r4));
+                r2 = Mem.U32((r18 + 96u));
+                Cpu.SetS(20, Cpu.S(0));
+                r2 = r16 + r2;
+                Mem.Set((r2 + 12u), Cpu.W(20));
+                r17 = Mem.U32((r18 + 100u));
+                { bool c_ = r17 == 0; r16 = r19; if (c_) goto L_L002B65BC; }
+                L_L002B6584: ;
+                r2 = Mem.U8((r17 + 49u));
+                { bool c_ = r2 != r16;  if (c_) goto L_L002B65B0; }
+                Cpu.SetW(0, Mem.U32((r17 + 40u)));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(20));
+                Cpu.SetW(1, Mem.U32((r17 + 44u)));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                r4 = Mem.U32((r18 + 20u));
+                r6 = Cpu.W(0);
+                r5 = r17 + 4u; alSynSetPitch(r4, r5, Cpu.U2F(r6));
+                L_L002B65B0: ;
+                r17 = Mem.U32((r17 + 0u));
+                { bool c_ = r17 != 0;  if (c_) goto L_L002B6584; }
+                L_L002B65BC: ;
+                r31 = Mem.U32((r29 + 96u));
+                r23 = Mem.U32((r29 + 92u));
+                r22 = Mem.U32((r29 + 88u));
+                r21 = Mem.U32((r29 + 84u));
+                r20 = Mem.U32((r29 + 80u));
+                r19 = Mem.U32((r29 + 76u));
+                r18 = Mem.U32((r29 + 72u));
+                r17 = Mem.U32((r29 + 68u));
+                r16 = Mem.U32((r29 + 64u));
+                Cpu.Fpr[20] = Mem.U64((r29 + 104u));
+                r29 = r29 + 112u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B5D64", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B65BC @ 0x002B65BC [MIPS]
+    public static uint __handleMIDIMsg_Tail(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5, uint a6, uint a7, uint a8, uint a9, uint a10, uint a11, uint a12, uint a13, uint a14, uint a15, uint a16, uint a17, uint a18, uint a19, uint a20, uint a21, uint a22, uint a23)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B65BC", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                Mem.Set(r29 + 20u, a5);
+                Mem.Set(r29 + 24u, a6);
+                Mem.Set(r29 + 28u, a7);
+                Mem.Set(r29 + 32u, a8);
+                Mem.Set(r29 + 36u, a9);
+                Mem.Set(r29 + 40u, a10);
+                Mem.Set(r29 + 44u, a11);
+                Mem.Set(r29 + 48u, a12);
+                Mem.Set(r29 + 52u, a13);
+                Mem.Set(r29 + 56u, a14);
+                Mem.Set(r29 + 60u, a15);
+                Mem.Set(r29 + 64u, a16);
+                Mem.Set(r29 + 68u, a17);
+                Mem.Set(r29 + 72u, a18);
+                Mem.Set(r29 + 76u, a19);
+                Mem.Set(r29 + 80u, a20);
+                Mem.Set(r29 + 84u, a21);
+                Mem.Set(r29 + 88u, a22);
+                Mem.Set(r29 + 92u, a23);
+                L_func_002B65BC: ;
+                r31 = Mem.U32((r29 + 96u));
+                r23 = Mem.U32((r29 + 92u));
+                r22 = Mem.U32((r29 + 88u));
+                r21 = Mem.U32((r29 + 84u));
+                r20 = Mem.U32((r29 + 80u));
+                r19 = Mem.U32((r29 + 76u));
+                r18 = Mem.U32((r29 + 72u));
+                r17 = Mem.U32((r29 + 68u));
+                r16 = Mem.U32((r29 + 64u));
+                Cpu.Fpr[20] = Mem.U64((r29 + 104u));
+                r29 = r29 + 112u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B65BC", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B65EC @ 0x002B65EC [MIPS]
+    public static uint __mapVoice_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B65EC", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B65EC: ;
+                r3 = Mem.U32((r4 + 108u));
+                { bool c_ = r3 == 0;  if (c_) goto L_L002B6634; }
+                r2 = Mem.U32((r3 + 0u));
+                Mem.Set((r4 + 108u), r2);
+                Mem.Set((r3 + 0u), r0);
+                r2 = Mem.U32((r4 + 100u));
+                { bool c_ = r2 != 0;  if (c_) goto L_L002B6618; }
+                Mem.Set((r4 + 100u), r3); goto L_L002B6620;
+                L_L002B6618: ;
+                r2 = Mem.U32((r4 + 104u));
+                Mem.Set((r2 + 0u), r3);
+                L_L002B6620: ;
+                Mem.Set((r4 + 104u), r3);
+                Mem.Set((r3 + 49u), (byte)r7);
+                Mem.Set((r3 + 50u), (byte)r5);
+                Mem.Set((r3 + 51u), (byte)r6);
+                Mem.Set((r3 + 20u), r3);
+                L_L002B6634: ;
+                r2 = r3; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B65EC", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B663C @ 0x002B663C [MIPS]
+    public static uint __unmapVoice_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B663C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B663C: ;
+                r3 = Mem.U32((r4 + 100u));
+                { bool c_ = r3 == 0; r6 = r0; if (c_) goto L_L002B6698; }
+                r2 = r3 + 4u;
+                L_L002B664C: ;
+                if (r2 != r5) { r6 = r3; goto L_L002B668C; }
+                { bool c_ = r6 == 0;  if (c_) goto L_L002B6668; }
+                r2 = Mem.U32((r3 + 0u));
+                Mem.Set((r6 + 0u), r2); goto L_L002B6670;
+                L_L002B6668: ;
+                r2 = Mem.U32((r3 + 0u));
+                Mem.Set((r4 + 100u), r2);
+                L_L002B6670: ;
+                r2 = Mem.U32((r4 + 104u));
+                if (r3 == r2) { Mem.Set((r4 + 104u), r6); goto L_L002B667C; }
+                L_L002B667C: ;
+                r2 = Mem.U32((r4 + 108u));
+                Mem.Set((r3 + 0u), r2);
+                Mem.Set((r4 + 108u), r3); Cpu.V1 = r3; return r2;
+                L_L002B668C: ;
+                r3 = Mem.U32((r3 + 0u));
+                { bool c_ = r3 != 0; r2 = r3 + 4u; if (c_) goto L_L002B664C; }
+                L_L002B6698: ;
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B663C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B66A0 @ 0x002B66A0 [MIPS]
+    public static uint __voiceNeedsNoteKillOff_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B66A0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B66A0: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r4;
+                r7 = r0;
+                Mem.Set((r29 + 28u), r31);
+                Mem.Set((r29 + 20u), r17);
+                Mem.Set((r29 + 16u), r16);
+                r16 = Mem.U32((r18 + 80u));
+                { bool c_ = r16 == 0; r17 = (uint)1; if (c_) goto L_L002B6734; }
+                r8 = (uint)5;
+                L_L002B66CC: ;
+                r4 = Mem.U32((r16 + 8u));
+                r2 = (uint)(int)Mem.S16((r16 + 12u));
+                r3 = Mem.U32((r16 + 0u));
+                { bool c_ = r2 != r8; r7 = r7 + r4; if (c_) goto L_L002B6728; }
+                r2 = Mem.U32((r16 + 16u));
+                if (r2 != r5) { r16 = r3; goto L_L002B672C; }
+                r2 = (uint)((int)r6 < (int)r7 ? 1 : 0);
+                if (r2 == 0) { r17 = r0; goto L_L002B6734; }
+                { bool c_ = r3 == 0;  if (c_) goto L_L002B670C; }
+                r2 = Mem.U32((r3 + 8u));
+                r2 = r2 + r4;
+                Mem.Set((r3 + 8u), r2);
+                L_L002B670C: ;
+                r4 = r16; alUnlink(r4);
+                r4 = r16;
+                r5 = r18 + 72u; alLink(r4, r5);
+                r2 = r17; goto L_L002B6738;
+                L_L002B6728: ;
+                r16 = r3;
+                L_L002B672C: ;
+                { bool c_ = r16 != 0;  if (c_) goto L_L002B66CC; }
+                L_L002B6734: ;
+                r2 = r17;
+                L_L002B6738: ;
+                r31 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B66A0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B6750 @ 0x002B6750 [MIPS]
+    public static uint __lookupVoice_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B6750", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B6750: ;
+                r3 = Mem.U32((r4 + 100u));
+                { bool c_ = r3 == 0; r5 = r5 & 255u; if (c_) goto L_L002B67A0; }
+                r6 = r6 & 255u;
+                r7 = (uint)3;
+                r4 = (uint)4;
+                L_L002B6768: ;
+                r2 = Mem.U8((r3 + 50u));
+                { bool c_ = r2 != r5;  if (c_) goto L_L002B6794; }
+                r2 = Mem.U8((r3 + 49u));
+                { bool c_ = r2 != r6;  if (c_) goto L_L002B6794; }
+                r2 = Mem.U8((r3 + 53u));
+                { bool c_ = r2 == r7;  if (c_) goto L_L002B6794; }
+                { bool c_ = r2 != r4; r2 = r3; if (c_) goto L_L002B67A8; }
+                L_L002B6794: ;
+                r3 = Mem.U32((r3 + 0u));
+                { bool c_ = r3 != 0;  if (c_) goto L_L002B6768; }
+                L_L002B67A0: ;
+                r2 = r0; Cpu.V1 = r3; return r2;
+                L_L002B67A8: ;
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B6750", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B67B0 @ 0x002B67B0 [MIPS]
+    public static uint __lookupSoundQuick_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B67B0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B67B0: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 28u), r19);
+                r19 = r5;
+                Mem.Set((r29 + 32u), r20);
+                r20 = r6;
+                r7 = r7 & 255u;
+                Mem.Set((r29 + 36u), r31);
+                Mem.Set((r29 + 24u), r18);
+                Mem.Set((r29 + 20u), r17);
+                Mem.Set((r29 + 16u), r16);
+                r2 = Mem.U32((r4 + 96u));
+                r7 = r7 << 4;
+                r7 = r7 + r2;
+                r18 = Mem.U32((r7 + 0u));
+                r16 = (uint)(int)Mem.S16((r18 + 14u));
+                { bool c_ = r18 != 0; r17 = (uint)1; if (c_) goto L_L002B680C; }
+                r4 = 2148335616u;
+                r4 = r4 - 14704u;
+                r5 = 2148335616u;
+                r5 = r5 - 14700u;
+                r6 = (uint)886; r2 = __assert(r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B680C: ;
+                { bool c_ = (int)r16 <= 0; r2 = r0; if (c_) goto L_L002B68C4; }
+                r5 = r19 & 255u;
+                r6 = r20 & 255u;
+                r2 = r17 + r16;
+                L_L002B6820: ;
+                r3 = r2 >> 31;
+                r2 = r2 + r3;
+                r4 = (uint)((int)r2 >> 1);
+                r2 = r4 - 1u;
+                r2 = r2 << 2;
+                r2 = r18 + r2;
+                r7 = Mem.U32((r2 + 16u));
+                r3 = Mem.U32((r7 + 4u));
+                r2 = Mem.U8((r3 + 2u));
+                r2 = (uint)(r5 < r2 ? 1 : 0);
+                if (r2 != 0) { r16 = r4 - 1u; goto L_L002B68B4; }
+                r2 = Mem.U8((r3 + 3u));
+                r2 = (uint)(r2 < r5 ? 1 : 0);
+                { bool c_ = r2 != 0;  if (c_) goto L_L002B6880; }
+                r2 = Mem.U8((r3 + 0u));
+                r2 = (uint)(r6 < r2 ? 1 : 0);
+                { bool c_ = r2 != 0;  if (c_) goto L_L002B6880; }
+                r2 = Mem.U8((r3 + 1u));
+                r2 = (uint)(r2 < r6 ? 1 : 0);
+                { bool c_ = r2 == 0; r2 = r7; if (c_) goto L_L002B68C4; }
+                L_L002B6880: ;
+                r2 = Mem.U8((r3 + 2u));
+                r2 = (uint)(r5 < r2 ? 1 : 0);
+                if (r2 != 0) { r16 = r4 - 1u; goto L_L002B68B4; }
+                r2 = Mem.U8((r3 + 0u));
+                r2 = (uint)(r6 < r2 ? 1 : 0);
+                if (r2 == 0) { r17 = r4 + 1u; goto L_L002B68B4; }
+                r2 = Mem.U8((r3 + 3u));
+                r2 = (uint)(r2 < r5 ? 1 : 0);
+                if (r2 != 0) { r17 = r4 + 1u; goto L_L002B68B4; }
+                r16 = r4 - 1u;
+                L_L002B68B4: ;
+                r2 = (uint)((int)r16 < (int)r17 ? 1 : 0);
+                { bool c_ = r2 == 0; r2 = r17 + r16; if (c_) goto L_L002B6820; }
+                r2 = r0;
+                L_L002B68C4: ;
+                r31 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B67B0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B68E4 @ 0x002B68E4 [MIPS]
+    public static uint __vsVol_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B68E4", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B68E4: ;
+                r3 = Mem.U8((r4 + 54u));
+                r2 = Mem.U8((r4 + 51u));
+                { long p_ = (long)(int)r3 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r6 = lo;
+                r2 = Mem.U8((r4 + 48u));
+                { long p_ = (long)(int)r6 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r3 = Mem.U32((r4 + 32u));
+                r6 = Mem.U8((r3 + 13u));
+                r7 = lo;
+                r3 = (uint)(int)Mem.S16((r5 + 50u));
+                { long p_ = (long)(int)r6 * (int)r3; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r2 = Mem.U8((r4 + 49u));
+                r4 = Mem.U32((r5 + 96u));
+                r2 = r2 << 4;
+                r2 = r2 + r4;
+                r3 = lo;
+                r2 = Mem.U8((r2 + 9u));
+                { long p_ = (long)(int)r3 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r3 = lo;
+                r2 = (uint)((int)r7 >> 6);
+                r3 = (uint)((int)r3 >> 14);
+                { long p_ = (long)(int)r2 * (int)r3; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r2 = lo;
+                r2 = r2 << 1;
+                r2 = (uint)((int)r2 >> 16); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B68E4", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B6958 @ 0x002B6958 [MIPS]
+    public static uint __vsDelta_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B6958", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B6958: ;
+                r3 = Mem.U32((r4 + 36u));
+                r3 = r3 - r5;
+                { bool c_ = (int)r3 >= 0; r2 = r3; if (c_) goto L_L002B696C; }
+                r2 = (uint)1000;
+                L_L002B696C: ;
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B6958", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B6974 @ 0x002B6974 [MIPS]
+    public static uint __vsPan_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B6974", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B6974: ;
+                r3 = Mem.U8((r4 + 49u));
+                r2 = Mem.U32((r5 + 96u));
+                r4 = Mem.U32((r4 + 32u));
+                r3 = r3 << 4;
+                r3 = r3 + r2;
+                r2 = Mem.U8((r4 + 12u));
+                r3 = Mem.U8((r3 + 7u));
+                r2 = r2 - 64u;
+                r3 = r3 + r2;
+                if ((int)r3 < 0) { r3 = r0; goto L_L002B69A0; }
+                L_L002B69A0: ;
+                r2 = (uint)((int)r3 < 128 ? 1 : 0);
+                if (r2 == 0) { r3 = (uint)127; goto L_L002B69AC; }
+                L_L002B69AC: ;
+                r2 = r3 & 255u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B6974", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B69B4 @ 0x002B69B4 [MIPS]
+    public static uint __initFromBank_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B69B4", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B69B4: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r4;
+                Mem.Set((r29 + 28u), r19);
+                r19 = r5;
+                r2 = r19;
+                Mem.Set((r29 + 32u), r31);
+                Mem.Set((r29 + 20u), r17);
+                Mem.Set((r29 + 16u), r16);
+                L_L002B69D8: ;
+                r17 = Mem.U32((r2 + 12u));
+                { bool c_ = r17 == 0; r2 = r2 + 4u; if (c_) goto L_L002B69D8; }
+                r2 = Mem.U8((r18 + 52u));
+                { bool c_ = r2 == 0; r16 = r0; if (c_) goto L_L002B6A20; }
+                r4 = r18;
+                L_L002B69F4: ;
+                r5 = r16; __resetPerfChanState(r4, (int)r5);
+                r4 = r18;
+                r5 = r17;
+                r6 = r16; __setInstChanState(r4, r5, (int)r6);
+                r2 = Mem.U8((r18 + 52u));
+                r16 = r16 + 1u;
+                r2 = (uint)((int)r16 < (int)r2 ? 1 : 0);
+                { bool c_ = r2 != 0; r4 = r18; if (c_) goto L_L002B69F4; }
+                L_L002B6A20: ;
+                r2 = Mem.U32((r19 + 8u));
+                { bool c_ = r2 == 0; r4 = r18; if (c_) goto L_L002B6A44; }
+                r5 = r16; __resetPerfChanState(r4, (int)r5);
+                r4 = r18;
+                r5 = Mem.U32((r19 + 8u));
+                r6 = (uint)9; __setInstChanState(r4, r5, (int)r6);
+                L_L002B6A44: ;
+                r31 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B69B4", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B6A60 @ 0x002B6A60 [MIPS]
+    public static uint __initChanState_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B6A60", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B6A60: ;
+                r2 = Mem.U8((r4 + 52u));
+                { bool c_ = r2 == 0; r5 = r0; if (c_) goto L_L002B6B08; }
+                r9 = (uint)64;
+                r8 = (uint)127;
+                r7 = (uint)5;
+                r6 = (uint)200;
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 14564u)));
+                L_L002B6A84: ;
+                r2 = Mem.U32((r4 + 96u));
+                r3 = r5 << 4;
+                r2 = r3 + r2;
+                Mem.Set((r2 + 0u), r0);
+                r2 = Mem.U32((r4 + 96u));
+                r2 = r3 + r2;
+                Mem.Set((r2 + 6u), (byte)r0);
+                r2 = Mem.U32((r4 + 96u));
+                r2 = r3 + r2;
+                Mem.Set((r2 + 10u), (byte)r0);
+                r2 = Mem.U32((r4 + 96u));
+                r2 = r3 + r2;
+                Mem.Set((r2 + 7u), (byte)r9);
+                r2 = Mem.U32((r4 + 96u));
+                r2 = r3 + r2;
+                Mem.Set((r2 + 9u), (byte)r8);
+                r2 = Mem.U32((r4 + 96u));
+                r2 = r3 + r2;
+                Mem.Set((r2 + 8u), (byte)r7);
+                r2 = Mem.U32((r4 + 96u));
+                r2 = r3 + r2;
+                Mem.Set((r2 + 11u), (byte)r0);
+                r2 = Mem.U32((r4 + 96u));
+                r2 = r3 + r2;
+                Mem.Set((r2 + 4u), (ushort)r6);
+                r2 = Mem.U32((r4 + 96u));
+                r3 = r3 + r2;
+                Mem.Set((r3 + 12u), Cpu.W(0));
+                r2 = Mem.U8((r4 + 52u));
+                r5 = r5 + 1u;
+                r2 = (uint)((int)r5 < (int)r2 ? 1 : 0);
+                { bool c_ = r2 != 0;  if (c_) goto L_L002B6A84; }
+                L_L002B6B08: ;
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B6A60", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B6B10 @ 0x002B6B10 [MIPS]
+    public static uint __resetPerfChanState_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B6B10", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B6B10: ;
+                r2 = Mem.U32((r4 + 96u));
+                r5 = r5 << 4;
+                r2 = r5 + r2;
+                Mem.Set((r2 + 6u), (byte)r0);
+                r2 = Mem.U32((r4 + 96u));
+                r2 = r5 + r2;
+                Mem.Set((r2 + 10u), (byte)r0);
+                r2 = Mem.U32((r4 + 96u));
+                r3 = (uint)64;
+                r2 = r5 + r2;
+                Mem.Set((r2 + 7u), (byte)r3);
+                r2 = Mem.U32((r4 + 96u));
+                r3 = (uint)127;
+                r2 = r5 + r2;
+                Mem.Set((r2 + 9u), (byte)r3);
+                r2 = Mem.U32((r4 + 96u));
+                r3 = (uint)5;
+                r2 = r5 + r2;
+                Mem.Set((r2 + 8u), (byte)r3);
+                r2 = Mem.U32((r4 + 96u));
+                r2 = r5 + r2;
+                Mem.Set((r2 + 11u), (byte)r0);
+                r2 = Mem.U32((r4 + 96u));
+                r3 = (uint)200;
+                r2 = r5 + r2;
+                Mem.Set((r2 + 4u), (ushort)r3);
+                r2 = Mem.U32((r4 + 96u));
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 14560u)));
+                r5 = r5 + r2;
+                Mem.Set((r5 + 12u), Cpu.W(0)); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B6B10", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B6B90 @ 0x002B6B90 [MIPS]
+    public static uint __setInstChanState_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B6B90", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B6B90: ;
+                r2 = Mem.U32((r4 + 96u));
+                r6 = r6 << 4;
+                r2 = r6 + r2;
+                Mem.Set((r2 + 0u), r5);
+                r2 = Mem.U32((r4 + 96u));
+                r3 = Mem.U8((r5 + 1u));
+                r2 = r6 + r2;
+                Mem.Set((r2 + 7u), (byte)r3);
+                r2 = Mem.U32((r4 + 96u));
+                r3 = Mem.U8((r5 + 0u));
+                r2 = r6 + r2;
+                Mem.Set((r2 + 9u), (byte)r3);
+                r2 = Mem.U32((r4 + 96u));
+                r3 = Mem.U8((r5 + 2u));
+                r2 = r6 + r2;
+                Mem.Set((r2 + 8u), (byte)r3);
+                r2 = Mem.U32((r4 + 96u));
+                r3 = Mem.U16((r5 + 12u));
+                r6 = r6 + r2;
+                Mem.Set((r6 + 4u), (ushort)r3); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B6B90", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B6BE4 @ 0x002B6BE4 [MIPS]
+    public static uint __seqpReleaseVoice_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B6BE4", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B6BE4: ;
+                r29 = r29 - 64u;
+                Mem.Set((r29 + 48u), r20);
+                r20 = r5;
+                Mem.Set((r29 + 60u), r31);
+                Mem.Set((r29 + 56u), r22);
+                Mem.Set((r29 + 52u), r21);
+                Mem.Set((r29 + 44u), r19);
+                Mem.Set((r29 + 40u), r18);
+                Mem.Set((r29 + 36u), r17);
+                Mem.Set((r29 + 32u), r16);
+                r18 = Mem.U32((r20 + 16u));
+                r19 = r4;
+                r2 = Mem.U8((r18 + 52u));
+                { bool c_ = r2 != 0; r21 = r6; if (c_) goto L_L002B6C80; }
+                r16 = Mem.U32((r19 + 80u));
+                { bool c_ = r16 == 0; r22 = (uint)6; if (c_) goto L_L002B6C80; }
+                L_L002B6C2C: ;
+                r2 = (uint)(int)Mem.S16((r16 + 12u));
+                r17 = Mem.U32((r16 + 0u));
+                if (r2 != r22) { r16 = r17; goto L_L002B6C78; }
+                r2 = Mem.U32((r16 + 16u));
+                if (r2 != r20) { r16 = r17; goto L_L002B6C78; }
+                { bool c_ = r17 == 0;  if (c_) goto L_L002B6C60; }
+                r2 = Mem.U32((r17 + 8u));
+                r3 = Mem.U32((r16 + 8u));
+                r2 = r2 + r3;
+                Mem.Set((r17 + 8u), r2);
+                L_L002B6C60: ;
+                r4 = r16; alUnlink(r4);
+                r4 = r16;
+                r5 = r19 + 72u; alLink(r4, r5);
+                r16 = r17;
+                L_L002B6C78: ;
+                { bool c_ = r16 != 0;  if (c_) goto L_L002B6C2C; }
+                L_L002B6C80: ;
+                r2 = (uint)3;
+                Mem.Set((r18 + 51u), (byte)r0);
+                Mem.Set((r18 + 52u), (byte)r2);
+                Mem.Set((r18 + 48u), (byte)r0);
+                r2 = Mem.U32((r19 + 28u));
+                r5 = r20;
+                r2 = r2 + r21;
+                Mem.Set((r18 + 36u), r2);
+                r4 = Mem.U32((r19 + 20u));
+                r6 = r0; alSynSetPriority(r4, r5, (short)r6);
+                r5 = r20;
+                r6 = r0;
+                r4 = Mem.U32((r19 + 20u));
+                r7 = r21; alSynSetVol(r4, r5, (short)r6, (int)r7);
+                r4 = r19 + 72u;
+                r5 = r29 + 16u;
+                r6 = r21;
+                r2 = (uint)5;
+                Mem.Set((r29 + 16u), (ushort)r2);
+                Mem.Set((r29 + 20u), r20); alEvtqPostEvent(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 60u));
+                r22 = Mem.U32((r29 + 56u));
+                r21 = Mem.U32((r29 + 52u));
+                r20 = Mem.U32((r29 + 48u));
+                r19 = Mem.U32((r29 + 44u));
+                r18 = Mem.U32((r29 + 40u));
+                r17 = Mem.U32((r29 + 36u));
+                r16 = Mem.U32((r29 + 32u));
+                r29 = r29 + 64u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B6BE4", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B6D04 @ 0x002B6D04 [MIPS]
+    public static uint __seqpStopOsc_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B6D04", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B6D04: ;
+                r29 = r29 - 48u;
+                Mem.Set((r29 + 32u), r20);
+                r20 = r4;
+                Mem.Set((r29 + 40u), r31);
+                Mem.Set((r29 + 36u), r21);
+                Mem.Set((r29 + 28u), r19);
+                Mem.Set((r29 + 24u), r18);
+                Mem.Set((r29 + 20u), r17);
+                Mem.Set((r29 + 16u), r16);
+                r16 = Mem.U32((r20 + 80u));
+                { bool c_ = r16 == 0; r19 = r5; if (c_) goto L_L002B6DD0; }
+                r21 = (uint)22;
+                L_L002B6D38: ;
+                r18 = Mem.U16((r16 + 12u));
+                r17 = Mem.U32((r16 + 0u));
+                r2 = r18 - 22u;
+                r2 = (uint)(r2 < (uint)(2) ? 1 : 0);
+                if (r2 == 0) { r16 = r17; goto L_L002B6DC8; }
+                r2 = Mem.U32((r16 + 16u));
+                if (r2 != r19) { r16 = r17; goto L_L002B6DC8; }
+                r4 = Mem.U32((r16 + 20u));
+                r2 = Mem.U32((r20 + 120u));
+                r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r16; alUnlink(r4);
+                { bool c_ = r17 == 0; r4 = r16; if (c_) goto L_L002B6D8C; }
+                r2 = Mem.U32((r17 + 8u));
+                r3 = Mem.U32((r16 + 8u));
+                r2 = r2 + r3;
+                Mem.Set((r17 + 8u), r2);
+                L_L002B6D8C: ;
+                r5 = r20 + 72u; alLink(r4, r5);
+                r2 = r18 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                { bool c_ = r2 != r21;  if (c_) goto L_L002B6DB0; }
+                r2 = Mem.U8((r19 + 55u));
+                r2 = r2 & 254u; goto L_L002B6DB8;
+                L_L002B6DB0: ;
+                r2 = Mem.U8((r19 + 55u));
+                r2 = r2 & 253u;
+                L_L002B6DB8: ;
+                Mem.Set((r19 + 55u), (byte)r2);
+                r2 = Mem.U8((r19 + 55u));
+                { bool c_ = r2 == 0; r16 = r17; if (c_) goto L_L002B6DD0; }
+                L_L002B6DC8: ;
+                { bool c_ = r16 != 0;  if (c_) goto L_L002B6D38; }
+                L_L002B6DD0: ;
+                r31 = Mem.U32((r29 + 40u));
+                r21 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 48u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B6D04", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B6DF4 @ 0x002B6DF4 [MIPS]
+    public static uint __postNextSeqEvent_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B6DF4", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B6DF4: ;
+                r29 = r29 - 56u;
+                Mem.Set((r29 + 44u), r17);
+                r17 = r4;
+                r3 = (uint)1;
+                Mem.Set((r29 + 48u), r31);
+                Mem.Set((r29 + 40u), r16);
+                r2 = Mem.U32((r17 + 44u));
+                r16 = Mem.U32((r17 + 24u));
+                { bool c_ = r2 != r3;  if (c_) goto L_L002B6EA8; }
+                { bool c_ = r16 == 0; r4 = r16; if (c_) goto L_L002B6EA8; }
+                r5 = r29 + 32u; r2 = (uint)__alSeqNextDelta(r4, r5);
+                r2 = r2 & 255u;
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B6EA8; }
+                r2 = Mem.U32((r17 + 132u));
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B6E88; }
+                r4 = r16; r2 = (uint)alSeqGetTicks(r4);
+                r3 = Mem.U32((r17 + 128u));
+                r4 = Mem.U32((r29 + 32u));
+                r3 = Mem.U32((r3 + 8u));
+                r2 = r2 + r4;
+                r2 = (uint)((int)r2 < (int)r3 ? 1 : 0);
+                { bool c_ = r2 != 0;  if (c_) goto L_L002B6E88; }
+                r5 = Mem.U32((r17 + 124u));
+                r4 = r16; alSeqSetLoc(r4, r5);
+                r3 = Mem.U32((r17 + 132u));
+                r2 = (uint)-1;
+                { bool c_ = r3 == r2; r2 = r3 + r2; if (c_) goto L_L002B6E88; }
+                Mem.Set((r17 + 132u), r2);
+                L_L002B6E88: ;
+                r2 = Mem.U32((r29 + 32u));
+                Mem.Set((r29 + 16u), (ushort)r0);
+                r6 = Mem.U32((r17 + 36u));
+                { long p_ = (long)(int)r2 * (int)r6; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r4 = r17 + 72u;
+                r6 = lo;
+                r5 = r29 + 16u; alEvtqPostEvent(r4, r5, (int)r6);
+                L_L002B6EA8: ;
+                r31 = Mem.U32((r29 + 48u));
+                r17 = Mem.U32((r29 + 44u));
+                r16 = Mem.U32((r29 + 40u));
+                r29 = r29 + 56u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B6DF4", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B6EBC @ 0x002B6EBC [MIPS]
+    public static uint __handleMetaMsg_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B6EBC", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B6EBC: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r31);
+                r3 = Mem.U8((r5 + 8u));
+                r2 = (uint)255;
+                { bool c_ = r3 != r2; r6 = r4; if (c_) goto L_L002B6F14; }
+                r3 = Mem.U8((r5 + 9u));
+                r2 = (uint)81;
+                { bool c_ = r3 != r2;  if (c_) goto L_L002B6F14; }
+                r2 = Mem.U8((r5 + 11u));
+                r3 = Mem.U8((r5 + 12u));
+                r4 = Mem.U8((r5 + 13u));
+                r2 = r2 << 16;
+                r3 = r3 << 8;
+                r2 = r2 | r3;
+                r2 = r2 | r4;
+                Cpu.SetW(0, r2);
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                r5 = Cpu.W(0);
+                r4 = r6; __setUsptFromTempo(r4, Cpu.U2F(r5));
+                L_L002B6F14: ;
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B6EBC", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B6F20 @ 0x002B6F20 [MIPS]
+    public static uint __setUsptFromTempo_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B6F20", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B6F20: ;
+                r2 = Mem.U32((r4 + 24u));
+                Cpu.SetW(1, r5);
+                if (r2 == 0) { r2 = (uint)488; goto L_L002B6F48; }
+                Cpu.SetW(0, Mem.U32((r2 + 20u)));
+                Cpu.SetS(0, Cpu.S(1) * Cpu.S(0));
+                Cpu.SetW(2, (uint)(int)Cpu.S(0));
+                Mem.Set((r4 + 36u), Cpu.W(2));
+                Cpu.V1 = r3; return r2;
+                L_L002B6F48: ;
+                Mem.Set((r4 + 36u), r2); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B6F20", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B6F50 @ 0x002B6F50 [MIPS]
+    public static uint alSeqNextEvent_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B6F50", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B6F50: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r4;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r5;
+                Mem.Set((r29 + 32u), r31);
+                Mem.Set((r29 + 28u), r19);
+                Mem.Set((r29 + 16u), r16); r2 = (uint)__alSeqReadVarLen(r4);
+                r4 = r18;
+                r3 = Mem.U32((r18 + 12u));
+                r19 = r2;
+                r3 = r3 + r19;
+                Mem.Set((r18 + 12u), r3); r2 = (uint)__alSeqReadByte(r4);
+                r16 = r2;
+                r3 = r16 & 255u;
+                r2 = (uint)255;
+                { bool c_ = r3 != r2; r2 = (uint)1; if (c_) goto L_L002B7034; }
+                r4 = r18; r2 = (uint)__alSeqReadByte(r4);
+                r5 = r2;
+                r3 = r5 & 255u;
+                r2 = (uint)81;
+                { bool c_ = r3 != r2; r2 = (uint)47; if (c_) goto L_L002B7004; }
+                r4 = r18;
+                r2 = (uint)3;
+                Mem.Set((r17 + 0u), (ushort)r2);
+                Mem.Set((r17 + 4u), r19);
+                Mem.Set((r17 + 8u), (byte)r16);
+                Mem.Set((r17 + 9u), (byte)r5); r2 = (uint)__alSeqReadByte(r4);
+                r4 = r18;
+                Mem.Set((r17 + 10u), (byte)r2); r2 = (uint)__alSeqReadByte(r4);
+                r4 = r18;
+                Mem.Set((r17 + 11u), (byte)r2); r2 = (uint)__alSeqReadByte(r4);
+                r4 = r18;
+                Mem.Set((r17 + 12u), (byte)r2); r2 = (uint)__alSeqReadByte(r4);
+                Mem.Set((r17 + 13u), (byte)r2); goto L_L002B702C;
+                L_L002B7004: ;
+                if (r3 != r2) { Mem.Set((r18 + 26u), (ushort)r0); goto L_L002B709C; }
+                r4 = r18;
+                r2 = (uint)4;
+                Mem.Set((r17 + 0u), (ushort)r2);
+                Mem.Set((r17 + 4u), r19);
+                Mem.Set((r17 + 8u), (byte)r16);
+                Mem.Set((r17 + 9u), (byte)r5); r2 = (uint)__alSeqReadByte(r4);
+                Mem.Set((r17 + 10u), (byte)r2);
+                L_L002B702C: ;
+                Mem.Set((r18 + 26u), (ushort)r0); goto L_L002B709C;
+                L_L002B7034: ;
+                Mem.Set((r17 + 0u), (ushort)r2);
+                r2 = r16 & 128u;
+                { bool c_ = r2 == 0; Mem.Set((r17 + 4u), r19); if (c_) goto L_L002B7060; }
+                r4 = r18;
+                Mem.Set((r17 + 8u), (byte)r16); r2 = (uint)__alSeqReadByte(r4);
+                Mem.Set((r17 + 9u), (byte)r2);
+                r2 = r16 & 255u;
+                Mem.Set((r18 + 26u), (ushort)r2); goto L_L002B706C;
+                L_L002B7060: ;
+                r2 = Mem.U8((r18 + 27u));
+                Mem.Set((r17 + 9u), (byte)r16);
+                Mem.Set((r17 + 8u), (byte)r2);
+                L_L002B706C: ;
+                r2 = Mem.U8((r17 + 8u));
+                r3 = r2 & 240u;
+                r2 = (uint)192;
+                { bool c_ = r3 == r2; r2 = (uint)208; if (c_) goto L_L002B7098; }
+                if (r3 == r2) { Mem.Set((r17 + 10u), (byte)r0); goto L_L002B709C; }
+                r4 = r18; r2 = (uint)__alSeqReadByte(r4);
+                Mem.Set((r17 + 10u), (byte)r2); goto L_L002B709C;
+                L_L002B7098: ;
+                Mem.Set((r17 + 10u), (byte)r0);
+                L_L002B709C: ;
+                r31 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                r29 = r29 - 24u;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 20u), r31);
+                Mem.Set((r16 + 0u), r5);
+                Mem.Set((r16 + 16u), r6);
+                Mem.Set((r16 + 26u), (ushort)r0);
+                Mem.Set((r16 + 12u), r0);
+                Mem.Set((r16 + 8u), r5); r2 = (uint)__alSeqReadWord(r4);
+                r3 = 1297350656u;
+                r3 = r3 | 26724u;
+                { bool c_ = r2 != r3;  if (c_) goto L_L002B7188; }
+                r4 = r16; r2 = (uint)__alSeqReadWord(r4);
+                r4 = r16; r2 = (uint)__alSeqReadShort(r4);
+                r2 = r2 << 16;
+                { bool c_ = r2 != 0;  if (c_) goto L_L002B7188; }
+                r4 = r16; r2 = (uint)__alSeqReadShort(r4);
+                r2 = r2 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                r3 = (uint)1;
+                { bool c_ = r2 != r3;  if (c_) goto L_L002B7188; }
+                r4 = r16; r2 = (uint)__alSeqReadShort(r4);
+                Mem.Set((r16 + 24u), (ushort)r2);
+                r2 = r2 << 16;
+                r3 = (uint)((int)r2 >> 16);
+                r2 = r3 & 32768u;
+                { bool c_ = r2 != 0;  if (c_) goto L_L002B7188; }
+                r4 = r16;
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 14544u)));
+                Cpu.SetW(1, r3);
+                Cpu.SetS(1, (float)(int)Cpu.W(1));
+                Cpu.SetS(0, Cpu.S(0) / Cpu.S(1));
+                Mem.Set((r16 + 20u), Cpu.W(0)); r2 = (uint)__alSeqReadWord(r4);
+                r3 = 1297350656u;
+                r3 = r3 | 29291u;
+                { bool c_ = r2 != r3;  if (c_) goto L_L002B7188; }
+                r4 = r16; r2 = (uint)__alSeqReadWord(r4);
+                r2 = Mem.U32((r16 + 8u));
+                Mem.Set((r16 + 4u), r2);
+                L_L002B7188: ;
+                r31 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B6F50", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B7198 @ 0x002B7198 [MIPS]
+    public static uint alSeqGetTicks_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B7198", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B7198: ;
+                r2 = Mem.U32((r4 + 12u));
+                Cpu.V1 = r3; return r2;
+                Cpu.SetW(1, r6);
+                Cpu.SetD(1, (double)(int)Cpu.W(1));
+                Cpu.SetW(2, r5);
+                Cpu.SetS(2, (float)(int)Cpu.W(2));
+                if ((int)r6 >= 0) { Cpu.SetS(1, (float)Cpu.D(1)); goto L_L002B71CC; }
+                r1 = 2148335616u;
+                Cpu.Fpr[0] = Mem.U64((r1 - 14536u));
+                Cpu.SetD(1, Cpu.D(1) + Cpu.D(0));
+                Cpu.SetS(1, (float)Cpu.D(1));
+                L_L002B71CC: ;
+                Cpu.SetS(1, Cpu.S(2) * Cpu.S(1));
+                r2 = (uint)(int)Mem.S16((r4 + 24u));
+                r1 = 2148335616u;
+                Cpu.SetW(2, Mem.U32((r1 - 14528u)));
+                Cpu.SetW(0, r2);
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(2));
+                Cpu.SetS(0, Cpu.S(1) / Cpu.S(0)); Cpu.V1 = r3; return r2;
+                r2 = (uint)(int)Mem.S16((r4 + 24u));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 14524u)));
+                Cpu.SetW(0, r2);
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                Cpu.SetW(3, r5);
+                Cpu.SetW(1, r6);
+                Cpu.SetD(1, (double)(int)Cpu.W(1));
+                Cpu.SetS(2, Cpu.S(3) * Cpu.S(0));
+                if ((int)r6 >= 0) { Cpu.SetS(0, (float)Cpu.D(1)); goto L_L002B7230; }
+                r1 = 2148335616u;
+                Cpu.Fpr[0] = Mem.U64((r1 - 14520u));
+                Cpu.SetD(1, Cpu.D(1) + Cpu.D(0));
+                Cpu.SetS(0, (float)Cpu.D(1));
+                L_L002B7230: ;
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 14512u)));
+                Cpu.SetS(0, Cpu.S(2) / Cpu.S(0));
+                fcc = Cpu.S(1) <= Cpu.S(0);
+                if (fcc) { Cpu.SetS(0, Cpu.S(0) - Cpu.S(1)); goto L_L002B725C; }
+                Cpu.SetW(3, (uint)(int)Cpu.S(0));
+                r5 = Cpu.W(3);
+                r2 = r5; Cpu.V1 = r3; return r2;
+                L_L002B725C: ;
+                r2 = 2147483648u;
+                Cpu.SetW(3, (uint)(int)Cpu.S(0));
+                r5 = Cpu.W(3);
+                r5 = r5 | r2;
+                r2 = r5;
+                Cpu.V1 = r3; return r2;
+                r29 = r29 - 80u;
+                Mem.Set((r29 + 40u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 56u), r20);
+                r20 = r5;
+                Mem.Set((r29 + 60u), r21);
+                r21 = r6;
+                Mem.Set((r29 + 76u), r31);
+                Mem.Set((r29 + 72u), r30);
+                Mem.Set((r29 + 68u), r23);
+                Mem.Set((r29 + 64u), r22);
+                Mem.Set((r29 + 52u), r19);
+                Mem.Set((r29 + 48u), r18);
+                { bool c_ = r21 != 0; Mem.Set((r29 + 44u), r17); if (c_) goto L_L002B72E0; }
+                r2 = Mem.U32((r16 + 4u));
+                Mem.Set((r20 + 12u), (ushort)r0);
+                Mem.Set((r20 + 4u), r0);
+                Mem.Set((r20 + 8u), r0);
+                Mem.Set((r20 + 0u), r2); goto L_L002B735C;
+                L_L002B72CC: ;
+                r19 = Mem.U32((r16 + 8u));
+                r18 = Mem.U16((r16 + 26u));
+                r17 = Mem.U32((r16 + 12u));
+                Mem.Set((r20 + 0u), r19); goto L_L002B733C;
+                L_L002B72E0: ;
+                r3 = Mem.U16((r16 + 26u));
+                r23 = Mem.U32((r16 + 8u));
+                Mem.Set((r29 + 32u), (ushort)r3);
+                r30 = Mem.U32((r16 + 12u));
+                r2 = Mem.U32((r16 + 4u));
+                r22 = (uint)4;
+                Mem.Set((r16 + 26u), (ushort)r0);
+                Mem.Set((r16 + 12u), r0);
+                Mem.Set((r16 + 8u), r2);
+                r4 = r16;
+                L_L002B7308: ;
+                r19 = Mem.U32((r16 + 8u));
+                r18 = Mem.U16((r16 + 26u));
+                r17 = Mem.U32((r16 + 12u));
+                r5 = r29 + 16u; alSeqNextEvent(r4, r5);
+                r2 = (uint)(int)Mem.S16((r29 + 16u));
+                { bool c_ = r2 == r22;  if (c_) goto L_L002B72CC; }
+                r2 = Mem.U32((r16 + 12u));
+                r2 = (uint)(r2 < r21 ? 1 : 0);
+                { bool c_ = r2 != 0; r4 = r16; if (c_) goto L_L002B7308; }
+                Mem.Set((r20 + 0u), r19);
+                L_L002B733C: ;
+                Mem.Set((r20 + 12u), (ushort)r18);
+                Mem.Set((r20 + 4u), r17);
+                r2 = Mem.U32((r16 + 12u));
+                Mem.Set((r20 + 8u), r2);
+                Mem.Set((r16 + 8u), r23);
+                r3 = Mem.U16((r29 + 32u));
+                Mem.Set((r16 + 26u), (ushort)r3);
+                Mem.Set((r16 + 12u), r30);
+                L_L002B735C: ;
+                r31 = Mem.U32((r29 + 76u));
+                r30 = Mem.U32((r29 + 72u));
+                r23 = Mem.U32((r29 + 68u));
+                r22 = Mem.U32((r29 + 64u));
+                r21 = Mem.U32((r29 + 60u));
+                r20 = Mem.U32((r29 + 56u));
+                r19 = Mem.U32((r29 + 52u));
+                r18 = Mem.U32((r29 + 48u));
+                r17 = Mem.U32((r29 + 44u));
+                r16 = Mem.U32((r29 + 40u));
+                r29 = r29 + 80u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B7198", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B738C @ 0x002B738C [MIPS]
+    public static uint alSeqSetLoc_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B738C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B738C: ;
+                r2 = Mem.U32((r5 + 0u));
+                Mem.Set((r4 + 8u), r2);
+                r2 = Mem.U16((r5 + 12u));
+                Mem.Set((r4 + 26u), (ushort)r2);
+                r2 = Mem.U32((r5 + 4u));
+                Mem.Set((r4 + 12u), r2); Cpu.V1 = r3; return r2;
+                r2 = Mem.U32((r4 + 8u));
+                Mem.Set((r5 + 0u), r2);
+                r2 = Mem.U16((r4 + 26u));
+                Mem.Set((r5 + 12u), (ushort)r2);
+                r2 = Mem.U32((r4 + 12u));
+                Mem.Set((r5 + 4u), r2); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B738C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B73C4 @ 0x002B73C4 [MIPS]
+    public static uint __alSeqNextDelta_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B73C4", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B73C4: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 24u), r18);
+                Mem.Set((r29 + 28u), r31);
+                Mem.Set((r29 + 20u), r17);
+                r2 = Mem.U32((r16 + 0u));
+                r3 = Mem.U32((r16 + 16u));
+                r17 = Mem.U32((r16 + 8u));
+                r2 = r2 + r3;
+                r2 = (uint)(r17 < r2 ? 1 : 0);
+                { bool c_ = r2 == 0; r18 = r5; if (c_) goto L_L002B7410; }
+                r2 = (uint)__alSeqReadVarLen(r4);
+                Mem.Set((r18 + 0u), r2);
+                r2 = (uint)1;
+                Mem.Set((r16 + 8u), r17); goto L_L002B7414;
+                L_L002B7410: ;
+                r2 = r0;
+                L_L002B7414: ;
+                r31 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B73C4", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B742C @ 0x002B742C [MIPS]
+    public static uint __alSeqReadVarLen_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B742C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B742C: ;
+                r2 = Mem.U32((r4 + 8u));
+                r5 = Mem.U8((r2 + 0u));
+                r2 = r2 + 1u;
+                Mem.Set((r4 + 8u), r2);
+                r3 = r5;
+                r2 = r3 & 128u;
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B7478; }
+                r3 = r3 & 127u;
+                L_L002B7450: ;
+                r2 = Mem.U32((r4 + 8u));
+                r3 = r3 << 7;
+                r5 = Mem.U8((r2 + 0u));
+                r2 = r2 + 1u;
+                Mem.Set((r4 + 8u), r2);
+                r2 = r5 & 127u;
+                r3 = r3 + r2;
+                r2 = r5 & 128u;
+                { bool c_ = r2 != 0;  if (c_) goto L_L002B7450; }
+                L_L002B7478: ;
+                r2 = r3; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B742C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B7480 @ 0x002B7480 [MIPS]
+    public static uint __alSeqReadByte_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B7480", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B7480: ;
+                r3 = Mem.U32((r4 + 8u));
+                r2 = Mem.U8((r3 + 0u));
+                r3 = r3 + 1u;
+                Mem.Set((r4 + 8u), r3); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B7480", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B7494 @ 0x002B7494 [MIPS]
+    public static uint __alSeqReadShort_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B7494", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B7494: ;
+                r3 = Mem.U32((r4 + 8u));
+                r2 = Mem.U8((r3 + 0u));
+                r3 = r3 + 1u;
+                Mem.Set((r4 + 8u), r3);
+                r5 = Mem.U8((r3 + 0u));
+                r3 = r3 + 1u;
+                Mem.Set((r4 + 8u), r3);
+                r2 = r2 << 8;
+                r2 = r2 | r5;
+                r2 = r2 << 16;
+                r2 = (uint)((int)r2 >> 16); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B7494", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B74C4 @ 0x002B74C4 [MIPS]
+    public static uint __alSeqReadWord_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B74C4", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B74C4: ;
+                r3 = Mem.U32((r4 + 8u));
+                r2 = Mem.U8((r3 + 0u));
+                r3 = r3 + 1u;
+                Mem.Set((r4 + 8u), r3);
+                r7 = Mem.U8((r3 + 0u));
+                r5 = r3 + 1u;
+                Mem.Set((r4 + 8u), r5);
+                r6 = Mem.U8((r3 + 1u));
+                r5 = r3 + 2u;
+                Mem.Set((r4 + 8u), r5);
+                r5 = Mem.U8((r3 + 2u));
+                r3 = r3 + 3u;
+                Mem.Set((r4 + 8u), r3);
+                r2 = r2 << 24;
+                r7 = r7 << 16;
+                r2 = r2 | r7;
+                r6 = r6 << 8;
+                r2 = r2 | r6;
+                r2 = r2 | r5; Cpu.V1 = r3; return r2;
+                r4 = Mem.U32((r2 + 12u));
+                r2 = Mem.U32((r4 + 8u));
+                r3 = Mem.U32((r4 + 0u)); r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                { bool c_ = r3 == 0;  if (c_) goto L_L002B7534; }
+                r2 = Mem.U32((r4 + 4u));
+                Mem.Set((r3 + 4u), r2);
+                L_L002B7534: ;
+                r3 = Mem.U32((r4 + 4u));
+                { bool c_ = r3 == 0;  if (c_) goto L_L002B7548; }
+                r2 = Mem.U32((r4 + 0u));
+                Mem.Set((r3 + 0u), r2);
+                L_L002B7548: ;
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B74C4", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B7514 @ 0x002B7514 [MIPS]
+    public static uint alUnlink_Head(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B7514", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B7514: ;
+                r4 = Mem.U32((r2 + 12u));
+                r2 = Mem.U32((r4 + 8u));
+                r3 = Mem.U32((r4 + 0u)); r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                { bool c_ = r3 == 0;  if (c_) goto L_L002B7534; }
+                r2 = Mem.U32((r4 + 4u));
+                Mem.Set((r3 + 4u), r2);
+                L_L002B7534: ;
+                r3 = Mem.U32((r4 + 4u));
+                { bool c_ = r3 == 0;  if (c_) goto L_L002B7548; }
+                r2 = Mem.U32((r4 + 0u));
+                Mem.Set((r3 + 0u), r2);
+                L_L002B7548: ;
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B7514", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B7520 @ 0x002B7520 [MIPS]
+    public static uint alUnlink_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B7520", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B7520: ;
+                r3 = Mem.U32((r4 + 0u));
+                { bool c_ = r3 == 0;  if (c_) goto L_L002B7534; }
+                r2 = Mem.U32((r4 + 4u));
+                Mem.Set((r3 + 4u), r2);
+                L_L002B7534: ;
+                r3 = Mem.U32((r4 + 4u));
+                { bool c_ = r3 == 0;  if (c_) goto L_L002B7548; }
+                r2 = Mem.U32((r4 + 0u));
+                Mem.Set((r3 + 0u), r2);
+                L_L002B7548: ;
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B7520", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B7550 @ 0x002B7550 [MIPS]
+    public static uint alLink_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B7550", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B7550: ;
+                r2 = Mem.U32((r5 + 0u));
+                Mem.Set((r4 + 4u), r5);
+                Mem.Set((r4 + 0u), r2);
+                r2 = Mem.U32((r5 + 0u));
+                if (r2 != 0) { Mem.Set((r2 + 4u), r4); goto L_L002B7568; }
+                L_L002B7568: ;
+                Mem.Set((r5 + 0u), r4); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B7550", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B7570 @ 0x002B7570 [MIPS]
+    public static uint alInit_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B7570", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B7570: ;
+                r29 = r29 - 24u;
+                r3 = 2148401152u;
+                r3 = r3 - 32608u;
+                Mem.Set((r29 + 16u), r31);
+                r2 = Mem.U32((r3 + 0u));
+                { bool c_ = r2 != 0;  if (c_) goto L_L002B7594; }
+                Mem.Set((r3 + 0u), r4); alSynNew(r4, r5);
+                L_L002B7594: ;
+                r31 = Mem.U32((r29 + 16u));
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B7570", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B75A0 @ 0x002B75A0 [MIPS]
+    public static uint alClose_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B75A0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B75A0: ;
+                r29 = r29 - 24u;
+                Mem.Set((r29 + 16u), r16);
+                r16 = 2148401152u;
+                r16 = r16 - 32608u;
+                Mem.Set((r29 + 20u), r31);
+                r2 = Mem.U32((r16 + 0u));
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B75CC; }
+                alSynDelete(r4);
+                Mem.Set((r16 + 0u), r0);
+                L_L002B75CC: ;
+                r31 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                r2 = Mem.U32((r4 + 8u));
+                L_func_002B75E0: ;
+                r2 = Mem.U32((r4 + 68u));
+                r9 = Mem.U32((r4 + 64u));
+                { bool c_ = (int)r2 <= 0; r8 = r0; if (c_) goto L_L002B7690; }
+                r11 = (uint)5;
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 14496u)));
+                r12 = (uint)64;
+                r10 = 2164391936u;
+                r10 = r10 | 1033u;
+                r2 = r8 << 16;
+                L_L002B760C: ;
+                r7 = (uint)((int)r2 >> 16);
+                r2 = r7 << 1;
+                r2 = r2 + r7;
+                r2 = r2 << 4;
+                r6 = r2 + r9;
+                r2 = Mem.U32((r6 + 28u));
+                { bool c_ = r2 != 0; r2 = r8 + 1u; if (c_) goto L_L002B7674; }
+                Mem.Set((r6 + 28u), r5);
+                Mem.Set((r6 + 32u), (ushort)r11);
+                Mem.Set((r6 + 40u), r0);
+                Mem.Set((r6 + 36u), Cpu.W(0));
+                Mem.Set((r6 + 46u), (byte)r12);
+                Mem.Set((r6 + 47u), (byte)r0);
+                r2 = Mem.U8((r5 + 13u));
+                r3 = r2 << 15;
+                r3 = r3 - r2;
+                { long p_ = (long)(int)r3 * (int)r10; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r2 = r7;
+                r13 = hi;
+                r4 = r13 + r3;
+                r4 = (uint)((int)r4 >> 6);
+                r3 = (uint)((int)r3 >> 31);
+                r4 = r4 - r3;
+                Mem.Set((r6 + 44u), (ushort)r4); Cpu.V1 = r3; return r2;
+                L_L002B7674: ;
+                r8 = r2;
+                r2 = r2 << 16;
+                r3 = Mem.U32((r4 + 68u));
+                r2 = (uint)((int)r2 >> 16);
+                r2 = (uint)((int)r2 < (int)r3 ? 1 : 0);
+                { bool c_ = r2 != 0; r2 = r8 << 16; if (c_) goto L_L002B760C; }
+                L_L002B7690: ;
+                r2 = (uint)-1; Cpu.V1 = r3; return r2;
+                r16 = Mem.U32((r29 + 16u));
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B75A0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B75DC @ 0x002B75DC [MIPS]
+    public static uint alSndpAllocate_Head(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B75DC", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_002B75DC: ;
+                r2 = Mem.U32((r4 + 8u));
+                L_func_002B75E0: ;
+                r2 = Mem.U32((r4 + 68u));
+                r9 = Mem.U32((r4 + 64u));
+                { bool c_ = (int)r2 <= 0; r8 = r0; if (c_) goto L_L002B7690; }
+                r11 = (uint)5;
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 14496u)));
+                r12 = (uint)64;
+                r10 = 2164391936u;
+                r10 = r10 | 1033u;
+                r2 = r8 << 16;
+                L_L002B760C: ;
+                r7 = (uint)((int)r2 >> 16);
+                r2 = r7 << 1;
+                r2 = r2 + r7;
+                r2 = r2 << 4;
+                r6 = r2 + r9;
+                r2 = Mem.U32((r6 + 28u));
+                { bool c_ = r2 != 0; r2 = r8 + 1u; if (c_) goto L_L002B7674; }
+                Mem.Set((r6 + 28u), r5);
+                Mem.Set((r6 + 32u), (ushort)r11);
+                Mem.Set((r6 + 40u), r0);
+                Mem.Set((r6 + 36u), Cpu.W(0));
+                Mem.Set((r6 + 46u), (byte)r12);
+                Mem.Set((r6 + 47u), (byte)r0);
+                r2 = Mem.U8((r5 + 13u));
+                r3 = r2 << 15;
+                r3 = r3 - r2;
+                { long p_ = (long)(int)r3 * (int)r10; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r2 = r7;
+                r13 = hi;
+                r4 = r13 + r3;
+                r4 = (uint)((int)r4 >> 6);
+                r3 = (uint)((int)r3 >> 31);
+                r4 = r4 - r3;
+                Mem.Set((r6 + 44u), (ushort)r4); Cpu.V1 = r3; return r2;
+                L_L002B7674: ;
+                r8 = r2;
+                r2 = r2 << 16;
+                r3 = Mem.U32((r4 + 68u));
+                r2 = (uint)((int)r2 >> 16);
+                r2 = (uint)((int)r2 < (int)r3 ? 1 : 0);
+                { bool c_ = r2 != 0; r2 = r8 << 16; if (c_) goto L_L002B760C; }
+                L_L002B7690: ;
+                r2 = (uint)-1; Cpu.V1 = r3; return r2;
+                r16 = Mem.U32((r29 + 16u));
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B75DC", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B75E0 @ 0x002B75E0 [MIPS]
+    public static uint alSndpAllocate_Recompiled(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B75E0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_002B75E0: ;
+                r2 = Mem.U32((r4 + 68u));
+                r9 = Mem.U32((r4 + 64u));
+                { bool c_ = (int)r2 <= 0; r8 = r0; if (c_) goto L_L002B7690; }
+                r11 = (uint)5;
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 14496u)));
+                r12 = (uint)64;
+                r10 = 2164391936u;
+                r10 = r10 | 1033u;
+                r2 = r8 << 16;
+                L_L002B760C: ;
+                r7 = (uint)((int)r2 >> 16);
+                r2 = r7 << 1;
+                r2 = r2 + r7;
+                r2 = r2 << 4;
+                r6 = r2 + r9;
+                r2 = Mem.U32((r6 + 28u));
+                { bool c_ = r2 != 0; r2 = r8 + 1u; if (c_) goto L_L002B7674; }
+                Mem.Set((r6 + 28u), r5);
+                Mem.Set((r6 + 32u), (ushort)r11);
+                Mem.Set((r6 + 40u), r0);
+                Mem.Set((r6 + 36u), Cpu.W(0));
+                Mem.Set((r6 + 46u), (byte)r12);
+                Mem.Set((r6 + 47u), (byte)r0);
+                r2 = Mem.U8((r5 + 13u));
+                r3 = r2 << 15;
+                r3 = r3 - r2;
+                { long p_ = (long)(int)r3 * (int)r10; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r2 = r7;
+                r13 = hi;
+                r4 = r13 + r3;
+                r4 = (uint)((int)r4 >> 6);
+                r3 = (uint)((int)r3 >> 31);
+                r4 = r4 - r3;
+                Mem.Set((r6 + 44u), (ushort)r4); Cpu.V1 = r3; return r2;
+                L_L002B7674: ;
+                r8 = r2;
+                r2 = r2 << 16;
+                r3 = Mem.U32((r4 + 68u));
+                r2 = (uint)((int)r2 >> 16);
+                r2 = (uint)((int)r2 < (int)r3 ? 1 : 0);
+                { bool c_ = r2 != 0; r2 = r8 << 16; if (c_) goto L_L002B760C; }
+                L_L002B7690: ;
+                r2 = (uint)-1; Cpu.V1 = r3; return r2;
+                r16 = Mem.U32((r29 + 16u));
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B75E0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B7698 @ 0x002B7698 [MIPS]
+    public static uint alSndpAllocate_Tail(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B7698", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_002B7698: ;
+                r16 = Mem.U32((r29 + 16u));
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B7698", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B76A0 @ 0x002B76A0 [MIPS]
+    public static uint alSndpDeallocate_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B76A0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B76A0: ;
+                r5 = r5 << 16;
+                r5 = (uint)((int)r5 >> 16);
+                r2 = r5 << 1;
+                r2 = r2 + r5;
+                r3 = Mem.U32((r4 + 64u));
+                r2 = r2 << 4;
+                r3 = r2 + r3;
+                r2 = Mem.U32((r3 + 40u));
+                { bool c_ = r2 != 0;  if (c_) goto L_L002B76DC; }
+                Mem.Set((r3 + 28u), r0);
+                r2 = Mem.U32((r4 + 60u));
+                { bool c_ = r2 != r5; r2 = (uint)-1; if (c_) goto L_L002B76DC; }
+                Mem.Set((r4 + 60u), r2);
+                L_L002B76DC: ;
+                Cpu.V1 = r3; return r2;
+                Mem.Set((r29 + 44u), r23);
+                r23 = r6;
+                Mem.Set((r29 + 48u), r31);
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B76A0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B76E4 @ 0x002B76E4 [MIPS]
+    public static uint alSndpGetState_Head_002B76E4(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B76E4", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B76E4: ;
+                Mem.Set((r29 + 44u), r23);
+                r23 = r6 + r0;
+                Mem.Set((r29 + 48u), r31);
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B76E4", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B7720 @ 0x002B7720 [MIPS]
+    public static uint alSndpNew_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B7720", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B7720: ;
+                r29 = r29 - 56u;
+                Mem.Set((r29 + 44u), r17);
+                r17 = r4;
+                Mem.Set((r29 + 48u), r18);
+                r18 = r5;
+                r4 = r0;
+                Mem.Set((r29 + 52u), r31);
+                Mem.Set((r29 + 40u), r16);
+                r3 = Mem.U32((r18 + 0u));
+                r2 = (uint)-1;
+                Mem.Set((r17 + 60u), r2);
+                r2 = (uint)16000;
+                Mem.Set((r17 + 72u), r2);
+                Mem.Set((r17 + 68u), r3);
+                r3 = Mem.U32((r18 + 0u));
+                r5 = r4;
+                r2 = r3 << 1;
+                r2 = r2 + r3;
+                r2 = r2 << 4;
+                Mem.Set((r29 + 16u), r2);
+                r6 = Mem.U32((r18 + 8u));
+                r7 = (uint)1; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = r2;
+                Mem.Set((r17 + 64u), r4);
+                r2 = Mem.U32((r18 + 0u));
+                { bool c_ = r2 == 0; r3 = r0; if (c_) goto L_L002B77A8; }
+                L_L002B7790: ;
+                Mem.Set((r4 + 28u), r0);
+                r2 = Mem.U32((r18 + 0u));
+                r3 = r3 + 1u;
+                r2 = (uint)(r3 < r2 ? 1 : 0);
+                { bool c_ = r2 != 0; r4 = r4 + 48u; if (c_) goto L_L002B7790; }
+                L_L002B77A8: ;
+                r4 = r0;
+                r3 = Mem.U32((r18 + 4u));
+                r5 = r4;
+                r2 = r3 << 3;
+                r2 = r2 - r3;
+                r2 = r2 << 2;
+                Mem.Set((r29 + 16u), r2);
+                r6 = Mem.U32((r18 + 8u));
+                r7 = (uint)1; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r16 = r17 + 20u;
+                r4 = r16;
+                r6 = Mem.U32((r18 + 4u));
+                r5 = r2; alEvtqNew(r4, r5, (int)r6);
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 - 32608u));
+                r5 = r17;
+                Mem.Set((r17 + 0u), r0);
+                Mem.Set((r17 + 4u), r17);
+                Mem.Set((r17 + 56u), r2);
+                r4 = r2;
+                r2 = 2818048u;
+                r2 = r2 + 31884u;
+                Mem.Set((r17 + 8u), r2); alSynAddPlayer(r4, r5);
+                r4 = r16;
+                r2 = (uint)5;
+                Mem.Set((r29 + 24u), (ushort)r2);
+                r6 = Mem.U32((r17 + 72u));
+                r5 = r29 + 24u; alEvtqPostEvent(r4, r5, (int)r6);
+                r4 = r16;
+                r5 = r17 + 40u; r2 = (uint)alEvtqNextEvent(r4, r5);
+                Mem.Set((r17 + 76u), r2);
+                r31 = Mem.U32((r29 + 52u));
+                r18 = Mem.U32((r29 + 48u));
+                r17 = Mem.U32((r29 + 44u));
+                r16 = Mem.U32((r29 + 40u));
+                r29 = r29 + 56u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B7720", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B7850 @ 0x002B7850 [MIPS]
+    public static uint _handleEvent_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B7850", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B7850: ;
+                L_I002B7850: ;
+                r29 = r29 - 80u;
+                L_I002B7854: ;
+                Mem.Set((r29 + 56u), r20);
+                L_I002B7858: ;
+                Mem.Set((r29 + 64u), r31);
+                L_I002B785C: ;
+                Mem.Set((r29 + 60u), r21);
+                L_I002B7860: ;
+                Mem.Set((r29 + 52u), r19);
+                L_I002B7864: ;
+                Mem.Set((r29 + 48u), r18);
+                L_I002B7868: ;
+                Mem.Set((r29 + 44u), r17);
+                L_I002B786C: ;
+                Mem.Set((r29 + 40u), r16);
+                L_I002B7870: ;
+                Mem.Set((r29 + 72u), Cpu.Fpr[20]);
+                L_I002B7874: ;
+                r3 = (uint)(int)Mem.S16((r5 + 0u));
+                L_I002B7878: ;
+                r16 = Mem.U32((r5 + 4u));
+                L_I002B787C: ;
+                r2 = (uint)(r3 < (uint)(9) ? 1 : 0);
+                L_I002B7880: ;
+                r19 = Mem.U32((r16 + 28u));
+                L_I002B7884: ;
+                { bool c_ = r2 == 0; r20 = r4; if (c_) goto L_L002B7C64; }
+                L_I002B788C: ;
+                r2 = r3 << 2;
+                L_I002B7890: ;
+                r1 = 2148335616u;
+                L_I002B7894: ;
+                r1 = r1 + r2;
+                L_I002B7898: ;
+                r2 = Mem.U32((r1 - 14480u));
+                L_I002B789C: ;
+                 switch (r2) { case 2848848u: goto L_I002B7850; case 2848852u: goto L_I002B7854; case 2848856u: goto L_I002B7858; case 2848860u: goto L_I002B785C; case 2848864u: goto L_I002B7860; case 2848868u: goto L_I002B7864; case 2848872u: goto L_I002B7868; case 2848876u: goto L_I002B786C; case 2848880u: goto L_I002B7870; case 2848884u: goto L_I002B7874; case 2848888u: goto L_I002B7878; case 2848892u: goto L_I002B787C; case 2848896u: goto L_I002B7880; case 2848900u: goto L_I002B7884; case 2848908u: goto L_I002B788C; case 2848912u: goto L_I002B7890; case 2848916u: goto L_I002B7894; case 2848920u: goto L_I002B7898; case 2848924u: goto L_I002B789C; case 2848932u: goto L_I002B78A4; case 2848936u: goto L_I002B78A8; case 2848944u: goto L_I002B78B0; case 2848952u: goto L_I002B78B8; case 2848956u: goto L_I002B78BC; case 2848960u: goto L_I002B78C0; case 2848964u: goto L_I002B78C4; case 2848968u: goto L_I002B78C8; case 2848972u: goto L_I002B78CC; case 2848976u: goto L_I002B78D0; case 2848984u: goto L_I002B78D8; case 2848988u: goto L_I002B78DC; case 2848992u: goto L_I002B78E0; case 2848996u: goto L_I002B78E4; case 2849000u: goto L_I002B78E8; case 2849004u: goto L_I002B78EC; case 2849008u: goto L_I002B78F0; case 2849012u: goto L_I002B78F4; case 2849016u: goto L_I002B78F8; case 2849020u: goto L_I002B78FC; case 2849024u: goto L_I002B7900; case 2849028u: goto L_I002B7904; case 2849032u: goto L_I002B7908; case 2849036u: goto L_I002B790C; case 2849040u: goto L_I002B7910; case 2849044u: goto L_I002B7914; case 2849048u: goto L_I002B7918; case 2849052u: goto L_I002B791C; case 2849056u: goto L_I002B7920; case 2849060u: goto L_I002B7924; case 2849068u: goto L_I002B792C; case 2849072u: goto L_I002B7930; case 2849076u: goto L_I002B7934; case 2849080u: goto L_I002B7938; case 2849084u: goto L_I002B793C; case 2849092u: goto L_I002B7944; case 2849096u: goto L_I002B7948; case 2849100u: goto L_I002B794C; case 2849104u: goto L_I002B7950; case 2849108u: goto L_I002B7954; case 2849112u: goto L_I002B7958; case 2849120u: goto L_I002B7960; case 2849124u: goto L_I002B7964; case 2849128u: goto L_I002B7968; case 2849132u: goto L_I002B796C; case 2849136u: goto L_I002B7970; case 2849144u: goto L_I002B7978; case 2849148u: goto L_I002B797C; case 2849152u: goto L_I002B7980; case 2849156u: goto L_I002B7984; case 2849160u: goto L_I002B7988; case 2849168u: goto L_I002B7990; case 2849172u: goto L_I002B7994; case 2849176u: goto L_I002B7998; case 2849184u: goto L_I002B79A0; case 2849188u: goto L_I002B79A4; case 2849192u: goto L_I002B79A8; case 2849200u: goto L_I002B79B0; case 2849204u: goto L_I002B79B4; case 2849208u: goto L_I002B79B8; case 2849212u: goto L_I002B79BC; case 2849216u: goto L_I002B79C0; case 2849220u: goto L_I002B79C4; case 2849224u: goto L_I002B79C8; case 2849232u: goto L_I002B79D0; case 2849236u: goto L_I002B79D4; case 2849240u: goto L_I002B79D8; case 2849248u: goto L_I002B79E0; case 2849256u: goto L_I002B79E8; case 2849260u: goto L_I002B79EC; case 2849264u: goto L_I002B79F0; case 2849272u: goto L_I002B79F8; case 2849280u: goto L_I002B7A00; case 2849284u: goto L_I002B7A04; case 2849288u: goto L_I002B7A08; case 2849292u: goto L_I002B7A0C; case 2849300u: goto L_I002B7A14; case 2849304u: goto L_I002B7A18; case 2849308u: goto L_I002B7A1C; case 2849312u: goto L_I002B7A20; case 2849316u: goto L_I002B7A24; case 2849324u: goto L_I002B7A2C; case 2849332u: goto L_I002B7A34; case 2849336u: goto L_I002B7A38; case 2849340u: goto L_I002B7A3C; case 2849344u: goto L_I002B7A40; case 2849348u: goto L_I002B7A44; case 2849356u: goto L_I002B7A4C; case 2849360u: goto L_I002B7A50; case 2849368u: goto L_I002B7A58; case 2849372u: goto L_I002B7A5C; case 2849376u: goto L_I002B7A60; case 2849380u: goto L_I002B7A64; case 2849384u: goto L_I002B7A68; case 2849392u: goto L_I002B7A70; case 2849400u: goto L_I002B7A78; case 2849404u: goto L_I002B7A7C; case 2849408u: goto L_I002B7A80; case 2849412u: goto L_I002B7A84; case 2849416u: goto L_I002B7A88; case 2849420u: goto L_I002B7A8C; case 2849424u: goto L_I002B7A90; case 2849432u: goto L_I002B7A98; case 2849436u: goto L_I002B7A9C; case 2849440u: goto L_I002B7AA0; case 2849444u: goto L_I002B7AA4; case 2849452u: goto L_I002B7AAC; case 2849456u: goto L_I002B7AB0; case 2849460u: goto L_I002B7AB4; case 2849464u: goto L_I002B7AB8; case 2849472u: goto L_I002B7AC0; case 2849480u: goto L_I002B7AC8; case 2849484u: goto L_I002B7ACC; case 2849488u: goto L_I002B7AD0; case 2849492u: goto L_I002B7AD4; case 2849496u: goto L_I002B7AD8; case 2849500u: goto L_I002B7ADC; case 2849508u: goto L_I002B7AE4; case 2849512u: goto L_I002B7AE8; case 2849516u: goto L_I002B7AEC; case 2849520u: goto L_I002B7AF0; case 2849528u: goto L_I002B7AF8; case 2849532u: goto L_I002B7AFC; case 2849536u: goto L_I002B7B00; case 2849544u: goto L_I002B7B08; case 2849552u: goto L_I002B7B10; case 2849556u: goto L_I002B7B14; case 2849560u: goto L_I002B7B18; case 2849564u: goto L_I002B7B1C; case 2849568u: goto L_I002B7B20; case 2849576u: goto L_I002B7B28; case 2849580u: goto L_I002B7B2C; case 2849584u: goto L_I002B7B30; case 2849592u: goto L_I002B7B38; case 2849600u: goto L_I002B7B40; case 2849604u: goto L_I002B7B44; case 2849608u: goto L_I002B7B48; case 2849612u: goto L_I002B7B4C; case 2849620u: goto L_I002B7B54; case 2849628u: goto L_I002B7B5C; case 2849632u: goto L_I002B7B60; case 2849636u: goto L_I002B7B64; case 2849640u: goto L_I002B7B68; case 2849644u: goto L_I002B7B6C; case 2849648u: goto L_I002B7B70; case 2849652u: goto L_I002B7B74; case 2849656u: goto L_I002B7B78; case 2849660u: goto L_I002B7B7C; case 2849664u: goto L_I002B7B80; case 2849668u: goto L_I002B7B84; case 2849672u: goto L_I002B7B88; case 2849676u: goto L_I002B7B8C; case 2849680u: goto L_I002B7B90; case 2849684u: goto L_I002B7B94; case 2849688u: goto L_I002B7B98; case 2849692u: goto L_I002B7B9C; case 2849696u: goto L_I002B7BA0; case 2849704u: goto L_I002B7BA8; case 2849712u: goto L_I002B7BB0; case 2849716u: goto L_I002B7BB4; case 2849720u: goto L_I002B7BB8; case 2849724u: goto L_I002B7BBC; case 2849732u: goto L_I002B7BC4; case 2849736u: goto L_I002B7BC8; case 2849740u: goto L_I002B7BCC; case 2849744u: goto L_I002B7BD0; case 2849748u: goto L_I002B7BD4; case 2849752u: goto L_I002B7BD8; case 2849756u: goto L_I002B7BDC; case 2849760u: goto L_I002B7BE0; case 2849764u: goto L_I002B7BE4; case 2849768u: goto L_I002B7BE8; case 2849772u: goto L_I002B7BEC; case 2849776u: goto L_I002B7BF0; case 2849780u: goto L_I002B7BF4; case 2849788u: goto L_I002B7BFC; case 2849792u: goto L_I002B7C00; case 2849796u: goto L_I002B7C04; case 2849800u: goto L_I002B7C08; case 2849804u: goto L_I002B7C0C; case 2849808u: goto L_I002B7C10; case 2849816u: goto L_I002B7C18; case 2849820u: goto L_I002B7C1C; case 2849824u: goto L_I002B7C20; case 2849828u: goto L_I002B7C24; case 2849832u: goto L_I002B7C28; case 2849836u: goto L_I002B7C2C; case 2849844u: goto L_I002B7C34; case 2849852u: goto L_I002B7C3C; case 2849856u: goto L_I002B7C40; case 2849864u: goto L_I002B7C48; case 2849868u: goto L_I002B7C4C; case 2849876u: goto L_I002B7C54; case 2849880u: goto L_I002B7C58; case 2849888u: goto L_I002B7C60; case 2849892u: goto L_I002B7C64; case 2849896u: goto L_I002B7C68; case 2849900u: goto L_I002B7C6C; case 2849904u: goto L_I002B7C70; case 2849908u: goto L_I002B7C74; case 2849912u: goto L_I002B7C78; case 2849916u: goto L_I002B7C7C; case 2849920u: goto L_I002B7C80; case 2849924u: goto L_I002B7C84; case 2849932u: goto L_I002B7C8C; case 2849936u: goto L_I002B7C90; case 2849940u: goto L_I002B7C94; case 2849944u: goto L_I002B7C98; case 2849948u: goto L_I002B7C9C; case 2849952u: goto L_I002B7CA0; case 2849956u: goto L_I002B7CA4; case 2849960u: goto L_I002B7CA8; case 2849964u: goto L_I002B7CAC; case 2849968u: goto L_I002B7CB0; case 2849976u: goto L_I002B7CB8; case 2849980u: goto L_I002B7CBC; case 2849984u: goto L_I002B7CC0; case 2849988u: goto L_I002B7CC4; case 2849996u: goto L_I002B7CCC; case 2850004u: goto L_I002B7CD4; case 2850012u: goto L_I002B7CDC; case 2850016u: goto L_I002B7CE0; case 2850024u: goto L_I002B7CE8; case 2850028u: goto L_I002B7CEC; case 2850036u: goto L_I002B7CF4; case 2850040u: goto L_I002B7CF8; case 2850044u: goto L_I002B7CFC; case 2850048u: goto L_I002B7D00; case 2850052u: goto L_I002B7D04; case 2850056u: goto L_I002B7D08; case 2850060u: goto L_I002B7D0C; case 2850064u: goto L_I002B7D10; default: throw new InvalidOperationException($"bad jump table target {r2:X8} in func_002B7850"); }
+                L_L002B78A4: ;
+                L_I002B78A4: ;
+                r2 = Mem.U32((r16 + 40u));
+                L_I002B78A8: ;
+                { bool c_ = r2 != 0;  if (c_) goto L_L002B7C64; }
+                L_I002B78B0: ;
+                { bool c_ = r19 == 0;  if (c_) goto L_L002B7C64; }
+                L_I002B78B8: ;
+                Mem.Set((r29 + 18u), (ushort)r0);
+                L_I002B78BC: ;
+                r2 = Mem.U16((r16 + 32u));
+                L_I002B78C0: ;
+                r5 = r16;
+                L_I002B78C4: ;
+                Mem.Set((r29 + 20u), (byte)r0);
+                L_I002B78C8: ;
+                Mem.Set((r29 + 16u), (ushort)r2);
+                L_I002B78CC: ;
+                r4 = Mem.U32((r20 + 56u));
+                L_I002B78D0: ;
+                r6 = r29 + 16u; r2 = (uint)alSynAllocVoice(r4, r5, r6);
+                L_I002B78D8: ;
+                r6 = Mem.U32((r19 + 0u));
+                L_I002B78DC: ;
+                r2 = (uint)(int)Mem.S16((r16 + 44u));
+                L_I002B78E0: ;
+                r3 = Mem.U8((r6 + 12u));
+                L_I002B78E4: ;
+                { long p_ = (long)(int)r3 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                L_I002B78E8: ;
+                r5 = (uint)65472;
+                L_I002B78EC: ;
+                r3 = lo;
+                L_I002B78F0: ;
+                r2 = 2164391936u;
+                L_I002B78F4: ;
+                r2 = r2 | 1033u;
+                L_I002B78F8: ;
+                { long p_ = (long)(int)r3 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                L_I002B78FC: ;
+                r2 = Mem.U8((r16 + 46u));
+                L_I002B7900: ;
+                r4 = Mem.U8((r19 + 12u));
+                L_I002B7904: ;
+                r2 = r2 + r5;
+                L_I002B7908: ;
+                r4 = r4 + r2;
+                L_I002B790C: ;
+                r5 = r4;
+                L_I002B7910: ;
+                r4 = r4 << 16;
+                L_I002B7914: ;
+                r9 = hi;
+                L_I002B7918: ;
+                r2 = r9 + r3;
+                L_I002B791C: ;
+                r2 = (uint)((int)r2 >> 6);
+                L_I002B7920: ;
+                r3 = (uint)((int)r3 >> 31);
+                L_I002B7924: ;
+                { bool c_ = (int)r4 >= 0; r21 = r2 - r3; if (c_) goto L_L002B7930; }
+                L_I002B792C: ;
+                r5 = r0;
+                L_L002B7930: ;
+                L_I002B7930: ;
+                r2 = r5 << 16;
+                L_I002B7934: ;
+                r2 = (uint)((int)r2 >> 16);
+                L_I002B7938: ;
+                r2 = (uint)((int)r2 < 127 ? 1 : 0);
+                L_I002B793C: ;
+                { bool c_ = r2 == 0; r17 = (uint)127; if (c_) goto L_L002B7948; }
+                L_I002B7944: ;
+                r17 = r5;
+                L_L002B7948: ;
+                L_I002B7948: ;
+                r18 = Mem.U32((r6 + 0u));
+                L_I002B794C: ;
+                r4 = Mem.U32((r20 + 56u));
+                L_I002B7950: ;
+                r6 = Mem.U32((r19 + 8u));
+                L_I002B7954: ;
+                Cpu.SetW(20, Mem.U32((r16 + 36u)));
+                L_I002B7958: ;
+                r5 = r16; alSynStartVoice(r4, r5, r6);
+                L_I002B7960: ;
+                r5 = r16;
+                L_I002B7964: ;
+                r2 = (uint)1;
+                L_I002B7968: ;
+                Mem.Set((r16 + 40u), r2);
+                L_I002B796C: ;
+                r4 = Mem.U32((r20 + 56u));
+                L_I002B7970: ;
+                r6 = r17 & 255u; alSynSetPan(r4, r5, (byte)r6);
+                L_I002B7978: ;
+                r5 = r16;
+                L_I002B797C: ;
+                r6 = r21 << 16;
+                L_I002B7980: ;
+                r6 = (uint)((int)r6 >> 16);
+                L_I002B7984: ;
+                r4 = Mem.U32((r20 + 56u));
+                L_I002B7988: ;
+                r7 = r18; alSynSetVol(r4, r5, (short)r6, (int)r7);
+                L_I002B7990: ;
+                r4 = Mem.U32((r20 + 56u));
+                L_I002B7994: ;
+                r6 = Cpu.W(20);
+                L_I002B7998: ;
+                r5 = r16; alSynSetPitch(r4, r5, Cpu.U2F(r6));
+                L_I002B79A0: ;
+                r4 = Mem.U32((r20 + 56u));
+                L_I002B79A4: ;
+                r6 = Mem.U8((r16 + 47u));
+                L_I002B79A8: ;
+                r5 = r16; alSynSetFXMix(r4, r5, (byte)r6);
+                L_I002B79B0: ;
+                r2 = (uint)6;
+                L_I002B79B4: ;
+                Mem.Set((r29 + 24u), (ushort)r2);
+                L_I002B79B8: ;
+                Mem.Set((r29 + 28u), r16);
+                L_I002B79BC: ;
+                r2 = Mem.U32((r19 + 0u));
+                L_I002B79C0: ;
+                r5 = Mem.U32((r16 + 36u));
+                L_I002B79C4: ;
+                r4 = Mem.U32((r2 + 0u));
+                L_I002B79C8: ;
+                r2 = (uint)__sndpTimeAtPitch((int)r4, Cpu.U2F(r5));
+                L_I002B79D0: ;
+                r4 = r20 + 20u;
+                L_I002B79D4: ;
+                r5 = r29 + 24u;
+                L_I002B79D8: ;
+                r6 = r2; alEvtqPostEvent(r4, r5, (int)r6);
+                L_I002B79E0: ;
+                 goto L_L002B7C64;
+                L_L002B79E8: ;
+                L_I002B79E8: ;
+                r3 = Mem.U32((r16 + 40u));
+                L_I002B79EC: ;
+                r2 = (uint)1;
+                L_I002B79F0: ;
+                { bool c_ = r3 != r2;  if (c_) goto L_L002B7C64; }
+                L_I002B79F8: ;
+                { bool c_ = r19 == 0;  if (c_) goto L_L002B7C64; }
+                L_I002B7A00: ;
+                r2 = Mem.U32((r19 + 0u));
+                L_I002B7A04: ;
+                r5 = Mem.U32((r16 + 36u));
+                L_I002B7A08: ;
+                r4 = Mem.U32((r2 + 8u));
+                L_I002B7A0C: ;
+                r2 = (uint)__sndpTimeAtPitch((int)r4, Cpu.U2F(r5));
+                L_I002B7A14: ;
+                r18 = r2;
+                L_I002B7A18: ;
+                r5 = r16;
+                L_I002B7A1C: ;
+                r6 = r0;
+                L_I002B7A20: ;
+                r4 = Mem.U32((r20 + 56u));
+                L_I002B7A24: ;
+                r7 = r18; alSynSetVol(r4, r5, (short)r6, (int)r7);
+                L_I002B7A2C: ;
+                { bool c_ = r18 == 0; r4 = r20 + 20u; if (c_) goto L_L002B7C3C; }
+                L_I002B7A34: ;
+                r5 = r29 + 24u;
+                L_I002B7A38: ;
+                r6 = r18;
+                L_I002B7A3C: ;
+                r2 = (uint)7;
+                L_I002B7A40: ;
+                Mem.Set((r29 + 24u), (ushort)r2);
+                L_I002B7A44: ;
+                Mem.Set((r29 + 28u), r16); alEvtqPostEvent(r4, r5, (int)r6);
+                L_I002B7A4C: ;
+                r2 = (uint)2;
+                L_I002B7A50: ;
+                Mem.Set((r16 + 40u), r2); goto L_L002B7C64;
+                L_L002B7A58: ;
+                L_I002B7A58: ;
+                r2 = Mem.U8((r5 + 8u));
+                L_I002B7A5C: ;
+                r3 = Mem.U32((r16 + 40u));
+                L_I002B7A60: ;
+                Mem.Set((r16 + 46u), (byte)r2);
+                L_I002B7A64: ;
+                r2 = (uint)1;
+                L_I002B7A68: ;
+                { bool c_ = r3 != r2;  if (c_) goto L_L002B7C64; }
+                L_I002B7A70: ;
+                { bool c_ = r19 == 0; r4 = (uint)65472; if (c_) goto L_L002B7C64; }
+                L_I002B7A78: ;
+                r3 = Mem.U8((r16 + 46u));
+                L_I002B7A7C: ;
+                r2 = Mem.U8((r19 + 12u));
+                L_I002B7A80: ;
+                r3 = r3 + r4;
+                L_I002B7A84: ;
+                r2 = r2 + r3;
+                L_I002B7A88: ;
+                r5 = r2;
+                L_I002B7A8C: ;
+                r2 = r2 << 16;
+                L_I002B7A90: ;
+                if ((int)r2 < 0) { r5 = r0; goto L_L002B7A98; }
+                L_L002B7A98: ;
+                L_I002B7A98: ;
+                r2 = r5 << 16;
+                L_I002B7A9C: ;
+                r2 = (uint)((int)r2 >> 16);
+                L_I002B7AA0: ;
+                r2 = (uint)((int)r2 < 127 ? 1 : 0);
+                L_I002B7AA4: ;
+                { bool c_ = r2 == 0; r17 = (uint)127; if (c_) goto L_L002B7AB0; }
+                L_I002B7AAC: ;
+                r17 = r5;
+                L_L002B7AB0: ;
+                L_I002B7AB0: ;
+                r4 = Mem.U32((r20 + 56u));
+                L_I002B7AB4: ;
+                r5 = r16;
+                L_I002B7AB8: ;
+                r6 = r17 & 255u; alSynSetPan(r4, r5, (byte)r6);
+                L_I002B7AC0: ;
+                 goto L_L002B7C64;
+                L_L002B7AC8: ;
+                L_I002B7AC8: ;
+                Cpu.SetW(0, Mem.U32((r5 + 8u)));
+                L_I002B7ACC: ;
+                r1 = 2148335616u;
+                L_I002B7AD0: ;
+                Cpu.SetW(1, Mem.U32((r1 - 14444u)));
+                L_I002B7AD4: ;
+                fcc = Cpu.S(0) < Cpu.S(1);
+                L_I002B7AD8: ;
+                L_I002B7ADC: ;
+                { bool c_ = !fcc; Mem.Set((r16 + 36u), Cpu.W(0)); if (c_) goto L_L002B7AE8; }
+                L_I002B7AE4: ;
+                Mem.Set((r16 + 36u), Cpu.W(1));
+                L_L002B7AE8: ;
+                L_I002B7AE8: ;
+                r3 = Mem.U32((r16 + 40u));
+                L_I002B7AEC: ;
+                r2 = (uint)1;
+                L_I002B7AF0: ;
+                { bool c_ = r3 != r2;  if (c_) goto L_L002B7C64; }
+                L_I002B7AF8: ;
+                r4 = Mem.U32((r20 + 56u));
+                L_I002B7AFC: ;
+                r6 = Mem.U32((r16 + 36u));
+                L_I002B7B00: ;
+                r5 = r16; alSynSetPitch(r4, r5, Cpu.U2F(r6));
+                L_I002B7B08: ;
+                 goto L_L002B7C64;
+                L_L002B7B10: ;
+                L_I002B7B10: ;
+                r2 = Mem.U8((r5 + 8u));
+                L_I002B7B14: ;
+                r3 = Mem.U32((r16 + 40u));
+                L_I002B7B18: ;
+                Mem.Set((r16 + 47u), (byte)r2);
+                L_I002B7B1C: ;
+                r2 = (uint)1;
+                L_I002B7B20: ;
+                { bool c_ = r3 != r2;  if (c_) goto L_L002B7C64; }
+                L_I002B7B28: ;
+                r4 = Mem.U32((r20 + 56u));
+                L_I002B7B2C: ;
+                r6 = Mem.U8((r16 + 47u));
+                L_I002B7B30: ;
+                r5 = r16; alSynSetFXMix(r4, r5, (byte)r6);
+                L_I002B7B38: ;
+                 goto L_L002B7C64;
+                L_L002B7B40: ;
+                L_I002B7B40: ;
+                r5 = Mem.U16((r5 + 8u));
+                L_I002B7B44: ;
+                r3 = Mem.U32((r16 + 40u));
+                L_I002B7B48: ;
+                r2 = (uint)1;
+                L_I002B7B4C: ;
+                { bool c_ = r3 != r2; Mem.Set((r16 + 44u), (ushort)r5); if (c_) goto L_L002B7C64; }
+                L_I002B7B54: ;
+                { bool c_ = r19 == 0; r2 = r5 << 16; if (c_) goto L_L002B7C64; }
+                L_I002B7B5C: ;
+                r3 = Mem.U32((r19 + 0u));
+                L_I002B7B60: ;
+                r3 = Mem.U8((r3 + 13u));
+                L_I002B7B64: ;
+                r2 = (uint)((int)r2 >> 16);
+                L_I002B7B68: ;
+                { long p_ = (long)(int)r3 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                L_I002B7B6C: ;
+                r3 = lo;
+                L_I002B7B70: ;
+                r2 = 2164391936u;
+                L_I002B7B74: ;
+                r2 = r2 | 1033u;
+                L_I002B7B78: ;
+                { long p_ = (long)(int)r3 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                L_I002B7B7C: ;
+                r5 = r16;
+                L_I002B7B80: ;
+                r7 = (uint)1000;
+                L_I002B7B84: ;
+                r4 = Mem.U32((r20 + 56u));
+                L_I002B7B88: ;
+                r9 = hi;
+                L_I002B7B8C: ;
+                r2 = r9 + r3;
+                L_I002B7B90: ;
+                r2 = (uint)((int)r2 >> 6);
+                L_I002B7B94: ;
+                r3 = (uint)((int)r3 >> 31);
+                L_I002B7B98: ;
+                r17 = r2 - r3;
+                L_I002B7B9C: ;
+                r6 = r17 << 16;
+                L_I002B7BA0: ;
+                r6 = (uint)((int)r6 >> 16); alSynSetVol(r4, r5, (short)r6, (int)r7);
+                L_I002B7BA8: ;
+                 goto L_L002B7C64;
+                L_L002B7BB0: ;
+                L_I002B7BB0: ;
+                r3 = Mem.U32((r19 + 0u));
+                L_I002B7BB4: ;
+                r4 = Mem.U32((r3 + 4u));
+                L_I002B7BB8: ;
+                r2 = (uint)-1;
+                L_I002B7BBC: ;
+                { bool c_ = r4 == r2;  if (c_) goto L_L002B7C64; }
+                L_I002B7BC4: ;
+                r3 = Mem.U8((r3 + 13u));
+                L_I002B7BC8: ;
+                r2 = (uint)(int)Mem.S16((r16 + 44u));
+                L_I002B7BCC: ;
+                { long p_ = (long)(int)r3 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                L_I002B7BD0: ;
+                r3 = lo;
+                L_I002B7BD4: ;
+                r2 = 2164391936u;
+                L_I002B7BD8: ;
+                r2 = r2 | 1033u;
+                L_I002B7BDC: ;
+                { long p_ = (long)(int)r3 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                L_I002B7BE0: ;
+                r5 = Mem.U32((r16 + 36u));
+                L_I002B7BE4: ;
+                r9 = hi;
+                L_I002B7BE8: ;
+                r2 = r9 + r3;
+                L_I002B7BEC: ;
+                r2 = (uint)((int)r2 >> 6);
+                L_I002B7BF0: ;
+                r3 = (uint)((int)r3 >> 31);
+                L_I002B7BF4: ;
+                r17 = r2 - r3; r2 = (uint)__sndpTimeAtPitch((int)r4, Cpu.U2F(r5));
+                L_I002B7BFC: ;
+                r18 = r2;
+                L_I002B7C00: ;
+                r5 = r16;
+                L_I002B7C04: ;
+                r6 = r17 << 16;
+                L_I002B7C08: ;
+                r6 = (uint)((int)r6 >> 16);
+                L_I002B7C0C: ;
+                r4 = Mem.U32((r20 + 56u));
+                L_I002B7C10: ;
+                r7 = r18; alSynSetVol(r4, r5, (short)r6, (int)r7);
+                L_I002B7C18: ;
+                r4 = r20 + 20u;
+                L_I002B7C1C: ;
+                r5 = r29 + 24u;
+                L_I002B7C20: ;
+                r6 = r18;
+                L_I002B7C24: ;
+                r2 = (uint)1;
+                L_I002B7C28: ;
+                Mem.Set((r29 + 24u), (ushort)r2);
+                L_I002B7C2C: ;
+                Mem.Set((r29 + 28u), r16); alEvtqPostEvent(r4, r5, (int)r6);
+                L_I002B7C34: ;
+                 goto L_L002B7C64;
+                L_L002B7C3C: ;
+                L_I002B7C3C: ;
+                r4 = Mem.U32((r20 + 56u));
+                L_I002B7C40: ;
+                r5 = r16; alSynStopVoice(r4, r5);
+                L_I002B7C48: ;
+                r4 = Mem.U32((r20 + 56u));
+                L_I002B7C4C: ;
+                r5 = r16; alSynFreeVoice(r4, r5);
+                L_I002B7C54: ;
+                r4 = r20 + 20u;
+                L_I002B7C58: ;
+                r5 = r16; _removeEvents(r4, r5);
+                L_I002B7C60: ;
+                Mem.Set((r16 + 40u), r0);
+                L_L002B7C64: ;
+                L_I002B7C64: ;
+                r31 = Mem.U32((r29 + 64u));
+                L_I002B7C68: ;
+                r21 = Mem.U32((r29 + 60u));
+                L_I002B7C6C: ;
+                r20 = Mem.U32((r29 + 56u));
+                L_I002B7C70: ;
+                r19 = Mem.U32((r29 + 52u));
+                L_I002B7C74: ;
+                r18 = Mem.U32((r29 + 48u));
+                L_I002B7C78: ;
+                r17 = Mem.U32((r29 + 44u));
+                L_I002B7C7C: ;
+                r16 = Mem.U32((r29 + 40u));
+                L_I002B7C80: ;
+                Cpu.Fpr[20] = Mem.U64((r29 + 72u));
+                L_I002B7C84: ;
+                r29 = r29 + 80u; Cpu.V1 = r3; return r2;
+                L_I002B7C8C: ;
+                r29 = r29 - 48u;
+                L_I002B7C90: ;
+                Mem.Set((r29 + 32u), r16);
+                L_I002B7C94: ;
+                r16 = r4;
+                L_I002B7C98: ;
+                Mem.Set((r29 + 36u), r17);
+                L_I002B7C9C: ;
+                r17 = r16 + 40u;
+                L_I002B7CA0: ;
+                Mem.Set((r29 + 40u), r18);
+                L_I002B7CA4: ;
+                r18 = (uint)5;
+                L_I002B7CA8: ;
+                Mem.Set((r29 + 44u), r31);
+                L_L002B7CAC: ;
+                L_I002B7CAC: ;
+                r2 = (uint)(int)Mem.S16((r16 + 40u));
+                L_I002B7CB0: ;
+                { bool c_ = r2 != r18; r4 = r16; if (c_) goto L_L002B7CD4; }
+                L_I002B7CB8: ;
+                r4 = r16 + 20u;
+                L_I002B7CBC: ;
+                Mem.Set((r29 + 16u), (ushort)r2);
+                L_I002B7CC0: ;
+                r6 = Mem.U32((r16 + 72u));
+                L_I002B7CC4: ;
+                r5 = r29 + 16u; alEvtqPostEvent(r4, r5, (int)r6);
+                L_I002B7CCC: ;
+                r4 = r16 + 20u; goto L_L002B7CE0;
+                L_L002B7CD4: ;
+                L_I002B7CD4: ;
+                r5 = r17; _handleEvent(r4, r5);
+                L_I002B7CDC: ;
+                r4 = r16 + 20u;
+                L_L002B7CE0: ;
+                L_I002B7CE0: ;
+                r5 = r16 + 40u; r2 = (uint)alEvtqNextEvent(r4, r5);
+                L_I002B7CE8: ;
+                r4 = r2;
+                L_I002B7CEC: ;
+                { bool c_ = r4 == 0; Mem.Set((r16 + 76u), r4); if (c_) goto L_L002B7CAC; }
+                L_I002B7CF4: ;
+                r3 = Mem.U32((r16 + 80u));
+                L_I002B7CF8: ;
+                r3 = r3 + r4;
+                L_I002B7CFC: ;
+                Mem.Set((r16 + 80u), r3);
+                L_I002B7D00: ;
+                r31 = Mem.U32((r29 + 44u));
+                L_I002B7D04: ;
+                r18 = Mem.U32((r29 + 40u));
+                L_I002B7D08: ;
+                r17 = Mem.U32((r29 + 36u));
+                L_I002B7D0C: ;
+                r16 = Mem.U32((r29 + 32u));
+                L_I002B7D10: ;
+                r29 = r29 + 48u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B7850", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B7D18 @ 0x002B7D18 [MIPS]
+    public static uint _removeEvents_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B7D18", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B7D18: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r4;
+                Mem.Set((r29 + 32u), r20);
+                r20 = r5;
+                r4 = (uint)1;
+                Mem.Set((r29 + 36u), r31);
+                Mem.Set((r29 + 28u), r19);
+                Mem.Set((r29 + 20u), r17);
+                Mem.Set((r29 + 16u), r16); r2 = osSetIntMask(r4);
+                r16 = Mem.U32((r18 + 8u));
+                { bool c_ = r16 == 0; r19 = r2; if (c_) goto L_L002B7D98; }
+                L_L002B7D50: ;
+                r2 = Mem.U32((r16 + 16u));
+                r17 = Mem.U32((r16 + 0u));
+                if (r2 != r20) { r16 = r17; goto L_L002B7D90; }
+                { bool c_ = r17 == 0;  if (c_) goto L_L002B7D78; }
+                r2 = Mem.U32((r17 + 8u));
+                r3 = Mem.U32((r16 + 8u));
+                r2 = r2 + r3;
+                Mem.Set((r17 + 8u), r2);
+                L_L002B7D78: ;
+                r4 = r16; alUnlink(r4);
+                r4 = r16;
+                r5 = r18; alLink(r4, r5);
+                r16 = r17;
+                L_L002B7D90: ;
+                { bool c_ = r16 != 0;  if (c_) goto L_L002B7D50; }
+                L_L002B7D98: ;
+                r4 = r19; r2 = osSetIntMask(r4);
+                r31 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B7D18", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B7DC0 @ 0x002B7DC0 [MIPS]
+    public static uint __sndpTimeAtPitch_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B7DC0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B7DC0: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 24u), Cpu.Fpr[20]);
+                Cpu.SetW(20, r5);
+                Cpu.SetW(0, r0);
+                Mem.Set((r29 + 16u), r16);
+                r16 = r4;
+                fcc = Cpu.S(20) == Cpu.S(0);
+                { bool c_ = !fcc; Mem.Set((r29 + 20u), r31); if (c_) goto L_L002B7E00; }
+                r4 = 2148335616u;
+                r4 = r4 - 14440u;
+                r5 = 2148335616u;
+                r5 = r5 - 14436u;
+                r6 = (uint)285; r2 = __assert(r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B7E00: ;
+                r2 = 2147418112u;
+                Cpu.SetW(0, r16);
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                Cpu.SetS(0, Cpu.S(0) / Cpu.S(20));
+                r1 = 2148335616u;
+                Cpu.Fpr[1] = Mem.U64((r1 - 14416u));
+                Cpu.SetD(0, (double)Cpu.S(0));
+                fcc = Cpu.D(1) < Cpu.D(0);
+                { bool c_ = fcc; r2 = r2 | 65535u; if (c_) goto L_L002B7E34; }
+                Cpu.SetW(2, (uint)(int)Cpu.D(0));
+                r2 = Cpu.W(2);
+                L_L002B7E34: ;
+                r31 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                Cpu.Fpr[20] = Mem.U64((r29 + 24u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Mem.Set((r18 + 0u), r4);
+                L_func_002B7E50: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r31);
+                r2 = Mem.U32((r4 + 60u));
+                r5 = Mem.U32((r4 + 64u));
+                r3 = r2 << 1;
+                r3 = r3 + r2;
+                r3 = r3 << 4;
+                r3 = r3 + r5;
+                r2 = Mem.U32((r3 + 40u));
+                { bool c_ = r2 != 0; r6 = r0; if (c_) goto L_L002B7EA4; }
+                Mem.Set((r29 + 16u), (ushort)r0);
+                r3 = Mem.U32((r4 + 60u));
+                r4 = r4 + 20u;
+                r2 = r3 << 1;
+                r2 = r2 + r3;
+                r2 = r2 << 4;
+                r2 = r5 + r2;
+                r5 = r29 + 16u;
+                Mem.Set((r29 + 20u), r2); alEvtqPostEvent(r4, r5, (int)r6);
+                L_L002B7EA4: ;
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B7DC0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B7E48 @ 0x002B7E48 [MIPS]
+    public static uint alSndpPlay_Head_002B7E48(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B7E48", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B7E48: ;
+                L_func_002B7E50: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r31);
+                r2 = Mem.U32((r4 + 60u));
+                r5 = Mem.U32((r4 + 64u));
+                r3 = r2 << 1;
+                r3 = r3 + r2;
+                r3 = r3 << 4;
+                r3 = r3 + r5;
+                r2 = Mem.U32((r3 + 40u));
+                { bool c_ = r2 != 0; r6 = r0; if (c_) goto L_L002B7EA4; }
+                Mem.Set((r29 + 16u), (ushort)r0);
+                r3 = Mem.U32((r4 + 60u));
+                r4 = r4 + 20u;
+                r2 = r3 << 1;
+                r2 = r2 + r3;
+                r2 = r2 << 4;
+                r2 = r5 + r2;
+                r5 = r29 + 16u;
+                Mem.Set((r29 + 20u), r2); alEvtqPostEvent(r4, r5, (int)r6);
+                L_L002B7EA4: ;
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B7E48", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B7E4C @ 0x002B7E4C [MIPS]
+    public static uint alSndpPlay_Head_002B7E4C(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B7E4C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B7E4C: ;
+                Mem.Set((r18 + 0u), r4);
+                L_func_002B7E50: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r31);
+                r2 = Mem.U32((r4 + 60u));
+                r5 = Mem.U32((r4 + 64u));
+                r3 = r2 << 1;
+                r3 = r3 + r2;
+                r3 = r3 << 4;
+                r3 = r3 + r5;
+                r2 = Mem.U32((r3 + 40u));
+                { bool c_ = r2 != 0; r6 = r0; if (c_) goto L_L002B7EA4; }
+                Mem.Set((r29 + 16u), (ushort)r0);
+                r3 = Mem.U32((r4 + 60u));
+                r4 = r4 + 20u;
+                r2 = r3 << 1;
+                r2 = r2 + r3;
+                r2 = r2 << 4;
+                r2 = r5 + r2;
+                r5 = r29 + 16u;
+                Mem.Set((r29 + 20u), r2); alEvtqPostEvent(r4, r5, (int)r6);
+                L_L002B7EA4: ;
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B7E4C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B7E50 @ 0x002B7E50 [MIPS]
+    public static uint alSndpPlay_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B7E50", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B7E50: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r31);
+                r2 = Mem.U32((r4 + 60u));
+                r5 = Mem.U32((r4 + 64u));
+                r3 = r2 << 1;
+                r3 = r3 + r2;
+                r3 = r3 << 4;
+                r3 = r3 + r5;
+                r2 = Mem.U32((r3 + 40u));
+                { bool c_ = r2 != 0; r6 = r0; if (c_) goto L_L002B7EA4; }
+                Mem.Set((r29 + 16u), (ushort)r0);
+                r3 = Mem.U32((r4 + 60u));
+                r4 = r4 + 20u;
+                r2 = r3 << 1;
+                r2 = r2 + r3;
+                r2 = r2 << 4;
+                r2 = r5 + r2;
+                r5 = r29 + 16u;
+                Mem.Set((r29 + 20u), r2); alEvtqPostEvent(r4, r5, (int)r6);
+                L_L002B7EA4: ;
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B7E50", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B7EB0 @ 0x002B7EB0 [MIPS]
+    public static uint alSndpSetFXMix_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B7EB0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B7EB0: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r31);
+                r6 = Mem.U32((r4 + 64u));
+                r2 = (uint)8;
+                Mem.Set((r29 + 16u), (ushort)r2);
+                r3 = Mem.U32((r4 + 60u));
+                r4 = r4 + 20u;
+                Mem.Set((r29 + 24u), (byte)r5);
+                r5 = r29 + 16u;
+                r2 = r3 << 1;
+                r2 = r2 + r3;
+                r2 = r2 << 4;
+                r6 = r6 + r2;
+                Mem.Set((r29 + 20u), r6);
+                r6 = r0; alEvtqPostEvent(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                r5 = r5 | 2048u;
+                L_func_002B7F00: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r31);
+                r6 = Mem.U32((r4 + 64u));
+                r2 = (uint)2;
+                Mem.Set((r29 + 16u), (ushort)r2);
+                Mem.Set((r29 + 24u), (byte)r5);
+                r3 = Mem.U32((r4 + 60u));
+                r4 = r4 + 20u;
+                r5 = r29 + 16u;
+                r2 = r3 << 1;
+                r2 = r2 + r3;
+                r2 = r2 << 4;
+                r6 = r6 + r2;
+                Mem.Set((r29 + 20u), r6);
+                r6 = r0; alEvtqPostEvent(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                r2 = Mem.U32((r16 + 0u));
+                L_func_002B7F50: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r31);
+                r6 = Mem.U32((r4 + 64u));
+                r2 = (uint)4;
+                Mem.Set((r29 + 16u), (ushort)r2);
+                r3 = Mem.U32((r4 + 60u));
+                r4 = r4 + 20u;
+                Mem.Set((r29 + 24u), r5);
+                r5 = r29 + 16u;
+                r2 = r3 << 1;
+                r2 = r2 + r3;
+                r2 = r2 << 4;
+                r6 = r6 + r2;
+                Mem.Set((r29 + 20u), r6);
+                r6 = r0; alEvtqPostEvent(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                r16 = Mem.U32((r29 + 24u));
+                L_func_002B7FA0: ;
+                r5 = r5 << 16;
+                r5 = (uint)((int)r5 >> 16);
+                r2 = r5 << 1;
+                r2 = r2 + r5;
+                r2 = r2 << 4;
+                r3 = Mem.U32((r4 + 64u));
+                r6 = r6 & 255u;
+                r2 = r2 + r3;
+                Mem.Set((r2 + 32u), (ushort)r6); Cpu.V1 = r3; return r2;
+                r2 = r2 + r7;
+                Mem.Set((r2 + 0u), r6);
+                L_func_002B7FD0: ;
+                r5 = r5 << 16;
+                r5 = (uint)((int)r5 >> 16);
+                Mem.Set((r4 + 60u), r5); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B7EB0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B7EFC @ 0x002B7EFC [MIPS]
+    public static uint alSndpSetPan_Head(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B7EFC", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B7EFC: ;
+                r5 = r5 | 2048u;
+                L_func_002B7F00: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r31);
+                r6 = Mem.U32((r4 + 64u));
+                r2 = (uint)2;
+                Mem.Set((r29 + 16u), (ushort)r2);
+                Mem.Set((r29 + 24u), (byte)r5);
+                r3 = Mem.U32((r4 + 60u));
+                r4 = r4 + 20u;
+                r5 = r29 + 16u;
+                r2 = r3 << 1;
+                r2 = r2 + r3;
+                r2 = r2 << 4;
+                r6 = r6 + r2;
+                Mem.Set((r29 + 20u), r6);
+                r6 = r0; alEvtqPostEvent(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                r2 = Mem.U32((r16 + 0u));
+                L_func_002B7F50: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r31);
+                r6 = Mem.U32((r4 + 64u));
+                r2 = (uint)4;
+                Mem.Set((r29 + 16u), (ushort)r2);
+                r3 = Mem.U32((r4 + 60u));
+                r4 = r4 + 20u;
+                Mem.Set((r29 + 24u), r5);
+                r5 = r29 + 16u;
+                r2 = r3 << 1;
+                r2 = r2 + r3;
+                r2 = r2 << 4;
+                r6 = r6 + r2;
+                Mem.Set((r29 + 20u), r6);
+                r6 = r0; alEvtqPostEvent(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                r16 = Mem.U32((r29 + 24u));
+                L_func_002B7FA0: ;
+                r5 = r5 << 16;
+                r5 = (uint)((int)r5 >> 16);
+                r2 = r5 << 1;
+                r2 = r2 + r5;
+                r2 = r2 << 4;
+                r3 = Mem.U32((r4 + 64u));
+                r6 = r6 & 255u;
+                r2 = r2 + r3;
+                Mem.Set((r2 + 32u), (ushort)r6); Cpu.V1 = r3; return r2;
+                r2 = r2 + r7;
+                Mem.Set((r2 + 0u), r6);
+                L_func_002B7FD0: ;
+                r5 = r5 << 16;
+                r5 = (uint)((int)r5 >> 16);
+                Mem.Set((r4 + 60u), r5); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B7EFC", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B7F00 @ 0x002B7F00 [MIPS]
+    public static uint alSndpSetPan_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B7F00", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B7F00: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r31);
+                r6 = Mem.U32((r4 + 64u));
+                r2 = (uint)2;
+                Mem.Set((r29 + 16u), (ushort)r2);
+                Mem.Set((r29 + 24u), (byte)r5);
+                r3 = Mem.U32((r4 + 60u));
+                r4 = r4 + 20u;
+                r5 = r29 + 16u;
+                r2 = r3 << 1;
+                r2 = r2 + r3;
+                r2 = r2 << 4;
+                r6 = r6 + r2;
+                Mem.Set((r29 + 20u), r6);
+                r6 = r0; alEvtqPostEvent(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                r2 = Mem.U32((r16 + 0u));
+                L_func_002B7F50: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r31);
+                r6 = Mem.U32((r4 + 64u));
+                r2 = (uint)4;
+                Mem.Set((r29 + 16u), (ushort)r2);
+                r3 = Mem.U32((r4 + 60u));
+                r4 = r4 + 20u;
+                Mem.Set((r29 + 24u), r5);
+                r5 = r29 + 16u;
+                r2 = r3 << 1;
+                r2 = r2 + r3;
+                r2 = r2 << 4;
+                r6 = r6 + r2;
+                Mem.Set((r29 + 20u), r6);
+                r6 = r0; alEvtqPostEvent(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                r16 = Mem.U32((r29 + 24u));
+                L_func_002B7FA0: ;
+                r5 = r5 << 16;
+                r5 = (uint)((int)r5 >> 16);
+                r2 = r5 << 1;
+                r2 = r2 + r5;
+                r2 = r2 << 4;
+                r3 = Mem.U32((r4 + 64u));
+                r6 = r6 & 255u;
+                r2 = r2 + r3;
+                Mem.Set((r2 + 32u), (ushort)r6); Cpu.V1 = r3; return r2;
+                r2 = r2 + r7;
+                Mem.Set((r2 + 0u), r6);
+                L_func_002B7FD0: ;
+                r5 = r5 << 16;
+                r5 = (uint)((int)r5 >> 16);
+                Mem.Set((r4 + 60u), r5); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B7F00", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B7F4C @ 0x002B7F4C [MIPS]
+    public static uint alSndpSetPitch_Head(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B7F4C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B7F4C: ;
+                r2 = Mem.U32((r16 + 0u));
+                L_func_002B7F50: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r31);
+                r6 = Mem.U32((r4 + 64u));
+                r2 = (uint)4;
+                Mem.Set((r29 + 16u), (ushort)r2);
+                r3 = Mem.U32((r4 + 60u));
+                r4 = r4 + 20u;
+                Mem.Set((r29 + 24u), r5);
+                r5 = r29 + 16u;
+                r2 = r3 << 1;
+                r2 = r2 + r3;
+                r2 = r2 << 4;
+                r6 = r6 + r2;
+                Mem.Set((r29 + 20u), r6);
+                r6 = r0; alEvtqPostEvent(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                r16 = Mem.U32((r29 + 24u));
+                L_func_002B7FA0: ;
+                r5 = r5 << 16;
+                r5 = (uint)((int)r5 >> 16);
+                r2 = r5 << 1;
+                r2 = r2 + r5;
+                r2 = r2 << 4;
+                r3 = Mem.U32((r4 + 64u));
+                r6 = r6 & 255u;
+                r2 = r2 + r3;
+                Mem.Set((r2 + 32u), (ushort)r6); Cpu.V1 = r3; return r2;
+                r2 = r2 + r7;
+                Mem.Set((r2 + 0u), r6);
+                L_func_002B7FD0: ;
+                r5 = r5 << 16;
+                r5 = (uint)((int)r5 >> 16);
+                Mem.Set((r4 + 60u), r5); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B7F4C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B7F50 @ 0x002B7F50 [MIPS]
+    public static uint func_002B7F50_rc(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B7F50", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B7F50: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r31);
+                r6 = Mem.U32((r4 + 64u));
+                r2 = (uint)4;
+                Mem.Set((r29 + 16u), (ushort)r2);
+                r3 = Mem.U32((r4 + 60u));
+                r4 = r4 + 20u;
+                Mem.Set((r29 + 24u), r5);
+                r5 = r29 + 16u;
+                r2 = r3 << 1;
+                r2 = r2 + r3;
+                r2 = r2 << 4;
+                r6 = r6 + r2;
+                Mem.Set((r29 + 20u), r6);
+                r6 = r0; alEvtqPostEvent(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                r16 = Mem.U32((r29 + 24u));
+                L_func_002B7FA0: ;
+                r5 = r5 << 16;
+                r5 = (uint)((int)r5 >> 16);
+                r2 = r5 << 1;
+                r2 = r2 + r5;
+                r2 = r2 << 4;
+                r3 = Mem.U32((r4 + 64u));
+                r6 = r6 & 255u;
+                r2 = r2 + r3;
+                Mem.Set((r2 + 32u), (ushort)r6); Cpu.V1 = r3; return r2;
+                r2 = r2 + r7;
+                Mem.Set((r2 + 0u), r6);
+                L_func_002B7FD0: ;
+                r5 = r5 << 16;
+                r5 = (uint)((int)r5 >> 16);
+                Mem.Set((r4 + 60u), r5); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B7F50", r2); Stack.Free(384); }
+    }
+
+    public static void alSndpSetPitch_Recompiled(int p0, float p1)
+    {
+        func_002B7F50_rc((uint)p0, Cpu.F2U(p1), 0u, 0u);
+    }
+
+    // ==== func_002B7F9C @ 0x002B7F9C [MIPS]
+    public static uint alSndpSetPriority_Head(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5, uint a6)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B7F9C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                Mem.Set(r29 + 20u, a5);
+                Mem.Set(r29 + 24u, a6);
+                L_func_002B7F9C: ;
+                r16 = Mem.U32((r29 + 24u));
+                L_func_002B7FA0: ;
+                r5 = r5 << 16;
+                r5 = (uint)((int)r5 >> 16);
+                r2 = r5 << 1;
+                r2 = r2 + r5;
+                r2 = r2 << 4;
+                r3 = Mem.U32((r4 + 64u));
+                r6 = r6 & 255u;
+                r2 = r2 + r3;
+                Mem.Set((r2 + 32u), (ushort)r6); Cpu.V1 = r3; return r2;
+                r2 = r2 + r7;
+                Mem.Set((r2 + 0u), r6);
+                L_func_002B7FD0: ;
+                r5 = r5 << 16;
+                r5 = (uint)((int)r5 >> 16);
+                Mem.Set((r4 + 60u), r5); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B7F9C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B7FA0 @ 0x002B7FA0 [MIPS]
+    public static uint alSndpSetPriority_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B7FA0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B7FA0: ;
+                r5 = r5 << 16;
+                r5 = (uint)((int)r5 >> 16);
+                r2 = r5 << 1;
+                r2 = r2 + r5;
+                r2 = r2 << 4;
+                r3 = Mem.U32((r4 + 64u));
+                r6 = r6 & 255u;
+                r2 = r2 + r3;
+                Mem.Set((r2 + 32u), (ushort)r6); Cpu.V1 = r3; return r2;
+                r2 = r2 + r7;
+                Mem.Set((r2 + 0u), r6);
+                L_func_002B7FD0: ;
+                r5 = r5 << 16;
+                r5 = (uint)((int)r5 >> 16);
+                Mem.Set((r4 + 60u), r5); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B7FA0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B7FC8 @ 0x002B7FC8 [MIPS]
+    public static uint alSndpSetSound_Head(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B7FC8", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B7FC8: ;
+                r2 = r2 + r7;
+                Mem.Set((r2 + 0u), r6);
+                L_func_002B7FD0: ;
+                r5 = r5 << 16;
+                r5 = (uint)((int)r5 >> 16);
+                Mem.Set((r4 + 60u), r5); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B7FC8", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B7FD0 @ 0x002B7FD0 [MIPS]
+    public static uint alSndpSetSound_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B7FD0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B7FD0: ;
+                r5 = r5 << 16;
+                r5 = (uint)((int)r5 >> 16);
+                Mem.Set((r4 + 60u), r5); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B7FD0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B7FE0 @ 0x002B7FE0 [MIPS]
+    public static uint alSndpSetVol_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B7FE0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B7FE0: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r31);
+                r6 = Mem.U32((r4 + 64u));
+                r2 = (uint)3;
+                Mem.Set((r29 + 16u), (ushort)r2);
+                r3 = Mem.U32((r4 + 60u));
+                r4 = r4 + 20u;
+                Mem.Set((r29 + 24u), (ushort)r5);
+                r5 = r29 + 16u;
+                r2 = r3 << 1;
+                r2 = r2 + r3;
+                r2 = r2 << 4;
+                r6 = r6 + r2;
+                Mem.Set((r29 + 20u), r6);
+                r6 = r0; alEvtqPostEvent(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                r2 = 2883584u;
+                L_func_002B8030: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r31);
+                r5 = Mem.U32((r4 + 64u));
+                r2 = (uint)1;
+                Mem.Set((r29 + 16u), (ushort)r2);
+                r3 = Mem.U32((r4 + 60u));
+                r4 = r4 + 20u;
+                r6 = r0;
+                r2 = r3 << 1;
+                r2 = r2 + r3;
+                r2 = r2 << 4;
+                r5 = r5 + r2;
+                Mem.Set((r29 + 20u), r5);
+                r5 = r29 + 16u; alEvtqPostEvent(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B7FE0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B802C @ 0x002B802C [MIPS]
+    public static uint alSndpStop_Head(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B802C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B802C: ;
+                r2 = 2883584u;
+                L_func_002B8030: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r31);
+                r5 = Mem.U32((r4 + 64u));
+                r2 = (uint)1;
+                Mem.Set((r29 + 16u), (ushort)r2);
+                r3 = Mem.U32((r4 + 60u));
+                r4 = r4 + 20u;
+                r6 = r0;
+                r2 = r3 << 1;
+                r2 = r2 + r3;
+                r2 = r2 << 4;
+                r5 = r5 + r2;
+                Mem.Set((r29 + 20u), r5);
+                r5 = r29 + 16u; alEvtqPostEvent(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B802C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B8030 @ 0x002B8030 [MIPS]
+    public static uint alSndpStop_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B8030", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B8030: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r31);
+                r5 = Mem.U32((r4 + 64u));
+                r2 = (uint)1;
+                Mem.Set((r29 + 16u), (ushort)r2);
+                r3 = Mem.U32((r4 + 60u));
+                r4 = r4 + 20u;
+                r6 = r0;
+                r2 = r3 << 1;
+                r2 = r2 + r3;
+                r2 = r2 << 4;
+                r5 = r5 + r2;
+                Mem.Set((r29 + 20u), r5);
+                r5 = r29 + 16u; alEvtqPostEvent(r4, r5, (int)r6);
+                r31 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B8030", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B8078 @ 0x002B8078 [MIPS]
+    public static uint alSynAddPlayer_Head(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B8078", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B8078: ;
+                r17 = (uint)2;
+                r18 = 2148401152u;
+                L_func_002B8080: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r4;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r5;
+                Mem.Set((r29 + 24u), r31);
+                r4 = (uint)1; r2 = osSetIntMask(r4);
+                r3 = Mem.U32((r17 + 32u));
+                Mem.Set((r16 + 16u), r3);
+                r3 = Mem.U32((r17 + 0u));
+                r4 = r2;
+                Mem.Set((r16 + 0u), r3);
+                Mem.Set((r17 + 0u), r16); r2 = osSetIntMask(r4);
+                r31 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B8078", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B8080 @ 0x002B8080 [MIPS]
+    public static uint alSynAddPlayer_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B8080", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B8080: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r4;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r5;
+                Mem.Set((r29 + 24u), r31);
+                r4 = (uint)1; r2 = osSetIntMask(r4);
+                r3 = Mem.U32((r17 + 32u));
+                Mem.Set((r16 + 16u), r3);
+                r3 = Mem.U32((r17 + 0u));
+                r4 = r2;
+                Mem.Set((r16 + 0u), r3);
+                Mem.Set((r17 + 0u), r16); r2 = osSetIntMask(r4);
+                r31 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B8080", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B80D0 @ 0x002B80D0 [MIPS]
+    public static uint alSynAllocVoice_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B80D0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B80D0: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 36u), r31);
+                Mem.Set((r29 + 32u), r18);
+                Mem.Set((r29 + 28u), r17);
+                Mem.Set((r29 + 24u), r16);
+                r2 = Mem.U16((r6 + 0u));
+                r17 = r5;
+                Mem.Set((r29 + 16u), r0);
+                Mem.Set((r17 + 22u), (ushort)r2);
+                r2 = Mem.U8((r6 + 4u));
+                r18 = r4;
+                Mem.Set((r17 + 12u), r0);
+                Mem.Set((r17 + 26u), (ushort)r2);
+                r2 = Mem.U16((r6 + 2u));
+                Mem.Set((r17 + 20u), (ushort)r0);
+                Mem.Set((r17 + 8u), r0);
+                Mem.Set((r17 + 24u), (ushort)r2);
+                r6 = (uint)(int)Mem.S16((r6 + 0u));
+                r5 = r29 + 16u; r2 = (uint)_allocatePVoice(r4, r5, (short)r6);
+                r4 = Mem.U32((r29 + 16u));
+                { bool c_ = r4 == 0;  if (c_) goto L_L002B81E0; }
+                r16 = Mem.U32((r4 + 12u));
+                { bool c_ = r2 == 0; r2 = (uint)512; if (c_) goto L_L002B81D0; }
+                r3 = Mem.U32((r4 + 8u));
+                Mem.Set((r4 + 216u), r2);
+                Mem.Set((r3 + 8u), r0); r2 = __allocParam();
+                r7 = r2;
+                r4 = r16;
+                r3 = Mem.U32((r18 + 28u));
+                r5 = Mem.U32((r29 + 16u));
+                r2 = (uint)11;
+                Mem.Set((r7 + 8u), (ushort)r2);
+                Mem.Set((r7 + 12u), r0);
+                Mem.Set((r7 + 4u), r3);
+                r2 = Mem.U32((r5 + 216u));
+                r6 = r7;
+                r2 = r2 - 64u;
+                Mem.Set((r7 + 16u), r2);
+                r2 = Mem.U32((r16 + 8u));
+                r5 = (uint)3; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = __allocParam();
+                r7 = r2;
+                { bool c_ = r7 == 0; r4 = r16; if (c_) goto L_L002B81D4; }
+                r5 = (uint)3;
+                r2 = Mem.U32((r29 + 16u));
+                r3 = Mem.U32((r18 + 28u));
+                r6 = Mem.U32((r2 + 216u));
+                r2 = (uint)15;
+                Mem.Set((r7 + 8u), (ushort)r2);
+                Mem.Set((r7 + 0u), r0);
+                r3 = r3 + r6;
+                Mem.Set((r7 + 4u), r3);
+                r2 = Mem.U32((r4 + 8u));
+                r6 = r7; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                 goto L_L002B81D4;
+                L_L002B81D0: ;
+                Mem.Set((r4 + 216u), r0);
+                L_L002B81D4: ;
+                r2 = Mem.U32((r29 + 16u));
+                Mem.Set((r2 + 8u), r17);
+                Mem.Set((r17 + 8u), r2);
+                L_L002B81E0: ;
+                r2 = Mem.U32((r29 + 16u));
+                r31 = Mem.U32((r29 + 36u));
+                r18 = Mem.U32((r29 + 32u));
+                r17 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r2 = (uint)(r0 < r2 ? 1 : 0);
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B80D0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B8200 @ 0x002B8200 [MIPS]
+    public static uint _allocatePVoice_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B8200", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B8200: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r4;
+                Mem.Set((r29 + 28u), r31);
+                Mem.Set((r29 + 24u), r18);
+                Mem.Set((r29 + 16u), r16);
+                r16 = Mem.U32((r17 + 20u));
+                { bool c_ = r16 != 0; r18 = r0; if (c_) goto L_L002B8230; }
+                r16 = Mem.U32((r17 + 4u));
+                { bool c_ = r16 == 0;  if (c_) goto L_L002B8250; }
+                L_L002B8230: ;
+                Mem.Set((r5 + 0u), r16);
+                r4 = r16; alUnlink(r4);
+                r4 = r16;
+                r5 = r17 + 12u; alLink(r4, r5);
+                r2 = r18; goto L_L002B82A0;
+                L_L002B8250: ;
+                r16 = Mem.U32((r17 + 12u));
+                { bool c_ = r16 == 0; r2 = r18; if (c_) goto L_L002B82A0; }
+                L_L002B825C: ;
+                r2 = Mem.U32((r16 + 8u));
+                r3 = r6 << 16;
+                r2 = (uint)(int)Mem.S16((r2 + 22u));
+                r3 = (uint)((int)r3 >> 16);
+                r3 = (uint)((int)r3 < (int)r2 ? 1 : 0);
+                { bool c_ = r3 != 0;  if (c_) goto L_L002B8294; }
+                r2 = Mem.U32((r16 + 216u));
+                { bool c_ = r2 != 0;  if (c_) goto L_L002B8294; }
+                Mem.Set((r5 + 0u), r16);
+                r2 = Mem.U32((r16 + 8u));
+                r18 = (uint)1;
+                r6 = Mem.U16((r2 + 22u));
+                L_L002B8294: ;
+                r16 = Mem.U32((r16 + 0u));
+                { bool c_ = r16 != 0; r2 = r18; if (c_) goto L_L002B825C; }
+                L_L002B82A0: ;
+                r31 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.SetW(0, Mem.U32((r1 - 14300u)));
+                r2 = (uint)52;
+                L_func_002B82C0: ;
+                Mem.Set((r4 + 0u), r0); Cpu.V1 = r3; return r2;
+                Mem.Set((r16 + 28u), Cpu.W(1));
+                r29 = r29 - 32u; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                Mem.Set((r29 + 16u), r16);
+                r16 = r5;
+                Mem.Set((r29 + 24u), r31);
+                Mem.Set((r29 + 20u), r17);
+                r5 = Mem.U32((r16 + 8u));
+                { bool c_ = r5 == 0; r17 = r4; if (c_) goto L_L002B8358; }
+                r2 = Mem.U32((r5 + 216u));
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B834C; }
+                r2 = __allocParam();
+                r6 = r2;
+                { bool c_ = r6 == 0;  if (c_) goto L_L002B8358; }
+                r3 = Mem.U32((r16 + 8u));
+                r2 = Mem.U32((r17 + 28u));
+                r3 = Mem.U32((r3 + 216u));
+                Mem.Set((r6 + 8u), (ushort)r0);
+                r2 = r2 + r3;
+                Mem.Set((r6 + 4u), r2);
+                r2 = Mem.U32((r16 + 8u));
+                Mem.Set((r6 + 12u), r2);
+                r2 = Mem.U32((r16 + 8u));
+                r4 = Mem.U32((r2 + 12u));
+                r2 = Mem.U32((r4 + 8u));
+                r5 = (uint)3; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r16 + 8u), r0); goto L_L002B8358;
+                L_L002B834C: ;
+                r4 = r17; _freePVoice(r4, r5);
+                Mem.Set((r16 + 8u), r0);
+                L_L002B8358: ;
+                r31 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B8200", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B82B8 @ 0x002B82B8 [MIPS]
+    public static uint alSynDelete_Head(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B82B8", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B82B8: ;
+                Cpu.SetW(0, Mem.U32((r1 - 14300u)));
+                r2 = r0 + 52u;
+                L_func_002B82C0: ;
+                Mem.Set((r4 + 0u), r0); Cpu.V1 = r3; return r2;
+                Mem.Set((r16 + 28u), Cpu.W(1));
+                r29 = r29 - 32u; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                Mem.Set((r29 + 16u), r16);
+                r16 = r5;
+                Mem.Set((r29 + 24u), r31);
+                Mem.Set((r29 + 20u), r17);
+                r5 = Mem.U32((r16 + 8u));
+                { bool c_ = r5 == 0; r17 = r4; if (c_) goto L_L002B8358; }
+                r2 = Mem.U32((r5 + 216u));
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B834C; }
+                r2 = __allocParam();
+                r6 = r2;
+                { bool c_ = r6 == 0;  if (c_) goto L_L002B8358; }
+                r3 = Mem.U32((r16 + 8u));
+                r2 = Mem.U32((r17 + 28u));
+                r3 = Mem.U32((r3 + 216u));
+                Mem.Set((r6 + 8u), (ushort)r0);
+                r2 = r2 + r3;
+                Mem.Set((r6 + 4u), r2);
+                r2 = Mem.U32((r16 + 8u));
+                Mem.Set((r6 + 12u), r2);
+                r2 = Mem.U32((r16 + 8u));
+                r4 = Mem.U32((r2 + 12u));
+                r2 = Mem.U32((r4 + 8u));
+                r5 = (uint)3; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r16 + 8u), r0); goto L_L002B8358;
+                L_L002B834C: ;
+                r4 = r17; _freePVoice(r4, r5);
+                Mem.Set((r16 + 8u), r0);
+                L_L002B8358: ;
+                r31 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B82B8", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B82C0 @ 0x002B82C0 [MIPS]
+    public static uint alSynDelete_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B82C0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B82C0: ;
+                Mem.Set((r4 + 0u), r0); Cpu.V1 = r3; return r2;
+                Mem.Set((r16 + 28u), Cpu.W(1));
+                r29 = r29 - 32u; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                Mem.Set((r29 + 16u), r16);
+                r16 = r5;
+                Mem.Set((r29 + 24u), r31);
+                Mem.Set((r29 + 20u), r17);
+                r5 = Mem.U32((r16 + 8u));
+                { bool c_ = r5 == 0; r17 = r4; if (c_) goto L_L002B8358; }
+                r2 = Mem.U32((r5 + 216u));
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B834C; }
+                r2 = __allocParam();
+                r6 = r2;
+                { bool c_ = r6 == 0;  if (c_) goto L_L002B8358; }
+                r3 = Mem.U32((r16 + 8u));
+                r2 = Mem.U32((r17 + 28u));
+                r3 = Mem.U32((r3 + 216u));
+                Mem.Set((r6 + 8u), (ushort)r0);
+                r2 = r2 + r3;
+                Mem.Set((r6 + 4u), r2);
+                r2 = Mem.U32((r16 + 8u));
+                Mem.Set((r6 + 12u), r2);
+                r2 = Mem.U32((r16 + 8u));
+                r4 = Mem.U32((r2 + 12u));
+                r2 = Mem.U32((r4 + 8u));
+                r5 = (uint)3; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r16 + 8u), r0); goto L_L002B8358;
+                L_L002B834C: ;
+                r4 = r17; _freePVoice(r4, r5);
+                Mem.Set((r16 + 8u), r0);
+                L_L002B8358: ;
+                r31 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B82C0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B82C8 @ 0x002B82C8 [MIPS]
+    public static uint alSynFreeVoice_Head(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B82C8", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B82C8: ;
+                Mem.Set((r16 + 28u), Cpu.W(1));
+                r29 = r29 - 32u; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                Mem.Set((r29 + 16u), r16);
+                r16 = r5;
+                Mem.Set((r29 + 24u), r31);
+                Mem.Set((r29 + 20u), r17);
+                r5 = Mem.U32((r16 + 8u));
+                { bool c_ = r5 == 0; r17 = r4; if (c_) goto L_L002B8358; }
+                r2 = Mem.U32((r5 + 216u));
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B834C; }
+                r2 = __allocParam();
+                r6 = r2;
+                { bool c_ = r6 == 0;  if (c_) goto L_L002B8358; }
+                r3 = Mem.U32((r16 + 8u));
+                r2 = Mem.U32((r17 + 28u));
+                r3 = Mem.U32((r3 + 216u));
+                Mem.Set((r6 + 8u), (ushort)r0);
+                r2 = r2 + r3;
+                Mem.Set((r6 + 4u), r2);
+                r2 = Mem.U32((r16 + 8u));
+                Mem.Set((r6 + 12u), r2);
+                r2 = Mem.U32((r16 + 8u));
+                r4 = Mem.U32((r2 + 12u));
+                r2 = Mem.U32((r4 + 8u));
+                r5 = (uint)3; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r16 + 8u), r0); goto L_L002B8358;
+                L_L002B834C: ;
+                r4 = r17; _freePVoice(r4, r5);
+                Mem.Set((r16 + 8u), r0);
+                L_L002B8358: ;
+                r31 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B82C8", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B82D0 @ 0x002B82D0 [MIPS]
+    public static uint alSynFreeVoice_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B82D0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B82D0: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r5;
+                Mem.Set((r29 + 24u), r31);
+                Mem.Set((r29 + 20u), r17);
+                r5 = Mem.U32((r16 + 8u));
+                { bool c_ = r5 == 0; r17 = r4; if (c_) goto L_L002B8358; }
+                r2 = Mem.U32((r5 + 216u));
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B834C; }
+                r2 = __allocParam();
+                r6 = r2;
+                { bool c_ = r6 == 0;  if (c_) goto L_L002B8358; }
+                r3 = Mem.U32((r16 + 8u));
+                r2 = Mem.U32((r17 + 28u));
+                r3 = Mem.U32((r3 + 216u));
+                Mem.Set((r6 + 8u), (ushort)r0);
+                r2 = r2 + r3;
+                Mem.Set((r6 + 4u), r2);
+                r2 = Mem.U32((r16 + 8u));
+                Mem.Set((r6 + 12u), r2);
+                r2 = Mem.U32((r16 + 8u));
+                r4 = Mem.U32((r2 + 12u));
+                r2 = Mem.U32((r4 + 8u));
+                r5 = (uint)3; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r16 + 8u), r0); goto L_L002B8358;
+                L_L002B834C: ;
+                r4 = r17; _freePVoice(r4, r5);
+                Mem.Set((r16 + 8u), r0);
+                L_L002B8358: ;
+                r31 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B82D0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B8370 @ 0x002B8370 [MIPS]
+    public static uint alSynSetFXMix_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B8370", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B8370: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r4;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r5;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r6;
+                Mem.Set((r29 + 32u), r31);
+                Mem.Set((r29 + 28u), r19);
+                r2 = Mem.U32((r17 + 8u));
+                { bool c_ = r2 == 0; r19 = r16; if (c_) goto L_L002B8404; }
+                r2 = __allocParam();
+                r6 = r2;
+                { bool c_ = r6 == 0;  if (c_) goto L_L002B8404; }
+                r2 = Mem.U32((r17 + 8u));
+                r3 = Mem.U32((r18 + 28u));
+                r4 = Mem.U32((r2 + 216u));
+                r2 = (uint)16;
+                Mem.Set((r6 + 8u), (ushort)r2);
+                r2 = r16 << 24;
+                r2 = (uint)((int)r2 >> 24);
+                r3 = r3 + r4;
+                { bool c_ = (int)r2 >= 0; Mem.Set((r6 + 4u), r3); if (c_) goto L_L002B83E4; }
+                r2 = 0u - r2; goto L_L002B83E8;
+                L_L002B83E4: ;
+                r2 = r19 & 255u;
+                L_L002B83E8: ;
+                Mem.Set((r6 + 12u), r2);
+                Mem.Set((r6 + 0u), r0);
+                r2 = Mem.U32((r17 + 8u));
+                r4 = Mem.U32((r2 + 12u));
+                r2 = Mem.U32((r4 + 8u));
+                r5 = (uint)3; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B8404: ;
+                r31 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B8370", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B8420 @ 0x002B8420 [MIPS]
+    public static uint alSynSetPan_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B8420", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B8420: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r4;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r5;
+                Mem.Set((r29 + 28u), r31);
+                Mem.Set((r29 + 20u), r17);
+                r2 = Mem.U32((r16 + 8u));
+                { bool c_ = r2 == 0; r17 = r6; if (c_) goto L_L002B8498; }
+                r2 = __allocParam();
+                r6 = r2;
+                { bool c_ = r6 == 0;  if (c_) goto L_L002B8498; }
+                r2 = Mem.U32((r16 + 8u));
+                r3 = Mem.U32((r18 + 28u));
+                r4 = Mem.U32((r2 + 216u));
+                r2 = (uint)12;
+                Mem.Set((r6 + 8u), (ushort)r2);
+                r2 = r17 & 255u;
+                Mem.Set((r6 + 12u), r2);
+                Mem.Set((r6 + 0u), r0);
+                r3 = r3 + r4;
+                Mem.Set((r6 + 4u), r3);
+                r2 = Mem.U32((r16 + 8u));
+                r4 = Mem.U32((r2 + 12u));
+                r2 = Mem.U32((r4 + 8u));
+                r5 = (uint)3; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B8498: ;
+                r31 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B8420", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B84B0 @ 0x002B84B0 [MIPS]
+    public static uint alSynSetPitch_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B84B0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B84B0: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 20u), r17);
+                Mem.Set((r29 + 16u), r16);
+                r16 = r5;
+                Mem.Set((r29 + 24u), r31);
+                Mem.Set((r29 + 32u), Cpu.Fpr[20]);
+                r2 = Mem.U32((r16 + 8u));
+                Cpu.SetW(20, r6);
+                { bool c_ = r2 == 0; r17 = r4; if (c_) goto L_L002B8524; }
+                r2 = __allocParam();
+                r6 = r2;
+                { bool c_ = r6 == 0;  if (c_) goto L_L002B8524; }
+                r2 = Mem.U32((r16 + 8u));
+                r3 = Mem.U32((r17 + 28u));
+                r4 = Mem.U32((r2 + 216u));
+                r2 = (uint)7;
+                Mem.Set((r6 + 8u), (ushort)r2);
+                Mem.Set((r6 + 12u), Cpu.W(20));
+                Mem.Set((r6 + 0u), r0);
+                r3 = r3 + r4;
+                Mem.Set((r6 + 4u), r3);
+                r2 = Mem.U32((r16 + 8u));
+                r4 = Mem.U32((r2 + 12u));
+                r2 = Mem.U32((r4 + 8u));
+                r5 = (uint)3; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B8524: ;
+                r31 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                Cpu.Fpr[20] = Mem.U64((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                r17 = r6;
+                L_func_002B8540: ;
+                Mem.Set((r5 + 22u), (ushort)r6); Cpu.V1 = r3; return r2;
+                r6 = 2883584u;
+                r6 = r6 - 23024u;
+                L_func_002B8550: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r20);
+                r20 = r4;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r5;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r6;
+                Mem.Set((r29 + 36u), r31);
+                Mem.Set((r29 + 28u), r19);
+                Mem.Set((r29 + 16u), r16);
+                r2 = Mem.U32((r17 + 8u));
+                { bool c_ = r2 == 0; r19 = r7; if (c_) goto L_L002B85E8; }
+                r2 = __allocParam();
+                r16 = r2;
+                { bool c_ = r16 == 0; r4 = r20; if (c_) goto L_L002B85E8; }
+                r5 = r19;
+                r2 = Mem.U32((r17 + 8u));
+                r3 = Mem.U32((r4 + 28u));
+                r6 = Mem.U32((r2 + 216u));
+                r2 = (uint)11;
+                Mem.Set((r16 + 8u), (ushort)r2);
+                r2 = r18 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                Mem.Set((r16 + 12u), r2);
+                r3 = r3 + r6;
+                Mem.Set((r16 + 4u), r3); r2 = (uint)_timeToSamplesNoRound(r4, (int)r5);
+                Mem.Set((r16 + 16u), r2);
+                Mem.Set((r16 + 0u), r0);
+                r2 = Mem.U32((r17 + 8u));
+                r4 = Mem.U32((r2 + 12u));
+                r5 = (uint)3;
+                r2 = Mem.U32((r4 + 8u));
+                r6 = r16; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B85E8: ;
+                r31 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B84B0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B853C @ 0x002B853C [MIPS]
+    public static uint alSynSetPriority_Head(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B853C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B853C: ;
+                r17 = r6 + r0;
+                L_func_002B8540: ;
+                Mem.Set((r5 + 22u), (ushort)r6); Cpu.V1 = r3; return r2;
+                r6 = 2883584u;
+                r6 = r6 - 23024u;
+                L_func_002B8550: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r20);
+                r20 = r4;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r5;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r6;
+                Mem.Set((r29 + 36u), r31);
+                Mem.Set((r29 + 28u), r19);
+                Mem.Set((r29 + 16u), r16);
+                r2 = Mem.U32((r17 + 8u));
+                { bool c_ = r2 == 0; r19 = r7; if (c_) goto L_L002B85E8; }
+                r2 = __allocParam();
+                r16 = r2;
+                { bool c_ = r16 == 0; r4 = r20; if (c_) goto L_L002B85E8; }
+                r5 = r19;
+                r2 = Mem.U32((r17 + 8u));
+                r3 = Mem.U32((r4 + 28u));
+                r6 = Mem.U32((r2 + 216u));
+                r2 = (uint)11;
+                Mem.Set((r16 + 8u), (ushort)r2);
+                r2 = r18 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                Mem.Set((r16 + 12u), r2);
+                r3 = r3 + r6;
+                Mem.Set((r16 + 4u), r3); r2 = (uint)_timeToSamplesNoRound(r4, (int)r5);
+                Mem.Set((r16 + 16u), r2);
+                Mem.Set((r16 + 0u), r0);
+                r2 = Mem.U32((r17 + 8u));
+                r4 = Mem.U32((r2 + 12u));
+                r5 = (uint)3;
+                r2 = Mem.U32((r4 + 8u));
+                r6 = r16; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B85E8: ;
+                r31 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B853C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B8540 @ 0x002B8540 [MIPS]
+    public static uint alSynSetPriority_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B8540", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B8540: ;
+                Mem.Set((r5 + 22u), (ushort)r6); Cpu.V1 = r3; return r2;
+                r6 = 2883584u;
+                r6 = r6 - 23024u;
+                L_func_002B8550: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r20);
+                r20 = r4;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r5;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r6;
+                Mem.Set((r29 + 36u), r31);
+                Mem.Set((r29 + 28u), r19);
+                Mem.Set((r29 + 16u), r16);
+                r2 = Mem.U32((r17 + 8u));
+                { bool c_ = r2 == 0; r19 = r7; if (c_) goto L_L002B85E8; }
+                r2 = __allocParam();
+                r16 = r2;
+                { bool c_ = r16 == 0; r4 = r20; if (c_) goto L_L002B85E8; }
+                r5 = r19;
+                r2 = Mem.U32((r17 + 8u));
+                r3 = Mem.U32((r4 + 28u));
+                r6 = Mem.U32((r2 + 216u));
+                r2 = (uint)11;
+                Mem.Set((r16 + 8u), (ushort)r2);
+                r2 = r18 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                Mem.Set((r16 + 12u), r2);
+                r3 = r3 + r6;
+                Mem.Set((r16 + 4u), r3); r2 = (uint)_timeToSamplesNoRound(r4, (int)r5);
+                Mem.Set((r16 + 16u), r2);
+                Mem.Set((r16 + 0u), r0);
+                r2 = Mem.U32((r17 + 8u));
+                r4 = Mem.U32((r2 + 12u));
+                r5 = (uint)3;
+                r2 = Mem.U32((r4 + 8u));
+                r6 = r16; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B85E8: ;
+                r31 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B8540", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B8548 @ 0x002B8548 [MIPS]
+    public static uint alSynSetVol_Head(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B8548", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B8548: ;
+                r6 = 2883584u;
+                r6 = r6 - 23024u;
+                L_func_002B8550: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r20);
+                r20 = r4;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r5;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r6;
+                Mem.Set((r29 + 36u), r31);
+                Mem.Set((r29 + 28u), r19);
+                Mem.Set((r29 + 16u), r16);
+                r2 = Mem.U32((r17 + 8u));
+                { bool c_ = r2 == 0; r19 = r7; if (c_) goto L_L002B85E8; }
+                r2 = __allocParam();
+                r16 = r2;
+                { bool c_ = r16 == 0; r4 = r20; if (c_) goto L_L002B85E8; }
+                r5 = r19;
+                r2 = Mem.U32((r17 + 8u));
+                r3 = Mem.U32((r4 + 28u));
+                r6 = Mem.U32((r2 + 216u));
+                r2 = (uint)11;
+                Mem.Set((r16 + 8u), (ushort)r2);
+                r2 = r18 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                Mem.Set((r16 + 12u), r2);
+                r3 = r3 + r6;
+                Mem.Set((r16 + 4u), r3); r2 = (uint)_timeToSamplesNoRound(r4, (int)r5);
+                Mem.Set((r16 + 16u), r2);
+                Mem.Set((r16 + 0u), r0);
+                r2 = Mem.U32((r17 + 8u));
+                r4 = Mem.U32((r2 + 12u));
+                r5 = (uint)3;
+                r2 = Mem.U32((r4 + 8u));
+                r6 = r16; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B85E8: ;
+                r31 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B8548", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B8550 @ 0x002B8550 [MIPS]
+    public static uint alSynSetVol_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B8550", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B8550: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r20);
+                r20 = r4;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r5;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r6;
+                Mem.Set((r29 + 36u), r31);
+                Mem.Set((r29 + 28u), r19);
+                Mem.Set((r29 + 16u), r16);
+                r2 = Mem.U32((r17 + 8u));
+                { bool c_ = r2 == 0; r19 = r7; if (c_) goto L_L002B85E8; }
+                r2 = __allocParam();
+                r16 = r2;
+                { bool c_ = r16 == 0; r4 = r20; if (c_) goto L_L002B85E8; }
+                r5 = r19;
+                r2 = Mem.U32((r17 + 8u));
+                r3 = Mem.U32((r4 + 28u));
+                r6 = Mem.U32((r2 + 216u));
+                r2 = (uint)11;
+                Mem.Set((r16 + 8u), (ushort)r2);
+                r2 = r18 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                Mem.Set((r16 + 12u), r2);
+                r3 = r3 + r6;
+                Mem.Set((r16 + 4u), r3); r2 = (uint)_timeToSamplesNoRound(r4, (int)r5);
+                Mem.Set((r16 + 16u), r2);
+                Mem.Set((r16 + 0u), r0);
+                r2 = Mem.U32((r17 + 8u));
+                r4 = Mem.U32((r2 + 12u));
+                r5 = (uint)3;
+                r2 = Mem.U32((r4 + 8u));
+                r6 = r16; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B85E8: ;
+                r31 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B8550", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B8608 @ 0x002B8608 [MIPS]
+    public static uint alSynStartVoice_Head(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B8608", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B8608: ;
+                r7 = (uint)1;
+                r4 = r0;
+                L_func_002B8610: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r4;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r5;
+                Mem.Set((r29 + 28u), r31);
+                Mem.Set((r29 + 24u), r18);
+                r2 = Mem.U32((r16 + 8u));
+                { bool c_ = r2 == 0; r18 = r6; if (c_) goto L_L002B868C; }
+                r2 = __allocParam();
+                r6 = r2;
+                { bool c_ = r6 == 0;  if (c_) goto L_L002B868C; }
+                r2 = Mem.U32((r16 + 8u));
+                r3 = Mem.U32((r17 + 28u));
+                r4 = Mem.U32((r2 + 216u));
+                r2 = (uint)14;
+                Mem.Set((r6 + 8u), (ushort)r2);
+                Mem.Set((r6 + 12u), r18);
+                Mem.Set((r6 + 0u), r0);
+                r3 = r3 + r4;
+                Mem.Set((r6 + 4u), r3);
+                r2 = Mem.U16((r16 + 26u));
+                Mem.Set((r6 + 10u), (ushort)r2);
+                r2 = Mem.U32((r16 + 8u));
+                r4 = Mem.U32((r2 + 12u));
+                r2 = Mem.U32((r4 + 8u));
+                r5 = (uint)3; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B868C: ;
+                r31 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B8608", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B8610 @ 0x002B8610 [MIPS]
+    public static uint alSynStartVoice_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B8610", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B8610: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r4;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r5;
+                Mem.Set((r29 + 28u), r31);
+                Mem.Set((r29 + 24u), r18);
+                r2 = Mem.U32((r16 + 8u));
+                { bool c_ = r2 == 0; r18 = r6; if (c_) goto L_L002B868C; }
+                r2 = __allocParam();
+                r6 = r2;
+                { bool c_ = r6 == 0;  if (c_) goto L_L002B868C; }
+                r2 = Mem.U32((r16 + 8u));
+                r3 = Mem.U32((r17 + 28u));
+                r4 = Mem.U32((r2 + 216u));
+                r2 = (uint)14;
+                Mem.Set((r6 + 8u), (ushort)r2);
+                Mem.Set((r6 + 12u), r18);
+                Mem.Set((r6 + 0u), r0);
+                r3 = r3 + r4;
+                Mem.Set((r6 + 4u), r3);
+                r2 = Mem.U16((r16 + 26u));
+                Mem.Set((r6 + 10u), (ushort)r2);
+                r2 = Mem.U32((r16 + 8u));
+                r4 = Mem.U32((r2 + 12u));
+                r2 = Mem.U32((r4 + 8u));
+                r5 = (uint)3; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B868C: ;
+                r31 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B8610", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B86A4 @ 0x002B86A4 [MIPS]
+    public static uint alSynStartVoice_Tail_002B86A4(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B86A4", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B86A4: ;
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B86A4", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B86B0 @ 0x002B86B0 [MIPS]
+    public static uint alSynStartVoiceParams_Recompiled(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5, uint a6, uint a7)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B86B0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                Mem.Set(r29 + 20u, a5);
+                Mem.Set(r29 + 24u, a6);
+                Mem.Set(r29 + 28u, a7);
+                L_func_002B86B0: ;
+                r29 = r29 - 64u;
+                Mem.Set((r29 + 56u), Cpu.Fpr[20]);
+                Cpu.SetW(20, r7);
+                Mem.Set((r29 + 20u), r17);
+                r17 = Mem.U32((r29 + 88u));
+                Mem.Set((r29 + 40u), r22);
+                r22 = Mem.U32((r29 + 80u));
+                Mem.Set((r29 + 32u), r20);
+                r20 = Mem.U32((r29 + 84u));
+                Mem.Set((r29 + 36u), r21);
+                r21 = r4;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r5;
+                Mem.Set((r29 + 44u), r23);
+                r23 = r6;
+                Mem.Set((r29 + 48u), r31);
+                Mem.Set((r29 + 28u), r19);
+                Mem.Set((r29 + 16u), r16);
+                r2 = Mem.U32((r18 + 8u));
+                { bool c_ = r2 == 0; r19 = r17; if (c_) goto L_L002B8784; }
+                r2 = __allocParam();
+                r16 = r2;
+                { bool c_ = r16 == 0; r2 = r17 << 24; if (c_) goto L_L002B8784; }
+                if ((int)r2 < 0) { r19 = 0u - r17; goto L_L002B8720; }
+                L_L002B8720: ;
+                r2 = Mem.U32((r18 + 8u));
+                r3 = Mem.U32((r21 + 28u));
+                r5 = Mem.U32((r2 + 216u));
+                r2 = (uint)13;
+                Mem.Set((r16 + 0u), r0);
+                Mem.Set((r16 + 8u), (ushort)r2);
+                r3 = r3 + r5;
+                Mem.Set((r16 + 4u), r3);
+                r2 = Mem.U16((r18 + 26u));
+                r5 = Mem.U32((r29 + 92u));
+                r4 = r21;
+                Mem.Set((r16 + 18u), (byte)r20);
+                Mem.Set((r16 + 16u), (ushort)r22);
+                Mem.Set((r16 + 19u), (byte)r19);
+                Mem.Set((r16 + 12u), Cpu.W(20));
+                Mem.Set((r16 + 10u), (ushort)r2); r2 = (uint)_timeToSamplesNoRound(r4, (int)r5);
+                Mem.Set((r16 + 20u), r2);
+                Mem.Set((r16 + 24u), r23);
+                r2 = Mem.U32((r18 + 8u));
+                r4 = Mem.U32((r2 + 12u));
+                r5 = (uint)3;
+                r2 = Mem.U32((r4 + 8u));
+                r6 = r16; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B8784: ;
+                r31 = Mem.U32((r29 + 48u));
+                r23 = Mem.U32((r29 + 44u));
+                r22 = Mem.U32((r29 + 40u));
+                r21 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                Cpu.Fpr[20] = Mem.U64((r29 + 56u));
+                r29 = r29 + 64u; Cpu.V1 = r3; return r2;
+                r1 = 2148335616u;
+                Cpu.Fpr[3] = Mem.U64((r1 - 14272u));
+                r3 = r4 + 18u;
+                L_func_002B87C0: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r5;
+                Mem.Set((r29 + 24u), r31);
+                Mem.Set((r29 + 20u), r17);
+                r2 = Mem.U32((r16 + 8u));
+                { bool c_ = r2 == 0; r17 = r4; if (c_) goto L_L002B8828; }
+                r2 = __allocParam();
+                r6 = r2;
+                { bool c_ = r6 == 0;  if (c_) goto L_L002B8828; }
+                r2 = Mem.U32((r16 + 8u));
+                r3 = Mem.U32((r17 + 28u));
+                r4 = Mem.U32((r2 + 216u));
+                r2 = (uint)15;
+                Mem.Set((r6 + 8u), (ushort)r2);
+                Mem.Set((r6 + 0u), r0);
+                r3 = r3 + r4;
+                Mem.Set((r6 + 4u), r3);
+                r2 = Mem.U32((r16 + 8u));
+                r4 = Mem.U32((r2 + 12u));
+                r2 = Mem.U32((r4 + 8u));
+                r5 = (uint)3; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B8828: ;
+                r31 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                r2 = Mem.U32((r16 + 60u));
+                L_func_002B8840: ;
+                r29 = r29 - 64u;
+                Mem.Set((r29 + 40u), r20);
+                r20 = r4;
+                Mem.Set((r29 + 48u), r22);
+                r22 = r5;
+                r4 = r0;
+                Mem.Set((r29 + 56u), r31);
+                Mem.Set((r29 + 52u), r23);
+                Mem.Set((r29 + 44u), r21);
+                Mem.Set((r29 + 36u), r19);
+                Mem.Set((r29 + 32u), r18);
+                Mem.Set((r29 + 28u), r17);
+                Mem.Set((r29 + 24u), r16);
+                r21 = Mem.U32((r22 + 20u));
+                r5 = r4;
+                Mem.Set((r20 + 0u), r0);
+                r2 = Mem.U32((r22 + 4u));
+                r7 = (uint)1;
+                Mem.Set((r20 + 32u), r0);
+                Mem.Set((r20 + 28u), r0);
+                Mem.Set((r20 + 60u), r2);
+                r3 = Mem.U32((r22 + 24u));
+                r2 = (uint)160;
+                Mem.Set((r20 + 72u), r2);
+                Mem.Set((r20 + 68u), r3);
+                r2 = Mem.U32((r22 + 16u));
+                r6 = r21;
+                Mem.Set((r20 + 36u), r2);
+                r2 = (uint)28;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r23 = r2;
+                r4 = r23; alSaveNew(r4);
+                r4 = r0;
+                r5 = r4;
+                r6 = r21;
+                r7 = (uint)1;
+                r2 = (uint)76;
+                Mem.Set((r20 + 56u), r23);
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = r0;
+                r5 = r4;
+                Mem.Set((r20 + 52u), r2);
+                r2 = (uint)1;
+                r16 = (uint)4;
+                Mem.Set((r20 + 64u), r2);
+                Mem.Set((r29 + 16u), r16);
+                r7 = Mem.U32((r22 + 4u));
+                r6 = r21; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = Mem.U32((r20 + 52u));
+                r6 = Mem.U32((r22 + 4u));
+                r5 = r2; alMainBusNew(r4, r5, (int)r6);
+                r4 = r0;
+                r5 = r4;
+                r6 = r21;
+                r7 = (uint)1;
+                r2 = (uint)32;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = r0;
+                r5 = r4;
+                Mem.Set((r20 + 48u), r2);
+                Mem.Set((r29 + 16u), r16);
+                r7 = Mem.U32((r22 + 4u));
+                r6 = r21; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = Mem.U32((r20 + 48u));
+                r6 = Mem.U32((r22 + 4u));
+                r5 = r2; alAuxBusNew(r4, r5, (int)r6);
+                r2 = Mem.U8((r22 + 28u));
+                { bool c_ = r2 == 0; r4 = r20; if (c_) goto L_L002B898C; }
+                r5 = r0;
+                r6 = r22;
+                r7 = r21; r2 = alSynAllocFX(r4, (short)r5, r6, r7);
+                r4 = r0; goto L_L002B89A0;
+                L_L002B898C: ;
+                r4 = Mem.U32((r20 + 48u));
+                r6 = Mem.U32((r20 + 52u));
+                r5 = (uint)2; r2 = (uint)alAuxBusParam(r4, (int)r5, r6);
+                r4 = r0;
+                L_L002B89A0: ;
+                r5 = r4;
+                r6 = r21;
+                r2 = (uint)220;
+                Mem.Set((r20 + 4u), r0);
+                Mem.Set((r20 + 8u), r0);
+                Mem.Set((r20 + 20u), r0);
+                Mem.Set((r20 + 24u), r0);
+                Mem.Set((r20 + 12u), r0);
+                Mem.Set((r20 + 16u), r0);
+                Mem.Set((r29 + 16u), r2);
+                r7 = Mem.U32((r22 + 4u));
+                r19 = r4; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r3 = Mem.U32((r22 + 4u));
+                { bool c_ = (int)r3 <= 0; r4 = r23; if (c_) goto L_L002B8A84; }
+                r18 = r2;
+                L_L002B89E4: ;
+                r4 = r18;
+                r5 = r20 + 4u; alLink(r4, r5);
+                r16 = r18 + 16u;
+                r4 = r16;
+                r6 = r21;
+                Mem.Set((r18 + 8u), r0);
+                r5 = Mem.U32((r20 + 36u));
+                r19 = r19 + 1u; alLoadNew(r4, r5, r6);
+                r4 = r16;
+                r5 = (uint)1;
+                r6 = r0; r2 = (uint)alLoadParam(r4, (int)r5, r6);
+                r17 = r18 + 88u;
+                r4 = r17;
+                r5 = r21; alResampleNew(r4, r5);
+                r4 = r17;
+                r5 = (uint)1;
+                r6 = r16; r2 = (uint)alResampleParam(r4, (int)r5, r6);
+                r16 = r18 + 140u;
+                r4 = r16;
+                r5 = r21; alEnvmixerNew(r4, r5);
+                r4 = r16;
+                r5 = (uint)1;
+                r6 = r17; r2 = (uint)alEnvmixerParam(r4, (int)r5, r6);
+                r5 = (uint)2;
+                r4 = Mem.U32((r20 + 52u));
+                r6 = r16; r2 = (uint)alMainBusParam(r4, (int)r5, r6);
+                Mem.Set((r18 + 12u), r16);
+                r2 = Mem.U32((r22 + 4u));
+                r2 = (uint)((int)r19 < (int)r2 ? 1 : 0);
+                { bool c_ = r2 != 0; r18 = r18 + 220u; if (c_) goto L_L002B89E4; }
+                r4 = r23;
+                L_L002B8A84: ;
+                r5 = (uint)1;
+                r6 = Mem.U32((r20 + 48u));
+                r19 = r0; r2 = (uint)alSaveParam(r4, (int)r5, r6);
+                r4 = r19;
+                r5 = r19;
+                r2 = (uint)28;
+                Mem.Set((r29 + 16u), r2);
+                r7 = Mem.U32((r22 + 8u));
+                r6 = r21; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                Mem.Set((r20 + 44u), r0);
+                r3 = Mem.U32((r22 + 8u));
+                if ((int)r3 <= 0) { Mem.Set((r20 + 40u), r21); goto L_L002B8AE8; }
+                r3 = r2;
+                L_L002B8AC4: ;
+                r2 = Mem.U32((r20 + 44u));
+                r19 = r19 + 1u;
+                Mem.Set((r3 + 0u), r2);
+                Mem.Set((r20 + 44u), r3);
+                r2 = Mem.U32((r22 + 8u));
+                r2 = (uint)((int)r19 < (int)r2 ? 1 : 0);
+                { bool c_ = r2 != 0; r3 = r3 + 28u; if (c_) goto L_L002B8AC4; }
+                Mem.Set((r20 + 40u), r21);
+                L_L002B8AE8: ;
+                r31 = Mem.U32((r29 + 56u));
+                r23 = Mem.U32((r29 + 52u));
+                r22 = Mem.U32((r29 + 48u));
+                r21 = Mem.U32((r29 + 44u));
+                r20 = Mem.U32((r29 + 40u));
+                r19 = Mem.U32((r29 + 36u));
+                r18 = Mem.U32((r29 + 32u));
+                r17 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r29 = r29 + 64u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B86B0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B87B4 @ 0x002B87B4 [MIPS]
+    public static uint alSynStopVoice_Head(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B87B4", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B87B4: ;
+                r1 = 2148335616u;
+                Cpu.Fpr[3] = Mem.U64((r1 - 14272u));
+                r3 = r4 + 18u;
+                L_func_002B87C0: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r5;
+                Mem.Set((r29 + 24u), r31);
+                Mem.Set((r29 + 20u), r17);
+                r2 = Mem.U32((r16 + 8u));
+                { bool c_ = r2 == 0; r17 = r4; if (c_) goto L_L002B8828; }
+                r2 = __allocParam();
+                r6 = r2;
+                { bool c_ = r6 == 0;  if (c_) goto L_L002B8828; }
+                r2 = Mem.U32((r16 + 8u));
+                r3 = Mem.U32((r17 + 28u));
+                r4 = Mem.U32((r2 + 216u));
+                r2 = (uint)15;
+                Mem.Set((r6 + 8u), (ushort)r2);
+                Mem.Set((r6 + 0u), r0);
+                r3 = r3 + r4;
+                Mem.Set((r6 + 4u), r3);
+                r2 = Mem.U32((r16 + 8u));
+                r4 = Mem.U32((r2 + 12u));
+                r2 = Mem.U32((r4 + 8u));
+                r5 = (uint)3; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B8828: ;
+                r31 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                r2 = Mem.U32((r16 + 60u));
+                L_func_002B8840: ;
+                r29 = r29 - 64u;
+                Mem.Set((r29 + 40u), r20);
+                r20 = r4;
+                Mem.Set((r29 + 48u), r22);
+                r22 = r5;
+                r4 = r0;
+                Mem.Set((r29 + 56u), r31);
+                Mem.Set((r29 + 52u), r23);
+                Mem.Set((r29 + 44u), r21);
+                Mem.Set((r29 + 36u), r19);
+                Mem.Set((r29 + 32u), r18);
+                Mem.Set((r29 + 28u), r17);
+                Mem.Set((r29 + 24u), r16);
+                r21 = Mem.U32((r22 + 20u));
+                r5 = r4;
+                Mem.Set((r20 + 0u), r0);
+                r2 = Mem.U32((r22 + 4u));
+                r7 = (uint)1;
+                Mem.Set((r20 + 32u), r0);
+                Mem.Set((r20 + 28u), r0);
+                Mem.Set((r20 + 60u), r2);
+                r3 = Mem.U32((r22 + 24u));
+                r2 = (uint)160;
+                Mem.Set((r20 + 72u), r2);
+                Mem.Set((r20 + 68u), r3);
+                r2 = Mem.U32((r22 + 16u));
+                r6 = r21;
+                Mem.Set((r20 + 36u), r2);
+                r2 = (uint)28;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r23 = r2;
+                r4 = r23; alSaveNew(r4);
+                r4 = r0;
+                r5 = r4;
+                r6 = r21;
+                r7 = (uint)1;
+                r2 = (uint)76;
+                Mem.Set((r20 + 56u), r23);
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = r0;
+                r5 = r4;
+                Mem.Set((r20 + 52u), r2);
+                r2 = (uint)1;
+                r16 = (uint)4;
+                Mem.Set((r20 + 64u), r2);
+                Mem.Set((r29 + 16u), r16);
+                r7 = Mem.U32((r22 + 4u));
+                r6 = r21; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = Mem.U32((r20 + 52u));
+                r6 = Mem.U32((r22 + 4u));
+                r5 = r2; alMainBusNew(r4, r5, (int)r6);
+                r4 = r0;
+                r5 = r4;
+                r6 = r21;
+                r7 = (uint)1;
+                r2 = (uint)32;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = r0;
+                r5 = r4;
+                Mem.Set((r20 + 48u), r2);
+                Mem.Set((r29 + 16u), r16);
+                r7 = Mem.U32((r22 + 4u));
+                r6 = r21; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = Mem.U32((r20 + 48u));
+                r6 = Mem.U32((r22 + 4u));
+                r5 = r2; alAuxBusNew(r4, r5, (int)r6);
+                r2 = Mem.U8((r22 + 28u));
+                { bool c_ = r2 == 0; r4 = r20; if (c_) goto L_L002B898C; }
+                r5 = r0;
+                r6 = r22;
+                r7 = r21; r2 = alSynAllocFX(r4, (short)r5, r6, r7);
+                r4 = r0; goto L_L002B89A0;
+                L_L002B898C: ;
+                r4 = Mem.U32((r20 + 48u));
+                r6 = Mem.U32((r20 + 52u));
+                r5 = (uint)2; r2 = (uint)alAuxBusParam(r4, (int)r5, r6);
+                r4 = r0;
+                L_L002B89A0: ;
+                r5 = r4;
+                r6 = r21;
+                r2 = (uint)220;
+                Mem.Set((r20 + 4u), r0);
+                Mem.Set((r20 + 8u), r0);
+                Mem.Set((r20 + 20u), r0);
+                Mem.Set((r20 + 24u), r0);
+                Mem.Set((r20 + 12u), r0);
+                Mem.Set((r20 + 16u), r0);
+                Mem.Set((r29 + 16u), r2);
+                r7 = Mem.U32((r22 + 4u));
+                r19 = r4; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r3 = Mem.U32((r22 + 4u));
+                { bool c_ = (int)r3 <= 0; r4 = r23; if (c_) goto L_L002B8A84; }
+                r18 = r2;
+                L_L002B89E4: ;
+                r4 = r18;
+                r5 = r20 + 4u; alLink(r4, r5);
+                r16 = r18 + 16u;
+                r4 = r16;
+                r6 = r21;
+                Mem.Set((r18 + 8u), r0);
+                r5 = Mem.U32((r20 + 36u));
+                r19 = r19 + 1u; alLoadNew(r4, r5, r6);
+                r4 = r16;
+                r5 = (uint)1;
+                r6 = r0; r2 = (uint)alLoadParam(r4, (int)r5, r6);
+                r17 = r18 + 88u;
+                r4 = r17;
+                r5 = r21; alResampleNew(r4, r5);
+                r4 = r17;
+                r5 = (uint)1;
+                r6 = r16; r2 = (uint)alResampleParam(r4, (int)r5, r6);
+                r16 = r18 + 140u;
+                r4 = r16;
+                r5 = r21; alEnvmixerNew(r4, r5);
+                r4 = r16;
+                r5 = (uint)1;
+                r6 = r17; r2 = (uint)alEnvmixerParam(r4, (int)r5, r6);
+                r5 = (uint)2;
+                r4 = Mem.U32((r20 + 52u));
+                r6 = r16; r2 = (uint)alMainBusParam(r4, (int)r5, r6);
+                Mem.Set((r18 + 12u), r16);
+                r2 = Mem.U32((r22 + 4u));
+                r2 = (uint)((int)r19 < (int)r2 ? 1 : 0);
+                { bool c_ = r2 != 0; r18 = r18 + 220u; if (c_) goto L_L002B89E4; }
+                r4 = r23;
+                L_L002B8A84: ;
+                r5 = (uint)1;
+                r6 = Mem.U32((r20 + 48u));
+                r19 = r0; r2 = (uint)alSaveParam(r4, (int)r5, r6);
+                r4 = r19;
+                r5 = r19;
+                r2 = (uint)28;
+                Mem.Set((r29 + 16u), r2);
+                r7 = Mem.U32((r22 + 8u));
+                r6 = r21; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                Mem.Set((r20 + 44u), r0);
+                r3 = Mem.U32((r22 + 8u));
+                if ((int)r3 <= 0) { Mem.Set((r20 + 40u), r21); goto L_L002B8AE8; }
+                r3 = r2;
+                L_L002B8AC4: ;
+                r2 = Mem.U32((r20 + 44u));
+                r19 = r19 + 1u;
+                Mem.Set((r3 + 0u), r2);
+                Mem.Set((r20 + 44u), r3);
+                r2 = Mem.U32((r22 + 8u));
+                r2 = (uint)((int)r19 < (int)r2 ? 1 : 0);
+                { bool c_ = r2 != 0; r3 = r3 + 28u; if (c_) goto L_L002B8AC4; }
+                Mem.Set((r20 + 40u), r21);
+                L_L002B8AE8: ;
+                r31 = Mem.U32((r29 + 56u));
+                r23 = Mem.U32((r29 + 52u));
+                r22 = Mem.U32((r29 + 48u));
+                r21 = Mem.U32((r29 + 44u));
+                r20 = Mem.U32((r29 + 40u));
+                r19 = Mem.U32((r29 + 36u));
+                r18 = Mem.U32((r29 + 32u));
+                r17 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r29 = r29 + 64u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B87B4", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B87C0 @ 0x002B87C0 [MIPS]
+    public static uint alSynStopVoice_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B87C0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B87C0: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r5;
+                Mem.Set((r29 + 24u), r31);
+                Mem.Set((r29 + 20u), r17);
+                r2 = Mem.U32((r16 + 8u));
+                { bool c_ = r2 == 0; r17 = r4; if (c_) goto L_L002B8828; }
+                r2 = __allocParam();
+                r6 = r2;
+                { bool c_ = r6 == 0;  if (c_) goto L_L002B8828; }
+                r2 = Mem.U32((r16 + 8u));
+                r3 = Mem.U32((r17 + 28u));
+                r4 = Mem.U32((r2 + 216u));
+                r2 = (uint)15;
+                Mem.Set((r6 + 8u), (ushort)r2);
+                Mem.Set((r6 + 0u), r0);
+                r3 = r3 + r4;
+                Mem.Set((r6 + 4u), r3);
+                r2 = Mem.U32((r16 + 8u));
+                r4 = Mem.U32((r2 + 12u));
+                r2 = Mem.U32((r4 + 8u));
+                r5 = (uint)3; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B8828: ;
+                r31 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                r2 = Mem.U32((r16 + 60u));
+                L_func_002B8840: ;
+                r29 = r29 - 64u;
+                Mem.Set((r29 + 40u), r20);
+                r20 = r4;
+                Mem.Set((r29 + 48u), r22);
+                r22 = r5;
+                r4 = r0;
+                Mem.Set((r29 + 56u), r31);
+                Mem.Set((r29 + 52u), r23);
+                Mem.Set((r29 + 44u), r21);
+                Mem.Set((r29 + 36u), r19);
+                Mem.Set((r29 + 32u), r18);
+                Mem.Set((r29 + 28u), r17);
+                Mem.Set((r29 + 24u), r16);
+                r21 = Mem.U32((r22 + 20u));
+                r5 = r4;
+                Mem.Set((r20 + 0u), r0);
+                r2 = Mem.U32((r22 + 4u));
+                r7 = (uint)1;
+                Mem.Set((r20 + 32u), r0);
+                Mem.Set((r20 + 28u), r0);
+                Mem.Set((r20 + 60u), r2);
+                r3 = Mem.U32((r22 + 24u));
+                r2 = (uint)160;
+                Mem.Set((r20 + 72u), r2);
+                Mem.Set((r20 + 68u), r3);
+                r2 = Mem.U32((r22 + 16u));
+                r6 = r21;
+                Mem.Set((r20 + 36u), r2);
+                r2 = (uint)28;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r23 = r2;
+                r4 = r23; alSaveNew(r4);
+                r4 = r0;
+                r5 = r4;
+                r6 = r21;
+                r7 = (uint)1;
+                r2 = (uint)76;
+                Mem.Set((r20 + 56u), r23);
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = r0;
+                r5 = r4;
+                Mem.Set((r20 + 52u), r2);
+                r2 = (uint)1;
+                r16 = (uint)4;
+                Mem.Set((r20 + 64u), r2);
+                Mem.Set((r29 + 16u), r16);
+                r7 = Mem.U32((r22 + 4u));
+                r6 = r21; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = Mem.U32((r20 + 52u));
+                r6 = Mem.U32((r22 + 4u));
+                r5 = r2; alMainBusNew(r4, r5, (int)r6);
+                r4 = r0;
+                r5 = r4;
+                r6 = r21;
+                r7 = (uint)1;
+                r2 = (uint)32;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = r0;
+                r5 = r4;
+                Mem.Set((r20 + 48u), r2);
+                Mem.Set((r29 + 16u), r16);
+                r7 = Mem.U32((r22 + 4u));
+                r6 = r21; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = Mem.U32((r20 + 48u));
+                r6 = Mem.U32((r22 + 4u));
+                r5 = r2; alAuxBusNew(r4, r5, (int)r6);
+                r2 = Mem.U8((r22 + 28u));
+                { bool c_ = r2 == 0; r4 = r20; if (c_) goto L_L002B898C; }
+                r5 = r0;
+                r6 = r22;
+                r7 = r21; r2 = alSynAllocFX(r4, (short)r5, r6, r7);
+                r4 = r0; goto L_L002B89A0;
+                L_L002B898C: ;
+                r4 = Mem.U32((r20 + 48u));
+                r6 = Mem.U32((r20 + 52u));
+                r5 = (uint)2; r2 = (uint)alAuxBusParam(r4, (int)r5, r6);
+                r4 = r0;
+                L_L002B89A0: ;
+                r5 = r4;
+                r6 = r21;
+                r2 = (uint)220;
+                Mem.Set((r20 + 4u), r0);
+                Mem.Set((r20 + 8u), r0);
+                Mem.Set((r20 + 20u), r0);
+                Mem.Set((r20 + 24u), r0);
+                Mem.Set((r20 + 12u), r0);
+                Mem.Set((r20 + 16u), r0);
+                Mem.Set((r29 + 16u), r2);
+                r7 = Mem.U32((r22 + 4u));
+                r19 = r4; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r3 = Mem.U32((r22 + 4u));
+                { bool c_ = (int)r3 <= 0; r4 = r23; if (c_) goto L_L002B8A84; }
+                r18 = r2;
+                L_L002B89E4: ;
+                r4 = r18;
+                r5 = r20 + 4u; alLink(r4, r5);
+                r16 = r18 + 16u;
+                r4 = r16;
+                r6 = r21;
+                Mem.Set((r18 + 8u), r0);
+                r5 = Mem.U32((r20 + 36u));
+                r19 = r19 + 1u; alLoadNew(r4, r5, r6);
+                r4 = r16;
+                r5 = (uint)1;
+                r6 = r0; r2 = (uint)alLoadParam(r4, (int)r5, r6);
+                r17 = r18 + 88u;
+                r4 = r17;
+                r5 = r21; alResampleNew(r4, r5);
+                r4 = r17;
+                r5 = (uint)1;
+                r6 = r16; r2 = (uint)alResampleParam(r4, (int)r5, r6);
+                r16 = r18 + 140u;
+                r4 = r16;
+                r5 = r21; alEnvmixerNew(r4, r5);
+                r4 = r16;
+                r5 = (uint)1;
+                r6 = r17; r2 = (uint)alEnvmixerParam(r4, (int)r5, r6);
+                r5 = (uint)2;
+                r4 = Mem.U32((r20 + 52u));
+                r6 = r16; r2 = (uint)alMainBusParam(r4, (int)r5, r6);
+                Mem.Set((r18 + 12u), r16);
+                r2 = Mem.U32((r22 + 4u));
+                r2 = (uint)((int)r19 < (int)r2 ? 1 : 0);
+                { bool c_ = r2 != 0; r18 = r18 + 220u; if (c_) goto L_L002B89E4; }
+                r4 = r23;
+                L_L002B8A84: ;
+                r5 = (uint)1;
+                r6 = Mem.U32((r20 + 48u));
+                r19 = r0; r2 = (uint)alSaveParam(r4, (int)r5, r6);
+                r4 = r19;
+                r5 = r19;
+                r2 = (uint)28;
+                Mem.Set((r29 + 16u), r2);
+                r7 = Mem.U32((r22 + 8u));
+                r6 = r21; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                Mem.Set((r20 + 44u), r0);
+                r3 = Mem.U32((r22 + 8u));
+                if ((int)r3 <= 0) { Mem.Set((r20 + 40u), r21); goto L_L002B8AE8; }
+                r3 = r2;
+                L_L002B8AC4: ;
+                r2 = Mem.U32((r20 + 44u));
+                r19 = r19 + 1u;
+                Mem.Set((r3 + 0u), r2);
+                Mem.Set((r20 + 44u), r3);
+                r2 = Mem.U32((r22 + 8u));
+                r2 = (uint)((int)r19 < (int)r2 ? 1 : 0);
+                { bool c_ = r2 != 0; r3 = r3 + 28u; if (c_) goto L_L002B8AC4; }
+                Mem.Set((r20 + 40u), r21);
+                L_L002B8AE8: ;
+                r31 = Mem.U32((r29 + 56u));
+                r23 = Mem.U32((r29 + 52u));
+                r22 = Mem.U32((r29 + 48u));
+                r21 = Mem.U32((r29 + 44u));
+                r20 = Mem.U32((r29 + 40u));
+                r19 = Mem.U32((r29 + 36u));
+                r18 = Mem.U32((r29 + 32u));
+                r17 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r29 = r29 + 64u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B87C0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B883C @ 0x002B883C [MIPS]
+    public static uint alSynNew_Head(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B883C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B883C: ;
+                r2 = Mem.U32((r16 + 60u));
+                L_func_002B8840: ;
+                r29 = r29 - 64u;
+                Mem.Set((r29 + 40u), r20);
+                r20 = r4;
+                Mem.Set((r29 + 48u), r22);
+                r22 = r5;
+                r4 = r0;
+                Mem.Set((r29 + 56u), r31);
+                Mem.Set((r29 + 52u), r23);
+                Mem.Set((r29 + 44u), r21);
+                Mem.Set((r29 + 36u), r19);
+                Mem.Set((r29 + 32u), r18);
+                Mem.Set((r29 + 28u), r17);
+                Mem.Set((r29 + 24u), r16);
+                r21 = Mem.U32((r22 + 20u));
+                r5 = r4;
+                Mem.Set((r20 + 0u), r0);
+                r2 = Mem.U32((r22 + 4u));
+                r7 = (uint)1;
+                Mem.Set((r20 + 32u), r0);
+                Mem.Set((r20 + 28u), r0);
+                Mem.Set((r20 + 60u), r2);
+                r3 = Mem.U32((r22 + 24u));
+                r2 = (uint)160;
+                Mem.Set((r20 + 72u), r2);
+                Mem.Set((r20 + 68u), r3);
+                r2 = Mem.U32((r22 + 16u));
+                r6 = r21;
+                Mem.Set((r20 + 36u), r2);
+                r2 = (uint)28;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r23 = r2;
+                r4 = r23; alSaveNew(r4);
+                r4 = r0;
+                r5 = r4;
+                r6 = r21;
+                r7 = (uint)1;
+                r2 = (uint)76;
+                Mem.Set((r20 + 56u), r23);
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = r0;
+                r5 = r4;
+                Mem.Set((r20 + 52u), r2);
+                r2 = (uint)1;
+                r16 = (uint)4;
+                Mem.Set((r20 + 64u), r2);
+                Mem.Set((r29 + 16u), r16);
+                r7 = Mem.U32((r22 + 4u));
+                r6 = r21; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = Mem.U32((r20 + 52u));
+                r6 = Mem.U32((r22 + 4u));
+                r5 = r2; alMainBusNew(r4, r5, (int)r6);
+                r4 = r0;
+                r5 = r4;
+                r6 = r21;
+                r7 = (uint)1;
+                r2 = (uint)32;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = r0;
+                r5 = r4;
+                Mem.Set((r20 + 48u), r2);
+                Mem.Set((r29 + 16u), r16);
+                r7 = Mem.U32((r22 + 4u));
+                r6 = r21; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = Mem.U32((r20 + 48u));
+                r6 = Mem.U32((r22 + 4u));
+                r5 = r2; alAuxBusNew(r4, r5, (int)r6);
+                r2 = Mem.U8((r22 + 28u));
+                { bool c_ = r2 == 0; r4 = r20; if (c_) goto L_L002B898C; }
+                r5 = r0;
+                r6 = r22;
+                r7 = r21; r2 = alSynAllocFX(r4, (short)r5, r6, r7);
+                r4 = r0; goto L_L002B89A0;
+                L_L002B898C: ;
+                r4 = Mem.U32((r20 + 48u));
+                r6 = Mem.U32((r20 + 52u));
+                r5 = (uint)2; r2 = (uint)alAuxBusParam(r4, (int)r5, r6);
+                r4 = r0;
+                L_L002B89A0: ;
+                r5 = r4;
+                r6 = r21;
+                r2 = (uint)220;
+                Mem.Set((r20 + 4u), r0);
+                Mem.Set((r20 + 8u), r0);
+                Mem.Set((r20 + 20u), r0);
+                Mem.Set((r20 + 24u), r0);
+                Mem.Set((r20 + 12u), r0);
+                Mem.Set((r20 + 16u), r0);
+                Mem.Set((r29 + 16u), r2);
+                r7 = Mem.U32((r22 + 4u));
+                r19 = r4; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r3 = Mem.U32((r22 + 4u));
+                { bool c_ = (int)r3 <= 0; r4 = r23; if (c_) goto L_L002B8A84; }
+                r18 = r2;
+                L_L002B89E4: ;
+                r4 = r18;
+                r5 = r20 + 4u; alLink(r4, r5);
+                r16 = r18 + 16u;
+                r4 = r16;
+                r6 = r21;
+                Mem.Set((r18 + 8u), r0);
+                r5 = Mem.U32((r20 + 36u));
+                r19 = r19 + 1u; alLoadNew(r4, r5, r6);
+                r4 = r16;
+                r5 = (uint)1;
+                r6 = r0; r2 = (uint)alLoadParam(r4, (int)r5, r6);
+                r17 = r18 + 88u;
+                r4 = r17;
+                r5 = r21; alResampleNew(r4, r5);
+                r4 = r17;
+                r5 = (uint)1;
+                r6 = r16; r2 = (uint)alResampleParam(r4, (int)r5, r6);
+                r16 = r18 + 140u;
+                r4 = r16;
+                r5 = r21; alEnvmixerNew(r4, r5);
+                r4 = r16;
+                r5 = (uint)1;
+                r6 = r17; r2 = (uint)alEnvmixerParam(r4, (int)r5, r6);
+                r5 = (uint)2;
+                r4 = Mem.U32((r20 + 52u));
+                r6 = r16; r2 = (uint)alMainBusParam(r4, (int)r5, r6);
+                Mem.Set((r18 + 12u), r16);
+                r2 = Mem.U32((r22 + 4u));
+                r2 = (uint)((int)r19 < (int)r2 ? 1 : 0);
+                { bool c_ = r2 != 0; r18 = r18 + 220u; if (c_) goto L_L002B89E4; }
+                r4 = r23;
+                L_L002B8A84: ;
+                r5 = (uint)1;
+                r6 = Mem.U32((r20 + 48u));
+                r19 = r0; r2 = (uint)alSaveParam(r4, (int)r5, r6);
+                r4 = r19;
+                r5 = r19;
+                r2 = (uint)28;
+                Mem.Set((r29 + 16u), r2);
+                r7 = Mem.U32((r22 + 8u));
+                r6 = r21; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                Mem.Set((r20 + 44u), r0);
+                r3 = Mem.U32((r22 + 8u));
+                if ((int)r3 <= 0) { Mem.Set((r20 + 40u), r21); goto L_L002B8AE8; }
+                r3 = r2;
+                L_L002B8AC4: ;
+                r2 = Mem.U32((r20 + 44u));
+                r19 = r19 + 1u;
+                Mem.Set((r3 + 0u), r2);
+                Mem.Set((r20 + 44u), r3);
+                r2 = Mem.U32((r22 + 8u));
+                r2 = (uint)((int)r19 < (int)r2 ? 1 : 0);
+                { bool c_ = r2 != 0; r3 = r3 + 28u; if (c_) goto L_L002B8AC4; }
+                Mem.Set((r20 + 40u), r21);
+                L_L002B8AE8: ;
+                r31 = Mem.U32((r29 + 56u));
+                r23 = Mem.U32((r29 + 52u));
+                r22 = Mem.U32((r29 + 48u));
+                r21 = Mem.U32((r29 + 44u));
+                r20 = Mem.U32((r29 + 40u));
+                r19 = Mem.U32((r29 + 36u));
+                r18 = Mem.U32((r29 + 32u));
+                r17 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r29 = r29 + 64u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B883C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B8840 @ 0x002B8840 [MIPS]
+    public static uint alSynNew_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B8840", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B8840: ;
+                r29 = r29 - 64u;
+                Mem.Set((r29 + 40u), r20);
+                r20 = r4;
+                Mem.Set((r29 + 48u), r22);
+                r22 = r5;
+                r4 = r0;
+                Mem.Set((r29 + 56u), r31);
+                Mem.Set((r29 + 52u), r23);
+                Mem.Set((r29 + 44u), r21);
+                Mem.Set((r29 + 36u), r19);
+                Mem.Set((r29 + 32u), r18);
+                Mem.Set((r29 + 28u), r17);
+                Mem.Set((r29 + 24u), r16);
+                r21 = Mem.U32((r22 + 20u));
+                r5 = r4;
+                Mem.Set((r20 + 0u), r0);
+                r2 = Mem.U32((r22 + 4u));
+                r7 = (uint)1;
+                Mem.Set((r20 + 32u), r0);
+                Mem.Set((r20 + 28u), r0);
+                Mem.Set((r20 + 60u), r2);
+                r3 = Mem.U32((r22 + 24u));
+                r2 = (uint)160;
+                Mem.Set((r20 + 72u), r2);
+                Mem.Set((r20 + 68u), r3);
+                r2 = Mem.U32((r22 + 16u));
+                r6 = r21;
+                Mem.Set((r20 + 36u), r2);
+                r2 = (uint)28;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r23 = r2;
+                r4 = r23; alSaveNew(r4);
+                r4 = r0;
+                r5 = r4;
+                r6 = r21;
+                r7 = (uint)1;
+                r2 = (uint)76;
+                Mem.Set((r20 + 56u), r23);
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = r0;
+                r5 = r4;
+                Mem.Set((r20 + 52u), r2);
+                r2 = (uint)1;
+                r16 = (uint)4;
+                Mem.Set((r20 + 64u), r2);
+                Mem.Set((r29 + 16u), r16);
+                r7 = Mem.U32((r22 + 4u));
+                r6 = r21; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = Mem.U32((r20 + 52u));
+                r6 = Mem.U32((r22 + 4u));
+                r5 = r2; alMainBusNew(r4, r5, (int)r6);
+                r4 = r0;
+                r5 = r4;
+                r6 = r21;
+                r7 = (uint)1;
+                r2 = (uint)32;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = r0;
+                r5 = r4;
+                Mem.Set((r20 + 48u), r2);
+                Mem.Set((r29 + 16u), r16);
+                r7 = Mem.U32((r22 + 4u));
+                r6 = r21; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = Mem.U32((r20 + 48u));
+                r6 = Mem.U32((r22 + 4u));
+                r5 = r2; alAuxBusNew(r4, r5, (int)r6);
+                r2 = Mem.U8((r22 + 28u));
+                { bool c_ = r2 == 0; r4 = r20; if (c_) goto L_L002B898C; }
+                r5 = r0;
+                r6 = r22;
+                r7 = r21; r2 = alSynAllocFX(r4, (short)r5, r6, r7);
+                r4 = r0; goto L_L002B89A0;
+                L_L002B898C: ;
+                r4 = Mem.U32((r20 + 48u));
+                r6 = Mem.U32((r20 + 52u));
+                r5 = (uint)2; r2 = (uint)alAuxBusParam(r4, (int)r5, r6);
+                r4 = r0;
+                L_L002B89A0: ;
+                r5 = r4;
+                r6 = r21;
+                r2 = (uint)220;
+                Mem.Set((r20 + 4u), r0);
+                Mem.Set((r20 + 8u), r0);
+                Mem.Set((r20 + 20u), r0);
+                Mem.Set((r20 + 24u), r0);
+                Mem.Set((r20 + 12u), r0);
+                Mem.Set((r20 + 16u), r0);
+                Mem.Set((r29 + 16u), r2);
+                r7 = Mem.U32((r22 + 4u));
+                r19 = r4; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r3 = Mem.U32((r22 + 4u));
+                { bool c_ = (int)r3 <= 0; r4 = r23; if (c_) goto L_L002B8A84; }
+                r18 = r2;
+                L_L002B89E4: ;
+                r4 = r18;
+                r5 = r20 + 4u; alLink(r4, r5);
+                r16 = r18 + 16u;
+                r4 = r16;
+                r6 = r21;
+                Mem.Set((r18 + 8u), r0);
+                r5 = Mem.U32((r20 + 36u));
+                r19 = r19 + 1u; alLoadNew(r4, r5, r6);
+                r4 = r16;
+                r5 = (uint)1;
+                r6 = r0; r2 = (uint)alLoadParam(r4, (int)r5, r6);
+                r17 = r18 + 88u;
+                r4 = r17;
+                r5 = r21; alResampleNew(r4, r5);
+                r4 = r17;
+                r5 = (uint)1;
+                r6 = r16; r2 = (uint)alResampleParam(r4, (int)r5, r6);
+                r16 = r18 + 140u;
+                r4 = r16;
+                r5 = r21; alEnvmixerNew(r4, r5);
+                r4 = r16;
+                r5 = (uint)1;
+                r6 = r17; r2 = (uint)alEnvmixerParam(r4, (int)r5, r6);
+                r5 = (uint)2;
+                r4 = Mem.U32((r20 + 52u));
+                r6 = r16; r2 = (uint)alMainBusParam(r4, (int)r5, r6);
+                Mem.Set((r18 + 12u), r16);
+                r2 = Mem.U32((r22 + 4u));
+                r2 = (uint)((int)r19 < (int)r2 ? 1 : 0);
+                { bool c_ = r2 != 0; r18 = r18 + 220u; if (c_) goto L_L002B89E4; }
+                r4 = r23;
+                L_L002B8A84: ;
+                r5 = (uint)1;
+                r6 = Mem.U32((r20 + 48u));
+                r19 = r0; r2 = (uint)alSaveParam(r4, (int)r5, r6);
+                r4 = r19;
+                r5 = r19;
+                r2 = (uint)28;
+                Mem.Set((r29 + 16u), r2);
+                r7 = Mem.U32((r22 + 8u));
+                r6 = r21; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                Mem.Set((r20 + 44u), r0);
+                r3 = Mem.U32((r22 + 8u));
+                if ((int)r3 <= 0) { Mem.Set((r20 + 40u), r21); goto L_L002B8AE8; }
+                r3 = r2;
+                L_L002B8AC4: ;
+                r2 = Mem.U32((r20 + 44u));
+                r19 = r19 + 1u;
+                Mem.Set((r3 + 0u), r2);
+                Mem.Set((r20 + 44u), r3);
+                r2 = Mem.U32((r22 + 8u));
+                r2 = (uint)((int)r19 < (int)r2 ? 1 : 0);
+                { bool c_ = r2 != 0; r3 = r3 + 28u; if (c_) goto L_L002B8AC4; }
+                Mem.Set((r20 + 40u), r21);
+                L_L002B8AE8: ;
+                r31 = Mem.U32((r29 + 56u));
+                r23 = Mem.U32((r29 + 52u));
+                r22 = Mem.U32((r29 + 48u));
+                r21 = Mem.U32((r29 + 44u));
+                r20 = Mem.U32((r29 + 40u));
+                r19 = Mem.U32((r29 + 36u));
+                r18 = Mem.U32((r29 + 32u));
+                r17 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r29 = r29 + 64u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B8840", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B8B14 @ 0x002B8B14 [MIPS]
+    public static uint alAudioFrame_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B8B14", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B8B14: ;
+                r29 = r29 - 72u;
+                Mem.Set((r29 + 36u), r17);
+                r17 = 2148401152u;
+                r17 = Mem.U32((r17 - 32608u));
+                Mem.Set((r29 + 60u), r23);
+                r23 = r4;
+                Mem.Set((r29 + 64u), r30);
+                r30 = r5;
+                Mem.Set((r29 + 44u), r19);
+                r19 = r7;
+                Mem.Set((r29 + 48u), r20);
+                r20 = r23;
+                Mem.Set((r29 + 68u), r31);
+                Mem.Set((r29 + 56u), r22);
+                Mem.Set((r29 + 52u), r21);
+                Mem.Set((r29 + 40u), r18);
+                Mem.Set((r29 + 32u), r16);
+                r2 = Mem.U32((r17 + 0u));
+                r21 = r6;
+                { bool c_ = r2 != 0; Mem.Set((r29 + 28u), (ushort)r0); if (c_) goto L_L002B8B70; }
+                Mem.Set((r30 + 0u), r0); goto L_L002B8C94;
+                L_L002B8B70: ;
+                r4 = r17;
+                r5 = r29 + 24u; r2 = (uint)__nextSampleTime(r4, r5);
+                r3 = Mem.U32((r17 + 32u));
+                Mem.Set((r17 + 28u), r2);
+                r2 = r2 - r3;
+                r2 = (uint)((int)r2 < (int)r19 ? 1 : 0);
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B8BF4; }
+                r16 = (uint)-16;
+                L_L002B8B98: ;
+                r2 = Mem.U32((r17 + 28u));
+                r4 = Mem.U32((r29 + 24u));
+                r2 = r2 & r16;
+                Mem.Set((r17 + 28u), r2);
+                r2 = Mem.U32((r4 + 8u));
+                r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r17;
+                r5 = r2; r2 = (uint)_timeToSamplesNoRound_2(r4, (int)r5);
+                r6 = Mem.U32((r29 + 24u));
+                r4 = r17;
+                r3 = Mem.U32((r6 + 16u));
+                r5 = r29 + 24u;
+                r3 = r3 + r2;
+                Mem.Set((r6 + 16u), r3); r2 = (uint)__nextSampleTime(r4, r5);
+                r3 = Mem.U32((r17 + 32u));
+                Mem.Set((r17 + 28u), r2);
+                r2 = r2 - r3;
+                r2 = (uint)((int)r2 < (int)r19 ? 1 : 0);
+                { bool c_ = r2 != 0;  if (c_) goto L_L002B8B98; }
+                L_L002B8BF4: ;
+                r2 = Mem.U32((r17 + 28u));
+                r3 = (uint)-16;
+                r2 = r2 & r3;
+                { bool c_ = (int)r19 <= 0; Mem.Set((r17 + 28u), r2); if (c_) goto L_L002B8C80; }
+                r22 = 117440512u;
+                L_L002B8C0C: ;
+                r3 = Mem.U32((r17 + 72u));
+                r2 = (uint)((int)r3 < (int)r19 ? 1 : 0);
+                { bool c_ = r2 == 0; r18 = r19; if (c_) goto L_L002B8C20; }
+                r18 = r3;
+                L_L002B8C20: ;
+                r5 = (uint)6;
+                Mem.Set((r20 + 0u), r22);
+                Mem.Set((r20 + 4u), r0);
+                r16 = Mem.U32((r17 + 56u));
+                r6 = r21;
+                r2 = Mem.U32((r16 + 8u));
+                r4 = r16; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r16;
+                r5 = r29 + 28u;
+                r2 = r20 + 8u;
+                Mem.Set((r29 + 16u), r2);
+                r2 = Mem.U32((r4 + 4u));
+                r7 = Mem.U32((r17 + 32u));
+                r6 = r18; r2 = Funcs.CallRegX(r2, r4, r5, r6, r7, new uint[] { Mem.U32(r29 + 16u) }); r3 = Cpu.V1;
+                r20 = r2;
+                r19 = r19 - r18;
+                r3 = r18 << 2;
+                r2 = Mem.U32((r17 + 32u));
+                r21 = r21 + r3;
+                r2 = r2 + r18;
+                { bool c_ = (int)r19 > 0; Mem.Set((r17 + 32u), r2); if (c_) goto L_L002B8C0C; }
+                L_L002B8C80: ;
+                r2 = r20 - r23;
+                r2 = (uint)((int)r2 >> 3);
+                Mem.Set((r30 + 0u), r2);
+                r4 = r17; _collectPVoices(r4);
+                L_L002B8C94: ;
+                r2 = r20;
+                r31 = Mem.U32((r29 + 68u));
+                r30 = Mem.U32((r29 + 64u));
+                r23 = Mem.U32((r29 + 60u));
+                r22 = Mem.U32((r29 + 56u));
+                r21 = Mem.U32((r29 + 52u));
+                r20 = Mem.U32((r29 + 48u));
+                r19 = Mem.U32((r29 + 44u));
+                r18 = Mem.U32((r29 + 40u));
+                r17 = Mem.U32((r29 + 36u));
+                r16 = Mem.U32((r29 + 32u));
+                r29 = r29 + 72u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B8B14", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B8CC8 @ 0x002B8CC8 [MIPS]
+    public static uint __allocParam_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B8CC8", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B8CC8: ;
+                r4 = 2148401152u;
+                r4 = Mem.U32((r4 - 32608u));
+                r2 = Mem.U32((r4 + 44u));
+                { bool c_ = r2 == 0; r3 = r0; if (c_) goto L_L002B8CEC; }
+                r3 = r2;
+                r2 = Mem.U32((r3 + 0u));
+                Mem.Set((r4 + 44u), r2);
+                Mem.Set((r3 + 0u), r0);
+                L_L002B8CEC: ;
+                r2 = r3; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B8CC8", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B8CF4 @ 0x002B8CF4 [MIPS]
+    public static uint __freeParam_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B8CF4", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B8CF4: ;
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 - 32608u));
+                r2 = Mem.U32((r3 + 44u));
+                Mem.Set((r4 + 0u), r2);
+                Mem.Set((r3 + 44u), r4); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B8CF4", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B8D0C @ 0x002B8D0C [MIPS]
+    public static uint _freePVoice_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B8D0C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B8D0C: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r4;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r5;
+                Mem.Set((r29 + 24u), r31);
+                r4 = r16; alUnlink(r4);
+                r4 = r16;
+                r5 = r17 + 20u; alLink(r4, r5);
+                r31 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B8D0C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B8D4C @ 0x002B8D4C [MIPS]
+    public static uint _collectPVoices_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B8D4C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B8D4C: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r4;
+                Mem.Set((r29 + 24u), r31);
+                Mem.Set((r29 + 16u), r16);
+                r16 = Mem.U32((r17 + 20u));
+                { bool c_ = r16 == 0;  if (c_) goto L_L002B8D8C; }
+                L_L002B8D6C: ;
+                r4 = r16; alUnlink(r4);
+                r4 = r16;
+                r5 = r17 + 4u; alLink(r4, r5);
+                r16 = Mem.U32((r17 + 20u));
+                { bool c_ = r16 != 0;  if (c_) goto L_L002B8D6C; }
+                L_L002B8D8C: ;
+                r31 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B8D4C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B8DA0 @ 0x002B8DA0 [MIPS]
+    public static uint _timeToSamplesNoRound_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B8DA0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B8DA0: ;
+                Cpu.SetW(0, r5);
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                Cpu.SetW(1, Mem.U32((r4 + 68u)));
+                Cpu.SetS(1, (float)(int)Cpu.W(1));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 14376u)));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 14372u)));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                r2 = (uint)-16;
+                Cpu.SetW(2, (uint)(int)Cpu.S(0));
+                r3 = Cpu.W(2);
+                r2 = r3 & r2; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B8DA0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B8DE0 @ 0x002B8DE0 [MIPS]
+    public static uint __nextSampleTime_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B8DE0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B8DE0: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r4;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r5;
+                Mem.Set((r29 + 16u), r16);
+                r16 = 2147418112u;
+                Mem.Set((r29 + 28u), r31);
+                r2 = Mem.U32((r17 + 0u));
+                { bool c_ = r2 != 0; r16 = r16 | 65535u; if (c_) goto L_L002B8E24; }
+                r4 = 2148335616u;
+                r4 = r4 - 14400u;
+                r5 = 2148335616u;
+                r5 = r5 - 14396u;
+                r6 = (uint)307; r2 = __assert(r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B8E24: ;
+                Mem.Set((r18 + 0u), r0);
+                r4 = Mem.U32((r17 + 0u));
+                { bool c_ = r4 == 0;  if (c_) goto L_L002B8E68; }
+                L_L002B8E34: ;
+                r2 = Mem.U32((r4 + 16u));
+                r3 = Mem.U32((r17 + 32u));
+                r2 = r2 - r3;
+                r2 = (uint)((int)r2 < (int)r16 ? 1 : 0);
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B8E5C; }
+                Mem.Set((r18 + 0u), r4);
+                r3 = Mem.U32((r4 + 16u));
+                r2 = Mem.U32((r17 + 32u));
+                r16 = r3 - r2;
+                L_L002B8E5C: ;
+                r4 = Mem.U32((r4 + 0u));
+                { bool c_ = r4 != 0;  if (c_) goto L_L002B8E34; }
+                L_L002B8E68: ;
+                r2 = Mem.U32((r18 + 0u));
+                r31 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r2 = Mem.U32((r2 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B8DE0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B8E88 @ 0x002B8E88 [MIPS]
+    public static uint _timeToSamplesNoRound_2_Recompiled(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B8E88", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_002B8E88: ;
+                Cpu.SetW(0, r5);
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                Cpu.SetW(1, Mem.U32((r4 + 68u)));
+                Cpu.SetS(1, (float)(int)Cpu.W(1));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 14368u)));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 14364u)));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                Cpu.SetW(2, (uint)(int)Cpu.S(0));
+                r2 = Cpu.W(2);
+                Cpu.V1 = r3; return r2;
+                r2 = r2 << 1;
+                r3 = (uint)(int)Mem.S16((r17 + 26u));
+                r1 = 2148401152u;
+                L_func_002B8ED0: ;
+                r29 = r29 - 56u;
+                Mem.Set((r29 + 40u), r20);
+                r20 = r5;
+                Mem.Set((r29 + 36u), r19);
+                r19 = r6;
+                Mem.Set((r29 + 44u), r21);
+                r21 = r7;
+                r3 = 33554432u;
+                r3 = r3 | 1728u;
+                r5 = 33554432u;
+                r6 = Mem.U32((r29 + 72u));
+                r5 = r5 | 2048u;
+                Mem.Set((r29 + 28u), r17);
+                r17 = r0;
+                Mem.Set((r29 + 32u), r18);
+                r18 = r4;
+                Mem.Set((r29 + 48u), r31);
+                Mem.Set((r29 + 24u), r16);
+                r4 = Mem.U32((r18 + 28u));
+                r2 = r6;
+                r6 = r6 + 8u;
+                Mem.Set((r2 + 0u), r3);
+                r3 = r19 << 1;
+                Mem.Set((r2 + 4u), r3);
+                r2 = r6;
+                Mem.Set((r2 + 0u), r5);
+                Mem.Set((r2 + 4u), r3);
+                r2 = Mem.U32((r18 + 20u));
+                { bool c_ = (int)r2 <= 0; r6 = r6 + 8u; if (c_) goto L_L002B8F84; }
+                r16 = r4;
+                L_L002B8F4C: ;
+                r2 = Mem.U32((r16 + 0u));
+                Mem.Set((r29 + 16u), r6);
+                r4 = Mem.U32((r16 + 0u));
+                r16 = r16 + 4u;
+                r17 = r17 + 1u;
+                r5 = r20;
+                r6 = r19;
+                r2 = Mem.U32((r2 + 4u));
+                r7 = r21; r2 = Funcs.CallRegX(r2, r4, r5, r6, r7, new uint[] { Mem.U32(r29 + 16u) }); r3 = Cpu.V1;
+                r3 = Mem.U32((r18 + 20u));
+                r3 = (uint)((int)r17 < (int)r3 ? 1 : 0);
+                { bool c_ = r3 != 0; r6 = r2; if (c_) goto L_L002B8F4C; }
+                L_L002B8F84: ;
+                r31 = Mem.U32((r29 + 48u));
+                r21 = Mem.U32((r29 + 44u));
+                r20 = Mem.U32((r29 + 40u));
+                r19 = Mem.U32((r29 + 36u));
+                r18 = Mem.U32((r29 + 32u));
+                r17 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r2 = r6;
+                r29 = r29 + 56u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B8E88", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B8ED0 @ 0x002B8ED0 [MIPS]
+    public static uint alMainBusPull_Recompiled(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B8ED0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_002B8ED0: ;
+                r29 = r29 - 56u;
+                Mem.Set((r29 + 40u), r20);
+                r20 = r5;
+                Mem.Set((r29 + 36u), r19);
+                r19 = r6;
+                Mem.Set((r29 + 44u), r21);
+                r21 = r7;
+                r3 = 33554432u;
+                r3 = r3 | 1728u;
+                r5 = 33554432u;
+                r6 = Mem.U32((r29 + 72u));
+                r5 = r5 | 2048u;
+                Mem.Set((r29 + 28u), r17);
+                r17 = r0;
+                Mem.Set((r29 + 32u), r18);
+                r18 = r4;
+                Mem.Set((r29 + 48u), r31);
+                Mem.Set((r29 + 24u), r16);
+                r4 = Mem.U32((r18 + 28u));
+                r2 = r6;
+                r6 = r6 + 8u;
+                Mem.Set((r2 + 0u), r3);
+                r3 = r19 << 1;
+                Mem.Set((r2 + 4u), r3);
+                r2 = r6;
+                Mem.Set((r2 + 0u), r5);
+                Mem.Set((r2 + 4u), r3);
+                r2 = Mem.U32((r18 + 20u));
+                { bool c_ = (int)r2 <= 0; r6 = r6 + 8u; if (c_) goto L_L002B8F84; }
+                r16 = r4;
+                L_L002B8F4C: ;
+                r2 = Mem.U32((r16 + 0u));
+                Mem.Set((r29 + 16u), r6);
+                r4 = Mem.U32((r16 + 0u));
+                r16 = r16 + 4u;
+                r17 = r17 + 1u;
+                r5 = r20;
+                r6 = r19;
+                r2 = Mem.U32((r2 + 4u));
+                r7 = r21; r2 = Funcs.CallRegX(r2, r4, r5, r6, r7, new uint[] { Mem.U32(r29 + 16u) }); r3 = Cpu.V1;
+                r3 = Mem.U32((r18 + 20u));
+                r3 = (uint)((int)r17 < (int)r3 ? 1 : 0);
+                { bool c_ = r3 != 0; r6 = r2; if (c_) goto L_L002B8F4C; }
+                L_L002B8F84: ;
+                r31 = Mem.U32((r29 + 48u));
+                r21 = Mem.U32((r29 + 44u));
+                r20 = Mem.U32((r29 + 40u));
+                r19 = Mem.U32((r29 + 36u));
+                r18 = Mem.U32((r29 + 32u));
+                r17 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r2 = r6;
+                r29 = r29 + 56u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B8ED0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B8FAC @ 0x002B8FAC [MIPS]
+    public static uint alMainBusParam_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B8FAC", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B8FAC: ;
+                L_I002B8FAC: ;
+                r7 = Mem.U32((r4 + 28u));
+                L_I002B8FB0: ;
+                r2 = (uint)2;
+                L_I002B8FB4: ;
+                { bool c_ = r5 != r2;  if (c_) goto L_L002B8FD4; }
+                L_I002B8FBC: ;
+                r3 = Mem.U32((r4 + 20u));
+                L_I002B8FC0: ;
+                r2 = r3 << (int)(r2 & 31);
+                L_I002B8FC4: ;
+                r3 = r3 + 1u;
+                L_I002B8FC8: ;
+                r2 = r2 + r7;
+                L_I002B8FCC: ;
+                Mem.Set((r2 + 0u), r6);
+                L_I002B8FD0: ;
+                Mem.Set((r4 + 20u), r3);
+                L_L002B8FD4: ;
+                L_I002B8FD4: ;
+                r2 = r0; Cpu.V1 = r3; return r2;
+                L_I002B8FDC: ;
+                r2 = 50855936u;
+                L_func_002B8FE0: ;
+                L_I002B8FE0: ;
+                r29 = r29 - 72u;
+                L_I002B8FE4: ;
+                Mem.Set((r29 + 36u), r19);
+                L_I002B8FE8: ;
+                r19 = r4;
+                L_I002B8FEC: ;
+                Mem.Set((r29 + 52u), r23);
+                L_I002B8FF0: ;
+                r23 = r5;
+                L_I002B8FF4: ;
+                Mem.Set((r29 + 44u), r21);
+                L_I002B8FF8: ;
+                r21 = r6;
+                L_I002B8FFC: ;
+                r5 = r0;
+                L_I002B9000: ;
+                r6 = 2883584u;
+                L_I002B9004: ;
+                r6 = r6 - 20056u;
+                L_I002B9008: ;
+                Mem.Set((r29 + 56u), r31);
+                L_I002B900C: ;
+                Mem.Set((r29 + 48u), r22);
+                L_I002B9010: ;
+                Mem.Set((r29 + 40u), r20);
+                L_I002B9014: ;
+                Mem.Set((r29 + 32u), r18);
+                L_I002B9018: ;
+                Mem.Set((r29 + 28u), r17);
+                L_I002B901C: ;
+                Mem.Set((r29 + 24u), r16);
+                L_I002B9020: ;
+                Mem.Set((r29 + 64u), Cpu.Fpr[20]);
+                L_I002B9024: ;
+                r7 = (uint)5; alFilterNew(r4, r5, r6, (int)r7);
+                L_I002B902C: ;
+                r2 = 2883584u;
+                L_I002B9030: ;
+                r2 = r2 - 22336u;
+                L_I002B9034: ;
+                Mem.Set((r19 + 4u), r2);
+                L_I002B9038: ;
+                r2 = 2883584u;
+                L_I002B903C: ;
+                r2 = r2 - 21404u;
+                L_I002B9040: ;
+                Mem.Set((r19 + 40u), r2);
+                L_I002B9044: ;
+                r2 = Mem.U8((r23 + 28u));
+                L_I002B9048: ;
+                r3 = r2 - 1u;
+                L_I002B904C: ;
+                r2 = (uint)(r3 < (uint)(6) ? 1 : 0);
+                L_I002B9050: ;
+                { bool c_ = r2 == 0; r2 = r3 << 2; if (c_) goto L_L002B90C8; }
+                L_I002B9058: ;
+                r1 = 2148335616u;
+                L_I002B905C: ;
+                r1 = r1 + r2;
+                L_I002B9060: ;
+                r2 = Mem.U32((r1 - 14352u));
+                L_I002B9064: ;
+                 switch (r2) { case 2854828u: goto L_I002B8FAC; case 2854832u: goto L_I002B8FB0; case 2854836u: goto L_I002B8FB4; case 2854844u: goto L_I002B8FBC; case 2854848u: goto L_I002B8FC0; case 2854852u: goto L_I002B8FC4; case 2854856u: goto L_I002B8FC8; case 2854860u: goto L_I002B8FCC; case 2854864u: goto L_I002B8FD0; case 2854868u: goto L_I002B8FD4; case 2854876u: goto L_I002B8FDC; case 2854880u: goto L_I002B8FE0; case 2854884u: goto L_I002B8FE4; case 2854888u: goto L_I002B8FE8; case 2854892u: goto L_I002B8FEC; case 2854896u: goto L_I002B8FF0; case 2854900u: goto L_I002B8FF4; case 2854904u: goto L_I002B8FF8; case 2854908u: goto L_I002B8FFC; case 2854912u: goto L_I002B9000; case 2854916u: goto L_I002B9004; case 2854920u: goto L_I002B9008; case 2854924u: goto L_I002B900C; case 2854928u: goto L_I002B9010; case 2854932u: goto L_I002B9014; case 2854936u: goto L_I002B9018; case 2854940u: goto L_I002B901C; case 2854944u: goto L_I002B9020; case 2854948u: goto L_I002B9024; case 2854956u: goto L_I002B902C; case 2854960u: goto L_I002B9030; case 2854964u: goto L_I002B9034; case 2854968u: goto L_I002B9038; case 2854972u: goto L_I002B903C; case 2854976u: goto L_I002B9040; case 2854980u: goto L_I002B9044; case 2854984u: goto L_I002B9048; case 2854988u: goto L_I002B904C; case 2854992u: goto L_I002B9050; case 2855000u: goto L_I002B9058; case 2855004u: goto L_I002B905C; case 2855008u: goto L_I002B9060; case 2855012u: goto L_I002B9064; case 2855020u: goto L_I002B906C; case 2855024u: goto L_I002B9070; case 2855028u: goto L_I002B9074; case 2855036u: goto L_I002B907C; case 2855040u: goto L_I002B9080; case 2855044u: goto L_I002B9084; case 2855052u: goto L_I002B908C; case 2855056u: goto L_I002B9090; case 2855060u: goto L_I002B9094; case 2855068u: goto L_I002B909C; case 2855072u: goto L_I002B90A0; case 2855076u: goto L_I002B90A4; case 2855084u: goto L_I002B90AC; case 2855088u: goto L_I002B90B0; case 2855092u: goto L_I002B90B4; case 2855100u: goto L_I002B90BC; case 2855104u: goto L_I002B90C0; case 2855112u: goto L_I002B90C8; case 2855116u: goto L_I002B90CC; case 2855120u: goto L_I002B90D0; case 2855124u: goto L_I002B90D4; case 2855128u: goto L_I002B90D8; case 2855132u: goto L_I002B90DC; case 2855136u: goto L_I002B90E0; case 2855140u: goto L_I002B90E4; case 2855144u: goto L_I002B90E8; case 2855148u: goto L_I002B90EC; case 2855152u: goto L_I002B90F0; case 2855156u: goto L_I002B90F4; case 2855160u: goto L_I002B90F8; case 2855168u: goto L_I002B9100; case 2855172u: goto L_I002B9104; case 2855176u: goto L_I002B9108; case 2855180u: goto L_I002B910C; case 2855184u: goto L_I002B9110; case 2855188u: goto L_I002B9114; case 2855192u: goto L_I002B9118; case 2855200u: goto L_I002B9120; case 2855204u: goto L_I002B9124; case 2855208u: goto L_I002B9128; case 2855212u: goto L_I002B912C; case 2855220u: goto L_I002B9134; case 2855224u: goto L_I002B9138; case 2855228u: goto L_I002B913C; case 2855232u: goto L_I002B9140; case 2855236u: goto L_I002B9144; case 2855240u: goto L_I002B9148; case 2855244u: goto L_I002B914C; case 2855248u: goto L_I002B9150; case 2855252u: goto L_I002B9154; case 2855256u: goto L_I002B9158; case 2855264u: goto L_I002B9160; case 2855268u: goto L_I002B9164; case 2855276u: goto L_I002B916C; case 2855280u: goto L_I002B9170; case 2855284u: goto L_I002B9174; case 2855288u: goto L_I002B9178; case 2855292u: goto L_I002B917C; case 2855296u: goto L_I002B9180; case 2855300u: goto L_I002B9184; case 2855304u: goto L_I002B9188; case 2855308u: goto L_I002B918C; case 2855312u: goto L_I002B9190; case 2855316u: goto L_I002B9194; case 2855320u: goto L_I002B9198; case 2855324u: goto L_I002B919C; case 2855328u: goto L_I002B91A0; case 2855332u: goto L_I002B91A4; case 2855336u: goto L_I002B91A8; case 2855340u: goto L_I002B91AC; case 2855344u: goto L_I002B91B0; case 2855348u: goto L_I002B91B4; case 2855352u: goto L_I002B91B8; case 2855356u: goto L_I002B91BC; case 2855360u: goto L_I002B91C0; case 2855364u: goto L_I002B91C4; case 2855368u: goto L_I002B91C8; case 2855372u: goto L_I002B91CC; case 2855376u: goto L_I002B91D0; case 2855380u: goto L_I002B91D4; case 2855384u: goto L_I002B91D8; case 2855388u: goto L_I002B91DC; case 2855392u: goto L_I002B91E0; case 2855396u: goto L_I002B91E4; case 2855400u: goto L_I002B91E8; case 2855404u: goto L_I002B91EC; case 2855408u: goto L_I002B91F0; case 2855412u: goto L_I002B91F4; case 2855416u: goto L_I002B91F8; case 2855420u: goto L_I002B91FC; case 2855424u: goto L_I002B9200; case 2855428u: goto L_I002B9204; case 2855432u: goto L_I002B9208; case 2855436u: goto L_I002B920C; case 2855440u: goto L_I002B9210; case 2855444u: goto L_I002B9214; case 2855448u: goto L_I002B9218; case 2855456u: goto L_I002B9220; case 2855460u: goto L_I002B9224; case 2855464u: goto L_I002B9228; case 2855468u: goto L_I002B922C; case 2855472u: goto L_I002B9230; case 2855476u: goto L_I002B9234; case 2855480u: goto L_I002B9238; case 2855484u: goto L_I002B923C; case 2855488u: goto L_I002B9240; case 2855492u: goto L_I002B9244; case 2855496u: goto L_I002B9248; case 2855500u: goto L_I002B924C; case 2855504u: goto L_I002B9250; case 2855508u: goto L_I002B9254; case 2855512u: goto L_I002B9258; case 2855516u: goto L_I002B925C; case 2855520u: goto L_I002B9260; case 2855524u: goto L_I002B9264; case 2855528u: goto L_I002B9268; case 2855532u: goto L_I002B926C; case 2855536u: goto L_I002B9270; case 2855540u: goto L_I002B9274; case 2855544u: goto L_I002B9278; case 2855548u: goto L_I002B927C; case 2855556u: goto L_I002B9284; case 2855560u: goto L_I002B9288; case 2855564u: goto L_I002B928C; case 2855568u: goto L_I002B9290; case 2855572u: goto L_I002B9294; case 2855576u: goto L_I002B9298; case 2855580u: goto L_I002B929C; case 2855584u: goto L_I002B92A0; case 2855588u: goto L_I002B92A4; case 2855592u: goto L_I002B92A8; case 2855596u: goto L_I002B92AC; case 2855600u: goto L_I002B92B0; case 2855604u: goto L_I002B92B4; case 2855608u: goto L_I002B92B8; case 2855612u: goto L_I002B92BC; case 2855616u: goto L_I002B92C0; case 2855620u: goto L_I002B92C4; case 2855624u: goto L_I002B92C8; case 2855628u: goto L_I002B92CC; case 2855636u: goto L_I002B92D4; case 2855640u: goto L_I002B92D8; case 2855644u: goto L_I002B92DC; case 2855648u: goto L_I002B92E0; case 2855652u: goto L_I002B92E4; case 2855656u: goto L_I002B92E8; case 2855660u: goto L_I002B92EC; case 2855668u: goto L_I002B92F4; case 2855672u: goto L_I002B92F8; case 2855676u: goto L_I002B92FC; case 2855680u: goto L_I002B9300; case 2855684u: goto L_I002B9304; case 2855688u: goto L_I002B9308; case 2855696u: goto L_I002B9310; case 2855700u: goto L_I002B9314; case 2855704u: goto L_I002B9318; case 2855708u: goto L_I002B931C; case 2855712u: goto L_I002B9320; case 2855716u: goto L_I002B9324; case 2855720u: goto L_I002B9328; case 2855728u: goto L_I002B9330; case 2855732u: goto L_I002B9334; case 2855736u: goto L_I002B9338; case 2855740u: goto L_I002B933C; case 2855744u: goto L_I002B9340; case 2855752u: goto L_I002B9348; case 2855756u: goto L_I002B934C; case 2855760u: goto L_I002B9350; case 2855764u: goto L_I002B9354; case 2855768u: goto L_I002B9358; case 2855772u: goto L_I002B935C; case 2855776u: goto L_I002B9360; case 2855784u: goto L_I002B9368; case 2855788u: goto L_I002B936C; case 2855792u: goto L_I002B9370; case 2855796u: goto L_I002B9374; case 2855800u: goto L_I002B9378; case 2855804u: goto L_I002B937C; case 2855808u: goto L_I002B9380; case 2855812u: goto L_I002B9384; case 2855816u: goto L_I002B9388; case 2855820u: goto L_I002B938C; case 2855824u: goto L_I002B9390; case 2855828u: goto L_I002B9394; case 2855832u: goto L_I002B9398; case 2855836u: goto L_I002B939C; case 2855840u: goto L_I002B93A0; case 2855844u: goto L_I002B93A4; case 2855848u: goto L_I002B93A8; case 2855852u: goto L_I002B93AC; case 2855856u: goto L_I002B93B0; case 2855860u: goto L_I002B93B4; case 2855864u: goto L_I002B93B8; case 2855868u: goto L_I002B93BC; case 2855872u: goto L_I002B93C0; case 2855880u: goto L_I002B93C8; case 2855884u: goto L_I002B93CC; case 2855888u: goto L_I002B93D0; case 2855892u: goto L_I002B93D4; case 2855896u: goto L_I002B93D8; case 2855900u: goto L_I002B93DC; case 2855904u: goto L_I002B93E0; case 2855908u: goto L_I002B93E4; case 2855912u: goto L_I002B93E8; case 2855916u: goto L_I002B93EC; case 2855920u: goto L_I002B93F0; case 2855924u: goto L_I002B93F4; case 2855928u: goto L_I002B93F8; case 2855932u: goto L_I002B93FC; case 2855936u: goto L_I002B9400; case 2855940u: goto L_I002B9404; case 2855944u: goto L_I002B9408; case 2855948u: goto L_I002B940C; case 2855952u: goto L_I002B9410; case 2855956u: goto L_I002B9414; case 2855964u: goto L_I002B941C; case 2855972u: goto L_I002B9424; case 2855976u: goto L_I002B9428; case 2855980u: goto L_I002B942C; case 2855984u: goto L_I002B9430; case 2855988u: goto L_I002B9434; case 2855992u: goto L_I002B9438; case 2855996u: goto L_I002B943C; case 2856004u: goto L_I002B9444; case 2856008u: goto L_I002B9448; case 2856012u: goto L_I002B944C; case 2856016u: goto L_I002B9450; case 2856020u: goto L_I002B9454; case 2856024u: goto L_I002B9458; case 2856028u: goto L_I002B945C; case 2856032u: goto L_I002B9460; case 2856036u: goto L_I002B9464; case 2856040u: goto L_I002B9468; case 2856044u: goto L_I002B946C; default: throw new InvalidOperationException($"bad jump table target {r2:X8} in func_002B8FAC"); }
+                L_L002B906C: ;
+                L_I002B906C: ;
+                r18 = 2148401152u;
+                L_I002B9070: ;
+                r18 = r18 - 32592u;
+                L_I002B9074: ;
+                r17 = (uint)2; goto L_L002B90D4;
+                L_L002B907C: ;
+                L_I002B907C: ;
+                r18 = 2148401152u;
+                L_I002B9080: ;
+                r18 = r18 - 32488u;
+                L_I002B9084: ;
+                r17 = (uint)2; goto L_L002B90D4;
+                L_L002B908C: ;
+                L_I002B908C: ;
+                r18 = 2148401152u;
+                L_I002B9090: ;
+                r18 = r18 - 32352u;
+                L_I002B9094: ;
+                r17 = (uint)2; goto L_L002B90D4;
+                L_L002B909C: ;
+                L_I002B909C: ;
+                r18 = 2148401152u;
+                L_I002B90A0: ;
+                r18 = r18 - 32312u;
+                L_I002B90A4: ;
+                r17 = (uint)2; goto L_L002B90D4;
+                L_L002B90AC: ;
+                L_I002B90AC: ;
+                r18 = 2148401152u;
+                L_I002B90B0: ;
+                r18 = r18 - 32272u;
+                L_I002B90B4: ;
+                r17 = (uint)2; goto L_L002B90D4;
+                L_L002B90BC: ;
+                L_I002B90BC: ;
+                r18 = Mem.U32((r23 + 32u));
+                L_I002B90C0: ;
+                r17 = (uint)2; goto L_L002B90D4;
+                L_L002B90C8: ;
+                L_I002B90C8: ;
+                r18 = 2148401152u;
+                L_I002B90CC: ;
+                r18 = r18 - 32232u;
+                L_I002B90D0: ;
+                r17 = (uint)2;
+                L_L002B90D4: ;
+                L_I002B90D4: ;
+                r4 = r0;
+                L_I002B90D8: ;
+                r2 = Mem.U8((r18 + 3u));
+                L_I002B90DC: ;
+                r5 = r4;
+                L_I002B90E0: ;
+                Mem.Set((r19 + 36u), (byte)r2);
+                L_I002B90E4: ;
+                r7 = r2 & 255u;
+                L_I002B90E8: ;
+                r2 = Mem.U32((r18 + 4u));
+                L_I002B90EC: ;
+                r6 = r21;
+                L_I002B90F0: ;
+                Mem.Set((r19 + 28u), r2);
+                L_I002B90F4: ;
+                r2 = (uint)40;
+                L_I002B90F8: ;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                L_I002B9100: ;
+                r4 = r0;
+                L_I002B9104: ;
+                r5 = r4;
+                L_I002B9108: ;
+                Mem.Set((r19 + 32u), r2);
+                L_I002B910C: ;
+                r2 = (uint)2;
+                L_I002B9110: ;
+                Mem.Set((r29 + 16u), r2);
+                L_I002B9114: ;
+                r7 = Mem.U32((r19 + 28u));
+                L_I002B9118: ;
+                r6 = r21; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                L_I002B9120: ;
+                r3 = Mem.U32((r19 + 28u));
+                L_I002B9124: ;
+                r4 = r0;
+                L_I002B9128: ;
+                Mem.Set((r19 + 20u), r2);
+                L_I002B912C: ;
+                { bool c_ = r3 == 0; Mem.Set((r19 + 24u), r2); if (c_) goto L_L002B9160; }
+                L_I002B9134: ;
+                r2 = r4 & 65535u;
+                L_L002B9138: ;
+                L_I002B9138: ;
+                r4 = r4 + 1u;
+                L_I002B913C: ;
+                r3 = Mem.U32((r19 + 20u));
+                L_I002B9140: ;
+                r2 = r2 << 1;
+                L_I002B9144: ;
+                r2 = r2 + r3;
+                L_I002B9148: ;
+                Mem.Set((r2 + 0u), (ushort)r0);
+                L_I002B914C: ;
+                r3 = Mem.U32((r19 + 28u));
+                L_I002B9150: ;
+                r2 = r4 & 65535u;
+                L_I002B9154: ;
+                r2 = (uint)(r2 < r3 ? 1 : 0);
+                L_I002B9158: ;
+                { bool c_ = r2 != 0; r2 = r4 & 65535u; if (c_) goto L_L002B9138; }
+                L_L002B9160: ;
+                L_I002B9160: ;
+                r2 = Mem.U8((r19 + 36u));
+                L_I002B9164: ;
+                { bool c_ = r2 == 0; r20 = r0; if (c_) goto L_L002B9444; }
+                L_I002B916C: ;
+                r22 = (uint)1;
+                L_I002B9170: ;
+                r1 = 2148335616u;
+                L_I002B9174: ;
+                Cpu.Fpr[20] = Mem.U64((r1 - 14328u));
+                L_I002B9178: ;
+                r2 = r20 & 65535u;
+                L_L002B917C: ;
+                L_I002B917C: ;
+                r3 = r2 << 2;
+                L_I002B9180: ;
+                r3 = r3 + r2;
+                L_I002B9184: ;
+                r3 = r3 << 3;
+                L_I002B9188: ;
+                r2 = r17 & 65535u;
+                L_I002B918C: ;
+                r2 = r2 << 2;
+                L_I002B9190: ;
+                r2 = r2 + r18;
+                L_I002B9194: ;
+                r5 = r17 + 1u;
+                L_I002B9198: ;
+                r4 = Mem.U32((r19 + 32u));
+                L_I002B919C: ;
+                r2 = Mem.U32((r2 + 0u));
+                L_I002B91A0: ;
+                r16 = r4 + r3;
+                L_I002B91A4: ;
+                Mem.Set((r16 + 0u), r2);
+                L_I002B91A8: ;
+                r2 = r5 & 65535u;
+                L_I002B91AC: ;
+                r2 = r2 << 2;
+                L_I002B91B0: ;
+                r2 = r2 + r18;
+                L_I002B91B4: ;
+                r3 = Mem.U32((r2 + 0u));
+                L_I002B91B8: ;
+                r2 = r5 + 1u;
+                L_I002B91BC: ;
+                r2 = r2 & 65535u;
+                L_I002B91C0: ;
+                r2 = r2 << 2;
+                L_I002B91C4: ;
+                r2 = r2 + r18;
+                L_I002B91C8: ;
+                Mem.Set((r16 + 4u), r3);
+                L_I002B91CC: ;
+                r3 = Mem.U16((r2 + 2u));
+                L_I002B91D0: ;
+                r2 = r5 + 2u;
+                L_I002B91D4: ;
+                r2 = r2 & 65535u;
+                L_I002B91D8: ;
+                r2 = r2 << 2;
+                L_I002B91DC: ;
+                r2 = r2 + r18;
+                L_I002B91E0: ;
+                Mem.Set((r16 + 10u), (ushort)r3);
+                L_I002B91E4: ;
+                r3 = Mem.U16((r2 + 2u));
+                L_I002B91E8: ;
+                r2 = r5 + 3u;
+                L_I002B91EC: ;
+                r2 = r2 & 65535u;
+                L_I002B91F0: ;
+                r2 = r2 << 2;
+                L_I002B91F4: ;
+                r2 = r2 + r18;
+                L_I002B91F8: ;
+                Mem.Set((r16 + 8u), (ushort)r3);
+                L_I002B91FC: ;
+                r2 = Mem.U16((r2 + 2u));
+                L_I002B9200: ;
+                r4 = r5 + 4u;
+                L_I002B9204: ;
+                Mem.Set((r16 + 12u), (ushort)r2);
+                L_I002B9208: ;
+                r2 = r4 & 65535u;
+                L_I002B920C: ;
+                r2 = r2 << 2;
+                L_I002B9210: ;
+                r2 = r2 + r18;
+                L_I002B9214: ;
+                r2 = Mem.U32((r2 + 0u));
+                L_I002B9218: ;
+                { bool c_ = r2 == 0; r3 = r5 + 5u; if (c_) goto L_L002B9310; }
+                L_I002B9220: ;
+                r2 = r4 & 65535u;
+                L_I002B9224: ;
+                r2 = r2 << 2;
+                L_I002B9228: ;
+                r2 = r2 + r18;
+                L_I002B922C: ;
+                Cpu.SetW(1, Mem.U32((r2 + 0u)));
+                L_I002B9230: ;
+                Cpu.SetS(1, (float)(int)Cpu.W(1));
+                L_I002B9234: ;
+                r3 = r3 & 65535u;
+                L_I002B9238: ;
+                r1 = 2148335616u;
+                L_I002B923C: ;
+                Cpu.SetW(0, Mem.U32((r1 - 14320u)));
+                L_I002B9240: ;
+                r3 = r3 << 2;
+                L_I002B9244: ;
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
+                L_I002B9248: ;
+                r4 = Mem.U32((r16 + 4u));
+                L_I002B924C: ;
+                r2 = Mem.U32((r16 + 0u));
+                L_I002B9250: ;
+                r3 = r3 + r18;
+                L_I002B9254: ;
+                r4 = r4 - r2;
+                L_I002B9258: ;
+                Cpu.SetS(1, Cpu.S(1) + Cpu.S(1));
+                L_I002B925C: ;
+                Cpu.SetW(2, r4);
+                L_I002B9260: ;
+                Cpu.SetD(2, (double)(int)Cpu.W(2));
+                L_I002B9264: ;
+                Cpu.SetW(0, Mem.U32((r23 + 24u)));
+                L_I002B9268: ;
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                L_I002B926C: ;
+                Cpu.SetS(1, Cpu.S(1) / Cpu.S(0));
+                L_I002B9270: ;
+                Mem.Set((r16 + 16u), Cpu.W(1));
+                L_I002B9274: ;
+                Cpu.SetW(3, Mem.U32((r3 + 0u)));
+                L_I002B9278: ;
+                Cpu.SetS(3, (float)(int)Cpu.W(3));
+                L_I002B927C: ;
+                { bool c_ = (int)r4 >= 0; r17 = r5 + 6u; if (c_) goto L_L002B9290; }
+                L_I002B9284: ;
+                r1 = 2148335616u;
+                L_I002B9288: ;
+                Cpu.Fpr[0] = Mem.U64((r1 - 14312u));
+                L_I002B928C: ;
+                Cpu.SetD(2, Cpu.D(2) + Cpu.D(0));
+                L_L002B9290: ;
+                L_I002B9290: ;
+                r1 = 2148335616u;
+                L_I002B9294: ;
+                Cpu.SetW(0, Mem.U32((r1 - 14304u)));
+                L_I002B9298: ;
+                Cpu.SetS(1, (float)Cpu.D(2));
+                L_I002B929C: ;
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
+                L_I002B92A0: ;
+                r4 = r0;
+                L_I002B92A4: ;
+                r5 = r4;
+                L_I002B92A8: ;
+                r6 = r21;
+                L_I002B92AC: ;
+                r7 = (uint)1;
+                L_I002B92B0: ;
+                Cpu.SetS(1, Cpu.S(3) * Cpu.S(1));
+                L_I002B92B4: ;
+                r1 = 2148335616u;
+                L_I002B92B8: ;
+                Cpu.SetW(0, Mem.U32((r1 - 14300u)));
+                L_I002B92BC: ;
+                r2 = (uint)52;
+                L_I002B92C0: ;
+                Mem.Set((r16 + 24u), r0);
+                L_I002B92C4: ;
+                Mem.Set((r16 + 20u), Cpu.W(0));
+                L_I002B92C8: ;
+                Mem.Set((r16 + 28u), Cpu.W(1));
+                L_I002B92CC: ;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                L_I002B92D4: ;
+                r4 = r0;
+                L_I002B92D8: ;
+                r5 = r4;
+                L_I002B92DC: ;
+                r6 = r21;
+                L_I002B92E0: ;
+                r7 = (uint)1;
+                L_I002B92E4: ;
+                Mem.Set((r16 + 36u), r2);
+                L_I002B92E8: ;
+                r2 = (uint)32;
+                L_I002B92EC: ;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                L_I002B92F4: ;
+                r3 = Mem.U32((r16 + 36u));
+                L_I002B92F8: ;
+                Mem.Set((r3 + 20u), r2);
+                L_I002B92FC: ;
+                r2 = Mem.U32((r16 + 36u));
+                L_I002B9300: ;
+                Mem.Set((r2 + 32u), r0);
+                L_I002B9304: ;
+                r2 = Mem.U32((r16 + 36u));
+                L_I002B9308: ;
+                Mem.Set((r2 + 36u), r22); goto L_L002B9318;
+                L_L002B9310: ;
+                L_I002B9310: ;
+                Mem.Set((r16 + 36u), r0);
+                L_I002B9314: ;
+                r17 = r5 + 6u;
+                L_L002B9318: ;
+                L_I002B9318: ;
+                r2 = r17 & 65535u;
+                L_I002B931C: ;
+                r2 = r2 << 2;
+                L_I002B9320: ;
+                r2 = r2 + r18;
+                L_I002B9324: ;
+                r2 = Mem.U32((r2 + 0u));
+                L_I002B9328: ;
+                { bool c_ = r2 == 0; r4 = r0; if (c_) goto L_L002B9424; }
+                L_I002B9330: ;
+                r5 = r4;
+                L_I002B9334: ;
+                r6 = r21;
+                L_I002B9338: ;
+                r7 = (uint)1;
+                L_I002B933C: ;
+                r2 = (uint)48;
+                L_I002B9340: ;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                L_I002B9348: ;
+                r4 = r0;
+                L_I002B934C: ;
+                r5 = r4;
+                L_I002B9350: ;
+                r6 = r21;
+                L_I002B9354: ;
+                r7 = (uint)1;
+                L_I002B9358: ;
+                Mem.Set((r16 + 32u), r2);
+                L_I002B935C: ;
+                r2 = (uint)8;
+                L_I002B9360: ;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                L_I002B9368: ;
+                r3 = Mem.U32((r16 + 32u));
+                L_I002B936C: ;
+                r5 = (uint)7;
+                L_I002B9370: ;
+                Mem.Set((r3 + 40u), r2);
+                L_I002B9374: ;
+                r2 = r17;
+                L_I002B9378: ;
+                r2 = r2 & 65535u;
+                L_I002B937C: ;
+                r2 = r2 << 2;
+                L_I002B9380: ;
+                r2 = r2 + r18;
+                L_I002B9384: ;
+                r3 = Mem.U32((r16 + 32u));
+                L_I002B9388: ;
+                r2 = Mem.U16((r2 + 2u));
+                L_I002B938C: ;
+                r17 = r17 + 1u;
+                L_I002B9390: ;
+                Mem.Set((r3 + 0u), (ushort)r2);
+                L_I002B9394: ;
+                r4 = Mem.U32((r16 + 32u));
+                L_I002B9398: ;
+                r2 = (uint)16384;
+                L_I002B939C: ;
+                r3 = (uint)(int)Mem.S16((r4 + 0u));
+                L_I002B93A0: ;
+                r6 = r4 + 14u;
+                L_I002B93A4: ;
+                Mem.Set((r4 + 44u), r22);
+                L_I002B93A8: ;
+                r3 = (uint)((int)r3 >> 1);
+                L_I002B93AC: ;
+                r7 = r3;
+                L_I002B93B0: ;
+                r2 = r2 - r3;
+                L_I002B93B4: ;
+                Mem.Set((r4 + 2u), (ushort)r2);
+                L_L002B93B8: ;
+                L_I002B93B8: ;
+                Mem.Set((r6 + 8u), (ushort)r0);
+                L_I002B93BC: ;
+                r5 = r5 - 1u;
+                L_I002B93C0: ;
+                { bool c_ = (int)r5 >= 0; r6 = r6 - 2u; if (c_) goto L_L002B93B8; }
+                L_I002B93C8: ;
+                r2 = r7 << 16;
+                L_I002B93CC: ;
+                r2 = (uint)((int)r2 >> 16);
+                L_I002B93D0: ;
+                r1 = 2148335616u;
+                L_I002B93D4: ;
+                Cpu.Fpr[1] = Mem.U64((r1 - 14296u));
+                L_I002B93D8: ;
+                Cpu.SetW(0, r2);
+                L_I002B93DC: ;
+                Cpu.SetD(0, (double)(int)Cpu.W(0));
+                L_I002B93E0: ;
+                Cpu.SetD(1, Cpu.D(0) * Cpu.D(1));
+                L_I002B93E4: ;
+                r5 = (uint)9;
+                L_I002B93E8: ;
+                r3 = r4 + 18u;
+                L_I002B93EC: ;
+                Mem.Set((r4 + 24u), (ushort)r7);
+                L_I002B93F0: ;
+                Cpu.Fpr[2] = Cpu.Fpr[1];
+                L_L002B93F4: ;
+                L_I002B93F4: ;
+                Cpu.SetD(1, Cpu.D(1) * Cpu.D(2));
+                L_I002B93F8: ;
+                L_I002B93FC: ;
+                Cpu.SetD(0, Cpu.D(1) * Cpu.D(20));
+                L_I002B9400: ;
+                r5 = r5 + 1u;
+                L_I002B9404: ;
+                Cpu.SetW(4, (uint)(int)Cpu.D(0));
+                L_I002B9408: ;
+                r2 = Cpu.W(4);
+                L_I002B940C: ;
+                Mem.Set((r3 + 8u), (ushort)r2);
+                L_I002B9410: ;
+                r2 = (uint)((int)r5 < 16 ? 1 : 0);
+                L_I002B9414: ;
+                { bool c_ = r2 != 0; r3 = r3 + 2u; if (c_) goto L_L002B93F4; }
+                L_I002B941C: ;
+                r20 = r20 + 1u; goto L_L002B9430;
+                L_L002B9424: ;
+                L_I002B9424: ;
+                Mem.Set((r16 + 32u), r0);
+                L_I002B9428: ;
+                r17 = r17 + 1u;
+                L_I002B942C: ;
+                r20 = r20 + 1u;
+                L_L002B9430: ;
+                L_I002B9430: ;
+                r3 = Mem.U8((r19 + 36u));
+                L_I002B9434: ;
+                r2 = r20 & 65535u;
+                L_I002B9438: ;
+                r2 = (uint)(r2 < r3 ? 1 : 0);
+                L_I002B943C: ;
+                { bool c_ = r2 != 0; r2 = r20 & 65535u; if (c_) goto L_L002B917C; }
+                L_L002B9444: ;
+                L_I002B9444: ;
+                r31 = Mem.U32((r29 + 56u));
+                L_I002B9448: ;
+                r23 = Mem.U32((r29 + 52u));
+                L_I002B944C: ;
+                r22 = Mem.U32((r29 + 48u));
+                L_I002B9450: ;
+                r21 = Mem.U32((r29 + 44u));
+                L_I002B9454: ;
+                r20 = Mem.U32((r29 + 40u));
+                L_I002B9458: ;
+                r19 = Mem.U32((r29 + 36u));
+                L_I002B945C: ;
+                r18 = Mem.U32((r29 + 32u));
+                L_I002B9460: ;
+                r17 = Mem.U32((r29 + 28u));
+                L_I002B9464: ;
+                r16 = Mem.U32((r29 + 24u));
+                L_I002B9468: ;
+                Cpu.Fpr[20] = Mem.U64((r29 + 64u));
+                L_I002B946C: ;
+                r29 = r29 + 72u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B8FAC", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B8FDC @ 0x002B8FDC [MIPS]
+    public static uint alFxNew_Entry_002B8FDC(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B8FDC", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B8FDC: ;
+                L_I002B8FDC: ;
+                r2 = 50855936u;
+                L_func_002B8FE0: ;
+                L_I002B8FE0: ;
+                r29 = r29 - 72u;
+                L_I002B8FE4: ;
+                Mem.Set((r29 + 36u), r19);
+                L_I002B8FE8: ;
+                r19 = r4;
+                L_I002B8FEC: ;
+                Mem.Set((r29 + 52u), r23);
+                L_I002B8FF0: ;
+                r23 = r5;
+                L_I002B8FF4: ;
+                Mem.Set((r29 + 44u), r21);
+                L_I002B8FF8: ;
+                r21 = r6;
+                L_I002B8FFC: ;
+                r5 = r0;
+                L_I002B9000: ;
+                r6 = 2883584u;
+                L_I002B9004: ;
+                r6 = r6 - 20056u;
+                L_I002B9008: ;
+                Mem.Set((r29 + 56u), r31);
+                L_I002B900C: ;
+                Mem.Set((r29 + 48u), r22);
+                L_I002B9010: ;
+                Mem.Set((r29 + 40u), r20);
+                L_I002B9014: ;
+                Mem.Set((r29 + 32u), r18);
+                L_I002B9018: ;
+                Mem.Set((r29 + 28u), r17);
+                L_I002B901C: ;
+                Mem.Set((r29 + 24u), r16);
+                L_I002B9020: ;
+                Mem.Set((r29 + 64u), Cpu.Fpr[20]);
+                L_I002B9024: ;
+                r7 = (uint)5; alFilterNew(r4, r5, r6, (int)r7);
+                L_I002B902C: ;
+                r2 = 2883584u;
+                L_I002B9030: ;
+                r2 = r2 - 22336u;
+                L_I002B9034: ;
+                Mem.Set((r19 + 4u), r2);
+                L_I002B9038: ;
+                r2 = 2883584u;
+                L_I002B903C: ;
+                r2 = r2 - 21404u;
+                L_I002B9040: ;
+                Mem.Set((r19 + 40u), r2);
+                L_I002B9044: ;
+                r2 = Mem.U8((r23 + 28u));
+                L_I002B9048: ;
+                r3 = r2 - 1u;
+                L_I002B904C: ;
+                r2 = (uint)(r3 < (uint)(6) ? 1 : 0);
+                L_I002B9050: ;
+                { bool c_ = r2 == 0; r2 = r3 << 2; if (c_) goto L_L002B90C8; }
+                L_I002B9058: ;
+                r1 = 2148335616u;
+                L_I002B905C: ;
+                r1 = r1 + r2;
+                L_I002B9060: ;
+                r2 = Mem.U32((r1 - 14352u));
+                L_I002B9064: ;
+                 switch (r2) { case 2854876u: goto L_I002B8FDC; case 2854880u: goto L_I002B8FE0; case 2854884u: goto L_I002B8FE4; case 2854888u: goto L_I002B8FE8; case 2854892u: goto L_I002B8FEC; case 2854896u: goto L_I002B8FF0; case 2854900u: goto L_I002B8FF4; case 2854904u: goto L_I002B8FF8; case 2854908u: goto L_I002B8FFC; case 2854912u: goto L_I002B9000; case 2854916u: goto L_I002B9004; case 2854920u: goto L_I002B9008; case 2854924u: goto L_I002B900C; case 2854928u: goto L_I002B9010; case 2854932u: goto L_I002B9014; case 2854936u: goto L_I002B9018; case 2854940u: goto L_I002B901C; case 2854944u: goto L_I002B9020; case 2854948u: goto L_I002B9024; case 2854956u: goto L_I002B902C; case 2854960u: goto L_I002B9030; case 2854964u: goto L_I002B9034; case 2854968u: goto L_I002B9038; case 2854972u: goto L_I002B903C; case 2854976u: goto L_I002B9040; case 2854980u: goto L_I002B9044; case 2854984u: goto L_I002B9048; case 2854988u: goto L_I002B904C; case 2854992u: goto L_I002B9050; case 2855000u: goto L_I002B9058; case 2855004u: goto L_I002B905C; case 2855008u: goto L_I002B9060; case 2855012u: goto L_I002B9064; case 2855020u: goto L_I002B906C; case 2855024u: goto L_I002B9070; case 2855028u: goto L_I002B9074; case 2855036u: goto L_I002B907C; case 2855040u: goto L_I002B9080; case 2855044u: goto L_I002B9084; case 2855052u: goto L_I002B908C; case 2855056u: goto L_I002B9090; case 2855060u: goto L_I002B9094; case 2855068u: goto L_I002B909C; case 2855072u: goto L_I002B90A0; case 2855076u: goto L_I002B90A4; case 2855084u: goto L_I002B90AC; case 2855088u: goto L_I002B90B0; case 2855092u: goto L_I002B90B4; case 2855100u: goto L_I002B90BC; case 2855104u: goto L_I002B90C0; case 2855112u: goto L_I002B90C8; case 2855116u: goto L_I002B90CC; case 2855120u: goto L_I002B90D0; case 2855124u: goto L_I002B90D4; case 2855128u: goto L_I002B90D8; case 2855132u: goto L_I002B90DC; case 2855136u: goto L_I002B90E0; case 2855140u: goto L_I002B90E4; case 2855144u: goto L_I002B90E8; case 2855148u: goto L_I002B90EC; case 2855152u: goto L_I002B90F0; case 2855156u: goto L_I002B90F4; case 2855160u: goto L_I002B90F8; case 2855168u: goto L_I002B9100; case 2855172u: goto L_I002B9104; case 2855176u: goto L_I002B9108; case 2855180u: goto L_I002B910C; case 2855184u: goto L_I002B9110; case 2855188u: goto L_I002B9114; case 2855192u: goto L_I002B9118; case 2855200u: goto L_I002B9120; case 2855204u: goto L_I002B9124; case 2855208u: goto L_I002B9128; case 2855212u: goto L_I002B912C; case 2855220u: goto L_I002B9134; case 2855224u: goto L_I002B9138; case 2855228u: goto L_I002B913C; case 2855232u: goto L_I002B9140; case 2855236u: goto L_I002B9144; case 2855240u: goto L_I002B9148; case 2855244u: goto L_I002B914C; case 2855248u: goto L_I002B9150; case 2855252u: goto L_I002B9154; case 2855256u: goto L_I002B9158; case 2855264u: goto L_I002B9160; case 2855268u: goto L_I002B9164; case 2855276u: goto L_I002B916C; case 2855280u: goto L_I002B9170; case 2855284u: goto L_I002B9174; case 2855288u: goto L_I002B9178; case 2855292u: goto L_I002B917C; case 2855296u: goto L_I002B9180; case 2855300u: goto L_I002B9184; case 2855304u: goto L_I002B9188; case 2855308u: goto L_I002B918C; case 2855312u: goto L_I002B9190; case 2855316u: goto L_I002B9194; case 2855320u: goto L_I002B9198; case 2855324u: goto L_I002B919C; case 2855328u: goto L_I002B91A0; case 2855332u: goto L_I002B91A4; case 2855336u: goto L_I002B91A8; case 2855340u: goto L_I002B91AC; case 2855344u: goto L_I002B91B0; case 2855348u: goto L_I002B91B4; case 2855352u: goto L_I002B91B8; case 2855356u: goto L_I002B91BC; case 2855360u: goto L_I002B91C0; case 2855364u: goto L_I002B91C4; case 2855368u: goto L_I002B91C8; case 2855372u: goto L_I002B91CC; case 2855376u: goto L_I002B91D0; case 2855380u: goto L_I002B91D4; case 2855384u: goto L_I002B91D8; case 2855388u: goto L_I002B91DC; case 2855392u: goto L_I002B91E0; case 2855396u: goto L_I002B91E4; case 2855400u: goto L_I002B91E8; case 2855404u: goto L_I002B91EC; case 2855408u: goto L_I002B91F0; case 2855412u: goto L_I002B91F4; case 2855416u: goto L_I002B91F8; case 2855420u: goto L_I002B91FC; case 2855424u: goto L_I002B9200; case 2855428u: goto L_I002B9204; case 2855432u: goto L_I002B9208; case 2855436u: goto L_I002B920C; case 2855440u: goto L_I002B9210; case 2855444u: goto L_I002B9214; case 2855448u: goto L_I002B9218; case 2855456u: goto L_I002B9220; case 2855460u: goto L_I002B9224; case 2855464u: goto L_I002B9228; case 2855468u: goto L_I002B922C; case 2855472u: goto L_I002B9230; case 2855476u: goto L_I002B9234; case 2855480u: goto L_I002B9238; case 2855484u: goto L_I002B923C; case 2855488u: goto L_I002B9240; case 2855492u: goto L_I002B9244; case 2855496u: goto L_I002B9248; case 2855500u: goto L_I002B924C; case 2855504u: goto L_I002B9250; case 2855508u: goto L_I002B9254; case 2855512u: goto L_I002B9258; case 2855516u: goto L_I002B925C; case 2855520u: goto L_I002B9260; case 2855524u: goto L_I002B9264; case 2855528u: goto L_I002B9268; case 2855532u: goto L_I002B926C; case 2855536u: goto L_I002B9270; case 2855540u: goto L_I002B9274; case 2855544u: goto L_I002B9278; case 2855548u: goto L_I002B927C; case 2855556u: goto L_I002B9284; case 2855560u: goto L_I002B9288; case 2855564u: goto L_I002B928C; case 2855568u: goto L_I002B9290; case 2855572u: goto L_I002B9294; case 2855576u: goto L_I002B9298; case 2855580u: goto L_I002B929C; case 2855584u: goto L_I002B92A0; case 2855588u: goto L_I002B92A4; case 2855592u: goto L_I002B92A8; case 2855596u: goto L_I002B92AC; case 2855600u: goto L_I002B92B0; case 2855604u: goto L_I002B92B4; case 2855608u: goto L_I002B92B8; case 2855612u: goto L_I002B92BC; case 2855616u: goto L_I002B92C0; case 2855620u: goto L_I002B92C4; case 2855624u: goto L_I002B92C8; case 2855628u: goto L_I002B92CC; case 2855636u: goto L_I002B92D4; case 2855640u: goto L_I002B92D8; case 2855644u: goto L_I002B92DC; case 2855648u: goto L_I002B92E0; case 2855652u: goto L_I002B92E4; case 2855656u: goto L_I002B92E8; case 2855660u: goto L_I002B92EC; case 2855668u: goto L_I002B92F4; case 2855672u: goto L_I002B92F8; case 2855676u: goto L_I002B92FC; case 2855680u: goto L_I002B9300; case 2855684u: goto L_I002B9304; case 2855688u: goto L_I002B9308; case 2855696u: goto L_I002B9310; case 2855700u: goto L_I002B9314; case 2855704u: goto L_I002B9318; case 2855708u: goto L_I002B931C; case 2855712u: goto L_I002B9320; case 2855716u: goto L_I002B9324; case 2855720u: goto L_I002B9328; case 2855728u: goto L_I002B9330; case 2855732u: goto L_I002B9334; case 2855736u: goto L_I002B9338; case 2855740u: goto L_I002B933C; case 2855744u: goto L_I002B9340; case 2855752u: goto L_I002B9348; case 2855756u: goto L_I002B934C; case 2855760u: goto L_I002B9350; case 2855764u: goto L_I002B9354; case 2855768u: goto L_I002B9358; case 2855772u: goto L_I002B935C; case 2855776u: goto L_I002B9360; case 2855784u: goto L_I002B9368; case 2855788u: goto L_I002B936C; case 2855792u: goto L_I002B9370; case 2855796u: goto L_I002B9374; case 2855800u: goto L_I002B9378; case 2855804u: goto L_I002B937C; case 2855808u: goto L_I002B9380; case 2855812u: goto L_I002B9384; case 2855816u: goto L_I002B9388; case 2855820u: goto L_I002B938C; case 2855824u: goto L_I002B9390; case 2855828u: goto L_I002B9394; case 2855832u: goto L_I002B9398; case 2855836u: goto L_I002B939C; case 2855840u: goto L_I002B93A0; case 2855844u: goto L_I002B93A4; case 2855848u: goto L_I002B93A8; case 2855852u: goto L_I002B93AC; case 2855856u: goto L_I002B93B0; case 2855860u: goto L_I002B93B4; case 2855864u: goto L_I002B93B8; case 2855868u: goto L_I002B93BC; case 2855872u: goto L_I002B93C0; case 2855880u: goto L_I002B93C8; case 2855884u: goto L_I002B93CC; case 2855888u: goto L_I002B93D0; case 2855892u: goto L_I002B93D4; case 2855896u: goto L_I002B93D8; case 2855900u: goto L_I002B93DC; case 2855904u: goto L_I002B93E0; case 2855908u: goto L_I002B93E4; case 2855912u: goto L_I002B93E8; case 2855916u: goto L_I002B93EC; case 2855920u: goto L_I002B93F0; case 2855924u: goto L_I002B93F4; case 2855928u: goto L_I002B93F8; case 2855932u: goto L_I002B93FC; case 2855936u: goto L_I002B9400; case 2855940u: goto L_I002B9404; case 2855944u: goto L_I002B9408; case 2855948u: goto L_I002B940C; case 2855952u: goto L_I002B9410; case 2855956u: goto L_I002B9414; case 2855964u: goto L_I002B941C; case 2855972u: goto L_I002B9424; case 2855976u: goto L_I002B9428; case 2855980u: goto L_I002B942C; case 2855984u: goto L_I002B9430; case 2855988u: goto L_I002B9434; case 2855992u: goto L_I002B9438; case 2855996u: goto L_I002B943C; case 2856004u: goto L_I002B9444; case 2856008u: goto L_I002B9448; case 2856012u: goto L_I002B944C; case 2856016u: goto L_I002B9450; case 2856020u: goto L_I002B9454; case 2856024u: goto L_I002B9458; case 2856028u: goto L_I002B945C; case 2856032u: goto L_I002B9460; case 2856036u: goto L_I002B9464; case 2856040u: goto L_I002B9468; case 2856044u: goto L_I002B946C; default: throw new InvalidOperationException($"bad jump table target {r2:X8} in func_002B8FDC"); }
+                L_L002B906C: ;
+                L_I002B906C: ;
+                r18 = 2148401152u;
+                L_I002B9070: ;
+                r18 = r18 - 32592u;
+                L_I002B9074: ;
+                r17 = (uint)2; goto L_L002B90D4;
+                L_L002B907C: ;
+                L_I002B907C: ;
+                r18 = 2148401152u;
+                L_I002B9080: ;
+                r18 = r18 - 32488u;
+                L_I002B9084: ;
+                r17 = (uint)2; goto L_L002B90D4;
+                L_L002B908C: ;
+                L_I002B908C: ;
+                r18 = 2148401152u;
+                L_I002B9090: ;
+                r18 = r18 - 32352u;
+                L_I002B9094: ;
+                r17 = (uint)2; goto L_L002B90D4;
+                L_L002B909C: ;
+                L_I002B909C: ;
+                r18 = 2148401152u;
+                L_I002B90A0: ;
+                r18 = r18 - 32312u;
+                L_I002B90A4: ;
+                r17 = (uint)2; goto L_L002B90D4;
+                L_L002B90AC: ;
+                L_I002B90AC: ;
+                r18 = 2148401152u;
+                L_I002B90B0: ;
+                r18 = r18 - 32272u;
+                L_I002B90B4: ;
+                r17 = (uint)2; goto L_L002B90D4;
+                L_L002B90BC: ;
+                L_I002B90BC: ;
+                r18 = Mem.U32((r23 + 32u));
+                L_I002B90C0: ;
+                r17 = (uint)2; goto L_L002B90D4;
+                L_L002B90C8: ;
+                L_I002B90C8: ;
+                r18 = 2148401152u;
+                L_I002B90CC: ;
+                r18 = r18 - 32232u;
+                L_I002B90D0: ;
+                r17 = (uint)2;
+                L_L002B90D4: ;
+                L_I002B90D4: ;
+                r4 = r0;
+                L_I002B90D8: ;
+                r2 = Mem.U8((r18 + 3u));
+                L_I002B90DC: ;
+                r5 = r4;
+                L_I002B90E0: ;
+                Mem.Set((r19 + 36u), (byte)r2);
+                L_I002B90E4: ;
+                r7 = r2 & 255u;
+                L_I002B90E8: ;
+                r2 = Mem.U32((r18 + 4u));
+                L_I002B90EC: ;
+                r6 = r21;
+                L_I002B90F0: ;
+                Mem.Set((r19 + 28u), r2);
+                L_I002B90F4: ;
+                r2 = (uint)40;
+                L_I002B90F8: ;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                L_I002B9100: ;
+                r4 = r0;
+                L_I002B9104: ;
+                r5 = r4;
+                L_I002B9108: ;
+                Mem.Set((r19 + 32u), r2);
+                L_I002B910C: ;
+                r2 = (uint)2;
+                L_I002B9110: ;
+                Mem.Set((r29 + 16u), r2);
+                L_I002B9114: ;
+                r7 = Mem.U32((r19 + 28u));
+                L_I002B9118: ;
+                r6 = r21; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                L_I002B9120: ;
+                r3 = Mem.U32((r19 + 28u));
+                L_I002B9124: ;
+                r4 = r0;
+                L_I002B9128: ;
+                Mem.Set((r19 + 20u), r2);
+                L_I002B912C: ;
+                { bool c_ = r3 == 0; Mem.Set((r19 + 24u), r2); if (c_) goto L_L002B9160; }
+                L_I002B9134: ;
+                r2 = r4 & 65535u;
+                L_L002B9138: ;
+                L_I002B9138: ;
+                r4 = r4 + 1u;
+                L_I002B913C: ;
+                r3 = Mem.U32((r19 + 20u));
+                L_I002B9140: ;
+                r2 = r2 << 1;
+                L_I002B9144: ;
+                r2 = r2 + r3;
+                L_I002B9148: ;
+                Mem.Set((r2 + 0u), (ushort)r0);
+                L_I002B914C: ;
+                r3 = Mem.U32((r19 + 28u));
+                L_I002B9150: ;
+                r2 = r4 & 65535u;
+                L_I002B9154: ;
+                r2 = (uint)(r2 < r3 ? 1 : 0);
+                L_I002B9158: ;
+                { bool c_ = r2 != 0; r2 = r4 & 65535u; if (c_) goto L_L002B9138; }
+                L_L002B9160: ;
+                L_I002B9160: ;
+                r2 = Mem.U8((r19 + 36u));
+                L_I002B9164: ;
+                { bool c_ = r2 == 0; r20 = r0; if (c_) goto L_L002B9444; }
+                L_I002B916C: ;
+                r22 = (uint)1;
+                L_I002B9170: ;
+                r1 = 2148335616u;
+                L_I002B9174: ;
+                Cpu.Fpr[20] = Mem.U64((r1 - 14328u));
+                L_I002B9178: ;
+                r2 = r20 & 65535u;
+                L_L002B917C: ;
+                L_I002B917C: ;
+                r3 = r2 << 2;
+                L_I002B9180: ;
+                r3 = r3 + r2;
+                L_I002B9184: ;
+                r3 = r3 << 3;
+                L_I002B9188: ;
+                r2 = r17 & 65535u;
+                L_I002B918C: ;
+                r2 = r2 << 2;
+                L_I002B9190: ;
+                r2 = r2 + r18;
+                L_I002B9194: ;
+                r5 = r17 + 1u;
+                L_I002B9198: ;
+                r4 = Mem.U32((r19 + 32u));
+                L_I002B919C: ;
+                r2 = Mem.U32((r2 + 0u));
+                L_I002B91A0: ;
+                r16 = r4 + r3;
+                L_I002B91A4: ;
+                Mem.Set((r16 + 0u), r2);
+                L_I002B91A8: ;
+                r2 = r5 & 65535u;
+                L_I002B91AC: ;
+                r2 = r2 << 2;
+                L_I002B91B0: ;
+                r2 = r2 + r18;
+                L_I002B91B4: ;
+                r3 = Mem.U32((r2 + 0u));
+                L_I002B91B8: ;
+                r2 = r5 + 1u;
+                L_I002B91BC: ;
+                r2 = r2 & 65535u;
+                L_I002B91C0: ;
+                r2 = r2 << 2;
+                L_I002B91C4: ;
+                r2 = r2 + r18;
+                L_I002B91C8: ;
+                Mem.Set((r16 + 4u), r3);
+                L_I002B91CC: ;
+                r3 = Mem.U16((r2 + 2u));
+                L_I002B91D0: ;
+                r2 = r5 + 2u;
+                L_I002B91D4: ;
+                r2 = r2 & 65535u;
+                L_I002B91D8: ;
+                r2 = r2 << 2;
+                L_I002B91DC: ;
+                r2 = r2 + r18;
+                L_I002B91E0: ;
+                Mem.Set((r16 + 10u), (ushort)r3);
+                L_I002B91E4: ;
+                r3 = Mem.U16((r2 + 2u));
+                L_I002B91E8: ;
+                r2 = r5 + 3u;
+                L_I002B91EC: ;
+                r2 = r2 & 65535u;
+                L_I002B91F0: ;
+                r2 = r2 << 2;
+                L_I002B91F4: ;
+                r2 = r2 + r18;
+                L_I002B91F8: ;
+                Mem.Set((r16 + 8u), (ushort)r3);
+                L_I002B91FC: ;
+                r2 = Mem.U16((r2 + 2u));
+                L_I002B9200: ;
+                r4 = r5 + 4u;
+                L_I002B9204: ;
+                Mem.Set((r16 + 12u), (ushort)r2);
+                L_I002B9208: ;
+                r2 = r4 & 65535u;
+                L_I002B920C: ;
+                r2 = r2 << 2;
+                L_I002B9210: ;
+                r2 = r2 + r18;
+                L_I002B9214: ;
+                r2 = Mem.U32((r2 + 0u));
+                L_I002B9218: ;
+                { bool c_ = r2 == 0; r3 = r5 + 5u; if (c_) goto L_L002B9310; }
+                L_I002B9220: ;
+                r2 = r4 & 65535u;
+                L_I002B9224: ;
+                r2 = r2 << 2;
+                L_I002B9228: ;
+                r2 = r2 + r18;
+                L_I002B922C: ;
+                Cpu.SetW(1, Mem.U32((r2 + 0u)));
+                L_I002B9230: ;
+                Cpu.SetS(1, (float)(int)Cpu.W(1));
+                L_I002B9234: ;
+                r3 = r3 & 65535u;
+                L_I002B9238: ;
+                r1 = 2148335616u;
+                L_I002B923C: ;
+                Cpu.SetW(0, Mem.U32((r1 - 14320u)));
+                L_I002B9240: ;
+                r3 = r3 << 2;
+                L_I002B9244: ;
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
+                L_I002B9248: ;
+                r4 = Mem.U32((r16 + 4u));
+                L_I002B924C: ;
+                r2 = Mem.U32((r16 + 0u));
+                L_I002B9250: ;
+                r3 = r3 + r18;
+                L_I002B9254: ;
+                r4 = r4 - r2;
+                L_I002B9258: ;
+                Cpu.SetS(1, Cpu.S(1) + Cpu.S(1));
+                L_I002B925C: ;
+                Cpu.SetW(2, r4);
+                L_I002B9260: ;
+                Cpu.SetD(2, (double)(int)Cpu.W(2));
+                L_I002B9264: ;
+                Cpu.SetW(0, Mem.U32((r23 + 24u)));
+                L_I002B9268: ;
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                L_I002B926C: ;
+                Cpu.SetS(1, Cpu.S(1) / Cpu.S(0));
+                L_I002B9270: ;
+                Mem.Set((r16 + 16u), Cpu.W(1));
+                L_I002B9274: ;
+                Cpu.SetW(3, Mem.U32((r3 + 0u)));
+                L_I002B9278: ;
+                Cpu.SetS(3, (float)(int)Cpu.W(3));
+                L_I002B927C: ;
+                { bool c_ = (int)r4 >= 0; r17 = r5 + 6u; if (c_) goto L_L002B9290; }
+                L_I002B9284: ;
+                r1 = 2148335616u;
+                L_I002B9288: ;
+                Cpu.Fpr[0] = Mem.U64((r1 - 14312u));
+                L_I002B928C: ;
+                Cpu.SetD(2, Cpu.D(2) + Cpu.D(0));
+                L_L002B9290: ;
+                L_I002B9290: ;
+                r1 = 2148335616u;
+                L_I002B9294: ;
+                Cpu.SetW(0, Mem.U32((r1 - 14304u)));
+                L_I002B9298: ;
+                Cpu.SetS(1, (float)Cpu.D(2));
+                L_I002B929C: ;
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
+                L_I002B92A0: ;
+                r4 = r0;
+                L_I002B92A4: ;
+                r5 = r4;
+                L_I002B92A8: ;
+                r6 = r21;
+                L_I002B92AC: ;
+                r7 = (uint)1;
+                L_I002B92B0: ;
+                Cpu.SetS(1, Cpu.S(3) * Cpu.S(1));
+                L_I002B92B4: ;
+                r1 = 2148335616u;
+                L_I002B92B8: ;
+                Cpu.SetW(0, Mem.U32((r1 - 14300u)));
+                L_I002B92BC: ;
+                r2 = (uint)52;
+                L_I002B92C0: ;
+                Mem.Set((r16 + 24u), r0);
+                L_I002B92C4: ;
+                Mem.Set((r16 + 20u), Cpu.W(0));
+                L_I002B92C8: ;
+                Mem.Set((r16 + 28u), Cpu.W(1));
+                L_I002B92CC: ;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                L_I002B92D4: ;
+                r4 = r0;
+                L_I002B92D8: ;
+                r5 = r4;
+                L_I002B92DC: ;
+                r6 = r21;
+                L_I002B92E0: ;
+                r7 = (uint)1;
+                L_I002B92E4: ;
+                Mem.Set((r16 + 36u), r2);
+                L_I002B92E8: ;
+                r2 = (uint)32;
+                L_I002B92EC: ;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                L_I002B92F4: ;
+                r3 = Mem.U32((r16 + 36u));
+                L_I002B92F8: ;
+                Mem.Set((r3 + 20u), r2);
+                L_I002B92FC: ;
+                r2 = Mem.U32((r16 + 36u));
+                L_I002B9300: ;
+                Mem.Set((r2 + 32u), r0);
+                L_I002B9304: ;
+                r2 = Mem.U32((r16 + 36u));
+                L_I002B9308: ;
+                Mem.Set((r2 + 36u), r22); goto L_L002B9318;
+                L_L002B9310: ;
+                L_I002B9310: ;
+                Mem.Set((r16 + 36u), r0);
+                L_I002B9314: ;
+                r17 = r5 + 6u;
+                L_L002B9318: ;
+                L_I002B9318: ;
+                r2 = r17 & 65535u;
+                L_I002B931C: ;
+                r2 = r2 << 2;
+                L_I002B9320: ;
+                r2 = r2 + r18;
+                L_I002B9324: ;
+                r2 = Mem.U32((r2 + 0u));
+                L_I002B9328: ;
+                { bool c_ = r2 == 0; r4 = r0; if (c_) goto L_L002B9424; }
+                L_I002B9330: ;
+                r5 = r4;
+                L_I002B9334: ;
+                r6 = r21;
+                L_I002B9338: ;
+                r7 = (uint)1;
+                L_I002B933C: ;
+                r2 = (uint)48;
+                L_I002B9340: ;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                L_I002B9348: ;
+                r4 = r0;
+                L_I002B934C: ;
+                r5 = r4;
+                L_I002B9350: ;
+                r6 = r21;
+                L_I002B9354: ;
+                r7 = (uint)1;
+                L_I002B9358: ;
+                Mem.Set((r16 + 32u), r2);
+                L_I002B935C: ;
+                r2 = (uint)8;
+                L_I002B9360: ;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                L_I002B9368: ;
+                r3 = Mem.U32((r16 + 32u));
+                L_I002B936C: ;
+                r5 = (uint)7;
+                L_I002B9370: ;
+                Mem.Set((r3 + 40u), r2);
+                L_I002B9374: ;
+                r2 = r17;
+                L_I002B9378: ;
+                r2 = r2 & 65535u;
+                L_I002B937C: ;
+                r2 = r2 << 2;
+                L_I002B9380: ;
+                r2 = r2 + r18;
+                L_I002B9384: ;
+                r3 = Mem.U32((r16 + 32u));
+                L_I002B9388: ;
+                r2 = Mem.U16((r2 + 2u));
+                L_I002B938C: ;
+                r17 = r17 + 1u;
+                L_I002B9390: ;
+                Mem.Set((r3 + 0u), (ushort)r2);
+                L_I002B9394: ;
+                r4 = Mem.U32((r16 + 32u));
+                L_I002B9398: ;
+                r2 = (uint)16384;
+                L_I002B939C: ;
+                r3 = (uint)(int)Mem.S16((r4 + 0u));
+                L_I002B93A0: ;
+                r6 = r4 + 14u;
+                L_I002B93A4: ;
+                Mem.Set((r4 + 44u), r22);
+                L_I002B93A8: ;
+                r3 = (uint)((int)r3 >> 1);
+                L_I002B93AC: ;
+                r7 = r3;
+                L_I002B93B0: ;
+                r2 = r2 - r3;
+                L_I002B93B4: ;
+                Mem.Set((r4 + 2u), (ushort)r2);
+                L_L002B93B8: ;
+                L_I002B93B8: ;
+                Mem.Set((r6 + 8u), (ushort)r0);
+                L_I002B93BC: ;
+                r5 = r5 - 1u;
+                L_I002B93C0: ;
+                { bool c_ = (int)r5 >= 0; r6 = r6 - 2u; if (c_) goto L_L002B93B8; }
+                L_I002B93C8: ;
+                r2 = r7 << 16;
+                L_I002B93CC: ;
+                r2 = (uint)((int)r2 >> 16);
+                L_I002B93D0: ;
+                r1 = 2148335616u;
+                L_I002B93D4: ;
+                Cpu.Fpr[1] = Mem.U64((r1 - 14296u));
+                L_I002B93D8: ;
+                Cpu.SetW(0, r2);
+                L_I002B93DC: ;
+                Cpu.SetD(0, (double)(int)Cpu.W(0));
+                L_I002B93E0: ;
+                Cpu.SetD(1, Cpu.D(0) * Cpu.D(1));
+                L_I002B93E4: ;
+                r5 = (uint)9;
+                L_I002B93E8: ;
+                r3 = r4 + 18u;
+                L_I002B93EC: ;
+                Mem.Set((r4 + 24u), (ushort)r7);
+                L_I002B93F0: ;
+                Cpu.Fpr[2] = Cpu.Fpr[1];
+                L_L002B93F4: ;
+                L_I002B93F4: ;
+                Cpu.SetD(1, Cpu.D(1) * Cpu.D(2));
+                L_I002B93F8: ;
+                L_I002B93FC: ;
+                Cpu.SetD(0, Cpu.D(1) * Cpu.D(20));
+                L_I002B9400: ;
+                r5 = r5 + 1u;
+                L_I002B9404: ;
+                Cpu.SetW(4, (uint)(int)Cpu.D(0));
+                L_I002B9408: ;
+                r2 = Cpu.W(4);
+                L_I002B940C: ;
+                Mem.Set((r3 + 8u), (ushort)r2);
+                L_I002B9410: ;
+                r2 = (uint)((int)r5 < 16 ? 1 : 0);
+                L_I002B9414: ;
+                { bool c_ = r2 != 0; r3 = r3 + 2u; if (c_) goto L_L002B93F4; }
+                L_I002B941C: ;
+                r20 = r20 + 1u; goto L_L002B9430;
+                L_L002B9424: ;
+                L_I002B9424: ;
+                Mem.Set((r16 + 32u), r0);
+                L_I002B9428: ;
+                r17 = r17 + 1u;
+                L_I002B942C: ;
+                r20 = r20 + 1u;
+                L_L002B9430: ;
+                L_I002B9430: ;
+                r3 = Mem.U8((r19 + 36u));
+                L_I002B9434: ;
+                r2 = r20 & 65535u;
+                L_I002B9438: ;
+                r2 = (uint)(r2 < r3 ? 1 : 0);
+                L_I002B943C: ;
+                { bool c_ = r2 != 0; r2 = r20 & 65535u; if (c_) goto L_L002B917C; }
+                L_L002B9444: ;
+                L_I002B9444: ;
+                r31 = Mem.U32((r29 + 56u));
+                L_I002B9448: ;
+                r23 = Mem.U32((r29 + 52u));
+                L_I002B944C: ;
+                r22 = Mem.U32((r29 + 48u));
+                L_I002B9450: ;
+                r21 = Mem.U32((r29 + 44u));
+                L_I002B9454: ;
+                r20 = Mem.U32((r29 + 40u));
+                L_I002B9458: ;
+                r19 = Mem.U32((r29 + 36u));
+                L_I002B945C: ;
+                r18 = Mem.U32((r29 + 32u));
+                L_I002B9460: ;
+                r17 = Mem.U32((r29 + 28u));
+                L_I002B9464: ;
+                r16 = Mem.U32((r29 + 24u));
+                L_I002B9468: ;
+                Cpu.Fpr[20] = Mem.U64((r29 + 64u));
+                L_I002B946C: ;
+                r29 = r29 + 72u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B8FDC", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B8FE0 @ 0x002B8FE0 [MIPS]
+    public static uint alFxNew_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B8FE0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B8FE0: ;
+                L_I002B8FE0: ;
+                r29 = r29 - 72u;
+                L_I002B8FE4: ;
+                Mem.Set((r29 + 36u), r19);
+                L_I002B8FE8: ;
+                r19 = r4;
+                L_I002B8FEC: ;
+                Mem.Set((r29 + 52u), r23);
+                L_I002B8FF0: ;
+                r23 = r5;
+                L_I002B8FF4: ;
+                Mem.Set((r29 + 44u), r21);
+                L_I002B8FF8: ;
+                r21 = r6;
+                L_I002B8FFC: ;
+                r5 = r0;
+                L_I002B9000: ;
+                r6 = 2883584u;
+                L_I002B9004: ;
+                r6 = r6 - 20056u;
+                L_I002B9008: ;
+                Mem.Set((r29 + 56u), r31);
+                L_I002B900C: ;
+                Mem.Set((r29 + 48u), r22);
+                L_I002B9010: ;
+                Mem.Set((r29 + 40u), r20);
+                L_I002B9014: ;
+                Mem.Set((r29 + 32u), r18);
+                L_I002B9018: ;
+                Mem.Set((r29 + 28u), r17);
+                L_I002B901C: ;
+                Mem.Set((r29 + 24u), r16);
+                L_I002B9020: ;
+                Mem.Set((r29 + 64u), Cpu.Fpr[20]);
+                L_I002B9024: ;
+                r7 = (uint)5; alFilterNew(r4, r5, r6, (int)r7);
+                L_I002B902C: ;
+                r2 = 2883584u;
+                L_I002B9030: ;
+                r2 = r2 - 22336u;
+                L_I002B9034: ;
+                Mem.Set((r19 + 4u), r2);
+                L_I002B9038: ;
+                r2 = 2883584u;
+                L_I002B903C: ;
+                r2 = r2 - 21404u;
+                L_I002B9040: ;
+                Mem.Set((r19 + 40u), r2);
+                L_I002B9044: ;
+                r2 = Mem.U8((r23 + 28u));
+                L_I002B9048: ;
+                r3 = r2 - 1u;
+                L_I002B904C: ;
+                r2 = (uint)(r3 < (uint)(6) ? 1 : 0);
+                L_I002B9050: ;
+                { bool c_ = r2 == 0; r2 = r3 << 2; if (c_) goto L_L002B90C8; }
+                L_I002B9058: ;
+                r1 = 2148335616u;
+                L_I002B905C: ;
+                r1 = r1 + r2;
+                L_I002B9060: ;
+                r2 = Mem.U32((r1 - 14352u));
+                L_I002B9064: ;
+                 switch (r2) { case 2854880u: goto L_I002B8FE0; case 2854884u: goto L_I002B8FE4; case 2854888u: goto L_I002B8FE8; case 2854892u: goto L_I002B8FEC; case 2854896u: goto L_I002B8FF0; case 2854900u: goto L_I002B8FF4; case 2854904u: goto L_I002B8FF8; case 2854908u: goto L_I002B8FFC; case 2854912u: goto L_I002B9000; case 2854916u: goto L_I002B9004; case 2854920u: goto L_I002B9008; case 2854924u: goto L_I002B900C; case 2854928u: goto L_I002B9010; case 2854932u: goto L_I002B9014; case 2854936u: goto L_I002B9018; case 2854940u: goto L_I002B901C; case 2854944u: goto L_I002B9020; case 2854948u: goto L_I002B9024; case 2854956u: goto L_I002B902C; case 2854960u: goto L_I002B9030; case 2854964u: goto L_I002B9034; case 2854968u: goto L_I002B9038; case 2854972u: goto L_I002B903C; case 2854976u: goto L_I002B9040; case 2854980u: goto L_I002B9044; case 2854984u: goto L_I002B9048; case 2854988u: goto L_I002B904C; case 2854992u: goto L_I002B9050; case 2855000u: goto L_I002B9058; case 2855004u: goto L_I002B905C; case 2855008u: goto L_I002B9060; case 2855012u: goto L_I002B9064; case 2855020u: goto L_I002B906C; case 2855024u: goto L_I002B9070; case 2855028u: goto L_I002B9074; case 2855036u: goto L_I002B907C; case 2855040u: goto L_I002B9080; case 2855044u: goto L_I002B9084; case 2855052u: goto L_I002B908C; case 2855056u: goto L_I002B9090; case 2855060u: goto L_I002B9094; case 2855068u: goto L_I002B909C; case 2855072u: goto L_I002B90A0; case 2855076u: goto L_I002B90A4; case 2855084u: goto L_I002B90AC; case 2855088u: goto L_I002B90B0; case 2855092u: goto L_I002B90B4; case 2855100u: goto L_I002B90BC; case 2855104u: goto L_I002B90C0; case 2855112u: goto L_I002B90C8; case 2855116u: goto L_I002B90CC; case 2855120u: goto L_I002B90D0; case 2855124u: goto L_I002B90D4; case 2855128u: goto L_I002B90D8; case 2855132u: goto L_I002B90DC; case 2855136u: goto L_I002B90E0; case 2855140u: goto L_I002B90E4; case 2855144u: goto L_I002B90E8; case 2855148u: goto L_I002B90EC; case 2855152u: goto L_I002B90F0; case 2855156u: goto L_I002B90F4; case 2855160u: goto L_I002B90F8; case 2855168u: goto L_I002B9100; case 2855172u: goto L_I002B9104; case 2855176u: goto L_I002B9108; case 2855180u: goto L_I002B910C; case 2855184u: goto L_I002B9110; case 2855188u: goto L_I002B9114; case 2855192u: goto L_I002B9118; case 2855200u: goto L_I002B9120; case 2855204u: goto L_I002B9124; case 2855208u: goto L_I002B9128; case 2855212u: goto L_I002B912C; case 2855220u: goto L_I002B9134; case 2855224u: goto L_I002B9138; case 2855228u: goto L_I002B913C; case 2855232u: goto L_I002B9140; case 2855236u: goto L_I002B9144; case 2855240u: goto L_I002B9148; case 2855244u: goto L_I002B914C; case 2855248u: goto L_I002B9150; case 2855252u: goto L_I002B9154; case 2855256u: goto L_I002B9158; case 2855264u: goto L_I002B9160; case 2855268u: goto L_I002B9164; case 2855276u: goto L_I002B916C; case 2855280u: goto L_I002B9170; case 2855284u: goto L_I002B9174; case 2855288u: goto L_I002B9178; case 2855292u: goto L_I002B917C; case 2855296u: goto L_I002B9180; case 2855300u: goto L_I002B9184; case 2855304u: goto L_I002B9188; case 2855308u: goto L_I002B918C; case 2855312u: goto L_I002B9190; case 2855316u: goto L_I002B9194; case 2855320u: goto L_I002B9198; case 2855324u: goto L_I002B919C; case 2855328u: goto L_I002B91A0; case 2855332u: goto L_I002B91A4; case 2855336u: goto L_I002B91A8; case 2855340u: goto L_I002B91AC; case 2855344u: goto L_I002B91B0; case 2855348u: goto L_I002B91B4; case 2855352u: goto L_I002B91B8; case 2855356u: goto L_I002B91BC; case 2855360u: goto L_I002B91C0; case 2855364u: goto L_I002B91C4; case 2855368u: goto L_I002B91C8; case 2855372u: goto L_I002B91CC; case 2855376u: goto L_I002B91D0; case 2855380u: goto L_I002B91D4; case 2855384u: goto L_I002B91D8; case 2855388u: goto L_I002B91DC; case 2855392u: goto L_I002B91E0; case 2855396u: goto L_I002B91E4; case 2855400u: goto L_I002B91E8; case 2855404u: goto L_I002B91EC; case 2855408u: goto L_I002B91F0; case 2855412u: goto L_I002B91F4; case 2855416u: goto L_I002B91F8; case 2855420u: goto L_I002B91FC; case 2855424u: goto L_I002B9200; case 2855428u: goto L_I002B9204; case 2855432u: goto L_I002B9208; case 2855436u: goto L_I002B920C; case 2855440u: goto L_I002B9210; case 2855444u: goto L_I002B9214; case 2855448u: goto L_I002B9218; case 2855456u: goto L_I002B9220; case 2855460u: goto L_I002B9224; case 2855464u: goto L_I002B9228; case 2855468u: goto L_I002B922C; case 2855472u: goto L_I002B9230; case 2855476u: goto L_I002B9234; case 2855480u: goto L_I002B9238; case 2855484u: goto L_I002B923C; case 2855488u: goto L_I002B9240; case 2855492u: goto L_I002B9244; case 2855496u: goto L_I002B9248; case 2855500u: goto L_I002B924C; case 2855504u: goto L_I002B9250; case 2855508u: goto L_I002B9254; case 2855512u: goto L_I002B9258; case 2855516u: goto L_I002B925C; case 2855520u: goto L_I002B9260; case 2855524u: goto L_I002B9264; case 2855528u: goto L_I002B9268; case 2855532u: goto L_I002B926C; case 2855536u: goto L_I002B9270; case 2855540u: goto L_I002B9274; case 2855544u: goto L_I002B9278; case 2855548u: goto L_I002B927C; case 2855556u: goto L_I002B9284; case 2855560u: goto L_I002B9288; case 2855564u: goto L_I002B928C; case 2855568u: goto L_I002B9290; case 2855572u: goto L_I002B9294; case 2855576u: goto L_I002B9298; case 2855580u: goto L_I002B929C; case 2855584u: goto L_I002B92A0; case 2855588u: goto L_I002B92A4; case 2855592u: goto L_I002B92A8; case 2855596u: goto L_I002B92AC; case 2855600u: goto L_I002B92B0; case 2855604u: goto L_I002B92B4; case 2855608u: goto L_I002B92B8; case 2855612u: goto L_I002B92BC; case 2855616u: goto L_I002B92C0; case 2855620u: goto L_I002B92C4; case 2855624u: goto L_I002B92C8; case 2855628u: goto L_I002B92CC; case 2855636u: goto L_I002B92D4; case 2855640u: goto L_I002B92D8; case 2855644u: goto L_I002B92DC; case 2855648u: goto L_I002B92E0; case 2855652u: goto L_I002B92E4; case 2855656u: goto L_I002B92E8; case 2855660u: goto L_I002B92EC; case 2855668u: goto L_I002B92F4; case 2855672u: goto L_I002B92F8; case 2855676u: goto L_I002B92FC; case 2855680u: goto L_I002B9300; case 2855684u: goto L_I002B9304; case 2855688u: goto L_I002B9308; case 2855696u: goto L_I002B9310; case 2855700u: goto L_I002B9314; case 2855704u: goto L_I002B9318; case 2855708u: goto L_I002B931C; case 2855712u: goto L_I002B9320; case 2855716u: goto L_I002B9324; case 2855720u: goto L_I002B9328; case 2855728u: goto L_I002B9330; case 2855732u: goto L_I002B9334; case 2855736u: goto L_I002B9338; case 2855740u: goto L_I002B933C; case 2855744u: goto L_I002B9340; case 2855752u: goto L_I002B9348; case 2855756u: goto L_I002B934C; case 2855760u: goto L_I002B9350; case 2855764u: goto L_I002B9354; case 2855768u: goto L_I002B9358; case 2855772u: goto L_I002B935C; case 2855776u: goto L_I002B9360; case 2855784u: goto L_I002B9368; case 2855788u: goto L_I002B936C; case 2855792u: goto L_I002B9370; case 2855796u: goto L_I002B9374; case 2855800u: goto L_I002B9378; case 2855804u: goto L_I002B937C; case 2855808u: goto L_I002B9380; case 2855812u: goto L_I002B9384; case 2855816u: goto L_I002B9388; case 2855820u: goto L_I002B938C; case 2855824u: goto L_I002B9390; case 2855828u: goto L_I002B9394; case 2855832u: goto L_I002B9398; case 2855836u: goto L_I002B939C; case 2855840u: goto L_I002B93A0; case 2855844u: goto L_I002B93A4; case 2855848u: goto L_I002B93A8; case 2855852u: goto L_I002B93AC; case 2855856u: goto L_I002B93B0; case 2855860u: goto L_I002B93B4; case 2855864u: goto L_I002B93B8; case 2855868u: goto L_I002B93BC; case 2855872u: goto L_I002B93C0; case 2855880u: goto L_I002B93C8; case 2855884u: goto L_I002B93CC; case 2855888u: goto L_I002B93D0; case 2855892u: goto L_I002B93D4; case 2855896u: goto L_I002B93D8; case 2855900u: goto L_I002B93DC; case 2855904u: goto L_I002B93E0; case 2855908u: goto L_I002B93E4; case 2855912u: goto L_I002B93E8; case 2855916u: goto L_I002B93EC; case 2855920u: goto L_I002B93F0; case 2855924u: goto L_I002B93F4; case 2855928u: goto L_I002B93F8; case 2855932u: goto L_I002B93FC; case 2855936u: goto L_I002B9400; case 2855940u: goto L_I002B9404; case 2855944u: goto L_I002B9408; case 2855948u: goto L_I002B940C; case 2855952u: goto L_I002B9410; case 2855956u: goto L_I002B9414; case 2855964u: goto L_I002B941C; case 2855972u: goto L_I002B9424; case 2855976u: goto L_I002B9428; case 2855980u: goto L_I002B942C; case 2855984u: goto L_I002B9430; case 2855988u: goto L_I002B9434; case 2855992u: goto L_I002B9438; case 2855996u: goto L_I002B943C; case 2856004u: goto L_I002B9444; case 2856008u: goto L_I002B9448; case 2856012u: goto L_I002B944C; case 2856016u: goto L_I002B9450; case 2856020u: goto L_I002B9454; case 2856024u: goto L_I002B9458; case 2856028u: goto L_I002B945C; case 2856032u: goto L_I002B9460; case 2856036u: goto L_I002B9464; case 2856040u: goto L_I002B9468; case 2856044u: goto L_I002B946C; default: throw new InvalidOperationException($"bad jump table target {r2:X8} in func_002B8FE0"); }
+                L_L002B906C: ;
+                L_I002B906C: ;
+                r18 = 2148401152u;
+                L_I002B9070: ;
+                r18 = r18 - 32592u;
+                L_I002B9074: ;
+                r17 = (uint)2; goto L_L002B90D4;
+                L_L002B907C: ;
+                L_I002B907C: ;
+                r18 = 2148401152u;
+                L_I002B9080: ;
+                r18 = r18 - 32488u;
+                L_I002B9084: ;
+                r17 = (uint)2; goto L_L002B90D4;
+                L_L002B908C: ;
+                L_I002B908C: ;
+                r18 = 2148401152u;
+                L_I002B9090: ;
+                r18 = r18 - 32352u;
+                L_I002B9094: ;
+                r17 = (uint)2; goto L_L002B90D4;
+                L_L002B909C: ;
+                L_I002B909C: ;
+                r18 = 2148401152u;
+                L_I002B90A0: ;
+                r18 = r18 - 32312u;
+                L_I002B90A4: ;
+                r17 = (uint)2; goto L_L002B90D4;
+                L_L002B90AC: ;
+                L_I002B90AC: ;
+                r18 = 2148401152u;
+                L_I002B90B0: ;
+                r18 = r18 - 32272u;
+                L_I002B90B4: ;
+                r17 = (uint)2; goto L_L002B90D4;
+                L_L002B90BC: ;
+                L_I002B90BC: ;
+                r18 = Mem.U32((r23 + 32u));
+                L_I002B90C0: ;
+                r17 = (uint)2; goto L_L002B90D4;
+                L_L002B90C8: ;
+                L_I002B90C8: ;
+                r18 = 2148401152u;
+                L_I002B90CC: ;
+                r18 = r18 - 32232u;
+                L_I002B90D0: ;
+                r17 = (uint)2;
+                L_L002B90D4: ;
+                L_I002B90D4: ;
+                r4 = r0;
+                L_I002B90D8: ;
+                r2 = Mem.U8((r18 + 3u));
+                L_I002B90DC: ;
+                r5 = r4;
+                L_I002B90E0: ;
+                Mem.Set((r19 + 36u), (byte)r2);
+                L_I002B90E4: ;
+                r7 = r2 & 255u;
+                L_I002B90E8: ;
+                r2 = Mem.U32((r18 + 4u));
+                L_I002B90EC: ;
+                r6 = r21;
+                L_I002B90F0: ;
+                Mem.Set((r19 + 28u), r2);
+                L_I002B90F4: ;
+                r2 = (uint)40;
+                L_I002B90F8: ;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                L_I002B9100: ;
+                r4 = r0;
+                L_I002B9104: ;
+                r5 = r4;
+                L_I002B9108: ;
+                Mem.Set((r19 + 32u), r2);
+                L_I002B910C: ;
+                r2 = (uint)2;
+                L_I002B9110: ;
+                Mem.Set((r29 + 16u), r2);
+                L_I002B9114: ;
+                r7 = Mem.U32((r19 + 28u));
+                L_I002B9118: ;
+                r6 = r21; r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                L_I002B9120: ;
+                r3 = Mem.U32((r19 + 28u));
+                L_I002B9124: ;
+                r4 = r0;
+                L_I002B9128: ;
+                Mem.Set((r19 + 20u), r2);
+                L_I002B912C: ;
+                { bool c_ = r3 == 0; Mem.Set((r19 + 24u), r2); if (c_) goto L_L002B9160; }
+                L_I002B9134: ;
+                r2 = r4 & 65535u;
+                L_L002B9138: ;
+                L_I002B9138: ;
+                r4 = r4 + 1u;
+                L_I002B913C: ;
+                r3 = Mem.U32((r19 + 20u));
+                L_I002B9140: ;
+                r2 = r2 << 1;
+                L_I002B9144: ;
+                r2 = r2 + r3;
+                L_I002B9148: ;
+                Mem.Set((r2 + 0u), (ushort)r0);
+                L_I002B914C: ;
+                r3 = Mem.U32((r19 + 28u));
+                L_I002B9150: ;
+                r2 = r4 & 65535u;
+                L_I002B9154: ;
+                r2 = (uint)(r2 < r3 ? 1 : 0);
+                L_I002B9158: ;
+                { bool c_ = r2 != 0; r2 = r4 & 65535u; if (c_) goto L_L002B9138; }
+                L_L002B9160: ;
+                L_I002B9160: ;
+                r2 = Mem.U8((r19 + 36u));
+                L_I002B9164: ;
+                { bool c_ = r2 == 0; r20 = r0; if (c_) goto L_L002B9444; }
+                L_I002B916C: ;
+                r22 = (uint)1;
+                L_I002B9170: ;
+                r1 = 2148335616u;
+                L_I002B9174: ;
+                Cpu.Fpr[20] = Mem.U64((r1 - 14328u));
+                L_I002B9178: ;
+                r2 = r20 & 65535u;
+                L_L002B917C: ;
+                L_I002B917C: ;
+                r3 = r2 << 2;
+                L_I002B9180: ;
+                r3 = r3 + r2;
+                L_I002B9184: ;
+                r3 = r3 << 3;
+                L_I002B9188: ;
+                r2 = r17 & 65535u;
+                L_I002B918C: ;
+                r2 = r2 << 2;
+                L_I002B9190: ;
+                r2 = r2 + r18;
+                L_I002B9194: ;
+                r5 = r17 + 1u;
+                L_I002B9198: ;
+                r4 = Mem.U32((r19 + 32u));
+                L_I002B919C: ;
+                r2 = Mem.U32((r2 + 0u));
+                L_I002B91A0: ;
+                r16 = r4 + r3;
+                L_I002B91A4: ;
+                Mem.Set((r16 + 0u), r2);
+                L_I002B91A8: ;
+                r2 = r5 & 65535u;
+                L_I002B91AC: ;
+                r2 = r2 << 2;
+                L_I002B91B0: ;
+                r2 = r2 + r18;
+                L_I002B91B4: ;
+                r3 = Mem.U32((r2 + 0u));
+                L_I002B91B8: ;
+                r2 = r5 + 1u;
+                L_I002B91BC: ;
+                r2 = r2 & 65535u;
+                L_I002B91C0: ;
+                r2 = r2 << 2;
+                L_I002B91C4: ;
+                r2 = r2 + r18;
+                L_I002B91C8: ;
+                Mem.Set((r16 + 4u), r3);
+                L_I002B91CC: ;
+                r3 = Mem.U16((r2 + 2u));
+                L_I002B91D0: ;
+                r2 = r5 + 2u;
+                L_I002B91D4: ;
+                r2 = r2 & 65535u;
+                L_I002B91D8: ;
+                r2 = r2 << 2;
+                L_I002B91DC: ;
+                r2 = r2 + r18;
+                L_I002B91E0: ;
+                Mem.Set((r16 + 10u), (ushort)r3);
+                L_I002B91E4: ;
+                r3 = Mem.U16((r2 + 2u));
+                L_I002B91E8: ;
+                r2 = r5 + 3u;
+                L_I002B91EC: ;
+                r2 = r2 & 65535u;
+                L_I002B91F0: ;
+                r2 = r2 << 2;
+                L_I002B91F4: ;
+                r2 = r2 + r18;
+                L_I002B91F8: ;
+                Mem.Set((r16 + 8u), (ushort)r3);
+                L_I002B91FC: ;
+                r2 = Mem.U16((r2 + 2u));
+                L_I002B9200: ;
+                r4 = r5 + 4u;
+                L_I002B9204: ;
+                Mem.Set((r16 + 12u), (ushort)r2);
+                L_I002B9208: ;
+                r2 = r4 & 65535u;
+                L_I002B920C: ;
+                r2 = r2 << 2;
+                L_I002B9210: ;
+                r2 = r2 + r18;
+                L_I002B9214: ;
+                r2 = Mem.U32((r2 + 0u));
+                L_I002B9218: ;
+                { bool c_ = r2 == 0; r3 = r5 + 5u; if (c_) goto L_L002B9310; }
+                L_I002B9220: ;
+                r2 = r4 & 65535u;
+                L_I002B9224: ;
+                r2 = r2 << 2;
+                L_I002B9228: ;
+                r2 = r2 + r18;
+                L_I002B922C: ;
+                Cpu.SetW(1, Mem.U32((r2 + 0u)));
+                L_I002B9230: ;
+                Cpu.SetS(1, (float)(int)Cpu.W(1));
+                L_I002B9234: ;
+                r3 = r3 & 65535u;
+                L_I002B9238: ;
+                r1 = 2148335616u;
+                L_I002B923C: ;
+                Cpu.SetW(0, Mem.U32((r1 - 14320u)));
+                L_I002B9240: ;
+                r3 = r3 << 2;
+                L_I002B9244: ;
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
+                L_I002B9248: ;
+                r4 = Mem.U32((r16 + 4u));
+                L_I002B924C: ;
+                r2 = Mem.U32((r16 + 0u));
+                L_I002B9250: ;
+                r3 = r3 + r18;
+                L_I002B9254: ;
+                r4 = r4 - r2;
+                L_I002B9258: ;
+                Cpu.SetS(1, Cpu.S(1) + Cpu.S(1));
+                L_I002B925C: ;
+                Cpu.SetW(2, r4);
+                L_I002B9260: ;
+                Cpu.SetD(2, (double)(int)Cpu.W(2));
+                L_I002B9264: ;
+                Cpu.SetW(0, Mem.U32((r23 + 24u)));
+                L_I002B9268: ;
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                L_I002B926C: ;
+                Cpu.SetS(1, Cpu.S(1) / Cpu.S(0));
+                L_I002B9270: ;
+                Mem.Set((r16 + 16u), Cpu.W(1));
+                L_I002B9274: ;
+                Cpu.SetW(3, Mem.U32((r3 + 0u)));
+                L_I002B9278: ;
+                Cpu.SetS(3, (float)(int)Cpu.W(3));
+                L_I002B927C: ;
+                { bool c_ = (int)r4 >= 0; r17 = r5 + 6u; if (c_) goto L_L002B9290; }
+                L_I002B9284: ;
+                r1 = 2148335616u;
+                L_I002B9288: ;
+                Cpu.Fpr[0] = Mem.U64((r1 - 14312u));
+                L_I002B928C: ;
+                Cpu.SetD(2, Cpu.D(2) + Cpu.D(0));
+                L_L002B9290: ;
+                L_I002B9290: ;
+                r1 = 2148335616u;
+                L_I002B9294: ;
+                Cpu.SetW(0, Mem.U32((r1 - 14304u)));
+                L_I002B9298: ;
+                Cpu.SetS(1, (float)Cpu.D(2));
+                L_I002B929C: ;
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
+                L_I002B92A0: ;
+                r4 = r0;
+                L_I002B92A4: ;
+                r5 = r4;
+                L_I002B92A8: ;
+                r6 = r21;
+                L_I002B92AC: ;
+                r7 = (uint)1;
+                L_I002B92B0: ;
+                Cpu.SetS(1, Cpu.S(3) * Cpu.S(1));
+                L_I002B92B4: ;
+                r1 = 2148335616u;
+                L_I002B92B8: ;
+                Cpu.SetW(0, Mem.U32((r1 - 14300u)));
+                L_I002B92BC: ;
+                r2 = (uint)52;
+                L_I002B92C0: ;
+                Mem.Set((r16 + 24u), r0);
+                L_I002B92C4: ;
+                Mem.Set((r16 + 20u), Cpu.W(0));
+                L_I002B92C8: ;
+                Mem.Set((r16 + 28u), Cpu.W(1));
+                L_I002B92CC: ;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                L_I002B92D4: ;
+                r4 = r0;
+                L_I002B92D8: ;
+                r5 = r4;
+                L_I002B92DC: ;
+                r6 = r21;
+                L_I002B92E0: ;
+                r7 = (uint)1;
+                L_I002B92E4: ;
+                Mem.Set((r16 + 36u), r2);
+                L_I002B92E8: ;
+                r2 = (uint)32;
+                L_I002B92EC: ;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                L_I002B92F4: ;
+                r3 = Mem.U32((r16 + 36u));
+                L_I002B92F8: ;
+                Mem.Set((r3 + 20u), r2);
+                L_I002B92FC: ;
+                r2 = Mem.U32((r16 + 36u));
+                L_I002B9300: ;
+                Mem.Set((r2 + 32u), r0);
+                L_I002B9304: ;
+                r2 = Mem.U32((r16 + 36u));
+                L_I002B9308: ;
+                Mem.Set((r2 + 36u), r22); goto L_L002B9318;
+                L_L002B9310: ;
+                L_I002B9310: ;
+                Mem.Set((r16 + 36u), r0);
+                L_I002B9314: ;
+                r17 = r5 + 6u;
+                L_L002B9318: ;
+                L_I002B9318: ;
+                r2 = r17 & 65535u;
+                L_I002B931C: ;
+                r2 = r2 << 2;
+                L_I002B9320: ;
+                r2 = r2 + r18;
+                L_I002B9324: ;
+                r2 = Mem.U32((r2 + 0u));
+                L_I002B9328: ;
+                { bool c_ = r2 == 0; r4 = r0; if (c_) goto L_L002B9424; }
+                L_I002B9330: ;
+                r5 = r4;
+                L_I002B9334: ;
+                r6 = r21;
+                L_I002B9338: ;
+                r7 = (uint)1;
+                L_I002B933C: ;
+                r2 = (uint)48;
+                L_I002B9340: ;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                L_I002B9348: ;
+                r4 = r0;
+                L_I002B934C: ;
+                r5 = r4;
+                L_I002B9350: ;
+                r6 = r21;
+                L_I002B9354: ;
+                r7 = (uint)1;
+                L_I002B9358: ;
+                Mem.Set((r16 + 32u), r2);
+                L_I002B935C: ;
+                r2 = (uint)8;
+                L_I002B9360: ;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                L_I002B9368: ;
+                r3 = Mem.U32((r16 + 32u));
+                L_I002B936C: ;
+                r5 = (uint)7;
+                L_I002B9370: ;
+                Mem.Set((r3 + 40u), r2);
+                L_I002B9374: ;
+                r2 = r17;
+                L_I002B9378: ;
+                r2 = r2 & 65535u;
+                L_I002B937C: ;
+                r2 = r2 << 2;
+                L_I002B9380: ;
+                r2 = r2 + r18;
+                L_I002B9384: ;
+                r3 = Mem.U32((r16 + 32u));
+                L_I002B9388: ;
+                r2 = Mem.U16((r2 + 2u));
+                L_I002B938C: ;
+                r17 = r17 + 1u;
+                L_I002B9390: ;
+                Mem.Set((r3 + 0u), (ushort)r2);
+                L_I002B9394: ;
+                r4 = Mem.U32((r16 + 32u));
+                L_I002B9398: ;
+                r2 = (uint)16384;
+                L_I002B939C: ;
+                r3 = (uint)(int)Mem.S16((r4 + 0u));
+                L_I002B93A0: ;
+                r6 = r4 + 14u;
+                L_I002B93A4: ;
+                Mem.Set((r4 + 44u), r22);
+                L_I002B93A8: ;
+                r3 = (uint)((int)r3 >> 1);
+                L_I002B93AC: ;
+                r7 = r3;
+                L_I002B93B0: ;
+                r2 = r2 - r3;
+                L_I002B93B4: ;
+                Mem.Set((r4 + 2u), (ushort)r2);
+                L_L002B93B8: ;
+                L_I002B93B8: ;
+                Mem.Set((r6 + 8u), (ushort)r0);
+                L_I002B93BC: ;
+                r5 = r5 - 1u;
+                L_I002B93C0: ;
+                { bool c_ = (int)r5 >= 0; r6 = r6 - 2u; if (c_) goto L_L002B93B8; }
+                L_I002B93C8: ;
+                r2 = r7 << 16;
+                L_I002B93CC: ;
+                r2 = (uint)((int)r2 >> 16);
+                L_I002B93D0: ;
+                r1 = 2148335616u;
+                L_I002B93D4: ;
+                Cpu.Fpr[1] = Mem.U64((r1 - 14296u));
+                L_I002B93D8: ;
+                Cpu.SetW(0, r2);
+                L_I002B93DC: ;
+                Cpu.SetD(0, (double)(int)Cpu.W(0));
+                L_I002B93E0: ;
+                Cpu.SetD(1, Cpu.D(0) * Cpu.D(1));
+                L_I002B93E4: ;
+                r5 = (uint)9;
+                L_I002B93E8: ;
+                r3 = r4 + 18u;
+                L_I002B93EC: ;
+                Mem.Set((r4 + 24u), (ushort)r7);
+                L_I002B93F0: ;
+                Cpu.Fpr[2] = Cpu.Fpr[1];
+                L_L002B93F4: ;
+                L_I002B93F4: ;
+                Cpu.SetD(1, Cpu.D(1) * Cpu.D(2));
+                L_I002B93F8: ;
+                L_I002B93FC: ;
+                Cpu.SetD(0, Cpu.D(1) * Cpu.D(20));
+                L_I002B9400: ;
+                r5 = r5 + 1u;
+                L_I002B9404: ;
+                Cpu.SetW(4, (uint)(int)Cpu.D(0));
+                L_I002B9408: ;
+                r2 = Cpu.W(4);
+                L_I002B940C: ;
+                Mem.Set((r3 + 8u), (ushort)r2);
+                L_I002B9410: ;
+                r2 = (uint)((int)r5 < 16 ? 1 : 0);
+                L_I002B9414: ;
+                { bool c_ = r2 != 0; r3 = r3 + 2u; if (c_) goto L_L002B93F4; }
+                L_I002B941C: ;
+                r20 = r20 + 1u; goto L_L002B9430;
+                L_L002B9424: ;
+                L_I002B9424: ;
+                Mem.Set((r16 + 32u), r0);
+                L_I002B9428: ;
+                r17 = r17 + 1u;
+                L_I002B942C: ;
+                r20 = r20 + 1u;
+                L_L002B9430: ;
+                L_I002B9430: ;
+                r3 = Mem.U8((r19 + 36u));
+                L_I002B9434: ;
+                r2 = r20 & 65535u;
+                L_I002B9438: ;
+                r2 = (uint)(r2 < r3 ? 1 : 0);
+                L_I002B943C: ;
+                { bool c_ = r2 != 0; r2 = r20 & 65535u; if (c_) goto L_L002B917C; }
+                L_L002B9444: ;
+                L_I002B9444: ;
+                r31 = Mem.U32((r29 + 56u));
+                L_I002B9448: ;
+                r23 = Mem.U32((r29 + 52u));
+                L_I002B944C: ;
+                r22 = Mem.U32((r29 + 48u));
+                L_I002B9450: ;
+                r21 = Mem.U32((r29 + 44u));
+                L_I002B9454: ;
+                r20 = Mem.U32((r29 + 40u));
+                L_I002B9458: ;
+                r19 = Mem.U32((r29 + 36u));
+                L_I002B945C: ;
+                r18 = Mem.U32((r29 + 32u));
+                L_I002B9460: ;
+                r17 = Mem.U32((r29 + 28u));
+                L_I002B9464: ;
+                r16 = Mem.U32((r29 + 24u));
+                L_I002B9468: ;
+                Cpu.Fpr[20] = Mem.U64((r29 + 64u));
+                L_I002B946C: ;
+                r29 = r29 + 72u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B8FE0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B9474 @ 0x002B9474 [MIPS]
+    public static uint alLoadNew_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B9474", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B9474: ;
+                r29 = r29 - 48u;
+                Mem.Set((r29 + 24u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 36u), r19);
+                r19 = r5;
+                Mem.Set((r29 + 32u), r18);
+                r18 = r6;
+                r5 = 2883584u;
+                r5 = r5 + 12736u;
+                r6 = 2883584u;
+                r6 = r6 + 15252u;
+                r7 = r0;
+                Mem.Set((r29 + 40u), r31);
+                Mem.Set((r29 + 28u), r17); alFilterNew(r4, r5, r6, (int)r7);
+                r4 = r0;
+                r5 = r4;
+                r6 = r18;
+                r7 = (uint)1;
+                r17 = (uint)32;
+                Mem.Set((r29 + 16u), r17); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = r0;
+                r5 = r4;
+                r6 = r18;
+                r7 = (uint)1;
+                Mem.Set((r16 + 20u), r2);
+                Mem.Set((r29 + 16u), r17); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = r16 + 52u;
+                Mem.Set((r16 + 24u), r2); r2 = Funcs.CallReg(r19, r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r16 + 48u), r2);
+                r2 = (uint)1;
+                Mem.Set((r16 + 60u), r0);
+                Mem.Set((r16 + 64u), r2);
+                Mem.Set((r16 + 68u), r0);
+                r31 = Mem.U32((r29 + 40u));
+                r19 = Mem.U32((r29 + 36u));
+                r18 = Mem.U32((r29 + 32u));
+                r17 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r29 = r29 + 48u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B9474", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B9524 @ 0x002B9524 [MIPS]
+    public static uint alAuxBusNew_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B9524", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B9524: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r5;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r6;
+                r5 = 2883584u;
+                r5 = r5 - 23344u;
+                r6 = 2883584u;
+                r6 = r6 - 23024u;
+                Mem.Set((r29 + 28u), r31);
+                r7 = (uint)7; alFilterNew(r4, r5, r6, (int)r7);
+                Mem.Set((r16 + 20u), r0);
+                Mem.Set((r16 + 24u), r17);
+                Mem.Set((r16 + 28u), r18);
+                r31 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B9524", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B9580 @ 0x002B9580 [MIPS]
+    public static uint alMainBusNew_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B9580", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B9580: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r5;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r6;
+                r5 = 2883584u;
+                r5 = r5 - 28976u;
+                r6 = 2883584u;
+                r6 = r6 - 28756u;
+                Mem.Set((r29 + 28u), r31);
+                r7 = (uint)6; alFilterNew(r4, r5, r6, (int)r7);
+                Mem.Set((r16 + 20u), r0);
+                Mem.Set((r16 + 24u), r17);
+                Mem.Set((r16 + 28u), r18);
+                r31 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B9580", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B95DC @ 0x002B95DC [MIPS]
+    public static uint alResampleNew_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B95DC", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B95DC: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 24u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 28u), r17);
+                r17 = r5;
+                r5 = 2883584u;
+                r5 = r5 - 22976u;
+                r6 = 2883584u;
+                r6 = r6 - 22528u;
+                Mem.Set((r29 + 32u), r31);
+                r7 = (uint)1; alFilterNew(r4, r5, r6, (int)r7);
+                r4 = r0;
+                r5 = r4;
+                r6 = r17;
+                r7 = (uint)1;
+                r2 = (uint)32;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 14288u)));
+                Mem.Set((r16 + 20u), r2);
+                r2 = (uint)1;
+                Mem.Set((r16 + 32u), r0);
+                Mem.Set((r16 + 36u), r2);
+                Mem.Set((r16 + 48u), r0);
+                Mem.Set((r16 + 28u), r0);
+                Mem.Set((r16 + 40u), r0);
+                Mem.Set((r16 + 44u), r0);
+                Mem.Set((r16 + 24u), Cpu.W(0));
+                r31 = Mem.U32((r29 + 32u));
+                r17 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B95DC", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B9668 @ 0x002B9668 [MIPS]
+    public static uint alSaveNew_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B9668", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B9668: ;
+                r29 = r29 - 24u;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r4;
+                r5 = 2883584u;
+                r5 = r5 - 19376u;
+                r6 = 2883584u;
+                r6 = r6 - 19120u;
+                Mem.Set((r29 + 20u), r31);
+                r7 = (uint)3; alFilterNew(r4, r5, r6, (int)r7);
+                r2 = (uint)1;
+                Mem.Set((r16 + 20u), r0);
+                Mem.Set((r16 + 24u), r2);
+                r31 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B9668", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B96AC @ 0x002B96AC [MIPS]
+    public static uint alEnvmixerNew_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B96AC", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B96AC: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 24u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 28u), r17);
+                r17 = r5;
+                r5 = 2883584u;
+                r5 = r5 - 26624u;
+                r6 = 2883584u;
+                r6 = r6 - 23928u;
+                Mem.Set((r29 + 32u), r31);
+                r7 = (uint)4; alFilterNew(r4, r5, r6, (int)r7);
+                r4 = r0;
+                r5 = r4;
+                r6 = r17;
+                r7 = (uint)1;
+                r2 = (uint)80;
+                Mem.Set((r29 + 16u), r2); r2 = alHeapDBAlloc(r4, (int)r5, r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                Mem.Set((r16 + 20u), r2);
+                r2 = (uint)1;
+                Mem.Set((r16 + 56u), r2);
+                Mem.Set((r16 + 72u), r0);
+                Mem.Set((r16 + 26u), (ushort)r2);
+                Mem.Set((r16 + 40u), (ushort)r2);
+                Mem.Set((r16 + 46u), (ushort)r2);
+                Mem.Set((r16 + 28u), (ushort)r2);
+                Mem.Set((r16 + 30u), (ushort)r2);
+                Mem.Set((r16 + 32u), (ushort)r0);
+                Mem.Set((r16 + 34u), (ushort)r0);
+                Mem.Set((r16 + 38u), (ushort)r2);
+                Mem.Set((r16 + 36u), (ushort)r0);
+                Mem.Set((r16 + 36u), (ushort)r0);
+                Mem.Set((r16 + 48u), r0);
+                Mem.Set((r16 + 52u), r0);
+                Mem.Set((r16 + 24u), (ushort)r0);
+                Mem.Set((r16 + 60u), r0);
+                Mem.Set((r16 + 64u), r0);
+                Mem.Set((r16 + 68u), r0);
+                r31 = Mem.U32((r29 + 32u));
+                r17 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B96AC", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B975C @ 0x002B975C [MIPS]
+    public static uint init_lpfilter_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B975C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B975C: ;
+                r5 = (uint)7;
+                r6 = r4 + 14u;
+                r3 = (uint)(int)Mem.S16((r4 + 0u));
+                r2 = (uint)1;
+                Mem.Set((r4 + 44u), r2);
+                r3 = (uint)((int)r3 >> (int)(r2 & 31));
+                r7 = r3;
+                r2 = (uint)16384;
+                r2 = r2 - r3;
+                Mem.Set((r4 + 2u), (ushort)r2);
+                L_L002B9784: ;
+                Mem.Set((r6 + 8u), (ushort)r0);
+                r5 = r5 - 1u;
+                { bool c_ = (int)r5 >= 0; r6 = r6 - 2u; if (c_) goto L_L002B9784; }
+                r2 = r7 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                r1 = 2148335616u;
+                Cpu.Fpr[1] = Mem.U64((r1 - 14280u));
+                Cpu.SetW(0, r2);
+                Cpu.SetD(0, (double)(int)Cpu.W(0));
+                Cpu.SetD(1, Cpu.D(0) * Cpu.D(1));
+                r5 = (uint)9;
+                r1 = 2148335616u;
+                Cpu.Fpr[3] = Mem.U64((r1 - 14272u));
+                r3 = r4 + 18u;
+                Mem.Set((r4 + 24u), (ushort)r7);
+                Cpu.Fpr[2] = Cpu.Fpr[1];
+                L_L002B97C8: ;
+                Cpu.SetD(1, Cpu.D(1) * Cpu.D(2));
+                Cpu.SetD(0, Cpu.D(1) * Cpu.D(3));
+                r5 = r5 + 1u;
+                Cpu.SetW(4, (uint)(int)Cpu.D(0));
+                r2 = Cpu.W(4);
+                Mem.Set((r3 + 8u), (ushort)r2);
+                r2 = (uint)((int)r5 < 16 ? 1 : 0);
+                { bool c_ = r2 != 0; r3 = r3 + 2u; if (c_) goto L_L002B97C8; }
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B975C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B97F8 @ 0x002B97F8 [MIPS]
+    public static uint init_lpfilter_Tail_002B97F8(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B97F8", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002B97F8: ;
+                r29 = r29 + 64u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B97F8", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B9800 @ 0x002B9800 [MIPS]
+    public static uint alEnvmixerPull_Recompiled(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B9800", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_002B9800: ;
+                L_I002B9800: ;
+                r29 = r29 - 72u;
+                L_I002B9804: ;
+                Mem.Set((r29 + 44u), r19);
+                L_I002B9808: ;
+                r19 = Mem.U32((r29 + 88u));
+                L_I002B980C: ;
+                Mem.Set((r29 + 56u), r22);
+                L_I002B9810: ;
+                r22 = r6;
+                L_I002B9814: ;
+                Mem.Set((r29 + 32u), r16);
+                L_I002B9818: ;
+                r16 = r4;
+                L_I002B981C: ;
+                Mem.Set((r29 + 68u), r31);
+                L_I002B9820: ;
+                Mem.Set((r29 + 64u), r30);
+                L_I002B9824: ;
+                Mem.Set((r29 + 60u), r23);
+                L_I002B9828: ;
+                Mem.Set((r29 + 52u), r21);
+                L_I002B982C: ;
+                Mem.Set((r29 + 48u), r20);
+                L_I002B9830: ;
+                Mem.Set((r29 + 40u), r18);
+                L_I002B9834: ;
+                Mem.Set((r29 + 36u), r17);
+                L_I002B9838: ;
+                Mem.Set((r29 + 84u), r7);
+                L_I002B983C: ;
+                r2 = Mem.U32((r16 + 60u));
+                L_I002B9840: ;
+                r30 = r7;
+                L_I002B9844: ;
+                Mem.Set((r29 + 26u), (ushort)r0);
+                L_I002B9848: ;
+                { bool c_ = r2 == 0; Mem.Set((r29 + 24u), (ushort)r0); if (c_) goto L_L002B9CE0; }
+                L_I002B9850: ;
+                r23 = (uint)1;
+                L_I002B9854: ;
+                r21 = 2148401152u;
+                L_I002B9858: ;
+                r21 = r21 - 32192u;
+                L_I002B985C: ;
+                r2 = Mem.U32((r16 + 60u));
+                L_I002B9860: ;
+                r3 = r30;
+                L_L002B9864: ;
+                L_I002B9864: ;
+                r30 = Mem.U32((r2 + 4u));
+                L_I002B9868: ;
+                r18 = r30 - r3;
+                L_I002B986C: ;
+                r2 = (uint)((int)r22 < (int)r18 ? 1 : 0);
+                L_I002B9870: ;
+                { bool c_ = r2 != 0; r4 = r16; if (c_) goto L_L002B9CE4; }
+                L_I002B9878: ;
+                { bool c_ = (int)r18 >= 0; r2 = (uint)((int)r18 < 161 ? 1 : 0); if (c_) goto L_L002B989C; }
+                L_I002B9880: ;
+                r4 = 2148335616u;
+                L_I002B9884: ;
+                r4 = r4 - 14256u;
+                L_I002B9888: ;
+                r5 = 2148335616u;
+                L_I002B988C: ;
+                r5 = r5 - 14252u;
+                L_I002B9890: ;
+                r6 = (uint)103; r2 = __assert(r4, r5, r6, r7); r3 = Cpu.V1;
+                L_I002B9898: ;
+                r2 = (uint)((int)r18 < 161 ? 1 : 0);
+                L_L002B989C: ;
+                L_I002B989C: ;
+                { bool c_ = r2 != 0;  if (c_) goto L_L002B98BC; }
+                L_I002B98A4: ;
+                r4 = 2148335616u;
+                L_I002B98A8: ;
+                r4 = r4 - 14256u;
+                L_I002B98AC: ;
+                r5 = 2148335616u;
+                L_I002B98B0: ;
+                r5 = r5 - 14252u;
+                L_I002B98B4: ;
+                r6 = (uint)104; r2 = __assert(r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B98BC: ;
+                L_I002B98BC: ;
+                r2 = Mem.U32((r16 + 60u));
+                L_I002B98C0: ;
+                r3 = (uint)(int)Mem.S16((r2 + 8u));
+                L_I002B98C4: ;
+                r2 = (uint)(r3 < (uint)(17) ? 1 : 0);
+                L_I002B98C8: ;
+                { bool c_ = r2 == 0; r2 = r3 << 2; if (c_) goto L_L002B9C64; }
+                L_I002B98D0: ;
+                r1 = 2148335616u;
+                L_I002B98D4: ;
+                r1 = r1 + r2;
+                L_I002B98D8: ;
+                r2 = Mem.U32((r1 - 14240u));
+                L_I002B98DC: ;
+                 switch (r2) { case 2856960u: goto L_I002B9800; case 2856964u: goto L_I002B9804; case 2856968u: goto L_I002B9808; case 2856972u: goto L_I002B980C; case 2856976u: goto L_I002B9810; case 2856980u: goto L_I002B9814; case 2856984u: goto L_I002B9818; case 2856988u: goto L_I002B981C; case 2856992u: goto L_I002B9820; case 2856996u: goto L_I002B9824; case 2857000u: goto L_I002B9828; case 2857004u: goto L_I002B982C; case 2857008u: goto L_I002B9830; case 2857012u: goto L_I002B9834; case 2857016u: goto L_I002B9838; case 2857020u: goto L_I002B983C; case 2857024u: goto L_I002B9840; case 2857028u: goto L_I002B9844; case 2857032u: goto L_I002B9848; case 2857040u: goto L_I002B9850; case 2857044u: goto L_I002B9854; case 2857048u: goto L_I002B9858; case 2857052u: goto L_I002B985C; case 2857056u: goto L_I002B9860; case 2857060u: goto L_I002B9864; case 2857064u: goto L_I002B9868; case 2857068u: goto L_I002B986C; case 2857072u: goto L_I002B9870; case 2857080u: goto L_I002B9878; case 2857088u: goto L_I002B9880; case 2857092u: goto L_I002B9884; case 2857096u: goto L_I002B9888; case 2857100u: goto L_I002B988C; case 2857104u: goto L_I002B9890; case 2857112u: goto L_I002B9898; case 2857116u: goto L_I002B989C; case 2857124u: goto L_I002B98A4; case 2857128u: goto L_I002B98A8; case 2857132u: goto L_I002B98AC; case 2857136u: goto L_I002B98B0; case 2857140u: goto L_I002B98B4; case 2857148u: goto L_I002B98BC; case 2857152u: goto L_I002B98C0; case 2857156u: goto L_I002B98C4; case 2857160u: goto L_I002B98C8; case 2857168u: goto L_I002B98D0; case 2857172u: goto L_I002B98D4; case 2857176u: goto L_I002B98D8; case 2857180u: goto L_I002B98DC; case 2857188u: goto L_I002B98E4; case 2857192u: goto L_I002B98E8; case 2857196u: goto L_I002B98EC; case 2857204u: goto L_I002B98F4; case 2857208u: goto L_I002B98F8; case 2857212u: goto L_I002B98FC; case 2857216u: goto L_I002B9900; case 2857224u: goto L_I002B9908; case 2857228u: goto L_I002B990C; case 2857232u: goto L_I002B9910; case 2857236u: goto L_I002B9914; case 2857244u: goto L_I002B991C; case 2857248u: goto L_I002B9920; case 2857252u: goto L_I002B9924; case 2857256u: goto L_I002B9928; case 2857264u: goto L_I002B9930; case 2857268u: goto L_I002B9934; case 2857272u: goto L_I002B9938; case 2857276u: goto L_I002B993C; case 2857280u: goto L_I002B9940; case 2857284u: goto L_I002B9944; case 2857288u: goto L_I002B9948; case 2857292u: goto L_I002B994C; case 2857296u: goto L_I002B9950; case 2857300u: goto L_I002B9954; case 2857304u: goto L_I002B9958; case 2857308u: goto L_I002B995C; case 2857312u: goto L_I002B9960; case 2857316u: goto L_I002B9964; case 2857320u: goto L_I002B9968; case 2857324u: goto L_I002B996C; case 2857328u: goto L_I002B9970; case 2857332u: goto L_I002B9974; case 2857336u: goto L_I002B9978; case 2857340u: goto L_I002B997C; case 2857344u: goto L_I002B9980; case 2857348u: goto L_I002B9984; case 2857352u: goto L_I002B9988; case 2857356u: goto L_I002B998C; case 2857360u: goto L_I002B9990; case 2857368u: goto L_I002B9998; case 2857372u: goto L_I002B999C; case 2857380u: goto L_I002B99A4; case 2857384u: goto L_I002B99A8; case 2857388u: goto L_I002B99AC; case 2857392u: goto L_I002B99B0; case 2857396u: goto L_I002B99B4; case 2857400u: goto L_I002B99B8; case 2857404u: goto L_I002B99BC; case 2857408u: goto L_I002B99C0; case 2857412u: goto L_I002B99C4; case 2857416u: goto L_I002B99C8; case 2857420u: goto L_I002B99CC; case 2857424u: goto L_I002B99D0; case 2857428u: goto L_I002B99D4; case 2857432u: goto L_I002B99D8; case 2857436u: goto L_I002B99DC; case 2857440u: goto L_I002B99E0; case 2857444u: goto L_I002B99E4; case 2857448u: goto L_I002B99E8; case 2857452u: goto L_I002B99EC; case 2857456u: goto L_I002B99F0; case 2857460u: goto L_I002B99F4; case 2857464u: goto L_I002B99F8; case 2857472u: goto L_I002B9A00; case 2857476u: goto L_I002B9A04; case 2857480u: goto L_I002B9A08; case 2857488u: goto L_I002B9A10; case 2857492u: goto L_I002B9A14; case 2857496u: goto L_I002B9A18; case 2857500u: goto L_I002B9A1C; case 2857504u: goto L_I002B9A20; case 2857508u: goto L_I002B9A24; case 2857512u: goto L_I002B9A28; case 2857520u: goto L_I002B9A30; case 2857524u: goto L_I002B9A34; case 2857528u: goto L_I002B9A38; case 2857532u: goto L_I002B9A3C; case 2857540u: goto L_I002B9A44; case 2857544u: goto L_I002B9A48; case 2857548u: goto L_I002B9A4C; case 2857552u: goto L_I002B9A50; case 2857556u: goto L_I002B9A54; case 2857560u: goto L_I002B9A58; case 2857564u: goto L_I002B9A5C; case 2857568u: goto L_I002B9A60; case 2857572u: goto L_I002B9A64; case 2857576u: goto L_I002B9A68; case 2857580u: goto L_I002B9A6C; case 2857584u: goto L_I002B9A70; case 2857588u: goto L_I002B9A74; case 2857592u: goto L_I002B9A78; case 2857596u: goto L_I002B9A7C; case 2857600u: goto L_I002B9A80; case 2857604u: goto L_I002B9A84; case 2857608u: goto L_I002B9A88; case 2857612u: goto L_I002B9A8C; case 2857616u: goto L_I002B9A90; case 2857620u: goto L_I002B9A94; case 2857624u: goto L_I002B9A98; case 2857628u: goto L_I002B9A9C; case 2857632u: goto L_I002B9AA0; case 2857636u: goto L_I002B9AA4; case 2857640u: goto L_I002B9AA8; case 2857648u: goto L_I002B9AB0; case 2857652u: goto L_I002B9AB4; case 2857656u: goto L_I002B9AB8; case 2857660u: goto L_I002B9ABC; case 2857664u: goto L_I002B9AC0; case 2857668u: goto L_I002B9AC4; case 2857676u: goto L_I002B9ACC; case 2857680u: goto L_I002B9AD0; case 2857684u: goto L_I002B9AD4; case 2857688u: goto L_I002B9AD8; case 2857692u: goto L_I002B9ADC; case 2857696u: goto L_I002B9AE0; case 2857700u: goto L_I002B9AE4; case 2857704u: goto L_I002B9AE8; case 2857708u: goto L_I002B9AEC; case 2857716u: goto L_I002B9AF4; case 2857720u: goto L_I002B9AF8; case 2857724u: goto L_I002B9AFC; case 2857728u: goto L_I002B9B00; case 2857732u: goto L_I002B9B04; case 2857740u: goto L_I002B9B0C; case 2857744u: goto L_I002B9B10; case 2857752u: goto L_I002B9B18; case 2857756u: goto L_I002B9B1C; case 2857760u: goto L_I002B9B20; case 2857764u: goto L_I002B9B24; case 2857772u: goto L_I002B9B2C; case 2857776u: goto L_I002B9B30; case 2857780u: goto L_I002B9B34; case 2857784u: goto L_I002B9B38; case 2857788u: goto L_I002B9B3C; case 2857792u: goto L_I002B9B40; case 2857800u: goto L_I002B9B48; case 2857804u: goto L_I002B9B4C; case 2857808u: goto L_I002B9B50; case 2857812u: goto L_I002B9B54; case 2857816u: goto L_I002B9B58; case 2857820u: goto L_I002B9B5C; case 2857824u: goto L_I002B9B60; case 2857828u: goto L_I002B9B64; case 2857832u: goto L_I002B9B68; case 2857836u: goto L_I002B9B6C; case 2857840u: goto L_I002B9B70; case 2857844u: goto L_I002B9B74; case 2857848u: goto L_I002B9B78; case 2857856u: goto L_I002B9B80; case 2857860u: goto L_I002B9B84; case 2857864u: goto L_I002B9B88; case 2857868u: goto L_I002B9B8C; case 2857872u: goto L_I002B9B90; case 2857876u: goto L_I002B9B94; case 2857880u: goto L_I002B9B98; case 2857884u: goto L_I002B9B9C; case 2857888u: goto L_I002B9BA0; case 2857892u: goto L_I002B9BA4; case 2857896u: goto L_I002B9BA8; case 2857900u: goto L_I002B9BAC; case 2857904u: goto L_I002B9BB0; case 2857908u: goto L_I002B9BB4; case 2857916u: goto L_I002B9BBC; case 2857920u: goto L_I002B9BC0; case 2857924u: goto L_I002B9BC4; case 2857932u: goto L_I002B9BCC; case 2857936u: goto L_I002B9BD0; case 2857940u: goto L_I002B9BD4; case 2857948u: goto L_I002B9BDC; case 2857952u: goto L_I002B9BE0; case 2857956u: goto L_I002B9BE4; case 2857960u: goto L_I002B9BE8; case 2857968u: goto L_I002B9BF0; case 2857972u: goto L_I002B9BF4; case 2857976u: goto L_I002B9BF8; case 2857980u: goto L_I002B9BFC; case 2857988u: goto L_I002B9C04; case 2857992u: goto L_I002B9C08; case 2857996u: goto L_I002B9C0C; case 2858000u: goto L_I002B9C10; case 2858004u: goto L_I002B9C14; case 2858008u: goto L_I002B9C18; case 2858012u: goto L_I002B9C1C; case 2858020u: goto L_I002B9C24; case 2858024u: goto L_I002B9C28; case 2858028u: goto L_I002B9C2C; case 2858032u: goto L_I002B9C30; case 2858036u: goto L_I002B9C34; case 2858044u: goto L_I002B9C3C; case 2858048u: goto L_I002B9C40; case 2858052u: goto L_I002B9C44; case 2858056u: goto L_I002B9C48; case 2858060u: goto L_I002B9C4C; case 2858064u: goto L_I002B9C50; case 2858068u: goto L_I002B9C54; case 2858076u: goto L_I002B9C5C; case 2858084u: goto L_I002B9C64; case 2858088u: goto L_I002B9C68; case 2858092u: goto L_I002B9C6C; case 2858096u: goto L_I002B9C70; case 2858100u: goto L_I002B9C74; case 2858104u: goto L_I002B9C78; case 2858108u: goto L_I002B9C7C; case 2858116u: goto L_I002B9C84; case 2858120u: goto L_I002B9C88; case 2858124u: goto L_I002B9C8C; case 2858128u: goto L_I002B9C90; case 2858132u: goto L_I002B9C94; case 2858136u: goto L_I002B9C98; case 2858140u: goto L_I002B9C9C; case 2858148u: goto L_I002B9CA4; case 2858152u: goto L_I002B9CA8; case 2858156u: goto L_I002B9CAC; case 2858160u: goto L_I002B9CB0; case 2858164u: goto L_I002B9CB4; case 2858168u: goto L_I002B9CB8; case 2858172u: goto L_I002B9CBC; case 2858176u: goto L_I002B9CC0; case 2858184u: goto L_I002B9CC8; case 2858188u: goto L_I002B9CCC; case 2858196u: goto L_I002B9CD4; case 2858200u: goto L_I002B9CD8; case 2858208u: goto L_I002B9CE0; case 2858212u: goto L_I002B9CE4; case 2858216u: goto L_I002B9CE8; case 2858220u: goto L_I002B9CEC; case 2858224u: goto L_I002B9CF0; case 2858228u: goto L_I002B9CF4; case 2858232u: goto L_I002B9CF8; case 2858240u: goto L_I002B9D00; case 2858244u: goto L_I002B9D04; case 2858248u: goto L_I002B9D08; case 2858252u: goto L_I002B9D0C; case 2858260u: goto L_I002B9D14; case 2858264u: goto L_I002B9D18; case 2858268u: goto L_I002B9D1C; case 2858272u: goto L_I002B9D20; case 2858276u: goto L_I002B9D24; case 2858280u: goto L_I002B9D28; case 2858284u: goto L_I002B9D2C; case 2858288u: goto L_I002B9D30; case 2858292u: goto L_I002B9D34; case 2858296u: goto L_I002B9D38; case 2858300u: goto L_I002B9D3C; case 2858304u: goto L_I002B9D40; case 2858308u: goto L_I002B9D44; default: throw new InvalidOperationException($"bad jump table target {r2:X8} in func_002B9800"); }
+                L_L002B98E4: ;
+                L_I002B98E4: ;
+                r17 = Mem.U32((r16 + 60u));
+                L_I002B98E8: ;
+                r2 = (uint)(int)Mem.S16((r17 + 10u));
+                L_I002B98EC: ;
+                { bool c_ = r2 == 0; r20 = r16; if (c_) goto L_L002B9908; }
+                L_I002B98F4: ;
+                r4 = r16;
+                L_I002B98F8: ;
+                r5 = (uint)8;
+                L_I002B98FC: ;
+                r2 = Mem.U32((r16 + 8u));
+                L_I002B9900: ;
+                r6 = r0; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B9908: ;
+                L_I002B9908: ;
+                r4 = r16;
+                L_I002B990C: ;
+                r6 = Mem.U32((r17 + 24u));
+                L_I002B9910: ;
+                r2 = Mem.U32((r16 + 8u));
+                L_I002B9914: ;
+                r5 = (uint)5; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_I002B991C: ;
+                r4 = r16;
+                L_I002B9920: ;
+                r5 = (uint)9;
+                L_I002B9924: ;
+                r2 = Mem.U32((r16 + 8u));
+                L_I002B9928: ;
+                r6 = r0; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_I002B9930: ;
+                Mem.Set((r16 + 56u), r23);
+                L_I002B9934: ;
+                Mem.Set((r16 + 48u), r0);
+                L_I002B9938: ;
+                r2 = Mem.U32((r17 + 20u));
+                L_I002B993C: ;
+                Mem.Set((r16 + 52u), r2);
+                L_I002B9940: ;
+                r2 = (uint)(int)Mem.S16((r17 + 16u));
+                L_I002B9944: ;
+                { long p_ = (long)(int)r2 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                L_I002B9948: ;
+                r8 = lo;
+                L_I002B994C: ;
+                r2 = (uint)((int)r8 >> 15);
+                L_I002B9950: ;
+                Mem.Set((r16 + 26u), (ushort)r2);
+                L_I002B9954: ;
+                r2 = Mem.U8((r17 + 18u));
+                L_I002B9958: ;
+                Mem.Set((r16 + 24u), (ushort)r2);
+                L_I002B995C: ;
+                r2 = Mem.U8((r17 + 19u));
+                L_I002B9960: ;
+                r2 = r2 << 1;
+                L_I002B9964: ;
+                r2 = r2 + r21;
+                L_I002B9968: ;
+                r2 = Mem.U16((r2 + 0u));
+                L_I002B996C: ;
+                Mem.Set((r16 + 32u), (ushort)r2);
+                L_I002B9970: ;
+                r2 = Mem.U8((r17 + 19u));
+                L_I002B9974: ;
+                r8 = (uint)127;
+                L_I002B9978: ;
+                r2 = r8 - r2;
+                L_I002B997C: ;
+                r2 = r2 << 1;
+                L_I002B9980: ;
+                r2 = r2 + r21;
+                L_I002B9984: ;
+                r2 = Mem.U16((r2 + 0u));
+                L_I002B9988: ;
+                Mem.Set((r16 + 34u), (ushort)r2);
+                L_I002B998C: ;
+                r2 = Mem.U32((r17 + 20u));
+                L_I002B9990: ;
+                { bool c_ = r2 == 0;  if (c_) goto L_L002B99A4; }
+                L_I002B9998: ;
+                Mem.Set((r16 + 28u), (ushort)r23);
+                L_I002B999C: ;
+                Mem.Set((r16 + 30u), (ushort)r23); goto L_L002B99F4;
+                L_L002B99A4: ;
+                L_I002B99A4: ;
+                r2 = (uint)(int)Mem.S16((r16 + 24u));
+                L_I002B99A8: ;
+                r3 = (uint)(int)Mem.S16((r16 + 26u));
+                L_I002B99AC: ;
+                r2 = r2 << 1;
+                L_I002B99B0: ;
+                r2 = r2 + r21;
+                L_I002B99B4: ;
+                r2 = (uint)(int)Mem.S16((r2 + 0u));
+                L_I002B99B8: ;
+                { long p_ = (long)(int)r3 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                L_I002B99BC: ;
+                r2 = (uint)(int)Mem.S16((r16 + 24u));
+                L_I002B99C0: ;
+                r8 = lo;
+                L_I002B99C4: ;
+                r3 = (uint)((int)r8 >> 15);
+                L_I002B99C8: ;
+                r8 = (uint)127;
+                L_I002B99CC: ;
+                r2 = r8 - r2;
+                L_I002B99D0: ;
+                r2 = r2 << 1;
+                L_I002B99D4: ;
+                r2 = r2 + r21;
+                L_I002B99D8: ;
+                Mem.Set((r16 + 28u), (ushort)r3);
+                L_I002B99DC: ;
+                r3 = (uint)(int)Mem.S16((r16 + 26u));
+                L_I002B99E0: ;
+                r2 = (uint)(int)Mem.S16((r2 + 0u));
+                L_I002B99E4: ;
+                { long p_ = (long)(int)r3 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                L_I002B99E8: ;
+                r8 = lo;
+                L_I002B99EC: ;
+                r2 = (uint)((int)r8 >> 15);
+                L_I002B99F0: ;
+                Mem.Set((r16 + 30u), (ushort)r2);
+                L_L002B99F4: ;
+                L_I002B99F4: ;
+                r4 = Mem.U32((r20 + 0u));
+                L_I002B99F8: ;
+                { bool c_ = r4 == 0; r5 = (uint)7; if (c_) goto L_L002B9CA4; }
+                L_I002B9A00: ;
+                r6 = Mem.U32((r17 + 12u));
+                L_I002B9A04: ;
+                r2 = Mem.U32((r4 + 8u));
+                L_I002B9A08: ;
+                 goto L_L002B9C9C;
+                L_L002B9A10: ;
+                L_I002B9A10: ;
+                r4 = r16;
+                L_I002B9A14: ;
+                r5 = r29 + 24u;
+                L_I002B9A18: ;
+                r6 = r29 + 26u;
+                L_I002B9A1C: ;
+                r8 = Mem.U32((r29 + 84u));
+                L_I002B9A20: ;
+                r7 = r18;
+                L_I002B9A24: ;
+                Mem.Set((r29 + 20u), r19);
+                L_I002B9A28: ;
+                Mem.Set((r29 + 16u), r8); r2 = _pullSubFrame(r4, r5, r6, (int)r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u));
+                L_I002B9A30: ;
+                r5 = Mem.U32((r16 + 48u));
+                L_I002B9A34: ;
+                r3 = Mem.U32((r16 + 52u));
+                L_I002B9A38: ;
+                r3 = (uint)((int)r5 < (int)r3 ? 1 : 0);
+                L_I002B9A3C: ;
+                { bool c_ = r3 != 0; r19 = r2; if (c_) goto L_L002B9AB0; }
+                L_I002B9A44: ;
+                r2 = (uint)(int)Mem.S16((r16 + 24u));
+                L_I002B9A48: ;
+                r3 = (uint)(int)Mem.S16((r16 + 26u));
+                L_I002B9A4C: ;
+                r2 = r2 << 1;
+                L_I002B9A50: ;
+                r2 = r2 + r21;
+                L_I002B9A54: ;
+                r2 = (uint)(int)Mem.S16((r2 + 0u));
+                L_I002B9A58: ;
+                { long p_ = (long)(int)r3 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                L_I002B9A5C: ;
+                r2 = (uint)(int)Mem.S16((r16 + 24u));
+                L_I002B9A60: ;
+                r8 = lo;
+                L_I002B9A64: ;
+                r3 = (uint)((int)r8 >> 15);
+                L_I002B9A68: ;
+                r8 = (uint)127;
+                L_I002B9A6C: ;
+                r2 = r8 - r2;
+                L_I002B9A70: ;
+                r2 = r2 << 1;
+                L_I002B9A74: ;
+                r2 = r2 + r21;
+                L_I002B9A78: ;
+                Mem.Set((r16 + 40u), (ushort)r3);
+                L_I002B9A7C: ;
+                r3 = (uint)(int)Mem.S16((r16 + 26u));
+                L_I002B9A80: ;
+                r2 = (uint)(int)Mem.S16((r2 + 0u));
+                L_I002B9A84: ;
+                { long p_ = (long)(int)r3 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                L_I002B9A88: ;
+                r3 = Mem.U16((r16 + 40u));
+                L_I002B9A8C: ;
+                r8 = lo;
+                L_I002B9A90: ;
+                r2 = (uint)((int)r8 >> 15);
+                L_I002B9A94: ;
+                Mem.Set((r16 + 46u), (ushort)r2);
+                L_I002B9A98: ;
+                r2 = Mem.U32((r16 + 52u));
+                L_I002B9A9C: ;
+                r4 = Mem.U16((r16 + 46u));
+                L_I002B9AA0: ;
+                Mem.Set((r16 + 28u), (ushort)r3);
+                L_I002B9AA4: ;
+                Mem.Set((r16 + 48u), r2);
+                L_I002B9AA8: ;
+                Mem.Set((r16 + 30u), (ushort)r4); goto L_L002B9B00;
+                L_L002B9AB0: ;
+                L_I002B9AB0: ;
+                r6 = (uint)(int)Mem.S16((r16 + 38u));
+                L_I002B9AB4: ;
+                r2 = (uint)(int)Mem.S16((r16 + 28u));
+                L_I002B9AB8: ;
+                r7 = Mem.U16((r16 + 36u));
+                L_I002B9ABC: ;
+                Cpu.SetW(12, r2);
+                L_I002B9AC0: ;
+                Cpu.SetS(12, (float)(int)Cpu.W(12));
+                L_I002B9AC4: ;
+                Cpu.SetS(0, _getVol(Cpu.S(12), (int)r5, (short)r6, (ushort)r7));
+                L_I002B9ACC: ;
+                r5 = Mem.U32((r16 + 48u));
+                L_I002B9AD0: ;
+                r6 = (uint)(int)Mem.S16((r16 + 44u));
+                L_I002B9AD4: ;
+                r7 = Mem.U16((r16 + 42u));
+                L_I002B9AD8: ;
+                r3 = (uint)(int)Mem.S16((r16 + 30u));
+                L_I002B9ADC: ;
+                Cpu.SetW(1, (uint)(int)Cpu.S(0));
+                L_I002B9AE0: ;
+                r2 = Cpu.W(1);
+                L_I002B9AE4: ;
+                Cpu.SetW(12, r3);
+                L_I002B9AE8: ;
+                Cpu.SetS(12, (float)(int)Cpu.W(12));
+                L_I002B9AEC: ;
+                Mem.Set((r16 + 28u), (ushort)r2); Cpu.SetS(0, _getVol(Cpu.S(12), (int)r5, (short)r6, (ushort)r7));
+                L_I002B9AF4: ;
+                Cpu.SetW(1, (uint)(int)Cpu.S(0));
+                L_I002B9AF8: ;
+                r2 = Cpu.W(1);
+                L_I002B9AFC: ;
+                Mem.Set((r16 + 30u), (ushort)r2);
+                L_L002B9B00: ;
+                L_I002B9B00: ;
+                r2 = (uint)(int)Mem.S16((r16 + 28u));
+                L_I002B9B04: ;
+                if (r2 == 0) { Mem.Set((r16 + 28u), (ushort)r23); goto L_L002B9B0C; }
+                L_L002B9B0C: ;
+                L_I002B9B0C: ;
+                r2 = (uint)(int)Mem.S16((r16 + 30u));
+                L_I002B9B10: ;
+                if (r2 == 0) { Mem.Set((r16 + 30u), (ushort)r23); goto L_L002B9B18; }
+                L_L002B9B18: ;
+                L_I002B9B18: ;
+                r4 = Mem.U32((r16 + 60u));
+                L_I002B9B1C: ;
+                r3 = (uint)(int)Mem.S16((r4 + 8u));
+                L_I002B9B20: ;
+                r2 = (uint)12;
+                L_I002B9B24: ;
+                { bool c_ = r3 != r2;  if (c_) goto L_L002B9B34; }
+                L_I002B9B2C: ;
+                r2 = Mem.U16((r4 + 14u));
+                L_I002B9B30: ;
+                Mem.Set((r16 + 24u), (ushort)r2);
+                L_L002B9B34: ;
+                L_I002B9B34: ;
+                r2 = Mem.U32((r16 + 60u));
+                L_I002B9B38: ;
+                r3 = (uint)(int)Mem.S16((r2 + 8u));
+                L_I002B9B3C: ;
+                r2 = (uint)11;
+                L_I002B9B40: ;
+                { bool c_ = r3 != r2;  if (c_) goto L_L002B9B6C; }
+                L_I002B9B48: ;
+                r2 = Mem.U32((r16 + 60u));
+                L_I002B9B4C: ;
+                Mem.Set((r16 + 48u), r0);
+                L_I002B9B50: ;
+                r3 = Mem.U32((r2 + 12u));
+                L_I002B9B54: ;
+                { long p_ = (long)(int)r3 * (int)r3; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                L_I002B9B58: ;
+                r8 = lo;
+                L_I002B9B5C: ;
+                r3 = (uint)((int)r8 >> 15);
+                L_I002B9B60: ;
+                Mem.Set((r16 + 26u), (ushort)r3);
+                L_I002B9B64: ;
+                r2 = Mem.U32((r2 + 16u));
+                L_I002B9B68: ;
+                Mem.Set((r16 + 52u), r2);
+                L_L002B9B6C: ;
+                L_I002B9B6C: ;
+                r4 = Mem.U32((r16 + 60u));
+                L_I002B9B70: ;
+                r3 = (uint)(int)Mem.S16((r4 + 8u));
+                L_I002B9B74: ;
+                r2 = (uint)16;
+                L_I002B9B78: ;
+                if (r3 != r2) { Mem.Set((r16 + 56u), r23); goto L_L002B9CA4; }
+                L_I002B9B80: ;
+                r2 = Mem.U32((r4 + 12u));
+                L_I002B9B84: ;
+                r2 = r2 << 1;
+                L_I002B9B88: ;
+                r2 = r2 + r21;
+                L_I002B9B8C: ;
+                r2 = Mem.U16((r2 + 0u));
+                L_I002B9B90: ;
+                r3 = r4;
+                L_I002B9B94: ;
+                Mem.Set((r16 + 32u), (ushort)r2);
+                L_I002B9B98: ;
+                r2 = Mem.U32((r3 + 12u));
+                L_I002B9B9C: ;
+                r8 = (uint)127;
+                L_I002B9BA0: ;
+                r2 = r8 - r2;
+                L_I002B9BA4: ;
+                r2 = r2 << 1;
+                L_I002B9BA8: ;
+                r2 = r2 + r21;
+                L_I002B9BAC: ;
+                r2 = Mem.U16((r2 + 0u));
+                L_I002B9BB0: ;
+                Mem.Set((r16 + 34u), (ushort)r2);
+                L_I002B9BB4: ;
+                Mem.Set((r16 + 56u), r23); goto L_L002B9CA4;
+                L_L002B9BBC: ;
+                L_I002B9BBC: ;
+                r17 = Mem.U32((r16 + 60u));
+                L_I002B9BC0: ;
+                r2 = (uint)(int)Mem.S16((r17 + 10u));
+                L_I002B9BC4: ;
+                { bool c_ = r2 == 0; r4 = r16; if (c_) goto L_L002B9BDC; }
+                L_I002B9BCC: ;
+                r5 = (uint)8;
+                L_I002B9BD0: ;
+                r2 = Mem.U32((r16 + 8u));
+                L_I002B9BD4: ;
+                r6 = r0; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B9BDC: ;
+                L_I002B9BDC: ;
+                r4 = r16;
+                L_I002B9BE0: ;
+                r6 = Mem.U32((r17 + 12u));
+                L_I002B9BE4: ;
+                r2 = Mem.U32((r16 + 8u));
+                L_I002B9BE8: ;
+                r5 = (uint)5; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_I002B9BF0: ;
+                r4 = r16;
+                L_I002B9BF4: ;
+                r5 = (uint)9;
+                L_I002B9BF8: ;
+                r2 = Mem.U32((r16 + 8u));
+                L_I002B9BFC: ;
+                r6 = r0; goto L_L002B9C9C;
+                L_L002B9C04: ;
+                L_I002B9C04: ;
+                r4 = r16;
+                L_I002B9C08: ;
+                r5 = r29 + 24u;
+                L_I002B9C0C: ;
+                r6 = r29 + 26u;
+                L_I002B9C10: ;
+                r8 = Mem.U32((r29 + 84u));
+                L_I002B9C14: ;
+                r7 = r18;
+                L_I002B9C18: ;
+                Mem.Set((r29 + 20u), r19);
+                L_I002B9C1C: ;
+                Mem.Set((r29 + 16u), r8); r2 = _pullSubFrame(r4, r5, r6, (int)r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u));
+                L_I002B9C24: ;
+                r19 = r2;
+                L_I002B9C28: ;
+                r4 = r16;
+                L_I002B9C2C: ;
+                r5 = (uint)4;
+                L_I002B9C30: ;
+                r2 = Mem.U32((r16 + 8u));
+                L_I002B9C34: ;
+                r6 = r0; goto L_L002B9C9C;
+                L_L002B9C3C: ;
+                L_I002B9C3C: ;
+                r2 = Mem.U32((r16 + 60u));
+                L_I002B9C40: ;
+                r4 = 2148401152u;
+                L_I002B9C44: ;
+                r4 = Mem.U32((r4 - 32608u));
+                L_I002B9C48: ;
+                r3 = Mem.U32((r2 + 12u));
+                L_I002B9C4C: ;
+                Mem.Set((r3 + 216u), r0);
+                L_I002B9C50: ;
+                r5 = Mem.U32((r2 + 12u));
+                L_I002B9C54: ;
+                r22 = r22 - r18; _freePVoice(r4, r5);
+                L_I002B9C5C: ;
+                r2 = r18 << 1; goto L_L002B9CAC;
+                L_L002B9C64: ;
+                L_I002B9C64: ;
+                r4 = r16;
+                L_I002B9C68: ;
+                r5 = r29 + 24u;
+                L_I002B9C6C: ;
+                r6 = r29 + 26u;
+                L_I002B9C70: ;
+                r8 = Mem.U32((r29 + 84u));
+                L_I002B9C74: ;
+                r7 = r18;
+                L_I002B9C78: ;
+                Mem.Set((r29 + 20u), r19);
+                L_I002B9C7C: ;
+                Mem.Set((r29 + 16u), r8); r2 = _pullSubFrame(r4, r5, r6, (int)r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u));
+                L_I002B9C84: ;
+                r19 = r2;
+                L_I002B9C88: ;
+                r3 = Mem.U32((r16 + 60u));
+                L_I002B9C8C: ;
+                r2 = Mem.U32((r16 + 8u));
+                L_I002B9C90: ;
+                r5 = (uint)(int)Mem.S16((r3 + 8u));
+                L_I002B9C94: ;
+                r6 = Mem.U32((r3 + 12u));
+                L_I002B9C98: ;
+                r4 = r16;
+                L_L002B9C9C: ;
+                L_I002B9C9C: ;
+                r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002B9CA4: ;
+                L_I002B9CA4: ;
+                r22 = r22 - r18;
+                L_I002B9CA8: ;
+                r2 = r18 << 1;
+                L_L002B9CAC: ;
+                L_I002B9CAC: ;
+                r5 = Mem.U32((r16 + 60u));
+                L_I002B9CB0: ;
+                r3 = Mem.U16((r29 + 26u));
+                L_I002B9CB4: ;
+                r4 = Mem.U32((r5 + 0u));
+                L_I002B9CB8: ;
+                r3 = r3 + r2;
+                L_I002B9CBC: ;
+                Mem.Set((r29 + 26u), (ushort)r3);
+                L_I002B9CC0: ;
+                { bool c_ = r4 != 0; Mem.Set((r16 + 60u), r4); if (c_) goto L_L002B9CCC; }
+                L_I002B9CC8: ;
+                Mem.Set((r16 + 64u), r0);
+                L_L002B9CCC: ;
+                L_I002B9CCC: ;
+                r4 = r5; __freeParam(r4);
+                L_I002B9CD4: ;
+                r2 = Mem.U32((r16 + 60u));
+                L_I002B9CD8: ;
+                { bool c_ = r2 != 0; r3 = r30; if (c_) goto L_L002B9864; }
+                L_L002B9CE0: ;
+                L_I002B9CE0: ;
+                r4 = r16;
+                L_L002B9CE4: ;
+                L_I002B9CE4: ;
+                r5 = r29 + 24u;
+                L_I002B9CE8: ;
+                r6 = r29 + 26u;
+                L_I002B9CEC: ;
+                r8 = Mem.U32((r29 + 84u));
+                L_I002B9CF0: ;
+                r7 = r22;
+                L_I002B9CF4: ;
+                Mem.Set((r29 + 20u), r19);
+                L_I002B9CF8: ;
+                Mem.Set((r29 + 16u), r8); r2 = _pullSubFrame(r4, r5, r6, (int)r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u));
+                L_I002B9D00: ;
+                r3 = Mem.U32((r16 + 48u));
+                L_I002B9D04: ;
+                r4 = Mem.U32((r16 + 52u));
+                L_I002B9D08: ;
+                r3 = (uint)((int)r4 < (int)r3 ? 1 : 0);
+                L_I002B9D0C: ;
+                { bool c_ = r3 == 0; r19 = r2; if (c_) goto L_L002B9D18; }
+                L_I002B9D14: ;
+                Mem.Set((r16 + 48u), r4);
+                L_L002B9D18: ;
+                L_I002B9D18: ;
+                r2 = r19;
+                L_I002B9D1C: ;
+                r31 = Mem.U32((r29 + 68u));
+                L_I002B9D20: ;
+                r30 = Mem.U32((r29 + 64u));
+                L_I002B9D24: ;
+                r23 = Mem.U32((r29 + 60u));
+                L_I002B9D28: ;
+                r22 = Mem.U32((r29 + 56u));
+                L_I002B9D2C: ;
+                r21 = Mem.U32((r29 + 52u));
+                L_I002B9D30: ;
+                r20 = Mem.U32((r29 + 48u));
+                L_I002B9D34: ;
+                r19 = Mem.U32((r29 + 44u));
+                L_I002B9D38: ;
+                r18 = Mem.U32((r29 + 40u));
+                L_I002B9D3C: ;
+                r17 = Mem.U32((r29 + 36u));
+                L_I002B9D40: ;
+                r16 = Mem.U32((r29 + 32u));
+                L_I002B9D44: ;
+                r29 = r29 + 72u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B9800", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002B9D4C @ 0x002B9D4C [MIPS]
+    public static uint _pullSubFrame_Recompiled(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002B9D4C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                Mem.Set(r29 + 20u, a5);
+                L_func_002B9D4C: ;
+                r29 = r29 - 56u;
+                Mem.Set((r29 + 44u), r21);
+                r21 = r5;
+                Mem.Set((r29 + 36u), r19);
+                r19 = r6;
+                Mem.Set((r29 + 40u), r20);
+                Mem.Set((r29 + 28u), r17);
+                r17 = r4;
+                Mem.Set((r29 + 32u), r18);
+                r18 = Mem.U32((r29 + 76u));
+                r3 = (uint)1;
+                Mem.Set((r29 + 48u), r31);
+                Mem.Set((r29 + 24u), r16);
+                r2 = Mem.U32((r17 + 72u));
+                r16 = Mem.U32((r17 + 0u));
+                { bool c_ = r2 != r3; r20 = r7; if (c_) goto L_L002B9D98; }
+                { bool c_ = r20 != 0;  if (c_) goto L_L002B9DA0; }
+                L_L002B9D98: ;
+                r2 = r18; goto L_L002BA014;
+                L_L002B9DA0: ;
+                { bool c_ = r16 != 0; r4 = r16; if (c_) goto L_L002B9DC4; }
+                r4 = 2148335616u;
+                r4 = r4 - 14256u;
+                r5 = 2148335616u;
+                r5 = r5 - 14252u;
+                r6 = (uint)366; r2 = __assert(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r16;
+                L_L002B9DC4: ;
+                r5 = r21;
+                Mem.Set((r29 + 16u), r18);
+                r2 = Mem.U32((r4 + 4u));
+                r7 = Mem.U32((r29 + 72u));
+                r6 = r20; r2 = Funcs.CallRegX(r2, r4, r5, r6, r7, new uint[] { Mem.U32(r29 + 16u) }); r3 = Cpu.V1;
+                r18 = r2;
+                r4 = r18;
+                r3 = 134217728u;
+                r2 = Mem.U16((r21 + 0u));
+                r18 = r18 + 8u;
+                r2 = r2 | r3;
+                Mem.Set((r4 + 0u), r2);
+                r2 = r20 << 1;
+                r3 = (uint)(int)Mem.S16((r19 + 0u));
+                r2 = r2 & 65535u;
+                r3 = r3 + 1088u;
+                r3 = r3 << 16;
+                r3 = r3 | r2;
+                Mem.Set((r4 + 4u), r3);
+                r4 = r18;
+                r2 = (uint)(int)Mem.S16((r19 + 0u));
+                r3 = 134742016u;
+                r2 = r2 + 1408u;
+                r2 = r2 & 65535u;
+                r2 = r2 | r3;
+                Mem.Set((r4 + 0u), r2);
+                r2 = (uint)(int)Mem.S16((r19 + 0u));
+                r3 = r2 + 1728u;
+                r3 = r3 << 16;
+                r2 = r2 + 2048u;
+                r2 = r2 & 65535u;
+                r3 = r3 | r2;
+                Mem.Set((r4 + 4u), r3);
+                r2 = Mem.U32((r17 + 56u));
+                { bool c_ = r2 == 0; r18 = r18 + 8u; if (c_) goto L_L002B9FD8; }
+                r2 = (uint)(int)Mem.S16((r17 + 24u));
+                r3 = (uint)(int)Mem.S16((r17 + 26u));
+                Mem.Set((r17 + 56u), r0);
+                r2 = r2 << 1;
+                r1 = 2148401152u;
+                r1 = r1 + r2;
+                r2 = (uint)(int)Mem.S16((r1 - 32192u));
+                { long p_ = (long)(int)r3 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r2 = (uint)(int)Mem.S16((r17 + 28u));
+                r3 = Mem.U32((r17 + 52u));
+                Cpu.SetW(12, r2);
+                Cpu.SetD(12, (double)(int)Cpu.W(12));
+                r8 = lo;
+                r4 = (uint)((int)r8 >> 15);
+                r2 = r4 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                Cpu.SetW(14, r2);
+                Cpu.SetD(14, (double)(int)Cpu.W(14));
+                r2 = r17 + 36u;
+                Mem.Set((r17 + 40u), (ushort)r4);
+                Mem.Set((r29 + 16u), r3);
+                Mem.Set((r29 + 20u), r2); r2 = _getRate_rc(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u)); r3 = Cpu.V1;
+                r3 = (uint)(int)Mem.S16((r17 + 24u));
+                Mem.Set((r17 + 38u), (ushort)r2);
+                r2 = (uint)127;
+                r2 = r2 - r3;
+                r2 = r2 << 1;
+                r3 = (uint)(int)Mem.S16((r17 + 26u));
+                r1 = 2148401152u;
+                r1 = r1 + r2;
+                r2 = (uint)(int)Mem.S16((r1 - 32192u));
+                { long p_ = (long)(int)r3 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r2 = (uint)(int)Mem.S16((r17 + 30u));
+                r3 = Mem.U32((r17 + 52u));
+                Cpu.SetW(12, r2);
+                Cpu.SetD(12, (double)(int)Cpu.W(12));
+                r8 = lo;
+                r4 = (uint)((int)r8 >> 15);
+                r2 = r4 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                Cpu.SetW(14, r2);
+                Cpu.SetD(14, (double)(int)Cpu.W(14));
+                r2 = r17 + 42u;
+                Mem.Set((r17 + 46u), (ushort)r4);
+                Mem.Set((r29 + 16u), r3);
+                Mem.Set((r29 + 20u), r2); r2 = _getRate_rc(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u)); r3 = Cpu.V1;
+                r4 = r18;
+                r18 = r18 + 8u;
+                r5 = r18;
+                r18 = r18 + 8u;
+                r6 = r18;
+                r3 = Mem.U16((r17 + 28u));
+                r18 = r18 + 8u;
+                Mem.Set((r17 + 44u), (ushort)r2);
+                r2 = 151388160u;
+                Mem.Set((r4 + 4u), r0);
+                r3 = r3 | r2;
+                Mem.Set((r4 + 0u), r3);
+                r4 = r18;
+                r18 = r18 + 8u;
+                r3 = Mem.U16((r17 + 30u));
+                r2 = 151257088u;
+                Mem.Set((r5 + 4u), r0);
+                r3 = r3 | r2;
+                Mem.Set((r5 + 0u), r3);
+                r2 = Mem.U16((r17 + 40u));
+                r3 = 151126016u;
+                r2 = r2 | r3;
+                Mem.Set((r6 + 0u), r2);
+                r2 = Mem.U16((r17 + 38u));
+                r3 = Mem.U16((r17 + 36u));
+                r2 = r2 << 16;
+                r2 = r2 | r3;
+                Mem.Set((r6 + 4u), r2);
+                r2 = Mem.U16((r17 + 46u));
+                r3 = 150994944u;
+                r2 = r2 | r3;
+                Mem.Set((r4 + 0u), r2);
+                r2 = Mem.U16((r17 + 44u));
+                r3 = Mem.U16((r17 + 42u));
+                r2 = r2 << 16;
+                r2 = r2 | r3;
+                Mem.Set((r4 + 4u), r2);
+                r4 = r18;
+                r3 = 151519232u;
+                r2 = Mem.U16((r17 + 32u));
+                r18 = r18 + 8u;
+                r2 = r2 | r3;
+                Mem.Set((r4 + 0u), r2);
+                r2 = Mem.U16((r17 + 34u));
+                r16 = r18;
+                Mem.Set((r4 + 4u), r2);
+                r2 = 50921472u; goto L_L002B9FE0;
+                L_L002B9FD8: ;
+                r16 = r18;
+                r2 = 50855936u;
+                L_L002B9FE0: ;
+                Mem.Set((r16 + 0u), r2);
+                r4 = Mem.U32((r17 + 20u));
+                r18 = r18 + 8u; r2 = osVirtualToPhysical(r4);
+                Mem.Set((r16 + 4u), r2);
+                r2 = Mem.U16((r21 + 0u));
+                r3 = r20 << 1;
+                r2 = r2 + r3;
+                Mem.Set((r21 + 0u), (ushort)r2);
+                r3 = Mem.U32((r17 + 48u));
+                r2 = r18;
+                r3 = r3 + r20;
+                Mem.Set((r17 + 48u), r3);
+                L_L002BA014: ;
+                r31 = Mem.U32((r29 + 48u));
+                r21 = Mem.U32((r29 + 44u));
+                r20 = Mem.U32((r29 + 40u));
+                r19 = Mem.U32((r29 + 36u));
+                r18 = Mem.U32((r29 + 32u));
+                r17 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r29 = r29 + 56u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002B9D4C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002BA038 @ 0x002BA038 [MIPS]
+    public static uint func_002BA038_rc(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002BA038", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                Mem.Set(r29 + 20u, a5);
+                L_func_002BA038: ;
+                r29 = r29 - 72u;
+                r2 = Mem.U32((r29 + 88u));
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 14104u)));
+                r5 = Mem.U32((r29 + 92u));
+                Cpu.SetW(1, r2);
+                Cpu.SetS(1, (float)(int)Cpu.W(1));
+                Cpu.SetS(0, Cpu.S(0) / Cpu.S(1));
+                { bool c_ = r2 != 0; Cpu.SetD(2, (double)Cpu.S(0)); if (c_) goto L_L002BA088; }
+                fcc = Cpu.D(12) <= Cpu.D(14);
+                { bool c_ = !fcc; r2 = (uint)65535; if (c_) goto L_L002BA07C; }
+                Mem.Set((r5 + 0u), (ushort)r2);
+                r2 = (uint)32767; goto L_L002BA280;
+                L_L002BA07C: ;
+                Mem.Set((r5 + 0u), (ushort)r0);
+                r2 = r0; goto L_L002BA280;
+                L_L002BA088: ;
+                r1 = 2148335616u;
+                Cpu.Fpr[1] = Mem.U64((r1 - 14096u));
+                fcc = Cpu.D(14) < Cpu.D(1);
+                if (fcc) { Cpu.Fpr[14] = Cpu.Fpr[1]; goto L_L002BA0A0; }
+                L_L002BA0A0: ;
+                r1 = 2148335616u;
+                Cpu.Fpr[0] = Mem.U64((r1 - 14088u));
+                fcc = Cpu.D(12) <= Cpu.D(0);
+                if (fcc) { Cpu.Fpr[12] = Cpu.Fpr[1]; goto L_L002BA0B8; }
+                L_L002BA0B8: ;
+                r3 = r29;
+                r2 = 2148335616u;
+                r2 = r2 - 14168u;
+                r4 = r2 + 64u;
+                L_L002BA0C8: ;
+                r6 = Mem.U32((r2 + 0u));
+                r7 = Mem.U32((r2 + 4u));
+                r8 = Mem.U32((r2 + 8u));
+                r9 = Mem.U32((r2 + 12u));
+                Mem.Set((r3 + 0u), r6);
+                Mem.Set((r3 + 4u), r7);
+                Mem.Set((r3 + 8u), r8);
+                Mem.Set((r3 + 12u), r9);
+                r2 = r2 + 16u;
+                { bool c_ = r2 != r4; r3 = r3 + 16u; if (c_) goto L_L002BA0C8; }
+                r1 = 2148335616u;
+                Cpu.Fpr[0] = Mem.U64((r1 - 14080u));
+                Cpu.SetD(0, Cpu.D(2) * Cpu.D(0));
+                Cpu.SetD(14, Cpu.D(14) / Cpu.D(12));
+                r1 = 2148335616u;
+                Cpu.Fpr[1] = Mem.U64((r1 - 14072u));
+                r3 = r29 + 64u;
+                fcc = Cpu.D(14) == Cpu.D(1);
+                Cpu.SetW(3, (uint)(int)Cpu.D(0));
+                r4 = Cpu.W(3);
+                { bool c_ = !fcc; Mem.Set((r29 + 64u), r0); if (c_) goto L_L002BA12C; }
+                Cpu.Fpr[12] = Cpu.Fpr[14]; goto L_L002BA1BC;
+                L_L002BA12C: ;
+                r1 = 2148335616u;
+                Cpu.Fpr[0] = Mem.U64((r1 - 14064u));
+                Cpu.SetD(1, Math.Abs(Cpu.D(14)));
+                fcc = Cpu.D(0) <= Cpu.D(1);
+                { bool c_ = !fcc;  if (c_) goto L_L002BA16C; }
+                r1 = 2148335616u;
+                Cpu.Fpr[2] = Mem.U64((r1 - 14056u));
+                L_L002BA150: ;
+                Cpu.SetD(1, Cpu.D(1) * Cpu.D(2));
+                r2 = Mem.U32((r3 + 0u));
+                r2 = r2 + 1u;
+                fcc = Cpu.D(0) <= Cpu.D(1);
+                { bool c_ = fcc; Mem.Set((r3 + 0u), r2); if (c_) goto L_L002BA150; }
+                L_L002BA16C: ;
+                r1 = 2148335616u;
+                Cpu.Fpr[0] = Mem.U64((r1 - 14048u));
+                fcc = Cpu.D(1) < Cpu.D(0);
+                { bool c_ = !fcc;  if (c_) goto L_L002BA1A0; }
+                L_L002BA184: ;
+                r2 = Mem.U32((r3 + 0u));
+                Cpu.SetD(1, Cpu.D(1) + Cpu.D(1));
+                r2 = r2 - 1u;
+                fcc = Cpu.D(1) < Cpu.D(0);
+                { bool c_ = fcc; Mem.Set((r3 + 0u), r2); if (c_) goto L_L002BA184; }
+                L_L002BA1A0: ;
+                r1 = 2148335616u;
+                Cpu.Fpr[0] = Mem.U64((r1 - 14040u));
+                fcc = Cpu.D(0) < Cpu.D(14);
+                { bool c_ = fcc; Cpu.Fpr[12] = Cpu.Fpr[1]; if (c_) goto L_L002BA1BC; }
+                Cpu.SetD(12, -Cpu.D(12));
+                L_L002BA1BC: ;
+                r1 = 2148335616u;
+                Cpu.Fpr[0] = Mem.U64((r1 - 14032u));
+                Cpu.SetD(0, Cpu.D(12) * Cpu.D(0));
+                Cpu.SetW(3, (uint)(int)Cpu.D(0));
+                r2 = Cpu.W(3);
+                r2 = r2 - 8u;
+                r2 = r2 << 3;
+                r2 = r29 + r2;
+                Cpu.Fpr[0] = Mem.U64((r2 + 0u));
+                Cpu.SetW(1, Mem.U32((r29 + 64u)));
+                Cpu.SetD(1, (double)(int)Cpu.W(1));
+                Cpu.SetD(0, Cpu.D(0) + Cpu.D(1));
+                r1 = 2148335616u;
+                Cpu.Fpr[1] = Mem.U64((r1 - 14024u));
+                Cpu.SetD(0, Cpu.D(0) * Cpu.D(1));
+                r1 = 2148335616u;
+                Cpu.Fpr[2] = Mem.U64((r1 - 14016u));
+                r1 = 2148335616u;
+                Cpu.Fpr[1] = Mem.U64((r1 - 14008u));
+                Cpu.SetD(0, Cpu.D(0) / Cpu.D(2));
+                { bool c_ = r4 == 0; Cpu.SetD(0, Cpu.D(0) + Cpu.D(1)); if (c_) goto L_L002BA234; }
+                r2 = r4 & 1u;
+                L_L002BA218: ;
+                { bool c_ = r2 == 0; r4 = (uint)((int)r4 >> 1); if (c_) goto L_L002BA224; }
+                Cpu.SetD(1, Cpu.D(1) * Cpu.D(0));
+                L_L002BA224: ;
+                Cpu.SetD(0, Cpu.D(0) * Cpu.D(0));
+                { bool c_ = r4 != 0; r2 = r4 & 1u; if (c_) goto L_L002BA218; }
+                L_L002BA234: ;
+                Cpu.SetD(1, Cpu.D(1) * Cpu.D(1));
+                Cpu.SetD(1, Cpu.D(1) * Cpu.D(1));
+                Cpu.SetD(1, Cpu.D(1) * Cpu.D(1));
+                Cpu.SetW(3, (uint)(int)Cpu.D(1));
+                r2 = Cpu.W(3);
+                r2 = r2 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                Cpu.SetW(0, r2);
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                Cpu.SetD(0, (double)Cpu.S(0));
+                Cpu.SetD(0, Cpu.D(1) - Cpu.D(0));
+                r1 = 2148335616u;
+                Cpu.Fpr[1] = Mem.U64((r1 - 14000u));
+                Cpu.SetD(0, Cpu.D(0) * Cpu.D(1));
+                Cpu.SetW(3, (uint)(int)Cpu.D(0));
+                r3 = Cpu.W(3);
+                Mem.Set((r5 + 0u), (ushort)r3);
+                L_L002BA280: ;
+                r29 = r29 + 72u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002BA038", r2); Stack.Free(384); }
+    }
+
+    public static int _getRate_Recompiled(double p0, double p1, int p2, int p3)
+    {
+        Cpu.SetD(12, p0);
+        Cpu.SetD(14, p1);
+        return (int)func_002BA038_rc(0u, 0u, 0u, 0u, (uint)p2, (uint)p3);
+    }
+
+    // ==== func_002BA288 @ 0x002BA288 [MIPS]
+    public static uint alEnvmixerParam_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002BA288", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002BA288: ;
+                r29 = r29 - 24u;
+                Mem.Set((r29 + 16u), r31);
+                r2 = (uint)3;
+                { bool c_ = r5 == r2; r3 = r4; if (c_) goto L_L002BA2D4; }
+                r2 = (uint)((int)r5 < 4 ? 1 : 0);
+                { bool c_ = r2 == 0; r2 = (uint)1; if (c_) goto L_L002BA2B8; }
+                if (r5 == r2) { Mem.Set((r4 + 0u), r6); goto L_L002BA348; }
+                 goto L_L002BA330;
+                L_L002BA2B8: ;
+                r2 = (uint)4;
+                { bool c_ = r5 == r2; r2 = (uint)9; if (c_) goto L_L002BA2EC; }
+                { bool c_ = r5 == r2; r2 = (uint)1; if (c_) goto L_L002BA314; }
+                 goto L_L002BA330;
+                L_L002BA2D4: ;
+                r2 = Mem.U32((r4 + 64u));
+                if (r2 == 0) { Mem.Set((r4 + 60u), r6); goto L_L002BA2E4; }
+                Mem.Set((r2 + 0u), r6);
+                L_L002BA2E4: ;
+                Mem.Set((r3 + 64u), r6); goto L_L002BA348;
+                L_L002BA2EC: ;
+                r3 = Mem.U32((r4 + 0u));
+                r2 = (uint)1;
+                Mem.Set((r4 + 56u), r2);
+                Mem.Set((r4 + 72u), r0);
+                { bool c_ = r3 == 0; Mem.Set((r4 + 26u), (ushort)r2); if (c_) goto L_L002BA348; }
+                r4 = r3;
+                r2 = Mem.U32((r4 + 8u));
+                r5 = (uint)4; goto L_L002BA340;
+                L_L002BA314: ;
+                r3 = Mem.U32((r4 + 0u));
+                { bool c_ = r3 == 0; Mem.Set((r4 + 72u), r2); if (c_) goto L_L002BA348; }
+                r4 = r3;
+                r2 = Mem.U32((r4 + 8u));
+                r5 = (uint)9; goto L_L002BA340;
+                L_L002BA330: ;
+                r4 = Mem.U32((r4 + 0u));
+                { bool c_ = r4 == 0;  if (c_) goto L_L002BA348; }
+                r2 = Mem.U32((r4 + 8u));
+                L_L002BA340: ;
+                r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002BA348: ;
+                r31 = Mem.U32((r29 + 16u));
+                r2 = r0;
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002BA288", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002BA358 @ 0x002BA358 [MIPS]
+    public static uint func_002BA358_rc(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002BA358", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002BA358: ;
+                r5 = (uint)((int)r5 >> 3);
+                { bool c_ = r5 != 0; r3 = r0; if (c_) goto L_L002BA36C; }
+                Cpu.SetS(0, Cpu.S(12)); Cpu.V1 = r3; return r2;
+                L_L002BA36C: ;
+                r2 = r6 << 16;
+                Cpu.SetW(1, r2);
+                Cpu.SetS(1, (float)(int)Cpu.W(1));
+                r2 = r7 & 65535u;
+                Cpu.SetW(0, r2);
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                Cpu.SetS(1, Cpu.S(1) + Cpu.S(0));
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 13992u)));
+                r1 = 2148335616u;
+                Cpu.SetW(2, Mem.U32((r1 - 13988u)));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
+                r2 = r5 & 1u;
+                L_L002BA3A0: ;
+                { bool c_ = r2 == 0; r5 = (uint)((int)r5 >> 1); if (c_) goto L_L002BA3AC; }
+                Cpu.SetS(2, Cpu.S(2) * Cpu.S(1));
+                L_L002BA3AC: ;
+                { bool c_ = r5 == 0; r3 = r3 + 1u; if (c_) goto L_L002BA3C4; }
+                r2 = (uint)((int)r3 < 32 ? 1 : 0);
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(1));
+                { bool c_ = r2 != 0; r2 = r5 & 1u; if (c_) goto L_L002BA3A0; }
+                L_L002BA3C4: ;
+                Cpu.SetS(0, Cpu.S(12) * Cpu.S(2));
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002BA358", r2); Stack.Free(384); }
+    }
+
+    public static float _getVol_Recompiled(float p0, int p1, int p2, int p3)
+    {
+        Cpu.SetS(12, p0);
+        func_002BA358_rc(0u, (uint)p1, (uint)p2, (uint)p3); return Cpu.S(0);
+    }
+
+    // ==== func_002BA4A4 @ 0x002BA4A4 [MIPS]
+    public static uint alFilterNew_Entry_002BA4A4(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002BA4A4", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_002BA4A4: ;
+                r4 = r17 + r0;
+                r5 = r19 + r0;
+                r6 = r18 + r0;
+                L_func_002BA4B0: ;
+                Mem.Set((r4 + 0u), r0);
+                Mem.Set((r4 + 4u), r5);
+                Mem.Set((r4 + 8u), r6);
+                Mem.Set((r4 + 12u), (ushort)r0);
+                Mem.Set((r4 + 14u), (ushort)r0);
+                Mem.Set((r4 + 16u), r7); Cpu.V1 = r3; return r2;
+                r5 = r16;
+                L_func_002BA4D0: ;
+                r29 = r29 - 64u;
+                Mem.Set((r29 + 52u), r23);
+                r23 = r6;
+                r3 = 33554432u;
+                r3 = r3 | 1088u;
+                Mem.Set((r29 + 68u), r5);
+                r5 = 33554432u;
+                r6 = Mem.U32((r29 + 80u));
+                r5 = r5 | 1408u;
+                Mem.Set((r29 + 28u), r17);
+                r17 = r0;
+                Mem.Set((r29 + 36u), r19);
+                r19 = r4;
+                Mem.Set((r29 + 60u), r31);
+                Mem.Set((r29 + 56u), r30);
+                Mem.Set((r29 + 48u), r22);
+                Mem.Set((r29 + 44u), r21);
+                Mem.Set((r29 + 40u), r20);
+                Mem.Set((r29 + 32u), r18);
+                Mem.Set((r29 + 24u), r16);
+                Mem.Set((r29 + 76u), r7);
+                r4 = Mem.U32((r19 + 28u));
+                r2 = r6;
+                r6 = r6 + 8u;
+                Mem.Set((r2 + 0u), r3);
+                r3 = r23 << 1;
+                Mem.Set((r2 + 4u), r3);
+                r2 = r6;
+                Mem.Set((r2 + 0u), r5);
+                Mem.Set((r2 + 4u), r3);
+                r2 = Mem.U32((r19 + 20u));
+                { bool c_ = (int)r2 <= 0; r6 = r6 + 8u; if (c_) goto L_L002BA5DC; }
+                r30 = 134217728u;
+                r22 = r3 & 65535u;
+                r18 = 201326592u;
+                r18 = r18 | 32767u;
+                r21 = 113246208u;
+                r21 = r21 | 1088u;
+                r20 = r30;
+                r20 = r20 | 1408u;
+                r16 = r4;
+                L_L002BA578: ;
+                r2 = Mem.U32((r16 + 0u));
+                Mem.Set((r29 + 16u), r6);
+                r4 = Mem.U32((r16 + 0u));
+                r16 = r16 + 4u;
+                r17 = r17 + 1u;
+                r5 = Mem.U32((r29 + 68u));
+                r7 = Mem.U32((r29 + 76u));
+                r2 = Mem.U32((r2 + 4u));
+                r6 = r23; r2 = Funcs.CallRegX(r2, r4, r5, r6, r7, new uint[] { Mem.U32(r29 + 16u) }); r3 = Cpu.V1;
+                r6 = r2;
+                r6 = r6 + 8u;
+                r3 = r6;
+                r6 = r6 + 8u;
+                Mem.Set((r2 + 0u), r30);
+                Mem.Set((r2 + 4u), r22);
+                r2 = r6;
+                Mem.Set((r3 + 0u), r18);
+                Mem.Set((r3 + 4u), r21);
+                Mem.Set((r2 + 0u), r18);
+                Mem.Set((r2 + 4u), r20);
+                r2 = Mem.U32((r19 + 20u));
+                r2 = (uint)((int)r17 < (int)r2 ? 1 : 0);
+                { bool c_ = r2 != 0; r6 = r6 + 8u; if (c_) goto L_L002BA578; }
+                L_L002BA5DC: ;
+                r31 = Mem.U32((r29 + 60u));
+                r30 = Mem.U32((r29 + 56u));
+                r23 = Mem.U32((r29 + 52u));
+                r22 = Mem.U32((r29 + 48u));
+                r21 = Mem.U32((r29 + 44u));
+                r20 = Mem.U32((r29 + 40u));
+                r19 = Mem.U32((r29 + 36u));
+                r18 = Mem.U32((r29 + 32u));
+                r17 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r2 = r6;
+                r29 = r29 + 64u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002BA4A4", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002BA4B0 @ 0x002BA4B0 [MIPS]
+    public static uint alFilterNew_Recompiled(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002BA4B0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_002BA4B0: ;
+                Mem.Set((r4 + 0u), r0);
+                Mem.Set((r4 + 4u), r5);
+                Mem.Set((r4 + 8u), r6);
+                Mem.Set((r4 + 12u), (ushort)r0);
+                Mem.Set((r4 + 14u), (ushort)r0);
+                Mem.Set((r4 + 16u), r7); Cpu.V1 = r3; return r2;
+                r5 = r16;
+                L_func_002BA4D0: ;
+                r29 = r29 - 64u;
+                Mem.Set((r29 + 52u), r23);
+                r23 = r6;
+                r3 = 33554432u;
+                r3 = r3 | 1088u;
+                Mem.Set((r29 + 68u), r5);
+                r5 = 33554432u;
+                r6 = Mem.U32((r29 + 80u));
+                r5 = r5 | 1408u;
+                Mem.Set((r29 + 28u), r17);
+                r17 = r0;
+                Mem.Set((r29 + 36u), r19);
+                r19 = r4;
+                Mem.Set((r29 + 60u), r31);
+                Mem.Set((r29 + 56u), r30);
+                Mem.Set((r29 + 48u), r22);
+                Mem.Set((r29 + 44u), r21);
+                Mem.Set((r29 + 40u), r20);
+                Mem.Set((r29 + 32u), r18);
+                Mem.Set((r29 + 24u), r16);
+                Mem.Set((r29 + 76u), r7);
+                r4 = Mem.U32((r19 + 28u));
+                r2 = r6;
+                r6 = r6 + 8u;
+                Mem.Set((r2 + 0u), r3);
+                r3 = r23 << 1;
+                Mem.Set((r2 + 4u), r3);
+                r2 = r6;
+                Mem.Set((r2 + 0u), r5);
+                Mem.Set((r2 + 4u), r3);
+                r2 = Mem.U32((r19 + 20u));
+                { bool c_ = (int)r2 <= 0; r6 = r6 + 8u; if (c_) goto L_L002BA5DC; }
+                r30 = 134217728u;
+                r22 = r3 & 65535u;
+                r18 = 201326592u;
+                r18 = r18 | 32767u;
+                r21 = 113246208u;
+                r21 = r21 | 1088u;
+                r20 = r30;
+                r20 = r20 | 1408u;
+                r16 = r4;
+                L_L002BA578: ;
+                r2 = Mem.U32((r16 + 0u));
+                Mem.Set((r29 + 16u), r6);
+                r4 = Mem.U32((r16 + 0u));
+                r16 = r16 + 4u;
+                r17 = r17 + 1u;
+                r5 = Mem.U32((r29 + 68u));
+                r7 = Mem.U32((r29 + 76u));
+                r2 = Mem.U32((r2 + 4u));
+                r6 = r23; r2 = Funcs.CallRegX(r2, r4, r5, r6, r7, new uint[] { Mem.U32(r29 + 16u) }); r3 = Cpu.V1;
+                r6 = r2;
+                r6 = r6 + 8u;
+                r3 = r6;
+                r6 = r6 + 8u;
+                Mem.Set((r2 + 0u), r30);
+                Mem.Set((r2 + 4u), r22);
+                r2 = r6;
+                Mem.Set((r3 + 0u), r18);
+                Mem.Set((r3 + 4u), r21);
+                Mem.Set((r2 + 0u), r18);
+                Mem.Set((r2 + 4u), r20);
+                r2 = Mem.U32((r19 + 20u));
+                r2 = (uint)((int)r17 < (int)r2 ? 1 : 0);
+                { bool c_ = r2 != 0; r6 = r6 + 8u; if (c_) goto L_L002BA578; }
+                L_L002BA5DC: ;
+                r31 = Mem.U32((r29 + 60u));
+                r30 = Mem.U32((r29 + 56u));
+                r23 = Mem.U32((r29 + 52u));
+                r22 = Mem.U32((r29 + 48u));
+                r21 = Mem.U32((r29 + 44u));
+                r20 = Mem.U32((r29 + 40u));
+                r19 = Mem.U32((r29 + 36u));
+                r18 = Mem.U32((r29 + 32u));
+                r17 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r2 = r6;
+                r29 = r29 + 64u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002BA4B0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002BA4D0 @ 0x002BA4D0 [MIPS]
+    public static uint alAuxBusPull_Recompiled(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002BA4D0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_002BA4D0: ;
+                r29 = r29 - 64u;
+                Mem.Set((r29 + 52u), r23);
+                r23 = r6;
+                r3 = 33554432u;
+                r3 = r3 | 1088u;
+                Mem.Set((r29 + 68u), r5);
+                r5 = 33554432u;
+                r6 = Mem.U32((r29 + 80u));
+                r5 = r5 | 1408u;
+                Mem.Set((r29 + 28u), r17);
+                r17 = r0;
+                Mem.Set((r29 + 36u), r19);
+                r19 = r4;
+                Mem.Set((r29 + 60u), r31);
+                Mem.Set((r29 + 56u), r30);
+                Mem.Set((r29 + 48u), r22);
+                Mem.Set((r29 + 44u), r21);
+                Mem.Set((r29 + 40u), r20);
+                Mem.Set((r29 + 32u), r18);
+                Mem.Set((r29 + 24u), r16);
+                Mem.Set((r29 + 76u), r7);
+                r4 = Mem.U32((r19 + 28u));
+                r2 = r6;
+                r6 = r6 + 8u;
+                Mem.Set((r2 + 0u), r3);
+                r3 = r23 << 1;
+                Mem.Set((r2 + 4u), r3);
+                r2 = r6;
+                Mem.Set((r2 + 0u), r5);
+                Mem.Set((r2 + 4u), r3);
+                r2 = Mem.U32((r19 + 20u));
+                { bool c_ = (int)r2 <= 0; r6 = r6 + 8u; if (c_) goto L_L002BA5DC; }
+                r30 = 134217728u;
+                r22 = r3 & 65535u;
+                r18 = 201326592u;
+                r18 = r18 | 32767u;
+                r21 = 113246208u;
+                r21 = r21 | 1088u;
+                r20 = r30;
+                r20 = r20 | 1408u;
+                r16 = r4;
+                L_L002BA578: ;
+                r2 = Mem.U32((r16 + 0u));
+                Mem.Set((r29 + 16u), r6);
+                r4 = Mem.U32((r16 + 0u));
+                r16 = r16 + 4u;
+                r17 = r17 + 1u;
+                r5 = Mem.U32((r29 + 68u));
+                r7 = Mem.U32((r29 + 76u));
+                r2 = Mem.U32((r2 + 4u));
+                r6 = r23; r2 = Funcs.CallRegX(r2, r4, r5, r6, r7, new uint[] { Mem.U32(r29 + 16u) }); r3 = Cpu.V1;
+                r6 = r2;
+                r6 = r6 + 8u;
+                r3 = r6;
+                r6 = r6 + 8u;
+                Mem.Set((r2 + 0u), r30);
+                Mem.Set((r2 + 4u), r22);
+                r2 = r6;
+                Mem.Set((r3 + 0u), r18);
+                Mem.Set((r3 + 4u), r21);
+                Mem.Set((r2 + 0u), r18);
+                Mem.Set((r2 + 4u), r20);
+                r2 = Mem.U32((r19 + 20u));
+                r2 = (uint)((int)r17 < (int)r2 ? 1 : 0);
+                { bool c_ = r2 != 0; r6 = r6 + 8u; if (c_) goto L_L002BA578; }
+                L_L002BA5DC: ;
+                r31 = Mem.U32((r29 + 60u));
+                r30 = Mem.U32((r29 + 56u));
+                r23 = Mem.U32((r29 + 52u));
+                r22 = Mem.U32((r29 + 48u));
+                r21 = Mem.U32((r29 + 44u));
+                r20 = Mem.U32((r29 + 40u));
+                r19 = Mem.U32((r29 + 36u));
+                r18 = Mem.U32((r29 + 32u));
+                r17 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r2 = r6;
+                r29 = r29 + 64u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002BA4D0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002BA610 @ 0x002BA610 [MIPS]
+    public static uint alAuxBusParam_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002BA610", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002BA610: ;
+                r7 = Mem.U32((r4 + 28u));
+                r2 = (uint)2;
+                { bool c_ = r5 != r2;  if (c_) goto L_L002BA638; }
+                r3 = Mem.U32((r4 + 20u));
+                r2 = r3 << (int)(r2 & 31);
+                r3 = r3 + 1u;
+                r2 = r2 + r7;
+                Mem.Set((r2 + 0u), r6);
+                Mem.Set((r4 + 20u), r3);
+                L_L002BA638: ;
+                r2 = r0; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002BA610", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002BA640 @ 0x002BA640 [MIPS]
+    public static uint alResamplePull_Recompiled(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002BA640", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_002BA640: ;
+                r29 = r29 - 64u;
+                Mem.Set((r29 + 40u), r18);
+                r18 = r4;
+                Mem.Set((r29 + 44u), r19);
+                Mem.Set((r29 + 32u), r16);
+                r16 = r6;
+                Mem.Set((r29 + 36u), r17);
+                r17 = Mem.U32((r29 + 80u));
+                r2 = (uint)320;
+                Mem.Set((r29 + 48u), r31);
+                Mem.Set((r29 + 56u), Cpu.Fpr[20]);
+                Mem.Set((r29 + 24u), (ushort)r2);
+                r4 = Mem.U32((r18 + 0u));
+                { bool c_ = r16 == 0; r19 = r5; if (c_) goto L_L002BA7DC; }
+                r2 = Mem.U32((r18 + 28u));
+                { bool c_ = r2 == 0; r5 = r29 + 24u; if (c_) goto L_L002BA6DC; }
+                Mem.Set((r29 + 16u), r17);
+                r2 = Mem.U32((r4 + 4u));
+                r6 = r16; r2 = Funcs.CallRegX(r2, r4, r5, r6, r7, new uint[] { Mem.U32(r29 + 16u) }); r3 = Cpu.V1;
+                r17 = r2;
+                r3 = 16711680u;
+                r3 = r3 | 65535u;
+                r4 = r17;
+                r2 = (uint)(int)Mem.S16((r29 + 24u));
+                r17 = r17 + 8u;
+                r2 = r2 & r3;
+                r3 = 167772160u;
+                r2 = r2 | r3;
+                Mem.Set((r4 + 0u), r2);
+                r2 = r16 << 1;
+                r3 = Mem.U16((r19 + 0u));
+                r2 = r2 & 65535u;
+                r3 = r3 << 16;
+                r3 = r3 | r2;
+                Mem.Set((r4 + 4u), r3); goto L_L002BA7DC;
+                L_L002BA6DC: ;
+                Cpu.SetW(0, Mem.U32((r18 + 24u)));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 13936u)));
+                fcc = Cpu.S(1) < Cpu.S(0);
+                if (fcc) { Mem.Set((r18 + 24u), Cpu.W(1)); goto L_L002BA6F8; }
+                L_L002BA6F8: ;
+                Cpu.SetW(0, Mem.U32((r18 + 24u)));
+                r1 = 2148335616u;
+                Cpu.SetW(20, Mem.U32((r1 - 13932u)));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(20));
+                Cpu.SetW(3, (uint)(int)Cpu.S(0));
+                r2 = Cpu.W(3);
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 13928u)));
+                Cpu.SetW(2, r2);
+                Cpu.SetS(2, (float)(int)Cpu.W(2));
+                Cpu.SetS(2, Cpu.S(2) * Cpu.S(0));
+                Cpu.SetW(0, r16);
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                Cpu.SetS(0, Cpu.S(2) * Cpu.S(0));
+                Cpu.SetW(1, Mem.U32((r18 + 32u)));
+                Cpu.SetS(1, Cpu.S(1) + Cpu.S(0));
+                Cpu.SetW(3, (uint)(int)Cpu.S(1));
+                r6 = Cpu.W(3);
+                Cpu.SetW(0, r6);
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                Cpu.SetS(1, Cpu.S(1) - Cpu.S(0));
+                Mem.Set((r18 + 24u), Cpu.W(2));
+                Mem.Set((r18 + 32u), Cpu.W(1));
+                Mem.Set((r29 + 16u), r17);
+                r2 = Mem.U32((r4 + 4u));
+                r5 = r29 + 24u; r2 = Funcs.CallRegX(r2, r4, r5, r6, r7, new uint[] { Mem.U32(r29 + 16u) }); r3 = Cpu.V1;
+                r17 = r2;
+                r4 = r17;
+                r3 = 134217728u;
+                r17 = r17 + 8u;
+                r2 = Mem.U16((r29 + 24u));
+                Cpu.SetW(0, Mem.U32((r18 + 24u)));
+                r2 = r2 | r3;
+                Mem.Set((r4 + 0u), r2);
+                r2 = r16 << 1;
+                r2 = r2 & 65535u;
+                r16 = r17;
+                r3 = Mem.U16((r19 + 0u));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(20));
+                r3 = r3 << 16;
+                r3 = r3 | r2;
+                Mem.Set((r4 + 4u), r3);
+                r4 = Mem.U8((r18 + 39u));
+                r2 = 83886080u;
+                r4 = r4 << 16;
+                Cpu.SetW(3, (uint)(int)Cpu.S(0));
+                r3 = Cpu.W(3);
+                r3 = r3 & 65535u;
+                r3 = r3 | r2;
+                r4 = r4 | r3;
+                Mem.Set((r16 + 0u), r4);
+                r4 = Mem.U32((r18 + 20u));
+                r17 = r17 + 8u; r2 = osVirtualToPhysical(r4);
+                Mem.Set((r16 + 4u), r2);
+                Mem.Set((r18 + 36u), r0);
+                L_L002BA7DC: ;
+                r2 = r17;
+                r31 = Mem.U32((r29 + 48u));
+                r19 = Mem.U32((r29 + 44u));
+                r18 = Mem.U32((r29 + 40u));
+                r17 = Mem.U32((r29 + 36u));
+                r16 = Mem.U32((r29 + 32u));
+                Cpu.Fpr[20] = Mem.U64((r29 + 56u));
+                r29 = r29 + 64u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002BA640", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002BA800 @ 0x002BA800 [MIPS]
+    public static uint alResampleParam_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002BA800", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002BA800: ;
+                L_I002BA800: ;
+                r29 = r29 - 24u;
+                L_I002BA804: ;
+                Mem.Set((r29 + 16u), r31);
+                L_I002BA808: ;
+                r7 = r5 - 1u;
+                L_I002BA80C: ;
+                r2 = (uint)(r7 < (uint)(9) ? 1 : 0);
+                L_I002BA810: ;
+                { bool c_ = r2 == 0; r3 = r4; if (c_) goto L_L002BA898; }
+                L_I002BA818: ;
+                r2 = r7 << 2;
+                L_I002BA81C: ;
+                r1 = 2148335616u;
+                L_I002BA820: ;
+                r1 = r1 + r2;
+                L_I002BA824: ;
+                r2 = Mem.U32((r1 - 13920u));
+                L_I002BA828: ;
+                 switch (r2) { case 2861056u: goto L_I002BA800; case 2861060u: goto L_I002BA804; case 2861064u: goto L_I002BA808; case 2861068u: goto L_I002BA80C; case 2861072u: goto L_I002BA810; case 2861080u: goto L_I002BA818; case 2861084u: goto L_I002BA81C; case 2861088u: goto L_I002BA820; case 2861092u: goto L_I002BA824; case 2861096u: goto L_I002BA828; case 2861104u: goto L_I002BA830; case 2861112u: goto L_I002BA838; case 2861116u: goto L_I002BA83C; case 2861120u: goto L_I002BA840; case 2861124u: goto L_I002BA844; case 2861128u: goto L_I002BA848; case 2861132u: goto L_I002BA84C; case 2861136u: goto L_I002BA850; case 2861144u: goto L_I002BA858; case 2861148u: goto L_I002BA85C; case 2861156u: goto L_I002BA864; case 2861160u: goto L_I002BA868; case 2861164u: goto L_I002BA86C; case 2861168u: goto L_I002BA870; case 2861176u: goto L_I002BA878; case 2861180u: goto L_I002BA87C; case 2861188u: goto L_I002BA884; case 2861196u: goto L_I002BA88C; case 2861200u: goto L_I002BA890; case 2861208u: goto L_I002BA898; case 2861212u: goto L_I002BA89C; case 2861220u: goto L_I002BA8A4; case 2861224u: goto L_I002BA8A8; case 2861232u: goto L_I002BA8B0; case 2861236u: goto L_I002BA8B4; case 2861240u: goto L_I002BA8B8; default: throw new InvalidOperationException($"bad jump table target {r2:X8} in func_002BA800"); }
+                L_L002BA830: ;
+                L_I002BA830: ;
+                Mem.Set((r4 + 0u), r6); goto L_L002BA8B0;
+                L_L002BA838: ;
+                L_I002BA838: ;
+                r2 = (uint)1;
+                L_I002BA83C: ;
+                Mem.Set((r3 + 32u), r0);
+                L_I002BA840: ;
+                Mem.Set((r3 + 36u), r2);
+                L_I002BA844: ;
+                Mem.Set((r3 + 48u), r0);
+                L_I002BA848: ;
+                Mem.Set((r3 + 28u), r0);
+                L_I002BA84C: ;
+                r4 = Mem.U32((r4 + 0u));
+                L_I002BA850: ;
+                { bool c_ = r4 == 0; r5 = (uint)4; if (c_) goto L_L002BA8B0; }
+                L_I002BA858: ;
+                r2 = Mem.U32((r4 + 8u));
+                L_I002BA85C: ;
+                r6 = r0; goto L_L002BA8A8;
+                L_L002BA864: ;
+                L_I002BA864: ;
+                r2 = (uint)1;
+                L_I002BA868: ;
+                Mem.Set((r3 + 48u), r2);
+                L_I002BA86C: ;
+                r4 = Mem.U32((r4 + 0u));
+                L_I002BA870: ;
+                { bool c_ = r4 == 0; r5 = (uint)9; if (c_) goto L_L002BA8B0; }
+                L_I002BA878: ;
+                r2 = Mem.U32((r4 + 8u));
+                L_I002BA87C: ;
+                r6 = r0; goto L_L002BA8A8;
+                L_L002BA884: ;
+                L_I002BA884: ;
+                Mem.Set((r3 + 24u), r6); goto L_L002BA8B0;
+                L_L002BA88C: ;
+                L_I002BA88C: ;
+                r2 = (uint)1;
+                L_I002BA890: ;
+                Mem.Set((r3 + 28u), r2); goto L_L002BA8B0;
+                L_L002BA898: ;
+                L_I002BA898: ;
+                r4 = Mem.U32((r4 + 0u));
+                L_I002BA89C: ;
+                { bool c_ = r4 == 0;  if (c_) goto L_L002BA8B0; }
+                L_I002BA8A4: ;
+                r2 = Mem.U32((r4 + 8u));
+                L_L002BA8A8: ;
+                L_I002BA8A8: ;
+                r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002BA8B0: ;
+                L_I002BA8B0: ;
+                r31 = Mem.U32((r29 + 16u));
+                L_I002BA8B4: ;
+                r2 = r0;
+                L_I002BA8B8: ;
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002BA800", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002BA8C0 @ 0x002BA8C0 [MIPS]
+    public static uint alFxPull_Recompiled(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002BA8C0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_002BA8C0: ;
+                r29 = r29 - 72u;
+                Mem.Set((r29 + 48u), r20);
+                r20 = r5;
+                Mem.Set((r29 + 60u), r23);
+                r23 = r6;
+                Mem.Set((r29 + 52u), r21);
+                r21 = r7;
+                Mem.Set((r29 + 40u), r18);
+                Mem.Set((r29 + 44u), r19);
+                r19 = r4;
+                Mem.Set((r29 + 68u), r31);
+                Mem.Set((r29 + 64u), r30);
+                Mem.Set((r29 + 56u), r22);
+                Mem.Set((r29 + 36u), r17);
+                Mem.Set((r29 + 32u), r16);
+                r16 = Mem.U32((r19 + 0u));
+                r17 = Mem.U32((r29 + 88u));
+                { bool c_ = r16 != 0; r18 = r0; if (c_) goto L_L002BA924; }
+                r4 = 2148335616u;
+                r4 = r4 - 13872u;
+                r5 = 2148335616u;
+                r5 = r5 - 13868u;
+                r6 = (uint)75; r2 = __assert(r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002BA924: ;
+                r4 = r16;
+                r5 = r20;
+                r6 = r23;
+                r7 = r21;
+                r22 = r0;
+                Mem.Set((r29 + 16u), r17);
+                r2 = Mem.U32((r4 + 4u));
+                r21 = (uint)320;
+                Mem.Set((r29 + 30u), (ushort)r0); r2 = Funcs.CallRegX(r2, r4, r5, r6, r7, new uint[] { Mem.U32(r29 + 16u) }); r3 = Cpu.V1;
+                r17 = r2;
+                r8 = r17;
+                r17 = r17 + 8u;
+                r9 = r17;
+                r17 = r17 + 8u;
+                r11 = 201326592u;
+                r11 = r11 | 55939u;
+                r10 = 113246208u;
+                r10 = r10 | 1728u;
+                r3 = r17;
+                r17 = r17 + 8u;
+                r7 = 201326592u;
+                r7 = r7 | 23170u;
+                r5 = 134217728u;
+                r5 = r5 | 1728u;
+                r4 = r19;
+                r6 = (uint)1728;
+                r2 = 134217728u;
+                r16 = r23 << 1;
+                Mem.Set((r8 + 0u), r2);
+                r2 = r16 & 65535u;
+                Mem.Set((r8 + 4u), r2);
+                Mem.Set((r9 + 0u), r11);
+                Mem.Set((r9 + 4u), r10);
+                Mem.Set((r3 + 0u), r7);
+                Mem.Set((r3 + 4u), r5);
+                Mem.Set((r29 + 16u), r17);
+                r5 = Mem.U32((r19 + 24u));
+                r7 = r23; r2 = _saveBuffer(r4, r5, (int)r6, (int)r7, Mem.U32(r29 + 16u));
+                r17 = r2;
+                r3 = r17;
+                r2 = 33554432u;
+                r2 = r2 | 2048u;
+                Mem.Set((r3 + 0u), r2);
+                Mem.Set((r3 + 4u), r16);
+                r2 = Mem.U8((r19 + 36u));
+                r2 = (uint)((int)r18 < (int)r2 ? 1 : 0);
+                { bool c_ = r2 == 0; r17 = r17 + 8u; if (c_) goto L_L002BABD4; }
+                L_L002BA9EC: ;
+                r12 = Mem.U16((r29 + 30u));
+                r4 = Mem.U32((r19 + 24u));
+                r2 = r12 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                r3 = r2 << 2;
+                r3 = r3 + r2;
+                r2 = Mem.U32((r19 + 32u));
+                r3 = r3 << 3;
+                r16 = r2 + r3;
+                r3 = Mem.U32((r16 + 0u));
+                r2 = Mem.U32((r16 + 4u));
+                r3 = r3 << 1;
+                r20 = r4 - r3;
+                r2 = r2 << 1;
+                { bool c_ = r20 != r18; r30 = r4 - r2; if (c_) goto L_L002BAA3C; }
+                r2 = r21;
+                r21 = r22;
+                r22 = r2; goto L_L002BAA5C;
+                L_L002BAA3C: ;
+                Mem.Set((r29 + 16u), r17);
+                r4 = r19;
+                r5 = r20;
+                r6 = r22 << 16;
+                r6 = (uint)((int)r6 >> 16);
+                r7 = r23; r2 = _loadBuffer(r4, r5, (int)r6, (int)r7, Mem.U32(r29 + 16u));
+                r17 = r2;
+                L_L002BAA5C: ;
+                r4 = r19;
+                r5 = r16;
+                r2 = r21 << 16;
+                r18 = (uint)((int)r2 >> 16);
+                r6 = r18;
+                r7 = r23;
+                Mem.Set((r29 + 16u), r17); r2 = _loadOutputBuffer(r4, r5, (int)r6, (int)r7, Mem.U32(r29 + 16u));
+                r3 = (uint)(int)Mem.S16((r16 + 8u));
+                { bool c_ = r3 == 0; r17 = r2; if (c_) goto L_L002BAADC; }
+                r5 = r17;
+                r2 = r22 << 16;
+                r4 = r18 & 65535u;
+                r2 = r2 | r4;
+                r3 = Mem.U16((r16 + 8u));
+                r12 = 201326592u;
+                Mem.Set((r5 + 4u), r2);
+                r3 = r3 | r12;
+                Mem.Set((r5 + 0u), r3);
+                r2 = Mem.U32((r16 + 36u));
+                { bool c_ = r2 != 0; r17 = r17 + 8u; if (c_) goto L_L002BAADC; }
+                r2 = Mem.U32((r16 + 32u));
+                { bool c_ = r2 != 0; r4 = r19; if (c_) goto L_L002BAADC; }
+                Mem.Set((r29 + 16u), r17);
+                r5 = r30;
+                r6 = r18;
+                r7 = r23; r2 = _saveBuffer(r4, r5, (int)r6, (int)r7, Mem.U32(r29 + 16u));
+                r17 = r2;
+                L_L002BAADC: ;
+                r2 = (uint)(int)Mem.S16((r16 + 10u));
+                { bool c_ = r2 == 0; r9 = r17; if (c_) goto L_L002BAB2C; }
+                r17 = r17 + 8u;
+                r4 = r19;
+                r5 = r20;
+                r6 = r22 << 16;
+                r6 = (uint)((int)r6 >> 16);
+                r7 = r23;
+                r2 = r21 << 16;
+                r8 = r6 & 65535u;
+                r2 = r2 | r8;
+                r3 = Mem.U16((r16 + 10u));
+                r12 = 201326592u;
+                Mem.Set((r9 + 4u), r2);
+                r3 = r3 | r12;
+                Mem.Set((r9 + 0u), r3);
+                Mem.Set((r29 + 16u), r17); r2 = _saveBuffer(r4, r5, (int)r6, (int)r7, Mem.U32(r29 + 16u));
+                r17 = r2;
+                L_L002BAB2C: ;
+                r4 = Mem.U32((r16 + 32u));
+                { bool c_ = r4 == 0; r5 = r21 << 16; if (c_) goto L_L002BAB4C; }
+                r5 = (uint)((int)r5 >> 16);
+                r6 = r23;
+                r7 = r17; r2 = _filterBuffer(r4, (int)r5, (int)r6, r7);
+                r17 = r2;
+                L_L002BAB4C: ;
+                r2 = Mem.U32((r16 + 36u));
+                { bool c_ = r2 != 0; r4 = r19; if (c_) goto L_L002BAB74; }
+                Mem.Set((r29 + 16u), r17);
+                r5 = r30;
+                r6 = r21 << 16;
+                r6 = (uint)((int)r6 >> 16);
+                r7 = r23; r2 = _saveBuffer(r4, r5, (int)r6, (int)r7, Mem.U32(r29 + 16u));
+                r17 = r2;
+                L_L002BAB74: ;
+                r2 = (uint)(int)Mem.S16((r16 + 12u));
+                { bool c_ = r2 == 0; r2 = r17; if (c_) goto L_L002BABA0; }
+                r17 = r17 + 8u;
+                r3 = r21 << 16;
+                r3 = r3 | 2048u;
+                r4 = Mem.U16((r16 + 12u));
+                r12 = 201326592u;
+                Mem.Set((r2 + 4u), r3);
+                r4 = r4 | r12;
+                Mem.Set((r2 + 0u), r4);
+                L_L002BABA0: ;
+                r12 = Mem.U16((r29 + 30u));
+                r3 = r12 + 1u;
+                Mem.Set((r29 + 30u), (ushort)r3);
+                r3 = r3 << 16;
+                r2 = Mem.U32((r16 + 4u));
+                r4 = Mem.U32((r19 + 24u));
+                r2 = r2 << 1;
+                r18 = r4 + r2;
+                r2 = Mem.U8((r19 + 36u));
+                r3 = (uint)((int)r3 >> 16);
+                r3 = (uint)((int)r3 < (int)r2 ? 1 : 0);
+                { bool c_ = r3 != 0;  if (c_) goto L_L002BA9EC; }
+                L_L002BABD4: ;
+                r6 = r23 << 1;
+                r2 = Mem.U32((r19 + 24u));
+                r3 = Mem.U32((r19 + 28u));
+                r4 = r2 + r6;
+                r2 = Mem.U32((r19 + 20u));
+                r3 = r3 << 1;
+                r2 = r2 + r3;
+                r2 = (uint)(r2 < r4 ? 1 : 0);
+                { bool c_ = r2 == 0; Mem.Set((r19 + 24u), r4); if (c_) goto L_L002BAC04; }
+                r2 = r4 - r3;
+                Mem.Set((r19 + 24u), r2);
+                L_L002BAC04: ;
+                r2 = r17 + 8u;
+                r5 = r17;
+                r3 = (uint)2048;
+                r3 = r3 << 16;
+                r3 = r3 >> 16;
+                r4 = 167772160u;
+                r3 = r3 | r4;
+                Mem.Set((r5 + 0u), r3);
+                r3 = r6 & 65535u;
+                r4 = 113246208u;
+                r3 = r3 | r4;
+                Mem.Set((r5 + 4u), r3);
+                r31 = Mem.U32((r29 + 68u));
+                r30 = Mem.U32((r29 + 64u));
+                r23 = Mem.U32((r29 + 60u));
+                r22 = Mem.U32((r29 + 56u));
+                r21 = Mem.U32((r29 + 52u));
+                r20 = Mem.U32((r29 + 48u));
+                r19 = Mem.U32((r29 + 44u));
+                r18 = Mem.U32((r29 + 40u));
+                r17 = Mem.U32((r29 + 36u));
+                r16 = Mem.U32((r29 + 32u));
+                r29 = r29 + 72u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002BA8C0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002BAC64 @ 0x002BAC64 [MIPS]
+    public static uint alFxParamHdl_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002BAC64", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002BAC64: ;
+                L_I002BAC64: ;
+                r29 = r29 - 24u;
+                L_I002BAC68: ;
+                Mem.Set((r29 + 16u), r31);
+                L_I002BAC6C: ;
+                r8 = r5 - 2u;
+                L_I002BAC70: ;
+                { bool c_ = (int)r8 >= 0; r2 = r8; if (c_) goto L_L002BAC7C; }
+                L_I002BAC78: ;
+                r2 = r5 + 5u;
+                L_L002BAC7C: ;
+                L_I002BAC7C: ;
+                r7 = (uint)((int)r2 >> 3);
+                L_I002BAC80: ;
+                r5 = r7;
+                L_I002BAC84: ;
+                r2 = r5 << 3;
+                L_I002BAC88: ;
+                r7 = r8 - r2;
+                L_I002BAC8C: ;
+                r6 = Mem.U32((r6 + 0u));
+                L_I002BAC90: ;
+                r2 = (uint)(r7 < (uint)(8) ? 1 : 0);
+                L_I002BAC94: ;
+                { bool c_ = r2 == 0; r2 = r7 << 2; if (c_) goto L_L002BAE30; }
+                L_I002BAC9C: ;
+                r1 = 2148335616u;
+                L_I002BACA0: ;
+                r1 = r1 + r2;
+                L_I002BACA4: ;
+                r2 = Mem.U32((r1 - 13848u));
+                L_I002BACA8: ;
+                 switch (r2) { case 2862180u: goto L_I002BAC64; case 2862184u: goto L_I002BAC68; case 2862188u: goto L_I002BAC6C; case 2862192u: goto L_I002BAC70; case 2862200u: goto L_I002BAC78; case 2862204u: goto L_I002BAC7C; case 2862208u: goto L_I002BAC80; case 2862212u: goto L_I002BAC84; case 2862216u: goto L_I002BAC88; case 2862220u: goto L_I002BAC8C; case 2862224u: goto L_I002BAC90; case 2862228u: goto L_I002BAC94; case 2862236u: goto L_I002BAC9C; case 2862240u: goto L_I002BACA0; case 2862244u: goto L_I002BACA4; case 2862248u: goto L_I002BACA8; case 2862256u: goto L_I002BACB0; case 2862260u: goto L_I002BACB4; case 2862264u: goto L_I002BACB8; case 2862268u: goto L_I002BACBC; case 2862272u: goto L_I002BACC0; case 2862276u: goto L_I002BACC4; case 2862280u: goto L_I002BACC8; case 2862284u: goto L_I002BACCC; case 2862292u: goto L_I002BACD4; case 2862296u: goto L_I002BACD8; case 2862300u: goto L_I002BACDC; case 2862304u: goto L_I002BACE0; case 2862308u: goto L_I002BACE4; case 2862312u: goto L_I002BACE8; case 2862316u: goto L_I002BACEC; case 2862320u: goto L_I002BACF0; case 2862328u: goto L_I002BACF8; case 2862332u: goto L_I002BACFC; case 2862336u: goto L_I002BAD00; case 2862340u: goto L_I002BAD04; case 2862344u: goto L_I002BAD08; case 2862348u: goto L_I002BAD0C; case 2862356u: goto L_I002BAD14; case 2862360u: goto L_I002BAD18; case 2862364u: goto L_I002BAD1C; case 2862368u: goto L_I002BAD20; case 2862372u: goto L_I002BAD24; case 2862376u: goto L_I002BAD28; case 2862384u: goto L_I002BAD30; case 2862388u: goto L_I002BAD34; case 2862392u: goto L_I002BAD38; case 2862396u: goto L_I002BAD3C; case 2862400u: goto L_I002BAD40; case 2862404u: goto L_I002BAD44; case 2862412u: goto L_I002BAD4C; case 2862416u: goto L_I002BAD50; case 2862420u: goto L_I002BAD54; case 2862424u: goto L_I002BAD58; case 2862428u: goto L_I002BAD5C; case 2862432u: goto L_I002BAD60; case 2862436u: goto L_I002BAD64; case 2862440u: goto L_I002BAD68; case 2862444u: goto L_I002BAD6C; case 2862448u: goto L_I002BAD70; case 2862452u: goto L_I002BAD74; case 2862456u: goto L_I002BAD78; case 2862460u: goto L_I002BAD7C; case 2862464u: goto L_I002BAD80; case 2862468u: goto L_I002BAD84; case 2862472u: goto L_I002BAD88; case 2862476u: goto L_I002BAD8C; case 2862484u: goto L_I002BAD94; case 2862488u: goto L_I002BAD98; case 2862492u: goto L_I002BAD9C; case 2862496u: goto L_I002BADA0; case 2862500u: goto L_I002BADA4; case 2862504u: goto L_I002BADA8; case 2862508u: goto L_I002BADAC; case 2862512u: goto L_I002BADB0; case 2862516u: goto L_I002BADB4; case 2862520u: goto L_I002BADB8; case 2862524u: goto L_I002BADBC; case 2862528u: goto L_I002BADC0; case 2862532u: goto L_I002BADC4; case 2862540u: goto L_I002BADCC; case 2862544u: goto L_I002BADD0; case 2862548u: goto L_I002BADD4; case 2862552u: goto L_I002BADD8; case 2862556u: goto L_I002BADDC; case 2862560u: goto L_I002BADE0; case 2862564u: goto L_I002BADE4; case 2862568u: goto L_I002BADE8; case 2862572u: goto L_I002BADEC; case 2862576u: goto L_I002BADF0; case 2862584u: goto L_I002BADF8; case 2862588u: goto L_I002BADFC; case 2862592u: goto L_I002BAE00; case 2862596u: goto L_I002BAE04; case 2862600u: goto L_I002BAE08; case 2862604u: goto L_I002BAE0C; case 2862608u: goto L_I002BAE10; case 2862616u: goto L_I002BAE18; case 2862620u: goto L_I002BAE1C; case 2862624u: goto L_I002BAE20; case 2862628u: goto L_I002BAE24; case 2862632u: goto L_I002BAE28; case 2862640u: goto L_I002BAE30; case 2862644u: goto L_I002BAE34; case 2862648u: goto L_I002BAE38; default: throw new InvalidOperationException($"bad jump table target {r2:X8} in func_002BAC64"); }
+                L_L002BACB0: ;
+                L_I002BACB0: ;
+                r2 = r5 << 2;
+                L_I002BACB4: ;
+                r2 = r2 + r5;
+                L_I002BACB8: ;
+                r3 = Mem.U32((r4 + 32u));
+                L_I002BACBC: ;
+                r2 = r2 << 3;
+                L_I002BACC0: ;
+                r2 = r2 + r3;
+                L_I002BACC4: ;
+                r3 = (uint)-8;
+                L_I002BACC8: ;
+                r3 = r6 & r3;
+                L_I002BACCC: ;
+                Mem.Set((r2 + 0u), r3); goto L_L002BAE30;
+                L_L002BACD4: ;
+                L_I002BACD4: ;
+                r2 = r5 << 2;
+                L_I002BACD8: ;
+                r2 = r2 + r5;
+                L_I002BACDC: ;
+                r3 = Mem.U32((r4 + 32u));
+                L_I002BACE0: ;
+                r2 = r2 << 3;
+                L_I002BACE4: ;
+                r2 = r2 + r3;
+                L_I002BACE8: ;
+                r3 = (uint)-8;
+                L_I002BACEC: ;
+                r3 = r6 & r3;
+                L_I002BACF0: ;
+                Mem.Set((r2 + 4u), r3); goto L_L002BAE30;
+                L_L002BACF8: ;
+                L_I002BACF8: ;
+                r2 = r5 << 2;
+                L_I002BACFC: ;
+                r2 = r2 + r5;
+                L_I002BAD00: ;
+                r3 = Mem.U32((r4 + 32u));
+                L_I002BAD04: ;
+                r2 = r2 << 3;
+                L_I002BAD08: ;
+                r2 = r2 + r3;
+                L_I002BAD0C: ;
+                Mem.Set((r2 + 8u), (ushort)r6); goto L_L002BAE30;
+                L_L002BAD14: ;
+                L_I002BAD14: ;
+                r2 = r5 << 2;
+                L_I002BAD18: ;
+                r2 = r2 + r5;
+                L_I002BAD1C: ;
+                r3 = Mem.U32((r4 + 32u));
+                L_I002BAD20: ;
+                r2 = r2 << 3;
+                L_I002BAD24: ;
+                r2 = r2 + r3;
+                L_I002BAD28: ;
+                Mem.Set((r2 + 10u), (ushort)r6); goto L_L002BAE30;
+                L_L002BAD30: ;
+                L_I002BAD30: ;
+                r2 = r5 << 2;
+                L_I002BAD34: ;
+                r2 = r2 + r5;
+                L_I002BAD38: ;
+                r3 = Mem.U32((r4 + 32u));
+                L_I002BAD3C: ;
+                r2 = r2 << 3;
+                L_I002BAD40: ;
+                r2 = r2 + r3;
+                L_I002BAD44: ;
+                Mem.Set((r2 + 12u), (ushort)r6); goto L_L002BAE30;
+                L_L002BAD4C: ;
+                L_I002BAD4C: ;
+                Cpu.SetW(0, r6);
+                L_I002BAD50: ;
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                L_I002BAD54: ;
+                r1 = 2148335616u;
+                L_I002BAD58: ;
+                Cpu.SetW(1, Mem.U32((r1 - 13816u)));
+                L_I002BAD5C: ;
+                r2 = r5 << 2;
+                L_I002BAD60: ;
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                L_I002BAD64: ;
+                r2 = r2 + r5;
+                L_I002BAD68: ;
+                r2 = r2 << 3;
+                L_I002BAD6C: ;
+                r3 = Mem.U32((r4 + 32u));
+                L_I002BAD70: ;
+                r4 = 2148401152u;
+                L_I002BAD74: ;
+                r4 = Mem.U32((r4 - 32608u));
+                L_I002BAD78: ;
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(0));
+                L_I002BAD7C: ;
+                r2 = r2 + r3;
+                L_I002BAD80: ;
+                Cpu.SetW(1, Mem.U32((r4 + 68u)));
+                L_I002BAD84: ;
+                Cpu.SetS(1, (float)(int)Cpu.W(1));
+                L_I002BAD88: ;
+                Cpu.SetS(0, Cpu.S(0) / Cpu.S(1));
+                L_I002BAD8C: ;
+                Mem.Set((r2 + 16u), Cpu.W(0)); goto L_L002BAE30;
+                L_L002BAD94: ;
+                L_I002BAD94: ;
+                r2 = r5 << 2;
+                L_I002BAD98: ;
+                r2 = r2 + r5;
+                L_I002BAD9C: ;
+                r3 = Mem.U32((r4 + 32u));
+                L_I002BADA0: ;
+                r2 = r2 << 3;
+                L_I002BADA4: ;
+                r4 = r2 + r3;
+                L_I002BADA8: ;
+                r2 = Mem.U32((r4 + 4u));
+                L_I002BADAC: ;
+                r3 = Mem.U32((r4 + 0u));
+                L_I002BADB0: ;
+                Cpu.SetW(3, r6);
+                L_I002BADB4: ;
+                Cpu.SetS(3, (float)(int)Cpu.W(3));
+                L_I002BADB8: ;
+                r2 = r2 - r3;
+                L_I002BADBC: ;
+                Cpu.SetW(2, r2);
+                L_I002BADC0: ;
+                Cpu.SetD(2, (double)(int)Cpu.W(2));
+                L_I002BADC4: ;
+                { bool c_ = (int)r2 >= 0;  if (c_) goto L_L002BADD8; }
+                L_I002BADCC: ;
+                r1 = 2148335616u;
+                L_I002BADD0: ;
+                Cpu.Fpr[0] = Mem.U64((r1 - 13808u));
+                L_I002BADD4: ;
+                Cpu.SetD(2, Cpu.D(2) + Cpu.D(0));
+                L_L002BADD8: ;
+                L_I002BADD8: ;
+                r1 = 2148335616u;
+                L_I002BADDC: ;
+                Cpu.SetW(1, Mem.U32((r1 - 13800u)));
+                L_I002BADE0: ;
+                Cpu.SetS(0, (float)Cpu.D(2));
+                L_I002BADE4: ;
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                L_I002BADE8: ;
+                L_I002BADEC: ;
+                Cpu.SetS(0, Cpu.S(3) * Cpu.S(0));
+                L_I002BADF0: ;
+                Mem.Set((r4 + 28u), Cpu.W(0)); goto L_L002BAE30;
+                L_L002BADF8: ;
+                L_I002BADF8: ;
+                r2 = r5 << 2;
+                L_I002BADFC: ;
+                r2 = r2 + r5;
+                L_I002BAE00: ;
+                r3 = Mem.U32((r4 + 32u));
+                L_I002BAE04: ;
+                r5 = r2 << 3;
+                L_I002BAE08: ;
+                r3 = r5 + r3;
+                L_I002BAE0C: ;
+                r2 = Mem.U32((r3 + 32u));
+                L_I002BAE10: ;
+                { bool c_ = r2 == 0;  if (c_) goto L_L002BAE30; }
+                L_I002BAE18: ;
+                Mem.Set((r2 + 0u), (ushort)r6);
+                L_I002BAE1C: ;
+                r2 = Mem.U32((r4 + 32u));
+                L_I002BAE20: ;
+                r2 = r5 + r2;
+                L_I002BAE24: ;
+                r4 = Mem.U32((r2 + 32u));
+                L_I002BAE28: ;
+                init_lpfilter(r4);
+                L_L002BAE30: ;
+                L_I002BAE30: ;
+                r31 = Mem.U32((r29 + 16u));
+                L_I002BAE34: ;
+                r2 = r0;
+                L_I002BAE38: ;
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002BAC64", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002BAE40 @ 0x002BAE40 [MIPS]
+    public static uint _loadOutputBuffer_Recompiled(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002BAE40", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_002BAE40: ;
+                r29 = r29 - 72u;
+                Mem.Set((r29 + 44u), r21);
+                r21 = r4;
+                Mem.Set((r29 + 36u), r19);
+                r19 = r5;
+                Mem.Set((r29 + 48u), r22);
+                r22 = r6;
+                Mem.Set((r29 + 40u), r20);
+                Mem.Set((r29 + 52u), r31);
+                Mem.Set((r29 + 32u), r18);
+                Mem.Set((r29 + 28u), r17);
+                Mem.Set((r29 + 24u), r16);
+                Mem.Set((r29 + 64u), Cpu.Fpr[21]);
+                Mem.Set((r29 + 56u), Cpu.Fpr[20]);
+                r2 = Mem.U32((r19 + 36u));
+                r18 = Mem.U32((r29 + 88u));
+                { bool c_ = r2 == 0; r20 = r7; if (c_) goto L_L002BAFDC; }
+                r4 = r19;
+                r16 = Mem.U32((r19 + 4u));
+                r2 = Mem.U32((r19 + 0u));
+                r5 = r20;
+                r16 = r16 - r2; Cpu.SetS(0, _doModFunc(r4, (int)r5));
+                Cpu.SetW(1, r16);
+                Cpu.SetS(1, (float)(int)Cpu.W(1));
+                r1 = 2148335616u;
+                Cpu.SetW(21, Mem.U32((r1 - 13796u)));
+                Cpu.SetS(1, Cpu.S(0) / Cpu.S(1));
+                Cpu.SetS(0, Cpu.S(1) * Cpu.S(21));
+                Cpu.SetW(2, (uint)(int)Cpu.S(0));
+                r2 = Cpu.W(2);
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 13792u)));
+                Cpu.SetW(1, r2);
+                Cpu.SetS(1, (float)(int)Cpu.W(1));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
+                r1 = 2148335616u;
+                Cpu.SetW(20, Mem.U32((r1 - 13788u)));
+                Cpu.SetS(20, Cpu.S(20) - Cpu.S(1));
+                Cpu.SetW(1, r20);
+                Cpu.SetS(1, (float)(int)Cpu.W(1));
+                Cpu.SetS(1, Cpu.S(20) * Cpu.S(1));
+                r2 = Mem.U32((r19 + 36u));
+                Cpu.SetW(0, Mem.U32((r2 + 32u)));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                Cpu.SetW(2, (uint)(int)Cpu.S(0));
+                r17 = Cpu.W(2);
+                Cpu.SetW(1, r17);
+                Cpu.SetS(1, (float)(int)Cpu.W(1));
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(1));
+                r4 = r21;
+                Mem.Set((r2 + 32u), Cpu.W(0));
+                r2 = Mem.U32((r19 + 24u));
+                r3 = Mem.U32((r19 + 4u));
+                r5 = Mem.U32((r4 + 24u));
+                r6 = (uint)640;
+                Mem.Set((r29 + 16u), r18);
+                r2 = r2 - r3;
+                r2 = r2 << 1;
+                r5 = r5 + r2;
+                r7 = r5 & 7u;
+                r7 = (uint)((int)r7 >> 1);
+                r16 = r7 << 1;
+                r5 = r5 - r16;
+                r7 = r17 + r7; r2 = _loadBuffer(r4, r5, (int)r6, (int)r7, Mem.U32(r29 + 16u));
+                r18 = r2;
+                r4 = r18;
+                r18 = r18 + 8u;
+                r2 = 134217728u;
+                r2 = r2 | 640u;
+                r16 = r16 | r2;
+                r3 = r22 << 16;
+                r2 = r20 << 1;
+                r2 = r2 & 65535u;
+                r3 = r3 | r2;
+                Cpu.SetS(20, Cpu.S(20) * Cpu.S(21));
+                Mem.Set((r4 + 0u), r16);
+                Mem.Set((r4 + 4u), r3);
+                r2 = Mem.U32((r19 + 36u));
+                r16 = r18;
+                r4 = Mem.U8((r2 + 39u));
+                r2 = 83886080u;
+                r4 = r4 << 16;
+                Cpu.SetW(2, (uint)(int)Cpu.S(20));
+                r3 = Cpu.W(2);
+                r3 = r3 & 65535u;
+                r3 = r3 | r2;
+                r4 = r4 | r3;
+                Mem.Set((r16 + 0u), r4);
+                r2 = Mem.U32((r19 + 36u));
+                r4 = Mem.U32((r2 + 20u));
+                r18 = r18 + 8u; r2 = osVirtualToPhysical(r4);
+                Mem.Set((r16 + 4u), r2);
+                r2 = Mem.U32((r19 + 36u));
+                Mem.Set((r2 + 36u), r0);
+                r2 = Mem.U32((r19 + 24u));
+                r17 = r17 - r20;
+                r2 = r2 + r17;
+                Mem.Set((r19 + 24u), r2); goto L_L002BB004;
+                L_L002BAFDC: ;
+                r4 = r21;
+                r6 = r22;
+                r5 = Mem.U32((r19 + 4u));
+                r2 = Mem.U32((r4 + 24u));
+                r7 = r20;
+                Mem.Set((r29 + 16u), r18);
+                r5 = r5 << 1;
+                r5 = r2 - r5; r2 = _loadBuffer(r4, r5, (int)r6, (int)r7, Mem.U32(r29 + 16u));
+                r18 = r2;
+                L_L002BB004: ;
+                r2 = r18;
+                r31 = Mem.U32((r29 + 52u));
+                r22 = Mem.U32((r29 + 48u));
+                r21 = Mem.U32((r29 + 44u));
+                r20 = Mem.U32((r29 + 40u));
+                r19 = Mem.U32((r29 + 36u));
+                r18 = Mem.U32((r29 + 32u));
+                r17 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                Cpu.Fpr[21] = Mem.U64((r29 + 64u));
+                Cpu.Fpr[20] = Mem.U64((r29 + 56u));
+                r29 = r29 + 72u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002BAE40", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002BB038 @ 0x002BB038 [MIPS]
+    public static uint _saveBuffer_Recompiled(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002BB038", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_002BB038: ;
+                r29 = r29 - 56u;
+                Mem.Set((r29 + 48u), r30);
+                r30 = r4;
+                Mem.Set((r29 + 36u), r21);
+                r21 = Mem.U32((r29 + 72u));
+                r4 = r5;
+                Mem.Set((r29 + 44u), r23);
+                r23 = r6;
+                Mem.Set((r29 + 52u), r31);
+                Mem.Set((r29 + 40u), r22);
+                Mem.Set((r29 + 32u), r20);
+                Mem.Set((r29 + 28u), r19);
+                Mem.Set((r29 + 24u), r18);
+                Mem.Set((r29 + 20u), r17);
+                Mem.Set((r29 + 16u), r16);
+                r3 = Mem.U32((r30 + 28u));
+                r2 = Mem.U32((r30 + 20u));
+                r3 = r3 << 1;
+                r5 = r2 + r3;
+                r2 = (uint)(r4 < r2 ? 1 : 0);
+                { bool c_ = r2 == 0; r6 = r21; if (c_) goto L_L002BB094; }
+                r4 = r4 + r3;
+                L_L002BB094: ;
+                r22 = r7 << 1;
+                r16 = r4 + r22;
+                r2 = (uint)(r5 < r16 ? 1 : 0);
+                { bool c_ = r2 == 0; r18 = 134217728u; if (c_) goto L_L002BB140; }
+                r21 = r21 + 8u;
+                r20 = r21;
+                r21 = r21 + 8u;
+                r17 = r5 - r4;
+                r17 = (uint)((int)r17 >> 1);
+                r2 = r23 << 16;
+                r17 = r17 << 1;
+                r3 = r17 & 65535u;
+                r2 = r2 | r3;
+                r19 = 100663296u;
+                r16 = r16 - r5;
+                r16 = (uint)((int)r16 >> 1);
+                Mem.Set((r6 + 0u), r18);
+                Mem.Set((r6 + 4u), r2);
+                Mem.Set((r20 + 0u), r19); r2 = osVirtualToPhysical(r4);
+                r3 = r21;
+                r21 = r21 + 8u;
+                r17 = r23 + r17;
+                r17 = r17 << 16;
+                r16 = r16 << 1;
+                r16 = r16 & 65535u;
+                r17 = r17 | r16;
+                r16 = r21;
+                Mem.Set((r20 + 4u), r2);
+                Mem.Set((r3 + 0u), r18);
+                Mem.Set((r3 + 4u), r17);
+                Mem.Set((r16 + 0u), r19);
+                r4 = Mem.U32((r30 + 20u));
+                r21 = r21 + 8u; r2 = osVirtualToPhysical(r4);
+                r3 = r21;
+                r21 = r21 + 8u;
+                Mem.Set((r16 + 4u), r2);
+                r2 = r22 & 65535u;
+                Mem.Set((r3 + 0u), r18);
+                Mem.Set((r3 + 4u), r2); goto L_L002BB174;
+                L_L002BB140: ;
+                r21 = r21 + 8u;
+                r16 = r21;
+                r21 = r21 + 8u;
+                r2 = 134217728u;
+                Mem.Set((r6 + 0u), r2);
+                r2 = r23 << 16;
+                r3 = r22 & 65535u;
+                r2 = r2 | r3;
+                Mem.Set((r6 + 4u), r2);
+                r2 = 100663296u;
+                Mem.Set((r16 + 0u), r2); r2 = osVirtualToPhysical(r4);
+                Mem.Set((r16 + 4u), r2);
+                L_L002BB174: ;
+                r2 = r21;
+                r31 = Mem.U32((r29 + 52u));
+                r30 = Mem.U32((r29 + 48u));
+                r23 = Mem.U32((r29 + 44u));
+                r22 = Mem.U32((r29 + 40u));
+                r21 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 56u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002BB038", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002BB1A8 @ 0x002BB1A8 [MIPS]
+    public static uint alFxParam_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002BB1A8", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002BB1A8: ;
+                r2 = (uint)1;
+                if (r5 == r2) { Mem.Set((r4 + 0u), r6); goto L_L002BB1B4; }
+                L_L002BB1B4: ;
+                r2 = r0; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002BB1A8", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002BB1BC @ 0x002BB1BC [MIPS]
+    public static uint _loadBuffer_Recompiled(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002BB1BC", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_002BB1BC: ;
+                r29 = r29 - 56u;
+                Mem.Set((r29 + 44u), r23);
+                r23 = r4;
+                Mem.Set((r29 + 36u), r21);
+                r21 = Mem.U32((r29 + 72u));
+                r4 = r5;
+                Mem.Set((r29 + 40u), r22);
+                r22 = r6;
+                Mem.Set((r29 + 48u), r30);
+                r30 = r7;
+                Mem.Set((r29 + 52u), r31);
+                Mem.Set((r29 + 32u), r20);
+                Mem.Set((r29 + 28u), r19);
+                Mem.Set((r29 + 24u), r18);
+                Mem.Set((r29 + 20u), r17);
+                Mem.Set((r29 + 16u), r16);
+                r3 = Mem.U32((r23 + 28u));
+                r2 = Mem.U32((r23 + 20u));
+                r3 = r3 << 1;
+                r5 = r2 + r3;
+                r2 = (uint)(r4 < r2 ? 1 : 0);
+                { bool c_ = r2 == 0; r6 = r21; if (c_) goto L_L002BB21C; }
+                r4 = r4 + r3;
+                L_L002BB21C: ;
+                r7 = r30 << 1;
+                r17 = r4 + r7;
+                r2 = (uint)(r5 < r17 ? 1 : 0);
+                { bool c_ = r2 == 0; r2 = r22 & 65535u; if (c_) goto L_L002BB2AC; }
+                r21 = r21 + 8u;
+                r20 = r21;
+                r21 = r21 + 8u;
+                r19 = 134217728u;
+                r2 = r2 | r19;
+                r16 = r5 - r4;
+                r16 = (uint)((int)r16 >> 1);
+                r16 = r16 << 1;
+                Mem.Set((r6 + 0u), r2);
+                r2 = r16 & 65535u;
+                r18 = 67108864u;
+                r17 = r17 - r5;
+                r17 = (uint)((int)r17 >> 1);
+                Mem.Set((r6 + 4u), r2);
+                Mem.Set((r20 + 0u), r18); r2 = osVirtualToPhysical(r4);
+                r3 = r21;
+                r21 = r21 + 8u;
+                r16 = r22 + r16;
+                r16 = r16 & 65535u;
+                r16 = r16 | r19;
+                r17 = r17 << 1;
+                r17 = r17 & 65535u;
+                Mem.Set((r20 + 4u), r2);
+                Mem.Set((r3 + 0u), r16);
+                r16 = r21;
+                Mem.Set((r3 + 4u), r17);
+                Mem.Set((r16 + 0u), r18);
+                r4 = Mem.U32((r23 + 20u));
+                r21 = r21 + 8u; goto L_L002BB2D4;
+                L_L002BB2AC: ;
+                r21 = r21 + 8u;
+                r16 = r21;
+                r21 = r21 + 8u;
+                r3 = 134217728u;
+                r2 = r2 | r3;
+                Mem.Set((r6 + 0u), r2);
+                r2 = r7 & 65535u;
+                Mem.Set((r6 + 4u), r2);
+                r2 = 67108864u;
+                Mem.Set((r16 + 0u), r2);
+                L_L002BB2D4: ;
+                r2 = osVirtualToPhysical(r4);
+                Mem.Set((r16 + 4u), r2);
+                r2 = r21 + 8u;
+                r4 = r21;
+                r3 = 134217728u;
+                Mem.Set((r4 + 0u), r3);
+                r3 = r30 << 1;
+                r3 = r3 & 65535u;
+                Mem.Set((r4 + 4u), r3);
+                r31 = Mem.U32((r29 + 52u));
+                r30 = Mem.U32((r29 + 48u));
+                r23 = Mem.U32((r29 + 44u));
+                r22 = Mem.U32((r29 + 40u));
+                r21 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 56u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002BB1BC", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002BB32C @ 0x002BB32C [MIPS]
+    public static uint _filterBuffer_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002BB32C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002BB32C: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r4;
+                r3 = 184549376u;
+                r3 = r3 | 32u;
+                r4 = r18 + 8u;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r7;
+                r5 = r5 & 65535u;
+                r2 = 134217728u;
+                r2 = r5 | r2;
+                r5 = r5 << 16;
+                r6 = r6 << 1;
+                r6 = r6 & 65535u;
+                r5 = r5 | r6;
+                Mem.Set((r29 + 28u), r31);
+                Mem.Set((r29 + 20u), r17);
+                Mem.Set((r16 + 0u), r2);
+                Mem.Set((r16 + 4u), r5);
+                Mem.Set((r16 + 8u), r3); r2 = osVirtualToPhysical(r4);
+                r4 = 234881024u;
+                Mem.Set((r16 + 12u), r2);
+                r3 = Mem.U8((r18 + 47u));
+                r2 = Mem.U16((r18 + 2u));
+                r3 = r3 << 16;
+                r2 = r2 | r4;
+                r3 = r3 | r2;
+                Mem.Set((r16 + 16u), r3);
+                r4 = Mem.U32((r18 + 40u));
+                r17 = r16 + 24u; r2 = osVirtualToPhysical(r4);
+                Mem.Set((r16 + 20u), r2);
+                r2 = r17;
+                Mem.Set((r18 + 44u), r0);
+                r31 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002BB32C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002BB3D0 @ 0x002BB3D0 [MIPS]
+    public static uint _doModFunc_Recompiled(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002BB3D0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_002BB3D0: ;
+                Cpu.SetW(1, Mem.U32((r4 + 16u)));
+                Cpu.SetW(0, r5);
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
+                Cpu.SetW(0, Mem.U32((r4 + 20u)));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 13784u)));
+                Cpu.SetS(2, Cpu.S(0));
+                fcc = Cpu.S(1) < Cpu.S(2);
+                { bool c_ = !fcc; Mem.Set((r4 + 20u), Cpu.W(2)); if (c_) goto L_L002BB410; }
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 13780u)));
+                Cpu.SetS(2, Cpu.S(2) - Cpu.S(0));
+                L_L002BB410: ;
+                Cpu.SetW(0, r0);
+                Cpu.SetS(1, Cpu.S(2));
+                fcc = Cpu.S(1) < Cpu.S(0);
+                { bool c_ = !fcc; Mem.Set((r4 + 20u), Cpu.W(1)); if (c_) goto L_L002BB42C; }
+                Cpu.SetS(1, -Cpu.S(1));
+                L_L002BB42C: ;
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 13776u)));
+                Cpu.SetS(1, Cpu.S(1) - Cpu.S(0));
+                Cpu.SetW(0, Mem.U32((r4 + 28u)));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                Cpu.V1 = r3; return r2;
+                r2 = r7 & 255u;
+                r2 = (uint)(r2 < (uint)(17) ? 1 : 0);
+                L_func_002BB450: ;
+                r29 = r29 - 56u;
+                Mem.Set((r29 + 44u), r21);
+                r21 = r4;
+                Mem.Set((r29 + 36u), r19);
+                r19 = r5;
+                Mem.Set((r29 + 32u), r18);
+                r18 = r6;
+                Mem.Set((r29 + 40u), r20);
+                Mem.Set((r29 + 48u), r31);
+                Mem.Set((r29 + 28u), r17);
+                Mem.Set((r29 + 24u), r16);
+                r17 = Mem.U32((r21 + 0u));
+                r16 = Mem.U32((r29 + 72u));
+                { bool c_ = r17 != 0; r20 = r7; if (c_) goto L_L002BB4A4; }
+                r4 = 2148335616u;
+                r4 = r4 - 13760u;
+                r5 = 2148335616u;
+                r5 = r5 - 13756u;
+                r6 = (uint)34; r2 = __assert(r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002BB4A4: ;
+                r4 = r17;
+                r5 = r19;
+                r6 = r18;
+                Mem.Set((r29 + 16u), r16);
+                r2 = Mem.U32((r4 + 4u));
+                r7 = r20; r2 = Funcs.CallRegX(r2, r4, r5, r6, r7, new uint[] { Mem.U32(r29 + 16u) }); r3 = Cpu.V1;
+                r16 = r2;
+                r4 = r16;
+                r16 = r16 + 8u;
+                r5 = r16;
+                r16 = r16 + 8u;
+                r7 = 71303168u;
+                r7 = r7 | 1408u;
+                r6 = r16;
+                r16 = r16 + 8u;
+                r3 = 134217728u;
+                r2 = r18 << 1;
+                r2 = r2 & 65535u;
+                Mem.Set((r4 + 4u), r2);
+                r2 = 218103808u;
+                Mem.Set((r4 + 0u), r3);
+                Mem.Set((r5 + 0u), r2);
+                r2 = r18 << 2;
+                r2 = r2 & 65535u;
+                Mem.Set((r5 + 4u), r7);
+                Mem.Set((r6 + 0u), r3);
+                r3 = r16;
+                Mem.Set((r6 + 4u), r2);
+                r2 = 100663296u;
+                Mem.Set((r3 + 0u), r2);
+                r4 = Mem.U32((r21 + 20u));
+                Mem.Set((r3 + 4u), r4);
+                r31 = Mem.U32((r29 + 48u));
+                r21 = Mem.U32((r29 + 44u));
+                r20 = Mem.U32((r29 + 40u));
+                r19 = Mem.U32((r29 + 36u));
+                r18 = Mem.U32((r29 + 32u));
+                r17 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r2 = r3 + 8u;
+                r29 = r29 + 56u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002BB3D0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002BB450 @ 0x002BB450 [MIPS]
+    public static uint alSavePull_Recompiled(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002BB450", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_002BB450: ;
+                r29 = r29 - 56u;
+                Mem.Set((r29 + 44u), r21);
+                r21 = r4;
+                Mem.Set((r29 + 36u), r19);
+                r19 = r5;
+                Mem.Set((r29 + 32u), r18);
+                r18 = r6;
+                Mem.Set((r29 + 40u), r20);
+                Mem.Set((r29 + 48u), r31);
+                Mem.Set((r29 + 28u), r17);
+                Mem.Set((r29 + 24u), r16);
+                r17 = Mem.U32((r21 + 0u));
+                r16 = Mem.U32((r29 + 72u));
+                { bool c_ = r17 != 0; r20 = r7; if (c_) goto L_L002BB4A4; }
+                r4 = 2148335616u;
+                r4 = r4 - 13760u;
+                r5 = 2148335616u;
+                r5 = r5 - 13756u;
+                r6 = (uint)34; r2 = __assert(r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002BB4A4: ;
+                r4 = r17;
+                r5 = r19;
+                r6 = r18;
+                Mem.Set((r29 + 16u), r16);
+                r2 = Mem.U32((r4 + 4u));
+                r7 = r20; r2 = Funcs.CallRegX(r2, r4, r5, r6, r7, new uint[] { Mem.U32(r29 + 16u) }); r3 = Cpu.V1;
+                r16 = r2;
+                r4 = r16;
+                r16 = r16 + 8u;
+                r5 = r16;
+                r16 = r16 + 8u;
+                r7 = 71303168u;
+                r7 = r7 | 1408u;
+                r6 = r16;
+                r16 = r16 + 8u;
+                r3 = 134217728u;
+                r2 = r18 << 1;
+                r2 = r2 & 65535u;
+                Mem.Set((r4 + 4u), r2);
+                r2 = 218103808u;
+                Mem.Set((r4 + 0u), r3);
+                Mem.Set((r5 + 0u), r2);
+                r2 = r18 << 2;
+                r2 = r2 & 65535u;
+                Mem.Set((r5 + 4u), r7);
+                Mem.Set((r6 + 0u), r3);
+                r3 = r16;
+                Mem.Set((r6 + 4u), r2);
+                r2 = 100663296u;
+                Mem.Set((r3 + 0u), r2);
+                r4 = Mem.U32((r21 + 20u));
+                Mem.Set((r3 + 4u), r4);
+                r31 = Mem.U32((r29 + 48u));
+                r21 = Mem.U32((r29 + 44u));
+                r20 = Mem.U32((r29 + 40u));
+                r19 = Mem.U32((r29 + 36u));
+                r18 = Mem.U32((r29 + 32u));
+                r17 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r2 = r3 + 8u;
+                r29 = r29 + 56u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002BB450", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002BB550 @ 0x002BB550 [MIPS]
+    public static uint alSaveParam_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002BB550", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002BB550: ;
+                r2 = (uint)1;
+                { bool c_ = r5 == r2; r2 = (uint)6; if (c_) goto L_L002BB56C; }
+                { bool c_ = r5 == r2; r2 = r0; if (c_) goto L_L002BB574; }
+                 goto L_L002BB57C;
+                L_L002BB56C: ;
+                Mem.Set((r4 + 0u), r6); goto L_L002BB578;
+                L_L002BB574: ;
+                Mem.Set((r4 + 20u), r6);
+                L_L002BB578: ;
+                r2 = r0;
+                L_L002BB57C: ;
+                Cpu.V1 = r3; return r2;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 24u), r31);
+                L_func_002BB590: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r4;
+                r2 = r5 << 16;
+                r5 = r6;
+                r6 = r7;
+                r2 = (uint)((int)r2 >> 16);
+                Mem.Set((r29 + 16u), r16);
+                r16 = r2 << 2;
+                r16 = r16 + r2;
+                r16 = r16 << 2;
+                r16 = r16 - r2;
+                Mem.Set((r29 + 24u), r31);
+                r4 = Mem.U32((r17 + 52u));
+                r16 = r16 << 2;
+                r4 = r4 + r16;
+                r4 = r4 + 32u; alFxNew(r4, r5, r6);
+                r6 = Mem.U32((r17 + 52u));
+                r5 = (uint)1;
+                r6 = r6 + r16;
+                r4 = r6 + 32u; r2 = (uint)alFxParam(r4, (int)r5, r6);
+                r5 = (uint)2;
+                r6 = Mem.U32((r17 + 52u));
+                r4 = Mem.U32((r17 + 48u));
+                r6 = r6 + r16;
+                r6 = r6 + 32u; r2 = (uint)alAuxBusParam(r4, (int)r5, r6);
+                r2 = Mem.U32((r17 + 52u));
+                r31 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r2 = r2 + r16;
+                r16 = Mem.U32((r29 + 16u));
+                r2 = r2 + 32u;
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002BB550", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002BB584 @ 0x002BB584 [MIPS]
+    public static uint alSynAllocFX_Entry_002BB584(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002BB584", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002BB584: ;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r4 + r0;
+                Mem.Set((r29 + 24u), r31);
+                L_func_002BB590: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r4;
+                r2 = r5 << 16;
+                r5 = r6;
+                r6 = r7;
+                r2 = (uint)((int)r2 >> 16);
+                Mem.Set((r29 + 16u), r16);
+                r16 = r2 << 2;
+                r16 = r16 + r2;
+                r16 = r16 << 2;
+                r16 = r16 - r2;
+                Mem.Set((r29 + 24u), r31);
+                r4 = Mem.U32((r17 + 52u));
+                r16 = r16 << 2;
+                r4 = r4 + r16;
+                r4 = r4 + 32u; alFxNew(r4, r5, r6);
+                r6 = Mem.U32((r17 + 52u));
+                r5 = (uint)1;
+                r6 = r6 + r16;
+                r4 = r6 + 32u; r2 = (uint)alFxParam(r4, (int)r5, r6);
+                r5 = (uint)2;
+                r6 = Mem.U32((r17 + 52u));
+                r4 = Mem.U32((r17 + 48u));
+                r6 = r6 + r16;
+                r6 = r6 + 32u; r2 = (uint)alAuxBusParam(r4, (int)r5, r6);
+                r2 = Mem.U32((r17 + 52u));
+                r31 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r2 = r2 + r16;
+                r16 = Mem.U32((r29 + 16u));
+                r2 = r2 + 32u;
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002BB584", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002BB590 @ 0x002BB590 [MIPS]
+    public static uint alSynAllocFX_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002BB590", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002BB590: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r4;
+                r2 = r5 << 16;
+                r5 = r6;
+                r6 = r7;
+                r2 = (uint)((int)r2 >> 16);
+                Mem.Set((r29 + 16u), r16);
+                r16 = r2 << 2;
+                r16 = r16 + r2;
+                r16 = r16 << 2;
+                r16 = r16 - r2;
+                Mem.Set((r29 + 24u), r31);
+                r4 = Mem.U32((r17 + 52u));
+                r16 = r16 << 2;
+                r4 = r4 + r16;
+                r4 = r4 + 32u; alFxNew(r4, r5, r6);
+                r6 = Mem.U32((r17 + 52u));
+                r5 = (uint)1;
+                r6 = r6 + r16;
+                r4 = r6 + 32u; r2 = (uint)alFxParam(r4, (int)r5, r6);
+                r5 = (uint)2;
+                r6 = Mem.U32((r17 + 52u));
+                r4 = Mem.U32((r17 + 48u));
+                r6 = r6 + r16;
+                r6 = r6 + 32u; r2 = (uint)alAuxBusParam(r4, (int)r5, r6);
+                r2 = Mem.U32((r17 + 52u));
+                r31 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r2 = r2 + r16;
+                r16 = Mem.U32((r29 + 16u));
+                r2 = r2 + 32u;
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002BB590", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002BB624 @ 0x002BB624 [MIPS]
+    public static uint libaudio_fragment_0BC224_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002BB624", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002BB624: ;
+                r29 = r29 + 32u;
+                r4 = r20;
+                r1 = 2148859904u;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002BB624", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002C31B8 @ 0x002C31B8 [MIPS]
+    public static uint alAdpcmPull_Head_002C31B8(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002C31B8", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_002C31B8: ;
+                Mem.Set((r29 + 16u), r11); r2 = (uint)adecReadBits(r4, (ushort)r5, (ushort)r6, (short)r7, Mem.U32(r29 + 16u));
+                L_func_002C31C0: ;
+                r29 = r29 - 88u;
+                Mem.Set((r29 + 56u), r18);
+                r18 = Mem.U32((r29 + 104u));
+                Mem.Set((r29 + 76u), r23);
+                r23 = r5;
+                Mem.Set((r29 + 68u), r21);
+                r21 = r6;
+                Mem.Set((r29 + 48u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 84u), r31);
+                Mem.Set((r29 + 80u), r30);
+                Mem.Set((r29 + 72u), r22);
+                Mem.Set((r29 + 64u), r20);
+                Mem.Set((r29 + 60u), r19);
+                Mem.Set((r29 + 52u), r17);
+                Mem.Set((r29 + 32u), r0);
+                { bool c_ = r21 == 0; r17 = r18; if (c_) goto L_L002C35D0; }
+                r3 = 16711680u;
+                r2 = Mem.U32((r16 + 44u));
+                r3 = r3 | 65535u;
+                r2 = r2 & r3;
+                r3 = 184549376u;
+                r2 = r2 | r3;
+                Mem.Set((r17 + 0u), r2);
+                r2 = Mem.U32((r16 + 40u));
+                r18 = r18 + 8u;
+                r4 = Mem.U32((r2 + 16u));
+                r5 = Mem.U32((r16 + 44u));
+                r4 = r4 + 8u; r2 = Audio_DmaCacheLoad(r4, r5);
+                r4 = r0;
+                Mem.Set((r17 + 4u), r2);
+                r5 = Mem.U32((r16 + 56u));
+                r3 = Mem.U32((r16 + 32u));
+                r2 = r21 + r5;
+                r2 = (uint)(r3 < r2 ? 1 : 0);
+                { bool c_ = r2 == 0; r30 = r4; if (c_) goto L_L002C3264; }
+                r2 = Mem.U32((r16 + 36u));
+                r4 = (uint)(r4 < r2 ? 1 : 0);
+                L_L002C3264: ;
+                { bool c_ = r4 == 0; r17 = r21; if (c_) goto L_L002C3270; }
+                r17 = r3 - r5;
+                L_L002C3270: ;
+                r3 = Mem.U32((r16 + 60u));
+                { bool c_ = r3 == 0; r2 = (uint)16; if (c_) goto L_L002C3284; }
+                r22 = r2 - r3; goto L_L002C3288;
+                L_L002C3284: ;
+                r22 = r0;
+                L_L002C3288: ;
+                r6 = r17 - r22;
+                if ((int)r6 < 0) { r6 = r0; goto L_L002C3294; }
+                L_L002C3294: ;
+                r2 = r6 + 15u;
+                r19 = (uint)((int)r2 >> 4);
+                r5 = r19 << 3;
+                { bool c_ = r4 == 0; r7 = r5 + r19; if (c_) goto L_L002C3468; }
+                r2 = (uint)(int)Mem.S16((r23 + 0u));
+                r4 = r18;
+                Mem.Set((r29 + 20u), r0);
+                Mem.Set((r29 + 16u), r2);
+                r2 = Mem.U32((r16 + 64u));
+                r5 = r16;
+                Mem.Set((r29 + 24u), r2); r2 = _decodeChunk(r4, r5, (int)r6, (int)r7, (short)Mem.U32(r29 + 16u), (short)Mem.U32(r29 + 20u), Mem.U32(r29 + 24u));
+                r3 = Mem.U32((r16 + 60u));
+                { bool c_ = r3 == 0; r18 = r2; if (c_) goto L_L002C32EC; }
+                r2 = Mem.U16((r16 + 62u));
+                r3 = Mem.U16((r23 + 0u));
+                r2 = r2 << 1;
+                r3 = r3 + r2;
+                Mem.Set((r23 + 0u), (ushort)r3); goto L_L002C32F8;
+                L_L002C32EC: ;
+                r2 = Mem.U16((r23 + 0u));
+                r2 = r2 + 32u;
+                Mem.Set((r23 + 0u), (ushort)r2);
+                L_L002C32F8: ;
+                r2 = Mem.U32((r16 + 28u));
+                r5 = Mem.U32((r16 + 28u));
+                r2 = r2 & 15u;
+                r3 = r5;
+                r3 = r3 >> 4;
+                Mem.Set((r16 + 60u), r2);
+                r2 = Mem.U32((r16 + 40u));
+                r3 = r3 + 1u;
+                r4 = Mem.U32((r2 + 0u));
+                r2 = r3 << 3;
+                r2 = r2 + r3;
+                Mem.Set((r16 + 56u), r5);
+                r4 = r4 + r2;
+                r2 = (uint)((int)r17 < (int)r21 ? 1 : 0);
+                Mem.Set((r16 + 68u), r4);
+                r20 = (uint)(int)Mem.S16((r23 + 0u));
+                { bool c_ = r2 == 0; r2 = r30 << 16; if (c_) goto L_L002C3430; }
+                r23 = (uint)((int)r2 >> 16);
+                L_L002C3344: ;
+                r3 = r19 + 1u;
+                r3 = r3 << 5;
+                r3 = r20 + r3;
+                r2 = r17 << 1;
+                r20 = r20 + r2;
+                r2 = (uint)-32;
+                r22 = r3 & r2;
+                r3 = Mem.U32((r16 + 36u));
+                r2 = (uint)-1;
+                { bool c_ = r3 == r2; r21 = r21 - r17; if (c_) goto L_L002C337C; }
+                { bool c_ = r3 == 0; r2 = r3 + r2; if (c_) goto L_L002C337C; }
+                Mem.Set((r16 + 36u), r2);
+                L_L002C337C: ;
+                r3 = Mem.U32((r16 + 32u));
+                r2 = Mem.U32((r16 + 28u));
+                r3 = r3 - r2;
+                r2 = (uint)(r21 < r3 ? 1 : 0);
+                { bool c_ = r2 != 0; r17 = r21; if (c_) goto L_L002C3398; }
+                r17 = r3;
+                L_L002C3398: ;
+                r2 = Mem.U32((r16 + 60u));
+                r2 = r2 - 16u;
+                r6 = r17 + r2;
+                if ((int)r6 < 0) { r6 = r0; goto L_L002C33AC; }
+                L_L002C33AC: ;
+                r2 = r6 + 15u;
+                r19 = (uint)((int)r2 >> 4);
+                r4 = r18;
+                r5 = r16;
+                r2 = r22 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                r7 = r19 << 3;
+                Mem.Set((r29 + 16u), r2);
+                Mem.Set((r29 + 20u), r23);
+                r2 = Mem.U32((r16 + 64u));
+                r7 = r7 + r19;
+                r2 = r2 | 2u;
+                Mem.Set((r29 + 24u), r2); r2 = _decodeChunk(r4, r5, (int)r6, (int)r7, (short)Mem.U32(r29 + 16u), (short)Mem.U32(r29 + 20u), Mem.U32(r29 + 24u));
+                r18 = r2;
+                r5 = r18;
+                r6 = 16711680u;
+                r6 = r6 | 65535u;
+                r4 = r20 << 16;
+                r3 = r17 << 1;
+                r3 = r3 & 65535u;
+                r4 = r4 | r3;
+                r2 = Mem.U32((r16 + 60u));
+                r3 = 167772160u;
+                Mem.Set((r5 + 4u), r4);
+                r2 = r2 << 1;
+                r2 = r22 + r2;
+                r2 = r2 & r6;
+                r2 = r2 | r3;
+                Mem.Set((r5 + 0u), r2);
+                r2 = (uint)((int)r17 < (int)r21 ? 1 : 0);
+                { bool c_ = r2 != 0; r18 = r18 + 8u; if (c_) goto L_L002C3344; }
+                L_L002C3430: ;
+                r2 = r18;
+                r3 = Mem.U32((r16 + 60u));
+                r4 = Mem.U32((r16 + 56u));
+                r3 = r21 + r3;
+                r3 = r3 & 15u;
+                r4 = r4 + r21;
+                Mem.Set((r16 + 60u), r3);
+                r3 = r19 << 3;
+                Mem.Set((r16 + 56u), r4);
+                r4 = Mem.U32((r16 + 68u));
+                r3 = r3 + r19;
+                r4 = r4 + r3;
+                Mem.Set((r16 + 68u), r4); goto L_L002C35D4;
+                L_L002C3468: ;
+                r4 = Mem.U32((r16 + 40u));
+                r3 = Mem.U32((r16 + 68u));
+                r2 = Mem.U32((r4 + 0u));
+                r4 = Mem.U32((r4 + 4u));
+                r3 = r3 + r7;
+                r2 = r2 + r4;
+                r4 = r3 - r2;
+                { bool c_ = (int)r4 >= 0; r17 = r19 << 4; if (c_) goto L_L002C3490; }
+                r4 = r0;
+                L_L002C3490: ;
+                r2 = 954400768u;
+                r2 = r2 | 36409u;
+                { long p_ = (long)(int)r4 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r3 = (uint)((int)r4 >> 31);
+                r8 = hi;
+                r2 = (uint)((int)r8 >> 1);
+                r2 = r2 - r3;
+                r20 = r2 << 4;
+                r3 = r17 + r22;
+                r2 = (uint)((int)r3 < (int)r20 ? 1 : 0);
+                if (r2 != 0) { r20 = r3; goto L_L002C34C0; }
+                L_L002C34C0: ;
+                r2 = r20 & 15u;
+                r2 = r20 - r2;
+                r2 = (uint)((int)r2 < (int)r21 ? 1 : 0);
+                { bool c_ = r2 == 0; r7 = r7 - r4; if (c_) goto L_L002C3564; }
+                r8 = (uint)1;
+                r4 = r18;
+                Mem.Set((r29 + 32u), r8);
+                r2 = (uint)(int)Mem.S16((r23 + 0u));
+                r5 = r16;
+                Mem.Set((r29 + 20u), r0);
+                Mem.Set((r29 + 16u), r2);
+                r2 = Mem.U32((r16 + 64u));
+                r6 = r17 - r20;
+                Mem.Set((r29 + 24u), r2); r2 = _decodeChunk(r4, r5, (int)r6, (int)r7, (short)Mem.U32(r29 + 16u), (short)Mem.U32(r29 + 20u), Mem.U32(r29 + 24u));
+                r3 = Mem.U32((r16 + 60u));
+                { bool c_ = r3 == 0; r18 = r2; if (c_) goto L_L002C3524; }
+                r2 = Mem.U16((r16 + 62u));
+                r3 = Mem.U16((r23 + 0u));
+                r2 = r2 << 1;
+                r3 = r3 + r2;
+                Mem.Set((r23 + 0u), (ushort)r3); goto L_L002C3530;
+                L_L002C3524: ;
+                r2 = Mem.U16((r23 + 0u));
+                r2 = r2 + 32u;
+                Mem.Set((r23 + 0u), (ushort)r2);
+                L_L002C3530: ;
+                r2 = Mem.U32((r16 + 60u));
+                r3 = Mem.U32((r16 + 56u));
+                r2 = r21 + r2;
+                r2 = r2 & 15u;
+                r3 = r3 + r21;
+                Mem.Set((r16 + 60u), r2);
+                r2 = r19 << 3;
+                Mem.Set((r16 + 56u), r3);
+                r3 = Mem.U32((r16 + 68u));
+                r2 = r2 + r19;
+                r3 = r3 + r2;
+                Mem.Set((r16 + 68u), r3); goto L_L002C3578;
+                L_L002C3564: ;
+                r2 = Mem.U32((r16 + 68u));
+                r3 = r5 + r19;
+                Mem.Set((r16 + 60u), r0);
+                r2 = r2 + r3;
+                Mem.Set((r16 + 68u), r2);
+                L_L002C3578: ;
+                { bool c_ = r20 == 0; r2 = r18; if (c_) goto L_L002C35D4; }
+                Mem.Set((r16 + 60u), r0);
+                r8 = Mem.U32((r29 + 32u));
+                { bool c_ = r8 == 0; r2 = r22 + r17; if (c_) goto L_L002C359C; }
+                r2 = r2 - r20;
+                r6 = r2 << 1; goto L_L002C35A0;
+                L_L002C359C: ;
+                r6 = r0;
+                L_L002C35A0: ;
+                r5 = r18;
+                r18 = r18 + 8u;
+                r4 = 16711680u;
+                r4 = r4 | 65535u;
+                r2 = (uint)(int)Mem.S16((r23 + 0u));
+                r3 = r20 << 1;
+                Mem.Set((r5 + 4u), r3);
+                r3 = 33554432u;
+                r2 = r6 + r2;
+                r2 = r2 & r4;
+                r2 = r2 | r3;
+                Mem.Set((r5 + 0u), r2);
+                L_L002C35D0: ;
+                r2 = r18;
+                L_L002C35D4: ;
+                r31 = Mem.U32((r29 + 84u));
+                r30 = Mem.U32((r29 + 80u));
+                r23 = Mem.U32((r29 + 76u));
+                r22 = Mem.U32((r29 + 72u));
+                r21 = Mem.U32((r29 + 68u));
+                r20 = Mem.U32((r29 + 64u));
+                r19 = Mem.U32((r29 + 60u));
+                r18 = Mem.U32((r29 + 56u));
+                r17 = Mem.U32((r29 + 52u));
+                r16 = Mem.U32((r29 + 48u));
+                r29 = r29 + 88u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002C31B8", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002C31C0 @ 0x002C31C0 [MIPS]
+    public static uint alAdpcmPull_Recompiled(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002C31C0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_002C31C0: ;
+                r29 = r29 - 88u;
+                Mem.Set((r29 + 56u), r18);
+                r18 = Mem.U32((r29 + 104u));
+                Mem.Set((r29 + 76u), r23);
+                r23 = r5;
+                Mem.Set((r29 + 68u), r21);
+                r21 = r6;
+                Mem.Set((r29 + 48u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 84u), r31);
+                Mem.Set((r29 + 80u), r30);
+                Mem.Set((r29 + 72u), r22);
+                Mem.Set((r29 + 64u), r20);
+                Mem.Set((r29 + 60u), r19);
+                Mem.Set((r29 + 52u), r17);
+                Mem.Set((r29 + 32u), r0);
+                { bool c_ = r21 == 0; r17 = r18; if (c_) goto L_L002C35D0; }
+                r3 = 16711680u;
+                r2 = Mem.U32((r16 + 44u));
+                r3 = r3 | 65535u;
+                r2 = r2 & r3;
+                r3 = 184549376u;
+                r2 = r2 | r3;
+                Mem.Set((r17 + 0u), r2);
+                r2 = Mem.U32((r16 + 40u));
+                r18 = r18 + 8u;
+                r4 = Mem.U32((r2 + 16u));
+                r5 = Mem.U32((r16 + 44u));
+                r4 = r4 + 8u; r2 = Audio_DmaCacheLoad(r4, r5);
+                r4 = r0;
+                Mem.Set((r17 + 4u), r2);
+                r5 = Mem.U32((r16 + 56u));
+                r3 = Mem.U32((r16 + 32u));
+                r2 = r21 + r5;
+                r2 = (uint)(r3 < r2 ? 1 : 0);
+                { bool c_ = r2 == 0; r30 = r4; if (c_) goto L_L002C3264; }
+                r2 = Mem.U32((r16 + 36u));
+                r4 = (uint)(r4 < r2 ? 1 : 0);
+                L_L002C3264: ;
+                { bool c_ = r4 == 0; r17 = r21; if (c_) goto L_L002C3270; }
+                r17 = r3 - r5;
+                L_L002C3270: ;
+                r3 = Mem.U32((r16 + 60u));
+                { bool c_ = r3 == 0; r2 = (uint)16; if (c_) goto L_L002C3284; }
+                r22 = r2 - r3; goto L_L002C3288;
+                L_L002C3284: ;
+                r22 = r0;
+                L_L002C3288: ;
+                r6 = r17 - r22;
+                if ((int)r6 < 0) { r6 = r0; goto L_L002C3294; }
+                L_L002C3294: ;
+                r2 = r6 + 15u;
+                r19 = (uint)((int)r2 >> 4);
+                r5 = r19 << 3;
+                { bool c_ = r4 == 0; r7 = r5 + r19; if (c_) goto L_L002C3468; }
+                r2 = (uint)(int)Mem.S16((r23 + 0u));
+                r4 = r18;
+                Mem.Set((r29 + 20u), r0);
+                Mem.Set((r29 + 16u), r2);
+                r2 = Mem.U32((r16 + 64u));
+                r5 = r16;
+                Mem.Set((r29 + 24u), r2); r2 = _decodeChunk(r4, r5, (int)r6, (int)r7, (short)Mem.U32(r29 + 16u), (short)Mem.U32(r29 + 20u), Mem.U32(r29 + 24u));
+                r3 = Mem.U32((r16 + 60u));
+                { bool c_ = r3 == 0; r18 = r2; if (c_) goto L_L002C32EC; }
+                r2 = Mem.U16((r16 + 62u));
+                r3 = Mem.U16((r23 + 0u));
+                r2 = r2 << 1;
+                r3 = r3 + r2;
+                Mem.Set((r23 + 0u), (ushort)r3); goto L_L002C32F8;
+                L_L002C32EC: ;
+                r2 = Mem.U16((r23 + 0u));
+                r2 = r2 + 32u;
+                Mem.Set((r23 + 0u), (ushort)r2);
+                L_L002C32F8: ;
+                r2 = Mem.U32((r16 + 28u));
+                r5 = Mem.U32((r16 + 28u));
+                r2 = r2 & 15u;
+                r3 = r5;
+                r3 = r3 >> 4;
+                Mem.Set((r16 + 60u), r2);
+                r2 = Mem.U32((r16 + 40u));
+                r3 = r3 + 1u;
+                r4 = Mem.U32((r2 + 0u));
+                r2 = r3 << 3;
+                r2 = r2 + r3;
+                Mem.Set((r16 + 56u), r5);
+                r4 = r4 + r2;
+                r2 = (uint)((int)r17 < (int)r21 ? 1 : 0);
+                Mem.Set((r16 + 68u), r4);
+                r20 = (uint)(int)Mem.S16((r23 + 0u));
+                { bool c_ = r2 == 0; r2 = r30 << 16; if (c_) goto L_L002C3430; }
+                r23 = (uint)((int)r2 >> 16);
+                L_L002C3344: ;
+                r3 = r19 + 1u;
+                r3 = r3 << 5;
+                r3 = r20 + r3;
+                r2 = r17 << 1;
+                r20 = r20 + r2;
+                r2 = (uint)-32;
+                r22 = r3 & r2;
+                r3 = Mem.U32((r16 + 36u));
+                r2 = (uint)-1;
+                { bool c_ = r3 == r2; r21 = r21 - r17; if (c_) goto L_L002C337C; }
+                { bool c_ = r3 == 0; r2 = r3 + r2; if (c_) goto L_L002C337C; }
+                Mem.Set((r16 + 36u), r2);
+                L_L002C337C: ;
+                r3 = Mem.U32((r16 + 32u));
+                r2 = Mem.U32((r16 + 28u));
+                r3 = r3 - r2;
+                r2 = (uint)(r21 < r3 ? 1 : 0);
+                { bool c_ = r2 != 0; r17 = r21; if (c_) goto L_L002C3398; }
+                r17 = r3;
+                L_L002C3398: ;
+                r2 = Mem.U32((r16 + 60u));
+                r2 = r2 - 16u;
+                r6 = r17 + r2;
+                if ((int)r6 < 0) { r6 = r0; goto L_L002C33AC; }
+                L_L002C33AC: ;
+                r2 = r6 + 15u;
+                r19 = (uint)((int)r2 >> 4);
+                r4 = r18;
+                r5 = r16;
+                r2 = r22 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                r7 = r19 << 3;
+                Mem.Set((r29 + 16u), r2);
+                Mem.Set((r29 + 20u), r23);
+                r2 = Mem.U32((r16 + 64u));
+                r7 = r7 + r19;
+                r2 = r2 | 2u;
+                Mem.Set((r29 + 24u), r2); r2 = _decodeChunk(r4, r5, (int)r6, (int)r7, (short)Mem.U32(r29 + 16u), (short)Mem.U32(r29 + 20u), Mem.U32(r29 + 24u));
+                r18 = r2;
+                r5 = r18;
+                r6 = 16711680u;
+                r6 = r6 | 65535u;
+                r4 = r20 << 16;
+                r3 = r17 << 1;
+                r3 = r3 & 65535u;
+                r4 = r4 | r3;
+                r2 = Mem.U32((r16 + 60u));
+                r3 = 167772160u;
+                Mem.Set((r5 + 4u), r4);
+                r2 = r2 << 1;
+                r2 = r22 + r2;
+                r2 = r2 & r6;
+                r2 = r2 | r3;
+                Mem.Set((r5 + 0u), r2);
+                r2 = (uint)((int)r17 < (int)r21 ? 1 : 0);
+                { bool c_ = r2 != 0; r18 = r18 + 8u; if (c_) goto L_L002C3344; }
+                L_L002C3430: ;
+                r2 = r18;
+                r3 = Mem.U32((r16 + 60u));
+                r4 = Mem.U32((r16 + 56u));
+                r3 = r21 + r3;
+                r3 = r3 & 15u;
+                r4 = r4 + r21;
+                Mem.Set((r16 + 60u), r3);
+                r3 = r19 << 3;
+                Mem.Set((r16 + 56u), r4);
+                r4 = Mem.U32((r16 + 68u));
+                r3 = r3 + r19;
+                r4 = r4 + r3;
+                Mem.Set((r16 + 68u), r4); goto L_L002C35D4;
+                L_L002C3468: ;
+                r4 = Mem.U32((r16 + 40u));
+                r3 = Mem.U32((r16 + 68u));
+                r2 = Mem.U32((r4 + 0u));
+                r4 = Mem.U32((r4 + 4u));
+                r3 = r3 + r7;
+                r2 = r2 + r4;
+                r4 = r3 - r2;
+                { bool c_ = (int)r4 >= 0; r17 = r19 << 4; if (c_) goto L_L002C3490; }
+                r4 = r0;
+                L_L002C3490: ;
+                r2 = 954400768u;
+                r2 = r2 | 36409u;
+                { long p_ = (long)(int)r4 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r3 = (uint)((int)r4 >> 31);
+                r8 = hi;
+                r2 = (uint)((int)r8 >> 1);
+                r2 = r2 - r3;
+                r20 = r2 << 4;
+                r3 = r17 + r22;
+                r2 = (uint)((int)r3 < (int)r20 ? 1 : 0);
+                if (r2 != 0) { r20 = r3; goto L_L002C34C0; }
+                L_L002C34C0: ;
+                r2 = r20 & 15u;
+                r2 = r20 - r2;
+                r2 = (uint)((int)r2 < (int)r21 ? 1 : 0);
+                { bool c_ = r2 == 0; r7 = r7 - r4; if (c_) goto L_L002C3564; }
+                r8 = (uint)1;
+                r4 = r18;
+                Mem.Set((r29 + 32u), r8);
+                r2 = (uint)(int)Mem.S16((r23 + 0u));
+                r5 = r16;
+                Mem.Set((r29 + 20u), r0);
+                Mem.Set((r29 + 16u), r2);
+                r2 = Mem.U32((r16 + 64u));
+                r6 = r17 - r20;
+                Mem.Set((r29 + 24u), r2); r2 = _decodeChunk(r4, r5, (int)r6, (int)r7, (short)Mem.U32(r29 + 16u), (short)Mem.U32(r29 + 20u), Mem.U32(r29 + 24u));
+                r3 = Mem.U32((r16 + 60u));
+                { bool c_ = r3 == 0; r18 = r2; if (c_) goto L_L002C3524; }
+                r2 = Mem.U16((r16 + 62u));
+                r3 = Mem.U16((r23 + 0u));
+                r2 = r2 << 1;
+                r3 = r3 + r2;
+                Mem.Set((r23 + 0u), (ushort)r3); goto L_L002C3530;
+                L_L002C3524: ;
+                r2 = Mem.U16((r23 + 0u));
+                r2 = r2 + 32u;
+                Mem.Set((r23 + 0u), (ushort)r2);
+                L_L002C3530: ;
+                r2 = Mem.U32((r16 + 60u));
+                r3 = Mem.U32((r16 + 56u));
+                r2 = r21 + r2;
+                r2 = r2 & 15u;
+                r3 = r3 + r21;
+                Mem.Set((r16 + 60u), r2);
+                r2 = r19 << 3;
+                Mem.Set((r16 + 56u), r3);
+                r3 = Mem.U32((r16 + 68u));
+                r2 = r2 + r19;
+                r3 = r3 + r2;
+                Mem.Set((r16 + 68u), r3); goto L_L002C3578;
+                L_L002C3564: ;
+                r2 = Mem.U32((r16 + 68u));
+                r3 = r5 + r19;
+                Mem.Set((r16 + 60u), r0);
+                r2 = r2 + r3;
+                Mem.Set((r16 + 68u), r2);
+                L_L002C3578: ;
+                { bool c_ = r20 == 0; r2 = r18; if (c_) goto L_L002C35D4; }
+                Mem.Set((r16 + 60u), r0);
+                r8 = Mem.U32((r29 + 32u));
+                { bool c_ = r8 == 0; r2 = r22 + r17; if (c_) goto L_L002C359C; }
+                r2 = r2 - r20;
+                r6 = r2 << 1; goto L_L002C35A0;
+                L_L002C359C: ;
+                r6 = r0;
+                L_L002C35A0: ;
+                r5 = r18;
+                r18 = r18 + 8u;
+                r4 = 16711680u;
+                r4 = r4 | 65535u;
+                r2 = (uint)(int)Mem.S16((r23 + 0u));
+                r3 = r20 << 1;
+                Mem.Set((r5 + 4u), r3);
+                r3 = 33554432u;
+                r2 = r6 + r2;
+                r2 = r2 & r4;
+                r2 = r2 | r3;
+                Mem.Set((r5 + 0u), r2);
+                L_L002C35D0: ;
+                r2 = r18;
+                L_L002C35D4: ;
+                r31 = Mem.U32((r29 + 84u));
+                r30 = Mem.U32((r29 + 80u));
+                r23 = Mem.U32((r29 + 76u));
+                r22 = Mem.U32((r29 + 72u));
+                r21 = Mem.U32((r29 + 68u));
+                r20 = Mem.U32((r29 + 64u));
+                r19 = Mem.U32((r29 + 60u));
+                r18 = Mem.U32((r29 + 56u));
+                r17 = Mem.U32((r29 + 52u));
+                r16 = Mem.U32((r29 + 48u));
+                r29 = r29 + 88u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002C31C0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002C3530 @ 0x002C3530 [MIPS]
+    public static uint alAdpcmPull_Entry_002C3530(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5, uint a6, uint a7, uint a8, uint a9, uint a10, uint a11, uint a12, uint a13, uint a14, uint a15, uint a16, uint a17, uint a18, uint a19, uint a20, uint a21)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002C3530", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                Mem.Set(r29 + 20u, a5);
+                Mem.Set(r29 + 24u, a6);
+                Mem.Set(r29 + 28u, a7);
+                Mem.Set(r29 + 32u, a8);
+                Mem.Set(r29 + 36u, a9);
+                Mem.Set(r29 + 40u, a10);
+                Mem.Set(r29 + 44u, a11);
+                Mem.Set(r29 + 48u, a12);
+                Mem.Set(r29 + 52u, a13);
+                Mem.Set(r29 + 56u, a14);
+                Mem.Set(r29 + 60u, a15);
+                Mem.Set(r29 + 64u, a16);
+                Mem.Set(r29 + 68u, a17);
+                Mem.Set(r29 + 72u, a18);
+                Mem.Set(r29 + 76u, a19);
+                Mem.Set(r29 + 80u, a20);
+                Mem.Set(r29 + 84u, a21);
+                L_func_002C3530: ;
+                r2 = Mem.U32((r16 + 60u));
+                r3 = Mem.U32((r16 + 56u));
+                r2 = r21 + r2;
+                r2 = r2 & 15u;
+                r3 = r3 + r21;
+                Mem.Set((r16 + 60u), r2);
+                r2 = r19 << 3;
+                Mem.Set((r16 + 56u), r3);
+                r3 = Mem.U32((r16 + 68u));
+                r2 = r2 + r19;
+                r3 = r3 + r2;
+                Mem.Set((r16 + 68u), r3); goto L_L002C3578;
+                r2 = Mem.U32((r16 + 68u));
+                r3 = r5 + r19;
+                Mem.Set((r16 + 60u), r0);
+                r2 = r2 + r3;
+                Mem.Set((r16 + 68u), r2);
+                L_L002C3578: ;
+                { bool c_ = r20 == 0; r2 = r18; if (c_) goto L_L002C35D4; }
+                Mem.Set((r16 + 60u), r0);
+                r8 = Mem.U32((r29 + 32u));
+                { bool c_ = r8 == 0; r2 = r22 + r17; if (c_) goto L_L002C359C; }
+                r2 = r2 - r20;
+                r6 = r2 << 1; goto L_L002C35A0;
+                L_L002C359C: ;
+                r6 = r0;
+                L_L002C35A0: ;
+                r5 = r18;
+                r18 = r18 + 8u;
+                r4 = 16711680u;
+                r4 = r4 | 65535u;
+                r2 = (uint)(int)Mem.S16((r23 + 0u));
+                r3 = r20 << 1;
+                Mem.Set((r5 + 4u), r3);
+                r3 = 33554432u;
+                r2 = r6 + r2;
+                r2 = r2 & r4;
+                r2 = r2 | r3;
+                Mem.Set((r5 + 0u), r2);
+                r2 = r18;
+                L_L002C35D4: ;
+                r31 = Mem.U32((r29 + 84u));
+                r30 = Mem.U32((r29 + 80u));
+                r23 = Mem.U32((r29 + 76u));
+                r22 = Mem.U32((r29 + 72u));
+                r21 = Mem.U32((r29 + 68u));
+                r20 = Mem.U32((r29 + 64u));
+                r19 = Mem.U32((r29 + 60u));
+                r18 = Mem.U32((r29 + 56u));
+                r17 = Mem.U32((r29 + 52u));
+                r16 = Mem.U32((r29 + 48u));
+                r29 = r29 + 88u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002C3530", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002C3604 @ 0x002C3604 [MIPS]
+    public static uint alRaw16Pull_Recompiled(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002C3604", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_002C3604: ;
+                r29 = r29 - 48u;
+                Mem.Set((r29 + 28u), r19);
+                r19 = Mem.U32((r29 + 64u));
+                Mem.Set((r29 + 36u), r21);
+                r21 = r5;
+                Mem.Set((r29 + 40u), r22);
+                r22 = r6;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r4;
+                Mem.Set((r29 + 44u), r31);
+                Mem.Set((r29 + 32u), r20);
+                Mem.Set((r29 + 20u), r17);
+                Mem.Set((r29 + 16u), r16);
+                { bool c_ = r22 == 0; r17 = r19; if (c_) goto L_L002C395C; }
+                r4 = Mem.U32((r18 + 56u));
+                r3 = Mem.U32((r18 + 32u));
+                r2 = r22 + r4;
+                r2 = (uint)(r3 < r2 ? 1 : 0);
+                { bool c_ = r2 == 0; r16 = r22 << 1; if (c_) goto L_L002C3848; }
+                r2 = Mem.U32((r18 + 36u));
+                { bool c_ = r2 == 0; r20 = r3 - r4; if (c_) goto L_L002C3848; }
+                { bool c_ = (int)r20 <= 0; r16 = r20 << 1; if (c_) goto L_L002C36D0; }
+                r5 = r16;
+                r4 = Mem.U32((r18 + 68u));
+                r6 = Mem.U32((r18 + 52u));
+                r2 = Mem.U32((r18 + 48u));
+                r19 = r19 + 8u; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = r2;
+                r6 = r7 & 7u;
+                r16 = r16 + r6;
+                r4 = r19;
+                r19 = r19 + 8u;
+                r2 = r16 & 7u;
+                r2 = r2 - 8u;
+                r2 = r16 - r2;
+                r3 = Mem.U16((r21 + 0u));
+                r2 = r2 & 65535u;
+                Mem.Set((r17 + 4u), r2);
+                r2 = 134217728u;
+                r3 = r3 | r2;
+                r2 = 67108864u;
+                Mem.Set((r17 + 0u), r3);
+                Mem.Set((r4 + 0u), r2);
+                r2 = r7 - r6;
+                Mem.Set((r4 + 4u), r2); goto L_L002C36D4;
+                L_L002C36D0: ;
+                r6 = r0;
+                L_L002C36D4: ;
+                r2 = Mem.U16((r21 + 0u));
+                r2 = r2 + r6;
+                Mem.Set((r21 + 0u), (ushort)r2);
+                r4 = Mem.U32((r18 + 28u));
+                r3 = Mem.U32((r18 + 40u));
+                r2 = r4;
+                r3 = Mem.U32((r3 + 0u));
+                r2 = r2 << 1;
+                Mem.Set((r18 + 56u), r4);
+                r3 = r3 + r2;
+                r2 = (uint)((int)r20 < (int)r22 ? 1 : 0);
+                Mem.Set((r18 + 68u), r3);
+                r21 = (uint)(int)Mem.S16((r21 + 0u));
+                { bool c_ = r2 == 0; r17 = r19 - 4u; if (c_) goto L_L002C3824; }
+                r2 = r20 << 1;
+                L_L002C3714: ;
+                r21 = r21 + r2;
+                r3 = Mem.U32((r18 + 36u));
+                r2 = (uint)-1;
+                { bool c_ = r3 == r2; r22 = r22 - r20; if (c_) goto L_L002C3734; }
+                { bool c_ = r3 == 0; r2 = r3 + r2; if (c_) goto L_L002C3734; }
+                Mem.Set((r18 + 36u), r2);
+                L_L002C3734: ;
+                r3 = Mem.U32((r18 + 32u));
+                r2 = Mem.U32((r18 + 28u));
+                r3 = r3 - r2;
+                r2 = (uint)(r22 < r3 ? 1 : 0);
+                { bool c_ = r2 != 0; r20 = r22; if (c_) goto L_L002C3750; }
+                r20 = r3;
+                L_L002C3750: ;
+                r16 = r20 << 1;
+                r4 = Mem.U32((r18 + 68u));
+                r6 = Mem.U32((r18 + 52u));
+                r2 = Mem.U32((r18 + 48u));
+                r5 = r16; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = r2;
+                r6 = r7 & 7u;
+                r3 = r21 & 7u;
+                { bool c_ = r3 == 0; r16 = r16 + r6; if (c_) goto L_L002C3788; }
+                r2 = (uint)8;
+                r4 = r2 - r3; goto L_L002C378C;
+                L_L002C3788: ;
+                r4 = r0;
+                L_L002C378C: ;
+                r17 = r17 + 8u;
+                r2 = r21 + r4;
+                r2 = r2 & 65535u;
+                r3 = 134217728u;
+                r2 = r2 | r3;
+                Mem.Set((r17 - 4u), r2);
+                r2 = r16 & 7u;
+                r2 = r2 - 8u;
+                r2 = r16 - r2;
+                r2 = r2 & 65535u;
+                Mem.Set((r17 + 0u), r2);
+                r17 = r17 + 8u;
+                r19 = r19 + 16u;
+                r2 = 67108864u;
+                Mem.Set((r17 - 4u), r2);
+                r2 = r7 - r6;
+                { bool c_ = r6 != 0; Mem.Set((r17 + 0u), r2); if (c_) goto L_L002C37DC; }
+                { bool c_ = r4 == 0; r2 = (uint)((int)r20 < (int)r22 ? 1 : 0); if (c_) goto L_L002C381C; }
+                L_L002C37DC: ;
+                r17 = r17 + 8u;
+                r19 = r19 + 8u;
+                r3 = 16711680u;
+                r3 = r3 | 65535u;
+                r2 = r21 + r6;
+                r2 = r2 + r4;
+                r2 = r2 & r3;
+                r3 = 167772160u;
+                r2 = r2 | r3;
+                r3 = r21 << 16;
+                Mem.Set((r17 - 4u), r2);
+                r2 = r20 << 1;
+                r2 = r2 & 65535u;
+                r3 = r3 | r2;
+                Mem.Set((r17 + 0u), r3);
+                r2 = (uint)((int)r20 < (int)r22 ? 1 : 0);
+                L_L002C381C: ;
+                { bool c_ = r2 != 0; r2 = r20 << 1; if (c_) goto L_L002C3714; }
+                L_L002C3824: ;
+                r3 = Mem.U32((r18 + 56u));
+                r2 = r19;
+                r3 = r3 + r22;
+                Mem.Set((r18 + 56u), r3);
+                r3 = Mem.U32((r18 + 68u));
+                r4 = r22 << 1;
+                r3 = r3 + r4;
+                Mem.Set((r18 + 68u), r3); goto L_L002C3960;
+                L_L002C3848: ;
+                r2 = Mem.U32((r18 + 40u));
+                r4 = Mem.U32((r18 + 68u));
+                r3 = Mem.U32((r2 + 0u));
+                r2 = Mem.U32((r2 + 4u));
+                r5 = r4 + r16;
+                r3 = r3 + r2;
+                r17 = r5 - r3;
+                if ((int)r17 < 0) { r17 = r0; goto L_L002C386C; }
+                L_L002C386C: ;
+                r2 = (uint)((int)r16 < (int)r17 ? 1 : 0);
+                if (r2 != 0) { r17 = r16; goto L_L002C3878; }
+                L_L002C3878: ;
+                r2 = (uint)((int)r17 < (int)r16 ? 1 : 0);
+                if (r2 == 0) { Mem.Set((r18 + 68u), r5); goto L_L002C391C; }
+                { bool c_ = (int)r22 <= 0; r16 = r16 - r17; if (c_) goto L_L002C38F0; }
+                r6 = Mem.U32((r18 + 52u));
+                r2 = Mem.U32((r18 + 48u));
+                r5 = r16; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = r2;
+                r6 = r7 & 7u;
+                r16 = r16 + r6;
+                r4 = r19;
+                r19 = r19 + 8u;
+                r5 = r19;
+                r19 = r19 + 8u;
+                r2 = r16 & 7u;
+                r2 = r2 - 8u;
+                r2 = r16 - r2;
+                r3 = Mem.U16((r21 + 0u));
+                r2 = r2 & 65535u;
+                Mem.Set((r4 + 4u), r2);
+                r2 = 134217728u;
+                r3 = r3 | r2;
+                r2 = 67108864u;
+                Mem.Set((r4 + 0u), r3);
+                Mem.Set((r5 + 0u), r2);
+                r2 = r7 - r6;
+                Mem.Set((r5 + 4u), r2); goto L_L002C38F4;
+                L_L002C38F0: ;
+                r6 = r0;
+                L_L002C38F4: ;
+                r2 = Mem.U16((r21 + 0u));
+                r2 = r2 + r6;
+                Mem.Set((r21 + 0u), (ushort)r2);
+                r2 = Mem.U32((r18 + 56u));
+                r2 = r2 + r22;
+                Mem.Set((r18 + 56u), r2);
+                r2 = Mem.U32((r18 + 68u));
+                r3 = r22 << 1;
+                r2 = r2 + r3;
+                Mem.Set((r18 + 68u), r2);
+                L_L002C391C: ;
+                { bool c_ = r17 == 0; r2 = r22 << 1; if (c_) goto L_L002C395C; }
+                r5 = r2 - r17;
+                if ((int)r5 < 0) { r5 = r0; goto L_L002C3930; }
+                L_L002C3930: ;
+                r4 = r19;
+                r19 = r19 + 8u;
+                r3 = 16711680u;
+                r2 = (uint)(int)Mem.S16((r21 + 0u));
+                r3 = r3 | 65535u;
+                Mem.Set((r4 + 4u), r17);
+                r2 = r5 + r2;
+                r2 = r2 & r3;
+                r3 = 33554432u;
+                r2 = r2 | r3;
+                Mem.Set((r4 + 0u), r2);
+                L_L002C395C: ;
+                r2 = r19;
+                L_L002C3960: ;
+                r31 = Mem.U32((r29 + 44u));
+                r22 = Mem.U32((r29 + 40u));
+                r21 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 48u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002C3604", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002C3988 @ 0x002C3988 [MIPS]
+    public static uint alAdecPull_Recompiled(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002C3988", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_002C3988: ;
+                r29 = r29 - 48u;
+                Mem.Set((r29 + 20u), r17);
+                r17 = Mem.U32((r29 + 64u));
+                Mem.Set((r29 + 36u), r21);
+                r21 = r6;
+                Mem.Set((r29 + 32u), r20);
+                r20 = r4;
+                Mem.Set((r29 + 44u), r31);
+                Mem.Set((r29 + 40u), r22);
+                Mem.Set((r29 + 28u), r19);
+                Mem.Set((r29 + 24u), r18);
+                Mem.Set((r29 + 16u), r16);
+                r2 = Mem.U32((r20 + 40u));
+                r19 = (uint)(int)Mem.S16((r5 + 0u));
+                r2 = Mem.U32((r2 + 0u));
+                { bool c_ = r2 != 0; r5 = r17; if (c_) goto L_L002C3A20; }
+                r3 = 16711680u;
+                r3 = r3 | 65535u;
+                r2 = r17 + 8u;
+                r3 = r19 & r3;
+                r4 = 33554432u;
+                r3 = r3 | r4;
+                Mem.Set((r5 + 0u), r3);
+                r3 = r21 << 1;
+                Mem.Set((r5 + 4u), r3); goto L_L002C3B6C;
+                L_L002C39F4: ;
+                r4 = 16711680u;
+                r4 = r4 | 65535u;
+                r2 = r17 + 8u;
+                r5 = r17;
+                r4 = r19 & r4;
+                r3 = 33554432u;
+                r4 = r4 | r3;
+                r3 = r21 << 1;
+                Mem.Set((r5 + 0u), r4);
+                Mem.Set((r5 + 4u), r3); goto L_L002C3B6C;
+                L_L002C3A20: ;
+                { bool c_ = r21 == 0; r16 = r17 - 4u; if (c_) goto L_L002C3B68; }
+                r22 = 2148401152u;
+                r22 = r22 - 27808u;
+                L_L002C3A30: ;
+                r2 = Mem.U32((r20 + 56u));
+                { bool c_ = r2 != 0; r18 = r21; if (c_) goto L_L002C3A64; }
+                r2 = adecNextFrame();
+                r1 = 2148401152u;
+                Mem.Set((r1 - 27808u), r2);
+                { bool c_ = r2 == 0; r4 = r2; if (c_) goto L_L002C39F4; }
+                r5 = (uint)512; osWritebackDCache(r4, (int)r5);
+                r2 = (uint)256;
+                Mem.Set((r20 + 56u), r2);
+                L_L002C3A64: ;
+                r3 = Mem.U32((r20 + 56u));
+                r2 = (uint)((int)r3 < (int)r21 ? 1 : 0);
+                if (r2 != 0) { r18 = r3; goto L_L002C3A74; }
+                L_L002C3A74: ;
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 - 27808u));
+                r4 = r18 << 1;
+                r3 = r19 & 7u;
+                r6 = r2 & 7u;
+                { bool c_ = r3 == 0; r4 = r4 + r6; if (c_) goto L_L002C3A9C; }
+                r2 = (uint)8;
+                r5 = r2 - r3; goto L_L002C3AA0;
+                L_L002C3A9C: ;
+                r5 = r0;
+                L_L002C3AA0: ;
+                r16 = r16 + 8u;
+                r2 = r19 + r5;
+                r2 = r2 & 65535u;
+                r3 = 134217728u;
+                r2 = r2 | r3;
+                Mem.Set((r16 - 4u), r2);
+                r2 = r4 & 7u;
+                r2 = r2 - 8u;
+                r2 = r4 - r2;
+                r2 = r2 & 65535u;
+                Mem.Set((r16 + 0u), r2);
+                r16 = r16 + 8u;
+                r17 = r17 + 16u;
+                r4 = 536805376u;
+                r4 = r4 | 65535u;
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 - 27808u));
+                r2 = 67108864u;
+                Mem.Set((r16 - 4u), r2);
+                r3 = r3 & r4;
+                r3 = r3 - r6;
+                { bool c_ = r6 != 0; Mem.Set((r16 + 0u), r3); if (c_) goto L_L002C3B04; }
+                if (r5 == 0) { r21 = r21 - r18; goto L_L002C3B44; }
+                L_L002C3B04: ;
+                r16 = r16 + 8u;
+                r17 = r17 + 8u;
+                r3 = 16711680u;
+                r3 = r3 | 65535u;
+                r2 = r19 + r6;
+                r2 = r2 + r5;
+                r2 = r2 & r3;
+                r3 = 167772160u;
+                r2 = r2 | r3;
+                r3 = r19 << 16;
+                Mem.Set((r16 - 4u), r2);
+                r2 = r18 << 1;
+                r2 = r2 & 65535u;
+                r3 = r3 | r2;
+                Mem.Set((r16 + 0u), r3);
+                r21 = r21 - r18;
+                L_L002C3B44: ;
+                r2 = r18 << 1;
+                r19 = r19 + r2;
+                r3 = Mem.U32((r22 + 0u));
+                r4 = Mem.U32((r20 + 56u));
+                r3 = r3 + r2;
+                r4 = r4 - r18;
+                Mem.Set((r22 + 0u), r3);
+                { bool c_ = r21 != 0; Mem.Set((r20 + 56u), r4); if (c_) goto L_L002C3A30; }
+                L_L002C3B68: ;
+                r2 = r17;
+                L_L002C3B6C: ;
+                r31 = Mem.U32((r29 + 44u));
+                r22 = Mem.U32((r29 + 40u));
+                r21 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 48u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002C3988", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002C3B94 @ 0x002C3B94 [MIPS]
+    public static uint alLoadParam_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002C3B94", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002C3B94: ;
+                r29 = r29 - 24u;
+                Mem.Set((r29 + 16u), r31);
+                r2 = (uint)4;
+                { bool c_ = r5 == r2; r7 = r4; if (c_) goto L_L002C3CCC; }
+                r2 = (uint)5;
+                { bool c_ = r5 != r2; r3 = r6; if (c_) goto L_L002C3D18; }
+                Mem.Set((r7 + 40u), r6);
+                r2 = Mem.U32((r6 + 0u));
+                Mem.Set((r7 + 56u), r0);
+                Mem.Set((r7 + 68u), r2);
+                r3 = Mem.U8((r3 + 8u));
+                r2 = (uint)1;
+                { bool c_ = r3 == r2; r2 = (uint)((int)r3 < 2 ? 1 : 0); if (c_) goto L_L002C3C74; }
+                if (r2 == 0) { r2 = (uint)2; goto L_L002C3BEC; }
+                { bool c_ = r3 == 0;  if (c_) goto L_L002C3BFC; }
+                 goto L_L002C3D18;
+                L_L002C3BEC: ;
+                { bool c_ = r3 == r2;  if (c_) goto L_L002C3CB0; }
+                 goto L_L002C3D18;
+                L_L002C3BFC: ;
+                r3 = Mem.U32((r7 + 40u));
+                r2 = 2883584u;
+                r2 = r2 + 12736u;
+                Mem.Set((r7 + 4u), r2);
+                r3 = Mem.U32((r3 + 16u));
+                r2 = Mem.U32((r3 + 4u));
+                r3 = Mem.U32((r3 + 0u));
+                r2 = r2 << 1;
+                { long p_ = (long)(int)r3 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r3 = Mem.U32((r7 + 40u));
+                r8 = lo;
+                r2 = r8 << 3;
+                Mem.Set((r7 + 44u), r2);
+                r2 = Mem.U32((r3 + 12u));
+                { bool c_ = r2 == 0; r6 = (uint)32; if (c_) goto L_L002C3CBC; }
+                r2 = Mem.U32((r2 + 0u));
+                Mem.Set((r7 + 28u), r2);
+                r2 = Mem.U32((r3 + 12u));
+                r2 = Mem.U32((r2 + 4u));
+                Mem.Set((r7 + 32u), r2);
+                r2 = Mem.U32((r3 + 12u));
+                r2 = Mem.U32((r2 + 8u));
+                Mem.Set((r7 + 36u), r2);
+                r4 = Mem.U32((r3 + 12u));
+                r5 = Mem.U32((r7 + 24u));
+                r4 = r4 + 12u; alCopy(r4, r5, (int)r6);
+                 goto L_L002C3D18;
+                L_L002C3C74: ;
+                r3 = Mem.U32((r7 + 40u));
+                r2 = 2883584u;
+                r2 = r2 + 13828u;
+                Mem.Set((r7 + 4u), r2);
+                r2 = Mem.U32((r3 + 12u));
+                if (r2 == 0) { Mem.Set((r7 + 36u), r0); goto L_L002C3CC0; }
+                r2 = Mem.U32((r2 + 0u));
+                Mem.Set((r7 + 28u), r2);
+                r2 = Mem.U32((r3 + 12u));
+                r2 = Mem.U32((r2 + 4u));
+                Mem.Set((r7 + 32u), r2);
+                r2 = Mem.U32((r3 + 12u));
+                 goto L_L002C3D10;
+                L_L002C3CB0: ;
+                r2 = 2883584u;
+                r2 = r2 + 14728u;
+                Mem.Set((r7 + 4u), r2);
+                L_L002C3CBC: ;
+                Mem.Set((r7 + 36u), r0);
+                L_L002C3CC0: ;
+                Mem.Set((r7 + 32u), r0);
+                Mem.Set((r7 + 28u), r0); goto L_L002C3D18;
+                L_L002C3CCC: ;
+                r2 = Mem.U32((r7 + 40u));
+                r4 = (uint)1;
+                Mem.Set((r7 + 60u), r0);
+                Mem.Set((r7 + 64u), r4);
+                { bool c_ = r2 == 0; Mem.Set((r7 + 56u), r0); if (c_) goto L_L002C3D18; }
+                r2 = Mem.U32((r2 + 0u));
+                r3 = Mem.U32((r7 + 40u));
+                Mem.Set((r7 + 68u), r2);
+                r2 = Mem.U8((r3 + 8u));
+                { bool c_ = r2 == 0;  if (c_) goto L_L002C3D04; }
+                { bool c_ = r2 != r4;  if (c_) goto L_L002C3D18; }
+                L_L002C3D04: ;
+                r2 = Mem.U32((r3 + 12u));
+                { bool c_ = r2 == 0;  if (c_) goto L_L002C3D18; }
+                L_L002C3D10: ;
+                r2 = Mem.U32((r2 + 8u));
+                Mem.Set((r7 + 36u), r2);
+                L_L002C3D18: ;
+                r31 = Mem.U32((r29 + 16u));
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002C3B94", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002C3EA0 @ 0x002C3EA0 [MIPS]
+    public static uint adecReadBits_Recompiled(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002C3EA0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_002C3EA0: ;
+                r29 = r29 - 8u;
+                Mem.Set((r29 + 4u), r17);
+                r17 = r4;
+                r4 = 2148401152u;
+                r4 = r4 - 27416u;
+                Mem.Set((r29 + 0u), r16);
+                r2 = Mem.U16((r4 + 0u));
+                r25 = Mem.U32((r29 + 24u));
+                { bool c_ = r2 != 0; r2 = r6 & 65535u; if (c_) goto L_L002C3EF0; }
+                r2 = Mem.U32((r25 + 20u));
+                r3 = Mem.U16((r2 + 0u));
+                r2 = r2 + 2u;
+                Mem.Set((r25 + 20u), r2);
+                r2 = (uint)16;
+                Mem.Set((r4 + 0u), (ushort)r2);
+                r2 = 2148859904u;
+                r2 = r2 + 4240u;
+                Mem.Set((r2 + 0u), (ushort)r3);
+                r2 = r6 & 65535u;
+                L_L002C3EF0: ;
+                { bool c_ = r2 == 0; r9 = r0; if (c_) goto L_L002C4060; }
+                r10 = r4;
+                r11 = 2148859904u;
+                r11 = r11 + 4240u;
+                r16 = (uint)16;
+                r2 = r7 << (int)(r16 & 31);
+                r15 = (uint)((int)r2 >> (int)(r16 & 31));
+                r13 = r5 & 65535u;
+                r2 = 2148401152u;
+                r2 = r2 - 27740u;
+                r3 = r13 << 1;
+                r14 = r3 + r2;
+                r24 = 2148401152u;
+                r24 = r24 - 27776u;
+                r12 = r3 + r24;
+                L_L002C3F30: ;
+                r3 = Mem.U16((r10 + 0u));
+                r2 = (uint)(r3 < r13 ? 1 : 0);
+                { bool c_ = r2 == 0; r4 = r3 & 65535u; if (c_) goto L_L002C3FE0; }
+                r8 = r5 - r3;
+                r4 = r4 << 1;
+                r4 = r4 + r24;
+                r2 = r9 << 16;
+                r2 = (uint)((int)r2 >> 15);
+                r3 = Mem.U16((r11 + 0u));
+                r4 = Mem.U16((r4 + 0u));
+                r7 = r2 + r17;
+                r3 = r3 & r4;
+                r4 = r8 & 65535u;
+                r3 = r3 << (int)(r4 & 31);
+                Mem.Set((r7 + 0u), (ushort)r3);
+                r2 = Mem.U32((r25 + 20u));
+                r3 = Mem.U16((r2 + 0u));
+                r2 = r2 + 2u;
+                Mem.Set((r25 + 20u), r2);
+                r2 = r16 - r4;
+                r4 = r4 << 1;
+                r4 = r4 + r24;
+                Mem.Set((r11 + 0u), (ushort)r3);
+                r3 = r3 & 65535u;
+                r3 = (uint)((int)r3 >> (int)(r2 & 31));
+                r2 = Mem.U16((r4 + 0u));
+                r4 = Mem.U16((r7 + 0u));
+                r3 = r3 & r2;
+                r4 = r4 | r3;
+                { bool c_ = r15 == 0; Mem.Set((r7 + 0u), (ushort)r4); if (c_) goto L_L002C3FD8; }
+                r2 = r4 << 16;
+                r3 = Mem.U16((r14 + 0u));
+                r2 = (uint)((int)r2 >> 16);
+                r2 = r2 & r3;
+                if (r2 == 0) { r2 = r16 - r8; goto L_L002C403C; }
+                r2 = Mem.U16((r12 + 0u));
+                r2 = ~(r0 | r2);
+                r2 = r4 | r2;
+                Mem.Set((r7 + 0u), (ushort)r2);
+                L_L002C3FD8: ;
+                r2 = r16 - r8; goto L_L002C403C;
+                L_L002C3FE0: ;
+                r3 = Mem.U16((r10 + 0u));
+                r2 = Mem.U16((r11 + 0u));
+                r4 = Mem.U16((r12 + 0u));
+                r3 = r3 - r13;
+                r2 = (uint)((int)r2 >> (int)(r3 & 31));
+                r4 = r2 & r4;
+                r2 = r9 << 16;
+                r2 = (uint)((int)r2 >> 15);
+                r7 = r2 + r17;
+                { bool c_ = r15 == 0; Mem.Set((r7 + 0u), (ushort)r4); if (c_) goto L_L002C4034; }
+                r2 = r4 << 16;
+                r3 = Mem.U16((r14 + 0u));
+                r2 = (uint)((int)r2 >> 16);
+                r2 = r2 & r3;
+                { bool c_ = r2 == 0;  if (c_) goto L_L002C4034; }
+                r2 = Mem.U16((r12 + 0u));
+                r2 = ~(r0 | r2);
+                r2 = r4 | r2;
+                Mem.Set((r7 + 0u), (ushort)r2);
+                L_L002C4034: ;
+                r2 = Mem.U16((r10 + 0u));
+                r2 = r2 - r5;
+                L_L002C403C: ;
+                Mem.Set((r10 + 0u), (ushort)r2);
+                r2 = r9 + 1u;
+                r9 = r2;
+                r2 = r2 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                r3 = r6 & 65535u;
+                r2 = (uint)((int)r2 < (int)r3 ? 1 : 0);
+                { bool c_ = r2 != 0;  if (c_) goto L_L002C3F30; }
+                L_L002C4060: ;
+                r17 = Mem.U32((r29 + 4u));
+                r16 = Mem.U32((r29 + 0u));
+                r2 = (uint)1;
+                r29 = r29 + 8u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002C3EA0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002C4074 @ 0x002C4074 [MIPS]
+    public static uint adecHuffDecode_Recompiled(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002C4074", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_002C4074: ;
+                r29 = r29 - 88u;
+                r10 = r4;
+                r9 = r5;
+                Mem.Set((r29 + 68u), r21);
+                r21 = r0;
+                Mem.Set((r29 + 56u), r18);
+                r18 = r21;
+                r8 = r7;
+                Mem.Set((r29 + 52u), r17);
+                r2 = r6 << 16;
+                Mem.Set((r29 + 84u), r31);
+                Mem.Set((r29 + 80u), r30);
+                Mem.Set((r29 + 76u), r23);
+                Mem.Set((r29 + 72u), r22);
+                Mem.Set((r29 + 64u), r20);
+                Mem.Set((r29 + 60u), r19);
+                Mem.Set((r29 + 48u), r16);
+                Mem.Set((r8 + 0u), (ushort)r0);
+                r19 = Mem.U32((r10 + 16u));
+                r3 = (uint)((int)r2 >> 16);
+                r20 = Mem.U32((r19 + 32u));
+                { bool c_ = (int)r3 <= 0; r17 = r21; if (c_) goto L_L002C4440; }
+                r30 = 2148401152u;
+                r30 = r30 - 27412u;
+                r23 = 2148401152u;
+                r23 = r23 - 27414u;
+                Mem.Set((r29 + 24u), r2);
+                r22 = r3;
+                L_L002C40E8: ;
+                r3 = Mem.U16((r30 + 0u));
+                { bool c_ = r3 == 0; r3 = r3 - 1u; if (c_) goto L_L002C43D4; }
+                r2 = Mem.U16((r23 + 0u));
+                Mem.Set((r30 + 0u), (ushort)r3);
+                r3 = r2 & 32768u;
+                r2 = r2 << 1;
+                { bool c_ = r3 == 0; Mem.Set((r23 + 0u), (ushort)r2); if (c_) goto L_L002C4124; }
+                r2 = r21 << 16;
+                r2 = (uint)((int)r2 >> 14);
+                r2 = r2 + r20;
+                r4 = Mem.U16((r2 + 2u));
+                r2 = r4 << 16; goto L_L002C4138;
+                L_L002C4124: ;
+                r2 = r21 << 16;
+                r2 = (uint)((int)r2 >> 14);
+                r2 = r2 + r20;
+                r4 = Mem.U16((r2 + 0u));
+                r2 = r4 << 16;
+                L_L002C4138: ;
+                r2 = (uint)((int)r2 >> 14);
+                r5 = r2 + r20;
+                r3 = Mem.U16((r5 + 0u));
+                r2 = (uint)2048;
+                { bool c_ = r3 != r2; r21 = r4; if (c_) goto L_L002C442C; }
+                r16 = Mem.U16((r5 + 2u));
+                r4 = r16 & 3840u;
+                { bool c_ = r4 == 0; r21 = r0; if (c_) goto L_L002C416C; }
+                r2 = (uint)3840;
+                { bool c_ = r4 != r2; r2 = r16 << 16; if (c_) goto L_L002C4184; }
+                L_L002C416C: ;
+                r2 = r17 << 16;
+                r2 = (uint)((int)r2 >> 15);
+                r2 = r2 + r9;
+                Mem.Set((r2 + 0u), (ushort)r16);
+                r17 = r17 + 1u; goto L_L002C4364;
+                L_L002C4184: ;
+                r2 = (uint)((int)r2 >> 16);
+                r3 = (uint)2304;
+                { bool c_ = r2 != r3; r2 = (uint)2560; if (c_) goto L_L002C4210; }
+                r4 = r23;
+                r6 = (uint)1;
+                r16 = Mem.U16((r23 + 0u));
+                r5 = Mem.U16((r19 + 14u));
+                r11 = Mem.U32((r29 + 104u));
+                r7 = r0;
+                Mem.Set((r29 + 32u), r8);
+                Mem.Set((r29 + 36u), r9);
+                Mem.Set((r29 + 40u), r10);
+                Mem.Set((r29 + 16u), r11); r2 = (uint)adecReadBits(r4, (ushort)r5, (ushort)r6, (short)r7, Mem.U32(r29 + 16u));
+                r2 = r2 & 65535u;
+                r8 = Mem.U32((r29 + 32u));
+                r9 = Mem.U32((r29 + 36u));
+                r10 = Mem.U32((r29 + 40u));
+                { bool c_ = r2 == 0; r4 = r17 << 16; if (c_) goto L_L002C4418; }
+                r17 = r17 + 1u;
+                r2 = (uint)16;
+                r4 = (uint)((int)r4 >> 15);
+                r4 = r4 + r9;
+                r5 = 2148401152u;
+                r5 = Mem.U16((r5 - 27412u));
+                r3 = Mem.U16((r23 + 0u));
+                r2 = r2 - r5;
+                r2 = r3 << (int)(r2 & 31);
+                r3 = (uint)((int)r3 >> (int)(r5 & 31));
+                r3 = r16 | r3;
+                Mem.Set((r23 + 0u), (ushort)r2);
+                Mem.Set((r4 + 0u), (ushort)r3); goto L_L002C4364;
+                L_L002C4210: ;
+                { bool c_ = r4 != r2; r2 = (uint)2816; if (c_) goto L_L002C42A0; }
+                r6 = r0;
+                r3 = r16 & 255u;
+                r2 = r3 << 3;
+                r2 = r2 - r3;
+                r2 = r2 << 3;
+                r2 = r2 - r3;
+                r2 = r2 << 3;
+                r3 = r17 << 16;
+                r4 = Mem.U32((r19 + 28u));
+                r3 = (uint)((int)r3 >> 15);
+                r5 = r2 + r4;
+                r2 = Mem.U32((r5 + 416u));
+                { bool c_ = (int)r2 <= 0; r7 = r3 + r9; if (c_) goto L_L002C4290; }
+                r2 = r6 << 16;
+                L_L002C4254: ;
+                r3 = r6 + 1u;
+                r6 = r3;
+                r2 = (uint)((int)r2 >> 16);
+                r4 = r2 << 1;
+                r2 = r2 << 2;
+                r2 = r5 + r2;
+                r4 = r4 + r7;
+                r2 = Mem.U16((r2 + 162u));
+                r3 = r3 << 16;
+                Mem.Set((r4 + 0u), (ushort)r2);
+                r2 = Mem.U32((r5 + 416u));
+                r3 = (uint)((int)r3 >> 16);
+                r3 = (uint)((int)r3 < (int)r2 ? 1 : 0);
+                { bool c_ = r3 != 0; r2 = r6 << 16; if (c_) goto L_L002C4254; }
+                L_L002C4290: ;
+                r2 = r6 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                r17 = r17 + r2; goto L_L002C4364;
+                L_L002C42A0: ;
+                { bool c_ = r4 != r2; r4 = r17 << 16; if (c_) goto L_L002C4368; }
+                r2 = r17 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                r2 = (uint)((int)r2 < (int)r22 ? 1 : 0);
+                { bool c_ = r2 == 0; r3 = r18 << 16; if (c_) goto L_L002C42F4; }
+                r11 = Mem.U32((r29 + 24u));
+                r4 = (uint)((int)r11 >> 16);
+                L_L002C42C4: ;
+                r2 = r17;
+                r3 = r2 + 1u;
+                r17 = r3;
+                r2 = r2 << 16;
+                r2 = (uint)((int)r2 >> 15);
+                r2 = r2 + r9;
+                r3 = r3 << 16;
+                r3 = (uint)((int)r3 >> 16);
+                r3 = (uint)((int)r3 < (int)r4 ? 1 : 0);
+                { bool c_ = r3 != 0; Mem.Set((r2 + 0u), (ushort)r0); if (c_) goto L_L002C42C4; }
+                r3 = r18 << 16;
+                L_L002C42F4: ;
+                r3 = (uint)((int)r3 >> 16);
+                r2 = r3 << 2;
+                r2 = r2 + r3;
+                r2 = r2 << 2;
+                r2 = r2 + r10;
+                r3 = Mem.U32((r2 + 4u));
+                r2 = Mem.U32((r2 + 8u));
+                r3 = r3 + r2; goto L_L002C434C;
+                L_L002C4318: ;
+                r3 = r4 << 16;
+                r2 = Mem.U16((r8 + 0u));
+                r3 = (uint)((int)r3 >> 16);
+                r2 = r2 + 1u;
+                Mem.Set((r8 + 0u), (ushort)r2);
+                r2 = r3 << 2;
+                r2 = r2 + r3;
+                r2 = r2 << 2;
+                r2 = r2 + r10;
+                r3 = Mem.U32((r2 + 4u));
+                r2 = Mem.U32((r2 + 8u));
+                r18 = r4;
+                r3 = r3 + r2;
+                L_L002C434C: ;
+                r3 = (uint)((int)r22 < (int)r3 ? 1 : 0);
+                { bool c_ = r3 == 0; r4 = r18 + 1u; if (c_) goto L_L002C4318; }
+                r11 = Mem.U32((r29 + 24u));
+                r2 = (uint)((int)r11 >> 16); goto L_L002C4448;
+                L_L002C4364: ;
+                r4 = r17 << 16;
+                L_L002C4368: ;
+                r3 = r18 << 16;
+                r3 = (uint)((int)r3 >> 16);
+                r2 = r3 << 2;
+                r2 = r2 + r3;
+                r2 = r2 << 2;
+                r2 = r2 + r10;
+                r3 = Mem.U32((r2 + 4u));
+                r2 = Mem.U32((r2 + 8u));
+                r4 = (uint)((int)r4 >> 16);
+                r3 = r3 + r2;
+                r4 = (uint)((int)r4 < (int)r3 ? 1 : 0);
+                { bool c_ = r4 != 0; r2 = r17 << 16; if (c_) goto L_L002C4430; }
+                r4 = r18 + 1u;
+                r3 = r4 << 16;
+                r2 = Mem.U16((r8 + 0u));
+                r3 = (uint)((int)r3 >> 16);
+                r2 = r2 + 1u;
+                Mem.Set((r8 + 0u), (ushort)r2);
+                r2 = r3 << 2;
+                r2 = r2 + r3;
+                r2 = r2 << 2;
+                r2 = r2 + r10;
+                r19 = Mem.U32((r2 + 16u));
+                r20 = Mem.U32((r19 + 32u));
+                r18 = r4; goto L_L002C442C;
+                L_L002C43D4: ;
+                r4 = 2148401152u;
+                r4 = r4 - 27414u;
+                r5 = (uint)16;
+                r6 = (uint)1;
+                r11 = Mem.U32((r29 + 104u));
+                r7 = r0;
+                Mem.Set((r29 + 32u), r8);
+                Mem.Set((r29 + 36u), r9);
+                Mem.Set((r29 + 40u), r10);
+                Mem.Set((r29 + 16u), r11); r2 = (uint)adecReadBits(r4, (ushort)r5, (ushort)r6, (short)r7, Mem.U32(r29 + 16u));
+                r2 = r2 & 65535u;
+                r8 = Mem.U32((r29 + 32u));
+                r9 = Mem.U32((r29 + 36u));
+                r10 = Mem.U32((r29 + 40u));
+                { bool c_ = r2 != 0;  if (c_) goto L_L002C4420; }
+                L_L002C4418: ;
+                r2 = (uint)-1; goto L_L002C4448;
+                L_L002C4420: ;
+                r2 = Mem.U16((r30 + 0u));
+                r2 = r2 + 16u;
+                Mem.Set((r30 + 0u), (ushort)r2);
+                L_L002C442C: ;
+                r2 = r17 << 16;
+                L_L002C4430: ;
+                r2 = (uint)((int)r2 >> 16);
+                r2 = (uint)((int)r2 < (int)r22 ? 1 : 0);
+                { bool c_ = r2 != 0;  if (c_) goto L_L002C40E8; }
+                L_L002C4440: ;
+                r2 = r17 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                L_L002C4448: ;
+                r31 = Mem.U32((r29 + 84u));
+                r30 = Mem.U32((r29 + 80u));
+                r23 = Mem.U32((r29 + 76u));
+                r22 = Mem.U32((r29 + 72u));
+                r21 = Mem.U32((r29 + 68u));
+                r20 = Mem.U32((r29 + 64u));
+                r19 = Mem.U32((r29 + 60u));
+                r18 = Mem.U32((r29 + 56u));
+                r17 = Mem.U32((r29 + 52u));
+                r16 = Mem.U32((r29 + 48u));
+                r29 = r29 + 88u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002C4074", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002C4478 @ 0x002C4478 [MIPS]
+    public static uint adecDecodeFrame_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002C4478", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002C4478: ;
+                r29 = r29 - 48u;
+                Mem.Set((r29 + 36u), r17);
+                r3 = 2148401152u;
+                r3 = r3 - 27410u;
+                Mem.Set((r29 + 40u), r31);
+                Mem.Set((r29 + 32u), r16);
+                r2 = (uint)(int)Mem.S16((r3 + 0u));
+                r16 = 2148401152u;
+                r16 = r16 - 27244u;
+                { bool c_ = r2 != 0; r17 = r4; if (c_) goto L_L002C4538; }
+                r4 = r17 + 24u;
+                r5 = (uint)6;
+                r6 = (uint)16;
+                r7 = r0;
+                r2 = (uint)1;
+                Mem.Set((r3 + 0u), (ushort)r2);
+                Mem.Set((r29 + 16u), r17); r2 = (uint)adecReadBits(r4, (ushort)r5, (ushort)r6, (short)r7, Mem.U32(r29 + 16u));
+                r2 = r2 << 16;
+                { bool c_ = (int)r2 <= 0; r7 = r0; if (c_) goto L_L002C45EC; }
+                r2 = Mem.U32((r16 + 12u));
+                r5 = 2148859904u;
+                r5 = r5 + 4256u;
+                r2 = r2 + 96u;
+                Mem.Set((r16 + 12u), r2);
+                L_L002C44E4: ;
+                r4 = r7 << 16;
+                r3 = r7 + 1u;
+                r7 = r3;
+                r4 = (uint)((int)r4 >> 15);
+                r2 = r17 + r4;
+                r4 = r4 + r5;
+                r3 = r3 << 16;
+                r3 = (uint)((int)r3 >> 16);
+                r2 = Mem.U16((r2 + 24u));
+                r3 = (uint)((int)r3 < 16 ? 1 : 0);
+                { bool c_ = r3 != 0; Mem.Set((r4 + 0u), (ushort)r2); if (c_) goto L_L002C44E4; }
+                r2 = Mem.U32((r16 + 0u));
+                if (r2 == 0) { Mem.Set((r29 + 16u), r17); goto L_L002C45C4; }
+                r16 = r16 + 20u;
+                L_L002C4524: ;
+                r2 = Mem.U32((r16 + 0u));
+                if (r2 != 0) { r16 = r16 + 20u; goto L_L002C4524; }
+                Mem.Set((r29 + 16u), r17); goto L_L002C45C4;
+                L_L002C4538: ;
+                Mem.Set((r29 + 16u), r17);
+                r4 = r16;
+                r5 = r17 + 24u;
+                r6 = (uint)16;
+                r7 = r29 + 24u; r2 = (uint)adecHuffDecode(r4, r5, (short)r6, r7, Mem.U32(r29 + 16u));
+                r2 = r2 << 16;
+                r3 = (uint)((int)r2 >> 16);
+                r2 = (uint)16;
+                { bool c_ = r3 != r2; r2 = (uint)-1; if (c_) goto L_L002C45F0; }
+                r7 = r0;
+                r3 = (uint)(int)Mem.S16((r29 + 24u));
+                r8 = 2148859904u;
+                r8 = r8 + 4256u;
+                r2 = r3 << 2;
+                r2 = r2 + r3;
+                r2 = r2 << 2;
+                r16 = r2 + r16;
+                L_L002C4584: ;
+                r4 = r7 << 16;
+                r4 = (uint)((int)r4 >> 15);
+                r5 = r4 + r8;
+                r4 = r17 + r4;
+                r3 = r7 + 1u;
+                r7 = r3;
+                r3 = r3 << 16;
+                r3 = (uint)((int)r3 >> 16);
+                r6 = Mem.U16((r5 + 0u));
+                r2 = Mem.U16((r4 + 24u));
+                r3 = (uint)((int)r3 < 16 ? 1 : 0);
+                r2 = r2 + r6;
+                Mem.Set((r4 + 24u), (ushort)r2);
+                { bool c_ = r3 != 0; Mem.Set((r5 + 0u), (ushort)r2); if (c_) goto L_L002C4584; }
+                Mem.Set((r29 + 16u), r17);
+                L_L002C45C4: ;
+                r4 = r16;
+                r5 = r17 + 184u;
+                r6 = (uint)256;
+                r7 = r29 + 24u; r2 = (uint)adecHuffDecode(r4, r5, (short)r6, r7, Mem.U32(r29 + 16u));
+                r2 = r2 << 16;
+                r3 = (uint)((int)r2 >> 16);
+                r2 = (uint)256;
+                { bool c_ = r3 == r2; r2 = (uint)1; if (c_) goto L_L002C45F0; }
+                L_L002C45EC: ;
+                r2 = (uint)-1;
+                L_L002C45F0: ;
+                r31 = Mem.U32((r29 + 40u));
+                r17 = Mem.U32((r29 + 36u));
+                r16 = Mem.U32((r29 + 32u));
+                r29 = r29 + 48u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002C4478", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002C4604 @ 0x002C4604 [MIPS]
+    public static uint mdctInitTwiddles_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002C4604", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002C4604: ;
+                r29 = r29 - 72u;
+                Mem.Set((r29 + 64u), Cpu.Fpr[23]);
+                r1 = 2148335616u;
+                Cpu.SetW(23, Mem.U32((r1 - 12528u)));
+                Mem.Set((r29 + 56u), Cpu.Fpr[22]);
+                r1 = 2148335616u;
+                Cpu.SetW(22, Mem.U32((r1 - 12524u)));
+                Mem.Set((r29 + 48u), Cpu.Fpr[21]);
+                r1 = 2148335616u;
+                Cpu.SetW(21, Mem.U32((r1 - 12520u)));
+                Mem.Set((r29 + 20u), r17);
+                r17 = r0;
+                Mem.Set((r29 + 32u), r20);
+                r20 = 2148859904u;
+                r20 = r20 + 4288u;
+                Mem.Set((r29 + 28u), r19);
+                r19 = 2148859904u;
+                r19 = r19 + 4800u;
+                Mem.Set((r29 + 24u), r18);
+                r18 = 2148859904u;
+                r18 = r18 + 6336u;
+                Mem.Set((r29 + 36u), r31);
+                Mem.Set((r29 + 16u), r16);
+                Mem.Set((r29 + 40u), Cpu.Fpr[20]);
+                L_L002C4664: ;
+                r16 = r17 << 16;
+                r16 = (uint)((int)r16 >> 16);
+                Cpu.SetW(0, r16);
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(23));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(22));
+                Cpu.SetS(20, Cpu.S(0) * Cpu.S(21));
+                Cpu.SetS(12, Cpu.S(20)); r2 = cosf_rc(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
+                Cpu.SetS(12, Cpu.S(20));
+                r16 = r16 << 2;
+                r2 = r16 + r20;
+                Mem.Set((r2 + 0u), Cpu.W(0)); r2 = sinf_rc(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = r17 + 1u;
+                r17 = r2;
+                r3 = r16 + r19;
+                r16 = r16 + r18;
+                r2 = r2 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                r2 = (uint)((int)r2 < 128 ? 1 : 0);
+                Mem.Set((r3 + 0u), Cpu.W(0));
+                { bool c_ = r2 != 0; Mem.Set((r16 + 0u), r0); if (c_) goto L_L002C4664; }
+                r17 = r0;
+                r1 = 2148335616u;
+                Cpu.SetW(21, Mem.U32((r1 - 12516u)));
+                r19 = 2148859904u;
+                r19 = r19 + 5312u;
+                r18 = 2148859904u;
+                r18 = r18 + 5824u;
+                L_L002C46E0: ;
+                r16 = r17 << 16;
+                r16 = (uint)((int)r16 >> 16);
+                Cpu.SetW(0, r16);
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                Cpu.SetS(20, Cpu.S(0) * Cpu.S(21));
+                Cpu.SetS(12, Cpu.S(20)); r2 = cosf_rc(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
+                Cpu.SetS(12, Cpu.S(20));
+                Cpu.SetS(20, Cpu.S(0)); r2 = sinf_rc(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = r17 + 1u;
+                r17 = r2;
+                r16 = r16 << 2;
+                r3 = r16 + r19;
+                r16 = r16 + r18;
+                Cpu.SetS(1, Cpu.S(20) + Cpu.S(0));
+                r2 = r2 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(20));
+                r2 = (uint)((int)r2 < 128 ? 1 : 0);
+                Mem.Set((r3 + 0u), Cpu.W(1));
+                { bool c_ = r2 != 0; Mem.Set((r16 + 0u), Cpu.W(0)); if (c_) goto L_L002C46E0; }
+                r31 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                Cpu.Fpr[23] = Mem.U64((r29 + 64u));
+                Cpu.Fpr[22] = Mem.U64((r29 + 56u));
+                Cpu.Fpr[21] = Mem.U64((r29 + 48u));
+                Cpu.Fpr[20] = Mem.U64((r29 + 40u));
+                r29 = r29 + 72u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002C4604", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002C476C @ 0x002C476C [MIPS]
+    public static uint mdctFftInit_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002C476C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002C476C: ;
+                r29 = r29 - 64u;
+                Mem.Set((r29 + 28u), r19);
+                r19 = r4;
+                Mem.Set((r29 + 20u), r17);
+                Mem.Set((r29 + 24u), r18);
+                r18 = (uint)((int)r19 >> 1);
+                Mem.Set((r29 + 32u), r20);
+                r20 = 2148401152u;
+                r20 = r20 - 27792u;
+                Mem.Set((r29 + 36u), r31);
+                Mem.Set((r29 + 16u), r16);
+                Mem.Set((r29 + 56u), Cpu.Fpr[22]);
+                Mem.Set((r29 + 48u), Cpu.Fpr[21]);
+                Mem.Set((r29 + 40u), Cpu.Fpr[20]);
+                { bool c_ = (int)r18 <= 0; r17 = r0; if (c_) goto L_L002C4808; }
+                r1 = 2148335616u;
+                Cpu.SetW(22, Mem.U32((r1 - 12512u)));
+                Cpu.SetW(21, r19);
+                Cpu.SetS(21, (float)(int)Cpu.W(21));
+                L_L002C47BC: ;
+                Cpu.SetW(20, r17);
+                Cpu.SetS(20, (float)(int)Cpu.W(20));
+                Cpu.SetS(20, Cpu.S(20) * Cpu.S(22));
+                Cpu.SetS(20, Cpu.S(20) / Cpu.S(21));
+                Cpu.SetS(12, Cpu.S(20)); r2 = cosf_rc(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
+                Cpu.SetS(12, Cpu.S(20));
+                r2 = Mem.U32((r20 + 0u));
+                r16 = r17 << 2;
+                r2 = r16 + r2;
+                Mem.Set((r2 + 0u), Cpu.W(0)); r2 = sinf_rc(r4, r5, r6, r7); r3 = Cpu.V1;
+                r17 = r17 + 1u;
+                r2 = Mem.U32((r20 + 4u));
+                Cpu.SetS(0, -Cpu.S(0));
+                r16 = r16 + r2;
+                r2 = (uint)((int)r17 < (int)r18 ? 1 : 0);
+                { bool c_ = r2 != 0; Mem.Set((r16 + 0u), Cpu.W(0)); if (c_) goto L_L002C47BC; }
+                L_L002C4808: ;
+                r7 = r0;
+                r8 = Mem.U32((r20 + 8u));
+                { bool c_ = (int)r19 <= 0; r9 = r19 << 1; if (c_) goto L_L002C4830; }
+                r3 = r8;
+                L_L002C481C: ;
+                Mem.Set((r3 + 0u), r7);
+                r7 = r7 + 1u;
+                r2 = (uint)((int)r7 < (int)r19 ? 1 : 0);
+                { bool c_ = r2 != 0; r3 = r3 + 4u; if (c_) goto L_L002C481C; }
+                L_L002C4830: ;
+                r6 = (uint)1;
+                { bool c_ = (int)r9 <= 0; r7 = r6; if (c_) goto L_L002C48C0; }
+                r10 = (uint)((int)r19 < 2 ? 1 : 0);
+                L_L002C4840: ;
+                r2 = (uint)((int)r7 < (int)r6 ? 1 : 0);
+                { bool c_ = r2 == 0; r4 = r6 - 1u; if (c_) goto L_L002C4888; }
+                r2 = r4 >> 31;
+                r4 = r4 + r2;
+                r4 = (uint)((int)r4 >> 1);
+                r4 = r4 << 2;
+                r4 = r4 + r8;
+                r2 = r7 - 1u;
+                r3 = r2 >> 31;
+                r2 = r2 + r3;
+                r2 = (uint)((int)r2 >> 1);
+                r2 = r2 << 2;
+                r2 = r2 + r8;
+                r3 = Mem.U32((r2 + 0u));
+                r5 = Mem.U32((r4 + 0u));
+                Mem.Set((r4 + 0u), r3);
+                Mem.Set((r2 + 0u), r5);
+                L_L002C4888: ;
+                { bool c_ = r10 != 0; r3 = r19; if (c_) goto L_L002C48B0; }
+                r2 = (uint)((int)r3 < (int)r6 ? 1 : 0);
+                L_L002C4894: ;
+                if (r2 == 0) { r7 = r7 + 2u; goto L_L002C48B4; }
+                r6 = r6 - r3;
+                r3 = (uint)((int)r3 >> 1);
+                r2 = (uint)((int)r3 < 2 ? 1 : 0);
+                { bool c_ = r2 == 0; r2 = (uint)((int)r3 < (int)r6 ? 1 : 0); if (c_) goto L_L002C4894; }
+                L_L002C48B0: ;
+                r7 = r7 + 2u;
+                L_L002C48B4: ;
+                r2 = (uint)((int)r9 < (int)r7 ? 1 : 0);
+                { bool c_ = r2 == 0; r6 = r6 + r3; if (c_) goto L_L002C4840; }
+                L_L002C48C0: ;
+                r2 = r20;
+                Mem.Set((r20 + 12u), r19);
+                r31 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                Cpu.Fpr[22] = Mem.U64((r29 + 56u));
+                Cpu.Fpr[21] = Mem.U64((r29 + 48u));
+                Cpu.Fpr[20] = Mem.U64((r29 + 40u));
+                r29 = r29 + 64u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002C476C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002C48F4 @ 0x002C48F4 [MIPS]
+    public static uint adecDequantize_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002C48F4", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002C48F4: ;
+                r12 = r4;
+                r11 = r5;
+                r3 = r0;
+                r10 = r11 + 160u;
+                r7 = r3;
+                r9 = 2148401152u;
+                r9 = r9 - 27704u;
+                r13 = 2148401152u;
+                r13 = r13 - 27672u;
+                r1 = 2148335616u;
+                Cpu.SetW(2, Mem.U32((r1 - 12508u)));
+                r6 = r3;
+                L_L002C4924: ;
+                r8 = r7 << 16;
+                r3 = (uint)((int)r8 >> 15);
+                r3 = r3 + r9;
+                r3 = Mem.U16((r3 + 0u));
+                r2 = r6 << 16; goto L_L002C4994;
+                L_L002C493C: ;
+                r3 = (uint)((int)r3 >> 16);
+                r4 = r3 << 1;
+                r5 = (uint)((int)r8 >> 15);
+                r2 = r11 + r5;
+                r4 = r4 + r10;
+                r3 = r3 << 2;
+                r3 = r3 + r12;
+                r2 = (uint)(int)Mem.S16((r2 + 0u));
+                r4 = (uint)(int)Mem.S16((r4 + 0u));
+                r2 = r2 << 2;
+                r2 = r2 + r13;
+                Cpu.SetW(1, Mem.U32((r2 + 0u)));
+                Cpu.SetW(0, r4);
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                Cpu.SetS(0, Cpu.S(0) / Cpu.S(1));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(2));
+                r5 = r5 + r9;
+                r2 = r6 + 1u;
+                r6 = r2;
+                r2 = r2 << 16;
+                Mem.Set((r3 + 0u), Cpu.W(0));
+                r3 = Mem.U16((r5 + 0u));
+                L_L002C4994: ;
+                r2 = (uint)((int)r2 >> 16);
+                r2 = (uint)((int)r2 < (int)r3 ? 1 : 0);
+                { bool c_ = r2 != 0; r3 = r6 << 16; if (c_) goto L_L002C493C; }
+                r2 = r7 << 16;
+                r2 = (uint)((int)r2 >> 15);
+                r2 = r2 + r9;
+                r3 = Mem.U16((r2 + 0u));
+                r2 = r7 + 1u;
+                r7 = r2;
+                r2 = r2 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                r2 = (uint)((int)r2 < 16 ? 1 : 0);
+                if (r2 != 0) { r6 = r3; goto L_L002C4924; }
+                r2 = 2148401152u;
+                r2 = (uint)(int)Mem.S16((r2 - 27674u));
+                r7 = r2;
+                r2 = (uint)((int)r2 < 256 ? 1 : 0);
+                { bool c_ = r2 == 0; r2 = r7 << 16; if (c_) goto L_L002C4A10; }
+                L_L002C49E8: ;
+                r2 = (uint)((int)r2 >> 14);
+                r2 = r2 + r12;
+                Mem.Set((r2 + 0u), r0);
+                r2 = r7 + 1u;
+                r7 = r2;
+                r2 = r2 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                r2 = (uint)((int)r2 < 256 ? 1 : 0);
+                { bool c_ = r2 != 0; r2 = r7 << 16; if (c_) goto L_L002C49E8; }
+                L_L002C4A10: ;
+                r2 = (uint)1; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002C48F4", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002C4A18 @ 0x002C4A18 [MIPS]
+    public static uint mdctFft_Recompiled(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002C4A18", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                Mem.Set(r29 + 20u, a5);
+                L_func_002C4A18: ;
+                r24 = Mem.U32((r29 + 16u));
+                { bool c_ = (int)r5 <= 0; r10 = r0; if (c_) goto L_L002C4A9C; }
+                r9 = Mem.U32((r29 + 20u));
+                r8 = r4;
+                L_L002C4A2C: ;
+                r3 = Mem.U32((r9 + 0u));
+                r2 = (uint)((int)r10 < (int)r3 ? 1 : 0);
+                if (r2 == 0) { r9 = r9 + 4u; goto L_L002C4A8C; }
+                r2 = r3 << 3;
+                r2 = r2 + r4;
+                Cpu.SetW(0, Mem.U32((r2 + 0u)));
+                Cpu.SetW(3, Mem.U32((r8 + 0u)));
+                Mem.Set((r8 + 0u), Cpu.W(0));
+                r2 = Mem.U32((r9 + 0u));
+                r2 = r2 << 3;
+                r2 = r2 + r4;
+                Mem.Set((r2 + 0u), Cpu.W(3));
+                r2 = Mem.U32((r9 + 0u));
+                Cpu.SetW(3, Mem.U32((r8 + 4u)));
+                r2 = r2 << 3;
+                r2 = r2 + r4;
+                Cpu.SetW(0, Mem.U32((r2 + 4u)));
+                Mem.Set((r8 + 4u), Cpu.W(0));
+                r2 = Mem.U32((r9 + 0u));
+                r2 = r2 << 3;
+                r2 = r2 + r4;
+                Mem.Set((r2 + 4u), Cpu.W(3));
+                r9 = r9 + 4u;
+                L_L002C4A8C: ;
+                r10 = r10 + 1u;
+                r2 = (uint)((int)r10 < (int)r5 ? 1 : 0);
+                { bool c_ = r2 != 0; r8 = r8 + 8u; if (c_) goto L_L002C4A2C; }
+                L_L002C4A9C: ;
+                r14 = (uint)2;
+                r15 = (uint)1;
+                r13 = (uint)((int)r5 >> (int)(r15 & 31));
+                { bool c_ = (int)r13 <= 0; r5 = r5 << (int)(r15 & 31); if (c_) goto L_L002C4B94; }
+                L_L002C4AB0: ;
+                { bool c_ = (int)r15 <= 0; r9 = r0; if (c_) goto L_L002C4B84; }
+                Cpu.SetW(6, r6);
+                Cpu.SetS(6, (float)(int)Cpu.W(6));
+                r12 = r14 << 1;
+                r11 = r24;
+                r10 = r7;
+                r8 = r9 << 1;
+                L_L002C4AD0: ;
+                r2 = (uint)((int)r8 < (int)r5 ? 1 : 0);
+                Cpu.SetW(0, Mem.U32((r11 + 0u)));
+                Cpu.SetW(4, Mem.U32((r10 + 0u)));
+                Cpu.SetS(5, Cpu.S(6) * Cpu.S(0));
+                { bool c_ = r2 == 0; r2 = r9 << 3; if (c_) goto L_L002C4B68; }
+                r3 = r2 + r4;
+                r2 = r8 + r14;
+                L_L002C4AF0: ;
+                r2 = r2 << 2;
+                r2 = r2 + r4;
+                Cpu.SetW(1, Mem.U32((r2 + 0u)));
+                Cpu.SetS(3, Cpu.S(4) * Cpu.S(1));
+                Cpu.SetW(2, Mem.U32((r2 + 4u)));
+                Cpu.SetS(0, Cpu.S(5) * Cpu.S(2));
+                Cpu.SetS(2, Cpu.S(4) * Cpu.S(2));
+                Cpu.SetS(1, Cpu.S(5) * Cpu.S(1));
+                Cpu.SetS(3, Cpu.S(3) - Cpu.S(0));
+                Cpu.SetW(0, Mem.U32((r3 + 0u)));
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(3));
+                Cpu.SetS(2, Cpu.S(2) + Cpu.S(1));
+                Mem.Set((r2 + 0u), Cpu.W(0));
+                Cpu.SetW(0, Mem.U32((r3 + 4u)));
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(2));
+                Mem.Set((r2 + 4u), Cpu.W(0));
+                Cpu.SetW(1, Mem.U32((r3 + 0u)));
+                Cpu.SetS(1, Cpu.S(1) + Cpu.S(3));
+                Cpu.SetW(0, Mem.U32((r3 + 4u)));
+                r8 = r8 + r12;
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(2));
+                r2 = r12 << 2;
+                Mem.Set((r3 + 0u), Cpu.W(1));
+                Mem.Set((r3 + 4u), Cpu.W(0));
+                r3 = r3 + r2;
+                r2 = (uint)((int)r8 < (int)r5 ? 1 : 0);
+                { bool c_ = r2 != 0; r2 = r8 + r14; if (c_) goto L_L002C4AF0; }
+                L_L002C4B68: ;
+                r2 = r13 << 2;
+                r11 = r11 + r2;
+                r10 = r10 + r2;
+                r9 = r9 + 1u;
+                r2 = (uint)((int)r9 < (int)r15 ? 1 : 0);
+                if (r2 != 0) { r8 = r9 << 1; goto L_L002C4AD0; }
+                L_L002C4B84: ;
+                r13 = (uint)((int)r13 >> 1);
+                r15 = r15 << 1;
+                { bool c_ = (int)r13 > 0; r14 = r14 << 1; if (c_) goto L_L002C4AB0; }
+                L_L002C4B94: ;
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002C4A18", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002C4B9C @ 0x002C4B9C [MIPS]
+    public static uint adecImdctFrame_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(2320);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 2320, 0);
+                if (Dbg.On) Dbg.Enter("func_002C4B9C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 2192u;
+                L_func_002C4B9C: ;
+                r29 = r29 - 2096u;
+                Mem.Set((r29 + 2080u), r18);
+                r18 = r4;
+                Mem.Set((r29 + 2072u), r16);
+                r16 = 2148401152u;
+                r16 = r16 - 27408u;
+                Mem.Set((r29 + 2084u), r31);
+                Mem.Set((r29 + 2076u), r17);
+                Mem.Set((r29 + 2088u), Cpu.Fpr[20]);
+                r2 = (uint)(int)Mem.S16((r16 + 0u));
+                { bool c_ = r2 != 0; r17 = r5; if (c_) goto L_L002C4BEC; }
+                mdctInitTwiddles();
+                r4 = (uint)128; r2 = mdctFftInit((int)r4);
+                r1 = 2148859904u;
+                Mem.Set((r1 + 6848u), r2);
+                r2 = (uint)1;
+                Mem.Set((r16 + 0u), (ushort)r2);
+                L_L002C4BEC: ;
+                r1 = 2148335616u;
+                Cpu.SetW(20, Mem.U32((r1 - 12504u)));
+                r16 = r29 + 1048u;
+                r4 = r16;
+                r5 = r17 + 24u; r2 = (uint)adecDequantize(r4, r5);
+                r6 = r29 + 24u;
+                r5 = r0;
+                r7 = (uint)255;
+                L_L002C4C10: ;
+                r3 = r5 << 16;
+                r3 = (uint)((int)r3 >> 16);
+                r4 = r3 << 3;
+                r2 = r4 + r16;
+                r4 = r4 + r6;
+                r3 = r3 << 1;
+                r3 = r7 - r3;
+                r3 = r3 << 2;
+                r3 = r3 + r16;
+                Cpu.SetW(0, Mem.U32((r2 + 0u)));
+                r2 = r5 + 1u;
+                r5 = r2;
+                r2 = r2 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                Mem.Set((r4 + 0u), Cpu.W(0));
+                Cpu.SetW(0, Mem.U32((r3 + 0u)));
+                r2 = (uint)((int)r2 < 128 ? 1 : 0);
+                { bool c_ = r2 != 0; Mem.Set((r4 + 4u), Cpu.W(0)); if (c_) goto L_L002C4C10; }
+                r6 = r29 + 24u;
+                r8 = 2148859904u;
+                r8 = r8 + 4288u;
+                r7 = 2148859904u;
+                r7 = r7 + 4800u;
+                r5 = r0;
+                L_L002C4C74: ;
+                r2 = r5 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                r4 = r2 << 3;
+                r4 = r4 + r6;
+                r2 = r2 << 2;
+                r3 = r2 + r8;
+                Cpu.SetW(2, Mem.U32((r4 + 0u)));
+                Cpu.SetW(5, Mem.U32((r3 + 0u)));
+                Cpu.SetS(4, Cpu.S(2) * Cpu.S(5));
+                r2 = r2 + r7;
+                Cpu.SetW(1, Mem.U32((r4 + 4u)));
+                Cpu.SetW(0, Mem.U32((r2 + 0u)));
+                Cpu.SetS(3, Cpu.S(1) * Cpu.S(0));
+                Cpu.SetS(2, Cpu.S(2) * Cpu.S(0));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(5));
+                r2 = r5 + 1u;
+                r5 = r2;
+                Cpu.SetS(4, Cpu.S(4) - Cpu.S(3));
+                r2 = r2 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                Cpu.SetS(2, Cpu.S(2) + Cpu.S(1));
+                r2 = (uint)((int)r2 < 128 ? 1 : 0);
+                Mem.Set((r4 + 0u), Cpu.W(4));
+                { bool c_ = r2 != 0; Mem.Set((r4 + 4u), Cpu.W(2)); if (c_) goto L_L002C4C74; }
+                r3 = 2148859904u;
+                r3 = Mem.U32((r3 + 6848u));
+                r2 = Mem.U32((r3 + 4u));
+                r16 = r29 + 24u;
+                Mem.Set((r29 + 16u), r2);
+                r2 = Mem.U32((r3 + 8u));
+                r4 = r16;
+                Mem.Set((r29 + 20u), r2);
+                r5 = Mem.U32((r3 + 12u));
+                r7 = Mem.U32((r3 + 0u));
+                r6 = (uint)-1; mdctFft(r4, (int)r5, (int)r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u));
+                r7 = 2148859904u;
+                r7 = r7 + 5312u;
+                r6 = 2148859904u;
+                r6 = r6 + 5824u;
+                r5 = r0;
+                L_L002C4D24: ;
+                r2 = r5 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                r4 = r2 << 3;
+                r4 = r4 + r16;
+                r2 = r2 << 2;
+                r3 = r2 + r7;
+                Cpu.SetW(2, Mem.U32((r4 + 0u)));
+                Cpu.SetW(5, Mem.U32((r3 + 0u)));
+                Cpu.SetS(4, Cpu.S(2) * Cpu.S(5));
+                r2 = r2 + r6;
+                Cpu.SetW(1, Mem.U32((r4 + 4u)));
+                Cpu.SetW(0, Mem.U32((r2 + 0u)));
+                Cpu.SetS(3, Cpu.S(1) * Cpu.S(0));
+                Cpu.SetS(2, Cpu.S(2) * Cpu.S(0));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(5));
+                r2 = r5 + 1u;
+                r5 = r2;
+                Cpu.SetS(4, Cpu.S(4) - Cpu.S(3));
+                r2 = r2 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                Cpu.SetS(2, Cpu.S(2) + Cpu.S(1));
+                r2 = (uint)((int)r2 < 128 ? 1 : 0);
+                Mem.Set((r4 + 0u), Cpu.W(4));
+                { bool c_ = r2 != 0; Mem.Set((r4 + 4u), Cpu.W(2)); if (c_) goto L_L002C4D24; }
+                r7 = r0;
+                r12 = 2148859904u;
+                r12 = r12 + 6336u;
+                r11 = 2148859904u;
+                r11 = r11 + 4288u;
+                r8 = r29 + 24u;
+                r10 = 2148859904u;
+                r10 = r10 + 4800u;
+                r9 = (uint)255;
+                Cpu.SetW(9, r0);
+                r1 = 2148335616u;
+                Cpu.SetW(8, Mem.U32((r1 - 12500u)));
+                r1 = 2148335616u;
+                Cpu.SetW(7, Mem.U32((r1 - 12496u)));
+                r1 = 2148335616u;
+                Cpu.SetW(6, Mem.U32((r1 - 12492u)));
+                r3 = r7 << 16;
+                L_L002C4DD4: ;
+                r3 = (uint)((int)r3 >> 16);
+                r4 = r3 << 2;
+                r6 = r4 + r12;
+                r5 = r4 + r11;
+                r2 = r3 << 3;
+                r2 = r2 | 4u;
+                Cpu.SetW(4, Mem.U32((r6 + 0u)));
+                Cpu.SetW(5, Mem.U32((r5 + 0u)));
+                r2 = r8 + r2;
+                Cpu.SetS(1, Cpu.S(4) * Cpu.S(5));
+                r4 = r4 + r10;
+                Cpu.SetW(3, Mem.U32((r2 + 0u)));
+                Cpu.SetW(0, Mem.U32((r4 + 0u)));
+                Cpu.SetS(2, Cpu.S(3) * Cpu.S(0));
+                Cpu.SetS(4, Cpu.S(4) * Cpu.S(0));
+                Cpu.SetS(3, Cpu.S(3) * Cpu.S(5));
+                Cpu.SetS(1, Cpu.S(1) + Cpu.S(2));
+                Cpu.SetS(1, Cpu.S(20) * Cpu.S(1));
+                r3 = r3 << 3;
+                r3 = r8 + r3;
+                Cpu.SetW(0, Mem.U32((r3 + 0u)));
+                Cpu.SetS(4, Cpu.S(4) - Cpu.S(3));
+                Mem.Set((r6 + 0u), Cpu.W(0));
+                fcc = Cpu.S(9) <= Cpu.S(1);
+                { bool c_ = !fcc; Cpu.SetS(0, Cpu.S(1)); if (c_) goto L_L002C4E64; }
+                Cpu.SetS(0, Cpu.S(1) + Cpu.S(8));
+                fcc = Cpu.S(7) < Cpu.S(0);
+                if (fcc) { Cpu.SetS(0, Cpu.S(7)); goto L_L002C4E78; }
+                 goto L_L002C4E78;
+                L_L002C4E64: ;
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(8));
+                fcc = Cpu.S(0) < Cpu.S(6);
+                if (fcc) { Cpu.SetS(0, Cpu.S(6)); goto L_L002C4E78; }
+                L_L002C4E78: ;
+                Cpu.SetW(10, (uint)(int)Cpu.S(0));
+                r3 = Cpu.W(10);
+                Cpu.SetS(4, Cpu.S(20) * Cpu.S(4));
+                r2 = r7 << 16;
+                r2 = (uint)((int)r2 >> 14);
+                r2 = r2 + r18;
+                Mem.Set((r2 + 0u), (ushort)r3);
+                fcc = Cpu.S(9) <= Cpu.S(4);
+                { bool c_ = !fcc; Cpu.SetS(0, Cpu.S(4)); if (c_) goto L_L002C4EC0; }
+                Cpu.SetS(4, Cpu.S(4) + Cpu.S(8));
+                fcc = Cpu.S(7) < Cpu.S(4);
+                if (fcc) { Cpu.SetS(4, Cpu.S(7)); goto L_L002C4ED4; }
+                 goto L_L002C4ED4;
+                L_L002C4EC0: ;
+                Cpu.SetS(4, Cpu.S(0) - Cpu.S(8));
+                fcc = Cpu.S(4) < Cpu.S(6);
+                if (fcc) { Cpu.SetS(4, Cpu.S(6)); goto L_L002C4ED4; }
+                L_L002C4ED4: ;
+                Cpu.SetW(10, (uint)(int)Cpu.S(4));
+                r3 = Cpu.W(10);
+                r2 = r7 << 16;
+                r2 = (uint)((int)r2 >> 15);
+                r2 = r9 - r2;
+                r2 = r2 << 1;
+                r2 = r2 + r18;
+                Mem.Set((r2 + 0u), (ushort)r3);
+                r2 = r7 + 1u;
+                r7 = r2;
+                r2 = r2 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                r2 = (uint)((int)r2 < 128 ? 1 : 0);
+                if (r2 != 0) { r3 = r7 << 16; goto L_L002C4DD4; }
+                r31 = Mem.U32((r29 + 2084u));
+                r18 = Mem.U32((r29 + 2080u));
+                r17 = Mem.U32((r29 + 2076u));
+                r16 = Mem.U32((r29 + 2072u));
+                Cpu.Fpr[20] = Mem.U64((r29 + 2088u));
+                r29 = r29 + 2096u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002C4B9C", r2); Stack.Free(2320); }
+    }
+
+    // ==== func_002C4F2C @ 0x002C4F2C [MIPS]
+    public static uint adecDecodeFrameOk_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002C4F2C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002C4F2C: ;
+                r29 = r29 - 24u;
+                Mem.Set((r29 + 16u), r31);
+                r2 = (uint)adecDecodeFrame(r4);
+                r2 = r2 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                r2 = ~(r0 | r2);
+                r31 = Mem.U32((r29 + 16u));
+                r2 = r2 >> 31;
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002C4F2C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002C4F58 @ 0x002C4F58 [MIPS]
+    public static uint mdctBuildBitrevTable_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002C4F58", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002C4F58: ;
+                r10 = r4;
+                r9 = r5;
+                r7 = r0;
+                { bool c_ = (int)r9 <= 0; r8 = r9 << 1; if (c_) goto L_L002C4F84; }
+                r3 = r10;
+                L_L002C4F70: ;
+                Mem.Set((r3 + 0u), r7);
+                r7 = r7 + 1u;
+                r2 = (uint)((int)r7 < (int)r9 ? 1 : 0);
+                { bool c_ = r2 != 0; r3 = r3 + 4u; if (c_) goto L_L002C4F70; }
+                L_L002C4F84: ;
+                r6 = (uint)1;
+                { bool c_ = (int)r8 <= 0; r7 = r6; if (c_) goto L_L002C5018; }
+                L_L002C4F90: ;
+                r2 = (uint)((int)r7 < (int)r6 ? 1 : 0);
+                { bool c_ = r2 == 0; r4 = r6 - 1u; if (c_) goto L_L002C4FD8; }
+                r2 = r4 >> 31;
+                r4 = r4 + r2;
+                r4 = (uint)((int)r4 >> 1);
+                r4 = r4 << 2;
+                r4 = r4 + r10;
+                r2 = r7 - 1u;
+                r3 = r2 >> 31;
+                r2 = r2 + r3;
+                r2 = (uint)((int)r2 >> 1);
+                r2 = r2 << 2;
+                r2 = r2 + r10;
+                r3 = Mem.U32((r2 + 0u));
+                r5 = Mem.U32((r4 + 0u));
+                Mem.Set((r4 + 0u), r3);
+                Mem.Set((r2 + 0u), r5);
+                L_L002C4FD8: ;
+                r3 = r9;
+                r2 = (uint)((int)r3 < 2 ? 1 : 0);
+                if (r2 != 0) { r7 = r7 + 2u; goto L_L002C500C; }
+                r2 = (uint)((int)r3 < (int)r6 ? 1 : 0);
+                L_L002C4FEC: ;
+                if (r2 == 0) { r7 = r7 + 2u; goto L_L002C500C; }
+                r6 = r6 - r3;
+                r3 = (uint)((int)r3 >> 1);
+                r2 = (uint)((int)r3 < 2 ? 1 : 0);
+                { bool c_ = r2 == 0; r2 = (uint)((int)r3 < (int)r6 ? 1 : 0); if (c_) goto L_L002C4FEC; }
+                r7 = r7 + 2u;
+                L_L002C500C: ;
+                r2 = (uint)((int)r8 < (int)r7 ? 1 : 0);
+                { bool c_ = r2 == 0; r6 = r6 + r3; if (c_) goto L_L002C4F90; }
+                L_L002C5018: ;
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002C4F58", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002C5020 @ 0x002C5020 [MIPS]
+    public static uint mdctPackSpectrum_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002C5020", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002C5020: ;
+                r8 = r4;
+                r6 = r0;
+                r7 = (uint)255;
+                L_L002C502C: ;
+                r3 = r6 << 16;
+                r3 = (uint)((int)r3 >> 16);
+                r4 = r3 << 3;
+                r2 = r4 + r5;
+                r4 = r4 + r8;
+                r3 = r3 << 1;
+                r3 = r7 - r3;
+                r3 = r3 << 2;
+                r3 = r3 + r5;
+                Cpu.SetW(0, Mem.U32((r2 + 0u)));
+                r2 = r6 + 1u;
+                r6 = r2;
+                r2 = r2 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                Mem.Set((r4 + 0u), Cpu.W(0));
+                Cpu.SetW(0, Mem.U32((r3 + 0u)));
+                r2 = (uint)((int)r2 < 128 ? 1 : 0);
+                { bool c_ = r2 != 0; Mem.Set((r4 + 4u), Cpu.W(0)); if (c_) goto L_L002C502C; }
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002C5020", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002C5080 @ 0x002C5080 [MIPS]
+    public static uint mdctTwiddleMul_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002C5080", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002C5080: ;
+                r8 = r4;
+                r7 = r0;
+                L_L002C5088: ;
+                r2 = r7 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                r4 = r2 << 3;
+                r4 = r4 + r8;
+                r2 = r2 << 2;
+                r3 = r2 + r5;
+                Cpu.SetW(2, Mem.U32((r4 + 0u)));
+                Cpu.SetW(5, Mem.U32((r3 + 0u)));
+                Cpu.SetS(4, Cpu.S(2) * Cpu.S(5));
+                r2 = r2 + r6;
+                Cpu.SetW(1, Mem.U32((r4 + 4u)));
+                Cpu.SetW(0, Mem.U32((r2 + 0u)));
+                Cpu.SetS(3, Cpu.S(1) * Cpu.S(0));
+                Cpu.SetS(2, Cpu.S(2) * Cpu.S(0));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(5));
+                r2 = r7 + 1u;
+                r7 = r2;
+                Cpu.SetS(4, Cpu.S(4) - Cpu.S(3));
+                r2 = r2 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                Cpu.SetS(2, Cpu.S(2) + Cpu.S(1));
+                r2 = (uint)((int)r2 < 128 ? 1 : 0);
+                Mem.Set((r4 + 0u), Cpu.W(4));
+                { bool c_ = r2 != 0; Mem.Set((r4 + 4u), Cpu.W(2)); if (c_) goto L_L002C5088; }
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002C5080", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002C50FC @ 0x002C50FC [MIPS]
+    public static uint mdctFftCtx_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002C50FC", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002C50FC: ;
+                r29 = r29 - 32u;
+                r2 = r5;
+                Mem.Set((r29 + 24u), r31);
+                r3 = Mem.U32((r2 + 4u));
+                Mem.Set((r29 + 16u), r3);
+                r3 = Mem.U32((r2 + 8u));
+                Mem.Set((r29 + 20u), r3);
+                r5 = Mem.U32((r2 + 12u));
+                r7 = Mem.U32((r2 + 0u));
+                mdctFft(r4, (int)r5, (int)r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u));
+                r31 = Mem.U32((r29 + 24u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002C50FC", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002C5134 @ 0x002C5134 [MIPS]
+    public static uint func_002C5134_rc(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002C5134", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002C5134: ;
+                Cpu.SetW(0, r0);
+                fcc = Cpu.S(0) <= Cpu.S(12);
+                { bool c_ = !fcc;  if (c_) goto L_L002C5168; }
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 12488u)));
+                Cpu.SetS(12, Cpu.S(12) + Cpu.S(0));
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 12484u)));
+                fcc = Cpu.S(0) < Cpu.S(12);
+                 goto L_L002C5180;
+                L_L002C5168: ;
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 12480u)));
+                Cpu.SetS(12, Cpu.S(12) - Cpu.S(0));
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 12476u)));
+                fcc = Cpu.S(12) < Cpu.S(0);
+                L_L002C5180: ;
+                if (fcc) { Cpu.SetS(12, Cpu.S(0)); goto L_L002C518C; }
+                L_L002C518C: ;
+                Cpu.SetW(1, (uint)(int)Cpu.S(12));
+                r2 = Cpu.W(1);
+                r2 = r2 << 16;
+                r2 = (uint)((int)r2 >> 16); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002C5134", r2); Stack.Free(384); }
+    }
+
+    public static int adecRoundClampS16_Recompiled(float p0)
+    {
+        Cpu.SetS(12, p0);
+        return (int)func_002C5134_rc(0u, 0u, 0u, 0u);
+    }
+
+    // ==== func_002C51A0 @ 0x002C51A0 [MIPS]
+    public static uint adecStreamOpen_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002C51A0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002C51A0: ;
+                r29 = r29 - 24u;
+                r8 = r5;
+                r3 = 2148859904u;
+                r3 = r3 + 7368u;
+                Mem.Set((r29 + 16u), r31);
+                Mem.Set((r3 + 8u), r4);
+                Mem.Set((r3 + 20u), r4);
+                r7 = Mem.U32((r4 + 0u));
+                r2 = r4 + 4u;
+                Mem.Set((r3 + 20u), r2);
+                Mem.Set((r3 + 0u), r7);
+                r2 = Mem.U32((r4 + 4u));
+                r10 = 255983616u;
+                Mem.Set((r3 + 16u), r2);
+                r5 = Mem.U32((r4 + 4u));
+                r2 = r4 + 8u;
+                Mem.Set((r3 + 20u), r2);
+                Mem.Set((r3 + 12u), r5);
+                r2 = Mem.U32((r4 + 8u));
+                r4 = r4 + 12u;
+                Mem.Set((r3 + 20u), r4);
+                r1 = 2148401152u;
+                Mem.Set((r1 - 27410u), (ushort)r0);
+                r1 = 2148401152u;
+                Mem.Set((r1 - 27408u), (ushort)r0);
+                r1 = 2148401152u;
+                Mem.Set((r1 - 27416u), (ushort)r0);
+                r1 = 2148401152u;
+                Mem.Set((r1 - 27414u), (ushort)r0);
+                r1 = 2148401152u;
+                Mem.Set((r1 - 27412u), (ushort)r0);
+                Mem.Set((r3 + 4u), r2);
+                Mem.Set((r6 + 0u), r7);
+                r2 = Mem.U32((r3 + 16u));
+                r10 = r10 | 16384u;
+                { long p_ = (long)(int)r2 * (int)r10; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r9 = r8;
+                r8 = r0;
+                r6 = r8;
+                r4 = hi;
+                r5 = lo;
+                r7 = r9; { var v_ = __udivdi3((ulong)Cpu.Long(r4, r5), (ulong)Cpu.Long(r6, r7)); r2 = (uint)((ulong)v_ >> 32); r3 = (uint)v_; }
+                r31 = Mem.U32((r29 + 16u));
+                r2 = r3;
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002C51A0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002C525C @ 0x002C525C [MIPS]
+    public static uint adecNextFrame_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002C525C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002C525C: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 24u), r18);
+                r18 = 2148859904u;
+                r18 = r18 + 7368u;
+                Mem.Set((r29 + 28u), r31);
+                Mem.Set((r29 + 20u), r17);
+                Mem.Set((r29 + 16u), r16);
+                r2 = Mem.U32((r18 + 16u));
+                { bool c_ = r2 == 0; r2 = r0; if (c_) goto L_L002C52E4; }
+                r4 = r18; r2 = (uint)adecDecodeFrame(r4);
+                r17 = 2148401152u;
+                r17 = r17 - 27406u;
+                r2 = Mem.U16((r17 + 0u));
+                r2 = r2 + 1u;
+                Mem.Set((r17 + 0u), (ushort)r2);
+                r2 = r2 & 65535u;
+                r2 = (uint)(r2 < (uint)(6) ? 1 : 0);
+                if (r2 == 0) { Mem.Set((r17 + 0u), (ushort)r0); goto L_L002C52B0; }
+                L_L002C52B0: ;
+                r16 = 2148859904u;
+                r16 = r16 + 8064u;
+                r4 = Mem.U16((r17 + 0u));
+                r5 = r18;
+                r4 = r4 << 9;
+                r4 = r4 + r16; adecImdctFrame(r4, r5);
+                r2 = Mem.U16((r17 + 0u));
+                r3 = Mem.U32((r18 + 16u));
+                r2 = r2 << 9;
+                r2 = r2 + r16;
+                r3 = r3 - 1u;
+                Mem.Set((r18 + 16u), r3);
+                L_L002C52E4: ;
+                r31 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002C525C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002C52FC @ 0x002C52FC [MIPS]
+    public static uint adecGetStopFlag_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002C52FC", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002C52FC: ;
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 7384u));
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002C52FC", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002C530C @ 0x002C530C [MIPS]
+    public static uint adecClearStopFlag_Recompiled(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002C530C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002C530C: ;
+                r1 = 2148859904u;
+                Mem.Set((r1 + 7384u), r0);
+                Cpu.V1 = r3; return r2;
+                r3 = r3 << 16;
+                L_func_002C5320: ;
+                { bool c_ = (int)r4 >= 0; r24 = r0; if (c_) goto L_L002C5344; }
+                r24 = (uint)-1;
+                r9 = 0u - r5;
+                r3 = 0u - r4;
+                r2 = (uint)(r0 < r9 ? 1 : 0);
+                r8 = r3 - r2;
+                r4 = r8;
+                r5 = r9;
+                L_L002C5344: ;
+                { bool c_ = (int)r6 >= 0; r9 = r7; if (c_) goto L_L002C536C; }
+                r24 = ~(r0 | r24);
+                r11 = 0u - r7;
+                r3 = 0u - r6;
+                r2 = (uint)(r0 < r11 ? 1 : 0);
+                r10 = r3 - r2;
+                r6 = r10;
+                r7 = r11;
+                r9 = r7;
+                L_L002C536C: ;
+                r8 = r6;
+                { bool c_ = r8 != 0; r11 = r5; if (c_) goto L_L002C5714; }
+                r2 = (uint)(r4 < r9 ? 1 : 0);
+                { bool c_ = r2 == 0; r2 = (uint)65535; if (c_) goto L_L002C54C4; }
+                r2 = (uint)(r2 < r9 ? 1 : 0);
+                { bool c_ = r2 != 0; r3 = r7; if (c_) goto L_L002C53A0; }
+                r2 = (uint)(r9 < (uint)(256) ? 1 : 0);
+                r2 = r2 ^ 1u;
+                r8 = r2 << 3; goto L_L002C53B8;
+                L_L002C53A0: ;
+                r2 = 16711680u;
+                r2 = r2 | 65535u;
+                r2 = (uint)(r2 < r9 ? 1 : 0);
+                { bool c_ = r2 != 0; r8 = (uint)24; if (c_) goto L_L002C53B8; }
+                r8 = (uint)16;
+                L_L002C53B8: ;
+                r2 = 2148335616u;
+                r2 = r2 - 12464u;
+                r3 = r3 >> (int)(r8 & 31);
+                r3 = r3 + r2;
+                r2 = Mem.U8((r3 + 0u));
+                r5 = (uint)32;
+                r2 = r2 + r8;
+                r6 = r5 - r2;
+                { bool c_ = r6 == 0; r3 = r4 << (int)(r6 & 31); if (c_) goto L_L002C53F4; }
+                r9 = r9 << (int)(r6 & 31);
+                r2 = r5 - r6;
+                r2 = r11 >> (int)(r2 & 31);
+                r4 = r3 | r2;
+                r11 = r11 << (int)(r6 & 31);
+                L_L002C53F4: ;
+                r6 = r9 >> 16;
+                if (r6 != 0) { lo = r4 / r6; hi = r4 % r6; }
+                { bool c_ = r6 != 0;  if (c_) goto L_L002C5408; }
+                throw new InvalidOperationException("MIPS break");
+                L_L002C5408: ;
+                r7 = lo;
+                r3 = hi;
+                r8 = r9 & 65535u;
+                { long p_ = (long)(int)r7 * (int)r8; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r2 = r11 >> 16;
+                r3 = r3 << 16;
+                r3 = r3 | r2;
+                r5 = lo;
+                r2 = (uint)(r3 < r5 ? 1 : 0);
+                if (r2 == 0) { r3 = r3 - r5; goto L_L002C5460; }
+                r3 = r3 + r9;
+                r2 = (uint)(r3 < r9 ? 1 : 0);
+                { bool c_ = r2 != 0; r7 = r7 - 1u; if (c_) goto L_L002C545C; }
+                r2 = (uint)(r3 < r5 ? 1 : 0);
+                if (r2 == 0) { r3 = r3 - r5; goto L_L002C5460; }
+                r7 = r7 - 1u;
+                r3 = r3 + r9;
+                L_L002C545C: ;
+                r3 = r3 - r5;
+                L_L002C5460: ;
+                if (r6 != 0) { lo = r3 / r6; hi = r3 % r6; }
+                { bool c_ = r6 != 0;  if (c_) goto L_L002C5470; }
+                throw new InvalidOperationException("MIPS break");
+                L_L002C5470: ;
+                r4 = lo;
+                r3 = hi;
+                { long p_ = (long)(int)r4 * (int)r8; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r2 = r11 & 65535u;
+                r3 = r3 << 16;
+                r3 = r3 | r2;
+                r5 = lo;
+                r2 = (uint)(r3 < r5 ? 1 : 0);
+                { bool c_ = r2 == 0; r3 = r3 + r9; if (c_) goto L_L002C54B8; }
+                r2 = (uint)(r3 < r9 ? 1 : 0);
+                { bool c_ = r2 != 0; r4 = r4 - 1u; if (c_) goto L_L002C54B8; }
+                r2 = (uint)(r3 < r5 ? 1 : 0);
+                if (r2 != 0) { r4 = r4 - 1u; goto L_L002C54B8; }
+                L_L002C54B8: ;
+                r2 = r7 << 16;
+                r6 = r2 | r4; goto L_L002C58D4;
+                L_L002C54C4: ;
+                { bool c_ = r9 != 0; r2 = (uint)(r2 < r9 ? 1 : 0); if (c_) goto L_L002C54EC; }
+                r2 = (uint)1;
+                if (r8 != 0) { lo = r2 / r8; hi = r2 % r8; }
+                { bool c_ = r8 != 0;  if (c_) goto L_L002C54E0; }
+                throw new InvalidOperationException("MIPS break");
+                L_L002C54E0: ;
+                r9 = lo;
+                r2 = (uint)65535;
+                r2 = (uint)(r2 < r9 ? 1 : 0);
+                L_L002C54EC: ;
+                { bool c_ = r2 != 0; r3 = r9; if (c_) goto L_L002C5504; }
+                r2 = (uint)(r9 < (uint)(256) ? 1 : 0);
+                r2 = r2 ^ 1u;
+                r6 = r2 << 3; goto L_L002C551C;
+                L_L002C5504: ;
+                r2 = 16711680u;
+                r2 = r2 | 65535u;
+                r2 = (uint)(r2 < r9 ? 1 : 0);
+                { bool c_ = r2 != 0; r6 = (uint)24; if (c_) goto L_L002C551C; }
+                r6 = (uint)16;
+                L_L002C551C: ;
+                r2 = 2148335616u;
+                r2 = r2 - 12464u;
+                r3 = r3 >> (int)(r6 & 31);
+                r3 = r3 + r2;
+                r2 = Mem.U8((r3 + 0u));
+                r3 = (uint)32;
+                r2 = r2 + r6;
+                r6 = r3 - r2;
+                { bool c_ = r6 != 0; r5 = r3 - r6; if (c_) goto L_L002C5550; }
+                r4 = r4 - r9;
+                r10 = (uint)1; goto L_L002C5644;
+                L_L002C5550: ;
+                r9 = r9 << (int)(r6 & 31);
+                r7 = r4 >> (int)(r5 & 31);
+                r3 = r4 << (int)(r6 & 31);
+                r2 = r11 >> (int)(r5 & 31);
+                r4 = r3 | r2;
+                r11 = r11 << (int)(r6 & 31);
+                r6 = r9 >> 16;
+                if (r6 != 0) { lo = r7 / r6; hi = r7 % r6; }
+                { bool c_ = r6 != 0;  if (c_) goto L_L002C557C; }
+                throw new InvalidOperationException("MIPS break");
+                L_L002C557C: ;
+                r8 = lo;
+                r3 = hi;
+                r5 = r9 & 65535u;
+                { long p_ = (long)(int)r8 * (int)r5; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r2 = r4 >> 16;
+                r3 = r3 << 16;
+                r3 = r3 | r2;
+                r7 = lo;
+                r2 = (uint)(r3 < r7 ? 1 : 0);
+                if (r2 == 0) { r3 = r3 - r7; goto L_L002C55D4; }
+                r3 = r3 + r9;
+                r2 = (uint)(r3 < r9 ? 1 : 0);
+                { bool c_ = r2 != 0; r8 = r8 - 1u; if (c_) goto L_L002C55D0; }
+                r2 = (uint)(r3 < r7 ? 1 : 0);
+                if (r2 == 0) { r3 = r3 - r7; goto L_L002C55D4; }
+                r8 = r8 - 1u;
+                r3 = r3 + r9;
+                L_L002C55D0: ;
+                r3 = r3 - r7;
+                L_L002C55D4: ;
+                if (r6 != 0) { lo = r3 / r6; hi = r3 % r6; }
+                { bool c_ = r6 != 0;  if (c_) goto L_L002C55E4; }
+                throw new InvalidOperationException("MIPS break");
+                L_L002C55E4: ;
+                r6 = lo;
+                r3 = hi;
+                { long p_ = (long)(int)r6 * (int)r5; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r2 = r4 & 65535u;
+                r3 = r3 << 16;
+                r3 = r3 | r2;
+                r7 = lo;
+                r2 = (uint)(r3 < r7 ? 1 : 0);
+                { bool c_ = r2 == 0; r2 = r8 << 16; if (c_) goto L_L002C563C; }
+                r3 = r3 + r9;
+                r2 = (uint)(r3 < r9 ? 1 : 0);
+                { bool c_ = r2 != 0; r6 = r6 - 1u; if (c_) goto L_L002C5638; }
+                r2 = (uint)(r3 < r7 ? 1 : 0);
+                { bool c_ = r2 == 0; r2 = r8 << 16; if (c_) goto L_L002C563C; }
+                r6 = r6 - 1u;
+                r3 = r3 + r9;
+                L_L002C5638: ;
+                r2 = r8 << 16;
+                L_L002C563C: ;
+                r10 = r2 | r6;
+                r4 = r3 - r7;
+                L_L002C5644: ;
+                r6 = r9 >> 16;
+                if (r6 != 0) { lo = r4 / r6; hi = r4 % r6; }
+                { bool c_ = r6 != 0;  if (c_) goto L_L002C5658; }
+                throw new InvalidOperationException("MIPS break");
+                L_L002C5658: ;
+                r7 = lo;
+                r3 = hi;
+                r8 = r9 & 65535u;
+                { long p_ = (long)(int)r7 * (int)r8; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r2 = r11 >> 16;
+                r3 = r3 << 16;
+                r3 = r3 | r2;
+                r5 = lo;
+                r2 = (uint)(r3 < r5 ? 1 : 0);
+                if (r2 == 0) { r3 = r3 - r5; goto L_L002C56B0; }
+                r3 = r3 + r9;
+                r2 = (uint)(r3 < r9 ? 1 : 0);
+                { bool c_ = r2 != 0; r7 = r7 - 1u; if (c_) goto L_L002C56AC; }
+                r2 = (uint)(r3 < r5 ? 1 : 0);
+                if (r2 == 0) { r3 = r3 - r5; goto L_L002C56B0; }
+                r7 = r7 - 1u;
+                r3 = r3 + r9;
+                L_L002C56AC: ;
+                r3 = r3 - r5;
+                L_L002C56B0: ;
+                if (r6 != 0) { lo = r3 / r6; hi = r3 % r6; }
+                { bool c_ = r6 != 0;  if (c_) goto L_L002C56C0; }
+                throw new InvalidOperationException("MIPS break");
+                L_L002C56C0: ;
+                r4 = lo;
+                r3 = hi;
+                { long p_ = (long)(int)r4 * (int)r8; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r2 = r11 & 65535u;
+                r3 = r3 << 16;
+                r3 = r3 | r2;
+                r5 = lo;
+                r2 = (uint)(r3 < r5 ? 1 : 0);
+                { bool c_ = r2 == 0; r3 = r3 + r9; if (c_) goto L_L002C5708; }
+                r2 = (uint)(r3 < r9 ? 1 : 0);
+                { bool c_ = r2 != 0; r4 = r4 - 1u; if (c_) goto L_L002C5708; }
+                r2 = (uint)(r3 < r5 ? 1 : 0);
+                if (r2 != 0) { r4 = r4 - 1u; goto L_L002C5708; }
+                L_L002C5708: ;
+                r2 = r7 << 16;
+                r6 = r2 | r4; goto L_L002C58D8;
+                L_L002C5714: ;
+                r2 = (uint)(r4 < r8 ? 1 : 0);
+                { bool c_ = r2 == 0; r2 = (uint)65535; if (c_) goto L_L002C5728; }
+                r6 = r0; goto L_L002C58D4;
+                L_L002C5728: ;
+                r2 = (uint)(r2 < r8 ? 1 : 0);
+                { bool c_ = r2 != 0; r3 = r8; if (c_) goto L_L002C5744; }
+                r2 = (uint)(r8 < (uint)(256) ? 1 : 0);
+                r2 = r2 ^ 1u;
+                r6 = r2 << 3; goto L_L002C575C;
+                L_L002C5744: ;
+                r2 = 16711680u;
+                r2 = r2 | 65535u;
+                r2 = (uint)(r2 < r8 ? 1 : 0);
+                { bool c_ = r2 != 0; r6 = (uint)24; if (c_) goto L_L002C575C; }
+                r6 = (uint)16;
+                L_L002C575C: ;
+                r2 = 2148335616u;
+                r2 = r2 - 12464u;
+                r3 = r3 >> (int)(r6 & 31);
+                r3 = r3 + r2;
+                r2 = Mem.U8((r3 + 0u));
+                r3 = (uint)32;
+                r2 = r2 + r6;
+                r6 = r3 - r2;
+                { bool c_ = r6 != 0; r5 = r3 - r6; if (c_) goto L_L002C57A4; }
+                r2 = (uint)(r8 < r4 ? 1 : 0);
+                { bool c_ = r2 != 0; r6 = (uint)1; if (c_) goto L_L002C58D4; }
+                r2 = (uint)(r11 < r9 ? 1 : 0);
+                { bool c_ = r2 != 0; r6 = r0; if (c_) goto L_L002C58D4; }
+                r6 = (uint)1; goto L_L002C58D4;
+                L_L002C57A4: ;
+                r3 = r8 << (int)(r6 & 31);
+                r2 = r9 >> (int)(r5 & 31);
+                r8 = r3 | r2;
+                r9 = r9 << (int)(r6 & 31);
+                r7 = r4 >> (int)(r5 & 31);
+                r3 = r4 << (int)(r6 & 31);
+                r2 = r11 >> (int)(r5 & 31);
+                r4 = r3 | r2;
+                r11 = r11 << (int)(r6 & 31);
+                r6 = r8 >> 16;
+                if (r6 != 0) { lo = r7 / r6; hi = r7 % r6; }
+                { bool c_ = r6 != 0;  if (c_) goto L_L002C57DC; }
+                throw new InvalidOperationException("MIPS break");
+                L_L002C57DC: ;
+                r10 = lo;
+                r3 = hi;
+                r5 = r8 & 65535u;
+                { long p_ = (long)(int)r10 * (int)r5; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r2 = r4 >> 16;
+                r3 = r3 << 16;
+                r3 = r3 | r2;
+                r7 = lo;
+                r2 = (uint)(r3 < r7 ? 1 : 0);
+                if (r2 == 0) { r3 = r3 - r7; goto L_L002C5834; }
+                r3 = r3 + r8;
+                r2 = (uint)(r3 < r8 ? 1 : 0);
+                { bool c_ = r2 != 0; r10 = r10 - 1u; if (c_) goto L_L002C5830; }
+                r2 = (uint)(r3 < r7 ? 1 : 0);
+                if (r2 == 0) { r3 = r3 - r7; goto L_L002C5834; }
+                r10 = r10 - 1u;
+                r3 = r3 + r8;
+                L_L002C5830: ;
+                r3 = r3 - r7;
+                L_L002C5834: ;
+                if (r6 != 0) { lo = r3 / r6; hi = r3 % r6; }
+                { bool c_ = r6 != 0;  if (c_) goto L_L002C5844; }
+                throw new InvalidOperationException("MIPS break");
+                L_L002C5844: ;
+                r6 = lo;
+                r3 = hi;
+                { long p_ = (long)(int)r6 * (int)r5; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r2 = r4 & 65535u;
+                r3 = r3 << 16;
+                r3 = r3 | r2;
+                r7 = lo;
+                r2 = (uint)(r3 < r7 ? 1 : 0);
+                { bool c_ = r2 == 0; r2 = r10 << 16; if (c_) goto L_L002C589C; }
+                r3 = r3 + r8;
+                r2 = (uint)(r3 < r8 ? 1 : 0);
+                { bool c_ = r2 != 0; r6 = r6 - 1u; if (c_) goto L_L002C5898; }
+                r2 = (uint)(r3 < r7 ? 1 : 0);
+                { bool c_ = r2 == 0; r2 = r10 << 16; if (c_) goto L_L002C589C; }
+                r6 = r6 - 1u;
+                r3 = r3 + r8;
+                L_L002C5898: ;
+                r2 = r10 << 16;
+                L_L002C589C: ;
+                r6 = r2 | r6;
+                r4 = r3 - r7;
+                { ulong p_ = (ulong)r6 * r9; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r3 = hi;
+                r2 = (uint)(r4 < r3 ? 1 : 0);
+                r8 = lo;
+                if (r2 != 0) { r6 = r6 - 1u; goto L_L002C58D4; }
+                { bool c_ = r3 != r4; r10 = r0; if (c_) goto L_L002C58D8; }
+                r2 = (uint)(r11 < r8 ? 1 : 0);
+                { bool c_ = r2 == 0; r15 = r6; if (c_) goto L_L002C58DC; }
+                r6 = r6 - 1u;
+                L_L002C58D4: ;
+                r10 = r0;
+                L_L002C58D8: ;
+                r15 = r6;
+                L_L002C58DC: ;
+                r14 = r10;
+                r2 = r14;
+                { bool c_ = r24 == 0; r3 = r15; if (c_) goto L_L002C5904; }
+                r13 = 0u - r3;
+                r3 = 0u - r2;
+                r2 = (uint)(r0 < r13 ? 1 : 0);
+                r12 = r3 - r2;
+                r2 = r12;
+                r3 = r13;
+                L_L002C5904: ;
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002C530C", r2); Stack.Free(384); }
     }
 }

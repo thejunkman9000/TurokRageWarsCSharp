@@ -737,7 +737,7 @@ public static partial class Game
                     Vec_Cross((_fp + 112u), (_fp + 64u), (_fp + 96u));
                     Vec_Normalize((_fp + 112u));
                     e = Math_Acosf(fs0);
-                    fs0 = ((e * func_002BC380(func_002BC380((1.0f - (e / (fs1 * 0.5f)))))) * 0.5f);
+                    fs0 = ((e * sqrtf_Recompiled(sqrtf_Recompiled((1.0f - (e / (fs1 * 0.5f)))))) * 0.5f);
                     Mem.Set(0x80115DECu, sinf(fs0));
                     new M2Quat((_fp + 128u)).x_Set((new Vec3f((_fp + 112u)).x * Mem.F32(0x80115DECu)));
                     new M2Quat((_fp + 128u)).y_Set((new Vec3f((_fp + 112u)).y * Mem.F32(0x80115DECu)));
@@ -6943,25 +6943,25 @@ public static partial class Game
                     ok = 1;
                     Mem.Set((0x80102B14u + (uint)(new Plr24d(o).unk5D4 * 400)), (byte)((int)(Mem.U8((0x80102B14u + (uint)(new Plr24d(o).unk5D4 * 400)))) + 10));
                     new Plr24d(o).unk5F8_Set((ushort)((int)(new Plr24d(o).unk5F8) + 10));
-                    func_004030E0(501);
+                    Flyby_QueueById(501);
                     break;
                 case 5024:
                     ok = 1;
                     Mem.Set((0x80102B15u + (uint)(new Plr24d(o).unk5D4 * 400)), (byte)((int)(Mem.U8((0x80102B15u + (uint)(new Plr24d(o).unk5D4 * 400)))) + 50));
                     new Plr24d(o).unk5F4_Set((ushort)((int)(new Plr24d(o).unk5F4) + 50));
-                    func_004030E0(503);
+                    Flyby_QueueById(503);
                     break;
                 case 5023:
                     ok = 1;
                     Mem.Set((0x80102B16u + (uint)(new Plr24d(o).unk5D4 * 400)), (byte)((int)(Mem.U8((0x80102B16u + (uint)(new Plr24d(o).unk5D4 * 400)))) + 50));
                     new Plr24d(o).unk5F6_Set((ushort)((int)(new Plr24d(o).unk5F6) + 50));
-                    func_004030E0(502);
+                    Flyby_QueueById(502);
                     break;
                 case 5057:
                     ok = 1;
                     Mem.Set((0x80102B10u + (uint)((new Plr24d(o).unk5D4 * 100) * 4)), (int)((int)(Mem.S32((0x80102B10u + (uint)((new Plr24d(o).unk5D4 * 100) * 4)))) + 1280));
                     new Plr24d(o).unk5E4_Set((int)((int)(new Plr24d(o).unk5E4) + 1280));
-                    func_004030E0(504);
+                    Flyby_QueueById(504);
                     break;
                 case 5001:
                     Profile_AddCharacterHalfLife((0x80102B00u + (uint)(new Plr24d(o).unk5D4 * 400)), (int)(new Plr24d(o).unk18.unkC));
@@ -6969,7 +6969,7 @@ public static partial class Game
                 case 5002:
                     ok = 1;
                     Profile_AddCharacterHalfLife((0x80102B00u + (uint)(new Plr24d(o).unk5D4 * 400)), (int)(new Plr24d(o).unk18.unkC));
-                    func_004030E0(500);
+                    Flyby_QueueById(500);
                     break;
                 case 5053:
                     ok = 1;

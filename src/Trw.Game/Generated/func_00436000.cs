@@ -14,14 +14,14 @@ public static partial class Game
             Menu_EnableInput();
             new O05W20(Mem.U32(0x800E5554u)).f1C_Set((-1));
             func_0043C3F0(Mem.U32(0x800E5554u), 103, 0, 0, 0);
-            if ((func_0040C4F4() == 1))
+            if ((Video_GetResolution() == 1))
             {
                 new O05Cfg(cfg).h14_Set((short)(98));
                 new O05Cfg(cfg).h16_Set((short)(69));
             }
             else
             {
-                if ((func_0040C4F4() == 2))
+                if ((Video_GetResolution() == 2))
                 {
                     new O05Cfg(cfg).h14_Set((short)(105));
                 }

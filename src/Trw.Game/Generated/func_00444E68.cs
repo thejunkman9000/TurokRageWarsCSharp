@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00444E68");
             if ((Mem.F32(0x80154100u) == 0.0f))
             {
-                func_0040C378();
+                Video_RequestNextResolution();
                 Mem.Set(0x80154100u, Mem.F32(0x800E27C0u));
                 Mem.Set(0x80146848u, Mem.U8(0x800E28DBu));
             }

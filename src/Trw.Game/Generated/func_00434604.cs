@@ -20,21 +20,21 @@ public static partial class Game
                 int r = 0;
                 int new_var = 0;
                 ok = 0;
-                r = func_00404BE8((uint)(Mem.S32(0x800D7700u)), idx, ((_fp + 24u) + (uint)(0 * 4)));
+                r = Pak_FindFile((uint)(Mem.S32(0x800D7700u)), idx, ((_fp + 24u) + (uint)(0 * 4)));
                 if ((r == 1))
                 {
-                    ok = ((func_00404858(idx, Mem.S32(((_fp + 24u) + (uint)(0 * 4)))) == 0) ? 1 : 0);
+                    ok = ((Pak_DeleteFile(idx, Mem.S32(((_fp + 24u) + (uint)(0 * 4)))) == 0) ? 1 : 0);
                 }
                 else
                 {
                     Mem.Set(((_fp + 24u) + (uint)(1 * 4)), 0);
-                    r = func_00405160(idx, ((_fp + 24u) + (uint)(2 * 4)));
+                    r = CPak_GetFreePages(idx, ((_fp + 24u) + (uint)(2 * 4)));
                     if ((r == 0))
                     {
-                        r = func_004050CC(idx, ((_fp + 24u) + (uint)(3 * 4)));
+                        r = CPak_CountFreeNotes(idx, ((_fp + 24u) + (uint)(3 * 4)));
                         if ((r == 0))
                         {
-                            x = (int)(func_004057EC((uint)(func_00435600())));
+                            x = (int)(CPak_BytesToPages((uint)(func_00435600())));
                             if (((Mem.S32(((_fp + 24u) + (uint)(3 * 4))) == 0) || (Mem.S32(((_fp + 24u) + (uint)(2 * 4))) < x)))
                             {
                                 Mem.Set(((_fp + 24u) + (uint)(1 * 4)), 0);
@@ -57,19 +57,19 @@ public static partial class Game
                 if ((ok == 1))
                 {
                     ok = 0;
-                    if ((func_00405454(idx, _fp) == 0))
+                    if ((CPak_FindFreeExtension(idx, _fp) == 0))
                     {
                         recs = new O05Lobby(Mem.U32(0x800E54A4u)).recs.P;
                         Mem_Copy(recs, new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].rec.P, (uint)(1600));
                         new O05Lobby(Mem.U32(0x800E54A4u)).f3468_Set(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB64);
-                        new O05Lobby(Mem.U32(0x800E54A4u)).f346C_Set((int)(func_004057F8(recs, 1600, (uint)(7))));
+                        new O05Lobby(Mem.U32(0x800E54A4u)).f346C_Set((int)(CPak_Crc32(recs, 1600, (uint)(7))));
                         recs = new O05Lobby(Mem.U32(0x800E54A4u)).recs.P;
                         for (i = 0; (i < 16); ++i)
                         {
                             Mem.Set(((_fp + 8u) + (uint)i), (sbyte)(0));
                         }
                         LibC_StrCopy((_fp + 8u), (uint)(Mem.S32(0x800D7700u)));
-                        if ((func_00404958(idx, 1608, recs, (_fp + 8u), _fp, (uint)(Mem.S32(0x800D770Cu))) == 0))
+                        if ((Pak_SaveFileVerified(idx, 1608, recs, (_fp + 8u), _fp, (uint)(Mem.S32(0x800D770Cu))) == 0))
                         {
                             ok = 1;
                         }

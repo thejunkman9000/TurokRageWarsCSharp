@@ -1563,6 +1563,48 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_00401D74", r2); Stack.Free(384); }
     }
 
+    // ==== func_0040C638 @ 0x0040C638 [C]
+    public static void UiNode_DrawChildrenClipped(uint n, uint b_in)
+    {
+        uint _fp = Stack.Alloc(104);
+        try
+        {
+            unchecked
+            {
+                Mem.Copy(_fp + 0u, b_in, 40);
+                if (Dbg.On) Dbg.Enter("func_0040C638", (uint)n, (uint)b_in);
+                int pushed = 0;
+                if ((UiNode_ComputeRect((_fp + 40u), (_fp + 56u), n, (new O02Blob40(_fp).w.P + (uint)(0 * 4))) != 0))
+                {
+                    if ((((int)(new O02Node_v2(n).flags) & 512) != 0))
+                    {
+                        Ui_GetClipRect((new O02Rect((_fp + 72u)).w.P + (uint)(0 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(2 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(1 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(3 * 4)));
+                        Mem.Copy((_fp + 88u), (_fp + 72u), 16);
+                        func_0040F508((_fp + 88u), (_fp + 56u));
+                        Ui_SetClipRect(new O02Rect((_fp + 88u)).w[(int)(0)], new O02Rect((_fp + 88u)).w[(int)(2)], new O02Rect((_fp + 88u)).w[(int)(1)], new O02Rect((_fp + 88u)).w[(int)(3)]);
+                        pushed = 1;
+                    }
+                    func_0040E87C(new O02Node_v2(n).child_, _fp);
+                    if ((pushed != 0))
+                    {
+                        Ui_SetClipRect(new O02Rect((_fp + 72u)).w[(int)(0)], new O02Rect((_fp + 72u)).w[(int)(2)], new O02Rect((_fp + 72u)).w[(int)(1)], new O02Rect((_fp + 72u)).w[(int)(3)]);
+                    }
+                }
+            }
+        }
+        finally { Stack.Free(104); }
+    }
+
+    // ==== func_0040C640 @ 0x0040C640 [C]
+    public static int UiNode_ReturnZero_0040C640()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0040C640");
+            return 0;
+        }
+    }
+
     // ==== func_0040E154 @ 0x0040E154 [C]
     public static int UiNode_ComputeRect(uint r0, uint r1, uint n, uint c)
     {

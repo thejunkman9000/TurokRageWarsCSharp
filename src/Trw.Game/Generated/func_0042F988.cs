@@ -26,7 +26,7 @@ public static partial class Game
                         {
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].f14_Set((-1));
                             Menu_DisableInput();
-                            func_00404E28(i);
+                            Pak_DetectPort(i);
                             func_004337EC((uint)(i), default(uint), default(uint), default(uint));
                             Menu_EnableInput();
                         }

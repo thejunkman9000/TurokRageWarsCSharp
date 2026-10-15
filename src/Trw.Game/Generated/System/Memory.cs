@@ -2062,6 +2062,68 @@ public static partial class Game
         }
     }
 
+    // ==== func_00405CA8 @ 0x00405CA8 [C]
+    public static void FramePool_Init(uint a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00405CA8", (uint)a);
+            int i = 0;
+            Mem.Set((a + (uint)(0 * 4)), 0);
+            Mem.Set((a + (uint)(1 * 4)), 0);
+            Mem.Set((a + (uint)(2 * 4)), 0);
+            Mem.Set((a + (uint)(6 * 4)), 0);
+            Mem.Set((a + (uint)(7 * 4)), 0);
+            for (i = 0; (i < 3); ++i)
+            {
+                Mem.Set((a + (uint)((3 + i) * 4)), 0);
+            }
+        }
+    }
+
+    // ==== func_00405CDC @ 0x00405CDC [C]
+    public static void FramePool_Free(uint arg0)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00405CDC", (uint)arg0);
+            int n = 0;
+            int j = 0;
+            if ((new Q01Pool_v2(arg0).unk4_ != 0u))
+            {
+                ResourcePool_Release(0, new Q01Pool_v2(arg0).unk4_);
+            }
+            if ((new Q01Pool_v2(arg0).unk8_ != 0u))
+            {
+                ResourcePool_Release(0, new Q01Pool_v2(arg0).unk8_);
+            }
+            if ((new Q01Pool_v2(arg0).unk18_ != 0u))
+            {
+                ResourcePool_Release(0, new Q01Pool_v2(arg0).unk18_);
+            }
+            if ((new Q01Pool_v2(arg0).unk1C_ != 0u))
+            {
+                ResourcePool_Release(0, new Q01Pool_v2(arg0).unk1C_);
+            }
+            for (n = 0; (n < 3); ++n)
+            {
+                if ((new Q01Pool_v2(arg0).unkC[(int)(n)] != 0u))
+                {
+                    ResourcePool_Release(0, new Q01Pool_v2(arg0).unkC[(int)(n)]);
+                }
+            }
+            new Q01Pool_v2(arg0).unk0_Set(0);
+            new Q01Pool_v2(arg0).unk4__Set(0u);
+            new Q01Pool_v2(arg0).unk8__Set(0u);
+            new Q01Pool_v2(arg0).unk18__Set(0u);
+            new Q01Pool_v2(arg0).unk1C__Set(0u);
+            for (j = 2; (j >= 0); --j)
+            {
+                new Q01Pool_v2(arg0).unkC.Set((int)(j), 0u);
+            }
+        }
+    }
+
     // ==== func_0044AA00 @ 0x0044AA00 [C]
     public static void List44_Reset_0044AA00(uint record)
     {

@@ -353,7 +353,7 @@ public static partial class Game
                     new B16Vec4(dst).y_Set((new B16Vec4(q1).y + (t * (new B16Vec4(q2).y - new B16Vec4(q1).y))));
                     new B16Vec4(dst).z_Set((new B16Vec4(q1).z + (t * (new B16Vec4(q2).z - new B16Vec4(q1).z))));
                     new B16Vec4(dst).w_Set((new B16Vec4(q1).w + (t * (new B16Vec4(q2).w - new B16Vec4(q1).w))));
-                    len = func_002BC380(((((new B16Vec4(dst).x * new B16Vec4(dst).x) + (new B16Vec4(dst).y * new B16Vec4(dst).y)) + (new B16Vec4(dst).z * new B16Vec4(dst).z)) + (new B16Vec4(dst).w * new B16Vec4(dst).w)));
+                    len = sqrtf_Recompiled(((((new B16Vec4(dst).x * new B16Vec4(dst).x) + (new B16Vec4(dst).y * new B16Vec4(dst).y)) + (new B16Vec4(dst).z * new B16Vec4(dst).z)) + (new B16Vec4(dst).w * new B16Vec4(dst).w)));
                     if ((len != 0.0f))
                     {
                         inv = (1.0f / len);
@@ -404,7 +404,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00271058_vnorm", (uint)v);
             float len = 0f;
             float inv = 0f;
-            len = func_002BC380((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z)));
+            len = sqrtf_Recompiled((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z)));
             if ((len != 0.0f))
             {
                 inv = (1.0f / len);
@@ -461,7 +461,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002712B8_vnorm", (uint)v);
             float len = 0f;
             float inv = 0f;
-            len = func_002BC380((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z)));
+            len = sqrtf_Recompiled((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z)));
             if ((len != 0.0f))
             {
                 inv = (1.0f / len);
@@ -518,7 +518,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002714A0_vnorm", (uint)v);
             float len = 0f;
             float inv = 0f;
-            len = func_002BC380((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z)));
+            len = sqrtf_Recompiled((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z)));
             if ((len != 0.0f))
             {
                 inv = (1.0f / len);
@@ -575,7 +575,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00271694_vnorm", (uint)v);
             float len = 0f;
             float inv = 0f;
-            len = func_002BC380((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z)));
+            len = sqrtf_Recompiled((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z)));
             if ((len != 0.0f))
             {
                 inv = (1.0f / len);
@@ -642,7 +642,7 @@ public static partial class Game
                 float s0 = 0f;
                 float alen = 0f;
                 float ainv = 0f;
-                len = func_002BC380((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z)));
+                len = sqrtf_Recompiled((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z)));
                 if ((len == 0.0f))
                 {
                     new B16Vec4(_fp).x_Set(new B16Vec4(_fp).y_Set(new B16Vec4(_fp).z_Set(0.0f)));
@@ -672,7 +672,7 @@ public static partial class Game
                     new Vec3f((_fp + 48u)).x_Set(((new Vec3f((_fp + 32u)).y * new Vec3f((_fp + 16u)).z) - (new Vec3f((_fp + 32u)).z * new Vec3f((_fp + 16u)).y)));
                     new Vec3f((_fp + 48u)).y_Set(((new Vec3f((_fp + 32u)).z * new Vec3f((_fp + 16u)).x) - (new Vec3f((_fp + 32u)).x * new Vec3f((_fp + 16u)).z)));
                     new Vec3f((_fp + 48u)).z_Set(((new Vec3f((_fp + 32u)).x * new Vec3f((_fp + 16u)).y) - (new Vec3f((_fp + 32u)).y * new Vec3f((_fp + 16u)).x)));
-                    alen = func_002BC380((((new Vec3f((_fp + 48u)).x * new Vec3f((_fp + 48u)).x) + (new Vec3f((_fp + 48u)).y * new Vec3f((_fp + 48u)).y)) + (new Vec3f((_fp + 48u)).z * new Vec3f((_fp + 48u)).z)));
+                    alen = sqrtf_Recompiled((((new Vec3f((_fp + 48u)).x * new Vec3f((_fp + 48u)).x) + (new Vec3f((_fp + 48u)).y * new Vec3f((_fp + 48u)).y)) + (new Vec3f((_fp + 48u)).z * new Vec3f((_fp + 48u)).z)));
                     if ((alen != 0.0f))
                     {
                         ainv = (1.0f / alen);
@@ -714,7 +714,7 @@ public static partial class Game
             {
                 return 0.0f;
             }
-            len = func_002BC380(len);
+            len = sqrtf_Recompiled(len);
             if ((len == 0.0f))
             {
                 return 0.0f;
@@ -825,7 +825,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002720EC", (uint)v);
             float len = 0f;
             float inv = 0f;
-            len = func_002BC380((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z)));
+            len = sqrtf_Recompiled((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z)));
             if ((len != 0.0f))
             {
                 inv = (1.0f / len);
@@ -921,7 +921,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0027230C_vnorm", (uint)v);
             float len = 0f;
             float inv = 0f;
-            len = func_002BC380((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z)));
+            len = sqrtf_Recompiled((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z)));
             if ((len != 0.0f))
             {
                 inv = (1.0f / len);
@@ -1001,10 +1001,10 @@ public static partial class Game
                 float len = 0f;
                 float s = 0f;
                 Mem.Copy((_fp + 16u), C.Seq(func_0027246C_vproj(_fp, v, n), _fp), 12);
-                len = func_002BC380((((new Vec3f((_fp + 16u)).x * new Vec3f((_fp + 16u)).x) + (new Vec3f((_fp + 16u)).y * new Vec3f((_fp + 16u)).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f((_fp + 16u)).z)));
+                len = sqrtf_Recompiled((((new Vec3f((_fp + 16u)).x * new Vec3f((_fp + 16u)).x) + (new Vec3f((_fp + 16u)).y * new Vec3f((_fp + 16u)).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f((_fp + 16u)).z)));
                 if ((len != 0.0f))
                 {
-                    s = (func_002BC380((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z))) / len);
+                    s = (sqrtf_Recompiled((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z))) / len);
                     new Vec3f((_fp + 16u)).x_Set((float)((float)(new Vec3f((_fp + 16u)).x) * s));
                     new Vec3f((_fp + 16u)).y_Set((float)((float)(new Vec3f((_fp + 16u)).y) * s));
                     new Vec3f((_fp + 16u)).z_Set((float)((float)(new Vec3f((_fp + 16u)).z) * s));
@@ -1028,7 +1028,7 @@ public static partial class Game
             sq = (((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z));
             if (((maxLen * maxLen) < sq))
             {
-                len = func_002BC380(sq);
+                len = sqrtf_Recompiled(sq);
                 if ((len != 0.0f))
                 {
                     s = (maxLen / len);
@@ -1063,7 +1063,7 @@ public static partial class Game
             {
                 return 0.0f;
             }
-            len = func_002BC380(sq);
+            len = sqrtf_Recompiled(sq);
             t = (y / len);
             if (((t < (-1.0f)) || (1.0f < t)))
             {
@@ -1095,7 +1095,7 @@ public static partial class Game
             float dx = (new Vec3f(a).x - new Vec3f(b).x);
             float dy = (new Vec3f(a).y - new Vec3f(b).y);
             float dz = (new Vec3f(a).z - new Vec3f(b).z);
-            return func_002BC380((((dx * dx) + (dy * dy)) + (dz * dz)));
+            return sqrtf_Recompiled((((dx * dx) + (dy * dy)) + (dz * dz)));
         }
     }
 
@@ -1110,7 +1110,7 @@ public static partial class Game
             sq = (((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z));
             if (((maxLen * maxLen) < sq))
             {
-                s = (maxLen / func_002BC380(sq));
+                s = (maxLen / sqrtf_Recompiled(sq));
                 new Vec3f(v).x_Set((float)((float)(new Vec3f(v).x) * s));
                 new Vec3f(v).y_Set((float)((float)(new Vec3f(v).y) * s));
                 new Vec3f(v).z_Set((float)((float)(new Vec3f(v).z) * s));
@@ -1352,7 +1352,7 @@ public static partial class Game
             z = 0.0f;
             if ((len2 != 0.0f))
             {
-                len2 = (Mem.F32(0x800C9A90u) / func_002BC380(len2));
+                len2 = (Mem.F32(0x800C9A90u) / sqrtf_Recompiled(len2));
                 z = (new VelObj(o).vel.z * len2);
                 new VelObj(o).dir.x_Set((new VelObj(o).vel.x * len2));
                 new VelObj(o).dir.y_Set((new VelObj(o).vel.y * len2));
@@ -1378,7 +1378,7 @@ public static partial class Game
             z = 0.0f;
             if ((len2 != 0.0f))
             {
-                len2 = (Mem.F32(0x800C9A94u) / func_002BC380(len2));
+                len2 = (Mem.F32(0x800C9A94u) / sqrtf_Recompiled(len2));
                 z = (new VelObj(o).vel.z * len2);
                 new VelObj(o).dir.x_Set((new VelObj(o).vel.x * len2));
                 new VelObj(o).dir.y_Set((new VelObj(o).vel.y * len2));

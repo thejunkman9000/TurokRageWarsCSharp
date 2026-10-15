@@ -6,7 +6,7 @@ namespace Trw.Game;
 
 public static partial class Game
 {
-    public static uint func_00403E88(uint a0, uint a1, uint a2, uint a3)
+    public static uint Flyby_IsChainRecord_Tail_00403E88(uint a0, uint a1, uint a2, uint a3)
     {
         uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
         uint lo = 0, hi = 0; bool fcc = false;
@@ -20,7 +20,7 @@ public static partial class Game
                 r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
                 r29 = _fp + 256u;
                 L_func_00403E88: ;
-                { r2 = r0; r2 = func_00404EB0(r4, r5, r6, r7, 0u, 0u, 0u); r3 = Cpu.V1; Cpu.V1 = r3; return r2; }
+                { r2 = r0; r2 = Pak_DetectPort_Tail_00404EB0(r4, r5, r6, r7, 0u, 0u, 0u); r3 = Cpu.V1; Cpu.V1 = r3; return r2; }
                 Cpu.V1 = r3; return r2;
             }
         }

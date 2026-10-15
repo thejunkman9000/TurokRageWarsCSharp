@@ -28,7 +28,7 @@ public static partial class Game
                         {
                             return 0;
                         }
-                        func_0040C4A8(0);
+                        Video_RequestResolution(0);
                         func_0040E958(cfg, 1);
                         CameraManager_Init(0x80145088u, 0);
                         func_0044A600((0x80145088u - (uint)(18 * 4)), 0, 0);

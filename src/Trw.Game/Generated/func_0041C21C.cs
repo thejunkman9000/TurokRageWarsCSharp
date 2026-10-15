@@ -15,8 +15,8 @@ public static partial class Game
             new O3Pg(Mem.U32(0x800E3518u)).f1C_Set(0);
             for (i = 0; (i < 4); ++i)
             {
-                func_00404E28(i);
-                r = func_00404F04(i);
+                Pak_DetectPort(i);
+                r = CPak_GetStatus(i);
                 if ((r == (-1)))
                 {
                     new O3Pg(Mem.U32(0x800E3518u)).f1C_Set(1);

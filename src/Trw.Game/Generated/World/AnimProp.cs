@@ -177,7 +177,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002068C8", (uint)actor, (uint)unused, (uint)arg);
-            func_00402FB4((int)(actor), (uint)(arg));
+            Flyby_QueueByTrigger((int)(actor), (uint)(arg));
             new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) | (uint)(8448)));
             Level_SetEntitySavedFlag(0x8011FE88u, actor, 0);
         }
@@ -189,7 +189,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00206910", (uint)arg);
-            func_00402FB4(0, arg);
+            Flyby_QueueByTrigger(0, arg);
         }
     }
 

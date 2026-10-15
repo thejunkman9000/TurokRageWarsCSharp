@@ -13,14 +13,14 @@ public static partial class Game
             Mem.Set(0x800E5558u, ResourcePool_Malloc((uint)(28)));
             Menu_EnableInput();
             func_0043C3F0(Mem.U32(0x800E5558u), 103, 0, 0, 0);
-            if ((func_0040C4F4() == 1))
+            if ((Video_GetResolution() == 1))
             {
                 new O05Cfg(cfg).h14_Set((short)(98));
                 new O05Cfg(cfg).h16_Set((short)(69));
             }
             else
             {
-                if ((func_0040C4F4() == 2))
+                if ((Video_GetResolution() == 2))
                 {
                     new O05Cfg(cfg).h14_Set((short)(105));
                 }

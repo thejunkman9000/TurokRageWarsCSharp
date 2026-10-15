@@ -1202,7 +1202,7 @@ public static partial class Game
                     Mem.Copy((_fp + 16u), new ActorX(a).v174.P, 12);
                     Vec_Scale(_fp, (_fp + 16u), s);
                     Vec_Add(v, v, _fp);
-                    len = func_002BC380((((new ActorX(a).vel.x * new ActorX(a).vel.x) + (new ActorX(a).vel.y * new ActorX(a).vel.y)) + (new ActorX(a).vel.z * new ActorX(a).vel.z)));
+                    len = sqrtf_Recompiled((((new ActorX(a).vel.x * new ActorX(a).vel.x) + (new ActorX(a).vel.y * new ActorX(a).vel.y)) + (new ActorX(a).vel.z * new ActorX(a).vel.z)));
                     lim = Trunc16ToF32(new DefC(new ActorX(a).ch118.p30_).w12);
                     if ((s > 0.0f))
                     {
@@ -1240,7 +1240,7 @@ public static partial class Game
                 float k = 0f;
                 float t = 0f;
                 Vec_Sub(_fp, target, new ActorX(a).pos.P);
-                dist = func_002BC380((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z)));
+                dist = sqrtf_Recompiled((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z)));
                 if ((dist <= Mem.F32(0x800C9C98u)))
                 {
                     Mem.Copy(new ActorX(a).pos.P, target, 12);
@@ -1249,7 +1249,7 @@ public static partial class Game
                 Vec_Normalize(_fp);
                 Quat_FromDirection((_fp + 48u), _fp);
                 Quat_FromDirection((_fp + 32u), new ActorX(a).v174.P);
-                speed = func_002BC380((((new ActorX(a).vel.x * new ActorX(a).vel.x) + (new ActorX(a).vel.y * new ActorX(a).vel.y)) + (new ActorX(a).vel.z * new ActorX(a).vel.z)));
+                speed = sqrtf_Recompiled((((new ActorX(a).vel.x * new ActorX(a).vel.x) + (new ActorX(a).vel.y * new ActorX(a).vel.y)) + (new ActorX(a).vel.z * new ActorX(a).vel.z)));
                 if ((dist < Mem.F32(0x800C9C9Cu)))
                 {
                     t = (dist - Mem.F32(0x800C9CA0u));
@@ -1305,7 +1305,7 @@ public static partial class Game
                     Vec_Scale(_fp, (_fp + 16u), s);
                     Vec_Add(new ActorX(a).vel.P, new ActorX(a).vel.P, _fp);
                     v = new ActorX(a).vel.P;
-                    len = func_002BC380((((new ActorX(a).vel.x * new ActorX(a).vel.x) + (new ActorX(a).vel.y * new ActorX(a).vel.y)) + (new ActorX(a).vel.z * new ActorX(a).vel.z)));
+                    len = sqrtf_Recompiled((((new ActorX(a).vel.x * new ActorX(a).vel.x) + (new ActorX(a).vel.y * new ActorX(a).vel.y)) + (new ActorX(a).vel.z * new ActorX(a).vel.z)));
                     lim = Trunc16ToF32(new DefC(new ActorX(a).ch118.p30_).w12);
                     if ((s > 0.0f))
                     {

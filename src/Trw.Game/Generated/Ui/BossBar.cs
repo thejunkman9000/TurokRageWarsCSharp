@@ -43,7 +43,7 @@ public static partial class Game
                 { bool c_ = r2 != 0;  if (c_) goto L_L002A8A54; }
                 r2 = (uint)Game_IsInState13();
                 { bool c_ = r2 == 0;  if (c_) goto L_L002A8A54; }
-                r2 = (uint)func_0040C4F4();
+                r2 = (uint)Video_GetResolution();
                 r1 = 2148335616u;
                 Cpu.SetW(2, Mem.U32((r1 - 20304u)));
                 { bool c_ = r2 != 0;  if (c_) goto L_L002A86D0; }
@@ -313,7 +313,7 @@ public static partial class Game
                 { bool c_ = r2 != 0;  if (c_) goto L_L002A8A54; }
                 r2 = (uint)Game_IsInState13();
                 { bool c_ = r2 == 0;  if (c_) goto L_L002A8A54; }
-                r2 = (uint)func_0040C4F4();
+                r2 = (uint)Video_GetResolution();
                 r1 = 2148335616u;
                 Cpu.SetW(2, Mem.U32((r1 - 20304u)));
                 { bool c_ = r2 != 0;  if (c_) goto L_L002A86D0; }

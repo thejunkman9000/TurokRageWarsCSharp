@@ -184,7 +184,7 @@ public static partial class Game
                 L_L0042E35C: ;
                 r4 = Mem.U8((r4 + 1408u));
                 L_L0042E360: ;
-                func_0040C4A8((int)r4);
+                Video_RequestResolution((int)r4);
                 r2 = (uint)Audio_IsSoundOn();
                 { bool c_ = r2 == 0;  if (c_) goto L_L0042E3A0; }
                 r2 = (uint)Random_Next();

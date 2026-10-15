@@ -27,7 +27,7 @@ public static partial class Game
                         {
                             if ((v == s1))
                             {
-                                func_0040C4A8(0);
+                                Video_RequestResolution(0);
                                 func_0040E958((uint)(a), 1);
                                 CameraManager_Init(0x80145088u, 0);
                                 func_0044A600((0x80145088u - (uint)72), 0, 0);

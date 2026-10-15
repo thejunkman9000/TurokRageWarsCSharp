@@ -228,7 +228,7 @@ public static partial class Game
                 r3 = Mem.U32((r3 + 10464u));
                 { bool c_ = r3 == 0; r2 = (uint)20; if (c_) goto L_L002925B4; }
                 { bool c_ = r3 != r2; r4 = r18; if (c_) goto L_L002924AC; }
-                func_0040C11C();
+                Video_BeginResolutionChange();
                 r4 = r18;
                 L_L002924AC: ;
                 r5 = r0;
@@ -833,7 +833,7 @@ public static partial class Game
                 { bool c_ = r2 != 0; r2 = (uint)1; if (c_) goto L_L00292E78; }
                 r1 = 2148794368u;
                 Mem.Set((r1 + 26920u), r2);
-                func_004037D4();
+                Flyby_SetFlagB4_004037D4();
                 L_L00292E78: ;
                 r2 = 2148794368u;
                 r2 = Mem.U32((r2 + 26920u));
@@ -1143,7 +1143,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0029397C", (uint)g, (uint)a);
             CameraManager_Init(new B21Game(g).sub255C8.P, 1);
             func_0044A600(new B21Game(g).sub25580.P, 1, 0);
-            Level_SetTransitionState_0044E178(0x8011FE88u, (~func_004030E0(a)), 0);
+            Level_SetTransitionState_0044E178(0x8011FE88u, (~Flyby_QueueById(a)), 0);
             Level_LoadSelectedResource_0044DCA4(0x8011FE88u);
             Level_LoadPreviewSound_0044DD40(0x8011FE88u);
         }
@@ -1203,7 +1203,7 @@ public static partial class Game
                         Mem.Set(0x8014694Cu, 0);
                         Menu_InitFrontend();
                         Menu_GotoScreen(2);
-                        func_0040C4A8(0);
+                        Video_RequestResolution(0);
                         Game_BeginTransition(g, 1);
                         new B21Game(g).unk26DB0_Set(0.0f);
                     }
@@ -1276,7 +1276,7 @@ public static partial class Game
                         new B21GameBlk(b).unkAC_Set(0);
                         Menu_InitFrontend();
                         Menu_GotoScreen(2);
-                        func_0040C4A8(0);
+                        Video_RequestResolution(0);
                         Game_BeginTransition(g, 1);
                         new B21Game(g).unk26DB0_Set(0.0f);
                     }
@@ -1318,7 +1318,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00293DE4", (uint)g);
             Mem.Set(0x800E28C8u, (-1));
             Mem.Set(0x80146D70u, 0);
-            func_0040C4A8(0);
+            Video_RequestResolution(0);
             Mem.Set(0x800D29C4u, 1);
             Mem.Set(0x80146D60u, 1);
             Mem.Set(0x800E28CCu, 1);
@@ -2117,7 +2117,7 @@ public static partial class Game
             _f3: ;
             if (!((new B21Game(g).unk26DD4 == 0))) goto _f4;
             new B21GameBlk(b).unk88_Set(1);
-            func_004037D4();
+            Flyby_SetFlagB4_004037D4();
             _f4: ;
             _f2: ;
             _f1: ;

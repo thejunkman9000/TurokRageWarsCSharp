@@ -18,7 +18,7 @@ public static partial class Game
             {
                 new O06A_v9(a).unk8_Set((uint)((uint)(new O06A_v9(a).unk8) & (uint)((~8388608))));
             }
-            new O06A_v9(a).unk14_Set((int)(func_0040C43C()));
+            new O06A_v9(a).unk14_Set((int)(Video_GetResolutionLabel()));
             return 0;
         }
     }

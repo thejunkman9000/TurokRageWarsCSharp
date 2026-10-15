@@ -944,7 +944,7 @@ public static partial class Game
                 if (((int)(new B15Src(src).type) == 2))
                 {
                     Vec_Sub(pv, (act + (uint)8), (src + (uint)8));
-                    d = func_002BC380((((new Vec3f((_fp + 24u)).x * new Vec3f((_fp + 24u)).x) + (new Vec3f((_fp + 24u)).y * new Vec3f((_fp + 24u)).y)) + (new Vec3f((_fp + 24u)).z * new Vec3f((_fp + 24u)).z)));
+                    d = sqrtf_Recompiled((((new Vec3f((_fp + 24u)).x * new Vec3f((_fp + 24u)).x) + (new Vec3f((_fp + 24u)).y * new Vec3f((_fp + 24u)).y)) + (new Vec3f((_fp + 24u)).z * new Vec3f((_fp + 24u)).z)));
                     Vec_Normalize(pv);
                     if (!(s <= d))
                     {

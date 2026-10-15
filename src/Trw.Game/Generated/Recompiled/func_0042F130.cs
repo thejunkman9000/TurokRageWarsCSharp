@@ -798,9 +798,9 @@ public static partial class Game
                 r16 = r18;
                 L_L0042F810: ;
                 L_I0042F810: ;
-                r4 = r18; func_00404E28((int)r4);
+                r4 = r18; Pak_DetectPort((int)r4);
                 L_I0042F818: ;
-                r4 = r18; r2 = (uint)func_00404F04((int)r4);
+                r4 = r18; r2 = (uint)CPak_GetStatus((int)r4);
                 L_I0042F820: ;
                 r3 = r2;
                 L_I0042F824: ;
@@ -847,13 +847,13 @@ public static partial class Game
                 L_I0042F88C: ;
                 r4 = Mem.U32((r4 + 13584u));
                 L_I0042F890: ;
-                func_00404E28((int)r4);
+                Pak_DetectPort((int)r4);
                 L_I0042F898: ;
                 r4 = 2148401152u;
                 L_I0042F89C: ;
                 r4 = Mem.U32((r4 + 13584u));
                 L_I0042F8A0: ;
-                r2 = (uint)func_00404F04((int)r4);
+                r2 = (uint)CPak_GetStatus((int)r4);
                 L_I0042F8A8: ;
                 r3 = r2;
                 L_I0042F8AC: ;
@@ -919,7 +919,7 @@ public static partial class Game
                 r2 = PlayerMenu_RefreshPanel(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_L0042F938: ;
                 L_I0042F938: ;
-                r4 = r0; func_0040C4A8((int)r4);
+                r4 = r0; Video_RequestResolution((int)r4);
                 L_I0042F940: ;
                 Menu_DisableInput();
                 L_I0042F948: ;

@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004461F4");
-            func_0040C378();
+            Video_RequestNextResolution();
             return 0;
         }
     }

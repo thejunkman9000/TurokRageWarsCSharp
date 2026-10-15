@@ -20,10 +20,10 @@ public static partial class Game
                 int ok = 0;
                 for (i = 0; ((i < 16) && (found == 0)); ++i)
                 {
-                    r = func_0040458C(k, i, (_fp + 48u), _fp, (_fp + 24u), (_fp + 52u), (_fp + 32u), (_fp + 40u));
+                    r = Pak_GetFileInfo(k, i, (_fp + 48u), _fp, (_fp + 24u), (_fp + 52u), (_fp + 32u), (_fp + 40u));
                     if (((r == 0) && ((ok = Mem.S32((_fp + 48u))) == 1)))
                     {
-                        if ((func_004057BC(_fp, 16) == ok))
+                        if ((CPak_HasInvalidChar(_fp, 16) == ok))
                         {
                             LibC_StrCopy(_fp, Mem.U32(0x800D7784u));
                         }
@@ -49,13 +49,13 @@ public static partial class Game
                 if ((found == 0))
                 {
                     w = UiTree_FindNode(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fC, (uint)(728), default(uint), default(uint));
-                    if ((func_00405160(k, (_fp + 52u)) == 0))
+                    if ((CPak_GetFreePages(k, (_fp + 52u)) == 0))
                     {
                         Str_FormatInto(((new O05Lobby(Mem.U32(0x800E54A4u)).plr.P + (uint)(k * 2920)) + (uint)2764), Str.Lit("%d"), (uint)(Mem.S32((_fp + 52u))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                         new O05Wd(w).f38_Set(((new O05Lobby(Mem.U32(0x800E54A4u)).plr.P + (uint)(k * 2920)) + (uint)2764));
                         w = UiTree_FindNode(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fC, (uint)(727), default(uint), default(uint));
                         Mem.Set((_fp + 52u), func_00435600());
-                        Str_FormatInto(((new O05Lobby(Mem.U32(0x800E54A4u)).plr.P + (uint)(k * 2920)) + (uint)2754), Str.Lit("%d"), (uint)((int)(func_004057EC((uint)(Mem.S32((_fp + 52u)))))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        Str_FormatInto(((new O05Lobby(Mem.U32(0x800E54A4u)).plr.P + (uint)(k * 2920)) + (uint)2754), Str.Lit("%d"), (uint)((int)(CPak_BytesToPages((uint)(Mem.S32((_fp + 52u)))))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                         new O05Wd(w).f38_Set(((new O05Lobby(Mem.U32(0x800E54A4u)).plr.P + (uint)(k * 2920)) + (uint)2754));
                     }
                     else

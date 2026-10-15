@@ -12,10 +12,10 @@ public static partial class Game
     {
         Funcs.Add(0x00211014U, "func_00211014", (a0, a1, a2, a3) => Ai_UpdateRushAttackTail_00211014(a0, a1, a2, a3));
         Funcs.Add(0x002627B4U, "func_002627B4", (a0, a1, a2, a3) => Pad_ReadControllerJump_002627B4(a0, a1, a2, a3));
-        Funcs.Add(0x00403E88U, "func_00403E88", (a0, a1, a2, a3) => func_00403E88(a0, a1, a2, a3));
+        Funcs.Add(0x00403E88U, "func_00403E88", (a0, a1, a2, a3) => Flyby_IsChainRecord_Tail_00403E88(a0, a1, a2, a3));
         Funcs.Add(0x0041C67CU, "func_0041C67C", (a0, a1, a2, a3) => func_0041C67C(a0, a1, a2, a3));
-        Funcs.Add(0x002C2040U, "func_002C2040", (a0, a1, a2, a3) => func_002C2040(a0, a1, a2, a3));
-        Funcs.Add(0x002C205CU, "func_002C205C", (a0, a1, a2, a3) => func_002C205C(a0, a1, a2, a3));
+        Funcs.Add(0x002C2040U, "func_002C2040", (a0, a1, a2, a3) => __osRestoreInt_Recompiled(a0, a1, a2, a3));
+        Funcs.Add(0x002C205CU, "func_002C205C", (a0, a1, a2, a3) => __osRestoreInt_Tail_002C205C(a0, a1, a2, a3));
     }
 
     public static uint func_0041D694(uint a0 = 0, uint a1 = 0, uint a2 = 0, uint a3 = 0) { Stub("func_0041D694"); return 0; }

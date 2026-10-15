@@ -36,9 +36,9 @@ public static partial class Game
                 switch (new O3Words(Mem.U32(0x800E4518u)).w[(int)(7)])
                 {
                 case 0:
-                    func_0040C4A8(0);
+                    Video_RequestResolution(0);
                     func_0040E958((uint)(a0), 1);
-                    func_004030E0((Mem.S32(0x8015402Cu) + 601));
+                    Flyby_QueueById((Mem.S32(0x8015402Cu) + 601));
                     Mem.Set((Mem.U32(0x800E2830u) + (uint)216), (-1));
                     new O3Scr3C(Mem.U32(0x800E2830u)).f3C_Set(st);
                     break;
@@ -77,11 +77,11 @@ public static partial class Game
                         c = 0x801462C8u;
                         if ((((int)(new O3Cfg(c).f580) == 2) && (n >= 2)))
                         {
-                            func_0040C4A8(1);
+                            Video_RequestResolution(1);
                         }
                         else
                         {
-                            func_0040C4A8((int)(new O3Cfg(c).f580));
+                            Video_RequestResolution((int)(new O3Cfg(c).f580));
                         }
                         Menu_RequestShutdown();
                         return 0;

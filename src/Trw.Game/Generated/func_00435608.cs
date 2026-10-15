@@ -13,7 +13,7 @@ public static partial class Game
             uint buf = new O05Lobby(Mem.U32(0x800E54A4u)).recs.P;
             Mem_Copy(buf, new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].rec.P, (uint)(1600));
             new O05Lobby(Mem.U32(0x800E54A4u)).f3468_Set(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB64);
-            new O05Lobby(Mem.U32(0x800E54A4u)).f346C_Set((int)(func_004057F8(buf, 1600, (uint)(7))));
+            new O05Lobby(Mem.U32(0x800E54A4u)).f346C_Set((int)(CPak_Crc32(buf, 1600, (uint)(7))));
         }
     }
 

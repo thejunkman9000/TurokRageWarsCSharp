@@ -16,13 +16,13 @@ public static partial class Game
                 int r = 0;
                 int x = 0;
                 Mem.Set(@out, 0);
-                r = func_00405160(a, (_fp + (uint)(0 * 4)));
+                r = CPak_GetFreePages(a, (_fp + (uint)(0 * 4)));
                 if ((r == 0))
                 {
-                    r = func_004050CC(a, (_fp + (uint)(1 * 4)));
+                    r = CPak_CountFreeNotes(a, (_fp + (uint)(1 * 4)));
                     if ((r == 0))
                     {
-                        x = (int)(func_004057EC((uint)(func_00435600())));
+                        x = (int)(CPak_BytesToPages((uint)(func_00435600())));
                         if (((Mem.S32((_fp + (uint)(1 * 4))) == 0) || (Mem.S32((_fp + (uint)(0 * 4))) < x)))
                         {
                             Mem.Set(@out, 0);
