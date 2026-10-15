@@ -17,7 +17,7 @@ public static partial class Game
                 int r = 0;
                 if ((Mem.S32(0x80146890u) == 0))
                 {
-                    r = func_00258A9C(0x8010C080u, (int)((short)(id)), _fp, a, b, c);
+                    r = Sound_PlayScaled(0x8010C080u, (int)((short)(id)), _fp, a, b, c);
                 }
                 else
                 {

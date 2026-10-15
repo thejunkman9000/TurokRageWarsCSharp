@@ -375,8 +375,8 @@ public static partial class Game
                 }
                 else
                 {
-                    s0 = func_0024DED0(a);
-                    if ((func_0024DF4C(a) == 0))
+                    s0 = Actor_HasDefFlag4Cx01_0024DED0(a);
+                    if ((Actor_IsDeadOrDefFlag4Cx04_0024DF4C(a) == 0))
                     {
                         if ((s0 != 0))
                         {
@@ -389,7 +389,7 @@ public static partial class Game
                     }
                     else
                     {
-                        if ((func_0024DF90(a) == 0))
+                        if ((Actor_HasDefFlag4Cx08_0024DF90(a) == 0))
                         {
                             Mem.Copy((_fp + 16u), 0x80104070u, 28);
                         }
@@ -465,7 +465,7 @@ public static partial class Game
                 best = new S5Actor(a).brain.key;
                 if (!((new S5Actor(a).unk1450 != 0))) goto _f6;
                 if (!((new S5Actor(a).brain.unk14 != (-1)))) goto _f7;
-                x = func_0024E61C(a);
+                x = Actor_IsOnGround(a);
                 z = 0;
                 w = (((int)(new S5Actor(a).unk650) == 15) ? 1 : 0);
                 if (!((x != 0))) goto _f8;
@@ -1487,8 +1487,8 @@ public static partial class Game
                 }
                 else
                 {
-                    s0 = func_0024DED0(a);
-                    if ((func_0024DF4C(a) == 0))
+                    s0 = Actor_HasDefFlag4Cx01_0024DED0(a);
+                    if ((Actor_IsDeadOrDefFlag4Cx04_0024DF4C(a) == 0))
                     {
                         if ((s0 != 0))
                         {
@@ -1501,7 +1501,7 @@ public static partial class Game
                     }
                     else
                     {
-                        if ((func_0024DF90(a) == 0))
+                        if ((Actor_HasDefFlag4Cx08_0024DF90(a) == 0))
                         {
                             Mem.Copy((_fp + 16u), 0x80104070u, 28);
                         }

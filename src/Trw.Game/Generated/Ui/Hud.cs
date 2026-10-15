@@ -1396,7 +1396,7 @@ public static partial class Game
                 r17 = (uint)(int)Mem.S16((r3 + 0u));
                 L_L0021F910: ;
                 r4 = r0;
-                r5 = r2; func_002536F4((int)r4, r5);
+                r5 = r2; ResourcePool_Unref((int)r4, r5);
                 L_L0021F91C: ;
                 Cpu.SetW(2, Mem.U32((r19 + 4184u)));
                 Cpu.SetS(2, Cpu.S(2) * Cpu.S(24));
@@ -1804,7 +1804,7 @@ public static partial class Game
                 { bool c_ = r3 == 0; r4 = r0; if (c_) goto L_L0021FFF0; }
                 r16 = (uint)(int)Mem.S16((r3 + 0u));
                 L_L0021FFF0: ;
-                r5 = r2; func_002536F4((int)r4, r5);
+                r5 = r2; ResourcePool_Unref((int)r4, r5);
                 L_L0021FFF8: ;
                 Cpu.SetW(2, Mem.U32((r19 + 4244u)));
                 Cpu.SetS(2, Cpu.S(2) * Cpu.S(24));
@@ -1948,7 +1948,7 @@ public static partial class Game
                 { bool c_ = r3 == 0; r4 = r0; if (c_) goto L_L0022025C; }
                 r17 = (uint)(int)Mem.S16((r3 + 0u));
                 L_L0022025C: ;
-                r5 = r2; func_002536F4((int)r4, r5);
+                r5 = r2; ResourcePool_Unref((int)r4, r5);
                 L_L00220264: ;
                 Cpu.SetW(2, Mem.U32((r19 + 4304u)));
                 Cpu.SetS(2, Cpu.S(2) * Cpu.S(24));
@@ -3085,6 +3085,22 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_00238304", r2); Stack.Free(384); }
     }
 
+    // ==== func_00239730 @ 0x00239730 [C]
+    public static uint Hud_PostLargeMessage(uint _a0, uint _a1, uint _a2)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00239730", _a0, _a1, _a2);
+            uint o = 0u;
+            o = Hud_PostMessage((uint)(_a0), (uint)(_a1), (uint)(_a2));
+            if ((o != 0u))
+            {
+                new Obj20(o).unk20_Set(1);
+            }
+            return o;
+        }
+    }
+
     // ==== func_00239760 @ 0x00239760 [C]
     public static uint func_00239760_takeNode(uint o, uint b)
     {
@@ -3095,7 +3111,7 @@ public static partial class Game
             n = new TextSrc(o).freeF24_;
             if ((n != 0u))
             {
-                func_00239CD0(n);
+                Hud_ResetTextNode(n);
                 List_Remove((o + 3876u), n, default(uint), default(uint));
                 List_Append_00255CB4((b + 3648u), n, default(uint), default(uint));
             }
@@ -3181,7 +3197,7 @@ public static partial class Game
             n = new TextSrc_v3(o).freeF24_;
             if ((n != 0u))
             {
-                func_00239CD0(n);
+                Hud_ResetTextNode(n);
                 List_Remove((o + 3876u), n, default(uint), default(uint));
                 List_Append_00255CB4((b + 3648u), n, default(uint), default(uint));
             }
@@ -3321,7 +3337,7 @@ public static partial class Game
                 { bool c_ = r18 == r17;  if (c_) goto L_L00239A98; }
                 r16 = Mem.U32((r20 + 3876u));
                 { bool c_ = r16 == 0; r4 = r16; if (c_) goto L_L00239A24; }
-                r4 = r16; func_00239CD0(r4);
+                r4 = r16; Hud_ResetTextNode(r4);
                 r4 = r20 + 3876u;
                 r5 = r16; r2 = List_Remove(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r19 + 3648u;
@@ -3387,6 +3403,17 @@ public static partial class Game
         return func_002398F8_rc(p0, p1, p2, (uint)p3, Cpu.F2U(p4));
     }
 
+    // ==== func_00239CD0 @ 0x00239CD0 [C]
+    public static void Hud_ResetTextNode(uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00239CD0", (uint)n);
+            new Node14(n).unk14_Set(0);
+            new Node14(n).unk1C_Set(0);
+        }
+    }
+
     // ==== func_0023A334 @ 0x0023A334 [C]
     public static uint func_0023A334_takeNode(uint o, uint b)
     {
@@ -3397,7 +3424,7 @@ public static partial class Game
             n = new TextSrc(o).freeF24_;
             if ((n != 0u))
             {
-                func_00239CD0(n);
+                Hud_ResetTextNode(n);
                 List_Remove((o + 3876u), n, default(uint), default(uint));
                 List_Append_00255CB4((b + 3648u), n, default(uint), default(uint));
             }
@@ -3601,7 +3628,7 @@ public static partial class Game
                         }
                     }
                 }
-                func_002536F4(0, (uint)(h));
+                ResourcePool_Unref(0, (uint)(h));
             }
         }
     }

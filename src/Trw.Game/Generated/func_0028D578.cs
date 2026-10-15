@@ -15,9 +15,9 @@ public static partial class Game
                 uint p = Chunk_Get((uint)(new P4Rsrc(o).f88), 0);
                 while ((Mem.S32(p) != 0))
                 {
-                    func_002536F4(0, (uint)(Mem.S32(((p += 4u) - 4u))));
+                    ResourcePool_Unref(0, (uint)(Mem.S32(((p += 4u) - 4u))));
                 }
-                func_002537D8(0, (uint)(new P4Rsrc(o).fF8));
+                ResourcePool_Release(0, (uint)(new P4Rsrc(o).fF8));
                 new P4Rsrc(o).fF8_Set(0);
                 new P4Rsrc(o).f88_Set(0);
             }

@@ -39,6 +39,39 @@ public static partial class Game
         }
     }
 
+    // ==== func_0022E578 @ 0x0022E578 [C]
+    public static float Game_SumDistanceToPlayers(uint g, uint v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022E578", (uint)g, (uint)v);
+            uint p = 0u;
+            float sum = 0.0f;
+            for (p = new Game_s(g).players_; (p != 0u); p = new Player_v3(p).next_)
+            {
+                if ((new Player_v3(p).pawn_ != 0u))
+                {
+                    sum = (float)((float)(sum) + func_00272768(v, new Player_v3(p).pos.P));
+                }
+            }
+            return sum;
+        }
+    }
+
+    // ==== func_0022E748 @ 0x0022E748 [C]
+    public static int Game_IsItemEnabled_0022E748(int a0, int id)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022E748", (uint)a0, (uint)id);
+            if (((id == 730) && ((int)(Mem.U8((0x801462E5u + (uint)0))) != 0)))
+            {
+                return (int)(Mem.U8((0x801462E5u + (uint)14)));
+            }
+            return 1;
+        }
+    }
+
     // ==== func_0029382C @ 0x0029382C [C]
     public static void Game_StateDispatch(uint g)
     {

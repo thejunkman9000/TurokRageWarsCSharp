@@ -15,8 +15,8 @@ public static partial class Game
             new ActorState(state).unk35_Set((sbyte)((-1)));
             new ActorState(state).unkCB_Set((sbyte)(0));
             new ActorState(state).unk124_Set(arg2);
-            func_0024B690(actor, arg2, 1);
-            func_002472E0(actor);
+            Anim_PlayAction(actor, arg2, 1);
+            Actor_ApplyAnimRootMotion(actor);
         }
     }
 
@@ -118,7 +118,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0020676C", (uint)actor, (uint)state, (uint)evt);
             AnimProp_PlayAnim(actor, state, (int)(new B01Evt6(evt).unk6));
             new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) | (uint)(8448)));
-            func_002472E0(actor);
+            Actor_ApplyAnimRootMotion(actor);
             func_00285D80(0x8011FE88u, actor, 0);
         }
     }
@@ -156,7 +156,7 @@ public static partial class Game
             {
                 new ActorState(state).flags_Set((uint)((uint)(new ActorState(state).flags) | (uint)(512)));
             }
-            func_002472E0(actor);
+            Actor_ApplyAnimRootMotion(actor);
             func_00285D80(0x8011FE88u, actor, 0);
         }
     }
@@ -214,12 +214,12 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < n); ++i)
             {
-                int p = (int)(func_0024BFC4(actor, i));
+                int p = (int)(Actor_AcquireModel(actor, i));
                 if ((p != 0))
                 {
                     new B01Evt(evt).unkC_Set(p);
                     new B01Evt(evt).unk10_Set(p);
-                    func_0024AA08(actor, state, evt, default(uint));
+                    Shadow_DrawForActor(actor, state, evt, default(uint));
                     Light_ShadeVertices((uint)(p), new B01Actor(actor).unkB4, 1, (int)((new B01Actor(actor).seg.P + (uint)(Mem.S32(0x800D297Cu) * 24))), (uint)(0), (int)(new B01Actor(actor).unk3));
                 }
             }

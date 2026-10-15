@@ -29,7 +29,7 @@ public static partial class Game
                     new Q2Ent96(p).unk7F_Set((byte)(i));
                     if (((int)(new Q2Row190((0x80102B00u + (uint)(i * 400))).unkD) < 0))
                     {
-                        func_0022F1F4(i);
+                        Profile_InitSlot(i);
                     }
                 }
                 break;
@@ -37,7 +37,7 @@ public static partial class Game
                 p = 0x80146398u;
                 new Q2Ent96(p).unk78_Set((byte)(1));
                 new Q2Ent96(p).unk7F_Set((byte)(0));
-                func_0022EF20(0x80102B00u);
+                Profile_Init(0x80102B00u);
                 func_00435190(7);
                 new O04ModeS4600(Mem.U32(0x800E4600u)).unk18_Set(19);
                 Mem.Set((p + (uint)(-195)), (byte)(1));
@@ -58,10 +58,10 @@ public static partial class Game
                 new Q2Ent96(p).unk7F_Set((byte)(0));
                 if (((int)(new Q2Row190((0x80102B00u + (uint)(0 * 400))).unkD) < 0))
                 {
-                    func_0022F1F4(0);
+                    Profile_InitSlot(0);
                     for (i = 0; (i < 20); ++i)
                     {
-                        func_0022F594(0x80102B00u, i);
+                        Profile_UnlockCharacter(0x80102B00u, i);
                     }
                 }
                 Mem.Set(0x801462D5u, (byte)(3));
@@ -73,7 +73,7 @@ public static partial class Game
                 new Q2Ent96(p).unk7F_Set((byte)(0));
                 if (((int)(new Q2Row190((0x80102B00u + (uint)(0 * 400))).unkD) < 0))
                 {
-                    func_0022F1F4(0);
+                    Profile_InitSlot(0);
                 }
                 Mem.Set((p + (uint)(-195)), (byte)(4));
                 Mem.Set(0x800E4680u, 0);

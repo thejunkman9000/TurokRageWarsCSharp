@@ -23,12 +23,12 @@ public static partial class Game
                 if ((new_var2 != 0))
                 {
                     Mem.Copy(new B15Own_v2(new_var).pos.P, _fp, 12);
-                    func_00232734(actor, (int)(p), e);
+                    Weapon_FireShotForOwner(actor, (int)(p), e);
                 }
                 else
                 {
                     Mem.Copy(new B15Own_v2(new_var).pos.P, _fp, 12);
-                    func_00232734(actor, (int)(p), e);
+                    Weapon_FireShotForOwner(actor, (int)(p), e);
                 }
             }
         }

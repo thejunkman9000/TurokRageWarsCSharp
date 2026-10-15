@@ -93,8 +93,8 @@ public static partial class Game
                 else
                 {
                     new B19Owner(ow).f1B928_Set(1);
-                    new B19Owner(ow).f1B6B0__Set(func_002543A8((uint)(0), (uint)(new B19Owner(ow).f8C), (uint)(((ci + (cj * cols)) + 1)), (uint)(new B19Owner(ow).f40), ow, 0x00285130u, 0x800CA310u));
-                    func_00253610(0, new B19Owner(ow).f1B6B0_);
+                    new B19Owner(ow).f1B6B0__Set(Resource_LoadByCartridgeKey((uint)(0), (uint)(new B19Owner(ow).f8C), (uint)(((ci + (cj * cols)) + 1)), (uint)(new B19Owner(ow).f40), ow, 0x00285130u, 0x800CA310u));
+                    ResourcePool_TouchAndRef(0, new B19Owner(ow).f1B6B0_);
                     func_00297020((ow + (uint)112308), ci, cj, (uint)(Mem.S32(new B19Owner(ow).f1B6B0_)), (cam + 296u));
                 }
                 for (j = j0; (j <= fp); ++j)
@@ -136,7 +136,7 @@ public static partial class Game
                                     }
                                     else
                                     {
-                                        func_002536F4(0, h);
+                                        ResourcePool_Unref(0, h);
                                     }
                                 }
                             }

@@ -20,7 +20,7 @@ public static partial class Game
                 uint p = 0u;
                 int s = 0;
                 int t = 0;
-                p = func_00252FFC((uint)(5744));
+                p = ResourcePool_Malloc((uint)(5744));
                 Mem.Set(0x800E59E0u, p);
                 new Q04L2(p).f0_Set((uint)(a));
                 new Q04L2(Mem.U32(0x800E59E0u)).f4_Set((uint)((int)(func_0041B690((uint)(a), 4))));

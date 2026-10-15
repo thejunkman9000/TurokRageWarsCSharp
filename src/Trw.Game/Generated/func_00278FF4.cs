@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00278FF4", (uint)a);
-            func_002472E0(a);
+            Actor_ApplyAnimRootMotion(a);
             new ActorX(a).flags_Set((uint)((uint)(new ActorX(a).flags) | (uint)(8448)));
         }
     }

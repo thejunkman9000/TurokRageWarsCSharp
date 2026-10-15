@@ -22,7 +22,7 @@ public static partial class Game
                 new O04Ent96d(e).unk7F_Set((byte)(i));
                 if (((int)(new O04Row190b((0x80102B00u + (uint)(i * 400))).unkD) < 0))
                 {
-                    func_0022F1F4(i);
+                    Profile_InitSlot(i);
                 }
             }
             return 0;

@@ -12,8 +12,8 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002A276C");
             if ((Mem.S32(0x800D2BD0u) != 0))
             {
-                func_00254784((uint)(Mem.S32((0x800D2BD4u + (uint)(0 * 4)))));
-                func_00254784((uint)(Mem.S32((0x800D2BD4u + (uint)(1 * 4)))));
+                ResourcePool_MallocFree((uint)(Mem.S32((0x800D2BD4u + (uint)(0 * 4)))));
+                ResourcePool_MallocFree((uint)(Mem.S32((0x800D2BD4u + (uint)(1 * 4)))));
                 Mem.Set((0x800D2BD4u + (uint)(0 * 4)), 0);
                 Mem.Set((0x800D2BD4u + (uint)(1 * 4)), 0);
                 Mem.Set(0x800D2BD0u, 0);

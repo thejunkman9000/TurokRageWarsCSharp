@@ -183,6 +183,94 @@ public static partial class Game
         finally { Stack.Free(44); }
     }
 
+    // ==== func_00241830 @ 0x00241830 [C]
+    public static float Math_DistancePointToSegment(uint a, uint b, uint p)
+    {
+        uint _fp = Stack.Alloc(28);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_00241830", (uint)a, (uint)b, (uint)p);
+                float t = 0f;
+                float len2 = 0f;
+                func_00271FD8(_fp, p, a);
+                func_00271FD8((_fp + 16u), b, a);
+                t = (((Mem.F32(((_fp + 16u) + (uint)(0 * 4))) * Mem.F32((_fp + (uint)(0 * 4)))) + (Mem.F32(((_fp + 16u) + (uint)(1 * 4))) * Mem.F32((_fp + (uint)(1 * 4))))) + (Mem.F32(((_fp + 16u) + (uint)(2 * 4))) * Mem.F32((_fp + (uint)(2 * 4)))));
+                if (!(t < 0.0f))
+                {
+                    len2 = (((Mem.F32(((_fp + 16u) + (uint)(0 * 4))) * Mem.F32(((_fp + 16u) + (uint)(0 * 4)))) + (Mem.F32(((_fp + 16u) + (uint)(1 * 4))) * Mem.F32(((_fp + 16u) + (uint)(1 * 4))))) + (Mem.F32(((_fp + 16u) + (uint)(2 * 4))) * Mem.F32(((_fp + 16u) + (uint)(2 * 4)))));
+                    if (!(len2 <= t))
+                    {
+                        func_0027200C((_fp + 16u), (_fp + 16u), (t / len2));
+                    }
+                    func_00271FD8(_fp, _fp, (_fp + 16u));
+                }
+                t = sqrtf((((Mem.F32((_fp + (uint)(0 * 4))) * Mem.F32((_fp + (uint)(0 * 4)))) + (Mem.F32((_fp + (uint)(1 * 4))) * Mem.F32((_fp + (uint)(1 * 4))))) + (Mem.F32((_fp + (uint)(2 * 4))) * Mem.F32((_fp + (uint)(2 * 4))))));
+                return t;
+            }
+        }
+        finally { Stack.Free(28); }
+    }
+
+    // ==== func_0024C864 @ 0x0024C864 [C]
+    public static void Vec3_Lerp(uint @out, float t, uint a, uint b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0024C864", (uint)@out, 0u, (uint)a, (uint)b);
+            new Vec3f(@out).x_Set((new Vec3f(a).x + (t * (new Vec3f(b).x - new Vec3f(a).x))));
+            new Vec3f(@out).y_Set((new Vec3f(a).y + (t * (new Vec3f(b).y - new Vec3f(a).y))));
+            new Vec3f(@out).z_Set((new Vec3f(a).z + (t * (new Vec3f(b).z - new Vec3f(a).z))));
+        }
+    }
+
+    // ==== func_0024C8B4 @ 0x0024C8B4 [C]
+    public static void Quat_LerpComponents(uint @out, float t, uint a, uint b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0024C8B4", (uint)@out, 0u, (uint)a, (uint)b);
+            Mem.Set((@out + (uint)(0 * 4)), (Mem.F32((a + (uint)(0 * 4))) + (t * (Mem.F32((b + (uint)(0 * 4))) - Mem.F32((a + (uint)(0 * 4)))))));
+            Mem.Set((@out + (uint)(1 * 4)), (Mem.F32((a + (uint)(1 * 4))) + (t * (Mem.F32((b + (uint)(1 * 4))) - Mem.F32((a + (uint)(1 * 4)))))));
+            Mem.Set((@out + (uint)(2 * 4)), (Mem.F32((a + (uint)(2 * 4))) + (t * (Mem.F32((b + (uint)(2 * 4))) - Mem.F32((a + (uint)(2 * 4)))))));
+            Mem.Set((@out + (uint)(3 * 4)), (Mem.F32((a + (uint)(3 * 4))) + (t * (Mem.F32((b + (uint)(3 * 4))) - Mem.F32((a + (uint)(3 * 4)))))));
+        }
+    }
+
+    // ==== func_0024D018 @ 0x0024D018 [C]
+    public static void Quat_ToMatrixWithTranslation(uint m, uint q, uint pos)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0024D018", (uint)m, (uint)q, (uint)pos);
+            float x = new B16Vec4(q).x;
+            float y = new B16Vec4(q).y;
+            float z = new B16Vec4(q).z;
+            float w = new B16Vec4(q).w;
+            float xx = (x * x);
+            float yy = (y * y);
+            float zz = (z * z);
+            float ww = (w * w);
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), (((ww + xx) - yy) - zz));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(1 * 4)), (((2.0f * x) * y) + ((2.0f * w) * z)));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(2 * 4)), (((2.0f * x) * z) - ((2.0f * w) * y)));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(0 * 4)), (((2.0f * x) * y) - ((2.0f * w) * z)));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), (((ww - xx) + yy) - zz));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(2 * 4)), (((2.0f * y) * z) + ((2.0f * w) * x)));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(0 * 4)), (((2.0f * x) * z) + ((2.0f * w) * y)));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(1 * 4)), (((2.0f * y) * z) - ((2.0f * w) * x)));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), (((ww - xx) - yy) + zz));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(0 * 4)), Mem.F32((pos + (uint)(0 * 4))));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(1 * 4)), Mem.F32((pos + (uint)(1 * 4))));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(2 * 4)), Mem.F32((pos + (uint)(2 * 4))));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(0 * 16)) + (uint)(3 * 4)), 0.0f);
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), Mem.F32(0x800C8CA0u));
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(3 * 4)), 0.0f);
+            Mem.Set(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(3 * 4)), 0.0f);
+        }
+    }
+
     // ==== func_00270D40 @ 0x00270D40 [C]
     public static void Quat_Blend(uint dst, float t, uint q1, uint q2)
     {

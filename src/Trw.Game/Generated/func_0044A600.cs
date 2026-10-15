@@ -26,11 +26,11 @@ public static partial class Game
             List_Init(new ObjectPool(pool).active_queue.P, 5852, 5856);
             List_Init(new ObjectPool(pool).object_queue.P, 5852, 5856);
             func_00264874(0);
-            func_002538A8();
+            ResourcePool_Purge();
             global = 0x801462C8u;
             if ((new ObjectPool(pool).allocation != 0u))
             {
-                func_002537D8(0, new ObjectPool(pool).allocation);
+                ResourcePool_Release(0, new ObjectPool(pool).allocation);
                 new ObjectPool(pool).allocation_Set(0u);
                 new ObjectPool(pool).objects__Set(0u);
                 new ObjectPool(pool).count_Set(0);

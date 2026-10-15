@@ -81,7 +81,7 @@ public static partial class Game
                     {
                         if (!((Mem.S32(0x801462C8u) & 268435456) != 0))
                         {
-                            if ((func_0022F4CC((0x80102B00u + (uint)(k * 400)), 15) == 0))
+                            if ((Profile_IsWeaponUnlocked((0x80102B00u + (uint)(k * 400)), 15) == 0))
                             {
                                 s0 = (int)((int)(s0) + step);
                                 s1 = 0;

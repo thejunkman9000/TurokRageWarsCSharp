@@ -50,7 +50,7 @@ public static partial class Game
                         goto L_have;
                     }
                 }
-                if ((func_0024B05C(a, _fp, 0x80110570u) != 0))
+                if ((Actor_FindNearestHitBox(a, _fp, 0x80110570u) != 0))
                 {
                     e = 0x80110570u;
                 }
@@ -74,7 +74,7 @@ public static partial class Game
                     {
                         Mem.Copy((_fp + 16u), new B15Act2(a).pos.P, 12);
                         fs0 = (new B15Act2(a).pos.y + Mem.F32((a + (uint)112)));
-                        t = (fs0 + func_0024D274(a));
+                        t = (fs0 + Actor_GetHeight(a));
                         if ((t < new Vec3f(_fp).y))
                         {
                             new Vec3f((_fp + 16u)).y_Set(t);
@@ -90,7 +90,7 @@ public static partial class Game
                                 new Vec3f((_fp + 16u)).y_Set(new Vec3f(_fp).y);
                             }
                         }
-                        fs0 = (f6C + func_0024D388(a));
+                        fs0 = (f6C + Actor_GetRadius(a));
                         dist = func_00272768(_fp, (_fp + 16u));
                         if ((fs0 < dist))
                         {

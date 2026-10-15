@@ -49,9 +49,9 @@ public static partial class Game
                 Cpu.SetW(0, Mem.U32((r3 + 276u)));
                 Cpu.SetS(0, (float)(int)Cpu.W(0));
                 Mem.Set((r2 + 680u), Cpu.W(0)); r2 = (uint)func_004030E0((int)r4);
-                r16 = r2; r2 = (uint)func_0025471C();
+                r16 = r2; r2 = (uint)Resource_GetLoadFlags();
                 { bool c_ = r2 != 0;  if (c_) goto L_L00422168; }
-                r4 = (uint)1; func_0025470C((int)r4);
+                r4 = (uint)1; Resource_SetLoadFlags((int)r4);
                 L_L00422168: ;
                 r4 = 2148663296u;
                 r4 = r4 - 376u;

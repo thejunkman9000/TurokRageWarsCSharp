@@ -47,7 +47,7 @@ public static partial class Game
                 r2 = func_00288E78(r4, r5, r6, r7); r3 = Cpu.V1;
                  goto L_L00289760;
                 L_L002890CC: ;
-                r4 = r19; r2 = func_002392DC(r4);
+                r4 = r19; r2 = Player_FindByPawn(r4);
                 r4 = r0;
                 r3 = Mem.U32((r17 + 148u));
                 r18 = r2;
@@ -178,7 +178,7 @@ public static partial class Game
                 fcc = Cpu.S(1) < Cpu.S(0);
                 if (!fcc) { r20 = r20 + 12u; goto L_L00289704; }
                 r5 = Mem.U32((r20 + 0u));
-                r4 = r0; func_00253B5C((int)r4, r5);
+                r4 = r0; Resource_MarkUsedInFrame((int)r4, r5);
                 r2 = Mem.U32((r20 + 0u));
                 r18 = r0;
                 r2 = Mem.U32((r2 + 0u));
@@ -202,7 +202,7 @@ public static partial class Game
                 r3 = Mem.U32((r3 + 10624u));
                 { bool c_ = r3 != 0; Mem.Set((r16 + 32u), r2); if (c_) goto L_L0028937C; }
                 r4 = r16;
-                r5 = r19; func_00250950(r4);
+                r5 = r19; Prop_PreloadModel(r4);
                 L_L0028937C: ;
                 r2 = Mem.U16((r16 + 216u));
                 r2 = r2 & 8u;
@@ -286,7 +286,7 @@ public static partial class Game
                 L_L00289518: ;
                 r4 = r16;
                 L_L0028951C: ;
-                r5 = r19; r2 = (uint)func_002500A4(r4, (int)r5);
+                r5 = r19; r2 = (uint)Prop_UpdateLodFade(r4, (int)r5);
                 { bool c_ = r2 == 0;  if (c_) goto L_L00289568; }
                 r2 = Mem.U16((r16 + 216u));
                 r2 = r2 & 4u;
@@ -299,7 +299,7 @@ public static partial class Game
                 r2 = r3 + 1u;
                 Mem.Set((r17 + 4284u), r2); goto L_L00289568;
                 L_L00289560: ;
-                r5 = r19; func_0025021C(r4);
+                r5 = r19; Prop_DrawLodFaded(r4);
                 L_L00289568: ;
                 r2 = Mem.U16((r16 + 216u));
                 r2 = r2 & 65023u; goto L_L0028957C;
@@ -326,7 +326,7 @@ public static partial class Game
                 r3 = Mem.U32((r3 + 10624u));
                 { bool c_ = r3 != 0; Mem.Set((r16 + 96u), r2); if (c_) goto L_L002895D0; }
                 r4 = r16;
-                r5 = r19; func_0024F284(r4);
+                r5 = r19; Pickup_PreloadModel(r4);
                 L_L002895D0: ;
                 r2 = Mem.U32((r16 + 24u));
                 r10 = Mem.U32((r29 + 32u));
@@ -378,7 +378,7 @@ public static partial class Game
                 r2 = r3 + 1u;
                 Mem.Set((r17 + 4284u), r2); goto L_L002896F0;
                 L_L002896E8: ;
-                r4 = r16; func_0024EB80(r4);
+                r4 = r16; Pickup_Draw(r4);
                 L_L002896F0: ;
                 r18 = r18 + 1u;
                 L_L002896F4: ;
@@ -401,11 +401,11 @@ public static partial class Game
                 r1 = 131072u;
                 r1 = r17 + r1;
                 r5 = Mem.U32((r1 - 18768u));
-                r4 = r0; func_002536F4((int)r4, r5);
+                r4 = r0; ResourcePool_Unref((int)r4, r5);
                 r1 = 131072u;
                 r1 = r17 + r1;
                 r5 = Mem.U32((r1 - 18768u));
-                r4 = r0; func_002537D8((int)r4, r5);
+                r4 = r0; ResourcePool_Release((int)r4, r5);
                 L_L00289760: ;
                 r31 = Mem.U32((r29 + 84u));
                 r30 = Mem.U32((r29 + 80u));

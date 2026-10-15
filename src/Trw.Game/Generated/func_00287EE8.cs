@@ -63,7 +63,7 @@ public static partial class Game
             if (!(((new B19bInfo(info).flags & (uint)(mask)) != 0u))) goto _f7;
             if (!((((((sflag != 0) && !((fl & 2) != 0)) && ((int)(new B19bObj(o).f10F) == 0)) && !((fl & 1024) != 0)) && (new B19bInfo(info).kind != 3)))) goto _f8;
             if (!((new B19bInfo(info).kind != 14))) goto _f9;
-            if (!((func_0024D150(o) == 0))) goto _f10;
+            if (!((Actor_IsAlwaysActive_0024D150(o) == 0))) goto _f10;
             if (!(((((((Mem.F32((bB + (uint)(0 * 4))) > new B19bObj(o).fE8) && (Mem.F32((bB + (uint)((-3) * 4))) < new B19bObj(o).fF4)) && (Mem.F32((bB + (uint)(2 * 4))) > new B19bObj(o).fF0)) && (Mem.F32((bB + (uint)((-1) * 4))) < new B19bObj(o).fFC)) && (Mem.F32((bB + (uint)(1 * 4))) > new B19bObj(o).fEC)) && (Mem.F32((bB + (uint)((-2) * 4))) < new B19bObj(o).fF8)))) goto _f11;
             if (!((s5 != 0))) goto _f12;
             s2 = func_00297B74((uint)((s5 + 752)), (o + 232u));
@@ -85,7 +85,7 @@ public static partial class Game
             L_L4: ;
             if (!((new B19bInfo(info).kind == 14))) goto _f17;
             L_L5: ;
-            if (!((func_0023945C((uint)(s5), (int)((o + (uint)8))) < Mem.F32((0x800CA2F8u + (uint)(1 * 4)))))) goto _f18;
+            if (!((Camera_GetDistanceTo((uint)(s5), (int)((o + (uint)8))) < Mem.F32((0x800CA2F8u + (uint)(1 * 4)))))) goto _f18;
             s2 = 1;
             _f18: ;
             goto _f19;
@@ -122,15 +122,15 @@ public static partial class Game
             if (!((s2 != 0))) goto _f28;
             Mem.Set((o + 256u), (int)((uint)(Mem.S32((o + 256u))) | 2147483648u));
             if (!((new B19bInfo(info).kind != 14))) goto _f29;
-            func_0024B8B4(o);
-            if (!((func_0024D150(o) != 0))) goto _f30;
+            Actor_ResetPoseMatrices(o);
+            if (!((Actor_IsAlwaysActive_0024D150(o) != 0))) goto _f30;
             t0 = new B19bWorld(w).n0;
             if (!((t0 != 512))) goto _f31;
             new B19bWorld(w).l0.Set((int)(t0), o);
             new B19bWorld(w).n0_Set((t0 + 1));
             _f31: ;
             _f30: ;
-            if (!((func_0024E1A4(o) != 0))) goto _f32;
+            if (!((Actor_IsSpawnedVisible_0024E1A4(o) != 0))) goto _f32;
             t1 = new B19bWorld(w).n1;
             if (!((t1 != 128))) goto _f33;
             new B19bWorld(w).l1.Set((int)(t1), o);

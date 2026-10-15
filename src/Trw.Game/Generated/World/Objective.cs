@@ -72,7 +72,7 @@ public static partial class Game
                         new M1Actor(pl).stats.b8F_Set((byte)(0));
                         new M1Actor(pl).stats.b90_Set((byte)(1));
                         new M1Actor(pl).stats.h8_Set((ushort)(new M1Actor(pl).stats.h8 + 1));
-                        func_0022E16C(pl, pl, (uint)(3), default(uint));
+                        Match_AdjustTeamScore(pl, pl, (uint)(3), default(uint));
                         blk2 = new M1World(0x80145040u).blk.P;
                         new M1Blk(blk2).unk84_Set(0);
                         new M1Blk(blk2).unk80_Set(0);
@@ -427,7 +427,7 @@ public static partial class Game
                 v = 0.0f;
             }
             Mem.Set(0x800D15F0u, v);
-            func_0024A1C0((uint)(actor), (int)(uint)(state), (uint)(_a2));
+            Actor_DrawModelLit((uint)(actor), (int)(uint)(state), (uint)(_a2));
         }
     }
 }

@@ -20,9 +20,9 @@ public static partial class Game
                 Mem.Set((y2 + (uint)(0 * 4)), (float)(0));
                 return;
             }
-            A = func_00252FFC((uint)((n * 4)));
-            B = func_00252FFC((uint)((n * 4)));
-            C = func_00252FFC((uint)((n * 4)));
+            A = ResourcePool_Malloc((uint)((n * 4)));
+            B = ResourcePool_Malloc((uint)((n * 4)));
+            C = ResourcePool_Malloc((uint)((n * 4)));
             for (i = 1; (i < (n - 1)); ++i)
             {
                 Mem.Set((A + (uint)(i * 4)), ((Mem.F32((t + (uint)((i + 1) * 4))) - Mem.F32((t + (uint)((i - 1) * 4)))) * 2.0f));
@@ -61,9 +61,9 @@ public static partial class Game
                     Mem.Set((y2 + (uint)(i * 4)), ((Mem.F32((B + (uint)(i * 4))) - (Mem.F32((C + (uint)(i * 4))) * Mem.F32((y2 + (uint)((i + 1) * 4))))) / Mem.F32((A + (uint)(i * 4)))));
                 }
             }
-            func_00254784(A);
-            func_00254784(B);
-            func_00254784(C);
+            ResourcePool_MallocFree(A);
+            ResourcePool_MallocFree(B);
+            ResourcePool_MallocFree(C);
         }
     }
 

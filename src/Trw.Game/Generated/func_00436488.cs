@@ -27,9 +27,9 @@ public static partial class Game
                 CameraManager_Init((0x80146894u - (uint)(1539 * 4)), 0);
                 func_0044A600((0x80146894u - (uint)(1557 * 4)), 0, 0);
                 Level_Load(0x8011FE88u, (uint)(36), (uint)(0), default(uint));
-                if ((func_0025471C() == 0))
+                if ((Resource_GetLoadFlags() == 0))
                 {
-                    func_0025470C(1);
+                    Resource_SetLoadFlags(1);
                 }
                 func_0025E3A4();
                 func_0042E080(default(uint), default(uint), default(uint), default(uint));

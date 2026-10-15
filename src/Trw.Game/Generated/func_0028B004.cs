@@ -44,7 +44,7 @@ public static partial class Game
                 }
                 else
                 {
-                    func_00249E18(e, (uint)(arg), default(uint), default(uint));
+                    Actor_Draw(e, (uint)(arg), default(uint), default(uint));
                 }
             }
             func_0026D9D0();

@@ -57,7 +57,7 @@ public static partial class Game
                     }
                 }
                 root = Mem.U32(a0);
-                func_00253B5C(0, a0);
+                Resource_MarkUsedInFrame(0, a0);
                 if ((flag != 0))
                 {
                     g1 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);

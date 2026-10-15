@@ -164,7 +164,7 @@ public static partial class Game
                 Mem.Set((r5 + 4u), r8);
                 L_L0026D068: ;
                 r4 = r0;
-                r5 = r18; func_00253B5C((int)r4, r5);
+                r5 = r18; Resource_MarkUsedInFrame((int)r4, r5);
                 r7 = Mem.U32((r29 + 84u));
                 r16 = Mem.U32((r18 + 0u));
                 { bool c_ = r7 != 0; r2 = 3674603520u; if (c_) goto L_L0026D098; }

@@ -6,6 +6,86 @@ namespace Trw.Game;
 
 public static partial class Game
 {
+    // ==== func_002567E8 @ 0x002567E8 [MIPS]
+    public static uint Game_InitMemoryServicesHead_002567E8(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002567E8", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002567E8: ;
+                r5 = r0 + 1u;
+                r29 = r29 - 32u; r2 = Chunk_Get(r4, (int)r5);
+                Mem.Set((r29 + 16u), r16);
+                r16 = 2151677952u;
+                Mem.Set((r29 + 24u), r31);
+                Mem.Set((r29 + 20u), r17); r2 = func_00265370();
+                r17 = 2148990976u;
+                r17 = r17 - 8192u;
+                r3 = 4194304u;
+                { bool c_ = r2 == r3; r4 = r17; if (c_) goto L_L00256830; }
+                r2 = func_00265370();
+                r3 = 2147483648u;
+                r16 = r2 | r3;
+                r4 = r17;
+                L_L00256830: ;
+                r5 = r0;
+                r16 = r16 - r17;
+                r6 = r16; r2 = memset(r4, (int)r5, r6);
+                r4 = 2148532224u;
+                r4 = r4 + 20896u;
+                r5 = r17;
+                r6 = r16; r2 = Heap_Init(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = 2148597760u;
+                r4 = r4 - 23992u;
+                r5 = (uint)3; MsgPort_Create(r4, (int)r5);
+                r4 = 2148532224u;
+                r4 = r4 + 20920u;
+                r5 = (uint)4; RomDma_Init(r4, (int)r5);
+                r4 = r0;
+                r5 = r4; Resource_InitPager();
+                r4 = r0;
+                r5 = (uint)5; Resource_InitManager((int)r4, (int)r5);
+                r31 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002567E8", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002567F0 @ 0x002567F0 [C]
+    public static void Game_InitMemoryServices()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002567F0");
+            uint end = 2151677952u;
+            uint @base = 0x8016E000u;
+            uint size = 0u;
+            if ((func_00265370() != (uint)(4194304)))
+            {
+                end = (func_00265370() | 2147483648u);
+            }
+            size = (end - (uint)(@base));
+            memset(@base, 0, size);
+            Heap_Init(0x801051A0u, @base, size, default(uint));
+            MsgPort_Create(0x8010A248u, 3);
+            RomDma_Init(0x801051B8u, 4);
+            Resource_InitPager();
+            Resource_InitManager(0, 5);
+        }
+    }
+
     // ==== func_002911E8 @ 0x002911E8 [C]
     public static void Game_ColdBootInit(uint lv)
     {
@@ -80,7 +160,7 @@ public static partial class Game
                 r18 = r4;
                 Mem.Set((r29 + 28u), r31);
                 Mem.Set((r29 + 20u), r17);
-                Mem.Set((r29 + 16u), r16); func_002567F0();
+                Mem.Set((r29 + 16u), r16); Game_InitMemoryServices();
                 r4 = (uint)254; osCreateViManager((int)r4);
                 r4 = (uint)1; osViBlack((byte)r4);
                 r2 = 2147483648u;

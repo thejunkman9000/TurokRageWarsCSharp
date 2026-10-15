@@ -18,7 +18,7 @@ public static partial class Game
             {
                 new Sub24(q).unk124_Set((short)(0));
                 v = Cpu.TruncU32(func_002745D4(0.0150000006f));
-                func_0023919C(new Plr24b(p).unk5DC_, (sbyte)(255), (sbyte)(255), (sbyte)(255), (sbyte)(255), (sbyte)((int)((byte)(v))), (sbyte)(1), (sbyte)(0));
+                Fade_Start(new Plr24b(p).unk5DC_, (sbyte)(255), (sbyte)(255), (sbyte)(255), (sbyte)(255), (sbyte)((int)((byte)(v))), (sbyte)(1), (sbyte)(0));
             }
             return 1;
         }

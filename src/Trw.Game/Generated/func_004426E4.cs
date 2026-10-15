@@ -32,7 +32,7 @@ public static partial class Game
             {
                 size = (int)((int)(size) + func_004426E4_O06_ItemSize((new O06B_v3(b).unk0_ + (uint)(i * 36))));
             }
-            r = func_002533DC(0, size, (uint)(59), (int)((0x800E2518u + (uint)4)));
+            r = ResourcePool_Alloc(0, size, (uint)(59), (int)((0x800E2518u + (uint)4)));
             if ((r == 0u))
             {
                 return 0;

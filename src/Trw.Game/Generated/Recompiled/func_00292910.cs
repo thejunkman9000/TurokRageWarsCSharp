@@ -303,7 +303,7 @@ public static partial class Game
                 r1 = 2148335616u;
                 Mem.Set((r1 + 10632u), Cpu.W(20));
                 L_L00292DBC: ;
-                r4 = r0; func_002532E4();
+                r4 = r0; Resource_FrameUpdate();
                 r2 = 2148663296u;
                 r2 = Mem.U32((r2 - 384u));
                 r1 = 2148859904u;

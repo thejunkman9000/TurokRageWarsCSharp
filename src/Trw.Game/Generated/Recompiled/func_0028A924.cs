@@ -38,7 +38,7 @@ public static partial class Game
                 r16 = r2;
                 r7 = 2148335616u;
                 r7 = r7 - 24064u;
-                r6 = r16; r2 = func_00254224((int)r4, r5, (int)r6, r7);
+                r6 = r16; r2 = Resource_LoadIndexTableSync((int)r4, r5, (int)r6, r7);
                 r4 = r0;
                 r6 = (uint)8;
                 r7 = r16;
@@ -50,7 +50,7 @@ public static partial class Game
                 r3 = r3 - 23692u;
                 r18 = r2;
                 Mem.Set((r29 + 20u), r0);
-                Mem.Set((r29 + 24u), r3); r2 = func_002543A8(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
+                Mem.Set((r29 + 24u), r3); r2 = Resource_LoadByCartridgeKey(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
                 r16 = r2;
                 r6 = Mem.U32((r16 + 4u));
                 r2 = (uint)63;
@@ -61,11 +61,11 @@ public static partial class Game
                 r5 = Mem.U32((r16 + 0u));
                 r4 = r17; r2 = memcpy(r4, r5, r6);
                 r4 = r0;
-                r5 = r16; func_002537D8((int)r4, r5);
+                r5 = r16; ResourcePool_Release((int)r4, r5);
                 r2 = 2148794368u;
                 r2 = Mem.U32((r2 - 19820u));
                 { bool c_ = r2 == r19; r4 = r0; if (c_) goto L_L0028A9FC; }
-                r5 = r18; func_002537D8((int)r4, r5);
+                r5 = r18; ResourcePool_Release((int)r4, r5);
                 L_L0028A9FC: ;
                 r4 = r17; Flyby_AddTextLine(r4);
                 r4 = 2148794368u;
@@ -216,7 +216,7 @@ public static partial class Game
                 r4 = 2148532224u;
                 r4 = r4 + 11008u;
                 r5 = Mem.U8((r4 + 15u));
-                r2 = (uint)func_0022F444(r4, (int)r5);
+                r2 = (uint)Profile_GetCharacterLives(r4, (int)r5);
                 r2 = r2 & 255u;
                 r2 = r2 >> 1;
                 r6 = r2 + 1u;
@@ -318,7 +318,7 @@ public static partial class Game
                 r7 = r29 + 124u; r2 = Resource_GetCartridgeKey(r4, r5, (int)r6, r7);
                 r4 = r0;
                 r5 = r16;
-                r16 = r2; func_002537D8((int)r4, r5);
+                r16 = r2; ResourcePool_Release((int)r4, r5);
                 r4 = r0;
                 r5 = r16;
                 r6 = r5;

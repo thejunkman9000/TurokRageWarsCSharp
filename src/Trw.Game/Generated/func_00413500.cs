@@ -13,13 +13,13 @@ public static partial class Game
             int n = 0;
             if ((((int)(new S_func_00413500(d).b1) & 1) != 0))
             {
-                func_00254784((uint)(new S_func_00413500(d).f18));
+                ResourcePool_MallocFree((uint)(new S_func_00413500(d).f18));
             }
             if ((((int)(new S_func_00413500(d).b1) & 2) != 0))
             {
                 if ((new S_func_00413500(d).f10 > 0))
                 {
-                    func_00254784((uint)(new S_func_00413500(d).f14));
+                    ResourcePool_MallocFree((uint)(new S_func_00413500(d).f14));
                 }
             }
             func_002A1748(d, 0, (uint)(32));
@@ -34,7 +34,7 @@ public static partial class Game
                 new S_func_00413500(d).b1_Set((byte)(3));
             }
             n = func_00413728(s);
-            new S_func_00413500(d).f18_Set((int)(func_00252FFC((uint)(n))));
+            new S_func_00413500(d).f18_Set((int)(ResourcePool_Malloc((uint)(n))));
             if ((new S_func_00413500(d).f18 == 0))
             {
                 return 1;
@@ -45,10 +45,10 @@ public static partial class Game
                 if ((new S_func_00413500(s).f10 != 0))
                 {
                     n = func_0041371C(s);
-                    new S_func_00413500(d).f14_Set((int)(func_00252FFC((uint)(n))));
+                    new S_func_00413500(d).f14_Set((int)(ResourcePool_Malloc((uint)(n))));
                     if ((new S_func_00413500(d).f14 == 0))
                     {
-                        func_00254784((uint)(new S_func_00413500(d).f18));
+                        ResourcePool_MallocFree((uint)(new S_func_00413500(d).f18));
                         func_002A1748(d, 0, (uint)(32));
                         return 1;
                     }

@@ -31,7 +31,7 @@ public static partial class Game
                 r3 = 3145728u;
                 r2 = r2 & r3;
                 { bool c_ = r2 == 0;  if (c_) goto L_L00266240; }
-                r4 = r17; r2 = (uint)func_0024D150(r4);
+                r4 = r17; r2 = (uint)Actor_IsAlwaysActive_0024D150(r4);
                 { bool c_ = r2 == 0; r2 = r0; if (c_) goto L_L00266428; }
                 L_L00266240: ;
                 r3 = Mem.U8((r16 + 0u));

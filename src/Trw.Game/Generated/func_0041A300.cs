@@ -15,7 +15,7 @@ public static partial class Game
             uint o = 0u;
             g = UiTree_FindNode((uint)((int)(func_00411E4C(Ui_PushScreen()))), (uint)((a & 65535)), default(uint), default(uint));
             s = (int)(func_00411E4C(Ui_PushScreen()));
-            o = func_00252FFC((uint)(124));
+            o = ResourcePool_Malloc((uint)(124));
             func_002A1748(o, 0, (uint)(124));
             new O3B60(o).h.id2_Set((ushort)(2912));
             new O3B60(o).h.unk12_Set((short)(8));

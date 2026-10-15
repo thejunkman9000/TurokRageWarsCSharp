@@ -59,11 +59,11 @@ public static partial class Game
                         new B19Dl(q_5).w0_Set(3674472476u);
                         new B19Dl(q_5).w1_Set((uint)(65535));
                     }
-                    func_002390C0((_fp + 16384u), cam);
+                    Camera_GetPosition((_fp + 16384u), cam);
                     sx = (new B19Vec3((_fp + 16384u)).x * Mem.F32(0x800CA1ECu));
-                    func_002390C0((_fp + 16384u), cam);
+                    Camera_GetPosition((_fp + 16384u), cam);
                     sy = (new B19Vec3((_fp + 16384u)).y * Mem.F32(0x800CA1ECu));
-                    func_002390C0((_fp + 16384u), cam);
+                    Camera_GetPosition((_fp + 16384u), cam);
                     sz = (new B19Vec3((_fp + 16384u)).z * Mem.F32(0x800CA1ECu));
                     for (i = 0; (i < n); ++i)
                     {
@@ -103,13 +103,13 @@ public static partial class Game
                         switch ((int)(new B19Draw(o).type))
                         {
                         case 0:
-                            func_00250A44(o, cam, default(uint), default(uint));
+                            Prop_DrawByMode(o, cam, default(uint), default(uint));
                             break;
                         case 3:
-                            func_0024EB80(o);
+                            Pickup_Draw(o);
                             break;
                         case 1:
-                            func_00249E18(o, cam, default(uint), default(uint));
+                            Actor_Draw(o, cam, default(uint), default(uint));
                             break;
                         }
                     }

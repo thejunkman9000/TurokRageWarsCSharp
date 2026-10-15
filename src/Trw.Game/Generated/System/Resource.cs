@@ -6,6 +6,738 @@ namespace Trw.Game;
 
 public static partial class Game
 {
+    // ==== func_0023B994 @ 0x0023B994 [MIPS]
+    public static uint Resource_InitPagerHead(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0023B994", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_0023B994: ;
+                r4 = Mem.U32((r29 + 24u));
+                r3 = (uint)(int)Mem.S16((r4 + 0u));
+                { bool c_ = r3 == r18; r29 = r29 - 48u; if (c_) goto L_L0023B9E4; }
+                Mem.Set((r29 + 44u), r31);
+                Mem.Set((r29 + 40u), r20);
+                Mem.Set((r29 + 36u), r19);
+                Mem.Set((r29 + 32u), r18);
+                Mem.Set((r29 + 28u), r17);
+                Mem.Set((r29 + 24u), r16); r2 = func_00265370();
+                r3 = 2147483648u;
+                r20 = r2 + r3;
+                r2 = 2151677952u;
+                r2 = (uint)(r2 < r20 ? 1 : 0);
+                if (r2 == 0) { r20 = r0; goto L_L0023B9D8; }
+                L_L0023B9D8: ;
+                r4 = 2148532224u;
+                r4 = r4 + 12848u;
+                r3 = (uint)3447;
+                L_L0023B9E4: ;
+                Mem.Set((r4 + 0u), (byte)r0);
+                r4 = r4 + 1u;
+                r2 = r3;
+                { bool c_ = r2 != 0; r3 = r3 - 1u; if (c_) goto L_L0023B9E4; }
+                r5 = (uint)255;
+                r4 = 2148532224u;
+                r4 = r4 + 15912u;
+                r3 = (uint)255;
+                L_L0023BA08: ;
+                Mem.Set((r4 + 0u), (byte)r5);
+                r4 = r4 + 1u;
+                r2 = r3;
+                { bool c_ = r2 != 0; r3 = r3 - 1u; if (c_) goto L_L0023BA08; }
+                r5 = (uint)255;
+                r4 = 2148532224u;
+                r4 = r4 + 15184u;
+                r3 = (uint)383;
+                L_L0023BA2C: ;
+                Mem.Set((r4 + 0u), (byte)r5);
+                r4 = r4 + 1u;
+                r2 = r3;
+                { bool c_ = r2 != 0; r3 = r3 - 1u; if (c_) goto L_L0023BA2C; }
+                r17 = r0; osUnmapTLBAll();
+                r4 = (uint)65535;
+                r3 = (uint)255;
+                r2 = r17 << 2;
+                L_L0023BA54: ;
+                r17 = r17 + 1u;
+                r1 = 2148532224u;
+                r1 = r1 + r2;
+                Mem.Set((r1 + 16168u), (ushort)r4);
+                r1 = 2148532224u;
+                r1 = r1 + r2;
+                Mem.Set((r1 + 16170u), (byte)r3);
+                r1 = 2148532224u;
+                r1 = r1 + r2;
+                Mem.Set((r1 + 16171u), (byte)r3);
+                r2 = (uint)(r17 < (uint)(24) ? 1 : 0);
+                { bool c_ = r2 != 0; r2 = r17 << 2; if (c_) goto L_L0023BA54; }
+                r17 = r0;
+                r2 = 2148532224u;
+                r2 = r2 + 15908u;
+                r19 = r2 - 4u;
+                r18 = r2 - 724u;
+                Mem.Set((r2 + 0u), r0);
+                Mem.Set((r2 - 4u), r0);
+                L_L0023BAA4: ;
+                r4 = r19;
+                r16 = r17 << 4;
+                r1 = 2148532224u;
+                r1 = r1 + r16;
+                Mem.Set((r1 + 15184u), r0);
+                r1 = 2148532224u;
+                r1 = r1 + r16;
+                Mem.Set((r1 + 15188u), r0);
+                r5 = r18; List_PushBackDouble(r4, r5);
+                r1 = 2148532224u;
+                r1 = r1 + r16;
+                Mem.Set((r1 + 15194u), (byte)r17);
+                r17 = r17 + 1u;
+                r2 = (uint)(r17 < (uint)(24) ? 1 : 0);
+                { bool c_ = r2 != 0; r18 = r18 + 16u; if (c_) goto L_L0023BAA4; }
+                r17 = r19 - 3020u;
+                r4 = r17;
+                r5 = r19 - 2996u;
+                r6 = (uint)33; osCreateMesgQueue(r4, r5, (int)r6);
+                r16 = r19 - 336u;
+                r4 = r16;
+                r5 = r19 - 312u;
+                r6 = (uint)8; osCreateMesgQueue(r4, r5, (int)r6);
+                r4 = r19 - 280u;
+                r5 = r19 - 256u;
+                r6 = (uint)8; osCreateMesgQueue(r4, r5, (int)r6);
+                r2 = (uint)1024;
+                Mem.Set((r17 + 3384u), (ushort)r2);
+                r2 = (uint)256;
+                Mem.Set((r17 + 3386u), (ushort)r2);
+                r2 = r19 + 8u;
+                r18 = 1507328u;
+                r18 = r18 - 8192u;
+                Mem.Set((r17 + 3396u), r2);
+                r2 = 2952790016u;
+                r2 = r18 | r2;
+                Mem.Set((r17 + 3380u), r0);
+                Mem.Set((r17 + 3388u), r2);
+                Mem.Set((r17 + 3406u), (ushort)r0); r2 = func_00265370();
+                r3 = 5177344u;
+                r3 = r3 | 65535u;
+                r3 = (uint)(r3 < r2 ? 1 : 0);
+                { bool c_ = r3 == 0; r5 = r18; if (c_) goto L_L0023BB84; }
+                r4 = 2148532224u;
+                r4 = r4 + 20920u;
+                r6 = 327680u;
+                r6 = r6 + 10336u;
+                r7 = r20; RomDma_ReadSync(r4, r5, r6, r7);
+                L_L0023BB84: ;
+                { bool c_ = r20 == 0; r4 = r0; if (c_) goto L_L0023BBC0; }
+                r5 = 2031616u;
+                r5 = r5 | 57344u;
+                r6 = 4194304u;
+                r7 = 2147483648u;
+                r7 = r20 + r7;
+                r2 = (uint)-1;
+                Mem.Set((r29 + 16u), r2);
+                r2 = (uint)7;
+                Mem.Set((r29 + 20u), r2); osMapTLB((int)r4, (int)r5, r6, r7, Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
+                r2 = (uint)1;
+                Mem.Set((r17 + 3404u), (ushort)r2);
+                Mem.Set((r17 + 3406u), (ushort)r2);
+                L_L0023BBC0: ;
+                r17 = r0;
+                r18 = r16;
+                r16 = r19 - 224u;
+                L_L0023BBCC: ;
+                r4 = r18;
+                r5 = r16;
+                r6 = (uint)1; r2 = (uint)osSendMesg(r4, r5, (int)r6);
+                r17 = r17 + 1u;
+                r2 = (uint)(r17 < (uint)(8) ? 1 : 0);
+                { bool c_ = r2 != 0; r16 = r16 + 28u; if (c_) goto L_L0023BBCC; }
+                r4 = (uint)12;
+                r5 = r18 - 2684u;
+                r6 = r18 - 2688u;
+                Mem.Set((r18 - 2688u), (ushort)r0); osSetEventMesg(r4, r5, r6);
+                r4 = r18 - 1968u;
+                r5 = (uint)99;
+                r6 = (uint)512; r2 = memset(r4, (int)r5, r6);
+                r16 = r18 - 2528u;
+                r4 = r16;
+                r5 = (uint)99;
+                r6 = 2359296u;
+                r6 = r6 - 14060u;
+                r7 = r0;
+                r2 = r18 - 1456u;
+                Mem.Set((r29 + 16u), r2);
+                r2 = (uint)147;
+                Mem.Set((r29 + 20u), r2); osCreateThread(r4, (int)r5, r6, r7, Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
+                r4 = r16; osStartThread(r4);
+                r31 = Mem.U32((r29 + 44u));
+                r20 = Mem.U32((r29 + 40u));
+                r19 = Mem.U32((r29 + 36u));
+                r18 = Mem.U32((r29 + 32u));
+                r17 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r29 = r29 + 48u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0023B994", r2); Stack.Free(384); }
+    }
+
+    // ==== func_0023B9A0 @ 0x0023B9A0 [C]
+    public static uint func_0023B9A0_K0()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0023B9A0_K0");
+            uint k = 0u;
+            k = 2147483648u;
+            return k;
+        }
+    }
+
+    public static void Resource_InitPager()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0023B9A0");
+            uint s4 = 0u;
+            uint p = 0u;
+            byte c = 0;
+            int n = 0;
+            uint i = 0u;
+            uint fq = 0u;
+            s4 = (func_00265370() + func_0023B9A0_K0());
+            if ((s4 <= 2151677952u))
+            {
+                s4 = (uint)(0);
+            }
+            p = 0x80103230u;
+            n = 3447;
+            do
+            {
+                Mem.Set(((p += 1u) - 1u), (byte)(0));
+            }
+            while (((n--) != 0));
+            c = (byte)(255);
+            p = new M03Ldr(0x80103230u).tlbfree.P;
+            n = 255;
+            do
+            {
+                Mem.Set(((p += 1u) - 1u), c);
+            }
+            while (((n--) != 0));
+            c = (byte)(255);
+            p = new M03Ldr(0x80103230u).slot.P;
+            n = 383;
+            do
+            {
+                Mem.Set(((p += 1u) - 1u), c);
+            }
+            while (((n--) != 0));
+            osUnmapTLBAll();
+            for (i = (uint)(0); (i < (uint)(24)); ++i)
+            {
+                new M03Ldr(0x80103230u).tlbslot[(int)(i)].key_Set((ushort)(65535));
+                new M03Ldr(0x80103230u).tlbslot[(int)(i)].a_Set((byte)(255));
+                new M03Ldr(0x80103230u).tlbslot[(int)(i)].b_Set((byte)(255));
+            }
+            new M03Ldr(0x80103230u).list.tail__Set(0u);
+            new M03Ldr(0x80103230u).list.head__Set(0u);
+            for (i = (uint)(0); (i < (uint)(24)); ++i)
+            {
+                new M03Ldr(0x80103230u).slot[(int)(i)].next__Set(0u);
+                new M03Ldr(0x80103230u).slot[(int)(i)].prev__Set(0u);
+                List_PushBackDouble(new M03Ldr(0x80103230u).list.P, (new M03Ldr(0x80103230u).slot.P + (uint)(i * 16)));
+                new M03Ldr(0x80103230u).slot[(int)(i)].id_Set((byte)(i));
+            }
+            osCreateMesgQueue(new M03Ldr(0x80103230u).loadq.P, new M03Ldr(0x80103230u).loadbuf.P, 33);
+            osCreateMesgQueue(new M03Ldr(0x80103230u).freeq.P, new M03Ldr(0x80103230u).freebuf.P, 8);
+            osCreateMesgQueue(new M03Ldr(0x80103230u).dmaq.P, new M03Ldr(0x80103230u).dmabuf.P, 8);
+            new M03Ldr(0x80103230u).region.base_Set((ushort)(1024));
+            new M03Ldr(0x80103230u).region.size_Set((ushort)(256));
+            new M03Ldr(0x80103230u).region.data__Set(new M03Ldr(0x80103230u).tlbfree.P);
+            new M03Ldr(0x80103230u).region.next__Set(0u);
+            new M03Ldr(0x80103230u).region.romAddr_Set(((uint)(0x0016E000u) | 2952790016u));
+            new M03Ldr(0x80103230u).region.mappedB_Set((ushort)(0));
+            if ((func_00265370() > 5242879u))
+            {
+                RomDma_ReadSync(0x801051B8u, 0x0016E000u, 0x00052860u, s4);
+            }
+            if ((s4 != (uint)(0)))
+            {
+                osMapTLB(0, 2088960, (uint)(4194304), (s4 + func_0023B9A0_K0()), (uint)((-1)), 7);
+                new M03Ldr(0x80103230u).region.mapped_Set((ushort)(1));
+                new M03Ldr(0x80103230u).region.mappedB_Set((ushort)(1));
+            }
+            for (i = (uint)(0); (i < (uint)(8)); ++i)
+            {
+                osSendMesg(new M03Ldr(0x80103230u).freeq.P, (new M03Ldr(0x80103230u).req.P + (uint)(i * 28)), 1);
+            }
+            new M03Ldr(0x80103230u).evt_Set((ushort)(0));
+            osSetEventMesg((uint)(12), new M03Ldr(0x80103230u).loadq.P, (0x80103230u + 32u));
+            memset(new M03Ldr(0x80103230u).stack.P, 99, (uint)(512));
+            osCreateThread(new M03Ldr(0x80103230u).thr.P, 99, 0x0023C914u, 0u, (new M03Ldr(0x80103230u).stack.P + (uint)512), 147);
+            osStartThread(new M03Ldr(0x80103230u).thr.P);
+        }
+    }
+
+    // ==== func_0023BC64 @ 0x0023BC64 [C]
+    public static int Resource_AllocTlbIndex()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0023BC64");
+            short idx = (short)((new B09SlotCtl(0x80103FA0u).cur_Set((ushort)(new B09SlotCtl(0x80103FA0u).cur + 1)) - 1));
+            if (((int)((short)(new B09SlotCtl(0x80103FA0u).cur)) >= 24))
+            {
+                new B09SlotCtl(0x80103FA0u).cur_Set(new B09SlotCtl(0x80103FA0u).start);
+            }
+            if (((int)(new B09SlotA((0x80103F28u + (uint)(idx * 4))).a) != 255))
+            {
+                new B09LNode((0x80103B50u + (uint)(new B09SlotA((0x80103F28u + (uint)(idx * 4))).a * 16))).tlb_Set((byte)(255));
+                new B09SlotA((0x80103F28u + (uint)(idx * 4))).a_Set((byte)(255));
+            }
+            if (((int)(new B09SlotA((0x80103F28u + (uint)(idx * 4))).b) != 255))
+            {
+                new B09LNode((0x80103B50u + (uint)(new B09SlotA((0x80103F28u + (uint)(idx * 4))).b * 16))).tlb_Set((byte)(255));
+                new B09SlotA((0x80103F28u + (uint)(idx * 4))).b_Set((byte)(255));
+            }
+            return (int)(idx);
+        }
+    }
+
+    // ==== func_0023BD24 @ 0x0023BD24 [C]
+    public static void func_0023BD24_m03_unlink(uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0023BD24_m03_unlink", (uint)n);
+            if ((new B09LNode(n).prev_ != 0u))
+            {
+                new B09LNode(n).prev.next__Set(new B09LNode(n).next_);
+            }
+            else
+            {
+                new B09List(0x80103E20u).head__Set(new B09LNode(n).next_);
+                new B09LNode(n).next.prev__Set(0u);
+            }
+            if ((new B09LNode(n).next_ != 0u))
+            {
+                new B09LNode(n).next.prev__Set(new B09LNode(n).prev_);
+            }
+            else
+            {
+                new B09List(0x80103E20u).tail__Set(new B09LNode(n).prev_);
+                new B09LNode(n).prev.next__Set(0u);
+            }
+        }
+    }
+
+    public static void func_0023BD24_m03_push(uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0023BD24_m03_push", (uint)n);
+            new B09LNode(n).next__Set(0u);
+            new B09LNode(n).prev__Set(new B09List(0x80103E20u).tail_);
+            if ((new B09List(0x80103E20u).tail_ != 0u))
+            {
+                new B09List(0x80103E20u).tail.next__Set(n);
+            }
+            new B09List(0x80103E20u).tail__Set(n);
+            if ((new B09List(0x80103E20u).head_ == 0u))
+            {
+                new B09List(0x80103E20u).head__Set(n);
+            }
+        }
+    }
+
+    public static void Resource_MapPage(short slot, uint n, int unused, uint pair)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0023BD24", (uint)slot, (uint)n, (uint)unused, (uint)pair);
+            uint p = pair;
+            int idx = 0;
+            uint q = 0u;
+            if ((((int)(slot) & 1) != 0))
+            {
+                p = (pair - (uint)1);
+            }
+            if ((((int)(Mem.U8((p + (uint)0))) != 255) && ((int)(new B09LNode((0x80103B50u + (uint)(Mem.U8((p + (uint)0)) * 16))).tlb) != 255)))
+            {
+                idx = (int)(new B09LNode((0x80103B50u + (uint)(Mem.U8((p + (uint)0)) * 16))).tlb);
+                new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).b_Set(new B09LNode(n).id);
+            }
+            else
+            {
+                if ((((int)(Mem.U8((p + (uint)1))) != 255) && ((int)(new B09LNode((0x80103B50u + (uint)(Mem.U8((p + (uint)1)) * 16))).tlb) != 255)))
+                {
+                    idx = (int)(new B09LNode((0x80103B50u + (uint)(Mem.U8((p + (uint)1)) * 16))).tlb);
+                    new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).a_Set(new B09LNode(n).id);
+                }
+                else
+                {
+                    idx = Resource_AllocTlbIndex();
+                    if ((((int)(slot) & 1) != 0))
+                    {
+                        new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).b_Set(new B09LNode(n).id);
+                        if (((int)(Mem.U8((p + (uint)0))) != 255))
+                        {
+                            q = (0x80103B50u + (uint)(Mem.U8((p + (uint)0)) * 16));
+                            new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).a_Set(new B09LNode(q).id);
+                            new B09LNode(q).tlb_Set((byte)(idx));
+                            func_0023BD24_m03_unlink(q);
+                            func_0023BD24_m03_push(q);
+                        }
+                    }
+                    else
+                    {
+                        new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).a_Set(new B09LNode(n).id);
+                        if (((int)(Mem.U8((p + (uint)1))) != 255))
+                        {
+                            q = (0x80103B50u + (uint)(Mem.U8((p + (uint)1)) * 16));
+                            new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).b_Set(new B09LNode(q).id);
+                            new B09LNode(q).tlb_Set((byte)(idx));
+                            func_0023BD24_m03_unlink(q);
+                            func_0023BD24_m03_push(q);
+                        }
+                    }
+                    new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).key_Set((ushort)(((int)(slot) & 65534)));
+                }
+            }
+            new B09LNode(n).slot_Set((ushort)(slot));
+            new B09LNode(n).tlb_Set((byte)(idx));
+            Mem.Set(pair, new B09LNode(n).id);
+            osMapTLB((int)((short)(idx)), 0, (uint)(((int)(new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).key) << (int)12)), (((int)(new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).a) != 255) ? (((uint)(0x80156000u) & (uint)(67108863)) + (uint)(((int)(new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).a) << (int)12))) : (uint)((-1))), (((int)(new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).b) != 255) ? (((uint)(0x80156000u) & (uint)(67108863)) + (uint)(((int)(new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).b) << (int)12))) : (uint)((-1))), 7);
+        }
+    }
+
+    // ==== func_0023C074 @ 0x0023C074 [C]
+    public static void Resource_UnmapPage(uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0023C074", (uint)n);
+            if (((int)(new B09LNode(n).tlb) != 255))
+            {
+                if ((((int)(new B09LNode(n).slot) & 1) != 0))
+                {
+                    new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).b_Set((byte)(255));
+                    if (((int)(new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).a) == 255))
+                    {
+                        osUnmapTLB((int)(new B09LNode(n).tlb));
+                        new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).key_Set((ushort)(65535));
+                    }
+                    else
+                    {
+                        osMapTLB((int)(new B09LNode(n).tlb), 0, (uint)(((int)(new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).key) << (int)12)), (((uint)(0x80156000u) & (uint)(67108863)) + (uint)(((int)(new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).a) << (int)12))), (uint)((-1)), 7);
+                    }
+                }
+                else
+                {
+                    new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).a_Set((byte)(255));
+                    if (((int)(new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).b) == 255))
+                    {
+                        osUnmapTLB((int)(new B09LNode(n).tlb));
+                        new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).key_Set((ushort)(65535));
+                    }
+                    else
+                    {
+                        osMapTLB((int)(new B09LNode(n).tlb), 0, (uint)(((int)(new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).key) << (int)12)), (uint)((-1)), (((uint)(0x80156000u) & (uint)(67108863)) + (uint)(((int)(new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).b) << (int)12))), 7);
+                    }
+                }
+                new B09LNode(n).tlb_Set((byte)(255));
+            }
+        }
+    }
+
+    // ==== func_0023C1E0 @ 0x0023C1E0 [C]
+    public static void func_0023C1E0_m03_unlink(uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0023C1E0_m03_unlink", (uint)n);
+            if ((new B09LNode(n).prev_ != 0u))
+            {
+                new B09LNode(n).prev.next__Set(new B09LNode(n).next_);
+            }
+            else
+            {
+                new B09List(0x80103E20u).head__Set(new B09LNode(n).next_);
+                new B09LNode(n).next.prev__Set(0u);
+            }
+            if ((new B09LNode(n).next_ != 0u))
+            {
+                new B09LNode(n).next.prev__Set(new B09LNode(n).prev_);
+            }
+            else
+            {
+                new B09List(0x80103E20u).tail__Set(new B09LNode(n).prev_);
+                new B09LNode(n).prev.next__Set(0u);
+            }
+        }
+    }
+
+    public static void func_0023C1E0_m03_push(uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0023C1E0_m03_push", (uint)n);
+            new B09LNode(n).next__Set(0u);
+            new B09LNode(n).prev__Set(new B09List(0x80103E20u).tail_);
+            if ((new B09List(0x80103E20u).tail_ != 0u))
+            {
+                new B09List(0x80103E20u).tail.next__Set(n);
+            }
+            new B09List(0x80103E20u).tail__Set(n);
+            if ((new B09List(0x80103E20u).head_ == 0u))
+            {
+                new B09List(0x80103E20u).head__Set(n);
+            }
+        }
+    }
+
+    public static void Resource_HandleTlbFault()
+    {
+        uint _fp = Stack.Alloc(4);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0023C1E0");
+                uint t = 0u;
+                uint r = 0u;
+                uint n = 0u;
+                uint rr = 0u;
+                uint pair = 0u;
+                uint page = 0u;
+                int cause = 0;
+                ulong t0 = 0UL;
+                float us = 0f;
+                uint found = 0u;
+                t = __osGetCurrFaultedThread();
+                cause = (int)((new OSThread(t).context.cause & (uint)(124)));
+                if (((cause == 4) || (cause == 8)))
+                {
+                    new M03Ldr(0x80103230u).faults_Set((uint)((uint)(new M03Ldr(0x80103230u).faults) + (uint)(1)));
+                    page = (new OSThread(t).context.badvaddr >> (int)12);
+                    for (r = new M03Ldr(0x80103230u).region.P; (r != 0u); r = new M03Region(r).next_)
+                    {
+                        if ((!(page < (uint)(new M03Region(r).@base)) && (page < (uint)(((int)(new M03Region(r).@base) + (int)(new M03Region(r).size))))))
+                        {
+                            break;
+                        }
+                    }
+                    found = r;
+                    if ((found != 0u))
+                    {
+                        new M03Ldr(0x80103230u).lastAddr_Set(new OSThread(t).context.badvaddr);
+                        pair = (new M03Region(found).data_ + (uint)(page - (uint)(new M03Region(found).@base)));
+                        if (((int)(Mem.U8(pair)) != 255))
+                        {
+                            n = (new M03Ldr(0x80103230u).slot.P + (uint)(Mem.U8(pair) * 16));
+                            if (((int)(new B09LNode(n).tlb) == 255))
+                            {
+                                func_0023C1E0_m03_unlink(n);
+                                Resource_MapPage((short)(page), n, (int)(Mem.U8((t + (uint)23))), pair);
+                                func_0023C1E0_m03_push(n);
+                            }
+                            new OSThread(t).flags_Set((ushort)(2));
+                            osStartThread(t);
+                            return;
+                        }
+                        osRecvMesg(new M03Ldr(0x80103230u).freeq.P, _fp, 1);
+                        new M03Ldr(0x80103230u).loads_Set((new M03Ldr(0x80103230u).loads + (uint)(1)));
+                        new B09LoadReq(Mem.U32(_fp)).src_Set((int)((new M03Region(found).romAddr + ((page - (uint)(new M03Region(found).@base)) << (int)12))));
+                        new B09LoadReq(Mem.U32(_fp)).len_Set(4096);
+                        n = new B09List(0x80103E20u).head_;
+                        func_0023C1E0_m03_unlink(n);
+                        Resource_UnmapPage(n);
+                        if (((int)(new B09LNode(n).slot) != 65535))
+                        {
+                            rr = Resource_FindRegionForPage((uint)(new B09LNode(n).slot));
+                            Mem.Set((new M03Region(rr).data_ + (uint)((int)(new B09LNode(n).slot) - (int)(new M03Region(rr).@base))), (byte)(255));
+                            new B09LNode(n).slot_Set((ushort)(65535));
+                        }
+                        new B09LNode(n).unkC_Set(0);
+                        new B09LoadReq(Mem.U32(_fp)).node__Set(n);
+                        new B09LoadReq(Mem.U32(_fp)).slot_Set((short)(page));
+                        new B09LoadReq(Mem.U32(_fp)).data__Set(pair);
+                        new B09LoadReq(Mem.U32(_fp)).task__Set(t);
+                        osSendMesg(new M03Ldr(0x80103230u).dmaq.P, Mem.U32(_fp), 1);
+                        return;
+                    }
+                    t0 = osGetTime();
+                    do
+                    {
+                        us = (float)((((osGetTime() - t0) << (int)6) / (ulong)(3000)));
+                    }
+                    while (((us * 9.99999997E-7f) < 2.0f));
+                }
+                else
+                {
+                    t0 = osGetTime();
+                    do
+                    {
+                        us = (float)((((osGetTime() - t0) << (int)6) / (ulong)(3000)));
+                    }
+                    while (((us * 9.99999997E-7f) < 2.0f));
+                }
+                osWritebackDCacheAll();
+                osSetIntMask((uint)(1));
+                Funcs.CallReg((uint)(2147484672u), 0u, 0u, 0u, 0u);
+                Mem.Set(0x800D0638u, (-1));
+                new OSThread(t).flags_Set((ushort)(2));
+                osStartThread(t);
+            }
+        }
+        finally { Stack.Free(4); }
+    }
+
+    // ==== func_0023C6AC @ 0x0023C6AC [C]
+    public static void Resource_UpdatePagerStats()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0023C6AC");
+            uint max = (uint)(0);
+            uint min = 2147483648u;
+            uint total = 0u;
+            int i = 0;
+            uint n = 0u;
+            for (i = 0; (i < 24); ++i)
+            {
+                uint v = new SlotCnt((0x80103B5Cu + (uint)(i * 16))).cnt;
+                if ((v > max))
+                {
+                    max = v;
+                }
+                if ((v < min))
+                {
+                    min = v;
+                }
+                new SlotCnt((0x80103B5Cu + (uint)(i * 16))).cnt_Set((v + (uint)(1)));
+            }
+            total = (uint)(0);
+            for (n = 0x80103F88u; (n != 0u); n = new BlkNode(n).next_)
+            {
+                total = (uint)((uint)(total) + (uint)(((int)(new BlkNode(n).pages) << (int)12)));
+            }
+            new BlkStats(0x80103240u).total_Set(total);
+            new BlkStats(0x80103240u).max_Set(max);
+            new BlkStats(0x80103240u).min_Set(min);
+            new BlkStats(0x80103240u).f8_Set(new Obj0C(Mem.U32(0x80103E20u)).fC);
+        }
+    }
+
+    // ==== func_0023C740 @ 0x0023C740 [MIPS]
+    public static uint Resource_MapFixedTlb_0023C740(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0023C740", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_0023C740: ;
+                r29 = r29 - 32u;
+                r5 = 2031616u;
+                r5 = r5 | 57344u;
+                r2 = 1048576u;
+                Mem.Set((r29 + 16u), r2);
+                r2 = (uint)7;
+                r4 = (uint)31;
+                r6 = 2097152u;
+                r7 = r0;
+                Mem.Set((r29 + 24u), r31);
+                Mem.Set((r29 + 20u), r2); osMapTLB((int)r4, (int)r5, r6, r7, Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
+                r31 = Mem.U32((r29 + 24u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0023C740", r2); Stack.Free(384); }
+    }
+
+    // ==== func_0023C77C @ 0x0023C77C [C]
+    public static uint Resource_AllocVirtualRegion(uint size, int unused, int a2)
+    {
+        uint _fp = Stack.Alloc(48);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0023C77C", (uint)size, (uint)unused, (uint)a2);
+                uint blk = 0u;
+                uint pages = 0u;
+                uint new_var = 0u;
+                uint n = 0u;
+                uint hdr = 0u;
+                pages = ((size + (uint)(4095)) >> (int)12);
+                n = ((pages + (uint)(1)) & (uint)((~1)));
+                osCreateMesgQueue(_fp, (_fp + 40u), 1);
+                new_var = (pages << (int)2);
+                hdr = (n + (uint)(24));
+                new AllocMsg((_fp + 24u)).type_Set((short)(3));
+                new AllocMsg((_fp + 24u)).size_Set(size);
+                new AllocMsg((_fp + 24u)).mq__Set(_fp);
+                blk = ResourcePool_Alloc(0, (int)((new_var + hdr)), (uint)(3), (int)(0x800C86F0u));
+                new AllocMsg((_fp + 24u)).hdr__Set(new MemBlk(blk).data);
+                new AllocMsg((_fp + 24u)).hdr.blk__Set(blk);
+                new AllocMsg((_fp + 24u)).hdr.f8_Set(a2);
+                osSendMesg(0x80103254u, (_fp + 24u), 1);
+                osRecvMesg(_fp, (_fp + 44u), 1);
+                return Mem.U32((_fp + 44u));
+            }
+        }
+        finally { Stack.Free(48); }
+    }
+
+    // ==== func_0023C84C @ 0x0023C84C [C]
+    public static void Resource_FreeVirtualRegion(int arg)
+    {
+        uint _fp = Stack.Alloc(48);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0023C84C", (uint)arg);
+                osCreateMesgQueue(_fp, (_fp + 24u), 1);
+                new B09Req((_fp + 32u)).arg_Set(arg);
+                new B09Req((_fp + 32u)).type_Set((short)(2));
+                new B09Req((_fp + 32u)).reply__Set(_fp);
+                osSendMesg(0x80103254u, (_fp + 32u), 1);
+                osRecvMesg(_fp, (_fp + 44u), 1);
+                ResourcePool_Release(0, (uint)(new B09Reply(Mem.U32((_fp + 44u))).unkC));
+            }
+        }
+        finally { Stack.Free(48); }
+    }
+
+    // ==== func_0023C8C4 @ 0x0023C8C4 [C]
+    public static void Resource_GetPagerStats(uint dst)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0023C8C4", (uint)dst);
+            Mem.Copy(dst, 0x80103230u, 32);
+        }
+    }
+
     // ==== func_0023C914 @ 0x0023C914 [MIPS]
     public static uint Resource_ThreadMain(uint a0, uint a1, uint a2, uint a3)
     {
@@ -61,10 +793,10 @@ public static partial class Game
                 { bool c_ = r3 == r16;  if (c_) goto L_L0023C9F4; }
                  goto L_L0023C980;
                 L_L0023C9D4: ;
-                func_0023C1E0();
+                Resource_HandleTlbFault();
                  goto L_L0023C980;
                 L_L0023C9E4: ;
-                func_0023CE8C(r4);
+                Resource_CompletePageLoad(r4);
                  goto L_L0023C980;
                 L_L0023C9F4: ;
                 r2 = Resource_PageIn(r4, r5, r6, r7); r3 = Cpu.V1;
@@ -76,6 +808,89 @@ public static partial class Game
             }
         }
         finally { if (Dbg.On) Dbg.Leave("func_0023C914", r2); Stack.Free(384); }
+    }
+
+    // ==== func_0023CA14 @ 0x0023CA14 [C]
+    public static void Resource_DmaThreadMain(uint arg)
+    {
+        uint _fp = Stack.Alloc(32);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0023CA14", (uint)arg);
+                osCreateMesgQueue(_fp, (_fp + 24u), 1);
+                for (; ; )
+                {
+                    osRecvMesg(new B09IoQ(0x80103254u).dmaq.P, (_fp + 28u), 1);
+                    if (((int)(Mem.U8(new B09LoadReq(Mem.U32((_fp + 28u))).data_)) == 255))
+                    {
+                        RomDma_ReadSync(0x801051B8u, (uint)(new B09LoadReq(Mem.U32((_fp + 28u))).src), (uint)(((new B09LoadReq(Mem.U32((_fp + 28u))).len + 1) & (~1))), (0x80156000u + (uint)((int)(new B09LoadReq(Mem.U32((_fp + 28u))).node.id) << (int)12)));
+                        osInvalDCache((0x80156000u + (uint)((int)(new B09LoadReq(Mem.U32((_fp + 28u))).node.id) << (int)12)), 4096);
+                        osInvalICache((0x80156000u + (uint)((int)(new B09LoadReq(Mem.U32((_fp + 28u))).node.id) << (int)12)), 4096);
+                    }
+                    new B09LoadReq(Mem.U32((_fp + 28u))).type_Set((short)(1));
+                    osSendMesg(new B09IoQ(0x80103254u).loadq.P, Mem.U32((_fp + 28u)), 1);
+                }
+            }
+        }
+        finally { Stack.Free(32); }
+    }
+
+    // ==== func_0023CBB0 @ 0x0023CBB0 [C]
+    public static uint Resource_FindRegionForPage(uint addr)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0023CBB0", (uint)addr);
+            uint r = 0u;
+            for (r = 0x80103F88u; (r != 0u); r = new B09Region(r).next_)
+            {
+                if (((addr >= (uint)(new B09Region(r).@base)) && (addr < (uint)(((int)(new B09Region(r).@base) + (int)(new B09Region(r).size))))))
+                {
+                    break;
+                }
+            }
+            return r;
+        }
+    }
+
+    // ==== func_0023CBF8 @ 0x0023CBF8 [C]
+    public static uint Resource_StealOldestPage()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0023CBF8");
+            uint n = Mem.U32(0x80103E20u);
+            uint r = 0u;
+            if ((new B09LNode(n).prev_ != 0u))
+            {
+                new B09LNode(n).prev.next__Set(new B09LNode(n).next_);
+            }
+            else
+            {
+                new B09List(0x80103E20u).head__Set(new B09LNode(n).next_);
+                new B09LNode(n).next.prev__Set(0u);
+            }
+            if ((new B09LNode(n).next_ != 0u))
+            {
+                new B09LNode(n).next.prev__Set(new B09LNode(n).prev_);
+            }
+            else
+            {
+                new B09List(0x80103E20u).tail__Set(new B09LNode(n).prev_);
+                new B09LNode(n).prev.next__Set(0u);
+            }
+            Resource_UnmapPage(n);
+            if (((int)(new B09LNode(n).slot) != 65535))
+            {
+                r = Resource_FindRegionForPage((uint)(new B09LNode(n).slot));
+                Mem.Set((new B09Region(r).data_ + (uint)((int)(new B09LNode(n).slot) - (int)(new B09Region(r).@base))), (byte)(255));
+                new B09LNode(n).slot_Set((ushort)(65535));
+            }
+            new B09LNode(n).unkC_Set(0);
+            return n;
+        }
     }
 
     // ==== func_0023CCC4 @ 0x0023CCC4 [C]
@@ -106,7 +921,7 @@ public static partial class Game
             {
                 if (((int)(Mem.U8(p)) != 255))
                 {
-                    func_0023C074((0x80103B50u + (uint)(Mem.U8(p) * 16)));
+                    Resource_UnmapPage((0x80103B50u + (uint)(Mem.U8(p) * 16)));
                     new B09LNode((0x80103B50u + (uint)(Mem.U8(p) * 16))).slot_Set((ushort)(65535));
                 }
                 p += 1u;
@@ -184,6 +999,100 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_0023CDC4", r2); Stack.Free(384); }
     }
 
+    // ==== func_0023CE8C @ 0x0023CE8C [C]
+    public static void func_0023CE8C_list_push_back(uint l, uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0023CE8C_list_push_back", (uint)l, (uint)n);
+            new B09LNode(n).next__Set(0u);
+            new B09LNode(n).prev__Set(new B09List(l).tail_);
+            if ((new B09List(l).tail_ != 0u))
+            {
+                new B09List(l).tail.next__Set(n);
+            }
+            new B09List(l).tail__Set(n);
+            if ((new B09List(l).head_ == 0u))
+            {
+                new B09List(l).head__Set(n);
+            }
+        }
+    }
+
+    public static void func_0023CE8C_list_push_front(uint l, uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0023CE8C_list_push_front", (uint)l, (uint)n);
+            new B09LNode(n).prev__Set(0u);
+            new B09LNode(n).next__Set(new B09List(l).head_);
+            if ((new B09List(l).head_ != 0u))
+            {
+                new B09List(l).head.prev__Set(n);
+            }
+            new B09List(l).head__Set(n);
+            if ((new B09List(l).tail_ == 0u))
+            {
+                new B09List(l).tail__Set(n);
+            }
+        }
+    }
+
+    public static void Resource_CompletePageLoad(uint r)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0023CE8C", (uint)r);
+            if (((int)(Mem.U8(new B09LoadReq(r).data_)) == 255))
+            {
+                func_0023CE8C_list_push_back(0x80103E20u, new B09LoadReq(r).node_);
+                Resource_MapPage(new B09LoadReq(r).slot, new B09LoadReq(r).node_, (int)(new B09LoadReq(r).task.b17), new B09LoadReq(r).data_);
+                osInvalDCache((uint)(((int)((ushort)(new B09LoadReq(r).slot)) << (int)12)), 4096);
+                osInvalICache((uint)(((int)((ushort)(new B09LoadReq(r).slot)) << (int)12)), 4096);
+            }
+            else
+            {
+                func_0023CE8C_list_push_front(0x80103E20u, new B09LoadReq(r).node_);
+            }
+            new B09LoadReq(r).task.state_Set((ushort)(2));
+            osStartThread(new B09LoadReq(r).task_);
+            osSendMesg(0x80103CD0u, r, 1);
+        }
+    }
+
+    // ==== func_0023CFB8 @ 0x0023CFB8 [MIPS]
+    public static uint Resource_NopHead_0023CFB8(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0023CFB8", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_0023CFB8: ;
+                r6 = r17 + r0; func_00271FA4(r4, r5, r6);
+                L_func_0023CFC0: ;
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0023CFB8", r2); Stack.Free(384); }
+    }
+
+    // ==== func_0023CFC0 @ 0x0023CFC0 [C]
+    public static void Resource_Nop_0023CFC0()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0023CFC0");
+        }
+    }
+
     // ==== func_002508E0 @ 0x002508E0 [MIPS]
     public static uint Resource_FindEntry(uint a0, uint a1, uint a2, uint a3)
     {
@@ -228,6 +1137,160 @@ public static partial class Game
             }
         }
         finally { if (Dbg.On) Dbg.Leave("func_002508E0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00250B98 @ 0x00250B98 [C]
+    public static int Resource_NextDynamicKey()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00250B98");
+            if ((Mem.Set(0x800D0910u, (int)(Mem.S32(0x800D0910u) + 1)) == 4194303))
+            {
+                Mem.Set(0x800D0910u, 3670016);
+            }
+            return Mem.S32(0x800D0910u);
+        }
+    }
+
+    // ==== func_00250E10 @ 0x00250E10 [C]
+    public static void Resource_InitManager(int unused, int id)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00250E10", (uint)unused, (uint)id);
+            uint mask = 0u;
+            uint m2 = 0u;
+            uint i = 0u;
+            uint n = 0u;
+            uint n1 = 0u;
+            uint i1 = 0u;
+            uint t = 0u;
+            Lock_Init(new B12Mgr(0x80103F70u).q11D0.P);
+            mask = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+            Mem.Set(0x800D0920u, (uint)(1024));
+            if ((func_00265370() > (uint)(4194304)))
+            {
+                Mem.Set(0x800D0920u, (uint)((uint)(Mem.U32(0x800D0920u)) * (uint)(2)));
+            }
+            new B12Mgr(0x80103F70u).nodes__Set(Heap_Alloc(0x801051A0u, (Mem.U32(0x800D0920u) * (uint)(40)), default(uint), default(uint)));
+            new B12Mgr(0x80103F70u).stk_Set(Heap_Alloc(0x801051A0u, (Mem.U32(0x800D0920u) * (uint)(4)), default(uint), default(uint)));
+            new B12Mgr(0x80103F70u).pool2__Set(Heap_Alloc(0x801051A0u, (Mem.U32(0x800D0920u) * (uint)(44)), default(uint), default(uint)));
+            osCreateMesgQueue(new B12Mgr(0x80103F70u).q11F0.P, (0x80103F70u + 4616u), 1);
+            new B12Mgr(0x80103F70u).tbl630.Set((int)(1), 0);
+            new B12Mgr(0x80103F70u).tbl630.Set((int)(0), 0);
+            List_Init((new B12Mgr(0x80103F70u).lists.P + (uint)(0 * 20)), 24, 28);
+            List_Init((new B12Mgr(0x80103F70u).lists.P + (uint)(1 * 20)), 32, 36);
+            new B12Mgr(0x80103F70u).cnt_Set(0);
+            for (i = (uint)(0); (i < Mem.U32(0x800D0920u)); ++i)
+            {
+                n1 = new B12Mgr(0x80103F70u).nodes_;
+                n1 = (n1 + (uint)(i * (uint)(40)));
+                new B12Node(n1).flags_Set((uint)(0));
+                Mem.Set((new B12Mgr(0x80103F70u).stk + (uint)(i * 4)), n1);
+                new B12Mgr(0x80103F70u).cnt_Set((int)(new B12Mgr(0x80103F70u).cnt + 1));
+            }
+            t = new B12Mgr(0x80103F70u).tbl628.P;
+            Mem.Set((t + (uint)(1 * 4)), 1);
+            Mem.Set((t + (uint)(0 * 4)), 1);
+            new B12Mgr(0x80103F70u).f638_Set((-1));
+            new B12Mgr(0x80103F70u).tbl11C4.Set((int)(0), 0);
+            new B12Mgr(0x80103F70u).tbl11C4.Set((int)(1), 0);
+            new B12Mgr(0x80103F70u).cur__Set(0u);
+            new B12Mgr(0x80103F70u).f120C_Set(1);
+            new B12Mgr(0x80103F70u).stamp_Set((uint)(0));
+            List_Init((new B12Mgr(0x80103F70u).lists3.P + (uint)(0 * 20)), 40, 36);
+            List_Init((new B12Mgr(0x80103F70u).lists3.P + (uint)(1 * 20)), 40, 36);
+            List_Init((new B12Mgr(0x80103F70u).lists3.P + (uint)(2 * 20)), 40, 36);
+            for (i = (uint)(0); (i < Mem.U32(0x800D0920u)); ++i)
+            {
+                n = new B12Mgr(0x80103F70u).pool2_;
+                n = (n + (uint)(i * (uint)(44)));
+                new B12Node(n).unk10_Set((uint)(0));
+                List_Append_00255CB4((new B12Mgr(0x80103F70u).lists3.P + (uint)(0 * 20)), n, default(uint), default(uint));
+            }
+            AddrHash_Create(Mem.U32(0x800D0920u), default(uint), default(uint), default(uint));
+            osCreateMesgQueue(new B12Mgr(0x80103F70u).q870.P, new B12Mgr(0x80103F70u).buf870.P, 64);
+            m2 = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            {
+                __osRestoreInt(m2);
+                osSendMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(m2);
+            }
+            memset(new B12Mgr(0x80103F70u).stack.P, id, (uint)(2048));
+            osCreateThread(new B12Mgr(0x80103F70u).thread.P, id, 0x00252450u, 0u, (new B12Mgr(0x80103F70u).stack.P + (uint)2048), Mem.S32(0x800D2B2Cu));
+            osStartThread(new B12Mgr(0x80103F70u).thread.P);
+        }
+    }
+
+    // ==== func_0025114C @ 0x0025114C [C]
+    public static void ResourcePool_WaitFrameUseCleared()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0025114C");
+            int cnt = 0;
+            int i = 0;
+            int j = 0;
+            uint mask = 0u;
+            uint m2 = 0u;
+            for (i = 0; (i < 2); ++i)
+            {
+                if ((Mem.S32((0x80105134u + (uint)(i * 4))) != 0))
+                {
+                    if ((Mem.S32(0x801045A8u) == i))
+                    {
+                        Mem.Set((0x80104598u + (uint)(i * 4)), 0);
+                        ResourcePool_ClearFrameMarks(0, i);
+                    }
+                    else
+                    {
+                        ++cnt;
+                        Mem.Set((0x801045A0u + (uint)(i * 4)), 1);
+                    }
+                }
+            }
+            if ((cnt != 0))
+            {
+                m2 = __osDisableInt();
+                if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+                {
+                    __osRestoreInt(m2);
+                    osSendMesg(0x80105140u, 0u, 1);
+                }
+                else
+                {
+                    __osRestoreInt(m2);
+                }
+                for (j = 0; (j < cnt); ++j)
+                {
+                    osRecvMesg(0x80105160u, 0u, 1);
+                }
+                mask = __osDisableInt();
+                if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+                {
+                    __osRestoreInt(mask);
+                    osRecvMesg(0x80105140u, 0u, 1);
+                }
+                else
+                {
+                    __osRestoreInt(mask);
+                }
+            }
+        }
     }
 
     // ==== func_002512C8 @ 0x002512C8 [C]
@@ -321,7 +1384,7 @@ public static partial class Game
                 L_L00251384: ;
                 { bool c_ = r16 == 0; r4 = r0; if (c_) goto L_L00251430; }
                 L_L0025138C: ;
-                r5 = r16; func_00254D70((int)r4, r5);
+                r5 = r16; Resource_FreeNodeRequest((int)r4, r5);
                 r5 = Mem.U32((r16 + 0u));
                 r4 = 2148532224u;
                 r4 = r4 + 20896u;
@@ -494,6 +1557,154 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_00251448", r2); Stack.Free(384); }
     }
 
+    // ==== func_00251590 @ 0x00251590 [C]
+    public static void ResourcePool_Defragment(int unused, int flag)
+    {
+        uint _fp = Stack.Alloc(20);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_00251590", (uint)unused, (uint)flag);
+                uint n = 0u;
+                uint next = 0u;
+                uint p = 0u;
+                uint r = 0u;
+                List_Init(_fp, 32, 36);
+                if ((((flag == 0) && (new B12Mgr(0x80103F70u).cur_ != 0u)) || (C.Seq((object?)(new B12Mgr(0x80103F70u).cur__Set(new B12Mgr(0x80103F70u).lists[(int)(1)].head_)), ((new B12Mgr(0x80103F70u).lists[(int)(1)].head_ != 0u) ? 1 : 0)) != 0)))
+                {
+                    uint c = (0x80103F70u + 1528u);
+                    uint firstp = 0x801051A8u;
+                    uint heap = (firstp - (uint)8);
+                    do
+                    {
+                        n = new B12Cache(c).cur_;
+                        new B12Cache(c).cur__Set(new B12Node(n).next_);
+                        if ((!((new B12Node(n).flags & (uint)(1793)) != 0u) && ((Mem.U32(firstp) + (uint)(32)) < new B12Node(n).key)))
+                        {
+                            Heap_Free(heap, new B12Node(n).key, default(uint), default(uint));
+                            r = Heap_Alloc(heap, (uint)(new B12Node(n).unk4), default(uint), default(uint));
+                            if ((r < new B12Node(n).key))
+                            {
+                                func_00265398(r, new B12Node(n).key, (int)((uint)(new B12Node(n).unk4)));
+                                new B12Node(n).key_Set(r);
+                                List_Remove(new B12Cache(c).l1.P, n, default(uint), default(uint));
+                                List_Append_00255CB4(_fp, n, default(uint), default(uint));
+                            }
+                            if ((flag == 0))
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    while ((new B12Mgr(0x80103F70u).cur_ != 0u));
+                }
+                n = new B12List(_fp).head_;
+                if ((n != 0u))
+                {
+                    do
+                    {
+                        next = new B12Node(n).next_;
+                        Cursor_Advance_00255F10(_fp, default(uint), default(uint), default(uint));
+                        p = new B12Mgr(0x80103F70u).lists[(int)(1)].head_;
+                        if ((p != 0u))
+                        {
+                            do
+                            {
+                                if ((new B12Node(p).key > new B12Node(n).key))
+                                {
+                                    List_InsertBefore((new B12Mgr(0x80103F70u).lists.P + (uint)(1 * 20)), p, n, default(uint));
+                                    break;
+                                }
+                                p = new B12Node(p).next_;
+                            }
+                            while ((p != 0u));
+                        }
+                        if (!(p != 0u))
+                        {
+                            List_Append_00255CB4((new B12Mgr(0x80103F70u).lists.P + (uint)(1 * 20)), n, default(uint), default(uint));
+                        }
+                        new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) | (uint)(4096)));
+                        n = next;
+                    }
+                    while ((n != 0u));
+                }
+            }
+        }
+        finally { Stack.Free(20); }
+    }
+
+    // ==== func_00251754 @ 0x00251754 [C]
+    public static void func_00251754_hashFind(uint key, uint @out)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00251754_hashFind", (uint)key, (uint)@out);
+            uint b = (Mem.U32(0x80105194u) + (uint)((((((key << (int)5) ^ (key >> (int)1)) ^ (key >> (int)9)) ^ (key >> (int)17)) & Mem.U32(0x80105190u)) * 16));
+            if ((new B12Bucket(b).unk0 == key))
+            {
+                Mem.Set(@out, (uint)(new B12Bucket(b).unk4));
+                return;
+            }
+            Mem.Set(@out, 0u);
+            for (; (b != 0u); b = new B12Bucket(b).next_)
+            {
+                if ((new B12Bucket(b).unk0 == key))
+                {
+                    Mem.Set(@out, (uint)(new B12Bucket(b).unk4));
+                    break;
+                }
+            }
+        }
+    }
+
+    public static uint Resource_LookupAndRef(int unused, uint key)
+    {
+        uint _fp = Stack.Alloc(4);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_00251754", (uint)unused, (uint)key);
+                uint mask = 0u;
+                uint m2 = 0u;
+                uint n = 0u;
+                mask = __osDisableInt();
+                if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+                {
+                    __osRestoreInt(mask);
+                    osRecvMesg(0x80105140u, 0u, 1);
+                }
+                else
+                {
+                    __osRestoreInt(mask);
+                }
+                func_00251754_hashFind(key, _fp);
+                n = 0u;
+                if ((Mem.U32(_fp) != 0u))
+                {
+                    n = Mem.U32(Mem.U32(_fp));
+                    new B12Node(n).refs_Set((int)(new B12Node(n).refs + 1));
+                    new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) | (uint)(256)));
+                    new B12Node(n).unk10_Set(Mem.U32((0x80105180u + (uint)(0 * 4))));
+                    List_MoveToHead(0x80104570u, n, default(uint), default(uint));
+                }
+                m2 = __osDisableInt();
+                if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+                {
+                    __osRestoreInt(m2);
+                    osSendMesg(0x80105140u, 0u, 1);
+                }
+                else
+                {
+                    __osRestoreInt(m2);
+                }
+                return n;
+            }
+        }
+        finally { Stack.Free(4); }
+    }
+
     // ==== func_002518DC @ 0x002518DC [C]
     public static void func_002518DC_hashFind(uint key, uint @out)
     {
@@ -563,7 +1774,7 @@ public static partial class Game
                     new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) | (uint)(256)));
                     n = new B12Ent(Mem.U32(_fp)).node_;
                     new B12Node(n).unk10_Set(Mem.U32(0x80105180u));
-                    func_00255F58(0x80104570u, n, default(uint), default(uint));
+                    List_MoveToHead(0x80104570u, n, default(uint), default(uint));
                     m2 = __osDisableInt();
                     if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
                     {
@@ -597,7 +1808,7 @@ public static partial class Game
                     goto L_done;
                 }
                 L_alloc: ;
-                ne = func_00254E70(0, (uint)(e));
+                ne = Resource_AllocRequest(0, (uint)(e));
                 Mem.Set(_fp, ne);
                 if ((ne != 0u))
                 {
@@ -615,12 +1826,12 @@ public static partial class Game
                     {
                         new B12Node(nd).refs_Set((int)(new B12Node(nd).refs + 1));
                         new B12Node(nd).flags_Set((uint)((uint)(new B12Node(nd).flags) | (uint)(256)));
-                        new B12Node(nd).key_Set((uint)((int)(func_00254B2C(0, size, (int)(((fl >> (int)5) & (uint)(1))), fl))));
+                        new B12Node(nd).key_Set((uint)((int)(ResourcePool_AllocMemory(0, size, (int)(((fl >> (int)5) & (uint)(1))), fl))));
                         if ((new B12Node(nd).key != 0u))
                         {
                             new B12Node(nd).unk4_Set((int)(size));
                             new B12Node(nd).flags_Set((uint)((uint)(new B12Node(nd).flags) | fl));
-                            func_00254C10((uint)(0), nd);
+                            ResourcePool_InsertSorted((uint)(0), nd);
                         }
                         else
                         {
@@ -629,7 +1840,7 @@ public static partial class Game
                             {
                                 new B12Node(nd).flags_Set((uint)((uint)(new B12Node(nd).flags) & (uint)((~256))));
                             }
-                            func_00254A70(0, nd);
+                            ResourcePool_ReturnNode(0, nd);
                             nd = 0u;
                         }
                     }
@@ -664,10 +1875,10 @@ public static partial class Game
                             {
                                 __osRestoreInt(m3);
                             }
-                            func_0025631C(0x801051B8u, (uint)(src), size, (uint)((int)(new B12Ent(Mem.U32(_fp)).node.key)));
+                            RomDma_ReadSync(0x801051B8u, (uint)(src), size, (uint)((int)(new B12Ent(Mem.U32(_fp)).node.key)));
                             if ((fn != 0u))
                             {
-                                func_00255110(0x8010A248u, Mem.U32(_fp));
+                                MsgPort_SendSync(0x8010A248u, Mem.U32(_fp));
                             }
                             m4 = __osDisableInt();
                             if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
@@ -722,10 +1933,10 @@ public static partial class Game
                         {
                             __osRestoreInt(m6);
                         }
-                        func_002563F4(0x801051B8u, (uint)(src), size, (uint)((int)(new B12Ent(Mem.U32(_fp)).node.key)), 0x801047E0u, Mem.U32(_fp), 0);
+                        RomDma_ReadAsync(0x801051B8u, (uint)(src), size, (uint)((int)(new B12Ent(Mem.U32(_fp)).node.key)), 0x801047E0u, Mem.U32(_fp), 0);
                         return 0u;
                     }
-                    func_00254E28((uint)(0), Mem.U32(_fp));
+                    Resource_FreeRequest((uint)(0), Mem.U32(_fp));
                 }
                 L_done: ;
                 m7 = __osDisableInt();
@@ -739,6 +1950,512 @@ public static partial class Game
                     __osRestoreInt(m7);
                 }
                 return 0u;
+            }
+        }
+        finally { Stack.Free(4); }
+    }
+
+    // ==== func_00251F0C @ 0x00251F0C [C]
+    public static void func_00251F0C_addref(uint node)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00251F0C_addref", (uint)node);
+            new Node_func_80251F6C_de(node).count_Set((int)((int)(new Node_func_80251F6C_de(node).count) + 1));
+            new Node_func_80251F6C_de(node).flags_Set((int)((int)(new Node_func_80251F6C_de(node).flags) | 256));
+        }
+    }
+
+    public static void func_00251F0C_stamp(uint node)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00251F0C_stamp", (uint)node);
+            new Node_func_80251F6C_de(node).stamp_Set(Mem.S32(0x80105180u));
+            List_MoveToHead(0x80104570u, node, default(uint), default(uint));
+        }
+    }
+
+    public static void func_00251F0C_unref(uint node)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00251F0C_unref", (uint)node);
+            if ((new Node_func_80251F6C_de(node).count_Set((int)(new Node_func_80251F6C_de(node).count - 1)) == 0))
+            {
+                new Node_func_80251F6C_de(node).flags_Set((int)((int)(new Node_func_80251F6C_de(node).flags) & (~256)));
+            }
+        }
+    }
+
+    public static void func_00251F0C_acquire()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00251F0C_acquire");
+            uint token = __osDisableInt();
+            int counter = (Mem.S32(0x8010515Cu) + 1);
+            Mem.Set(0x8010515Cu, counter);
+            if ((counter != 1))
+            {
+                __osRestoreInt(token);
+                osRecvMesg(new Manager(0x801047E0u).@lock.P, (uint)(0), 1);
+            }
+            else
+            {
+                __osRestoreInt(token);
+            }
+        }
+    }
+
+    public static void func_00251F0C_release()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00251F0C_release");
+            uint token = __osDisableInt();
+            int counter = (Mem.S32(0x8010515Cu) - 1);
+            Mem.Set(0x8010515Cu, counter);
+            if ((counter != 0))
+            {
+                __osRestoreInt(token);
+                osSendMesg(new Manager(0x801047E0u).@lock.P, (uint)(0), 1);
+            }
+            else
+            {
+                __osRestoreInt(token);
+            }
+        }
+    }
+
+    // ==== func_00251F0C @ 0x00251F0C [MIPS]
+    public static uint Resource_Request(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5, uint a6, uint a7, uint a8)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00251F0C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                Mem.Set(r29 + 20u, a5);
+                Mem.Set(r29 + 24u, a6);
+                Mem.Set(r29 + 28u, a7);
+                Mem.Set(r29 + 32u, a8);
+                L_func_00251F0C: ;
+                r29 = r29 - 48u;
+                Mem.Set((r29 + 36u), r19);
+                r19 = Mem.U32((r29 + 80u));
+                Mem.Set((r29 + 40u), r20);
+                r20 = Mem.U32((r29 + 64u));
+                Mem.Set((r29 + 24u), r16);
+                r16 = r5;
+                Mem.Set((r29 + 28u), r17);
+                r17 = r6;
+                Mem.Set((r29 + 32u), r18);
+                Mem.Set((r29 + 44u), r31);
+                r18 = r7; r2 = __osDisableInt();
+                r4 = r2;
+                r3 = 2148532224u;
+                r3 = Mem.U32((r3 + 20828u));
+                r2 = (uint)1;
+                r3 = r3 + 1u;
+                r1 = 2148532224u;
+                Mem.Set((r1 + 20828u), r3);
+                { bool c_ = r3 == r2;  if (c_) goto L_L00251F88; }
+                __osRestoreInt(r4);
+                r4 = 2148532224u;
+                r4 = r4 + 20800u;
+                r5 = r0;
+                r6 = (uint)1; r2 = (uint)osRecvMesg(r4, r5, (int)r6);
+                r2 = r16 << 5; goto L_L00251F94;
+                L_L00251F88: ;
+                __osRestoreInt(r4);
+                r2 = r16 << 5;
+                L_L00251F94: ;
+                r3 = r16 >> 1;
+                r2 = r2 ^ r3;
+                r3 = r16 >> 9;
+                r2 = r2 ^ r3;
+                r3 = r16 >> 17;
+                r2 = r2 ^ r3;
+                r4 = 2148532224u;
+                r4 = Mem.U32((r4 + 20880u));
+                r3 = 2148532224u;
+                r3 = Mem.U32((r3 + 20884u));
+                r2 = r2 & r4;
+                r2 = r2 << 4;
+                r3 = r3 + r2;
+                r2 = Mem.U32((r3 + 0u));
+                { bool c_ = r2 != r16; r4 = r29 + 16u; if (c_) goto L_L00251FEC; }
+                r2 = Mem.U32((r3 + 4u));
+                Mem.Set((r29 + 16u), r2); goto L_L0025200C;
+                L_L00251FE0: ;
+                r2 = Mem.U32((r3 + 4u));
+                Mem.Set((r4 + 0u), r2); goto L_L0025200C;
+                L_L00251FEC: ;
+                { bool c_ = r3 == 0; Mem.Set((r29 + 16u), r0); if (c_) goto L_L0025200C; }
+                L_L00251FF4: ;
+                r2 = Mem.U32((r3 + 0u));
+                { bool c_ = r2 == r16;  if (c_) goto L_L00251FE0; }
+                r3 = Mem.U32((r3 + 12u));
+                { bool c_ = r3 != 0;  if (c_) goto L_L00251FF4; }
+                L_L0025200C: ;
+                r6 = Mem.U32((r29 + 16u));
+                { bool c_ = r6 == 0; r5 = r0; if (c_) goto L_L002520B0; }
+                r5 = Mem.U32((r6 + 0u));
+                r2 = Mem.U32((r5 + 8u));
+                r3 = Mem.U32((r5 + 12u));
+                r2 = r2 + 1u;
+                r3 = r3 | 256u;
+                Mem.Set((r5 + 8u), r2);
+                Mem.Set((r5 + 12u), r3);
+                r5 = Mem.U32((r6 + 0u));
+                r2 = 2148532224u;
+                r2 = Mem.U32((r2 + 20864u));
+                r4 = 2148532224u;
+                r4 = r4 + 17776u;
+                Mem.Set((r5 + 16u), r2); r2 = List_MoveToHead(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = __osDisableInt();
+                r3 = 2148532224u;
+                r3 = Mem.U32((r3 + 20828u));
+                r3 = r3 - 1u;
+                r1 = 2148532224u;
+                Mem.Set((r1 + 20828u), r3);
+                { bool c_ = r3 == 0;  if (c_) goto L_L00252098; }
+                r4 = r2; __osRestoreInt(r4);
+                r4 = 2148532224u;
+                r4 = r4 + 20800u;
+                r5 = r0;
+                r6 = (uint)1; r2 = (uint)osSendMesg(r4, r5, (int)r6);
+                 goto L_L002520A0;
+                L_L00252098: ;
+                r4 = r2; __osRestoreInt(r4);
+                L_L002520A0: ;
+                r2 = Mem.U32((r29 + 16u));
+                r2 = Mem.U32((r2 + 0u));
+                 goto L_L00252430;
+                L_L002520B0: ;
+                r2 = 2148532224u;
+                r2 = r2 + 20860u;
+                r3 = Mem.U32((r2 + 0u));
+                r4 = Mem.U32((r2 - 92u));
+                { bool c_ = r4 == 0; r19 = r19 | r3; if (c_) goto L_L002520E0; }
+                L_L002520C8: ;
+                r2 = Mem.U32((r4 + 8u));
+                if (r2 == r16) { r5 = (uint)1; goto L_L002520E0; }
+                r4 = Mem.U32((r4 + 36u));
+                { bool c_ = r4 != 0;  if (c_) goto L_L002520C8; }
+                L_L002520E0: ;
+                { bool c_ = r5 != 0; r4 = r0; if (c_) goto L_L002523DC; }
+                r5 = r20; r2 = Resource_AllocRequest((int)r4, r5);
+                r3 = r2;
+                { bool c_ = r3 == 0; Mem.Set((r29 + 16u), r3); if (c_) goto L_L002523DC; }
+                Mem.Set((r3 + 8u), r16);
+                Mem.Set((r3 + 12u), r0);
+                r2 = Mem.U32((r29 + 68u));
+                Mem.Set((r3 + 24u), r2);
+                r2 = Mem.U32((r29 + 72u));
+                Mem.Set((r3 + 28u), r20);
+                Mem.Set((r3 + 0u), r17);
+                Mem.Set((r3 + 4u), r18);
+                { bool c_ = r17 == 0; Mem.Set((r3 + 20u), r2); if (c_) goto L_L0025213C; }
+                r2 = Mem.U32((r17 + 8u));
+                r3 = Mem.U32((r17 + 12u));
+                r2 = r2 + 1u;
+                r3 = r3 | 256u;
+                Mem.Set((r17 + 8u), r2);
+                Mem.Set((r17 + 12u), r3);
+                L_L0025213C: ;
+                { bool c_ = r18 == 0;  if (c_) goto L_L0025215C; }
+                r2 = Mem.U32((r18 + 8u));
+                r3 = Mem.U32((r18 + 12u));
+                r2 = r2 + 1u;
+                r3 = r3 | 256u;
+                Mem.Set((r18 + 8u), r2);
+                Mem.Set((r18 + 12u), r3);
+                L_L0025215C: ;
+                r16 = 2148532224u;
+                r16 = r16 + 20748u;
+                r5 = Mem.U32((r29 + 16u));
+                r4 = r16; r2 = List_Remove(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = Mem.U32((r29 + 16u));
+                r4 = r16 + 20u; r2 = List_Append_00255CB4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = __osDisableInt();
+                r3 = 2148532224u;
+                r3 = Mem.U32((r3 + 20828u));
+                r3 = r3 - 1u;
+                r1 = 2148532224u;
+                Mem.Set((r1 + 20828u), r3);
+                { bool c_ = r3 == 0;  if (c_) goto L_L002521C0; }
+                r4 = r2; __osRestoreInt(r4);
+                r4 = r16 + 52u;
+                r5 = r0;
+                r6 = (uint)1; r2 = (uint)osSendMesg(r4, r5, (int)r6);
+                 goto L_L002521C8;
+                L_L002521C0: ;
+                r4 = r2; __osRestoreInt(r4);
+                L_L002521C8: ;
+                { bool c_ = r19 == 0; r3 = (uint)-15; if (c_) goto L_L002522BC; }
+                r5 = Mem.U32((r29 + 16u));
+                r4 = 2148597760u;
+                r4 = r4 - 23992u;
+                r2 = Mem.U32((r5 + 16u));
+                r2 = r2 & r3;
+                Mem.Set((r5 + 16u), r2); r2 = (uint)MsgPort_SendSync(r4, r5);
+                r2 = __osDisableInt();
+                r4 = r2;
+                r3 = 2148532224u;
+                r3 = Mem.U32((r3 + 20828u));
+                r2 = (uint)1;
+                r3 = r3 + 1u;
+                r1 = 2148532224u;
+                Mem.Set((r1 + 20828u), r3);
+                { bool c_ = r3 == r2;  if (c_) goto L_L0025223C; }
+                __osRestoreInt(r4);
+                r4 = 2148532224u;
+                r4 = r4 + 20800u;
+                r5 = r0;
+                r6 = (uint)1; r2 = (uint)osRecvMesg(r4, r5, (int)r6);
+                r4 = r0; goto L_L00252248;
+                L_L0025223C: ;
+                __osRestoreInt(r4);
+                r4 = r0;
+                L_L00252248: ;
+                r5 = Mem.U32((r29 + 16u));
+                r6 = r4; r2 = Resource_ActivateLoadRequest(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r29 + 16u), r2); r2 = __osDisableInt();
+                r3 = 2148532224u;
+                r3 = Mem.U32((r3 + 20828u));
+                r3 = r3 - 1u;
+                r1 = 2148532224u;
+                Mem.Set((r1 + 20828u), r3);
+                { bool c_ = r3 == 0;  if (c_) goto L_L0025229C; }
+                r4 = r2; __osRestoreInt(r4);
+                r4 = 2148532224u;
+                r4 = r4 + 20800u;
+                r5 = r0;
+                r6 = (uint)1; r2 = (uint)osSendMesg(r4, r5, (int)r6);
+                 goto L_L002522A4;
+                L_L0025229C: ;
+                r4 = r2; __osRestoreInt(r4);
+                L_L002522A4: ;
+                r2 = Mem.U32((r29 + 16u));
+                if (r2 == 0) { r2 = r0; goto L_L00252430; }
+                r2 = Mem.U32((r2 + 0u));
+                 goto L_L00252430;
+                L_L002522BC: ;
+                r4 = 2148597760u;
+                r4 = r4 - 23992u;
+                r5 = Mem.U32((r29 + 16u));
+                r16 = 2148532224u;
+                r16 = r16 + 18400u;
+                r6 = r16; r2 = (uint)MsgPort_Send(r4, r5, r6);
+                { bool c_ = r2 != 0; r2 = r0; if (c_) goto L_L00252430; }
+                r2 = __osDisableInt();
+                r4 = r2;
+                r3 = 2148532224u;
+                r3 = Mem.U32((r3 + 20828u));
+                r2 = (uint)1;
+                r3 = r3 + 1u;
+                r1 = 2148532224u;
+                Mem.Set((r1 + 20828u), r3);
+                { bool c_ = r3 == r2;  if (c_) goto L_L0025232C; }
+                __osRestoreInt(r4);
+                r4 = r16 + 2400u;
+                r5 = r0;
+                r6 = (uint)1; r2 = (uint)osRecvMesg(r4, r5, (int)r6);
+                 goto L_L00252334;
+                L_L0025232C: ;
+                __osRestoreInt(r4);
+                L_L00252334: ;
+                { bool c_ = r17 == 0;  if (c_) goto L_L0025235C; }
+                r2 = Mem.U32((r17 + 8u));
+                r2 = r2 - 1u;
+                { bool c_ = r2 != 0; Mem.Set((r17 + 8u), r2); if (c_) goto L_L0025235C; }
+                r2 = Mem.U32((r17 + 12u));
+                r3 = (uint)-257;
+                r2 = r2 & r3;
+                Mem.Set((r17 + 12u), r2);
+                L_L0025235C: ;
+                { bool c_ = r18 == 0;  if (c_) goto L_L00252384; }
+                r2 = Mem.U32((r18 + 8u));
+                r2 = r2 - 1u;
+                { bool c_ = r2 != 0; Mem.Set((r18 + 8u), r2); if (c_) goto L_L00252384; }
+                r2 = Mem.U32((r18 + 12u));
+                r3 = (uint)-257;
+                r2 = r2 & r3;
+                Mem.Set((r18 + 12u), r2);
+                L_L00252384: ;
+                r16 = 2148532224u;
+                r16 = r16 + 20768u;
+                r5 = Mem.U32((r29 + 16u));
+                r4 = r16; r2 = List_Remove(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = Mem.U32((r29 + 16u));
+                r4 = r16 - 20u; List_Add(r4, r5);
+                r5 = Mem.U32((r29 + 16u));
+                r4 = r0; Resource_FreeRequest(r4, r5);
+                r2 = __osDisableInt();
+                r3 = 2148532224u;
+                r3 = Mem.U32((r3 + 20828u));
+                r3 = r3 - 1u;
+                r1 = 2148532224u;
+                Mem.Set((r1 + 20828u), r3);
+                { bool c_ = r3 == 0;  if (c_) goto L_L00252424; }
+                 goto L_L00252400;
+                L_L002523DC: ;
+                r2 = __osDisableInt();
+                r3 = 2148532224u;
+                r3 = Mem.U32((r3 + 20828u));
+                r3 = r3 - 1u;
+                r1 = 2148532224u;
+                Mem.Set((r1 + 20828u), r3);
+                { bool c_ = r3 == 0;  if (c_) goto L_L00252424; }
+                L_L00252400: ;
+                r4 = r2; __osRestoreInt(r4);
+                r4 = 2148532224u;
+                r4 = r4 + 20800u;
+                r5 = r0;
+                r6 = (uint)1; r2 = (uint)osSendMesg(r4, r5, (int)r6);
+                r2 = r0; goto L_L00252430;
+                L_L00252424: ;
+                r4 = r2; __osRestoreInt(r4);
+                r2 = r0;
+                L_L00252430: ;
+                r31 = Mem.U32((r29 + 44u));
+                r20 = Mem.U32((r29 + 40u));
+                r19 = Mem.U32((r29 + 36u));
+                r18 = Mem.U32((r29 + 32u));
+                r17 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r29 = r29 + 48u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00251F0C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00252450 @ 0x00252450 [C]
+    public static void Resource_LoaderThreadMain()
+    {
+        uint _fp = Stack.Alloc(4);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_00252450");
+                uint p = 0u;
+                uint mask = 0u;
+                uint m2 = 0u;
+                while ((1 != 0))
+                {
+                    osRecvMesg(new B12Mgr(0x80103F70u).q870.P, _fp, 1);
+                    if (((uint)(Mem.U32(_fp)) < (uint)(2)))
+                    {
+                        mask = __osDisableInt();
+                        if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+                        {
+                            __osRestoreInt(mask);
+                            osRecvMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
+                        }
+                        else
+                        {
+                            __osRestoreInt(mask);
+                        }
+                        Resource_OnFrameDone(0, (int)((uint)(Mem.U32(_fp))));
+                        m2 = __osDisableInt();
+                        if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+                        {
+                            __osRestoreInt(m2);
+                            osSendMesg(0x80105140u, 0u, 1);
+                        }
+                        else
+                        {
+                            __osRestoreInt(m2);
+                        }
+                    }
+                    else
+                    {
+                        new B12Msg(Mem.U32(_fp)).flags_Set((uint)((uint)(new B12Msg(Mem.U32(_fp)).flags) & (uint)((~2))));
+                        if (((new B12Msg(Mem.U32(_fp)).flags & (uint)(8)) != 0u))
+                        {
+                            new B12Msg(Mem.U32(_fp)).flags_Set((uint)((uint)(new B12Msg(Mem.U32(_fp)).flags) & (uint)((~8))));
+                            if ((MsgPort_Send(0x8010A248u, Mem.U32(_fp), new B12Mgr(0x80103F70u).q870.P) != 0))
+                            {
+                                continue;
+                            }
+                            mask = __osDisableInt();
+                            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+                            {
+                                __osRestoreInt(mask);
+                                osRecvMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
+                            }
+                            else
+                            {
+                                __osRestoreInt(mask);
+                            }
+                            List_Remove((new B12Mgr(0x80103F70u).lists3.P + (uint)(2 * 20)), Mem.U32(_fp), default(uint), default(uint));
+                            List_Add((new B12Mgr(0x80103F70u).lists3.P + (uint)(1 * 20)), Mem.U32(_fp));
+                            p = new B12Msg(Mem.U32(_fp)).node_;
+                            new B12Node(p).flags_Set((uint)((uint)(new B12Node(p).flags) & (uint)((~2))));
+                            while ((new B12Node(p).refs != 0))
+                            {
+                                new B12Node(p).refs_Set((int)(new B12Node(p).refs - 1));
+                                if ((new B12Node(p).refs == 0))
+                                {
+                                    new B12Node(p).flags_Set((uint)((uint)(new B12Node(p).flags) & (uint)((~256))));
+                                }
+                            }
+                            if (!((new B12Node(p).flags & (uint)(1794)) != 0u))
+                            {
+                                Resource_FreeNodeRequest(0, p);
+                                Heap_Free(0x801051A0u, (uint)((int)(new B12Node(p).key)), default(uint), default(uint));
+                                ResourcePool_ReturnNode(0, p);
+                            }
+                            Resource_FreeRequest((uint)(0), Mem.U32(_fp));
+                            m2 = __osDisableInt();
+                            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+                            {
+                                __osRestoreInt(m2);
+                                osSendMesg(0x80105140u, 0u, 1);
+                            }
+                            else
+                            {
+                                __osRestoreInt(m2);
+                            }
+                        }
+                        else
+                        {
+                            new B12Msg(Mem.U32(_fp)).flags_Set((uint)((uint)(new B12Msg(Mem.U32(_fp)).flags) & (uint)((~4))));
+                            mask = __osDisableInt();
+                            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+                            {
+                                __osRestoreInt(mask);
+                                osRecvMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
+                            }
+                            else
+                            {
+                                __osRestoreInt(mask);
+                            }
+                            Resource_ActivateLoadRequest((uint)(0), Mem.U32(_fp), (uint)(1), default(uint));
+                            m2 = __osDisableInt();
+                            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+                            {
+                                __osRestoreInt(m2);
+                                osSendMesg(0x80105140u, 0u, 1);
+                            }
+                            else
+                            {
+                                __osRestoreInt(m2);
+                            }
+                        }
+                    }
+                }
             }
         }
         finally { Stack.Free(4); }
@@ -855,7 +2572,7 @@ public static partial class Game
                 r2 = (uint)((int)r2 < (int)r3 ? 1 : 0);
                 { bool c_ = r2 == 0;  if (c_) goto L_L002528D0; }
                 r4 = Mem.U32((r4 + 8u));
-                func_00255428(r4);
+                AddrHash_Remove(r4);
                 r3 = Mem.U32((r29 + 16u));
                 r2 = Mem.U32((r3 + 0u));
                 Mem.Set((r2 + 20u), r0);
@@ -900,7 +2617,7 @@ public static partial class Game
                 Mem.Set((r1 + 20796u), r2);
                 L_L002528BC: ;
                 r5 = Mem.U32((r29 + 16u));
-                r4 = r0; func_00254E28(r4, r5);
+                r4 = r0; Resource_FreeRequest(r4, r5);
                  goto L_L0025297C;
                 L_L002528D0: ;
                 r2 = Mem.U32((r17 + 0u));
@@ -938,12 +2655,12 @@ public static partial class Game
                 r2 = r2 + 1u;
                 r1 = 2148532224u;
                 Mem.Set((r1 + 20796u), r2);
-                r5 = r17; func_00254E28(r4, r5);
+                r5 = r17; Resource_FreeRequest(r4, r5);
                 r2 = Mem.U32((r29 + 16u));
                  goto L_L002529CC;
                 L_L0025297C: ;
                 r4 = Mem.U32((r17 + 8u));
-                r5 = r17; func_00255354(r4, (int)r5);
+                r5 = r17; AddrHash_Insert(r4, (int)r5);
                 r2 = Mem.U32((r17 + 0u));
                 { bool c_ = r18 == 0; Mem.Set((r2 + 20u), r17); if (c_) goto L_L002529B8; }
                 r4 = Mem.U32((r17 + 0u));
@@ -957,7 +2674,7 @@ public static partial class Game
                 L_L002529B8: ;
                 r2 = r17; goto L_L002529CC;
                 L_L002529C0: ;
-                r5 = r17; func_00254E28(r4, r5);
+                r5 = r17; Resource_FreeRequest(r4, r5);
                 r2 = r0;
                 L_L002529CC: ;
                 r31 = Mem.U32((r29 + 36u));
@@ -969,6 +2686,527 @@ public static partial class Game
             }
         }
         finally { if (Dbg.On) Dbg.Leave("func_00252714", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00252FFC @ 0x00252FFC [C]
+    public static uint ResourcePool_Malloc(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00252FFC", (uint)p);
+            uint m1 = 0u;
+            uint m2 = 0u;
+            uint m3 = 0u;
+            uint m4 = 0u;
+            uint m5 = 0u;
+            uint m6 = 0u;
+            uint n = 0u;
+            uint q = 0u;
+            uint data = (p + (uint)16);
+            uint blk = 0u;
+            m1 = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            {
+                __osRestoreInt(m1);
+                osRecvMesg(0x80105140u, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(m1);
+            }
+            n = ResourcePool_AllocUnlocked(0, (int)(data), (uint)(51));
+            m2 = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            {
+                __osRestoreInt(m2);
+                osSendMesg(0x80105140u, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(m2);
+            }
+            q = n;
+            if ((q == 0u))
+            {
+                m3 = __osDisableInt();
+                if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+                {
+                    __osRestoreInt(m3);
+                    osRecvMesg(0x80105140u, 0u, 1);
+                }
+                else
+                {
+                    __osRestoreInt(m3);
+                }
+                ResourcePool_WaitFrameUseCleared();
+                while ((ResourcePool_ReclaimStep(0, 0, (uint)(0), default(int)) != 0))
+                {
+                }
+                ResourcePool_Defragment(0, 1);
+                m4 = __osDisableInt();
+                if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+                {
+                    __osRestoreInt(m4);
+                    osSendMesg(0x80105140u, 0u, 1);
+                }
+                else
+                {
+                    __osRestoreInt(m4);
+                }
+                m5 = __osDisableInt();
+                if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+                {
+                    __osRestoreInt(m5);
+                    osRecvMesg(0x80105140u, 0u, 1);
+                }
+                else
+                {
+                    __osRestoreInt(m5);
+                }
+                n = ResourcePool_AllocUnlocked(0, (int)(data), (uint)(51));
+                m6 = __osDisableInt();
+                if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+                {
+                    __osRestoreInt(m6);
+                    osSendMesg(0x80105140u, 0u, 1);
+                }
+                else
+                {
+                    __osRestoreInt(m6);
+                }
+                q = n;
+                if ((q == 0u))
+                {
+                    return 0u;
+                }
+            }
+            blk = (uint)(new B12Node(q).key);
+            Mem.Set(blk, q);
+            return (blk + (uint)16);
+        }
+    }
+
+    // ==== func_00253294 @ 0x00253294 [C]
+    public static int ResourcePool_IsReferenced(uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00253294", (uint)n);
+            return (int)((new B12Node(n).flags & (uint)(256)));
+        }
+    }
+
+    // ==== func_002532A0 @ 0x002532A0 [C]
+    public static void ResourcePool_AddRefUnlocked(uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002532A0", (uint)n);
+            new B12Node(n).refs_Set((int)(new B12Node(n).refs + 1));
+            new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) | (uint)(256)));
+        }
+    }
+
+    // ==== func_002532BC @ 0x002532BC [C]
+    public static void ResourcePool_UnrefUnlocked(uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002532BC", (uint)n);
+            if ((new B12Node(n).refs_Set((int)(new B12Node(n).refs - 1)) == 0))
+            {
+                new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) & (uint)((~256))));
+            }
+        }
+    }
+
+    // ==== func_002532E4 @ 0x002532E4 [C]
+    public static void Resource_FrameUpdate()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002532E4");
+            uint mask = 0u;
+            uint m2 = 0u;
+            int i = 0;
+            new B12Mgr(0x80103F70u).f120C_Set(1);
+            new B12Mgr(0x80103F70u).stamp_Set((uint)(new B12Mgr(0x80103F70u).stamp + 1));
+            mask = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+            i = 0;
+            do
+            {
+                ResourcePool_Defragment(0, 0);
+                ++i;
+            }
+            while ((i < 10));
+            m2 = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            {
+                __osRestoreInt(m2);
+                osSendMesg(0x80105140u, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(m2);
+            }
+        }
+    }
+
+    // ==== func_002533DC @ 0x002533DC [C]
+    public static uint ResourcePool_Alloc(int unused, int a1, uint a2, int a3)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002533DC", (uint)unused, (uint)a1, (uint)a2, (uint)a3);
+            uint mask = 0u;
+            uint m2 = 0u;
+            uint r = 0u;
+            mask = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(0x80105140u, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+            r = ResourcePool_AllocUnlocked(0, a1, a2);
+            m2 = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            {
+                __osRestoreInt(m2);
+                osSendMesg(0x80105140u, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(m2);
+            }
+            return r;
+        }
+    }
+
+    // ==== func_002534D0 @ 0x002534D0 [C]
+    public static uint ResourcePool_AllocAt(int unused, int ptr, int size)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002534D0", (uint)unused, (uint)ptr, (uint)size);
+            uint mask = 0u;
+            uint m2 = 0u;
+            uint n = 0u;
+            mask = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(0x80105140u, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+            n = ResourcePool_AllocNode((uint)(0), (uint)(0), default(uint), default(uint));
+            if ((n != 0u))
+            {
+                new B12Node(n).key_Set((uint)((int)(Heap_AllocAt(0x801051A0u, (uint)(ptr), (uint)(size)))));
+                if ((new B12Node(n).key != 0u))
+                {
+                    new B12Node(n).unk4_Set(size);
+                    new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) | (uint)(3)));
+                    ResourcePool_InsertSorted((uint)(0), n);
+                }
+                else
+                {
+                    ResourcePool_ReturnNode(0, n);
+                    n = 0u;
+                }
+            }
+            m2 = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            {
+                __osRestoreInt(m2);
+                osSendMesg(0x80105140u, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(m2);
+            }
+            return n;
+        }
+    }
+
+    // ==== func_00253610 @ 0x00253610 [C]
+    public static void ResourcePool_TouchAndRef(int unused, uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00253610", (uint)unused, (uint)n);
+            uint mask = 0u;
+            uint m2 = 0u;
+            mask = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(0x80105140u, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+            ResourcePool_TouchNode(0, n);
+            new B12Node(n).refs_Set((int)(new B12Node(n).refs + 1));
+            new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) | (uint)(256)));
+            m2 = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            {
+                __osRestoreInt(m2);
+                osSendMesg(0x80105140u, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(m2);
+            }
+        }
+    }
+
+    // ==== func_002536F4 @ 0x002536F4 [C]
+    public static void ResourcePool_Unref(int unused, uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002536F4", (uint)unused, (uint)n);
+            uint mask = 0u;
+            uint m2 = 0u;
+            mask = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(0x80105140u, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+            new B12Node(n).refs_Set((int)(new B12Node(n).refs - 1));
+            if ((new B12Node(n).refs == 0))
+            {
+                new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) & (uint)((~256))));
+            }
+            m2 = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            {
+                __osRestoreInt(m2);
+                osSendMesg(0x80105140u, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(m2);
+            }
+        }
+    }
+
+    // ==== func_002537D8 @ 0x002537D8 [C]
+    public static void ResourcePool_Release(int unused, uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002537D8", (uint)unused, (uint)n);
+            uint mask = 0u;
+            uint m2 = 0u;
+            mask = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(0x80105140u, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+            ResourcePool_ReleaseUnlocked((uint)(0), n, default(uint), default(uint));
+            m2 = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            {
+                __osRestoreInt(m2);
+                osSendMesg(0x80105140u, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(m2);
+            }
+        }
+    }
+
+    // ==== func_002538A8 @ 0x002538A8 [C]
+    public static void ResourcePool_Purge()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002538A8");
+            uint mask = 0u;
+            uint m2 = 0u;
+            mask = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(0x80105140u, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+            ResourcePool_WaitFrameUseCleared();
+            while ((ResourcePool_ReclaimStep(0, 0, (uint)(0), default(int)) != 0))
+            {
+            }
+            ResourcePool_Defragment(0, 1);
+            m2 = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            {
+                __osRestoreInt(m2);
+                osSendMesg(0x80105140u, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(m2);
+            }
+        }
+    }
+
+    // ==== func_0025398C @ 0x0025398C [C]
+    public static void Resource_BeginFrameUse(int unused, int idx)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0025398C", (uint)unused, (uint)idx);
+            uint mask = 0u;
+            uint m2 = 0u;
+            mask = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+            new B12Mgr(0x80103F70u).f638_Set(idx);
+            new B12Mgr(0x80103F70u).tbl628.Set((int)(idx), 1);
+            m2 = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            {
+                __osRestoreInt(m2);
+                osSendMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(m2);
+            }
+        }
+    }
+
+    // ==== func_00253A74 @ 0x00253A74 [C]
+    public static int Resource_EndFrameUse()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00253A74");
+            uint mask = 0u;
+            uint m2 = 0u;
+            int r = 0;
+            mask = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+            r = new B12Mgr(0x80103F70u).tbl628[(int)(new B12Mgr(0x80103F70u).f638)];
+            new B12Mgr(0x80103F70u).f638_Set((-1));
+            m2 = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            {
+                __osRestoreInt(m2);
+                osSendMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(m2);
+            }
+            return r;
+        }
+    }
+
+    // ==== func_00253B5C @ 0x00253B5C [C]
+    public static void Resource_MarkUsedInFrame(int unused, uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00253B5C", (uint)unused, (uint)n);
+            uint mask = 0u;
+            uint m2 = 0u;
+            int idx = new B12Mgr(0x80103F70u).f638;
+            uint bit = 0u;
+            mask = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+            if ((new B12Mgr(0x80103F70u).tbl628[(int)(idx)] != 0))
+            {
+                if ((idx != 0))
+                {
+                    bit = (uint)(1024);
+                }
+                else
+                {
+                    bit = (uint)(512);
+                }
+                if (!((new B12Node(n).flags & bit) != 0u))
+                {
+                    new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) | bit));
+                    new B12Mgr(0x80103F70u).tbl11C4.Set((int)(idx), (int)(new B12Mgr(0x80103F70u).tbl11C4[(int)(idx)] + 1));
+                }
+            }
+            m2 = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            {
+                __osRestoreInt(m2);
+                osSendMesg(0x80105140u, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(m2);
+            }
+        }
+    }
+
+    // ==== func_00253C8C @ 0x00253C8C [C]
+    public static void Resource_PostFrameDone(int unused, uint msg)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00253C8C", (uint)unused, (uint)msg);
+            osSendMesg(0x801047E0u, msg, 1);
+        }
     }
 
     // ==== func_00253CB0 @ 0x00253CB0 [MIPS]
@@ -1030,13 +3268,13 @@ public static partial class Game
                 r2 = Mem.U32((r16 + 12u));
                 r2 = r2 & 1794u;
                 { bool c_ = r2 != 0; r4 = r0; if (c_) goto L_L00253D9C; }
-                r5 = r16; func_00254D70((int)r4, r5);
+                r5 = r16; Resource_FreeNodeRequest((int)r4, r5);
                 r5 = Mem.U32((r16 + 0u));
                 r4 = 2148532224u;
                 r4 = r4 + 20896u;
                 r2 = Heap_Free(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r0;
-                r5 = r16; func_00254A70((int)r4, r5);
+                r5 = r16; ResourcePool_ReturnNode((int)r4, r5);
                 L_L00253D9C: ;
                 Mem.Set((r17 + 0u), r18); r2 = __osDisableInt();
                 r3 = 2148532224u;
@@ -1065,6 +3303,326 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_00253CB0", r2); Stack.Free(384); }
     }
 
+    // ==== func_00253E04 @ 0x00253E04 [MIPS]
+    public static uint Resource_SetRequestResult_00253E04(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00253E04", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_00253E04: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r5;
+                Mem.Set((r29 + 20u), r17);
+                Mem.Set((r29 + 24u), r31);
+                r17 = r6; r2 = __osDisableInt();
+                r4 = r2;
+                r3 = 2148532224u;
+                r3 = Mem.U32((r3 + 20828u));
+                r2 = (uint)1;
+                r3 = r3 + 1u;
+                r1 = 2148532224u;
+                Mem.Set((r1 + 20828u), r3);
+                { bool c_ = r3 == r2;  if (c_) goto L_L00253E68; }
+                __osRestoreInt(r4);
+                r4 = 2148532224u;
+                r4 = r4 + 20800u;
+                r5 = r0;
+                r6 = (uint)1; r2 = (uint)osRecvMesg(r4, r5, (int)r6);
+                 goto L_L00253E70;
+                L_L00253E68: ;
+                __osRestoreInt(r4);
+                L_L00253E70: ;
+                r4 = Mem.U32((r16 + 0u));
+                { bool c_ = r4 == 0;  if (c_) goto L_L00253E9C; }
+                r2 = Mem.U32((r4 + 8u));
+                r2 = r2 - 1u;
+                { bool c_ = r2 != 0; Mem.Set((r4 + 8u), r2); if (c_) goto L_L00253E9C; }
+                r2 = Mem.U32((r4 + 12u));
+                r3 = (uint)-257;
+                r2 = r2 & r3;
+                Mem.Set((r4 + 12u), r2);
+                L_L00253E9C: ;
+                r4 = Mem.U32((r16 + 4u));
+                { bool c_ = r4 == 0;  if (c_) goto L_L00253EC8; }
+                r2 = Mem.U32((r4 + 8u));
+                r2 = r2 - 1u;
+                { bool c_ = r2 != 0; Mem.Set((r4 + 8u), r2); if (c_) goto L_L00253EC8; }
+                r2 = Mem.U32((r4 + 12u));
+                r3 = (uint)-257;
+                r2 = r2 & r3;
+                Mem.Set((r4 + 12u), r2);
+                L_L00253EC8: ;
+                Mem.Set((r16 + 0u), r17); r2 = __osDisableInt();
+                r3 = 2148532224u;
+                r3 = Mem.U32((r3 + 20828u));
+                r3 = r3 - 1u;
+                r1 = 2148532224u;
+                Mem.Set((r1 + 20828u), r3);
+                { bool c_ = r3 == 0;  if (c_) goto L_L00253F10; }
+                r4 = r2; __osRestoreInt(r4);
+                r4 = 2148532224u;
+                r4 = r4 + 20800u;
+                r5 = r0;
+                r6 = (uint)1; r2 = (uint)osSendMesg(r4, r5, (int)r6);
+                 goto L_L00253F18;
+                L_L00253F10: ;
+                r4 = r2; __osRestoreInt(r4);
+                L_L00253F18: ;
+                r31 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00253E04", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00253F2C @ 0x00253F2C [MIPS]
+    public static uint Resource_TouchByKey(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00253F2C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_00253F2C: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 24u), r16);
+                Mem.Set((r29 + 28u), r31);
+                r16 = r5; r2 = __osDisableInt();
+                r4 = r2;
+                r3 = 2148532224u;
+                r3 = Mem.U32((r3 + 20828u));
+                r2 = (uint)1;
+                r3 = r3 + 1u;
+                r1 = 2148532224u;
+                Mem.Set((r1 + 20828u), r3);
+                { bool c_ = r3 == r2;  if (c_) goto L_L00253F88; }
+                __osRestoreInt(r4);
+                r4 = 2148532224u;
+                r4 = r4 + 20800u;
+                r5 = r0;
+                r6 = (uint)1; r2 = (uint)osRecvMesg(r4, r5, (int)r6);
+                r2 = r16 << 5; goto L_L00253F94;
+                L_L00253F88: ;
+                __osRestoreInt(r4);
+                r2 = r16 << 5;
+                L_L00253F94: ;
+                r3 = r16 >> 1;
+                r2 = r2 ^ r3;
+                r3 = r16 >> 9;
+                r2 = r2 ^ r3;
+                r3 = r16 >> 17;
+                r2 = r2 ^ r3;
+                r4 = 2148532224u;
+                r4 = Mem.U32((r4 + 20880u));
+                r3 = 2148532224u;
+                r3 = Mem.U32((r3 + 20884u));
+                r2 = r2 & r4;
+                r2 = r2 << 4;
+                r3 = r3 + r2;
+                r2 = Mem.U32((r3 + 0u));
+                { bool c_ = r2 != r16; r4 = r29 + 16u; if (c_) goto L_L00253FEC; }
+                r2 = Mem.U32((r3 + 4u));
+                Mem.Set((r29 + 16u), r2); goto L_L0025400C;
+                L_L00253FE0: ;
+                r2 = Mem.U32((r3 + 4u));
+                Mem.Set((r4 + 0u), r2); goto L_L0025400C;
+                L_L00253FEC: ;
+                { bool c_ = r3 == 0; Mem.Set((r29 + 16u), r0); if (c_) goto L_L0025400C; }
+                L_L00253FF4: ;
+                r2 = Mem.U32((r3 + 0u));
+                { bool c_ = r2 == r16;  if (c_) goto L_L00253FE0; }
+                r3 = Mem.U32((r3 + 12u));
+                { bool c_ = r3 != 0;  if (c_) goto L_L00253FF4; }
+                L_L0025400C: ;
+                r5 = Mem.U32((r29 + 16u));
+                { bool c_ = r5 == 0;  if (c_) goto L_L00254034; }
+                r5 = Mem.U32((r5 + 0u));
+                r2 = 2148532224u;
+                r2 = Mem.U32((r2 + 20864u));
+                r4 = 2148532224u;
+                r4 = r4 + 17776u;
+                Mem.Set((r5 + 16u), r2); r2 = List_MoveToHead(r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L00254034: ;
+                r2 = __osDisableInt();
+                r3 = 2148532224u;
+                r3 = Mem.U32((r3 + 20828u));
+                r3 = r3 - 1u;
+                r1 = 2148532224u;
+                Mem.Set((r1 + 20828u), r3);
+                { bool c_ = r3 == 0;  if (c_) goto L_L0025407C; }
+                r4 = r2; __osRestoreInt(r4);
+                r4 = 2148532224u;
+                r4 = r4 + 20800u;
+                r5 = r0;
+                r6 = (uint)1; r2 = (uint)osSendMesg(r4, r5, (int)r6);
+                 goto L_L00254084;
+                L_L0025407C: ;
+                r4 = r2; __osRestoreInt(r4);
+                L_L00254084: ;
+                r31 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00253F2C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00254094 @ 0x00254094 [C]
+    public static uint Resource_LoadIndexTable(int unused, uint @out, int id, uint arg3, int arg4)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00254094", (uint)unused, (uint)@out, (uint)id, (uint)arg3);
+            uint mask = 0u;
+            uint m2 = 0u;
+            uint n = 0u;
+            int cnt = 0;
+            n = ResourceCache_Hash(0, (uint)(id), id, (uint)(4), 0, (uint)(0), (uint)(0), 0x800C8F90u, arg4);
+            if (!(n != 0u))
+            {
+                return 0u;
+            }
+            cnt = Mem.S32(Mem.U32(n));
+            mask = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(0x80105140u, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+            ResourcePool_ReleaseUnlocked((uint)(0), n, default(uint), default(uint));
+            m2 = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            {
+                __osRestoreInt(m2);
+                osSendMesg(0x80105140u, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(m2);
+            }
+            n = ResourceCache_Hash(0, (uint)(id), id, (uint)((((cnt * 4) + 15) & (~7))), 0, (uint)(0), (uint)(0), arg3, arg4);
+            if (!(n != 0u))
+            {
+                return 0u;
+            }
+            Mem.Set(@out, Mem.U32(n));
+            return n;
+        }
+    }
+
+    // ==== func_00254224 @ 0x00254224 [C]
+    public static uint Resource_LoadIndexTableSync(int unused, uint @out, int id, uint arg3)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00254224", (uint)unused, (uint)@out, (uint)id, (uint)arg3);
+            uint mask = 0u;
+            uint m2 = 0u;
+            uint n = 0u;
+            int cnt = 0;
+            n = ResourceCache_Hash(0, (uint)(id), id, (uint)(4), 27, (uint)(0), (uint)(0), 0x800C8F90u, 1);
+            cnt = Mem.S32(Mem.U32(n));
+            mask = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(0x80105140u, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+            ResourcePool_ReleaseUnlocked((uint)(0), n, default(uint), default(uint));
+            m2 = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            {
+                __osRestoreInt(m2);
+                osSendMesg(0x80105140u, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(m2);
+            }
+            n = ResourceCache_Hash(0, (uint)(id), id, (uint)((((cnt * 4) + 15) & (~7))), 27, (uint)(0), (uint)(0), arg3, 1);
+            Mem.Set(@out, Mem.U32(n));
+            return n;
+        }
+    }
+
+    // ==== func_002543A8 @ 0x002543A8 [MIPS]
+    public static uint Resource_LoadByCartridgeKey(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5, uint a6)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002543A8", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                Mem.Set(r29 + 20u, a5);
+                Mem.Set(r29 + 24u, a6);
+                L_func_002543A8: ;
+                r29 = r29 - 64u;
+                Mem.Set((r29 + 48u), r16);
+                r16 = Mem.U32((r29 + 80u));
+                r4 = r5;
+                Mem.Set((r29 + 52u), r17);
+                r17 = Mem.U32((r29 + 84u));
+                r5 = r7;
+                Mem.Set((r29 + 56u), r18);
+                r18 = Mem.U32((r29 + 88u));
+                Mem.Set((r29 + 60u), r31);
+                r7 = r29 + 40u; r2 = Resource_GetCartridgeKey(r4, r5, (int)r6, r7);
+                r4 = r0;
+                r5 = r2;
+                r6 = r5;
+                r7 = Mem.U32((r29 + 40u));
+                r2 = (uint)27;
+                Mem.Set((r29 + 16u), r2);
+                r2 = (uint)1;
+                Mem.Set((r29 + 32u), r2);
+                Mem.Set((r29 + 20u), r16);
+                Mem.Set((r29 + 24u), r17);
+                Mem.Set((r29 + 28u), r18); r2 = ResourceCache_Hash((int)r4, r5, (int)r6, r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u));
+                r31 = Mem.U32((r29 + 60u));
+                r18 = Mem.U32((r29 + 56u));
+                r17 = Mem.U32((r29 + 52u));
+                r16 = Mem.U32((r29 + 48u));
+                r29 = r29 + 64u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002543A8", r2); Stack.Free(384); }
+    }
+
     // ==== func_00254420 @ 0x00254420 [C]
     public static uint ResourcePool_GetBlock_00254420(int unused, uint p, int a2)
     {
@@ -1091,12 +3649,12 @@ public static partial class Game
             {
                 new B12Node(n).refs_Set((int)(new B12Node(n).refs + 1));
                 new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) | (uint)(256)));
-                new B12Node(n).key_Set((uint)((int)(func_00254B2C(0, (uint)(a2), (int)(((flags >> (int)5) & (uint)(1))), flags))));
+                new B12Node(n).key_Set((uint)((int)(ResourcePool_AllocMemory(0, (uint)(a2), (int)(((flags >> (int)5) & (uint)(1))), flags))));
                 if ((new B12Node(n).key != 0u))
                 {
                     new B12Node(n).unk4_Set(a2);
                     new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) | flags));
-                    func_00254C10((uint)(0), n);
+                    ResourcePool_InsertSorted((uint)(0), n);
                 }
                 else
                 {
@@ -1105,7 +3663,7 @@ public static partial class Game
                     {
                         new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) & (uint)((~256))));
                     }
-                    func_00254A70(0, n);
+                    ResourcePool_ReturnNode(0, n);
                     n = 0u;
                 }
             }
@@ -1121,6 +3679,261 @@ public static partial class Game
             }
             return n;
         }
+    }
+
+    // ==== func_002545A0 @ 0x002545A0 [C]
+    public static uint ResourcePool_AllocScratch(int unused, int a1, int a2)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002545A0", (uint)unused, (uint)a1, (uint)a2);
+            uint mask = 0u;
+            uint m2 = 0u;
+            uint n = 0u;
+            mask = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(0x80105140u, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+            n = ResourcePool_AllocNode((uint)(0), (uint)(34), default(uint), default(uint));
+            if ((n != 0u))
+            {
+                new B12Node(n).refs_Set((int)(new B12Node(n).refs + 1));
+                new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) | (uint)(256)));
+                new B12Node(n).key_Set((uint)((int)(ResourcePool_AllocMemory(0, (uint)(a2), ((34 >> (int)5) & 1), (uint)(34)))));
+                if ((new B12Node(n).key != 0u))
+                {
+                    new B12Node(n).unk4_Set(a2);
+                    new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) | (uint)(34)));
+                    ResourcePool_InsertSorted((uint)(0), n);
+                }
+                else
+                {
+                    new B12Node(n).refs_Set((int)(new B12Node(n).refs - 1));
+                    if ((new B12Node(n).refs == 0))
+                    {
+                        new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) & (uint)((~256))));
+                    }
+                    ResourcePool_ReturnNode(0, n);
+                    n = 0u;
+                }
+            }
+            m2 = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            {
+                __osRestoreInt(m2);
+                osSendMesg(0x80105140u, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(m2);
+            }
+            return n;
+        }
+    }
+
+    // ==== func_0025470C @ 0x0025470C [C]
+    public static void Resource_SetLoadFlags(int v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0025470C", (uint)v);
+            Mem.Set(0x8010517Cu, v);
+        }
+    }
+
+    // ==== func_0025471C @ 0x0025471C [C]
+    public static int Resource_GetLoadFlags()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0025471C");
+            return Mem.S32(0x8010517Cu);
+        }
+    }
+
+    // ==== func_0025472C @ 0x0025472C [C]
+    public static int Resource_GetFreeRequestCount()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0025472C");
+            return Mem.S32(0x80105108u);
+        }
+    }
+
+    // ==== func_0025473C @ 0x0025473C [C]
+    public static int ResourcePool_GetFreeNodeCount()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0025473C");
+            return Mem.S32(0x8010513Cu);
+        }
+    }
+
+    // ==== func_0025474C @ 0x0025474C [C]
+    public static int ResourcePool_GetUsedNodeCount()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0025474C");
+            return Mem.S32(0x80104580u);
+        }
+    }
+
+    // ==== func_0025475C @ 0x0025475C [C]
+    public static int ResourcePool_GetUsedNodeCount2_0025475C()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0025475C");
+            return Mem.S32(0x80104580u);
+        }
+    }
+
+    // ==== func_0025476C @ 0x0025476C [C]
+    public static int ResourcePool_GetUsedNodeCount3_0025476C()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0025476C");
+            return Mem.S32(0x80104580u);
+        }
+    }
+
+    // ==== func_0025477C @ 0x0025477C [C]
+    public static int ResourcePool_GetZero_0025477C()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0025477C");
+            return 0;
+        }
+    }
+
+    // ==== func_00254784 @ 0x00254784 [C]
+    public static void ResourcePool_MallocFree(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00254784", (uint)p);
+            uint mask = 0u;
+            uint m2 = 0u;
+            uint n = Mem.U32((p + (uint)((-4) * 4)));
+            mask = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(0x80105140u, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+            ResourcePool_ReleaseUnlocked((uint)(0), n, default(uint), default(uint));
+            m2 = __osDisableInt();
+            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            {
+                __osRestoreInt(m2);
+                osSendMesg(0x80105140u, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(m2);
+            }
+        }
+    }
+
+    // ==== func_00254858 @ 0x00254858 [C]
+    public static uint ResourcePool_AllocUnlocked(int unused, int a1, uint flags)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00254858", (uint)unused, (uint)a1, (uint)flags);
+            uint n = ResourcePool_AllocNode((uint)(0), flags, default(uint), default(uint));
+            if ((n != 0u))
+            {
+                new B12Node(n).refs_Set((int)(new B12Node(n).refs + 1));
+                new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) | (uint)(256)));
+                new B12Node(n).key_Set((uint)((int)(ResourcePool_AllocMemory(0, (uint)(a1), (int)(((flags >> (int)5) & (uint)(1))), flags))));
+                if ((new B12Node(n).key != 0u))
+                {
+                    new B12Node(n).unk4_Set(a1);
+                    new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) | flags));
+                    ResourcePool_InsertSorted((uint)(0), n);
+                    return n;
+                }
+                new B12Node(n).refs_Set((int)(new B12Node(n).refs - 1));
+                if ((new B12Node(n).refs == 0))
+                {
+                    new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) & (uint)((~256))));
+                }
+                ResourcePool_ReturnNode(0, n);
+                n = 0u;
+            }
+            return n;
+        }
+    }
+
+    // ==== func_00254930 @ 0x00254930 [MIPS]
+    public static uint ResourcePool_ReleaseUnlocked(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00254930", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_00254930: ;
+                r29 = r29 - 24u;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r5;
+                r2 = (uint)-3;
+                Mem.Set((r29 + 20u), r31);
+                r3 = Mem.U32((r16 + 12u));
+                r4 = Mem.U32((r16 + 8u));
+                r3 = r3 & r2;
+                { bool c_ = r4 == 0; Mem.Set((r16 + 12u), r3); if (c_) goto L_L00254980; }
+                L_L00254958: ;
+                r4 = (uint)-257;
+                L_L0025495C: ;
+                r2 = Mem.U32((r16 + 8u));
+                r2 = r2 - 1u;
+                { bool c_ = r2 != 0; Mem.Set((r16 + 8u), r2); if (c_) goto L_L00254958; }
+                r2 = Mem.U32((r16 + 12u));
+                r3 = Mem.U32((r16 + 8u));
+                r2 = r2 & r4;
+                { bool c_ = r3 != 0; Mem.Set((r16 + 12u), r2); if (c_) goto L_L0025495C; }
+                L_L00254980: ;
+                r2 = Mem.U32((r16 + 12u));
+                r2 = r2 & 1794u;
+                { bool c_ = r2 != 0; r4 = r0; if (c_) goto L_L002549B8; }
+                r5 = r16; Resource_FreeNodeRequest((int)r4, r5);
+                r5 = Mem.U32((r16 + 0u));
+                r4 = 2148532224u;
+                r4 = r4 + 20896u;
+                r2 = Heap_Free(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r0;
+                r5 = r16; ResourcePool_ReturnNode((int)r4, r5);
+                L_L002549B8: ;
+                r31 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00254930", r2); Stack.Free(384); }
     }
 
     // ==== func_002549C8 @ 0x002549C8 [C]
@@ -1146,6 +3959,265 @@ public static partial class Game
             List_Add((0x80103F70u + (uint)1536), n);
             new PNode(n).fC_Set((uint)((uint)(new PNode(n).fC) | (flags & (uint)(12))));
             return n;
+        }
+    }
+
+    // ==== func_00254A70 @ 0x00254A70 [C]
+    public static void ResourcePool_ReturnNode(int unused, uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00254A70", (uint)unused, (uint)n);
+            List_Remove((new B12Mgr(0x80103F70u).lists.P + (uint)(0 * 20)), n, default(uint), default(uint));
+            if (((new B12Node(n).flags & (uint)(4096)) != 0u))
+            {
+                List_Remove((new B12Mgr(0x80103F70u).lists.P + (uint)(1 * 20)), n, default(uint), default(uint));
+            }
+            if ((new B12Mgr(0x80103F70u).cur_ == n))
+            {
+                new B12Mgr(0x80103F70u).cur__Set(0u);
+            }
+            new B12Node(n).flags_Set((uint)(0));
+            Mem.Set((new B12Mgr(0x80103F70u).stk + (uint)(new B12Mgr(0x80103F70u).cnt * 4)), n);
+            new B12Mgr(0x80103F70u).cnt_Set((int)(new B12Mgr(0x80103F70u).cnt + 1));
+        }
+    }
+
+    // ==== func_00254AF8 @ 0x00254AF8 [C]
+    public static int ResourcePool_ReclaimStep(int unused, int a1, uint flags, int a3)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00254AF8", (uint)unused, (uint)a1, (uint)flags, (uint)a3);
+            int v = a1;
+            if (((flags & (uint)(16)) != 0u))
+            {
+                v = 0;
+            }
+            return (int)(ResourcePool_ReclaimNode((uint)(0), (uint)(2), (uint)(v), (uint)(a3)));
+        }
+    }
+
+    // ==== func_00254B2C @ 0x00254B2C [C]
+    public static uint ResourcePool_AllocMemory(int unused, uint size, int flag, uint flags)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00254B2C", (uint)unused, (uint)size, (uint)flag, (uint)flags);
+            uint p = 0u;
+            if ((flag != 0))
+            {
+                p = Heap_AllocTop(0x801051A0u, size, default(uint), default(uint));
+            }
+            else
+            {
+                p = Heap_Alloc(0x801051A0u, size, default(uint), default(uint));
+            }
+            if ((p == (uint)(0)))
+            {
+                uint r = 0u;
+                uint f = (flags & (uint)(16));
+                do
+                {
+                    r = ResourcePool_ReclaimNode((uint)(0), (uint)(2), (uint)(((f == (uint)(0)) ? 1 : 0)), default(uint));
+                }
+                while (((r != (uint)(0)) && (r < size)));
+                if (!(r < size))
+                {
+                    if ((flag != 0))
+                    {
+                        p = Heap_AllocTop(0x801051A0u, size, default(uint), default(uint));
+                    }
+                    else
+                    {
+                        p = Heap_Alloc(0x801051A0u, size, default(uint), default(uint));
+                    }
+                }
+            }
+            return p;
+        }
+    }
+
+    // ==== func_00254C10 @ 0x00254C10 [C]
+    public static void ResourcePool_InsertSorted(uint unused, uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00254C10", (uint)unused, (uint)n);
+            uint c = 0u;
+            for (c = new List_v2(0x80104584u).head_; (c != 0u); c = new PNode(c).next_)
+            {
+                if ((new PNode(c).key > new PNode(n).key))
+                {
+                    List_InsertBefore(0x80104584u, c, n, default(uint));
+                    break;
+                }
+            }
+            if ((c == 0u))
+            {
+                List_Append_00255CB4(0x80104584u, n, default(uint), default(uint));
+            }
+            new PNode(n).fC_Set((uint)((uint)(new PNode(n).fC) | (uint)(4096)));
+        }
+    }
+
+    // ==== func_00254CA0 @ 0x00254CA0 [C]
+    public static void ResourcePool_ClearCurrentFrameMarks()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00254CA0");
+            ResourcePool_ClearFrameMarks(0, Mem.S32((0x801045A8u + (uint)(0 * 4))));
+            Mem.Set((0x80104598u + (uint)(Mem.S32((0x801045A8u + (uint)(0 * 4))) * 4)), 0);
+        }
+    }
+
+    // ==== func_00254CE4 @ 0x00254CE4 [C]
+    public static void ResourcePool_ClearFrameMarks(int unused, int type)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00254CE4", (uint)unused, (uint)type);
+            uint mask = (uint)(((type != 0) ? (~1024) : (~512)));
+            uint i = 0u;
+            uint n = Mem.U32(0x800D0920u);
+            for (i = (uint)(0); (i < n); ++i)
+            {
+                new B12Node((new B12Mgr(0x80103F70u).nodes_ + (uint)(i * 40))).flags_Set((uint)((uint)(new B12Node((new B12Mgr(0x80103F70u).nodes_ + (uint)(i * 40))).flags) & mask));
+            }
+            new B12Mgr(0x80103F70u).tbl11C4.Set((int)(type), 0);
+        }
+    }
+
+    // ==== func_00254D44 @ 0x00254D44 [C]
+    public static void ResourcePool_TouchNode(int unused, uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00254D44", (uint)unused, (uint)n);
+            new B12Node(n).unk10_Set((uint)(new B12Pool(0x80103F70u).stamp));
+            List_MoveToHead(new B12Pool(0x80103F70u).list.P, n, default(uint), default(uint));
+        }
+    }
+
+    // ==== func_00254D70 @ 0x00254D70 [C]
+    public static void Resource_FreeNodeRequest(int unused, uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00254D70", (uint)unused, (uint)n);
+            if ((new B12Node(n).link_ != 0u))
+            {
+                AddrHash_Remove((uint)(new B12Node(n).link.refs));
+                n = new B12Node(n).link_;
+                List_Remove(0x8010510Cu, n, default(uint), default(uint));
+                new B12Node(n).unk10_Set((uint)(0));
+                List_Add(0x801050F8u, n);
+            }
+        }
+    }
+
+    // ==== func_00254DD0 @ 0x00254DD0 [C]
+    public static uint Resource_TryAllocRequest()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00254DD0");
+            uint n = new B12List((0x801050F8u + (uint)(0 * 20))).head_;
+            if ((n != 0u))
+            {
+                List_Remove((0x801050F8u + (uint)(0 * 20)), n, default(uint), default(uint));
+                new B12Node(n).unk10_Set((uint)(1));
+                List_Add((0x801050F8u + (uint)(1 * 20)), n);
+            }
+            return n;
+        }
+    }
+
+    // ==== func_00254E28 @ 0x00254E28 [C]
+    public static void Resource_FreeRequest(uint unused, uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00254E28", (uint)unused, (uint)n);
+            List_Remove(0x8010510Cu, n, default(uint), default(uint));
+            new PNode(n).f10_Set(0);
+            List_Add((0x8010510Cu - (uint)20), n);
+        }
+    }
+
+    // ==== func_00254E70 @ 0x00254E70 [C]
+    public static uint func_00254E70_take(int v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00254E70_take", (uint)v);
+            uint n = Mem.U32(0x801050F8u);
+            if ((n != 0u))
+            {
+                List_Remove(0x801050F8u, n, default(uint), default(uint));
+                new B12Node(n).unk10_Set((uint)(v));
+                List_Add(0x8010510Cu, n);
+            }
+            return n;
+        }
+    }
+
+    public static uint Resource_AllocRequest(int unused, uint flags)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00254E70", (uint)unused, (uint)flags);
+            uint n = func_00254E70_take(1);
+            if ((n == 0u))
+            {
+                int one = 1;
+                flags = (uint)((uint)(flags) & (uint)(16));
+                for (; ; )
+                {
+                    if (((int)(ResourcePool_ReclaimNode((uint)(0), (uint)(2), (uint)(((flags == (uint)(0)) ? 1 : 0)), default(uint))) == 0))
+                    {
+                        return n;
+                    }
+                    n = func_00254E70_take(one);
+                    if ((n != 0u))
+                    {
+                        break;
+                    }
+                }
+            }
+            return n;
+        }
+    }
+
+    // ==== func_00254F3C @ 0x00254F3C [C]
+    public static void Resource_OnFrameDone(int unused, int type)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00254F3C", (uint)unused, (uint)type);
+            uint mask = 0u;
+            uint i = 0u;
+            uint n = 0u;
+            if ((new B12Mgr(0x80103F70u).tbl630[(int)(type)] != 0))
+            {
+                new B12Mgr(0x80103F70u).tbl630.Set((int)(type), 0);
+                osSendMesg(new B12Mgr(0x80103F70u).q11F0.P, 0u, 1);
+            }
+            if ((type != 0))
+            {
+                mask = (uint)((~1024));
+            }
+            else
+            {
+                mask = (uint)((~512));
+            }
+            n = Mem.U32(0x800D0920u);
+            for (i = (uint)(0); (i < n); ++i)
+            {
+                new B12Node((new B12Mgr(0x80103F70u).nodes_ + (uint)(i * 40))).flags_Set((uint)((uint)(new B12Node((new B12Mgr(0x80103F70u).nodes_ + (uint)(i * 40))).flags) & mask));
+            }
+            Mem.Set((0x80105134u + (uint)(type * 4)), 0);
         }
     }
 
@@ -1873,7 +4945,7 @@ public static partial class Game
                 r2 = (uint)(r0 < r2 ? 1 : 0);
                 L_L0025FD30: ;
                 { bool c_ = r2 != 0; r4 = r0; if (c_) goto L_L0025FD54; }
-                r5 = r21; func_002537D8((int)r4, r5);
+                r5 = r21; ResourcePool_Release((int)r4, r5);
                 r4 = r0;
                 r5 = Mem.U32((r29 + 124u));
                 r6 = r4; goto L_L0025FD5C;
@@ -1916,7 +4988,7 @@ public static partial class Game
             r = new B19Src2(src).data_;
             if (!(((new B19Rnc(r).magic & (uint)((~255))) == (uint)(1380860672)))) goto _f0;
             if (!((pre != 0))) goto _f1;
-            dst = func_002545A0(0, (int)(a), new B19Rnc(r).unpacked);
+            dst = ResourcePool_AllocScratch(0, (int)(a), new B19Rnc(r).unpacked);
             goto _f2;
             _f1: ;
             dst = ResourcePool_GetBlock_00254420(0, a, new B19Rnc(r).unpacked);

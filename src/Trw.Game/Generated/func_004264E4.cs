@@ -23,7 +23,7 @@ public static partial class Game
             uint e = 0u;
             int m = 0;
             int m2 = 0;
-            Mem.Set(0x800E4690u, func_00252FFC((uint)(2688)));
+            Mem.Set(0x800E4690u, ResourcePool_Malloc((uint)(2688)));
             new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk970_Set(a);
             new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk974_Set((int)(func_0041B690((uint)(a), 4)));
             func_0041B768((uint)(a), 0, 318);

@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002A3224");
             MsgPort_Flush(0x8010A248u);
-            func_002538A8();
+            ResourcePool_Purge();
             func_004143E0();
             func_002A26F8(12288);
             func_00298FA0(35, 0x0043C500u);

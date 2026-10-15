@@ -23,7 +23,7 @@ public static partial class Game
             }
             if ((p != 0u))
             {
-                func_00255D10(new B19Owner(owner).lb.P, p, obj, default(uint));
+                List_InsertBefore(new B19Owner(owner).lb.P, p, obj, default(uint));
             }
             else
             {

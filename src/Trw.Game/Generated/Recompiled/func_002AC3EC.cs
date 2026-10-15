@@ -26,7 +26,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r16);
                 r16 = r5;
                 Mem.Set((r29 + 24u), r31);
-                Mem.Set((r29 + 20u), r17); r2 = (uint)func_0024E914(r4);
+                Mem.Set((r29 + 20u), r17); r2 = (uint)Actor_GetTypeId(r4);
                 r5 = r2;
                 r3 = Mem.U8((r16 + 0u));
                 r2 = (uint)1;

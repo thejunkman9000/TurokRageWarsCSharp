@@ -154,10 +154,10 @@ public static partial class Game
                 r2 = Mem.U32((r2 + 10420u));
                 r16 = Mem.U32((r29 + 76u));
                 { bool c_ = r2 == 0;  if (c_) goto L_L004079DC; }
-                r4 = r0; func_002538A8();
+                r4 = r0; ResourcePool_Purge();
                 r5 = 2148401152u;
                 r5 = Mem.U32((r5 + 10420u));
-                r4 = r0; func_002537D8((int)r4, r5);
+                r4 = r0; ResourcePool_Release((int)r4, r5);
                 L_L004079DC: ;
                 { bool c_ = r16 != 0; r16 = r16 << 8; if (c_) goto L_L004079F0; }
                 r2 = 2148663296u;
@@ -168,7 +168,7 @@ public static partial class Game
                 r5 = r16;
                 r7 = 2148401152u;
                 r7 = r7 + 3472u;
-                r6 = (uint)51; r2 = func_002533DC((int)r4, (int)r5, r6, (int)r7);
+                r6 = (uint)51; r2 = ResourcePool_Alloc((int)r4, (int)r5, r6, (int)r7);
                 r5 = r0;
                 r4 = Mem.U32((r2 + 0u));
                 r1 = 2148401152u;
@@ -358,10 +358,10 @@ public static partial class Game
                 r2 = Mem.U32((r2 + 10420u));
                 r16 = Mem.U32((r29 + 76u));
                 { bool c_ = r2 == 0;  if (c_) goto L_L00407D90; }
-                r4 = r0; func_002538A8();
+                r4 = r0; ResourcePool_Purge();
                 r5 = 2148401152u;
                 r5 = Mem.U32((r5 + 10420u));
-                r4 = r0; func_002537D8((int)r4, r5);
+                r4 = r0; ResourcePool_Release((int)r4, r5);
                 L_L00407D90: ;
                 { bool c_ = r16 != 0; r16 = r16 << 8; if (c_) goto L_L00407DA4; }
                 r2 = 2148663296u;
@@ -372,7 +372,7 @@ public static partial class Game
                 r5 = r16;
                 r7 = 2148401152u;
                 r7 = r7 + 3472u;
-                r6 = (uint)51; r2 = func_002533DC((int)r4, (int)r5, r6, (int)r7);
+                r6 = (uint)51; r2 = ResourcePool_Alloc((int)r4, (int)r5, r6, (int)r7);
                 r5 = r0;
                 r4 = Mem.U32((r2 + 0u));
                 r1 = 2148401152u;
@@ -418,17 +418,17 @@ public static partial class Game
                 r2 = Mem.U32((r2 + 10420u));
                 { bool c_ = r2 == 0;  if (c_) goto L_L00407E98; }
                 L_L00407E90: ;
-                r4 = r0; func_002538A8();
+                r4 = r0; ResourcePool_Purge();
                 L_L00407E98: ;
                 r5 = 2148401152u;
                 r5 = Mem.U32((r5 + 10416u));
                 { bool c_ = r5 == 0;  if (c_) goto L_L00407EB0; }
-                r4 = r0; func_002537D8((int)r4, r5);
+                r4 = r0; ResourcePool_Release((int)r4, r5);
                 L_L00407EB0: ;
                 r5 = 2148401152u;
                 r5 = Mem.U32((r5 + 10420u));
                 { bool c_ = r5 == 0;  if (c_) goto L_L00407EC8; }
-                r4 = r0; func_002537D8((int)r4, r5);
+                r4 = r0; ResourcePool_Release((int)r4, r5);
                 L_L00407EC8: ;
                 r1 = 2148401152u;
                 Mem.Set((r1 + 10416u), r0);

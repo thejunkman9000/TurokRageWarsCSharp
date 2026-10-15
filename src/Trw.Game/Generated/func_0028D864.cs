@@ -19,7 +19,7 @@ public static partial class Game
             arr = new Level(lv).ents.P;
             for (; (i < n); ++i)
             {
-                func_002536F4(0, new Ent12((arr + (uint)(i * 12))).tblp);
+                ResourcePool_Unref(0, new Ent12((arr + (uint)(i * 12))).tblp);
             }
             t = new Level(lv).cnt1504;
             new Level(lv).cnt944_Set(0);

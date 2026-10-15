@@ -23,7 +23,7 @@ public static partial class Game
                 {
                     return;
                 }
-                func_00253610(0, p);
+                ResourcePool_TouchAndRef(0, p);
                 Mem.Set((0x801153D8u + (uint)((Mem.Set(0x801153D0u, (int)(Mem.S32(0x801153D0u) + 1)) - 1) * 4)), p);
             }
             Mem.Set(0x8011064Cu, p);

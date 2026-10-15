@@ -1267,7 +1267,7 @@ public static partial class Game
                                 func_002AB19C_func_002ABDBC(Mem.U32(_fp), x, y);
                             }
                         }
-                        func_00253B5C(0, (uint)(h));
+                        Resource_MarkUsedInFrame(0, (uint)(h));
                     }
                 }
             }
@@ -1287,7 +1287,7 @@ public static partial class Game
                 return 0;
             }
             Sprite_GetFrameData_002AB19C(h, b, (int)(c), d, e, f, g);
-            func_002536F4(0, (uint)(h));
+            ResourcePool_Unref(0, (uint)(h));
             return 1;
         }
     }

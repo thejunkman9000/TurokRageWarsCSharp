@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002672E8", (uint)src);
             if (((int)(new SndSrc(src).type) == 1))
             {
-                return func_0024BECC(src);
+                return Actor_GetAverageScale(src);
             }
             return Mem.F32(0x800C9510u);
         }

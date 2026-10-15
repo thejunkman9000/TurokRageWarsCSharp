@@ -77,7 +77,7 @@ public static partial class Game
                 Mem.Set((r29 + 40u), r10);
                 Cpu.SetW(0, Mem.U32((r29 + 36u)));
                 Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
-                Mem.Set((r29 + 36u), Cpu.W(0)); Cpu.SetS(0, func_0024D274(r4));
+                Mem.Set((r29 + 36u), Cpu.W(0)); Cpu.SetS(0, Actor_GetHeight(r4));
                 Cpu.SetS(0, Cpu.S(0) * Cpu.S(21));
                 Cpu.SetW(1, Mem.U32((r29 + 36u)));
                 r4 = r29 + 16u;
@@ -129,7 +129,7 @@ public static partial class Game
                 { bool c_ = r4 != 0; r16 = r4; if (c_) goto L_L0027AEB4; }
                 L_L0027AFC4: ;
                 r16 = Mem.U32((r17 + 308u));
-                r4 = r16; Cpu.SetS(0, func_0024E410(r4));
+                r4 = r16; Cpu.SetS(0, Actor_GetBottomOffset(r4));
                 r8 = Mem.U32((r16 + 8u));
                 r9 = Mem.U32((r16 + 12u));
                 r10 = Mem.U32((r16 + 16u));
@@ -234,7 +234,7 @@ public static partial class Game
                 { bool c_ = r2 == 0;  if (c_) goto L_L0027B364; }
                 r2 = (uint)(int)Mem.S16((r4 + 14u));
                 { bool c_ = r2 == 0;  if (c_) goto L_L0027B364; }
-                r4 = r16; Cpu.SetS(0, func_0024E410(r4));
+                r4 = r16; Cpu.SetS(0, Actor_GetBottomOffset(r4));
                 r8 = Mem.U32((r16 + 8u));
                 r9 = Mem.U32((r16 + 12u));
                 r10 = Mem.U32((r16 + 16u));
@@ -244,7 +244,7 @@ public static partial class Game
                 Cpu.SetW(1, Mem.U32((r29 + 36u)));
                 Cpu.SetS(1, Cpu.S(1) + Cpu.S(0));
                 r4 = r16;
-                Mem.Set((r29 + 36u), Cpu.W(1)); Cpu.SetS(0, func_0024D274(r4));
+                Mem.Set((r29 + 36u), Cpu.W(1)); Cpu.SetS(0, Actor_GetHeight(r4));
                 r1 = 2148335616u;
                 Cpu.SetW(1, Mem.U32((r1 - 25384u)));
                 Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));

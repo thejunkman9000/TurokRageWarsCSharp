@@ -2056,7 +2056,7 @@ public static partial class Game
                     {
                         continue;
                     }
-                    if ((func_0022EAFC(new CtlB(c).actor_, w) == 0))
+                    if ((Player_CanUseWeapon(new CtlB(c).actor_, w) == 0))
                     {
                         continue;
                     }
@@ -2200,7 +2200,7 @@ public static partial class Game
             {
                 do
                 {
-                    w = func_00232AAC(new CtlB(c).actor_);
+                    w = Player_PickRandomWeapon(new CtlB(c).actor_);
                 }
                 while ((w >= 16));
                 new CtlB(c).actor.unk770_Set((short)(w));

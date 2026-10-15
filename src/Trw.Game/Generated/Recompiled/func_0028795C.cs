@@ -160,7 +160,7 @@ public static partial class Game
                 r4 = r19 + r4;
                 r5 = r17;
                 r7 = Mem.U32((r29 + 608u));
-                r6 = r2; func_0024FD4C(r4, r5, (int)r6, (int)r7);
+                r6 = r2; Prop_InitFromFullRecord(r4, r5, (int)r6, (int)r7);
                 r8 = Mem.U32((r29 + 572u));
                 r16 = r16 + 1u;
                 r2 = (uint)((int)r16 < (int)r8 ? 1 : 0);
@@ -199,7 +199,7 @@ public static partial class Game
                 r4 = r18;
                 r5 = r20;
                 r7 = Mem.U32((r29 + 608u));
-                r6 = r2; func_0024E980(r4, r5, (int)r6, (int)r7);
+                r6 = r2; Pickup_InitFromRecord(r4, r5, (int)r6, (int)r7);
                 r4 = Mem.U32((r23 + 128u));
                 r17 = Mem.U16((r18 + 414u));
                 r1 = 131072u;
@@ -311,7 +311,7 @@ public static partial class Game
                 L_L00287E54: ;
                 Cpu.SetW(0, Mem.U32((r16 + 8u)));
                 r4 = r16;
-                Mem.Set((r29 + 536u), Cpu.W(0)); Cpu.SetS(0, func_0024D274(r4));
+                Mem.Set((r29 + 536u), Cpu.W(0)); Cpu.SetS(0, Actor_GetHeight(r4));
                 Cpu.SetS(0, Cpu.S(0) * Cpu.S(20));
                 r19 = r19 + 1u;
                 Cpu.SetW(1, Mem.U32((r16 + 12u)));

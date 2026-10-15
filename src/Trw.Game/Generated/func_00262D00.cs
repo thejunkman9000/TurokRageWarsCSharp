@@ -47,8 +47,8 @@ public static partial class Game
                     }
                     if ((e != 0u))
                     {
-                        func_00246690(e, id, x, Mem.S32(0x800D2B40u), (uint)(a3), (-1), (uint)(a4), f8, _fp, (uint)(524288), (_fp + 32u), (_fp + 16u));
-                        func_0024B2C0(e);
+                        Actor_Init(e, id, x, Mem.S32(0x800D2B40u), (uint)(a3), (-1), (uint)(a4), f8, _fp, (uint)(524288), (_fp + 32u), (_fp + 16u));
+                        Actor_CallRestore(e);
                         return e;
                     }
                 }

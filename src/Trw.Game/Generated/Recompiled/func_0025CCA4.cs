@@ -32,9 +32,9 @@ public static partial class Game
                 Mem.Set((r29 + 32u), r18);
                 Mem.Set((r29 + 28u), r17);
                 r4 = Mem.U32((r16 + 0u));
-                r18 = (uint)1; func_00258760(r4);
+                r18 = (uint)1; Sound_Lock(r4);
                 r4 = Mem.U32((r16 + 0u));
-                r2 = func_00258D60(r4);
+                r2 = Sound_GetPlayer(r4);
                 r3 = Mem.U32((r16 + 8u));
                 { bool c_ = r3 == r18; r17 = r2; if (c_) goto L_L0025CD50; }
                 { bool c_ = r3 == 0; r2 = (uint)2; if (c_) goto L_L0025CEC8; }
@@ -137,7 +137,7 @@ public static partial class Game
                 Mem.Set((r16 + 12u), r2);
                 L_L0025CEC8: ;
                 r4 = Mem.U32((r16 + 0u));
-                func_002587C4(r4);
+                Sound_Unlock(r4);
                 r31 = Mem.U32((r29 + 40u));
                 r19 = Mem.U32((r29 + 36u));
                 r18 = Mem.U32((r29 + 32u));

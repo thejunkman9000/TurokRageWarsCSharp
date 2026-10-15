@@ -21,7 +21,7 @@ public static partial class Game
                 c = Chunk_Get(Chunk_Get(n, i), 0);
                 if ((Mem.S32((c + (uint)(2 * 4))) != 0))
                 {
-                    func_00253F2C((uint)(0), (uint)(Mem.S32((c + (uint)(2 * 4)))), default(uint), default(uint));
+                    Resource_TouchByKey((uint)(0), (uint)(Mem.S32((c + (uint)(2 * 4)))), default(uint), default(uint));
                 }
             }
         }

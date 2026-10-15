@@ -23,7 +23,7 @@ public static partial class Game
                     r = Mem.U32(0x800D7510u);
                     break;
                 case 5002:
-                    if (!((func_0022F444(p, (int)(new O04Row190r(p).unkF)) & 1) != 0))
+                    if (!((Profile_GetCharacterLives(p, (int)(new O04Row190r(p).unkF)) & 1) != 0))
                     {
                         r = Mem.U32(0x800D7518u);
                     }

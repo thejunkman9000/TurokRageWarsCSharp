@@ -36,9 +36,9 @@ public static partial class Game
                 r4 = r4 - 376u;
                 r5 = (uint)36;
                 r6 = r0; r2 = Level_Load(r4, r5, r6, r7); r3 = Cpu.V1;
-                r2 = (uint)func_0025471C();
+                r2 = (uint)Resource_GetLoadFlags();
                 { bool c_ = r2 != 0;  if (c_) goto L_L004220B0; }
-                r4 = (uint)1; func_0025470C((int)r4);
+                r4 = (uint)1; Resource_SetLoadFlags((int)r4);
                 L_L004220B0: ;
                 Flyby_ClearFieldOfView();
                 r4 = r0; Flyby_SetLoop((int)r4);

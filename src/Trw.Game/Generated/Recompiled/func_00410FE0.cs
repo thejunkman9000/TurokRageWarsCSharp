@@ -174,7 +174,7 @@ public static partial class Game
                 r2 = Mem.U32((r21 + 1164u));
                 r17 = Mem.U32((r2 + 28u));
                 r18 = r0;
-                r4 = r17; r2 = func_00252FFC(r4);
+                r4 = r17; r2 = ResourcePool_Malloc(r4);
                 r6 = r18;
                 Mem.Set((r21 + 772u), r2);
                 r2 = r16 - 544u;

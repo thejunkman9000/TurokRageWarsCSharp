@@ -747,7 +747,7 @@ public static partial class Game
                 r4 = r0;
                 L_L002A9ED0: ;
                 L_I002A9ED0: ;
-                r5 = r19; func_002536F4((int)r4, r5);
+                r5 = r19; ResourcePool_Unref((int)r4, r5);
                 L_L002A9ED8: ;
                 L_I002A9ED8: ;
                 r31 = Mem.U32((r29 + 64u));

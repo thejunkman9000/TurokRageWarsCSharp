@@ -125,6 +125,33 @@ public static partial class Game
         }
     }
 
+    // ==== func_0022EA2C @ 0x0022EA2C [C]
+    public static void Sound_SetReverbFromRoomHeight_0022EA2C(uint o, uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022EA2C", (uint)o, (uint)p);
+            int n = 0;
+            float d = 0f;
+            if ((((o != 0u) && (p != 0u)) && (((int)(Mem.U16((o + (uint)2))) & 64) != 0)))
+            {
+                n = (int)((func_002752CC(o, Cpu.U2F((uint)(Mem.S32((p + (uint)0)))), Cpu.U2F((uint)(Mem.S32((p + (uint)8))))) - func_00275E44(o, Cpu.U2F((uint)(Mem.S32((p + (uint)0)))), Cpu.U2F((uint)(Mem.S32((p + (uint)8)))))));
+                if (((float)(n) < Mem.F32(0x800C7F14u)))
+                {
+                    func_0025E460((Mem.F32(0x800C7F1Cu) - ((float)(n) * Mem.F32(0x800C7F18u))));
+                }
+                else
+                {
+                    func_0025E460((float)(0));
+                }
+            }
+            else
+            {
+                func_0025E460((float)(0));
+            }
+        }
+    }
+
     // ==== func_002570E0 @ 0x002570E0 [C]
     public static uint Audio_DmaCacheLoad(uint src, uint len)
     {
@@ -166,6 +193,3126 @@ public static partial class Game
             func_002C2490(d, src, len, default(uint));
             return osVirtualToPhysical(d);
         }
+    }
+
+    // ==== func_00257380 @ 0x00257380 [C]
+    public static void Sound_Init(uint m)
+    {
+        uint _fp = Stack.Alloc(52);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_00257380", (uint)m);
+                uint r = 0u;
+                uint bk = 0u;
+                uint t = 0u;
+                int i = 0;
+                int j = 0;
+                int n = 0;
+                uint a = 0u;
+                uint b = 0u;
+                uint e = 0u;
+                int x = 0;
+                int y = 0;
+                Lock_Init(new SndMgr(m).@lock.P);
+                func_00257380_SndMgr_Lock(m);
+                x = Mem.S32(0x801536B0u);
+                y = Mem.S32(0x801536ECu);
+                Mem.Set((m + (uint)216), 0);
+                alHeapInit(new SndMgr(m).heap.P, (uint)(x), y);
+                new M04SynCfg(_fp).v0_Set(37);
+                new M04SynCfg(_fp).v1_Set(37);
+                new M04SynCfg(_fp).v2_Set(256);
+                new M04SynCfg(_fp).v7_Set((sbyte)(6));
+                new M04SynCfg(_fp).tab_Set(0x800D0964u);
+                new M04AiCfg((_fp + 40u)).rate_Set(22050);
+                new M04AiCfg((_fp + 40u)).one_Set(1);
+                new M04SynCfg(_fp).v4_Set(0);
+                new M04SynCfg(_fp).heap_Set(new SndMgr(m).heap.P);
+                new M04AiCfg((_fp + 40u)).size_Set(2048);
+                AudioMgr_Init(_fp, Mem.S32(0x800D2B30u), (_fp + 40u));
+                Mem.Set(0x8010B6A0u, func_00265984(8));
+                r = Resource_AllocVirtualRegion((uint)((func_00265984(4) - func_00265984(0))), 0, func_00265984(0));
+                new SndMgr(m).seq.unk8__Set((uint)(new M04Res(r).f4));
+                bk = new M04Res(r).fC;
+                Mem.Set((m + (uint)128), bk);
+                new SndMgr(m).unk7C__Set((uint)(new M04Bank(bk).f4));
+                Sound_LoadTables(m);
+                func_0025D864(new SndMgr(m).seq.P, m);
+                t = new M04Bank(new SndMgr(m).unk7C_).tab_;
+                for (i = 0; (i < (int)(new M04SortTab(t).n)); ++i)
+                {
+                    for (j = (i + 1); (j < (int)(new M04SortTab(t).n)); ++j)
+                    {
+                        a = new M04SortTab(t).v[(int)(j)];
+                        b = new M04SortTab(t).v[(int)(i)];
+                        if ((a < b))
+                        {
+                            do
+                            {
+                                new M04SortTab(t).v.Set((int)(i), a);
+                            }
+                            while ((0 != 0));
+                            new M04SortTab(t).v.Set((int)(j), b);
+                        }
+                    }
+                }
+                Mem.Set((m + (uint)36), 17);
+                Mem.Set((m + (uint)40), 192);
+                Mem.Set((m + (uint)44), new SndMgr(m).heap.P);
+                alSndpNew(new SndMgr(m).player.P, (m + (uint)36));
+                for (n = 0; (n < 16); ++n)
+                {
+                    new SndMgr(m).snd.Set((int)(n), (short)((-1)));
+                }
+                new SndMgr(m).unk102_Set((short)((-1)));
+                new SndMgr(m).unk2B8C_Set((short)((-1)));
+                new SndMgr(m).unk108_Set(0);
+                new SndMgr(m).unk104_Set(0);
+                new SndMgr(m).unk2B88_Set(0u);
+                new SndMgr(m).unk2B94_Set((byte)(64));
+                new SndMgr(m).unk2B98_Set(0);
+                new SndMgr(m).unk2BB8_Set(0);
+                new SndMgr(m).unk2B9C_Set(0);
+                SndQueue_Init(new SndMgr(m).q.P, m);
+                func_0025B778(new SndMgr(m).pool.P, m);
+                e = 0x801462E1u;
+                new SndMgr(m).unk2BA0_Set(((float)(Mem.U8((e + (uint)0))) * Mem.F32(0x800C8FC0u)));
+                new SndMgr(m).unk2BA4_Set(((float)(Mem.U8((e + (uint)(-1)))) * Mem.F32(0x800C8FC0u)));
+                new SndMgr(m).unk2BA8_Set(((float)(Mem.U8((e + (uint)1))) * Mem.F32(0x800C8FC0u)));
+                new SndMgr(m).unk2BAC_Set(0);
+                new SndMgr(m).unk2BB0_Set((int)(Mem.U8((e + (uint)(-2)))));
+                new SndMgr(m).unk2BB4_Set(1);
+                Mem.Set((m + (uint)11196), Mem.F32(0x800C8FC4u));
+                func_0025D178(new SndMgr(m).obj2BC0.P, m);
+                Mem.Set(0x800D0960u, 1);
+                func_00257380_SndMgr_Unlock(m);
+            }
+        }
+        finally { Stack.Free(52); }
+    }
+
+    public static void func_00257380_SndMgr_Lock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00257380_SndMgr_Lock", (uint)m);
+            uint l = new SndMgr(m).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(new SndLock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    public static void func_00257380_SndMgr_Unlock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00257380_SndMgr_Unlock", (uint)m);
+            uint l = new SndMgr(m).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count - 1)) != 0))
+            {
+                __osRestoreInt(mask);
+                osSendMesg(new SndLock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    // ==== func_002576AC @ 0x002576AC [C]
+    public static void Sound_LoadTables(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002576AC", (uint)m);
+            uint s3 = 0u;
+            uint t0 = 0u;
+            uint t1 = 0u;
+            uint t2 = 0u;
+            uint n3 = 0u;
+            uint n4 = 0u;
+            uint n5 = 0u;
+            uint r = 0u;
+            uint z = 0u;
+            new SndMgr(m).root2B48_Set(Resource_AllocVirtualRegion((uint)((func_00265984(20) - func_00265984(16))), 0, func_00265984(16)));
+            s3 = Chunk_Get(new SndMgr(m).root2B48, 0);
+            Chunk_Get(new SndMgr(m).root2B48, 1);
+            do
+            {
+                t0 = Chunk_Get(s3, 0);
+                t1 = Chunk_Get(s3, 1);
+                t2 = Chunk_Get(s3, 2);
+                new SndMgr(m).tree2B4C_Set(t2);
+                new SndMgr(m).unk2B54_Set((int)(Mem.U32((t2 + (uint)(0 * 4)))));
+                new SndMgr(m).unk2B58_Set((t0 + (uint)8));
+                new SndMgr(m).unk2B5C__Set((t1 + (uint)8));
+                n3 = Chunk_Get(s3, 3);
+                n4 = Chunk_Get(s3, 4);
+                n5 = Chunk_Get(s3, 5);
+                new SndMgr(m).unk2B7C_Set((int)(Mem.U32((n3 + (uint)(1 * 4)))));
+                new SndMgr(m).tab70__Set((n3 + (uint)8));
+                new SndMgr(m).unk2B80_Set((int)(Mem.U32((n4 + (uint)(1 * 4)))));
+                new SndMgr(m).tab74__Set((n4 + (uint)8));
+                new SndMgr(m).unk2B84_Set((int)(Mem.U32((n5 + (uint)(1 * 4)))));
+                new SndMgr(m).tab78__Set((n5 + (uint)8));
+                r = Chunk_Get(new SndMgr(m).root2B48, 1);
+                z = Chunk_Get(r, 0);
+                new SndMgr(m).unk2B60_Set((z + (uint)8));
+                new SndMgr(m).unk2B64_Set((int)(Mem.U32((z + (uint)(1 * 4)))));
+                new SndMgr(m).node2B50_Set(Chunk_Get(r, 1));
+            }
+            while ((0 != 0));
+        }
+    }
+
+    // ==== func_00257814 @ 0x00257814 [C]
+    public static int func_00257814_find17(uint m, int id)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00257814_find17", (uint)m, (uint)id);
+            int i = 0;
+            uint vv = 0u;
+            for (vv = new SndMgr(m).pool.v.P, i = 0; (i < 17); ++i, vv += 204u)
+            {
+                if ((new SndVoice(vv).unkC == id))
+                {
+                    return i;
+                }
+            }
+            return (-1);
+        }
+    }
+
+    // ==== func_00257814 @ 0x00257814 [MIPS]
+    public static uint Sound_ApplyVoiceAndPlay(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00257814", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_00257814: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r4;
+                r6 = r5;
+                r2 = (uint)-1;
+                Mem.Set((r29 + 32u), r31);
+                Mem.Set((r29 + 28u), r19);
+                Mem.Set((r29 + 24u), r18);
+                { bool c_ = r6 == r2; Mem.Set((r29 + 16u), r16); if (c_) goto L_L00257A18; }
+                r4 = r17 + 7612u;
+                r3 = r0;
+                L_L00257844: ;
+                r2 = Mem.U32((r4 + 12u));
+                { bool c_ = r2 == r6; r2 = r3; if (c_) goto L_L00257864; }
+                r3 = r3 + 1u;
+                r2 = (uint)((int)r3 < 17 ? 1 : 0);
+                { bool c_ = r2 != 0; r4 = r4 + 204u; if (c_) goto L_L00257844; }
+                r2 = (uint)-1;
+                L_L00257864: ;
+                r19 = r2;
+                r2 = r2 << 16;
+                r3 = (uint)((int)r2 >> 16);
+                r5 = (uint)-1;
+                { bool c_ = r3 == r5; r2 = (uint)-1; if (c_) goto L_L00257A18; }
+                r2 = (uint)16;
+                if (r3 != r2) { r2 = r3 << 1; goto L_L0025789C; }
+                r4 = r17 + 312u;
+                r5 = r2; SndQueue_RequeueVoice(r4, (int)r5, (int)r6, r7);
+                r2 = (uint)-1; goto L_L00257A18;
+                L_L0025789C: ;
+                r2 = r2 + r3;
+                r3 = r2 << 4;
+                r2 = r2 + r3;
+                r3 = r2 << 2;
+                r2 = r3 + r17;
+                r16 = r2 + 7628u;
+                r2 = Mem.U32((r16 + 8u));
+                { bool c_ = r2 != 0; r18 = r17 + 132u; if (c_) goto L_L002578E8; }
+                r4 = r17 + r3;
+                r3 = Mem.U32((r4 + 7776u));
+                r2 = r3 & 4u;
+                if (r2 != 0) { r4 = r17 + 7608u; goto L_L002578EC; }
+                r2 = r0;
+                r3 = r3 | 8u;
+                Mem.Set((r4 + 7776u), r3);
+                Mem.Set((r17 + 258u), (ushort)r5); goto L_L00257A18;
+                L_L002578E8: ;
+                r4 = r17 + 7608u;
+                L_L002578EC: ;
+                r5 = r19 << 16;
+                r5 = (uint)((int)r5 >> 16); r2 = (uint)func_0025B874(r4, (short)r5);
+                { bool c_ = r2 != 0; r2 = (uint)-1; if (c_) goto L_L00257A10; }
+                r5 = Mem.U32((r16 + 20u));
+                r4 = r18; alSndpSetPitch(r4, Cpu.U2F(r5));
+                r2 = (uint)(int)Mem.S16((r16 + 16u));
+                r3 = Mem.U32((r17 + 11164u));
+                r2 = r2 + r3;
+                r2 = (uint)((int)r2 < 128 ? 1 : 0);
+                { bool c_ = r2 == 0; r5 = (uint)127; if (c_) goto L_L00257934; }
+                r2 = Mem.U8((r16 + 17u));
+                r3 = Mem.U8((r17 + 11167u));
+                r2 = r2 + r3;
+                r5 = r2 & 255u;
+                L_L00257934: ;
+                r4 = r18; alSndpSetFXMix(r4, (byte)r5);
+                r5 = Mem.U8((r16 + 25u));
+                r4 = r18; alSndpSetPan(r4, (byte)r5);
+                r3 = r19 << 16;
+                r3 = (uint)((int)r3 >> 16);
+                r2 = r3 << 1;
+                r2 = r2 + r3;
+                r3 = r2 << 4;
+                r2 = r2 + r3;
+                r2 = r2 << 2;
+                r3 = r17 + r2;
+                r2 = Mem.U32((r3 + 7776u));
+                r2 = r2 & 512u;
+                { bool c_ = r2 == 0;  if (c_) goto L_L00257984; }
+                Cpu.SetW(1, Mem.U32((r17 + 11176u)));
+                 goto L_L002579AC;
+                L_L00257984: ;
+                r2 = Mem.U32((r3 + 7808u));
+                Cpu.SetW(1, Mem.U32((r17 + 11168u)));
+                { bool c_ = r2 == 0;  if (c_) goto L_L002579AC; }
+                r2 = Mem.U32((r17 + 11192u));
+                { bool c_ = r2 == 0;  if (c_) goto L_L002579AC; }
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 28728u)));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
+                L_L002579AC: ;
+                Cpu.SetW(0, Mem.U32((r16 + 8u)));
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                Cpu.SetW(1, Mem.U32((r16 + 28u)));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                r4 = r18;
+                Cpu.SetW(2, (uint)(int)Cpu.S(0));
+                r5 = Cpu.W(2);
+                r5 = r5 << 16;
+                r5 = (uint)((int)r5 >> 16); alSndpSetVol(r4, (short)r5);
+                r2 = r19 << 16;
+                r5 = (uint)((int)r2 >> 16);
+                r2 = r5 << 1;
+                r2 = r2 + r5;
+                r3 = r2 << 4;
+                r2 = r2 + r3;
+                r2 = r2 << 2;
+                r2 = r17 + r2;
+                r2 = Mem.U32((r2 + 7772u));
+                { bool c_ = r2 != 0; r2 = (uint)-1; if (c_) goto L_L00257A10; }
+                r4 = r17 + 7608u; Sound_PlayVoice(r4, (int)r5);
+                r2 = (uint)-1;
+                L_L00257A10: ;
+                Mem.Set((r17 + 258u), (ushort)r2);
+                r2 = r0;
+                L_L00257A18: ;
+                r31 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00257814", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00257A34 @ 0x00257A34 [C]
+    public static int Sound_StopByHandle(uint m, int tag)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00257A34", (uint)m, (uint)tag);
+            uint c = 0u;
+            int n = 0;
+            int i = 0;
+            uint v = 0u;
+            if ((tag == (-1)))
+            {
+                return n;
+            }
+            {
+                func_00257A34_SndMgr_Lock(m);
+                SndQueue_RemoveByHandle(new SndMgr(m).q.P, tag);
+                c = (m + (uint)124);
+                for (i = 0; (i < 17); ++i)
+                {
+                    if ((new SndMgr(m).pool.v[(int)(i)].unk4 == tag))
+                    {
+                        ++n;
+                        v = (new SndMgr(m).pool.v.P + (uint)(i * 204));
+                        if ((i == 16))
+                        {
+                            new SndVoice(v).unk4_Set((-1));
+                            new SndVoice(v).unk38_Set((short)(0));
+                            new SndVoice(v).unk3A_Set((short)((-1)));
+                            new SndVoice(v).unkC_Set((-1));
+                            new SndVoice(v).unk8_Set((-1));
+                        }
+                        else
+                        {
+                            if ((new SndVoice(v).unkA0 > 0))
+                            {
+                                new SndVoice(v).unkA0_Set(0);
+                                new SndVoice(v).unkA4_Set((int)((int)(new SndVoice(v).unkA4) & (~16)));
+                            }
+                            if (((int)(new SndCore(c).snd[(int)(i)]) != (-1)))
+                            {
+                                func_0025BABC(new SndMgr(m).pool.P, (short)(i));
+                            }
+                        }
+                    }
+                }
+                func_00257A34_SndMgr_Unlock(m);
+            }
+            return n;
+        }
+    }
+
+    public static void func_00257A34_SndMgr_Lock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00257A34_SndMgr_Lock", (uint)m);
+            uint l = new SndMgr(m).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(new SndLock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    public static void func_00257A34_SndMgr_Unlock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00257A34_SndMgr_Unlock", (uint)m);
+            uint l = new SndMgr(m).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count - 1)) != 0))
+            {
+                __osRestoreInt(mask);
+                osSendMesg(new SndLock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    // ==== func_00257BD4 @ 0x00257BD4 [C]
+    public static int Sound_StartFromInfo(uint m, uint info, int id, int a3, int a4, int a5, int a6)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00257BD4", (uint)m, (uint)info, (uint)id, (uint)a3);
+            uint v = 0u;
+            new SndMgr(m).unk2B98_Set((int)(CameraManager_FindNearestCamera(0x80145088u, (uint)(id))));
+            if ((((int)(new SndInfo(info).bits6) & 1) != 0))
+            {
+                if ((func_0025BA6C(new SndMgr(m).pool.P, (int)(new SndMgr(m).unk2B8C)) != 0))
+                {
+                    return (-1);
+                }
+                if ((func_0025C12C((uint)(id), (uint)((new SndMgr(m).unk2B98 + 296))) == 0.0f))
+                {
+                    return (-1);
+                }
+            }
+            if ((((int)(new SndInfo(info).bits6) & 4096) != 0))
+            {
+                if ((new SndMgr(m).unk2B90 != (-1)))
+                {
+                    if ((func_0025BDCC(new SndMgr(m).pool.P, (int)(new SndMgr(m).unk2B8C), (uint)(new SndMgr(m).unk2B90)) != (-1)))
+                    {
+                        return (-1);
+                    }
+                }
+            }
+            if (((int)(new SndInfo(info).w2) != 0))
+            {
+                return SndQueue_Add(new SndMgr(m).q.P, info, (uint)(id), a3, a5);
+            }
+            if ((((int)(new SndInfo(info).bits6) & 64) != 0))
+            {
+                func_0025B940(new SndMgr(m).pool.P, new SndMgr(m).unk2B8C, new SndInfo(info).w0);
+            }
+            v = func_0025B1E8(new SndMgr(m).pool.P, info, a3, a4);
+            if ((v == 0u))
+            {
+                return (-1);
+            }
+            func_0025BB7C(v, (uint)(id), a6);
+            func_0025BB9C(v, (int)(new SndMgr(m).unk2B8C));
+            func_0025BBA4(v, info, (uint)(a5));
+            func_00257BD4_SndMgr_Lock(m);
+            Sound_ApplyVoiceAndPlay(m, (uint)(new SndVoice(v).unkC), (uint)(0), (uint)(id));
+            func_00257BD4_SndMgr_Unlock(m);
+            return 0;
+        }
+    }
+
+    public static void func_00257BD4_SndMgr_Lock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00257BD4_SndMgr_Lock", (uint)m);
+            uint l = new SndMgr(m).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(new SndLock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    public static void func_00257BD4_SndMgr_Unlock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00257BD4_SndMgr_Unlock", (uint)m);
+            uint l = new SndMgr(m).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count - 1)) != 0))
+            {
+                __osRestoreInt(mask);
+                osSendMesg(new SndLock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    // ==== func_00257DF4 @ 0x00257DF4 [C]
+    public static int Sound_Play(uint m, int id, uint pos_in, int a5, int a6)
+    {
+        uint _fp = Stack.Alloc(28);
+        try
+        {
+            unchecked
+            {
+                Mem.Copy(_fp + 0u, pos_in, 12);
+                if (Dbg.On) Dbg.Enter("func_00257DF4", (uint)m, (uint)id, (uint)pos_in);
+                int i = 0;
+                int i1 = 0;
+                int cnt = 0;
+                int c6 = 0;
+                int j = 0;
+                int j2 = 0;
+                short last = 0;
+                int busy = 0;
+                int idx = 0;
+                int sum = 0;
+                int r = 0;
+                int ok = 0;
+                int w = 0;
+                int n = 0;
+                int s0 = 0;
+                int ret = 0;
+                int sh = 0;
+                uint vp = 0u;
+                uint nd = 0u;
+                if (((int)(new SndMgr(m).unk102) != (-1)))
+                {
+                    busy = 1;
+                    goto L_chk;
+                }
+                c6 = 0;
+                if ((id < 256))
+                {
+                    for (i1 = 0; (i1 < 17); ++i1)
+                    {
+                        if ((Mem.S32(((m + (uint)(i1 * 204)) + (uint)7780)) == id))
+                        {
+                            ++c6;
+                        }
+                    }
+                    busy = 1;
+                    if ((c6 >= 6))
+                    {
+                        goto L_chk;
+                    }
+                }
+                busy = 0;
+                L_chk: ;
+                if ((busy != 0))
+                {
+                    return (-1);
+                }
+                if ((id < 256))
+                {
+                    last = (short)(Mem.U16((m + (uint)306)));
+                    sum = 0;
+                    if ((new SndMgr(m).unk2B54 != 0))
+                    {
+                        if ((func_00265570(new SndMgr(m).unk2B58, new SndMgr(m).unk2B54, (uint)((short)(id)), (_fp + 12u), (_fp + 16u)) != 0))
+                        {
+                            i = Mem.S32((_fp + 12u));
+                            if ((i != Mem.S32((_fp + 16u))))
+                            {
+                                for (j = Mem.S32((_fp + 12u)); (j <= Mem.S32((_fp + 16u))); ++j)
+                                {
+                                    sum = (int)((int)(sum) + (Mem.S32((new SndMgr(m).unk2B5C_ + (uint)(j * 4))) * 10));
+                                }
+                                r = (Random_Next() % sum);
+                                sum = 0;
+                                for (i = Mem.S32((_fp + 12u)); (i < Mem.S32((_fp + 16u))); ++i)
+                                {
+                                    sum = (int)((int)(sum) + (Mem.S32((new SndMgr(m).unk2B5C_ + (uint)(i * 4))) * 10));
+                                    if ((sum >= r))
+                                    {
+                                        break;
+                                    }
+                                }
+                                if ((((int)(last) != 0) && (i == new SndMgr(m).unk130)))
+                                {
+                                    if ((i == Mem.S32((_fp + 16u))))
+                                    {
+                                        i = (i - 1);
+                                    }
+                                    else
+                                    {
+                                        i = (i + 1);
+                                    }
+                                }
+                            }
+                            idx = i;
+                        }
+                        else
+                        {
+                            idx = (-1);
+                        }
+                    }
+                    else
+                    {
+                        idx = (-1);
+                    }
+                    new SndMgr(m).unk2B94_Set((byte)((int)(func_002745D4(Mem.F32(0x800C8FCCu)))));
+                }
+                else
+                {
+                    sum = 0;
+                    if ((new SndMgr(m).unk2B54 != 0))
+                    {
+                        if ((func_00265570(new SndMgr(m).unk2B58, new SndMgr(m).unk2B54, (uint)((short)(id)), (_fp + 20u), (_fp + 24u)) != 0))
+                        {
+                            i = Mem.S32((_fp + 20u));
+                            if ((i != Mem.S32((_fp + 24u))))
+                            {
+                                for (j2 = Mem.S32((_fp + 20u)); (j2 <= Mem.S32((_fp + 24u))); ++j2)
+                                {
+                                    sum = (int)((int)(sum) + (Mem.S32((new SndMgr(m).unk2B5C_ + (uint)(j2 * 4))) * 10));
+                                }
+                                r = (Random_Next() % sum);
+                                sum = 0;
+                                for (i = Mem.S32((_fp + 20u)); (i < Mem.S32((_fp + 24u))); ++i)
+                                {
+                                    sum = (int)((int)(sum) + (Mem.S32((new SndMgr(m).unk2B5C_ + (uint)(i * 4))) * 10));
+                                    if ((sum >= r))
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+                            idx = i;
+                        }
+                        else
+                        {
+                            idx = (-1);
+                        }
+                    }
+                    else
+                    {
+                        idx = (-1);
+                    }
+                }
+                if ((idx == (-1)))
+                {
+                    return (-1);
+                }
+                sh = (int)((short)(idx));
+                new SndMgr(m).unk2B88_Set(Chunk_Get(Chunk_Get(new SndMgr(m).tree2B4C, sh), 0));
+                new SndMgr(m).unk2B8C_Set((short)(id));
+                new SndMgr(m).unk2B90_Set(a6);
+                nd = Chunk_Get(Chunk_Get(new SndMgr(m).tree2B4C, sh), 1);
+                cnt = (int)(new M04Node2(nd).cnt);
+                if ((cnt != 0))
+                {
+                    func_00257DF4_SndMgr_Lock(m);
+                    ret = new SndMgr(m).unk10C_Set((new SndMgr(m).unk10C + 1));
+                    func_00257DF4_SndMgr_Unlock(m);
+                    if ((id < 256))
+                    {
+                        new SndMgr(m).unk130_Set(idx);
+                    }
+                }
+                else
+                {
+                    ret = (-1);
+                }
+                s0 = 0;
+                if ((cnt != 0))
+                {
+                    do
+                    {
+                        Sound_StartFromInfo(m, (nd + (uint)((s0 * new M04Node2(nd).stride) + 8)), (int)(_fp), idx, ret, 0, a5);
+                        ++s0;
+                    }
+                    while (((uint)(s0) < (uint)(cnt)));
+                }
+                new SndMgr(m).unk2B90_Set((-1));
+                return ret;
+            }
+        }
+        finally { Stack.Free(28); }
+    }
+
+    public static void func_00257DF4_SndMgr_Lock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00257DF4_SndMgr_Lock", (uint)m);
+            uint l = new SndMgr(m).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(new SndLock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    public static void func_00257DF4_SndMgr_Unlock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00257DF4_SndMgr_Unlock", (uint)m);
+            uint l = new SndMgr(m).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count - 1)) != 0))
+            {
+                __osRestoreInt(mask);
+                osSendMesg(new SndLock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    // ==== func_0025828C @ 0x0025828C [C]
+    public static int Sound_PlayByIndex(uint m, int id, uint pos_in, int flags)
+    {
+        uint _fp = Stack.Alloc(12);
+        try
+        {
+            unchecked
+            {
+                Mem.Copy(_fp + 0u, pos_in, 12);
+                if (Dbg.On) Dbg.Enter("func_0025828C", (uint)m, (uint)id, (uint)pos_in);
+                uint rec = 0u;
+                uint count = 0u;
+                uint i = 0u;
+                int token = 0;
+                uint n = 0u;
+                if (!(id < new SndMgr(m).unk2B54))
+                {
+                    return (-1);
+                }
+                n = Chunk_Get(new SndMgr(m).tree2B4C, (int)((short)(id)));
+                n = Chunk_Get(n, 0);
+                new SndMgr(m).unk2B88_Set(n);
+                new SndMgr(m).unk2B8C_Set((short)(256));
+                new SndMgr(m).unk2B90_Set((-1));
+                n = Chunk_Get(new SndMgr(m).tree2B4C, (int)((short)(id)));
+                rec = Chunk_Get(n, 1);
+                count = Mem.U32((rec + (uint)(1 * 4)));
+                if ((count != (uint)(0)))
+                {
+                    func_0025828C_SndMgr_Lock(m);
+                    token = new SndMgr(m).unk10C_Set((int)(new SndMgr(m).unk10C + 1));
+                    func_0025828C_SndMgr_Unlock(m);
+                }
+                else
+                {
+                    token = (-1);
+                }
+                i = (uint)(0);
+                if ((count != (uint)(0)))
+                {
+                    do
+                    {
+                        Sound_StartFromInfo(m, (rec + (uint)((i * Mem.U32((rec + (uint)(0 * 4)))) + (uint)(8))), (int)(_fp), id, token, 0, flags);
+                        ++i;
+                    }
+                    while ((i < count));
+                }
+                return token;
+            }
+        }
+        finally { Stack.Free(12); }
+    }
+
+    public static void func_0025828C_SndMgr_Lock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0025828C_SndMgr_Lock", (uint)m);
+            uint l = new SndMgr(m).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(new SndLock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    public static void func_0025828C_SndMgr_Unlock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0025828C_SndMgr_Unlock", (uint)m);
+            uint l = new SndMgr(m).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count - 1)) != 0))
+            {
+                __osRestoreInt(mask);
+                osSendMesg(new SndLock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    // ==== func_0025844C @ 0x0025844C [C]
+    public static void Sound_UpdateFrame(uint m)
+    {
+        uint _fp = Stack.Alloc(12);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0025844C", (uint)m);
+                uint o = 0u;
+                uint p = 0u;
+                uint t = 0x801462E1u;
+                new SndMgr(m).unk2BA0_Set(((float)((int)(Mem.U8((t + (uint)0)))) * Mem.F32(0x800C8FD0u)));
+                new SndMgr(m).unk2BA4_Set(((float)((int)(Mem.U8((t + (uint)(-1))))) * Mem.F32(0x800C8FD0u)));
+                new SndMgr(m).unk2BA8_Set(((float)((int)(Mem.U8((t + (uint)1)))) * Mem.F32(0x800C8FD0u)));
+                new SndMgr(m).unk2BB0_Set((int)(Mem.U8((t + (uint)(-2)))));
+                func_0025844C_SndMgr_Lock(m);
+                func_0025BD20(new SndMgr(m).pool.P);
+                func_0025844C_SndMgr_Unlock(m);
+                SndQueue_Update(new SndMgr(m).q.P);
+                func_0025CCB0(new SndMgr(m).obj2BC0.P, default(uint), default(uint), default(uint));
+                func_0025D948(new SndMgr(m).seq.P);
+                func_0025D470(new SndMgr(m).seq.P);
+                if (((((Mem.S32(0x800D0960u) != 0) && (new SndMgr(m).unk2BB4 != 0)) && (func_002934DC() != 0)) && (new SndMgr(m).unk134 > 0)))
+                {
+                    new Vec3f(_fp).z_Set(0.0f);
+                    new Vec3f(_fp).y_Set(0.0f);
+                    new Vec3f(_fp).x_Set(0.0f);
+                    o = CameraManager_FindNearestCamera(0x80145088u, _fp);
+                    p = new PosObj(o).pos.P;
+                    if (((new SndMgr(m).unk104 & 3) == 0))
+                    {
+                        Sound_Play(m, new SndMgr(m).unk134, p, 0, (-1));
+                    }
+                }
+                new SndMgr(m).unk104_Set((int)(new SndMgr(m).unk104 + 1));
+            }
+        }
+        finally { Stack.Free(12); }
+    }
+
+    public static void func_0025844C_SndMgr_Lock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0025844C_SndMgr_Lock", (uint)m);
+            uint l = new SndMgr(m).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(new SndLock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    public static void func_0025844C_SndMgr_Unlock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0025844C_SndMgr_Unlock", (uint)m);
+            uint l = new SndMgr(m).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count - 1)) != 0))
+            {
+                __osRestoreInt(mask);
+                osSendMesg(new SndLock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    // ==== func_00258614 @ 0x00258614 [C]
+    public static int Sound_IsSoundIdPlaying(uint m, int tag)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258614", (uint)m, (uint)tag);
+            func_00258614_SndMgr_Lock(m);
+            if ((func_0025C19C(new SndMgr(m).pool.P, tag) != 0))
+            {
+                func_00258614_SndMgr_Unlock(m);
+                return 1;
+            }
+            if ((SndQueue_HasSoundId(new SndMgr(m).q.P, tag) != 0))
+            {
+                func_00258614_SndMgr_Unlock(m);
+                return 1;
+            }
+            func_00258614_SndMgr_Unlock(m);
+            return 0;
+        }
+    }
+
+    public static void func_00258614_SndMgr_Lock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258614_SndMgr_Lock", (uint)m);
+            uint l = new SndMgr(m).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(new SndLock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    public static void func_00258614_SndMgr_Unlock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258614_SndMgr_Unlock", (uint)m);
+            uint l = new SndMgr(m).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count - 1)) != 0))
+            {
+                __osRestoreInt(mask);
+                osSendMesg(new SndLock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    // ==== func_00258760 @ 0x00258760 [C]
+    public static void Sound_Lock(uint o)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258760", (uint)o);
+            uint l = new P3LockOwner(o).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new P3Lock(l).count_Set((int)(new P3Lock(l).count + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(new P3Lock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    // ==== func_002587C4 @ 0x002587C4 [C]
+    public static void Sound_Unlock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002587C4", (uint)m);
+            func_002587C4_SndMgr_Unlock(m);
+        }
+    }
+
+    public static void func_002587C4_SndMgr_Unlock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002587C4_SndMgr_Unlock", (uint)m);
+            uint l = new SndMgr(m).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count - 1)) != 0))
+            {
+                __osRestoreInt(mask);
+                osSendMesg(new SndLock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    // ==== func_00258820 @ 0x00258820 [C]
+    public static void Sound_StopBySoundId(uint m, int tag)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258820", (uint)m, (uint)tag);
+            func_00258820_SndMgr_Lock(m);
+            func_0025BE28(new SndMgr(m).pool.P, tag);
+            SndQueue_RemoveBySoundId(new SndMgr(m).q.P, tag);
+            func_00258820_SndMgr_Unlock(m);
+        }
+    }
+
+    public static void func_00258820_SndMgr_Lock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258820_SndMgr_Lock", (uint)m);
+            uint l = new SndMgr(m).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(new SndLock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    public static void func_00258820_SndMgr_Unlock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258820_SndMgr_Unlock", (uint)m);
+            uint l = new SndMgr(m).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count - 1)) != 0))
+            {
+                __osRestoreInt(mask);
+                osSendMesg(new SndLock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    // ==== func_002588F4 @ 0x002588F4 [C]
+    public static void Sound_StopByOwner(uint m, int tag)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002588F4", (uint)m, (uint)tag);
+            func_002588F4_SndMgr_Lock(m);
+            func_0025BF28(new SndMgr(m).pool.P, (uint)(tag));
+            SndQueue_RemoveByOwner(new SndMgr(m).q.P, (uint)(tag));
+            func_002588F4_SndMgr_Unlock(m);
+        }
+    }
+
+    public static void func_002588F4_SndMgr_Lock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002588F4_SndMgr_Lock", (uint)m);
+            uint l = new SndMgr(m).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(new SndLock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    public static void func_002588F4_SndMgr_Unlock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002588F4_SndMgr_Unlock", (uint)m);
+            uint l = new SndMgr(m).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count - 1)) != 0))
+            {
+                __osRestoreInt(mask);
+                osSendMesg(new SndLock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    // ==== func_002589C8 @ 0x002589C8 [C]
+    public static void Sound_StopByFlags(uint m, int tag)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002589C8", (uint)m, (uint)tag);
+            func_002589C8_SndMgr_Lock(m);
+            func_0025C028(new SndMgr(m).pool.P, tag);
+            SndQueue_RemoveByFlags(new SndMgr(m).q.P, tag);
+            func_002589C8_SndMgr_Unlock(m);
+        }
+    }
+
+    public static void func_002589C8_SndMgr_Lock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002589C8_SndMgr_Lock", (uint)m);
+            uint l = new SndMgr(m).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(new SndLock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    public static void func_002589C8_SndMgr_Unlock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002589C8_SndMgr_Unlock", (uint)m);
+            uint l = new SndMgr(m).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count - 1)) != 0))
+            {
+                __osRestoreInt(mask);
+                osSendMesg(new SndLock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    // ==== func_00258A9C @ 0x00258A9C [MIPS]
+    public static uint func_00258A9C_rc(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5, uint a6, uint a7)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00258A9C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                Mem.Set(r29 + 20u, a5);
+                Mem.Set(r29 + 24u, a6);
+                Mem.Set(r29 + 28u, a7);
+                L_func_00258A9C: ;
+                r29 = r29 - 40u;
+                r2 = Mem.U32((r29 + 60u));
+                r3 = Mem.U32((r29 + 64u));
+                Cpu.SetW(0, Mem.U32((r29 + 68u)));
+                Mem.Set((r29 + 32u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 36u), r31);
+                Mem.Set((r29 + 48u), r6);
+                Mem.Set((r29 + 52u), r7);
+                Mem.Set((r16 + 11196u), Cpu.W(0));
+                Mem.Set((r29 + 20u), r2);
+                Mem.Set((r29 + 24u), r3);
+                r2 = Mem.U32((r29 + 56u));
+                Mem.Set((r29 + 16u), r2);
+                r6 = Mem.U32((r29 + 48u));
+                r7 = Mem.U32((r29 + 52u));
+                { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); r2 = (uint)Sound_Play(r4, (int)r5, s2_, (int)Mem.U32(r29 + 20u), (int)Mem.U32(r29 + 24u)); Stack.Free(12); }
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 28716u)));
+                Mem.Set((r16 + 11196u), Cpu.W(0));
+                r31 = Mem.U32((r29 + 36u));
+                r16 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00258A9C", r2); Stack.Free(384); }
+    }
+
+    public static int Sound_PlayScaled(uint p0, int p1, uint p2, int p3, int p4, float p5)
+    {
+        return (int)func_00258A9C_rc(p0, (uint)p1, Mem.U32(p2 + 0u), Mem.U32(p2 + 4u), Mem.U32(p2 + 8u), (uint)p3, (uint)p4, Cpu.F2U(p5));
+    }
+
+    // ==== func_00258B00 @ 0x00258B00 [C]
+    public static void Sound_UpdateAmbientLoop(uint m)
+    {
+        uint _fp = Stack.Alloc(12);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_00258B00", (uint)m);
+                uint o = 0u;
+                uint p = 0u;
+                if (((((Mem.S32(0x800D0960u) != 0) && (new SndMgr(m).unk2BB4 != 0)) && (func_002934DC() != 0)) && (new SndMgr(m).unk134 > 0)))
+                {
+                    new Vec3f(_fp).x_Set(new Vec3f(_fp).y_Set(new Vec3f(_fp).z_Set(0.0f)));
+                    o = CameraManager_FindNearestCamera(0x80145088u, _fp);
+                    p = new PosObj(o).pos.P;
+                    if (((new SndMgr(m).unk104 & 3) == 0))
+                    {
+                        Sound_Play(m, new SndMgr(m).unk134, p, 0, (-1));
+                    }
+                }
+            }
+        }
+        finally { Stack.Free(12); }
+    }
+
+    // ==== func_00258BAC @ 0x00258BAC [C]
+    public static void Sound_SetSfxVolume(uint m, float v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258BAC", (uint)m);
+            new SndMgr(m).unk2BA0_Set(v);
+        }
+    }
+
+    // ==== func_00258BB4 @ 0x00258BB4 [C]
+    public static void Sound_SetMusicVolume(uint m, uint v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258BB4", (uint)m, (uint)v);
+            new SndMgr(m).unk2BA4_Set((float)(v));
+        }
+    }
+
+    // ==== func_00258BDC @ 0x00258BDC [C]
+    public static void Sound_SetVoiceVolume_00258BDC(uint m, float v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258BDC", (uint)m);
+            new SndMgr(m).unk2BA8_Set(v);
+        }
+    }
+
+    // ==== func_00258BE4 @ 0x00258BE4 [C]
+    public static uint Sound_GetVolumeEnvelope(uint m, int i)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258BE4", (uint)m, (uint)i);
+            return (new SndMgr(m).tab70_ + (uint)(i * 12));
+        }
+    }
+
+    // ==== func_00258BFC @ 0x00258BFC [C]
+    public static uint Sound_GetPitchEnvelope(uint m, int i)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258BFC", (uint)m, (uint)i);
+            return (new SndMgr(m).tab74_ + (uint)(i * 12));
+        }
+    }
+
+    // ==== func_00258C14 @ 0x00258C14 [C]
+    public static uint Sound_GetPanEnvelope(uint ctx, int i)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258C14", (uint)ctx, (uint)i);
+            return (new P3Ctx(ctx).tab_ + (uint)(i * 12));
+        }
+    }
+
+    // ==== func_00258C2C @ 0x00258C2C [C]
+    public static void Sound_StopAllExcept(uint m, int tag)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258C2C", (uint)m, (uint)tag);
+            func_00258C2C_SndMgr_Lock(m);
+            func_0025B610(new SndMgr(m).pool.P, (uint)(tag), default(uint), default(uint));
+            SndQueue_RemoveAllExcept(new SndMgr(m).q.P, tag);
+            new SndMgr(m).unk2B9C_Set(0);
+            func_00258C2C_SndMgr_Unlock(m);
+            func_0025D1DC(new SndMgr(m).obj2BC0.P);
+        }
+    }
+
+    public static void func_00258C2C_SndMgr_Lock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258C2C_SndMgr_Lock", (uint)m);
+            uint l = new SndMgr(m).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(new SndLock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    public static void func_00258C2C_SndMgr_Unlock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258C2C_SndMgr_Unlock", (uint)m);
+            uint l = new SndMgr(m).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count - 1)) != 0))
+            {
+                __osRestoreInt(mask);
+                osSendMesg(new SndLock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    // ==== func_00258D0C @ 0x00258D0C [C]
+    public static void Sound_FadeOutMusic(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258D0C", (uint)m);
+            func_0025DAEC(new SndMgr(m).seq.P);
+        }
+    }
+
+    // ==== func_00258D28 @ 0x00258D28 [C]
+    public static void Sound_SetPosFlag_00258D28(uint m, int v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258D28", (uint)m, (uint)v);
+            new SndMgr(m).unk2BAC_Set(v);
+        }
+    }
+
+    // ==== func_00258D30 @ 0x00258D30 [C]
+    public static int Sound_GetPosFlag_00258D30(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258D30", (uint)m);
+            return new SndMgr(m).unk2BAC;
+        }
+    }
+
+    // ==== func_00258D3C @ 0x00258D3C [C]
+    public static void Sound_SetAmbientEnabled(uint m, int v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258D3C", (uint)m, (uint)v);
+            new SndMgr(m).unk2BB4_Set(v);
+        }
+    }
+
+    // ==== func_00258D44 @ 0x00258D44 [C]
+    public static void Sound_SetSourceActor_00258D44(uint m, int v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258D44", (uint)m, (uint)v);
+            new SndMgr(m).unk2B98_Set(v);
+        }
+    }
+
+    // ==== func_00258D4C @ 0x00258D4C [C]
+    public static int Sound_IsStereo(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258D4C", (uint)m);
+            return new SndMgr(m).unk2BB0;
+        }
+    }
+
+    // ==== func_00258D58 @ 0x00258D58 [C]
+    public static void Sound_SetStereo(uint m, int v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258D58", (uint)m, (uint)v);
+            new SndMgr(m).unk2BB0_Set(v);
+        }
+    }
+
+    // ==== func_00258D60 @ 0x00258D60 [C]
+    public static uint Sound_GetPlayer(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258D60", (uint)m);
+            return new SndMgr(m).player.P;
+        }
+    }
+
+    // ==== func_00258D68 @ 0x00258D68 [C]
+    public static void Sound_SetMuffle_00258D68(uint m, int v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258D68", (uint)m, (uint)v);
+            new SndMgr(m).unk2BB8_Set(v);
+        }
+    }
+
+    // ==== func_00258D70 @ 0x00258D70 [C]
+    public static int Sound_CountByHandle(uint m, int tag)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258D70", (uint)m, (uint)tag);
+            int n = 0;
+            int i = 0;
+            func_00258D70_SndMgr_Lock(m);
+            for (i = 0; (i < 17); ++i)
+            {
+                if ((new SndMgr(m).pool.v[(int)(i)].unk4 == tag))
+                {
+                    ++n;
+                }
+            }
+            func_00258D70_SndMgr_Unlock(m);
+            return n;
+        }
+    }
+
+    public static void func_00258D70_SndMgr_Lock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258D70_SndMgr_Lock", (uint)m);
+            uint l = new SndMgr(m).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count + 1)) != 1))
+            {
+                __osRestoreInt(mask);
+                osRecvMesg(new SndLock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    public static void func_00258D70_SndMgr_Unlock(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258D70_SndMgr_Unlock", (uint)m);
+            uint l = new SndMgr(m).@lock.P;
+            uint mask = __osDisableInt();
+            if ((new SndLock(l).count_Set((int)(new SndLock(l).count - 1)) != 0))
+            {
+                __osRestoreInt(mask);
+                osSendMesg(new SndLock(l).q.P, 0u, 1);
+            }
+            else
+            {
+                __osRestoreInt(mask);
+            }
+        }
+    }
+
+    // ==== func_00258E60 @ 0x00258E60 [C]
+    public static void Sound_StopMusic(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258E60", (uint)m);
+            Seq_Stop(new SndMgr(m).seq.P);
+        }
+    }
+
+    // ==== func_00258E7C @ 0x00258E7C [C]
+    public static void Sound_SetFxMixLevel(uint m, float v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258E7C", (uint)m);
+            float r = 0f;
+            if ((Mem.F32(0x800C8FE0u) < v))
+            {
+                r = v;
+                goto L_b0;
+            }
+            r = 0.0f;
+            if ((v < 0.0f))
+            {
+                goto L_c0;
+            }
+            do
+            {
+                r = v;
+            }
+            while ((0 != 0));
+            L_b0: ;
+            if ((Mem.F32(0x800C8FE0u) < r))
+            {
+                r = Mem.F32(0x800C8FE0u);
+            }
+            L_c0: ;
+            new SndMgr(m).unk2B9C_Set((int)((r * Mem.F32(0x800C8FE4u))));
+        }
+    }
+
+    // ==== func_00258EDC @ 0x00258EDC [C]
+    public static void Sound_DuckMusic(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258EDC", (uint)m);
+            func_0025DB54(new SndMgr(m).seq.P);
+        }
+    }
+
+    // ==== func_00258EF8 @ 0x00258EF8 [C]
+    public static void Sound_UnduckMusic(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258EF8", (uint)m);
+            func_0025DB64(new SndMgr(m).seq.P);
+        }
+    }
+
+    // ==== func_00258F14 @ 0x00258F14 [C]
+    public static void Sound_ClearVoiceTimers_00258F14(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258F14", (uint)m);
+            func_0025BB5C(new SndMgr(m).pool.P);
+        }
+    }
+
+    // ==== func_00258F30 @ 0x00258F30 [C]
+    public static void Sound_PlaySndFx(uint m, int a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258F30", (uint)m, (uint)a);
+            float t = Mem.F32(0x800C8FE8u);
+            if (!(t < new SndMgr(m).unk2BA8))
+            {
+                t = new SndMgr(m).unk2BA8;
+            }
+            func_0025CEF0(new SndMgr(m).obj2BC0.P, a, t);
+        }
+    }
+
+    // ==== func_00258F70 @ 0x00258F70 [C]
+    public static void Sound_StopSndFx(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258F70", (uint)m);
+            func_0025D1DC(new SndMgr(m).obj2BC0.P);
+        }
+    }
+
+    // ==== func_00258F8C @ 0x00258F8C [C]
+    public static void Sound_SortTable(uint a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00258F8C", (uint)a);
+            int i = 0;
+            int j = 0;
+            for (i = 0; (i < (int)(new P3SortArr(a).count)); ++i)
+            {
+                for (j = (i + 1); (j < (int)(new P3SortArr(a).count)); ++j)
+                {
+                    uint x = new P3SortArr(a).v[(int)(j)];
+                    uint y = new P3SortArr(a).v[(int)(i)];
+                    if ((x < y))
+                    {
+                        new P3SortArr(a).v.Set((int)(i), x);
+                        new P3SortArr(a).v.Set((int)(j), y);
+                    }
+                }
+            }
+        }
+    }
+
+    // ==== func_00259014 @ 0x00259014 [C]
+    public static int Sound_FindVoiceById(uint m, int id)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00259014", (uint)m, (uint)id);
+            int i = 0;
+            uint v = 0u;
+            if ((id == (-1)))
+            {
+                return (-1);
+            }
+            v = new SndMgr(m).pool.v.P;
+            for (i = 0; (i < 17); ++i)
+            {
+                if ((new SndVoice(v).unkC == id))
+                {
+                    return i;
+                }
+                v += 204u;
+            }
+            return (-1);
+        }
+    }
+
+    // ==== func_00259058 @ 0x00259058 [C]
+    public static int Sound_PickVariant(uint m, int key, int last)
+    {
+        uint _fp = Stack.Alloc(8);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_00259058", (uint)m, (uint)key, (uint)last);
+                int lst = 0;
+                int total = 0;
+                int i = 0;
+                int r = 0;
+                int j = 0;
+                lst = last;
+                if ((new SndMgr(m).unk2B54 != 0))
+                {
+                    if ((func_00265570(new SndMgr(m).unk2B58, new SndMgr(m).unk2B54, (uint)((short)(key)), _fp, (_fp + 4u)) != 0))
+                    {
+                        if ((Mem.S32(_fp) != Mem.S32((_fp + 4u))))
+                        {
+                            for (j = Mem.S32(_fp); (j <= Mem.S32((_fp + 4u))); ++j)
+                            {
+                                total = (int)((int)(total) + (Mem.S32((new SndMgr(m).unk2B5C_ + (uint)(j * 4))) * 10));
+                            }
+                            r = (Random_Next() % total);
+                            total = 0;
+                            for (i = Mem.S32(_fp); (i < Mem.S32((_fp + 4u))); ++i)
+                            {
+                                total = (int)((int)(total) + (Mem.S32((new SndMgr(m).unk2B5C_ + (uint)(i * 4))) * 10));
+                                if ((total >= r))
+                                {
+                                    break;
+                                }
+                            }
+                            if ((((int)((short)(lst)) != 0) && (i == new SndMgr(m).unk130)))
+                            {
+                                if ((i == Mem.S32((_fp + 4u))))
+                                {
+                                    --i;
+                                }
+                                else
+                                {
+                                    ++i;
+                                }
+                            }
+                            return i;
+                        }
+                        return Mem.S32(_fp);
+                    }
+                    return (-1);
+                }
+                return (-1);
+            }
+        }
+        finally { Stack.Free(8); }
+    }
+
+    // ==== func_002591C0 @ 0x002591C0 [C]
+    public static void Sound_GetEffectHeader(uint m, short idx)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002591C0", (uint)m, (uint)idx);
+            uint n = Chunk_Get(new SndMgr(m).tree2B4C, (int)(idx));
+            Chunk_Get(n, 0);
+        }
+    }
+
+    // ==== func_002591F0 @ 0x002591F0 [C]
+    public static void Sound_GetEffectRecords(uint m, short idx)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002591F0", (uint)m, (uint)idx);
+            uint n = Chunk_Get(new SndMgr(m).tree2B4C, (int)(idx));
+            Chunk_Get(n, 1);
+        }
+    }
+
+    // ==== func_00259220 @ 0x00259220 [C]
+    public static int Sound_IsInstanceLimitReached(uint m, int tag)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00259220", (uint)m, (uint)tag);
+            int i = 0;
+            int n = 0;
+            if (((int)(new SndMgr(m).unk102) != (-1)))
+            {
+                return 1;
+            }
+            if ((tag < 256))
+            {
+                n = 0;
+                for (i = 0; (i < 17); ++i)
+                {
+                    if ((new SndMgr(m).pool.v[(int)(i)].tag == tag))
+                    {
+                        ++n;
+                    }
+                }
+                if ((n >= 6))
+                {
+                    return 1;
+                }
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_00259278 @ 0x00259278 [MIPS]
+    public static uint SndQueue_AddHead_00259278(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00259278", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_00259278: ;
+                Mem.Set((r16 + 132u), Cpu.W(0));
+                r4 = Mem.U16((r18 + 2u));
+                L_func_00259280: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r4;
+                Mem.Set((r29 + 28u), r19);
+                r19 = r5;
+                Mem.Set((r29 + 32u), r20);
+                r20 = r6;
+                Mem.Set((r29 + 16u), r16);
+                Mem.Set((r29 + 36u), r31);
+                Mem.Set((r29 + 20u), r17);
+                r2 = Mem.U32((r18 + 220u));
+                r3 = r18 + 216u;
+                { bool c_ = r2 == r3; r16 = r7; if (c_) goto L_L0025943C; }
+                r4 = Mem.U32((r18 + 0u));
+                Sound_Lock(r4);
+                r3 = Mem.U32((r18 + 220u));
+                r4 = Mem.U32((r3 + 0u));
+                r2 = Mem.U32((r3 + 4u));
+                Mem.Set((r4 + 4u), r2);
+                r4 = Mem.U32((r3 + 4u));
+                r2 = Mem.U32((r3 + 0u));
+                Mem.Set((r4 + 0u), r2);
+                r5 = Mem.U32((r18 + 0u));
+                r17 = r3;
+                r2 = Mem.U32((r5 + 264u));
+                r4 = r19;
+                Mem.Set((r17 + 20u), r2);
+                r2 = r2 + 1u;
+                Mem.Set((r5 + 264u), r2);
+                r2 = (uint)-1;
+                Mem.Set((r17 + 12u), r16);
+                Mem.Set((r17 + 72u), r2);
+                Mem.Set((r17 + 68u), (ushort)r16); r2 = (uint)func_0025E520(r4);
+                r4 = r19;
+                Mem.Set((r17 + 66u), (ushort)r2); r2 = (uint)func_0025E538(r4);
+                r2 = r2 << 24;
+                r2 = (uint)((int)r2 >> 24);
+                r4 = r19;
+                Mem.Set((r17 + 64u), (ushort)r2); r2 = (uint)func_0025E52C(r4);
+                r4 = r19;
+                r2 = r2 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                Mem.Set((r17 + 28u), r2); r2 = (uint)func_0025E568(r4);
+                r4 = r19;
+                Mem.Set((r17 + 92u), (byte)r2); r2 = (uint)func_0025E598(r4);
+                r4 = r19;
+                r2 = r2 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                Mem.Set((r17 + 172u), r2); r2 = (uint)func_0025E574(r4);
+                r2 = r2 << 24;
+                r2 = (uint)((int)r2 >> 24);
+                Mem.Set((r17 + 40u), (ushort)r2);
+                r2 = (uint)32000;
+                Mem.Set((r17 + 36u), r2);
+                Mem.Set((r17 + 32u), r2);
+                Mem.Set((r17 + 44u), r0);
+                r2 = Mem.U32((r18 + 0u));
+                r2 = Mem.U32((r2 + 260u));
+                Mem.Set((r17 + 24u), r2);
+                r8 = Mem.U32((r20 + 0u));
+                r9 = Mem.U32((r20 + 4u));
+                r10 = Mem.U32((r20 + 8u));
+                Mem.Set((r17 + 76u), r8);
+                Mem.Set((r17 + 80u), r9);
+                Mem.Set((r17 + 84u), r10);
+                Mem.Set((r17 + 88u), r0);
+                Mem.Set((r17 + 180u), r0);
+                r2 = Mem.U32((r18 + 0u));
+                r16 = r17 + 8u;
+                r5 = (uint)(int)Mem.S16((r2 + 11148u));
+                r4 = r16; func_0025BB9C(r4, (int)r5);
+                r2 = Mem.U32((r18 + 0u));
+                r2 = Mem.U32((r2 + 11180u));
+                r4 = r16;
+                Mem.Set((r17 + 200u), r2);
+                r6 = Mem.U32((r29 + 56u));
+                r5 = r19; func_0025BBA4(r4, r5, r6);
+                r2 = r18 + 4u;
+                r3 = Mem.U32((r18 + 8u));
+                r5 = (uint)(int)Mem.S16((r17 + 64u));
+                { bool c_ = r3 == r2; r4 = r2; if (c_) goto L_L0025940C; }
+                L_L002593F0: ;
+                r2 = (uint)(int)Mem.S16((r3 + 64u));
+                r2 = (uint)((int)r2 < (int)r5 ? 1 : 0);
+                { bool c_ = r2 != 0;  if (c_) goto L_L0025940C; }
+                r3 = Mem.U32((r3 + 4u));
+                { bool c_ = r3 != r4;  if (c_) goto L_L002593F0; }
+                L_L0025940C: ;
+                r2 = Mem.U32((r3 + 0u));
+                Mem.Set((r17 + 4u), r3);
+                Mem.Set((r17 + 0u), r2);
+                r2 = Mem.U32((r3 + 0u));
+                Mem.Set((r2 + 4u), r17);
+                Mem.Set((r3 + 0u), r17);
+                r4 = Mem.U32((r18 + 0u));
+                Sound_Unlock(r4);
+                r2 = Mem.U32((r17 + 20u));
+                 goto L_L00259440;
+                L_L0025943C: ;
+                r2 = (uint)-1;
+                L_L00259440: ;
+                r31 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00259278", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00259280 @ 0x00259280 [C]
+    public static int SndQueue_Add(uint q, uint info, uint pos, int a3, int flags)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00259280", (uint)q, (uint)info, (uint)pos, (uint)a3);
+            uint l = 0u;
+            uint n = 0u;
+            uint c = 0u;
+            uint b = 0u;
+            int pri = 0;
+            if ((new SndQueue(q).free.link.next_ != new SndQueue(q).free.link.P))
+            {
+                Sound_Lock(new SndQueue(q).owner_);
+                l = new SndQueue(q).free.link.next_;
+                new SndLink(l).prev.next__Set(new SndLink(l).next_);
+                new SndLink(l).next.prev__Set(new SndLink(l).prev_);
+                n = l;
+                new SndNode(n).body.unkC_Set((new SndMgr(new SndQueue(q).owner_).unk108_Set((int)(new SndMgr(new SndQueue(q).owner_).unk108 + 1)) - 1));
+                new SndNode(n).body.unk4_Set(a3);
+                new SndNode(n).body.unk40_Set((-1));
+                new SndNode(n).body.unk3C_Set((short)(a3));
+                new SndNode(n).body.unk3A_Set((short)(func_0025E520(info)));
+                new SndNode(n).body.unk38_Set((short)((sbyte)(func_0025E538(info))));
+                new SndNode(n).body.unk14_Set((int)((short)(func_0025E52C(info))));
+                new SndNode(n).body.unk54_Set((byte)(func_0025E568(info)));
+                new SndNode(n).body.unkA4_Set((int)((short)(func_0025E598(info))));
+                new SndNode(n).body.unk20_Set((short)((sbyte)(func_0025E574(info))));
+                new SndNode(n).body.unk1C_Set(32000);
+                new SndNode(n).body.unk18_Set(32000);
+                new SndNode(n).body.unk24_Set(0);
+                new SndNode(n).body.unk10_Set(new SndMgr(new SndQueue(q).owner_).unk104);
+                Mem.Copy(new SndNode(n).body.pos.P, pos, 12);
+                new SndNode(n).body.unk50_Set(0);
+                new SndNode(n).body.unkAC_Set(0);
+                b = new SndNode(n).body.P;
+                func_0025BB9C(b, (int)(new SndMgr(new SndQueue(q).owner_).unk2B8C));
+                new SndNode(n).body.unkC0_Set(new SndMgr(new SndQueue(q).owner_).unk2BAC);
+                func_0025BBA4(b, info, (uint)(flags));
+                pri = (int)(new SndNode(n).body.unk38);
+                for (c = new SndQueue(q).active.link.next_; (c != new SndQueue(q).active.link.P); c = new SndLink(c).next_)
+                {
+                    if (((int)(new SndNode(c).body.unk38) < pri))
+                    {
+                        break;
+                    }
+                }
+                new SndNode(n).link.prev__Set(new SndLink(c).prev_);
+                new SndNode(n).link.next__Set(c);
+                new SndLink(c).prev.next__Set(new SndNode(n).link.P);
+                new SndLink(c).prev__Set(new SndNode(n).link.P);
+                Sound_Unlock(new SndQueue(q).owner_);
+                return new SndNode(n).body.unkC;
+            }
+            return (-1);
+        }
+    }
+
+    // ==== func_00259460 @ 0x00259460 [C]
+    public static void SndQueue_Update(uint q)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00259460", (uint)q);
+            uint ids = 0u;
+            uint player = 0u;
+            uint bank = 0u;
+            uint n = 0u;
+            uint next = 0u;
+            uint v = 0u;
+            short idx = 0;
+            int old = 0;
+            Sound_Lock(new SndQueue(q).owner_);
+            ids = new SndMgr(new SndQueue(q).owner_).snd.P;
+            player = new SndMgr(new SndQueue(q).owner_).player.P;
+            bank = (uint)(Mem.S32((new SndMgr(new SndQueue(q).owner_).unk7C_ + (uint)(3 * 4))));
+            for (n = new SndQueue(q).active.link.next_; (n != new SndQueue(q).active.P); n = next)
+            {
+                next = new SndNode(n).link.next_;
+                if ((new SndNode(n).body.unk14 != 0))
+                {
+                    if ((new SndNode(n).body.unk14_Set((int)(new SndNode(n).body.unk14 - 1)) == 0))
+                    {
+                        new SndNode(n).body.unk10_Set(new SndMgr(new SndQueue(q).owner_).unk104);
+                        new SndNode(n).body.unk40_Set((new SndMgr(new SndQueue(q).owner_).unk108_Set((int)(new SndMgr(new SndQueue(q).owner_).unk108 + 1)) - 1));
+                        new SndNode(n).body.unkA0_Set(0);
+                    }
+                    continue;
+                }
+                if (((new SndMgr(new SndQueue(q).owner_).unk104 - new SndNode(n).body.unk10) >= 16))
+                {
+                    new SndNode(n).link.prev.next__Set(next);
+                    new SndNode(n).link.next.prev__Set(new SndNode(n).link.prev_);
+                    func_00259460_SndLink_AddTail(new SndQueue(q).free.link.P, new SndNode(n).link.P);
+                }
+                else
+                {
+                    idx = (short)(func_0025B054(new SndMgr(new SndQueue(q).owner_).pool.P, (int)(new SndNode(n).body.unk3C), (int)(new SndNode(n).body.unk3A), new SndNode(n).body.unk38, 0));
+                    if ((((int)(idx) == (-1)) || ((int)(idx) == 16)))
+                    {
+                        break;
+                    }
+                    old = (int)(Mem.S16((ids + (uint)(idx * 2))));
+                    if ((old != (-1)))
+                    {
+                        break;
+                    }
+                    Mem.Set((ids + (uint)(idx * 2)), alSndpAllocate(player, (uint)(Mem.S32(((bank + (uint)((int)(new SndNode(n).body.unk3A) << (int)2)) + (uint)16)))));
+                    if (((int)(Mem.S16((ids + (uint)(idx * 2)))) == old))
+                    {
+                        break;
+                    }
+                    v = ((new SndQueue(q).owner_ + (uint)7612) + (uint)((int)(idx) * 204));
+                    memcpy(v, new SndNode(n).body.P, (uint)(204));
+                    new SndVoice(v).unkC_Set(new SndNode(n).body.unk40);
+                    new SndVoice(v).unk8_Set((int)(Mem.S16((ids + (uint)(idx * 2)))));
+                    new SndVoice(v).unk10_Set(new SndMgr(new SndQueue(q).owner_).unk104);
+                    new SndVoice(v).idx_Set((int)(idx));
+                    Sound_ApplyVoiceAndPlay(new SndQueue(q).owner_, (uint)(new SndVoice(v).unkC), (uint)(0), new SndVoice(v).pos.P);
+                    new SndNode(n).body.unk40_Set(old);
+                    new SndNode(n).body.unk38_Set((short)(old));
+                    new SndNode(n).link.prev.next__Set(new SndNode(n).link.next_);
+                    new SndNode(n).link.next.prev__Set(new SndNode(n).link.prev_);
+                    func_00259460_SndLink_AddTail(new SndQueue(q).free.link.P, new SndNode(n).link.P);
+                }
+            }
+            Sound_Unlock(new SndQueue(q).owner_);
+        }
+    }
+
+    public static void func_00259460_SndLink_AddTail(uint head, uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00259460_SndLink_AddTail", (uint)head, (uint)n);
+            new SndLink(n).prev__Set(new SndLink(head).prev_);
+            new SndLink(n).next__Set(head);
+            new SndLink(head).prev.next__Set(n);
+            new SndLink(head).prev__Set(n);
+        }
+    }
+
+    // ==== func_0025968C @ 0x0025968C [C]
+    public static void SndQueue_InitNode(uint n, uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0025968C", (uint)n, (uint)m);
+            new SndNode(n).link.next__Set(new SndNode(n).link.P);
+            new SndNode(n).link.prev__Set(new SndNode(n).link.P);
+            func_0025B718(new SndNode(n).body.P, m, (-1));
+        }
+    }
+
+    // ==== func_002596B4 @ 0x002596B4 [C]
+    public static uint SndLink_Unlink(uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002596B4", (uint)n);
+            new SndLink(n).prev.next__Set(new SndLink(n).next_);
+            new SndLink(n).next.prev__Set(new SndLink(n).prev_);
+            return n;
+        }
+    }
+
+    // ==== func_002596D4 @ 0x002596D4 [C]
+    public static void func_002596D4_qinit(uint n, uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002596D4_qinit", (uint)n, (uint)m);
+            new SndNode(n).link.next__Set(new SndNode(n).link.P);
+            new SndNode(n).link.prev__Set(new SndNode(n).link.P);
+            func_0025B718(new SndNode(n).body.P, m, (-1));
+        }
+    }
+
+    public static void func_002596D4_qadd(uint head, uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002596D4_qadd", (uint)head, (uint)n);
+            uint p = new SndLink(head).prev_;
+            new SndLink(n).next__Set(head);
+            new SndLink(n).prev__Set(p);
+            new SndLink(head).prev.next__Set(n);
+            new SndLink(head).prev__Set(n);
+        }
+    }
+
+    public static void SndQueue_Init(uint q, uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002596D4", (uint)q, (uint)m);
+            int i = 0;
+            new SndQueue(q).owner__Set(m);
+            func_002596D4_qinit(new SndQueue(q).active.P, m);
+            func_002596D4_qinit(new SndQueue(q).free.P, m);
+            for (i = 0; (i < 32); ++i)
+            {
+                func_002596D4_qinit((new SndQueue(q).nodes.P + (uint)(i * 212)), m);
+                func_002596D4_qadd(new SndQueue(q).free.link.next_, new SndQueue(q).nodes[(int)(i)].link.P);
+            }
+        }
+    }
+
+    // ==== func_002597A4 @ 0x002597A4 [C]
+    public static void SndQueue_RequeueVoice(uint q, int idx, int a2, uint pos)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002597A4", (uint)q, (uint)idx, (uint)a2, (uint)pos);
+            uint src = 0u;
+            uint n = 0u;
+            uint l = 0u;
+            uint c = 0u;
+            int pri = 0;
+            src = ((new SndQueue(q).owner_ + (uint)7612) + (uint)(idx * 204));
+            if ((new SndVoice(src).unkAC == 0))
+            {
+                l = new SndQueue(q).free.link.next_;
+                if ((l != new SndQueue(q).free.link.P))
+                {
+                    new SndLink(l).prev.next__Set(new SndLink(l).next_);
+                    new SndLink(l).next.prev__Set(new SndLink(l).prev_);
+                    n = l;
+                    memcpy(new SndNode(n).body.P, src, (uint)(204));
+                    new SndNode(n).body.unk40_Set(a2);
+                    new SndNode(n).body.pos.x_Set(new Vec3f(pos).x);
+                    new SndNode(n).body.pos.y_Set(new Vec3f(pos).y);
+                    new SndNode(n).body.pos.z_Set(new Vec3f(pos).z);
+                    new SndNode(n).body.unk14_Set(0);
+                    pri = (int)(new SndNode(n).body.unk38);
+                    for (c = new SndQueue(q).active.link.next_; (c != new SndQueue(q).active.link.P); c = new SndLink(c).next_)
+                    {
+                        if (((int)(new SndNode(c).body.unk38) < pri))
+                        {
+                            break;
+                        }
+                    }
+                    new SndNode(n).link.prev__Set(new SndLink(c).prev_);
+                    new SndNode(n).link.next__Set(c);
+                    new SndLink(c).prev.next__Set(new SndNode(n).link.P);
+                    new SndLink(c).prev__Set(new SndNode(n).link.P);
+                }
+                new SndMgrQ(new SndQueue(q).owner_).unk2AB4_Set((short)(0));
+                new SndMgrQ(new SndQueue(q).owner_).unk2AB6_Set((short)((-1)));
+                new SndMgrQ(new SndQueue(q).owner_).unk2A88_Set((-1));
+                new SndMgrQ(new SndQueue(q).owner_).unk2A84_Set((-1));
+            }
+        }
+    }
+
+    // ==== func_002598D4 @ 0x002598D4 [C]
+    public static void SndQueue_RemoveByHandle(uint q, int a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002598D4", (uint)q, (uint)a);
+            uint n = 0u;
+            uint next = 0u;
+            for (n = new SndQueue(q).active.link.next_; (n != new SndQueue(q).active.P); n = next)
+            {
+                next = new SndNode(n).link.next_;
+                if ((new SndNode(n).body.unk4 == a))
+                {
+                    new SndNode(n).link.prev.next__Set(new SndNode(n).link.next_);
+                    new SndNode(n).link.next.prev__Set(new SndNode(n).link.prev_);
+                    new SndNode(n).link.prev__Set(new SndQueue(q).free.link.prev_);
+                    new SndNode(n).link.next__Set(new SndQueue(q).free.link.P);
+                    new SndQueue(q).free.link.prev.next__Set(new SndNode(n).link.P);
+                    new SndQueue(q).free.link.prev__Set(new SndNode(n).link.P);
+                }
+            }
+        }
+    }
+
+    // ==== func_00259938 @ 0x00259938 [C]
+    public static void SndQueue_RemoveAllExcept(uint o, int key)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00259938", (uint)o, (uint)key);
+            uint n = new P3LOwner(o).active.next_;
+            uint next = 0u;
+            while ((n != new P3LOwner(o).active.P))
+            {
+                next = new P3LNode(n).link.next_;
+                if (((key == (-1)) || (new P3LNode(n).key != key)))
+                {
+                    do
+                    {
+                        new P3LNode(n).link.prev.next__Set(new P3LNode(n).link.next_);
+                        new P3LNode(n).link.next.prev__Set(new P3LNode(n).link.prev_);
+                        new P3LNode(n).link.prev__Set(new P3LOwner(o).done.prev_);
+                        new P3LNode(n).link.next__Set(new P3LOwner(o).done.P);
+                        new P3LOwner(o).done.prev.next__Set(new P3LNode(n).link.P);
+                        new P3LOwner(o).done.prev__Set(new P3LNode(n).link.P);
+                    }
+                    while ((0 != 0));
+                }
+                n = next;
+            }
+        }
+    }
+
+    // ==== func_002599A8 @ 0x002599A8 [C]
+    public static void SndQueue_RemoveBySoundId(uint q, int a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002599A8", (uint)q, (uint)a);
+            uint n = 0u;
+            uint next = 0u;
+            for (n = new SndQueue(q).active.link.next_; (n != new SndQueue(q).active.P); n = next)
+            {
+                next = new SndNode(n).link.next_;
+                if ((new SndNode(n).body.tag == a))
+                {
+                    new SndNode(n).link.prev.next__Set(new SndNode(n).link.next_);
+                    new SndNode(n).link.next.prev__Set(new SndNode(n).link.prev_);
+                    new SndNode(n).link.prev__Set(new SndQueue(q).free.link.prev_);
+                    new SndNode(n).link.next__Set(new SndQueue(q).free.link.P);
+                    new SndQueue(q).free.link.prev.next__Set(new SndNode(n).link.P);
+                    new SndQueue(q).free.link.prev__Set(new SndNode(n).link.P);
+                }
+            }
+        }
+    }
+
+    // ==== func_00259A0C @ 0x00259A0C [C]
+    public static void SndQueue_RemoveByOwner(uint q, uint a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00259A0C", (uint)q, (uint)a);
+            uint n = 0u;
+            uint next = 0u;
+            for (n = new SndQueue(q).active.link.next_; (n != new SndQueue(q).active.P); n = next)
+            {
+                next = new SndNode(n).link.next_;
+                if ((new SndNode(n).body.unkB4_ == a))
+                {
+                    new SndNode(n).link.prev.next__Set(new SndNode(n).link.next_);
+                    new SndNode(n).link.next.prev__Set(new SndNode(n).link.prev_);
+                    new SndNode(n).link.prev__Set(new SndQueue(q).free.link.prev_);
+                    new SndNode(n).link.next__Set(new SndQueue(q).free.link.P);
+                    new SndQueue(q).free.link.prev.next__Set(new SndNode(n).link.P);
+                    new SndQueue(q).free.link.prev__Set(new SndNode(n).link.P);
+                }
+            }
+        }
+    }
+
+    // ==== func_00259A70 @ 0x00259A70 [C]
+    public static void SndQueue_RemoveByFlags(uint q, int mask)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00259A70", (uint)q, (uint)mask);
+            uint n = 0u;
+            uint next = 0u;
+            for (n = new SndQueue(q).active.link.next_; (n != new SndQueue(q).active.P); n = next)
+            {
+                next = new SndNode(n).link.next_;
+                if (((new SndNode(n).body.unkA4 & mask) != 0))
+                {
+                    new SndNode(n).link.prev.next__Set(new SndNode(n).link.next_);
+                    new SndNode(n).link.next.prev__Set(new SndNode(n).link.prev_);
+                    new SndNode(n).link.prev__Set(new SndQueue(q).free.link.prev_);
+                    new SndNode(n).link.next__Set(new SndQueue(q).free.link.P);
+                    new SndQueue(q).free.link.prev.next__Set(new SndNode(n).link.P);
+                    new SndQueue(q).free.link.prev__Set(new SndNode(n).link.P);
+                }
+            }
+        }
+    }
+
+    // ==== func_00259AD8 @ 0x00259AD8 [C]
+    public static int SndQueue_HasSoundId(uint q, int a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00259AD8", (uint)q, (uint)a);
+            uint n = 0u;
+            uint next = 0u;
+            for (n = new SndQueue(q).active.link.next_; (n != new SndQueue(q).active.P); n = next)
+            {
+                next = new SndNode(n).link.next_;
+                if ((new SndNode(n).body.tag == a))
+                {
+                    return 1;
+                }
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_00259B10 @ 0x00259B10 [C]
+    public static void SndLink_AddTail(uint head, uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00259B10", (uint)head, (uint)n);
+            new SndLink(n).prev__Set(new SndLink(head).prev_);
+            new SndLink(n).next__Set(head);
+            new SndLink(head).prev.next__Set(n);
+            new SndLink(head).prev__Set(n);
+        }
+    }
+
+    // ==== func_00259B2C @ 0x00259B2C [MIPS]
+    public static uint Sound_ComputePanHead_00259B2C(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00259B2C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_00259B2C: ;
+                Cpu.SetS(0, Cpu.S(1) - Cpu.S(0));
+                L_func_00259B30: ;
+                r29 = r29 - 88u;
+                Mem.Set((r29 + 64u), r16);
+                r16 = r5;
+                Mem.Set((r29 + 72u), r31);
+                Mem.Set((r29 + 68u), r17);
+                Mem.Set((r29 + 80u), Cpu.Fpr[20]);
+                { bool c_ = r16 == 0; r6 = r4; if (c_) goto L_L00259C10; }
+                r17 = r29 + 32u;
+                r4 = r17;
+                r5 = r16 + 296u; func_00271FD8(r4, r5, r6);
+                Cpu.SetW(0, Mem.U32((r29 + 32u)));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(0));
+                Cpu.SetW(1, Mem.U32((r29 + 40u)));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(1));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 28688u)));
+                fcc = Cpu.S(0) < Cpu.S(1);
+                { bool c_ = fcc; r2 = (uint)64; if (c_) goto L_L00259C64; }
+                r4 = r16 + 352u;
+                r5 = r17;
+                r16 = r29 + 48u;
+                r6 = r16; func_00272C3C(r4, r5, r6);
+                Mem.Set((r29 + 52u), r0);
+                Cpu.SetW(20, Mem.U32((r29 + 52u)));
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 28684u)));
+                r4 = r16;
+                Mem.Set((r29 + 20u), Cpu.W(20));
+                Mem.Set((r29 + 16u), Cpu.W(20));
+                Mem.Set((r29 + 24u), Cpu.W(0)); func_002720EC(r4);
+                Cpu.SetW(2, Mem.U32((r29 + 48u)));
+                Cpu.SetW(0, Mem.U32((r29 + 16u)));
+                Cpu.SetS(2, Cpu.S(2) * Cpu.S(0));
+                Cpu.SetW(1, Mem.U32((r29 + 52u)));
+                Cpu.SetW(0, Mem.U32((r29 + 20u)));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
+                Cpu.SetW(12, Mem.U32((r29 + 56u)));
+                Cpu.SetW(0, Mem.U32((r29 + 24u)));
+                Cpu.SetS(12, Cpu.S(12) * Cpu.S(0));
+                Cpu.SetS(2, Cpu.S(2) + Cpu.S(1));
+                Cpu.SetS(12, Cpu.S(2) + Cpu.S(12)); Cpu.SetS(0, Math_Acosf(Cpu.S(12)));
+                Cpu.SetS(12, Cpu.S(0)); r2 = sinf_rc(r4, r5, r6, r7); r3 = Cpu.V1;
+                Cpu.SetW(1, Mem.U32((r29 + 48u)));
+                fcc = Cpu.S(1) == Cpu.S(20);
+                { bool c_ = !fcc;  if (c_) goto L_L00259C18; }
+                L_L00259C10: ;
+                r2 = (uint)64; goto L_L00259C64;
+                L_L00259C18: ;
+                fcc = Cpu.S(20) < Cpu.S(1);
+                if (!fcc) { Cpu.SetS(0, MathF.Abs(Cpu.S(0))); goto L_L00259C40; }
+                fcc = Cpu.S(0) < Cpu.S(20);
+                { bool c_ = !fcc;  if (c_) goto L_L00259C44; }
+                Cpu.SetS(0, -Cpu.S(0)); goto L_L00259C44;
+                L_L00259C40: ;
+                Cpu.SetS(0, -Cpu.S(0));
+                L_L00259C44: ;
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 28680u)));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                Cpu.SetW(3, (uint)(int)Cpu.S(0));
+                r2 = Cpu.W(3);
+                r2 = r2 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                L_L00259C64: ;
+                r31 = Mem.U32((r29 + 72u));
+                r17 = Mem.U32((r29 + 68u));
+                r16 = Mem.U32((r29 + 64u));
+                Cpu.Fpr[20] = Mem.U64((r29 + 80u));
+                r29 = r29 + 88u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00259B2C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00259B30 @ 0x00259B30 [MIPS]
+    public static uint Sound_ComputePan(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00259B30", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_00259B30: ;
+                r29 = r29 - 88u;
+                Mem.Set((r29 + 64u), r16);
+                r16 = r5;
+                Mem.Set((r29 + 72u), r31);
+                Mem.Set((r29 + 68u), r17);
+                Mem.Set((r29 + 80u), Cpu.Fpr[20]);
+                { bool c_ = r16 == 0; r6 = r4; if (c_) goto L_L00259C10; }
+                r17 = r29 + 32u;
+                r4 = r17;
+                r5 = r16 + 296u; func_00271FD8(r4, r5, r6);
+                Cpu.SetW(0, Mem.U32((r29 + 32u)));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(0));
+                Cpu.SetW(1, Mem.U32((r29 + 40u)));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(1));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 28688u)));
+                fcc = Cpu.S(0) < Cpu.S(1);
+                { bool c_ = fcc; r2 = (uint)64; if (c_) goto L_L00259C64; }
+                r4 = r16 + 352u;
+                r5 = r17;
+                r16 = r29 + 48u;
+                r6 = r16; func_00272C3C(r4, r5, r6);
+                Mem.Set((r29 + 52u), r0);
+                Cpu.SetW(20, Mem.U32((r29 + 52u)));
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 28684u)));
+                r4 = r16;
+                Mem.Set((r29 + 20u), Cpu.W(20));
+                Mem.Set((r29 + 16u), Cpu.W(20));
+                Mem.Set((r29 + 24u), Cpu.W(0)); func_002720EC(r4);
+                Cpu.SetW(2, Mem.U32((r29 + 48u)));
+                Cpu.SetW(0, Mem.U32((r29 + 16u)));
+                Cpu.SetS(2, Cpu.S(2) * Cpu.S(0));
+                Cpu.SetW(1, Mem.U32((r29 + 52u)));
+                Cpu.SetW(0, Mem.U32((r29 + 20u)));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
+                Cpu.SetW(12, Mem.U32((r29 + 56u)));
+                Cpu.SetW(0, Mem.U32((r29 + 24u)));
+                Cpu.SetS(12, Cpu.S(12) * Cpu.S(0));
+                Cpu.SetS(2, Cpu.S(2) + Cpu.S(1));
+                Cpu.SetS(12, Cpu.S(2) + Cpu.S(12)); Cpu.SetS(0, Math_Acosf(Cpu.S(12)));
+                Cpu.SetS(12, Cpu.S(0)); r2 = sinf_rc(r4, r5, r6, r7); r3 = Cpu.V1;
+                Cpu.SetW(1, Mem.U32((r29 + 48u)));
+                fcc = Cpu.S(1) == Cpu.S(20);
+                { bool c_ = !fcc;  if (c_) goto L_L00259C18; }
+                L_L00259C10: ;
+                r2 = (uint)64; goto L_L00259C64;
+                L_L00259C18: ;
+                fcc = Cpu.S(20) < Cpu.S(1);
+                if (!fcc) { Cpu.SetS(0, MathF.Abs(Cpu.S(0))); goto L_L00259C40; }
+                fcc = Cpu.S(0) < Cpu.S(20);
+                { bool c_ = !fcc;  if (c_) goto L_L00259C44; }
+                Cpu.SetS(0, -Cpu.S(0)); goto L_L00259C44;
+                L_L00259C40: ;
+                Cpu.SetS(0, -Cpu.S(0));
+                L_L00259C44: ;
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 28680u)));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                Cpu.SetW(3, (uint)(int)Cpu.S(0));
+                r2 = Cpu.W(3);
+                r2 = r2 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                L_L00259C64: ;
+                r31 = Mem.U32((r29 + 72u));
+                r17 = Mem.U32((r29 + 68u));
+                r16 = Mem.U32((r29 + 64u));
+                Cpu.Fpr[20] = Mem.U64((r29 + 80u));
+                r29 = r29 + 88u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00259B30", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00259C7C @ 0x00259C7C [MIPS]
+    public static uint SndVoice_InitPitch(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00259C7C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_00259C7C: ;
+                Cpu.SetW(0, r0);
+                r29 = r29 - 64u;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r4;
+                Mem.Set((r29 + 32u), r20);
+                r20 = r5;
+                Mem.Set((r29 + 36u), r21);
+                r21 = r6;
+                Mem.Set((r29 + 28u), r19);
+                r19 = r18 + 16u;
+                Mem.Set((r29 + 20u), r17);
+                Mem.Set((r29 + 40u), r31);
+                Mem.Set((r29 + 16u), r16);
+                Mem.Set((r29 + 56u), Cpu.Fpr[21]);
+                Mem.Set((r29 + 48u), Cpu.Fpr[20]);
+                Mem.Set((r19 + 76u), Cpu.W(0));
+                Mem.Set((r19 + 72u), Cpu.W(0));
+                r5 = (uint)(int)Mem.S16((r20 + 10u));
+                r2 = (uint)-1;
+                { bool c_ = r5 == r2; r17 = r18 + 96u; if (c_) goto L_L00259D14; }
+                r4 = Mem.U32((r18 + 176u));
+                r2 = Sound_GetPitchEnvelope(r4, (int)r5);
+                r7 = Cpu.Lwl(r7, (r2 + 0u));
+                r7 = Cpu.Lwr(r7, (r2 + 3u));
+                r8 = Cpu.Lwl(r8, (r2 + 4u));
+                r8 = Cpu.Lwr(r8, (r2 + 7u));
+                r9 = Cpu.Lwl(r9, (r2 + 8u));
+                r9 = Cpu.Lwr(r9, (r2 + 11u));
+                Cpu.Swl(r7, (r18 + 96u));
+                Cpu.Swr(r7, (r18 + 99u));
+                Cpu.Swl(r8, (r18 + 100u));
+                Cpu.Swr(r8, (r18 + 103u));
+                Cpu.Swl(r9, (r18 + 104u));
+                Cpu.Swr(r9, (r18 + 107u));
+                 goto L_L00259D2C;
+                L_L00259D14: ;
+                r2 = (uint)(int)Mem.S16((r20 + 16u));
+                Cpu.SetW(12, r2);
+                Cpu.SetS(12, (float)(int)Cpu.W(12));
+                r2 = (uint)F32ToTrunc16(Cpu.S(12));
+                Mem.Set((r18 + 96u), (ushort)r2);
+                L_L00259D2C: ;
+                r4 = r20; r2 = (uint)func_0025E5A4(r4);
+                r4 = r20;
+                r16 = r2; r2 = (uint)func_0025E5B0(r4);
+                r2 = r2 << 16;
+                r2 = (uint)((int)r2 >> 16);
+                Cpu.SetW(21, r2);
+                Cpu.SetS(21, (float)(int)Cpu.W(21));
+                Cpu.SetS(12, Cpu.S(21));
+                r16 = r16 << 16;
+                r16 = (uint)((int)r16 >> 16);
+                Cpu.SetW(20, r16);
+                Cpu.SetS(20, (float)(int)Cpu.W(20));
+                Cpu.SetS(14, Cpu.S(20)); Cpu.SetS(0, Random_Symmetric(Cpu.S(12), Cpu.S(14)));
+                Cpu.SetW(1, r0);
+                fcc = Cpu.S(0) < Cpu.S(1);
+                { bool c_ = !fcc; Cpu.SetS(12, Cpu.S(21)); if (c_) goto L_L00259D90; }
+                Cpu.SetS(14, Cpu.S(20)); Cpu.SetS(0, Random_Symmetric(Cpu.S(12), Cpu.S(14)));
+                Cpu.SetS(0, Cpu.S(20) - Cpu.S(0)); goto L_L00259D9C;
+                L_L00259D90: ;
+                Cpu.SetS(14, Cpu.S(20)); Cpu.SetS(0, Random_Symmetric(Cpu.S(12), Cpu.S(14)));
+                Cpu.SetS(0, Cpu.S(20) + Cpu.S(0));
+                L_L00259D9C: ;
+                Cpu.SetW(3, (uint)(int)Cpu.S(0));
+                r2 = Cpu.W(3);
+                r2 = r2 << 16;
+                r4 = Mem.U16((r17 + 0u));
+                r16 = (uint)((int)r2 >> 16); Cpu.SetS(0, Trunc16ToF32((ushort)r4));
+                Cpu.SetW(12, r16);
+                Cpu.SetS(12, (float)(int)Cpu.W(12));
+                Cpu.SetS(12, Cpu.S(0) + Cpu.S(12)); r2 = (uint)F32ToTrunc16(Cpu.S(12));
+                Mem.Set((r17 + 0u), (ushort)r2);
+                r2 = r21 & 64u;
+                { bool c_ = r2 == 0; r2 = r21 & 128u; if (c_) goto L_L00259DF8; }
+                r4 = Mem.U16((r17 + 0u));
+                Cpu.SetS(0, Trunc16ToF32((ushort)r4));
+                r1 = 2148335616u;
+                Cpu.SetW(12, Mem.U32((r1 - 28676u)));
+                Cpu.SetS(12, Cpu.S(0) + Cpu.S(12)); r2 = (uint)F32ToTrunc16(Cpu.S(12));
+                Mem.Set((r17 + 0u), (ushort)r2);
+                r2 = r21 & 128u;
+                L_L00259DF8: ;
+                { bool c_ = r2 == 0;  if (c_) goto L_L00259E20; }
+                r4 = Mem.U16((r17 + 0u));
+                Cpu.SetS(0, Trunc16ToF32((ushort)r4));
+                r1 = 2148335616u;
+                Cpu.SetW(12, Mem.U32((r1 - 28672u)));
+                Cpu.SetS(12, Cpu.S(0) - Cpu.S(12)); r2 = (uint)F32ToTrunc16(Cpu.S(12));
+                Mem.Set((r17 + 0u), (ushort)r2);
+                L_L00259E20: ;
+                r4 = Mem.U16((r17 + 0u));
+                Cpu.SetS(0, Trunc16ToF32((ushort)r4));
+                r1 = 2148335616u;
+                Cpu.SetW(12, Mem.U32((r1 - 28668u)));
+                fcc = Cpu.S(12) <= Cpu.S(0);
+                { bool c_ = !fcc;  if (c_) goto L_L00259E50; }
+                r2 = (uint)F32ToTrunc16(Cpu.S(12));
+                Mem.Set((r17 + 0u), (ushort)r2);
+                L_L00259E50: ;
+                r2 = Mem.U16((r20 + 6u));
+                r2 = r2 & 2u;
+                { bool c_ = r2 == 0;  if (c_) goto L_L00259EBC; }
+                r4 = Mem.U16((r17 + 0u));
+                Cpu.SetS(0, Trunc16ToF32((ushort)r4));
+                Mem.Set((r19 + 20u), Cpu.W(0));
+                r4 = Mem.U16((r17 + 2u));
+                Cpu.SetS(0, Trunc16ToF32((ushort)r4));
+                r4 = Mem.U16((r17 + 4u));
+                Cpu.SetS(20, Cpu.S(0)); Cpu.SetS(0, Trunc16ToF32((ushort)r4));
+                r2 = (uint)(int)Mem.S16((r17 + 6u));
+                { bool c_ = r2 != 0; Cpu.SetS(20, Cpu.S(20) - Cpu.S(0)); if (c_) goto L_L00259E9C; }
+                Mem.Set((r18 + 112u), r0); goto L_L00259EAC;
+                L_L00259E9C: ;
+                Cpu.SetW(0, r2);
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                Cpu.SetS(0, Cpu.S(20) / Cpu.S(0));
+                Mem.Set((r18 + 112u), Cpu.W(0));
+                L_L00259EAC: ;
+                r4 = Mem.U16((r17 + 2u));
+                Cpu.SetS(0, Trunc16ToF32((ushort)r4));
+                Mem.Set((r18 + 108u), Cpu.W(0));
+                L_L00259EBC: ;
+                r4 = Mem.U16((r17 + 0u));
+                Cpu.SetS(0, Trunc16ToF32((ushort)r4));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 28664u)));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 28660u)));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                Cpu.SetW(3, (uint)(int)Cpu.S(0));
+                r4 = Cpu.W(3);
+                r2 = r4 << 16;
+                r3 = (uint)((int)r2 >> 16);
+                Cpu.SetW(1, r3);
+                Cpu.SetS(1, (float)(int)Cpu.W(1));
+                fcc = Cpu.S(1) == Cpu.S(0);
+                { bool c_ = fcc; r2 = r3 << 2; if (c_) goto L_L00259F44; }
+                r2 = r4 + 1u;
+                r3 = r3 << 2;
+                r2 = r2 << 16;
+                r2 = (uint)((int)r2 >> 14);
+                r1 = 2148335616u;
+                r1 = r1 + r3;
+                Cpu.SetW(2, Mem.U32((r1 + 2860u)));
+                Cpu.SetS(1, Cpu.S(0) - Cpu.S(1));
+                r1 = 2148335616u;
+                r1 = r1 + r2;
+                Cpu.SetW(0, Mem.U32((r1 + 2860u)));
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(2));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
+                Cpu.SetS(12, Cpu.S(2) + Cpu.S(1)); goto L_L00259F50;
+                L_L00259F44: ;
+                r1 = 2148335616u;
+                r1 = r1 + r2;
+                Cpu.SetW(12, Mem.U32((r1 + 2860u)));
+                L_L00259F50: ;
+                Mem.Set((r19 + 20u), Cpu.W(12)); r2 = (uint)F32ToTrunc16(Cpu.S(12));
+                Mem.Set((r17 + 0u), (ushort)r2);
+                r31 = Mem.U32((r29 + 40u));
+                r21 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                Cpu.Fpr[21] = Mem.U64((r29 + 56u));
+                Cpu.Fpr[20] = Mem.U64((r29 + 48u));
+                r29 = r29 + 64u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00259C7C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00259F88 @ 0x00259F88 [C]
+    public static void SndVoice_InitVolume(uint o, uint rec)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00259F88", (uint)o, (uint)rec);
+            uint vp = new M04Emitter(o).vp.P;
+            uint env = 0u;
+            uint pp = 0u;
+            int i = 0;
+            int kind = 0;
+            int n = 0;
+            int t = 0;
+            float vf = 0f;
+            float a = 0f;
+            float b = 0f;
+            float f = 0f;
+            float fs = 0f;
+            uint p = 0u;
+            uint q = 0u;
+            pp = new M04Emitter(o).ctx.tab2B88_;
+            new M04Emitter(o).unkC8_Set(Mem.F32(0x800C9010u));
+            if ((new M04Emitter(o).kind < 256))
+            {
+                for (i = 0; (i < 31); ++i)
+                {
+                    if ((new M04Emitter(o).kind == (int)(new M04Tab((0x800D0A30u + (uint)(i * 8))).key)))
+                    {
+                        new M04Emitter(o).unkC8_Set(new M04Tab((0x800D0A30u + (uint)(i * 8))).val);
+                        break;
+                    }
+                }
+            }
+            if ((Flyby_IsInWindow() != 0))
+            {
+                new M04Emitter(o).unkC8_Set((new M04Emitter(o).unkC8 * Mem.F32(0x800C9014u)));
+            }
+            env = new M04Emitter(o).env2.P;
+            if (((int)(new M04Info(rec).envId) != (-1)))
+            {
+                Mem.Copy(env, Sound_GetVolumeEnvelope(new M04Emitter(o).ctx_, (int)(new M04Info(rec).envId)), 12);
+            }
+            else
+            {
+                new M04Rec12(env).w0_Set(F32ToTrunc16((float)(new M04Info(rec).b0F)));
+            }
+            if (((!(((int)(new M04Info(rec).bits6) & 2048) != 0) && (new M04Emitter(o).resetFlag != 1)) && (new M04Emitter(o).ctx.tgt_ != 0u)))
+            {
+                a = ((float)(Mem.U8((pp + (uint)0))) * Mem.F32(0x800C9018u));
+                b = ((float)(Mem.U8((pp + (uint)1))) * Mem.F32(0x800C9018u));
+                if ((a == Mem.F32(0x800C901Cu)))
+                {
+                    vf = Mem.F32(0x800C901Cu);
+                }
+                else
+                {
+                    if ((b == a))
+                    {
+                        vf = a;
+                    }
+                    else
+                    {
+                        vf = (a + func_002745D4((b - a)));
+                    }
+                }
+                p = new M04VP(vp).pos.P;
+                q = (new M04Emitter(o).ctx.tgt_ + 296u);
+                {
+                    float d2 = ((((new M04Vec3(p).x - new M04Vec3(q).x) * (new M04Vec3(p).x - new M04Vec3(q).x)) + ((new M04Vec3(p).y - new M04Vec3(q).y) * (new M04Vec3(p).y - new M04Vec3(q).y))) + ((new M04Vec3(p).z - new M04Vec3(q).z) * (new M04Vec3(p).z - new M04Vec3(q).z)));
+                    if ((Mem.F32(0x800D0D10u) <= d2))
+                    {
+                        f = 0.0f;
+                    }
+                    else
+                    {
+                        f = (Mem.F32(0x800C9020u) - (d2 / Mem.F32(0x800D0D10u)));
+                    }
+                }
+                switch ((int)(new M04VP(vp).mode))
+                {
+                case 2:
+                    new M04VP(vp).scale_Set(f);
+                    break;
+                case 0:
+                    f = (f * f);
+                    f = (f * f);
+                    goto case 1;
+                case 1:
+                    f = (f * f);
+                    new M04VP(vp).scale_Set(f);
+                    break;
+                default:
+                    f = 0.0f;
+                    new M04VP(vp).scale_Set(0.0f);
+                    break;
+                }
+                new M04VP(vp).f20_Set(f);
+            }
+            else
+            {
+                vf = Mem.F32(0x800C9024u);
+                new M04VP(vp).scale_Set(vf);
+                new M04VP(vp).f20_Set(vf);
+            }
+            if ((((int)(new M04Info(rec).bits6) & 4) != 0))
+            {
+                new M04VP(vp).vol_Set((int)(Trunc16ToF32(new M04Rec12(env).w0)));
+                fs = Trunc16ToF32(new M04Rec12(env).w1);
+                fs = (float)((float)(fs) - Trunc16ToF32(new M04Rec12(env).w2));
+                if (((int)(new M04Rec12(env).w3) == 0))
+                {
+                    new M04Emitter(o).env2Slope_Set(0.0f);
+                }
+                else
+                {
+                    new M04Emitter(o).env2Slope_Set((fs / (float)(new M04Rec12(env).w3)));
+                }
+                new M04Emitter(o).env2A_Set(Trunc16ToF32(new M04Rec12(env).w1));
+                n = (int)(Trunc16ToF32(new M04Rec12(env).w0));
+                if (((float)(n) < 0.0f))
+                {
+                    t = ((-n) * 2);
+                }
+                else
+                {
+                    t = (n * 2);
+                }
+                new M04VP(vp).vol_Set((int)(((float)((int)(((float)(Mem.S16((0x8010BFA0u + (uint)t))) * new M04Emitter(o).env2A))) * vf)));
+                if (((float)(n) < 0.0f))
+                {
+                    t = ((-n) * 2);
+                }
+                else
+                {
+                    t = (n * 2);
+                }
+                new M04Rec12(env).w0_Set(F32ToTrunc16(((float)(Mem.S16((0x8010BFA0u + (uint)t))) * vf)));
+                new M04VP(vp).wC_Set((int)(Trunc16ToF32((ushort)(((int)(new M04Rec12(env).w0) & 65535)))));
+                return;
+            }
+            n = (int)(Trunc16ToF32(new M04Rec12(env).w0));
+            if (((float)(n) < 0.0f))
+            {
+                t = ((-n) * 2);
+            }
+            else
+            {
+                t = (n * 2);
+            }
+            t = (int)(((float)(Mem.S16((0x8010BFA0u + (uint)t))) * vf));
+            new M04VP(vp).vol_Set(t);
+            new M04VP(vp).wC_Set(t);
+        }
+    }
+
+    // ==== func_0025A3EC @ 0x0025A3EC [MIPS]
+    public static uint SndVoice_UpdateVolume(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0025A3EC", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_0025A3EC: ;
+                r29 = r29 - 56u;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r4;
+                Mem.Set((r29 + 32u), r31);
+                Mem.Set((r29 + 28u), r19);
+                Mem.Set((r29 + 20u), r17);
+                Mem.Set((r29 + 16u), r16);
+                Mem.Set((r29 + 48u), Cpu.Fpr[21]);
+                Mem.Set((r29 + 40u), Cpu.Fpr[20]);
+                r2 = Mem.U32((r18 + 176u));
+                r2 = Mem.U32((r2 + 11160u));
+                Cpu.SetW(0, Mem.U32((r2 + 1320u)));
+                r1 = 2148335616u;
+                Cpu.SetW(2, Mem.U32((r1 - 28632u)));
+                fcc = Cpu.S(0) < Cpu.S(2);
+                { bool c_ = !fcc; Cpu.SetS(1, Cpu.S(0)); if (c_) goto L_L0025A43C; }
+                Cpu.SetS(1, Cpu.S(2));
+                fcc = Cpu.S(0) < Cpu.S(2);
+                L_L0025A43C: ;
+                { bool c_ = !fcc;  if (c_) goto L_L0025A454; }
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(2));
+                 goto L_L0025A458;
+                L_L0025A454: ;
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
+                L_L0025A458: ;
+                r1 = 2148335616u;
+                Mem.Set((r1 + 3344u), Cpu.W(1));
+                r3 = (uint)(int)Mem.S8((r18 + 84u));
+                r2 = (uint)1;
+                { bool c_ = r3 == r2; r2 = (uint)((int)r3 < 2 ? 1 : 0); if (c_) goto L_L0025A494; }
+                { bool c_ = r2 != 0; r17 = r18 + 16u; if (c_) goto L_L0025A4B0; }
+                r2 = (uint)2;
+                { bool c_ = r3 != r2;  if (c_) goto L_L0025A4B0; }
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 28628u)));
+                 goto L_L0025A49C;
+                L_L0025A494: ;
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 28624u)));
+                L_L0025A49C: ;
+                Cpu.SetS(0, Cpu.S(1) * Cpu.S(0));
+                Cpu.SetS(0, Cpu.S(1) + Cpu.S(0));
+                r1 = 2148335616u;
+                Mem.Set((r1 + 3344u), Cpu.W(0));
+                r17 = r18 + 16u;
+                L_L0025A4B0: ;
+                r2 = Mem.U32((r18 + 164u));
+                r3 = Mem.U32((r18 + 176u));
+                r2 = r2 & 512u;
+                { bool c_ = r2 == 0; r19 = r18 + 116u; if (c_) goto L_L0025A4D0; }
+                Cpu.SetW(21, Mem.U32((r3 + 11176u)));
+                 goto L_L0025A4F8;
+                L_L0025A4D0: ;
+                r2 = Mem.U32((r18 + 196u));
+                Cpu.SetW(21, Mem.U32((r3 + 11168u)));
+                { bool c_ = r2 == 0;  if (c_) goto L_L0025A4F8; }
+                r2 = Mem.U32((r3 + 11192u));
+                { bool c_ = r2 == 0;  if (c_) goto L_L0025A4F8; }
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 28620u)));
+                Cpu.SetS(21, Cpu.S(21) * Cpu.S(0));
+                L_L0025A4F8: ;
+                r3 = Mem.U32((r18 + 164u));
+                r2 = r3 & 1024u;
+                { bool c_ = r2 == 0;  if (c_) goto L_L0025A614; }
+                r2 = Mem.U32((r18 + 192u));
+                { bool c_ = r2 != 0; r2 = r3 & 2048u; if (c_) goto L_L0025A614; }
+                { bool c_ = r2 != 0; r3 = r17 + 52u; if (c_) goto L_L0025A614; }
+                r2 = Mem.U32((r18 + 176u));
+                r2 = Mem.U32((r2 + 11160u));
+                Cpu.SetW(2, Mem.U32((r17 + 52u)));
+                Cpu.SetW(0, Mem.U32((r2 + 296u)));
+                Cpu.SetS(2, Cpu.S(2) - Cpu.S(0));
+                Cpu.SetS(2, Cpu.S(2) * Cpu.S(2));
+                Cpu.SetW(3, Mem.U32((r3 + 4u)));
+                r2 = r2 + 296u;
+                Cpu.SetW(0, Mem.U32((r2 + 4u)));
+                Cpu.SetS(3, Cpu.S(3) - Cpu.S(0));
+                Cpu.SetS(3, Cpu.S(3) * Cpu.S(3));
+                Cpu.SetW(1, Mem.U32((r2 + 8u)));
+                Cpu.SetW(0, Mem.U32((r3 + 8u)));
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(1));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(0));
+                Cpu.SetS(2, Cpu.S(2) + Cpu.S(3));
+                Cpu.SetS(0, Cpu.S(2) + Cpu.S(0));
+                r1 = 2148335616u;
+                Cpu.SetW(3, Mem.U32((r1 + 3344u)));
+                fcc = Cpu.S(3) <= Cpu.S(0);
+                if (!fcc) { Cpu.SetS(0, Cpu.S(0) / Cpu.S(3)); goto L_L0025A584; }
+                Cpu.SetW(14, r0);
+                 goto L_L0025A590;
+                L_L0025A584: ;
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 28616u)));
+                Cpu.SetS(14, Cpu.S(1) - Cpu.S(0));
+                L_L0025A590: ;
+                r3 = (uint)(int)Mem.S8((r17 + 68u));
+                r2 = (uint)1;
+                { bool c_ = r3 == r2; r2 = (uint)((int)r3 < 2 ? 1 : 0); if (c_) goto L_L0025A5D4; }
+                { bool c_ = r2 == 0; r2 = (uint)2; if (c_) goto L_L0025A5B8; }
+                { bool c_ = r3 == 0;  if (c_) goto L_L0025A5C8; }
+                 goto L_L0025A5E4;
+                L_L0025A5B8: ;
+                { bool c_ = r3 != r2; Cpu.SetS(20, Cpu.S(14)); if (c_) goto L_L0025A5E4; }
+                 goto L_L0025A5E8;
+                L_L0025A5C8: ;
+                Cpu.SetS(14, Cpu.S(14) * Cpu.S(14));
+                Cpu.SetS(14, Cpu.S(14) * Cpu.S(14));
+                L_L0025A5D4: ;
+                Cpu.SetS(20, Cpu.S(14) * Cpu.S(14));
+                 goto L_L0025A5E8;
+                L_L0025A5E4: ;
+                Cpu.SetW(20, r0);
+                L_L0025A5E8: ;
+                r2 = (uint)Flyby_IsActive();
+                if (r2 == 0) { Mem.Set((r17 + 28u), Cpu.W(20)); goto L_L0025A620; }
+                Cpu.SetW(12, Mem.U32((r17 + 28u)));
+                r6 = 1015742464u;
+                r6 = r6 | 17302u;
+                Cpu.SetS(14, Cpu.S(20)); Cpu.SetS(0, func_00274878(Cpu.S(12), Cpu.S(14), Cpu.U2F(r6)));
+                Mem.Set((r17 + 28u), Cpu.W(0)); goto L_L0025A620;
+                L_L0025A614: ;
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 28612u)));
+                Mem.Set((r17 + 28u), Cpu.W(0));
+                L_L0025A620: ;
+                r3 = Mem.U32((r18 + 164u));
+                r2 = r3 & 4u;
+                { bool c_ = r2 == 0; r2 = r3 & 1024u; if (c_) goto L_L0025A7C8; }
+                r2 = (uint)(int)Mem.S16((r18 + 124u));
+                r3 = Mem.U16((r18 + 124u));
+                { bool c_ = (int)r2 <= 0; r2 = r3 - 1u; if (c_) goto L_L0025A648; }
+                Mem.Set((r18 + 124u), (ushort)r2); goto L_L0025A794;
+                L_L0025A648: ;
+                Cpu.SetW(1, Mem.U32((r18 + 132u)));
+                Cpu.SetW(0, r0);
+                fcc = Cpu.S(1) < Cpu.S(0);
+                { bool c_ = !fcc; r16 = r0; if (c_) goto L_L0025A664; }
+                r16 = (uint)1;
+                L_L0025A664: ;
+                { bool c_ = r16 == 0;  if (c_) goto L_L0025A694; }
+                r4 = Mem.U16((r19 + 4u));
+                Cpu.SetS(0, Trunc16ToF32((ushort)r4));
+                Cpu.SetW(1, Mem.U32((r18 + 128u)));
+                fcc = Cpu.S(1) < Cpu.S(0);
+                { bool c_ = !fcc;  if (c_) goto L_L0025A794; }
+                 goto L_L0025A6B4;
+                L_L0025A694: ;
+                r4 = Mem.U16((r19 + 4u));
+                Cpu.SetS(0, Trunc16ToF32((ushort)r4));
+                Cpu.SetW(1, Mem.U32((r18 + 128u)));
+                fcc = Cpu.S(0) < Cpu.S(1);
+                { bool c_ = !fcc;  if (c_) goto L_L0025A794; }
+                L_L0025A6B4: ;
+                Cpu.SetW(0, Mem.U32((r18 + 128u)));
+                Cpu.SetW(1, Mem.U32((r18 + 132u)));
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(1));
+                { bool c_ = r16 == 0; Mem.Set((r18 + 128u), Cpu.W(0)); if (c_) goto L_L0025A6FC; }
+                r4 = Mem.U16((r19 + 4u));
+                Cpu.SetS(0, Trunc16ToF32((ushort)r4));
+                Cpu.SetW(1, Mem.U32((r18 + 128u)));
+                fcc = Cpu.S(0) < Cpu.S(1);
+                { bool c_ = !fcc;  if (c_) goto L_L0025A794; }
+                r4 = Mem.U16((r19 + 4u));
+                Cpu.SetS(0, Trunc16ToF32((ushort)r4));
+                Mem.Set((r18 + 128u), Cpu.W(0)); goto L_L0025A794;
+                L_L0025A6FC: ;
+                r4 = Mem.U16((r19 + 4u));
+                Cpu.SetS(0, Trunc16ToF32((ushort)r4));
+                Cpu.SetW(1, Mem.U32((r18 + 128u)));
+                fcc = Cpu.S(1) < Cpu.S(0);
+                { bool c_ = !fcc;  if (c_) goto L_L0025A794; }
+                r4 = Mem.U16((r19 + 4u));
+                Cpu.SetS(0, Trunc16ToF32((ushort)r4));
+                Cpu.SetW(1, r0);
+                fcc = Cpu.S(0) == Cpu.S(1);
+                { bool c_ = !fcc; Mem.Set((r18 + 128u), Cpu.W(0)); if (c_) goto L_L0025A794; }
+                r4 = Mem.U32((r18 + 176u));
+                r3 = Mem.U32((r18 + 16u));
+                r2 = (uint)1;
+                Mem.Set((r18 + 172u), r2);
+                Mem.Set((r18 + 80u), r0);
+                r2 = Mem.U32((r4 + 260u));
+                { bool c_ = r3 == r2; r16 = r4 + 132u; if (c_) goto L_L0025A794; }
+                r2 = Mem.U32((r18 + 0u));
+                r2 = r2 << 1;
+                r2 = r4 + r2;
+                r5 = (uint)(int)Mem.S16((r2 + 220u));
+                r4 = r16; alSndpSetSound(r4, (short)r5);
+                r4 = r16; r2 = (uint)alSndpGetState(r4);
+                { bool c_ = r2 == 0; r2 = (uint)-1; if (c_) goto L_L0025A790; }
+                r4 = r16; alSndpStop(r4);
+                r2 = (uint)-1;
+                L_L0025A790: ;
+                Mem.Set((r18 + 4u), r2);
+                L_L0025A794: ;
+                r4 = Mem.U16((r18 + 116u));
+                Cpu.SetS(0, Trunc16ToF32((ushort)r4));
+                Cpu.SetW(1, Mem.U32((r18 + 128u)));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                Cpu.SetW(1, Mem.U32((r17 + 28u)));
+                Cpu.SetW(4, (uint)(int)Cpu.S(0));
+                r2 = Cpu.W(4);
+                Cpu.SetW(0, r2);
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                Mem.Set((r17 + 8u), r2); goto L_L0025A7EC;
+                L_L0025A7C8: ;
+                { bool c_ = r2 == 0;  if (c_) goto L_L0025A7DC; }
+                Cpu.SetW(1, Mem.U32((r17 + 28u)));
+                 goto L_L0025A7E0;
+                L_L0025A7DC: ;
+                Cpu.SetW(1, Mem.U32((r17 + 32u)));
+                L_L0025A7E0: ;
+                Cpu.SetW(0, Mem.U32((r17 + 8u)));
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                L_L0025A7EC: ;
+                r3 = Mem.U32((r18 + 176u));
+                r2 = Mem.U32((r18 + 0u));
+                r17 = r3 + 132u;
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(21));
+                r2 = r2 << 1;
+                r3 = r3 + r2;
+                r5 = (uint)(int)Mem.S16((r3 + 220u));
+                Cpu.SetW(4, (uint)(int)Cpu.S(0));
+                r16 = Cpu.W(4);
+                r4 = r17; alSndpSetSound(r4, (short)r5);
+                Cpu.SetW(1, Mem.U32((r18 + 200u)));
+                Cpu.SetW(0, r16);
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                r4 = r17;
+                Cpu.SetW(4, (uint)(int)Cpu.S(0));
+                r5 = Cpu.W(4);
+                r5 = r5 << 16;
+                r5 = (uint)((int)r5 >> 16); alSndpSetVol(r4, (short)r5);
+                r31 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                Cpu.Fpr[21] = Mem.U64((r29 + 48u));
+                Cpu.Fpr[20] = Mem.U64((r29 + 40u));
+                r29 = r29 + 56u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0025A3EC", r2); Stack.Free(384); }
     }
 
     // ==== func_0025ABB4 @ 0x0025ABB4 [C]
@@ -436,7 +3583,7 @@ public static partial class Game
             if (((new SndFx(fx).unk8 != 2) && (new SndFx(fx).unk8 != 0)))
             {
                 new SndFx(fx).unk8_Set(2);
-                p = func_00258D60(new SndFx(fx).owner_);
+                p = Sound_GetPlayer(new SndFx(fx).owner_);
                 alSndpSetSound(p, (short)((int)(Mem.S16(((fx + 28u) + (uint)(1 * 2))))));
                 alSndpStop(p);
             }
@@ -578,7 +3725,7 @@ public static partial class Game
                 {
                     new P4Item(it).idx_Set((short)(i));
                     new P4Item(it).id_Set((ushort)(id));
-                    func_00246BD8(it, new P4Owner(o).f54, new P4Owner(o).f24, d);
+                    Actor_ResetAnimObject(it, new P4Owner(o).f54, new P4Owner(o).f24, d);
                 }
             }
         }

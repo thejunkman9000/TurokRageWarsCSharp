@@ -20,7 +20,7 @@ public static partial class Game
                 func_002A1724(new O05Lobby(Mem.U32(0x800E54A4u)).recs.P, 0x80102B00u, (uint)(1600));
                 for (i = 0; (i < 4); ++i)
                 {
-                    func_0022EF20((0x80102B00u + (uint)(i * 400)));
+                    Profile_Init((0x80102B00u + (uint)(i * 400)));
                     Mem.Set((_fp + (uint)(i * 4)), 0);
                 }
                 for (i = 0; (i < 4); ++i)

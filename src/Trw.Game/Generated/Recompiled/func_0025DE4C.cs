@@ -26,7 +26,7 @@ public static partial class Game
                 r4 = 2148597760u;
                 r4 = r4 - 16256u;
                 Mem.Set((r29 + 16u), r31);
-                func_00257380(r4);
+                Sound_Init(r4);
                 r31 = Mem.U32((r29 + 16u));
                 r29 = r29 + 24u; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;

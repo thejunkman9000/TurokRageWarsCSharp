@@ -70,7 +70,7 @@ public static partial class Game
                             s = (uint)(s + (uint)(2 * 320));
                         }
                         L_sel: ;
-                        func_00253C8C(0, (uint)(((new View_v2(s).unk114 == Mem.U32(0x801536F4u)) ? 1 : 0)));
+                        Resource_PostFrameDone(0, (uint)(((new View_v2(s).unk114 == Mem.U32(0x801536F4u)) ? 1 : 0)));
                         if ((osSendMesg((uint)(Mem.S32((j + (uint)((80 / 4) * 4)))), (uint)(Mem.S32((j + (uint)((84 / 4) * 4)))), 1) == (-1)))
                         {
                             Mem.Set(0u, (byte)(0));

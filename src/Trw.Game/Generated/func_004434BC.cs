@@ -20,7 +20,7 @@ public static partial class Game
             new O06B_v4(p).unkB4_Set(0);
             new O06B_v4(p).unkBC_Set(0);
             List_Remove(a, b, default(uint), default(uint));
-            func_002537D8(0, (uint)(new O06A_v20(b).unk8));
+            ResourcePool_Release(0, (uint)(new O06A_v20(b).unk8));
         }
     }
 

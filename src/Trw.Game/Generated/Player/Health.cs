@@ -837,7 +837,7 @@ public static partial class Game
                             {
                                 if ((Mem.S32((p + (uint)5844)) == 0))
                                 {
-                                    func_00239184((uint)(Mem.S32((p + (uint)1500))), (s0 & 255), a4);
+                                    View_SetHitDirection_00239184((uint)(Mem.S32((p + (uint)1500))), (s0 & 255), a4);
                                 }
                                 v = ((dmg * 16) - dmg);
                                 if ((v >= 101))
@@ -1032,8 +1032,8 @@ public static partial class Game
                     pw = new Plr(a).unk5DC_;
                     t = func_002745D4(7.5f);
                     v = Cpu.TruncU32(t);
-                    func_0023919C(pw, (sbyte)(255), (sbyte)(255), (sbyte)(0), (sbyte)(0), (sbyte)((int)((byte)(v))), (sbyte)(3), (sbyte)(7));
-                    func_002394AC(0x80145088u, 0.0f, 204.799988f, 0.0f, 512.0f, 0, new Pawn(pw).pos128.P);
+                    Fade_Start(pw, (sbyte)(255), (sbyte)(255), (sbyte)(0), (sbyte)(0), (sbyte)((int)((byte)(v))), (sbyte)(3), (sbyte)(7));
+                    CameraShake_Add(0x80145088u, 0.0f, 204.799988f, 0.0f, 512.0f, 0, new Pawn(pw).pos128.P);
                 }
                 new Plr(a).unk1D4_Set((new Plr(a).unk1D4 - Mem.F32(0x800D2988u)));
                 if (((new Plr(a).unk1D4 <= 0.0f) || (new Plr(a).unk5E4 == 0)))
@@ -1320,7 +1320,7 @@ public static partial class Game
                 {
                     if ((new Pawn(new Plr(a).unk5DC_).unk544 == 0))
                     {
-                        func_0023919C(new Plr(a).unk5DC_, (sbyte)(128), (sbyte)(0), (sbyte)(0), (sbyte)(250), (sbyte)((int)((byte)(Cpu.TruncU32(func_002745D4(7.5f))))), (sbyte)(0), (sbyte)((int)((byte)(Cpu.TruncU32((((new Plr(a).unk11D8 * 0.0666666701f) - 1.5f) * 15.0f))))));
+                        Fade_Start(new Plr(a).unk5DC_, (sbyte)(128), (sbyte)(0), (sbyte)(0), (sbyte)(250), (sbyte)((int)((byte)(Cpu.TruncU32(func_002745D4(7.5f))))), (sbyte)(0), (sbyte)((int)((byte)(Cpu.TruncU32((((new Plr(a).unk11D8 * 0.0666666701f) - 1.5f) * 15.0f))))));
                         return;
                     }
                     new Pawn(new Plr(a).unk5DC_).unk544_Set(3);
@@ -2082,7 +2082,7 @@ public static partial class Game
             {
                 if ((((int)(Mem.U8(0x801462D5u)) == 1) && (Mem.S32(new SharedPlayer_func_8044972C_de(player).views1450.P) == 0)))
                 {
-                    Mem.Set(new SharedPlayer_func_8044972C_de(player).views133C.P, (((int)((byte)(func_0022F444((0x80102B00u + (uint)(Mem.S32((new SharedPlayer_func_8044972C_de(player).views1C.P + 1464u)) * 400)), (int)(new func_80229BE0_S2(Mem.U32(new SharedPlayer_func_8044972C_de(player).views5D8.P)).unk80)))) >> (int)1) + 1));
+                    Mem.Set(new SharedPlayer_func_8044972C_de(player).views133C.P, (((int)((byte)(Profile_GetCharacterLives((0x80102B00u + (uint)(Mem.S32((new SharedPlayer_func_8044972C_de(player).views1C.P + 1464u)) * 400)), (int)(new func_80229BE0_S2(Mem.U32(new SharedPlayer_func_8044972C_de(player).views5D8.P)).unk80)))) >> (int)1) + 1));
                 }
                 if (((((int)(Mem.U8(0x801462D5u)) == 4) && (Mem.S32(new SharedPlayer_func_8044972C_de(player).views1450.P) == 0)) && (Mem.U32(0x800E4680u) != 0u)))
                 {

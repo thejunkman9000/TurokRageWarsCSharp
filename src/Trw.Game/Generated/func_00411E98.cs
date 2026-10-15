@@ -13,14 +13,14 @@ public static partial class Game
             Mem.Set((Mem.U32(0x80153C50u) + (uint)(i * 2)), (ushort)((int)(Mem.U16((Mem.U32(0x80153C50u) + (uint)(i * 2)))) - 1));
             if (((new S12((Mem.U32(0x80153C44u) + (uint)(i * 12))).p != 0u) && ((int)(Mem.S16((Mem.U32(0x80153C50u) + (uint)(i * 2)))) == 0)))
             {
-                func_00254784(new S12((Mem.U32(0x80153C44u) + (uint)(i * 12))).p);
+                ResourcePool_MallocFree(new S12((Mem.U32(0x80153C44u) + (uint)(i * 12))).p);
                 if ((Mem.S32(0x800E2AC4u) != 0))
                 {
                     if ((Mem.U32(0x80153C48u) != 0u))
                     {
                         if ((new S12((Mem.U32(0x80153C48u) + (uint)(i * 12))).p != 0u))
                         {
-                            func_00254784(new S12((Mem.U32(0x80153C48u) + (uint)(i * 12))).p);
+                            ResourcePool_MallocFree(new S12((Mem.U32(0x80153C48u) + (uint)(i * 12))).p);
                         }
                     }
                 }

@@ -84,7 +84,7 @@ public static partial class Game
                 Mem.Set((r29 + 108u), r9);
                 Mem.Set((r29 + 112u), r10);
                 r7 = r29 + 104u; func_00272038(r4, Cpu.U2F(r5), r6, r7);
-                r4 = r16; Cpu.SetS(0, func_0024D274(r4));
+                r4 = r16; Cpu.SetS(0, Actor_GetHeight(r4));
                 r1 = 2148335616u;
                 Cpu.SetW(1, Mem.U32((r1 - 27440u)));
                 Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
@@ -103,7 +103,7 @@ public static partial class Game
                 r2 = (uint)1;
                 Cpu.SetS(23, Cpu.S(0) * Cpu.S(1));
                 { bool c_ = r3 != r2; r4 = r0; if (c_) goto L_L00266994; }
-                r4 = r19; Cpu.SetS(0, func_0024BECC(r4));
+                r4 = r19; Cpu.SetS(0, Actor_GetAverageScale(r4));
                 r4 = r0; goto L_L0026699C;
                 L_L00266994: ;
                 r1 = 2148335616u;
@@ -164,7 +164,7 @@ public static partial class Game
                 r5 = Mem.U32((r29 + 128u));
                 r6 = Mem.U32((r29 + 132u));
                 r7 = Mem.U32((r29 + 136u));
-                r4 = r20; { uint s1_ = Stack.Alloc(12); Mem.Set(s1_ + 0u, r5); Mem.Set(s1_ + 4u, r6); Mem.Set(s1_ + 8u, r7); r2 = (uint)func_0024B05C(r4, s1_, Mem.U32(r29 + 16u)); Stack.Free(12); }
+                r4 = r20; { uint s1_ = Stack.Alloc(12); Mem.Set(s1_ + 0u, r5); Mem.Set(s1_ + 4u, r6); Mem.Set(s1_ + 8u, r7); r2 = (uint)Actor_FindNearestHitBox(r4, s1_, Mem.U32(r29 + 16u)); Stack.Free(12); }
                 { bool c_ = r2 == 0; r3 = r0; if (c_) goto L_L00266AA4; }
                 r3 = r16;
                 L_L00266AA4: ;
@@ -195,7 +195,7 @@ public static partial class Game
                 Cpu.SetW(1, Mem.U32((r20 + 12u)));
                 Cpu.SetW(0, Mem.U32((r20 + 112u)));
                 Cpu.SetS(20, Cpu.S(1) + Cpu.S(0));
-                r4 = r20; Cpu.SetS(0, func_0024D274(r4));
+                r4 = r20; Cpu.SetS(0, Actor_GetHeight(r4));
                 Cpu.SetS(1, Cpu.S(20) + Cpu.S(0));
                 Cpu.SetW(0, Mem.U32((r29 + 132u)));
                 fcc = Cpu.S(1) < Cpu.S(0);
@@ -206,7 +206,7 @@ public static partial class Game
                 if (!fcc) { Mem.Set((r29 + 92u), Cpu.W(0)); goto L_L00266B68; }
                 Mem.Set((r29 + 92u), Cpu.W(20));
                 L_L00266B68: ;
-                r4 = r20; Cpu.SetS(0, func_0024D388(r4));
+                r4 = r20; Cpu.SetS(0, Actor_GetRadius(r4));
                 r4 = r29 + 128u;
                 r5 = r29 + 88u;
                 Cpu.SetS(20, Cpu.S(23) + Cpu.S(0)); Cpu.SetS(0, func_00272768(r4, r5));

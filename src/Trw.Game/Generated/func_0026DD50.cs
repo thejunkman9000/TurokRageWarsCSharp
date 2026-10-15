@@ -20,7 +20,7 @@ public static partial class Game
             if (((Mem.U32(0x800E28A4u) - (((uint)(Mem.U32(0x80110634u)) - (uint)(new B16Gfx(Mem.U32(0x8011FE80u)).base_)) >> (int)3)) >= (uint)(3000)))
             {
                 root = Mem.U32(p);
-                func_00253B5C(0, p);
+                Resource_MarkUsedInFrame(0, p);
                 if ((flag != 0))
                 {
                     uint q = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);

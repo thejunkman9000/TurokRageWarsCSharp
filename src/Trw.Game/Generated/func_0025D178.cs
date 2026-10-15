@@ -16,7 +16,7 @@ public static partial class Game
             new SndFx(fx).unk8_Set(0);
             new SndFx(fx).unk14_Set(0);
             new SndFx(fx).unk18_Set(64);
-            new SndFx(fx).sndId_Set((int)(alSndpAllocate(func_00258D60(new SndFx(fx).owner_), 0x800D0D78u)));
+            new SndFx(fx).sndId_Set((int)(alSndpAllocate(Sound_GetPlayer(new SndFx(fx).owner_), 0x800D0D78u)));
         }
     }
 

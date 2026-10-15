@@ -28,7 +28,7 @@ public static partial class Game
             }
             if ((new S_obj_v2((Mem.U32(0x80153C28u) + (uint)(i * 1180))).tbl[(int)(0)] != 0))
             {
-                func_00254784((uint)(new S_obj_v2((Mem.U32(0x80153C28u) + (uint)(i * 1180))).tbl[(int)(0)]));
+                ResourcePool_MallocFree((uint)(new S_obj_v2((Mem.U32(0x80153C28u) + (uint)(i * 1180))).tbl[(int)(0)]));
                 new S_obj_v2((Mem.U32(0x80153C28u) + (uint)(i * 1180))).tbl.Set((int)(0), 0);
                 for (j = 0; (j < 96); ++j)
                 {

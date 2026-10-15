@@ -25,7 +25,7 @@ public static partial class Game
                     r = (int)(func_00296E04((c + (uint)(2 * 4)), (uint)((-1)), default(uint), default(uint)));
                     if ((r != 0))
                     {
-                        func_002536F4(0, (uint)(r));
+                        ResourcePool_Unref(0, (uint)(r));
                     }
                 }
             }

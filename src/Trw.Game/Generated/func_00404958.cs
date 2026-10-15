@@ -19,11 +19,11 @@ public static partial class Game
             {
                 return (-2);
             }
-            if ((func_0025471C() == 0))
+            if ((Resource_GetLoadFlags() == 0))
             {
-                func_0025470C(1);
+                Resource_SetLoadFlags(1);
             }
-            h = func_002533DC(0, rsize, (uint)(35), (int)(0x800E0D00u));
+            h = ResourcePool_Alloc(0, rsize, (uint)(35), (int)(0x800E0D00u));
             buf = (uint)(Mem.S32(h));
             Pad_TryAcquire(1);
             Pad_ReadController_00263760();
@@ -43,10 +43,10 @@ public static partial class Game
                 }
             }
             func_0026456C(default(uint), default(uint), default(uint), default(uint));
-            func_002538A8();
+            ResourcePool_Purge();
             if ((h != 0u))
             {
-                func_002537D8(0, (uint)((int)(h)));
+                ResourcePool_Release(0, (uint)((int)(h)));
             }
             return r;
         }
@@ -70,7 +70,7 @@ public static partial class Game
                 {
                     return (-2);
                 }
-                h = func_002533DC(0, rsize, (uint)(35), (int)(0x800E0D18u));
+                h = ResourcePool_Alloc(0, rsize, (uint)(35), (int)(0x800E0D18u));
                 buf = (uint)(Mem.S32(h));
                 i = 0;
                 do
@@ -94,10 +94,10 @@ public static partial class Game
                     }
                 }
                 while ((i < 4));
-                func_002538A8();
+                ResourcePool_Purge();
                 if ((h != 0u))
                 {
-                    func_002537D8(0, (uint)((int)(h)));
+                    ResourcePool_Release(0, (uint)((int)(h)));
                 }
                 return r;
             }

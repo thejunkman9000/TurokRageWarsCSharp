@@ -3128,6 +3128,102 @@ public static partial class Game
         }
     }
 
+    // ==== func_0022E16C @ 0x0022E16C [MIPS]
+    public static uint Match_AdjustTeamScore(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0022E16C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_0022E16C: ;
+                r7 = 2148794368u;
+                r7 = r7 + 26784u;
+                r2 = Mem.U32((r7 + 36u));
+                { bool c_ = r2 == 0;  if (c_) goto L_L0022E248; }
+                r2 = Mem.U32((r4 + 1496u));
+                r3 = Mem.U32((r5 + 1496u));
+                r5 = Mem.U8((r2 + 146u));
+                r8 = Mem.U8((r3 + 146u));
+                { bool c_ = (int)r5 < 0; r2 = (uint)((int)r5 < 5 ? 1 : 0); if (c_) goto L_L0022E1CC; }
+                { bool c_ = r2 == 0; r3 = r5 << 2; if (c_) goto L_L0022E1CC; }
+                r2 = r7 + 44u;
+                r4 = r3 + r2;
+                r2 = r7 + 64u;
+                r3 = r3 + r2;
+                r2 = (uint)1;
+                { bool c_ = r6 == r2; r2 = (uint)((int)r6 < 2 ? 1 : 0); if (c_) goto L_L0022E20C; }
+                if (r2 == 0) { r2 = (uint)2; goto L_L0022E1D4; }
+                { bool c_ = r6 == 0;  if (c_) goto L_L0022E1EC; }
+                L_L0022E1CC: ;
+                Cpu.V1 = r3; return r2;
+                L_L0022E1D4: ;
+                { bool c_ = r6 == r2; r2 = (uint)3; if (c_) goto L_L0022E234; }
+                { bool c_ = r6 == r2;  if (c_) goto L_L0022E224; }
+                Cpu.V1 = r3; return r2;
+                L_L0022E1EC: ;
+                r2 = Mem.U32((r7 + 120u));
+                { bool c_ = r2 != 0;  if (c_) goto L_L0022E248; }
+                r2 = Mem.U32((r7 + 84u));
+                { bool c_ = r2 == 0;  if (c_) goto L_L0022E23C; }
+                 goto L_L0022E248;
+                L_L0022E20C: ;
+                { bool c_ = r8 == r5;  if (c_) goto L_L0022E248; }
+                L_L0022E214: ;
+                r2 = Mem.U32((r4 + 0u));
+                r2 = r2 + 1u;
+                Mem.Set((r4 + 0u), r2); Cpu.V1 = r3; return r2;
+                L_L0022E224: ;
+                r2 = Mem.U32((r3 + 0u));
+                r2 = r2 + 1u;
+                Mem.Set((r3 + 0u), r2); Cpu.V1 = r3; return r2;
+                L_L0022E234: ;
+                { bool c_ = r8 != r5;  if (c_) goto L_L0022E214; }
+                L_L0022E23C: ;
+                r2 = Mem.U32((r4 + 0u));
+                r2 = r2 - 1u;
+                Mem.Set((r4 + 0u), r2);
+                L_L0022E248: ;
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0022E16C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_0022EDEC @ 0x0022EDEC [C]
+    public static void Player_BecomeMonkey(uint actor)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022EDEC", (uint)actor);
+            Mem.Set((new Actor(actor).stats_ + (uint)143), (byte)(1));
+            switch (Mem.S32(0x80146910u))
+            {
+            case 0:
+                func_0025DE74((int)((uint)(6305)), C.Tmp(Cpu.F2U(Mem.F32((actor + (uint)8))), Cpu.F2U(Mem.F32((actor + (uint)12))), Cpu.F2U(Mem.F32((actor + (uint)16)))), (int)((actor + (uint)8)), (int)((uint)((-1))));
+                break;
+            case 1:
+                func_0025DE74((int)((uint)(6505)), C.Tmp(Cpu.F2U(Mem.F32((actor + (uint)8))), Cpu.F2U(Mem.F32((actor + (uint)12))), Cpu.F2U(Mem.F32((actor + (uint)16)))), (int)((actor + (uint)8)), (int)((uint)((-1))));
+                break;
+            case 2:
+                func_0025DE74((int)((uint)(6405)), C.Tmp(Cpu.F2U(Mem.F32((actor + (uint)8))), Cpu.F2U(Mem.F32((actor + (uint)12))), Cpu.F2U(Mem.F32((actor + (uint)16)))), (int)((actor + (uint)8)), (int)((uint)((-1))));
+                break;
+            }
+            Player_StubStop938_00218464();
+            Mem.Set((actor + (uint)4532), 0);
+            Actor_DispatchEvent((actor + (uint)744), (actor + (uint)1112), 1);
+            Player_PlaceAtSpawn(actor, (uint)(Mem.S32((actor + (uint)1516))), (uint)(0), (uint)(1));
+            Player_ApplyCharacterClass(actor);
+        }
+    }
+
     // ==== func_0044EA24 @ 0x0044EA24 [C]
     public static void Match_EnterState0C_0044EA24(uint arg0)
     {

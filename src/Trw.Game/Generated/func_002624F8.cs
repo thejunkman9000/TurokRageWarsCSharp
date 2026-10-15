@@ -15,7 +15,7 @@ public static partial class Game
             {
                 return 0;
             }
-            return ((func_00253294((uint)(v)) != 0) ? 1 : 0);
+            return ((ResourcePool_IsReferenced((uint)(v)) != 0) ? 1 : 0);
         }
     }
 

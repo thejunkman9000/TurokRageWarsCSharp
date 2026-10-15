@@ -6,8 +6,312 @@ namespace Trw.Game;
 
 public static partial class Game
 {
+    // ==== func_0024B398 @ 0x0024B398 [C]
+    public static void Level_SpawnActorFromRecord(int arg0, uint p)
+    {
+        uint _fp = Stack.Alloc(12);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0024B398", (uint)arg0, (uint)p);
+                int s2 = 0;
+                int s1 = 0;
+                int a3 = 0;
+                byte t = 0;
+                int e = 0;
+                float fs0 = 0f;
+                s2 = (int)(Level_GetDefinition(0x8011FE88u, (int)(new B11Spawn(p).u22)));
+                if (((int)(new B11Spawn(p).u20) == 65535))
+                {
+                    s1 = 0;
+                }
+                else
+                {
+                    s1 = (int)(func_0028B370(0x8011FE88u, (int)(new B11Spawn(p).u20)));
+                }
+                fs0 = ((float)((int)(new B11Spawn(p).s24)) * Mem.F32(0x800C8C3Cu));
+                new Vec3f(_fp).x_Set(new Vec3f(_fp).y_Set(new Vec3f(_fp).z_Set(0.0f)));
+                a3 = func_00285F28(0x8011FE88u, (uint)(arg0));
+                Actor_Init((uint)(arg0), (int)(new B11Spawn(p).u1C), (int)(new B11Spawn(p).u1E), new B11Spawn(p).unk0, (uint)(s2), (((int)(new B11Spawn(p).u27) == 255) ? (-1) : (int)(new B11Spawn(p).u27)), (uint)(s1), fs0, new B11Spawn(p).v4.P, (uint)((int)(new B11Spawn(p).u26)), new B11Spawn(p).v10.P, _fp);
+            }
+        }
+        finally { Stack.Free(12); }
+    }
+
+    // ==== func_0024F934 @ 0x0024F934 [MIPS]
+    public static uint Prop_InitFromRecord_Head_0024F934(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0024F934", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_0024F934: ;
+                r4 = r4 + 232u;
+                r2 = r16 + r0;
+                r31 = Mem.U32((r29 + 24u));
+                L_func_0024F940: ;
+                r29 = r29 - 136u;
+                Mem.Set((r29 + 100u), r17);
+                r17 = r4;
+                Mem.Set((r29 + 104u), r18);
+                r18 = r5;
+                Mem.Set((r29 + 96u), r16);
+                r16 = r6;
+                Mem.Set((r29 + 108u), r19);
+                Mem.Set((r29 + 128u), Cpu.Fpr[21]);
+                Cpu.SetW(21, Mem.U32((r29 + 152u)));
+                Mem.Set((r29 + 112u), r31);
+                Mem.Set((r29 + 120u), Cpu.Fpr[20]);
+                r19 = r7; Actor_ResetModelSlots_0024DD00(r4);
+                Mem.Set((r17 + 0u), (byte)r0);
+                r3 = Mem.U16((r18 + 8u));
+                r2 = (uint)-1;
+                Mem.Set((r17 + 28u), r16);
+                Mem.Set((r17 + 168u), r2);
+                Mem.Set((r17 + 172u), r0);
+                Mem.Set((r17 + 176u), r0);
+                Mem.Set((r17 + 180u), r0);
+                Mem.Set((r17 + 4u), (ushort)r3);
+                r5 = Mem.U16((r18 + 14u));
+                r4 = 2148663296u;
+                r4 = r4 - 376u;
+                r2 = Level_GetDefinition(r4, (int)r5);
+                Mem.Set((r17 + 24u), r2);
+                r4 = r2;
+                r2 = (uint)16;
+                Mem.Set((r17 + 224u), (byte)r2);
+                Mem.Set((r17 + 220u), r0);
+                Cpu.SetW(0, Mem.U32((r4 + 8u)));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(0));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 28928u)));
+                Cpu.SetW(20, r0);
+                fcc = Cpu.S(1) <= Cpu.S(0);
+                if (fcc) { Cpu.SetS(0, Cpu.S(0) - Cpu.S(1)); goto L_L0024F9F8; }
+                Cpu.SetW(4, (uint)(int)Cpu.S(0));
+                r3 = Cpu.W(4);
+                Mem.Set((r4 + 36u), r3); goto L_L0024FA0C;
+                L_L0024F9F8: ;
+                r2 = 2147483648u;
+                Cpu.SetW(4, (uint)(int)Cpu.S(0));
+                r3 = Cpu.W(4);
+                r3 = r3 | r2;
+                Mem.Set((r4 + 36u), r3);
+                L_L0024FA0C: ;
+                r2 = Mem.U8((r18 + 25u));
+                Cpu.SetW(0, r2);
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(21));
+                Mem.Set((r29 + 80u), Cpu.W(0));
+                r2 = Mem.U8((r18 + 24u));
+                r2 = r2 & 16u;
+                { bool c_ = r2 == 0;  if (c_) goto L_L0024FA38; }
+                Cpu.SetS(0, -Cpu.S(0));
+                Mem.Set((r29 + 80u), Cpu.W(0));
+                L_L0024FA38: ;
+                r2 = Mem.U8((r18 + 26u));
+                Cpu.SetW(0, r2);
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(21));
+                Mem.Set((r29 + 88u), Cpu.W(0));
+                r2 = Mem.U8((r18 + 24u));
+                r2 = r2 & 32u;
+                { bool c_ = r2 == 0;  if (c_) goto L_L0024FA64; }
+                Cpu.SetS(0, -Cpu.S(0));
+                Mem.Set((r29 + 88u), Cpu.W(0));
+                L_L0024FA64: ;
+                r2 = (uint)(int)Mem.S16((r18 + 16u));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 28924u)));
+                Cpu.SetW(0, r2);
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                Mem.Set((r29 + 84u), Cpu.W(0));
+                r2 = Mem.U8((r18 + 24u));
+                r3 = r2 & 3u;
+                r2 = (uint)1;
+                { bool c_ = r3 == r2; r2 = (uint)((int)r3 < 2 ? 1 : 0); if (c_) goto L_L0024FAD0; }
+                { bool c_ = r2 == 0; r2 = (uint)2; if (c_) goto L_L0024FAAC; }
+                { bool c_ = r3 == 0;  if (c_) goto L_L0024FAC4; }
+                 goto L_L0024FAF8;
+                L_L0024FAAC: ;
+                { bool c_ = r3 == r2; r2 = (uint)3; if (c_) goto L_L0024FAE0; }
+                { bool c_ = r3 == r2;  if (c_) goto L_L0024FAF0; }
+                 goto L_L0024FAF8;
+                L_L0024FAC4: ;
+                Cpu.SetW(20, r0);
+                 goto L_L0024FAF8;
+                L_L0024FAD0: ;
+                r1 = 2148335616u;
+                Cpu.SetW(20, Mem.U32((r1 - 28920u)));
+                 goto L_L0024FAF8;
+                L_L0024FAE0: ;
+                r1 = 2148335616u;
+                Cpu.SetW(20, Mem.U32((r1 - 28916u)));
+                 goto L_L0024FAF8;
+                L_L0024FAF0: ;
+                r1 = 2148335616u;
+                Cpu.SetW(20, Mem.U32((r1 - 28912u)));
+                L_L0024FAF8: ;
+                r5 = Cpu.W(20);
+                r2 = Mem.U16((r18 + 12u));
+                r4 = r29 + 16u;
+                Mem.Set((r17 + 216u), (ushort)r2); func_00273744(r4, Cpu.U2F(r5));
+                r5 = Mem.U32((r18 + 4u));
+                r4 = r29 + 16u;
+                r6 = r5;
+                r7 = r5; func_002734EC(r4, Cpu.U2F(r5), Cpu.U2F(r6), Cpu.U2F(r7));
+                r5 = Mem.U32((r29 + 80u));
+                r6 = Mem.U32((r29 + 84u));
+                r7 = Mem.U32((r29 + 88u));
+                r4 = r29 + 16u; func_002734B8(r4, Cpu.U2F(r5), Cpu.U2F(r6), Cpu.U2F(r7));
+                r4 = r29 + 16u; func_00273DDC(r4);
+                r2 = Mem.U16((r17 + 216u));
+                r2 = r2 & 64u;
+                { bool c_ = r2 == 0;  if (c_) goto L_L0024FBAC; }
+                Cpu.SetW(0, Mem.U32((r29 + 80u)));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 28908u)));
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(1));
+                Mem.Set((r17 + 184u), Cpu.W(0));
+                Cpu.SetW(0, Mem.U32((r29 + 84u)));
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(1));
+                Mem.Set((r17 + 188u), Cpu.W(0));
+                Cpu.SetW(0, Mem.U32((r29 + 88u)));
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(1));
+                Mem.Set((r17 + 192u), Cpu.W(0));
+                Cpu.SetW(0, Mem.U32((r29 + 80u)));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                Mem.Set((r17 + 196u), Cpu.W(0));
+                Cpu.SetW(0, Mem.U32((r29 + 84u)));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                Mem.Set((r17 + 200u), Cpu.W(0));
+                Cpu.SetW(0, Mem.U32((r29 + 88u)));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                Mem.Set((r17 + 204u), Cpu.W(0));
+                r2 = 2148335616u;
+                r2 = Mem.U32((r2 + 11072u));
+                Mem.Set((r17 + 212u), r2); goto L_L0024FC84;
+                L_L0024FBAC: ;
+                r2 = (uint)(int)Mem.S8((r18 + 18u));
+                r1 = 2148335616u;
+                Cpu.SetW(3, Mem.U32((r1 - 28904u)));
+                Cpu.SetW(1, r2);
+                Cpu.SetS(1, (float)(int)Cpu.W(1));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(3));
+                Cpu.SetW(0, Mem.U32((r29 + 80u)));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                r1 = 2148335616u;
+                Cpu.SetW(2, Mem.U32((r1 - 28900u)));
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(2));
+                Mem.Set((r17 + 184u), Cpu.W(0));
+                r2 = (uint)(int)Mem.S8((r18 + 20u));
+                Cpu.SetW(1, r2);
+                Cpu.SetS(1, (float)(int)Cpu.W(1));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(3));
+                Cpu.SetW(0, Mem.U32((r29 + 84u)));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(2));
+                Mem.Set((r17 + 188u), Cpu.W(0));
+                r2 = (uint)(int)Mem.S8((r18 + 22u));
+                Cpu.SetW(1, r2);
+                Cpu.SetS(1, (float)(int)Cpu.W(1));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(3));
+                Cpu.SetW(0, Mem.U32((r29 + 88u)));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(2));
+                Mem.Set((r17 + 192u), Cpu.W(0));
+                r2 = (uint)(int)Mem.S8((r18 + 19u));
+                Cpu.SetW(1, r2);
+                Cpu.SetS(1, (float)(int)Cpu.W(1));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(3));
+                Cpu.SetW(0, Mem.U32((r29 + 80u)));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(2));
+                Mem.Set((r17 + 196u), Cpu.W(0));
+                r2 = (uint)(int)Mem.S8((r18 + 21u));
+                Cpu.SetW(1, r2);
+                Cpu.SetS(1, (float)(int)Cpu.W(1));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(3));
+                Cpu.SetW(0, Mem.U32((r29 + 84u)));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(2));
+                Mem.Set((r17 + 200u), Cpu.W(0));
+                r2 = (uint)(int)Mem.S8((r18 + 23u));
+                Cpu.SetW(1, r2);
+                Cpu.SetS(1, (float)(int)Cpu.W(1));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(3));
+                Cpu.SetW(0, Mem.U32((r29 + 88u)));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(2));
+                Mem.Set((r17 + 204u), Cpu.W(0));
+                r2 = Mem.U32((r18 + 0u));
+                Mem.Set((r17 + 212u), r2);
+                L_L0024FC84: ;
+                r4 = r17 + 104u;
+                r5 = r29 + 16u; func_0027302C(r4, r5);
+                r4 = r29 + 16u;
+                r5 = r17 + 40u; Math_MtxFloatToFixed(r4, r5);
+                r8 = Mem.U32((r29 + 80u));
+                r9 = Mem.U32((r29 + 84u));
+                r10 = Mem.U32((r29 + 88u));
+                Mem.Set((r17 + 8u), r8);
+                Mem.Set((r17 + 12u), r9);
+                Mem.Set((r17 + 16u), r10);
+                r3 = Mem.U16((r18 + 10u));
+                r2 = (uint)65535;
+                { bool c_ = r3 != r2;  if (c_) goto L_L0024FCCC; }
+                Mem.Set((r17 + 20u), r0); goto L_L0024FCDC;
+                L_L0024FCCC: ;
+                r2 = Mem.U16((r18 + 10u));
+                r2 = r2 << 5;
+                r2 = r19 + r2;
+                Mem.Set((r17 + 20u), r2);
+                L_L0024FCDC: ;
+                r3 = 4128768u;
+                r2 = 2148335616u;
+                r2 = Mem.U32((r2 + 2320u));
+                r3 = r3 | 65535u;
+                r2 = r2 + 1u;
+                r1 = 2148335616u;
+                Mem.Set((r1 + 2320u), r2);
+                { bool c_ = r2 != r3; r2 = 3670016u; if (c_) goto L_L0024FD08; }
+                r1 = 2148335616u;
+                Mem.Set((r1 + 2320u), r2);
+                L_L0024FD08: ;
+                r2 = 2148335616u;
+                r2 = Mem.U32((r2 + 2320u));
+                r3 = 2148335616u;
+                r3 = Mem.U8((r3 + 10619u));
+                r2 = r2 << 10;
+                r3 = r3 - 1u;
+                Mem.Set((r17 + 208u), r2);
+                Mem.Set((r17 + 218u), (byte)r3);
+                r31 = Mem.U32((r29 + 112u));
+                r19 = Mem.U32((r29 + 108u));
+                r18 = Mem.U32((r29 + 104u));
+                r17 = Mem.U32((r29 + 100u));
+                r16 = Mem.U32((r29 + 96u));
+                Cpu.Fpr[21] = Mem.U64((r29 + 128u));
+                Cpu.Fpr[20] = Mem.U64((r29 + 120u));
+                r29 = r29 + 136u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0024F934", r2); Stack.Free(384); }
+    }
+
     // ==== func_0024F940 @ 0x0024F940 [C]
-    public static int func_0024F940_func_80250BF0_de()
+    public static int Resource_NextDynamicKeyTwin()
     {
         unchecked
         {
@@ -35,7 +339,7 @@ public static partial class Game
                 float turn = 0f;
                 float x = 0f;
                 float z = 0f;
-                func_0024DD00(prop);
+                Actor_ResetModelSlots_0024DD00(prop);
                 new PlacedProp(prop).state_Set((byte)(0));
                 new PlacedProp(prop).id_Set(new Record_func_8024F960_eu(record).id);
                 new PlacedProp(prop).owner_Set(owner);
@@ -113,11 +417,684 @@ public static partial class Game
                 {
                     new PlacedProp(prop).segment_Set((segments + (uint)((int)(new Record_func_8024F960_eu(record).segment) * 32)));
                 }
-                new PlacedProp(prop).key_Set((func_0024F940_func_80250BF0_de() << (int)10));
+                new PlacedProp(prop).key_Set((Resource_NextDynamicKeyTwin() << (int)10));
                 new PlacedProp(prop).colorFrame_Set((byte)(((int)(Mem.U8(0x800D297Bu)) - 1)));
             }
         }
         finally { Stack.Free(76); }
+    }
+
+    // ==== func_0024FD4C @ 0x0024FD4C [C]
+    public static void Prop_InitFromFullRecord(uint a, uint r, int arg2, int @base)
+    {
+        uint _fp = Stack.Alloc(80);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0024FD4C", (uint)a, (uint)r, (uint)arg2, (uint)@base);
+                float k = 0f;
+                Actor_ResetModelSlots_0024DD00((uint)(a));
+                new M03Fx(a).type_Set((byte)(0));
+                new M03Fx(a).id_Set(new M03FxRecB(r).u28);
+                new M03Fx(a).w1C_Set(arg2);
+                new M03Fx(a).hA8_Set((-1));
+                new M03Fx(a).hAC_Set(0);
+                new M03Fx(a).hB0_Set(0);
+                new M03Fx(a).hB4_Set(0);
+                new M03Fx(a).cls__Set(Level_GetDefinition(0x8011FE88u, (int)(new M03FxRecB(r).u2C)));
+                new M03Fx(a).bE0_Set((byte)(16));
+                new M03Fx(a).wDC_Set(0);
+                new M03Fx(a).cls.w24_Set(Cpu.TruncU32((new M03Fx(a).cls.f8 * new M03Fx(a).cls.f8)));
+                new M03Fx(a).flags_Set((ushort)(new M03FxRecB(r).flags));
+                Mem.Set((_fp + (uint)(0 * 4)), ((float)((int)(new M03FxRecB(r).q[(int)(0)])) * 0.00787401571f));
+                Mem.Set((_fp + (uint)(1 * 4)), ((float)((int)(new M03FxRecB(r).q[(int)(1)])) * 0.00787401571f));
+                Mem.Set((_fp + (uint)(2 * 4)), ((float)((int)(new M03FxRecB(r).q[(int)(2)])) * 0.00787401571f));
+                Mem.Set((_fp + (uint)(3 * 4)), ((float)((int)(new M03FxRecB(r).q[(int)(3)])) * 0.00787401571f));
+                func_00274214(_fp, default(uint), default(uint), default(uint));
+                Quat_ToMatrix(_fp, (_fp + 16u));
+                func_002734EC((_fp + 16u), new M03FxRecB(r).sx, new M03FxRecB(r).sy, new M03FxRecB(r).sz);
+                func_002734B8((_fp + 16u), new M03FxRecB(r).pos.x, new M03FxRecB(r).pos.y, new M03FxRecB(r).pos.z);
+                func_00273DDC((_fp + 16u));
+                if ((((int)(new M03Fx(a).flags) & 64) != 0))
+                {
+                    new M03Fx(a).bmin.Set((int)(0), (new M03FxRecB(r).pos.x - 102.399994f));
+                    new M03Fx(a).bmin.Set((int)(1), (new M03FxRecB(r).pos.y - 102.399994f));
+                    new M03Fx(a).bmin.Set((int)(2), (new M03FxRecB(r).pos.z - 102.399994f));
+                    new M03Fx(a).bmax.Set((int)(0), (new M03FxRecB(r).pos.x + 102.399994f));
+                    new M03Fx(a).bmax.Set((int)(1), (new M03FxRecB(r).pos.y + 102.399994f));
+                    new M03Fx(a).bmax.Set((int)(2), (new M03FxRecB(r).pos.z + 102.399994f));
+                    new M03Fx(a).wD4_Set(Mem.S32((0x800D2B40u + (uint)(0 * 4))));
+                }
+                else
+                {
+                    k = 0.5f;
+                    new M03Fx(a).bmin.Set((int)(0), ((Trunc16ToF32(new M03FxRecB(r).e[(int)(0)]) + new M03FxRecB(r).pos.x) - k));
+                    new M03Fx(a).bmin.Set((int)(1), ((Trunc16ToF32(new M03FxRecB(r).e[(int)(1)]) + new M03FxRecB(r).pos.y) - k));
+                    new M03Fx(a).bmin.Set((int)(2), ((Trunc16ToF32(new M03FxRecB(r).e[(int)(2)]) + new M03FxRecB(r).pos.z) - k));
+                    new M03Fx(a).bmax.Set((int)(0), ((Trunc16ToF32(new M03FxRecB(r).e[(int)(3)]) + new M03FxRecB(r).pos.x) + k));
+                    new M03Fx(a).bmax.Set((int)(1), ((Trunc16ToF32(new M03FxRecB(r).e[(int)(4)]) + new M03FxRecB(r).pos.y) + k));
+                    new M03Fx(a).bmax.Set((int)(2), ((Trunc16ToF32(new M03FxRecB(r).e[(int)(5)]) + new M03FxRecB(r).pos.z) + k));
+                    new M03Fx(a).wD4_Set(new M03FxRecB(r).w0);
+                }
+                func_0027302C(new M03Fx(a).m68.P, (_fp + 16u));
+                Math_MtxFloatToFixed((_fp + 16u), new M03Fx(a).m28.P);
+                Mem.Copy(new M03Fx(a).pos.P, new M03FxRecB(r).pos.P, 12);
+                if (((int)(new M03FxRecB(r).u2A) == 65535))
+                {
+                    new M03Fx(a).p14_Set(0);
+                }
+                else
+                {
+                    new M03Fx(a).p14_Set((@base + ((int)(new M03FxRecB(r).u2A) << (int)5)));
+                }
+                Mem.Set(0x800D0910u, (Mem.S32(0x800D0910u) + 1));
+                if ((Mem.S32(0x800D0910u) == 4194303))
+                {
+                    Mem.Set(0x800D0910u, 3670016);
+                }
+                new M03Fx(a).wD0_Set((Mem.S32(0x800D0910u) << (int)10));
+                new M03Fx(a).bDA_Set((byte)(((int)(Mem.U8(0x800D297Bu)) - 1)));
+            }
+        }
+        finally { Stack.Free(80); }
+    }
+
+    // ==== func_00250028 @ 0x00250028 [MIPS]
+    public static uint Prop_InitFromFullRecord_Tail_00250028(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5, uint a6, uint a7, uint a8, uint a9, uint a10, uint a11, uint a12, uint a13, uint a14, uint a15, uint a16, uint a17, uint a18, uint a19, uint a20, uint a21, uint a22, uint a23)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00250028", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                Mem.Set(r29 + 20u, a5);
+                Mem.Set(r29 + 24u, a6);
+                Mem.Set(r29 + 28u, a7);
+                Mem.Set(r29 + 32u, a8);
+                Mem.Set(r29 + 36u, a9);
+                Mem.Set(r29 + 40u, a10);
+                Mem.Set(r29 + 44u, a11);
+                Mem.Set(r29 + 48u, a12);
+                Mem.Set(r29 + 52u, a13);
+                Mem.Set(r29 + 56u, a14);
+                Mem.Set(r29 + 60u, a15);
+                Mem.Set(r29 + 64u, a16);
+                Mem.Set(r29 + 68u, a17);
+                Mem.Set(r29 + 72u, a18);
+                Mem.Set(r29 + 76u, a19);
+                Mem.Set(r29 + 80u, a20);
+                Mem.Set(r29 + 84u, a21);
+                Mem.Set(r29 + 88u, a22);
+                Mem.Set(r29 + 92u, a23);
+                L_func_00250028: ;
+                r2 = Mem.U16((r17 + 42u));
+                r2 = r2 << 5;
+                r2 = r19 + r2;
+                Mem.Set((r18 + 20u), r2);
+                r3 = 4128768u;
+                r2 = 2148335616u;
+                r2 = Mem.U32((r2 + 2320u));
+                r3 = r3 | 65535u;
+                r2 = r2 + 1u;
+                r1 = 2148335616u;
+                Mem.Set((r1 + 2320u), r2);
+                { bool c_ = r2 != r3; r2 = 3670016u; if (c_) goto L_L00250064; }
+                r1 = 2148335616u;
+                Mem.Set((r1 + 2320u), r2);
+                L_L00250064: ;
+                r2 = 2148335616u;
+                r2 = Mem.U32((r2 + 2320u));
+                r3 = 2148335616u;
+                r3 = Mem.U8((r3 + 10619u));
+                r2 = r2 << 10;
+                r3 = r3 - 1u;
+                Mem.Set((r18 + 208u), r2);
+                Mem.Set((r18 + 218u), (byte)r3);
+                r31 = Mem.U32((r29 + 112u));
+                r19 = Mem.U32((r29 + 108u));
+                r18 = Mem.U32((r29 + 104u));
+                r17 = Mem.U32((r29 + 100u));
+                r16 = Mem.U32((r29 + 96u));
+                Cpu.Fpr[20] = Mem.U64((r29 + 120u));
+                r29 = r29 + 128u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00250028", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002500A4 @ 0x002500A4 [C]
+    public static int Prop_UpdateLodFade(uint o, int a1)
+    {
+        uint _fp = Stack.Alloc(12);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_002500A4", (uint)o, (uint)a1);
+                float d = 0f;
+                uint dist = 0u;
+                int e = 0;
+                uint def = 0u;
+                func_00271FD8(_fp, (uint)((a1 + 296)), new B12Obj(o).pos.P);
+                d = (((Mem.F32((_fp + (uint)(0 * 4))) * Mem.F32((_fp + (uint)(0 * 4)))) + (Mem.F32((_fp + (uint)(1 * 4))) * Mem.F32((_fp + (uint)(1 * 4))))) + (Mem.F32((_fp + (uint)(2 * 4))) * Mem.F32((_fp + (uint)(2 * 4)))));
+                dist = Cpu.TruncU32(d);
+                new B12Obj(o).unkDC_Set(dist);
+                def = new B12Obj(o).def_;
+                if ((dist >= (new B12Def(def).unk24 * (uint)(2))))
+                {
+                    e = (int)(new B12Def(def).unkF);
+                }
+                else
+                {
+                    e = (int)(new B12Def(def).unkE);
+                }
+                if ((e == (-1)))
+                {
+                    if (((int)(new B12Obj(o).unkE0) <= 0))
+                    {
+                        new B12Obj(o).unkE0_Set((sbyte)(0));
+                        new B12Obj(o).unkD8_Set((ushort)((int)(new B12Obj(o).unkD8) | 4));
+                        return 0;
+                    }
+                    if ((((int)(new B12Obj(o).unkD8) & 512) != 0))
+                    {
+                        new B12Obj(o).unkD8_Set((ushort)((int)(new B12Obj(o).unkD8) | 4));
+                        new B12Obj(o).unkE0_Set((sbyte)(0));
+                        return 0;
+                    }
+                    new B12Obj(o).unkE0_Set((sbyte)(((int)((byte)(new B12Obj(o).unkE0)) - 1)));
+                    if (((int)(new B12Obj(o).unkE0) < 0))
+                    {
+                        new B12Obj(o).unkE0_Set((sbyte)(0));
+                    }
+                    new B12Obj(o).unkD8_Set((ushort)((int)(new B12Obj(o).unkD8) | 4));
+                }
+                else
+                {
+                    if (((int)(new B12Obj(o).unkE0) < 8))
+                    {
+                        if ((((int)(new B12Obj(o).unkD8) & 512) != 0))
+                        {
+                            new B12Obj(o).unkE0_Set((sbyte)(8));
+                            new B12Obj(o).unkD8_Set((ushort)((int)(new B12Obj(o).unkD8) & (~4)));
+                        }
+                        else
+                        {
+                            new B12Obj(o).unkE0_Set((sbyte)(((int)((byte)(new B12Obj(o).unkE0)) + 1)));
+                            new B12Obj(o).unkD8_Set((ushort)((int)(new B12Obj(o).unkD8) | 4));
+                        }
+                    }
+                    else
+                    {
+                        new B12Obj(o).unkE0_Set((sbyte)(8));
+                    }
+                }
+                return 1;
+            }
+        }
+        finally { Stack.Free(12); }
+    }
+
+    // ==== func_0025021C @ 0x0025021C [C]
+    public static void Prop_DrawLodFaded(uint o)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0025021C", (uint)o);
+            int h = 0;
+            int s4 = 0;
+            int a1 = 0;
+            int e = 0;
+            float f = 0f;
+            uint r = 0u;
+            uint blk = 0u;
+            uint data = 0u;
+            uint v1 = 0u;
+            int off = 0;
+            uint src = 0u;
+            int len = 0;
+            if (!(((int)(new B12Obj(o).unkD8) & 64) != 0))
+            {
+                uint d = new B12Obj(o).def_;
+                s4 = (int)(new B12Def(d).unk12);
+                if ((new B12Obj(o).unkDC >= (new B12Def(d).unk24 * (uint)(2))))
+                {
+                    e = (int)(new B12Def(d).unkF);
+                }
+                else
+                {
+                    e = (int)(new B12Def(d).unkE);
+                }
+                a1 = e;
+                if ((a1 == (-1)))
+                {
+                    do
+                    {
+                        if (((int)(new B12Obj(o).unkE0) <= 0))
+                        {
+                            return;
+                        }
+                        Mem.Set(0x800D15E0u, 1);
+                        Mem.Set(0x800D15F0u, (float)(((int)(new B12Obj(o).unkE0) << (int)5)));
+                    }
+                    while ((0 != 0));
+                    a1 = (int)(new B12Obj(o).def.unkE);
+                }
+                else
+                {
+                    if (((int)(new B12Obj(o).unkE0) < 8))
+                    {
+                        Mem.Set(0x800D15E0u, 1);
+                        f = (float)(((int)(new B12Obj(o).unkE0) << (int)5));
+                    }
+                    else
+                    {
+                        f = 255.0f;
+                        Mem.Set(0x800D15E0u, 0);
+                    }
+                    Mem.Set(0x800D15F0u, f);
+                }
+                h = (int)(Prop_AcquireModel(o, a1));
+                if ((h != 0))
+                {
+                    r = Resource_Request((uint)(0), (uint)((int)((new B12Obj(o).unkD0 | (uint)(Mem.S32(0x800D2640u))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(0));
+                    if ((r != 0u))
+                    {
+                        Resource_MarkUsedInFrame(0, r);
+                        blk = (uint)(new B12Node(r).key);
+                        if ((Mem.S32((blk + (uint)(0 * 4))) == 1))
+                        {
+                            off = Mem.S32((blk + (uint)(1 * 4)));
+                            len = Mem.S32((blk + (uint)(2 * 4)));
+                            data = (blk + (uint)off);
+                            src = (blk + (uint)len);
+                            if (((int)(new B12Obj(o).unkDA) != (int)(Mem.U8(0x800D297Bu))))
+                            {
+                                func_0027899C(data, src);
+                            }
+                            v1 = data;
+                        }
+                        else
+                        {
+                            v1 = (blk + (uint)8);
+                        }
+                        if ((Mem.S32(0x800D15E0u) != 0))
+                        {
+                            Light_ShadeVertices((uint)(h), (int)(new B12Obj(o).unk28.P), 0, 0, v1, s4);
+                        }
+                        else
+                        {
+                            func_0026DC24((uint)(h), (int)(new B12Obj(o).unk28.P), 0, 0, v1, s4);
+                        }
+                        ResourcePool_Unref(0, r);
+                    }
+                    ResourcePool_Unref(0, (uint)(h));
+                    new B12Obj(o).unkDA_Set(Mem.U8(0x800D297Bu));
+                }
+                Mem.Set(0x800D15E0u, 0);
+                Mem.Set(0x800D15F0u, 255.0f);
+            }
+        }
+    }
+
+    // ==== func_00250458 @ 0x00250458 [C]
+    public static void Prop_Draw(uint o)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00250458", (uint)o);
+            int h = 0;
+            int s4 = 0;
+            uint r = 0u;
+            uint blk = 0u;
+            uint data = 0u;
+            uint v1 = 0u;
+            int off = 0;
+            uint src = 0u;
+            int len = 0;
+            if (!(((int)(new B12Obj(o).unkD8) & 64) != 0))
+            {
+                s4 = (int)(new B12Obj(o).def.unk12);
+                h = (int)(Prop_AcquireModel(o, (int)(new B12Obj(o).def.unkE)));
+                if ((h != 0))
+                {
+                    r = Resource_Request((uint)(0), (uint)((int)((new B12Obj(o).unkD0 | (uint)(Mem.S32(0x800D2640u))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(0));
+                    if ((r != 0u))
+                    {
+                        Resource_MarkUsedInFrame(0, r);
+                        blk = (uint)(new B12Node(r).key);
+                        if ((Mem.S32((blk + (uint)(0 * 4))) == 1))
+                        {
+                            off = Mem.S32((blk + (uint)(1 * 4)));
+                            len = Mem.S32((blk + (uint)(2 * 4)));
+                            data = (blk + (uint)off);
+                            src = (blk + (uint)len);
+                            if (((int)(new B12Obj(o).unkDA) != (int)(Mem.U8(0x800D297Bu))))
+                            {
+                                func_0027899C(data, src);
+                            }
+                            v1 = data;
+                        }
+                        else
+                        {
+                            v1 = (blk + (uint)8);
+                        }
+                        if ((Mem.S32(0x800D15E0u) != 0))
+                        {
+                            Light_ShadeVertices((uint)(h), (int)(new B12Obj(o).unk28.P), 0, 0, v1, s4);
+                        }
+                        else
+                        {
+                            func_0026DC24((uint)(h), (int)(new B12Obj(o).unk28.P), 0, 0, v1, s4);
+                        }
+                        ResourcePool_Unref(0, r);
+                    }
+                    ResourcePool_Unref(0, (uint)(h));
+                    new B12Obj(o).unkDA_Set(Mem.U8(0x800D297Bu));
+                }
+            }
+        }
+    }
+
+    // ==== func_002505CC @ 0x002505CC [C]
+    public static void Prop_SpawnAttachedEffects(uint o, int flag)
+    {
+        uint _fp = Stack.Alloc(20);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_002505CC", (uint)o, (uint)flag);
+                uint h = 0u;
+                uint n = 0u;
+                uint @base = 0u;
+                int r = 0;
+                uint p = 0u;
+                int i = 0;
+                int cnt = 0;
+                h = ResourceCache_Hash(0, (uint)(new B12Obj(o).unk1C), new B12Obj(o).unk1C, (uint)(24), 4, (uint)(0), (uint)(0), 0x800C8F4Cu, 0);
+                if ((h != 0u))
+                {
+                    r = (int)(Resource_GetCartridgeKey(Mem.U32(h), (uint)(new B12Obj(o).unk1C), 3, _fp));
+                    n = ResourceCache_Hash(0, (uint)(r), r, (uint)(Mem.S32(_fp)), 0, (uint)(0), (uint)(0), 0x800C8F60u, 0);
+                    if ((n != 0u))
+                    {
+                        @base = Mem.U32(n);
+                        cnt = Mem.S32((@base + (uint)(1 * 4)));
+                        p = (@base + (uint)(2 * 4));
+                        for (i = 0; (i < cnt); ++i)
+                        {
+                            if (((flag != 0) || ((int)(new B12Rec((p + (uint)(i * 28))).unk2) == 8)))
+                            {
+                                func_00272908((o + (uint)104), new B12Rec((p + (uint)(i * 28))).unk8.P, (_fp + 8u));
+                                func_00265E30(o, o, (int)(new B12Rec((p + (uint)(i * 28))).unk2), (-1), (_fp + 8u), new B12Rec((p + (uint)(i * 28))).tail.P);
+                            }
+                        }
+                        ResourcePool_Unref(0, n);
+                    }
+                    ResourcePool_Unref(0, h);
+                }
+            }
+        }
+        finally { Stack.Free(20); }
+    }
+
+    // ==== func_00250754 @ 0x00250754 [C]
+    public static uint Prop_AcquireModel(uint o, int key)
+    {
+        uint _fp = Stack.Alloc(4);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_00250754", (uint)o, (uint)key);
+                uint h = 0u;
+                uint n = 0u;
+                int s2 = 0;
+                if ((new B12Obj(o).unkB4 != 0))
+                {
+                    ResourcePool_TouchAndRef(0, (uint)(new B12Obj(o).unkB4));
+                    return (uint)(new B12Obj(o).unkB4);
+                }
+                if ((key != new B12Obj(o).unkA8))
+                {
+                    h = ResourceCache_Hash(0, (uint)(new B12Obj(o).unk1C), new B12Obj(o).unk1C, (uint)(24), 0, (uint)(0), 0u, 0x800C8F4Cu, 1);
+                    if ((h != 0u))
+                    {
+                        s2 = func_0028FE08((uint)((int)(Mem.U32(h))), new B12Obj(o).unk1C, 1);
+                        ResourcePool_Release(0, h);
+                        n = Resource_LoadIndexTable(0, _fp, s2, 0x800C8F70u, 1);
+                        if ((n != 0u))
+                        {
+                            new B12Obj(o).unkAC_Set((int)(Resource_GetCartridgeKey(Mem.U32(_fp), (uint)(s2), (key % Mem.S32(Mem.U32(_fp))), (o + 176u))));
+                            new B12Obj(o).unkA8_Set(key);
+                            ResourcePool_Release(0, n);
+                        }
+                    }
+                }
+                if ((new B12Obj(o).unkAC != 0))
+                {
+                    return ResourceCache_Hash(0, (uint)(new B12Obj(o).unkAC), new B12Obj(o).unkAC, (uint)(new B12Obj(o).unkB0), 0, (uint)(0), 0x0026D7D4u, 0x800C8F84u, 0);
+                }
+                return 0u;
+            }
+        }
+        finally { Stack.Free(4); }
+    }
+
+    // ==== func_00250950 @ 0x00250950 [C]
+    public static void Prop_PreloadModel(uint o)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00250950", (uint)o);
+            int h = 0;
+            int r = 0;
+            if (!(((int)(new B12Obj(o).unkD8) & 64) != 0))
+            {
+                h = (int)(Prop_AcquireModel(o, (int)(new B12Obj(o).unk1)));
+                if ((h != 0))
+                {
+                    func_0026E158((uint)(h));
+                    r = (int)(Resource_Request((uint)(0), (uint)((int)((new B12Obj(o).unkD0 | (uint)(Mem.S32(0x800D2640u))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(0)));
+                    if ((r != 0))
+                    {
+                        ResourcePool_Unref(0, (uint)(r));
+                    }
+                    ResourcePool_Unref(0, (uint)(h));
+                }
+            }
+        }
+    }
+
+    // ==== func_00250A0C @ 0x00250A0C [C]
+    public static int Prop_GetShadeFlags_00250A0C(uint o)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00250A0C", (uint)o);
+            if ((((int)(new B12Obj(o).unkD8) & 64) != 0))
+            {
+                return 0;
+            }
+            return (int)(new B12Obj(o).def.unk12);
+        }
+    }
+
+    // ==== func_00250A34 @ 0x00250A34 [C]
+    public static int Prop_GetNearModelIndex(uint o)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00250A34", (uint)o);
+            return (int)(new B12Obj(o).def.unkE);
+        }
+    }
+
+    // ==== func_00250A44 @ 0x00250A44 [MIPS]
+    public static uint Prop_DrawByMode(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00250A44", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_00250A44: ;
+                r2 = 2148794368u;
+                r2 = Mem.U8((r2 + 25317u));
+                r29 = r29 - 24u;
+                { bool c_ = r2 == 0; Mem.Set((r29 + 16u), r31); if (c_) goto L_L00250A68; }
+                Prop_Draw(r4);
+                 goto L_L00250A70;
+                L_L00250A68: ;
+                Prop_DrawLodFaded(r4);
+                L_L00250A70: ;
+                r31 = Mem.U32((r29 + 16u));
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00250A44", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00250A7C @ 0x00250A7C [C]
+    public static void Prop_FreeStaleLightCache_00250A7C(uint o)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00250A7C", (uint)o);
+            if ((!(((int)(new B12Obj(o).unkD8) & 64) != 0) && ((int)(new B12Obj(o).unkDA) != (int)(Mem.U8(0x800D297Bu)))))
+            {
+                Resource_TouchByKey((uint)(0), (new B12Obj(o).unkD0 | Mem.U32(0x800D2640u)), default(uint), default(uint));
+            }
+        }
+    }
+
+    // ==== func_00250ACC @ 0x00250ACC [C]
+    public static uint Prop_PinModelHandles_00250ACC(uint o, int a1, int a2, uint @out)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00250ACC", (uint)o, (uint)a1, (uint)a2, (uint)@out);
+            int h = (int)(Prop_AcquireModel(o, a2));
+            int r = 0;
+            if ((h != 0))
+            {
+                new B12Obj(o).unkB4_Set(h);
+                Mem.Set(@out, h);
+                @out = func_0026E27C((uint)(h), a1, (@out + (uint)(1 * 4)));
+                r = (int)(Resource_Request((uint)(0), (uint)((int)((new B12Obj(o).unkD0 | (uint)(Mem.S32(0x800D2640u))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(1)));
+                if ((r != 0))
+                {
+                    Mem.Set(@out, r);
+                    @out += 4u;
+                }
+            }
+            return @out;
+        }
+    }
+
+    // ==== func_00250C2C @ 0x00250C2C [C]
+    public static void Prop_UpdateLitVertices(uint o, int unused, int s4, int a3)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00250C2C", (uint)o, (uint)unused, (uint)s4, (uint)a3);
+            int h = (int)(Prop_AcquireModel(o, a3));
+            uint r = 0u;
+            uint blk = 0u;
+            uint data = 0u;
+            uint v1 = 0u;
+            int off = 0;
+            uint src = 0u;
+            int len = 0;
+            if ((h != 0))
+            {
+                r = Resource_Request((uint)(0), (uint)((int)((new B12Obj(o).unkD0 | (uint)(Mem.S32(0x800D2640u))))), (uint)(h), (uint)((int)(new B12Obj(o).unk20_)), (uint)(8), o, 0x00250BD4u, 0x800C8F30u, (uint)(0));
+                if ((r != 0u))
+                {
+                    Resource_MarkUsedInFrame(0, r);
+                    blk = (uint)(new B12Node(r).key);
+                    if ((Mem.S32((blk + (uint)(0 * 4))) == 1))
+                    {
+                        off = Mem.S32((blk + (uint)(1 * 4)));
+                        len = Mem.S32((blk + (uint)(2 * 4)));
+                        data = (blk + (uint)off);
+                        src = (blk + (uint)len);
+                        if (((int)(new B12Obj(o).unkDA) != (int)(Mem.U8(0x800D297Bu))))
+                        {
+                            func_0027899C(data, src);
+                        }
+                        v1 = data;
+                    }
+                    else
+                    {
+                        v1 = (blk + (uint)8);
+                    }
+                    if ((Mem.S32(0x800D15E0u) != 0))
+                    {
+                        Light_ShadeVertices((uint)(h), (int)(new B12Obj(o).unk28.P), 0, 0, v1, s4);
+                    }
+                    else
+                    {
+                        func_0026DC24((uint)(h), (int)(new B12Obj(o).unk28.P), 0, 0, v1, s4);
+                    }
+                    ResourcePool_Unref(0, r);
+                }
+                ResourcePool_Unref(0, (uint)(h));
+                new B12Obj(o).unkDA_Set(Mem.U8(0x800D297Bu));
+            }
+        }
+    }
+
+    // ==== func_00250D88 @ 0x00250D88 [C]
+    public static int Prop_SelectDetail_00250D88(uint o)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00250D88", (uint)o);
+            uint d = new B12Obj(o).def_;
+            if ((new B12Obj(o).unkDC < (new B12Def(d).unk24 * (uint)(2))))
+            {
+                return (int)(new B12Def(d).unkE);
+            }
+            return (int)(new B12Def(d).unkF);
+        }
+    }
+
+    // ==== func_00250DBC @ 0x00250DBC [C]
+    public static int Prop_SelectDetailForced_00250DBC(uint o)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00250DBC", (uint)o);
+            uint d = 0u;
+            if ((Mem.U8(0x801462E5u) != 0))
+            {
+                return (int)(new B12Obj(o).def.unkE);
+            }
+            d = new B12Obj(o).def_;
+            if ((new B12Obj(o).unkDC < (new B12Def(d).unk24 * (uint)(2))))
+            {
+                return (int)(new B12Def(d).unkE);
+            }
+            return (int)(new B12Def(d).unkF);
+        }
     }
 
     // ==== func_00278C80 @ 0x00278C80 [C]
@@ -250,7 +1227,7 @@ public static partial class Game
                 r4 = r4 - 23992u;
                 Mem.Set((r19 + 0u), r0); MsgPort_Flush(r4);
                 r4 = r19; func_0028DA50(r4);
-                r4 = r0; func_002538A8();
+                r4 = r0; ResourcePool_Purge();
                 r1 = 131072u;
                 r1 = r19 + r1;
                 r3 = Mem.U32((r1 - 19444u));
@@ -258,10 +1235,10 @@ public static partial class Game
                 { bool c_ = r3 == r2;  if (c_) goto L_L00286BBC; }
                 r4 = r19; Scene_Shutdown_0044CBE0(r4);
                 L_L00286BBC: ;
-                r4 = r0; func_002538A8();
+                r4 = r0; ResourcePool_Purge();
                 r1 = 2148335616u;
                 Mem.Set((r1 + 10624u), r0);
-                r4 = (uint)8; func_0025470C((int)r4);
+                r4 = (uint)8; Resource_SetLoadFlags((int)r4);
                 r4 = r19; func_0028D628(r4);
                 r4 = r19 + 6920u;
                 r18 = r0;
@@ -423,12 +1400,12 @@ public static partial class Game
                 r2 = Mem.U8((r2 + 25317u));
                 if (r2 != 0) { r16 = r16 + 512u; goto L_L00286EF0; }
                 L_L00286EF0: ;
-                r4 = r0; func_002538A8();
+                r4 = r0; ResourcePool_Purge();
                 r4 = r0;
                 r5 = r16 << 6;
                 r7 = 2148335616u;
                 r7 = r7 - 24076u;
-                r6 = (uint)3; r2 = func_002533DC((int)r4, (int)r5, r6, (int)r7);
+                r6 = (uint)3; r2 = ResourcePool_Alloc((int)r4, (int)r5, r6, (int)r7);
                 r4 = r19 + 296u;
                 Mem.Set((r19 + 232u), r2);
                 r5 = Mem.U32((r2 + 0u));
@@ -441,7 +1418,7 @@ public static partial class Game
                 r20 = r2;
                 r7 = 2148335616u;
                 r7 = r7 - 24064u;
-                r6 = r20; r2 = func_00254224((int)r4, r5, (int)r6, r7);
+                r6 = r20; r2 = Resource_LoadIndexTableSync((int)r4, r5, (int)r6, r7);
                 r4 = r0;
                 r6 = (uint)1;
                 Mem.Set((r19 + 184u), r2);
@@ -453,7 +1430,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r19);
                 Mem.Set((r29 + 24u), r2);
                 r5 = Mem.U32((r19 + 96u));
-                r7 = r20; r2 = func_002543A8(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
+                r7 = r20; r2 = Resource_LoadByCartridgeKey(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
                 r4 = r0;
                 Mem.Set((r19 + 188u), r2);
                 r2 = Mem.U32((r2 + 0u));
@@ -467,7 +1444,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r19);
                 Mem.Set((r29 + 24u), r2);
                 r5 = Mem.U32((r19 + 96u));
-                r7 = r20; r2 = func_002543A8(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
+                r7 = r20; r2 = Resource_LoadByCartridgeKey(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
                 r4 = Mem.U32((r19 + 96u));
                 r5 = r20;
                 Mem.Set((r19 + 192u), r2);
@@ -479,7 +1456,7 @@ public static partial class Game
                 r6 = r2;
                 r7 = 2148335616u;
                 r7 = r7 - 24028u;
-                Mem.Set((r19 + 48u), r6); r2 = func_00254224((int)r4, r5, (int)r6, r7);
+                Mem.Set((r19 + 48u), r6); r2 = Resource_LoadIndexTableSync((int)r4, r5, (int)r6, r7);
                 r4 = Mem.U32((r19 + 96u));
                 Mem.Set((r19 + 196u), r2);
                 r2 = Mem.U32((r4 + 0u));
@@ -491,7 +1468,7 @@ public static partial class Game
                 r6 = r2;
                 r7 = 2148335616u;
                 r7 = r7 - 24008u;
-                Mem.Set((r19 + 64u), r6); r2 = func_00254224((int)r4, r5, (int)r6, r7);
+                Mem.Set((r19 + 64u), r6); r2 = Resource_LoadIndexTableSync((int)r4, r5, (int)r6, r7);
                 r4 = r0;
                 Mem.Set((r19 + 256u), r2);
                 r2 = 2148335616u;
@@ -501,7 +1478,7 @@ public static partial class Game
                 Mem.Set((r29 + 24u), r2);
                 r5 = Mem.U32((r19 + 140u));
                 r7 = Mem.U32((r19 + 64u));
-                r6 = r4; r2 = func_002543A8(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
+                r6 = r4; r2 = Resource_LoadByCartridgeKey(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
                 r4 = r0;
                 r3 = Mem.U32((r2 + 0u));
                 r13 = Mem.U32((r3 + 0u));
@@ -528,7 +1505,7 @@ public static partial class Game
                 r1 = 131072u;
                 r1 = r19 + r1;
                 Mem.Set((r1 - 18140u), r14);
-                r5 = r2; func_002537D8((int)r4, r5);
+                r5 = r2; ResourcePool_Release((int)r4, r5);
                 r1 = 131072u;
                 r1 = r19 + r1;
                 r2 = Mem.U32((r1 - 18144u));
@@ -557,7 +1534,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r19);
                 Mem.Set((r29 + 24u), r2);
                 r5 = Mem.U32((r19 + 96u));
-                r7 = r20; r2 = func_002543A8(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
+                r7 = r20; r2 = Resource_LoadByCartridgeKey(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
                 r4 = r0;
                 r6 = (uint)2;
                 Mem.Set((r19 + 212u), r2);
@@ -569,7 +1546,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r19);
                 Mem.Set((r29 + 24u), r2);
                 r5 = Mem.U32((r19 + 96u));
-                r7 = r20; r2 = func_002543A8(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
+                r7 = r20; r2 = Resource_LoadByCartridgeKey(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
                 r4 = r0;
                 r6 = r4;
                 Mem.Set((r19 + 236u), r2);
@@ -579,7 +1556,7 @@ public static partial class Game
                 Mem.Set((r29 + 20u), r0);
                 Mem.Set((r29 + 24u), r2);
                 r5 = Mem.U32((r19 + 96u));
-                r7 = r20; r2 = func_002543A8(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
+                r7 = r20; r2 = Resource_LoadByCartridgeKey(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
                 Mem.Set((r19 + 200u), r2);
                 r2 = Mem.U32((r2 + 0u));
                 r1 = 131072u;
@@ -607,7 +1584,7 @@ public static partial class Game
                 Mem.Set((r29 + 20u), r16);
                 Mem.Set((r29 + 24u), r2);
                 r5 = Mem.U32((r19 + 96u));
-                r7 = r20; r2 = func_002543A8(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
+                r7 = r20; r2 = Resource_LoadByCartridgeKey(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
                 Mem.Set((r19 + 240u), r2);
                 r2 = Mem.U32((r2 + 0u));
                 r4 = r0;
@@ -625,7 +1602,7 @@ public static partial class Game
                 Mem.Set((r29 + 20u), r16);
                 Mem.Set((r29 + 24u), r2);
                 r5 = Mem.U32((r19 + 96u));
-                r7 = r20; r2 = func_002543A8(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
+                r7 = r20; r2 = Resource_LoadByCartridgeKey(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
                 r4 = 65536u;
                 r4 = r4 | 46336u;
                 r4 = r19 + r4;
@@ -645,7 +1622,7 @@ public static partial class Game
                 r2 = Mem.U32((r1 - 19232u));
                 { bool c_ = (int)r2 <= 0; r4 = r2 << 2; if (c_) goto L_L00287320; }
                 r4 = r4 + r2;
-                r4 = r4 << 4; r2 = func_00252FFC(r4);
+                r4 = r4 << 4; r2 = ResourcePool_Malloc(r4);
                 r16 = r2;
                 r1 = 131072u;
                 r1 = r19 + r1;
@@ -678,7 +1655,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r19);
                 Mem.Set((r29 + 24u), r2);
                 r5 = Mem.U32((r19 + 96u));
-                r7 = r20; r2 = func_002543A8(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
+                r7 = r20; r2 = Resource_LoadByCartridgeKey(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
                 Mem.Set((r19 + 252u), r2);
                 r2 = Mem.U32((r2 + 0u));
                 r1 = 131072u;
@@ -699,7 +1676,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r19);
                 Mem.Set((r29 + 24u), r2);
                 r5 = Mem.U32((r19 + 96u));
-                r7 = r20; r2 = func_002543A8(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
+                r7 = r20; r2 = Resource_LoadByCartridgeKey(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
                 r4 = r0;
                 Mem.Set((r19 + 204u), r2);
                 r3 = Mem.U32((r2 + 0u));
@@ -724,7 +1701,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r19);
                 Mem.Set((r29 + 24u), r2);
                 r5 = Mem.U32((r19 + 96u));
-                r7 = r20; r2 = func_002543A8(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
+                r7 = r20; r2 = Resource_LoadByCartridgeKey(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
                 r4 = r19;
                 Mem.Set((r19 + 208u), r2); func_00286920(r4);
                 r6 = r0;
@@ -906,7 +1883,7 @@ public static partial class Game
                 L_L0028771C: ;
                 r4 = Mem.U32((r19 + 312u));
                 r17 = r17 + 1u;
-                r4 = r4 + r16; func_0024B2C0(r4);
+                r4 = r4 + r16; Actor_CallRestore(r4);
                 r2 = (uint)((int)r17 < (int)r20 ? 1 : 0);
                 { bool c_ = r2 != 0; r16 = r16 + 744u; if (c_) goto L_L0028771C; }
                 L_L00287738: ;
@@ -916,8 +1893,8 @@ public static partial class Game
                 r18 = 65536u;
                 r18 = r18 | 46300u;
                 L_L00287750: ;
-                r4 = r16; func_0024B2C0(r4);
-                r4 = r16 + 744u; func_0024B2C0(r4);
+                r4 = r16; Actor_CallRestore(r4);
+                r4 = r16 + 744u; Actor_CallRestore(r4);
                 r4 = r19 + r18;
                 r5 = r17 + 8u; r2 = (uint)AiNav_FindNearestNode(r4, r5);
                 r3 = Mem.U32((r17 + 5204u));
@@ -938,8 +1915,8 @@ public static partial class Game
                 r2 = Mem.U32((r19 + 312u));
                 r17 = r17 + 1u;
                 r16 = r2 + r18;
-                r4 = r16; func_0024BE2C(r4);
-                r4 = r16; r2 = func_00246E34(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r16; Actor_RunStateUpdate(r4);
+                r4 = r16; r2 = Actor_Advance(r4, r5, r6, r7); r3 = Cpu.V1;
                 r2 = (uint)((int)r17 < (int)r20 ? 1 : 0);
                 { bool c_ = r2 != 0; r18 = r18 + 744u; if (c_) goto L_L002877AC; }
                 L_L002877D4: ;
@@ -955,7 +1932,7 @@ public static partial class Game
                 Mem.Set((r19 + 0u), r2); Holder_RefreshInstances_0044AA68(r4);
                 r16 = r16 + 72u;
                 r4 = r16; func_0044B31C(r4);
-                r4 = r16; func_00236864(r4);
+                r4 = r16; View_UpdateLayout(r4);
                 r31 = Mem.U32((r29 + 68u));
                 r30 = Mem.U32((r29 + 64u));
                 r23 = Mem.U32((r29 + 60u));
@@ -1091,7 +2068,7 @@ public static partial class Game
                 if ((h1 != 0u))
                 {
                     @base = func_0028FE08(Mem.U32(h1), size, 1);
-                    h2 = func_00254094(0, (_fp + 4u), @base, Str.Lit("CScene__ConstructMap: simp models index"), 1);
+                    h2 = Resource_LoadIndexTable(0, (_fp + 4u), @base, Str.Lit("CScene__ConstructMap: simp models index"), 1);
                     if ((h2 != 0u))
                     {
                         n = (int)(Resource_GetCartridgeKey(Mem.U32((_fp + 4u)), (uint)(@base), 0, _fp));
@@ -1099,11 +2076,11 @@ public static partial class Game
                         if ((h3 != 0u))
                         {
                             Mem.Copy(@out, Chunk_Get(Chunk_Get(Chunk_Get(Mem.U32(h3), 2), 0), 0), 28);
-                            func_002537D8(0, h3);
+                            ResourcePool_Release(0, h3);
                         }
-                        func_002537D8(0, h2);
+                        ResourcePool_Release(0, h2);
                     }
-                    func_002537D8(0, h1);
+                    ResourcePool_Release(0, h1);
                 }
             }
         }
@@ -1138,31 +2115,31 @@ public static partial class Game
                 new S5Scene(lv).f1B6A4_Set(0);
                 new S5Scene(lv).f1B6AC_Set(0);
                 Holder_RefreshInstances_0044AA68(0x80145040u);
-                func_002538A8();
-                func_00254224(0, _fp, data, Str.Lit("cartridge index"));
+                ResourcePool_Purge();
+                Resource_LoadIndexTableSync(0, _fp, data, Str.Lit("cartridge index"));
                 v = func_0028FE08(Mem.U32(_fp), data, 5);
                 new S5Scene(lv).f1C_Set(v);
-                func_00254224(0, (lv + 76u), v, Str.Lit("levels index"));
+                Resource_LoadIndexTableSync(0, (lv + 76u), v, Str.Lit("levels index"));
                 v = func_0028FE08(Mem.U32(_fp), data, 3);
                 new S5Scene(lv).f20_Set(v);
-                func_00254224(0, (lv + 80u), v, Str.Lit("texture sets index"));
-                p = func_002543A8((uint)(0), Mem.U32(_fp), (uint)(2), (uint)(data), lv, 0x00285130u, Str.Lit("object types"));
+                Resource_LoadIndexTableSync(0, (lv + 80u), v, Str.Lit("texture sets index"));
+                p = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(2), (uint)(data), lv, 0x00285130u, Str.Lit("object types"));
                 new S5Scene(lv).f94_Set(Mem.U32(p));
                 v = func_0028FE08(Mem.U32(_fp), data, 0);
                 new S5Scene(lv).f24_Set(v);
-                func_00254224(0, (lv + 84u), v, Str.Lit("objects index"));
-                p = func_002543A8((uint)(0), Mem.U32(_fp), (uint)(1), (uint)(data), lv, 0x0044E584u, Str.Lit("intelligence"));
+                Resource_LoadIndexTableSync(0, (lv + 84u), v, Str.Lit("objects index"));
+                p = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(1), (uint)(data), lv, 0x0044E584u, Str.Lit("intelligence"));
                 new S5Scene(lv).f78_Set(Mem.U32(p));
-                p = func_002543A8((uint)(0), Mem.U32(_fp), (uint)(4), (uint)(data), lv, 0x0044E454u, Str.Lit("particle effects"));
+                p = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(4), (uint)(data), lv, 0x0044E454u, Str.Lit("particle effects"));
                 new S5Scene(lv).fB4_Set(p);
-                p = func_002543A8((uint)(0), Mem.U32(_fp), (uint)(10), (uint)(data), lv, 0x00285130u, Str.Lit("object types"));
+                p = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(10), (uint)(data), lv, 0x00285130u, Str.Lit("object types"));
                 new S5Scene(lv).f98_Set(Mem.U32(p));
                 v = func_0028FE08(Mem.U32(_fp), data, 9);
                 new S5Scene(lv).f28_Set(v);
-                func_00254224(0, (lv + 88u), v, Str.Lit("binaries index"));
-                p = func_002543A8((uint)(0), Mem.U32(_fp), (uint)(11), (uint)(data), lv, 0x00285130u, Str.Lit("particle swooshes"));
+                Resource_LoadIndexTableSync(0, (lv + 88u), v, Str.Lit("binaries index"));
+                p = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(11), (uint)(data), lv, 0x00285130u, Str.Lit("particle swooshes"));
                 new S5Scene(lv).f70_Set(Mem.U32(p));
-                p = func_002543A8((uint)(0), Mem.U32(_fp), (uint)(12), (uint)(data), lv, 0x00285130u, Str.Lit("dynamic lights"));
+                p = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(12), (uint)(data), lv, 0x00285130u, Str.Lit("dynamic lights"));
                 new S5Scene(lv).fA0_Set(Mem.U32(p));
                 new S5Scene(lv).f80_Set(0x800FD1F0u);
                 v = (int)(Resource_GetCartridgeKey(Mem.U32(_fp), (uint)(data), 6, (lv + 68u)));
@@ -1170,25 +2147,25 @@ public static partial class Game
                 new S5Scene(lv).f84_Set(0x800F81F0u);
                 v = (int)(Resource_GetCartridgeKey(Mem.U32(_fp), (uint)(data), 7, (lv + 72u)));
                 new S5Scene(lv).f3C_Set(v);
-                p = func_002543A8((uint)(0), Mem.U32(_fp), (uint)(8), (uint)(data), lv, 0x00285130u, Str.Lit("warp dests"));
+                p = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(8), (uint)(data), lv, 0x00285130u, Str.Lit("warp dests"));
                 new S5Scene(lv).f10C_Set(p);
                 new S5Scene(lv).f90_Set(Mem.U32(p));
-                p = func_002543A8((uint)(0), Mem.U32(_fp), (uint)(13), (uint)(data), lv, 0x00285130u, Str.Lit("curves"));
+                p = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(13), (uint)(data), lv, 0x00285130u, Str.Lit("curves"));
                 new S5Scene(lv).fA4_Set(Mem.U32(p));
-                p = func_002543A8((uint)(0), Mem.U32(_fp), (uint)(14), (uint)(data), lv, 0x00285130u, Str.Lit("rumbles"));
+                p = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(14), (uint)(data), lv, 0x00285130u, Str.Lit("rumbles"));
                 new S5Scene(lv).fAC_Set(Mem.U32(p));
-                p = func_002543A8((uint)(0), Mem.U32(_fp), (uint)(15), (uint)(data), lv, 0x00285130u, Str.Lit("rumble types"));
+                p = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(15), (uint)(data), lv, 0x00285130u, Str.Lit("rumble types"));
                 new S5Scene(lv).fA8_Set(Mem.U32(p));
-                p = func_002543A8((uint)(0), Mem.U32(_fp), (uint)(17), (uint)(data), lv, 0x00285130u, Str.Lit("graphicset type"));
+                p = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(17), (uint)(data), lv, 0x00285130u, Str.Lit("graphicset type"));
                 new S5Scene(lv).f9C_Set(Mem.U32(p));
                 v = func_0028FE08(Mem.U32(_fp), data, 16);
                 new S5Scene(lv).f2C_Set(v);
-                func_00254224(0, (lv + 92u), v, Str.Lit("graphicset index"));
+                Resource_LoadIndexTableSync(0, (lv + 92u), v, Str.Lit("graphicset index"));
                 v = func_0028FE08(Mem.U32(_fp), data, 18);
                 new S5Scene(lv).f34_Set(v);
-                func_00254224(0, (lv + 116u), v, Str.Lit("Cinemas index"));
+                Resource_LoadIndexTableSync(0, (lv + 116u), v, Str.Lit("Cinemas index"));
                 func_00403BE0();
-                p = func_002543A8((uint)(0), Mem.U32(_fp), (uint)(19), (uint)(data), lv, 0x00285130u, Str.Lit("link group types"));
+                p = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(19), (uint)(data), lv, 0x00285130u, Str.Lit("link group types"));
                 new S5Scene(lv).fB0_Set(Mem.U32(p));
                 new S5Scene(lv).fC_Set(0);
                 new S5Scene(lv).f10_Set(0);
@@ -1197,11 +2174,11 @@ public static partial class Game
                 if ((Mem.S32(Mem.U32(_fp)) >= 22))
                 {
                     new S5Scene(lv).fC_Set(func_0028FE08(Mem.U32(_fp), data, 21));
-                    h2 = func_00254094(0, (_fp + 4u), new S5Scene(lv).fC, Str.Lit("CScene__Construct: BLLevelData Index"), 1);
+                    h2 = Resource_LoadIndexTable(0, (_fp + 4u), new S5Scene(lv).fC, Str.Lit("CScene__Construct: BLLevelData Index"), 1);
                     if ((h2 != 0u))
                     {
                         new S5Scene(lv).f10_Set((((Mem.S32(Mem.U32((_fp + 4u))) * 4) + 15) & (~7)));
-                        func_002537D8(0, h2);
+                        ResourcePool_Release(0, h2);
                     }
                     else
                     {
@@ -1210,9 +2187,9 @@ public static partial class Game
                 }
                 if ((Mem.S32(Mem.U32(_fp)) >= 24))
                 {
-                    h = func_002543A8((uint)(0), Mem.U32(_fp), (uint)(23), (uint)(data), lv, 0x00285130u, Str.Lit("Bloodlust Weapon Data"));
+                    h = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(23), (uint)(data), lv, 0x00285130u, Str.Lit("Bloodlust Weapon Data"));
                     Ai_LoadFireConfigs(Mem.U32(h));
-                    func_002537D8(0, h);
+                    ResourcePool_Release(0, h);
                 }
                 Level_InitState_0044DC48(lv);
                 Mem.Set(0x800D29B4u, 1);
@@ -1304,7 +2281,7 @@ public static partial class Game
                         for (i = 0; (i < count); ++i)
                         {
                             rec = (recs + (uint)(i * 40));
-                            func_0024B398((int)((actors + (uint)(i * 744))), rec);
+                            Level_SpawnActorFromRecord((int)((actors + (uint)(i * 744))), rec);
                             if (((Mem.S32(Level_GetDefinition(world, (int)(new S6Rec(rec).id))) == 11) || (i == 0)))
                             {
                                 new S6World_v2(world).nSpawned_Set((int)(new S6World_v2(world).nSpawned + 1));
@@ -1348,12 +2325,12 @@ public static partial class Game
                             actor = (actors + (uint)(i * 744));
                             best = 3.40282347E+38f;
                             new S6Actor(actor).nearest__Set(0u);
-                            if ((func_0024DDA4(actor) != 0))
+                            if ((Actor_HasDefFlag14x02_0024DDA4(actor) != 0))
                             {
                                 for (j = new S6World_v2(world).nSpawned; (j < count); ++j)
                                 {
                                     other = (actors + (uint)(j * 744));
-                                    if ((((Mem.S32(new S6Actor(actor).def_) == Mem.S32(new S6Actor(other).def_)) && (func_0024DD7C(other) != 0)) && (actor != other)))
+                                    if ((((Mem.S32(new S6Actor(actor).def_) == Mem.S32(new S6Actor(other).def_)) && (Actor_HasDefFlag14x01_0024DD7C(other) != 0)) && (actor != other)))
                                     {
                                         if ((new S6Actor(actor).nearest_ != 0u))
                                         {
@@ -1444,12 +2421,12 @@ public static partial class Game
                             {
                                 a = (objsA + (uint)(i * 232));
                                 new ObjA(a).block_Set(block);
-                                func_00250950(a);
-                                handle = func_00250754(a, (int)(new ObjA(a).type));
+                                Prop_PreloadModel(a);
+                                handle = Prop_AcquireModel(a, (int)(new ObjA(a).type));
                                 if ((handle != 0u))
                                 {
                                     func_0026E158(handle);
-                                    func_002536F4(0, handle);
+                                    ResourcePool_Unref(0, handle);
                                 }
                             }
                             list = Chunk_Get(node, 1);
@@ -1459,16 +2436,16 @@ public static partial class Game
                             {
                                 b = (objsB + (uint)(i * 456));
                                 new ObjB(b).block_Set(block);
-                                func_0024F284(b);
-                                handle = func_0024F6DC(b, (int)(new ObjB(b).type));
+                                Pickup_PreloadModel(b);
+                                handle = Pickup_AcquireModel(b, (int)(new ObjB(b).type));
                                 if ((handle != 0u))
                                 {
                                     func_0026E158(handle);
-                                    func_002536F4(0, handle);
+                                    ResourcePool_Unref(0, handle);
                                 }
                             }
                         }
-                        func_002536F4(0, block);
+                        ResourcePool_Unref(0, block);
                     }
                 }
             }
@@ -1501,7 +2478,7 @@ public static partial class Game
             {
                 temp_v0 = ResourceCache_Hash(0, (uint)(new State_func_8044D054_de(arg0).unk38), new State_func_8044D054_de(arg0).unk38, (uint)(new State_func_8044D054_de(arg0).unk44), 0, (uint)(0), 0x00285130u, 0x800CA1A0u, 1);
                 func_002C2490(0x800FD1F0u, (uint)(Mem.S32(temp_v0)), (uint)(22528), default(uint));
-                func_002537D8((int)(0u), temp_v0);
+                ResourcePool_Release((int)(0u), temp_v0);
                 new State_func_8044D054_de(arg0).unk4_Set(1);
             }
         }
@@ -1519,7 +2496,7 @@ public static partial class Game
             {
                 resource = ResourceCache_Hash(0, (uint)(new State_func_8044D0F0_de(state).resource), new State_func_8044D0F0_de(state).resource, (uint)(new State_func_8044D0F0_de(state).bank), 0, (uint)(0), 0x00285130u, 0x800CA1BCu, 1);
                 func_002C2490(0x800F81F0u, (uint)(Mem.S32(resource)), (uint)(20480), default(uint));
-                func_002537D8(0, resource);
+                ResourcePool_Release(0, resource);
             }
         }
     }

@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0042250C");
             int t = 0;
-            Mem.Set(0x800E4510u, func_00252FFC((uint)(40)));
+            Mem.Set(0x800E4510u, ResourcePool_Malloc((uint)(40)));
             new O3Words(Mem.U32(0x800E4510u)).w.Set((int)(0), (int)(func_0041A300(77, 78)));
             func_0041B190(87);
             func_0041B190(88);

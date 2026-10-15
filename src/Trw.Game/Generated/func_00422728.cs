@@ -22,7 +22,7 @@ public static partial class Game
             int slider = 0;
             int i = 0;
             int rem = 0;
-            Mem.Set(0x800E4518u, func_00252FFC((uint)(108)));
+            Mem.Set(0x800E4518u, ResourcePool_Malloc((uint)(108)));
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).sound_Set(Audio_IsSoundOn());
             Audio_PlayCue(52);
             func_0025E3A4();

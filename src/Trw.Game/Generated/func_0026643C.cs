@@ -26,7 +26,7 @@ public static partial class Game
                     new Vec3f((_fp + 32u)).y_Set((new Vec3f((_fp + 32u)).y - new B15Player(o).pawn.pos.y));
                     new Vec3f((_fp + 32u)).z_Set((new Vec3f((_fp + 32u)).z - new B15Player(o).pawn.pos.z));
                     func_00271888((_fp + 80u), (_fp + 32u));
-                    func_0024E78C(obj, _fp, (_fp + 48u), (_fp + 96u));
+                    Collision_LocatePoint_0024E78C(obj, _fp, (_fp + 48u), (_fp + 96u));
                     Mem.Copy((_fp + 48u), _fp, 12);
                     new Vec3f((_fp + 48u)).y_Set((new Vec3f((_fp + 48u)).y + Mem.F32(0x800C94C0u)));
                     new Vec3f((_fp + 64u)).x_Set((float)(0));
@@ -72,13 +72,13 @@ public static partial class Game
                         {
                             if (((new B15Ent(a1).unk1AC & (uint)(16384)) != 0u))
                             {
-                                func_00239314(Mem.U32((o + (uint)1500)), Mem.F32(0x800C94B4u), 100.0f, Mem.F32(0x800C94B4u), Mem.F32(0x800C94B0u), 1, _fp);
+                                Camera_StartShake(Mem.U32((o + (uint)1500)), Mem.F32(0x800C94B4u), 100.0f, Mem.F32(0x800C94B4u), Mem.F32(0x800C94B0u), 1, _fp);
                             }
                             else
                             {
                                 if (((new B15Ent(a1).unk1AC & (uint)(8192)) != 0u))
                                 {
-                                    func_00239314(Mem.U32((o + (uint)1500)), Mem.F32(0x800C94BCu), 50.0f, Mem.F32(0x800C94BCu), Mem.F32(0x800C94B8u), 1, _fp);
+                                    Camera_StartShake(Mem.U32((o + (uint)1500)), Mem.F32(0x800C94BCu), 50.0f, Mem.F32(0x800C94BCu), Mem.F32(0x800C94B8u), 1, _fp);
                                 }
                             }
                         }

@@ -109,7 +109,7 @@ public static partial class Game
                     o2 = ((uint)(Mem.S32((g + (uint)(22 * 4)))) + (uint)(idx * 1180));
                     Mem.Set((g + (uint)((-136) * 4)), (int)(func_002A1E8C((g - (uint)(135 * 4)), 0x800E10E0u, default(uint), default(uint))));
                     sz = new S705Obj(o2).meta.size;
-                    new S705Obj(o2).off.Set((int)(0), (int)(func_00252FFC((uint)(sz))));
+                    new S705Obj(o2).off.Set((int)(0), (int)(ResourcePool_Malloc((uint)(sz))));
                     {
                         uint st_2 = (g - (uint)(136 * 4));
                         func_002A1F60((uint)(Mem.S32((g + (uint)((-136) * 4)))), (uint)((Mem.S32((st_2 + (uint)592)) + new S705Obj(o2).meta.@base)), (uint)(0), default(uint));

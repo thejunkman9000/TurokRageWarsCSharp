@@ -35,7 +35,7 @@ public static partial class Game
                 { bool c_ = r4 != 0; r20 = r5; if (c_) goto L_L00261EF8; }
                 r2 = r0; goto L_L00261F04;
                 L_L00261EF8: ;
-                r2 = (uint)func_00253294(r4);
+                r2 = (uint)ResourcePool_IsReferenced(r4);
                 r2 = (uint)(r0 < r2 ? 1 : 0);
                 L_L00261F04: ;
                 { bool c_ = r2 == 0; r5 = (uint)1; if (c_) goto L_L00262474; }

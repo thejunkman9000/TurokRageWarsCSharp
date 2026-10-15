@@ -101,7 +101,7 @@ public static partial class Game
                 L_tpb: ;
                 tgt = new M5Obj(o).tgt;
                 Mem.Copy(_fp, new M5Tgt1(tgt).pos.P, 12);
-                new M5Vec3(_fp).y_Set((float)((float)(new M5Vec3(_fp).y) + (func_0024D274(new M5Obj(o).tgt) * Mem.F32(0x800C9C78u))));
+                new M5Vec3(_fp).y_Set((float)((float)(new M5Vec3(_fp).y) + (Actor_GetHeight(new M5Obj(o).tgt) * Mem.F32(0x800C9C78u))));
                 func_00271FD8((_fp + 80u), _fp, new M5Obj(o).pos.P);
                 L_have: ;
                 Mem.Copy((_fp + 16u), (_fp + 80u), 12);

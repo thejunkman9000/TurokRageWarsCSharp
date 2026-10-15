@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0025E13C", (uint)v);
             if ((Mem.S32(0x80146890u) == 0))
             {
-                func_00258F30(0x8010C080u, v);
+                Sound_PlaySndFx(0x8010C080u, v);
             }
         }
     }

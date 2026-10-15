@@ -1826,7 +1826,7 @@ public static partial class Game
                 L_I0043156C: ;
                 r4 = r4 << 4;
                 L_I00431570: ;
-                r4 = r4 + r20; func_0022EF20(r4);
+                r4 = r4 + r20; Profile_Init(r4);
                 L_L00431578: ;
                 L_I00431578: ;
                 r16 = r16 + 1u;
@@ -1961,7 +1961,7 @@ public static partial class Game
                 L_I0043169C: ;
                 r2 = r2 + 11008u;
                 L_I004316A0: ;
-                r4 = r4 + r2; func_0022EF20(r4);
+                r4 = r4 + r2; Profile_Init(r4);
                 L_L004316A8: ;
                 L_I004316A8: ;
                 r4 = 2148401152u;
@@ -1974,7 +1974,7 @@ public static partial class Game
                 L_I004316B8: ;
                 r2 = r17 + 24u;
                 L_I004316BC: ;
-                r4 = r4 + r2; func_0022EF20(r4);
+                r4 = r4 + r2; Profile_Init(r4);
                 L_I004316C4: ;
                 r4 = r18; r2 = (uint)func_00434604((int)r4);
                 L_I004316CC: ;
@@ -3239,7 +3239,7 @@ public static partial class Game
                 Mem.Set((r3 + 92u), r2); goto L_L00432304;
                 L_L0043225C: ;
                 L_I0043225C: ;
-                r4 = r0; func_0022F1F4((int)r4);
+                r4 = r0; Profile_InitSlot((int)r4);
                 L_I00432264: ;
                  goto L_L00430F60;
                 L_L0043226C: ;

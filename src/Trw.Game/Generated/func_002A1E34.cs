@@ -13,7 +13,7 @@ public static partial class Game
             Mem.Set(0x800D2B80u, (Mem.S32(0x800D2B80u) - 1));
             if ((Mem.S32(0x800D2BB0u) != 0))
             {
-                func_00254784((uint)(Mem.S32(0x800D2BB0u)));
+                ResourcePool_MallocFree((uint)(Mem.S32(0x800D2BB0u)));
             }
             Mem.Set(0x800D2BB0u, 0);
             Mem.Set(0x800D2BBCu, 0);

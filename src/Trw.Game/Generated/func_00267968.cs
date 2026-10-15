@@ -27,7 +27,7 @@ public static partial class Game
                     new Vec3f((_fp + 32u)).y_Set((new Vec3f((_fp + 32u)).y - new B15Player(o).pawn.pos.y));
                     new Vec3f((_fp + 32u)).z_Set((new Vec3f((_fp + 32u)).z - new B15Player(o).pawn.pos.z));
                     func_00271888((_fp + 80u), (_fp + 32u));
-                    func_0024E78C(obj, _fp, (_fp + 48u), (_fp + 96u));
+                    Collision_LocatePoint_0024E78C(obj, _fp, (_fp + 48u), (_fp + 96u));
                     Mem.Copy((_fp + 48u), _fp, 12);
                     new Vec3f((_fp + 48u)).y_Set((new Vec3f((_fp + 48u)).y + Mem.F32(0x800C9538u)));
                     new Vec3f((_fp + 64u)).x_Set((float)(0));

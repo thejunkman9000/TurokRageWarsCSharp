@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0041DFB4", (uint)parent);
             uint it = 0u;
             int i = 0;
-            Mem.Set(0x800E39C0u, func_00252FFC((uint)(32)));
+            Mem.Set(0x800E39C0u, ResourcePool_Malloc((uint)(32)));
             new O3Ps(Mem.U32(0x800E39C0u)).parent_Set(parent);
             new O3Ps(Mem.U32(0x800E39C0u)).menu_Set((int)(func_0041B690((uint)(parent), 4)));
             func_0041B768((uint)(parent), 0, 905);

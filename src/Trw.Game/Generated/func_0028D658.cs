@@ -26,7 +26,7 @@ public static partial class Game
             }
             for (i = 0; (i < new Level(lv).cntC4C); ++i)
             {
-                func_002505CC(new Level(lv).arrB4C[(int)(i)], flag);
+                Prop_SpawnAttachedEffects(new Level(lv).arrB4C[(int)(i)], flag);
             }
         }
     }

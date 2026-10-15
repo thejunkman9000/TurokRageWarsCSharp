@@ -45,7 +45,7 @@ public static partial class Game
                     new NodeOwner(o).tail__Set(n);
                 }
                 new Spawn_v2(n).flags1D0_Set((uint)((uint)(new Spawn_v2(n).flags1D0) | (uint)(1)));
-                func_00246174(n);
+                Actor_InitBase_00246174(n);
                 new Spawn_v2(n).unk1C8_Set((float)(0));
                 r = func_0028C174(0x8011FE88u, idx);
                 new Spawn_v2(n).counter1D4__Set(counter);
@@ -87,7 +87,7 @@ public static partial class Game
                 Mem.Copy(new Spawn_v2(n).vel.P, _fp, 12);
                 new Spawn_v2(n).unk1C4_Set(0);
                 new Vec3f((_fp + 32u)).x_Set(new Spawn_v2(n).pos.x);
-                new Vec3f((_fp + 32u)).y_Set((new Spawn_v2(n).pos.y + (func_0024D274(n) * 0.5f)));
+                new Vec3f((_fp + 32u)).y_Set((new Spawn_v2(n).pos.y + (Actor_GetHeight(n) * 0.5f)));
                 new Vec3f((_fp + 32u)).z_Set(new Spawn_v2(n).pos.z);
                 func_0028C6B0(0x8011FE88u, (_fp + 32u), new Spawn_v2(n).unk1A8.P);
                 return n;

@@ -78,9 +78,9 @@ public static partial class Game
                     CameraManager_Init((q - (uint)6156), 0);
                     func_0044A600((q - (uint)6228), 0, 0);
                     Level_Load(0x8011FE88u, (uint)(0), (uint)(0), default(uint));
-                    if ((func_0025471C() == 0))
+                    if ((Resource_GetLoadFlags() == 0))
                     {
-                        func_0025470C(1);
+                        Resource_SetLoadFlags(1);
                     }
                     Mem.Set((q + (uint)((-7) * 4)), 8);
                     func_0029A73C();

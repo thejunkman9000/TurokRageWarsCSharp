@@ -16,7 +16,7 @@ public static partial class Game
             id = new SndInfo(info).wC;
             if (((int)(id) != (-1)))
             {
-                Mem.Copy(new SndVoice(v).env.P, func_00258C14(new SndVoice(v).mgr_, (int)(id)), 12);
+                Mem.Copy(new SndVoice(v).env.P, Sound_GetPanEnvelope(new SndVoice(v).mgr_, (int)(id)), 12);
                 d = Trunc16ToF32(new SndVoice(v).env.a);
                 do
                 {
@@ -33,16 +33,16 @@ public static partial class Game
                 new SndVoice(v).unk88_Set(0);
                 if ((new SndVoice(v).tag < 256))
                 {
-                    if (((new SndVoice(v).unkC0 == 0) && (func_00258D4C(new SndVoice(v).mgr_) != 0)))
+                    if (((new SndVoice(v).unkC0 == 0) && (Sound_IsStereo(new SndVoice(v).mgr_) != 0)))
                     {
                         new SndVoice(v).pan_Set((short)((sbyte)(new SndMgr(new SndVoice(v).mgr_).unk2B94)));
                     }
                 }
                 else
                 {
-                    if (((new SndVoice(v).unkC0 == 0) && (func_00258D4C(new SndVoice(v).mgr_) != 0)))
+                    if (((new SndVoice(v).unkC0 == 0) && (Sound_IsStereo(new SndVoice(v).mgr_) != 0)))
                     {
-                        new SndVoice(v).pan_Set((short)(func_00259B30(new SndVoice(v).pos.P, (uint)(new SndMgr(new SndVoice(v).mgr_).unk2B98), default(uint), default(uint))));
+                        new SndVoice(v).pan_Set((short)(Sound_ComputePan(new SndVoice(v).pos.P, (uint)(new SndMgr(new SndVoice(v).mgr_).unk2B98), default(uint), default(uint))));
                     }
                 }
             }

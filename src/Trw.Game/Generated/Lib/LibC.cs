@@ -20,6 +20,30 @@ public static partial class Game
         }
     }
 
+    // ==== func_0022EEF4 @ 0x0022EEF4 [C]
+    public static int Str_CountTrailingSpaces(uint str, int len)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022EEF4", (uint)str, (uint)len);
+            int count = 0;
+            while ((1 != 0))
+            {
+                --len;
+                if (((int)(Mem.U8((str + (uint)len))) != 32))
+                {
+                    break;
+                }
+                ++count;
+                if ((len <= 0))
+                {
+                    break;
+                }
+            }
+            return count;
+        }
+    }
+
     // ==== func_00265904 @ 0x00265904 [C]
     public static void Str_Sprintf(uint buf, uint fmt, int a, int b)
     {

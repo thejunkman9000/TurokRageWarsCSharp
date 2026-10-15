@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002A2114");
             if ((Mem.S32((0x800D2BB0u + (uint)(0 * 4))) != 0))
             {
-                func_00254784((uint)(Mem.S32((0x800D2BB0u + (uint)(0 * 4)))));
+                ResourcePool_MallocFree((uint)(Mem.S32((0x800D2BB0u + (uint)(0 * 4)))));
             }
             Mem.Set((0x800D2BB0u + (uint)(0 * 4)), 0);
             Mem.Set((0x800D2BB0u + (uint)(3 * 4)), 0);

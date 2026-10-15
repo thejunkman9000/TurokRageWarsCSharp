@@ -16,7 +16,7 @@ public static partial class Game
             uint pl = 0u;
             uint c = 0u;
             vp = new M04Emitter(o).vp.P;
-            if (!((func_00258D4C(new M04Emitter(o).ctx_) == 0))) goto _f0;
+            if (!((Sound_IsStereo(new M04Emitter(o).ctx_) == 0))) goto _f0;
             c = new M04Emitter(o).ctx_;
             alSndpSetSound(new M04Ctx(c).player.P, new M04Ctx(c).snd[(int)(new M04Emitter(o).w0)]);
             alSndpSetPan(new M04Ctx(c).player.P, (byte)(64));
@@ -57,7 +57,7 @@ public static partial class Game
             goto L_setpan;
             _f1: ;
             if (!((((new M04Emitter(o).flags & (uint)(1024)) != 0u) && (new M04Emitter(o).resetFlag == 0)))) goto _f13;
-            new M04VP(vp).pan_Set((short)((int)(func_00259B30((o + (uint)68), new M04Emitter(o).ctx.tgt_, default(uint), default(uint)))));
+            new M04VP(vp).pan_Set((short)((int)(Sound_ComputePan((o + (uint)68), new M04Emitter(o).ctx.tgt_, default(uint), default(uint)))));
             L_setpan: ;
             pan = Mem.U8(((vp + 24u) + (uint)1));
             pl = new M04Emitter(o).ctx.player.P;

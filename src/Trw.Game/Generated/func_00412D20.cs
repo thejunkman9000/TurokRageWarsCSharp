@@ -14,9 +14,9 @@ public static partial class Game
             uint c = new S_func_00412D20(q).f44;
             if ((c != 0u))
             {
-                func_00254784(c);
+                ResourcePool_MallocFree(c);
             }
-            func_00254784(q);
+            ResourcePool_MallocFree(q);
             return 0;
         }
     }

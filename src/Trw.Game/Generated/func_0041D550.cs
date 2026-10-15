@@ -78,9 +78,9 @@ public static partial class Game
                         }
                         func_00439E60(new O3Pk(Mem.U32(0x800E3590u)).sub.P, snd);
                         func_00439EB4(new O3Pk(Mem.U32(0x800E3590u)).sub.P, idx);
-                        if ((func_0025471C() == 0))
+                        if ((Resource_GetLoadFlags() == 0))
                         {
-                            func_0025470C(1);
+                            Resource_SetLoadFlags(1);
                         }
                     }
                     else

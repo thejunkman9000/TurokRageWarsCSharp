@@ -19,8 +19,8 @@ public static partial class Game
             int h = 0;
             int i = 0;
             int j = 0;
-            func_0024B8B4(e);
-            if ((func_0024D150(e) != 0))
+            Actor_ResetPoseMatrices(e);
+            if ((Actor_IsAlwaysActive_0024D150(e) != 0))
             {
                 a = new Level(lv).cnt944;
                 if ((a != 512))
@@ -29,7 +29,7 @@ public static partial class Game
                     new Level(lv).cnt944_Set((a + 1));
                 }
             }
-            if ((func_0024E1A4(e) != 0))
+            if ((Actor_IsSpawnedVisible_0024E1A4(e) != 0))
             {
                 b = new Level(lv).cntB48;
                 if ((b != 128))

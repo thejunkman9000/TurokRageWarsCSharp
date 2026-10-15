@@ -34,7 +34,7 @@ public static partial class Game
             if (!(((int)(new M04Bank2(new SndMgr(m).unk7C_).tab.n) < pri))) goto _f0;
             return 0u;
             _f0: ;
-            func_00258760(m);
+            Sound_Lock(m);
             new_var = (info + (uint)2);
             if (!((((int)((sbyte)(func_0025E544(info))) == 100) || ((func_0027458C() % 100) < (int)((sbyte)(func_0025E544(info))))))) goto _f1;
             idx = (short)(func_0025B054(p, (int)((short)(tag)), (int)((short)(pri)), (short)(flag), (int)((short)(func_0025E598(info)))));
@@ -58,7 +58,7 @@ public static partial class Game
             new M04Emitter(v).vp.s28_Set((short)(0));
             new SndMgr(new SndVoices(p).owner_).unk102_Set((short)(sv));
             L_fail: ;
-            func_002587C4(new SndVoices(p).owner_);
+            Sound_Unlock(new SndVoices(p).owner_);
             return 0u;
             _f4: ;
             f = ((float)((short)(flag)) * Mem.F32(0x800C905Cu));
@@ -119,7 +119,7 @@ public static partial class Game
             new M04VP(vp).mode_Set((sbyte)(func_0025E568(info)));
             new M04Emitter(v).flags_Set((uint)((short)(func_0025E598(info))));
             new M04VP(vp).f40_Set(0);
-            func_002587C4(new SndVoices(p).owner_);
+            Sound_Unlock(new SndVoices(p).owner_);
             return v;
             _f2: ;
             _f1: ;

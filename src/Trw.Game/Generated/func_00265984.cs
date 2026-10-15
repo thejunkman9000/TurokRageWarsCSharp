@@ -14,7 +14,7 @@ public static partial class Game
             int r = 0;
             p = ResourceCache_Hash(0, (uint)(2667076), 2667076, (uint)(32), 16, (uint)(0), (uint)(0), 0x800C9478u, 1);
             r = Mem.S32((uint)((Mem.S32(p) + off)));
-            func_002536F4(0, p);
+            ResourcePool_Unref(0, p);
             return r;
         }
     }

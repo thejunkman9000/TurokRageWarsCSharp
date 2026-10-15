@@ -227,4 +227,401 @@ public static partial class Game
             return (((int)(new B07Weapon(Mem.U32((0x800D052Cu + (uint)(Mem.S16((actor + (uint)1582)) * 4)))).unk8) > 0) ? 1 : 0);
         }
     }
+
+    // ==== func_0022E998 @ 0x0022E998 [C]
+    public static void Player_HandleWeaponCycleButton_0022E998(uint actor)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022E998", (uint)actor);
+            uint w = 0u;
+            short idx = 0;
+            uint q = 0u;
+            ushort nxt = 0;
+            if (((int)(Mem.U8((0x801462E5u + (uint)0))) != 0))
+            {
+                return;
+            }
+            if (((Mem.S32((actor + (uint)3256)) != 0) && (Mem.S32((actor + (uint)2360)) != 0)))
+            {
+                return;
+            }
+            if (((Mem.S32((0x801462E5u - (uint)85)) != 0) && ((Mem.U32((actor + (uint)1708)) & (uint)(32)) != 0u)))
+            {
+                return;
+            }
+            if (((Mem.U32((actor + (uint)1712)) & (uint)(512)) != 0u))
+            {
+                w = Mem.U32((0x800D052Cu + (uint)(Mem.S16((actor + (uint)1904)) * 4)));
+                idx = Mem.S16((w + (uint)12));
+                nxt = Mem.U16((w + (uint)12));
+                if ((((int)(idx) != (-1)) && ((int)(Mem.S8((q = ((actor + (uint)((int)(idx) * 2)) + (uint)1538)))) != 0)))
+                {
+                    Mem.Set((actor + (uint)1904), nxt);
+                }
+            }
+        }
+    }
+
+    // ==== func_0022EAFC @ 0x0022EAFC [C]
+    public static int Player_CanUseWeapon(uint p, int idx)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022EAFC", (uint)p, (uint)idx);
+            uint w = 0u;
+            w = Mem.U32((0x800D052Cu + (uint)(idx * 4)));
+            switch (idx) { case 1: goto _f1; case 2: goto _f2; case 5: goto _f3; case 6: goto _f4; case 7: goto _f5; case 8: goto _f6; case 9: goto _f7; case 10: goto _f8; case 11: goto _f9; case 13: goto _f10; case 14: goto _f11; case 15: goto _f12; case 3: goto _f13; case 4: goto _f14; case 12: goto _f15; case 0: goto _f16; case 18: goto _f17; case 19: goto _f18; case 20: goto _f19; case 21: goto _f20; case 16: goto _f21; case 17: goto _f22; default: goto _f23; }
+            _f1: ;
+            _f2: ;
+            _f3: ;
+            _f4: ;
+            _f5: ;
+            _f6: ;
+            _f7: ;
+            _f8: ;
+            _f9: ;
+            _f10: ;
+            _f11: ;
+            _f12: ;
+            return (((int)(new Player_v3(p).s5F4[(int)(new WeaponInfo2(w).req.idx)]) >= (int)(new WeaponInfo2(w).req.min)) ? 1 : 0);
+            _f13: ;
+            return (((int)(new Player_v3(p).s5F4[(int)(0)]) >= 3) ? 1 : 0);
+            _f14: ;
+            return (((int)(new Player_v3(p).s5F4[(int)(0)]) >= 5) ? 1 : 0);
+            _f15: ;
+            if (!(((int)(new Player_v3(p).s5F4[(int)(2)]) != 0))) goto _f24;
+            _f16: ;
+            _f17: ;
+            _f18: ;
+            _f19: ;
+            _f20: ;
+            return 1;
+            _f24: ;
+            return (int)(Hud_DrawAmmoPips(0x80121990u, p, default(uint), default(uint)));
+            _f21: ;
+            _f22: ;
+            _f23: ;
+            return 0;
+            _f0: ;
+            return 0;
+        }
+    }
+
+    // ==== func_0022F760 @ 0x0022F760 [C]
+    public static void Player_DrawLaserBeamWorld(uint actor)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022F760", (uint)actor);
+            uint owner = new Actor(actor).owner_;
+            uint dl = 0u;
+            if ((new OW(owner).f1214 != 0))
+            {
+                {
+                    uint d = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(d).w0_Set(3661103107u);
+                    new DlCmd(d).w1_Set((uint)((owner + (uint)((Mem.S32(0x800D297Cu) * 64) + 5248))));
+                }
+                {
+                    uint d_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(d_2).w0_Set(3875536896u);
+                    new DlCmd(d_2).w1_Set((uint)(0));
+                }
+                func_0026D8F8();
+                Gfx_SetOtherModeL((uint)(14));
+                Gfx_SetCombineMode((uint)(28));
+                {
+                    uint d_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(d_3).w0_Set(3656973183u);
+                    new DlCmd(d_3).w1_Set((uint)(0));
+                }
+                {
+                    uint d_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(d_4).w0_Set(3657433087u);
+                    new DlCmd(d_4).w1_Set((uint)(2097156));
+                }
+                new B07Vtx((0x801031B0u + (uint)(0 * 16))).x_Set((short)(1));
+                new B07Vtx((0x801031B0u + (uint)(0 * 16))).y_Set((short)(1));
+                new B07Vtx((0x801031B0u + (uint)(0 * 16))).z_Set((short)(0));
+                new B07Vtx((0x801031B0u + (uint)(0 * 16))).flag_Set((short)(0));
+                new B07Vtx((0x801031B0u + (uint)(0 * 16))).s_Set((short)(0));
+                new B07Vtx((0x801031B0u + (uint)(0 * 16))).t_Set((short)(0));
+                new B07Vtx((0x801031B0u + (uint)(0 * 16))).r_Set((byte)(200));
+                new B07Vtx((0x801031B0u + (uint)(0 * 16))).g_Set((byte)(0));
+                new B07Vtx((0x801031B0u + (uint)(0 * 16))).b_Set((byte)(0));
+                new B07Vtx((0x801031B0u + (uint)(0 * 16))).a_Set((byte)(200));
+                new B07Vtx((0x801031B0u + (uint)(1 * 16))).x_Set((short)((-1)));
+                new B07Vtx((0x801031B0u + (uint)(1 * 16))).y_Set((short)(1));
+                new B07Vtx((0x801031B0u + (uint)(1 * 16))).z_Set((short)(0));
+                new B07Vtx((0x801031B0u + (uint)(1 * 16))).flag_Set((short)(0));
+                new B07Vtx((0x801031B0u + (uint)(1 * 16))).s_Set((short)(0));
+                new B07Vtx((0x801031B0u + (uint)(1 * 16))).t_Set((short)(0));
+                new B07Vtx((0x801031B0u + (uint)(1 * 16))).r_Set((byte)(200));
+                new B07Vtx((0x801031B0u + (uint)(1 * 16))).g_Set((byte)(0));
+                new B07Vtx((0x801031B0u + (uint)(1 * 16))).b_Set((byte)(0));
+                new B07Vtx((0x801031B0u + (uint)(1 * 16))).a_Set((byte)(200));
+                new B07Vtx((0x801031B0u + (uint)(2 * 16))).x_Set((short)(15));
+                new B07Vtx((0x801031B0u + (uint)(2 * 16))).y_Set((short)(1));
+                new B07Vtx((0x801031B0u + (uint)(2 * 16))).z_Set((short)((-1)));
+                new B07Vtx((0x801031B0u + (uint)(2 * 16))).flag_Set((short)(0));
+                new B07Vtx((0x801031B0u + (uint)(2 * 16))).s_Set((short)(0));
+                new B07Vtx((0x801031B0u + (uint)(2 * 16))).t_Set((short)(0));
+                new B07Vtx((0x801031B0u + (uint)(2 * 16))).r_Set((byte)(200));
+                new B07Vtx((0x801031B0u + (uint)(2 * 16))).g_Set((byte)(0));
+                new B07Vtx((0x801031B0u + (uint)(2 * 16))).b_Set((byte)(0));
+                new B07Vtx((0x801031B0u + (uint)(2 * 16))).a_Set((byte)(150));
+                new B07Vtx((0x801031B0u + (uint)(3 * 16))).x_Set((short)((-15)));
+                new B07Vtx((0x801031B0u + (uint)(3 * 16))).y_Set((short)(1));
+                new B07Vtx((0x801031B0u + (uint)(3 * 16))).z_Set((short)((-1)));
+                new B07Vtx((0x801031B0u + (uint)(3 * 16))).flag_Set((short)(0));
+                new B07Vtx((0x801031B0u + (uint)(3 * 16))).s_Set((short)(0));
+                new B07Vtx((0x801031B0u + (uint)(3 * 16))).t_Set((short)(0));
+                new B07Vtx((0x801031B0u + (uint)(3 * 16))).r_Set((byte)(200));
+                new B07Vtx((0x801031B0u + (uint)(3 * 16))).g_Set((byte)(0));
+                new B07Vtx((0x801031B0u + (uint)(3 * 16))).b_Set((byte)(0));
+                new B07Vtx((0x801031B0u + (uint)(3 * 16))).a_Set((byte)(150));
+                {
+                    uint d_5 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(d_5).w0_Set((uint)(16793608));
+                    new DlCmd(d_5).w1_Set((uint)(0x801031B0u));
+                }
+                {
+                    uint d_6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(d_6).w0_Set((uint)(83886596));
+                    new DlCmd(d_6).w1_Set((uint)(0));
+                }
+                {
+                    uint d_7 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(d_7).w0_Set((uint)(84018182));
+                    new DlCmd(d_7).w1_Set((uint)(0));
+                }
+                if ((new OW(owner).f147C != 0))
+                {
+                    func_002A6488((owner + (uint)((Mem.S32(0x800D297Cu) * 64) + 5504)));
+                }
+            }
+        }
+    }
+
+    // ==== func_0022F95C @ 0x0022F95C [C]
+    public static int Player_PickFallbackWeapon(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022F95C", (uint)p);
+            int prio = 0;
+            int w = 0;
+            prio = (int)(Mem.S8(((p + (uint)((int)(new Plr(p).unk62E) << (int)1)) + (uint)1539)));
+            if ((prio < 0))
+            {
+                prio = 0;
+            }
+            if ((prio >= 8))
+            {
+                prio = 0;
+            }
+            prio = (prio + 1);
+            while ((prio < 8))
+            {
+                for (w = 0; (w < 22); ++w)
+                {
+                    if ((prio == (int)(new M2WSlot(((p + (uint)1538) + (uint)(w * 2))).b)))
+                    {
+                        break;
+                    }
+                }
+                if ((((w < 22) && (Player_CanUseWeapon(p, w) != 0)) && ((w != 6) || ((int)(new Plr(p).unk5F4[(int)(0)]) >= 11))))
+                {
+                    if (((Mem.S32((p + (uint)5200)) == 0) || (w < 18)))
+                    {
+                        return w;
+                    }
+                }
+                ++prio;
+            }
+            prio = (int)(Mem.S8(((p + (uint)((int)(new Plr(p).unk62E) << (int)1)) + (uint)1539)));
+            if ((prio < 0))
+            {
+                prio = 0;
+            }
+            if ((prio >= 8))
+            {
+                prio = 0;
+            }
+            prio = (prio - 1);
+            while ((prio > 0))
+            {
+                for (w = 0; (w < 22); ++w)
+                {
+                    if ((prio == (int)(new M2WSlot(((p + (uint)1538) + (uint)(w * 2))).b)))
+                    {
+                        break;
+                    }
+                }
+                if (((w < 22) && (Player_CanUseWeapon(p, w) != 0)))
+                {
+                    if (((w != 6) || ((int)(new Plr(p).unk5F4[(int)(0)]) >= 11)))
+                    {
+                        return w;
+                    }
+                }
+                --prio;
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_0022FAE8 @ 0x0022FAE8 [MIPS]
+    public static uint Player_PickNextWeapon(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0022FAE8", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_0022FAE8: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 28u), r19);
+                r19 = r4;
+                Mem.Set((r29 + 32u), r31);
+                Mem.Set((r29 + 24u), r18);
+                Mem.Set((r29 + 20u), r17);
+                Mem.Set((r29 + 16u), r16);
+                r2 = (uint)(int)Mem.S16((r19 + 1582u));
+                r2 = r2 << 1;
+                r2 = r19 + r2;
+                r18 = (uint)(int)Mem.S8((r2 + 1539u));
+                if ((int)r18 < 0) { r18 = r0; goto L_L0022FB1C; }
+                L_L0022FB1C: ;
+                r2 = (uint)((int)r18 < 8 ? 1 : 0);
+                if (r2 == 0) { r18 = r0; goto L_L0022FB6C; }
+                r18 = r18 + 1u; goto L_L0022FB70;
+                L_L0022FB30: ;
+                r3 = r19;
+                L_L0022FB34: ;
+                r2 = (uint)(int)Mem.S8((r3 + 1539u));
+                { bool c_ = r18 == r2; r2 = (uint)((int)r17 < 22 ? 1 : 0); if (c_) goto L_L0022FB54; }
+                r17 = r17 + 1u;
+                r2 = (uint)((int)r17 < 22 ? 1 : 0);
+                { bool c_ = r2 != 0; r3 = r3 + 2u; if (c_) goto L_L0022FB34; }
+                r2 = (uint)((int)r17 < 22 ? 1 : 0);
+                L_L0022FB54: ;
+                { bool c_ = r2 == 0; r4 = r19; if (c_) goto L_L0022FB6C; }
+                r5 = r17; r2 = (uint)Player_CanUseWeapon(r4, (int)r5);
+                { bool c_ = r2 != 0; r2 = r17; if (c_) goto L_L0022FBF4; }
+                L_L0022FB6C: ;
+                r18 = r18 + 1u;
+                L_L0022FB70: ;
+                r2 = (uint)((int)r18 < 8 ? 1 : 0);
+                { bool c_ = r2 != 0; r17 = r0; if (c_) goto L_L0022FB30; }
+                r2 = (uint)(int)Mem.S16((r19 + 1582u));
+                r2 = r2 << 1;
+                r2 = r19 + r2;
+                r18 = (uint)(int)Mem.S8((r2 + 1539u));
+                r17 = (uint)1;
+                r2 = (uint)((int)r17 < (int)r18 ? 1 : 0);
+                { bool c_ = r2 == 0; r16 = r0; if (c_) goto L_L0022FBE8; }
+                L_L0022FB9C: ;
+                r3 = r19;
+                L_L0022FBA0: ;
+                r2 = (uint)(int)Mem.S8((r3 + 1539u));
+                { bool c_ = r17 == r2; r2 = (uint)((int)r16 < 22 ? 1 : 0); if (c_) goto L_L0022FBC0; }
+                r16 = r16 + 1u;
+                r2 = (uint)((int)r16 < 22 ? 1 : 0);
+                { bool c_ = r2 != 0; r3 = r3 + 2u; if (c_) goto L_L0022FBA0; }
+                r2 = (uint)((int)r16 < 22 ? 1 : 0);
+                L_L0022FBC0: ;
+                { bool c_ = r2 == 0; r4 = r19; if (c_) goto L_L0022FBD8; }
+                r5 = r16; r2 = (uint)Player_CanUseWeapon(r4, (int)r5);
+                { bool c_ = r2 != 0; r2 = r16; if (c_) goto L_L0022FBF4; }
+                L_L0022FBD8: ;
+                r17 = r17 + 1u;
+                r2 = (uint)((int)r17 < (int)r18 ? 1 : 0);
+                { bool c_ = r2 != 0; r16 = r0; if (c_) goto L_L0022FB9C; }
+                L_L0022FBE8: ;
+                r4 = (uint)3405; r2 = (uint)func_0025DF54((int)r4);
+                r2 = (uint)(int)Mem.S16((r19 + 1582u));
+                L_L0022FBF4: ;
+                r31 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0022FAE8", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002327E4 @ 0x002327E4 [C]
+    public static int Player_IsAltFireAllowed(uint actor)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002327E4", (uint)actor);
+            int r = 0;
+            int v = 0;
+            uint g = 0u;
+            if ((Mem.F32((actor + (uint)4568)) > (float)(0)))
+            {
+                return 0;
+            }
+            if ((new Actor(actor).unk1450 != 0))
+            {
+                return 1;
+            }
+            g = 0x801462C8u;
+            if (((int)(Mem.U8((g + (uint)13))) != 1))
+            {
+                return 1;
+            }
+            r = (int)(Profile_HasAltFire((0x80102B00u + (uint)(new Actor(actor).unk5D4 * 400)), (uint)((int)(Mem.S16((actor + (uint)1582)))), default(uint), default(uint)));
+            if ((r == 0))
+            {
+                func_0025DF54(3405);
+                if ((Mem.U32((actor + (uint)1500)) != 0u))
+                {
+                    v = Player_GetIndex((g - (uint)4744), (int)(actor));
+                    Hud_SpawnTextLineA((g - (uint)4672), Mem.U32((actor + (uint)1500)), (uint)(Mem.S32(0x800D70E8u)), v, Mem.F32(0x800C8100u));
+                }
+            }
+            return r;
+        }
+    }
+
+    // ==== func_00232AAC @ 0x00232AAC [C]
+    public static int Player_PickRandomWeapon(uint actor)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00232AAC", (uint)actor);
+            int i = (int)(Mem.S16((actor + (uint)1582)));
+            int n = (Random_Next() % 22);
+            if ((n >= 0))
+            {
+                do
+                {
+                    ++i;
+                    if ((i >= 16))
+                    {
+                        i = 0;
+                    }
+                    if ((Player_CanUseWeapon(actor, i) != 0))
+                    {
+                        --n;
+                    }
+                }
+                while ((n >= 0));
+            }
+            return i;
+        }
+    }
 }

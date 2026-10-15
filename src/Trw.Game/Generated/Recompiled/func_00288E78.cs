@@ -33,7 +33,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r16);
                 r2 = Mem.U32((r20 + 248u));
                 { bool c_ = r2 != 0; r22 = r5; if (c_) goto L_L00288ECC; }
-                r4 = r0; func_002538A8();
+                r4 = r0; ResourcePool_Purge();
                 r4 = r20; r2 = func_00288908(r4, r5, r6, r7); r3 = Cpu.V1;
                 r2 = Mem.U32((r20 + 248u));
                 { bool c_ = r2 == 0;  if (c_) goto L_L00289028; }
@@ -85,7 +85,7 @@ public static partial class Game
                 r2 = r2 & 4u;
                 { bool c_ = r2 == 0;  if (c_) goto L_L00288F50; }
                 L_L00288FA0: ;
-                r5 = r22; func_00250458(r4);
+                r5 = r22; Prop_Draw(r4);
                  goto L_L00288F50;
                 L_L00288FB0: ;
                 r17 = r17 + 1u; func_0026D9D0();

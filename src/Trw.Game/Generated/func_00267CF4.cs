@@ -18,9 +18,9 @@ public static partial class Game
                 uint n = 0u;
                 for (n = Mem.U32(0x801450A8u); (n != 0u); n = new B15Node(n).next_)
                 {
-                    if ((func_0023939C(n, _fp) != 0))
+                    if ((Camera_IsPointInFrustum(n, _fp) != 0))
                     {
-                        func_0023919C(n, (sbyte)(new B15Bytes7((_fp + 16u)).c[(int)(0)]), (sbyte)(new B15Bytes7((_fp + 16u)).c[(int)(1)]), (sbyte)(new B15Bytes7((_fp + 16u)).c[(int)(2)]), (sbyte)(new B15Bytes7((_fp + 16u)).c[(int)(3)]), (sbyte)(new B15Bytes7((_fp + 16u)).c[(int)(4)]), (sbyte)(new B15Bytes7((_fp + 16u)).c[(int)(5)]), (sbyte)(new B15Bytes7((_fp + 16u)).c[(int)(6)]));
+                        Fade_Start(n, (sbyte)(new B15Bytes7((_fp + 16u)).c[(int)(0)]), (sbyte)(new B15Bytes7((_fp + 16u)).c[(int)(1)]), (sbyte)(new B15Bytes7((_fp + 16u)).c[(int)(2)]), (sbyte)(new B15Bytes7((_fp + 16u)).c[(int)(3)]), (sbyte)(new B15Bytes7((_fp + 16u)).c[(int)(4)]), (sbyte)(new B15Bytes7((_fp + 16u)).c[(int)(5)]), (sbyte)(new B15Bytes7((_fp + 16u)).c[(int)(6)]));
                     }
                 }
             }

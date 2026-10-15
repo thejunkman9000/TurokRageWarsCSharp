@@ -17,7 +17,7 @@ public static partial class Game
             new O06Cam(0x800D15E4u).unk8_Set(0);
             new O06Cam(0x800D15E4u).unk10_Set(0);
             new O06Cam(0x800D15E4u).fC_Set((float)((Mem.S32(0x801540E0u) / 2)));
-            func_0024A1C0(a, b, (uint)(c));
+            Actor_DrawModelLit(a, b, (uint)(c));
             Mem.Set(0x800D15E0u, 0);
         }
     }

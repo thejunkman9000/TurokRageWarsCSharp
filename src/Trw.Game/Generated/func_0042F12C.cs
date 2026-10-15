@@ -17,7 +17,7 @@ public static partial class Game
             int id = 0;
             uint w = 0u;
             uint t = 0u;
-            Mem.Set(0x800E54A4u, func_00252FFC((uint)(13428)));
+            Mem.Set(0x800E54A4u, ResourcePool_Malloc((uint)(13428)));
             new Q03Lob(Mem.U32(0x800E54A4u)).h.f0_Set(arg0);
             func_0043C3F0(new Q03Lob(Mem.U32(0x800E54A4u)).h.blk8.P, 103, 0, 0, 0);
             new Q03Lob(Mem.U32(0x800E54A4u)).h.f4_Set(func_0041B690(arg0, 4));
@@ -141,7 +141,7 @@ public static partial class Game
                 func_00264790(i);
                 for (j = 0; (j < 4); ++j)
                 {
-                    func_0022EF20((new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(i)].rec.P + (uint)(j * 400)));
+                    Profile_Init((new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(i)].rec.P + (uint)(j * 400)));
                 }
                 for (j = 0; (j < 16); ++j)
                 {

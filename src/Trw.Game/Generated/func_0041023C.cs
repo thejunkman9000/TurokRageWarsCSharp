@@ -33,66 +33,66 @@ public static partial class Game
             func_00410E9C(1);
             if ((new S_G(0x801539B0u).p260 != 0u))
             {
-                func_00254784(new S_G(0x801539B0u).p260);
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p260);
             }
             func_00411D98();
             for (j = 0; (j < (int)(new S_G(0x801539B0u).n20)); ++j)
             {
                 if ((new S_obj_v3((Mem.U32(0x80153C28u) + (uint)(j * 1180))).p488 != 0u))
                 {
-                    func_00254784(Mem.U32(new S_obj_v3((Mem.U32(0x80153C28u) + (uint)(j * 1180))).p488));
-                    func_00254784(new S_obj_v3((Mem.U32(0x80153C28u) + (uint)(j * 1180))).p488);
+                    ResourcePool_MallocFree(Mem.U32(new S_obj_v3((Mem.U32(0x80153C28u) + (uint)(j * 1180))).p488));
+                    ResourcePool_MallocFree(new S_obj_v3((Mem.U32(0x80153C28u) + (uint)(j * 1180))).p488);
                 }
-                func_00254784(Mem.U32(new S_obj_v3((Mem.U32(0x80153C28u) + (uint)(j * 1180))).p484));
-                func_00254784(new S_obj_v3((Mem.U32(0x80153C28u) + (uint)(j * 1180))).p484);
+                ResourcePool_MallocFree(Mem.U32(new S_obj_v3((Mem.U32(0x80153C28u) + (uint)(j * 1180))).p484));
+                ResourcePool_MallocFree(new S_obj_v3((Mem.U32(0x80153C28u) + (uint)(j * 1180))).p484);
             }
             if ((new S_G(0x801539B0u).p26C != 0u))
             {
-                func_00254784(new S_G(0x801539B0u).p26C);
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p26C);
             }
             if ((new S_G(0x801539B0u).p278 != 0u))
             {
-                func_00254784(new S_G(0x801539B0u).p278);
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p278);
             }
             if ((new S_G(0x801539B0u).p274 != 0u))
             {
-                func_00254784(new S_G(0x801539B0u).p274);
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p274);
             }
             if ((new S_G(0x801539B0u).p2A0 != 0u))
             {
-                func_00254784(new S_G(0x801539B0u).p2A0);
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p2A0);
             }
             if ((new S_G(0x801539B0u).p268 != 0u))
             {
-                func_00254784(new S_G(0x801539B0u).p268);
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p268);
             }
             if ((new S_G(0x801539B0u).p294 != 0u))
             {
-                func_00254784(new S_G(0x801539B0u).p294);
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p294);
             }
             if ((new S_G(0x801539B0u).p298 != 0u))
             {
-                func_00254784(new S_G(0x801539B0u).p298);
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p298);
             }
             if ((new S_G(0x801539B0u).p264 != 0u))
             {
-                func_00254784(new S_G(0x801539B0u).p264);
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p264);
             }
             if ((new S_G(0x801539B0u).p29C != 0u))
             {
-                func_00254784(new S_G(0x801539B0u).p29C);
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p29C);
             }
             if ((new S_G(0x801539B0u).p288 != 0u))
             {
-                func_00254784(new S_G(0x801539B0u).p288);
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p288);
             }
             if ((new S_G(0x801539B0u).p28C != 0u))
             {
-                func_00254784(new S_G(0x801539B0u).p28C);
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p28C);
             }
             if ((new S_G(0x801539B0u).p280 != 0u))
             {
-                func_00254784(new S_G(0x801539B0u).p280);
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p280);
             }
             func_002A1748(0x801539B0u, 0, (uint)(680));
         }

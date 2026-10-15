@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0029AC38", (uint)b, (uint)size);
             if ((new B22Buf(b).data_ == 0u))
             {
-                new B22Buf(b).data__Set(func_00252FFC((uint)(size)));
+                new B22Buf(b).data__Set(ResourcePool_Malloc((uint)(size)));
                 new B22Buf(b).wrpos_Set(0);
                 new B22Buf(b).size_Set(size);
             }

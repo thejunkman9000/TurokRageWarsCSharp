@@ -45,12 +45,12 @@ public static partial class Game
                     if ((p != 0u))
                     {
                         s1 = func_0028FE08((uint)(Mem.S32(p)), new B18Actor(o).unk118.unk14, 1);
-                        func_002537D8(0, p);
-                        q = func_00254094(0, (_fp + 12u), s1, 0x800C9E40u, 1);
+                        ResourcePool_Release(0, p);
+                        q = Resource_LoadIndexTable(0, (_fp + 12u), s1, 0x800C9E40u, 1);
                         if ((q != 0u))
                         {
                             new B18Actor(o).unk110_Set((int)(Resource_GetCartridgeKey(Mem.U32((_fp + 12u)), (uint)(s1), (zero % Mem.S32(Mem.U32((_fp + 12u)))), (o + 276u))));
-                            func_002537D8(0, q);
+                            ResourcePool_Release(0, q);
                         }
                     }
                     if ((new B18Actor(o).unk110 == 0))
@@ -62,7 +62,7 @@ public static partial class Game
                 if ((p != 0u))
                 {
                     func_0026DC24(p, s3, 0, (int)((o + (uint)((Mem.S32(0x800D297Cu) * 24) + 224))), (uint)(0), (-1));
-                    func_002536F4(0, p);
+                    ResourcePool_Unref(0, p);
                 }
             }
         }

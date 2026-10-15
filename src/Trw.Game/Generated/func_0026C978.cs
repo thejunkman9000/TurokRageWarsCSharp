@@ -55,7 +55,7 @@ public static partial class Game
                     Mem.Set(new P4Gfx(l2).words.P, 3691514122u);
                     Mem.Set((new P4Gfx(l2).words.P + 4u), (uint)(lights));
                 }
-                func_00253B5C(0, a0);
+                Resource_MarkUsedInFrame(0, a0);
                 p = a4;
                 root = Mem.U32(a0);
                 if ((p == 0u))

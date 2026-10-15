@@ -22,7 +22,7 @@ public static partial class Game
                 L_func_00422260: ;
                 r29 = r29 - 32u;
                 Mem.Set((r29 + 24u), r31);
-                r4 = (uint)36; r2 = func_00252FFC(r4);
+                r4 = (uint)36; r2 = ResourcePool_Malloc(r4);
                 r4 = r2;
                 r5 = (uint)103;
                 r6 = r0;

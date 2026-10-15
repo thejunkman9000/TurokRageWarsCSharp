@@ -18,18 +18,18 @@ public static partial class Game
                 uint b = 0u;
                 int n = 0;
                 r = func_0028FE08(new Level(lv).unk4C_, (int)(new Level(lv).unk1C_), idx);
-                h = func_00254224(0, _fp, r, 0x800CA200u);
-                b = func_002543A8((uint)(0), (uint)(Mem.S32(_fp)), (uint)(8), (uint)(r), lv, (uint)(0), (0x800CA370u + (uint)(1 * 4)));
+                h = Resource_LoadIndexTableSync(0, _fp, r, 0x800CA200u);
+                b = Resource_LoadByCartridgeKey((uint)(0), (uint)(Mem.S32(_fp)), (uint)(8), (uint)(r), lv, (uint)(0), (0x800CA370u + (uint)(1 * 4)));
                 n = new Blk_v2(b).size;
                 if ((maxSize < n))
                 {
                     n = maxSize;
                 }
                 memcpy(dst, new Blk_v2(b).data, (uint)(n));
-                func_002537D8(0, b);
+                ResourcePool_Release(0, b);
                 if ((new Level(lv).unk1B40C != idx))
                 {
-                    func_002537D8(0, h);
+                    ResourcePool_Release(0, h);
                 }
             }
         }

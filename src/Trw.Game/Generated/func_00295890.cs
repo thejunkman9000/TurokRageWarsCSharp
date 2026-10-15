@@ -13,7 +13,7 @@ public static partial class Game
             uint p = Mem.U32((0x8014AECCu + (uint)(0 * 4)));
             if ((p != 0u))
             {
-                func_002536F4(0, p);
+                ResourcePool_Unref(0, p);
             }
             Mem.Set((0x8014AECCu + (uint)(0 * 4)), 0u);
             Mem.Set((0x8014AECCu + (uint)(2 * 4)), 0u);

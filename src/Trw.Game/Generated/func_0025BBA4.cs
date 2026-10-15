@@ -13,13 +13,13 @@ public static partial class Game
             float f = 0f;
             uint r = 0u;
             short id = 0;
-            func_00259C7C(o, a1, a2, default(uint));
-            func_00259F88(o, a1);
+            SndVoice_InitPitch(o, a1, a2, default(uint));
+            SndVoice_InitVolume(o, a1);
             new M04Emitter(o).vp.pan_Set((short)(64));
             id = new M04EmArg(a1).id;
             if (((int)(id) != (-1)))
             {
-                r = func_00258C14(new M04Emitter(o).ctx_, (int)(id));
+                r = Sound_GetPanEnvelope(new M04Emitter(o).ctx_, (int)(id));
                 Mem.Copy(new M04Emitter(o).rec.P, r, 12);
                 f = Trunc16ToF32(new M04Emitter(o).rec.w1);
                 do
@@ -35,16 +35,16 @@ public static partial class Game
             new M04Emitter(o).hasEnv_Set(0);
             if ((new M04Emitter(o).kind < 256))
             {
-                if (((new M04Emitter(o).resetFlag == 0) && (func_00258D4C(new M04Emitter(o).ctx_) != 0)))
+                if (((new M04Emitter(o).resetFlag == 0) && (Sound_IsStereo(new M04Emitter(o).ctx_) != 0)))
                 {
                     new M04Emitter(o).vp.pan_Set((short)(new M04Emitter(o).ctx.defaultPan));
                 }
             }
             else
             {
-                if (((new M04Emitter(o).resetFlag == 0) && (func_00258D4C(new M04Emitter(o).ctx_) != 0)))
+                if (((new M04Emitter(o).resetFlag == 0) && (Sound_IsStereo(new M04Emitter(o).ctx_) != 0)))
                 {
-                    new M04Emitter(o).vp.pan_Set((short)((int)(func_00259B30((o + (uint)68), new M04Emitter(o).ctx.tgt_, default(uint), default(uint)))));
+                    new M04Emitter(o).vp.pan_Set((short)((int)(Sound_ComputePan((o + (uint)68), new M04Emitter(o).ctx.tgt_, default(uint), default(uint)))));
                 }
             }
         }

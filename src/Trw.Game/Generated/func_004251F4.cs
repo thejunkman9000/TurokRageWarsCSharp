@@ -21,117 +21,117 @@ public static partial class Game
                 switch (t)
                 {
                 case 1:
-                    func_0022F3E8(row, (int)(new O04Row190w(row).unkF));
-                    func_0022F3E8(row, (int)(new O04Row190w(row).unkF));
+                    Profile_AddCharacterHalfLife(row, (int)(new O04Row190w(row).unkF));
+                    Profile_AddCharacterHalfLife(row, (int)(new O04Row190w(row).unkF));
                     return r;
                 case 2:
-                    func_0022F3E8(row, (int)(new O04Row190w(row).unkF));
-                    if (((func_0022F444(row, (int)(new O04Row190w(row).unkF)) & 1) == 0))
+                    Profile_AddCharacterHalfLife(row, (int)(new O04Row190w(row).unkF));
+                    if (((Profile_GetCharacterLives(row, (int)(new O04Row190w(row).unkF)) & 1) == 0))
                     {
                         r = 5001;
                     }
                     return r;
                 case 3:
-                    func_0022F4AC(row, 4);
+                    Profile_UnlockWeapon(row, 4);
                     return r;
                 case 4:
-                    func_0022F504(row, 2);
+                    Profile_UnlockAltFire(row, 2);
                     return r;
                 case 5:
-                    func_0022F4AC(row, 14);
+                    Profile_UnlockWeapon(row, 14);
                     return r;
                 case 6:
-                    func_0022F504(row, 6);
+                    Profile_UnlockAltFire(row, 6);
                     return r;
                 case 7:
-                    func_0022F4AC(row, 7);
+                    Profile_UnlockWeapon(row, 7);
                     return r;
                 case 8:
-                    func_0022F504(row, 16);
+                    Profile_UnlockAltFire(row, 16);
                     return r;
                 case 9:
-                    func_0022F504(row, 5);
+                    Profile_UnlockAltFire(row, 5);
                     return r;
                 case 10:
-                    func_0022F504(row, 17);
+                    Profile_UnlockAltFire(row, 17);
                     return r;
                 case 11:
-                    func_0022F4AC(row, 6);
+                    Profile_UnlockWeapon(row, 6);
                     return r;
                 case 12:
-                    func_0022F504(row, 14);
+                    Profile_UnlockAltFire(row, 14);
                     return r;
                 case 13:
-                    func_0022F504(row, 4);
+                    Profile_UnlockAltFire(row, 4);
                     return r;
                 case 14:
-                    func_0022F4AC(row, 12);
+                    Profile_UnlockWeapon(row, 12);
                     return r;
                 case 15:
-                    func_0022F4AC(row, 10);
+                    Profile_UnlockWeapon(row, 10);
                     return r;
                 case 16:
-                    func_0022F30C(row);
+                    Profile_AddField14_0022F30C(row);
                     return r;
                 case 17:
-                    func_0022F504(row, 8);
+                    Profile_UnlockAltFire(row, 8);
                     return r;
                 case 18:
-                    func_0022F4AC(row, 8);
+                    Profile_UnlockWeapon(row, 8);
                     return r;
                 case 19:
-                    func_0022F4AC(row, 15);
+                    Profile_UnlockWeapon(row, 15);
                     return r;
                 case 20:
-                    func_0022F504(row, 11);
+                    Profile_UnlockAltFire(row, 11);
                     return r;
                 case 21:
-                    func_0022F504(row, 10);
+                    Profile_UnlockAltFire(row, 10);
                     return r;
                 case 22:
-                    func_0022F504(row, 3);
+                    Profile_UnlockAltFire(row, 3);
                     return r;
                 case 23:
-                    func_0022F354(row);
+                    Profile_AddField16_0022F354(row);
                     return r;
                 case 24:
-                    func_0022F330(row);
+                    Profile_AddField15_0022F330(row);
                     return r;
                 case 25:
-                    func_0022F4AC(row, 13);
+                    Profile_UnlockWeapon(row, 13);
                     return r;
                 case 26:
-                    func_0022F4AC(row, 9);
+                    Profile_UnlockWeapon(row, 9);
                     return r;
                 case 27:
-                    func_0022F504(row, 1);
+                    Profile_UnlockAltFire(row, 1);
                     return r;
                 case 28:
-                    func_0022F504(row, 9);
+                    Profile_UnlockAltFire(row, 9);
                     return r;
                 case 29:
-                    func_0022F504(row, 7);
+                    Profile_UnlockAltFire(row, 7);
                     return r;
                 case 30:
-                    func_0022F504(row, 13);
+                    Profile_UnlockAltFire(row, 13);
                     return r;
                 case 31:
-                    func_0022F4AC(row, 5);
+                    Profile_UnlockWeapon(row, 5);
                     return r;
                 case 33:
-                    func_0022F4AC(row, 1);
+                    Profile_UnlockWeapon(row, 1);
                     return r;
                 case 34:
-                    func_0022F504(row, 0);
+                    Profile_UnlockAltFire(row, 0);
                     return r;
                 case 37:
-                    func_0022F4AC(row, 11);
+                    Profile_UnlockWeapon(row, 11);
                     return r;
                 case 53:
                     new O04Row190w(row).unk17_Set((byte)(new O04Row190w(row).unk17 + 1));
                     break;
                 case 57:
-                    func_0022F378(row);
+                    Profile_AddField10_0022F378(row);
                     return r;
                 case 52:
                     break;

@@ -20,9 +20,9 @@ public static partial class Game
                 float acc = 0.0f;
                 float z0 = 0f;
                 int i = 0;
-                X = func_00252FFC((uint)((n * 4)));
-                T = func_00252FFC((uint)((n * 4)));
-                Y = func_00252FFC((uint)((n * 4)));
+                X = ResourcePool_Malloc((uint)((n * 4)));
+                T = ResourcePool_Malloc((uint)((n * 4)));
+                Y = ResourcePool_Malloc((uint)((n * 4)));
                 rec = new O01Spl(@out).rec.P;
                 new O01Spl(@out).stride_Set(36);
                 new O01Spl(@out).count_Set(n);
@@ -96,9 +96,9 @@ public static partial class Game
                 {
                     new O01SplRec((rec + (uint)(i * 36))).c2_Set(Mem.F32((Y + (uint)(i * 4))));
                 }
-                func_00254784(X);
-                func_00254784(T);
-                func_00254784(Y);
+                ResourcePool_MallocFree(X);
+                ResourcePool_MallocFree(T);
+                ResourcePool_MallocFree(Y);
             }
         }
         finally { Stack.Free(12); }

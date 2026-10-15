@@ -200,7 +200,7 @@ public static partial class Game
                         n1 = n2;
                         n2 = new S8Node(n1).next_;
                     }
-                    func_002536F4(0, (uint)(handle));
+                    ResourcePool_Unref(0, (uint)(handle));
                 }
             }
         }

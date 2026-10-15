@@ -35,7 +35,7 @@ public static partial class Game
                 {
                     Gfx_SetOtherModeL((uint)(id));
                 }
-                func_00253B5C(0, p);
+                Resource_MarkUsedInFrame(0, p);
                 root = Mem.U32(p);
                 nd = node;
                 if ((nd == 0u))

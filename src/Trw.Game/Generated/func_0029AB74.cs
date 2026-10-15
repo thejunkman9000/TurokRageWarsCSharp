@@ -13,7 +13,7 @@ public static partial class Game
             int o = 0;
             if ((new B22Buf(b).data_ == 0u))
             {
-                new B22Buf(b).data__Set(func_00252FFC((uint)(n)));
+                new B22Buf(b).data__Set(ResourcePool_Malloc((uint)(n)));
                 new B22Buf(b).wrpos_Set(0);
                 new B22Buf(b).size_Set(n);
             }

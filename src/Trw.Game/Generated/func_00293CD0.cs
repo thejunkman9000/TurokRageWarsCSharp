@@ -40,7 +40,7 @@ public static partial class Game
                 }
             }
             func_00286050(new B21Game(g).sub3C8.P);
-            func_002394A4();
+            CameraManager_Nop_002394A4();
             func_002AB794(new B21Game(g).sub1BCF8.P);
             func_00294F1C(default(uint), default(uint), default(uint), default(uint));
             func_00293378(g);

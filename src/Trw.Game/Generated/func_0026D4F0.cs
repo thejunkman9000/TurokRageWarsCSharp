@@ -39,7 +39,7 @@ public static partial class Game
                     }
                     Gfx_SetCombineMode((uint)(1));
                     root = Mem.U32(p);
-                    func_00253B5C(0, p);
+                    Resource_MarkUsedInFrame(0, p);
                     if ((flag != 0))
                     {
                         uint q_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);

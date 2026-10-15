@@ -275,7 +275,7 @@ public static partial class Game
                 r5 = r5 - 2u;
                 L_L0021A714: ;
                 { bool c_ = (int)r5 < 0;  if (c_) goto L_L0021A770; }
-                r4 = r17; r2 = func_0024BFC4(r4, (int)r5);
+                r4 = r17; r2 = Actor_AcquireModel(r4, (int)r5);
                 r16 = r2;
                 { bool c_ = r16 == 0; r4 = r16; if (c_) goto L_L0021A770; }
                 Mem.Set((r29 + 16u), r0);
@@ -291,7 +291,7 @@ public static partial class Game
                 r7 = r7 + 320u;
                 r7 = r17 + r7; Light_ShadeVertices(r4, (int)r5, (int)r6, (int)r7, Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
                 r4 = r0;
-                r5 = r16; func_002536F4((int)r4, r5);
+                r5 = r16; ResourcePool_Unref((int)r4, r5);
                 L_L0021A770: ;
                 r31 = Mem.U32((r29 + 64u));
                 r19 = Mem.U32((r29 + 60u));
@@ -574,7 +574,7 @@ public static partial class Game
                 r5 = r5 - 2u;
                 L_L0021A714: ;
                 { bool c_ = (int)r5 < 0;  if (c_) goto L_L0021A770; }
-                r4 = r17; r2 = func_0024BFC4(r4, (int)r5);
+                r4 = r17; r2 = Actor_AcquireModel(r4, (int)r5);
                 r16 = r2;
                 { bool c_ = r16 == 0; r4 = r16; if (c_) goto L_L0021A770; }
                 Mem.Set((r29 + 16u), r0);
@@ -590,7 +590,7 @@ public static partial class Game
                 r7 = r7 + 320u;
                 r7 = r17 + r7; Light_ShadeVertices(r4, (int)r5, (int)r6, (int)r7, Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
                 r4 = r0;
-                r5 = r16; func_002536F4((int)r4, r5);
+                r5 = r16; ResourcePool_Unref((int)r4, r5);
                 L_L0021A770: ;
                 r31 = Mem.U32((r29 + 64u));
                 r19 = Mem.U32((r29 + 60u));
@@ -960,7 +960,7 @@ public static partial class Game
                 _f36: ;
                 if (!((var_s3_2 != 0))) goto _f55;
                 temp_s0_5 = AiNav_GetNode(0x8013B364u, AiNav_FindNearestNode(0x8013B364u, new Shared_ActorView(arg0).position.P));
-                func_0024E78C(arg0, new Shared_ActorView(arg0).position.P, (_fp + 16u), (_fp + 80u));
+                Collision_LocatePoint_0024E78C(arg0, new Shared_ActorView(arg0).position.P, (_fp + 16u), (_fp + 80u));
                 if (!((temp_s0_5 != 0u))) goto _f56;
                 Mem.Copy((_fp + 16u), temp_s0_5, 12);
                 _f56: ;
@@ -1061,9 +1061,9 @@ public static partial class Game
                 var_v0_3 = (temp_v1_8 + 1023);
                 _f80: ;
                 new Vec3((_fp + 48u)).z_Set(((float)((temp_v1_8 - ((var_v0_3 >> (int)10) << (int)10))) - Mem.F32(0x800C7460u)));
-                Mem.Copy((_fp + 64u), C.Seq(func_0024795C(_fp, arg0), _fp), 16);
+                Mem.Copy((_fp + 64u), C.Seq(Actor_GetFacingQuat(_fp, arg0), _fp), 16);
                 temp_s0_6 = new Shared_ActorView(arg0).frameValue;
-                if (!((func_0024BE70(arg0) == 5))) goto _f81;
+                if (!((Actor_GetModelHeaderField6E_0024BE70(arg0) == 5))) goto _f81;
                 var_s1_3 = 3;
                 _f81: ;
                 Effect_SpawnFromTemplates(0x80121990u, arg0, arg0, 0u, temp_s0_6, 100, (_fp + 48u), (_fp + 64u), (_fp + 32u), (int)(0u), (-1), var_s1_3);
@@ -1290,7 +1290,7 @@ public static partial class Game
                 uint g = 0u;
                 Mem.Copy(_fp, new B04O6(o).pos.P, 12);
                 new Vec3f(_fp).y_Set((new Vec3f(_fp).y + new B04O6(o).unk70));
-                new Vec3f(_fp).y_Set((new Vec3f(_fp).y + (func_0024D274(o) * Mem.F32(0x800C7474u))));
+                new Vec3f(_fp).y_Set((new Vec3f(_fp).y + (Actor_GetHeight(o) * Mem.F32(0x800C7474u))));
                 func_0028C6B0(0x8011FE88u, _fp, (new B04O6(o).seg.P + (uint)(Mem.S32(0x800D297Cu) * 24)));
                 a2 = 102;
                 if (((int)(Mem.U8(0x801462E5u)) != 0))
@@ -1327,7 +1327,7 @@ public static partial class Game
                 g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
                 new DlCmd(g).w0_Set(3674472476u);
                 new DlCmd(g).w1_Set((uint)(65534));
-                func_00249E18(o, a1, default(uint), default(uint));
+                Actor_Draw(o, a1, default(uint), default(uint));
                 if ((new B04O6(o).unk1210 != 0))
                 {
                     Player_DrawLaserBeam(o);
@@ -1382,7 +1382,7 @@ public static partial class Game
                     new DlCmd(g).w0_Set(3674472476u);
                     new DlCmd(g).w1_Set((uint)(65535));
                     func_0026D980();
-                    func_00249E18((pl + (uint)744), o, default(uint), default(uint));
+                    Actor_Draw((pl + (uint)744), o, default(uint), default(uint));
                     func_0026D9D0();
                 }
                 while ((0 != 0));
@@ -1499,11 +1499,11 @@ public static partial class Game
                     new Vec3f(_fp).x_Set(0.0f);
                     new Vec3f(_fp).y_Set(0.0f);
                     new Vec3f(_fp).z_Set(offz);
-                    func_0024BC84((_fp + 16u), (int)(p), _fp);
+                    Actor_RotateByFacing((_fp + 16u), (int)(p), _fp);
                     func_00271FA4((_fp + 16u), (_fp + 16u), new B05P14(p).pos.P);
                     new B05Fx(fx).unk16_Set((short)(1));
                     new B05Fx(fx).unk10_Set((short)((int)(new Vec3f((_fp + 16u)).x)));
-                    new B05Fx(fx).unk12_Set((short)((int)((new Vec3f((_fp + 16u)).y + (func_0024D274(p) * k1)))));
+                    new B05Fx(fx).unk12_Set((short)((int)((new Vec3f((_fp + 16u)).y + (Actor_GetHeight(p) * k1)))));
                     new B05Fx(fx).unk14_Set((short)((int)(new Vec3f((_fp + 16u)).z)));
                     new B05Fx(fx).unkC_Set(k2);
                 }
@@ -1674,7 +1674,7 @@ public static partial class Game
                 L_L00220FD4: ;
                 r2 = Mem.U8((r16 + 29u));
                 { bool c_ = r2 == 0;  if (c_) goto L_L00220FE8; }
-                r4 = (uint)8; func_0025470C((int)r4);
+                r4 = (uint)8; Resource_SetLoadFlags((int)r4);
                 L_L00220FE8: ;
                 r2 = Mem.U32((r18 + 56u));
                 r4 = r0;
@@ -1751,7 +1751,7 @@ public static partial class Game
                 Cpu.SetW(0, r0);
                 fcc = Cpu.S(1) <= Cpu.S(0);
                 { bool c_ = !fcc;  if (c_) goto L_L00221160; }
-                r4 = r19; r2 = func_00246E34(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r19; r2 = Actor_Advance(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_L00221160: ;
                 r2 = Mem.U16((r18 + 1616u));
                 r2 = (uint)(r2 < (uint)(2) ? 1 : 0);
@@ -1845,7 +1845,7 @@ public static partial class Game
                 Mem.Set((r18 + 1620u), (ushort)r2);
                 Mem.Set((r18 + 1628u), r3);
                 r17 = Mem.U32((r19 + 20u));
-                r4 = r19; r2 = (uint)func_0024E7CC(r4);
+                r4 = r19; r2 = (uint)Actor_GetCurrentRegion(r4);
                 r4 = r18;
                 r5 = r19;
                 r6 = r2; Actor_ApplyGameSpeed(r4, r5, r6);
@@ -1921,7 +1921,7 @@ public static partial class Game
                 Cpu.SetW(0, Mem.U32((r1 + 10632u)));
                 Cpu.SetS(1, Cpu.S(1) + Cpu.S(0));
                 r4 = r19;
-                Mem.Set((r18 + 1624u), Cpu.W(1)); r2 = (uint)func_0024E61C(r4);
+                Mem.Set((r18 + 1624u), Cpu.W(1)); r2 = (uint)Actor_IsOnGround(r4);
                 r16 = r2;
                 if (r16 == 0) { Mem.Set((r18 + 1744u), r16); goto L_L00221498; }
                 r2 = Mem.U32((r18 + 1744u));
@@ -1931,7 +1931,7 @@ public static partial class Game
                 Cpu.SetW(0, Mem.U32((r1 + 30948u)));
                 fcc = Cpu.S(1) < Cpu.S(0);
                 if (!fcc) { Mem.Set((r18 + 1744u), r16); goto L_L00221498; }
-                r4 = r19; r2 = (uint)func_00246674(r4);
+                r4 = r19; r2 = (uint)Actor_GetPlayerField3C_00246674(r4);
                 Mem.Set((r18 + 1744u), r16);
                 L_L00221498: ;
                 Cpu.SetW(0, Mem.U32((r19 + 32u)));
@@ -2046,7 +2046,7 @@ public static partial class Game
                 { bool c_ = r2 == 0; r4 = r18; if (c_) goto L_L002216B8; }
                 r5 = r19; r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
                 L_L002216B8: ;
-                r4 = r19; r2 = (uint)func_0024E7CC(r4);
+                r4 = r19; r2 = (uint)Actor_GetCurrentRegion(r4);
                 r16 = r2;
                 { bool c_ = r16 == 0; r4 = r19; if (c_) goto L_L002217BC; }
                 r5 = r16;
@@ -2208,13 +2208,13 @@ public static partial class Game
                 Cpu.SetS(23, Cpu.S(0) - Cpu.S(1));
                 fcc = Cpu.S(24) < Cpu.S(23);
                 { bool c_ = !fcc;  if (c_) goto L_L00221A68; }
-                r4 = r19; Cpu.SetS(0, func_0024E454(r4));
+                r4 = r19; Cpu.SetS(0, Actor_GetCollisionRadius_0024E454(r4));
                 r4 = r19;
-                Cpu.SetS(22, Cpu.S(0)); Cpu.SetS(0, func_0024D388(r4));
+                Cpu.SetS(22, Cpu.S(0)); Cpu.SetS(0, Actor_GetRadius(r4));
                 r4 = r19;
-                Cpu.SetS(21, Cpu.S(0)); Cpu.SetS(0, func_0024D274(r4));
+                Cpu.SetS(21, Cpu.S(0)); Cpu.SetS(0, Actor_GetHeight(r4));
                 r4 = r19;
-                Cpu.SetS(20, Cpu.S(0)); Cpu.SetS(0, func_0024E410(r4));
+                Cpu.SetS(20, Cpu.S(0)); Cpu.SetS(0, Actor_GetBottomOffset(r4));
                 Cpu.SetW(1, Mem.U32((r19 + 8u)));
                 Mem.Set((r29 + 160u), Cpu.W(1));
                 Cpu.SetW(1, Mem.U32((r19 + 12u)));
@@ -2276,7 +2276,7 @@ public static partial class Game
                 Mem.Set((r29 + 48u), r9);
                 Mem.Set((r29 + 52u), r10);
                 Mem.Set((r29 + 56u), r11);
-                r4 = r19; r2 = (uint)func_0024E7CC(r4);
+                r4 = r19; r2 = (uint)Actor_GetCurrentRegion(r4);
                 r3 = (uint)(int)Mem.S16((r18 + 1514u));
                 { bool c_ = r3 == 0; r23 = r2; if (c_) goto L_L00221B64; }
                 r2 = Mem.U32((r19 + 256u));
@@ -2308,7 +2308,7 @@ public static partial class Game
                 r20 = r0;
                 L_L00221B68: ;
                 r17 = Mem.U32((r19 + 20u));
-                r4 = r19; r2 = (uint)func_0024E7CC(r4);
+                r4 = r19; r2 = (uint)Actor_GetCurrentRegion(r4);
                 r16 = r2;
                 { bool c_ = r23 == r16; r4 = r22; if (c_) goto L_L00221BC4; }
                 r9 = Mem.U32((r29 + 192u));
@@ -2535,7 +2535,7 @@ public static partial class Game
                 L_L00221F70: ;
                 Mem.Set((r18 + 4576u), Cpu.W(0));
                 L_L00221F74: ;
-                r4 = r19; r2 = (uint)func_0024E7CC(r4);
+                r4 = r19; r2 = (uint)Actor_GetCurrentRegion(r4);
                 { bool c_ = r2 == 0;  if (c_) goto L_L00221F9C; }
                 r2 = Mem.U32((r2 + 68u));
                 r2 = r2 & 16384u;
@@ -2554,7 +2554,7 @@ public static partial class Game
                 r6 = r0;
                 r7 = r6; r2 = Player_PlaceAtSpawn(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_L00221FD4: ;
-                r4 = r19; r2 = (uint)func_0024E61C(r4);
+                r4 = r19; r2 = (uint)Actor_IsOnGround(r4);
                 { bool c_ = r2 == 0;  if (c_) goto L_L00221FFC; }
                 r9 = Mem.U32((r19 + 8u));
                 r10 = Mem.U32((r19 + 12u));
@@ -2595,21 +2595,21 @@ public static partial class Game
                 r2 = Mem.U32((r18 + 2160u));
                 r5 = Mem.U32((r18 + 2156u));
                 { bool c_ = r2 == r5; r4 = r19; if (c_) goto L_L002220BC; }
-                r6 = r0; r2 = (uint)func_0024B690(r4, (int)r5, (int)r6);
+                r6 = r0; r2 = (uint)Anim_PlayAction(r4, (int)r5, (int)r6);
                 { bool c_ = r2 != 0; r4 = r19; if (c_) goto L_L002220C0; }
                 r2 = (uint)Flyby_IsInWindow();
                 { bool c_ = r2 == 0; r4 = r19; if (c_) goto L_L002220BC; }
                 r5 = (uint)7000;
-                r6 = r0; r2 = (uint)func_0024B690(r4, (int)r5, (int)r6);
+                r6 = r0; r2 = (uint)Anim_PlayAction(r4, (int)r5, (int)r6);
                 L_L002220BC: ;
                 r4 = r19;
                 L_L002220C0: ;
                 r5 = Mem.U32((r18 + 2156u));
-                r6 = (uint)-1; r2 = (uint)func_002469F8(r4, (int)r5, (int)r6);
+                r6 = (uint)-1; r2 = (uint)Actor_LookupAnimType(r4, (int)r5, (int)r6);
                 r4 = r19;
                 r16 = r2;
                 r5 = Mem.U32((r18 + 2156u));
-                r6 = r16; r2 = (uint)func_002469F8(r4, (int)r5, (int)r6);
+                r6 = r16; r2 = (uint)Actor_LookupAnimType(r4, (int)r5, (int)r6);
                 r5 = r2;
                 r2 = (uint)((int)r16 < (int)r5 ? 1 : 0);
                 { bool c_ = r2 == 0; r3 = r5; if (c_) goto L_L002220F4; }
@@ -2632,13 +2632,13 @@ public static partial class Game
                 { bool c_ = !fcc; r4 = r19; if (c_) goto L_L00222154; }
                 r5 = r17;
                 L_L00222148: ;
-                r6 = r0; r2 = (uint)func_0024B6E4(r4, (int)r5, (int)r6);
+                r6 = r0; r2 = (uint)Anim_TryRequestClip(r4, (int)r5, (int)r6);
                 Mem.Set((r19 + 270u), (byte)r0);
                 L_L00222154: ;
                 r10 = Mem.U32((r29 + 200u));
                 { bool c_ = r10 != 0;  if (c_) goto L_L00222168; }
                 L_L00222160: ;
-                r4 = r19; r2 = func_00246FF4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r19; r2 = Actor_AlignToGround(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_L00222168: ;
                 r11 = Mem.U32((r18 + 8u));
                 r12 = Mem.U32((r18 + 12u));
@@ -3262,7 +3262,7 @@ public static partial class Game
                         new B05Obj4(o).unk24_Set(((new B05Ply4(p).unk6C0 * cosf((new B05Src4(src).unk6C + 3.14159274f))) * 20.0f));
                         if ((new B05Ply4(p).pawn != 0u))
                         {
-                            func_00239314(new B05Ply4(p).pawn, 50.0f, 100.0f, 50.0f, 1.0f, s2, new B05Src4(src).pos.P);
+                            Camera_StartShake(new B05Ply4(p).pawn, 50.0f, 100.0f, 50.0f, 1.0f, s2, new B05Src4(src).pos.P);
                         }
                         if (((int)(new B05Obj4b(o2).unk1A4) == 46))
                         {
@@ -3275,7 +3275,7 @@ public static partial class Game
                     {
                         if ((new B05Ply4(p).pawn != 0u))
                         {
-                            func_00239314(new B05Ply4(p).pawn, 30.0f, 60.0f, 30.0f, 1.0f, s2, new B05Src4(src).pos.P);
+                            Camera_StartShake(new B05Ply4(p).pawn, 30.0f, 60.0f, 30.0f, 1.0f, s2, new B05Src4(src).pos.P);
                         }
                     }
                     return 1;
@@ -3555,7 +3555,7 @@ public static partial class Game
                 new Vec3f((_fp + 16u)).x_Set((new B05P17(p).f6C4 + new B05P17(p).f6D8));
                 new Vec3f((_fp + 16u)).y_Set(0.0f);
                 new Vec3f((_fp + 16u)).z_Set(0.0f);
-                func_0024795C((_fp + 144u), a);
+                Actor_GetFacingQuat((_fp + 144u), a);
                 Quat_ToMatrix((_fp + 144u), (_fp + 80u));
                 func_00272908((_fp + 80u), _fp, (_fp + 32u));
                 func_00272908((_fp + 80u), (_fp + 16u), (_fp + 48u));
@@ -4362,7 +4362,7 @@ public static partial class Game
             {
                 new R2P5(p).f724_Set(0.0f);
                 new R2P5(p).f16C0_Set(0.0f);
-                if ((func_0024E61C(a) == 0))
+                if ((Actor_IsOnGround(a) == 0))
                 {
                     fs0 = 2.0480001f;
                     new R2P5(p).f6E8_Set((new R2P5(p).f6E8 - (sinf(new R2A5(a).f6C) * fs0)));
@@ -5087,7 +5087,7 @@ public static partial class Game
                 Mem.Set((r29 + 32u), r10);
                 r5 = Cpu.W(0);
                 r4 = Mem.U32((r16 + 1500u));
-                r7 = r5; { uint s6_ = Stack.Alloc(12); Mem.Set(s6_ + 0u, Mem.U32(r29 + 24u)); Mem.Set(s6_ + 4u, Mem.U32(r29 + 28u)); Mem.Set(s6_ + 8u, Mem.U32(r29 + 32u)); func_00239314(r4, Cpu.U2F(r5), Cpu.U2F(r6), Cpu.U2F(r7), Cpu.U2F(Mem.U32(r29 + 16u)), (int)Mem.U32(r29 + 20u), s6_); Stack.Free(12); }
+                r7 = r5; { uint s6_ = Stack.Alloc(12); Mem.Set(s6_ + 0u, Mem.U32(r29 + 24u)); Mem.Set(s6_ + 4u, Mem.U32(r29 + 28u)); Mem.Set(s6_ + 8u, Mem.U32(r29 + 32u)); Camera_StartShake(r4, Cpu.U2F(r5), Cpu.U2F(r6), Cpu.U2F(r7), Cpu.U2F(Mem.U32(r29 + 16u)), (int)Mem.U32(r29 + 20u), s6_); Stack.Free(12); }
                 L_L002261E8: ;
                 Cpu.SetW(1, Mem.U32((r16 + 1728u)));
                 Cpu.SetW(0, r0);
@@ -5221,7 +5221,7 @@ public static partial class Game
             int s1 = (n * 5864);
             int s2 = (n * 816);
             int i = 0;
-            blk = func_002533DC(0, (s1 + s2), (uint)(35), (int)(0x800C7C58u));
+            blk = ResourcePool_Alloc(0, (s1 + s2), (uint)(35), (int)(0x800C7C58u));
             new PlrGroup(g).unk0__Set(blk);
             new PlrGroup(g).unk8_Set(n);
             @base = (uint)(Mem.S32((blk + (uint)(0 * 4))));
@@ -5353,10 +5353,10 @@ public static partial class Game
                             new Plr(a).flags3E8_Set((uint)((uint)(new Plr(a).flags3E8) | (uint)(512)));
                             new PlrObj(e).unk2E0_Set(16);
                             new PlrObj(e).flags100_Set((uint)((uint)(new PlrObj(e).flags100) & 4294836223u));
-                            func_0024BE2C(e);
+                            Actor_RunStateUpdate(e);
                             if ((new Plr(a).unk11D8 <= 0.0f))
                             {
-                                func_00246E34(e, default(uint), default(uint), default(uint));
+                                Actor_Advance(e, default(uint), default(uint), default(uint));
                             }
                             Mem.Set(0x800D2988u, f);
                             if ((saved != new Plr(a).unk86C))
@@ -5402,14 +5402,14 @@ public static partial class Game
                 r = ResourceCache_Hash(0, (uint)(new PlrObj(e).unkC4), new PlrObj(e).unkC4, (uint)(new PlrObj(e).unkD0), 4, (uint)(0), (uint)(0), 0x800C7CB0u, 1);
                 if (!((r != 0u))) goto _f7;
                 other = new PlrObj(e).unk1D8_;
-                func_0024B4E4(e, (int)(Chunk_Get((uint)(Mem.S32((r + (uint)(0 * 4)))), 0)));
+                Actor_UpdateTransformAndBounds(e, (int)(Chunk_Get((uint)(Mem.S32((r + (uint)(0 * 4)))), 0)));
                 if (!((new Plr(other).unk5DC_ != 0u))) goto _f8;
                 new Vec3f(_fp).x_Set((new Pawn(new Plr(other).unk5DC_).pos128.x - new PlrObj(e).pos.x));
                 new Vec3f(_fp).y_Set((float)(0));
                 new Vec3f(_fp).z_Set((new Pawn(new Plr(other).unk5DC_).pos128.z - new PlrObj(e).pos.z));
-                func_0024ADC0(e, _fp, (uint)(1), default(uint));
+                Shadow_DrawBlob(e, _fp, (uint)(1), default(uint));
                 _f8: ;
-                func_002536F4(0, r);
+                ResourcePool_Unref(0, r);
                 _f7: ;
                 _f6: ;
                 goto _f9;
@@ -5423,8 +5423,8 @@ public static partial class Game
                 if (!(((new Plr(a).flags100 & (uint)(262144)) != 0u))) goto _f12;
                 r2 = ResourceCache_Hash(0, (uint)(new Plr(a).unkC4), new Plr(a).unkC4, (uint)(new Plr(a).unkD0), 4, (uint)(0), (uint)(0), 0x800C7CB0u, 1);
                 if (!((r2 != 0u))) goto _f13;
-                func_0024B4E4(a, (int)(Chunk_Get((uint)(Mem.S32((r2 + (uint)(0 * 4)))), 0)));
-                func_002536F4(0, r2);
+                Actor_UpdateTransformAndBounds(a, (int)(Chunk_Get((uint)(Mem.S32((r2 + (uint)(0 * 4)))), 0)));
+                ResourcePool_Unref(0, r2);
                 _f13: ;
                 _f12: ;
                 _f11: ;
@@ -5451,7 +5451,7 @@ public static partial class Game
             int b = 0;
             if (((new GameB6(0x801468A0u).unk24 != 0) || (new GameB6(0x801468A0u).unk78 != 0)))
             {
-                want = (int)(new Plr(func_002392DC(p)).stats.unk92);
+                want = (int)(new Plr(Player_FindByPawn(p)).stats.unk92);
             }
             func_0026D980();
             for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
@@ -5478,9 +5478,9 @@ public static partial class Game
                 }
                 if ((((new Plr(a).unk5DC_ != 0u) && (new Plr(a).unk1210 != 0)) && (new Plr(a).unk5DC_ == p)))
                 {
-                    func_0022F760((a + (uint)744));
+                    Player_DrawLaserBeamWorld((a + (uint)744));
                 }
-                if (((((new GameB6(0x801468A0u).unk24 != 0) || (new GameB6(0x801468A0u).unk78 != 0)) && ((int)(new Plr(a).stats.unk92) == want)) && (func_002392DC(p) != a)))
+                if (((((new GameB6(0x801468A0u).unk24 != 0) || (new GameB6(0x801468A0u).unk78 != 0)) && ((int)(new Plr(a).stats.unk92) == want)) && (Player_FindByPawn(p) != a)))
                 {
                     Player_DrawTeamMarker(a);
                 }
@@ -5694,7 +5694,7 @@ public static partial class Game
                 r5 = r16;
                 r6 = r20;
                 r7 = r19;
-                Mem.Set((r17 + 12u), Cpu.W(0)); func_0024A3A0(r4, (int)r5, (int)r6, r7);
+                Mem.Set((r17 + 12u), Cpu.W(0)); Actor_DrawModelTinted(r4, (int)r5, (int)r6, r7);
                 Cpu.SetW(0, Mem.U32((r17 + 12u)));
                 Cpu.SetS(0, Cpu.S(0) + Cpu.S(0));
                 Cpu.SetS(0, Cpu.S(21) - Cpu.S(0));
@@ -5777,7 +5777,7 @@ public static partial class Game
                 r4 = r18;
                 r5 = r16;
                 r6 = r20;
-                r7 = r19; func_0024A3A0(r4, (int)r5, (int)r6, r7);
+                r7 = r19; Actor_DrawModelTinted(r4, (int)r5, (int)r6, r7);
                 L_L00229264: ;
                 r1 = 2148335616u;
                 Mem.Set((r1 + 5600u), r0);
@@ -6027,16 +6027,16 @@ public static partial class Game
             uint a = 0u;
             if ((new PlrGroup(g).unk0_ != 0u))
             {
-                func_00253B5C(0, new PlrGroup(g).unk0_);
+                Resource_MarkUsedInFrame(0, new PlrGroup(g).unk0_);
             }
             for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
             {
-                func_0024B8B4(a);
-                func_0024B8B4((a + (uint)744));
+                Actor_ResetPoseMatrices(a);
+                Actor_ResetPoseMatrices((a + (uint)744));
                 Actor_SpawnCachedEffect_0022BC84(a, 0);
                 if (((int)(new GStateB6(0x801462C8u).unk1D) != 0))
                 {
-                    func_0024B7D4(a, 1);
+                    Actor_RefreshPoseMatrices(a, 1);
                 }
             }
         }
@@ -6053,7 +6053,7 @@ public static partial class Game
             {
                 new Plr(a).unk70_Set(0);
                 new Plr(a).unk358_Set(0);
-                if ((func_0024D150(a) != 0))
+                if ((Actor_IsAlwaysActive_0024D150(a) != 0))
                 {
                     if ((new PlrList(l).cntA != 512))
                     {
@@ -6301,10 +6301,10 @@ public static partial class Game
             float f = Mem.F32(0x800D2988u);
             new PlrObj(e).unk2E0_Set(16);
             new PlrObj(e).flags100_Set((uint)((uint)(new PlrObj(e).flags100) & 4294836223u));
-            func_0024BE2C(e);
+            Actor_RunStateUpdate(e);
             if ((new Plr(a).unk11D8 <= 0.0f))
             {
-                func_00246E34(e, default(uint), default(uint), default(uint));
+                Actor_Advance(e, default(uint), default(uint), default(uint));
             }
             Mem.Set(0x800D2988u, f);
             if ((saved != new Plr(a).unk86C))
@@ -6341,7 +6341,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0022ADE0", (uint)a);
             if ((Mem.S32((a + (uint)24)) != 0))
             {
-                return func_0024D274((uint)(a));
+                return Actor_GetHeight((uint)(a));
             }
             return Mem.F32(0x800C7DF8u);
         }
@@ -6504,7 +6504,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022C070", (uint)actor, (uint)id);
-            uint p = (uint)(func_0024E7CC((uint)(id)));
+            uint p = (uint)(Actor_GetCurrentRegion((uint)(id)));
             if ((p != 0u))
             {
                 Mem.Set((actor + (uint)1920), (float)((float)(Mem.F32((actor + (uint)1920))) + ((Mem.F32((p + (uint)44)) - Mem.F32((actor + (uint)1920))) * Mem.F32(0x800C7E18u))));
@@ -6541,7 +6541,7 @@ public static partial class Game
             {
                 if ((((int)(Mem.U8((0x801462E5u - (uint)16))) == 1) && (new Actor(actor).unk1450 == 0)))
                 {
-                    Mem.Set((actor + (uint)4924), (((int)((byte)(func_0022F444((0x80102B00u + (uint)(new Actor(actor).unk5D4 * 400)), (int)(new Actor(actor).stats.unk80)))) >> (int)1) + 1));
+                    Mem.Set((actor + (uint)4924), (((int)((byte)(Profile_GetCharacterLives((0x80102B00u + (uint)(new Actor(actor).unk5D4 * 400)), (int)(new Actor(actor).stats.unk80)))) >> (int)1) + 1));
                 }
                 if (((int)(Mem.U8((0x801462D5u + (uint)0))) == 4))
                 {
@@ -6610,6 +6610,553 @@ public static partial class Game
             Mem.Set((actor + (uint)1812), (float)(0));
             Mem.Set((actor + (uint)1804), t);
             Mem.Set((actor + (uint)1808), k);
+        }
+    }
+
+    // ==== func_0022DBF0 @ 0x0022DBF0 [C]
+    public static void Player_ClearField70C_0022DBF0(uint actor)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022DBF0", (uint)actor);
+            Mem.Set((actor + (uint)1804), Mem.F32((actor + (uint)1800)));
+            Mem.Set((actor + (uint)1808), (float)(0));
+            Mem.Set((actor + (uint)1812), (float)(0));
+        }
+    }
+
+    // ==== func_0022DC04 @ 0x0022DC04 [C]
+    public static void Player_Nop_0022DC04()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022DC04");
+        }
+    }
+
+    // ==== func_0022DC0C @ 0x0022DC0C [C]
+    public static int Player_IsCrouched(uint actor)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022DC0C", (uint)actor);
+            return ((Mem.F32((actor + (uint)1816)) > Mem.F32(0x800C7ECCu)) ? 1 : 0);
+        }
+    }
+
+    // ==== func_0022DC34 @ 0x0022DC34 [C]
+    public static void Player_UpdateCrouch(uint actor, uint state, int unused, uint flags)
+    {
+        uint _fp = Stack.Alloc(4);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0022DC34", (uint)actor, (uint)state, (uint)unused, (uint)flags);
+                int s1 = 0;
+                uint fl = 0u;
+                float v = 0f;
+                float d = 0f;
+                float nv = 0f;
+                fl = (Mem.U32((state + (uint)56)) & (uint)(786432));
+                s1 = ((fl != (uint)(0)) ? 1 : 0);
+                if (!((new F718(actor).f71C != 0))) goto _f0;
+                s1 = 1;
+                if (!(((int)(Mem.S16((actor + (uint)1616))) != 4))) goto _f1;
+                Player_SetState(actor, (int)(state), 4);
+                _f1: ;
+                _f0: ;
+                v = (float)(0);
+                if (!((s1 != 0))) goto _f2;
+                v = Mem.F32(0x800C7ED0u);
+                _f2: ;
+                Mem.Set(_fp, new F718(actor).f718);
+                func_002748E0(_fp, v, 0.25f);
+                d = (Mem.F32(_fp) - new F718(actor).f718);
+                if (!((d < (float)(0)))) goto _f3;
+                if (!(((-d) < Mem.F32(0x800C7ED4u)))) goto _f4;
+                goto L_zero;
+                _f4: ;
+                goto _f5;
+                _f3: ;
+                if (!((d < Mem.F32(0x800C7ED8u)))) goto _f6;
+                L_zero: ;
+                d = (float)(0);
+                _f6: ;
+                _f5: ;
+                nv = (new F718(actor).f718 + d);
+                d = (Mem.F32(0x800C7EDCu) - nv);
+                new F718(actor).f718_Set(nv);
+                if (!(((Mem.F32(0x800C7EE0u) <= d) && (d <= Mem.F32(0x800C7EE4u))))) goto _f7;
+                Mem.Set(flags, (uint)((uint)(Mem.U32(flags)) | (uint)(128)));
+                goto _f8;
+                _f7: ;
+                Mem.Set(flags, (uint)((uint)(Mem.U32(flags)) & (uint)((~128))));
+                _f8: ;
+            }
+        }
+        finally { Stack.Free(4); }
+    }
+
+    // ==== func_0022DD84 @ 0x0022DD84 [C]
+    public static void Player_UpdateSinkOffset_0022DD84(uint p)
+    {
+        uint _fp = Stack.Alloc(4);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0022DD84", (uint)p);
+                float target = 0f;
+                float d = 0f;
+                target = 0.0f;
+                if (!(((int)((ushort)(((int)(new Player_v3(p).state) - 9))) < 4))) goto _f0;
+                target = Mem.F32((0x800C7EE8u + (uint)(0 * 4)));
+                _f0: ;
+                Mem.Set(_fp, new Player_v3(p).f720);
+                func_002748E0(_fp, target, 0.25f);
+                d = (Mem.F32(_fp) - new Player_v3(p).f720);
+                if (!((d < (float)(0)))) goto _f1;
+                if (!(((-d) < Mem.F32((0x800C7EE8u + (uint)(1 * 4)))))) goto _f2;
+                goto L_zero;
+                _f2: ;
+                goto _f3;
+                _f1: ;
+                if (!((d < Mem.F32(0x800C7EF0u)))) goto _f4;
+                L_zero: ;
+                d = (float)(0);
+                _f4: ;
+                _f3: ;
+                new Player_v3(p).f720_Set((float)((float)(new Player_v3(p).f720) + d));
+            }
+        }
+        finally { Stack.Free(4); }
+    }
+
+    // ==== func_0022DE48 @ 0x0022DE48 [C]
+    public static void Player_UpdateHeightOffset_0022DE48(uint actor, uint o)
+    {
+        uint _fp = Stack.Alloc(12);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0022DE48", (uint)actor, (uint)o);
+                float d = 0f;
+                float v1 = 0f;
+                float v2 = 0f;
+                float v3 = 0f;
+                float v4 = 0f;
+                float t = 0f;
+                d = ((((Mem.F32((new Actor(actor).def_ + (uint)244)) - Mem.F32((actor + (uint)1920))) - Mem.F32((actor + (uint)1816))) - Mem.F32((actor + (uint)1824))) - Mem.F32((actor + (uint)1780)));
+                if ((d > (float)(0)))
+                {
+                    v1 = Actor_GetCollisionRadius_0024E454(o);
+                    v2 = Actor_GetRadius(o);
+                    v3 = Actor_GetHeight(o);
+                    v4 = Actor_GetBottomOffset(o);
+                    new Vec3f(_fp).x_Set(Mem.F32((o + (uint)8)));
+                    new Vec3f(_fp).y_Set((Mem.F32((o + (uint)12)) + d));
+                    new Vec3f(_fp).z_Set(Mem.F32((o + (uint)16)));
+                    if ((Collision_CheckActorMove(o, C.Tmp(Cpu.F2U(Mem.F32((o + (uint)8))), Cpu.F2U(Mem.F32((o + (uint)12))), Cpu.F2U(Mem.F32((o + (uint)16)))), C.Tmp(Mem.U32(_fp + 0u), Mem.U32(_fp + 4u), Mem.U32(_fp + 8u)), 0x801040F0u, Cpu.U2F(Cpu.F2U(v1)), Cpu.U2F(Cpu.F2U(v2)), Cpu.U2F(Cpu.F2U(v3)), Cpu.U2F(Cpu.F2U(v4))) != 0))
+                    {
+                        t = (Mem.F32((Mem.U32(0x80103FCCu) + (uint)232)) - Mem.F32((o + (uint)12)));
+                        Mem.Set((actor + (uint)1772), (float)((float)(Mem.F32((actor + (uint)1772))) - (d - t)));
+                        d = t;
+                    }
+                }
+                Mem.Set((actor + (uint)1780), (float)((float)(Mem.F32((actor + (uint)1780))) + d));
+            }
+        }
+        finally { Stack.Free(12); }
+    }
+
+    // ==== func_0022DF98 @ 0x0022DF98 [C]
+    public static void Player_UpdateZoom_0022DF98(uint actor)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022DF98", (uint)actor);
+            float f = 0.0f;
+            uint q = 0u;
+            if (((((int)(Mem.S16((Mem.U32((0x800D052Cu + (uint)(Mem.S16((actor + (uint)1582)) * 4))) + (uint)8))) > 0) && (Mem.S32((actor + (uint)2024)) != 0)) && ((Mem.S32(0x801468F4u) == 0) || ((int)(Mem.U8((new Actor(actor).stats_ + (uint)143))) == 0))))
+            {
+            }
+            else
+            {
+                q = (actor + (uint)2168);
+                Mem.Set((actor + (uint)2024), 0);
+                if (((Mem.S32((q + (uint)180)) != 0) && (Mem.S32((q + (uint)180)) != 3)))
+                {
+                    Mem.Set((q + (uint)180), 3);
+                }
+            }
+            if ((new Actor(actor).unk5E4 != 0))
+            {
+                if ((Mem.S32((actor + (uint)2024)) != 0))
+                {
+                    f = Mem.F32(0x800C7EF4u);
+                    Mem.Set((actor + (uint)2024), 1);
+                }
+            }
+            Mem.Set((actor + (uint)2032), f);
+            Game_EmptyStub_00219480();
+            func_002748E0((actor + (uint)2028), f, 0.5f);
+            if ((f == 0.0f))
+            {
+                if ((Mem.F32((actor + (uint)2028)) < Mem.F32(0x800C7EF8u)))
+                {
+                    Mem.Set((actor + (uint)2028), 0.0f);
+                }
+            }
+        }
+    }
+
+    // ==== func_0022E0A0 @ 0x0022E0A0 [C]
+    public static void Player_ApplyLookPitchToBone(uint actor, uint obj)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022E0A0", (uint)actor, (uint)obj);
+            uint cfg = Mem.U32((obj + (uint)28));
+            int v = Mem.S32((obj + (uint)4));
+            uint owner = 0u;
+            float x = 0f;
+            if (((v >= (int)(Mem.S8((cfg + (uint)24)))) && (v <= (int)(Mem.S8((cfg + (uint)25))))))
+            {
+                owner = new Actor(Mem.U32((obj + (uint)8))).owner_;
+                x = (-Mem.F32((owner + (uint)1828)));
+                if (((int)(Mem.S16((owner + (uint)1616))) == 15))
+                {
+                    x = (float)((float)(x) + Mem.F32(0x800C7EFCu));
+                }
+                x = (x / (float)(Mem.S8((cfg + (uint)26))));
+                func_00273930(actor, x);
+            }
+        }
+    }
+
+    // ==== func_0022E250 @ 0x0022E250 [C]
+    public static void Player_ForwardHitStatusEffect(uint actor, int a1, int a2)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022E250", (uint)actor, (uint)a1, (uint)a2);
+            Player_ApplyHitStatusEffect(new Actor(actor).owner_, (int)(actor), a1, (uint)(a2));
+        }
+    }
+
+    // ==== func_0022E280 @ 0x0022E280 [MIPS]
+    public static uint Player_ResetMovement(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0022E280", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_0022E280: ;
+                r29 = r29 - 24u;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 20u), r31);
+                r2 = Mem.U32((r16 + 5200u));
+                { bool c_ = r2 == 0; r4 = r16 + 1672u; if (c_) goto L_L0022E2AC; }
+                r5 = 2148597760u;
+                r5 = r5 - 4424u;
+                 goto L_L0022E2D0;
+                L_L0022E2AC: ;
+                r2 = Mem.U32((r16 + 1492u));
+                r5 = r2 << 4;
+                r5 = r5 + r2;
+                r5 = r5 << 3;
+                r5 = r5 + r2;
+                r5 = r5 << 2;
+                r2 = 2148597760u;
+                r2 = r2 - 3288u;
+                r5 = r5 + r2;
+                L_L0022E2D0: ;
+                func_0026369C(r4, (int)r5);
+                r4 = r16;
+                r2 = (uint)1;
+                Mem.Set((r16 + 1728u), r0);
+                Mem.Set((r16 + 1732u), r0);
+                Mem.Set((r16 + 1736u), r0);
+                Mem.Set((r16 + 1740u), r0);
+                Mem.Set((r16 + 1744u), r2);
+                Mem.Set((r16 + 1748u), r0);
+                Mem.Set((r16 + 1752u), r0);
+                Mem.Set((r16 + 1756u), r0);
+                Mem.Set((r16 + 1764u), r0);
+                Mem.Set((r16 + 1880u), r0);
+                Mem.Set((r16 + 1884u), r0);
+                Mem.Set((r16 + 4532u), r0);
+                Mem.Set((r16 + 4536u), r0);
+                Mem.Set((r16 + 1800u), r0);
+                Mem.Set((r16 + 1804u), r0);
+                Mem.Set((r16 + 1808u), r0);
+                Mem.Set((r16 + 1812u), r0);
+                Mem.Set((r16 + 1828u), r0);
+                Mem.Set((r16 + 1832u), r0);
+                Mem.Set((r16 + 1836u), r0);
+                Mem.Set((r16 + 1840u), r0);
+                Mem.Set((r16 + 1844u), r0);
+                Mem.Set((r16 + 1848u), r0);
+                Mem.Set((r16 + 1852u), r0); Cpu.SetS(0, Player_GetClassFieldF4_0022ADAC(r4));
+                Mem.Set((r16 + 1856u), Cpu.W(0));
+                Mem.Set((r16 + 1860u), r0);
+                Cpu.SetW(0, Mem.U32((r16 + 1860u)));
+                r1 = 2148270080u;
+                Cpu.SetW(1, Mem.U32((r1 + 32512u)));
+                r2 = r16 + 1864u;
+                Mem.Set((r2 + 8u), Cpu.W(0));
+                Mem.Set((r2 + 4u), Cpu.W(0));
+                Mem.Set((r16 + 1864u), Cpu.W(0));
+                Mem.Set((r16 + 1876u), Cpu.W(1));
+                Mem.Set((r16 + 1920u), Cpu.W(0));
+                Mem.Set((r16 + 1924u), Cpu.W(1));
+                r3 = Mem.U32((r16 + 8u));
+                r6 = Mem.U32((r16 + 12u));
+                r7 = Mem.U32((r16 + 16u));
+                Mem.Set((r16 + 1768u), r3);
+                Mem.Set((r16 + 1772u), r6);
+                Mem.Set((r16 + 1776u), r7);
+                r3 = Mem.U32((r16 + 8u));
+                r6 = Mem.U32((r16 + 12u));
+                r7 = Mem.U32((r16 + 16u));
+                Mem.Set((r16 + 1784u), r3);
+                Mem.Set((r16 + 1788u), r6);
+                Mem.Set((r16 + 1792u), r7);
+                r31 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0022E280", r2); Stack.Free(384); }
+    }
+
+    // ==== func_0022E5DC @ 0x0022E5DC [C]
+    public static int Player_IsRunAnimB_0022E5DC(uint actor)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022E5DC", (uint)actor);
+            if ((((int)(Mem.S16((actor + (uint)1616))) == 3) && ((Mem.S32((actor + (uint)2156)) == 24106) || (Mem.S32((actor + (uint)2156)) == 24154))))
+            {
+                return 1;
+            }
+            return (((((int)(Mem.S16((actor + (uint)1616))) == 3) && (Mem.S32((actor + (uint)2156)) >= 2015)) && (Mem.S32((actor + (uint)2156)) < 2020)) ? 1 : 0);
+        }
+    }
+
+    // ==== func_0022E630 @ 0x0022E630 [C]
+    public static int Player_IsRunAnimA_0022E630(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022E630", (uint)p);
+            if ((((int)(new Player_v3(p).state) == 3) && ((new Player_v3(p).f86C == 24105) || (new Player_v3(p).f86C == 24153))))
+            {
+                return 1;
+            }
+            return (((((int)(new Player_v3(p).state) == 3) && (new Player_v3(p).f86C >= 2010)) && (new Player_v3(p).f86C < 2015)) ? 1 : 0);
+        }
+    }
+
+    // ==== func_0022E694 @ 0x0022E694 [C]
+    public static void Player_CheckFellOutOfWorld_0022E694(uint actor, uint obj)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022E694", (uint)actor, (uint)obj);
+            uint p = (uint)(Actor_GetCurrentRegion(obj));
+            if (((p != 0u) && ((Mem.U32((p + (uint)68)) & (uint)(16384)) != 0u)))
+            {
+                Mem.Set((obj + (uint)32), 0);
+            }
+            else
+            {
+                if (((Mem.F32(0x8013B184u) - Mem.F32(0x800C7F08u)) > Mem.F32((obj + (uint)12))))
+                {
+                    Player_PlaceAtSpawn(actor, (uint)(Mem.S32((actor + (uint)1516))), (uint)(0), (uint)(0));
+                }
+            }
+            if ((Actor_IsOnGround(obj) != 0))
+            {
+                Mem.Copy((actor + (uint)1784), (obj + (uint)8), 12);
+            }
+        }
+    }
+
+    // ==== func_0022E77C @ 0x0022E77C [C]
+    public static void Player_PlaceSpriteInFront(uint actor, uint slot, int id, float z)
+    {
+        uint _fp = Stack.Alloc(28);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0022E77C", (uint)actor, (uint)slot, (uint)id);
+                uint p = 0u;
+                p = Mem.U32(slot);
+                if ((p == 0u))
+                {
+                    p = func_00268C1C(0x8013B1A8u, id);
+                    if ((p == 0u))
+                    {
+                        return;
+                    }
+                }
+                Mem.Set(slot, p);
+                new Vec3f(_fp).x_Set((float)(0));
+                new Vec3f(_fp).y_Set((float)(0));
+                new Vec3f(_fp).z_Set(z);
+                Actor_RotateByFacing((_fp + 16u), (int)(actor), _fp);
+                func_00271FA4((_fp + 16u), (_fp + 16u), (actor + (uint)8));
+                Mem.Set((p + (uint)22), (short)(1));
+                Mem.Set((p + (uint)16), (short)(int)(new Vec3f((_fp + 16u)).x));
+                Mem.Set((p + (uint)18), (short)(int)((new Vec3f((_fp + 16u)).y + (Actor_GetHeight(actor) * 0.5f))));
+                Mem.Set((p + (uint)20), (short)(int)(new Vec3f((_fp + 16u)).z));
+                Mem.Set((p + (uint)12), 1.0f);
+            }
+        }
+        finally { Stack.Free(28); }
+    }
+
+    // ==== func_0022E880 @ 0x0022E880 [C]
+    public static void Player_FreeSprite(int a0, uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022E880", (uint)a0, (uint)p);
+            if ((Mem.S32(p) != 0))
+            {
+                func_00268C7C(0x8013B1A8u, (uint)(Mem.S32(p)));
+                Mem.Set(p, 0);
+            }
+        }
+    }
+
+    // ==== func_0022E930 @ 0x0022E930 [C]
+    public static void Player_Nop_0022E930()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022E930");
+        }
+    }
+
+    // ==== func_0022E938 @ 0x0022E938 [C]
+    public static void Player_ToggleField13D4_0022E938(uint actor)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022E938", (uint)actor);
+            if (((int)(Mem.U8((0x801462E5u + (uint)0))) == 0))
+            {
+                if ((Mem.S32((0x801462E5u - (uint)85)) != 0))
+                {
+                    if (((Mem.U32((actor + (uint)1708)) & (uint)(32)) != 0u))
+                    {
+                        return;
+                    }
+                }
+                if (((Mem.U32((actor + (uint)1712)) & (uint)(2048)) != 0u))
+                {
+                    if ((Mem.S32((actor + (uint)5076)) != 0))
+                    {
+                        Mem.Set((actor + (uint)5076), 0);
+                    }
+                    else
+                    {
+                        Mem.Set((actor + (uint)5076), 1);
+                    }
+                }
+            }
+        }
+    }
+
+    // ==== func_0022EAF4 @ 0x0022EAF4 [C]
+    public static void Player_Nop_0022EAF4()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022EAF4");
+        }
+    }
+
+    // ==== func_0022EBB4 @ 0x0022EBB4 [C]
+    public static int Player_ReturnZero_0022EBB4()
+    {
+        uint _fp = Stack.Alloc(16);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0022EBB4");
+                return 0;
+            }
+        }
+        finally { Stack.Free(16); }
+    }
+
+    // ==== func_0022ECB4 @ 0x0022ECB4 [C]
+    public static void Player_Nop_0022ECB4()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022ECB4");
+        }
+    }
+
+    // ==== func_0022ED94 @ 0x0022ED94 [C]
+    public static void Player_ReleaseHandle_0022ED94(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022ED94", (uint)p);
+            func_00264874(0);
+            ResourcePool_Purge();
+            if ((Mem.S32((p + (uint)(0 * 4))) != 0))
+            {
+                ResourcePool_Release(0, (uint)(Mem.S32((p + (uint)(0 * 4)))));
+                Mem.Set((p + (uint)(0 * 4)), 0);
+                Mem.Set((p + (uint)(1 * 4)), 0);
+                Mem.Set((p + (uint)(2 * 4)), 0);
+            }
+        }
+    }
+
+    // ==== func_0022EDE4 @ 0x0022EDE4 [C]
+    public static void Player_Nop_0022EDE4()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022EDE4");
+        }
+    }
+
+    // ==== func_002392DC @ 0x002392DC [C]
+    public static uint Player_FindByPawn(uint pw)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002392DC", (uint)pw);
+            uint p = 0u;
+            for (p = Mem.U32(0x80145060u); (p != 0u); p = new Player_v3(p).next_)
+            {
+                if ((new Player_v3(p).pawn_ == pw))
+                {
+                    return p;
+                }
+            }
+            return 0u;
         }
     }
 
@@ -6732,7 +7279,7 @@ public static partial class Game
                 r2 = cosf_rc(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
                 r4 = r29 + 72u;
                 r5 = r17;
-                Mem.Set((r29 + 84u), Cpu.W(0)); r2 = func_0024D718(r4, r5);
+                Mem.Set((r29 + 84u), Cpu.W(0)); r2 = Actor_GetGroundTiltQuat(r4, r5);
                 Cpu.SetW(12, Mem.U32((r18 + 108u)));
                 r2 = sinf_rc(r4, r5, r6, r7); r3 = Cpu.V1;
                 Cpu.SetW(12, Mem.U32((r18 + 108u)));
@@ -6758,7 +7305,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), Cpu.W(1));
                 r5 = Mem.U32((r17 + 8u));
                 r6 = Mem.U32((r17 + 16u));
-                r4 = r29 + 120u; Cpu.SetS(0, func_00240A88(r4, Cpu.U2F(r5), Cpu.U2F(r6), Cpu.U2F(r7), Cpu.U2F(Mem.U32(r29 + 16u))));
+                r4 = r29 + 120u; Cpu.SetS(0, Collision_GetSlopeAngle(r4, Cpu.U2F(r5), Cpu.U2F(r6), Cpu.U2F(r7), Cpu.U2F(Mem.U32(r29 + 16u))));
                 r1 = 2148335616u;
                 Cpu.SetW(1, Mem.U32((r1 - 29264u)));
                 Cpu.SetS(20, Cpu.S(0));
@@ -6798,7 +7345,7 @@ public static partial class Game
                 Mem.Set((r19 + 12u), r11);
                 r2 = r19; goto L_L0024DB84;
                 L_L0024DB34: ;
-                r5 = r17; r2 = func_0024D718(r4, r5);
+                r5 = r17; r2 = Actor_GetGroundTiltQuat(r4, r5);
                 r2 = r19; goto L_L0024DB84;
                 L_L0024DB44: ;
                 Cpu.SetW(0, r0);
@@ -6834,6 +7381,17 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_0024D860", r2); Stack.Free(624); }
     }
 
+    // ==== func_0024F468 @ 0x0024F468 [C]
+    public static uint Player_GetBodyLeanRet_0024F468(uint a, uint _a1)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0024F468", (uint)a, _a1);
+            Player_GetBodyLean(a, (uint)(_a1), default(uint), default(uint));
+            return a;
+        }
+    }
+
     // ==== func_00449970 @ 0x00449970 [C]
     public static void Player_ConstructEntities(uint p, uint a1, int a2)
     {
@@ -6841,7 +7399,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00449970", (uint)p, (uint)a1, (uint)a2);
             new S11Obj(p).self__Set(p);
-            func_0024B398((int)(p), a1);
+            Level_SpawnActorFromRecord((int)(p), a1);
             new S11Obj(p).self__Set(p);
             new S11Obj(p).flags_Set((uint)((uint)(new S11Obj(p).flags) | (uint)(1048576)));
             new S11Obj(p).flags_Set((uint)((uint)(new S11Obj(p).flags) | (uint)(65536)));
@@ -6860,7 +7418,7 @@ public static partial class Game
                 new S11Obj(p).unk27C_Set(0x0021A2D4u);
             }
             new S11Obj(p).self4C0__Set(p);
-            func_0024B398((int)(new S11Obj(p).ent2E8.P), a1);
+            Level_SpawnActorFromRecord((int)(new S11Obj(p).ent2E8.P), a1);
             new S11Obj(p).unk574_Set(0x0022F5D0u);
             new S11Obj(p).unk48C_Set((sbyte)((-1)));
             new S11Obj(p).self4C0__Set(p);
@@ -6873,7 +7431,7 @@ public static partial class Game
             new S11Obj(p).unk340_Set(0.5f);
             new S11Obj(p).flags3E8_Set((uint)((uint)(new S11Obj(p).flags3E8) & 4294901759u));
             Actor_DispatchEvent(new S11Obj(p).ent2E8.P, new S11Obj(p).ent458.P, 0);
-            func_002325EC(new S11Obj(p).ent2E8.P, new S11Obj(p).ent458.P);
+            Weapon_EquipPending(new S11Obj(p).ent2E8.P, new S11Obj(p).ent458.P);
             Player_UpdateViewCamera(p, p, default(uint), default(uint));
             if ((new S11Obj(p).hud_ != 0u))
             {
@@ -6926,7 +7484,7 @@ public static partial class Game
             {
                 if ((((int)(Mem.U8(0x801462D5u)) == 1) && (new S11Obj(p).unk1450 == 0)))
                 {
-                    new S11Obj(p).unk133C_Set(((((int)((byte)(func_0022F444((0x80102B00u + (uint)(new S11Obj(p).unk5D4 * 400)), (int)(new S11Obj(p).rec.b80)))) & 255) >> (int)1) + 1));
+                    new S11Obj(p).unk133C_Set(((((int)((byte)(Profile_GetCharacterLives((0x80102B00u + (uint)(new S11Obj(p).unk5D4 * 400)), (int)(new S11Obj(p).rec.b80)))) & 255) >> (int)1) + 1));
                 }
                 if (((((int)(Mem.U8(0x801462D5u)) == 4) && (new S11Obj(p).unk1450 == 0)) && (Mem.U32(0x800E4680u) != 0u)))
                 {

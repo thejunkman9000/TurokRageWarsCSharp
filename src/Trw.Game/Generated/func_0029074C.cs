@@ -14,8 +14,8 @@ public static partial class Game
             int c = 0;
             while ((e != 0u))
             {
-                func_0024F460(e);
-                if (((((((((((new Entity(e).flags19C & (uint)(196608)) == (uint)(131072)) && (func_0024D150(e) != 0)) && !(((int)(Mem.U16((e + 412u))) & 256) != 0)) && (Mem.F32((0x801031F0u + (uint)(3 * 4))) > new Entity(e).box[(int)(0)])) && (Mem.F32((0x801031F0u + (uint)(0 * 4))) < new Entity(e).box[(int)(3)])) && (Mem.F32((0x801031F0u + (uint)(5 * 4))) > new Entity(e).box[(int)(2)])) && (Mem.F32((0x801031F0u + (uint)(2 * 4))) < new Entity(e).box[(int)(5)])) && (Mem.F32((0x801031F0u + (uint)(4 * 4))) > new Entity(e).box[(int)(1)])) && (Mem.F32((0x801031F0u + (uint)(1 * 4))) < new Entity(e).box[(int)(4)])))
+                Pickup_ClearDisplayList(e);
+                if (((((((((((new Entity(e).flags19C & (uint)(196608)) == (uint)(131072)) && (Actor_IsAlwaysActive_0024D150(e) != 0)) && !(((int)(Mem.U16((e + 412u))) & 256) != 0)) && (Mem.F32((0x801031F0u + (uint)(3 * 4))) > new Entity(e).box[(int)(0)])) && (Mem.F32((0x801031F0u + (uint)(0 * 4))) < new Entity(e).box[(int)(3)])) && (Mem.F32((0x801031F0u + (uint)(5 * 4))) > new Entity(e).box[(int)(2)])) && (Mem.F32((0x801031F0u + (uint)(2 * 4))) < new Entity(e).box[(int)(5)])) && (Mem.F32((0x801031F0u + (uint)(4 * 4))) > new Entity(e).box[(int)(1)])) && (Mem.F32((0x801031F0u + (uint)(1 * 4))) < new Entity(e).box[(int)(4)])))
                 {
                     c = new Level(lv).cnt944;
                     if ((c != 512))

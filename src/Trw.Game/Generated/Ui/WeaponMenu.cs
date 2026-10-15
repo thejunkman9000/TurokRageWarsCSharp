@@ -113,7 +113,7 @@ public static partial class Game
                 r5 = r4; goto L_L002177D0;
                 L_L002177B0: ;
                 r5 = Mem.U32((r16 - 16u));
-                r4 = r21; r2 = (uint)func_0022EAFC(r4, (int)r5);
+                r4 = r21; r2 = (uint)Player_CanUseWeapon(r4, (int)r5);
                 { bool c_ = r2 != 0; r3 = (uint)200; if (c_) goto L_L002177C8; }
                 r3 = (uint)100;
                 L_L002177C8: ;
@@ -277,7 +277,7 @@ public static partial class Game
                         }
                         else
                         {
-                            if ((func_0022EAFC(p, new B04Draw(sl).idx) == 0))
+                            if ((Player_CanUseWeapon(p, new B04Draw(sl).idx) == 0))
                             {
                                 new_var2 = (uint)(100);
                             }
@@ -735,14 +735,14 @@ public static partial class Game
             if (!((new B04Act(p).unk5E0 == 14))) goto _f1;
             if (!(((int)(new B04Act(p).unk48C) != 0))) goto _f2;
             if (!(((new B04Act(p).wpn.flagsB0 & (uint)(32768)) != 0u))) goto _f3;
-            new B04Act(p).unk770_Set((short)(func_00232AAC(p)));
+            new B04Act(p).unk770_Set((short)(Player_PickRandomWeapon(p)));
             _f3: ;
             goto L_blk15;
             _f2: ;
             goto _f4;
             _f1: ;
             if (!((((new B04Act(p).wpn.flagsB8 & (uint)(32768)) != 0u) && ((int)(new B04Act(p).stats.unk82) != 0)))) goto _f5;
-            new B04Act(p).unk770_Set((short)((int)(func_0022FAE8(p, default(uint), default(uint), default(uint)))));
+            new B04Act(p).unk770_Set((short)((int)(Player_PickNextWeapon(p, default(uint), default(uint), default(uint)))));
             goto _f6;
             _f5: ;
             if (!((((int)(new B04Act(p).stats.unk82) != 1) || ((new B04Act(p).unkCC0 != (-1)) && (new B04Menu(o).w388 != 8))))) goto _f7;
@@ -872,7 +872,7 @@ public static partial class Game
                         new B04Roster(o).w37C_Set(i);
                     }
                     new B04Roster(o).ent[(int)(i)].val_Set(Mem.S32((0x800D052Cu + (uint)(j * 4))));
-                    if ((func_0022EAFC(p, j) != 0))
+                    if ((Player_CanUseWeapon(p, j) != 0))
                     {
                         new B04Roster(o).ent[(int)(i)].on_Set(1);
                     }

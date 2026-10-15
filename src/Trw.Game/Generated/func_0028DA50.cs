@@ -13,7 +13,7 @@ public static partial class Game
             int v = new Obj_v6(o).unk14;
             if ((v != 0))
             {
-                func_002537D8(0, (uint)(v));
+                ResourcePool_Release(0, (uint)(v));
                 new Obj_v6(o).unk14_Set(0);
                 new Obj_v6(o).unk18_Set((-1));
             }

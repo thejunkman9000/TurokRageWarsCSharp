@@ -19,7 +19,7 @@ public static partial class Game
                 uint e = 0u;
                 int mode = 1;
                 int extra = 0;
-                func_0024E78C(o, _fp, (_fp + 16u), (_fp + 64u));
+                Collision_LocatePoint_0024E78C(o, _fp, (_fp + 16u), (_fp + 64u));
                 switch ((int)(new B04Ent_v3(o).type))
                 {
                 case 2:
@@ -31,16 +31,16 @@ public static partial class Game
                 case 1:
                     e = o;
                     Mem.Copy((_fp + 32u), new B04Ent_v3(e).pos.P, 12);
-                    func_0024795C((_fp + 48u), e);
+                    Actor_GetFacingQuat((_fp + 48u), e);
                     extra = new B04Ent_v3(e).unk1F0;
-                    if ((func_0024BE70(e) == 5))
+                    if ((Actor_GetModelHeaderField6E_0024BE70(e) == 5))
                     {
                         mode = 3;
                     }
                     break;
                 case 3:
                     Mem.Copy((_fp + 32u), new B04Ent_v3(o).pos.P, 12);
-                    func_0024F468((_fp + 48u), o);
+                    Player_GetBodyLeanRet_0024F468((_fp + 48u), o);
                     break;
                 }
                 Effect_SpawnFromTemplates(0x80121990u, o, o, (uint)(0), extra, a1, (_fp + 32u), (_fp + 48u), (_fp + 16u), 0, (-1), mode);
@@ -75,7 +75,7 @@ public static partial class Game
                     if ((p != 0u))
                     {
                         owner = new Actor(actor).owner_;
-                        func_0024B4E4(actor, (int)(Chunk_Get(Mem.U32((p + (uint)0)), 0)));
+                        Actor_UpdateTransformAndBounds(actor, (int)(Chunk_Get(Mem.U32((p + (uint)0)), 0)));
                         if ((arg1 != 0))
                         {
                             if ((Mem.U32((owner + (uint)1500)) != 0u))
@@ -83,15 +83,93 @@ public static partial class Game
                                 new Vec3f(_fp).x_Set((Mem.F32((Mem.U32((owner + (uint)1500)) + (uint)296)) - Mem.F32((actor + (uint)8))));
                                 new Vec3f(_fp).y_Set((float)(0));
                                 new Vec3f(_fp).z_Set((Mem.F32((Mem.U32((owner + (uint)1500)) + (uint)304)) - Mem.F32((actor + (uint)16))));
-                                func_0024ADC0(actor, _fp, (uint)(arg1), default(uint));
+                                Shadow_DrawBlob(actor, _fp, (uint)(arg1), default(uint));
                             }
                         }
-                        func_002536F4(0, p);
+                        ResourcePool_Unref(0, p);
                     }
                 }
             }
         }
         finally { Stack.Free(12); }
+    }
+
+    // ==== func_0024D49C @ 0x0024D49C [C]
+    public static uint Effect_AimQuatAtTarget(uint _ret, uint o, uint target_in)
+    {
+        uint _fp = Stack.Alloc(208);
+        try
+        {
+            unchecked
+            {
+                Mem.Copy(_fp + 0u, target_in, 12);
+                if (Dbg.On) Dbg.Enter("func_0024D49C", 0u, (uint)o, (uint)target_in);
+                uint t = 0u;
+                uint tobj = 0u;
+                float ang = 0f;
+                float s = 0f;
+                t = 0u;
+                if (((o != 0u) && ((int)(new Obj(o).type) == 1)))
+                {
+                    t = Mem.U32((o + (uint)496));
+                    Actor_GetFacingQuat((_fp + 112u), (uint)(o));
+                    Quat_ToMatrix((_fp + 112u), (_fp + 144u));
+                    new Vec3f((_fp + 64u)).x_Set((float)(0));
+                    new Vec3f((_fp + 64u)).y_Set((float)(0));
+                    new Vec3f((_fp + 64u)).z_Set(Mem.F32(0x800C8D74u));
+                    func_00272908((_fp + 144u), (_fp + 64u), (_fp + 48u));
+                }
+                else
+                {
+                    new Vec3f((_fp + 48u)).x_Set(0.0f);
+                    new Vec3f((_fp + 48u)).y_Set(0.0f);
+                    new Vec3f((_fp + 48u)).z_Set(Mem.F32(0x800C8D78u));
+                }
+                if ((t == 0u))
+                {
+                    tobj = Player_FindNearest(0x80145040u, _fp);
+                    if ((tobj != 0u))
+                    {
+                        t = tobj;
+                    }
+                    if ((t == 0u))
+                    {
+                        float zero = 0.0f;
+                        new Quat4((_fp + 128u)).z_Set(zero);
+                        new Quat4((_fp + 128u)).y_Set(zero);
+                        new Quat4((_fp + 128u)).x_Set(zero);
+                        new Quat4((_fp + 128u)).w_Set(Mem.F32(0x800C8D7Cu));
+                        Mem.Copy(_ret, (_fp + 128u), 16);
+                        return _ret;
+                    }
+                }
+                Mem.Copy((_fp + 16u), new Obj(t).pos.P, 12);
+                new Vec3f((_fp + 16u)).y_Set((float)((float)(new Vec3f((_fp + 16u)).y) + new Obj(t).unk70));
+                new Vec3f((_fp + 16u)).y_Set((float)((float)(new Vec3f((_fp + 16u)).y) + (Actor_GetHeight(t) * Mem.F32(0x800C8D80u))));
+                func_00271FD8((_fp + 32u), (_fp + 16u), _fp);
+                func_002720EC((_fp + 32u));
+                func_00272088((_fp + 80u), (_fp + 48u), (_fp + 32u));
+                func_002720EC((_fp + 80u));
+                ang = (Math_Acosf((((new Vec3f((_fp + 48u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 48u)).y * new Vec3f((_fp + 32u)).y)) + (new Vec3f((_fp + 48u)).z * new Vec3f((_fp + 32u)).z))) * Mem.F32(0x800C8D84u));
+                s = sinf(ang);
+                Mem.Set(0x80115DECu, s);
+                new Quat4((_fp + 96u)).x_Set((new Vec3f((_fp + 80u)).x * s));
+                new Quat4((_fp + 96u)).y_Set((new Vec3f((_fp + 80u)).y * s));
+                new Quat4((_fp + 96u)).z_Set((new Vec3f((_fp + 80u)).z * s));
+                new Quat4((_fp + 96u)).w_Set(cosf(ang));
+                if (((o != 0u) && ((int)(new Obj(o).type) == 1)))
+                {
+                    Quat_Multiply((_fp + 128u), (_fp + 112u), (_fp + 96u));
+                }
+                else
+                {
+                    Mem.Copy((_fp + 128u), (_fp + 96u), 16);
+                }
+                Mem.Copy(_ret, (_fp + 128u), 16);
+                return _ret;
+            }
+        }
+        finally { Stack.Free(208); }
     }
 
     // ==== func_002627C0 @ 0x002627C0 [C]
@@ -157,8 +235,8 @@ public static partial class Game
                 {
                     return 0u;
                 }
-                func_00246690(effect, id, variant, Mem.S32(0x800D2B40u), (uint)(count), (-1), (uint)(owner), scale, _fp, (uint)(524288), (_fp + 32u), (_fp + 16u));
-                func_0024B2C0(effect);
+                Actor_Init(effect, id, variant, Mem.S32(0x800D2B40u), (uint)(count), (-1), (uint)(owner), scale, _fp, (uint)(524288), (_fp + 32u), (_fp + 16u));
+                Actor_CallRestore(effect);
                 return effect;
             }
         }
@@ -339,15 +417,15 @@ public static partial class Game
                 Mem.Set((r29 + 60u), r9);
                 Mem.Set((r29 + 64u), r10);
                 Mem.Set((r29 + 68u), r3);
-                Mem.Set((r29 + 72u), r0); { uint s8_ = Stack.Alloc(12); Mem.Set(s8_ + 0u, Mem.U32(r29 + 32u)); Mem.Set(s8_ + 4u, Mem.U32(r29 + 36u)); Mem.Set(s8_ + 8u, Mem.U32(r29 + 40u)); uint s10_ = Stack.Alloc(12); Mem.Set(s10_ + 0u, Mem.U32(r29 + 48u)); Mem.Set(s10_ + 4u, Mem.U32(r29 + 52u)); Mem.Set(s10_ + 8u, Mem.U32(r29 + 56u)); uint s11_ = Stack.Alloc(12); Mem.Set(s11_ + 0u, Mem.U32(r29 + 60u)); Mem.Set(s11_ + 4u, Mem.U32(r29 + 64u)); Mem.Set(s11_ + 8u, Mem.U32(r29 + 68u)); func_00246690(r4, (int)r5, (int)r6, (int)r7, Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Cpu.U2F(Mem.U32(r29 + 28u)), s8_, Mem.U32(r29 + 44u), s10_, s11_); Stack.Free(12); Stack.Free(12); Stack.Free(12); }
-                r4 = r20; func_0024B2C0(r4);
+                Mem.Set((r29 + 72u), r0); { uint s8_ = Stack.Alloc(12); Mem.Set(s8_ + 0u, Mem.U32(r29 + 32u)); Mem.Set(s8_ + 4u, Mem.U32(r29 + 36u)); Mem.Set(s8_ + 8u, Mem.U32(r29 + 40u)); uint s10_ = Stack.Alloc(12); Mem.Set(s10_ + 0u, Mem.U32(r29 + 48u)); Mem.Set(s10_ + 4u, Mem.U32(r29 + 52u)); Mem.Set(s10_ + 8u, Mem.U32(r29 + 56u)); uint s11_ = Stack.Alloc(12); Mem.Set(s11_ + 0u, Mem.U32(r29 + 60u)); Mem.Set(s11_ + 4u, Mem.U32(r29 + 64u)); Mem.Set(s11_ + 8u, Mem.U32(r29 + 68u)); Actor_Init(r4, (int)r5, (int)r6, (int)r7, Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Cpu.U2F(Mem.U32(r29 + 28u)), s8_, Mem.U32(r29 + 44u), s10_, s11_); Stack.Free(12); Stack.Free(12); Stack.Free(12); }
+                r4 = r20; Actor_CallRestore(r4);
                 L_L00262A70: ;
                 r4 = r0;
                 L_L00262A74: ;
-                r5 = r19; func_002536F4((int)r4, r5);
+                r5 = r19; ResourcePool_Unref((int)r4, r5);
                 r4 = r0;
                 L_L00262A80: ;
-                r5 = r22; func_002536F4((int)r4, r5);
+                r5 = r22; ResourcePool_Unref((int)r4, r5);
                 L_L00262A88: ;
                 r2 = r20;
                 L_L00262A8C: ;
@@ -462,8 +540,8 @@ public static partial class Game
                 Mem.Set((r29 + 60u), r3);
                 Mem.Set((r29 + 64u), r8);
                 Mem.Set((r29 + 68u), r9);
-                Mem.Set((r29 + 72u), r0); { uint s8_ = Stack.Alloc(12); Mem.Set(s8_ + 0u, Mem.U32(r29 + 32u)); Mem.Set(s8_ + 4u, Mem.U32(r29 + 36u)); Mem.Set(s8_ + 8u, Mem.U32(r29 + 40u)); uint s10_ = Stack.Alloc(12); Mem.Set(s10_ + 0u, Mem.U32(r29 + 48u)); Mem.Set(s10_ + 4u, Mem.U32(r29 + 52u)); Mem.Set(s10_ + 8u, Mem.U32(r29 + 56u)); uint s11_ = Stack.Alloc(12); Mem.Set(s11_ + 0u, Mem.U32(r29 + 60u)); Mem.Set(s11_ + 4u, Mem.U32(r29 + 64u)); Mem.Set(s11_ + 8u, Mem.U32(r29 + 68u)); func_00246690(r4, (int)r5, (int)r6, (int)r7, Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Cpu.U2F(Mem.U32(r29 + 28u)), s8_, Mem.U32(r29 + 44u), s10_, s11_); Stack.Free(12); Stack.Free(12); Stack.Free(12); }
-                r4 = r16; func_0024B2C0(r4);
+                Mem.Set((r29 + 72u), r0); { uint s8_ = Stack.Alloc(12); Mem.Set(s8_ + 0u, Mem.U32(r29 + 32u)); Mem.Set(s8_ + 4u, Mem.U32(r29 + 36u)); Mem.Set(s8_ + 8u, Mem.U32(r29 + 40u)); uint s10_ = Stack.Alloc(12); Mem.Set(s10_ + 0u, Mem.U32(r29 + 48u)); Mem.Set(s10_ + 4u, Mem.U32(r29 + 52u)); Mem.Set(s10_ + 8u, Mem.U32(r29 + 56u)); uint s11_ = Stack.Alloc(12); Mem.Set(s11_ + 0u, Mem.U32(r29 + 60u)); Mem.Set(s11_ + 4u, Mem.U32(r29 + 64u)); Mem.Set(s11_ + 8u, Mem.U32(r29 + 68u)); Actor_Init(r4, (int)r5, (int)r6, (int)r7, Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Cpu.U2F(Mem.U32(r29 + 28u)), s8_, Mem.U32(r29 + 44u), s10_, s11_); Stack.Free(12); Stack.Free(12); Stack.Free(12); }
+                r4 = r16; Actor_CallRestore(r4);
                 r2 = r16;
                 L_L00262C80: ;
                 r31 = Mem.U32((r29 + 168u));
@@ -541,7 +619,7 @@ public static partial class Game
                 Mem.Copy(_fp, (new SharedPlayer_func_8022A398_de(player).views0.P + 8u), 12);
                 if (((int)(new Shared_Particle(particle).inst.type) != 1039))
                 {
-                    new Vec3(_fp).y_Set((float)((float)(new Vec3(_fp).y) + (func_0024D274(player) * 0.5f)));
+                    new Vec3(_fp).y_Set((float)((float)(new Vec3(_fp).y) + (Actor_GetHeight(player) * 0.5f)));
                 }
                 return func_0027272C(new Shared_Particle(particle).inst.pos.P, _fp);
             }
@@ -1024,7 +1102,7 @@ public static partial class Game
                 Mem.Set((r29 + 56u), r11);
                 r2 = Mem.U16((r17 + 4u));
                 { bool c_ = r2 == r19; r18 = r0; if (c_) goto L_L0027BFB8; }
-                r4 = r16; Cpu.SetS(0, func_0024D274(r4));
+                r4 = r16; Cpu.SetS(0, Actor_GetHeight(r4));
                 Cpu.SetS(0, Cpu.S(0) * Cpu.S(21));
                 Cpu.SetW(1, Mem.U32((r29 + 52u)));
                 Cpu.SetS(1, Cpu.S(1) + Cpu.S(0));
@@ -1272,7 +1350,7 @@ public static partial class Game
                 f13 = 0;
                 sp110 = 0;
                 cfg = new CcObj(o).cfg_;
-                if ((func_0024E2B4(P) != 0))
+                if ((Actor_IsPassiveDefType_0024E2B4(P) != 0))
                 {
                     sp108 = (int)(new CcObj(o).unk1B9);
                 }
@@ -1301,7 +1379,7 @@ public static partial class Game
                             sp110 = 1;
                             if (((new CcPar(par).flags100 & (uint)(16777216)) != 0u))
                             {
-                                func_00247F08(par, (par + (uint)368), (_fp + 16u), new CcGs(0x801041F0u).pos.P, new CcGs(0x801041F0u).vD8.P, new CcGs(0x801041F0u).idx);
+                                Anim_StartHitFlinch(par, (par + (uint)368), (_fp + 16u), new CcGs(0x801041F0u).pos.P, new CcGs(0x801041F0u).vD8.P, new CcGs(0x801041F0u).idx);
                             }
                             if (((new CcPar(par).flags100 & (uint)(33554432)) != 0u))
                             {
@@ -1359,7 +1437,7 @@ public static partial class Game
                     {
                         Funcs.CallReg(new CcPar(par).unk288, par, (par + (uint)368), o, 0u);
                     }
-                    if ((func_0024E130() != 0))
+                    if ((Actor_StubFalse_0024E130() != 0))
                     {
                         sp10C = 0;
                     }
@@ -1633,7 +1711,7 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0027ED40_func_8027ED6C_de_occluded", (uint)particle, (uint)view);
                 uint inst = 0u;
                 int hit = 0;
-                inst = func_002392DC(view);
+                inst = Player_FindByPawn(view);
                 if (((inst != 0u) && (new Shared_ParticleView(view).unk24 == 0)))
                 {
                     Mem.Copy(_fp, inst, 80);
@@ -1804,7 +1882,7 @@ public static partial class Game
                 if (r3 != r2) { Mem.Set((r18 + 320u), Cpu.W(20)); goto L_L0027EE04; }
                 L_L0027EE04: ;
                 L_I0027EE04: ;
-                r4 = r23; r2 = func_002392DC(r4);
+                r4 = r23; r2 = Player_FindByPawn(r4);
                 L_I0027EE0C: ;
                 r16 = r2;
                 L_I0027EE10: ;
@@ -3725,7 +3803,7 @@ public static partial class Game
                 Mem.Set((r3 + 4u), r7);
                 L_L0027FEF0: ;
                 L_I0027FEF0: ;
-                func_002536F4((int)r4, r5);
+                ResourcePool_Unref((int)r4, r5);
                 L_L0027FEF8: ;
                 L_I0027FEF8: ;
                 r31 = Mem.U32((r29 + 212u));
@@ -4609,7 +4687,7 @@ public static partial class Game
                 L_I00280714: ;
                 r7 = Mem.U32((r29 + 808u));
                 L_I00280718: ;
-                r4 = r29 + 176u; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); r2 = func_0024D49C(r4, r5, s2_); Stack.Free(12); }
+                r4 = r29 + 176u; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); r2 = Effect_AimQuatAtTarget(r4, r5, s2_); Stack.Free(12); }
                 L_I00280720: ;
                 r4 = r29 + 176u; goto L_L00280748;
                 L_L00280728: ;
@@ -4820,7 +4898,7 @@ public static partial class Game
                 L_I00280908: ;
                 r4 = r23 + 284u; func_00296DDC(r4, (int)r5);
                 L_I00280910: ;
-                r4 = r23; func_00246174(r4);
+                r4 = r23; Actor_InitBase_00246174(r4);
                 L_I00280918: ;
                 Mem.Set((r23 + 272u), r0);
                 L_I0028091C: ;
@@ -6410,7 +6488,7 @@ public static partial class Game
                 L_I00281738: ;
                 r6 = r23;
                 L_I0028173C: ;
-                r4 = r11 + r4; r2 = func_00255D10(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r11 + r4; r2 = List_InsertBefore(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00281744: ;
                  goto L_L00281788;
                 L_L0028174C: ;

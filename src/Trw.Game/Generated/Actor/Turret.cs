@@ -222,9 +222,9 @@ public static partial class Game
                                 new V16(_fp).y_Set(new M1State(state).vec130.y);
                                 new V16(_fp).z_Set(new M1State(state).vec130.z);
                                 Mem.Copy(_fp, new M1Actor(actor).pos.P, 12);
-                                new V16(_fp).y_Set((new V16(_fp).y + (func_0024D274(actor) * k)));
+                                new V16(_fp).y_Set((new V16(_fp).y + (Actor_GetHeight(actor) * k)));
                                 Mem.Copy((_fp + 16u), new M1Actor(p).pos.P, 12);
-                                new V16((_fp + 16u)).y_Set((new V16((_fp + 16u)).y + (func_0024D274(p) * k)));
+                                new V16((_fp + 16u)).y_Set((new V16((_fp + 16u)).y + (Actor_GetHeight(p) * k)));
                                 ok = Collision_RayCast(actor, _fp, (_fp + 16u), 0x80103FD0u);
                                 vis = 1;
                                 if ((ok != 0))
@@ -322,9 +322,9 @@ public static partial class Game
                 {
                     fs1 = 0.5f;
                     Mem.Copy((_fp + 136u), new M1Actor(actor).pos.P, 12);
-                    new V16((_fp + 136u)).y_Set((new V16((_fp + 136u)).y + (func_0024D274(actor) * fs1)));
+                    new V16((_fp + 136u)).y_Set((new V16((_fp + 136u)).y + (Actor_GetHeight(actor) * fs1)));
                     Mem.Copy((_fp + 152u), new M1Actor(t).pos.P, 12);
-                    new V16((_fp + 152u)).y_Set((new V16((_fp + 152u)).y + (func_0024D274(t) * fs1)));
+                    new V16((_fp + 152u)).y_Set((new V16((_fp + 152u)).y + (Actor_GetHeight(t) * fs1)));
                     m = (_fp + 184u);
                     func_002034A4_r01_mk(state, m);
                     func_002034A4_r01_xf(m, (_fp + 152u), (_fp + 136u), (_fp + 248u));

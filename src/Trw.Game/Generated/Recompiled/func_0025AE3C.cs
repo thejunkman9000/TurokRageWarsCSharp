@@ -27,7 +27,7 @@ public static partial class Game
                 r4 = r4 + 20616u;
                 r5 = r17 + 68u;
                 Mem.Set((r29 + 24u), r31);
-                Mem.Set((r29 + 16u), r16); r2 = func_00239594(r4, r5);
+                Mem.Set((r29 + 16u), r16); r2 = CameraManager_FindNearestCamera(r4, r5);
                 r3 = Mem.U32((r17 + 176u));
                 Mem.Set((r3 + 11160u), r2);
                 r2 = Mem.U32((r17 + 0u));
@@ -126,7 +126,7 @@ public static partial class Game
                 Mem.Set((r17 + 72u), r7);
                 Mem.Set((r17 + 76u), r8);
                 L_L0025B028: ;
-                r4 = r17; r2 = func_0025A3EC(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r17; r2 = SndVoice_UpdateVolume(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r17; func_0025A864(r4);
                 r4 = r17; r2 = Audio_RampVoicePitch(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_L0025B040: ;

@@ -27,7 +27,7 @@ public static partial class Game
                 {
                     int t = 0;
                     id = (int)((int)(id) - 1219);
-                    t = func_0022F4CC((0x80102B00u + (uint)(row * 400)), id);
+                    t = Profile_IsWeaponUnlocked((0x80102B00u + (uint)(row * 400)), id);
                     if ((t == 1))
                     {
                         new O04Plr2(p).unk602[(int)(id)].a_Set((byte)(t));

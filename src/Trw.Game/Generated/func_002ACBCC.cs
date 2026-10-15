@@ -279,11 +279,11 @@ public static partial class Game
                     func_004030E0(504);
                     break;
                 case 5001:
-                    func_0022F3E8((0x80102B00u + (uint)(new Plr24d(o).unk5D4 * 400)), (int)(new Plr24d(o).unk18.unkC));
+                    Profile_AddCharacterHalfLife((0x80102B00u + (uint)(new Plr24d(o).unk5D4 * 400)), (int)(new Plr24d(o).unk18.unkC));
                     goto case 5002;
                 case 5002:
                     ok = 1;
-                    func_0022F3E8((0x80102B00u + (uint)(new Plr24d(o).unk5D4 * 400)), (int)(new Plr24d(o).unk18.unkC));
+                    Profile_AddCharacterHalfLife((0x80102B00u + (uint)(new Plr24d(o).unk5D4 * 400)), (int)(new Plr24d(o).unk18.unkC));
                     func_004030E0(500);
                     break;
                 case 5053:
@@ -334,7 +334,7 @@ public static partial class Game
                 c = (int)(new Fx24b(f).unk8);
                 if ((new Plr24d(o).unk5DC != 0))
                 {
-                    func_0023919C((uint)(new Plr24d(o).unk5DC), (sbyte)(128), (sbyte)(50), (sbyte)(50), (sbyte)(75), (sbyte)(0), (sbyte)(0), (sbyte)(2));
+                    Fade_Start((uint)(new Plr24d(o).unk5DC), (sbyte)(128), (sbyte)(50), (sbyte)(50), (sbyte)(75), (sbyte)(0), (sbyte)(0), (sbyte)(2));
                     if ((p != 0u))
                     {
                         Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(p)));

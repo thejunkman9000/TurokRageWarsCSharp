@@ -41,7 +41,7 @@ public static partial class Game
                             kind = Mem.S32(new B16Obj(obj).def_);
                             if ((((kind == 1) && ((int)(new B16Obj(obj).unk1A4) == 33)) || ((kind == 11) && ((int)(new B16Obj(obj).owner.unk650) == 38))))
                             {
-                                func_0024E78C(obj, (_fp + 16u), (_fp + 32u), (_fp + 88u));
+                                Collision_LocatePoint_0024E78C(obj, (_fp + 16u), (_fp + 32u), (_fp + 88u));
                                 Mem.Copy((_fp + 64u), C.Seq(func_00271888(_fp, new B16Obj(obj).unk254.P), _fp), 16);
                                 new Vec3f((_fp + 48u)).x_Set((float)(0));
                                 new Vec3f((_fp + 48u)).y_Set((float)(0));
@@ -136,7 +136,7 @@ public static partial class Game
                         }
                         if ((s2 != 0))
                         {
-                            len = func_0024BF14(obj);
+                            len = Actor_GetAnimRate_0024BF14(obj);
                             new B16Part((_fp + 80u)).b_Set((short)((s2 << (int)8)));
                             new B16Part((_fp + 80u)).c.Set((int)(0), new B16Part((_fp + 80u)).c.Set((int)(1), new B16Part((_fp + 80u)).c.Set((int)(2), new B16Part((_fp + 80u)).c.Set((int)(3), (byte)(0)))));
                             {

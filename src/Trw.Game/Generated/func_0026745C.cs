@@ -24,7 +24,7 @@ public static partial class Game
                         Mem.Copy(_fp, pos, 12);
                         Mem.Copy((_fp + 16u), new B15O(o).pos.P, 12);
                         func_00272038(pos, 0.75f, _fp, (_fp + 16u));
-                        new Vec3f(pos).y_Set((new Vec3f(pos).y + (func_0024D274(o) * Mem.F32(0x800C9520u))));
+                        new Vec3f(pos).y_Set((new Vec3f(pos).y + (Actor_GetHeight(o) * Mem.F32(0x800C9520u))));
                         r = 1;
                     }
                 }

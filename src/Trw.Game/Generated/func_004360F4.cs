@@ -30,9 +30,9 @@ public static partial class Game
                 CameraManager_Init((g - (uint)(1539 * 4)), 0);
                 func_0044A600((g - (uint)(1557 * 4)), 0, 0);
                 Level_Load(0x8011FE88u, (uint)(36), (uint)(0), default(uint));
-                if ((func_0025471C() == 0))
+                if ((Resource_GetLoadFlags() == 0))
                 {
-                    func_0025470C(1);
+                    Resource_SetLoadFlags(1);
                 }
                 Mem.Set((g + (uint)((-7) * 4)), 8);
                 func_00299368(new O05W20(Mem.U32(0x800E5554u)).f1C);

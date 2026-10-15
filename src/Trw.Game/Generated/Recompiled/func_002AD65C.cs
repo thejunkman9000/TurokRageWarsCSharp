@@ -65,7 +65,7 @@ public static partial class Game
                 Mem.Set((r29 + 24u), r0);
                 Mem.Set((r29 + 28u), r2);
                 r4 = Mem.U32((r16 + 1500u));
-                r7 = r6; func_0023919C(r4, (sbyte)r5, (sbyte)r6, (sbyte)r7, (sbyte)Mem.U32(r29 + 16u), (sbyte)Mem.U32(r29 + 20u), (sbyte)Mem.U32(r29 + 24u), (sbyte)Mem.U32(r29 + 28u));
+                r7 = r6; Fade_Start(r4, (sbyte)r5, (sbyte)r6, (sbyte)r7, (sbyte)Mem.U32(r29 + 16u), (sbyte)Mem.U32(r29 + 20u), (sbyte)Mem.U32(r29 + 24u), (sbyte)Mem.U32(r29 + 28u));
                 { bool c_ = r18 == 0;  if (c_) goto L_L002AD74C; }
                 r5 = Mem.U32((r16 + 1500u));
                 r6 = Mem.U32((r18 + 0u));
@@ -140,7 +140,7 @@ public static partial class Game
                 Mem.Set((r29 + 24u), r0);
                 Mem.Set((r29 + 28u), r2);
                 r4 = Mem.U32((r16 + 1500u));
-                r7 = r6; func_0023919C(r4, (sbyte)r5, (sbyte)r6, (sbyte)r7, (sbyte)Mem.U32(r29 + 16u), (sbyte)Mem.U32(r29 + 20u), (sbyte)Mem.U32(r29 + 24u), (sbyte)Mem.U32(r29 + 28u));
+                r7 = r6; Fade_Start(r4, (sbyte)r5, (sbyte)r6, (sbyte)r7, (sbyte)Mem.U32(r29 + 16u), (sbyte)Mem.U32(r29 + 20u), (sbyte)Mem.U32(r29 + 24u), (sbyte)Mem.U32(r29 + 28u));
                 { bool c_ = r18 == 0;  if (c_) goto L_L002AD898; }
                 r5 = Mem.U32((r16 + 1500u));
                 r6 = Mem.U32((r18 + 0u));

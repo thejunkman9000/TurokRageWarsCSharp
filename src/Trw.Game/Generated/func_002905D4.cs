@@ -30,7 +30,7 @@ public static partial class Game
                                 Mem.Set(0x800D15E0u, 1);
                             }
                         }
-                        func_0024EB80(e);
+                        Pickup_Draw(e);
                         Mem.Set(0x800D15E0u, 0);
                     }
                 }

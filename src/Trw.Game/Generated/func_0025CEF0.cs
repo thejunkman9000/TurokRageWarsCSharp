@@ -59,8 +59,8 @@ public static partial class Game
                     return (-1);
                 }
                 sum = 0;
-                func_00258D60(new M04FxB(f).owner_);
-                func_00258760(new M04FxB(f).owner_);
+                Sound_GetPlayer(new M04FxB(f).owner_);
+                Sound_Lock(new M04FxB(f).owner_);
                 new M04FxB(f).unkC_Set(id);
                 new M04FxB(f).idx_Set(idx);
                 new M04FxB(f).unk4_Set((new M04FxB(f).unk4 + 1));
@@ -93,7 +93,7 @@ public static partial class Game
                     if (((st != 2) && (st != 0)))
                     {
                         new M04FxB(f).state_Set(2);
-                        pl = func_00258D60(new M04FxB(f).owner_);
+                        pl = Sound_GetPlayer(new M04FxB(f).owner_);
                         alSndpSetSound(pl, new M04FxB(f).snd);
                         alSndpStop(pl);
                     }
@@ -102,7 +102,7 @@ public static partial class Game
                 {
                     new M04FxB(f).state_Set(1);
                 }
-                func_002587C4(new M04FxB(f).owner_);
+                Sound_Unlock(new M04FxB(f).owner_);
                 return ret;
             }
         }

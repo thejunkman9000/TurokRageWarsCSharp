@@ -73,7 +73,7 @@ public static partial class Game
                 r2 = Mem.U32((r29 + 284u));
                 r5 = r5 << 2;
                 r5 = r5 + 16u;
-                r5 = r2 + r5; r2 = func_002533DC((int)r4, (int)r5, r6, (int)r7);
+                r5 = r2 + r5; r2 = ResourcePool_Alloc((int)r4, (int)r5, r6, (int)r7);
                 r21 = r2;
                 { bool c_ = r21 == 0; r4 = 3735879680u; if (c_) goto L_L00278684; }
                 r4 = r4 | 48879u;
@@ -97,7 +97,7 @@ public static partial class Game
                 r5 = Mem.U32((r29 + 284u));
                 r7 = 2148335616u;
                 r7 = r7 - 25588u;
-                r5 = r5 + 8u; r2 = func_002533DC((int)r4, (int)r5, r6, (int)r7);
+                r5 = r5 + 8u; r2 = ResourcePool_Alloc((int)r4, (int)r5, r6, (int)r7);
                 r21 = r2;
                 { bool c_ = r21 != 0; r5 = r16; if (c_) goto L_L0027868C; }
                 L_L00278684: ;

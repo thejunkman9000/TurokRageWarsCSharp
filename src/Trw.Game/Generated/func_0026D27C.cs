@@ -56,7 +56,7 @@ public static partial class Game
                         new DlCmd(q_3).w0_Set(3661103107u);
                         new DlCmd(q_3).w1_Set((uint)(seg));
                     }
-                    func_00253B5C(0, p);
+                    Resource_MarkUsedInFrame(0, p);
                     root = Mem.U32(p);
                     nd = node;
                     if ((nd == 0u))

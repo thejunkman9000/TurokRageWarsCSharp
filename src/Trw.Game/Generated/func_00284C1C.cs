@@ -13,7 +13,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00284C1C", (uint)a, (uint)o);
-                uint t = func_002392DC(o);
+                uint t = Player_FindByPawn(o);
                 int r = 0;
                 if (((t != 0u) && (Mem.S32((o + (uint)36)) == 0)))
                 {

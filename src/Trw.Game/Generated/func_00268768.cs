@@ -17,7 +17,7 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00268768", (uint)act, (uint)src, (uint)c, (uint)pos_in);
                 float vol = Mem.F32(0x800C9568u);
                 uint s = (uint)((-1));
-                if (((new B15Globals(0x801462C8u).unk5CC == 0) && (func_0024E958(act) == new B15Blk8((_fp + 16u)).c)))
+                if (((new B15Globals(0x801462C8u).unk5CC == 0) && (Actor_GetField3C_0024E958(act) == new B15Blk8((_fp + 16u)).c)))
                 {
                     switch ((int)(new B15Src(src).type))
                     {

@@ -79,8 +79,8 @@ public static partial class Game
                         func_00272908(new Q4Win(w).cam.view.P, (_fp + 16u), (_fp + 32u));
                         if (((s3 != 0u) && !((new Q4O_v2(o).f8 & (uint)(33554432)) != 0u)))
                         {
-                            func_00246690(fx, (-1), new Q4Part(p).f0, Mem.S32(0x800D2B40u), s3, (-1), (uint)(0), (new Q4Win(w).cam.f28 + 3.14159298f), (_fp + 32u), (uint)(0), new Q4Part(p).f18.P, _fp);
-                            func_0024B2C0(fx);
+                            Actor_Init(fx, (-1), new Q4Part(p).f0, Mem.S32(0x800D2B40u), s3, (-1), (uint)(0), (new Q4Win(w).cam.f28 + 3.14159298f), (_fp + 32u), (uint)(0), new Q4Part(p).f18.P, _fp);
+                            Actor_CallRestore(fx);
                             new Q4O_v2(o).f8_Set((new Q4O_v2(o).f8 | (uint)(33554432)));
                         }
                         tt = sinf(((float)((uint)((Mem.S32(0x800D2980u) * 10))) * 0.0174532942f));
@@ -95,9 +95,9 @@ public static partial class Game
                         {
                             new Q4Fx(fx).f27C_Set(0x00443274u);
                         }
-                        if ((func_0025471C() == 0))
+                        if ((Resource_GetLoadFlags() == 0))
                         {
-                            func_0025470C(1);
+                            Resource_SetLoadFlags(1);
                         }
                         if ((new Q4X(x).id == 11))
                         {
@@ -134,15 +134,15 @@ public static partial class Game
                         Mem.Copy(new Q4Fx(fx).v50.P, (_fp + 48u), 12);
                         Mem.Copy(new Q4Fx(fx).pos8.P, (_fp + 32u), 12);
                         Mem.Copy(new Q4Fx(fx).v1C4.P, (_fp + 32u), 12);
-                        func_0024B8B4(fx);
+                        Actor_ResetPoseMatrices(fx);
                         Mem.Copy(new Q4Fx(fx).pos8.P, (_fp + 32u), 12);
                         Mem.Copy(new Q4Fx(fx).v1C4.P, (_fp + 32u), 12);
-                        func_00246E34(fx, default(uint), default(uint), default(uint));
+                        Actor_Advance(fx, default(uint), default(uint), default(uint));
                         new Q4Fx(fx).f6C_Set((new Q4Fx(fx).f6C + (new Q4Part(p).f2C * Mem.F32(0x800D2988u))));
                         Mem.Copy(new Q4Fx(fx).pos8.P, (_fp + 32u), 12);
                         Mem.Copy(new Q4Fx(fx).v1C4.P, (_fp + 32u), 12);
                         func_0026D980();
-                        func_00249E18(fx, new Q4Win(w).cam_, default(uint), default(uint));
+                        Actor_Draw(fx, new Q4Win(w).cam_, default(uint), default(uint));
                         func_0026D9D0();
                     }
                 }

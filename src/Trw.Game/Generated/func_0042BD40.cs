@@ -18,7 +18,7 @@ public static partial class Game
                 uint e = 0u;
                 int i = 0;
                 int one = 0;
-                Mem.Set(0x800E53C0u, func_00252FFC((uint)(816)));
+                Mem.Set(0x800E53C0u, ResourcePool_Malloc((uint)(816)));
                 new Q03S53(Mem.U32(0x800E53C0u)).unkE0_Set(a);
                 func_0040E958((uint)(a), 0);
                 func_0043C3F0(Mem.U32(0x800E53C0u), 103, 0, 0, 0);

@@ -31,10 +31,10 @@ public static partial class Game
                 Mem.Set((r29 + 24u), r18);
                 Mem.Set((r29 + 16u), r16);
                 { bool c_ = r3 == 0; r18 = r2 + 1552u; if (c_) goto L_L00405E08; }
-                r4 = r0; func_002538A8();
+                r4 = r0; ResourcePool_Purge();
                 r5 = 2148401152u;
                 r5 = Mem.U32((r5 + 10416u));
-                r4 = r0; func_002537D8((int)r4, r5);
+                r4 = r0; ResourcePool_Release((int)r4, r5);
                 L_L00405E08: ;
                 r4 = r0;
                 r6 = (uint)51;
@@ -43,7 +43,7 @@ public static partial class Game
                 r7 = 2148401152u;
                 r7 = r7 + 3472u;
                 r16 = r16 + 1552u;
-                r5 = r16; r2 = func_002533DC((int)r4, (int)r5, r6, (int)r7);
+                r5 = r16; r2 = ResourcePool_Alloc((int)r4, (int)r5, r6, (int)r7);
                 r5 = r0;
                 r4 = Mem.U32((r2 + 0u));
                 r1 = 2148401152u;

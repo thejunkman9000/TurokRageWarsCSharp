@@ -12,13 +12,13 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00413484", (uint)p);
             if ((((int)(new S_func_00413484(p).b1) & 1) != 0))
             {
-                func_00254784((uint)(new S_func_00413484(p).f18));
+                ResourcePool_MallocFree((uint)(new S_func_00413484(p).f18));
             }
             if ((((int)(new S_func_00413484(p).b1) & 2) != 0))
             {
                 if ((new S_func_00413484(p).f10 > 0))
                 {
-                    func_00254784((uint)(new S_func_00413484(p).f14));
+                    ResourcePool_MallocFree((uint)(new S_func_00413484(p).f14));
                 }
             }
             func_002A1748(p, 0, (uint)(32));

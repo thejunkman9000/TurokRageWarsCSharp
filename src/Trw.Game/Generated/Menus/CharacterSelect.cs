@@ -58,12 +58,12 @@ public static partial class Game
                                     {
                                         Mem.Set((new_var + (uint)4), (short)(i));
                                         Mem.Set((b + (uint)228), (ushort)(id));
-                                        func_00246BD8(b, new O3Lv(lv).w54, new O3Lv(lv).w24, p);
+                                        Actor_ResetAnimObject(b, new O3Lv(lv).w54, new O3Lv(lv).w24, p);
                                         found = new_var2;
                                     }
-                                    func_002536F4(0, w);
+                                    ResourcePool_Unref(0, w);
                                 }
-                                func_002536F4(0, q);
+                                ResourcePool_Unref(0, q);
                                 do
                                 {
                                 }
@@ -258,8 +258,8 @@ public static partial class Game
                 Mem.Set((r29 + 60u), r9);
                 Mem.Set((r29 + 64u), r10);
                 Mem.Set((r29 + 68u), r11);
-                Mem.Set((r29 + 72u), r0); { uint s8_ = Stack.Alloc(12); Mem.Set(s8_ + 0u, Mem.U32(r29 + 32u)); Mem.Set(s8_ + 4u, Mem.U32(r29 + 36u)); Mem.Set(s8_ + 8u, Mem.U32(r29 + 40u)); uint s10_ = Stack.Alloc(12); Mem.Set(s10_ + 0u, Mem.U32(r29 + 48u)); Mem.Set(s10_ + 4u, Mem.U32(r29 + 52u)); Mem.Set(s10_ + 8u, Mem.U32(r29 + 56u)); uint s11_ = Stack.Alloc(12); Mem.Set(s11_ + 0u, Mem.U32(r29 + 60u)); Mem.Set(s11_ + 4u, Mem.U32(r29 + 64u)); Mem.Set(s11_ + 8u, Mem.U32(r29 + 68u)); func_00246690(r4, (int)r5, (int)r6, (int)r7, Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Cpu.U2F(Mem.U32(r29 + 28u)), s8_, Mem.U32(r29 + 44u), s10_, s11_); Stack.Free(12); Stack.Free(12); Stack.Free(12); }
-                r4 = r16; func_0024B2C0(r4);
+                Mem.Set((r29 + 72u), r0); { uint s8_ = Stack.Alloc(12); Mem.Set(s8_ + 0u, Mem.U32(r29 + 32u)); Mem.Set(s8_ + 4u, Mem.U32(r29 + 36u)); Mem.Set(s8_ + 8u, Mem.U32(r29 + 40u)); uint s10_ = Stack.Alloc(12); Mem.Set(s10_ + 0u, Mem.U32(r29 + 48u)); Mem.Set(s10_ + 4u, Mem.U32(r29 + 52u)); Mem.Set(s10_ + 8u, Mem.U32(r29 + 56u)); uint s11_ = Stack.Alloc(12); Mem.Set(s11_ + 0u, Mem.U32(r29 + 60u)); Mem.Set(s11_ + 4u, Mem.U32(r29 + 64u)); Mem.Set(s11_ + 8u, Mem.U32(r29 + 68u)); Actor_Init(r4, (int)r5, (int)r6, (int)r7, Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Cpu.U2F(Mem.U32(r29 + 28u)), s8_, Mem.U32(r29 + 44u), s10_, s11_); Stack.Free(12); Stack.Free(12); Stack.Free(12); }
+                r4 = r16; Actor_CallRestore(r4);
                 r3 = Mem.U32((r17 + 0u));
                 r2 = (uint)9;
                 { bool c_ = r3 != r2; r2 = r18; if (c_) goto L_L0041CDF8; }
@@ -401,7 +401,7 @@ public static partial class Game
                 r17 = r4;
                 r4 = (uint)528;
                 Mem.Set((r29 + 24u), r31);
-                Mem.Set((r29 + 16u), r16); r2 = func_00252FFC(r4);
+                Mem.Set((r29 + 16u), r16); r2 = ResourcePool_Malloc(r4);
                 r4 = r17;
                 r5 = (uint)4;
                 r1 = 2148401152u;
@@ -609,7 +609,7 @@ public static partial class Game
                 r1 = 2148401152u;
                 r1 = r1 + r21;
                 r5 = Mem.U32((r1 + 14932u));
-                r4 = r18; r2 = func_0022F5B4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r18; r2 = Profile_IsCharacterUnlocked(r4, r5, r6, r7); r3 = Cpu.V1;
                 { bool c_ = r2 == 0; r6 = r16; if (c_) goto L_L0042002C; }
                 L_L00420024: ;
                 r16 = (uint)1;
@@ -759,7 +759,7 @@ public static partial class Game
                 Mem.Set((r29 + 100u), r17);
                 Mem.Set((r29 + 96u), r16);
                 Mem.Set((r29 + 120u), Cpu.Fpr[20]);
-                r4 = (uint)1136; r2 = func_00252FFC(r4);
+                r4 = (uint)1136; r2 = ResourcePool_Malloc(r4);
                 r4 = r18;
                 r5 = (uint)4;
                 r1 = 2148401152u;

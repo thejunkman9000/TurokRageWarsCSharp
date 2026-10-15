@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00435A20", (uint)i);
             if ((new O05Lobby(Mem.U32(0x800E54A4u)).slot[(int)(i)].c == 1))
             {
-                func_0022EF20((0x80102B00u + (uint)(i * 400)));
+                Profile_Init((0x80102B00u + (uint)(i * 400)));
                 new O05Lobby(Mem.U32(0x800E54A4u)).slot[(int)(i)].c_Set(2);
                 func_00433DA8((-1));
             }

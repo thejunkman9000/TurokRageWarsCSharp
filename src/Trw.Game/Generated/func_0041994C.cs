@@ -14,7 +14,7 @@ public static partial class Game
             uint o = 0u;
             g = UiTree_FindNode((uint)((int)(func_00411E4C(Ui_PushScreen()))), (uint)((a & 65535)), default(uint), default(uint));
             func_00411E4C(Ui_PushScreen());
-            o = func_00252FFC((uint)(100));
+            o = ResourcePool_Malloc((uint)(100));
             func_002A1748(o, 0, (uint)(100));
             Mem.Set((o + (uint)14), (short)(2911));
             Mem.Set((o + (uint)18), (short)(8));

@@ -88,7 +88,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00404D84");
             uint h = 0u;
             uint p = 0u;
-            h = func_002533DC(0, 2064, (uint)(35), (int)(0x800E0CF0u));
+            h = ResourcePool_Alloc(0, 2064, (uint)(35), (int)(0x800E0CF0u));
             p = (uint)(Mem.S32(h));
             Mem.Set(0x800E2858u, (int)(h));
             Mem.Set(0x800E2854u, p);
@@ -102,10 +102,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00404DDC");
-            func_002538A8();
+            ResourcePool_Purge();
             if ((Mem.S32(0x800E2858u) != 0))
             {
-                func_002537D8(0, (uint)(Mem.S32(0x800E2858u)));
+                ResourcePool_Release(0, (uint)(Mem.S32(0x800E2858u)));
                 Mem.Set(0x800E2858u, 0);
                 Mem.Set(0x800E2854u, 0u);
             }

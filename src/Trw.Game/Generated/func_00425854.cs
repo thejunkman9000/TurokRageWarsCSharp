@@ -27,125 +27,125 @@ public static partial class Game
                 switch ((int)(new Q03Cfg(0x801462C8u).ent[(int)(a)].f80))
                 {
                 case 0:
-                    if (!((int)(func_0022F5B4(row, (uint)(17), default(uint), default(uint))) != 0))
+                    if (!((int)(Profile_IsCharacterUnlocked(row, (uint)(17), default(uint), default(uint))) != 0))
                     {
-                        func_0022F594(row, 17);
+                        Profile_UnlockCharacter(row, 17);
                         s3 = 17;
                     }
                     break;
                 case 1:
-                    if (!((int)(func_0022F5B4(row, (uint)(6), default(uint), default(uint))) != 0))
+                    if (!((int)(Profile_IsCharacterUnlocked(row, (uint)(6), default(uint), default(uint))) != 0))
                     {
-                        func_0022F594(row, 6);
+                        Profile_UnlockCharacter(row, 6);
                         s3 = 6;
                     }
                     break;
                 case 2:
-                    if (!((int)(func_0022F5B4(row, (uint)(3), default(uint), default(uint))) != 0))
+                    if (!((int)(Profile_IsCharacterUnlocked(row, (uint)(3), default(uint), default(uint))) != 0))
                     {
-                        func_0022F594(row, 3);
+                        Profile_UnlockCharacter(row, 3);
                         s3 = 3;
                     }
                     break;
                 case 3:
-                    if (!((int)(func_0022F5B4(row, (uint)(4), default(uint), default(uint))) != 0))
+                    if (!((int)(Profile_IsCharacterUnlocked(row, (uint)(4), default(uint), default(uint))) != 0))
                     {
-                        func_0022F594(row, 4);
+                        Profile_UnlockCharacter(row, 4);
                         s3 = 4;
                     }
                     break;
                 case 4:
-                    if (!((int)(func_0022F5B4(row, (uint)(14), default(uint), default(uint))) != 0))
+                    if (!((int)(Profile_IsCharacterUnlocked(row, (uint)(14), default(uint), default(uint))) != 0))
                     {
-                        func_0022F594(row, 14);
+                        Profile_UnlockCharacter(row, 14);
                     }
                     break;
                 case 5:
-                    if (!((int)(func_0022F5B4(row, (uint)(1), default(uint), default(uint))) != 0))
+                    if (!((int)(Profile_IsCharacterUnlocked(row, (uint)(1), default(uint), default(uint))) != 0))
                     {
-                        func_0022F594(row, 1);
+                        Profile_UnlockCharacter(row, 1);
                         s3 = 1;
                     }
                     break;
                 case 6:
-                    if (!((int)(func_0022F5B4(row, (uint)(18), default(uint), default(uint))) != 0))
+                    if (!((int)(Profile_IsCharacterUnlocked(row, (uint)(18), default(uint), default(uint))) != 0))
                     {
-                        func_0022F594(row, 18);
+                        Profile_UnlockCharacter(row, 18);
                         s3 = 18;
                     }
                     break;
                 case 7:
-                    if (!((int)(func_0022F5B4(row, (uint)(8), default(uint), default(uint))) != 0))
+                    if (!((int)(Profile_IsCharacterUnlocked(row, (uint)(8), default(uint), default(uint))) != 0))
                     {
-                        func_0022F594(row, 8);
+                        Profile_UnlockCharacter(row, 8);
                         s3 = 8;
                     }
                     break;
                 case 8:
-                    if (!((int)(func_0022F5B4(row, (uint)(9), default(uint), default(uint))) != 0))
+                    if (!((int)(Profile_IsCharacterUnlocked(row, (uint)(9), default(uint), default(uint))) != 0))
                     {
-                        func_0022F594(row, 9);
+                        Profile_UnlockCharacter(row, 9);
                         s3 = 9;
                     }
                     break;
                 case 9:
-                    if (!((int)(func_0022F5B4(row, (uint)(10), default(uint), default(uint))) != 0))
+                    if (!((int)(Profile_IsCharacterUnlocked(row, (uint)(10), default(uint), default(uint))) != 0))
                     {
-                        func_0022F594(row, 10);
+                        Profile_UnlockCharacter(row, 10);
                         s3 = 10;
                     }
                     break;
                 case 17:
-                    if (!((int)(func_0022F5B4(row, (uint)(2), default(uint), default(uint))) != 0))
+                    if (!((int)(Profile_IsCharacterUnlocked(row, (uint)(2), default(uint), default(uint))) != 0))
                     {
-                        func_0022F594(row, 2);
+                        Profile_UnlockCharacter(row, 2);
                         s3 = 2;
                     }
                     break;
                 case 18:
                     break;
                 }
-                a0 = (int)(func_0022F5B4(row, (uint)(17), default(uint), default(uint)));
+                a0 = (int)(Profile_IsCharacterUnlocked(row, (uint)(17), default(uint), default(uint)));
                 if ((a0 == 1))
                 {
-                    b0 = (int)(func_0022F5B4(row, (uint)(1), default(uint), default(uint)));
+                    b0 = (int)(Profile_IsCharacterUnlocked(row, (uint)(1), default(uint), default(uint)));
                     if ((b0 == a0))
                     {
-                        if (((int)(func_0022F5B4(row, (uint)(8), default(uint), default(uint))) == b0))
+                        if (((int)(Profile_IsCharacterUnlocked(row, (uint)(8), default(uint), default(uint))) == b0))
                         {
-                            if (((int)(func_0022F5B4(row, (uint)(11), default(uint), default(uint))) == 0))
+                            if (((int)(Profile_IsCharacterUnlocked(row, (uint)(11), default(uint), default(uint))) == 0))
                             {
-                                func_0022F594(row, 11);
+                                Profile_UnlockCharacter(row, 11);
                             }
                         }
                     }
                 }
-                a1 = (int)(func_0022F5B4(row, (uint)(2), default(uint), default(uint)));
+                a1 = (int)(Profile_IsCharacterUnlocked(row, (uint)(2), default(uint), default(uint)));
                 if ((a1 == 1))
                 {
-                    b1 = (int)(func_0022F5B4(row, (uint)(6), default(uint), default(uint)));
+                    b1 = (int)(Profile_IsCharacterUnlocked(row, (uint)(6), default(uint), default(uint)));
                     if ((b1 == a1))
                     {
-                        if (((int)(func_0022F5B4(row, (uint)(9), default(uint), default(uint))) == b1))
+                        if (((int)(Profile_IsCharacterUnlocked(row, (uint)(9), default(uint), default(uint))) == b1))
                         {
-                            if (((int)(func_0022F5B4(row, (uint)(12), default(uint), default(uint))) == 0))
+                            if (((int)(Profile_IsCharacterUnlocked(row, (uint)(12), default(uint), default(uint))) == 0))
                             {
-                                func_0022F594(row, 12);
+                                Profile_UnlockCharacter(row, 12);
                             }
                         }
                     }
                 }
-                a2 = (int)(func_0022F5B4(row, (uint)(3), default(uint), default(uint)));
+                a2 = (int)(Profile_IsCharacterUnlocked(row, (uint)(3), default(uint), default(uint)));
                 if ((a2 == 1))
                 {
-                    b2 = (int)(func_0022F5B4(row, (uint)(18), default(uint), default(uint)));
+                    b2 = (int)(Profile_IsCharacterUnlocked(row, (uint)(18), default(uint), default(uint)));
                     if ((b2 == a2))
                     {
-                        if (((int)(func_0022F5B4(row, (uint)(10), default(uint), default(uint))) == b2))
+                        if (((int)(Profile_IsCharacterUnlocked(row, (uint)(10), default(uint), default(uint))) == b2))
                         {
-                            if (((int)(func_0022F5B4(row, (uint)(13), default(uint), default(uint))) == 0))
+                            if (((int)(Profile_IsCharacterUnlocked(row, (uint)(13), default(uint), default(uint))) == 0))
                             {
-                                func_0022F594(row, 13);
+                                Profile_UnlockCharacter(row, 13);
                             }
                         }
                     }

@@ -13,8 +13,8 @@ public static partial class Game
             if ((new StreamBuf(0x800D2BB0u).open != 1))
             {
                 new StreamBuf(0x800D2BB0u).size_Set(569925);
-                new StreamBuf(0x800D2BB0u).buf__Set((uint)((int)(func_00252FFC((uint)(569925)))));
-                func_0025631C(0x801051B8u, (uint)(2097152), (uint)(new StreamBuf(0x800D2BB0u).size), (uint)((int)(new StreamBuf(0x800D2BB0u).buf_)));
+                new StreamBuf(0x800D2BB0u).buf__Set((uint)((int)(ResourcePool_Malloc((uint)(569925)))));
+                RomDma_ReadSync(0x801051B8u, (uint)(2097152), (uint)(new StreamBuf(0x800D2BB0u).size), (uint)((int)(new StreamBuf(0x800D2BB0u).buf_)));
                 new StreamBuf(0x800D2BB0u).unkC_Set(0);
                 new StreamBuf(0x800D2BB0u).open_Set(1);
             }

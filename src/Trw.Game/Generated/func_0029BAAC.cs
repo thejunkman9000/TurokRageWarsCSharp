@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029BAAC");
-            func_00254784(Mem.U32(0x8014D0B0u));
+            ResourcePool_MallocFree(Mem.U32(0x8014D0B0u));
             Mem.Set(0x8014D0B0u, 0u);
         }
     }

@@ -26,7 +26,7 @@ public static partial class Game
                 r4 = (uint)456;
                 Mem.Set((r29 + 100u), r31);
                 Mem.Set((r29 + 92u), r17);
-                Mem.Set((r29 + 88u), r16); r2 = func_00252FFC(r4);
+                Mem.Set((r29 + 88u), r16); r2 = ResourcePool_Malloc(r4);
                 r4 = r18;
                 r5 = r0;
                 r1 = 2148401152u;

@@ -19,7 +19,7 @@ public static partial class Game
             func_0040F5B4(Mem.S32(0x8014D088u), Mem.S32(0x8014D08Cu));
             func_0029BA78();
             Mem.Set(0x8014D084u, 0);
-            Mem.Set(0x8014D080u, func_00252FFC((uint)(1348)));
+            Mem.Set(0x8014D080u, ResourcePool_Malloc((uint)(1348)));
             func_002A1748(Mem.U32(0x8014D080u), 0, (uint)(1348));
             m = Mem.U32(0x8014D080u);
             new SndMgr_v2(m).fn10_Set(fn);
@@ -33,11 +33,11 @@ public static partial class Game
                 new SndSlot(s).unkC_Set(0);
                 s += 20u;
             }
-            func_002A1748(new SndMgr_v2(Mem.U32(0x8014D080u)).unk53C__Set(func_00252FFC((uint)(900))), 0, (uint)(900));
+            func_002A1748(new SndMgr_v2(Mem.U32(0x8014D080u)).unk53C__Set(ResourcePool_Malloc((uint)(900))), 0, (uint)(900));
             new SndMgr_v2(Mem.U32(0x8014D080u)).unk540_Set(0);
             new SndMgr_v2(Mem.U32(0x8014D080u)).unk524_Set((int)((func_002A28CC() * Mem.F64(0x800CA7F8u))));
             new SndMgr_v2(Mem.U32(0x8014D080u)).unk18_Set(n);
-            func_002A1748(new SndMgr_v2(Mem.U32(0x8014D080u)).stk__Set(func_00252FFC((uint)((n * 28)))), 0, (uint)((n * 28)));
+            func_002A1748(new SndMgr_v2(Mem.U32(0x8014D080u)).stk__Set(ResourcePool_Malloc((uint)((n * 28)))), 0, (uint)((n * 28)));
             Mem.Set(0x8014D094u, 0);
             new SndMgr_v2(Mem.U32(0x8014D080u)).top_Set((-1));
             new SndMgr_v2(Mem.U32(0x8014D080u)).unk528_Set((-1));

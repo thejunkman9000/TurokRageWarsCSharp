@@ -12,15 +12,15 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00407578_O01FreeAll");
             if (((Mem.S32(0x800E28B0u) != 0) || (Mem.S32(0x800E28B4u) != 0)))
             {
-                func_002538A8();
+                ResourcePool_Purge();
             }
             if ((Mem.S32(0x800E28B0u) != 0))
             {
-                func_002537D8(0, (uint)(Mem.S32(0x800E28B0u)));
+                ResourcePool_Release(0, (uint)(Mem.S32(0x800E28B0u)));
             }
             if ((Mem.S32(0x800E28B4u) != 0))
             {
-                func_002537D8(0, (uint)(Mem.S32(0x800E28B4u)));
+                ResourcePool_Release(0, (uint)(Mem.S32(0x800E28B4u)));
             }
             Mem.Set(0x800E28B0u, 0);
             Mem.Set(0x800E28B4u, 0);

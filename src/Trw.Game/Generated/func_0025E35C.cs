@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025E35C");
-            func_00258E60(0x8010C080u);
+            Sound_StopMusic(0x8010C080u);
         }
     }
 

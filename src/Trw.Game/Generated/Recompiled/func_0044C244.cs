@@ -64,7 +64,7 @@ public static partial class Game
                 r6 = r16;
                 r7 = 2148335616u;
                 r7 = r7 - 24588u;
-                Mem.Set((r29 + 16u), r18); r2 = func_00254094((int)r4, r5, (int)r6, r7, (int)Mem.U32(r29 + 16u));
+                Mem.Set((r29 + 16u), r18); r2 = Resource_LoadIndexTable((int)r4, r5, (int)r6, r7, (int)Mem.U32(r29 + 16u));
                 r19 = r2;
                 { bool c_ = r19 == 0; r5 = r16; if (c_) goto L_L0044C3E4; }
                 r6 = r0;
@@ -106,13 +106,13 @@ public static partial class Game
                 r9 = Mem.U32((r2 + 24u));
                 Mem.Set((r20 + 16u), r3);
                 Mem.Set((r20 + 20u), r8);
-                Mem.Set((r20 + 24u), r9); func_002537D8((int)r4, r5);
+                Mem.Set((r20 + 24u), r9); ResourcePool_Release((int)r4, r5);
                 r4 = r0;
                 L_L0044C3DC: ;
-                r5 = r19; func_002537D8((int)r4, r5);
+                r5 = r19; ResourcePool_Release((int)r4, r5);
                 L_L0044C3E4: ;
                 r4 = r0;
-                r5 = r17; func_002537D8((int)r4, r5);
+                r5 = r17; ResourcePool_Release((int)r4, r5);
                 L_L0044C3F0: ;
                 r31 = Mem.U32((r29 + 68u));
                 r20 = Mem.U32((r29 + 64u));

@@ -14,7 +14,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00250BD4", (uint)o, (uint)b);
             int x = Mem.S32(Mem.U32(b));
             int r = (int)(func_00278530((uint)(x), (uint)(Mem.S32(new B12Obj(o).unk20_)), new B12Obj(o).unkB8.P, new B12Obj(o).unk28.P, (uint)(0), o));
-            return (int)(func_00253E04((uint)(0), b, (uint)(r), default(uint)));
+            return (int)(Resource_SetRequestResult_00253E04((uint)(0), b, (uint)(r), default(uint)));
         }
     }
 
@@ -34,7 +34,7 @@ public static partial class Game
             if (((Mem.U32(0x800E28A4u) - (((uint)(Mem.U32(0x80110634u)) - (uint)(new B16Gfx(Mem.U32(0x8011FE80u)).base_)) >> (int)3)) >= (uint)(3000)))
             {
                 root = Mem.U32(p);
-                func_00253B5C(0, p);
+                Resource_MarkUsedInFrame(0, p);
                 if ((flag != 0))
                 {
                     uint q = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
@@ -456,31 +456,31 @@ public static partial class Game
             func_0025CC0C(func_0025CC8C());
             func_0025E488();
             func_0025E20C(4096);
-            func_002537D8((int)(0u), new func_8044CBE0_S1_v2(arg0).unk100);
-            func_002537D8((int)(0u), new func_8044CBE0_S1_v2(arg0).unkB8);
-            func_002537D8((int)(0u), new func_8044CBE0_S1_v2(arg0).unkBC);
-            func_002537D8((int)(0u), new func_8044CBE0_S1_v2(arg0).unkC0);
-            func_002537D8((int)(0u), new func_8044CBE0_S1_v2(arg0).unkC4);
-            func_002537D8((int)(0u), new func_8044CBE0_S1_v2(arg0).unkC8);
-            func_002537D8((int)(0u), new func_8044CBE0_S1_v2(arg0).unkD0);
-            func_002537D8((int)(0u), new func_8044CBE0_S1_v2(arg0).unkD4);
-            func_002537D8((int)(0u), new func_8044CBE0_S1_v2(arg0).unkEC);
-            func_002537D8((int)(0u), new func_8044CBE0_S1_v2(arg0).unkCC);
-            func_002537D8((int)(0u), new func_8044CBE0_S1_v2(arg0).unkE8);
+            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).unk100);
+            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).unkB8);
+            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).unkBC);
+            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).unkC0);
+            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).unkC4);
+            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).unkC8);
+            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).unkD0);
+            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).unkD4);
+            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).unkEC);
+            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).unkCC);
+            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).unkE8);
             temp_a1 = new func_8044CBE0_S1_v2(arg0).unkF0;
             if ((temp_a1 != 0u))
             {
-                func_002537D8((int)(0u), temp_a1);
+                ResourcePool_Release((int)(0u), temp_a1);
             }
             temp_a1_2 = new func_8044CBE0_S1_v2(arg0).unkF4;
             if ((temp_a1_2 != 0u))
             {
-                func_002537D8((int)(0u), temp_a1_2);
+                ResourcePool_Release((int)(0u), temp_a1_2);
             }
             temp_a1_3 = new func_8044CBE0_S1_v2(arg0).unkFC;
             if ((temp_a1_3 != 0u))
             {
-                func_002537D8((int)(0u), temp_a1_3);
+                ResourcePool_Release((int)(0u), temp_a1_3);
             }
             func_0028D578(arg0);
             temp_s1 = new func_8044CBE0_S1_v2(arg0).unk1B500.head;
@@ -495,7 +495,7 @@ public static partial class Game
                 }
                 while ((var_a1 != 0u));
             }
-            func_00254784(temp_s1);
+            ResourcePool_MallocFree(temp_s1);
         }
     }
 

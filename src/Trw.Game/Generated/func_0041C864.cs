@@ -30,9 +30,9 @@ public static partial class Game
                     cmd = new O3Dl(g).w0;
                     Mem.Copy(_fp, new O3Act(a).v48C.P, 12);
                     func_00272908((@base + (uint)352), _fp, (_fp + 16u));
-                    if ((func_0025471C() == 0))
+                    if ((Resource_GetLoadFlags() == 0))
                     {
-                        func_0025470C(1);
+                        Resource_SetLoadFlags(1);
                     }
                     func_004171B8((uint)(209717));
                     {
@@ -58,12 +58,12 @@ public static partial class Game
                     func_0026D844();
                     Mem.Copy(new O3Act(a).pos198.P, (_fp + 16u), 12);
                     Mem.Copy(new O3Act(a).pos354.P, (_fp + 16u), 12);
-                    func_0024B8B4(b);
+                    Actor_ResetPoseMatrices(b);
                     Mem.Copy(new O3Act(a).pos198.P, (_fp + 16u), 12);
                     Mem.Copy(new O3Act(a).pos354.P, (_fp + 16u), 12);
                     if (((new O3Act(a).f49C != 0) || ((int)(new O3Body(b).f10E) == 0)))
                     {
-                        func_00246E34(b, default(uint), default(uint), default(uint));
+                        Actor_Advance(b, default(uint), default(uint), default(uint));
                         if ((new O3Act(a).f4A0 != 0))
                         {
                             Math_MtxRotateRowsC_00273860(new O3Act(a).mtx204.P, ((float)(new O3Act(a).f4A0) * 0.0174532942f));
@@ -73,7 +73,7 @@ public static partial class Game
                     Mem.Copy(new O3Body(b).pos.P, (_fp + 16u), 12);
                     Mem.Copy(new O3Body(b).p1C4.P, (_fp + 16u), 12);
                     func_0026D980();
-                    func_00249E18(b, @base, default(uint), default(uint));
+                    Actor_Draw(b, @base, default(uint), default(uint));
                     Mem.Copy(new O3Body(b).c140.P, 0x800E3570u, 24);
                     Mem.Copy(new O3Body(b).c158.P, 0x800E3570u, 24);
                     func_0026D9D0();

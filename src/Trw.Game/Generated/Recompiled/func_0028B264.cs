@@ -42,7 +42,7 @@ public static partial class Game
                 Mem.Set((r4 + 228u), (ushort)r6);
                 r5 = Mem.U32((r11 + 84u));
                 r6 = Mem.U32((r11 + 36u));
-                func_00246BD8(r4, (int)r5, (int)r6, (int)r7);
+                Actor_ResetAnimObject(r4, (int)r5, (int)r6, (int)r7);
                 L_L0028B2C8: ;
                 r31 = Mem.U32((r29 + 16u));
                 r29 = r29 + 24u; Cpu.V1 = r3; return r2;

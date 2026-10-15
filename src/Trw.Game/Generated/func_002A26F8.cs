@@ -11,8 +11,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002A26F8", (uint)size);
             int n = ((size + 7) & (~7));
-            Mem.Set((0x800D2BD4u + (uint)(0 * 4)), (int)(func_00252FFC((uint)(n))));
-            Mem.Set((0x800D2BD4u + (uint)(1 * 4)), (int)(func_00252FFC((uint)(n))));
+            Mem.Set((0x800D2BD4u + (uint)(0 * 4)), (int)(ResourcePool_Malloc((uint)(n))));
+            Mem.Set((0x800D2BD4u + (uint)(1 * 4)), (int)(ResourcePool_Malloc((uint)(n))));
             Mem.Set(0x8014D2D4u, n);
             Mem.Set(0x8014D2D0u, 0);
             func_002A2270(default(uint), default(uint), default(uint), default(uint));

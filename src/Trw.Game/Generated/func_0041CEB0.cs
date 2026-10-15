@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0041CEB0", (uint)arg0);
             int t = 0;
-            Mem.Set(0x800E3590u, func_00252FFC((uint)(528)));
+            Mem.Set(0x800E3590u, ResourcePool_Malloc((uint)(528)));
             new S1008Menu(Mem.U32(0x800E3590u)).owner_Set(arg0);
             new S1008Menu(Mem.U32(0x800E3590u)).handle_Set(func_0041B690(arg0, 4));
             func_0041B768(arg0, 0, 513);

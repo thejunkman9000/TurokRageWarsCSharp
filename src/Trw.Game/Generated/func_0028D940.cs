@@ -25,7 +25,7 @@ public static partial class Game
                         if ((h != 0u))
                         {
                             p = (int)(Resource_GetCartridgeKey((uint)(Mem.S32(h)), (uint)(new Obj_v2(o).unkC), id, _fp));
-                            func_002537D8(0, h);
+                            ResourcePool_Release(0, h);
                             r = ResourceCache_Hash(0, (uint)(p), p, (uint)(Mem.S32(_fp)), 16, (uint)(0), 0x00285130u, 0x800CA3ACu, 1);
                             new Obj_v2(o).unk14__Set(r);
                             if ((r != 0u))

@@ -6,6 +6,56 @@ namespace Trw.Game;
 
 public static partial class Game
 {
+    // ==== func_0024CC20 @ 0x0024CC20 [C]
+    public static uint func_0024CC20_m03_f2u(float x)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0024CC20_m03_f2u");
+            return Cpu.TruncU32(x);
+        }
+    }
+
+    public static void Math_MtxAffineToFixed(uint f, uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0024CC20", (uint)f, (uint)m);
+            uint ai = m;
+            uint af = (m + (uint)(8 * 4));
+            uint e1 = 0u;
+            uint e2 = 0u;
+            e1 = Cpu.TruncU32(Mem.F32((f + (uint)(0 * 4))));
+            e2 = Cpu.TruncU32(Mem.F32((f + (uint)(1 * 4))));
+            Mem.Set(((ai += 4u) - 4u), ((e1 & 4294901760u) | (e2 >> (int)16)));
+            Mem.Set(((af += 4u) - 4u), ((e1 << (int)16) | (e2 & (uint)(65535))));
+            e1 = Cpu.TruncU32(Mem.F32((f + (uint)(2 * 4))));
+            Mem.Set(((ai += 4u) - 4u), (e1 & 4294901760u));
+            Mem.Set(((af += 4u) - 4u), (e1 << (int)16));
+            e1 = Cpu.TruncU32(Mem.F32((f + (uint)(4 * 4))));
+            e2 = Cpu.TruncU32(Mem.F32((f + (uint)(5 * 4))));
+            Mem.Set(((ai += 4u) - 4u), ((e1 & 4294901760u) | (e2 >> (int)16)));
+            Mem.Set(((af += 4u) - 4u), ((e1 << (int)16) | (e2 & (uint)(65535))));
+            e1 = Cpu.TruncU32(Mem.F32((f + (uint)(6 * 4))));
+            Mem.Set(((ai += 4u) - 4u), (e1 & 4294901760u));
+            Mem.Set(((af += 4u) - 4u), (e1 << (int)16));
+            e1 = Cpu.TruncU32(Mem.F32((f + (uint)(8 * 4))));
+            e2 = Cpu.TruncU32(Mem.F32((f + (uint)(9 * 4))));
+            Mem.Set(((ai += 4u) - 4u), ((e1 & 4294901760u) | (e2 >> (int)16)));
+            Mem.Set(((af += 4u) - 4u), ((e1 << (int)16) | (e2 & (uint)(65535))));
+            e1 = Cpu.TruncU32(Mem.F32((f + (uint)(10 * 4))));
+            Mem.Set(((ai += 4u) - 4u), (e1 & 4294901760u));
+            Mem.Set(((af += 4u) - 4u), (e1 << (int)16));
+            e1 = Cpu.TruncU32(Mem.F32((f + (uint)(12 * 4))));
+            e2 = Cpu.TruncU32(Mem.F32((f + (uint)(13 * 4))));
+            Mem.Set(((ai += 4u) - 4u), ((e1 & 4294901760u) | (e2 >> (int)16)));
+            Mem.Set(((af += 4u) - 4u), ((e1 << (int)16) | (e2 & (uint)(65535))));
+            e1 = Cpu.TruncU32(Mem.F32((f + (uint)(14 * 4))));
+            Mem.Set(((ai += 4u) - 4u), ((e1 & 4294901760u) | (uint)(1)));
+            Mem.Set(((af += 4u) - 4u), (e1 << (int)16));
+        }
+    }
+
     // ==== func_002702EC @ 0x002702EC [C]
     public static void Math_MtxFloatToFixed(uint mf, uint m)
     {

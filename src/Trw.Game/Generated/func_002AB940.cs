@@ -24,7 +24,7 @@ public static partial class Game
                         q = Mem.U32(_fp);
                         Mem.Set(out1, (int)(new TabInfo(q).unk4));
                         Mem.Set(out2, (int)(new TabInfo(q).unk6));
-                        func_002536F4(0, (uint)(h));
+                        ResourcePool_Unref(0, (uint)(h));
                     }
                 }
             }

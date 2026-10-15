@@ -195,7 +195,7 @@ public static partial class Game
                 r5 = Mem.U32((r29 + 80u));
                 r6 = Mem.U32((r29 + 84u));
                 r7 = Mem.U32((r29 + 88u));
-                r4 = r17; { uint s1_ = Stack.Alloc(12); Mem.Set(s1_ + 0u, r5); Mem.Set(s1_ + 4u, r6); Mem.Set(s1_ + 8u, r7); func_0024E78C(r4, s1_, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u)); Stack.Free(12); }
+                r4 = r17; { uint s1_ = Stack.Alloc(12); Mem.Set(s1_ + 0u, r5); Mem.Set(s1_ + 4u, r6); Mem.Set(s1_ + 8u, r7); Collision_LocatePoint_0024E78C(r4, s1_, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u)); Stack.Free(12); }
                 r4 = r29 + 128u;
                 r5 = r17 + 596u; r2 = func_00271888(r4, r5);
                 Mem.Set((r29 + 112u), r0);
@@ -456,7 +456,7 @@ public static partial class Game
                 r18 = (uint)15;
                 L_L0026EDC8: ;
                 if (r18 == 0) { r19 = r19 + 20u; goto L_L0026EE54; }
-                r4 = r17; Cpu.SetS(0, func_0024BF14(r4));
+                r4 = r17; Cpu.SetS(0, Actor_GetAnimRate_0024BF14(r4));
                 r4 = r17;
                 r5 = r17;
                 r6 = (uint)3;

@@ -29,7 +29,7 @@ public static partial class Game
                 new NodeOwner(o).tail__Set(n);
             }
             new Node(n).flags_Set((uint)((uint)(new Node(n).flags) | (uint)(1)));
-            func_00246174(n);
+            Actor_InitBase_00246174(n);
             new Node(n).unk1C8_Set(0);
             return n;
         }

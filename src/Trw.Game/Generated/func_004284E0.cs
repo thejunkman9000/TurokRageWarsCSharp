@@ -24,7 +24,7 @@ public static partial class Game
                 if ((id >= 1219))
                 {
                     id = (int)((int)(id) - 1219);
-                    if ((func_0022F4CC((0x80102B00u + (uint)(row * 400)), id) == 1))
+                    if ((Profile_IsWeaponUnlocked((0x80102B00u + (uint)(row * 400)), id) == 1))
                     {
                         if ((id != 0))
                         {

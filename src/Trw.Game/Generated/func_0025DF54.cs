@@ -19,10 +19,10 @@ public static partial class Game
                 if ((Mem.S32(0x80146890u) == 0))
                 {
                     new Vec3f(_fp).x_Set(new Vec3f(_fp).y_Set(new Vec3f(_fp).z_Set(0.0f)));
-                    saved = func_00258D30(0x8010C080u);
-                    func_00258D28(0x8010C080u, 1);
-                    new_var = func_00257DF4(0x8010C080u, (int)((short)(id)), _fp, (0 * 0), (-1));
-                    func_00258D28(0x8010C080u, saved);
+                    saved = Sound_GetPosFlag_00258D30(0x8010C080u);
+                    Sound_SetPosFlag_00258D28(0x8010C080u, 1);
+                    new_var = Sound_Play(0x8010C080u, (int)((short)(id)), _fp, (0 * 0), (-1));
+                    Sound_SetPosFlag_00258D28(0x8010C080u, saved);
                     r = new_var;
                 }
                 else

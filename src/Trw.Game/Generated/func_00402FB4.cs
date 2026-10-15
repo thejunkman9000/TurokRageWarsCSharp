@@ -53,7 +53,7 @@ public static partial class Game
                         new O01Ctx(Mem.U32(0x800E2830u)).unkDC_Set(found);
                         new O01Ctx(Mem.U32(0x800E2830u)).unk58_Set(1);
                     }
-                    func_002536F4(0, r);
+                    ResourcePool_Unref(0, r);
                 }
             }
         }

@@ -23,7 +23,7 @@ public static partial class Game
             if ((old != Mem.S32(0x800D2640u)))
             {
                 Mem.Set(0x800D2644u, 1);
-                func_0025470C(8);
+                Resource_SetLoadFlags(8);
             }
             else
             {
@@ -34,7 +34,7 @@ public static partial class Game
             new B19Owner(ow).f120_Set(0);
             new B19Owner(ow).f124_Set(0);
             func_00279A00((ow + (uint)296));
-            func_00253B5C(0, (uint)(new B19Owner(ow).fE8));
+            Resource_MarkUsedInFrame(0, (uint)(new B19Owner(ow).fE8));
             func_002A66EC(0x8013BA80u);
             Player_FreeAll(0x80145040u);
             func_00287EE8(ow);

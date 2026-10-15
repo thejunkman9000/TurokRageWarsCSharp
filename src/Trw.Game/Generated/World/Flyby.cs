@@ -86,12 +86,12 @@ public static partial class Game
                         pl = Mem.U32((0x80145060u + (uint)(0 * 4)));
                         if ((pl != 0u))
                         {
-                            func_0022E280(pl, default(uint), default(uint), default(uint));
+                            Player_ResetMovement(pl, default(uint), default(uint), default(uint));
                             new B10Pl(pl).f57C_Set(0);
                             new B10Pl(pl).f580_Set(0);
                             new B10Pl(pl).f590_Set(0);
                         }
-                        func_00239B54((0x80145060u + (uint)(10 * 4)), default(uint), default(uint), default(uint));
+                        CameraManager_ClearAllTexts((0x80145060u + (uint)(10 * 4)), default(uint), default(uint), default(uint));
                         func_00285D00(0x8010EC90u);
                     }
                     if ((id != (-1)))
@@ -236,7 +236,7 @@ public static partial class Game
                             Flyby_Finish();
                             if ((new B10Ctl(Mem.U32(0x800E2830u)).p0 != 0u))
                             {
-                                func_002537D8(0, new B10Ctl(Mem.U32(0x800E2830u)).p0);
+                                ResourcePool_Release(0, new B10Ctl(Mem.U32(0x800E2830u)).p0);
                             }
                             new B10Ctl(Mem.U32(0x800E2830u)).p0_Set(0u);
                             new B10Ctl(Mem.U32(0x800E2830u)).f4_Set(0);
@@ -265,7 +265,7 @@ public static partial class Game
                         uint fn_2 = 0u;
                         if ((new B10Ctl(Mem.U32(0x800E2830u)).p0 != 0u))
                         {
-                            func_002537D8(0, new B10Ctl(Mem.U32(0x800E2830u)).p0);
+                            ResourcePool_Release(0, new B10Ctl(Mem.U32(0x800E2830u)).p0);
                         }
                         new B10Ctl(Mem.U32(0x800E2830u)).p0_Set(0u);
                         new B10Ctl(Mem.U32(0x800E2830u)).f4_Set(0);
@@ -284,7 +284,7 @@ public static partial class Game
                 Flyby_RunPending();
                 if ((new B10Ctl(Mem.U32(0x800E2830u)).f38 != 0))
                 {
-                    func_0025470C(10);
+                    Resource_SetLoadFlags(10);
                 }
             }
         }
@@ -384,7 +384,7 @@ public static partial class Game
                 Flyby_Finish();
                 if ((new B10Ctl(Mem.U32(0x800E2830u)).p0 != 0u))
                 {
-                    func_002537D8(0, new B10Ctl(Mem.U32(0x800E2830u)).p0);
+                    ResourcePool_Release(0, new B10Ctl(Mem.U32(0x800E2830u)).p0);
                 }
                 new B10Ctl(Mem.U32(0x800E2830u)).p0_Set(0u);
                 new B10Ctl(Mem.U32(0x800E2830u)).f4_Set(0);
@@ -774,7 +774,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00245B18");
             if ((new B10Ctl(Mem.U32(0x800E2830u)).p0 != 0u))
             {
-                func_002537D8(0, new B10Ctl(Mem.U32(0x800E2830u)).p0);
+                ResourcePool_Release(0, new B10Ctl(Mem.U32(0x800E2830u)).p0);
             }
             new B10Ctl(Mem.U32(0x800E2830u)).p0_Set(0u);
             new B10Ctl(Mem.U32(0x800E2830u)).f4_Set(0);
@@ -833,7 +833,7 @@ public static partial class Game
                 uint fn = 0u;
                 if ((new B10Ctl(Mem.U32(0x800E2830u)).p0 != 0u))
                 {
-                    func_002537D8(0, new B10Ctl(Mem.U32(0x800E2830u)).p0);
+                    ResourcePool_Release(0, new B10Ctl(Mem.U32(0x800E2830u)).p0);
                 }
                 new B10Ctl(Mem.U32(0x800E2830u)).p0_Set(0u);
                 new B10Ctl(Mem.U32(0x800E2830u)).f4_Set(0);

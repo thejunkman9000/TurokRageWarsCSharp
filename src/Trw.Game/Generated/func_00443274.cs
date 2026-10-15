@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00443274", (uint)a, (uint)b, (uint)c);
-            func_0024B980((uint)(a), b, (uint)(c), 0x800D0EF8u);
+            Actor_DrawWithSegment((uint)(a), b, (uint)(c), 0x800D0EF8u);
         }
     }
 

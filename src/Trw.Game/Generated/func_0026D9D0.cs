@@ -17,8 +17,8 @@ public static partial class Game
             for (i = 0; (i < Mem.S32(0x801153D0u)); ++i)
             {
                 v = Mem.S32((0x801153D8u + (uint)(i * 4)));
-                func_00253B5C(0, (uint)(v));
-                func_002536F4(0, (uint)(v));
+                Resource_MarkUsedInFrame(0, (uint)(v));
+                ResourcePool_Unref(0, (uint)(v));
             }
         }
     }

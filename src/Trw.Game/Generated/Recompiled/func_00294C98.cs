@@ -36,7 +36,7 @@ public static partial class Game
                 Mem.Set((r29 + 60u), r19);
                 Mem.Set((r29 + 56u), r18);
                 { bool c_ = r5 == 0; Mem.Set((r29 + 52u), r17); if (c_) goto L_L00294CE0; }
-                r4 = r0; func_002536F4((int)r4, r5);
+                r4 = r0; ResourcePool_Unref((int)r4, r5);
                 L_L00294CE0: ;
                 r4 = Mem.U32((r16 + 80u));
                 r5 = Mem.U32((r16 + 32u));

@@ -36,7 +36,7 @@ public static partial class Game
                 r20 = r2;
                 r1 = 2148859904u;
                 Mem.Set((r1 - 21096u), r6);
-                r21 = r3; func_0025398C((int)r4, (int)r5);
+                r21 = r3; Resource_BeginFrameUse((int)r4, (int)r5);
                 func_00296FF8();
                 func_0026D844();
                 r4 = r18; func_002917E8();
@@ -44,7 +44,7 @@ public static partial class Game
                 func_00263C44();
                 r4 = 131072u;
                 r4 = r4 | 21960u;
-                r4 = r18 + r4; func_00236864(r4);
+                r4 = r18 + r4; View_UpdateLayout(r4);
                 r4 = r18; func_0029324C();
                 r1 = 131072u;
                 r1 = r18 + r1;
@@ -239,7 +239,7 @@ public static partial class Game
                 Cpu.SetS(0, Cpu.S(1) * Cpu.S(0));
                 r1 = 2148335616u;
                 Mem.Set((r1 + 10664u), Cpu.W(0));
-                r4 = r0; r2 = (uint)func_00253A74();
+                r4 = r0; r2 = (uint)Resource_EndFrameUse();
                 { bool c_ = r2 == 0; r6 = (uint)1; if (c_) goto L_L00292708; }
                 r5 = 2148859904u;
                 r5 = Mem.U32((r5 - 21096u));

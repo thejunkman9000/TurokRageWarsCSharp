@@ -226,7 +226,7 @@ public static partial class Game
                 Mem.Set((r3 + 248u), r0);
                 Mem.Set((r3 + 252u), r0);
                 L_L00400D64: ;
-                r4 = r0; func_002536F4((int)r4, r5);
+                r4 = r0; ResourcePool_Unref((int)r4, r5);
                 { bool c_ = r21 == 0; r2 = (uint)1; if (c_) goto L_L00400DE0; }
                 r6 = 2148401152u;
                 r6 = Mem.U32((r6 + 10288u));

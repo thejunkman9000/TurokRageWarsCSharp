@@ -15,8 +15,8 @@ public static partial class Game
             uint p = 0u;
             if ((Mem.S32(slot) != 0))
             {
-                func_002538A8();
-                func_002537D8(0, (uint)(Mem.S32(slot)));
+                ResourcePool_Purge();
+                ResourcePool_Release(0, (uint)(Mem.S32(slot)));
             }
             if ((a != 0))
             {
@@ -26,7 +26,7 @@ public static partial class Game
             {
                 size = ((int)(Mem.U32(0x8011FECCu)) + 1552);
             }
-            r = func_002533DC(0, size, (uint)(51), (int)(0x800E0D90u));
+            r = ResourcePool_Alloc(0, size, (uint)(51), (int)(0x800E0D90u));
             Mem.Set(slot, (int)(r));
             p = (uint)(Mem.S32(r));
             Mem.Set(@out, p);

@@ -54,12 +54,12 @@ public static partial class Game
             _f4: ;
             _f2: ;
             s4 = (((s2 * (int)(new Q01Rec(r).h)) * (int)(new Q01Rec(r).bits)) / 8);
-            fp = func_00252FFC((uint)(s4));
+            fp = ResourcePool_Malloc((uint)(s4));
             func_002A1F60((uint)(new Q01H(0x801539B0u).h), (uint)((new Q01H(0x801539B0u).f248 + new Q01Rec(r).off14)), (uint)(0), default(uint));
             func_002A1ED4(fp, (uint)(s4), (uint)(1), (uint)(new Q01H(0x801539B0u).h));
             if (!(((int)(new Q01Rec(r).n) > 0))) goto _f8;
             s6 = ((int)(new Q01Rec(r).n) * 2);
-            pal = func_00252FFC((uint)(s6));
+            pal = ResourcePool_Malloc((uint)(s6));
             func_002A1F60((uint)(new Q01H(0x801539B0u).h), (uint)((new Q01H(0x801539B0u).f248 + new Q01Rec(r).off18)), (uint)(0), default(uint));
             func_002A1ED4(pal, (uint)(s6), (uint)(1), (uint)(new Q01H(0x801539B0u).h));
             t = (int)(new Q01Rec(r).n);

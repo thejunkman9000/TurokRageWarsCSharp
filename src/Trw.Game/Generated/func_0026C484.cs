@@ -25,12 +25,12 @@ public static partial class Game
                 if ((t != 0u))
                 {
                     x = func_0028FE08((uint)(Mem.S32(t)), a0, 1);
-                    func_002536F4(0, t);
-                    u = func_00254094(0, _fp, x, 0x800C9770u, 1);
+                    ResourcePool_Unref(0, t);
+                    u = Resource_LoadIndexTable(0, _fp, x, 0x800C9770u, 1);
                     if ((u != 0u))
                     {
                         y = (int)(Resource_GetCartridgeKey(Mem.U32(_fp), (uint)(x), (a3 % Mem.S32(Mem.U32(_fp))), (_fp + 4u)));
-                        func_002536F4(0, u);
+                        ResourcePool_Unref(0, u);
                         v = ResourceCache_Hash(0, (uint)(y), y, (uint)(Mem.S32((_fp + 4u))), 0, (uint)(0), 0x0026D7F4u, 0x800C9784u, a5);
                         if ((v != 0u))
                         {
@@ -42,7 +42,7 @@ public static partial class Game
                                 {
                                     goto L_done;
                                 }
-                                func_00253610(0, v);
+                                ResourcePool_TouchAndRef(0, v);
                                 Mem.Set((0x801153D8u + (uint)(Mem.S32(0x801153D0u) * 4)), v);
                                 Mem.Set(0x801153D0u, (int)(Mem.S32(0x801153D0u) + 1));
                             }
@@ -64,7 +64,7 @@ public static partial class Game
                             new B15Rec(rec).b_Set(a2);
                             new B15Rec(rec).c_Set(z);
                             L_done: ;
-                            func_002536F4(0, v);
+                            ResourcePool_Unref(0, v);
                         }
                     }
                 }

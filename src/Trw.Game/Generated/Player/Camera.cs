@@ -177,7 +177,7 @@ public static partial class Game
                 Mem.Set((r29 + 64u), Cpu.W(0));
                 Mem.Set((r29 + 56u), r2);
                 L_L00220CE8: ;
-                { uint s10_ = Stack.Alloc(16); Mem.Set(s10_ + 0u, Mem.U32(r29 + 40u)); Mem.Set(s10_ + 4u, Mem.U32(r29 + 44u)); Mem.Set(s10_ + 8u, Mem.U32(r29 + 48u)); Mem.Set(s10_ + 12u, Mem.U32(r29 + 52u)); func_00238F14(r4, (int)r5, (int)r6, (int)r7, Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), Cpu.U2F(Mem.U32(r29 + 24u)), Cpu.U2F(Mem.U32(r29 + 28u)), Cpu.U2F(Mem.U32(r29 + 32u)), Cpu.U2F(Mem.U32(r29 + 36u)), s10_, Mem.U32(r29 + 56u), Cpu.U2F(Mem.U32(r29 + 60u)), Cpu.U2F(Mem.U32(r29 + 64u))); Stack.Free(16); }
+                { uint s10_ = Stack.Alloc(16); Mem.Set(s10_ + 0u, Mem.U32(r29 + 40u)); Mem.Set(s10_ + 4u, Mem.U32(r29 + 44u)); Mem.Set(s10_ + 8u, Mem.U32(r29 + 48u)); Mem.Set(s10_ + 12u, Mem.U32(r29 + 52u)); Camera_SetTracker_00238F14(r4, (int)r5, (int)r6, (int)r7, Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), Cpu.U2F(Mem.U32(r29 + 24u)), Cpu.U2F(Mem.U32(r29 + 28u)), Cpu.U2F(Mem.U32(r29 + 32u)), Cpu.U2F(Mem.U32(r29 + 36u)), s10_, Mem.U32(r29 + 56u), Cpu.U2F(Mem.U32(r29 + 60u)), Cpu.U2F(Mem.U32(r29 + 64u))); Stack.Free(16); }
                 L_L00220CF0: ;
                 r4 = r18; r2 = Camera_SetupProjection(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_L00220CF8: ;
@@ -232,7 +232,7 @@ public static partial class Game
                     }
                     break;
                 }
-                h = (uint)(func_0024E7CC(a));
+                h = (uint)(Actor_GetCurrentRegion(a));
                 if (((h == 0u) || ((new B05Hit10(h).flags & (uint)(24576)) != (uint)(8192))))
                 {
                     if ((new B05In10(@in).f0 != 0.0f))

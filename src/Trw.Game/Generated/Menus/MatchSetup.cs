@@ -309,13 +309,13 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_004396BC", (uint)cfg);
             int i = 0;
             uint p = 0u;
-            Mem.Set(0x800E5950u, func_00252FFC((uint)(8)));
+            Mem.Set(0x800E5950u, ResourcePool_Malloc((uint)(8)));
             CameraManager_Init(0x80145088u, 0);
             func_0044A600((0x80145088u - (uint)72), 0, 0);
             Level_Load(0x8011FE88u, (uint)(0), (uint)(0), default(uint));
-            if ((func_0025471C() == 0))
+            if ((Resource_GetLoadFlags() == 0))
             {
-                func_0025470C(1);
+                Resource_SetLoadFlags(1);
             }
             func_0040C4A8(0);
             func_002A338C();
@@ -332,7 +332,7 @@ public static partial class Game
             new O05GX(0x801462C8u).f25_Set((byte)(10));
             for (i = 0; (i < 4); ++i)
             {
-                func_0022EF20((0x80102B00u + (uint)(i * 400)));
+                Profile_Init((0x80102B00u + (uint)(i * 400)));
             }
             func_002A33F8(0.0f);
             return 0;

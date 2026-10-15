@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00420E90", (uint)root);
-            Mem.Set(0x800E4400u, func_00252FFC((uint)(60)));
+            Mem.Set(0x800E4400u, ResourcePool_Malloc((uint)(60)));
             new O3Pm(Mem.U32(0x800E4400u)).w8__Set((uint)(root));
             new O3Pm(Mem.U32(0x800E4400u)).f38_Set(0);
             new O3Spr(UiTree_FindNode((uint)(root), (uint)(936), default(uint), default(uint))).f1A_Set((short)(136));

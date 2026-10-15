@@ -22,10 +22,10 @@ public static partial class Game
             }
             if ((new SndMgr_v2(Mem.U32(0x8014D080u)).unk53C_ != 0u))
             {
-                func_00254784(new SndMgr_v2(Mem.U32(0x8014D080u)).unk53C_);
+                ResourcePool_MallocFree(new SndMgr_v2(Mem.U32(0x8014D080u)).unk53C_);
             }
-            func_00254784(new SndMgr_v2(Mem.U32(0x8014D080u)).stk_);
-            func_00254784(Mem.U32(0x8014D080u));
+            ResourcePool_MallocFree(new SndMgr_v2(Mem.U32(0x8014D080u)).stk_);
+            ResourcePool_MallocFree(Mem.U32(0x8014D080u));
             Mem.Set(0x8014D080u, 0u);
             func_0029BAAC();
             func_0040F5E8();

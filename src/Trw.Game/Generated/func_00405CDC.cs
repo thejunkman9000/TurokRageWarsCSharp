@@ -14,25 +14,25 @@ public static partial class Game
             int j = 0;
             if ((new Q01Pool_v2(arg0).unk4_ != 0u))
             {
-                func_002537D8(0, new Q01Pool_v2(arg0).unk4_);
+                ResourcePool_Release(0, new Q01Pool_v2(arg0).unk4_);
             }
             if ((new Q01Pool_v2(arg0).unk8_ != 0u))
             {
-                func_002537D8(0, new Q01Pool_v2(arg0).unk8_);
+                ResourcePool_Release(0, new Q01Pool_v2(arg0).unk8_);
             }
             if ((new Q01Pool_v2(arg0).unk18_ != 0u))
             {
-                func_002537D8(0, new Q01Pool_v2(arg0).unk18_);
+                ResourcePool_Release(0, new Q01Pool_v2(arg0).unk18_);
             }
             if ((new Q01Pool_v2(arg0).unk1C_ != 0u))
             {
-                func_002537D8(0, new Q01Pool_v2(arg0).unk1C_);
+                ResourcePool_Release(0, new Q01Pool_v2(arg0).unk1C_);
             }
             for (n = 0; (n < 3); ++n)
             {
                 if ((new Q01Pool_v2(arg0).unkC[(int)(n)] != 0u))
                 {
-                    func_002537D8(0, new Q01Pool_v2(arg0).unkC[(int)(n)]);
+                    ResourcePool_Release(0, new Q01Pool_v2(arg0).unkC[(int)(n)]);
                 }
             }
             new Q01Pool_v2(arg0).unk0_Set(0);

@@ -36,7 +36,7 @@ public static partial class Game
                 r2 = r3 & 1u;
                 { bool c_ = r2 != 0;  if (c_) goto L_L002ADAF4; }
                 L_L002ADA8C: ;
-                r4 = r16; r2 = (uint)func_0024E914(r4);
+                r4 = r16; r2 = (uint)Actor_GetTypeId(r4);
                 r4 = r17;
                 r5 = r16;
                 r6 = r2; r2 = Pickup_DispatchEffect(r4, r5, r6, r7); r3 = Cpu.V1;

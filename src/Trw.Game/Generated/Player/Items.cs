@@ -62,7 +62,7 @@ public static partial class Game
                 r2 = (uint)16;
                 { bool c_ = r3 == r2; r2 = (uint)17; if (c_) goto L_L0021AF54; }
                 { bool c_ = r3 == r2; r4 = r29 + 112u; if (c_) goto L_L0021AF54; }
-                r5 = r16; r2 = func_0024795C(r4, r5);
+                r5 = r16; r2 = Actor_GetFacingQuat(r4, r5);
                 r2 = (uint)1081;
                 { bool c_ = r17 == r2; r2 = (uint)1220; if (c_) goto L_L0021AA38; }
                 { bool c_ = r17 == r2; r2 = (uint)1074; if (c_) goto L_L0021AA38; }
@@ -653,7 +653,7 @@ public static partial class Game
                     new Vec3f((_fp + 80u)).x_Set(0.0f);
                     new Vec3f((_fp + 80u)).y_Set(0.0f);
                     new Vec3f((_fp + 80u)).z_Set(1.0f);
-                    func_0024BC84((_fp + 64u), (int)(p), (_fp + 80u));
+                    Actor_RotateByFacing((_fp + 64u), (int)(p), (_fp + 80u));
                     Mem.Copy((_fp + 32u), new M2Tgt(p).pos.P, 12);
                     new Vec3f((_fp + 32u)).y_Set((float)((float)(new Vec3f((_fp + 32u)).y) + Player_GetClassFieldF4_0022ADAC(p)));
                     g = 0x801462E5u;
@@ -674,7 +674,7 @@ public static partial class Game
                                     {
                                         Mem.Copy(_fp, new M2Tgt(t).pos.P, 12);
                                         new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + new M2Tgt(t).unk70));
-                                        new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + (func_0024D274(t) * 0.75f)));
+                                        new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + (Actor_GetHeight(t) * 0.75f)));
                                     }
                                     func_00271FD8((_fp + 16u), _fp, (_fp + 32u));
                                     func_002720EC((_fp + 16u));
@@ -708,7 +708,7 @@ public static partial class Game
                                 {
                                     Mem.Copy(_fp, new M2Tgt(t).pos.P, 12);
                                     new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + new M2Tgt(t).unk70));
-                                    new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + (func_0024D274(t) * 0.75f)));
+                                    new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + (Actor_GetHeight(t) * 0.75f)));
                                 }
                                 func_00271FD8((_fp + 16u), _fp, (_fp + 32u));
                                 func_002720EC((_fp + 16u));
@@ -743,7 +743,7 @@ public static partial class Game
                     new M2Quat((_fp + 128u)).y_Set((new Vec3f((_fp + 112u)).y * Mem.F32(0x80115DECu)));
                     new M2Quat((_fp + 128u)).z_Set((new Vec3f((_fp + 112u)).z * Mem.F32(0x80115DECu)));
                     new M2Quat((_fp + 128u)).w_Set(cosf(fs0));
-                    func_0024795C((_fp + 144u), p);
+                    Actor_GetFacingQuat((_fp + 144u), p);
                     Quat_Multiply((_fp + 160u), (_fp + 144u), (_fp + 128u));
                 }
                 Mem.Copy(_ret, (_fp + 160u), 16);
@@ -884,7 +884,7 @@ public static partial class Game
                     s5 = (-1);
                     break;
                 }
-                func_0024795C((_fp + 144u), p);
+                Actor_GetFacingQuat((_fp + 144u), p);
                 Mem.Copy(new B05P19(p).q7D8.P, (_fp + 144u), 16);
                 Mem.Copy((_fp + 160u), new B05P19(p).v1458.P, 12);
                 new Vec3f((_fp + 160u)).x_Set((float)((float)(new Vec3f((_fp + 160u)).x) - Mem.F32(0x800C74B8u)));
@@ -993,7 +993,7 @@ public static partial class Game
                         {
                             Mem.Copy(_fp, new B05Tgt(Mem.U32((_fp + 204u))).pos.P, 12);
                             new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + new B05Tgt(Mem.U32((_fp + 204u))).f70));
-                            new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + (func_0024D274(Mem.U32((_fp + 204u))) * Mem.F32(0x800C74C0u))));
+                            new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + (Actor_GetHeight(Mem.U32((_fp + 204u))) * Mem.F32(0x800C74C0u))));
                         }
                         if ((((int)(new B05P19(p).s62E) == 1) && (new B05P19(p).mode == 2)))
                         {
@@ -1500,7 +1500,7 @@ public static partial class Game
                 r5 = 2148270080u;
                 r5 = r5 + 32064u;
                 r4 = r16; r2 = Str_Concat(r4, r5);
-                r4 = r17; r2 = (uint)func_00232754((int)r4);
+                r4 = r17; r2 = (uint)Weapon_GetAmmoTypeName((int)r4);
                 r4 = r16;
                 r5 = r2; r2 = Str_Concat(r4, r5);
                 r2 = (uint)((int)r19 < 2 ? 1 : 0);
@@ -1732,6 +1732,70 @@ public static partial class Game
         }
     }
 
+    // ==== func_0022E3B4 @ 0x0022E3B4 [C]
+    public static int Weapon_ListContainsId_0022E3B4(uint actor, int weapon, int id)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022E3B4", (uint)actor, (uint)weapon, (uint)id);
+            uint w = Mem.U32((0x800D052Cu + (uint)(weapon * 4)));
+            uint tbl = 0u;
+            uint p = 0u;
+            int i = 0;
+            if (((new Actor(actor).unk1450 == 0) && (Mem.S32(0x801450B8u) == 1)))
+            {
+                tbl = (w + (uint)32);
+            }
+            else
+            {
+                tbl = (w + (uint)44);
+            }
+            for (i = 0, p = tbl; (i < 3); ++i, p += 4u)
+            {
+                if ((Mem.U32(p) != 0u))
+                {
+                    if (((int)(Mem.S16((Mem.U32(p) + (uint)4))) == id))
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_0022E8C0 @ 0x0022E8C0 [C]
+    public static int Weapon_HasFlag(short idx, int kind)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022E8C0", (uint)idx, (uint)kind);
+            switch (kind)
+            {
+            case 0:
+                if (((Mem.U32((Mem.U32((0x800D052Cu + (uint)(idx * 4))) + (uint)20)) & (uint)(1)) != 0u))
+                {
+                    return 1;
+                }
+                break;
+            case 1:
+                if (((Mem.U32((Mem.U32((0x800D052Cu + (uint)(idx * 4))) + (uint)20)) & (uint)(2)) != 0u))
+                {
+                    return 1;
+                }
+                break;
+                return 0;
+            default:
+                break;
+            }
+            return 0;
+        }
+    }
+
     // ==== func_0022F5D0 @ 0x0022F5D0 [C]
     public static void Player_UpdateWeaponMatrix(uint c)
     {
@@ -1783,6 +1847,3345 @@ public static partial class Game
             }
         }
         finally { Stack.Free(256); }
+    }
+
+    // ==== func_0022FC10 @ 0x0022FC10 [C]
+    public static void Weapon_Update(uint a, uint s)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022FC10", (uint)a, (uint)s);
+            uint o = 0u;
+            float dt = 0f;
+            uint f = 0u;
+            float sc = 0f;
+            int kind = 0;
+            o = new M2Act(a).owner_;
+            kind = (int)(new M2Row18((0x800CE8DCu + (uint)(new M2Own(o).unk650 * 24))).unk0);
+            if (!(new M2Own(o).unk11D8 > 0.0f))
+            {
+                dt = Mem.F32(0x800D2988u);
+                sc = (dt * Mem.F32(0x800C7F80u));
+                if (((o != 0u) && ((new M2Own(o).unk122C & (uint)(8192)) != 0u)))
+                {
+                    Mem.Set(0x800D2988u, sc);
+                }
+                else
+                {
+                    Mem.Set(0x800D2988u, dt);
+                }
+                if ((new M2St(s).unk148 > 0.0f))
+                {
+                    new M2St(s).unk148_Set((new M2St(s).unk148 - Mem.F32(0x800D2988u)));
+                }
+                new M2Act(a).unk1_Set((byte)(0));
+                if ((new M2St(s).unk130 > 0.0f))
+                {
+                    new M2St(s).unk130_Set((new M2St(s).unk130 - Mem.F32(0x800D2988u)));
+                }
+                if ((kind == 1))
+                {
+                    Actor_DispatchEvent(a, s, 1);
+                }
+                if (((int)(new M2Own(o).unk770) != (int)(new M2Own(o).unk62E)))
+                {
+                    new M2Own(o).unk7E8_Set(0);
+                    Actor_DispatchEvent(a, s, 1);
+                }
+                if ((new M2St(s).link_ != 0u))
+                {
+                    f = new M2St(s).link.cb8;
+                    if ((f != 0u))
+                    {
+                        Funcs.CallReg(f, a, s, 0u, 0u);
+                    }
+                }
+                f = new M2Cls(Mem.U32((0x800D052Cu + (uint)(new M2Own(o).unk62E * 4)))).fn5C;
+                if ((f != 0u))
+                {
+                    Funcs.CallReg(f, a, s, 0u, 0u);
+                }
+                Player_SetWeaponModel_0022BC04(o);
+                Mem.Set(0x800D2988u, dt);
+            }
+        }
+    }
+
+    // ==== func_0022FD9C @ 0x0022FD9C [C]
+    public static void Weapon_EquipPendingAndDraw(uint actor, uint state)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022FD9C", (uint)actor, (uint)state);
+            ushort nu = 0;
+            int cur = 0;
+            int nw = 0;
+            uint owner = new Actor(actor).owner_;
+            cur = (int)(Mem.S16((owner + (uint)1582)));
+            nu = Mem.U16((owner + (uint)1904));
+            nw = (int)((short)(nu));
+            if (!((cur == nw) && (Mem.S32(0x8011FE88u) == 4)))
+            {
+                if ((Weapon_UsesBullets(nw) != 0))
+                {
+                    Mem.Set((owner + (uint)5048), 1);
+                }
+                else
+                {
+                    if ((Weapon_UsesEnergyRounds(nw) != 0))
+                    {
+                        Mem.Set((owner + (uint)5052), 1);
+                    }
+                    else
+                    {
+                        if ((Weapon_UsesExplosiveRounds(nw) != 0))
+                        {
+                            Mem.Set((owner + (uint)5056), 1);
+                        }
+                    }
+                }
+                Mem.Set((owner + (uint)1582), nu);
+                Mem.Set((state + (uint)44), Mem.S32((Mem.U32((0x800D052Cu + (uint)((short)(nu) * 4))) + (uint)84)));
+                Mem.Set((state + (uint)288), Mem.S32((Mem.U32((0x800D052Cu + (uint)(Mem.S16((owner + (uint)1582)) * 4))) + (uint)88)));
+                if (((Mem.U32((owner + (uint)1500)) != 0u) && (Mem.U32(0x800D2980u) >= (uint)(5))))
+                {
+                    Hud_PostMessage(0x80145088u, Mem.U32((owner + (uint)1500)), (uint)(Mem.S32((Mem.U32((Mem.U32((0x800D052Cu + (uint)(Mem.S16((owner + (uint)1582)) * 4))) + (uint)0)) + (uint)0))));
+                }
+                Mem.Set((state + (uint)292), 0);
+                Mem.Set((state + (uint)296), 0);
+                Mem.Set((actor + (uint)1), (byte)(0));
+                Mem.Set((state + (uint)304), 0);
+            }
+            Actor_DispatchEvent(actor, state, 0);
+        }
+    }
+
+    // ==== func_0022FEF4 @ 0x0022FEF4 [C]
+    public static void Weapon_EnterDraw(uint actor, uint state)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022FEF4", (uint)actor, (uint)state);
+            ushort nu = 0;
+            int cur = 0;
+            int nw = 0;
+            uint owner = new Actor(actor).owner_;
+            cur = (int)(Mem.S16((owner + (uint)1582)));
+            nu = Mem.U16((owner + (uint)1904));
+            nw = (int)((short)(nu));
+            if (!((cur == nw) && (Mem.S32(0x8011FE88u) == 4)))
+            {
+                if ((Weapon_UsesBullets(nw) != 0))
+                {
+                    Mem.Set((owner + (uint)5048), 1);
+                }
+                else
+                {
+                    if ((Weapon_UsesEnergyRounds(nw) != 0))
+                    {
+                        Mem.Set((owner + (uint)5052), 1);
+                    }
+                    else
+                    {
+                        if ((Weapon_UsesExplosiveRounds(nw) != 0))
+                        {
+                            Mem.Set((owner + (uint)5056), 1);
+                        }
+                    }
+                }
+                Mem.Set((owner + (uint)1582), nu);
+                Mem.Set((state + (uint)44), Mem.S32((Mem.U32((0x800D052Cu + (uint)((short)(nu) * 4))) + (uint)84)));
+                Mem.Set((state + (uint)288), Mem.S32((Mem.U32((0x800D052Cu + (uint)(Mem.S16((owner + (uint)1582)) * 4))) + (uint)88)));
+                if (((Mem.U32((owner + (uint)1500)) != 0u) && (Mem.U32(0x800D2980u) >= (uint)(5))))
+                {
+                    Hud_PostMessage(0x80145088u, Mem.U32((owner + (uint)1500)), (uint)(Mem.S32((Mem.U32((Mem.U32((0x800D052Cu + (uint)(Mem.S16((owner + (uint)1582)) * 4))) + (uint)0)) + (uint)0))));
+                }
+                Mem.Set((state + (uint)292), 0);
+                Mem.Set((state + (uint)296), 0);
+                Mem.Set((actor + (uint)1), (byte)(0));
+                Mem.Set((state + (uint)304), 0);
+            }
+            Mem.Set((state + (uint)316), 1);
+            Mem.Set((state + (uint)324), 1);
+        }
+    }
+
+    // ==== func_00230048 @ 0x00230048 [C]
+    public static int Weapon_CanFire(uint a, uint s)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00230048", (uint)a, (uint)s);
+            uint new_var = 0u;
+            uint o = 0u;
+            float zero = 0f;
+            float t = new M2St(s).unk130;
+            zero = 0.0f;
+            o = new M2Act(a).owner_;
+            if ((t > zero))
+            {
+                return 0;
+            }
+            do
+            {
+                if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+                {
+                    return 0;
+                }
+                if (((int)(new M2Own(o).stats.unk8F) == 1))
+                {
+                    if ((Mem.S32(0x801468F4u) != 0))
+                    {
+                        return 0;
+                    }
+                }
+            }
+            while ((0 != 0));
+            new_var = o;
+            if ((new M2Own(new_var).unk11D8 > zero))
+            {
+                return 0;
+            }
+            if ((new M2Own(o).unk11B4 != 0))
+            {
+                return 0;
+            }
+            switch ((int)(new M2Own(o).unk62E))
+            {
+            case 11:
+                if (!((new M2Own(o).unk6AC & (uint)(16384)) != 0u))
+                {
+                    goto L_ret1;
+                }
+                return 0;
+            case 18:
+                if ((new M2Own(o).unk788 == 2))
+                {
+                    goto L_ret1;
+                }
+                return 0;
+            case 9:
+                if ((new M2St(s).unk148 > 0.0f))
+                {
+                    if ((new M2St(s).unk13C == 2))
+                    {
+                        return 0;
+                    }
+                }
+                if (((int)(new M2Own(o).unk5F6) < 50))
+                {
+                    if ((new M2St(s).unk13C == 2))
+                    {
+                        return 0;
+                    }
+                }
+                if (((int)(new M2Own(o).unk5F6) < 10))
+                {
+                    if ((new M2St(s).unk13C == 1))
+                    {
+                        return 0;
+                    }
+                }
+                goto L_ret1;
+            case 12:
+                if (((int)(Hud_DrawAmmoPips(0x80121990u, o, default(uint), default(uint))) < 3))
+                {
+                    goto L_ret1;
+                }
+                return 0;
+            case 1:
+                if ((new M2St(s).unk144 == 0))
+                {
+                    return 0;
+                }
+                goto default;
+            default:
+                L_ret1: ;
+                return 1;
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_002301E4 @ 0x002301E4 [C]
+    public static int Weapon_TryFire(uint a, uint s)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002301E4", (uint)a, (uint)s);
+            uint o = 0u;
+            int v = 0;
+            int ok = 0;
+            int t = 0;
+            o = new M2Act(a).owner_;
+            if ((new M2Own(o).unk11D8 > 0.100000001f))
+            {
+                return 0;
+            }
+            if ((((new M2Act(a).flags & (uint)(3145728)) != 0u) && (new M2Own(o).unk1450 != 0)))
+            {
+                v = new M2Own(o).unk1454.unk23C;
+                new M2Own(o).unk1454.unk23C_Set(0);
+            }
+            else
+            {
+                v = (int)((new M2Own(o).unk6AC & (uint)(8192)));
+            }
+            if ((v != 0))
+            {
+                if ((Weapon_CanFire(a, s) != 0))
+                {
+                    if ((new M2St(s).unk13C == 2))
+                    {
+                        if ((new M2Own(o).unk11D8 > 0.0f))
+                        {
+                            ok = 0;
+                        }
+                        else
+                        {
+                            if ((new M2Own(o).unk1450 != 0))
+                            {
+                                ok = 1;
+                            }
+                            else
+                            {
+                                if (((int)(Mem.U8(0x801462D5u)) != 1))
+                                {
+                                    ok = 1;
+                                }
+                                else
+                                {
+                                    t = (int)(Profile_HasAltFire((0x80102B00u + (uint)(new M2Own(o).unk5D4 * 400)), (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint)));
+                                    if ((t == 0))
+                                    {
+                                        func_0025DF54(3405);
+                                        if ((new M2Own(o).pawn_ != 0u))
+                                        {
+                                            Hud_SpawnTextLineA(0x80145088u, new M2Own(o).pawn_, (uint)(Mem.S32(0x800D70E8u)), Player_GetIndex(0x80145040u, (int)(o)), 1.0f);
+                                        }
+                                    }
+                                    ok = t;
+                                }
+                            }
+                        }
+                        if ((ok != 0))
+                        {
+                            Actor_DispatchEvent(a, s, 8);
+                            return 2;
+                        }
+                    }
+                    Actor_DispatchEvent(a, s, 4);
+                    new M2St(s).unkCB_Set((sbyte)(0));
+                    return 1;
+                }
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_00230390 @ 0x00230390 [C]
+    public static void Weapon_UpdateIdle(uint a, uint s)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00230390", (uint)a, (uint)s);
+            uint o = 0u;
+            uint cls = 0u;
+            int kind = 0;
+            int w = 0;
+            int ok = 0;
+            int t = 0;
+            int yy = 0;
+            int xx = 0;
+            o = new M2Act(a).owner_;
+            kind = (int)(new M2Row18((0x800CE8DCu + (uint)(new M2Own(o).unk650 * 24))).unk0);
+            cls = Mem.U32((0x800D052Cu + (uint)(new M2Own(o).unk62E * 4)));
+            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+            {
+                if ((new M2St(s).unk13C == 2))
+                {
+                    new M2St(s).unk13C_Set(1);
+                    if (((new M2Cls(cls).unk14 & (uint)(32)) != 0u))
+                    {
+                        new M2Own(o).unk7E8_Set(0);
+                    }
+                    if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+                    {
+                        goto L_b5;
+                    }
+                    goto L_b6;
+                }
+                L_b5: ;
+                new M2Own(o).unk770_Set((short)(Player_PickFallbackWeapon(o)));
+                return;
+            }
+            L_b6: ;
+            if (((new M2Own(o).unk6B0 & (uint)(16384)) != 0u))
+            {
+                w = (int)(new M2Own(o).unk62E);
+                if ((w < 18))
+                {
+                    if ((new M2Own(o).unk11D8 > 0.0f))
+                    {
+                        ok = 0;
+                    }
+                    else
+                    {
+                        if ((new M2Own(o).unk1450 != 0))
+                        {
+                            ok = 1;
+                        }
+                        else
+                        {
+                            if (((int)(Mem.U8(0x801462D5u)) != 1))
+                            {
+                                ok = 1;
+                            }
+                            else
+                            {
+                                t = (int)(Profile_HasAltFire((0x80102B00u + (uint)(new M2Own(o).unk5D4 * 400)), (uint)(w), default(uint), default(uint)));
+                                if ((t == 0))
+                                {
+                                    func_0025DF54(3405);
+                                    if ((new M2Own(o).pawn_ != 0u))
+                                    {
+                                        yy = Player_GetIndex(0x80145040u, (int)(o));
+                                        xx = Mem.S32(0x800D70E8u);
+                                        Hud_SpawnTextLineA(0x80145088u, new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C7FD8u));
+                                    }
+                                }
+                                ok = t;
+                            }
+                        }
+                    }
+                    if ((ok != 0))
+                    {
+                        if ((new M2St(s).unk13C == 1))
+                        {
+                            new M2St(s).unk13C_Set(2);
+                            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+                            {
+                                func_0025DF54(3405);
+                                if ((new M2Own(o).pawn_ != 0u))
+                                {
+                                    yy = Player_GetIndex(0x80145040u, (int)(o));
+                                    xx = Mem.S32(0x800D70E8u);
+                                    Hud_SpawnTextLineA((0x80145040u + (uint)72), new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C7FDCu));
+                                }
+                                new M2St(s).unk13C_Set(1);
+                            }
+                            else
+                            {
+                                if (((new M2Cls(cls).unk14 & (uint)(32)) != 0u))
+                                {
+                                    new M2Own(o).unk7E8_Set(1);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            new M2St(s).unk13C_Set(1);
+                            if (((new M2Cls(cls).unk14 & (uint)(32)) != 0u))
+                            {
+                                new M2Own(o).unk7E8_Set(0);
+                            }
+                        }
+                    }
+                }
+            }
+            if (((Weapon_TryFire(a, s) == 0) && !((new M2Act(a).flags & (uint)(1024)) != 0u)))
+            {
+                Actor_DispatchEvent(a, s, kind);
+            }
+        }
+    }
+
+    // ==== func_00230620 @ 0x00230620 [C]
+    public static void Weapon_UpdateHolster(uint a, uint s)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00230620", (uint)a, (uint)s);
+            uint o = 0u;
+            int kind = 0;
+            o = new M2Act(a).owner_;
+            kind = (int)(new M2Row18((0x800CE8DCu + (uint)(new M2Own(o).unk650 * 24))).unk0);
+            if (((((int)(new M2St(s).unkCB) != 0) && ((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0)) && (new M2St(s).unk13C == 2)))
+            {
+                new M2St(s).unk13C_Set(1);
+                if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+                {
+                    new M2Own(o).unk770_Set((short)(Player_PickFallbackWeapon(o)));
+                }
+            }
+            Player_LeaveWeaponStance_0022B9B4(o);
+            new M2Own(o).unk11FC_Set(0);
+            new M2Own(o).unk698.unk168_Set((float)(0));
+            new M2St(s).unk138_Set(0);
+            if (((new M2G(0x801468A0u).unk54 != 0) && ((int)(new M2Own(o).stats.unk8F) != 0)))
+            {
+                if (((new M2Own(o).unk6B0 & (uint)(8192)) != 0u))
+                {
+                    switch (new M2G(0x801468A0u).unk70)
+                    {
+                    case 0:
+                        func_0025DE74(6305, new M2Own(o).pos.P, (int)(new M2Own(o).pos.P), (-1));
+                        break;
+                    case 1:
+                        func_0025DE74(6505, new M2Own(o).pos.P, (int)(new M2Own(o).pos.P), (-1));
+                        break;
+                    case 2:
+                        func_0025DE74(6405, new M2Own(o).pos.P, (int)(new M2Own(o).pos.P), (-1));
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                if ((((kind != 1) && (kind != 7)) && ((int)(new M2St(s).unkCB) != 0)))
+                {
+                    Weapon_EquipPendingAndDraw(a, s);
+                }
+            }
+        }
+    }
+
+    // ==== func_002307EC @ 0x002307EC [C]
+    public static void Weapon_UpdateIdleInflator(uint a, uint s)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002307EC", (uint)a, (uint)s);
+            uint o = 0u;
+            int yy = 0;
+            float w = 0f;
+            int xx = 0;
+            uint sub = 0u;
+            float v = 0f;
+            float x = 0f;
+            int kind = 0;
+            int ok = 0;
+            int t = 0;
+            int st = 0;
+            o = new M2Act(a).owner_;
+            kind = (int)(new M2Row18((0x800CE8DCu + (uint)(new M2Own(o).unk650 * 24))).unk0);
+            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+            {
+                new M2Own(o).unk770_Set((short)(Player_PickFallbackWeapon(o)));
+            }
+            if (((new M2Own(o).unk6B0 & (uint)(16384)) != 0u))
+            {
+                if ((new M2Own(o).unk11D8 > 0.0f))
+                {
+                    ok = 0;
+                }
+                else
+                {
+                    if ((new M2Own(o).unk1450 != 0))
+                    {
+                        ok = 1;
+                    }
+                    else
+                    {
+                        if (((int)(Mem.U8(0x801462D5u)) != 1))
+                        {
+                            ok = 1;
+                        }
+                        else
+                        {
+                            t = (int)(Profile_HasAltFire((0x80102B00u + (uint)(new M2Own(o).unk5D4 * 400)), (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint)));
+                            if ((t == 0))
+                            {
+                                func_0025DF54(3405);
+                                if ((new M2Own(o).pawn_ != 0u))
+                                {
+                                    yy = Player_GetIndex(0x80145040u, (int)(o));
+                                    xx = Mem.S32(0x800D70E8u);
+                                    Hud_SpawnTextLineA(0x80145088u, new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C7FE0u));
+                                }
+                            }
+                            ok = t;
+                        }
+                    }
+                }
+                if ((ok != 0))
+                {
+                    st = new M2St(s).unk13C;
+                    if ((st == 1))
+                    {
+                        if (((int)(new M2Own(o).unk5F6) >= 50))
+                        {
+                            Actor_DispatchEvent(a, s, 5);
+                            new M2St(s).unk13C_Set(2);
+                            return;
+                        }
+                        func_0025DF54(3405);
+                        if ((new M2Own(o).pawn_ != 0u))
+                        {
+                            yy = Player_GetIndex(0x80145040u, (int)(o));
+                            xx = Mem.S32(0x800D70E8u);
+                            Hud_SpawnTextLineA((0x80145040u + (uint)72), new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C7FE4u));
+                        }
+                        new M2St(s).unk13C_Set(st);
+                        return;
+                    }
+                }
+            }
+            if ((Weapon_TryFire(a, s) == 0))
+            {
+                if (!((new M2Act(a).flags & (uint)(1024)) != 0u))
+                {
+                    Actor_DispatchEvent(a, s, kind);
+                }
+                return;
+            }
+            x = new M2St(s).unk128;
+            w = (x + (2.0f * (x * Mem.F32(0x800D2988u))));
+            new M2St(s).unk128_Set(w);
+            sub = new M2Own(o).unk698_;
+            if ((w < 0.0f))
+            {
+                if ((Mem.F32(0x800C7FECu) < ((-w) * Mem.F32(0x800C7FE8u))))
+                {
+                    goto L_A;
+                }
+            }
+            else
+            {
+                if ((Mem.F32(0x800C7FF4u) < (w * Mem.F32(0x800C7FF0u))))
+                {
+                    goto L_A;
+                }
+            }
+            v = new M2St(s).unk128;
+            if ((v < 0.0f))
+            {
+                new M2Sub698(sub).unk168_Set(((-v) * Mem.F32(0x800C7FF8u)));
+            }
+            else
+            {
+                new M2Sub698(sub).unk168_Set((v * Mem.F32(0x800C7FFCu)));
+            }
+            goto L_done;
+            L_A: ;
+            new M2Sub698(sub).unk168_Set(Mem.F32(0x800C8000u));
+            L_done: ;
+            new M2St(s).unk124_Set((2.0f * (new M2St(s).unk128 * Mem.F32(0x800D2988u))));
+            new M2St(s).unk13C_Set(1);
+        }
+    }
+
+    // ==== func_00230AF4 @ 0x00230AF4 [C]
+    public static void Weapon_UpdateFireRelease_00230AF4(uint actor, uint state)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00230AF4", (uint)actor, (uint)state);
+            uint owner = new Actor(actor).owner_;
+            int w = 0;
+            if (!((Mem.U32((owner + (uint)1708)) & (uint)(8192)) != 0u))
+            {
+                w = (int)(Mem.S16((owner + (uint)1582)));
+                switch (w)
+                {
+                case 2:
+                    if ((Mem.S32((state + (uint)316)) == 1))
+                    {
+                        Actor_DispatchEvent(actor, state, 5);
+                    }
+                    else
+                    {
+                        if ((Mem.S32((state + (uint)316)) == 2))
+                        {
+                            Actor_DispatchEvent(actor, state, 9);
+                        }
+                        else
+                        {
+                            goto L_zero;
+                        }
+                    }
+                    break;
+                case 0:
+                    L_zero: ;
+                    if ((Mem.F32((state + (uint)64)) > Mem.F32(0x800C8004u)))
+                    {
+                        Actor_DispatchEvent(actor, state, 5);
+                    }
+                    else
+                    {
+                        Actor_DispatchEvent(actor, state, 9);
+                    }
+                    break;
+                default:
+                    if ((Player_GetWeaponAmmo(owner, w) == 1))
+                    {
+                        Actor_DispatchEvent(actor, state, 7);
+                    }
+                    else
+                    {
+                        Actor_DispatchEvent(actor, state, 5);
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+    // ==== func_00230BB8 @ 0x00230BB8 [C]
+    public static void Weapon_UpdateMinigunFire(uint a, uint s)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00230BB8", (uint)a, (uint)s);
+            uint o = 0u;
+            uint pv = 0u;
+            int ok = 0;
+            int t = 0;
+            uint pawn = 0u;
+            float tm = 0f;
+            o = new M2Act(a).owner_;
+            pawn = new M2Own(o).pawn_;
+            pv = ((pawn != 0u) ? new M2Pawn(pawn).unk128.P : new M2Own(o).pos.P);
+            if ((new M2Own(o).unk11D8 > 0.100000001f))
+            {
+                ok = 1;
+            }
+            else
+            {
+                if ((((new M2Act(a).flags & (uint)(3145728)) != 0u) && (new M2Own(o).unk1450 != 0)))
+                {
+                    t = new M2Own(o).unk1454.unk23C;
+                    new M2Own(o).unk1454.unk23C_Set(0);
+                    ok = ((t == 0) ? 1 : 0);
+                }
+                else
+                {
+                    if (!((new M2Own(o).unk6AC & (uint)(8192)) != 0u))
+                    {
+                        ok = 1;
+                    }
+                    else
+                    {
+                        if ((new M2Own(o).unk11B4 != 0))
+                        {
+                            ok = 1;
+                        }
+                        else
+                        {
+                            ok = (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0) ? 1 : 0);
+                        }
+                    }
+                }
+            }
+            if ((ok != 0))
+            {
+                Actor_DispatchEvent(a, s, 2);
+                Player_StopLoopSound1(o);
+                Player_StopLoopSound2(o);
+                func_0025DE74(1940, pv, (int)(pv), (-1));
+                func_002748E0((s + 296u), ((float)(Mem.S32(0x800CF518u)) * 0.0174532942f), 0.400000006f);
+                return;
+            }
+            func_002748E0((s + 296u), ((float)(Mem.S32(0x800CF518u)) * 0.0174532942f), 0.400000006f);
+            tm = (new M2St(s).unk64 - Mem.F32(0x800D2988u));
+            new M2St(s).unk64_Set(tm);
+            if ((tm <= 0.0f))
+            {
+                new M2St(s).unk64_Set((tm + 1.125f));
+                if (((new M2Own(o).unk1450 == 0) && (Mem.S32(0x801450B8u) == 1)))
+                {
+                    Weapon_FireShot(new M2Act(a).owner_, (uint)(1017), default(uint), default(uint));
+                }
+                else
+                {
+                    Weapon_FireShot(new M2Act(a).owner_, (uint)(1227), default(uint), default(uint));
+                }
+            }
+        }
+    }
+
+    // ==== func_00230D94 @ 0x00230D94 [C]
+    public static void Weapon_UpdateMinigun(uint a, uint s)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00230D94", (uint)a, (uint)s);
+            uint o = 0u;
+            uint sub = 0u;
+            float v = 0f;
+            int ok = 0;
+            int t = 0;
+            o = new M2Act(a).owner_;
+            if (((int)(new M2St(s).unk34) != 4))
+            {
+                new M2St(s).unk128_Set(func_00274810(new M2St(s).unk128, 0.0136135686f));
+            }
+            new M2St(s).unk124_Set((new M2St(s).unk124 + (2.0f * (new M2St(s).unk128 * Mem.F32(0x800D2988u)))));
+            v = new M2St(s).unk128;
+            sub = new M2Own(o).unk698_;
+            if ((v < 0.0f))
+            {
+                if ((1.0f < ((-v) * 1.79049289f)))
+                {
+                    goto L_A;
+                }
+            }
+            else
+            {
+                if ((1.0f < (v * 1.79049289f)))
+                {
+                    goto L_A;
+                }
+            }
+            v = new M2St(s).unk128;
+            if ((v < 0.0f))
+            {
+                new M2Sub698(sub).unk168_Set(((-v) * 1.79049289f));
+            }
+            else
+            {
+                new M2Sub698(sub).unk168_Set((v * 1.79049289f));
+            }
+            goto L_done;
+            L_A: ;
+            new M2Sub698(sub).unk168_Set(1.0f);
+            L_done: ;
+            if (((new M2Own(o).unk6AC & (uint)(16384)) != 0u))
+            {
+                if ((new M2Own(o).unk11D8 > 0.0f))
+                {
+                    ok = 0;
+                }
+                else
+                {
+                    if ((new M2Own(o).unk1450 != 0))
+                    {
+                        ok = 1;
+                    }
+                    else
+                    {
+                        if (((int)(Mem.U8(0x801462D5u)) != 1))
+                        {
+                            ok = 1;
+                        }
+                        else
+                        {
+                            t = (int)(Profile_HasAltFire((0x80102B00u + (uint)(new M2Own(o).unk5D4 * 400)), (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint)));
+                            if ((t == 0))
+                            {
+                                func_0025DF54(3405);
+                                if ((new M2Own(o).pawn_ != 0u))
+                                {
+                                    Hud_SpawnTextLineA(0x80145088u, new M2Own(o).pawn_, (uint)(Mem.S32(0x800D70E8u)), Player_GetIndex(0x80145040u, (int)(o)), 1.0f);
+                                }
+                            }
+                            ok = t;
+                        }
+                    }
+                }
+                if (((ok != 0) && ((int)(new M2Own(o).unk5F6) > 0)))
+                {
+                    if (!((new M2Own(o).unk122C & (uint)(99328)) != 0u))
+                    {
+                        func_0025DF54(1980);
+                    }
+                    new M2Own(o).unk122C_Set((new M2Own(o).unk122C | (uint)(99328)));
+                    new M2Own(o).unk1230_Set(25.0f);
+                }
+            }
+        }
+    }
+
+    // ==== func_00230FCC @ 0x00230FCC [C]
+    public static void Weapon_UpdateIdleEmaciator(uint a, uint s)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00230FCC", (uint)a, (uint)s);
+            uint o = 0u;
+            int yy = 0;
+            int xx = 0;
+            int kind = 0;
+            int ok = 0;
+            int ok2 = 0;
+            int t = 0;
+            int t2 = 0;
+            o = new M2Act(a).owner_;
+            kind = (int)(new M2Row18((0x800CE8DCu + (uint)(new M2Own(o).unk650 * 24))).unk0);
+            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+            {
+                if ((new M2St(s).unk13C == 2))
+                {
+                    new M2St(s).unk13C_Set(1);
+                    if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) != 0))
+                    {
+                        goto L_b6;
+                    }
+                }
+                new M2Own(o).unk770_Set((short)(Player_PickFallbackWeapon(o)));
+                return;
+            }
+            L_b6: ;
+            if (((new M2Own(o).unk6B0 & (uint)(16384)) != 0u))
+            {
+                if ((new M2Own(o).unk11D8 > 0.0f))
+                {
+                    ok = 0;
+                }
+                else
+                {
+                    if ((new M2Own(o).unk1450 != 0))
+                    {
+                        ok = 1;
+                    }
+                    else
+                    {
+                        if (((int)(Mem.U8(0x801462D5u)) != 1))
+                        {
+                            ok = 1;
+                        }
+                        else
+                        {
+                            t = (int)(Profile_HasAltFire((0x80102B00u + (uint)(new M2Own(o).unk5D4 * 400)), (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint)));
+                            if ((t == 0))
+                            {
+                                func_0025DF54(3405);
+                                if ((new M2Own(o).pawn_ != 0u))
+                                {
+                                    yy = Player_GetIndex(0x80145040u, (int)(o));
+                                    xx = Mem.S32(0x800D70E8u);
+                                    Hud_SpawnTextLineA(0x80145088u, new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C8040u));
+                                }
+                            }
+                            ok = t;
+                        }
+                    }
+                }
+                if ((ok != 0))
+                {
+                    if ((new M2St(s).unk13C != 1))
+                    {
+                        new M2St(s).unk13C_Set(1);
+                    }
+                    else
+                    {
+                        if ((new M2Own(o).unk11D8 > 0.0f))
+                        {
+                            ok2 = 0;
+                        }
+                        else
+                        {
+                            if ((new M2Own(o).unk1450 != 0))
+                            {
+                                ok2 = 1;
+                            }
+                            else
+                            {
+                                if (((int)(Mem.U8(0x801462D5u)) != 1))
+                                {
+                                    ok2 = 1;
+                                }
+                                else
+                                {
+                                    t2 = (int)(Profile_HasAltFire((0x80102B00u + (uint)(new M2Own(o).unk5D4 * 400)), (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint)));
+                                    if ((t2 == 0))
+                                    {
+                                        func_0025DF54(3405);
+                                        if ((new M2Own(o).pawn_ != 0u))
+                                        {
+                                            yy = Player_GetIndex(0x80145040u, (int)(o));
+                                            xx = Mem.S32(0x800D70E8u);
+                                            Hud_SpawnTextLineA(0x80145088u, new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C8044u));
+                                        }
+                                    }
+                                    ok2 = t2;
+                                }
+                            }
+                        }
+                        if ((ok2 != 0))
+                        {
+                            new M2St(s).unk13C_Set(2);
+                            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) != 0))
+                            {
+                                goto L_b6c;
+                            }
+                            func_0025DF54(3405);
+                            if ((new M2Own(o).pawn_ != 0u))
+                            {
+                                yy = Player_GetIndex(0x80145040u, (int)(o));
+                                xx = Mem.S32(0x800D70E8u);
+                                Hud_SpawnTextLineA((0x80145040u + (uint)72), new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C8048u));
+                            }
+                        }
+                        new M2St(s).unk13C_Set(1);
+                    }
+                }
+            }
+            L_b6c: ;
+            if ((Weapon_TryFire(a, s) == 0))
+            {
+                if (!((new M2Act(a).flags & (uint)(1024)) != 0u))
+                {
+                    Actor_DispatchEvent(a, s, kind);
+                }
+            }
+        }
+    }
+
+    // ==== func_002312B8 @ 0x002312B8 [C]
+    public static void Weapon_UpdateEmaciatorFire(uint a, uint s)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002312B8", (uint)a, (uint)s);
+            uint o = 0u;
+            uint pv = 0u;
+            int ok = 0;
+            int t = 0;
+            uint pawn = 0u;
+            o = new M2Act(a).owner_;
+            pawn = new M2Own(o).pawn_;
+            pv = ((pawn != 0u) ? new M2Pawn(pawn).unk128.P : new M2Own(o).pos.P);
+            if ((new M2Own(o).unk11D8 > 0.100000001f))
+            {
+                ok = 1;
+            }
+            else
+            {
+                if ((((new M2Act(a).flags & (uint)(3145728)) != 0u) && (new M2Own(o).unk1450 != 0)))
+                {
+                    t = new M2Own(o).unk1454.unk23C;
+                    new M2Own(o).unk1454.unk23C_Set(0);
+                    ok = ((t == 0) ? 1 : 0);
+                }
+                else
+                {
+                    if (!((new M2Own(o).unk6AC & (uint)(8192)) != 0u))
+                    {
+                        ok = 1;
+                    }
+                    else
+                    {
+                        if ((new M2Own(o).unk11B4 != 0))
+                        {
+                            ok = 1;
+                        }
+                        else
+                        {
+                            ok = (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0) ? 1 : 0);
+                        }
+                    }
+                }
+            }
+            if ((ok != 0))
+            {
+                Actor_DispatchEvent(a, s, 2);
+                Player_StopLoopSound1(o);
+                Player_StopLoopSound2(o);
+                func_0025DE74(2424, pv, (int)(pv), (-1));
+                return;
+            }
+            func_002748E0((s + 296u), ((float)(Mem.S32(0x800CF5BCu)) * 0.0174532942f), 0.400000006f);
+            new M2St(s).unk64_Set((new M2St(s).unk64 - Mem.F32(0x800D2988u)));
+            if ((new M2St(s).unk64 <= 0.0f))
+            {
+                new M2St(s).unk64_Set(2.5f);
+                if (((new M2Own(o).unk1450 == 0) && (Mem.S32(0x801450B8u) == 1)))
+                {
+                    Weapon_FireShot(new M2Act(a).owner_, (uint)(1019), default(uint), default(uint));
+                }
+                else
+                {
+                    Weapon_FireShot(new M2Act(a).owner_, (uint)(1229), default(uint), default(uint));
+                }
+            }
+        }
+    }
+
+    // ==== func_00231464 @ 0x00231464 [C]
+    public static void Weapon_UpdateEmaciator(uint actor, uint state)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00231464", (uint)actor, (uint)state);
+            uint owner = new Actor(actor).owner_;
+            uint p = 0u;
+            float t = 0f;
+            float y = 0f;
+            if (((int)(Mem.S8((state + (uint)52))) != 4))
+            {
+                if ((Mem.F32((state + (uint)296)) > (float)(0)))
+                {
+                    Mem.Set((state + (uint)296), func_00274810(Mem.F32((state + (uint)296)), 0.0136135686f));
+                }
+                else
+                {
+                    y = Mem.F32((state + (uint)292));
+                    Mem.Set((state + (uint)296), (float)(0));
+                    while ((y >= 6.28318548f))
+                    {
+                        y = (y - 6.28318548f);
+                        Mem.Set((state + (uint)292), y);
+                    }
+                    if ((Mem.F32((state + (uint)292)) < 1.04719758f))
+                    {
+                        func_002748E0((state + (uint)292), 0.0f, 0.125f);
+                    }
+                    else
+                    {
+                        if ((Mem.F32((state + (uint)292)) < 3.14159274f))
+                        {
+                            func_002748E0((state + (uint)292), 2.09439516f, 0.125f);
+                        }
+                        else
+                        {
+                            if ((Mem.F32((state + (uint)292)) < 5.23598766f))
+                            {
+                                func_002748E0((state + (uint)292), 4.18879032f, 0.125f);
+                            }
+                            else
+                            {
+                                func_002748E0((state + (uint)292), 6.28318548f, 0.125f);
+                            }
+                        }
+                    }
+                }
+            }
+            t = (Mem.F32((state + (uint)296)) * Mem.F32(0x800D2988u));
+            Mem.Set((state + (uint)292), (Mem.F32((state + (uint)292)) + (t + t)));
+            p = Mem.U32((owner + (uint)1688));
+            if ((Mem.F32((state + (uint)296)) < (float)(0)))
+            {
+                if ((1.0f < ((-Mem.F32((state + (uint)296))) * 1.79049289f)))
+                {
+                    goto L_big;
+                }
+            }
+            else
+            {
+                if ((1.0f < (Mem.F32((state + (uint)296)) * 1.79049289f)))
+                {
+                    goto L_big;
+                }
+            }
+            if ((Mem.F32((state + (uint)296)) < (float)(0)))
+            {
+                Mem.Set((p + (uint)360), ((-Mem.F32((state + (uint)296))) * 1.79049289f));
+            }
+            else
+            {
+                Mem.Set((p + (uint)360), (Mem.F32((state + (uint)296)) * 1.79049289f));
+            }
+            return;
+            L_big: ;
+            Mem.Set((p + (uint)360), 1.0f);
+        }
+    }
+
+    // ==== func_00231654 @ 0x00231654 [C]
+    public static void Weapon_UpdateIdleBoomerang(uint a, uint s)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00231654", (uint)a, (uint)s);
+            int yy = 0;
+            int xx = 0;
+            uint o = 0u;
+            int kind = 0;
+            int ok = 0;
+            int t = 0;
+            o = new M2Act(a).owner_;
+            kind = (int)(new M2Row18((0x800CE8DCu + (uint)(new M2Own(o).unk650 * 24))).unk0);
+            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+            {
+                if ((new M2St(s).unk13C == 2))
+                {
+                    new M2St(s).unk13C_Set(1);
+                    if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) != 0))
+                    {
+                        goto L_b6;
+                    }
+                }
+                new M2Own(o).unk770_Set((short)(Player_PickFallbackWeapon(o)));
+                return;
+            }
+            L_b6: ;
+            if (((new M2Own(o).unk6B0 & (uint)(16384)) != 0u))
+            {
+                if ((new M2Own(o).unk11D8 > 0.0f))
+                {
+                    ok = 0;
+                }
+                else
+                {
+                    if ((new M2Own(o).unk1450 != 0))
+                    {
+                        ok = 1;
+                    }
+                    else
+                    {
+                        if (((int)(Mem.U8(0x801462D5u)) != 1))
+                        {
+                            ok = 1;
+                        }
+                        else
+                        {
+                            t = (int)(Profile_HasAltFire((0x80102B00u + (uint)(new M2Own(o).unk5D4 * 400)), (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint)));
+                            if ((t == 0))
+                            {
+                                func_0025DF54(3405);
+                                if ((new M2Own(o).pawn_ != 0u))
+                                {
+                                    yy = Player_GetIndex(0x80145040u, (int)(o));
+                                    xx = Mem.S32(0x800D70E8u);
+                                    Hud_SpawnTextLineA(0x80145088u, new M2Own(o).pawn_, (uint)(xx), yy, 1.0f);
+                                }
+                            }
+                            ok = t;
+                        }
+                    }
+                }
+                if (((ok != 0) && (new M2St(s).unk144 > 0)))
+                {
+                    if ((new M2St(s).unk13C == 1))
+                    {
+                        new M2St(s).unk13C_Set(2);
+                        if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) != 0))
+                        {
+                            new M2St(s).unk144_Set(1);
+                        }
+                        else
+                        {
+                            func_0025DF54(3405);
+                            if ((new M2Own(o).pawn_ != 0u))
+                            {
+                                yy = Player_GetIndex(0x80145040u, (int)(o));
+                                xx = Mem.S32(0x800D70E8u);
+                                Hud_SpawnTextLineA((0x80145040u + (uint)72), new M2Own(o).pawn_, (uint)(xx), yy, 1.0f);
+                            }
+                            new M2St(s).unk13C_Set(1);
+                        }
+                    }
+                    else
+                    {
+                        new M2St(s).unk13C_Set(1);
+                        new M2St(s).unk144_Set(1);
+                    }
+                }
+            }
+            if ((new M2St(s).unk13C == 1))
+            {
+                if ((1.0f < new M2Own(o).unk11F4))
+                {
+                    new M2Own(o).unk11F4_Set((new M2Own(o).unk11F4 - 0.5f));
+                }
+                if ((new M2Own(o).unk11F4 < 1.0f))
+                {
+                    new M2Own(o).unk11F4_Set(1.0f);
+                }
+            }
+            else
+            {
+                if ((new M2St(s).unk13C == 2))
+                {
+                    if ((new M2Own(o).unk11F4 < 2.0f))
+                    {
+                        new M2Own(o).unk11F4_Set((new M2Own(o).unk11F4 + 0.0500000007f));
+                    }
+                    if ((2.0f < new M2Own(o).unk11F4))
+                    {
+                        new M2Own(o).unk11F4_Set(2.0f);
+                    }
+                }
+            }
+            new M2Own(o).unk11F8_Set(((new M2Own(o).unk11F8 + (int)(new M2Own(o).unk11F4)) % 8));
+            if ((Weapon_TryFire(a, s) == 0))
+            {
+                if (!((new M2Act(a).flags & (uint)(1024)) != 0u))
+                {
+                    Actor_DispatchEvent(a, s, kind);
+                }
+            }
+        }
+    }
+
+    // ==== func_0023195C @ 0x0023195C [C]
+    public static void Weapon_UpdateIdleMag60(uint actor, uint state)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0023195C", (uint)actor, (uint)state);
+            int xx = 0;
+            uint owner = new Actor(actor).owner_;
+            int kind = (int)(new B07Row24((0x800CE8DCu + (uint)(Mem.S16((owner + (uint)1616)) * 24))).unk0);
+            int ok = 0;
+            int res = 0;
+            int v = 0;
+            uint g = 0u;
+            Mem.Set((state + (uint)316), 1);
+            if (((int)(Weapon_HasAmmoForShot(owner, (uint)((int)(Mem.S16((owner + (uint)1582)))), default(uint), default(uint))) == 0))
+            {
+                Mem.Set((owner + (uint)1904), (short)(Player_PickFallbackWeapon(owner)));
+                return;
+            }
+            if (((Mem.U32((owner + (uint)1708)) & (uint)(16384)) != 0u))
+            {
+                if ((Mem.F32((owner + (uint)4568)) > (float)(0)))
+                {
+                    ok = 0;
+                }
+                else
+                {
+                    if ((new Actor(owner).unk1450 != 0))
+                    {
+                        ok = 1;
+                    }
+                    else
+                    {
+                        if (((int)(Mem.U8((0x801462D5u + (uint)0))) != 1))
+                        {
+                            ok = 1;
+                        }
+                        else
+                        {
+                            res = (int)(Profile_HasAltFire((0x80102B00u + (uint)(new Actor(owner).unk5D4 * 400)), (uint)((int)(Mem.S16((owner + (uint)1582)))), default(uint), default(uint)));
+                            if ((res == 0))
+                            {
+                                func_0025DF54(3405);
+                                if ((Mem.U32((owner + (uint)1500)) != 0u))
+                                {
+                                    v = Player_GetIndex(0x80145040u, (int)(owner));
+                                    xx = Mem.S32(0x800D70E8u);
+                                    Hud_SpawnTextLineA(0x80145088u, Mem.U32((owner + (uint)1500)), (uint)(xx), v, Mem.F32(0x800C80A0u));
+                                }
+                            }
+                            ok = res;
+                        }
+                    }
+                }
+                if ((ok != 0))
+                {
+                    if ((new Actor(owner).unk5E4 != 0))
+                    {
+                        if (((int)(Mem.S16((owner + (uint)1524))) >= 25))
+                        {
+                            func_0025DE74((int)((uint)(1070)), C.Tmp(Cpu.F2U(Mem.F32((owner + (uint)8))), Cpu.F2U(Mem.F32((owner + (uint)12))), Cpu.F2U(Mem.F32((owner + (uint)16)))), (int)((owner + (uint)8)), (int)((uint)((-1))));
+                            Actor_DispatchEvent(actor, state, 11);
+                            return;
+                        }
+                        if (((Mem.U32((owner + (uint)1712)) & (uint)(16384)) != 0u))
+                        {
+                            func_0025DF54(3405);
+                            if ((Mem.U32((owner + (uint)1500)) != 0u))
+                            {
+                                g = 0x80145040u;
+                                v = Player_GetIndex(g, (int)(owner));
+                                xx = Mem.S32(0x800D70E8u);
+                                Hud_SpawnTextLineA((g + (uint)72), Mem.U32((owner + (uint)1500)), (uint)(xx), v, Mem.F32(0x800C80A4u));
+                            }
+                        }
+                        return;
+                    }
+                }
+            }
+            if (((Weapon_TryFire(actor, state) == 0) && !((new Actor(actor).flags & (uint)(1024)) != 0u)))
+            {
+                Actor_DispatchEvent(actor, state, kind);
+            }
+        }
+    }
+
+    // ==== func_00231BA0 @ 0x00231BA0 [C]
+    public static void Weapon_UpdateIdleGrenades(uint a, uint s)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00231BA0", (uint)a, (uint)s);
+            uint o = 0u;
+            int kind = 0;
+            int ok = 0;
+            int t = 0;
+            o = new M2Act(a).owner_;
+            kind = (int)(new M2Row18((0x800CE8DCu + (uint)(new M2Own(o).unk650 * 24))).unk0);
+            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+            {
+                new M2Own(o).unk770_Set((short)(Player_PickFallbackWeapon(o)));
+                return;
+            }
+            if (((new M2Own(o).unk6B0 & (uint)(16384)) != 0u))
+            {
+                if ((new M2Own(o).unk11D8 > 0.0f))
+                {
+                    ok = 0;
+                }
+                else
+                {
+                    if ((new M2Own(o).unk1450 != 0))
+                    {
+                        ok = 1;
+                    }
+                    else
+                    {
+                        if (((int)(Mem.U8(0x801462D5u)) != 1))
+                        {
+                            ok = 1;
+                        }
+                        else
+                        {
+                            t = (int)(Profile_HasAltFire((0x80102B00u + (uint)(new M2Own(o).unk5D4 * 400)), (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint)));
+                            if ((t == 0))
+                            {
+                                func_0025DF54(3405);
+                                if ((new M2Own(o).pawn_ != 0u))
+                                {
+                                    Hud_SpawnTextLineA(0x80145088u, new M2Own(o).pawn_, (uint)(Mem.S32(0x800D70E8u)), Player_GetIndex(0x80145040u, (int)(o)), 1.0f);
+                                }
+                            }
+                            ok = t;
+                        }
+                    }
+                }
+                if ((ok != 0))
+                {
+                    Actor_DispatchEvent(a, s, 8);
+                    return;
+                }
+            }
+            if (((Weapon_TryFire(a, s) == 0) && !((new M2Act(a).flags & (uint)(1024)) != 0u)))
+            {
+                Actor_DispatchEvent(a, s, kind);
+            }
+        }
+    }
+
+    // ==== func_00231D38 @ 0x00231D38 [C]
+    public static void Weapon_UpdateIdleShotgun(uint actor, uint state)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00231D38", (uint)actor, (uint)state);
+            uint owner = new Actor(actor).owner_;
+            int kind = (int)(new B07Row24((0x800CE8DCu + (uint)(Mem.S16((owner + (uint)1616)) * 24))).unk0);
+            int ok = 0;
+            int res = 0;
+            int v = 0;
+            int xx = 0;
+            uint g = 0u;
+            int nxt = 0;
+            if (((int)(Weapon_HasAmmoForShot(owner, (uint)((int)(Mem.S16((owner + (uint)1582)))), default(uint), default(uint))) == 0))
+            {
+                Mem.Set((owner + (uint)1904), (short)(Player_PickFallbackWeapon(owner)));
+            }
+            do
+            {
+                if (((Mem.U32((owner + (uint)1712)) & (uint)(16384)) != 0u))
+                {
+                    if ((Mem.F32((owner + (uint)4568)) > (float)(0)))
+                    {
+                        ok = 0;
+                    }
+                    else
+                    {
+                        if ((new Actor(owner).unk1450 != 0))
+                        {
+                            ok = 1;
+                        }
+                        else
+                        {
+                            if (((int)(Mem.U8((0x801462D5u + (uint)0))) != 1))
+                            {
+                                ok = 1;
+                            }
+                            else
+                            {
+                                res = (int)(Profile_HasAltFire((0x80102B00u + (uint)(new Actor(owner).unk5D4 * 400)), (uint)((int)(Mem.S16((owner + (uint)1582)))), default(uint), default(uint)));
+                                if ((res == 0))
+                                {
+                                    func_0025DF54(3405);
+                                    if ((Mem.U32((owner + (uint)1500)) != 0u))
+                                    {
+                                        v = Player_GetIndex(0x80145040u, (int)(owner));
+                                        xx = Mem.S32(0x800D70E8u);
+                                        Hud_SpawnTextLineA(0x80145088u, Mem.U32((owner + (uint)1500)), (uint)(xx), v, Mem.F32(0x800C80ACu));
+                                    }
+                                }
+                                ok = res;
+                            }
+                        }
+                    }
+                    if ((ok != 0))
+                    {
+                        if ((Mem.S32((state + (uint)316)) == 1))
+                        {
+                            if (((int)(Mem.S16((owner + (uint)1524))) < 48))
+                            {
+                                if (((int)(Mem.S16((owner + (uint)1582))) == 4))
+                                {
+                                    goto L_special;
+                                }
+                            }
+                            Actor_DispatchEvent(actor, state, 5);
+                            nxt = 2;
+                            goto L_set13c;
+                            L_special: ;
+                            func_0025DF54(3405);
+                            if ((Mem.U32((owner + (uint)1500)) != 0u))
+                            {
+                                g = 0x80145040u;
+                                v = Player_GetIndex(g, (int)(owner));
+                                xx = Mem.S32(0x800D70E8u);
+                                Hud_SpawnTextLineA((g + (uint)72), Mem.U32((owner + (uint)1500)), (uint)(xx), v, Mem.F32(0x800C80B0u));
+                            }
+                            return;
+                        }
+                    }
+                }
+            }
+            while ((0 != 0));
+            if ((Weapon_TryFire(actor, state) != 0))
+            {
+                nxt = 1;
+                goto L_set13c;
+            }
+            if (!((new Actor(actor).flags & (uint)(1024)) != 0u))
+            {
+                Actor_DispatchEvent(actor, state, kind);
+            }
+            return;
+            L_set13c: ;
+            Mem.Set((state + (uint)316), nxt);
+        }
+    }
+
+    // ==== func_00231F5C @ 0x00231F5C [C]
+    public static void Weapon_UpdateIdleChestBurster(uint a, uint s)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00231F5C", (uint)a, (uint)s);
+            uint o = 0u;
+            int yy = 0;
+            int xx = 0;
+            uint pawn = 0u;
+            uint pv = 0u;
+            int kind = 0;
+            int ok = 0;
+            int t = 0;
+            int st = 0;
+            o = new M2Act(a).owner_;
+            kind = (int)(new M2Row18((0x800CE8DCu + (uint)(new M2Own(o).unk650 * 24))).unk0);
+            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+            {
+                new M2Own(o).unk770_Set((short)(Player_PickFallbackWeapon(o)));
+            }
+            pawn = new M2Own(o).pawn_;
+            pv = ((pawn != 0u) ? new M2Pawn(pawn).unk128.P : new M2Own(o).pos.P);
+            if (((new M2Own(o).unk6B0 & (uint)(16384)) != 0u))
+            {
+                if ((new M2Own(o).unk11D8 > 0.0f))
+                {
+                    ok = 0;
+                }
+                else
+                {
+                    if ((new M2Own(o).unk1450 != 0))
+                    {
+                        ok = 1;
+                    }
+                    else
+                    {
+                        if (((int)(Mem.U8(0x801462D5u)) != 1))
+                        {
+                            ok = 1;
+                        }
+                        else
+                        {
+                            t = (int)(Profile_HasAltFire((0x80102B00u + (uint)(new M2Own(o).unk5D4 * 400)), (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint)));
+                            if ((t == 0))
+                            {
+                                func_0025DF54(3405);
+                                if ((new M2Own(o).pawn_ != 0u))
+                                {
+                                    yy = Player_GetIndex(0x80145040u, (int)(o));
+                                    xx = Mem.S32(0x800D70E8u);
+                                    Hud_SpawnTextLineA(0x80145088u, new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C80B4u));
+                                }
+                            }
+                            ok = t;
+                        }
+                    }
+                }
+                if ((ok != 0))
+                {
+                    st = new M2St(s).unk13C;
+                    if ((st == 1))
+                    {
+                        new M2St(s).unk13C_Set(2);
+                        if (((int)(new M2Own(o).unk5F6) >= 50))
+                        {
+                            func_0025DE74(2851, pv, (int)(pv), (int)(o));
+                            Actor_DispatchEvent(a, s, 5);
+                            return;
+                        }
+                        func_0025DF54(3405);
+                        if ((new M2Own(o).pawn_ != 0u))
+                        {
+                            yy = Player_GetIndex(0x80145040u, (int)(o));
+                            xx = Mem.S32(0x800D70E8u);
+                            Hud_SpawnTextLineA((0x80145040u + (uint)72), new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C80B8u));
+                        }
+                        new M2St(s).unk13C_Set(st);
+                        return;
+                    }
+                }
+            }
+            if ((Weapon_TryFire(a, s) == 0))
+            {
+                if (!((new M2Act(a).flags & (uint)(1024)) != 0u))
+                {
+                    Actor_DispatchEvent(a, s, kind);
+                }
+            }
+            else
+            {
+                new M2St(s).unk13C_Set(1);
+                new M2St(s).unk124_Set((float)(0));
+            }
+        }
+    }
+
+    // ==== func_002321B8 @ 0x002321B8 [C]
+    public static void Weapon_UpdateIdleScorpion(uint actor, uint state)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002321B8", (uint)actor, (uint)state);
+            uint st = state;
+            uint owner = new Actor(actor).owner_;
+            int kind = (int)(new B07Row24((0x800CE8DCu + (uint)(Mem.S16((owner + (uint)1616)) * 24))).unk0);
+            int ok = 0;
+            int v = 0;
+            int res = 0;
+            if (((int)(Weapon_HasAmmoForShot(owner, (uint)((int)(Mem.S16((owner + (uint)1582)))), default(uint), default(uint))) == 0))
+            {
+                Mem.Set((owner + (uint)1904), (short)(Player_PickFallbackWeapon(owner)));
+            }
+            if (((Mem.U32((owner + (uint)1708)) & (uint)(16384)) != 0u))
+            {
+                if ((Mem.F32((owner + (uint)4568)) > (float)(0)))
+                {
+                    ok = 0;
+                }
+                else
+                {
+                    if ((new Actor(owner).unk1450 != 0))
+                    {
+                        ok = 1;
+                    }
+                    else
+                    {
+                        if (((int)(Mem.U8((0x801462D5u + (uint)0))) != 1))
+                        {
+                            ok = 1;
+                        }
+                        else
+                        {
+                            res = (int)(Profile_HasAltFire((0x80102B00u + (uint)(new Actor(owner).unk5D4 * 400)), (uint)((int)(Mem.S16((owner + (uint)1582)))), default(uint), default(uint)));
+                            do
+                            {
+                                if ((res == 0))
+                                {
+                                    func_0025DF54(3405);
+                                    if ((Mem.U32((owner + (uint)1500)) != 0u))
+                                    {
+                                        v = Player_GetIndex(0x80145040u, (int)(owner));
+                                        Hud_SpawnTextLineA(0x80145088u, Mem.U32((owner + (uint)1500)), (uint)(Mem.S32(0x800D70E8u)), v, Mem.F32(0x800C80BCu));
+                                    }
+                                }
+                            }
+                            while ((0 != 0));
+                            ok = res;
+                        }
+                    }
+                }
+                if ((ok != 0))
+                {
+                    Mem.Set((st + (uint)332), 1);
+                    if (((Mem.U32((owner + (uint)1712)) & (uint)(8192)) != 0u))
+                    {
+                        Player_PlaceAttractMarker(owner, (uint)(0), default(uint), default(uint));
+                        Mem.Set((st + (uint)336), 1);
+                    }
+                    goto L_check;
+                }
+            }
+            if ((Mem.S32((st + (uint)332)) != 0))
+            {
+                if ((Mem.S32((st + (uint)336)) == 0))
+                {
+                    Player_PlaceAttractMarker(owner, (uint)(1), default(uint), default(uint));
+                    Mem.Set((st + (uint)332), 0);
+                }
+                else
+                {
+                    Mem.Set((st + (uint)336), 0);
+                    Mem.Set((st + (uint)332), 0);
+                }
+            }
+            L_check: ;
+            if (((Weapon_TryFire(actor, st) == 0) && !((new Actor(actor).flags & (uint)(1024)) != 0u)))
+            {
+                Actor_DispatchEvent(actor, st, kind);
+            }
+        }
+    }
+
+    // ==== func_00232394 @ 0x00232394 [MIPS]
+    public static uint Weapon_UpdateAltFire(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00232394", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_00232394: ;
+                r29 = r29 - 48u;
+                Mem.Set((r29 + 36u), r19);
+                r19 = r4;
+                Mem.Set((r29 + 32u), r18);
+                r18 = r5;
+                Mem.Set((r29 + 40u), r31);
+                Mem.Set((r29 + 28u), r17);
+                Mem.Set((r29 + 24u), r16);
+                r2 = (uint)(int)Mem.S8((r18 + 203u));
+                r16 = Mem.U32((r19 + 472u));
+                { bool c_ = r2 == 0; r2 = (uint)4; if (c_) goto L_L002325B4; }
+                r3 = (uint)(int)Mem.S16((r16 + 1582u));
+                { bool c_ = r3 == r2; r2 = (uint)14; if (c_) goto L_L00232440; }
+                { bool c_ = r3 == r2; r2 = (uint)15; if (c_) goto L_L00232440; }
+                { bool c_ = r3 == r2; r2 = (uint)10; if (c_) goto L_L00232440; }
+                { bool c_ = r3 != r2; r2 = (uint)3; if (c_) goto L_L0023240C; }
+                r2 = Mem.U32((r16 + 1708u));
+                r2 = r2 & 16384u;
+                { bool c_ = r2 == 0; r2 = r0; if (c_) goto L_L00232450; }
+                r2 = (uint)(int)Mem.S16((r16 + 1528u));
+                { bool c_ = r2 == 0; r2 = (uint)1; if (c_) goto L_L00232440; }
+                 goto L_L00232450;
+                L_L0023240C: ;
+                { bool c_ = r3 != r2; r4 = r19; if (c_) goto L_L00232448; }
+                r2 = Mem.U32((r16 + 1708u));
+                r3 = (uint)24576;
+                r2 = r2 & 24576u;
+                { bool c_ = r2 != r3; r2 = r0; if (c_) goto L_L00232450; }
+                r2 = (uint)(int)Mem.S16((r16 + 1524u));
+                { bool c_ = r2 == 0; r2 = r0; if (c_) goto L_L00232450; }
+                r2 = (uint)(int)Mem.S16((r16 + 1526u));
+                { bool c_ = r2 != 0; r2 = (uint)1; if (c_) goto L_L00232450; }
+                L_L00232440: ;
+                r2 = r0; goto L_L00232450;
+                L_L00232448: ;
+                r5 = r18; r2 = (uint)Weapon_TryFire(r4, r5);
+                L_L00232450: ;
+                { bool c_ = r2 == 0; r2 = (uint)-1; if (c_) goto L_L00232464; }
+                Mem.Set((r18 + 203u), (byte)r0);
+                Mem.Set((r18 + 53u), (byte)r2); goto L_L002325A8;
+                L_L00232464: ;
+                r3 = (uint)(int)Mem.S16((r16 + 1582u));
+                r2 = (uint)5;
+                { bool c_ = r3 != r2; r2 = (uint)3; if (c_) goto L_L002324A8; }
+                r4 = r16; Player_StopLoopSound2(r4);
+                r2 = r16 + 8u;
+                Mem.Set((r29 + 16u), r2);
+                r2 = (uint)-1;
+                Mem.Set((r29 + 20u), r2);
+                r5 = Mem.U32((r16 + 8u));
+                r6 = Mem.U32((r16 + 12u));
+                r7 = Mem.U32((r16 + 16u));
+                r4 = (uint)1120; { uint s1_ = Stack.Alloc(12); Mem.Set(s1_ + 0u, r5); Mem.Set(s1_ + 4u, r6); Mem.Set(s1_ + 8u, r7); r2 = (uint)func_0025DE74((int)r4, s1_, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u)); Stack.Free(12); }
+                r3 = (uint)(int)Mem.S16((r16 + 1582u));
+                r2 = (uint)3;
+                L_L002324A8: ;
+                if (r3 != r2) { r4 = r19; goto L_L0023259C; }
+                Cpu.SetW(1, Mem.U32((r16 + 4568u)));
+                Cpu.SetW(0, r0);
+                fcc = Cpu.S(0) < Cpu.S(1);
+                { bool c_ = fcc; r2 = r0; if (c_) goto L_L00232568; }
+                r2 = Mem.U32((r16 + 5200u));
+                { bool c_ = r2 != 0; r2 = (uint)1; if (c_) goto L_L00232568; }
+                r3 = 2148794368u;
+                r3 = Mem.U8((r3 + 25301u));
+                { bool c_ = r3 != r2; r5 = (uint)3; if (c_) goto L_L00232568; }
+                r2 = Mem.U32((r16 + 1492u));
+                r4 = r2 << 1;
+                r4 = r4 + r2;
+                r4 = r4 << (int)(r5 & 31);
+                r4 = r4 + r2;
+                r4 = r4 << 4;
+                r2 = 2148532224u;
+                r2 = r2 + 11008u;
+                r4 = r4 + r2; r2 = Profile_HasAltFire(r4, r5, r6, r7); r3 = Cpu.V1;
+                r17 = r2;
+                { bool c_ = r17 != 0; r2 = r17; if (c_) goto L_L00232568; }
+                r4 = (uint)3405; r2 = (uint)func_0025DF54((int)r4);
+                r2 = Mem.U32((r16 + 1500u));
+                { bool c_ = r2 == 0; r2 = r17; if (c_) goto L_L00232568; }
+                r4 = 2148794368u;
+                r4 = r4 + 20544u;
+                r5 = r16; r2 = (uint)Player_GetIndex(r4, (int)r5);
+                r6 = 2148335616u;
+                r6 = Mem.U32((r6 + 28904u));
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 32576u)));
+                r4 = 2148794368u;
+                r4 = r4 + 20616u;
+                Mem.Set((r29 + 16u), Cpu.W(0));
+                r5 = Mem.U32((r16 + 1500u));
+                r7 = r2; r2 = func_002398F8_rc(r4, r5, r6, r7, Mem.U32(r29 + 16u)); r3 = Cpu.V1;
+                r2 = r17;
+                L_L00232568: ;
+                { bool c_ = r2 == 0; r2 = (uint)2; if (c_) goto L_L00232598; }
+                r3 = Mem.U32((r16 + 1428u));
+                { bool c_ = r3 != r2; r4 = r19; if (c_) goto L_L0023259C; }
+                r5 = r18;
+                r6 = (uint)11; r2 = (uint)Actor_DispatchEvent(r4, r5, (int)r6);
+                r4 = r16; Player_EnterWeaponStance_0022B974(r4);
+                r2 = (uint)1; goto L_L002325AC;
+                L_L00232598: ;
+                r4 = r19;
+                L_L0023259C: ;
+                r5 = r18;
+                r6 = (uint)2; r2 = (uint)Actor_DispatchEvent(r4, r5, (int)r6);
+                L_L002325A8: ;
+                r2 = (uint)1;
+                L_L002325AC: ;
+                Mem.Set((r16 + 1928u), r2);
+                Mem.Set((r16 + 1932u), r0);
+                L_L002325B4: ;
+                r31 = Mem.U32((r29 + 40u));
+                r19 = Mem.U32((r29 + 36u));
+                r18 = Mem.U32((r29 + 32u));
+                r17 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r29 = r29 + 48u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00232394", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002325D0 @ 0x002325D0 [C]
+    public static void Weapon_DispatchEvent_002325D0(uint actor, uint state, int id)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002325D0", (uint)actor, (uint)state, (uint)id);
+            Actor_DispatchEvent(actor, state, id);
+        }
+    }
+
+    // ==== func_002325EC @ 0x002325EC [C]
+    public static void Weapon_EquipPending(uint actor, uint state)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002325EC", (uint)actor, (uint)state);
+            ushort nu = 0;
+            int cur = 0;
+            int nw = 0;
+            uint owner = new Actor(actor).owner_;
+            cur = (int)(Mem.S16((owner + (uint)1582)));
+            nu = Mem.U16((owner + (uint)1904));
+            nw = (int)((short)(nu));
+            if (!((cur == nw) && (Mem.S32(0x8011FE88u) == 4)))
+            {
+                if ((Weapon_UsesBullets(nw) != 0))
+                {
+                    Mem.Set((owner + (uint)5048), 1);
+                }
+                else
+                {
+                    if ((Weapon_UsesEnergyRounds(nw) != 0))
+                    {
+                        Mem.Set((owner + (uint)5052), 1);
+                    }
+                    else
+                    {
+                        if ((Weapon_UsesExplosiveRounds(nw) != 0))
+                        {
+                            Mem.Set((owner + (uint)5056), 1);
+                        }
+                    }
+                }
+                Mem.Set((owner + (uint)1582), nu);
+                Mem.Set((state + (uint)44), Mem.S32((Mem.U32((0x800D052Cu + (uint)((short)(nu) * 4))) + (uint)84)));
+                Mem.Set((state + (uint)288), Mem.S32((Mem.U32((0x800D052Cu + (uint)(Mem.S16((owner + (uint)1582)) * 4))) + (uint)88)));
+                if (((Mem.U32((owner + (uint)1500)) != 0u) && (Mem.U32(0x800D2980u) >= (uint)(5))))
+                {
+                    Hud_PostMessage(0x80145088u, Mem.U32((owner + (uint)1500)), (uint)(Mem.S32((Mem.U32((Mem.U32((0x800D052Cu + (uint)(Mem.S16((owner + (uint)1582)) * 4))) + (uint)0)) + (uint)0))));
+                }
+                Mem.Set((state + (uint)292), 0);
+                Mem.Set((state + (uint)296), 0);
+                Mem.Set((actor + (uint)1), (byte)(0));
+                Mem.Set((state + (uint)304), 0);
+            }
+        }
+    }
+
+    // ==== func_00232734 @ 0x00232734 [C]
+    public static void Weapon_FireShotForOwner(uint actor, int a1, int a2)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00232734", (uint)actor, (uint)a1, (uint)a2);
+            Weapon_FireShot(new Actor(actor).owner_, (uint)(a2), default(uint), default(uint));
+        }
+    }
+
+    // ==== func_00232754 @ 0x00232754 [C]
+    public static int Weapon_GetAmmoTypeName(int i)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00232754", (uint)i);
+            return Mem.S32(Mem.U32((0x800D0598u + (uint)(i * 4))));
+        }
+    }
+
+    // ==== func_00232770 @ 0x00232770 [C]
+    public static int Weapon_UsesBullets(int a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00232770", (uint)a);
+            if ((a < 7))
+            {
+                if ((a >= 3))
+                {
+                    return 1;
+                }
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_00232790 @ 0x00232790 [C]
+    public static int Weapon_UsesEnergyRounds(int x)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00232790", (uint)x);
+            switch (x)
+            {
+            case 2:
+            case 7:
+            case 8:
+            case 9:
+            case 13:
+            case 14:
+            case 15:
+                return 1;
+            default:
+                return 0;
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_002327C4 @ 0x002327C4 [C]
+    public static int Weapon_UsesExplosiveRounds(int x)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002327C4", (uint)x);
+            if ((x < 13))
+            {
+                if ((x >= 10))
+                {
+                    return 1;
+                }
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_002328C8 @ 0x002328C8 [C]
+    public static void Weapon_EnterAltFire(uint actor, uint state)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002328C8", (uint)actor, (uint)state);
+            uint owner = new Actor(actor).owner_;
+            Mem.Set((state + (uint)304), (Mem.F32((Mem.U32((0x800D052Cu + (uint)(Mem.S16((owner + (uint)1582)) * 4))) + (uint)24)) * Mem.F32(0x800C8104u)));
+            if ((((int)(Mem.S16((owner + (uint)1582))) == 5) && (new Actor(owner).unk11C0 == 0)))
+            {
+                Player_PlayLoopSound2(owner, 1130);
+            }
+        }
+    }
+
+    // ==== func_0023292C @ 0x0023292C [C]
+    public static void Weapon_DrawViewModel(uint actor, uint state, uint obj)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0023292C", (uint)actor, (uint)state, (uint)obj);
+            uint owner = new Actor(actor).owner_;
+            uint pawn = Mem.U32((owner + (uint)1500));
+            int id = (-1);
+            int w = 0;
+            if ((pawn != 0u))
+            {
+                if ((((int)(Mem.U8((0x801462E5u + (uint)0))) == 0) || (func_00442B98((pawn + (uint)1364)) == 0)))
+                {
+                    w = (int)(Mem.S16((owner + (uint)1582)));
+                    if (((w == 1) && (Mem.S32((state + (uint)324)) == 0)))
+                    {
+                        return;
+                    }
+                    if (((w >= 18) && (Player_GetWeaponAmmo(owner, w) <= 0)))
+                    {
+                        return;
+                    }
+                    if (((((int)(Mem.S16((owner + (uint)1582))) == 14) || ((int)(Mem.S16((owner + (uint)1582))) == 1)) || ((int)(Mem.S16((owner + (uint)1582))) == 0)))
+                    {
+                        id = Mem.S32((owner + (uint)4600));
+                    }
+                    Light_ShadeVertices((uint)(Mem.S32((obj + (uint)12))), Mem.S32((actor + (uint)180)), 1, (int)((actor + (uint)((Mem.S32(0x800D297Cu) * 24) + 320))), (uint)(0), id);
+                }
+            }
+        }
+    }
+
+    // ==== func_00232A38 @ 0x00232A38 [C]
+    public static void Weapon_Init(uint a0, uint state)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00232A38", (uint)a0, (uint)state);
+            float k = Mem.F32(0x800C8108u);
+            new ActorState(state).table_Set(0x800CF298u);
+            new ActorState(state).fn108_Set(0x0022FC10u);
+            new ActorState(state).fn10C_Set(0x0023292Cu);
+            Mem.Set((state + (uint)292), 0);
+            Mem.Set((state + (uint)296), 0);
+            Mem.Set((state + (uint)304), 0);
+            Mem.Set((state + (uint)312), 0);
+            Mem.Set((state + (uint)316), 1);
+            Mem.Set((state + (uint)300), k);
+            Mem.Set((a0 + (uint)1), (byte)(0));
+            Mem.Set((state + (uint)328), 0);
+            Mem.Set((state + (uint)324), 1);
+            Mem.Set((state + (uint)332), 0);
+            Mem.Set((state + (uint)336), 0);
+            Weapon_EquipPendingAndDraw(a0, state);
+        }
+    }
+
+    // ==== func_00232B54 @ 0x00232B54 [C]
+    public static void Weapon_UpdateDraw(uint actor, uint state)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00232B54", (uint)actor, (uint)state);
+            uint owner = new Actor(actor).owner_;
+            Mem.Set((owner + (uint)1928), 1);
+            Mem.Set((owner + (uint)1940), 0);
+            Mem.Set((owner + (uint)1932), 0);
+            Mem.Set((state + (uint)292), 0);
+            Mem.Set((state + (uint)296), 0);
+            if (((int)(new ActorState(state).unkCB) != 0))
+            {
+                if ((Weapon_TryFire(actor, state) == 0))
+                {
+                    Actor_DispatchEvent(actor, state, 2);
+                }
+            }
+        }
+    }
+
+    // ==== func_00232BC0 @ 0x00232BC0 [C]
+    public static int Weapon_ShouldStopFiring(uint a, int unused, uint c)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00232BC0", (uint)a, (uint)unused, (uint)c);
+            if ((Mem.F32((c + (uint)4568)) > Mem.F32(0x800C810Cu)))
+            {
+                return 1;
+            }
+            if ((((new Actor(a).flags & (uint)(3145728)) != 0u) && (new Actor(c).unk1450 != 0)))
+            {
+                uint b = new Actor(c).brain_;
+                int t = new Brain(b).unk23C;
+                new Brain(b).unk23C_Set(0);
+                return ((t == 0) ? 1 : 0);
+            }
+            if (((Mem.U32((c + (uint)1708)) & (uint)(8192)) != 0u))
+            {
+                if ((Mem.S32((c + (uint)4532)) != 0))
+                {
+                    return 1;
+                }
+                return (((int)(Weapon_HasAmmoForShot(c, (uint)((int)(Mem.S16((c + (uint)1582)))), default(uint), default(uint))) == 0) ? 1 : 0);
+            }
+            return 1;
+        }
+    }
+
+    // ==== func_00232C58 @ 0x00232C58 [C]
+    public static void Weapon_EnterIdle(uint c)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00232C58", (uint)c);
+            Object_ReleaseHandles_0044ACCC(new PlayerCtl(c).player_);
+        }
+    }
+
+    // ==== func_00232C78 @ 0x00232C78 [C]
+    public static void Weapon_EnterFire(uint c, uint e)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00232C78", (uint)c, (uint)e);
+            uint p = new PlayerCtl(c).player_;
+            new PlayerEvt(e).f130_Set((new WeaponInfo_v2(Mem.U32((0x800D052Cu + (uint)(new Player_v3(p).weapon * 4)))).f18 * Mem.F32(0x800C8110u)));
+            if ((((int)(new Player_v3(p).weapon) == 8) && (new Player_v3(p).f11C0 == 0)))
+            {
+                Player_PlayLoopSound2(p, 2620);
+            }
+        }
+    }
+
+    // ==== func_00232CDC @ 0x00232CDC [C]
+    public static void Weapon_UpdateFire(uint actor, uint state)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00232CDC", (uint)actor, (uint)state);
+            uint owner = new Actor(actor).owner_;
+            if (((int)(new ActorState(state).unkCB) != 0))
+            {
+                if ((Weapon_TryFire(actor, state) != 0))
+                {
+                    new ActorState(state).unkCB_Set((sbyte)(0));
+                    new ActorState(state).unk35_Set((sbyte)((-1)));
+                }
+                else
+                {
+                    switch ((int)(Mem.S16((owner + (uint)1582))))
+                    {
+                    case 8:
+                        func_0025DE74((int)((uint)(2622)), C.Tmp(Cpu.F2U(Mem.F32((owner + (uint)8))), Cpu.F2U(Mem.F32((owner + (uint)12))), Cpu.F2U(Mem.F32((owner + (uint)16)))), (int)((owner + (uint)8)), (int)((uint)((-1))));
+                        goto case 0;
+                    case 0:
+                    case 14:
+                        Player_StopLoopSound2(owner);
+                        goto default;
+                    default:
+                        Actor_DispatchEvent(actor, state, 2);
+                        break;
+                    }
+                }
+                Mem.Set((owner + (uint)1928), 1);
+                Mem.Set((owner + (uint)1932), 0);
+            }
+            else
+            {
+                if ((((int)(Mem.S16((owner + (uint)1582))) == 12) && ((Mem.U32((owner + (uint)1708)) & (uint)(16384)) != 0u)))
+                {
+                    Player_FireWeapon12Special_0022B180((int)(owner));
+                }
+            }
+        }
+    }
+
+    // ==== func_00232DE4 @ 0x00232DE4 [C]
+    public static void Weapon_EnterHolster(uint actor)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00232DE4", (uint)actor);
+            uint owner = new Actor(actor).owner_;
+            Object_ReleaseHandles_0044ACCC(owner);
+            if (((int)(Mem.S16((owner + (uint)1616))) == 39))
+            {
+                Player_SetState(owner, (int)(owner), 2);
+            }
+        }
+    }
+
+    // ==== func_00232E28 @ 0x00232E28 [C]
+    public static void Weapon_EnterInflatorCharge(uint actor)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00232E28", (uint)actor);
+            uint owner = new Actor(actor).owner_;
+            if ((new Actor(owner).unk11C0 == 0))
+            {
+                Player_PlayLoopSound2(owner, 2530);
+            }
+        }
+    }
+
+    // ==== func_00232E54 @ 0x00232E54 [C]
+    public static void Weapon_UpdateInflatorCharge(uint actor, uint state)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00232E54", (uint)actor, (uint)state);
+            uint owner = new Actor(actor).owner_;
+            uint p = 0u;
+            float t = 0f;
+            int c = 0;
+            t = (Mem.F32((state + (uint)296)) * Mem.F32(0x800D2988u));
+            Mem.Set((state + (uint)292), (Mem.F32((state + (uint)292)) + (t + t)));
+            p = Mem.U32((owner + (uint)1688));
+            if ((Mem.F32((state + (uint)296)) < (float)(0)))
+            {
+                if ((Mem.F32(0x800C8118u) < ((-Mem.F32((state + (uint)296))) * Mem.F32(0x800C8114u))))
+                {
+                    goto L_big;
+                }
+            }
+            else
+            {
+                if ((Mem.F32(0x800C8120u) < (Mem.F32((state + (uint)296)) * Mem.F32(0x800C811Cu))))
+                {
+                    goto L_big;
+                }
+            }
+            if ((Mem.F32((state + (uint)296)) < (float)(0)))
+            {
+                Mem.Set((p + (uint)360), ((-Mem.F32((state + (uint)296))) * Mem.F32(0x800C8124u)));
+            }
+            else
+            {
+                Mem.Set((p + (uint)360), (Mem.F32((state + (uint)296)) * Mem.F32(0x800C8128u)));
+            }
+            goto L_done;
+            L_big: ;
+            Mem.Set((p + (uint)360), Mem.F32(0x800C812Cu));
+            L_done: ;
+            if (((int)(new ActorState(state).unkCB) != 0))
+            {
+                Mem.Set((state + (uint)316), 2);
+                if ((Weapon_TryFire(actor, state) != 0))
+                {
+                    Mem.Set((state + (uint)316), 1);
+                    Player_StopLoopSound2(owner);
+                }
+            }
+        }
+    }
+
+    // ==== func_00232F7C @ 0x00232F7C [C]
+    public static void Weapon_RotateMinigunBarrel(uint actor, uint obj)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00232F7C", (uint)actor, (uint)obj);
+            float v = (Mem.F32((Mem.U32((obj + (uint)8)) + (uint)660)) * Mem.F32(0x800C8130u));
+            if ((Mem.S32(0x801450B8u) == 1))
+            {
+                if ((Mem.S32((obj + (uint)4)) == 2))
+                {
+                    Math_MtxRotateRowsB_00273A34(actor, (-v));
+                }
+            }
+            else
+            {
+                if ((Mem.S32((obj + (uint)4)) == 0))
+                {
+                    Math_MtxRotateRowsB_00273A34(actor, (-v));
+                }
+            }
+        }
+    }
+
+    // ==== func_00232FE8 @ 0x00232FE8 [C]
+    public static void Weapon_UpdateIdleMinigun(uint actor, uint state)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00232FE8", (uint)actor, (uint)state);
+            uint owner = new Actor(actor).owner_;
+            int kind = (int)(new B07Row24((0x800CE8DCu + (uint)(Mem.S16((owner + (uint)1616)) * 24))).unk0);
+            if (((int)(Weapon_HasAmmoForShot(owner, (uint)((int)(Mem.S16((owner + (uint)1582)))), default(uint), default(uint))) == 0))
+            {
+                Mem.Set((owner + (uint)1904), (short)(Player_PickFallbackWeapon(owner)));
+            }
+            else
+            {
+                Mem.Set((state + (uint)316), 1);
+                if (((Weapon_TryFire(actor, state) == 0) && !((new Actor(actor).flags & (uint)(1024)) != 0u)))
+                {
+                    Actor_DispatchEvent(actor, state, kind);
+                }
+            }
+        }
+    }
+
+    // ==== func_0023309C @ 0x0023309C [C]
+    public static void Weapon_EnterMinigunFire(uint actor, uint state)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0023309C", (uint)actor, (uint)state);
+            uint owner = new Actor(actor).owner_;
+            uint o2 = 0u;
+            Mem.Set((state + (uint)100), 0);
+            if (((new Actor(owner).unk1450 == 0) && (Mem.S32(0x801450B8u) == 1)))
+            {
+                Weapon_FireShot(new Actor(actor).owner_, (uint)(1017), default(uint), default(uint));
+            }
+            else
+            {
+                Weapon_FireShot(new Actor(actor).owner_, (uint)(1227), default(uint), default(uint));
+            }
+            Player_PlayLoopSound1(owner, 1930);
+            Player_PlayLoopSound2(owner, 1920);
+            o2 = new Actor(actor).owner_;
+            Mem.Set((state + (uint)304), (Mem.F32((Mem.U32((0x800D052Cu + (uint)(Mem.S16((o2 + (uint)1582)) * 4))) + (uint)24)) * Mem.F32(0x800C8134u)));
+            if ((((int)(Mem.S16((o2 + (uint)1582))) == 8) && (new Actor(o2).unk11C0 == 0)))
+            {
+                Player_PlayLoopSound2(o2, 2620);
+            }
+        }
+    }
+
+    // ==== func_00233178 @ 0x00233178 [C]
+    public static void Weapon_RotateEmaciatorBarrel(uint actor, uint obj)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00233178", (uint)actor, (uint)obj);
+            uint new_var2 = 0u;
+            float v = Mem.F32((Mem.U32((obj + (uint)8)) + (uint)660));
+            float new_var = 0f;
+            uint new_var3 = 0u;
+            new_var2 = obj;
+            if ((Mem.S32(0x801450B8u) == 1))
+            {
+                new_var3 = (new_var2 + (uint)4);
+                switch (Mem.S32(new_var3))
+                {
+                case 1:
+                    Math_MtxRotateRowsB_00273A34(actor, (-v));
+                    break;
+                    break;
+                case 2:
+                    new_var = v;
+                    Math_MtxRotateRowsB_00273A34(actor, (v + new_var));
+                    break;
+                }
+            }
+            else
+            {
+                switch (Mem.S32((obj + (uint)4)))
+                {
+                case 0:
+                    v = (-v);
+                    new_var = v;
+                    Math_MtxRotateRowsB_00273A34(actor, (new_var + new_var));
+                    break;
+                }
+            }
+        }
+    }
+
+    // ==== func_002331EC @ 0x002331EC [C]
+    public static void Weapon_EnterEmaciatorFire(uint actor, uint state)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002331EC", (uint)actor, (uint)state);
+            uint owner = new Actor(actor).owner_;
+            uint o2 = 0u;
+            if ((Mem.S32((state + (uint)316)) == 2))
+            {
+                Player_SetState(owner, (int)(owner), 2);
+                return;
+            }
+            Mem.Set((state + (uint)100), Mem.F32(0x800C8138u));
+            if (((new Actor(owner).unk1450 == 0) && (Mem.S32(0x801450B8u) == 1)))
+            {
+                Weapon_FireShot(new Actor(actor).owner_, (uint)(1019), default(uint), default(uint));
+            }
+            else
+            {
+                Weapon_FireShot(new Actor(actor).owner_, (uint)(1229), default(uint), default(uint));
+            }
+            Actor_DispatchEvent(actor, state, 4);
+            Player_PlayLoopSound1(owner, 2423);
+            Player_PlayLoopSound2(owner, 2420);
+            o2 = new Actor(actor).owner_;
+            Mem.Set((state + (uint)304), (Mem.F32((Mem.U32((0x800D052Cu + (uint)(Mem.S16((o2 + (uint)1582)) * 4))) + (uint)24)) * Mem.F32(0x800C813Cu)));
+            if ((((int)(Mem.S16((o2 + (uint)1582))) == 8) && (new Actor(o2).unk11C0 == 0)))
+            {
+                Player_PlayLoopSound2(o2, 2620);
+            }
+        }
+    }
+
+    // ==== func_00233304 @ 0x00233304 [C]
+    public static void Weapon_Nop_00233304()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00233304");
+        }
+    }
+
+    // ==== func_0023330C @ 0x0023330C [C]
+    public static void Weapon_EnterFlareAltFire(uint actor, uint state)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0023330C", (uint)actor, (uint)state);
+            Mem.Set((state + (uint)328), Mem.F32(0x800C8140u));
+            Actor_DispatchEvent(actor, state, 8);
+        }
+    }
+
+    // ==== func_00233334 @ 0x00233334 [C]
+    public static void Weapon_Nop_00233334()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00233334");
+        }
+    }
+
+    // ==== func_0023333C @ 0x0023333C [C]
+    public static void Weapon_UpdateMag60Alt(uint actor, uint state)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0023333C", (uint)actor, (uint)state);
+            uint owner = new Actor(actor).owner_;
+            Mem.Set((state + (uint)316), 2);
+            if (((int)(Weapon_HasAmmoForShot(owner, (uint)((int)(Mem.S16((owner + (uint)1582)))), default(uint), default(uint))) == 0))
+            {
+                Mem.Set((owner + (uint)1904), (short)(Player_PickFallbackWeapon(owner)));
+                return;
+            }
+            if ((Mem.F32((actor + (uint)260)) >= Mem.F32(0x800C8144u)))
+            {
+                if ((Player_IsInWeaponStance_0022B174(owner) == 0))
+                {
+                    Player_EnterWeaponStance_0022B974(owner);
+                }
+            }
+            if ((!((Mem.U32((owner + (uint)1708)) & (uint)(16384)) != 0u) || (new Actor(owner).unk5E4 == 0)))
+            {
+                Actor_DispatchEvent(actor, state, 2);
+                Player_LeaveWeaponStance_0022B9B4(owner);
+                Mem.Set((state + (uint)316), 1);
+            }
+            if ((Weapon_TryFire(actor, state) != 0))
+            {
+                Player_LeaveWeaponStance_0022B9B4(owner);
+            }
+        }
+    }
+
+    // ==== func_00233428 @ 0x00233428 [C]
+    public static void Weapon_UpdateIdleNapalm(uint actor, uint state)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00233428", (uint)actor, (uint)state);
+            uint p = 0u;
+            int id = 0;
+            p = new Actor(actor).owner_;
+            id = (int)(new Row24((0x800CE8DCu + (uint)(new Player_v2(p).unk650 * 24))).unk0);
+            if ((((new Player_v2(p).unk11D8 <= 0.0f) && (((int)(new Player_v2(p).stats.unk8F) == 0) || (Mem.S32(0x801468F4u) == 0))) && ((new Player_v2(p).flags6AC & (uint)(16384)) != 0u)))
+            {
+                Player_FireWeapon12Special_0022B180((int)(p));
+            }
+            if (((int)(Weapon_HasAmmoForShot(p, (uint)((int)(new Player_v2(p).unk62E)), default(uint), default(uint))) == 0))
+            {
+                if (((int)(Hud_DrawAmmoPips(0x80121990u, p, default(uint), default(uint))) == 0))
+                {
+                    new Player_v2(p).unk770_Set((short)(Player_PickFallbackWeapon(p)));
+                }
+            }
+            else
+            {
+                if (((Weapon_TryFire(actor, state) == 0) && !((new Actor(actor).flags & (uint)(1024)) != 0u)))
+                {
+                    Actor_DispatchEvent(actor, state, id);
+                }
+            }
+        }
+    }
+
+    // ==== func_00233534 @ 0x00233534 [C]
+    public static void Weapon_UpdateShotgunAlt(uint actor, uint state)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00233534", (uint)actor, (uint)state);
+            if (((int)(new ActorState(state).unkCB) != 0))
+            {
+                Actor_DispatchEvent(actor, state, 2);
+            }
+        }
+    }
+
+    // ==== func_0023355C @ 0x0023355C [C]
+    public static void Weapon_EnterWarhammerAlt(uint actor)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0023355C", (uint)actor);
+            actor = new Actor(actor).owner_;
+            if ((new Actor(actor).unk11C0 == 0))
+            {
+                Player_PlayLoopSound2(actor, 2060);
+            }
+        }
+    }
+
+    // ==== func_00233588 @ 0x00233588 [C]
+    public static void Weapon_UpdateWarhammerAlt(uint c, uint e)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00233588", (uint)c, (uint)e);
+            uint p = new PlayerCtl(c).player_;
+            if (((int)(new PlayerEvt(e).fCB) != 0))
+            {
+                new PlayerEvt(e).f13C_Set(2);
+                if ((Weapon_TryFire(c, (uint)(e)) != 0))
+                {
+                    new PlayerEvt(e).f13C_Set(1);
+                    Player_StopLoopSound2(p);
+                }
+            }
+        }
+    }
+
+    // ==== func_002335DC @ 0x002335DC [C]
+    public static void Weapon_UpdateChargeSpin(uint actor, uint state)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002335DC", (uint)actor, (uint)state);
+            uint p = 0u;
+            uint q = 0u;
+            int c = 0;
+            p = new Actor(actor).owner_;
+            if (((int)(Mem.S8((state + 52u))) == 5))
+            {
+                func_002748E0(new ActorState(state).unk128.P, ((float)(Mem.S32(0x800CF518u)) * Mem.F32(0x800C8148u)), 0.400000006f);
+            }
+            else
+            {
+                func_002748E0(new ActorState(state).unk128.P, 0.0f, 0.400000006f);
+            }
+            q = new PlayerA(p).unk698_;
+            if (!(((Mem.F32(new ActorState(state).unk128.P) < 0.0f) ? ((Mem.F32(0x800C8150u) < ((-Mem.F32(new ActorState(state).unk128.P)) * Mem.F32(0x800C814Cu))) ? 1 : 0) : ((Mem.F32(0x800C8158u) < (Mem.F32(new ActorState(state).unk128.P) * Mem.F32(0x800C8154u))) ? 1 : 0)) != 0))
+            {
+                if ((Mem.F32(new ActorState(state).unk128.P) < 0.0f))
+                {
+                    new Ptr168(q).unk168_Set(((-Mem.F32(new ActorState(state).unk128.P)) * Mem.F32(0x800C815Cu)));
+                }
+                else
+                {
+                    new Ptr168(q).unk168_Set((Mem.F32(new ActorState(state).unk128.P) * Mem.F32(0x800C8160u)));
+                }
+            }
+            else
+            {
+                new Ptr168(q).unk168_Set(Mem.F32(0x800C8164u));
+            }
+        }
+    }
+
+    // ==== func_0023370C @ 0x0023370C [C]
+    public static void Weapon_UpdateChestBursterAlt(uint actor, uint state)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0023370C", (uint)actor, (uint)state);
+            float lim = 0f;
+            float v = 0f;
+            lim = Mem.F32(0x800C8168u);
+            v = func_00274878(Mem.F32((state + 292u)), lim, Cpu.U2F((uint)(Mem.S32(0x800CF9E0u))));
+            Mem.Set((state + 292u), v);
+            if ((lim <= v))
+            {
+                Actor_DispatchEvent(actor, state, 2);
+            }
+        }
+    }
+
+    // ==== func_0023377C @ 0x0023377C [C]
+    public static void Weapon_MoveChestBursterBone_0023377C(uint a, uint e)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0023377C", (uint)a, (uint)e);
+            if ((new PlayerEvt(e).f4 == 6))
+            {
+                func_00273424(a, 0.0f, Cpu.U2F((uint)(new PlayerEvt(e).f8.f294)), 0.0f);
+            }
+        }
+    }
+
+    // ==== func_0024DBB0 @ 0x0024DBB0 [MIPS]
+    public static uint func_0024DBB0_rc(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5, uint a6, uint a7, uint a8, uint a9, uint a10)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(704);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 704, 0);
+                if (Dbg.On) Dbg.Enter("func_0024DBB0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 576u;
+                Mem.Set(r29 + 16u, a4);
+                Mem.Set(r29 + 20u, a5);
+                Mem.Set(r29 + 24u, a6);
+                Mem.Set(r29 + 28u, a7);
+                Mem.Set(r29 + 32u, a8);
+                Mem.Set(r29 + 36u, a9);
+                Mem.Set(r29 + 40u, a10);
+                L_func_0024DBB0: ;
+                r29 = r29 - 480u;
+                Mem.Set((r29 + 468u), r17);
+                r17 = r4;
+                Mem.Set((r29 + 464u), r16);
+                r16 = 2148794368u;
+                r16 = r16 - 19612u;
+                Mem.Set((r29 + 472u), r18);
+                r18 = Mem.U32((r29 + 496u));
+                r4 = r16;
+                Mem.Set((r29 + 484u), r5);
+                r5 = r29 + 484u;
+                Mem.Set((r29 + 476u), r31);
+                Mem.Set((r29 + 488u), r6);
+                Mem.Set((r29 + 492u), r7); r2 = (uint)AiNav_FindNearestNode(r4, r5);
+                r4 = r16;
+                r5 = r2; r2 = AiNav_GetNode(r4, (int)r5);
+                r8 = Mem.U32((r29 + 484u));
+                r9 = Mem.U32((r29 + 488u));
+                r10 = Mem.U32((r29 + 492u));
+                Mem.Set((r29 + 116u), r8);
+                Mem.Set((r29 + 120u), r9);
+                Mem.Set((r29 + 124u), r10);
+                r8 = Mem.U32((r29 + 116u));
+                r9 = Mem.U32((r29 + 120u));
+                r10 = Mem.U32((r29 + 124u));
+                Mem.Set((r29 + 96u), r8);
+                Mem.Set((r29 + 100u), r9);
+                Mem.Set((r29 + 104u), r10);
+                r3 = Mem.U32((r17 + 20u));
+                { bool c_ = r2 == 0; Mem.Set((r29 + 456u), r3); if (c_) goto L_L0024DC4C; }
+                r8 = Mem.U32((r2 + 0u));
+                r9 = Mem.U32((r2 + 4u));
+                r10 = Mem.U32((r2 + 8u));
+                Mem.Set((r29 + 96u), r8);
+                Mem.Set((r29 + 100u), r9);
+                Mem.Set((r29 + 104u), r10);
+                L_L0024DC4C: ;
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 29244u)));
+                r16 = r29 + 64u;
+                Mem.Set((r29 + 48u), r0);
+                Cpu.SetW(0, Mem.U32((r29 + 48u)));
+                r4 = r16;
+                Mem.Set((r29 + 56u), r0);
+                Mem.Set((r29 + 52u), Cpu.W(1));
+                Mem.Set((r29 + 72u), Cpu.W(0));
+                Mem.Set((r29 + 68u), Cpu.W(0));
+                Mem.Set((r29 + 64u), Cpu.W(0)); func_002720EC(r4);
+                r2 = (uint)3031;
+                { bool c_ = r18 == r2; r4 = r29 + 80u; if (c_) goto L_L0024DC98; }
+                r6 = 1137442816u;
+                r6 = r6 | 52428u;
+                r5 = r16; func_0027200C(r4, r5, Cpu.U2F(r6));
+                L_L0024DC98: ;
+                r4 = 2148728832u;
+                r4 = r4 + 5632u;
+                r8 = Mem.U32((r29 + 96u));
+                r9 = Mem.U32((r29 + 100u));
+                r10 = Mem.U32((r29 + 104u));
+                Mem.Set((r29 + 24u), r8);
+                Mem.Set((r29 + 28u), r9);
+                Mem.Set((r29 + 32u), r10);
+                r2 = Mem.U32((r29 + 456u));
+                Cpu.SetW(0, Mem.U32((r29 + 500u)));
+                r5 = r0;
+                Mem.Set((r29 + 40u), Cpu.W(0));
+                Mem.Set((r29 + 36u), r2);
+                r8 = Mem.U32((r29 + 84u));
+                r9 = Mem.U32((r29 + 88u));
+                Mem.Set((r29 + 16u), r8);
+                Mem.Set((r29 + 20u), r9);
+                r7 = Mem.U32((r29 + 80u));
+                r6 = r18; { uint s3_ = Stack.Alloc(12); Mem.Set(s3_ + 0u, r7); Mem.Set(s3_ + 4u, Mem.U32(r29 + 16u)); Mem.Set(s3_ + 8u, Mem.U32(r29 + 20u)); uint s4_ = Stack.Alloc(12); Mem.Set(s4_ + 0u, Mem.U32(r29 + 24u)); Mem.Set(s4_ + 4u, Mem.U32(r29 + 28u)); Mem.Set(s4_ + 8u, Mem.U32(r29 + 32u)); r2 = func_0028FFB0(r4, r5, (int)r6, s3_, s4_, (int)Mem.U32(r29 + 36u), Cpu.U2F(Mem.U32(r29 + 40u))); Stack.Free(12); Stack.Free(12); }
+                r31 = Mem.U32((r29 + 476u));
+                r18 = Mem.U32((r29 + 472u));
+                r17 = Mem.U32((r29 + 468u));
+                r16 = Mem.U32((r29 + 464u));
+                r29 = r29 + 480u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0024DBB0", r2); Stack.Free(704); }
+    }
+
+    public static void Pickup_SpawnDropAtNavNode(uint p0, uint p1, int p2, float p3)
+    {
+        func_0024DBB0_rc(p0, Mem.U32(p1 + 0u), Mem.U32(p1 + 4u), Mem.U32(p1 + 8u), (uint)p2, Cpu.F2U(p3), 0u, 0u, 0u, 0u, 0u);
+    }
+
+    // ==== func_0024E974 @ 0x0024E974 [MIPS]
+    public static uint Pickup_InitFromRecord_Head_0024E974(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0024E974", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_0024E974: ;
+                r19 = r7 + r0;
+                Mem.Set((r17 + 0u), (byte)r0);
+                r3 = Mem.U16((r18 + 8u));
+                L_func_0024E980: ;
+                r29 = r29 - 48u;
+                Mem.Set((r29 + 32u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 36u), r17);
+                r17 = r5;
+                r2 = (uint)3;
+                Mem.Set((r29 + 44u), r31);
+                Mem.Set((r29 + 40u), r18);
+                Mem.Set((r16 + 0u), (byte)r2);
+                r2 = Mem.U16((r17 + 20u));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 29072u)));
+                Mem.Set((r16 + 4u), (ushort)r2);
+                r2 = Mem.U32((r17 + 0u));
+                Mem.Set((r16 + 448u), r2);
+                r8 = Mem.U32((r17 + 4u));
+                r9 = Mem.U32((r17 + 8u));
+                r10 = Mem.U32((r17 + 12u));
+                Mem.Set((r16 + 8u), r8);
+                Mem.Set((r16 + 12u), r9);
+                Mem.Set((r16 + 16u), r10);
+                Cpu.SetW(0, Mem.U32((r16 + 12u)));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                Mem.Set((r16 + 12u), Cpu.W(0));
+                r2 = (uint)(int)Mem.S8((r17 + 30u));
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 29068u)));
+                Cpu.SetW(1, r2);
+                Cpu.SetS(1, (float)(int)Cpu.W(1));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 29064u)));
+                Mem.Set((r16 + 408u), r0);
+                Mem.Set((r16 + 404u), Cpu.W(0));
+                Mem.Set((r16 + 372u), Cpu.W(1));
+                Cpu.SetW(0, Mem.U32((r17 + 4u)));
+                Cpu.SetW(1, Mem.U32((r17 + 16u)));
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(1));
+                Mem.Set((r16 + 380u), Cpu.W(0));
+                Cpu.SetW(0, Mem.U32((r17 + 8u)));
+                Cpu.SetW(1, Mem.U32((r17 + 16u)));
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(1));
+                Mem.Set((r16 + 384u), Cpu.W(0));
+                Cpu.SetW(0, Mem.U32((r17 + 12u)));
+                Cpu.SetW(1, Mem.U32((r17 + 16u)));
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(1));
+                Mem.Set((r16 + 388u), Cpu.W(0));
+                Cpu.SetW(0, Mem.U32((r17 + 4u)));
+                Cpu.SetW(1, Mem.U32((r17 + 16u)));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                Mem.Set((r16 + 392u), Cpu.W(0));
+                Cpu.SetW(0, Mem.U32((r17 + 8u)));
+                Cpu.SetW(1, Mem.U32((r17 + 16u)));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                Mem.Set((r16 + 396u), Cpu.W(0));
+                Cpu.SetW(0, Mem.U32((r17 + 12u)));
+                Cpu.SetW(1, Mem.U32((r17 + 16u)));
+                r2 = (uint)-1;
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                Mem.Set((r16 + 80u), r6);
+                Mem.Set((r16 + 84u), r2);
+                Mem.Set((r16 + 400u), Cpu.W(0));
+                Mem.Set((r16 + 88u), r0);
+                Mem.Set((r16 + 92u), r0);
+                r3 = Mem.U16((r17 + 28u));
+                r2 = (uint)65535;
+                { bool c_ = r3 != r2; r18 = r7; if (c_) goto L_L0024EAA0; }
+                r2 = 2148663296u;
+                r2 = r2 - 3000u;
+                Mem.Set((r16 + 24u), r2); goto L_L0024EAB8;
+                L_L0024EAA0: ;
+                r5 = Mem.U16((r17 + 28u));
+                r4 = 2148663296u;
+                r4 = r4 - 376u;
+                r2 = Level_GetDefinition(r4, (int)r5);
+                Mem.Set((r16 + 24u), r2);
+                L_L0024EAB8: ;
+                r3 = Mem.U16((r17 + 22u));
+                r2 = (uint)65535;
+                { bool c_ = r3 != r2;  if (c_) goto L_L0024EAD0; }
+                Mem.Set((r16 + 20u), r0); goto L_L0024EAE0;
+                L_L0024EAD0: ;
+                r2 = Mem.U16((r17 + 22u));
+                r2 = r2 << 5;
+                r2 = r18 + r2;
+                Mem.Set((r16 + 20u), r2);
+                L_L0024EAE0: ;
+                r2 = Mem.U16((r17 + 24u));
+                Cpu.SetW(0, Mem.U32((r16 + 8u)));
+                Mem.Set((r16 + 416u), r0);
+                Mem.Set((r16 + 420u), r0);
+                r2 = r2 | 2u;
+                Mem.Set((r16 + 412u), (ushort)r2);
+                r2 = Mem.U16((r17 + 26u));
+                r4 = r16;
+                Mem.Set((r16 + 414u), (ushort)r2);
+                Mem.Set((r29 + 16u), Cpu.W(0)); Cpu.SetS(0, Actor_GetHeight(r4));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 29060u)));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                Cpu.SetW(1, Mem.U32((r16 + 12u)));
+                Cpu.SetS(1, Cpu.S(1) + Cpu.S(0));
+                Mem.Set((r29 + 20u), Cpu.W(1));
+                Cpu.SetW(0, Mem.U32((r16 + 16u)));
+                Mem.Set((r29 + 24u), Cpu.W(0));
+                r11 = 2148335616u;
+                r11 = r11 + 3808u;
+                r8 = Mem.U32((r11 + 0u));
+                r9 = Mem.U32((r11 + 4u));
+                r10 = Mem.U32((r11 + 8u));
+                Mem.Set((r16 + 424u), r8);
+                Mem.Set((r16 + 428u), r9);
+                Mem.Set((r16 + 432u), r10);
+                r8 = Mem.U32((r11 + 12u));
+                r9 = Mem.U32((r11 + 16u));
+                r10 = Mem.U32((r11 + 20u));
+                Mem.Set((r16 + 436u), r8);
+                Mem.Set((r16 + 440u), r9);
+                Mem.Set((r16 + 444u), r10);
+                Mem.Set((r16 + 452u), r0);
+                r31 = Mem.U32((r29 + 44u));
+                r18 = Mem.U32((r29 + 40u));
+                r17 = Mem.U32((r29 + 36u));
+                r16 = Mem.U32((r29 + 32u));
+                r29 = r29 + 48u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0024E974", r2); Stack.Free(384); }
+    }
+
+    // ==== func_0024E980 @ 0x0024E980 [C]
+    public static void Pickup_InitFromRecord(uint a, uint s, int id, int @base)
+    {
+        uint _fp = Stack.Alloc(12);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0024E980", (uint)a, (uint)s, (uint)id, (uint)@base);
+                new ObjI(a).type_Set((byte)(3));
+                new ObjI(a).id_Set(new B11Sp2(s).u14);
+                new ObjI(a).w1C0_Set(new B11Sp2(s).w0);
+                Mem.Copy(new ObjI(a).pos.P, new B11Sp2(s).pos.P, 12);
+                new ObjI(a).pos.y_Set((new ObjI(a).pos.y + Mem.F32(0x800C8E70u)));
+                new ObjI(a).f174_Set(((float)((int)(new B11Sp2(s).s1E)) * Mem.F32(0x800C8E74u)));
+                new ObjI(a).f194_Set(Mem.F32(0x800C8E78u));
+                new ObjI(a).w198_Set(0);
+                new ObjI(a).bmin.x_Set((new B11Sp2(s).pos.x - new B11Sp2(s).r));
+                new ObjI(a).bmin.y_Set((new B11Sp2(s).pos.y - new B11Sp2(s).r));
+                do
+                {
+                    new ObjI(a).bmin.z_Set((new B11Sp2(s).pos.z - new B11Sp2(s).r));
+                    new ObjI(a).bmax.x_Set((new B11Sp2(s).pos.x + new B11Sp2(s).r));
+                    new ObjI(a).bmax.y_Set((new B11Sp2(s).pos.y + new B11Sp2(s).r));
+                    new ObjI(a).bmax.z_Set((new B11Sp2(s).pos.z + new B11Sp2(s).r));
+                    new ObjI(a).h50_Set(id);
+                    new ObjI(a).h54_Set((-1));
+                }
+                while ((0 != 0));
+                new ObjI(a).h58_Set(0);
+                new ObjI(a).h5C_Set(0);
+                if (((int)(new B11Sp2(s).u1C) == 65535))
+                {
+                    new ObjI(a).p18_Set((int)(0x8011F448u));
+                }
+                else
+                {
+                    new ObjI(a).p18_Set((int)(Level_GetDefinition(0x8011FE88u, (int)(new B11Sp2(s).u1C))));
+                }
+                if (((int)(new B11Sp2(s).u16_) == 65535))
+                {
+                    new ObjI(a).p14_Set(0);
+                }
+                else
+                {
+                    do
+                    {
+                        new ObjI(a).p14_Set((@base + ((int)(new B11Sp2(s).u16_) << (int)5)));
+                    }
+                    while ((0 != 0));
+                }
+                new ObjI(a).flags_Set((ushort)(((int)(new B11Sp2(s).u18) | 2)));
+                new ObjI(a).w1A0_Set(0);
+                new ObjI(a).w1A4_Set(0);
+                new ObjI(a).u19E_Set(new B11Sp2(s).u1A);
+                new Vec3f(_fp).x_Set(new ObjI(a).pos.x);
+                new Vec3f(_fp).y_Set((new ObjI(a).pos.y + (Actor_GetHeight(a) * Mem.F32(0x800C8E7Cu))));
+                new Vec3f(_fp).z_Set(new ObjI(a).pos.z);
+                Mem.Copy(new ObjI(a).v1A8.P, 0x800D0EE0u, 24);
+                new ObjI(a).w1C4_Set(0);
+            }
+        }
+        finally { Stack.Free(12); }
+    }
+
+    // ==== func_0024EB80 @ 0x0024EB80 [C]
+    public static void Pickup_Draw(uint a)
+    {
+        uint _fp = Stack.Alloc(64);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0024EB80", (uint)a);
+                uint h = 0u;
+                uint d1 = 0u;
+                uint d2 = 0u;
+                int new_var = 0;
+                uint d3 = 0u;
+                uint d4 = 0u;
+                uint e = 0u;
+                float s = 0f;
+                func_0026D8F8();
+                func_00296FF8();
+                if ((new Obj(a).unk1C4 != 0))
+                {
+                    d1 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new M03Dl(d1).w0_Set(3724541952u);
+                    new M03Dl(d1).w1_Set((uint)(new Obj(a).unk1C4));
+                    return;
+                }
+                h = Pickup_AcquireModel(a, (int)(new Obj(a).unk1));
+                if ((h != 0u))
+                {
+                    new Obj(a).unk1C4_Set((int)(Mem.U32(0x80110634u)));
+                    d2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new M03Dl(d2).w0_Set(3724607488u);
+                    new M03Dl(d2).w1_Set((uint)(0));
+                    if ((Mem.S32(new Obj(a).def_) == 8))
+                    {
+                        func_00273744(_fp, Mem.F32(0x8013B190u));
+                    }
+                    else
+                    {
+                        func_00273744(_fp, Mem.F32((a + (uint)372)));
+                    }
+                    func_002734EC(_fp, new Obj(a).unk194, new Obj(a).unk194, new Obj(a).unk194);
+                    func_002725BC(new Obj(a).pos.P, 2.0E+4f);
+                    func_002734B8(_fp, new Obj(a).pos.x, (new Obj(a).pos.y + Mem.F32((a + (uint)408))), new Obj(a).pos.z);
+                    func_00273DDC(_fp);
+                    Math_MtxFloatToFixed(_fp, (a + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 104)));
+                    new_var = 0;
+                    if ((Mem.S32(new Obj(a).def_) != 12))
+                    {
+                        Light_ShadeVertices(h, (int)((a + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 104))), new_var, (int)((a + (uint)424)), (uint)(new_var), (int)(new Obj(a).unk3));
+                        Pickup_SpawnMaterialEffect_0024ED80(a, h);
+                    }
+                    d3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new M03Dl(d3).w0_Set(3741319168u);
+                    new M03Dl(d3).w1_Set((uint)(0));
+                    e = (Mem.Set(((a + 452u) + (uint)(new_var * 4)), (uint)(Mem.U32(((a + 452u) + (uint)(new_var * 4))) + 8u)) - 8u);
+                    new M03Dl(e).w0_Set(3724607488u);
+                    new M03Dl(e).w1_Set((uint)(Mem.U32(0x80110634u)));
+                    d4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new M03Dl(d4).w0_Set(3724541952u);
+                    new M03Dl(d4).w1_Set((uint)(new Obj(a).unk1C4));
+                    ResourcePool_Unref(0, h);
+                }
+            }
+        }
+        finally { Stack.Free(64); }
+    }
+
+    // ==== func_0024ED80 @ 0x0024ED80 [C]
+    public static void Pickup_SpawnMaterialEffect_0024ED80(uint a, uint b)
+    {
+        uint _fp = Stack.Alloc(32);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0024ED80", (uint)a, (uint)b);
+                uint n = 0u;
+                uint r = 0u;
+                float k = 0f;
+                if ((func_0026E340() != 0))
+                {
+                    new Quat4((_fp + 16u)).x_Set(new Quat4((_fp + 16u)).y_Set(new Quat4((_fp + 16u)).z_Set(0.0f)));
+                    new Quat4((_fp + 16u)).w_Set(Mem.F32(0x800C8E80u));
+                    n = Chunk_Get(Mem.U32(b), 2);
+                    if ((Mem.S32(n) != 0))
+                    {
+                        if (((Mem.S32(Chunk_Get(Chunk_Get(n, 0), 0)) & 32768) != 0))
+                        {
+                            Mem.Copy(_fp, new Obj(a).pos.P, 12);
+                            new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + (Actor_GetHeight(a) * Mem.F32(0x800C8E84u))));
+                            Effect_SpawnFromTemplates(0x80121990u, a, a, (uint)(0), 0, 148, new Obj(a).v1C.P, (_fp + 16u), _fp, 0, (-1), 0);
+                            r = func_0028308C(0x80121990u, default(uint), default(uint), default(uint));
+                            if ((r != 0u))
+                            {
+                                k = Mem.F32(0x800C8E88u);
+                                new B11Fx(r).f150_Set((Actor_GetRadius(a) * k));
+                                new B11Fx(r).f154_Set((Actor_GetHeight(a) * k));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        finally { Stack.Free(32); }
+    }
+
+    // ==== func_0024F0F8 @ 0x0024F0F8 [C]
+    public static uint func_0024F0F8_get_h(uint a, int idx)
+    {
+        uint _fp = Stack.Alloc(4);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0024F0F8_get_h", (uint)a, (uint)idx);
+                uint h = 0u;
+                uint p = 0u;
+                int n = 0;
+                if ((idx != new ObjH(a).h54))
+                {
+                    h = ResourceCache_Hash(0, (uint)(new ObjH(a).h50), new ObjH(a).h50, (uint)(24), 0, (uint)(0), 0u, (0x800C8E98u + (uint)4), 1);
+                    if ((h != 0u))
+                    {
+                        n = func_0028FE08((uint)(Mem.S32(h)), new ObjH(a).h50, 1);
+                        ResourcePool_Release(0, h);
+                        p = Resource_LoadIndexTable(0, _fp, n, 0x800C8EB0u, 1);
+                        if ((p != 0u))
+                        {
+                            new ObjH(a).h58_Set((int)(Resource_GetCartridgeKey(Mem.U32(_fp), (uint)(n), (idx % Mem.S32(Mem.U32(_fp))), (a + 92u))));
+                            new ObjH(a).h54_Set(idx);
+                            ResourcePool_Release(0, p);
+                        }
+                    }
+                }
+                if ((new ObjH(a).h58 != 0))
+                {
+                    return ResourceCache_Hash(0, (uint)(new ObjH(a).h58), new ObjH(a).h58, (uint)(new ObjH(a).h5C), 0, (uint)(0), 0x0026D7F4u, 0x800C8EC4u, 0);
+                }
+                return 0u;
+            }
+        }
+        finally { Stack.Free(4); }
+    }
+
+    public static void Pickup_ReleaseModelTextures_0024F0F8(uint a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0024F0F8", (uint)a);
+            uint h = func_0024F0F8_get_h(a, (int)(new ObjH(a).unk1));
+            if ((h != 0u))
+            {
+                func_0026E1F8(h);
+                ResourcePool_Unref(0, h);
+            }
+        }
+    }
+
+    // ==== func_0024F284 @ 0x0024F284 [C]
+    public static uint func_0024F284_get_h(uint a, int idx)
+    {
+        uint _fp = Stack.Alloc(4);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0024F284_get_h", (uint)a, (uint)idx);
+                uint h = 0u;
+                uint p = 0u;
+                int n = 0;
+                if ((idx != new ObjH(a).h54))
+                {
+                    h = ResourceCache_Hash(0, (uint)(new ObjH(a).h50), new ObjH(a).h50, (uint)(24), 0, (uint)(0), 0u, (0x800C8E98u + (uint)4), 1);
+                    if ((h != 0u))
+                    {
+                        n = func_0028FE08((uint)(Mem.S32(h)), new ObjH(a).h50, 1);
+                        ResourcePool_Release(0, h);
+                        p = Resource_LoadIndexTable(0, _fp, n, 0x800C8EB0u, 1);
+                        if ((p != 0u))
+                        {
+                            new ObjH(a).h58_Set((int)(Resource_GetCartridgeKey(Mem.U32(_fp), (uint)(n), (idx % Mem.S32(Mem.U32(_fp))), (a + 92u))));
+                            new ObjH(a).h54_Set(idx);
+                            ResourcePool_Release(0, p);
+                        }
+                    }
+                }
+                if ((new ObjH(a).h58 != 0))
+                {
+                    return ResourceCache_Hash(0, (uint)(new ObjH(a).h58), new ObjH(a).h58, (uint)(new ObjH(a).h5C), 0, (uint)(0), 0x0026D7F4u, 0x800C8EC4u, 0);
+                }
+                return 0u;
+            }
+        }
+        finally { Stack.Free(4); }
+    }
+
+    public static void Pickup_PreloadModel(uint a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0024F284", (uint)a);
+            uint h = func_0024F284_get_h(a, (int)(new ObjH(a).unk1));
+            uint q = 0u;
+            if ((h != 0u))
+            {
+                func_0026E158(h);
+                q = Resource_Request((uint)(0), (uint)(Mem.S32(0x800D2640u)), h, (uint)(new ObjH(a).h60), (uint)(8), a, 0x0024F8CCu, 0x800C8ED0u, (uint)(0));
+                if ((q != 0u))
+                {
+                    ResourcePool_Unref(0, q);
+                }
+                ResourcePool_Unref(0, h);
+            }
+        }
+    }
+
+    // ==== func_0024F460 @ 0x0024F460 [C]
+    public static void Pickup_ClearDisplayList(uint a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0024F460", (uint)a);
+            new Obj(a).unk1C4_Set(0);
+        }
+    }
+
+    // ==== func_0024F490 @ 0x0024F490 [C]
+    public static void Pickup_Update(uint a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0024F490", (uint)a);
+            uint d = 0u;
+            float t = 0f;
+            new ObjFx(a).unk1_Set((sbyte)(Pickup_SelectModelVariant(a)));
+            new ObjFx(a).unk3_Set(Mem.U8((new ObjFx(a).def_ + (uint)18)));
+            if ((Mem.S32(0x80146894u) == 0))
+            {
+                d = new ObjFx(a).def_;
+                if ((new ObjDef(d).type == 12))
+                {
+                    new ObjFx(a).unk1A4_Set((Mem.F32(0x800D2988u) * new ObjDef(d).unk20));
+                }
+                else
+                {
+                    if ((((int)(new ObjFx(a).unk19C) & 16) != 0))
+                    {
+                        t = (new ObjFx(a).unk1A0 + (Mem.F32(0x800D2988u) * Mem.F32(0x800C8EE0u)));
+                        new ObjFx(a).unk1A0_Set(t);
+                        if ((t < Mem.F32(0x800C8EE4u)))
+                        {
+                            new ObjFx(a).unk194_Set((t * Mem.F32(0x800C8EE8u)));
+                        }
+                        else
+                        {
+                            new ObjFx(a).unk19C_Set((ushort)((int)(new ObjFx(a).unk19C) & (~16)));
+                            new ObjFx(a).unk194_Set(Mem.F32(0x800C8EECu));
+                        }
+                    }
+                }
+                if ((new ObjFx(a).unk14_ != 0u))
+                {
+                    new ObjFx(a).unk1C0_Set(new ObjFx(a).unk14.unk1C);
+                }
+                else
+                {
+                    new ObjFx(a).unk1C0_Set(Mem.S32(0x800D2B40u));
+                }
+            }
+        }
+    }
+
+    // ==== func_0024F590 @ 0x0024F590 [C]
+    public static void Pickup_UpdateGrowIn(uint a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0024F590", (uint)a);
+            float t = 0f;
+            if ((((int)(new ObjFx(a).unk19C) & 16) != 0))
+            {
+                t = (new ObjFx(a).unk1A0 + (Mem.F32(0x800D2988u) * Mem.F32(0x800C8EF0u)));
+                new ObjFx(a).unk1A0_Set(t);
+                if ((t < Mem.F32(0x800C8EF4u)))
+                {
+                    new ObjFx(a).unk194_Set((t * Mem.F32(0x800C8EF8u)));
+                }
+                else
+                {
+                    new ObjFx(a).unk19C_Set((ushort)((int)(new ObjFx(a).unk19C) & (~16)));
+                    new ObjFx(a).unk194_Set(Mem.F32(0x800C8EFCu));
+                }
+            }
+        }
+    }
+
+    // ==== func_0024F608 @ 0x0024F608 [C]
+    public static void Pickup_UpdateSpinStep_0024F608(uint a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0024F608", (uint)a);
+            new Obj(a).unk1A4_Set((Mem.F32(0x800D2988u) * new ObjDef(new Obj(a).def_).unk20));
+        }
+    }
+
+    // ==== func_0024F624 @ 0x0024F624 [C]
+    public static void Pickup_BuildMatrix(uint a)
+    {
+        uint _fp = Stack.Alloc(64);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0024F624", (uint)a);
+                if ((new ActorInfo_v2(new Actor_v2(a).info_).kind == 8))
+                {
+                    func_00273744(_fp, Cpu.U2F((uint)(Mem.S32(0x8013B190u))));
+                }
+                else
+                {
+                    func_00273744(_fp, Cpu.U2F((uint)(new Actor_v2(a).f174)));
+                }
+                func_002734EC(_fp, new Actor_v2(a).f194, new Actor_v2(a).f194, new Actor_v2(a).f194);
+                func_002725BC(new Actor_v2(a).pos.P, 2.0E+4f);
+                func_002734B8(_fp, new Actor_v2(a).pos.x, (new Actor_v2(a).pos.y + new Actor_v2(a).f198), new Actor_v2(a).pos.z);
+                func_00273DDC(_fp);
+                Math_MtxFloatToFixed(_fp, (new Actor_v2(a).mtx.P + (uint)(Mem.S32(0x800D297Cu) * 64)));
+            }
+        }
+        finally { Stack.Free(64); }
+    }
+
+    // ==== func_0024F6DC @ 0x0024F6DC [C]
+    public static uint Pickup_AcquireModel(uint a, int idx)
+    {
+        uint _fp = Stack.Alloc(4);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0024F6DC", (uint)a, (uint)idx);
+                uint h = 0u;
+                uint p = 0u;
+                int n = 0;
+                if ((idx != new ObjH(a).h54))
+                {
+                    h = ResourceCache_Hash(0, (uint)(new ObjH(a).h50), new ObjH(a).h50, (uint)(24), 0, (uint)(0), 0u, (0x800C8E98u + (uint)4), 1);
+                    if ((h != 0u))
+                    {
+                        n = func_0028FE08((uint)(Mem.S32(h)), new ObjH(a).h50, 1);
+                        ResourcePool_Release(0, h);
+                        p = Resource_LoadIndexTable(0, _fp, n, 0x800C8EB0u, 1);
+                        if ((p != 0u))
+                        {
+                            new ObjH(a).h58_Set((int)(Resource_GetCartridgeKey(Mem.U32(_fp), (uint)(n), (idx % Mem.S32(Mem.U32(_fp))), (a + 92u))));
+                            new ObjH(a).h54_Set(idx);
+                            ResourcePool_Release(0, p);
+                        }
+                    }
+                }
+                if ((new ObjH(a).h58 != 0))
+                {
+                    return ResourceCache_Hash(0, (uint)(new ObjH(a).h58), new ObjH(a).h58, (uint)(new ObjH(a).h5C), 0, (uint)(0), 0x0026D7F4u, 0x800C8EC4u, 0);
+                }
+                return 0u;
+            }
+        }
+        finally { Stack.Free(4); }
+    }
+
+    // ==== func_0024F848 @ 0x0024F848 [C]
+    public static int Pickup_SelectModelVariant(uint a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0024F848", (uint)a);
+            uint d = new Obj(a).def_;
+            int r = 0;
+            int id = 0;
+            uint f = 0u;
+            if ((new ObjDef(d).type == 12))
+            {
+                return 0;
+            }
+            r = (int)(new ObjDef(d).unkE);
+            id = (int)(func_0028B238(0x8011FE88u, (int)(new Obj(a).unk4)));
+            if ((id < 1707))
+            {
+                if ((id >= 1705))
+                {
+                    f = Mem.U32(0x801462C8u);
+                    if (((f & (uint)(2048)) != 0u))
+                    {
+                        r = 1;
+                    }
+                    if (((f & (uint)(4096)) != 0u))
+                    {
+                        r = 2;
+                    }
+                }
+            }
+            return r;
+        }
+    }
+
+    // ==== func_0024F8CC @ 0x0024F8CC [C]
+    public static void Pickup_BuildVertexLightCache(uint a, uint b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0024F8CC", (uint)a, (uint)b);
+            int x = Mem.S32(Mem.U32(b));
+            uint c = (a + 380u);
+            int r = (int)(func_00278530((uint)(x), (uint)(Mem.S32(new ObjM(a).unk60)), c, (new ObjM(a).mtx.P + (uint)(Mem.S32(0x800D297Cu) * 64)), (uint)(0), a));
+            Resource_SetRequestResult_00253E04((uint)(0), b, (uint)(r), default(uint));
+        }
     }
 
     // ==== func_002AC3F0 @ 0x002AC3F0 [C]
@@ -1848,7 +5251,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r16);
                 r16 = r5;
                 Mem.Set((r29 + 24u), r31);
-                Mem.Set((r29 + 20u), r17); r2 = (uint)func_0024E914(r4);
+                Mem.Set((r29 + 20u), r17); r2 = (uint)Actor_GetTypeId(r4);
                 r5 = r2;
                 r3 = Mem.U8((r16 + 0u));
                 r2 = (uint)1;

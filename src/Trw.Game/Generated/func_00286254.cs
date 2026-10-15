@@ -29,11 +29,11 @@ public static partial class Game
                 sv = Mem.F32(0x800D2988u);
                 if (!((new B19Obj(o2).flags100 & (uint)(1073741824)) != 0u))
                 {
-                    func_0024BE2C(o2);
+                    Actor_RunStateUpdate(o2);
                 }
                 if (((new B19Obj(o2).flags100 & (uint)(1073750016)) == (uint)(8192)))
                 {
-                    func_00246E34(o, default(uint), default(uint), default(uint));
+                    Actor_Advance(o, default(uint), default(uint), default(uint));
                 }
                 Mem.Set(0x800D2988u, sv);
             }
@@ -63,10 +63,10 @@ public static partial class Game
                 o2 = o;
                 ++i;
                 sv = Mem.F32(0x800D2988u);
-                func_0024BE2C(o2);
+                Actor_RunStateUpdate(o2);
                 if (((new B19Obj(o2).flags100 & (uint)(8192)) != 0u))
                 {
-                    func_00246E34(o2, default(uint), default(uint), default(uint));
+                    Actor_Advance(o2, default(uint), default(uint), default(uint));
                 }
                 Mem.Set(0x800D2988u, sv);
             }

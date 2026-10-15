@@ -67,8 +67,8 @@ public static partial class Game
                 {
                     return 0u;
                 }
-                func_00246690(effect, id, variant, Mem.S32(0x800D2B40u), (uint)(count), (-1), (uint)(owner), scale, _fp, (uint)(524288), (_fp + 32u), (_fp + 16u));
-                func_0024B2C0(effect);
+                Actor_Init(effect, id, variant, Mem.S32(0x800D2B40u), (uint)(count), (-1), (uint)(owner), scale, _fp, (uint)(524288), (_fp + 32u), (_fp + 16u));
+                Actor_CallRestore(effect);
                 return effect;
             }
         }

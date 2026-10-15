@@ -26,7 +26,7 @@ public static partial class Game
                         done = 0;
                         if (((int)(new B19Obj(o).id) != 1039))
                         {
-                            new B19Vec3(_fp).y_Set((float)((float)(new B19Vec3(_fp).y) + (func_0024D274(p) * Mem.F32(0x800C9F84u))));
+                            new B19Vec3(_fp).y_Set((float)((float)(new B19Vec3(_fp).y) + (Actor_GetHeight(p) * Mem.F32(0x800C9F84u))));
                         }
                         if ((func_0027272C(new B19Obj(o).pos.P, _fp) < r))
                         {

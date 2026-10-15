@@ -50,7 +50,7 @@ public static partial class Game
                 r5 = Mem.U32((r29 + 16u));
                 r6 = (uint)144; r2 = memcpy(r4, r5, r6);
                 r4 = r0;
-                r5 = r17; func_002536F4((int)r4, r5);
+                r5 = r17; ResourcePool_Unref((int)r4, r5);
                 r1 = 2148335616u;
                 Mem.Set((r1 + 12176u), r16);
                 L_L002ABD98: ;

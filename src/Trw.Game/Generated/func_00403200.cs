@@ -45,7 +45,7 @@ public static partial class Game
                             break;
                         }
                     }
-                    func_002536F4(0, r);
+                    ResourcePool_Unref(0, r);
                 }
             }
         }

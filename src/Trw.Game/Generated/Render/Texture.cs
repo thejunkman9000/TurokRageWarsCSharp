@@ -276,7 +276,7 @@ public static partial class Game
                 int level = 0;
                 int tile = 0;
                 uint list = 0u;
-                func_00253B5C(0, resource);
+                Resource_MarkUsedInFrame(0, resource);
                 header = Mem.U32(resource);
                 info = Chunk_Get(header, 0);
                 Mem.Set(_fp, Chunk_Get(Chunk_Get(header, 1), frame));
@@ -926,15 +926,15 @@ public static partial class Game
                 r2 = r2 << 16;
                 r2 = (uint)((int)r2 >> 16);
                 { bool c_ = (int)r2 <= 0;  if (c_) goto L_L0040FD80; }
-                r4 = r2 << 5; r2 = func_00252FFC(r4);
+                r4 = r2 << 5; r2 = ResourcePool_Malloc(r4);
                 r4 = (uint)(int)Mem.S16((r21 + 604u));
                 Mem.Set((r21 + 620u), r2);
-                r4 = r4 << 3; r2 = func_00252FFC(r4);
+                r4 = r4 << 3; r2 = ResourcePool_Malloc(r4);
                 r4 = (uint)(int)Mem.S16((r21 + 604u));
                 Mem.Set((r21 + 616u), r2);
-                r4 = r4 << 2; r2 = func_00252FFC(r4);
+                r4 = r4 << 2; r2 = ResourcePool_Malloc(r4);
                 r4 = Mem.U32((r21 + 524u));
-                Mem.Set((r21 + 612u), r2); r2 = func_00252FFC(r4);
+                Mem.Set((r21 + 612u), r2); r2 = ResourcePool_Malloc(r4);
                 r6 = r0;
                 r4 = Mem.U32((r21 + 0u));
                 r5 = Mem.U32((r21 + 520u));
@@ -983,7 +983,7 @@ public static partial class Game
                 Mem.Set((r17 + 0u), (ushort)r2);
                 r2 = r2 << 16;
                 { bool c_ = (int)r2 <= 0;  if (c_) goto L_L0040FDD8; }
-                r2 = func_00252FFC(r4);
+                r2 = ResourcePool_Malloc(r4);
                 r4 = Mem.U32((r21 + 0u));
                 r5 = Mem.U32((r17 - 84u));
                 r6 = r0;
@@ -1003,12 +1003,12 @@ public static partial class Game
                 Mem.Set((r17 + 20u), (ushort)r2);
                 r2 = r2 << 16;
                 { bool c_ = (int)r2 <= 0;  if (c_) goto L_L0040FEE4; }
-                r2 = func_00252FFC(r4);
+                r2 = ResourcePool_Malloc(r4);
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 10948u));
                 { bool c_ = r3 == 0; Mem.Set((r17 + 24u), r2); if (c_) goto L_L0040FE38; }
                 r4 = Mem.U32((r17 - 64u));
-                r2 = func_00252FFC(r4);
+                r2 = ResourcePool_Malloc(r4);
                 r4 = r2;
                 r6 = Mem.U32((r17 - 64u));
                 r5 = r0;
@@ -1038,14 +1038,14 @@ public static partial class Game
                 r16 = 2148859904u;
                 r16 = r16 + 15424u;
                 r4 = (uint)(int)Mem.S16((r16 + 0u));
-                r4 = r4 << 1; r2 = func_00252FFC(r4);
+                r4 = r4 << 1; r2 = ResourcePool_Malloc(r4);
                 r4 = r2;
                 r6 = (uint)(int)Mem.S16((r16 + 0u));
                 r5 = r0;
                 Mem.Set((r16 + 16u), r4);
                 r6 = r6 << 1; r2 = func_002A1748(r4, (int)r5, r6);
                 r4 = (uint)(int)Mem.S16((r16 + 0u));
-                r4 = r4 << 1; r2 = func_00252FFC(r4);
+                r4 = r4 << 1; r2 = ResourcePool_Malloc(r4);
                 r4 = r2;
                 r6 = (uint)(int)Mem.S16((r16 + 0u));
                 r5 = r0;
@@ -1057,7 +1057,7 @@ public static partial class Game
                 r2 = Mem.U32((r17 + 0u));
                 if ((int)r2 <= 0) { Mem.Set((r17 + 92u), (ushort)r0); goto L_L004101E0; }
                 r4 = Mem.U32((r17 + 8u));
-                r16 = r0; r2 = func_00252FFC(r4);
+                r16 = r0; r2 = ResourcePool_Malloc(r4);
                 r6 = r0;
                 r4 = Mem.U32((r21 + 0u));
                 r5 = Mem.U32((r17 + 4u));
@@ -1067,7 +1067,7 @@ public static partial class Game
                 r7 = Mem.U32((r21 + 0u));
                 r6 = (uint)1; r2 = func_002A1ED4(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = Mem.U32((r17 + 0u));
-                r2 = func_00252FFC(r4);
+                r2 = ResourcePool_Malloc(r4);
                 r4 = Mem.U32((r21 + 0u));
                 r5 = Mem.U32((r17 - 4u));
                 r6 = r0;
@@ -1087,7 +1087,7 @@ public static partial class Game
                 r4 = r4 << 3;
                 r4 = r4 - r2;
                 r4 = r4 << 2;
-                Mem.Set((r17 + 92u), (ushort)r3); r2 = func_00252FFC(r4);
+                Mem.Set((r17 + 92u), (ushort)r3); r2 = ResourcePool_Malloc(r4);
                 r4 = r2;
                 r2 = (uint)(int)Mem.S16((r17 + 92u));
                 r5 = r0;
@@ -1140,12 +1140,12 @@ public static partial class Game
                 r7 = Mem.U32((r21 + 0u));
                 r6 = (uint)96; r2 = func_002A1ED4(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = (uint)(int)Mem.S16((r16 + 14u));
-                r4 = r4 << 2; r2 = func_00252FFC(r4);
+                r4 = r4 << 2; r2 = ResourcePool_Malloc(r4);
                 Mem.Set((r17 + 1156u), r2);
                 r2 = (uint)(int)Mem.S16((r16 + 14u));
                 r4 = r2 << 5;
                 r4 = r4 + r2;
-                r4 = r4 << 7; r2 = func_00252FFC(r4);
+                r4 = r4 << 7; r2 = ResourcePool_Malloc(r4);
                 r3 = Mem.U32((r17 + 1156u));
                 r5 = r0;
                 Mem.Set((r3 + 0u), r2);
@@ -1176,12 +1176,12 @@ public static partial class Game
                 r2 = (uint)-8;
                 r3 = r3 << 1;
                 r3 = r3 + 7u;
-                r18 = r3 & r2; r2 = func_00252FFC(r4);
+                r18 = r3 & r2; r2 = ResourcePool_Malloc(r4);
                 Mem.Set((r17 + 1160u), r2);
                 r4 = (uint)(int)Mem.S16((r16 + 14u));
                 { long p_ = (long)(int)r4 * (int)r18; lo = (uint)p_; hi = (uint)(p_ >> 32); }
                 r4 = lo;
-                r2 = func_00252FFC(r4);
+                r2 = ResourcePool_Malloc(r4);
                 r3 = Mem.U32((r17 + 1160u));
                 r6 = r0;
                 Mem.Set((r3 + 0u), r2);
@@ -1223,7 +1223,7 @@ public static partial class Game
                 r2 = (uint)((int)r19 < (int)r2 ? 1 : 0);
                 { bool c_ = r2 != 0; r20 = r20 + 1180u; if (c_) goto L_L00410028; }
                 L_L004101D8: ;
-                r4 = r23; func_00254784(r4);
+                r4 = r23; ResourcePool_MallocFree(r4);
                 L_L004101E0: ;
                 r16 = 2148859904u;
                 r16 = r16 + 15284u;
@@ -1396,7 +1396,7 @@ public static partial class Game
                 r4 = r4 + 7u;
                 L_L004108C8: ;
                 r20 = (uint)((int)r4 >> 3);
-                r4 = r20; r2 = func_00252FFC(r4);
+                r4 = r20; r2 = ResourcePool_Malloc(r4);
                 r17 = 2148859904u;
                 r17 = r17 + 14768u;
                 r3 = Mem.U32((r17 + 584u));
@@ -1412,7 +1412,7 @@ public static partial class Game
                 r2 = (uint)(int)Mem.S16((r16 + 14u));
                 { bool c_ = (int)r2 <= 0;  if (c_) goto L_L004109B0; }
                 r23 = r2 << 1;
-                r4 = r23; r2 = func_00252FFC(r4);
+                r4 = r23; r2 = ResourcePool_Malloc(r4);
                 r21 = r2;
                 r6 = r0;
                 r2 = Mem.U32((r17 + 584u));

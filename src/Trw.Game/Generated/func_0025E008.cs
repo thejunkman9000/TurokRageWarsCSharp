@@ -17,7 +17,7 @@ public static partial class Game
                 int r = 0;
                 if ((Mem.S32(0x80146890u) == 0))
                 {
-                    r = func_0025828C(0x8010C080u, id, _fp, a);
+                    r = Sound_PlayByIndex(0x8010C080u, id, _fp, a);
                 }
                 else
                 {

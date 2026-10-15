@@ -30,17 +30,17 @@ public static partial class Game
                 r2 = Mem.U32((r2 + 10420u));
                 { bool c_ = r2 == 0;  if (c_) goto L_L00408614; }
                 L_L0040860C: ;
-                r4 = r0; func_002538A8();
+                r4 = r0; ResourcePool_Purge();
                 L_L00408614: ;
                 r5 = 2148401152u;
                 r5 = Mem.U32((r5 + 10416u));
                 { bool c_ = r5 == 0;  if (c_) goto L_L0040862C; }
-                r4 = r0; func_002537D8((int)r4, r5);
+                r4 = r0; ResourcePool_Release((int)r4, r5);
                 L_L0040862C: ;
                 r5 = 2148401152u;
                 r5 = Mem.U32((r5 + 10420u));
                 { bool c_ = r5 == 0;  if (c_) goto L_L00408644; }
-                r4 = r0; func_002537D8((int)r4, r5);
+                r4 = r0; ResourcePool_Release((int)r4, r5);
                 L_L00408644: ;
                 r2 = 2148859904u;
                 r2 = Mem.U32((r2 + 14172u));

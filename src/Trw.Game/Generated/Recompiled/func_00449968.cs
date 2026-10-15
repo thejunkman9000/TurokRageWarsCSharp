@@ -35,7 +35,7 @@ public static partial class Game
                 Mem.Set((r29 + 32u), r20);
                 Mem.Set((r29 + 28u), r19);
                 Mem.Set((r29 + 16u), r16);
-                Mem.Set((r18 + 472u), r18); func_0024B398((int)r4, r5);
+                Mem.Set((r18 + 472u), r18); Level_SpawnActorFromRecord((int)r4, r5);
                 r3 = 1048576u;
                 r2 = Mem.U32((r18 + 256u));
                 r4 = 2148794368u;
@@ -76,7 +76,7 @@ public static partial class Game
                 r5 = r17;
                 r6 = r21;
                 r7 = r0;
-                Mem.Set((r18 + 1216u), r18); func_0024B398((int)r4, r5);
+                Mem.Set((r18 + 1216u), r18); Level_SpawnActorFromRecord((int)r4, r5);
                 r7 = 4294836224u;
                 r7 = r7 | 65535u;
                 r4 = r16;
@@ -106,7 +106,7 @@ public static partial class Game
                 Mem.Set((r18 + 832u), Cpu.W(0));
                 Mem.Set((r18 + 1000u), r3); r2 = (uint)Actor_DispatchEvent(r4, r5, (int)r6);
                 r4 = r16;
-                r5 = r17; func_002325EC(r4, r5);
+                r5 = r17; Weapon_EquipPending(r4, r5);
                 r4 = r18;
                 r5 = r18; r2 = Player_UpdateViewCamera(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = Mem.U32((r18 + 1500u));

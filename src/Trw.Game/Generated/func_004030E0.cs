@@ -50,7 +50,7 @@ public static partial class Game
                         break;
                     }
                 }
-                func_002536F4(0, r);
+                ResourcePool_Unref(0, r);
                 Flyby_ClearText();
                 return new O01Ctx(Mem.U32(0x800E2830u)).unkD8;
             }

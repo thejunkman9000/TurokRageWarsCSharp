@@ -24,7 +24,7 @@ public static partial class Game
                     new Obj_v12(o).unk1CC_Set((new Obj_v12(o).unk1CC - Mem.F32(0x800D2988u)));
                     Mem.Copy(_fp, new Obj_v12(o).pos.P, 12);
                 }
-                func_0024F490(o);
+                Pickup_Update(o);
                 if ((new Obj_v12(o).def_ != 0x8011F448u))
                 {
                     new Obj_v12(o).vx_Set(0.0f);

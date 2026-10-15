@@ -27,7 +27,7 @@ public static partial class Game
                     }
                     if (((mask & (uint)(new B04Ent_v4(e).mask)) != 0u))
                     {
-                        if ((func_002469F8(o, new B04Ent_v4(e).id, (-1)) != (-1)))
+                        if ((Actor_LookupAnimType(o, new B04Ent_v4(e).id, (-1)) != (-1)))
                         {
                             func_002798D4(_fp, (short)(new B04Ent_v4(e).id), (short)(10));
                         }
@@ -41,7 +41,7 @@ public static partial class Game
                 L_done: ;
                 r = func_00279918(_fp);
                 {
-                    int c = func_002469F8(o, (int)(r), (-1));
+                    int c = Actor_LookupAnimType(o, (int)(r), (-1));
                     if ((c == (-1)))
                     {
                         return def;
@@ -109,7 +109,7 @@ public static partial class Game
                                 {
                                     if ((s2 == 0u))
                                     {
-                                        s2 = func_0024BFC4(o, (int)(new B10Obj(o).b1));
+                                        s2 = Actor_AcquireModel(o, (int)(new B10Obj(o).b1));
                                         if ((s2 == 0u))
                                         {
                                             goto L_skip;
@@ -141,12 +141,149 @@ public static partial class Game
                     }
                     if ((s2 != 0u))
                     {
-                        func_002536F4(0, s2);
+                        ResourcePool_Unref(0, s2);
                     }
                 }
             }
         }
         finally { Stack.Free(96); }
+    }
+
+    // ==== func_00247F08 @ 0x00247F08 [C]
+    public static void Anim_StartHitFlinch(uint a, uint b, uint c, uint v1_in, uint v2_in, int idx)
+    {
+        uint _fp = Stack.Alloc(76);
+        try
+        {
+            unchecked
+            {
+                Mem.Copy(_fp + 0u, v1_in, 12);
+                Mem.Copy(_fp + 16u, v2_in, 12);
+                if (Dbg.On) Dbg.Enter("func_00247F08", (uint)a, (uint)b, (uint)c, (uint)v1_in);
+                uint n = 0u;
+                uint node = 0u;
+                uint e = 0u;
+                int i = 0;
+                int cur = 0;
+                if (((((int)(new B10Pb(b).b34) != 60) && ((int)(new B10Pb(b).b12) < 23)) && ((n = Actor_AcquireModel(a, (int)(new B10Pa(a).b1))) != 0u)))
+                {
+                    node = Chunk_Get(Mem.U32(n), 5);
+                    e = (node + (uint)((idx * Mem.S32(node)) + 8));
+                    cur = idx;
+                    if ((((int)(new B10Ent2(e).b65) & 3) == 3))
+                    {
+                        ResourcePool_Unref(0, n);
+                        return;
+                    }
+                    for (i = 0; (i < 4); ++i)
+                    {
+                        new B10Pb(b).b14.Set((int)(i), (sbyte)(cur));
+                        cur = (int)(new B10Ent2(e).b64);
+                        if ((cur != (-1)))
+                        {
+                            e = (node + (uint)((cur * Mem.S32(node)) + 8));
+                        }
+                    }
+                    ResourcePool_Unref(0, n);
+                    new B10Pb(b).b12_Set((sbyte)(25));
+                    new Vec3f((_fp + 48u)).x_Set(new B10Pc(c).f30);
+                    new Vec3f((_fp + 48u)).y_Set(new B10Pc(c).f34);
+                    new Vec3f((_fp + 48u)).z_Set(new B10Pc(c).f38);
+                    func_00271FD8(_fp, _fp, (_fp + 48u));
+                    func_00272088((_fp + 32u), _fp, (_fp + 16u));
+                    func_002720EC((_fp + 32u));
+                    func_002720EC(_fp);
+                    func_002720EC((_fp + 16u));
+                    func_00272088((_fp + 64u), (_fp + 32u), _fp);
+                    func_0027200C((_fp + 32u), (_fp + 32u), (((new Vec3f((_fp + 64u)).x * new Vec3f((_fp + 16u)).x) + (new Vec3f((_fp + 64u)).y * new Vec3f((_fp + 16u)).y)) + (new Vec3f((_fp + 64u)).z * new Vec3f((_fp + 16u)).z)));
+                    func_002720EC((_fp + 32u));
+                    Mem.Copy(new B10Pb(b).v18.P, (_fp + 32u), 12);
+                }
+            }
+        }
+        finally { Stack.Free(76); }
+    }
+
+    // ==== func_002480E0 @ 0x002480E0 [C]
+    public static void Anim_ApplyBoneSway_002480E0(uint a0, uint flags, uint obj)
+    {
+        uint _fp = Stack.Alloc(156);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_002480E0", (uint)a0, (uint)flags, (uint)obj);
+                uint t0 = 0u;
+                uint k = 0u;
+                float fs0f = 0f;
+                float fs0 = 0f;
+                t0 = (uint)(Mem.S32(0x800D2978u));
+                t0 = (uint)((uint)(t0) + ((flags & (uint)(56)) * (uint)(50)));
+                t0 = (uint)((uint)(t0) + ((a0 & (uint)(65535)) / (uint)(113)));
+                if (!((flags & (uint)(4)) != 0u))
+                {
+                    t0 = (uint)((uint)(t0) + (uint)(40));
+                }
+                new Vec3f((_fp + 144u)).x_Set((float)(0));
+                new Vec3f((_fp + 144u)).z_Set((float)(0));
+                new Vec3f((_fp + 144u)).y_Set(Mem.F32(0x800C8A74u));
+                k = (flags & (uint)(195));
+                if ((k == (uint)(2)))
+                {
+                    new Vec3f((_fp + 144u)).z_Set(Mem.F32(0x800C8A74u));
+                    new Vec3f((_fp + 144u)).x_Set((float)(0));
+                    fs0f = (Mem.F32((0x800D0724u + (uint)((t0 % (uint)(120)) * 4))) - Mem.F32(0x800C8A78u));
+                    new Vec3f((_fp + 144u)).y_Set(Mem.F32((0x800D0724u + (uint)(((t0 + (uint)(12)) % (uint)(120)) * 4))));
+                }
+                else
+                {
+                    if ((k == (uint)(130)))
+                    {
+                        new Vec3f((_fp + 144u)).x_Set(Mem.F32(0x800C8A74u));
+                        new Vec3f((_fp + 144u)).z_Set((float)(0));
+                        fs0f = (Mem.F32((0x800D0724u + (uint)((t0 % (uint)(120)) * 4))) - Mem.F32(0x800C8A7Cu));
+                        fs0f = (float)((float)(fs0f) * 2.0f);
+                        new Vec3f((_fp + 144u)).y_Set(Mem.F32((0x800D0724u + (uint)(((t0 + (uint)(12)) % (uint)(120)) * 4))));
+                    }
+                    else
+                    {
+                        if ((k == (uint)(64)))
+                        {
+                            fs0f = (Mem.F32((0x800D0724u + (uint)(((t0 + (uint)(30)) % (uint)(120)) * 4))) - Mem.F32(0x800C8A80u));
+                            fs0f = (float)((float)(fs0f) * 2.0f);
+                            new Vec3f((_fp + 144u)).x_Set(Mem.F32((0x800D0724u + (uint)(((t0 + (uint)(12)) % (uint)(120)) * 4))));
+                            new Vec3f((_fp + 144u)).y_Set(Mem.F32((0x800D0724u + (uint)(((t0 + (uint)(42)) % (uint)(120)) * 4))));
+                            new Vec3f((_fp + 144u)).z_Set(Mem.F32((0x800D0724u + (uint)(((t0 + (uint)(110)) % (uint)(120)) * 4))));
+                        }
+                        else
+                        {
+                            if ((k == (uint)(1)))
+                            {
+                                fs0f = (Mem.F32((0x800D0724u + (uint)(((t0 + (uint)(70)) % (uint)(120)) * 4))) - Mem.F32(0x800C8A84u));
+                                fs0f = (fs0f * Mem.F32(0x800C8A88u));
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
+                    }
+                }
+                func_002720EC((_fp + 144u));
+                new Vec3f((_fp + 128u)).x_Set(new B10R(obj).v30.x);
+                new Vec3f((_fp + 128u)).y_Set(new B10R(obj).v30.y);
+                new Vec3f((_fp + 128u)).z_Set(new B10R(obj).v30.z);
+                func_0027302C((_fp + 64u), obj);
+                fs0 = Mem.F32(0x800C8A8Cu);
+                func_0027200C((_fp + 128u), (_fp + 128u), fs0);
+                func_002734B8((_fp + 64u), Cpu.U2F(Mem.U32((_fp + 128u) + 0u)), Cpu.U2F(Mem.U32((_fp + 128u) + 4u)), Cpu.U2F(Mem.U32((_fp + 128u) + 8u)));
+                func_00272D70(_fp, fs0f, new Vec3f((_fp + 144u)).x, new Vec3f((_fp + 144u)).y, new Vec3f((_fp + 144u)).z);
+                func_0026F690(obj, (_fp + 64u), _fp);
+                func_0027200C((_fp + 128u), (_fp + 128u), fs0);
+                func_002734B8(obj, Cpu.U2F(Mem.U32((_fp + 128u) + 0u)), Cpu.U2F(Mem.U32((_fp + 128u) + 4u)), Cpu.U2F(Mem.U32((_fp + 128u) + 8u)));
+            }
+        }
+        finally { Stack.Free(156); }
     }
 
     // ==== func_002484A0 @ 0x002484A0 [C]
@@ -1203,7 +1340,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r12);
                 Mem.Set((r29 + 20u), r13);
                 r7 = Mem.U32((r18 + 8u));
-                r6 = r16; { uint s3_ = Stack.Alloc(12); Mem.Set(s3_ + 0u, r7); Mem.Set(s3_ + 4u, Mem.U32(r29 + 16u)); Mem.Set(s3_ + 8u, Mem.U32(r29 + 20u)); uint s4_ = Stack.Alloc(12); Mem.Set(s4_ + 0u, Mem.U32(r29 + 24u)); Mem.Set(s4_ + 4u, Mem.U32(r29 + 28u)); Mem.Set(s4_ + 8u, Mem.U32(r29 + 32u)); func_00247F08(r4, r5, r6, s3_, s4_, (int)Mem.U32(r29 + 36u)); Stack.Free(12); Stack.Free(12); }
+                r6 = r16; { uint s3_ = Stack.Alloc(12); Mem.Set(s3_ + 0u, r7); Mem.Set(s3_ + 4u, Mem.U32(r29 + 16u)); Mem.Set(s3_ + 8u, Mem.U32(r29 + 20u)); uint s4_ = Stack.Alloc(12); Mem.Set(s4_ + 0u, Mem.U32(r29 + 24u)); Mem.Set(s4_ + 4u, Mem.U32(r29 + 28u)); Mem.Set(s4_ + 8u, Mem.U32(r29 + 32u)); Anim_StartHitFlinch(r4, r5, r6, s3_, s4_, (int)Mem.U32(r29 + 36u)); Stack.Free(12); Stack.Free(12); }
                 L_L002492B8: ;
                 r12 = Mem.U32((r29 + 8776u));
                 Mem.Set((r12 + 4632u), r0);
@@ -1213,7 +1350,7 @@ public static partial class Game
                 r2 = r2 & r3;
                 { bool c_ = r2 == 0; r4 = r18; if (c_) goto L_L002492E0; }
                 r5 = r23;
-                r6 = r21; func_002480E0(r4, r5, r6);
+                r6 = r21; Anim_ApplyBoneSway_002480E0(r4, r5, r6);
                 L_L002492E0: ;
                 r13 = Mem.U32((r29 + 8792u));
                 { bool c_ = r23 != r13; r10 = (uint)-1; if (c_) goto L_L00249304; }
@@ -1750,7 +1887,7 @@ public static partial class Game
                 Cpu.SetW(0, Mem.U32((r2 + 56u)));
                 Mem.Set((r18 + 112u), Cpu.W(0)); goto L_L00249CB4;
                 L_L00249BE0: ;
-                r4 = r18; Cpu.SetS(0, func_0024D274(r4));
+                r4 = r18; Cpu.SetS(0, Actor_GetHeight(r4));
                 Cpu.SetW(1, Mem.U32((r29 + 156u)));
                 r1 = 2148335616u;
                 Cpu.SetW(2, Mem.U32((r1 - 30012u)));
@@ -1833,7 +1970,7 @@ public static partial class Game
                 Cpu.SetW(0, Mem.U32((r29 + 8300u)));
                 Cpu.SetW(1, Mem.U32((r18 + 112u)));
                 Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
-                Mem.Set((r29 + 8300u), Cpu.W(0)); Cpu.SetS(0, func_0024D274(r4));
+                Mem.Set((r29 + 8300u), Cpu.W(0)); Cpu.SetS(0, Actor_GetHeight(r4));
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
                 r5 = r29 + 8296u;
@@ -1857,7 +1994,7 @@ public static partial class Game
                 Mem.Set((r18 + 256u), r2);
                 L_L00249DC0: ;
                 r5 = Mem.U32((r29 + 8780u));
-                r4 = r0; func_002536F4((int)r4, r5);
+                r4 = r0; ResourcePool_Unref((int)r4, r5);
                 L_L00249DCC: ;
                 if (r16 == 0) { Mem.Set((r18 + 180u), r0); goto L_L00249DD4; }
                 L_L00249DD4: ;
@@ -1882,6 +2019,304 @@ public static partial class Game
             }
         }
         finally { if (Dbg.On) Dbg.Leave("func_002484A0", r2); Stack.Free(9136); }
+    }
+
+    // ==== func_0024B64C @ 0x0024B64C [C]
+    public static void Anim_RequestClip(uint a, int v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0024B64C", (uint)a, (uint)v);
+            new Obj(a).unk10A_Set((short)(v));
+            new Obj(a).unk10E_Set((byte)(0));
+            if (((int)(new Obj(a).unk108) != v))
+            {
+                new Obj(a).unk10F_Set((byte)(1));
+            }
+        }
+    }
+
+    // ==== func_0024B66C @ 0x0024B66C [C]
+    public static void Anim_ResetPlayback(uint a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0024B66C", (uint)a);
+            new Obj(a).unk10F_Set((byte)(1));
+            new Obj(a).unk104_Set(0);
+            new Obj(a).unk10E_Set((byte)(0));
+            new Obj(a).flags_Set((uint)((uint)(new Obj(a).flags) & (uint)((~1024))));
+        }
+    }
+
+    // ==== func_0024B690 @ 0x0024B690 [C]
+    public static int Anim_PlayAction(uint a, int b, int c)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0024B690", (uint)a, (uint)b, (uint)c);
+            int r = Actor_LookupAnimType(a, b, (-1));
+            if ((r != (-1)))
+            {
+                return Anim_TryRequestClip(a, r, c);
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_0024B6E4 @ 0x0024B6E4 [C]
+    public static int Anim_TryRequestClip(uint a, int b, int c)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0024B6E4", (uint)a, (uint)b, (uint)c);
+            if (((b < 0) || ((c == 0) && ((new Obj(a).flags & (uint)(1024)) != 0u))))
+            {
+                return 0;
+            }
+            Anim_RequestClip(a, b);
+            return 1;
+        }
+    }
+
+    // ==== func_0024B728 @ 0x0024B728 [C]
+    public static short Anim_PickRandomWeighted(uint a, uint p, int c)
+    {
+        uint _fp = Stack.Alloc(104);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0024B728", (uint)a, (uint)p, (uint)c);
+                func_002798CC(_fp);
+                while (((int)(Mem.S16(p)) != (-1)))
+                {
+                    if ((Actor_LookupAnimType(a, (int)(Mem.S16(p)), c) != (-1)))
+                    {
+                        func_002798D4(_fp, (short)((int)(Mem.S16((p + (uint)(0 * 2))))), (short)((int)(Mem.S16((p + (uint)(1 * 2))))));
+                    }
+                    p = (uint)(p + (uint)(2 * 2));
+                }
+                return (short)((int)(func_00279918(_fp)));
+            }
+        }
+        finally { Stack.Free(104); }
+    }
+
+    // ==== func_0024C0F4 @ 0x0024C0F4 [C]
+    public static uint Anim_GetRootMotionOffset_0024C0F4(uint _ret, uint o, uint p)
+    {
+        uint _fp = Stack.Alloc(108);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0024C0F4", 0u, (uint)o, (uint)p);
+                func_0025E5D0(p, 0, Cpu.U2F((uint)(Mem.S32(p))), (_fp + 64u));
+                new Vec3f((_fp + 80u)).x_Set(Mem.F32(((_fp + 64u) + (uint)(0 * 4))));
+                new Vec3f((_fp + 80u)).y_Set(Mem.F32(((_fp + 64u) + (uint)(2 * 4))));
+                new Vec3f((_fp + 80u)).z_Set(Mem.F32(((_fp + 64u) + (uint)(1 * 4))));
+                func_00273744(_fp, Cpu.U2F((uint)(new Obj(o).unk6C.i)));
+                func_00272908(_fp, (_fp + 80u), (_fp + 96u));
+                new Vec3f((_fp + 96u)).x_Set((float)((float)(new Vec3f((_fp + 96u)).x) * new Obj(o).unk50));
+                new Vec3f((_fp + 96u)).y_Set((float)((float)(new Vec3f((_fp + 96u)).y) * new Obj(o).unk54));
+                new Vec3f((_fp + 96u)).z_Set((float)((float)(new Vec3f((_fp + 96u)).z) * new Obj(o).unk58));
+                Mem.Copy(_ret, (_fp + 96u), 12);
+                return _ret;
+            }
+        }
+        finally { Stack.Free(108); }
+    }
+
+    // ==== func_0024C1B4 @ 0x0024C1B4 [C]
+    public static void Anim_SpawnEventEffects_0024C1B4(uint a, int b)
+    {
+        uint _fp = Stack.Alloc(12);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0024C1B4", (uint)a, (uint)b);
+                uint list = func_002625B8((uint)(b));
+                int n = func_002625E4((uint)(b));
+                int i = 0;
+                int t = 0;
+                for (i = 0; (i < n); ++i)
+                {
+                    t = (int)(new B11Rec((list + (uint)(i * 28))).type);
+                    if ((t < 8))
+                    {
+                        if ((t >= 6))
+                        {
+                            func_00272908(new Obj(a).unk74.P, new B11Rec((list + (uint)(i * 28))).pos.P, _fp);
+                            func_00265E30(a, a, (int)(new B11Rec((list + (uint)(i * 28))).type), (-1), _fp, new B11Rec((list + (uint)(i * 28))).unk14.P);
+                        }
+                    }
+                }
+            }
+        }
+        finally { Stack.Free(12); }
+    }
+
+    // ==== func_0024C33C @ 0x0024C33C [C]
+    public static void Anim_ApplyRootMotion_0024C33C(uint a, uint p)
+    {
+        uint _fp = Stack.Alloc(144);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0024C33C", (uint)a, (uint)p);
+                func_0025E5D0(p, 0, 0.0f, _fp);
+                func_0025E5D0(p, 0, Mem.F32(p), (_fp + 16u));
+                Mem.Set(((_fp + 32u) + (uint)(0 * 4)), (Mem.F32(((_fp + 16u) + (uint)(0 * 4))) - Mem.F32((_fp + (uint)(0 * 4)))));
+                Mem.Set(((_fp + 32u) + (uint)(1 * 4)), 0.0f);
+                Mem.Set(((_fp + 32u) + (uint)(2 * 4)), (Mem.F32(((_fp + 16u) + (uint)(1 * 4))) - Mem.F32((_fp + (uint)(1 * 4)))));
+                func_00273744((_fp + 80u), Cpu.U2F((uint)(new Obj(a).unk6C.i)));
+                func_00272908((_fp + 80u), (_fp + 32u), (_fp + 48u));
+                new Vec3f((_fp + 64u)).x_Set((new Obj(a).pos.x + (Mem.F32(((_fp + 48u) + (uint)(0 * 4))) * new Obj(a).unk50)));
+                new Vec3f((_fp + 64u)).y_Set(new Obj(a).pos.y);
+                new Vec3f((_fp + 64u)).z_Set((new Obj(a).pos.z + (Mem.F32(((_fp + 48u) + (uint)(2 * 4))) * new Obj(a).unk58)));
+                Collision_LocatePoint_0024E78C(a, (_fp + 64u), new Obj(a).pos.P, (a + 20u));
+            }
+        }
+        finally { Stack.Free(144); }
+    }
+
+    // ==== func_0024C6D8 @ 0x0024C6D8 [C]
+    public static void Anim_ApplyHitFlinch(int unused, uint p, uint m, int flag, int n)
+    {
+        uint _fp = Stack.Alloc(160);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0024C6D8", (uint)unused, (uint)p, (uint)m, (uint)flag);
+                float k = 0f;
+                float f = 0f;
+                float k2 = 0f;
+                if ((flag != 0))
+                {
+                    new Vec3f(_fp).x_Set(Mem.F32((m + (uint)(12 * 4))));
+                    new Vec3f(_fp).y_Set(Mem.F32((m + (uint)(13 * 4))));
+                    new Vec3f(_fp).z_Set(Mem.F32((m + (uint)(14 * 4))));
+                    Mem.Copy((_fp + 16u), new B11P(p).v18.P, 12);
+                    k = (Mem.F32((0x800D06C0u + (uint)((25 - (int)((sbyte)(new B11P(p).u12))) * 4))) * Mem.F32(0x800C8C58u));
+                    f = Mem.F32(0x800C8C5Cu);
+                    k = (k * f);
+                    f = Mem.F32(0x800C8C60u);
+                    if ((n != 5))
+                    {
+                        f = (float)(n);
+                    }
+                    do
+                    {
+                        k = (k * f);
+                    }
+                    while ((0 != 0));
+                    func_0027302C((_fp + 96u), m);
+                    k2 = Mem.F32(0x800C8C64u);
+                    func_0027200C(_fp, _fp, k2);
+                    func_002734B8((_fp + 96u), new Vec3f(_fp).x, new Vec3f(_fp).y, new Vec3f(_fp).z);
+                    func_00272D70((_fp + 32u), k, new Vec3f((_fp + 16u)).x, new Vec3f((_fp + 16u)).y, new Vec3f((_fp + 16u)).z);
+                    func_0026F690(m, (_fp + 96u), (_fp + 32u));
+                    func_0027200C(_fp, _fp, k2);
+                    func_002734B8(m, new Vec3f(_fp).x, new Vec3f(_fp).y, new Vec3f(_fp).z);
+                    if (((int)(new B11P(p).s14) == flag))
+                    {
+                        new B11P(p).u12_Set((byte)(((int)(new B11P(p).u12) - 1)));
+                    }
+                }
+            }
+        }
+        finally { Stack.Free(160); }
+    }
+
+    // ==== func_0024C91C @ 0x0024C91C [C]
+    public static void Anim_SampleTrackPosition(uint s, int idx, uint @out)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0024C91C", (uint)s, (uint)idx, (uint)@out);
+            int key = (int)(new B11Key((new B11Trk(s).keys_ + (uint)(idx * 4))).a);
+            uint n = 0u;
+            uint a = 0u;
+            uint b = 0u;
+            float t = 0f;
+            if ((key == (-1)))
+            {
+                Mem.Copy(@out, new B11Val((new B11Trk(s).vals_ + (uint)(idx * 20))).v.P, 12);
+            }
+            else
+            {
+                n = Chunk_Get((uint)(new B11Trk(s).node8), key);
+                a = (n + (uint)(new B11Trk(s).unk18 * 4));
+                b = (n + (uint)(new B11Trk(s).unk1C * 4));
+                t = new B11Trk(s).t;
+                new Vec3f(@out).x_Set((Mem.F32((a + (uint)(0 * 4))) + (t * (Mem.F32((b + (uint)(0 * 4))) - Mem.F32((a + (uint)(0 * 4)))))));
+                new Vec3f(@out).y_Set((Mem.F32((a + (uint)(1 * 4))) + (t * (Mem.F32((b + (uint)(1 * 4))) - Mem.F32((a + (uint)(1 * 4)))))));
+                new Vec3f(@out).z_Set((Mem.F32((a + (uint)(2 * 4))) + (t * (Mem.F32((b + (uint)(2 * 4))) - Mem.F32((a + (uint)(2 * 4)))))));
+            }
+        }
+    }
+
+    // ==== func_0024CA00 @ 0x0024CA00 [C]
+    public static void Anim_SampleTrackRotationLerp(uint s, int idx, uint @out)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0024CA00", (uint)s, (uint)idx, (uint)@out);
+            int key = (int)(new B11Key((new B11Trk(s).keys_ + (uint)(idx * 4))).b);
+            uint n = 0u;
+            uint a = 0u;
+            uint b = 0u;
+            float t = 0f;
+            uint r = 0u;
+            if ((key == (-1)))
+            {
+                r = (new B11Trk(s).vals_ + (uint)(idx * 20));
+                Mem.Set((@out + (uint)(0 * 4)), ((float)((int)(new B11Val(r).q[(int)(0)])) * Mem.F32(0x800C8C68u)));
+                Mem.Set((@out + (uint)(1 * 4)), ((float)((int)(new B11Val(r).q[(int)(1)])) * Mem.F32(0x800C8C68u)));
+                Mem.Set((@out + (uint)(2 * 4)), ((float)((int)(new B11Val(r).q[(int)(2)])) * Mem.F32(0x800C8C68u)));
+                Mem.Set((@out + (uint)(3 * 4)), ((float)((int)(new B11Val(r).q[(int)(3)])) * Mem.F32(0x800C8C68u)));
+            }
+            else
+            {
+                n = Chunk_Get((uint)(new B11Trk(s).nodeC), key);
+                a = (n + (uint)(new B11Trk(s).unk10 * 4));
+                b = (n + (uint)(new B11Trk(s).unk14 * 4));
+                t = new B11Trk(s).t;
+                Mem.Set((@out + (uint)(0 * 4)), (Mem.F32((a + (uint)(0 * 4))) + (t * (Mem.F32((b + (uint)(0 * 4))) - Mem.F32((a + (uint)(0 * 4)))))));
+                Mem.Set((@out + (uint)(1 * 4)), (Mem.F32((a + (uint)(1 * 4))) + (t * (Mem.F32((b + (uint)(1 * 4))) - Mem.F32((a + (uint)(1 * 4)))))));
+                Mem.Set((@out + (uint)(2 * 4)), (Mem.F32((a + (uint)(2 * 4))) + (t * (Mem.F32((b + (uint)(2 * 4))) - Mem.F32((a + (uint)(2 * 4)))))));
+                Mem.Set((@out + (uint)(3 * 4)), (Mem.F32((a + (uint)(3 * 4))) + (t * (Mem.F32((b + (uint)(3 * 4))) - Mem.F32((a + (uint)(3 * 4)))))));
+            }
+        }
+    }
+
+    // ==== func_0024CB3C @ 0x0024CB3C [C]
+    public static void Anim_SampleTrackRotationSlerp(uint s, int idx, uint @out)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0024CB3C", (uint)s, (uint)idx, (uint)@out);
+            int key = (int)(new B11Key((new B11Trk(s).keys_ + (uint)(idx * 4))).b);
+            uint n = 0u;
+            uint r = 0u;
+            if ((key == (-1)))
+            {
+                r = (new B11Trk(s).vals_ + (uint)(idx * 20));
+                Mem.Set((@out + (uint)(0 * 4)), ((float)((int)(new B11Val(r).q[(int)(0)])) * Mem.F32(0x800C8C6Cu)));
+                Mem.Set((@out + (uint)(1 * 4)), ((float)((int)(new B11Val(r).q[(int)(1)])) * Mem.F32(0x800C8C6Cu)));
+                Mem.Set((@out + (uint)(2 * 4)), ((float)((int)(new B11Val(r).q[(int)(2)])) * Mem.F32(0x800C8C6Cu)));
+                Mem.Set((@out + (uint)(3 * 4)), ((float)((int)(new B11Val(r).q[(int)(3)])) * Mem.F32(0x800C8C6Cu)));
+            }
+            else
+            {
+                n = Chunk_Get((uint)(new B11Trk(s).nodeC), key);
+                func_00270B1C(@out, new B11Trk(s).t, (n + (uint)(new B11Trk(s).unk10 * 4)), (n + (uint)(new B11Trk(s).unk14 * 4)));
+            }
+        }
     }
 
     // ==== func_00261690 @ 0x00261690 [C]

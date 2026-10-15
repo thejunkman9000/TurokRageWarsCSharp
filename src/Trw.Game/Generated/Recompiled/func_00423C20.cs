@@ -75,7 +75,7 @@ public static partial class Game
                 r1 = r1 + r3;
                 r2 = (uint)(int)Mem.S8((r1 + 11022u));
                 { bool c_ = r2 != r19;  if (c_) goto L_L00423D5C; }
-                r4 = r3 + r16; func_0022EF20(r4);
+                r4 = r3 + r16; Profile_Init(r4);
                 r3 = Mem.U32((r29 + 16u));
                 r2 = r3 << 1;
                 r2 = r2 + r3;
@@ -108,7 +108,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r2 = (uint)((int)r2 < 4 ? 1 : 0);
                 { bool c_ = r2 != 0;  if (c_) goto L_L00423CCC; }
-                r4 = (uint)28; r2 = func_00252FFC(r4);
+                r4 = (uint)28; r2 = ResourcePool_Malloc(r4);
                 r1 = 2148401152u;
                 Mem.Set((r1 + 17920u), r2);
                 r19 = r0; func_002A3358();
