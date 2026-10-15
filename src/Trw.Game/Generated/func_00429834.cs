@@ -13,7 +13,7 @@ public static partial class Game
             int s1 = 0;
             int s0 = 0;
             s1 = func_0041AD84((uint)(new O04S4EF0b(Mem.U32(0x800E4EF0u)).unk20));
-            s0 = func_002A2B18((uint)(new O04S4EF0b(Mem.U32(0x800E4EF0u)).unk34));
+            s0 = NumberField_GetValue((uint)(new O04S4EF0b(Mem.U32(0x800E4EF0u)).unk34));
             if ((s0 <= 0))
             {
                 func_0041EAE0();

@@ -17,7 +17,7 @@ public static partial class Game
                     return 0;
                 }
                 Mem.Set(0x80146894u, 0);
-                func_002A3304();
+                Menu_RequestShutdown();
                 Audio_UnduckMusic();
             }
             return 0;

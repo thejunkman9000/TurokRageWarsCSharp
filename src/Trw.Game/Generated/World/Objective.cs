@@ -333,7 +333,7 @@ public static partial class Game
             {
                 Level_FireEntityTriggers(actor, 524288, (int)(actor));
             }
-            func_002A6D28(0x8013BA80u, (int)(actor));
+            Decal_RemoveByKey(0x8013BA80u, (int)(actor));
             if ((Mem.S32((0x8011FE88u + (uint)(0 * 4))) != 4))
             {
                 new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) | (uint)(134217728)));
@@ -390,7 +390,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020478C", (uint)msg);
-            func_0028B64C(0x8011FE88u, (int)(new Msg20478C(msg).unkA), (int)(new Msg20478C(msg).unk4), 1);
+            Level_SetEntitySavedFlagInMap(0x8011FE88u, (int)(new Msg20478C(msg).unkA), (int)(new Msg20478C(msg).unk4), 1);
         }
     }
 
@@ -410,7 +410,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002047D8", (uint)msg);
-            func_0028B64C(0x8011FE88u, (int)(new Msg2047D8(msg).unkA), (int)(new Msg2047D8(msg).unk4), 0);
+            Level_SetEntitySavedFlagInMap(0x8011FE88u, (int)(new Msg2047D8(msg).unkA), (int)(new Msg2047D8(msg).unk4), 0);
         }
     }
 

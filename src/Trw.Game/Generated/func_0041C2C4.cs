@@ -13,9 +13,9 @@ public static partial class Game
             Mem.Set(0x800E3510u, (int)(Mem.S32(0x800E3510u) + 1));
             if ((Mem.S32(0x800E3510u) >= 4))
             {
-                func_002A338C();
-                func_0029A73C();
-                func_00299368(2);
+                Menu_DisableInput();
+                Menu_ConsumeEvent();
+                Menu_GotoScreen(2);
                 Mem.Set(0x8014ADA0u, 1);
                 return;
             }

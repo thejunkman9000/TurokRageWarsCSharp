@@ -109,7 +109,7 @@ public static partial class Game
                 uint p = 0u;
                 cnt = (uint)((arg = (done = 0)));
                 last = (ulong)(0);
-                func_0028F844(0x801469E8u, _fp, (int)(0x8010BE00u));
+                Sched_AddClient(0x801469E8u, _fp, (int)(0x8010BE00u));
                 _f0: ;
                 now = osGetTime();
                 Mem.Set(0x800D0950u, (uint)((((now - last) << (int)6) / (ulong)(3000))));
@@ -192,7 +192,7 @@ public static partial class Game
                 new B12AiCtx(t).cmdList_Set(Mem.S32((0x8010BE20u + (uint)(Mem.S32(0x800D0948u) * 4))));
                 new B12AiCtx(t).cmdLen_Set((((end - Mem.S32((0x8010BE20u + (uint)(Mem.S32(0x800D0948u) * 4)))) >> (int)3) * 8));
                 osWritebackDCacheAll();
-                func_0028FD2C(0x801469E8u, new B12AiCtx(t).msg.P);
+                Sched_SubmitTask(0x801469E8u, new B12AiCtx(t).msg.P);
                 Mem.Set(0x800D0948u, (int)((int)(Mem.S32(0x800D0948u)) ^ 1));
                 Audio_UpdateFrame();
                 osRecvMesg(0x8010BE80u, (_fp + 4u), 1);

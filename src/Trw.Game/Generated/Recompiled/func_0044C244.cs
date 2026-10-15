@@ -33,13 +33,13 @@ public static partial class Game
                 Mem.Set((r29 + 68u), r31);
                 Mem.Set((r29 + 60u), r19);
                 Mem.Set((r29 + 56u), r18);
-                Mem.Set((r29 + 52u), r17); r2 = (uint)func_0028B1F8(r4, (int)r5);
+                Mem.Set((r29 + 52u), r17); r2 = (uint)Level_FindTypeIndexById(r4, (int)r5);
                 r5 = r2;
                 r2 = (uint)-1;
                 { bool c_ = r5 != r2;  if (c_) goto L_L0044C294; }
                 Mem.Set((r20 + 8u), r0); goto L_L0044C3F0;
                 L_L0044C294: ;
-                r4 = r16; r2 = (uint)func_0028C174(r4, (int)r5);
+                r4 = r16; r2 = (uint)Level_GetModelKey(r4, (int)r5);
                 r4 = r0;
                 r16 = r2;
                 r5 = r16;
@@ -57,7 +57,7 @@ public static partial class Game
                 { bool c_ = r17 == 0;  if (c_) goto L_L0044C3F0; }
                 r5 = r16;
                 r4 = Mem.U32((r17 + 0u));
-                r6 = r18; r2 = (uint)func_0028FE08(r4, (int)r5, (int)r6);
+                r6 = r18; r2 = (uint)Resource_GetCartridgeKeyNoSize(r4, (int)r5, (int)r6);
                 r4 = r0;
                 r5 = r29 + 40u;
                 r16 = r2;

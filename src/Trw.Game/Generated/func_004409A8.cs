@@ -54,7 +54,7 @@ public static partial class Game
                         {
                             s2 = new Q4Part(p).f4;
                             x2 = new Q4O_v2(o).f20_;
-                            src = func_0028CF7C(0x8011FE88u, s2, new Q4Part(p).f8);
+                            src = Level_FindDefinition(0x8011FE88u, s2, new Q4Part(p).f8);
                             if ((src == 0u))
                             {
                                 new Q4X(x2).f478_Set(0);

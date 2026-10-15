@@ -22,9 +22,9 @@ public static partial class Game
                 L_func_00439FE4: ;
                 r29 = r29 - 24u;
                 Mem.Set((r29 + 16u), r31);
-                func_0029A73C();
+                Menu_ConsumeEvent();
                 r4 = (uint)-1; func_0042EB68((int)r4);
-                func_0029A8A8();
+                Menu_GoBack();
                 r31 = Mem.U32((r29 + 16u));
                 r2 = r0;
                 r29 = r29 + 24u; Cpu.V1 = r3; return r2;

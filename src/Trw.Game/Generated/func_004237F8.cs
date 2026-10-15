@@ -13,7 +13,7 @@ public static partial class Game
             if ((new O04_S4514(Mem.U32(0x800E4514u)).unkC == 0))
             {
                 new O04_S4514(Mem.U32(0x800E4514u)).unkC_Set(1);
-                func_002A3358();
+                Menu_EnableInput();
             }
             return 0;
         }

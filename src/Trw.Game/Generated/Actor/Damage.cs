@@ -213,7 +213,7 @@ public static partial class Game
                     new Vec3f((_fp + 48u)).x_Set((float)(0));
                     new Vec3f((_fp + 48u)).y_Set((float)(0));
                     new Vec3f((_fp + 48u)).z_Set((float)(0));
-                    func_0028CE70(0x8011FE88u, (int)((new B15Player(o).unk698_ + (uint)320)), 3, (_fp + 48u), Mem.F32(0x800C94C4u), Mem.F32(0x800C94C8u));
+                    Rumble_StartById(0x8011FE88u, (int)((new B15Player(o).unk698_ + (uint)320)), 3, (_fp + 48u), Mem.F32(0x800C94C4u), Mem.F32(0x800C94C8u));
                 }
             }
         }
@@ -1093,7 +1093,7 @@ public static partial class Game
                     new Vec3f((_fp + 48u)).x_Set((float)(0));
                     new Vec3f((_fp + 48u)).y_Set((float)(0));
                     new Vec3f((_fp + 48u)).z_Set((float)(0));
-                    func_0028CE70(0x8011FE88u, (int)((new B15Player(o).unk698_ + (uint)320)), 3, (_fp + 48u), Mem.F32(0x800C953Cu), Mem.F32(0x800C9540u));
+                    Rumble_StartById(0x8011FE88u, (int)((new B15Player(o).unk698_ + (uint)320)), 3, (_fp + 48u), Mem.F32(0x800C953Cu), Mem.F32(0x800C9540u));
                 }
             }
         }

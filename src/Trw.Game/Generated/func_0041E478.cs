@@ -30,7 +30,7 @@ public static partial class Game
             new O3Obj(o).f2C_Set(new O3Row((0x800E3A50u + (uint)(func_0041F1B0(Mem.S32(((0x80153F80u + (uint)off) + (uint)0))) * 112))).f8);
             o = UiTree_FindNode((uint)(w), (uint)(911), default(uint), default(uint));
             new O3Obj(o).alpha_Set((byte)(125));
-            func_002A125C(((0x80153F80u + (uint)off) + (uint)16), Mem.U32(new O3Chr(((0x800E381Cu + (uint)(Mem.S32(((0x80153F80u + (uint)off) + (uint)4)) * 136)) + (uint)(func_0041ECB4(Mem.S32(((0x80153F80u + (uint)off) + (uint)4)), Mem.S32(((0x80153F80u + (uint)off) + (uint)0))) * 8))).s));
+            LibC_StrCopy(((0x80153F80u + (uint)off) + (uint)16), Mem.U32(new O3Chr(((0x800E381Cu + (uint)(Mem.S32(((0x80153F80u + (uint)off) + (uint)4)) * 136)) + (uint)(func_0041ECB4(Mem.S32(((0x80153F80u + (uint)off) + (uint)4)), Mem.S32(((0x80153F80u + (uint)off) + (uint)0))) * 8))).s));
             new O3Obj(o).f38_Set(((0x80153F80u + (uint)off) + (uint)16));
             o = UiTree_FindNode((uint)(w), (uint)(910), default(uint), default(uint));
             new O3Obj(o).alpha_Set((byte)(125));

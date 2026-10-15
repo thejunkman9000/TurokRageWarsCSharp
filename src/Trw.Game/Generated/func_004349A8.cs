@@ -17,7 +17,7 @@ public static partial class Game
                 int j = 0;
                 int s = 0;
                 int sz = 400;
-                func_002A1724(new O05Lobby(Mem.U32(0x800E54A4u)).recs.P, 0x80102B00u, (uint)(1600));
+                Mem_Copy(new O05Lobby(Mem.U32(0x800E54A4u)).recs.P, 0x80102B00u, (uint)(1600));
                 for (i = 0; (i < 4); ++i)
                 {
                     Profile_Init((0x80102B00u + (uint)(i * 400)));
@@ -28,7 +28,7 @@ public static partial class Game
                     s = new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].fB28;
                     if ((s >= 0))
                     {
-                        func_002A1724((0x80102B00u + (uint)(i * 400)), (new O05Lobby(Mem.U32(0x800E54A4u)).recs.P + (uint)(s * 400)), (uint)(sz));
+                        Mem_Copy((0x80102B00u + (uint)(i * 400)), (new O05Lobby(Mem.U32(0x800E54A4u)).recs.P + (uint)(s * 400)), (uint)(sz));
                         Mem.Set((_fp + (uint)(s * 4)), 1);
                     }
                 }
@@ -40,7 +40,7 @@ public static partial class Game
                         {
                             if (((int)(new O05Rec((0x80102B00u + (uint)(j * 400))).bD) < 0))
                             {
-                                func_002A1724((0x80102B00u + (uint)(j * 400)), (new O05Lobby(Mem.U32(0x800E54A4u)).recs.P + (uint)(i * 400)), (uint)(sz));
+                                Mem_Copy((0x80102B00u + (uint)(j * 400)), (new O05Lobby(Mem.U32(0x800E54A4u)).recs.P + (uint)(i * 400)), (uint)(sz));
                                 break;
                             }
                         }

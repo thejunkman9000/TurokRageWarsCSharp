@@ -57,7 +57,7 @@ public static partial class Game
                     Mem.Copy((_fp + 64u), new O05Obj_v2(o).v10.P, 12);
                     Math_MtxTransformPoint(new O05Cam(cam).view.P, (_fp + 64u), (_fp + 80u));
                     Math_MtxMakeTranslate(_fp, Cpu.U2F(Mem.U32((_fp + 80u) + 0u)), Cpu.U2F(Mem.U32((_fp + 80u) + 4u)), Cpu.U2F(Mem.U32((_fp + 80u) + 8u)));
-                    t = (float)(func_002A2934());
+                    t = (float)(Menu_GetFrameCounter());
                     if ((new O05Obj_v2(o).f28 != 0.0f))
                     {
                         Math_MtxRotateRowsC_00273860(_fp, ((t * new O05Obj_v2(o).f28) * 0.0174532942f));
@@ -89,7 +89,7 @@ public static partial class Game
                     Math_MtxScaleRows(_fp, Mem.F32(((_fp + 96u) + (uint)(0 * 4))), Mem.F32(((_fp + 96u) + (uint)(1 * 4))), Mem.F32(((_fp + 96u) + (uint)(2 * 4))));
                     Math_MtxSwapRowsYZ(_fp);
                     Math_MtxFloatToFixed(_fp, (o + (uint)((Mem.S32(0x800D297Cu) * 64) + 56)));
-                    h = func_0028C174(0x8011FE88u, new O05Obj_v2(o).f34);
+                    h = Level_GetModelKey(0x8011FE88u, new O05Obj_v2(o).f34);
                     Model_ClearBatchQueue();
                     Model_QueueByIndex(h, (int)((o + (uint)((Mem.S32(0x800D297Cu) * 64) + 56))), (int)(0x800D0EF8u), 0, new O05Obj_v2(o).fB8);
                     Model_FlushBatches();

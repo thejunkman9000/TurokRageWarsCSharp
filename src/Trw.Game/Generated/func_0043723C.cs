@@ -10,12 +10,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043723C");
-            func_0029A73C();
+            Menu_ConsumeEvent();
             if ((Menu_GetMessage() == 456))
             {
                 func_00436BC8(new O05M94_v4(Mem.U32(0x800E5694u)).f14);
-                func_0042EB68(((func_0029A9A0(0) == 22) ? (-1) : 11));
-                func_0029A8A8();
+                func_0042EB68(((Menu_GetStackScreenId(0) == 22) ? (-1) : 11));
+                Menu_GoBack();
             }
             return 0;
         }

@@ -22,7 +22,7 @@ public static partial class Game
                     {
                         new O3Fd(o).item.alpha_Set((byte)(255));
                         new O3Fd(o).done_Set(1);
-                        func_002A3358();
+                        Menu_EnableInput();
                     }
                     new O3Fd(o).timer_Set((new O3Fd(o).timer + dt));
                 }
@@ -36,7 +36,7 @@ public static partial class Game
                     {
                         new O3Fd(o).item.alpha_Set((byte)(0));
                         new O3Fd(o).done_Set(1);
-                        func_002A3358();
+                        Menu_EnableInput();
                     }
                     new O3Fd(o).timer_Set((new O3Fd(o).timer - dt));
                 }

@@ -17,10 +17,10 @@ public static partial class Game
             {
                 if ((new O3M7D5(m).item[(int)(idx)] != 0u))
                 {
-                    func_0029A5D4((uint)((int)(new O3Item(new O3M7D5(m).item[(int)(idx)]).h.id)), (uint)(16), (uint)(0), (uint)(0), (uint)(0));
+                    Menu_SendEvent((uint)((int)(new O3Item(new O3M7D5(m).item[(int)(idx)]).h.id)), (uint)(16), (uint)(0), (uint)(0), (uint)(0));
                 }
                 it = UiTree_FindNode((uint)((int)(new O3M7D5(m).own_)), (uint)((id & 65535)), default(uint), default(uint));
-                func_0029A5D4((uint)((int)(new O3Item(it).h.id)), (uint)(15), (uint)(0), (uint)(0), (uint)(0));
+                Menu_SendEvent((uint)((int)(new O3Item(it).h.id)), (uint)(15), (uint)(0), (uint)(0), (uint)(0));
                 if ((new O3M7D5(m).mode == 0))
                 {
                     new O3M7D5(m).item.Set((int)(idx), it);

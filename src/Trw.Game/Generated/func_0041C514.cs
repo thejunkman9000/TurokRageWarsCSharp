@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0041C514");
-            func_0029A73C();
+            Menu_ConsumeEvent();
             switch (Menu_GetMessage())
             {
             case 971:
@@ -29,7 +29,7 @@ public static partial class Game
                 Mem.Set(0x8014AD94u, 0);
                 Mem.Set(0x800E3514u, 1);
                 func_00435190(6);
-                func_00299368(19);
+                Menu_GotoScreen(19);
                 break;
             }
             return 0;

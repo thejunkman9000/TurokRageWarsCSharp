@@ -75,7 +75,7 @@ public static partial class Game
                 r2 = Mem.U16((r17 + 8u));
                 r2 = r2 & 1u;
                 { bool c_ = r2 == 0;  if (c_) goto L_L004110CC; }
-                r2 = (uint)func_002A2934();
+                r2 = (uint)Menu_GetFrameCounter();
                 r5 = r2 + 10u;
                 Mem.Set((r17 + 4u), r5);
                 r2 = 2148859904u;
@@ -96,7 +96,7 @@ public static partial class Game
                 r2 = r19 + r2;
                 r2 = r2 + 12u; goto L_L00411568;
                 L_L004110CC: ;
-                Mem.Set((r29 + 488u), r0); Cpu.SetD(0, func_002A28CC());
+                Mem.Set((r29 + 488u), r0); Cpu.SetD(0, Time_GetSecondsSinceStart());
                 r2 = r16 << 3;
                 r4 = 2148859904u;
                 r4 = Mem.U32((r4 + 15400u));
@@ -169,7 +169,7 @@ public static partial class Game
                 r2 = Mem.U32((r16 + 88u));
                 r5 = 2148401152u;
                 r5 = r5 + 4320u;
-                r21 = r2 + r19; r2 = func_002A1E8C(r4, r5, r6, r7); r3 = Cpu.V1;
+                r21 = r2 + r19; r2 = File_Open(r4, r5, r6, r7); r3 = Cpu.V1;
                 Mem.Set((r16 - 544u), r2);
                 r2 = Mem.U32((r21 + 1164u));
                 r17 = Mem.U32((r2 + 28u));
@@ -182,14 +182,14 @@ public static partial class Game
                 r2 = Mem.U32((r2 + 592u));
                 r5 = Mem.U32((r3 + 24u));
                 r4 = Mem.U32((r16 - 544u));
-                r5 = r2 + r5; r2 = func_002A1F60(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r2 + r5; r2 = File_Seek(r4, r5, r6, r7); r3 = Cpu.V1;
                 r5 = r17;
                 r2 = 2148859904u;
                 r2 = Mem.U32((r2 + 15400u));
                 r7 = Mem.U32((r16 - 544u));
                 r2 = r19 + r2;
                 r4 = Mem.U32((r2 + 772u));
-                r6 = (uint)1; r2 = func_002A1ED4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = (uint)1; r2 = File_Read(r4, r5, r6, r7); r3 = Cpu.V1;
                 r7 = r21;
                 r6 = r29 + 56u;
                 r5 = r21;
@@ -291,7 +291,7 @@ public static partial class Game
                 r16 = 2148859904u;
                 r16 = r16 + 14768u;
                 r4 = Mem.U32((r16 + 0u));
-                r2 = func_002A1EB0(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = File_Close(r4, r5, r6, r7); r3 = Cpu.V1;
                 r2 = (uint)1;
                 Mem.Set((r16 + 0u), r0);
                 Mem.Set((r21 + 0u), r2);
@@ -351,8 +351,8 @@ public static partial class Game
                 r5 = Mem.U32((r29 + 476u));
                 r2 = func_004196C0(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = (uint)1; func_00419748((int)r4);
-                Cpu.SetD(0, func_002A28CC());
-                r2 = (uint)func_002A2934();
+                Cpu.SetD(0, Time_GetSecondsSinceStart());
+                r2 = (uint)Menu_GetFrameCounter();
                 r8 = Mem.U32((r29 + 496u));
                 r2 = r2 + 10u;
                 Mem.Set((r8 + 4u), r2);

@@ -16,7 +16,7 @@ public static partial class Game
             uint l = 0u;
             uint l2 = 0u;
             uint g = 0u;
-            func_0029A73C();
+            Menu_ConsumeEvent();
             l = Mem.U32(0x800E59E0u);
             if ((new O05L2(l).row[(int)(idx)].f4A8 != 1))
             {

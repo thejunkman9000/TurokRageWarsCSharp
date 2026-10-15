@@ -16,7 +16,7 @@ public static partial class Game
                 int i = 0;
                 int @base = 0;
                 int off = 0;
-                func_002A33BC(1);
+                Menu_SetFixedFov(1);
                 i = 0;
                 off = 4976;
                 @base = i;

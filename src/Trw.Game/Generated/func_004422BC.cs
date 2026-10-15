@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004422BC", (uint)a, (uint)b, (uint)c);
             uint p = new O06D_v4(a).unk20_;
-            uint v = func_0028CF7C(0x8011FE88u, b, c);
+            uint v = Level_FindDefinition(0x8011FE88u, b, c);
             if ((v == 0u))
             {
                 new O06A_v41(p).unk478_Set(0);

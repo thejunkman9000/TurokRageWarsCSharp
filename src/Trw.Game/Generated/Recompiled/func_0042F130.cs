@@ -921,9 +921,9 @@ public static partial class Game
                 L_I0042F938: ;
                 r4 = r0; func_0040C4A8((int)r4);
                 L_I0042F940: ;
-                func_002A338C();
+                Menu_DisableInput();
                 L_I0042F948: ;
-                r4 = r0; func_002A3410((int)r4);
+                r4 = r0; Menu_SetPeriodicStateKick_002A3410((int)r4);
                 L_I0042F950: ;
                 r4 = (uint)3704; r2 = (uint)Audio_PlaySound2D((int)r4);
                 L_I0042F958: ;

@@ -176,7 +176,7 @@ public static partial class Game
                     new Q03Ent(e).f91_Set((byte)(0));
                     new Q03Ent(e).f93_Set((byte)(2));
                     new Q03Ent(e).f81_Set((sbyte)((Random_Next() % 3)));
-                    func_002A125C(new Q03Ent(e).name.P, Mem.U32(new Q03StrTbl((0x800E3820u + (uint)((((int)(new Q03Ent(e).f81) * 17) + func_0041F1B0((int)(new Q03Ent(e).f80))) * 8))).p));
+                    LibC_StrCopy(new Q03Ent(e).name.P, Mem.U32(new Q03StrTbl((0x800E3820u + (uint)((((int)(new Q03Ent(e).f81) * 17) + func_0041F1B0((int)(new Q03Ent(e).f80))) * 8))).p));
                 }
                 for (i = 0; (i < (s6 - s4)); ++i)
                 {
@@ -187,7 +187,7 @@ public static partial class Game
                     new Q03Ent(e).f91_Set((byte)(1));
                     new Q03Ent(e).f93_Set((byte)(2));
                     new Q03Ent(e).f81_Set((sbyte)((Random_Next() % 3)));
-                    func_002A125C(new Q03Ent(e).name.P, Mem.U32(new Q03StrTbl((0x800E3820u + (uint)((((int)(new Q03Ent(e).f81) * (a = 17)) + func_0041F1B0((int)(new Q03Ent(e).f80))) * 8))).p));
+                    LibC_StrCopy(new Q03Ent(e).name.P, Mem.U32(new Q03StrTbl((0x800E3820u + (uint)((((int)(new Q03Ent(e).f81) * (a = 17)) + func_0041F1B0((int)(new Q03Ent(e).f80))) * 8))).p));
                 }
                 for (i = 0; (i < 8); ++i)
                 {
@@ -318,7 +318,7 @@ public static partial class Game
                 Resource_SetLoadFlags(1);
             }
             func_0040C4A8(0);
-            func_002A338C();
+            Menu_DisableInput();
             i = 7;
             p = (0x80145088u + (uint)5930);
             for (; (i >= 0); --i)
@@ -334,7 +334,7 @@ public static partial class Game
             {
                 Profile_Init((0x80102B00u + (uint)(i * 400)));
             }
-            func_002A33F8(0.0f);
+            Menu_SetIdleTime(0.0f);
             return 0;
         }
     }

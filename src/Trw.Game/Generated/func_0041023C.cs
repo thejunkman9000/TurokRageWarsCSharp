@@ -27,7 +27,7 @@ public static partial class Game
             func_0040F600();
             if ((new S_G(0x801539B0u).h != 0))
             {
-                func_002A1EB0((uint)(new S_G(0x801539B0u).h), default(uint), default(uint), default(uint));
+                File_Close((uint)(new S_G(0x801539B0u).h), default(uint), default(uint), default(uint));
             }
             func_00411964(1);
             func_00410E9C(1);
@@ -94,7 +94,7 @@ public static partial class Game
             {
                 ResourcePool_MallocFree(new S_G(0x801539B0u).p280);
             }
-            func_002A1748(0x801539B0u, 0, (uint)(680));
+            Mem_Fill(0x801539B0u, 0, (uint)(680));
         }
     }
 

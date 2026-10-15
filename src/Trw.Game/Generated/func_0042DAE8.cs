@@ -14,7 +14,7 @@ public static partial class Game
             {
                 return 0;
             }
-            func_0029A73C();
+            Menu_ConsumeEvent();
             if (((new O04ModeS53C0(Mem.U32(0x800E53C0u)).unkE8 + 4) < new O04ModeS53C0(Mem.U32(0x800E53C0u)).unkEC))
             {
                 new O04ModeS53C0(Mem.U32(0x800E53C0u)).unkE8_Set((new O04ModeS53C0(Mem.U32(0x800E53C0u)).unkE8 + 1));

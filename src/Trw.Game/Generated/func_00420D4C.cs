@@ -15,7 +15,7 @@ public static partial class Game
             uint e = 0u;
             idx = (int)((a2 & (uint)(65535)));
             v = func_0041B890((uint)(new O3Pj(Mem.U32(0x800E42D0u)).menu), idx);
-            func_0029A73C();
+            Menu_ConsumeEvent();
             e = (Mem.U32(0x800E42D0u) + (uint)(idx * 1224));
             if ((new O3Pj(e).state == 1))
             {

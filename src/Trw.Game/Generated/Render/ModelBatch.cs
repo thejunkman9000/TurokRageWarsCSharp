@@ -13,7 +13,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0026AC38");
             uint g = 0u;
             uint h = 0u;
-            func_00296FF8();
+            Texture_InvalidateLoadCache();
             h = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
             Mem.Set(new P4Gfx(h).words.P, 4254072832u);
             Mem.Set((new P4Gfx(h).words.P + 4u), (uint)(0x0044BDD0u));
@@ -573,7 +573,7 @@ public static partial class Game
                 t = ResourceCache_Hash(0, (uint)(a0), a0, (uint)(24), 0, (uint)(0), 0u, 0x800C975Cu, 1);
                 if ((t != 0u))
                 {
-                    x = func_0028FE08((uint)(Mem.S32(t)), a0, 1);
+                    x = Resource_GetCartridgeKeyNoSize((uint)(Mem.S32(t)), a0, 1);
                     ResourcePool_Unref(0, t);
                     u = Resource_LoadIndexTable(0, _fp, x, 0x800C9770u, 1);
                     if ((u != 0u))

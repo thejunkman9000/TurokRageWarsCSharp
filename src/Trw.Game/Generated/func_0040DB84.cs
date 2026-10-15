@@ -19,19 +19,19 @@ public static partial class Game
                 {
                     if ((((int)(new O02Node(n).flags) & 512) != 0))
                     {
-                        func_002A2898((new O02Rect((_fp + 72u)).w.P + (uint)(0 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(2 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(1 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(3 * 4)));
+                        Ui_GetClipRect((new O02Rect((_fp + 72u)).w.P + (uint)(0 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(2 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(1 * 4)), (new O02Rect((_fp + 72u)).w.P + (uint)(3 * 4)));
                         Mem.Copy((_fp + 88u), (_fp + 72u), 16);
                         if (!(func_0040F508((_fp + 88u), (_fp + 40u)) != 0))
                         {
                             return;
                         }
-                        func_002A2870(new O02Rect((_fp + 88u)).w[(int)(0)], new O02Rect((_fp + 88u)).w[(int)(2)], new O02Rect((_fp + 88u)).w[(int)(1)], new O02Rect((_fp + 88u)).w[(int)(3)]);
+                        Ui_SetClipRect(new O02Rect((_fp + 88u)).w[(int)(0)], new O02Rect((_fp + 88u)).w[(int)(2)], new O02Rect((_fp + 88u)).w[(int)(1)], new O02Rect((_fp + 88u)).w[(int)(3)]);
                         pushed = 1;
                     }
                     func_0040E87C(new O02Node(n).child_, _fp);
                     if ((pushed != 0))
                     {
-                        func_002A2870(new O02Rect((_fp + 72u)).w[(int)(0)], new O02Rect((_fp + 72u)).w[(int)(2)], new O02Rect((_fp + 72u)).w[(int)(1)], new O02Rect((_fp + 72u)).w[(int)(3)]);
+                        Ui_SetClipRect(new O02Rect((_fp + 72u)).w[(int)(0)], new O02Rect((_fp + 72u)).w[(int)(2)], new O02Rect((_fp + 72u)).w[(int)(1)], new O02Rect((_fp + 72u)).w[(int)(3)]);
                     }
                 }
             }
@@ -54,19 +54,19 @@ public static partial class Game
                 {
                     if ((((int)(new O02Node(n).flags) & 512) != 0))
                     {
-                        func_002A2898((new O02Rect((_fp + 56u)).w.P + (uint)(0 * 4)), (new O02Rect((_fp + 56u)).w.P + (uint)(2 * 4)), (new O02Rect((_fp + 56u)).w.P + (uint)(1 * 4)), (new O02Rect((_fp + 56u)).w.P + (uint)(3 * 4)));
+                        Ui_GetClipRect((new O02Rect((_fp + 56u)).w.P + (uint)(0 * 4)), (new O02Rect((_fp + 56u)).w.P + (uint)(2 * 4)), (new O02Rect((_fp + 56u)).w.P + (uint)(1 * 4)), (new O02Rect((_fp + 56u)).w.P + (uint)(3 * 4)));
                         Mem.Copy((_fp + 72u), (_fp + 56u), 16);
                         if (!(func_0040F508((_fp + 72u), (_fp + 40u)) != 0))
                         {
                             return;
                         }
-                        func_002A2870(new O02Rect((_fp + 72u)).w[(int)(0)], new O02Rect((_fp + 72u)).w[(int)(2)], new O02Rect((_fp + 72u)).w[(int)(1)], new O02Rect((_fp + 72u)).w[(int)(3)]);
+                        Ui_SetClipRect(new O02Rect((_fp + 72u)).w[(int)(0)], new O02Rect((_fp + 72u)).w[(int)(2)], new O02Rect((_fp + 72u)).w[(int)(1)], new O02Rect((_fp + 72u)).w[(int)(3)]);
                         pushed = 1;
                     }
                     func_0040E87C(new O02Node(n).child_, _fp);
                     if ((pushed != 0))
                     {
-                        func_002A2870(new O02Rect((_fp + 56u)).w[(int)(0)], new O02Rect((_fp + 56u)).w[(int)(2)], new O02Rect((_fp + 56u)).w[(int)(1)], new O02Rect((_fp + 56u)).w[(int)(3)]);
+                        Ui_SetClipRect(new O02Rect((_fp + 56u)).w[(int)(0)], new O02Rect((_fp + 56u)).w[(int)(2)], new O02Rect((_fp + 56u)).w[(int)(1)], new O02Rect((_fp + 56u)).w[(int)(3)]);
                     }
                 }
             }
@@ -144,17 +144,17 @@ public static partial class Game
                     func_0040DB84_ovr_c638(n, _fp);
                     break;
                 default:
-                    f = (func_0029A838((int)(new O02Node(n).type)) & 1);
+                    f = (Menu_GetClassFlag((int)(new O02Node(n).type)) & 1);
                     if (!(f != 0))
                     {
-                        func_002A28FC();
+                        Ui_ResetModeCache_002A28FC();
                         Mem.Set(0x800E2AB8u, 0);
                     }
-                    if ((func_0029AA80(n, _fp) != 0))
+                    if ((Menu_CallClassDraw(n, _fp) != 0))
                     {
                         if (!(f != 0))
                         {
-                            func_002A28F4();
+                            Ui_EmptyHook_002A28F4();
                             Mem.Set(0x800E2AB8u, 0);
                         }
                     }

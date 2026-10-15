@@ -1653,10 +1653,10 @@ public static partial class Game
                 for (i = 0; (i < 4); ++i)
                 {
                     Pad_LatchButtons((0x8010F328u + (uint)(i * 548)));
-                    r = func_002A33AC();
-                    if (((r == 1) && (func_002A339C() == r)))
+                    r = Menu_IsFrontendActive();
+                    if (((r == 1) && (Menu_IsInputEnabled() == r)))
                     {
-                        func_0029B650((0x8010F328u + (uint)(i * 548)));
+                        MenuInput_ProcessPad((0x8010F328u + (uint)(i * 548)));
                     }
                 }
                 Pad_LatchButtons(0x8010F0E0u);
@@ -2382,11 +2382,11 @@ public static partial class Game
                 r16 = 2148663296u;
                 r16 = r16 - 376u;
                 r5 = (uint)(int)Mem.S16((r18 + 0u));
-                r4 = r16; r2 = func_0028CE54(r4, (int)r5);
+                r4 = r16; r2 = Level_GetEnvelopeDef(r4, (int)r5);
                 r4 = r17 + 32u;
                 r5 = r2; Rumble_InitChannel(r4, (int)r5);
                 r5 = (uint)(int)Mem.S16((r18 + 2u));
-                r4 = r16; r2 = func_0028CE54(r4, (int)r5);
+                r4 = r16; r2 = Level_GetEnvelopeDef(r4, (int)r5);
                 r4 = r17 + 44u;
                 r5 = r2; Rumble_InitChannel(r4, (int)r5);
                 r31 = Mem.U32((r29 + 28u));
@@ -2671,6 +2671,38 @@ public static partial class Game
             new B19Pool(p).count_Set(0);
             __osRestoreInt(mask);
         }
+    }
+
+    // ==== func_0028CE70 @ 0x0028CE70 [C]
+    public static void Rumble_StartById(uint lv, int a1, int id, uint v_in, float f6, float f7)
+    {
+        uint _fp = Stack.Alloc(20);
+        try
+        {
+            unchecked
+            {
+                Mem.Copy(_fp + 0u, v_in, 12);
+                if (Dbg.On) Dbg.Enter("func_0028CE70", (uint)lv, (uint)a1, (uint)id, (uint)v_in);
+                int i = 0;
+                uint t = new Level(lv).unkA8_;
+                int n = Mem.S32((t + (uint)(1 * 4)));
+                if ((Sort_FindEqualRange((t + (uint)(2 * 4)), n, (uint)(id), (_fp + 12u), (_fp + 16u)) != 0))
+                {
+                    i = Mem.S32((_fp + 12u));
+                    if ((Mem.S32((_fp + 16u)) >= i))
+                    {
+                        do
+                        {
+                            uint tbl = new Level(lv).unkAC_;
+                            Pool_AcquireNode_00285B34(a1, (tbl + (uint)((i * Mem.S32((tbl + (uint)(0 * 4)))) + 8)), _fp, f6, f7, 0);
+                            ++i;
+                        }
+                        while ((Mem.S32((_fp + 16u)) >= i));
+                    }
+                }
+            }
+        }
+        finally { Stack.Free(20); }
     }
 
     // ==== func_004055D4 @ 0x004055D4 [C]

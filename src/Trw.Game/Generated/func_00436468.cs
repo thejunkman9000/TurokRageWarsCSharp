@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00436468");
-            func_002A33BC(2);
+            Menu_SetFixedFov(2);
             return 0;
         }
     }

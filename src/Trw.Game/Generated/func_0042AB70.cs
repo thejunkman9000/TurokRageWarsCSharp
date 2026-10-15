@@ -35,12 +35,12 @@ public static partial class Game
                 new O04ModeF60(Mem.U32(0x800E4F60u)).unk43C__Set(UiTree_FindNode(new O04ModeF60(Mem.U32(0x800E4F60u)).unk0, (uint)((int)(new O04HW((tbl + (uint)(new O04ModeF60(Mem.U32(0x800E4F60u)).unk438 * 4))).b)), default(uint), default(uint)));
                 if ((new O04ModeF60(Mem.U32(0x800E4F60u)).unk438 == 0))
                 {
-                    func_002A125C(new O04ModeF60(Mem.U32(0x800E4F60u)).unk3F4.P, Mem.U32(0x800D7500u));
+                    LibC_StrCopy(new O04ModeF60(Mem.U32(0x800E4F60u)).unk3F4.P, Mem.U32(0x800D7500u));
                 }
                 else
                 {
-                    func_0028D35C(0x8011FE88u, func_0042B398(func_0042B474(new O04ModeF60(Mem.U32(0x800E4F60u)).unk434), new O04ModeF60(Mem.U32(0x800E4F60u)).unk438), _fp, 63);
-                    func_002A125C(new O04ModeF60(Mem.U32(0x800E4F60u)).unk3F4.P, func_002A1494(_fp));
+                    Level_CopyLevelName(0x8011FE88u, func_0042B398(func_0042B474(new O04ModeF60(Mem.U32(0x800E4F60u)).unk434), new O04ModeF60(Mem.U32(0x800E4F60u)).unk438), _fp, 63);
+                    LibC_StrCopy(new O04ModeF60(Mem.U32(0x800E4F60u)).unk3F4.P, Str_ToUpper(_fp));
                 }
                 new O04ModeF60(Mem.U32(0x800E4F60u)).unk3EC.unk38_Set(new O04ModeF60(Mem.U32(0x800E4F60u)).unk3F4.P);
                 Flyby_Abort();

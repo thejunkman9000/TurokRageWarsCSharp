@@ -17,8 +17,8 @@ public static partial class Game
             {
                 return 0;
             }
-            func_0029A73C();
-            if ((func_0029A9A0(0) == 22))
+            Menu_ConsumeEvent();
+            if ((Menu_GetStackScreenId(0) == 22))
             {
                 return 0;
             }
@@ -41,7 +41,7 @@ public static partial class Game
             while ((key == (-1)));
             new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).type_Set(row);
             new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).id_Set(key);
-            func_002A125C(new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).name.P, Mem.U32(new O3Chr((0x800E381Cu + (uint)(((row * 17) + key) * 8))).s));
+            LibC_StrCopy(new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).name.P, Mem.U32(new O3Chr((0x800E381Cu + (uint)(((row * 17) + key) * 8))).s));
             new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).fC_Set(row);
             func_0041E478(new O3Ps(Mem.U32(0x800E39C0u)).sel);
             Audio_PlaySound2D(3713);

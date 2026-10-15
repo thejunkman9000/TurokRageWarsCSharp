@@ -71,7 +71,7 @@ public static partial class Game
                 { bool c_ = r2 != 0; r17 = r17 + 80u; if (c_) goto L_L0044EC68; }
                 r4 = r18;
                 Mem.Set((r4 + 0u), r0);
-                Mem.Set((r4 + 9608u), r0); func_002A6670((int)r4);
+                Mem.Set((r4 + 9608u), r0); Effect_UpdateFrame((int)r4);
                 r31 = Mem.U32((r29 + 32u));
                 r19 = Mem.U32((r29 + 28u));
                 r18 = Mem.U32((r29 + 24u));

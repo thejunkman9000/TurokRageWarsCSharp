@@ -16,7 +16,7 @@ public static partial class Game
             int t = 0;
             uint e = 0u;
             uint q = 0u;
-            t = func_002A2934();
+            t = Menu_GetFrameCounter();
             if ((new S_v(0x80153C0Cu).mode == 0))
             {
                 for (i = 0; (i < (int)(new S_v(0x80153C0Cu).n)); ++i)

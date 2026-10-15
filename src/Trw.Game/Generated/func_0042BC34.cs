@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0042BC34");
-            func_0029A73C();
+            Menu_ConsumeEvent();
             if ((new O04ModeF60(Mem.U32(0x800E4F60u)).state != 3))
             {
                 return 0;

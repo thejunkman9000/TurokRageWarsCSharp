@@ -10,7 +10,7 @@ namespace Trw.Game.PortHud;
 /// the resource's cartridge key <c>base + off[idx]</c> (Resource_GetCartridgeKey); the resource cache's hash (ResourceCache_Hash: buckets <c>*0x80105194</c>, mask
 /// <c>*0x80105190</c>, chained through +0xC) maps that key to the cache entry, whose node's first word is the data in RAM. A sprite the game has not loaded
 /// is not found (it is not drawn then either).</para>
-/// <para>Data (Sprite_GetFrameData_002AB19C / func_002AB8DC): <c>s16 frames</c>, then at +8 one <c>{s32 offset, u8 kind}</c> per frame; a frame is <c>u16 cols, u16 rows</c> and from +8
+/// <para>Data (Sprite_GetFrameData_002AB19C / Sprite_GetFrame): <c>s16 frames</c>, then at +8 one <c>{s32 offset, u8 kind}</c> per frame; a frame is <c>u16 cols, u16 rows</c> and from +8
 /// the cells row by row, each <c>u32 w, u32 h</c> and the texels: kind 0 = RGBA 5551 colour (w*h*2 bytes) followed by a 4-bit intensity alpha plane
 /// (w*h/2 bytes), loaded as two tiles and combined TEXEL0 * ENV (colour), TEXEL1 * ENV (alpha); kind 1 = the 4-bit plane only.</para>
 /// Decoded cells are <see cref="DecodedTexture"/>s with exactly the texels the display-list interpreter decodes for the game's own draws.

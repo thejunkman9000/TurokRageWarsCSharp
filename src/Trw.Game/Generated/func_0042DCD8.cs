@@ -13,10 +13,10 @@ public static partial class Game
             int r = 0;
             if ((Mem.S32(0x800E28E0u) >= 2))
             {
-                func_002A338C();
+                Menu_DisableInput();
                 return 0;
             }
-            func_002A3358();
+            Menu_EnableInput();
             r = func_0041A4F0((uint)(new O04ModeS5430(Mem.U32(0x800E5430u)).unk0));
             switch (r)
             {
@@ -33,13 +33,13 @@ public static partial class Game
                 }
                 break;
             case 4:
-                func_0029A73C();
+                Menu_ConsumeEvent();
                 if ((new O04ModeS5430(Mem.U32(0x800E5430u)).unk10 != (-1)))
                 {
-                    func_00299368(new O04ModeS5430(Mem.U32(0x800E5430u)).unk10);
+                    Menu_GotoScreen(new O04ModeS5430(Mem.U32(0x800E5430u)).unk10);
                     return 0;
                 }
-                func_0029A8A8();
+                Menu_GoBack();
                 break;
             }
             return 0;

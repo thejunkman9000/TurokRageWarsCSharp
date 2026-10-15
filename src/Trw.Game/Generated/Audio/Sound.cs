@@ -1055,7 +1055,7 @@ public static partial class Game
                 SndFx_Update(new SndMgr(m).obj2BC0.P, default(uint), default(uint), default(uint));
                 Seq_UpdateFade(new SndMgr(m).seq.P);
                 Seq_Update(new SndMgr(m).seq.P);
-                if (((((Mem.S32(0x800D0960u) != 0) && (new SndMgr(m).unk2BB4 != 0)) && (func_002934DC() != 0)) && (new SndMgr(m).unk134 > 0)))
+                if (((((Mem.S32(0x800D0960u) != 0) && (new SndMgr(m).unk2BB4 != 0)) && (Game_IsInState13() != 0)) && (new SndMgr(m).unk134 > 0)))
                 {
                     new Vec3f(_fp).z_Set(0.0f);
                     new Vec3f(_fp).y_Set(0.0f);
@@ -1437,7 +1437,7 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00258B00", (uint)m);
                 uint o = 0u;
                 uint p = 0u;
-                if (((((Mem.S32(0x800D0960u) != 0) && (new SndMgr(m).unk2BB4 != 0)) && (func_002934DC() != 0)) && (new SndMgr(m).unk134 > 0)))
+                if (((((Mem.S32(0x800D0960u) != 0) && (new SndMgr(m).unk2BB4 != 0)) && (Game_IsInState13() != 0)) && (new SndMgr(m).unk134 > 0)))
                 {
                     new Vec3f(_fp).x_Set(new Vec3f(_fp).y_Set(new Vec3f(_fp).z_Set(0.0f)));
                     o = CameraManager_FindNearestCamera(0x80145088u, _fp);
@@ -6289,5 +6289,52 @@ public static partial class Game
                 }
             }
         }
+    }
+
+    // ==== func_0028B264 @ 0x0028B264 [MIPS]
+    public static uint Sound_StartForActorTwin(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0028B264", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_0028B264: ;
+                { bool c_ = r2 == r6; r3 = r0; if (c_) goto L_L0028B2C8; }
+                r2 = Mem.U32((r11 + 148u));
+                r8 = r2 + 8u;
+                r9 = Mem.U32((r2 + 4u));
+                { bool c_ = (int)r9 <= 0; r2 = r6; if (c_) goto L_L0028B2A0; }
+                r10 = r2 & 65535u;
+                L_L0028B284: ;
+                r2 = Mem.U16((r8 + 0u));
+                { bool c_ = r2 == r10; r2 = (uint)-1; if (c_) goto L_L0028B2A8; }
+                r3 = r3 + 1u;
+                r2 = (uint)((int)r3 < (int)r9 ? 1 : 0);
+                { bool c_ = r2 != 0; r8 = r8 + 2u; if (c_) goto L_L0028B284; }
+                L_L0028B2A0: ;
+                r3 = (uint)-1;
+                r2 = (uint)-1;
+                L_L0028B2A8: ;
+                { bool c_ = r3 == r2;  if (c_) goto L_L0028B2C8; }
+                Mem.Set((r4 + 4u), (ushort)r3);
+                Mem.Set((r4 + 228u), (ushort)r6);
+                r5 = Mem.U32((r11 + 84u));
+                r6 = Mem.U32((r11 + 36u));
+                Actor_ResetAnimObject(r4, (int)r5, (int)r6, (int)r7);
+                L_L0028B2C8: ;
+                r31 = Mem.U32((r29 + 16u));
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0028B264", r2); Stack.Free(384); }
     }
 }

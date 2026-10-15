@@ -38,7 +38,7 @@ public static partial class Game
                         else
                         {
                             func_0040E958((uint)(a), 0);
-                            func_0029A73C();
+                            Menu_ConsumeEvent();
                             a0 = 15;
                             if (((int)(Mem.U8(0x801462D5u)) == 0))
                             {
@@ -56,7 +56,7 @@ public static partial class Game
                                 Mem.Set(0x80146918u, 0);
                                 Mem.Set(0x801468F4u, 0);
                             }
-                            func_00299368(a0);
+                            Menu_GotoScreen(a0);
                         }
                     }
                 }

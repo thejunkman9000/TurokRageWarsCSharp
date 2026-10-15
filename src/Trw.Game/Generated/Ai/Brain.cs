@@ -328,7 +328,7 @@ public static partial class Game
             g = 0x801468A0u;
             if (!((new B2GameFlags(g).unk98 != 0))) goto _f18;
             if (!(((int)(new B2Ctl(ctl).owner.stats.unk80) == 11))) goto _f19;
-            func_002AB784(0x8013B7B8u, (int)((float)(new B2GameFlags(g).unkA0)));
+            BossBar_SetPercent1(0x8013B7B8u, (int)((float)(new B2GameFlags(g).unkA0)));
             if (!((new B2GameFlags(g).unkA4 > 0))) goto _f20;
             new B2GameFlags(g).unkA4_Set((int)(new B2GameFlags(g).unkA4 - 1));
             Pad_ClearPlayerInput((new B2Ctl(ctl).owner_ + (uint)1672));
@@ -342,10 +342,10 @@ public static partial class Game
             _f21: ;
             _f19: ;
             if (!(((int)(new B2Ctl(ctl).owner.stats.unk94) == 1))) goto _f22;
-            func_002AB784(0x8013B7B8u, (int)(fs));
+            BossBar_SetPercent1(0x8013B7B8u, (int)(fs));
             goto _f23;
             _f22: ;
-            func_002AB78C(0x8013B7B8u, (int)(fs));
+            BossBar_SetPercent2(0x8013B7B8u, (int)(fs));
             _f23: ;
             _f18: ;
             _f6: ;
@@ -4415,7 +4415,7 @@ public static partial class Game
                 r6 = Mem.U32((r17 + 552u));
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
-                r2 = func_0028D220(r4, (int)r5, (int)r6);
+                r2 = LevelPath_GetPoint(r4, (int)r5, (int)r6);
                 r4 = r18;
                 r5 = r2; r2 = (uint)AiNav_FindNearestNode(r4, r5);
                 Mem.Set((r17 + 12u), r2);

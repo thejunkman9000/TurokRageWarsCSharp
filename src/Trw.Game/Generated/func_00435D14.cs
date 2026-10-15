@@ -26,7 +26,7 @@ public static partial class Game
                     new O05Cfg(cfg).h14_Set((short)(105));
                 }
             }
-            func_002A3358();
+            Menu_EnableInput();
             if ((((int)(Mem.U8(0x801462D5u)) != 0) || (func_0042B108() == 0)))
             {
                 func_0040E9D0((uint)((int)(UiTree_FindNode(cfg, (uint)(62), default(uint), default(uint)))), 1);

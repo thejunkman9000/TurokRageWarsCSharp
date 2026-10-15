@@ -18,7 +18,7 @@ public static partial class Game
                 {
                     func_00405338(pad, i, (_fp + 16u));
                     func_00405648(Mem.U32((_fp + 16u)), _fp, 16);
-                    if ((func_002A137C(_fp, name) == 0))
+                    if ((LibC_StrCompare(_fp, name) == 0))
                     {
                         return 1;
                     }

@@ -25,7 +25,7 @@ public static partial class Game
             {
                 return 0;
             }
-            func_0029A73C();
+            Menu_ConsumeEvent();
             Loadout_FillColumns((uint)(i), default(uint), default(uint), default(uint));
             for (k = 0; (k < 6); ++k)
             {

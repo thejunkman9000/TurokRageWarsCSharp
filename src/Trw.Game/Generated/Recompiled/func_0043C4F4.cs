@@ -479,12 +479,12 @@ public static partial class Game
                 L_I0043C928: ;
                 r4 = r4 - 1344u;
                 L_I0043C92C: ;
-                r5 = (uint)17; func_00293808(r4, (int)r5);
+                r5 = (uint)17; Game_FadeOutToState(r4, (int)r5);
                 L_I0043C934: ;
                 r2 = (uint)1; goto L_L0043CB64;
                 L_L0043C93C: ;
                 L_I0043C93C: ;
-                r2 = (uint)func_002934DC();
+                r2 = (uint)Game_IsInState13();
                 L_I0043C944: ;
                 { bool c_ = r2 == 0; r5 = r16; if (c_) goto L_L0043C964; }
                 L_I0043C94C: ;
@@ -513,7 +513,7 @@ public static partial class Game
                 L_I0043C984: ;
                 r4 = r4 - 1344u;
                 L_I0043C988: ;
-                r5 = r16; func_00293268(r4, (int)r5);
+                r5 = r16; Game_FadeToLevel(r4, (int)r5);
                 L_I0043C990: ;
                 r2 = (uint)1; goto L_L0043CB64;
                 L_L0043C998: ;
@@ -810,7 +810,7 @@ public static partial class Game
                 L_I0043CC48: ;
                 r16 = Cpu.W(3);
                 L_I0043CC4C: ;
-                func_002AB9E4();
+                Gfx_BeginFillRectPass();
                 L_I0043CC54: ;
                 r2 = (uint)255;
                 L_I0043CC58: ;
@@ -869,7 +869,7 @@ public static partial class Game
                 L_I0043CCC8: ;
                 r5 = Mem.U32((r17 + 32u));
                 L_I0043CCCC: ;
-                r4 = r16; func_002A8DD4((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u), (byte)Mem.U32(r29 + 24u), (byte)Mem.U32(r29 + 28u), (byte)Mem.U32(r29 + 32u), (byte)Mem.U32(r29 + 36u));
+                r4 = r16; Gfx_DrawBevelRect((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u), (byte)Mem.U32(r29 + 24u), (byte)Mem.U32(r29 + 28u), (byte)Mem.U32(r29 + 32u), (byte)Mem.U32(r29 + 36u));
                 L_L0043CCD4: ;
                 L_I0043CCD4: ;
                 r4 = r19;

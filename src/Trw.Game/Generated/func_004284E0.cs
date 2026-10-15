@@ -16,7 +16,7 @@ public static partial class Game
             uint r = 0u;
             func_004288E0();
             row = new O04ModeS4690(Mem.U32(0x800E4690u)).unkA5C;
-            r = func_0028CF7C(0x8011FE88u, 11, (int)(new O04Ent96c((0x80146398u + (uint)(row * 150))).unk80));
+            r = Level_FindDefinition(0x8011FE88u, 11, (int)(new O04Ent96c((0x80146398u + (uint)(row * 150))).unk80));
             n = 0;
             for (i = 0; (i < 8); ++i)
             {

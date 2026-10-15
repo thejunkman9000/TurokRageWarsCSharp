@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00436DD4");
             uint p = 0u;
-            func_0029A73C();
+            Menu_ConsumeEvent();
             if ((Menu_GetMessage() == 96))
             {
                 func_00436988(new O05M90_v5(Mem.U32(0x800E5690u)).f28);

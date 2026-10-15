@@ -14,7 +14,7 @@ public static partial class Game
             int j = 0;
             for (i = 0; (i < n); ++i)
             {
-                Mem.Set((src + (uint)i), (byte)(func_002A15A0((int)(Mem.U8((src + (uint)i))))));
+                Mem.Set((src + (uint)i), (byte)(Str_CharToUpper((int)(Mem.U8((src + (uint)i))))));
                 for (j = 0; (j < 66); ++j)
                 {
                     if (((int)(Mem.U8((src + (uint)i))) == (int)(Mem.U8((0x800E285Cu + (uint)j)))))

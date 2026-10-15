@@ -33,7 +33,7 @@ public static partial class Game
             func_0041B190(451);
             func_0041B190(452);
             new O3Words(Mem.U32(0x800E4514u)).w.Set((int)(3), 0);
-            func_002A338C();
+            Menu_DisableInput();
             return 0;
         }
     }

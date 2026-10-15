@@ -16,10 +16,10 @@ public static partial class Game
             uint sp = 0u;
             if ((Mem.S32(0x800E28E0u) >= 2))
             {
-                func_002A338C();
+                Menu_DisableInput();
                 return 0;
             }
-            func_002A3358();
+            Menu_EnableInput();
             st = func_0041A4F0(new O3Pn_v2(Mem.U32(0x800E4450u)).bar_);
             switch (st)
             {
@@ -38,13 +38,13 @@ public static partial class Game
                 }
                 return 0;
             case 4:
-                func_0029A73C();
+                Menu_ConsumeEvent();
                 a = new O3Pn_v2(Mem.U32(0x800E4450u)).f10;
                 if ((a == (-1)))
                 {
                     a = 3;
                 }
-                func_00299368(a);
+                Menu_GotoScreen(a);
                 return 0;
             default:
                 return 0;

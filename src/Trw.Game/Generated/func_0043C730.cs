@@ -144,10 +144,10 @@ public static partial class Game
             if (!((code == 8000))) goto _f14;
             Mem.Set(0x801462E6u, (byte)(1));
             func_0043DEDC(o);
-            func_00293808(0x8011FAC0u, 17);
+            Game_FadeOutToState(0x8011FAC0u, 17);
             return 1;
             _f14: ;
-            if (!((func_002934DC() != 0))) goto _f15;
+            if (!((Game_IsInState13() != 0))) goto _f15;
             Level_SetTransitionState_0044E178(0x8011FE88u, code, 2);
             return 0;
             _f15: ;
@@ -155,7 +155,7 @@ public static partial class Game
             Mem.Set((g + (uint)29), (byte)(0));
             Mem.Set((g + (uint)30), (byte)(1));
             func_0043DEDC(o);
-            func_00293268(0x8011FAC0u, code);
+            Game_FadeToLevel(0x8011FAC0u, code);
             return 1;
             _f13: ;
             if (!((Pad_IsLeft((uint)(new Q4O(o).f20)) != 0))) goto _f16;
@@ -324,8 +324,8 @@ public static partial class Game
                 Mem.Set(0x800E5E70u, (-1));
                 alpha = (new Q4D(a3).f30 * t);
                 xi = (int)(x);
-                func_002AB9E4();
-                func_002A8DD4(xi, new Q4B(a1).f20, (int)(((float)(xi) + w)), (new Q4B(a1).f20 + 2), 0, 0, (byte)(255), (byte)(255), (byte)(255), (byte)((int)((Cpu.TruncU32(alpha) & (uint)(255)))));
+                Gfx_BeginFillRectPass();
+                Gfx_DrawBevelRect(xi, new Q4B(a1).f20, (int)(((float)(xi) + w)), (new Q4B(a1).f20 + 2), 0, 0, (byte)(255), (byte)(255), (byte)(255), (byte)((int)((Cpu.TruncU32(alpha) & (uint)(255)))));
             }
             func_004421FC(a0, (int)(a1), (int)(a2), (int)(a3));
         }

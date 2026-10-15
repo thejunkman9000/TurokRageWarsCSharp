@@ -13,8 +13,8 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0042829C");
-                func_0028D35C(0x8011FE88u, new O04ModeS4690(Mem.U32(0x800E4690u)).unkA44, _fp, 63);
-                func_002A125C(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA04.P, (uint)((int)(func_002A1494(_fp))));
+                Level_CopyLevelName(0x8011FE88u, new O04ModeS4690(Mem.U32(0x800E4690u)).unkA44, _fp, 63);
+                LibC_StrCopy(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA04.P, (uint)((int)(Str_ToUpper(_fp))));
                 new O04ModeS4690(Mem.U32(0x800E4690u)).unk998.unk38_Set(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA04.P);
             }
         }

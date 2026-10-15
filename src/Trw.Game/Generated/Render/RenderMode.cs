@@ -1367,6 +1367,328 @@ public static partial class Game
         }
     }
 
+    // ==== func_002917E8 @ 0x002917E8 [C]
+    public static void Gfx_BeginFrameDisplayList()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002917E8");
+            float new_var = 0f;
+            int new_var2 = 0;
+            int new_var3 = 0;
+            uint d1 = 0u;
+            uint d2 = 0u;
+            uint d3 = 0u;
+            uint d4 = 0u;
+            uint d5 = 0u;
+            uint d6 = 0u;
+            uint vp = 0u;
+            Mem.Set(0x80110634u, new B21Hdr_v2(Mem.U32(0x8011FE80u)).unk114_);
+            d1 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+            new DlCmd(d1).w0_Set(3674603520u);
+            new DlCmd(d1).w1_Set((uint)(0));
+            d2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+            new DlCmd(d2).w0_Set(3724541952u);
+            new DlCmd(d2).w1_Set((uint)(0x800D0F10u));
+            d3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+            new DlCmd(d3).w0_Set(3724541952u);
+            new DlCmd(d3).w1_Set((uint)(0x800D0F40u));
+            d4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+            new DlCmd(d4).w0_Set(4261412864u);
+            vp = (0x80146D00u + (uint)(Mem.S32(0x800D297Cu) * 16));
+            new DlCmd(d4).w1_Set((uint)(Mem.S32(0x801536E8u)));
+            new B21Vp(vp).vscale.Set((int)(1), (short)((Mem.S32(0x800E28D4u) * 2)));
+            new B21Vp(vp).vscale.Set((int)(0), (short)((Mem.S32(0x800E28D0u) * 2)));
+            new B21Vp(vp).vscale.Set((int)(2), (short)(1023));
+            new B21Vp(vp).vtrans.Set((int)(1), (short)((Mem.S32(0x800E28D4u) * 2)));
+            new B21Vp(vp).vscale.Set((int)(2), (short)(1023));
+            new B21Vp(vp).vscale.Set((int)(3), (short)(0));
+            new B21Vp(vp).vtrans.Set((int)(0), (short)((Mem.S32(0x800E28D0u) * 2)));
+            new B21Vp(vp).vtrans.Set((int)(2), (short)(0));
+            new B21Vp(vp).vtrans.Set((int)(3), (short)(0));
+            new_var = (float)((Mem.S32(0x800E28D0u) - 1));
+            d5 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+            new DlCmd(d5).w0_Set(3691511816u);
+            new DlCmd(d5).w1_Set((uint)(vp));
+            d6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+            new DlCmd(d6).w0_Set(3976200192u);
+            new DlCmd(d6).w1_Set((uint)(((((int)((new_var * 4.0f)) & 4095) << (int)12) | ((int)(((float)((Mem.S32(0x800E28D4u) - 1)) * 4.0f)) & 4095))));
+        }
+    }
+
+    // ==== func_00291BF8 @ 0x00291BF8 [C]
+    public static void Gfx_ClearZBufferRect(int unused, int x0, int x1, int y0, int y1, int mode)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00291BF8", (uint)unused, (uint)x0, (uint)x1, (uint)y0);
+            int i = 0;
+            {
+                uint pp = 0x80110634u;
+                uint q = (Mem.Set(pp, (uint)(Mem.U32(pp) + 8u)) - 8u);
+                new M5Dl(q).w0_Set(3875536896u);
+                new M5Dl(q).w1_Set((uint)(0));
+            }
+            Gfx_SetOtherModeL((uint)(20));
+            {
+                uint pp_2 = 0x80110634u;
+                uint q_2 = (Mem.Set(pp_2, (uint)(Mem.U32(pp_2) + 8u)) - 8u);
+                new M5Dl(q_2).w0_Set(((uint)(((Mem.S32(0x800E28D0u) - 1) & 4095)) | 4279238656u));
+                new M5Dl(q_2).w1_Set((uint)(Mem.S32(0x801536E8u)));
+            }
+            {
+                uint pp_3 = 0x80110634u;
+                uint q_3 = (Mem.Set(pp_3, (uint)(Mem.U32(pp_3) + 8u)) - 8u);
+                new M5Dl(q_3).w0_Set(3875536896u);
+                new M5Dl(q_3).w1_Set((uint)(0));
+            }
+            {
+                uint pp_4 = 0x80110634u;
+                uint q_4 = (Mem.Set(pp_4, (uint)(Mem.U32(pp_4) + 8u)) - 8u);
+                new M5Dl(q_4).w0_Set(3808430593u);
+                new M5Dl(q_4).w1_Set((uint)(3145728));
+            }
+            if ((mode == 0))
+            {
+                {
+                    uint pp_5 = 0x80110634u;
+                    uint q_5 = (Mem.Set(pp_5, (uint)(Mem.U32(pp_5) + 8u)) - 8u);
+                    new M5Dl(q_5).w0_Set(4143972352u);
+                    new M5Dl(q_5).w1_Set(4294770684u);
+                }
+                {
+                    uint pp_6 = 0x80110634u;
+                    uint q_6 = (Mem.Set(pp_6, (uint)(Mem.U32(pp_6) + 8u)) - 8u);
+                    uint xa = (uint)(((x1 & 1023) << (int)14));
+                    uint ta = ((uint)(((y1 & 1023) * 4)) | 4127195136u);
+                    new M5Dl(q_6).w0_Set((xa | ta));
+                    new M5Dl(q_6).w1_Set((uint)((((x0 & 1023) << (int)14) | ((y0 & 1023) * 4))));
+                }
+            }
+            else
+            {
+                if ((Mem.S32(0x800E28D8u) == 0))
+                {
+                    {
+                        uint pp_7 = 0x80110634u;
+                        uint q_7 = (Mem.Set(pp_7, (uint)(Mem.U32(pp_7) + 8u)) - 8u);
+                        new M5Dl(q_7).w0_Set(4143972352u);
+                        new M5Dl(q_7).w1_Set(4294770684u);
+                    }
+                    for (i = y0; (i < y1); i = (int)((int)(i) + 2))
+                    {
+                        int ym = ((i & 1023) * 4);
+                        {
+                            {
+                                uint pp_8 = 0x80110634u;
+                                uint xs1 = (uint)(((x1 & 1023) << (int)14));
+                                uint t0 = ((uint)(ym) | 4127195136u);
+                                uint q_8 = (Mem.Set(pp_8, (uint)(Mem.U32(pp_8) + 8u)) - 8u);
+                                new M5Dl(q_8).w0_Set((xs1 | t0));
+                                new M5Dl(q_8).w1_Set((uint)((((x0 & 1023) << (int)14) | ym)));
+                            }
+                        }
+                    }
+                    {
+                        uint pp_9 = 0x80110634u;
+                        uint q_9 = (Mem.Set(pp_9, (uint)(Mem.U32(pp_9) + 8u)) - 8u);
+                        new M5Dl(q_9).w0_Set(4143972352u);
+                        new M5Dl(q_9).w1_Set((uint)(0));
+                    }
+                    for (i = (y0 + 1); (i < y1); i = (int)((int)(i) + 2))
+                    {
+                        int ym_2 = ((i & 1023) * 4);
+                        {
+                            {
+                                uint pp_10 = 0x80110634u;
+                                uint xs1_2 = (uint)(((x1 & 1023) << (int)14));
+                                uint t0_2 = ((uint)(ym_2) | 4127195136u);
+                                uint q_10 = (Mem.Set(pp_10, (uint)(Mem.U32(pp_10) + 8u)) - 8u);
+                                new M5Dl(q_10).w0_Set((xs1_2 | t0_2));
+                                new M5Dl(q_10).w1_Set((uint)((((x0 & 1023) << (int)14) | ym_2)));
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    {
+                        uint pp_11 = 0x80110634u;
+                        uint q_11 = (Mem.Set(pp_11, (uint)(Mem.U32(pp_11) + 8u)) - 8u);
+                        new M5Dl(q_11).w0_Set(4143972352u);
+                        new M5Dl(q_11).w1_Set(4294770684u);
+                    }
+                    for (i = y0; (i < y1); ++i)
+                    {
+                        if (((i & 3) < 2))
+                        {
+                            int ym_3 = ((i & 1023) * 4);
+                            {
+                                {
+                                    uint pp_12 = 0x80110634u;
+                                    uint xs1_3 = (uint)(((x1 & 1023) << (int)14));
+                                    uint t0_3 = ((uint)(ym_3) | 4127195136u);
+                                    uint q_12 = (Mem.Set(pp_12, (uint)(Mem.U32(pp_12) + 8u)) - 8u);
+                                    new M5Dl(q_12).w0_Set((xs1_3 | t0_3));
+                                    new M5Dl(q_12).w1_Set((uint)((((x0 & 1023) << (int)14) | ym_3)));
+                                }
+                            }
+                        }
+                    }
+                    {
+                        uint pp_13 = 0x80110634u;
+                        uint q_13 = (Mem.Set(pp_13, (uint)(Mem.U32(pp_13) + 8u)) - 8u);
+                        new M5Dl(q_13).w0_Set(4143972352u);
+                        new M5Dl(q_13).w1_Set((uint)(0));
+                    }
+                    for (i = y0; (i < y1); ++i)
+                    {
+                        if (((i & 3) >= 2))
+                        {
+                            int ym_4 = ((i & 1023) * 4);
+                            {
+                                {
+                                    uint pp_14 = 0x80110634u;
+                                    uint xs1_4 = (uint)(((x1 & 1023) << (int)14));
+                                    uint t0_4 = ((uint)(ym_4) | 4127195136u);
+                                    uint q_14 = (Mem.Set(pp_14, (uint)(Mem.U32(pp_14) + 8u)) - 8u);
+                                    new M5Dl(q_14).w0_Set((xs1_4 | t0_4));
+                                    new M5Dl(q_14).w1_Set((uint)((((x0 & 1023) << (int)14) | ym_4)));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            {
+                uint pp_15 = 0x80110634u;
+                uint q_15 = (Mem.Set(pp_15, (uint)(Mem.U32(pp_15) + 8u)) - 8u);
+                new M5Dl(q_15).w0_Set(((uint)(((Mem.S32(0x800E28D0u) - 1) & 4095)) | 4279238656u));
+                new M5Dl(q_15).w1_Set(new M5Gfx(Mem.U32(0x8011FE80u)).fb);
+            }
+            {
+                uint pp_16 = 0x80110634u;
+                uint q_16 = (Mem.Set(pp_16, (uint)(Mem.U32(pp_16) + 8u)) - 8u);
+                new M5Dl(q_16).w0_Set(3875536896u);
+                new M5Dl(q_16).w1_Set((uint)(0));
+            }
+            {
+                uint pp_17 = 0x80110634u;
+                uint q_17 = (Mem.Set(pp_17, (uint)(Mem.U32(pp_17) + 8u)) - 8u);
+                new M5Dl(q_17).w0_Set(3808430593u);
+                new M5Dl(q_17).w1_Set((uint)(1048576));
+            }
+        }
+    }
+
+    // ==== func_00293100 @ 0x00293100 [C]
+    public static void Gfx_FillRectBlended(uint g, uint col, int ulx, int uly, int lrx, int lry)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00293100", (uint)g, (uint)col, (uint)ulx, (uint)uly);
+            uint d = 0u;
+            uint d1 = 0u;
+            uint d2 = 0u;
+            int x1 = 0;
+            int y1 = 0;
+            int x0 = 0;
+            int y0 = 0;
+            uint w = 0u;
+            uint t = 0u;
+            uint w2 = 0u;
+            if (((int)(Mem.U8((col + (uint)3))) != 0))
+            {
+                d1 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                new DlCmd(d1).w0_Set(3875536896u);
+                new DlCmd(d1).w1_Set((uint)(0));
+                d2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                new DlCmd(d2).w0_Set(3808430593u);
+                new DlCmd(d2).w1_Set((uint)(0));
+                Gfx_SetOtherModeL((uint)(19));
+                Gfx_SetCombineMode((uint)(25));
+                d = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                new DlCmd(d).w0_Set(4194369535u);
+                new DlCmd(d).w1_Set((uint)((((((int)(Mem.U8((col + (uint)0))) << (int)24) | ((int)(Mem.U8((col + (uint)1))) << (int)16)) | ((int)(Mem.U8((col + (uint)2))) << (int)8)) | (int)(Mem.U8((col + (uint)3))))));
+                d = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                x1 = lrx;
+                if ((x1 < 0))
+                {
+                    x1 = 0;
+                }
+                y1 = lry;
+                w = (uint)(((x1 & 1023) << (int)14));
+                if ((y1 < 0))
+                {
+                    y1 = 0;
+                }
+                t = ((uint)(((y1 & 1023) << (int)2)) | 4127195136u);
+                new DlCmd(d).w0_Set((w | t));
+                x0 = ulx;
+                if ((x0 < 0))
+                {
+                    x0 = 0;
+                }
+                y0 = uly;
+                w2 = (uint)(((x0 & 1023) << (int)14));
+                if ((y0 < 0))
+                {
+                    y0 = 0;
+                }
+                new DlCmd(d).w1_Set((w2 | (uint)(((y0 & 1023) << (int)2))));
+            }
+        }
+    }
+
+    // ==== func_002A8DD4 @ 0x002A8DD4 [C]
+    public static void Gfx_FillRectTwin(int x0, int y0, int x1, int y1, byte r, byte g, byte b, byte a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002A8DD4_func_002ABA44", (uint)x0, (uint)y0, (uint)x1, (uint)y1);
+            {
+                uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                new DlCmd(_g).w0_Set(3875536896u);
+                new DlCmd(_g).w1_Set((uint)(0));
+            }
+            {
+                uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                new DlCmd(_g_2).w0_Set(4194369535u);
+                new DlCmd(_g_2).w1_Set(((((((uint)(r) & (uint)(((1 << (int)8) - 1))) << (int)24) | (((uint)(g) & (uint)(((1 << (int)8) - 1))) << (int)16)) | (((uint)(b) & (uint)(((1 << (int)8) - 1))) << (int)8)) | (((uint)(a) & (uint)(((1 << (int)8) - 1))) << (int)0)));
+            }
+            {
+                uint _g_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                new DlCmd(_g_3).w0_Set(((4127195136u | (((uint)(((x1 > 0) ? x1 : 0)) & (uint)(((1 << (int)10) - 1))) << (int)14)) | (((uint)(((y1 > 0) ? y1 : 0)) & (uint)(((1 << (int)10) - 1))) << (int)2)));
+                new DlCmd(_g_3).w1_Set(((((uint)(((x0 > 0) ? x0 : 0)) & (uint)(((1 << (int)10) - 1))) << (int)14) | (((uint)(((y0 > 0) ? y0 : 0)) & (uint)(((1 << (int)10) - 1))) << (int)2)));
+            }
+        }
+    }
+
+    public static void Gfx_DrawBevelRect(int x0, int y0, int x1, int y1, int w, int raised, byte r, byte g, byte b, byte a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002A8DD4", (uint)x0, (uint)y0, (uint)x1, (uint)y1);
+            uint r1 = 0u;
+            uint g1 = 0u;
+            uint b1 = 0u;
+            uint r2 = 0u;
+            uint g2 = 0u;
+            uint b2 = 0u;
+            r1 = (uint)(((raised != 0) ? ((int)(r) >> (int)1) : ((int)(r) << (int)1)));
+            g1 = (uint)(((raised != 0) ? ((int)(g) >> (int)1) : ((int)(g) << (int)1)));
+            b1 = (uint)(((raised != 0) ? ((int)(b) >> (int)1) : ((int)(b) << (int)1)));
+            r2 = (uint)(((raised != 0) ? ((int)(r) << (int)1) : ((int)(r) >> (int)1)));
+            g2 = (uint)(((raised != 0) ? ((int)(g) << (int)1) : ((int)(g) >> (int)1)));
+            b2 = (uint)(((raised != 0) ? ((int)(b) << (int)1) : ((int)(b) >> (int)1)));
+            Gfx_FillRectTwin(x0, y0, x1, y1, r, g, b, a);
+            Gfx_FillRectTwin(x0, y0, x1, (y0 + w), (byte)(r1), (byte)(g1), (byte)(b1), a);
+            Gfx_FillRectTwin((x1 - w), y0, x1, y1, (byte)(r1), (byte)(g1), (byte)(b1), a);
+            Gfx_FillRectTwin(x0, (y1 - w), x1, y1, (byte)(r2), (byte)(g2), (byte)(b2), a);
+            Gfx_FillRectTwin(x0, y0, (x0 + w), y1, (byte)(r2), (byte)(g2), (byte)(b2), a);
+        }
+    }
+
     // ==== func_002AA224 @ 0x002AA224 [MIPS]
     public static uint Gfx_BeginFlatColorPass(uint a0, uint a1, uint a2, uint a3)
     {
@@ -1459,6 +1781,24 @@ public static partial class Game
             }
         }
         finally { if (Dbg.On) Dbg.Leave("func_002AA224", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002AB9E4 @ 0x002AB9E4 [C]
+    public static void Gfx_BeginFillRectPass()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002AB9E4");
+            uint g = 0u;
+            g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+            new DlCmd(g).w0_Set(3875536896u);
+            new DlCmd(g).w1_Set((uint)(0));
+            g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+            new DlCmd(g).w0_Set(3808430593u);
+            new DlCmd(g).w1_Set((uint)(0));
+            Gfx_SetOtherModeL((uint)(21));
+            Gfx_SetCombineMode((uint)(25));
+        }
     }
 
     // ==== func_002ABA44 @ 0x002ABA44 [MIPS]
@@ -1669,7 +2009,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004194B0", (uint)m);
-            uint mtx = (uint)(func_002A25E4(64));
+            uint mtx = (uint)(FrameAlloc_AllocHigh(64));
             guMtxF2L(m, mtx);
             {
                 uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);

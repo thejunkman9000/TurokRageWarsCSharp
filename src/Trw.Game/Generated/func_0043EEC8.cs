@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043EEC8");
-            func_00293808(0x8011FAC0u, 8);
+            Game_FadeOutToState(0x8011FAC0u, 8);
             return 1;
         }
     }

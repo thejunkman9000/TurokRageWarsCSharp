@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00436430");
             ResourcePool_MallocFree(Mem.U32(0x800E5558u));
             Mem.Set(0x800E5558u, 0u);
-            func_002A33BC(2);
+            Menu_SetFixedFov(2);
             return 0;
         }
     }

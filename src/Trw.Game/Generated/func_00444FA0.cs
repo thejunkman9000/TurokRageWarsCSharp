@@ -38,7 +38,7 @@ public static partial class Game
                 return 0;
             }
             {
-                p = (func_0028B2D4(0x8011FE88u, t) + (uint)off);
+                p = (Level_GetRegion(0x8011FE88u, t) + (uint)off);
                 switch (type)
                 {
                 case 0:

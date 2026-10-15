@@ -1109,7 +1109,7 @@ public static partial class Game
                 {
                     new BrainB(b).unk224_Set(0);
                     new BrainB(b).unk228_Set(0);
-                    func_0028D1F4(0x8011FE88u, (uint)(new BrainB(b).unk224), default(uint), default(uint));
+                    LevelPath_GetHeader(0x8011FE88u, (uint)(new BrainB(b).unk224), default(uint), default(uint));
                 }
                 else
                 {
@@ -1125,7 +1125,7 @@ public static partial class Game
                 {
                     if ((new BrainB(b).unk224 >= 0))
                     {
-                        uint e = func_0028D1F4(0x8011FE88u, (uint)(new BrainB(b).unk224), default(uint), default(uint));
+                        uint e = LevelPath_GetHeader(0x8011FE88u, (uint)(new BrainB(b).unk224), default(uint), default(uint));
                         new BrainB(b).unk228_Set((int)(new BrainB(b).unk228 + 1));
                         if ((new BrainB(b).unk228 == (int)(new PathEnt(e).len)))
                         {
@@ -1143,7 +1143,7 @@ public static partial class Game
                 }
                 else
                 {
-                    new BrainB(b).unkC_Set(AiNav_FindNearestNode(L, (uint)((int)(func_0028D220(0x8011FE88u, new BrainB(b).unk224, new BrainB(b).unk228)))));
+                    new BrainB(b).unkC_Set(AiNav_FindNearestNode(L, (uint)((int)(LevelPath_GetPoint(0x8011FE88u, new BrainB(b).unk224, new BrainB(b).unk228)))));
                 }
             }
             Ai_FollowPath(b);
@@ -1186,7 +1186,7 @@ public static partial class Game
                 { bool c_ = (int)r2 <= 0; r2 = (uint)-2; if (c_) goto L_L00212E74; }
                 Mem.Set((r17 + 548u), r0);
                 r5 = Mem.U32((r17 + 548u));
-                Mem.Set((r17 + 552u), r0); r2 = func_0028D1F4(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r17 + 552u), r0); r2 = LevelPath_GetHeader(r4, r5, r6, r7); r3 = Cpu.V1;
                 r2 = (uint)-1; goto L_L00212E80;
                 L_L00212E74: ;
                 Mem.Set((r17 + 548u), r2);
@@ -1212,7 +1212,7 @@ public static partial class Game
                 { bool c_ = (int)r5 < 0; r2 = (uint)-1; if (c_) goto L_L00212F08; }
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
-                r2 = func_0028D1F4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = LevelPath_GetHeader(r4, r5, r6, r7); r3 = Cpu.V1;
                 r3 = Mem.U32((r17 + 552u));
                 r3 = r3 + 1u;
                 Mem.Set((r17 + 552u), r3);
@@ -1245,7 +1245,7 @@ public static partial class Game
                 r6 = Mem.U32((r17 + 552u));
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
-                r2 = func_0028D220(r4, (int)r5, (int)r6);
+                r2 = LevelPath_GetPoint(r4, (int)r5, (int)r6);
                 r4 = r18;
                 r5 = r2; r2 = (uint)AiNav_FindNearestNode(r4, r5);
                 Mem.Set((r17 + 12u), r2);
@@ -1312,7 +1312,7 @@ public static partial class Game
                 r6 = Mem.U32((r17 + 552u));
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
-                r2 = func_0028D220(r4, (int)r5, (int)r6);
+                r2 = LevelPath_GetPoint(r4, (int)r5, (int)r6);
                 r4 = r18;
                 r5 = r2; r2 = (uint)AiNav_FindNearestNode(r4, r5);
                 Mem.Set((r17 + 12u), r2);

@@ -44,7 +44,7 @@ public static partial class Game
                     {
                         if (((int)(Mem.U16(e)) == id))
                         {
-                            h = func_0028FE08((uint)(new O3Lv(lv).w54), new O3Lv(lv).w24, i);
+                            h = Resource_GetCartridgeKeyNoSize((uint)(new O3Lv(lv).w54), new O3Lv(lv).w24, i);
                             q = ResourceCache_Hash(0, (uint)(h), h, (uint)(24), 0, (uint)(0), (uint)(0), 0x800E1490u, one);
                             if ((q != 0u))
                             {
@@ -145,7 +145,7 @@ public static partial class Game
                 Mem.Set((r7 + 4u), r2);
                 Mem.Set((r17 + 1184u), r16);
                 r16 = r17 + 400u;
-                Mem.Set((r17 + 1180u), r18); r2 = func_0028CF7C(r4, (int)r5, (int)r6);
+                Mem.Set((r17 + 1180u), r18); r2 = Level_FindDefinition(r4, (int)r5, (int)r6);
                 { bool c_ = r2 != 0; r3 = r17 + 4u; if (c_) goto L_L0041CC0C; }
                 Mem.Set((r17 + 1144u), r0);
                 r2 = r0; goto L_L0041CDF8;
@@ -929,7 +929,7 @@ public static partial class Game
                 r2 = Mem.U32((r2 + 20320u));
                 r5 = (uint)1;
                 Mem.Set((r2 + 1112u), r4); func_0040E958(r4, (int)r5);
-                func_002A338C();
+                Menu_DisableInput();
                 r4 = (uint)1;
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 20320u));
@@ -946,7 +946,7 @@ public static partial class Game
                 L_L00429F8C: ;
                 r2 = (uint)((int)r16 < 8 ? 1 : 0);
                 { bool c_ = r2 != 0; r3 = r3 + 150u; if (c_) goto L_L00429F78; }
-                r4 = (uint)1; func_002A33BC((int)r4);
+                r4 = (uint)1; Menu_SetFixedFov((int)r4);
                 r17 = r0;
                 r19 = r17;
                 r16 = r17;
@@ -1099,7 +1099,7 @@ public static partial class Game
                 r29 = r29 - 24u;
                 Mem.Set((r29 + 16u), r16);
                 Mem.Set((r29 + 20u), r31);
-                r16 = r7; func_0029A73C();
+                r16 = r7; Menu_ConsumeEvent();
                 r2 = (uint)1;
                 { bool c_ = r16 != r2; r2 = r0; if (c_) goto L_L0042BC24; }
                 r5 = 2148401152u;
@@ -1316,7 +1316,7 @@ public static partial class Game
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
                 r6 = (uint)(int)Mem.S8((r16 + 128u));
-                r5 = (uint)11; r2 = func_0028CF7C(r4, (int)r5, (int)r6);
+                r5 = (uint)11; r2 = Level_FindDefinition(r4, (int)r5, (int)r6);
                 r4 = r0;
                 r5 = r2;
                 L_L0043BBB0: ;

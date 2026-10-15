@@ -36,7 +36,7 @@ public static partial class Game
                         Mem.Set((0x80145088u + (uint)((6128 / 4) * 4)), 8);
                         return 0;
                     }
-                    func_0029A73C();
+                    Menu_ConsumeEvent();
                     Mem.Set(0x80146918u, 0);
                     Mem.Set(0x801468F4u, 0);
                     if ((Mem.S32(0x80146948u) == t))
@@ -46,27 +46,27 @@ public static partial class Game
                             switch ((int)(Mem.U8(0x801462D5u)))
                             {
                             case 1:
-                                func_00299368(7);
+                                Menu_GotoScreen(7);
                                 break;
                             case 3:
-                                func_00299368(3);
+                                Menu_GotoScreen(3);
                                 break;
                             case 4:
-                                func_00299368(3);
+                                Menu_GotoScreen(3);
                                 break;
                             default:
-                                func_00299368(3);
+                                Menu_GotoScreen(3);
                                 break;
                             }
                         }
                         else
                         {
-                            func_00299368(10);
+                            Menu_GotoScreen(10);
                         }
                     }
                     else
                     {
-                        func_00299368(10);
+                        Menu_GotoScreen(10);
                     }
                     return 0;
                 }

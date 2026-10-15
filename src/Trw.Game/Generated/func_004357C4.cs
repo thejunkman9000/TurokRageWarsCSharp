@@ -18,7 +18,7 @@ public static partial class Game
                 uint rec = (0x80102B00u + (uint)(i * 400));
                 if ((a != (-1)))
                 {
-                    func_002A1724(rec, (new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(a)].rec.P + (uint)(b * 400)), (uint)(400));
+                    Mem_Copy(rec, (new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(a)].rec.P + (uint)(b * 400)), (uint)(400));
                     new O05Rec(rec).bC_Set((sbyte)(b));
                 }
                 else

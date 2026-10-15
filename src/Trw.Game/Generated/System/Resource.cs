@@ -5133,6 +5133,101 @@ public static partial class Game
         }
     }
 
+    // ==== func_0028D450 @ 0x0028D450 [C]
+    public static int Resource_GetIndexedCached(uint o, int id)
+    {
+        uint _fp = Stack.Alloc(4);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0028D450", (uint)o, (uint)id);
+                uint h = 0u;
+                uint r = 0u;
+                int p = 0;
+                uint q = 0u;
+                if (!(((new Obj_v2(o).unk14_ == 0u) || (new Obj_v2(o).unk18 != id)))) goto _f0;
+                Resource_ReleaseIndexedCache(o);
+                if (!((new Obj_v2(o).unkC != 0))) goto _f1;
+                h = ResourceCache_Hash(0, (uint)(new Obj_v2(o).unkC), new Obj_v2(o).unkC, (uint)(new Obj_v2(o).unk10), 16, (uint)(0), 0u, 0x800CA380u, 1);
+                if (!((h != 0u))) goto _f2;
+                p = (int)(Resource_GetCartridgeKey((uint)(Mem.S32(h)), (uint)(new Obj_v2(o).unkC), id, _fp));
+                ResourcePool_Release(0, h);
+                r = ResourceCache_Hash(0, (uint)(p), p, (uint)(Mem.S32(_fp)), 16, (uint)(0), 0x00285130u, 0x800CA3ACu, 1);
+                new Obj_v2(o).unk14__Set(r);
+                if (!((r != 0u))) goto _f3;
+                new Obj_v2(o).unk18_Set(id);
+                goto _f4;
+                _f3: ;
+                goto L_zero;
+                _f4: ;
+                _f2: ;
+                _f1: ;
+                _f0: ;
+                q = new Obj_v2(o).unk14_;
+                if (!((q == 0u))) goto _f5;
+                L_zero: ;
+                return 0;
+                _f5: ;
+                return Mem.S32(q);
+                return 0;
+            }
+        }
+        finally { Stack.Free(4); }
+    }
+
+    // ==== func_0028D940 @ 0x0028D940 [C]
+    public static void Resource_PreloadIndexedCached(uint o, int id)
+    {
+        uint _fp = Stack.Alloc(4);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0028D940", (uint)o, (uint)id);
+                uint h = 0u;
+                uint r = 0u;
+                int p = 0;
+                if (((new Obj_v2(o).unk14_ == 0u) || (new Obj_v2(o).unk18 != id)))
+                {
+                    Resource_ReleaseIndexedCache(o);
+                    if ((new Obj_v2(o).unkC != 0))
+                    {
+                        h = ResourceCache_Hash(0, (uint)(new Obj_v2(o).unkC), new Obj_v2(o).unkC, (uint)(new Obj_v2(o).unk10), 16, (uint)(0), 0u, 0x800CA380u, 1);
+                        if ((h != 0u))
+                        {
+                            p = (int)(Resource_GetCartridgeKey((uint)(Mem.S32(h)), (uint)(new Obj_v2(o).unkC), id, _fp));
+                            ResourcePool_Release(0, h);
+                            r = ResourceCache_Hash(0, (uint)(p), p, (uint)(Mem.S32(_fp)), 16, (uint)(0), 0x00285130u, 0x800CA3ACu, 1);
+                            new Obj_v2(o).unk14__Set(r);
+                            if ((r != 0u))
+                            {
+                                new Obj_v2(o).unk18_Set(id);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        finally { Stack.Free(4); }
+    }
+
+    // ==== func_0028DA50 @ 0x0028DA50 [C]
+    public static void Resource_ReleaseIndexedCache(uint o)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0028DA50", (uint)o);
+            int v = new Obj_v6(o).unk14;
+            if ((v != 0))
+            {
+                ResourcePool_Release(0, (uint)(v));
+                new Obj_v6(o).unk14_Set(0);
+                new Obj_v6(o).unk18_Set((-1));
+            }
+        }
+    }
+
     // ==== func_0028DD80 @ 0x0028DD80 [C]
     public static int PropTree_TestBit(uint o, int i, int bit)
     {
@@ -5150,6 +5245,53 @@ public static partial class Game
             }
             return 0;
         }
+    }
+
+    // ==== func_0028FD68 @ 0x0028FD68 [MIPS]
+    public static uint Chunk_GetTotalSizeHead(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0028FD68", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_0028FD68: ;
+                r2 = 3145728u;
+                Mem.Set((r8 + 8u), r20);
+                L_func_0028FD70: ;
+                r29 = r29 - 32u;
+                r5 = r29 + 16u;
+                Mem.Set((r29 + 24u), r31);
+                r6 = r29 + 20u; Chunk_GetBaseAndTotalSize(r4, r5, r6);
+                r2 = Mem.U32((r29 + 20u));
+                r31 = Mem.U32((r29 + 24u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0028FD68", r2); Stack.Free(384); }
+    }
+
+    // ==== func_0028FD70 @ 0x0028FD70 [C]
+    public static int Chunk_GetTotalSize(uint tbl)
+    {
+        uint _fp = Stack.Alloc(8);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0028FD70", (uint)tbl);
+                Chunk_GetBaseAndTotalSize(tbl, _fp, (_fp + 4u));
+                return Mem.S32((_fp + 4u));
+            }
+        }
+        finally { Stack.Free(8); }
     }
 
     // ==== func_0028FD94 @ 0x0028FD94 [C]
@@ -5206,6 +5348,17 @@ public static partial class Game
         }
     }
 
+    // ==== func_0028FE08 @ 0x0028FE08 [C]
+    public static int Resource_GetCartridgeKeyNoSize(uint a, int b, int i)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0028FE08", (uint)a, (uint)b, (uint)i);
+            uint p = (a + (uint)(i * 4));
+            return (b + Mem.S32((p + (uint)(1 * 4))));
+        }
+    }
+
     // ==== func_0028FE1C @ 0x0028FE1C [C]
     public static int func_0028FE1C_off(uint t, int i)
     {
@@ -5224,6 +5377,105 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0028FE1C", (uint)tbl, (uint)@base, (uint)idx, (uint)size);
             Mem.Set(size, (func_0028FE1C_off(tbl, (idx + 1)) - func_0028FE1C_off(tbl, idx)));
             return (@base + (uint)func_0028FE1C_off(tbl, idx));
+        }
+    }
+
+    // ==== func_0028FE4C @ 0x0028FE4C [C]
+    public static int func_0028FE4C_off(uint t, int i)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0028FE4C_off", (uint)t, (uint)i);
+            uint p = (t + (uint)(i * 4));
+            return Mem.S32((p + (uint)(1 * 4)));
+        }
+    }
+
+    public static int Chunk_GetOffsetAndSize(uint tbl, int idx, uint size)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0028FE4C", (uint)tbl, (uint)idx, (uint)size);
+            Mem.Set(size, (func_0028FE4C_off(tbl, (idx + 1)) - func_0028FE4C_off(tbl, idx)));
+            return func_0028FE4C_off(tbl, idx);
+        }
+    }
+
+    // ==== func_0028FE7C @ 0x0028FE7C [C]
+    public static void Chunk_GetBaseAndTotalSize(uint tbl, uint out1, uint out2)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0028FE7C", (uint)tbl, (uint)out1, (uint)out2);
+            uint p = 0u;
+            Mem.Set(out1, tbl);
+            p = (tbl + (uint)(Mem.S32((tbl + (uint)(0 * 4))) * 4));
+            Mem.Set(out2, Mem.S32((p + (uint)(1 * 4))));
+        }
+    }
+
+    // ==== func_0028FE98 @ 0x0028FE98 [C]
+    public static int Chunk_GetTableSize(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0028FE98", (uint)p);
+            return ((Mem.S32((p + (uint)(0 * 4))) * Mem.S32((p + (uint)(1 * 4)))) + 8);
+        }
+    }
+
+    // ==== func_0028FEB0 @ 0x0028FEB0 [C]
+    public static void Chunk_GetTableDataAndSize(uint p, uint out1, uint out2)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0028FEB0", (uint)p, (uint)out1, (uint)out2);
+            Mem.Set(out1, p);
+            Mem.Set(out2, ((Mem.S32((p + (uint)(0 * 4))) * Mem.S32((p + (uint)(1 * 4)))) + 8));
+        }
+    }
+
+    // ==== func_0028FED0 @ 0x0028FED0 [C]
+    public static uint Chunk_GetTableEntries(uint p, uint @out)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0028FED0", (uint)p, (uint)@out);
+            Mem.Set(@out, (Mem.S32((p + (uint)(0 * 4))) * Mem.S32((p + (uint)(1 * 4)))));
+            return (p + (uint)(2 * 4));
+        }
+    }
+
+    // ==== func_0028FEEC @ 0x0028FEEC [C]
+    public static void Chunk_TransposeTable(uint src, uint dst, int flag)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0028FEEC", (uint)src, (uint)dst, (uint)flag);
+            uint data = 0u;
+            uint p = 0u;
+            int i = 0;
+            int j = 0;
+            int w = 0;
+            int h = 0;
+            int n = 0;
+            data = (src + (uint)8);
+            memcpy(dst, src, (uint)(8));
+            p = (dst + (uint)8);
+            h = Mem.S32((src + (uint)(1 * 4)));
+            w = Mem.S32((src + (uint)(0 * 4)));
+            for (i = 0; (i < h); ++i)
+            {
+                for (j = 0; (j < w); ++j)
+                {
+                    Mem.Set(((p += 1u) - 1u), Mem.U8((data + (uint)(i + (j * h)))));
+                }
+            }
+            n = (h * w);
+            if ((flag != 0))
+            {
+                memcpy(src, dst, (uint)((n + 8)));
+            }
         }
     }
 }

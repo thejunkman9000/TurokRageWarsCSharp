@@ -93,7 +93,7 @@ public static partial class Game
                 { bool c_ = r4 == 0; Cpu.SetS(24, Cpu.S(0) + Cpu.S(2)); if (c_) goto L_L002178D0; }
                 r5 = r0;
                 r6 = r29 + 32u;
-                r7 = r29 + 36u; func_002AB940((int)r4, (int)r5, r6, r7);
+                r7 = r29 + 36u; Sprite_GetFrameSize((int)r4, (int)r5, r6, r7);
                 r3 = Mem.U32((r19 + 892u));
                 r2 = Mem.U32((r18 + 0u));
                 { bool c_ = r3 != r2;  if (c_) goto L_L002177B0; }
@@ -267,7 +267,7 @@ public static partial class Game
                     alpha = new B04Draw(sl).f18;
                     if ((new B04Draw(sl).u14 != 0))
                     {
-                        func_002AB940(new B04Draw(sl).u14, 0, _fp, (_fp + 4u));
+                        Sprite_GetFrameSize(new B04Draw(sl).u14, 0, _fp, (_fp + 4u));
                         if ((new B04Menu(o).w37C == new B04Draw(sl).i))
                         {
                             r = (int)(((cosf(Mem.F32((o + (uint)20))) * 63.0f) + 192.0f));
@@ -1026,7 +1026,7 @@ public static partial class Game
                 { bool c_ = r4 == 0; Cpu.SetS(24, Cpu.S(0) + Cpu.S(2)); if (c_) goto L_L00218870; }
                 r5 = r0;
                 r6 = r29 + 32u;
-                r7 = r29 + 36u; func_002AB940((int)r4, (int)r5, r6, r7);
+                r7 = r29 + 36u; Sprite_GetFrameSize((int)r4, (int)r5, r6, r7);
                 r3 = Mem.U32((r20 + 108u));
                 r2 = Mem.U32((r19 + 0u));
                 if (r3 != r2) { r3 = (uint)150; goto L_L0021875C; }
@@ -1123,17 +1123,17 @@ public static partial class Game
                 r1 = 2148401152u;
                 Cpu.SetW(0, Mem.U32((r1 + 10448u)));
                 Cpu.SetS(0, (float)(int)Cpu.W(0));
-                Cpu.SetS(21, Cpu.S(1) / Cpu.S(0)); func_002A94E8();
+                Cpu.SetS(21, Cpu.S(1) / Cpu.S(0)); Text_BeginFontPass();
                 r1 = 2148270080u;
                 Cpu.SetW(12, Mem.U32((r1 + 29568u)));
-                Cpu.SetS(14, Cpu.S(12)); func_002ABB58(Cpu.S(12), Cpu.S(14));
+                Cpu.SetS(14, Cpu.S(12)); Text_SetScale(Cpu.S(12), Cpu.S(14));
                 r4 = (uint)255;
                 r5 = r4;
                 r6 = r4;
                 r7 = (uint)200;
                 r2 = r7;
                 Mem.Set((r29 + 16u), r2);
-                Mem.Set((r29 + 20u), r2); func_002ABB2C((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
+                Mem.Set((r29 + 20u), r2); Text_SetColors((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
                 Cpu.SetW(1, Mem.U32((r17 + 0u)));
                 r1 = 2148270080u;
                 Cpu.SetW(2, Mem.U32((r1 + 29572u)));

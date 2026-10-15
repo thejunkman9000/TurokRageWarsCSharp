@@ -36,7 +36,7 @@ public static partial class Game
                     for (; (i < n); ++i)
                     {
                         e = (ents + (uint)(i * 76));
-                        if ((func_00293424((uint)(a), (e + (uint)24)) == 0))
+                        if ((Str_Compare((uint)(a), (e + (uint)24)) == 0))
                         {
                             new O01Ctx(Mem.U32(0x800E2830u)).unkE0_Set(new O01Rec(e).unk8);
                             new O01Ctx(Mem.U32(0x800E2830u)).unkD8_Set(new O01Rec(e).unk0);

@@ -20,27 +20,27 @@ public static partial class Game
                     switch ((int)(Mem.U8((g - (uint)1483))))
                     {
                     case 1:
-                        func_00299368(7);
+                        Menu_GotoScreen(7);
                         break;
                     case 3:
-                        func_00299368(3);
+                        Menu_GotoScreen(3);
                         break;
                     case 4:
-                        func_00299368(3);
+                        Menu_GotoScreen(3);
                         break;
                     default:
-                        func_00299368(3);
+                        Menu_GotoScreen(3);
                         break;
                     }
                 }
                 else
                 {
-                    func_00299368(10);
+                    Menu_GotoScreen(10);
                 }
             }
             else
             {
-                func_00299368(10);
+                Menu_GotoScreen(10);
             }
         }
     }

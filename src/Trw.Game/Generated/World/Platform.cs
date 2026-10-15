@@ -1107,7 +1107,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00207EEC", (uint)e);
-            func_0028B64C(0x8011FE88u, (int)(new B2Evt(e).unkA), (int)(new B2Evt(e).unk4), 1);
+            Level_SetEntitySavedFlagInMap(0x8011FE88u, (int)(new B2Evt(e).unkA), (int)(new B2Evt(e).unk4), 1);
         }
     }
 
@@ -1128,7 +1128,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00207F60", (uint)e);
-            func_0028B64C(0x8011FE88u, (int)(new B2Evt(e).unkA), (int)(new B2Evt(e).unk4), 0);
+            Level_SetEntitySavedFlagInMap(0x8011FE88u, (int)(new B2Evt(e).unkA), (int)(new B2Evt(e).unk4), 0);
         }
     }
 

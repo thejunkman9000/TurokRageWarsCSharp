@@ -26,7 +26,7 @@ public static partial class Game
             {
                 return 0;
             }
-            func_0029A73C();
+            Menu_ConsumeEvent();
             new O04ModeF60(Mem.U32(0x800E4F60u)).state_Set(8);
             func_0042A994(65);
             func_0040E958(new O04ModeF60(Mem.U32(0x800E4F60u)).unk440, 0);

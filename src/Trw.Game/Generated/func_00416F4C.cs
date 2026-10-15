@@ -23,14 +23,14 @@ public static partial class Game
                     if ((mode == 9))
                     {
                         mp = (_fp + 32u);
-                        func_0029FB14(mp);
+                        Math_MtxSetIdentity(mp);
                         Gfx_PushMatrixF(mp);
                         new O02V3(_fp).x_Set((float)(0));
                         new O02V3(_fp).y_Set((float)(0));
                         new O02V3(_fp).z_Set(Mem.F32(0x800E142Cu));
                         Math_MtxTransformPoint(0x80145228u, _fp, (_fp + 16u));
                         n = 4;
-                        v = (uint)(func_002A25E4(64));
+                        v = (uint)(FrameAlloc_AllocHigh(64));
                         for (k = 0; (k < n); ++k)
                         {
                             new O02Vtx((v + (uint)(k * 16))).x_Set((short)(int)(new O02V3((_fp + 16u)).x));

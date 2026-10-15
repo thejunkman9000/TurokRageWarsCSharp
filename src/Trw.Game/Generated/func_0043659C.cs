@@ -10,19 +10,19 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043659C");
-            func_0029A73C();
+            Menu_ConsumeEvent();
             switch (Menu_GetMessage())
             {
             case 985:
-                func_00299368(1);
+                Menu_GotoScreen(1);
                 return 0;
             case 984:
                 Mem.Set(0x80146894u, 0);
-                func_002A338C();
+                Menu_DisableInput();
                 if ((MatchSetup_PickRandomArena() == 0))
                 {
                     func_0040C4A8(0);
-                    func_00299368(20);
+                    Menu_GotoScreen(20);
                     return 0;
                 }
                 Menu_ShowScreen_0043C458(Mem.U32(0x800E5558u));

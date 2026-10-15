@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00435608", (uint)idx);
             uint buf = new O05Lobby(Mem.U32(0x800E54A4u)).recs.P;
-            func_002A1724(buf, new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].rec.P, (uint)(1600));
+            Mem_Copy(buf, new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].rec.P, (uint)(1600));
             new O05Lobby(Mem.U32(0x800E54A4u)).f3468_Set(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB64);
             new O05Lobby(Mem.U32(0x800E54A4u)).f346C_Set((int)(func_004057F8(buf, 1600, (uint)(7))));
         }

@@ -568,6 +568,125 @@ public static partial class Game
         }
     }
 
+    // ==== func_002A1B20 @ 0x002A1B20 [MIPS]
+    public static uint Debug_Printf(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5, uint a6, uint a7, uint a8, uint a9, uint a10)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002A1B20", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                Mem.Set(r29 + 20u, a5);
+                Mem.Set(r29 + 24u, a6);
+                Mem.Set(r29 + 28u, a7);
+                Mem.Set(r29 + 32u, a8);
+                Mem.Set(r29 + 36u, a9);
+                Mem.Set(r29 + 40u, a10);
+                L_func_002A1B20: ;
+                Mem.Set((r29 + 0u), r4);
+                Mem.Set((r29 + 4u), r5);
+                Mem.Set((r29 + 8u), r6);
+                Mem.Set((r29 + 12u), r7);
+                r29 = r29 - 24u;
+                r5 = r4;
+                Mem.Set((r29 + 16u), r16);
+                r16 = 2148859904u;
+                r16 = r16 - 12080u;
+                r4 = r16;
+                Mem.Set((r29 + 20u), r31);
+                r6 = r29 + 28u; r2 = Printf_VFormat(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
+                r3 = 2148335616u;
+                r3 = Mem.U32((r3 + 11148u));
+                r1 = 2148335616u;
+                Mem.Set((r1 + 11144u), r2);
+                { bool c_ = r3 == 0;  if (c_) goto L_L002A1B74; }
+                r4 = r16; r2 = Funcs.CallReg(r3, r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L002A1B74: ;
+                r2 = 2148335616u;
+                r2 = Mem.U32((r2 + 11144u));
+                r31 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002A1B20", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002A1B8C @ 0x002A1B8C [MIPS]
+    public static uint Debug_PrintfAt(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5, uint a6, uint a7, uint a8, uint a9, uint a10)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002A1B8C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                Mem.Set(r29 + 20u, a5);
+                Mem.Set(r29 + 24u, a6);
+                Mem.Set(r29 + 28u, a7);
+                Mem.Set(r29 + 32u, a8);
+                Mem.Set(r29 + 36u, a9);
+                Mem.Set(r29 + 40u, a10);
+                L_func_002A1B8C: ;
+                Mem.Set((r29 + 8u), r6);
+                Mem.Set((r29 + 12u), r7);
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r4;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r5;
+                Mem.Set((r29 + 16u), r16);
+                r16 = 2148859904u;
+                r16 = r16 - 12080u;
+                r4 = r16;
+                r5 = r6;
+                Mem.Set((r29 + 28u), r31);
+                r6 = r29 + 44u; r2 = Printf_VFormat(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
+                r4 = r16;
+                r5 = r17;
+                r3 = 2148335616u;
+                r3 = Mem.U32((r3 + 11152u));
+                r1 = 2148335616u;
+                Mem.Set((r1 + 11144u), r2);
+                r6 = r18; r2 = Funcs.CallReg(r3, r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = 2148335616u;
+                r2 = Mem.U32((r2 + 11144u));
+                r31 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002A1B8C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002A224C @ 0x002A224C [C]
+    public static void Debug_SetPrintHooks(int a, int b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002A224C", (uint)a, (uint)b);
+            Mem.Set(0x800D2B8Cu, a);
+            Mem.Set(0x800D2B90u, b);
+        }
+    }
+
     // ==== func_002A8544 @ 0x002A8544 [MIPS]
     public static uint Debug_IsAddressWritable(uint a0, uint a1, uint a2, uint a3)
     {
@@ -643,5 +762,27 @@ public static partial class Game
             }
         }
         finally { if (Dbg.On) Dbg.Leave("func_002A8544", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002A8644 @ 0x002A8644 [MIPS]
+    public static uint Debug_EmptyStub_002A8644(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002A8644", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002A8644: ;
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002A8644", r2); Stack.Free(384); }
     }
 }

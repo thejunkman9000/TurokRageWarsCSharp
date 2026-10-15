@@ -1873,7 +1873,7 @@ public static partial class Game
             new B09FlagObj(o).flags_Set((old & 4294737919u));
             if (((old & (uint)(28672)) != 0u))
             {
-                s = func_0028B2D4(0x8011FE88u, (uint)(_a1));
+                s = Level_GetRegion(0x8011FE88u, (uint)(_a1));
                 if ((s != 0u))
                 {
                     if (((new B09Seat(s).flags44 & (uint)(4194304)) != 0u))
@@ -6028,7 +6028,7 @@ public static partial class Game
                 fl = new B10Obj(o).p40_;
                 if ((tri != 0u))
                 {
-                    nd = func_0028B2D4(0x8011FE88u, tri);
+                    nd = Level_GetRegion(0x8011FE88u, tri);
                     if ((nd != 0u))
                     {
                         if (((new B10Fl(fl).flags & (uint)(8)) != 0u))
@@ -6313,7 +6313,7 @@ public static partial class Game
                 r2 = r2 & r21;
                 { bool c_ = r2 == 0;  if (c_) goto L_L00243E58; }
                 r4 = Mem.U32((r29 + 196u));
-                r5 = r29 + 104u; r2 = func_0028C02C(r4, r5);
+                r5 = r29 + 104u; r2 = Collision_UpdateFloorTriangle(r4, r5);
                 Mem.Set((r29 + 196u), r2);
                 L_L00243E58: ;
                 r4 = r29 + 24u; r2 = (uint)Collision_TestMove(r4);
@@ -6619,7 +6619,7 @@ public static partial class Game
                 r2 = r2 & r3;
                 { bool c_ = r2 == 0;  if (c_) goto L_L00244458; }
                 r4 = Mem.U32((r29 + 196u));
-                r5 = r17 + 8u; r2 = func_0028C02C(r4, r5);
+                r5 = r17 + 8u; r2 = Collision_UpdateFloorTriangle(r4, r5);
                 r4 = (uint)-20481;
                 r3 = Mem.U32((r29 + 84u));
                 r16 = r2;
@@ -6913,7 +6913,7 @@ public static partial class Game
                 r2 = r2 & r21;
                 { bool c_ = r2 == 0;  if (c_) goto L_L00243E58; }
                 r4 = Mem.U32((r29 + 196u));
-                r5 = r29 + 104u; r2 = func_0028C02C(r4, r5);
+                r5 = r29 + 104u; r2 = Collision_UpdateFloorTriangle(r4, r5);
                 Mem.Set((r29 + 196u), r2);
                 L_L00243E58: ;
                 r4 = r29 + 24u; r2 = (uint)Collision_TestMove(r4);
@@ -7219,7 +7219,7 @@ public static partial class Game
                 r2 = r2 & r3;
                 { bool c_ = r2 == 0;  if (c_) goto L_L00244458; }
                 r4 = Mem.U32((r29 + 196u));
-                r5 = r17 + 8u; r2 = func_0028C02C(r4, r5);
+                r5 = r17 + 8u; r2 = Collision_UpdateFloorTriangle(r4, r5);
                 r4 = (uint)-20481;
                 r3 = Mem.U32((r29 + 84u));
                 r16 = r2;
@@ -8554,7 +8554,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002760C4", (uint)id);
-            uint r = func_0028B2D4(0x8011FE88u, (uint)(id));
+            uint r = Level_GetRegion(0x8011FE88u, (uint)(id));
             if ((r == 0u))
             {
                 return 0;
@@ -8569,7 +8569,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002760F8", (uint)id);
-            uint r = func_0028B2D4(0x8011FE88u, (uint)(id));
+            uint r = Level_GetRegion(0x8011FE88u, (uint)(id));
             if ((r == 0u))
             {
                 return 0;
@@ -8759,6 +8759,120 @@ public static partial class Game
         finally { Stack.Free(80); }
     }
 
+    // ==== func_002866F8 @ 0x002866F8 [C]
+    public static uint Collision_FindFloorTriangle(uint ow, uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002866F8", (uint)ow, (uint)p);
+            int idx = 0;
+            int i = 0;
+            float best = 0f;
+            uint bestt = 0u;
+            uint tri = 0u;
+            uint t = 0u;
+            uint cells = 0u;
+            uint c = 0u;
+            uint cb = 0u;
+            int n = 0;
+            uint j = 0u;
+            float h = 0f;
+            float top = 0f;
+            float d = 0f;
+            if ((Mem.S32(0x800D29B4u) == 0))
+            {
+                return 0u;
+            }
+            best = 0.0f;
+            tri = (uint)(((int)(Chunk_Get((uint)(new B19Owner(ow).f6C), 2)) + 8));
+            idx = 0;
+            i = 0;
+            bestt = 0u;
+            cells = (uint)((int)(Chunk_Get((uint)(new B19Owner(ow).f6C), 3)));
+            n = new B19Cells(cells).cnt;
+            cb = new B19Cells(cells).c.P;
+            if ((n > 0))
+            {
+                do
+                {
+                    c = (cb + (uint)(i * 20));
+                    if (((((new B19Vec3(p).x >= new B19Cell(c).x0) && (new B19Vec3(p).x <= new B19Cell(c).x1)) && (new B19Vec3(p).z >= new B19Cell(c).z0)) && (new B19Vec3(p).z <= new B19Cell(c).z1)))
+                    {
+                        if ((new B19Cell(c).n != (uint)(0)))
+                        {
+                            j = (uint)(0);
+                            t = (uint)(((uint)((idx * 32)) + (uint)(tri)));
+                            do
+                            {
+                                if ((Collision_IsPointInFaceXZ(t, new B19Vec3(p).x, new B19Vec3(p).z) != 0))
+                                {
+                                    h = Collision_GetFloorHeightAt(t, new B19Vec3(p).x, new B19Vec3(p).z);
+                                    if ((((int)(new B19Tri(t).fl) & 64) != 0))
+                                    {
+                                        top = Collision_GetCeilingHeightAt(t, new B19Vec3(p).x, new B19Vec3(p).z);
+                                        if (((h <= new B19Vec3(p).y) && (new B19Vec3(p).y <= top)))
+                                        {
+                                            return t;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        d = (new B19Vec3(p).y - h);
+                                        if ((d < 0.0f))
+                                        {
+                                            d = (-d);
+                                        }
+                                        if (((bestt == 0u) || (d < best)))
+                                        {
+                                            bestt = t;
+                                            best = d;
+                                        }
+                                    }
+                                }
+                                t += 32u;
+                                ++idx;
+                                ++j;
+                            }
+                            while ((j < new B19Cell(c).n));
+                        }
+                    }
+                    else
+                    {
+                        idx = (int)((uint)(idx) + new B19Cell(c).n);
+                    }
+                    ++i;
+                }
+                while ((i < n));
+            }
+            return bestt;
+        }
+    }
+
+    // ==== func_0028C02C @ 0x0028C02C [C]
+    public static uint Collision_UpdateFloorTriangle(uint o, uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0028C02C", (uint)o, (uint)p);
+            float lo = 0f;
+            float hi = 0f;
+            if (((o != 0u) && (Collision_IsPointInFaceXZ(o, new Vec3f(p).x, new Vec3f(p).z) != 0)))
+            {
+                if (!(((int)(new Obj_v11(o).flags) & 64) != 0))
+                {
+                    return o;
+                }
+                lo = Collision_GetFloorHeightAt(o, new Vec3f(p).x, new Vec3f(p).z);
+                hi = Collision_GetCeilingHeightAt(o, new Vec3f(p).x, new Vec3f(p).z);
+                if (((lo <= new Vec3f(p).y) && (new Vec3f(p).y <= hi)))
+                {
+                    return o;
+                }
+            }
+            return Collision_FindFloorTriangle(0x8011FE88u, p);
+        }
+    }
+
     // ==== func_0044D024 @ 0x0044D024 [C]
     public static int func_0044D024_sectionHas(uint world, int n)
     {
@@ -8828,17 +8942,17 @@ public static partial class Game
                         new S6MeshHdr(hdr).cur_Set(0);
                         off = 24;
                         new S6MeshHdr(hdr).off.Set((int)(0), off);
-                        func_0028FEEC(chunk0, (buf + (uint)off), 0);
+                        Chunk_TransposeTable(chunk0, (buf + (uint)off), 0);
                         new S6MeshHdr(hdr).cur_Set(1);
                         off = (Mem.S32(_fp) + off);
                         dst1 = (buf + (uint)off);
                         new S6MeshHdr(hdr).off.Set((int)(1), off);
-                        func_0028FEEC(chunk1, dst1, 0);
+                        Chunk_TransposeTable(chunk1, dst1, 0);
                         new S6MeshHdr(hdr).cur_Set(2);
                         off = (off + Mem.S32((_fp + 4u)));
                         dst2 = (buf + (uint)off);
                         new S6MeshHdr(hdr).off.Set((int)(2), off);
-                        func_0028FEEC(chunk2, dst2, 1);
+                        Chunk_TransposeTable(chunk2, dst2, 1);
                         src = (chunk2 + (uint)8);
                         Mem.Set((dst2 + (uint)(0 * 4)), 32);
                         Mem.Set((dst2 + (uint)(1 * 4)), nfaces);
@@ -8894,7 +9008,7 @@ public static partial class Game
                         off = (off + size2);
                         new S6MeshHdr(hdr).cur_Set(3);
                         new S6MeshHdr(hdr).off.Set((int)(3), off);
-                        func_0028FEEC(chunk3, (buf + (uint)off), 0);
+                        Chunk_TransposeTable(chunk3, (buf + (uint)off), 0);
                         new S6MeshHdr(hdr).cur_Set(4);
                         off = (off + Mem.S32((_fp + 8u)));
                         new S6MeshHdr(hdr).off.Set((int)(4), off);

@@ -44,13 +44,13 @@ public static partial class Game
                     if ((new Q2Pg(Mem.U32(0x800E42D0u)).timer <= 0))
                     {
                         new Q2Pg(Mem.U32(0x800E42D0u)).state_Set(3);
-                        func_0029A73C();
-                        func_00299368(new Q2Pg(Mem.U32(0x800E42D0u)).f34);
+                        Menu_ConsumeEvent();
+                        Menu_GotoScreen(new Q2Pg(Mem.U32(0x800E42D0u)).f34);
                         return 0;
                     }
                     break;
                 case 3:
-                    func_002A3358();
+                    Menu_EnableInput();
                     break;
                 case 4:
                     p = Mem.U32(0x800E42D0u);

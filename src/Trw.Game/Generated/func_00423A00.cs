@@ -11,12 +11,12 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00423A00");
             int s0 = 0;
-            func_0029A73C();
+            Menu_ConsumeEvent();
             s0 = 1;
             switch (Menu_GetMessage())
             {
             case 893:
-                func_002A338C();
+                Menu_DisableInput();
                 Menu_ShowScreen_0043C458(Mem.U32(0x800E4518u));
                 new O04ModeS4518(Mem.U32(0x800E4518u)).unk1C_Set(1);
                 new O04ModeS4518(Mem.U32(0x800E4518u)).unk60_Set((-1));
@@ -28,7 +28,7 @@ public static partial class Game
                 func_0042EB68(23);
                 break;
             case 894:
-                func_002A338C();
+                Menu_DisableInput();
                 if ((MatchSetup_PickRandomArena() == 0))
                 {
                     new O04ModeS4518(Mem.U32(0x800E4518u)).unk30_Set(5);

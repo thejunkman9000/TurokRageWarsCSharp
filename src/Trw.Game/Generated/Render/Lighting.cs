@@ -134,7 +134,7 @@ public static partial class Game
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
                 Mem.Set((r29 + 20u), r31);
-                r2 = func_0028AFE8(r4, (int)r5);
+                r2 = Level_GetLightDef_0028AFE8(r4, (int)r5);
                 r4 = r16;
                 r5 = r2; r2 = Light_Acquire(r4, (int)r5);
                 r31 = Mem.U32((r29 + 20u));
@@ -1875,6 +1875,391 @@ public static partial class Game
         }
     }
 
+    // ==== func_00289790 @ 0x00289790 [C]
+    public static void Light_FindVolumesAt(uint ow, uint p, uint @out, uint nout)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00289790", (uint)ow, (uint)p, (uint)@out, (uint)nout);
+            uint found = 0u;
+            int i = 0;
+            int n = 0;
+            int cnt = 0;
+            uint set = 0u;
+            float x = 0f;
+            float z = 0f;
+            uint b = 0u;
+            uint it = 0u;
+            uint @base = 0u;
+            uint bb = 0u;
+            int cnt2 = 0;
+            x = new B19Vec3(p).x;
+            cnt = new B19Owner(ow).nent;
+            z = new B19Vec3(p).z;
+            for (i = 0; (i < cnt); ++i)
+            {
+                b = new B19Owner(ow).ent[(int)(i)].box_;
+                if ((new B19Rng(b).x1 < x))
+                {
+                    continue;
+                }
+                if ((x < new B19Rng(b).x0))
+                {
+                    continue;
+                }
+                if ((new B19Rng(b).z1 < z))
+                {
+                    continue;
+                }
+                if ((z < new B19Rng(b).z0))
+                {
+                    continue;
+                }
+                found = (new B19Owner(ow).ent.P + (uint)(i * 12));
+                break;
+            }
+            if ((found == 0u))
+            {
+                Mem.Set(nout, 0);
+                return;
+            }
+            set = Chunk_Get((uint)(Mem.S32(new B19Ent12(found).pp)), 2);
+            @base = new B19Set(set).it.P;
+            cnt2 = new B19Set(set).cnt;
+            for (i = 0; (i < cnt2); ++i)
+            {
+                it = (@base + (uint)(i * 192));
+                bb = new B19Item(it).bb.P;
+                if (((((((new B19Aabb(bb).mx[(int)(0)] > new B19Vec3(p).x) && (new B19Aabb(bb).mx[(int)(1)] > new B19Vec3(p).y)) && (new B19Aabb(bb).mx[(int)(2)] > new B19Vec3(p).z)) && (new B19Item(it).bb.mn[(int)(0)] <= new B19Vec3(p).x)) && (new B19Aabb(bb).mn[(int)(1)] <= new B19Vec3(p).y)) && (new B19Aabb(bb).mn[(int)(2)] <= new B19Vec3(p).z)))
+                {
+                    Mem.Set((@out + (uint)(n * 4)), it);
+                    ++n;
+                    if ((n == 10))
+                    {
+                        break;
+                    }
+                }
+            }
+            Mem.Set(nout, n);
+        }
+    }
+
+    // ==== func_0028994C @ 0x0028994C [C]
+    public static void Light_ComputeFromVolumes(uint ents, int n, uint pos, uint @out)
+    {
+        uint _fp = Stack.Alloc(2220);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0028994C", (uint)ents, (uint)n, (uint)pos, (uint)@out);
+                uint last = 0u;
+                uint o = 0u;
+                float x2 = 0f;
+                float u0 = 0f;
+                float u1 = 0f;
+                float x = 0f;
+                float scale = 0f;
+                float s0 = 0f;
+                float s1 = 0f;
+                float s2 = 0f;
+                int k = 0;
+                int v = 0;
+                uint wp = 0u;
+                uint w1 = 0u;
+                uint wb = 0u;
+                uint pw = 0u;
+                uint dd = 0u;
+                float zero = 0f;
+                uint db = 0u;
+                uint dp = 0u;
+                uint ep = 0u;
+                float m1_0 = 0f;
+                float m2_0 = 0f;
+                float m1_1 = 0f;
+                float m2_1 = 0f;
+                float m1_2 = 0f;
+                float m2_2 = 0f;
+                float m1_3 = 0f;
+                float m2_3 = 0f;
+                float m1_4 = 0f;
+                float m2_4 = 0f;
+                float m1_5 = 0f;
+                float m2_5 = 0f;
+                scale = ((float)(new B19bG8(0x801462C8u).f10) * 0.00392156886f);
+                last = 0u;
+                if (((new B19bG8(0x801462C8u).flags & (uint)(16384)) != 0u))
+                {
+                    Mem.Set((@out + (uint)0), Mem.Set((@out + (uint)4), (byte)(0)));
+                    Mem.Set((@out + (uint)1), Mem.Set((@out + (uint)5), (byte)(0)));
+                    Mem.Set((@out + (uint)2), Mem.Set((@out + (uint)6), (byte)(0)));
+                    Mem.Set((@out + (uint)8), Mem.Set((@out + (uint)12), (byte)(0)));
+                    Mem.Set((@out + (uint)9), Mem.Set((@out + (uint)13), (byte)(0)));
+                    Mem.Set((@out + (uint)10), Mem.Set((@out + (uint)14), (byte)(0)));
+                    Mem.Set((@out + (uint)16), (byte)(127));
+                    Mem.Set((@out + (uint)17), (byte)(0));
+                    Mem.Set((@out + (uint)18), (byte)(0));
+                    return;
+                }
+                k = 0;
+                new B19bV3f((_fp + 2064u)).x_Set(new B19bV3f((_fp + 2064u)).y_Set(new B19bV3f((_fp + 2064u)).z_Set(0.0f)));
+                new B19bV3f((_fp + 2096u)).x_Set(new B19bV3f((_fp + 2096u)).y_Set(new B19bV3f((_fp + 2096u)).z_Set(0.0f)));
+                new B19bV3f((_fp + 2112u)).x_Set(new B19bV3f((_fp + 2112u)).y_Set(new B19bV3f((_fp + 2112u)).z_Set(0.0f)));
+                new B19bV3f((_fp + 2128u)).x_Set(new B19bV3f((_fp + 2128u)).y_Set(new B19bV3f((_fp + 2128u)).z_Set(0.0f)));
+                if ((n > 0))
+                {
+                    wb = _fp;
+                    db = (_fp + 512u);
+                    do
+                    {
+                        o = Mem.U32((ents + (uint)(k * 4)));
+                        Math_MtxTransformPoint((o + (uint)32), pos, (_fp + 2048u));
+                        if ((Light_EvalVolumeAtPoint(o, (_fp + 2048u), (_fp + 2160u), (wb + (uint)(k * 4))) != 0))
+                        {
+                            Vec_Add((_fp + 2176u), (_fp + 2160u), (_fp + 2048u));
+                            Math_MtxTransformPointProject((o + (uint)96), (_fp + 2176u), (_fp + 2160u));
+                            Vec_Sub((db + (uint)(k * 12)), pos, (_fp + 2160u));
+                            Vec_Normalize((db + (uint)(k * 12)));
+                            Mem.Copy((_fp + 2080u), new B19bLObj(o).pos.P, 12);
+                            if (((int)(new B19bLObj(o).fBA) != 0))
+                            {
+                                new B19bV3f((_fp + 2192u)).z_Set(new B19bV3f((_fp + 2192u)).y_Set(new B19bV3f((_fp + 2192u)).x_Set(Light_GetFlickerForObject(o))));
+                                Vec_Scale((_fp + 2144u), (_fp + 2192u), (Mem.F32((wb + (uint)(k * 4))) * new B19bLObj(o).f4));
+                                last = o;
+                                if (((int)(new B19bLObj(o).fB8) != 0))
+                                {
+                                    Vec_Scale((_fp + 2144u), (_fp + 2144u), (-1.0f));
+                                }
+                                Vec_Add((_fp + 2096u), (_fp + 2096u), (_fp + 2144u));
+                            }
+                            u1 = (new B19bLObj(o).f4 * 0.5f);
+                            u0 = (1.0f - u1);
+                            Vec_Scale((_fp + 2144u), (_fp + 2080u), (Mem.F32((wb + (uint)(k * 4))) * u1));
+                            if (((int)(new B19bLObj(o).fB8) != 0))
+                            {
+                                Vec_Scale((_fp + 2144u), (_fp + 2144u), (-1.0f));
+                            }
+                            Vec_Add((_fp + 2096u), (_fp + 2096u), (_fp + 2144u));
+                            Mem.Set((wb + (uint)(k * 4)), (float)((float)(Mem.F32((wb + (uint)(k * 4)))) * u0));
+                            x = new B19bV3f((_fp + 2080u)).x;
+                            if ((x < 0.0f))
+                            {
+                                x = (-x);
+                            }
+                            if ((new B19bV3f((_fp + 2080u)).y < 0.0f))
+                            {
+                                x2 = (x - new B19bV3f((_fp + 2080u)).y);
+                            }
+                            else
+                            {
+                                x2 = (x + new B19bV3f((_fp + 2080u)).y);
+                            }
+                            if ((new B19bV3f((_fp + 2080u)).z < 0.0f))
+                            {
+                                u0 = (x2 - new B19bV3f((_fp + 2080u)).z);
+                            }
+                            else
+                            {
+                                u0 = (x2 + new B19bV3f((_fp + 2080u)).z);
+                            }
+                            Vec_Scale((_fp + 2144u), (db + (uint)(k * 12)), Mem.F32((wb + (uint)(k * 4))));
+                            Vec_Scale((_fp + 2144u), (_fp + 2144u), u0);
+                            Vec_Add((_fp + 2064u), (_fp + 2064u), (_fp + 2144u));
+                            if (((int)(new B19bLObj(o).fB8) != 0))
+                            {
+                                Mem.Set((wb + (uint)(k * 4)), (-Mem.F32((wb + (uint)(k * 4)))));
+                            }
+                        }
+                        else
+                        {
+                            new B19bV3f((db + (uint)(k * 12))).x_Set(0.0f);
+                            new B19bV3f((db + (uint)(k * 12))).y_Set((float)(0));
+                            new B19bV3f((db + (uint)(k * 12))).z_Set((float)(0));
+                            Mem.Set((wb + (uint)(k * 4)), 0.0f);
+                        }
+                        ++k;
+                    }
+                    while ((k < n));
+                }
+                Vec_Normalize((_fp + 2064u));
+                do
+                {
+                    k = 0;
+                }
+                while ((0 != 0));
+                if ((n > 0))
+                {
+                    wp = _fp;
+                    s1 = 1.0f;
+                    zero = 0.0f;
+                    do
+                    {
+                        o = Mem.U32((ents + (uint)(k * 4)));
+                        pw = (wp + (uint)(k * 4));
+                        s2 = (((new B19bV3f((_fp + 2064u)).x * new B19bV3f(((wp + (uint)(128 * 4)) + (uint)(k * 12))).x) + (new B19bV3f((_fp + 2064u)).y * new B19bV3f(((wp + (uint)(128 * 4)) + (uint)(k * 12))).y)) + (new B19bV3f((_fp + 2064u)).z * new B19bV3f(((wp + (uint)(128 * 4)) + (uint)(k * 12))).z));
+                        s0 = (s1 - s2);
+                        if ((s2 < zero))
+                        {
+                            s0 = s1;
+                        }
+                        s0 = (s0 * 0.5f);
+                        Mem.Copy((_fp + 2080u), new B19bLObj(o).pos.P, 12);
+                        s2 = (s1 - s0);
+                        if ((o == last))
+                        {
+                            new B19bV3f((_fp + 2192u)).z_Set(new B19bV3f((_fp + 2192u)).y_Set(new B19bV3f((_fp + 2192u)).x_Set(Light_GetFlickerForObject(o))));
+                            Vec_Scale((_fp + 2208u), (_fp + 2192u), (s2 * Mem.F32(pw)));
+                            Vec_Add((_fp + 2128u), (_fp + 2128u), (_fp + 2208u));
+                            Vec_Scale((_fp + 2208u), (_fp + 2192u), (s0 * Mem.F32(pw)));
+                            Vec_Add((_fp + 2112u), (_fp + 2112u), (_fp + 2208u));
+                        }
+                        Vec_Scale((_fp + 2144u), (_fp + 2080u), (s2 * Mem.F32(pw)));
+                        Vec_Add((_fp + 2128u), (_fp + 2128u), (_fp + 2144u));
+                        Vec_Scale((_fp + 2144u), (_fp + 2080u), (s0 * Mem.F32(pw)));
+                        Vec_Add((_fp + 2112u), (_fp + 2112u), (_fp + 2144u));
+                        ++k;
+                    }
+                    while ((k < n));
+                }
+                Vec_Scale((_fp + 2112u), (_fp + 2112u), 0.5f);
+                Vec_Add((_fp + 2096u), (_fp + 2096u), (_fp + 2112u));
+                if ((new B19bV3f((_fp + 2096u)).x < 0.0f))
+                {
+                    new B19bV3f((_fp + 2128u)).x_Set((float)((float)(new B19bV3f((_fp + 2128u)).x) + new B19bV3f((_fp + 2096u)).x));
+                }
+                if ((new B19bV3f((_fp + 2096u)).y < 0.0f))
+                {
+                    new B19bV3f((_fp + 2128u)).y_Set((float)((float)(new B19bV3f((_fp + 2128u)).y) + new B19bV3f((_fp + 2096u)).y));
+                }
+                if ((new B19bV3f((_fp + 2096u)).z < 0.0f))
+                {
+                    new B19bV3f((_fp + 2128u)).z_Set((float)((float)(new B19bV3f((_fp + 2128u)).z) + new B19bV3f((_fp + 2096u)).z));
+                }
+                m1_0 = new B19bV3f((_fp + 2096u)).x;
+                if (!(m1_0 <= 255.0f))
+                {
+                    m1_0 = 255.0f;
+                }
+                m2_0 = m1_0;
+                if (!(m2_0 >= 5.0f))
+                {
+                    m2_0 = 5.0f;
+                }
+                new B19bV3f((_fp + 2096u)).x_Set(((m2_0 * (1.0f - scale)) + (scale * 255.0f)));
+                m1_1 = new B19bV3f((_fp + 2096u)).y;
+                if (!(m1_1 <= 255.0f))
+                {
+                    m1_1 = 255.0f;
+                }
+                m2_1 = m1_1;
+                if (!(m2_1 >= 5.0f))
+                {
+                    m2_1 = 5.0f;
+                }
+                new B19bV3f((_fp + 2096u)).y_Set(((m2_1 * (1.0f - scale)) + (scale * 255.0f)));
+                m1_2 = new B19bV3f((_fp + 2096u)).z;
+                if (!(m1_2 <= 255.0f))
+                {
+                    m1_2 = 255.0f;
+                }
+                m2_2 = m1_2;
+                if (!(m2_2 >= 5.0f))
+                {
+                    m2_2 = 5.0f;
+                }
+                new B19bV3f((_fp + 2096u)).z_Set(((m2_2 * (1.0f - scale)) + (scale * 255.0f)));
+                m1_3 = new B19bV3f((_fp + 2128u)).x;
+                if (!(m1_3 <= 255.0f))
+                {
+                    m1_3 = 255.0f;
+                }
+                m2_3 = m1_3;
+                if (!(m2_3 >= 5.0f))
+                {
+                    m2_3 = 5.0f;
+                }
+                new B19bV3f((_fp + 2128u)).x_Set(((m2_3 * (1.0f - scale)) + (scale * 255.0f)));
+                m1_4 = new B19bV3f((_fp + 2128u)).y;
+                if (!(m1_4 <= 255.0f))
+                {
+                    m1_4 = 255.0f;
+                }
+                m2_4 = m1_4;
+                if (!(m2_4 >= 5.0f))
+                {
+                    m2_4 = 5.0f;
+                }
+                new B19bV3f((_fp + 2128u)).y_Set(((m2_4 * (1.0f - scale)) + (scale * 255.0f)));
+                m1_5 = new B19bV3f((_fp + 2128u)).z;
+                if (!(m1_5 <= 255.0f))
+                {
+                    m1_5 = 255.0f;
+                }
+                m2_5 = m1_5;
+                if (!(m2_5 >= 5.0f))
+                {
+                    m2_5 = 5.0f;
+                }
+                new B19bV3f((_fp + 2128u)).z_Set(((m2_5 * (1.0f - scale)) + (scale * 255.0f)));
+                v = (int)(Cpu.TruncU32(new B19bV3f((_fp + 2096u)).x));
+                Mem.Set((@out + (uint)0), Mem.Set((@out + (uint)4), (byte)(v)));
+                v = (int)(Cpu.TruncU32(new B19bV3f((_fp + 2096u)).y));
+                Mem.Set((@out + (uint)1), Mem.Set((@out + (uint)5), (byte)(v)));
+                v = (int)(Cpu.TruncU32(new B19bV3f((_fp + 2096u)).z));
+                Mem.Set((@out + (uint)2), Mem.Set((@out + (uint)6), (byte)(v)));
+                v = (int)(Cpu.TruncU32(new B19bV3f((_fp + 2128u)).x));
+                Mem.Set((@out + (uint)8), Mem.Set((@out + (uint)12), (byte)(v)));
+                v = (int)(Cpu.TruncU32(new B19bV3f((_fp + 2128u)).y));
+                Mem.Set((@out + (uint)9), Mem.Set((@out + (uint)13), (byte)(v)));
+                v = (int)(Cpu.TruncU32(new B19bV3f((_fp + 2128u)).z));
+                Mem.Set((@out + (uint)10), Mem.Set((@out + (uint)14), (byte)(v)));
+                Mem.Set((@out + (uint)16), (byte)((int)((new B19bV3f((_fp + 2064u)).x * 127.0f))));
+                Mem.Set((@out + (uint)17), (byte)((int)((new B19bV3f((_fp + 2064u)).y * 127.0f))));
+                Mem.Set((@out + (uint)18), (byte)((int)((new B19bV3f((_fp + 2064u)).z * 127.0f))));
+            }
+        }
+        finally { Stack.Free(2220); }
+    }
+
+    // ==== func_0028C6B0 @ 0x0028C6B0 [C]
+    public static int func_0028C6B0_hasTbl(uint lv)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0028C6B0_hasTbl", (uint)lv);
+            int i = 0;
+            for (i = 0; (i < new Level(lv).cnt1504); ++i)
+            {
+                uint t = Chunk_Get(Mem.U32(new Level(lv).ents[(int)(i)].tblp), 2);
+                if ((Mem.S32((t + (uint)(1 * 4))) != 0))
+                {
+                    return 1;
+                }
+            }
+            return 0;
+        }
+    }
+
+    public static void Light_GetLightsAt(uint lv, uint a1, uint @out)
+    {
+        uint _fp = Stack.Alloc(44);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0028C6B0", (uint)lv, (uint)a1, (uint)@out);
+                if (((func_0028C6B0_hasTbl(lv) == 0) || (Mem.S32(0x800D2850u) == 0)))
+                {
+                    Mem.Copy(@out, 0x800D0EE0u, 24);
+                    return;
+                }
+                Light_FindVolumesAt(lv, a1, _fp, (_fp + 40u));
+                Light_ComputeFromVolumes(_fp, Mem.S32((_fp + 40u)), a1, @out);
+            }
+        }
+        finally { Stack.Free(44); }
+    }
+
     // ==== func_0044CA54 @ 0x0044CA54 [C]
     public static void Scene_LoadLight(uint scene)
     {
@@ -1961,7 +2346,7 @@ public static partial class Game
             {
                 ResourcePool_Release((int)(0u), temp_a1_3);
             }
-            func_0028D578(arg0);
+            Level_FreeStaticPropCache(arg0);
             temp_s1 = new func_8044CBE0_S1_v2(arg0).unk1B500.head;
             var_a1 = temp_s1;
             if ((temp_s1 != 0u))

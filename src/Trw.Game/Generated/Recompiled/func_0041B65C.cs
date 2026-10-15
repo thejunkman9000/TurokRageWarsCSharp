@@ -28,7 +28,7 @@ public static partial class Game
                 r6 = 4325376u;
                 r6 = r6 - 17792u;
                 Mem.Set((r29 + 16u), r31);
-                r7 = (uint)3; func_002992C4((int)r4, (int)r5, (int)r6, (int)r7);
+                r7 = (uint)3; Menu_RegisterClass((int)r4, (int)r5, (int)r6, (int)r7);
                 r31 = Mem.U32((r29 + 16u));
                 r29 = r29 + 24u; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;

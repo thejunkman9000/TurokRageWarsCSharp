@@ -159,14 +159,14 @@ public static partial class Game
                     break;
                 }
                 w = UiTree_FindNode((uint)(a), (uint)(565), default(uint), default(uint));
-                func_0028D35C(0x8011FE88u, Mem.S32(0x8015402Cu), _fp, 63);
-                func_002A125C(new Q03S53(Mem.U32(0x800E53C0u)).unk2E0.P, func_002A1494(_fp));
+                Level_CopyLevelName(0x8011FE88u, Mem.S32(0x8015402Cu), _fp, 63);
+                LibC_StrCopy(new Q03S53(Mem.U32(0x800E53C0u)).unk2E0.P, Str_ToUpper(_fp));
                 Mem.Set((w + (uint)56), new Q03S53(Mem.U32(0x800E53C0u)).unk2E0.P);
                 new Q03S53(Mem.U32(0x800E53C0u)).unkE4_Set(UiTree_FindNode((uint)(a), (uint)(573), default(uint), default(uint)));
                 new Q03S53(Mem.U32(0x800E53C0u)).unk328_Set(1);
                 Mem.Set((0x80146894u + (uint)(0 * 4)), 1);
                 new Q03S53(Mem.U32(0x800E53C0u)).unk320_Set(0);
-                func_002A338C();
+                Menu_DisableInput();
                 return 0;
             }
         }

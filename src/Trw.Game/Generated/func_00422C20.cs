@@ -43,7 +43,7 @@ public static partial class Game
                     new O3Scr3C(Mem.U32(0x800E2830u)).f3C_Set(st);
                     break;
                 case 1:
-                    func_0029A73C();
+                    Menu_ConsumeEvent();
                     if (((new O3Words(Mem.U32(0x800E4518u)).w[(int)(25)] == 0) && (Audio_IsSoundOn() != 0)))
                     {
                         r = Random_Next();
@@ -83,7 +83,7 @@ public static partial class Game
                         {
                             func_0040C4A8((int)(new O3Cfg(c).f580));
                         }
-                        func_002A3304();
+                        Menu_RequestShutdown();
                         return 0;
                     }
                     CameraManager_Init((g - (uint)6156), 0);

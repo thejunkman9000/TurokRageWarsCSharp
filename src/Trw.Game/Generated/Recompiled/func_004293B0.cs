@@ -77,7 +77,7 @@ public static partial class Game
                 r6 = r0;
                 r7 = (uint)100;
                 r16 = (uint)1;
-                Mem.Set((r29 + 16u), r16); r2 = func_002A2990((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                Mem.Set((r29 + 16u), r16); r2 = NumberField_Create((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
                 r4 = (uint)865;
                 r5 = (uint)866;
                 r6 = r0;
@@ -85,7 +85,7 @@ public static partial class Game
                 r3 = Mem.U32((r3 + 20208u));
                 r7 = (uint)100;
                 Mem.Set((r3 + 36u), r2);
-                Mem.Set((r29 + 16u), r16); r2 = func_002A2990((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                Mem.Set((r29 + 16u), r16); r2 = NumberField_Create((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
                 r4 = (uint)863;
                 r5 = (uint)864;
                 r6 = r0;
@@ -93,7 +93,7 @@ public static partial class Game
                 r3 = Mem.U32((r3 + 20208u));
                 r7 = (uint)100;
                 Mem.Set((r3 + 40u), r2);
-                Mem.Set((r29 + 16u), r16); r2 = func_002A2990((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                Mem.Set((r29 + 16u), r16); r2 = NumberField_Create((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
                 r4 = (uint)869;
                 r5 = (uint)870;
                 r6 = r0;
@@ -101,7 +101,7 @@ public static partial class Game
                 r3 = Mem.U32((r3 + 20208u));
                 r7 = (uint)100;
                 Mem.Set((r3 + 44u), r2);
-                Mem.Set((r29 + 16u), r16); r2 = func_002A2990((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                Mem.Set((r29 + 16u), r16); r2 = NumberField_Create((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
                 r4 = 2148401152u;
                 r4 = Mem.U32((r4 + 20208u));
                 r3 = Mem.U32((r4 + 56u));
@@ -116,7 +116,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r16);
                 r6 = Mem.U32((r2 + 60u));
                 r7 = Mem.U32((r2 + 56u));
-                r5 = (uint)877; r2 = func_002A2990((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r5 = (uint)877; r2 = NumberField_Create((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
                 r4 = (uint)871;
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 20208u));

@@ -51,7 +51,7 @@ public static partial class Game
                 r6 = 2148401152u;
                 r6 = r6 + 4352u;
                 L_L00414390: ;
-                r2 = func_002A1C08(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
+                r2 = Str_FormatInto(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
                 r4 = 2148859904u;
                 r4 = r4 + 15712u;
                 r4 = r2 + r4;

@@ -16,7 +16,7 @@ public static partial class Game
             src = UiTree_FindNode((uint)((int)(func_00411E4C(Ui_PushScreen()))), (uint)((a & 65535)), default(uint), default(uint));
             s = (int)(func_00411E4C(Ui_PushScreen()));
             o = ResourcePool_Malloc((uint)(68));
-            func_002A1748(o, 0, (uint)(68));
+            Mem_Fill(o, 0, (uint)(68));
             Mem.Copy(o, src, 44);
             new O3B61(o).h.id2_Set((ushort)(2913));
             Mem.Copy(new O3B61(o).col.P, new O3B61(src).col.P, 20);

@@ -21,7 +21,7 @@ public static partial class Game
             }
             t = new O06A_v29(a).unk1C8;
             v = ((t < 24) ? t : (47 - t));
-            func_002A94E8();
+            Text_BeginFontPass();
             Gfx_SetOtherModeL((uint)(21));
             x = new O06V_v3(new O06A_v29(a).unk40_).unk29C;
             y = new O06V_v3(new O06A_v29(a).unk40_).unk2A0;

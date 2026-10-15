@@ -1844,7 +1844,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00285B34_bind", (uint)node, (uint)offset, (uint)id);
-            Rumble_InitChannel((node + (uint)offset), (int)(func_0028CE54(0x8011FE88u, id)));
+            Rumble_InitChannel((node + (uint)offset), (int)(Level_GetEnvelopeDef(0x8011FE88u, id)));
         }
     }
 
@@ -1933,13 +1933,13 @@ public static partial class Game
                 r5 = (uint)(int)Mem.S16((r19 + 0u));
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
-                r2 = func_0028CE54(r4, (int)r5);
+                r2 = Level_GetEnvelopeDef(r4, (int)r5);
                 r4 = r16 + 32u;
                 r5 = r2; Rumble_InitChannel(r4, (int)r5);
                 r5 = (uint)(int)Mem.S16((r19 + 2u));
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
-                r2 = func_0028CE54(r4, (int)r5);
+                r2 = Level_GetEnvelopeDef(r4, (int)r5);
                 r4 = r16 + 44u;
                 r5 = r2; Rumble_InitChannel(r4, (int)r5);
                 L_L00285C1C: ;
@@ -2092,7 +2092,7 @@ public static partial class Game
             uint temp_v1 = 0u;
             uint temp_v1_2 = 0u;
             uint var_s0 = 0u;
-            if (((func_002934DC() != 0) && (Level_IsRestartPending() != 0)))
+            if (((Game_IsInState13() != 0) && (Level_IsRestartPending() != 0)))
             {
                 Level_RestorePlayersAfterRestart();
                 Level_ClearRestartPending();

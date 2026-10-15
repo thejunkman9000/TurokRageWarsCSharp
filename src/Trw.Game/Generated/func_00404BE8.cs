@@ -64,7 +64,7 @@ public static partial class Game
                         new O01Pp((_fp + 16u)).p__Set(new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent[(int)(i)].unkE.P);
                     }
                     func_00404BE8_O01ConvName(new O01Pp((_fp + 16u)).p_, _fp, 16);
-                    if ((func_002A137C(_fp, name) == 0))
+                    if ((LibC_StrCompare(_fp, name) == 0))
                     {
                         if ((outIdx != 0u))
                         {

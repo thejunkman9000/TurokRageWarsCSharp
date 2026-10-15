@@ -186,6 +186,16 @@ public static partial class Game
         }
     }
 
+    // ==== func_002A28CC @ 0x002A28CC [C]
+    public static double Time_GetSecondsSinceStart()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002A28CC");
+            return (Time_GetSeconds() - Mem.F64(0x800D2C10u));
+        }
+    }
+
     // ==== func_00414430 @ 0x00414430 [C]
     public static double Time_GetSeconds()
     {

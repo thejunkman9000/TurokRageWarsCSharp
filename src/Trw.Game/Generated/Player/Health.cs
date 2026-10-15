@@ -62,7 +62,7 @@ public static partial class Game
                 { bool c_ = r5 == 0; r22 = (uint)((int)r18 < (int)r2 ? 1 : 0); if (c_) goto L_L00219AE4; }
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
-                r2 = func_0028B2D4(r4, r5);
+                r2 = Level_GetRegion(r4, r5);
                 { bool c_ = r2 == 0; r3 = r0; if (c_) goto L_L00219AE8; }
                 r2 = Mem.U16((r2 + 82u));
                 r2 = r2 & 64u;
@@ -348,7 +348,7 @@ public static partial class Game
                 Mem.Set((r2 + 4852u), r3);
                 L_L0021A014: ;
                 { bool c_ = r17 == 0;  if (c_) goto L_L0021A054; }
-                Mem.Set((r17 + 4844u), r18); r2 = (uint)func_002A11E8();
+                Mem.Set((r17 + 4844u), r18); r2 = (uint)Random_NextLcg();
                 r3 = 2454257664u;
                 r3 = r3 | 9363u;
                 { long p_ = (long)(int)r2 * (int)r3; lo = (uint)p_; hi = (uint)(p_ >> 32); }
@@ -610,7 +610,7 @@ public static partial class Game
                 Cpu.SetW(0, Mem.U32((r3 + 12u)));
                 r5 = r20 + 8u;
                 Mem.Set((r20 + 852u), Cpu.W(0));
-                Mem.Set((r20 + 108u), Cpu.W(0)); r2 = func_002866F8(r4, r5);
+                Mem.Set((r20 + 108u), Cpu.W(0)); r2 = Collision_FindFloorTriangle(r4, r5);
                 r4 = r20; goto L_L0021B3F0;
                 L_L0021B370: ;
                 r2 = (uint)1;
@@ -639,7 +639,7 @@ public static partial class Game
                 Mem.Set((r20 + 852u), Cpu.W(0));
                 Mem.Set((r20 + 108u), Cpu.W(0));
                 r5 = (uint)(int)Mem.S16((r29 + 42u));
-                r4 = r17; r2 = func_0028B370(r4, (int)r5);
+                r4 = r17; r2 = Level_GetFloorTriangle(r4, (int)r5);
                 r4 = r20;
                 L_L0021B3F0: ;
                 Mem.Set((r20 + 764u), r2);
@@ -828,7 +828,7 @@ public static partial class Game
                                 new B04V3(_fp).x_Set((float)(0));
                                 new B04V3(_fp).y_Set((float)(0));
                                 new B04V3(_fp).z_Set((float)(0));
-                                func_0028CE70(0x8011FE88u, (Mem.S32((p + (uint)1688)) + 320), 17, _fp, Mem.F32(0x800C7470u), fv2);
+                                Rumble_StartById(0x8011FE88u, (Mem.S32((p + (uint)1688)) + 320), 17, _fp, Mem.F32(0x800C7470u), fv2);
                             }
                         }
                         if (((s4 == 0) && ((int)(Mem.S16((p + (uint)1616))) != 18)))
@@ -1068,7 +1068,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002266E4_find6", (uint)b, (uint)c);
-            return func_0028CF7C(0x8011FE88u, b, c);
+            return Level_FindDefinition(0x8011FE88u, b, c);
         }
     }
 
@@ -1868,28 +1868,28 @@ public static partial class Game
             new S11Obj(p).unk67C_Set(0);
             new S11Obj(p).unk680_Set(0);
             new S11Obj(p).unk684_Set(0);
-            func_002AB6C0((new S11Obj(p).spr.P + (uint)(0 * 60)), (short)(120), (short)(96));
-            func_002AB6FC((new S11Obj(p).spr.P + (uint)(0 * 60)), 0x800CE4BCu);
-            func_002AB6C0((new S11Obj(p).spr.P + (uint)(1 * 60)), (short)(190), (short)(96));
-            func_002AB6FC((new S11Obj(p).spr.P + (uint)(1 * 60)), 0x800CE52Cu);
-            func_002AB6C0((new S11Obj(p).spr.P + (uint)(2 * 60)), (short)(260), (short)(96));
-            func_002AB6FC((new S11Obj(p).spr.P + (uint)(2 * 60)), 0x800CE59Cu);
-            func_002AB6C0((new S11Obj(p).spr.P + (uint)(3 * 60)), (short)(28), (short)(96));
-            func_002AB6FC((new S11Obj(p).spr.P + (uint)(3 * 60)), 0x800CE480u);
-            func_002AB6C0((new S11Obj(p).spr.P + (uint)(4 * 60)), (short)((-64)), (short)(16));
-            func_002AB6FC((new S11Obj(p).spr.P + (uint)(4 * 60)), 0x800CE60Cu);
-            func_002AB6C0((new S11Obj(p).spr.P + (uint)(5 * 60)), (short)(40), (short)(16));
-            func_002AB6FC((new S11Obj(p).spr.P + (uint)(5 * 60)), 0x800CE630u);
-            func_002AB6C0((new S11Obj(p).spr.P + (uint)(9 * 60)), (short)((-82)), (short)(16));
-            func_002AB6FC((new S11Obj(p).spr.P + (uint)(9 * 60)), 0x800CE670u);
+            ScreenMover_Init((new S11Obj(p).spr.P + (uint)(0 * 60)), (short)(120), (short)(96));
+            ScreenMover_Start((new S11Obj(p).spr.P + (uint)(0 * 60)), 0x800CE4BCu);
+            ScreenMover_Init((new S11Obj(p).spr.P + (uint)(1 * 60)), (short)(190), (short)(96));
+            ScreenMover_Start((new S11Obj(p).spr.P + (uint)(1 * 60)), 0x800CE52Cu);
+            ScreenMover_Init((new S11Obj(p).spr.P + (uint)(2 * 60)), (short)(260), (short)(96));
+            ScreenMover_Start((new S11Obj(p).spr.P + (uint)(2 * 60)), 0x800CE59Cu);
+            ScreenMover_Init((new S11Obj(p).spr.P + (uint)(3 * 60)), (short)(28), (short)(96));
+            ScreenMover_Start((new S11Obj(p).spr.P + (uint)(3 * 60)), 0x800CE480u);
+            ScreenMover_Init((new S11Obj(p).spr.P + (uint)(4 * 60)), (short)((-64)), (short)(16));
+            ScreenMover_Start((new S11Obj(p).spr.P + (uint)(4 * 60)), 0x800CE60Cu);
+            ScreenMover_Init((new S11Obj(p).spr.P + (uint)(5 * 60)), (short)(40), (short)(16));
+            ScreenMover_Start((new S11Obj(p).spr.P + (uint)(5 * 60)), 0x800CE630u);
+            ScreenMover_Init((new S11Obj(p).spr.P + (uint)(9 * 60)), (short)((-82)), (short)(16));
+            ScreenMover_Start((new S11Obj(p).spr.P + (uint)(9 * 60)), 0x800CE670u);
             new S11Obj(p).spr[(int)(9)].f34_Set(255.0f);
-            func_002AB6C0((new S11Obj(p).spr.P + (uint)(10 * 60)), (short)((-82)), (short)(68));
-            func_002AB6FC((new S11Obj(p).spr.P + (uint)(10 * 60)), 0x800CE69Cu);
-            func_002AB6C0((new S11Obj(p).spr.P + (uint)(11 * 60)), (short)((-82)), (short)(68));
-            func_002AB6FC((new S11Obj(p).spr.P + (uint)(11 * 60)), 0x800CE6D8u);
-            func_002AB6C0((new S11Obj(p).spr.P + (uint)(7 * 60)), (short)(24), (short)(((int)(Mem.U16((0x800E28D6u + (uint)(0 * 2)))) + 96)));
-            func_002AB6C0((new S11Obj(p).spr.P + (uint)(8 * 60)), (short)(24), (short)(((int)(Mem.U16((0x800E28D6u + (uint)(0 * 2)))) + 96)));
-            func_002AB6C0(new S11Obj(p).spr12.P, (short)(100), (short)(100));
+            ScreenMover_Init((new S11Obj(p).spr.P + (uint)(10 * 60)), (short)((-82)), (short)(68));
+            ScreenMover_Start((new S11Obj(p).spr.P + (uint)(10 * 60)), 0x800CE69Cu);
+            ScreenMover_Init((new S11Obj(p).spr.P + (uint)(11 * 60)), (short)((-82)), (short)(68));
+            ScreenMover_Start((new S11Obj(p).spr.P + (uint)(11 * 60)), 0x800CE6D8u);
+            ScreenMover_Init((new S11Obj(p).spr.P + (uint)(7 * 60)), (short)(24), (short)(((int)(Mem.U16((0x800E28D6u + (uint)(0 * 2)))) + 96)));
+            ScreenMover_Init((new S11Obj(p).spr.P + (uint)(8 * 60)), (short)(24), (short)(((int)(Mem.U16((0x800E28D6u + (uint)(0 * 2)))) + 96)));
+            ScreenMover_Init(new S11Obj(p).spr12.P, (short)(100), (short)(100));
             new S11Obj(p).unk11C4_Set(0);
             new S11Obj(p).unk7BC_Set(0);
             new S11Obj(p).unk1134_Set(new S11Obj(p).unk5E4);
@@ -2035,7 +2035,7 @@ public static partial class Game
             new RespawnPlayer(player).field13DC_Set(0);
             new RespawnPlayer(player).field13E4_Set(0);
             new RespawnPlayer(player).field13D4_Set(0);
-            if (((((func_002934DC() != 0) && ((int)(Mem.U8(0x801462E5u)) == 0)) && (Mem.U32(0x800D2980u) > (uint)(10))) && ((int)(new RespawnPlayer(player).state) < 11)))
+            if (((((Game_IsInState13() != 0) && ((int)(Mem.U8(0x801462E5u)) == 0)) && (Mem.U32(0x800D2980u) > (uint)(10))) && ((int)(new RespawnPlayer(player).state) < 11)))
             {
                 Audio_PlaySndFx((int)(Mem.S16((0x800CF198u + (uint)(new RespawnPlayer(player).state * 2)))));
             }

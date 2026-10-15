@@ -65,7 +65,7 @@ public static partial class Game
                     s = Mem.U32(new Q03StrTbl((0x800E3820u + (uint)((((int)(new Q03Ent(e).f93) * 17) + func_0041F1B0((int)(new Q03Ent(e).f80))) * 8))).p);
                     break;
                 }
-                func_002A125C(new Q03Ent(e).name.P, s);
+                LibC_StrCopy(new Q03Ent(e).name.P, s);
                 r = i;
             }
             return r;

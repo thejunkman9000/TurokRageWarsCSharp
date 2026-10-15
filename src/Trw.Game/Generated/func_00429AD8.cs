@@ -10,14 +10,14 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00429AD8");
-            func_0029A73C();
+            Menu_ConsumeEvent();
             if ((func_0043C4E8(Mem.U32(0x800E4EF0u)) == 1))
             {
                 return 0;
             }
             func_004296A4();
             func_0042EB68((-1));
-            func_0029A8A8();
+            Menu_GoBack();
             return 0;
         }
     }

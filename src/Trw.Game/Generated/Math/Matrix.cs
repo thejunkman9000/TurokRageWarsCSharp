@@ -1693,9 +1693,9 @@ public static partial class Game
                 float e1 = 0f;
                 float e2 = 0f;
                 float ytmp = 0f;
-                func_0029CBB0(new Vec3f(v).x, _fp, (_fp + 4u));
-                func_0029CBB0(new Vec3f(v).y, (_fp + 8u), (_fp + 12u));
-                func_0029CBB0(new Vec3f(v).z, (_fp + 16u), (_fp + 20u));
+                Math_SinCos(new Vec3f(v).x, _fp, (_fp + 4u));
+                Math_SinCos(new Vec3f(v).y, (_fp + 8u), (_fp + 12u));
+                Math_SinCos(new Vec3f(v).z, (_fp + 16u), (_fp + 20u));
                 t = (((Mem.F32((_fp + 4u)) * Mem.F32((_fp + 16u))) * Mem.F32((_fp + 8u))) - (Mem.F32(_fp) * Mem.F32((_fp + 20u))));
                 if ((1.0f < t))
                 {
@@ -1706,7 +1706,7 @@ public static partial class Game
                     t = (-1.0f);
                 }
                 a = Math_Asin((-t));
-                c = func_0029ED18(a);
+                c = Math_Cos(a);
                 if (((9.99999974E-5f < c) || (c < (-9.99999974E-5f))))
                 {
                     x1 = (Mem.F32((_fp + 4u)) * Mem.F32((_fp + 12u)));
@@ -1753,9 +1753,9 @@ public static partial class Game
                 float u = 0f;
                 float w = 0f;
                 float w2 = 0f;
-                func_0029CBB0(new Vec3f(v).x, _fp, (_fp + 4u));
-                func_0029CBB0(new Vec3f(v).y, (_fp + 8u), (_fp + 12u));
-                func_0029CBB0(new Vec3f(v).z, (_fp + 16u), (_fp + 20u));
+                Math_SinCos(new Vec3f(v).x, _fp, (_fp + 4u));
+                Math_SinCos(new Vec3f(v).y, (_fp + 8u), (_fp + 12u));
+                Math_SinCos(new Vec3f(v).z, (_fp + 16u), (_fp + 20u));
                 t = (Mem.F32((_fp + 12u)) * Mem.F32((_fp + 16u)));
                 if ((1.0f < t))
                 {
@@ -1766,7 +1766,7 @@ public static partial class Game
                     t = (-1.0f);
                 }
                 a = Math_Asin(t);
-                c = func_0029ED18(a);
+                c = Math_Cos(a);
                 if (((9.99999974E-5f < c) || (c < (-9.99999974E-5f))))
                 {
                     u = Mem.F32((_fp + 8u));
@@ -1814,9 +1814,9 @@ public static partial class Game
                 float x1 = 0f;
                 float y1 = 0f;
                 float s = 0f;
-                func_0029CBB0(new Vec3f(v).x, _fp, (_fp + 4u));
-                func_0029CBB0(new Vec3f(v).y, (_fp + 8u), (_fp + 12u));
-                func_0029CBB0(new Vec3f(v).z, (_fp + 16u), (_fp + 20u));
+                Math_SinCos(new Vec3f(v).x, _fp, (_fp + 4u));
+                Math_SinCos(new Vec3f(v).y, (_fp + 8u), (_fp + 12u));
+                Math_SinCos(new Vec3f(v).z, (_fp + 16u), (_fp + 20u));
                 t = ((-Mem.F32((_fp + 8u))) * Mem.F32((_fp + 20u)));
                 if ((1.0f < t))
                 {
@@ -1827,7 +1827,7 @@ public static partial class Game
                     t = (-1.0f);
                 }
                 a = Math_Asin((-t));
-                c = func_0029ED18(a);
+                c = Math_Cos(a);
                 if (((9.99999974E-5f < c) || (c < (-9.99999974E-5f))))
                 {
                     p = (Mem.F32((_fp + 8u)) * Mem.F32((_fp + 16u)));
@@ -1879,13 +1879,13 @@ public static partial class Game
                 Mem.Set((r29 + 56u), Cpu.Fpr[21]);
                 Mem.Set((r29 + 48u), Cpu.Fpr[20]);
                 Cpu.SetW(12, Mem.U32((r16 + 0u)));
-                r6 = r29 + 20u; func_0029CBB0(Cpu.S(12), r5, r6);
+                r6 = r29 + 20u; Math_SinCos(Cpu.S(12), r5, r6);
                 r5 = r29 + 24u;
                 Cpu.SetW(12, Mem.U32((r16 + 4u)));
-                r6 = r29 + 28u; func_0029CBB0(Cpu.S(12), r5, r6);
+                r6 = r29 + 28u; Math_SinCos(Cpu.S(12), r5, r6);
                 r5 = r29 + 32u;
                 Cpu.SetW(12, Mem.U32((r16 + 8u)));
-                r6 = r29 + 36u; func_0029CBB0(Cpu.S(12), r5, r6);
+                r6 = r29 + 36u; Math_SinCos(Cpu.S(12), r5, r6);
                 Cpu.SetW(2, Mem.U32((r29 + 28u)));
                 Cpu.SetW(0, Mem.U32((r29 + 16u)));
                 Cpu.SetS(2, Cpu.S(2) * Cpu.S(0));
@@ -1907,7 +1907,7 @@ public static partial class Game
                 L_L0029C90C: ;
                 Cpu.SetS(12, -Cpu.S(2)); r2 = func_0029EE48_rc(r4, r5, r6, r7); r3 = Cpu.V1;
                 Cpu.SetS(23, Cpu.S(0));
-                Cpu.SetS(12, Cpu.S(23)); Cpu.SetS(0, func_0029ED18(Cpu.S(12)));
+                Cpu.SetS(12, Cpu.S(23)); Cpu.SetS(0, Math_Cos(Cpu.S(12)));
                 r1 = 2148335616u;
                 Cpu.SetW(1, Mem.U32((r1 - 21952u)));
                 Cpu.SetS(2, Cpu.S(0));
@@ -1961,6 +1961,102 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_0029C868", r2); Stack.Free(384); }
     }
 
+    // ==== func_0029D6A8 @ 0x0029D6A8 [C]
+    public static void Math_MtxFromEulerXYZ(uint m, uint a)
+    {
+        uint _fp = Stack.Alloc(24);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0029D6A8", (uint)m, (uint)a);
+                float p = 0f;
+                float q = 0f;
+                float r = 0f;
+                ushort mask = 0;
+                mask = (ushort)(0);
+                if ((new Vec3f(a).x != 0.0f))
+                {
+                    mask = (ushort)(4);
+                }
+                if ((new Vec3f(a).y != 0.0f))
+                {
+                    mask = (ushort)((int)(mask) | 2);
+                }
+                if ((new Vec3f(a).z != 0.0f))
+                {
+                    mask = (ushort)((int)(mask) | 1);
+                }
+                switch ((int)(mask))
+                {
+                case 0:
+                    Mem_Fill(m, 0, (uint)(64));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), 1.0f);
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), 1.0f);
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), 1.0f);
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), 1.0f);
+                    break;
+                case 2:
+                    Mem_Fill(m, 0, (uint)(64));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), 1.0f);
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), 1.0f);
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), 1.0f);
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), 1.0f);
+                    Math_SinCos(new Vec3f(a).y, _fp, (_fp + 4u));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(2 * 16)) + (uint)(0 * 4)), Mem.F32(_fp));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), Mem.F32((_fp + 4u)));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(0 * 16)) + (uint)(2 * 4)), (-Mem.F32(_fp)));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), Mem.F32((_fp + 4u)));
+                    break;
+                case 4:
+                    Mem_Fill(m, 0, (uint)(64));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), 1.0f);
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), 1.0f);
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), 1.0f);
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), 1.0f);
+                    Math_SinCos(new Vec3f(a).x, (_fp + 8u), (_fp + 12u));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), Mem.F32((_fp + 12u)));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(2 * 16)) + (uint)(1 * 4)), (-Mem.F32((_fp + 8u))));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(1 * 16)) + (uint)(2 * 4)), Mem.F32((_fp + 8u)));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), Mem.F32((_fp + 12u)));
+                    break;
+                case 1:
+                    Mem_Fill(m, 0, (uint)(64));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), 1.0f);
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), 1.0f);
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), 1.0f);
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), 1.0f);
+                    Math_SinCos(new Vec3f(a).z, (_fp + 16u), (_fp + 20u));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), Mem.F32((_fp + 20u)));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(1 * 16)) + (uint)(0 * 4)), (-Mem.F32((_fp + 16u))));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(0 * 16)) + (uint)(1 * 4)), Mem.F32((_fp + 16u)));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), Mem.F32((_fp + 20u)));
+                    break;
+                default:
+                    Math_SinCos(new Vec3f(a).x, (_fp + 8u), (_fp + 12u));
+                    Math_SinCos(new Vec3f(a).y, _fp, (_fp + 4u));
+                    Math_SinCos(new Vec3f(a).z, (_fp + 16u), (_fp + 20u));
+                    p = (Mem.F32((_fp + 8u)) * Mem.F32(_fp));
+                    q = (Mem.F32((_fp + 12u)) * Mem.F32((_fp + 20u)));
+                    r = (Mem.F32((_fp + 12u)) * Mem.F32((_fp + 16u)));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), (Mem.F32((_fp + 4u)) * Mem.F32((_fp + 20u))));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(1 * 16)) + (uint)(0 * 4)), ((p * Mem.F32((_fp + 20u))) - r));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(2 * 16)) + (uint)(0 * 4)), ((q * Mem.F32(_fp)) + (Mem.F32((_fp + 8u)) * Mem.F32((_fp + 16u)))));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(0 * 16)) + (uint)(1 * 4)), (Mem.F32((_fp + 4u)) * Mem.F32((_fp + 16u))));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), ((p * Mem.F32((_fp + 16u))) + q));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(0 * 16)) + (uint)(2 * 4)), (-Mem.F32(_fp)));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(2 * 16)) + (uint)(1 * 4)), ((r * Mem.F32(_fp)) - (Mem.F32((_fp + 8u)) * Mem.F32((_fp + 20u)))));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(1 * 16)) + (uint)(2 * 4)), (Mem.F32((_fp + 8u)) * Mem.F32((_fp + 4u))));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), (Mem.F32((_fp + 12u)) * Mem.F32((_fp + 4u))));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(0 * 16)) + (uint)(3 * 4)), Mem.Set(((new B22Mtx(m).m.P + (uint)(1 * 16)) + (uint)(3 * 4)), Mem.Set(((new B22Mtx(m).m.P + (uint)(2 * 16)) + (uint)(3 * 4)), Mem.Set(((new B22Mtx(m).m.P + (uint)(3 * 16)) + (uint)(0 * 4)), Mem.Set(((new B22Mtx(m).m.P + (uint)(3 * 16)) + (uint)(1 * 4)), Mem.Set(((new B22Mtx(m).m.P + (uint)(3 * 16)) + (uint)(2 * 4)), 0.0f))))));
+                    Mem.Set(((new B22Mtx(m).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), 1.0f);
+                    break;
+                }
+            }
+        }
+        finally { Stack.Free(24); }
+    }
+
     // ==== func_0029D984 @ 0x0029D984 [C]
     public static void Math_MtxFromEuler(uint m, uint a)
     {
@@ -1972,9 +2068,9 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0029D984", (uint)m, (uint)a);
                 float t1 = 0f;
                 float t2 = 0f;
-                func_0029CBB0(new Vec3f(a).x, _fp, (_fp + 4u));
-                func_0029CBB0(new Vec3f(a).y, (_fp + 8u), (_fp + 12u));
-                func_0029CBB0(new Vec3f(a).z, (_fp + 16u), (_fp + 20u));
+                Math_SinCos(new Vec3f(a).x, _fp, (_fp + 4u));
+                Math_SinCos(new Vec3f(a).y, (_fp + 8u), (_fp + 12u));
+                Math_SinCos(new Vec3f(a).z, (_fp + 16u), (_fp + 20u));
                 t1 = (Mem.F32(_fp) * Mem.F32((_fp + 16u)));
                 t2 = (Mem.F32(_fp) * Mem.F32((_fp + 20u)));
                 Mem.Set(((new B22Mtx(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), ((Mem.F32((_fp + 12u)) * Mem.F32((_fp + 20u))) + (Mem.F32((_fp + 8u)) * t1)));
@@ -1991,6 +2087,163 @@ public static partial class Game
             }
         }
         finally { Stack.Free(24); }
+    }
+
+    // ==== func_0029DAB4 @ 0x0029DAB4 [C]
+    public static float func_0029DAB4_Asin(float x)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0029DAB4_Asin");
+            int neg = 0;
+            float p = 0f;
+            float s = 0f;
+            if ((1.0f < x))
+            {
+                x = 1.0f;
+            }
+            if ((x < (-1.0f)))
+            {
+                x = (-1.0f);
+            }
+            neg = 0;
+            if ((x < 0.0f))
+            {
+                neg = 1;
+                x = (-x);
+            }
+            p = (((((((((((-0.0116805276f) * x) + 0.0308918804f) * x) - 0.0501743034f) * x) + 0.0889789909f) * x) - 0.214598805f) * x) + 1.57079625f);
+            x = (1.0f - x);
+            if ((x <= 0.0f))
+            {
+                s = 0.0f;
+            }
+            else
+            {
+                s = sqrtf(x);
+            }
+            x = (1.57079637f - (s * p));
+            if ((neg != 0))
+            {
+                x = (-x);
+            }
+            return x;
+        }
+    }
+
+    public static void Math_EulerFromMtxYXZ(uint m, uint @out)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0029DAB4", (uint)m, (uint)@out);
+            float t = 0f;
+            float a = 0f;
+            float c = 0f;
+            float e1 = 0f;
+            float e2 = 0f;
+            t = Mem.F32((m + (uint)(9 * 4)));
+            if ((1.0f < t))
+            {
+                t = 1.0f;
+            }
+            if ((t < (-1.0f)))
+            {
+                t = (-1.0f);
+            }
+            c = Math_Sin(((a = func_0029DAB4_Asin((-t))) + 1.57079637f));
+            if (((9.99999974E-5f < c) || (c < 9.99999974E-5f)))
+            {
+                e1 = Math_Atan2(Mem.F32((m + (uint)(8 * 4))), Mem.F32((m + (uint)(10 * 4))));
+                e2 = Math_Atan2(Mem.F32((m + (uint)(1 * 4))), Mem.F32((m + (uint)(5 * 4))));
+            }
+            else
+            {
+                e1 = 0.0f;
+                e2 = Math_Atan2(Mem.F32((m + (uint)(2 * 4))), Mem.F32((m + (uint)(0 * 4))));
+            }
+            new Vec3f(@out).x_Set(a);
+            new Vec3f(@out).y_Set(e1);
+            new Vec3f(@out).z_Set(e2);
+        }
+    }
+
+    // ==== func_0029DC70 @ 0x0029DC70 [C]
+    public static float func_0029DC70_Asin(float x)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0029DC70_Asin");
+            int neg = 0;
+            float p = 0f;
+            float s = 0f;
+            if ((1.0f < x))
+            {
+                x = 1.0f;
+            }
+            if ((x < (-1.0f)))
+            {
+                x = (-1.0f);
+            }
+            neg = 0;
+            if ((x < 0.0f))
+            {
+                neg = 1;
+                x = (-x);
+            }
+            p = (((((((((((-0.0116805276f) * x) + 0.0308918804f) * x) - 0.0501743034f) * x) + 0.0889789909f) * x) - 0.214598805f) * x) + 1.57079625f);
+            x = (1.0f - x);
+            if ((x <= 0.0f))
+            {
+                s = 0.0f;
+            }
+            else
+            {
+                s = sqrtf(x);
+            }
+            x = (1.57079637f - (s * p));
+            if ((neg != 0))
+            {
+                x = (-x);
+            }
+            return x;
+        }
+    }
+
+    public static void Math_EulerFromMtxXYZ(uint m, uint @out)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0029DC70", (uint)m, (uint)@out);
+            float t = 0f;
+            float a = 0f;
+            float c = 0f;
+            float e1 = 0f;
+            float e2 = 0f;
+            t = Mem.F32((m + (uint)(2 * 4)));
+            if ((1.0f < t))
+            {
+                t = 1.0f;
+            }
+            if ((t < (-1.0f)))
+            {
+                t = (-1.0f);
+            }
+            a = func_0029DC70_Asin((-t));
+            c = Math_Sin((a + 1.57079637f));
+            if (((0.0f < c) || (c < 0.0f)))
+            {
+                e1 = Math_Atan2(Mem.F32((m + (uint)(6 * 4))), Mem.F32((m + (uint)(10 * 4))));
+                e2 = Math_Atan2(Mem.F32((m + (uint)(1 * 4))), Mem.F32((m + (uint)(0 * 4))));
+            }
+            else
+            {
+                e1 = Math_Atan2((-Mem.F32((m + (uint)(9 * 4)))), Mem.F32((m + (uint)(5 * 4))));
+                e2 = 0.0f;
+            }
+            new Vec3f(@out).x_Set(e1);
+            new Vec3f(@out).y_Set(a);
+            new Vec3f(@out).z_Set(e2);
+        }
     }
 
     // ==== func_0029DE3C @ 0x0029DE3C [C]
@@ -2038,6 +2291,84 @@ public static partial class Game
             }
         }
         finally { Stack.Free(64); }
+    }
+
+    // ==== func_0029E000 @ 0x0029E000 [C]
+    public static void func_0029E000_Normalize(uint v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0029E000_Normalize", (uint)v);
+            float len = func_0029E000_B22Sqrt((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z)));
+            new Vec3f(v).x_Set((new Vec3f(v).x * (1.0f / len)));
+            new Vec3f(v).y_Set((new Vec3f(v).y * (1.0f / len)));
+            new Vec3f(v).z_Set((new Vec3f(v).z * (1.0f / len)));
+        }
+    }
+
+    public static void func_0029E000_Cross(uint d, uint a, uint b)
+    {
+        uint _fp = Stack.Alloc(12);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0029E000_Cross", (uint)d, (uint)a, (uint)b);
+                new Vec3f(_fp).x_Set(((new Vec3f(a).y * new Vec3f(b).z) - (new Vec3f(a).z * new Vec3f(b).y)));
+                new Vec3f(_fp).y_Set(((new Vec3f(a).z * new Vec3f(b).x) - (new Vec3f(a).x * new Vec3f(b).z)));
+                new Vec3f(_fp).z_Set(((new Vec3f(a).x * new Vec3f(b).y) - (new Vec3f(a).y * new Vec3f(b).x)));
+                Mem.Copy(d, _fp, 12);
+            }
+        }
+        finally { Stack.Free(12); }
+    }
+
+    public static void Math_MtxOrthonormalize(uint m)
+    {
+        uint _fp = Stack.Alloc(44);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0029E000", (uint)m);
+                new Vec3f(_fp).x_Set(Mem.F32((m + (uint)(0 * 4))));
+                new Vec3f(_fp).y_Set(Mem.F32((m + (uint)(1 * 4))));
+                new Vec3f(_fp).z_Set(Mem.F32((m + (uint)(2 * 4))));
+                new Vec3f((_fp + 16u)).x_Set(Mem.F32((m + (uint)(4 * 4))));
+                new Vec3f((_fp + 16u)).y_Set(Mem.F32((m + (uint)(5 * 4))));
+                new Vec3f((_fp + 16u)).z_Set(Mem.F32((m + (uint)(6 * 4))));
+                func_0029E000_Normalize(_fp);
+                func_0029E000_Normalize((_fp + 16u));
+                func_0029E000_Cross((_fp + 32u), _fp, (_fp + 16u));
+                func_0029E000_Cross((_fp + 16u), (_fp + 32u), _fp);
+                {
+                    uint pa = _fp;
+                    Mem.Set((m + (uint)(0 * 4)), new Vec3f(_fp).x);
+                    Mem.Set((m + (uint)(1 * 4)), new Vec3f(pa).y);
+                    Mem.Set((m + (uint)(2 * 4)), new Vec3f(pa).z);
+                }
+                Mem.Set((m + (uint)(4 * 4)), new Vec3f((_fp + 16u)).x);
+                Mem.Set((m + (uint)(5 * 4)), new Vec3f((_fp + 16u)).y);
+                Mem.Set((m + (uint)(6 * 4)), new Vec3f((_fp + 16u)).z);
+                Mem.Set((m + (uint)(8 * 4)), new Vec3f((_fp + 32u)).x);
+                Mem.Set((m + (uint)(9 * 4)), new Vec3f((_fp + 32u)).y);
+                Mem.Set((m + (uint)(10 * 4)), new Vec3f((_fp + 32u)).z);
+            }
+        }
+        finally { Stack.Free(44); }
+    }
+
+    public static float func_0029E000_B22Sqrt(float x)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0029E000_B22Sqrt");
+            if ((x <= 0.0f))
+            {
+                return 0.0f;
+            }
+            return sqrtf(x);
+        }
     }
 
     // ==== func_0029E248 @ 0x0029E248 [C]
@@ -2212,6 +2543,98 @@ public static partial class Game
         finally { Stack.Free(144); }
     }
 
+    // ==== func_0029FA44 @ 0x0029FA44 [C]
+    public static void Math_MtxAssign(uint d, uint s)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0029FA44", (uint)d, (uint)s);
+            Mem.Copy(d, s, 64);
+        }
+    }
+
+    // ==== func_0029FA7C @ 0x0029FA7C [C]
+    public static void Math_MtxSetElements(uint d, float m00, float m01, float m02, float m03, float m10, float m11, float m12, float m13, float m20, float m21, float m22, float m23, float m30, float m31, float m32, float m33)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0029FA7C", (uint)d);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), m00);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(1 * 16)) + (uint)(0 * 4)), m01);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(2 * 16)) + (uint)(0 * 4)), m02);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(3 * 16)) + (uint)(0 * 4)), m03);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(0 * 16)) + (uint)(1 * 4)), m10);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), m11);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(2 * 16)) + (uint)(1 * 4)), m12);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(3 * 16)) + (uint)(1 * 4)), m13);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(0 * 16)) + (uint)(2 * 4)), m20);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(1 * 16)) + (uint)(2 * 4)), m21);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), m22);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(3 * 16)) + (uint)(2 * 4)), m23);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(0 * 16)) + (uint)(3 * 4)), m30);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(1 * 16)) + (uint)(3 * 4)), m31);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(2 * 16)) + (uint)(3 * 4)), m32);
+            Mem.Set(((new B22MtxHdr(d).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), m33);
+        }
+    }
+
+    // ==== func_0029FAF4 @ 0x0029FAF4 [C]
+    public static void Math_MtxZero(int a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0029FAF4", (uint)a);
+            Mem_Fill((uint)(a), 0, (uint)(64));
+        }
+    }
+
+    // ==== func_0029FB14 @ 0x0029FB14 [C]
+    public static void Math_MtxSetIdentity(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0029FB14", (uint)m);
+            Mem_Fill(m, 0, (uint)(64));
+            Mem.Set(((new B22Mtx(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), 1.0f);
+            Mem.Set(((new B22Mtx(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), 1.0f);
+            Mem.Set(((new B22Mtx(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), 1.0f);
+            Mem.Set(((new B22Mtx(m).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), 1.0f);
+        }
+    }
+
+    // ==== func_0029FB58 @ 0x0029FB58 [C]
+    public static void Math_MtxTranspose(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0029FB58", (uint)m);
+            int i = 0;
+            int j = 0;
+            float t = 0f;
+            for (i = 0; (i < 3); ++i)
+            {
+                for (j = (i + 1); (j < 4); ++j)
+                {
+                    t = Mem.F32(((new Mtx4f(m).m.P + (uint)(j * 16)) + (uint)(i * 4)));
+                    Mem.Set(((new Mtx4f(m).m.P + (uint)(j * 16)) + (uint)(i * 4)), Mem.F32(((new Mtx4f(m).m.P + (uint)(i * 16)) + (uint)(j * 4))));
+                    Mem.Set(((new Mtx4f(m).m.P + (uint)(i * 16)) + (uint)(j * 4)), t);
+                }
+            }
+        }
+    }
+
+    // ==== func_0029FBC8 @ 0x0029FBC8 [C]
+    public static void Math_MtxSetDiagonal(uint m, uint v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0029FBC8", (uint)m, (uint)v);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), new Vec3f(v).x);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), new Vec3f(v).y);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), new Vec3f(v).z);
+        }
+    }
+
     // ==== func_0029FBE4 @ 0x0029FBE4 [C]
     public static void Math_MtxScaleVec(uint m, uint s)
     {
@@ -2230,6 +2653,18 @@ public static partial class Game
             Mem.Set(((m + (uint)(3 * 16)) + (uint)(0 * 4)), (float)((float)(Mem.F32(((m + (uint)(3 * 16)) + (uint)(0 * 4)))) * Mem.F32((s + (uint)(0 * 4)))));
             Mem.Set(((m + (uint)(3 * 16)) + (uint)(1 * 4)), (float)((float)(Mem.F32(((m + (uint)(3 * 16)) + (uint)(1 * 4)))) * Mem.F32((s + (uint)(1 * 4)))));
             Mem.Set(((m + (uint)(3 * 16)) + (uint)(2 * 4)), (float)((float)(Mem.F32(((m + (uint)(3 * 16)) + (uint)(2 * 4)))) * Mem.F32((s + (uint)(2 * 4)))));
+        }
+    }
+
+    // ==== func_0029FCA8 @ 0x0029FCA8 [C]
+    public static void Math_MtxSetDiagonalUniform(uint m, float s)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0029FCA8", (uint)m);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), s);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), s);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), s);
         }
     }
 
@@ -2254,6 +2689,157 @@ public static partial class Game
         }
     }
 
+    // ==== func_0029FD54 @ 0x0029FD54 [C]
+    public static void Math_MtxResetRotation(uint m)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0029FD54", (uint)m);
+            int i = 0;
+            int j = 0;
+            for (i = 0; (i < 3); ++i)
+            {
+                for (j = 0; (j < 3); ++j)
+                {
+                    Mem.Set(((new Mtx4f(m).m.P + (uint)(j * 16)) + (uint)(i * 4)), (float)(0));
+                }
+            }
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), Mem.F32(0x800CAE4Cu));
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), Mem.F32(0x800CAE4Cu));
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), Mem.F32(0x800CAE4Cu));
+        }
+    }
+
+    // ==== func_0029FDA0 @ 0x0029FDA0 [C]
+    public static void Math_MtxRotateEulerXYZ(uint m, uint _a1)
+    {
+        uint _fp = Stack.Alloc(64);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0029FDA0", (uint)m, _a1);
+                Math_MtxFromEulerXYZ(_fp, (uint)(_a1));
+                Math_MtxMultiply(m, _fp, m);
+            }
+        }
+        finally { Stack.Free(64); }
+    }
+
+    // ==== func_0029FDD8 @ 0x0029FDD8 [C]
+    public static void Math_MtxApplyRotateX(uint m, float angle)
+    {
+        uint _fp = Stack.Alloc(72);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0029FDD8", (uint)m);
+                uint r = 0u;
+                if ((angle != 0.0f))
+                {
+                    Math_SinCos(angle, (_fp + 64u), (_fp + 68u));
+                    r = _fp;
+                    Mem_Fill(r, 0, (uint)(64));
+                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), Mem.F32(0x800CAE50u));
+                    Mem.Set(((new Mtx4f(r).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), Mem.F32(0x800CAE50u));
+                    Mem.Set(((new Mtx4f(r).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), Mem.F32(0x800CAE50u));
+                    Mem.Set(((new Mtx4f(r).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), Mem.F32(0x800CAE50u));
+                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), Mem.F32((_fp + 68u)));
+                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(2 * 16)) + (uint)(1 * 4)), (-Mem.F32((_fp + 64u))));
+                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(1 * 16)) + (uint)(2 * 4)), Mem.F32((_fp + 64u)));
+                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), Mem.F32((_fp + 68u)));
+                    Math_MtxMultiply(m, r, m);
+                }
+            }
+        }
+        finally { Stack.Free(72); }
+    }
+
+    // ==== func_0029FE78 @ 0x0029FE78 [C]
+    public static void Math_MtxApplyRotateY(uint m, float angle)
+    {
+        uint _fp = Stack.Alloc(72);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0029FE78", (uint)m);
+                uint r = 0u;
+                if ((angle != 0.0f))
+                {
+                    Math_SinCos(angle, (_fp + 64u), (_fp + 68u));
+                    r = _fp;
+                    Mem_Fill(r, 0, (uint)(64));
+                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), Mem.F32(0x800CAE54u));
+                    Mem.Set(((new Mtx4f(r).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), Mem.F32(0x800CAE54u));
+                    Mem.Set(((new Mtx4f(r).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), Mem.F32(0x800CAE54u));
+                    Mem.Set(((new Mtx4f(r).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), Mem.F32(0x800CAE54u));
+                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), Mem.F32((_fp + 68u)));
+                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(2 * 16)) + (uint)(0 * 4)), Mem.F32((_fp + 64u)));
+                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(0 * 16)) + (uint)(2 * 4)), (-Mem.F32((_fp + 64u))));
+                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), Mem.F32((_fp + 68u)));
+                    Math_MtxMultiply(m, r, m);
+                }
+            }
+        }
+        finally { Stack.Free(72); }
+    }
+
+    // ==== func_0029FF18 @ 0x0029FF18 [C]
+    public static void Math_MtxApplyRotateZ(uint m, float angle)
+    {
+        uint _fp = Stack.Alloc(72);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0029FF18", (uint)m);
+                uint r = 0u;
+                if ((angle != 0.0f))
+                {
+                    Math_SinCos(angle, (_fp + 64u), (_fp + 68u));
+                    r = _fp;
+                    Mem_Fill(r, 0, (uint)(64));
+                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), Mem.F32(0x800CAE58u));
+                    Mem.Set(((new Mtx4f(r).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), Mem.F32(0x800CAE58u));
+                    Mem.Set(((new Mtx4f(r).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), Mem.F32(0x800CAE58u));
+                    Mem.Set(((new Mtx4f(r).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), Mem.F32(0x800CAE58u));
+                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), Mem.F32((_fp + 68u)));
+                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(1 * 16)) + (uint)(0 * 4)), (-Mem.F32((_fp + 64u))));
+                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(0 * 16)) + (uint)(1 * 4)), Mem.F32((_fp + 64u)));
+                    Mem.Set(((new Mtx4f(_fp).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), Mem.F32((_fp + 68u)));
+                    Math_MtxMultiply(m, r, m);
+                }
+            }
+        }
+        finally { Stack.Free(72); }
+    }
+
+    // ==== func_0029FFB8 @ 0x0029FFB8 [C]
+    public static void Math_MtxClearTranslation(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0029FFB8", (uint)p);
+            Mem.Set((p + (uint)(12 * 4)), 0);
+            Mem.Set((p + (uint)(13 * 4)), 0);
+            Mem.Set((p + (uint)(14 * 4)), 0);
+        }
+    }
+
+    // ==== func_0029FFC8 @ 0x0029FFC8 [C]
+    public static void Math_MtxSetTranslation(uint m, uint v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0029FFC8", (uint)m, (uint)v);
+            Mem.Set((m + (uint)(12 * 4)), new Vec3f(v).x);
+            Mem.Set((m + (uint)(13 * 4)), new Vec3f(v).y);
+            Mem.Set((m + (uint)(14 * 4)), new Vec3f(v).z);
+        }
+    }
+
     // ==== func_0029FFE4 @ 0x0029FFE4 [C]
     public static void Math_MtxGetTranslation(uint o, uint @out)
     {
@@ -2263,6 +2849,72 @@ public static partial class Game
             new P4Vec3(@out).x_Set(new P4ObjPos(o).pos.x);
             new P4Vec3(@out).y_Set(new P4ObjPos(o).pos.y);
             new P4Vec3(@out).z_Set(new P4ObjPos(o).pos.z);
+        }
+    }
+
+    // ==== func_002A0000 @ 0x002A0000 [C]
+    public static void Math_MtxAddTranslation(uint m, uint v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002A0000", (uint)m, (uint)v);
+            Mem.Set((m + (uint)(12 * 4)), (float)((float)(Mem.F32((m + (uint)(12 * 4)))) + new Vec3f(v).x));
+            Mem.Set((m + (uint)(13 * 4)), (float)((float)(Mem.F32((m + (uint)(13 * 4)))) + new Vec3f(v).y));
+            Mem.Set((m + (uint)(14 * 4)), (float)((float)(Mem.F32((m + (uint)(14 * 4)))) + new Vec3f(v).z));
+        }
+    }
+
+    // ==== func_002A0034 @ 0x002A0034 [C]
+    public static void Math_MtxSetBasisColumns(uint m, uint a, uint b, uint c)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002A0034", (uint)m, (uint)a, (uint)b, (uint)c);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), new Vec3f(a).x);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(0 * 4)), new Vec3f(a).y);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(0 * 4)), new Vec3f(a).z);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(1 * 4)), new Vec3f(b).x);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), new Vec3f(b).y);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(1 * 4)), new Vec3f(b).z);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(2 * 4)), new Vec3f(c).x);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(2 * 4)), new Vec3f(c).y);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), new Vec3f(c).z);
+        }
+    }
+
+    // ==== func_002A0080 @ 0x002A0080 [C]
+    public static void Math_MtxGetBasisColumns(uint m, uint a, uint b, uint c)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002A0080", (uint)m, (uint)a, (uint)b, (uint)c);
+            new Vec3f(a).x_Set(Mem.F32(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4))));
+            new Vec3f(a).y_Set(Mem.F32(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(0 * 4))));
+            new Vec3f(a).z_Set(Mem.F32(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(0 * 4))));
+            new Vec3f(b).x_Set(Mem.F32(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(1 * 4))));
+            new Vec3f(b).y_Set(Mem.F32(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4))));
+            new Vec3f(b).z_Set(Mem.F32(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(1 * 4))));
+            new Vec3f(c).x_Set(Mem.F32(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(2 * 4))));
+            new Vec3f(c).y_Set(Mem.F32(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(2 * 4))));
+            new Vec3f(c).z_Set(Mem.F32(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4))));
+        }
+    }
+
+    // ==== func_002A00CC @ 0x002A00CC [C]
+    public static void Math_MtxSetBasisRows(uint m, uint a, uint b, uint c)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002A00CC", (uint)m, (uint)a, (uint)b, (uint)c);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), new Vec3f(a).x);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(1 * 4)), new Vec3f(a).y);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(2 * 4)), new Vec3f(a).z);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(0 * 4)), new Vec3f(b).x);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), new Vec3f(b).y);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(2 * 4)), new Vec3f(b).z);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(0 * 4)), new Vec3f(c).x);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(1 * 4)), new Vec3f(c).y);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), new Vec3f(c).z);
         }
     }
 
@@ -2281,6 +2933,137 @@ public static partial class Game
             Mem.Set((c + (uint)(0 * 4)), Mem.F32(((m + (uint)(2 * 16)) + (uint)(0 * 4))));
             Mem.Set((c + (uint)(1 * 4)), Mem.F32(((m + (uint)(2 * 16)) + (uint)(1 * 4))));
             Mem.Set((c + (uint)(2 * 4)), Mem.F32(((m + (uint)(2 * 16)) + (uint)(2 * 4))));
+        }
+    }
+
+    // ==== func_002A0164 @ 0x002A0164 [C]
+    public static void Math_MtxMulInPlace(uint a, uint b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002A0164", (uint)a, (uint)b);
+            Math_MtxMultiply(a, b, a);
+        }
+    }
+
+    // ==== func_002A0180 @ 0x002A0180 [C]
+    public static void Math_MtxSquare(uint a, uint b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002A0180", (uint)a, (uint)b);
+            Math_MtxMultiply(a, a, b);
+        }
+    }
+
+    // ==== func_002A01A0 @ 0x002A01A0 [C]
+    public static void Math_MtxTransformVecArray(uint m, uint @out, uint @in, int n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002A01A0", (uint)m, (uint)@out, (uint)@in, (uint)n);
+            int i = 0;
+            float x = 0f;
+            float y = 0f;
+            float z = 0f;
+            for (i = 0; (i < n); ++i)
+            {
+                x = new Vec3f((@in + (uint)(i * 12))).x;
+                y = new Vec3f((@in + (uint)(i * 12))).y;
+                z = new Vec3f((@in + (uint)(i * 12))).z;
+                new Vec3f((@out + (uint)(i * 12))).x_Set(((((Mem.F32(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4))) * x) + (Mem.F32(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(0 * 4))) * y)) + (Mem.F32(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(0 * 4))) * z)) + Mem.F32(((new Mtx4f(m).m.P + (uint)(3 * 16)) + (uint)(0 * 4)))));
+                new Vec3f((@out + (uint)(i * 12))).y_Set(((((Mem.F32(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(1 * 4))) * x) + (Mem.F32(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4))) * y)) + (Mem.F32(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(1 * 4))) * z)) + Mem.F32(((new Mtx4f(m).m.P + (uint)(3 * 16)) + (uint)(1 * 4)))));
+                new Vec3f((@out + (uint)(i * 12))).z_Set(((((Mem.F32(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(2 * 4))) * x) + (Mem.F32(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(2 * 4))) * y)) + (Mem.F32(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4))) * z)) + Mem.F32(((new Mtx4f(m).m.P + (uint)(3 * 16)) + (uint)(2 * 4)))));
+            }
+        }
+    }
+
+    // ==== func_002A0254 @ 0x002A0254 [C]
+    public static void Math_MtxFromAxisAngle(uint m, uint axis, float angle)
+    {
+        uint _fp = Stack.Alloc(8);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_002A0254", (uint)m, (uint)axis);
+                float t = 0f;
+                float tx = 0f;
+                float ty = 0f;
+                float tz = 0f;
+                float txx = 0f;
+                float txy = 0f;
+                float txz = 0f;
+                float tyy = 0f;
+                float tyz = 0f;
+                float tzz = 0f;
+                float xs = 0f;
+                float ys = 0f;
+                float zs = 0f;
+                float x = 0f;
+                float y = 0f;
+                float z = 0f;
+                float zero = 0f;
+                float nv = 0f;
+                Math_SinCos(angle, _fp, (_fp + 4u));
+                nv = Mem.F32((_fp + 4u));
+                t = (Mem.F32(0x800CAE5Cu) - nv);
+                x = new Vec3f(axis).x;
+                tx = (t * x);
+                y = new Vec3f(axis).y;
+                ty = (t * y);
+                z = new Vec3f(axis).z;
+                tz = (t * z);
+                txx = (tx * x);
+                txy = (tx * y);
+                txz = (tx * z);
+                tyy = (ty * y);
+                tyz = (ty * z);
+                tzz = (tz * z);
+                xs = (Mem.F32(_fp) * x);
+                ys = (Mem.F32(_fp) * y);
+                zs = (Mem.F32(_fp) * z);
+                zero = 0.0f;
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(3 * 16)) + (uint)(2 * 4)), zero);
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(3 * 16)) + (uint)(1 * 4)), zero);
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(3 * 16)) + (uint)(0 * 4)), zero);
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(3 * 4)), zero);
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(3 * 4)), zero);
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(3 * 4)), zero);
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(3 * 16)) + (uint)(3 * 4)), Mem.F32(0x800CAE5Cu));
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), (txx + Mem.F32((_fp + 4u))));
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(1 * 4)), (txy + zs));
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(2 * 4)), (txz - ys));
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(0 * 4)), (txy - zs));
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), (tyy + nv));
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(2 * 4)), (tyz + xs));
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(0 * 4)), (txz + ys));
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(1 * 4)), (tyz - xs));
+                Mem.Set(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), (tzz + nv));
+            }
+        }
+        finally { Stack.Free(8); }
+    }
+
+    // ==== func_002A0368 @ 0x002A0368 [C]
+    public static void Math_MtxFromScaleRotTrans(uint m, uint scale, uint rot, uint trans)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002A0368", (uint)m, (uint)scale, (uint)rot, (uint)trans);
+            Math_MtxFromEulerXYZ(m, rot);
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4)), (Mem.F32(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(0 * 4))) * new Vec3f(scale).x));
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(1 * 4)), (Mem.F32(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(1 * 4))) * new Vec3f(scale).x));
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(2 * 4)), (Mem.F32(((new Mtx4f(m).m.P + (uint)(0 * 16)) + (uint)(2 * 4))) * new Vec3f(scale).x));
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(0 * 4)), (Mem.F32(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(0 * 4))) * new Vec3f(scale).y));
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), (Mem.F32(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(1 * 4))) * new Vec3f(scale).y));
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(2 * 4)), (Mem.F32(((new Mtx4f(m).m.P + (uint)(1 * 16)) + (uint)(2 * 4))) * new Vec3f(scale).y));
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(0 * 4)), (Mem.F32(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(0 * 4))) * new Vec3f(scale).z));
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(1 * 4)), (Mem.F32(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(1 * 4))) * new Vec3f(scale).z));
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4)), (Mem.F32(((new Mtx4f(m).m.P + (uint)(2 * 16)) + (uint)(2 * 4))) * new Vec3f(scale).z));
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(3 * 16)) + (uint)(0 * 4)), (Mem.F32(((new Mtx4f(m).m.P + (uint)(3 * 16)) + (uint)(0 * 4))) + new Vec3f(trans).x));
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(3 * 16)) + (uint)(1 * 4)), (Mem.F32(((new Mtx4f(m).m.P + (uint)(3 * 16)) + (uint)(1 * 4))) + new Vec3f(trans).y));
+            Mem.Set(((new Mtx4f(m).m.P + (uint)(3 * 16)) + (uint)(2 * 4)), (Mem.F32(((new Mtx4f(m).m.P + (uint)(3 * 16)) + (uint)(2 * 4))) + new Vec3f(trans).z));
         }
     }
 

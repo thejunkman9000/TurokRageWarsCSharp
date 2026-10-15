@@ -25,10 +25,10 @@ public static partial class Game
                         if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].f14 == 0))
                         {
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].f14_Set((-1));
-                            func_002A338C();
+                            Menu_DisableInput();
                             func_00404E28(i);
                             func_004337EC((uint)(i), default(uint), default(uint), default(uint));
-                            func_002A3358();
+                            Menu_EnableInput();
                         }
                     }
                 }
@@ -47,7 +47,7 @@ public static partial class Game
             {
                 return 0;
             }
-            func_0029A73C();
+            Menu_ConsumeEvent();
             switch ((int)(Mem.U8(0x801462D5u)))
             {
             case 0:

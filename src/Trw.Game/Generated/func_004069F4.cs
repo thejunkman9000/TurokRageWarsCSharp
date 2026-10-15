@@ -77,7 +77,7 @@ public static partial class Game
                 {
                     goto L_blk59;
                 }
-                func_0029324C();
+                Game_LatchPads();
                 if ((((new Q01Sub_v2(new Q01Obj(arg0).unk20_).unkB0 & 4096) != 0) && (Mem.S32(0x800E28CCu) == 0)))
                 {
                     Mem.Set(0x80146D60u, 1);
@@ -168,7 +168,7 @@ public static partial class Game
                 {
                     func_00405338(s1, s0, (_fp + 24u));
                     func_00405648((uint)(Mem.S32((_fp + 24u))), _fp, 16);
-                    if ((func_002A137C(_fp, (uint)(s2)) == 0))
+                    if ((LibC_StrCompare(_fp, (uint)(s2)) == 0))
                     {
                         s3 = 1;
                         goto L_L2;
@@ -185,7 +185,7 @@ public static partial class Game
                 {
                     func_00405338(s1, s0, (_fp + 28u));
                     func_00405648((uint)(Mem.S32((_fp + 28u))), _fp, 16);
-                    if ((func_002A137C(_fp, (uint)(s2)) == 0))
+                    if ((LibC_StrCompare(_fp, (uint)(s2)) == 0))
                     {
                         v0 = 1;
                         goto L_L3;

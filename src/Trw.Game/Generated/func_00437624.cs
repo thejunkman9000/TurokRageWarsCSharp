@@ -39,13 +39,13 @@ public static partial class Game
                 }
                 break;
             case 4:
-                func_0029A73C();
+                Menu_ConsumeEvent();
                 a = new O05M80(Mem.U32(0x800E5780u)).f10;
                 if ((a == (-1)))
                 {
                     a = 3;
                 }
-                func_00299368(a);
+                Menu_GotoScreen(a);
                 break;
             default:
                 return 0;

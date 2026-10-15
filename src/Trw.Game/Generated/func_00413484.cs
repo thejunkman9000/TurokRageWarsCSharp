@@ -21,7 +21,7 @@ public static partial class Game
                     ResourcePool_MallocFree((uint)(new S_func_00413484(p).f14));
                 }
             }
-            func_002A1748(p, 0, (uint)(32));
+            Mem_Fill(p, 0, (uint)(32));
         }
     }
 

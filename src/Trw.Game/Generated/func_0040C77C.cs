@@ -82,8 +82,8 @@ public static partial class Game
                 return 0;
             }
             func_0040C9D0(s);
-            func_0029A5D4((uint)(Ui_PushScreen()), (uint)(4106), (uint)((int)(new O02Widget(w).id)), (uint)(new O02Slider(s).val), (uint)(0));
-            func_0029A73C();
+            Menu_SendEvent((uint)(Ui_PushScreen()), (uint)(4106), (uint)((int)(new O02Widget(w).id)), (uint)(new O02Slider(s).val), (uint)(0));
+            Menu_ConsumeEvent();
             return 0;
         }
     }

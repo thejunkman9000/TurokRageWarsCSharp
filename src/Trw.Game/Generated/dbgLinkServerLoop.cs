@@ -16,7 +16,7 @@ public static partial class Game
                 uint p = 0u;
                 uint v = 0u;
                 uint fn = 0u;
-                func_002AE260();
+                DevLink_ResetDbgPort();
                 dbgLinkServerLoop_dbgPortSetFifoTrigger_i(1);
                 while ((dbgLinkRecvByte(_fp) != 0))
                 {

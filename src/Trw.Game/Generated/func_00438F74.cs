@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00438F74");
-            func_0029A73C();
+            Menu_ConsumeEvent();
             if ((func_0043C4E8(Mem.U32(0x800E5830u)) == 1))
             {
                 return 0;
@@ -24,7 +24,7 @@ public static partial class Game
                 break;
             case 627:
                 func_00435190(5);
-                func_00299368(19);
+                Menu_GotoScreen(19);
                 return 0;
             case 631:
                 func_0042EB68(33);

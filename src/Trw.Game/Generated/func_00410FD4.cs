@@ -35,7 +35,7 @@ public static partial class Game
                 s = (uint)((off + (int)(blk)));
                 if ((((int)(new S705Slot(s).flags) & 1) != 0))
                 {
-                    new S705Slot(s).time_Set((func_002A2934() + 10));
+                    new S705Slot(s).time_Set((Menu_GetFrameCounter() + 10));
                     obj = (new S705Pool(0x80153C20u).entries_ + (uint)(idx * 1180));
                     if ((((int)(new S705Obj(obj).timer498) == 0) && (new S705Obj(obj).timer494 != (-1))))
                     {
@@ -44,7 +44,7 @@ public static partial class Game
                     return ((blk + (uint)((int)(slot) * 44)) + (uint)12);
                 }
                 fmt = 0;
-                func_002A28CC();
+                Time_GetSecondsSinceStart();
                 meta = new S705Obj((new S705Pool(0x80153C20u).entries_ + (uint)(idx * 1180))).meta_;
                 r = (new S705Obj((new S705Pool(0x80153C20u).entries_ + (uint)(idx * 1180))).rec.P + (uint)(slot * 8));
                 bpp = 0;
@@ -107,14 +107,14 @@ public static partial class Game
                 {
                     g = 0x80153BD0u;
                     o2 = ((uint)(Mem.S32((g + (uint)(22 * 4)))) + (uint)(idx * 1180));
-                    Mem.Set((g + (uint)((-136) * 4)), (int)(func_002A1E8C((g - (uint)(135 * 4)), 0x800E10E0u, default(uint), default(uint))));
+                    Mem.Set((g + (uint)((-136) * 4)), (int)(File_Open((g - (uint)(135 * 4)), 0x800E10E0u, default(uint), default(uint))));
                     sz = new S705Obj(o2).meta.size;
                     new S705Obj(o2).off.Set((int)(0), (int)(ResourcePool_Malloc((uint)(sz))));
                     {
                         uint st_2 = (g - (uint)(136 * 4));
-                        func_002A1F60((uint)(Mem.S32((g + (uint)((-136) * 4)))), (uint)((Mem.S32((st_2 + (uint)592)) + new S705Obj(o2).meta.@base)), (uint)(0), default(uint));
+                        File_Seek((uint)(Mem.S32((g + (uint)((-136) * 4)))), (uint)((Mem.S32((st_2 + (uint)592)) + new S705Obj(o2).meta.@base)), (uint)(0), default(uint));
                     }
-                    func_002A1ED4((uint)(new S705Obj((new S705Pool(0x80153C20u).entries_ + (uint)(idx * 1180))).off[(int)(0)]), (uint)(sz), (uint)(1), (uint)(Mem.S32((g + (uint)((-136) * 4)))));
+                    File_Read((uint)(new S705Obj((new S705Pool(0x80153C20u).entries_ + (uint)(idx * 1180))).off[(int)(0)]), (uint)(sz), (uint)(1), (uint)(Mem.S32((g + (uint)((-136) * 4)))));
                     for (i = 0; (i < 96); ++i)
                     {
                         t = Mem.Set((_fp + (uint)(i * 4)), ((int)(new S705Obj(o2).rec[(int)(i)].c) * (int)(new S705Obj(o2).rec[(int)(i)].h)));
@@ -137,7 +137,7 @@ public static partial class Game
                             func_00413484((_fp + 384u));
                         }
                     }
-                    func_002A1EB0((uint)(Mem.S32((0x801539B0u + (uint)(0 * 4)))), default(uint), default(uint), default(uint));
+                    File_Close((uint)(Mem.S32((0x801539B0u + (uint)(0 * 4)))), default(uint), default(uint), default(uint));
                     Mem.Set((0x801539B0u + (uint)(0 * 4)), 0);
                     new S705Obj(o2).loaded_Set(1);
                 }
@@ -146,8 +146,8 @@ public static partial class Game
                 func_00419748(0);
                 func_004196C0(payload2, payload, default(uint), default(uint));
                 func_00419748(1);
-                func_002A28CC();
-                new S705Slot(saved).time_Set((func_002A2934() + 10));
+                Time_GetSecondsSinceStart();
+                new S705Slot(saved).time_Set((Menu_GetFrameCounter() + 10));
                 new S705Obj((new S705Pool(0x80153C20u).entries_ + (uint)(idx * 1180))).count_Set((byte)(new S705Obj((new S705Pool(0x80153C20u).entries_ + (uint)(idx * 1180))).count + 1));
                 new S705Slot(saved).flags_Set((ushort)((int)(new S705Slot(saved).flags) | 1));
                 return new S705Slot(saved).payload.P;

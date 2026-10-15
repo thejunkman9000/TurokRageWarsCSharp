@@ -24,7 +24,7 @@ public static partial class Game
             if (((func_0043C4E8(Mem.U32(0x800E4518u)) != 1) && (new Q2Lb(Mem.U32(0x800E4518u)).w5C == 0)))
             {
                 new Q2Lb(Mem.U32(0x800E4518u)).w5C_Set(1);
-                func_002A3358();
+                Menu_EnableInput();
                 return 0;
             }
             s0 = new Q2Scr(Mem.U32(0x800E2830u)).f3C;
@@ -43,8 +43,8 @@ public static partial class Game
                 {
                     func_0040E958(new Q2Lb(Mem.U32(0x800E4518u)).w48, 0);
                     func_0040E958(new Q2Lb(Mem.U32(0x800E4518u)).w40, 0);
-                    func_0029A73C();
-                    func_00299368(Mem.S32((g + (uint)((-1) * 4))));
+                    Menu_ConsumeEvent();
+                    Menu_GotoScreen(Mem.S32((g + (uint)((-1) * 4))));
                     return 0;
                 }
                 func_0040E958(new Q2Lb(Mem.U32(0x800E4518u)).w48, 1);
@@ -83,8 +83,8 @@ public static partial class Game
                         Resource_SetLoadFlags(1);
                     }
                     Mem.Set((q + (uint)((-7) * 4)), 8);
-                    func_0029A73C();
-                    func_00299368(new Q2Lb(Mem.U32(0x800E4518u)).w60);
+                    Menu_ConsumeEvent();
+                    Menu_GotoScreen(new Q2Lb(Mem.U32(0x800E4518u)).w60);
                     return 0;
                 }
                 break;

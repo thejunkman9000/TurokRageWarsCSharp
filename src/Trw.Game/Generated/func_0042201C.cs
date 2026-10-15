@@ -15,7 +15,7 @@ public static partial class Game
             new O3Z(o).f8_Set(0);
             new O3Z(o).fC_Set(v);
             new O3Z(o).f10_Set(1);
-            func_002A338C();
+            Menu_DisableInput();
         }
     }
 

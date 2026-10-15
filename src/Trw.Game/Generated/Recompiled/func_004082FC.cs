@@ -86,7 +86,7 @@ public static partial class Game
                 r5 = r29 + 24u;
                 r6 = (uint)16; func_00405648(r4, r5, (int)r6);
                 r4 = r29 + 24u;
-                r5 = r18; r2 = (uint)func_002A137C(r4, r5);
+                r5 = r18; r2 = (uint)LibC_StrCompare(r4, r5);
                 if (r2 != 0) { r16 = r16 + 1u; goto L_L0040844C; }
                 { bool c_ = r20 == 0; r2 = (uint)1; if (c_) goto L_L0040845C; }
                 r1 = 2148859904u;

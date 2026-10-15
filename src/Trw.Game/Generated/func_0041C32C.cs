@@ -23,10 +23,10 @@ public static partial class Game
             new O3Pg(Mem.U32(0x800E3518u)).f14_Set(0);
             new O3Pg(Mem.U32(0x800E3518u)).f18_Set(0);
             func_0040C4A8(0);
-            func_002A338C();
+            Menu_DisableInput();
             Mem.Set(0x800E28C8u, (-1));
             Mem.Set(0x80146D70u, 0);
-            func_00293318(0x8011FAC0u, 0, 0);
+            Game_InitCameras(0x8011FAC0u, 0, 0);
             Level_Load((0x8011FAC0u + (uint)968), (uint)(0), (uint)(0), default(uint));
             new O3Pg(Mem.U32(0x800E3518u)).f1C_Set(0);
             return 0;

@@ -272,7 +272,7 @@ public static partial class Game
                 L_L0041F6E0: ;
                 r2 = (uint)((int)r18 < 4 ? 1 : 0);
                 { bool c_ = r2 != 0; r16 = r16 + 150u; if (c_) goto L_L0041F6C8; }
-                func_002A338C();
+                Menu_DisableInput();
                 r4 = 2148401152u;
                 r4 = Mem.U32((r4 + 17104u));
                 r3 = (uint)-1;

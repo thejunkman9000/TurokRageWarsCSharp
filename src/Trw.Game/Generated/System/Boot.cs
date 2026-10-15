@@ -101,9 +101,9 @@ public static partial class Game
             osCreateMesgQueue(0x80146980u, 0x80146D78u, 4096);
             memset(0x800F3C80u, 7, (uint)(8192));
             Panel_Init(0x801469E8u, (0x800F3C80u + (uint)8192), (uint)(Mem.S32(0x800D2B38u)), (uint)(0), (uint)((byte)(1)));
-            func_0028F844(0x801469E8u, 0x8014AD80u, (int)(0x80146980u));
+            Sched_AddClient(0x801469E8u, 0x8014AD80u, (int)(0x80146980u));
             new Level(lv).unk26DB4_Set((-1));
-            func_00293574(lv);
+            Game_StartFadeIn(lv);
             Mem.Set(0x80110634u, 0);
             guMtxIdent(0x80146D20u);
             if ((Mem.S32(0x8014D330u) != 0))
@@ -132,10 +132,10 @@ public static partial class Game
                 new Slot_v2((sl + (uint)(i * 320))).unk110_Set(Mem.S32((0x801536F8u + (uint)(i * 4))));
                 new Slot_v2((sl + (uint)(i * 320))).prev__Set((lv + (uint)(a * 320)));
                 new Slot_v2((sl + (uint)(i * 320))).next__Set((lv + (uint)(b * 320)));
-                func_002909E0((sl + (uint)(i * 320)));
+                Obj_ClearFields14And18_002909E0((sl + (uint)(i * 320)));
                 ++i;
             }
-            func_00293038(lv);
+            Video_AdvanceFrameSlot(lv);
             Audio_Init();
         }
     }
@@ -281,8 +281,8 @@ public static partial class Game
                 r4 = r4 | 48376u;
                 r4 = r18 + r4; func_0044ECB0(r4);
                 r17 = (uint)1; func_00404D84();
-                func_002A31F4();
-                r4 = (uint)2; func_00299368((int)r4);
+                Menu_InitFrontendOnce();
+                r4 = (uint)2; Menu_GotoScreen((int)r4);
                 r2 = (uint)3;
                 r1 = 2148794368u;
                 Mem.Set((r1 + 27032u), r2);
@@ -302,7 +302,7 @@ public static partial class Game
                 r5 = r0;
                 r16 = 2148794368u;
                 r16 = r16 + 26784u;
-                Mem.Set((r16 + 172u), r0); func_00293774(r4, (int)r5);
+                Mem.Set((r16 + 172u), r0); Game_BeginTransition(r4, (int)r5);
                 r16 = r16 - 1496u;
                 L_L002916BC: ;
                 r4 = 2148794368u;
@@ -351,7 +351,7 @@ public static partial class Game
                 Mem.Set((r1 + 28008u), r2);
                  goto L_L002916BC;
                 L_L00291794: ;
-                r4 = r18; r2 = func_00292910(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r18; r2 = Game_RunFrame(r4, r5, r6, r7); r3 = Cpu.V1;
                  goto L_L002916BC;
                 L_L002917A4: ;
                 r1 = 2148335616u;
@@ -365,12 +365,22 @@ public static partial class Game
                 r1 = 131072u;
                 r1 = r18 + r1;
                 Mem.Set((r1 + 28112u), r17);
-                r5 = (uint)20; func_00293808(r4, (int)r5);
+                r5 = (uint)20; Game_FadeOutToState(r4, (int)r5);
                  goto L_L002916BC;
                 Cpu.V1 = r3; return r2;
             }
         }
         finally { if (Dbg.On) Dbg.Leave("func_00291404", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00292F08 @ 0x00292F08 [C]
+    public static void Boot_StartThread0Global()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00292F08");
+            Boot_StartThread0_00292F2C(0x8011FAC0u);
+        }
     }
 
     // ==== func_00292F2C @ 0x00292F2C [C]
@@ -399,6 +409,16 @@ public static partial class Game
             for (; ; )
             {
             }
+        }
+    }
+
+    // ==== func_002934F0 @ 0x002934F0 [C]
+    public static void Boot_Thread0Main(int a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002934F0", (uint)a);
+            Boot_StartGameThread(0x8011FAC0u, (uint)(a));
         }
     }
 
@@ -466,7 +486,7 @@ public static partial class Game
                 r17 = r17 + 12160u;
                 r4 = r17;
                 r16 = r29 + 16u;
-                r5 = r16; r2 = (uint)func_00293424(r4, r5);
+                r5 = r16; r2 = (uint)Str_Compare(r4, r5);
                 { bool c_ = r2 != 0; r2 = (uint)1; if (c_) goto L_L002A8268; }
                 r1 = 2148859904u;
                 Mem.Set((r1 - 11472u), r0);
@@ -475,7 +495,7 @@ public static partial class Game
                 r1 = 2148859904u;
                 Mem.Set((r1 - 11472u), r2);
                 r4 = r17;
-                r5 = r16; r2 = func_002934A4(r4, r5);
+                r5 = r16; r2 = Str_Copy(r4, r5);
                 L_L002A827C: ;
                 r2 = 2148859904u;
                 r2 = Mem.U32((r2 - 11472u));
@@ -624,7 +644,7 @@ public static partial class Game
                 { bool c_ = r2 != 0; r4 = r5 | r18; if (c_) goto L_L002A8448; }
                 L_L002A84FC: ;
                 osInitialize();
-                func_00292F08();
+                Boot_StartThread0Global();
                 r31 = Mem.U32((r29 + 64u));
                 r23 = Mem.U32((r29 + 60u));
                 r22 = Mem.U32((r29 + 56u));
@@ -640,5 +660,27 @@ public static partial class Game
             }
         }
         finally { if (Dbg.On) Dbg.Leave("func_002A81B0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002A853C @ 0x002A853C [MIPS]
+    public static uint Game_EmptyStub_002A853C(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002A853C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002A853C: ;
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002A853C", r2); Stack.Free(384); }
     }
 }

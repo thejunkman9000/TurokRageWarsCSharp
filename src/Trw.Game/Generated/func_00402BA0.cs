@@ -81,7 +81,7 @@ public static partial class Game
                         v = 0.0f;
                     }
                     Mem.Set(((_fp + 32u) + (uint)3), (sbyte)(Cpu.TruncU32(v)));
-                    func_00293100(0x8011FAC0u, (_fp + 32u), (int)(s1), (int)(s0), (int)(s3), (int)(s2));
+                    Gfx_FillRectBlended(0x8011FAC0u, (_fp + 32u), (int)(s1), (int)(s0), (int)(s3), (int)(s2));
                 }
                 if ((Mem.S32(0x800E2844u) != 0))
                 {

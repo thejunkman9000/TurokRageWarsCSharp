@@ -32,12 +32,12 @@ public static partial class Game
             w = UiTree_FindNode(new O05M30_v2(Mem.U32(0x800E5830u)).f20, (uint)(636), default(uint), default(uint));
             func_0040E958(w, 1);
             new O05Wd2(w).b10_Set(col);
-            func_002A1C08(new O05M30_v2(Mem.U32(0x800E5830u)).buf28.P, fmt, (uint)((int)(new O05R150c(r).h4)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            Str_FormatInto(new O05M30_v2(Mem.U32(0x800E5830u)).buf28.P, fmt, (uint)((int)(new O05R150c(r).h4)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             new O05Wd2(w).f38_Set(new O05M30_v2(Mem.U32(0x800E5830u)).buf28.P);
             w = UiTree_FindNode(new O05M30_v2(Mem.U32(0x800E5830u)).f20, (uint)(637), default(uint), default(uint));
             func_0040E958(w, 1);
             new O05Wd2(w).b10_Set(col);
-            func_002A1C08(new O05M30_v2(Mem.U32(0x800E5830u)).buf32.P, fmt, (uint)(((int)(new O05R150c(r).h2) + (int)(new O05R150c(r).h0))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            Str_FormatInto(new O05M30_v2(Mem.U32(0x800E5830u)).buf32.P, fmt, (uint)(((int)(new O05R150c(r).h2) + (int)(new O05R150c(r).h0))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             new O05Wd2(w).f38_Set(new O05M30_v2(Mem.U32(0x800E5830u)).buf32.P);
             w = UiTree_FindNode(new O05M30_v2(Mem.U32(0x800E5830u)).f20, (uint)(638), default(uint), default(uint));
             func_0040E958(w, 1);
@@ -47,7 +47,7 @@ public static partial class Game
             {
                 a = ((Mem.S32((0x80102AE0u + (uint)(sel * 4))) * 100) / Mem.S32((0x80103140u + (uint)(sel * 4))));
             }
-            func_002A1C08(new O05M30_v2(Mem.U32(0x800E5830u)).buf3C.P, Str.Lit("%d%%"), (uint)(a), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            Str_FormatInto(new O05M30_v2(Mem.U32(0x800E5830u)).buf3C.P, Str.Lit("%d%%"), (uint)(a), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             new O05Wd2(w).f38_Set(new O05M30_v2(Mem.U32(0x800E5830u)).buf3C.P);
             w = UiTree_FindNode(new O05M30_v2(Mem.U32(0x800E5830u)).f20, (uint)(639), default(uint), default(uint));
             func_0040E958(w, 1);
@@ -56,13 +56,13 @@ public static partial class Game
             switch (Mem.S32(0x80154028u))
             {
             case 0:
-                func_002A1C08(new O05M30_v2(Mem.U32(0x800E5830u)).buf46.P, fmt, (uint)((int)(new O05R150c(r).h8)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                Str_FormatInto(new O05M30_v2(Mem.U32(0x800E5830u)).buf46.P, fmt, (uint)((int)(new O05R150c(r).h8)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                 break;
             case 1:
-                func_002A1C08(new O05M30_v2(Mem.U32(0x800E5830u)).buf46.P, fmt, (uint)((int)(new O05R150c(r).h6)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                Str_FormatInto(new O05M30_v2(Mem.U32(0x800E5830u)).buf46.P, fmt, (uint)((int)(new O05R150c(r).h6)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                 break;
             default:
-                func_002A1C08(new O05M30_v2(Mem.U32(0x800E5830u)).buf46.P, Str.Lit("%d"), (uint)(0), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                Str_FormatInto(new O05M30_v2(Mem.U32(0x800E5830u)).buf46.P, Str.Lit("%d"), (uint)(0), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                 break;
             }
             new O05Wd2(w6).f38_Set(new O05M30_v2(Mem.U32(0x800E5830u)).buf46.P);

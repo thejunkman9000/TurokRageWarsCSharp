@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00425E50", (uint)a, (uint)b, (uint)c);
-            uint g = (uint)(func_0028D450(0x8011FE88u, a));
+            uint g = (uint)(Resource_GetIndexedCached(0x8011FE88u, a));
             if ((g == 0u))
             {
                 return 0u;

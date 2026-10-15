@@ -19,7 +19,7 @@ public static partial class Game
                 int pre = 0;
                 int i = 0;
                 int n = 0;
-                p = func_002A152C(s, find, default(uint), default(uint));
+                p = Str_FindSubstring(s, find, default(uint), default(uint));
                 flen = Str_Length(find);
                 while ((p != 0u))
                 {
@@ -50,7 +50,7 @@ public static partial class Game
                         Mem.Set((s + (uint)i), Mem.S8((_fp + (uint)i)));
                     }
                     Mem.Set((s + (uint)n), (sbyte)(0));
-                    p = func_002A152C(s, find, default(uint), default(uint));
+                    p = Str_FindSubstring(s, find, default(uint), default(uint));
                 }
             }
         }

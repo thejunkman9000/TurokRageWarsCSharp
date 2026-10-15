@@ -29,8 +29,8 @@ public static partial class Game
                 Mem.Set((r29 + 84u), r19);
                 Mem.Set((r29 + 80u), r18);
                 Mem.Set((r29 + 76u), r17);
-                Mem.Set((r29 + 72u), r16); func_002A33BC((int)r4);
-                r21 = r0; func_002A338C();
+                Mem.Set((r29 + 72u), r16); Menu_SetFixedFov((int)r4);
+                r21 = r0; Menu_DisableInput();
                 r17 = r21;
                 r20 = r21;
                 r19 = r21;

@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004143E0");
-            func_002A1D38();
-            func_0029E8A0();
+            File_Init();
+            Math_Init();
         }
     }
 

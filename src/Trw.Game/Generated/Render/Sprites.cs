@@ -90,6 +90,250 @@ public static partial class Game
         finally { Stack.Free(4); }
     }
 
+    // ==== func_0028E36C @ 0x0028E36C [C]
+    public static void Sprite_RemapNibbles(int unused, int handle, uint lut)
+    {
+        uint _fp = Stack.Alloc(8);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0028E36C", (uint)unused, (uint)handle, (uint)lut);
+                int i = 0;
+                for (i = 0; (i < 256); ++i)
+                {
+                    Sprite_GetFrame((uint)(handle), i, _fp, (_fp + 4u));
+                    if ((Mem.U32(_fp) != 0u))
+                    {
+                        uint h = Mem.U32(_fp);
+                        uint cell = 0u;
+                        int a = 0;
+                        int b = 0;
+                        int n = 0;
+                        uint p = 0u;
+                        int w = 0;
+                        int ht = 0;
+                        byte v = 0;
+                        int hi = 0;
+                        int lo = 0;
+                        cell = (h + (uint)(4 * 2));
+                        a = (int)(Mem.U16((h + (uint)(1 * 2))));
+                        while (((--a) != (-1)))
+                        {
+                            b = (int)(Mem.U16((h + (uint)(0 * 2))));
+                            while (((--b) != (-1)))
+                            {
+                                w = Mem.S32((cell + (uint)(0 * 4)));
+                                ht = Mem.S32((cell + (uint)(1 * 4)));
+                                p = (cell + (uint)8);
+                                n = (int)(((uint)((w * ht)) / (uint)(2)));
+                                while (((--n) != (-1)))
+                                {
+                                    v = Mem.U8(p);
+                                    hi = ((int)(v) >> (int)4);
+                                    lo = ((int)(v) & 15);
+                                    hi = (int)(Mem.U8((lut + (uint)hi)));
+                                    lo = (int)(Mem.U8((lut + (uint)lo)));
+                                    Mem.Set(p, (byte)(((hi << (int)4) | lo)));
+                                    p += 1u;
+                                }
+                                cell = (cell + (uint)((uint)((w * ht)) / (uint)(2)));
+                                cell = (cell + (uint)8);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        finally { Stack.Free(8); }
+    }
+
+    // ==== func_0028E480 @ 0x0028E480 [C]
+    public static void func_0028E480_remap(int handle, uint lut)
+    {
+        uint _fp = Stack.Alloc(8);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0028E480_remap", (uint)handle, (uint)lut);
+                int i = 0;
+                for (i = 0; (i < 256); ++i)
+                {
+                    Sprite_GetFrame((uint)(handle), i, _fp, (_fp + 4u));
+                    if ((Mem.U32(_fp) != 0u))
+                    {
+                        uint h = Mem.U32(_fp);
+                        uint cell = 0u;
+                        int a = 0;
+                        int b = 0;
+                        int n = 0;
+                        uint p = 0u;
+                        int w = 0;
+                        int ht = 0;
+                        byte v = 0;
+                        int hi = 0;
+                        int lo = 0;
+                        cell = (h + (uint)(4 * 2));
+                        a = (int)(Mem.U16((h + (uint)(1 * 2))));
+                        while (((--a) != (-1)))
+                        {
+                            b = (int)(Mem.U16((h + (uint)(0 * 2))));
+                            while (((--b) != (-1)))
+                            {
+                                w = Mem.S32((cell + (uint)(0 * 4)));
+                                ht = Mem.S32((cell + (uint)(1 * 4)));
+                                p = (cell + (uint)8);
+                                n = (int)(((uint)((w * ht)) / (uint)(2)));
+                                while (((--n) != (-1)))
+                                {
+                                    v = Mem.U8(p);
+                                    hi = ((int)(v) >> (int)4);
+                                    lo = ((int)(v) & 15);
+                                    hi = (int)(Mem.U8((lut + (uint)hi)));
+                                    lo = (int)(Mem.U8((lut + (uint)lo)));
+                                    Mem.Set(p, (byte)(((hi << (int)4) | lo)));
+                                    p += 1u;
+                                }
+                                cell = (cell + (uint)((uint)((w * ht)) / (uint)(2)));
+                                cell = (cell + (uint)8);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        finally { Stack.Free(8); }
+    }
+
+    public static void Sprite_OnLoadBrighten1(int unused, uint obj)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0028E480", (uint)unused, (uint)obj);
+            if ((Resource_UnpackRnc(obj, 0) != 0))
+            {
+                func_0028E480_remap(Mem.S32((obj + (uint)(0 * 4))), 0x800D2910u);
+            }
+        }
+    }
+
+    // ==== func_0028E5AC @ 0x0028E5AC [C]
+    public static void func_0028E5AC_remap(int handle, uint lut)
+    {
+        uint _fp = Stack.Alloc(8);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0028E5AC_remap", (uint)handle, (uint)lut);
+                int i = 0;
+                for (i = 0; (i < 256); ++i)
+                {
+                    Sprite_GetFrame((uint)(handle), i, _fp, (_fp + 4u));
+                    if ((Mem.U32(_fp) != 0u))
+                    {
+                        uint h = Mem.U32(_fp);
+                        uint cell = 0u;
+                        int a = 0;
+                        int b = 0;
+                        int n = 0;
+                        uint p = 0u;
+                        int w = 0;
+                        int ht = 0;
+                        byte v = 0;
+                        int hi = 0;
+                        int lo = 0;
+                        cell = (h + (uint)(4 * 2));
+                        a = (int)(Mem.U16((h + (uint)(1 * 2))));
+                        while (((--a) != (-1)))
+                        {
+                            b = (int)(Mem.U16((h + (uint)(0 * 2))));
+                            while (((--b) != (-1)))
+                            {
+                                w = Mem.S32((cell + (uint)(0 * 4)));
+                                ht = Mem.S32((cell + (uint)(1 * 4)));
+                                p = (cell + (uint)8);
+                                n = (int)(((uint)((w * ht)) / (uint)(2)));
+                                while (((--n) != (-1)))
+                                {
+                                    v = Mem.U8(p);
+                                    hi = ((int)(v) >> (int)4);
+                                    lo = ((int)(v) & 15);
+                                    hi = (int)(Mem.U8((lut + (uint)hi)));
+                                    lo = (int)(Mem.U8((lut + (uint)lo)));
+                                    Mem.Set(p, (byte)(((hi << (int)4) | lo)));
+                                    p += 1u;
+                                }
+                                cell = (cell + (uint)((uint)((w * ht)) / (uint)(2)));
+                                cell = (cell + (uint)8);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        finally { Stack.Free(8); }
+    }
+
+    public static void Sprite_OnLoadBrighten2(int unused, uint obj)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0028E5AC", (uint)unused, (uint)obj);
+            if ((Resource_UnpackRnc(obj, 0) != 0))
+            {
+                func_0028E5AC_remap(Mem.S32((obj + (uint)(0 * 4))), 0x800D2920u);
+            }
+        }
+    }
+
+    // ==== func_00290C04 @ 0x00290C04 [C]
+    public static void Gfx_DrawFullscreenSprite386(int arg)
+    {
+        uint _fp = Stack.Alloc(8);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_00290C04", (uint)arg);
+                uint g = 0u;
+                uint vi = Mem.U32(0x8011FE80u);
+                Gfx_ClearZBufferRect(arg, 0, Mem.S32(0x800E28D0u), 0, Mem.S32(0x800E28D4u), 0);
+                Mem.Set(_fp, (uint)(0));
+                Mem.Set((_fp + 4u), (uint)(0));
+                g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                new DlCmd(g).w0_Set(3976200192u);
+                new DlCmd(g).w1_Set((uint)(((((int)(((float)((Mem.S32(0x800E28D0u) - 1)) * 4.0f)) & 4095) << (int)12) | ((int)(((float)((Mem.S32(0x800E28D4u) - 1)) * 4.0f)) & 4095))));
+                g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                new DlCmd(g).w0_Set((4279238656u | (uint)(((Mem.S32(0x800E28D0u) - 1) & 4095))));
+                new DlCmd(g).w1_Set(new Vi(vi).fb);
+                g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                new DlCmd(g).w0_Set(3808430593u);
+                new DlCmd(g).w1_Set((uint)(3145728));
+                g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                new DlCmd(g).w0_Set(4244635647u);
+                new DlCmd(g).w1_Set(4294867260u);
+                g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                new DlCmd(g).w0_Set(3791650844u);
+                new DlCmd(g).w1_Set((uint)(0));
+                g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                new DlCmd(g).w0_Set(4143972352u);
+                new DlCmd(g).w1_Set((uint)(65537));
+                g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                new DlCmd(g).w0_Set(((4127195136u | (uint)(((Mem.S32(0x800E28D0u) & 1023) << (int)14))) | (uint)(((Mem.S32(0x800E28D4u) & 1023) << (int)2))));
+                new DlCmd(g).w1_Set((uint)(0));
+                Sprite_GetFrameSize(902, 0, _fp, (_fp + 4u));
+                if (((Mem.U32(_fp) != (uint)(0)) && (Mem.U32((_fp + 4u)) != (uint)(0))))
+                {
+                    Gfx_BeginFlatColorPass((uint)(255), default(uint), default(uint), default(uint));
+                    Sprite_Draw(902, 0, (short)(0), (short)(0), ((float)(Mem.S32(0x800E28D0u)) / (float)((int)(Mem.U32(_fp)))), ((float)(Mem.S32(0x800E28D4u)) / (float)((int)(Mem.U32((_fp + 4u))))), 1);
+                }
+            }
+        }
+        finally { Stack.Free(8); }
+    }
+
     // ==== func_002AA354 @ 0x002AA354 [MIPS]
     public static uint Gfx_DrawTexture4bPal_002AA354(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5)
     {
@@ -1093,7 +1337,7 @@ public static partial class Game
     }
 
     // ==== func_002AB19C @ 0x002AB19C [C]
-    public static void func_002AB19C_func_002ABDBC(uint hdr, int x0, short y)
+    public static void Gfx_DrawMaskedTileGridTwin(uint hdr, int x0, short y)
     {
         unchecked
         {
@@ -1129,7 +1373,7 @@ public static partial class Game
         }
     }
 
-    public static void func_002AB19C_func_002ABED4(uint hdr, float x0, float y, float sx, float sy)
+    public static void Sprite_DrawFrameScaledTwin(uint hdr, float x0, float y, float sx, float sy)
     {
         unchecked
         {
@@ -1161,7 +1405,7 @@ public static partial class Game
         }
     }
 
-    public static void func_002AB19C_func_002AC0A0(uint hdr, int x0, short y)
+    public static void Gfx_DrawTileGridTwin(uint hdr, int x0, short y)
     {
         unchecked
         {
@@ -1196,7 +1440,7 @@ public static partial class Game
         }
     }
 
-    public static void func_002AB19C_func_002AC1A0(uint hdr, float x0, float y, float sx, float sy)
+    public static void Gfx_DrawTileGrid4bScaledTwin(uint hdr, float x0, float y, float sx, float sy)
     {
         unchecked
         {
@@ -1242,32 +1486,87 @@ public static partial class Game
                 new DlCmd(g).w1_Set((uint)(0));
                 if ((h != 0))
                 {
-                    func_002AB8DC((uint)(h), idx, _fp, (_fp + 4u));
+                    Sprite_GetFrame((uint)(h), idx, _fp, (_fp + 4u));
                     if ((Mem.U32(_fp) != 0u))
                     {
                         if (((int)(Mem.U8((_fp + 4u))) != 0))
                         {
                             if ((flt != 0))
                             {
-                                func_002AB19C_func_002AC1A0(Mem.U32(_fp), (float)((short)(x)), (float)(y), sx, sy);
+                                Gfx_DrawTileGrid4bScaledTwin(Mem.U32(_fp), (float)((short)(x)), (float)(y), sx, sy);
                             }
                             else
                             {
-                                func_002AB19C_func_002AC0A0(Mem.U32(_fp), x, y);
+                                Gfx_DrawTileGridTwin(Mem.U32(_fp), x, y);
                             }
                         }
                         else
                         {
                             if ((flt != 0))
                             {
-                                func_002AB19C_func_002ABED4(Mem.U32(_fp), (float)((short)(x)), (float)(y), sx, sy);
+                                Sprite_DrawFrameScaledTwin(Mem.U32(_fp), (float)((short)(x)), (float)(y), sx, sy);
                             }
                             else
                             {
-                                func_002AB19C_func_002ABDBC(Mem.U32(_fp), x, y);
+                                Gfx_DrawMaskedTileGridTwin(Mem.U32(_fp), x, y);
                             }
                         }
                         Resource_MarkUsedInFrame(0, (uint)(h));
+                    }
+                }
+            }
+        }
+        finally { Stack.Free(5); }
+    }
+
+    // ==== func_002AB8DC @ 0x002AB8DC [C]
+    public static void Sprite_GetFrame(uint a0, int idx, uint @out, uint out2)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002AB8DC", (uint)a0, (uint)idx, (uint)@out, (uint)out2);
+            uint t = 0u;
+            uint e = 0u;
+            uint p = 0u;
+            int i = 0;
+            byte b = 0;
+            int off = 0;
+            Mem.Set(@out, 0u);
+            if ((a0 != 0u))
+            {
+                t = Mem.U32(a0);
+                i = (idx % (int)(Mem.S16(t)));
+                p = (t + (uint)8);
+                e = (uint)(((uint)((i * 8)) + (uint)(p)));
+                b = new TabEnt(e).unk4;
+                off = new TabEnt(e).off;
+                Mem.Set(out2, b);
+                Mem.Set(@out, (t + (uint)off));
+            }
+        }
+    }
+
+    // ==== func_002AB940 @ 0x002AB940 [C]
+    public static void Sprite_GetFrameSize(int id, int idx, uint out1, uint out2)
+    {
+        uint _fp = Stack.Alloc(5);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_002AB940", (uint)id, (uint)idx, (uint)out1, (uint)out2);
+                int h = 0;
+                uint q = 0u;
+                if ((Mem.S32(0x800D29B4u) != 0))
+                {
+                    h = Sprite_Lookup(0x8011FE88u, id, 0, 1);
+                    if ((h != 0))
+                    {
+                        Sprite_GetFrame((uint)(h), idx, _fp, (_fp + 4u));
+                        q = Mem.U32(_fp);
+                        Mem.Set(out1, (int)(new TabInfo(q).unk4));
+                        Mem.Set(out2, (int)(new TabInfo(q).unk6));
+                        ResourcePool_Unref(0, (uint)(h));
                     }
                 }
             }
@@ -1446,6 +1745,39 @@ public static partial class Game
                     p = (uint)(p + (uint)(8 * 1));
                 }
                 y = (short)((int)(y) + h);
+            }
+        }
+    }
+
+    // ==== func_002AC1A0 @ 0x002AC1A0 [C]
+    public static void Gfx_DrawTileGrid4bScaled(uint hdr, float x0, float y, float sx, float sy)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002AC1A0", (uint)hdr);
+            float rows = 0f;
+            float cols = 0f;
+            float x = 0f;
+            uint w = 0u;
+            uint h = 0u;
+            uint p = 0u;
+            p = (hdr + (uint)8);
+            h = (uint)(0);
+            rows = (float)(Mem.U16((hdr + (uint)(1 * 2))));
+            while (((rows--) != 0.0f))
+            {
+                cols = (float)(Mem.U16((hdr + (uint)(0 * 2))));
+                x = x0;
+                while (((cols--) != 0.0f))
+                {
+                    h = new AtlasCell(p).h;
+                    w = new AtlasCell(p).w;
+                    Gfx_DrawTexture4bScaled((p + (uint)8), x, y, w, h, sx, sy);
+                    x = (float)((float)(x) + ((float)(w) * sx));
+                    p = (uint)(p + (uint)(((w * h) >> (int)1) * 1));
+                    p = (uint)(p + (uint)(8 * 1));
+                }
+                y = (float)((float)(y) + ((float)(h) * sy));
             }
         }
     }

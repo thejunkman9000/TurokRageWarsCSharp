@@ -1956,7 +1956,7 @@ public static partial class Game
                 { bool c_ = r2 == 0; r5 = r18; if (c_) goto L_L00249D30; }
                 r4 = 2148794368u;
                 r4 = r4 - 17792u;
-                r6 = r29 + 104u; func_002A67D0(r4, (int)r5, r6);
+                r6 = r29 + 104u; Trail_AddSegmentsFromBones(r4, (int)r5, r6);
                 L_L00249D30: ;
                 r2 = Mem.U32((r18 + 256u));
                 r2 = r2 & 8u;
@@ -1986,7 +1986,7 @@ public static partial class Game
                 Cpu.SetS(1, Cpu.S(1) + Cpu.S(0));
                 r6 = r6 + 320u;
                 r6 = r18 + r6;
-                Mem.Set((r29 + 8300u), Cpu.W(1)); func_0028C6B0(r4, r5, r6);
+                Mem.Set((r29 + 8300u), Cpu.W(1)); Light_GetLightsAt(r4, r5, r6);
                 L_L00249DB0: ;
                 r2 = Mem.U32((r18 + 256u));
                 r16 = (uint)1;

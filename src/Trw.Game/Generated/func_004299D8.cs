@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004299D8");
-            func_0029A73C();
+            Menu_ConsumeEvent();
             if ((func_0043C4E8(Mem.U32(0x800E4EF0u)) == 1))
             {
                 return 0;
@@ -20,15 +20,15 @@ public static partial class Game
             case 875:
                 func_004296A4();
                 func_0042EB68((-1));
-                func_0029A8A8();
+                Menu_GoBack();
                 break;
             case 873:
-                if ((func_002A2B18((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk34)) > 0))
+                if ((NumberField_GetValue((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk34)) > 0))
                 {
                     func_004296A4();
                     func_00429834(0);
                     func_0042EB68(23);
-                    func_0029A8A8();
+                    Menu_GoBack();
                 }
                 break;
             case 874:
@@ -36,8 +36,8 @@ public static partial class Game
                 func_00429834(0);
                 func_0041E668();
                 func_0042EB68(25);
-                func_0029A8A8();
-                func_002A338C();
+                Menu_GoBack();
+                Menu_DisableInput();
                 break;
             }
             return 0;

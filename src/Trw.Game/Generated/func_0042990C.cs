@@ -12,23 +12,23 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0042990C", (uint)a, (uint)b, (uint)c, (uint)d);
             if ((((c >> (int)16) == (uint)(3)) && (d == 2)))
             {
-                func_0029A73C();
+                Menu_ConsumeEvent();
                 switch (Menu_GetMessage())
                 {
                 case 867:
-                    func_002A2B24((uint)(new O04S4EF0c(Mem.U32(0x800E4EF0u)).unk24), 0);
+                    NumberField_SetValue((uint)(new O04S4EF0c(Mem.U32(0x800E4EF0u)).unk24), 0);
                     break;
                 case 865:
-                    func_002A2B24((uint)(new O04S4EF0c(Mem.U32(0x800E4EF0u)).unk28), 0);
+                    NumberField_SetValue((uint)(new O04S4EF0c(Mem.U32(0x800E4EF0u)).unk28), 0);
                     break;
                 case 863:
-                    func_002A2B24((uint)(new O04S4EF0c(Mem.U32(0x800E4EF0u)).unk2C), 0);
+                    NumberField_SetValue((uint)(new O04S4EF0c(Mem.U32(0x800E4EF0u)).unk2C), 0);
                     break;
                 case 869:
-                    func_002A2B24((uint)(new O04S4EF0c(Mem.U32(0x800E4EF0u)).unk30), 0);
+                    NumberField_SetValue((uint)(new O04S4EF0c(Mem.U32(0x800E4EF0u)).unk30), 0);
                     break;
                 case 876:
-                    func_002A2B24((uint)(new O04S4EF0c(Mem.U32(0x800E4EF0u)).unk34), new O04S4EF0c(Mem.U32(0x800E4EF0u)).unk3C);
+                    NumberField_SetValue((uint)(new O04S4EF0c(Mem.U32(0x800E4EF0u)).unk34), new O04S4EF0c(Mem.U32(0x800E4EF0u)).unk3C);
                     break;
                 }
             }

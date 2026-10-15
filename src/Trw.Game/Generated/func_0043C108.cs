@@ -13,7 +13,7 @@ public static partial class Game
             int i = 0;
             uint m = 0u;
             uint p = 0u;
-            func_0029A73C();
+            Menu_ConsumeEvent();
             i = (c & 65535);
             m = Mem.U32(0x800E59E0u);
             p = (m + (uint)(i * 1232));

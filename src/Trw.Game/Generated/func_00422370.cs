@@ -14,12 +14,12 @@ public static partial class Game
             {
                 return 0;
             }
-            func_002A3358();
+            Menu_EnableInput();
             if ((new O3Q24(Mem.U32(0x800E44A0u)).f20 != 1))
             {
                 return 0;
             }
-            func_002A338C();
+            Menu_DisableInput();
             if (((int)(Mem.U8(0x801462D5u)) == 0))
             {
                 Flyby_Abort();

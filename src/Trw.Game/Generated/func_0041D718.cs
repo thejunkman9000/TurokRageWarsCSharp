@@ -20,24 +20,24 @@ public static partial class Game
             new O3TxtItem(it).txt_Set(func_00424FC8(new O3Pk(Mem.U32(0x800E3590u)).slot));
             it = UiTree_FindNode((uint)(new O3Pk(Mem.U32(0x800E3590u)).parent), (uint)(509), default(uint), default(uint));
             func_0040E958(it, 1);
-            func_002A1C08(new O3Pk(Mem.U32(0x800E3590u)).name.P, Str.Lit("%ld"), (uint)(new O3Rec((0x80102B00u + (uint)(new O3Pk(Mem.U32(0x800E3590u)).slot * 400))).f70), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            Str_FormatInto(new O3Pk(Mem.U32(0x800E3590u)).name.P, Str.Lit("%ld"), (uint)(new O3Rec((0x80102B00u + (uint)(new O3Pk(Mem.U32(0x800E3590u)).slot * 400))).f70), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             new O3TxtItem(it).txt_Set(new O3Pk(Mem.U32(0x800E3590u)).name.P);
             it = UiTree_FindNode((uint)(new O3Pk(Mem.U32(0x800E3590u)).parent), (uint)(500), default(uint), default(uint));
             func_0040E958(it, 1);
-            func_002A1C08(new O3Pk(Mem.U32(0x800E3590u)).str142.P, Str.Lit("%ld"), (uint)(new O3Rec((0x80102B00u + (uint)(new O3Pk(Mem.U32(0x800E3590u)).slot * 400))).f6C), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            Str_FormatInto(new O3Pk(Mem.U32(0x800E3590u)).str142.P, Str.Lit("%ld"), (uint)(new O3Rec((0x80102B00u + (uint)(new O3Pk(Mem.U32(0x800E3590u)).slot * 400))).f6C), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             new O3TxtItem(it).txt_Set(new O3Pk(Mem.U32(0x800E3590u)).str142.P);
             it = UiTree_FindNode((uint)(new O3Pk(Mem.U32(0x800E3590u)).parent), (uint)(502), default(uint), default(uint));
             func_0040E958(it, 1);
-            func_002A1C08(new O3Pk(Mem.U32(0x800E3590u)).str174.P, Str.Lit("%ld"), (uint)(new O3Rec((0x80102B00u + (uint)(new O3Pk(Mem.U32(0x800E3590u)).slot * 400))).f74), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            Str_FormatInto(new O3Pk(Mem.U32(0x800E3590u)).str174.P, Str.Lit("%ld"), (uint)(new O3Rec((0x80102B00u + (uint)(new O3Pk(Mem.U32(0x800E3590u)).slot * 400))).f74), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             new O3TxtItem(it).txt_Set(new O3Pk(Mem.U32(0x800E3590u)).str174.P);
             v = func_004261E4(new O3Pk(Mem.U32(0x800E3590u)).slot);
             it = UiTree_FindNode((uint)(new O3Pk(Mem.U32(0x800E3590u)).parent), (uint)(505), default(uint), default(uint));
             func_0040E958(it, 1);
-            func_002A1C08(new O3Pk(Mem.U32(0x800E3590u)).str1A6.P, Str.Lit("%d"), (uint)(v), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            Str_FormatInto(new O3Pk(Mem.U32(0x800E3590u)).str1A6.P, Str.Lit("%d"), (uint)(v), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             new O3TxtItem(it).txt_Set(new O3Pk(Mem.U32(0x800E3590u)).str1A6.P);
             it = UiTree_FindNode((uint)(new O3Pk(Mem.U32(0x800E3590u)).parent), (uint)(506), default(uint), default(uint));
             func_0040E958(it, 1);
-            func_002A1C08(new O3Pk(Mem.U32(0x800E3590u)).str1D8.P, Str.Lit("%d"), (uint)((int)(new O3Rec((0x80102B00u + (uint)(new O3Pk(Mem.U32(0x800E3590u)).slot * 400))).f17)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            Str_FormatInto(new O3Pk(Mem.U32(0x800E3590u)).str1D8.P, Str.Lit("%d"), (uint)((int)(new O3Rec((0x80102B00u + (uint)(new O3Pk(Mem.U32(0x800E3590u)).slot * 400))).f17)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             new O3TxtItem(it).txt_Set(new O3Pk(Mem.U32(0x800E3590u)).str1D8.P);
         }
     }

@@ -110,7 +110,7 @@ public static partial class Game
                 r2 = r2 & 4096u;
                 { bool c_ = r2 == 0;  if (c_) goto L_L0041C130; }
                 L_L0041C0D8: ;
-                func_0029A73C();
+                Menu_ConsumeEvent();
                 r1 = 2148794368u;
                 Mem.Set((r1 + 28000u), r16);
                 r1 = 2148401152u;
@@ -126,7 +126,7 @@ public static partial class Game
                 Mem.Set((r1 + 13588u), r2);
                 L_L0041C118: ;
                 r4 = (uint)6; func_00435190((int)r4);
-                r4 = (uint)19; func_00299368((int)r4);
+                r4 = (uint)19; Menu_GotoScreen((int)r4);
                  goto L_L0041C1CC;
                 L_L0041C130: ;
                 { bool c_ = r17 != r16;  if (c_) goto L_L0041C148; }
@@ -143,7 +143,7 @@ public static partial class Game
                 r6 = 2148401152u;
                 r6 = Mem.U32((r6 + 13584u));
                 r4 = r4 + 32u;
-                r6 = r6 + 1u; r2 = func_002A1C08(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
+                r6 = r6 + 1u; r2 = Str_FormatInto(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 13592u));
                 r5 = r0;
@@ -161,7 +161,7 @@ public static partial class Game
                 L_L0041C1BC: ;
                 r2 = Menu_MoveFocus(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_L0041C1C4: ;
-                func_002A3358();
+                Menu_EnableInput();
                 L_L0041C1CC: ;
                 r31 = Mem.U32((r29 + 36u));
                 r18 = Mem.U32((r29 + 32u));
@@ -201,8 +201,8 @@ public static partial class Game
                 if ((new S1008Menu(Mem.U32(0x800E3590u)).timer_Set((int)(new S1008Menu(Mem.U32(0x800E3590u)).timer - 1)) <= 0))
                 {
                     new S1008Menu(Mem.U32(0x800E3590u)).state_Set(3);
-                    func_0029A73C();
-                    func_0029A8A8();
+                    Menu_ConsumeEvent();
+                    Menu_GoBack();
                     return 0;
                 }
                 break;
@@ -369,7 +369,7 @@ public static partial class Game
                 L_I004308D4: ;
                 Mem.Set((r29 + 32u), r18);
                 L_I004308D8: ;
-                Mem.Set((r29 + 28u), r17); func_0029A73C();
+                Mem.Set((r29 + 28u), r17); Menu_ConsumeEvent();
                 L_I004308E0: ;
                 r17 = r0;
                 L_I004308E4: ;
@@ -1123,7 +1123,7 @@ public static partial class Game
                 r4 = r0; func_00435898((int)r4);
                 L_L00430F60: ;
                 L_I00430F60: ;
-                func_0029A73C();
+                Menu_ConsumeEvent();
                 L_I00430F68: ;
                 r4 = (uint)9; r2 = Menu_EnterSelectedState_00435958(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00430F70: ;
@@ -1712,7 +1712,7 @@ public static partial class Game
                 L_I00431460: ;
                 r4 = r4 + r3;
                 L_I00431464: ;
-                r4 = r4 + 1684u; r2 = (uint)func_002A15D0(r4);
+                r4 = r4 + 1684u; r2 = (uint)Str_ToInt(r4);
                 L_I0043146C: ;
                 { bool c_ = (int)r2 <= 0; r4 = r18; if (c_) goto L_L0043230C; }
                 L_I00431474: ;
@@ -2159,7 +2159,7 @@ public static partial class Game
                 L_I0043185C: ;
                 r5 = r5 + 24u;
                 L_I00431860: ;
-                r5 = r7 + r5; r2 = func_002A1724(r4, r5, r6);
+                r5 = r7 + r5; r2 = Mem_Copy(r4, r5, r6);
                 L_I00431868: ;
                 r2 = 2148401152u;
                 L_I0043186C: ;
@@ -3345,7 +3345,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00432334", (uint)a, (uint)b, (uint)idx);
-            func_0029A73C();
+            Menu_ConsumeEvent();
             idx = (uint)((uint)(idx) & (uint)(65535));
             if ((new O05Lobby(Mem.U32(0x800E54A4u)).h.f54 == 7))
             {
@@ -3359,21 +3359,21 @@ public static partial class Game
                 {
                     return 0;
                 }
-                func_0029A73C();
+                Menu_ConsumeEvent();
                 Menu_EnterSelectedState_00435958((uint)(27), default(uint), default(uint), default(uint));
                 return 0;
             case 12:
-                func_0029A73C();
+                Menu_ConsumeEvent();
                 new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].name.Set((int)((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 * 2)), (byte)(32));
                 break;
             case 22:
-                func_0029A73C();
+                Menu_ConsumeEvent();
                 func_00433DA8((-1));
                 new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].state_Set(13);
                 PlayerMenu_RefreshPanel((uint)((int)(idx)), default(uint), default(uint), default(uint));
                 break;
             case 27:
-                func_0029A73C();
+                Menu_ConsumeEvent();
                 func_00433F14((-1));
                 new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].state_Set(13);
                 PlayerMenu_RefreshPanel((uint)((int)(idx)), default(uint), default(uint), default(uint));
@@ -3608,7 +3608,7 @@ public static partial class Game
                 L_I0043265C: ;
                 r4 = r4 + r16;
                 L_I00432660: ;
-                r4 = r4 + 2896u; r2 = func_002A125C(r4, r5);
+                r4 = r4 + 2896u; r2 = LibC_StrCopy(r4, r5);
                 L_I00432668: ;
                 r5 = 2148401152u;
                 L_I0043266C: ;
@@ -4633,7 +4633,7 @@ public static partial class Game
                  goto L_L00432FFC;
                 L_L00432F90: ;
                 L_I00432F90: ;
-                func_002A338C();
+                Menu_DisableInput();
                 L_I00432F98: ;
                 r4 = 2148401152u;
                 L_I00432F9C: ;

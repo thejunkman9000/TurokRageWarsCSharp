@@ -23,7 +23,7 @@ public static partial class Game
                     {
                         return 0;
                     }
-                    func_002A3358();
+                    Menu_EnableInput();
                     func_0041C2C4();
                 }
             }

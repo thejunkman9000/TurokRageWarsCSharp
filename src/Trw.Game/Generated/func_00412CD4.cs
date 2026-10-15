@@ -19,7 +19,7 @@ public static partial class Game
                 }
             }
             func_00412270(p);
-            func_0029A73C();
+            Menu_ConsumeEvent();
             return 0;
         }
     }

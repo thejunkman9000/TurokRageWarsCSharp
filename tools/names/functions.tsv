@@ -2049,643 +2049,643 @@ func_00285D80	0x00285D80	Level_SetEntitySavedFlag	World/Level.cs	medium	sets/cle
 func_00285F28	0x00285F28	Level_IsEntitySavedFlagSet	World/Level.cs	medium	tests that bit; callers *_Restore, *_IsSavedFlagSet, Level_SpawnActorFromRecord
 func_00286050	0x00286050	Level_UpdateFrame	World/Level.cs	medium	per-frame world update: option change tracking, MtxStack_Reset, Player_FreeAll, Level_UpdateActors, Particle_UpdateAll, Player_AnimateBodies, View_UpdateAll
 func_00286254	0x00286254	Level_UpdateActors	World/Level.cs	medium	Actor_RunStateUpdate/Actor_Advance for leading type-2 actors, Player_UpdateAll, match-end check (cue 0x34, menu return), then the rest
-func_00286424	0x00286424				
-func_002866F8	0x002866F8				
-func_00286920	0x00286920				
+func_00286424	0x00286424	Level_DrawObjectsSorted	World/Level.cs	medium	sorts the draw list by camera distance (Sort_QuickWithSwap, far first) then draws props/actors/pickups by type; caller View_DrawWorld
+func_002866F8	0x002866F8	Collision_FindFloorTriangle	World/Collision.cs	medium	scans level cells (f6C sections 2/3) for 32-byte triangles under p: volume tris (flag 0x40) containing y, else nearest floor height
+func_00286920	0x00286920	Level_CollectClass13Entities_00286920	World/Level.cs	low	fills list1 (0x1B620, max 16) with class 0xD entities; shows/hides 0xD2B-0xD2E variants by option bytes D_800E4680[1..4]; caller Level_Load
 func_00286A78	0x00286A78	Level_Load	World/Level.cs	high	harvest: port/overrides/func_004396BC.c (TUROK_LEVEL calls func_00286A78(D_8011FE88, map, 0)) + src comment: initializes scene resources, actors and game mode state
 func_0028784C	0x0028784C	Level_SpawnEntity	World/Level.cs	medium	harvest: src/game/func_0028784C.c comment: spawns an entity when its bit is set in the current level's placement mask and its flag is clear
-func_0028795C	0x0028795C				
-func_00287EE8	0x00287EE8				
-func_00288440	0x00288440				
-func_00288908	0x00288908				
-func_00288E78	0x00288E78				
-func_00289054	0x00289054				
-func_00289790	0x00289790				
-func_0028994C	0x0028994C				
-func_0028A258	0x0028A258				
-func_0028A674	0x0028A674				
-func_0028A924	0x0028A924				
-func_0028AFC8	0x0028AFC8				
-func_0028AFE8	0x0028AFE8				
-func_0028B004	0x0028B004				
-func_0028B13C	0x0028B13C				
-func_0028B1F8	0x0028B1F8				
-func_0028B238	0x0028B238				
+func_0028795C	0x0028795C	Level_OnCellLoaded	World/Level.cs	medium	cell resource load callback (passed to ResourceCache_Hash): unpacks RNC, builds prop/pickup/light-volume sections, applies saved pickup bits
+func_00287EE8	0x00287EE8	Level_BuildActiveActorLists	World/Level.cs	medium	per frame: culls entities against view boxes and sorts visible ones into the active/visible/class-1/collider/class-5/0x64F/0x64D lists; caller Level_UpdateFrame
+func_00288440	0x00288440	Level_StreamVisibleCells	World/Level.cs	medium	computes the cell range inside the view bounds and requests each cell resource (callback Level_OnCellLoaded), max 0x80 entries
+func_00288908	0x00288908	Level_BuildStaticPropDisplayList	World/Level.cs	medium	loads every cell, draws all props into a cached display list blob (opaque/translucent lists), tracks min Y; caller Level_DrawStaticProps
+func_00288E78	0x00288E78	Level_DrawStaticProps	World/Level.cs	medium	builds (Level_BuildStaticPropDisplayList) then calls the cached prop display lists in two passes split by flag fD8&4
+func_00289054	0x00289054	Level_DrawVisibleCells	World/Level.cs	medium	for each loaded cell inside the view: culls props (Prop_UpdateLodFade/Prop_DrawLodFaded) and pickups, defers translucent ones; caller View_DrawWorld
+func_00289790	0x00289790	Light_FindVolumesAt	Render/Lighting.cs	medium	finds the loaded cell containing p and returns up to 10 light volumes (cell section 2) whose box contains p; caller Light_GetLightsAt
+func_0028994C	0x0028994C	Light_ComputeFromVolumes	Render/Lighting.cs	medium	accumulates light volume colours/directions (Light_EvalVolumeAtPoint, flicker) into a Lights1 block (ambient, colour, dir*127)
+func_0028A258	0x0028A258	Level_FireTouchTriggers	World/Level.cs	medium	actor moved p0->p1: for class 6/7/10 entities in the collider list fires enter/leave events (Actor_DispatchEvent) on radius crossings; callers Player_Tick, Actor_Advance
+func_0028A674	0x0028A674	Level_UpdateTransitionFade	World/Level.cs	medium	fade state 1/2 at 0x1B414 with palette D_800D2934: at full fade loads the next level (Level_Load, Track_FindPlacedObjects) then fades back
+func_0028A924	0x0028A924	Flyby_BuildMatchGoalText	World/Flyby.cs	medium	Flyby_ClearText then adds the level name and goal lines from strings "capture the flag %d times", "tag the monkey", "in %d minutes", "with %d lives"
+func_0028AFC8	0x0028AFC8	Level_GetChunk70Entry_0028AFC8	World/Level.cs	low	returns Chunk_Get(lv+0x70, idx); caller func_002A5588
+func_0028AFE8	0x0028AFE8	Level_GetLightDef_0028AFE8	World/Level.cs	low	returns entry idx of the stride table at lv+0xA0; caller Light_AcquireDefault
+func_0028B004	0x0028B004	Level_DrawActors	World/Level.cs	medium	draws every listed actor (Actor_Draw), deferring flag-4 (translucent) ones to the 0x10C0 list; caller View_DrawWorld
+func_0028B13C	0x0028B13C	Level_DrawParticles	World/Level.cs	medium	sets segment regs then Particle_DrawAll(lv+0x1B08) between Model batch begin/flush; caller View_DrawWorld
+func_0028B1F8	0x0028B1F8	Level_FindTypeIndexById	World/Level.cs	high	linear search of the u16 type id table at lv+0x94, returns index or -1; callers ActorPool_Spawn, Actor_Init, pickup spawns
+func_0028B238	0x0028B238	Level_GetTypeIdByIndex	World/Level.cs	high	returns the u16 type id table[lv+0x94][i]; callers Actor_GetTypeId, Pickup_SelectModelVariant
 func_0028B250	0x0028B250	Sound_StartForActor	Audio/Sound.cs	medium	harvest: src/ovl_a/func_0044ACCC.c comment: starts sound D_8011FE88 for the actor through func_0028B250
-func_0028B264	0x0028B264				
-func_0028B2D4	0x0028B2D4				
-func_0028B32C	0x0028B32C				
-func_0028B370	0x0028B370				
-func_0028B3C0	0x0028B3C0				
-func_0028B4A4	0x0028B4A4				
-func_0028B4AC	0x0028B4AC				
-func_0028B59C	0x0028B59C				
-func_0028B64C	0x0028B64C				
-func_0028B790	0x0028B790				
+func_0028B264	0x0028B264	Sound_StartForActorTwin	Audio/Sound.cs	medium	recompiled twin starting 0x14 into func_0028B250 (looks up type id, sets actor +4 index/+0xE4 id, Actor_ResetAnimObject)
+func_0028B2D4	0x0028B2D4	Level_GetRegion	World/Level.cs	medium	returns the 100-byte region record (*idx) from lv+0x6C section 0; callers Actor_GetCurrentRegion, View_UpdateFog
+func_0028B32C	0x0028B32C	Level_GetFloorTriangleIndex	World/Level.cs	medium	index of a 32-byte triangle in lv+0x6C section 2 (or -1); caller Level_SavePlayersForRestart
+func_0028B370	0x0028B370	Level_GetFloorTriangle	World/Level.cs	medium	bounds-checked pointer to triangle idx in lv+0x6C section 2; callers Player_PlaceAtSpawn, Level_RestorePlayersAfterRestart
+func_0028B3C0	0x0028B3C0	Level_SetEntityFlag84_0028B3C0	World/Level.cs	low	sets/clears entity bit in the lv+0x84 bit tree [0][map][0] (twin of the saved-flag tree at +0x80)
+func_0028B4A4	0x0028B4A4	Level_StubNop_0028B4A4	World/Level.cs	low	empty function
+func_0028B4AC	0x0028B4AC	Level_SetEntityFlag84Current_0028B4AC	World/Level.cs	low	same as Level_SetEntityFlag84 for the current map (0x1B40C)
+func_0028B59C	0x0028B59C	Level_IsEntityFlag84Set_0028B59C	World/Level.cs	low	tests entity bit in lv+0x84 tree [0][current map][0]
+func_0028B64C	0x0028B64C	Level_SetEntitySavedFlagInMap	World/Level.cs	medium	sets/clears bit in saved tree lv+0x80 [0][map][0] (skips mode 2 and flagged class 9/10); callers *_SetSavedFlagByRef
+func_0028B790	0x0028B790	Level_SetPickupSavedFlagInMap	World/Level.cs	medium	sets/clears bit in saved tree lv+0x80 [0][map][1] (pickup bits, checked by Level_OnCellLoaded)
 func_0028B874	0x0028B874	PropTree_SetBit	System/Resource.cs	medium	harvest: FINDINGS p2: 0028B874 sets/clears one bit
-func_0028B964	0x0028B964				
-func_0028BA14	0x0028BA14				
-func_0028BAF8	0x0028BAF8				
-func_0028BBE8	0x0028BBE8				
-func_0028BC98	0x0028BC98				
-func_0028BD28	0x0028BD28				
-func_0028BD88	0x0028BD88				
-func_0028BDE4	0x0028BDE4				
+func_0028B964	0x0028B964	Level_IsPickupSavedFlagSet	World/Level.cs	medium	tests pickup bit (+0x19E of the pickup) in lv+0x80 [0][current map][1]
+func_0028BA14	0x0028BA14	Level_SetTriggerSavedFlagInMap	World/Level.cs	medium	sets/clears bit in saved tree lv+0x80 [0][map][2] (trigger record bits)
+func_0028BAF8	0x0028BAF8	Level_SetTriggerSavedFlag	World/Level.cs	medium	sets/clears trigger record bit (+0x13) in [0][current map][2]; callers Level_ActivateTriggerRecord, Level_ProcessTriggerRecords
+func_0028BBE8	0x0028BBE8	Level_IsTriggerSavedFlagSet	World/Level.cs	medium	tests trigger record bit (+0x13) in [0][current map][2]; caller Level_ProcessTriggerRecords
+func_0028BC98	0x0028BC98	Level_GetTriggerCounterByKey	World/Level.cs	medium	finds key in the lv+0xB0 key list and returns its counter byte from lv+0x80 section 1, else -1
+func_0028BD28	0x0028BD28	Level_DecrementTriggerCounter	World/Level.cs	medium	decrements counter byte idx of lv+0x80 section 1; caller Level_ProcessTriggerRecords
+func_0028BD88	0x0028BD88	Level_IsTriggerCounterZero	World/Level.cs	medium	counter byte idx of lv+0x80 section 1 == 0; caller Level_ProcessTriggerRecords
+func_0028BDE4	0x0028BDE4	Level_LoadAsset98ByKey_0028BDE4	World/Level.cs	low	binary-searches key in lv+0x98 and loads that entry (lv+0x58/0x28 cartridge keys) through ResourceCache_Hash
 func_0028BE88	0x0028BE88	Sprite_Lookup	Render/Sprites.cs	high	harvest: docs/HUD.md + GameSprites.cs: the game's sprite lookup (library key table +0x9C binary search, offset table, base)
-func_0028BFB4	0x0028BFB4				
-func_0028C02C	0x0028C02C				
-func_0028C0E4	0x0028C0E4				
-func_0028C138	0x0028C138				
-func_0028C174	0x0028C174				
-func_0028C1B0	0x0028C1B0				
-func_0028C248	0x0028C248				
-func_0028C34C	0x0028C34C				
-func_0028C400	0x0028C400				
-func_0028C490	0x0028C490				
-func_0028C544	0x0028C544				
-func_0028C5E8	0x0028C5E8				
-func_0028C6B0	0x0028C6B0				
-func_0028C7BC	0x0028C7BC				
-func_0028C810	0x0028C810				
-func_0028C910	0x0028C910				
-func_0028CABC	0x0028CABC				
-func_0028CB8C	0x0028CB8C				
-func_0028CC10	0x0028CC10				
-func_0028CC80	0x0028CC80				
-func_0028CCB8	0x0028CCB8				
-func_0028CD44	0x0028CD44				
-func_0028CDCC	0x0028CDCC				
-func_0028CE54	0x0028CE54				
-func_0028CE70	0x0028CE70				
+func_0028BFB4	0x0028BFB4	Level_SpawnPickup	World/Level.cs	medium	PickupPool_Spawn(lv+0x11778, no counter, zero velocity, pos, type)
+func_0028C02C	0x0028C02C	Collision_UpdateFloorTriangle	World/Collision.cs	medium	keeps the given triangle when p is still inside it (volume: between floor and ceiling), else Collision_FindFloorTriangle; callers Collision_MoveActor
+func_0028C0E4	0x0028C0E4	Level_FindClass13EntityById_0028C0E4	World/Level.cs	low	searches list1 (class 0xD entities) for def +0xC == id
+func_0028C138	0x0028C138	Level_GetCartKey50_0028C138	World/Level.cs	low	Resource_GetCartridgeKey(lv+0x50, lv+0x20, idx, &size); caller func_00296DDC
+func_0028C174	0x0028C174	Level_GetModelKey	World/Level.cs	medium	cartridge key of model idx from lv+0x54/0x24 (bounds checked); callers Level_SpawnPickups, Player_DrawMarker, pickup pool
+func_0028C1B0	0x0028C1B0	Level_FindRegionTriggerRecords	World/Level.cs	medium	Sort_FindEqualRange over the region-keyed trigger records (0x11CC/0x11C4); caller Level_FireRegionTriggers
+func_0028C248	0x0028C248	Level_FindEntityTriggerRecords	World/Level.cs	medium	entity index then Sort_FindEqualRange over entity-keyed trigger records (0x11C8/0x11C0); caller Level_FireEntityTriggers
+func_0028C34C	0x0028C34C	Level_ActivateTriggerRecordsByKey	World/Level.cs	medium	Level_ActivateTriggerRecord for every record (both lists) with this key
+func_0028C400	0x0028C400	Level_AreTriggerRecordsDone	World/Level.cs	medium	1 when every record with this key has flag 0x40
+func_0028C490	0x0028C490	Level_SpawnTriggerFollowupsByKey	World/Level.cs	medium	Level_SpawnTriggerFollowup for every record with this key
+func_0028C544	0x0028C544	Level_ScheduleDelayedSpawn	World/Level.cs	medium	takes a node from the free list (0x11EC) to the active list (0x11D8), or recycles the oldest (Entity_Spawn now); timer = desc +0xC (x15 when flag 2)
+func_0028C5E8	0x0028C5E8	Level_UpdateDelayedSpawns	World/Level.cs	medium	counts down timed nodes, calls Entity_Spawn when expired and returns them to the free list; caller Level_UpdateFrame
+func_0028C6B0	0x0028C6B0	Light_GetLightsAt	Render/Lighting.cs	medium	default lights D_800D0EE0 when no light volumes, else Light_FindVolumesAt + Light_ComputeFromVolumes; callers Player_DrawModelPass, Actor_BuildPoseMatrices
+func_0028C7BC	0x0028C7BC	Level_FindClass14EntityById_0028C7BC	World/Level.cs	low	searches list2 (class 0xE entities) for def +0xC == id
+func_0028C810	0x0028C810	Level_FindNearestClass14Entity_0028C810	World/Level.cs	low	nearest list2 (class 0xE) entity to the actor from Obj_GetField20(D_80145040)
+func_0028C910	0x0028C910	Level_AddActiveActor	World/Level.cs	medium	adds an actor to the same active lists as Level_BuildActiveActorLists (always-active, visible, class 1, collider, class 5, 0x64F, 0x64D); caller ActorPool_UpdateInBounds
+func_0028CABC	0x0028CABC	Level_FindNearestEntity	World/Level.cs	medium	nearest entity to ref filtered by type id, class and alive flag (+0x174)
+func_0028CB8C	0x0028CB8C	Level_FindNearestObject64F_0028CB8C	World/Level.cs	low	nearest entity of the 0x64F list (0x10A4) to e
+func_0028CC10	0x0028CC10	Level_ReassignLeader_0028CC10	World/Level.cs	low	finds the first actor whose +0x1D8 link == key, clears its link and points the other followers of key at it
+func_0028CC80	0x0028CC80	Level_ClearActorOwnerRefs	World/Level.cs	medium	clears a->owner on every listed actor that points at owner
+func_0028CCB8	0x0028CCB8	Level_DamageAllClass1Actors_0028CCB8	World/Level.cs	low	DamageInfo_Set(102.4, args) then ActorState_CallHandler for every class-1 actor in list 0xF54
+func_0028CD44	0x0028CD44	Level_SetAllItemSpawnersSaved	World/Level.cs	medium	Level_SetEntitySavedFlag(1) for every class 3 (ItemSpawner) entity
+func_0028CDCC	0x0028CDCC	Level_ClearAllItemSpawnersSaved	World/Level.cs	medium	Level_SetEntitySavedFlag(0) for every class 3 (ItemSpawner) entity
+func_0028CE54	0x0028CE54	Level_GetEnvelopeDef	World/Level.cs	medium	entry idx of the stride table at lv+0xA4; callers Rumble_InitSource, Pool_AcquireNode (rumble envelopes)
+func_0028CE70	0x0028CE70	Rumble_StartById	Player/Controls.cs	medium	Sort_FindEqualRange of id in lv+0xA8, acquires a rumble source for each def in lv+0xAC; callers Event_Rumble, Player_ApplyDamage
 func_0028CF48	0x0028CF48	Level_GetDefinition	World/Level.cs	medium	harvest: tools/overrides/func_0028CF48.c: returns func_0028FD94(lv->unk78, idx) or 0 for -1; used as actor->def = func_0028CF48(world, rec->id)
-func_0028CF7C	0x0028CF7C				
-func_0028D02C	0x0028D02C				
-func_0028D0E4	0x0028D0E4				
-func_0028D1F4	0x0028D1F4				
-func_0028D220	0x0028D220				
-func_0028D268	0x0028D268				
-func_0028D35C	0x0028D35C				
-func_0028D450	0x0028D450				
-func_0028D578	0x0028D578				
-func_0028D5F8	0x0028D5F8				
-func_0028D620	0x0028D620				
-func_0028D628	0x0028D628				
-func_0028D658	0x0028D658				
-func_0028D728	0x0028D728				
-func_0028D7A0	0x0028D7A0				
-func_0028D864	0x0028D864				
-func_0028D8E8	0x0028D8E8				
-func_0028D940	0x0028D940				
-func_0028DA50	0x0028DA50				
-func_0028DA90	0x0028DA90				
-func_0028DB18	0x0028DB18				
-func_0028DC18	0x0028DC18				
-func_0028DCDC	0x0028DCDC				
+func_0028CF7C	0x0028CF7C	Level_FindDefinition	World/Level.cs	medium	first lv+0x78 definition matching key and +0xC (-1 = any); callers Player_LookupCharacterDef, Portrait_CreateActor
+func_0028D02C	0x0028D02C	Level_CollectEntities	World/Level.cs	medium	collects up to max entities matching type id, def key and def +0xC (-1 = any) into out, returns count
+func_0028D0E4	0x0028D0E4	Level_DrawTransitionFade	World/Level.cs	medium	draws the fade rectangle (func_00293100) with palette colour and alpha 0x1B418*255/div while fading; caller Level_UpdateFrame
+func_0028D1F4	0x0028D1F4	LevelPath_GetHeader	World/LevelPath.cs	medium	Chunk_Get(Chunk_Get(lv+0x7C, path), 0); callers LevelPath_AdvanceCursor, Ai_UpdatePatrol
+func_0028D220	0x0028D220	LevelPath_GetPoint	World/LevelPath.cs	medium	point idx of path (lv+0x7C [path][1], stride table); callers LevelPath_GetCursorPoint
+func_0028D268	0x0028D268	LevelPath_FindNearestPoint	World/LevelPath.cs	medium	index of the 0x38-byte path point nearest pt; caller LevelPath_InitCursor
+func_0028D35C	0x0028D35C	Level_CopyLevelName	World/Level.cs	medium	loads entry idx of lv+0x4C/0x1C and copies up to maxSize bytes (same pattern as the level-name line in Flyby_BuildMatchGoalText); menu callers
+func_0028D450	0x0028D450	Resource_GetIndexedCached	System/Resource.cs	medium	loads index table (+0xC/+0x10) then entry id, caches the handle at +0x14/+0x18, returns its data
+func_0028D578	0x0028D578	Level_FreeStaticPropCache	World/Level.cs	medium	unrefs every handle of the cached prop list (+0x88) and releases the blob (+0xF8) built by Level_BuildStaticPropDisplayList
+func_0028D5F8	0x0028D5F8	Level_CollectPoolPickups	World/Level.cs	medium	PickupPool_CollectActive(lv+0x11778, lv); caller Level_UpdateFrame
+func_0028D620	0x0028D620	Level_ClearTranslucentActors	World/Level.cs	medium	clears the deferred translucent actor count lv+0x10BC
+func_0028D628	0x0028D628	Level_ResetActorLists	World/Level.cs	medium	zeroes all active-list counts (0x944, 0xB48, 0xC4C, 0xE50, 0xF54, ...); callers Level_UpdateFrame, Level_Load
+func_0028D658	0x0028D658	Level_UpdatePropEffects	World/Level.cs	medium	ticks a fractional timer at 0x1B31C and calls Prop_SpawnAttachedEffects on the 0xB4C prop list; caller Level_UpdateFrame
+func_0028D728	0x0028D728	Level_GetEntityIndex	World/Level.cs	high	index of e in the 0x2E8-byte entity array, -1 for pool actors (flag 0x80000) or outside
+func_0028D7A0	0x0028D7A0	Level_FindTriggerRecords	World/Level.cs	medium	Sort_FindEqualRange over the region (which!=0) or entity trigger record list
+func_0028D864	0x0028D864	Level_ReleaseLoadedCells	World/Level.cs	medium	unrefs every loaded cell handle (0x1504 list) and clears the active counts; callers Level_UpdateFrame, Level_Load
+func_0028D8E8	0x0028D8E8	Flyby_SetDefaultView	World/Flyby.cs	medium	Flyby_SetLoop(0), Flyby_SetFieldOfView(75), viewport 380x220 or 480x360 (hi-res); callers Level_Load, cinema starts
+func_0028D940	0x0028D940	Resource_PreloadIndexedCached	System/Resource.cs	medium	same as Resource_GetIndexedCached without returning the data
+func_0028DA50	0x0028DA50	Resource_ReleaseIndexedCache	System/Resource.cs	medium	releases the cached handle +0x14 and sets id +0x18 = -1
+func_0028DA90	0x0028DA90	Level_GetFlagBitmap	World/Level.cs	medium	walks the +0x80 (sel) or +0x84 bit tree [0][map][section] to its bitmap chunk
+func_0028DB18	0x0028DB18	Level_SetFlagBit	World/Level.cs	medium	sets/clears bit in the +0x80/+0x84 tree [0][map][section]
+func_0028DC18	0x0028DC18	Level_IsFlagBitSet	World/Level.cs	medium	tests bit in the +0x80/+0x84 tree [0][map][section]
+func_0028DCDC	0x0028DCDC	Level_IsEntityFlag84SetInMap_0028DCDC	World/Level.cs	low	tests entity bit in lv+0x84 [0][map][0]
 func_0028DD80	0x0028DD80	PropTree_TestBit	System/Resource.cs	medium	harvest: FINDINGS p2: 0028DD80 tests a bit (bitmap node of the property container)
-func_0028DE24	0x0028DE24				
-func_0028DEC8	0x0028DEC8				
-func_0028DF6C	0x0028DF6C				
-func_0028DFC0	0x0028DFC0				
-func_0028DFFC	0x0028DFFC				
-func_0028E020	0x0028E020				
-func_0028E044	0x0028E044				
-func_0028E0E4	0x0028E0E4				
-func_0028E260	0x0028E260				
-func_0028E36C	0x0028E36C				
-func_0028E480	0x0028E480				
-func_0028E5AC	0x0028E5AC				
-func_0028E6D8	0x0028E6D8				
-func_0028E74C	0x0028E74C				
-func_0028E768	0x0028E768				
-func_0028E83C	0x0028E83C				
-func_0028E90C	0x0028E90C				
-func_0028E910	0x0028E910				
-func_0028EAAC	0x0028EAAC				
-func_0028ED80	0x0028ED80				
-func_0028F258	0x0028F258				
-func_0028F524	0x0028F524				
+func_0028DE24	0x0028DE24	Level_IsPickupSavedFlagSetInMap	World/Level.cs	medium	tests bit in saved tree lv+0x80 [0][map][1]
+func_0028DEC8	0x0028DEC8	Level_IsTriggerSavedFlagSetInMap	World/Level.cs	medium	tests bit in saved tree lv+0x80 [0][map][2]
+func_0028DF6C	0x0028DF6C	Level_GetTriggerCounterPtr	World/Level.cs	medium	address of counter byte idx in lv+0x80 section 1
+func_0028DFC0	0x0028DFC0	Sort_SwapPair	Lib/LibC.cs	medium	swaps two 8-byte (obj,key) entries; swap callback of Sort_QuickWithSwap in Level_DrawObjectsSorted
+func_0028DFFC	0x0028DFFC	Sort_CompareKeyAscending	Lib/LibC.cs	medium	compare callback on float key +4: a<b -> -1
+func_0028E020	0x0028E020	Sort_CompareKeyDescending	Lib/LibC.cs	medium	compare callback on float key +4: a>b -> -1 (far-to-near sort in Level_DrawObjectsSorted)
+func_0028E044	0x0028E044	Level_CollectClass14Entities_0028E044	World/Level.cs	low	fills list2 (0x1B664, max 16) with class 0xE entities
+func_0028E0E4	0x0028E0E4	Level_FindTagObjectives	World/Level.cs	medium	finds the ItemSpawner of item 0xBD7 (D_800F7D08) and class-10 tag points 0x653-0x656 (D_800F7CF8[4])
+func_0028E260	0x0028E260	Level_FindEscapePoints_0028E260	World/Level.cs	low	finds ItemSpawner type 0xBD6 (D_800F7D0C) and up to 10 class-10 0x64E points (D_800F7CD0), random pick %3
+func_0028E36C	0x0028E36C	Sprite_RemapNibbles	Render/Sprites.cs	medium	for all 256 sprites of a set remaps every 4-bit pixel pair through a 16-entry LUT
+func_0028E480	0x0028E480	Sprite_OnLoadBrighten1	Render/Sprites.cs	medium	load callback: Resource_UnpackRnc then remaps the sprite nibbles through LUT D_800D2910 (brightening ramp)
+func_0028E5AC	0x0028E5AC	Sprite_OnLoadBrighten2	Render/Sprites.cs	medium	load callback: Resource_UnpackRnc then remaps the sprite nibbles through LUT D_800D2920 (stronger ramp)
+func_0028E6D8	0x0028E6D8	Level_HasLightVolumes	World/Level.cs	medium	1 when any loaded cell has light volumes (section 2 count != 0)
+func_0028E74C	0x0028E74C	Level_GetRumbleDef	World/Level.cs	medium	entry idx of the stride table at lv+0xAC (rumble defs used by Rumble_StartById)
+func_0028E768	0x0028E768	Actor_IsLiveCharacterNear_0028E768	Actor/Actor.cs	low	class 1, not ids 0x44E/0x450-0x456, alive (+0x174), state != 0x3D and within 2560 units of target
+func_0028E83C	0x0028E83C	Actor_GetProximityAlpha_0028E83C	Actor/Actor.cs	low	0xFF for an active class-7 entity within 512 (XZ) or class-1 ids 0x44E/0x450-0x456, else 0
+func_0028E90C	0x0028E90C	Sched_ThreadMainHead	System/Scheduler.cs	medium	recompiled entry 4 bytes before Sched_ThreadMain, same body
+func_0028E910	0x0028E910	Sched_ThreadMain	System/Scheduler.cs	high	scheduler loop on queue +0x40: 0x29A retrace, 0x29B SP done, 0x29C DP done, 0x29D pre-NMI (stops audio, notifies clients), 6 new task
+func_0028EAAC	0x0028EAAC	Sched_HandleRetrace	System/Scheduler.cs	medium	retrace: drains task queue, swaps pending framebuffers, resumes yielded task, starts tasks, notifies clients, Pad_PollAll
+func_0028ED80	0x0028ED80	Sched_HandleSpDone	System/Scheduler.cs	medium	SP task done/yielded: requeues yielded gfx, times the frame (osGetTime), Resource_PostFrameDone, signals the task's queue
+func_0028F258	0x0028F258	Sched_HandleDpDone	System/Scheduler.cs	medium	RDP done: frame timing, queues or swaps the finished framebuffer (osViSwapBuffer), starts next tasks
+func_0028F524	0x0028F524	Sched_PickTasks	System/Scheduler.cs	medium	chooses the next SP (audio first) and DP tasks from the queues by state mask (like __scSchedule), recursive
 func_0028F734	0x0028F734	Panel_Init	Ui/Widgets.cs	medium	harvest: src/game/func_0028F524.c comment: initialises a panel (two eight-slot rows, text 0x29A..0x29D, element list)
-func_0028F844	0x0028F844				
-func_0028F89C	0x0028F89C				
-func_0028F92C	0x0028F92C				
-func_0028F934	0x0028F934				
-func_0028F98C	0x0028F98C				
+func_0028F844	0x0028F844	Sched_AddClient	System/Scheduler.cs	high	interrupts off: pushes a client node (queue) onto the list +0x2E0; callers AudioMgr_ThreadMain, Game_ColdBootInit
+func_0028F89C	0x0028F89C	Sched_RemoveClient	System/Scheduler.cs	high	interrupts off: unlinks a client node from the list +0x2E0
+func_0028F92C	0x0028F92C	Sched_GetCommandQueue	System/Scheduler.cs	high	returns sched +0x78 (task message queue)
+func_0028F934	0x0028F934	Sched_EnqueueTask	System/Scheduler.cs	medium	appends a task to the audio (kind 2, sets +0x300) or gfx list
+func_0028F98C	0x0028F98C	Sched_TaskIfBufferIdle	System/Scheduler.cs	medium	returns the task unless its framebuffer is displayed (osViGetCurrentFramebuffer) or pending swap
 func_0028F9EC	0x0028F9EC	Video_SwapIfReady	System/Video.cs	medium	harvest: code: osViSwapBuffer(s->buf) when the swap record is ready (mode 1, flags 0x60), returns 1 if not busy
-func_0028FA40	0x0028FA40				
-func_0028FBB8	0x0028FBB8				
-func_0028FBF0	0x0028FBF0				
-func_0028FD24	0x0028FD24				
-func_0028FD2C	0x0028FD2C				
-func_0028FD68	0x0028FD68				
-func_0028FD70	0x0028FD70				
+func_0028FA40	0x0028FA40	Sched_StartTasks	System/Scheduler.cs	medium	osSpTaskLoad/StartGo the SP task and osDpSetNextBuffer the DP task, with frame timestamps
+func_0028FBB8	0x0028FBB8	Sched_YieldGfxTask	System/Scheduler.cs	medium	running gfx task (+0x2F4 kind 1): flag 0x10 and osSpTaskYield
+func_0028FBF0	0x0028FBF0	Sched_HandleTaskQueued	System/Scheduler.cs	medium	message 6: drains the task queue (priority boost for gfx), yields for audio or starts tasks
+func_0028FD24	0x0028FD24	Sched_GetInterruptQueue	System/Scheduler.cs	high	returns sched +0x40 (interrupt message queue)
+func_0028FD2C	0x0028FD2C	Sched_SubmitTask	System/Scheduler.cs	high	osSendMesg task to +0x78 then message 6 to +0x40; callers AudioMgr_HandleFrame
+func_0028FD68	0x0028FD68	Chunk_GetTotalSizeHead	System/Resource.cs	medium	recompiled piece 8 bytes before Chunk_GetTotalSize, falls into it
+func_0028FD70	0x0028FD70	Chunk_GetTotalSize	System/Resource.cs	medium	returns the last offset (total data size) of an offset table via Chunk_GetBaseAndTotalSize
 func_0028FD94	0x0028FD94	Chunk_Get	System/Resource.cs	medium	harvest: FINDINGS p2 + func_0028CF48 override: func_0028FD94(tree, idx) returns the child node / piece idx
 func_0028FDA8	0x0028FDA8	Chunk_GetWithSize	System/Resource.cs	medium	harvest: FINDINGS s1006: func_0028FDA8(base, idx, &size) returns base+off[idx], size = off[idx+1]-off[idx]
 func_0028FDD8	0x0028FDD8	Chunk_GetSize	System/Resource.cs	high	harvest: tools/overrides/func_0028FDD8.c: returns the piece size off[idx+1]-off[idx] (loadout models fix)
-func_0028FE08	0x0028FE08				
+func_0028FE08	0x0028FE08	Resource_GetCartridgeKeyNoSize	System/Resource.cs	medium	base + off[i] of an offset table (Resource_GetCartridgeKey without the size); many model/asset callers
 func_0028FE1C	0x0028FE1C	Resource_GetCartridgeKey	System/Resource.cs	medium	harvest: Hud/GameSprites.cs: the resource's cartridge key base + off[idx] (func_0028FE1C)
-func_0028FE4C	0x0028FE4C				
-func_0028FE7C	0x0028FE7C				
-func_0028FE98	0x0028FE98				
-func_0028FEB0	0x0028FEB0				
-func_0028FED0	0x0028FED0				
-func_0028FEEC	0x0028FEEC				
-func_0028FFB0	0x0028FFB0				
-func_00290218	0x00290218				
-func_002903E8	0x002903E8				
-func_00290404	0x00290404				
-func_00290528	0x00290528				
-func_002905D4	0x002905D4				
-func_0029074C	0x0029074C				
-func_002908A0	0x002908A0				
-func_00290930	0x00290930				
-func_002909C4	0x002909C4				
-func_002909D0	0x002909D0				
-func_002909D8	0x002909D8				
-func_002909E0	0x002909E0				
-func_002909EC	0x002909EC				
-func_002909F4	0x002909F4				
-func_00290A28	0x00290A28				
-func_00290A50	0x00290A50				
-func_00290A58	0x00290A58				
-func_00290A60	0x00290A60				
-func_00290A68	0x00290A68				
-func_00290A70	0x00290A70				
-func_00290C04	0x00290C04				
-func_00290E4C	0x00290E4C				
-func_00291054	0x00291054				
+func_0028FE4C	0x0028FE4C	Chunk_GetOffsetAndSize	System/Resource.cs	medium	returns off[idx] and size off[idx+1]-off[idx]
+func_0028FE7C	0x0028FE7C	Chunk_GetBaseAndTotalSize	System/Resource.cs	medium	out1 = table, out2 = off[count] (total size)
+func_0028FE98	0x0028FE98	Chunk_GetTableSize	System/Resource.cs	medium	stride*count + 8 of a [stride,count] table
+func_0028FEB0	0x0028FEB0	Chunk_GetTableDataAndSize	System/Resource.cs	medium	out1 = table, out2 = stride*count + 8
+func_0028FED0	0x0028FED0	Chunk_GetTableEntries	System/Resource.cs	medium	returns entries (+8), out = stride*count
+func_0028FEEC	0x0028FEEC	Chunk_TransposeTable	System/Resource.cs	medium	transposes a [w,h] byte table into dst (optionally copies back); callers Level_OnCellLoaded, Collision_BuildSurfaceMesh
+func_0028FFB0	0x0028FFB0	PickupPool_Spawn	World/PickupPool.cs	medium	takes a node from the pickup pool (recycles oldest), Actor_InitBase, model via Level_GetModelKey, box +-81.92, lights; callers ItemSpawner_SpawnPickup
+func_00290218	0x00290218	PickupPool_UpdateAll	World/PickupPool.cs	medium	lifetime countdown (+0x1C8) and out-of-bounds despawn (unless flag 0x200) else PickupPool_UpdatePickup; caller Level_UpdateFrame
+func_002903E8	0x002903E8	Pickup_SetStaticDef_002903E8	Player/Items.cs	low	sets def = D_8011F448, kind byte 3, +0x1D0 = 0; caller func_0044E7C0
+func_00290404	0x00290404	PickupPool_UpdatePickup	World/PickupPool.cs	medium	Pickup_Update, Collision_MoveActor with the def's collision mode, refreshes the +-81.92 box
+func_00290528	0x00290528	PickupPool_Release	World/PickupPool.cs	medium	returns a node to the level pickup pool free list (D_80135200 = level +0x11778 +0x3C00); callers Player_UpdateState
+func_002905D4	0x002905D4	PickupPool_DrawAll	World/PickupPool.cs	medium	draws pool pickups inside the view (Pickup_Draw), blinking when lifetime <= 7.5; caller View_DrawWorld
+func_0029074C	0x0029074C	PickupPool_CollectActive	World/PickupPool.cs	medium	Pickup_ClearDisplayList for each pool pickup, adds active in-bounds ones to the level list 0x944
+func_002908A0	0x002908A0	PickupPool_Alloc	World/PickupPool.cs	medium	takes a node from the free list (recycling the oldest), links it at the head, Actor_InitBase
+func_00290930	0x00290930	PickupPool_Free	World/PickupPool.cs	medium	unlinks an in-use node, decrements its counter and pushes it on the free list
+func_002909C4	0x002909C4	PickupPool_FreeTail_002909C4	World/PickupPool.cs	low	recompiled fragment (3 insns, no prologue) between PickupPool_Free and the stubs
+func_002909D0	0x002909D0	View_StubNop_002909D0	Render/View.cs	low	empty function called by View_DrawWorld
+func_002909D8	0x002909D8	Obj_ClearFields14And18Head_002909D8	Actor/Actor.cs	low	recompiled piece 8 bytes before func_002909E0, falls into it
+func_002909E0	0x002909E0	Obj_ClearFields14And18_002909E0	Actor/Actor.cs	low	o[5] = o[6] = 0; caller Game_ColdBootInit
+func_002909EC	0x002909EC	Sched_StubOnFrameDone_002909EC	System/Scheduler.cs	low	empty; called by Sched_HandleDpDone with the finished frame
+func_002909F4	0x002909F4	Obj_SetNormalizedDir_002909F4	Actor/Actor.cs	low	copies a vector to +0x14 and normalizes it
+func_00290A28	0x00290A28	Obj_GetPosAndField20_00290A28	Actor/Actor.cs	low	returns +0x20 and the vector +8/+0xC/+0x10 through pointers
+func_00290A50	0x00290A50	Level_StubNop_00290A50	World/Level.cs	low	empty function
+func_00290A58	0x00290A58	Level_StubNop_00290A58	World/Level.cs	low	empty function
+func_00290A60	0x00290A60	Level_StubNop_00290A60	World/Level.cs	low	empty function
+func_00290A68	0x00290A68	Level_DrawSpinningModelE10_00290A68	World/Level.cs	low	draws model of type 0xE10 rotated by lv+0x26DB0 at (0,-100,-500) then func_00291FE8 (text 0.4/0.7)
+func_00290A70	0x00290A70	Level_DrawSpinningModelE10Twin_00290A70	World/Level.cs	low	recompiled twin 8 bytes after func_00290A68
+func_00290C04	0x00290C04	Gfx_DrawFullscreenSprite386	Render/Sprites.cs	medium	sets colour image/scissor, fills the screen, draws sprite 0x386 scaled to the screen size
+func_00290E4C	0x00290E4C	Credits_DrawScrollingText	Menus/Credits.cs	medium	scrolls the credits string list D_800D7E40 ("PROJECT MANAGER", "MARK PACINI", ...) up the screen with fade-in; callers func_0029494C, func_00294A88
+func_00291054	0x00291054	State_UpdateCreditsScroll	System/GameState.cs	medium	scrolls the credit lines D_800D7E40 (ROM strings 'RAGE WARS TEAM', 'PROJECT MANAGER'...) via D_8014AD78; at the list end waits 67.5 then fades to state 1 or 14; called by the state 16/17 draws
 func_002911E8	0x002911E8	Game_ColdBootInit	System/Boot.cs	high	harvest: port/game_glue.c + GameBoot.cs: on the cold-boot flag calls func_00444030 (settings initialiser), PJ64 watchpoint
 func_00291404	0x00291404	Game_Init	System/Boot.cs	medium	harvest: port/game_glue.c: game boot thread entry calls func_00291404(&D_8011FAC0)
-func_002917E8	0x002917E8				
-func_0029193C	0x0029193C				
-func_00291BF8	0x00291BF8				
-func_00291FE8	0x00291FE8				
-func_00292318	0x00292318				
-func_00292910	0x00292910				
-func_00292F08	0x00292F08				
+func_002917E8	0x002917E8	Gfx_BeginFrameDisplayList	Render/RenderMode.cs	high	starts the frame DL at slot +0x114: G_SEGMENT 6, two init DLs, z-image D_801536E8, viewport D_80146D00[buf], scissor; first DL step of Game_RenderFrame
+func_0029193C	0x0029193C	Video_SubmitGfxTasks	System/Video.cs	medium	fills one or two OSTask records of the frame slot (ucode D_800DCC40, DL +0x114/+0x118, sizes), osWritebackDCacheAll, sends them via func_0028FD2C, then advances the slot like Video_AdvanceFrameSlot
+func_00291BF8	0x00291BF8	Gfx_ClearZBufferRect	Render/RenderMode.cs	high	color image = z-buffer D_801536E8, fill colour 0xFFFC, fill rect (interlaced row variants by mode/D_800E28D8), color image back to the framebuffer; callers View_SetupViewport, Hud_DrawModel3D
+func_00291FE8	0x00291FE8	Text_DrawLineList	Ui/Text.cs	medium	optional z/frame clear, sets font colour and scale, draws a NULL-terminated string array with Text_Draw stepping y by the line height; used by the state 2/3 draws
+func_00292318	0x00292318	Game_RenderFrame	System/GameState.cs	high	builds one gfx frame: Resource_BeginFrameUse, frame DL start, per-state draw from D_800D29E0 (3rd column of the state table), fade overlay, DL end, task submit, fade step (state 20 on fade out)
+func_00292910	0x00292910	Game_RunFrame	System/GameState.cs	high	frame timing (osGetTime -> dt D_800D2988), Resource_FrameUpdate, Game_RenderFrame, play clock tick, end-flyby (id 0x78) check switching to state 16
+func_00292F08	0x00292F08	Boot_StartThread0Global	System/Boot.cs	medium	calls Boot_StartThread0_00292F2C(&D_8011FAC0) (the game object); caller Game_SoftReset
 func_00292F2C	0x00292F2C	Boot_StartThread0_00292F2C	System/Boot.cs	low	harvest: code: memset of a 128-byte stack and osCreateThread/osStartThread of thread 0 (entry 0x002934F0)
 func_00292FA4	0x00292FA4	Boot_StartGameThread	System/Boot.cs	medium	harvest: code: creates and starts thread 1 with entry func_00293518 (the game boot thread), lowers its own priority, loops forever
-func_00293038	0x00293038				
-func_00293100	0x00293100				
-func_0029324C	0x0029324C				
-func_00293268	0x00293268				
-func_00293318	0x00293318				
-func_00293378	0x00293378				
-func_00293424	0x00293424				
-func_002934A4	0x002934A4				
-func_002934DC	0x002934DC				
-func_002934F0	0x002934F0				
+func_00293038	0x00293038	Video_AdvanceFrameSlot	System/Video.cs	high	frame counter ++, slot = count % D_800E28A0, toggles the double buffer D_800D297C and sets the slot's DL buffers +0x114/+0x118; caller Game_ColdBootInit
+func_00293100	0x00293100	Gfx_FillRectBlended	Render/RenderMode.cs	high	if alpha != 0: pipe sync, other mode 0x13, combine mode 0x19, prim colour RGBA, G_FILLRECT clamped to >= 0
+func_0029324C	0x0029324C	Game_LatchPads	System/GameState.cs	high	wrapper: calls Pad_LatchAll; callers Game_RenderFrame and state inits
+func_00293268	0x00293268	Game_FadeToLevel	System/GameState.cs	medium	validates the level key with Track_FindPlacedObjects (else 0), clears the play clock block, fades out to state 13 with g+0x26DD8 = key
+func_00293318	0x00293318	Game_InitCameras	System/GameState.cs	medium	CameraManager_Init(g+0x255C8) then func_0044A600(g+0x25580, a, b); called by state inits
+func_00293378	0x00293378	State_DrawFade	System/GameState.cs	high	black overlay whose alpha comes from the fade value g+0x26DC4, drawn with Gfx_FillRectBlended over the screen
+func_00293424	0x00293424	Str_Compare	Lib/LibC.cs	high	byte-wise strcmp returning -1/0/1 (-1 when either pointer is NULL)
+func_002934A4	0x002934A4	Str_Copy	Lib/LibC.cs	high	strcpy: copies bytes including the NUL, returns dst
+func_002934DC	0x002934DC	Game_IsInState13	System/GameState.cs	high	returns D_80146878 (= g+0x26DB8 state id) == 13; callers Level_UpdateActors, View_DrawWorld, Sound_UpdateFrame, HUD
+func_002934F0	0x002934F0	Boot_Thread0Main	System/Boot.cs	medium	thread 0 entry (0x002934F0 started by Boot_StartThread0_00292F2C): Boot_StartGameThread(&D_8011FAC0, a)
 func_00293518	0x00293518	Game_BootThread	System/Boot.cs	high	harvest: port/game_glue.c: game boot thread entry: sprintf, FPU setup, then func_00291404(&D_8011FAC0)
-func_00293574	0x00293574				
-func_002935A4	0x002935A4				
-func_00293774	0x00293774				
-func_00293808	0x00293808				
+func_00293574	0x00293574	Game_StartFadeIn	System/GameState.cs	high	g+0x26DC1 = 1 (fade in), fade value 0, g+0x26DC0 = 0; caller Game_ColdBootInit
+func_002935A4	0x002935A4	Game_UpdateFade	System/GameState.cs	medium	fade step identical to the tail of Game_RenderFrame: fade in to 1.0 or fade out below -4 then state 20 (transition); no callers
+func_00293774	0x00293774	Game_BeginTransition	System/GameState.cs	high	state = 20 (transition), target g+0x26DBC = a, previous state saved, fade in from 0 (or a constant when Level_IsRestartPending)
+func_00293808	0x00293808	Game_FadeOutToState	System/GameState.cs	high	g+0x26DC1 = 2 (fade out), next state g+0x26DBC = a
 func_0029382C	0x0029382C	Game_StateDispatch	System/GameState.cs	high	harvest: memory project_port_game_facts.md: state dispatcher (table D_800D29D8 of {init, update, x}); one main-loop iteration per call
-func_002938E8	0x002938E8				
-func_0029397C	0x0029397C				
-func_00293A04	0x00293A04				
-func_00293B0C	0x00293B0C				
-func_00293C20	0x00293C20				
-func_00293CD0	0x00293CD0				
-func_00293DDC	0x00293DDC				
-func_00293DE4	0x00293DE4				
-func_00293E60	0x00293E60				
-func_00293E90	0x00293E90				
+func_002938E8	0x002938E8	State_ExitOnTimeoutOrPress	System/GameState.cs	high	button D_8010F194 with skip target b -> fade to b; else when state time g+0x26DB0 > x*15 -> fade to a; used by the timed states 1,2,3,4,7
+func_0029397C	0x0029397C	State_LoadScene	System/GameState.cs	medium	CameraManager_Init, func_0044A600, Level_SetTransitionState(~func_004030E0(id)), Level_LoadSelectedResource, Level_LoadPreviewSound; init of states 5, 9-12, 16, 17
+func_00293A04	0x00293A04	State_ExitOnFlybyEndOrStart	System/GameState.cs	medium	Start (0x1000) with target b -> fade to b, else when Flyby_IsIdle -> switch to state 20 with target a; updates of states 5, 9-12, 16, 17
+func_00293B0C	0x00293B0C	State_DrawScene	System/GameState.cs	medium	demo flag D_8014694C: after 675 ticks -> state 1, on button D_8010F190 -> state 8; then Level_UpdateFrame, camera, func_002AB794, Artsend_Update, State_DrawFade; draw of states 5, 9-12, 16, 17
+func_00293C20	0x00293C20	Game_TickPlayClock	System/GameState.cs	high	unless paused (g+0x26DD4) adds dt to the clock block D_80145040: 15 ticks -> seconds -> minutes (60) -> hours
+func_00293CD0	0x00293CD0	State_DrawLevel	System/GameState.cs	medium	same as State_DrawScene but the demo flag is the clock block +0xAC; draw of states 0, 8, 13, 14
+func_00293DDC	0x00293DDC	State_5DrawNop	System/GameState.cs	high	empty; called only by State_5Draw after State_DrawScene
+func_00293DE4	0x00293DE4	State_BootInit	System/GameState.cs	high	state 0 init (table D_800D29D8[0]): resets display globals and shows UI screen 29 (title) via Menu_GotoScreen
+func_00293E60	0x00293E60	State_BootUpdate	System/GameState.cs	high	state 0 update: once D_8014ADA0 is set fades to state 1 and calls Pad_DisableStatusPollAll
+func_00293E90	0x00293E90	State_BootDraw	System/GameState.cs	high	state 0 draw: wrapper of State_DrawLevel
 func_00293EAC	0x00293EAC	State_TitleInit	System/GameState.cs	high	harvest: PORT_STATUS: states: 1 title (func_00293EAC/F38) {init, update}
 func_00293F38	0x00293F38	State_TitleUpdate	System/GameState.cs	high	harvest: PORT_STATUS: states: 1 title (func_00293EAC/F38) {init, update}
-func_00293FE4	0x00293FE4				
-func_002940CC	0x002940CC				
-func_002940EC	0x002940EC				
-func_00294120	0x00294120				
-func_00294128	0x00294128				
-func_0029414C	0x0029414C				
+func_00293FE4	0x00293FE4	State_TitleDraw	System/GameState.cs	high	state 1 draw: framebuffer target, draws full-screen sprite 0x388 scaled to the screen
+func_002940CC	0x002940CC	State_3Init	System/GameState.cs	high	state 3 init (table slot): Game_InitCameras(g, 0, 0)
+func_002940EC	0x002940EC	State_3Update	System/GameState.cs	high	state 3 update: State_ExitOnTimeoutOrPress(4 s -> state 4), clears D_800D29C8
+func_00294120	0x00294120	State_2Init	System/GameState.cs	high	state 2 init: empty (table slot)
+func_00294128	0x00294128	State_2Update	System/GameState.cs	high	state 2 update: State_ExitOnTimeoutOrPress(14 s -> state 5)
+func_0029414C	0x0029414C	State_2Draw	System/GameState.cs	high	state 2 draw: Text_DrawLineList of D_800D7064 centred
 func_002941AC	0x002941AC	State_4Init	System/GameState.cs	medium	harvest: PORT_STATUS: state 4 (func_002941AC/1D0) {init, update}
 func_002941D0	0x002941D0	State_4Update	System/GameState.cs	medium	harvest: PORT_STATUS: state 4 (func_002941AC/1D0) {init, update}
-func_002941F4	0x002941F4				
-func_002942E4	0x002942E4				
-func_00294314	0x00294314				
-func_00294334	0x00294334				
-func_00294360	0x00294360				
-func_00294368	0x00294368				
-func_00294370	0x00294370				
-func_00294378	0x00294378				
-func_00294394	0x00294394				
+func_002941F4	0x002941F4	State_4Draw	System/GameState.cs	high	state 4 draw: full-screen sprite 0x389 scaled to the screen
+func_002942E4	0x002942E4	State_5Init	System/GameState.cs	high	state 5 init: flyby setup func_0028D8E8 + State_LoadScene(90)
+func_00294314	0x00294314	State_5Update	System/GameState.cs	high	state 5 update: State_ExitOnFlybyEndOrStart(7, 7)
+func_00294334	0x00294334	State_5Draw	System/GameState.cs	high	state 5 draw: State_DrawScene + State_5DrawNop
+func_00294360	0x00294360	State_6Init	System/GameState.cs	high	state 6 init: empty (table slot)
+func_00294368	0x00294368	State_6Update	System/GameState.cs	high	state 6 update: empty (table slot)
+func_00294370	0x00294370	State_6Draw	System/GameState.cs	high	state 6 draw: empty (table slot)
+func_00294378	0x00294378	State_7Init	System/GameState.cs	high	state 7 init: Audio_PlayCue(16)
+func_00294394	0x00294394	State_7Update	System/GameState.cs	high	state 7 update: State_ExitOnTimeoutOrPress(20 s -> 9, press -> 8)
 func_002943B8	0x002943B8	State_DemoInit	System/GameState.cs	high	harvest: PORT_STATUS: 8 recorded gameplay demo (func_002943B8/00294404, screen 24 pushed)
 func_00294404	0x00294404	State_DemoUpdate	System/GameState.cs	high	harvest: PORT_STATUS: 8 recorded gameplay demo (func_002943B8/00294404)
-func_0029440C	0x0029440C				
-func_00294428	0x00294428				
-func_0029447C	0x0029447C				
-func_0029449C	0x0029449C				
-func_002944B8	0x002944B8				
-func_002944E8	0x002944E8				
-func_00294508	0x00294508				
-func_00294524	0x00294524				
-func_00294554	0x00294554				
-func_00294574	0x00294574				
-func_00294590	0x00294590				
-func_002945CC	0x002945CC				
-func_002945EC	0x002945EC				
-func_00294608	0x00294608				
+func_0029440C	0x0029440C	State_DemoDraw	System/GameState.cs	high	state 8 (demo) draw: wrapper of State_DrawLevel
+func_00294428	0x00294428	State_9Init	System/GameState.cs	high	state 9 init: counter D_800D29C0++, flyby setup, Flyby_SetFieldOfView, State_LoadScene(111)
+func_0029447C	0x0029447C	State_9Update	System/GameState.cs	high	state 9 update: State_ExitOnFlybyEndOrStart(7, 8)
+func_0029449C	0x0029449C	State_9Draw	System/GameState.cs	high	state 9 draw: wrapper of State_DrawScene
+func_002944B8	0x002944B8	State_11Init	System/GameState.cs	high	state 11 init: flyby setup + State_LoadScene(111)
+func_002944E8	0x002944E8	State_11Update	System/GameState.cs	high	state 11 update: State_ExitOnFlybyEndOrStart(12, 12)
+func_00294508	0x00294508	State_11Draw	System/GameState.cs	high	state 11 draw: wrapper of State_DrawScene
+func_00294524	0x00294524	State_10Init	System/GameState.cs	high	state 10 init: flyby setup + State_LoadScene(111)
+func_00294554	0x00294554	State_10Update	System/GameState.cs	high	state 10 update: State_ExitOnFlybyEndOrStart(13, 8)
+func_00294574	0x00294574	State_10Draw	System/GameState.cs	high	state 10 draw: wrapper of State_DrawScene
+func_00294590	0x00294590	State_12Init	System/GameState.cs	high	state 12 init: flyby setup + State_LoadScene(g+0x26DD8 + 0x259)
+func_002945CC	0x002945CC	State_12Update	System/GameState.cs	high	state 12 update: State_ExitOnFlybyEndOrStart(13, 13)
+func_002945EC	0x002945EC	State_12Draw	System/GameState.cs	high	state 12 draw: wrapper of State_DrawScene
+func_00294608	0x00294608	State_14Init	System/GameState.cs	high	state 14 init: like State_AttractInit without camera/level reload (Collision_InitProfiles, Artsend_Init, Level_SetTransitionState(g+0x26DD8)), then sets state 13
 func_002946A8	0x002946A8	State_AttractInit	System/GameState.cs	high	harvest: PORT_STATUS: 13 title/attract loop (func_002946A8/7BC)
 func_002947BC	0x002947BC	State_AttractUpdate	System/GameState.cs	high	harvest: PORT_STATUS: 13 title/attract loop (func_002946A8/7BC)
-func_002947C4	0x002947C4				
-func_002947CC	0x002947CC				
-func_002947D4	0x002947D4				
-func_002947DC	0x002947DC				
-func_0029485C	0x0029485C				
-func_002948D4	0x002948D4				
-func_0029494C	0x0029494C				
-func_00294980	0x00294980				
-func_00294A10	0x00294A10				
-func_00294A88	0x00294A88				
-func_00294ABC	0x00294ABC				
+func_002947C4	0x002947C4	State_15Init	System/GameState.cs	high	state 15 init: empty (table slot)
+func_002947CC	0x002947CC	State_15Update	System/GameState.cs	high	state 15 update: empty (table slot)
+func_002947D4	0x002947D4	State_15Draw	System/GameState.cs	high	state 15 draw: empty (table slot)
+func_002947DC	0x002947DC	Game_FadeToLevelState14	System/GameState.cs	medium	validates the level key with Track_FindPlacedObjects (else 0), fade out to state 14 with g+0x26DD8 = key; called at the credits end with 0x7CF
+func_0029485C	0x0029485C	State_CreditsInit	System/GameState.cs	high	state 16 init: resets the credits scroll (line index D_8011FAB0, y D_8014AD78 = screen height), flyby setup, State_LoadScene(130)
+func_002948D4	0x002948D4	State_CreditsUpdate	System/GameState.cs	high	state 16 update: Start skips to the end of the credits (D_80146958), afterwards State_ExitOnFlybyEndOrStart(1, 1)
+func_0029494C	0x0029494C	State_CreditsDraw	System/GameState.cs	high	state 16 draw: State_DrawScene, func_00290E4C, State_UpdateCreditsScroll
+func_00294980	0x00294980	State_CreditsAltInit	System/GameState.cs	medium	state 17 init: as State_CreditsInit but clears clock sub +0x1D and sets D_800D29D0 = 1 (return to title after the roll)
+func_00294A10	0x00294A10	State_CreditsAltUpdate	System/GameState.cs	medium	state 17 update: same logic as State_CreditsUpdate
+func_00294A88	0x00294A88	State_CreditsAltDraw	System/GameState.cs	medium	state 17 draw: State_DrawScene, func_00290E4C, State_UpdateCreditsScroll
+func_00294ABC	0x00294ABC	State_TransitionInit	System/GameState.cs	high	state 20 init: empty (table slot next to State_TransitionUpdate)
 func_00294AC4	0x00294AC4	State_TransitionUpdate	System/GameState.cs	high	harvest: PORT_STATUS: 20 transition (func_00294AC4: waits for the fade D_80146D68 == 2, then switches to g->f26DBC)
-func_00294B78	0x00294B78				
-func_00294B80	0x00294B80				
-func_00294B88	0x00294B88				
-func_00294B90	0x00294B90				
-func_00294B98	0x00294B98				
-func_00294BA0	0x00294BA0				
-func_00294BA8	0x00294BA8				
-func_00294BB0	0x00294BB0				
-func_00294C64	0x00294C64				
-func_00294C98	0x00294C98				
-func_00294CA0	0x00294CA0				
-func_00294F1C	0x00294F1C				
+func_00294B78	0x00294B78	State_TransitionDraw	System/GameState.cs	high	state 20 draw: empty (table slot)
+func_00294B80	0x00294B80	State_18Init	System/GameState.cs	high	state 18 init: empty (table slot)
+func_00294B88	0x00294B88	State_18Update	System/GameState.cs	high	state 18 update: empty (table slot)
+func_00294B90	0x00294B90	State_18Draw	System/GameState.cs	high	state 18 draw: empty (table slot)
+func_00294B98	0x00294B98	State_19Init	System/GameState.cs	high	state 19 init: empty (table slot)
+func_00294BA0	0x00294BA0	State_19Update	System/GameState.cs	high	state 19 update: empty (table slot)
+func_00294BA8	0x00294BA8	State_19Draw	System/GameState.cs	high	state 19 draw: empty (table slot)
+func_00294BB0	0x00294BB0	Game_CheckEndFlybyHold_00294BB0	System/GameState.cs	low	returns 1 once the flyby with id 0x78 started func_004037D4 and Flyby_IsHolding; same test as inline in Game_RunFrame; no callers
+func_00294C64	0x00294C64	Game_ClearPadInputAndRumble	System/GameState.cs	high	Player_ClearAllPadInput(D_8010EC90) and Rumble_ClearAll(D_80145040)
+func_00294C98	0x00294C98	Artsend_LoadTextureHead	Debug/Artsend.cs	medium	split piece 8 bytes before Artsend_LoadTexture (falls into it)
+func_00294CA0	0x00294CA0	Artsend_LoadTexture	Debug/Artsend.cs	high	loads texture D_8014AEBC of the HUD library via ResourceCache_Hash ('Artsend Texture', Texture_RecolorFrames), picks frame, sprintf 'tex %d frm %d of %d, %s'
+func_00294F1C	0x00294F1C	Artsend_Update	Debug/Artsend.cs	high	art-send texture viewer: L toggles 'Artsend Activated'/'Deactivated', D-pad steps texture/frame (+-1, +-5), reloads on change, draws the label text
 func_002953FC	0x002953FC	Frontend_GetButtonMask	Menus/MenuCore.cs	medium	harvest: src/game/func_002953FC.c comment: decode a frontend input selector into its current button mask
-func_002954E0	0x002954E0				
-func_002955AC	0x002955AC				
-func_002955C8	0x002955C8				
-func_002955EC	0x002955EC				
-func_002956AC	0x002956AC				
-func_0029576C	0x0029576C				
-func_002957EC	0x002957EC				
-func_00295890	0x00295890				
-func_002958D8	0x002958D8				
-func_00295924	0x00295924				
-func_00295970	0x00295970				
-func_002959BC	0x002959BC				
-func_00295A60	0x00295A60				
-func_00295AE0	0x00295AE0				
-func_00295AF0	0x00295AF0				
-func_00295B00	0x00295B00				
-func_00295B18	0x00295B18				
-func_00295B30	0x00295B30				
-func_00295B84	0x00295B84				
+func_002954E0	0x002954E0	Artsend_Init	Debug/Artsend.cs	high	clears the art-send block D_8014AEB0..D_8014D068, memsets the 0x2000/0x100 buffers, texture count = *D_8011FED8; callers State_AttractInit, State_14Init
+func_002955AC	0x002955AC	Artsend_Shutdown	Debug/Artsend.cs	medium	wrapper: Artsend_ReleaseTexture
+func_002955C8	0x002955C8	Artsend_IsActive	Debug/Artsend.cs	high	returns active flag D_8014AEB0 && D_800D2AE0; caller RomDma_ThreadMain
+func_002955EC	0x002955EC	Artsend_OverrideImage	Debug/Artsend.cs	medium	when active and the resource matches the art-send texture, replaces the image pointer (blinking every 10 frames); caller Texture_EmitLoad
+func_002956AC	0x002956AC	Artsend_OverridePalette	Debug/Artsend.cs	medium	same as Artsend_OverrideImage for the palette pointer (D_8014AED8 / +0x2010); caller Texture_EmitLoad
+func_0029576C	0x0029576C	Artsend_NextTexture	Debug/Artsend.cs	high	repeat-delayed texture index +1 modulo the count, marks dirty
+func_002957EC	0x002957EC	Artsend_PrevTexture	Debug/Artsend.cs	high	repeat-delayed texture index -1 wrapped to the count, marks dirty
+func_00295890	0x00295890	Artsend_ReleaseTexture	Debug/Artsend.cs	high	ResourcePool_Unref of the loaded art-send texture, clears resource/header/image/palette pointers
+func_002958D8	0x002958D8	Artsend_ResetState	Debug/Artsend.cs	medium	clears the art-send block fields (like Artsend_Init without the buffer memsets)
+func_00295924	0x00295924	Artsend_PrevFrame	Debug/Artsend.cs	high	repeat-delayed frame index D_8014AEC0 -1, marks dirty
+func_00295970	0x00295970	Artsend_NextFrame	Debug/Artsend.cs	high	repeat-delayed frame index D_8014AEC0 +1, marks dirty
+func_002959BC	0x002959BC	Artsend_BackFiveTextures	Debug/Artsend.cs	high	repeat-delayed texture index -5 wrapped, marks dirty
+func_00295A60	0x00295A60	Artsend_ForwardFiveTextures	Debug/Artsend.cs	high	repeat-delayed texture index +5 modulo the count, marks dirty
+func_00295AE0	0x00295AE0	Artsend_GetImage	Debug/Artsend.cs	medium	returns the art-send image pointer D_8014AED4
+func_00295AF0	0x00295AF0	Artsend_GetPalette	Debug/Artsend.cs	medium	returns the art-send palette pointer D_8014AED8
+func_00295B00	0x00295B00	Artsend_GetWidth	Debug/Artsend.cs	medium	1 << header byte 2 of the art-send texture D_8014AED0
+func_00295B18	0x00295B18	Artsend_GetHeight	Debug/Artsend.cs	medium	1 << header byte 3 of the art-send texture D_8014AED0
+func_00295B30	0x00295B30	Artsend_GetBitsPerTexel	Debug/Artsend.cs	medium	maps header format byte 0..5 to 8/4/32/4/16/4
+func_00295B84	0x00295B84	Texture_RecolorFramesHead	Render/Texture.cs	medium	split piece 12 bytes before Texture_RecolorFrames (no prologue, falls into it)
 func_00295B90	0x00295B90	Texture_RecolorFrames	Render/Texture.cs	medium	harvest: src/game/func_00295B90.c comment: recolours the RGBA5551 frames of a resource by the colour mode, rebuilds it
 func_00295FB4	0x00295FB4	Texture_EmitLoad_00295FB4	Render/Texture.cs	low	harvest: src/game/func_00295FB4.c signature (output, resource, frame, scaleS/T, wrapS/T, mode) + "texture commands" comment
-func_00296DD0	0x00296DD0				
-func_00296DDC	0x00296DDC				
-func_00296E04	0x00296E04				
+func_00296DD0	0x00296DD0	Material_SetHandle	Render/Texture.cs	medium	stores the {resource, size} pair used by Material_Lookup
+func_00296DDC	0x00296DDC	Material_GetHandleById	Render/Texture.cs	medium	func_0028C138(D_8011FE88, id, &h[0], &h[1]): fills a material handle from the level texture table; callers model/effect loaders
+func_00296E04	0x00296E04	Material_LookupPreload	Render/Texture.cs	medium	same as Material_Lookup (ResourceCache_Hash with Texture_RecolorFrames, colour mode D_800D2B04) with last arg 1; callers Model_PreloadTextures, Model_CollectTextureHandles
 func_00296EC4	0x00296EC4	Material_Lookup	Render/Texture.cs	high	harvest: C# git: func_00296EC4 (texture/material lookup) returned nothing, so func_00269A80 skipped every draw group
-func_00296F7C	0x00296F7C				
-func_00296FF8	0x00296FF8				
-func_00297008	0x00297008				
-func_00297018	0x00297018				
-func_00297020	0x00297020				
-func_002972A8	0x002972A8				
-func_00297390	0x00297390				
-func_00297474	0x00297474				
-func_00297578	0x00297578				
-func_002975B0	0x002975B0				
-func_00297878	0x00297878				
-func_00297930	0x00297930				
-func_002979B0	0x002979B0				
-func_002979E8	0x002979E8				
-func_00297A48	0x00297A48				
-func_00297AD4	0x00297AD4				
-func_00297B74	0x00297B74				
-func_00297C30	0x00297C30				
-func_00297CC8	0x00297CC8				
-func_00297CD0	0x00297CD0				
-func_00297E3C	0x00297E3C				
-func_00298310	0x00298310				
-func_0029864C	0x0029864C				
-func_00298A34	0x00298A34				
-func_00298DBC	0x00298DBC				
-func_00298EA4	0x00298EA4				
-func_00298FA0	0x00298FA0				
-func_00299170	0x00299170				
-func_002992C4	0x002992C4				
-func_00299368	0x00299368				
-func_00299ECC	0x00299ECC				
-func_00299FE8	0x00299FE8				
+func_00296F7C	0x00296F7C	Material_GetFrameInfo	Render/Texture.cs	medium	from a loaded texture resource: header chunk 0, *chunk 1 (frame count), *chunk 2; zeros when empty; callers Model_DrawGroups, Particle_Draw, Shadow_DrawDecal
+func_00296FF8	0x00296FF8	Texture_InvalidateLoadCache	Render/Texture.cs	high	clears D_800D2B00, the last-loaded resource that Texture_EmitLoad compares against
+func_00297008	0x00297008	Material_SetColorMode	Render/Texture.cs	medium	sets D_800D2B04, added (<<7) to the material cache key; callers View_SetupViewport, State_TitleInit, State_4Init
+func_00297018	0x00297018	Pvs_LoadHead	World/Visibility.cs	medium	split piece 8 bytes before Pvs_Load (falls into it)
+func_00297020	0x00297020	Pvs_Load	World/Visibility.cs	medium	picks the seed whose bounding box holds point p, decodes a 17x17 cell map (-3 hidden, -2 visible, bit offsets) with BitStream_ReadBitsLsb; caller func_00288440 (level grid walk)
+func_002972A8	0x002972A8	Pvs_GetCellState	World/Visibility.cs	medium	cell (x,y) within +-8 of the map centre: 0 hidden/out, 1 visible, 2 partial, 3 special (-1)
+func_00297390	0x00297390	Pvs_IsObjectVisible	World/Visibility.cs	medium	cell lookup; partial cells read the object's bit (offset + k + 9) from the bit stream
+func_00297474	0x00297474	Pvs_SelectCell	World/Visibility.cs	medium	stores the cell state in +0x10 and for partial cells seeks the bit stream and reads a 9-bit count into +0x14
+func_00297578	0x00297578	Pvs_ReadNextVisible	World/Visibility.cs	medium	after Pvs_SelectCell: partial -> next bit of the stream, else state == visible
+func_002975B0	0x002975B0	Frustum_BuildPlanes	Render/Frustum.cs	high	six planes from the 5 view-pyramid points (cross products, normalise, d = n.p), plane 5 = negated plane 2 through the apex; caller Camera_BuildFrustum
+func_00297878	0x00297878	Frustum_PlaneFromPoints	Render/Frustum.cs	high	plane through three points: Vec_Sub, Vec_Cross, Vec_Normalize, w = n.a
+func_00297930	0x00297930	Frustum_PlaneSegmentParam	Render/Frustum.cs	high	returns t = (w - n.a) / (n.b - n.a) for segment a-b against the plane (constant when parallel); callers Shadow_DrawDecal
+func_002979B0	0x002979B0	Frustum_PlaneDistance	Render/Frustum.cs	high	returns n.p - w
+func_002979E8	0x002979E8	Frustum_ContainsPoint	Render/Frustum.cs	high	point inside all 6 planes; caller Camera_IsPointInFrustum
+func_00297A48	0x00297A48	Frustum_OverlapsPoints	Render/Frustum.cs	high	true unless some plane has every one of the n points outside
+func_00297AD4	0x00297AD4	Frustum_OverlapsPointsNoFar	Render/Frustum.cs	medium	Frustum_OverlapsPoints skipping plane 2 (the far plane built from the base points)
+func_00297B74	0x00297B74	Frustum_OverlapsBox	Render/Frustum.cs	high	AABB min/max vs the 6 planes using the nearest corner; callers Actor_Draw, Particle_DrawAll
+func_00297C30	0x00297C30	Frustum_PlaneOverlapsBox	Render/Frustum.cs	high	single-plane version of Frustum_OverlapsBox
+func_00297CC8	0x00297CC8	Menu_MoveFocusDirHead	Menus/MenuCore.cs	medium	split piece 8 bytes before Menu_MoveFocusDir (falls into it)
+func_00297CD0	0x00297CD0	Menu_MoveFocusDir	Menus/MenuCore.cs	high	follows the focused node's link[dir-5] chain (events 5..8) skipping disabled (0x100) nodes, then Menu_MoveFocus
+func_00297E3C	0x00297E3C	Menu_DispatchToNode	Menus/MenuCore.cs	medium	sends event cmd to node id: top-screen handler, node handler, class handler (Menu_GetClassHandler); default handling of 5-8 nav, 1 open sub screen, 2 back, 15/16
+func_00298310	0x00298310	Menu_DispatchToTopScreen	Menus/MenuCore.cs	medium	global handler, top screen handler, then its child trees (func_0029ACF0) when mode != 0; default nav/select/back handling
+func_0029864C	0x0029864C	Menu_BroadcastToStack	Menus/MenuCore.cs	medium	sends the event to every screen from the stack base to the top (handlers and child trees); used for 0xE0A draw and tick events
+func_00298A34	0x00298A34	Menu_DispatchEvent	Menus/MenuCore.cs	medium	routes an event by class: <0xE00 to the focused node, 0xE00-0xFFF system (0xE08 tick computes dt) broadcast, others to the top screen handler
+func_00298DBC	0x00298DBC	Menu_ActivateTopScreen	Menus/MenuCore.cs	medium	sets the top screen user data via the init callback, sends 0xE06, 0xE07, 0xE02 (with its rect) and func_0029AC80
+func_00298EA4	0x00298EA4	Menu_DeactivateTopScreen	Menus/MenuCore.cs	medium	sends 0x10 to the focused node, func_0029ACC4, then 0xE03 (leave) to the global handler and the top screen
+func_00298FA0	0x00298FA0	Menu_Init	Menus/MenuCore.cs	high	allocates the menu manager D_8014D080 (0x544), 64 class slots, node cache 0x384, screen stack of n entries, registers classes 9 and 11
+func_00299170	0x00299170	Menu_GetNodeCached	Menus/MenuCore.cs	medium	looks the node id up in the manager cache (75 entries) for the current screen, else func_0040ECB0 and caches it
+func_002992C4	0x002992C4	Menu_RegisterClass	Menus/MenuCore.cs	medium	sets or clears a class slot (id, handler, extra, flag) in the 64-entry table
+func_00299368	0x00299368	Menu_GotoScreen	Menus/MenuCore.cs	high	switches to UI screen id: pops to it when already on the stack, else loads (func_0041174C) and pushes it, activates; called with ids 29, 24, 2
+func_00299ECC	0x00299ECC	Menu_PopScreen	Menus/MenuCore.cs	high	deactivates and frees the top screen (func_00411E98), clears its entry, top--
+func_00299FE8	0x00299FE8	Menu_DrawStack	Menus/MenuCore.cs	medium	full-screen viewport, frame dt, broadcasts 0xE0A, draws every screen of the stack (func_0040E6FC/func_0040E154)
 func_0029A1D4	0x0029A1D4	Menu_MoveFocus	Menus/MenuCore.cs	medium	harvest: src/game/func_0029A1D4.c comment: moves menu focus and sends leave and enter events through callbacks
-func_0029A468	0x0029A468				
-func_0029A550	0x0029A550				
-func_0029A58C	0x0029A58C				
-func_0029A5C4	0x0029A5C4				
-func_0029A5D4	0x0029A5D4				
-func_0029A73C	0x0029A73C				
-func_0029A750	0x0029A750				
-func_0029A778	0x0029A778				
-func_0029A7E4	0x0029A7E4				
-func_0029A838	0x0029A838				
-func_0029A874	0x0029A874				
-func_0029A8A8	0x0029A8A8				
-func_0029A8E0	0x0029A8E0				
+func_0029A468	0x0029A468	Menu_Shutdown	Menus/MenuCore.cs	high	pops every screen, sends 0xE05 to the global handler, frees cache/stack/manager, clears D_8014D080
+func_0029A550	0x0029A550	Menu_SetGlobalHandler	Menus/MenuCore.cs	medium	manager +0 = fn and sends it 0xE04
+func_0029A58C	0x0029A58C	Menu_SetFlag52C_0029A58C	Menus/MenuCore.cs	low	sets or clears bit 0 of manager +0x52C (set to 1 by Menu_Init)
+func_0029A5C4	0x0029A5C4	Menu_SetValue8014D094_0029A5C4	Menus/MenuCore.cs	low	stores a into D_8014D094 (cleared by Menu_Init)
+func_0029A5D4	0x0029A5D4	Menu_SendEvent	Menus/MenuCore.cs	medium	public send: ignores blocked ids, global handler first, then Menu_DispatchEvent for the top screen id or Menu_DispatchToNode; many overlay callers
+func_0029A73C	0x0029A73C	Menu_ConsumeEvent	Menus/MenuCore.cs	medium	sets the manager lock +0x520 = 1, which every dispatcher checks to stop propagation
+func_0029A750	0x0029A750	Menu_SetNodeUserData	Menus/MenuCore.cs	medium	Menu_GetNodeCached(id)->+0x40 = v
+func_0029A778	0x0029A778	Menu_SetClassHandler	Menus/MenuCore.cs	medium	class slot id: kind 1 sets the handler (+4) and clears the override, else sets the override (+8)
+func_0029A7E4	0x0029A7E4	Menu_GetClassHandler	Menus/MenuCore.cs	medium	class slot lookup: override +8 else handler +4
+func_0029A838	0x0029A838	Menu_GetClassFlag	Menus/MenuCore.cs	medium	returns class slot +0x10
+func_0029A874	0x0029A874	Menu_SetClassFlag	Menus/MenuCore.cs	medium	sets class slot +0x10
+func_0029A8A8	0x0029A8A8	Menu_GoBack	Menus/MenuCore.cs	medium	when more than one screen: Menu_GotoScreen(func_0029A9A0(0)) (the screen below); default 'back' event action
+func_0029A8E0	0x0029A8E0	Menu_CallClassHandler	Menus/MenuCore.cs	medium	looks up the widget class handler (func_0029A7E4: slot override f8 else f4 of the 64-entry class table in D_8014D080) for node->unkE and calls it with 4 args
 func_0029A958	0x0029A958	Ui_PushScreen	Menus/MenuCore.cs	medium	harvest: PORT_STATUS: UI screen ids (screen id -> N (top=K) from func_0029A958), screen-id hook override
-func_0029A9A0	0x0029A9A0				
-func_0029A9E0	0x0029A9E0				
-func_0029A9F4	0x0029A9F4				
+func_0029A9A0	0x0029A9A0	Menu_GetStackScreenId	Menus/MenuCore.cs	medium	returns stk[top-1-n].id of the menu screen stack or -1; ovl_a callers test func_0029A9A0(0)==0x16 for the screen below
+func_0029A9E0	0x0029A9E0	Menu_GetStackDepth	Menus/MenuCore.cs	medium	returns D_8014D080->top + 1 (number of screens on the menu stack)
+func_0029A9F4	0x0029A9F4	Menu_GetPreviousScreen	Menus/MenuCore.cs	medium	returns mgr->unk528, which func_00299368 sets to the current screen id (func_0029A958) before a push; func_00423C18 checks ==2
 func_0029AA08	0x0029AA08	Menu_GetMessage	Menus/MenuCore.cs	medium	harvest: src/ovl_a comments (func_00436224, func_00439F38): handles the menu message func_0029AA08 reports
-func_0029AA48	0x0029AA48				
-func_0029AA5C	0x0029AA5C				
-func_0029AA80	0x0029AA80				
-func_0029AB3C	0x0029AB3C				
-func_0029AB4C	0x0029AB4C				
-func_0029AB60	0x0029AB60				
-func_0029AB74	0x0029AB74				
-func_0029ABEC	0x0029ABEC				
-func_0029AC38	0x0029AC38				
-func_0029AC80	0x0029AC80				
-func_0029ACC4	0x0029ACC4				
-func_0029ACF0	0x0029ACF0				
-func_0029AE64	0x0029AE64				
-func_0029AE74	0x0029AE74				
-func_0029AE80	0x0029AE80				
-func_0029B324	0x0029B324				
-func_0029B558	0x0029B558				
-func_0029B650	0x0029B650				
-func_0029BA24	0x0029BA24				
-func_0029BA34	0x0029BA34				
-func_0029BA78	0x0029BA78				
-func_0029BAAC	0x0029BAAC				
-func_0029BAD8	0x0029BAD8				
-func_0029BB24	0x0029BB24				
-func_0029BB98	0x0029BB98				
-func_0029BBA0	0x0029BBA0				
+func_0029AA48	0x0029AA48	Menu_SetPair534_0029AA48	Menus/MenuCore.cs	low	stores two ints at D_8014D080 +0x534/+0x538; no callers
+func_0029AA5C	0x0029AA5C	Menu_GetPair534_0029AA5C	Menus/MenuCore.cs	low	reads the two ints at D_8014D080 +0x534/+0x538 into out pointers; no callers
+func_0029AA80	0x0029AA80	Menu_CallClassDraw	Menus/MenuCore.cs	medium	finds the class slot for node->unkE in the 64-entry table and calls its +0xC function with (node, viewport by value); used by the node drawer func_0040DB84 default case
+func_0029AB3C	0x0029AB3C	Menu_SetStickDeadzone	Menus/MenuCore.cs	medium	sets D_8014D080->unk14, the value Menu_GetStickDeadzone returns
+func_0029AB4C	0x0029AB4C	Menu_GetStickDeadzone	Menus/MenuCore.cs	medium	returns D_8014D080->unk14; callers skip input when abs(stick axis) < it (func_0041AA90, func_004302F8, func_002A2EC0) and MenuInput_HandleAxis uses it as threshold
+func_0029AB60	0x0029AB60	Menu_SetFloatPairNeg1_0029AB60	Menus/MenuCore.cs	low	writes -1.0 (D_800CA818) to two float pointers; no callers
+func_0029AB74	0x0029AB74	Menu_BufWrite	Menus/MenuCore.cs	medium	{data,size,rdpos,wrpos} buffer: allocates on first use (ResourcePool_Malloc), copies n bytes at wrpos and advances it (screen state buffer stk[top].unkC)
+func_0029ABEC	0x0029ABEC	Menu_BufRead	Menus/MenuCore.cs	medium	copies n bytes from data+rdpos into dst and advances rdpos
+func_0029AC38	0x0029AC38	Menu_BufReserve	Menus/MenuCore.cs	medium	allocates the buffer data block of the given size if none yet, resets wrpos
+func_0029AC80	0x0029AC80	Menu_BufFree	Menus/MenuCore.cs	medium	frees buffer data (ResourcePool_MallocFree), zeroes size/rdpos/wrpos; called when a screen is popped (func_00299ECC, func_00298DBC)
+func_0029ACC4	0x0029ACC4	Menu_FlushResources	Menus/MenuCore.cs	medium	MsgPort_Flush(D_8010A248) then ResourcePool_Purge(0); called when leaving a screen (func_00298EA4, func_00299368)
+func_0029ACF0	0x0029ACF0	Menu_BroadcastToTree	Menus/MenuCore.cs	medium	recursively walks node child1/child2 and sends the event to each widget (func_0029A5D4) with depth>0, id!=-1, class>8; stops when the handled flag unk520 is set; 0xE08/0xE09 filtered by flags
+func_0029AE64	0x0029AE64	Menu_GetManager	Menus/MenuCore.cs	high	returns the menu manager pointer D_8014D080
+func_0029AE74	0x0029AE74	MenuInput_HandleButtonHead_0029AE74	Menus/MenuInput.cs	low	3-instruction pad fragment (ldc1/lwc1/cvt.d.w, splat pad_09BA74) just before MenuInput_HandleButton; no callers
+func_0029AE80	0x0029AE80	MenuInput_HandleButton	Menus/MenuInput.cs	medium	button event: per-pad bit array at D_8014D0B0+0xC04; sends press 0xA (plus 1/2 for buttons 11/12, 5-8 for ids 4-7 with repeat 10000), hold 9, release 0xB to the current screen, then stores the bit
+func_0029B324	0x0029B324	MenuInput_HandleAxis	Menus/MenuInput.cs	medium	stick event: shifts next->cur axis values per pad (row 0xC0 in D_8014D0B0), compares with Menu_GetStickDeadzone and sends events 5/6 (Y) and 7/8 (X) to the current screen
+func_0029B558	0x0029B558	MenuInput_Dispatch	Menus/MenuInput.cs	medium	calls the optional hook D_8014D0B0->fn0, then by kind: 0 sends 0x11, 1 -> MenuInput_HandleButton, 2-4 -> MenuInput_HandleAxis
+func_0029B650	0x0029B650	MenuInput_ProcessPad	Menus/MenuInput.cs	medium	called by Pad_LatchAll: posts the stick (unkC4/unkC5) and edge-detected button changes (0x8000 -> 11, 0x4000 -> 12, D-pad/C/shoulder bits) as menu input events
+func_0029BA24	0x0029BA24	MenuInput_SetHook	Menus/MenuInput.cs	medium	sets D_8014D0B0->fn0, the pre-dispatch hook checked by MenuInput_Dispatch
+func_0029BA34	0x0029BA34	MenuInput_ClearButtonStates	Menus/MenuInput.cs	medium	zeroes the 16x4 button-state words of D_8014D0B0; called from func_002A3358
+func_0029BA78	0x0029BA78	MenuInput_Init	Menus/MenuInput.cs	medium	allocates (ResourcePool_Malloc) and zeroes the 0xC44-byte menu input state D_8014D0B0
+func_0029BAAC	0x0029BAAC	MenuInput_Free	Menus/MenuInput.cs	medium	frees D_8014D0B0 and clears it; called from the menu shutdown func_0029A468
+func_0029BAD8	0x0029BAD8	MenuInput_PostButton	Menus/MenuInput.cs	medium	builds a kind-1 input message (type 4, pad, button id, pressed flag) and dispatches it with MenuInput_Dispatch
+func_0029BB24	0x0029BB24	MenuInput_PostStick	Menus/MenuInput.cs	medium	builds a kind-3 input message for axis 0x162 with x*100 / y*100 and dispatches it
+func_0029BB98	0x0029BB98	Math_LdexpHead_0029BB98	Math/MathLib.cs	low	2-instruction pad fragment (neg.s f0; lw ra; splat pad_09C798) just before Math_Ldexp; no callers
+func_0029BBA0	0x0029BBA0	Math_Ldexp	Math/MathLib.cs	high	ldexp: adds n to the double exponent field, overflow -> D_800CA850 with sign, denormals via scaling by 2^53
 func_0029BD38	0x0029BD38	Math_Log	Math/MathLib.cs	medium	harvest: FINDINGS: func_0029BD38 log (returns -inf for x <= 0, frexp inline)
-func_0029BEA4	0x0029BEA4				
+func_0029BEA4	0x0029BEA4	Math_Pow	Math/MathLib.cs	high	pow(x,y) = exp(log(x)*y) with integer-exponent sign handling for negative x; used by Str_ToDouble
 func_0029C278	0x0029C278	Math_Fmod	Math/MathLib.cs	high	harvest: FINDINGS: fmod (func_0029C278) = x - trunc(x/y)*y
 func_0029C3C0	0x0029C3C0	Math_EulerFromMtx4	Math/Matrix.cs	medium	harvest: FINDINGS: func_0029C6E0/C54C/C868/C3C0 (euler angles from a matrix)
 func_0029C54C	0x0029C54C	Math_EulerFromMtx2	Math/Matrix.cs	medium	harvest: FINDINGS: func_0029C6E0/C54C/C868/C3C0 (euler angles from a matrix)
 func_0029C6E0	0x0029C6E0	Math_EulerFromMtx1	Math/Matrix.cs	medium	harvest: FINDINGS: func_0029C6E0/C54C/C868/C3C0 (euler angles from a matrix)
 func_0029C868	0x0029C868	Math_EulerFromMtx3	Math/Matrix.cs	medium	harvest: FINDINGS: func_0029C6E0/C54C/C868/C3C0 (euler angles from a matrix)
-func_0029C9FC	0x0029C9FC				
-func_0029CBB0	0x0029CBB0				
-func_0029CDEC	0x0029CDEC				
+func_0029C9FC	0x0029C9FC	Math_Sin	Math/MathLib.cs	high	sinf: range-reduces to [-pi/2, pi/2] and evaluates the odd Taylor polynomial (1/6, 1/120, 1/5040 ...)
+func_0029CBB0	0x0029CBB0	Math_SinCos	Math/MathLib.cs	high	computes sin and cos of an angle into two out pointers by quadrant reduction and the same polynomial; used by the matrix builders
+func_0029CDEC	0x0029CDEC	Math_Tanh	Math/MathLib.cs	high	tanh: 1 for |x|>25.3, 1-2/(exp(2x)+1) above 0.549, rational polynomial below, sign restored
 func_0029D044	0x0029D044	Math_Atan2	Math/MathLib.cs	high	harvest: FINDINGS: atan2f = if/else tree + inline atanf + D_800D2B60[q] table (func_0029D044)
-func_0029D288	0x0029D288				
-func_0029D4A0	0x0029D4A0				
-func_0029D6A8	0x0029D6A8				
+func_0029D288	0x0029D288	Vec3_AngleBetween	Math/Vector.cs	high	acos(dot(a,b)/(|a||b|)) computed as pi/2 - asin, clamped to [-1,1]
+func_0029D4A0	0x0029D4A0	Math_ClipPolygonToPlane	Math/Vector.cs	high	Sutherland-Hodgman: keeps vertices with n.p+d >= 0 and inserts segment/plane intersections; returns whether any edge crossed
+func_0029D6A8	0x0029D6A8	Math_MtxFromEulerXYZ	Math/Matrix.cs	medium	rotation matrix from Vec3 angles with single-axis fast paths (identity / X / Y / Z only), m[0][2] = -sin(y)
 func_0029D984	0x0029D984	Math_MtxFromEuler	Math/Matrix.cs	medium	harvest: FINDINGS: out-of-line copies of inlined functions (... D984 euler matrix)
-func_0029DAB4	0x0029DAB4				
-func_0029DC70	0x0029DC70				
+func_0029DAB4	0x0029DAB4	Math_EulerFromMtxYXZ	Math/Matrix.cs	medium	extracts angles x = asin(-m[9]), y = atan2(m[8],m[10]), z = atan2(m[1],m[5]) (inverse of Math_MtxFromEuler)
+func_0029DC70	0x0029DC70	Math_EulerFromMtxXYZ	Math/Matrix.cs	medium	extracts angles y = asin(-m[2]), x = atan2(m[6],m[10]), z = atan2(m[1],m[0]) (inverse of Math_MtxFromEulerXYZ)
 func_0029DE3C	0x0029DE3C	Math_MtxMultiply	Math/Matrix.cs	medium	harvest: FINDINGS: 4x4 matrix multiply/inverse: pointer-based loops (func_0029DE3C)
-func_0029E000	0x0029E000				
+func_0029E000	0x0029E000	Math_MtxOrthonormalize	Math/Matrix.cs	high	normalizes rows 0 and 1, row 2 = cross(r0,r1), row 1 = cross(r2,r0)
 func_0029E248	0x0029E248	Math_MtxInverseCofactor	Math/Matrix.cs	medium	harvest: FINDINGS: 4x4 matrix multiply/inverse: det = 1.0f / det ... (func_0029E248), cofactor expressions
 func_0029E510	0x0029E510	Math_MtxInverse	Math/Matrix.cs	high	harvest: src/game/func_0029E510.c comment: 4x4 Gauss-Jordan inverse with partial pivoting; returns 1 if singular
-func_0029E8A0	0x0029E8A0				
-func_0029E8A8	0x0029E8A8				
-func_0029E8B0	0x0029E8B0				
+func_0029E8A0	0x0029E8A0	Math_Init	Math/MathLib.cs	medium	empty function called next to File_Init by the overlay init func_004143E0
+func_0029E8A8	0x0029E8A8	Math_Shutdown	Math/MathLib.cs	medium	empty function called next to File_Shutdown by the overlay shutdown func_00414404
+func_0029E8B0	0x0029E8B0	Math_Square	Math/MathLib.cs	high	returns x*x
 func_0029E8BC	0x0029E8BC	Math_SqrtNonNeg	Math/MathLib.cs	medium	harvest: FINDINGS: if (x <= 0.0f) return 0.0f; return sqrtf(x) matches func_0029E8BC
 func_0029E8E8	0x0029E8E8	Math_InvSqrt	Math/MathLib.cs	medium	harvest: code: returns 1 / sqrtf(x) (0 for x <= 0)
-func_0029E924	0x0029E924				
+func_0029E924	0x0029E924	Math_FmodWrap	Math/MathLib.cs	medium	r = Math_Fmod(a,b); adds b when r < b
 func_0029E964	0x0029E964	Math_Floor	Math/MathLib.cs	medium	harvest: src/game/func_0029E9DC.c comment: adapted from func_0029E964 (round-down) with the rounding direction reversed
 func_0029E9DC	0x0029E9DC	Math_Ceil	Math/MathLib.cs	medium	harvest: src/game/func_0029E9DC.c comment: rounds a double up to the next integer (2^52 trick); counterpart of func_0029E964
 func_0029EAA0	0x0029EAA0	Math_Modf	Math/MathLib.cs	high	harvest: src/ovl_a/func_00414480.c comment: func_0029EAA0 is modf()
-func_0029EB34	0x0029EB34				
-func_0029EB58	0x0029EB58				
-func_0029EB74	0x0029EB74				
-func_0029EB9C	0x0029EB9C				
-func_0029ECB0	0x0029ECB0				
-func_0029ED18	0x0029ED18				
-func_0029ED3C	0x0029ED3C				
-func_0029ED78	0x0029ED78				
+func_0029EB34	0x0029EB34	Math_Fabs	Math/MathLib.cs	high	returns |x| for a float
+func_0029EB58	0x0029EB58	Math_AbsInt	Math/MathLib.cs	high	returns |x| for an int; callers compare abs(stick) with Menu_GetStickDeadzone
+func_0029EB74	0x0029EB74	Math_Log10	Math/MathLib.cs	high	Math_Log(x) * 0.4342944920 (1/ln 10)
+func_0029EB9C	0x0029EB9C	Math_Exp	Math/MathLib.cs	high	exp: n = round(x/ln2), Cody-Waite reduction, rational approximation, Math_Ldexp(.., n+1)
+func_0029ECB0	0x0029ECB0	Math_Frexp	Math/MathLib.cs	high	frexp: returns the mantissa in [0.5,1) (exponent bits 0x3FE) and writes exponent - 0x3FE
+func_0029ED18	0x0029ED18	Math_Cos	Math/MathLib.cs	high	Math_Sin(x + pi/2) (D_800CAD60 = 1.5707964)
+func_0029ED3C	0x0029ED3C	Math_Tan	Math/MathLib.cs	high	Math_Sin(x) / Math_Sin(x + pi/2)
+func_0029ED78	0x0029ED78	Math_Atan	Math/MathLib.cs	high	atan: t=(|x|-1)/(|x|+1), odd polynomial in t plus pi/4, sign restored
 func_0029EE48	0x0029EE48	Math_Asin	Math/MathLib.cs	high	harvest: src/game/func_0029EE48.c comment: arcsine of a value clamped to [-1, 1] (polynomial approximation)
 func_0029EF48	0x0029EF48	Math_Acos	Math/MathLib.cs	high	harvest: src/game/func_0029EF48.c comment: arccosine as pi/2 minus the arcsine
 func_0029F04C	0x0029F04C	Math_WrapAngle	Math/MathLib.cs	medium	harvest: FINDINGS: wrapAngle (F04C/F104/F1D4: a = a + pi; a = Wrap(a); return a - pi)
 func_0029F104	0x0029F104	Math_NormalizeAngle	Math/MathLib.cs	medium	harvest: src/game/func_0029F104.c comment: normalizes an offset angle
 func_0029F1D4	0x0029F1D4	Math_NormalizeAngle2	Math/MathLib.cs	medium	harvest: src/game/func_0029F1D4.c comment: normalizes an offset angle (second copy)
-func_0029F2A8	0x0029F2A8				
-func_0029F2BC	0x0029F2BC				
-func_0029F2CC	0x0029F2CC				
-func_0029F2E8	0x0029F2E8				
-func_0029F304	0x0029F304				
-func_0029F338	0x0029F338				
-func_0029F36C	0x0029F36C				
-func_0029F398	0x0029F398				
-func_0029F3C0	0x0029F3C0				
-func_0029F428	0x0029F428				
-func_0029F458	0x0029F458				
+func_0029F2A8	0x0029F2A8	Vec3_Zero	Math/Vector.cs	high	sets x, y, z to 0
+func_0029F2BC	0x0029F2BC	Vec3_Set	Math/Vector.cs	high	stores three floats into the vector
+func_0029F2CC	0x0029F2CC	Vec3_Get	Math/Vector.cs	high	writes the vector components to three float pointers
+func_0029F2E8	0x0029F2E8	Vec3_Copy	Math/Vector.cs	high	*d = *s (Vec3f struct copy)
+func_0029F304	0x0029F304	Vec3_Add	Math/Vector.cs	high	d = a + b
+func_0029F338	0x0029F338	Vec3_Sub	Math/Vector.cs	high	d = a - b
+func_0029F36C	0x0029F36C	Vec3_Scale	Math/Vector.cs	high	d = a * s
+func_0029F398	0x0029F398	Vec3_Negate	Math/Vector.cs	high	d = -s
+func_0029F3C0	0x0029F3C0	Vec3_Distance	Math/Vector.cs	high	sqrt of the squared difference of two points
+func_0029F428	0x0029F428	Vec3_Dot	Math/Vector.cs	high	a.x*b.x + a.y*b.y + a.z*b.z
+func_0029F458	0x0029F458	Vec3_Cross	Math/Vector.cs	high	d = a x b through a temporary
 func_0029F4DC	0x0029F4DC	Vec_Length	Math/Vector.cs	medium	harvest: code: sqrt of x*x + y*y + z*z (0 for non-positive)
-func_0029F52C	0x0029F52C				
-func_0029F5C0	0x0029F5C0				
-func_0029F654	0x0029F654				
-func_0029F6E8	0x0029F6E8				
-func_0029F77C	0x0029F77C				
-func_0029F810	0x0029F810				
-func_0029F8AC	0x0029F8AC				
-func_0029D4A0_func_0029F93C	0x0029F93C				
+func_0029F52C	0x0029F52C	Vec3_Normalize	Math/Vector.cs	high	divides the vector by its length in place
+func_0029F5C0	0x0029F5C0	Vec3_RotateX	Math/Vector.cs	high	rotates about X: y' = c*y - s*z, z' = c*z + s*y
+func_0029F654	0x0029F654	Vec3_RotateY	Math/Vector.cs	high	rotates about Y: x' = c*x + s*z, z' = c*z - s*x
+func_0029F6E8	0x0029F6E8	Vec3_RotateZ	Math/Vector.cs	high	rotates about Z: x' = c*x - s*y, y' = c*y + s*x
+func_0029F77C	0x0029F77C	Vec3_ToAnglesNegPitch	Math/Vector.cs	medium	direction to angles: yaw = atan2(x,z), pitch = -atan2(y, |xz|) into two out pointers
+func_0029F810	0x0029F810	Vec3_ToAnglesNegYaw	Math/Vector.cs	medium	direction to angles: pitch = atan2(y, |xz|), yaw = -atan2(x,z) into two out pointers
+func_0029F8AC	0x0029F8AC	Math_ProjectPoints	Math/Vector.cs	high	perspective divide of n points: x = ox + sx*x/z, y = oy + sy*y/z, zeroed when z <= 0.01 (D_800CAE38)
+func_0029D4A0_func_0029F93C	0x0029F93C	Math_IntersectPolyInline	Math/Vector.cs	medium	inlined copy (inside Math_ClipPolygonToPlane) of the segment/plane intersection at 0x29F93C: t = -(n.p+d)/(n.dir), 0.5 when parallel
 func_0029F93C	0x0029F93C	Math_IntersectPoly_0029F93C	Math/Vector.cs	low	harvest: FINDINGS: out-of-line copies (... F93C poly intersection)
-func_0029FA44	0x0029FA44				
-func_0029FA7C	0x0029FA7C				
-func_0029FAF4	0x0029FAF4				
-func_0029FB14	0x0029FB14				
-func_0029FB58	0x0029FB58				
-func_0029FBC8	0x0029FBC8				
+func_0029FA44	0x0029FA44	Math_MtxAssign	Math/Matrix.cs	high	*d = *s 64-byte matrix struct copy
+func_0029FA7C	0x0029FA7C	Math_MtxSetElements	Math/Matrix.cs	high	stores 16 float arguments into a matrix (transposed order)
+func_0029FAF4	0x0029FAF4	Math_MtxZero	Math/Matrix.cs	high	Mem_Fill(m, 0, 0x40)
+func_0029FB14	0x0029FB14	Math_MtxSetIdentity	Math/Matrix.cs	high	zeroes the 4x4 matrix and sets the diagonal to 1.0
+func_0029FB58	0x0029FB58	Math_MtxTranspose	Math/Matrix.cs	high	swaps m[i][j] and m[j][i] in place
+func_0029FBC8	0x0029FBC8	Math_MtxSetDiagonal	Math/Matrix.cs	high	m[0][0], m[1][1], m[2][2] = v.x, v.y, v.z
 func_0029FBE4	0x0029FBE4	Math_MtxScaleVec	Math/Matrix.cs	medium	harvest: FINDINGS p2: 0029FBE4/FCBC/FFE4/A0118 are 4x4 f32 matrix helpers (scale by vec3, uniform scale, get translation, basis rows)
-func_0029FCA8	0x0029FCA8				
+func_0029FCA8	0x0029FCA8	Math_MtxSetDiagonalUniform	Math/Matrix.cs	high	m[0][0] = m[1][1] = m[2][2] = s
 func_0029FCBC	0x0029FCBC	Math_MtxScaleUniform	Math/Matrix.cs	medium	harvest: FINDINGS p2: 4x4 f32 matrix helper (uniform scale)
-func_0029FD54	0x0029FD54				
-func_0029FDA0	0x0029FDA0				
-func_0029FDD8	0x0029FDD8				
-func_0029FE78	0x0029FE78				
-func_0029FF18	0x0029FF18				
-func_0029FFB8	0x0029FFB8				
-func_0029FFC8	0x0029FFC8				
+func_0029FD54	0x0029FD54	Math_MtxResetRotation	Math/Matrix.cs	high	sets the 3x3 rotation part to identity (D_800CAE4C = 1.0)
+func_0029FDA0	0x0029FDA0	Math_MtxRotateEulerXYZ	Math/Matrix.cs	medium	builds Math_MtxFromEulerXYZ in a temp and multiplies it into the matrix (Math_MtxMultiply(m, tmp, m))
+func_0029FDD8	0x0029FDD8	Math_MtxApplyRotateX	Math/Matrix.cs	high	if angle != 0: multiplies the matrix by an X rotation (m[1][1]=c, m[2][1]=-s, m[1][2]=s)
+func_0029FE78	0x0029FE78	Math_MtxApplyRotateY	Math/Matrix.cs	high	if angle != 0: multiplies the matrix by a Y rotation (m[0][0]=c, m[2][0]=s, m[0][2]=-s)
+func_0029FF18	0x0029FF18	Math_MtxApplyRotateZ	Math/Matrix.cs	high	if angle != 0: multiplies the matrix by a Z rotation (m[1][0]=-s, m[0][1]=s)
+func_0029FFB8	0x0029FFB8	Math_MtxClearTranslation	Math/Matrix.cs	high	zeroes elements 12-14 (translation row)
+func_0029FFC8	0x0029FFC8	Math_MtxSetTranslation	Math/Matrix.cs	high	elements 12-14 = v
 func_0029FFE4	0x0029FFE4	Math_MtxGetTranslation	Math/Matrix.cs	medium	harvest: FINDINGS p2: 4x4 f32 matrix helper (get translation row 3)
-func_002A0000	0x002A0000				
-func_002A0034	0x002A0034				
-func_002A0080	0x002A0080				
-func_002A00CC	0x002A00CC				
+func_002A0000	0x002A0000	Math_MtxAddTranslation	Math/Matrix.cs	high	elements 12-14 += v
+func_002A0034	0x002A0034	Math_MtxSetBasisColumns	Math/Matrix.cs	high	writes three vectors into columns 0-2 of the 3x3 part (m[0..2][k])
+func_002A0080	0x002A0080	Math_MtxGetBasisColumns	Math/Matrix.cs	high	reads columns 0-2 of the 3x3 part into three vectors
+func_002A00CC	0x002A00CC	Math_MtxSetBasisRows	Math/Matrix.cs	high	writes three vectors into rows 0-2 of the 3x3 part (m[k][0..2])
 func_002A0118	0x002A0118	Math_MtxGetBasisRows	Math/Matrix.cs	medium	harvest: FINDINGS p2: 4x4 f32 matrix helper (extract the three basis rows)
-func_002A0164	0x002A0164				
-func_002A0180	0x002A0180				
-func_002A01A0	0x002A01A0				
-func_002A0254	0x002A0254				
-func_002A0368	0x002A0368				
+func_002A0164	0x002A0164	Math_MtxMulInPlace	Math/Matrix.cs	high	Math_MtxMultiply(a, b, a)
+func_002A0180	0x002A0180	Math_MtxSquare	Math/Matrix.cs	high	Math_MtxMultiply(a, a, b): b = a * a
+func_002A01A0	0x002A01A0	Math_MtxTransformVecArray	Math/Matrix.cs	high	transforms n Vec3 points by the affine matrix (rotation + translation row 3)
+func_002A0254	0x002A0254	Math_MtxFromAxisAngle	Math/Matrix.cs	high	Rodrigues rotation matrix from a unit axis and an angle (t = 1 - cos, xs/ys/zs terms)
+func_002A0368	0x002A0368	Math_MtxFromScaleRotTrans	Math/Matrix.cs	high	Math_MtxFromEulerXYZ(rot), scales rows by scale x/y/z, adds the translation
 func_002A0470	0x002A0470	Mem_Move	Lib/LibC.cs	high	harvest: FINDINGS single-return note: memmove func_002A0470
-func_002A05E0	0x002A05E0				
+func_002A05E0	0x002A05E0	Str_ToDouble	Lib/LibC.cs	high	atof: skips spaces, sign, integer/fraction digits, e/E exponent (Math_Pow for >= 30)
 func_002A0888	0x002A0888	Path_Split	Lib/LibC.cs	high	harvest: FINDINGS: func_002A0888 (_splitpath)
-func_002A0B74	0x002A0B74				
+func_002A0B74	0x002A0B74	Sort_QuickRecurse	Lib/LibC.cs	high	BSD qst(): median-of-three quicksort over the globals qsz/thresh/mthresh/qcmp (D_8014D0C0..CC); called by Sort_Quick
 func_002A0E38	0x002A0E38	Sort_Quick	Lib/LibC.cs	high	harvest: FINDINGS: func_002A0E38 (qsort)
-func_002A101C	0x002A101C				
+func_002A101C	0x002A101C	memset_Recompiled	Lib/LibC.cs	high	recompiled copy of memset at the same address (byte fill, word fill in the middle)
 memset	0x002A101C				
-func_002A10B0	0x002A10B0				
-func_002A11D8	0x002A11D8				
-func_002A11E8	0x002A11E8				
+func_002A10B0	0x002A10B0	Sort_BinarySearch	Lib/LibC.cs	high	binary search with a compare callback; on a match walks back to the first equal entry; writes the index, returns found
+func_002A11D8	0x002A11D8	Random_SetSeedLcg	Math/MathLib.cs	high	stores the seed D_800D2B70 of the LCG used by Random_NextLcg
+func_002A11E8	0x002A11E8	Random_NextLcg	Math/MathLib.cs	high	MS rand(): seed = seed*0x343FD + 0x269EC3, returns (seed>>16) & 0x7FFF
 func_002A1238	0x002A1238	Str_Length	Lib/LibC.cs	high	harvest: FINDINGS p2: func_002A1238/12E8/13F4 are strlen / strcat / strcasecmp
-func_002A125C	0x002A125C				
+func_002A125C	0x002A125C	LibC_StrCopy	Lib/LibC.cs	high	strcpy (the C-library copy; Str_Copy func_002934A4 is a second implementation)
 func_002A1294	0x002A1294	Str_CopyN	Lib/LibC.cs	high	harvest: FINDINGS goto-transcription note: strncpy func_002A1294
 func_002A12E8	0x002A12E8	Str_Concat	Lib/LibC.cs	high	harvest: FINDINGS p2: func_002A1238/12E8/13F4 are strlen / strcat / strcasecmp
-func_002A1324	0x002A1324				
-func_002A137C	0x002A137C				
-func_002A13AC	0x002A13AC				
+func_002A1324	0x002A1324	Str_ConcatN	Lib/LibC.cs	high	strncat: appends at most n chars and terminates
+func_002A137C	0x002A137C	LibC_StrCompare	Lib/LibC.cs	high	strcmp (the C-library copy; Str_Compare func_00293424 is a second implementation)
+func_002A13AC	0x002A13AC	Str_CompareN	Lib/LibC.cs	high	strncmp
 func_002A13F4	0x002A13F4	Str_CompareNoCase	Lib/LibC.cs	high	harvest: FINDINGS p2: func_002A1238/12E8/13F4 are strlen / strcat / strcasecmp
-func_002A1444	0x002A1444				
-func_002A1494	0x002A1494				
-func_002A14E0	0x002A14E0				
-func_002A152C	0x002A152C				
-func_002A15A0	0x002A15A0				
-func_002A15B8	0x002A15B8				
-func_002A15D0	0x002A15D0				
-func_002A166C	0x002A166C				
-func_002A1724	0x002A1724				
-func_002A1748	0x002A1748				
-func_002A17DC	0x002A17DC				
-func_002A1814	0x002A1814				
-func_002A18B8	0x002A18B8				
+func_002A1444	0x002A1444	Str_FindLastChar	Lib/LibC.cs	high	strrchr
+func_002A1494	0x002A1494	Str_ToUpper	Lib/LibC.cs	high	uppercases a-z in place, returns the string
+func_002A14E0	0x002A14E0	Str_ToLower	Lib/LibC.cs	high	lowercases A-Z in place, returns the string
+func_002A152C	0x002A152C	Str_FindSubstring	Lib/LibC.cs	high	strstr
+func_002A15A0	0x002A15A0	Str_CharToUpper	Lib/LibC.cs	high	toupper
+func_002A15B8	0x002A15B8	Str_CharToLower	Lib/LibC.cs	high	tolower
+func_002A15D0	0x002A15D0	Str_ToInt	Lib/LibC.cs	high	atoi: skips spaces, optional sign, decimal digits
+func_002A166C	0x002A166C	Str_FromInt	Lib/LibC.cs	high	itoa (K&R): writes decimal digits reversed, sign, then reverses the string
+func_002A1724	0x002A1724	Mem_Copy	Lib/LibC.cs	high	memcpy wrapper: Mem_Move(dst, src, n) when n != 0, returns dst
+func_002A1748	0x002A1748	Mem_Fill	Lib/LibC.cs	high	memset: byte fill to alignment, word fill, byte tail
+func_002A17DC	0x002A17DC	Mem_FindByte	Lib/LibC.cs	high	memchr
+func_002A1814	0x002A1814	Mem_CompareBytes	Lib/LibC.cs	high	memcmp with an aligned word fast path, returns -1/0/1
+func_002A18B8	0x002A18B8	Crc32_Compute	Lib/LibC.cs	high	builds the 0xEDB88320 table on the stack and computes the CRC-32 of a buffer from a start value
 func_002A1960	0x002A1960	Path_Make	Lib/LibC.cs	high	harvest: FINDINGS: func_002A1960 (makepath)
 func_002A1A48	0x002A1A48	Mutex_Init	System/Threads.cs	medium	harvest: code: creates a one-slot message queue and posts one message (binary semaphore)
 func_002A1A84	0x002A1A84	Mutex_Lock	System/Threads.cs	medium	harvest: code: blocking osRecvMesg on the semaphore queue
 func_002A1AA4	0x002A1AA4	Mutex_Unlock	System/Threads.cs	medium	harvest: code: osSendMesg(q, 1) on the semaphore queue
 func_002A1AC4	0x002A1AC4	Str_FormatTemp	Lib/LibC.cs	medium	harvest: FINDINGS: func_002A1AC4 (printf wrapper), char *f(char *fmt, ...)
-func_002A1B20	0x002A1B20				
-func_002A1B8C	0x002A1B8C				
-func_002A1C08	0x002A1C08				
-func_002A1C38	0x002A1C38				
-func_002A1D38	0x002A1D38				
-func_002A1E34	0x002A1E34				
-func_002A1E8C	0x002A1E8C				
-func_002A1EB0	0x002A1EB0				
-func_002A1ED4	0x002A1ED4				
-func_002A1F50	0x002A1F50				
-func_002A1F58	0x002A1F58				
-func_002A1F60	0x002A1F60				
-func_002A1F84	0x002A1F84				
-func_002A1FA8	0x002A1FA8				
-func_002A1FCC	0x002A1FCC				
-func_002A2004	0x002A2004				
-func_002A200C	0x002A200C				
-func_002A2050	0x002A2050				
-func_002A209C	0x002A209C				
-func_002A2114	0x002A2114				
-func_002A2158	0x002A2158				
-func_002A2188	0x002A2188				
-func_002A2198	0x002A2198				
-func_002A21EC	0x002A21EC				
-func_002A21F4	0x002A21F4				
-func_002A2220	0x002A2220				
-func_002A2230	0x002A2230				
-func_002A224C	0x002A224C				
-func_002A2264	0x002A2264				
-func_002A2270	0x002A2270				
-func_002A23A4	0x002A23A4				
-func_002A24B8	0x002A24B8				
-func_002A25E4	0x002A25E4				
-func_002A26F8	0x002A26F8				
-func_002A276C	0x002A276C				
-func_002A27C4	0x002A27C4				
-func_002A27F8	0x002A27F8				
-func_002A282C	0x002A282C				
-func_002A286C	0x002A286C				
-func_002A2870	0x002A2870				
-func_002A2898	0x002A2898				
-func_002A28CC	0x002A28CC				
-func_002A28F4	0x002A28F4				
-func_002A28FC	0x002A28FC				
-func_002A2918	0x002A2918				
-func_002A2934	0x002A2934				
-func_002A2944	0x002A2944				
-func_002A2960	0x002A2960				
-func_002A2990	0x002A2990				
-func_002A2B18	0x002A2B18				
-func_002A2B24	0x002A2B24				
-func_002A2B50	0x002A2B50				
-func_002A2BE0	0x002A2BE0				
-func_002A2D14	0x002A2D14				
-func_002A2D7C	0x002A2D7C				
-func_002A2DE4	0x002A2DE4				
-func_002A2E20	0x002A2E20				
-func_002A2E5C	0x002A2E5C				
-func_002A2EC0	0x002A2EC0				
-func_002A2F3C	0x002A2F3C				
-func_002A2FB8	0x002A2FB8				
-func_002A2FE8	0x002A2FE8				
-func_002A306C	0x002A306C				
-func_002A308C	0x002A308C				
+func_002A1B20	0x002A1B20	Debug_Printf	Debug/Debug.cs	medium	vsprintf (Printf_VFormat) into D_8014D0D0, then calls the print hook D_800D2B8C with it
+func_002A1B8C	0x002A1B8C	Debug_PrintfAt	Debug/Debug.cs	medium	vsprintf into D_8014D0D0, then calls hook D_800D2B90(buf, a, b) (position args)
+func_002A1C08	0x002A1C08	Str_FormatInto	Lib/LibC.cs	high	sprintf: Printf_VFormat(buf, fmt, args), length stored in D_800D2B88; e.g. the default profile name in Profile_InitSlot
+func_002A1C38	0x002A1C38	File_Printf	System/File.cs	medium	fprintf: formats into D_8014D0D0 and writes it with File_Write piece by piece, emitting the newline sequence D_800CAEF0
+func_002A1D38	0x002A1D38	File_Init	System/File.cs	medium	ref-counted init: magic 0x12345678, loads the 0x8B245-byte ROM file archive (ROM 0x200000) and installs the RomFile_* callbacks via File_SetCallbacks
+func_002A1E34	0x002A1E34	File_Shutdown	System/File.cs	medium	decrements the ref count, frees the archive buffer D_800D2BB0 and clears the open flags
+func_002A1E8C	0x002A1E8C	File_Open	System/File.cs	medium	calls callback D_800D2B94 (RomFile_Open); callers are the image archive loaders (Image_OpenArchives ...)
+func_002A1EB0	0x002A1EB0	File_Close	System/File.cs	medium	calls callback D_800D2B98 (RomFile_Close)
+func_002A1ED4	0x002A1ED4	File_Read	System/File.cs	high	fread(buf, size, n, fp): calls the read callback D_800D2B9C with size*n, returns count / size
+func_002A1F50	0x002A1F50	File_Write	System/File.cs	medium	stub returning 0, used as fwrite(p, 1, n, fp) by File_Printf
+func_002A1F58	0x002A1F58	File_Stub_002A1F58	System/File.cs	low	returns 0, between File_Write and File_Seek in the stdio wrapper set; no callers
+func_002A1F60	0x002A1F60	File_Seek	System/File.cs	medium	calls callback D_800D2BA4 (RomFile_Seek)
+func_002A1F84	0x002A1F84	File_Tell	System/File.cs	medium	calls callback D_800D2BA8 (RomFile_Tell)
+func_002A1FA8	0x002A1FA8	File_IsEof	System/File.cs	medium	calls callback D_800D2BAC (RomFile_IsEof)
+func_002A1FCC	0x002A1FCC	File_GetChar	System/File.cs	high	fgetc: reads one byte through the read callback, -1 on failure
+func_002A2004	0x002A2004	File_Stub_002A2004	System/File.cs	low	returns 0, after File_GetChar in the stdio wrapper set; no callers
+func_002A200C	0x002A200C	Str_VFormatTemp	Lib/LibC.cs	high	vsprintf into the static buffer D_8014D0D0 and returns it (va_list form of Str_FormatTemp)
+func_002A2050	0x002A2050	File_SetCallbacks	System/File.cs	high	stores the 7 file callbacks D_800D2B94..D_800D2BAC (open, close, read, write, seek, tell, eof)
+func_002A209C	0x002A209C	RomFile_LoadArchive	System/RomFile.cs	medium	if not loaded: allocates 0x8B245 bytes and reads ROM 0x200000 into it (RomDma_ReadSync), marks it loaded
+func_002A2114	0x002A2114	RomFile_FreeArchive	System/RomFile.cs	medium	frees the archive buffer D_800D2BB0 and clears the position/open fields
+func_002A2158	0x002A2158	RomFile_Open	System/RomFile.cs	medium	open callback: ignores the name, resets the read position D_800D2BB4 and sets the open flag
+func_002A2188	0x002A2188	RomFile_Close	System/RomFile.cs	medium	close callback: clears the open flag D_800D2BBC
+func_002A2198	0x002A2198	RomFile_Read	System/RomFile.cs	high	read callback: Mem_Copy from archive buffer + position, advances the position
+func_002A21EC	0x002A21EC	RomFile_Write	System/RomFile.cs	medium	write callback slot: returns 0 (read-only archive)
+func_002A21F4	0x002A21F4	RomFile_Seek	System/RomFile.cs	high	seek callback: position = n (whence 0) or position += n
+func_002A2220	0x002A2220	RomFile_Tell	System/RomFile.cs	high	tell callback: returns the position D_800D2BB4
+func_002A2230	0x002A2230	RomFile_IsEof	System/RomFile.cs	high	eof callback: position == size
+func_002A224C	0x002A224C	Debug_SetPrintHooks	Debug/Debug.cs	medium	sets the hooks D_800D2B8C / D_800D2B90 called by Debug_Printf / Debug_PrintfAt
+func_002A2264	0x002A2264	FrameAlloc_ResetBufferHead_002A2264	System/FrameAlloc.cs	low	3-instruction pad fragment (lui a0 D_800CAF30; jal 0x40FC14; splat pad_0A2E64) falling through into FrameAlloc_ResetBuffer; no callers
+func_002A2270	0x002A2270	FrameAlloc_ResetBuffer	System/FrameAlloc.cs	medium	resets the current of two per-frame buffers (D_800D2BD4[D_8014D2D0]): low = base, high = base + size, clears the mark stack, updates min/max stats; called by the init func_002A26F8 and the swap func_002A27C4
+func_002A23A4	0x002A23A4	FrameAlloc_AllocLow	System/FrameAlloc.cs	medium	rounds size up to 8, returns the low pointer D_8014D328 and advances it; updates used/free stats
+func_002A24B8	0x002A24B8	FrameAlloc_PopMark	System/FrameAlloc.cs	medium	restores the low pointer from the mark stack D_8014D2E0[D_8014D320] and pops it; updates stats
+func_002A25E4	0x002A25E4	FrameAlloc_AllocHigh	System/FrameAlloc.cs	medium	rounds size up to 8 and allocates downward from D_8014D324; used for per-frame Mtx (Gfx_PushMatrixF), vertices and text items
+func_002A26F8	0x002A26F8	ScratchHeap_Init	System/ScratchHeap.cs	medium	allocates two (size+7)&~7 buffers (D_800D2BD4[0/1]) via ResourcePool_Malloc, stores size/index, resets via func_002A2270, sets D_800D2BD0=1; Menu_InitFrontend passes 0x3000
+func_002A276C	0x002A276C	ScratchHeap_Free	System/ScratchHeap.cs	medium	if initialised frees both D_800D2BD4 buffers (ResourcePool_MallocFree) and clears the flag; caller Menu_ShutdownFrontend
+func_002A27C4	0x002A27C4	ScratchHeap_Flip	System/ScratchHeap.cs	medium	toggles buffer index D_8014D2D0 (1 - x) and resets the heap (func_002A2270); called each frontend frame
+func_002A27F8	0x002A27F8	ScratchHeap_PushMark	System/ScratchHeap.cs	medium	++D_8014D320 and stores the current pointer D_8014D328 into the mark stack D_8014D2E0[]
+func_002A282C	0x002A282C	ScratchHeap_ResetStats	System/ScratchHeap.cs	medium	sets lo=hi=cur for the three usage MinMaxF records D_800D2BDC/BE8/BF4 that func_002A2270 updates
+func_002A286C	0x002A286C	Ui_SetClipRect_Entry_002A286C	Ui/Widgets.cs	high	split piece: one mul.s of the previous function, falls into Ui_SetClipRect at 0x002A2870
+func_002A2870	0x002A2870	Ui_SetClipRect	Ui/Widgets.cs	medium	stores four ints D_800D2C00..0C; NumberField_Draw saves/narrows/restores it around drawing, Ui_DrawClippedQuad reads it
+func_002A2898	0x002A2898	Ui_GetClipRect	Ui/Widgets.cs	medium	returns D_800D2C00..0C through four pointers (pair of Ui_SetClipRect); caller Ui_DrawClippedQuad
+func_002A28CC	0x002A28CC	Time_GetSecondsSinceStart	System/Threads.cs	medium	returns Time_GetSeconds() - D_800D2C10 (double); used for the menu frame dt (func_00299FE8) and texture timestamps
+func_002A28F4	0x002A28F4	Ui_EmptyHook_002A28F4	Ui/Widgets.cs	low	empty function called around each UI node draw (func_00299FE8, func_0040DB84), paired with func_002A28FC
+func_002A28FC	0x002A28FC	Ui_ResetModeCache_002A28FC	Ui/Widgets.cs	low	calls func_0041900C which clears the render-state cache D_800E32A0..E0 when dirty; called before each UI screen/node draw
+func_002A2918	0x002A2918	Video_GetScreenSize	System/Video.cs	medium	returns D_800E28D0/D_800E28D4 (screen width/height; menu viewport in func_00298FA0, HUD scales use D_800E28D0[1])
+func_002A2934	0x002A2934	Menu_GetFrameCounter	Menus/MenuCore.cs	medium	returns D_800D2C18, incremented once per frontend frame by Menu_AdvanceFrameCounter; texture/menu timers use it (+10 deadlines)
+func_002A2944	0x002A2944	Menu_AdvanceFrameCounter	Menus/MenuCore.cs	medium	D_800D2C18 += 1; called from the frontend frame update (Menu_UpdateIdleTimer)
+func_002A2960	0x002A2960	NumberField_RegisterType	Ui/NumberField.cs	medium	registers widget type 0xB65 in the type table (func_002992C4) with handler NumberField_HandleMessage and draw NumberField_Draw
+func_002A2990	0x002A2990	NumberField_Create	Ui/NumberField.cs	medium	allocates a 0x6C widget of type 0xB65 from a template node, sets min +0x50, max +0x4C, wrap +0x54, value via NumberField_SetValue, links it into the screen tree
+func_002A2B18	0x002A2B18	NumberField_GetValue	Ui/NumberField.cs	high	returns word +0x58 (the value NumberField_SetValue stores); callers ovl_a menu code
+func_002A2B24	0x002A2B24	NumberField_SetValue	Ui/NumberField.cs	high	stores n at +0x58 and formats the widget text with "%d" (D_800CAF20) via func_002A1C08
+func_002A2B50	0x002A2B50	NumberField_HandleMessage	Ui/NumberField.cs	medium	dispatches (msg, widget type) through table D_800D2C20 {msg, type or 0x7530 = any, handler} to the 0xB65 handlers
+func_002A2BE0	0x002A2BE0	NumberField_Draw	Ui/NumberField.cs	medium	computes the node rect (UiNode_ComputeRect); with flag 0x200 narrows the clip rect (Ui_GetClipRect/Ui_SetClipRect) while drawing the node, then restores it
+func_002A2D14	0x002A2D14	NumberField_Decrement	Ui/NumberField.cs	high	value-1 down to min (+0x50), or wraps to max (+0x4C) when wrap +0x54 is set; NumberField_SetValue
+func_002A2D7C	0x002A2D7C	NumberField_Increment	Ui/NumberField.cs	high	value+1 up to max (+0x4C), or wraps to min (+0x50) when wrap +0x54 is set; NumberField_SetValue
+func_002A2DE4	0x002A2DE4	NumberField_OnMsgE07_002A2DE4	Ui/NumberField.cs	low	handler for message 0xE07 (table D_800D2C20): stops auto-repeat (+0x5C=2, +0x48=0) and sets children alpha +0x10 to 100
+func_002A2E20	0x002A2E20	NumberField_OnFocus_002A2E20	Ui/NumberField.cs	low	handler for message 0xF: stops auto-repeat and sets children alpha to 200 (highlight; same as func_0041A9F8 of other widgets)
+func_002A2E5C	0x002A2E5C	NumberField_OnBlur_002A2E5C	Ui/NumberField.cs	low	handler for message 0x10: stops auto-repeat, plays cue 0xE74 and sets children alpha back to 100
+func_002A2EC0	0x002A2EC0	NumberField_OnNext	Ui/NumberField.cs	medium	handler for message 8: on press (mode 1) starts repeat direction 1, NumberField_Increment, cue 0xE81
+func_002A2F3C	0x002A2F3C	NumberField_OnPrev	Ui/NumberField.cs	medium	handler for message 7: on press (mode 1) starts repeat direction 0, NumberField_Decrement, cue 0xE81
+func_002A2FB8	0x002A2FB8	NumberField_OnButtonRelease	Ui/NumberField.cs	medium	handler for message 0xB: when (a2>>16)==3 and button id 6/7 (d-pad left/right in func_0029B650) stops auto-repeat (+0x5C=2)
+func_002A2FE8	0x002A2FE8	NumberField_UpdateRepeat	Ui/NumberField.cs	medium	handler for the per-frame message 0xE08: after 11 frames held repeats Decrement (state 0) or Increment (state 1)
+func_002A306C	0x002A306C	NumberField_OnDestroy	Ui/NumberField.cs	medium	handler for message 0xE03: frees the widget (ResourcePool_MallocFree)
+func_002A308C	0x002A308C	Menu_UpdateIdleTimer_Entry_002A308C	Menus/MenuCore.cs	high	split piece: one load then falls into Menu_UpdateIdleTimer at 0x002A3090
 func_002A3090	0x002A3090	Menu_UpdateIdleTimer	Menus/MenuCore.cs	medium	harvest: C git log + port/os_shim.c: func_002A3090, the menu idle timer forcing a state change (writes state byte D_8010FBB8)
-func_002A31F4	0x002A31F4				
-func_002A3224	0x002A3224				
-func_002A3304	0x002A3304				
-func_002A3318	0x002A3318				
-func_002A3358	0x002A3358				
-func_002A338C	0x002A338C				
-func_002A339C	0x002A339C				
-func_002A33AC	0x002A33AC				
-func_002A33BC	0x002A33BC				
-func_002A33E8	0x002A33E8				
-func_002A33F8	0x002A33F8				
-func_002A3410	0x002A3410				
-func_002A342C	0x002A342C				
-func_002A3478	0x002A3478				
-func_002A35BC	0x002A35BC				
-func_002A35C0	0x002A35C0				
-func_002A373C	0x002A373C				
-func_002A3B48	0x002A3B48				
-func_002A3F94	0x002A3F94				
-func_002A41D8	0x002A41D8				
-func_002A438C	0x002A438C				
-func_002A453C	0x002A453C				
-func_002A4708	0x002A4708				
-func_002A4DC4	0x002A4DC4				
-func_002A5124	0x002A5124				
-func_002A52E4	0x002A52E4				
-func_002A5588	0x002A5588				
-func_002A577C	0x002A577C				
-func_002A5A50	0x002A5A50				
-func_002A5DD8	0x002A5DD8				
-func_002A6010	0x002A6010				
-func_002A6170	0x002A6170				
-func_002A6488	0x002A6488				
-func_002A6670	0x002A6670				
-func_002A66B4	0x002A66B4				
-func_002A66EC	0x002A66EC				
-func_002A6724	0x002A6724				
-func_002A6770	0x002A6770				
-func_002A67C8	0x002A67C8				
-func_002A67D0	0x002A67D0				
-func_002A68A0	0x002A68A0				
-func_002A697C	0x002A697C				
-func_002A6A14	0x002A6A14				
-func_002A6A44	0x002A6A44				
-func_002A6A54	0x002A6A54				
-func_002A6AC0	0x002A6AC0				
-func_002A6B3C	0x002A6B3C				
-func_002A6B74	0x002A6B74				
-func_002A6BD4	0x002A6BD4				
-func_002A6D28	0x002A6D28				
-func_002A6DF8	0x002A6DF8				
-func_002A6ED0	0x002A6ED0				
-func_002A6F8C	0x002A6F8C				
-func_002A6FE0	0x002A6FE0				
-func_002A7058	0x002A7058				
-func_002A7164	0x002A7164				
-func_002A72AC	0x002A72AC				
-func_002A72F4	0x002A72F4				
-func_002A7394	0x002A7394				
-func_002A7440	0x002A7440				
-func_002A7480	0x002A7480				
-func_002A75D0	0x002A75D0				
-func_002A78F0	0x002A78F0				
+func_002A31F4	0x002A31F4	Menu_InitFrontendOnce	Menus/MenuCore.cs	medium	if the frontend-active flag D_800D2C98 is 0 calls func_0041EAE0 and Menu_InitFrontend; caller Game_Init
+func_002A3224	0x002A3224	Menu_InitFrontend	Menus/MenuCore.cs	medium	purges resources, MsgPort_Flush, ScratchHeap_Init(0x3000), Image_OpenArchives, menu subsystem inits, NumberField_RegisterType, sets frontend active, Menu_EnableInput
+func_002A3304	0x002A3304	Menu_RequestShutdown	Menus/MenuCore.cs	medium	D_800D2C90 = 1; the frontend update (Menu_UpdateIdleTimer) then calls Menu_ShutdownFrontend; callers ovl_a menu exits
+func_002A3318	0x002A3318	Menu_ScaleScreenForHiRes	Menus/MenuCore.cs	medium	when the hi-res flag D_800E28D8 == 1 scales the current screen's widget tree (UiTree_ScaleForHiRes)
+func_002A3358	0x002A3358	Menu_EnableInput	Menus/MenuCore.cs	medium	sets D_800D2C94 = 1 and clears the menu key-state table (func_0029BA34); Pad_LatchAll feeds menu buttons only while enabled
+func_002A338C	0x002A338C	Menu_DisableInput	Menus/MenuCore.cs	medium	D_800D2C94 = 0 (pair of Menu_EnableInput)
+func_002A339C	0x002A339C	Menu_IsInputEnabled	Menus/MenuCore.cs	medium	returns D_800D2C94; Pad_LatchAll checks it before func_0029B650 (buttons to menu messages)
+func_002A33AC	0x002A33AC	Menu_IsFrontendActive	Menus/MenuCore.cs	medium	returns D_800D2C98, set by Menu_InitFrontend, cleared by Menu_ShutdownFrontend; tested by HUD/camera/player code
+func_002A33BC	0x002A33BC	Menu_SetFixedFov	Menus/MenuCore.cs	medium	D_800D2C9C = (v == 1); char select/results set 1 (3D models), others 2; Camera_SetupProjection uses a fixed FOV when set
+func_002A33E8	0x002A33E8	Menu_IsFixedFov	Menus/MenuCore.cs	medium	returns D_800D2C9C; Camera_SetupProjection uses a constant FOV when the frontend is active and this is 1
+func_002A33F8	0x002A33F8	Menu_SetIdleTime	Menus/MenuCore.cs	medium	sets the frontend idle timer D_800D2CA0 (compared with the attract-demo timeout in Menu_UpdateIdleTimer, reset to 0 there) and clears D_80146870
+func_002A3410	0x002A3410	Menu_SetPeriodicStateKick_002A3410	Menus/MenuCore.cs	low	sets flag D_800D2CA4 and the 60-frame counter D_800D0E54; while set Menu_UpdateIdleTimer writes state byte D_8010FBB8 = 1 every 60 frames
+func_002A342C	0x002A342C	Menu_ShutdownFrontend	Menus/MenuCore.cs	medium	func_0029A468, func_0041023C, ScratchHeap_Free, func_00414404, clears frontend-active, Menu_DisableInput, clears the shutdown request
+func_002A3478	0x002A3478	UiTree_ScaleForHiRes	Ui/Widgets.cs	medium	recursively walks child/sibling (and type-8 sub-nodes) multiplying x/y/w/h by 1.690/1.622 (type 4 stores the scales), once per node (+0x28 flag)
+func_002A35BC	0x002A35BC	Trail_AddSegment_Entry_002A35BC	Render/Trails.cs	high	split piece: one store then falls into Trail_AddSegment at 0x002A35C0
+func_002A35C0	0x002A35C0	Trail_AddSegment	Render/Trails.cs	medium	takes a segment (Trail_AllocSegment), copies position/matrix from the given matrix, accumulates segment length and texture coordinate along the trail
+func_002A373C	0x002A373C	Trail_BuildVertices	Render/Trails.cs	medium	writes the two edge vertices of a segment with cosine fades by age and life (Vec_Scale, view flag); used by Trail_DrawUntextured
+func_002A3B48	0x002A3B48	Trail_BuildVerticesTextured	Render/Trails.cs	medium	same as Trail_BuildVertices with a texture coordinate argument; used by Trail_DrawTextured
+func_002A3F94	0x002A3F94	Trail_Update	Render/Trails.cs	medium	ages a trail by frame time D_800D2988 (speed flags 1/2), fades segments and frees dead ones (Trail_FreeSegment), releases a dead owner; returns 1 while alive
+func_002A41D8	0x002A41D8	Trail_BuildFacingBasis	Render/Trails.cs	medium	builds a matrix from segment p0->p1: direction, camera-facing side and up axes (Vec_Cross/Normalize) scaled by the segment widths, origin p0
+func_002A438C	0x002A438C	Trail_OrientSegments	Render/Trails.cs	medium	trail flag 4: for each segment builds the facing basis toward the next distinct point (Trail_BuildFacingBasis) into its matrix
+func_002A453C	0x002A453C	Trail_FollowOwner	Render/Trails.cs	medium	trail flag 8: re-attaches segments to their owner's current matrix (scale 0.01/0.2926) or freezes them (owner -1), recomputes lengths
+func_002A4708	0x002A4708	Trail_DrawTextured	Render/Trails.cs	medium	trail with texture id >= 0: loads the texture frame (Trail_GetTextureFrame), env/prim colours, per segment G_MTX + vertices (Trail_BuildVerticesTextured) + triangles
+func_002A4DC4	0x002A4DC4	Trail_DrawUntextured	Render/Trails.cs	medium	trail with texture id < 0: per segment G_MTX, vertices from Trail_AllocVertices filled by Trail_BuildVertices, triangles
+func_002A5124	0x002A5124	Trail_GetTextureFrame	Render/Trails.cs	medium	frame index by def mode: 0 once (clamp, end flag), 1 clamp, 2 loop, 3 ping-pong, 4 random, 5 random-once (+0x38)
+func_002A52E4	0x002A52E4	Trail_DetachOwner	Render/Trails.cs	medium	for every trail owned by the actor: adds a final segment and releases it (owner counters 0x13B/0x1D9), or freezes key-attached segments; callers Particle_Free/ReleaseAttachments
+func_002A5588	0x002A5588	Trail_Attach	Render/Trails.cs	medium	finds (by key/id) or takes a free trail (Pool_TakeFree), sets def, colours, texture (Particle_PackBlendMode), owner, +0x1D9++; callers Particle_StartAttachments, Effect_SpawnFromTemplates
+func_002A577C	0x002A577C	Trail_DrawAll	Render/Trails.cs	medium	builds once (cached in +0) a display list drawing every trail: render modes, then untextured/textured passes per trail; caller View_DrawWorld
+func_002A5A50	0x002A5A50	Effect_StepAnimScript_002A5A50	Render/Effects.cs	low	no callers: steps a float script (wait, random wait, set value, value ramp, colour/alpha ramp) by frame time D_800D2988
+func_002A5DD8	0x002A5DD8	Tint_ResolveModelOverride	Render/Tint.cs	medium	clamps the model colour override D_800D15E4..F4 to 0..255 and picks the override mode D_800D15E0 (0/1/3/6) from the two alphas
+func_002A6010	0x002A6010	Quat_FromUpToDirection	Math/Vector.cs	medium	quaternion rotating +Y onto the given axis (cross product, acos of the dot, sinf/cosf), identity when parallel; stores the sine in D_80115DEC
+func_002A6170	0x002A6170	Decal_DrawAll	Render/Decals.cs	medium	loads the blob texture D_800D14B0, then for the 10 decal lists draws each node's quad (G_MTX + vertices D_801469A0) or recycles nodes outside the bounds D_801031F0
+func_002A6488	0x002A6488	Decal_DrawLaserDot	Render/Decals.cs	medium	same texture setup as Decal_DrawAll with prim colour 0xC8000096 and one quad at the given matrix; callers Player_DrawLaserBeam*
+func_002A6670	0x002A6670	Effect_UpdateFrame	Render/Effects.cs	medium	clears the decal-per-frame flag D_800D2E58 and, unless paused (D_80146894), runs Trail_UpdateAll and Effect_UpdateScheduled; caller Level_UpdateFrame
+func_002A66B4	0x002A66B4	Trail_AllocVertices	Render/Trails.cs	medium	takes n 16-byte vertices from the frame vertex pool (count +4, cursor +8), 0 when not enough; callers trail draws
+func_002A66EC	0x002A66EC	Trail_ResetVertexPool	Render/Trails.cs	medium	resets the vertex pool: 0x12C vertices in the current frame's half (D_800D297C * 0x12C0 + 8); caller Level_UpdateFrame
+func_002A6724	0x002A6724	Trail_AllocSegment	Render/Trails.cs	medium	moves a node from the free list +0x6A90 to the trail's segment list (+0x40); caller Trail_AddSegment
+func_002A6770	0x002A6770	Trail_FreeSegment	Render/Trails.cs	medium	subtracts the segment length from the trail total (+0x4C) and moves it back to the free list; caller Trail_Update
+func_002A67C8	0x002A67C8	Trail_EmptyStub_002A67C8	Render/Trails.cs	low	empty function between the trail helpers, no callers
+func_002A67D0	0x002A67D0	Trail_AddSegmentsFromBones	Render/Trails.cs	medium	for each live trail owned by key adds a segment at the bone matrix tbl[shape+0xC] scaled 1/65536; caller Actor_BuildPoseMatrices
+func_002A68A0	0x002A68A0	Trail_AddSegmentsForOwner	Render/Trails.cs	medium	for each live trail owned by the object adds a segment at its matrix (scale 0.01/0.2926 by model flag); caller Particle_DrawAll
+func_002A697C	0x002A697C	Trail_DetachTarget	Render/Trails.cs	medium	for trails whose owner is t: decrements owner counters 0x13B/0x1D9, clears the owner and raises the remaining life to def+4
+func_002A6A14	0x002A6A14	Tint_Init_002A6A14	Render/Tint.cs	low	no callers: initialises a tint record (+0 = v, +0x14 = 255, alpha +0x24 and rgb +0x34..+0x3C = 0) of the layout Tint_ApplyToModels reads
+func_002A6A44	0x002A6A44	Tint_SetDuration_002A6A44	Render/Tint.cs	low	no callers: +4 = 0 and +0xC = +0x10 = v on a tint record
+func_002A6A54	0x002A6A54	Tint_ApplyToModels	Render/Tint.cs	medium	sets the model colour override rgb D_800D15E4 from +0x34..+0x3C (0 when alpha is 0) and alphas D_800D15F0 = +0x24, +0x14
+func_002A6AC0	0x002A6AC0	Tint_AddToModels	Render/Tint.cs	medium	adds a tint record's rgb/alpha to the model colour override D_800D15E4..F0 and +0x14 to D_800D15F4 (resolved by Tint_ResolveModelOverride)
+func_002A6B3C	0x002A6B3C	Color_Clamp255	Render/Color.cs	medium	clamps a float channel in place to 0..255 (D_800CB034 = 255.0)
+func_002A6B74	0x002A6B74	Effect_ScheduleCallback	Render/Effects.cs	medium	takes a node from the scheduled-callback pool (+0x7588) and sets callback +0x18, data +0x14, count +0x10, period +0xC, timer 0 (run by Effect_UpdateScheduled)
+func_002A6BD4	0x002A6BD4	Decal_Spawn	Render/Decals.cs	medium	once per frame (D_800D2E58) recycles a node into decal list idx, key +0x48, matrix at pos pushed 2.048 along dir, rotated and scaled 6.144; caller Particle_OnHitObject
+func_002A6D28	0x002A6D28	Decal_RemoveByKey	Render/Decals.cs	medium	moves every decal with the given key from the 10 lists back to the spare list +0x95A8; callers Objective/Toggle/Destructible state changes
+func_002A6DF8	0x002A6DF8	Trail_UpdateAll	Render/Trails.cs	medium	runs Trail_Update for every trail (+0x7528), releases owner counters and returns finished trails to the free list +0x751C
+func_002A6ED0	0x002A6ED0	Effect_UpdateScheduled	Render/Effects.cs	medium	for each scheduled node: timer -= frame time, when due re-arms by period, calls the callback, decrements the count and frees it at 0
+func_002A6F8C	0x002A6F8C	Trail_LoadTexture	Render/Trails.cs	medium	when the trail's texture id +0x34 != -1 loads it into +0x14 (func_00296DDC) and packs the particle blend mode (as in Trail_Attach)
+func_002A6FE0	0x002A6FE0	Trail_ReleaseOwner	Render/Trails.cs	medium	decrements owner counters 0x13B (flag 1) / 0x1D9 (flag 2), clears the owner, raises remaining life to def+4; caller Trail_Update
+func_002A7058	0x002A7058	Trail_GetTexInfo_002A7058	Render/Trails.cs	low	no callers: fills a block from a trail def (+0x21..+0x24 sizes * 3.125, colours, texture dims 1<<(n+5))
+func_002A7164	0x002A7164	Trail_FollowOwnerSegment	Render/Trails.cs	medium	out-of-line body of Trail_FollowOwner for one segment: owner matrix scaled 0.01/0.2926, or freeze when owner -1
+func_002A72AC	0x002A72AC	Trail_ComputeTexCoords	Render/Trails.cs	medium	sets each segment's +0xA8 = accumulated length / total length +0x4C
+func_002A72F4	0x002A72F4	Trail_Draw	Render/Trails.cs	medium	one trail: Trail_FollowOwner (flag 8), Trail_OrientSegments (flag 4), then Trail_DrawTextured / Trail_DrawUntextured when >= 2 segments
+func_002A7394	0x002A7394	Trail_AddSegmentIfOwner	Render/Trails.cs	medium	adds a segment at the given matrix (scaled 0.01/0.2926) when the trail belongs to the owner and is alive
+func_002A7440	0x002A7440	Trail_FindByOwnerId	Render/Trails.cs	medium	returns the trail whose owner +0x1C and id +0x20 match, else 0
+func_002A7480	0x002A7480	Trail_DrawList	Render/Trails.cs	medium	Trail_DrawAll without the cached display list: Trail_Draw for texture<0 trails then texture>0 trails
+func_002A75D0	0x002A75D0	Inventory_Update	Player/Items.cs	medium	per frame for player+0xD40: button 0x20 opens/closes the 4-slot item menu, moves with Menu_MoveCursor4 (0x100/0x200), runs slot callbacks +0x34/+0x38; caller Player_Tick
+func_002A78F0	0x002A78F0	Inventory_Draw	Player/Items.cs	medium	sorts the 4 item slots, draws active item icons (Sprite_Draw) fading in/out and the open selection menu with a pulsing cursor; caller Hud_DrawPlayer
 func_002A7F58	0x002A7F58	Mover_ClearRecord_002A7F58	Ui/Widgets.cs	low	harvest: src/game/func_002A7F58.c comment: clears a record (four 0x38-byte entries, flags, word 0xE6 = -5)
 func_002A7FA8	0x002A7FA8	Mover_FindOrAllocRecord_002A7FA8	Ui/Widgets.cs	low	harvest: src/game/func_002A7F58.c comment: finds or allocates one of four records and updates its parameters
-func_002A8088	0x002A8088				
+func_002A8088	0x002A8088	Inventory_HasActiveItem	Player/Items.cs	medium	counts slots with +4 != 0 (indexes the current slot four times) and returns count > 0; caller Inventory_Update
 func_002A80C4	0x002A80C4	Menu_MoveCursor4	Menus/MenuCore.cs	medium	harvest: src/game/func_002A7F58.c comment: moves a menu's cursor over its four 0x38-byte entries, wrapping and skipping empty ones
-func_002A8158	0x002A8158				
-func_002A75D0_func_002A8170	0x002A8170				
-func_002A8170	0x002A8170				
+func_002A8158	0x002A8158	Inventory_ClearSlot	Player/Items.cs	medium	clears a slot's +0, +4, byte +0xD, halfword +0x18, +0x1C (the inline per-entry clear of Mover_ClearRecord)
+func_002A75D0_func_002A8170	0x002A8170	Inventory_ToggleSlotTwin	Player/Items.cs	high	inlined copy of Inventory_ToggleSlot inside Inventory_Update's file
+func_002A8170	0x002A8170	Inventory_ToggleSlot	Player/Items.cs	medium	flips slot active +4; on activate fade +0x18 = 5, timestamp +0x1C = counter +0xE8, copies +0x28/+0x2C; else fade -5
 func_002A81B0	0x002A81B0	Game_SoftReset	System/Boot.cs	high	harvest: src/game/func_002A7F58.c comment + game_glue.c: checks the "systembootdone" marker, copies code back and clears BSS; sets the cold-boot flag D_8014D330
-func_002A853C	0x002A853C				
+func_002A853C	0x002A853C	Game_EmptyStub_002A853C	System/Boot.cs	medium	empty function (jr ra) between Game_SoftReset and Debug_IsAddressWritable
 func_002A8544	0x002A8544	Debug_IsAddressWritable	Debug/Debug.cs	medium	harvest: src/game/func_002A7F58.c comment: returns whether an address may be modified (protected blocks)
-func_002A8644	0x002A8644				
-func_002A864C	0x002A864C				
-func_002A8650	0x002A8650				
+func_002A8644	0x002A8644	Debug_EmptyStub_002A8644	Debug/Debug.cs	medium	empty function following Debug_IsAddressWritable (C comment: func_802A7654_de that follows is an empty function)
+func_002A864C	0x002A864C	BossBar_Draw_Entry_002A864C	Ui/BossBar.cs	high	split piece: one store then falls into BossBar_Draw at 0x002A8650
+func_002A8650	0x002A8650	BossBar_Draw	Ui/BossBar.cs	medium	bar 1 (blue) or 2 (green): steps its screen mover, eases the shown percent +0x38 toward the target, fill rect, end sprites 0x202/0x203, label text
 func_002A8A94	0x002A8A94	ScreenMover_Step	Ui/Widgets.cs	medium	harvest: src/game/func_002A8A94.c comment: steps a scripted screen mover (opcodes: set, wait, move, fall)
-func_002A8DD4	0x002A8DD4				
+func_002A8DD4	0x002A8DD4	Gfx_DrawBevelRect	Render/RenderMode.cs	medium	fills a rect then four edge strips of width w in lighter/darker shades (raised flag swaps them); callers menu panels, MenuSpinner_Draw
 func_002A921C	0x002A921C	Hud_DrawNumber	Ui/Hud.cs	high	harvest: docs/HUD.md + HudElements.cs: draws a number in the digit sprites (sprite 4, frames 0..9, 10 = minus)
-func_002A94E8	0x002A94E8				
+func_002A94E8	0x002A94E8	Text_BeginFontPass	Ui/Text.cs	medium	if the font texture is loaded: render modes, texture load of the font image, font id D_8014D3D0 = 0, default colours 0x8C and scale 1.0
 func_002A9700	0x002A9700	Gfx_LoadTexImage16	Render/Texture.cs	medium	harvest: FINDINGS p2: 002A9700/97F0 build a 16-bit texture-image load block in D_80110634
 func_002A97F0	0x002A97F0	Gfx_LoadTexImage16b	Render/Texture.cs	medium	harvest: FINDINGS p2: 002A9700/97F0 build a 16-bit texture-image load block in D_80110634
 func_002A98E0	0x002A98E0	Text_DrawString	Ui/Text.cs	medium	harvest: src/game/func_002A9F18.c comment: draws the string through func_002A98E0 (first as a shadow when requested)
@@ -2696,59 +2696,59 @@ func_002AA724	0x002AA724	Sprite_SetRenderState	Render/Sprites.cs	medium	harvest:
 func_002AACC0	0x002AACC0	Gfx_DrawTexture4b	Render/Sprites.cs	medium	harvest: src/game/func_002A9F18.c comment: loads a 4-bit texture block and draws it as a texture rectangle
 func_002AAED8	0x002AAED8	Gfx_DrawTexture4bScaled	Render/Sprites.cs	medium	harvest: src/game/func_002A9F18.c comment: 4-bit texture rectangle at a float position, stretched by scales
 func_002AB19C	0x002AB19C	Sprite_GetFrameData_002AB19C	Render/Sprites.cs	low	harvest: Hud/GameSprites.cs: sprite data layout (func_002AB19C / func_002AB8DC): frames, per-frame offset and kind
-func_002AB6C0	0x002AB6C0				
-func_002AB6FC	0x002AB6FC				
-func_002AB720	0x002AB720				
-func_002AB750	0x002AB750				
-func_002AB784	0x002AB784				
-func_002AB78C	0x002AB78C				
-func_002AB794	0x002AB794				
-func_002AB854	0x002AB854				
-func_002AB8DC	0x002AB8DC				
-func_002AB940	0x002AB940				
-func_002AB9E4	0x002AB9E4				
-func_002A8DD4_func_002ABA44	0x002ABA44				
+func_002AB6C0	0x002AB6C0	ScreenMover_Init	Ui/Widgets.cs	medium	sets position +0x10/+0x14, state/script 0, +0x38 = -1; callers player restart (HUD widget records +0xE2C), func_0044ED24
+func_002AB6FC	0x002AB6FC	ScreenMover_Start	Ui/Widgets.cs	medium	sets the script pc and state 2 then ScreenMover_Step; callers HUD ammo/player, BossBar_ShowBar1/2
+func_002AB720	0x002AB720	BossBar_ShowBar1	Ui/BossBar.cs	medium	bar 1: enabled +0x40 = a, label +0x3C = b, target 100, starts mover script D_800D318C; caller Level_Load
+func_002AB750	0x002AB750	BossBar_ShowBar2	Ui/BossBar.cs	medium	same for bar 2 with mover script D_800D31A0; caller Level_Load
+func_002AB784	0x002AB784	BossBar_SetPercent1	Ui/BossBar.cs	medium	sets bar 1 target percent +0x44; Ai_UpdateBrain feeds a boss health fraction into D_8013B7B8
+func_002AB78C	0x002AB78C	BossBar_SetPercent2	Ui/BossBar.cs	medium	sets bar 2 target percent +0x8C; Ai_UpdateBrain uses it when stats+0x94 != 1
+func_002AB794	0x002AB794	BossBar_DrawAll	Ui/BossBar.cs	medium	runs the frontend update when active, sets up the font/text style and fill pass, BossBar_Draw for bar 1 (+0x40) and bar 2 (+0x88)
+func_002AB854	0x002AB854	Text_GetFontMetric_002AB854	Ui/Text.cs	low	no callers: returns a float chosen by the font id D_8014D3D0 (0..6) from a constant table
+func_002AB8DC	0x002AB8DC	Sprite_GetFrame	Render/Sprites.cs	medium	from a sprite resource handle: frame idx % count, returns the frame data pointer (table +8, offset) and its kind byte
+func_002AB940	0x002AB940	Sprite_GetFrameSize	Render/Sprites.cs	medium	looks up sprite id in the HUD library (Sprite_Lookup), Sprite_GetFrame, returns width/height +4/+6; callers HUD/weapon menu draws
+func_002AB9E4	0x002AB9E4	Gfx_BeginFillRectPass	Render/RenderMode.cs	medium	pipe sync, cycle-type reset, Gfx_SetOtherModeL(0x15), Gfx_SetCombineMode(0x19) before Gfx_FillRect calls
+func_002A8DD4_func_002ABA44	0x002ABA44	Gfx_FillRectTwin	Render/RenderMode.cs	high	inlined copy of Gfx_FillRect inside Gfx_DrawBevelRect's file
 func_002ABA44	0x002ABA44	Gfx_FillRect	Render/RenderMode.cs	medium	harvest: src/game/func_002ABA44.c comment: emits pipe sync, primitive color and a rectangle with nonnegative coordinates
-func_002ABB2C	0x002ABB2C				
-func_002ABB58	0x002ABB58				
-func_002ABB6C	0x002ABB6C				
+func_002ABB2C	0x002ABB2C	Text_SetColors	Ui/Text.cs	medium	stores six ints D_8013B858[0..5] (two rgb triples used by text drawing); callers HUD/menu text set 255/200 or 0x8C
+func_002ABB58	0x002ABB58	Text_SetScale	Ui/Text.cs	medium	stores x/y scale floats D_8013B870[0..1]; callers set 0.4/0.7/1.0 before Text_Draw
+func_002ABB6C	0x002ABB6C	Text_DrawStringShadowed	Ui/Text.cs	medium	if the shadow flag is set draws Text_DrawString with mode 1 first, then the normal string (mode 0)
 func_002ABC18	0x002ABC18	Sprite_Draw	Render/Sprites.cs	high	harvest: docs/HUD.md: every HUD picture is a sprite of the HUD library D_8011FE88, drawn by func_002ABC18(id, frame, x, y, sx, sy)
-func_002ABD04	0x002ABD04				
-func_002ABDAC	0x002ABDAC				
-func_002AB19C_func_002ABDBC	0x002ABDBC				
+func_002ABD04	0x002ABD04	Text_LoadFontTexture	Ui/Text.cs	medium	copies 0x90 bytes of HUD-library sprite 2 frame 0 (+0x10) to D_8014D340 and sets the font texture pointer D_800D2F90
+func_002ABDAC	0x002ABDAC	Text_GetFontTexture	Ui/Text.cs	medium	returns D_800D2F90 (set by Text_LoadFontTexture); Text_BeginFontPass skips when 0
+func_002AB19C_func_002ABDBC	0x002ABDBC	Gfx_DrawMaskedTileGridTwin	Render/Sprites.cs	high	inlined copy of Gfx_DrawMaskedTileGrid in Sprite_GetFrameData's file
 func_002ABDBC	0x002ABDBC	Gfx_DrawMaskedTileGrid	Render/Sprites.cs	medium	harvest: src/game/func_002ABDBC.c comment: draws a grid of 16-bit image tiles with a 4-bit mask
-func_002AB19C_func_002ABED4	0x002ABED4				
+func_002AB19C_func_002ABED4	0x002ABED4	Sprite_DrawFrameScaledTwin	Render/Sprites.cs	high	inlined copy of Sprite_DrawFrameScaled in Sprite_GetFrameData's file
 func_002ABED4	0x002ABED4	Sprite_DrawFrameScaled	Render/Sprites.cs	medium	harvest: Hud/HudElements.cs: one frame of a game sprite, cells laid out as func_002ABED4 does (scaled path)
-func_002AB19C_func_002AC0A0	0x002AC0A0				
+func_002AB19C_func_002AC0A0	0x002AC0A0	Gfx_DrawTileGridTwin	Render/Sprites.cs	high	inlined copy of Gfx_DrawTileGrid in Sprite_GetFrameData's file
 func_002AC0A0	0x002AC0A0	Gfx_DrawTileGrid	Render/Sprites.cs	medium	harvest: src/game/func_002ABDBC.c comment: adapted from func_002AC0A0 (grid of 16-bit image tiles, no mask)
-func_002AB19C_func_002AC1A0	0x002AC1A0				
-func_002AC1A0	0x002AC1A0				
-func_002AC34C	0x002AC34C				
-func_002AC398	0x002AC398				
-func_002AC3EC	0x002AC3EC				
+func_002AB19C_func_002AC1A0	0x002AC1A0	Gfx_DrawTileGrid4bScaledTwin	Render/Sprites.cs	high	inlined copy of Gfx_DrawTileGrid4bScaled in Sprite_GetFrameData's file
+func_002AC1A0	0x002AC1A0	Gfx_DrawTileGrid4bScaled	Render/Sprites.cs	medium	walks a rows x cols grid of 4-bit cells, Gfx_DrawTexture4bScaled for each, advancing x/y by cell size * scale
+func_002AC34C	0x002AC34C	Text_BuildCharMap	Ui/Text.cs	medium	fills a 256-byte table with 0xFF then sets tab[char] = glyph from byte pairs ("_" 0, "A" 1, "B" 2... D_800D3080/D_800D2F94); caller func_0044EBB0
+func_002AC398	0x002AC398	Text_BeginDefaultStyle_002AC398	Ui/Text.cs	low	no callers: Text_BeginFontPass, Gfx_LoadTexImage16, scale 0.7, colours 255/200 (same setup as BossBar_DrawAll)
+func_002AC3EC	0x002AC3EC	Pickup_CanUse_Entry_002AC3EC	Player/Items.cs	high	split piece: one addu then falls into Pickup_CanUse at 0x002AC3F0
 func_002AC3F0	0x002AC3F0	Pickup_CanUse	Player/Items.cs	medium	harvest: src/game/func_002AC3F0.c comment: returns whether a player actor can use the item picked up (power-up / weapon / item tables)
 func_002AC6DC	0x002AC6DC	Pickup_DispatchEffect	Player/Items.cs	medium	harvest: src/game/func_002AC3F0.c comment: dispatches an item effect with the given id through the item handler tables
-func_002AC96C	0x002AC96C				
-func_002ACBCC	0x002ACBCC				
-func_002AD65C	0x002AD65C				
-func_002AD90C	0x002AD90C				
-func_002AD940	0x002AD940				
-func_002AD974	0x002AD974				
-func_002AD9A8	0x002AD9A8				
-func_002AD9DC	0x002AD9DC				
-func_002ADA10	0x002ADA10				
-func_002ADA44	0x002ADA44				
-func_002ADB08	0x002ADB08				
-func_002ADBF4	0x002ADBF4				
-func_002ADD18	0x002ADD18				
-func_002ADE28	0x002ADE28				
-func_002ADFA0	0x002ADFA0				
-func_002AE0A0	0x002AE0A0				
-func_002AE0D4	0x002AE0D4				
-func_002AE1A4	0x002AE1A4				
-func_002AE254	0x002AE254				
-func_002AE25C	0x002AE25C				
-func_002AE260	0x002AE260				
+func_002AC96C	0x002AC96C	Pickup_GiveWeapon	Player/Items.cs	medium	weapon pickup: marks the weapon slot owned, adds its ammo (Player_AddAmmoCapped), auto-switch +0x770 by weapon flags D_800D052C, message/fade/sounds
+func_002ACBCC	0x002ACBCC	Pickup_ApplySpecial	Player/Items.cs	medium	handler of table D_800D3390 (ids 0xBD6..0xBD8): monkey / flag claim ("Flag was claimed"), random power-up of 13 effects ("Slow Time...", "The Power is Yours")
+func_002AD65C	0x002AD65C	Pickup_GiveSpecialWeapon	Player/Items.cs	medium	handler of table D_800D31D0 ("CEREBRAL BORE", "PFM MINE"...): gives the weapon slot (bank 3 or 7), ammo, message/fade/sounds
+func_002AD90C	0x002AD90C	Pickup_FindSpecialWeaponEntry	Player/Items.cs	medium	searches the 4-entry special-weapon table D_800D31D0 (0x18 stride) for id
+func_002AD940	0x002AD940	Pickup_FindAmmoEntry	Player/Items.cs	medium	searches the 6-entry ammo table D_800D3230 ("Energy rounds", "Bullet rounds"...) for id; caller Player_CanTakeAmmoItem
+func_002AD974	0x002AD974	Pickup_FindHealthEntry	Player/Items.cs	medium	searches the 8-entry health table D_800D32A8 ("2 health", "15 health", "full health") for id
+func_002AD9A8	0x002AD9A8	Pickup_FindLifeForceEntry	Player/Items.cs	medium	searches the 2-entry table D_800D3368 (ids 0x6A9/0x6AA, handler Pickup_GiveLifeForce) for id
+func_002AD9DC	0x002AD9DC	Pickup_FindItemEntry	Player/Items.cs	medium	searches the 16-entry item table D_800D33C0 ("invincibility", "plane walker", "InfraRed Goggles"...) for id
+func_002ADA10	0x002ADA10	Pickup_FindSpecialEntry	Player/Items.cs	medium	searches the 3-entry special table D_800D3390 (ids 0xBD6..0xBD8) for id
+func_002ADA44	0x002ADA44	Pickup_OnTouch	Player/Items.cs	medium	if the pickup is still available dispatches its effect (Pickup_DispatchEffect); on success marks it taken (PropTree_SetBit + region triggers 0x400, or func_00290528 for flag 8); caller Player_Tick
+func_002ADB08	0x002ADB08	Pickup_GiveAmmo	Player/Items.cs	medium	handler of table D_800D3230 ("Energy rounds"...): Player_AddAmmoCapped(type +0xC, amount +0xE), message/fade/sounds
+func_002ADBF4	0x002ADBF4	Pickup_GiveHealth	Player/Items.cs	medium	handler of table D_800D32A8: health +0x5E4 += amount<<8 capped by Player_GetMaxHealth, message/fade/sounds when alive
+func_002ADD18	0x002ADD18	Pickup_GiveLifeForce	Player/Items.cs	medium	handler of table D_800D3368: +0x5E8 += amount, every 100 gives +0x5EA (max 9), message/fade/sounds
+func_002ADE28	0x002ADE28	Pickup_GiveItem	Player/Items.cs	medium	handler of table D_800D33C0 (ids 0x708..): sets invincibility/plane-walker timers, flashlight battery, adds InfraRed Goggles 0x70F to the inventory (sprite 0x7FD)
+func_002ADFA0	0x002ADFA0	Pickup_GiveAmmoPack	Player/Items.cs	medium	handler of table D_800D34C0 ("Ammo pack", ids 0xBD9..0xBE8): Player_AddAmmoCapped for ammo types 0, 1, 2, message/fade/sounds
+func_002AE0A0	0x002AE0A0	Pickup_FindAmmoPackEntry	Player/Items.cs	medium	searches the 16-entry ammo-pack table D_800D34C0 for id
+func_002AE0D4	0x002AE0D4	Pickup_PlayFeedback	Player/Items.cs	medium	out-of-line copy of the handlers' common feedback: Fade_Start on the view, Hud_PostMessage(text), positional sound b, sound c
+func_002AE1A4	0x002AE1A4	Pickup_ToggleInfraRed	Player/Items.cs	medium	InfraRed Goggles activate callback (set by Pickup_GiveItem): toggles player+0x16D4 and starts a white fade with a random speed
+func_002AE254	0x002AE254	Pickup_InfraRedKeepActive	Player/Items.cs	medium	InfraRed Goggles per-frame inventory callback (set by Pickup_GiveItem): returns 1 (stay active)
+func_002AE25C	0x002AE25C	DevLink_ResetDbgPort_Entry_002AE25C	Debug/DevLink.cs	high	split piece: one sll then falls into DevLink_ResetDbgPort at 0x002AE260
+func_002AE260	0x002AE260	DevLink_ResetDbgPort	Debug/DevLink.cs	medium	clears D_8014D3E0..E4, writes 0 to the 0xB2000000..10 registers with PI idle waits, sets bit 0x40 of register 8; callers dbgLinkServerLoop, func_002AF990
 dbgLinkRecvByte	0x002AE380				
 func_002AE380	0x002AE380				
 dbgLinkSendByte	0x002AE5AC				

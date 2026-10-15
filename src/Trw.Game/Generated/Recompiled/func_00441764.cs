@@ -276,7 +276,7 @@ public static partial class Game
                 Cpu.SetW(20, Mem.U32((r29 + 148u)));
                 Cpu.SetS(20, (float)(int)Cpu.W(20));
                 Cpu.SetS(0, Cpu.S(21) - Cpu.S(20));
-                Cpu.SetS(21, Cpu.S(20) + Cpu.S(0)); func_002AB9E4();
+                Cpu.SetS(21, Cpu.S(20) + Cpu.S(0)); Gfx_BeginFillRectPass();
                 r3 = 2148335616u;
                 r3 = Mem.U32((r3 + 10624u));
                 r2 = r3 << 2;
@@ -353,7 +353,7 @@ public static partial class Game
                 r2 = r2 & 255u;
                 L_L00441CC8: ;
                 Mem.Set((r29 + 36u), r2);
-                r4 = r3; func_002A8DD4((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u), (byte)Mem.U32(r29 + 24u), (byte)Mem.U32(r29 + 28u), (byte)Mem.U32(r29 + 32u), (byte)Mem.U32(r29 + 36u));
+                r4 = r3; Gfx_DrawBevelRect((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u), (byte)Mem.U32(r29 + 24u), (byte)Mem.U32(r29 + 28u), (byte)Mem.U32(r29 + 32u), (byte)Mem.U32(r29 + 36u));
                 r2 = (uint)-1;
                 r1 = 2148401152u;
                 Mem.Set((r1 + 24176u), r2);

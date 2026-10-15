@@ -100,7 +100,7 @@ public static partial class Game
                     }
                 }
                 new Q04L2(Mem.U32(0x800E59E0u)).f1368_Set((-1));
-                func_002A338C();
+                Menu_DisableInput();
                 return 0;
             }
         }

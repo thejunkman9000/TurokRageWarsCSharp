@@ -51,7 +51,7 @@ public static partial class Game
                 r4 = r0;
                 r16 = r2;
                 r2 = (uint)140;
-                Mem.Set((r16 + 16u), (byte)r2); r2 = (uint)func_0029A9A0((int)r4);
+                Mem.Set((r16 + 16u), (byte)r2); r2 = (uint)Menu_GetStackScreenId((int)r4);
                 r3 = (uint)22;
                 if (r2 != r3) { r4 = r17; goto L_L0041E07C; }
                 r4 = r16;
@@ -93,7 +93,7 @@ public static partial class Game
                 r5 = r0; func_0040E958(r4, (int)r5);
                 r2 = (uint)((int)r16 < 3 ? 1 : 0);
                 { bool c_ = r2 != 0;  if (c_) goto L_L0041E0E4; }
-                func_002A3358();
+                Menu_EnableInput();
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 14784u));
                 r2 = Mem.U32((r3 + 20u));

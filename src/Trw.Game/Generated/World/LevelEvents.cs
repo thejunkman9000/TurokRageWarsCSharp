@@ -35,7 +35,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00279024", (uint)a, (uint)b, (uint)c);
             if ((Mem.S32(0x8011FE88u) == 4))
             {
-                func_0028D8E8();
+                Flyby_SetDefaultView();
                 func_00402FB4(a, (uint)(c));
             }
         }
@@ -49,7 +49,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00279074", (uint)a);
             if ((Mem.S32(0x8011FE88u) == 4))
             {
-                func_0028D8E8();
+                Flyby_SetDefaultView();
                 func_00402FB4(0, a);
             }
         }

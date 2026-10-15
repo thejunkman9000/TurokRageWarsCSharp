@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0041AB00", (uint)o, (uint)a1, (uint)a2, (uint)a3);
-            if ((func_0029EB58(a4) < func_0029AB4C()))
+            if ((Math_AbsInt(a4) < Menu_GetStickDeadzone()))
             {
                 new O3Bar(o).f54_Set(2);
             }

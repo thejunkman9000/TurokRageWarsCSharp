@@ -1172,7 +1172,7 @@ public static partial class Game
                 L_I0020E2BC: ;
                 Cpu.SetS(20, Cpu.S(0) * Cpu.S(0));
                 L_I0020E2C0: ;
-                Cpu.SetS(0, func_0029ED3C(Cpu.S(12)));
+                Cpu.SetS(0, Math_Tan(Cpu.S(12)));
                 L_I0020E2C8: ;
                 Cpu.SetS(2, Cpu.S(21) * Cpu.S(21));
                 L_I0020E2CC: ;
@@ -1785,7 +1785,7 @@ public static partial class Game
                     hd = sqrtf(((new Vec3f((_fp + 16u)).x * new Vec3f((_fp + 16u)).x) + (new Vec3f((_fp + 16u)).z * new Vec3f((_fp + 16u)).z)));
                     cs = cosf((new S1Ctl(c).unk278 * 0.0174532942f));
                     cs2 = (cs * cs);
-                    tn = func_0029ED3C((new S1Ctl(c).unk278 * 0.0174532942f));
+                    tn = Math_Tan((new S1Ctl(c).unk278 * 0.0174532942f));
                     h = ((tn * hd) + ((grav * (hd * hd)) / (((speed * speed) * 2.0f) * cs2)));
                     if ((((dy - 1.0f) <= h) && (h <= (dy + 1.0f))))
                     {

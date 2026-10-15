@@ -98,7 +98,7 @@ public static partial class Game
                             }
                             new O01EntF(e).time_Set(Mem.F32(0x800E0CA4u));
                             new O01Kind_v2(k).unkE_Set((byte)((((int)(new O01Kind_v2(k).unkE) | 1) & 239)));
-                            func_0028BAF8(0x8011FE88u, k, 0);
+                            Level_SetTriggerSavedFlag(0x8011FE88u, k, 0);
                         }
                     }
                 }

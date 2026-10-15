@@ -26,13 +26,13 @@ public static partial class Game
                 }
                 break;
             case 4:
-                func_0029A73C();
+                Menu_ConsumeEvent();
                 if ((new O05M84_v2(Mem.U32(0x800E5784u)).f10 == (-1)))
                 {
-                    func_0029A8A8();
+                    Menu_GoBack();
                     return 0;
                 }
-                func_00299368(new O05M84_v2(Mem.U32(0x800E5784u)).f10);
+                Menu_GotoScreen(new O05M84_v2(Mem.U32(0x800E5784u)).f10);
                 break;
             default:
                 return 0;

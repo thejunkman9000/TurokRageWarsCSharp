@@ -33,7 +33,7 @@ public static partial class Game
                 L_I002AF9A4: ;
                 Mem.Set((r29 + 52u), r17);
                 L_I002AF9A8: ;
-                Mem.Set((r29 + 48u), r16); r2 = (uint)func_002AE260();
+                Mem.Set((r29 + 48u), r16); r2 = (uint)DevLink_ResetDbgPort();
                 L_I002AF9B0: ;
                 r2 = 2148859904u;
                 L_I002AF9B4: ;

@@ -16,7 +16,7 @@ public static partial class Game
                 return 0;
             }
             {
-                func_0029A73C();
+                Menu_ConsumeEvent();
                 it = UiTree_FindNode((uint)(new O3Ps(Mem.U32(0x800E39C0u)).w[(int)(new O3Ps(Mem.U32(0x800E39C0u)).sel)]), (uint)(914), default(uint), default(uint));
                 new O3Hdr(it).alpha_Set((byte)(255));
                 func_0040E958(it, 0);

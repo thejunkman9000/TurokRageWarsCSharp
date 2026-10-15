@@ -52,7 +52,7 @@ public static partial class Game
                 }
                 if ((id == (-1)))
                 {
-                    id = func_0028B1F8(0x8011FE88u, variant);
+                    id = Level_FindTypeIndexById(0x8011FE88u, variant);
                     if ((id == (-1)))
                     {
                         return 0u;
@@ -60,7 +60,7 @@ public static partial class Game
                 }
                 if (((uint)((variant + 1)) < (uint)(2)))
                 {
-                    variant = (int)(func_0028B238(0x8011FE88u, id));
+                    variant = (int)(Level_GetTypeIdByIndex(0x8011FE88u, id));
                 }
                 effect = func_00262ABC_take_effect(scene, @ref);
                 if ((effect == 0u))

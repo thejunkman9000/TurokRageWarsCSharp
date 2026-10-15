@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043BEA0", (uint)a, (uint)b, (uint)c, (uint)d);
             int i = 0;
             uint p = 0u;
-            func_0029A73C();
+            Menu_ConsumeEvent();
             if ((d != 1))
             {
                 return 0;

@@ -25,13 +25,13 @@ public static partial class Game
                     {
                         if ((func_004057BC(_fp, 16) == ok))
                         {
-                            func_002A125C(_fp, Mem.U32(0x800D7784u));
+                            LibC_StrCopy(_fp, Mem.U32(0x800D7784u));
                         }
-                        func_002A125C(((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(i * 70)) + (uint)40), _fp);
-                        func_002A1C08(((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(i * 70)) + (uint)60), Str.Lit("%d"), (uint)(Mem.S32((_fp + 52u))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        LibC_StrCopy(((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(i * 70)) + (uint)40), _fp);
+                        Str_FormatInto(((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(i * 70)) + (uint)60), Str.Lit("%d"), (uint)(Mem.S32((_fp + 52u))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                         if (((int)(Mem.U8(((_fp + 24u) + (uint)0))) != 0))
                         {
-                            func_002A1C08((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(i * 70)), Str.Lit("%d.%s.%s"), (uint)((i + 1)), ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(i * 70)) + (uint)40), (_fp + 24u), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                            Str_FormatInto((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(i * 70)), Str.Lit("%d.%s.%s"), (uint)((i + 1)), ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(i * 70)) + (uint)40), (_fp + 24u), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                             continue;
                         }
                     }
@@ -41,21 +41,21 @@ public static partial class Game
                         {
                             found = 1;
                         }
-                        func_002A125C(((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(i * 70)) + (uint)40), Mem.U32(0x800D727Cu));
-                        func_002A1C08(((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(i * 70)) + (uint)60), Str.Lit("%d"), (uint)(0), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        LibC_StrCopy(((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(i * 70)) + (uint)40), Mem.U32(0x800D727Cu));
+                        Str_FormatInto(((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(i * 70)) + (uint)60), Str.Lit("%d"), (uint)(0), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                     }
-                    func_002A1C08((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(i * 70)), Str.Lit("%d.%s"), (uint)((i + 1)), ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(i * 70)) + (uint)40), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                    Str_FormatInto((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(i * 70)), Str.Lit("%d.%s"), (uint)((i + 1)), ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(i * 70)) + (uint)40), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                 }
                 if ((found == 0))
                 {
                     w = UiTree_FindNode(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fC, (uint)(728), default(uint), default(uint));
                     if ((func_00405160(k, (_fp + 52u)) == 0))
                     {
-                        func_002A1C08(((new O05Lobby(Mem.U32(0x800E54A4u)).plr.P + (uint)(k * 2920)) + (uint)2764), Str.Lit("%d"), (uint)(Mem.S32((_fp + 52u))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        Str_FormatInto(((new O05Lobby(Mem.U32(0x800E54A4u)).plr.P + (uint)(k * 2920)) + (uint)2764), Str.Lit("%d"), (uint)(Mem.S32((_fp + 52u))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                         new O05Wd(w).f38_Set(((new O05Lobby(Mem.U32(0x800E54A4u)).plr.P + (uint)(k * 2920)) + (uint)2764));
                         w = UiTree_FindNode(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fC, (uint)(727), default(uint), default(uint));
                         Mem.Set((_fp + 52u), func_00435600());
-                        func_002A1C08(((new O05Lobby(Mem.U32(0x800E54A4u)).plr.P + (uint)(k * 2920)) + (uint)2754), Str.Lit("%d"), (uint)((int)(func_004057EC((uint)(Mem.S32((_fp + 52u)))))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        Str_FormatInto(((new O05Lobby(Mem.U32(0x800E54A4u)).plr.P + (uint)(k * 2920)) + (uint)2754), Str.Lit("%d"), (uint)((int)(func_004057EC((uint)(Mem.S32((_fp + 52u)))))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                         new O05Wd(w).f38_Set(((new O05Lobby(Mem.U32(0x800E54A4u)).plr.P + (uint)(k * 2920)) + (uint)2754));
                     }
                     else

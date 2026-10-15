@@ -55,7 +55,7 @@ public static partial class Game
                 L_L0040CBB0: ;
                 r5 = r29 + 32u;
                 r6 = r29 + 28u;
-                r7 = r29 + 36u; func_002A2898(r4, r5, r6, r7);
+                r7 = r29 + 36u; Ui_GetClipRect(r4, r5, r6, r7);
                 r4 = 2148859904u;
                 r4 = Mem.U32((r4 + 14352u));
                 r5 = 2148859904u;
@@ -64,7 +64,7 @@ public static partial class Game
                 r6 = Mem.U32((r6 + 14356u));
                 r7 = 2148859904u;
                 r7 = Mem.U32((r7 + 14364u));
-                r19 = r0; func_002A2870((int)r4, (int)r5, (int)r6, (int)r7);
+                r19 = r0; Ui_SetClipRect((int)r4, (int)r5, (int)r6, (int)r7);
                 r2 = 2148859904u;
                 r2 = Mem.U32((r2 + 14336u));
                 if ((int)r2 <= 0) { r19 = r17 & 65535u; goto L_L0040CC6C; }
@@ -168,7 +168,7 @@ public static partial class Game
                 r5 = Mem.U32((r2 + 8u));
                 r6 = Mem.U32((r2 + 4u));
                 r7 = Mem.U32((r2 + 12u));
-                func_002A2870((int)r4, (int)r5, (int)r6, (int)r7);
+                Ui_SetClipRect((int)r4, (int)r5, (int)r6, (int)r7);
                 r1 = 2148859904u;
                 Mem.Set((r1 + 14336u), r0);
                 L_L0040CDA8: ;

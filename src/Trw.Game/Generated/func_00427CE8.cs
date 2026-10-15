@@ -21,11 +21,11 @@ public static partial class Game
                 switch ((int)(new Q03Cfg(0x801462C8u).unkD))
                 {
                 case 1:
-                    func_002A125C(new O04ModeS4690(Mem.U32(0x800E4690u)).unk9A0.P, (uint)(func_00411DF8(105)));
+                    LibC_StrCopy(new O04ModeS4690(Mem.U32(0x800E4690u)).unk9A0.P, (uint)(func_00411DF8(105)));
                     func_0042EB94(new O04ModeS4690(Mem.U32(0x800E4690u)).unk9A0.P, 0x800E19ECu, Mem.U32(new Q03Tbl70b((0x800E3A58u + (uint)(func_0041F1B0((int)(new Q03Cfg(0x801462C8u).ent[(int)(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA5C)].f80)) * 112))).unk64));
                     break;
                 case 3:
-                    func_002A125C(new O04ModeS4690(Mem.U32(0x800E4690u)).unk9D2.P, (uint)(func_00411DF8(61)));
+                    LibC_StrCopy(new O04ModeS4690(Mem.U32(0x800E4690u)).unk9D2.P, (uint)(func_00411DF8(61)));
                     h = UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unk970), (uint)(342), default(uint), default(uint));
                     func_0040E958(h, 1);
                     new O04Sub2C(h).unk38_Set((int)(new O04ModeS4690(Mem.U32(0x800E4690u)).unk9D2.P));
@@ -33,18 +33,18 @@ public static partial class Game
                     v = Mem.S32(((0x80102B94u + (uint)(idx * 4)) + (uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA5C * 400)));
                     if ((v > 0))
                     {
-                        func_002A1C08(_fp, 0x800E19F8u, (uint)((v / 60)), (uint)((v % 60)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        Str_FormatInto(_fp, 0x800E19F8u, (uint)((v / 60)), (uint)((v % 60)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                     }
                     else
                     {
                         r = func_00425E50(idx, 3, 0);
-                        func_002A1C08(_fp, 0x800E19F8u, (uint)((int)((byte)(((int)(new Q03R24(r).unk24) / 60)))), (uint)((int)((byte)(((int)(new Q03R24(r).unk24) % 60)))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        Str_FormatInto(_fp, 0x800E19F8u, (uint)((int)((byte)(((int)(new Q03R24(r).unk24) / 60)))), (uint)((int)((byte)(((int)(new Q03R24(r).unk24) % 60)))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                     }
                     func_0042EB94(new O04ModeS4690(Mem.U32(0x800E4690u)).unk9D2.P, 0x800E1A00u, _fp);
-                    func_002A125C(new O04ModeS4690(Mem.U32(0x800E4690u)).unk9A0.P, Mem.U32(0x800D7508u));
+                    LibC_StrCopy(new O04ModeS4690(Mem.U32(0x800E4690u)).unk9A0.P, Mem.U32(0x800D7508u));
                     break;
                 case 4:
-                    func_002A125C(new O04ModeS4690(Mem.U32(0x800E4690u)).unk9A0.P, Mem.U32(0x800D7504u));
+                    LibC_StrCopy(new O04ModeS4690(Mem.U32(0x800E4690u)).unk9A0.P, Mem.U32(0x800D7504u));
                     break;
                 }
             }

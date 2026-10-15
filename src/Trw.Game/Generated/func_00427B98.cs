@@ -23,7 +23,7 @@ public static partial class Game
                 s1 = new O04ModeS4690(Mem.U32(0x800E4690u)).unkA44;
                 e = ((0x801462C8u + (uint)208) + (uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA5C * 150));
                 func_004286A0(s1);
-                new O04Ent96j(e).unk80_Set((sbyte)(new O04Rec4((uint)(func_0028D450(0x8011FE88u, s1))).unk4));
+                new O04Ent96j(e).unk80_Set((sbyte)(new O04Rec4((uint)(Resource_GetIndexedCached(0x8011FE88u, s1))).unk4));
                 k = func_0041F1B0((int)(new O04Ent96j(e).unk80));
                 new O04V3(_fp).x_Set(new O04Tbl70((0x800E3A58u + (uint)(k * 112))).unk4);
                 new O04V3(_fp).y_Set(new O04Tbl70((0x800E3A58u + (uint)(k * 112))).unk4);

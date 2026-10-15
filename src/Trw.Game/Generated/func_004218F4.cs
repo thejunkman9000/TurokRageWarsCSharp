@@ -26,8 +26,8 @@ public static partial class Game
                 }
                 return 0;
             case 4:
-                func_0029A73C();
-                func_00299368(3);
+                Menu_ConsumeEvent();
+                Menu_GotoScreen(3);
                 return 0;
             default:
                 return 0;

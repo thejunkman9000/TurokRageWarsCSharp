@@ -10,9 +10,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004395E4");
-            func_0029A73C();
-            func_0042EB68(((func_0029A9A0(0) == 22) ? (-1) : 11));
-            func_0029A8A8();
+            Menu_ConsumeEvent();
+            func_0042EB68(((Menu_GetStackScreenId(0) == 22) ? (-1) : 11));
+            Menu_GoBack();
             return 0;
         }
     }

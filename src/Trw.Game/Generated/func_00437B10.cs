@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00437B10");
-            func_0029A73C();
+            Menu_ConsumeEvent();
             switch (Menu_GetMessage())
             {
             case 977:

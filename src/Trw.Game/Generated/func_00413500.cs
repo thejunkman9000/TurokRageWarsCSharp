@@ -22,7 +22,7 @@ public static partial class Game
                     ResourcePool_MallocFree((uint)(new S_func_00413500(d).f14));
                 }
             }
-            func_002A1748(d, 0, (uint)(32));
+            Mem_Fill(d, 0, (uint)(32));
             Mem.Copy(d, s, 32);
             if ((new S_func_00413500(d).f10 == 0))
             {
@@ -41,7 +41,7 @@ public static partial class Game
             }
             else
             {
-                func_002A1724((uint)(new S_func_00413500(d).f18), (uint)(new S_func_00413500(s).f18), (uint)(n));
+                Mem_Copy((uint)(new S_func_00413500(d).f18), (uint)(new S_func_00413500(s).f18), (uint)(n));
                 if ((new S_func_00413500(s).f10 != 0))
                 {
                     n = func_0041371C(s);
@@ -49,12 +49,12 @@ public static partial class Game
                     if ((new S_func_00413500(d).f14 == 0))
                     {
                         ResourcePool_MallocFree((uint)(new S_func_00413500(d).f18));
-                        func_002A1748(d, 0, (uint)(32));
+                        Mem_Fill(d, 0, (uint)(32));
                         return 1;
                     }
                     else
                     {
-                        func_002A1724((uint)(new S_func_00413500(d).f14), (uint)(new S_func_00413500(s).f14), (uint)(n));
+                        Mem_Copy((uint)(new S_func_00413500(d).f14), (uint)(new S_func_00413500(s).f14), (uint)(n));
                         return 0;
                     }
                 }

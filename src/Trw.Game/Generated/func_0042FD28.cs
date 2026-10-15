@@ -24,7 +24,7 @@ public static partial class Game
                     {
                         if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state == 4))
                         {
-                            func_0029A73C();
+                            Menu_ConsumeEvent();
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f14_Set(2);
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state_Set(2);
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f8_Set(4);
@@ -39,7 +39,7 @@ public static partial class Game
                     case 13:
                         if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state == 0))
                         {
-                            func_0029A73C();
+                            Menu_ConsumeEvent();
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f14_Set(2);
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state_Set(2);
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f8_Set(4);
@@ -49,7 +49,7 @@ public static partial class Game
                     case 10:
                         if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state == 4))
                         {
-                            func_0029A73C();
+                            Menu_ConsumeEvent();
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f14_Set(2);
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state_Set(2);
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f8_Set(4);
@@ -63,7 +63,7 @@ public static partial class Game
                     {
                         if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state == 0))
                         {
-                            func_0029A73C();
+                            Menu_ConsumeEvent();
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f14_Set(2);
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state_Set(2);
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f8_Set(12);
@@ -76,7 +76,7 @@ public static partial class Game
                     {
                         if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state == 0))
                         {
-                            func_0029A73C();
+                            Menu_ConsumeEvent();
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f14_Set(2);
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state_Set(2);
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f8_Set(13);
@@ -90,7 +90,7 @@ public static partial class Game
                     {
                         if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state == 0))
                         {
-                            func_0029A73C();
+                            Menu_ConsumeEvent();
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state_Set(14);
                             if ((func_0043492C() >= 0))
                             {
@@ -108,7 +108,7 @@ public static partial class Game
                     {
                         if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state == 0))
                         {
-                            func_0029A73C();
+                            Menu_ConsumeEvent();
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state_Set(14);
                             if ((func_0043492C() >= 0))
                             {

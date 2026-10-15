@@ -39,13 +39,13 @@ public static partial class Game
                 if ((new O05L2(Mem.U32(0x800E59E0u)).f135C <= 0))
                 {
                     new O05L2(Mem.U32(0x800E59E0u)).f1358_Set(3);
-                    func_0029A73C();
-                    func_00299368(new O05L2(Mem.U32(0x800E59E0u)).f1368);
+                    Menu_ConsumeEvent();
+                    Menu_GotoScreen(new O05L2(Mem.U32(0x800E59E0u)).f1368);
                     return 0;
                 }
                 break;
             case 3:
-                func_002A3358();
+                Menu_EnableInput();
                 return 0;
             case 4:
                 {

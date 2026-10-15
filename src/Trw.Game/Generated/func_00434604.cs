@@ -60,7 +60,7 @@ public static partial class Game
                     if ((func_00405454(idx, _fp) == 0))
                     {
                         recs = new O05Lobby(Mem.U32(0x800E54A4u)).recs.P;
-                        func_002A1724(recs, new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].rec.P, (uint)(1600));
+                        Mem_Copy(recs, new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].rec.P, (uint)(1600));
                         new O05Lobby(Mem.U32(0x800E54A4u)).f3468_Set(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB64);
                         new O05Lobby(Mem.U32(0x800E54A4u)).f346C_Set((int)(func_004057F8(recs, 1600, (uint)(7))));
                         recs = new O05Lobby(Mem.U32(0x800E54A4u)).recs.P;
@@ -68,7 +68,7 @@ public static partial class Game
                         {
                             Mem.Set(((_fp + 8u) + (uint)i), (sbyte)(0));
                         }
-                        func_002A125C((_fp + 8u), (uint)(Mem.S32(0x800D7700u)));
+                        LibC_StrCopy((_fp + 8u), (uint)(Mem.S32(0x800D7700u)));
                         if ((func_00404958(idx, 1608, recs, (_fp + 8u), _fp, (uint)(Mem.S32(0x800D770Cu))) == 0))
                         {
                             ok = 1;

@@ -294,4 +294,27 @@ public static partial class Game
             }
         }
     }
+
+    // ==== func_002A6B3C @ 0x002A6B3C [C]
+    public static void Color_Clamp255(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002A6B3C", (uint)p);
+            float v = Mem.F32(p);
+            float w = 0f;
+            w = v;
+            if ((v < 0.0f))
+            {
+                Mem.Set(p, 0.0f);
+            }
+            else
+            {
+                if ((w > Mem.F32(0x800CB034u)))
+                {
+                    Mem.Set(p, Mem.F32(0x800CB034u));
+                }
+            }
+        }
+    }
 }

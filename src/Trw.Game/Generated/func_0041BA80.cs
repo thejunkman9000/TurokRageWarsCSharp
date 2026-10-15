@@ -19,16 +19,16 @@ public static partial class Game
                 {
                     if ((((int)(new O3Hdr(self).unk12) & 512) != 0))
                     {
-                        func_002A2898((new O3Q4((_fp + 72u)).w.P + (uint)(0 * 4)), (new O3Q4((_fp + 72u)).w.P + (uint)(2 * 4)), (new O3Q4((_fp + 72u)).w.P + (uint)(1 * 4)), (new O3Q4((_fp + 72u)).w.P + (uint)(3 * 4)));
+                        Ui_GetClipRect((new O3Q4((_fp + 72u)).w.P + (uint)(0 * 4)), (new O3Q4((_fp + 72u)).w.P + (uint)(2 * 4)), (new O3Q4((_fp + 72u)).w.P + (uint)(1 * 4)), (new O3Q4((_fp + 72u)).w.P + (uint)(3 * 4)));
                         Mem.Copy((_fp + 88u), (_fp + 72u), 16);
                         func_0040F508((_fp + 88u), (_fp + 56u));
                         flag = 1;
-                        func_002A2870(new O3Q4((_fp + 88u)).w[(int)(0)], new O3Q4((_fp + 88u)).w[(int)(2)], new O3Q4((_fp + 88u)).w[(int)(1)], new O3Q4((_fp + 88u)).w[(int)(3)]);
+                        Ui_SetClipRect(new O3Q4((_fp + 88u)).w[(int)(0)], new O3Q4((_fp + 88u)).w[(int)(2)], new O3Q4((_fp + 88u)).w[(int)(1)], new O3Q4((_fp + 88u)).w[(int)(3)]);
                     }
                     func_0040E87C(new O3Hdr(self).child_, _fp);
                     if ((flag != 0))
                     {
-                        func_002A2870(new O3Q4((_fp + 72u)).w[(int)(0)], new O3Q4((_fp + 72u)).w[(int)(2)], new O3Q4((_fp + 72u)).w[(int)(1)], new O3Q4((_fp + 72u)).w[(int)(3)]);
+                        Ui_SetClipRect(new O3Q4((_fp + 72u)).w[(int)(0)], new O3Q4((_fp + 72u)).w[(int)(2)], new O3Q4((_fp + 72u)).w[(int)(1)], new O3Q4((_fp + 72u)).w[(int)(3)]);
                     }
                 }
             }

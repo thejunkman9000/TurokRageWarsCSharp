@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0042382C");
             int s0 = 0;
-            func_0029A73C();
+            Menu_ConsumeEvent();
             s0 = 1;
             switch (Menu_GetMessage())
             {
@@ -34,7 +34,7 @@ public static partial class Game
             if ((s0 == 1))
             {
                 func_00423304();
-                func_0029A8A8();
+                Menu_GoBack();
             }
             return 0;
         }

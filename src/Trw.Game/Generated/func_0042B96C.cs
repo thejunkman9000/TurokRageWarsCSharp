@@ -13,7 +13,7 @@ public static partial class Game
             int s0 = 0;
             int s1 = 0;
             int r = 0;
-            func_0029A73C();
+            Menu_ConsumeEvent();
             if ((d != 1))
             {
                 return 0;

@@ -12,8 +12,8 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00435BAC");
             ResourcePool_MallocFree(Mem.U32(0x800E54A4u));
             Mem.Set(0x800E54A4u, 0u);
-            func_002A3358();
-            func_002A3410(1);
+            Menu_EnableInput();
+            Menu_SetPeriodicStateKick_002A3410(1);
             return 0;
         }
     }

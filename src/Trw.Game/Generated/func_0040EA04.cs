@@ -40,7 +40,7 @@ public static partial class Game
                                         {
                                             if (!((new S_st(_fp).y + (int)(new S_n(n).h)) < py))
                                             {
-                                                if ((func_0029A7E4((int)(new S_n(n).type)) != 0))
+                                                if ((Menu_GetClassHandler((int)(new S_n(n).type)) != 0))
                                                 {
                                                     new S_hit(hit).hit__Set(n);
                                                 }

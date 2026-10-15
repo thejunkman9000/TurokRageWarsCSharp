@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0041B690", (uint)own, (uint)n);
             uint o = 0u;
             o = ResourcePool_Malloc((uint)(112));
-            func_002A1748(o, 0, (uint)(112));
+            Mem_Fill(o, 0, (uint)(112));
             Mem.Copy(o, new O3Own(own).child_, 44);
             new O3M7D5(o).h.id2_Set((ushort)(2005));
             new O3M7D5(o).h.unk12_Set((short)(8));

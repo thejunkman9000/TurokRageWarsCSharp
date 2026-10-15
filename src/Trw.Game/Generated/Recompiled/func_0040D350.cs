@@ -60,7 +60,7 @@ public static partial class Game
                 { bool c_ = r2 == 0; r4 = r29 + 32u; if (c_) goto L_L0040D43C; }
                 r5 = r29 + 40u;
                 r6 = r29 + 36u;
-                r7 = r29 + 44u; func_002A2898(r4, r5, r6, r7);
+                r7 = r29 + 44u; Ui_GetClipRect(r4, r5, r6, r7);
                 r10 = Mem.U32((r29 + 32u));
                 r11 = Mem.U32((r29 + 36u));
                 r12 = Mem.U32((r29 + 40u));
@@ -76,7 +76,7 @@ public static partial class Game
                 r5 = Mem.U32((r29 + 56u));
                 r6 = Mem.U32((r29 + 52u));
                 r7 = Mem.U32((r29 + 60u));
-                r22 = (uint)1; func_002A2870((int)r4, (int)r5, (int)r6, (int)r7);
+                r22 = (uint)1; Ui_SetClipRect((int)r4, (int)r5, (int)r6, (int)r7);
                 L_L0040D43C: ;
                 r4 = r20; r2 = (uint)Str_Length(r4);
                 r3 = Mem.U32((r29 + 156u));
@@ -110,7 +110,7 @@ public static partial class Game
                 { bool c_ = r2 == 0; r5 = r29 + 88u; if (c_) goto L_L0040D568; }
                 r4 = r29 + 80u;
                 r6 = r29 + 84u;
-                r7 = r29 + 92u; func_002A2898(r4, r5, r6, r7);
+                r7 = r29 + 92u; Ui_GetClipRect(r4, r5, r6, r7);
                 r3 = Mem.U32((r29 + 80u));
                 r2 = 2148859904u;
                 r2 = Mem.U32((r2 + 14352u));
@@ -148,7 +148,7 @@ public static partial class Game
                 r4 = r4 + 14352u;
                 r5 = r4 + 8u;
                 r6 = r4 + 4u;
-                r7 = r4 + 12u; func_002A2898(r4, r5, r6, r7);
+                r7 = r4 + 12u; Ui_GetClipRect(r4, r5, r6, r7);
                 r16 = r18 << 24;
                 r16 = (uint)((int)r16 >> 24);
                 r2 = r19 << 24;
@@ -359,7 +359,7 @@ public static partial class Game
                 r4 = r4 + 14352u;
                 r5 = r4 + 8u;
                 r6 = r4 + 4u;
-                r7 = r4 + 12u; func_002A2898(r4, r5, r6, r7);
+                r7 = r4 + 12u; Ui_GetClipRect(r4, r5, r6, r7);
                 r16 = (uint)((int)r16 >> 24);
                 r2 = r19 << 24;
                 r2 = (uint)((int)r2 >> 24);
@@ -388,7 +388,7 @@ public static partial class Game
                 r4 = r21 << 1;
                 L_L0040D97C: ;
                 r4 = r4 + r21;
-                r4 = r4 << 3; r2 = (uint)func_002A25E4((int)r4);
+                r4 = r4 << 3; r2 = (uint)FrameAlloc_AllocHigh((int)r4);
                 r5 = r2;
                 r4 = 16711680u;
                 r4 = r4 | 65535u;
@@ -471,7 +471,7 @@ public static partial class Game
                 r5 = Mem.U32((r29 + 40u));
                 r6 = Mem.U32((r29 + 36u));
                 r7 = Mem.U32((r29 + 44u));
-                func_002A2870((int)r4, (int)r5, (int)r6, (int)r7);
+                Ui_SetClipRect((int)r4, (int)r5, (int)r6, (int)r7);
                 L_L0040DAE8: ;
                 { bool c_ = (int)r16 <= 0; r5 = r16; if (c_) goto L_L0040DB54; }
                 r2 = 2148859904u;

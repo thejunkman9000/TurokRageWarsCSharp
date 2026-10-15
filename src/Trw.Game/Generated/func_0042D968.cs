@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0042D968");
-            func_0029A73C();
+            Menu_ConsumeEvent();
             if ((func_0043C4E8(Mem.U32(0x800E53C0u)) == 1))
             {
                 return 0;
@@ -28,12 +28,12 @@ public static partial class Game
                 {
                     Mem.Set(0x80146918u, 0);
                     Mem.Set(0x801468F4u, 0);
-                    func_00299368(15);
+                    Menu_GotoScreen(15);
                 }
                 break;
             case 568:
                 func_00435190(5);
-                func_00299368(19);
+                Menu_GotoScreen(19);
                 break;
             case 572:
                 if ((func_0042B108() == 1))
@@ -41,7 +41,7 @@ public static partial class Game
                     func_0042EB68(33);
                     return 0;
                 }
-                func_00299368((((int)(Mem.U8((0x80146894u + (uint)(-1471)))) == 0) ? 20 : 15));
+                Menu_GotoScreen((((int)(Mem.U8((0x80146894u + (uint)(-1471)))) == 0) ? 20 : 15));
                 break;
             }
             return 0;

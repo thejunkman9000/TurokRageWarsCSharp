@@ -124,7 +124,7 @@ public static partial class Game
                 { bool c_ = r2 == 0;  if (c_) goto L_L0020AB64; }
                 r2 = Mem.U32((r16 + 24u));
                 r5 = (uint)(int)Mem.S16((r2 + 40u));
-                r4 = r22; r2 = (uint)func_0028B238(r4, (int)r5);
+                r4 = r22; r2 = (uint)Level_GetTypeIdByIndex(r4, (int)r5);
                 r3 = Mem.U16((r17 + 14u));
                 L_L0020AB2C: ;
                 { bool c_ = r2 != r3; r4 = r17; if (c_) goto L_L0020AB64; }
@@ -236,12 +236,12 @@ public static partial class Game
                                 info = new B2Obj(a).def.info.P;
                                 if (((int)(new B2Sub(st).unk34) == 4))
                                 {
-                                    t = func_0028D1F4(0x8011FE88u, (uint)(new B2Sub(st).unk95), default(uint), default(uint));
+                                    t = LevelPath_GetHeader(0x8011FE88u, (uint)(new B2Sub(st).unk95), default(uint), default(uint));
                                     if ((t != 0u))
                                     {
                                         for (j = 0; (j < (int)(Mem.S16((t + (uint)(1 * 2))))); ++j)
                                         {
-                                            p = func_0028D220(0x8011FE88u, (int)(new B2Sub(st).unk95), j);
+                                            p = LevelPath_GetPoint(0x8011FE88u, (int)(new B2Sub(st).unk95), j);
                                             d = Vec_Distance(r, p);
                                             if (((d < best) || (best == Mem.F32(0x800C6E3Cu))))
                                             {

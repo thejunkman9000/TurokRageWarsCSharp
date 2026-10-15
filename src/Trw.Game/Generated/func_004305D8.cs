@@ -15,7 +15,7 @@ public static partial class Game
             switch (new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state)
             {
             case 12:
-                if ((func_0029EB58(e5) < func_0029AB4C()))
+                if ((Math_AbsInt(e5) < Menu_GetStickDeadzone()))
                 {
                     new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fB4C_Set(0);
                     new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fB48_Set(2);
@@ -24,7 +24,7 @@ public static partial class Game
                 {
                     return 0;
                 }
-                func_0029A73C();
+                Menu_ConsumeEvent();
                 new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fB48_Set(1);
                 NameEntry_LetterUp(k);
                 Audio_PlaySound2D(3713);
@@ -34,7 +34,7 @@ public static partial class Game
                 {
                     return 0;
                 }
-                func_0029A73C();
+                Menu_ConsumeEvent();
                 func_0043442C(k, 0);
                 new O05Lobby(Mem.U32(0x800E54A4u)).h.w2C.Set((int)(k), 0);
                 Audio_PlaySound2D(3700);
@@ -48,7 +48,7 @@ public static partial class Game
                 {
                     return 0;
                 }
-                func_0029A73C();
+                Menu_ConsumeEvent();
                 s = new O05Ch_v2(func_0041B87C(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k)).f2C_;
                 while ((func_0040EC50(s) != 0))
                 {
@@ -68,7 +68,7 @@ public static partial class Game
                     func_0041B95C(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k, s);
                     func_00433DA8(k);
                 }
-                func_0029A73C();
+                Menu_ConsumeEvent();
                 break;
             case 27:
                 if ((ev == 1))
@@ -81,7 +81,7 @@ public static partial class Game
                     func_0041B95C(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k, s);
                     func_00433F14(k);
                 }
-                func_0029A73C();
+                Menu_ConsumeEvent();
                 break;
             }
             return 0;

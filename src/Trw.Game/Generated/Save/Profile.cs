@@ -87,7 +87,7 @@ public static partial class Game
             new B07Row((0x80102B00u + (uint)(i * 400))).unkD_Set((byte)(i));
             new B07Row((0x80102B00u + (uint)(i * 400))).unkC_Set((byte)(0));
             new B07Row((0x80102B00u + (uint)(i * 400))).unkE_Set((byte)(1));
-            func_002A1C08((0x80102B00u + (uint)(i * 400)), (uint)(Mem.S32((0x800D750Cu + (uint)(0 * 4)))), (uint)((i + 1)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            Str_FormatInto((0x80102B00u + (uint)(i * 400)), (uint)(Mem.S32((0x800D750Cu + (uint)(0 * 4)))), (uint)((i + 1)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             r = (0x80146398u + (uint)(i * 150));
             new B07Row((0x80102B00u + (uint)(i * 400))).unk189_Set(new B07Rec96(r).unk7B);
             new B07Row((0x80102B00u + (uint)(i * 400))).unk18A_Set(new B07Rec96(r).unk7D);

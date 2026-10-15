@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00409E3C", (uint)a);
             if ((Mem.S32(0x80146D60u) == 0))
             {
-                func_0029324C();
+                Game_LatchPads();
                 Pad_UpdatePakInsertion();
                 if ((Mem.S32(0x80146D60u) == 0))
                 {

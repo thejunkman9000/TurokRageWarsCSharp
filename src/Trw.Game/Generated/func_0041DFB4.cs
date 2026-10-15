@@ -21,7 +21,7 @@ public static partial class Game
             func_0041B768((uint)(parent), 3, 905);
             it = UiTree_FindNode((uint)(parent), (uint)(907), default(uint), default(uint));
             new O3Hdr(it).alpha_Set((byte)(140));
-            if ((func_0029A9A0(0) == 22))
+            if ((Menu_GetStackScreenId(0) == 22))
             {
                 func_0040E958(it, 0);
             }
@@ -36,7 +36,7 @@ public static partial class Game
                 func_0041E478(i);
                 func_0040E958(UiTree_FindNode((uint)(new O3Ps(Mem.U32(0x800E39C0u)).w[(int)(i)]), (uint)(914), default(uint), default(uint)), 0);
             }
-            func_002A3358();
+            Menu_EnableInput();
             func_0040E958(UiTree_FindNode((uint)(new O3Ps(Mem.U32(0x800E39C0u)).w[(int)(new O3Ps(Mem.U32(0x800E39C0u)).sel)]), (uint)(914), default(uint), default(uint)), 1);
             return 0;
         }

@@ -11,10 +11,10 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00429740");
             int b = 0;
-            func_002A2B24((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk24), (int)(new O04Cfg(0x801462C8u).s25));
-            func_002A2B24((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk28), (int)(new O04Cfg(0x801462C8u).s24));
-            func_002A2B24((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk2C), (int)(new O04Cfg(0x801462C8u).s26));
-            func_002A2B24((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk30), (int)(new O04Cfg(0x801462C8u).s27));
+            NumberField_SetValue((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk24), (int)(new O04Cfg(0x801462C8u).s25));
+            NumberField_SetValue((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk28), (int)(new O04Cfg(0x801462C8u).s24));
+            NumberField_SetValue((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk2C), (int)(new O04Cfg(0x801462C8u).s26));
+            NumberField_SetValue((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk30), (int)(new O04Cfg(0x801462C8u).s27));
             b = func_0041EBC0();
             if ((new O04S4EF0(Mem.U32(0x800E4EF0u)).unk38 < b))
             {
@@ -24,7 +24,7 @@ public static partial class Game
             {
                 b = new O04S4EF0(Mem.U32(0x800E4EF0u)).unk3C;
             }
-            func_002A2B24((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk34), b);
+            NumberField_SetValue((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk34), b);
             func_0041AD90((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk1C), (int)(new O04Cfg(0x801462C8u).u28));
             func_0041AD90((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk20), func_0041E790());
         }

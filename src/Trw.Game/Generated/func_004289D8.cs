@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_004289D8", (uint)a, (uint)b, (uint)c, (uint)d);
             if ((((c >> (int)16) == (uint)(3)) && (d == 0)))
             {
-                func_0029A73C();
+                Menu_ConsumeEvent();
                 new O04ModeS4690(Mem.U32(0x800E4690u)).unk988_Set(8);
                 new O04ModeS4690(Mem.U32(0x800E4690u)).unkA50.unk10_Set((byte)(90));
                 Audio_PlaySound2D(3708);

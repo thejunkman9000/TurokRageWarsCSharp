@@ -331,7 +331,7 @@ public static partial class Game
                 L_L00234408: ;
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
-                r5 = r17; r2 = func_0028B2D4(r4, r5);
+                r5 = r17; r2 = Level_GetRegion(r4, r5);
                 r5 = r2;
                 { bool c_ = r5 == 0;  if (c_) goto L_L0023499C; }
                 L_L00234424: ;
@@ -842,7 +842,7 @@ public static partial class Game
                     }
                     p = new CamObj(o).unk260.P;
                     Math_MtxTransformPoints((o + (uint)352), _fp, p, 5);
-                    func_002975B0((o + (uint)752), p, (o + (uint)620), (o + (uint)632), (o + (uint)644), (o + (uint)656));
+                    Frustum_BuildPlanes((o + (uint)752), p, (o + (uint)620), (o + (uint)632), (o + (uint)644), (o + (uint)656));
                     Math_AabbOfPoints((o + (uint)848), 5, p);
                     half = (r * 1.5f);
                     new CamObj(o).unk368_Set((new CamObj(o).unk260.x - r));
@@ -1137,11 +1137,11 @@ public static partial class Game
                 r4 = r19; Cpu.SetS(0, Flyby_GetFieldOfView());
                 Cpu.SetS(22, Cpu.S(0)); goto L_L00235510;
                 L_L002354A4: ;
-                r2 = (uint)func_002A33AC();
+                r2 = (uint)Menu_IsFrontendActive();
                 r16 = r2;
                 r2 = (uint)1;
                 { bool c_ = r16 != r2;  if (c_) goto L_L002354DC; }
-                r2 = (uint)func_002A33E8();
+                r2 = (uint)Menu_IsFixedFov();
                 { bool c_ = r2 != r16;  if (c_) goto L_L002354DC; }
                 r1 = 2148335616u;
                 Cpu.SetW(22, Mem.U32((r1 - 31920u)));
@@ -1414,7 +1414,7 @@ public static partial class Game
                 { bool c_ = r2 == 0;  if (c_) goto L_L002359C0; }
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
-                r5 = r19 + 56u; r2 = func_002866F8(r4, r5);
+                r5 = r19 + 56u; r2 = Collision_FindFloorTriangle(r4, r5);
                 Mem.Set((r19 + 88u), r2);
                 L_L002359C0: ;
                 r2 = 2148335616u;
@@ -1713,10 +1713,10 @@ public static partial class Game
                 r19 = r19 + 20680u;
                 { bool c_ = r17 == r19;  if (c_) goto L_L00235E44; }
                 r4 = Mem.U32((r17 + 288u));
-                func_00297008((int)r4);
+                Material_SetColorMode((int)r4);
                 L_L00235E44: ;
                 r16 = r0; Model_UpdateFogRenderModes();
-                func_00296FF8();
+                Texture_InvalidateLoadCache();
                 r4 = 3808428032u;
                 r4 = r4 | 4609u;
                 r2 = Mem.U32((r18 + 0u));
@@ -1725,7 +1725,7 @@ public static partial class Game
                 Mem.Set((r18 + 0u), r2);
                 r2 = (uint)8192;
                 Mem.Set((r3 + 0u), r4);
-                Mem.Set((r3 + 4u), r2); r2 = (uint)func_002A33AC();
+                Mem.Set((r3 + 4u), r2); r2 = (uint)Menu_IsFrontendActive();
                 { bool c_ = r2 == 0;  if (c_) goto L_L00235E94; }
                 r2 = (uint)Ui_PushScreen();
                 r2 = r2 ^ 2u;
@@ -1758,7 +1758,7 @@ public static partial class Game
                 Mem.Set((r16 + 0u), r5);
                 r5 = r23 << 16;
                 r5 = (uint)((int)r5 >> 16);
-                Mem.Set((r29 + 20u), r2); func_00291BF8((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
+                Mem.Set((r29 + 20u), r2); Gfx_ClearZBufferRect((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
                 r2 = 3808428032u;
                 r3 = Mem.U32((r16 + 0u));
                 r2 = r2 | 2561u;
@@ -2008,29 +2008,29 @@ public static partial class Game
             uint dl = 0u;
             uint dl6 = 0u;
             uint x2 = 0u;
-            func_002909D0();
-            func_00289054(w, a, default(uint), default(uint));
+            View_StubNop_002909D0();
+            Level_DrawVisibleCells(w, a, default(uint), default(uint));
             if ((Flyby_IsInWindow() == 0))
             {
                 Player_ReloadAnimObjects(0x80145040u, a);
             }
-            if ((func_002934DC() != 0))
+            if ((Game_IsInState13() != 0))
             {
                 Player_DrawAll(0x80145040u, a);
             }
-            func_0028B004(w, (int)(a));
-            func_002A6170(0x8013BA80u);
+            Level_DrawActors(w, (int)(a));
+            Decal_DrawAll(0x8013BA80u);
             if ((Flyby_IsInWindow() == 0))
             {
-                func_002905D4((w + (uint)71544), a);
+                PickupPool_DrawAll((w + (uint)71544), a);
             }
-            func_00286424(w, a);
+            Level_DrawObjectsSorted(w, a);
             Player_DrawWorldEffects(0x80145040u, a);
             RegionLayer_DrawAll((a + (uint)1392), a);
-            func_0028B13C(w, (int)(a));
-            func_002A577C(0x8013BA80u, (int)(a));
+            Level_DrawParticles(w, (int)(a));
+            Trail_DrawAll(0x8013BA80u, (int)(a));
             View_DrawLensFlares(a, default(uint), default(uint), default(uint));
-            if (((Flyby_IsInWindow() == 0) && (func_002934DC() != 0)))
+            if (((Flyby_IsInWindow() == 0) && (Game_IsInState13() != 0)))
             {
                 Player_DrawViewWeapons(0x80145040u, a);
             }
@@ -3351,7 +3351,7 @@ public static partial class Game
                 new Tracker(t).unk60_Set(k);
                 if ((Flyby_IsInWindow() != 0))
                 {
-                    new Tracker(t).unk58__Set(func_002866F8(0x8011FE88u, (t + 56u)));
+                    new Tracker(t).unk58__Set(Collision_FindFloorTriangle(0x8011FE88u, (t + 56u)));
                 }
                 node = new Tracker(t).unk58_;
                 x = new Tracker(t).unk38;
@@ -3605,7 +3605,7 @@ public static partial class Game
                 r5 = r29 + 28u;
                 Mem.Set((r29 + 16u), r31);
                 Mem.Set((r29 + 32u), r6);
-                Mem.Set((r29 + 36u), r7); r2 = (uint)func_002979E8(r4, r5);
+                Mem.Set((r29 + 36u), r7); r2 = (uint)Frustum_ContainsPoint(r4, r5);
                 r31 = Mem.U32((r29 + 16u));
                 r29 = r29 + 24u; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
@@ -3929,7 +3929,7 @@ public static partial class Game
             float ty = 0f;
             float k = 0f;
             tx = (ty = 0.0f);
-            r = func_0028B2D4(0x8011FE88u, (uint)(new ObjF4(o).unk58));
+            r = Level_GetRegion(0x8011FE88u, (uint)(new ObjF4(o).unk58));
             if ((r == 0u))
             {
                 new Vec3f(@out).x_Set(ty);
@@ -3983,7 +3983,7 @@ public static partial class Game
             float d = 0f;
             if ((Flyby_IsInWindow() != 0))
             {
-                new Tracker(t).unk58__Set(func_002866F8(0x8011FE88u, (t + 56u)));
+                new Tracker(t).unk58__Set(Collision_FindFloorTriangle(0x8011FE88u, (t + 56u)));
             }
             n = new Tracker(t).unk58_;
             x = new Tracker(t).unk38;
@@ -4112,6 +4112,15 @@ public static partial class Game
                 }
             }
             return x;
+        }
+    }
+
+    // ==== func_002909D0 @ 0x002909D0 [C]
+    public static void View_StubNop_002909D0()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002909D0");
         }
     }
 

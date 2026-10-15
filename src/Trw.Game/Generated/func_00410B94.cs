@@ -29,7 +29,7 @@ public static partial class Game
             pal = 0u;
             s6 = (int)(pal);
             s2 = (int)(pal);
-            Mem.Set((0x801539B4u - (uint)4), (int)(func_002A1E8C(0x801539B4u, 0x800E10E0u, default(uint), default(uint))));
+            Mem.Set((0x801539B4u - (uint)4), (int)(File_Open(0x801539B4u, 0x800E10E0u, default(uint), default(uint))));
             r = (Mem.U32((0x801539B4u + (uint)604)) + (uint)(idx * 28));
             s3 = (int)(pal);
             if (!(((int)(new Q01Rec(r).bits) == 8))) goto _f1;
@@ -55,13 +55,13 @@ public static partial class Game
             _f2: ;
             s4 = (((s2 * (int)(new Q01Rec(r).h)) * (int)(new Q01Rec(r).bits)) / 8);
             fp = ResourcePool_Malloc((uint)(s4));
-            func_002A1F60((uint)(new Q01H(0x801539B0u).h), (uint)((new Q01H(0x801539B0u).f248 + new Q01Rec(r).off14)), (uint)(0), default(uint));
-            func_002A1ED4(fp, (uint)(s4), (uint)(1), (uint)(new Q01H(0x801539B0u).h));
+            File_Seek((uint)(new Q01H(0x801539B0u).h), (uint)((new Q01H(0x801539B0u).f248 + new Q01Rec(r).off14)), (uint)(0), default(uint));
+            File_Read(fp, (uint)(s4), (uint)(1), (uint)(new Q01H(0x801539B0u).h));
             if (!(((int)(new Q01Rec(r).n) > 0))) goto _f8;
             s6 = ((int)(new Q01Rec(r).n) * 2);
             pal = ResourcePool_Malloc((uint)(s6));
-            func_002A1F60((uint)(new Q01H(0x801539B0u).h), (uint)((new Q01H(0x801539B0u).f248 + new Q01Rec(r).off18)), (uint)(0), default(uint));
-            func_002A1ED4(pal, (uint)(s6), (uint)(1), (uint)(new Q01H(0x801539B0u).h));
+            File_Seek((uint)(new Q01H(0x801539B0u).h), (uint)((new Q01H(0x801539B0u).f248 + new Q01Rec(r).off18)), (uint)(0), default(uint));
+            File_Read(pal, (uint)(s6), (uint)(1), (uint)(new Q01H(0x801539B0u).h));
             t = (int)(new Q01Rec(r).n);
             a0 = 0;
             if (!((t > 0))) goto _f9;
@@ -114,7 +114,7 @@ public static partial class Game
             _f22: ;
             _f20: ;
             func_004137A0((uint)(arg1), a1, (int)(new Q01Rec(r).w), (int)(new Q01Rec(r).h), s2, (int)(new Q01Rec(r).h), 1, s4, (int)(fp), 1, s6, (int)(pal), (int)(new Q01Rec(r).n));
-            func_002A1EB0((uint)(new Q01H(0x801539B0u).h), default(uint), default(uint), default(uint));
+            File_Close((uint)(new Q01H(0x801539B0u).h), default(uint), default(uint), default(uint));
             new Q01H(0x801539B0u).h_Set(0);
         }
     }

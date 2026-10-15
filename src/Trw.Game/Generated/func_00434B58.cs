@@ -40,7 +40,7 @@ public static partial class Game
                         new O05Lobby(Mem.U32(0x800E54A4u)).slot[(int)(v)].b_Set(idx);
                         new O05Lobby(Mem.U32(0x800E54A4u)).slot[(int)(v)].c_Set(1);
                     }
-                    func_002A1724((0x80102B00u + (uint)(found * 400)), (new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].rec.P + (uint)(sel * 400)), (uint)(400));
+                    Mem_Copy((0x80102B00u + (uint)(found * 400)), (new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].rec.P + (uint)(sel * 400)), (uint)(400));
                     new O05Rec((0x80102B00u + (uint)(found * 400))).bD_Set((sbyte)(k));
                     new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f4_Set(0);
                     func_00433DA8((idx = (-1)));

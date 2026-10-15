@@ -53,12 +53,12 @@ public static partial class Game
                 L_I00426B3C: ;
                 r2 = (uint)90;
                 L_I00426B40: ;
-                Mem.Set((r3 + 16u), (byte)r2); func_0029A73C();
+                Mem.Set((r3 + 16u), (byte)r2); Menu_ConsumeEvent();
                 L_I00426B48: ;
                 r4 = Mem.U32((r16 - 4u));
                 L_L00426B4C: ;
                 L_I00426B4C: ;
-                func_00299368((int)r4);
+                Menu_GotoScreen((int)r4);
                 L_I00426B54: ;
                 r2 = r0; goto L_L00426EB0;
                 L_L00426B5C: ;
@@ -194,7 +194,7 @@ public static partial class Game
                 L_I00426C78: ;
                 r2 = (uint)3;
                 L_I00426C7C: ;
-                Mem.Set((r5 + 2440u), r2); func_0029A73C();
+                Mem.Set((r5 + 2440u), r2); Menu_ConsumeEvent();
                 L_I00426C84: ;
                 r3 = 2148794368u;
                 L_I00426C88: ;
@@ -215,7 +215,7 @@ public static partial class Game
                 L_I00426CAC: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L00426DF8; }
                 L_I00426CB4: ;
-                func_002A3358();
+                Menu_EnableInput();
                 L_I00426CBC: ;
                 r3 = 2148401152u;
                 L_I00426CC0: ;

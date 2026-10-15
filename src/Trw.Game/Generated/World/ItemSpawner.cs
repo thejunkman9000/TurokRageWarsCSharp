@@ -81,7 +81,7 @@ public static partial class Game
                         return;
                     }
                 }
-                o = func_0028FFB0(0x80131600u, (own + 292u), id, new S5Spawn(sp).v1C.P, _fp, t0, Cpu.U2F((uint)(0)));
+                o = PickupPool_Spawn(0x80131600u, (own + 292u), id, new S5Spawn(sp).v1C.P, _fp, t0, Cpu.U2F((uint)(0)));
                 if ((o != 0u))
                 {
                     new S5Obj(o).unk1A0_Set(0);
@@ -165,7 +165,7 @@ public static partial class Game
                     switch (Mem.S32(p))
                     {
                     case 8:
-                        id8 = (int)(func_0028B238(0x8011FE88u, (int)(new S5Info(info).id14)));
+                        id8 = (int)(Level_GetTypeIdByIndex(0x8011FE88u, (int)(new S5Info(info).id14)));
                         if ((func_00205720_canSpawn(id8) != 0))
                         {
                             func_00205720_spawnObj(sp, own, _fp, t0, id8);
@@ -457,7 +457,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00206258", (uint)msg);
-            func_0028B64C(0x8011FE88u, (int)(new Msg206258(msg).unkA), (int)(new Msg206258(msg).unk4), 1);
+            Level_SetEntitySavedFlagInMap(0x8011FE88u, (int)(new Msg206258(msg).unkA), (int)(new Msg206258(msg).unk4), 1);
         }
     }
 
@@ -477,7 +477,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002062B0", (uint)msg);
-            func_0028B64C(0x8011FE88u, (int)(new Msg2062B0(msg).unkA), (int)(new Msg2062B0(msg).unk4), 0);
+            Level_SetEntitySavedFlagInMap(0x8011FE88u, (int)(new Msg2062B0(msg).unkA), (int)(new Msg2062B0(msg).unk4), 0);
         }
     }
 
@@ -504,7 +504,7 @@ public static partial class Game
                         return;
                     }
                 }
-                p = func_0028FFB0(0x80131600u, new B01State(state).unk124.P, id, new B01Actor(actor).vec1C.P, _fp, p4C, Cpu.U2F((uint)(0)));
+                p = PickupPool_Spawn(0x80131600u, new B01State(state).unk124.P, id, new B01Actor(actor).vec1C.P, _fp, p4C, Cpu.U2F((uint)(0)));
                 if ((p != 0u))
                 {
                     new B01Actor(p).unk1A0_Set(0);

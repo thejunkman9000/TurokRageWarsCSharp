@@ -10,11 +10,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004291A8");
-            func_0029A73C();
+            Menu_ConsumeEvent();
             switch (Menu_GetMessage())
             {
             case 473:
-                if ((func_0029A9A0(0) == 22))
+                if ((Menu_GetStackScreenId(0) == 22))
                 {
                     CameraManager_Init(0x80145088u, 0);
                     func_0044A600((0x80145088u - (uint)72), 0, 0);
@@ -50,7 +50,7 @@ public static partial class Game
                 }
                 break;
             case 474:
-                if ((func_0029A9A0(0) == 11))
+                if ((Menu_GetStackScreenId(0) == 11))
                 {
                     func_0042EB68(11);
                 }
@@ -62,7 +62,7 @@ public static partial class Game
             default:
                 goto L_out;
             }
-            func_0029A8A8();
+            Menu_GoBack();
             return 0;
             L_out: ;
             return 0;

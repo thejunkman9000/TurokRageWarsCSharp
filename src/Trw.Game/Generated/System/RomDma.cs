@@ -234,7 +234,7 @@ public static partial class Game
                     {
                         if (((uint)(Mem.U32((_fp + 32u))) == mB))
                         {
-                            if ((func_002955C8() != 0))
+                            if ((Artsend_IsActive() != 0))
                             {
                                 dbgLinkServerLoop();
                             }

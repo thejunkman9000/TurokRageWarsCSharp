@@ -459,7 +459,7 @@ public static partial class Game
                 Level_SetEntitySavedFlag(0x8011FE88u, actor, 1);
                 Level_FireEntityTriggers(actor, 16384, (int)(actor));
                 new B01State(state).unk64_Set(0.0f);
-                func_002A6D28(0x8013BA80u, (int)(actor));
+                Decal_RemoveByKey(0x8013BA80u, (int)(actor));
                 if ((Mem.S32((0x8011FE88u + (uint)(0 * 4))) != 4))
                 {
                     Event_Invoke((int)(actor), (int)(actor), 6, new B01Actor(actor).pos.P, _fp);
@@ -482,7 +482,7 @@ public static partial class Game
                 new B01Pair(_fp).a_Set(0);
                 Level_SetEntitySavedFlag(0x8011FE88u, actor, 0);
                 Level_FireEntityTriggers(actor, 32768, (int)(actor));
-                func_002A6D28(0x8013BA80u, (int)(actor));
+                Decal_RemoveByKey(0x8013BA80u, (int)(actor));
                 if ((Mem.S32((0x8011FE88u + (uint)(0 * 4))) != 4))
                 {
                     Event_Invoke((int)(actor), (int)(actor), 7, new B01Actor(actor).pos.P, _fp);
@@ -509,7 +509,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00204DFC", (uint)msg);
-            func_0028B64C(0x8011FE88u, (int)(new Msg204DFC(msg).unkA), (int)(new Msg204DFC(msg).unk4), 1);
+            Level_SetEntitySavedFlagInMap(0x8011FE88u, (int)(new Msg204DFC(msg).unkA), (int)(new Msg204DFC(msg).unk4), 1);
         }
     }
 
@@ -529,7 +529,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00204E48", (uint)msg);
-            func_0028B64C(0x8011FE88u, (int)(new Msg204E48(msg).unkA), (int)(new Msg204E48(msg).unk4), 0);
+            Level_SetEntitySavedFlagInMap(0x8011FE88u, (int)(new Msg204E48(msg).unkA), (int)(new Msg204E48(msg).unk4), 0);
         }
     }
 

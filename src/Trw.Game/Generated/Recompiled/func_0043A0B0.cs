@@ -264,7 +264,7 @@ public static partial class Game
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 23008u));
                 r2 = (uint)-1;
-                Mem.Set((r3 + 4968u), r2); func_002A338C();
+                Mem.Set((r3 + 4968u), r2); Menu_DisableInput();
                 r31 = Mem.U32((r29 + 108u));
                 r30 = Mem.U32((r29 + 104u));
                 r23 = Mem.U32((r29 + 100u));

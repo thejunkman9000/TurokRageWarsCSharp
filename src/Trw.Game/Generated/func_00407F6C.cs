@@ -39,13 +39,13 @@ public static partial class Game
                 {
                     if ((func_004057BC(_fp, 16) != 0))
                     {
-                        func_002A125C(_fp, Mem.U32(0x800D7784u));
+                        LibC_StrCopy(_fp, Mem.U32(0x800D7784u));
                     }
                 }
                 else
                 {
-                    func_002A125C(_fp, Mem.U32((0x800D7788u + (uint)(0 * 4))));
-                    func_002A125C((_fp + 16u), Mem.U32((0x800D7788u + (uint)(0 * 4))));
+                    LibC_StrCopy(_fp, Mem.U32((0x800D7788u + (uint)(0 * 4))));
+                    LibC_StrCopy((_fp + 16u), Mem.U32((0x800D7788u + (uint)(0 * 4))));
                     Mem.Set((_fp + 44u), 0);
                 }
                 ok = 1;

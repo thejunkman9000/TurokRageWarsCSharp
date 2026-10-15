@@ -74,7 +74,7 @@ public static partial class Game
                 {
                     a = 10;
                 }
-                func_00299368(a);
+                Menu_GotoScreen(a);
             }
         }
     }

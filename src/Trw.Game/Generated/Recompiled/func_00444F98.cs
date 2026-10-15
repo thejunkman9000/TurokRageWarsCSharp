@@ -57,7 +57,7 @@ public static partial class Game
                 { bool c_ = r5 == 0;  if (c_) goto L_L004451D4; }
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
-                r2 = func_0028B2D4(r4, r5);
+                r2 = Level_GetRegion(r4, r5);
                 r3 = (uint)1;
                 { bool c_ = r19 == r3; r16 = r2 + r23; if (c_) goto L_L004450A0; }
                 r2 = (uint)((int)r19 < 2 ? 1 : 0);

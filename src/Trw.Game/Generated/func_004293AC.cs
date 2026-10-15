@@ -32,16 +32,16 @@ public static partial class Game
                 break;
             }
             s0 = 1;
-            new O04S4EF0(Mem.U32(0x800E4EF0u)).unk24_Set((int)(func_002A2990(867, 868, 0, 100, s0)));
-            new O04S4EF0(Mem.U32(0x800E4EF0u)).unk28_Set((int)(func_002A2990(865, 866, 0, 100, s0)));
-            new O04S4EF0(Mem.U32(0x800E4EF0u)).unk2C_Set((int)(func_002A2990(863, 864, 0, 100, s0)));
-            new O04S4EF0(Mem.U32(0x800E4EF0u)).unk30_Set((int)(func_002A2990(869, 870, 0, 100, s0)));
+            new O04S4EF0(Mem.U32(0x800E4EF0u)).unk24_Set((int)(NumberField_Create(867, 868, 0, 100, s0)));
+            new O04S4EF0(Mem.U32(0x800E4EF0u)).unk28_Set((int)(NumberField_Create(865, 866, 0, 100, s0)));
+            new O04S4EF0(Mem.U32(0x800E4EF0u)).unk2C_Set((int)(NumberField_Create(863, 864, 0, 100, s0)));
+            new O04S4EF0(Mem.U32(0x800E4EF0u)).unk30_Set((int)(NumberField_Create(869, 870, 0, 100, s0)));
             new O04S4EF0(Mem.U32(0x800E4EF0u)).unk3C_Set(0);
             if ((new O04S4EF0(Mem.U32(0x800E4EF0u)).unk38 == 3))
             {
                 new O04S4EF0(Mem.U32(0x800E4EF0u)).unk3C_Set(s0);
             }
-            new O04S4EF0(Mem.U32(0x800E4EF0u)).unk34_Set((int)(func_002A2990(876, 877, new O04S4EF0(Mem.U32(0x800E4EF0u)).unk3C, new O04S4EF0(Mem.U32(0x800E4EF0u)).unk38, s0)));
+            new O04S4EF0(Mem.U32(0x800E4EF0u)).unk34_Set((int)(NumberField_Create(876, 877, new O04S4EF0(Mem.U32(0x800E4EF0u)).unk3C, new O04S4EF0(Mem.U32(0x800E4EF0u)).unk38, s0)));
             t = (int)(func_0041AC40(871, 872));
             new O04S4EF0(Mem.U32(0x800E4EF0u)).unk1C_Set(t);
             func_0041ADB4((uint)(t), (uint)(Mem.S32((0x800D74C0u + (uint)(0 * 4)))));

@@ -24,7 +24,7 @@ public static partial class Game
                     return 0;
                 }
                 func_0040C4A8(0);
-                func_0029A73C();
+                Menu_ConsumeEvent();
                 g = 0x80146894u;
                 Mem.Set((g + (uint)(0 * 4)), 0);
                 CameraManager_Init((g - (uint)(1539 * 4)), 0);
@@ -35,7 +35,7 @@ public static partial class Game
                     Resource_SetLoadFlags(1);
                 }
                 Mem.Set((g + (uint)((-7) * 4)), 8);
-                func_00299368(new O05W20(Mem.U32(0x800E5554u)).f1C);
+                Menu_GotoScreen(new O05W20(Mem.U32(0x800E5554u)).f1C);
                 Audio_UnduckMusic();
             }
             return 0;

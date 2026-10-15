@@ -98,7 +98,7 @@ public static partial class Game
                 r6 = Mem.U32((r29 + 108u));
                 r7 = Mem.U32((r29 + 112u));
                 r4 = r29 + 24u; Math_MtxMakeTranslate(r4, Cpu.U2F(r5), Cpu.U2F(r6), Cpu.U2F(r7));
-                r2 = (uint)func_002A2934();
+                r2 = (uint)Menu_GetFrameCounter();
                 Cpu.SetW(0, Mem.U32((r17 + 40u)));
                 Cpu.SetW(21, r0);
                 Cpu.SetW(20, r2);
@@ -192,7 +192,7 @@ public static partial class Game
                 r5 = Mem.U32((r17 + 52u));
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
-                r2 = (uint)func_0028C174(r4, (int)r5);
+                r2 = (uint)Level_GetModelKey(r4, (int)r5);
                 r16 = r2; Model_ClearBatchQueue();
                 r4 = r16;
                 r6 = 2148335616u;

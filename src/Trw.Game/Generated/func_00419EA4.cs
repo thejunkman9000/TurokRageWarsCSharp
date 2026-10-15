@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00419EA4");
-            func_002992C4(2914, (int)(0x0041A01Cu), (int)(0x0041A0ACu), 3);
+            Menu_RegisterClass(2914, (int)(0x0041A01Cu), (int)(0x0041A0ACu), 3);
         }
     }
 

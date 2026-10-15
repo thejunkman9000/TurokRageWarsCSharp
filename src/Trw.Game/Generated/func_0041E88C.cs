@@ -66,7 +66,7 @@ public static partial class Game
                         {
                             r = (Random_Next() % 17);
                             new O3Plr((0x80153F80u + (uint)(i * 28))).id_Set(new O3Chr(((0x800E381Cu + (uint)(t * 136)) + (uint)(r * 8))).ch);
-                            func_002A125C(new O3Plr((0x80153F80u + (uint)(i * 28))).name.P, Mem.U32(new O3Chr(((0x800E381Cu + (uint)(t * 136)) + (uint)(r * 8))).s));
+                            LibC_StrCopy(new O3Plr((0x80153F80u + (uint)(i * 28))).name.P, Mem.U32(new O3Chr(((0x800E381Cu + (uint)(t * 136)) + (uint)(r * 8))).s));
                         }
                         while ((new O3Plr((0x80153F80u + (uint)(i * 28))).id == (-1)));
                     }

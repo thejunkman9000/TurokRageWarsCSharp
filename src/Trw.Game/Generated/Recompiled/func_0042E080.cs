@@ -30,9 +30,9 @@ public static partial class Game
                 Mem.Set((r29 + 28u), r19);
                 Mem.Set((r29 + 24u), r18);
                 Mem.Set((r29 + 20u), r17);
-                Mem.Set((r29 + 16u), r16); func_0029A73C();
-                r4 = (uint)2; func_00299368((int)r4);
-                r22 = r0; func_002A3304();
+                Mem.Set((r29 + 16u), r16); Menu_ConsumeEvent();
+                r4 = (uint)2; Menu_GotoScreen((int)r4);
+                r22 = r0; Menu_RequestShutdown();
                 r21 = 2148794368u;
                 r21 = r21 + 25288u;
                 r18 = r22;
@@ -143,7 +143,7 @@ public static partial class Game
                 r2 = Mem.U8((r16 + 145u));
                 if (r2 != 0) { r17 = r17 + 400u; goto L_L0042E320; }
                 r4 = r16 + 132u;
-                r5 = r20; r2 = func_002A125C(r4, r5);
+                r5 = r20; r2 = LibC_StrCopy(r4, r5);
                 r2 = Mem.U8((r21 + 13u));
                 if (r2 == 0) { Mem.Set((r16 + 146u), (byte)r23); goto L_L0042E2CC; }
                 Mem.Set((r16 + 146u), (byte)r0);

@@ -308,7 +308,7 @@ public static partial class Game
             if ((new B10Ctl(Mem.U32(0x800E2830u)).f1E0 > 0))
             {
                 half = (Mem.S32(0x800E28D0u) / 2);
-                func_002A94E8();
+                Text_BeginFontPass();
                 fx = (float)((Mem.S32(0x800E28D0u) / 284));
                 fy = (float)((Mem.S32(0x800E28D4u) / 222));
                 step = 26;
@@ -329,7 +329,7 @@ public static partial class Game
                     y = 110;
                 }
                 fy = (fy * k);
-                func_002ABB58(fx, fy);
+                Text_SetScale(fx, fy);
                 Mem.Set((0x8013B878u + (uint)(0 * 4)), 1);
                 Mem.Set((0x8013B878u + (uint)(1 * 4)), 1);
                 for (i = 0; (i < new B10Ctl(Mem.U32(0x800E2830u)).f1E0); ++i)
@@ -339,7 +339,7 @@ public static partial class Game
                     fx2 = ((float)((Mem.S32(0x800E28D0u) / 284)) * Mem.F32(0x800C88BCu));
                     fy = ((float)((Mem.S32(0x800E28D4u) / 222)) * Mem.F32(0x800C88BCu));
                     y = (int)(((float)(y) + t));
-                    func_002ABB58(fx2, fy);
+                    Text_SetScale(fx2, fy);
                 }
             }
         }
@@ -712,7 +712,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00245A68", (uint)src);
-            func_002A125C((new B10Ctl(Mem.U32(0x800E2830u)).ent.P + (uint)(new B10Ctl(Mem.U32(0x800E2830u)).f1E0 * 40)), src);
+            LibC_StrCopy((new B10Ctl(Mem.U32(0x800E2830u)).ent.P + (uint)(new B10Ctl(Mem.U32(0x800E2830u)).f1E0 * 40)), src);
             new B10Ctl(Mem.U32(0x800E2830u)).f1E0_Set((int)(new B10Ctl(Mem.U32(0x800E2830u)).f1E0 + 1));
         }
     }
@@ -897,6 +897,423 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00245D04");
             return new B10Ctl(Mem.U32(0x800E2830u)).f38;
+        }
+    }
+
+    // ==== func_0028A924 @ 0x0028A924 [MIPS]
+    public static uint Flyby_BuildMatchGoalText(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0028A924", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_0028A924: ;
+                r29 = r29 - 152u;
+                Mem.Set((r29 + 144u), r31);
+                Mem.Set((r29 + 140u), r19);
+                Mem.Set((r29 + 136u), r18);
+                Mem.Set((r29 + 132u), r17);
+                Mem.Set((r29 + 128u), r16); Flyby_ClearText();
+                r4 = 2148663296u;
+                r4 = Mem.U32((r4 - 300u));
+                r19 = 2148859904u;
+                r19 = Mem.U32((r19 + 16428u));
+                r5 = 2148663296u;
+                r5 = Mem.U32((r5 - 348u));
+                r6 = r19; r2 = (uint)Resource_GetCartridgeKeyNoSize(r4, (int)r5, (int)r6);
+                r4 = r0;
+                r5 = r29 + 120u;
+                r16 = r2;
+                r7 = 2148335616u;
+                r7 = r7 - 24064u;
+                r6 = r16; r2 = Resource_LoadIndexTableSync((int)r4, r5, (int)r6, r7);
+                r4 = r0;
+                r6 = (uint)8;
+                r7 = r16;
+                r5 = Mem.U32((r29 + 120u));
+                r3 = 2148663296u;
+                r3 = r3 - 376u;
+                Mem.Set((r29 + 16u), r3);
+                r3 = 2148335616u;
+                r3 = r3 - 23692u;
+                r18 = r2;
+                Mem.Set((r29 + 20u), r0);
+                Mem.Set((r29 + 24u), r3); r2 = Resource_LoadByCartridgeKey(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u)); r3 = Cpu.V1;
+                r16 = r2;
+                r6 = Mem.U32((r16 + 4u));
+                r2 = (uint)63;
+                r2 = (uint)((int)r2 < (int)r6 ? 1 : 0);
+                { bool c_ = r2 == 0; r17 = r29 + 40u; if (c_) goto L_L0028A9CC; }
+                r6 = (uint)63;
+                L_L0028A9CC: ;
+                r5 = Mem.U32((r16 + 0u));
+                r4 = r17; r2 = memcpy(r4, r5, r6);
+                r4 = r0;
+                r5 = r16; ResourcePool_Release((int)r4, r5);
+                r2 = 2148794368u;
+                r2 = Mem.U32((r2 - 19820u));
+                { bool c_ = r2 == r19; r4 = r0; if (c_) goto L_L0028A9FC; }
+                r5 = r18; ResourcePool_Release((int)r4, r5);
+                L_L0028A9FC: ;
+                r4 = r17; Flyby_AddTextLine(r4);
+                r4 = 2148794368u;
+                r4 = Mem.U8((r4 + 25301u));
+                { bool c_ = r4 == 0; r2 = (uint)1; if (c_) goto L_L0028AFAC; }
+                r5 = 2148859904u;
+                r5 = r5 + 16424u;
+                r3 = Mem.U32((r5 + 0u));
+                { bool c_ = r3 == r2; r2 = (uint)((int)r3 < 2 ? 1 : 0); if (c_) goto L_L0028AABC; }
+                { bool c_ = r2 == 0; r2 = (uint)2; if (c_) goto L_L0028AA40; }
+                { bool c_ = r3 == 0;  if (c_) goto L_L0028AA58; }
+                 goto L_L0028AC50;
+                L_L0028AA40: ;
+                { bool c_ = r3 == r2; r2 = (uint)3; if (c_) goto L_L0028AB24; }
+                { bool c_ = r3 == r2; r2 = (uint)9; if (c_) goto L_L0028AB64; }
+                 goto L_L0028AC50;
+                L_L0028AA58: ;
+                { bool c_ = r4 != r2;  if (c_) goto L_L0028AA7C; }
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 18048u));
+                r5 = 2148335616u;
+                r5 = Mem.U32((r5 + 29568u));
+                r6 = Mem.U8((r2 + 35u));
+                 goto L_L0028AC48;
+                L_L0028AA7C: ;
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 18048u));
+                r2 = Mem.U8((r3 + 35u));
+                r2 = (uint)(r2 < (uint)(2) ? 1 : 0);
+                { bool c_ = r2 == 0;  if (c_) goto L_L0028AAA8; }
+                r5 = 2148335616u;
+                r5 = Mem.U32((r5 + 29560u));
+                r6 = Mem.U8((r3 + 35u));
+                 goto L_L0028AC48;
+                L_L0028AAA8: ;
+                r5 = 2148335616u;
+                r5 = Mem.U32((r5 + 29564u));
+                r6 = Mem.U8((r3 + 35u));
+                 goto L_L0028AC48;
+                L_L0028AABC: ;
+                r2 = (uint)2;
+                { bool c_ = r4 != r2;  if (c_) goto L_L0028AAE4; }
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 18048u));
+                r5 = 2148335616u;
+                r5 = Mem.U32((r5 + 29580u));
+                r6 = Mem.U8((r2 + 33u));
+                 goto L_L0028AC48;
+                L_L0028AAE4: ;
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 18048u));
+                r2 = Mem.U8((r3 + 33u));
+                r2 = (uint)(r2 < (uint)(2) ? 1 : 0);
+                { bool c_ = r2 == 0;  if (c_) goto L_L0028AB10; }
+                r5 = 2148335616u;
+                r5 = Mem.U32((r5 + 29572u));
+                r6 = Mem.U8((r3 + 33u));
+                 goto L_L0028AC48;
+                L_L0028AB10: ;
+                r5 = 2148335616u;
+                r5 = Mem.U32((r5 + 29576u));
+                r6 = Mem.U8((r3 + 33u));
+                 goto L_L0028AC48;
+                L_L0028AB24: ;
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 18048u));
+                r2 = Mem.U8((r3 + 33u));
+                r2 = (uint)(r2 < (uint)(2) ? 1 : 0);
+                { bool c_ = r2 == 0;  if (c_) goto L_L0028AB50; }
+                r5 = 2148335616u;
+                r5 = Mem.U32((r5 + 29584u));
+                r6 = Mem.U8((r3 + 33u));
+                 goto L_L0028AC48;
+                L_L0028AB50: ;
+                r5 = 2148335616u;
+                r5 = Mem.U32((r5 + 29588u));
+                r6 = Mem.U8((r3 + 33u));
+                 goto L_L0028AC48;
+                L_L0028AB64: ;
+                r3 = Mem.U32((r5 + 4u));
+                { bool c_ = r3 == r2; r2 = (uint)((int)r3 < 10 ? 1 : 0); if (c_) goto L_L0028ABBC; }
+                { bool c_ = r2 == 0; r2 = (uint)4; if (c_) goto L_L0028AB88; }
+                { bool c_ = r3 == r2;  if (c_) goto L_L0028ABA4; }
+                 goto L_L0028AC14;
+                L_L0028AB88: ;
+                r2 = (uint)22;
+                { bool c_ = r3 == r2; r2 = (uint)35; if (c_) goto L_L0028ABE4; }
+                { bool c_ = r3 == r2;  if (c_) goto L_L0028ABFC; }
+                 goto L_L0028AC14;
+                L_L0028ABA4: ;
+                r5 = 2148335616u;
+                r5 = Mem.U32((r5 + 29628u));
+                r6 = 2148335616u;
+                r6 = Mem.U32((r6 + 29536u));
+                 goto L_L0028AC48;
+                L_L0028ABBC: ;
+                r5 = 2148335616u;
+                r5 = Mem.U32((r5 + 29632u));
+                r6 = 2148335616u;
+                r6 = Mem.U32((r6 + 29540u));
+                r7 = 2148335616u;
+                r7 = Mem.U32((r7 + 29488u));
+                r4 = r29 + 80u; r2 = Str_FormatInto(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
+                 goto L_L0028AC50;
+                L_L0028ABE4: ;
+                r5 = 2148335616u;
+                r5 = Mem.U32((r5 + 29628u));
+                r6 = 2148335616u;
+                r6 = Mem.U32((r6 + 29544u));
+                 goto L_L0028AC48;
+                L_L0028ABFC: ;
+                r5 = 2148335616u;
+                r5 = Mem.U32((r5 + 29628u));
+                r6 = 2148335616u;
+                r6 = Mem.U32((r6 + 29548u));
+                 goto L_L0028AC48;
+                L_L0028AC14: ;
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 18048u));
+                r2 = Mem.U8((r3 + 34u));
+                r2 = (uint)(r2 < (uint)(2) ? 1 : 0);
+                { bool c_ = r2 == 0;  if (c_) goto L_L0028AC3C; }
+                r5 = 2148335616u;
+                r5 = Mem.U32((r5 + 29592u));
+                 goto L_L0028AC44;
+                L_L0028AC3C: ;
+                r5 = 2148335616u;
+                r5 = Mem.U32((r5 + 29596u));
+                L_L0028AC44: ;
+                r6 = Mem.U8((r3 + 34u));
+                L_L0028AC48: ;
+                r4 = r29 + 80u; r2 = Str_FormatInto(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
+                L_L0028AC50: ;
+                r16 = 2148794368u;
+                r16 = Mem.U8((r16 + 25301u));
+                r2 = (uint)2;
+                { bool c_ = r16 == r2; r2 = (uint)((int)r16 < 3 ? 1 : 0); if (c_) goto L_L0028AF70; }
+                { bool c_ = r2 == 0; r2 = (uint)1; if (c_) goto L_L0028AC7C; }
+                { bool c_ = r16 == r2;  if (c_) goto L_L0028AC98; }
+                 goto L_L0028AFAC;
+                L_L0028AC7C: ;
+                r2 = (uint)3;
+                { bool c_ = r16 == r2; r2 = (uint)4; if (c_) goto L_L0028ACF4; }
+                { bool c_ = r16 == r2;  if (c_) goto L_L0028ADD0; }
+                 goto L_L0028AFAC;
+                L_L0028AC98: ;
+                r4 = r29 + 80u; Flyby_AddTextLine(r4);
+                r4 = 2148532224u;
+                r4 = r4 + 11008u;
+                r5 = Mem.U8((r4 + 15u));
+                r2 = (uint)Profile_GetCharacterLives(r4, (int)r5);
+                r2 = r2 & 255u;
+                r2 = r2 >> 1;
+                r6 = r2 + 1u;
+                r2 = (uint)((int)r6 < 2 ? 1 : 0);
+                { bool c_ = r2 == 0;  if (c_) goto L_L0028ACDC; }
+                r5 = 2148335616u;
+                r5 = Mem.U32((r5 + 29620u));
+                 goto L_L0028ACE4;
+                L_L0028ACDC: ;
+                r5 = 2148335616u;
+                r5 = Mem.U32((r5 + 29624u));
+                L_L0028ACE4: ;
+                r4 = r29 + 40u; r2 = Str_FormatInto(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
+                r4 = r29 + 40u; goto L_L0028AFA4;
+                L_L0028ACF4: ;
+                r4 = r29 + 80u; Flyby_AddTextLine(r4);
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 18048u));
+                r2 = Mem.U8((r3 + 36u));
+                r2 = (uint)(r2 < (uint)(61) ? 1 : 0);
+                { bool c_ = r2 == 0;  if (c_) goto L_L0028AD28; }
+                r5 = 2148335616u;
+                r5 = Mem.U32((r5 + 29600u));
+                r6 = Mem.U8((r3 + 36u));
+                 goto L_L0028ADA8;
+                L_L0028AD28: ;
+                r4 = Mem.U8((r3 + 36u));
+                r2 = 2290614272u;
+                r2 = r2 | 34953u;
+                { ulong p_ = (ulong)r4 * r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r8 = hi;
+                r3 = r8 >> 5;
+                r6 = r3 & 255u;
+                r2 = (uint)(r6 < (uint)(2) ? 1 : 0);
+                { bool c_ = r2 == 0; r2 = r3 << 4; if (c_) goto L_L0028AD88; }
+                r2 = r2 - r3;
+                r2 = r2 << 2;
+                r2 = r4 - r2;
+                r7 = r2 & 255u;
+                { bool c_ = r7 != 0;  if (c_) goto L_L0028AD78; }
+                r5 = 2148335616u;
+                r5 = Mem.U32((r5 + 29612u));
+                 goto L_L0028ADA8;
+                L_L0028AD78: ;
+                r5 = 2148335616u;
+                r5 = Mem.U32((r5 + 29604u));
+                 goto L_L0028ADC0;
+                L_L0028AD88: ;
+                r2 = r2 - r3;
+                r2 = r2 << 2;
+                r2 = r4 - r2;
+                r7 = r2 & 255u;
+                { bool c_ = r7 != 0;  if (c_) goto L_L0028ADB8; }
+                r5 = 2148335616u;
+                r5 = Mem.U32((r5 + 29616u));
+                L_L0028ADA8: ;
+                r4 = r29 + 40u; r2 = Str_FormatInto(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
+                r4 = r29 + 40u; goto L_L0028AFA4;
+                L_L0028ADB8: ;
+                r5 = 2148335616u;
+                r5 = Mem.U32((r5 + 29608u));
+                L_L0028ADC0: ;
+                r4 = r29 + 40u; r2 = Str_FormatInto(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
+                r4 = r29 + 40u; goto L_L0028AFA4;
+                L_L0028ADD0: ;
+                r2 = 2148663296u;
+                r2 = Mem.U32((r2 - 356u));
+                r17 = 2148859904u;
+                r17 = Mem.U32((r17 + 16428u));
+                { bool c_ = r2 == 0;  if (c_) goto L_L0028ADF8; }
+                r2 = 2148663296u;
+                r2 = Mem.U32((r2 - 352u));
+                { bool c_ = r2 == r17;  if (c_) goto L_L0028AED0; }
+                L_L0028ADF8: ;
+                r4 = 2148663296u;
+                r4 = r4 - 376u;
+                Resource_ReleaseIndexedCache(r4);
+                r2 = 2148663296u;
+                r2 = Mem.U32((r2 - 364u));
+                { bool c_ = r2 == 0; r4 = r0; if (c_) goto L_L0028AED0; }
+                r5 = r2;
+                r18 = (uint)16;
+                r2 = 2148335616u;
+                r2 = r2 - 23680u;
+                r19 = (uint)1;
+                r7 = 2148663296u;
+                r7 = Mem.U32((r7 - 360u));
+                r6 = r5;
+                Mem.Set((r29 + 16u), r18);
+                Mem.Set((r29 + 20u), r0);
+                Mem.Set((r29 + 24u), r0);
+                Mem.Set((r29 + 28u), r2);
+                Mem.Set((r29 + 32u), r19); r2 = ResourceCache_Hash((int)r4, r5, (int)r6, r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u));
+                r16 = r2;
+                { bool c_ = r16 == 0; r6 = r17; if (c_) goto L_L0028AED0; }
+                r4 = Mem.U32((r16 + 0u));
+                r5 = 2148663296u;
+                r5 = Mem.U32((r5 - 364u));
+                r7 = r29 + 124u; r2 = Resource_GetCartridgeKey(r4, r5, (int)r6, r7);
+                r4 = r0;
+                r5 = r16;
+                r16 = r2; ResourcePool_Release((int)r4, r5);
+                r4 = r0;
+                r5 = r16;
+                r6 = r5;
+                r7 = Mem.U32((r29 + 124u));
+                r2 = 2621440u;
+                r2 = r2 + 20784u;
+                Mem.Set((r29 + 24u), r2);
+                r2 = 2148335616u;
+                r2 = r2 - 23636u;
+                Mem.Set((r29 + 16u), r18);
+                Mem.Set((r29 + 20u), r0);
+                Mem.Set((r29 + 28u), r2);
+                Mem.Set((r29 + 32u), r19); r2 = ResourceCache_Hash((int)r4, r5, (int)r6, r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u));
+                r1 = 2148663296u;
+                Mem.Set((r1 - 356u), r2);
+                { bool c_ = r2 == 0; r2 = r0; if (c_) goto L_L0028AEE4; }
+                r1 = 2148663296u;
+                Mem.Set((r1 - 352u), r17);
+                L_L0028AED0: ;
+                r2 = 2148663296u;
+                r2 = Mem.U32((r2 - 356u));
+                if (r2 == 0) { r2 = r0; goto L_L0028AEE4; }
+                r2 = Mem.U32((r2 + 0u));
+                L_L0028AEE4: ;
+                r4 = Mem.U8((r2 + 4u));
+                r2 = (uint)func_0041F1B0((int)r4);
+                r3 = r2 << 3;
+                r3 = r3 - r2;
+                r3 = r3 << 4;
+                r1 = 2148401152u;
+                r1 = r1 + r3;
+                r2 = Mem.U32((r1 + 15036u));
+                r6 = Mem.U32((r2 + 0u));
+                r5 = 2148335616u;
+                r5 = r5 - 23596u;
+                r4 = r29 + 40u; r2 = Str_FormatInto(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
+                r4 = r29 + 40u; Flyby_AddTextLine(r4);
+                r4 = r29 + 80u; Flyby_AddTextLine(r4);
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 18048u));
+                r2 = Mem.U8((r3 + 40u));
+                r2 = (uint)(r2 < (uint)(2) ? 1 : 0);
+                { bool c_ = r2 == 0;  if (c_) goto L_L0028AF54; }
+                r5 = 2148335616u;
+                r5 = Mem.U32((r5 + 29620u));
+                 goto L_L0028AF5C;
+                L_L0028AF54: ;
+                r5 = 2148335616u;
+                r5 = Mem.U32((r5 + 29624u));
+                L_L0028AF5C: ;
+                r6 = Mem.U8((r3 + 40u));
+                r4 = r29 + 40u; r2 = Str_FormatInto(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
+                r4 = r29 + 40u; goto L_L0028AFA4;
+                L_L0028AF70: ;
+                r4 = r29 + 80u; Flyby_AddTextLine(r4);
+                r3 = 2148859904u;
+                r3 = Mem.U32((r3 + 16424u));
+                r2 = (uint)1;
+                { bool c_ = r3 == r2; r2 = (uint)((int)r3 < 2 ? 1 : 0); if (c_) goto L_L0028AF9C; }
+                { bool c_ = r2 != 0;  if (c_) goto L_L0028AFAC; }
+                { bool c_ = r3 != r16;  if (c_) goto L_L0028AFAC; }
+                L_L0028AF9C: ;
+                r4 = 2148335616u;
+                r4 = Mem.U32((r4 + 29636u));
+                L_L0028AFA4: ;
+                Flyby_AddTextLine(r4);
+                L_L0028AFAC: ;
+                r31 = Mem.U32((r29 + 144u));
+                r19 = Mem.U32((r29 + 140u));
+                r18 = Mem.U32((r29 + 136u));
+                r17 = Mem.U32((r29 + 132u));
+                r16 = Mem.U32((r29 + 128u));
+                r29 = r29 + 152u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0028A924", r2); Stack.Free(384); }
+    }
+
+    // ==== func_0028D8E8 @ 0x0028D8E8 [C]
+    public static void Flyby_SetDefaultView()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0028D8E8");
+            int w = 0;
+            int h = 0;
+            Flyby_SetLoop(0);
+            Flyby_SetFieldOfView(75.0f);
+            w = 480;
+            if ((Mem.S32(0x800E28D8u) == 0))
+            {
+                w = 380;
+                h = 220;
+            }
+            else
+            {
+                h = 360;
+            }
+            Flyby_SetViewport(w, h, 0, 0);
         }
     }
 }

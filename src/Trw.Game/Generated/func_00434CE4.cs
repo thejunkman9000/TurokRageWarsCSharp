@@ -16,7 +16,7 @@ public static partial class Game
             {
                 if ((((((int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bE) == 0) && ((int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bD) == k)) && ((int)(new O05GameState(0x801462C8u).rec[(int)(i)].b0) == 1)) && ((int)(new O05GameState(0x801462C8u).rec[(int)(i)].b19) == 0)))
                 {
-                    func_002A1724((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].rec.P + (uint)(new O05Rec((0x80102B00u + (uint)(i * 400))).bC * 400)), (0x80102B00u + (uint)(i * 400)), (uint)(sz));
+                    Mem_Copy((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].rec.P + (uint)(new O05Rec((0x80102B00u + (uint)(i * 400))).bC * 400)), (0x80102B00u + (uint)(i * 400)), (uint)(sz));
                 }
             }
         }

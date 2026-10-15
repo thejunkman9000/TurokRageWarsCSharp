@@ -19,7 +19,7 @@ public static partial class Game
             {
                 s = new O06A_v36(a).unk14;
                 v = 0x801450C8u;
-                func_002A94E8();
+                Text_BeginFontPass();
                 Gfx_SetOtherModeL((uint)(21));
                 f1 = 1.0f;
                 f0 = f1;

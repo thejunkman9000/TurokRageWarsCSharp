@@ -180,7 +180,7 @@ public static partial class Game
             Effect_SpawnForObject(actor, new M1Info(info).unk1C, new M1Actor(actor).pos.P);
             _f4: ;
             Actor_DropItemsOnce(actor, state, (uint)(4), (uint)(new M1Info(info).unk24.i), (uint)(new M1Info(info).unk28.i));
-            func_002A6D28(0x8013BA80u, (int)(actor));
+            Decal_RemoveByKey(0x8013BA80u, (int)(actor));
             if (!((Mem.S32((0x8011FE88u + (uint)(0 * 4))) != mode))) goto _f5;
             goto L_L;
             _f5: ;
@@ -293,7 +293,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002056D0", (uint)arg0);
-            func_0028B64C(0x8011FE88u, (int)(Mem.U16((arg0 + (uint)(5 * 2)))), (int)(Mem.U16((arg0 + (uint)(2 * 2)))), 1);
+            Level_SetEntitySavedFlagInMap(0x8011FE88u, (int)(Mem.U16((arg0 + (uint)(5 * 2)))), (int)(Mem.U16((arg0 + (uint)(2 * 2)))), 1);
         }
     }
 

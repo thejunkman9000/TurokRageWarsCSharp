@@ -33,7 +33,7 @@ public static partial class Game
             new S7Rec(0x8011F2C0u).unk1C_Set(122.879997f);
             for (i = 0; (i < 32); ++i)
             {
-                func_002903E8((new S7Fx(p).slot.P + (uint)(i * 480)));
+                Pickup_SetStaticDef_002903E8((new S7Fx(p).slot.P + (uint)(i * 480)));
             }
         }
     }

@@ -87,6 +87,143 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_0028F734", r2); Stack.Free(384); }
     }
 
+    // ==== func_002A286C @ 0x002A286C [MIPS]
+    public static uint Ui_SetClipRect_Entry_002A286C(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002A286C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002A286C: ;
+                Cpu.SetS(0, Cpu.S(20) * Cpu.S(0));
+                L_func_002A2870: ;
+                r1 = 2148335616u;
+                Mem.Set((r1 + 11264u), r4);
+                r1 = 2148335616u;
+                Mem.Set((r1 + 11268u), r5);
+                r1 = 2148335616u;
+                Mem.Set((r1 + 11272u), r6);
+                r1 = 2148335616u;
+                Mem.Set((r1 + 11276u), r7);
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002A286C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002A2870 @ 0x002A2870 [C]
+    public static void Ui_SetClipRect(int a, int b, int c, int d)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002A2870", (uint)a, (uint)b, (uint)c, (uint)d);
+            Mem.Set(0x800D2C00u, a);
+            Mem.Set(0x800D2C04u, b);
+            Mem.Set(0x800D2C08u, c);
+            Mem.Set(0x800D2C0Cu, d);
+        }
+    }
+
+    // ==== func_002A2898 @ 0x002A2898 [C]
+    public static void Ui_GetClipRect(uint a, uint b, uint c, uint d)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002A2898", (uint)a, (uint)b, (uint)c, (uint)d);
+            Mem.Set(a, Mem.S32(0x800D2C00u));
+            Mem.Set(b, Mem.S32(0x800D2C04u));
+            Mem.Set(c, Mem.S32(0x800D2C08u));
+            Mem.Set(d, Mem.S32(0x800D2C0Cu));
+        }
+    }
+
+    // ==== func_002A28F4 @ 0x002A28F4 [C]
+    public static void Ui_EmptyHook_002A28F4()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002A28F4");
+        }
+    }
+
+    // ==== func_002A28FC @ 0x002A28FC [C]
+    public static void Ui_ResetModeCache_002A28FC()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002A28FC");
+            func_0041900C();
+        }
+    }
+
+    // ==== func_002A3478 @ 0x002A3478 [C]
+    public static void UiTree_ScaleForHiRes(uint w, uint parent)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002A3478", (uint)w, (uint)parent);
+            int new_var = 0;
+            if ((w != 0u))
+            {
+                if ((new Widget_v2(w).child_ != 0u))
+                {
+                    UiTree_ScaleForHiRes(new Widget_v2(w).child_, default(uint));
+                }
+                if ((new Widget_v2(w).sibling_ != 0u))
+                {
+                    UiTree_ScaleForHiRes(new Widget_v2(w).sibling_, w);
+                }
+                if (((int)(new Widget_v2(w).type) == 8))
+                {
+                    if ((new Widget_v2(w).sub2C_ != 0u))
+                    {
+                        UiTree_ScaleForHiRes(new Widget_v2(w).sub2C_, w);
+                    }
+                    if ((new Widget_v2(w).sub34_ != 0u))
+                    {
+                        UiTree_ScaleForHiRes(new Widget_v2(w).sub34_, w);
+                    }
+                    if ((new Widget_v2(w).sub30_ != 0u))
+                    {
+                        UiTree_ScaleForHiRes(new Widget_v2(w).sub30_, w);
+                    }
+                }
+                new_var = 4;
+                if ((new Widget_v2(w).scaled == 0))
+                {
+                    float sx = Mem.F32(0x800CAF48u);
+                    float sy = Mem.F32(0x800CAF4Cu);
+                    if (((int)(new Widget_v2(w).type) == new_var))
+                    {
+                        new Widget_v2(w).sx_Set(sx);
+                        new Widget_v2(w).sy_Set(sy);
+                    }
+                    else
+                    {
+                        float t = 0f;
+                        t = ((float)((int)(new Widget_v2(w).x)) * sx);
+                        new Widget_v2(w).x_Set((short)(int)(t));
+                        t = ((float)((int)(new Widget_v2(w).y)) * sy);
+                        new Widget_v2(w).y_Set((short)(int)(t));
+                        t = ((float)((int)(new Widget_v2(w).w)) * sx);
+                        new Widget_v2(w).w_Set((short)(int)(t));
+                        t = ((float)((int)(new Widget_v2(w).h)) * sy);
+                        new Widget_v2(w).h_Set((short)(int)(t));
+                    }
+                    new Widget_v2(w).scaled_Set(1);
+                }
+            }
+        }
+    }
+
     // ==== func_002A7F58 @ 0x002A7F58 [C]
     public static void func_002A7F58_clear_entry(uint e)
     {
@@ -657,6 +794,32 @@ public static partial class Game
             }
         }
         finally { if (Dbg.On) Dbg.Leave("func_002A8A94", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002AB6C0 @ 0x002AB6C0 [C]
+    public static void ScreenMover_Init(uint s, short a, short b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002AB6C0", (uint)s, (uint)a, (uint)b);
+            new Sprt(s).unk38_Set((-1));
+            new Sprt(s).unk10_Set((float)(a));
+            new Sprt(s).unk0_Set(0);
+            new Sprt(s).unk8_Set(0);
+            new Sprt(s).unk14_Set((float)(b));
+        }
+    }
+
+    // ==== func_002AB6FC @ 0x002AB6FC [C]
+    public static void ScreenMover_Start(uint c, uint pc)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002AB6FC", (uint)c, (uint)pc);
+            new ScriptCtx(c).pc__Set(pc);
+            new ScriptCtx(c).state_Set(2);
+            ScreenMover_Step(c, default(uint), default(uint), default(uint));
+        }
     }
 
     // ==== func_00401D74 @ 0x00401D74 [MIPS]
@@ -2027,7 +2190,7 @@ public static partial class Game
                 uint c3 = (_fp + 12u);
                 right = ((x + w) - 1.0f);
                 bottom = ((y + h) - 1.0f);
-                func_002A2898((_fp + 16u), (_fp + 20u), (_fp + 24u), (_fp + 28u));
+                Ui_GetClipRect((_fp + 16u), (_fp + 20u), (_fp + 24u), (_fp + 28u));
                 if ((((((float)(Mem.S32((_fp + 24u))) < x) || ((float)(Mem.S32((_fp + 28u))) < y)) || (right < (float)(Mem.S32((_fp + 16u))))) || (bottom < (edge = (float)(Mem.S32((_fp + 20u)))))))
                 {
                     return;

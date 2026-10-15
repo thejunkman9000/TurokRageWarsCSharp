@@ -802,7 +802,7 @@ public static partial class Game
                 {
                     p = 0x8010EC90u;
                 }
-                func_0028CE70(0x8011FE88u, (int)(p), new B15Y((_fp + 16u)).a, _fp, ((float)((int)(new B15Y((_fp + 16u)).b)) * Mem.F32(0x800C954Cu)), ((float)((int)(new B15Y((_fp + 16u)).c)) * Mem.F32(0x800C9550u)));
+                Rumble_StartById(0x8011FE88u, (int)(p), new B15Y((_fp + 16u)).a, _fp, ((float)((int)(new B15Y((_fp + 16u)).b)) * Mem.F32(0x800C954Cu)), ((float)((int)(new B15Y((_fp + 16u)).c)) * Mem.F32(0x800C9550u)));
             }
         }
         finally { Stack.Free(24); }
@@ -1057,7 +1057,7 @@ public static partial class Game
                 new Vec3f((_fp + 24u)).x_Set(new B15PairF((_fp + 16u)).b);
                 new Vec3f((_fp + 24u)).y_Set(new B15PairF((_fp + 16u)).b);
                 new Vec3f((_fp + 24u)).z_Set(new B15PairF((_fp + 16u)).b);
-                func_0028FFB0(0x80131600u, (uint)(0), new B15PairF((_fp + 16u)).a, (_fp + 40u), new B15Src(src).pos.P, 0, 0.0f);
+                PickupPool_Spawn(0x80131600u, (uint)(0), new B15PairF((_fp + 16u)).a, (_fp + 40u), new B15Src(src).pos.P, 0, 0.0f);
             }
         }
         finally { Stack.Free(52); }

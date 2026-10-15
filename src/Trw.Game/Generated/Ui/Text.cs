@@ -6,6 +6,186 @@ namespace Trw.Game;
 
 public static partial class Game
 {
+    // ==== func_00291FE8 @ 0x00291FE8 [C]
+    public static void Text_DrawLineList(int unused, int bg, uint names, int x, int y, int lineh, float sx, float sy)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00291FE8", (uint)unused, (uint)bg, (uint)names, (uint)x);
+            uint g = Mem.U32(0x8011FE80u);
+            uint p = 0u;
+            uint new_var = 0u;
+            int new_var2 = 0;
+            float s = 0f;
+            y = ((y * Mem.S32(0x800E28D4u)) / 222);
+            if (((long)(bg) != (long)(0)))
+            {
+                Gfx_ClearZBufferRect(unused, 0, Mem.S32(0x800E28D0u), 0, Mem.S32(0x800E28D4u), 0);
+                {
+                    uint pp = 0x80110634u;
+                    uint q = (Mem.Set(pp, (uint)(Mem.U32(pp) + 8u)) - 8u);
+                    new M5Dl(q).w0_Set(3976200192u);
+                    new M5Dl(q).w1_Set((uint)(((((int)(((float)((Mem.S32(0x800E28D0u) - 1)) * 4.0f)) & 4095) << (int)12) | ((int)(((float)((Mem.S32(0x800E28D4u) - 1)) * 4.0f)) & 4095))));
+                }
+                {
+                    uint pp_2 = 0x80110634u;
+                    uint q_2 = (Mem.Set(pp_2, (uint)(Mem.U32(pp_2) + 8u)) - 8u);
+                    new M5Dl(q_2).w0_Set(((uint)(((Mem.S32(0x800E28D0u) - 1) & 4095)) | 4279238656u));
+                    new M5Dl(q_2).w1_Set(new M5Gfx(g).fb);
+                }
+                {
+                    uint pp_3 = 0x80110634u;
+                    uint q_3 = (Mem.Set(pp_3, (uint)(Mem.U32(pp_3) + 8u)) - 8u);
+                    new M5Dl(q_3).w0_Set(3808430593u);
+                    new M5Dl(q_3).w1_Set((uint)(3145728));
+                }
+                {
+                    uint pp_4 = 0x80110634u;
+                    uint q_4 = (Mem.Set(pp_4, (uint)(Mem.U32(pp_4) + 8u)) - 8u);
+                    new M5Dl(q_4).w0_Set(4244635647u);
+                    new M5Dl(q_4).w1_Set(4294867260u);
+                }
+                {
+                    uint pp_5 = 0x80110634u;
+                    uint q_5 = (Mem.Set(pp_5, (uint)(Mem.U32(pp_5) + 8u)) - 8u);
+                    new M5Dl(q_5).w0_Set(3791650844u);
+                    new M5Dl(q_5).w1_Set((uint)(0));
+                }
+                {
+                    uint pp_6 = 0x80110634u;
+                    uint q_6 = (Mem.Set(pp_6, (uint)(Mem.U32(pp_6) + 8u)) - 8u);
+                    new M5Dl(q_6).w0_Set(4143972352u);
+                    new M5Dl(q_6).w1_Set((uint)(65537));
+                }
+                {
+                    uint pp_7 = 0x80110634u;
+                    uint q_7 = (Mem.Set(pp_7, (uint)(Mem.U32(pp_7) + 8u)) - 8u);
+                    new_var2 = (int)(4127195136u);
+                    new M5Dl(q_7).w0_Set((uint)((((Mem.S32(0x800E28D0u) & 1023) << (int)14) | (((Mem.S32(0x800E28D4u) & 1023) * 4) | new_var2))));
+                    new M5Dl(q_7).w1_Set((uint)(0));
+                }
+            }
+            Text_BeginFontPass();
+            s = (float)(255);
+            Text_SetColors(255, 255, (int)(s), 200, 200, 200);
+            sx = ((sx * (float)(Mem.S32(0x800E28D0u))) * 0.00352112669f);
+            sy = ((sy * (float)(Mem.S32(0x800E28D4u))) * 0.00450450461f);
+            sx = (sx * ((Mem.S32(0x800E28D4u) >= 223) ? 0.800000011f : 0.850000023f));
+            sy = (sy * 0.5f);
+            Text_SetScale(sx, sy);
+            Mem.Set((0x8013B878u + (uint)(0 * 4)), 1);
+            Mem.Set((0x8013B878u + (uint)(1 * 4)), 1);
+            if ((Mem.U32(names) != 0u))
+            {
+                int i = 0;
+                do
+                {
+                    new_var = Mem.U32((names + (uint)(i * 4)));
+                    Text_Draw(new_var, x, y, 255, 1, 1, 1.0f, 1.0f);
+                    ++i;
+                    y = (int)(((float)(y) + ((float)(lineh) * sy)));
+                }
+                while ((Mem.U32((names + (uint)(i * 4))) != 0u));
+            }
+        }
+    }
+
+    // ==== func_002A94E8 @ 0x002A94E8 [C]
+    public static void Text_BeginFontPass()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002A94E8");
+            int tex = 0;
+            tex = Text_GetFontTexture();
+            if ((tex != 0))
+            {
+                {
+                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g).w0_Set(3875536896u);
+                    new DlCmd(_g).w1_Set((uint)(0));
+                }
+                {
+                    uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_2).w0_Set(3808430593u);
+                    new DlCmd(_g_2).w1_Set((uint)(1048576));
+                }
+                Gfx_SetCombineMode((uint)(26));
+                Gfx_SetOtherModeL((uint)(21));
+                Mem.Set(0x8014D3D0u, 0);
+                {
+                    uint _g_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_3).w0_Set(3607101442u);
+                    new DlCmd(_g_3).w1_Set(2147516416u);
+                }
+                {
+                    uint _g_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_4).w0_Set(3808432129u);
+                    new DlCmd(_g_4).w1_Set((uint)(0));
+                }
+                {
+                    uint _g_5 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_5).w0_Set(3808431104u);
+                    new DlCmd(_g_5).w1_Set((uint)(0));
+                }
+                {
+                    uint _g_6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_6).w0_Set(3808432641u);
+                    new DlCmd(_g_6).w1_Set((uint)(8192));
+                }
+                {
+                    uint _g_7 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_7).w0_Set(4254072832u);
+                    new DlCmd(_g_7).w1_Set((uint)(tex));
+                }
+                {
+                    uint _g_8 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_8).w0_Set(4119855104u);
+                    new DlCmd(_g_8).w1_Set((uint)(117440512));
+                }
+                {
+                    uint _g_9 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_9).w0_Set(3858759680u);
+                    new DlCmd(_g_9).w1_Set((uint)(0));
+                }
+                {
+                    uint _g_10 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_10).w0_Set(4076863488u);
+                    new DlCmd(_g_10).w1_Set((uint)(118028288));
+                }
+                {
+                    uint _g_11 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_11).w0_Set(3875536896u);
+                    new DlCmd(_g_11).w1_Set((uint)(0));
+                }
+                {
+                    uint _g_12 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_12).w0_Set(4118807552u);
+                    new DlCmd(_g_12).w1_Set((uint)(0));
+                }
+                {
+                    uint _g_13 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_13).w0_Set(4060086272u);
+                    new DlCmd(_g_13).w1_Set((uint)(376924));
+                }
+                {
+                    uint _g_14 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_14).w0_Set(4118806528u);
+                    new DlCmd(_g_14).w1_Set((uint)(16777216));
+                }
+                {
+                    uint _g_15 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new DlCmd(_g_15).w0_Set(4060086272u);
+                    new DlCmd(_g_15).w1_Set((uint)(17023036));
+                }
+                Text_SetColors(140, 140, 140, 140, 140, 140);
+                Text_SetScale(Mem.F32(0x800CB140u), Mem.F32(0x800CB140u));
+                Mem.Set((0x8013B878u + (uint)(0 * 4)), 2);
+                Mem.Set((0x8013B878u + (uint)(1 * 4)), 2);
+            }
+        }
+    }
+
     // ==== func_002A98E0 @ 0x002A98E0 [C]
     public static float func_002A98E0_sw_val()
     {
@@ -1181,6 +1361,240 @@ public static partial class Game
     public static void Text_Draw(uint p0, int p1, int p2, int p3, int p4, int p5, float p6, float p7)
     {
         func_002A9F18_rc(p0, (uint)p1, (uint)p2, (uint)p3, (uint)p4, (uint)p5, Cpu.F2U(p6), Cpu.F2U(p7));
+    }
+
+    // ==== func_002AB854 @ 0x002AB854 [MIPS]
+    public static uint func_002AB854_rc(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002AB854", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002AB854: ;
+                L_I002AB854: ;
+                r3 = 2148859904u;
+                L_I002AB858: ;
+                r3 = Mem.U32((r3 - 11312u));
+                L_I002AB85C: ;
+                r2 = (uint)(r3 < (uint)(7) ? 1 : 0);
+                L_I002AB860: ;
+                { bool c_ = r2 == 0; r2 = r3 << 2; if (c_) goto L_L002AB8CC; }
+                L_I002AB868: ;
+                r1 = 2148335616u;
+                L_I002AB86C: ;
+                r1 = r1 + r2;
+                L_I002AB870: ;
+                r2 = Mem.U32((r1 - 19576u));
+                L_I002AB874: ;
+                 switch (r2) { case 2799700u: goto L_I002AB854; case 2799704u: goto L_I002AB858; case 2799708u: goto L_I002AB85C; case 2799712u: goto L_I002AB860; case 2799720u: goto L_I002AB868; case 2799724u: goto L_I002AB86C; case 2799728u: goto L_I002AB870; case 2799732u: goto L_I002AB874; case 2799740u: goto L_I002AB87C; case 2799744u: goto L_I002AB880; case 2799748u: goto L_I002AB884; case 2799756u: goto L_I002AB88C; case 2799760u: goto L_I002AB890; case 2799764u: goto L_I002AB894; case 2799772u: goto L_I002AB89C; case 2799776u: goto L_I002AB8A0; case 2799780u: goto L_I002AB8A4; case 2799788u: goto L_I002AB8AC; case 2799792u: goto L_I002AB8B0; case 2799796u: goto L_I002AB8B4; case 2799804u: goto L_I002AB8BC; case 2799808u: goto L_I002AB8C0; case 2799812u: goto L_I002AB8C4; case 2799820u: goto L_I002AB8CC; case 2799824u: goto L_I002AB8D0; case 2799828u: goto L_I002AB8D4; default: throw new InvalidOperationException($"bad jump table target {r2:X8} in func_002AB854"); }
+                L_L002AB87C: ;
+                L_I002AB87C: ;
+                r1 = 2148335616u;
+                L_I002AB880: ;
+                Cpu.SetW(0, Mem.U32((r1 - 19548u)));
+                L_I002AB884: ;
+                Cpu.V1 = r3; return r2;
+                L_L002AB88C: ;
+                L_I002AB88C: ;
+                r1 = 2148335616u;
+                L_I002AB890: ;
+                Cpu.SetW(0, Mem.U32((r1 - 19544u)));
+                L_I002AB894: ;
+                Cpu.V1 = r3; return r2;
+                L_L002AB89C: ;
+                L_I002AB89C: ;
+                r1 = 2148335616u;
+                L_I002AB8A0: ;
+                Cpu.SetW(0, Mem.U32((r1 - 19540u)));
+                L_I002AB8A4: ;
+                Cpu.V1 = r3; return r2;
+                L_L002AB8AC: ;
+                L_I002AB8AC: ;
+                r1 = 2148335616u;
+                L_I002AB8B0: ;
+                Cpu.SetW(0, Mem.U32((r1 - 19536u)));
+                L_I002AB8B4: ;
+                Cpu.V1 = r3; return r2;
+                L_L002AB8BC: ;
+                L_I002AB8BC: ;
+                r1 = 2148335616u;
+                L_I002AB8C0: ;
+                Cpu.SetW(0, Mem.U32((r1 - 19532u)));
+                L_I002AB8C4: ;
+                Cpu.V1 = r3; return r2;
+                L_L002AB8CC: ;
+                L_I002AB8CC: ;
+                r1 = 2148335616u;
+                L_I002AB8D0: ;
+                Cpu.SetW(0, Mem.U32((r1 - 19528u)));
+                L_I002AB8D4: ;
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002AB854", r2); Stack.Free(384); }
+    }
+
+    public static float Text_GetFontMetric_002AB854()
+    {
+        func_002AB854_rc(0u, 0u, 0u, 0u); return Cpu.S(0);
+    }
+
+    // ==== func_002ABB2C @ 0x002ABB2C [C]
+    public static void Text_SetColors(int a, int b, int c, int d, int e, int f)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002ABB2C", (uint)a, (uint)b, (uint)c, (uint)d);
+            Mem.Set((0x8013B858u + (uint)(0 * 4)), a);
+            Mem.Set((0x8013B858u + (uint)(1 * 4)), b);
+            Mem.Set((0x8013B858u + (uint)(2 * 4)), c);
+            Mem.Set((0x8013B858u + (uint)(3 * 4)), d);
+            Mem.Set((0x8013B858u + (uint)(4 * 4)), e);
+            Mem.Set((0x8013B858u + (uint)(5 * 4)), f);
+        }
+    }
+
+    // ==== func_002ABB58 @ 0x002ABB58 [C]
+    public static void Text_SetScale(float a, float b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002ABB58");
+            Mem.Set((0x8013B870u + (uint)(0 * 4)), a);
+            Mem.Set((0x8013B870u + (uint)(1 * 4)), b);
+        }
+    }
+
+    // ==== func_002ABB6C @ 0x002ABB6C [C]
+    public static void Text_DrawStringShadowed(int a, float b, float c, float d, float e, int f, int g, int h)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002ABB6C", (uint)a);
+            if ((f != 0))
+            {
+                Text_DrawString((uint)(a), b, c, d, e, 1, g, h);
+            }
+            Text_DrawString((uint)(a), b, c, d, e, 0, g, h);
+        }
+    }
+
+    // ==== func_002ABD04 @ 0x002ABD04 [MIPS]
+    public static uint Text_LoadFontTexture(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002ABD04", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002ABD04: ;
+                r29 = r29 - 48u;
+                r4 = 2148663296u;
+                r4 = r4 - 376u;
+                r5 = (uint)2;
+                r6 = r0;
+                Mem.Set((r29 + 40u), r31);
+                Mem.Set((r29 + 36u), r17);
+                Mem.Set((r29 + 32u), r16);
+                r1 = 2148335616u;
+                Mem.Set((r1 + 12176u), r0);
+                r7 = (uint)1; r2 = (uint)Sprite_Lookup(r4, (int)r5, (int)r6, (int)r7);
+                r17 = r2;
+                { bool c_ = r17 == 0;  if (c_) goto L_L002ABD98; }
+                r3 = Mem.U32((r17 + 0u));
+                Mem.Set((r29 + 16u), r0);
+                r2 = r3 + 8u;
+                r4 = Mem.U32((r2 + 0u));
+                r2 = Mem.U8((r2 + 4u));
+                Mem.Set((r29 + 20u), (byte)r2);
+                r2 = r3 + r4;
+                { bool c_ = r2 == 0; Mem.Set((r29 + 16u), r2); if (c_) goto L_L002ABD6C; }
+                r2 = r2 + 16u;
+                Mem.Set((r29 + 16u), r2);
+                L_L002ABD6C: ;
+                r16 = 2148859904u;
+                r16 = r16 - 11456u;
+                r4 = r16;
+                r5 = Mem.U32((r29 + 16u));
+                r6 = (uint)144; r2 = memcpy(r4, r5, r6);
+                r4 = r0;
+                r5 = r17; ResourcePool_Unref((int)r4, r5);
+                r1 = 2148335616u;
+                Mem.Set((r1 + 12176u), r16);
+                L_L002ABD98: ;
+                r31 = Mem.U32((r29 + 40u));
+                r17 = Mem.U32((r29 + 36u));
+                r16 = Mem.U32((r29 + 32u));
+                r29 = r29 + 48u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002ABD04", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002ABDAC @ 0x002ABDAC [C]
+    public static int Text_GetFontTexture()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002ABDAC");
+            return Mem.S32(0x800D2F90u);
+        }
+    }
+
+    // ==== func_002AC34C @ 0x002AC34C [C]
+    public static void Text_BuildCharMap(int unused, uint pairs, int n, uint tab)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002AC34C", (uint)unused, (uint)pairs, (uint)n, (uint)tab);
+            int i = 0;
+            byte c = (byte)(255);
+            uint p = 0u;
+            i = 255;
+            p = (tab + (uint)i);
+            for (; (i >= 0); --i)
+            {
+                Mem.Set(((p -= 1u) + 1u), c);
+            }
+            for (i = 0; (i < n); ++i)
+            {
+                Mem.Set((tab + (uint)Mem.U8((pairs + (uint)0))), Mem.U8((pairs + (uint)1)));
+                pairs = (uint)(pairs + (uint)(2 * 1));
+            }
+        }
+    }
+
+    // ==== func_002AC398 @ 0x002AC398 [C]
+    public static void Text_BeginDefaultStyle_002AC398()
+    {
+        uint _fp = Stack.Alloc(256);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_002AC398");
+                Text_BeginFontPass();
+                Gfx_LoadTexImage16();
+                Text_SetScale(Mem.F32(0x800CB3E8u), Mem.F32(0x800CB3E8u));
+                Text_SetColors(255, 255, 255, 200, 200, 200);
+            }
+        }
+        finally { Stack.Free(256); }
     }
 
     // ==== func_0040F1E0 @ 0x0040F1E0 [C]

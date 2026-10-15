@@ -37,7 +37,7 @@ public static partial class Game
                 Cpu.SetW(12, r0);
                 r16 = 2148794368u;
                 r16 = r16 + 26784u;
-                Mem.Set((r16 + 168u), r0); func_002A33F8(Cpu.S(12));
+                Mem.Set((r16 + 168u), r0); Menu_SetIdleTime(Cpu.S(12));
                 r4 = r16 - 1288u;
                 r2 = (uint)1;
                 Mem.Set((r16 - 1467u), (byte)r2);
@@ -113,7 +113,7 @@ public static partial class Game
                 r4 = (uint)28; r2 = ResourcePool_Malloc(r4);
                 r1 = 2148401152u;
                 Mem.Set((r1 + 17920u), r2);
-                r19 = r0; func_002A3358();
+                r19 = r0; Menu_EnableInput();
                 r18 = r19;
                 r17 = r19;
                 r20 = 2148532224u;
@@ -272,7 +272,7 @@ public static partial class Game
                 Mem.Set((r2 + 16u), (byte)r3); r2 = func_00419ED4(r4, r5, r6, r7); r3 = Cpu.V1;
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 17920u));
-                Mem.Set((r3 + 4u), r2); r2 = (uint)func_0029A9F4();
+                Mem.Set((r3 + 4u), r2); r2 = (uint)Menu_GetPreviousScreen();
                 r3 = (uint)2;
                 { bool c_ = r2 != r3; r2 = (uint)1; if (c_) goto L_L004240DC; }
                 r3 = 2148401152u;

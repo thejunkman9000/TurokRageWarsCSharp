@@ -36,7 +36,7 @@ public static partial class Game
                 r16 = r2;
                 r4 = r16;
                 r5 = r0;
-                r6 = (uint)136; r2 = func_002A1748(r4, (int)r5, r6);
+                r6 = (uint)136; r2 = Mem_Fill(r4, (int)r5, r6);
                 r4 = r16;
                 r5 = (uint)-1;
                 r7 = (uint)2914;

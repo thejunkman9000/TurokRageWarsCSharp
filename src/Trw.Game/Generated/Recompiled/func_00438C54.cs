@@ -21,7 +21,7 @@ public static partial class Game
                 r29 = _fp + 256u;
                 Mem.Set(r29 + 16u, a4);
                 L_func_00438C54: ;
-                func_00299368((int)r4);
+                Menu_GotoScreen((int)r4);
                 r31 = Mem.U32((r29 + 16u));
                 r29 = r29 + 24u; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;

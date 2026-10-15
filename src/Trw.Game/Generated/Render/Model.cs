@@ -45,7 +45,7 @@ public static partial class Game
                 r5 = (uint)-1; r2 = Material_Lookup(r4, r5, r6, r7); r3 = Cpu.V1;
                 { bool c_ = r2 == 0; Mem.Set((r29 + 428u), r2); if (c_) goto L_L0023AFA0; }
                 r4 = r2;
-                r5 = r29 + 40u; func_00296F7C(r4, r5);
+                r5 = r29 + 40u; Material_GetFrameInfo(r4, r5);
                 r2 = Mem.U32((r29 + 40u));
                 { bool c_ = r2 == 0;  if (c_) goto L_L0023AF94; }
                 r18 = 2148597760u;
@@ -254,7 +254,7 @@ public static partial class Game
                 L_L0023A894: ;
                 r4 = r19 + 784u;
                 r5 = r18;
-                r6 = r16; Cpu.SetS(0, func_00297930(r4, r5, r6));
+                r6 = r16; Cpu.SetS(0, Frustum_PlaneSegmentParam(r4, r5, r6));
                 Cpu.SetS(2, Cpu.S(0));
                 fcc = Cpu.S(22) <= Cpu.S(2);
                 { bool c_ = !fcc; r17 = r17 + 1u; if (c_) goto L_L0023A8F8; }
@@ -733,7 +733,7 @@ public static partial class Game
                 r5 = (uint)-1; r2 = Material_Lookup(r4, r5, r6, r7); r3 = Cpu.V1;
                 { bool c_ = r2 == 0; Mem.Set((r29 + 428u), r2); if (c_) goto L_L0023AFA0; }
                 r4 = r2;
-                r5 = r29 + 40u; func_00296F7C(r4, r5);
+                r5 = r29 + 40u; Material_GetFrameInfo(r4, r5);
                 r2 = Mem.U32((r29 + 40u));
                 { bool c_ = r2 == 0;  if (c_) goto L_L0023AF94; }
                 r18 = 2148597760u;
@@ -942,7 +942,7 @@ public static partial class Game
                 L_L0023A894: ;
                 r4 = r19 + 784u;
                 r5 = r18;
-                r6 = r16; Cpu.SetS(0, func_00297930(r4, r5, r6));
+                r6 = r16; Cpu.SetS(0, Frustum_PlaneSegmentParam(r4, r5, r6));
                 Cpu.SetS(2, Cpu.S(0));
                 fcc = Cpu.S(22) <= Cpu.S(2);
                 { bool c_ = !fcc; r17 = r17 + 1u; if (c_) goto L_L0023A8F8; }
@@ -2038,7 +2038,7 @@ public static partial class Game
             Mem.Set((new P4Gfx(g).words.P + 4u), (uint)(((a1 != 0) ? 0x800D12F0u : 0x800D1268u)));
             Mem.Set(0x800D15B4u, (-1));
             Mem.Set(0x800D15B0u, (-1));
-            func_00296FF8();
+            Texture_InvalidateLoadCache();
         }
     }
 
@@ -2130,7 +2130,7 @@ public static partial class Game
                 r2 = r0; goto L_L0026AC18;
                 L_L00269B34: ;
                 L_I00269B34: ;
-                r5 = r29 + 40u; func_00296F7C(r4, r5);
+                r5 = r29 + 40u; Material_GetFrameInfo(r4, r5);
                 L_I00269B3C: ;
                 r2 = (uint)-2;
                 L_I00269B40: ;
@@ -4962,7 +4962,7 @@ public static partial class Game
             uint p = 0u;
             uint fp = 0u;
             uint space = 0u;
-            func_002A11E8();
+            Random_NextLcg();
             fp = 0x8013B348u;
             do
             {
@@ -5325,7 +5325,7 @@ public static partial class Game
             uint space = 0u;
             if ((seg != 0))
             {
-                func_002A11E8();
+                Random_NextLcg();
                 env = 0x8013B2D8u;
                 new B16Env(env).b.Set((int)(4), (byte)(128));
                 new B16Env(env).b.Set((int)(5), (byte)(95));
@@ -5787,7 +5787,7 @@ public static partial class Game
                 c = Chunk_Get(Chunk_Get(n, i), 0);
                 if ((Mem.S32((c + (uint)(2 * 4))) != 0))
                 {
-                    r = (int)(func_00296E04((c + (uint)(2 * 4)), (uint)((-1)), default(uint), default(uint)));
+                    r = (int)(Material_LookupPreload((c + (uint)(2 * 4)), (uint)((-1)), default(uint), default(uint)));
                     if ((r != 0))
                     {
                         ResourcePool_Unref(0, (uint)(r));
@@ -5838,7 +5838,7 @@ public static partial class Game
                 c = Chunk_Get(Chunk_Get(n, i), 0);
                 if ((Mem.S32((c + (uint)(2 * 4))) != 0))
                 {
-                    r = (int)(func_00296E04((c + (uint)(2 * 4)), (uint)(key), default(uint), default(uint)));
+                    r = (int)(Material_LookupPreload((c + (uint)(2 * 4)), (uint)(key), default(uint), default(uint)));
                     if ((r != 0))
                     {
                         Mem.Set(@out, r);
@@ -6292,7 +6292,7 @@ public static partial class Game
                 { bool c_ = r5 != r2;  if (c_) goto L_L002855EC; }
                 Mem.Set((r4 + 8u), r0); goto L_L002855F4;
                 L_L002855EC: ;
-                r4 = r4 + 8u; func_00296DDC(r4, (int)r5);
+                r4 = r4 + 8u; Material_GetHandleById(r4, (int)r5);
                 L_L002855F4: ;
                 r31 = Mem.U32((r29 + 16u));
                 r29 = r29 + 24u; Cpu.V1 = r3; return r2;
@@ -6334,7 +6334,7 @@ public static partial class Game
             }
             else
             {
-                func_00296DDC((d + 8u), new B19RecIn(s).f0);
+                Material_GetHandleById((d + 8u), new B19RecIn(s).f0);
             }
         }
     }

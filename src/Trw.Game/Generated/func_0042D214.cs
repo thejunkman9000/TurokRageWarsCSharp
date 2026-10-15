@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0042D214");
             new O04GFlags(0x801468A0u).unk78_Set(0);
             new O04GFlags(0x801468A0u).unk54_Set(0);
-            func_00299368(15);
+            Menu_GotoScreen(15);
         }
     }
 

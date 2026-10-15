@@ -15,14 +15,14 @@ public static partial class Game
             float fy = 0f;
             float t1 = 0f;
             float t2 = 0f;
-            if ((((func_002934DC() != 0) && ((new O06A_v9(a).unk8 & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(0x801462E5u)) != 0) && ((int)(new O06A_v9(a).unk8) < 0)) && ((int)(Mem_GetRamSize()) == 4194304))))
+            if ((((Game_IsInState13() != 0) && ((new O06A_v9(a).unk8 & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(0x801462E5u)) != 0) && ((int)(new O06A_v9(a).unk8) < 0)) && ((int)(Mem_GetRamSize()) == 4194304))))
             {
                 new O06D_v6(d).unk3C_Set(1);
                 if ((Mem.S32(0x800E5E70u) != 3))
                 {
                     Mem.Set(0x800E5E70u, 3);
                 }
-                func_002AB9E4();
+                Gfx_BeginFillRectPass();
                 t1 = ((float)(new O06B_v11(b).unk4) * new O06B_v11(b).unkC);
                 t2 = ((float)(new O06B_v11(b).unk8) * new O06B_v11(b).unk10);
                 fy = (float)(new O06B_v11(b).unk1C);
@@ -51,7 +51,7 @@ public static partial class Game
                 {
                     alpha = 128;
                 }
-                func_002A8DD4(new O06B_v11(b).unk14, new O06B_v11(b).unk1C, (int)(fx), (int)(fy), 1, 0, (byte)(0), (byte)(0), (byte)(0), (byte)(alpha));
+                Gfx_DrawBevelRect(new O06B_v11(b).unk14, new O06B_v11(b).unk1C, (int)(fx), (int)(fy), 1, 0, (byte)(0), (byte)(0), (byte)(0), (byte)(alpha));
             }
             else
             {

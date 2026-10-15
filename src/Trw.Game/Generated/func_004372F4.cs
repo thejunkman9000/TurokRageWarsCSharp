@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004372F4", (uint)a, (uint)b, (uint)c, (uint)ev);
-            func_0029A73C();
+            Menu_ConsumeEvent();
             if ((ev != 1))
             {
                 return 0;
@@ -22,7 +22,7 @@ public static partial class Game
                 new O05M94(Mem.U32(0x800E5694u)).f14_Set(0);
             }
             func_00436AD8(new O05M94(Mem.U32(0x800E5694u)).f14);
-            func_002A1C08(new O05M94(Mem.U32(0x800E5694u)).buf.P, (uint)(Mem.S32(0x800D74ECu)), (uint)((new O05M94(Mem.U32(0x800E5694u)).f14 + 1)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            Str_FormatInto(new O05M94(Mem.U32(0x800E5694u)).buf.P, (uint)(Mem.S32(0x800D74ECu)), (uint)((new O05M94(Mem.U32(0x800E5694u)).f14 + 1)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             new O05Wd(new O05M94(Mem.U32(0x800E5694u)).f18).f38_Set(new O05M94(Mem.U32(0x800E5694u)).buf.P);
             return 0;
         }

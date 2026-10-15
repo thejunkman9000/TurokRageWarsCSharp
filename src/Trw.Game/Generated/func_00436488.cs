@@ -22,7 +22,7 @@ public static partial class Game
                 {
                     return 0;
                 }
-                func_0029A73C();
+                Menu_ConsumeEvent();
                 Mem.Set((0x80146894u + (uint)(0 * 4)), 0);
                 CameraManager_Init((0x80146894u - (uint)(1539 * 4)), 0);
                 func_0044A600((0x80146894u - (uint)(1557 * 4)), 0, 0);

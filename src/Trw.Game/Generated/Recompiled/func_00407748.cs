@@ -84,22 +84,22 @@ public static partial class Game
                 { bool c_ = r2 != r3; r3 = r0; if (c_) goto L_L004078A0; }
                 r5 = 2148335616u;
                 r5 = Mem.U32((r5 + 30476u));
-                r4 = r29 + 48u; r2 = (uint)func_002A137C(r4, r5);
+                r4 = r29 + 48u; r2 = (uint)LibC_StrCompare(r4, r5);
                 { bool c_ = r2 != 0; r3 = r0; if (c_) goto L_L004078A0; }
                 r5 = 2148335616u;
                 r5 = Mem.U32((r5 + 30472u));
-                r4 = r29 + 40u; r2 = (uint)func_002A137C(r4, r5);
+                r4 = r29 + 40u; r2 = (uint)LibC_StrCompare(r4, r5);
                 { bool c_ = r2 == 0; r3 = (uint)1; if (c_) goto L_L004078A0; }
                 r3 = r0;
                 L_L004078A0: ;
                 { bool c_ = r3 == 0; r16 = r29 + 56u; if (c_) goto L_L004078D4; }
                 r5 = 2148335616u;
                 r5 = Mem.U32((r5 + 30464u));
-                r4 = r16; r2 = (uint)func_002A137C(r4, r5);
+                r4 = r16; r2 = (uint)LibC_StrCompare(r4, r5);
                 r19 = (uint)(r2 < (uint)(1) ? 1 : 0);
                 r5 = 2148335616u;
                 r5 = Mem.U32((r5 + 30468u));
-                r4 = r16; r2 = (uint)func_002A137C(r4, r5);
+                r4 = r16; r2 = (uint)LibC_StrCompare(r4, r5);
                 r16 = (uint)(r2 < (uint)(1) ? 1 : 0); goto L_L004078DC;
                 L_L004078D4: ;
                 r19 = r0;
@@ -225,7 +225,7 @@ public static partial class Game
                 { bool c_ = r2 == 0; r5 = (uint)1; if (c_) goto L_L00407B1C; }
                 r5 = 2148335616u;
                 r5 = Mem.U32((r5 + 30596u));
-                r4 = r18; r2 = func_002A125C(r4, r5);
+                r4 = r18; r2 = LibC_StrCopy(r4, r5);
                 r5 = (uint)1;
                 L_L00407B1C: ;
                 r3 = r0;
@@ -292,7 +292,7 @@ public static partial class Game
                 { bool c_ = r2 == 0;  if (c_) goto L_L00407EE8; }
                 r5 = 2148335616u;
                 r5 = Mem.U32((r5 + 30464u));
-                r4 = r16; r2 = (uint)func_002A137C(r4, r5);
+                r4 = r16; r2 = (uint)LibC_StrCompare(r4, r5);
                 { bool c_ = r2 != 0; r5 = r21; if (c_) goto L_L00407EE8; }
                 r4 = r20;
                 r16 = 2148859904u;
@@ -352,7 +352,7 @@ public static partial class Game
                 { bool c_ = r2 == 0;  if (c_) goto L_L00407EE8; }
                 r5 = 2148335616u;
                 r5 = Mem.U32((r5 + 30468u));
-                r4 = r16; r2 = (uint)func_002A137C(r4, r5);
+                r4 = r16; r2 = (uint)LibC_StrCompare(r4, r5);
                 { bool c_ = r2 != 0;  if (c_) goto L_L00407EE8; }
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 10420u));

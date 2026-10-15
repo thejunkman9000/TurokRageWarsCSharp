@@ -65,7 +65,7 @@ public static partial class Game
             int t = 0;
             int t2 = 0;
             en = (byte)(1);
-            if ((((func_002934DC() != 0) && ((new Q04Item(it).flags & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(0x801462E5u)) != 0) && ((int)(new Q04Item(it).flags) < 0)) && ((int)(Mem_GetRamSize()) == 4194304))))
+            if ((((Game_IsInState13() != 0) && ((new Q04Item(it).flags & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(0x801462E5u)) != 0) && ((int)(new Q04Item(it).flags) < 0)) && ((int)(Mem_GetRamSize()) == 4194304))))
             {
                 new Q04W(w).f38_Set(0);
             }
@@ -94,18 +94,18 @@ public static partial class Game
                 switch (m)
                 {
                 case 0:
-                    func_002A94E8();
+                    Text_BeginFontPass();
                     break;
                 case 1:
-                    func_002A94E8();
+                    Text_BeginFontPass();
                     Gfx_LoadTexImage16();
                     break;
                 case 2:
-                    func_002A94E8();
+                    Text_BeginFontPass();
                     Gfx_LoadTexImage16b();
                     break;
                 case 6:
-                    func_002A94E8();
+                    Text_BeginFontPass();
                     Gfx_LoadTexImage16();
                     Mem.Set(0x8014D3D0u, 1);
                     break;
@@ -144,10 +144,10 @@ public static partial class Game
             {
                 a = t;
             }
-            func_002ABB2C(r, g, bl, a, (((t = (int)(((float)(new Q04Ent(E).b19) * k))) < 256) ? t : 255), (((t2 = (int)(((float)(new Q04Ent(E).b1A) * k))) < 256) ? t2 : 255));
+            Text_SetColors(r, g, bl, a, (((t = (int)(((float)(new Q04Ent(E).b19) * k))) < 256) ? t : 255), (((t2 = (int)(((float)(new Q04Ent(E).b1A) * k))) < 256) ? t2 : 255));
             Mem.Set((0x8013B878u + (uint)(0 * 4)), (int)(new Q04Ent(E).b14));
             Mem.Set((0x8013B878u + (uint)(1 * 4)), (int)(new Q04Ent(E).b14));
-            func_002ABB58(((new Q04Ent(E).fC * (float)(Mem.S32(0x800E28D0u))) * 0.00352112669f), ((new Q04Ent(E).f10 * (float)(Mem.S32(0x800E28D4u))) * 0.00450450461f));
+            Text_SetScale(((new Q04Ent(E).fC * (float)(Mem.S32(0x800E28D0u))) * 0.00352112669f), ((new Q04Ent(E).f10 * (float)(Mem.S32(0x800E28D4u))) * 0.00450450461f));
             if (((int)(en) != 0))
             {
                 en = new Q04Ent(E).b14;

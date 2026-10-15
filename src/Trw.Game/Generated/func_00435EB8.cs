@@ -10,12 +10,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00435EB8");
-            func_0029A73C();
+            Menu_ConsumeEvent();
             switch (Menu_GetMessage())
             {
             case 64:
                 Mem.Set(0x80146894u, 0);
-                func_002A3304();
+                Menu_RequestShutdown();
                 Audio_UnduckMusic();
                 return 0;
             case 60:
@@ -23,10 +23,10 @@ public static partial class Game
                 func_0042325C();
                 return 0;
             case 65:
-                func_00299368(31);
+                Menu_GotoScreen(31);
                 return 0;
             case 62:
-                func_00299368(32);
+                Menu_GotoScreen(32);
                 return 0;
             default:
                 return 0;

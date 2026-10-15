@@ -14,7 +14,7 @@ public static partial class Game
             int n = 0;
             uint r = 0u;
             func_004288E0();
-            r = (uint)(func_0028D450(0x8011FE88u, a));
+            r = (uint)(Resource_GetIndexedCached(0x8011FE88u, a));
             i = (n = 0);
             for (; (i < 8); ++i)
             {

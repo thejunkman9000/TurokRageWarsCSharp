@@ -136,14 +136,14 @@ public static partial class Game
                     new Q04Info(o).f8_Set((int)(((new Q04Ent_v2(E).f8 * (float)(Mem.S32(0x800E28D4u))) * 0.00450450461f)));
                     break;
                 case 1:
-                    if ((((func_002934DC() != 0) && ((new Q04Item(it).flags & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(0x801462E5u)) != 0) && ((int)(new Q04Item(it).flags) < 0)) && ((int)(Mem_GetRamSize()) == 4194304))))
+                    if ((((Game_IsInState13() != 0) && ((new Q04Item(it).flags & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(0x801462E5u)) != 0) && ((int)(new Q04Item(it).flags) < 0)) && ((int)(Mem_GetRamSize()) == 4194304))))
                     {
                         new Q04Info(o).f4_Set(284);
                         new Q04Info(o).f8_Set(222);
                     }
                     else
                     {
-                        func_002AB940((int)((uint)(new Q04Item(it).f14)), 0, (o + 4u), (o + 8u));
+                        Sprite_GetFrameSize((int)((uint)(new Q04Item(it).f14)), 0, (o + 4u), (o + 8u));
                     }
                     if (((((new Q04Item(it).flags & (uint)(268435456)) != 0u) && ((float)(new Q04Info(o).f4) != 0.0f)) && ((float)(new Q04Info(o).f8) != 0.0f)))
                     {

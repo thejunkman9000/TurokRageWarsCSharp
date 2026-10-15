@@ -31,8 +31,8 @@ public static partial class Game
                         func_004171B8((uint)(340787));
                         Mem.Set(0x800E2AB8u, 1);
                     }
-                    func_002A2898((new O02Rect(_fp).w.P + (uint)(0 * 4)), (new O02Rect(_fp).w.P + (uint)(2 * 4)), (new O02Rect(_fp).w.P + (uint)(1 * 4)), (new O02Rect(_fp).w.P + (uint)(3 * 4)));
-                    func_002A2870(Mem.S32(0x80153810u), Mem.S32(0x80153818u), Mem.S32(0x80153814u), Mem.S32(0x8015381Cu));
+                    Ui_GetClipRect((new O02Rect(_fp).w.P + (uint)(0 * 4)), (new O02Rect(_fp).w.P + (uint)(2 * 4)), (new O02Rect(_fp).w.P + (uint)(1 * 4)), (new O02Rect(_fp).w.P + (uint)(3 * 4)));
+                    Ui_SetClipRect(Mem.S32(0x80153810u), Mem.S32(0x80153818u), Mem.S32(0x80153814u), Mem.S32(0x8015381Cu));
                     for (i = 0; (i < Mem.S32(0x80153800u)); ++i)
                     {
                         it = new O02Ent((0x80153820u + (uint)(i * 24))).items_;
@@ -66,7 +66,7 @@ public static partial class Game
                         }
                     }
                     p = _fp;
-                    func_002A2870(new O02Rect(_fp).w[(int)(0)], new O02Rect(p).w[(int)(2)], new O02Rect(p).w[(int)(1)], new O02Rect(p).w[(int)(3)]);
+                    Ui_SetClipRect(new O02Rect(_fp).w[(int)(0)], new O02Rect(p).w[(int)(2)], new O02Rect(p).w[(int)(1)], new O02Rect(p).w[(int)(3)]);
                     Mem.Set(0x80153800u, 0);
                 }
             }

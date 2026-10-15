@@ -13,7 +13,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0041DC3C");
-                func_002A33BC(1);
+                Menu_SetFixedFov(1);
                 new O3Vec3((_fp + 32u)).x_Set((float)(0));
                 new O3Vec3((_fp + 32u)).y_Set((float)(0));
                 new O3Vec3((_fp + 32u)).z_Set((float)(0));

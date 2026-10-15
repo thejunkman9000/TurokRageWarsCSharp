@@ -81,11 +81,11 @@ public static partial class Game
                 r3 = (uint)((int)r30 < (int)r3 ? 1 : 0);
                 { bool c_ = r3 != 0; r17 = r17 + r2; if (c_) goto L_L0040072C; }
                 L_L00400794: ;
-                r4 = r21; r2 = (uint)func_0028FE98(r4);
+                r4 = r21; r2 = (uint)Chunk_GetTableSize(r4);
                 r4 = r22;
-                r20 = r2; r2 = (uint)func_0028FE98(r4);
+                r20 = r2; r2 = (uint)Chunk_GetTableSize(r4);
                 r4 = r23;
-                r18 = r2; r2 = (uint)func_0028FE98(r4);
+                r18 = r2; r2 = (uint)Chunk_GetTableSize(r4);
                 r4 = r0;
                 r19 = r2;
                 r6 = r17 + r18;

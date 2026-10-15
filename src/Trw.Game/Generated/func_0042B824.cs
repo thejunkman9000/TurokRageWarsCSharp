@@ -16,7 +16,7 @@ public static partial class Game
             int lim = 0;
             uint new_var = 0u;
             uint p = 0u;
-            func_0029A73C();
+            Menu_ConsumeEvent();
             if ((d != 1))
             {
                 return 0;

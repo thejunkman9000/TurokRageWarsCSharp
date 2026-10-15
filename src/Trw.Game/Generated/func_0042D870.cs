@@ -20,7 +20,7 @@ public static partial class Game
             {
                 new O04ModeS53C0(Mem.U32(0x800E53C0u)).unk320_Set(1);
                 Menu_MoveFocus((uint)(((func_0040EC50(UiTree_FindNode((uint)(a), (uint)(568), default(uint), default(uint))) == 0) ? 568 : 567)), default(uint), default(uint), default(uint));
-                func_002A3358();
+                Menu_EnableInput();
             }
             p = 0x80154024u;
             s1 = Mem.S32((p + (uint)(0 * 4)));
@@ -31,8 +31,8 @@ public static partial class Game
                 {
                     func_0040E958((uint)(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unkE4), 0);
                     new O04ModeS53C0(Mem.U32(0x800E53C0u)).unk328_Set(0);
-                    func_0029A73C();
-                    func_00299368(Mem.S32((p + (uint)((-1) * 4))));
+                    Menu_ConsumeEvent();
+                    Menu_GotoScreen(Mem.S32((p + (uint)((-1) * 4))));
                     return 0;
                 }
                 func_0040E958((uint)(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unkE4), 1);

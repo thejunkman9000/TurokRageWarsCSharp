@@ -29,7 +29,7 @@ public static partial class Game
             }
             new S7Pools(o).unk0_Set(0);
             new S7Pools(o).unk2588_Set(0);
-            func_002A6670((int)(o));
+            Effect_UpdateFrame((int)(o));
         }
     }
 
@@ -43,9 +43,9 @@ public static partial class Game
             new S7Tabs(o).unk98_Set(0);
             new S7Tabs(o).unk9C_Set(0);
             func_0044ED1C();
-            func_002ABD04(default(uint), default(uint), default(uint), default(uint));
-            func_002AC34C((int)(o), 0x800D3080u, 117, new S7Tabs(o).tab0.P);
-            func_002AC34C((int)(o), 0x800D2F94u, 117, new S7Tabs(o).tab1.P);
+            Text_LoadFontTexture(default(uint), default(uint), default(uint), default(uint));
+            Text_BuildCharMap((int)(o), 0x800D3080u, 117, new S7Tabs(o).tab0.P);
+            Text_BuildCharMap((int)(o), 0x800D2F94u, 117, new S7Tabs(o).tab1.P);
         }
     }
 

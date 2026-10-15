@@ -31,7 +31,7 @@ public static partial class Game
                 {
                     Menu_MoveFocus((uint)(626), default(uint), default(uint), default(uint));
                 }
-                func_002A3358();
+                Menu_EnableInput();
             }
             g = 0x80154024u;
             t = Mem.S32((g + (uint)(0 * 4)));
@@ -44,8 +44,8 @@ public static partial class Game
             {
                 func_0040E958(new O05M30_v3(Mem.U32(0x800E5830u)).f24, 0);
                 new O05M30_v3(Mem.U32(0x800E5830u)).f1C0_Set(0);
-                func_0029A73C();
-                func_00299368(Mem.S32((g + (uint)((-1) * 4))));
+                Menu_ConsumeEvent();
+                Menu_GotoScreen(Mem.S32((g + (uint)((-1) * 4))));
             }
             else
             {

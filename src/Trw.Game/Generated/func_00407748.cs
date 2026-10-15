@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00407748_k7_chk", (uint)gc, (uint)cc);
-            if (((((Str_Length(gc) == 4) && (Str_Length(cc) == 2)) && (func_002A137C(gc, (uint)(Mem.S32(0x800D770Cu))) == 0)) && (func_002A137C(cc, (uint)(Mem.S32(0x800D7708u))) == 0)))
+            if (((((Str_Length(gc) == 4) && (Str_Length(cc) == 2)) && (LibC_StrCompare(gc, (uint)(Mem.S32(0x800D770Cu))) == 0)) && (LibC_StrCompare(cc, (uint)(Mem.S32(0x800D7708u))) == 0)))
             {
                 return 1;
             }

@@ -61,7 +61,7 @@ public static partial class Game
                         {
                             if ((s1 != s0))
                             {
-                                func_002A1724(s0, s1, (uint)((n * 8)));
+                                Mem_Copy(s0, s1, (uint)((n * 8)));
                             }
                             s0 = (uint)(s0 + (uint)((n * 8) * 1));
                             s1 = (uint)(s1 + (uint)((n * 8) * 1));

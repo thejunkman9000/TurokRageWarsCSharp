@@ -39,7 +39,7 @@ public static partial class Game
                 {
                     if ((id == (-1)))
                     {
-                        id = func_0028B1F8(0x8011FE88u, x);
+                        id = Level_FindTypeIndexById(0x8011FE88u, x);
                         if ((id == (-1)))
                         {
                             return 0u;
@@ -47,7 +47,7 @@ public static partial class Game
                     }
                     if (((uint)((x + 1)) < (uint)(2)))
                     {
-                        x = (int)(func_0028B238(0x8011FE88u, id));
+                        x = (int)(Level_GetTypeIdByIndex(0x8011FE88u, id));
                     }
                     if (((Mem.S32(0x8013B290u) != 0) || (C.Seq((object?)((e = 0u)), ((new B14World2(w).freeCount < (uint)(3)) ? 1 : 0)) != 0)))
                     {
@@ -96,7 +96,7 @@ public static partial class Game
                 }
                 if ((inside != 0))
                 {
-                    func_0028C910(arg, e);
+                    Level_AddActiveActor(arg, e);
                     if (((new B14Ent2(e).counter_ != 0u) && (new B14Ent2(e).f174 == 0)))
                     {
                         Mem.Set(new B14Ent2(e).counter_, (int)((int)(Mem.S32(new B14Ent2(e).counter_)) - 1));

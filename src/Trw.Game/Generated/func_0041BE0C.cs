@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0041BE0C", (uint)m, (uint)a1, (uint)a2, (uint)a3);
             uint it = 0u;
-            func_0029A73C();
+            Menu_ConsumeEvent();
             if ((new O3M7D5(m).flag[(int)((a2 & 65535))] != 0))
             {
                 return 0;
@@ -19,7 +19,7 @@ public static partial class Game
             it = new O3M7D5(m).item[(int)((a2 & 65535))];
             if ((it != 0u))
             {
-                func_0029A5D4((uint)((int)(new O3Item(it).h.id)), (uint)(1), (uint)(a2), (uint)(a3), (uint)(a4));
+                Menu_SendEvent((uint)((int)(new O3Item(it).h.id)), (uint)(1), (uint)(a2), (uint)(a3), (uint)(a4));
             }
             return 0;
         }

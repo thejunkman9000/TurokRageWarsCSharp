@@ -177,15 +177,15 @@ public static partial class Game
             int r = 0;
             if ((Mem.S32((a + (uint)4620)) != 0))
             {
-                r = func_0028B1F8(0x8011FE88u, 3204);
+                r = Level_FindTypeIndexById(0x8011FE88u, 3204);
             }
             else
             {
-                r = func_0028B1F8(0x8011FE88u, 3205);
+                r = Level_FindTypeIndexById(0x8011FE88u, 3205);
             }
             if ((r != (-1)))
             {
-                Model_QueueByIndex(func_0028C174(0x8011FE88u, r), (int)((a + (uint)5632)), (int)(0x800D0EF8u), 0, (-1));
+                Model_QueueByIndex(Level_GetModelKey(0x8011FE88u, r), (int)((a + (uint)5632)), (int)(0x800D0EF8u), 0, (-1));
             }
         }
     }
@@ -398,7 +398,7 @@ public static partial class Game
                 }
                 if ((new OW(owner).f147C != 0))
                 {
-                    func_002A6488((owner + (uint)((Mem.S32(0x800D297Cu) * 64) + 5504)));
+                    Decal_DrawLaserDot((owner + (uint)((Mem.S32(0x800D297Cu) * 64) + 5504)));
                 }
             }
         }

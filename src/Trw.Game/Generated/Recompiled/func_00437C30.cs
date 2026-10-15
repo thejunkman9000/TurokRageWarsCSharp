@@ -291,7 +291,7 @@ public static partial class Game
                 r4 = 2148401152u;
                 r4 = Mem.U32((r4 + 22576u));
                 r6 = Mem.U32((r2 + 0u));
-                r4 = r4 + 396u; r2 = func_002A1C08(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
+                r4 = r4 + 396u; r2 = Str_FormatInto(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
                  goto L_L004382C0;
                 L_L0043810C: ;
                 r17 = r5 + 1496u;
@@ -387,7 +387,7 @@ public static partial class Game
                 L_L004382B0: ;
                 r5 = 2148335616u;
                 r5 = Mem.U32((r5 + 30120u));
-                r4 = r4 + 396u; r2 = func_002A125C(r4, r5);
+                r4 = r4 + 396u; r2 = LibC_StrCopy(r4, r5);
                 L_L004382C0: ;
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 22576u));
@@ -457,12 +457,12 @@ public static partial class Game
                 r6 = r29 + 24u;
                 r5 = 2148859904u;
                 r5 = Mem.U32((r5 + 16428u));
-                r7 = (uint)63; func_0028D35C(r4, (int)r5, r6, (int)r7);
-                r4 = r29 + 24u; r2 = func_002A1494(r4);
+                r7 = (uint)63; Level_CopyLevelName(r4, (int)r5, r6, (int)r7);
+                r4 = r29 + 24u; r2 = Str_ToUpper(r4);
                 r4 = 2148401152u;
                 r4 = Mem.U32((r4 + 22576u));
                 r5 = r2;
-                r4 = r4 + 80u; r2 = func_002A125C(r4, r5);
+                r4 = r4 + 80u; r2 = LibC_StrCopy(r4, r5);
                 r4 = r18;
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 22576u));
@@ -476,7 +476,7 @@ public static partial class Game
                 Mem.Set((r3 + 448u), r2);
                 r1 = 2148794368u;
                 Mem.Set((r1 + 26772u), r2);
-                Mem.Set((r3 + 144u), r0); func_002A338C();
+                Mem.Set((r3 + 144u), r0); Menu_DisableInput();
                 r31 = Mem.U32((r29 + 100u));
                 r18 = Mem.U32((r29 + 96u));
                 r17 = Mem.U32((r29 + 92u));

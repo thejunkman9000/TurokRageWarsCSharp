@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00420C80", (uint)a0, (uint)a1, (uint)a2);
             int idx = 0;
             uint e = 0u;
-            func_0029A73C();
+            Menu_ConsumeEvent();
             idx = (int)((a2 & (uint)(65535)));
             e = (Mem.U32(0x800E42D0u) + (uint)(idx * 1224));
             switch (new O3Pj(e).state)

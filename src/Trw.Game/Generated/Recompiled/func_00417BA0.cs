@@ -309,7 +309,7 @@ public static partial class Game
                 L_L0041802C: ;
                 r5 = r29 + 36u;
                 r6 = r29 + 40u;
-                r7 = r29 + 44u; func_002A2898(r4, r5, r6, r7);
+                r7 = r29 + 44u; Ui_GetClipRect(r4, r5, r6, r7);
                 r2 = Mem.U32((r29 + 40u));
                 r2 = (uint)((int)r2 < (int)r18 ? 1 : 0);
                 { bool c_ = r2 != 0;  if (c_) goto L_L0041807C; }

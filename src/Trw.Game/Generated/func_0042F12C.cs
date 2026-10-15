@@ -235,8 +235,8 @@ public static partial class Game
                 break;
             }
             func_0040C4A8(0);
-            func_002A338C();
-            func_002A3410(0);
+            Menu_DisableInput();
+            Menu_SetPeriodicStateKick_002A3410(0);
             Audio_PlaySound2D(3704);
             return 0;
         }

@@ -107,7 +107,7 @@ public static partial class Game
             func_0041B190(894);
             func_0041B190(895);
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).state_Set(0);
-            func_002A338C();
+            Menu_DisableInput();
             func_0043C3F0(Mem.U32(0x800E4518u), 103, 0, 0, 0);
             Menu_ShowScreen_0043C458(Mem.U32(0x800E4518u));
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).cursor_Set(0);

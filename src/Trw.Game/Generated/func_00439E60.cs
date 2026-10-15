@@ -14,7 +14,7 @@ public static partial class Game
             new S_v8(o).f34_Set((-1));
             if ((n > 0))
             {
-                new S_v8(o).f34_Set(func_0028B1F8(0x8011FE88u, (int)(uint)(n)));
+                new S_v8(o).f34_Set(Level_FindTypeIndexById(0x8011FE88u, (int)(uint)(n)));
             }
             return new S_v8(o).f34;
         }

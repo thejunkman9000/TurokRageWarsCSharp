@@ -16,15 +16,15 @@ public static partial class Game
             case 3:
                 break;
             case 4:
-                func_0029A73C();
+                Menu_ConsumeEvent();
                 a = new O3Words(Mem.U32(0x800E4510u)).w[(int)(8)];
                 if ((a != (-1)))
                 {
-                    func_00299368(a);
+                    Menu_GotoScreen(a);
                 }
                 else
                 {
-                    func_0029A8A8();
+                    Menu_GoBack();
                 }
                 break;
             }

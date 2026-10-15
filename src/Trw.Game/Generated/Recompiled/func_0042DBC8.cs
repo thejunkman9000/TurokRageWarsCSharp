@@ -28,7 +28,7 @@ public static partial class Game
                 r4 = (uint)36; r2 = ResourcePool_Malloc(r4);
                 r1 = 2148401152u;
                 Mem.Set((r1 + 21552u), r2);
-                func_002A3358();
+                Menu_EnableInput();
                 r4 = (uint)920;
                 r5 = (uint)921; r2 = func_0041A300((int)r4, (int)r5);
                 r3 = 2148401152u;
@@ -60,7 +60,7 @@ public static partial class Game
                 Mem.Set((r2 + 56u), r4);
                 r2 = (uint)1;
                 r6 = r2;
-                Mem.Set((r3 + 32u), r2); r2 = func_002A1C08(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
+                Mem.Set((r3 + 32u), r2); r2 = Str_FormatInto(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
                 r31 = Mem.U32((r29 + 20u));
                 r16 = Mem.U32((r29 + 16u));
                 r2 = r0;

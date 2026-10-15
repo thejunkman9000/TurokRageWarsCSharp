@@ -16,13 +16,13 @@ public static partial class Game
             case 3:
                 break;
             case 4:
-                func_0029A73C();
+                Menu_ConsumeEvent();
                 if ((new O05M0A(Mem.U32(0x800E58A0u)).f14 != (-1)))
                 {
-                    func_00299368(new O05M0A(Mem.U32(0x800E58A0u)).f14);
+                    Menu_GotoScreen(new O05M0A(Mem.U32(0x800E58A0u)).f14);
                     return 0;
                 }
-                func_0029A8A8();
+                Menu_GoBack();
                 return 0;
             }
             t = func_0041A760(new O05M0A(Mem.U32(0x800E58A0u)).fC);

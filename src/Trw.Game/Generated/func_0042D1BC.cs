@@ -14,7 +14,7 @@ public static partial class Game
             new O04GFlags(0x801468A0u).unk54_Set(0);
             if (((func_0042B108() == 0) || (MatchSetup_PickRandomArena() == 0)))
             {
-                func_00299368(20);
+                Menu_GotoScreen(20);
             }
             else
             {

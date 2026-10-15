@@ -15,14 +15,14 @@ public static partial class Game
             {
                 if ((t == 4))
                 {
-                    func_0029A73C();
+                    Menu_ConsumeEvent();
                     if ((new O05M90_v3(Mem.U32(0x800E5690u)).f20 != (-1)))
                     {
-                        func_00299368(new O05M90_v3(Mem.U32(0x800E5690u)).f20);
+                        Menu_GotoScreen(new O05M90_v3(Mem.U32(0x800E5690u)).f20);
                     }
                     else
                     {
-                        func_0029A8A8();
+                        Menu_GoBack();
                     }
                 }
             }

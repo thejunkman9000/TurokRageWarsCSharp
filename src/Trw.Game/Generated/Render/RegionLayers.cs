@@ -44,7 +44,7 @@ public static partial class Game
                 { bool c_ = r16 == 0;  if (c_) goto L_L0023B3A8; }
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
-                r5 = r16; r2 = func_0028B2D4(r4, r5);
+                r5 = r16; r2 = Level_GetRegion(r4, r5);
                 r20 = r2;
                 { bool c_ = r20 == 0; r4 = r16; if (c_) goto L_L0023B3A8; }
                 r5 = Mem.U32((r22 + 56u));
@@ -113,7 +113,7 @@ public static partial class Game
                 Mem.Set((r16 + 12u), r18);
                 Mem.Set((r16 + 16u), (ushort)r17);
                 r5 = (uint)(int)Mem.S16((r18 + 0u));
-                r4 = r16 + 20u; func_00296DDC(r4, (int)r5);
+                r4 = r16 + 20u; Material_GetHandleById(r4, (int)r5);
                 Mem.Set((r16 + 28u), r0);
                 Mem.Set((r16 + 32u), r0);
                 Mem.Set((r16 + 520u), r0);
@@ -382,7 +382,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0023B684", (uint)e, (uint)def, (uint)n);
             new B09Emitter(e).def__Set(def);
             new B09Emitter(e).mask_Set((ushort)(n));
-            func_00296DDC(new B09Emitter(e).pad14.P, (int)(new B09EDef(def).id));
+            Material_GetHandleById(new B09Emitter(e).pad14.P, (int)(new B09EDef(def).id));
             new B09Emitter(e).f1C_Set((float)(0));
             new B09Emitter(e).f20_Set((float)(0));
             new B09Emitter(e).f208_Set((float)(0));

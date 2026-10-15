@@ -43,7 +43,7 @@ public static partial class Game
                 }
                 else
                 {
-                    func_002A125C(new Q03Ent(e).name.P, func_002A1494(new Q03Ent(e).name.P));
+                    LibC_StrCopy(new Q03Ent(e).name.P, Str_ToUpper(new Q03Ent(e).name.P));
                     new Q03Wid(w).unk38_Set(new Q03Ent(e).name.P);
                 }
                 w = UiTree_FindNode((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).idC)), default(uint), default(uint));
@@ -60,12 +60,12 @@ public static partial class Game
                 w = UiTree_FindNode((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id10)), default(uint), default(uint));
                 new Q03Wid(w).unk10_Set((byte)(175));
                 func_0040E958(w, 1);
-                func_002A1C08((new Q03S53(Mem.U32(0x800E53C0u)).strA.P + (uint)(i * 25)), 0x800E1B20u, (uint)((int)(new Q03Ent(e).f4)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                Str_FormatInto((new Q03S53(Mem.U32(0x800E53C0u)).strA.P + (uint)(i * 25)), 0x800E1B20u, (uint)((int)(new Q03Ent(e).f4)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                 new Q03Wid(w).unk38_Set((new Q03S53(Mem.U32(0x800E53C0u)).strA.P + (uint)(i * 25)));
                 w = UiTree_FindNode((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id14)), default(uint), default(uint));
                 new Q03Wid(w).unk10_Set((byte)(175));
                 func_0040E958(w, 1);
-                func_002A1C08((new Q03S53(Mem.U32(0x800E53C0u)).strB.P + (uint)(i * 25)), 0x800E1B20u, (uint)(((int)(new Q03Ent(e).f2) + (int)(new Q03Ent(e).f0))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                Str_FormatInto((new Q03S53(Mem.U32(0x800E53C0u)).strB.P + (uint)(i * 25)), 0x800E1B20u, (uint)(((int)(new Q03Ent(e).f2) + (int)(new Q03Ent(e).f0))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                 new Q03Wid(w).unk38_Set((new Q03S53(Mem.U32(0x800E53C0u)).strB.P + (uint)(i * 25)));
                 if ((Mem.S32((0x80154028u + (uint)(0 * 4))) == 0))
                 {
@@ -83,7 +83,7 @@ public static partial class Game
                     {
                         v = ((Mem.S32((0x80102AE0u + (uint)(sel * 4))) * 100) / cnt);
                     }
-                    func_002A1C08((new Q03S53(Mem.U32(0x800E53C0u)).strC.P + (uint)(i * 25)), 0x800E1B24u, (uint)(v), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                    Str_FormatInto((new Q03S53(Mem.U32(0x800E53C0u)).strC.P + (uint)(i * 25)), 0x800E1B24u, (uint)(v), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                     new Q03Wid(w).unk38_Set((new Q03S53(Mem.U32(0x800E53C0u)).strC.P + (uint)(i * 25)));
                 }
                 if ((Mem.S32((0x80154028u + (uint)(0 * 4))) == 3))
@@ -100,13 +100,13 @@ public static partial class Game
                     switch (Mem.S32((0x80154028u + (uint)(0 * 4))))
                     {
                     case 0:
-                        func_002A1C08((new Q03S53(Mem.U32(0x800E53C0u)).strD.P + (uint)(i * 25)), 0x800E1B20u, (uint)((int)(new Q03Ent(e).f8)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        Str_FormatInto((new Q03S53(Mem.U32(0x800E53C0u)).strD.P + (uint)(i * 25)), 0x800E1B20u, (uint)((int)(new Q03Ent(e).f8)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                         break;
                     case 1:
-                        func_002A1C08((new Q03S53(Mem.U32(0x800E53C0u)).strD.P + (uint)(i * 25)), 0x800E1B20u, (uint)((int)(new Q03Ent(e).f6)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        Str_FormatInto((new Q03S53(Mem.U32(0x800E53C0u)).strD.P + (uint)(i * 25)), 0x800E1B20u, (uint)((int)(new Q03Ent(e).f6)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                         break;
                     default:
-                        func_002A1C08((new Q03S53(Mem.U32(0x800E53C0u)).strD.P + (uint)(i * 25)), 0x800E1B20u, (uint)(0), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        Str_FormatInto((new Q03S53(Mem.U32(0x800E53C0u)).strD.P + (uint)(i * 25)), 0x800E1B20u, (uint)(0), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                         break;
                     }
                     new Q03Wid(p).unk38_Set((new Q03S53(Mem.U32(0x800E53C0u)).strD.P + (uint)(i * 25)));

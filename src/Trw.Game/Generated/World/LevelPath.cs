@@ -33,7 +33,7 @@ public static partial class Game
                 r5 = Mem.U8((r16 + 1u));
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
-                r2 = func_0028D1F4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = LevelPath_GetHeader(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r2;
                 r2 = Mem.U16((r16 + 2u));
                 r5 = (uint)(int)Mem.S16((r4 + 2u));
@@ -94,7 +94,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002192C0", (uint)o);
-            uint t = func_0028D1F4(0x8011FE88u, (uint)((int)(new B04Cur(o).idx)), default(uint), default(uint));
+            uint t = LevelPath_GetHeader(0x8011FE88u, (uint)((int)(new B04Cur(o).idx)), default(uint), default(uint));
             int n = (int)(new B04Tab(t).count);
             new B04Cur(o).prev_Set(new B04Cur(o).cur);
             switch ((int)(new B04Cur(o).state))
@@ -147,7 +147,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002193C8", (uint)e, (uint)a, _a2);
             new B04Ev(e).unk0_Set((byte)(1));
             new B04Ev(e).unk1_Set((byte)(a));
-            new B04Ev(e).unk2_Set((short)(func_0028D268(0x8011FE88u, (int)(uint)(a), (uint)(_a2))));
+            new B04Ev(e).unk2_Set((short)(LevelPath_FindNearestPoint(0x8011FE88u, (int)(uint)(a), (uint)(_a2))));
             new B04Ev(e).unk4_Set((short)(0));
         }
     }
@@ -173,7 +173,7 @@ public static partial class Game
                 r6 = (uint)(int)Mem.S16((r4 + 2u));
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
-                r2 = func_0028D220(r4, (int)r5, (int)r6);
+                r2 = LevelPath_GetPoint(r4, (int)r5, (int)r6);
                 r31 = Mem.U32((r29 + 16u));
                 r29 = r29 + 24u; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
@@ -188,7 +188,88 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00219434", (uint)arg0);
-            func_0028D220(0x8011FE88u, (int)(Mem.U8((arg0 + (uint)1))), (int)(Mem.S16((arg0 + (uint)4))));
+            LevelPath_GetPoint(0x8011FE88u, (int)(Mem.U8((arg0 + (uint)1))), (int)(Mem.S16((arg0 + (uint)4))));
         }
+    }
+
+    // ==== func_0028D1F4 @ 0x0028D1F4 [MIPS]
+    public static uint LevelPath_GetHeader(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0028D1F4", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_0028D1F4: ;
+                r29 = r29 - 24u;
+                Mem.Set((r29 + 16u), r31);
+                r4 = Mem.U32((r4 + 124u));
+                r2 = Chunk_Get(r4, (int)r5);
+                r4 = r2;
+                r5 = r0; r2 = Chunk_Get(r4, (int)r5);
+                r31 = Mem.U32((r29 + 16u));
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0028D1F4", r2); Stack.Free(384); }
+    }
+
+    // ==== func_0028D220 @ 0x0028D220 [C]
+    public static uint LevelPath_GetPoint(uint lv, int unused, int idx)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0028D220", (uint)lv, (uint)unused, (uint)idx);
+            uint t = Chunk_Get(Chunk_Get(new Level(lv).unk7C_, (int)(uint)(unused)), 1);
+            return (t + (uint)((idx * Mem.S32((t + (uint)(0 * 4)))) + 8));
+        }
+    }
+
+    // ==== func_0028D268 @ 0x0028D268 [C]
+    public static int LevelPath_FindNearestPoint(uint lv, int unused, uint pt)
+    {
+        uint _fp = Stack.Alloc(12);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0028D268", (uint)lv, (uint)unused, (uint)pt);
+                float bestIdx = (-1.0f);
+                float bestD = 0.0f;
+                int i = 0;
+                uint t = 0u;
+                int n = 0;
+                uint p = 0u;
+                t = Chunk_Get(Chunk_Get(new Level(lv).unk7C_, (int)(uint)(unused)), 1);
+                n = Mem.S32((t + (uint)(1 * 4)));
+                p = (t + (uint)(2 * 4));
+                if ((n > 0))
+                {
+                    do
+                    {
+                        float dd = 0f;
+                        Vec_Sub(_fp, pt, p);
+                        dd = (((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z));
+                        if (((bestIdx < 0.0f) || (dd < bestD)))
+                        {
+                            bestIdx = (float)(i);
+                            bestD = dd;
+                        }
+                        ++i;
+                        p = (uint)(p + (uint)(56 * 1));
+                    }
+                    while ((i < n));
+                }
+                return (int)(bestIdx);
+            }
+        }
+        finally { Stack.Free(12); }
     }
 }

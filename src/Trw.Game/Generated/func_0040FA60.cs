@@ -37,11 +37,11 @@ public static partial class Game
                 size = (new S_G_v3(0x801539B0u).f234 - new S_ent_v2((Mem.U32(0x80153C30u) + (uint)(idx * 8))).off);
             }
             new S_G_v3(0x801539B0u).buf0__Set(ResourcePool_Malloc((uint)(size)));
-            func_002A1F60((uint)(new S_G_v3(0x801539B0u).h), (uint)((new S_ent_v2((Mem.U32(0x80153C30u) + (uint)(idx * 8))).off + new S_G_v3(0x801539B0u).f230)), (uint)(0), default(uint));
-            func_002A1ED4((uint)((int)(new S_G_v3(0x801539B0u).buf0_)), (uint)(size), (uint)(1), (uint)(new S_G_v3(0x801539B0u).h));
+            File_Seek((uint)(new S_G_v3(0x801539B0u).h), (uint)((new S_ent_v2((Mem.U32(0x80153C30u) + (uint)(idx * 8))).off + new S_G_v3(0x801539B0u).f230)), (uint)(0), default(uint));
+            File_Read((uint)((int)(new S_G_v3(0x801539B0u).buf0_)), (uint)(size), (uint)(1), (uint)(new S_G_v3(0x801539B0u).h));
             if ((flag != 0))
             {
-                func_002A1EB0((uint)(new S_G_v3(0x801539B0u).h), default(uint), default(uint), default(uint));
+                File_Close((uint)(new S_G_v3(0x801539B0u).h), default(uint), default(uint), default(uint));
                 new S_G_v3(0x801539B0u).h_Set(0);
             }
             new S_G_v3(0x801539B0u).buf1_Set(ResourcePool_Malloc((uint)((cnt << (int)2))));

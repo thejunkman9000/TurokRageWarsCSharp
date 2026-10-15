@@ -54,7 +54,7 @@ public static partial class Game
                     new Q2Pl_v2(e).f93_Set(Mem.U8((0x80153F80u + (uint)(off + 7))));
                     new Q2Pl_v2(e).f92_Set(Mem.U8((0x80153F80u + (uint)(off + 11))));
                     new Q2Pl_v2(e).f81_Set(Mem.U8((0x80153F80u + (uint)(off + 15))));
-                    func_002A125C(new Q2Pl_v2(e).name.P, ((0x80153F80u + (uint)off) + (uint)16));
+                    LibC_StrCopy(new Q2Pl_v2(e).name.P, ((0x80153F80u + (uint)off) + (uint)16));
                     e -= 150u;
                 }
             }

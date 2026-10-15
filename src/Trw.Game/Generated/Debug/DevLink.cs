@@ -838,6 +838,138 @@ public static partial class Game
         finally { Stack.Free(36); }
     }
 
+    // ==== func_002AE25C @ 0x002AE25C [C]
+    public static int DevLink_ResetDbgPort()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002AE260");
+            byte v = 0;
+            Mem.Set(0x8014D3E0u, (sbyte)(0));
+            Mem.Set(0x8014D3E1u, (sbyte)(0));
+            Mem.Set(0x8014D3E2u, (byte)(0));
+            Mem.Set(0x8014D3E3u, (sbyte)(0));
+            Mem.Set(0x8014D3E4u, (sbyte)(0));
+            while (((osPiGetStatus() & (uint)(3)) != 0u))
+            {
+            }
+            Mem.Set(0xB2000000u, (short)(0));
+            while (((osPiGetStatus() & (uint)(3)) != 0u))
+            {
+            }
+            Mem.Set(0xB2000004u, (short)(0));
+            while (((osPiGetStatus() & (uint)(3)) != 0u))
+            {
+            }
+            Mem.Set(0xB2000008u, (short)(0));
+            while (((osPiGetStatus() & (uint)(3)) != 0u))
+            {
+            }
+            Mem.Set(0xB200000Cu, (short)(0));
+            while (((osPiGetStatus() & (uint)(3)) != 0u))
+            {
+            }
+            Mem.Set(0xB2000010u, (short)(0));
+            while (((osPiGetStatus() & (uint)(3)) != 0u))
+            {
+            }
+            v = (byte)(((int)(Mem.U8(0x8014D3E2u)) | 64));
+            Mem.Set(0x8014D3E2u, v);
+            while (((osPiGetStatus() & (uint)(3)) != 0u))
+            {
+            }
+            Mem.Set(0xB2000008u, (short)(v));
+            Mem.Set(0x8014D3E8u, 0);
+            return 1;
+        }
+    }
+
+    // ==== func_002AE25C @ 0x002AE25C [MIPS]
+    public static uint DevLink_ResetDbgPort_Entry_002AE25C(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002AE25C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002AE25C: ;
+                r16 = r16 << 8;
+                r29 = r29 - 24u;
+                Mem.Set((r29 + 20u), r31);
+                Mem.Set((r29 + 16u), r16);
+                r1 = 2148859904u;
+                Mem.Set((r1 - 11296u), (byte)r0);
+                r1 = 2148859904u;
+                Mem.Set((r1 - 11295u), (byte)r0);
+                r1 = 2148859904u;
+                Mem.Set((r1 - 11294u), (byte)r0);
+                r1 = 2148859904u;
+                Mem.Set((r1 - 11293u), (byte)r0);
+                r1 = 2148859904u;
+                Mem.Set((r1 - 11292u), (byte)r0);
+                L_L002AE294: ;
+                r2 = osPiGetStatus();
+                r2 = r2 & 3u;
+                { bool c_ = r2 != 0;  if (c_) goto L_L002AE294; }
+                r1 = 2986344448u;
+                Mem.Set((r1 + 0u), (ushort)r0);
+                L_L002AE2B0: ;
+                r2 = osPiGetStatus();
+                r2 = r2 & 3u;
+                { bool c_ = r2 != 0;  if (c_) goto L_L002AE2B0; }
+                r1 = 2986344448u;
+                Mem.Set((r1 + 4u), (ushort)r0);
+                L_L002AE2CC: ;
+                r2 = osPiGetStatus();
+                r2 = r2 & 3u;
+                { bool c_ = r2 != 0;  if (c_) goto L_L002AE2CC; }
+                r1 = 2986344448u;
+                Mem.Set((r1 + 8u), (ushort)r0);
+                L_L002AE2E8: ;
+                r2 = osPiGetStatus();
+                r2 = r2 & 3u;
+                { bool c_ = r2 != 0;  if (c_) goto L_L002AE2E8; }
+                r1 = 2986344448u;
+                Mem.Set((r1 + 12u), (ushort)r0);
+                L_L002AE304: ;
+                r2 = osPiGetStatus();
+                r2 = r2 & 3u;
+                { bool c_ = r2 != 0;  if (c_) goto L_L002AE304; }
+                r1 = 2986344448u;
+                Mem.Set((r1 + 16u), (ushort)r0);
+                L_L002AE320: ;
+                r2 = osPiGetStatus();
+                r2 = r2 & 3u;
+                { bool c_ = r2 != 0;  if (c_) goto L_L002AE320; }
+                r2 = 2148859904u;
+                r2 = Mem.U8((r2 - 11294u));
+                r2 = r2 | 64u;
+                r16 = r2;
+                r1 = 2148859904u;
+                Mem.Set((r1 - 11294u), (byte)r2);
+                L_L002AE34C: ;
+                r2 = osPiGetStatus();
+                r2 = r2 & 3u;
+                { bool c_ = r2 != 0; r2 = (uint)1; if (c_) goto L_L002AE34C; }
+                r31 = Mem.U32((r29 + 20u));
+                r1 = 2986344448u;
+                Mem.Set((r1 + 8u), (ushort)r16);
+                r16 = Mem.U32((r29 + 16u));
+                r1 = 2148859904u;
+                Mem.Set((r1 - 11288u), r0);
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002AE25C", r2); Stack.Free(384); }
+    }
+
     // ==== func_00446B80 @ 0x00446B80 [MIPS]
     public static uint Debug_SetWatchpointOvl(uint a0, uint a1, uint a2, uint a3)
     {
