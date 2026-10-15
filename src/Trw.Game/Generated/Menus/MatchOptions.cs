@@ -17,7 +17,7 @@ public static partial class Game
             Mem.Set(0x800E4EF0u, ResourcePool_Malloc((uint)(64)));
             ScreenWipe_Init(Mem.U32(0x800E4EF0u), 103, 0, 0, 0);
             new O04S4EF0(Mem.U32(0x800E4EF0u)).unk38_Set(BotSetup_GetMaxBots());
-            switch (Mem.S32(0x80154028u))
+            switch (Mem.S32(G.ArenaType))
             {
             case 1:
                 UiNode_SetDisabled(UiTree_FindNode((uint)(a), (uint)(863), default(uint), default(uint)), 1);

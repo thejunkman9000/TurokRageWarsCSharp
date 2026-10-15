@@ -1,0 +1,4 @@
+# address	name	confidence	note   (tab-separated; docs/NAMING.md)
+0x80146878	GameState	high	the game state id (State_* table D_800D29D8 index): 8 attract demo, 13 in-level play, 20 transition
+0x8015402C	ArenaLevel	high	level number of the next match (Arena_Set)
+0x80154028	ArenaType	high	game type of the next match (Arena_Set)

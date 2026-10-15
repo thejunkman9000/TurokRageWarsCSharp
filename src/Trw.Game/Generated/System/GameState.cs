@@ -966,7 +966,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002934DC");
-            return ((Mem.S32(0x80146878u) == 13) ? 1 : 0);
+            return ((Mem.S32(G.GameState) == 13) ? 1 : 0);
         }
     }
 

@@ -60,7 +60,7 @@ public sealed class HudValues : IHudValues
         v["ks"] = hires != 0 ? 1.0 : 0.75;
         v["localView"] = LocalView.Enabled ? 1 : 0;
         v["views"] = Mem.S32(ViewCount);
-        v["state"] = Mem.S32(0x80146878);
+        v["state"] = Mem.S32(G.GameState);
         v["frame"] = Mem.U32(FrameCounter);
         // match settings / rules
         v["trialKind"] = Mem.U8(Settings + 0xD);

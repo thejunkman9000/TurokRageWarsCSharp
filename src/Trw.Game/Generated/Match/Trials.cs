@@ -14,9 +14,9 @@ public static partial class Game
             int r = (-1);
             uint row = (0x80102B00u + (uint)(a * 400));
             int t = 0;
-            if ((Bits_Test((new O04Row190w(row).grid.P + (uint)(new O04Row190w(row).unkF * 5)), Mem.S32((0x8015402Cu + (uint)(0 * 4)))) == 0))
+            if ((Bits_Test((new O04Row190w(row).grid.P + (uint)(new O04Row190w(row).unkF * 5)), Mem.S32((G.ArenaLevel + (uint)(0 * 4)))) == 0))
             {
-                Bits_Assign((new O04Row190w(row).grid.P + (uint)(new O04Row190w(row).unkF * 5)), Mem.S32((0x8015402Cu + (uint)(0 * 4))), 1);
+                Bits_Assign((new O04Row190w(row).grid.P + (uint)(new O04Row190w(row).unkF * 5)), Mem.S32((G.ArenaLevel + (uint)(0 * 4))), 1);
                 t = (int)(Mem.U8((Mem.U32(0x800E4680u) + (uint)0)));
                 r = (t + 5000);
                 switch (t)
@@ -300,7 +300,7 @@ public static partial class Game
             int b2 = 0;
             row = (0x80102B00u + (uint)(a * 400));
             s3 = (-1);
-            if (((((int)(new Q03Cfg(0x801462C8u).unkD) == 1) && (new Q03Cfg(0x801462C8u).unk680 == 1)) && (Mem.S32(0x8015402Cu) >= 35)))
+            if (((((int)(new Q03Cfg(0x801462C8u).unkD) == 1) && (new Q03Cfg(0x801462C8u).unk680 == 1)) && (Mem.S32(G.ArenaLevel) >= 35)))
             {
                 switch ((int)(new Q03Cfg(0x801462C8u).ent[(int)(a)].f80))
                 {
@@ -442,7 +442,7 @@ public static partial class Game
             int s2 = (-1);
             int s0 = 0;
             uint p = 0u;
-            switch (Mem.S32(0x8015402Cu))
+            switch (Mem.S32(G.ArenaLevel))
             {
             case 4:
                 s0 = 0;

@@ -1608,8 +1608,8 @@ public static partial class Game
             int i = 0;
             int t = 0;
             uint cfg = 0u;
-            new O04ModeS4690(Mem.U32(0x800E4690u)).unkA44_Set(Mem.S32(0x8015402Cu));
-            if ((Mem.S32(0x8015402Cu) >= 37))
+            new O04ModeS4690(Mem.U32(0x800E4690u)).unkA44_Set(Mem.S32(G.ArenaLevel));
+            if ((Mem.S32(G.ArenaLevel) >= 37))
             {
                 new O04ModeS4690(Mem.U32(0x800E4690u)).unkA44_Set(0);
             }

@@ -500,7 +500,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00444484", (uint)a);
-            if ((Mem.S32(0x80146878u) == 8))
+            if ((Mem.S32(G.GameState) == 8))
             {
                 new O06A(a).unk8_Set((uint)((uint)(new O06A(a).unk8) | (uint)(16777216)));
             }

@@ -42,7 +42,7 @@ public static partial class Game
                 switch ((int)(new Q03Cfg(g).unkD))
                 {
                 case 0:
-                    Profile_AddWin(new Q03S53(Mem.U32(0x800E53C0u)).unkF0[(int)(0)], Mem.S32(0x8015402Cu));
+                    Profile_AddWin(new Q03S53(Mem.U32(0x800E53C0u)).unkF0[(int)(0)], Mem.S32(G.ArenaLevel));
                     Results_ComputeMatchAwards_0042D2F8();
                     new Q03S53(Mem.U32(0x800E53C0u)).unk324_Set(0);
                     break;
@@ -138,7 +138,7 @@ public static partial class Game
                     }
                 }
                 w = UiTree_FindNode((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)(570), default(uint), default(uint));
-                if ((Mem.S32(0x80154028u) == 0))
+                if ((Mem.S32(G.ArenaType) == 0))
                 {
                     Mem.Set((w + (uint)56), Mem.U32(0x800D75B0u));
                 }
@@ -147,7 +147,7 @@ public static partial class Game
                     Mem.Set((w + (uint)56), Mem.U32(0x800D75B4u));
                 }
                 w = UiTree_FindNode((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)(571), default(uint), default(uint));
-                switch (Mem.S32(0x80154028u))
+                switch (Mem.S32(G.ArenaType))
                 {
                 case 3:
                     Mem.Set((w + (uint)56), Mem.U32(0x800D75B0u));
@@ -161,7 +161,7 @@ public static partial class Game
                     break;
                 }
                 w = UiTree_FindNode((uint)(a), (uint)(565), default(uint), default(uint));
-                Level_CopyLevelName(0x8011FE88u, Mem.S32(0x8015402Cu), _fp, 63);
+                Level_CopyLevelName(0x8011FE88u, Mem.S32(G.ArenaLevel), _fp, 63);
                 LibC_StrCopy(new Q03S53(Mem.U32(0x800E53C0u)).unk2E0.P, Str_ToUpper(_fp));
                 Mem.Set((w + (uint)56), new Q03S53(Mem.U32(0x800E53C0u)).unk2E0.P);
                 new Q03S53(Mem.U32(0x800E53C0u)).unkE4_Set(UiTree_FindNode((uint)(a), (uint)(573), default(uint), default(uint)));
@@ -238,7 +238,7 @@ public static partial class Game
                 UiNode_SetVisible(w, 1);
                 Str_FormatInto((new Q03S53(Mem.U32(0x800E53C0u)).strB.P + (uint)(i * 25)), 0x800E1B20u, (uint)(((int)(new Q03Ent(e).f2) + (int)(new Q03Ent(e).f0))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                 new Q03Wid(w).unk38_Set((new Q03S53(Mem.U32(0x800E53C0u)).strB.P + (uint)(i * 25)));
-                if ((Mem.S32((0x80154028u + (uint)(0 * 4))) == 0))
+                if ((Mem.S32((G.ArenaType + (uint)(0 * 4))) == 0))
                 {
                     UiNode_SetVisible(UiTree_FindNode((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id18)), default(uint), default(uint)), 0);
                     Results_ShowTeamEmblem(sel, i, 617);
@@ -257,7 +257,7 @@ public static partial class Game
                     Str_FormatInto((new Q03S53(Mem.U32(0x800E53C0u)).strC.P + (uint)(i * 25)), 0x800E1B24u, (uint)(v), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                     new Q03Wid(w).unk38_Set((new Q03S53(Mem.U32(0x800E53C0u)).strC.P + (uint)(i * 25)));
                 }
-                if ((Mem.S32((0x80154028u + (uint)(0 * 4))) == 3))
+                if ((Mem.S32((G.ArenaType + (uint)(0 * 4))) == 3))
                 {
                     UiNode_SetVisible(UiTree_FindNode((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id1C)), default(uint), default(uint)), 0);
                     Results_ShowTeamEmblem(sel, i, 622);
@@ -268,7 +268,7 @@ public static partial class Game
                     new Q03Wid(w).unk10_Set((byte)(175));
                     UiNode_SetVisible(w, 1);
                     p = w;
-                    switch (Mem.S32((0x80154028u + (uint)(0 * 4))))
+                    switch (Mem.S32((G.ArenaType + (uint)(0 * 4))))
                     {
                     case 0:
                         Str_FormatInto((new Q03S53(Mem.U32(0x800E53C0u)).strD.P + (uint)(i * 25)), 0x800E1B20u, (uint)((int)(new Q03Ent(e).f8)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));

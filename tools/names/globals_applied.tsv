@@ -1,0 +1,4 @@
+# address -> global name in effect (written by tools/rename/apply_names.py; do not edit)
+0x80146878	GameState
+0x80154028	ArenaType
+0x8015402C	ArenaLevel

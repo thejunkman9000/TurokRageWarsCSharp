@@ -7968,7 +7968,7 @@ public static partial class Game
             {
                 return;
             }
-            r = (uint)(Resource_GetIndexedCached(0x8011FE88u, Mem.S32(0x8015402Cu)));
+            r = (uint)(Resource_GetIndexedCached(0x8011FE88u, Mem.S32(G.ArenaLevel)));
             for (i = 0; (i < 8); ++i)
             {
                 int id = (int)(new O04Rec(r).ids[(int)(i)]);

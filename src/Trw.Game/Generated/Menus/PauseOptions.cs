@@ -159,7 +159,7 @@ public static partial class Game
                 case 0:
                     Video_RequestResolution(0);
                     UiNode_SetVisible((uint)(a0), 1);
-                    Flyby_QueueById((Mem.S32(0x8015402Cu) + 601));
+                    Flyby_QueueById((Mem.S32(G.ArenaLevel) + 601));
                     Mem.Set((Mem.U32(0x800E2830u) + (uint)216), (-1));
                     new O3Scr3C(Mem.U32(0x800E2830u)).f3C_Set(st);
                     break;

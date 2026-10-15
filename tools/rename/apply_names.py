@@ -21,7 +21,7 @@ SRC = os.path.join(REPO, 'src')
 GEN = os.path.join(SRC, 'Trw.Game', 'Generated')
 NAMES = os.path.join(REPO, 'tools', 'names', 'functions.tsv')
 APPLIED = os.path.join(REPO, 'tools', 'names', 'applied.tsv')
-SPECIAL = {'_Registry.cs', '_Stubs.cs', '_RegisterRecompiled.cs', '_NameMap.cs'}       # generated tables: renamed in place, never split / grouped
+SPECIAL = {'_Registry.cs', '_Stubs.cs', '_RegisterRecompiled.cs', '_NameMap.cs', '_Globals.cs'}       # generated tables: renamed in place, never split / grouped
 MARK = re.compile(r'^    // ==== (\S+) @ (0x[0-9A-F]{8}|-) \[(C|MIPS)\]\s*$', re.M)
 CS_KEYWORDS = set('abstract as base bool break byte case catch char checked class const continue decimal default delegate do double else enum event '
                   'explicit extern false finally fixed float for foreach goto if implicit in int interface internal is lock long namespace new null '
@@ -280,6 +280,8 @@ def main():
     for p, s in texts.items():
         t = rename_text(s, mapping)
         if t != s: texts[p] = t; changed += write_if_changed(p, t)
+    # 1b. named globals: raw guest addresses -> G.<Name> constants (tools/names/globals.tsv)
+    gchanged = apply_globals(texts)
     # 2. regroup the generated members
     reverse = {w: o for o, w in desired.items() if w != o}
     reverse.update({c: o for o, c in applied.items() if c not in reverse})
@@ -313,7 +315,76 @@ def main():
     out = ['# original name -> name in effect (written by tools/rename/apply_names.py; do not edit)']
     out += [f'{o}\t{w}' for o, w in sorted(desired.items()) if w != o]
     write_if_changed(APPLIED, '\n'.join(out) + '\n')
-    print(f'renamed {len(mapping)} identifiers ({changed} files touched); {len(targets)} member files ({written} written, {removed} removed)')
+    print(f'renamed {len(mapping)} identifiers ({changed} files touched); globals: {gchanged} files touched; {len(targets)} member files ({written} written, {removed} removed)')
+
+
+# ---------------------------------------------------------------------------------------------- globals
+
+GLOBALS = os.path.join(REPO, 'tools', 'names', 'globals.tsv')
+GAPPLIED = os.path.join(REPO, 'tools', 'names', 'globals_applied.tsv')
+GFILE = os.path.join(GEN, '_Globals.cs')
+LIT = re.compile(r'\b0x(80[0-9A-Fa-f]{6})([uU]?)\b')
+GREF = re.compile(r'\bG\.([A-Za-z_][A-Za-z0-9_]*)\b')
+
+
+def load_globals():
+    """address -> dict(name, conf, note) from tools/names/globals.tsv: address <TAB> name <TAB> confidence <TAB> note"""
+    rows, seen, errs = {}, {}, []
+    if os.path.exists(GLOBALS):
+        for ln, line in enumerate(read(GLOBALS).splitlines(), 1):
+            if not line.strip() or line.startswith('#'): continue
+            f = [x.strip() for x in line.split('\t')] + [''] * 4
+            a, n, c, note = f[:4]
+            if not re.fullmatch(r'0x80[0-9A-Fa-f]{6}', a): errs.append(f'globals.tsv:{ln}: bad address "{a}"'); continue
+            if not n: continue
+            ai = int(a, 16)
+            if not re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*', n) or n in CS_KEYWORDS: errs.append(f'globals.tsv:{ln}: bad name "{n}"')
+            elif n in seen: errs.append(f'globals.tsv:{ln}: "{n}" also names {seen[n]:08X}')
+            elif ai in rows: errs.append(f'globals.tsv:{ln}: address {a} listed twice')
+            elif c == 'low' and not n.upper().endswith('%08X' % ai): errs.append(f'globals.tsv:{ln}: low name without the address')
+            else: rows[ai] = dict(name=n, conf=c, note=note); seen[n] = ai
+    if errs: print('\n'.join(errs[:50])); sys.exit(f'{len(errs)} problems in {GLOBALS}')
+    return rows
+
+
+def apply_globals(texts):
+    """Replaces the exact address literals of named globals with G.<Name> in src/Trw.Game (code and comments, not strings), follows renames of
+    globals (and turns a dropped name back into its literal), and writes Generated/_Globals.cs. A const uint folds to the same IL as the literal."""
+    rows = load_globals()
+    old = {}
+    if os.path.exists(GAPPLIED):
+        for line in read(GAPPLIED).splitlines():
+            if line and not line.startswith('#'):
+                a, n = line.split('\t')[:2]; old[n] = int(a, 16)
+    want = {a: r['name'] for a, r in rows.items()}
+    def ref(m):                                                              # G.OldName -> G.NewName / literal
+        n = m.group(1)
+        if n in old and want.get(old[n]) != n:
+            a = old[n]
+            return f'G.{want[a]}' if a in want else '0x%08Xu' % a
+        return m.group(0)
+    def lit(m):
+        a = int(m.group(1), 16)
+        return f'G.{want[a]}' if a in want else m.group(0)
+    game = os.path.join(SRC, 'Trw.Game') + os.sep
+    n = 0
+    for p, s in texts.items():
+        if not p.startswith(game) or p == GFILE: continue
+        t = ''.join(LIT.sub(lit, GREF.sub(ref, seg)) if code else seg for code, seg in segments(s))
+        if t != s: texts[p] = t; n += write_if_changed(p, t)
+    out = ['// <auto-generated> by tools/rename/apply_names.py from tools/names/globals.tsv: named guest addresses (KSEG0). </auto-generated>',
+           'namespace Trw.Game;', '', '/// <summary>Named guest RAM addresses of the game\'s globals (docs/NAMING.md). Use them where the code had the raw address.</summary>',
+           'public static class G', '{']
+    for a in sorted(rows):
+        r = rows[a]
+        note = r['note'].replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+        out.append(f'    /// <summary>{note} [{r["conf"] or "?"}]</summary>')
+        out.append(f'    public const uint {r["name"]} = 0x{a:08X}u;')
+    out.append('}')
+    write_if_changed(GFILE, '\n'.join(out) + '\n')
+    write_if_changed(GAPPLIED, '\n'.join(['# address -> global name in effect (written by tools/rename/apply_names.py; do not edit)'] +
+                                         [f'0x{a:08X}\t{r["name"]}' for a, r in sorted(rows.items())]) + '\n')
+    return n
 
 
 if __name__ == '__main__':

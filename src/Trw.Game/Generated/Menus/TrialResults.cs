@@ -561,7 +561,7 @@ public static partial class Game
             UiNode_SetVisible(w, 1);
             new O05Wd2(w).b10_Set(col);
             w6 = w;
-            switch (Mem.S32(0x80154028u))
+            switch (Mem.S32(G.ArenaType))
             {
             case 0:
                 Str_FormatInto(new O05M30_v2(Mem.U32(0x800E5830u)).buf46.P, fmt, (uint)((int)(new O05R150c(r).h8)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
@@ -715,7 +715,7 @@ public static partial class Game
             new O05G((g = 0x801468A0u)).f54_Set(0);
             if ((new O05G(g).fA8 == 1))
             {
-                if ((Mem.S32(0x8015402Cu) >= 35))
+                if ((Mem.S32(G.ArenaLevel) >= 35))
                 {
                     switch ((int)(Mem.U8((g - (uint)1483))))
                     {
@@ -842,7 +842,7 @@ public static partial class Game
                     Mem.Set(0x801468F4u, 0);
                     if ((Mem.S32(0x80146948u) == t))
                     {
-                        if ((Mem.S32(0x8015402Cu) >= 35))
+                        if ((Mem.S32(G.ArenaLevel) >= 35))
                         {
                             switch ((int)(Mem.U8(0x801462D5u)))
                             {

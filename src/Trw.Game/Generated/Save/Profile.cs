@@ -1076,16 +1076,16 @@ public static partial class Game
             switch ((int)(Mem.U8(0x801462D5u)))
             {
             case 1:
-                Bits_Assign(new O04Row190e((0x80102B00u + (uint)(a * 400))).unk7E.P, Mem.S32(0x8015402Cu), 1);
+                Bits_Assign(new O04Row190e((0x80102B00u + (uint)(a * 400))).unk7E.P, Mem.S32(G.ArenaLevel), 1);
                 break;
             case 2:
-                Bits_Assign(new O04Row190e((0x80102B00u + (uint)(a * 400))).unk83.P, Mem.S32(0x8015402Cu), 1);
+                Bits_Assign(new O04Row190e((0x80102B00u + (uint)(a * 400))).unk83.P, Mem.S32(G.ArenaLevel), 1);
                 break;
             case 3:
-                Bits_Assign(new O04Row190e((0x80102B00u + (uint)(a * 400))).unk88.P, Mem.S32(0x8015402Cu), 1);
+                Bits_Assign(new O04Row190e((0x80102B00u + (uint)(a * 400))).unk88.P, Mem.S32(G.ArenaLevel), 1);
                 break;
             case 4:
-                Bits_Assign(new O04Row190e((0x80102B00u + (uint)(a * 400))).unk8D.P, Mem.S32(0x8015402Cu), 1);
+                Bits_Assign(new O04Row190e((0x80102B00u + (uint)(a * 400))).unk8D.P, Mem.S32(G.ArenaLevel), 1);
                 break;
             }
         }

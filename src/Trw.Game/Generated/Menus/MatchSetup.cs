@@ -652,8 +652,8 @@ public static partial class Game
                 new Q03Cfg(c).unkD_Set((byte)(0));
                 new Q03Cfg(c).s24_Set((sbyte)(0));
                 new Q03Cfg(c).s25_Set((sbyte)(0));
-                Mem.Set((0x80154028u + (uint)(0 * 4)), 2);
-                Mem.Set((0x80154028u + (uint)(1 * 4)), trw_arena_index(-1, Mem.S32(((_fp + 16u) + (uint)((Random_Next() % 4) * 4)))));       // tools/overrides/AttractDemo_Setup.c: TRW_ARENA pins the demo arena too
+                Mem.Set((G.ArenaType + (uint)(0 * 4)), 2);
+                Mem.Set((G.ArenaType + (uint)(1 * 4)), trw_arena_index(-1, Mem.S32(((_fp + 16u) + (uint)((Random_Next() % 4) * 4)))));       // tools/overrides/AttractDemo_Setup.c: TRW_ARENA pins the demo arena too
             }
         }
         finally { Stack.Free(32); }
@@ -665,7 +665,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0042EB80", (uint)a, (uint)b);
-            uint p = 0x8015402Cu;
+            uint p = G.ArenaLevel;
             b = trw_arena_index(a, b);       // tools/overrides/Arena_Set.c: TRW_ARENA test switch (Os/TestHooks.cs)
             a = trw_arena_type(a);
             Mem.Set(p, b);
@@ -831,13 +831,13 @@ public static partial class Game
             int v = 0;
             if (((int)(Mem.U8(0x801462D5u)) == 1))
             {
-                v = (int)(new O04U16s((uint)(Resource_GetIndexedCached(0x8011FE88u, Mem.S32(0x8015402Cu)))).unk2);
+                v = (int)(new O04U16s((uint)(Resource_GetIndexedCached(0x8011FE88u, Mem.S32(G.ArenaLevel)))).unk2);
             }
             else
             {
-                v = Mem.S32(0x8015402Cu);
+                v = Mem.S32(G.ArenaLevel);
             }
-            if ((Mem.S32(0x8015402Cu) != 0))
+            if ((Mem.S32(G.ArenaLevel) != 0))
             {
                 return ((v * 10) + 3010);
             }
