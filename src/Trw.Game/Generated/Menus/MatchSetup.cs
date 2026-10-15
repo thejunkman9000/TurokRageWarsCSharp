@@ -687,7 +687,7 @@ public static partial class Game
             {
                 MatchSetup_ApplySettings((float)(new O04Cfg(0x801462C8u).s24), 0, (int)(new O04Cfg(0x801462C8u).s27), (int)(new O04Cfg(0x801462C8u).s26), 1, 0, 0);
             }
-            func_0044EACC(0x8011FAC0u, MatchSetup_GetLevelCueId_0042F014());
+            Game_StartMatchLevel(0x8011FAC0u, MatchSetup_GetLevelCueId_0042F014());
         }
     }
 
@@ -705,7 +705,7 @@ public static partial class Game
             {
                 MatchSetup_ApplySettings((float)(new O04Cfg(0x801462C8u).s24), 0, (int)(new O04Cfg(0x801462C8u).s27), (int)(new O04Cfg(0x801462C8u).s26), 0, 1, 1);
             }
-            func_0044EACC(0x8011FAC0u, MatchSetup_GetLevelCueId_0042F014());
+            Game_StartMatchLevel(0x8011FAC0u, MatchSetup_GetLevelCueId_0042F014());
         }
     }
 
@@ -723,7 +723,7 @@ public static partial class Game
             {
                 MatchSetup_ApplySettings((float)(new O04Cfg(0x801462C8u).s24), (int)(new O04Cfg(0x801462C8u).s25), (int)(new O04Cfg(0x801462C8u).s27), (int)(new O04Cfg(0x801462C8u).s26), 0, 1, 0);
             }
-            func_0044EACC(0x8011FAC0u, MatchSetup_GetLevelCueId_0042F014());
+            Game_StartMatchLevel(0x8011FAC0u, MatchSetup_GetLevelCueId_0042F014());
         }
     }
 
@@ -741,7 +741,7 @@ public static partial class Game
             {
                 MatchSetup_ApplySettings((float)(new O04Cfg(0x801462C8u).s24), (int)(new O04Cfg(0x801462C8u).s25), (int)(new O04Cfg(0x801462C8u).s27), (int)(new O04Cfg(0x801462C8u).s26), 0, 0, 0);
             }
-            func_0044EACC(0x8011FAC0u, MatchSetup_GetLevelCueId_0042F014());
+            Game_StartMatchLevel(0x8011FAC0u, MatchSetup_GetLevelCueId_0042F014());
         }
     }
 
@@ -894,7 +894,7 @@ public static partial class Game
             uint p = 0u;
             Mem.Set(0x800E5950u, ResourcePool_Malloc((uint)(8)));
             CameraManager_Init(0x80145088u, 0);
-            func_0044A600((0x80145088u - (uint)72), 0, 0);
+            Player_InitPool((0x80145088u - (uint)72), 0, 0);
             Level_Load(0x8011FE88u, (uint)(0), (uint)(0), default(uint));
             if ((Resource_GetLoadFlags() == 0))
             {
@@ -922,8 +922,175 @@ public static partial class Game
         }
     }
 
+    // ==== func_0043DFC0 @ 0x0043DFC0 [C]
+    public static void MatchSetup_ApplySettingsLegacy(float a, int b, int c, int d, int e)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0043DFC0", 0u, (uint)b, (uint)c, (uint)d);
+            int i = 0;
+            new S10Game(0x801468A0u).unk54_Set(c);
+            new S10Game(0x801468A0u).unk24_Set(d);
+            new S10Game(0x801468A0u).unk80_Set(0);
+            new S10Game(0x801468A0u).unk14_Set((a * 900.0f));
+            new S10Game(0x801468A0u).unk6C_Set(2560);
+            new S10Game(0x801468A0u).unk18_Set(b);
+            new S10Game(0x801468A0u).unk1C_Set(0);
+            new S10Game(0x801468A0u).unk78_Set(e);
+            for (i = 0; (i < 5); ++i)
+            {
+                new S10Game(0x801468A0u).unk2C.Set((int)(i), 0);
+                new S10Game(0x801468A0u).unk40.Set((int)(i), 0);
+            }
+            new S10Game(0x801468A0u).unk28_Set(0);
+            new S10Game(0x801468A0u).unk20_Set(0);
+            if ((new S10Game(0x801468A0u).unk14 == 0.0f))
+            {
+                new S10Game(0x801468A0u).unk14_Set((-1.0f));
+            }
+        }
+    }
+
+    // ==== func_00444024 @ 0x00444024 [MIPS]
+    public static uint Settings_InitDefaultsHead_00444024(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00444024", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_00444024: ;
+                r5 = Mem.U32((r5 + 88u));
+                { bool c_ = r5 == 0;  if (c_) goto L_L004441D4; }
+                r29 = r29 - 48u;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r4;
+                r6 = (uint)1;
+                Mem.Set((r29 + 16u), r16);
+                r16 = (uint)9;
+                r5 = r17 + r16;
+                r3 = r6;
+                r2 = (uint)128;
+                Mem.Set((r29 + 40u), r31);
+                Mem.Set((r29 + 36u), r21);
+                Mem.Set((r29 + 32u), r20);
+                Mem.Set((r29 + 28u), r19);
+                Mem.Set((r29 + 24u), r18);
+                Mem.Set((r17 + 24u), (byte)r2);
+                r2 = (uint)250;
+                Mem.Set((r17 + 25u), (byte)r2);
+                r2 = (uint)255;
+                Mem.Set((r17 + 26u), (byte)r2);
+                r2 = (uint)128;
+                Mem.Set((r17 + 20u), (ushort)r2);
+                r4 = Mem.U8((r17 + 21u));
+                r1 = 2148401152u;
+                Cpu.SetW(0, Mem.U32((r1 + 10136u)));
+                r2 = (uint)16;
+                Mem.Set((r17 + 8u), r2);
+                r2 = 67108864u;
+                Mem.Set((r17 + 0u), r0);
+                Mem.Set((r17 + 4u), r0);
+                Mem.Set((r17 + 0u), r2);
+                Mem.Set((r17 + 4u), r2);
+                r2 = (uint)-1;
+                Mem.Set((r17 + 4u), r2);
+                r2 = (uint)10;
+                Mem.Set((r17 + 23u), (byte)r3);
+                Mem.Set((r17 + 16u), r0);
+                Mem.Set((r17 + 27u), (byte)r3);
+                Mem.Set((r17 + 28u), (byte)r0);
+                Mem.Set((r17 + 31u), (byte)r0);
+                Mem.Set((r17 + 1408u), (byte)r0);
+                Mem.Set((r17 + 36u), (byte)r2);
+                Mem.Set((r17 + 37u), (byte)r2);
+                Mem.Set((r17 + 38u), (byte)r2);
+                Mem.Set((r17 + 39u), (byte)r2);
+                Mem.Set((r17 + 40u), (byte)r3);
+                Mem.Set((r17 + 41u), (byte)r0);
+                Mem.Set((r17 + 42u), (byte)r0);
+                Mem.Set((r17 + 43u), (byte)r3);
+                Mem.Set((r17 + 22u), (byte)r4);
+                Mem.Set((r17 + 32u), Cpu.W(0));
+                L_L004440F8: ;
+                Mem.Set((r5 + 44u), (byte)r6);
+                r16 = r16 - 1u;
+                { bool c_ = (int)r16 >= 0; r5 = r5 - 1u; if (c_) goto L_L004440F8; }
+                r16 = r0;
+                r21 = (uint)134;
+                r20 = (uint)132;
+                r19 = (uint)1;
+                r18 = r16;
+                r2 = (uint)3;
+                Mem.Set((r17 + 54u), (byte)r0);
+                Mem.Set((r17 + 55u), (byte)r2);
+                Mem.Set((r17 + 56u), (byte)r0);
+                Mem.Set((r17 + 57u), (byte)r2);
+                L_L00444130: ;
+                r4 = r18 + r17;
+                r4 = r4 + 208u;
+                Mem.Set((r4 + 120u), (byte)r0);
+                Mem.Set((r4 + 121u), (byte)r21);
+                Mem.Set((r4 + 122u), (byte)r20);
+                Mem.Set((r4 + 124u), (byte)r0);
+                Mem.Set((r4 + 123u), (byte)r0);
+                Mem.Set((r4 + 125u), (byte)r19);
+                Mem.Set((r4 + 126u), (byte)r0);
+                Mem.Set((r4 + 127u), (byte)r16);
+                Mem.Set((r4 + 128u), (byte)r0);
+                Mem.Set((r4 + 130u), (byte)r0);
+                Mem.Set((r4 + 131u), (byte)r0);
+                Mem.Set((r4 + 129u), (byte)r0);
+                Mem.Set((r4 + 148u), (byte)r0);
+                Mem.Set((r4 + 149u), (byte)r0); Settings_SetDefaultPlayerName(r4);
+                r16 = r16 + 1u;
+                r2 = (uint)((int)r16 < 8 ? 1 : 0);
+                { bool c_ = r2 != 0; r18 = r18 + 150u; if (c_) goto L_L00444130; }
+                r4 = r17 + 58u;
+                r2 = (uint)134;
+                Mem.Set((r4 + 121u), (byte)r2);
+                r2 = (uint)132;
+                r16 = (uint)1;
+                Mem.Set((r4 + 120u), (byte)r0);
+                Mem.Set((r4 + 122u), (byte)r2);
+                Mem.Set((r4 + 124u), (byte)r0);
+                Mem.Set((r4 + 123u), (byte)r0);
+                Mem.Set((r4 + 125u), (byte)r16);
+                Mem.Set((r4 + 126u), (byte)r0);
+                Mem.Set((r4 + 127u), (byte)r0);
+                Mem.Set((r4 + 128u), (byte)r0);
+                Mem.Set((r4 + 130u), (byte)r0);
+                Mem.Set((r4 + 131u), (byte)r0);
+                Mem.Set((r4 + 129u), (byte)r0);
+                Mem.Set((r4 + 148u), (byte)r0);
+                Mem.Set((r4 + 149u), (byte)r0); Settings_SetDefaultPlayerName(r4);
+                Mem.Set((r17 + 178u), (byte)r16);
+                L_L004441D4: ;
+                Mem.Set((r17 + 29u), (byte)r0);
+                Mem.Set((r17 + 30u), (byte)r16);
+                Mem.Set((r17 + 13u), (byte)r0);
+                r31 = Mem.U32((r29 + 40u));
+                r21 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 48u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00444024", r2); Stack.Free(384); }
+    }
+
     // ==== func_00444030 @ 0x00444030 [C]
-    public static void func_00444030_func_00444204(uint a, byte b)
+    public static void Settings_InitPlayerRecordTwin(uint a, byte b)
     {
         unchecked
         {
@@ -942,7 +1109,7 @@ public static partial class Game
             new O06A_v17(a).unk81_Set((byte)(0));
             new O06A_v17(a).unk94_Set((byte)(0));
             new O06A_v17(a).unk95_Set((byte)(0));
-            func_00444260(a);
+            Settings_SetDefaultPlayerName(a);
         }
     }
 
@@ -988,13 +1155,179 @@ public static partial class Game
             new O06B_v10(a).unk39_Set((byte)(3));
             for (i = 0; (i < 8); ++i)
             {
-                func_00444030_func_00444204(((a + (uint)208) + (uint)(i * 150)), (byte)(i));
+                Settings_InitPlayerRecordTwin(((a + (uint)208) + (uint)(i * 150)), (byte)(i));
             }
-            func_00444030_func_00444204((a + (uint)58), (byte)(0));
+            Settings_InitPlayerRecordTwin((a + (uint)58), (byte)(0));
             new O06B_v10(a).unkB2_Set((byte)(1));
             new O06B_v10(a).unk1D_Set((byte)(0));
             new O06B_v10(a).unk1E_Set((byte)(1));
             new O06B_v10(a).unkD_Set((byte)(0));
         }
+    }
+
+    // ==== func_00444204 @ 0x00444204 [C]
+    public static void Settings_InitPlayerRecord(uint a, byte b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00444204", (uint)a, (uint)b);
+            new O06A_v17(a).unk79_Set((byte)(134));
+            new O06A_v17(a).unk7A_Set((byte)(132));
+            new O06A_v17(a).unk78_Set((byte)(0));
+            new O06A_v17(a).unk7C_Set((byte)(0));
+            new O06A_v17(a).unk7B_Set((byte)(0));
+            new O06A_v17(a).unk7D_Set((byte)(1));
+            new O06A_v17(a).unk7E_Set((byte)(0));
+            new O06A_v17(a).unk7F_Set(b);
+            new O06A_v17(a).unk80_Set((byte)(0));
+            new O06A_v17(a).unk82_Set((byte)(0));
+            new O06A_v17(a).unk83_Set((byte)(0));
+            new O06A_v17(a).unk81_Set((byte)(0));
+            new O06A_v17(a).unk94_Set((byte)(0));
+            new O06A_v17(a).unk95_Set((byte)(0));
+            Settings_SetDefaultPlayerName(a);
+        }
+    }
+
+    // ==== func_00444260 @ 0x00444260 [C]
+    public static void Settings_SetDefaultPlayerName(uint a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00444260", (uint)a);
+            int i = 0;
+            switch ((int)(new O06A_v24(a).unk7F))
+            {
+            default:
+            case 0:
+                for (i = 0; (i < 8); ++i)
+                {
+                    new O06A_v24(a).unk84.Set((int)(i), Mem.U8((Mem.U32(0x800D7C70u) + (uint)i)));
+                }
+                break;
+            case 1:
+                for (i = 0; (i < 8); ++i)
+                {
+                    new O06A_v24(a).unk84.Set((int)(i), Mem.U8((Mem.U32(0x800D7C74u) + (uint)i)));
+                }
+                break;
+            case 2:
+                for (i = 0; (i < 8); ++i)
+                {
+                    new O06A_v24(a).unk84.Set((int)(i), Mem.U8((Mem.U32(0x800D7C78u) + (uint)i)));
+                }
+                break;
+            case 3:
+                for (i = 0; (i < 8); ++i)
+                {
+                    new O06A_v24(a).unk84.Set((int)(i), Mem.U8((Mem.U32(0x800D7C7Cu) + (uint)i)));
+                }
+                break;
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+                break;
+            }
+        }
+    }
+
+    // ==== func_004442B8 @ 0x004442B8 [MIPS]
+    public static uint Settings_SetDefaultPlayerNameEntry_004442B8(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_004442B8", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_004442B8: ;
+                r5 = r0;
+                L_L004442BC: ;
+                r2 = 2148335616u;
+                r2 = Mem.U32((r2 + 31860u));
+                r3 = r4 + r5;
+                r2 = r2 + r5;
+                r2 = Mem.U8((r2 + 0u));
+                r5 = r5 + 1u;
+                Mem.Set((r3 + 132u), (byte)r2);
+                r2 = (uint)((int)r5 < 8 ? 1 : 0);
+                { bool c_ = r2 != 0;  if (c_) goto L_L004442BC; }
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_004442B8", r2); Stack.Free(384); }
+    }
+
+    // ==== func_004442EC @ 0x004442EC [MIPS]
+    public static uint Settings_SetDefaultPlayerNameEntry_004442EC(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_004442EC", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_004442EC: ;
+                r5 = r0;
+                L_L004442F0: ;
+                r2 = 2148335616u;
+                r2 = Mem.U32((r2 + 31864u));
+                r3 = r4 + r5;
+                r2 = r2 + r5;
+                r2 = Mem.U8((r2 + 0u));
+                r5 = r5 + 1u;
+                Mem.Set((r3 + 132u), (byte)r2);
+                r2 = (uint)((int)r5 < 8 ? 1 : 0);
+                { bool c_ = r2 != 0;  if (c_) goto L_L004442F0; }
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_004442EC", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00444320 @ 0x00444320 [MIPS]
+    public static uint Settings_SetDefaultPlayerNameEntry_00444320(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00444320", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_00444320: ;
+                r5 = r0;
+                L_L00444324: ;
+                r2 = 2148335616u;
+                r2 = Mem.U32((r2 + 31868u));
+                r3 = r4 + r5;
+                r2 = r2 + r5;
+                r2 = Mem.U8((r2 + 0u));
+                r5 = r5 + 1u;
+                Mem.Set((r3 + 132u), (byte)r2);
+                r2 = (uint)((int)r5 < 8 ? 1 : 0);
+                { bool c_ = r2 != 0;  if (c_) goto L_L00444324; }
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00444320", r2); Stack.Free(384); }
     }
 }

@@ -661,7 +661,7 @@ public static partial class Game
                 L_I002A9C6C: ;
                 r7 = Cpu.W(0);
                 L_I002A9C70: ;
-                Cpu.SetS(0, func_0044239C((byte)r4, (byte)r5, Cpu.U2F(r6), Cpu.U2F(r7)));
+                Cpu.SetS(0, Text_GetCharAdvance((byte)r4, (byte)r5, Cpu.U2F(r6), Cpu.U2F(r7)));
                 L_I002A9C78: ;
                 Cpu.SetS(20, Cpu.S(0)); goto L_L002A9E20;
                 L_L002A9C80: ;
@@ -1618,6 +1618,50 @@ public static partial class Game
         }
     }
 
+    // ==== func_0044239C @ 0x0044239C [C]
+    public static float Text_GetCharAdvance(byte c, byte n, float x, float y)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0044239C", (uint)c, (uint)n);
+            float k = Mem.F32(0x800E2528u);
+            switch ((int)(c))
+            {
+            case 36:
+            case 38:
+            case 126:
+                return y;
+            case 73:
+            case 105:
+                k = Mem.F32(0x800E26A8u);
+                break;
+            case 76:
+            case 108:
+                if ((((int)(n) == 116) || ((int)(n) == 84)))
+                {
+                    k = Mem.F32(0x800E26ACu);
+                }
+                break;
+            case 65:
+            case 97:
+                if ((((int)(n) == 116) || ((int)(n) == 84)))
+                {
+                    k = Mem.F32(0x800E26B0u);
+                }
+                break;
+            case 77:
+            case 109:
+                k = Mem.F32(0x800E26B4u);
+                break;
+            case 33:
+            case 46:
+                k = Mem.F32(0x800E26B8u);
+                break;
+            }
+            return (k * x);
+        }
+    }
+
     // ==== func_00442460 @ 0x00442460 [C]
     public static float Text_MeasureString(uint s, float x, float y)
     {
@@ -1628,7 +1672,7 @@ public static partial class Game
             for (; (((s != 0u) && ((int)(Mem.U8(s)) != 0)) && ((int)(Mem.U8(s)) != 10)); )
             {
                 byte c = Mem.U8(((s += 1u) - 1u));
-                w = (float)((float)(w) + func_0044239C((byte)((int)(c)), (byte)((int)(Mem.U8(s))), x, y));
+                w = (float)((float)(w) + Text_GetCharAdvance((byte)((int)(c)), (byte)((int)(Mem.U8(s))), x, y));
             }
             return w;
         }

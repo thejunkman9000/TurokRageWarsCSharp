@@ -17908,292 +17908,292 @@ public static partial class Game
         });
         Funcs.Add(0x00435E50u, "func_00435E50", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00435E50((int)a0, (int)a1, a2, (int)a3);
+            var v_ = PauseMenu_OnButton((int)a0, (int)a1, a2, (int)a3);
             return (uint)v_;
         });
         Funcs.Add(0x00435E98u, "func_00435E98", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00435E98();
+            var v_ = PauseMenu_OnCancel();
             return (uint)v_;
         });
         Funcs.Add(0x00435EB8u, "func_00435EB8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00435EB8();
+            var v_ = PauseMenu_OnSelect();
             return (uint)v_;
         });
         Funcs.Add(0x00435F70u, "func_00435F70", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00435F70(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
+            var v_ = PauseMenu_HandleEvent(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
             return (uint)v_;
         });
         Funcs.Add(0x00436000u, "func_00436000", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00436000(a0);
+            var v_ = MatchQuitConfirm_Open(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043609Cu, "func_0043609C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043609C();
+            var v_ = MatchQuitConfirm_Close();
             return (uint)v_;
         });
         Funcs.Add(0x004360D4u, "func_004360D4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004360D4();
+            var v_ = MatchQuitConfirm_OnEnter();
             return (uint)v_;
         });
         Funcs.Add(0x004360F4u, "func_004360F4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004360F4((int)a0, (int)a1, (int)a2);
+            var v_ = MatchQuitConfirm_OnDraw((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x004361FCu, "func_004361FC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004361FC();
+            var v_ = MatchQuitConfirm_OnTick();
             return (uint)v_;
         });
         Funcs.Add(0x00436204u, "func_00436204", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00436204();
+            var v_ = MatchQuitConfirm_OnBack();
             return (uint)v_;
         });
         Funcs.Add(0x0043630Cu, "func_0043630C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043630C(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
+            var v_ = MatchQuitConfirm_HandleEvent(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
             return (uint)v_;
         });
         Funcs.Add(0x0043639Cu, "func_0043639C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043639C(a0);
+            var v_ = SkipMapConfirm_Open(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00436430u, "func_00436430", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00436430();
+            var v_ = SkipMapConfirm_Close();
             return (uint)v_;
         });
         Funcs.Add(0x00436468u, "func_00436468", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00436468();
+            var v_ = SkipMapConfirm_OnEnter();
             return (uint)v_;
         });
         Funcs.Add(0x00436488u, "func_00436488", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00436488((int)a0, (int)a1, (int)a2);
+            var v_ = SkipMapConfirm_OnDraw((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x00436574u, "func_00436574", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00436574();
+            var v_ = SkipMapConfirm_OnTick();
             return (uint)v_;
         });
         Funcs.Add(0x0043657Cu, "func_0043657C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043657C();
+            var v_ = SkipMapConfirm_OnBack();
             return (uint)v_;
         });
         Funcs.Add(0x0043659Cu, "func_0043659C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043659C();
+            var v_ = SkipMapConfirm_OnSelect();
             return (uint)v_;
         });
         Funcs.Add(0x00436634u, "func_00436634", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00436634(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
+            var v_ = SkipMapConfirm_HandleEvent(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
             return (uint)v_;
         });
         Funcs.Add(0x004366C4u, "func_004366C4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004366C4(a0, a1);
+            var v_ = ControllerMenu_Open(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00436898u, "func_00436898", (a0, a1, a2, a3) =>
         {
-            func_00436898((int)a0);
+            ControllerMenu_LoadSettings((int)a0);
             return 0;
         });
         Funcs.Add(0x00436988u, "func_00436988", (a0, a1, a2, a3) =>
         {
-            func_00436988((int)a0);
+            ControllerMenu_StoreSettings((int)a0);
             return 0;
         });
         Funcs.Add(0x00436AD8u, "func_00436AD8", (a0, a1, a2, a3) =>
         {
-            func_00436AD8((int)a0);
+            PauseControllerMenu_LoadSettings((int)a0);
             return 0;
         });
         Funcs.Add(0x00436BC8u, "func_00436BC8", (a0, a1, a2, a3) =>
         {
-            func_00436BC8((int)a0);
+            PauseControllerMenu_StoreSettings((int)a0);
             return 0;
         });
         Funcs.Add(0x00436D18u, "func_00436D18", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00436D18();
+            var v_ = ControllerMenu_Close();
             return (uint)v_;
         });
         Funcs.Add(0x00436D48u, "func_00436D48", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00436D48();
+            var v_ = ControllerMenu_OnEnter();
             return (uint)v_;
         });
         Funcs.Add(0x00436D50u, "func_00436D50", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00436D50();
+            var v_ = ControllerMenu_Update();
             return (uint)v_;
         });
         Funcs.Add(0x00436DCCu, "func_00436DCC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00436DCC();
+            var v_ = ControllerMenu_OnButton();
             return (uint)v_;
         });
         Funcs.Add(0x00436DD4u, "func_00436DD4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00436DD4();
+            var v_ = ControllerMenu_OnSelect();
             return (uint)v_;
         });
         Funcs.Add(0x00436E38u, "func_00436E38", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00436E38();
+            var v_ = ControllerMenu_OnBack();
             return (uint)v_;
         });
         Funcs.Add(0x00436E74u, "func_00436E74", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00436E74((int)a0, (int)a1, (int)a2, (int)a3);
+            var v_ = ControllerMenu_NextController((int)a0, (int)a1, (int)a2, (int)a3);
             return (uint)v_;
         });
         Funcs.Add(0x00436F2Cu, "func_00436F2C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00436F2C((int)a0, (int)a1, (int)a2, (int)a3);
+            var v_ = ControllerMenu_PrevController((int)a0, (int)a1, (int)a2, (int)a3);
             return (uint)v_;
         });
         Funcs.Add(0x00436FE4u, "func_00436FE4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00436FE4(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
+            var v_ = ControllerMenu_HandleEvent(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
             return (uint)v_;
         });
         Funcs.Add(0x00437074u, "func_00437074", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00437074(a0);
+            var v_ = PauseControllerMenu_Open(a0);
             return (uint)v_;
         });
         Funcs.Add(0x004371FCu, "func_004371FC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004371FC();
+            var v_ = PauseControllerMenu_Close();
             return (uint)v_;
         });
         Funcs.Add(0x0043722Cu, "func_0043722C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043722C();
+            var v_ = PauseControllerMenu_OnEnter();
             return (uint)v_;
         });
         Funcs.Add(0x00437234u, "func_00437234", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00437234();
+            var v_ = PauseControllerMenu_OnTick();
             return (uint)v_;
         });
         Funcs.Add(0x0043723Cu, "func_0043723C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043723C();
+            var v_ = PauseControllerMenu_OnSelect();
             return (uint)v_;
         });
         Funcs.Add(0x004372ACu, "func_004372AC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004372AC();
+            var v_ = PauseControllerMenu_OnBack();
             return (uint)v_;
         });
         Funcs.Add(0x004372F4u, "func_004372F4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004372F4((int)a0, (int)a1, (int)a2, (int)a3);
+            var v_ = PauseControllerMenu_NextController((int)a0, (int)a1, (int)a2, (int)a3);
             return (uint)v_;
         });
         Funcs.Add(0x004373A4u, "func_004373A4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004373A4((int)a0, (int)a1, (int)a2, (int)a3);
+            var v_ = PauseControllerMenu_PrevController((int)a0, (int)a1, (int)a2, (int)a3);
             return (uint)v_;
         });
         Funcs.Add(0x00437454u, "func_00437454", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00437454(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
+            var v_ = PauseControllerMenu_HandleEvent(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
             return (uint)v_;
         });
         Funcs.Add(0x004375C4u, "func_004375C4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004375C4();
+            var v_ = TrialMenu_Close();
             return (uint)v_;
         });
         Funcs.Add(0x004375F4u, "func_004375F4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004375F4();
+            var v_ = TrialMenu_OnEnter();
             return (uint)v_;
         });
         Funcs.Add(0x00437624u, "func_00437624", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00437624();
+            var v_ = TrialMenu_Update();
             return (uint)v_;
         });
         Funcs.Add(0x00437754u, "func_00437754", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00437754();
+            var v_ = TrialMenu_OnBack();
             return (uint)v_;
         });
         Funcs.Add(0x00437790u, "func_00437790", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00437790();
+            var v_ = TrialMenu_OnSelect();
             return (uint)v_;
         });
         Funcs.Add(0x00437868u, "func_00437868", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00437868(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
+            var v_ = TrialMenu_HandleEvent(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
             return (uint)v_;
         });
         Funcs.Add(0x004378F8u, "func_004378F8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004378F8(a0);
+            var v_ = TrialResetConfirm_Open(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00437998u, "func_00437998", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00437998();
+            var v_ = TrialResetConfirm_Close();
             return (uint)v_;
         });
         Funcs.Add(0x004379C8u, "func_004379C8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004379C8();
+            var v_ = TrialResetConfirm_OnEnter();
             return (uint)v_;
         });
         Funcs.Add(0x004379F0u, "func_004379F0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004379F0();
+            var v_ = TrialResetConfirm_Update();
             return (uint)v_;
         });
         Funcs.Add(0x00437AD4u, "func_00437AD4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00437AD4();
+            var v_ = TrialResetConfirm_OnBack();
             return (uint)v_;
         });
         Funcs.Add(0x00437B10u, "func_00437B10", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00437B10();
+            var v_ = TrialResetConfirm_OnSelect();
             return (uint)v_;
         });
         Funcs.Add(0x00437B98u, "func_00437B98", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00437B98(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
+            var v_ = TrialResetConfirm_HandleEvent(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
             return (uint)v_;
         });
         Funcs.Add(0x0043847Cu, "func_0043847C", (a0, a1, a2, a3) =>
         {
-            func_0043847C();
+            TrialResults_ShowStats();
             return 0;
         });
         Funcs.Add(0x004387F4u, "func_004387F4", (a0, a1, a2, a3) =>
         {
-            func_004387F4();
+            TrialResults_ShowReward();
             return 0;
         });
         Funcs.Add(0x00438A08u, "func_00438A08", (a0, a1, a2, a3) =>
         {
-            func_00438A08();
+            TrialResults_AnimateReward();
             return 0;
         });
     }
@@ -18207,117 +18207,117 @@ public static partial class Game
         });
         Funcs.Add(0x00438BD0u, "func_00438BD0", (a0, a1, a2, a3) =>
         {
-            func_00438BD0();
+            TrialResults_GotoNextScreen();
             return 0;
         });
         Funcs.Add(0x00438C68u, "func_00438C68", (a0, a1, a2, a3) =>
         {
-            func_00438C68();
+            TrialResults_ClearRewards();
             return 0;
         });
         Funcs.Add(0x00438C84u, "func_00438C84", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00438C84();
+            var v_ = TrialResults_Close();
             return (uint)v_;
         });
         Funcs.Add(0x00438CB4u, "func_00438CB4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00438CB4();
+            var v_ = TrialResults_OnEnter();
             return (uint)v_;
         });
         Funcs.Add(0x00438CBCu, "func_00438CBC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00438CBC(a0, (int)a1, (int)a2);
+            var v_ = TrialResults_OnDraw(a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x00438E64u, "func_00438E64", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00438E64(a0);
+            var v_ = TrialResults_Update(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00438F74u, "func_00438F74", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00438F74();
+            var v_ = TrialResults_OnSelect();
             return (uint)v_;
         });
         Funcs.Add(0x0043903Cu, "func_0043903C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043903C();
+            var v_ = TrialResults_OnBack();
             return (uint)v_;
         });
         Funcs.Add(0x0043905Cu, "func_0043905C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043905C(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
+            var v_ = TrialResults_HandleEvent(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
             return (uint)v_;
         });
         Funcs.Add(0x004390ECu, "func_004390EC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004390EC();
+            var v_ = SoundMenu_Open();
             return (uint)v_;
         });
         Funcs.Add(0x004391C0u, "func_004391C0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004391C0();
+            var v_ = SoundMenu_Close();
             return (uint)v_;
         });
         Funcs.Add(0x004391F0u, "func_004391F0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004391F0();
+            var v_ = SoundMenu_OnEnter();
             return (uint)v_;
         });
         Funcs.Add(0x004391F8u, "func_004391F8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004391F8();
+            var v_ = SoundMenu_Update();
             return (uint)v_;
         });
         Funcs.Add(0x00439308u, "func_00439308", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00439308();
+            var v_ = SoundMenu_OnSelect();
             return (uint)v_;
         });
         Funcs.Add(0x00439354u, "func_00439354", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00439354();
+            var v_ = SoundMenu_OnBack();
             return (uint)v_;
         });
         Funcs.Add(0x00439390u, "func_00439390", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00439390(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
+            var v_ = SoundMenu_HandleEvent(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
             return (uint)v_;
         });
         Funcs.Add(0x00439420u, "func_00439420", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00439420();
+            var v_ = PauseSoundMenu_Open();
             return (uint)v_;
         });
         Funcs.Add(0x004394B0u, "func_004394B0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004394B0();
+            var v_ = PauseSoundMenu_Close();
             return (uint)v_;
         });
         Funcs.Add(0x004394E0u, "func_004394E0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004394E0();
+            var v_ = PauseSoundMenu_OnEnter();
             return (uint)v_;
         });
         Funcs.Add(0x004394E8u, "func_004394E8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004394E8();
+            var v_ = PauseSoundMenu_Update();
             return (uint)v_;
         });
         Funcs.Add(0x00439588u, "func_00439588", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00439588();
+            var v_ = PauseSoundMenu_OnSelect();
             return (uint)v_;
         });
         Funcs.Add(0x004395E4u, "func_004395E4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004395E4();
+            var v_ = PauseSoundMenu_OnBack();
             return (uint)v_;
         });
         Funcs.Add(0x0043962Cu, "func_0043962C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043962C(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
+            var v_ = PauseSoundMenu_HandleEvent(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
             return (uint)v_;
         });
         Funcs.Add(0x004396BCu, "func_004396BC", (a0, a1, a2, a3) =>
@@ -18327,37 +18327,37 @@ public static partial class Game
         });
         Funcs.Add(0x004397D8u, "func_004397D8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004397D8();
+            var v_ = PressStart_Close();
             return (uint)v_;
         });
         Funcs.Add(0x00439808u, "func_00439808", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00439808((int)a0, (int)a1, (int)a2);
+            var v_ = PressStart_Update((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x004398D0u, "func_004398D0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004398D0((int)a0, (int)a1, a2, (int)a3);
+            var v_ = PressStart_OnButton((int)a0, (int)a1, a2, (int)a3);
             return (uint)v_;
         });
         Funcs.Add(0x00439910u, "func_00439910", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00439910();
+            var v_ = PressStart_OnBack();
             return (uint)v_;
         });
         Funcs.Add(0x00439930u, "func_00439930", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00439930();
+            var v_ = PressStart_OnSelect();
             return (uint)v_;
         });
         Funcs.Add(0x00439938u, "func_00439938", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00439938(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
+            var v_ = PressStart_HandleEvent(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
             return (uint)v_;
         });
         Funcs.Add(0x004399D0u, "func_004399D0", (a0, a1, a2, a3) =>
         {
-            func_004399D0(a0);
+            PreviewModel_Draw(a0);
             return 0;
         });
         Funcs.Add(0x00439D3Cu, "func_00439D3C", (a0, a1, a2, a3) =>
@@ -18370,7 +18370,7 @@ public static partial class Game
             Mem.Set(s3 + 0u, Cpu.Stk[5]);
             Mem.Set(s3 + 4u, Cpu.Stk[6]);
             Mem.Set(s3 + 8u, Cpu.Stk[7]);
-            var v_ = func_00439D3C(a0, (int)a1, s2, s3);
+            var v_ = PreviewModel_Init(a0, (int)a1, s2, s3);
             Stack.Free(12);
             Stack.Free(12);
             return (uint)v_;
@@ -18381,13 +18381,13 @@ public static partial class Game
             Mem.Set(s1 + 0u, a1);
             Mem.Set(s1 + 4u, a2);
             Mem.Set(s1 + 8u, a3);
-            func_00439DC0(a0, s1);
+            PreviewModel_SetRotation(a0, s1);
             Stack.Free(12);
             return 0;
         });
         Funcs.Add(0x00439DECu, "func_00439DEC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00439DEC(a0, a1);
+            var v_ = PreviewModel_GetRotation(a0, a1);
             return v_;
         });
         Funcs.Add(0x00439E10u, "func_00439E10", (a0, a1, a2, a3) =>
@@ -18396,33 +18396,33 @@ public static partial class Game
             Mem.Set(s1 + 0u, a1);
             Mem.Set(s1 + 4u, a2);
             Mem.Set(s1 + 8u, a3);
-            func_00439E10(a0, s1);
+            PreviewModel_SetSpin(a0, s1);
             Stack.Free(12);
             return 0;
         });
         Funcs.Add(0x00439E3Cu, "func_00439E3C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00439E3C(a0, a1);
+            var v_ = PreviewModel_GetSpin(a0, a1);
             return v_;
         });
         Funcs.Add(0x00439E60u, "func_00439E60", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00439E60(a0, (int)a1);
+            var v_ = PreviewModel_SetModel(a0, (int)a1);
             return (uint)v_;
         });
         Funcs.Add(0x00439EA8u, "func_00439EA8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00439EA8(a0);
+            var v_ = PreviewModel_GetModelId(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00439EB4u, "func_00439EB4", (a0, a1, a2, a3) =>
         {
-            func_00439EB4(a0, (int)a1);
+            PreviewModel_SetDrawArg(a0, (int)a1);
             return 0;
         });
         Funcs.Add(0x00439EBCu, "func_00439EBC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00439EBC(a0, a1);
+            var v_ = PreviewModel_GetPosition(a0, a1);
             return v_;
         });
         Funcs.Add(0x00439EE0u, "func_00439EE0", (a0, a1, a2, a3) =>
@@ -18431,123 +18431,123 @@ public static partial class Game
             Mem.Set(s1 + 0u, a1);
             Mem.Set(s1 + 4u, a2);
             Mem.Set(s1 + 8u, a3);
-            func_00439EE0(a0, s1);
+            PreviewModel_SetPosition(a0, s1);
             Stack.Free(12);
             return 0;
         });
         Funcs.Add(0x00439F0Cu, "func_00439F0C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00439F0C();
+            var v_ = ResultsQuitConfirm_Open();
             return (uint)v_;
         });
         Funcs.Add(0x0043A0A4u, "func_0043A0A4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043A0A4((int)a0, a1);
+            var v_ = Loadout_Open((int)a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0043A510u, "func_0043A510", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043A510();
+            var v_ = Loadout_OnEnter();
             return (uint)v_;
         });
         Funcs.Add(0x0043A7D8u, "func_0043A7D8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043A7D8();
+            var v_ = Loadout_Update();
             return (uint)v_;
         });
         Funcs.Add(0x0043AA70u, "func_0043AA70", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043AA70((int)a0, (int)a1, (int)a2);
+            var v_ = Loadout_OnDraw((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x0043AD20u, "func_0043AD20", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043AD20((int)a0, (int)a1, a2, (int)a3);
+            var v_ = Loadout_OnConfirm((int)a0, (int)a1, a2, (int)a3);
             return (uint)v_;
         });
         Funcs.Add(0x0043AED0u, "func_0043AED0", (a0, a1, a2, a3) =>
         {
-            func_0043AED0((int)a0, (int)a1);
+            Loadout_MoveRow((int)a0, (int)a1);
             return 0;
         });
         Funcs.Add(0x0043B03Cu, "func_0043B03C", (a0, a1, a2, a3) =>
         {
-            func_0043B03C((int)a0, (int)a1);
+            Loadout_CycleWeapon((int)a0, (int)a1);
             return 0;
         });
         Funcs.Add(0x0043B2ACu, "func_0043B2AC", (a0, a1, a2, a3) =>
         {
-            func_0043B2AC((int)a0);
+            Loadout_ShowPlayerColumn((int)a0);
             return 0;
         });
         Funcs.Add(0x0043B67Cu, "func_0043B67C", (a0, a1, a2, a3) =>
         {
-            func_0043B67C((int)a0, (int)a1, (int)a2);
+            Loadout_SetSlotWeapon((int)a0, (int)a1, (int)a2);
             return 0;
         });
         Funcs.Add(0x0043BA34u, "func_0043BA34", (a0, a1, a2, a3) =>
         {
-            func_0043BA34();
+            Loadout_ApplyToPlayers();
             return 0;
         });
         Funcs.Add(0x0043BC04u, "func_0043BC04", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043BC04();
+            var v_ = Loadout_CountEditing();
             return (uint)v_;
         });
         Funcs.Add(0x0043BC3Cu, "func_0043BC3C", (a0, a1, a2, a3) =>
         {
-            func_0043BC3C((int)a0, (int)a1);
+            Loadout_SelectRow((int)a0, (int)a1);
             return 0;
         });
         Funcs.Add(0x0043BD50u, "func_0043BD50", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043BD50();
+            var v_ = Loadout_Close();
             return (uint)v_;
         });
         Funcs.Add(0x0043BD90u, "func_0043BD90", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043BD90((int)a0, (int)a1, (int)a2, (int)a3);
+            var v_ = Loadout_OnButton((int)a0, (int)a1, (int)a2, (int)a3);
             return (uint)v_;
         });
         Funcs.Add(0x0043BEA0u, "func_0043BEA0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043BEA0((int)a0, (int)a1, (int)a2, (int)a3);
+            var v_ = Loadout_OnUp((int)a0, (int)a1, (int)a2, (int)a3);
             return (uint)v_;
         });
         Funcs.Add(0x0043BF38u, "func_0043BF38", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043BF38((int)a0, (int)a1, (int)a2, (int)a3);
+            var v_ = Loadout_OnDown((int)a0, (int)a1, (int)a2, (int)a3);
             return (uint)v_;
         });
         Funcs.Add(0x0043BFD0u, "func_0043BFD0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043BFD0((int)a0, (int)a1, (int)a2, (int)a3);
+            var v_ = Loadout_OnLeft((int)a0, (int)a1, (int)a2, (int)a3);
             return (uint)v_;
         });
         Funcs.Add(0x0043C06Cu, "func_0043C06C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043C06C((int)a0, (int)a1, (int)a2, (int)a3);
+            var v_ = Loadout_OnRight((int)a0, (int)a1, (int)a2, (int)a3);
             return (uint)v_;
         });
         Funcs.Add(0x0043C108u, "func_0043C108", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043C108((int)a0, (int)a1, (int)a2);
+            var v_ = Loadout_OnBack((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x0043C1D0u, "func_0043C1D0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043C1D0(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
+            var v_ = Loadout_HandleEvent(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
             return (uint)v_;
         });
         Funcs.Add(0x0043C260u, "func_0043C260", (a0, a1, a2, a3) =>
         {
-            func_0043C260(a0);
+            ScreenWipe_Draw(a0);
             return 0;
         });
         Funcs.Add(0x0043C3F0u, "func_0043C3F0", (a0, a1, a2, a3) =>
         {
-            func_0043C3F0(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
+            ScreenWipe_Init(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
             return 0;
         });
         Funcs.Add(0x0043C458u, "func_0043C458", (a0, a1, a2, a3) =>
@@ -18557,32 +18557,32 @@ public static partial class Game
         });
         Funcs.Add(0x0043C484u, "func_0043C484", (a0, a1, a2, a3) =>
         {
-            func_0043C484(a0);
+            ScreenWipe_Advance(a0);
             return 0;
         });
         Funcs.Add(0x0043C4B4u, "func_0043C4B4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043C4B4(a0);
+            var v_ = ScreenWipe_GetFrame(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043C4C0u, "func_0043C4C0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043C4C0(a0);
+            var v_ = ScreenWipe_IsDone(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043C4D0u, "func_0043C4D0", (a0, a1, a2, a3) =>
         {
-            func_0043C4D0(a0, (int)a1);
+            ScreenWipe_SetSprite(a0, (int)a1);
             return 0;
         });
         Funcs.Add(0x0043C4D8u, "func_0043C4D8", (a0, a1, a2, a3) =>
         {
-            func_0043C4D8(a0, (int)a1, (int)a2, (int)a3);
+            ScreenWipe_SetColor(a0, (int)a1, (int)a2, (int)a3);
             return 0;
         });
         Funcs.Add(0x0043C4E8u, "func_0043C4E8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043C4E8(a0);
+            var v_ = ScreenWipe_GetState(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043C500u, "func_0043C500", (a0, a1, a2, a3) =>
@@ -18592,387 +18592,387 @@ public static partial class Game
         });
         Funcs.Add(0x0043C730u, "func_0043C730", (a0, a1, a2, a3) =>
         {
-            func_0043C730(a0);
+            CheatList_Open(a0);
             return 0;
         });
         Funcs.Add(0x0043C868u, "func_0043C868", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043C868((int)a0, a1);
+            var v_ = CheatList_SelectWarp((int)a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0043CB78u, "func_0043CB78", (a0, a1, a2, a3) =>
         {
-            func_0043CB78();
+            CheatEntry_Open();
             return 0;
         });
         Funcs.Add(0x0043CB8Cu, "func_0043CB8C", (a0, a1, a2, a3) =>
         {
-            func_0043CB8C(a0, a1, a2, a3);
+            CheatEntry_DrawTextField(a0, a1, a2, a3);
             return 0;
         });
         Funcs.Add(0x0043CD10u, "func_0043CD10", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043CD10((int)a0, a1);
+            var v_ = CheatEntry_UpdateTextField((int)a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0043CDE8u, "func_0043CDE8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043CDE8();
+            var v_ = CheatEntry_OnTextFieldSelect();
             return (uint)v_;
         });
         Funcs.Add(0x0043CDF0u, "func_0043CDF0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043CDF0(a0);
+            var v_ = CheatEntry_InsertLetter(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043CEB0u, "func_0043CEB0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043CEB0();
+            var v_ = CheatEntry_DeleteLetter();
             return (uint)v_;
         });
         Funcs.Add(0x0043CF44u, "func_0043CF44", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043CF44(a0);
+            var v_ = CheatEntry_IsCodeEntered(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043D124u, "func_0043D124", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D124(a0);
+            var v_ = LegacyCheats_SetResultLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043D260u, "func_0043D260", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D260(a0, a1, a2, a3);
+            var v_ = LegacyCheats_SetToggleLabel(a0, a1, a2, a3);
             return (uint)v_;
         });
         Funcs.Add(0x0043D2D0u, "func_0043D2D0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D2D0(a0);
+            var v_ = LegacyCheats_SetWarpLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043D3BCu, "func_0043D3BC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D3BC();
+            var v_ = LegacyCheats_GetWarpLevelKey();
             return (uint)v_;
         });
         Funcs.Add(0x0043D43Cu, "func_0043D43C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D43C();
+            var v_ = LegacyCheats_ToggleInvincibility();
             return (uint)v_;
         });
         Funcs.Add(0x0043D458u, "func_0043D458", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D458(a0);
+            var v_ = LegacyCheats_SetInvincibilityLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043D4C4u, "func_0043D4C4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D4C4();
+            var v_ = LegacyCheats_ToggleInfiniteLives();
             return (uint)v_;
         });
         Funcs.Add(0x0043D4E0u, "func_0043D4E0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D4E0(a0);
+            var v_ = LegacyCheats_SetInfiniteLivesLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043D54Cu, "func_0043D54C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D54C();
+            var v_ = LegacyCheats_ToggleAllWeapons();
             return (uint)v_;
         });
         Funcs.Add(0x0043D568u, "func_0043D568", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D568(a0);
+            var v_ = LegacyCheats_SetAllWeaponsLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043D5D4u, "func_0043D5D4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D5D4();
+            var v_ = LegacyCheats_ToggleUnlimitedAmmo();
             return (uint)v_;
         });
         Funcs.Add(0x0043D5F0u, "func_0043D5F0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D5F0(a0);
+            var v_ = LegacyCheats_SetUnlimitedAmmoLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043D65Cu, "func_0043D65C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D65C();
+            var v_ = LegacyCheats_ToggleAllSpecialObjects();
             return (uint)v_;
         });
         Funcs.Add(0x0043D678u, "func_0043D678", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D678(a0);
+            var v_ = LegacyCheats_SetAllSpecialObjectsLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043D6E4u, "func_0043D6E4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D6E4();
+            var v_ = LegacyCheats_ToggleBigHeadMode();
             return (uint)v_;
         });
         Funcs.Add(0x0043D700u, "func_0043D700", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D700(a0);
+            var v_ = LegacyCheats_SetBigHeadModeLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043D76Cu, "func_0043D76C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D76C();
+            var v_ = LegacyCheats_ToggleTinyMode();
             return (uint)v_;
         });
         Funcs.Add(0x0043D788u, "func_0043D788", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D788(a0);
+            var v_ = LegacyCheats_SetTinyModeLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043D7F4u, "func_0043D7F4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D7F4();
+            var v_ = LegacyCheats_ToggleStickMode();
             return (uint)v_;
         });
         Funcs.Add(0x0043D810u, "func_0043D810", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D810(a0);
+            var v_ = LegacyCheats_SetStickModeLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043D87Cu, "func_0043D87C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D87C();
+            var v_ = LegacyCheats_ToggleBigHandsFeetMode();
             return (uint)v_;
         });
         Funcs.Add(0x0043D898u, "func_0043D898", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D898(a0);
+            var v_ = LegacyCheats_SetBigHandsFeetModeLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043D904u, "func_0043D904", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D904();
+            var v_ = LegacyCheats_TogglePenAndInkMode();
             return (uint)v_;
         });
         Funcs.Add(0x0043D920u, "func_0043D920", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D920(a0);
+            var v_ = LegacyCheats_SetPenAndInkModeLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043D98Cu, "func_0043D98C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D98C();
+            var v_ = LegacyCheats_ToggleGouraudMode();
             return (uint)v_;
         });
         Funcs.Add(0x0043D9A8u, "func_0043D9A8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043D9A8(a0);
+            var v_ = LegacyCheats_SetGouraudModeLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043DA14u, "func_0043DA14", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043DA14();
+            var v_ = LegacyCheats_ToggleJuansCheat();
             return (uint)v_;
         });
         Funcs.Add(0x0043DA30u, "func_0043DA30", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043DA30(a0);
+            var v_ = LegacyCheats_SetJuansCheatLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043DA9Cu, "func_0043DA9C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043DA9C();
+            var v_ = LegacyCheats_ToggleZachAttack();
             return (uint)v_;
         });
         Funcs.Add(0x0043DAB8u, "func_0043DAB8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043DAB8(a0);
+            var v_ = LegacyCheats_SetZachAttackLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043DB24u, "func_0043DB24", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043DB24();
+            var v_ = LegacyCheats_ToggleAllMap();
             return (uint)v_;
         });
         Funcs.Add(0x0043DB40u, "func_0043DB40", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043DB40(a0);
+            var v_ = LegacyCheats_SetAllMapLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043DBACu, "func_0043DBAC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043DBAC();
+            var v_ = LegacyCheats_ToggleBlackout();
             return (uint)v_;
         });
         Funcs.Add(0x0043DBC8u, "func_0043DBC8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043DBC8(a0);
+            var v_ = LegacyCheats_SetBlackoutLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043DC34u, "func_0043DC34", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043DC34();
+            var v_ = LegacyCheats_ToggleFrootyStripes();
             return (uint)v_;
         });
         Funcs.Add(0x0043DC50u, "func_0043DC50", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043DC50(a0);
+            var v_ = LegacyCheats_SetFrootyStripesLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043DCBCu, "func_0043DCBC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043DCBC((int)a0, a1);
+            var v_ = LegacyMenu_OnContinueYes((int)a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0043DCE4u, "func_0043DCE4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043DCE4((int)a0, a1);
+            var v_ = LegacyMenu_OnContinueNo((int)a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0043DD2Cu, "func_0043DD2C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043DD2C(a0);
+            var v_ = LegacyMenu_SetWeaponLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043DEDCu, "func_0043DEDC", (a0, a1, a2, a3) =>
         {
-            func_0043DEDC(a0);
+            LegacyMenu_ClaimConfirmingPad(a0);
             return 0;
         });
         Funcs.Add(0x0043DF84u, "func_0043DF84", (a0, a1, a2, a3) =>
         {
-            func_0043DF84(a0, (int)a1);
+            LegacyMenu_SetPadPolling(a0, (int)a1);
             return 0;
         });
         Funcs.Add(0x0043DFC0u, "func_0043DFC0", (a0, a1, a2, a3) =>
         {
-            func_0043DFC0(Cpu.S(12), (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
+            MatchSetup_ApplySettingsLegacy(Cpu.S(12), (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
             return 0;
         });
         Funcs.Add(0x0043E054u, "func_0043E054", (a0, a1, a2, a3) =>
         {
-            func_0043E054();
+            LegacyMenu_JoinConfirmingPad();
             return 0;
         });
         Funcs.Add(0x0043E0E8u, "func_0043E0E8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E0E8(a0);
+            var v_ = Pad_FindConfirming(a0);
             return v_;
         });
         Funcs.Add(0x0043E158u, "func_0043E158", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E158();
+            var v_ = LegacyMenu_CountReadyPads();
             return (uint)v_;
         });
         Funcs.Add(0x0043E1B0u, "func_0043E1B0", (a0, a1, a2, a3) =>
         {
-            func_0043E1B0();
+            LegacyMenu_OpenFinalScore();
             return 0;
         });
         Funcs.Add(0x0043E1C0u, "func_0043E1C0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E1C0();
+            var v_ = LegacyMenu_UpdateFinalScore();
             return (uint)v_;
         });
         Funcs.Add(0x0043E21Cu, "func_0043E21C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E21C(a0);
+            var v_ = LegacyMenu_SetBlueScoreLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043E230u, "func_0043E230", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E230(a0);
+            var v_ = LegacyMenu_SetRedScoreLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043E244u, "func_0043E244", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E244();
+            var v_ = LegacyMenu_NopWaitLabel();
             return (uint)v_;
         });
         Funcs.Add(0x0043E24Cu, "func_0043E24C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E24C();
+            var v_ = LegacyMenu_ShouldCloseSetupMessage();
             return (uint)v_;
         });
         Funcs.Add(0x0043E284u, "func_0043E284", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E284(a0, a1);
+            var v_ = LegacyMenu_OnSetupMessageOk(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0043E2E0u, "func_0043E2E0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E2E0();
+            var v_ = LegacyMenu_ShouldClosePlayerSetup();
             return (uint)v_;
         });
         Funcs.Add(0x0043E318u, "func_0043E318", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E318(a0, a1);
+            var v_ = LegacyMenu_StepSetting83_0043E318(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0043E364u, "func_0043E364", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E364(a0, a1);
+            var v_ = LegacyMenu_SetSetting83Label_0043E364(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0043E458u, "func_0043E458", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E458(a0, a1);
+            var v_ = LegacyMenu_ToggleSetting7B_0043E458(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0043E4A4u, "func_0043E4A4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E4A4((int)a0, (int)a1, (int)a2);
+            var v_ = LegacyMenu_OpenNameEntry((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x0043E4D0u, "func_0043E4D0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E4D0(a0, a1);
+            var v_ = LegacyMenu_SetNameLabel(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0043E4F4u, "func_0043E4F4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E4F4((int)a0, (int)a1, (int)a2);
+            var v_ = LegacyMenu_OpenSetupMessage_0043E4F4((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x0043E520u, "func_0043E520", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E520(a0, a1);
+            var v_ = LegacyMenu_SetSetting7BLabel_0043E520(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0043E56Cu, "func_0043E56C", (a0, a1, a2, a3) =>
         {
-            func_0043E56C(a0);
+            LegacyMenu_OpenCharSelect(a0);
             return 0;
         });
         Funcs.Add(0x0043E590u, "func_0043E590", (a0, a1, a2, a3) =>
         {
-            func_0043E590(a0);
+            LegacyMenu_OpenCharSelectFromPak(a0);
             return 0;
         });
         Funcs.Add(0x0043E5BCu, "func_0043E5BC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E5BC();
+            var v_ = LegacyMenu_ShouldCloseCharSelect();
             return (uint)v_;
         });
         Funcs.Add(0x0043E5F4u, "func_0043E5F4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E5F4(a0, a1);
+            var v_ = LegacyMenu_OpenLoadPlayer(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0043E654u, "func_0043E654", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E654();
+            var v_ = LegacyMenu_NopLoadItemLabel();
             return (uint)v_;
         });
         Funcs.Add(0x0043E65Cu, "func_0043E65C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E65C(a0, a1, a2);
+            var v_ = LegacyMenu_UpdateCharacterChoice(a0, a1, a2);
             return (uint)v_;
         });
         Funcs.Add(0x0043E748u, "func_0043E748", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E748();
+            var v_ = LegacyMenu_NopModelItemLabel();
             return (uint)v_;
         });
         Funcs.Add(0x0043E750u, "func_0043E750", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E750();
+            var v_ = LegacyMenu_ShouldCloseTeamSelect();
             return (uint)v_;
         });
     }
@@ -18981,182 +18981,182 @@ public static partial class Game
     {
         Funcs.Add(0x0043E788u, "func_0043E788", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E788(a0, a1);
+            var v_ = LegacyMenu_OnBlueTeam(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0043E7D0u, "func_0043E7D0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E7D0(a0, a1);
+            var v_ = LegacyMenu_OnRedTeam(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0043E81Cu, "func_0043E81C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E81C(a0, a1);
+            var v_ = LegacyMenu_StepPlayerSpeed(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0043E924u, "func_0043E924", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E924(a0, a1);
+            var v_ = LegacyMenu_SetPlayerSpeedLabel(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0043E9A8u, "func_0043E9A8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043E9A8(a0);
+            var v_ = LegacyMenu_ToggleWeapon(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0043EA94u, "func_0043EA94", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043EA94((int)a0, (int)a1, (int)a2);
+            var v_ = LegacyMenu_OpenCustomizeWeapons((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x0043EAC0u, "func_0043EAC0", (a0, a1, a2, a3) =>
         {
-            func_0043EAC0(a0);
+            LegacyMenu_OpenSingleScreen(a0);
             return 0;
         });
         Funcs.Add(0x0043EAF4u, "func_0043EAF4", (a0, a1, a2, a3) =>
         {
-            func_0043EAF4(a0);
+            LegacyMenu_OpenSingleScreenFromPak(a0);
             return 0;
         });
         Funcs.Add(0x0043EB20u, "func_0043EB20", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043EB20(a0, a1);
+            var v_ = LegacyMenu_OnNewGame(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0043EB78u, "func_0043EB78", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043EB78(a0, a1);
+            var v_ = LegacyMenu_OnLoadGame(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0043EBC4u, "func_0043EBC4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043EBC4(a0, a1);
+            var v_ = LegacyMenu_OnSingleGoBack(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0043EC10u, "func_0043EC10", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043EC10(a0, a1);
+            var v_ = LegacyMenu_OnSingle(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0043ECE8u, "func_0043ECE8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043ECE8(a0, a1);
+            var v_ = LegacyMenu_UpdateMultiItem(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0043ED5Cu, "func_0043ED5C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043ED5C((int)a0, (int)a1, (int)a2);
+            var v_ = LegacyMenu_OnMulti((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x0043EDB8u, "func_0043EDB8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043EDB8((int)a0, (int)a1, (int)a2);
+            var v_ = LegacyMenu_OpenOptions((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x0043EDE4u, "func_0043EDE4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043EDE4((int)a0, (int)a1, (int)a2);
+            var v_ = LegacyMenu_OpenEnterCheat((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x0043EE10u, "func_0043EE10", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043EE10((int)a0, (int)a1, (int)a2);
+            var v_ = LegacyMenu_OpenCheats((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x0043EE3Cu, "func_0043EE3C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043EE3C((int)a0, (int)a1, (int)a2);
+            var v_ = LegacyMenu_OpenSoundOptions((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x0043EEC0u, "func_0043EEC0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043EEC0();
+            var v_ = LegacyMenu_ReturnOne_0043EEC0();
             return (uint)v_;
         });
         Funcs.Add(0x0043EEC8u, "func_0043EEC8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043EEC8();
+            var v_ = LegacyMenu_FadeToState8_0043EEC8();
             return (uint)v_;
         });
         Funcs.Add(0x0043EEF0u, "func_0043EEF0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043EEF0((int)a0, (int)a1, (int)a2);
+            var v_ = LegacyMenu_OpenScreen450C18_0043EEF0((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x0043EF1Cu, "func_0043EF1C", (a0, a1, a2, a3) =>
         {
-            func_0043EF1C(a0);
+            LegacyMenu_OpenTimedMessage(a0);
             return 0;
         });
         Funcs.Add(0x0043EF4Cu, "func_0043EF4C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043EF4C();
+            var v_ = LegacyMenu_UpdateTimedMessage();
             return (uint)v_;
         });
         Funcs.Add(0x0043EF94u, "func_0043EF94", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043EF94();
+            var v_ = LegacyMenu_TickTimedMessage();
             return (uint)v_;
         });
         Funcs.Add(0x0043EFCCu, "func_0043EFCC", (a0, a1, a2, a3) =>
         {
-            func_0043EFCC(a0, a1, (int)a2, a3);
+            LegacyMenu_DrawInventoryIcon(a0, a1, (int)a2, a3);
             return 0;
         });
         Funcs.Add(0x0043F1B0u, "func_0043F1B0", (a0, a1, a2, a3) =>
         {
-            func_0043F1B0();
+            LegacyMenu_OpenInventory();
             return 0;
         });
         Funcs.Add(0x0043F1B8u, "func_0043EFCC_func_0043F1B8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043EFCC_func_0043F1B8(a0, a1);
+            var v_ = LegacyMenu_IsInventoryItemOwnedTwin(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0043F1B8u, "func_0043F1B8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043F1B8(a0, a1);
+            var v_ = LegacyMenu_IsInventoryItemOwned(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0043F238u, "func_0043F238", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043F238((int)a0, (int)a1, (int)a2);
+            var v_ = LegacyMenu_OnInventoryOk((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x0043F69Cu, "func_0043F69C", (a0, a1, a2, a3) =>
         {
-            func_0043F69C(a0, a1);
+            MenuItem_ComputeRect(a0, a1);
             return 0;
         });
         Funcs.Add(0x0043FFACu, "func_0043FFAC", (a0, a1, a2, a3) =>
         {
-            func_0043FFAC(a0, a1, a2, a3, (int)Cpu.Stk[4], (int)Cpu.Stk[5]);
+            MenuItem_DrawText(a0, a1, a2, a3, (int)Cpu.Stk[4], (int)Cpu.Stk[5]);
             return 0;
         });
         Funcs.Add(0x0044044Cu, "func_0044044C", (a0, a1, a2, a3) =>
         {
-            func_0044044C(a0, a1, (int)a2, a3);
+            MenuItem_DrawSprite(a0, a1, (int)a2, a3);
             return 0;
         });
         Funcs.Add(0x00440618u, "func_00440618", (a0, a1, a2, a3) =>
         {
-            func_00440618(a0, a1, a2, (int)a3);
+            MenuItem_DrawSlider(a0, a1, a2, (int)a3);
             return 0;
         });
         Funcs.Add(0x004409A8u, "func_004409A8", (a0, a1, a2, a3) =>
         {
-            func_004409A8(a0, a1, (int)a2, a3);
+            MenuItem_DrawModel(a0, a1, (int)a2, a3);
             return 0;
         });
         Funcs.Add(0x00440F10u, "func_00440F10", (a0, a1, a2, a3) =>
         {
-            func_00440F10(a0, a1, a2, (int)a3, (int)Cpu.Stk[4], Cpu.Stk[5], (int)Cpu.Stk[6], Cpu.Stk[7]);
+            MenuPanel_Init(a0, a1, a2, (int)a3, (int)Cpu.Stk[4], Cpu.Stk[5], (int)Cpu.Stk[6], Cpu.Stk[7]);
             return 0;
         });
         Funcs.Add(0x0044121Cu, "func_0044121C", (a0, a1, a2, a3) =>
         {
-            func_0044121C(a0, (byte)a1);
+            MenuPanel_MoveCursor(a0, (byte)a1);
             return 0;
         });
         Funcs.Add(0x00441384u, "func_00441384", (a0, a1, a2, a3) =>
@@ -19166,47 +19166,47 @@ public static partial class Game
         });
         Funcs.Add(0x00442020u, "func_00442020", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00442020(a0, a1);
+            var v_ = MenuPanel_OpenPrevious(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00442158u, "func_00442158", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00442158(a0);
+            var v_ = MenuItem_GetTextLength(a0);
             return (uint)v_;
         });
         Funcs.Add(0x004421D4u, "func_004421D4", (a0, a1, a2, a3) =>
         {
-            func_004421D4(a0, (int)a1, (int)a2, (int)a3);
+            MenuItem_DrawLabel(a0, (int)a1, (int)a2, (int)a3);
             return 0;
         });
         Funcs.Add(0x004421FCu, "func_004421FC", (a0, a1, a2, a3) =>
         {
-            func_004421FC(a0, (int)a1, (int)a2, (int)a3);
+            MenuItem_DrawLabelAlt(a0, (int)a1, (int)a2, (int)a3);
             return 0;
         });
         Funcs.Add(0x00442224u, "func_00442224", (a0, a1, a2, a3) =>
         {
-            func_00442224(a0, (int)a1, (int)a2, (int)a3);
+            MenuItem_DrawChar(a0, (int)a1, (int)a2, (int)a3);
             return 0;
         });
         Funcs.Add(0x00442254u, "func_00442254", (a0, a1, a2, a3) =>
         {
-            func_00442254((int)a0, (int)a1, (int)a2, (int)a3);
+            MenuItem_DrawValue((int)a0, (int)a1, (int)a2, (int)a3);
             return 0;
         });
         Funcs.Add(0x004422BCu, "func_004422BC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004422BC(a0, (int)a1, (int)a2);
+            var v_ = MenuItem_LoadModelDef(a0, (int)a1, (int)a2);
             return v_;
         });
         Funcs.Add(0x00442384u, "func_00442384", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00442384(a0);
+            var v_ = MenuItem_GetModelEffect(a0);
             return v_;
         });
         Funcs.Add(0x0044239Cu, "func_0044239C", (a0, a1, a2, a3) =>
         {
-            Cpu.SetS(0, func_0044239C((byte)a0, (byte)a1, Cpu.U2F(a2), Cpu.U2F(a3)));
+            Cpu.SetS(0, Text_GetCharAdvance((byte)a0, (byte)a1, Cpu.U2F(a2), Cpu.U2F(a3)));
             return 0;
         });
         Funcs.Add(0x00442460u, "func_00442460", (a0, a1, a2, a3) =>
@@ -19216,17 +19216,17 @@ public static partial class Game
         });
         Funcs.Add(0x004424F4u, "func_004424F4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004424F4((int)a0, (int)a1, (int)a2);
+            var v_ = MenuPanel_OnGoBack((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x00442514u, "func_00442514", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00442514();
+            var v_ = MenuPanel_ReturnZero_00442514();
             return (uint)v_;
         });
         Funcs.Add(0x0044251Cu, "func_0044251C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0044251C(a0);
+            var v_ = MenuItem_GetValueUserData_0044251C(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0044252Cu, "func_0044252C", (a0, a1, a2, a3) =>
@@ -19241,232 +19241,232 @@ public static partial class Game
         });
         Funcs.Add(0x004426B4u, "func_004426B4", (a0, a1, a2, a3) =>
         {
-            func_004426B4(a0);
+            MenuPanel_InitList(a0);
             return 0;
         });
         Funcs.Add(0x004426E4u, "func_004426E4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004426E4(a0, a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
+            var v_ = MenuPanel_Open(a0, a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
             return (uint)v_;
         });
         Funcs.Add(0x00442800u, "func_00442800", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00442800(a0, a1, a2);
+            var v_ = MenuPanel_OpenSibling(a0, a1, a2);
             return (uint)v_;
         });
         Funcs.Add(0x00442934u, "func_00442934", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00442934(a0, a1, a2);
+            var v_ = MenuPanel_OpenChild(a0, a1, a2);
             return (uint)v_;
         });
         Funcs.Add(0x00442A68u, "func_00442A68", (a0, a1, a2, a3) =>
         {
-            func_00442A68(a0);
+            MenuPanel_UpdateList(a0);
             return 0;
         });
         Funcs.Add(0x00442B44u, "func_00442B44", (a0, a1, a2, a3) =>
         {
-            func_00442B44(a0);
+            MenuPanel_DrawList(a0);
             return 0;
         });
         Funcs.Add(0x00442B98u, "func_00442B98", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00442B98(a0);
+            var v_ = MenuPanel_CountOpen(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00442BC8u, "func_00442BC8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00442BC8(a0);
+            var v_ = MenuPanel_GetListView(a0);
             return v_;
         });
         Funcs.Add(0x00442BD0u, "func_00442BD0", (a0, a1, a2, a3) =>
         {
-            func_00442BD0(a0);
+            MenuPanel_CloseAll(a0);
             return 0;
         });
         Funcs.Add(0x00442C4Cu, "func_00442C4C", (a0, a1, a2, a3) =>
         {
-            Cpu.SetS(0, func_00442C4C(a0, Cpu.U2F(a1)));
+            Cpu.SetS(0, MenuItem_MeasureText(a0, Cpu.U2F(a1)));
             return 0;
         });
         Funcs.Add(0x00442CA4u, "func_00442CA4", (a0, a1, a2, a3) =>
         {
-            func_00442CA4(a0);
+            MenuPanel_ResetOpenAnim(a0);
             return 0;
         });
         Funcs.Add(0x00442CB0u, "func_00442CB0", (a0, a1, a2, a3) =>
         {
-            func_00442CB0(a0);
+            MenuPanel_StartOpenAnim(a0);
             return 0;
         });
         Funcs.Add(0x00442CCCu, "func_00442CCC", (a0, a1, a2, a3) =>
         {
-            func_00442CCC(a0);
+            MenuPanel_StepOpenAnim(a0);
             return 0;
         });
         Funcs.Add(0x00442CF8u, "func_00442CF8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00442CF8(a0);
+            var v_ = MenuPanel_GetOpenAnimFrame(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00442D18u, "func_00442D18", (a0, a1, a2, a3) =>
         {
-            func_00442D18(a0);
+            MenuPanel_DrawOpenAnim(a0);
             return 0;
         });
         Funcs.Add(0x00442E48u, "func_00442E48", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00442E48(a0);
+            var v_ = MenuItem_GetExtraSize(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00442E48u, "func_00442E80_func_00442E48", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00442E80_func_00442E48(a0);
+            var v_ = MenuItem_GetExtraSizeTwin(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00442E64u, "func_00442E64", (a0, a1, a2, a3) =>
         {
-            func_00442E64(a0, a1);
+            MenuItem_InitExtra(a0, a1);
             return 0;
         });
         Funcs.Add(0x00442E64u, "func_00442E80_func_00442E64", (a0, a1, a2, a3) =>
         {
-            func_00442E80_func_00442E64(a0, a1);
+            MenuItem_InitExtraTwin(a0, a1);
             return 0;
         });
         Funcs.Add(0x00442E80u, "func_00442E80", (a0, a1, a2, a3) =>
         {
-            func_00442E80(a0, a1, a2, (int)a3, (int)Cpu.Stk[4]);
+            MenuItem_Init(a0, a1, a2, (int)a3, (int)Cpu.Stk[4]);
             return 0;
         });
         Funcs.Add(0x00442F4Cu, "func_00442F4C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00442F4C(a0);
+            var v_ = MenuItem_GetStyle(a0);
             return v_;
         });
         Funcs.Add(0x00443030u, "func_0043F290_func_00443030", (a0, a1, a2, a3) =>
         {
-            Cpu.SetS(0, func_0043F290_func_00443030(a0));
+            Cpu.SetS(0, MenuItem_GetValueTwin(a0));
             return 0;
         });
         Funcs.Add(0x00443030u, "func_0043F404_func_00443030", (a0, a1, a2, a3) =>
         {
-            Cpu.SetS(0, func_0043F404_func_00443030(a0));
+            Cpu.SetS(0, MenuItem_GetValueTwin2(a0));
             return 0;
         });
         Funcs.Add(0x00443120u, "func_0043F404_func_00443120", (a0, a1, a2, a3) =>
         {
-            func_0043F404_func_00443120(a0, Cpu.U2F(a1));
+            MenuValue_SetFromFloatTwin(a0, Cpu.U2F(a1));
             return 0;
         });
         Funcs.Add(0x00443274u, "func_00443274", (a0, a1, a2, a3) =>
         {
-            func_00443274((int)a0, (int)a1, (int)a2);
+            MenuPage_DrawItemModel((int)a0, (int)a1, (int)a2);
             return 0;
         });
         Funcs.Add(0x00443298u, "func_00443298", (a0, a1, a2, a3) =>
         {
-            func_00443298(a0, (int)a1, (int)a2);
+            MenuPage_DrawItemModelHighlighted(a0, (int)a1, (int)a2);
             return 0;
         });
         Funcs.Add(0x0044339Cu, "func_0044339C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0044339C(a0, a1, (int)a2, (int)a3, (int)Cpu.Stk[4], (int)Cpu.Stk[5]);
+            var v_ = MenuPage_PushEx(a0, a1, (int)a2, (int)a3, (int)Cpu.Stk[4], (int)Cpu.Stk[5]);
             return (uint)v_;
         });
         Funcs.Add(0x004434BCu, "func_004434BC", (a0, a1, a2, a3) =>
         {
-            func_004434BC(a0, a1);
+            MenuPage_Destroy(a0, a1);
             return 0;
         });
         Funcs.Add(0x00443528u, "func_00443528", (a0, a1, a2, a3) =>
         {
-            func_00443528();
+            InGameMenu_Nop_00443528();
             return 0;
         });
         Funcs.Add(0x00443530u, "func_00443530", (a0, a1, a2, a3) =>
         {
-            func_00443530();
+            InGameMenu_OnBannerOpen_00443530();
             return 0;
         });
         Funcs.Add(0x00443568u, "func_00443568", (a0, a1, a2, a3) =>
         {
-            func_00443568();
+            InGameMenu_OnBannerOpen_00443568();
             return 0;
         });
         Funcs.Add(0x0044359Cu, "func_0044359C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0044359C();
+            var v_ = InGameMenu_Nop_0044359C();
             return (uint)v_;
         });
         Funcs.Add(0x004435A4u, "func_004435A4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004435A4();
+            var v_ = InGameMenu_Nop_004435A4();
             return (uint)v_;
         });
         Funcs.Add(0x004435ACu, "func_004435AC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004435AC();
+            var v_ = InGameMenu_Nop_004435AC();
             return (uint)v_;
         });
         Funcs.Add(0x004435B4u, "func_004435B4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004435B4();
+            var v_ = InGameMenu_Nop_004435B4();
             return (uint)v_;
         });
         Funcs.Add(0x004435BCu, "func_004435BC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004435BC();
+            var v_ = InGameMenu_Nop_004435BC();
             return (uint)v_;
         });
         Funcs.Add(0x004435C4u, "func_004435C4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004435C4();
+            var v_ = InGameMenu_Nop_004435C4();
             return (uint)v_;
         });
         Funcs.Add(0x004435CCu, "func_004435CC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004435CC();
+            var v_ = InGameMenu_Nop_004435CC();
             return (uint)v_;
         });
         Funcs.Add(0x004435D4u, "func_004435D4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004435D4((int)a0, (int)a1, (int)a2);
+            var v_ = InGameMenu_OnBannerContinue_004435D4((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x00443650u, "func_00443650", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00443650(a0, a1);
+            var v_ = InGameMenu_FormatDeathMessage(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00443804u, "func_00443804", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00443804((int)a0, a1);
+            var v_ = InGameMenu_OpenPakMenu_00443804((int)a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00443868u, "func_00443868", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00443868((int)a0, a1);
+            var v_ = InGameMenu_SetRecordFlag8E_00443868((int)a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00443880u, "func_00443880", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00443880((int)a0, a1);
+            var v_ = InGameMenu_OnRespawnSelect((int)a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x004439B4u, "func_004439B4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004439B4((int)a0, a1);
+            var v_ = InGameMenu_OnExitSelect_004439B4((int)a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00443A2Cu, "func_00443A2C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00443A2C(a0);
+            var v_ = InGameMenu_UpdateDeathPage(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00443AD4u, "func_00443AD4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00443AD4(a0);
+            var v_ = InGameMenu_FormatFragVerbLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00443B08u, "func_00443B08", (a0, a1, a2, a3) =>
@@ -19476,42 +19476,42 @@ public static partial class Game
         });
         Funcs.Add(0x00443B94u, "func_00443B94", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00443B94(a0, a1);
+            var v_ = Results_FormatStatWord4_00443B94(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00443C20u, "func_00443C20", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00443C20(a0, a1);
+            var v_ = Results_FormatStatWord2_00443C20(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00443CACu, "func_00443CAC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00443CAC(a0, a1);
+            var v_ = Results_FormatStatWord0_00443CAC(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00443D3Cu, "func_00443D3C", (a0, a1, a2, a3) =>
         {
-            func_00443D3C();
+            InGameMenu_Nop_00443D3C();
             return 0;
         });
         Funcs.Add(0x00443D44u, "func_00443D44", (a0, a1, a2, a3) =>
         {
-            func_00443D44(a0);
+            InGameMenu_UpdateTagItemFlag_00443D44(a0);
             return 0;
         });
         Funcs.Add(0x00443D84u, "func_00443D84", (a0, a1, a2, a3) =>
         {
-            func_00443D84(a0, (int)a1);
+            InGameMenu_OnDeathPageOpen(a0, (int)a1);
             return 0;
         });
         Funcs.Add(0x00443E44u, "func_00443E44", (a0, a1, a2, a3) =>
         {
-            func_00443E44(a0);
+            InGameMenu_OnPlayerPageOpenPakDetect_00443E44(a0);
             return 0;
         });
         Funcs.Add(0x00443F40u, "func_00443F40", (a0, a1, a2, a3) =>
         {
-            func_00443F40(a0);
+            InGameMenu_OnPlayerPageReopen_00443F40(a0);
             return 0;
         });
         Funcs.Add(0x00444030u, "func_00444030", (a0, a1, a2, a3) =>
@@ -19521,212 +19521,212 @@ public static partial class Game
         });
         Funcs.Add(0x00444204u, "func_00444030_func_00444204", (a0, a1, a2, a3) =>
         {
-            func_00444030_func_00444204(a0, (byte)a1);
+            Settings_InitPlayerRecordTwin(a0, (byte)a1);
             return 0;
         });
         Funcs.Add(0x00444204u, "func_00444204", (a0, a1, a2, a3) =>
         {
-            func_00444204(a0, (byte)a1);
+            Settings_InitPlayerRecord(a0, (byte)a1);
             return 0;
         });
         Funcs.Add(0x00444260u, "func_00444260", (a0, a1, a2, a3) =>
         {
-            func_00444260(a0);
+            Settings_SetDefaultPlayerName(a0);
             return 0;
         });
         Funcs.Add(0x00444354u, "func_00444354", (a0, a1, a2, a3) =>
         {
-            func_00444354();
+            InGameMenu_OnOptionsOpen();
             return 0;
         });
         Funcs.Add(0x00444364u, "func_00444364", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00444364(a0);
+            var v_ = InGameMenu_GetPlayerSettings(a0);
             return v_;
         });
         Funcs.Add(0x0044438Cu, "func_0044438C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0044438C();
+            var v_ = InGameMenu_OnDifficultySelect();
             return (uint)v_;
         });
         Funcs.Add(0x00444484u, "func_00444484", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00444484(a0);
+            var v_ = InGameMenu_FormatDifficultyLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00444530u, "func_00444530", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00444530((int)a0, a1);
+            var v_ = InGameMenu_OnControlTypeSelect((int)a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00444594u, "func_00444594", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00444594(a0, a1);
+            var v_ = InGameMenu_FormatControlTypeLabel(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x004445F8u, "func_004445F8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004445F8((int)a0, a1);
+            var v_ = InGameMenu_OnControlSideSelect((int)a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0044465Cu, "func_0044465C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0044465C(a0, a1);
+            var v_ = InGameMenu_FormatControlSideLabel(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x004446B8u, "func_004446B8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004446B8((int)a0, a1);
+            var v_ = InGameMenu_OnLookSpringSelect((int)a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0044471Cu, "func_0044471C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0044471C(a0, a1);
+            var v_ = InGameMenu_FormatLookSpringLabel(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00444780u, "func_00444780", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00444780((int)a0, a1);
+            var v_ = InGameMenu_OnAutoAimSelect((int)a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x004447E4u, "func_004447E4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004447E4(a0, a1);
+            var v_ = InGameMenu_FormatAutoAimLabel(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00444848u, "func_00444848", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00444848((int)a0, (int)a1);
+            var v_ = InGameMenu_OnBloodColorSelect((int)a0, (int)a1);
             return (uint)v_;
         });
         Funcs.Add(0x0044489Cu, "func_0044489C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0044489C(a0);
+            var v_ = InGameMenu_FormatBloodColorLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00444910u, "func_00444910", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00444910((int)a0, (int)a1);
+            var v_ = InGameMenu_OnTwoPlayerLayoutSelect((int)a0, (int)a1);
             return (uint)v_;
         });
         Funcs.Add(0x00444960u, "func_00444960", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00444960(a0);
+            var v_ = InGameMenu_FormatTwoPlayerLayoutLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x004449FCu, "func_004449FC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004449FC(a0);
+            var v_ = InGameMenu_FormatOpacityLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00444A90u, "func_00444A90", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00444A90((int)a0, (int)a1);
+            var v_ = InGameMenu_OnOpacitySelect((int)a0, (int)a1);
             return (uint)v_;
         });
         Funcs.Add(0x00444AF8u, "func_00444AF8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00444AF8((int)a0, a1);
+            var v_ = InGameMenu_OnStickHorzSelect((int)a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00444B5Cu, "func_00444B5C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00444B5C(a0, a1);
+            var v_ = InGameMenu_FormatStickHorzLabel(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00444C28u, "func_00444C28", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00444C28((int)a0, a1);
+            var v_ = InGameMenu_OnStickVertSelect((int)a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00444C8Cu, "func_00444C8C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00444C8C(a0, a1);
+            var v_ = InGameMenu_FormatStickVertLabel(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00444D58u, "func_00444D58", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00444D58(a0, a1);
+            var v_ = InGameMenu_FormatWeaponSelectLabel(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00444DA4u, "func_00444DA4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00444DA4((int)a0, a1);
+            var v_ = InGameMenu_OnWeaponSelectModeSelect((int)a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00444DD8u, "func_00444DD8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00444DD8(a0);
+            var v_ = InGameMenu_FormatResolutionLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00444E68u, "func_00444E68", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00444E68();
+            var v_ = InGameMenu_OnResolutionSelect();
             return (uint)v_;
         });
         Funcs.Add(0x00444EC0u, "func_00444EC0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00444EC0((int)a0, (int)a1);
+            var v_ = InGameMenu_OnBrightnessSelect((int)a0, (int)a1);
             return (uint)v_;
         });
         Funcs.Add(0x00444F0Cu, "func_00444F0C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00444F0C(a0);
+            var v_ = InGameMenu_FormatBrightnessLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00444FA0u, "func_00444FA0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00444FA0(a0, a1, (int)a2, (int)a3, (int)Cpu.Stk[4], (int)Cpu.Stk[5], (int)Cpu.Stk[6], Cpu.U2F(Cpu.Stk[7]));
+            var v_ = InGameMenu_EditFogValue(a0, a1, (int)a2, (int)a3, (int)Cpu.Stk[4], (int)Cpu.Stk[5], (int)Cpu.Stk[6], Cpu.U2F(Cpu.Stk[7]));
             return (uint)v_;
         });
         Funcs.Add(0x00445200u, "func_00445200", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00445200();
+            var v_ = InGameMenu_OnQuitYes();
             return (uint)v_;
         });
         Funcs.Add(0x00445240u, "func_00445240", (a0, a1, a2, a3) =>
         {
-            func_00445240(a0);
+            InGameMenu_OnQuitOpen(a0);
             return 0;
         });
         Funcs.Add(0x0044524Cu, "func_0044524C", (a0, a1, a2, a3) =>
         {
-            func_0044524C((int)a0, (int)a1, (int)a2);
+            InGameMenu_OnFogRedSelect((int)a0, (int)a1, (int)a2);
             return 0;
         });
         Funcs.Add(0x00445288u, "func_00445288", (a0, a1, a2, a3) =>
         {
-            func_00445288((int)a0, (int)a1, (int)a2);
+            InGameMenu_OnFogGreenSelect((int)a0, (int)a1, (int)a2);
             return 0;
         });
         Funcs.Add(0x004452C4u, "func_004452C4", (a0, a1, a2, a3) =>
         {
-            func_004452C4((int)a0, (int)a1, (int)a2);
+            InGameMenu_OnFogBlueSelect((int)a0, (int)a1, (int)a2);
             return 0;
         });
         Funcs.Add(0x00445304u, "func_00445304", (a0, a1, a2, a3) =>
         {
-            func_00445304((int)a0, (int)a1, (int)a2);
+            InGameMenu_OnFogThicknessSelect((int)a0, (int)a1, (int)a2);
             return 0;
         });
         Funcs.Add(0x00445344u, "func_00445344", (a0, a1, a2, a3) =>
         {
-            func_00445344((int)a0, (int)a1, (int)a2);
+            InGameMenu_OnFogFarClipSelect((int)a0, (int)a1, (int)a2);
             return 0;
         });
         Funcs.Add(0x00445384u, "func_00445384", (a0, a1, a2, a3) =>
         {
-            func_00445384((int)a0, (int)a1, (int)a2);
+            InGameMenu_OnFogFovSelect((int)a0, (int)a1, (int)a2);
             return 0;
         });
         Funcs.Add(0x004453C4u, "func_004453C4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004453C4();
+            var v_ = InGameMenu_OnFogAllRegionsSelect();
             return (uint)v_;
         });
         Funcs.Add(0x004453E0u, "func_004453E0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004453E0(a0);
+            var v_ = InGameMenu_FormatFogAllRegionsLabel(a0);
             return (uint)v_;
         });
     }
@@ -19735,227 +19735,227 @@ public static partial class Game
     {
         Funcs.Add(0x00445414u, "func_00445414", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00445414(a0, (int)a1);
+            var v_ = InGameMenu_UpdateLightAmbient(a0, (int)a1);
             return (uint)v_;
         });
         Funcs.Add(0x004454B4u, "func_004454B4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004454B4(a0);
+            var v_ = InGameMenu_UpdateLightAmbientRed(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00445544u, "func_00445544", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00445544(a0);
+            var v_ = InGameMenu_UpdateLightAmbientGreen(a0);
             return (uint)v_;
         });
         Funcs.Add(0x004455D4u, "func_004455D4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004455D4(a0);
+            var v_ = InGameMenu_UpdateLightAmbientBlue(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00445664u, "func_00445664", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00445664(a0, (int)a1);
+            var v_ = InGameMenu_UpdateLightDirectional(a0, (int)a1);
             return (uint)v_;
         });
         Funcs.Add(0x00445704u, "func_00445704", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00445704(a0);
+            var v_ = InGameMenu_UpdateLightDirRed(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00445794u, "func_00445794", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00445794(a0);
+            var v_ = InGameMenu_UpdateLightDirGreen(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00445824u, "func_00445824", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00445824(a0);
+            var v_ = InGameMenu_UpdateLightDirBlue(a0);
             return (uint)v_;
         });
         Funcs.Add(0x004458B4u, "func_004458B4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004458B4();
+            var v_ = InGameMenu_OnResumeSelect();
             return (uint)v_;
         });
         Funcs.Add(0x004458ECu, "func_004458EC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004458EC();
+            var v_ = InGameMenu_OnMissionStatusSelect();
             return (uint)v_;
         });
         Funcs.Add(0x004458F4u, "func_004458F4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004458F4((int)a0, (int)a1, (int)a2);
+            var v_ = InGameMenu_OnInventorySelect((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x00445920u, "func_00445920", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00445920((int)a0, (int)a1, (int)a2);
+            var v_ = InGameMenu_OnOptionsSelect((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x0044594Cu, "func_0044594C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0044594C((int)a0, (int)a1, (int)a2);
+            var v_ = InGameMenu_OnEnterCheatSelect((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x00445978u, "func_00445978", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00445978((int)a0, (int)a1, (int)a2);
+            var v_ = InGameMenu_OnCheatsSelect((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x004459A4u, "func_004459A4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004459A4((int)a0, (int)a1, (int)a2);
+            var v_ = InGameMenu_OnQuitSelect((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x004459D0u, "func_004459D0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004459D0((int)a0, (int)a1, (int)a2);
+            var v_ = InGameMenu_OnSoundBackSelect((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x00445A58u, "func_00445A58", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00445A58((int)a0, (int)a1);
+            var v_ = InGameMenu_OnSpeechVolumeSelect((int)a0, (int)a1);
             return (uint)v_;
         });
         Funcs.Add(0x00445AB8u, "func_00445AB8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00445AB8(a0);
+            var v_ = InGameMenu_FormatSpeechVolumeLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00445B98u, "func_00445B98", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00445B98((int)a0, (int)a1);
+            var v_ = InGameMenu_OnMusicVolumeSelect((int)a0, (int)a1);
             return (uint)v_;
         });
         Funcs.Add(0x00445C08u, "func_00445C08", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00445C08(a0);
+            var v_ = InGameMenu_FormatMusicVolumeLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00445CE8u, "func_00445CE8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00445CE8((int)a0, (int)a1);
+            var v_ = InGameMenu_OnSfxVolumeSelect((int)a0, (int)a1);
             return (uint)v_;
         });
         Funcs.Add(0x00445D48u, "func_00445D48", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00445D48(a0);
+            var v_ = InGameMenu_FormatSfxVolumeLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00445E28u, "func_00445E28", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00445E28((int)a0, a1);
+            var v_ = InGameMenu_OnMusicTrackSelect((int)a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00445ECCu, "func_00445ECC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00445ECC(a0);
+            var v_ = InGameMenu_FormatMusicTrackLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00445F3Cu, "func_00445F3C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00445F3C((int)a0, (int)a1, (int)a2);
+            var v_ = InGameMenu_OnSoundOptionsSelect((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x00445FC8u, "func_00445FC8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00445FC8((int)a0, a1);
+            var v_ = InGameMenu_OnPersonSelect((int)a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00446000u, "func_00446000", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00446000(a0, a1);
+            var v_ = InGameMenu_FormatPersonLabel(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00446048u, "func_00446048", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00446048((int)a0, (int)a1);
+            var v_ = InGameMenu_OnWeaponVisibleSelect((int)a0, (int)a1);
             return (uint)v_;
         });
         Funcs.Add(0x00446090u, "func_00446090", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00446090(a0);
+            var v_ = InGameMenu_FormatWeaponVisibleLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x004460C4u, "func_004460C4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004460C4((int)a0, (int)a1);
+            var v_ = InGameMenu_OnShadowsSelect((int)a0, (int)a1);
             return (uint)v_;
         });
         Funcs.Add(0x0044610Cu, "func_0044610C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0044610C(a0);
+            var v_ = InGameMenu_FormatShadowsLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00446140u, "func_00446140", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00446140((int)a0, (int)a1, (int)a2);
+            var v_ = InGameMenu_OnEditFogSelect((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x0044616Cu, "func_0044616C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0044616C((int)a0, (int)a1, (int)a2);
+            var v_ = InGameMenu_OnEditLightSelect((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x00446198u, "func_00446198", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00446198(a0);
+            var v_ = InGameMenu_FormatResolutionLabelAlt_00446198(a0);
             return (uint)v_;
         });
         Funcs.Add(0x004461F4u, "func_004461F4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004461F4();
+            var v_ = InGameMenu_OnResolutionSelectAlt_004461F4();
             return (uint)v_;
         });
         Funcs.Add(0x00446214u, "func_00446214", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00446214();
+            var v_ = InGameMenu_OnArtsendModeSelect();
             return (uint)v_;
         });
         Funcs.Add(0x00446230u, "func_00446230", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00446230(a0);
+            var v_ = InGameMenu_FormatArtsendModeLabel(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00446264u, "func_00446264", (a0, a1, a2, a3) =>
         {
-            func_00446264(a0);
+            InGameMenu_OnPauseOpen(a0);
             return 0;
         });
         Funcs.Add(0x004462F4u, "func_004462F4", (a0, a1, a2, a3) =>
         {
-            func_004462F4();
+            InGameMenu_OnPauseClose();
             return 0;
         });
         Funcs.Add(0x00446310u, "func_00446310", (a0, a1, a2, a3) =>
         {
-            func_00446310(a0, a1);
+            InGameMenu_PauseHandleMessage(a0, a1);
             return 0;
         });
         Funcs.Add(0x00446330u, "func_00446330", (a0, a1, a2, a3) =>
         {
-            func_00446330(a0);
+            NameEntry_OpenPage(a0);
             return 0;
         });
         Funcs.Add(0x004465B4u, "func_004465B4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004465B4((int)a0, a1);
+            var v_ = NameEntry_MoveCursor((int)a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00446704u, "func_00446704", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00446704(a0, a1);
+            var v_ = NameEntry_InsertChar(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x004467D8u, "func_00446330_func_004467D8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00446330_func_004467D8(a0, a1, (int)a2);
+            var v_ = NameEntry_ComparePrefixTwin(a0, a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x004467D8u, "func_004467D8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004467D8(a0, a1, (int)a2);
+            var v_ = NameEntry_ComparePrefix(a0, a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x00446810u, "func_00446810", (a0, a1, a2, a3) =>
@@ -19975,7 +19975,7 @@ public static partial class Game
         });
         Funcs.Add(0x00446B44u, "func_00446B44", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00446B44();
+            var v_ = NameEntry_UpdatePage();
             return (uint)v_;
         });
         Funcs.Add(0x00446BD0u, "osPfsAllocateFile", (a0, a1, a2, a3) =>
@@ -20153,7 +20153,7 @@ public static partial class Game
         });
         Funcs.Add(0x0044A600u, "func_0044A600", (a0, a1, a2, a3) =>
         {
-            func_0044A600(a0, (int)a1, (int)a2);
+            Player_InitPool(a0, (int)a1, (int)a2);
             return 0;
         });
         Funcs.Add(0x0044AA00u, "func_0044AA00", (a0, a1, a2, a3) =>
@@ -20173,7 +20173,7 @@ public static partial class Game
         });
         Funcs.Add(0x0044AC70u, "func_0044AC70", (a0, a1, a2, a3) =>
         {
-            func_0044AC70(a0, a1);
+            Player_ActivateAndSpawn(a0, a1);
             return 0;
         });
         Funcs.Add(0x0044ACCCu, "func_0044ACCC", (a0, a1, a2, a3) =>
@@ -20183,7 +20183,7 @@ public static partial class Game
         });
         Funcs.Add(0x0044AD14u, "func_0044AD14", (a0, a1, a2, a3) =>
         {
-            func_0044AD14(a0, (int)a1);
+            Player_SetCharacter(a0, (int)a1);
             return 0;
         });
         Funcs.Add(0x0044AFC0u, "func_0044AFC0", (a0, a1, a2, a3) =>
@@ -20198,7 +20198,7 @@ public static partial class Game
         });
         Funcs.Add(0x0044B31Cu, "func_0044B31C", (a0, a1, a2, a3) =>
         {
-            func_0044B31C(a0);
+            Camera_ResetAllRegionLayerPools(a0);
             return 0;
         });
         Funcs.Add(0x0044B388u, "func_0044B388", (a0, a1, a2, a3) =>
@@ -20218,7 +20218,7 @@ public static partial class Game
         });
         Funcs.Add(0x0044BA40u, "func_0044BA40", (a0, a1, a2, a3) =>
         {
-            func_0044BA40(a0);
+            ActorPool_Init(a0);
             return 0;
         });
         Funcs.Add(0x0044BAC0u, "func_0044BAC0", (a0, a1, a2, a3) =>
@@ -20303,7 +20303,7 @@ public static partial class Game
         });
         Funcs.Add(0x0044DDC8u, "func_0044DDC8", (a0, a1, a2, a3) =>
         {
-            func_0044DDC8(a0, (int)a1);
+            Level_RequestChangeIfNew_0044DDC8(a0, (int)a1);
             return 0;
         });
         Funcs.Add(0x0044DE04u, "func_0044DE04", (a0, a1, a2, a3) =>
@@ -20318,7 +20318,7 @@ public static partial class Game
         });
         Funcs.Add(0x0044E038u, "func_0044E038", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0044E038(a0, a1, (int)a2, a3);
+            var v_ = Track_FindNearestPlacedObject(a0, a1, (int)a2, a3);
             return (uint)v_;
         });
         Funcs.Add(0x0044E178u, "func_0044E178", (a0, a1, a2, a3) =>
@@ -20328,7 +20328,7 @@ public static partial class Game
         });
         Funcs.Add(0x0044E1D0u, "func_0044E1D0", (a0, a1, a2, a3) =>
         {
-            func_0044E1D0(a0);
+            Scene_ApplyLightAndFog(a0);
             return 0;
         });
         Funcs.Add(0x0044E214u, "func_0044E214", (a0, a1, a2, a3) =>
@@ -20343,37 +20343,37 @@ public static partial class Game
         });
         Funcs.Add(0x0044E3E4u, "func_0044E3E4", (a0, a1, a2, a3) =>
         {
-            func_0044E3E4(a0);
+            Level_FlushQueuedEntities(a0);
             return 0;
         });
         Funcs.Add(0x0044E454u, "func_0044E454", (a0, a1, a2, a3) =>
         {
-            func_0044E454((int)a0, a1);
+            Level_OnLoadParticleEffects((int)a0, a1);
             return 0;
         });
         Funcs.Add(0x0044E584u, "func_0044E584", (a0, a1, a2, a3) =>
         {
-            func_0044E584((int)a0, a1);
+            Level_OnLoadIntelligence((int)a0, a1);
             return 0;
         });
         Funcs.Add(0x0044E6A4u, "func_0044E6A4", (a0, a1, a2, a3) =>
         {
-            func_0044E6A4(a0, a1);
+            Level_OnLoadPaths(a0, a1);
             return 0;
         });
         Funcs.Add(0x0044E7C0u, "func_0044E7C0", (a0, a1, a2, a3) =>
         {
-            func_0044E7C0(a0);
+            PickupPool_Init(a0);
             return 0;
         });
         Funcs.Add(0x0044E8B0u, "func_0044E8B0", (a0, a1, a2, a3) =>
         {
-            func_0044E8B0(a0);
+            Light_SetDefaultDirection(a0);
             return 0;
         });
         Funcs.Add(0x0044E910u, "func_0044E910", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0044E910();
+            var v_ = Decal_InitQuadVerts();
             return (uint)v_;
         });
         Funcs.Add(0x0044E9A0u, "func_0044E9A0", (a0, a1, a2, a3) =>
@@ -20388,22 +20388,22 @@ public static partial class Game
         });
         Funcs.Add(0x0044EACCu, "func_0044EACC", (a0, a1, a2, a3) =>
         {
-            func_0044EACC(a0, (int)a1);
+            Game_StartMatchLevel(a0, (int)a1);
             return 0;
         });
         Funcs.Add(0x0044EBB0u, "func_0044EBB0", (a0, a1, a2, a3) =>
         {
-            func_0044EBB0(a0);
+            Effect_InitPools(a0);
             return 0;
         });
         Funcs.Add(0x0044ECB0u, "func_0044ECB0", (a0, a1, a2, a3) =>
         {
-            func_0044ECB0(a0);
+            Text_InitFont(a0);
             return 0;
         });
         Funcs.Add(0x0044ED1Cu, "func_0044ED1C", (a0, a1, a2, a3) =>
         {
-            func_0044ED1C();
+            Text_FontInitHook();
             return 0;
         });
     }

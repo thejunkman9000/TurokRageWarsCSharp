@@ -16,7 +16,7 @@ public static partial class Game
             Mem.Set(0x800E44A0u, p);
             new O3Q24_v2(p).f1C_Set(0);
             new O3Q24_v2(p).f20_Set(0);
-            func_0043C3F0(p, 103, 0, 0, 0);
+            ScreenWipe_Init(p, 103, 0, 0, 0);
             return 0;
         }
     }
@@ -47,7 +47,7 @@ public static partial class Game
                 Mem.Set((r1 + 17568u), r4);
                 Mem.Set((r4 + 28u), r0);
                 Mem.Set((r4 + 32u), r0);
-                Mem.Set((r29 + 16u), r0); func_0043C3F0(r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                Mem.Set((r29 + 16u), r0); ScreenWipe_Init(r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
                 r31 = Mem.U32((r29 + 24u));
                 r2 = r0;
                 r29 = r29 + 32u; Cpu.V1 = r3; return r2;
@@ -79,13 +79,13 @@ public static partial class Game
             {
                 return 0;
             }
-            if ((func_0043C4E8(Mem.U32(0x800E44A0u)) != a2))
+            if ((ScreenWipe_GetState(Mem.U32(0x800E44A0u)) != a2))
             {
                 return 0;
             }
-            func_0043C260(Mem.U32(0x800E44A0u));
-            func_0043C484(Mem.U32(0x800E44A0u));
-            if ((func_0043C4E8(Mem.U32(0x800E44A0u)) != 2))
+            ScreenWipe_Draw(Mem.U32(0x800E44A0u));
+            ScreenWipe_Advance(Mem.U32(0x800E44A0u));
+            if ((ScreenWipe_GetState(Mem.U32(0x800E44A0u)) != 2))
             {
                 return 0;
             }
@@ -102,7 +102,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00422370");
-            if ((func_0043C4E8(Mem.U32(0x800E44A0u)) == 1))
+            if ((ScreenWipe_GetState(Mem.U32(0x800E44A0u)) == 1))
             {
                 return 0;
             }

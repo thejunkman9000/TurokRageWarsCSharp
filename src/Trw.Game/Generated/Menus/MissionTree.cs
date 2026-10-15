@@ -88,7 +88,7 @@ public static partial class Game
             t = 0;
             Mem.Set((p + (uint)(t * 4)), 0);
             Mem.Set((p + (uint)((-1) * 4)), (-1));
-            func_0043C3F0(Mem.U32(0x800E4690u), 103, 0, 0, 0);
+            ScreenWipe_Init(Mem.U32(0x800E4690u), 103, 0, 0, 0);
             new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unkA50__Set(UiTree_FindNode((uint)(a), (uint)(337), default(uint), default(uint)));
             new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unkA50.unk10_Set((byte)(255));
             new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unkA4C_Set(0);
@@ -312,7 +312,7 @@ public static partial class Game
                 r7 = r6;
                 Mem.Set((r3 + 0u), r0);
                 Mem.Set((r3 - 4u), r2);
-                Mem.Set((r29 + 16u), r0); func_0043C3F0(r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                Mem.Set((r29 + 16u), r0); ScreenWipe_Init(r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
                 r4 = r17;
                 r5 = (uint)337; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 r3 = 2148401152u;

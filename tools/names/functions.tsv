@@ -4322,516 +4322,516 @@ func_00435DE0	0x00435DE0	PauseMenu_Close	Menus/PauseMenu.cs	medium	0xE03 slot: f
 func_00435E20	0x00435E20	PauseMenu_OnEnter	Menus/PauseMenu.cs	medium	0xE07 slot of screen 1: Menu_SetFixedFov(2)
 func_00435E40	0x00435E40	PauseMenu_OnDraw	Menus/PauseMenu.cs	medium	0xE0A slot of screen 1; returns 0
 func_00435E48	0x00435E48	PauseMenu_OnTick	Menus/PauseMenu.cs	medium	0xE08 slot of screen 1; returns 0
-func_00435E50	0x00435E50				
-func_00435E98	0x00435E98				
-func_00435EB8	0x00435EB8				
-func_00435F70	0x00435F70				
-func_00436000	0x00436000				
-func_0043609C	0x0043609C				
-func_004360D4	0x004360D4				
-func_004360F4	0x004360F4				
-func_004361FC	0x004361FC				
-func_00436204	0x00436204				
+func_00435E50	0x00435E50	PauseMenu_OnButton	Menus/PauseMenu.cs	medium	msg 0xA of screen 1 (D_800E555C): pad message (c>>16==3) button 13 resumes: D_80146894=0, Audio_UnduckMusic, Menu_RequestShutdown
+func_00435E98	0x00435E98	PauseMenu_OnCancel	Menus/PauseMenu.cs	high	msg 2 (B) of screen 1 table D_800E555C: only Menu_ConsumeEvent
+func_00435EB8	0x00435EB8	PauseMenu_OnSelect	Menus/PauseMenu.cs	medium	msg 1 of screen 1: item 0x40 resume (unduck, shutdown), 0x3C PauseMenu_Show (0x16), 0x41 -> match quit confirm 0x1F, 0x3E -> skip-map confirm 0x20
+func_00435F70	0x00435F70	PauseMenu_HandleEvent	Menus/PauseMenu.cs	high	walks message table D_800E555C (screen 1, key 1 or 0x7530) and calls the matching handler; slot 1 of CheatMenu_GetHandler_0043C500
+func_00436000	0x00436000	MatchQuitConfirm_Open	Menus/MatchQuitConfirm.cs	high	0xE06 of screen 0x1F (D_800E55C8): allocates D_800E5554 (0x20), target -1, ScreenWipe_Init(0x67), layout by Video_GetResolution
+func_0043609C	0x0043609C	MatchQuitConfirm_Close	Menus/MatchQuitConfirm.cs	high	0xE03 of screen 0x1F: frees D_800E5554, Menu_SetFixedFov(2)
+func_004360D4	0x004360D4	MatchQuitConfirm_OnEnter	Menus/MatchQuitConfirm.cs	high	0xE07 of screen 0x1F: Menu_SetFixedFov(2)
+func_004360F4	0x004360F4	MatchQuitConfirm_OnDraw	Menus/MatchQuitConfirm.cs	medium	0xE0A of screen 0x1F: draws the wipe; when done resets resolution/camera, Level_Load (menu), Menu_GotoScreen(f1C = 10/15/20 by mode, set by the YES handler 00436224)
+func_004361FC	0x004361FC	MatchQuitConfirm_OnTick	Menus/MatchQuitConfirm.cs	high	0xE08 slot of screen 0x1F; returns 0
+func_00436204	0x00436204	MatchQuitConfirm_OnBack	Menus/MatchQuitConfirm.cs	high	msg 2 of screen 0x1F: Menu_ConsumeEvent
 func_00436224	0x00436224	Menu_HandleMessage3D3_00436224	Menus/MenuCore.cs	low	harvest: src/ovl_a/func_00436224.c comment: handles menu messages 0x3D5 / 0x3D3 (cue 0x34, screen D_800E5554 timer)
-func_0043630C	0x0043630C				
-func_0043639C	0x0043639C				
-func_00436430	0x00436430				
-func_00436468	0x00436468				
-func_00436488	0x00436488				
-func_00436574	0x00436574				
-func_0043657C	0x0043657C				
-func_0043659C	0x0043659C				
-func_00436634	0x00436634				
-func_004366C4	0x004366C4				
-func_004366D0	0x004366D0				
-func_00436898	0x00436898				
-func_00436988	0x00436988				
-func_00436AD8	0x00436AD8				
-func_00436BC8	0x00436BC8				
-func_00436D18	0x00436D18				
-func_00436D48	0x00436D48				
-func_00436D50	0x00436D50				
-func_00436DCC	0x00436DCC				
-func_00436DD4	0x00436DD4				
-func_00436E38	0x00436E38				
-func_00436E74	0x00436E74				
-func_00436F2C	0x00436F2C				
-func_00436FE4	0x00436FE4				
-func_00437074	0x00437074				
-func_004371FC	0x004371FC				
-func_0043722C	0x0043722C				
-func_00437234	0x00437234				
-func_0043723C	0x0043723C				
-func_004372AC	0x004372AC				
-func_004372F4	0x004372F4				
-func_004373A4	0x004373A4				
-func_00437454	0x00437454				
-func_004374E4	0x004374E4				
-func_004374F0	0x004374F0				
-func_004375C4	0x004375C4				
-func_004375F4	0x004375F4				
-func_00437624	0x00437624				
-func_00437754	0x00437754				
-func_00437790	0x00437790				
-func_00437868	0x00437868				
-func_004378F8	0x004378F8				
-func_00437998	0x00437998				
-func_004379C8	0x004379C8				
-func_004379F0	0x004379F0				
-func_00437AD4	0x00437AD4				
-func_00437B10	0x00437B10				
-func_00437B98	0x00437B98				
-func_00437C28	0x00437C28				
-func_00437C30	0x00437C30				
-func_0043847C	0x0043847C				
-func_004387F4	0x004387F4				
-func_00438A08	0x00438A08				
+func_0043630C	0x0043630C	MatchQuitConfirm_HandleEvent	Menus/MatchQuitConfirm.cs	high	walks message table D_800E55C8 (screen 0x1F); slot 31 of CheatMenu_GetHandler_0043C500
+func_0043639C	0x0043639C	SkipMapConfirm_Open	Menus/SkipMapConfirm.cs	high	0xE06 of screen 0x20 (D_800E5628): allocates D_800E5558 (0x1C), ScreenWipe_Init(0x67), layout by Video_GetResolution
+func_00436430	0x00436430	SkipMapConfirm_Close	Menus/SkipMapConfirm.cs	high	0xE03 of screen 0x20: frees D_800E5558, Menu_SetFixedFov(2)
+func_00436468	0x00436468	SkipMapConfirm_OnEnter	Menus/SkipMapConfirm.cs	high	0xE07 of screen 0x20: Menu_SetFixedFov(2)
+func_00436488	0x00436488	SkipMapConfirm_OnDraw	Menus/SkipMapConfirm.cs	medium	0xE0A of screen 0x20: draws the wipe; when done resets camera, Level_Load, MatchSetup_StartMatch (next arena)
+func_00436574	0x00436574	SkipMapConfirm_OnTick	Menus/SkipMapConfirm.cs	high	0xE08 slot of screen 0x20; returns 0
+func_0043657C	0x0043657C	SkipMapConfirm_OnBack	Menus/SkipMapConfirm.cs	high	msg 2 of screen 0x20: Menu_ConsumeEvent
+func_0043659C	0x0043659C	SkipMapConfirm_OnSelect	Menus/SkipMapConfirm.cs	medium	msg 1 of screen 0x20: 0x3D9 back to screen 1; 0x3D8 MatchSetup_PickRandomArena, none -> arena select 0x14, else starts the wipe; screen-1 item 0x3E (disabled in trials) leads here
+func_00436634	0x00436634	SkipMapConfirm_HandleEvent	Menus/SkipMapConfirm.cs	high	walks message table D_800E5628 (screen 0x20); slot 32 of CheatMenu_GetHandler_0043C500
+func_004366C4	0x004366C4	ControllerMenu_Open	Menus/ControllerMenu.cs	medium	C of the screen-5 open: D_800E5690, popup 0x5B, NORMAL/ARCADE and OFF/ON lists, two sliders, WHEEL/TAP/MIXED list, 'CONTROLLER %d' label 0x5F, loads controller 0
+func_004366D0	0x004366D0	ControllerMenu_OpenTwin	Menus/ControllerMenu.cs	medium	MIPS entry 0xC after ControllerMenu_Open (C file func_004366C4); the 0xE06 slot of table D_800E5698 (screen 5, OptionsMenu item 0x58)
+func_00436898	0x00436898	ControllerMenu_LoadSettings	Menus/ControllerMenu.cs	medium	sets the screen-5 widgets from profile D_80102B00[i] bytes +0x189..+0x18D (style, invert, two sliders, weapon select)
+func_00436988	0x00436988	ControllerMenu_StoreSettings	Menus/ControllerMenu.cs	medium	reads the screen-5 widgets into profile +0x189..+0x18D and player record D_80146398[k] +0x7B/+0x7D/+0x79/+0x7A/+0x82
+func_00436AD8	0x00436AD8	PauseControllerMenu_LoadSettings	Menus/PauseControllerMenu.cs	medium	same as ControllerMenu_LoadSettings for the screen-0xC widgets D_800E5694
+func_00436BC8	0x00436BC8	PauseControllerMenu_StoreSettings	Menus/PauseControllerMenu.cs	medium	same as ControllerMenu_StoreSettings for the screen-0xC widgets D_800E5694
+func_00436D18	0x00436D18	ControllerMenu_Close	Menus/ControllerMenu.cs	high	0xE03 of screen 5: frees D_800E5690
+func_00436D48	0x00436D48	ControllerMenu_OnEnter	Menus/ControllerMenu.cs	high	0xE07 slot of screen 5; returns 0
+func_00436D50	0x00436D50	ControllerMenu_Update	Menus/ControllerMenu.cs	high	0xE08 of screen 5: once the popup is closed (state 4) goes to pending screen f20 or Menu_GoBack
+func_00436DCC	0x00436DCC	ControllerMenu_OnButton	Menus/ControllerMenu.cs	high	msg 0xA slot of screen 5; returns 0
+func_00436DD4	0x00436DD4	ControllerMenu_OnSelect	Menus/ControllerMenu.cs	medium	msg 1 of screen 5: item 0x60 (done) stores the current controller's settings and closes the popup
+func_00436E38	0x00436E38	ControllerMenu_OnBack	Menus/ControllerMenu.cs	high	msg 2 of screen 5: pending -1, PopupPanel_SetState(2)
+func_00436E74	0x00436E74	ControllerMenu_NextController	Menus/ControllerMenu.cs	medium	msg 8 (right) on node 0x5E: stores settings, controller index +1 (wraps at 4), loads, 'CONTROLLER %d' label, sound 0xE81
+func_00436F2C	0x00436F2C	ControllerMenu_PrevController	Menus/ControllerMenu.cs	medium	msg 7 (left) on node 0x5E: stores settings, controller index -1 (wraps to 3), loads, label, sound 0xE81
+func_00436FE4	0x00436FE4	ControllerMenu_HandleEvent	Menus/ControllerMenu.cs	high	walks message table D_800E5698 (screen 5); slot 5 of CheatMenu_GetHandler_0043C500
+func_00437074	0x00437074	PauseControllerMenu_Open	Menus/PauseControllerMenu.cs	medium	0xE06 of screen 0xC (D_800E5710): D_800E5694 with the controller widgets 0x1C9..0x1D2, 'CONTROLLER %d' label 0x1C7, loads controller 0
+func_004371FC	0x004371FC	PauseControllerMenu_Close	Menus/PauseControllerMenu.cs	high	0xE03 of screen 0xC: frees D_800E5694
+func_0043722C	0x0043722C	PauseControllerMenu_OnEnter	Menus/PauseControllerMenu.cs	high	0xE07 slot of screen 0xC; returns 0
+func_00437234	0x00437234	PauseControllerMenu_OnTick	Menus/PauseControllerMenu.cs	high	0xE08 slot of screen 0xC; returns 0
+func_0043723C	0x0043723C	PauseControllerMenu_OnSelect	Menus/PauseControllerMenu.cs	medium	msg 1 of screen 0xC: item 0x1C8 stores settings, pending -1 (from pause 22) or 11 (trial pause) via func_0042EB68, Menu_GoBack
+func_004372AC	0x004372AC	PauseControllerMenu_OnBack	Menus/PauseControllerMenu.cs	high	msg 2 of screen 0xC: pending -1/11 by Menu_GetStackScreenId(0)==22, Menu_GoBack
+func_004372F4	0x004372F4	PauseControllerMenu_NextController	Menus/PauseControllerMenu.cs	medium	msg 8 (right) on node 0x1C6: store, controller +1 (wraps at 4), load, 'CONTROLLER %d' label
+func_004373A4	0x004373A4	PauseControllerMenu_PrevController	Menus/PauseControllerMenu.cs	medium	msg 7 (left) on node 0x1C6: store, controller -1 (wraps to 3), load, 'CONTROLLER %d' label
+func_00437454	0x00437454	PauseControllerMenu_HandleEvent	Menus/PauseControllerMenu.cs	high	walks message table D_800E5710 (screen 0xC); slot 12 of CheatMenu_GetHandler_0043C500
+func_004374E4	0x004374E4	TrialMenu_OpenHead	Menus/TrialMenu.cs	medium	12-byte MIPS head (stores of the previous code) falling into TrialMenu_Open (0x004374F0)
+func_004374F0	0x004374F0	TrialMenu_Open	Menus/TrialMenu.cs	medium	0xE06 of screen 9 (D_800E5788): D_800E5780 popup 0x136, item 0x13A (continue) disabled unless progress bit D_80102B7E[0], flicker 0x139
+func_004375C4	0x004375C4	TrialMenu_Close	Menus/TrialMenu.cs	high	0xE03 of screen 9: frees D_800E5780
+func_004375F4	0x004375F4	TrialMenu_OnEnter	Menus/TrialMenu.cs	medium	0xE07 of screen 9: MenuButton_Create 0x13B, 0x13A, 0x13C
+func_00437624	0x00437624	TrialMenu_Update	Menus/TrialMenu.cs	medium	0xE08 of screen 9: on open focuses 0x13B when there is no progress, scrolls the background node, closed -> pending screen (default 3 main menu)
+func_00437754	0x00437754	TrialMenu_OnBack	Menus/TrialMenu.cs	high	msg 2 of screen 9: pending -1, PopupPanel_SetState(2)
+func_00437790	0x00437790	TrialMenu_OnSelect	Menus/TrialMenu.cs	medium	msg 1 of screen 9: 0x13C back, 0x13B new game (char select 7, or reset confirm 0x1E with progress), 0x13A continue (D_80146418 = profile char) -> mission tree 10
+func_00437868	0x00437868	TrialMenu_HandleEvent	Menus/TrialMenu.cs	high	walks message table D_800E5788 (screen 9); slot 9 of CheatMenu_GetHandler_0043C500
+func_004378F8	0x004378F8	TrialResetConfirm_Open	Menus/TrialResetConfirm.cs	medium	0xE06 of screen 0x1E (D_800E57DC): D_800E5784 popup 0x3CC, flicker 0x3CF, scrolling node 0x3CE
+func_00437998	0x00437998	TrialResetConfirm_Close	Menus/TrialResetConfirm.cs	high	0xE03 of screen 0x1E: frees D_800E5784
+func_004379C8	0x004379C8	TrialResetConfirm_OnEnter	Menus/TrialResetConfirm.cs	medium	0xE07 of screen 0x1E: MenuButton_Create 0x3D0 (yes), 0x3D1 (no)
+func_004379F0	0x004379F0	TrialResetConfirm_Update	Menus/TrialResetConfirm.cs	medium	0xE08 of screen 0x1E: scrolls the background node while open, closed -> pending screen or Menu_GoBack
+func_00437AD4	0x00437AD4	TrialResetConfirm_OnBack	Menus/TrialResetConfirm.cs	high	msg 2 of screen 0x1E: pending -1, PopupPanel_SetState(2)
+func_00437B10	0x00437B10	TrialResetConfirm_OnSelect	Menus/TrialResetConfirm.cs	medium	msg 1 of screen 0x1E: 0x3D0 clears the trial progress bytes D_80102B7E (5) and goes to char select 7; 0x3D1 back
+func_00437B98	0x00437B98	TrialResetConfirm_HandleEvent	Menus/TrialResetConfirm.cs	high	walks message table D_800E57DC (screen 0x1E); slot 30 of CheatMenu_GetHandler_0043C500
+func_00437C28	0x00437C28	TrialResults_GotoNextScreenJump_00437C28	Menus/TrialResults.cs	low	stray 8-byte stub 'j 0x00438C54' (tail of TrialResults_GotoNextScreen) between two functions; no callers
+func_00437C30	0x00437C30	TrialResults_Open	Menus/TrialResults.cs	medium	0xE06 of screen 0x12 (D_800E5834): D_800E5830, trial rewards/medals (modes 1/3/4), MISSION FAILED / YOU HAVE UNLOCKED %s / COMPLETED TIME TRIAL strings, stats, SAVE/CONTINUE/QUIT
+func_0043847C	0x0043847C	TrialResults_ShowStats	Menus/TrialResults.cs	medium	fills nodes 0x279..0x280: character icon, name, rank text, frags, deaths, '%d%%' hit rate, flags/tags, medal icon
+func_004387F4	0x004387F4	TrialResults_ShowReward	Menus/TrialResults.cs	medium	for the current reward entry shows text node 0x282 and sets up the preview model (PreviewModel_Init/SetModel, scale by item id)
+func_00438A08	0x00438A08	TrialResults_AnimateReward	Menus/TrialResults.cs	medium	draws the reward PreviewModel with alpha a4: fades in to 150, holds, fades out and advances to the next reward entry
 func_00438BA4	0x00438BA4	Game_RestartToMenu	Menus/MenuCore.cs	medium	harvest: src/ovl_a/func_00438BA4.c comment: re-runs the game initialisation and pushes menu screen 0x12 (modes 1, 3, 4)
-func_00438BD0	0x00438BD0				
-func_00438C54	0x00438C54				
-func_00438C68	0x00438C68				
-func_00438C84	0x00438C84				
-func_00438CB4	0x00438CB4				
-func_00438CBC	0x00438CBC				
-func_00438E64	0x00438E64				
-func_00438F74	0x00438F74				
-func_00439024	0x00439024				
-func_0043903C	0x0043903C				
-func_0043905C	0x0043905C				
-func_004390EC	0x004390EC				
-func_004390F0	0x004390F0				
-func_004391C0	0x004391C0				
-func_004391F0	0x004391F0				
-func_004391F8	0x004391F8				
-func_00439308	0x00439308				
-func_00439354	0x00439354				
-func_00439390	0x00439390				
-func_00439420	0x00439420				
-func_004394B0	0x004394B0				
-func_004394E0	0x004394E0				
-func_004394E8	0x004394E8				
-func_00439588	0x00439588				
-func_004395E4	0x004395E4				
-func_0043962C	0x0043962C				
+func_00438BD0	0x00438BD0	TrialResults_GotoNextScreen	Menus/TrialResults.cs	medium	caller PlayerMenu_OnDraw (after saving): clears D_801468A0 flags; won final arena (>= 0x23) -> char select 7 / main menu 3 by mode, else mission tree 10
+func_00438C54	0x00438C54	TrialResults_GotoNextScreenTail	Menus/TrialResults.cs	medium	tail piece of TrialResults_GotoNextScreen without prologue: Menu_GotoScreen(a0) and the epilogue
+func_00438C68	0x00438C68	TrialResults_ClearRewards	Menus/TrialResults.cs	medium	reward entries f9C/fB0 = -1, current entry f188 = 0; caller TrialResults_Open
+func_00438C84	0x00438C84	TrialResults_Close	Menus/TrialResults.cs	high	0xE03 of screen 0x12: frees D_800E5830
+func_00438CB4	0x00438CB4	TrialResults_OnEnter	Menus/TrialResults.cs	high	0xE07 slot of screen 0x12; returns 0
+func_00438CBC	0x00438CBC	TrialResults_OnDraw	Menus/TrialResults.cs	medium	0xE0A of screen 0x12: wipe running -> draw; done: f1C=1 loads the menu level, else goes to 7/3/10 like TrialResults_GotoNextScreen; idle: TrialResults_AnimateReward
+func_00438E64	0x00438E64	TrialResults_Update	Menus/TrialResults.cs	medium	0xE08 of screen 0x12: focuses SAVE 0x273 or CONTINUE 0x272 once, handles the sub-screen result D_80154024 (goto or show the reward again)
+func_00438F74	0x00438F74	TrialResults_OnSelect	Menus/TrialResults.cs	medium	msg 1 of screen 0x12: 0x272 continue (wipe), 0x273 save (PlayerMenu_SetMode(5), pak screen 0x13), 0x277 quit confirm 0x21
+func_00439024	0x00439024	TrialResults_RequestQuitConfirm_00439024	Menus/TrialResults.cs	low	Menu_RequestScreen(0x21) (results quit confirm); no callers or table references
+func_0043903C	0x0043903C	TrialResults_OnBack	Menus/TrialResults.cs	high	msg 2 of screen 0x12: Menu_ConsumeEvent
+func_0043905C	0x0043905C	TrialResults_HandleEvent	Menus/TrialResults.cs	high	walks message table D_800E5834 (screen 0x12); slot 18 of CheatMenu_GetHandler_0043C500
+func_004390EC	0x004390EC	SoundMenu_Open	Menus/SoundMenu.cs	medium	C of the screen-6 open: D_800E58A0, popup 0x6C, sliders 0x6F/0x71 from D_801462E0[0] (music) / [1] (effects), done 0x73
+func_004390F0	0x004390F0	SoundMenu_OpenTwin	Menus/SoundMenu.cs	medium	MIPS entry 4 after SoundMenu_Open (C file func_004390EC); the 0xE06 slot of table D_800E58A8 (screen 6, OptionsMenu item 0x57)
+func_004391C0	0x004391C0	SoundMenu_Close	Menus/SoundMenu.cs	high	0xE03 of screen 6: frees D_800E58A0
+func_004391F0	0x004391F0	SoundMenu_OnEnter	Menus/SoundMenu.cs	high	0xE07 slot of screen 6; returns 0
+func_004391F8	0x004391F8	SoundMenu_Update	Menus/SoundMenu.cs	medium	0xE08 of screen 6: closed popup -> pending/back; applies slider changes to D_801462E0 (test sound 0x460, music cue 0x34 on/off)
+func_00439308	0x00439308	SoundMenu_OnSelect	Menus/SoundMenu.cs	medium	msg 1 of screen 6: item 0x73 (done) closes the popup
+func_00439354	0x00439354	SoundMenu_OnBack	Menus/SoundMenu.cs	high	msg 2 of screen 6: pending -1, PopupPanel_SetState(2)
+func_00439390	0x00439390	SoundMenu_HandleEvent	Menus/SoundMenu.cs	high	walks message table D_800E58A8 (screen 6); slot 6 of CheatMenu_GetHandler_0043C500
+func_00439420	0x00439420	PauseSoundMenu_Open	Menus/PauseSoundMenu.cs	medium	0xE06 of screen 0xD (D_800E58FC): D_800E58A4 with sliders 0x1D5/0x1D7 from D_801462E0[0]/[1], done 0x1D3
+func_004394B0	0x004394B0	PauseSoundMenu_Close	Menus/PauseSoundMenu.cs	high	0xE03 of screen 0xD: frees D_800E58A4
+func_004394E0	0x004394E0	PauseSoundMenu_OnEnter	Menus/PauseSoundMenu.cs	high	0xE07 slot of screen 0xD; returns 0
+func_004394E8	0x004394E8	PauseSoundMenu_Update	Menus/PauseSoundMenu.cs	medium	0xE08 of screen 0xD: applies slider changes to D_801462E0 (test sound 0x460, music cue 0x34 on/off)
+func_00439588	0x00439588	PauseSoundMenu_OnSelect	Menus/PauseSoundMenu.cs	medium	msg 1 of screen 0xD: item 0x1D3 sets pending -1/11 (pause or trial pause) and Menu_GoBack
+func_004395E4	0x004395E4	PauseSoundMenu_OnBack	Menus/PauseSoundMenu.cs	high	msg 2 of screen 0xD: pending -1/11 by Menu_GetStackScreenId(0)==22, Menu_GoBack
+func_0043962C	0x0043962C	PauseSoundMenu_HandleEvent	Menus/PauseSoundMenu.cs	high	walks message table D_800E58FC (screen 0xD); slot 13 of CheatMenu_GetHandler_0043C500
 func_004396BC	0x004396BC	MatchSetup_SetDefaults	Menus/MatchSetup.cs	high	harvest: memory game facts + C git: the custom-match defaults (10 minutes, 10 frags) are written by func_004396BC
-func_004397D8	0x004397D8				
-func_00439808	0x00439808				
-func_004398D0	0x004398D0				
-func_00439910	0x00439910				
-func_00439930	0x00439930				
-func_00439938	0x00439938				
-func_004399C8	0x004399C8				
-func_004399D0	0x004399D0				
-func_00439D3C	0x00439D3C				
-func_00439DC0	0x00439DC0				
-func_00439DEC	0x00439DEC				
-func_00439E10	0x00439E10				
-func_00439E3C	0x00439E3C				
-func_00439E60	0x00439E60				
-func_00439EA8	0x00439EA8				
-func_00439EB4	0x00439EB4				
-func_00439EBC	0x00439EBC				
-func_00439EE0	0x00439EE0				
-func_00439F0C	0x00439F0C				
-func_00439F10	0x00439F10				
+func_004397D8	0x004397D8	PressStart_Close	Menus/PressStart.cs	high	0xE03 of screen 0x18 (D_800E5954): frees D_800E5950
+func_00439808	0x00439808	PressStart_Update	Menus/PressStart.cs	medium	0xE08 of screen 0x18: pulses node 0x397 alpha = cosf(t*0.005)*100+150 once input settles
+func_004398D0	0x004398D0	PressStart_OnButton	Menus/PressStart.cs	medium	msg 0xA of screen 0x18: pad button 13 goes to the main menu (screen 3)
+func_00439910	0x00439910	PressStart_OnBack	Menus/PressStart.cs	high	msg 2 of screen 0x18: Menu_ConsumeEvent
+func_00439930	0x00439930	PressStart_OnSelect	Menus/PressStart.cs	high	msg 1 slot of screen 0x18; returns 0
+func_00439938	0x00439938	PressStart_HandleEvent	Menus/PressStart.cs	high	walks message table D_800E5954 (screen 0x18); slot 24 of CheatMenu_GetHandler_0043C500
+func_004399C8	0x004399C8	PreviewModel_DrawHead	Menus/PreviewModel.cs	medium	8-byte MIPS head (stores of the previous code) falling into PreviewModel_Draw (0x004399D0)
+func_004399D0	0x004399D0	PreviewModel_Draw	Menus/PreviewModel.cs	high	draws a menu preview model: camera-relative position +0x10, spin +0x28..+0x30 by frame counter, rotation +0x1C, scale +4, model index +0x34
+func_00439D3C	0x00439D3C	PreviewModel_Init	Menus/PreviewModel.cs	high	sets scale +4 and position +0x10, zeroes rotation/spin, PreviewModel_SetModel(id), +0xB8 = 0; returns the model index
+func_00439DC0	0x00439DC0	PreviewModel_SetRotation	Menus/PreviewModel.cs	high	stores the vector at +0x1C (static rotation in degrees used by PreviewModel_Draw)
+func_00439DEC	0x00439DEC	PreviewModel_GetRotation	Menus/PreviewModel.cs	high	returns the vector at +0x1C
+func_00439E10	0x00439E10	PreviewModel_SetSpin	Menus/PreviewModel.cs	high	stores the vector at +0x28 (degrees per frame used by PreviewModel_Draw)
+func_00439E3C	0x00439E3C	PreviewModel_GetSpin	Menus/PreviewModel.cs	high	returns the vector at +0x28
+func_00439E60	0x00439E60	PreviewModel_SetModel	Menus/PreviewModel.cs	high	id +0 = n, model index +0x34 = Level_FindTypeIndexById(n), -1 for n <= 0
+func_00439EA8	0x00439EA8	PreviewModel_GetModelId	Menus/PreviewModel.cs	high	returns +0 (the id set by PreviewModel_SetModel); Loadout_OnDraw tests it before drawing
+func_00439EB4	0x00439EB4	PreviewModel_SetDrawArg	Menus/PreviewModel.cs	medium	stores +0xB8, the last argument PreviewModel_Draw passes to the model draw
+func_00439EBC	0x00439EBC	PreviewModel_GetPosition	Menus/PreviewModel.cs	high	returns the vector at +0x10
+func_00439EE0	0x00439EE0	PreviewModel_SetPosition	Menus/PreviewModel.cs	high	stores the vector at +0x10
+func_00439F0C	0x00439F0C	ResultsQuitConfirm_Open	Menus/ResultsQuitConfirm.cs	medium	C of the screen-0x21 open: MenuButton_Create 0x3DA (yes) and 0x3DB (no); accept handler Menu_HandleMessage3DA_00439F38
+func_00439F10	0x00439F10	ResultsQuitConfirm_OpenTwin	Menus/ResultsQuitConfirm.cs	medium	MIPS entry 4 after ResultsQuitConfirm_Open; the 0xE06 slot of table D_800E59A8 (screen 0x21, from TrialResults item 0x277)
 func_00439F38	0x00439F38	Menu_HandleMessage3DA_00439F38	Menus/MenuCore.cs	low	harvest: src/ovl_a/func_00439F38.c comment: handles menu messages 0x3DA / 0x3DB
-func_00439FE4	0x00439FE4				
+func_00439FE4	0x00439FE4	ResultsQuitConfirm_OnBack	Menus/ResultsQuitConfirm.cs	high	msg 2 of screen 0x21: Menu_ConsumeEvent, Menu_RequestScreen(-1), Menu_GoBack
 func_0043A014	0x0043A014	Event_DispatchByKind	Menus/MenuCore.cs	medium	harvest: src/ovl_a/func_00439F38.c comment: dispatches an event through the file's 12-byte handler table (event, actor kind, handler); adapted from func_002A2B50
-func_0043A0A4	0x0043A0A4				
-func_0043A0B0	0x0043A0B0				
-func_0043A510	0x0043A510				
-func_0043A7D8	0x0043A7D8				
-func_0043AA70	0x0043AA70				
-func_0043AD20	0x0043AD20				
-func_0043AED0	0x0043AED0				
-func_0043B03C	0x0043B03C				
-func_0043B2AC	0x0043B2AC				
-func_0043B67C	0x0043B67C				
+func_0043A0A4	0x0043A0A4	Loadout_Open	Menus/CharacterSelect.cs	medium	C of the screen-8 open: D_800E59E0 (0x1670), cursor group, character model per joined player, slide panels 0xCE/0xF6, flicker 0xC9, column kind by character, Loadout_ResetOwned
+func_0043A0B0	0x0043A0B0	Loadout_OpenTwin	Menus/CharacterSelect.cs	medium	MIPS entry 0xC after Loadout_Open (C file func_0043A0A4); the 0xE06 slot of table D_800E5C04 (screen 8)
+func_0043A510	0x0043A510	Loadout_OnEnter	Menus/CharacterSelect.cs	medium	0xE07 of screen 8: four weapon PreviewModels (scale 0.0035, random spin), each player's row cursor by column kind (Loadout_SelectRow), sound 0xE78
+func_0043A7D8	0x0043A7D8	Loadout_Update	Menus/CharacterSelect.cs	medium	0xE08 of screen 8: slide-in/out of panels f1348/f1350 (states 1/2/4/5), flicker, goes to target screen f1368 when slid out
+func_0043AA70	0x0043AA70	Loadout_OnDraw	Menus/CharacterSelect.cs	medium	0xE0A of screen 8: scissors each player's area (D_800E41C0) for MenuModel_Draw, then draws the current weapon PreviewModel at alpha 150
+func_0043AD20	0x0043AD20	Loadout_OnConfirm	Menus/CharacterSelect.cs	medium	msg 1 of screen 8: a player on the DONE row (5) becomes ready and locks his cursor; when nobody edits, Loadout_ApplyToPlayers and leave to 20/10/15 by mode
+func_0043AED0	0x0043AED0	Loadout_MoveRow	Menus/CharacterSelect.cs	medium	moves player k's row cursor up (dir 1) or down through rows 0..4 and DONE (5), fewer rows for column kind 1; Loadout_SelectRow
+func_0043B03C	0x0043B03C	Loadout_CycleWeapon	Menus/CharacterSelect.cs	medium	left/right in a weapon row: next choice skipping ones used in the same group and weapon 15 when Profile_IsWeaponUnlocked fails; Loadout_SetSlotWeapon
+func_0043B2AC	0x0043B2AC	Loadout_ShowPlayerColumn	Menus/CharacterSelect.cs	medium	sets player k editing (1), shows the row nodes for his column kind (0/1/2) with Loadout_SetSlotWeapon, highlights the current row
+func_0043B67C	0x0043B67C	Loadout_SetSlotWeapon	Menus/CharacterSelect.cs	medium	for row b picks the weapon table (D_800E5BC4/B44/B14), sets the row icon, the PreviewModel and the name text of choice c; row 5 clears the model
 func_0043B8C8	0x0043B8C8	Loadout_FillColumns	Menus/CharacterSelect.cs	medium	harvest: src/ovl_a/func_0043B8C8.c comment: fills player p's column values on the screen D_800E59E0 from what the player owns
-func_0043BA34	0x0043BA34				
+func_0043BA34	0x0043BA34	Loadout_ApplyToPlayers	Menus/CharacterSelect.cs	medium	for joined players with column kind 2 writes owned flags +0x4C and slot ids +0x62 from the chosen rows (weapon 0 always owned)
 func_0043BB4C	0x0043BB4C	Loadout_ResetOwned	Menus/CharacterSelect.cs	medium	harvest: src/ovl_a/func_0043BB4C.c comment: clears owned bytes of each player record and marks the model kind's slot ids owned
-func_0043BC04	0x0043BC04				
-func_0043BC3C	0x0043BC3C				
-func_0043BD50	0x0043BD50				
-func_0043BD90	0x0043BD90				
-func_0043BEA0	0x0043BEA0				
-func_0043BF38	0x0043BF38				
-func_0043BFD0	0x0043BFD0				
-func_0043C06C	0x0043C06C				
-func_0043C108	0x0043C108				
-func_0043C1D0	0x0043C1D0				
-func_0043C260	0x0043C260				
-func_0043C3F0	0x0043C3F0				
+func_0043BC04	0x0043BC04	Loadout_CountEditing	Menus/CharacterSelect.cs	medium	counts the players whose row state +0x4B0 is 1 (still choosing); Loadout_OnConfirm leaves at 0
+func_0043BC3C	0x0043BC3C	Loadout_SelectRow	Menus/CharacterSelect.cs	medium	shows/highlights row b of player k (nodes D_800E5A06/D_800E5A1A), stores it in +0x4B4, Loadout_SetSlotWeapon
+func_0043BD50	0x0043BD50	Loadout_Close	Menus/CharacterSelect.cs	high	0xE03 of screen 8: frees D_800E59E0, Menu_EnableInput, Menu_SetFixedFov(2)
+func_0043BD90	0x0043BD90	Loadout_OnButton	Menus/CharacterSelect.cs	medium	msg 0xA of screen 8: pad button 0 of an editing player refills his columns (Loadout_FillColumns), refreshes all rows, sound 0xE7C
+func_0043BEA0	0x0043BEA0	Loadout_OnUp	Menus/CharacterSelect.cs	high	msg 5 (up, any node): editing player's row cursor up (Loadout_MoveRow 1), sound 0xE7B
+func_0043BF38	0x0043BF38	Loadout_OnDown	Menus/CharacterSelect.cs	high	msg 6 (down): Loadout_MoveRow(-1), sound 0xE7B
+func_0043BFD0	0x0043BFD0	Loadout_OnLeft	Menus/CharacterSelect.cs	high	msg 7 (left): column kind 2 player, Loadout_CycleWeapon(-1), sound 0xE7B
+func_0043C06C	0x0043C06C	Loadout_OnRight	Menus/CharacterSelect.cs	high	msg 8 (right): column kind 2 player, Loadout_CycleWeapon(+1), sound 0xE7B
+func_0043C108	0x0043C108	Loadout_OnBack	Menus/CharacterSelect.cs	medium	msg 2 of screen 8: an editing player slides out to char select 7; a ready player edits again (cursor unlocked, Loadout_ShowPlayerColumn)
+func_0043C1D0	0x0043C1D0	Loadout_HandleEvent	Menus/CharacterSelect.cs	high	walks message table D_800E5C04 (screen 8, keys 8 / 0x7530); slot 8 of CheatMenu_GetHandler_0043C500
+func_0043C260	0x0043C260	ScreenWipe_Draw	Menus/ScreenWipe.cs	medium	while state 1 draws sprite +0 frame +0x14 full screen (Sprite_Draw, scale by D_800E28D8) in prim colour +4/+8/+0xC
+func_0043C3F0	0x0043C3F0	ScreenWipe_Init	Menus/ScreenWipe.cs	high	clears speed/frame/state, ScreenWipe_SetSprite(b), ScreenWipe_SetColor(c,d,e); called by the menu opens with sprite 0x67
 func_0043C458	0x0043C458	Menu_ShowScreen_0043C458	Menus/MenuCore.cs	low	harvest: src/ovl_a/func_00436224.c comment: shows the screen through func_0043C458
-func_0043C484	0x0043C484				
-func_0043C4B4	0x0043C4B4				
-func_0043C4C0	0x0043C4C0				
-func_0043C4D0	0x0043C4D0				
-func_0043C4D8	0x0043C4D8				
-func_0043C4E8	0x0043C4E8				
-func_0043C4F4	0x0043C4F4				
+func_0043C484	0x0043C484	ScreenWipe_Advance	Menus/ScreenWipe.cs	high	frame +0x14 += speed +0x10; at frame 13 stops and sets state 2 (done)
+func_0043C4B4	0x0043C4B4	ScreenWipe_GetFrame	Menus/ScreenWipe.cs	high	returns frame +0x14
+func_0043C4C0	0x0043C4C0	ScreenWipe_IsDone	Menus/ScreenWipe.cs	high	returns state +0x18 == 2
+func_0043C4D0	0x0043C4D0	ScreenWipe_SetSprite	Menus/ScreenWipe.cs	high	stores the sprite id at +0; caller ScreenWipe_Init
+func_0043C4D8	0x0043C4D8	ScreenWipe_SetColor	Menus/ScreenWipe.cs	high	stores r/g/b at +4/+8/+0xC (the prim colour ScreenWipe_Draw uses)
+func_0043C4E8	0x0043C4E8	ScreenWipe_GetState	Menus/ScreenWipe.cs	high	returns state +0x18 (0 idle, 1 running, 2 done; started by Menu_ShowScreen_0043C458)
+func_0043C4F4	0x0043C4F4	CheatList_LabelLivesEntry_0043C4F4	Menus/CheatList.cs	low	stray 8-byte piece 'lw v0,8(a0); j 0x0043D510' into the infinite-lives label function of the (Turok 2) cheat list; no callers
 func_0043C500	0x0043C500	CheatMenu_GetHandler_0043C500	Menus/MenuCore.cs	low	harvest: src/ovl_a/func_0043C500.c + C git ce7cb72: "cheat code" / name-entry menu helpers block
-func_0043C72C	0x0043C72C				
-func_0043C730	0x0043C730				
-func_0043C868	0x0043C868				
-func_0043CB78	0x0043CB78				
-func_0043CB8C	0x0043CB8C				
-func_0043CD10	0x0043CD10				
-func_0043CDE8	0x0043CDE8				
-func_0043CDF0	0x0043CDF0				
-func_0043CEB0	0x0043CEB0				
-func_0043CF44	0x0043CF44				
-func_0043CFD8	0x0043CFD8				
-func_0043D124	0x0043D124				
-func_0043D164	0x0043D164				
-func_0043D260	0x0043D260				
-func_0043D2B4	0x0043D2B4				
-func_0043D2D0	0x0043D2D0				
-func_0043D3BC	0x0043D3BC				
-func_0043D43C	0x0043D43C				
-func_0043D458	0x0043D458				
-func_0043D4C4	0x0043D4C4				
-func_0043D4E0	0x0043D4E0				
-func_0043D54C	0x0043D54C				
-func_0043D568	0x0043D568				
-func_0043D5D4	0x0043D5D4				
-func_0043D5F0	0x0043D5F0				
-func_0043D65C	0x0043D65C				
-func_0043D678	0x0043D678				
-func_0043D6E4	0x0043D6E4				
-func_0043D700	0x0043D700				
-func_0043D76C	0x0043D76C				
-func_0043D788	0x0043D788				
-func_0043D7F4	0x0043D7F4				
-func_0043D810	0x0043D810				
-func_0043D87C	0x0043D87C				
-func_0043D898	0x0043D898				
-func_0043D904	0x0043D904				
-func_0043D920	0x0043D920				
-func_0043D98C	0x0043D98C				
-func_0043D9A8	0x0043D9A8				
-func_0043DA14	0x0043DA14				
-func_0043DA30	0x0043DA30				
-func_0043DA9C	0x0043DA9C				
-func_0043DAB8	0x0043DAB8				
-func_0043DB24	0x0043DB24				
-func_0043DB40	0x0043DB40				
-func_0043DBAC	0x0043DBAC				
-func_0043DBC8	0x0043DBC8				
-func_0043DC34	0x0043DC34				
-func_0043DC50	0x0043DC50				
-func_0043DCBC	0x0043DCBC				
-func_0043DCC0	0x0043DCC0				
-func_0043DCE4	0x0043DCE4				
-func_0043DD2C	0x0043DD2C				
-func_0043DD30	0x0043DD30				
-func_0043DEDC	0x0043DEDC				
-func_0043DF84	0x0043DF84				
-func_0043DFC0	0x0043DFC0				
-func_0043E054	0x0043E054				
-func_0043E0E8	0x0043E0E8				
-func_0043E158	0x0043E158				
-func_0043E1B0	0x0043E1B0				
-func_0043E1C0	0x0043E1C0				
-func_0043E21C	0x0043E21C				
-func_0043E230	0x0043E230				
-func_0043E244	0x0043E244				
-func_0043E24C	0x0043E24C				
-func_0043E284	0x0043E284				
-func_0043E2E0	0x0043E2E0				
-func_0043E318	0x0043E318				
-func_0043E364	0x0043E364				
-func_0043E458	0x0043E458				
-func_0043E4A4	0x0043E4A4				
-func_0043E4D0	0x0043E4D0				
-func_0043E4F4	0x0043E4F4				
-func_0043E520	0x0043E520				
-func_0043E56C	0x0043E56C				
-func_0043E590	0x0043E590				
-func_0043E5BC	0x0043E5BC				
-func_0043E5F4	0x0043E5F4				
-func_0043E654	0x0043E654				
-func_0043E65C	0x0043E65C				
-func_0043E748	0x0043E748				
-func_0043E750	0x0043E750				
-func_0043E788	0x0043E788				
-func_0043E7D0	0x0043E7D0				
-func_0043E81C	0x0043E81C				
-func_0043E924	0x0043E924				
-func_0043E9A8	0x0043E9A8				
-func_0043EA94	0x0043EA94				
-func_0043EAC0	0x0043EAC0				
-func_0043EAF4	0x0043EAF4				
-func_0043EB20	0x0043EB20				
-func_0043EB78	0x0043EB78				
-func_0043EBC4	0x0043EBC4				
-func_0043EC10	0x0043EC10				
-func_0043ECE8	0x0043ECE8				
-func_0043ED5C	0x0043ED5C				
-func_0043EDB8	0x0043EDB8				
-func_0043EDE4	0x0043EDE4				
-func_0043EE10	0x0043EE10				
-func_0043EE3C	0x0043EE3C				
-func_0043EEC0	0x0043EEC0				
-func_0043EEC8	0x0043EEC8				
-func_0043EEF0	0x0043EEF0				
-func_0043EF1C	0x0043EF1C				
-func_0043EF20	0x0043EF20				
-func_0043EF4C	0x0043EF4C				
-func_0043EF94	0x0043EF94				
-func_0043EFCC	0x0043EFCC				
-func_0043EFD0	0x0043EFD0				
-func_0043F1B0	0x0043F1B0				
-func_0043EFCC_func_0043F1B8	0x0043F1B8				
-func_0043F1B8	0x0043F1B8				
-func_0043F238	0x0043F238				
-func_0043F284	0x0043F284				
-func_0043F290	0x0043F290				
-func_0043F404	0x0043F404				
-func_0043F69C	0x0043F69C				
-func_0043FFAC	0x0043FFAC				
-func_0044044C	0x0044044C				
-func_00440618	0x00440618				
-func_004409A8	0x004409A8				
-func_00440F10	0x00440F10				
-func_0044121C	0x0044121C				
+func_0043C72C	0x0043C72C	CheatList_OpenHead	Menus/CheatList.cs	medium	4-byte MIPS head ('and v0,v0,v1') falling into CheatList_Open (0x0043C730)
+func_0043C730	0x0043C730	CheatList_Open	Menus/CheatList.cs	medium	open fn of the descriptor at 0x4501E8 (layout 0x450118, 20 items): first unlocked warp flag of D_801462CC -> D_80154034, shows/hides the warp item
+func_0043C868	0x0043C868	CheatList_SelectWarp	Menus/CheatList.cs	medium	select fn of the 'warp:' item (label 0043D2D0): A warps to level code 1000..0x1F40 (credits), left/right step to the previous/next unlocked warp
+func_0043CB78	0x0043CB78	CheatEntry_Open	Menus/CheatEntry.cs	medium	open fn of the descriptor for layout 0x44FC50 (33 items, cheat-code keyboard): matched cheat D_80154030 = -1
+func_0043CB8C	0x0043CB8C	CheatEntry_DrawTextField	Menus/CheatEntry.cs	medium	draw fn of the code text item 0x800E5CC4: blinking cursor bar under character D_800E5CA0.cur, then the default item draw func_004421FC
+func_0043CD10	0x0043CD10	CheatEntry_UpdateTextField	Menus/CheatEntry.cs	medium	label fn of the code text item: advances the 15-tick blink timer, left/right move the cursor within the entered text
+func_0043CDE8	0x0043CDE8	CheatEntry_OnTextFieldSelect	Menus/CheatEntry.cs	medium	select fn of the code text item (record at 0x44FCA4); returns 0
+func_0043CDF0	0x0043CDF0	CheatEntry_InsertLetter	Menus/CheatEntry.cs	high	select fn of every letter key: inserts the key's character at the cursor (max 22), resets matched cheat and blink
+func_0043CEB0	0x0043CEB0	CheatEntry_DeleteLetter	Menus/CheatEntry.cs	high	select fn of the delete key: removes the character before the cursor
+func_0043CF44	0x0043CF44	CheatEntry_IsCodeEntered	Menus/CheatEntry.cs	high	1 when the entered text D_800E5CAC equals the XOR-obfuscated code s (s[i]^i), e.g. UBERNOODLE
+func_0043CFD8	0x0043CFD8	LegacyCheats_CheckEnteredCode	Menus/LegacyCheats.cs	high	compares the typed code D_800E5CAC with the 12 XOR-encoded codes of D_0044FB90; a match sets the cheat mask in D_801462CC, D_80154030 = index, plays its sound; select fn of the enter-cheat screen (0x4500A4)
+func_0043D124	0x0043D124	LegacyCheats_SetResultLabel	Menus/LegacyCheats.cs	high	item label fn (0x4500C4): text = D_0044FB94[D_80154030] ('big head mode activated'...) or blank
+func_0043D164	0x0043D164	LegacyCheats_FindUnlockedWarp	Menus/LegacyCheats.cs	medium	steps an index 0..10 (wrapping) until its warp bit (0x10000..0x4000000) is set in D_801462CC; -1 if none
+func_0043D260	0x0043D260	LegacyCheats_SetToggleLabel	Menus/LegacyCheats.cs	medium	generic toggle label: enables the item if the mask is unlocked in D_801462CC, on/off text by D_801462C8 & mask
+func_0043D2B4	0x0043D2B4	LegacyCheats_ToggleFlag	Menus/LegacyCheats.cs	medium	D_801462C8 ^= mask (generic cheat toggle)
+func_0043D2D0	0x0043D2D0	LegacyCheats_SetWarpLabel	Menus/LegacyCheats.cs	high	item label (0x4503B8): text = 'warp: port of adia'.. by the selected warp D_80154034
+func_0043D3BC	0x0043D3BC	LegacyCheats_GetWarpLevelKey	Menus/LegacyCheats.cs	high	returns level key 1000..6000/7401/7501/7601/7602/8000 for warp index D_80154034 (same table the warp select passes to Game_FadeToLevel)
+func_0043D43C	0x0043D43C	LegacyCheats_ToggleInvincibility	Menus/LegacyCheats.cs	high	D_801462C8 ^= 0x1; select fn of the 'invincibility : on/off' item of the leftover cheat list
+func_0043D458	0x0043D458	LegacyCheats_SetInvincibilityLabel	Menus/LegacyCheats.cs	high	label fn of the 'invincibility : on/off' item: enabled if D_801462CC & 0x1, on/off text by D_801462C8 & 0x1
+func_0043D4C4	0x0043D4C4	LegacyCheats_ToggleInfiniteLives	Menus/LegacyCheats.cs	high	D_801462C8 ^= 0x2; select fn of the 'infinite lives : on/off' item of the leftover cheat list
+func_0043D4E0	0x0043D4E0	LegacyCheats_SetInfiniteLivesLabel	Menus/LegacyCheats.cs	high	label fn of the 'infinite lives : on/off' item: enabled if D_801462CC & 0x2, on/off text by D_801462C8 & 0x2
+func_0043D54C	0x0043D54C	LegacyCheats_ToggleAllWeapons	Menus/LegacyCheats.cs	high	D_801462C8 ^= 0x4; select fn of the 'all weapons : on/off' item of the leftover cheat list
+func_0043D568	0x0043D568	LegacyCheats_SetAllWeaponsLabel	Menus/LegacyCheats.cs	high	label fn of the 'all weapons : on/off' item: enabled if D_801462CC & 0x4, on/off text by D_801462C8 & 0x4
+func_0043D5D4	0x0043D5D4	LegacyCheats_ToggleUnlimitedAmmo	Menus/LegacyCheats.cs	high	D_801462C8 ^= 0x8; select fn of the 'unlimited ammo : on/off' item of the leftover cheat list
+func_0043D5F0	0x0043D5F0	LegacyCheats_SetUnlimitedAmmoLabel	Menus/LegacyCheats.cs	high	label fn of the 'unlimited ammo : on/off' item: enabled if D_801462CC & 0x8, on/off text by D_801462C8 & 0x8
+func_0043D65C	0x0043D65C	LegacyCheats_ToggleAllSpecialObjects	Menus/LegacyCheats.cs	high	D_801462C8 ^= 0x10; select fn of the 'all special objects : on/off' item of the leftover cheat list
+func_0043D678	0x0043D678	LegacyCheats_SetAllSpecialObjectsLabel	Menus/LegacyCheats.cs	high	label fn of the 'all special objects : on/off' item: enabled if D_801462CC & 0x10, on/off text by D_801462C8 & 0x10
+func_0043D6E4	0x0043D6E4	LegacyCheats_ToggleBigHeadMode	Menus/LegacyCheats.cs	high	D_801462C8 ^= 0x20; select fn of the 'big head mode : on/off' item of the leftover cheat list
+func_0043D700	0x0043D700	LegacyCheats_SetBigHeadModeLabel	Menus/LegacyCheats.cs	high	label fn of the 'big head mode : on/off' item: enabled if D_801462CC & 0x20, on/off text by D_801462C8 & 0x20
+func_0043D76C	0x0043D76C	LegacyCheats_ToggleTinyMode	Menus/LegacyCheats.cs	high	D_801462C8 ^= 0x40; select fn of the 'tiny mode : on/off' item of the leftover cheat list
+func_0043D788	0x0043D788	LegacyCheats_SetTinyModeLabel	Menus/LegacyCheats.cs	high	label fn of the 'tiny mode : on/off' item: enabled if D_801462CC & 0x40, on/off text by D_801462C8 & 0x40
+func_0043D7F4	0x0043D7F4	LegacyCheats_ToggleStickMode	Menus/LegacyCheats.cs	high	D_801462C8 ^= 0x80; select fn of the 'stick mode : on/off' item of the leftover cheat list
+func_0043D810	0x0043D810	LegacyCheats_SetStickModeLabel	Menus/LegacyCheats.cs	high	label fn of the 'stick mode : on/off' item: enabled if D_801462CC & 0x80, on/off text by D_801462C8 & 0x80
+func_0043D87C	0x0043D87C	LegacyCheats_ToggleBigHandsFeetMode	Menus/LegacyCheats.cs	high	D_801462C8 ^= 0x100; select fn of the 'big hands / feet mode : on/off' item of the leftover cheat list
+func_0043D898	0x0043D898	LegacyCheats_SetBigHandsFeetModeLabel	Menus/LegacyCheats.cs	high	label fn of the 'big hands / feet mode : on/off' item: enabled if D_801462CC & 0x100, on/off text by D_801462C8 & 0x100
+func_0043D904	0x0043D904	LegacyCheats_TogglePenAndInkMode	Menus/LegacyCheats.cs	high	D_801462C8 ^= 0x200; select fn of the 'pen and ink mode : on/off' item of the leftover cheat list
+func_0043D920	0x0043D920	LegacyCheats_SetPenAndInkModeLabel	Menus/LegacyCheats.cs	high	label fn of the 'pen and ink mode : on/off' item: enabled if D_801462CC & 0x200, on/off text by D_801462C8 & 0x200
+func_0043D98C	0x0043D98C	LegacyCheats_ToggleGouraudMode	Menus/LegacyCheats.cs	high	D_801462C8 ^= 0x400; select fn of the 'gouraud mode : on/off' item of the leftover cheat list
+func_0043D9A8	0x0043D9A8	LegacyCheats_SetGouraudModeLabel	Menus/LegacyCheats.cs	high	label fn of the 'gouraud mode : on/off' item: enabled if D_801462CC & 0x400, on/off text by D_801462C8 & 0x400
+func_0043DA14	0x0043DA14	LegacyCheats_ToggleJuansCheat	Menus/LegacyCheats.cs	high	D_801462C8 ^= 0x800; select fn of the 'juans cheat : on/off' item of the leftover cheat list
+func_0043DA30	0x0043DA30	LegacyCheats_SetJuansCheatLabel	Menus/LegacyCheats.cs	high	label fn of the 'juans cheat : on/off' item: enabled if D_801462CC & 0x800, on/off text by D_801462C8 & 0x800
+func_0043DA9C	0x0043DA9C	LegacyCheats_ToggleZachAttack	Menus/LegacyCheats.cs	high	D_801462C8 ^= 0x1000; select fn of the 'zach attack cheat : on/off' item of the leftover cheat list
+func_0043DAB8	0x0043DAB8	LegacyCheats_SetZachAttackLabel	Menus/LegacyCheats.cs	high	label fn of the 'zach attack cheat : on/off' item: enabled if D_801462CC & 0x1000, on/off text by D_801462C8 & 0x1000
+func_0043DB24	0x0043DB24	LegacyCheats_ToggleAllMap	Menus/LegacyCheats.cs	high	D_801462C8 ^= 0x2000; select fn of the 'all map : on/off' item of the leftover cheat list
+func_0043DB40	0x0043DB40	LegacyCheats_SetAllMapLabel	Menus/LegacyCheats.cs	high	label fn of the 'all map : on/off' item: enabled if D_801462CC & 0x2000, on/off text by D_801462C8 & 0x2000
+func_0043DBAC	0x0043DBAC	LegacyCheats_ToggleBlackout	Menus/LegacyCheats.cs	high	D_801462C8 ^= 0x4000; select fn of the 'blackout : on/off' item of the leftover cheat list
+func_0043DBC8	0x0043DBC8	LegacyCheats_SetBlackoutLabel	Menus/LegacyCheats.cs	high	label fn of the 'blackout : on/off' item: enabled if D_801462CC & 0x4000, on/off text by D_801462C8 & 0x4000
+func_0043DC34	0x0043DC34	LegacyCheats_ToggleFrootyStripes	Menus/LegacyCheats.cs	high	D_801462C8 ^= 0x8000; select fn of the 'frooty stripes : on/off' item of the leftover cheat list
+func_0043DC50	0x0043DC50	LegacyCheats_SetFrootyStripesLabel	Menus/LegacyCheats.cs	high	label fn of the 'frooty stripes : on/off' item: enabled if D_801462CC & 0x8000, on/off text by D_801462C8 & 0x8000
+func_0043DCBC	0x0043DCBC	LegacyMenu_OnContinueYes	Menus/LegacyMenus.cs	medium	'yes' of the leftover 'continue ?' screen (0x45047C): Player_StartRun_0044A37C(ctx+0x1C); C version (word at 0x43DCBC is stray padding)
+func_0043DCC0	0x0043DCC0	LegacyMenu_OnContinueYesTwin	Menus/LegacyMenus.cs	medium	MIPS real entry 4 bytes after LegacyMenu_OnContinueYes's stray word; the item table 0x450450 points here
+func_0043DCE4	0x0043DCE4	LegacyMenu_OnContinueNo	Menus/LegacyMenus.cs	medium	'no' of the 'continue ?' screen (0x450474): Match_Reset when D_80145070 == 1, else ctx+0x5D0 = 0
+func_0043DD2C	0x0043DD2C	LegacyMenu_SetWeaponLabel	Menus/LegacyMenus.cs	high	customize-weapons item label by item code 2..9: 'charge dart rifle : on/off'..'torpedo launcher' from D_801462F5..FD; C version (stray word at 0x43DD2C)
+func_0043DD30	0x0043DD30	LegacyMenu_SetWeaponLabelTwin	Menus/LegacyMenus.cs	high	MIPS real entry of LegacyMenu_SetWeaponLabel; the customize-weapons item table 0x4508F4.. points here
+func_0043DEDC	0x0043DEDC	LegacyMenu_ClaimConfirmingPad	Menus/LegacyMenus.cs	medium	clears 8 player records +0, marks the first pad pressing confirm as player (b78 = 1, b7F = port), stores the pad in the menu, Audio_UnduckMusic; called by the leftover cheat warp
+func_0043DF84	0x0043DF84	LegacyMenu_SetPadPolling	Menus/LegacyMenus.cs	medium	Pad_EnableStatusPoll / Pad_DisableStatusPoll on the menu pad port by flag; no callers
+func_0043DFC0	0x0043DFC0	MatchSetup_ApplySettingsLegacy	Menus/MatchSetup.cs	medium	older copy of MatchSetup_ApplySettings: D_801468A0 +0x54/+0x24/+0x18/+0x78, clock = minutes*900, +0x6C = 0xA00, clears the score arrays, 0 clock -> -1; no callers
+func_0043E054	0x0043E054	LegacyMenu_JoinConfirmingPad	Menus/LegacyMenus.cs	medium	clears byte +8 of 8 player records, marks the first pad pressing confirm in D_80146398 (b78 = 1, b7F = port); no callers
+func_0043E0E8	0x0043E0E8	Pad_FindConfirming	Player/Controls.cs	medium	returns the first of the 4 pads D_8010F328 with Pad_IsConfirm and its index (-1/NULL if none); no callers
+func_0043E158	0x0043E158	LegacyMenu_CountReadyPads	Menus/LegacyMenus.cs	medium	counts connected pads (D_8010F328[i].active); returns 0 if a connected pad has no ready flag in its player record
+func_0043E1B0	0x0043E1B0	LegacyMenu_OpenFinalScore	Menus/LegacyMenus.cs	high	open fn of the 'final score' screen 0x800E5DD4: D_8015404C = 0
+func_0043E1C0	0x0043E1C0	LegacyMenu_UpdateFinalScore	Menus/LegacyMenus.cs	high	update fn of the 'final score' screen: after 120 time units sets D_801468A0+0x24 = 0 and Match_EndForAllPlayers, closes
+func_0043E21C	0x0043E21C	LegacyMenu_SetBlueScoreLabel	Menus/LegacyMenus.cs	high	label fn: text = 'blue blood score :' (D_800D76C8)
+func_0043E230	0x0043E230	LegacyMenu_SetRedScoreLabel	Menus/LegacyMenus.cs	high	label fn: text = ' red blood score :' (D_800D76CC)
+func_0043E244	0x0043E244	LegacyMenu_NopWaitLabel	Menus/LegacyMenus.cs	medium	returns 0; label fn of the 'please wait.....' item of the final score screen
+func_0043E24C	0x0043E24C	LegacyMenu_ShouldCloseSetupMessage	Menus/LegacyMenus.cs	medium	update fn of screen 0x4505C0: returns 1 (close) when D_801468A0 +0x28/+0x1C/+0x20 is set
+func_0043E284	0x0043E284	LegacyMenu_OnSetupMessageOk	Menus/LegacyMenus.cs	medium	select fn of the last item of screen 0x4505C0: D_80146914 = 0, Pad_DisableStatusPoll, Rumble_Reset, Rumble_SetEnabled(1), ctx+0x85C = 0
+func_0043E2E0	0x0043E2E0	LegacyMenu_ShouldClosePlayerSetup	Menus/LegacyMenus.cs	medium	update fn of the player setup screen 0x450698: returns 1 when D_801468A0 +0x28/+0x1C/+0x20 is set
+func_0043E318	0x0043E318	LegacyMenu_StepSetting83_0043E318	Menus/LegacyMenus.cs	low	player setup item select: MenuSpinner_Step on ctx->sub+0x83 within 0..10, no wrap
+func_0043E364	0x0043E364	LegacyMenu_SetSetting83Label_0043E364	Menus/LegacyMenus.cs	low	label of that item: special texts at 0 and 10, else a per-port text with sprintf %02d of the value
+func_0043E458	0x0043E458	LegacyMenu_ToggleSetting7B_0043E458	Menus/LegacyMenus.cs	low	player setup item select: MenuSpinner_Step on ctx->sub+0x7B within 0..1 with wrap
+func_0043E4A4	0x0043E4A4	LegacyMenu_OpenNameEntry	Menus/LegacyMenus.cs	medium	select fn: MenuPanel_OpenChild with screen D_00452834 (the 'edit' + A..Z name-entry screen)
+func_0043E4D0	0x0043E4D0	LegacyMenu_SetNameLabel	Menus/LegacyMenus.cs	medium	label fn: text = D_800E5D10[pad port] (the player name)
+func_0043E4F4	0x0043E4F4	LegacyMenu_OpenSetupMessage_0043E4F4	Menus/LegacyMenus.cs	low	select fn of the last player-setup item: MenuPanel_OpenChild with screen D_004505C0 (7 text lines + OK)
+func_0043E520	0x0043E520	LegacyMenu_SetSetting7BLabel_0043E520	Menus/LegacyMenus.cs	low	label fn: one of two texts D_800D7688/768C by ctx->sub+0x7B
+func_0043E56C	0x0043E56C	LegacyMenu_OpenCharSelect	Menus/LegacyMenus.cs	medium	open fn of the leftover character screen 0x450758: Pad_EnableStatusPoll on the menu pad
+func_0043E590	0x0043E590	LegacyMenu_OpenCharSelectFromPak	Menus/LegacyMenus.cs	medium	open fn of the variant 0x45077C (opened by PakMenu_OpenLoadPlayer): Pad_EnableStatusPoll, D_800E28C0 = 0
+func_0043E5BC	0x0043E5BC	LegacyMenu_ShouldCloseCharSelect	Menus/LegacyMenus.cs	medium	update fn of screens 0x450758/0x45077C: returns 1 when D_801468A0 +0x28/+0x1C/+0x20 is set
+func_0043E5F4	0x0043E5F4	LegacyMenu_OpenLoadPlayer	Menus/LegacyMenus.cs	medium	select fn: PakMenu_ClearSkipPak, Audio_StopAllExcept(-1), MenuPanel_Open(D_8014561C, D_0044F0B8 = the PakMenu_OpenLoadPlayer screen)
+func_0043E654	0x0043E654	LegacyMenu_NopLoadItemLabel	Menus/LegacyMenus.cs	medium	returns 0; label fn of the load item of the leftover character screen
+func_0043E65C	0x0043E65C	LegacyMenu_UpdateCharacterChoice	Menus/LegacyMenus.cs	medium	model item select: left/right steps character 0..0x12 (func_004425F8, func_0044AD14, MenuItem_LoadModelDef 0xB); confirm plays the character sound and opens player setup 0x450698
+func_0043E748	0x0043E748	LegacyMenu_NopModelItemLabel	Menus/LegacyMenus.cs	medium	returns 0; label fn of the character model item (drawn by MenuItem_DrawModel)
+func_0043E750	0x0043E750	LegacyMenu_ShouldCloseTeamSelect	Menus/LegacyMenus.cs	medium	update fn of the 'choose' blue/red blood screen: returns 1 when D_801468A0 +0x28/+0x1C/+0x20 is set
+func_0043E788	0x0043E788	LegacyMenu_OnBlueTeam	Menus/LegacyMenus.cs	high	'blue blood' select: ctx+0x858 = 0, sub+0x80 = 0, opens the character screen 0x450758
+func_0043E7D0	0x0043E7D0	LegacyMenu_OnRedTeam	Menus/LegacyMenus.cs	high	'red blood' select: ctx+0x858 = 1, sub+0x80 = 0, opens the character screen 0x450758
+func_0043E81C	0x0043E81C	LegacyMenu_StepPlayerSpeed	Menus/LegacyMenus.cs	medium	spinner D_800E5E48 0..15 into table D_00450854 (-0.5..1.0): D_801462E8 = clamp(1+v, 0.5, 2); no callers
+func_0043E924	0x0043E924	LegacyMenu_SetPlayerSpeedLabel	Menus/LegacyMenus.cs	high	label: 'player speed : default' when D_801462E8 == 1, else 'player speed :' + %3d (index-5)
+func_0043E9A8	0x0043E9A8	LegacyMenu_ToggleWeapon	Menus/LegacyMenus.cs	high	customize-weapons select: item code 2..9 toggles D_801462C8 bytes +0x2D..+0x35 (weapon enabled)
+func_0043EA94	0x0043EA94	LegacyMenu_OpenCustomizeWeapons	Menus/LegacyMenus.cs	high	'customize weapons' select (deathmatch screen): MenuPanel_OpenChild(D_00450A20)
+func_0043EAC0	0x0043EAC0	LegacyMenu_OpenSingleScreen	Menus/LegacyMenus.cs	medium	open fn of the 'single / new game / load' screen 0x450BAC: Pad_EnableStatusPoll + Pak_DetectPort
+func_0043EAF4	0x0043EAF4	LegacyMenu_OpenSingleScreenFromPak	Menus/LegacyMenus.cs	medium	open fn of the variant 0x450BD0 (PakMenu parent screen): Pad_EnableStatusPoll, D_800E28C0 = 0
+func_0043EB20	0x0043EB20	LegacyMenu_OnNewGame	Menus/LegacyMenus.cs	high	'new game' select: Pad_EnableStatusPoll, MenuPanel_Open(D_0044F754 pak screen)
+func_0043EB78	0x0043EB78	LegacyMenu_OnLoadGame	Menus/LegacyMenus.cs	high	'load' select: PakMenu_ClearSkipPak, MenuPanel_Open(D_0044F100 = the PakMenu_OpenLoadGame screen)
+func_0043EBC4	0x0043EBC4	LegacyMenu_OnSingleGoBack	Menus/LegacyMenus.cs	high	'go back' of the single screen: Game_FadeOutToState 8, D_80154048 = 0, Pad_DisableStatusPoll
+func_0043EC10	0x0043EC10	LegacyMenu_OnSingle	Menus/LegacyMenus.cs	high	'single' of the leftover main menu 0x450D38: mode bytes 1D/1E = 0/1, claims the confirming pad, unducks music, func_0044EACC(-1), D_80154048 = 1
+func_0043ECE8	0x0043ECE8	LegacyMenu_UpdateMultiItem	Menus/LegacyMenus.cs	high	label fn of 'multi': disables the item unless Pad_CountConnected >= 2
+func_0043ED5C	0x0043ED5C	LegacyMenu_OnMulti	Menus/LegacyMenus.cs	high	'multi' select: mode bytes 1D/1E = 1/4, clears 8 rows, opens the deathmatch screen D_00450AD4
+func_0043EDB8	0x0043EDB8	LegacyMenu_OpenOptions	Menus/LegacyMenus.cs	high	'options' select: MenuPanel_OpenChild(D_00451AF0 = the difficulty/control type.. options screen)
+func_0043EDE4	0x0043EDE4	LegacyMenu_OpenEnterCheat	Menus/LegacyMenus.cs	high	'enter cheat' select: MenuPanel_OpenChild(D_004500F4)
+func_0043EE10	0x0043EE10	LegacyMenu_OpenCheats	Menus/LegacyMenus.cs	high	'cheats' select: MenuPanel_OpenChild(D_004503E8, the cheat toggle list)
+func_0043EE3C	0x0043EE3C	LegacyMenu_OpenSoundOptions	Menus/LegacyMenus.cs	high	'sound options' select: Audio_StopAllExcept, saves Audio_IsSoundOn, Audio_PlayCue, Pad_ClearFlag800D0E60, opens D_00451F58
+func_0043EEC0	0x0043EEC0	LegacyMenu_ReturnOne_0043EEC0	Menus/LegacyMenus.cs	low	returns 1; no callers or table refs
+func_0043EEC8	0x0043EEC8	LegacyMenu_FadeToState8_0043EEC8	Menus/LegacyMenus.cs	low	Game_FadeOutToState(8), returns 1; no callers or table refs
+func_0043EEF0	0x0043EEF0	LegacyMenu_OpenScreen450C18_0043EEF0	Menus/LegacyMenus.cs	low	MenuPanel_OpenChild(D_00450C18, a one-item title screen); no table refs
+func_0043EF1C	0x0043EF1C	LegacyMenu_OpenTimedMessage	Menus/LegacyMenus.cs	medium	open fn of screen 0x450DA8 (cinema-text item): timer D_801468B0 = 120, clears flag 0x4000000; C version (stray word at 0x43EF1C)
+func_0043EF20	0x0043EF20	LegacyMenu_OpenTimedMessageTwin	Menus/LegacyMenus.cs	medium	MIPS real entry of LegacyMenu_OpenTimedMessage; the screen table 0x450DB0 points here
+func_0043EF4C	0x0043EF4C	LegacyMenu_UpdateTimedMessage	Menus/LegacyMenus.cs	medium	update fn of screen 0x450DA8: when D_801468B0 <= 0 Match_Reset and close
+func_0043EF94	0x0043EF94	LegacyMenu_TickTimedMessage	Menus/LegacyMenus.cs	medium	label fn of its text item: D_801468A0+0x10 -= frame time, clamped at 0
+func_0043EFCC	0x0043EFCC	LegacyMenu_DrawInventoryIcon	Menus/LegacyMenus.cs	medium	inventory item draw: Sprite_Draw of the key icon, full colour if owned (LegacyMenu_IsInventoryItemOwned) else dimmed 0x323232; C version (stray word)
+func_0043EFD0	0x0043EFD0	LegacyMenu_DrawInventoryIconTwin	Menus/LegacyMenus.cs	medium	MIPS real entry of LegacyMenu_DrawInventoryIcon; the inventory item table 0x450E50.. points here
+func_0043F1B0	0x0043F1B0	LegacyMenu_OpenInventory	Menus/LegacyMenus.cs	medium	empty open fn of the 'inventory' screen 0x4514B4
+func_0043EFCC_func_0043F1B8	0x0043F1B8	LegacyMenu_IsInventoryItemOwnedTwin	Menus/LegacyMenus.cs	medium	inlined copy of LegacyMenu_IsInventoryItemOwned in the inventory icon draw's file
+func_0043F1B8	0x0043F1B8	LegacyMenu_IsInventoryItemOwned	Menus/LegacyMenus.cs	medium	item id 0x10FE: idx < player+0x64D (0..2) / idx-3 < +0x64E (3..5); id 0x1194: player+0x644[idx] != 0
+func_0043F238	0x0043F238	LegacyMenu_OnInventoryOk	Menus/LegacyMenus.cs	high	'ok' of the inventory screen: Audio_UnduckMusic then MenuPanel_OnGoBack
+func_0043F284	0x0043F284	MenuItem_FormatValueHead_0043F284	Menus/MenuItem.cs	medium	3 stray instructions (li a0,255; move; lbu) falling into MenuItem_FormatValue (0x43F290); no callers
+func_0043F290	0x0043F290	MenuItem_FormatValue	Menus/MenuItem.cs	high	value item text: MenuItem_GetValue / scale, sprintf '%3.2f', then '%s %s' with the label or '%s' into D_80154060
+func_0043F404	0x0043F404	MenuItem_AdjustValue	Menus/MenuItem.cs	high	value item select: left subtracts the step (clamp min), right adds it (clamp max), writes back through the typed setter
+func_0043F69C	0x0043F69C	MenuItem_ComputeRect	Menus/MenuItem.cs	high	per item type (text, sprite, slider, model, value) computes width/height/scale from the style D_800E5E74 and the screen size, then x0/x1/y0/y1
+func_0043FFAC	0x0043FFAC	MenuItem_DrawText	Menus/MenuItem.cs	high	font pass by style mode, highlight colour scale (1.25 selected / 0.9 / 0.25 disabled), Text_SetColors/SetScale, Text_Draw; title bars for flag 0x08000000
+func_0044044C	0x0044044C	MenuItem_DrawSprite	Menus/MenuItem.cs	high	item draw: Sprite_Draw of sprite f14 at the item rect (or a black fill rect in the state-13 case)
+func_00440618	0x00440618	MenuItem_DrawSlider	Menus/MenuItem.cs	medium	draws a slider item: label (MenuItem_DrawText), bar and knob sprites at f1C/256 of the width; draw slot of the sound-option items 0x451D74..
+func_004409A8	0x004409A8	MenuItem_DrawModel	Menus/MenuItem.cs	medium	draws a 3D character model item: loads the def (Level_FindDefinition), creates the actor fx, pulsing light, projects and renders it; leftover character screen
+func_00440F10	0x00440F10	MenuPanel_Init	Menus/MenuPanel.cs	high	fills a panel from a screen descriptor: copies the 0x24-byte item templates into 0x28-byte items (+extras for type 3), link/ctx/pad fields, colour table, calls the open fn and item init fns
+func_0044121C	0x0044121C	MenuPanel_MoveCursor	Menus/MenuPanel.cs	high	moves the cursor by the item's per-direction offset (bytes 0x10..0x13), wrapping, until an enabled selectable item
 func_00441384	0x00441384	Ui_InvokeHeaderCallback_00441384	Ui/Widgets.cs	low	harvest: port/overrides/func_00441384.c: calls the hdr->f14 callback with the arguments the MIPS code passes through
-func_00441764	0x00441764				
-func_00441D50	0x00441D50				
-func_00442020	0x00442020				
-func_00442158	0x00442158				
-func_004421D4	0x004421D4				
-func_004421FC	0x004421FC				
-func_00442224	0x00442224				
-func_00442254	0x00442254				
-func_004422BC	0x004422BC				
-func_00442384	0x00442384				
-func_0044239C	0x0044239C				
+func_00441764	0x00441764	MenuPanel_Draw	Menus/MenuPanel.cs	high	draw slot of every screen descriptor: bounds of all items, centres them on the view, pulsing highlight under the cursor item, calls each item's draw fn
+func_00441D50	0x00441D50	MenuPanel_DrawTitleBar	Menus/MenuPanel.cs	medium	fills a full-width translucent bar at the top (0) or bottom (1) of the view; called twice by MenuItem_DrawText for title items
+func_00442020	0x00442020	MenuPanel_OpenPrevious	Menus/MenuPanel.cs	high	reopens the panel's back-link screen (+0x18) with that screen's own back link; used by MenuPanel_OnGoBack
+func_00442158	0x00442158	MenuItem_GetTextLength	Menus/MenuItem.cs	high	counts characters of the item text (or formatted value for type 5) up to NUL/newline
+func_004421D4	0x004421D4	MenuItem_DrawLabel	Menus/MenuItem.cs	high	standard item draw slot (in every item record): MenuItem_DrawText with the item text
+func_004421FC	0x004421FC	MenuItem_DrawLabelAlt	Menus/MenuItem.cs	medium	identical copy of MenuItem_DrawLabel used by custom draws (MenuSpinner_Draw, cheat entry cursor) and the fog editor items
+func_00442224	0x00442224	MenuItem_DrawChar	Menus/MenuItem.cs	high	draws the single character in item byte +0x17 through MenuItem_DrawText
+func_00442254	0x00442254	MenuItem_DrawValue	Menus/MenuItem.cs	high	draws the MenuItem_FormatValue text (font mode 6)
+func_004422BC	0x004422BC	MenuItem_LoadModelDef	Menus/MenuItem.cs	medium	Level_FindDefinition(key, sub) into the model item state (+0x478 valid flag, def copy, scale D_800E2524)
+func_00442384	0x00442384	MenuItem_GetModelEffect	Menus/MenuItem.cs	medium	returns item->f20 + 0x190 (the model item's actor fx) or NULL
+func_0044239C	0x0044239C	Text_GetCharAdvance	Ui/Text.cs	high	per-character advance: x * width factor (narrow I/i, l/a before t, wide M/m, '!'/'.'), y for '$'/'&'/'~'; callers Text_DrawString, Text_MeasureString
 func_00442460	0x00442460	Text_MeasureString	Ui/Text.cs	medium	harvest: src/game/func_002A9F18.c comment: measures the text through func_00442460 at the style size
-func_004424F4	0x004424F4				
-func_00442514	0x00442514				
-func_0044251C	0x0044251C				
+func_004424F4	0x004424F4	MenuPanel_OnGoBack	Menus/MenuPanel.cs	high	select fn of every 'go back' item: MenuPanel_OpenPrevious(panel) != 0
+func_00442514	0x00442514	MenuPanel_ReturnZero_00442514	Menus/MenuPanel.cs	low	returns 0; no callers or table refs
+func_0044251C	0x0044251C	MenuItem_GetValueUserData_0044251C	Menus/MenuItem.cs	low	returns field +0x1C of the item data f14 (value descriptor, after the getter); no callers
 func_0044252C	0x0044252C	MenuSpinner_Step	Menus/MenuCore.cs	medium	harvest: FINDINGS: generic spinner func_0044252C(ctx, cur, step, min, max, wrap)
 func_004425F8	0x004425F8	MenuSpinner_Step2_004425F8	Menus/MenuCore.cs	low	harvest: FINDINGS: func_004425F8 (same signature as the spinner func_0044252C)
-func_004426B4	0x004426B4				
-func_004426E4	0x004426E4				
-func_00442800	0x00442800				
-func_00442934	0x00442934				
-func_00442A68	0x00442A68				
-func_00442B44	0x00442B44				
-func_00442B98	0x00442B98				
-func_00442BC8	0x00442BC8				
-func_00442BD0	0x00442BD0				
-func_00442C4C	0x00442C4C				
-func_00442CA4	0x00442CA4				
-func_00442CB0	0x00442CB0				
-func_00442CCC	0x00442CCC				
-func_00442CF8	0x00442CF8				
-func_00442D18	0x00442D18				
-func_00442E48	0x00442E48				
-func_00442E80_func_00442E48	0x00442E48				
-func_00442E64	0x00442E64				
-func_00442E80_func_00442E64	0x00442E64				
-func_00442E80	0x00442E80				
-func_00442F4C	0x00442F4C				
-func_0043F290_func_00443030	0x00443030				
-func_0043F404_func_00443030	0x00443030				
-func_00443030	0x00443030				
-func_0043F404_func_00443120	0x00443120				
-func_00443120	0x00443120				
-func_00443274	0x00443274				
-func_00443298	0x00443298				
-func_00443354	0x00443354				
-func_0044339C	0x0044339C				
-func_004434BC	0x004434BC				
-func_00443528	0x00443528				
-func_00443530	0x00443530				
-func_00443568	0x00443568				
-func_0044359C	0x0044359C				
-func_004435A4	0x004435A4				
-func_004435AC	0x004435AC				
-func_004435B4	0x004435B4				
-func_004435BC	0x004435BC				
-func_004435C4	0x004435C4				
-func_004435CC	0x004435CC				
-func_004435D4	0x004435D4				
-func_00443650	0x00443650				
-func_00443804	0x00443804				
-func_00443868	0x00443868				
-func_00443880	0x00443880				
+func_004426B4	0x004426B4	MenuPanel_InitList	Menus/MenuPanel.cs	high	List_Init(list, 0x1D0, 0x1D4) for the panel list, counter +0x14 = 0; called by Camera_InitState (per view)
+func_004426E4	0x004426E4	MenuPanel_Open	Menus/MenuPanel.cs	high	allocates a panel (40 bytes per item + 0x1D8 + extras), MenuPanel_Init(desc, ctx, pad, parent), List_Add to the list; used by PakMenu and many menus
+func_00442800	0x00442800	MenuPanel_OpenSibling	Menus/MenuPanel.cs	medium	like MenuPanel_OpenChild but passes the current panel's own back link (+0x18), replacing it at the same level
+func_00442934	0x00442934	MenuPanel_OpenChild	Menus/MenuPanel.cs	high	opens a screen from inside a panel: back link = the current panel's descriptor (+0x14), inherits ctx/pad
+func_00442A68	0x00442A68	MenuPanel_UpdateList	Menus/MenuPanel.cs	high	runs every panel of a list (func_00441384); a finished panel calls the close fn, clears pad +0xB0.., List_Remove and ResourcePool_Release
+func_00442B44	0x00442B44	MenuPanel_DrawList	Menus/MenuPanel.cs	high	walks the panel list backwards calling each descriptor's draw fn (+0x10); called by View_UpdateAll
+func_00442B98	0x00442B98	MenuPanel_CountOpen	Menus/MenuPanel.cs	high	counts panels in a list whose state != 4 (closed); callers Player_UpdateAll, Match_UpdateClock, Game_RunFrame
+func_00442BC8	0x00442BC8	MenuPanel_GetListView	Menus/MenuPanel.cs	medium	returns list - 0x554 (the view/camera that owns the panel list)
+func_00442BD0	0x00442BD0	MenuPanel_CloseAll	Menus/MenuPanel.cs	high	closes every panel of a list: close fn, clear pad fields, List_Remove, ResourcePool_Release
+func_00442C4C	0x00442C4C	MenuItem_MeasureText	Menus/MenuItem.cs	high	Text_MeasureString of the item text (or formatted value) at scale x
+func_00442CA4	0x00442CA4	MenuPanel_ResetOpenAnim	Menus/MenuPanel.cs	medium	panel +0x1CC = +0x1C8 = 0; called by MenuPanel_Init
+func_00442CB0	0x00442CB0	MenuPanel_StartOpenAnim	Menus/MenuPanel.cs	medium	if +0x1CC == 0: +0x1CC = 1, +0x1C8 = 0; called by MenuPanel_Init
+func_00442CCC	0x00442CCC	MenuPanel_StepOpenAnim	Menus/MenuPanel.cs	medium	frame +0x1C8 += step; stops after 0x30 frames; called by the panel update
+func_00442CF8	0x00442CF8	MenuPanel_GetOpenAnimFrame	Menus/MenuPanel.cs	medium	triangle frame of +0x1C8 (0..23..0)
+func_00442D18	0x00442D18	MenuPanel_DrawOpenAnim	Menus/MenuPanel.cs	medium	while running draws sprite 0x67 at the triangle frame of +0x1C8 over the view, scaled to the view size
+func_00442E48	0x00442E48	MenuItem_GetExtraSize	Menus/MenuItem.cs	high	returns 0x480 for item type 3 (model), else 0
+func_00442E80_func_00442E48	0x00442E48	MenuItem_GetExtraSizeTwin	Menus/MenuItem.cs	high	inlined copy of MenuItem_GetExtraSize in MenuItem_Init's file
+func_00442E64	0x00442E64	MenuItem_InitExtra	Menus/MenuItem.cs	high	type 3 item: extra block +0x478 = 1
+func_00442E80_func_00442E64	0x00442E64	MenuItem_InitExtraTwin	Menus/MenuItem.cs	high	inlined copy of MenuItem_InitExtra in MenuItem_Init's file
+func_00442E80	0x00442E80	MenuItem_Init	Menus/MenuItem.cs	high	fills an item from its template (type, flags | 0x1800000, pos, nav bytes, data, def), cursor -1, carves the extra block
+func_00442F4C	0x00442F4C	MenuItem_GetStyle	Menus/MenuItem.cs	high	returns the style entry D_800E5E74[i] chosen by the item flag bits 0x20..0x2000
+func_0043F290_func_00443030	0x00443030	MenuItem_GetValueTwin	Menus/MenuItem.cs	high	inlined copy of MenuItem_GetValue in MenuItem_FormatValue's file
+func_0043F404_func_00443030	0x00443030	MenuItem_GetValueTwin2	Menus/MenuItem.cs	high	inlined copy of MenuItem_GetValue in MenuItem_AdjustValue's file
+func_00443030	0x00443030	MenuItem_GetValue	Menus/MenuItem.cs	high	reads the value through the descriptor getter (+0x18) and converts by type (f32, s8, s16, s32, u8, u16, u32) to float
+func_0043F404_func_00443120	0x00443120	MenuValue_SetFromFloatTwin	Menus/MenuCore.cs	medium	inlined copy of MenuValue_SetFromFloat in func_0043F404 (stores the clamped stepped value)
+func_00443120	0x00443120	MenuValue_SetFromFloat	Menus/MenuCore.cs	medium	inverse of MenuValue_GetAsFloat: stores a float into the item's value pointer converted by type +4 (f32/s8/s16/s32/u8/u16/u32)
+func_00443274	0x00443274	MenuPage_DrawItemModel	Menus/MenuCore.cs	medium	model draw callback func_004409A8 sets for non-selected entries: Actor_DrawWithSegment with the colour segment D_800D0EF8
+func_00443298	0x00443298	MenuPage_DrawItemModelHighlighted	Menus/MenuCore.cs	medium	draw callback func_004409A8 sets for the selected entry: model colour override mode 3 (D_800D15E0), red 255 with pulsing alpha D_801540E0/2, Actor_DrawModelLit
+func_00443354	0x00443354	MenuPage_CallClose	Menus/MenuCore.cs	medium	calls the page descriptor's close callback (+0xC) and clears the pad input words +0xB0/+0xB4/+0xBC of the page's input block
+func_0044339C	0x0044339C	MenuPage_PushEx	Menus/MenuCore.cs	medium	same as func_004426E4 with one more arg: ResourcePool_Alloc of 0x1D8 + 40 per item (+0x480 for type-3 items), init func_00440F10, List_Add, ring index +0x14 mod 4
+func_004434BC	0x004434BC	MenuPage_Destroy	Menus/MenuCore.cs	medium	calls the page's close callback (+0xC), clears its pad input words, List_Remove from the stack and ResourcePool_Release of its block
+func_00443528	0x00443528	InGameMenu_Nop_00443528	Menus/InGameMenu.cs	high	empty function between the in-game menu handlers, no references
+func_00443530	0x00443530	InGameMenu_OnBannerOpen_00443530	Menus/InGameMenu.cs	low	open slot of page descriptor 0x451504 (layout 0x4514E0, background only): D_801540F4 = LevelIdToWorld(level D_8013B2BC), D_801540F0 = 1
+func_00443568	0x00443568	InGameMenu_OnBannerOpen_00443568	Menus/InGameMenu.cs	low	open slot of page descriptor 0x451528: D_801540F4 = LevelIdToWorld(D_8013B2BC), D_801540F0 = 0
+func_0044359C	0x0044359C	InGameMenu_Nop_0044359C	Menus/InGameMenu.cs	high	returns 0; one of seven empty handlers, no references
+func_004435A4	0x004435A4	InGameMenu_Nop_004435A4	Menus/InGameMenu.cs	high	returns 0; one of seven empty handlers, no references
+func_004435AC	0x004435AC	InGameMenu_Nop_004435AC	Menus/InGameMenu.cs	high	returns 0; one of seven empty handlers, no references
+func_004435B4	0x004435B4	InGameMenu_Nop_004435B4	Menus/InGameMenu.cs	high	returns 0; one of seven empty handlers, no references
+func_004435BC	0x004435BC	InGameMenu_Nop_004435BC	Menus/InGameMenu.cs	high	returns 0; one of seven empty handlers, no references
+func_004435C4	0x004435C4	InGameMenu_Nop_004435C4	Menus/InGameMenu.cs	high	returns 0; one of seven empty handlers, no references
+func_004435CC	0x004435CC	InGameMenu_Nop_004435CC	Menus/InGameMenu.cs	high	returns 0; one of seven empty handlers, no references
+func_004435D4	0x004435D4	InGameMenu_OnBannerContinue_004435D4	Menus/InGameMenu.cs	low	Audio_UnduckMusic, LoopSound_ResumeAll; when D_801540F0 == 0 Rumble_Resume, else go back (func_004424F4); returns 1; no references
+func_00443650	0x00443650	InGameMenu_FormatDeathMessage	Menus/InGameMenu.cs	high	label of the per-player page item 0x451574: 'You fragged yourself.' when killer +0x12EC is self, else 'Fragged by %s.' etc. by cause +0x12F0, or the 'Oops...' texts
+func_00443804	0x00443804	InGameMenu_OpenPakMenu_00443804	Menus/InGameMenu.cs	low	Player_GetIndex, PakMenu_ClearSkipPak, then pushes pak page 0x44F0DC for the player (func_004426E4) with its +0x698; no references
+func_00443868	0x00443868	InGameMenu_SetRecordFlag8E_00443868	Menus/InGameMenu.cs	low	sets byte +0x8E of the player's settings record (+0x5D8) to 1, returns 1; no references
+func_00443880	0x00443880	InGameMenu_OnRespawnSelect	Menus/InGameMenu.cs	medium	select of the pulsing caption item (MenuCaption_DrawPulsing) on the per-player death page: Player_StartRun_0044A37C, returns 1
 func_004438A4	0x004438A4	MenuCaption_DrawPulsing	Menus/MenuCore.cs	medium	harvest: src/ovl_a/func_004438A4.c comment: pulses the caption intensity on a triangle wave and redraws the caption sprite centred on the entry
-func_004439B4	0x004439B4				
-func_00443A2C	0x00443A2C				
-func_00443AD4	0x00443AD4				
+func_004439B4	0x004439B4	InGameMenu_OnExitSelect_004439B4	Menus/InGameMenu.cs	low	if match flag D_801468A0+0x54 and record +0x8F == 1 sets +0x74; D_80145070 == 1 -> Match_Reset else player +0x5D0 = 0; no references
+func_00443A2C	0x00443A2C	InGameMenu_UpdateDeathPage	Menus/InGameMenu.cs	medium	update slot of the per-player page descriptors 0x451700..: dead player (Player_IsDead) counts +0x1340 to 0x4C then Player_StartRun; closes when match flags +0x1C/+0x20/+0x28 set
+func_00443AD4	0x00443AD4	InGameMenu_FormatFragVerbLabel	Menus/InGameMenu.cs	medium	label text 'you tagged' in Frag Tag mode (D_801468F4) else 'you fragged'
 func_00443B08	0x00443B08	Results_FormatStats_00443B08	Menus/Results.cs	low	harvest: Window/MatchInfo.cs: results-screen formatters func_00443B08..CAC
-func_00443B94	0x00443B94				
-func_00443C20	0x00443C20				
-func_00443CAC	0x00443CAC				
-func_00443D3C	0x00443D3C				
-func_00443D44	0x00443D44				
-func_00443D84	0x00443D84				
-func_00443E44	0x00443E44				
-func_00443F40	0x00443F40				
-func_00444024	0x00444024				
+func_00443B94	0x00443B94	Results_FormatStatWord4_00443B94	Menus/Results.cs	low	sibling of Results_FormatStats_00443B08: '%04d' of halfword +4 of the player's record D_80146398[Player_GetIndex] into the label
+func_00443C20	0x00443C20	Results_FormatStatWord2_00443C20	Menus/Results.cs	low	sibling of Results_FormatStats_00443B08: '%04d' of halfword +2 of the player's record D_80146398[n]
+func_00443CAC	0x00443CAC	Results_FormatStatWord0_00443CAC	Menus/Results.cs	low	sibling of Results_FormatStats_00443B08: '%04d' of halfword +0 of the player's record D_80146398[n]
+func_00443D3C	0x00443D3C	InGameMenu_Nop_00443D3C	Menus/InGameMenu.cs	high	empty function, no references
+func_00443D44	0x00443D44	InGameMenu_UpdateTagItemFlag_00443D44	Menus/InGameMenu.cs	low	sets flag 0x1000000 of the page's item +0x120 in Frag Tag mode (D_801468F4), clears it otherwise; no references
+func_00443D84	0x00443D84	InGameMenu_OnDeathPageOpen	Menus/InGameMenu.cs	medium	open slot of descriptors 0x451700/24/48/6C (with InGameMenu_UpdateDeathPage): player +0x85C = 1, shows/hides item groups via flags 0x1800000, tag item by D_801468F4
+func_00443E44	0x00443E44	InGameMenu_OnPlayerPageOpenPakDetect_00443E44	Menus/InGameMenu.cs	low	open slot of descriptors 0x451790..: item flags 0x1800000, clears D_8015375C/D_800E28C0, Pad_EnableStatusPoll and Pak_DetectPort for the player's pad
+func_00443F40	0x00443F40	InGameMenu_OnPlayerPageReopen_00443F40	Menus/InGameMenu.cs	low	open slot of descriptors 0x451820.. (the page PakMenu_GetPlayerMenu returns to): Pad_EnableStatusPoll, same item flags as func_00443E44 without the pak detect
+func_00444024	0x00444024	Settings_InitDefaultsHead_00444024	Menus/MatchSetup.cs	medium	split piece 3 words before Settings_InitDefaults (stray padding, then falls into the same code)
 func_00444030	0x00444030	Settings_InitDefaults	Menus/MatchSetup.cs	high	harvest: game_glue.c/GameBoot.cs + PJ64 watchpoint: initialiser of the whole settings block 0x801462C8..0x8014684C (Game Speed, volumes...)
-func_00444030_func_00444204	0x00444204				
-func_00444204	0x00444204				
-func_00444260	0x00444260				
-func_004442B8	0x004442B8				
-func_004442EC	0x004442EC				
-func_00444320	0x00444320				
-func_00444354	0x00444354				
-func_00444364	0x00444364				
-func_0044438C	0x0044438C				
-func_00444484	0x00444484				
-func_00444530	0x00444530				
-func_00444594	0x00444594				
-func_004445F8	0x004445F8				
-func_0044465C	0x0044465C				
-func_004446B8	0x004446B8				
-func_0044471C	0x0044471C				
-func_00444780	0x00444780				
-func_004447E4	0x004447E4				
-func_00444848	0x00444848				
-func_0044489C	0x0044489C				
-func_00444910	0x00444910				
-func_00444960	0x00444960				
-func_004449FC	0x004449FC				
-func_00444A90	0x00444A90				
-func_00444AF8	0x00444AF8				
-func_00444B5C	0x00444B5C				
-func_00444C28	0x00444C28				
-func_00444C8C	0x00444C8C				
-func_00444D58	0x00444D58				
-func_00444DA4	0x00444DA4				
-func_00444DD8	0x00444DD8				
-func_00444E68	0x00444E68				
-func_00444EC0	0x00444EC0				
-func_00444F0C	0x00444F0C				
-func_00444F98	0x00444F98				
-func_00444F9C	0x00444F9C				
-func_00444FA0	0x00444FA0				
-func_00445200	0x00445200				
-func_00445240	0x00445240				
-func_0044524C	0x0044524C				
-func_00445288	0x00445288				
-func_004452C4	0x004452C4				
-func_00445304	0x00445304				
-func_00445344	0x00445344				
-func_00445384	0x00445384				
-func_004453C4	0x004453C4				
-func_004453E0	0x004453E0				
-func_00445414	0x00445414				
-func_004454B4	0x004454B4				
-func_00445544	0x00445544				
-func_004455D4	0x004455D4				
-func_00445664	0x00445664				
-func_00445704	0x00445704				
-func_00445794	0x00445794				
-func_00445824	0x00445824				
-func_004458B4	0x004458B4				
-func_004458EC	0x004458EC				
-func_004458F4	0x004458F4				
-func_00445920	0x00445920				
-func_0044594C	0x0044594C				
-func_00445978	0x00445978				
-func_004459A4	0x004459A4				
-func_004459D0	0x004459D0				
-func_00445A58	0x00445A58				
-func_00445AB8	0x00445AB8				
-func_00445B98	0x00445B98				
-func_00445C08	0x00445C08				
-func_00445CE8	0x00445CE8				
-func_00445D48	0x00445D48				
-func_00445E28	0x00445E28				
-func_00445ECC	0x00445ECC				
-func_00445F3C	0x00445F3C				
-func_00445FC8	0x00445FC8				
-func_00446000	0x00446000				
-func_00446048	0x00446048				
-func_00446090	0x00446090				
-func_004460C4	0x004460C4				
-func_0044610C	0x0044610C				
-func_00446140	0x00446140				
-func_0044616C	0x0044616C				
-func_00446198	0x00446198				
-func_004461F4	0x004461F4				
-func_00446214	0x00446214				
-func_00446230	0x00446230				
-func_00446264	0x00446264				
-func_004462F4	0x004462F4				
-func_00446310	0x00446310				
-func_0044632C	0x0044632C				
-func_00446330	0x00446330				
-func_004465B4	0x004465B4				
-func_00446704	0x00446704				
-func_00446330_func_004467D8	0x004467D8				
-func_004467D8	0x004467D8				
+func_00444030_func_00444204	0x00444204	Settings_InitPlayerRecordTwin	Menus/MatchSetup.cs	high	inlined copy of Settings_InitPlayerRecord inside Settings_InitDefaults (8 records at +0xD0 stride 0x96 and the default record +0x3A)
+func_00444204	0x00444204	Settings_InitPlayerRecord	Menus/MatchSetup.cs	high	player settings record defaults: +0x79/+0x7A stick 0x86/0x84, +0x7D look spring 1, +0x7F index, clears the rest, then Settings_SetDefaultPlayerName
+func_00444260	0x00444260	Settings_SetDefaultPlayerName	Menus/MatchSetup.cs	high	copies 8 chars of 'player 1'..'player 4' (D_800D7C70[index +0x7F]) into the record name +0x84; callers Settings_InitPlayerRecord, NameEntry_CopyLabel
+func_004442B8	0x004442B8	Settings_SetDefaultPlayerNameEntry_004442B8	Menus/MatchSetup.cs	medium	switch case 1 of Settings_SetDefaultPlayerName (jump table D_800E27A4): copies 'player 2' into +0x84
+func_004442EC	0x004442EC	Settings_SetDefaultPlayerNameEntry_004442EC	Menus/MatchSetup.cs	medium	switch case 2 of Settings_SetDefaultPlayerName (jump table D_800E27A8): copies 'player 3' into +0x84
+func_00444320	0x00444320	Settings_SetDefaultPlayerNameEntry_00444320	Menus/MatchSetup.cs	medium	switch case 3 of Settings_SetDefaultPlayerName (jump table D_800E27AC): copies 'player 4' into +0x84
+func_00444354	0x00444354	InGameMenu_OnOptionsOpen	Menus/InGameMenu.cs	high	open slot of the options page descriptor 0x451AF0 (layout 0x4518B0 'options'): clears the resolution change cooldown D_80154100
+func_00444364	0x00444364	InGameMenu_GetPlayerSettings	Menus/InGameMenu.cs	medium	returns the page player's settings record (+0x5D8) or the default record D_80146302 (the pattern every control-option handler inlines)
+func_0044438C	0x0044438C	InGameMenu_OnDifficultySelect	Menus/InGameMenu.cs	high	select of item 'difficulty': left/right cycle D_801462D0 through 8/0x10/0x20
+func_00444484	0x00444484	InGameMenu_FormatDifficultyLabel	Menus/InGameMenu.cs	high	label 'difficulty : easy/normal/hard' by D_801462D0 8/0x10/0x20; disabled flag when D_80146878 == 8
+func_00444530	0x00444530	InGameMenu_OnControlTypeSelect	Menus/InGameMenu.cs	high	select of 'control type': MenuSpinner_Step on settings record +0x7B (0..1, wrap)
+func_00444594	0x00444594	InGameMenu_FormatControlTypeLabel	Menus/InGameMenu.cs	high	label 'control type : expert/arcade' by settings record +0x7B
+func_004445F8	0x004445F8	InGameMenu_OnControlSideSelect	Menus/InGameMenu.cs	high	select of 'control side': MenuSpinner_Step on settings record +0x7C (0..1)
+func_0044465C	0x0044465C	InGameMenu_FormatControlSideLabel	Menus/InGameMenu.cs	high	label 'control side : left/right' by settings record +0x7C
+func_004446B8	0x004446B8	InGameMenu_OnLookSpringSelect	Menus/InGameMenu.cs	high	select of 'look spring': MenuSpinner_Step on settings record +0x7D (0..1)
+func_0044471C	0x0044471C	InGameMenu_FormatLookSpringLabel	Menus/InGameMenu.cs	high	label 'look spring : on/off' by settings record +0x7D
+func_00444780	0x00444780	InGameMenu_OnAutoAimSelect	Menus/InGameMenu.cs	high	select of 'auto aim': MenuSpinner_Step on settings record +0x7E (0..1)
+func_004447E4	0x004447E4	InGameMenu_FormatAutoAimLabel	Menus/InGameMenu.cs	high	label 'auto aim : on/off' by settings record +0x7E
+func_00444848	0x00444848	InGameMenu_OnBloodColorSelect	Menus/InGameMenu.cs	high	select of 'blood color': MenuSpinner_Step on D_801462E3 (0..2)
+func_0044489C	0x0044489C	InGameMenu_FormatBloodColorLabel	Menus/InGameMenu.cs	high	label 'blood color : off/red/green' by D_801462E3
+func_00444910	0x00444910	InGameMenu_OnTwoPlayerLayoutSelect	Menus/InGameMenu.cs	high	select of '2 plyr layout': MenuSpinner_Step on D_801462E7 (0..1)
+func_00444960	0x00444960	InGameMenu_FormatTwoPlayerLayoutLabel	Menus/InGameMenu.cs	high	label '2 plyr layout : horz/vert' by D_801462E7; item enabled only in the 2-player case (func_002934DC) with D_801462E5 == 0
+func_004449FC	0x004449FC	InGameMenu_FormatOpacityLabel	Menus/InGameMenu.cs	high	label 'opacity : clear/opaque/%02d' from D_801462DC >> 4
+func_00444A90	0x00444A90	InGameMenu_OnOpacitySelect	Menus/InGameMenu.cs	high	select of 'opacity': MenuSpinner_Step on halfword D_801462DC by 0x10 in 0..0x100, byte +2 = min(value, 255)
+func_00444AF8	0x00444AF8	InGameMenu_OnStickHorzSelect	Menus/InGameMenu.cs	high	select of 'control stick horz': MenuSpinner_Step on settings record +0x79 by 8 in 8..0xF8
+func_00444B5C	0x00444B5C	InGameMenu_FormatStickHorzLabel	Menus/InGameMenu.cs	high	label 'control stick horz: norm / %02d' from (record +0x79 - 0x80) / 8
+func_00444C28	0x00444C28	InGameMenu_OnStickVertSelect	Menus/InGameMenu.cs	high	select of 'control stick vert': MenuSpinner_Step on settings record +0x7A by 8 in 8..0xF8
+func_00444C8C	0x00444C8C	InGameMenu_FormatStickVertLabel	Menus/InGameMenu.cs	high	label 'control stick vert: norm / %02d' from (record +0x7A - 0x80) / 8
+func_00444D58	0x00444D58	InGameMenu_FormatWeaponSelectLabel	Menus/InGameMenu.cs	high	label 'Weapon Select: quick/norm' by settings record +0x82 == 1
+func_00444DA4	0x00444DA4	InGameMenu_OnWeaponSelectModeSelect	Menus/InGameMenu.cs	high	select of 'Weapon Select': toggles settings record +0x82 between 0 and 1
+func_00444DD8	0x00444DD8	InGameMenu_FormatResolutionLabel	Menus/InGameMenu.cs	high	label 'Resolution : ...' from Video_GetResolutionLabel; counts down the change cooldown D_80154100 by the frame time; flag 0x1000000 unless Mem_GetRamSize == 4 MB
+func_00444E68	0x00444E68	InGameMenu_OnResolutionSelect	Menus/InGameMenu.cs	high	select of 'Resolution': when the cooldown D_80154100 is 0 Video_RequestNextResolution, cooldown = 18.0, D_80146848 = D_800E28DB
+func_00444EC0	0x00444EC0	InGameMenu_OnBrightnessSelect	Menus/InGameMenu.cs	high	select of 'brightness': MenuSpinner_Step on D_801462C8 +0x10 by 0x10 in 0..0x80
+func_00444F0C	0x00444F0C	InGameMenu_FormatBrightnessLabel	Menus/InGameMenu.cs	high	label 'brightness : norm / %02d' from D_801462D8 >> 4
+func_00444F98	0x00444F98	InGameMenu_EditFogValueEntry_00444F98	Menus/InGameMenu.cs	medium	split piece 8 bytes before InGameMenu_EditFogValue (stray words, falls into its prologue)
+func_00444F9C	0x00444F9C	InGameMenu_EditFogValueEntry_00444F9C	Menus/InGameMenu.cs	medium	split piece 4 bytes before InGameMenu_EditFogValue (one move, falls into its prologue)
+func_00444FA0	0x00444FA0	InGameMenu_EditFogValue	Menus/InGameMenu.cs	high	fog editor core: steps a u8/s32/f32 field (type, offset) of the player's region fog record with MenuSpinner_Step, prints '%06d', copies to every region when 'all regions' D_800E63AC
+func_00445200	0x00445200	InGameMenu_OnQuitYes	Menus/InGameMenu.cs	high	select of 'yes' on the 'quit / are you sure?' page: Audio_PlayCue(-1), Audio_UnduckMusic, Audio_StopMusic, Match_Reset
+func_00445240	0x00445240	InGameMenu_OnQuitOpen	Menus/InGameMenu.cs	medium	open slot of the quit page descriptor 0x451BD4: cursor = 4 (the 'no' item)
+func_0044524C	0x0044524C	InGameMenu_OnFogRedSelect	Menus/InGameMenu.cs	high	fog editor item 'red': InGameMenu_EditFogValue(u8, offset 0, step 1, max 0xFF)
+func_00445288	0x00445288	InGameMenu_OnFogGreenSelect	Menus/InGameMenu.cs	high	fog editor item 'green': InGameMenu_EditFogValue(u8, offset 1, step 1, max 0xFF)
+func_004452C4	0x004452C4	InGameMenu_OnFogBlueSelect	Menus/InGameMenu.cs	high	fog editor item 'blue': InGameMenu_EditFogValue(u8, offset 2, step 1, max 0xFF)
+func_00445304	0x00445304	InGameMenu_OnFogThicknessSelect	Menus/InGameMenu.cs	high	fog editor item 'thickness': InGameMenu_EditFogValue(s32, offset 8, step 10, max 2000)
+func_00445344	0x00445344	InGameMenu_OnFogFarClipSelect	Menus/InGameMenu.cs	high	fog editor item 'far clip': InGameMenu_EditFogValue(f32, offset 0x10, step 0x66, max 0xA000, shown /10.24)
+func_00445384	0x00445384	InGameMenu_OnFogFovSelect	Menus/InGameMenu.cs	high	fog editor item 'fov': InGameMenu_EditFogValue(f32, offset 0x14, step 1, max 180)
+func_004453C4	0x004453C4	InGameMenu_OnFogAllRegionsSelect	Menus/InGameMenu.cs	high	fog editor item 'affect all regions': toggles D_800E63AC
+func_004453E0	0x004453E0	InGameMenu_FormatFogAllRegionsLabel	Menus/InGameMenu.cs	high	label 'all regions' / 'single region' by D_800E63AC
+func_00445414	0x00445414	InGameMenu_UpdateLightAmbient	Menus/InGameMenu.cs	medium	generic light-editor label: syncs item value +0x1C with ambient colour byte D_800D0EE0[i] (and its copy D_800D0EE4[i]), prints '%03d'; no references (inlined per channel)
+func_004454B4	0x004454B4	InGameMenu_UpdateLightAmbientRed	Menus/InGameMenu.cs	high	light editor 'amb red': syncs the item value with D_800D0EE0 (copy D_800D0EE4), '%03d'
+func_00445544	0x00445544	InGameMenu_UpdateLightAmbientGreen	Menus/InGameMenu.cs	high	light editor 'amb green': syncs the item value with D_800D0EE1 (copy D_800D0EE5), '%03d'
+func_004455D4	0x004455D4	InGameMenu_UpdateLightAmbientBlue	Menus/InGameMenu.cs	high	light editor 'amb blue': syncs the item value with D_800D0EE2 (copy D_800D0EE6), '%03d'
+func_00445664	0x00445664	InGameMenu_UpdateLightDirectional	Menus/InGameMenu.cs	medium	generic light-editor label: syncs item value with directional colour byte D_800D0EE8[i] (copy D_800D0EEC[i]), '%03d'; no references
+func_00445704	0x00445704	InGameMenu_UpdateLightDirRed	Menus/InGameMenu.cs	high	light editor 'dir red': syncs the item value with D_800D0EE8 (copy D_800D0EEC), '%03d'
+func_00445794	0x00445794	InGameMenu_UpdateLightDirGreen	Menus/InGameMenu.cs	high	light editor 'dir green': syncs the item value with D_800D0EE9 (copy D_800D0EED), '%03d'
+func_00445824	0x00445824	InGameMenu_UpdateLightDirBlue	Menus/InGameMenu.cs	high	light editor 'dir blue': syncs the item value with D_800D0EEA (copy D_800D0EEE), '%03d'
+func_004458B4	0x004458B4	InGameMenu_OnResumeSelect	Menus/InGameMenu.cs	high	pause page item 'resume game': LoopSound_ResumeAll, Audio_UnduckMusic, Audio_EnableAmbient, returns 1 (close)
+func_004458EC	0x004458EC	InGameMenu_OnMissionStatusSelect	Menus/InGameMenu.cs	high	pause page item 'mission status': returns 1 (does nothing else)
+func_004458F4	0x004458F4	InGameMenu_OnInventorySelect	Menus/InGameMenu.cs	high	pause page item 'inventory': pushes page 0x4514B4 (func_00442934)
+func_00445920	0x00445920	InGameMenu_OnOptionsSelect	Menus/InGameMenu.cs	high	pause page item 'options': pushes the options page 0x451AF0
+func_0044594C	0x0044594C	InGameMenu_OnEnterCheatSelect	Menus/InGameMenu.cs	high	pause page item 'enter cheat': pushes page 0x4500F4
+func_00445978	0x00445978	InGameMenu_OnCheatsSelect	Menus/InGameMenu.cs	high	pause page item 'cheats': pushes page 0x4503E8
+func_004459A4	0x004459A4	InGameMenu_OnQuitSelect	Menus/InGameMenu.cs	high	pause page item 'quit': pushes the 'are you sure?' page 0x451BD4
+func_004459D0	0x004459D0	InGameMenu_OnSoundBackSelect	Menus/InGameMenu.cs	high	'go back' of the sound options page: Audio_StopAllExcept(-1), pos flag 0, re-duck music, replays the saved cue D_800E63B0, Pad_SetFlag800D0E60, go back
+func_00445A58	0x00445A58	InGameMenu_OnSpeechVolumeSelect	Menus/InGameMenu.cs	high	select of 'speech volume': MenuSpinner_Step on D_801462E2 by 8 in 0..0xFF (0xF7 -> 0xF8)
+func_00445AB8	0x00445AB8	InGameMenu_FormatSpeechVolumeLabel	Menus/InGameMenu.cs	high	label 'speech volume : off/max/norm/%2d' from (D_801462E2 - 0x80) / 8
+func_00445B98	0x00445B98	InGameMenu_OnMusicVolumeSelect	Menus/InGameMenu.cs	high	select of 'music volume': MenuSpinner_Step on D_801462E0 by 8; plays cue 1 when no music is on (Audio_IsSoundOn)
+func_00445C08	0x00445C08	InGameMenu_FormatMusicVolumeLabel	Menus/InGameMenu.cs	high	label 'music volume : off/max/norm/%2d' from (D_801462E0 - 0x80) / 8
+func_00445CE8	0x00445CE8	InGameMenu_OnSfxVolumeSelect	Menus/InGameMenu.cs	high	select of 'sfx volume': MenuSpinner_Step on D_801462E1 by 8 in 0..0xFF
+func_00445D48	0x00445D48	InGameMenu_FormatSfxVolumeLabel	Menus/InGameMenu.cs	high	label 'sfx volume : off/max/norm/%2d' from (D_801462E1 - 0x80) / 8
+func_00445E28	0x00445E28	InGameMenu_OnMusicTrackSelect	Menus/InGameMenu.cs	high	select of 'music': pad left/right steps track D_800E63B8 over 0..0x16 skipping 0xC..0xE and plays it (Audio_PlayCue)
+func_00445ECC	0x00445ECC	InGameMenu_FormatMusicTrackLabel	Menus/InGameMenu.cs	high	label 'music : none' or '%2d' of D_800E63B8
+func_00445F3C	0x00445F3C	InGameMenu_OnSoundOptionsSelect	Menus/InGameMenu.cs	high	pause item 'sound options': Audio_DisableAmbient, saves the cue (D_800E63B0), plays track D_800E63B8, pos flag 1, D_800E63B4 = 1, pushes the sound page 0x451F58
+func_00445FC8	0x00445FC8	InGameMenu_OnPersonSelect	Menus/InGameMenu.cs	high	debug page item 'person': toggles player +0x5D0 view mode between 1 and 2
+func_00446000	0x00446000	InGameMenu_FormatPersonLabel	Menus/InGameMenu.cs	high	label 'person : 1st' (player +0x5D0 == 1) else '3rd'
+func_00446048	0x00446048	InGameMenu_OnWeaponVisibleSelect	Menus/InGameMenu.cs	high	debug page item 'weapon': MenuSpinner_Step toggles D_800D0EBC (0..1)
+func_00446090	0x00446090	InGameMenu_FormatWeaponVisibleLabel	Menus/InGameMenu.cs	high	label 'weapon : vis/hidden' by D_800D0EBC
+func_004460C4	0x004460C4	InGameMenu_OnShadowsSelect	Menus/InGameMenu.cs	high	debug page item '3d shadows': MenuSpinner_Step toggles D_800E63BC
+func_0044610C	0x0044610C	InGameMenu_FormatShadowsLabel	Menus/InGameMenu.cs	high	label '3d shadows : on/off' by D_800E63BC
+func_00446140	0x00446140	InGameMenu_OnEditFogSelect	Menus/InGameMenu.cs	high	debug page item 'edit fog': pushes the fog editor page 0x451D18 (red/green/blue/thickness/far clip/fov)
+func_0044616C	0x0044616C	InGameMenu_OnEditLightSelect	Menus/InGameMenu.cs	high	debug page item 'edit light': pushes the light editor page 0x451E38 (amb/dir rgb)
+func_00446198	0x00446198	InGameMenu_FormatResolutionLabelAlt_00446198	Menus/InGameMenu.cs	medium	copy of InGameMenu_FormatResolutionLabel without the cooldown (flag 0x800000 unless 4 MB RAM, Video_GetResolutionLabel); no references
+func_004461F4	0x004461F4	InGameMenu_OnResolutionSelectAlt_004461F4	Menus/InGameMenu.cs	medium	Video_RequestNextResolution without the cooldown; no references
+func_00446214	0x00446214	InGameMenu_OnArtsendModeSelect	Menus/InGameMenu.cs	high	debug page item 'artsend mode': toggles D_800D2AE0
+func_00446230	0x00446230	InGameMenu_FormatArtsendModeLabel	Menus/InGameMenu.cs	high	label 'artsend mode : on/off' by D_800D2AE0
+func_00446264	0x00446264	InGameMenu_OnPauseOpen	Menus/InGameMenu.cs	high	open slot of the 'paused' page (layout 0x451F7C): cursor 2 (resume), Rumble_Suspend, cheat items shown by D_801462E5, LoopSound_PauseAll
+func_004462F4	0x004462F4	InGameMenu_OnPauseClose	Menus/InGameMenu.cs	high	close slot of the 'paused' page descriptor: Rumble_Resume
+func_00446310	0x00446310	InGameMenu_PauseHandleMessage	Menus/InGameMenu.cs	medium	handler slot of the 'paused' page descriptor (where other pages use func_00441764 directly): calls func_00441764
+func_0044632C	0x0044632C	NameEntry_OpenPageHead_0044632C	Menus/PlayerProfile.cs	medium	split piece one word before NameEntry_OpenPage (stray branch-delay word, then its prologue)
+func_00446330	0x00446330	NameEntry_OpenPage	Menus/PlayerProfile.cs	high	open slot of the letter-grid page (layout 0x4521E0, update NameEntry_UpdatePage): shows the player's cursor row, copies the trimmed name D_8014641C[n] into the edit buffer D_800E63C0[n]
+func_004465B4	0x004465B4	NameEntry_MoveCursor	Menus/PlayerProfile.cs	high	select of the spinner items (MenuSpinner_Draw): advances the blink timer, pad left/right moves the edit cursor D_800E63C0[n] +0 within 0..length
+func_00446704	0x00446704	NameEntry_InsertChar	Menus/PlayerProfile.cs	high	select of the letter items: stores the item's letter at the cursor of D_800E63C0[n], cursor and length +1 (max 8), terminates the string
+func_00446330_func_004467D8	0x004467D8	NameEntry_ComparePrefixTwin	Menus/PlayerProfile.cs	high	inlined copy of NameEntry_ComparePrefix in NameEntry_OpenPage (default name 'player' check)
+func_004467D8	0x004467D8	NameEntry_ComparePrefix	Menus/PlayerProfile.cs	medium	recursive byte compare of two strings over n chars; NameEntry_OpenPage uses it to treat a default 'player N' name as empty
 func_00446810	0x00446810	MenuSpinner_Draw	Menus/MenuCore.cs	medium	harvest: src/ovl_a/func_00446810.c comment: draws a menu spinner (blinking bar under the selected digit)
 func_004469BC	0x004469BC	NameEntry_DeleteChar	Menus/PlayerProfile.cs	medium	harvest: src/ovl_a/func_004469BC.c comment: deletes the final character of the selected player's text entry
 func_00446A54	0x00446A54	NameEntry_CopyLabel	Menus/PlayerProfile.cs	medium	harvest: src/ovl_a/func_00446A54.c comment: copies a player label with spaces for empty characters and refreshes the entry
-func_00446B44	0x00446B44				
-func_00446B7C	0x00446B7C				
+func_00446B44	0x00446B44	NameEntry_UpdatePage	Menus/PlayerProfile.cs	medium	update slot of the letter-grid page descriptor 0x452834: returns 1 (close) when match flags D_801468A0 +0x28/+0x1C/+0x20 are set
+func_00446B7C	0x00446B7C	Debug_SetWatchpointOvlHead_00446B7C	Debug/DevLink.cs	medium	split piece one word (andi v0,v0,0xC0) before the hand-written Debug_SetWatchpointOvl, falls into it
 func_00446B80	0x00446B80	Debug_SetWatchpointOvl	Debug/DevLink.cs	medium	harvest: FINDINGS: 17-word hand-written watchpoint setter (mtc0 $18 / mfc0 $19), dead debug code
-func_00446BC4	0x00446BC4				
-func_00446BD0	0x00446BD0				
+func_00446BC4	0x00446BC4	osPfsAllocateFileHead_00446BC4	System/LowLevel.cs	medium	split piece 3 words (stray stores) before osPfsAllocateFile at 0x446BD0, falls into its prologue
+func_00446BD0	0x00446BD0	osPfsAllocateFile_Recompiled	System/LowLevel.cs	high	recompiled copy of osPfsAllocateFile at the same address (0x00446BD0); calls __osCheckId, osPfsFindFile, osPfsFreeBlocks
 osPfsAllocateFile	0x00446BD0				
 __osPfsDeclearPage	0x00446F74				
-func_00446F74	0x00446F74				
+func_00446F74	0x00446F74	__osPfsDeclearPage_Recompiled	System/LowLevel.cs	high	recompiled copy of __osPfsDeclearPage at the same address (0x00446F74)
 __osClearPage	0x00447140				
-func_00447140	0x00447140				
-func_004471D0	0x004471D0				
+func_00447140	0x00447140	__osClearPage_Recompiled	System/LowLevel.cs	high	recompiled copy of __osClearPage at the same address (0x00447140): __osPfsSelectBank, __osContRamWrite
+func_004471D0	0x004471D0	osPfsDeleteFile_Recompiled	System/LowLevel.cs	high	recompiled copy of osPfsDeleteFile at the same address (0x004471D0)
 osPfsDeleteFile	0x004471D0				
 __osPfsReleasePages	0x004473FC				
-func_004473FC	0x004473FC				
+func_004473FC	0x004473FC	__osPfsReleasePages_Recompiled	System/LowLevel.cs	high	recompiled copy of __osPfsReleasePages at the same address (0x004473FC); calls __osBlockSum
 __osBlockSum	0x0044759C				
-func_0044759C	0x0044759C				
-func_0044766C	0x0044766C				
+func_0044759C	0x0044759C	__osBlockSum_Recompiled	System/LowLevel.cs	high	recompiled copy of __osBlockSum at the same address (0x0044759C): __osContRamRead, __osSumcalc
+func_0044766C	0x0044766C	__osBlockSumTail_0044766C	System/LowLevel.cs	medium	one-instruction split piece (slt, return) at the end of __osBlockSum, 4 bytes before osPfsFileState
 osPfsFileState	0x00447670				
 osPfsFreeBlocks	0x004478B0				
 __osPfsGetStatus	0x004479D0				
-func_004479D0	0x004479D0				
+func_004479D0	0x004479D0	__osPfsGetStatus_Recompiled	System/LowLevel.cs	high	recompiled copy of __osPfsGetStatus at the same address (0x004479D0)
 __osPfsRequestOneChannel	0x00447AA8				
-func_00447AA8	0x00447AA8				
+func_00447AA8	0x00447AA8	__osPfsRequestOneChannel_Recompiled	System/LowLevel.cs	high	recompiled copy of __osPfsRequestOneChannel at the same address (0x00447AA8)
 __osPfsGetOneChannelData	0x00447B34				
-func_00447B34	0x00447B34				
-func_00447BB0	0x00447BB0				
+func_00447B34	0x00447B34	__osPfsGetOneChannelData_Recompiled	System/LowLevel.cs	high	recompiled copy of __osPfsGetOneChannelData at the same address (0x00447B34)
+func_00447BB0	0x00447BB0	osPfsInitPak_Recompiled	System/LowLevel.cs	high	recompiled copy of osPfsInitPak at the same address (0x00447BB0)
 osPfsInitPak	0x00447BB0				
-func_00447D80	0x00447D80				
+func_00447D80	0x00447D80	osPfsChecker_Recompiled	System/LowLevel.cs	high	recompiled copy of osPfsChecker at the same address (0x00447D80); calls corrupted_init, corrupted
 osPfsChecker	0x00447D80				
 corrupted_init	0x004481BC				
-func_004481BC	0x004481BC				
+func_004481BC	0x004481BC	corrupted_init_Recompiled	System/LowLevel.cs	high	recompiled copy of the pfschecker helper corrupted_init at the same address (0x004481BC)
 corrupted	0x00448308				
-func_00448308	0x00448308				
+func_00448308	0x00448308	corrupted_Recompiled	System/LowLevel.cs	high	recompiled copy of the pfschecker helper corrupted at the same address (0x00448308)
 osPfsIsPlug	0x00448470				
 __osPfsRequestData	0x004485EC				
-func_004485EC	0x004485EC				
+func_004485EC	0x004485EC	__osPfsRequestData_Recompiled	System/LowLevel.cs	high	recompiled copy of __osPfsRequestData at the same address (0x004485EC)
 __osPfsGetInitData	0x00448688				
-func_00448688	0x00448688				
-func_0044873C	0x0044873C				
+func_00448688	0x00448688	__osPfsGetInitData_Recompiled	System/LowLevel.cs	high	recompiled copy of __osPfsGetInitData at the same address (0x00448688)
+func_0044873C	0x0044873C	__osPfsGetInitDataTail_0044873C	System/LowLevel.cs	medium	one-instruction split piece (addiu s0,1 and return) at the end of __osPfsGetInitData, 4 bytes before osPfsReadWriteFile
 osPfsReadWriteFile	0x00448740				
 __osGetId	0x00448B80				
-func_00448B80	0x00448B80				
-func_00448D30	0x00448D30				
+func_00448B80	0x00448B80	__osGetId_Recompiled	System/LowLevel.cs	high	recompiled copy of __osGetId at the same address (0x00448B80)
+func_00448D30	0x00448D30	osPfsFindFile_Recompiled	System/LowLevel.cs	high	recompiled copy of osPfsFindFile at the same address (__osCheckId, __osPfsSelectBank, __osContRamRead)
 osPfsFindFile	0x00448D30				
-func_00448EA4	0x00448EA4				
+func_00448EA4	0x00448EA4	__osRepairPackId_Entry_00448EA4	System/LowLevel.cs	medium	pad_1B6EA4: 3 stray insns (lwc1 D_800C73F4/F8) falling into __osRepairPackId
 __osRepairPackId	0x00448EB0				
-func_00448EB0	0x00448EB0				
+func_00448EB0	0x00448EB0	__osRepairPackId_Recompiled	System/LowLevel.cs	high	recompiled copy of __osRepairPackId at the same address (0x00448EB0)
 __osCheckPackId	0x00449198				
-func_00449198	0x00449198				
+func_00449198	0x00449198	__osCheckPackId_Recompiled	System/LowLevel.cs	high	recompiled copy of __osCheckPackId at the same address (0x00449198)
 __osGetId_b	0x00449308				
-func_00449308	0x00449308				
+func_00449308	0x00449308	__osGetId_b_Recompiled	System/LowLevel.cs	high	recompiled copy of __osGetId_b at the same address; calls __osCheckPackId/__osRepairPackId
 __osPfsRWInode	0x004494F4				
-func_004494F4	0x004494F4				
+func_004494F4	0x004494F4	__osPfsRWInode_Recompiled	System/LowLevel.cs	high	recompiled copy of __osPfsRWInode at the same address (0x004494F4)
 __osSumcalc	0x004497D4				
-func_004497D4	0x004497D4				
+func_004497D4	0x004497D4	__osSumcalc_Recompiled	System/LowLevel.cs	high	recompiled copy of __osSumcalc at the same address (byte sum loop)
 __osIdCheckSum	0x00449804				
-func_00449804	0x00449804				
+func_00449804	0x00449804	__osIdCheckSum_Recompiled	System/LowLevel.cs	high	recompiled copy of __osIdCheckSum at the same address (halfword sum + complement)
 __osCheckId	0x0044984C				
-func_0044984C	0x0044984C				
+func_0044984C	0x0044984C	__osCheckId_Recompiled	System/LowLevel.cs	high	recompiled copy of __osCheckId at the same address (0x0044984C)
 __osPfsSelectBank	0x00449914				
-func_00449914	0x00449914				
-func_00449968	0x00449968				
+func_00449914	0x00449914	__osPfsSelectBank_Recompiled	System/LowLevel.cs	high	recompiled copy of __osPfsSelectBank: fills 32 bytes with bank (+0x65), __osContRamWrite at 0x8000/32
+func_00449968	0x00449968	Player_ConstructEntities_Entry_00449968	Player/Player.cs	medium	pad_1B7968: two stray stores (s0+0x12C4/0x12C8 = 0) falling into Player_ConstructEntities
 func_00449970	0x00449970	Player_ConstructEntities	Player/Player.cs	medium	harvest: FINDINGS s1011: func_00449970 (constructor of the two base entities)
 func_00449B44	0x00449B44	Player_InitSlot	Player/Player.cs	medium	harvest: FINDINGS s1011: func_00449B44 (slot init)
 func_00449E38	0x00449E38	Player_Restart	Player/Health.cs	medium	harvest: FINDINGS s1011 (player object restart) + PORT_STATUS trials: stores the respawn key p+0x5EC at player start (tail at 0x0044A100)
@@ -4839,30 +4839,30 @@ func_0044A100	0x0044A100	Player_RestartTail	Player/Health.cs	medium	harvest: mem
 func_0044A17C	0x0044A17C	Player_ResetForNewLife	Player/Health.cs	medium	harvest: src/ovl_a/func_0044A17C.c comment: reset a player for a new life (restore health, clear timers and effects, drop carried object)
 func_0044A37C	0x0044A37C	Player_StartRun_0044A37C	Player/Health.cs	low	harvest: src/ovl_a/func_0044A37C.c comment: starts a player's run (run type at 0x5EA, resets via func_0044A17C, starts its vehicle/model) [the other decomp's comment calls it a vehicle/driver routine; Rage Wars has none: neutral name]
 func_0044A4C0	0x0044A4C0	Player_Respawn	Player/Health.cs	high	harvest: PORT_STATUS trials: the respawn (func_0044A4C0 -> func_0021B1E4) looks up the spawn points of the player's spawn key p+0x5EC
-func_0044A600	0x0044A600				
+func_0044A600	0x0044A600	Player_InitPool	Player/Player.cs	high	Player_AllocAll(count), 0x16E8-byte players on active/object queues, per-player profile 0x688, Ai_InitForActor, Player_ResetFields, Player_InitSlot; callers Game_Init, state/menu scene loads
 func_0044AA00	0x0044AA00	List44_Reset_0044AA00	System/Memory.cs	low	harvest: src/ovl_a/func_0044AA00.c comment: resets a 0x44-byte record (memset, two lists at 0xC / 0x20)
 func_0044AA68	0x0044AA68	Holder_RefreshInstances_0044AA68	System/Memory.cs	low	harvest: src/ovl_a/func_0044AA68.c comment: refreshes every instance owned by the holder and clears their pending flag
 func_0044AB34	0x0044AB34	Player_SetupSlot_0044AB34	Player/Player.cs	low	harvest: src/ovl_a/func_0044AB34.c comment: sets up a player in a slot (computer or human profile at 0x688, counters, vehicle link) [the other decomp's comment calls it a vehicle/driver routine; Rage Wars has none: neutral name]
-func_0044AC70	0x0044AC70				
+func_0044AC70	0x0044AC70	Player_ActivateAndSpawn	Player/Player.cs	medium	sets player entry (+0x5D8)->active = 1, Player_InitSlot(p, slot, 1), Actor_DispatchEvent(+0x2E8,+0x458,2), Player_PlaceAtSpawn(p, D_80146898, 0, 1); no callers found
 func_0044ACCC	0x0044ACCC	Object_ReleaseHandles_0044ACCC	Actor/Actor.cs	low	harvest: src/ovl_a/func_0044ACCC.c comment: releases the two handles at offsets 0x11BC and 0x11C0 of an object
-func_0044AD14	0x0044AD14				
+func_0044AD14	0x0044AD14	Player_SetCharacter	Player/Player.cs	high	p+0x5E0 = character, Player_ApplyCharacterClass, Player_InitWeapons, model key from D_800CE430[class]/D_800CE47C via func_0028B250; callers PakMenu_OnPlayerNoteYes, character spinner 0043E65C
 func_0044ADC0	0x0044ADC0	Camera_InitState	Render/View.cs	medium	harvest: src/ovl_a/func_0044ADC0.c comment: initializes camera transforms, viewport state, clipping records and resource lists
 func_0044AFC0	0x0044AFC0	CameraManager_Init	Render/View.cs	medium	harvest: FINDINGS s1005: func_0044AFC0 (camera manager init, counterpart of func_0044B27C reset)
 func_0044B27C	0x0044B27C	View_ResetRecord	Render/View.cs	medium	harvest: src/ovl_a/func_0044B27C.c comment: resets a 0x1208-byte view actor (lists, parts via func_0044ADC0 and func_00234FDC)
-func_0044B31C	0x0044B31C				
+func_0044B31C	0x0044B31C	Camera_ResetAllRegionLayerPools	Render/View.cs	medium	Pool228_Init on +0x570 of every 0xED8-byte camera (count +8, array +4) and on the manager's +0x5B0 (cf. Camera_InitRegionLayerPool); caller Level_Load
 func_0044B388	0x0044B388	View_DetachObject_0044B388	Render/View.cs	low	harvest: src/ovl_a/func_0044B388.c comment: detaches the object at 0xC of an owner (finalise via func_0044ADC0, unlink)
 func_0044B3E0	0x0044B3E0	Object_MoveNodeToActiveList_0044B3E0	System/Memory.cs	low	harvest: src/ovl_a/func_0044B3E0.c comment: moves a node from the list at 0x20 to the list at 0xC of an object
 func_0044B420	0x0044B420	Pool228_Init_0044B420	System/Memory.cs	low	harvest: src/ovl_a/func_0044B420.c comment: initialises the two lists of a pool and adds its four 0x228-byte entries
-func_0044B498	0x0044B498				
-func_0044BA40	0x0044BA40				
-func_0044BAB4	0x0044BAB4				
+func_0044B498	0x0044B498	Pool228_Init_Tail_0044B498	System/Memory.cs	low	pad_1B9498: 8 orphan bytes (addu at,s3,at; sw zero) after Pool228_Init, followed by data blob D_0044B4A0; no callers
+func_0044BA40	0x0044BA40	ActorPool_Init	Actor/ActorPool.cs	medium	List_Init free (+0x5F00) and used (+0x5F14) lists (link 0x2E8/0x2EC), appends 32 actors of 0x2F8 to the free list (ActorPool_Spawn takes from +0x5F00); caller Level_Load
+func_0044BAB4	0x0044BAB4	Pad_ResetSession_Entry_0044BAB4	Player/Controls.cs	medium	pad_1B9AB4: 3 stray insns (sb v0,0xEEC(at); lui at) falling into Pad_ResetSession
 func_0044BAC0	0x0044BAC0	Pad_ResetSession	Player/Controls.cs	medium	harvest: src/ovl_a/func_0044BAC0.c comment: resets the controller and profile state for a new session (osContInit, pads, profiles)
 func_0044BC58	0x0044BC58	Pad_InitSlot	Player/Controls.cs	medium	harvest: FINDINGS: func_0044BC58 (controller slot init) is the twin of func_00263D10
 func_0044BD30	0x0044BD30	List8_Init_0044BD30	System/Memory.cs	low	harvest: src/ovl_a/func_0044BD30.c comment: initializes a list and its eight records with default state
-func_0044BDC8	0x0044BDC8				
+func_0044BDC8	0x0044BDC8	List8_Init_Tail_0044BDC8	System/Memory.cs	low	pad_1B9DC8: 2 orphan insns (a1=2; jal Chunk_Get) after List8_Init, followed by data blob D_44BDD0; no callers
 func_0044BFD0	0x0044BFD0	MtxStack_Init	Math/Matrix.cs	medium	harvest: FINDINGS: func_0044BFD0 (matrix pool init: base, count/2, guMtxIdent loop)
 func_0044C050	0x0044C050	ObjectPool_InitQuad_0044C050	Render/Model.cs	low	harvest: FINDINGS: func_0044C050 (object pool + unit quad init)
-func_0044C244	0x0044C244				
+func_0044C244	0x0044C244	Scene_HelperA_Entry_0044C244	World/Level.cs	medium	pad_1BA244: 3 stray insns (lw s0,0x1B40C(t0)) falling into Scene_HelperA_0044C250
 func_0044C250	0x0044C250	Scene_HelperA_0044C250	World/Level.cs	low	harvest: FINDINGS: func_0044C250 / func_0044C410 (CScene helpers, debug tag strings)
 func_0044C410	0x0044C410	Scene_LoadLevelData_0044C410	World/Level.cs	low	harvest: FINDINGS: func_0044C410 CScene helper with the optional BLLevelData block
 func_0044CA54	0x0044CA54	Scene_LoadLight	Render/Lighting.cs	medium	harvest: src/ovl_a/func_0044CA54.c comment: loads a scene's light into the global light D_800D0EE0 (ambient/directional colours, direction)
@@ -4874,28 +4874,28 @@ func_0044D9DC	0x0044D9DC	Level_LoadGridCells	World/Level.cs	medium	harvest: src/
 func_0044DC48	0x0044DC48	Level_InitState_0044DC48	World/Level.cs	low	harvest: src/ovl_a/func_0044D9DC.c comment: runs func_0044DCA4 and func_0044DD40 on the state block, sets words 0x1B444..0x1B44C
 func_0044DCA4	0x0044DCA4	Level_LoadSelectedResource_0044DCA4	World/Level.cs	low	harvest: src/ovl_a/func_0044DCA4.c comment: loads a selected resource into the shared buffer and releases the temporary allocation
 func_0044DD40	0x0044DD40	Level_LoadPreviewSound_0044DD40	World/Level.cs	low	harvest: src/ovl_a/func_0044DD40.c comment: loads the preview resource into the sound buffer when idle
-func_0044DDC8	0x0044DDC8				
+func_0044DDC8	0x0044DDC8	Level_RequestChangeIfNew_0044DDC8	World/Level.cs	low	if key != s+0x1B40C (current level key): clears +0x1B41C and Level_SetTransitionState(s, ~key, 0); no callers found
 func_0044DE04	0x0044DE04	Level_ResetStateBlock_0044DE04	World/Level.cs	low	harvest: src/ovl_a/func_0044DD40.c comment: resets part of a large state block (0x1B410 = 2, clears 0x1B414..)
 func_0044DE70	0x0044DE70	Track_FindPlacedObjects	World/Level.cs	medium	harvest: src/ovl_a/func_0044DD40.c comment: copies up to max of a track's placed objects whose key matches into out
-func_0044E038	0x0044E038				
+func_0044E038	0x0044E038	Track_FindNearestPlacedObject	World/Level.cs	high	scans the track's 20-byte placed objects of a kind, nearest to pos by Vec_Distance, copies it to out and returns its key (sibling of Track_FindPlacedObjects); callers Level_SpawnActors, Flyby_OnWindowStart
 func_0044E178	0x0044E178	Level_SetTransitionState_0044E178	World/Level.cs	low	harvest: src/ovl_a/func_0044E178.c comment: sets the resource transition state and sound
-func_0044E1D0	0x0044E1D0				
+func_0044E1D0	0x0044E1D0	Scene_ApplyLightAndFog	Render/Lighting.cs	medium	Scene_LoadLight(s) then fog flag D_800D15D0 (read by Model_UpdateFogRenderModes) = bit 2 of level info (+0x1B2B0)->value; no direct callers
 func_0044E214	0x0044E214	Level_ProcessPendingObjects_0044E214	World/Level.cs	low	harvest: src/ovl_a/func_0044E178.c comment: processes both pending object lists between update barriers
 func_0044E2B8	0x0044E2B8	Level_SpawnPickups	World/Level.cs	medium	harvest: src/ovl_a/func_0044E2B8.c comment: spawns the pickups of a level (item kinds 1, 2, 4, 10 via func_0028784C)
-func_0044E3E4	0x0044E3E4				
-func_0044E454	0x0044E454				
-func_0044E584	0x0044E584				
-func_0044E6A4	0x0044E6A4				
-func_0044E7C0	0x0044E7C0				
-func_0044E8B0	0x0044E8B0				
-func_0044E904	0x0044E904				
-func_0044E910	0x0044E910				
+func_0044E3E4	0x0044E3E4	Level_FlushQueuedEntities	World/Level.cs	medium	for each node of list +0x11D8: Entity_Spawn(node->handle), move node to spare list +0x11EC; called at the start of Level_Load when a level is loaded
+func_0044E454	0x0044E454	Level_OnLoadParticleEffects	World/Level.cs	medium	load callback of the 'particle effects' resource (Scene_LoadLevelData): RNC unpack, model tag via Level_GetModelKey, relocates nine offsets of each 60-byte piece
+func_0044E584	0x0044E584	Level_OnLoadIntelligence	World/Level.cs	medium	load callback of the 'intelligence' resource (Scene_LoadLevelData): RNC unpack, scales kind 1 / kind 11 entry fields by 1.0
+func_0044E6A4	0x0044E6A4	Level_OnLoadPaths	World/Level.cs	medium	load callback of the 'level paths' resource (Level_Load, type 2): resolves each 56-byte node slot's index into the 32-byte bank items (+0x6C chunk 2), stores the resource at +0x7C
+func_0044E7C0	0x0044E7C0	PickupPool_Init	World/PickupPool.cs	medium	links 32 0x1E0-byte slots into the free list (header +0x3C00), sets up defs D_8011F448/D_8011F2C0 (ObjectRec_Init, 122.88), Pickup_SetStaticDef each; caller Level_Load at level+0x11778 (= PickupPool_Release pool)
+func_0044E8B0	0x0044E8B0	Light_SetDefaultDirection	Render/Lighting.cs	medium	dir = (-0.667, 0.953, -0.572), Vec_Normalize, enabled = 1; caller Game_ColdBootInit
+func_0044E904	0x0044E904	Light_SetDefaultDirection_Tail_0044E904	Render/Lighting.cs	medium	pad_1BC904: linker nop pad after Light_SetDefaultDirection
+func_0044E910	0x0044E910	Decal_InitQuadVerts	Render/Decals.cs	high	builds the 4 white unit-quad Vtx at D_801469A0 (x/z +-1, st 0..1024) that Decal_DrawAll draws; caller Game_ColdBootInit
 func_0044E9A0	0x0044E9A0	Match_Reset	Match/Rules.cs	medium	harvest: src/ovl_a/func_0044E910.c comment: resets a match (clears state words of D_801468A0, match block 0x26DC1 = 2)
 func_0044EA24	0x0044EA24	Match_EnterState0C_0044EA24	Match/Rules.cs	low	harvest: src/ovl_a/func_0044EA24.c comment: puts the match object into state 0xC with the func_0044DE70 selector; adapted from func_00293268
-func_0044EACC	0x0044EACC				
-func_0044EBA4	0x0044EBA4				
-func_0044EBB0	0x0044EBB0				
-func_0044ECB0	0x0044ECB0				
-func_0044ED1C	0x0044ED1C				
-func_0044ED24	0x0044ED24				
-func_0044ED94	0x0044ED94				
+func_0044EACC	0x0044EACC	Game_StartMatchLevel	System/GameState.cs	medium	validates level key via Track_FindPlacedObjects (else 0), clears D_801468A0 words, g+0x26DD8 = key, fade (+0x26DC1 = 2) to state 13 or 12; callers MatchSetup_Apply*Rules (sibling of Game_FadeToLevel)
+func_0044EBA4	0x0044EBA4	Game_StartMatchLevel_Tail_0044EBA4	System/GameState.cs	medium	pad_1BCBA4: 3 linker pad/data words after Game_StartMatchLevel (recompiled falls into Effect_InitPools)
+func_0044EBB0	0x0044EBB0	Effect_InitPools	Render/Effects.cs	medium	Pool_InitFromArray x2, 96 0xB8 items on a counted list, 10 decal lists + 100 0x50 nodes on the spare list +0x95A8, then Effect_UpdateFrame; caller Level_Load
+func_0044ECB0	0x0044ECB0	Text_InitFont	Ui/Text.cs	medium	clears +0x90..+0x9C, Text_LoadFontTexture, Text_BuildCharMap from D_800D3080 and D_800D2F94 (117 pairs each); caller Game_Init
+func_0044ED1C	0x0044ED1C	Text_FontInitHook	Ui/Text.cs	medium	empty function called by Text_InitFont
+func_0044ED24	0x0044ED24	BossBar_Init	Ui/BossBar.cs	medium	two ScreenMovers at 0x8013B7B8 (the BossBar_SetPercent1/2 block): Init at y -40 / -20 and Start scripts D_800D316C / D_800D317C; caller Level_Load
+func_0044ED94	0x0044ED94	BossBar_Init_Tail_0044ED94	Ui/BossBar.cs	medium	pad_1BCD94: linker nop pad after BossBar_Init

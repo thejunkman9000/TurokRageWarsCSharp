@@ -626,4 +626,69 @@ public static partial class Game
         }
         finally { Stack.Free(256); }
     }
+
+    // ==== func_0044ED24 @ 0x0044ED24 [MIPS]
+    public static uint BossBar_Init(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0044ED24", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_0044ED24: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r4;
+                r5 = r0;
+                r6 = (uint)-40;
+                Mem.Set((r29 + 24u), r31);
+                Mem.Set((r29 + 20u), r17);
+                Mem.Set((r16 + 64u), r0); ScreenMover_Init(r4, (short)r5, (short)r6);
+                r5 = 2148335616u;
+                r5 = r5 + 12652u;
+                r4 = r16; ScreenMover_Start(r4, r5);
+                r17 = r16 + 72u;
+                r4 = r17;
+                r5 = r0;
+                r6 = (uint)-20;
+                Mem.Set((r16 + 136u), r0); ScreenMover_Init(r4, (short)r5, (short)r6);
+                r5 = 2148335616u;
+                r5 = r5 + 12668u;
+                r4 = r17; ScreenMover_Start(r4, r5);
+                r31 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0044ED24", r2); Stack.Free(384); }
+    }
+
+    // ==== func_0044ED94 @ 0x0044ED94 [MIPS]
+    public static uint BossBar_Init_Tail_0044ED94(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0044ED94", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_0044ED94: ;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0044ED94", r2); Stack.Free(384); }
+    }
 }

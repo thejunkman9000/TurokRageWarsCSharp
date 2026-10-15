@@ -32,7 +32,7 @@ public static partial class Game
                 r5 = r0; CameraManager_Init(r4, (int)r5);
                 r4 = r16 - 72u;
                 r5 = r0;
-                r6 = r5; func_0044A600(r4, (int)r5, (int)r6);
+                r6 = r5; Player_InitPool(r4, (int)r5, (int)r6);
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
                 r5 = (uint)36;
@@ -61,7 +61,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00422050");
             Flyby_Abort();
             CameraManager_Init(0x80145088u, 0);
-            func_0044A600((0x80145088u - (uint)72), 0, 0);
+            Player_InitPool((0x80145088u - (uint)72), 0, 0);
             Level_Load(0x8011FE88u, (uint)(36), (uint)(0), default(uint));
             if ((Resource_GetLoadFlags() == 0))
             {
@@ -147,7 +147,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_004221A0");
             MenuScene_SetupFlybyView();
             CameraManager_Init(0x80145088u, 1);
-            func_0044A600((0x80145088u - (uint)72), 1, 0);
+            Player_InitPool((0x80145088u - (uint)72), 1, 0);
             Level_SetTransitionState_0044E178(0x8011FE88u, (~Flyby_QueueById(637)), 0);
             if ((Resource_GetLoadFlags() == 0))
             {

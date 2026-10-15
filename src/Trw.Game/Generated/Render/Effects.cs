@@ -12468,4 +12468,57 @@ public static partial class Game
         }
         finally { if (Dbg.On) Dbg.Leave("func_002A6ED0", r2); Stack.Free(384); }
     }
+
+    // ==== func_0044EBB0 @ 0x0044EBB0 [C]
+    public static void Effect_InitPools(uint o)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0044EBB0", (uint)o);
+            int i = 0;
+            Pool_InitFromArray(new S7Pools(o).poolA.P, new S7Pools(o).nodesA.P, 84, (uint)(32));
+            Pool_InitFromArray(new S7Pools(o).poolB.P, new S7Pools(o).nodesB.P, 28, (uint)(3));
+            Vec_SetZero(new S7Pools(o).list.P);
+            for (i = 0; (i < 96); ++i)
+            {
+                List_AppendCounted(new S7Pools(o).list.P, (new S7Pools(o).items.P + (uint)(i * 184)));
+            }
+            List_Init(new S7Pools(o).queue.P, 0, 4);
+            for (i = 0; (i < 10); ++i)
+            {
+                List_Init((new S7Pools(o).lists.P + (uint)(i * 20)), 0, 4);
+            }
+            for (i = 0; (i < 100); ++i)
+            {
+                List_Append_00255CB4(new S7Pools(o).queue.P, (new S7Pools(o).nodesC.P + (uint)(i * 80)), default(uint), default(uint));
+            }
+            new S7Pools(o).unk0_Set(0);
+            new S7Pools(o).unk2588_Set(0);
+            Effect_UpdateFrame((int)(o));
+        }
+    }
+
+    public static void Text_InitFont(uint o)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0044ECB0", (uint)o);
+            new S7Tabs(o).unk90_Set(0);
+            new S7Tabs(o).unk94_Set(0);
+            new S7Tabs(o).unk98_Set(0);
+            new S7Tabs(o).unk9C_Set(0);
+            Text_FontInitHook();
+            Text_LoadFontTexture(default(uint), default(uint), default(uint), default(uint));
+            Text_BuildCharMap((int)(o), 0x800D3080u, 117, new S7Tabs(o).tab0.P);
+            Text_BuildCharMap((int)(o), 0x800D2F94u, 117, new S7Tabs(o).tab1.P);
+        }
+    }
+
+    public static void Text_FontInitHook()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0044ED1C");
+        }
+    }
 }

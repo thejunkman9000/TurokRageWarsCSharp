@@ -118,4 +118,26 @@ public static partial class Game
             }
         }
     }
+
+    // ==== func_0044BA40 @ 0x0044BA40 [C]
+    public static void ActorPool_Init(uint arg0)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0044BA40", (uint)arg0);
+            uint var_s0 = 0u;
+            int var_s1 = 0;
+            List_Init(new func_80262ABC_S1_v2(arg0).unk5F00.P, 744, 748);
+            List_Init(new func_80262ABC_S1_v2(arg0).unk5F14.P, 744, 748);
+            var_s1 = 0;
+            var_s0 = new func_80262ABC_S1_v2(arg0).effects.P;
+            do
+            {
+                List_Append_00255CB4(new func_80262ABC_S1_v2(arg0).unk5F00.P, var_s0, default(uint), default(uint));
+                var_s1 = (int)((int)(var_s1) + 1);
+                var_s0 = (uint)(var_s0 + (uint)(1 * 760));
+            }
+            while ((var_s1 < 32));
+        }
+    }
 }

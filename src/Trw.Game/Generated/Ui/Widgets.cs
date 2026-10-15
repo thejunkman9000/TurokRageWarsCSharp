@@ -4143,7 +4143,7 @@ public static partial class Game
             it = (new Q04Pan2(p).items_ + (uint)((int)(new Q04Pan2(p).cur) * 40));
             new Q04Pan2(p).f2C_Set((new Q04Pan2(p).f2C + Mem.F32(0x800D2988u)));
             s3 = (new Q04Item(it).flags & (uint)(4194304));
-            func_00442CCC(p);
+            MenuPanel_StepOpenAnim(p);
             switch ((int)(new Q04Pan2(p).state))
             {
             case 0:
@@ -4219,11 +4219,11 @@ public static partial class Game
                         {
                             if ((Pad_IsLeft(new Q04Pan2(p).ctl_) != 0))
                             {
-                                func_0044121C(p, (byte)(16));
+                                MenuPanel_MoveCursor(p, (byte)(16));
                             }
                             if ((Pad_IsRight(new Q04Pan2(p).ctl_) != 0))
                             {
-                                func_0044121C(p, (byte)(17));
+                                MenuPanel_MoveCursor(p, (byte)(17));
                             }
                         }
                         else
@@ -4237,11 +4237,11 @@ public static partial class Game
                         {
                             if ((Pad_IsUp(new Q04Pan2(p).ctl_) != 0))
                             {
-                                func_0044121C(p, (byte)(18));
+                                MenuPanel_MoveCursor(p, (byte)(18));
                             }
                             if ((Pad_IsDown(new Q04Pan2(p).ctl_) != 0))
                             {
-                                func_0044121C(p, (byte)(19));
+                                MenuPanel_MoveCursor(p, (byte)(19));
                             }
                         }
                         if ((((int)(new Q04Pan2(p).state) == 2) && ((((int)(Pad_IsConfirm(new Q04Pan2(p).ctl_)) != 0) || ((Pad_IsLeft(new Q04Pan2(p).ctl_) != 0) && (s3 != (uint)(0)))) || ((Pad_IsRight(new Q04Pan2(p).ctl_) != 0) && (s3 != (uint)(0))))))

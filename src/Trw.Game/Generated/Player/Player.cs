@@ -4668,7 +4668,7 @@ public static partial class Game
                 r6 = r16;
                 Mem.Set((r29 + 16u), r0);
                 r7 = Mem.U32((r16 + 1688u));
-                r4 = r4 + 1364u; r2 = (uint)func_004426E4(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = r4 + 1364u; r2 = (uint)MenuPanel_Open(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
                 L_L002259F4: ;
                 r2 = 2148794368u;
                 r2 = Mem.U32((r2 + 26936u));
@@ -4743,7 +4743,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r0);
                 L_L00225B48: ;
                 r7 = Mem.U32((r16 + 1688u));
-                r6 = r16; r2 = (uint)func_004426E4(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r6 = r16; r2 = (uint)MenuPanel_Open(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
                 L_L00225B54: ;
                 r31 = Mem.U32((r29 + 44u));
                 r20 = Mem.U32((r29 + 40u));
@@ -5282,7 +5282,7 @@ public static partial class Game
             Flyby_StartFadeOut();
             goto _f13;
             _f12: ;
-            if (!((((Menu_IsFrontendActive() == 0) && (func_00442B98(0x8014561Cu) == 0)) && (new Plr(a).unk5E4 != 0)))) goto _f14;
+            if (!((((Menu_IsFrontendActive() == 0) && (MenuPanel_CountOpen(0x8014561Cu) == 0)) && (new Plr(a).unk5E4 != 0)))) goto _f14;
             if (!(((new Plr(a).unk5DC_ != 0u) && (new Pawn(new Plr(a).unk5DC_).unk564 == 0)))) goto _f15;
             h = (0x8014561Cu + (uint)4740);
             if (!(((new HudSubB6(h).unk1C == 0) || ((int)(Mem.U8((0x8014561Cu + (uint)3273))) == 0)))) goto _f16;
@@ -7392,6 +7392,140 @@ public static partial class Game
         }
     }
 
+    // ==== func_00449968 @ 0x00449968 [MIPS]
+    public static uint Player_ConstructEntities_Entry_00449968(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00449968", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_00449968: ;
+                Mem.Set((r16 + 4804u), r0);
+                Mem.Set((r16 + 4808u), r0);
+                L_func_00449970: ;
+                r29 = r29 - 48u;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r4;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r5;
+                Mem.Set((r29 + 36u), r21);
+                r21 = r6;
+                r7 = r0;
+                Mem.Set((r29 + 40u), r31);
+                Mem.Set((r29 + 32u), r20);
+                Mem.Set((r29 + 28u), r19);
+                Mem.Set((r29 + 16u), r16);
+                Mem.Set((r18 + 472u), r18); Level_SpawnActorFromRecord((int)r4, r5);
+                r3 = 1048576u;
+                r2 = Mem.U32((r18 + 256u));
+                r4 = 2148794368u;
+                r4 = r4 + 25317u;
+                Mem.Set((r18 + 472u), r18);
+                r2 = r2 | r3;
+                r3 = 65536u;
+                r2 = r2 | r3;
+                r3 = 16777216u;
+                r2 = r2 | r3;
+                r3 = 33554432u;
+                r3 = r2 | r3;
+                Mem.Set((r18 + 256u), r3);
+                r2 = Mem.U8((r4 + 0u));
+                { bool c_ = r2 != 0; r2 = 268435456u; if (c_) goto L_L004499F0; }
+                r2 = r3 | r2;
+                Mem.Set((r18 + 256u), r2);
+                L_L004499F0: ;
+                r2 = 2424832u;
+                r2 = r2 - 19156u;
+                Mem.Set((r18 + 652u), r2);
+                r2 = 2293760u;
+                r2 = r2 - 8032u;
+                r20 = 2228224u;
+                r20 = r20 - 26048u;
+                r19 = 2293760u;
+                r19 = r19 - 7600u;
+                Mem.Set((r18 + 656u), r2);
+                Mem.Set((r18 + 640u), r20);
+                Mem.Set((r18 + 648u), r19);
+                r2 = Mem.U8((r4 + 0u));
+                { bool c_ = r2 == 0; r16 = r18 + 744u; if (c_) goto L_L00449A38; }
+                r2 = 2228224u;
+                r2 = r2 - 23852u;
+                Mem.Set((r18 + 636u), r2);
+                L_L00449A38: ;
+                r4 = r16;
+                r5 = r17;
+                r6 = r21;
+                r7 = r0;
+                Mem.Set((r18 + 1216u), r18); Level_SpawnActorFromRecord((int)r4, r5);
+                r7 = 4294836224u;
+                r7 = r7 | 65535u;
+                r4 = r16;
+                r17 = r18 + 1112u;
+                r5 = r17;
+                r6 = r0;
+                r2 = 2293760u;
+                r2 = r2 - 2608u;
+                Mem.Set((r18 + 1396u), r2);
+                r2 = (uint)-1;
+                Mem.Set((r18 + 1164u), (byte)r2);
+                r2 = Mem.U32((r18 + 1000u));
+                r1 = 2148270080u;
+                Cpu.SetW(0, Mem.U32((r1 + 29668u)));
+                r3 = 2097152u;
+                Mem.Set((r18 + 1216u), r18);
+                Mem.Set((r18 + 1384u), r20);
+                Mem.Set((r18 + 1392u), r19);
+                r2 = r2 | r3;
+                Mem.Set((r18 + 1000u), r2);
+                r3 = r2;
+                r2 = (uint)-1;
+                r3 = r3 & r7;
+                Mem.Set((r18 + 1582u), (ushort)r2);
+                Mem.Set((r18 + 824u), Cpu.W(0));
+                Mem.Set((r18 + 828u), Cpu.W(0));
+                Mem.Set((r18 + 832u), Cpu.W(0));
+                Mem.Set((r18 + 1000u), r3); r2 = (uint)Actor_DispatchEvent(r4, r5, (int)r6);
+                r4 = r16;
+                r5 = r17; Weapon_EquipPending(r4, r5);
+                r4 = r18;
+                r5 = r18; r2 = Player_UpdateViewCamera(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = Mem.U32((r18 + 1500u));
+                { bool c_ = r4 == 0;  if (c_) goto L_L00449AF0; }
+                Flyby_Hook_00245854(r4);
+                L_L00449AF0: ;
+                r2 = Mem.U32((r18 + 24u));
+                Cpu.SetW(0, Mem.U32((r2 + 252u)));
+                Mem.Set((r18 + 80u), Cpu.W(0));
+                Cpu.SetW(0, Mem.U32((r2 + 256u)));
+                Mem.Set((r18 + 84u), Cpu.W(0));
+                Cpu.SetW(0, Mem.U32((r2 + 260u)));
+                r4 = r2;
+                Mem.Set((r18 + 88u), Cpu.W(0));
+                r2 = Mem.U32((r4 + 4u));
+                r3 = (uint)-5;
+                r2 = r2 & r3;
+                Mem.Set((r4 + 4u), r2);
+                r31 = Mem.U32((r29 + 40u));
+                r21 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 48u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00449968", r2); Stack.Free(384); }
+    }
+
     // ==== func_00449970 @ 0x00449970 [C]
     public static void Player_ConstructEntities(uint p, uint a1, int a2)
     {
@@ -7545,10 +7679,193 @@ public static partial class Game
                 {
                     name = 0x00450BACu;
                 }
-                func_004426E4((new S11Obj(p).hud_ + (uint)1364), name, (int)(p), (int)(new S11Obj(p).unk698), new S11Obj(p).unk5D4);
+                MenuPanel_Open((new S11Obj(p).hud_ + (uint)1364), name, (int)(p), (int)(new S11Obj(p).unk698), new S11Obj(p).unk5D4);
             }
             Mem.Set((0x80102AE0u + (uint)(new S11Obj(p).unk5D4 * 4)), 0);
             Mem.Set((0x80103140u + (uint)(new S11Obj(p).unk5D4 * 4)), 0);
+        }
+    }
+
+    // ==== func_0044A600 @ 0x0044A600 [C]
+    public static void Player_InitPool(uint pool, int count, int force_active)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0044A600", (uint)pool, (uint)count, (uint)force_active);
+            int i = 0;
+            int j = 0;
+            int entry_offset = 0;
+            int attribute_offset = 0;
+            int player_index = 0;
+            int object_offset = 0;
+            int roster_index = 0;
+            byte object_id = 0;
+            uint owner = 0u;
+            uint @object = 0u;
+            uint entry = 0u;
+            uint global = 0u;
+            uint state = 0u;
+            List_Init(new ObjectPool(pool).active_queue.P, 5852, 5856);
+            List_Init(new ObjectPool(pool).object_queue.P, 5852, 5856);
+            Rumble_SetEnabledAll(0);
+            ResourcePool_Purge();
+            global = 0x801462C8u;
+            if ((new ObjectPool(pool).allocation != 0u))
+            {
+                ResourcePool_Release(0, new ObjectPool(pool).allocation);
+                new ObjectPool(pool).allocation_Set(0u);
+                new ObjectPool(pool).objects__Set(0u);
+                new ObjectPool(pool).count_Set(0);
+            }
+            if ((count == 0))
+            {
+                return;
+            }
+            Player_AllocAll(pool, count);
+            for (i = 0; (i < new ObjectPool(pool).count); ++i)
+            {
+                List_Append_00255CB4(new ObjectPool(pool).active_queue.P, (new ObjectPool(pool).objects_ + (uint)(i * 5864)), default(uint), default(uint));
+            }
+            for (i = 0; (i < new ObjectPool(pool).count); ++i)
+            {
+                entry = ((global + (uint)208) + (uint)(i * 150));
+                if (((int)(new ObjectState96(entry).unk_95) != 0))
+                {
+                    new ObjectState96(entry).unk_78_Set((byte)(0));
+                }
+            }
+            entry = (global + (uint)58);
+            if (((int)(new ObjectState1E_2(global).unk_1D) != 0))
+            {
+                if ((new ObjectPool(pool).count <= 0))
+                {
+                    goto L_initialized;
+                }
+                i = 0;
+                player_index = i;
+                attribute_offset = i;
+                entry_offset = 208;
+                object_offset = i;
+                L_initialize_object: ;
+                entry = (global + (uint)entry_offset);
+                @object = (new ObjectPool(pool).objects_ + (uint)object_offset);
+                new func_804499B0_de_S3(@object).unk1450_Set((int)(new ObjectState96(entry).unk_91));
+                new func_804499B0_de_S3(@object).unk5D0_Set(0);
+                if ((new func_804499B0_de_S3(@object).unk1450 != 0))
+                {
+                    Pad_InitPlayerInput((@object + (uint)1672), (int)(0x8010EEB8u));
+                    new func_804499B0_de_S3(@object).unk5D4_Set((int)(new ObjectState96(entry).unk_7F));
+                }
+                else
+                {
+                    Pad_InitPlayerInput((@object + (uint)1672), (int)((0x8010F328u + (uint)attribute_offset)));
+                    new func_804499B0_de_S3(@object).unk5D4_Set(i);
+                }
+                owner = new func_804499B0_de_S3(@object).unk1454;
+                new func_804499B0_de_S3(@object).unk5D8__Set(entry);
+                object_id = new ObjectState96(entry).unk_81;
+                new func_804499B0_de_S3(@object).unk11BC_Set(0);
+                new func_804499B0_de_S3(@object).unk11C0_Set(0);
+                new func_804499B0_de_S3(@object).unk5EC_Set(0);
+                new func_804499B0_de_S3(@object).unk5F0_Set(0);
+                new func_804499B0_de_S3(@object).unk864_Set(0);
+                new func_804499B0_de_S3(@object).unk868_Set(0);
+                new func_804499B0_de_S3(@object).unk1D8__Set(@object);
+                new func_804499B0_de_S3(@object).unk3_Set(object_id);
+                Ai_InitForActor(owner, @object);
+                new func_804499B0_de_S3(@object).unk13C8_Set(0);
+                new func_804499B0_de_S3(@object).unk121C_Set(player_index);
+                new func_804499B0_de_S3(@object).unk1220_Set(0);
+                new func_804499B0_de_S3(@object).unk122C_Set(0);
+                new func_804499B0_de_S3(@object).unk11CC_Set(0);
+                new func_804499B0_de_S3(@object).unk1218_Set(0);
+                for (j = 0; (j < 8); ++j)
+                {
+                    new func_804499B0_de_S3(@object).reset12CC.Set((int)(j), 0);
+                    new func_804499B0_de_S3(@object).reset12F4.Set((int)(j), 0);
+                }
+                new func_804499B0_de_S3(@object).unk1338_Set((-1));
+                new func_804499B0_de_S3(@object).unk12C4_Set(0);
+                new func_804499B0_de_S3(@object).unk12C8_Set(0);
+                new func_804499B0_de_S3(@object).unk1334_Set(0);
+                new func_804499B0_de_S3(@object).unk13B4__Set(0x800CE8C8u);
+                new func_804499B0_de_S3(@object).unk11E8_Set(0);
+                Player_ResetFields(@object);
+                new func_804499B0_de_S3(@object).unk16D4_Set(0);
+                new func_804499B0_de_S3(@object).unk16D8_Set((short)(0));
+                Mover_ClearRecord_002A7F58((@object + (uint)3392), default(uint), default(uint), default(uint));
+                if (((int)(new ObjectState96(entry).unk_78) != 0))
+                {
+                    Player_InitSlot(@object, (int)(new ObjectState96(entry).unk_80), 1);
+                    List_Remove(new ObjectPool(pool).active_queue.P, @object, default(uint), default(uint));
+                    List_Add(new ObjectPool(pool).object_queue.P, @object);
+                }
+                player_index = (int)((int)(player_index) + 2);
+                attribute_offset = (int)((int)(attribute_offset) + 548);
+                entry_offset = (int)((int)(entry_offset) + 150);
+                object_offset = (int)((int)(object_offset) + 5864);
+                if (((++i) < new ObjectPool(pool).count))
+                {
+                    goto L_initialize_object;
+                }
+            }
+            else
+            {
+                @object = new ObjectPool(pool).objects_;
+                roster_index = (int)(new ObjectState96(entry).unk_7F);
+                new func_804499B0_de_S3(@object).unk1450_Set((int)(new ObjectState96(entry).unk_91));
+                new func_804499B0_de_S3(@object).unk5D0_Set(0);
+                if ((new func_804499B0_de_S3(@object).unk1450 != 0))
+                {
+                    Pad_InitPlayerInput((@object + (uint)1672), (int)(0x8010EEB8u));
+                    new func_804499B0_de_S3(@object).unk5D4_Set((int)(new ObjectState96(entry).unk_7F));
+                }
+                else
+                {
+                    Pad_InitPlayerInput((@object + (uint)1672), (int)((0x8010F328u + (uint)(roster_index * 548))));
+                    new func_804499B0_de_S3(@object).unk5D4_Set(roster_index);
+                }
+                owner = new func_804499B0_de_S3(@object).unk1454;
+                new func_804499B0_de_S3(@object).unk5D8__Set(entry);
+                object_id = new ObjectState96(entry).unk_81;
+                new func_804499B0_de_S3(@object).unk11BC_Set(0);
+                new func_804499B0_de_S3(@object).unk11C0_Set(0);
+                new func_804499B0_de_S3(@object).unk5EC_Set(0);
+                new func_804499B0_de_S3(@object).unk5F0_Set(0);
+                new func_804499B0_de_S3(@object).unk864_Set(0);
+                new func_804499B0_de_S3(@object).unk868_Set(0);
+                new func_804499B0_de_S3(@object).unk1D8__Set(@object);
+                new func_804499B0_de_S3(@object).unk3_Set(object_id);
+                Ai_InitForActor(owner, @object);
+                new func_804499B0_de_S3(@object).unk13C8_Set(0);
+                new func_804499B0_de_S3(@object).unk121C_Set((roster_index * 2));
+                new func_804499B0_de_S3(@object).unk1220_Set(0);
+                new func_804499B0_de_S3(@object).unk122C_Set(0);
+                new func_804499B0_de_S3(@object).unk11CC_Set(0);
+                new func_804499B0_de_S3(@object).unk1218_Set(0);
+                for (j = 0; (j < 8); ++j)
+                {
+                    new func_804499B0_de_S3(@object).reset12CC.Set((int)(j), 0);
+                    new func_804499B0_de_S3(@object).reset12F4.Set((int)(j), 0);
+                }
+                new func_804499B0_de_S3(@object).unk1338_Set((-1));
+                new func_804499B0_de_S3(@object).unk12C4_Set(0);
+                new func_804499B0_de_S3(@object).unk12C8_Set(0);
+                new func_804499B0_de_S3(@object).unk1334_Set(0);
+                new func_804499B0_de_S3(@object).unk13B4__Set(0x800CE8C8u);
+                new func_804499B0_de_S3(@object).unk11E8_Set(0);
+                Player_ResetFields(@object);
+                new func_804499B0_de_S3(@object).unk16D4_Set(0);
+                new func_804499B0_de_S3(@object).unk16D8_Set((short)(0));
+                Mover_ClearRecord_002A7F58((@object + (uint)3392), default(uint), default(uint), default(uint));
+                Player_InitSlot(@object, (int)(new ObjectState96(entry).unk_80), force_active);
+                List_Remove(new ObjectPool(pool).active_queue.P, @object, default(uint), default(uint));
+                List_Add(new ObjectPool(pool).object_queue.P, @object);
+            }
+            L_initialized: ;
+            state = 0x801468A0u;
+            new IntegerState88(state).unk_74_Set(1);
+            new IntegerState88(state).unk_84_Set(3);
         }
     }
 
@@ -7606,6 +7923,19 @@ public static partial class Game
             Mem.Set(new SharedPlayer_func_80449EE4_de(player).views16D4.P, 0);
             new func_8044AB34_S1(player).unk16D8_Set((short)(0));
             Mover_ClearRecord_002A7F58((player + (uint)3392), default(uint), default(uint), default(uint));
+        }
+    }
+
+    // ==== func_0044AC70 @ 0x0044AC70 [C]
+    public static void Player_ActivateAndSpawn(uint actor, uint second)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0044AC70", (uint)actor, (uint)second);
+            new Actor_func_8044A020_de(actor).part.active_Set((byte)(1));
+            Player_InitSlot(actor, (int)(second), 1);
+            Actor_DispatchEvent((actor + 744u), (actor + 1112u), 2);
+            Player_PlaceAtSpawn(actor, (uint)(Mem.S32(0x80146898u)), (uint)(0), (uint)(1));
         }
     }
 }

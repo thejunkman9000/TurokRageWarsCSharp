@@ -72,7 +72,7 @@ public static partial class Game
                 if ((Menu_GetStackScreenId(0) == 22))
                 {
                     CameraManager_Init(0x80145088u, 0);
-                    func_0044A600((0x80145088u - (uint)72), 0, 0);
+                    Player_InitPool((0x80145088u - (uint)72), 0, 0);
                     Level_Load(0x8011FE88u, (uint)(0), (uint)(0), default(uint));
                     if ((Resource_GetLoadFlags() == 0))
                     {

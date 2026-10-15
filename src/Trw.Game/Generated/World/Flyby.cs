@@ -102,7 +102,7 @@ public static partial class Game
                             Mem.Set((_fp + (uint)(0 * 4)), 0);
                             Mem.Set((_fp + (uint)(1 * 4)), 0);
                             Mem.Set((_fp + (uint)(2 * 4)), 0);
-                            r = func_0044E038(snd, _fp, id, 0x8013B2A8u);
+                            r = Track_FindNearestPlacedObject(snd, _fp, id, 0x8013B2A8u);
                             Mem.Set(0x8013B2BCu, r);
                             Mem.Set(0x8013B2A4u, ((r != 0) ? 1 : 0));
                             Level_Load(snd, (uint)(id), (uint)(((r != 0) ? 1 : 0)), default(uint));

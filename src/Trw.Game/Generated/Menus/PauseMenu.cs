@@ -110,7 +110,7 @@ public static partial class Game
             MenuButton_Create(895);
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).state_Set(0);
             Menu_DisableInput();
-            func_0043C3F0(Mem.U32(0x800E4518u), 103, 0, 0, 0);
+            ScreenWipe_Init(Mem.U32(0x800E4518u), 103, 0, 0, 0);
             Menu_ShowScreen_0043C458(Mem.U32(0x800E4518u));
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).cursor_Set(0);
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).selection_Set((-1));
@@ -144,14 +144,14 @@ public static partial class Game
             uint c = 0u;
             if ((a2 == 1))
             {
-                st = func_0043C4E8(Mem.U32(0x800E4518u));
+                st = ScreenWipe_GetState(Mem.U32(0x800E4518u));
                 if ((st != a2))
                 {
                     return 0;
                 }
-                func_0043C260(Mem.U32(0x800E4518u));
-                func_0043C484(Mem.U32(0x800E4518u));
-                if ((func_0043C4E8(Mem.U32(0x800E4518u)) != 2))
+                ScreenWipe_Draw(Mem.U32(0x800E4518u));
+                ScreenWipe_Advance(Mem.U32(0x800E4518u));
+                if ((ScreenWipe_GetState(Mem.U32(0x800E4518u)) != 2))
                 {
                     return 0;
                 }
@@ -209,7 +209,7 @@ public static partial class Game
                         return 0;
                     }
                     CameraManager_Init((g - (uint)6156), 0);
-                    func_0044A600((g - (uint)6228), 0, 0);
+                    Player_InitPool((g - (uint)6228), 0, 0);
                     Level_Load(0x8011FE88u, (uint)(0), (uint)(0), default(uint));
                     MatchSetup_StartMatch(default(uint), default(uint), default(uint), default(uint));
                     break;
@@ -238,7 +238,7 @@ public static partial class Game
             {
                 goto L_ret0;
             }
-            if (((func_0043C4E8(Mem.U32(0x800E4518u)) != 1) && (new Q2Lb(Mem.U32(0x800E4518u)).w5C == 0)))
+            if (((ScreenWipe_GetState(Mem.U32(0x800E4518u)) != 1) && (new Q2Lb(Mem.U32(0x800E4518u)).w5C == 0)))
             {
                 new Q2Lb(Mem.U32(0x800E4518u)).w5C_Set(1);
                 Menu_EnableInput();
@@ -293,7 +293,7 @@ public static partial class Game
                     Mem.Set((q + (uint)(0 * 4)), 0);
                     new Q2Lb(Mem.U32(0x800E4518u)).state_Set(3);
                     CameraManager_Init((q - (uint)6156), 0);
-                    func_0044A600((q - (uint)6228), 0, 0);
+                    Player_InitPool((q - (uint)6228), 0, 0);
                     Level_Load(0x8011FE88u, (uint)(0), (uint)(0), default(uint));
                     if ((Resource_GetLoadFlags() == 0))
                     {
@@ -589,6 +589,89 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00435E48");
+            return 0;
+        }
+    }
+
+    // ==== func_00435E50 @ 0x00435E50 [C]
+    public static int PauseMenu_OnButton(int a, int b, uint c, int d)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00435E50", (uint)a, (uint)b, (uint)c, (uint)d);
+            if (((c >> (int)16) == (uint)(3)))
+            {
+                if ((d != 13))
+                {
+                    return 0;
+                }
+                Mem.Set(0x80146894u, 0);
+                Menu_RequestShutdown();
+                Audio_UnduckMusic();
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_00435E98 @ 0x00435E98 [C]
+    public static int PauseMenu_OnCancel()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00435E98");
+            Menu_ConsumeEvent();
+            return 0;
+        }
+    }
+
+    // ==== func_00435EB8 @ 0x00435EB8 [C]
+    public static int PauseMenu_OnSelect()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00435EB8");
+            Menu_ConsumeEvent();
+            switch (Menu_GetMessage())
+            {
+            case 64:
+                Mem.Set(0x80146894u, 0);
+                Menu_RequestShutdown();
+                Audio_UnduckMusic();
+                return 0;
+            case 60:
+                Mem.Set(0x80146894u, 0);
+                PauseMenu_Show();
+                return 0;
+            case 65:
+                Menu_GotoScreen(31);
+                return 0;
+            case 62:
+                Menu_GotoScreen(32);
+                return 0;
+            default:
+                return 0;
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_00435F70 @ 0x00435F70 [C]
+    public static int PauseMenu_HandleEvent(uint o, int id, int a2, int a3, int a4)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00435F70", (uint)o, (uint)id, (uint)a2, (uint)a3);
+            int i = 0;
+            for (i = 0; (new O05Disp((0x800E555Cu + (uint)(i * 12))).fn != 0u); ++i)
+            {
+                if ((new O05Disp((0x800E555Cu + (uint)(i * 12))).id == id))
+                {
+                    if (((new O05Disp((0x800E555Cu + (uint)(i * 12))).key == (int)(new O05Obj(o).key)) || (new O05Disp((0x800E555Cu + (uint)(i * 12))).key == 30000)))
+                    {
+                        return (int)(Funcs.CallRegX(new O05Disp((0x800E555Cu + (uint)(i * 12))).fn, o, (uint)(id), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
+                    }
+                }
+            }
             return 0;
         }
     }

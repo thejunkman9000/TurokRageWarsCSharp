@@ -262,7 +262,7 @@ public static partial class Game
                 r7 = Mem.U32((r17 + 32u));
                 r5 = 4521984u;
                 r5 = r5 - 2328u;
-                r2 = (uint)func_004426E4(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r2 = (uint)MenuPanel_Open(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
                 r2 = (uint)-1; goto L_L00406414;
                 L_L0040631C: ;
                 r4 = r19; r2 = (uint)CPak_IsRumblePak((int)r4);
@@ -288,7 +288,7 @@ public static partial class Game
                 r7 = Mem.U32((r17 + 32u));
                 r4 = 2148794368u;
                 r4 = r4 + 22044u;
-                r2 = (uint)func_004426E4(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r2 = (uint)MenuPanel_Open(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
                 r2 = r18; goto L_L00406414;
                 L_L00406394: ;
                 { bool c_ = r20 != 0; r2 = (uint)-2; if (c_) goto L_L00406408; }
@@ -303,7 +303,7 @@ public static partial class Game
                 r7 = Mem.U32((r17 + 32u));
                 r5 = 4521984u;
                 r5 = r5 - 1644u;
-                r2 = (uint)func_004426E4(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r2 = (uint)MenuPanel_Open(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
                 r2 = r18; goto L_L00406414;
                 L_L004063E0: ;
                 r4 = 2148794368u;
@@ -312,7 +312,7 @@ public static partial class Game
                 r7 = Mem.U32((r17 + 32u));
                 r5 = 4521984u;
                 r5 = r5 - 2544u;
-                r2 = (uint)func_004426E4(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r2 = (uint)MenuPanel_Open(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
                 r2 = r18; goto L_L00406414;
                 L_L00406408: ;
                 if (r18 != r2) { r18 = r0; goto L_L00406410; }
@@ -409,7 +409,7 @@ public static partial class Game
                 if ((Mem.S32(0x800E28C0u) != 0))
                 {
                     Mem.Set(0x80153784u, 1);
-                    func_004426E4((new O01Actor_v2(new O01OwnC(own).unk1C_).unk5DC_ + (uint)1364), msg, (int)(plr), new O01Actor_v2(plr).unk698, (int)(0u));
+                    MenuPanel_Open((new O01Actor_v2(new O01OwnC(own).unk1C_).unk5DC_ + (uint)1364), msg, (int)(plr), new O01Actor_v2(plr).unk698, (int)(0u));
                 }
                 else
                 {
@@ -433,17 +433,17 @@ public static partial class Game
                         Mem.Set(0x80153784u, 1);
                         if ((CPak_IsRumblePak(new O01Sel(_fp).v) != 0))
                         {
-                            func_004426E4(0x8014561Cu, 0x0044F658u, (int)(plr), new O01Actor_v2(plr).unk698, (int)(msg));
+                            MenuPanel_Open(0x8014561Cu, 0x0044F658u, (int)(plr), new O01Actor_v2(plr).unk698, (int)(msg));
                         }
                         else
                         {
                             if ((CPak_IsDamaged(new O01Sel(_fp).v) != 0))
                             {
-                                func_004426E4(0x8014561Cu, 0x0044F994u, (int)(plr), new O01Actor_v2(plr).unk698, (int)(0x0044F0DCu));
+                                MenuPanel_Open(0x8014561Cu, 0x0044F994u, (int)(plr), new O01Actor_v2(plr).unk698, (int)(0x0044F0DCu));
                             }
                             else
                             {
-                                func_004426E4(0x8014561Cu, 0x0044F610u, (int)(plr), new O01Actor_v2(plr).unk698, (int)(msg));
+                                MenuPanel_Open(0x8014561Cu, 0x0044F610u, (int)(plr), new O01Actor_v2(plr).unk698, (int)(msg));
                             }
                         }
                     }
@@ -472,7 +472,7 @@ public static partial class Game
             if ((Mem.S32(0x800E28C0u) != 0))
             {
                 Mem.Set(0x80153784u, 1);
-                func_004426E4((new O01Plr2(new O01Own6(own).unk1C_).unk5DC_ + (uint)1364), 0x0045077Cu, (int)(new O01Own6(own).unk1C_), (int)(new O01Own6(own).unk20_), (int)(0u));
+                MenuPanel_Open((new O01Plr2(new O01Own6(own).unk1C_).unk5DC_ + (uint)1364), 0x0045077Cu, (int)(new O01Own6(own).unk1C_), (int)(new O01Own6(own).unk20_), (int)(0u));
             }
             else
             {
@@ -486,17 +486,17 @@ public static partial class Game
                     Mem.Set(0x80153784u, 1);
                     if ((CPak_IsRumblePak(pad) != 0))
                     {
-                        func_004426E4(0x8014561Cu, 0x0044F67Cu, (int)(new O01Own6(own).unk1C_), (int)(new O01Own6(own).unk20_), (int)(0x0045077Cu));
+                        MenuPanel_Open(0x8014561Cu, 0x0044F67Cu, (int)(new O01Own6(own).unk1C_), (int)(new O01Own6(own).unk20_), (int)(0x0045077Cu));
                     }
                     else
                     {
                         if ((CPak_IsDamaged(pad) != 0))
                         {
-                            func_004426E4(0x8014561Cu, 0x0044F994u, (int)(new O01Own6(own).unk1C_), (int)(new O01Own6(own).unk20_), (int)(0x0044F0B8u));
+                            MenuPanel_Open(0x8014561Cu, 0x0044F994u, (int)(new O01Own6(own).unk1C_), (int)(new O01Own6(own).unk20_), (int)(0x0044F0B8u));
                         }
                         else
                         {
-                            func_004426E4(0x8014561Cu, 0x0044F610u, (int)(new O01Own6(own).unk1C_), (int)(new O01Own6(own).unk20_), (int)(0x0045077Cu));
+                            MenuPanel_Open(0x8014561Cu, 0x0044F610u, (int)(new O01Own6(own).unk1C_), (int)(new O01Own6(own).unk20_), (int)(0x0045077Cu));
                         }
                     }
                 }
@@ -603,7 +603,7 @@ public static partial class Game
                 {
                     Mem.Set(0x80153784u, 1);
                     Mem.Set(0x8014AD9Cu, 0);
-                    func_004426E4(0x8014561Cu, 0x0044F70Cu, new Q01Obj(arg0).unk1C, (int)(new Q01Obj(arg0).unk20_), (int)(0u));
+                    MenuPanel_Open(0x8014561Cu, 0x0044F70Cu, new Q01Obj(arg0).unk1C, (int)(new Q01Obj(arg0).unk20_), (int)(0u));
                     Mem.Set(0x800E28CCu, 1);
                     Mem.Set(0x8014AD94u, 0);
                     return;
@@ -636,7 +636,7 @@ public static partial class Game
                     {
                         Mem.Set(0x80153784u, 1);
                         Mem.Set(0x8014AD9Cu, 0);
-                        func_004426E4(0x8014561Cu, 0x0044F6C4u, new Q01Obj(arg0).unk1C, (int)(new Q01Obj(arg0).unk20_), (int)(0u));
+                        MenuPanel_Open(0x8014561Cu, 0x0044F6C4u, new Q01Obj(arg0).unk1C, (int)(new Q01Obj(arg0).unk20_), (int)(0u));
                         Mem.Set(0x8014AD94u, 0);
                         Mem.Set(0x800E28CCu, 1);
                         return;
@@ -662,7 +662,7 @@ public static partial class Game
                     }
                     Mem.Set(0x80153784u, 1);
                     Mem.Set(0x8014AD9Cu, 0);
-                    func_004426E4(0x8014561Cu, 0x0044F6C4u, new Q01Obj(arg0).unk1C, (int)(new Q01Obj(arg0).unk20_), (int)(0u));
+                    MenuPanel_Open(0x8014561Cu, 0x0044F6C4u, new Q01Obj(arg0).unk1C, (int)(new Q01Obj(arg0).unk20_), (int)(0u));
                     Mem.Set(0x8014AD94u, 0);
                     Mem.Set(0x800E28CCu, 1);
                     return;
@@ -724,7 +724,7 @@ public static partial class Game
                     {
                         Mem.Set(0x80153784u, 1);
                         Mem.Set(0x8014AD9Cu, 0);
-                        func_004426E4(0x8014561Cu, 0x0044F6C4u, new Q01Obj(arg0).unk1C, (int)(new Q01Obj(arg0).unk20_), (int)(0u));
+                        MenuPanel_Open(0x8014561Cu, 0x0044F6C4u, new Q01Obj(arg0).unk1C, (int)(new Q01Obj(arg0).unk20_), (int)(0u));
                         Mem.Set(0x8014AD94u, 0);
                         Mem.Set(0x800E28CCu, 1);
                         return;
@@ -791,7 +791,7 @@ public static partial class Game
                 {
                     Mem.Set(0x80153784u, 1);
                     Mem.Set(0x80146D60u, 1);
-                    func_004426E4(0x8014561Cu, 0x0044FB20u, new Q01Obj(arg0).unk1C, (int)(new Q01Obj(arg0).unk20_), (int)(0x0044F148u));
+                    MenuPanel_Open(0x8014561Cu, 0x0044FB20u, new Q01Obj(arg0).unk1C, (int)(new Q01Obj(arg0).unk20_), (int)(0x0044F148u));
                     goto L_after;
                 }
                 if ((Mem.S32((_fp + 32u)) < r2))
@@ -802,7 +802,7 @@ public static partial class Game
                 L_L56: ;
                 Mem.Set(0x80153784u, 1);
                 Mem.Set(0x80146D60u, 1);
-                func_004426E4(0x8014561Cu, 0x0044FAFCu, new Q01Obj(arg0).unk1C, (int)(new Q01Obj(arg0).unk20_), (int)(0x0044F148u));
+                MenuPanel_Open(0x8014561Cu, 0x0044FAFCu, new Q01Obj(arg0).unk1C, (int)(new Q01Obj(arg0).unk20_), (int)(0x0044F148u));
                 L_after: ;
                 if ((s0 == 0))
                 {
@@ -811,7 +811,7 @@ public static partial class Game
                 L_blk59: ;
                 Mem.Set(0x80153784u, 1);
                 Mem.Set(0x80146D60u, 1);
-                func_004426E4(0x8014561Cu, 0x0044F994u, new Q01Obj(arg0).unk1C, (int)(new Q01Obj(arg0).unk20_), (int)(0x0044F148u));
+                MenuPanel_Open(0x8014561Cu, 0x0044F994u, new Q01Obj(arg0).unk1C, (int)(new Q01Obj(arg0).unk20_), (int)(0x0044F148u));
                 L_fin: ;
                 if ((Mem.S32(0x80153784u) == 0))
                 {
@@ -916,7 +916,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r7 = Mem.U32((r16 + 1688u));
                 L_L004070D8: ;
-                r2 = (uint)func_004426E4(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r2 = (uint)MenuPanel_Open(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
                 L_L004070E0: ;
                 r31 = Mem.U32((r29 + 40u));
                 r17 = Mem.U32((r29 + 36u));
@@ -1030,7 +1030,7 @@ public static partial class Game
                 r5 = 4521984u;
                 r5 = r5 - 2544u;
                 L_L00407270: ;
-                r2 = (uint)func_004426E4(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r2 = (uint)MenuPanel_Open(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
                 L_L00407278: ;
                 r31 = Mem.U32((r29 + 36u));
                 r18 = Mem.U32((r29 + 32u));
@@ -1147,7 +1147,7 @@ public static partial class Game
                         }
                         if ((ok != 0))
                         {
-                            func_004426E4(0x8014561Cu, 0x0044F5ECu, (int)(plr), new O01Plr3(plr).unk698, (int)((uint)(new O01OwnJ(own).unk14)));
+                            MenuPanel_Open(0x8014561Cu, 0x0044F5ECu, (int)(plr), new O01Plr3(plr).unk698, (int)((uint)(new O01OwnJ(own).unk14)));
                             return 0;
                         }
                     }
@@ -1157,11 +1157,11 @@ public static partial class Game
                 {
                     if ((r == 0))
                     {
-                        func_004426E4(0x8014561Cu, 0x0044F778u, (int)(plr), new O01Plr3(plr).unk698, (int)(func_00407290_O01Pick((_fp + 8u))));
+                        MenuPanel_Open(0x8014561Cu, 0x0044F778u, (int)(plr), new O01Plr3(plr).unk698, (int)(func_00407290_O01Pick((_fp + 8u))));
                     }
                     else
                     {
-                        func_004426E4(0x8014561Cu, 0x0044F808u, (int)(plr), new O01Plr3(plr).unk698, (int)(func_00407290_O01Pick((_fp + 8u))));
+                        MenuPanel_Open(0x8014561Cu, 0x0044F808u, (int)(plr), new O01Plr3(plr).unk698, (int)(func_00407290_O01Pick((_fp + 8u))));
                     }
                 }
                 return 1;
@@ -1249,7 +1249,7 @@ public static partial class Game
                         }
                         if ((ok != 0))
                         {
-                            func_004426E4(new_var, 0x0044FAFCu, (int)(plr), new O01Plr3(plr).unk698, new O01Own9(own).unk14);
+                            MenuPanel_Open(new_var, 0x0044FAFCu, (int)(plr), new O01Plr3(plr).unk698, new O01Own9(own).unk14);
                             return 0;
                         }
                     }
@@ -1729,7 +1729,7 @@ public static partial class Game
                 r1 = 2148859904u;
                 Mem.Set((r1 + 14164u), r21);
                 L_L00407F34: ;
-                r2 = (uint)func_004426E4(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r2 = (uint)MenuPanel_Open(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
                 r2 = (uint)1;
                 L_L00407F40: ;
                 r31 = Mem.U32((r29 + 112u));
@@ -2054,7 +2054,7 @@ public static partial class Game
                 r7 = Mem.U32((r19 + 32u));
                 r5 = 4521984u;
                 r5 = r5 - 1212u;
-                r2 = (uint)func_004426E4(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r2 = (uint)MenuPanel_Open(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
                 r2 = (uint)1; goto L_L004085B8;
                 L_L004084B0: ;
                 r5 = r19;
@@ -2284,7 +2284,7 @@ public static partial class Game
                 r1 = 2148859904u;
                 Mem.Set((r1 + 14212u), r2);
                 L_L0040882C: ;
-                r2 = (uint)func_004426E4(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r2 = (uint)MenuPanel_Open(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
                 r2 = (uint)1; goto L_L00408860;
                 L_L0040883C: ;
                 r2 = 2148859904u;
@@ -2358,16 +2358,16 @@ public static partial class Game
                 }
                 new O01World(0x80145040u).unk34_Set(0);
                 new O01World(0x80145040u).unk38_Set(0);
-                func_004426E4((0x80145040u + (uint)1500), 0x0044F730u, (int)(plr), new O01Plr5(plr).unk698, 0);
+                MenuPanel_Open((0x80145040u + (uint)1500), 0x0044F730u, (int)(plr), new O01Plr5(plr).unk698, 0);
                 return 1;
             }
             if ((Pak_DeleteFile(pad, Mem.S32(0x8015378Cu)) == 0))
             {
-                func_004426E4(0x8014561Cu, 0x0044F7C0u, (int)(new O01OwnE(own).unk1C), (int)(new O01OwnE(own).unk20_), new O01OwnE(own).unk24);
+                MenuPanel_Open(0x8014561Cu, 0x0044F7C0u, (int)(new O01OwnE(own).unk1C), (int)(new O01OwnE(own).unk20_), new O01OwnE(own).unk24);
             }
             else
             {
-                func_004426E4(0x8014561Cu, 0x0044F82Cu, (int)(new O01OwnE(own).unk1C), (int)(new O01OwnE(own).unk20_), new O01OwnE(own).unk24);
+                MenuPanel_Open(0x8014561Cu, 0x0044F82Cu, (int)(new O01OwnE(own).unk1C), (int)(new O01OwnE(own).unk20_), new O01OwnE(own).unk24);
             }
             return 1;
         }
@@ -2465,7 +2465,7 @@ public static partial class Game
                 }
             }
             dst = new O01Item(item).unk14.buf_;
-            dst = (uint)(dst + (uint)((func_00442158((uint)(item)) - 11) * 1));
+            dst = (uint)(dst + (uint)((MenuItem_GetTextLength((uint)(item)) - 11) * 1));
             if ((s != 0u))
             {
                 for (i = 0; (i < 11); ++i)
@@ -2549,7 +2549,7 @@ public static partial class Game
                 L_L00408C24: ;
                 r2 = Mem.U32((r4 + 20u));
                 r16 = Mem.U32((r2 + 0u));
-                r2 = (uint)func_00442158(r4);
+                r2 = (uint)MenuItem_GetTextLength(r4);
                 r2 = r2 - 11u;
                 { bool c_ = r17 == 0; r16 = r16 + r2; if (c_) goto L_L00408C60; }
                 r3 = r0;
@@ -2617,17 +2617,17 @@ public static partial class Game
                 plr = Player_FindByPad(0x80145040u, new O01Own8(own).unk20_);
                 new O01Own8(own).unk1C__Set(plr);
                 func_00408C78_O01Restore(plr);
-                func_0044AD14(plr, (int)(Mem.S8((0x80153720u + (uint)0))));
-                func_00442934((new O01Actor_v3(plr).unk5DC_ + (uint)1364), own, 0x00450698u);
+                Player_SetCharacter(plr, (int)(Mem.S8((0x80153720u + (uint)0))));
+                MenuPanel_OpenChild((new O01Actor_v3(plr).unk5DC_ + (uint)1364), own, 0x00450698u);
                 return 1;
             }
             if ((Pak_DeleteFile(pad, Mem.S32(0x8015378Cu)) == 0))
             {
-                func_004426E4(0x8014561Cu, 0x0044F7C0u, (int)(new O01Own8(own).unk1C_), (int)(new O01Own8(own).unk20_), (int)((uint)(new O01Own8(own).unk24)));
+                MenuPanel_Open(0x8014561Cu, 0x0044F7C0u, (int)(new O01Own8(own).unk1C_), (int)(new O01Own8(own).unk20_), (int)((uint)(new O01Own8(own).unk24)));
             }
             else
             {
-                func_004426E4(0x8014561Cu, 0x0044F82Cu, (int)(new O01Own8(own).unk1C_), (int)(new O01Own8(own).unk20_), (int)((uint)(new O01Own8(own).unk24)));
+                MenuPanel_Open(0x8014561Cu, 0x0044F82Cu, (int)(new O01Own8(own).unk1C_), (int)(new O01Own8(own).unk20_), (int)((uint)(new O01Own8(own).unk24)));
             }
             return 1;
         }
@@ -2698,11 +2698,11 @@ public static partial class Game
                 v = Pad_TakePakChanged(s1);
                 if (((((s0 == 0) || (v != 0)) && (s0 != (-2))) && (new Q01Obj_v4(o).unk24 == (uint)(1))))
                 {
-                    func_004426E4(0x8014561Cu, 0x0044F100u, (int)(new Q01Obj_v4(o).unk1C_), (int)(new Q01Obj_v4(o).unk20_), 0);
+                    MenuPanel_Open(0x8014561Cu, 0x0044F100u, (int)(new Q01Obj_v4(o).unk1C_), (int)(new Q01Obj_v4(o).unk20_), 0);
                 }
                 else
                 {
-                    func_004426E4(0x8014561Cu, 0x00450BD0u, (int)(new Q01Obj_v4(o).unk1C_), (int)(new Q01Obj_v4(o).unk20_), 0);
+                    MenuPanel_Open(0x8014561Cu, 0x00450BD0u, (int)(new Q01Obj_v4(o).unk1C_), (int)(new Q01Obj_v4(o).unk20_), 0);
                 }
             }
             else
@@ -2716,7 +2716,7 @@ public static partial class Game
                     {
                         if ((new Q01Obj_v4(o).unk24 == (uint)(1)))
                         {
-                            func_004426E4(0x8014561Cu, 0x0044F124u, (int)(new Q01Obj_v4(o).unk1C_), (int)(new Q01Obj_v4(o).unk20_), 0);
+                            MenuPanel_Open(0x8014561Cu, 0x0044F124u, (int)(new Q01Obj_v4(o).unk1C_), (int)(new Q01Obj_v4(o).unk20_), 0);
                         }
                     }
                 }
@@ -2736,7 +2736,7 @@ public static partial class Game
                         {
                             p = 0x8014561Cu;
                         }
-                        func_004426E4(p, new Q01Obj_v4(o).unk24, (int)(new Q01Obj_v4(o).unk1C_), (int)(new Q01Obj_v4(o).unk20_), s1);
+                        MenuPanel_Open(p, new Q01Obj_v4(o).unk24, (int)(new Q01Obj_v4(o).unk1C_), (int)(new Q01Obj_v4(o).unk20_), s1);
                     }
                 }
             }
@@ -2765,18 +2765,18 @@ public static partial class Game
                 if (((int)(PakMenu_CheckPak(own, (uint)(pad), (uint)(1), default(uint))) != 0))
                 {
                     Mem.Set(0x80153784u, 1);
-                    func_004426E4(0x8014561Cu, (uint)(new O01OwnH(own).unk24), (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), 0);
+                    MenuPanel_Open(0x8014561Cu, (uint)(new O01OwnH(own).unk24), (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), 0);
                 }
                 else
                 {
                     Pak_DetectPort(pad);
                     if ((Pak_DeleteFile(pad, Mem.S32(0x80153754u)) == 0))
                     {
-                        func_004426E4(0x8014561Cu, 0x0044F7C0u, (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), new O01OwnH(own).unk24);
+                        MenuPanel_Open(0x8014561Cu, 0x0044F7C0u, (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), new O01OwnH(own).unk24);
                     }
                     else
                     {
-                        func_004426E4(0x8014561Cu, 0x0044F82Cu, (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), new O01OwnH(own).unk24);
+                        MenuPanel_Open(0x8014561Cu, 0x0044F82Cu, (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), new O01OwnH(own).unk24);
                     }
                 }
                 break;
@@ -2792,7 +2792,7 @@ public static partial class Game
                 if (((int)(PakMenu_CheckPak(own, (uint)(pad), (uint)(1), default(uint))) != 0))
                 {
                     Mem.Set(0x80153784u, 1);
-                    func_004426E4(0x8014561Cu, (uint)(new O01OwnH(own).unk24), (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), 0);
+                    MenuPanel_Open(0x8014561Cu, (uint)(new O01OwnH(own).unk24), (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), 0);
                 }
                 else
                 {
@@ -2804,7 +2804,7 @@ public static partial class Game
                     }
                     else
                     {
-                        func_004426E4(0x8014561Cu, 0x0044F82Cu, (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), new O01OwnH(own).unk24);
+                        MenuPanel_Open(0x8014561Cu, 0x0044F82Cu, (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), new O01OwnH(own).unk24);
                     }
                 }
                 break;
@@ -2820,18 +2820,18 @@ public static partial class Game
                 if (((int)(PakMenu_CheckPak(own, (uint)(pad), (uint)(1), default(uint))) != 0))
                 {
                     Mem.Set(0x80153784u, 1);
-                    func_004426E4(0x8014561Cu, (uint)(new O01OwnH(own).unk24), (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), 0);
+                    MenuPanel_Open(0x8014561Cu, (uint)(new O01OwnH(own).unk24), (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), 0);
                 }
                 else
                 {
                     Pak_DetectPort(pad);
                     if ((CPak_RepairId(pad) == 0))
                     {
-                        func_004426E4(0x8014561Cu, 0x0044F7E4u, (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), new O01OwnH(own).unk24);
+                        MenuPanel_Open(0x8014561Cu, 0x0044F7E4u, (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), new O01OwnH(own).unk24);
                     }
                     else
                     {
-                        func_004426E4(0x8014561Cu, 0x0044F970u, (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), new O01OwnH(own).unk24);
+                        MenuPanel_Open(0x8014561Cu, 0x0044F970u, (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), new O01OwnH(own).unk24);
                     }
                 }
                 break;
@@ -2841,7 +2841,7 @@ public static partial class Game
                 {
                     Mem.Set(0x80146D6Cu, 1);
                 }
-                func_004426E4(0x8014561Cu, (uint)(new O01OwnH(own).unk24), (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), 0);
+                MenuPanel_Open(0x8014561Cu, (uint)(new O01OwnH(own).unk24), (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), 0);
                 break;
             }
             return 1;
@@ -2945,11 +2945,11 @@ public static partial class Game
                 if (((int)(PakMenu_CheckPak(own, (uint)(pad), (uint)(1), default(uint))) != 0))
                 {
                     Mem.Set(0x80153784u, 1);
-                    func_004426E4(0x8014561Cu, (uint)(new O01OwnI(own).unk24), (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
+                    MenuPanel_Open(0x8014561Cu, (uint)(new O01OwnI(own).unk24), (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
                 }
                 else
                 {
-                    func_004426E4(0x8014561Cu, (uint)(new O01OwnI(own).unk24), (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
+                    MenuPanel_Open(0x8014561Cu, (uint)(new O01OwnI(own).unk24), (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
                 }
                 break;
             case 3:
@@ -2964,11 +2964,11 @@ public static partial class Game
                 if (((int)(PakMenu_CheckPak(own, (uint)(pad), (uint)(1), default(uint))) != 0))
                 {
                     Mem.Set(0x80153784u, 1);
-                    func_004426E4(0x8014561Cu, (uint)(new O01OwnI(own).unk24), (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
+                    MenuPanel_Open(0x8014561Cu, (uint)(new O01OwnI(own).unk24), (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
                 }
                 else
                 {
-                    func_004426E4(0x8014561Cu, (uint)(new O01OwnI(own).unk24), (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
+                    MenuPanel_Open(0x8014561Cu, (uint)(new O01OwnI(own).unk24), (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
                 }
                 break;
             case 0:
@@ -2983,11 +2983,11 @@ public static partial class Game
                 if (((int)(PakMenu_CheckPak(own, (uint)(pad), (uint)(1), default(uint))) != 0))
                 {
                     Mem.Set(0x80153784u, 1);
-                    func_004426E4(0x8014561Cu, (uint)(new O01OwnI(own).unk24), (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
+                    MenuPanel_Open(0x8014561Cu, (uint)(new O01OwnI(own).unk24), (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
                 }
                 else
                 {
-                    func_004426E4(0x8014561Cu, (uint)(new O01OwnI(own).unk24), (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
+                    MenuPanel_Open(0x8014561Cu, (uint)(new O01OwnI(own).unk24), (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
                 }
                 break;
             case 1:
@@ -3012,7 +3012,7 @@ public static partial class Game
                 {
                     a0 = 0x8014561Cu;
                 }
-                func_004426E4(a0, msg, (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
+                MenuPanel_Open(a0, msg, (int)(new O01OwnI(own).unk1C_), (int)(new O01OwnI(own).unk20_), 0);
                 break;
             }
             return 1;
@@ -3411,7 +3411,7 @@ public static partial class Game
                 r2 = r2 + 30608u;
                 Mem.Set((r4 + 20u), r2);
                 r16 = Mem.U32((r2 + 0u));
-                r2 = (uint)func_00442158(r4);
+                r2 = (uint)MenuItem_GetTextLength(r4);
                 r2 = r2 - 1u;
                 r5 = 2148401152u;
                 r5 = r5 + 3500u;
@@ -3446,7 +3446,7 @@ public static partial class Game
                 v = (int)(new O01Owner(own).unk20.unk4);
                 new O01Item(item).unk14__Set(0x800D7710u);
                 buf = new O01Text(0x800D7710u).buf_;
-                Str_Sprintf((buf + (uint)(func_00442158((uint)(item)) - 1)), 0x800E0DACu, (v + 1), default(int));
+                Str_Sprintf((buf + (uint)(MenuItem_GetTextLength((uint)(item)) - 1)), 0x800E0DACu, (v + 1), default(int));
             }
             return 0;
         }
@@ -3591,7 +3591,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0040A55C", (uint)item);
             int v = (new O01Cfg(Mem.U32(0x800E28BCu)).unk1C >> (int)8);
             uint buf = new O01Item(item).unk14.buf_;
-            Str_Sprintf((buf + (uint)(func_00442158((uint)(item)) - 3)), 0x800E0DA4u, v, default(int));
+            Str_Sprintf((buf + (uint)(MenuItem_GetTextLength((uint)(item)) - 3)), 0x800E0DA4u, v, default(int));
             return 0;
         }
     }
@@ -3604,7 +3604,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0040A5B8", (uint)item);
             int v = (int)(new O01Cfg(Mem.U32(0x800E28BCu)).unk22);
             uint buf = new O01Item(item).unk14.buf_;
-            Str_Sprintf((buf + (uint)(func_00442158((uint)(item)) - 2)), 0x800E0DB0u, v, default(int));
+            Str_Sprintf((buf + (uint)(MenuItem_GetTextLength((uint)(item)) - 2)), 0x800E0DB0u, v, default(int));
             return 0;
         }
     }
@@ -3654,7 +3654,7 @@ public static partial class Game
                 Cpu.SetW(2, (uint)(int)Cpu.S(0));
                 r17 = Cpu.W(2);
                 r16 = Mem.U32((r2 + 0u));
-                r2 = (uint)func_00442158(r4);
+                r2 = (uint)MenuItem_GetTextLength(r4);
                 r2 = r2 - 9u;
                 r5 = 2148401152u;
                 r5 = r5 + 3508u;
@@ -3704,11 +3704,11 @@ public static partial class Game
             {
                 if ((Mem.S32(0x80153780u) != 0))
                 {
-                    func_004426E4(0x8014561Cu, 0x0044F100u, new O01Owner(own).unk1C, (int)(new O01Owner(own).unk20_), 0);
+                    MenuPanel_Open(0x8014561Cu, 0x0044F100u, new O01Owner(own).unk1C, (int)(new O01Owner(own).unk20_), 0);
                 }
                 else
                 {
-                    func_004426E4(0x8014561Cu, (uint)(new O01Owner(own).unk24), new O01Owner(own).unk1C, (int)(new O01Owner(own).unk20_), 0);
+                    MenuPanel_Open(0x8014561Cu, (uint)(new O01Owner(own).unk24), new O01Owner(own).unk1C, (int)(new O01Owner(own).unk20_), 0);
                 }
             }
             while ((0 != 0));
@@ -3820,7 +3820,7 @@ public static partial class Game
                 L_L0040A8AC: ;
                 r2 = Mem.U32((r4 + 20u));
                 r16 = Mem.U32((r2 + 0u));
-                r2 = (uint)func_00442158(r4);
+                r2 = (uint)MenuItem_GetTextLength(r4);
                 r4 = (uint)32;
                 r3 = (uint)7;
                 r2 = r2 - 8u;
@@ -3899,7 +3899,7 @@ public static partial class Game
                     break;
                 }
                 dst = new O01Item(item).unk14.buf_;
-                dst = (uint)(dst + (uint)((func_00442158((uint)(item)) - 11) * 1));
+                dst = (uint)(dst + (uint)((MenuItem_GetTextLength((uint)(item)) - 11) * 1));
                 for (i = 0; (i < 11); ++i)
                 {
                     Mem.Set(((dst += 1u) - 1u), Mem.U8(((src += 1u) - 1u)));
@@ -3917,7 +3917,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0040AA20", (uint)item);
             int v = (int)(Mem.U16(0x8015371Cu));
             uint buf = new O01Item(item).unk14.buf_;
-            Str_Sprintf((buf + (uint)(func_00442158((uint)(item)) - 4)), 0x800E0DC4u, v, default(int));
+            Str_Sprintf((buf + (uint)(MenuItem_GetTextLength((uint)(item)) - 4)), 0x800E0DC4u, v, default(int));
             return 0;
         }
     }
@@ -3955,11 +3955,11 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0040AACC", (uint)item, (uint)own);
             if ((Mem.S32(0x80153730u) != 0))
             {
-                func_004426E4(0x8014561Cu, 0x0044F0B8u, new O01Owner(own).unk1C, (int)(new O01Owner(own).unk20_), 0);
+                MenuPanel_Open(0x8014561Cu, 0x0044F0B8u, new O01Owner(own).unk1C, (int)(new O01Owner(own).unk20_), 0);
             }
             else
             {
-                func_004426E4(0x8014561Cu, (uint)(new O01Owner(own).unk24), new O01Owner(own).unk1C, (int)(new O01Owner(own).unk20_), 0);
+                MenuPanel_Open(0x8014561Cu, (uint)(new O01Owner(own).unk24), new O01Owner(own).unk1C, (int)(new O01Owner(own).unk20_), 0);
             }
             return 1;
         }
@@ -4629,7 +4629,7 @@ public static partial class Game
             {
                 new O01Item(item).unk14__Set(0x800D7984u);
                 buf = new O01Text(0x800D7984u).buf_;
-                Str_Sprintf((buf + (uint)(func_00442158((uint)(item)) - 2)), 0x800E0DCCu, (v + 1), default(int));
+                Str_Sprintf((buf + (uint)(MenuItem_GetTextLength((uint)(item)) - 2)), 0x800E0DCCu, (v + 1), default(int));
             }
             return 0;
         }
@@ -4652,12 +4652,12 @@ public static partial class Game
             }
             if (((int)(PakMenu_CheckPak(o, (uint)(pad), (uint)(1), default(uint))) == 0))
             {
-                func_004426E4(0x8014561Cu, 0x0044FAD8u, (int)(new O01Own3(o).unk1C_), (int)(new O01Own3(o).unk20_), new O01Own3(o).unk24);
+                MenuPanel_Open(0x8014561Cu, 0x0044FAD8u, (int)(new O01Own3(o).unk1C_), (int)(new O01Own3(o).unk20_), new O01Own3(o).unk24);
             }
             else
             {
                 Mem.Set(0x80153784u, 1);
-                func_004426E4(0x8014561Cu, (uint)(new O01Own3(o).unk24), (int)(new O01Own3(o).unk1C_), (int)(new O01Own3(o).unk20_), 0);
+                MenuPanel_Open(0x8014561Cu, (uint)(new O01Own3(o).unk24), (int)(new O01Own3(o).unk1C_), (int)(new O01Own3(o).unk20_), 0);
             }
             do
             {
@@ -4697,11 +4697,11 @@ public static partial class Game
                     {
                         p = 0x8014561Cu;
                     }
-                    func_004426E4(p, (uint)(new O01Own3(o).unk24), (int)(new O01Own3(o).unk1C_), (int)(new O01Own3(o).unk20_), 0);
+                    MenuPanel_Open(p, (uint)(new O01Own3(o).unk24), (int)(new O01Own3(o).unk1C_), (int)(new O01Own3(o).unk20_), 0);
                 }
                 else
                 {
-                    func_004426E4(0x8014561Cu, (uint)(new O01Own3(o).unk24), (int)(new O01Own3(o).unk1C_), (int)(new O01Own3(o).unk20_), 0);
+                    MenuPanel_Open(0x8014561Cu, (uint)(new O01Own3(o).unk24), (int)(new O01Own3(o).unk1C_), (int)(new O01Own3(o).unk20_), 0);
                 }
                 return 1;
             }
@@ -4733,7 +4733,7 @@ public static partial class Game
                 {
                     p = 0x8014561Cu;
                 }
-                func_004426E4(p, (uint)(new O01Own2(own).unk24), (int)(new O01Own2(own).unk1C_), (int)(new O01Own2(own).unk20), 0);
+                MenuPanel_Open(p, (uint)(new O01Own2(own).unk24), (int)(new O01Own2(own).unk1C_), (int)(new O01Own2(own).unk20), 0);
             }
             return 1;
         }

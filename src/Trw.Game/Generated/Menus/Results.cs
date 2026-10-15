@@ -348,7 +348,7 @@ public static partial class Game
                 Mem.Set(0x800E53C0u, ResourcePool_Malloc((uint)(816)));
                 new Q03S53(Mem.U32(0x800E53C0u)).unkE0_Set(a);
                 UiNode_SetVisible((uint)(a), 0);
-                func_0043C3F0(Mem.U32(0x800E53C0u), 103, 0, 0, 0);
+                ScreenWipe_Init(Mem.U32(0x800E53C0u), 103, 0, 0, 0);
                 Menu_ShowScreen_0043C458(Mem.U32(0x800E53C0u));
                 i = 0;
                 new Q03S53(Mem.U32(0x800E53C0u)).unk1C_Set(1);
@@ -1060,10 +1060,10 @@ public static partial class Game
                     new O04V3((_fp + 16u)).x_Set((float)(0));
                     new O04V3((_fp + 16u)).y_Set(Mem.F32(0x800E1B34u));
                     new O04V3((_fp + 16u)).z_Set(Mem.F32(0x800E1B38u));
-                    func_00439D3C(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unk20.P, 0, _fp, (_fp + 16u));
-                    func_00439DC0(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unk20.P, (_fp + 32u));
-                    func_00439E10(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unk20.P, (_fp + 48u));
-                    func_00439E60(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unk20.P, new O04ModeS53C0(Mem.U32(0x800E53C0u)).unk32C);
+                    PreviewModel_Init(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unk20.P, 0, _fp, (_fp + 16u));
+                    PreviewModel_SetRotation(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unk20.P, (_fp + 32u));
+                    PreviewModel_SetSpin(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unk20.P, (_fp + 48u));
+                    PreviewModel_SetModel(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unk20.P, new O04ModeS53C0(Mem.U32(0x800E53C0u)).unk32C);
                 }
             }
         }
@@ -1172,7 +1172,7 @@ public static partial class Game
             {
                 Mem.Set(0x800D15E0u, 1);
                 Mem.Set((0x800D15F0u + (uint)(0 * 4)), Mem.F32(0x800E1B3Cu));
-                func_004399D0(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unk20.P);
+                PreviewModel_Draw(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unk20.P);
                 Mem.Set((0x800D15F0u + (uint)(0 * 4)), Mem.F32(0x800E1B40u));
                 Mem.Set(0x800D15E0u, 0);
             }
@@ -1292,12 +1292,12 @@ public static partial class Game
             int a0 = 0;
             if ((c == 1))
             {
-                s1 = func_0043C4E8(Mem.U32(0x800E53C0u));
+                s1 = ScreenWipe_GetState(Mem.U32(0x800E53C0u));
                 if ((s1 == c))
                 {
-                    func_0043C260(Mem.U32(0x800E53C0u));
-                    func_0043C484(Mem.U32(0x800E53C0u));
-                    if ((func_0043C4E8(Mem.U32(0x800E53C0u)) == 2))
+                    ScreenWipe_Draw(Mem.U32(0x800E53C0u));
+                    ScreenWipe_Advance(Mem.U32(0x800E53C0u));
+                    if ((ScreenWipe_GetState(Mem.U32(0x800E53C0u)) == 2))
                     {
                         v = new O04ModeS53C0(Mem.U32(0x800E53C0u)).unk1C;
                         if ((v != 0))
@@ -1307,7 +1307,7 @@ public static partial class Game
                                 Video_RequestResolution(0);
                                 UiNode_SetVisible((uint)(a), 1);
                                 CameraManager_Init(0x80145088u, 0);
-                                func_0044A600((0x80145088u - (uint)72), 0, 0);
+                                Player_InitPool((0x80145088u - (uint)72), 0, 0);
                                 Level_Load(0x8011FE88u, (uint)(0), (uint)(0), default(uint));
                                 Mem.Set((0x80145088u + (uint)6128), 8);
                             }
@@ -1391,7 +1391,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0042D968");
             Menu_ConsumeEvent();
-            if ((func_0043C4E8(Mem.U32(0x800E53C0u)) == 1))
+            if ((ScreenWipe_GetState(Mem.U32(0x800E53C0u)) == 1))
             {
                 return 0;
             }
@@ -1509,7 +1509,49 @@ public static partial class Game
             int n = Player_GetIndex(0x80145040u, new O06B_v2(b).unk1C);
             int h = (int)(new O06R((0x80146398u + (uint)(n * 150))).unk6);
             int s = Mem.S32(new O06A_v7(a).unk14_);
-            Str_Sprintf((uint)(((s - 4) + func_00442158(a))), 0x800E2730u, h, default(int));
+            Str_Sprintf((uint)(((s - 4) + MenuItem_GetTextLength(a))), 0x800E2730u, h, default(int));
+            return 0;
+        }
+    }
+
+    // ==== func_00443B94 @ 0x00443B94 [C]
+    public static int Results_FormatStatWord4_00443B94(uint a, uint b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00443B94", (uint)a, (uint)b);
+            int n = Player_GetIndex(0x80145040u, new O06B_v2(b).unk1C);
+            int h = (int)(new O06R((0x80146398u + (uint)(n * 150))).unk4);
+            int s = Mem.S32(new O06A_v7(a).unk14_);
+            Str_Sprintf((uint)(((s - 4) + MenuItem_GetTextLength(a))), 0x800E2730u, h, default(int));
+            return 0;
+        }
+    }
+
+    // ==== func_00443C20 @ 0x00443C20 [C]
+    public static int Results_FormatStatWord2_00443C20(uint a, uint b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00443C20", (uint)a, (uint)b);
+            int n = Player_GetIndex(0x80145040u, new O06B_v2(b).unk1C);
+            int h = (int)(new O06R((0x80146398u + (uint)(n * 150))).unk2);
+            int s = Mem.S32(new O06A_v7(a).unk14_);
+            Str_Sprintf((uint)(((s - 4) + MenuItem_GetTextLength(a))), 0x800E2730u, h, default(int));
+            return 0;
+        }
+    }
+
+    // ==== func_00443CAC @ 0x00443CAC [C]
+    public static int Results_FormatStatWord0_00443CAC(uint a, uint b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00443CAC", (uint)a, (uint)b);
+            int n = Player_GetIndex(0x80145040u, new O06B_v2(b).unk1C);
+            int h = (int)(new O06R((0x80146398u + (uint)(n * 150))).unk0);
+            int s = Mem.S32(new O06X_v2(new O06A_v11(a).unk18_).unk10_);
+            Str_Sprintf((uint)(((s - 4) + MenuItem_GetTextLength(a))), 0x800E2730u, h, default(int));
             return 0;
         }
     }

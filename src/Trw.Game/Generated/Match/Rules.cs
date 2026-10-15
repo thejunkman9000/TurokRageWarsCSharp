@@ -2722,7 +2722,7 @@ public static partial class Game
             uint r = 0u;
             uint h = 0u;
             if (!(((((Flyby_IsActive() == 0) && (Flyby_IsInWindow() == 0)) && (new GameB6(0x801468A0u).unk1C == 0)) && ((int)(Mem.U8((0x801468A0u + (uint)(-1467)))) != 0)))) goto _f0;
-            if (!((((func_00442B98((0x801468A0u - (uint)4740)) == 0) && (new GameB6(0x801468A0u).unk14 > 0.0f)) && (Mem.S32((0x801468A0u - (uint)12)) == 0)))) goto _f1;
+            if (!((((MenuPanel_CountOpen((0x801468A0u - (uint)4740)) == 0) && (new GameB6(0x801468A0u).unk14 > 0.0f)) && (Mem.S32((0x801468A0u - (uint)12)) == 0)))) goto _f1;
             if (!((Match_CountActivePlayers(g) != 0))) goto _f2;
             new GameB6(0x801468A0u).unk14_Set((new GameB6(0x801468A0u).unk14 - Mem.F32(0x800D2988u)));
             _f2: ;
@@ -2734,7 +2734,7 @@ public static partial class Game
             Match_EndForAllPlayers(g);
             _f3: ;
             _f1: ;
-            if (!((func_00442B98(0x8014561Cu) == 0))) goto _f5;
+            if (!((MenuPanel_CountOpen(0x8014561Cu) == 0))) goto _f5;
             if (!((((((Match_CheckFragLimit(g) != 0) && (C.Seq((object?)((h = (0x8014561Cu + (uint)4740))), ((new GameB6(h).unk1C == 0) ? 1 : 0)) != 0)) && (Mem.S32((0x8014561Cu + (uint)4728)) == 0)) && (new GameB6(h).unk18 > 0)) && (new GameB6(h).unk54 == 0)))) goto _f6;
             Match_EndForAllPlayers(g);
             _f6: ;

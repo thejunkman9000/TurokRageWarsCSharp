@@ -514,7 +514,7 @@ public static partial class Game
             int idx = 0;
             if ((new O3Pk(Mem.U32(0x800E3590u)).cur_ == 0u))
             {
-                func_00439E60(new O3Pk(Mem.U32(0x800E3590u)).sub.P, 0);
+                PreviewModel_SetModel(new O3Pk(Mem.U32(0x800E3590u)).sub.P, 0);
                 return;
             }
             i = 0;
@@ -575,8 +575,8 @@ public static partial class Game
                             idx = i;
                             break;
                         }
-                        func_00439E60(new O3Pk(Mem.U32(0x800E3590u)).sub.P, snd);
-                        func_00439EB4(new O3Pk(Mem.U32(0x800E3590u)).sub.P, idx);
+                        PreviewModel_SetModel(new O3Pk(Mem.U32(0x800E3590u)).sub.P, snd);
+                        PreviewModel_SetDrawArg(new O3Pk(Mem.U32(0x800E3590u)).sub.P, idx);
                         if ((Resource_GetLoadFlags() == 0))
                         {
                             Resource_SetLoadFlags(1);
@@ -584,7 +584,7 @@ public static partial class Game
                     }
                     else
                     {
-                        func_00439E60(new O3Pk(Mem.U32(0x800E3590u)).sub.P, snd);
+                        PreviewModel_SetModel(new O3Pk(Mem.U32(0x800E3590u)).sub.P, snd);
                     }
                     return;
                 }
@@ -726,9 +726,9 @@ public static partial class Game
                 new O3Vec3((_fp + 16u)).x_Set(17.0f);
                 new O3Vec3((_fp + 16u)).y_Set((-10.0f));
                 new O3Vec3((_fp + 16u)).z_Set((-50.0f));
-                func_00439D3C(new O3Pk(Mem.U32(0x800E3590u)).sub.P, 0, _fp, (_fp + 16u));
-                func_00439DC0(new O3Pk(Mem.U32(0x800E3590u)).sub.P, (_fp + 32u));
-                func_00439E10(new O3Pk(Mem.U32(0x800E3590u)).sub.P, (_fp + 48u));
+                PreviewModel_Init(new O3Pk(Mem.U32(0x800E3590u)).sub.P, 0, _fp, (_fp + 16u));
+                PreviewModel_SetRotation(new O3Pk(Mem.U32(0x800E3590u)).sub.P, (_fp + 32u));
+                PreviewModel_SetSpin(new O3Pk(Mem.U32(0x800E3590u)).sub.P, (_fp + 48u));
                 Audio_PlaySound2D(3704);
                 return 0;
             }
@@ -755,11 +755,11 @@ public static partial class Game
                 g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
                 new O3Dl(g).w0_Set(3976200192u);
                 new O3Dl(g).w1_Set((uint)(((((int)(((float)((Mem.S32(0x800E28D0u) - 1)) * 4.0f)) & 4095) << (int)12) | ((int)(((float)((Mem.S32(0x800E28D4u) - 1)) * 4.0f)) & 4095))));
-                if ((func_00439EA8(new O3Pk(Mem.U32(0x800E3590u)).sub.P) != 0))
+                if ((PreviewModel_GetModelId(new O3Pk(Mem.U32(0x800E3590u)).sub.P) != 0))
                 {
                     Mem.Set(0x800D15E0u, a2);
                     Mem.Set((0x800D15E4u + (uint)(3 * 4)), 210.0f);
-                    func_004399D0(new O3Pk(Mem.U32(0x800E3590u)).sub.P);
+                    PreviewModel_Draw(new O3Pk(Mem.U32(0x800E3590u)).sub.P);
                     Mem.Set(0x800D15E0u, 0);
                     Mem.Set((0x800D15E4u + (uint)(3 * 4)), k);
                 }
@@ -847,7 +847,7 @@ public static partial class Game
             uint t = 0u;
             Mem.Set(0x800E54A4u, ResourcePool_Malloc((uint)(13428)));
             new Q03Lob(Mem.U32(0x800E54A4u)).h.f0_Set(arg0);
-            func_0043C3F0(new Q03Lob(Mem.U32(0x800E54A4u)).h.blk8.P, 103, 0, 0, 0);
+            ScreenWipe_Init(new Q03Lob(Mem.U32(0x800E54A4u)).h.blk8.P, 103, 0, 0, 0);
             new Q03Lob(Mem.U32(0x800E54A4u)).h.f4_Set(CursorGroup_Create(arg0, 4));
             CursorGroup_SetCursorById(arg0, 0, 645);
             CursorGroup_SetCursorById(arg0, 1, 645);
@@ -1124,7 +1124,7 @@ public static partial class Game
                 L_I0042F17C: ;
                 Mem.Set((r2 + 0u), r16);
                 L_I0042F180: ;
-                Mem.Set((r29 + 16u), r0); func_0043C3F0(r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                Mem.Set((r29 + 16u), r0); ScreenWipe_Init(r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
                 L_I0042F188: ;
                 r4 = r16;
                 L_I0042F18C: ;
@@ -2048,13 +2048,13 @@ public static partial class Game
                     }
                 }
             }
-            if ((func_0043C4E8(new O05Lobby(Mem.U32(0x800E54A4u)).h.blk8.P) != 1))
+            if ((ScreenWipe_GetState(new O05Lobby(Mem.U32(0x800E54A4u)).h.blk8.P) != 1))
             {
                 return 0;
             }
-            func_0043C260(new O05Lobby(Mem.U32(0x800E54A4u)).h.blk8.P);
-            func_0043C484(new O05Lobby(Mem.U32(0x800E54A4u)).h.blk8.P);
-            if ((func_0043C4E8(new O05Lobby(Mem.U32(0x800E54A4u)).h.blk8.P) != 2))
+            ScreenWipe_Draw(new O05Lobby(Mem.U32(0x800E54A4u)).h.blk8.P);
+            ScreenWipe_Advance(new O05Lobby(Mem.U32(0x800E54A4u)).h.blk8.P);
+            if ((ScreenWipe_GetState(new O05Lobby(Mem.U32(0x800E54A4u)).h.blk8.P) != 2))
             {
                 return 0;
             }
@@ -2074,7 +2074,7 @@ public static partial class Game
             case 1:
             case 3:
             case 4:
-                func_00438BD0();
+                TrialResults_GotoNextScreen();
                 break;
             }
             return 0;
@@ -9127,6 +9127,347 @@ public static partial class Game
         }
     }
 
+    // ==== func_0044632C @ 0x0044632C [MIPS]
+    public static uint NameEntry_OpenPageHead_0044632C(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0044632C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_0044632C: ;
+                { bool c_ = r2 != 0; r29 = r29 - 24u; if (c_) goto L_L004463D8; }
+                Mem.Set((r29 + 16u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 20u), r31);
+                r5 = Mem.U32((r16 + 28u));
+                r4 = 2148794368u;
+                r4 = r4 + 20544u;
+                r2 = (uint)Player_GetIndex(r4, (int)r5);
+                r11 = r2;
+                r2 = (uint)1;
+                { bool c_ = r11 == r2; r2 = (uint)((int)r11 < 2 ? 1 : 0); if (c_) goto L_L004463BC; }
+                { bool c_ = r2 != 0; r2 = (uint)2; if (c_) goto L_L0044637C; }
+                { bool c_ = r11 == r2; r2 = (uint)3; if (c_) goto L_L004463FC; }
+                { bool c_ = r11 == r2; r3 = 25165824u; if (c_) goto L_L0044644C; }
+                L_L0044637C: ;
+                r4 = Mem.U32((r16 + 12u));
+                r2 = Mem.U32((r4 + 48u));
+                r3 = 25165824u;
+                r2 = r2 | r3;
+                Mem.Set((r4 + 48u), r2);
+                r3 = Mem.U32((r16 + 12u));
+                r4 = 4269735936u;
+                r2 = Mem.U32((r3 + 88u));
+                r4 = r4 | 65535u;
+                r2 = r2 & r4;
+                Mem.Set((r3 + 88u), r2);
+                r3 = Mem.U32((r16 + 12u));
+                r2 = Mem.U32((r3 + 128u));
+                r2 = r2 & r4;
+                Mem.Set((r3 + 128u), r2); goto L_L00446438;
+                L_L004463BC: ;
+                r4 = Mem.U32((r16 + 12u));
+                r2 = Mem.U32((r4 + 88u));
+                r3 = 25165824u;
+                r2 = r2 | r3;
+                Mem.Set((r4 + 88u), r2);
+                r3 = Mem.U32((r16 + 12u));
+                r4 = 4269735936u;
+                L_L004463D8: ;
+                r2 = Mem.U32((r3 + 48u));
+                r4 = r4 | 65535u;
+                r2 = r2 & r4;
+                Mem.Set((r3 + 48u), r2);
+                r3 = Mem.U32((r16 + 12u));
+                r2 = Mem.U32((r3 + 128u));
+                r2 = r2 & r4;
+                Mem.Set((r3 + 128u), r2); goto L_L00446438;
+                L_L004463FC: ;
+                r4 = Mem.U32((r16 + 12u));
+                r2 = Mem.U32((r4 + 128u));
+                r3 = 25165824u;
+                r2 = r2 | r3;
+                Mem.Set((r4 + 128u), r2);
+                r3 = Mem.U32((r16 + 12u));
+                r4 = 4269735936u;
+                r2 = Mem.U32((r3 + 48u));
+                r4 = r4 | 65535u;
+                r2 = r2 & r4;
+                Mem.Set((r3 + 48u), r2);
+                r3 = Mem.U32((r16 + 12u));
+                r2 = Mem.U32((r3 + 88u));
+                r2 = r2 & r4;
+                Mem.Set((r3 + 88u), r2);
+                L_L00446438: ;
+                r3 = Mem.U32((r16 + 12u));
+                r2 = Mem.U32((r3 + 168u));
+                r2 = r2 & r4;
+                Mem.Set((r3 + 168u), r2); goto L_L00446494;
+                L_L0044644C: ;
+                r4 = Mem.U32((r16 + 12u));
+                r2 = Mem.U32((r4 + 168u));
+                r2 = r2 | r3;
+                Mem.Set((r4 + 168u), r2);
+                r3 = Mem.U32((r16 + 12u));
+                r4 = 4269735936u;
+                r2 = Mem.U32((r3 + 48u));
+                r4 = r4 | 65535u;
+                r2 = r2 & r4;
+                Mem.Set((r3 + 48u), r2);
+                r3 = Mem.U32((r16 + 12u));
+                r2 = Mem.U32((r3 + 88u));
+                r2 = r2 & r4;
+                Mem.Set((r3 + 88u), r2);
+                r3 = Mem.U32((r16 + 12u));
+                r2 = Mem.U32((r3 + 128u));
+                r2 = r2 & r4;
+                Mem.Set((r3 + 128u), r2);
+                L_L00446494: ;
+                r2 = r11 << 1;
+                r2 = r2 + r11;
+                r2 = r2 << 3;
+                r1 = 2148401152u;
+                r1 = r1 + r2;
+                Mem.Set((r1 + 25540u), r0);
+                r3 = 2148401152u;
+                r3 = r3 + 25548u;
+                r10 = r2 + r3;
+                r2 = r11 << 2;
+                r2 = r2 + r11;
+                r3 = r2 << 4;
+                r3 = r3 - r2;
+                r3 = r3 << 1;
+                r2 = 2148794368u;
+                r2 = r2 + 25628u;
+                r3 = r3 + r2;
+                r4 = (uint)8;
+                r9 = r0;
+                r5 = (uint)32;
+                L_L004464E4: ;
+                r4 = r4 - 1u;
+                r2 = r3 + r4;
+                r2 = Mem.U8((r2 + 0u));
+                { bool c_ = r2 != r5; r7 = r3; if (c_) goto L_L00446504; }
+                { bool c_ = (int)r4 > 0; r9 = r9 + 1u; if (c_) goto L_L004464E4; }
+                r7 = r3;
+                L_L00446504: ;
+                r5 = 2148335616u;
+                r5 = Mem.U32((r5 + 31856u));
+                r4 = (uint)6;
+                L_L00446510: ;
+                r8 = Mem.U8((r7 + 0u));
+                r7 = r7 + 1u;
+                r6 = Mem.U8((r5 + 0u));
+                r5 = r5 + 1u;
+                r2 = r8 & 255u;
+                { bool c_ = r2 != r6; r4 = r4 - 1u; if (c_) goto L_L0044653C; }
+                { bool c_ = r2 == 0;  if (c_) goto L_L0044653C; }
+                { bool c_ = r4 == 0;  if (c_) goto L_L00446510; }
+                L_L0044653C: ;
+                if (r8 == r6) { r9 = (uint)8; goto L_L00446544; }
+                L_L00446544: ;
+                r2 = (uint)8;
+                r2 = r2 - r9;
+                { bool c_ = (int)r2 <= 0; r4 = r0; if (c_) goto L_L00446574; }
+                r5 = r2;
+                L_L00446558: ;
+                r2 = Mem.U8((r3 + 0u));
+                r3 = r3 + 1u;
+                r4 = r4 + 1u;
+                Mem.Set((r10 + 0u), (byte)r2);
+                r2 = (uint)((int)r4 < (int)r5 ? 1 : 0);
+                { bool c_ = r2 != 0; r10 = r10 + 1u; if (c_) goto L_L00446558; }
+                L_L00446574: ;
+                r3 = r11 << 1;
+                r3 = r3 + r11;
+                r3 = r3 << 3;
+                r2 = (uint)8;
+                Mem.Set((r10 + 0u), (byte)r0);
+                r31 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r2 = r2 - r9;
+                r1 = 2148401152u;
+                r1 = r1 + r3;
+                Mem.Set((r1 + 25536u), r2);
+                r1 = 2148401152u;
+                r1 = r1 + r3;
+                Mem.Set((r1 + 25544u), r2);
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0044632C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00446330 @ 0x00446330 [C]
+    public static int NameEntry_ComparePrefixTwin(uint a, uint b, int n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00446330_func_004467D8", (uint)a, (uint)b, (uint)n);
+            byte c = 0;
+            byte d = 0;
+            do
+            {
+                c = Mem.U8(((a += 1u) - 1u));
+                d = Mem.U8(((b += 1u) - 1u));
+                --n;
+            }
+            while (((((int)(c) == (int)(d)) && ((int)(c) != 0)) && (n == 0)));
+            return (((int)(c) == (int)(d)) ? 1 : 0);
+        }
+    }
+
+    public static void NameEntry_OpenPage(uint a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00446330", (uint)a);
+            int n = Player_GetIndex(0x80145040u, new O06A_v30(a).unk1C);
+            int i = 0;
+            int cnt = 0;
+            int len = 0;
+            uint src = 0u;
+            uint dst = 0u;
+            uint p = 0u;
+            switch (n)
+            {
+            case 0:
+            default:
+                new O06B_v21(new O06A_v30(a).unkC_).unk30_Set((uint)((uint)(new O06B_v21(new O06A_v30(a).unkC_).unk30) | (uint)(25165824)));
+                new O06B_v21(new O06A_v30(a).unkC_).unk58_Set((uint)((uint)(new O06B_v21(new O06A_v30(a).unkC_).unk58) & (uint)((~25165824))));
+                new O06B_v21(new O06A_v30(a).unkC_).unk80_Set((uint)((uint)(new O06B_v21(new O06A_v30(a).unkC_).unk80) & (uint)((~25165824))));
+                new O06B_v21(new O06A_v30(a).unkC_).unkA8_Set((uint)((uint)(new O06B_v21(new O06A_v30(a).unkC_).unkA8) & (uint)((~25165824))));
+                break;
+            case 1:
+                new O06B_v21(new O06A_v30(a).unkC_).unk58_Set((uint)((uint)(new O06B_v21(new O06A_v30(a).unkC_).unk58) | (uint)(25165824)));
+                new O06B_v21(new O06A_v30(a).unkC_).unk30_Set((uint)((uint)(new O06B_v21(new O06A_v30(a).unkC_).unk30) & (uint)((~25165824))));
+                new O06B_v21(new O06A_v30(a).unkC_).unk80_Set((uint)((uint)(new O06B_v21(new O06A_v30(a).unkC_).unk80) & (uint)((~25165824))));
+                new O06B_v21(new O06A_v30(a).unkC_).unkA8_Set((uint)((uint)(new O06B_v21(new O06A_v30(a).unkC_).unkA8) & (uint)((~25165824))));
+                break;
+            case 2:
+                new O06B_v21(new O06A_v30(a).unkC_).unk80_Set((uint)((uint)(new O06B_v21(new O06A_v30(a).unkC_).unk80) | (uint)(25165824)));
+                new O06B_v21(new O06A_v30(a).unkC_).unk30_Set((uint)((uint)(new O06B_v21(new O06A_v30(a).unkC_).unk30) & (uint)((~25165824))));
+                new O06B_v21(new O06A_v30(a).unkC_).unk58_Set((uint)((uint)(new O06B_v21(new O06A_v30(a).unkC_).unk58) & (uint)((~25165824))));
+                new O06B_v21(new O06A_v30(a).unkC_).unkA8_Set((uint)((uint)(new O06B_v21(new O06A_v30(a).unkC_).unkA8) & (uint)((~25165824))));
+                break;
+            case 3:
+                new O06B_v21(new O06A_v30(a).unkC_).unkA8_Set((uint)((uint)(new O06B_v21(new O06A_v30(a).unkC_).unkA8) | (uint)(25165824)));
+                new O06B_v21(new O06A_v30(a).unkC_).unk30_Set((uint)((uint)(new O06B_v21(new O06A_v30(a).unkC_).unk30) & (uint)((~25165824))));
+                new O06B_v21(new O06A_v30(a).unkC_).unk58_Set((uint)((uint)(new O06B_v21(new O06A_v30(a).unkC_).unk58) & (uint)((~25165824))));
+                new O06B_v21(new O06A_v30(a).unkC_).unk80_Set((uint)((uint)(new O06B_v21(new O06A_v30(a).unkC_).unk80) & (uint)((~25165824))));
+                break;
+            }
+            new O06R_v2((0x800E63C0u + (uint)(n * 24))).unk4_Set(0);
+            dst = new O06R_v2((0x800E63C0u + (uint)(n * 24))).unkC.P;
+            do
+            {
+                src = new O06N_v2((0x8014641Cu + (uint)(n * 150))).b.P;
+                i = 8;
+                cnt = 0;
+                while ((i > 0))
+                {
+                    --i;
+                    if (((int)(Mem.U8((src + (uint)i))) != 32))
+                    {
+                        break;
+                    }
+                    ++cnt;
+                }
+                p = src;
+                if ((NameEntry_ComparePrefixTwin(p, Mem.U32(0x800D7C70u), 6) != 0))
+                {
+                    cnt = 8;
+                }
+            }
+            while ((0 != 0));
+            for (i = 0; (i < (8 - cnt)); ++i)
+            {
+                Mem.Set(((dst += 1u) - 1u), Mem.U8(((src += 1u) - 1u)));
+            }
+            Mem.Set(dst, (byte)(0));
+            new O06R_v2((0x800E63C0u + (uint)(n * 24))).unk0_Set((8 - cnt));
+            new O06R_v2((0x800E63C0u + (uint)(n * 24))).unk8_Set((8 - cnt));
+        }
+    }
+
+    // ==== func_004465B4 @ 0x004465B4 [C]
+    public static int NameEntry_MoveCursor(int a, uint b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004465B4", (uint)a, (uint)b);
+            int n = Player_GetIndex(0x80145040u, Mem.S32((b + (uint)28)));
+            float v = (new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk4 + Mem.F32(0x800D2988u));
+            new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk4_Set(v);
+            if ((Mem.F32(0x800E2810u) <= v))
+            {
+                new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk4_Set((v - Mem.F32(0x800E2810u)));
+            }
+            if (((int)(new O06A2(b).unk0) == 1))
+            {
+                if (((Pad_IsLeft(new O06A2(b).unk20) != 0) && (new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0 > 0)))
+                {
+                    new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0_Set((int)(new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0 - 1));
+                    new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk4_Set((float)(0));
+                }
+                else
+                {
+                    if (((Pad_IsRight(new O06A2(b).unk20) != 0) && (new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0 < new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk8)))
+                    {
+                        new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0_Set((int)(new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0 + 1));
+                        new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk4_Set((float)(0));
+                    }
+                }
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_00446704 @ 0x00446704 [C]
+    public static int NameEntry_InsertChar(uint a, uint b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00446704", (uint)a, (uint)b);
+            int n = Player_GetIndex(0x80145040u, new O06A_v4(b).unk1C);
+            new O06R_v2((0x800E63C0u + (uint)(n * 24))).unk4_Set(0);
+            if ((new O06R_v2((0x800E63C0u + (uint)(n * 24))).unk8 == 8))
+            {
+                return 0;
+            }
+            new O06R_v2((0x800E63C0u + (uint)(n * 24))).unkC.Set((int)(new O06R_v2((0x800E63C0u + (uint)(n * 24))).unk0), Mem.U8(Mem.U32(new O06A_v4(a).unk14)));
+            new O06R_v2((0x800E63C0u + (uint)(n * 24))).unk0_Set((int)(new O06R_v2((0x800E63C0u + (uint)(n * 24))).unk0 + 1));
+            new O06R_v2((0x800E63C0u + (uint)(n * 24))).unk8_Set((int)(new O06R_v2((0x800E63C0u + (uint)(n * 24))).unk8 + 1));
+            new O06R_v2((0x800E63C0u + (uint)(n * 24))).unkC.Set((int)(new O06R_v2((0x800E63C0u + (uint)(n * 24))).unk8), (byte)(0));
+            return 0;
+        }
+    }
+
+    // ==== func_004467D8 @ 0x004467D8 [C]
+    public static int NameEntry_ComparePrefix(uint a, uint b, int n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004467D8", (uint)a, (uint)b, (uint)n);
+            byte c = Mem.U8(((a += 1u) - 1u));
+            byte d = Mem.U8(((b += 1u) - 1u));
+            --n;
+            if (((((int)(c) == (int)(d)) && ((int)(c) != 0)) && (n == 0)))
+            {
+                return NameEntry_ComparePrefix(a, b, n);
+            }
+            return (((int)(c) == (int)(d)) ? 1 : 0);
+        }
+    }
+
     // ==== func_004469BC @ 0x004469BC [C]
     public static int NameEntry_DeleteChar(int unused, uint menu)
     {
@@ -9188,10 +9529,27 @@ public static partial class Game
             Mem.Set(var_v1, (byte)(0));
             if ((var_a1 == 0))
             {
-                func_00444260(new func_80209B64_S4(temp_s1).unk5D8);
+                Settings_SetDefaultPlayerName(new func_80209B64_S4(temp_s1).unk5D8);
             }
-            func_004424F4(arg0, (int)(arg1), arg2);
+            MenuPanel_OnGoBack(arg0, (int)(arg1), arg2);
             return 1;
+        }
+    }
+
+    // ==== func_00446B44 @ 0x00446B44 [C]
+    public static int NameEntry_UpdatePage()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00446B44");
+            uint s = 0x801468A0u;
+            int ret = 0;
+            ret = 0;
+            if ((((new State_func_80445EF4_de(s).unk28 != 0) || (new State_func_80445EF4_de(s).unk1C != 0)) || (new State_func_80445EF4_de(s).unk20 != 0)))
+            {
+                ret = 1;
+            }
+            return ret;
         }
     }
 }

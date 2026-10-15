@@ -3841,7 +3841,7 @@ public static partial class Game
             int w = 0;
             if ((pawn != 0u))
             {
-                if ((((int)(Mem.U8((0x801462E5u + (uint)0))) == 0) || (func_00442B98((pawn + (uint)1364)) == 0)))
+                if ((((int)(Mem.U8((0x801462E5u + (uint)0))) == 0) || (MenuPanel_CountOpen((pawn + (uint)1364)) == 0)))
                 {
                     w = (int)(Mem.S16((owner + (uint)1582)));
                     if (((w == 1) && (Mem.S32((state + (uint)324)) == 0)))

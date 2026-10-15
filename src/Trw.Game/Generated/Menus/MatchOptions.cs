@@ -15,7 +15,7 @@ public static partial class Game
             int s0 = 0;
             int t = 0;
             Mem.Set(0x800E4EF0u, ResourcePool_Malloc((uint)(64)));
-            func_0043C3F0(Mem.U32(0x800E4EF0u), 103, 0, 0, 0);
+            ScreenWipe_Init(Mem.U32(0x800E4EF0u), 103, 0, 0, 0);
             new O04S4EF0(Mem.U32(0x800E4EF0u)).unk38_Set(BotSetup_GetMaxBots());
             switch (Mem.S32(0x80154028u))
             {
@@ -91,7 +91,7 @@ public static partial class Game
                 r7 = r6;
                 r1 = 2148401152u;
                 Mem.Set((r1 + 20208u), r4);
-                Mem.Set((r29 + 16u), r0); func_0043C3F0(r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                Mem.Set((r29 + 16u), r0); ScreenWipe_Init(r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
                 r2 = (uint)BotSetup_GetMaxBots();
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 20208u));
@@ -368,7 +368,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004299D8");
             Menu_ConsumeEvent();
-            if ((func_0043C4E8(Mem.U32(0x800E4EF0u)) == 1))
+            if ((ScreenWipe_GetState(Mem.U32(0x800E4EF0u)) == 1))
             {
                 return 0;
             }
@@ -408,7 +408,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00429AD8");
             Menu_ConsumeEvent();
-            if ((func_0043C4E8(Mem.U32(0x800E4EF0u)) == 1))
+            if ((ScreenWipe_GetState(Mem.U32(0x800E4EF0u)) == 1))
             {
                 return 0;
             }

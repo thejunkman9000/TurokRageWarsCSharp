@@ -2447,4 +2447,75 @@ public static partial class Game
             }
         }
     }
+
+    // ==== func_0044E8B0 @ 0x0044E8B0 [C]
+    public static void Light_SetDefaultDirection(uint l)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0044E8B0", (uint)l);
+            new S7Light(l).dir.x_Set((-0.667424023f));
+            new S7Light(l).dir.y_Set(0.953462004f);
+            new S7Light(l).dir.z_Set((-0.57207799f));
+            Vec_Normalize(new S7Light(l).dir.P);
+            new S7Light(l).enabled_Set(1);
+        }
+    }
+
+    // ==== func_0044E904 @ 0x0044E904 [MIPS]
+    public static uint Light_SetDefaultDirection_Tail_0044E904(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0044E904", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_0044E904: ;
+                L_func_0044E910: ;
+                r6 = r0;
+                r7 = (uint)255;
+                r2 = 2148794368u;
+                r2 = r2 + 27040u;
+                r5 = r2;
+                r4 = (uint)-1;
+                r2 = (uint)1;
+                r3 = (uint)1024;
+                Mem.Set((r5 + 0u), (ushort)r4);
+                Mem.Set((r5 + 4u), (ushort)r2);
+                Mem.Set((r5 + 8u), (ushort)r0);
+                Mem.Set((r5 + 10u), (ushort)r0);
+                Mem.Set((r5 + 16u), (ushort)r2);
+                Mem.Set((r5 + 20u), (ushort)r2);
+                Mem.Set((r5 + 24u), (ushort)r3);
+                Mem.Set((r5 + 26u), (ushort)r0);
+                Mem.Set((r5 + 32u), (ushort)r2);
+                Mem.Set((r5 + 36u), (ushort)r4);
+                Mem.Set((r5 + 40u), (ushort)r3);
+                Mem.Set((r5 + 42u), (ushort)r3);
+                Mem.Set((r5 + 48u), (ushort)r4);
+                Mem.Set((r5 + 52u), (ushort)r4);
+                Mem.Set((r5 + 56u), (ushort)r0);
+                Mem.Set((r5 + 58u), (ushort)r3);
+                L_L0044E970: ;
+                Mem.Set((r5 + 2u), (ushort)r0);
+                Mem.Set((r5 + 6u), (ushort)r0);
+                Mem.Set((r5 + 12u), (byte)r7);
+                Mem.Set((r5 + 13u), (byte)r7);
+                Mem.Set((r5 + 14u), (byte)r7);
+                Mem.Set((r5 + 15u), (byte)r7);
+                r6 = r6 + 1u;
+                r2 = (uint)((int)r6 < 4 ? 1 : 0);
+                { bool c_ = r2 != 0; r5 = r5 + 16u; if (c_) goto L_L0044E970; }
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0044E904", r2); Stack.Free(384); }
+    }
 }

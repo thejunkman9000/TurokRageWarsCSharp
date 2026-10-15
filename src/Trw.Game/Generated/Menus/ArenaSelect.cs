@@ -33,12 +33,12 @@ public static partial class Game
                     {
                         for (i = 0, off = 8; (i < 4); ++i, off = (int)((int)(off) + 192))
                         {
-                            func_004399D0((Mem.U32(0x800E4F60u) + (uint)off));
+                            PreviewModel_Draw((Mem.U32(0x800E4F60u) + (uint)off));
                         }
                     }
                     if ((new O04ModeF60(Mem.U32(0x800E4F60u)).unk438 == 0))
                     {
-                        func_004399D0(new O04ModeF60(Mem.U32(0x800E4F60u)).unk308.P);
+                        PreviewModel_Draw(new O04ModeF60(Mem.U32(0x800E4F60u)).unk308.P);
                     }
                     Mem.Set(0x800D15E0u, 0);
                     Mem.Set(0x800D15F0u, 255.0f);
@@ -502,7 +502,7 @@ public static partial class Game
                     UiNode_SetVisible(new O04ModeF60(Mem.U32(0x800E4F60u)).unk448_, 1);
                     new O04ModeF60(Mem.U32(0x800E4F60u)).unk448.unk14_Set((ushort)(((new O04ModeF60(Mem.U32(0x800E4F60u)).unk434 * 34) + 124)));
                     UiNode_SetVisible(new O04ModeF60(Mem.U32(0x800E4F60u)).unk444, 0);
-                    func_00439E60(new O04ModeF60(Mem.U32(0x800E4F60u)).unk308.P, (new O04ModeF60(Mem.U32(0x800E4F60u)).unk434 + 3750));
+                    PreviewModel_SetModel(new O04ModeF60(Mem.U32(0x800E4F60u)).unk308.P, (new O04ModeF60(Mem.U32(0x800E4F60u)).unk434 + 3750));
                 }
             }
             return 0;
@@ -628,7 +628,7 @@ public static partial class Game
                 ArenaSelect_RefreshSelection();
                 if ((new O04ModeF60(Mem.U32(0x800E4F60u)).unk438 == 0))
                 {
-                    func_00439E60(new O04ModeF60(Mem.U32(0x800E4F60u)).unk308.P, (new O04ModeF60(Mem.U32(0x800E4F60u)).unk434 + 3750));
+                    PreviewModel_SetModel(new O04ModeF60(Mem.U32(0x800E4F60u)).unk308.P, (new O04ModeF60(Mem.U32(0x800E4F60u)).unk434 + 3750));
                     UiNode_SetVisible(new O04ModeF60(Mem.U32(0x800E4F60u)).unk448_, 1);
                     new O04ModeF60(Mem.U32(0x800E4F60u)).unk448.unk14_Set((ushort)(((new O04ModeF60(Mem.U32(0x800E4F60u)).unk434 * 34) + 124)));
                 }

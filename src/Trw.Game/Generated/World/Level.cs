@@ -2082,7 +2082,7 @@ public static partial class Game
                 r1 = r19 + r1;
                 Mem.Set((r1 - 19716u), Cpu.W(0));
                 { bool c_ = r3 == r2; r21 = r6; if (c_) goto L_L00286AE0; }
-                func_0044E3E4(r4);
+                Level_FlushQueuedEntities(r4);
                 L_L00286AE0: ;
                 r1 = 131072u;
                 r1 = r19 + r1;
@@ -2142,13 +2142,13 @@ public static partial class Game
                 r23 = (uint)2; ObjectPool_InitQuad_0044C050(r4, (int)r5);
                 r4 = 65536u;
                 r4 = r4 | 6008u;
-                r4 = r19 + r4; func_0044E7C0(r4);
+                r4 = r19 + r4; PickupPool_Init(r4);
                 r4 = 65536u;
                 r4 = r4 | 21384u;
-                r4 = r19 + r4; func_0044BA40(r4);
+                r4 = r19 + r4; ActorPool_Init(r4);
                 r16 = 2148794368u;
                 r16 = r16 - 17792u;
-                r4 = r16; func_0044EBB0(r4);
+                r4 = r16; Effect_InitPools(r4);
                 Collision_InitProfiles();
                 r4 = 65536u;
                 r4 = r4 | 45856u;
@@ -2158,7 +2158,7 @@ public static partial class Game
                 r5 = 2148663296u;
                 r5 = r5 - 3968u;
                 r6 = (uint)15; LoopSound_InitPool(r4, r5, (int)r6);
-                r4 = r16 - 712u; r2 = func_0044ED24(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r16 - 712u; r2 = BossBar_Init(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_L00286C68: ;
                 r4 = 2148794368u;
                 r4 = r4 + 20544u;
@@ -2823,7 +2823,7 @@ public static partial class Game
                 r4 = r16;
                 Mem.Set((r19 + 0u), r2); Holder_RefreshInstances_0044AA68(r4);
                 r16 = r16 + 72u;
-                r4 = r16; func_0044B31C(r4);
+                r4 = r16; Camera_ResetAllRegionLayerPools(r4);
                 r4 = r16; View_UpdateLayout(r4);
                 r31 = Mem.U32((r29 + 68u));
                 r30 = Mem.U32((r29 + 64u));
@@ -6914,6 +6914,128 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_002B2378", r2); Stack.Free(384); }
     }
 
+    // ==== func_0044C244 @ 0x0044C244 [MIPS]
+    public static uint Scene_HelperA_Entry_0044C244(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0044C244", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_0044C244: ;
+                r1 = 131072u;
+                r1 = r8 + r1;
+                r16 = Mem.U32((r1 - 19444u));
+                L_func_0044C250: ;
+                r29 = r29 - 72u;
+                Mem.Set((r29 + 48u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 64u), r20);
+                r20 = r5;
+                r5 = r6;
+                Mem.Set((r29 + 68u), r31);
+                Mem.Set((r29 + 60u), r19);
+                Mem.Set((r29 + 56u), r18);
+                Mem.Set((r29 + 52u), r17); r2 = (uint)Level_FindTypeIndexById(r4, (int)r5);
+                r5 = r2;
+                r2 = (uint)-1;
+                { bool c_ = r5 != r2;  if (c_) goto L_L0044C294; }
+                Mem.Set((r20 + 8u), r0); goto L_L0044C3F0;
+                L_L0044C294: ;
+                r4 = r16; r2 = (uint)Level_GetModelKey(r4, (int)r5);
+                r4 = r0;
+                r16 = r2;
+                r5 = r16;
+                r6 = r16;
+                r7 = (uint)24;
+                r2 = 2148335616u;
+                r2 = r2 - 24624u;
+                r18 = (uint)1;
+                Mem.Set((r29 + 16u), r0);
+                Mem.Set((r29 + 20u), r0);
+                Mem.Set((r29 + 24u), r0);
+                Mem.Set((r29 + 28u), r2);
+                Mem.Set((r29 + 32u), r18); r2 = ResourceCache_Hash((int)r4, r5, (int)r6, r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u));
+                r17 = r2;
+                { bool c_ = r17 == 0;  if (c_) goto L_L0044C3F0; }
+                r5 = r16;
+                r4 = Mem.U32((r17 + 0u));
+                r6 = r18; r2 = (uint)Resource_GetCartridgeKeyNoSize(r4, (int)r5, (int)r6);
+                r4 = r0;
+                r5 = r29 + 40u;
+                r16 = r2;
+                r6 = r16;
+                r7 = 2148335616u;
+                r7 = r7 - 24588u;
+                Mem.Set((r29 + 16u), r18); r2 = Resource_LoadIndexTable((int)r4, r5, (int)r6, r7, (int)Mem.U32(r29 + 16u));
+                r19 = r2;
+                { bool c_ = r19 == 0; r5 = r16; if (c_) goto L_L0044C3E4; }
+                r6 = r0;
+                r4 = Mem.U32((r29 + 40u));
+                r7 = r29 + 44u; r2 = Resource_GetCartridgeKey(r4, r5, (int)r6, r7);
+                r4 = r0;
+                r5 = r2;
+                r6 = r5;
+                r7 = Mem.U32((r29 + 44u));
+                r2 = 2555904u;
+                r2 = r2 - 10252u;
+                Mem.Set((r29 + 24u), r2);
+                r2 = 2148335616u;
+                r2 = r2 - 24548u;
+                Mem.Set((r29 + 16u), r0);
+                Mem.Set((r29 + 20u), r0);
+                Mem.Set((r29 + 28u), r2);
+                Mem.Set((r29 + 32u), r18); r2 = ResourceCache_Hash((int)r4, r5, (int)r6, r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u));
+                r16 = r2;
+                { bool c_ = r16 == 0; r4 = r0; if (c_) goto L_L0044C3DC; }
+                r4 = Mem.U32((r16 + 0u));
+                r5 = (uint)2; r2 = Chunk_Get(r4, (int)r5);
+                r4 = r2;
+                r5 = r0; r2 = Chunk_Get(r4, (int)r5);
+                r4 = r2;
+                r5 = r0; r2 = Chunk_Get(r4, (int)r5);
+                r4 = r0;
+                r5 = r16;
+                r3 = Mem.U32((r2 + 0u));
+                r8 = Mem.U32((r2 + 4u));
+                r9 = Mem.U32((r2 + 8u));
+                r10 = Mem.U32((r2 + 12u));
+                Mem.Set((r20 + 0u), r3);
+                Mem.Set((r20 + 4u), r8);
+                Mem.Set((r20 + 8u), r9);
+                Mem.Set((r20 + 12u), r10);
+                r3 = Mem.U32((r2 + 16u));
+                r8 = Mem.U32((r2 + 20u));
+                r9 = Mem.U32((r2 + 24u));
+                Mem.Set((r20 + 16u), r3);
+                Mem.Set((r20 + 20u), r8);
+                Mem.Set((r20 + 24u), r9); ResourcePool_Release((int)r4, r5);
+                r4 = r0;
+                L_L0044C3DC: ;
+                r5 = r19; ResourcePool_Release((int)r4, r5);
+                L_L0044C3E4: ;
+                r4 = r0;
+                r5 = r17; ResourcePool_Release((int)r4, r5);
+                L_L0044C3F0: ;
+                r31 = Mem.U32((r29 + 68u));
+                r20 = Mem.U32((r29 + 64u));
+                r19 = Mem.U32((r29 + 60u));
+                r18 = Mem.U32((r29 + 56u));
+                r17 = Mem.U32((r29 + 52u));
+                r16 = Mem.U32((r29 + 48u));
+                r29 = r29 + 72u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0044C244", r2); Stack.Free(384); }
+    }
+
     // ==== func_0044C250 @ 0x0044C250 [C]
     public static void Scene_HelperA_0044C250(uint lv, uint @out, int id)
     {
@@ -7130,7 +7252,7 @@ public static partial class Game
                         actors = (hdr + (uint)(2 * 4));
                         if ((new S6World_v2(world).ready == 0))
                         {
-                            new S6World_v2(world).key_Set(func_0044E038(world, (node + (uint)12), new S6World_v2(world).group, new S6World_v2(world).cache.P));
+                            new S6World_v2(world).key_Set(Track_FindNearestPlacedObject(world, (node + (uint)12), new S6World_v2(world).group, new S6World_v2(world).cache.P));
                             if ((new S6World_v2(world).key != 0))
                             {
                                 new S6World_v2(world).ready_Set(1);
@@ -7374,7 +7496,7 @@ public static partial class Game
         }
     }
 
-    public static void func_0044DDC8(uint state, int selection)
+    public static void Level_RequestChangeIfNew_0044DDC8(uint state, int selection)
     {
         unchecked
         {
@@ -7457,6 +7579,53 @@ public static partial class Game
         finally { Stack.Free(800); }
     }
 
+    // ==== func_0044E038 @ 0x0044E038 [C]
+    public static int Track_FindNearestPlacedObject(uint track, uint pos, int kind, uint @out)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0044E038", (uint)track, (uint)pos, (uint)kind, (uint)@out);
+            int i = 0;
+            int best = 0;
+            int count = 0;
+            uint t = 0u;
+            uint keys = 0u;
+            uint objs = 0u;
+            float bestd = 0f;
+            float d = 0f;
+            t = Chunk_Get(new S7Track(track).resource, 0);
+            count = Mem.S32((t + (uint)(1 * 4)));
+            keys = (t + (uint)(2 * 4));
+            objs = (Chunk_Get(new S7Track(track).resource, 1) + (uint)(2 * 4));
+            bestd = 3.40282347E+38f;
+            for (i = 0; (i < count); ++i)
+            {
+                if (((int)(new S7Obj((objs + (uint)(i * 20))).kind) == kind))
+                {
+                    d = Vec_Distance(new S7Obj((objs + (uint)(i * 20))).pos.P, pos);
+                    if ((d < bestd))
+                    {
+                        bestd = d;
+                        best = i;
+                    }
+                }
+            }
+            if ((best != 0))
+            {
+                Mem.Copy(@out, (objs + (uint)(best * 20)), 20);
+                if ((best == 0))
+                {
+                    return 0;
+                }
+            }
+            else
+            {
+                return 0;
+            }
+            return Mem.S32((keys + (uint)(best * 4)));
+        }
+    }
+
     // ==== func_0044E178 @ 0x0044E178 [C]
     public static void Level_SetTransitionState_0044E178(uint state, int selection, int mode)
     {
@@ -7473,7 +7642,7 @@ public static partial class Game
         }
     }
 
-    public static void func_0044E1D0(uint state)
+    public static void Scene_ApplyLightAndFog(uint state)
     {
         unchecked
         {
@@ -7537,7 +7706,7 @@ public static partial class Game
         }
     }
 
-    public static void func_0044E3E4(uint arg0)
+    public static void Level_FlushQueuedEntities(uint arg0)
     {
         unchecked
         {
@@ -7556,7 +7725,7 @@ public static partial class Game
         }
     }
 
-    public static void func_0044E454(int arg0, uint arg1)
+    public static void Level_OnLoadParticleEffects(int arg0, uint arg1)
     {
         unchecked
         {
@@ -7604,7 +7773,7 @@ public static partial class Game
         }
     }
 
-    public static void func_0044E584(int arg0, uint arg1)
+    public static void Level_OnLoadIntelligence(int arg0, uint arg1)
     {
         unchecked
         {
@@ -7653,7 +7822,7 @@ public static partial class Game
         }
     }
 
-    public static void func_0044E6A4(uint arg0, uint arg1)
+    public static void Level_OnLoadPaths(uint arg0, uint arg1)
     {
         unchecked
         {

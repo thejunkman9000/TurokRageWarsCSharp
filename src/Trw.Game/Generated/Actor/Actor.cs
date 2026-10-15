@@ -6521,7 +6521,7 @@ public static partial class Game
         }
     }
 
-    public static void func_0044AD14(uint arg0, int arg1)
+    public static void Player_SetCharacter(uint arg0, int arg1)
     {
         unchecked
         {

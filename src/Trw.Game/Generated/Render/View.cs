@@ -1409,7 +1409,7 @@ public static partial class Game
                 L_L00235988: ;
                 r4 = r19 + 1392u;
                 r5 = r19; r2 = RegionLayer_UpdateForCamera(r4, r5, r6, r7); r3 = Cpu.V1;
-                r4 = r19 + 1364u; func_00442A68(r4);
+                r4 = r19 + 1364u; MenuPanel_UpdateList(r4);
                 r2 = (uint)Flyby_IsInWindow();
                 { bool c_ = r2 == 0;  if (c_) goto L_L002359C0; }
                 r4 = 2148663296u;
@@ -2509,7 +2509,7 @@ public static partial class Game
                 }
                 Hud_DrawViewOverlay(racer);
                 Hud_DrawMessages(race, racer, default(uint), default(uint));
-                func_00442B44(new Racer(racer).sound.P);
+                MenuPanel_DrawList(new Racer(racer).sound.P);
                 View_DrawFrame(racer);
                 if (((Flyby_IsActive() != 0) || (Flyby_IsInWindow() != 0)))
                 {
@@ -2534,7 +2534,7 @@ public static partial class Game
                     Match_DrawClock(0x80145040u, racer);
                 }
             }
-            func_00442B44(new Race(race).self.sound.P);
+            MenuPanel_DrawList(new Race(race).self.sound.P);
         }
     }
 
@@ -4236,7 +4236,7 @@ public static partial class Game
                 r5 = r5 + 1u;
                 r2 = (uint)((int)r5 < 2 ? 1 : 0);
                 { bool c_ = r2 != 0; r3 = r3 + 16u; if (c_) goto L_L0044AF2C; }
-                r4 = r16 + 1364u; func_004426B4(r4);
+                r4 = r16 + 1364u; MenuPanel_InitList(r4);
                 r4 = r16 + 3668u; Math_MtxIdentity(r4);
                 r4 = r16 + 3732u; Math_MtxIdentity(r4);
                 r4 = r16 + 3648u;
@@ -4378,6 +4378,21 @@ public static partial class Game
             new func_8044B27C_S1_v2(actor).unk38_Set(2);
             Camera_InitState(parts, default(uint), default(uint), default(uint));
             Camera_SetupProjection(parts, default(uint), default(uint), default(uint));
+        }
+    }
+
+    // ==== func_0044B31C @ 0x0044B31C [C]
+    public static void Camera_ResetAllRegionLayerPools(uint group)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0044B31C", (uint)group);
+            int i = 0;
+            for (i = 0; (i < new Triple(group).z); ++i)
+            {
+                Pool228_Init_0044B420((uint)((((i * 3800) + new Triple(group).y) + 1392)));
+            }
+            Pool228_Init_0044B420((group + (uint)1456));
         }
     }
 

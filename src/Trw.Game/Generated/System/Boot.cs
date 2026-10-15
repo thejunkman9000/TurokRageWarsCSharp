@@ -113,8 +113,8 @@ public static partial class Game
             }
             Flyby_Reset();
             i = (uint)(0);
-            func_0044E910();
-            func_0044E8B0((lv + 159116u));
+            Decal_InitQuadVerts();
+            Light_SetDefaultDirection((lv + 159116u));
             new Level(lv).unk26DD0_Set(0);
             new Level(lv).unk26DC8_Set(1);
             new Level(lv).unk26DCC_Set(0);
@@ -267,7 +267,7 @@ public static partial class Game
                 Mem.Set((r18 + 964u), r2); CameraManager_Init(r4, (int)r5);
                 r4 = r17;
                 r5 = r0;
-                r6 = r5; func_0044A600(r4, (int)r5, (int)r6);
+                r6 = r5; Player_InitPool(r4, (int)r5, (int)r6);
                 r5 = Mem.U32((r18 + 964u));
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
@@ -279,7 +279,7 @@ public static partial class Game
                 r4 = 65536u;
                 L_L0029163C: ;
                 r4 = r4 | 48376u;
-                r4 = r18 + r4; func_0044ECB0(r4);
+                r4 = r18 + r4; Text_InitFont(r4);
                 r17 = (uint)1; Pak_AllocDirectory();
                 Menu_InitFrontendOnce();
                 r4 = (uint)2; Menu_GotoScreen((int)r4);

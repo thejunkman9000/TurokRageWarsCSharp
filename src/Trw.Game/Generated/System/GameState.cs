@@ -584,7 +584,7 @@ public static partial class Game
                  goto L_L00292A58;
                 L_L00292A40: ;
                 r4 = r4 | 23388u;
-                r4 = r20 + r4; r2 = (uint)func_00442B98(r4);
+                r4 = r20 + r4; r2 = (uint)MenuPanel_CountOpen(r4);
                 r1 = 131072u;
                 r1 = r20 + r1;
                 Mem.Set((r1 + 28116u), r2);
@@ -817,7 +817,7 @@ public static partial class Game
                 r4 = r20; Game_TickPlayClock(r4);
                 r4 = 2148794368u;
                 r4 = r4 + 22044u;
-                r2 = (uint)func_00442B98(r4);
+                r2 = (uint)MenuPanel_CountOpen(r4);
                 { bool c_ = r2 != 0;  if (c_) goto L_L00292E78; }
                 r2 = (uint)Flyby_IsInWindow();
                 { bool c_ = r2 == 0;  if (c_) goto L_L00292E78; }
@@ -919,7 +919,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00293318", (uint)g, (uint)a, (uint)b);
             CameraManager_Init(new B21Game(g).sub255C8.P, (int)(uint)(a));
-            func_0044A600(new B21Game(g).sub25580.P, a, b);
+            Player_InitPool(new B21Game(g).sub25580.P, a, b);
         }
     }
 
@@ -1142,7 +1142,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0029397C", (uint)g, (uint)a);
             CameraManager_Init(new B21Game(g).sub255C8.P, 1);
-            func_0044A600(new B21Game(g).sub25580.P, 1, 0);
+            Player_InitPool(new B21Game(g).sub25580.P, 1, 0);
             Level_SetTransitionState_0044E178(0x8011FE88u, (~Flyby_QueueById(a)), 0);
             Level_LoadSelectedResource_0044DCA4(0x8011FE88u);
             Level_LoadPreviewSound_0044DD40(0x8011FE88u);
@@ -2108,7 +2108,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00294BB0", (uint)g);
             uint b = 0u;
             int r = 0;
-            if (!((func_00442B98(new B21World(0x80145040u).sub5DC.P) == 0))) goto _f0;
+            if (!((MenuPanel_CountOpen(new B21World(0x80145040u).sub5DC.P) == 0))) goto _f0;
             if (!((Flyby_IsInWindow() != 0))) goto _f1;
             if (!((Flyby_GetId() == 120))) goto _f2;
             b = new B21World(0x80145040u).blk.P;
@@ -2143,5 +2143,129 @@ public static partial class Game
             Rumble_ClearAll(0x8010EC90u);
             Player_ClearAllPadInput(0x80145040u);
         }
+    }
+
+    // ==== func_0044EACC @ 0x0044EACC [C]
+    public static void Game_StartMatchLevel(uint m, int a)
+    {
+        uint _fp = Stack.Alloc(24);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0044EACC", (uint)m, (uint)a);
+                uint b = 0u;
+                if ((Track_FindPlacedObjects(0x8011FE88u, (-1), a, _fp, 1) == 0))
+                {
+                    a = 0;
+                }
+                b = 0x801468A0u;
+                new S7Blk(b).unk0_Set(0);
+                new S7Blk(b).unk4_Set(0);
+                new S7Blk(b).unk8_Set(0);
+                new S7Blk(b).unkC_Set(0);
+                new S7Blk(b).unk88_Set(0);
+                new S7Match(m).unk26DDC_Set(0);
+                new S7Match(m).unk26DD8_Set(a);
+                if ((((int)(new S7Match(m).unk26825) != 0) && (new S7Blk(b).unkAC != 0)))
+                {
+                    do
+                    {
+                        new S7Match(m).unk26DC1_Set((byte)(2));
+                        new S7Match(m).state_Set(13);
+                    }
+                    while ((0 != 0));
+                }
+                else
+                {
+                    do
+                    {
+                        new S7Match(m).unk26DC1_Set((byte)(2));
+                        new S7Match(m).state_Set(12);
+                    }
+                    while ((0 != 0));
+                }
+            }
+        }
+        finally { Stack.Free(24); }
+    }
+
+    // ==== func_0044EBA4 @ 0x0044EBA4 [MIPS]
+    public static uint Game_StartMatchLevel_Tail_0044EBA4(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0044EBA4", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_0044EBA4: ;
+                r13 = (uint)(int)Mem.S8((r0 + 31464u));
+                r0 = r0 << 2;
+                L_func_0044EBB0: ;
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r4;
+                r4 = r18 + 29980u;
+                r5 = r18 + 27292u;
+                r6 = (uint)84;
+                r7 = (uint)32;
+                Mem.Set((r29 + 32u), r31);
+                Mem.Set((r29 + 28u), r19);
+                Mem.Set((r29 + 20u), r17);
+                Mem.Set((r29 + 16u), r16); Pool_InitFromArray(r4, r5, (int)r6, r7);
+                r4 = r18 + 30088u;
+                r5 = r18 + 30004u;
+                r6 = (uint)28;
+                r7 = (uint)3; Pool_InitFromArray(r4, r5, (int)r6, r7);
+                r4 = r18 + 27280u; Vec_SetZero(r4);
+                r16 = r0;
+                r17 = (uint)9616;
+                L_L0044EC04: ;
+                r4 = r18 + 27280u;
+                r5 = r18 + r17; List_AppendCounted(r4, r5);
+                r16 = r16 + 1u;
+                r2 = (uint)((int)r16 < 96 ? 1 : 0);
+                { bool c_ = r2 != 0; r17 = r17 + 184u; if (c_) goto L_L0044EC04; }
+                r4 = (uint)38312;
+                r4 = r18 + r4;
+                r5 = r0;
+                r6 = (uint)4; List_Init(r4, (int)r5, (int)r6);
+                r16 = r0;
+                r17 = (uint)38112;
+                L_L0044EC3C: ;
+                r4 = r18 + r17;
+                r5 = r0;
+                r6 = (uint)4; List_Init(r4, (int)r5, (int)r6);
+                r16 = r16 + 1u;
+                r2 = (uint)((int)r16 < 10 ? 1 : 0);
+                { bool c_ = r2 != 0; r17 = r17 + 20u; if (c_) goto L_L0044EC3C; }
+                r16 = r0;
+                r19 = (uint)38312;
+                r17 = (uint)30112;
+                L_L0044EC68: ;
+                r4 = r18 + r19;
+                r5 = r18 + r17; r2 = List_Append_00255CB4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r16 = r16 + 1u;
+                r2 = (uint)((int)r16 < 100 ? 1 : 0);
+                { bool c_ = r2 != 0; r17 = r17 + 80u; if (c_) goto L_L0044EC68; }
+                r4 = r18;
+                Mem.Set((r4 + 0u), r0);
+                Mem.Set((r4 + 9608u), r0); Effect_UpdateFrame((int)r4);
+                r31 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0044EBA4", r2); Stack.Free(384); }
     }
 }

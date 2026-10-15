@@ -291,4 +291,65 @@ public static partial class Game
             }
         }
     }
+
+    // ==== func_0044E910 @ 0x0044E910 [C]
+    public static int Decal_InitQuadVerts()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0044E910");
+            uint vertices = 0x801469A0u;
+            int i = 0;
+            int more = 0;
+            new Vtx((vertices + (uint)(0 * 16))).x_Set((short)((-1)));
+            new Vtx((vertices + (uint)(0 * 16))).z_Set((short)(1));
+            new Vtx((vertices + (uint)(0 * 16))).s_Set((short)(0));
+            new Vtx((vertices + (uint)(0 * 16))).t_Set((short)(0));
+            new Vtx((vertices + (uint)(1 * 16))).x_Set((short)(1));
+            new Vtx((vertices + (uint)(1 * 16))).z_Set((short)(1));
+            new Vtx((vertices + (uint)(1 * 16))).s_Set((short)(1024));
+            new Vtx((vertices + (uint)(1 * 16))).t_Set((short)(0));
+            new Vtx((vertices + (uint)(2 * 16))).x_Set((short)(1));
+            new Vtx((vertices + (uint)(2 * 16))).z_Set((short)((-1)));
+            new Vtx((vertices + (uint)(2 * 16))).s_Set((short)(1024));
+            new Vtx((vertices + (uint)(2 * 16))).t_Set((short)(1024));
+            new Vtx((vertices + (uint)(3 * 16))).x_Set((short)((-1)));
+            new Vtx((vertices + (uint)(3 * 16))).z_Set((short)((-1)));
+            new Vtx((vertices + (uint)(3 * 16))).s_Set((short)(0));
+            new Vtx((vertices + (uint)(3 * 16))).t_Set((short)(1024));
+            do
+            {
+                new Vtx((vertices + (uint)(i * 16))).y_Set((short)(0));
+                new Vtx((vertices + (uint)(i * 16))).flag_Set((short)(0));
+                new Vtx((vertices + (uint)(i * 16))).r_Set((byte)(255));
+                new Vtx((vertices + (uint)(i * 16))).g_Set((byte)(255));
+                new Vtx((vertices + (uint)(i * 16))).b_Set((byte)(255));
+                new Vtx((vertices + (uint)(i * 16))).a_Set((byte)(255));
+                ++i;
+                more = ((i < 4) ? 1 : 0);
+            }
+            while ((more != 0));
+            return more;
+        }
+    }
+
+    public static void Match_Reset(uint match)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0044E9A0", (uint)match);
+            uint state = 0u;
+            Rumble_SetEnabledAll(0);
+            Rumble_ClearAll(0x8010EC90u);
+            Player_ClearAllPadInput(0x80145040u);
+            state = 0x801468A0u;
+            new State_func_8044DD50_de(state).a_Set(0);
+            new State_func_8044DD50_de(state).b_Set(0);
+            new State_func_8044DD50_de(state).c_Set(0);
+            new State_func_8044DD50_de(state).d_Set(0);
+            new State_func_8044DD50_de(state).e_Set(0);
+            new func_8044E9A0_S1(match).unk26DC1_Set((byte)(2));
+            new func_8044E9A0_S1(match).unk26DBC_Set(1);
+        }
+    }
 }
