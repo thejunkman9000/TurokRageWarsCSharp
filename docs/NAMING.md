@@ -27,6 +27,24 @@ One tab-separated row per registered function (`--template` adds rows for functi
 * Low-confidence names keep the address: `Actor_Think_0044E910`.
 * A group file collects the functions of one subject in ROM order; one group should match one original source file where that can be recovered.
 
+## Naming in bulk
+
+* `python tools/rename/graph.py` writes `tools/names/graph.tsv` (per function: callers, callees, the guest data addresses its code uses, its height in
+  the call graph) and `tools/names/clusters.tsv` (ROM-contiguous runs tied by calls or file-local data). Re-run it after renaming.
+* Proposals come as `orig, name, group, confidence, evidence` rows. `python tools/rename/merge_rows.py rows.tsv ...` checks every row (the function
+  exists and has no name yet, the name is a valid identifier, unique, not already an identifier in `src/`, low names carry the address, the group is a
+  relative `.cs` path), reports the bad ones and merges the rest. `--replace` lets rows correct names that already exist (the old name is noted in the
+  evidence column). Then `apply_names.py`, build, and the behaviour check below.
+* Every function was named this way (2026-10-15) by agents reading the decompiled C (or the recompiled C#), the call graph, ROM tables (state tables,
+  class vtables, menu message tables `{msg, screen, fn}`, weapon and pickup tables) and ROM strings. Things learned on the way:
+  * ROM data: main-segment address - 0x7FFFF400 = file offset; overlay A VA 0x4xxxxx -> ROM 0x16E000 + (VA - 0x400000).
+  * Split pieces (a few instructions that fall into the next function, or a body without a prologue) are named after their function with `Head`,
+    `Tail` or `Entry_<addr>`; a recompiled copy a few bytes from its C version is `<Name>Twin`; a recompiled copy of an SDK function is
+    `<SdkName>_Recompiled` (the port's own OS layer owns the plain SDK names).
+  * Overlay A still contains Turok 2's front end (old main menu, cheat list with Turok 2 level warps, in-game option pages): `LegacyMenu_`,
+    `LegacyCheats_`, `InGameMenu_`.
+  * Comments from another decompilation sometimes describe things this game does not have (vehicles, wheels, drivers): trust the code.
+
 ## What the tool does
 
 * Renames identifiers in every `.cs` under `src/` (generated and hand-written code, comments included). **String literals are not renamed**: `Dbg.Enter`,
