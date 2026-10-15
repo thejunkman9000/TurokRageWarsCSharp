@@ -11,8 +11,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00268C7C", (uint)pool, (uint)e);
             new B15Ent_v3(e).unk16_Set((short)(0));
-            func_00255E78(pool, e, default(uint), default(uint));
-            func_00255C58((pool + (uint)20), e);
+            List_Remove(pool, e, default(uint), default(uint));
+            List_Add((pool + (uint)20), e);
         }
     }
 

@@ -28,7 +28,7 @@ public static partial class Game
                 break;
             }
             f = new B2Ctl(ctl).unk244;
-            if ((f < func_00274B00((-k), k)))
+            if ((f < Random_Symmetric((-k), k)))
             {
                 f = (float)((float)(f) + Mem.F32(0x800C6DB0u));
             }

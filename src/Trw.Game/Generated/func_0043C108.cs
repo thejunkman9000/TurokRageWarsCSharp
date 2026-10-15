@@ -27,7 +27,7 @@ public static partial class Game
             case 2:
                 new O06P(p).unk4B0_Set(0);
                 func_0041B834((uint)(new O06M_v2(m).unk4), i, 0);
-                func_0041CE80(((Mem.U32(0x800E59E0u) + (uint)8) + (uint)(i * 1232)), (uint)(1), default(uint), default(uint));
+                MenuModel_SetWord49C_0041CE80(((Mem.U32(0x800E59E0u) + (uint)8) + (uint)(i * 1232)), (uint)(1), default(uint), default(uint));
                 func_0043B2AC(i);
                 break;
             }

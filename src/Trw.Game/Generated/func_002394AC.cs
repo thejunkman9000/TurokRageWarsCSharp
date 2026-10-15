@@ -40,8 +40,8 @@ public static partial class Game
                 n = new SlotObj(o).free11D8_;
                 if ((n != 0u))
                 {
-                    func_00255E78((o + 4568u), n, default(uint), default(uint));
-                    func_00255C58((o + 4588u), n);
+                    List_Remove((o + 4568u), n, default(uint), default(uint));
+                    List_Add((o + 4588u), n);
                 }
                 else
                 {

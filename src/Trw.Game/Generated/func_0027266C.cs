@@ -31,7 +31,7 @@ public static partial class Game
             {
                 return 0.0f;
             }
-            return (func_00274640(t) - 1.57079637f);
+            return (Math_Acosf(t) - 1.57079637f);
         }
     }
 

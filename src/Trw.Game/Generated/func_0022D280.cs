@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0022D280", (uint)actor);
             Mem.Set((actor + (uint)2144), 0);
-            func_0044ACCC(actor);
+            Object_ReleaseHandles_0044ACCC(actor);
             new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~8388608))));
             Mem.Set((actor + (uint)28), 0);
             Mem.Set((actor + (uint)32), 0);

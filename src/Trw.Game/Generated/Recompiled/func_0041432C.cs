@@ -56,7 +56,7 @@ public static partial class Game
                 r4 = r4 + 15712u;
                 r4 = r2 + r4;
                 r5 = r17;
-                r6 = r16; r2 = func_00414D4C(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
+                r6 = r16; r2 = Printf_VFormat(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
                 L_L004143B0: ;
                 r31 = Mem.U32((r29 + 24u));
                 r17 = Mem.U32((r29 + 20u));

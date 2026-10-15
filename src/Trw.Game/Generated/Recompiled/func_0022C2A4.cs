@@ -25,7 +25,7 @@ public static partial class Game
                 r29 = r29 - 40u;
                 Mem.Set((r29 + 32u), r16);
                 Mem.Set((r29 + 36u), r31);
-                r16 = r5; r2 = func_002AA224(r4, r5, r6, r7); r3 = Cpu.V1;
+                r16 = r5; r2 = Gfx_BeginFlatColorPass(r4, r5, r6, r7); r3 = Cpu.V1;
                 Cpu.SetW(5, Mem.U32((r16 + 668u)));
                 r1 = 2148270080u;
                 Cpu.SetW(2, Mem.U32((r1 + 32288u)));
@@ -63,7 +63,7 @@ public static partial class Game
                 Cpu.SetW(7, (uint)(int)Cpu.S(1));
                 r7 = Cpu.W(7);
                 r7 = r7 << 16;
-                r7 = (uint)((int)r7 >> 16); r2 = (uint)func_002ABC18((int)r4, (int)r5, (short)r6, (short)r7, Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), (int)Mem.U32(r29 + 24u));
+                r7 = (uint)((int)r7 >> 16); r2 = (uint)Sprite_Draw((int)r4, (int)r5, (short)r6, (short)r7, Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), (int)Mem.U32(r29 + 24u));
                 r31 = Mem.U32((r29 + 36u));
                 r16 = Mem.U32((r29 + 32u));
                 r29 = r29 + 40u; Cpu.V1 = r3; return r2;

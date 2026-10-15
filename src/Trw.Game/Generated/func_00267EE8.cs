@@ -23,11 +23,11 @@ public static partial class Game
                     {
                         goto L_tail;
                     }
-                    func_00237E70(0x80145088u, p, (uint)(Mem.S32(new B15Snd((0x800D7F84u + (uint)(new B15Idx((_fp + 16u)).idx * 8))).a_)));
+                    Hud_PostMessage(0x80145088u, p, (uint)(Mem.S32(new B15Snd((0x800D7F84u + (uint)(new B15Idx((_fp + 16u)).idx * 8))).a_)));
                 }
                 else
                 {
-                    func_00237E70(0x80145088u, (0x80145088u + (uint)64), (uint)(Mem.S32(new B15Snd((0x800D7F84u + (uint)(new B15Idx((_fp + 16u)).idx * 8))).a_)));
+                    Hud_PostMessage(0x80145088u, (0x80145088u + (uint)64), (uint)(Mem.S32(new B15Snd((0x800D7F84u + (uint)(new B15Idx((_fp + 16u)).idx * 8))).a_)));
                 }
                 L_tail: ;
                 if ((new B15Snd((0x800D7F84u + (uint)(new B15Idx((_fp + 16u)).idx * 8))).b != 0))

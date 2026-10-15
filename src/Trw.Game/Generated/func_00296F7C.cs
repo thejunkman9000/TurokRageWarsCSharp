@@ -13,9 +13,9 @@ public static partial class Game
             uint n = new B21Holder(h).node_;
             if ((new B21Node_v2(n).unk0 != 0))
             {
-                new B21Triple(t).unk8__Set(func_0028FD94(n, 0));
-                new B21Triple(t).unk0_Set(Mem.S32(func_0028FD94(n, 1)));
-                new B21Triple(t).unk4_Set(Mem.S32(func_0028FD94(n, 2)));
+                new B21Triple(t).unk8__Set(Chunk_Get(n, 0));
+                new B21Triple(t).unk0_Set(Mem.S32(Chunk_Get(n, 1)));
+                new B21Triple(t).unk4_Set(Mem.S32(Chunk_Get(n, 2)));
             }
             else
             {

@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00203B1C", (uint)actor, (uint)state);
             if ((func_002034A4(actor, state) == 0))
             {
-                func_00214178(actor, state, 62);
+                Actor_DispatchEvent(actor, state, 62);
             }
         }
     }

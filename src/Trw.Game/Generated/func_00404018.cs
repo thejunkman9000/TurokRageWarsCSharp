@@ -88,8 +88,8 @@ public static partial class Game
             int i = 0;
             int ok = 0;
             uint r = 0u;
-            func_0026451C(1);
-            func_00263760();
+            Pad_TryAcquire(1);
+            Pad_ReadController_00263760();
             Mem.Set(0x8010FBB8u, (byte)(2));
             for (i = 0; (i < 4); ++i)
             {

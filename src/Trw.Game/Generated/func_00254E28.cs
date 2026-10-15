@@ -10,9 +10,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00254E28", (uint)unused, (uint)n);
-            func_00255E78(0x8010510Cu, n, default(uint), default(uint));
+            List_Remove(0x8010510Cu, n, default(uint), default(uint));
             new PNode(n).f10_Set(0);
-            func_00255C58((0x8010510Cu - (uint)20), n);
+            List_Add((0x8010510Cu - (uint)20), n);
         }
     }
 

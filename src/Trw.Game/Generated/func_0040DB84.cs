@@ -15,7 +15,7 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, c_in, 40);
                 if (Dbg.On) Dbg.Enter("func_0040DB84_ovr_c638", (uint)n, (uint)c_in);
                 int pushed = 0;
-                if ((func_0040E154((_fp + 56u), (_fp + 40u), n, (new O02Ctx(_fp).w.P + (uint)(0 * 4))) != 0))
+                if ((UiNode_ComputeRect((_fp + 56u), (_fp + 40u), n, (new O02Ctx(_fp).w.P + (uint)(0 * 4))) != 0))
                 {
                     if ((((int)(new O02Node(n).flags) & 512) != 0))
                     {
@@ -50,7 +50,7 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0040DB84_ovr_f3d0", (uint)n, (uint)c_in);
                 int pushed = 0;
                 Mem.Set(0x800E2AB8u, 0);
-                if ((func_0040E154((_fp + 88u), (_fp + 40u), n, (new O02Ctx(_fp).w.P + (uint)(0 * 4))) != 0))
+                if ((UiNode_ComputeRect((_fp + 88u), (_fp + 40u), n, (new O02Ctx(_fp).w.P + (uint)(0 * 4))) != 0))
                 {
                     if ((((int)(new O02Node(n).flags) & 512) != 0))
                     {
@@ -84,7 +84,7 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, c_in, 40);
                 if (Dbg.On) Dbg.Enter("func_0040DB84_ovr_f2b0", (uint)n, (uint)c_in);
                 uint s = 0u;
-                if ((func_0040E154((_fp + 40u), (_fp + 56u), n, _fp) != 0))
+                if ((UiNode_ComputeRect((_fp + 40u), (_fp + 56u), n, _fp) != 0))
                 {
                     if (((new S_ctx2(_fp).w2 & 256) != 0))
                     {

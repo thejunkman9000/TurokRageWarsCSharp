@@ -67,7 +67,7 @@ public static partial class Game
                 r4 = r29 + 16u; func_002734B8(r4, Cpu.U2F(r5), Cpu.U2F(r6), Cpu.U2F(r7));
                 r4 = r29 + 16u; func_00273DDC(r4);
                 r4 = r29 + 16u;
-                r5 = r18 + 5632u; func_002702EC(r4, r5);
+                r5 = r18 + 5632u; Math_MtxFloatToFixed(r4, r5);
                 r4 = (uint)1400; r2 = (uint)func_0025DF54((int)r4);
                 r5 = Mem.U32((r18 + 1500u));
                 { bool c_ = r5 == 0;  if (c_) goto L_L0022B2D8; }
@@ -81,7 +81,7 @@ public static partial class Game
                 L_L0022B2C8: ;
                 r4 = 2148794368u;
                 r4 = r4 + 20616u;
-                r2 = func_00237E70(r4, r5, r6);
+                r2 = Hud_PostMessage(r4, r5, r6);
                 L_L0022B2D8: ;
                 r31 = Mem.U32((r29 + 112u));
                 r19 = Mem.U32((r29 + 108u));

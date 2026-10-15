@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00403B70", (uint)t);
-            uint x = func_0028FD94(t, 0);
-            uint y = func_0028FD94(t, 2);
+            uint x = Chunk_Get(t, 0);
+            uint y = Chunk_Get(t, 2);
             int a = (new O01Node(x).unk4 * 9);
             int b = (new O01Node(y).unk4 * 9);
             return (((b + a) * 4) + 48);

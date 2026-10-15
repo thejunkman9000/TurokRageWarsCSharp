@@ -13,7 +13,7 @@ public static partial class Game
             Mem.Set(0x800E4400u, func_00252FFC((uint)(60)));
             new O3Pm(Mem.U32(0x800E4400u)).w8__Set((uint)(root));
             new O3Pm(Mem.U32(0x800E4400u)).f38_Set(0);
-            new O3Spr(func_0040ECB0((uint)(root), (uint)(936), default(uint), default(uint))).f1A_Set((short)(136));
+            new O3Spr(UiTree_FindNode((uint)(root), (uint)(936), default(uint), default(uint))).f1A_Set((short)(136));
             new O3Pm(Mem.U32(0x800E4400u)).bar__Set((uint)((int)(func_0041A300(936, 937))));
             func_0041B190(950);
             new O3Pm(Mem.U32(0x800E4400u)).fC_Set((int)(func_0041AC40(948, 949)));
@@ -61,7 +61,7 @@ public static partial class Game
                 func_0041AD90((uint)(new O3Pm(Mem.U32(0x800E4400u)).f18), 0);
             }
             func_0041B190(940);
-            new O3Pm(Mem.U32(0x800E4400u)).item__Set(func_0040ECB0((uint)(root), (uint)(951), default(uint), default(uint)));
+            new O3Pm(Mem.U32(0x800E4400u)).item__Set(UiTree_FindNode((uint)(root), (uint)(951), default(uint), default(uint)));
             new O3Pm(Mem.U32(0x800E4400u)).f28_Set(0);
             new O3Pm(Mem.U32(0x800E4400u)).timer_Set(0);
             new O3Pm(Mem.U32(0x800E4400u)).f34_Set(1);

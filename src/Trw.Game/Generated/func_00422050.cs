@@ -11,9 +11,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00422050");
             Flyby_Abort();
-            func_0044AFC0(0x80145088u, 0);
+            CameraManager_Init(0x80145088u, 0);
             func_0044A600((0x80145088u - (uint)72), 0, 0);
-            func_00286A78(0x8011FE88u, (uint)(36), (uint)(0), default(uint));
+            Level_Load(0x8011FE88u, (uint)(36), (uint)(0), default(uint));
             if ((func_0025471C() == 0))
             {
                 func_0025470C(1);

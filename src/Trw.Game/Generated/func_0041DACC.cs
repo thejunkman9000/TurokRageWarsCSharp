@@ -15,7 +15,7 @@ public static partial class Game
             i = 0;
             do
             {
-                it = func_0040ECB0((uint)(new O3Pk(Mem.U32(0x800E3590u)).parent), (uint)((int)((ushort)(new O3Tbl((0x800E3594u + (uint)(i * 8))).key))), default(uint), default(uint));
+                it = UiTree_FindNode((uint)(new O3Pk(Mem.U32(0x800E3590u)).parent), (uint)((int)((ushort)(new O3Tbl((0x800E3594u + (uint)(i * 8))).key))), default(uint), default(uint));
                 if ((func_00265670((0x80102B4Au + (uint)(new O3Pk(Mem.U32(0x800E3590u)).slot * 400)), i) == 1))
                 {
                     func_0040E958(it, 1);

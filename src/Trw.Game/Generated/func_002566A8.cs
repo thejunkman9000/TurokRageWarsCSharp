@@ -11,9 +11,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002566A8", (uint)c, (uint)n);
             uint mask = __osDisableInt();
-            func_00255E78(new B12Ctx(c).usedList.P, n, default(uint), default(uint));
+            List_Remove(new B12Ctx(c).usedList.P, n, default(uint), default(uint));
             new B12QNode(n).state_Set(0);
-            func_00255C58(new B12Ctx(c).freeList.P, n);
+            List_Add(new B12Ctx(c).freeList.P, n);
             __osRestoreInt(mask);
         }
     }

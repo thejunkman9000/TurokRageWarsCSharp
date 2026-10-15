@@ -32,13 +32,13 @@ public static partial class Game
             i = 0;
             do
             {
-                func_0040E958(func_0040ECB0((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new Q2IdRow((0x800E42D4u + (uint)(idx * 36))).c[(int)(i)].id)), default(uint), default(uint)), 1);
+                func_0040E958(UiTree_FindNode((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new Q2IdRow((0x800E42D4u + (uint)(idx * 36))).c[(int)(i)].id)), default(uint), default(uint)), 1);
                 ++i;
             }
             while ((i < 3));
             new O3Pj(func_00420688_pj(idx)).f10_Set(val);
             func_0041F1FC(val);
-            func_0041CE80(new O3Pj((uint)(((idx * 1224) + (int)(Mem.U32(0x800E42D0u))))).sub.P, (uint)(0), default(uint), default(uint));
+            MenuModel_SetWord49C_0041CE80(new O3Pj((uint)(((idx * 1224) + (int)(Mem.U32(0x800E42D0u))))).sub.P, (uint)(0), default(uint), default(uint));
             n = 0;
             for (j = 0; (j < 4); ++j)
             {

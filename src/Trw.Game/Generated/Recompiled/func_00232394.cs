@@ -118,14 +118,14 @@ public static partial class Game
                 r3 = Mem.U32((r16 + 1428u));
                 { bool c_ = r3 != r2; r4 = r19; if (c_) goto L_L0023259C; }
                 r5 = r18;
-                r6 = (uint)11; r2 = (uint)func_00214178(r4, r5, (int)r6);
+                r6 = (uint)11; r2 = (uint)Actor_DispatchEvent(r4, r5, (int)r6);
                 r4 = r16; func_0022B974(r4);
                 r2 = (uint)1; goto L_L002325AC;
                 L_L00232598: ;
                 r4 = r19;
                 L_L0023259C: ;
                 r5 = r18;
-                r6 = (uint)2; r2 = (uint)func_00214178(r4, r5, (int)r6);
+                r6 = (uint)2; r2 = (uint)Actor_DispatchEvent(r4, r5, (int)r6);
                 L_L002325A8: ;
                 r2 = (uint)1;
                 L_L002325AC: ;

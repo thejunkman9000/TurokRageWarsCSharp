@@ -26,15 +26,15 @@ public static partial class Game
                 }
                 sel = new Q03S53(Mem.U32(0x800E53C0u)).unkF0[(int)((new Q03S53(Mem.U32(0x800E53C0u)).unkE8 + i))];
                 e = (0x80146398u + (uint)(sel * 150));
-                w = func_0040ECB0((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id0)), default(uint), default(uint));
+                w = UiTree_FindNode((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id0)), default(uint), default(uint));
                 func_0040E958(w, 1);
                 new Q03Wid(w).unk10_Set((byte)(150));
                 p = w;
                 new Q03Wid(p).unk2C_Set(new Q03Row70((0x800E3A58u + (uint)(func_0041F1B0((int)(new Q03Ent(e).f80)) * 112))).f0);
-                w = func_0040ECB0((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id4)), default(uint), default(uint));
+                w = UiTree_FindNode((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id4)), default(uint), default(uint));
                 func_0040E958(w, 1);
                 new Q03Wid(w).unk10_Set((byte)(25));
-                w = func_0040ECB0((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id8)), default(uint), default(uint));
+                w = UiTree_FindNode((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id8)), default(uint), default(uint));
                 new Q03Wid(w).unk10_Set((byte)(175));
                 func_0040E958(w, 1);
                 if (((int)(new Q03Ent(e).f91) == 0))
@@ -46,7 +46,7 @@ public static partial class Game
                     func_002A125C(new Q03Ent(e).name.P, func_002A1494(new Q03Ent(e).name.P));
                     new Q03Wid(w).unk38_Set(new Q03Ent(e).name.P);
                 }
-                w = func_0040ECB0((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).idC)), default(uint), default(uint));
+                w = UiTree_FindNode((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).idC)), default(uint), default(uint));
                 new Q03Wid(w).unk10_Set((byte)(115));
                 func_0040E958(w, 1);
                 if (((int)(new Q03Ent(e).f91) == 0))
@@ -57,24 +57,24 @@ public static partial class Game
                 {
                     new Q03Wid(w).unk38_Set((uint)(Mem.S32(Mem.U32((0x800E39B4u + (uint)(new Q03Ent(e).f93 * 4))))));
                 }
-                w = func_0040ECB0((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id10)), default(uint), default(uint));
+                w = UiTree_FindNode((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id10)), default(uint), default(uint));
                 new Q03Wid(w).unk10_Set((byte)(175));
                 func_0040E958(w, 1);
                 func_002A1C08((new Q03S53(Mem.U32(0x800E53C0u)).strA.P + (uint)(i * 25)), 0x800E1B20u, (uint)((int)(new Q03Ent(e).f4)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                 new Q03Wid(w).unk38_Set((new Q03S53(Mem.U32(0x800E53C0u)).strA.P + (uint)(i * 25)));
-                w = func_0040ECB0((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id14)), default(uint), default(uint));
+                w = UiTree_FindNode((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id14)), default(uint), default(uint));
                 new Q03Wid(w).unk10_Set((byte)(175));
                 func_0040E958(w, 1);
                 func_002A1C08((new Q03S53(Mem.U32(0x800E53C0u)).strB.P + (uint)(i * 25)), 0x800E1B20u, (uint)(((int)(new Q03Ent(e).f2) + (int)(new Q03Ent(e).f0))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                 new Q03Wid(w).unk38_Set((new Q03S53(Mem.U32(0x800E53C0u)).strB.P + (uint)(i * 25)));
                 if ((Mem.S32((0x80154028u + (uint)(0 * 4))) == 0))
                 {
-                    func_0040E958(func_0040ECB0((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id18)), default(uint), default(uint)), 0);
+                    func_0040E958(UiTree_FindNode((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id18)), default(uint), default(uint)), 0);
                     func_0042D4E4(sel, i, 617);
                 }
                 else
                 {
-                    w = func_0040ECB0((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id18)), default(uint), default(uint));
+                    w = UiTree_FindNode((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id18)), default(uint), default(uint));
                     new Q03Wid(w).unk10_Set((byte)(175));
                     func_0040E958(w, 1);
                     cnt = Mem.S32((0x80103140u + (uint)(sel * 4)));
@@ -88,12 +88,12 @@ public static partial class Game
                 }
                 if ((Mem.S32((0x80154028u + (uint)(0 * 4))) == 3))
                 {
-                    func_0040E958(func_0040ECB0((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id1C)), default(uint), default(uint)), 0);
+                    func_0040E958(UiTree_FindNode((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id1C)), default(uint), default(uint)), 0);
                     func_0042D4E4(sel, i, 622);
                 }
                 else
                 {
-                    w = func_0040ECB0((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id1C)), default(uint), default(uint));
+                    w = UiTree_FindNode((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id1C)), default(uint), default(uint));
                     new Q03Wid(w).unk10_Set((byte)(175));
                     func_0040E958(w, 1);
                     p = w;
@@ -111,23 +111,23 @@ public static partial class Game
                     }
                     new Q03Wid(p).unk38_Set((new Q03S53(Mem.U32(0x800E53C0u)).strD.P + (uint)(i * 25)));
                 }
-                w = func_0040ECB0((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id20)), default(uint), default(uint));
+                w = UiTree_FindNode((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id20)), default(uint), default(uint));
                 func_0040E958(w, 0);
                 new Q03Wid(w).unk10_Set((byte)(150));
-                w = func_0040ECB0((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id24)), default(uint), default(uint));
+                w = UiTree_FindNode((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id24)), default(uint), default(uint));
                 func_0040E958(w, 0);
                 new Q03Wid(w).unk10_Set((byte)(150));
                 if (((int)(new Q03Ent(e).f91) == 0))
                 {
                     if ((Mem.S32((new Q03S53(Mem.U32(0x800E53C0u)).unk110.P + (uint)(sel * 8))) != (-1)))
                     {
-                        w = func_0040ECB0((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id20)), default(uint), default(uint));
+                        w = UiTree_FindNode((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id20)), default(uint), default(uint));
                         func_0040E958(w, 1);
                         new Q03Wid(w).unk2C_Set(Mem.S32((0x800E4200u + (uint)(Mem.S32((new Q03S53(Mem.U32(0x800E53C0u)).unk110.P + (uint)(sel * 8))) * 4))));
                     }
                     if ((Mem.S32(((new Q03S53(Mem.U32(0x800E53C0u)).unk110.P + (uint)(sel * 8)) + 4u)) != (-1)))
                     {
-                        w = func_0040ECB0((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id24)), default(uint), default(uint));
+                        w = UiTree_FindNode((uint)(new Q03S53(Mem.U32(0x800E53C0u)).unkE0), (uint)((int)(new Q03Slot((0x800E5322u + (uint)(i * 40))).id24)), default(uint), default(uint));
                         func_0040E958(w, 1);
                         new Q03Wid(w).unk2C_Set(Mem.S32((0x800E4200u + (uint)(Mem.S32(((new Q03S53(Mem.U32(0x800E53C0u)).unk110.P + (uint)(sel * 8)) + 4u)) * 4))));
                     }

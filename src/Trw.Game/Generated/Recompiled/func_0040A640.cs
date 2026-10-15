@@ -46,7 +46,7 @@ public static partial class Game
                 r6 = r17;
                 r7 = r19;
                 Mem.Set((r29 + 16u), r18);
-                r4 = r16 + r2; r2 = (uint)func_0026593C(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                r4 = r16 + r2; r2 = (uint)Str_FormatRet3(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
                 r31 = Mem.U32((r29 + 40u));
                 r19 = Mem.U32((r29 + 36u));
                 r18 = Mem.U32((r29 + 32u));

@@ -17,7 +17,7 @@ public static partial class Game
                 float d1 = 0f;
                 float d2 = 0f;
                 float r = 0f;
-                func_002231B0(a, b, 0x800CE7E4u);
+                Player_UpdateViewTurn(a, b, 0x800CE7E4u);
                 if ((new Plr(a).unk7FC_ != 0u))
                 {
                     new Plr(a).unk7F4_Set((new Plr(a).unk7F4 + Mem.F32(0x800D2988u)));

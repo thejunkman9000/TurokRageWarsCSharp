@@ -12,8 +12,8 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0041994C", (uint)a, (uint)tbl);
             uint g = 0u;
             uint o = 0u;
-            g = func_0040ECB0((uint)((int)(func_00411E4C(func_0029A958()))), (uint)((a & 65535)), default(uint), default(uint));
-            func_00411E4C(func_0029A958());
+            g = UiTree_FindNode((uint)((int)(func_00411E4C(Ui_PushScreen()))), (uint)((a & 65535)), default(uint), default(uint));
+            func_00411E4C(Ui_PushScreen());
             o = func_00252FFC((uint)(100));
             func_002A1748(o, 0, (uint)(100));
             Mem.Set((o + (uint)14), (short)(2911));
@@ -36,7 +36,7 @@ public static partial class Game
             func_00419A5C(o, 0);
             func_00419A64(o, 0);
             func_00419A84(o, 0);
-            func_0040EE64(g, o, default(uint), default(uint));
+            UiTree_InsertBefore(g, o, default(uint), default(uint));
             return o;
         }
     }

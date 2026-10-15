@@ -27,7 +27,7 @@ public static partial class Game
                 uint bx = 0u;
                 uint bits = 0u;
                 uint bitsy = 0u;
-                w = func_0028FD94(list, 0);
+                w = Chunk_Get(list, 0);
                 obj = new R4Cx(cx).obj_;
                 new R4Cx(cx).flags_Set(Mem.U32(w));
                 fp = (int)((Mem.U32(w) & (uint)(4)));
@@ -49,7 +49,7 @@ public static partial class Game
                 }
                 fp = 1;
                 L_nofp: ;
-                p1 = func_0028FD94(list, 1);
+                p1 = Chunk_Get(list, 1);
                 do
                 {
                     op = Mem.U8(p1);

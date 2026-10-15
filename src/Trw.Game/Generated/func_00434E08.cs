@@ -32,7 +32,7 @@ public static partial class Game
                 }
                 if ((((((int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bE) == 0) && ((int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bD) == k)) && ((int)(new O05GameState(0x801462C8u).rec[(int)(i)].b0) == 1)) && ((int)(new O05GameState(0x801462C8u).rec[(int)(i)].b19) == 0)))
                 {
-                    uint w = func_0040ECB0(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fC, (uint)(id), default(uint), default(uint));
+                    uint w = UiTree_FindNode(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fC, (uint)(id), default(uint), default(uint));
                     ++n;
                     new O05Wd(w).f38_Set((0x80102B00u + (uint)(i * 400)));
                 }

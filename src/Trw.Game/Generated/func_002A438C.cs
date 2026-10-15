@@ -83,7 +83,7 @@ public static partial class Game
                 new Vec3f((_fp + 48u)).y_Set(new E438C(e).pos.y);
                 new Vec3f((_fp + 48u)).z_Set(new E438C(e).pos.z);
                 L_next: ;
-                func_002702EC(_fp, (new E438C(e).m28.P + (uint)(Mem.S32(0x800D297Cu) * 64)));
+                Math_MtxFloatToFixed(_fp, (new E438C(e).m28.P + (uint)(Mem.S32(0x800D297Cu) * 64)));
                 e = n;
                 n = new E438C(e).next_;
                 if ((e != 0u))
@@ -94,7 +94,7 @@ public static partial class Game
                 new Vec3f((_fp + 48u)).x_Set(new E438C(e).pos.x);
                 new Vec3f((_fp + 48u)).y_Set(new E438C(e).pos.y);
                 new Vec3f((_fp + 48u)).z_Set(new E438C(e).pos.z);
-                func_002702EC(_fp, (new E438C(e).m28.P + (uint)(Mem.S32(0x800D297Cu) * 64)));
+                Math_MtxFloatToFixed(_fp, (new E438C(e).m28.P + (uint)(Mem.S32(0x800D297Cu) * 64)));
             }
         }
         finally { Stack.Free(60); }

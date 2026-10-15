@@ -19,7 +19,7 @@ public static partial class Game
             for (i = 0; (i < 4); ++i)
             {
                 p = (0x8010F328u + (uint)(i * 548));
-                if (((int)(func_0026439C(p)) != 0))
+                if (((int)(Pad_IsConfirm(p)) != 0))
                 {
                     new Q4Pl(0x80146302u).b78_Set((byte)(1));
                     new Q4Pl(0x80146302u).b7F_Set((byte)(i));

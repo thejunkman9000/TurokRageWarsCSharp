@@ -110,7 +110,7 @@ public static partial class Game
                 r2 = r2 - r3;
                 r2 = (uint)(r2 < (uint)(3000) ? 1 : 0);
                 { bool c_ = r2 != 0; r4 = r5; if (c_) goto L_L0026D24C; }
-                r5 = r23; r2 = func_00269A80(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r23; r2 = Model_DrawGroups(r4, r5, r6, r7); r3 = Cpu.V1;
                 { bool c_ = r2 == 0; r6 = 3791650816u; if (c_) goto L_L0026D244; }
                 r6 = r6 | 28u;
                 r5 = 202899456u;
@@ -123,7 +123,7 @@ public static partial class Game
                 r2 = r2 + 8u;
                 Mem.Set((r16 + 0u), r2);
                 Mem.Set((r3 + 0u), r6);
-                Mem.Set((r3 + 4u), r5); func_00268CE0(r4);
+                Mem.Set((r3 + 4u), r5); Gfx_SetCombineMode(r4);
                 { bool c_ = r17 == 0; r2 = 3674603520u; if (c_) goto L_L0026CFE0; }
                 r3 = Mem.U32((r16 + 0u));
                 r2 = r2 | 4u; goto L_L0026CFEC;
@@ -169,7 +169,7 @@ public static partial class Game
                 r16 = Mem.U32((r18 + 0u));
                 { bool c_ = r7 != 0; r2 = 3674603520u; if (c_) goto L_L0026D098; }
                 r4 = r16;
-                r5 = r0; r2 = func_0028FD94(r4, (int)r5);
+                r5 = r0; r2 = Chunk_Get(r4, (int)r5);
                 r7 = r2;
                 r2 = 3674603520u;
                 L_L0026D098: ;
@@ -183,7 +183,7 @@ public static partial class Game
                 r3 = r3 + 8u;
                 Mem.Set((r16 + 0u), r3);
                 Mem.Set((r6 + 0u), r2);
-                Mem.Set((r6 + 4u), r7); r2 = func_0028FD94(r4, (int)r5);
+                Mem.Set((r6 + 4u), r7); r2 = Chunk_Get(r4, (int)r5);
                 r22 = r2;
                 r21 = Mem.U32((r22 + 0u));
                 { bool c_ = (int)r21 <= 0; r18 = r0; if (c_) goto L_L0026D244; }
@@ -191,10 +191,10 @@ public static partial class Game
                 r20 = 3724541952u;
                 r4 = r22;
                 L_L0026D0E4: ;
-                r5 = r18; r2 = func_0028FD94(r4, (int)r5);
+                r5 = r18; r2 = Chunk_Get(r4, (int)r5);
                 r17 = r2;
                 r4 = r17;
-                r5 = r0; r2 = func_0028FD94(r4, (int)r5);
+                r5 = r0; r2 = Chunk_Get(r4, (int)r5);
                 { bool c_ = r18 != 0; r16 = r2; if (c_) goto L_L0026D114; }
                 r4 = Mem.U32((r29 + 72u));
                 r5 = Mem.U32((r29 + 80u));
@@ -250,10 +250,10 @@ public static partial class Game
                 if (r8 == 0) { r18 = r18 + 1u; goto L_L0026D238; }
                 r4 = r16;
                 L_L0026D200: ;
-                r5 = r23; r2 = func_00269A80(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r23; r2 = Model_DrawGroups(r4, r5, r6, r7); r3 = Cpu.V1;
                 if (r2 == 0) { r18 = r18 + 1u; goto L_L0026D238; }
                 r4 = r17;
-                r5 = (uint)1; r2 = func_0028FD94(r4, (int)r5);
+                r5 = (uint)1; r2 = Chunk_Get(r4, (int)r5);
                 r3 = Mem.U32((r19 + 0u));
                 r4 = r3;
                 r3 = r3 + 8u;

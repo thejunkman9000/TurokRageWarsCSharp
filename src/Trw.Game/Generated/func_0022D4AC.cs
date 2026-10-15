@@ -16,7 +16,7 @@ public static partial class Game
                 Mem.Set((actor + (uint)4664), (-1));
                 Mem.Set((actor + (uint)4656), 0);
                 Mem.Set((actor + (uint)4652), (uint)((uint)(Mem.U32((actor + (uint)4652))) & (uint)((~32))));
-                func_0044A4C0(actor);
+                Player_Respawn(actor);
                 Mem.Set((actor + (uint)80), Mem.F32(0x800C7EB0u));
                 Mem.Set((actor + (uint)84), Mem.F32(0x800C7EB0u));
                 Mem.Set((actor + (uint)88), Mem.F32(0x800C7EB0u));

@@ -20,7 +20,7 @@ public static partial class Game
             }
             if (((int)(func_00222A80(p, (uint)((int)(new Player_v2(p).unk62E)), default(uint), default(uint))) == 0))
             {
-                if (((int)(func_002831FC(0x80121990u, p, default(uint), default(uint))) == 0))
+                if (((int)(Hud_DrawAmmoPips(0x80121990u, p, default(uint), default(uint))) == 0))
                 {
                     new Player_v2(p).unk770_Set((short)(func_0022F95C(p)));
                 }
@@ -29,7 +29,7 @@ public static partial class Game
             {
                 if (((func_002301E4(actor, state) == 0) && !((new Actor(actor).flags & (uint)(1024)) != 0u)))
                 {
-                    func_00214178(actor, state, id);
+                    Actor_DispatchEvent(actor, state, id);
                 }
             }
         }

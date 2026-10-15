@@ -104,7 +104,7 @@ public static partial class Game
                 r19 = (uint)3;
                 L_L00297EF0: ;
                 L_I00297EF0: ;
-                r2 = (uint)func_0029A958();
+                r2 = (uint)Ui_PushScreen();
                 L_I00297EF8: ;
                 r4 = r2; r2 = func_00411E4C((int)r4);
                 L_I00297F00: ;

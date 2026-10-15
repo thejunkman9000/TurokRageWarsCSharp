@@ -66,7 +66,7 @@ public static partial class Game
                         func_00246E34(b, default(uint), default(uint), default(uint));
                         if ((new O3Act(a).f4A0 != 0))
                         {
-                            func_00273860(new O3Act(a).mtx204.P, ((float)(new O3Act(a).f4A0) * 0.0174532942f));
+                            Math_MtxRotateRowsC_00273860(new O3Act(a).mtx204.P, ((float)(new O3Act(a).f4A0) * 0.0174532942f));
                         }
                     }
                     new O3Body(b).f6C_Set((new O3Act(a).f498 * 0.0174532942f));

@@ -18,7 +18,7 @@ public static partial class Game
                 int i = 0;
                 int found = 0;
                 uint e = 0u;
-                if ((func_0040E154((_fp + 56u), (_fp + 40u), n, (new O02Ctx(_fp).w.P + (uint)(0 * 4))) != 0))
+                if ((UiNode_ComputeRect((_fp + 56u), (_fp + 40u), n, (new O02Ctx(_fp).w.P + (uint)(0 * 4))) != 0))
                 {
                     {
                         int t = ((int)(Mem.U8((new O02Quad(n).col.P + (uint)(0 * 4)))) | (int)(Mem.U8((new O02Quad(n).col.P + (uint)(1 * 4)))));

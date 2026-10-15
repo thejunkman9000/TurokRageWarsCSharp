@@ -34,8 +34,8 @@ public static partial class Game
                     new DlCmd(d_3).w1_Set((uint)(0));
                 }
                 func_0026D8F8();
-                func_0026925C((uint)(14));
-                func_00268CE0((uint)(28));
+                Gfx_SetOtherModeL((uint)(14));
+                Gfx_SetCombineMode((uint)(28));
                 {
                     uint d_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
                     new DlCmd(d_4).w0_Set(3656973183u);

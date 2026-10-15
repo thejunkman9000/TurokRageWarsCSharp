@@ -19,7 +19,7 @@ public static partial class Game
             {
                 if (((Mem.F32(0x8013B184u) - Mem.F32(0x800C7F08u)) > Mem.F32((obj + (uint)12))))
                 {
-                    func_0021B1E4(actor, (uint)(Mem.S32((actor + (uint)1516))), (uint)(0), (uint)(0));
+                    Player_PlaceAtSpawn(actor, (uint)(Mem.S32((actor + (uint)1516))), (uint)(0), (uint)(0));
                 }
             }
             if ((func_0024E61C(obj) != 0))

@@ -41,11 +41,11 @@ public static partial class Game
                 Mem.Set((r29 + 308u), r19);
                 Mem.Set((r29 + 300u), r17);
                 Mem.Set((r29 + 296u), r16);
-                Mem.Set((r29 + 16u), r2); r2 = func_00278090(r4, r5, r6, r7, Mem.U32(r29 + 16u)); r3 = Cpu.V1;
+                Mem.Set((r29 + 16u), r2); r2 = Light_CollectVolumes(r4, r5, r6, r7, Mem.U32(r29 + 16u)); r3 = Cpu.V1;
                 r4 = r18;
                 r5 = r22;
                 r6 = r29 + 284u;
-                Mem.Set((r29 + 288u), r2); r2 = func_0028FDA8(r4, (int)r5, r6);
+                Mem.Set((r29 + 288u), r2); r2 = Chunk_GetWithSize(r4, (int)r5, r6);
                 r16 = r2;
                 r17 = Mem.U32((r16 + 4u));
                 { bool c_ = (int)r17 <= 0; r4 = r22; if (c_) goto L_L002785E0; }
@@ -111,7 +111,7 @@ public static partial class Game
                 L_L002786A0: ;
                 r4 = r19; r2 = memcpy(r4, r5, r6);
                 r4 = r18;
-                r5 = (uint)1; r2 = func_0028FD94(r4, (int)r5);
+                r5 = (uint)1; r2 = Chunk_Get(r4, (int)r5);
                 r3 = r2;
                 r2 = Mem.U32((r3 + 4u));
                 { bool c_ = r2 == 0;  if (c_) goto L_L00278754; }
@@ -168,7 +168,7 @@ public static partial class Game
                 r2 = Mem.U32((r16 + 5384u));
                 r16 = r16 + 12u;
                 r4 = Mem.U32((r2 + 0u));
-                r17 = r17 + 1u; r2 = func_0028FD94(r4, (int)r5);
+                r17 = r17 + 1u; r2 = Chunk_Get(r4, (int)r5);
                 r3 = Mem.U32((r2 + 4u));
                 r2 = Mem.U32((r20 + 5376u));
                 r2 = (uint)((int)r17 < (int)r2 ? 1 : 0);
@@ -187,7 +187,7 @@ public static partial class Game
                 r2 = 2148597760u;
                 r2 = r2 + 24112u;
                 Mem.Set((r29 + 16u), r2);
-                Mem.Set((r29 + 20u), r30); func_00277620(r4, (int)r5, r6, r7, Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
+                Mem.Set((r29 + 20u), r30); Light_TestVertexVolumes(r4, (int)r5, r6, r7, Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
                 L_L002787FC: ;
                 r5 = 2148597760u;
                 r5 = r5 + 24112u;

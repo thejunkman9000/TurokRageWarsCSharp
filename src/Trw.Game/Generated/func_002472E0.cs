@@ -39,15 +39,15 @@ public static partial class Game
                         return;
                     }
                 }
-                r = func_002518DC(0, (uint)(new B10Obj(o).fC8), new B10Obj(o).fC8, (uint)(((((int)(new B10Obj(o).bE6) * 4) + 15) & (~7))), 4, (uint)(0), (uint)(0), 0x800C8A24u, 0);
+                r = ResourceCache_Hash(0, (uint)(new B10Obj(o).fC8), new B10Obj(o).fC8, (uint)(((((int)(new B10Obj(o).bE6) * 4) + 15) & (~7))), 4, (uint)(0), (uint)(0), 0x800C8A24u, 0);
                 s3 = (o + 260u);
                 if ((r != 0u))
                 {
                     s2 = new B10Obj(o).an118.P;
-                    func_00261690(s3, (uint)((int)(Mem.U32(r))), (uint)(new B10Obj(o).fC8), (uint)(1), (_fp + 128u), s2);
+                    Anim_SwitchClip(s3, (uint)((int)(Mem.U32(r))), (uint)(new B10Obj(o).fC8), (uint)(1), (_fp + 128u), s2);
                     if ((func_002624F8(s3) != 0))
                     {
-                        func_0026195C(s3, _fp, (_fp + 132u), o);
+                        Anim_SampleTrack(s3, _fp, (_fp + 132u), o);
                         fs0 = Mem.F32((_fp + 132u));
                         Mem.Copy((_fp + 32u), _fp, 12);
                         if (((Mem.S32((_fp + 128u)) != 0) && ((int)(new B10An(s2).h4) != (-1))))
@@ -68,7 +68,7 @@ public static partial class Game
                         }
                         if (((new B10Obj(o).flags100 & (uint)(1024)) != 0u))
                         {
-                            func_00261690(s2, (uint)((int)(Mem.U32(r))), (uint)(new B10Obj(o).fC8), (uint)(0), 0u, 0u);
+                            Anim_SwitchClip(s2, (uint)((int)(Mem.U32(r))), (uint)(new B10Obj(o).fC8), (uint)(0), 0u, 0u);
                             if ((func_002624F8(s2) != 0))
                             {
                                 fv0 = (new B10Obj(o).f134 + Mem.F32(0x800D2988u));
@@ -84,7 +84,7 @@ public static partial class Game
                                     ft0 = (float)(new B10Obj(o).b138);
                                     t = (fv0 / (fv1f + Mem.F32(0x800D2988u)));
                                     new B10Obj(o).f130_Set((((((((fv1 + Mem.F32(0x800C8A38u)) + ft0) * t) * t) * t) + ((((Mem.F32(0x800C8A3Cu) - fv1) - (2.0f * ft0)) * t) * t)) + (ft0 * t)));
-                                    func_0026195C(new B10Obj(o).an118.P, (_fp + 16u), (_fp + 136u), o);
+                                    Anim_SampleTrack(new B10Obj(o).an118.P, (_fp + 16u), (_fp + 136u), o);
                                     func_00272038((_fp + 32u), new B10Obj(o).f130, (_fp + 16u), _fp);
                                     fs0 = func_00273F54(new B10Obj(o).f130, Mem.F32((_fp + 136u)), Mem.F32((_fp + 132u)));
                                 }

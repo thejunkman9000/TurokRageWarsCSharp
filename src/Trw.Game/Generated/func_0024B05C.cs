@@ -38,7 +38,7 @@ public static partial class Game
                 {
                     return 0;
                 }
-                t = func_0028FD94((uint)(Mem.S32(h)), 5);
+                t = Chunk_Get((uint)(Mem.S32(h)), 5);
                 n = new M03Tbl(t).count;
                 bestd = Mem.F32(0x800C8BD0u);
                 best = 0u;

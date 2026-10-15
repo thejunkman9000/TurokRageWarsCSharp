@@ -17,17 +17,17 @@ public static partial class Game
             }
             if ((idx != new Obj(a).unkD8))
             {
-                h = func_002518DC(0, (uint)(new Obj(a).unkCC), new Obj(a).unkCC, (uint)(new Obj(a).unkD4), 0, (uint)(0), 0u, 0x800C8C18u, 1);
+                h = ResourceCache_Hash(0, (uint)(new Obj(a).unkCC), new Obj(a).unkCC, (uint)(new Obj(a).unkD4), 0, (uint)(0), 0u, 0x800C8C18u, 1);
                 if ((h != 0u))
                 {
-                    new Obj(a).unkDC_Set((int)(func_0028FE1C((uint)(Mem.S32(h)), (uint)(new Obj(a).unkCC), (idx % Mem.S32((uint)(Mem.S32(h)))), (a + 224u))));
+                    new Obj(a).unkDC_Set((int)(Resource_GetCartridgeKey((uint)(Mem.S32(h)), (uint)(new Obj(a).unkCC), (idx % Mem.S32((uint)(Mem.S32(h)))), (a + 224u))));
                     new Obj(a).unkD8_Set(idx);
                     func_002536F4(0, h);
                 }
             }
             if ((new Obj(a).unkDC != 0))
             {
-                return func_002518DC(0, (uint)(new Obj(a).unkDC), new Obj(a).unkDC, (uint)(new Obj(a).unkE0), 0, (uint)(0), 0x0026D814u, 0x800C8C2Cu, 0);
+                return ResourceCache_Hash(0, (uint)(new Obj(a).unkDC), new Obj(a).unkDC, (uint)(new Obj(a).unkE0), 0, (uint)(0), 0x0026D814u, 0x800C8C2Cu, 0);
             }
             return 0u;
         }

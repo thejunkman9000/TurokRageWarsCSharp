@@ -19,14 +19,14 @@ public static partial class Game
             }
             if (((int)(new O06A2(b).unk0) == 1))
             {
-                if (((func_002643A8(new O06A2(b).unk20) != 0) && (new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0 > 0)))
+                if (((Pad_IsLeft(new O06A2(b).unk20) != 0) && (new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0 > 0)))
                 {
                     new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0_Set((int)(new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0 - 1));
                     new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk4_Set((float)(0));
                 }
                 else
                 {
-                    if (((func_002643C0(new O06A2(b).unk20) != 0) && (new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0 < new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk8)))
+                    if (((Pad_IsRight(new O06A2(b).unk20) != 0) && (new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0 < new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk8)))
                     {
                         new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0_Set((int)(new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0 + 1));
                         new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk4_Set((float)(0));

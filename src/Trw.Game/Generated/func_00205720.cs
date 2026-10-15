@@ -120,7 +120,7 @@ public static partial class Game
             {
                 Mem.Copy(_fp + 0u, v_in, 12);
                 if (Dbg.On) Dbg.Enter("func_00205720_callB", (uint)sp, (uint)own, (uint)v_in);
-                new S5Own(own).count_Set((int)((int)(new S5Own(own).count) - func_00280094(0x80121990u, sp, sp, (own + 292u), 0, p70, new S5Spawn(sp).v1C.P, new S5Spawn(sp).q.P, _fp, 0, (-1), 0)));
+                new S5Own(own).count_Set((int)((int)(new S5Own(own).count) - Effect_SpawnFromTemplates(0x80121990u, sp, sp, (own + 292u), 0, p70, new S5Spawn(sp).v1C.P, new S5Spawn(sp).q.P, _fp, 0, (-1), 0)));
             }
         }
         finally { Stack.Free(12); }
@@ -160,7 +160,7 @@ public static partial class Game
                 switch (new S5Info(info).kind)
                 {
                 case 0:
-                    p = func_0028CF48(0x8011FE88u, (int)(new S5Info(info).id16));
+                    p = Level_GetDefinition(0x8011FE88u, (int)(new S5Info(info).id16));
                     switch (Mem.S32(p))
                     {
                     case 8:

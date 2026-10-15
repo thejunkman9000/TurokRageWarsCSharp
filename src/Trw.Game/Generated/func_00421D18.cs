@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00421D18");
             int n = 0;
             func_0029A73C();
-            switch (func_0029AA08())
+            switch (Menu_GetMessage())
             {
             case 932:
                 n = 0;

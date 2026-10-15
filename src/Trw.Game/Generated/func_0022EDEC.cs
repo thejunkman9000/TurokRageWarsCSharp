@@ -25,8 +25,8 @@ public static partial class Game
             }
             func_00218464();
             Mem.Set((actor + (uint)4532), 0);
-            func_00214178((actor + (uint)744), (actor + (uint)1112), 1);
-            func_0021B1E4(actor, (uint)(Mem.S32((actor + (uint)1516))), (uint)(0), (uint)(1));
+            Actor_DispatchEvent((actor + (uint)744), (actor + (uint)1112), 1);
+            Player_PlaceAtSpawn(actor, (uint)(Mem.S32((actor + (uint)1516))), (uint)(0), (uint)(1));
             func_002266E4(actor);
         }
     }

@@ -120,7 +120,7 @@ public static partial class Game
                 fcc = Cpu.S(1) <= Cpu.S(0);
                 { bool c_ = !fcc; r4 = r16; if (c_) goto L_L00204A50; }
                 r5 = r17;
-                r6 = (uint)1; r2 = (uint)func_00214178(r4, r5, (int)r6);
+                r6 = (uint)1; r2 = (uint)Actor_DispatchEvent(r4, r5, (int)r6);
                 L_L00204A50: ;
                 r31 = Mem.U32((r29 + 52u));
                 r18 = Mem.U32((r29 + 48u));

@@ -14,7 +14,7 @@ public static partial class Game
             uint root = Mem.U32(p);
             if ((node == 0u))
             {
-                node = func_0028FD94(root, 0);
+                node = Chunk_Get(root, 0);
             }
             if ((((Mem.U32(0x8011064Cu) != p) || (Mem.S32(0x80110624u) != key)) || (Mem.S32(0x80110640u) == 32)))
             {

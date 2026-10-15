@@ -55,7 +55,7 @@ public static partial class Game
                                 {
                                     yy = func_0022A590(0x80145040u, (int)(o));
                                     xx = Mem.S32(0x800D70E8u);
-                                    func_002398F8(0x80145088u, new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C80B4u));
+                                    Hud_SpawnTextLineA(0x80145088u, new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C80B4u));
                                 }
                             }
                             ok = t;
@@ -71,7 +71,7 @@ public static partial class Game
                         if (((int)(new M2Own(o).unk5F6) >= 50))
                         {
                             func_0025DE74(2851, pv, (int)(pv), (int)(o));
-                            func_00214178(a, s, 5);
+                            Actor_DispatchEvent(a, s, 5);
                             return;
                         }
                         func_0025DF54(3405);
@@ -79,7 +79,7 @@ public static partial class Game
                         {
                             yy = func_0022A590(0x80145040u, (int)(o));
                             xx = Mem.S32(0x800D70E8u);
-                            func_002398F8((0x80145040u + (uint)72), new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C80B8u));
+                            Hud_SpawnTextLineA((0x80145040u + (uint)72), new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C80B8u));
                         }
                         new M2St(s).unk13C_Set(st);
                         return;
@@ -90,7 +90,7 @@ public static partial class Game
             {
                 if (!((new M2Act(a).flags & (uint)(1024)) != 0u))
                 {
-                    func_00214178(a, s, kind);
+                    Actor_DispatchEvent(a, s, kind);
                 }
             }
             else

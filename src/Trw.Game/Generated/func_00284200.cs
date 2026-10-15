@@ -33,7 +33,7 @@ public static partial class Game
                             func_0027200C((_fp + 32u), (_fp + 16u), ((float)(i) / k));
                             func_00271FA4((_fp + 32u), (_fp + 32u), (o + (uint)360));
                             idv = (uint)(new B19Obj(o).id);
-                            func_00280094(g, o, (uint)(new B19Obj(o).unk12C), new B19Obj(o).unk130_, (int)(new B19Obj(o).unk134), (int)(idv), (_fp + 48u), _fp, (_fp + 32u), 0, (-1), 2154497);
+                            Effect_SpawnFromTemplates(g, o, (uint)(new B19Obj(o).unk12C), new B19Obj(o).unk130_, (int)(new B19Obj(o).unk134), (int)(idv), (_fp + 48u), _fp, (_fp + 32u), 0, (-1), 2154497);
                             ++i;
                         }
                         while ((i <= n));

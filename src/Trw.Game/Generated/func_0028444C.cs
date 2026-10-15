@@ -31,9 +31,9 @@ public static partial class Game
             {
                 return 0u;
             }
-            func_00255E78(new B19Owner(owner).la.P, o, default(uint), default(uint));
+            List_Remove(new B19Owner(owner).la.P, o, default(uint), default(uint));
             m = (new B19Owner(owner).slot.P + (uint)((a & 255) * 20));
-            func_00255C58(m, o);
+            List_Add(m, o);
             new B19Obj(o).slotp__Set(m);
             new B19Obj(o).next2__Set(0u);
             new B19Obj(o).unk1F0_Set(0);

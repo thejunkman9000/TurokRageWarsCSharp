@@ -25,7 +25,7 @@ public static partial class Game
             {
                 return 0.0f;
             }
-            r = func_00274640((dx / len));
+            r = Math_Acosf((dx / len));
             if (!(dz < 0.0f))
             {
                 r = (-r);

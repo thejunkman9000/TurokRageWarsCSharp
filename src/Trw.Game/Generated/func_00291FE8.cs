@@ -79,7 +79,7 @@ public static partial class Game
                 do
                 {
                     new_var = Mem.U32((names + (uint)(i * 4)));
-                    func_002A9F18(new_var, x, y, 255, 1, 1, 1.0f, 1.0f);
+                    Text_Draw(new_var, x, y, 255, 1, 1, 1.0f, 1.0f);
                     ++i;
                     y = (int)(((float)(y) + ((float)(lineh) * sy)));
                 }

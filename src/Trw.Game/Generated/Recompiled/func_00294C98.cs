@@ -51,7 +51,7 @@ public static partial class Game
                 Mem.Set((r1 - 20776u), r0);
                 r1 = 2148859904u;
                 Mem.Set((r1 - 20784u), r0);
-                r7 = r29 + 40u; r2 = func_0028FE1C(r4, r5, (int)r6, r7);
+                r7 = r29 + 40u; r2 = Resource_GetCartridgeKey(r4, r5, (int)r6, r7);
                 r4 = r0;
                 r5 = r2 - 1u;
                 r6 = r2;
@@ -67,14 +67,14 @@ public static partial class Game
                 r2 = r2 - 23088u;
                 Mem.Set((r29 + 28u), r2);
                 r2 = (uint)1;
-                Mem.Set((r29 + 32u), r2); r2 = func_002518DC((int)r4, r5, (int)r6, r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u));
+                Mem.Set((r29 + 32u), r2); r2 = ResourceCache_Hash((int)r4, r5, (int)r6, r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u));
                 r22 = r2;
                 r19 = Mem.U32((r22 + 0u));
                 r5 = (uint)1;
-                r4 = r19; r2 = func_0028FD94(r4, (int)r5);
+                r4 = r19; r2 = Chunk_Get(r4, (int)r5);
                 r4 = r19;
                 r5 = (uint)2;
-                r18 = r2; r2 = func_0028FD94(r4, (int)r5);
+                r18 = r2; r2 = Chunk_Get(r4, (int)r5);
                 r3 = Mem.U32((r16 + 4u));
                 { bool c_ = (int)r3 >= 0; r21 = r2; if (c_) goto L_L00294DA8; }
                 r6 = r16 + 4u;
@@ -111,13 +111,13 @@ public static partial class Game
                 r16 = hi;
                 r4 = r18;
                 Mem.Set((r17 + 12u), r22);
-                r5 = r20; r2 = func_0028FD94(r4, (int)r5);
+                r5 = r20; r2 = Chunk_Get(r4, (int)r5);
                 r4 = r21;
                 Mem.Set((r17 + 20u), r2);
-                r5 = r16; r2 = func_0028FD94(r4, (int)r5);
+                r5 = r16; r2 = Chunk_Get(r4, (int)r5);
                 r4 = r19;
                 r5 = r0;
-                Mem.Set((r17 + 24u), r2); r2 = func_0028FD94(r4, (int)r5);
+                Mem.Set((r17 + 24u), r2); r2 = Chunk_Get(r4, (int)r5);
                 Mem.Set((r17 + 8484u), r21);
                 Mem.Set((r17 + 16u), r2);
                 Mem.Set((r17 + 8u), r0);
@@ -127,7 +127,7 @@ public static partial class Game
                 r2 = (uint)4;
                 { bool c_ = r3 != r2; r21 = r20; if (c_) goto L_L00294ECC; }
                 r4 = r19;
-                r5 = (uint)3; r2 = func_0028FD94(r4, (int)r5);
+                r5 = (uint)3; r2 = Chunk_Get(r4, (int)r5);
                 r17 = r2;
                 r16 = r0;
                 r19 = (uint)46;

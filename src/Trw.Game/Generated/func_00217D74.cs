@@ -48,7 +48,7 @@ public static partial class Game
             L_blk15: ;
             s0v = new B04Roster(o).w388;
             if (!((s0v == (-1)))) goto _f8;
-            v = (int)(func_00217B3C(p, default(uint), default(uint), default(uint)));
+            v = (int)(WeaponMenu_StickDirection8(p, default(uint), default(uint), default(uint)));
             if (!((v != new B04Roster(o).w390))) goto _f9;
             if (!((v != s0v))) goto _f10;
             e = (o + (uint)(v * 24));

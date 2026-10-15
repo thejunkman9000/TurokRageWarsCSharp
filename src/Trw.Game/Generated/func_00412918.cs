@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00412918", (uint)id, (uint)a, (uint)b, (uint)c);
-            uint p = func_0040ECB0(func_00411E4C(func_0029A958()), (uint)((ushort)(id)), default(uint), default(uint));
+            uint p = UiTree_FindNode(func_00411E4C(Ui_PushScreen()), (uint)((ushort)(id)), default(uint), default(uint));
             Mem.Set((new S_func_00412918(p).f44 + (uint)((a * (int)(new S_func_00412918(p).b4B)) + b)), c);
             Mem.Set(((new S_func_00412918(p).f44 + (uint)((a * (int)(new S_func_00412918(p).b4B)) + b)) + 4u), d);
         }

@@ -19,7 +19,7 @@ public static partial class Game
                 byte t = 0;
                 int e = 0;
                 float fs0 = 0f;
-                s2 = (int)(func_0028CF48(0x8011FE88u, (int)(new B11Spawn(p).u22)));
+                s2 = (int)(Level_GetDefinition(0x8011FE88u, (int)(new B11Spawn(p).u22)));
                 if (((int)(new B11Spawn(p).u20) == 65535))
                 {
                     s1 = 0;

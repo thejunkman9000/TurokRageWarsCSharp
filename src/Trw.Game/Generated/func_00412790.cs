@@ -14,8 +14,8 @@ public static partial class Game
             uint n = 0u;
             uint root = 0u;
             int size = 0;
-            parent = func_0040ECB0(func_00411E4C(func_0029A958()), (uint)((ushort)(id)), default(uint), default(uint));
-            root = func_00411E4C(func_0029A958());
+            parent = UiTree_FindNode(func_00411E4C(Ui_PushScreen()), (uint)((ushort)(id)), default(uint), default(uint));
+            root = func_00411E4C(Ui_PushScreen());
             n = func_00252FFC((uint)(96));
             func_002A1748(n, 0, (uint)(96));
             Mem.Copy(new S_node(n).h.P, new S_node(parent).h.P, 44);
@@ -33,7 +33,7 @@ public static partial class Game
             size = (((int)(a) * (int)(b)) * 8);
             new S_node(n).f44_Set(func_00252FFC((uint)(size)));
             func_002A1748(new S_node(n).f44, 0, (uint)(size));
-            func_0040EDB8(root, 0u, parent, n);
+            UiTree_ReplaceRefsCopyLinks(root, 0u, parent, n);
             return 1;
         }
     }

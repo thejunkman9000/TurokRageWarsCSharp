@@ -41,7 +41,7 @@ public static partial class Game
                 }
                 if ((new B18Actor(o).unk110 == 0))
                 {
-                    p = func_002518DC(0, (uint)(new B18Actor(o).unk118.unk14), new B18Actor(o).unk118.unk14, (uint)(24), 0, (uint)(0), 0u, 0x800C9E28u, 1);
+                    p = ResourceCache_Hash(0, (uint)(new B18Actor(o).unk118.unk14), new B18Actor(o).unk118.unk14, (uint)(24), 0, (uint)(0), 0u, 0x800C9E28u, 1);
                     if ((p != 0u))
                     {
                         s1 = func_0028FE08((uint)(Mem.S32(p)), new B18Actor(o).unk118.unk14, 1);
@@ -49,7 +49,7 @@ public static partial class Game
                         q = func_00254094(0, (_fp + 12u), s1, 0x800C9E40u, 1);
                         if ((q != 0u))
                         {
-                            new B18Actor(o).unk110_Set((int)(func_0028FE1C(Mem.U32((_fp + 12u)), (uint)(s1), (zero % Mem.S32(Mem.U32((_fp + 12u)))), (o + 276u))));
+                            new B18Actor(o).unk110_Set((int)(Resource_GetCartridgeKey(Mem.U32((_fp + 12u)), (uint)(s1), (zero % Mem.S32(Mem.U32((_fp + 12u)))), (o + 276u))));
                             func_002537D8(0, q);
                         }
                     }
@@ -58,7 +58,7 @@ public static partial class Game
                         return;
                     }
                 }
-                p = func_002518DC(0, (uint)(new B18Actor(o).unk110), new B18Actor(o).unk110, (uint)(new B18Actor(o).unk114), 0, (uint)(0), 0x0026D7F4u, 0x800C9E58u, 1);
+                p = ResourceCache_Hash(0, (uint)(new B18Actor(o).unk110), new B18Actor(o).unk110, (uint)(new B18Actor(o).unk114), 0, (uint)(0), 0x0026D7F4u, 0x800C9E58u, 1);
                 if ((p != 0u))
                 {
                     func_0026DC24(p, s3, 0, (int)((o + (uint)((Mem.S32(0x800D297Cu) * 24) + 224))), (uint)(0), (-1));

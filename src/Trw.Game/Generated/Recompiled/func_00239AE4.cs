@@ -32,9 +32,9 @@ public static partial class Game
                 { bool c_ = r17 == 0; r4 = r18 + 3648u; if (c_) goto L_L00239B38; }
                 L_L00239B14: ;
                 r16 = Mem.U32((r17 + 0u));
-                r5 = r17; r2 = func_00255E78(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r17; r2 = List_Remove(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r19 + 3876u;
-                r5 = r17; func_00255C58(r4, r5);
+                r5 = r17; List_Add(r4, r5);
                 r17 = r16;
                 { bool c_ = r17 != 0; r4 = r18 + 3648u; if (c_) goto L_L00239B14; }
                 L_L00239B38: ;

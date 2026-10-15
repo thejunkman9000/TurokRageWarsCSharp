@@ -18,14 +18,14 @@ public static partial class Game
             {
                 func_00279578(new S7Pools(o).list.P, (new S7Pools(o).items.P + (uint)(i * 184)));
             }
-            func_00255C40(new S7Pools(o).queue.P, 0, 4);
+            List_Init(new S7Pools(o).queue.P, 0, 4);
             for (i = 0; (i < 10); ++i)
             {
-                func_00255C40((new S7Pools(o).lists.P + (uint)(i * 20)), 0, 4);
+                List_Init((new S7Pools(o).lists.P + (uint)(i * 20)), 0, 4);
             }
             for (i = 0; (i < 100); ++i)
             {
-                func_00255CB4(new S7Pools(o).queue.P, (new S7Pools(o).nodesC.P + (uint)(i * 80)), default(uint), default(uint));
+                List_Append_00255CB4(new S7Pools(o).queue.P, (new S7Pools(o).nodesC.P + (uint)(i * 80)), default(uint), default(uint));
             }
             new S7Pools(o).unk0_Set(0);
             new S7Pools(o).unk2588_Set(0);

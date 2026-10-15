@@ -52,7 +52,7 @@ public static partial class Game
                 Mem.Set(nout, 0);
                 return;
             }
-            set = func_0028FD94((uint)(Mem.S32(new B19Ent12(found).pp)), 2);
+            set = Chunk_Get((uint)(Mem.S32(new B19Ent12(found).pp)), 2);
             @base = new B19Set(set).it.P;
             cnt2 = new B19Set(set).cnt;
             for (i = 0; (i < cnt2); ++i)

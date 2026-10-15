@@ -25,7 +25,7 @@ public static partial class Game
                 func_002725BC(new Actor_v2(a).pos.P, 2.0E+4f);
                 func_002734B8(_fp, new Actor_v2(a).pos.x, (new Actor_v2(a).pos.y + new Actor_v2(a).f198), new Actor_v2(a).pos.z);
                 func_00273DDC(_fp);
-                func_002702EC(_fp, (new Actor_v2(a).mtx.P + (uint)(Mem.S32(0x800D297Cu) * 64)));
+                Math_MtxFloatToFixed(_fp, (new Actor_v2(a).mtx.P + (uint)(Mem.S32(0x800D297Cu) * 64)));
             }
         }
         finally { Stack.Free(64); }

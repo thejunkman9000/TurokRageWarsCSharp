@@ -43,9 +43,9 @@ public static partial class Game
                 r5 = r18 + 28u; func_0027335C(r4, r5);
                  goto L_L002A3644;
                 L_L002A3630: ;
-                r5 = r18 + 40u; func_002702EC(r4, r5);
+                r5 = r18 + 40u; Math_MtxFloatToFixed(r4, r5);
                 r4 = r17;
-                r5 = r18 + 104u; func_002702EC(r4, r5);
+                r5 = r18 + 104u; Math_MtxFloatToFixed(r4, r5);
                 L_L002A3644: ;
                 r17 = Mem.U32((r16 + 0u));
                 Mem.Set((r16 + 172u), r0);

@@ -31,7 +31,7 @@ public static partial class Game
                         new B10Q4((_fp + 32u)).y_Set(s);
                         new B10Q4((_fp + 32u)).z_Set(0.0f);
                         new B10Q4((_fp + 32u)).w_Set(cosf(k));
-                        func_00274108(_fp, (_fp + 32u), new B10Pq(pl).q140.P);
+                        Quat_Multiply(_fp, (_fp + 32u), new B10Pq(pl).q140.P);
                     }
                     else
                     {
@@ -43,7 +43,7 @@ public static partial class Game
                         new B10Q4((_fp + 32u)).y_Set(s);
                         new B10Q4((_fp + 32u)).z_Set(0.0f);
                         new B10Q4((_fp + 32u)).w_Set(cosf(k));
-                        func_00274108(_fp, (_fp + 32u), (_fp + 80u));
+                        Quat_Multiply(_fp, (_fp + 32u), (_fp + 80u));
                     }
                 }
                 else
@@ -62,9 +62,9 @@ public static partial class Game
                         new B10Q4((_fp + 32u)).z_Set(0.0f);
                         Mem.Set(0x80115DECu, s);
                         new B10Q4((_fp + 32u)).w_Set(cosf(((new B10Obj(o).f6C + Mem.F32(0x800C8A4Cu)) * Mem.F32(0x800C8A48u))));
-                        func_00274108((_fp + 48u), (_fp + 16u), (_fp + 32u));
+                        Quat_Multiply((_fp + 48u), (_fp + 16u), (_fp + 32u));
                         func_00203848((_fp + 64u), o, (o + 368u));
-                        func_00274108(_fp, (_fp + 48u), (_fp + 64u));
+                        Quat_Multiply(_fp, (_fp + 48u), (_fp + 64u));
                     }
                     else
                     {
@@ -74,7 +74,7 @@ public static partial class Game
                         new B10Q4((_fp + 32u)).z_Set(0.0f);
                         Mem.Set(0x80115DECu, s);
                         new B10Q4((_fp + 32u)).w_Set(cosf(((new B10Obj(o).f6C + Mem.F32(0x800C8A50u)) * Mem.F32(0x800C8A54u))));
-                        func_00274108(_fp, (_fp + 32u), (o + 92u));
+                        Quat_Multiply(_fp, (_fp + 32u), (o + 92u));
                     }
                 }
                 Mem.Copy(@out, _fp, 16);

@@ -52,7 +52,7 @@ public static partial class Game
                             new B05Obj4(o).unk170_Set((int)((int)(new B05Obj4(o).unk170) | 512));
                         }
                         new B05Obj4(o).unk1A5_Set((sbyte)((-1)));
-                        func_00214178(o, (o + (uint)368), 52);
+                        Actor_DispatchEvent(o, (o + (uint)368), 52);
                     }
                     else
                     {

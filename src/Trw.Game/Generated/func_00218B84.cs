@@ -37,7 +37,7 @@ public static partial class Game
             Mem.Set((p + (uint)1648), Mem.F32(0x800C7388u));
             new B04Act(p).unk11B4_Set(1);
             Mem.Set((p + (uint)4536), 1);
-            v = func_00218988(p);
+            v = TeamMenu_StickDirection4(p);
             if (!((v != new B04Mn3(o).w70))) goto _f5;
             if (!((v != (-1)))) goto _f6;
             e = (o + (uint)(v * 20));
@@ -77,19 +77,19 @@ public static partial class Game
             Mem.Set((p + (uint)4536), 0);
             switch ((int)(new B04Act(p).stats.unk92)) { case 0: goto _f19; case 1: goto _f20; case 2: goto _f21; case 3: goto _f22; default: goto _f18; }
             _f19: ;
-            func_00237E70(0x80145088u, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D7194u)));
+            Hud_PostMessage(0x80145088u, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D7194u)));
             a0 = 742;
             goto L_blk38;
             _f20: ;
-            func_00237E70(0x80145088u, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D7198u)));
+            Hud_PostMessage(0x80145088u, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D7198u)));
             a0 = 740;
             goto L_blk38;
             _f21: ;
-            func_00237E70(0x80145088u, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D719Cu)));
+            Hud_PostMessage(0x80145088u, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D719Cu)));
             a0 = 744;
             goto L_blk38;
             _f22: ;
-            func_00237E70(0x80145088u, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D71A0u)));
+            Hud_PostMessage(0x80145088u, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D71A0u)));
             a0 = 748;
             L_blk38: ;
             func_0025DF54(a0);

@@ -14,7 +14,7 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_002AC398");
                 func_002A94E8();
-                func_002A9700();
+                Gfx_LoadTexImage16();
                 func_002ABB58(Mem.F32(0x800CB3E8u), Mem.F32(0x800CB3E8u));
                 func_002ABB2C(255, 255, 255, 200, 200, 200);
             }

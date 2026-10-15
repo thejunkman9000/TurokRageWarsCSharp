@@ -82,7 +82,7 @@ public static partial class Game
                 }
                 goto L_ret1;
             case 12:
-                if (((int)(func_002831FC(0x80121990u, o, default(uint), default(uint))) < 3))
+                if (((int)(Hud_DrawAmmoPips(0x80121990u, o, default(uint), default(uint))) < 3))
                 {
                     goto L_ret1;
                 }

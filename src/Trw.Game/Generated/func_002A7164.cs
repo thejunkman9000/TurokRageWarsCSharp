@@ -40,7 +40,7 @@ public static partial class Game
                         }
                         else
                         {
-                            func_002702EC(_fp, (new EmitNode(n).mtx.P + (uint)(Mem.S32(0x800D297Cu) * 64)));
+                            Math_MtxFloatToFixed(_fp, (new EmitNode(n).mtx.P + (uint)(Mem.S32(0x800D297Cu) * 64)));
                         }
                     }
                     new EmitNode(n).unk8_Set(Mem.F32((new Emit(e).def_ + (uint)8)));

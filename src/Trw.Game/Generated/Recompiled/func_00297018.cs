@@ -43,7 +43,7 @@ public static partial class Game
                 r2 = (uint)(r16 < r17 ? 1 : 0);
                 { bool c_ = r2 == 0; r4 = r18; if (c_) goto L_L00297178; }
                 L_L00297074: ;
-                r5 = r16; r2 = func_0028FD94(r4, (int)r5);
+                r5 = r16; r2 = Chunk_Get(r4, (int)r5);
                 r4 = r20;
                 r5 = r2; func_00263100(r4, r5);
                 r4 = r20;
@@ -92,7 +92,7 @@ public static partial class Game
                 L_L00297178: ;
                 { bool c_ = r16 != r17; r19 = r0; if (c_) goto L_L0029719C; }
                 r4 = r18;
-                r5 = r0; r2 = func_0028FD94(r4, (int)r5);
+                r5 = r0; r2 = Chunk_Get(r4, (int)r5);
                 r4 = r20;
                 r5 = r2; func_00263100(r4, r5);
                 r19 = r0;

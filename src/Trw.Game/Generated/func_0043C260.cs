@@ -20,7 +20,7 @@ public static partial class Game
                 s = new O06A_v36(a).unk14;
                 v = 0x801450C8u;
                 func_002A94E8();
-                func_0026925C((uint)(21));
+                Gfx_SetOtherModeL((uint)(21));
                 f1 = 1.0f;
                 f0 = f1;
                 switch (Mem.S32(0x800E28D8u))
@@ -43,7 +43,7 @@ public static partial class Game
                 g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
                 new O06Gfx(g).w0_Set(4194304000u);
                 new O06Gfx(g).w1_Set(3758096639u);
-                func_002ABC18(new O06A_v36(a).unk0, s, (short)((int)(new O06V_v2(v).unk2A4)), (short)((int)(new O06V_v2(v).unk2A8)), (f0 * 9.0f), (f1 * 4.0f), 1);
+                Sprite_Draw(new O06A_v36(a).unk0, s, (short)((int)(new O06V_v2(v).unk2A4)), (short)((int)(new O06V_v2(v).unk2A8)), (f0 * 9.0f), (f1 * 4.0f), 1);
             }
         }
     }

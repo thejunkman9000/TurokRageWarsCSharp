@@ -192,7 +192,7 @@ public static partial class Game
                 { bool c_ = r2 == 0; r4 = r17; if (c_) goto L_L002A78D4; }
                 r5 = (uint)1;
                 L_L002A78CC: ;
-                r2 = func_002A80C4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = Menu_MoveCursor4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_L002A78D4: ;
                 r31 = Mem.U32((r29 + 32u));
                 r19 = Mem.U32((r29 + 28u));

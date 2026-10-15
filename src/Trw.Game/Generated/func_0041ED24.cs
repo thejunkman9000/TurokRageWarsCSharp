@@ -13,7 +13,7 @@ public static partial class Game
             uint it = 0u;
             float v = 0f;
             new O3Ps(Mem.U32(0x800E39C0u)).timer_Set((new O3Ps(Mem.U32(0x800E39C0u)).timer + dt));
-            it = func_0040ECB0((uint)(new O3Ps(Mem.U32(0x800E39C0u)).w[(int)(new O3Ps(Mem.U32(0x800E39C0u)).sel)]), (uint)(914), default(uint), default(uint));
+            it = UiTree_FindNode((uint)(new O3Ps(Mem.U32(0x800E39C0u)).w[(int)(new O3Ps(Mem.U32(0x800E39C0u)).sel)]), (uint)(914), default(uint), default(uint));
             v = ((cosf(((float)(new O3Ps(Mem.U32(0x800E39C0u)).timer) * 0.00333333341f)) * 100.0f) + 150.0f);
             new O3Hdr(it).alpha_Set((byte)(Cpu.TruncU32(v)));
             return 0;

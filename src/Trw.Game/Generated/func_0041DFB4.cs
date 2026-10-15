@@ -19,7 +19,7 @@ public static partial class Game
             func_0041B768((uint)(parent), 1, 905);
             func_0041B768((uint)(parent), 2, 905);
             func_0041B768((uint)(parent), 3, 905);
-            it = func_0040ECB0((uint)(parent), (uint)(907), default(uint), default(uint));
+            it = UiTree_FindNode((uint)(parent), (uint)(907), default(uint), default(uint));
             new O3Hdr(it).alpha_Set((byte)(140));
             if ((func_0029A9A0(0) == 22))
             {
@@ -27,17 +27,17 @@ public static partial class Game
             }
             new O3Ps(Mem.U32(0x800E39C0u)).timer_Set(0);
             new O3Ps(Mem.U32(0x800E39C0u)).sel_Set(0);
-            new O3Ps(Mem.U32(0x800E39C0u)).w.Set((int)(0), (int)(func_0040ECB0((uint)(parent), (uint)(908), default(uint), default(uint))));
-            new O3Ps(Mem.U32(0x800E39C0u)).w.Set((int)(1), (int)(func_0040ECB0((uint)(parent), (uint)(917), default(uint), default(uint))));
-            new O3Ps(Mem.U32(0x800E39C0u)).w.Set((int)(2), (int)(func_0040ECB0((uint)(parent), (uint)(918), default(uint), default(uint))));
+            new O3Ps(Mem.U32(0x800E39C0u)).w.Set((int)(0), (int)(UiTree_FindNode((uint)(parent), (uint)(908), default(uint), default(uint))));
+            new O3Ps(Mem.U32(0x800E39C0u)).w.Set((int)(1), (int)(UiTree_FindNode((uint)(parent), (uint)(917), default(uint), default(uint))));
+            new O3Ps(Mem.U32(0x800E39C0u)).w.Set((int)(2), (int)(UiTree_FindNode((uint)(parent), (uint)(918), default(uint), default(uint))));
             new O3Ps(Mem.U32(0x800E39C0u)).cnt_Set(func_0041EBC0());
             for (i = 0; (i < 3); ++i)
             {
                 func_0041E478(i);
-                func_0040E958(func_0040ECB0((uint)(new O3Ps(Mem.U32(0x800E39C0u)).w[(int)(i)]), (uint)(914), default(uint), default(uint)), 0);
+                func_0040E958(UiTree_FindNode((uint)(new O3Ps(Mem.U32(0x800E39C0u)).w[(int)(i)]), (uint)(914), default(uint), default(uint)), 0);
             }
             func_002A3358();
-            func_0040E958(func_0040ECB0((uint)(new O3Ps(Mem.U32(0x800E39C0u)).w[(int)(new O3Ps(Mem.U32(0x800E39C0u)).sel)]), (uint)(914), default(uint), default(uint)), 1);
+            func_0040E958(UiTree_FindNode((uint)(new O3Ps(Mem.U32(0x800E39C0u)).w[(int)(new O3Ps(Mem.U32(0x800E39C0u)).sel)]), (uint)(914), default(uint), default(uint)), 1);
             return 0;
         }
     }

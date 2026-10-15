@@ -18,7 +18,7 @@ public static partial class Game
                     if (((int)(func_0022A82C((0x801468A0u - (uint)6240))) == 0))
                     {
                         v = ((func_00209B64(ctl) * Mem.F32(0x800C6F40u)) + Mem.F32(0x800C6F44u));
-                        if ((v < func_00274B00(0.0f, Mem.F32(0x800C6F48u))))
+                        if ((v < Random_Symmetric(0.0f, Mem.F32(0x800C6F48u))))
                         {
                             return 1;
                         }

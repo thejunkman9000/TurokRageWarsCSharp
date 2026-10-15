@@ -45,19 +45,19 @@ public static partial class Game
                 }
                 i0 = 0;
                 count = 0;
-                r = func_0028FD94((uint)(new B19Owner(ow).f68), 0);
+                r = Chunk_Get((uint)(new B19Owner(ow).f68), 0);
                 j0 = 0;
                 A = (r + (uint)8);
                 cols = Mem.S32((r + (uint)4));
-                r = func_0028FD94((uint)(new B19Owner(ow).f68), 1);
+                r = Chunk_Get((uint)(new B19Owner(ow).f68), 1);
                 B = (r + (uint)8);
                 s7 = (cols - 1);
-                r = func_0028FD94((uint)(new B19Owner(ow).f68), 2);
+                r = Chunk_Get((uint)(new B19Owner(ow).f68), 2);
                 rows = Mem.S32((r + (uint)4));
                 C = (r + (uint)8);
-                r = func_0028FD94((uint)(new B19Owner(ow).f68), 3);
+                r = Chunk_Get((uint)(new B19Owner(ow).f68), 3);
                 D = (r + (uint)8);
-                E = (func_0028FD94((uint)(new B19Owner(ow).f68), 4) + (uint)8);
+                E = (Chunk_Get((uint)(new B19Owner(ow).f68), 4) + (uint)8);
                 fp = (rows - 1);
                 while (((i0 < cols) && (Mem.F32((B + (uint)(i0 * 4))) < Mem.F32(0x801031F0u))))
                 {
@@ -117,8 +117,8 @@ public static partial class Game
                             }
                             if ((found != 0))
                             {
-                                int t = (int)(func_0028FE1C((uint)(new B19Owner(ow).f64), (uint)(new B19Owner(ow).f30), idx, _fp));
-                                h = func_002518DC(0, (uint)(t), t, (uint)(Mem.S32(_fp)), 8, ow, 0x0028795Cu, 0x800CA300u, 0);
+                                int t = (int)(Resource_GetCartridgeKey((uint)(new B19Owner(ow).f64), (uint)(new B19Owner(ow).f30), idx, _fp));
+                                h = ResourceCache_Hash(0, (uint)(t), t, (uint)(Mem.S32(_fp)), 8, ow, 0x0028795Cu, 0x800CA300u, 0);
                                 if ((h != 0u))
                                 {
                                     if ((Mem.S32(Mem.U32(h)) != 0))

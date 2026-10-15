@@ -11,11 +11,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002612C8", (uint)a, (uint)b);
             int r = 0;
-            uint h = func_0028FD94(a, 0);
-            uint a1 = func_0028FD94(a, 1);
-            uint a2 = func_0028FD94(a, 2);
-            uint b1 = func_0028FD94(b, 1);
-            uint b2 = func_0028FD94(b, 2);
+            uint h = Chunk_Get(a, 0);
+            uint a1 = Chunk_Get(a, 1);
+            uint a2 = Chunk_Get(a, 2);
+            uint b1 = Chunk_Get(b, 1);
+            uint b2 = Chunk_Get(b, 2);
             Mem.Set(0x8010EC78u, 1);
             Mem.Set(0x8010EC74u, 0);
             Mem.Set(0x8010EC7Cu, Mem.F32(0x800C9288u));

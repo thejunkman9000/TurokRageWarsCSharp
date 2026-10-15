@@ -51,7 +51,7 @@ public static partial class Game
             }
             if ((f1 != 0))
             {
-                func_00214DD4(a, b, (uint)(new B04B_v2(b).unk88), new B04C(c).b.P);
+                Ai_PickTrackerAim(a, b, (uint)(new B04B_v2(b).unk88), new B04C(c).b.P);
             }
             else
             {
@@ -59,7 +59,7 @@ public static partial class Game
             }
             if ((f2 != 0))
             {
-                func_00215410(a, b, (uint)(new B04B_v2(b).unk80), new B04C(c).a.P);
+                Ai_PickTarget(a, b, (uint)(new B04B_v2(b).unk80), new B04C(c).a.P);
                 return;
             }
             func_00216D3C_fill(new B04C(c).a.P, a);

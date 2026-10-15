@@ -14,7 +14,7 @@ public static partial class Game
             uint it = 0u;
             func_0040E958(new O3Pm(Mem.U32(0x800E4400u)).item_, 1);
             i = 0;
-            func_0040E958(func_0040ECB0(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(939), default(uint), default(uint)), i);
+            func_0040E958(UiTree_FindNode(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(939), default(uint), default(uint)), i);
             new O3Pm(Mem.U32(0x800E4400u)).timer_Set(1);
             new O3Pm(Mem.U32(0x800E4400u)).f28_Set(8);
             new O3Pm(Mem.U32(0x800E4400u)).f30_Set(0);
@@ -24,35 +24,35 @@ public static partial class Game
                 switch (i)
                 {
                 case 1:
-                    it = func_0040ECB0(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(953), default(uint), default(uint));
+                    it = UiTree_FindNode(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(953), default(uint), default(uint));
                     break;
                 case 2:
-                    it = func_0040ECB0(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(954), default(uint), default(uint));
+                    it = UiTree_FindNode(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(954), default(uint), default(uint));
                     break;
                 case 3:
-                    it = func_0040ECB0(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(955), default(uint), default(uint));
+                    it = UiTree_FindNode(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(955), default(uint), default(uint));
                     break;
                 case 4:
-                    it = func_0040ECB0(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(956), default(uint), default(uint));
+                    it = UiTree_FindNode(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(956), default(uint), default(uint));
                     break;
                 case 5:
-                    it = func_0040ECB0(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(957), default(uint), default(uint));
+                    it = UiTree_FindNode(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(957), default(uint), default(uint));
                     break;
                 case 6:
-                    it = func_0040ECB0(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(958), default(uint), default(uint));
+                    it = UiTree_FindNode(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(958), default(uint), default(uint));
                     break;
                 case 7:
-                    it = func_0040ECB0(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(959), default(uint), default(uint));
+                    it = UiTree_FindNode(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(959), default(uint), default(uint));
                     break;
                 case 8:
-                    it = func_0040ECB0(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(960), default(uint), default(uint));
+                    it = UiTree_FindNode(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(960), default(uint), default(uint));
                     break;
                 case 9:
-                    it = func_0040ECB0(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(961), default(uint), default(uint));
+                    it = UiTree_FindNode(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(961), default(uint), default(uint));
                     break;
                 case 0:
                 default:
-                    it = func_0040ECB0(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(952), default(uint), default(uint));
+                    it = UiTree_FindNode(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(952), default(uint), default(uint));
                     break;
                 }
                 new O3TxtItem(it).h.alpha_Set((byte)(150));

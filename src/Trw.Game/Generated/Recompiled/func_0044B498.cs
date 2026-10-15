@@ -31,15 +31,15 @@ public static partial class Game
                 r6 = (uint)748;
                 Mem.Set((r29 + 28u), r31);
                 Mem.Set((r29 + 20u), r17);
-                Mem.Set((r29 + 16u), r16); func_00255C40(r4, (int)r5, (int)r6);
+                Mem.Set((r29 + 16u), r16); List_Init(r4, (int)r5, (int)r6);
                 r4 = r18 + 24340u;
                 r5 = (uint)744;
-                r6 = (uint)748; func_00255C40(r4, (int)r5, (int)r6);
+                r6 = (uint)748; List_Init(r4, (int)r5, (int)r6);
                 r17 = r0;
                 r16 = r18;
                 L_L0044BA80: ;
                 r4 = r18 + 24320u;
-                r5 = r16; r2 = func_00255CB4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r16; r2 = List_Append_00255CB4(r4, r5, r6, r7); r3 = Cpu.V1;
                 r17 = r17 + 1u;
                 r2 = (uint)((int)r17 < 32 ? 1 : 0);
                 { bool c_ = r2 != 0; r16 = r16 + 760u; if (c_) goto L_L0044BA80; }

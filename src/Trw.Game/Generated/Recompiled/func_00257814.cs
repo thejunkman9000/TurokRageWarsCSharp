@@ -130,7 +130,7 @@ public static partial class Game
                 r2 = r17 + r2;
                 r2 = Mem.U32((r2 + 7772u));
                 { bool c_ = r2 != 0; r2 = (uint)-1; if (c_) goto L_L00257A10; }
-                r4 = r17 + 7608u; func_0025B8DC(r4, (int)r5);
+                r4 = r17 + 7608u; Sound_PlayVoice(r4, (int)r5);
                 r2 = (uint)-1;
                 L_L00257A10: ;
                 Mem.Set((r17 + 258u), (ushort)r2);

@@ -124,10 +124,10 @@ public static partial class Game
                 r4 = r16;
                 r5 = r29 + 208u;
                 r6 = r20 + 92u;
-                Mem.Set((r29 + 220u), Cpu.W(0)); func_00274108(r4, r5, r6);
+                Mem.Set((r29 + 220u), Cpu.W(0)); Quat_Multiply(r4, r5, r6);
                 r4 = r16;
                 r16 = r29 + 144u;
-                r5 = r16; func_002742B4(r4, r5);
+                r5 = r16; Quat_ToMatrix(r4, r5);
                 r4 = r29 + 16u;
                 r5 = r17;
                 r6 = r16; func_0026F690(r4, r5, r6);

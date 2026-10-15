@@ -41,7 +41,7 @@ public static partial class Game
                 }
                 else
                 {
-                    new ObjI(a).p18_Set((int)(func_0028CF48(0x8011FE88u, (int)(new B11Sp2(s).u1C))));
+                    new ObjI(a).p18_Set((int)(Level_GetDefinition(0x8011FE88u, (int)(new B11Sp2(s).u1C))));
                 }
                 if (((int)(new B11Sp2(s).u16_) == 65535))
                 {

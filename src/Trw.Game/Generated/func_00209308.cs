@@ -15,7 +15,7 @@ public static partial class Game
             float k = 0f;
             float v = 0f;
             float w = 0f;
-            d = (func_00216F44(new B2Ctl(ctl).owner_, C.Tmp(Cpu.F2U(new Vec3f(target).x), Cpu.F2U(new Vec3f(target).y), Cpu.F2U(new Vec3f(target).z))) + a3);
+            d = (Actor_AngleToPoint(new B2Ctl(ctl).owner_, C.Tmp(Cpu.F2U(new Vec3f(target).x), Cpu.F2U(new Vec3f(target).y), Cpu.F2U(new Vec3f(target).z))) + a3);
             if ((d > Mem.F32(0x800C6D14u)))
             {
                 d = (float)((float)(d) - Mem.F32(0x800C6D18u));

@@ -22,7 +22,7 @@ public static partial class Game
                     Mem.Copy(_ret, (_fp + 32u), 12);
                     return _ret;
                 }
-                n = func_0028FD94(func_0028FD94(func_0028FD94(new O01Ctx(Mem.U32(0x800E2830u)).tree, 0), 0), 1);
+                n = Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(0x800E2830u)).tree, 0), 0), 1);
                 Mem.Copy((_fp + 16u), C.Seq(func_00400E50(_fp, (n + (uint)8), new O01Node(n).unk4, 0.0f), _fp), 12);
                 Mem.Copy(_ret, (_fp + 16u), 12);
                 return _ret;

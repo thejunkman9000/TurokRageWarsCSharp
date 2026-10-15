@@ -50,7 +50,7 @@ public static partial class Game
                         Mem.Copy((_fp + 24u), new B18Fx(o).unk1C.P, 12);
                     }
                     func_00271888((_fp + 8u), (_fp + 24u));
-                    func_00280094(0x80121990u, o, (uint)(new B18Fx(o).unk12C), (uint)(new B18Fx(o).unk130), new B18Fx(o).unk134, s2, (_fp + 24u), (_fp + 8u), 0x80104290u, 0, Mem.S32(0x8010429Cu), (int)(((new B18Fx(o).flags & (uint)(2097158)) | (uint)(1))));
+                    Effect_SpawnFromTemplates(0x80121990u, o, (uint)(new B18Fx(o).unk12C), (uint)(new B18Fx(o).unk130), new B18Fx(o).unk134, s2, (_fp + 24u), (_fp + 8u), 0x80104290u, 0, Mem.S32(0x8010429Cu), (int)(((new B18Fx(o).flags & (uint)(2097158)) | (uint)(1))));
                 }
                 if ((s3 != 65535))
                 {

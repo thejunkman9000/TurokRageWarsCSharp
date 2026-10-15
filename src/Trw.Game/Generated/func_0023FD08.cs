@@ -64,7 +64,7 @@ public static partial class Game
                     {
                         sc = mx;
                     }
-                    t = func_0028FD94((uint)(Mem.S32(h)), 5);
+                    t = Chunk_Get((uint)(Mem.S32(h)), 5);
                     n = new M03FTbl(t).count;
                     i = 0;
                     if ((n > 0))
@@ -117,11 +117,11 @@ public static partial class Game
                     func_002536F4(0, h);
                     return;
                 }
-                h2 = func_002518DC(0, (uint)(new M03FObj(o).wC4), new M03FObj(o).wC4, (uint)(new M03FObj(o).wD0), 4, (uint)(0), (uint)(0), 0x800C87F8u, 1);
+                h2 = ResourceCache_Hash(0, (uint)(new M03FObj(o).wC4), new M03FObj(o).wC4, (uint)(new M03FObj(o).wD0), 4, (uint)(0), (uint)(0), 0x800C87F8u, 1);
                 bb = (o + 232u);
                 if ((h2 != 0u))
                 {
-                    nb = func_0028FD94((uint)(Mem.S32(h2)), 0);
+                    nb = Chunk_Get((uint)(Mem.S32(h2)), 0);
                     Mem.Set(((_fp + 96u) + (uint)(0 * 4)), Mem.F32((nb + (uint)(0 * 4))));
                     Mem.Set(((_fp + 96u) + (uint)(1 * 4)), Mem.F32((nb + (uint)(1 * 4))));
                     Mem.Set(((_fp + 96u) + (uint)(2 * 4)), Mem.F32((nb + (uint)(2 * 4))));

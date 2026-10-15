@@ -43,7 +43,7 @@ public static partial class Game
             g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
             Mem.Set(new P4Gfx(g).words.P, 3657433087u);
             Mem.Set((new P4Gfx(g).words.P + 4u), (uint)((Mem.S32(0x800D15D4u) | 2491396)));
-            func_0026925C((uint)(29));
+            Gfx_SetOtherModeL((uint)(29));
         }
     }
 

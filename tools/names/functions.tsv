@@ -1,46 +1,46 @@
 # orig	address	name	group	confidence	note   (tab-separated; docs/NAMING.md. Empty name = keep the original; empty group = own file)
-func_00200500	0x00200500				
-func_00200538	0x00200538				
+func_00200500	0x00200500	Int_DisableMask	System/LowLevel.cs	medium	harvest: FINDINGS b01 prototype hints: func_00200500 / func_00200538 look like an interrupt mask disable/restore pair (return old mask)
+func_00200538	0x00200538	Int_RestoreMask	System/LowLevel.cs	medium	harvest: FINDINGS b01 prototype hints: interrupt mask disable/restore pair (takes the mask)
 func_00200568	0x00200568				
-func_002005A0	0x002005A0				
+func_002005A0	0x002005A0	Bus_ReadWord	System/LowLevel.cs	medium	harvest: FINDINGS b01 prototype hints: func_002005A0 = read u32 from a PI/ROM address
 func_002005DC	0x002005DC				
-func_00200610	0x00200610				
-func_00200800	0x00200800				
-func_00200840	0x00200840				
-func_00200880	0x00200880				
-func_0020095C	0x0020095C				
-func_00200AD8	0x00200AD8				
-func_00200B14	0x00200B14				
+func_00200610	0x00200610	Boot_BuildTlbMapTable	System/LowLevel.cs	high	harvest: C git aa8c707 + src/game/func_00200610.c: low-region TLB mapping table builder (48-entry table D_800F6D00)
+func_00200800	0x00200800	Bus_ReadByte	System/LowLevel.cs	medium	harvest: src/game/func_00200800.c comment: read one byte from a big-endian word (PI bus read of the aligned word)
+func_00200840	0x00200840	Bus_ReadByte2	System/LowLevel.cs	medium	harvest: src/game/func_00200840.c comment: read one byte from a big-endian word (PI bus read of the aligned word); twin of func_00200800
+func_00200880	0x00200880	Bus_CopyRomToRam	System/LowLevel.cs	medium	harvest: FINDINGS b01 prototype hints: ROM-to-RAM byte copy with alignment fixup
+func_0020095C	0x0020095C	Bus_ReadBlockDma	System/LowLevel.cs	medium	harvest: src/game/func_0020095C.c comment: copy from a bus-addressed buffer into RAM (PI DMA for large aligned blocks, else byte/word reads)
+func_00200AD8	0x00200AD8	Bus_WriteByte	System/LowLevel.cs	medium	harvest: src/game/func_00200AD8.c comment: updates the selected byte in the aligned word addressed by arg0
+func_00200B14	0x00200B14	Bus_ReadBlock	System/LowLevel.cs	medium	harvest: src/game/func_00200B14.c comment: copy from a bus-addressed buffer into RAM, byte/word reads
 func_00200C28	0x00200C28				
 func_00200CA0	0x00200CA0				
-func_00200D18	0x00200D18				
-func_00200E04	0x00200E04				
+func_00200D18	0x00200D18	Bus_WriteBlock	System/LowLevel.cs	medium	harvest: src/game/func_00200D18.c comment: memcpy from RAM into a bus-addressed buffer, byte/word writes
+func_00200E04	0x00200E04	Bus_WriteBlockDma	System/LowLevel.cs	medium	harvest: src/game/func_00200E04.c comment: copy from RAM into a bus-addressed buffer (PI DMA for large aligned blocks)
 func_00200F98	0x00200F98				
 func_00201064	0x00201064				
 func_002010D8	0x002010D8				
-func_002012D8	0x002012D8				
+func_002012D8	0x002012D8	DevLink_CopyBusBlock	Debug/DevLink.cs	medium	harvest: src/game/func_002012D8.c comment: copy a block word by word between bus addresses (src/len from the 0xB1FFFFF4/F8 registers)
 func_002013D8	0x002013D8				
 func_002014A4	0x002014A4				
-func_002016DC	0x002016DC				
+func_002016DC	0x002016DC	Str_LengthWithNul	Lib/LibC.cs	medium	harvest: batch_notes / FINDINGS: func_002016DC (strlen incl NUL)
 func_002016FC	0x002016FC				
-func_002017E8	0x002017E8				
-func_002018A0	0x002018A0				
-func_00201A74	0x00201A74				
+func_002017E8	0x002017E8	DevLink_ProgramTransfer	Debug/DevLink.cs	medium	harvest: src/game/func_002017E8.c comment: program a bus transfer through the 0xB1FFFFxx registers and wait until idle
+func_002018A0	0x002018A0	DevLink_IoThread	Debug/DevLink.cs	medium	harvest: src/game/func_002018A0.c comment: I/O thread serving requests sent through D_800F6F40 (write block / program transfer / read block / reply)
+func_00201A74	0x00201A74	DevLink_RequestA_00201A74	Debug/DevLink.cs	low	harvest: FINDINGS b01: builds a request and sends it to the I/O thread (D_800F6F40) or calls func_002017E8 under the interrupt mask
 func_00201ACC	0x00201ACC				
-func_00201B50	0x00201B50				
-func_00201C80	0x00201C80				
+func_00201B50	0x00201B50	DevLink_SendBlock202	Debug/DevLink.cs	medium	harvest: src/game/func_00201B50.c comment: send a block to the cartridge-side device (command 0x202)
+func_00201C80	0x00201C80	DevLink_SendBlock303	Debug/DevLink.cs	medium	harvest: src/game/func_00201C80.c comment: send a block to the cartridge-side device (command 0x303)
 func_00201DB0	0x00201DB0				
-func_00201E94	0x00201E94				
-func_00202018	0x00202018				
+func_00201E94	0x00201E94	DevLink_Read	Debug/DevLink.cs	medium	harvest: src/game/func_00201E94.c comment: read n bytes from the device into RAM in 0x8000 chunks (command 0x505)
+func_00202018	0x00202018	DevLink_Write	Debug/DevLink.cs	medium	harvest: src/game/func_00202018.c comment: write n bytes from RAM to the device in 0x8000 chunks (command 0x606)
 func_00202028	0x00202028				
-func_00202198	0x00202198				
-func_00202268	0x00202268				
-func_002022E0	0x002022E0				
-func_0020238C	0x0020238C				
-func_002023A8	0x002023A8				
+func_00202198	0x00202198	DevLink_RequestB_00202198	Debug/DevLink.cs	low	harvest: FINDINGS b01: builds a request and sends it to the I/O thread (D_800F6F40) or calls func_002017E8 under the interrupt mask
+func_00202268	0x00202268	Exception_VectorStubs	System/LowLevel.cs	high	harvest: docs/hand_asm.txt: exception vector stubs (hand-written asm)
+func_002022E0	0x002022E0	Exception_InstallStubs	System/LowLevel.cs	high	harvest: docs/hand_asm.txt: stub installer (hand-written asm)
+func_0020238C	0x0020238C	Cache_Loop1	System/LowLevel.cs	medium	harvest: docs/hand_asm.txt: cache loop (hand-written asm)
+func_002023A8	0x002023A8	Cache_Loop2	System/LowLevel.cs	medium	harvest: docs/hand_asm.txt: cache loop (hand-written asm)
 func_002023C4	0x002023C4				
 func_002023D0	0x002023D0				
-func_002028D0	0x002028D0				
+func_002028D0	0x002028D0	Exception_InstallVectors	System/LowLevel.cs	medium	harvest: docs/hand_asm.txt: vector install loop + eret tail
 func_00202C98	0x00202C98				
 func_00202CA0	0x00202CA0				
 func_00202E4C	0x00202E4C				
@@ -64,7 +64,7 @@ func_00203D4C	0x00203D4C
 func_00203DF0	0x00203DF0				
 func_00203E78	0x00203E78				
 func_00203EB0	0x00203EB0				
-func_00203F04	0x00203F04				
+func_00203F04	0x00203F04	Actor_CanSeeTarget	Ai/Brain.cs	medium	harvest: src/game/func_00203F04.c comment: tests whether a viewer can see a target (ray cast between raised positions)
 func_0020402C	0x0020402C				
 func_00204308	0x00204308				
 func_002043E0	0x002043E0				
@@ -186,13 +186,13 @@ func_002097E8	0x002097E8
 func_00209804	0x00209804				
 func_00209828	0x00209828				
 func_0020986C	0x0020986C				
-func_00209874	0x00209874				
+func_00209874	0x00209874	Ai_SetState	Ai/Brain.cs	medium	harvest: port/overrides (func_0021111C etc.): func_00209874(ctl, state) called with state numbers 1, 2, 6, 7, 12
 func_00209910	0x00209910				
 func_0020993C	0x0020993C				
 func_00209948	0x00209948				
 func_00209988	0x00209988				
 func_0020999C	0x0020999C				
-func_002099B4	0x002099B4				
+func_002099B4	0x002099B4	Ai_IsTargetReached	Ai/Brain.cs	medium	harvest: src/game/func_00210180.c comment: func_002099B4 reports the target reached
 func_00209A94	0x00209A94				
 func_00209AD8	0x00209AD8				
 func_00209AE8	0x00209AE8				
@@ -215,7 +215,7 @@ func_0020AA40	0x0020AA40
 func_0020ABF0	0x0020ABF0				
 func_0020AF9C	0x0020AF9C				
 func_0020B95C	0x0020B95C				
-func_0020BC50	0x0020BC50				
+func_0020BC50	0x0020BC50	Ai_SelectPathNode	Ai/Brain.cs	high	harvest: PORT_STATUS + C git 4675740: func_0020BC50 (path-node selection) returns obj->selected; caller func_0020ED50 stores it
 func_0020BE7C	0x0020BE7C				
 func_0020C078	0x0020C078				
 func_0020C2E8	0x0020C2E8				
@@ -291,12 +291,12 @@ func_00210090	0x00210090
 func_002100B8	0x002100B8				
 func_002100E0	0x002100E0				
 func_00210178	0x00210178				
-func_00210180	0x00210180				
+func_00210180	0x00210180	Ai_CheckTargetReached_00210180	Ai/Brain.cs	low	harvest: src/game/func_00210180.c comment: route-following check for a computer driver's brain [the other decomp's comment calls it a vehicle/driver routine; Rage Wars has none: neutral name]
 func_00210228	0x00210228				
 func_00210230	0x00210230				
 func_0021035C	0x0021035C				
 func_002106DC	0x002106DC				
-func_002106E0	0x002106E0				
+func_002106E0	0x002106E0	Ai_ProbeRay_002106E0	Ai/Brain.cs	low	harvest: src/game/func_002106E0.c comment: probes one of a vehicle's eight wheel rays [the other decomp's comment calls it a vehicle/driver routine; Rage Wars has none: neutral name]
 func_00210964	0x00210964				
 func_00210C14	0x00210C14				
 func_00210E88	0x00210E88				
@@ -307,7 +307,7 @@ func_00211014	0x00211014
 func_00211020	0x00211020				
 func_002110C4	0x002110C4				
 func_0021111C	0x0021111C				
-func_00211120	0x00211120				
+func_00211120	0x00211120	Ai_UpdateCloseAttack	Ai/Brain.cs	medium	harvest: src/game/func_00211120.c comment: update the rider close-attack state
 func_00211470	0x00211470				
 func_00211A7C	0x00211A7C				
 func_00212034	0x00212034				
@@ -351,12 +351,12 @@ func_002138F0	0x002138F0
 func_00213AAC	0x00213AAC				
 func_00213CF8	0x00213CF8				
 func_00213ED4	0x00213ED4				
-func_00214178	0x00214178				
+func_00214178	0x00214178	Actor_DispatchEvent	Actor/Actor.cs	medium	harvest: batch_notes: dispatcher is func_00214178(actor, state, eventId)
 func_00214310	0x00214310				
 func_00214624	0x00214624				
-func_002149C0	0x002149C0				
-func_00214DD4	0x00214DD4				
-func_00215410	0x00215410				
+func_002149C0	0x002149C0	Ai_FindNearestTarget	Ai/Brain.cs	medium	harvest: src/game/func_00215410.c comment: the nearest permitted target from func_002149C0
+func_00214DD4	0x00214DD4	Ai_PickTrackerAim	Ai/Brain.cs	medium	harvest: src/game/func_00214DD4.c comment: picks what the tracker aims at and fills the track result
+func_00215410	0x00215410	Ai_PickTarget	Ai/Brain.cs	medium	harvest: src/game/func_00215410.c comment: picks an actor's target, classifies it into one of eight kinds, fills the target record
 func_00215868	0x00215868				
 func_00215B90	0x00215B90				
 func_00216108	0x00216108				
@@ -372,12 +372,12 @@ func_00216A6C	0x00216A6C
 func_00216BF4	0x00216BF4				
 func_00216D30	0x00216D30				
 func_00216D3C	0x00216D3C				
-func_00216F44	0x00216F44				
+func_00216F44	0x00216F44	Actor_AngleToPoint	Ai/Brain.cs	medium	harvest: src/game/func_00216F44.c comment: signed angle between an actor's facing and the direction to a point on the ground plane
 func_00217074	0x00217074				
 func_002170A0	0x002170A0				
 func_002171BC	0x002171BC				
 func_002171C8	0x002171C8				
-func_002171FC	0x002171FC				
+func_002171FC	0x002171FC	ActorState_CallHandler	Actor/Actor.cs	high	harvest: tools/overrides/func_002171FC.c + C# git de65e99: calls the player state's handler state->fn110 through a pointer (weapon-damage fix)
 func_00217224	0x00217224				
 func_00217290	0x00217290				
 func_002172C4	0x002172C4				
@@ -387,9 +387,9 @@ func_0021740C	0x0021740C
 func_002174E4	0x002174E4				
 func_00217594	0x00217594				
 func_0021762C	0x0021762C				
-func_00217630	0x00217630				
-func_00217928	0x00217928				
-func_00217B3C	0x00217B3C				
+func_00217630	0x00217630	WeaponMenu_Draw	Ui/WeaponMenu.cs	medium	harvest: src/game/func_00217928.c: the weapon menu list is passed to func_00217630; func_002185D0 (team menu draw) is adapted from it
+func_00217928	0x00217928	WeaponMenu_Layout	Ui/WeaponMenu.cs	medium	harvest: src/game/func_00217928.c comment: lays out a player's weapon menu (eight slots, icons from D_800D052C)
+func_00217B3C	0x00217B3C	WeaponMenu_StickDirection8	Ui/WeaponMenu.cs	medium	harvest: src/game/func_00217B3C.c comment: which of eight menu directions a player's stick points in
 func_00217D74	0x00217D74				
 func_00217EC8	0x00217EC8				
 func_00217F4C	0x00217F4C				
@@ -399,13 +399,13 @@ func_002183E8	0x002183E8
 func_00218464	0x00218464				
 func_0021846C	0x0021846C				
 func_002184C0	0x002184C0				
-func_002185D0	0x002185D0				
-func_00218988	0x00218988				
+func_002185D0	0x002185D0	TeamMenu_Draw	Ui/WeaponMenu.cs	medium	harvest: src/game/func_002185D0.c comment: draws the team selection menu ("Select Team")
+func_00218988	0x00218988	TeamMenu_StickDirection4	Ui/WeaponMenu.cs	medium	harvest: src/game/func_00218988.c comment: 4-way version of the menu stick decoder
 func_00218B84	0x00218B84				
 func_00218E98	0x00218E98				
 func_00218F08	0x00218F08				
 func_00218F84	0x00218F84				
-func_00218F9C	0x00218F9C				
+func_00218F9C	0x00218F9C	TeamMenu_Layout	Ui/WeaponMenu.cs	medium	harvest: src/game/func_00218F9C.c comment: lays out the four team choices around the open menu and draws their icons
 func_00219124	0x00219124				
 func_0021917C	0x0021917C				
 func_002191B0	0x002191B0				
@@ -417,17 +417,17 @@ func_00219408	0x00219408
 func_00219434	0x00219434				
 func_00219460	0x00219460				
 func_00219480	0x00219480				
-func_00219490	0x00219490				
+func_00219490	0x00219490	Hud_DrawModel3D	Ui/Hud.cs	medium	harvest: docs/HUD.md: 3D effect (P+0x878): a model drawn inside the HUD section
 func_00219688	0x00219688				
-func_00219A40	0x00219A40				
+func_00219A40	0x00219A40	Player_StateHandler	Player/Health.cs	medium	harvest: C# git de65e99 + PORT_STATUS: the usual fn110 handler (Plr *, u8 *, f32 *); health changes go through it to func_0021BFBC
 func_0021A2D4	0x0021A2D4				
 func_0021A2E4	0x0021A2E4				
 func_0021A78C	0x0021A78C				
 func_0021A9A4	0x0021A9A4				
 func_0021AF6C	0x0021AF6C				
-func_0021B1E4	0x0021B1E4				
-func_0021B468	0x0021B468				
-func_0021BFBC	0x0021BFBC				
+func_0021B1E4	0x0021B1E4	Player_PlaceAtSpawn	Player/Health.cs	medium	harvest: PORT_STATUS: respawn func_0044A4C0 -> func_0021B1E4 looks up the spawn points of the spawn key; func_0044A37C starts its vehicle through it
+func_0021B468	0x0021B468	Player_UpdateState	Player/Player.cs	medium	harvest: src/game/func_0021B468.c comment: update player state, effects, projectiles and linked actors from control input
+func_0021BFBC	0x0021BFBC	Player_ApplyDamage	Player/Health.cs	medium	harvest: C# git de65e99: player 1's health 100 -> 97 -> 57 -> 19 ... (func_0021BFBC via func_00219A40)
 func_0021C440	0x0021C440				
 func_0021C674	0x0021C674				
 func_0021C9B4	0x0021C9B4				
@@ -436,23 +436,23 @@ func_0021CD70	0x0021CD70
 func_0021CF04	0x0021CF04				
 func_0021D3E4	0x0021D3E4				
 func_0021D750	0x0021D750				
-func_0021E068	0x0021E068				
-func_0021E27C	0x0021E27C				
+func_0021E068	0x0021E068	Hud_DrawIconSprite	Ui/Hud.cs	high	harvest: docs/HUD.md + src comment: draws an icon sprite for a view (crosshair centred, others projected from a world point)
+func_0021E27C	0x0021E27C	Hud_DrawCrosshair	Ui/Hud.cs	high	harvest: docs/HUD.md: crosshair (sprite +0x798, frame +0x7BC) -> func_0021E068
 func_0021E5D4	0x0021E5D4				
-func_0021EA30	0x0021EA30				
-func_0021EED8	0x0021EED8				
-func_00220A5C	0x00220A5C				
-func_00220D20	0x00220D20				
+func_0021EA30	0x0021EA30	Hud_DrawAmmo	Ui/Hud.cs	high	harvest: docs/HUD.md: ammo (3 slots), icons 0xBEA..0xBEC + numbers
+func_0021EED8	0x0021EED8	Hud_DrawPlayer	Ui/Hud.cs	high	harvest: docs/HUD.md + src comment: draws a player's HUD for one frame (health, flash, counters, power-up, crosshair...)
+func_00220A5C	0x00220A5C	Player_UpdateViewCamera	Player/Camera.cs	medium	harvest: src/game/func_0021EED8.c comment: aims a player's view camera (eye / orbit mode) and updates the player
+func_00220D20	0x00220D20	Player_RegenerateHealth	Player/Health.cs	medium	harvest: src/game/func_0021EED8.c comment: regenerates a player's health at 0x5E4 toward the cap
 func_00220EB0	0x00220EB0				
 func_00222700	0x00222700				
 func_002227D0	0x002227D0				
-func_002228E4	0x002228E4				
+func_002228E4	0x002228E4	Actor_ApplyGameSpeed	Actor/Actor.cs	medium	harvest: C git f7b5f3d: every tick func_002228E4 does p->f784 *= D_801462C8->unk20 (Game Speed) for every actor
 func_00222A80	0x00222A80				
 func_00222BC4	0x00222BC4				
 func_00222D40	0x00222D40				
 func_00222E80	0x00222E80				
 func_00222FBC	0x00222FBC				
-func_002231B0	0x002231B0				
+func_002231B0	0x002231B0	Player_UpdateViewTurn	Player/Camera.cs	high	harvest: port/overrides/func_002231B0.c: player view: turn and tilt from the pad output (mouse-look hook point)
 func_002233CC	0x002233CC				
 func_002238BC	0x002238BC				
 func_00223E10	0x00223E10				
@@ -474,23 +474,23 @@ func_002266E4	0x002266E4
 func_0022692C	0x0022692C				
 func_00226A10	0x00226A10				
 func_00226C3C	0x00226C3C				
-func_00226DAC	0x00226DAC				
-func_00227014	0x00227014				
+func_00226DAC	0x00226DAC	Actor_BuildModelMatrix	Actor/Actor.cs	medium	harvest: port/overrides/func_0022C480.c (writes a whole 4x4 matrix) + src/game/func_0027D950.c: owner's model matrix built through func_00226DAC
+func_00227014	0x00227014	Match_UpdateRound	Match/Rules.cs	medium	harvest: src/game/func_00227014.c comment: updates round state, player health and round-start presentation
 func_00227160	0x00227160				
 func_00227E68	0x00227E68				
-func_0022804C	0x0022804C				
+func_0022804C	0x0022804C	Match_CheckFragLimit	Match/Rules.cs	high	harvest: MatchInfo.cs / TRANSPILER.md: frag-limit test (score record +0x04 vs limit +0x18)
 func_002281CC	0x002281CC				
 func_002282C8	0x002282C8				
-func_00228394	0x00228394				
+func_00228394	0x00228394	Match_UpdateClock	Match/Rules.cs	high	harvest: PORT_STATUS: per-frame countdown in func_00228394 (match time limit)
 func_002285C4	0x002285C4				
 func_00228774	0x00228774				
 func_00228934	0x00228934				
-func_00228AD0	0x00228AD0				
+func_00228AD0	0x00228AD0	Hud_DrawMatchClock	Ui/Hud.cs	high	harvest: docs/HUD.md: match clock (shared pass), blinks in the last 30 s
 func_00228DA0	0x00228DA0				
-func_00228F94	0x00228F94				
+func_00228F94	0x00228F94	Player_DrawModelTinted	Player/Player.cs	medium	harvest: src/game/func_00228F94.c comment: draws an actor's player model with its status/team tint
 func_00229294	0x00229294				
-func_00229444	0x00229444				
-func_00229530	0x00229530				
+func_00229444	0x00229444	Inventory_TransferRandom	Player/Items.cs	medium	harvest: src/game/func_00228F94.c comment: transfers a randomly selected inventory quantity into an empty recipient slot
+func_00229530	0x00229530	Player_GiveAmmo	Player/Items.cs	medium	harvest: src/game/func_00228F94.c comment: gives a player an amount of one ammunition type and announces it ("<amount> <type name>")
 func_002297F0	0x002297F0				
 func_00229A54	0x00229A54				
 func_00229BE0	0x00229BE0				
@@ -500,7 +500,7 @@ func_0022A144	0x0022A144
 func_0022A1D0	0x0022A1D0				
 func_0022A274	0x0022A274				
 func_0022A2FC	0x0022A2FC				
-func_0022A37C	0x0022A37C				
+func_0022A37C	0x0022A37C	Hud_DrawView2D	Ui/Hud.cs	high	harvest: docs/HUD.md: loads the view's 2D projection (func_0023941C) then draws the HUD of that view
 func_0022A3E8	0x0022A3E8				
 func_0022A404	0x0022A404				
 func_0022A410	0x0022A410				
@@ -523,8 +523,8 @@ func_0022AA34	0x0022AA34
 func_0022AA8C	0x0022AA8C				
 func_0022AAC4	0x0022AAC4				
 func_0022AB10	0x0022AB10				
-func_0022AB8C	0x0022AB8C				
-func_0022ABF0	0x0022ABF0				
+func_0022AB8C	0x0022AB8C	Weapon_GetAmmoType	Player/Items.cs	high	harvest: docs/HUD.md + HudValues.cs: the current weapon's ammo type (-1 = none), weapon table D_800D052C
+func_0022ABF0	0x0022ABF0	Player_GetMaxHealth	Player/Health.cs	medium	harvest: src/game/func_0021EED8.c comment: regenerates health toward the cap from func_0022ABF0; func_002AC3F0 compares it with the count at 0x5E4
 func_0022ACA8	0x0022ACA8				
 func_0022ADA0	0x0022ADA0				
 func_0022ADAC	0x0022ADAC				
@@ -554,7 +554,7 @@ func_0022B5B0	0x0022B5B0
 func_0022B5FC	0x0022B5FC				
 func_0022B68C	0x0022B68C				
 func_0022B720	0x0022B720				
-func_0022B74C	0x0022B74C				
+func_0022B74C	0x0022B74C	Hud_ShowPlayerMessage	Ui/Hud.cs	medium	harvest: src/game/func_00228F94.c comment: the message "<amount> <type name>" is built and shown through func_0022B74C
 func_0022B7E8	0x0022B7E8				
 func_0022B8D0	0x0022B8D0				
 func_0022B96C	0x0022B96C				
@@ -577,9 +577,9 @@ func_0022C050	0x0022C050
 func_0022C070	0x0022C070				
 func_0022C0C0	0x0022C0C0				
 func_0022C100	0x0022C100				
-func_0022C1D8	0x0022C1D8				
+func_0022C1D8	0x0022C1D8	Hud_DrawTeamOverlay	Ui/Hud.cs	medium	harvest: docs/HUD.md: team / squad overlays 0x1FC, 0x201 (lower right of the view)
 func_0022C2A4	0x0022C2A4				
-func_0022C36C	0x0022C36C				
+func_0022C36C	0x0022C36C	Hud_DrawSquadOverlay	Ui/Hud.cs	medium	harvest: docs/HUD.md: team / squad overlays 0x1FC, 0x201 (lower right of the view)
 func_0022C444	0x0022C444				
 func_0022C450	0x0022C450				
 func_0022C480	0x0022C480				
@@ -736,7 +736,7 @@ func_0022F504	0x0022F504
 func_0022F54C	0x0022F54C				
 func_0022F594	0x0022F594				
 func_0022F5B4	0x0022F5B4				
-func_0022F5D0	0x0022F5D0				
+func_0022F5D0	0x0022F5D0	Player_UpdateWeaponMatrix	Player/Items.cs	medium	harvest: PORT_STATUS NaN trace: area damage <- animation-event position (func_002476B8) <- the player's weapon matrix (func_0022F5D0)
 func_0022F760	0x0022F760				
 func_0022F95C	0x0022F95C				
 func_0022FAE8	0x0022FAE8				
@@ -799,23 +799,23 @@ func_0023370C	0x0023370C
 func_0023377C	0x0023377C				
 func_002337B8	0x002337B8				
 func_002337C0	0x002337C0				
-func_00233920	0x00233920				
-func_00233B04	0x00233B04				
-func_00233C78	0x00233C78				
+func_00233920	0x00233920	Emitter_ApplyForce	Actor/Actor.cs	medium	harvest: FINDINGS: func_00233920 applies such an emitter (radius, strength falloff func_00265734) to a force vector
+func_00233B04	0x00233B04	Fade_Update	Render/View.cs	medium	harvest: FINDINGS: func_00233B04 is a colour fade state machine (state 0x544, timer 0x538, alpha 0x551)
+func_00233C78	0x00233C78	Hud_DrawViewOverlay	Ui/Hud.cs	medium	harvest: docs/HUD.md: per-view call after the world pass, -> func_0022A37C (2D pass)
 func_00233DEC	0x00233DEC				
 func_002343B8	0x002343B8				
-func_002349B0	0x002349B0				
+func_002349B0	0x002349B0	Camera_UpdateQuaternion	Render/View.cs	medium	harvest: PORT_STATUS NaN trace: <- the view camera's quaternion (func_002349B0) <- the camera yaw (func_00220A5C)
 func_00234DD0	0x00234DD0				
-func_00234FDC	0x00234FDC				
-func_00235AD0	0x00235AD0				
+func_00234FDC	0x00234FDC	Camera_SetupProjection	Render/View.cs	high	harvest: TRANSPILER.md/Widescreen.cs + src comment: builds each view's projection/view matrices, frustum extents +0x74/+0x78
+func_00235AD0	0x00235AD0	View_SetupViewport	Render/View.cs	high	harvest: ViewLayout.cs/TRANSPILER.md: per-view setup: viewport + scissor + z-buffer clear fill rectangle
 func_002362D8	0x002362D8				
-func_002365FC	0x002365FC				
+func_002365FC	0x002365FC	View_ApproachHudRect	Render/View.cs	medium	harvest: FINDINGS: pawn+0x29C..0x2A8 = HUD rectangle approached with 4 inlined approach(x,target,16) calls (func_002365FC)
 func_00236864	0x00236864				
-func_00236F0C	0x00236F0C				
-func_002372C4	0x002372C4				
-func_00237E70	0x00237E70				
-func_00238040	0x00238040				
-func_00238304	0x00238304				
+func_00236F0C	0x00236F0C	View_UpdateAll	Render/View.cs	high	harvest: docs/HUD.md + src comment: per-frame "race" update walking the split-screen views, per-view setup, world pass and HUD
+func_002372C4	0x002372C4	View_DrawFrame	Render/View.cs	high	harvest: docs/HUD.md/ViewLayout.cs: the view's 2-pixel frame
+func_00237E70	0x00237E70	Hud_PostMessage	Ui/Hud.cs	medium	harvest: src/game/func_00236F0C.c comment: posts a text as on-screen messages, one per line (recycles message nodes)
+func_00238040	0x00238040	Hud_UpdateMessages	Ui/Hud.cs	medium	harvest: FINDINGS: TextNode system: 00238040 / 00238304 update and draw them (fade states, alpha, timer)
+func_00238304	0x00238304	Hud_DrawMessages	Ui/Hud.cs	high	harvest: docs/HUD.md: on-screen messages (pickups etc.), view's message list +0xE44
 func_00238660	0x00238660				
 func_00238D20	0x00238D20				
 func_00238EA8	0x00238EA8				
@@ -828,7 +828,7 @@ func_0023917C	0x0023917C
 func_00239184	0x00239184				
 func_0023919C	0x0023919C				
 func_002391E8	0x002391E8				
-func_00239234	0x00239234				
+func_00239234	0x00239234	Camera_ProjectPoint	Render/View.cs	medium	harvest: src/game/func_0021E068.c comment: a world point projected through func_00239234
 func_002392DC	0x002392DC				
 func_00239314	0x00239314				
 func_0023939C	0x0023939C				
@@ -836,15 +836,15 @@ func_002393C8	0x002393C8
 func_002393F4	0x002393F4				
 func_002393FC	0x002393FC				
 func_0023940C	0x0023940C				
-func_0023941C	0x0023941C				
+func_0023941C	0x0023941C	Camera_LoadProjection2D	Render/View.cs	high	harvest: docs/HUD.md: G_MTX(projection, load) of camera + 0x448 (+0x40 odd frames): the 2D projection
 func_0023945C	0x0023945C				
 func_002394A4	0x002394A4				
 func_002394AC	0x002394AC				
 func_00239594	0x00239594				
 func_00239668	0x00239668				
 func_00239730	0x00239730				
-func_00239760	0x00239760				
-func_002398F8	0x002398F8				
+func_00239760	0x00239760	Hud_SpawnTextLineC	Ui/Hud.cs	medium	harvest: FINDINGS: TextNode system: text-line spawner from the free list at +0xF24 into list +0xE40
+func_002398F8	0x002398F8	Hud_SpawnTextLineA	Ui/Hud.cs	medium	harvest: FINDINGS: TextNode system: 00237E70, 002398F8, 0023A334, 00239760 = text-line spawners from a free list at +0xF24 into list +0xE40
 func_00239AE4	0x00239AE4				
 func_00239B54	0x00239B54				
 func_00239C10	0x00239C10				
@@ -866,9 +866,9 @@ func_0023A180	0x0023A180
 func_0023A1E4	0x0023A1E4				
 func_0023A23C	0x0023A23C				
 func_0023A284	0x0023A284				
-func_0023A334	0x0023A334				
+func_0023A334	0x0023A334	Hud_SpawnTextLineB	Ui/Hud.cs	medium	harvest: FINDINGS: TextNode system: text-line spawner from the free list at +0xF24 into list +0xE40
 func_0023A4CC	0x0023A4CC				
-func_0023A4D0	0x0023A4D0				
+func_0023A4D0	0x0023A4D0	Shadow_DrawDecal	Render/Model.cs	medium	harvest: C git 3e81800: func_0023A4D0 (shadow_decal_draw)
 func_0023AFE0	0x0023AFE0				
 func_0023B3E8	0x0023B3E8				
 func_0023B684	0x0023B684				
@@ -890,15 +890,15 @@ osMapMainTLB	0x0023C740
 func_0023C77C	0x0023C77C				
 func_0023C84C	0x0023C84C				
 func_0023C8C4	0x0023C8C4				
-func_0023C914	0x0023C914				
+func_0023C914	0x0023C914	Resource_ThreadMain	System/Resource.cs	medium	harvest: src/game/func_0023C914.c comment: resource manager thread setup and loop dispatching requests
 func_0023CA14	0x0023CA14				
 func_0023CAFC	0x0023CAFC				
 func_0023CB50	0x0023CB50				
 func_0023CB80	0x0023CB80				
 func_0023CBB0	0x0023CBB0				
 func_0023CBF8	0x0023CBF8				
-func_0023CCC4	0x0023CCC4				
-func_0023CDC4	0x0023CDC4				
+func_0023CCC4	0x0023CCC4	Resource_MapPages_0023CCC4	System/Resource.cs	low	harvest: PORT_STATUS: TLB demand paging overrides of func_0023CDC4 / func_0023CCC4
+func_0023CDC4	0x0023CDC4	Resource_PageIn	System/Resource.cs	medium	harvest: PORT_STATUS: TLB demand paging, asset space moved via overrides of func_0023CDC4 / func_0023CCC4; resource thread requests
 func_0023CE8C	0x0023CE8C				
 func_0023CFB8	0x0023CFB8				
 func_0023CFC0	0x0023CFC0				
@@ -926,7 +926,7 @@ func_0023EC44	0x0023EC44
 func_0023ECAC	0x0023ECAC				
 func_0023ED54	0x0023ED54				
 func_0023EDE8	0x0023EDE8				
-func_0023EDF0	0x0023EDF0				
+func_0023EDF0	0x0023EDF0	Collision_InitProfiles	World/Collision.cs	high	harvest: PJ64 oracle memory note + game_glue.c: copies the collision-profile template D_44B4A0 into 0x80103FF0..0x80104460 at boot
 func_0023EE24	0x0023EE24				
 func_0023EE50	0x0023EE50				
 func_0023EEEC	0x0023EEEC				
@@ -963,7 +963,7 @@ func_00241718	0x00241718
 func_002417B4	0x002417B4				
 func_00241830	0x00241830				
 func_0024193C	0x0024193C				
-func_00241940	0x00241940				
+func_00241940	0x00241940	Collision_BuildBoxCorners	World/Collision.cs	medium	harvest: src/game/func_00241940.c comment: builds the eight world-space corners of an object's collision box
 func_00241B9C	0x00241B9C				
 func_00241F14	0x00241F14				
 func_00242278	0x00242278				
@@ -973,7 +973,7 @@ func_002428C0	0x002428C0
 func_002428DC	0x002428DC				
 func_00242910	0x00242910				
 func_00242A84	0x00242A84				
-func_00242BE0	0x00242BE0				
+func_00242BE0	0x00242BE0	Collision_GatherRayHits	World/Collision.cs	medium	harvest: src/game/func_00242BE0.c comment: gathers the pieces a ray sweeps through, sorts the hits
 func_00242FD8	0x00242FD8				
 func_002433CC	0x002433CC				
 func_00243804	0x00243804				
@@ -981,8 +981,8 @@ func_00243840	0x00243840
 func_00243864	0x00243864				
 func_00243910	0x00243910				
 func_00243A78	0x00243A78				
-func_00243A80	0x00243A80				
-func_00244494	0x00244494				
+func_00243A80	0x00243A80	Collision_MoveActor	World/Collision.cs	high	harvest: src/game/func_00243A80.c comment: moves an actor through collision queries, resolves position and contact flags (wall-collision fix)
+func_00244494	0x00244494	Collision_RayCast	World/Collision.cs	medium	harvest: src/game/func_00203F04.c comment: casts a ray between two positions through func_00244494 into D_80103FD0
 func_002446D0	0x002446D0				
 func_0024490C	0x0024490C				
 func_00244B58	0x00244B58				
@@ -1029,7 +1029,7 @@ func_00245BB0	0x00245BB0	Flyby_Finish	World/Flyby.cs	medium	once (f48): frees th
 func_00245C28	0x00245C28	Flyby_Advance	World/Flyby.cs	medium	advances the clock by dt * speed (loop / hold at the end, Flyby_OnWindowStart at f30)
 func_00245D04	0x00245D04	Flyby_IsActive2	World/Flyby.cs	low	returns f38, same as Flyby_IsActive
 func_00245D18	0x00245D18				
-func_00245D20	0x00245D20				
+func_00245D20	0x00245D20	Actor_ApplyCurrentForces	Actor/Actor.cs	medium	harvest: src/game/func_00245D20.c comment: applies material current and turning forces to an actor
 func_00246174	0x00246174				
 func_002461D8	0x002461D8				
 func_002462D8	0x002462D8				
@@ -1043,12 +1043,12 @@ func_00246E34	0x00246E34
 func_00246FF4	0x00246FF4				
 func_0024714C	0x0024714C				
 func_002472E0	0x002472E0				
-func_002476B8	0x002476B8				
+func_002476B8	0x002476B8	Anim_SendEvent	Render/Anim.cs	medium	harvest: PORT_STATUS + port/byval_ir.py: animation-event position (area damage); sent the weapon-fire event key 0x655
 func_0024795C	0x0024795C				
 func_00247BA4	0x00247BA4				
 func_00247F08	0x00247F08				
 func_002480E0	0x002480E0				
-func_002484A0	0x002484A0				
+func_002484A0	0x002484A0	Actor_BuildPoseMatrices	Render/Anim.cs	medium	harvest: src/game/func_002484A0.c comment: builds and packs the animated part matrices of an actor, updates frame timing
 func_00249E18	0x00249E18				
 func_0024A1C0	0x0024A1C0				
 func_0024A3A0	0x0024A3A0				
@@ -1107,7 +1107,7 @@ func_0024D274	0x0024D274
 func_0024D388	0x0024D388				
 func_0024D49C	0x0024D49C				
 func_0024D718	0x0024D718				
-func_0024D860	0x0024D860				
+func_0024D860	0x0024D860	Player_GetBodyLean	Player/Player.cs	medium	harvest: src/game/func_0024D860.c comment: returns a player's body lean on the ground (tilt toward the floor normal)
 func_0024DBB0	0x0024DBB0				
 func_0024DD00	0x0024DD00				
 func_0024DD14	0x0024DD14				
@@ -1182,7 +1182,7 @@ func_0024F6DC	0x0024F6DC
 func_0024F848	0x0024F848				
 func_0024F8CC	0x0024F8CC				
 func_0024F934	0x0024F934				
-func_0024F940	0x0024F940				
+func_0024F940	0x0024F940	Prop_InitFromRecord	World/Level.cs	medium	harvest: src/game/func_0024F940.c comment: initialises a placed prop from its compact record (model, grid position, bounding box)
 func_0024FD4C	0x0024FD4C				
 func_00250028	0x00250028				
 func_002500A4	0x002500A4				
@@ -1190,7 +1190,7 @@ func_0025021C	0x0025021C
 func_00250458	0x00250458				
 func_002505CC	0x002505CC				
 func_00250754	0x00250754				
-func_002508E0	0x002508E0				
+func_002508E0	0x002508E0	Resource_FindEntry	System/Resource.cs	medium	harvest: src/game/func_002508E0.c comment: returns the matching resource entry index, or -1
 func_00250950	0x00250950				
 func_00250A0C	0x00250A0C				
 func_00250A34	0x00250A34				
@@ -1199,21 +1199,21 @@ func_00250A7C	0x00250A7C
 func_00250ACC	0x00250ACC				
 func_0024F940_func_80250BF0_de	0x00250B98				
 func_00250B98	0x00250B98				
-func_00250BD4	0x00250BD4				
+func_00250BD4	0x00250BD4	Light_FillVertexCache	Render/Lighting.cs	medium	harvest: PORT_STATUS: litfill prints (port/overrides/func_00250BD4.c): one line per lit-vertex cache fill
 func_00250C2C	0x00250C2C				
 func_00250D88	0x00250D88				
 func_00250DBC	0x00250DBC				
 func_00250E10	0x00250E10				
 func_0025114C	0x0025114C				
-func_002512C8	0x002512C8				
-func_00251448	0x00251448				
+func_002512C8	0x002512C8	ResourcePool_ReclaimNode	System/Resource.cs	medium	harvest: src/game/func_002512C8.c comment: reclaims one pool node unused for five frames (collector)
+func_00251448	0x00251448	ResourcePool_AllocNode	System/Resource.cs	medium	harvest: src/game/func_00251448.c comment: allocates a node from the free pool D_8010513C, running the collector when empty
 func_00251590	0x00251590				
 func_00251754	0x00251754				
-func_002518DC	0x002518DC				
+func_002518DC	0x002518DC	ResourceCache_Hash	System/Resource.cs	medium	harvest: Hud/GameSprites.cs: the resource cache's hash (buckets *0x80105194)
 func_00251F0C	0x00251F0C				
 func_00252450	0x00252450				
-func_00252714	0x00252714				
-func_002529E4	0x002529E4				
+func_00252714	0x00252714	Resource_ActivateLoadRequest	System/Resource.cs	medium	harvest: src/game/func_00252714.c comment: activates a load request (pending -> active list, request hash table by priority)
+func_002529E4	0x002529E4	Debug_DrawMemoryMap	Debug/Debug.cs	medium	harvest: src/game/func_002529E4.c comment: debug memory map panel (heap segments and pool nodes as bars)
 func_00252FFC	0x00252FFC				
 func_00253294	0x00253294				
 func_002532A0	0x002532A0				
@@ -1229,13 +1229,13 @@ func_0025398C	0x0025398C
 func_00253A74	0x00253A74				
 func_00253B5C	0x00253B5C				
 func_00253C8C	0x00253C8C				
-func_00253CB0	0x00253CB0				
+func_00253CB0	0x00253CB0	ResourcePool_FreeBlock_00253CB0	System/Resource.cs	low	harvest: FINDINGS s1006: func_00253CB0(0, handle, node) frees it
 func_00253E04	0x00253E04				
 func_00253F2C	0x00253F2C				
 func_00254094	0x00254094				
 func_00254224	0x00254224				
 func_002543A8	0x002543A8				
-func_00254420	0x00254420				
+func_00254420	0x00254420	ResourcePool_GetBlock_00254420	System/Resource.cs	low	harvest: FINDINGS s1006: func_00254420 returns a node whose first word is the buffer
 func_002545A0	0x002545A0				
 func_0025470C	0x0025470C				
 func_0025471C	0x0025471C				
@@ -1248,7 +1248,7 @@ func_0025477C	0x0025477C
 func_00254784	0x00254784				
 func_00254858	0x00254858				
 func_00254930	0x00254930				
-func_002549C8	0x002549C8				
+func_002549C8	0x002549C8	ResourcePool_PopFree	System/Resource.cs	medium	harvest: src/game/func_00251448.c comment: as func_002549C8 does: pops a node, resets its fields, stamps the frame, links it
 func_00254A70	0x00254A70				
 func_00254AF8	0x00254AF8				
 func_00254B2C	0x00254B2C				
@@ -1261,38 +1261,38 @@ func_00254DD0	0x00254DD0
 func_00254E28	0x00254E28				
 func_00254E70	0x00254E70				
 func_00254F3C	0x00254F3C				
-func_00254FE8	0x00254FE8				
-func_00255090	0x00255090				
+func_00254FE8	0x00254FE8	ResourceCache_FindEvictable	System/Resource.cs	medium	harvest: src/game/func_00254FE8.c comment: finds an evictable entry of a list (untouched for five ticks)
+func_00255090	0x00255090	MsgPort_Create	System/Threads.cs	medium	harvest: code (generated C#): creates the port's message queue and its server thread (entry func_00255220), stack filled with the id
 func_00255110	0x00255110				
-func_0025519C	0x0025519C				
-func_002551C8	0x002551C8				
-func_00255220	0x00255220				
+func_0025519C	0x0025519C	MsgPort_Send	System/Threads.cs	medium	harvest: code: stores the reply queue in the request and osSendMesg's it to the port (returns 1 on success)
+func_002551C8	0x002551C8	MsgPort_Flush	System/Threads.cs	medium	harvest: code: while the port queue has messages, raises/lowers the server thread priority to let it drain
+func_00255220	0x00255220	MsgPort_ThreadMain	System/Threads.cs	medium	harvest: code: server loop: osRecvMesg a request, calls req->fn(req->arg), replies on req->reply
 func_00255278	0x00255278				
-func_00255280	0x00255280				
+func_00255280	0x00255280	AddrHash_Create	System/Memory.cs	medium	harvest: src/game/func_00255280.c comment: creates the address hash table (power-of-two slots from pool D_801051A0)
 func_00255354	0x00255354				
 func_00255428	0x00255428				
-func_002554E0	0x002554E0				
+func_002554E0	0x002554E0	Math_RoundUpPow2	System/Memory.cs	medium	harvest: src/game/func_002554E0.c comment: rounds a value up to a power of two
 func_0025552C	0x0025552C				
 func_002555C8	0x002555C8				
 func_002555D0	0x002555D0				
-func_00255720	0x00255720				
-func_00255854	0x00255854				
-func_002558C0	0x002558C0				
-func_002559D4	0x002559D4				
-func_00255ACC	0x00255ACC				
+func_00255720	0x00255720	Heap_CoalesceAfterAnchor	System/Memory.cs	medium	harvest: src/game/func_00255720.c comment: coalesces every block that follows a pool's anchor block into its predecessor
+func_00255854	0x00255854	Heap_Init	System/Memory.cs	medium	harvest: src/game/func_00255720.c comment: initialises a heap over a memory range (one free block)
+func_002558C0	0x002558C0	Heap_Alloc	System/Memory.cs	medium	harvest: src/game/func_00255720.c comment: allocates from a heap with a first-fit search of its free list
+func_002559D4	0x002559D4	Heap_AllocTop	System/Memory.cs	medium	harvest: src/game/func_00255720.c comment: allocates from the top of a heap's free space (first fit)
+func_00255ACC	0x00255ACC	Heap_Free	System/Memory.cs	medium	harvest: src/game/func_00255720.c comment: func_00255ACC absorbs one block (coalesce on release); used to release a node's resource
 func_00255BEC	0x00255BEC				
 func_00255C3C	0x00255C3C				
-func_00255C40	0x00255C40				
-func_00255C58	0x00255C58				
-func_00255CB4	0x00255CB4				
+func_00255C40	0x00255C40	List_Init	System/Memory.cs	medium	harvest: src/ovl_a comments (func_0044AA00, 0044B420): initialises lists through func_00255C40
+func_00255C58	0x00255C58	List_Add	System/Memory.cs	medium	harvest: src/ovl_a/func_0044B3E0.c comment: adds it to the list at 0xC through func_00255C58
+func_00255CB4	0x00255CB4	List_Append_00255CB4	System/Memory.cs	low	harvest: src/ovl_a/func_0044B420.c comment: adds the pool's four entries to the second list through func_00255CB4
 func_00255D10	0x00255D10				
 func_00255DC4	0x00255DC4				
-func_00255E78	0x00255E78				
-func_00255F10	0x00255F10				
-func_00255F34	0x00255F34				
+func_00255E78	0x00255E78	List_Remove	System/Memory.cs	medium	harvest: src/ovl_a/func_0044B3E0.c comment: removes it from the list at 0x20 through func_00255E78
+func_00255F10	0x00255F10	Cursor_Advance_00255F10	System/Memory.cs	low	harvest: src/game/func_00255CB4.c comment: advance the cursor by its stride and decrement its remaining count
+func_00255F34	0x00255F34	Cursor_Advance2_00255F34	System/Memory.cs	low	harvest: src/game/func_00255CB4.c comment: advance the cursor by its stride and decrement its remaining count (twin)
 func_00255F58	0x00255F58				
 func_00256044	0x00256044				
-func_00256130	0x00256130				
+func_00256130	0x00256130	List_PeekHead_00256130	System/Memory.cs	low	harvest: src/ovl_a/func_0044DD40.c comment: takes the objects back off through func_00256130 and func_00255E78
 func_002561B4	0x002561B4				
 func_002561DC	0x002561DC				
 func_00256214	0x00256214				
@@ -1303,7 +1303,7 @@ func_0025651C	0x0025651C
 func_0025663C	0x0025663C				
 func_002566A8	0x002566A8				
 func_00256708	0x00256708				
-func_002567C4	0x002567C4				
+func_002567C4	0x002567C4	Lock_Init	System/Threads.cs	medium	harvest: code: P3Lock init: count = 0, osCreateMesgQueue with one slot
 func_002567E8	0x002567E8				
 func_002567F0	0x002567F0				
 func_002568A0	0x002568A0				
@@ -1311,7 +1311,7 @@ func_00256CB0	0x00256CB0
 func_00256E8C	0x00256E8C				
 func_00256EC8	0x00256EC8				
 func_00256FE0	0x00256FE0				
-func_002570E0	0x002570E0				
+func_002570E0	0x002570E0	Audio_DmaCacheLoad	Audio/Sound.cs	medium	harvest: FINDINGS: alAdpcmPull loads the codebook through the game's DMA cache func_002570E0
 func_00257210	0x00257210				
 func_00257380	0x00257380				
 func_002576AC	0x002576AC				
@@ -1380,7 +1380,7 @@ func_00259F88	0x00259F88
 func_0025A3EC	0x0025A3EC				
 func_0025A864	0x0025A864				
 func_0025AA4C	0x0025AA4C				
-func_0025ABB4	0x0025ABB4				
+func_0025ABB4	0x0025ABB4	Audio_RampVoicePitch	Audio/Sound.cs	medium	harvest: src/game/func_0025ABB4.c comment: ramps a voice pitch toward its target and applies it to the channel
 func_0025AE3C	0x0025AE3C				
 func_0025B054	0x0025B054				
 func_0025B1E8	0x0025B1E8				
@@ -1388,7 +1388,7 @@ func_0025B610	0x0025B610
 func_0025B718	0x0025B718				
 func_0025B778	0x0025B778				
 func_0025B874	0x0025B874				
-func_0025B8DC	0x0025B8DC				
+func_0025B8DC	0x0025B8DC	Sound_PlayVoice	Audio/Sound.cs	medium	harvest: code: alSndpPlay on the voice's manager player and sets flag 8 in the voice record
 func_0025B940	0x0025B940				
 func_0025BA6C	0x0025BA6C				
 func_0025BABC	0x0025BABC				
@@ -1407,11 +1407,11 @@ func_0025C1EC	0x0025C1EC
 func_0025C27C	0x0025C27C				
 func_0025C30C	0x0025C30C				
 func_0025C388	0x0025C388				
-func_0025C458	0x0025C458				
-func_0025C4D4	0x0025C4D4				
-func_0025C544	0x0025C544				
-func_0025C598	0x0025C598				
-func_0025C5DC	0x0025C5DC				
+func_0025C458	0x0025C458	Sound_SetSoundVolume	Audio/Sound.cs	medium	harvest: code: alSndpSetSound + alSndpSetVol (volume * scale) on the bank's player
+func_0025C4D4	0x0025C4D4	SndVoice_SetPitch	Audio/Sound.cs	medium	harvest: code: alSndpSetSound then alSndpSetPitch(pitch * voice factors)
+func_0025C544	0x0025C544	SndVoice_SetPan	Audio/Sound.cs	medium	harvest: code: alSndpSetSound then alSndpSetPan(pan & 255)
+func_0025C598	0x0025C598	SndVoice_GetState	Audio/Sound.cs	medium	harvest: code: alSndpSetSound then returns alSndpGetState
+func_0025C5DC	0x0025C5DC	SndVoice_Play	Audio/Sound.cs	medium	harvest: code: alSndpPlay on the voice's manager player
 func_0025C5FC	0x0025C5FC				
 func_0025C67C	0x0025C67C				
 func_0025C6F4	0x0025C6F4				
@@ -1434,7 +1434,7 @@ func_0025D178	0x0025D178
 func_0025D1DC	0x0025D1DC				
 func_0025D258	0x0025D258				
 func_0025D370	0x0025D370				
-func_0025D404	0x0025D404				
+func_0025D404	0x0025D404	SndFx_Stop	Audio/Sound.cs	medium	harvest: code: marks the effect state 2, selects its sound and alSndpStop
 func_0025D468	0x0025D468				
 func_0025D470	0x0025D470				
 func_0025D864	0x0025D864				
@@ -1443,9 +1443,9 @@ func_0025DA30	0x0025DA30
 func_0025DAEC	0x0025DAEC				
 func_0025DB54	0x0025DB54				
 func_0025DB64	0x0025DB64				
-func_0025DB78	0x0025DB78				
+func_0025DB78	0x0025DB78	Seq_Stop	Audio/Sound.cs	medium	harvest: code: SndSeq: unk28 = -1, alCSPStop(seq->csp)
 func_0025DBA0	0x0025DBA0				
-func_0025DC54	0x0025DC54				
+func_0025DC54	0x0025DC54	Seq_SetVolume	Audio/Sound.cs	medium	harvest: code: alCSPSetVol(seq->csp, vol * scale), stores the volume
 func_0025DCA8	0x0025DCA8				
 func_0025DD80	0x0025DD80				
 func_0025DE4C	0x0025DE4C				
@@ -1466,8 +1466,8 @@ func_0025E234	0x0025E234
 func_0025E25C	0x0025E25C				
 func_0025E280	0x0025E280				
 func_0025E2BC	0x0025E2BC				
-func_0025E2E4	0x0025E2E4				
-func_0025E2F4	0x0025E2F4				
+func_0025E2E4	0x0025E2E4	Audio_IsSoundOn	Audio/Sound.cs	medium	harvest: src/ovl_a/func_00436224.c comment: func_0025E2E4 reports sound on
+func_0025E2F4	0x0025E2F4	Audio_PlayCue	Audio/Sound.cs	medium	harvest: src/ovl_a/func_00436224.c comment: plays cue 0x34 through func_0025E2F4 when func_0025E2E4 reports sound on
 func_0025E338	0x0025E338				
 func_0025E35C	0x0025E35C				
 func_0025E380	0x0025E380				
@@ -1500,8 +1500,8 @@ func_0025E5D0	0x0025E5D0
 func_0025EA3C	0x0025EA3C				
 func_0025EF54	0x0025EF54				
 func_0025F0F4	0x0025F0F4				
-func_0025F454	0x0025F454				
-func_0025F58C	0x0025F58C				
+func_0025F454	0x0025F454	Math_RateFromAmount_0025F454	System/Resource.cs	low	harvest: src/game/func_0025F454.c comment: converts an amount over a period into a whole rate
+func_0025F58C	0x0025F58C	Resource_RebuildMotion_0025F58C	System/Resource.cs	low	harvest: src/game/func_0025F58C.c comment: rebuild the resource motion blocks, then replace the original handle
 func_0025FD94	0x0025FD94				
 func_0025FFD0	0x0025FFD0				
 func_00260158	0x00260158				
@@ -1544,10 +1544,10 @@ func_00261438	0x00261438
 func_0026156C	0x0026156C				
 func_002615D4	0x002615D4				
 func_0026162C	0x0026162C				
-func_00261634	0x00261634				
+func_00261634	0x00261634	Math_HighestBit	Math/MathLib.cs	medium	harvest: src/game/func_002554E0.c comment: adapted from func_00261634 (returns the highest set bit index)
 func_00261688	0x00261688				
-func_00261690	0x00261690				
-func_0026195C	0x0026195C				
+func_00261690	0x00261690	Anim_SwitchClip	Render/Anim.cs	medium	harvest: src/game/func_00261690.c comment: switches an animation track to its pending clip
+func_0026195C	0x0026195C	Anim_SampleTrack	Render/Anim.cs	medium	harvest: src/game/func_0026195C.c comment: linear/cubic sample of the 16-bit track at time t
 func_00261EB8	0x00261EB8				
 func_002624A0	0x002624A0				
 func_002624C8	0x002624C8				
@@ -1559,42 +1559,42 @@ func_002625E4	0x002625E4
 func_00262610	0x00262610				
 func_002626BC	0x002626BC				
 func_002627B4	0x002627B4				
-func_002627C0	0x002627C0				
+func_002627C0	0x002627C0	Effect_SpawnItemVariant	Render/Effects.cs	medium	harvest: src/game/func_002627C0.c comment: spawns the effect of an item variant
 func_00262CA8	0x00262CA8				
 func_00262D00	0x00262D00				
 func_00262EA8	0x00262EA8				
-func_00263018	0x00263018				
-func_002630A0	0x002630A0				
+func_00263018	0x00263018	EffectPool_Acquire	Render/Effects.cs	medium	harvest: src/game/func_00263018.c comment: effect pool: takes the head of the free list, moves it to the active list
+func_002630A0	0x002630A0	EffectPool_Release	Render/Effects.cs	medium	harvest: src/game/func_002630A0.c comment: effect pool: releases an effect back to the free list
 func_002630FC	0x002630FC				
 func_00263100	0x00263100				
 func_0026310C	0x0026310C				
 func_00263174	0x00263174				
 func_002631C8	0x002631C8				
 func_002631CC	0x002631CC				
-func_002631D0	0x002631D0				
+func_002631D0	0x002631D0	Pad_UpdatePlayerControls	Player/Controls.cs	high	harvest: port/overrides/func_002631D0.c + input.c: controller -> walk / strafe / turn / tilt of a player (player+0x688)
 func_0026369C	0x0026369C				
 func_002636D0	0x002636D0				
-func_00263708	0x00263708				
-func_00263760	0x00263760				
+func_00263708	0x00263708	Flags_SwapBitPairs_00263708	Player/Controls.cs	low	harvest: src/game/func_00263708.c comment: swaps bit pairs 0x10000<->0x8 and 0x80000<->0x4 of a flag word
+func_00263760	0x00263760	Pad_ReadController_00263760	Player/Controls.cs	low	harvest: PORT_STATUS: readers of the controller completion queue D_8010FC00 (func_00263760 callers)
 func_00263AF8	0x00263AF8				
 func_00263B14	0x00263B14				
 func_00263C44	0x00263C44				
-func_00263D10	0x00263D10				
-func_00263E1C	0x00263E1C				
+func_00263D10	0x00263D10	Pad_InitSlot2	Player/Controls.cs	medium	harvest: FINDINGS: func_0044BC58 (controller slot init) is the unconditional twin of the main image's func_00263D10
+func_00263E1C	0x00263E1C	Pad_ApplyStickDeadzone	Player/Controls.cs	medium	harvest: port/input_core.h: the game's own dead zone (func_00263E1C): |v| <= 3 reads 0, else 3 subtracted
 func_00264124	0x00264124				
 func_00264268	0x00264268				
 func_0026437C	0x0026437C				
 func_0026438C	0x0026438C				
-func_0026439C	0x0026439C				
-func_002643A8	0x002643A8				
-func_002643C0	0x002643C0				
+func_0026439C	0x0026439C	Pad_IsConfirm	Player/Controls.cs	medium	harvest: FINDINGS: func_002643A8/002643C0/0026439C(ctrl) = left/right/confirm
+func_002643A8	0x002643A8	Pad_IsLeft	Player/Controls.cs	medium	harvest: FINDINGS: func_002643A8/002643C0/0026439C(ctrl) = left/right/confirm
+func_002643C0	0x002643C0	Pad_IsRight	Player/Controls.cs	medium	harvest: FINDINGS: func_002643A8/002643C0/0026439C(ctrl) = left/right/confirm
 func_002643D8	0x002643D8				
 func_002643F0	0x002643F0				
 func_00264408	0x00264408				
 func_00264418	0x00264418				
 func_00264424	0x00264424				
 func_002644C8	0x002644C8				
-func_0026451C	0x0026451C				
+func_0026451C	0x0026451C	Pad_TryAcquire	Player/Controls.cs	medium	harvest: code: non-blocking osRecvMesg on 0x8010FBC0, records the owning thread id in 0x800D0E5C
 func_0026456C	0x0026456C				
 func_002645A0	0x002645A0				
 func_002645F0	0x002645F0				
@@ -1633,21 +1633,21 @@ func_002651D0	0x002651D0
 func_00265370	0x00265370				
 func_00265398	0x00265398				
 func_00265464	0x00265464				
-func_00265508	0x00265508				
+func_00265508	0x00265508	Sprite_FindIndex	Render/Sprites.cs	medium	harvest: Hud/GameSprites.cs: gives the index of the sprite id (binary search over the sorted keys at +0x9C)
 func_00265570	0x00265570				
 func_0026565C	0x0026565C				
 func_00265670	0x00265670				
 func_002656A8	0x002656A8				
 func_002656FC	0x002656FC				
-func_00265734	0x00265734				
+func_00265734	0x00265734	Emitter_Falloff_00265734	Actor/Actor.cs	low	harvest: FINDINGS: strength falloff func_00265734
 func_002657A4	0x002657A4				
 func_0026583C	0x0026583C				
 func_00265898	0x00265898				
 func_002658FC	0x002658FC				
-func_00265904	0x00265904				
-func_00265920	0x00265920				
-func_0026593C	0x0026593C				
-func_0026595C	0x0026595C				
+func_00265904	0x00265904	Str_Sprintf	Lib/LibC.cs	medium	harvest: FINDINGS s10xx: sprintf into a text buffer, func_00265904(s + offset, fmt, v)
+func_00265920	0x00265920	Str_FormatRet2	Lib/LibC.cs	medium	harvest: code: returns sprintf(dst, fmt, a, b)
+func_0026593C	0x0026593C	Str_FormatRet3	Lib/LibC.cs	medium	harvest: code: returns sprintf(dst, fmt, a, b, c)
+func_0026595C	0x0026595C	Str_Format4	Lib/LibC.cs	medium	harvest: code: sprintf(buf, fmt, a, b, c, d)
 func_00265984	0x00265984				
 func_00265A00	0x00265A00				
 func_00265DF0	0x00265DF0				
@@ -1660,7 +1660,7 @@ func_002671B0	0x002671B0
 func_00267214	0x00267214				
 func_00267278	0x00267278				
 func_002672E8	0x002672E8				
-func_00267324	0x00267324				
+func_00267324	0x00267324	Sound_HandleEvent	Audio/Sound.cs	medium	harvest: port/byval_ir.py: the sound handler func_00267324 read sound id 0 (silent weapons) from event key 0x655
 func_00267404	0x00267404				
 func_00267424	0x00267424				
 func_0026745C	0x0026745C				
@@ -1671,11 +1671,11 @@ func_00267968	0x00267968
 func_00267B78	0x00267B78				
 func_00267BD8	0x00267BD8				
 func_00267C30	0x00267C30				
-func_00267C88	0x00267C88				
+func_00267C88	0x00267C88	Debug_Stub_00267C88	Debug/Debug.cs	low	harvest: src/game/func_00267C88.c: empty stub (debug/removed function), Vec3f by value
 func_00267C90	0x00267C90				
 func_00267CC4	0x00267CC4				
 func_00267CF4	0x00267CF4				
-func_00267D78	0x00267D78				
+func_00267D78	0x00267D78	Debug_Stub_00267D78	Debug/Debug.cs	low	harvest: src/game/func_00267D78.c: empty stub (debug/removed function), Vec3f by value
 func_00267D80	0x00267D80				
 func_00267DC4	0x00267DC4				
 func_00267E58	0x00267E58				
@@ -1687,7 +1687,7 @@ func_002680B0	0x002680B0
 func_00268108	0x00268108				
 func_00268160	0x00268160				
 func_002681B8	0x002681B8				
-func_00268274	0x00268274				
+func_00268274	0x00268274	Debug_Stub_00268274	Debug/Debug.cs	low	harvest: src/game/func_00268274.c: empty stub (debug/removed function), Vec3f by value
 func_0026827C	0x0026827C				
 func_0026836C	0x0026836C				
 func_002683F0	0x002683F0				
@@ -1708,10 +1708,10 @@ func_00268C7C	0x00268C7C
 func_00268CBC	0x00268CBC				
 func_00268CC8	0x00268CC8				
 func_00268CD4	0x00268CD4				
-func_00268CE0	0x00268CE0				
-func_0026925C	0x0026925C				
+func_00268CE0	0x00268CE0	Gfx_SetCombineMode	Render/RenderMode.cs	medium	harvest: src/game/func_00268CE0.c comment: sets the RDP combine mode, one G_SETCOMBINE for the requested mode
+func_0026925C	0x0026925C	Gfx_SetOtherModeL	Render/RenderMode.cs	medium	harvest: src/game/func_0026925C.c comment: sets the RDP other-mode word (G_SETOTHERMODE_L) for the requested mode
 func_0026992C	0x0026992C				
-func_00269A80	0x00269A80				
+func_00269A80	0x00269A80	Model_DrawGroups	Render/Model.cs	medium	harvest: C# git: when func_00296EC4 returned nothing func_00269A80 skipped every draw group (level models missing)
 func_0026AC38	0x0026AC38				
 func_0026AD8C	0x0026AD8C				
 func_0026B504	0x0026B504				
@@ -1737,7 +1737,7 @@ func_0026D8F8	0x0026D8F8
 func_0026D914	0x0026D914				
 func_0026D980	0x0026D980				
 func_0026D9D0	0x0026D9D0				
-func_0026DA4C	0x0026DA4C				
+func_0026DA4C	0x0026DA4C	Light_ShadeVertices	Render/Lighting.cs	medium	harvest: PORT_STATUS: the lighting pass (callers of func_0026DA4C) produces the per-panel vertex colours
 func_0026DC24	0x0026DC24				
 func_0026DD50	0x0026DD50				
 func_0026DF30	0x0026DF30				
@@ -1765,11 +1765,11 @@ func_0026F690	0x0026F690
 func_0026F908	0x0026F908				
 func_0026FD0C	0x0026FD0C				
 func_00270034	0x00270034				
-func_002702EC	0x002702EC				
+func_002702EC	0x002702EC	Math_MtxFloatToFixed	Math/Matrix.cs	high	harvest: C# git + TRANSPILER.md: the matrix converter func_002702EC ((u32)float casts; whole world black when negatives lost)
 func_00270770	0x00270770				
 func_00270980	0x00270980				
 func_00270B1C	0x00270B1C				
-func_00270D40	0x00270D40				
+func_00270D40	0x00270D40	Quat_Blend	Math/Vector.cs	medium	harvest: FINDINGS (nlerp/slerp branch of func_00270D40) + PORT/func_0024D860 comment: blending lean and tilt through func_00270D40
 func_00271058	0x00271058				
 func_002712B8	0x002712B8				
 func_002714A0	0x002714A0				
@@ -1787,7 +1787,7 @@ func_002720EC	0x002720EC
 func_00272174	0x00272174				
 func_002721F0	0x002721F0				
 func_00272284	0x00272284				
-func_0027230C	0x0027230C				
+func_0027230C	0x0027230C	Vec_ProjectOnPlane	Math/Vector.cs	medium	harvest: FINDINGS: func_0027230C (plane-normal projection)
 func_0027246C	0x0027246C				
 func_002725BC	0x002725BC				
 func_00272664	0x00272664				
@@ -1821,11 +1821,11 @@ func_00273618	0x00273618
 func_002736B8	0x002736B8				
 func_00273744	0x00273744				
 func_002737D0	0x002737D0				
-func_00273860	0x00273860				
+func_00273860	0x00273860	Math_MtxRotateRowsC_00273860	Math/Matrix.cs	low	harvest: FINDINGS/batch_notes: func_00273860 (2 sinf/cosf rotation of matrix rows)
 func_00273930	0x00273930				
-func_00273A34	0x00273A34				
+func_00273A34	0x00273A34	Math_MtxRotateRowsB_00273A34	Math/Matrix.cs	low	harvest: FINDINGS: rotation of two matrix rows (func_00273C08/00273A34)
 func_00273B08	0x00273B08				
-func_00273C08	0x00273C08				
+func_00273C08	0x00273C08	Math_MtxRotateRowsA_00273C08	Math/Matrix.cs	low	harvest: FINDINGS: rotation of two matrix rows (func_00273C08/00273A34)
 func_00273CD8	0x00273CD8				
 func_00273DDC	0x00273DDC				
 func_00273E10	0x00273E10				
@@ -1834,9 +1834,9 @@ func_00273ED4	0x00273ED4
 func_00273F54	0x00273F54				
 func_00274004	0x00274004				
 func_00274090	0x00274090				
-func_00274108	0x00274108				
+func_00274108	0x00274108	Quat_Multiply	Math/Vector.cs	high	harvest: FINDINGS: quaternion product (func_00274108)
 func_00274214	0x00274214				
-func_002742B4	0x002742B4				
+func_002742B4	0x002742B4	Quat_ToMatrix	Math/Vector.cs	high	harvest: FINDINGS: the quaternion->matrix function (func_002742B4)
 func_00274388	0x00274388				
 func_002743F0	0x002743F0				
 func_0027451C	0x0027451C				
@@ -1844,7 +1844,7 @@ func_00274524	0x00274524
 func_00274544	0x00274544	Random_Next		medium	pseudo-random number (callers take % n)
 func_0027458C	0x0027458C				
 func_002745D4	0x002745D4				
-func_00274640	0x00274640				
+func_00274640	0x00274640	Math_Acosf	Math/MathLib.cs	medium	harvest: src/game/func_00216F44.c comment: converts it through the arc cosine func_00274640
 func_00274710	0x00274710				
 func_00274810	0x00274810				
 func_00274878	0x00274878				
@@ -1852,7 +1852,7 @@ func_002748E0	0x002748E0
 func_00274964	0x00274964				
 func_002749B4	0x002749B4				
 func_00274A24	0x00274A24				
-func_00274B00	0x00274B00				
+func_00274B00	0x00274B00	Random_Symmetric	Math/MathLib.cs	medium	harvest: FINDINGS: wave type 0 = random in [-x,x] (func_00274B00)
 func_00274BB4	0x00274BB4				
 func_00274BEC	0x00274BEC				
 func_00274C64	0x00274C64				
@@ -1867,7 +1867,7 @@ func_002756F8	0x002756F8
 func_00275854	0x00275854				
 func_002759C4	0x002759C4				
 func_00275AC8	0x00275AC8				
-func_00275B14	0x00275B14				
+func_00275B14	0x00275B14	Collision_DecodeFace_00275B14	World/Collision.cs	low	harvest: src/ovl_a/func_0044D024.c: decodes every face through func_00275B14
 func_00275B80	0x00275B80				
 func_00275C38	0x00275C38				
 func_00275D04	0x00275D04				
@@ -1884,7 +1884,7 @@ func_00276308	0x00276308
 func_0027638C	0x0027638C				
 func_0027647C	0x0027647C				
 func_00276544	0x00276544				
-func_00276580	0x00276580				
+func_00276580	0x00276580	Math_BoundsOfPoints	Math/Vector.cs	medium	harvest: src/game/func_00276580.c comment: box = {minX, minZ, maxX, maxZ} over an array of xyz points
 func_00276610	0x00276610				
 func_00276618	0x00276618				
 func_00276620	0x00276620				
@@ -1892,11 +1892,11 @@ func_002769D8	0x002769D8
 func_00276BB4	0x00276BB4				
 func_00276D20	0x00276D20				
 func_00277198	0x00277198				
-func_00277444	0x00277444				
-func_00277620	0x00277620				
+func_00277444	0x00277444	Light_TestVolume	Render/Lighting.cs	medium	harvest: PORT_STATUS + port/overrides/func_00277444.c: prints the per-vertex light volume tests
+func_00277620	0x00277620	Light_TestVertexVolumes	Render/Lighting.cs	medium	harvest: PORT_STATUS: per-vertex volume tests in func_00277620/func_00277444 (sphere/box/cone with falloff)
 func_00277B08	0x00277B08				
 func_00277CC4	0x00277CC4				
-func_00278090	0x00278090				
+func_00278090	0x00278090	Light_CollectVolumes	Render/Lighting.cs	medium	harvest: PORT_STATUS: light collection: readable draft of func_00278090; panel lookups found 1-5 light volumes
 func_002782E4	0x002782E4				
 func_00278530	0x00278530				
 func_00278900	0x00278900				
@@ -1904,7 +1904,7 @@ func_0027899C	0x0027899C
 func_00278A78	0x00278A78				
 func_00278B2C	0x00278B2C				
 func_00278BAC	0x00278BAC				
-func_00278C80	0x00278C80				
+func_00278C80	0x00278C80	Entity_Spawn	World/Level.cs	medium	harvest: src/game/func_0028784C.c comment: spawns an entity through func_00278C80
 func_00278DE8	0x00278DE8				
 func_00278E74	0x00278E74				
 func_00278EEC	0x00278EEC				
@@ -1949,21 +1949,21 @@ func_0027A9B8	0x0027A9B8
 func_0027AC64	0x0027AC64				
 func_0027ADBC	0x0027ADBC				
 func_0027B498	0x0027B498				
-func_0027B790	0x0027B790				
+func_0027B790	0x0027B790	Particle_Update	Render/Effects.cs	medium	harvest: src/game/func_0027B790.c comment: updates a particle for one frame (spin, size, bounce, ground probe)
 func_0027C324	0x0027C324				
 func_0027C5A0	0x0027C5A0				
 func_0027C808	0x0027C808				
 func_0027CA7C	0x0027CA7C				
-func_0027CCD0	0x0027CCD0				
+func_0027CCD0	0x0027CCD0	Actor_UpdateHitEffects	Render/Effects.cs	medium	harvest: C git 66fb668 (actor_hit_effects) + FINDINGS s903 (particle/effect attach update)
 func_0027D47C	0x0027D47C				
-func_0027D950	0x0027D950				
-func_0027DAA4	0x0027DAA4				
+func_0027D950	0x0027D950	Actor_GetSharedEffect_0027D950	Render/Effects.cs	low	harvest: src/game/func_0027D950.c comment: resolve the shared effect object selected by the actor state
+func_0027DAA4	0x0027DAA4	Actor_UpdateAttachedPlacement	Actor/Actor.cs	medium	harvest: src/game/func_0027D950.c comment: refreshes an attached actor's placement (bone-mounted / owner transform), returns position and heading
 func_0027DD1C	0x0027DD1C				
-func_0027E758	0x0027E758				
+func_0027E758	0x0027E758	Actor_DrawShadow	Render/Model.cs	medium	harvest: src/game/func_0027E758.c comment: draws an actor's ground shadow (probes the ground, tilts the shadow model)
 func_0027EB00	0x0027EB00				
-func_0027ED40	0x0027ED40				
+func_0027ED40	0x0027ED40	Particle_Draw	Render/Effects.cs	medium	harvest: src/game/func_0027ED40.c comment: draws one particle for a view
 func_0027FF2C	0x0027FF2C				
-func_00280094	0x00280094				
+func_00280094	0x00280094	Effect_SpawnFromTemplates	Render/Effects.cs	medium	harvest: src/game/func_00280094.c comment: spawns the effects that template block 2 of the system lists for a kind
 func_00281A70	0x00281A70				
 func_00281C74	0x00281C74				
 func_00282304	0x00282304				
@@ -1976,7 +1976,7 @@ func_00282E6C	0x00282E6C
 func_00283038	0x00283038				
 func_0028308C	0x0028308C				
 func_002830A0	0x002830A0				
-func_002831FC	0x002831FC				
+func_002831FC	0x002831FC	Hud_DrawAmmoPips	Ui/Hud.cs	medium	harvest: docs/HUD.md: ammo pips (weapon 12), sprite 0x2F4 x 3
 func_0028324C	0x0028324C				
 func_002833A4	0x002833A4				
 func_002833B0	0x002833B0				
@@ -1988,7 +1988,7 @@ func_002836A4	0x002836A4
 func_002837CC	0x002837CC				
 func_002838F4	0x002838F4				
 func_002839F0	0x002839F0				
-func_00283A54	0x00283A54				
+func_00283A54	0x00283A54	Physics_AccelerateClamped	Actor/Actor.cs	medium	harvest: src/game/func_002839F0.c comment: adds acceleration along a direction and clamps the speed to its configured limit
 func_002849C4_func_00283A54	0x00283A54				
 func_00283B74	0x00283B74				
 func_00283BA0	0x00283BA0				
@@ -2026,7 +2026,7 @@ func_00284E70	0x00284E70
 func_00284FC8	0x00284FC8				
 func_0028509C	0x0028509C				
 func_00285130	0x00285130				
-func_00285150	0x00285150				
+func_00285150	0x00285150	Resource_UnpackRnc	System/Resource.cs	high	harvest: docs/hand_asm_c/rnc.c: the game (func_00285150) calls rncUnpackMethod1(hdr + 0x12, dst, packed, unpacked) for method 1
 func_00285290	0x00285290				
 func_00285484	0x00285484				
 func_0028553C	0x0028553C				
@@ -2041,7 +2041,7 @@ func_0028594C	0x0028594C
 func_002856B0_func_002859A0	0x002859A0				
 func_002859A0	0x002859A0				
 func_00285A94	0x00285A94				
-func_00285B34	0x00285B34				
+func_00285B34	0x00285B34	Pool_AcquireNode_00285B34	System/Memory.cs	low	harvest: src/game/func_00285B34.c comment: with interrupts masked takes the first free node of a pool, moves it onto the active list and binds its handles
 func_00285C48	0x00285C48				
 func_00285D00	0x00285D00				
 func_00285D7C	0x00285D7C				
@@ -2052,8 +2052,8 @@ func_00286254	0x00286254
 func_00286424	0x00286424				
 func_002866F8	0x002866F8				
 func_00286920	0x00286920				
-func_00286A78	0x00286A78				
-func_0028784C	0x0028784C				
+func_00286A78	0x00286A78	Level_Load	World/Level.cs	high	harvest: port/overrides/func_004396BC.c (TUROK_LEVEL calls func_00286A78(D_8011FE88, map, 0)) + src comment: initializes scene resources, actors and game mode state
+func_0028784C	0x0028784C	Level_SpawnEntity	World/Level.cs	medium	harvest: src/game/func_0028784C.c comment: spawns an entity when its bit is set in the current level's placement mask and its flag is clear
 func_0028795C	0x0028795C				
 func_00287EE8	0x00287EE8				
 func_00288440	0x00288440				
@@ -2071,7 +2071,7 @@ func_0028B004	0x0028B004
 func_0028B13C	0x0028B13C				
 func_0028B1F8	0x0028B1F8				
 func_0028B238	0x0028B238				
-func_0028B250	0x0028B250				
+func_0028B250	0x0028B250	Sound_StartForActor	Audio/Sound.cs	medium	harvest: src/ovl_a/func_0044ACCC.c comment: starts sound D_8011FE88 for the actor through func_0028B250
 func_0028B264	0x0028B264				
 func_0028B2D4	0x0028B2D4				
 func_0028B32C	0x0028B32C				
@@ -2082,7 +2082,7 @@ func_0028B4AC	0x0028B4AC
 func_0028B59C	0x0028B59C				
 func_0028B64C	0x0028B64C				
 func_0028B790	0x0028B790				
-func_0028B874	0x0028B874				
+func_0028B874	0x0028B874	PropTree_SetBit	System/Resource.cs	medium	harvest: FINDINGS p2: 0028B874 sets/clears one bit
 func_0028B964	0x0028B964				
 func_0028BA14	0x0028BA14				
 func_0028BAF8	0x0028BAF8				
@@ -2091,7 +2091,7 @@ func_0028BC98	0x0028BC98
 func_0028BD28	0x0028BD28				
 func_0028BD88	0x0028BD88				
 func_0028BDE4	0x0028BDE4				
-func_0028BE88	0x0028BE88				
+func_0028BE88	0x0028BE88	Sprite_Lookup	Render/Sprites.cs	high	harvest: docs/HUD.md + GameSprites.cs: the game's sprite lookup (library key table +0x9C binary search, offset table, base)
 func_0028BFB4	0x0028BFB4				
 func_0028C02C	0x0028C02C				
 func_0028C0E4	0x0028C0E4				
@@ -2117,7 +2117,7 @@ func_0028CD44	0x0028CD44
 func_0028CDCC	0x0028CDCC				
 func_0028CE54	0x0028CE54				
 func_0028CE70	0x0028CE70				
-func_0028CF48	0x0028CF48				
+func_0028CF48	0x0028CF48	Level_GetDefinition	World/Level.cs	medium	harvest: tools/overrides/func_0028CF48.c: returns func_0028FD94(lv->unk78, idx) or 0 for -1; used as actor->def = func_0028CF48(world, rec->id)
 func_0028CF7C	0x0028CF7C				
 func_0028D02C	0x0028D02C				
 func_0028D0E4	0x0028D0E4				
@@ -2141,7 +2141,7 @@ func_0028DA90	0x0028DA90
 func_0028DB18	0x0028DB18				
 func_0028DC18	0x0028DC18				
 func_0028DCDC	0x0028DCDC				
-func_0028DD80	0x0028DD80				
+func_0028DD80	0x0028DD80	PropTree_TestBit	System/Resource.cs	medium	harvest: FINDINGS p2: 0028DD80 tests a bit (bitmap node of the property container)
 func_0028DE24	0x0028DE24				
 func_0028DEC8	0x0028DEC8				
 func_0028DF6C	0x0028DF6C				
@@ -2164,13 +2164,13 @@ func_0028EAAC	0x0028EAAC
 func_0028ED80	0x0028ED80				
 func_0028F258	0x0028F258				
 func_0028F524	0x0028F524				
-func_0028F734	0x0028F734				
+func_0028F734	0x0028F734	Panel_Init	Ui/Widgets.cs	medium	harvest: src/game/func_0028F524.c comment: initialises a panel (two eight-slot rows, text 0x29A..0x29D, element list)
 func_0028F844	0x0028F844				
 func_0028F89C	0x0028F89C				
 func_0028F92C	0x0028F92C				
 func_0028F934	0x0028F934				
 func_0028F98C	0x0028F98C				
-func_0028F9EC	0x0028F9EC				
+func_0028F9EC	0x0028F9EC	Video_SwapIfReady	System/Video.cs	medium	harvest: code: osViSwapBuffer(s->buf) when the swap record is ready (mode 1, flags 0x60), returns 1 if not busy
 func_0028FA40	0x0028FA40				
 func_0028FBB8	0x0028FBB8				
 func_0028FBF0	0x0028FBF0				
@@ -2178,11 +2178,11 @@ func_0028FD24	0x0028FD24
 func_0028FD2C	0x0028FD2C				
 func_0028FD68	0x0028FD68				
 func_0028FD70	0x0028FD70				
-func_0028FD94	0x0028FD94				
-func_0028FDA8	0x0028FDA8				
-func_0028FDD8	0x0028FDD8				
+func_0028FD94	0x0028FD94	Chunk_Get	System/Resource.cs	medium	harvest: FINDINGS p2 + func_0028CF48 override: func_0028FD94(tree, idx) returns the child node / piece idx
+func_0028FDA8	0x0028FDA8	Chunk_GetWithSize	System/Resource.cs	medium	harvest: FINDINGS s1006: func_0028FDA8(base, idx, &size) returns base+off[idx], size = off[idx+1]-off[idx]
+func_0028FDD8	0x0028FDD8	Chunk_GetSize	System/Resource.cs	high	harvest: tools/overrides/func_0028FDD8.c: returns the piece size off[idx+1]-off[idx] (loadout models fix)
 func_0028FE08	0x0028FE08				
-func_0028FE1C	0x0028FE1C				
+func_0028FE1C	0x0028FE1C	Resource_GetCartridgeKey	System/Resource.cs	medium	harvest: Hud/GameSprites.cs: the resource's cartridge key base + off[idx] (func_0028FE1C)
 func_0028FE4C	0x0028FE4C				
 func_0028FE7C	0x0028FE7C				
 func_0028FE98	0x0028FE98				
@@ -2213,8 +2213,8 @@ func_00290A70	0x00290A70
 func_00290C04	0x00290C04				
 func_00290E4C	0x00290E4C				
 func_00291054	0x00291054				
-func_002911E8	0x002911E8				
-func_00291404	0x00291404				
+func_002911E8	0x002911E8	Game_ColdBootInit	System/Boot.cs	high	harvest: port/game_glue.c + GameBoot.cs: on the cold-boot flag calls func_00444030 (settings initialiser), PJ64 watchpoint
+func_00291404	0x00291404	Game_Init	System/Boot.cs	medium	harvest: port/game_glue.c: game boot thread entry calls func_00291404(&D_8011FAC0)
 func_002917E8	0x002917E8				
 func_0029193C	0x0029193C				
 func_00291BF8	0x00291BF8				
@@ -2222,8 +2222,8 @@ func_00291FE8	0x00291FE8
 func_00292318	0x00292318				
 func_00292910	0x00292910				
 func_00292F08	0x00292F08				
-func_00292F2C	0x00292F2C				
-func_00292FA4	0x00292FA4				
+func_00292F2C	0x00292F2C	Boot_StartThread0_00292F2C	System/Boot.cs	low	harvest: code: memset of a 128-byte stack and osCreateThread/osStartThread of thread 0 (entry 0x002934F0)
+func_00292FA4	0x00292FA4	Boot_StartGameThread	System/Boot.cs	medium	harvest: code: creates and starts thread 1 with entry func_00293518 (the game boot thread), lowers its own priority, loops forever
 func_00293038	0x00293038				
 func_00293100	0x00293100				
 func_0029324C	0x0029324C				
@@ -2234,12 +2234,12 @@ func_00293424	0x00293424
 func_002934A4	0x002934A4				
 func_002934DC	0x002934DC				
 func_002934F0	0x002934F0				
-func_00293518	0x00293518				
+func_00293518	0x00293518	Game_BootThread	System/Boot.cs	high	harvest: port/game_glue.c: game boot thread entry: sprintf, FPU setup, then func_00291404(&D_8011FAC0)
 func_00293574	0x00293574				
 func_002935A4	0x002935A4				
 func_00293774	0x00293774				
 func_00293808	0x00293808				
-func_0029382C	0x0029382C				
+func_0029382C	0x0029382C	Game_StateDispatch	System/GameState.cs	high	harvest: memory project_port_game_facts.md: state dispatcher (table D_800D29D8 of {init, update, x}); one main-loop iteration per call
 func_002938E8	0x002938E8				
 func_0029397C	0x0029397C				
 func_00293A04	0x00293A04				
@@ -2250,16 +2250,16 @@ func_00293DDC	0x00293DDC
 func_00293DE4	0x00293DE4				
 func_00293E60	0x00293E60				
 func_00293E90	0x00293E90				
-func_00293EAC	0x00293EAC				
-func_00293F38	0x00293F38				
+func_00293EAC	0x00293EAC	State_TitleInit	System/GameState.cs	high	harvest: PORT_STATUS: states: 1 title (func_00293EAC/F38) {init, update}
+func_00293F38	0x00293F38	State_TitleUpdate	System/GameState.cs	high	harvest: PORT_STATUS: states: 1 title (func_00293EAC/F38) {init, update}
 func_00293FE4	0x00293FE4				
 func_002940CC	0x002940CC				
 func_002940EC	0x002940EC				
 func_00294120	0x00294120				
 func_00294128	0x00294128				
 func_0029414C	0x0029414C				
-func_002941AC	0x002941AC				
-func_002941D0	0x002941D0				
+func_002941AC	0x002941AC	State_4Init	System/GameState.cs	medium	harvest: PORT_STATUS: state 4 (func_002941AC/1D0) {init, update}
+func_002941D0	0x002941D0	State_4Update	System/GameState.cs	medium	harvest: PORT_STATUS: state 4 (func_002941AC/1D0) {init, update}
 func_002941F4	0x002941F4				
 func_002942E4	0x002942E4				
 func_00294314	0x00294314				
@@ -2269,8 +2269,8 @@ func_00294368	0x00294368
 func_00294370	0x00294370				
 func_00294378	0x00294378				
 func_00294394	0x00294394				
-func_002943B8	0x002943B8				
-func_00294404	0x00294404				
+func_002943B8	0x002943B8	State_DemoInit	System/GameState.cs	high	harvest: PORT_STATUS: 8 recorded gameplay demo (func_002943B8/00294404, screen 24 pushed)
+func_00294404	0x00294404	State_DemoUpdate	System/GameState.cs	high	harvest: PORT_STATUS: 8 recorded gameplay demo (func_002943B8/00294404)
 func_0029440C	0x0029440C				
 func_00294428	0x00294428				
 func_0029447C	0x0029447C				
@@ -2285,8 +2285,8 @@ func_00294590	0x00294590
 func_002945CC	0x002945CC				
 func_002945EC	0x002945EC				
 func_00294608	0x00294608				
-func_002946A8	0x002946A8				
-func_002947BC	0x002947BC				
+func_002946A8	0x002946A8	State_AttractInit	System/GameState.cs	high	harvest: PORT_STATUS: 13 title/attract loop (func_002946A8/7BC)
+func_002947BC	0x002947BC	State_AttractUpdate	System/GameState.cs	high	harvest: PORT_STATUS: 13 title/attract loop (func_002946A8/7BC)
 func_002947C4	0x002947C4				
 func_002947CC	0x002947CC				
 func_002947D4	0x002947D4				
@@ -2298,7 +2298,7 @@ func_00294980	0x00294980
 func_00294A10	0x00294A10				
 func_00294A88	0x00294A88				
 func_00294ABC	0x00294ABC				
-func_00294AC4	0x00294AC4				
+func_00294AC4	0x00294AC4	State_TransitionUpdate	System/GameState.cs	high	harvest: PORT_STATUS: 20 transition (func_00294AC4: waits for the fade D_80146D68 == 2, then switches to g->f26DBC)
 func_00294B78	0x00294B78				
 func_00294B80	0x00294B80				
 func_00294B88	0x00294B88				
@@ -2311,7 +2311,7 @@ func_00294C64	0x00294C64
 func_00294C98	0x00294C98				
 func_00294CA0	0x00294CA0				
 func_00294F1C	0x00294F1C				
-func_002953FC	0x002953FC				
+func_002953FC	0x002953FC	Frontend_GetButtonMask	Menus/MenuCore.cs	medium	harvest: src/game/func_002953FC.c comment: decode a frontend input selector into its current button mask
 func_002954E0	0x002954E0				
 func_002955AC	0x002955AC				
 func_002955C8	0x002955C8				
@@ -2331,12 +2331,12 @@ func_00295B00	0x00295B00
 func_00295B18	0x00295B18				
 func_00295B30	0x00295B30				
 func_00295B84	0x00295B84				
-func_00295B90	0x00295B90				
-func_00295FB4	0x00295FB4				
+func_00295B90	0x00295B90	Texture_RecolorFrames	Render/Texture.cs	medium	harvest: src/game/func_00295B90.c comment: recolours the RGBA5551 frames of a resource by the colour mode, rebuilds it
+func_00295FB4	0x00295FB4	Texture_EmitLoad_00295FB4	Render/Texture.cs	low	harvest: src/game/func_00295FB4.c signature (output, resource, frame, scaleS/T, wrapS/T, mode) + "texture commands" comment
 func_00296DD0	0x00296DD0				
 func_00296DDC	0x00296DDC				
 func_00296E04	0x00296E04				
-func_00296EC4	0x00296EC4				
+func_00296EC4	0x00296EC4	Material_Lookup	Render/Texture.cs	high	harvest: C# git: func_00296EC4 (texture/material lookup) returned nothing, so func_00269A80 skipped every draw group
 func_00296F7C	0x00296F7C				
 func_00296FF8	0x00296FF8				
 func_00297008	0x00297008				
@@ -2369,7 +2369,7 @@ func_002992C4	0x002992C4
 func_00299368	0x00299368				
 func_00299ECC	0x00299ECC				
 func_00299FE8	0x00299FE8				
-func_0029A1D4	0x0029A1D4				
+func_0029A1D4	0x0029A1D4	Menu_MoveFocus	Menus/MenuCore.cs	medium	harvest: src/game/func_0029A1D4.c comment: moves menu focus and sends leave and enter events through callbacks
 func_0029A468	0x0029A468				
 func_0029A550	0x0029A550				
 func_0029A58C	0x0029A58C				
@@ -2383,11 +2383,11 @@ func_0029A838	0x0029A838
 func_0029A874	0x0029A874				
 func_0029A8A8	0x0029A8A8				
 func_0029A8E0	0x0029A8E0				
-func_0029A958	0x0029A958				
+func_0029A958	0x0029A958	Ui_PushScreen	Menus/MenuCore.cs	medium	harvest: PORT_STATUS: UI screen ids (screen id -> N (top=K) from func_0029A958), screen-id hook override
 func_0029A9A0	0x0029A9A0				
 func_0029A9E0	0x0029A9E0				
 func_0029A9F4	0x0029A9F4				
-func_0029AA08	0x0029AA08				
+func_0029AA08	0x0029AA08	Menu_GetMessage	Menus/MenuCore.cs	medium	harvest: src/ovl_a comments (func_00436224, func_00439F38): handles the menu message func_0029AA08 reports
 func_0029AA48	0x0029AA48				
 func_0029AA5C	0x0029AA5C				
 func_0029AA80	0x0029AA80				
@@ -2414,36 +2414,36 @@ func_0029BAD8	0x0029BAD8
 func_0029BB24	0x0029BB24				
 func_0029BB98	0x0029BB98				
 func_0029BBA0	0x0029BBA0				
-func_0029BD38	0x0029BD38				
+func_0029BD38	0x0029BD38	Math_Log	Math/MathLib.cs	medium	harvest: FINDINGS: func_0029BD38 log (returns -inf for x <= 0, frexp inline)
 func_0029BEA4	0x0029BEA4				
-func_0029C278	0x0029C278				
-func_0029C3C0	0x0029C3C0				
-func_0029C54C	0x0029C54C				
-func_0029C6E0	0x0029C6E0				
-func_0029C868	0x0029C868				
+func_0029C278	0x0029C278	Math_Fmod	Math/MathLib.cs	high	harvest: FINDINGS: fmod (func_0029C278) = x - trunc(x/y)*y
+func_0029C3C0	0x0029C3C0	Math_EulerFromMtx4	Math/Matrix.cs	medium	harvest: FINDINGS: func_0029C6E0/C54C/C868/C3C0 (euler angles from a matrix)
+func_0029C54C	0x0029C54C	Math_EulerFromMtx2	Math/Matrix.cs	medium	harvest: FINDINGS: func_0029C6E0/C54C/C868/C3C0 (euler angles from a matrix)
+func_0029C6E0	0x0029C6E0	Math_EulerFromMtx1	Math/Matrix.cs	medium	harvest: FINDINGS: func_0029C6E0/C54C/C868/C3C0 (euler angles from a matrix)
+func_0029C868	0x0029C868	Math_EulerFromMtx3	Math/Matrix.cs	medium	harvest: FINDINGS: func_0029C6E0/C54C/C868/C3C0 (euler angles from a matrix)
 func_0029C9FC	0x0029C9FC				
 func_0029CBB0	0x0029CBB0				
 func_0029CDEC	0x0029CDEC				
-func_0029D044	0x0029D044				
+func_0029D044	0x0029D044	Math_Atan2	Math/MathLib.cs	high	harvest: FINDINGS: atan2f = if/else tree + inline atanf + D_800D2B60[q] table (func_0029D044)
 func_0029D288	0x0029D288				
 func_0029D4A0	0x0029D4A0				
 func_0029D6A8	0x0029D6A8				
-func_0029D984	0x0029D984				
+func_0029D984	0x0029D984	Math_MtxFromEuler	Math/Matrix.cs	medium	harvest: FINDINGS: out-of-line copies of inlined functions (... D984 euler matrix)
 func_0029DAB4	0x0029DAB4				
 func_0029DC70	0x0029DC70				
-func_0029DE3C	0x0029DE3C				
+func_0029DE3C	0x0029DE3C	Math_MtxMultiply	Math/Matrix.cs	medium	harvest: FINDINGS: 4x4 matrix multiply/inverse: pointer-based loops (func_0029DE3C)
 func_0029E000	0x0029E000				
-func_0029E248	0x0029E248				
-func_0029E510	0x0029E510				
+func_0029E248	0x0029E248	Math_MtxInverseCofactor	Math/Matrix.cs	medium	harvest: FINDINGS: 4x4 matrix multiply/inverse: det = 1.0f / det ... (func_0029E248), cofactor expressions
+func_0029E510	0x0029E510	Math_MtxInverse	Math/Matrix.cs	high	harvest: src/game/func_0029E510.c comment: 4x4 Gauss-Jordan inverse with partial pivoting; returns 1 if singular
 func_0029E8A0	0x0029E8A0				
 func_0029E8A8	0x0029E8A8				
 func_0029E8B0	0x0029E8B0				
-func_0029E8BC	0x0029E8BC				
-func_0029E8E8	0x0029E8E8				
+func_0029E8BC	0x0029E8BC	Math_SqrtNonNeg	Math/MathLib.cs	medium	harvest: FINDINGS: if (x <= 0.0f) return 0.0f; return sqrtf(x) matches func_0029E8BC
+func_0029E8E8	0x0029E8E8	Math_InvSqrt	Math/MathLib.cs	medium	harvest: code: returns 1 / sqrtf(x) (0 for x <= 0)
 func_0029E924	0x0029E924				
-func_0029E964	0x0029E964				
-func_0029E9DC	0x0029E9DC				
-func_0029EAA0	0x0029EAA0				
+func_0029E964	0x0029E964	Math_Floor	Math/MathLib.cs	medium	harvest: src/game/func_0029E9DC.c comment: adapted from func_0029E964 (round-down) with the rounding direction reversed
+func_0029E9DC	0x0029E9DC	Math_Ceil	Math/MathLib.cs	medium	harvest: src/game/func_0029E9DC.c comment: rounds a double up to the next integer (2^52 trick); counterpart of func_0029E964
+func_0029EAA0	0x0029EAA0	Math_Modf	Math/MathLib.cs	high	harvest: src/ovl_a/func_00414480.c comment: func_0029EAA0 is modf()
 func_0029EB34	0x0029EB34				
 func_0029EB58	0x0029EB58				
 func_0029EB74	0x0029EB74				
@@ -2452,11 +2452,11 @@ func_0029ECB0	0x0029ECB0
 func_0029ED18	0x0029ED18				
 func_0029ED3C	0x0029ED3C				
 func_0029ED78	0x0029ED78				
-func_0029EE48	0x0029EE48				
-func_0029EF48	0x0029EF48				
-func_0029F04C	0x0029F04C				
-func_0029F104	0x0029F104				
-func_0029F1D4	0x0029F1D4				
+func_0029EE48	0x0029EE48	Math_Asin	Math/MathLib.cs	high	harvest: src/game/func_0029EE48.c comment: arcsine of a value clamped to [-1, 1] (polynomial approximation)
+func_0029EF48	0x0029EF48	Math_Acos	Math/MathLib.cs	high	harvest: src/game/func_0029EF48.c comment: arccosine as pi/2 minus the arcsine
+func_0029F04C	0x0029F04C	Math_WrapAngle	Math/MathLib.cs	medium	harvest: FINDINGS: wrapAngle (F04C/F104/F1D4: a = a + pi; a = Wrap(a); return a - pi)
+func_0029F104	0x0029F104	Math_NormalizeAngle	Math/MathLib.cs	medium	harvest: src/game/func_0029F104.c comment: normalizes an offset angle
+func_0029F1D4	0x0029F1D4	Math_NormalizeAngle2	Math/MathLib.cs	medium	harvest: src/game/func_0029F1D4.c comment: normalizes an offset angle (second copy)
 func_0029F2A8	0x0029F2A8				
 func_0029F2BC	0x0029F2BC				
 func_0029F2CC	0x0029F2CC				
@@ -2468,7 +2468,7 @@ func_0029F398	0x0029F398
 func_0029F3C0	0x0029F3C0				
 func_0029F428	0x0029F428				
 func_0029F458	0x0029F458				
-func_0029F4DC	0x0029F4DC				
+func_0029F4DC	0x0029F4DC	Vec_Length	Math/Vector.cs	medium	harvest: code: sqrt of x*x + y*y + z*z (0 for non-positive)
 func_0029F52C	0x0029F52C				
 func_0029F5C0	0x0029F5C0				
 func_0029F654	0x0029F654				
@@ -2477,16 +2477,16 @@ func_0029F77C	0x0029F77C
 func_0029F810	0x0029F810				
 func_0029F8AC	0x0029F8AC				
 func_0029D4A0_func_0029F93C	0x0029F93C				
-func_0029F93C	0x0029F93C				
+func_0029F93C	0x0029F93C	Math_IntersectPoly_0029F93C	Math/Vector.cs	low	harvest: FINDINGS: out-of-line copies (... F93C poly intersection)
 func_0029FA44	0x0029FA44				
 func_0029FA7C	0x0029FA7C				
 func_0029FAF4	0x0029FAF4				
 func_0029FB14	0x0029FB14				
 func_0029FB58	0x0029FB58				
 func_0029FBC8	0x0029FBC8				
-func_0029FBE4	0x0029FBE4				
+func_0029FBE4	0x0029FBE4	Math_MtxScaleVec	Math/Matrix.cs	medium	harvest: FINDINGS p2: 0029FBE4/FCBC/FFE4/A0118 are 4x4 f32 matrix helpers (scale by vec3, uniform scale, get translation, basis rows)
 func_0029FCA8	0x0029FCA8				
-func_0029FCBC	0x0029FCBC				
+func_0029FCBC	0x0029FCBC	Math_MtxScaleUniform	Math/Matrix.cs	medium	harvest: FINDINGS p2: 4x4 f32 matrix helper (uniform scale)
 func_0029FD54	0x0029FD54				
 func_0029FDA0	0x0029FDA0				
 func_0029FDD8	0x0029FDD8				
@@ -2494,35 +2494,35 @@ func_0029FE78	0x0029FE78
 func_0029FF18	0x0029FF18				
 func_0029FFB8	0x0029FFB8				
 func_0029FFC8	0x0029FFC8				
-func_0029FFE4	0x0029FFE4				
+func_0029FFE4	0x0029FFE4	Math_MtxGetTranslation	Math/Matrix.cs	medium	harvest: FINDINGS p2: 4x4 f32 matrix helper (get translation row 3)
 func_002A0000	0x002A0000				
 func_002A0034	0x002A0034				
 func_002A0080	0x002A0080				
 func_002A00CC	0x002A00CC				
-func_002A0118	0x002A0118				
+func_002A0118	0x002A0118	Math_MtxGetBasisRows	Math/Matrix.cs	medium	harvest: FINDINGS p2: 4x4 f32 matrix helper (extract the three basis rows)
 func_002A0164	0x002A0164				
 func_002A0180	0x002A0180				
 func_002A01A0	0x002A01A0				
 func_002A0254	0x002A0254				
 func_002A0368	0x002A0368				
-func_002A0470	0x002A0470				
+func_002A0470	0x002A0470	Mem_Move	Lib/LibC.cs	high	harvest: FINDINGS single-return note: memmove func_002A0470
 func_002A05E0	0x002A05E0				
-func_002A0888	0x002A0888				
+func_002A0888	0x002A0888	Path_Split	Lib/LibC.cs	high	harvest: FINDINGS: func_002A0888 (_splitpath)
 func_002A0B74	0x002A0B74				
-func_002A0E38	0x002A0E38				
+func_002A0E38	0x002A0E38	Sort_Quick	Lib/LibC.cs	high	harvest: FINDINGS: func_002A0E38 (qsort)
 func_002A101C	0x002A101C				
 memset	0x002A101C				
 func_002A10B0	0x002A10B0				
 func_002A11D8	0x002A11D8				
 func_002A11E8	0x002A11E8				
-func_002A1238	0x002A1238				
+func_002A1238	0x002A1238	Str_Length	Lib/LibC.cs	high	harvest: FINDINGS p2: func_002A1238/12E8/13F4 are strlen / strcat / strcasecmp
 func_002A125C	0x002A125C				
-func_002A1294	0x002A1294				
-func_002A12E8	0x002A12E8				
+func_002A1294	0x002A1294	Str_CopyN	Lib/LibC.cs	high	harvest: FINDINGS goto-transcription note: strncpy func_002A1294
+func_002A12E8	0x002A12E8	Str_Concat	Lib/LibC.cs	high	harvest: FINDINGS p2: func_002A1238/12E8/13F4 are strlen / strcat / strcasecmp
 func_002A1324	0x002A1324				
 func_002A137C	0x002A137C				
 func_002A13AC	0x002A13AC				
-func_002A13F4	0x002A13F4				
+func_002A13F4	0x002A13F4	Str_CompareNoCase	Lib/LibC.cs	high	harvest: FINDINGS p2: func_002A1238/12E8/13F4 are strlen / strcat / strcasecmp
 func_002A1444	0x002A1444				
 func_002A1494	0x002A1494				
 func_002A14E0	0x002A14E0				
@@ -2536,11 +2536,11 @@ func_002A1748	0x002A1748
 func_002A17DC	0x002A17DC				
 func_002A1814	0x002A1814				
 func_002A18B8	0x002A18B8				
-func_002A1960	0x002A1960				
-func_002A1A48	0x002A1A48				
-func_002A1A84	0x002A1A84				
-func_002A1AA4	0x002A1AA4				
-func_002A1AC4	0x002A1AC4				
+func_002A1960	0x002A1960	Path_Make	Lib/LibC.cs	high	harvest: FINDINGS: func_002A1960 (makepath)
+func_002A1A48	0x002A1A48	Mutex_Init	System/Threads.cs	medium	harvest: code: creates a one-slot message queue and posts one message (binary semaphore)
+func_002A1A84	0x002A1A84	Mutex_Lock	System/Threads.cs	medium	harvest: code: blocking osRecvMesg on the semaphore queue
+func_002A1AA4	0x002A1AA4	Mutex_Unlock	System/Threads.cs	medium	harvest: code: osSendMesg(q, 1) on the semaphore queue
+func_002A1AC4	0x002A1AC4	Str_FormatTemp	Lib/LibC.cs	medium	harvest: FINDINGS: func_002A1AC4 (printf wrapper), char *f(char *fmt, ...)
 func_002A1B20	0x002A1B20				
 func_002A1B8C	0x002A1B8C				
 func_002A1C08	0x002A1C08				
@@ -2605,7 +2605,7 @@ func_002A2FB8	0x002A2FB8
 func_002A2FE8	0x002A2FE8				
 func_002A306C	0x002A306C				
 func_002A308C	0x002A308C				
-func_002A3090	0x002A3090				
+func_002A3090	0x002A3090	Menu_UpdateIdleTimer	Menus/MenuCore.cs	medium	harvest: C git log + port/os_shim.c: func_002A3090, the menu idle timer forcing a state change (writes state byte D_8010FBB8)
 func_002A31F4	0x002A31F4				
 func_002A3224	0x002A3224				
 func_002A3304	0x002A3304				
@@ -2669,33 +2669,33 @@ func_002A7440	0x002A7440
 func_002A7480	0x002A7480				
 func_002A75D0	0x002A75D0				
 func_002A78F0	0x002A78F0				
-func_002A7F58	0x002A7F58				
-func_002A7FA8	0x002A7FA8				
+func_002A7F58	0x002A7F58	Mover_ClearRecord_002A7F58	Ui/Widgets.cs	low	harvest: src/game/func_002A7F58.c comment: clears a record (four 0x38-byte entries, flags, word 0xE6 = -5)
+func_002A7FA8	0x002A7FA8	Mover_FindOrAllocRecord_002A7FA8	Ui/Widgets.cs	low	harvest: src/game/func_002A7F58.c comment: finds or allocates one of four records and updates its parameters
 func_002A8088	0x002A8088				
-func_002A80C4	0x002A80C4				
+func_002A80C4	0x002A80C4	Menu_MoveCursor4	Menus/MenuCore.cs	medium	harvest: src/game/func_002A7F58.c comment: moves a menu's cursor over its four 0x38-byte entries, wrapping and skipping empty ones
 func_002A8158	0x002A8158				
 func_002A75D0_func_002A8170	0x002A8170				
 func_002A8170	0x002A8170				
-func_002A81B0	0x002A81B0				
+func_002A81B0	0x002A81B0	Game_SoftReset	System/Boot.cs	high	harvest: src/game/func_002A7F58.c comment + game_glue.c: checks the "systembootdone" marker, copies code back and clears BSS; sets the cold-boot flag D_8014D330
 func_002A853C	0x002A853C				
-func_002A8544	0x002A8544				
+func_002A8544	0x002A8544	Debug_IsAddressWritable	Debug/Debug.cs	medium	harvest: src/game/func_002A7F58.c comment: returns whether an address may be modified (protected blocks)
 func_002A8644	0x002A8644				
 func_002A864C	0x002A864C				
 func_002A8650	0x002A8650				
-func_002A8A94	0x002A8A94				
+func_002A8A94	0x002A8A94	ScreenMover_Step	Ui/Widgets.cs	medium	harvest: src/game/func_002A8A94.c comment: steps a scripted screen mover (opcodes: set, wait, move, fall)
 func_002A8DD4	0x002A8DD4				
-func_002A921C	0x002A921C				
+func_002A921C	0x002A921C	Hud_DrawNumber	Ui/Hud.cs	high	harvest: docs/HUD.md + HudElements.cs: draws a number in the digit sprites (sprite 4, frames 0..9, 10 = minus)
 func_002A94E8	0x002A94E8				
-func_002A9700	0x002A9700				
-func_002A97F0	0x002A97F0				
-func_002A98E0	0x002A98E0				
-func_002A9F18	0x002A9F18				
-func_002AA224	0x002AA224				
-func_002AA354	0x002AA354				
-func_002AA724	0x002AA724				
-func_002AACC0	0x002AACC0				
-func_002AAED8	0x002AAED8				
-func_002AB19C	0x002AB19C				
+func_002A9700	0x002A9700	Gfx_LoadTexImage16	Render/Texture.cs	medium	harvest: FINDINGS p2: 002A9700/97F0 build a 16-bit texture-image load block in D_80110634
+func_002A97F0	0x002A97F0	Gfx_LoadTexImage16b	Render/Texture.cs	medium	harvest: FINDINGS p2: 002A9700/97F0 build a 16-bit texture-image load block in D_80110634
+func_002A98E0	0x002A98E0	Text_DrawString	Ui/Text.cs	medium	harvest: src/game/func_002A9F18.c comment: draws the string through func_002A98E0 (first as a shadow when requested)
+func_002A9F18	0x002A9F18	Text_Draw	Ui/Text.cs	high	harvest: docs/HUD.md + src/game/func_002A9F18.c comment: draws a text string in the current font style (centring, shadow)
+func_002AA224	0x002AA224	Gfx_BeginFlatColorPass	Render/RenderMode.cs	medium	harvest: src/game/func_002A9F18.c comment: emits the render-state display-list prologue for a flat colour pass
+func_002AA354	0x002AA354	Gfx_DrawTexture4bPal_002AA354	Render/Sprites.cs	low	harvest: src/game/func_002A9F18.c comment: func_002AACC0 adapted from func_002AA354 with the palette block and second texture block removed
+func_002AA724	0x002AA724	Sprite_SetRenderState	Render/Sprites.cs	medium	harvest: docs/HUD.md + HudCanvas.cs: the game's sprite state (2-cycle, TEXEL0 * ENV), texture rectangles at quarter pixels
+func_002AACC0	0x002AACC0	Gfx_DrawTexture4b	Render/Sprites.cs	medium	harvest: src/game/func_002A9F18.c comment: loads a 4-bit texture block and draws it as a texture rectangle
+func_002AAED8	0x002AAED8	Gfx_DrawTexture4bScaled	Render/Sprites.cs	medium	harvest: src/game/func_002A9F18.c comment: 4-bit texture rectangle at a float position, stretched by scales
+func_002AB19C	0x002AB19C	Sprite_GetFrameData_002AB19C	Render/Sprites.cs	low	harvest: Hud/GameSprites.cs: sprite data layout (func_002AB19C / func_002AB8DC): frames, per-frame offset and kind
 func_002AB6C0	0x002AB6C0				
 func_002AB6FC	0x002AB6FC				
 func_002AB720	0x002AB720				
@@ -2708,26 +2708,26 @@ func_002AB8DC	0x002AB8DC
 func_002AB940	0x002AB940				
 func_002AB9E4	0x002AB9E4				
 func_002A8DD4_func_002ABA44	0x002ABA44				
-func_002ABA44	0x002ABA44				
+func_002ABA44	0x002ABA44	Gfx_FillRect	Render/RenderMode.cs	medium	harvest: src/game/func_002ABA44.c comment: emits pipe sync, primitive color and a rectangle with nonnegative coordinates
 func_002ABB2C	0x002ABB2C				
 func_002ABB58	0x002ABB58				
 func_002ABB6C	0x002ABB6C				
-func_002ABC18	0x002ABC18				
+func_002ABC18	0x002ABC18	Sprite_Draw	Render/Sprites.cs	high	harvest: docs/HUD.md: every HUD picture is a sprite of the HUD library D_8011FE88, drawn by func_002ABC18(id, frame, x, y, sx, sy)
 func_002ABD04	0x002ABD04				
 func_002ABDAC	0x002ABDAC				
 func_002AB19C_func_002ABDBC	0x002ABDBC				
-func_002ABDBC	0x002ABDBC				
+func_002ABDBC	0x002ABDBC	Gfx_DrawMaskedTileGrid	Render/Sprites.cs	medium	harvest: src/game/func_002ABDBC.c comment: draws a grid of 16-bit image tiles with a 4-bit mask
 func_002AB19C_func_002ABED4	0x002ABED4				
-func_002ABED4	0x002ABED4				
+func_002ABED4	0x002ABED4	Sprite_DrawFrameScaled	Render/Sprites.cs	medium	harvest: Hud/HudElements.cs: one frame of a game sprite, cells laid out as func_002ABED4 does (scaled path)
 func_002AB19C_func_002AC0A0	0x002AC0A0				
-func_002AC0A0	0x002AC0A0				
+func_002AC0A0	0x002AC0A0	Gfx_DrawTileGrid	Render/Sprites.cs	medium	harvest: src/game/func_002ABDBC.c comment: adapted from func_002AC0A0 (grid of 16-bit image tiles, no mask)
 func_002AB19C_func_002AC1A0	0x002AC1A0				
 func_002AC1A0	0x002AC1A0				
 func_002AC34C	0x002AC34C				
 func_002AC398	0x002AC398				
 func_002AC3EC	0x002AC3EC				
-func_002AC3F0	0x002AC3F0				
-func_002AC6DC	0x002AC6DC				
+func_002AC3F0	0x002AC3F0	Pickup_CanUse	Player/Items.cs	medium	harvest: src/game/func_002AC3F0.c comment: returns whether a player actor can use the item picked up (power-up / weapon / item tables)
+func_002AC6DC	0x002AC6DC	Pickup_DispatchEffect	Player/Items.cs	medium	harvest: src/game/func_002AC3F0.c comment: dispatches an item effect with the given id through the item handler tables
 func_002AC96C	0x002AC96C				
 func_002ACBCC	0x002ACBCC				
 func_002AD65C	0x002AD65C				
@@ -3478,7 +3478,7 @@ func_00401564	0x00401564
 func_0040170C	0x0040170C				
 func_0040184C	0x0040184C				
 func_00401980	0x00401980				
-func_00401D74	0x00401D74				
+func_00401D74	0x00401D74	View_DrawInsetBorder	Ui/Widgets.cs	medium	harvest: src/ovl_a/func_00401D74.c comment: draw the inset viewport border with black bands and a one-pixel outline
 func_0040293C	0x0040293C				
 func_00402BA0	0x00402BA0				
 func_00402FB4	0x00402FB4				
@@ -3534,14 +3534,14 @@ func_0040538C	0x0040538C
 func_004053E0	0x004053E0				
 func_00405454	0x00405454				
 func_00405598	0x00405598				
-func_004055D4	0x004055D4				
+func_004055D4	0x004055D4	Rumble_InitPak	Player/Controls.cs	medium	harvest: code: osMotorInit for controller ch into the rumble record 0x80153330 + ch*112
 func_00405648	0x00405648				
 func_0040570C	0x0040570C				
 func_004057BC	0x004057BC				
 func_004057EC	0x004057EC				
 func_004057F8	0x004057F8				
 func_004058A0	0x004058A0				
-func_004058B0	0x004058B0				
+func_004058B0	0x004058B0	FramePool_Reinit	System/Memory.cs	medium	harvest: src/ovl_a/func_004058B0.c comment: pool re-initialisation: frees old buffers, reallocates the frame-buffer pool and display-list handles
 func_00405CA8	0x00405CA8				
 func_00405CDC	0x00405CDC				
 func_00405DB4	0x00405DB4				
@@ -3664,7 +3664,7 @@ func_0040BB54	0x0040BB54
 func_0040BBC0	0x0040BBC0				
 func_0040BC2C	0x0040BC2C				
 func_0040BC30	0x0040BC30				
-func_0040BE38	0x0040BE38				
+func_0040BE38	0x0040BE38	Vi_EditMode	System/Video.cs	medium	harvest: FINDINGS: the os.vi mode setter func_0040BE38 is an OSViMode edit (memcpy of a table entry + hStart/vStart)
 func_0040C11C	0x0040C11C				
 func_0040C354	0x0040C354				
 func_0040C378	0x0040C378				
@@ -3685,7 +3685,7 @@ func_0040CDD0	0x0040CDD0
 func_0040D00C	0x0040D00C				
 func_0040D350	0x0040D350				
 func_0040DB84	0x0040DB84				
-func_0040E154	0x0040E154				
+func_0040E154	0x0040E154	UiNode_ComputeRect	Ui/Widgets.cs	medium	harvest: src/ovl_a/func_0040E154.c comment: UI node rectangle transform (screen rect and clipped rect)
 func_0040E6FC	0x0040E6FC				
 func_0040E87C	0x0040E87C				
 func_0040E914	0x0040E914				
@@ -3701,14 +3701,14 @@ func_0040EC0C	0x0040EC0C
 func_0040EC2C	0x0040EC2C				
 func_0040EC50	0x0040EC50				
 func_0040EC74	0x0040EC74				
-func_0040ECB0	0x0040ECB0				
-func_0040ED28	0x0040ED28				
-func_0040EDB8	0x0040EDB8				
-func_0040EE64	0x0040EE64				
-func_0040EF24	0x0040EF24				
-func_0040F004	0x0040F004				
+func_0040ECB0	0x0040ECB0	UiTree_FindNode	Ui/Widgets.cs	medium	harvest: port/overrides/func_0040E958.c: the menu node lookup (func_0040ECB0); func_0040ED28 is its sibling-search variant
+func_0040ED28	0x0040ED28	UiTree_FindPredecessor	Ui/Widgets.cs	medium	harvest: src/ovl_a/func_0040ED28.c comment: finds the node whose next sibling carries the given id (depth first)
+func_0040EDB8	0x0040EDB8	UiTree_ReplaceRefsCopyLinks	Ui/Widgets.cs	medium	harvest: src/ovl_a/func_0040EDB8.c comment: recursively replaces a node reference and copies the old links into the replacement
+func_0040EE64	0x0040EE64	UiTree_InsertBefore	Ui/Widgets.cs	medium	harvest: src/ovl_a/func_0040EE64.c comment: links a new node into a tree just before a given node
+func_0040EF24	0x0040EF24	UiTree_ReplaceNode	Ui/Widgets.cs	medium	harvest: src/ovl_a/func_0040EF24.c comment: puts a new node in a tree node's place, making the old one its child
+func_0040F004	0x0040F004	UiTree_ReplaceRefs	Ui/Widgets.cs	medium	harvest: src/ovl_a/func_0040F004.c comment: walks a node tree replacing every reference to one pointer with another
 func_0040F0C4	0x0040F0C4				
-func_0040F1E0	0x0040F1E0				
+func_0040F1E0	0x0040F1E0	Text_MeasureWidth_0040F1E0	Ui/Text.cs	low	harvest: docs/MODERNIZATION.md: text width in func_0040F1E0 (array stride bug broke every text quad)
 func_0040F27C	0x0040F27C				
 func_0040F288	0x0040F288				
 func_0040F290	0x0040F290				
@@ -3722,10 +3722,10 @@ func_0040F5F0	0x0040F5F0
 func_0040F600	0x0040F600				
 func_0040F75C	0x0040F75C				
 func_0040FA60	0x0040FA60				
-func_0040FC14	0x0040FC14				
+func_0040FC14	0x0040FC14	Image_OpenArchives	Render/Texture.cs	medium	harvest: src/ovl_a/func_0040FC14.c comment: opens image archives and allocates image, palette and cached-resource tables
 func_0041023C	0x0041023C				
 func_004104C8	0x004104C8				
-func_004106F4	0x004106F4				
+func_004106F4	0x004106F4	Texture_GetResourceId	Render/Texture.cs	medium	harvest: src/ovl_a/func_004106F4.c comment: returns a texture's resource id, loading pixels and palette when not yet loaded
 func_00410B94	0x00410B94				
 func_00410E9C	0x00410E9C				
 func_00410FD4	0x00410FD4				
@@ -3809,7 +3809,7 @@ func_0041381C	0x0041381C
 func_00413878	0x00413878				
 func_00413A14	0x00413A14				
 func_00413A60	0x00413A60				
-func_00413BD4	0x00413BD4				
+func_00413BD4	0x00413BD4	Image_SetPixel	Render/Texture.cs	medium	harvest: src/ovl_a/func_00413BD4.c comment: writes a 0xAARRGGBB colour to the pixel (x, y) of the current target image
 func_00413D14	0x00413D14				
 func_00413D60	0x00413D60				
 func_00413E88	0x00413E88				
@@ -3831,13 +3831,13 @@ func_0041432C	0x0041432C
 func_004143C8	0x004143C8				
 func_004143E0	0x004143E0				
 func_00414404	0x00414404				
-func_00414430	0x00414430				
+func_00414430	0x00414430	Time_GetSeconds	System/Threads.cs	high	harvest: FINDINGS: func_00414430: return (double)osGetTime() / (double)osClockRate
 func_0041447C	0x0041447C				
-func_00414480	0x00414480				
-func_00414D4C	0x00414D4C				
+func_00414480	0x00414480	Printf_FormatDouble	Lib/LibC.cs	high	harvest: C git 66fb668 (fmtDouble) + src comment: printf-style double formatter used by the vfprintf clone func_00414D4C
+func_00414D4C	0x00414D4C	Printf_VFormat	Lib/LibC.cs	medium	harvest: src/ovl_a/func_00414480.c comment: the vfprintf clone func_00414D4C
 func_00415C9C	0x00415C9C				
 func_00415D04	0x00415D04				
-func_00415D10	0x00415D10				
+func_00415D10	0x00415D10	Ui_DrawClippedQuad	Ui/Widgets.cs	medium	harvest: src/ovl_a/func_00415D10.c comment: clips a screen rectangle to the viewport, draws it as outline or two triangles
 func_00416D74	0x00416D74				
 func_00416F4C	0x00416F4C				
 func_004170B4	0x004170B4				
@@ -3845,18 +3845,18 @@ func_004171B8	0x004171B8
 func_004173FC	0x004173FC				
 func_00417574	0x00417574				
 func_00417BA0	0x00417BA0				
-func_00418224	0x00418224				
+func_00418224	0x00418224	Gfx_DrawTexRectStrips	Render/Sprites.cs	medium	harvest: C git 9186acc: Match func_00418224 (draw_texrect_strips)
 func_00418E20	0x00418E20				
 func_00418E60	0x00418E60				
 func_0041900C	0x0041900C				
-func_00419074	0x00419074				
-func_00419144	0x00419144				
-func_00419224	0x00419224				
+func_00419074	0x00419074	Gfx_SetModeA_00419074	Render/RenderMode.cs	low	harvest: FINDINGS: display-list render-state inline helper SetModeA
+func_00419144	0x00419144	Gfx_SetModeB_00419144	Render/RenderMode.cs	low	harvest: FINDINGS: display-list render-state inline helper SetModeB
+func_00419224	0x00419224	Gfx_PipeSyncOnce	Render/RenderMode.cs	medium	harvest: FINDINGS: inline helpers func_00419224 PipeSyncOnce, func_00419074 SetModeA, func_00419144 SetModeB
 func_00419268	0x00419268				
 func_00419278	0x00419278				
 func_004192F8	0x004192F8				
 func_004194A8	0x004194A8				
-func_004194B0	0x004194B0				
+func_004194B0	0x004194B0	Gfx_PushMatrixF	Render/RenderMode.cs	medium	harvest: code: guMtxF2L into a 64-byte allocation and emits G_MTX (0xDA380003) with it
 func_00419510	0x00419510				
 func_00419688	0x00419688				
 func_004196A4	0x004196A4				
@@ -3959,8 +3959,8 @@ func_0041BCE4	0x0041BCE4
 func_0041BD78	0x0041BD78				
 func_0041BE0C	0x0041BE0C				
 func_0041BE88	0x0041BE88				
-func_0041BEA8	0x0041BEA8				
-func_0041BF10	0x0041BF10				
+func_0041BEA8	0x0041BEA8	UiList_RefreshItems_0041BEA8	Ui/Widgets.cs	low	harvest: src/ovl_a/func_0041BEA8.c comment: calls func_0040E9A8 with flag 1 on each of the list's items
+func_0041BF10	0x0041BF10	SaveSlot_UpdateDialog	Menus/PlayerProfile.cs	medium	harvest: src/ovl_a/func_0041BEA8.c comment: updates the slot-selection dialog after availability and capacity probes (error transition on -4/-3/-1)
 func_0041C1E4	0x0041C1E4				
 func_0041C21C	0x0041C21C				
 func_0041C2C4	0x0041C2C4				
@@ -3972,15 +3972,15 @@ func_0041C4F4	0x0041C4F4
 func_0041C514	0x0041C514				
 func_0041C5EC	0x0041C5EC				
 func_0041C67C	0x0041C67C				
-func_0041C680	0x0041C680				
+func_0041C680	0x0041C680	MenuModel_SelectPose	Menus/CharacterSelect.cs	medium	harvest: C git: func_0041CE88 forwards a1..a3 to func_0041C680 (pose selection ran with zeros)
 func_0041C864	0x0041C864				
-func_0041CB48	0x0041CB48				
-func_0041CE20	0x0041CE20				
-func_0041CE80	0x0041CE80				
-func_0041CE88	0x0041CE88				
+func_0041CB48	0x0041CB48	Portrait_CreateActor	Menus/CharacterSelect.cs	medium	harvest: C git (debug prints: portrait actor creation (func_0041CB48 draft)); places models on menu screens (func_00426968 comment)
+func_0041CE20	0x0041CE20	MenuModel_SetVector_0041CE20	Menus/CharacterSelect.cs	low	harvest: src/ovl_a/func_0041CE20.c comment: copies the vector passed by value into the object's vector at 0x480
+func_0041CE80	0x0041CE80	MenuModel_SetWord49C_0041CE80	Menus/CharacterSelect.cs	low	harvest: src/ovl_a/func_0041CE20.c comment: stores a value into the word at 0x49C of an object
+func_0041CE88	0x0041CE88	MenuModel_ResetPose	Menus/CharacterSelect.cs	medium	harvest: port/overrides/func_0041CE88.c + C git: sets the pose field (0x274 = 0xFFFF), then tail-calls the pose selection func_0041C680
 func_0041CEA8	0x0041CEA8				
 func_0041CEB0	0x0041CEB0				
-func_0041D1A4	0x0041D1A4				
+func_0041D1A4	0x0041D1A4	SaveSlotScreen_Update	Menus/PlayerProfile.cs	medium	harvest: src/ovl_a/func_0041D1A4.c comment: record/slot screen per-tick update (transition state machine, cursor pulse)
 func_0041D550	0x0041D550				
 func_0041D718	0x0041D718				
 func_0041D9D0	0x0041D9D0				
@@ -4023,7 +4023,7 @@ func_0041F298	0x0041F298
 func_0041F2A0	0x0041F2A0				
 func_0041F738	0x0041F738				
 func_0041FCC0	0x0041FCC0				
-func_0041FF9C	0x0041FF9C				
+func_0041FF9C	0x0041FF9C	CharSelect_EnableUnlocked	Menus/CharacterSelect.cs	medium	harvest: src/ovl_a/func_0041FF9C.c comment: enables character choices unlocked by active players, highlights the profile's unlocked characters
 func_00420214	0x00420214				
 func_00420378	0x00420378				
 func_004204A8	0x004204A8				
@@ -4130,9 +4130,9 @@ func_004263BC	0x004263BC
 func_00426454	0x00426454				
 func_004264E4	0x004264E4				
 func_004264F0	0x004264F0				
-func_00426968	0x00426968				
+func_00426968	0x00426968	Results_PlacePlayerModels	Menus/Results.cs	medium	harvest: src/ovl_a/func_00426968.c comment: places the models of the first two active players on the screen D_800E4690
 func_00426AF8	0x00426AF8				
-func_00426EC4	0x00426EC4				
+func_00426EC4	0x00426EC4	Results_DrawCallback	Menus/Results.cs	medium	harvest: src/ovl_a/func_00426EC4.c comment: draw callback of the results screen D_800E4690 (per-viewport player panel)
 func_004271E8	0x004271E8				
 func_00427430	0x00427430				
 func_004275B4	0x004275B4				
@@ -4181,13 +4181,13 @@ func_00429B2C	0x00429B2C
 func_00429B50	0x00429B50				
 func_00429B74	0x00429B74				
 func_00429C04	0x00429C04				
-func_00429C10	0x00429C10				
+func_00429C10	0x00429C10	CharSelect_Open	Menus/CharacterSelect.cs	medium	harvest: src/ovl_a/func_00429C10.c comment: opens screen D_800E4F60 with list, arrows and the four character models 0xEA6..0xEA9
 func_0042A1D0	0x0042A1D0				
-func_0042A490	0x0042A490				
+func_0042A490	0x0042A490	Menu_UpdateTransition_0042A490	Menus/MenuCore.cs	low	harvest: src/ovl_a/func_0042A490.c comment: advances the menu transition state and updates its visual effects
 func_0042A994	0x0042A994				
 func_0042AB70	0x0042AB70				
 func_0042ACB0	0x0042ACB0				
-func_0042AEB8	0x0042AEB8				
+func_0042AEB8	0x0042AEB8	MatchSetup_PickRandomArena	Menus/MatchSetup.cs	high	harvest: memory project_port_game_facts.md: custom matches pick a random arena each run (func_0042AEB8: rand % pool + 1)
 func_0042B108	0x0042B108				
 func_0042B11C	0x0042B11C				
 func_0042B198	0x0042B198				
@@ -4208,7 +4208,7 @@ func_0042B5BC	0x0042B5BC
 func_0042B6B4	0x0042B6B4				
 func_0042B824	0x0042B824				
 func_0042B96C	0x0042B96C				
-func_0042BAE4	0x0042BAE4				
+func_0042BAE4	0x0042BAE4	CharSelect_NextCategory	Menus/CharacterSelect.cs	medium	harvest: src/ovl_a/func_0042BAE4.c comment: moves the screen D_800E4F60 to its next category on event 1
 func_0042BC34	0x0042BC34				
 func_0042BC78	0x0042BC78				
 func_0042BCB0	0x0042BCB0				
@@ -4254,7 +4254,7 @@ func_0042ECF0	0x0042ECF0
 func_0042ED84	0x0042ED84				
 func_0042EE18	0x0042EE18				
 func_0042EEB8	0x0042EEB8				
-func_0042EF50	0x0042EF50				
+func_0042EF50	0x0042EF50	MatchSetup_ApplySettings	Menus/MatchSetup.cs	high	harvest: memory project_port_game_facts.md: match settings applied by func_0042EF50 (clock = minutes*900 ticks)
 func_0042F014	0x0042F014				
 func_0042F074	0x0042F074				
 func_0042F12C	0x0042F12C				
@@ -4262,16 +4262,16 @@ func_0042F130	0x0042F130
 func_0042F988	0x0042F988				
 func_0042FAFC	0x0042FAFC				
 func_0042FD28	0x0042FD28				
-func_00430120	0x00430120				
-func_00430208	0x00430208				
+func_00430120	0x00430120	NameEntry_EnterSlot	Menus/PlayerProfile.cs	medium	harvest: TRANSPILER.md + Window/TextEntry.cs: 7 letter slots (func_00430208 / func_00430120; a slot entered for the first time becomes 'A')
+func_00430208	0x00430208	NameEntry_EnterSlot2	Menus/PlayerProfile.cs	medium	harvest: TRANSPILER.md + Window/TextEntry.cs: 7 letter slots (func_00430208 / func_00430120; a slot entered first becomes 'A')
 func_004302F8	0x004302F8				
 func_004305D8	0x004305D8				
-func_004308B8	0x004308B8				
-func_00432334	0x00432334				
-func_00432488	0x00432488				
+func_004308B8	0x004308B8	PlayerMenu_StepStateMachine	Menus/PlayerProfile.cs	high	harvest: TRANSPILER.md/TextEntry.cs (A = DONE copies the slots, trims blanks) + src comment: steps player's menu state machine at 0x58
+func_00432334	0x00432334	NameEntry_Cancel	Menus/PlayerProfile.cs	medium	harvest: Window/TextEntry.cs: B (func_00432334) leaves the pak screen when opened from the 1-player menu
+func_00432488	0x00432488	PlayerMenu_RefreshPanel	Menus/PlayerProfile.cs	medium	harvest: src/ovl_a/func_00432488.c comment: updates the selected player's setup panel and its linked controls
 func_00433574	0x00433574				
 func_004337EC	0x004337EC				
-func_00433AF0	0x00433AF0				
+func_00433AF0	0x00433AF0	PlayerMenu_InitSlots	Menus/PlayerProfile.cs	medium	harvest: src/ovl_a/func_00433AF0.c comment: initializes four player-menu slots and selects the first available child node
 func_00433DA8	0x00433DA8				
 func_00433F14	0x00433F14				
 func_0043407C	0x0043407C				
@@ -4284,8 +4284,8 @@ func_00434B58	0x00434B58
 func_00434CE4	0x00434CE4				
 func_00434E08	0x00434E08				
 func_00434F4C	0x00434F4C				
-func_00435010	0x00435010				
-func_004350D0	0x004350D0				
+func_00435010	0x00435010	NameEntry_LetterUp	Menus/PlayerProfile.cs	medium	harvest: TRANSPILER.md + TextEntry.cs: D-pad up / down step the letter through 0x20..0x5A (func_00435010 / func_004350D0)
+func_004350D0	0x004350D0	NameEntry_LetterDown	Menus/PlayerProfile.cs	medium	harvest: TRANSPILER.md + TextEntry.cs: D-pad up / down step the letter through 0x20..0x5A (func_00435010 / func_004350D0)
 func_00435190	0x00435190				
 func_004351A0	0x004351A0				
 func_004352A8	0x004352A8				
@@ -4305,7 +4305,7 @@ func_00435750	0x00435750
 func_00435790	0x00435790				
 func_004357C4	0x004357C4				
 func_00435898	0x00435898				
-func_00435958	0x00435958				
+func_00435958	0x00435958	Menu_EnterSelectedState_00435958	Menus/MenuCore.cs	low	harvest: src/ovl_a/func_00435958.c comment: enters the selected menu state and resolves the default destination from the game mode
 func_00435A18	0x00435A18				
 func_00435A20	0x00435A20				
 func_00435A9C	0x00435A9C				
@@ -4332,7 +4332,7 @@ func_004360D4	0x004360D4
 func_004360F4	0x004360F4				
 func_004361FC	0x004361FC				
 func_00436204	0x00436204				
-func_00436224	0x00436224				
+func_00436224	0x00436224	Menu_HandleMessage3D3_00436224	Menus/MenuCore.cs	low	harvest: src/ovl_a/func_00436224.c comment: handles menu messages 0x3D5 / 0x3D3 (cue 0x34, screen D_800E5554 timer)
 func_0043630C	0x0043630C				
 func_0043639C	0x0043639C				
 func_00436430	0x00436430				
@@ -4386,7 +4386,7 @@ func_00437C30	0x00437C30
 func_0043847C	0x0043847C				
 func_004387F4	0x004387F4				
 func_00438A08	0x00438A08				
-func_00438BA4	0x00438BA4				
+func_00438BA4	0x00438BA4	Game_RestartToMenu	Menus/MenuCore.cs	medium	harvest: src/ovl_a/func_00438BA4.c comment: re-runs the game initialisation and pushes menu screen 0x12 (modes 1, 3, 4)
 func_00438BD0	0x00438BD0				
 func_00438C54	0x00438C54				
 func_00438C68	0x00438C68				
@@ -4413,7 +4413,7 @@ func_004394E8	0x004394E8
 func_00439588	0x00439588				
 func_004395E4	0x004395E4				
 func_0043962C	0x0043962C				
-func_004396BC	0x004396BC				
+func_004396BC	0x004396BC	MatchSetup_SetDefaults	Menus/MatchSetup.cs	high	harvest: memory game facts + C git: the custom-match defaults (10 minutes, 10 frags) are written by func_004396BC
 func_004397D8	0x004397D8				
 func_00439808	0x00439808				
 func_004398D0	0x004398D0				
@@ -4434,9 +4434,9 @@ func_00439EBC	0x00439EBC
 func_00439EE0	0x00439EE0				
 func_00439F0C	0x00439F0C				
 func_00439F10	0x00439F10				
-func_00439F38	0x00439F38				
+func_00439F38	0x00439F38	Menu_HandleMessage3DA_00439F38	Menus/MenuCore.cs	low	harvest: src/ovl_a/func_00439F38.c comment: handles menu messages 0x3DA / 0x3DB
 func_00439FE4	0x00439FE4				
-func_0043A014	0x0043A014				
+func_0043A014	0x0043A014	Event_DispatchByKind	Menus/MenuCore.cs	medium	harvest: src/ovl_a/func_00439F38.c comment: dispatches an event through the file's 12-byte handler table (event, actor kind, handler); adapted from func_002A2B50
 func_0043A0A4	0x0043A0A4				
 func_0043A0B0	0x0043A0B0				
 func_0043A510	0x0043A510				
@@ -4447,9 +4447,9 @@ func_0043AED0	0x0043AED0
 func_0043B03C	0x0043B03C				
 func_0043B2AC	0x0043B2AC				
 func_0043B67C	0x0043B67C				
-func_0043B8C8	0x0043B8C8				
+func_0043B8C8	0x0043B8C8	Loadout_FillColumns	Menus/CharacterSelect.cs	medium	harvest: src/ovl_a/func_0043B8C8.c comment: fills player p's column values on the screen D_800E59E0 from what the player owns
 func_0043BA34	0x0043BA34				
-func_0043BB4C	0x0043BB4C				
+func_0043BB4C	0x0043BB4C	Loadout_ResetOwned	Menus/CharacterSelect.cs	medium	harvest: src/ovl_a/func_0043BB4C.c comment: clears owned bytes of each player record and marks the model kind's slot ids owned
 func_0043BC04	0x0043BC04				
 func_0043BC3C	0x0043BC3C				
 func_0043BD50	0x0043BD50				
@@ -4462,7 +4462,7 @@ func_0043C108	0x0043C108
 func_0043C1D0	0x0043C1D0				
 func_0043C260	0x0043C260				
 func_0043C3F0	0x0043C3F0				
-func_0043C458	0x0043C458				
+func_0043C458	0x0043C458	Menu_ShowScreen_0043C458	Menus/MenuCore.cs	low	harvest: src/ovl_a/func_00436224.c comment: shows the screen through func_0043C458
 func_0043C484	0x0043C484				
 func_0043C4B4	0x0043C4B4				
 func_0043C4C0	0x0043C4C0				
@@ -4470,7 +4470,7 @@ func_0043C4D0	0x0043C4D0
 func_0043C4D8	0x0043C4D8				
 func_0043C4E8	0x0043C4E8				
 func_0043C4F4	0x0043C4F4				
-func_0043C500	0x0043C500				
+func_0043C500	0x0043C500	CheatMenu_GetHandler_0043C500	Menus/MenuCore.cs	low	harvest: src/ovl_a/func_0043C500.c + C git ce7cb72: "cheat code" / name-entry menu helpers block
 func_0043C72C	0x0043C72C				
 func_0043C730	0x0043C730				
 func_0043C868	0x0043C868				
@@ -4595,7 +4595,7 @@ func_00440618	0x00440618
 func_004409A8	0x004409A8				
 func_00440F10	0x00440F10				
 func_0044121C	0x0044121C				
-func_00441384	0x00441384				
+func_00441384	0x00441384	Ui_InvokeHeaderCallback_00441384	Ui/Widgets.cs	low	harvest: port/overrides/func_00441384.c: calls the hdr->f14 callback with the arguments the MIPS code passes through
 func_00441764	0x00441764				
 func_00441D50	0x00441D50				
 func_00442020	0x00442020				
@@ -4607,12 +4607,12 @@ func_00442254	0x00442254
 func_004422BC	0x004422BC				
 func_00442384	0x00442384				
 func_0044239C	0x0044239C				
-func_00442460	0x00442460				
+func_00442460	0x00442460	Text_MeasureString	Ui/Text.cs	medium	harvest: src/game/func_002A9F18.c comment: measures the text through func_00442460 at the style size
 func_004424F4	0x004424F4				
 func_00442514	0x00442514				
 func_0044251C	0x0044251C				
-func_0044252C	0x0044252C				
-func_004425F8	0x004425F8				
+func_0044252C	0x0044252C	MenuSpinner_Step	Menus/MenuCore.cs	medium	harvest: FINDINGS: generic spinner func_0044252C(ctx, cur, step, min, max, wrap)
+func_004425F8	0x004425F8	MenuSpinner_Step2_004425F8	Menus/MenuCore.cs	low	harvest: FINDINGS: func_004425F8 (same signature as the spinner func_0044252C)
 func_004426B4	0x004426B4				
 func_004426E4	0x004426E4				
 func_00442800	0x00442800				
@@ -4659,11 +4659,11 @@ func_00443650	0x00443650
 func_00443804	0x00443804				
 func_00443868	0x00443868				
 func_00443880	0x00443880				
-func_004438A4	0x004438A4				
+func_004438A4	0x004438A4	MenuCaption_DrawPulsing	Menus/MenuCore.cs	medium	harvest: src/ovl_a/func_004438A4.c comment: pulses the caption intensity on a triangle wave and redraws the caption sprite centred on the entry
 func_004439B4	0x004439B4				
 func_00443A2C	0x00443A2C				
 func_00443AD4	0x00443AD4				
-func_00443B08	0x00443B08				
+func_00443B08	0x00443B08	Results_FormatStats_00443B08	Menus/Results.cs	low	harvest: Window/MatchInfo.cs: results-screen formatters func_00443B08..CAC
 func_00443B94	0x00443B94				
 func_00443C20	0x00443C20				
 func_00443CAC	0x00443CAC				
@@ -4673,7 +4673,7 @@ func_00443D84	0x00443D84
 func_00443E44	0x00443E44				
 func_00443F40	0x00443F40				
 func_00444024	0x00444024				
-func_00444030	0x00444030				
+func_00444030	0x00444030	Settings_InitDefaults	Menus/MatchSetup.cs	high	harvest: game_glue.c/GameBoot.cs + PJ64 watchpoint: initialiser of the whole settings block 0x801462C8..0x8014684C (Game Speed, volumes...)
 func_00444030_func_00444204	0x00444204				
 func_00444204	0x00444204				
 func_00444260	0x00444260				
@@ -4767,12 +4767,12 @@ func_004465B4	0x004465B4
 func_00446704	0x00446704				
 func_00446330_func_004467D8	0x004467D8				
 func_004467D8	0x004467D8				
-func_00446810	0x00446810				
-func_004469BC	0x004469BC				
-func_00446A54	0x00446A54				
+func_00446810	0x00446810	MenuSpinner_Draw	Menus/MenuCore.cs	medium	harvest: src/ovl_a/func_00446810.c comment: draws a menu spinner (blinking bar under the selected digit)
+func_004469BC	0x004469BC	NameEntry_DeleteChar	Menus/PlayerProfile.cs	medium	harvest: src/ovl_a/func_004469BC.c comment: deletes the final character of the selected player's text entry
+func_00446A54	0x00446A54	NameEntry_CopyLabel	Menus/PlayerProfile.cs	medium	harvest: src/ovl_a/func_00446A54.c comment: copies a player label with spaces for empty characters and refreshes the entry
 func_00446B44	0x00446B44				
 func_00446B7C	0x00446B7C				
-func_00446B80	0x00446B80				
+func_00446B80	0x00446B80	Debug_SetWatchpointOvl	Debug/DevLink.cs	medium	harvest: FINDINGS: 17-word hand-written watchpoint setter (mtc0 $18 / mfc0 $19), dead debug code
 func_00446BC4	0x00446BC4				
 func_00446BD0	0x00446BD0				
 osPfsAllocateFile	0x00446BD0				
@@ -4832,56 +4832,56 @@ func_0044984C	0x0044984C
 __osPfsSelectBank	0x00449914				
 func_00449914	0x00449914				
 func_00449968	0x00449968				
-func_00449970	0x00449970				
-func_00449B44	0x00449B44				
-func_00449E38	0x00449E38				
-func_0044A100	0x0044A100				
-func_0044A17C	0x0044A17C				
-func_0044A37C	0x0044A37C				
-func_0044A4C0	0x0044A4C0				
+func_00449970	0x00449970	Player_ConstructEntities	Player/Player.cs	medium	harvest: FINDINGS s1011: func_00449970 (constructor of the two base entities)
+func_00449B44	0x00449B44	Player_InitSlot	Player/Player.cs	medium	harvest: FINDINGS s1011: func_00449B44 (slot init)
+func_00449E38	0x00449E38	Player_Restart	Player/Health.cs	medium	harvest: FINDINGS s1011 (player object restart) + PORT_STATUS trials: stores the respawn key p+0x5EC at player start (tail at 0x0044A100)
+func_0044A100	0x0044A100	Player_RestartTail	Player/Health.cs	medium	harvest: memory fall-through twins note: tail of func_00449E38 cut off by splat; stores the respawn key p+0x5EC
+func_0044A17C	0x0044A17C	Player_ResetForNewLife	Player/Health.cs	medium	harvest: src/ovl_a/func_0044A17C.c comment: reset a player for a new life (restore health, clear timers and effects, drop carried object)
+func_0044A37C	0x0044A37C	Player_StartRun_0044A37C	Player/Health.cs	low	harvest: src/ovl_a/func_0044A37C.c comment: starts a player's run (run type at 0x5EA, resets via func_0044A17C, starts its vehicle/model) [the other decomp's comment calls it a vehicle/driver routine; Rage Wars has none: neutral name]
+func_0044A4C0	0x0044A4C0	Player_Respawn	Player/Health.cs	high	harvest: PORT_STATUS trials: the respawn (func_0044A4C0 -> func_0021B1E4) looks up the spawn points of the player's spawn key p+0x5EC
 func_0044A600	0x0044A600				
-func_0044AA00	0x0044AA00				
-func_0044AA68	0x0044AA68				
-func_0044AB34	0x0044AB34				
+func_0044AA00	0x0044AA00	List44_Reset_0044AA00	System/Memory.cs	low	harvest: src/ovl_a/func_0044AA00.c comment: resets a 0x44-byte record (memset, two lists at 0xC / 0x20)
+func_0044AA68	0x0044AA68	Holder_RefreshInstances_0044AA68	System/Memory.cs	low	harvest: src/ovl_a/func_0044AA68.c comment: refreshes every instance owned by the holder and clears their pending flag
+func_0044AB34	0x0044AB34	Player_SetupSlot_0044AB34	Player/Player.cs	low	harvest: src/ovl_a/func_0044AB34.c comment: sets up a player in a slot (computer or human profile at 0x688, counters, vehicle link) [the other decomp's comment calls it a vehicle/driver routine; Rage Wars has none: neutral name]
 func_0044AC70	0x0044AC70				
-func_0044ACCC	0x0044ACCC				
+func_0044ACCC	0x0044ACCC	Object_ReleaseHandles_0044ACCC	Actor/Actor.cs	low	harvest: src/ovl_a/func_0044ACCC.c comment: releases the two handles at offsets 0x11BC and 0x11C0 of an object
 func_0044AD14	0x0044AD14				
-func_0044ADC0	0x0044ADC0				
-func_0044AFC0	0x0044AFC0				
-func_0044B27C	0x0044B27C				
+func_0044ADC0	0x0044ADC0	Camera_InitState	Render/View.cs	medium	harvest: src/ovl_a/func_0044ADC0.c comment: initializes camera transforms, viewport state, clipping records and resource lists
+func_0044AFC0	0x0044AFC0	CameraManager_Init	Render/View.cs	medium	harvest: FINDINGS s1005: func_0044AFC0 (camera manager init, counterpart of func_0044B27C reset)
+func_0044B27C	0x0044B27C	View_ResetRecord	Render/View.cs	medium	harvest: src/ovl_a/func_0044B27C.c comment: resets a 0x1208-byte view actor (lists, parts via func_0044ADC0 and func_00234FDC)
 func_0044B31C	0x0044B31C				
-func_0044B388	0x0044B388				
-func_0044B3E0	0x0044B3E0				
-func_0044B420	0x0044B420				
+func_0044B388	0x0044B388	View_DetachObject_0044B388	Render/View.cs	low	harvest: src/ovl_a/func_0044B388.c comment: detaches the object at 0xC of an owner (finalise via func_0044ADC0, unlink)
+func_0044B3E0	0x0044B3E0	Object_MoveNodeToActiveList_0044B3E0	System/Memory.cs	low	harvest: src/ovl_a/func_0044B3E0.c comment: moves a node from the list at 0x20 to the list at 0xC of an object
+func_0044B420	0x0044B420	Pool228_Init_0044B420	System/Memory.cs	low	harvest: src/ovl_a/func_0044B420.c comment: initialises the two lists of a pool and adds its four 0x228-byte entries
 func_0044B498	0x0044B498				
 func_0044BA40	0x0044BA40				
 func_0044BAB4	0x0044BAB4				
-func_0044BAC0	0x0044BAC0				
-func_0044BC58	0x0044BC58				
-func_0044BD30	0x0044BD30				
+func_0044BAC0	0x0044BAC0	Pad_ResetSession	Player/Controls.cs	medium	harvest: src/ovl_a/func_0044BAC0.c comment: resets the controller and profile state for a new session (osContInit, pads, profiles)
+func_0044BC58	0x0044BC58	Pad_InitSlot	Player/Controls.cs	medium	harvest: FINDINGS: func_0044BC58 (controller slot init) is the twin of func_00263D10
+func_0044BD30	0x0044BD30	List8_Init_0044BD30	System/Memory.cs	low	harvest: src/ovl_a/func_0044BD30.c comment: initializes a list and its eight records with default state
 func_0044BDC8	0x0044BDC8				
-func_0044BFD0	0x0044BFD0				
-func_0044C050	0x0044C050				
+func_0044BFD0	0x0044BFD0	MtxStack_Init	Math/Matrix.cs	medium	harvest: FINDINGS: func_0044BFD0 (matrix pool init: base, count/2, guMtxIdent loop)
+func_0044C050	0x0044C050	ObjectPool_InitQuad_0044C050	Render/Model.cs	low	harvest: FINDINGS: func_0044C050 (object pool + unit quad init)
 func_0044C244	0x0044C244				
-func_0044C250	0x0044C250				
-func_0044C410	0x0044C410				
-func_0044CA54	0x0044CA54				
-func_0044CBE0	0x0044CBE0				
-func_0044CD58	0x0044CD58				
-func_0044D024	0x0044D024				
-func_0044D408	0x0044D408				
-func_0044D9DC	0x0044D9DC				
-func_0044DC48	0x0044DC48				
-func_0044DCA4	0x0044DCA4				
-func_0044DD40	0x0044DD40				
+func_0044C250	0x0044C250	Scene_HelperA_0044C250	World/Level.cs	low	harvest: FINDINGS: func_0044C250 / func_0044C410 (CScene helpers, debug tag strings)
+func_0044C410	0x0044C410	Scene_LoadLevelData_0044C410	World/Level.cs	low	harvest: FINDINGS: func_0044C410 CScene helper with the optional BLLevelData block
+func_0044CA54	0x0044CA54	Scene_LoadLight	Render/Lighting.cs	medium	harvest: src/ovl_a/func_0044CA54.c comment: loads a scene's light into the global light D_800D0EE0 (ambient/directional colours, direction)
+func_0044CBE0	0x0044CBE0	Scene_Shutdown_0044CBE0	World/Level.cs	low	harvest: src/ovl_a/func_0044CA54.c comment: shut down the subsystem, free its owned resources, and unlink its list
+func_0044CD58	0x0044CD58	Collision_BindMesh	World/Collision.cs	medium	harvest: src/ovl_a/func_0044CA54.c comment: binds a loaded collision mesh to the world (vertex/face/edge lists, buckets)
+func_0044D024	0x0044D024	Collision_BuildSurfaceMesh	World/Collision.cs	medium	harvest: src/ovl_a/func_0044D024.c comment: builds the in-memory surface mesh of a loaded resource
+func_0044D408	0x0044D408	Level_SpawnActors	World/Level.cs	medium	harvest: src/ovl_a/func_0044D408.c comment: spawns the level's actors from the loaded placement resource (players on spawn points)
+func_0044D9DC	0x0044D9DC	Level_LoadGridCells	World/Level.cs	medium	harvest: src/ovl_a/func_0044D9DC.c comment: loads every still-empty cell of the level's tile grid and spawns its objects
+func_0044DC48	0x0044DC48	Level_InitState_0044DC48	World/Level.cs	low	harvest: src/ovl_a/func_0044D9DC.c comment: runs func_0044DCA4 and func_0044DD40 on the state block, sets words 0x1B444..0x1B44C
+func_0044DCA4	0x0044DCA4	Level_LoadSelectedResource_0044DCA4	World/Level.cs	low	harvest: src/ovl_a/func_0044DCA4.c comment: loads a selected resource into the shared buffer and releases the temporary allocation
+func_0044DD40	0x0044DD40	Level_LoadPreviewSound_0044DD40	World/Level.cs	low	harvest: src/ovl_a/func_0044DD40.c comment: loads the preview resource into the sound buffer when idle
 func_0044DDC8	0x0044DDC8				
-func_0044DE04	0x0044DE04				
-func_0044DE70	0x0044DE70				
+func_0044DE04	0x0044DE04	Level_ResetStateBlock_0044DE04	World/Level.cs	low	harvest: src/ovl_a/func_0044DD40.c comment: resets part of a large state block (0x1B410 = 2, clears 0x1B414..)
+func_0044DE70	0x0044DE70	Track_FindPlacedObjects	World/Level.cs	medium	harvest: src/ovl_a/func_0044DD40.c comment: copies up to max of a track's placed objects whose key matches into out
 func_0044E038	0x0044E038				
-func_0044E178	0x0044E178				
+func_0044E178	0x0044E178	Level_SetTransitionState_0044E178	World/Level.cs	low	harvest: src/ovl_a/func_0044E178.c comment: sets the resource transition state and sound
 func_0044E1D0	0x0044E1D0				
-func_0044E214	0x0044E214				
-func_0044E2B8	0x0044E2B8				
+func_0044E214	0x0044E214	Level_ProcessPendingObjects_0044E214	World/Level.cs	low	harvest: src/ovl_a/func_0044E178.c comment: processes both pending object lists between update barriers
+func_0044E2B8	0x0044E2B8	Level_SpawnPickups	World/Level.cs	medium	harvest: src/ovl_a/func_0044E2B8.c comment: spawns the pickups of a level (item kinds 1, 2, 4, 10 via func_0028784C)
 func_0044E3E4	0x0044E3E4				
 func_0044E454	0x0044E454				
 func_0044E584	0x0044E584				
@@ -4890,8 +4890,8 @@ func_0044E7C0	0x0044E7C0
 func_0044E8B0	0x0044E8B0				
 func_0044E904	0x0044E904				
 func_0044E910	0x0044E910				
-func_0044E9A0	0x0044E9A0				
-func_0044EA24	0x0044EA24				
+func_0044E9A0	0x0044E9A0	Match_Reset	Match/Rules.cs	medium	harvest: src/ovl_a/func_0044E910.c comment: resets a match (clears state words of D_801468A0, match block 0x26DC1 = 2)
+func_0044EA24	0x0044EA24	Match_EnterState0C_0044EA24	Match/Rules.cs	low	harvest: src/ovl_a/func_0044EA24.c comment: puts the match object into state 0xC with the func_0044DE70 selector; adapted from func_00293268
 func_0044EACC	0x0044EACC				
 func_0044EBA4	0x0044EBA4				
 func_0044EBB0	0x0044EBB0				

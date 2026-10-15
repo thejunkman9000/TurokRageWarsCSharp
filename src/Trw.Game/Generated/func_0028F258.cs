@@ -94,7 +94,7 @@ public static partial class Game
                     }
                     while ((0 != 0));
                 }
-                func_0028F9EC((int)(o), j);
+                Video_SwapIfReady((int)(o), j);
                 mode = ((((new Vid(o).cur2F4_ == 0u) ? 1 : 0) << (int)1) | ((new Vid(o).next2F8_ == 0u) ? 1 : 0));
                 if (((int)(func_0028F524(o, _fp, (_fp + 4u), (uint)(mode))) != mode))
                 {

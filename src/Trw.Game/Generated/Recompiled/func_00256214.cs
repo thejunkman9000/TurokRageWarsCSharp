@@ -44,16 +44,16 @@ public static partial class Game
                 r6 = (uint)2001; osSetEventMesg(r4, r5, r6);
                 r4 = r18 + 20584u;
                 r5 = (uint)24;
-                r6 = (uint)28; func_00255C40(r4, (int)r5, (int)r6);
+                r6 = (uint)28; List_Init(r4, (int)r5, (int)r6);
                 r4 = r18 + 20604u;
                 r5 = (uint)24;
-                r6 = (uint)28; func_00255C40(r4, (int)r5, (int)r6);
+                r6 = (uint)28; List_Init(r4, (int)r5, (int)r6);
                 r17 = r0;
                 r16 = (uint)3688;
                 L_L0025629C: ;
                 r5 = r18 + r16;
                 Mem.Set((r5 + 20u), r0);
-                r4 = r18 + 20584u; r2 = func_00255CB4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r18 + 20584u; r2 = List_Append_00255CB4(r4, r5, r6, r7); r3 = Cpu.V1;
                 r17 = r17 + 1u;
                 r2 = (uint)((int)r17 < 528 ? 1 : 0);
                 { bool c_ = r2 != 0; r16 = r16 + 32u; if (c_) goto L_L0025629C; }

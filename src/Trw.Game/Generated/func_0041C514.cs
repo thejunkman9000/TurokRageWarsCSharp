@@ -11,11 +11,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0041C514");
             func_0029A73C();
-            switch (func_0029AA08())
+            switch (Menu_GetMessage())
             {
             case 971:
                 func_0040E958((uint)(new O3Pg(Mem.U32(0x800E3518u)).w2), 0);
-                func_0041BF10(default(uint), default(uint), default(uint), default(uint));
+                SaveSlot_UpdateDialog(default(uint), default(uint), default(uint), default(uint));
                 break;
             case 970:
                 func_0041C1E4(default(uint), default(uint), default(uint), default(uint));

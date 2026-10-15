@@ -15,15 +15,15 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_002AB794", (uint)s);
                 if ((func_002A33AC() == 1))
                 {
-                    func_002A3090();
+                    Menu_UpdateIdleTimer();
                     func_0026D8F8();
                     func_00296FF8();
                 }
                 func_002A94E8();
-                func_002A9700();
+                Gfx_LoadTexImage16();
                 func_002ABB58(Mem.F32(0x800CB380u), Mem.F32(0x800CB380u));
                 func_002ABB2C(255, 255, 255, 200, 200, 200);
-                func_002AA224((uint)((int)(Mem.U8(0x801462DEu))), default(uint), default(uint), default(uint));
+                Gfx_BeginFlatColorPass((uint)((int)(Mem.U8(0x801462DEu))), default(uint), default(uint), default(uint));
                 if ((new Scn(s).unk40 != 0))
                 {
                     func_002A8650(s, (uint)(1), default(uint), default(uint));

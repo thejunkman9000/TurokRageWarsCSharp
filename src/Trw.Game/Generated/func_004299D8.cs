@@ -15,7 +15,7 @@ public static partial class Game
             {
                 return 0;
             }
-            switch (func_0029AA08())
+            switch (Menu_GetMessage())
             {
             case 875:
                 func_004296A4();

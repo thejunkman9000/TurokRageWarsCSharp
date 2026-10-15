@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00445CE8", (uint)a, (uint)b);
             int v = (int)(Mem.U8((0x801462E1u + (uint)0)));
-            v = func_0044252C((uint)(b), v, 8, 0, 255, 0);
+            v = MenuSpinner_Step((uint)(b), v, 8, 0, 255, 0);
             if ((v == 247))
             {
                 v = 248;

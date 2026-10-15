@@ -146,7 +146,7 @@ public static partial class Game
                     }
                     if ((new R4Hm(m).owner.p12C_ == t))
                     {
-                        func_0044ACCC(new R4Tgt(t).p1D8);
+                        Object_ReleaseHandles_0044ACCC(new R4Tgt(t).p1D8);
                         new R4Hm(m).owner.h14C_Set((ushort)(ret));
                         return 0;
                     }

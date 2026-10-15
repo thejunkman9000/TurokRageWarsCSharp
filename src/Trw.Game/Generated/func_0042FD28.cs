@@ -28,7 +28,7 @@ public static partial class Game
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f14_Set(2);
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state_Set(2);
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f8_Set(4);
-                            func_00432488((uint)(k), default(uint), default(uint), default(uint));
+                            PlayerMenu_RefreshPanel((uint)(k), default(uint), default(uint), default(uint));
                         }
                     }
                     break;
@@ -43,7 +43,7 @@ public static partial class Game
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f14_Set(2);
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state_Set(2);
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f8_Set(4);
-                            func_00432488((uint)(k), default(uint), default(uint), default(uint));
+                            PlayerMenu_RefreshPanel((uint)(k), default(uint), default(uint), default(uint));
                         }
                         break;
                     case 10:
@@ -53,7 +53,7 @@ public static partial class Game
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f14_Set(2);
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state_Set(2);
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f8_Set(4);
-                            func_00432488((uint)(k), default(uint), default(uint), default(uint));
+                            PlayerMenu_RefreshPanel((uint)(k), default(uint), default(uint), default(uint));
                         }
                         break;
                     }
@@ -67,7 +67,7 @@ public static partial class Game
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f14_Set(2);
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state_Set(2);
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f8_Set(12);
-                            func_00432488((uint)(k), default(uint), default(uint), default(uint));
+                            PlayerMenu_RefreshPanel((uint)(k), default(uint), default(uint), default(uint));
                         }
                     }
                     break;
@@ -81,7 +81,7 @@ public static partial class Game
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state_Set(2);
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f8_Set(13);
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f4_Set(5);
-                            func_00432488((uint)(k), default(uint), default(uint), default(uint));
+                            PlayerMenu_RefreshPanel((uint)(k), default(uint), default(uint), default(uint));
                         }
                     }
                     break;
@@ -99,7 +99,7 @@ public static partial class Game
                                 new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f8_Set(13);
                                 new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f4_Set(6);
                             }
-                            func_00432488((uint)(k), default(uint), default(uint), default(uint));
+                            PlayerMenu_RefreshPanel((uint)(k), default(uint), default(uint), default(uint));
                         }
                     }
                     break;
@@ -117,7 +117,7 @@ public static partial class Game
                                 new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f8_Set(13);
                                 new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f4_Set(3);
                             }
-                            func_00432488((uint)(k), default(uint), default(uint), default(uint));
+                            PlayerMenu_RefreshPanel((uint)(k), default(uint), default(uint), default(uint));
                         }
                     }
                     break;

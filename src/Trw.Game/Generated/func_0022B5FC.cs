@@ -23,7 +23,7 @@ public static partial class Game
                 if ((Mem.F32(0x800CE3E0u) <= t))
                 {
                     func_00216488(_fp, y, 262144, (int)Cpu.F2U(25.5999985f), 128, 0);
-                    func_00219A40(a, (a + (uint)368), _fp, default(uint));
+                    Player_StateHandler(a, (a + (uint)368), _fp, default(uint));
                 }
             }
         }

@@ -28,7 +28,7 @@ public static partial class Game
                 r2 = (uint)1;
                 { bool c_ = r3 != r2; Mem.Set((r29 + 24u), r31); if (c_) goto L_L002A31E8; }
                 func_002A27C4();
-                r2 = (uint)func_0029A958();
+                r2 = (uint)Ui_PushScreen();
                 Mem.Set((r29 + 16u), r0);
                 r4 = r2;
                 r5 = (uint)3592;
@@ -37,7 +37,7 @@ public static partial class Game
                 func_00299FE8();
                 func_004104C8();
                 func_002A2944();
-                r2 = (uint)func_0029A958();
+                r2 = (uint)Ui_PushScreen();
                 r5 = (uint)1;
                 r3 = r2;
                 r2 = (uint)3;

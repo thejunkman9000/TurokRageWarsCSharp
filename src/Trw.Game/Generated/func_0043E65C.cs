@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043E65C", (uint)x, (uint)m, (uint)y);
             uint ctx = new S10Menu(m).ctx_;
             uint sub = new S10Ctx(ctx).sub_;
-            if (((int)(func_0026439C(new S10Menu(m).ctrl_)) != 0))
+            if (((int)(Pad_IsConfirm(new S10Menu(m).ctrl_)) != 0))
             {
                 func_0044AD14(ctx, (int)(new S10Sub(sub).b80));
                 func_0025DF54((int)(new S10Pair((0x800E5DFAu + (uint)(new S10Ctx(ctx).f5E0 * 4))).v));
@@ -21,7 +21,7 @@ public static partial class Game
             }
             else
             {
-                sbyte v = (sbyte)(func_004425F8(m, (int)(new S10Sub(sub).b80), 1, 0, 18, 1));
+                sbyte v = (sbyte)(MenuSpinner_Step2_004425F8(m, (int)(new S10Sub(sub).b80), 1, 0, 18, 1));
                 new S10Sub(sub).b80_Set(v);
                 func_0044AD14(ctx, (int)(v));
                 func_004422BC(x, 11, (int)(new S10Sub(sub).b80));

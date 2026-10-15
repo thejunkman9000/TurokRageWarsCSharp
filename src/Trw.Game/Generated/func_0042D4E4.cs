@@ -15,7 +15,7 @@ public static partial class Game
             uint p = 0u;
             int id = 0;
             int v = 0;
-            h = func_0040ECB0((uint)(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unkE0), (uint)((ushort)(c)), default(uint), default(uint));
+            h = UiTree_FindNode((uint)(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unkE0), (uint)((ushort)(c)), default(uint), default(uint));
             switch (b)
             {
             case 1:
@@ -32,7 +32,7 @@ public static partial class Game
                 id = 621;
                 break;
             }
-            p = func_0040ECB0(h, (uint)((ushort)(id)), default(uint), default(uint));
+            p = UiTree_FindNode(h, (uint)((ushort)(id)), default(uint), default(uint));
             func_0040E958(p, 1);
             new O04Sub2C(p).unk10_Set((byte)(150));
             switch ((int)(new O04Ent96h(e).unk92))

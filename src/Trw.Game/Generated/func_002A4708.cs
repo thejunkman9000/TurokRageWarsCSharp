@@ -41,7 +41,7 @@ public static partial class Game
                         }
                     }
                 }
-                handle = (int)(func_00296EC4(new S8Emit(e).unk14.P, (uint)((-1)), default(uint), default(uint)));
+                handle = (int)(Material_Lookup(new S8Emit(e).unk14.P, (uint)((-1)), default(uint), default(uint)));
                 if ((handle != 0))
                 {
                     func_00296F7C((uint)(handle), _fp);
@@ -86,7 +86,7 @@ public static partial class Game
                     switch ((int)(Mem.U8((new S8Q(_fp).p_ + (uint)0))))
                     {
                     case 3:
-                        func_00268CE0((uint)(41));
+                        Gfx_SetCombineMode((uint)(41));
                         if ((new S8Ctx(c).unk120 != 0))
                         {
                             {
@@ -122,14 +122,14 @@ public static partial class Game
                         break;
                     case 0:
                     case 1:
-                        func_00268CE0((uint)(40));
+                        Gfx_SetCombineMode((uint)(40));
                         break;
                     }
-                    func_0026925C((uint)(13));
+                    Gfx_SetOtherModeL((uint)(13));
                     n1 = new S8Emit(e).nodes_;
                     id = (int)(new S8Info(info).unk23);
                     n2 = new S8Node(n1).next_;
-                    func_00295FB4(new S8Emit(e).unk14.P, (uint)(handle), func_002A5124(e, info, _fp), 0, 65535, 65535, 0, 0, 0);
+                    Texture_EmitLoad_00295FB4(new S8Emit(e).unk14.P, (uint)(handle), func_002A5124(e, info, _fp), 0, 65535, 65535, 0, 0, 0);
                     idm1 = (id - 1);
                     {
                         uint _g_6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);

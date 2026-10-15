@@ -130,7 +130,7 @@ public static partial class Game
                 L_I0043F4F4: ;
                 r4 = Mem.U32((r18 + 32u));
                 L_I0043F4F8: ;
-                r2 = (uint)func_002643A8(r4);
+                r2 = (uint)Pad_IsLeft(r4);
                 L_I0043F500: ;
                 { bool c_ = r2 == 0;  if (c_) goto L_L0043F520; }
                 L_I0043F508: ;
@@ -147,7 +147,7 @@ public static partial class Game
                 L_I0043F520: ;
                 r4 = Mem.U32((r18 + 32u));
                 L_I0043F524: ;
-                r2 = (uint)func_002643C0(r4);
+                r2 = (uint)Pad_IsRight(r4);
                 L_I0043F52C: ;
                 { bool c_ = r2 == 0;  if (c_) goto L_L0043F550; }
                 L_I0043F534: ;

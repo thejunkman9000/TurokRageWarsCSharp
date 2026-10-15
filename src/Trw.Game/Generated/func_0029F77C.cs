@@ -11,8 +11,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0029F77C", (uint)v, (uint)p, (uint)q);
             float len = func_0029F77C_B22Sqrt(((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).z * new Vec3f(v).z)));
-            Mem.Set(q, func_0029D044(new Vec3f(v).x, new Vec3f(v).z));
-            Mem.Set(p, (-func_0029D044(new Vec3f(v).y, len)));
+            Mem.Set(q, Math_Atan2(new Vec3f(v).x, new Vec3f(v).z));
+            Mem.Set(p, (-Math_Atan2(new Vec3f(v).y, len)));
         }
     }
 

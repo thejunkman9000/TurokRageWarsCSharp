@@ -32,10 +32,10 @@ public static partial class Game
             }
             if ((((idx != (-1)) && (C.Seq((object?)((key = new B19Owner(owner).key)), ((new B19Owner(owner).mode != 2) ? 1 : 0)) != 0)) && (C.Seq((object?)((inf = new B19Obj((tmp = (new B19Owner(owner).base_ + (uint)(idx * 744)))).info)), ((((((uint)((new B19Info18(inf).type - 9)) < (uint)(2)) ? 1 : 0) == 0) || !((new B19Info18(inf).f4 & (uint)(512)) != 0u)) ? 1 : 0)) != 0)))
             {
-                n = (int)(func_0028FD94((uint)((int)(func_0028FD94((uint)((int)(func_0028FD94((uint)(new B19Owner(owner).root), 0))), key))), 0));
-                func_0028FD94((uint)(n), 0);
-                func_0028FDD8((uint)(n), 1);
-                bits = (uint)((int)(func_0028FD94((uint)(n), 1)));
+                n = (int)(Chunk_Get((uint)((int)(Chunk_Get((uint)((int)(Chunk_Get((uint)(new B19Owner(owner).root), 0))), key))), 0));
+                Chunk_Get((uint)(n), 0);
+                Chunk_GetSize((uint)(n), 1);
+                bits = (uint)((int)(Chunk_Get((uint)(n), 1)));
                 m = (1 << (int)(idx & 7));
                 if ((set != 0))
                 {

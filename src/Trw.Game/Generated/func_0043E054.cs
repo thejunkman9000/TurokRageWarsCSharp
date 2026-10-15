@@ -17,7 +17,7 @@ public static partial class Game
             }
             for (i = 0; (i < 4); ++i)
             {
-                if (((int)(func_0026439C((0x8010F328u + (uint)(i * 548)))) != 0))
+                if (((int)(Pad_IsConfirm((0x8010F328u + (uint)(i * 548)))) != 0))
                 {
                     uint r = (0x80146398u + (uint)(i * 150));
                     new S10Row(r).b78_Set((byte)(1));

@@ -90,7 +90,7 @@ public static partial class Game
                     dst += 1u;
                 }
                 Mem.Set(dst, (byte)(((int)(Mem.U8(dst)) + 2)));
-                func_00265904(dst, 0x800E0DA4u, Mem.S32((_fp + 44u)), default(int));
+                Str_Sprintf(dst, 0x800E0DA4u, Mem.S32((_fp + 44u)), default(int));
                 return 0;
             }
         }

@@ -30,7 +30,7 @@ public static partial class Game
                 Mem.Set((r29 + 32u), r16);
                 r1 = 2148335616u;
                 Mem.Set((r1 + 12176u), r0);
-                r7 = (uint)1; r2 = (uint)func_0028BE88(r4, (int)r5, (int)r6, (int)r7);
+                r7 = (uint)1; r2 = (uint)Sprite_Lookup(r4, (int)r5, (int)r6, (int)r7);
                 r17 = r2;
                 { bool c_ = r17 == 0;  if (c_) goto L_L002ABD98; }
                 r3 = Mem.U32((r17 + 0u));

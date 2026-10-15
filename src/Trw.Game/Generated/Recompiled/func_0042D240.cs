@@ -34,7 +34,7 @@ public static partial class Game
                 L_L0042D278: ;
                 r16 = 2148794368u;
                 r16 = r16 + 20544u;
-                r4 = r16; r2 = (uint)func_0022804C(r4);
+                r4 = r16; r2 = (uint)Match_CheckFragLimit(r4);
                 { bool c_ = r2 != 0; r2 = (uint)1; if (c_) goto L_L0042D2E8; }
                 r3 = 2148859904u;
                 r3 = Mem.U32((r3 + 16424u));

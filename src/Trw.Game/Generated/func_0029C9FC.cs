@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0029C9FC_Wrap");
             if (((a > 25.1327438f) || (a < (-25.1327438f))))
             {
-                a = (float)(func_0029C278((double)(a), (double)(6.28318596f)));
+                a = (float)(Math_Fmod((double)(a), (double)(6.28318596f)));
             }
             else
             {

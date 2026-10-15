@@ -33,7 +33,7 @@ public static partial class Game
             new O05M90_v4(Mem.U32(0x800E5690u)).f4_Set(func_00419ED4((uint)(93), (uint)(110), default(uint), default(uint)));
             new O05M90_v4(Mem.U32(0x800E5690u)).f24_Set(3);
             new O05M90_v4(Mem.U32(0x800E5690u)).f20_Set((-1));
-            new O05M90_v4(Mem.U32(0x800E5690u)).f2C_Set(func_0040ECB0(cfg, (uint)(95), default(uint), default(uint)));
+            new O05M90_v4(Mem.U32(0x800E5690u)).f2C_Set(UiTree_FindNode(cfg, (uint)(95), default(uint), default(uint)));
             new O05M90_v4(Mem.U32(0x800E5690u)).f28_Set(0);
             func_00436898(0);
             return 0;

@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043659C");
             func_0029A73C();
-            switch (func_0029AA08())
+            switch (Menu_GetMessage())
             {
             case 985:
                 func_00299368(1);
@@ -19,13 +19,13 @@ public static partial class Game
             case 984:
                 Mem.Set(0x80146894u, 0);
                 func_002A338C();
-                if ((func_0042AEB8() == 0))
+                if ((MatchSetup_PickRandomArena() == 0))
                 {
                     func_0040C4A8(0);
                     func_00299368(20);
                     return 0;
                 }
-                func_0043C458(Mem.U32(0x800E5558u));
+                Menu_ShowScreen_0043C458(Mem.U32(0x800E5558u));
                 return 0;
             default:
                 return 0;

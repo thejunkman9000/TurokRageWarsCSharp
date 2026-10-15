@@ -31,13 +31,13 @@ public static partial class Game
                 }
                 else
                 {
-                    mask = func_00200500();
-                    Mem.Set((_fp + 32u), (int)(func_002017E8((uint)(1028), (uint)(arg), (uint)(0), (uint)(0))));
+                    mask = Int_DisableMask();
+                    Mem.Set((_fp + 32u), (int)(DevLink_ProgramTransfer((uint)(1028), (uint)(arg), (uint)(0), (uint)(0))));
                     if (((Mem.S32((_fp + 32u)) & 32768) != 0))
                     {
                         Mem.Set((_fp + 32u), (int)((uint)(Mem.S32((_fp + 32u))) | 4294901760u));
                     }
-                    func_00200538(mask);
+                    Int_RestoreMask(mask);
                 }
                 return Mem.S32((_fp + 32u));
             }

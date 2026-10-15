@@ -221,7 +221,7 @@ public static partial class Game
                 r18 = r18 + 8u;
                 r4 = Mem.U32((r2 + 16u));
                 r5 = Mem.U32((r16 + 44u));
-                r4 = r4 + 8u; r2 = func_002570E0(r4, r5);
+                r4 = r4 + 8u; r2 = Audio_DmaCacheLoad(r4, r5);
                 r4 = r0;
                 Mem.Set((r17 + 4u), r2);
                 r5 = Mem.U32((r16 + 56u));

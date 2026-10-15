@@ -16,7 +16,7 @@ public static partial class Game
             float v = 0f;
             int c = 0;
             func_002A94E8();
-            func_002A97F0();
+            Gfx_LoadTexImage16b();
             func_002ABB58(1.0f, 1.0f);
             do
             {

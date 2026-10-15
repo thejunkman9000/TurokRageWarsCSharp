@@ -36,10 +36,10 @@ public static partial class Game
                         s1 = (int)(new Q01Sub(new Q01Obj_v4(o).unk20_).unk4);
                     }
                     func_002647A8(s1);
-                    func_0044E178(0x8011FE88u, new Q01Plr(new Q01Obj_v4(o).unk1C_).unk5EC, 2);
+                    Level_SetTransitionState_0044E178(0x8011FE88u, new Q01Plr(new Q01Obj_v4(o).unk1C_).unk5EC, 2);
                     return 1;
                 }
-                func_0044EA24(0x8011FAC0u);
+                Match_EnterState0C_0044EA24(0x8011FAC0u);
                 return 1;
             }
             if ((Mem.S32(0x8015375Cu) != 0))
@@ -53,7 +53,7 @@ public static partial class Game
             if ((Mem.S32(0x80153788u) == 5))
             {
                 func_002647A8(s1);
-                func_0044E178(0x8011FE88u, Mem.S32(0x8013B2C8u), 2);
+                Level_SetTransitionState_0044E178(0x8011FE88u, Mem.S32(0x8013B2C8u), 2);
             }
             if ((Mem.S32(0x8015375Cu) != 0))
             {

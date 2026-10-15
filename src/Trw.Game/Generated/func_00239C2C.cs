@@ -15,8 +15,8 @@ public static partial class Game
             if ((n != 0u))
             {
                 func_00239CD0(n);
-                func_00255E78((a + 3876u), n, default(uint), default(uint));
-                func_00255CB4((b + 3648u), n, default(uint), default(uint));
+                List_Remove((a + 3876u), n, default(uint), default(uint));
+                List_Append_00255CB4((b + 3648u), n, default(uint), default(uint));
             }
             return n;
         }

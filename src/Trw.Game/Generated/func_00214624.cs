@@ -92,7 +92,7 @@ public static partial class Game
                 _f20: ;
                 if (!((var_s1 == 1))) goto _f23;
                 new Plan(arg1).unk90_Set(new Vec3(_fp).y);
-                new Plan(arg1).unk8C_Set((new Actor_func_80214624_de(arg0).unk6C + func_00216F44(arg0, _fp)));
+                new Plan(arg1).unk8C_Set((new Actor_func_80214624_de(arg0).unk6C + Actor_AngleToPoint(arg0, _fp)));
                 return 1;
                 _f23: ;
                 return 0;

@@ -63,7 +63,7 @@ public static partial class Game
                 {
                     o = new B2Ctl(ctl).owner_;
                 }
-                func_0044A37C(o);
+                Player_StartRun_0044A37C(o);
             }
         }
     }

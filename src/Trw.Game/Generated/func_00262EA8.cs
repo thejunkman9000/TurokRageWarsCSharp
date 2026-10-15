@@ -39,8 +39,8 @@ public static partial class Game
                     {
                         Mem.Set(new B14Ent2(e).counter_, (int)((int)(Mem.S32(new B14Ent2(e).counter_)) - 1));
                     }
-                    func_00255E78((w + 24340u), e, default(uint), default(uint));
-                    func_00255CB4(new B14World(w).listA.P, e, default(uint), default(uint));
+                    List_Remove((w + 24340u), e, default(uint), default(uint));
+                    List_Append_00255CB4(new B14World(w).listA.P, e, default(uint), default(uint));
                 }
                 e = next;
             }

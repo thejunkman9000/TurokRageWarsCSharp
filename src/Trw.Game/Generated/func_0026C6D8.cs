@@ -51,13 +51,13 @@ public static partial class Game
             p = a4;
             if ((p == 0u))
             {
-                p = func_0028FD94(root, 0);
+                p = Chunk_Get(root, 0);
             }
             g2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
             Mem.Set(new P4Gfx(g2).words.P, 3674603528u);
             Mem.Set((new P4Gfx(g2).words.P + 4u), (uint)(p));
             i = 0;
-            arr = func_0028FD94(root, 2);
+            arr = Chunk_Get(root, 2);
             g3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
             t = (uint)(Mem.S32(0x800D15D4u));
             Mem.Set(0x800D15B0u, (-1));
@@ -89,9 +89,9 @@ public static partial class Game
             Mem.Set((new P4Gfx(g10).words.P + 4u), t);
             for (i = 0; (i < n); ++i)
             {
-                part = func_0028FD94(arr, i);
-                func_0028FD94(part, 0);
-                dl = func_0028FD94(part, 1);
+                part = Chunk_Get(arr, i);
+                Chunk_Get(part, 0);
+                dl = Chunk_Get(part, 1);
                 gl = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
                 Mem.Set(new P4Gfx(gl).words.P, 3724541952u);
                 Mem.Set((new P4Gfx(gl).words.P + 4u), (uint)(dl));

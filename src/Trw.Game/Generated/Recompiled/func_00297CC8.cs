@@ -95,7 +95,7 @@ public static partial class Game
                 { bool c_ = r2 != 0;  if (c_) goto L_L00297E00; }
                 L_L00297E20: ;
                 { bool c_ = (int)r4 < 0;  if (c_) goto L_L00297E30; }
-                r2 = func_0029A1D4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = Menu_MoveFocus(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_L00297E30: ;
                 r31 = Mem.U32((r29 + 16u));
                 r29 = r29 + 24u; Cpu.V1 = r3; return r2;

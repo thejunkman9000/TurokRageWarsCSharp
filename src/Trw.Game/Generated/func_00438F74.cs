@@ -16,10 +16,10 @@ public static partial class Game
                 return 0;
             }
             Mem.Set(0x80146894u, 0);
-            switch (func_0029AA08())
+            switch (Menu_GetMessage())
             {
             case 626:
-                func_0043C458(Mem.U32(0x800E5830u));
+                Menu_ShowScreen_0043C458(Mem.U32(0x800E5830u));
                 new O05W30(Mem.U32(0x800E5830u)).f1C_Set(0);
                 break;
             case 627:

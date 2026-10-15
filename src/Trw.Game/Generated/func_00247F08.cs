@@ -22,7 +22,7 @@ public static partial class Game
                 int cur = 0;
                 if (((((int)(new B10Pb(b).b34) != 60) && ((int)(new B10Pb(b).b12) < 23)) && ((n = func_0024BFC4(a, (int)(new B10Pa(a).b1))) != 0u)))
                 {
-                    node = func_0028FD94(Mem.U32(n), 5);
+                    node = Chunk_Get(Mem.U32(n), 5);
                     e = (node + (uint)((idx * Mem.S32(node)) + 8));
                     cur = idx;
                     if ((((int)(new B10Ent2(e).b65) & 3) == 3))

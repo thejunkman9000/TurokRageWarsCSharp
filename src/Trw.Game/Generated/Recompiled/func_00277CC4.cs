@@ -76,7 +76,7 @@ public static partial class Game
                 r2 = Mem.U32((r29 + 272u));
                 r2 = Mem.U32((r2 + 0u));
                 r4 = Mem.U32((r2 + 0u));
-                r5 = (uint)2; r2 = func_0028FD94(r4, (int)r5);
+                r5 = (uint)2; r2 = Chunk_Get(r4, (int)r5);
                 r3 = r2;
                 r8 = Mem.U32((r3 + 4u));
                 r2 = (uint)-1;
@@ -134,7 +134,7 @@ public static partial class Game
                 r2 = Mem.U32((r2 + 272u));
                 r2 = Mem.U32((r2 + 0u));
                 r4 = Mem.U32((r2 + 0u));
-                r5 = (uint)2; r2 = func_0028FD94(r4, (int)r5);
+                r5 = (uint)2; r2 = Chunk_Get(r4, (int)r5);
                 r3 = r2;
                 r8 = Mem.U32((r3 + 4u));
                 r8 = r8 - 1u;

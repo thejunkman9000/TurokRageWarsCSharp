@@ -22,7 +22,7 @@ public static partial class Game
                 int first = 0;
                 if ((new BrainB(b).unkBC == (-1)))
                 {
-                    func_00209874(b, 2);
+                    Ai_SetState(b, 2);
                     return;
                 }
                 if ((new BrainB(b).unk68_ == 0u))
@@ -39,7 +39,7 @@ public static partial class Game
                 {
                     if ((new BrainB(b).unk238 != 0))
                     {
-                        func_00209874(b, 8);
+                        Ai_SetState(b, 8);
                     }
                     else
                     {

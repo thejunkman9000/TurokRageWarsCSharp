@@ -31,13 +31,13 @@ public static partial class Game
             th1 = (int)((f * Mem.F32(0x800C7040u)));
             th2 = (int)((f * Mem.F32(0x800C7044u)));
             th3 = (int)((f * Mem.F32(0x800C7048u)));
-            if ((func_00216F44(new BrainB(b).actor_, C.Tmp(Cpu.F2U(new ActorB(t).pos.x), Cpu.F2U(new ActorB(t).pos.y), Cpu.F2U(new ActorB(t).pos.z))) < 0.0f))
+            if ((Actor_AngleToPoint(new BrainB(b).actor_, C.Tmp(Cpu.F2U(new ActorB(t).pos.x), Cpu.F2U(new ActorB(t).pos.y), Cpu.F2U(new ActorB(t).pos.z))) < 0.0f))
             {
-                d = (-func_00216F44(new BrainB(b).actor_, C.Tmp(Cpu.F2U(new ActorB(t).pos.x), Cpu.F2U(new ActorB(t).pos.y), Cpu.F2U(new ActorB(t).pos.z))));
+                d = (-Actor_AngleToPoint(new BrainB(b).actor_, C.Tmp(Cpu.F2U(new ActorB(t).pos.x), Cpu.F2U(new ActorB(t).pos.y), Cpu.F2U(new ActorB(t).pos.z))));
             }
             else
             {
-                d = func_00216F44(new BrainB(b).actor_, C.Tmp(Cpu.F2U(new ActorB(t).pos.x), Cpu.F2U(new ActorB(t).pos.y), Cpu.F2U(new ActorB(t).pos.z)));
+                d = Actor_AngleToPoint(new BrainB(b).actor_, C.Tmp(Cpu.F2U(new ActorB(t).pos.x), Cpu.F2U(new ActorB(t).pos.y), Cpu.F2U(new ActorB(t).pos.z)));
             }
             if ((d <= Mem.F32(0x800C704Cu)))
             {

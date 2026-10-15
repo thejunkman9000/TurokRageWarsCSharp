@@ -41,13 +41,13 @@ public static partial class Game
                 { bool c_ = r2 == 0; r5 = (uint)1; if (c_) goto L_L00262474; }
                 r2 = Mem.U32((r19 + 16u));
                 r16 = Mem.U32((r2 + 0u));
-                r4 = r16; r2 = func_0028FD94(r4, (int)r5);
+                r4 = r16; r2 = Chunk_Get(r4, (int)r5);
                 r4 = r16;
                 r5 = (uint)5;
-                r17 = r2; r2 = func_0028FD94(r4, (int)r5);
+                r17 = r2; r2 = Chunk_Get(r4, (int)r5);
                 r18 = r2;
                 r4 = r18;
-                r5 = r0; r2 = func_0028FD94(r4, (int)r5);
+                r5 = r0; r2 = Chunk_Get(r4, (int)r5);
                 r4 = r16;
                 r5 = (uint)2;
                 r16 = Mem.U32((r19 + 12u));
@@ -56,14 +56,14 @@ public static partial class Game
                 r17 = r17 + 8u;
                 Cpu.SetW(22, r2);
                 Cpu.SetS(22, (float)(int)Cpu.W(22));
-                Mem.Set((r20 + 0u), r17); r2 = func_0028FD94(r4, (int)r5);
+                Mem.Set((r20 + 0u), r17); r2 = Chunk_Get(r4, (int)r5);
                 r4 = r18;
                 r5 = (uint)1;
                 r2 = r2 + 8u;
-                Mem.Set((r20 + 4u), r2); r2 = func_0028FD94(r4, (int)r5);
+                Mem.Set((r20 + 4u), r2); r2 = Chunk_Get(r4, (int)r5);
                 r4 = r18;
                 r5 = (uint)2;
-                Mem.Set((r20 + 8u), r2); r2 = func_0028FD94(r4, (int)r5);
+                Mem.Set((r20 + 8u), r2); r2 = Chunk_Get(r4, (int)r5);
                 Cpu.SetW(0, r0);
                 r1 = 2148335616u;
                 Cpu.SetW(21, Mem.U32((r1 - 27928u)));

@@ -48,9 +48,9 @@ public static partial class Game
                                 new Vec3f((_fp + 48u)).z_Set((float)(0));
                                 if ((new B16Obj(obj).unk1B0 < 15.0f))
                                 {
-                                    func_00280094(0x80121990u, obj, obj, (uint)(0), 0, 230, (_fp + 48u), (_fp + 64u), (_fp + 32u), 0, (-1), (flag | 1));
+                                    Effect_SpawnFromTemplates(0x80121990u, obj, obj, (uint)(0), 0, 230, (_fp + 48u), (_fp + 64u), (_fp + 32u), 0, (-1), (flag | 1));
                                 }
-                                func_00280094(0x80121990u, obj, obj, (uint)(0), 0, 138, (_fp + 48u), (_fp + 64u), (_fp + 32u), 0, (-1), (flag | 1));
+                                Effect_SpawnFromTemplates(0x80121990u, obj, obj, (uint)(0), 0, 138, (_fp + 48u), (_fp + 64u), (_fp + 32u), 0, (-1), (flag | 1));
                             }
                             break;
                         case (uint)(128):

@@ -18,17 +18,17 @@ public static partial class Game
             switch (Mem.S32(0x80154028u))
             {
             case 1:
-                func_0040E9D0(func_0040ECB0((uint)(a), (uint)(863), default(uint), default(uint)), 1);
-                func_0040E9D0(func_0040ECB0((uint)(a), (uint)(867), default(uint), default(uint)), 1);
+                func_0040E9D0(UiTree_FindNode((uint)(a), (uint)(863), default(uint), default(uint)), 1);
+                func_0040E9D0(UiTree_FindNode((uint)(a), (uint)(867), default(uint), default(uint)), 1);
                 break;
             case 0:
-                func_0040E9D0(func_0040ECB0((uint)(a), (uint)(869), default(uint), default(uint)), 1);
-                func_0040E9D0(func_0040ECB0((uint)(a), (uint)(867), default(uint), default(uint)), 1);
+                func_0040E9D0(UiTree_FindNode((uint)(a), (uint)(869), default(uint), default(uint)), 1);
+                func_0040E9D0(UiTree_FindNode((uint)(a), (uint)(867), default(uint), default(uint)), 1);
                 break;
             case 2:
             case 3:
-                func_0040E9D0(func_0040ECB0((uint)(a), (uint)(863), default(uint), default(uint)), 1);
-                func_0040E9D0(func_0040ECB0((uint)(a), (uint)(869), default(uint), default(uint)), 1);
+                func_0040E9D0(UiTree_FindNode((uint)(a), (uint)(863), default(uint), default(uint)), 1);
+                func_0040E9D0(UiTree_FindNode((uint)(a), (uint)(869), default(uint), default(uint)), 1);
                 break;
             }
             s0 = 1;

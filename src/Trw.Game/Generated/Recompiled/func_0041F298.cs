@@ -146,7 +146,7 @@ public static partial class Game
                 r1 = r1 + r20;
                 r5 = Mem.U16((r1 + 17118u));
                 r4 = Mem.U32((r2 + 0u));
-                r16 = r20; r2 = func_0040ECB0(r4, r5, r6, r7); r3 = Cpu.V1;
+                r16 = r20; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 r3 = (uint)110;
                 Mem.Set((r2 + 16u), (byte)r3);
                 L_L0041F4C4: ;
@@ -156,7 +156,7 @@ public static partial class Game
                 r1 = r1 + r16;
                 r5 = Mem.U16((r1 + 17122u));
                 r4 = Mem.U32((r2 + 0u));
-                r17 = r17 + 1u; r2 = func_0040ECB0(r4, r5, r6, r7); r3 = Cpu.V1;
+                r17 = r17 + 1u; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 Mem.Set((r2 + 16u), (byte)r30);
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 17104u));
@@ -164,7 +164,7 @@ public static partial class Game
                 r1 = r1 + r16;
                 r5 = Mem.U16((r1 + 17134u));
                 r4 = Mem.U32((r2 + 0u));
-                r16 = r16 + 4u; r2 = func_0040ECB0(r4, r5, r6, r7); r3 = Cpu.V1;
+                r16 = r16 + 4u; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r2;
                 r5 = (uint)1; func_0040E958(r4, (int)r5);
                 r2 = (uint)((int)r17 < 3 ? 1 : 0);
@@ -182,7 +182,7 @@ public static partial class Game
                 r2 = (uint)1;
                 Mem.Set((r3 + 4920u), r2);
                 r2 = (uint)4;
-                Mem.Set((r3 + 4924u), r2); r2 = func_0040ECB0(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r3 + 4924u), r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 r6 = 2148401152u;
                 r6 = Mem.U32((r6 + 17104u));
                 Mem.Set((r6 + 4904u), r2);
@@ -204,7 +204,7 @@ public static partial class Game
                 r2 = Mem.U16((r6 + 20u));
                 r7 = r7 - r3;
                 r2 = r2 + r7;
-                Mem.Set((r6 + 20u), (ushort)r2); r2 = func_0040ECB0(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r6 + 20u), (ushort)r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 r6 = 2148401152u;
                 r6 = Mem.U32((r6 + 17104u));
                 Mem.Set((r6 + 4912u), r2);
@@ -227,11 +227,11 @@ public static partial class Game
                 r2 = Mem.U16((r6 + 20u));
                 r7 = r7 - r3;
                 r2 = r2 - r7;
-                Mem.Set((r6 + 20u), (ushort)r2); r2 = func_0040ECB0(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r6 + 20u), (ushort)r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r23;
                 r5 = (uint)121;
                 r3 = (uint)110;
-                Mem.Set((r2 + 16u), (byte)r3); r2 = func_0040ECB0(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r2 + 16u), (byte)r3); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = (uint)116;
                 r5 = (uint)255;
                 r3 = (uint)25;
@@ -240,14 +240,14 @@ public static partial class Game
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 17104u));
                 r5 = (uint)116;
-                Mem.Set((r3 + 4928u), r2); r2 = func_0040ECB0(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r3 + 4928u), r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r2;
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 17104u));
                 r5 = r18;
                 Mem.Set((r2 + 4932u), r4); func_0040E958(r4, (int)r5);
                 r4 = r23;
-                r5 = (uint)123; r2 = func_0040ECB0(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = (uint)123; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r2;
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 17104u));
@@ -263,7 +263,7 @@ public static partial class Game
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 17104u));
                 r2 = (uint)50;
-                Mem.Set((r3 + 4940u), r2); r2 = func_0041FF9C(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r3 + 4940u), r2); r2 = CharSelect_EnableUnlocked(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_L0041F6C8: ;
                 r2 = Mem.U8((r16 + 120u));
                 if (r2 != r17) { r18 = r18 + 1u; goto L_L0041F6E0; }

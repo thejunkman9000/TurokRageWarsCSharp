@@ -17,7 +17,7 @@ public static partial class Game
             int i = 0;
             int count = 0;
             uint nd = 0u;
-            if ((((Mem.U32(0x800E28A4u) - (((uint)(Mem.U32(0x80110634u)) - (uint)(new B16Gfx(Mem.U32(0x8011FE80u)).base_)) >> (int)3)) >= (uint)(3000)) && ((int)(func_00269A80((uint)(a0), (uint)(arg7), default(uint), default(uint))) != 0)))
+            if ((((Mem.U32(0x800E28A4u) - (((uint)(Mem.U32(0x80110634u)) - (uint)(new B16Gfx(Mem.U32(0x8011FE80u)).base_)) >> (int)3)) >= (uint)(3000)) && ((int)(Model_DrawGroups((uint)(a0), (uint)(arg7), default(uint), default(uint))) != 0)))
             {
                 if ((flag != 0))
                 {
@@ -33,32 +33,32 @@ public static partial class Game
                 }
                 if ((id != (-1)))
                 {
-                    func_0026925C((uint)(id));
+                    Gfx_SetOtherModeL((uint)(id));
                 }
                 func_00253B5C(0, p);
                 root = Mem.U32(p);
                 nd = node;
                 if ((nd == 0u))
                 {
-                    nd = func_0028FD94(root, 0);
+                    nd = Chunk_Get(root, 0);
                 }
                 {
                     uint q_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
                     new DlCmd(q_3).w0_Set(3674603528u);
                     new DlCmd(q_3).w1_Set((uint)(nd));
                 }
-                n = func_0028FD94(root, 2);
+                n = Chunk_Get(root, 2);
                 count = Mem.S32((n + (uint)(0 * 4)));
                 for (i = 0; (i < count); ++i)
                 {
-                    c = func_0028FD94(n, i);
-                    e = func_0028FD94(c, 0);
+                    c = Chunk_Get(n, i);
+                    e = Chunk_Get(c, 0);
                     if ((i == 0))
                     {
                         func_0026B504(seg, (uint)(arg5), e);
                     }
                     {
-                        uint w = func_0028FD94(c, 1);
+                        uint w = Chunk_Get(c, 1);
                         uint q_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
                         new DlCmd(q_4).w1_Set((uint)(w));
                         new DlCmd(q_4).w0_Set(3724541952u);

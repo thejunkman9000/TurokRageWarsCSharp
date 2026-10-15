@@ -17,7 +17,7 @@ public static partial class Game
             sum = 0;
             for (; (i < new SessMgr(s).count); ++i)
             {
-                uint n = func_0028FD94((uint)(Mem.S32(new SessMgr(s).ent[(int)(i)].p_)), 2);
+                uint n = Chunk_Get((uint)(Mem.S32(new SessMgr(s).ent[(int)(i)].p_)), 2);
                 sum = (int)((int)(sum) + new SumNode(n).val);
             }
             return sum;

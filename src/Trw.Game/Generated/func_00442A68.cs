@@ -20,7 +20,7 @@ public static partial class Game
                 {
                     continue;
                 }
-                if ((func_00441384(n, a) == 0))
+                if ((Ui_InvokeHeaderCallback_00441384(n, a) == 0))
                 {
                     continue;
                 }
@@ -32,7 +32,7 @@ public static partial class Game
                 new O06B_v4(p).unkB0_Set(0);
                 new O06B_v4(p).unkB4_Set(0);
                 new O06B_v4(p).unkBC_Set(0);
-                func_00255E78(a, n, default(uint), default(uint));
+                List_Remove(a, n, default(uint), default(uint));
                 func_002537D8(0, (uint)(new O06N(n).unk8));
             }
         }

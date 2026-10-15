@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0022CC24", (uint)actor, (uint)state);
             float x = 0f;
             func_002748E0((actor + (uint)1836), 0.0f, 0.25f);
-            func_002231B0(actor, state, 0x800CE7E4u);
+            Player_UpdateViewTurn(actor, state, 0x800CE7E4u);
             if (!((Mem.U32((actor + (uint)1632)) & (uint)(32768)) != 0u))
             {
                 func_002233CC(actor, state, 0x800CE730u);

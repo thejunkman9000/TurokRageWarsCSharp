@@ -18,15 +18,15 @@ public static partial class Game
                 new Plr(a).unk11E4_Set(Mem.F32(0x800C7E0Cu));
                 if ((new Plr(a).unk5DC_ != 0u))
                 {
-                    func_00237E70(0x80145088u, new Plr(a).unk5DC_, Mem.U32(0x800D71E0u));
+                    Hud_PostMessage(0x80145088u, new Plr(a).unk5DC_, Mem.U32(0x800D71E0u));
                     if (((b != 0u) && ((int)(new Plr(b).unk0) == 1)))
                     {
                         if (((new Plr(b).flags100 & (uint)(3145728)) != 0u))
                         {
                             name = new Plr(a).unk13EC.P;
                             sprintf(name, Mem.U32(0x800D71E8u), (new Plr(b).stats_ + (uint)132), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-                            func_00237E70(0x80145088u, new Plr(a).unk5DC_, name);
-                            func_00237E70(0x80145088u, new Plr(a).unk5DC_, Mem.U32(0x800D71ECu));
+                            Hud_PostMessage(0x80145088u, new Plr(a).unk5DC_, name);
+                            Hud_PostMessage(0x80145088u, new Plr(a).unk5DC_, Mem.U32(0x800D71ECu));
                         }
                     }
                 }

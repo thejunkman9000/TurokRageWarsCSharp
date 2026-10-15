@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0040170C");
-            uint n = func_0028FD94(new O01Ctx(Mem.U32(0x800E2830u)).tree, 1);
+            uint n = Chunk_Get(new O01Ctx(Mem.U32(0x800E2830u)).tree, 1);
             uint keys = (n + (uint)8);
             int cnt = new O01Node(n).unk4;
             float u = 0f;

@@ -12,13 +12,13 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0041C32C", (uint)parent);
             Mem.Set(0x800E3518u, func_00252FFC((uint)(44)));
             new O3Pg(Mem.U32(0x800E3518u)).parent_Set(parent);
-            new O3Pg(Mem.U32(0x800E3518u)).w1_Set((int)(func_0040ECB0((uint)(parent), (uint)(963), default(uint), default(uint))));
+            new O3Pg(Mem.U32(0x800E3518u)).w1_Set((int)(UiTree_FindNode((uint)(parent), (uint)(963), default(uint), default(uint))));
             func_0040E958((uint)(new O3Pg(Mem.U32(0x800E3518u)).w1), 1);
-            new O3Pg(Mem.U32(0x800E3518u)).w2_Set((int)(func_0040ECB0((uint)(parent), (uint)(969), default(uint), default(uint))));
+            new O3Pg(Mem.U32(0x800E3518u)).w2_Set((int)(UiTree_FindNode((uint)(parent), (uint)(969), default(uint), default(uint))));
             func_0040E958((uint)(new O3Pg(Mem.U32(0x800E3518u)).w2), 0);
-            new O3Pg(Mem.U32(0x800E3518u)).w3_Set((int)(func_0040ECB0((uint)(parent), (uint)(964), default(uint), default(uint))));
+            new O3Pg(Mem.U32(0x800E3518u)).w3_Set((int)(UiTree_FindNode((uint)(parent), (uint)(964), default(uint), default(uint))));
             func_0040E958((uint)(new O3Pg(Mem.U32(0x800E3518u)).w3), 0);
-            new O3Pg(Mem.U32(0x800E3518u)).w4_Set((int)(func_0040ECB0((uint)(parent), (uint)(965), default(uint), default(uint))));
+            new O3Pg(Mem.U32(0x800E3518u)).w4_Set((int)(UiTree_FindNode((uint)(parent), (uint)(965), default(uint), default(uint))));
             func_0040E958((uint)(new O3Pg(Mem.U32(0x800E3518u)).w4), 0);
             new O3Pg(Mem.U32(0x800E3518u)).f14_Set(0);
             new O3Pg(Mem.U32(0x800E3518u)).f18_Set(0);
@@ -27,7 +27,7 @@ public static partial class Game
             Mem.Set(0x800E28C8u, (-1));
             Mem.Set(0x80146D70u, 0);
             func_00293318(0x8011FAC0u, 0, 0);
-            func_00286A78((0x8011FAC0u + (uint)968), (uint)(0), (uint)(0), default(uint));
+            Level_Load((0x8011FAC0u + (uint)968), (uint)(0), (uint)(0), default(uint));
             new O3Pg(Mem.U32(0x800E3518u)).f1C_Set(0);
             return 0;
         }

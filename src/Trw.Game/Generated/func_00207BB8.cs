@@ -33,7 +33,7 @@ public static partial class Game
             }
             if ((new B2State(state).unk64 >= Mem.F32(0x800C6C90u)))
             {
-                func_00214178(actor, state, 2);
+                Actor_DispatchEvent(actor, state, 2);
             }
         }
     }

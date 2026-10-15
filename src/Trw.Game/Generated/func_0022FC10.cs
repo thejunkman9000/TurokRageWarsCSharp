@@ -40,12 +40,12 @@ public static partial class Game
                 }
                 if ((kind == 1))
                 {
-                    func_00214178(a, s, 1);
+                    Actor_DispatchEvent(a, s, 1);
                 }
                 if (((int)(new M2Own(o).unk770) != (int)(new M2Own(o).unk62E)))
                 {
                     new M2Own(o).unk7E8_Set(0);
-                    func_00214178(a, s, 1);
+                    Actor_DispatchEvent(a, s, 1);
                 }
                 if ((new M2St(s).link_ != 0u))
                 {

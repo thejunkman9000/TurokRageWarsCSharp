@@ -67,12 +67,12 @@ public static partial class Game
                                     Mem.Set(new B19Obj(o).unk130_, (int)((int)(Mem.S32(new B19Obj(o).unk130_)) - 1));
                                 }
                                 new B19Obj(o).flags_Set((uint)((uint)(new B19Obj(o).flags) & 4261412607u));
-                                func_00255E78(new B19Obj(o).slotp_, o, default(uint), default(uint));
+                                List_Remove(new B19Obj(o).slotp_, o, default(uint), default(uint));
                                 new B19Obj(o).slotp__Set(0u);
-                                func_00255C58(new B19Owner(owner).la.P, o);
+                                List_Add(new B19Owner(owner).la.P, o);
                                 if (((new B19Obj(o).flags & (uint)(16777216)) != 0u))
                                 {
-                                    func_00255E78(new B19Owner(owner).lb.P, o, default(uint), default(uint));
+                                    List_Remove(new B19Owner(owner).lb.P, o, default(uint), default(uint));
                                 }
                             }
                         }

@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022A3E8", _a0, _a1);
-            func_00228AD0((int)(uint)(_a0), (uint)(_a1));
+            Hud_DrawMatchClock((int)(uint)(_a0), (uint)(_a1));
         }
     }
 

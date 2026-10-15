@@ -13,7 +13,7 @@ public static partial class Game
             int s0 = 0;
             func_0029A73C();
             s0 = 1;
-            switch (func_0029AA08())
+            switch (Menu_GetMessage())
             {
             case 451:
                 func_0042EB68((-1));

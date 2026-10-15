@@ -30,7 +30,7 @@ public static partial class Game
             else
             {
                 a = new B2Ctl(ctl).target.owner_;
-                dist = func_00216F44(new B2Ctl(ctl).owner_, C.Tmp(Cpu.F2U(new B2Actor(a).pos.x), Cpu.F2U(new B2Actor(a).pos.y), Cpu.F2U(new B2Actor(a).pos.z)));
+                dist = Actor_AngleToPoint(new B2Ctl(ctl).owner_, C.Tmp(Cpu.F2U(new B2Actor(a).pos.x), Cpu.F2U(new B2Actor(a).pos.y), Cpu.F2U(new B2Actor(a).pos.z)));
                 if ((func_0020AA0C(ctl) < dist))
                 {
                     return;

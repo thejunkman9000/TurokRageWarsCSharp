@@ -19,7 +19,7 @@ public static partial class Game
             if ((new O04ModeS53C0(Mem.U32(0x800E53C0u)).unk320 == 0))
             {
                 new O04ModeS53C0(Mem.U32(0x800E53C0u)).unk320_Set(1);
-                func_0029A1D4((uint)(((func_0040EC50(func_0040ECB0((uint)(a), (uint)(568), default(uint), default(uint))) == 0) ? 568 : 567)), default(uint), default(uint), default(uint));
+                Menu_MoveFocus((uint)(((func_0040EC50(UiTree_FindNode((uint)(a), (uint)(568), default(uint), default(uint))) == 0) ? 568 : 567)), default(uint), default(uint), default(uint));
                 func_002A3358();
             }
             p = 0x80154024u;

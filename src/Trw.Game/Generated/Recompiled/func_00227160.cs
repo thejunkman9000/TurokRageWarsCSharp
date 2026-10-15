@@ -80,7 +80,7 @@ public static partial class Game
                 { bool c_ = r2 != 0;  if (c_) goto L_L002272D4; }
                 r4 = 2148794368u;
                 r4 = Mem.U8((r4 + 25310u));
-                r2 = func_002AA224(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = Gfx_BeginFlatColorPass(r4, r5, r6, r7); r3 = Cpu.V1;
                 Cpu.SetW(2, Mem.U32((r17 + 668u)));
                 Cpu.SetS(1, Cpu.S(2) * Cpu.S(21));
                 Cpu.SetW(3, Mem.U32((r17 + 672u)));
@@ -113,7 +113,7 @@ public static partial class Game
                 Cpu.SetW(7, (uint)(int)Cpu.S(1));
                 r7 = Cpu.W(7);
                 r7 = r7 << 16;
-                r7 = (uint)((int)r7 >> 16); r2 = (uint)func_002ABC18((int)r4, (int)r5, (short)r6, (short)r7, Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), (int)Mem.U32(r29 + 24u));
+                r7 = (uint)((int)r7 >> 16); r2 = (uint)Sprite_Draw((int)r4, (int)r5, (short)r6, (short)r7, Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), (int)Mem.U32(r29 + 24u));
                 L_L002272D4: ;
                 r2 = Mem.U32((r16 + 1496u));
                 Mem.Set((r2 + 143u), (byte)r20);
@@ -155,11 +155,11 @@ public static partial class Game
                 r4 = r16 + 744u;
                 r5 = r16 + 1112u;
                 r6 = (uint)1;
-                Mem.Set((r16 + 4532u), r0); r2 = (uint)func_00214178(r4, r5, (int)r6);
+                Mem.Set((r16 + 4532u), r0); r2 = (uint)Actor_DispatchEvent(r4, r5, (int)r6);
                 r4 = r16;
                 r6 = r0;
                 r5 = Mem.U32((r16 + 1516u));
-                r7 = (uint)1; r2 = func_0021B1E4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = (uint)1; r2 = Player_PlaceAtSpawn(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r16; func_002266E4(r4);
                 r2 = 2148794368u;
                 r2 = Mem.U32((r2 + 26892u));
@@ -238,7 +238,7 @@ public static partial class Game
                 { bool c_ = r2 != 0;  if (c_) goto L_L002275A0; }
                 r4 = 2148794368u;
                 r4 = Mem.U8((r4 + 25310u));
-                r2 = func_002AA224(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = Gfx_BeginFlatColorPass(r4, r5, r6, r7); r3 = Cpu.V1;
                 Cpu.SetW(3, Mem.U32((r17 + 668u)));
                 r1 = 2148270080u;
                 Cpu.SetW(5, Mem.U32((r1 + 31896u)));
@@ -276,7 +276,7 @@ public static partial class Game
                 Cpu.SetW(7, (uint)(int)Cpu.S(1));
                 r7 = Cpu.W(7);
                 r7 = r7 << 16;
-                r7 = (uint)((int)r7 >> 16); r2 = (uint)func_002ABC18((int)r4, (int)r5, (short)r6, (short)r7, Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), (int)Mem.U32(r29 + 24u));
+                r7 = (uint)((int)r7 >> 16); r2 = (uint)Sprite_Draw((int)r4, (int)r5, (short)r6, (short)r7, Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), (int)Mem.U32(r29 + 24u));
                 L_L002275A0: ;
                 r17 = 2148794368u;
                 r17 = r17 + 26784u;
@@ -340,11 +340,11 @@ public static partial class Game
                 r4 = r16 + 744u;
                 r5 = r16 + 1112u;
                 r6 = (uint)1;
-                Mem.Set((r16 + 4532u), r0); r2 = (uint)func_00214178(r4, r5, (int)r6);
+                Mem.Set((r16 + 4532u), r0); r2 = (uint)Actor_DispatchEvent(r4, r5, (int)r6);
                 r4 = r16;
                 r6 = r0;
                 r5 = Mem.U32((r16 + 1516u));
-                r7 = (uint)1; r2 = func_0021B1E4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = (uint)1; r2 = Player_PlaceAtSpawn(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r16; func_002266E4(r4);
                 L_L002276D4: ;
                 { bool c_ = (int)r19 < 0; r18 = r0; if (c_) goto L_L00227E38; }
@@ -427,7 +427,7 @@ public static partial class Game
                 { bool c_ = r2 != 0;  if (c_) goto L_L002278E0; }
                 r4 = 2148794368u;
                 r4 = Mem.U8((r4 + 25310u));
-                r2 = func_002AA224(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = Gfx_BeginFlatColorPass(r4, r5, r6, r7); r3 = Cpu.V1;
                 Cpu.SetW(3, Mem.U32((r17 + 668u)));
                 r1 = 2148270080u;
                 Cpu.SetW(5, Mem.U32((r1 + 31904u)));
@@ -465,7 +465,7 @@ public static partial class Game
                 Cpu.SetW(7, (uint)(int)Cpu.S(1));
                 r7 = Cpu.W(7);
                 r7 = r7 << 16;
-                r7 = (uint)((int)r7 >> 16); r2 = (uint)func_002ABC18((int)r4, (int)r5, (short)r6, (short)r7, Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), (int)Mem.U32(r29 + 24u));
+                r7 = (uint)((int)r7 >> 16); r2 = (uint)Sprite_Draw((int)r4, (int)r5, (short)r6, (short)r7, Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), (int)Mem.U32(r29 + 24u));
                 L_L002278E0: ;
                 r17 = 2148794368u;
                 r17 = r17 + 26784u;
@@ -529,11 +529,11 @@ public static partial class Game
                 r4 = r16 + 744u;
                 r5 = r16 + 1112u;
                 r6 = (uint)1;
-                Mem.Set((r16 + 4532u), r0); r2 = (uint)func_00214178(r4, r5, (int)r6);
+                Mem.Set((r16 + 4532u), r0); r2 = (uint)Actor_DispatchEvent(r4, r5, (int)r6);
                 r4 = r16;
                 r6 = r0;
                 r5 = Mem.U32((r16 + 1516u));
-                r7 = (uint)1; r2 = func_0021B1E4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = (uint)1; r2 = Player_PlaceAtSpawn(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r16; func_002266E4(r4);
                 L_L00227A14: ;
                 { bool c_ = (int)r19 < 0; r18 = r0; if (c_) goto L_L00227E38; }
@@ -602,7 +602,7 @@ public static partial class Game
                 r4 = 2148335616u;
                 r4 = Mem.U32((r4 - 7160u));
                 { bool c_ = r4 == 0; Mem.Set((r3 + 104u), r0); if (c_) goto L_L00227B44; }
-                func_0025E2F4((int)r4);
+                Audio_PlayCue((int)r4);
                 L_L00227B44: ;
                 r18 = r0;
                 r19 = (uint)1;
@@ -625,7 +625,7 @@ public static partial class Game
                 { bool c_ = r2 != 0;  if (c_) goto L_L00227C38; }
                 r4 = 2148794368u;
                 r4 = Mem.U8((r4 + 25310u));
-                r2 = func_002AA224(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = Gfx_BeginFlatColorPass(r4, r5, r6, r7); r3 = Cpu.V1;
                 Cpu.SetW(2, Mem.U32((r17 + 668u)));
                 Cpu.SetS(1, Cpu.S(2) * Cpu.S(21));
                 Cpu.SetW(3, Mem.U32((r17 + 672u)));
@@ -658,7 +658,7 @@ public static partial class Game
                 Cpu.SetW(7, (uint)(int)Cpu.S(1));
                 r7 = Cpu.W(7);
                 r7 = r7 << 16;
-                r7 = (uint)((int)r7 >> 16); r2 = (uint)func_002ABC18((int)r4, (int)r5, (short)r6, (short)r7, Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), (int)Mem.U32(r29 + 24u));
+                r7 = (uint)((int)r7 >> 16); r2 = (uint)Sprite_Draw((int)r4, (int)r5, (short)r6, (short)r7, Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), (int)Mem.U32(r29 + 24u));
                 L_L00227C38: ;
                 r2 = Mem.U32((r16 + 1496u));
                 Mem.Set((r2 + 143u), (byte)r19);
@@ -700,11 +700,11 @@ public static partial class Game
                 r4 = r16 + 744u;
                 r5 = r16 + 1112u;
                 r6 = (uint)1;
-                Mem.Set((r16 + 4532u), r0); r2 = (uint)func_00214178(r4, r5, (int)r6);
+                Mem.Set((r16 + 4532u), r0); r2 = (uint)Actor_DispatchEvent(r4, r5, (int)r6);
                 r4 = r16;
                 r6 = r0;
                 r5 = Mem.U32((r16 + 1516u));
-                r7 = (uint)1; r2 = func_0021B1E4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = (uint)1; r2 = Player_PlaceAtSpawn(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r16; func_002266E4(r4);
                  goto L_L00227D30;
                 L_L00227D14: ;
@@ -713,7 +713,7 @@ public static partial class Game
                 r6 = r0;
                 Mem.Set((r2 + 143u), (byte)r0);
                 r5 = Mem.U32((r16 + 1516u));
-                r7 = (uint)1; r2 = func_0021B1E4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r7 = (uint)1; r2 = Player_PlaceAtSpawn(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_L00227D30: ;
                 r3 = Mem.U32((r16 + 1496u));
                 r2 = Mem.U8((r3 + 143u));

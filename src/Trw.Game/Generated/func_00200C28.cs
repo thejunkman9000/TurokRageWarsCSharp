@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00200C28", (uint)addr, (uint)val);
             int sh = (int)((((~addr) & (uint)(3)) * (uint)(8)));
             addr = (uint)((uint)(addr) & (uint)((~3)));
-            func_00200568(addr, ((func_002005A0(addr) & (uint)((~(255 << (int)sh)))) | (uint)(((int)(val) << (int)sh))));
+            func_00200568(addr, ((Bus_ReadWord(addr) & (uint)((~(255 << (int)sh)))) | (uint)(((int)(val) << (int)sh))));
         }
     }
 

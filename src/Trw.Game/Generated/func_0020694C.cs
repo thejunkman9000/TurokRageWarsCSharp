@@ -20,7 +20,7 @@ public static partial class Game
                     new B01Evt(evt).unkC_Set(p);
                     new B01Evt(evt).unk10_Set(p);
                     func_0024AA08(actor, state, evt, default(uint));
-                    func_0026DA4C((uint)(p), new B01Actor(actor).unkB4, 1, (int)((new B01Actor(actor).seg.P + (uint)(Mem.S32(0x800D297Cu) * 24))), (uint)(0), (int)(new B01Actor(actor).unk3));
+                    Light_ShadeVertices((uint)(p), new B01Actor(actor).unkB4, 1, (int)((new B01Actor(actor).seg.P + (uint)(Mem.S32(0x800D297Cu) * 24))), (uint)(0), (int)(new B01Actor(actor).unk3));
                 }
             }
         }

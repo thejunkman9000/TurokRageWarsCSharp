@@ -58,12 +58,12 @@ public static partial class Game
                     {
                         if ((Mem.S32((tbl + (uint)(s3 * 4))) == new O04Ent16_v2((0x800E4F64u + (uint)(s2 * 16))).a.w))
                         {
-                            h = func_0040ECB0(new O04ModeF60(Mem.U32(0x800E4F60u)).unk0, (uint)((int)(Mem.U16((new O04Ent16_v2((0x800E4F64u + (uint)(s2 * 16))).a.h.P + 2u)))), default(uint), default(uint));
+                            h = UiTree_FindNode(new O04ModeF60(Mem.U32(0x800E4F60u)).unk0, (uint)((int)(Mem.U16((new O04Ent16_v2((0x800E4F64u + (uint)(s2 * 16))).a.h.P + 2u)))), default(uint), default(uint));
                             func_0040E958(h, s7);
                             new O04Sub10(h).unk10_Set((byte)(a));
                             if ((new O04Ent16_v2((0x800E4F64u + (uint)(s2 * 16))).b.w != (-1)))
                             {
-                                h = func_0040ECB0(new O04ModeF60(Mem.U32(0x800E4F60u)).unk0, (uint)((int)(Mem.U16((new O04Ent16_v2((0x800E4F64u + (uint)(s2 * 16))).b.h.P + 2u)))), default(uint), default(uint));
+                                h = UiTree_FindNode(new O04ModeF60(Mem.U32(0x800E4F60u)).unk0, (uint)((int)(Mem.U16((new O04Ent16_v2((0x800E4F64u + (uint)(s2 * 16))).b.h.P + 2u)))), default(uint), default(uint));
                                 func_0040E958(h, s7);
                                 new O04Sub10(h).unk10_Set((byte)(a));
                             }

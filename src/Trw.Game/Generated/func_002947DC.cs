@@ -13,7 +13,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_002947DC", (uint)g, (uint)a);
-                if (!(func_0044DE70(0x8011FE88u, (-1), a, _fp, 1) != 0))
+                if (!(Track_FindPlacedObjects(0x8011FE88u, (-1), a, _fp, 1) != 0))
                 {
                     a = 0;
                 }

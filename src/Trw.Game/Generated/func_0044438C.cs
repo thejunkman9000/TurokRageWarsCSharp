@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0044438C");
-            if ((func_002643A8(0x8010F0E0u) != 0))
+            if ((Pad_IsLeft(0x8010F0E0u) != 0))
             {
                 switch (Mem.U32((0x801462D0u + (uint)(0 * 4))))
                 {
@@ -25,7 +25,7 @@ public static partial class Game
                     break;
                 }
             }
-            if (((func_002643C0(0x8010F0E0u) != 0) || ((int)(func_0026439C(0x8010F0E0u)) != 0)))
+            if (((Pad_IsRight(0x8010F0E0u) != 0) || ((int)(Pad_IsConfirm(0x8010F0E0u)) != 0)))
             {
                 switch (Mem.U32((0x801462D0u + (uint)(0 * 4))))
                 {

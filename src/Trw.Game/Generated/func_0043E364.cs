@@ -41,7 +41,7 @@ public static partial class Game
                         break;
                     }
                     s = Mem.U32(new S10Item(a).f14);
-                    func_00265904((s + (uint)(func_00442158(a) - 2)), 0x800E2320u, n, default(int));
+                    Str_Sprintf((s + (uint)(func_00442158(a) - 2)), 0x800E2320u, n, default(int));
                 }
             }
             return 0;

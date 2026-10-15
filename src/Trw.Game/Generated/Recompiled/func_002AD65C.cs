@@ -71,7 +71,7 @@ public static partial class Game
                 r6 = Mem.U32((r18 + 0u));
                 r4 = 2148794368u;
                 r4 = r4 + 20616u;
-                r2 = func_00237E70(r4, r5, r6);
+                r2 = Hud_PostMessage(r4, r5, r6);
                 L_L002AD74C: ;
                 { bool c_ = r19 == 0; r2 = (uint)-1; if (c_) goto L_L002AD770; }
                 Mem.Set((r29 + 16u), r0);
@@ -146,7 +146,7 @@ public static partial class Game
                 r6 = Mem.U32((r18 + 0u));
                 r4 = 2148794368u;
                 r4 = r4 + 20616u;
-                r2 = func_00237E70(r4, r5, r6);
+                r2 = Hud_PostMessage(r4, r5, r6);
                 L_L002AD898: ;
                 { bool c_ = r19 == 0; r2 = (uint)-1; if (c_) goto L_L002AD8BC; }
                 Mem.Set((r29 + 16u), r0);

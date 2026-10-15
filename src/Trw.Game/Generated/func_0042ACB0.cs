@@ -60,10 +60,10 @@ public static partial class Game
             s3 = func_0042B398(s2, new O04ModeF60(Mem.U32(0x800E4F60u)).unk438);
             for (s1 = 0; (s1 < 40); ++s1)
             {
-                func_0040E958(func_0040ECB0(new O04ModeF60(Mem.U32(0x800E4F60u)).unk0, (uint)((int)(new O04Ent16((0x800E4F64u + (uint)(s1 * 16))).unk2)), default(uint), default(uint)), 0);
+                func_0040E958(UiTree_FindNode(new O04ModeF60(Mem.U32(0x800E4F60u)).unk0, (uint)((int)(new O04Ent16((0x800E4F64u + (uint)(s1 * 16))).unk2)), default(uint), default(uint)), 0);
                 if ((Mem.S32(new O04Ent16((0x800E4F64u + (uint)(s1 * 16))).u4.P) != (-1)))
                 {
-                    func_0040E958(func_0040ECB0(new O04ModeF60(Mem.U32(0x800E4F60u)).unk0, (uint)((int)(Mem.U16((new O04Ent16((0x800E4F64u + (uint)(s1 * 16))).u4.P + 2u)))), default(uint), default(uint)), 0);
+                    func_0040E958(UiTree_FindNode(new O04ModeF60(Mem.U32(0x800E4F60u)).unk0, (uint)((int)(Mem.U16((new O04Ent16((0x800E4F64u + (uint)(s1 * 16))).u4.P + 2u)))), default(uint), default(uint)), 0);
                 }
             }
             Arena_Set(s2, s3);
@@ -78,7 +78,7 @@ public static partial class Game
             {
                 func_0042B1A0(s2);
                 func_0042B1B0(0);
-                func_0042AEB8();
+                MatchSetup_PickRandomArena();
             }
             else
             {

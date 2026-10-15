@@ -50,7 +50,7 @@ public static partial class Game
                     return 0.0f;
                 }
                 r = sqrtf((num / den));
-                a = func_00274640((((-1.0f) > ((1.0f < r) ? 1.0f : r)) ? (-1.0f) : ((1.0f < r) ? 1.0f : r)));
+                a = Math_Acosf((((-1.0f) > ((1.0f < r) ? 1.0f : r)) ? (-1.0f) : ((1.0f < r) ? 1.0f : r)));
                 if (!(y0 < y1))
                 {
                     a = (-a);

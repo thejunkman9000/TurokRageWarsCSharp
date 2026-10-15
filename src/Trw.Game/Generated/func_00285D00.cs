@@ -16,8 +16,8 @@ public static partial class Game
             while ((n != 0u))
             {
                 next = new B19PNode(n).next_;
-                func_00255E78((p + 20u), n, default(uint), default(uint));
-                func_00255CB4(p, n, default(uint), default(uint));
+                List_Remove((p + 20u), n, default(uint), default(uint));
+                List_Append_00255CB4(p, n, default(uint), default(uint));
                 n = next;
             }
             new B19Pool(p).count_Set(0);

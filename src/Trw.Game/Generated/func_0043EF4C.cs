@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043EF4C");
             if ((Mem.F32(0x801468B0u) <= 0.0f))
             {
-                func_0044E9A0(0x8011FAC0u);
+                Match_Reset(0x8011FAC0u);
                 return 1;
             }
             return 0;

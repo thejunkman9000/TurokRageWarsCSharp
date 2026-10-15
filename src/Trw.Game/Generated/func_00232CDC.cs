@@ -30,7 +30,7 @@ public static partial class Game
                         func_0022AFFC(owner);
                         goto default;
                     default:
-                        func_00214178(actor, state, 2);
+                        Actor_DispatchEvent(actor, state, 2);
                         break;
                     }
                 }

@@ -20,7 +20,7 @@ public static partial class Game
                 int h = 0;
                 int col = 0;
                 uint e = 0u;
-                if ((func_0040E154((_fp + 56u), (_fp + 40u), n, (new O02Ctx(_fp).w.P + (uint)(0 * 4))) != 0))
+                if ((UiNode_ComputeRect((_fp + 56u), (_fp + 40u), n, (new O02Ctx(_fp).w.P + (uint)(0 * 4))) != 0))
                 {
                     if ((((int)(new O02Node_v3(n).flags) & 512) != 0))
                     {
@@ -68,7 +68,7 @@ public static partial class Game
                     {
                         func_0040CB30();
                     }
-                    h = (int)(func_004106F4((uint)(new O02Node_v3(n).f2C), (uint)(1), default(uint), default(uint)));
+                    h = (int)(Texture_GetResourceId((uint)(new O02Node_v3(n).f2C), (uint)(1), default(uint), default(uint)));
                     col = (((int)(new O02Ctx(_fp).col) << (int)24) | 16777215);
                     if (((Mem.S32(0x800E2ABCu) != 340787) || (Mem.S32(0x800E2AB8u) == 0)))
                     {

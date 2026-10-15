@@ -42,7 +42,7 @@ public static partial class Game
                 Mem.Set((state + (uint)288), Mem.S32((Mem.U32((0x800D052Cu + (uint)(Mem.S16((owner + (uint)1582)) * 4))) + (uint)88)));
                 if (((Mem.U32((owner + (uint)1500)) != 0u) && (Mem.U32(0x800D2980u) >= (uint)(5))))
                 {
-                    func_00237E70(0x80145088u, Mem.U32((owner + (uint)1500)), (uint)(Mem.S32((Mem.U32((Mem.U32((0x800D052Cu + (uint)(Mem.S16((owner + (uint)1582)) * 4))) + (uint)0)) + (uint)0))));
+                    Hud_PostMessage(0x80145088u, Mem.U32((owner + (uint)1500)), (uint)(Mem.S32((Mem.U32((Mem.U32((0x800D052Cu + (uint)(Mem.S16((owner + (uint)1582)) * 4))) + (uint)0)) + (uint)0))));
                 }
                 Mem.Set((state + (uint)292), 0);
                 Mem.Set((state + (uint)296), 0);

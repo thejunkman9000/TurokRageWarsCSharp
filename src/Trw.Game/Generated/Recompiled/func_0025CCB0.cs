@@ -58,7 +58,7 @@ public static partial class Game
                 r2 = Mem.U32((r16 + 0u));
                 r18 = r3 << 1;
                 r4 = Mem.U32((r2 + 11088u));
-                r5 = r18; r2 = func_0028FD94(r4, (int)r5);
+                r5 = r18; r2 = Chunk_Get(r4, (int)r5);
                 r3 = r2;
                 r2 = Mem.U32((r3 + 0u));
                 Cpu.SetW(2, r2);
@@ -79,7 +79,7 @@ public static partial class Game
                 Cpu.SetS(0, (float)(int)Cpu.W(0));
                 Mem.Set((r16 + 36u), Cpu.W(0));
                 r4 = Mem.U32((r3 + 11088u));
-                r5 = r18 | 1u; r2 = func_0028FD94(r4, (int)r5);
+                r5 = r18 | 1u; r2 = Chunk_Get(r4, (int)r5);
                 r4 = r2;
                 r5 = (uint)22050;
                 r6 = r29 + 16u;

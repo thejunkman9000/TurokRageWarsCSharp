@@ -98,7 +98,7 @@ public static partial class Game
                 r5 = Mem.U16((r17 + 28u));
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
-                r2 = func_0028CF48(r4, (int)r5);
+                r2 = Level_GetDefinition(r4, (int)r5);
                 Mem.Set((r16 + 24u), r2);
                 L_L0024EAB8: ;
                 r3 = Mem.U16((r17 + 22u));

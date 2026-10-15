@@ -63,7 +63,7 @@ public static partial class Game
                 Cpu.SetW(0, Mem.U32((r29 + 24u)));
                 Cpu.SetS(12, Cpu.S(12) * Cpu.S(0));
                 Cpu.SetS(2, Cpu.S(2) + Cpu.S(1));
-                Cpu.SetS(12, Cpu.S(2) + Cpu.S(12)); Cpu.SetS(0, func_00274640(Cpu.S(12)));
+                Cpu.SetS(12, Cpu.S(2) + Cpu.S(12)); Cpu.SetS(0, Math_Acosf(Cpu.S(12)));
                 Cpu.SetS(12, Cpu.S(0)); r2 = sinf_rc(r4, r5, r6, r7); r3 = Cpu.V1;
                 Cpu.SetW(1, Mem.U32((r29 + 48u)));
                 fcc = Cpu.S(1) == Cpu.S(20);

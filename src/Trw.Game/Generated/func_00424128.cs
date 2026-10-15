@@ -13,7 +13,7 @@ public static partial class Game
             int i = 0;
             uint p = 0u;
             func_0029A73C();
-            switch (func_0029AA08())
+            switch (Menu_GetMessage())
             {
             case 69:
                 new O04ModeS4600(Mem.U32(0x800E4600u)).unk18_Set(26);

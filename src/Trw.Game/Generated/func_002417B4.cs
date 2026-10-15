@@ -16,7 +16,7 @@ public static partial class Game
             {
                 return 0.0f;
             }
-            a = func_00274640((new B09Quad(q).nz / r));
+            a = Math_Acosf((new B09Quad(q).nz / r));
             if (!(new B09Quad(q).nx > 0.0f))
             {
                 a = (-a);

@@ -85,7 +85,7 @@ public static partial class Game
                 r5 = r17; r2 = func_0024795C(r4, r5);
                 r4 = r16;
                 r16 = r29 + 176u;
-                r5 = r16; func_002742B4(r4, r5);
+                r5 = r16; Quat_ToMatrix(r4, r5);
                 r4 = r16;
                 r5 = r29 + 64u;
                 r6 = r29 + 80u;
@@ -143,7 +143,7 @@ public static partial class Game
                 Cpu.SetW(0, Mem.U32((r29 + 120u)));
                 Cpu.SetS(12, Cpu.S(12) * Cpu.S(0));
                 Cpu.SetS(2, Cpu.S(2) + Cpu.S(1));
-                Cpu.SetS(12, Cpu.S(2) + Cpu.S(12)); Cpu.SetS(0, func_00274640(Cpu.S(12)));
+                Cpu.SetS(12, Cpu.S(2) + Cpu.S(12)); Cpu.SetS(0, Math_Acosf(Cpu.S(12)));
                 fcc = Cpu.S(0) < Cpu.S(22);
                 if (fcc) { Cpu.SetS(0, -Cpu.S(0)); goto L_L00214548; }
                 L_L00214548: ;
@@ -169,7 +169,7 @@ public static partial class Game
                 Cpu.SetW(0, Mem.U32((r29 + 152u)));
                 Cpu.SetS(12, Cpu.S(12) * Cpu.S(0));
                 Cpu.SetS(2, Cpu.S(2) + Cpu.S(1));
-                Cpu.SetS(12, Cpu.S(2) + Cpu.S(12)); Cpu.SetS(0, func_00274640(Cpu.S(12)));
+                Cpu.SetS(12, Cpu.S(2) + Cpu.S(12)); Cpu.SetS(0, Math_Acosf(Cpu.S(12)));
                 Cpu.SetW(1, r0);
                 fcc = Cpu.S(0) < Cpu.S(1);
                 { bool c_ = !fcc;  if (c_) goto L_L002145E8; }

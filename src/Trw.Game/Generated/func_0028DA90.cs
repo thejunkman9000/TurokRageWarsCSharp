@@ -20,10 +20,10 @@ public static partial class Game
             {
                 @base = new Level(lv).unk84_;
             }
-            t = func_0028FD94(func_0028FD94(func_0028FD94(@base, 0), b), c);
-            func_0028FD94(t, 0);
-            func_0028FDD8(t, 1);
-            func_0028FD94(t, 1);
+            t = Chunk_Get(Chunk_Get(Chunk_Get(@base, 0), b), c);
+            Chunk_Get(t, 0);
+            Chunk_GetSize(t, 1);
+            Chunk_Get(t, 1);
         }
     }
 

@@ -14,9 +14,9 @@ public static partial class Game
             uint n = new B12Ctx(c).freeList.head_;
             if ((n != 0u))
             {
-                func_00255E78(new B12Ctx(c).freeList.P, n, default(uint), default(uint));
+                List_Remove(new B12Ctx(c).freeList.P, n, default(uint), default(uint));
                 new B12QNode(n).state_Set(1);
-                func_00255C58(new B12Ctx(c).usedList.P, n);
+                List_Add(new B12Ctx(c).usedList.P, n);
             }
             __osRestoreInt(mask);
             return n;

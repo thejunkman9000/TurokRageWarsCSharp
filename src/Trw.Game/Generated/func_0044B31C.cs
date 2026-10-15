@@ -13,9 +13,9 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < new Triple(group).z); ++i)
             {
-                func_0044B420((uint)((((i * 3800) + new Triple(group).y) + 1392)));
+                Pool228_Init_0044B420((uint)((((i * 3800) + new Triple(group).y) + 1392)));
             }
-            func_0044B420((group + (uint)1456));
+            Pool228_Init_0044B420((group + (uint)1456));
         }
     }
 

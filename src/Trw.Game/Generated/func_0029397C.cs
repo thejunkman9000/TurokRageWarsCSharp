@@ -10,11 +10,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029397C", (uint)g, (uint)a);
-            func_0044AFC0(new B21Game(g).sub255C8.P, 1);
+            CameraManager_Init(new B21Game(g).sub255C8.P, 1);
             func_0044A600(new B21Game(g).sub25580.P, 1, 0);
-            func_0044E178(0x8011FE88u, (~func_004030E0(a)), 0);
-            func_0044DCA4(0x8011FE88u);
-            func_0044DD40(0x8011FE88u);
+            Level_SetTransitionState_0044E178(0x8011FE88u, (~func_004030E0(a)), 0);
+            Level_LoadSelectedResource_0044DCA4(0x8011FE88u);
+            Level_LoadPreviewSound_0044DD40(0x8011FE88u);
         }
     }
 

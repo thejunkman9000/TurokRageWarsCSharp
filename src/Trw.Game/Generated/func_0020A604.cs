@@ -16,7 +16,7 @@ public static partial class Game
             {
                 for (j = 0; (j < 2); ++j)
                 {
-                    Mem.Copy(((0x800F7D20u + (uint)(i * 56)) + (uint)(j * 28)), func_0028FD94(p, ((i * 2) + j)), 28);
+                    Mem.Copy(((0x800F7D20u + (uint)(i * 56)) + (uint)(j * 28)), Chunk_Get(p, ((i * 2) + j)), 28);
                 }
             }
         }

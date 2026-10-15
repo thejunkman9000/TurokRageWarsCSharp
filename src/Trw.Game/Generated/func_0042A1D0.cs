@@ -28,7 +28,7 @@ public static partial class Game
                     new O04Gfx(dl).w0_Set(3976200192u);
                     new O04Gfx(dl).w1_Set((uint)(((((int)(((float)((Mem.S32(0x800E28D0u) - 1)) * 4.0f)) & 4095) << (int)12) | ((int)(((float)((Mem.S32(0x800E28D4u) - 1)) * 4.0f)) & 4095))));
                     Mem.Set((0x800D15E4u + (uint)(3 * 4)), 210.0f);
-                    if (((func_0029A958() == 20) && (Mem.S32(0x80154024u) == 0)))
+                    if (((Ui_PushScreen() == 20) && (Mem.S32(0x80154024u) == 0)))
                     {
                         for (i = 0, off = 8; (i < 4); ++i, off = (int)((int)(off) + 192))
                         {
@@ -43,7 +43,7 @@ public static partial class Game
                     Mem.Set(0x800D15F0u, 255.0f);
                 }
             }
-            if (((c == 0) && (func_0029A958() != 25)))
+            if (((c == 0) && (Ui_PushScreen() != 25)))
             {
                 v = new O04ModeF60(Mem.U32(0x800E4F60u)).unk464;
                 if ((v < 20))

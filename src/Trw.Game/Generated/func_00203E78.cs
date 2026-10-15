@@ -18,7 +18,7 @@ public static partial class Game
             new ActorState(a).unk4_Set(v);
             if ((v == 0))
             {
-                func_00214178(actor, a, 64);
+                Actor_DispatchEvent(actor, a, 64);
             }
         }
     }

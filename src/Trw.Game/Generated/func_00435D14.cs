@@ -29,7 +29,7 @@ public static partial class Game
             func_002A3358();
             if ((((int)(Mem.U8(0x801462D5u)) != 0) || (func_0042B108() == 0)))
             {
-                func_0040E9D0((uint)((int)(func_0040ECB0(cfg, (uint)(62), default(uint), default(uint)))), 1);
+                func_0040E9D0((uint)((int)(UiTree_FindNode(cfg, (uint)(62), default(uint), default(uint)))), 1);
             }
             Mem.Set(0x80146894u, 1);
             return 0;

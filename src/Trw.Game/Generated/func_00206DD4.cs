@@ -26,7 +26,7 @@ public static partial class Game
                 t = lo;
                 _f0: ;
                 if (!(((int)(new M1Info(info).unk28.b[(int)(1)]) == 0))) goto _f1;
-                t = func_00265734(t);
+                t = Emitter_Falloff_00265734(t);
                 _f1: ;
                 Mem.Copy(_fp, new M1State(state).vA0.P, 12);
                 new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + new M1Info(info).f2C));

@@ -28,7 +28,7 @@ public static partial class Game
                     new B10C(c).f8_Set((float)(0));
                 }
                 old = new B10Obj(o).p14_;
-                hit = func_00243A80((int)(o), Cpu.U2F(Mem.U32(v + 0u)), Cpu.U2F(Mem.U32(v + 4u)), Cpu.U2F(Mem.U32(v + 8u)), (int)(c));
+                hit = Collision_MoveActor((int)(o), Cpu.U2F(Mem.U32(v + 0u)), Cpu.U2F(Mem.U32(v + 4u)), Cpu.U2F(Mem.U32(v + 8u)), (int)(c));
                 if ((old != new B10Obj(o).p14_))
                 {
                     new B10Obj(o).p1F4_Set(old);

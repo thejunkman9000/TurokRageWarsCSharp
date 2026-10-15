@@ -28,8 +28,8 @@ public static partial class Game
                 d2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
                 new DlCmd(d2).w0_Set(3808430593u);
                 new DlCmd(d2).w1_Set((uint)(0));
-                func_0026925C((uint)(19));
-                func_00268CE0((uint)(25));
+                Gfx_SetOtherModeL((uint)(19));
+                Gfx_SetCombineMode((uint)(25));
                 d = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
                 new DlCmd(d).w0_Set(4194369535u);
                 new DlCmd(d).w1_Set((uint)((((((int)(Mem.U8((col + (uint)0))) << (int)24) | ((int)(Mem.U8((col + (uint)1))) << (int)16)) | ((int)(Mem.U8((col + (uint)2))) << (int)8)) | (int)(Mem.U8((col + (uint)3))))));

@@ -43,16 +43,16 @@ public static partial class Game
                 {
                 case 0:
                     v = (int)(Mem.U8(p));
-                    v = func_0044252C(b, v, step, 0, max, 1);
+                    v = MenuSpinner_Step(b, v, step, 0, max, 1);
                     Mem.Set(p, (byte)(v));
                     break;
                 case 1:
                     v = Mem.S32(p);
-                    v = func_0044252C(b, v, step, 0, max, 1);
+                    v = MenuSpinner_Step(b, v, step, 0, max, 1);
                     Mem.Set(p, v);
                     break;
                 case 2:
-                    v = func_0044252C(b, (int)(Mem.F32(p)), step, 0, max, 1);
+                    v = MenuSpinner_Step(b, (int)(Mem.F32(p)), step, 0, max, 1);
                     Mem.Set(p, (float)(v));
                     break;
                 }
@@ -62,7 +62,7 @@ public static partial class Game
                 {
                     return 0;
                 }
-                o = func_0028FD94((uint)(Mem.S32(0x8011FEF4u)), 0);
+                o = Chunk_Get((uint)(Mem.S32(0x8011FEF4u)), 0);
                 n = new O06O_v2(o).unk4;
                 q = (o + (uint)8);
                 for (k = 0; (k < n); ++k)

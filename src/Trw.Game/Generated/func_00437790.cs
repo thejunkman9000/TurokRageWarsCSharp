@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00437790");
             func_0029A73C();
-            switch (func_0029AA08())
+            switch (Menu_GetMessage())
             {
             case 316:
                 new O05M80_v2(Mem.U32(0x800E5780u)).f10_Set((-1));

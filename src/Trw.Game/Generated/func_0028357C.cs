@@ -22,7 +22,7 @@ public static partial class Game
                     Mem.Copy((_fp + 16u), new B19Obj(o).pos2.P, 12);
                 }
                 func_00271888(_fp, (_fp + 16u));
-                func_00280094(0x80121990u, o, (uint)(new B19Obj(o).unk12C), new B19Obj(o).unk130_, (int)(new B19Obj(o).unk134), arg, (_fp + 16u), _fp, new B19Q(0x801042A8u).v.P, 0, (-3), (int)(((new B19Obj(o).flags & (uint)(2097158)) | (uint)(1))));
+                Effect_SpawnFromTemplates(0x80121990u, o, (uint)(new B19Obj(o).unk12C), new B19Obj(o).unk130_, (int)(new B19Obj(o).unk134), arg, (_fp + 16u), _fp, new B19Q(0x801042A8u).v.P, 0, (-3), (int)(((new B19Obj(o).flags & (uint)(2097158)) | (uint)(1))));
             }
         }
         finally { Stack.Free(28); }

@@ -17,7 +17,7 @@ public static partial class Game
                 int v = 0;
                 int idx = 0;
                 uint r = 0u;
-                new O04Sub2C(func_0040ECB0((uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unk970), (uint)(339), default(uint), default(uint))).unk38_Set((int)(new O04ModeS4690(Mem.U32(0x800E4690u)).unk9A0.P));
+                new O04Sub2C(UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unk970), (uint)(339), default(uint), default(uint))).unk38_Set((int)(new O04ModeS4690(Mem.U32(0x800E4690u)).unk9A0.P));
                 switch ((int)(new Q03Cfg(0x801462C8u).unkD))
                 {
                 case 1:
@@ -26,7 +26,7 @@ public static partial class Game
                     break;
                 case 3:
                     func_002A125C(new O04ModeS4690(Mem.U32(0x800E4690u)).unk9D2.P, (uint)(func_00411DF8(61)));
-                    h = func_0040ECB0((uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unk970), (uint)(342), default(uint), default(uint));
+                    h = UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unk970), (uint)(342), default(uint), default(uint));
                     func_0040E958(h, 1);
                     new O04Sub2C(h).unk38_Set((int)(new O04ModeS4690(Mem.U32(0x800E4690u)).unk9D2.P));
                     idx = new O04ModeS4690(Mem.U32(0x800E4690u)).unkA44;

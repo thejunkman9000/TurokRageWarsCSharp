@@ -31,7 +31,7 @@ public static partial class Game
                     {
                         id = Mem.S32((owner + (uint)4600));
                     }
-                    func_0026DA4C((uint)(Mem.S32((obj + (uint)12))), Mem.S32((actor + (uint)180)), 1, (int)((actor + (uint)((Mem.S32(0x800D297Cu) * 24) + 320))), (uint)(0), id);
+                    Light_ShadeVertices((uint)(Mem.S32((obj + (uint)12))), Mem.S32((actor + (uint)180)), 1, (int)((actor + (uint)((Mem.S32(0x800D297Cu) * 24) + 320))), (uint)(0), id);
                 }
             }
         }

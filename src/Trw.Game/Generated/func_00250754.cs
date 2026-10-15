@@ -23,7 +23,7 @@ public static partial class Game
                 }
                 if ((key != new B12Obj(o).unkA8))
                 {
-                    h = func_002518DC(0, (uint)(new B12Obj(o).unk1C), new B12Obj(o).unk1C, (uint)(24), 0, (uint)(0), 0u, 0x800C8F4Cu, 1);
+                    h = ResourceCache_Hash(0, (uint)(new B12Obj(o).unk1C), new B12Obj(o).unk1C, (uint)(24), 0, (uint)(0), 0u, 0x800C8F4Cu, 1);
                     if ((h != 0u))
                     {
                         s2 = func_0028FE08((uint)((int)(Mem.U32(h))), new B12Obj(o).unk1C, 1);
@@ -31,7 +31,7 @@ public static partial class Game
                         n = func_00254094(0, _fp, s2, 0x800C8F70u, 1);
                         if ((n != 0u))
                         {
-                            new B12Obj(o).unkAC_Set((int)(func_0028FE1C(Mem.U32(_fp), (uint)(s2), (key % Mem.S32(Mem.U32(_fp))), (o + 176u))));
+                            new B12Obj(o).unkAC_Set((int)(Resource_GetCartridgeKey(Mem.U32(_fp), (uint)(s2), (key % Mem.S32(Mem.U32(_fp))), (o + 176u))));
                             new B12Obj(o).unkA8_Set(key);
                             func_002537D8(0, n);
                         }
@@ -39,7 +39,7 @@ public static partial class Game
                 }
                 if ((new B12Obj(o).unkAC != 0))
                 {
-                    return func_002518DC(0, (uint)(new B12Obj(o).unkAC), new B12Obj(o).unkAC, (uint)(new B12Obj(o).unkB0), 0, (uint)(0), 0x0026D7D4u, 0x800C8F84u, 0);
+                    return ResourceCache_Hash(0, (uint)(new B12Obj(o).unkAC), new B12Obj(o).unkAC, (uint)(new B12Obj(o).unkB0), 0, (uint)(0), 0x0026D7D4u, 0x800C8F84u, 0);
                 }
                 return 0u;
             }

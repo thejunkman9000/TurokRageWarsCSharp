@@ -12,9 +12,9 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_004039C4");
             float sum = 0.0f;
             int i = 0;
-            while ((i < new O01Node(func_0028FD94(new O01Ctx(Mem.U32(0x800E2830u)).tree, 0)).unk0))
+            while ((i < new O01Node(Chunk_Get(new O01Ctx(Mem.U32(0x800E2830u)).tree, 0)).unk0))
             {
-                uint n = func_0028FD94(func_0028FD94(func_0028FD94(new O01Ctx(Mem.U32(0x800E2830u)).tree, 0), i), 0);
+                uint n = Chunk_Get(Chunk_Get(Chunk_Get(new O01Ctx(Mem.U32(0x800E2830u)).tree, 0), i), 0);
                 n = (n + (uint)(new O01Node(n).unk4 * 36));
                 sum = (float)((float)(sum) + Mem.F32(n));
                 ++i;

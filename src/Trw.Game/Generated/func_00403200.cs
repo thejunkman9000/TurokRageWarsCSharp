@@ -21,14 +21,14 @@ public static partial class Game
                 uint ents = 0u;
                 if ((Mem.S32(0x800E2838u) != 0))
                 {
-                    p = func_0028FE1C(Mem.U32(0x8011FEFCu), Mem.U32(0x8011FEBCu), 0, _fp);
+                    p = Resource_GetCartridgeKey(Mem.U32(0x8011FEFCu), Mem.U32(0x8011FEBCu), 0, _fp);
                     if ((p == 0u))
                     {
                         r = 0u;
                     }
                     else
                     {
-                        r = func_002518DC(0, (uint)((int)(p)), (int)(p), (uint)(Mem.S32(_fp)), 51, (uint)(0), 0u, 0x800E0B2Cu, 1);
+                        r = ResourceCache_Hash(0, (uint)((int)(p)), (int)(p), (uint)(Mem.S32(_fp)), 51, (uint)(0), 0u, 0x800E0B2Cu, 1);
                     }
                     i = 0;
                     n = (Mem.S32(Mem.U32(0x8011FEFCu)) - 1);

@@ -17,7 +17,7 @@ public static partial class Game
             {
                 do
                 {
-                    e = func_0028FD94(new Level(lv).unk78_, i);
+                    e = Chunk_Get(new Level(lv).unk78_, i);
                     if (((a == (-1)) || (new Ent_v2(e).key == a)))
                     {
                         if (((b == (-1)) || ((int)(new Ent_v2(e).unkC) == b)))

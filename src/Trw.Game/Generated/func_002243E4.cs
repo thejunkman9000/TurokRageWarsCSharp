@@ -21,11 +21,11 @@ public static partial class Game
             high = ((new B05P11(p).f718 > Mem.F32(0x800C7A90u)) ? 1 : 0);
             if ((high != 0))
             {
-                func_002231B0(p, a, 0x800CE7FCu);
+                Player_UpdateViewTurn(p, a, 0x800CE7FCu);
             }
             else
             {
-                func_002231B0(p, a, 0x800CE7E4u);
+                Player_UpdateViewTurn(p, a, 0x800CE7E4u);
             }
             dang = (new B05A11(a).ang - ang0);
             if (((((((new B05P11(p).unk7E8 == 0) && !(new B05P11(p).f6E4 > Mem.F32(0x800C7A94u))) && !((new B05A11(a).flags38 & (uint)(786432)) != 0u)) && ((new B05Def11(new B05A11(a).def).flags14 & (uint)(2)) != 0u)) && ((new B05P11(p).flags6B0 & (uint)(16)) != 0u)) && (new B05P11(p).f11D8 <= 0.0f)))

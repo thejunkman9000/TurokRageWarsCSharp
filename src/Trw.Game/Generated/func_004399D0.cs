@@ -60,27 +60,27 @@ public static partial class Game
                     t = (float)(func_002A2934());
                     if ((new O05Obj_v2(o).f28 != 0.0f))
                     {
-                        func_00273860(_fp, ((t * new O05Obj_v2(o).f28) * 0.0174532942f));
+                        Math_MtxRotateRowsC_00273860(_fp, ((t * new O05Obj_v2(o).f28) * 0.0174532942f));
                     }
                     if ((new O05Obj_v2(o).f2C != 0.0f))
                     {
-                        func_00273A34(_fp, ((t * new O05Obj_v2(o).f2C) * 0.0174532942f));
+                        Math_MtxRotateRowsB_00273A34(_fp, ((t * new O05Obj_v2(o).f2C) * 0.0174532942f));
                     }
                     if ((new O05Obj_v2(o).f30 != 0.0f))
                     {
-                        func_00273C08(_fp, ((t * new O05Obj_v2(o).f30) * 0.0174532942f));
+                        Math_MtxRotateRowsA_00273C08(_fp, ((t * new O05Obj_v2(o).f30) * 0.0174532942f));
                     }
                     if ((new O05Obj_v2(o).f1C != 0.0f))
                     {
-                        func_00273860(_fp, (new O05Obj_v2(o).f1C * 0.0174532942f));
+                        Math_MtxRotateRowsC_00273860(_fp, (new O05Obj_v2(o).f1C * 0.0174532942f));
                     }
                     if ((new O05Obj_v2(o).f20 != 0.0f))
                     {
-                        func_00273A34(_fp, (new O05Obj_v2(o).f20 * 0.0174532942f));
+                        Math_MtxRotateRowsB_00273A34(_fp, (new O05Obj_v2(o).f20 * 0.0174532942f));
                     }
                     if ((new O05Obj_v2(o).f24 != 0.0f))
                     {
-                        func_00273C08(_fp, (new O05Obj_v2(o).f24 * 0.0174532942f));
+                        Math_MtxRotateRowsA_00273C08(_fp, (new O05Obj_v2(o).f24 * 0.0174532942f));
                     }
                     sc = (new O05Cam(cam).f29C / (float)(Mem.S32(0x800E28D0u)));
                     Mem.Set(((_fp + 96u) + (uint)(0 * 4)), (new O05Obj_v2(o).f4 * sc));
@@ -88,7 +88,7 @@ public static partial class Game
                     Mem.Set(((_fp + 96u) + (uint)(1 * 4)), (new O05Obj_v2(o).f8 * (new O05Cam(cam).f2A0 / (float)(Mem.S32(0x800E28D4u)))));
                     func_002734EC(_fp, Mem.F32(((_fp + 96u) + (uint)(0 * 4))), Mem.F32(((_fp + 96u) + (uint)(1 * 4))), Mem.F32(((_fp + 96u) + (uint)(2 * 4))));
                     func_00273DDC(_fp);
-                    func_002702EC(_fp, (o + (uint)((Mem.S32(0x800D297Cu) * 64) + 56)));
+                    Math_MtxFloatToFixed(_fp, (o + (uint)((Mem.S32(0x800D297Cu) * 64) + 56)));
                     h = func_0028C174(0x8011FE88u, new O05Obj_v2(o).f34);
                     func_0026D980();
                     func_0026DF30(h, (int)((o + (uint)((Mem.S32(0x800D297Cu) * 64) + 56))), (int)(0x800D0EF8u), 0, new O05Obj_v2(o).fB8);

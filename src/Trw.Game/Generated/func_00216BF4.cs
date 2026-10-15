@@ -20,7 +20,7 @@ public static partial class Game
                 Mem.Copy((_fp + 80u), new B04Obj2(t).pos.P, 12);
                 new Vec3f((_fp + 80u)).y_Set((new Vec3f((_fp + 80u)).y + func_0024D274(t)));
                 new Vec3f((_fp + 80u)).y_Set((new Vec3f((_fp + 80u)).y + new B04Obj2(t).unk70));
-                r = func_00244494(o, new B04Obj2(o).pos.P, (_fp + 80u), 0x80104030u);
+                r = Collision_RayCast(o, new B04Obj2(o).pos.P, (_fp + 80u), 0x80104030u);
                 if ((Mem.U32(0x801041F0u) == t))
                 {
                     r = 0;

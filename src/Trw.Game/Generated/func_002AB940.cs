@@ -17,7 +17,7 @@ public static partial class Game
                 uint q = 0u;
                 if ((Mem.S32(0x800D29B4u) != 0))
                 {
-                    h = func_0028BE88(0x8011FE88u, id, 0, 1);
+                    h = Sprite_Lookup(0x8011FE88u, id, 0, 1);
                     if ((h != 0))
                     {
                         func_002AB8DC((uint)(h), idx, _fp, (_fp + 4u));

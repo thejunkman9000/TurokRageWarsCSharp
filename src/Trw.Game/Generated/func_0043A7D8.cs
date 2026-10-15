@@ -74,7 +74,7 @@ public static partial class Game
                 {
                     for (col = 0; (col < 5); ++col)
                     {
-                        func_0040E958(func_0040ECB0(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E5A06u + (uint)(row * 76))).w[(int)((col * 2))])), default(uint), default(uint)), 0);
+                        func_0040E958(UiTree_FindNode(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E5A06u + (uint)(row * 76))).w[(int)((col * 2))])), default(uint), default(uint)), 0);
                     }
                     func_0040E958(new O05L2(Mem.U32(0x800E59E0u)).row[(int)(row)].f4C8, 0);
                 }

@@ -34,10 +34,10 @@ public static partial class Game
                         new Plr24d(o).unk5D8.unk8F_Set((byte)(0));
                         new Plr24d(o).unk5D8.unk90_Set(t);
                         new Glob24b(0x801468A0u).unk74_Set(2);
-                        Mem.Set(0x800CE408u, func_0025E2E4());
-                        if ((func_0025E2E4() != 0))
+                        Mem.Set(0x800CE408u, Audio_IsSoundOn());
+                        if ((Audio_IsSoundOn() != 0))
                         {
-                            func_0025E2F4(61);
+                            Audio_PlayCue(61);
                         }
                         ok = 1;
                     }
@@ -54,7 +54,7 @@ public static partial class Game
                         {
                             if (((q != o) && (new Plr24d(q).unk5DC != 0)))
                             {
-                                func_00237E70(0x80145088u, (uint)(new Plr24d(q).unk5DC), (uint)(Mem.S32(0x800D70D8u)));
+                                Hud_PostMessage(0x80145088u, (uint)(new Plr24d(q).unk5DC), (uint)(Mem.S32(0x800D70D8u)));
                             }
                             q = new Plr24d(q).unk16E0_;
                         }
@@ -79,7 +79,7 @@ public static partial class Game
                         new Plr24d(o).unk13E0_Set(0);
                         if ((new Plr24d(o).unk5DC != 0))
                         {
-                            func_00237E70(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D71E4u)));
+                            Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D71E4u)));
                         }
                     }
                     else
@@ -116,7 +116,7 @@ public static partial class Game
                                     }
                                     if ((new Plr24d(q).unk5DC != 0))
                                     {
-                                        func_00237E70(0x80145088u, (uint)(new Plr24d(q).unk5DC), (uint)(Mem.S32(0x800D7154u)));
+                                        Hud_PostMessage(0x80145088u, (uint)(new Plr24d(q).unk5DC), (uint)(Mem.S32(0x800D7154u)));
                                     }
                                     ++i;
                                 }
@@ -128,7 +128,7 @@ public static partial class Game
                             func_0025E13C(356);
                             if ((new Plr24d(o).unk5DC != 0))
                             {
-                                func_00237E70(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7158u)));
+                                Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7158u)));
                             }
                             new Plr24d(o).unk123C_Set((byte)(255));
                             new Plr24d(o).unk1240_Set(255.0f);
@@ -139,7 +139,7 @@ public static partial class Game
                             func_0025E13C(351);
                             if ((new Plr24d(o).unk5DC != 0))
                             {
-                                func_00237E70(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D715Cu)));
+                                Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D715Cu)));
                             }
                             break;
                         case 8:
@@ -147,7 +147,7 @@ public static partial class Game
                             func_0025E13C(357);
                             if ((new Plr24d(o).unk5DC != 0))
                             {
-                                func_00237E70(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7160u)));
+                                Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7160u)));
                             }
                             new Plr24d(o).unk123C_Set((byte)(255));
                             new Plr24d(o).unk123D_Set((byte)(255));
@@ -159,7 +159,7 @@ public static partial class Game
                             func_0025E13C(352);
                             if ((new Plr24d(o).unk5DC != 0))
                             {
-                                func_00237E70(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7164u)));
+                                Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7164u)));
                             }
                             new Plr24d(o).unk123C_Set((byte)(255));
                             new Plr24d(o).unk123E_Set((byte)(255));
@@ -171,7 +171,7 @@ public static partial class Game
                             func_0025E13C(358);
                             if ((new Plr24d(o).unk5DC != 0))
                             {
-                                func_00237E70(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7168u)));
+                                Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7168u)));
                             }
                             break;
                         case 64:
@@ -179,7 +179,7 @@ public static partial class Game
                             func_0025E13C(353);
                             if ((new Plr24d(o).unk5DC != 0))
                             {
-                                func_00237E70(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D716Cu)));
+                                Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D716Cu)));
                             }
                             break;
                         case 128:
@@ -187,7 +187,7 @@ public static partial class Game
                             func_0025E13C(361);
                             if ((new Plr24d(o).unk5DC != 0))
                             {
-                                func_00237E70(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7170u)));
+                                Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7170u)));
                             }
                             break;
                         case 256:
@@ -195,7 +195,7 @@ public static partial class Game
                             func_0025E13C(354);
                             if ((new Plr24d(o).unk5DC != 0))
                             {
-                                func_00237E70(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7174u)));
+                                Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7174u)));
                             }
                             break;
                         case 512:
@@ -204,7 +204,7 @@ public static partial class Game
                             func_0025E13C(362);
                             if ((new Plr24d(o).unk5DC != 0))
                             {
-                                func_00237E70(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D717Cu)));
+                                Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D717Cu)));
                             }
                             new Plr24d(o).unk1240_Set(255.0f);
                             new Plr24d(o).unk1244_Set((new Plr24d(o).unk1240 / new Plr24d(o).unk1230));
@@ -214,7 +214,7 @@ public static partial class Game
                             func_0025E13C(355);
                             if ((new Plr24d(o).unk5DC != 0))
                             {
-                                func_00237E70(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7180u)));
+                                Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7180u)));
                             }
                             new Plr24d(o).unk123C_Set((byte)(255));
                             new Plr24d(o).unk123D_Set((byte)(255));
@@ -227,7 +227,7 @@ public static partial class Game
                             func_0025E13C(360);
                             if ((new Plr24d(o).unk5DC != 0))
                             {
-                                func_00237E70(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7184u)));
+                                Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7184u)));
                             }
                             new Plr24d(o).unk123E_Set((byte)(255));
                             new Plr24d(o).unk1240_Set(255.0f);
@@ -238,7 +238,7 @@ public static partial class Game
                             func_0025E13C(351);
                             if ((new Plr24d(o).unk5DC != 0))
                             {
-                                func_00237E70(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7188u)));
+                                Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7188u)));
                             }
                             new Plr24d(o).unk123D_Set((byte)(255));
                             new Plr24d(o).unk1240_Set(255.0f);
@@ -247,7 +247,7 @@ public static partial class Game
                         default:
                             if ((new Plr24d(o).unk5DC != 0))
                             {
-                                func_00237E70(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D718Cu)));
+                                Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D718Cu)));
                             }
                             break;
                         }
@@ -337,7 +337,7 @@ public static partial class Game
                     func_0023919C((uint)(new Plr24d(o).unk5DC), (sbyte)(128), (sbyte)(50), (sbyte)(50), (sbyte)(75), (sbyte)(0), (sbyte)(0), (sbyte)(2));
                     if ((p != 0u))
                     {
-                        func_00237E70(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(p)));
+                        Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(p)));
                     }
                 }
                 if ((b != 0))

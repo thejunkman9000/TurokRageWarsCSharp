@@ -20,18 +20,18 @@ public static partial class Game
                 int i = 0;
                 int n = 0;
                 p = func_002A152C(s, find, default(uint), default(uint));
-                flen = func_002A1238(find);
+                flen = Str_Length(find);
                 while ((p != 0u))
                 {
-                    slen = func_002A1238(s);
+                    slen = Str_Length(s);
                     pre = (((int)(p - s)) - flen);
                     for (i = 0; (i < pre); ++i)
                     {
                         Mem.Set((_fp + (uint)i), Mem.S8((s + (uint)i)));
                     }
                     Mem.Set((_fp + (uint)pre), (sbyte)(0));
-                    func_002A12E8(_fp, repl);
-                    n = func_002A1238(_fp);
+                    Str_Concat(_fp, repl);
+                    n = Str_Length(_fp);
                     i = (pre + flen);
                     if ((i < slen))
                     {
@@ -44,7 +44,7 @@ public static partial class Game
                             goto L_top;
                         }
                     }
-                    n = func_002A1238(_fp);
+                    n = Str_Length(_fp);
                     for (i = 0; (i < n); ++i)
                     {
                         Mem.Set((s + (uint)i), Mem.S8((_fp + (uint)i)));

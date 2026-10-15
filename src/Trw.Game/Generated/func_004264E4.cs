@@ -37,7 +37,7 @@ public static partial class Game
             }
             new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk988_Set(1);
             new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk98C_Set(4);
-            new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk978__Set(func_0040ECB0((uint)(a), (uint)(325), default(uint), default(uint)));
+            new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk978__Set(UiTree_FindNode((uint)(a), (uint)(325), default(uint), default(uint)));
             new Q03U(new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk978_).w14_Set((ushort)(((int)(new Q03U(new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk978_).w14) - (int)(new Q03U(new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk978_).w18))));
             new O04ModeS4690_v2(Mem.U32(0x800E4690u)).u97C.w_Set(((int)(new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk978.unk18) / 4));
             m = ((int)(new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk978.unk18) - (new O04ModeS4690_v2(Mem.U32(0x800E4690u)).u97C.w * 4));
@@ -45,7 +45,7 @@ public static partial class Game
                 int r = m;
                 new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk978.unk14_Set((ushort)(((int)(new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk978.unk14) + r)));
             }
-            new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk980__Set(func_0040ECB0((uint)(a), (uint)(324), default(uint), default(uint)));
+            new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk980__Set(UiTree_FindNode((uint)(a), (uint)(324), default(uint), default(uint)));
             new Q03U(new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk980_).w14_Set((ushort)(((int)(new Q03U(new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk980_).w14) + (int)(new Q03U(new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk980_).w18))));
             new O04ModeS4690_v2(Mem.U32(0x800E4690u)).u984.w_Set(((int)(new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk980.unk18) / 4));
             m = ((int)(new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk980.unk18) - (new O04ModeS4690_v2(Mem.U32(0x800E4690u)).u984.w * 4));
@@ -54,11 +54,11 @@ public static partial class Game
                 new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk980.unk14_Set((ushort)(((int)(new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk980.unk14) - r_2)));
             }
             new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk990_Set(func_00419ED4((uint)(321), (uint)(110), default(uint), default(uint)));
-            new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk994_Set((h = func_0040ECB0((uint)(a), (uint)(319), default(uint), default(uint))));
+            new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk994_Set((h = UiTree_FindNode((uint)(a), (uint)(319), default(uint), default(uint))));
             s0 = 0;
             func_0040E958(h, s0);
-            new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk998__Set(func_0040ECB0((uint)(a), (uint)(340), default(uint), default(uint)));
-            new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk99C_Set(func_0040ECB0((uint)(a), (uint)(341), default(uint), default(uint)));
+            new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk998__Set(UiTree_FindNode((uint)(a), (uint)(340), default(uint), default(uint)));
+            new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk99C_Set(UiTree_FindNode((uint)(a), (uint)(341), default(uint), default(uint)));
             new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unkA5C_Set(0);
             for (; (s0 < 4); ++s0)
             {
@@ -80,14 +80,14 @@ public static partial class Game
             }
             func_004271E8();
             func_004280F0();
-            new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unkA48__Set(func_0040ECB0((uint)(a), (uint)((int)(new O04Nav2((0x800E4694u + (uint)(new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unkA44 * 28))).unk2)), default(uint), default(uint)));
+            new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unkA48__Set(UiTree_FindNode((uint)(a), (uint)((int)(new O04Nav2((0x800E4694u + (uint)(new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unkA44 * 28))).unk2)), default(uint), default(uint)));
             func_0042829C();
             p = 0x80154024u;
             t = 0;
             Mem.Set((p + (uint)(t * 4)), 0);
             Mem.Set((p + (uint)((-1) * 4)), (-1));
             func_0043C3F0(Mem.U32(0x800E4690u), 103, 0, 0, 0);
-            new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unkA50__Set(func_0040ECB0((uint)(a), (uint)(337), default(uint), default(uint)));
+            new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unkA50__Set(UiTree_FindNode((uint)(a), (uint)(337), default(uint), default(uint)));
             new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unkA50.unk10_Set((byte)(255));
             new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unkA4C_Set(0);
             m2 = (int)(Mem.U8((0x801462D5u + (uint)0)));
@@ -106,10 +106,10 @@ public static partial class Game
             case 1:
             case 3:
             case 4:
-                new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unkA60__Set(func_0040ECB0((uint)(a), (uint)(317), default(uint), default(uint)));
+                new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unkA60__Set(UiTree_FindNode((uint)(a), (uint)(317), default(uint), default(uint)));
                 func_004221A0();
-                new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unkA64__Set(func_0040ECB0((uint)(a), (uint)(327), default(uint), default(uint)));
-                new O04Sub10(func_0040ECB0((uint)(a), (uint)(328), default(uint), default(uint))).unk10_Set((byte)(110));
+                new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unkA64__Set(UiTree_FindNode((uint)(a), (uint)(327), default(uint), default(uint)));
+                new O04Sub10(UiTree_FindNode((uint)(a), (uint)(328), default(uint), default(uint))).unk10_Set((byte)(110));
                 break;
             }
             switch ((int)(Mem.U8((0x801462D5u + (uint)0))))

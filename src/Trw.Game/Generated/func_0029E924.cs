@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029E924");
-            float r = (float)(func_0029C278((double)(a), (double)(b)));
+            float r = (float)(Math_Fmod((double)(a), (double)(b)));
             if ((r < b))
             {
                 r = (float)((float)(r) + b);

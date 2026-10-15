@@ -14,7 +14,7 @@ public static partial class Game
             uint p = func_0024BFC4(a, (int)(new Obj(a).unk1));
             if ((p != 0u))
             {
-                r = (int)(new B11Node(func_0028FD94((uint)(Mem.S32(p)), 5)).unk6E);
+                r = (int)(new B11Node(Chunk_Get((uint)(Mem.S32(p)), 5)).unk6E);
                 func_002536F4(0, p);
             }
             return r;

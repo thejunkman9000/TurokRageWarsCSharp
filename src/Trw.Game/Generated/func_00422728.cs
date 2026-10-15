@@ -23,36 +23,36 @@ public static partial class Game
             int i = 0;
             int rem = 0;
             Mem.Set(0x800E4518u, func_00252FFC((uint)(108)));
-            new Shared_OptionsScreen(Mem.U32(0x800E4518u)).sound_Set(func_0025E2E4());
-            func_0025E2F4(52);
+            new Shared_OptionsScreen(Mem.U32(0x800E4518u)).sound_Set(Audio_IsSoundOn());
+            Audio_PlayCue(52);
             func_0025E3A4();
             func_0025E234((-1));
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).page_Set(1);
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).pages_Set(4);
-            new Shared_OptionsScreen(Mem.U32(0x800E4518u)).leftTab__Set(func_0040ECB0(node, (uint)(897), default(uint), default(uint)));
+            new Shared_OptionsScreen(Mem.U32(0x800E4518u)).leftTab__Set(UiTree_FindNode(node, (uint)(897), default(uint), default(uint)));
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).leftTab.x_Set((short)((int)(new Shared_OptionsScreen(Mem.U32(0x800E4518u)).leftTab.x) - (int)(new Shared_OptionsScreen(Mem.U32(0x800E4518u)).leftTab.width)));
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).leftStep_Set(((int)(new Shared_OptionsScreen(Mem.U32(0x800E4518u)).leftTab.width) / 4));
             rem = ((int)(new Shared_OptionsScreen(Mem.U32(0x800E4518u)).leftTab.width) - (new Shared_OptionsScreen(Mem.U32(0x800E4518u)).leftStep * 4));
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).leftTab.x_Set((short)((int)(new Shared_OptionsScreen(Mem.U32(0x800E4518u)).leftTab.x) + rem));
-            new Shared_OptionsScreen(Mem.U32(0x800E4518u)).rightTab__Set(func_0040ECB0(node, (uint)(904), default(uint), default(uint)));
+            new Shared_OptionsScreen(Mem.U32(0x800E4518u)).rightTab__Set(UiTree_FindNode(node, (uint)(904), default(uint), default(uint)));
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).rightTab.x_Set((short)((int)(new Shared_OptionsScreen(Mem.U32(0x800E4518u)).rightTab.x) + (int)(new Shared_OptionsScreen(Mem.U32(0x800E4518u)).rightTab.width)));
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).rightStep_Set(((int)(new Shared_OptionsScreen(Mem.U32(0x800E4518u)).rightTab.width) / 4));
             rem = ((int)(new Shared_OptionsScreen(Mem.U32(0x800E4518u)).rightTab.width) - (new Shared_OptionsScreen(Mem.U32(0x800E4518u)).rightStep * 4));
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).rightTab.x_Set((short)((int)(new Shared_OptionsScreen(Mem.U32(0x800E4518u)).rightTab.x) - rem));
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).title_Set((int)(func_00419ED4((uint)(883), (uint)(110), default(uint), default(uint))));
-            marker = func_0040ECB0(node, (uint)(882), default(uint), default(uint));
+            marker = UiTree_FindNode(node, (uint)(882), default(uint), default(uint));
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).marker__Set(marker);
             func_0040E958(marker, 0);
-            new MenuWidget(func_0040ECB0(node, (uint)(902), default(uint), default(uint))).alpha_Set((byte)(110));
-            header = func_0040ECB0(node, (uint)(903), default(uint), default(uint));
+            new MenuWidget(UiTree_FindNode(node, (uint)(902), default(uint), default(uint))).alpha_Set((byte)(110));
+            header = UiTree_FindNode(node, (uint)(903), default(uint), default(uint));
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).header__Set(header);
             new MenuWidget(header).alpha_Set((byte)(140));
-            new Shared_OptionsScreen(Mem.U32(0x800E4518u)).footer__Set(func_0040ECB0(node, (uint)(880), default(uint), default(uint)));
-            rumble = func_0040ECB0(node, (uint)(900), default(uint), default(uint));
+            new Shared_OptionsScreen(Mem.U32(0x800E4518u)).footer__Set(UiTree_FindNode(node, (uint)(880), default(uint), default(uint)));
+            rumble = UiTree_FindNode(node, (uint)(900), default(uint), default(uint));
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).rumbleIcon__Set(rumble);
             func_0040E958(rumble, 1);
-            new MenuWidget(func_0040ECB0(node, (uint)(901), default(uint), default(uint))).alpha_Set((byte)(110));
-            pak = func_0040ECB0(node, (uint)(884), default(uint), default(uint));
+            new MenuWidget(UiTree_FindNode(node, (uint)(901), default(uint), default(uint))).alpha_Set((byte)(110));
+            pak = UiTree_FindNode(node, (uint)(884), default(uint), default(uint));
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).pakIcon__Set(pak);
             func_0040E958(pak, 0);
             func_0041B190(887);
@@ -81,9 +81,9 @@ public static partial class Game
             case 0:
                 if ((func_0042B108() == 0))
                 {
-                    func_0040E9D0(func_0040ECB0(node, (uint)(894), default(uint), default(uint)), 1);
+                    func_0040E9D0(UiTree_FindNode(node, (uint)(894), default(uint), default(uint)), 1);
                 }
-                handle = func_0040ECB0(node, (uint)(896), default(uint), default(uint));
+                handle = UiTree_FindNode(node, (uint)(896), default(uint), default(uint));
                 func_0040E9D0(handle, 1);
                 for (i = 0; (i < 8); ++i)
                 {
@@ -98,8 +98,8 @@ public static partial class Game
             case 2:
             case 3:
             case 4:
-                func_0040E9D0(func_0040ECB0(node, (uint)(896), default(uint), default(uint)), 1);
-                func_0040E9D0(func_0040ECB0(node, (uint)(894), default(uint), default(uint)), 1);
+                func_0040E9D0(UiTree_FindNode(node, (uint)(896), default(uint), default(uint)), 1);
+                func_0040E9D0(UiTree_FindNode(node, (uint)(894), default(uint), default(uint)), 1);
                 break;
             }
             func_0041B190(896);
@@ -109,7 +109,7 @@ public static partial class Game
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).state_Set(0);
             func_002A338C();
             func_0043C3F0(Mem.U32(0x800E4518u), 103, 0, 0, 0);
-            func_0043C458(Mem.U32(0x800E4518u));
+            Menu_ShowScreen_0043C458(Mem.U32(0x800E4518u));
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).cursor_Set(0);
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).selection_Set((-1));
             func_0040E958(node, 0);
@@ -117,7 +117,7 @@ public static partial class Game
             Mem.Set((0x80154020u + (uint)(1 * 4)), 0);
             Mem.Set((0x80154020u + (uint)(0 * 4)), (-1));
             func_00422218();
-            prompt = func_0040ECB0(node, (uint)(881), default(uint), default(uint));
+            prompt = UiTree_FindNode(node, (uint)(881), default(uint), default(uint));
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).prompt__Set(prompt);
             func_0040E958(prompt, 1);
             return 0;

@@ -47,7 +47,7 @@ public static partial class Game
                 L_L00203A70: ;
                 r4 = r17;
                 r5 = r16;
-                r6 = (uint)64; r2 = (uint)func_00214178(r4, r5, (int)r6);
+                r6 = (uint)64; r2 = (uint)Actor_DispatchEvent(r4, r5, (int)r6);
                 L_L00203A80: ;
                 r31 = Mem.U32((r29 + 24u));
                 r17 = Mem.U32((r29 + 20u));

@@ -18,10 +18,10 @@ public static partial class Game
             uint objs = 0u;
             float bestd = 0f;
             float d = 0f;
-            t = func_0028FD94(new S7Track(track).resource, 0);
+            t = Chunk_Get(new S7Track(track).resource, 0);
             count = Mem.S32((t + (uint)(1 * 4)));
             keys = (t + (uint)(2 * 4));
-            objs = (func_0028FD94(new S7Track(track).resource, 1) + (uint)(2 * 4));
+            objs = (Chunk_Get(new S7Track(track).resource, 1) + (uint)(2 * 4));
             bestd = 3.40282347E+38f;
             for (i = 0; (i < count); ++i)
             {

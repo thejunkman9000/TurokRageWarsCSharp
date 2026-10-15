@@ -31,7 +31,7 @@ public static partial class Game
                 r3 = Mem.U32((r17 + 188u));
                 r2 = (uint)-1;
                 { bool c_ = r3 != r2; r4 = r17; if (c_) goto L_L00213020; }
-                r5 = (uint)2; r2 = (uint)func_00209874(r4, (int)r5);
+                r5 = (uint)2; r2 = (uint)Ai_SetState(r4, (int)r5);
                  goto L_L00213198;
                 L_L00213020: ;
                 r2 = Mem.U32((r17 + 104u));
@@ -53,7 +53,7 @@ public static partial class Game
                 L_L00213080: ;
                 r2 = Mem.U32((r17 + 568u));
                 { bool c_ = r2 == 0; r4 = r17; if (c_) goto L_L0021309C; }
-                r5 = (uint)8; r2 = (uint)func_00209874(r4, (int)r5);
+                r5 = (uint)8; r2 = (uint)Ai_SetState(r4, (int)r5);
                  goto L_L002130B8;
                 L_L0021309C: ;
                 r2 = Mem.U32((r17 + 104u));

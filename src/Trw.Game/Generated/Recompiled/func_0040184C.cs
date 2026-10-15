@@ -27,7 +27,7 @@ public static partial class Game
                 Cpu.SetS(20, Cpu.S(12));
                 Mem.Set((r29 + 16u), r31);
                 r4 = Mem.U32((r2 + 4u));
-                r5 = (uint)3; r2 = func_0028FD94(r4, (int)r5);
+                r5 = (uint)3; r2 = Chunk_Get(r4, (int)r5);
                 r5 = r2 + 8u;
                 r4 = Mem.U32((r2 + 4u));
                 { bool c_ = (int)r4 <= 0; r3 = r0; if (c_) goto L_L00401890; }

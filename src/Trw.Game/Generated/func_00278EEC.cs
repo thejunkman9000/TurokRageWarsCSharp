@@ -18,7 +18,7 @@ public static partial class Game
             }
             else
             {
-                func_00278C80(r);
+                Entity_Spawn(r);
             }
         }
     }

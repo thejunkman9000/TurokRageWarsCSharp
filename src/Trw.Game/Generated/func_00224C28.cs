@@ -27,7 +27,7 @@ public static partial class Game
                 new M2P(p).unk650_Set((short)(10));
             }
             func_002748E0((p + 1836u), 0.0f, 0.25f);
-            func_002231B0(p, q, 0x800CE7E4u);
+            Player_UpdateViewTurn(p, q, 0x800CE7E4u);
             func_002233CC(p, q, 0x800CE82Cu);
             if (!((new M2Q(q).flags38 & (uint)(8192)) != 0u))
             {

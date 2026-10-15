@@ -52,7 +52,7 @@ public static partial class Game
             v = 300;
             goto _f13;
             _f12: ;
-            v = (func_0022ABF0(new B2Ctl(ctl).owner_) >> (int)8);
+            v = (Player_GetMaxHealth(new B2Ctl(ctl).owner_) >> (int)8);
             _f13: ;
             _f11: ;
             _f9: ;

@@ -21,12 +21,12 @@ public static partial class Game
                     func_0028DA50(o);
                     if ((new Obj_v2(o).unkC != 0))
                     {
-                        h = func_002518DC(0, (uint)(new Obj_v2(o).unkC), new Obj_v2(o).unkC, (uint)(new Obj_v2(o).unk10), 16, (uint)(0), 0u, 0x800CA380u, 1);
+                        h = ResourceCache_Hash(0, (uint)(new Obj_v2(o).unkC), new Obj_v2(o).unkC, (uint)(new Obj_v2(o).unk10), 16, (uint)(0), 0u, 0x800CA380u, 1);
                         if ((h != 0u))
                         {
-                            p = (int)(func_0028FE1C((uint)(Mem.S32(h)), (uint)(new Obj_v2(o).unkC), id, _fp));
+                            p = (int)(Resource_GetCartridgeKey((uint)(Mem.S32(h)), (uint)(new Obj_v2(o).unkC), id, _fp));
                             func_002537D8(0, h);
-                            r = func_002518DC(0, (uint)(p), p, (uint)(Mem.S32(_fp)), 16, (uint)(0), 0x00285130u, 0x800CA3ACu, 1);
+                            r = ResourceCache_Hash(0, (uint)(p), p, (uint)(Mem.S32(_fp)), 16, (uint)(0), 0x00285130u, 0x800CA3ACu, 1);
                             new Obj_v2(o).unk14__Set(r);
                             if ((r != 0u))
                             {

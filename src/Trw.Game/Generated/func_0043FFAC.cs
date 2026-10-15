@@ -98,15 +98,15 @@ public static partial class Game
                     break;
                 case 1:
                     func_002A94E8();
-                    func_002A9700();
+                    Gfx_LoadTexImage16();
                     break;
                 case 2:
                     func_002A94E8();
-                    func_002A97F0();
+                    Gfx_LoadTexImage16b();
                     break;
                 case 6:
                     func_002A94E8();
-                    func_002A9700();
+                    Gfx_LoadTexImage16();
                     Mem.Set(0x8014D3D0u, 1);
                     break;
                 }
@@ -152,7 +152,7 @@ public static partial class Game
             {
                 en = new Q04Ent(E).b14;
             }
-            func_002A9F18((uint)(e), new Q04B(b).x, new Q04B(b).y, (int)((new Q04W(w).f30 * (new Q04W(w).f34 * 255.0f))), 0, (int)(en), 1.0f, 1.0f);
+            Text_Draw((uint)(e), new Q04B(b).x, new Q04B(b).y, (int)((new Q04W(w).f30 * (new Q04W(w).f34 * 255.0f))), 0, (int)(en), 1.0f, 1.0f);
         }
     }
 

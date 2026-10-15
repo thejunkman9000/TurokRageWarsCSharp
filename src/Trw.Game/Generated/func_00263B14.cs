@@ -31,7 +31,7 @@ public static partial class Game
                 func_00285C48(0x8010EC90u);
                 if ((func_00263B14_b14_lock(0) != 0))
                 {
-                    func_00263760();
+                    Pad_ReadController_00263760();
                     for (i = 0, c = 0x8010F328u; (i < 4); ++i, c += 548u)
                     {
                         func_00264124(c);

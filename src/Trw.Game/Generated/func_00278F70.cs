@@ -19,7 +19,7 @@ public static partial class Game
                     Mem.Copy(_fp, r, 20);
                     new Rec14(_fp).b12_Set((byte)(2));
                     new Rec14(_fp).b10_Set((byte)(0));
-                    func_00278C80(_fp);
+                    Entity_Spawn(_fp);
                 }
             }
         }

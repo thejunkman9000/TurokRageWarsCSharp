@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002AB6FC", (uint)c, (uint)pc);
             new ScriptCtx(c).pc__Set(pc);
             new ScriptCtx(c).state_Set(2);
-            func_002A8A94(c, default(uint), default(uint), default(uint));
+            ScreenMover_Step(c, default(uint), default(uint), default(uint));
         }
     }
 

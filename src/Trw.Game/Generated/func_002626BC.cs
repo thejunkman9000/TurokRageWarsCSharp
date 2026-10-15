@@ -21,15 +21,15 @@ public static partial class Game
                     new B14Anim3(o).h_Set(0);
                     goto L_fail;
                 }
-                t = (int)(func_0028FE1C((uint)(a), (uint)(b), id, _fp));
-                new B14Anim3(o).h_Set((int)(func_002518DC(0, (uint)(t), t, (uint)(Mem.S32(_fp)), 4, o, 0x0025F58Cu, 0x800C92A0u, 0)));
+                t = (int)(Resource_GetCartridgeKey((uint)(a), (uint)(b), id, _fp));
+                new B14Anim3(o).h_Set((int)(ResourceCache_Hash(0, (uint)(t), t, (uint)(Mem.S32(_fp)), 4, o, 0x0025F58Cu, 0x800C92A0u, 0)));
                 if ((func_002624F8(o) != 0))
                 {
                     tree = (uint)(func_002604BC(o));
-                    v = Mem.U16((func_0028FD94(tree, 0) + (uint)(3 * 2)));
+                    v = Mem.U16((Chunk_Get(tree, 0) + (uint)(3 * 2)));
                     new B14Anim3(o).id_Set((short)(id));
                     new B14Anim3(o).f8_Set((short)(v));
-                    new B14Anim3(o).fC_Set((int)(Mem.U16((func_0028FD94(func_0028FD94(tree, 3), 0) + (uint)(1 * 2)))));
+                    new B14Anim3(o).fC_Set((int)(Mem.U16((Chunk_Get(Chunk_Get(tree, 3), 0) + (uint)(1 * 2)))));
                     return 1;
                 }
                 return 0;

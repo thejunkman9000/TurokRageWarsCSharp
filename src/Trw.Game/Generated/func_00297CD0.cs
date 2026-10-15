@@ -72,7 +72,7 @@ public static partial class Game
                 }
                 if ((id >= 0))
                 {
-                    func_0029A1D4((uint)(id), l, (uint)(dir), default(uint));
+                    Menu_MoveFocus((uint)(id), l, (uint)(dir), default(uint));
                 }
             }
         }

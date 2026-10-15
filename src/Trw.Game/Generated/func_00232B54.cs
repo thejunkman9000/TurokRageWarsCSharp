@@ -20,7 +20,7 @@ public static partial class Game
             {
                 if ((func_002301E4(actor, state) == 0))
                 {
-                    func_00214178(actor, state, 2);
+                    Actor_DispatchEvent(actor, state, 2);
                 }
             }
         }

@@ -41,7 +41,7 @@ public static partial class Game
                 r18 = r29 + 256u;
                 r5 = r18;
                 r7 = Mem.U32((r17 + 0u));
-                r6 = r17; r2 = func_00241940(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = r17; r2 = Collision_BuildBoxCorners(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = (uint)2;
                 r2 = (uint)-1;
                 Mem.Set((r29 + 36u), r0);

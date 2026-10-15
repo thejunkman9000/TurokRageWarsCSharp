@@ -128,7 +128,7 @@ public static partial class Game
                 L_L0025B028: ;
                 r4 = r17; r2 = func_0025A3EC(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r17; func_0025A864(r4);
-                r4 = r17; r2 = func_0025ABB4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r17; r2 = Audio_RampVoicePitch(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_L0025B040: ;
                 r31 = Mem.U32((r29 + 24u));
                 r17 = Mem.U32((r29 + 20u));

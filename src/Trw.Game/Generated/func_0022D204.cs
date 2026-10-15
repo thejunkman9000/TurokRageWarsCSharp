@@ -14,7 +14,7 @@ public static partial class Game
             Mem.Set((actor + (uint)4568), 0);
             Mem.Set((actor + (uint)4604), 0);
             new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) | (uint)(16777216)));
-            func_0044ACCC(actor);
+            Object_ReleaseHandles_0044ACCC(actor);
         }
     }
 

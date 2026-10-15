@@ -27,7 +27,7 @@ public static partial class Game
                 {
                     h = new AtlasCell(p).h;
                     w = new AtlasCell(p).w;
-                    func_002AAED8((p + (uint)8), x, y, w, h, sx, sy);
+                    Gfx_DrawTexture4bScaled((p + (uint)8), x, y, w, h, sx, sy);
                     x = (float)((float)(x) + ((float)(w) * sx));
                     p = (uint)(p + (uint)(((w * h) >> (int)1) * 1));
                     p = (uint)(p + (uint)(8 * 1));

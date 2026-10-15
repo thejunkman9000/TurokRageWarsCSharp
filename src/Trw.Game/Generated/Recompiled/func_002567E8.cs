@@ -21,7 +21,7 @@ public static partial class Game
                 r29 = _fp + 256u;
                 L_func_002567E8: ;
                 r5 = r0 + 1u;
-                r29 = r29 - 32u; r2 = func_0028FD94(r4, (int)r5);
+                r29 = r29 - 32u; r2 = Chunk_Get(r4, (int)r5);
                 Mem.Set((r29 + 16u), r16);
                 r16 = 2151677952u;
                 Mem.Set((r29 + 24u), r31);
@@ -41,10 +41,10 @@ public static partial class Game
                 r4 = 2148532224u;
                 r4 = r4 + 20896u;
                 r5 = r17;
-                r6 = r16; r2 = func_00255854(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = r16; r2 = Heap_Init(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = 2148597760u;
                 r4 = r4 - 23992u;
-                r5 = (uint)3; func_00255090(r4, (int)r5);
+                r5 = (uint)3; MsgPort_Create(r4, (int)r5);
                 r4 = 2148532224u;
                 r4 = r4 + 20920u;
                 r5 = (uint)4; func_00256220(r4, (int)r5);

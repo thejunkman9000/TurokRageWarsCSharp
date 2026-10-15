@@ -35,7 +35,7 @@ public static partial class Game
                 r2 = Mem.U32((r16 + 792u));
                 r2 = r2 & 3u;
                 { bool c_ = r2 != 0;  if (c_) goto L_L00211170; }
-                r4 = r16; r2 = (uint)func_002099B4(r4, r5);
+                r4 = r16; r2 = (uint)Ai_IsTargetReached(r4, r5);
                 Mem.Set((r16 + 796u), r2);
                 L_L00211170: ;
                 r2 = Mem.U32((r16 + 792u));
@@ -196,7 +196,7 @@ public static partial class Game
                 { bool c_ = r2 != 0; r4 = r16; if (c_) goto L_L00211454; }
                 r5 = (uint)1;
                 L_L0021144C: ;
-                r2 = (uint)func_00209874(r4, (int)r5);
+                r2 = (uint)Ai_SetState(r4, (int)r5);
                 L_L00211454: ;
                 r31 = Mem.U32((r29 + 28u));
                 r18 = Mem.U32((r29 + 24u));

@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00254858", (uint)unused, (uint)a1, (uint)flags);
-            uint n = func_00251448((uint)(0), flags, default(uint), default(uint));
+            uint n = ResourcePool_AllocNode((uint)(0), flags, default(uint), default(uint));
             if ((n != 0u))
             {
                 new B12Node(n).refs_Set((int)(new B12Node(n).refs + 1));

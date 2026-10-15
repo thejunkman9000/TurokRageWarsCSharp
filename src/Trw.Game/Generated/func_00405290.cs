@@ -15,8 +15,8 @@ public static partial class Game
             {
                 return (-2);
             }
-            func_0026451C(1);
-            func_00263760();
+            Pad_TryAcquire(1);
+            Pad_ReadController_00263760();
             Mem.Set(0x8010FBB8u, (byte)(2));
             r = __osGetId((0x80153510u + (uint)(pad * 104)));
             if ((r != 0))

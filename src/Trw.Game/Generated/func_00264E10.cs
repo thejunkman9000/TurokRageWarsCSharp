@@ -32,7 +32,7 @@ public static partial class Game
                 if ((new B14Timer(o).f4 <= 0.0f))
                 {
                     new B14Timer(o).f4_Set((float)((float)(new B14Timer(o).f4) + new B14SrcDef(d).f4));
-                    new B14Timer(o).f8_Set(func_00274B00(((float)((int)(new B14SrcDef(d).b8)) * 0.00392156886f), ((float)((int)(new B14SrcDef(d).b9)) * 0.00392156886f)));
+                    new B14Timer(o).f8_Set(Random_Symmetric(((float)((int)(new B14SrcDef(d).b8)) * 0.00392156886f), ((float)((int)(new B14SrcDef(d).b9)) * 0.00392156886f)));
                 }
                 return 0;
             default:

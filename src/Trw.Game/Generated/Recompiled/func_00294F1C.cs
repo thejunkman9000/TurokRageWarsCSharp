@@ -42,7 +42,7 @@ public static partial class Game
                 r4 = r4 + 20616u;
                 r6 = 2148335616u;
                 r6 = r6 - 23028u;
-                r5 = r4 + 64u; r2 = func_00237E70(r4, r5, r6);
+                r5 = r4 + 64u; r2 = Hud_PostMessage(r4, r5, r6);
                 r2 = (uint)1;
                 Mem.Set((r16 + 20u), r2); goto L_L00294FB0;
                 L_L00294F98: ;
@@ -50,7 +50,7 @@ public static partial class Game
                 r4 = r4 + 20616u;
                 r6 = 2148335616u;
                 r6 = r6 - 23008u;
-                r5 = r4 + 64u; r2 = func_00237E70(r4, r5, r6);
+                r5 = r4 + 64u; r2 = Hud_PostMessage(r4, r5, r6);
                 L_L00294FB0: ;
                 r2 = 2148859904u;
                 r2 = r2 - 20816u;
@@ -285,7 +285,7 @@ public static partial class Game
                 func_002A94E8();
                 r1 = 2148335616u;
                 Cpu.SetW(20, Mem.U32((r1 - 22988u)));
-                func_002A9700();
+                Gfx_LoadTexImage16();
                 Cpu.SetS(12, Cpu.S(20));
                 Cpu.SetS(14, Cpu.S(20)); func_002ABB58(Cpu.S(12), Cpu.S(14));
                 r4 = (uint)255;

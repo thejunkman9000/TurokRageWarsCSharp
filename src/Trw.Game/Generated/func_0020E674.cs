@@ -61,7 +61,7 @@ public static partial class Game
                 new Vec3f((_fp + 16u)).y_Set(((new Vec3f(_fp).y + (new Vec3f((_fp + 32u)).y * dt)) + ay));
                 new Vec3f((_fp + 16u)).z_Set(((new Vec3f(_fp).z + (new Vec3f((_fp + 32u)).z * dt)) + az));
                 tt = dt;
-                if ((func_00244494(new B2Ctl(ctl).owner_, _fp, (_fp + 16u), 0x80103FD0u) != 0))
+                if ((Collision_RayCast(new B2Ctl(ctl).owner_, _fp, (_fp + 16u), 0x80103FD0u) != 0))
                 {
                     if (((uint)((new B2Hit(Mem.U32(0x80103FCCu)).type - 7)) >= (uint)(2)))
                     {
@@ -78,7 +78,7 @@ public static partial class Game
                     new Vec3f((_fp + 16u)).x_Set(((new Vec3f(_fp).x + (new Vec3f((_fp + 32u)).x * tt)) + ax));
                     new Vec3f((_fp + 16u)).y_Set(((new Vec3f(_fp).y + (new Vec3f((_fp + 32u)).y * tt)) + ay));
                     new Vec3f((_fp + 16u)).z_Set(((new Vec3f(_fp).z + (new Vec3f((_fp + 32u)).z * tt)) + az));
-                    if ((func_00244494(new B2Ctl(ctl).owner_, _fp, (_fp + 16u), 0x80103FD0u) != 0))
+                    if ((Collision_RayCast(new B2Ctl(ctl).owner_, _fp, (_fp + 16u), 0x80103FD0u) != 0))
                     {
                         if (((uint)((new B2Hit(Mem.U32(0x80103FCCu)).type - 7)) >= (uint)(2)))
                         {

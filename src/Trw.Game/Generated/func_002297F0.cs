@@ -23,7 +23,7 @@ public static partial class Game
                     f = 75.0f;
                 }
                 new Plr(a).unk11D8_Set(f);
-                func_00214178((a + (uint)744), (a + (uint)1112), 2);
+                Actor_DispatchEvent((a + (uint)744), (a + (uint)1112), 2);
                 if ((new Plr(a).unk1210 != 0))
                 {
                     if ((new Plr(a).unk5E4 != 0))

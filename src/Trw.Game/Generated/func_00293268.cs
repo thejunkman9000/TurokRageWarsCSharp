@@ -14,7 +14,7 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_00293268", (uint)g, (uint)a);
                 uint b = 0u;
-                if (!(func_0044DE70(0x8011FE88u, (-1), a, _fp, 1) != 0))
+                if (!(Track_FindPlacedObjects(0x8011FE88u, (-1), a, _fp, 1) != 0))
                 {
                     a = 0;
                 }

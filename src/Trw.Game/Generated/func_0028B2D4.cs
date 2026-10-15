@@ -15,7 +15,7 @@ public static partial class Game
             {
                 return 0u;
             }
-            @base = (func_0028FD94(new Level(lv).unk6C_, 0) + (uint)8);
+            @base = (Chunk_Get(new Level(lv).unk6C_, 0) + (uint)8);
             return (@base + (uint)((int)(Mem.U16(idx)) * 100));
         }
     }

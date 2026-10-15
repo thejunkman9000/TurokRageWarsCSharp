@@ -74,7 +74,7 @@ public static partial class Game
                 r7 = r0;
                 Mem.Set((r29 + 16u), r21);
                 Mem.Set((r29 + 20u), r3);
-                r5 = r17; r2 = (uint)func_0044252C(r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
+                r5 = r17; r2 = (uint)MenuSpinner_Step(r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
                 r17 = r2;
                 Mem.Set((r16 + 0u), (byte)r17); goto L_L004450FC;
                 L_L004450A0: ;
@@ -84,7 +84,7 @@ public static partial class Game
                 r7 = r0;
                 Mem.Set((r29 + 16u), r21);
                 Mem.Set((r29 + 20u), r19);
-                r5 = r17; r2 = (uint)func_0044252C(r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
+                r5 = r17; r2 = (uint)MenuSpinner_Step(r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
                 r17 = r2;
                 Mem.Set((r16 + 0u), r17); goto L_L004450FC;
                 L_L004450CC: ;
@@ -94,7 +94,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r21);
                 Cpu.SetW(2, (uint)(int)Cpu.S(0));
                 r5 = Cpu.W(2);
-                Mem.Set((r29 + 20u), r3); r2 = (uint)func_0044252C(r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
+                Mem.Set((r29 + 20u), r3); r2 = (uint)MenuSpinner_Step(r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
                 r17 = r2;
                 Cpu.SetW(0, r17);
                 Cpu.SetS(0, (float)(int)Cpu.W(0));
@@ -118,7 +118,7 @@ public static partial class Game
                 if (r2 == 0) { r2 = r0; goto L_L004451D4; }
                 r4 = 2148663296u;
                 r4 = Mem.U32((r4 - 268u));
-                r5 = r0; r2 = func_0028FD94(r4, (int)r5);
+                r5 = r0; r2 = Chunk_Get(r4, (int)r5);
                 r3 = r0;
                 r5 = Mem.U32((r2 + 4u));
                 { bool c_ = (int)r5 <= 0; r2 = r2 + 8u; if (c_) goto L_L004451D0; }

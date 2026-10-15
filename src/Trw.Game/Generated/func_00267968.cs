@@ -33,7 +33,7 @@ public static partial class Game
                     new Vec3f((_fp + 64u)).x_Set((float)(0));
                     new Vec3f((_fp + 64u)).y_Set((float)(0));
                     new Vec3f((_fp + 64u)).z_Set((float)(0));
-                    func_00280094(0x80121990u, obj, obj, (uint)(0), 0, 233, (_fp + 64u), (_fp + 80u), (_fp + 48u), 0, (-1), ((mode == 5) ? 3 : 1));
+                    Effect_SpawnFromTemplates(0x80121990u, obj, obj, (uint)(0), 0, 233, (_fp + 64u), (_fp + 80u), (_fp + 48u), 0, (-1), ((mode == 5) ? 3 : 1));
                     new Vec3f((_fp + 48u)).x_Set((float)(0));
                     new Vec3f((_fp + 48u)).y_Set((float)(0));
                     new Vec3f((_fp + 48u)).z_Set((float)(0));

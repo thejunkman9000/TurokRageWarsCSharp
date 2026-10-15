@@ -27,7 +27,7 @@ public static partial class Game
                             {
                                 who = p;
                             }
-                            func_002398F8(0x80145088u, who, (uint)(Mem.S32(new B01Slot((0x800D7F84u + (uint)(idx * 8))).a_)), (int)(actor), 4.0f);
+                            Hud_SpawnTextLineA(0x80145088u, who, (uint)(Mem.S32(new B01Slot((0x800D7F84u + (uint)(idx * 8))).a_)), (int)(actor), 4.0f);
                             if ((new B01Slot((0x800D7F84u + (uint)(new B01Info(info).unk18 * 8))).b != 0))
                             {
                                 func_0025E13C(new B01Slot((0x800D7F84u + (uint)(new B01Info(info).unk18 * 8))).b);

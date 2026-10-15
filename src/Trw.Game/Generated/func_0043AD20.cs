@@ -30,12 +30,12 @@ public static partial class Game
             func_0041B834(new O05L2(l).f4, idx, 1);
             for (i = 0; (i < 6); ++i)
             {
-                func_0040E958(func_0040ECB0(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E59EEu + (uint)(idx * 76))).w[(int)((i * 2))])), default(uint), default(uint)), 1);
+                func_0040E958(UiTree_FindNode(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E59EEu + (uint)(idx * 76))).w[(int)((i * 2))])), default(uint), default(uint)), 1);
             }
             g = 0x80146398u;
             func_0041F1B0((int)(Mem.S8((0x80146398u + (uint)((idx * 150) + 128)))));
             g = 0x80146398u;
-            func_0041CE80((new O05L2(Mem.U32(0x800E59E0u)).row.P + (uint)(idx * 1232)), (uint)(0), default(uint), default(uint));
+            MenuModel_SetWord49C_0041CE80((new O05L2(Mem.U32(0x800E59E0u)).row.P + (uint)(idx * 1232)), (uint)(0), default(uint), default(uint));
             if ((func_0043BC04() != 0))
             {
                 return 0;

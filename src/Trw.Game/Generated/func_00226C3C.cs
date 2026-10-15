@@ -46,9 +46,9 @@ public static partial class Game
                 new Vec4f((_fp + 16u)).y_Set(Mem.F32(0x80115DECu));
                 new Vec4f((_fp + 16u)).z_Set(0.0f);
                 new Vec4f((_fp + 16u)).w_Set(cosf(roll));
-                func_00274108((_fp + 64u), _fp, (_fp + 16u));
-                func_00274108((_fp + 80u), (_fp + 64u), (_fp + 48u));
-                func_00274108(@out, (_fp + 32u), (_fp + 80u));
+                Quat_Multiply((_fp + 64u), _fp, (_fp + 16u));
+                Quat_Multiply((_fp + 80u), (_fp + 64u), (_fp + 48u));
+                Quat_Multiply(@out, (_fp + 32u), (_fp + 80u));
             }
         }
         finally { Stack.Free(96); }

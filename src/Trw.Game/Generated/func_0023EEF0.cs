@@ -54,7 +54,7 @@ public static partial class Game
                 goto _f6;
                 _f4: ;
                 if (!(((int)(new M03CObj(o).type) == 3))) goto _f7;
-                if (!(((int)(func_002AC3F0(o, own, default(uint), default(uint))) != 0))) goto _f8;
+                if (!(((int)(Pickup_CanUse(o, own, default(uint), default(uint))) != 0))) goto _f8;
                 s4 = 1;
                 goto L_go;
                 _f8: ;

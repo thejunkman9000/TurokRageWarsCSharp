@@ -24,7 +24,7 @@ public static partial class Game
             if ((Mem.S32(0x80153F60u) == 0))
             {
                 func_00416F4C(9);
-                func_00415D10(aa, b, dd, Cpu.U2F((uint)(e)), (uint)(f), (uint)(g), (uint)(h), (uint)(i));
+                Ui_DrawClippedQuad(aa, b, dd, Cpu.U2F((uint)(e)), (uint)(f), (uint)(g), (uint)(h), (uint)(i));
             }
         }
     }

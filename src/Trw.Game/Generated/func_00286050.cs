@@ -53,7 +53,7 @@ public static partial class Game
             {
                 func_002285C4(0x80145040u);
             }
-            func_00236F0C(0x80145088u, (int)(ow));
+            View_UpdateAll(0x80145088u, (int)(ow));
             if (((new B19Owner(ow).f1B414 == 0) && (new B19Glo(0x80145088u).f180C == 0)))
             {
                 func_0028D658(ow);

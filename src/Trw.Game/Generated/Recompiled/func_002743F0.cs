@@ -40,7 +40,7 @@ public static partial class Game
                 Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
                 Cpu.SetS(12, Cpu.S(12) + Cpu.S(3));
                 Cpu.SetS(12, Cpu.S(12) + Cpu.S(2));
-                Cpu.SetS(12, Cpu.S(12) + Cpu.S(1)); Cpu.SetS(0, func_00274640(Cpu.S(12)));
+                Cpu.SetS(12, Cpu.S(12) + Cpu.S(1)); Cpu.SetS(0, Math_Acosf(Cpu.S(12)));
                 Cpu.SetW(4, r0);
                 Cpu.SetS(2, Cpu.S(0));
                 fcc = Cpu.S(2) == Cpu.S(4);
@@ -73,7 +73,7 @@ public static partial class Game
                 L_L002744D8: ;
                 r6 = r16;
                 r5 = Cpu.W(0);
-                r7 = r17; func_00270D40(r4, Cpu.U2F(r5), r6, r7);
+                r7 = r17; Quat_Blend(r4, Cpu.U2F(r5), r6, r7);
                 r2 = Mem.U32((r29 + 16u));
                 r3 = Mem.U32((r29 + 20u));
                 r8 = Mem.U32((r29 + 24u));

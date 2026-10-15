@@ -22,7 +22,7 @@ public static partial class Game
                 new M03Fx(a).hAC_Set(0);
                 new M03Fx(a).hB0_Set(0);
                 new M03Fx(a).hB4_Set(0);
-                new M03Fx(a).cls__Set(func_0028CF48(0x8011FE88u, (int)(new M03FxRecB(r).u2C)));
+                new M03Fx(a).cls__Set(Level_GetDefinition(0x8011FE88u, (int)(new M03FxRecB(r).u2C)));
                 new M03Fx(a).bE0_Set((byte)(16));
                 new M03Fx(a).wDC_Set(0);
                 new M03Fx(a).cls.w24_Set(Cpu.TruncU32((new M03Fx(a).cls.f8 * new M03Fx(a).cls.f8)));
@@ -32,7 +32,7 @@ public static partial class Game
                 Mem.Set((_fp + (uint)(2 * 4)), ((float)((int)(new M03FxRecB(r).q[(int)(2)])) * 0.00787401571f));
                 Mem.Set((_fp + (uint)(3 * 4)), ((float)((int)(new M03FxRecB(r).q[(int)(3)])) * 0.00787401571f));
                 func_00274214(_fp, default(uint), default(uint), default(uint));
-                func_002742B4(_fp, (_fp + 16u));
+                Quat_ToMatrix(_fp, (_fp + 16u));
                 func_002734EC((_fp + 16u), new M03FxRecB(r).sx, new M03FxRecB(r).sy, new M03FxRecB(r).sz);
                 func_002734B8((_fp + 16u), new M03FxRecB(r).pos.x, new M03FxRecB(r).pos.y, new M03FxRecB(r).pos.z);
                 func_00273DDC((_fp + 16u));
@@ -58,7 +58,7 @@ public static partial class Game
                     new M03Fx(a).wD4_Set(new M03FxRecB(r).w0);
                 }
                 func_0027302C(new M03Fx(a).m68.P, (_fp + 16u));
-                func_002702EC((_fp + 16u), new M03Fx(a).m28.P);
+                Math_MtxFloatToFixed((_fp + 16u), new M03Fx(a).m28.P);
                 Mem.Copy(new M03Fx(a).pos.P, new M03FxRecB(r).pos.P, 12);
                 if (((int)(new M03FxRecB(r).u2A) == 65535))
                 {

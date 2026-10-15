@@ -90,7 +90,7 @@ public static partial class Game
                         {
                             p = Mem.U32((uint)(new Q04Item(it).f14));
                         }
-                        v = func_00442460(p, fs, fs);
+                        v = Text_MeasureString(p, fs, fs);
                     }
                     else
                     {

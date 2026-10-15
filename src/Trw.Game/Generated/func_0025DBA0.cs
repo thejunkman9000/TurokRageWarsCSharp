@@ -13,12 +13,12 @@ public static partial class Game
             int i = 0;
             uint r = 0u;
             uint n = 0u;
-            i = func_00265508(new SndMgr(new SndSeq(s).owner_).unk2B60, new SndMgr(new SndSeq(s).owner_).unk2B64, (uint)(key));
+            i = Sprite_FindIndex(new SndMgr(new SndSeq(s).owner_).unk2B60, new SndMgr(new SndSeq(s).owner_).unk2B64, (uint)(key));
             if ((i != (-1)))
             {
                 i = (int)((int)(i) << (int)1);
-                r = func_0028FD94(new SndMgr(new SndSeq(s).owner_).node2B50, (i | 1));
-                n = func_0028FD94(new SndMgr(new SndSeq(s).owner_).node2B50, i);
+                r = Chunk_Get(new SndMgr(new SndSeq(s).owner_).node2B50, (i | 1));
+                n = Chunk_Get(new SndMgr(new SndSeq(s).owner_).node2B50, i);
                 new SndSeq(s).unk24_Set(new SndNodeRec(n).w0);
                 new SndSeq(s).unk30_Set(Trunc16ToF32(new SndNodeRec(n).h4));
                 if ((new SndSeq(s).unk30 <= 0.0f))

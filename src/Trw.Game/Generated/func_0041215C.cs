@@ -25,7 +25,7 @@ public static partial class Game
                 case 3:
                     if ((a != 0))
                     {
-                        func_004106F4(new S_func_0041215C(n).f2C_, (uint)(3), default(uint), default(uint));
+                        Texture_GetResourceId(new S_func_0041215C(n).f2C_, (uint)(3), default(uint), default(uint));
                     }
                     else
                     {

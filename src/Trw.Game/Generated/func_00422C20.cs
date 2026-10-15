@@ -44,7 +44,7 @@ public static partial class Game
                     break;
                 case 1:
                     func_0029A73C();
-                    if (((new O3Words(Mem.U32(0x800E4518u)).w[(int)(25)] == 0) && (func_0025E2E4() != 0)))
+                    if (((new O3Words(Mem.U32(0x800E4518u)).w[(int)(25)] == 0) && (Audio_IsSoundOn() != 0)))
                     {
                         r = Random_Next();
                         if ((r >= 0))
@@ -55,11 +55,11 @@ public static partial class Game
                         {
                             qq = (r + 3);
                         }
-                        func_0025E2F4(((r - ((qq >> (int)2) << (int)2)) + 56));
+                        Audio_PlayCue(((r - ((qq >> (int)2) << (int)2)) + 56));
                     }
                     else
                     {
-                        func_0025E2F4(new O3Words(Mem.U32(0x800E4518u)).w[(int)(25)]);
+                        Audio_PlayCue(new O3Words(Mem.U32(0x800E4518u)).w[(int)(25)]);
                     }
                     g = 0x80146894u;
                     Mem.Set(g, 0);
@@ -86,9 +86,9 @@ public static partial class Game
                         func_002A3304();
                         return 0;
                     }
-                    func_0044AFC0((g - (uint)6156), 0);
+                    CameraManager_Init((g - (uint)6156), 0);
                     func_0044A600((g - (uint)6228), 0, 0);
-                    func_00286A78(0x8011FE88u, (uint)(0), (uint)(0), default(uint));
+                    Level_Load(0x8011FE88u, (uint)(0), (uint)(0), default(uint));
                     func_0042E080(default(uint), default(uint), default(uint), default(uint));
                     break;
                 default:

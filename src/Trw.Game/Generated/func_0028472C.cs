@@ -29,11 +29,11 @@ public static partial class Game
             {
                 if (((new B19Obj(obj).parent.flags & (uint)(8192)) != 0u))
                 {
-                    func_00255C58(new B19Owner(owner).lb.P, obj);
+                    List_Add(new B19Owner(owner).lb.P, obj);
                 }
                 else
                 {
-                    func_00255CB4(new B19Owner(owner).lb.P, obj, default(uint), default(uint));
+                    List_Append_00255CB4(new B19Owner(owner).lb.P, obj, default(uint), default(uint));
                 }
             }
             new B19Obj(obj).flags_Set((uint)((uint)(new B19Obj(obj).flags) | (uint)(16777216)));

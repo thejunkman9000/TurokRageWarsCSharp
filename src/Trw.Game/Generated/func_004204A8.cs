@@ -26,11 +26,11 @@ public static partial class Game
             i = 0;
             do
             {
-                func_0040E958(func_0040ECB0((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new Q2IdRow((0x800E42D4u + (uint)(idx * 36))).c[(int)(i)].id)), default(uint), default(uint)), 1);
+                func_0040E958(UiTree_FindNode((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new Q2IdRow((0x800E42D4u + (uint)(idx * 36))).c[(int)(i)].id)), default(uint), default(uint)), 1);
                 ++i;
             }
             while ((i < 3));
-            it = func_0040ECB0((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new Q2IdRow((0x800E42D4u + (uint)(idx * 36))).b[(int)(new O3Pj(func_004204A8_pj(idx)).f18)].id)), default(uint), default(uint));
+            it = UiTree_FindNode((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new Q2IdRow((0x800E42D4u + (uint)(idx * 36))).b[(int)(new O3Pj(func_004204A8_pj(idx)).f18)].id)), default(uint), default(uint));
             func_0040E9A8(it, 0);
             new O3Hdr(it).alpha_Set((byte)(80));
             a = new O3Pj(func_004204A8_pj(idx)).f10;
@@ -47,12 +47,12 @@ public static partial class Game
                 {
                     do
                     {
-                        func_0040E958(func_0040ECB0((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new Q2IdRow((0x800E42D4u + (uint)(idx * 36))).c[(int)(i)].id)), default(uint), default(uint)), 0);
+                        func_0040E958(UiTree_FindNode((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new Q2IdRow((0x800E42D4u + (uint)(idx * 36))).c[(int)(i)].id)), default(uint), default(uint)), 0);
                         ++i;
                     }
                     while ((i < n));
                 }
-                it = func_0040ECB0((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new Q2IdRow((0x800E42D4u + (uint)(idx * 36))).b[(int)(new O3Pj(func_004204A8_pj(idx)).f18)].id)), default(uint), default(uint));
+                it = UiTree_FindNode((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new Q2IdRow((0x800E42D4u + (uint)(idx * 36))).b[(int)(new O3Pj(func_004204A8_pj(idx)).f18)].id)), default(uint), default(uint));
                 func_0040E9A8(it, 1);
                 new O3Hdr(it).alpha_Set((byte)(150));
             }

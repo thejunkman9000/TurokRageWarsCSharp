@@ -26,7 +26,7 @@ public static partial class Game
             }
             if ((!((Mem.U32((owner + (uint)1708)) & (uint)(16384)) != 0u) || (new Actor(owner).unk5E4 == 0)))
             {
-                func_00214178(actor, state, 2);
+                Actor_DispatchEvent(actor, state, 2);
                 func_0022B9B4(owner);
                 Mem.Set((state + (uint)316), 1);
             }

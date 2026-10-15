@@ -21,7 +21,7 @@ public static partial class Game
                     if (((n <= 0.0f) && !((Mem.U32(0x801462C8u) & (uint)(1)) != 0u)))
                     {
                         func_00216488(_fp, new Plr(a).unk13E0, (new Plr(a).unk174 + 6400), (int)Cpu.F2U(25.5999985f), 16384, 0);
-                        func_00219A40(a, (a + (uint)368), _fp, default(uint));
+                        Player_StateHandler(a, (a + (uint)368), _fp, default(uint));
                     }
                 }
             }

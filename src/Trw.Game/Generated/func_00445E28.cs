@@ -42,7 +42,7 @@ public static partial class Game
                 }
             }
             Mem.Set(0x800E63B8u, v);
-            func_0025E2F4(v);
+            Audio_PlayCue(v);
             return 0;
         }
     }

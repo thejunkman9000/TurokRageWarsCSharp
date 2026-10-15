@@ -20,7 +20,7 @@ public static partial class Game
             new O3M7D5(o).own__Set(own);
             new O3M7D5(o).h.id_Set((short)(31313));
             new O3M7D5(o).mode_Set(0);
-            func_0040EE64(new O3Own(own).child_, o, default(uint), default(uint));
+            UiTree_InsertBefore(new O3Own(own).child_, o, default(uint), default(uint));
             return new O3Own(own).cur__Set(o);
         }
     }

@@ -18,7 +18,7 @@ public static partial class Game
                 }
                 if ((new Player_v3(p).f658 > Mem.F32(0x800C7EA8u)))
                 {
-                    func_0044A4C0(p);
+                    Player_Respawn(p);
                 }
             }
         }

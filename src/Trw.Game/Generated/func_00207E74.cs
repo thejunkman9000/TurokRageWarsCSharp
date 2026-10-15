@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00207E74", (uint)actor, (uint)state);
             new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) | (uint)(8448)));
             Mem.Set(state, (uint)((uint)(Mem.U32(state)) | (uint)(131072)));
-            func_00214178(actor, state, 3);
+            Actor_DispatchEvent(actor, state, 3);
         }
     }
 

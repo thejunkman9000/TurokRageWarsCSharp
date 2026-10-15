@@ -49,7 +49,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029AE80", (uint)m);
-            int id = func_0029A958();
+            int id = Ui_PushScreen();
             int key = (((int)((ushort)(new SndMsg(m).type)) << (int)16) | (int)(new SndMsg(m).a));
             int c = (int)(new SndMsg(m).c);
             sbyte flag = (sbyte)((((int)(new SndMsg(m).e) == 1) ? 1 : 0));

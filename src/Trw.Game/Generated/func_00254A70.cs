@@ -10,10 +10,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00254A70", (uint)unused, (uint)n);
-            func_00255E78((new B12Mgr(0x80103F70u).lists.P + (uint)(0 * 20)), n, default(uint), default(uint));
+            List_Remove((new B12Mgr(0x80103F70u).lists.P + (uint)(0 * 20)), n, default(uint), default(uint));
             if (((new B12Node(n).flags & (uint)(4096)) != 0u))
             {
-                func_00255E78((new B12Mgr(0x80103F70u).lists.P + (uint)(1 * 20)), n, default(uint), default(uint));
+                List_Remove((new B12Mgr(0x80103F70u).lists.P + (uint)(1 * 20)), n, default(uint), default(uint));
             }
             if ((new B12Mgr(0x80103F70u).cur_ == n))
             {

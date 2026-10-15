@@ -26,7 +26,7 @@ public static partial class Game
             }
             else
             {
-                n = func_0028FD94((uint)(new B11Trk(s).nodeC), key);
+                n = Chunk_Get((uint)(new B11Trk(s).nodeC), key);
                 a = (n + (uint)(new B11Trk(s).unk10 * 4));
                 b = (n + (uint)(new B11Trk(s).unk14 * 4));
                 t = new B11Trk(s).t;

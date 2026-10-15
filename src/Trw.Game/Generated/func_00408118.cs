@@ -44,14 +44,14 @@ public static partial class Game
                             need = (int)(func_004057EC((uint)((Mem.S32(0x8011FECCu) + 1552))));
                         }
                         dst = new O01ItemF(item).unk14.buf_;
-                        func_00265904(new O01B4(_fp).c.P, 0x800E0DA4u, Mem.S32((_fp + 4u)), default(int));
+                        Str_Sprintf(new O01B4(_fp).c.P, 0x800E0DA4u, Mem.S32((_fp + 4u)), default(int));
                         dst = (uint)(dst + (uint)(14 * 1));
                         Mem.Set(dst, new O01B4(_fp).c[(int)(0)]);
                         dst += 1u;
                         Mem.Set(dst, new O01B4(_fp).c[(int)(1)]);
                         dst += 1u;
                         Mem.Set(dst, new O01B4(_fp).c[(int)(2)]);
-                        func_00265904(new O01B4(_fp).c.P, 0x800E0DA4u, need, default(int));
+                        Str_Sprintf(new O01B4(_fp).c.P, 0x800E0DA4u, need, default(int));
                         dst = (uint)(dst + (uint)(15 * 1));
                         Mem.Set(dst, new O01B4(_fp).c[(int)(0)]);
                         dst += 1u;
@@ -85,13 +85,13 @@ public static partial class Game
                     {
                         dst = (uint)(dst + (uint)(14 * 1));
                         fmt = 0x800E0DA4u;
-                        func_00265904(bp, fmt, Mem.S32((_fp + 4u)), default(int));
+                        Str_Sprintf(bp, fmt, Mem.S32((_fp + 4u)), default(int));
                         Mem.Set(dst, new O01B4(_fp).c[(int)(0)]);
                         dst += 1u;
                         Mem.Set(dst, new O01B4(_fp).c[(int)(1)]);
                         dst += 1u;
                         Mem.Set(dst, new O01B4(_fp).c[(int)(2)]);
-                        func_00265904(bp, 0x800E0DA4u, need, default(int));
+                        Str_Sprintf(bp, 0x800E0DA4u, need, default(int));
                         dst = (uint)(dst + (uint)(15 * 1));
                         Mem.Set(dst, new O01B4(_fp).c[(int)(0)]);
                         dst += 1u;

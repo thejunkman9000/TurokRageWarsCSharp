@@ -34,7 +34,7 @@ public static partial class Game
                 else
                 {
                     func_0027200C((_fp + 32u), (_fp + 32u), (one / len));
-                    ang = (func_00274640((((new Vec3f((_fp + 16u)).x * new Vec3f(_fp).x) + (new Vec3f((_fp + 16u)).y * new Vec3f(_fp).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f(_fp).z))) * Mem.F32(0x800CB01Cu));
+                    ang = (Math_Acosf((((new Vec3f((_fp + 16u)).x * new Vec3f(_fp).x) + (new Vec3f((_fp + 16u)).y * new Vec3f(_fp).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f(_fp).z))) * Mem.F32(0x800CB01Cu));
                     s = sinf(ang);
                     Mem.Set(0x80115DECu, s);
                     new Quat4f((_fp + 48u)).x_Set((new Vec3f((_fp + 32u)).x * s));

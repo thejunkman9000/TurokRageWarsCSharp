@@ -45,7 +45,7 @@ public static partial class Game
                 r16 = Mem.U16((r17 + 0u));
                 r2 = Mem.U16((r17 + 2u));
                 r16 = r16 << 16;
-                r16 = r16 | r2; r2 = (uint)func_0029A958();
+                r16 = r16 | r2; r2 = (uint)Ui_PushScreen();
                 r4 = r2;
                 r5 = (uint)17;
                 r7 = (uint)(int)Mem.S16((r17 + 12u));

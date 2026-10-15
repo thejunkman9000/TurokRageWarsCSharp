@@ -30,9 +30,9 @@ public static partial class Game
                         }
                         func_0040C4A8(0);
                         func_0040E958(cfg, 1);
-                        func_0044AFC0(0x80145088u, 0);
+                        CameraManager_Init(0x80145088u, 0);
                         func_0044A600((0x80145088u - (uint)(18 * 4)), 0, 0);
-                        func_00286A78(0x8011FE88u, (uint)(0), (uint)(0), default(uint));
+                        Level_Load(0x8011FE88u, (uint)(0), (uint)(0), default(uint));
                         Mem.Set((0x80145088u + (uint)((6128 / 4) * 4)), 8);
                         return 0;
                     }

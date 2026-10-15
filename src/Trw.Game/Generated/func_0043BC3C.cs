@@ -13,10 +13,10 @@ public static partial class Game
             uint x = 0u;
             if ((b != 5))
             {
-                x = func_0040ECB0((uint)(Mem.S32(Mem.U32(0x800E59E0u))), (uint)((int)(new O06Row((0x800E5A06u + (uint)(a * 76))).ent[(int)(b)].v)), default(uint), default(uint));
+                x = UiTree_FindNode((uint)(Mem.S32(Mem.U32(0x800E59E0u))), (uint)((int)(new O06Row((0x800E5A06u + (uint)(a * 76))).ent[(int)(b)].v)), default(uint), default(uint));
                 func_0040E958(x, 1);
             }
-            x = func_0040ECB0((uint)(Mem.S32(Mem.U32(0x800E59E0u))), (uint)((int)(new O06Row((0x800E5A1Au + (uint)(a * 76))).ent[(int)(b)].v)), default(uint), default(uint));
+            x = UiTree_FindNode((uint)(Mem.S32(Mem.U32(0x800E59E0u))), (uint)((int)(new O06Row((0x800E5A1Au + (uint)(a * 76))).ent[(int)(b)].v)), default(uint), default(uint));
             func_0040E9A8(x, 1);
             {
                 int off = (a * 1232);

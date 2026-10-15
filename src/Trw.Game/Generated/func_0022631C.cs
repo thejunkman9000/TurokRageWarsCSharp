@@ -46,7 +46,7 @@ public static partial class Game
                         func_00216488(_fp, (int)(new Plr(a).unk13D8_), 17920, (int)Cpu.F2U(25.5999985f), 128, 0);
                     }
                     new Plr(a).unk13D8__Set(0u);
-                    func_00219A40(a, (a + (uint)368), _fp, default(uint));
+                    Player_StateHandler(a, (a + (uint)368), _fp, default(uint));
                 }
             }
         }

@@ -22,7 +22,7 @@ public static partial class Game
                 L_func_002A2264: ;
                 r4 = 2148335616u;
                 r4 = r4 - 20688u;
-                r4 = 2148859904u; r2 = func_0040FC14(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = 2148859904u; r2 = Image_OpenArchives(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = Mem.U32((r4 - 11564u));
                 r1 = 2148335616u;
                 Cpu.SetW(1, Mem.U32((r1 - 20736u)));

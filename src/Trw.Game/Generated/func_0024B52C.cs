@@ -25,8 +25,8 @@ public static partial class Game
                 new Quat4(_fp).z_Set((float)(0));
                 Mem.Set(0x80115DECu, s);
                 new Quat4(_fp).w_Set(cosf((new Obj(a).unk6C.f * Mem.F32(0x800C8C40u))));
-                func_00274108((_fp + 16u), _fp, (_fp + 32u));
-                func_002742B4((_fp + 16u), new Obj(a).unk74.P);
+                Quat_Multiply((_fp + 16u), _fp, (_fp + 32u));
+                Quat_ToMatrix((_fp + 16u), new Obj(a).unk74.P);
                 func_002734EC(new Obj(a).unk74.P, new Obj(a).unk50, new Obj(a).unk54, new Obj(a).unk58);
                 func_002725BC(new Obj(a).pos.P, 2.0E+4f);
                 func_002734B8(new Obj(a).unk74.P, new Obj(a).pos.x, new Obj(a).pos.y, new Obj(a).pos.z);

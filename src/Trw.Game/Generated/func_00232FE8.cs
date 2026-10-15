@@ -21,7 +21,7 @@ public static partial class Game
                 Mem.Set((state + (uint)316), 1);
                 if (((func_002301E4(actor, state) == 0) && !((new Actor(actor).flags & (uint)(1024)) != 0u)))
                 {
-                    func_00214178(actor, state, kind);
+                    Actor_DispatchEvent(actor, state, kind);
                 }
             }
         }

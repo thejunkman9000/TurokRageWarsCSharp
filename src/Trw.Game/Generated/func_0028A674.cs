@@ -42,7 +42,7 @@ public static partial class Game
                     }
                     else
                     {
-                        new Level(lv).unk1B41C_Set(func_0044DE70(lv, (-1), v, new Level(lv).unk1B420.P, 1));
+                        new Level(lv).unk1B41C_Set(Track_FindPlacedObjects(lv, (-1), v, new Level(lv).unk1B420.P, 1));
                     }
                     new Level(lv).unk1B434_Set(new Level(lv).unk1B438);
                     if ((new Level(lv).unk1B41C != 0))
@@ -53,11 +53,11 @@ public static partial class Game
                     {
                         a1 = new Level(lv).unk1B438;
                     }
-                    func_00286A78(lv, (uint)(a1), (uint)(new Level(lv).unk1B41C), default(uint));
+                    Level_Load(lv, (uint)(a1), (uint)(new Level(lv).unk1B41C), default(uint));
                     g = 0x801462C8u;
                     if (((new Level(lv).unk1B44C != new G462(g).unk4) && (func_002934DC() != 0)))
                     {
-                        func_00239760((g - (uint)4672), (g - (uint)4608), (uint)(Mem.S32(0x800D7AC8u)), 4.0f);
+                        Hud_SpawnTextLineC((g - (uint)4672), (g - (uint)4608), (uint)(Mem.S32(0x800D7AC8u)), 4.0f);
                         new Level(lv).unk1B44C_Set(new G462(g).unk4);
                         return;
                     }

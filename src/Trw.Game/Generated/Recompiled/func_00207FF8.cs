@@ -70,7 +70,7 @@ public static partial class Game
                 r5 = r5 - 8128u;
                 Mem.Set((r16 + 568u), r0); func_0020986C(r4, r5);
                 r4 = r16;
-                r5 = (uint)2; r2 = (uint)func_00209874(r4, (int)r5);
+                r5 = (uint)2; r2 = (uint)Ai_SetState(r4, (int)r5);
                 Mem.Set((r16 + 580u), r0);
                 Cpu.SetW(0, Mem.U32((r16 + 580u)));
                 r4 = r16;

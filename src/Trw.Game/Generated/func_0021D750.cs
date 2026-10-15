@@ -34,7 +34,7 @@ public static partial class Game
                 {
                     if ((new B05Pawn(pw).unk24 == 1))
                     {
-                        func_00226DAC(p, (_fp + 64u));
+                        Actor_BuildModelMatrix(p, (_fp + 64u));
                         func_0022B134(p, (int)((_fp + 128u)));
                     }
                     else
@@ -45,14 +45,14 @@ public static partial class Game
                 }
                 else
                 {
-                    func_00226DAC(p, (_fp + 64u));
+                    Actor_BuildModelMatrix(p, (_fp + 64u));
                     func_0022B134(p, (int)((_fp + 128u)));
                 }
                 new Vec3f((_fp + 16u)).x_Set(0.0f);
                 new Vec3f((_fp + 16u)).y_Set(0.0f);
                 new Vec3f((_fp + 16u)).z_Set(Mem.F32(0x800C74ACu));
                 func_00272908((_fp + 64u), (_fp + 16u), (_fp + 48u));
-                if ((func_00244494(p, (_fp + 128u), (_fp + 48u), 0x80103FD0u) != 0))
+                if ((Collision_RayCast(p, (_fp + 128u), (_fp + 48u), 0x80103FD0u) != 0))
                 {
                     Mem.Copy(new B05P19(p).v1458.P, new B05Hit(Mem.U32(0x80103FCCu)).vE4.P, 12);
                     Mem.Copy(new B05P19(p).v1470.P, new B05Hit(Mem.U32(0x80103FCCu)).vF0.P, 12);
@@ -69,7 +69,7 @@ public static partial class Game
                 func_00272908((_fp + 64u), (_fp + 16u), (_fp + 48u));
                 if ((new B05P19(p).unk1210 != 0))
                 {
-                    if (((((func_00244494(p, (_fp + 128u), (_fp + 48u), 0x801040F0u) != 0) && ((h = new B05Hit(Mem.U32(0x80103FCCu)).tgt_) != 0u)) && ((int)(new B05Tgt(h).type) == 1)) && ((Mem.U32((h + (uint)256)) & (uint)(3145728)) != 0u)))
+                    if (((((Collision_RayCast(p, (_fp + 128u), (_fp + 48u), 0x801040F0u) != 0) && ((h = new B05Hit(Mem.U32(0x80103FCCu)).tgt_) != 0u)) && ((int)(new B05Tgt(h).type) == 1)) && ((Mem.U32((h + (uint)256)) & (uint)(3145728)) != 0u)))
                     {
                         func_00271FD8((_fp + 144u), new B05Tgt(h).pos.P, new B05P19(p).pos.P);
                         len = sqrtf((((new B05Quat((_fp + 144u)).x * new B05Quat((_fp + 144u)).x) + (new B05Quat((_fp + 144u)).y * new B05Quat((_fp + 144u)).y)) + (new B05Quat((_fp + 144u)).z * new B05Quat((_fp + 144u)).z)));

@@ -74,14 +74,14 @@ public static partial class Game
                 r16 = (uint)((int)r16 >> 16);
                 Cpu.SetW(20, r16);
                 Cpu.SetS(20, (float)(int)Cpu.W(20));
-                Cpu.SetS(14, Cpu.S(20)); Cpu.SetS(0, func_00274B00(Cpu.S(12), Cpu.S(14)));
+                Cpu.SetS(14, Cpu.S(20)); Cpu.SetS(0, Random_Symmetric(Cpu.S(12), Cpu.S(14)));
                 Cpu.SetW(1, r0);
                 fcc = Cpu.S(0) < Cpu.S(1);
                 { bool c_ = !fcc; Cpu.SetS(12, Cpu.S(21)); if (c_) goto L_L00259D90; }
-                Cpu.SetS(14, Cpu.S(20)); Cpu.SetS(0, func_00274B00(Cpu.S(12), Cpu.S(14)));
+                Cpu.SetS(14, Cpu.S(20)); Cpu.SetS(0, Random_Symmetric(Cpu.S(12), Cpu.S(14)));
                 Cpu.SetS(0, Cpu.S(20) - Cpu.S(0)); goto L_L00259D9C;
                 L_L00259D90: ;
-                Cpu.SetS(14, Cpu.S(20)); Cpu.SetS(0, func_00274B00(Cpu.S(12), Cpu.S(14)));
+                Cpu.SetS(14, Cpu.S(20)); Cpu.SetS(0, Random_Symmetric(Cpu.S(12), Cpu.S(14)));
                 Cpu.SetS(0, Cpu.S(20) + Cpu.S(0));
                 L_L00259D9C: ;
                 Cpu.SetW(3, (uint)(int)Cpu.S(0));

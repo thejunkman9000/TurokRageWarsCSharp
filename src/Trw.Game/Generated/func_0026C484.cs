@@ -21,7 +21,7 @@ public static partial class Game
                 int z = 0;
                 uint rec = 0u;
                 int k = 0;
-                t = func_002518DC(0, (uint)(a0), a0, (uint)(24), 0, (uint)(0), 0u, 0x800C975Cu, 1);
+                t = ResourceCache_Hash(0, (uint)(a0), a0, (uint)(24), 0, (uint)(0), 0u, 0x800C975Cu, 1);
                 if ((t != 0u))
                 {
                     x = func_0028FE08((uint)(Mem.S32(t)), a0, 1);
@@ -29,12 +29,12 @@ public static partial class Game
                     u = func_00254094(0, _fp, x, 0x800C9770u, 1);
                     if ((u != 0u))
                     {
-                        y = (int)(func_0028FE1C(Mem.U32(_fp), (uint)(x), (a3 % Mem.S32(Mem.U32(_fp))), (_fp + 4u)));
+                        y = (int)(Resource_GetCartridgeKey(Mem.U32(_fp), (uint)(x), (a3 % Mem.S32(Mem.U32(_fp))), (_fp + 4u)));
                         func_002536F4(0, u);
-                        v = func_002518DC(0, (uint)(y), y, (uint)(Mem.S32((_fp + 4u))), 0, (uint)(0), 0x0026D7F4u, 0x800C9784u, a5);
+                        v = ResourceCache_Hash(0, (uint)(y), y, (uint)(Mem.S32((_fp + 4u))), 0, (uint)(0), 0x0026D7F4u, 0x800C9784u, a5);
                         if ((v != 0u))
                         {
-                            z = (int)(func_0028FD94((uint)(Mem.S32(v)), 0));
+                            z = (int)(Chunk_Get((uint)(Mem.S32(v)), 0));
                             if ((((Mem.U32(0x8011064Cu) != v) || (Mem.S32(0x80110624u) != a4)) || (Mem.S32(0x80110640u) == 32)))
                             {
                                 func_0026BC60();

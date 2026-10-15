@@ -25,7 +25,7 @@ public static partial class Game
                 }
                 if ((new B2Ctl(ctl).unk2E4 == 0))
                 {
-                    n = (int)(func_002831FC(0x80121990u, new B2Ctl(ctl).owner_, default(uint), default(uint)));
+                    n = (int)(Hud_DrawAmmoPips(0x80121990u, new B2Ctl(ctl).owner_, default(uint), default(uint)));
                     if ((n == 3))
                     {
                         new B2Ctl(ctl).unk2E8_Set(n);

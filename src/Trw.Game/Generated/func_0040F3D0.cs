@@ -16,7 +16,7 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0040F3D0", (uint)n, (uint)c_in);
                 int pushed = 0;
                 Mem.Set(0x800E2AB8u, 0);
-                if ((func_0040E154((_fp + 88u), (_fp + 40u), n, (new O02Ctx(_fp).w.P + (uint)(0 * 4))) != 0))
+                if ((UiNode_ComputeRect((_fp + 88u), (_fp + 40u), n, (new O02Ctx(_fp).w.P + (uint)(0 * 4))) != 0))
                 {
                     if ((((int)(new O02Node_v2(n).flags) & 512) != 0))
                     {

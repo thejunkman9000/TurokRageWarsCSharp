@@ -67,7 +67,7 @@ public static partial class Game
                 }
                 if (((new M1State(state).f64 != 0.0f) && (new M1State(state).f64 <= new M1State(state).f40)))
                 {
-                    func_00214178(actor, state, 1);
+                    Actor_DispatchEvent(actor, state, 1);
                 }
             }
         }

@@ -82,7 +82,7 @@ public static partial class Game
                         }
                         else
                         {
-                            new S1Ctl(c).unk248_Set((func_0029D044(dy, hd) * 57.2957763f));
+                            new S1Ctl(c).unk248_Set((Math_Atan2(dy, hd) * 57.2957763f));
                         }
                         new S1Ctl(c).unk24C_Set(new S1Ctl(c).unk248);
                         new S1Ctl(c).unk270_Set(0);
@@ -103,7 +103,7 @@ public static partial class Game
                     }
                     else
                     {
-                        new S1Ctl(c).unk278_Set((func_0029D044(dy, hd) * 57.2957763f));
+                        new S1Ctl(c).unk278_Set((Math_Atan2(dy, hd) * 57.2957763f));
                     }
                     new S1Ctl(c).unk24C_Set(new S1Ctl(c).unk278);
                     if ((new S1Ctl(c).unk278 > 45.0f))
@@ -177,7 +177,7 @@ public static partial class Game
                 if ((new S1Ctl(c).unk268 < 21))
                 {
                     p = Mem.U32(0x801315F4u);
-                    t = func_0028FD94(p, 1);
+                    t = Chunk_Get(p, 1);
                     n = (int)(Mem.U32((t + (uint)(1 * 4))));
                     if ((func_00265570((t + (uint)(2 * 4)), n, (uint)(id), (_fp + 28u), (_fp + 32u)) == 0))
                     {
@@ -186,7 +186,7 @@ public static partial class Game
                         new S1Ctl(c).unk268_Set(0);
                         return 1;
                     }
-                    e = (func_0028FD94(p, 2) + (uint)8);
+                    e = (Chunk_Get(p, 2) + (uint)8);
                     e = (uint)(e + (uint)(Mem.S32((_fp + 28u)) * 60));
                     speed = func_00285600(new S1Elem(e).rec.speed.P);
                     grav = func_00285600(new S1Elem(e).rec.grav.P);

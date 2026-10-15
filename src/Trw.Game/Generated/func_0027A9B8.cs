@@ -88,8 +88,8 @@ public static partial class Game
                 {
                     k = Mem.F32(0x800C9CB0u);
                 }
-                func_00270D40((_fp + 64u), k, (_fp + 32u), (_fp + 48u));
-                func_002742B4((_fp + 64u), (_fp + 80u));
+                Quat_Blend((_fp + 64u), k, (_fp + 32u), (_fp + 48u));
+                Quat_ToMatrix((_fp + 64u), (_fp + 80u));
                 new Vec3f((_fp + 16u)).x_Set((float)(0));
                 new Vec3f((_fp + 16u)).y_Set((float)(0));
                 new Vec3f((_fp + 16u)).z_Set(Mem.F32(0x800C9CB4u));

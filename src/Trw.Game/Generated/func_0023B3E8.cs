@@ -60,7 +60,7 @@ public static partial class Game
                         new DlCmd(p_8).w0_Set(3808430593u);
                         new DlCmd(p_8).w1_Set((uint)(0));
                     }
-                    func_0026925C((uint)(13));
+                    Gfx_SetOtherModeL((uint)(13));
                     {
                         uint p_9 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
                         new DlCmd(p_9).w0_Set(3657038847u);
@@ -110,11 +110,11 @@ public static partial class Game
                     func_00285290((_fp + 16u), (uint)(nf), (uint)(4), 0x0023B968u, 0x0023B928u);
                     for (i = 0; (i < nn); ++i)
                     {
-                        func_0023A4D0(Mem.U32((_fp + (uint)(i * 4))), cam, default(uint), default(uint));
+                        Shadow_DrawDecal(Mem.U32((_fp + (uint)(i * 4))), cam, default(uint), default(uint));
                     }
                     for (i = 0; (i < nf); ++i)
                     {
-                        func_0023A4D0(Mem.U32(((_fp + 16u) + (uint)(i * 4))), cam, default(uint), default(uint));
+                        Shadow_DrawDecal(Mem.U32(((_fp + 16u) + (uint)(i * 4))), cam, default(uint), default(uint));
                     }
                 }
             }

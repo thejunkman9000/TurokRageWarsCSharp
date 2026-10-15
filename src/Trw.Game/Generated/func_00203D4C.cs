@@ -17,7 +17,7 @@ public static partial class Game
                 new Vec3f((_fp + 16u)).y_Set(new B01State(state).vec130.y);
                 new Vec3f((_fp + 16u)).z_Set(new B01State(state).vec130.z);
                 func_00202CA0(_fp, (_fp + 16u));
-                func_002742B4(_fp, m);
+                Quat_ToMatrix(_fp, m);
             }
         }
         finally { Stack.Free(28); }

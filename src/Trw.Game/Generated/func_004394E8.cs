@@ -23,14 +23,14 @@ public static partial class Game
                 Mem.Set((0x801462E0u + (uint)0), (byte)(t));
                 if (((int)((byte)(t)) >= 5))
                 {
-                    if ((func_0025E2E4() == 0))
+                    if ((Audio_IsSoundOn() == 0))
                     {
-                        func_0025E2F4(52);
+                        Audio_PlayCue(52);
                     }
                 }
                 else
                 {
-                    func_0025E2F4(0);
+                    Audio_PlayCue(0);
                 }
             }
             return 0;

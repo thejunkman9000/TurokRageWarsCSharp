@@ -17,11 +17,11 @@ public static partial class Game
                 uint owner = 0u;
                 if (((new Actor(actor).flags & (uint)(262144)) != 0u))
                 {
-                    p = func_002518DC(0, (uint)(Mem.S32((actor + (uint)196))), Mem.S32((actor + (uint)196)), (uint)(Mem.S32((actor + (uint)208))), 4, (uint)(0), (uint)(0), 0x800C7CB0u, 1);
+                    p = ResourceCache_Hash(0, (uint)(Mem.S32((actor + (uint)196))), Mem.S32((actor + (uint)196)), (uint)(Mem.S32((actor + (uint)208))), 4, (uint)(0), (uint)(0), 0x800C7CB0u, 1);
                     if ((p != 0u))
                     {
                         owner = new Actor(actor).owner_;
-                        func_0024B4E4(actor, (int)(func_0028FD94(Mem.U32((p + (uint)0)), 0)));
+                        func_0024B4E4(actor, (int)(Chunk_Get(Mem.U32((p + (uint)0)), 0)));
                         if ((arg1 != 0))
                         {
                             if ((Mem.U32((owner + (uint)1500)) != 0u))

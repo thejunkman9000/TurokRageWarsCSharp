@@ -16,12 +16,12 @@ public static partial class Game
             new O04ModeS5430(Mem.U32(0x800E5430u)).unk0_Set((int)(func_0041A300(920, 921)));
             func_0041A4FC((uint)(new O04ModeS5430(Mem.U32(0x800E5430u)).unk0));
             func_0041B190(924);
-            h = func_0040ECB0((uint)(a), (uint)(922), default(uint), default(uint));
+            h = UiTree_FindNode((uint)(a), (uint)(922), default(uint), default(uint));
             new O04ModeS5430(Mem.U32(0x800E5430u)).unk8__Set(h);
             new O04Sub2C(h).unk10_Set((byte)(15));
             new O04ModeS5430(Mem.U32(0x800E5430u)).unk4_Set((int)(func_00419ED4((uint)(923), (uint)(110), default(uint), default(uint))));
             new O04ModeS5430(Mem.U32(0x800E5430u)).unkC_Set(3);
-            new O04Sub2C(func_0040ECB0((uint)(a), (uint)(925), default(uint), default(uint))).unk38_Set((int)(new O04ModeS5430(Mem.U32(0x800E5430u)).unk14.P));
+            new O04Sub2C(UiTree_FindNode((uint)(a), (uint)(925), default(uint), default(uint))).unk38_Set((int)(new O04ModeS5430(Mem.U32(0x800E5430u)).unk14.P));
             new O04ModeS5430(Mem.U32(0x800E5430u)).unk20_Set(1);
             func_002A1C08(new O04ModeS5430(Mem.U32(0x800E5430u)).unk14.P, 0x800E1B60u, (uint)(1), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             return 0;

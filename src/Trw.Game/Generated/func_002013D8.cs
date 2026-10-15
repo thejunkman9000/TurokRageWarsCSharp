@@ -10,10 +10,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002013D8");
-            int mask = func_00200500();
+            int mask = Int_DisableMask();
             uint mem = 0u;
             uint k = 2147483648u;
-            func_002022E0(default(uint), default(uint), default(uint), default(uint));
+            Exception_InstallStubs(default(uint), default(uint), default(uint), default(uint));
             func_00200568(2986344432u, (uint)(0));
             func_00200568(2986344444u, (uint)(0));
             mem = Mem.U32((uint)(2147484440u));
@@ -28,7 +28,7 @@ public static partial class Game
                     Mem.Set((0x800D05E0u + (uint)(6 * 4)), (mem + 2684354560u));
                 }
             }
-            func_00200538(mask);
+            Int_RestoreMask(mask);
         }
     }
 

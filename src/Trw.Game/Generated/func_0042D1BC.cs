@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0042D1BC");
             new O04GFlags(0x801468A0u).unk78_Set(0);
             new O04GFlags(0x801468A0u).unk54_Set(0);
-            if (((func_0042B108() == 0) || (func_0042AEB8() == 0)))
+            if (((func_0042B108() == 0) || (MatchSetup_PickRandomArena() == 0)))
             {
                 func_00299368(20);
             }

@@ -17,11 +17,11 @@ public static partial class Game
             {
                 if ((new Obj(a).unkC4 != 0))
                 {
-                    h = func_002518DC(0, (uint)(new Obj(a).unkC4), new Obj(a).unkC4, (uint)(new Obj(a).unkD0), 0, (uint)(0), (uint)(0), (0x800C8AD0u + (uint)4), arg);
+                    h = ResourceCache_Hash(0, (uint)(new Obj(a).unkC4), new Obj(a).unkC4, (uint)(new Obj(a).unkD0), 0, (uint)(0), (uint)(0), (0x800C8AD0u + (uint)4), arg);
                 }
                 else
                 {
-                    h = func_002518DC(0, (uint)(new Obj(a).unkC4), new Obj(a).unkC4, (uint)(new Obj(a).unkD0), 0, (uint)(0), (uint)(0), (0x800C8AD0u + (uint)4), arg);
+                    h = ResourceCache_Hash(0, (uint)(new Obj(a).unkC4), new Obj(a).unkC4, (uint)(new Obj(a).unkD0), 0, (uint)(0), (uint)(0), (0x800C8AD0u + (uint)4), arg);
                 }
                 if ((h != 0u))
                 {
@@ -29,7 +29,7 @@ public static partial class Game
                     if ((p != 0u))
                     {
                         int t = Mem.S32(p);
-                        r = (int)(func_002484A0(a, (uint)(t), (uint)((int)(func_0028FD94((uint)(Mem.S32(h)), 0))), default(uint)));
+                        r = (int)(Actor_BuildPoseMatrices(a, (uint)(t), (uint)((int)(Chunk_Get((uint)(Mem.S32(h)), 0))), default(uint)));
                         func_002536F4(0, p);
                     }
                     func_002536F4(0, h);

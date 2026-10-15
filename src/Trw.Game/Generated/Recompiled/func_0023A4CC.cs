@@ -41,7 +41,7 @@ public static partial class Game
                 Mem.Set((r29 + 512u), Cpu.Fpr[22]);
                 Mem.Set((r29 + 504u), Cpu.Fpr[21]);
                 Mem.Set((r29 + 496u), Cpu.Fpr[20]);
-                r5 = (uint)-1; r2 = func_00296EC4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = (uint)-1; r2 = Material_Lookup(r4, r5, r6, r7); r3 = Cpu.V1;
                 { bool c_ = r2 == 0; Mem.Set((r29 + 428u), r2); if (c_) goto L_L0023AFA0; }
                 r4 = r2;
                 r5 = r29 + 40u; func_00296F7C(r4, r5);
@@ -103,7 +103,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), Cpu.W(7));
                 Cpu.SetW(7, (uint)(int)Cpu.S(0));
                 Mem.Set((r29 + 20u), Cpu.W(7));
-                r7 = r0; func_00295FB4(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u), (int)Mem.U32(r29 + 24u), (int)Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u));
+                r7 = r0; Texture_EmitLoad_00295FB4(r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u), (int)Mem.U32(r29 + 24u), (int)Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u));
                 r2 = Mem.U32((r29 + 48u));
                 r1 = 2148335616u;
                 Cpu.SetW(23, Mem.U32((r1 - 31068u)));
@@ -113,7 +113,7 @@ public static partial class Game
                 { bool c_ = (int)r2 < 0; r2 = (uint)((int)r2 < 2 ? 1 : 0); if (c_) goto L_L0023A658; }
                 { bool c_ = r2 != 0;  if (c_) goto L_L0023A6D4; }
                 L_L0023A658: ;
-                r4 = (uint)32; func_00268CE0(r4);
+                r4 = (uint)32; Gfx_SetCombineMode(r4);
                 r2 = Mem.U32((r18 + 0u));
                 r5 = r2;
                 r2 = r2 + 8u;
@@ -143,7 +143,7 @@ public static partial class Game
                 r2 = Mem.U8((r16 + 4u));
                 Mem.Set((r29 + 418u), (byte)r2); goto L_L0023A6F8;
                 L_L0023A6D4: ;
-                r4 = (uint)33; func_00268CE0(r4);
+                r4 = (uint)33; Gfx_SetCombineMode(r4);
                 r2 = (uint)255;
                 Mem.Set((r29 + 408u), (byte)r2);
                 Mem.Set((r29 + 409u), (byte)r2);

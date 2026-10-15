@@ -38,7 +38,7 @@ public static partial class Game
                 flags = (int)((int)(flags) | 1);
             }
             Mem.Set(0x80153790u, Mem.U16(((0x800E2A4Eu + (uint)(flags * 4)) + (uint)(mode * 32))));
-            func_0040BE38((uint)((int)(a0)), (uint)(a1), (uint)(a2), (uint)(a3), (uint)(e), (uint)(f));
+            Vi_EditMode((uint)((int)(a0)), (uint)(a1), (uint)(a2), (uint)(a3), (uint)(e), (uint)(f));
             if ((new O02CamList(0x801450A8u).cam.P != 0u))
             {
                 new O02CamList(0x801450A8u).cam.f29C_Set((float)(Mem.S32(0x800E28D0u)));

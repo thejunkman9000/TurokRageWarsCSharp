@@ -76,10 +76,10 @@ public static partial class Game
                 r4 = r22; func_00405F48(r4);
                 r2 = r0; goto L_L00407F40;
                 L_L00407844: ;
-                r4 = r29 + 48u; r2 = (uint)func_002A1238(r4);
+                r4 = r29 + 48u; r2 = (uint)Str_Length(r4);
                 r3 = (uint)4;
                 { bool c_ = r2 != r3; r3 = r0; if (c_) goto L_L004078A0; }
-                r4 = r29 + 40u; r2 = (uint)func_002A1238(r4);
+                r4 = r29 + 40u; r2 = (uint)Str_Length(r4);
                 r3 = (uint)2;
                 { bool c_ = r2 != r3; r3 = r0; if (c_) goto L_L004078A0; }
                 r5 = 2148335616u;

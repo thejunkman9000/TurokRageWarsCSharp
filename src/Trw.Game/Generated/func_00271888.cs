@@ -48,7 +48,7 @@ public static partial class Game
                 }
                 else
                 {
-                    ang = func_00274640((((new Vec3f((_fp + 16u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 16u)).y * new Vec3f((_fp + 32u)).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f((_fp + 32u)).z)));
+                    ang = Math_Acosf((((new Vec3f((_fp + 16u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 16u)).y * new Vec3f((_fp + 32u)).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f((_fp + 32u)).z)));
                     new Vec3f((_fp + 48u)).x_Set(((new Vec3f((_fp + 32u)).y * new Vec3f((_fp + 16u)).z) - (new Vec3f((_fp + 32u)).z * new Vec3f((_fp + 16u)).y)));
                     new Vec3f((_fp + 48u)).y_Set(((new Vec3f((_fp + 32u)).z * new Vec3f((_fp + 16u)).x) - (new Vec3f((_fp + 32u)).x * new Vec3f((_fp + 16u)).z)));
                     new Vec3f((_fp + 48u)).z_Set(((new Vec3f((_fp + 32u)).x * new Vec3f((_fp + 16u)).y) - (new Vec3f((_fp + 32u)).y * new Vec3f((_fp + 16u)).x)));

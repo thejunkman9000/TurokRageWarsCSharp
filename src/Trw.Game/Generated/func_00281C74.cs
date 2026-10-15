@@ -56,7 +56,7 @@ public static partial class Game
                                     {
                                         if ((((((((new B18Bnd(0x801031F0u).max.x > new B18Ob(o_2).pos.x) && (new B18Bnd(0x801031F0u).max.y > new B18Ob(o_2).pos.y)) && (new B18Bnd(0x801031F0u).max.z > new B18Ob(o_2).pos.z)) && (new B18Bnd(0x801031F0u).min.x <= new B18Ob(o_2).pos.x)) && (new B18Bnd(0x801031F0u).min.y <= new B18Ob(o_2).pos.y)) && (new B18Bnd(0x801031F0u).min.z <= new B18Ob(o_2).pos.z)) || ((int)(new B18Ob(o_2).type) == 1054)))
                                         {
-                                            func_0027B790(o_2, default(uint), default(uint), default(uint));
+                                            Particle_Update(o_2, default(uint), default(uint), default(uint));
                                             h = new B18Ob(o_2).handle_;
                                             if ((h != 0u))
                                             {
@@ -90,12 +90,12 @@ public static partial class Game
                                                         Mem.Set(new B18Ob(o_2).counter_, (int)((int)(Mem.S32(new B18Ob(o_2).counter_)) - 1));
                                                     }
                                                     new B18Ob(o_2).flags_Set((uint)((uint)(new B18Ob(o_2).flags) & 4261412607u));
-                                                    func_00255E78(new B18Ob(o_2).list, o_2, default(uint), default(uint));
+                                                    List_Remove(new B18Ob(o_2).list, o_2, default(uint), default(uint));
                                                     new B18Ob(o_2).list_Set(0u);
-                                                    func_00255C58(new B18W(w).listA.P, o_2);
+                                                    List_Add(new B18W(w).listA.P, o_2);
                                                     if (((new B18Ob(o_2).flags & (uint)(16777216)) != 0u))
                                                     {
-                                                        func_00255E78(new B18W(w).listB.P, o_2, default(uint), default(uint));
+                                                        List_Remove(new B18W(w).listB.P, o_2, default(uint), default(uint));
                                                     }
                                                 }
                                             }
@@ -152,12 +152,12 @@ public static partial class Game
                                                     Mem.Set(new B18Ob(o_2).counter_, (int)((int)(Mem.S32(new B18Ob(o_2).counter_)) - 1));
                                                 }
                                                 new B18Ob(o_2).flags_Set((uint)((uint)(new B18Ob(o_2).flags) & 4261412607u));
-                                                func_00255E78(new B18Ob(o_2).list, o_2, default(uint), default(uint));
+                                                List_Remove(new B18Ob(o_2).list, o_2, default(uint), default(uint));
                                                 new B18Ob(o_2).list_Set(0u);
-                                                func_00255C58(new B18W(w).listA.P, o_2);
+                                                List_Add(new B18W(w).listA.P, o_2);
                                                 if (((new B18Ob(o_2).flags & (uint)(16777216)) != 0u))
                                                 {
-                                                    func_00255E78(new B18W(w).listB.P, o_2, default(uint), default(uint));
+                                                    List_Remove(new B18W(w).listB.P, o_2, default(uint), default(uint));
                                                 }
                                             }
                                         }

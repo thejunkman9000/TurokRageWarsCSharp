@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A0180", (uint)a, (uint)b);
-            func_0029DE3C(a, a, b);
+            Math_MtxMultiply(a, a, b);
         }
     }
 

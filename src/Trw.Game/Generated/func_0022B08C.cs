@@ -22,7 +22,7 @@ public static partial class Game
                 }
                 else
                 {
-                    func_00226DAC(a, (_fp + 16u));
+                    Actor_BuildModelMatrix(a, (_fp + 16u));
                     p = (_fp + 16u);
                 }
                 func_00272908(p, pt, v);

@@ -86,7 +86,7 @@ public static partial class Game
                 dist = sqrtf((((new M5Vec3((_fp + 16u)).x * new M5Vec3((_fp + 16u)).x) + (new M5Vec3((_fp + 16u)).y * new M5Vec3((_fp + 16u)).y)) + (new M5Vec3((_fp + 16u)).z * new M5Vec3((_fp + 16u)).z)));
                 if (!((dist < Mem.F32(0x800C9C40u)))) goto _f7;
                 func_00271888((_fp + 80u), (_fp + 16u));
-                func_002742B4((_fp + 80u), (_fp + 96u));
+                Quat_ToMatrix((_fp + 80u), (_fp + 96u));
                 Mem.Set((_fp + 32u), 0);
                 Mem.Set(((_fp + 32u) + 4u), 0);
                 new M5Vec3((_fp + 32u)).z_Set(Mem.F32(0x800C9C44u));
@@ -116,8 +116,8 @@ public static partial class Game
                 _f12: ;
                 func_00274214((_fp + 64u), default(uint), default(uint), default(uint));
                 func_00274214((_fp + 48u), default(uint), default(uint), default(uint));
-                func_00270D40((_fp + 80u), w, (_fp + 48u), (_fp + 64u));
-                func_002742B4((_fp + 80u), (_fp + 96u));
+                Quat_Blend((_fp + 80u), w, (_fp + 48u), (_fp + 64u));
+                Quat_ToMatrix((_fp + 80u), (_fp + 96u));
                 Mem.Set((_fp + 32u), 0);
                 Mem.Set(((_fp + 32u) + 4u), 0);
                 new M5Vec3((_fp + 32u)).z_Set(Mem.F32(0x800C9C64u));

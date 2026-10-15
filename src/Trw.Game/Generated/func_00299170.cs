@@ -15,7 +15,7 @@ public static partial class Game
             int t = 0;
             uint ctx = 0u;
             uint e = 0u;
-            x = (int)(func_00411E4C(func_0029A958()));
+            x = (int)(func_00411E4C(Ui_PushScreen()));
             for (i = 0; (i < new SndMgr_v2(Mem.U32(0x8014D080u)).unk540); ++i)
             {
                 if (((((new SndCacheEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).unk53C_ + (uint)(i * 12))).unk8 == x) && (new SndCacheEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).unk53C_ + (uint)(i * 12))).id == id)) && (new SndCacheEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).unk53C_ + (uint)(i * 12))).ctx_ != 0u)) && ((int)(new SndCacheEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).unk53C_ + (uint)(i * 12))).ctx.id) == id)))
@@ -23,7 +23,7 @@ public static partial class Game
                     return new SndCacheEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).unk53C_ + (uint)(i * 12))).ctx_;
                 }
             }
-            ctx = func_0040ECB0((uint)(x), (uint)((id & 65535)), default(uint), default(uint));
+            ctx = UiTree_FindNode((uint)(x), (uint)((id & 65535)), default(uint), default(uint));
             t = (Mem.S32(0x8014D0A0u) + 1);
             Mem.Set(0x8014D0A0u, t);
             if ((Mem.S32(0x8014D09Cu) < t))

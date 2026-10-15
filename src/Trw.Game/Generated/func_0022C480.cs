@@ -22,18 +22,18 @@ public static partial class Game
                 {
                     if ((Mem.S32(0x800D297Cu) != 0))
                     {
-                        func_00226DAC(actor, (_fp + 80u));
+                        Actor_BuildModelMatrix(actor, (_fp + 80u));
                     }
                     else
                     {
-                        func_00226DAC(actor, (_fp + 80u));
+                        Actor_BuildModelMatrix(actor, (_fp + 80u));
                     }
                     func_00273340((_fp + 80u), (_fp + 64u));
                 }
                 func_00272848(_fp);
                 func_00273744(_fp, ((float)(Mem.S32(0x80145080u)) * Mem.F32(0x800C7E30u)));
                 func_002734B8(_fp, new Vec3f((_fp + 64u)).x, (new Vec3f((_fp + 64u)).y + Mem.F32(0x800C7E34u)), new Vec3f((_fp + 64u)).z);
-                func_002702EC(_fp, (actor + (uint)((Mem.S32(0x800D297Cu) * 64) + 5696)));
+                Math_MtxFloatToFixed(_fp, (actor + (uint)((Mem.S32(0x800D297Cu) * 64) + 5696)));
             }
         }
         finally { Stack.Free(144); }

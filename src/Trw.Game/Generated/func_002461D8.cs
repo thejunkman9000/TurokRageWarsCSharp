@@ -26,7 +26,7 @@ public static partial class Game
                 new Vec3f((_fp + 16u)).y_Set(new B10Obj(new_var2).fC);
                 new Vec3f((_fp + 16u)).z_Set(z);
                 s = Mem.S32((0x801040D0u + (uint)(0 * 4)));
-                func_00243A80((int)(new_var2), Cpu.U2F(Mem.U32((_fp + 16u) + 0u)), Cpu.U2F(Mem.U32((_fp + 16u) + 4u)), Cpu.U2F(Mem.U32((_fp + 16u) + 8u)), (int)(0x801040D0u));
+                Collision_MoveActor((int)(new_var2), Cpu.U2F(Mem.U32((_fp + 16u) + 0u)), Cpu.U2F(Mem.U32((_fp + 16u) + 4u)), Cpu.U2F(Mem.U32((_fp + 16u) + 8u)), (int)(0x801040D0u));
                 Mem.Set((0x801040D0u + (uint)(0 * 4)), s);
                 Mem.Copy(new B10Obj(new_var2).v1C.P, _fp, 12);
                 new B10Obj(new_var2).fC_Set((func_00275E44((uint)((int)(new B10Obj(new_var2).p14_)), Cpu.U2F((uint)(new B10Obj(new_var2).u8)), Cpu.U2F((uint)(new B10Obj(new_var2).u10))) + d));

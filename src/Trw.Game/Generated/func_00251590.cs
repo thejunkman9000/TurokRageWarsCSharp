@@ -17,7 +17,7 @@ public static partial class Game
                 uint next = 0u;
                 uint p = 0u;
                 uint r = 0u;
-                func_00255C40(_fp, 32, 36);
+                List_Init(_fp, 32, 36);
                 if ((((flag == 0) && (new B12Mgr(0x80103F70u).cur_ != 0u)) || (C.Seq((object?)(new B12Mgr(0x80103F70u).cur__Set(new B12Mgr(0x80103F70u).lists[(int)(1)].head_)), ((new B12Mgr(0x80103F70u).lists[(int)(1)].head_ != 0u) ? 1 : 0)) != 0)))
                 {
                     uint c = (0x80103F70u + 1528u);
@@ -29,14 +29,14 @@ public static partial class Game
                         new B12Cache(c).cur__Set(new B12Node(n).next_);
                         if ((!((new B12Node(n).flags & (uint)(1793)) != 0u) && ((Mem.U32(firstp) + (uint)(32)) < new B12Node(n).key)))
                         {
-                            func_00255ACC(heap, new B12Node(n).key, default(uint), default(uint));
-                            r = func_002558C0(heap, (uint)(new B12Node(n).unk4), default(uint), default(uint));
+                            Heap_Free(heap, new B12Node(n).key, default(uint), default(uint));
+                            r = Heap_Alloc(heap, (uint)(new B12Node(n).unk4), default(uint), default(uint));
                             if ((r < new B12Node(n).key))
                             {
                                 func_00265398(r, new B12Node(n).key, (int)((uint)(new B12Node(n).unk4)));
                                 new B12Node(n).key_Set(r);
-                                func_00255E78(new B12Cache(c).l1.P, n, default(uint), default(uint));
-                                func_00255CB4(_fp, n, default(uint), default(uint));
+                                List_Remove(new B12Cache(c).l1.P, n, default(uint), default(uint));
+                                List_Append_00255CB4(_fp, n, default(uint), default(uint));
                             }
                             if ((flag == 0))
                             {
@@ -52,7 +52,7 @@ public static partial class Game
                     do
                     {
                         next = new B12Node(n).next_;
-                        func_00255F10(_fp, default(uint), default(uint), default(uint));
+                        Cursor_Advance_00255F10(_fp, default(uint), default(uint), default(uint));
                         p = new B12Mgr(0x80103F70u).lists[(int)(1)].head_;
                         if ((p != 0u))
                         {
@@ -69,7 +69,7 @@ public static partial class Game
                         }
                         if (!(p != 0u))
                         {
-                            func_00255CB4((new B12Mgr(0x80103F70u).lists.P + (uint)(1 * 20)), n, default(uint), default(uint));
+                            List_Append_00255CB4((new B12Mgr(0x80103F70u).lists.P + (uint)(1 * 20)), n, default(uint), default(uint));
                         }
                         new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) | (uint)(4096)));
                         n = next;

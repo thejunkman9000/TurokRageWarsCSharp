@@ -175,7 +175,7 @@ public static partial class Game
                 Cpu.SetW(5, (uint)(int)Cpu.S(1));
                 r7 = Cpu.W(5);
                 r7 = r7 << 16;
-                r7 = (uint)((int)r7 >> 16); r2 = (uint)func_002ABC18((int)r4, (int)r5, (short)r6, (short)r7, Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), (int)Mem.U32(r29 + 24u));
+                r7 = (uint)((int)r7 >> 16); r2 = (uint)Sprite_Draw((int)r4, (int)r5, (short)r6, (short)r7, Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), (int)Mem.U32(r29 + 24u));
                 L_L002178D0: ;
                 r16 = r16 + 32u;
                 r17 = r17 - 1u;

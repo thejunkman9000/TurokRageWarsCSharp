@@ -13,16 +13,16 @@ public static partial class Game
             uint a = 0u;
             int off = 0;
             func_0041B768((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), idx, (int)(new O3IdRow((0x800E42D4u + (uint)(idx * 36))).e[(int)(0)].id));
-            a = func_0040ECB0((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new O3IdRow((0x800E42D4u + (uint)(idx * 36))).e[(int)(1)].id)), default(uint), default(uint));
+            a = UiTree_FindNode((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new O3IdRow((0x800E42D4u + (uint)(idx * 36))).e[(int)(1)].id)), default(uint), default(uint));
             off = (idx * 1224);
             new O3Pj((uint)(((int)(Mem.U32(0x800E42D0u)) + off))).f8_Set((int)(a));
-            a = func_0040ECB0((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new O3IdRow((0x800E42D4u + (uint)(idx * 36))).e[(int)(0)].id)), default(uint), default(uint));
+            a = UiTree_FindNode((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new O3IdRow((0x800E42D4u + (uint)(idx * 36))).e[(int)(0)].id)), default(uint), default(uint));
             new O3Sp((uint)(new O3Pj((uint)(((int)(Mem.U32(0x800E42D0u)) + off))).f8)).f14_Set((short)(((int)(new O3Sp(a).f14) - 2)));
             new O3Sp((uint)(new O3Pj((uint)(((int)(Mem.U32(0x800E42D0u)) + off))).f8)).f16_Set((short)(((int)(new O3Sp(a).f16) - 2)));
             func_0040E958((uint)(new O3Pj((uint)(((int)(Mem.U32(0x800E42D0u)) + off))).f8), 1);
             new O3Pj((uint)(((int)(Mem.U32(0x800E42D0u)) + off))).state_Set(1);
             func_004204A8(idx);
-            func_0040E958(func_0040ECB0((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new O3IdRow((0x800E42D4u + (uint)(idx * 36))).e[(int)(2)].id)), default(uint), default(uint)), 0);
+            func_0040E958(UiTree_FindNode((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new O3IdRow((0x800E42D4u + (uint)(idx * 36))).e[(int)(2)].id)), default(uint), default(uint)), 0);
         }
     }
 

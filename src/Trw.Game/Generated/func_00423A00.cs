@@ -13,11 +13,11 @@ public static partial class Game
             int s0 = 0;
             func_0029A73C();
             s0 = 1;
-            switch (func_0029AA08())
+            switch (Menu_GetMessage())
             {
             case 893:
                 func_002A338C();
-                func_0043C458(Mem.U32(0x800E4518u));
+                Menu_ShowScreen_0043C458(Mem.U32(0x800E4518u));
                 new O04ModeS4518(Mem.U32(0x800E4518u)).unk1C_Set(1);
                 new O04ModeS4518(Mem.U32(0x800E4518u)).unk60_Set((-1));
                 func_0040E958(new O04ModeS4518(Mem.U32(0x800E4518u)).unk44, 1);
@@ -29,7 +29,7 @@ public static partial class Game
                 break;
             case 894:
                 func_002A338C();
-                if ((func_0042AEB8() == 0))
+                if ((MatchSetup_PickRandomArena() == 0))
                 {
                     new O04ModeS4518(Mem.U32(0x800E4518u)).unk30_Set(5);
                     new O04ModeS4518(Mem.U32(0x800E4518u)).unk34_Set(4);
@@ -37,7 +37,7 @@ public static partial class Game
                 }
                 else
                 {
-                    func_0043C458(Mem.U32(0x800E4518u));
+                    Menu_ShowScreen_0043C458(Mem.U32(0x800E4518u));
                     new O04ModeS4518(Mem.U32(0x800E4518u)).unk1C_Set(1);
                     new O04ModeS4518(Mem.U32(0x800E4518u)).unk60_Set(0);
                 }

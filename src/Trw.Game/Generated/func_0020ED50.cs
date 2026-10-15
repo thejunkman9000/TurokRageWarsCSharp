@@ -25,7 +25,7 @@ public static partial class Game
                 {
                     return 1;
                 }
-                new B2Edge2(obj).unkC_Set((int)(func_0020BC50(m, (uint)(new B2Edge2(obj).src), (uint)(new B2Edge2(obj).dst), obj)));
+                new B2Edge2(obj).unkC_Set((int)(Ai_SelectPathNode(m, (uint)(new B2Edge2(obj).src), (uint)(new B2Edge2(obj).dst), obj)));
             }
             return 1;
         }

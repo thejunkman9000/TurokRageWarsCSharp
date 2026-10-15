@@ -15,13 +15,13 @@ public static partial class Game
             osCreateMesgQueue(new B12Ctx(c).q.P, new B12Ctx(c).qbuf.P, 512);
             osCreateMesgQueue(new B12Ctx(c).q2.P, new B12Ctx(c).q2buf.P, 1);
             osSetEventMesg((uint)(8), new B12Ctx(c).q2.P, (uint)(2001));
-            func_00255C40(new B12Ctx(c).freeList.P, 24, 28);
-            func_00255C40(new B12Ctx(c).usedList.P, 24, 28);
+            List_Init(new B12Ctx(c).freeList.P, 24, 28);
+            List_Init(new B12Ctx(c).usedList.P, 24, 28);
             for (i = 0, off = 3688; (i < 528); ++i, off = (int)((int)(off) + 32))
             {
                 uint n = (c + (uint)off);
                 new B12QNode(n).state_Set(0);
-                func_00255CB4(new B12Ctx(c).freeList.P, n, default(uint), default(uint));
+                List_Append_00255CB4(new B12Ctx(c).freeList.P, n, default(uint), default(uint));
             }
             memset(new B12Ctx(c).stack.P, id, (uint)(1024));
             osCreateThread(new B12Ctx(c).thread.P, id, 0x0025651Cu, c, new B12Ctx(c).nodes.P, Mem.S32(0x800D2B34u));

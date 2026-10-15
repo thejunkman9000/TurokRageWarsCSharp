@@ -15,11 +15,11 @@ public static partial class Game
             int i = 0;
             int count = 0;
             int r = 0;
-            n = func_0028FD94(Mem.U32(p), 2);
+            n = Chunk_Get(Mem.U32(p), 2);
             count = Mem.S32((n + (uint)(0 * 4)));
             for (i = 0; (i < count); ++i)
             {
-                c = func_0028FD94(func_0028FD94(n, i), 0);
+                c = Chunk_Get(Chunk_Get(n, i), 0);
                 if ((Mem.S32((c + (uint)(2 * 4))) != 0))
                 {
                     r = (int)(func_00296E04((c + (uint)(2 * 4)), (uint)((-1)), default(uint), default(uint)));

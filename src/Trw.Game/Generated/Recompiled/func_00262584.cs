@@ -24,9 +24,9 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r31);
                 r2 = (uint)func_002604BC(r4);
                 r4 = r2;
-                r5 = (uint)3; r2 = func_0028FD94(r4, (int)r5);
+                r5 = (uint)3; r2 = Chunk_Get(r4, (int)r5);
                 r4 = r2;
-                r5 = r0; r2 = func_0028FD94(r4, (int)r5);
+                r5 = r0; r2 = Chunk_Get(r4, (int)r5);
                 r31 = Mem.U32((r29 + 16u));
                 r29 = r29 + 24u; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;

@@ -49,7 +49,7 @@ public static partial class Game
                         if (((new B12Msg(Mem.U32(_fp)).flags & (uint)(8)) != 0u))
                         {
                             new B12Msg(Mem.U32(_fp)).flags_Set((uint)((uint)(new B12Msg(Mem.U32(_fp)).flags) & (uint)((~8))));
-                            if ((func_0025519C(0x8010A248u, Mem.U32(_fp), new B12Mgr(0x80103F70u).q870.P) != 0))
+                            if ((MsgPort_Send(0x8010A248u, Mem.U32(_fp), new B12Mgr(0x80103F70u).q870.P) != 0))
                             {
                                 continue;
                             }
@@ -63,8 +63,8 @@ public static partial class Game
                             {
                                 __osRestoreInt(mask);
                             }
-                            func_00255E78((new B12Mgr(0x80103F70u).lists3.P + (uint)(2 * 20)), Mem.U32(_fp), default(uint), default(uint));
-                            func_00255C58((new B12Mgr(0x80103F70u).lists3.P + (uint)(1 * 20)), Mem.U32(_fp));
+                            List_Remove((new B12Mgr(0x80103F70u).lists3.P + (uint)(2 * 20)), Mem.U32(_fp), default(uint), default(uint));
+                            List_Add((new B12Mgr(0x80103F70u).lists3.P + (uint)(1 * 20)), Mem.U32(_fp));
                             p = new B12Msg(Mem.U32(_fp)).node_;
                             new B12Node(p).flags_Set((uint)((uint)(new B12Node(p).flags) & (uint)((~2))));
                             while ((new B12Node(p).refs != 0))
@@ -78,7 +78,7 @@ public static partial class Game
                             if (!((new B12Node(p).flags & (uint)(1794)) != 0u))
                             {
                                 func_00254D70(0, p);
-                                func_00255ACC(0x801051A0u, (uint)((int)(new B12Node(p).key)), default(uint), default(uint));
+                                Heap_Free(0x801051A0u, (uint)((int)(new B12Node(p).key)), default(uint), default(uint));
                                 func_00254A70(0, p);
                             }
                             func_00254E28((uint)(0), Mem.U32(_fp));
@@ -106,7 +106,7 @@ public static partial class Game
                             {
                                 __osRestoreInt(mask);
                             }
-                            func_00252714((uint)(0), Mem.U32(_fp), (uint)(1), default(uint));
+                            Resource_ActivateLoadRequest((uint)(0), Mem.U32(_fp), (uint)(1), default(uint));
                             m2 = __osDisableInt();
                             if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
                             {

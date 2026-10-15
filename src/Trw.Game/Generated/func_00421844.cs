@@ -17,7 +17,7 @@ public static partial class Game
             new O3Pm(Mem.U32(0x800E4400u)).timer_Set(t);
             if ((t <= 0))
             {
-                a = func_0040ECB0(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(952), default(uint), default(uint));
+                a = UiTree_FindNode(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(952), default(uint), default(uint));
                 new O3Pm(Mem.U32(0x800E4400u)).item.f16_Set((short)(((int)(new O3Pm(Mem.U32(0x800E4400u)).item.f16) - 1)));
                 it = new O3Pm(Mem.U32(0x800E4400u)).item_;
                 if ((((int)(new O3Spr(it).f16) + (int)(new O3Spr(a).f1A)) < 0))

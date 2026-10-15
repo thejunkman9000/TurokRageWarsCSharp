@@ -49,7 +49,7 @@ public static partial class Game
                 }
                 func_0040E958(new Q2Lb(Mem.U32(0x800E4518u)).w48, 1);
                 func_0040E958(new Q2Lb(Mem.U32(0x800E4518u)).w40, 1);
-                func_0029A1D4((uint)(893), default(uint), default(uint), default(uint));
+                Menu_MoveFocus((uint)(893), default(uint), default(uint), default(uint));
             }
             switch (new Q2Lb(Mem.U32(0x800E4518u)).state)
             {
@@ -75,9 +75,9 @@ public static partial class Game
                     q = 0x80146894u;
                     Mem.Set((q + (uint)(0 * 4)), 0);
                     new Q2Lb(Mem.U32(0x800E4518u)).state_Set(3);
-                    func_0044AFC0((q - (uint)6156), 0);
+                    CameraManager_Init((q - (uint)6156), 0);
                     func_0044A600((q - (uint)6228), 0, 0);
-                    func_00286A78(0x8011FE88u, (uint)(0), (uint)(0), default(uint));
+                    Level_Load(0x8011FE88u, (uint)(0), (uint)(0), default(uint));
                     if ((func_0025471C() == 0))
                     {
                         func_0025470C(1);

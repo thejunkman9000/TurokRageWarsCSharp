@@ -17,7 +17,7 @@ public static partial class Game
             Mem.Set((state + 292u), v);
             if ((lim <= v))
             {
-                func_00214178(actor, state, 2);
+                Actor_DispatchEvent(actor, state, 2);
             }
         }
     }

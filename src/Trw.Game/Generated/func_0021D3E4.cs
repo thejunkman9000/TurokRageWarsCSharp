@@ -52,7 +52,7 @@ public static partial class Game
                 zero = 0.0f;
                 func_00273424((_fp + 96u), zero, zero, Mem.F32(0x800CF1B4u));
                 func_002734EC((_fp + 96u), 0.0500000007f, 1.0f, (Mem.F32(0x800CF1B4u) - func_00272768((_fp + 16u), _fp)));
-                func_002702EC((_fp + 96u), (p + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 5248)));
+                Math_MtxFloatToFixed((_fp + 96u), (p + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 5248)));
                 Mem.Copy((_fp + 64u), (p + (uint)5220), 12);
                 cm = Mem.U32((p + (uint)1500));
                 if ((cm != 0u))
@@ -77,19 +77,19 @@ public static partial class Game
                 t = (-func_00272768((_fp + 80u), (p + (uint)5220)));
                 k = Mem.F32(0x800C749Cu);
                 func_002734EC((_fp + 96u), k, k, t);
-                func_002702EC((_fp + 96u), (p + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 5376)));
+                Math_MtxFloatToFixed((_fp + 96u), (p + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 5376)));
                 if ((v2 != 0u))
                 {
                     Mem.Copy((_fp + 32u), v2, 12);
                     func_00271888((_fp + 160u), (_fp + 32u));
-                    func_002742B4((_fp + 160u), (_fp + 96u));
-                    func_00273860((_fp + 96u), 1.57079649f);
+                    Quat_ToMatrix((_fp + 160u), (_fp + 96u));
+                    Math_MtxRotateRowsC_00273860((_fp + 96u), 1.57079649f);
                     func_002720EC((_fp + 32u));
                     func_0027200C((_fp + 32u), (_fp + 32u), 2.0480001f);
                     func_00271FA4((_fp + 16u), (_fp + 16u), (_fp + 32u));
                     func_002734B8((_fp + 96u), new Vec3f(_fp).x, new Vec3f(_fp).y, new Vec3f(_fp).z);
                     func_002734EC((_fp + 96u), Mem.F32(0x800C74A0u), k, Mem.F32(0x800C74A0u));
-                    func_002702EC((_fp + 96u), (p + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 5504)));
+                    Math_MtxFloatToFixed((_fp + 96u), (p + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 5504)));
                 }
                 Mem.Set((p + (uint)4628), 1);
             }

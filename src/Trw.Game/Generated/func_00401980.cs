@@ -84,7 +84,7 @@ public static partial class Game
                         Mem.Copy((_fp + 48u), s3, 80);
                         Mem.Copy(new Q01Obj_v2(s3).pos.P, (_fp + 16u), 12);
                         func_00288440(0x8011FE88u);
-                        r = func_00243A80((int)(s3), Cpu.U2F(Mem.U32(_fp + 0u)), Cpu.U2F(Mem.U32(_fp + 4u)), Cpu.U2F(Mem.U32(_fp + 8u)), (int)(0x80104030u));
+                        r = Collision_MoveActor((int)(s3), Cpu.U2F(Mem.U32(_fp + 0u)), Cpu.U2F(Mem.U32(_fp + 4u)), Cpu.U2F(Mem.U32(_fp + 8u)), (int)(0x80104030u));
                         func_0028D864(0x8011FE88u);
                         Mem.Copy(s3, (_fp + 48u), 80);
                         if ((r != 0))

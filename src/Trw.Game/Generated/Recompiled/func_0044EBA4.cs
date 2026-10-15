@@ -50,13 +50,13 @@ public static partial class Game
                 r4 = (uint)38312;
                 r4 = r18 + r4;
                 r5 = r0;
-                r6 = (uint)4; func_00255C40(r4, (int)r5, (int)r6);
+                r6 = (uint)4; List_Init(r4, (int)r5, (int)r6);
                 r16 = r0;
                 r17 = (uint)38112;
                 L_L0044EC3C: ;
                 r4 = r18 + r17;
                 r5 = r0;
-                r6 = (uint)4; func_00255C40(r4, (int)r5, (int)r6);
+                r6 = (uint)4; List_Init(r4, (int)r5, (int)r6);
                 r16 = r16 + 1u;
                 r2 = (uint)((int)r16 < 10 ? 1 : 0);
                 { bool c_ = r2 != 0; r17 = r17 + 20u; if (c_) goto L_L0044EC3C; }
@@ -65,7 +65,7 @@ public static partial class Game
                 r17 = (uint)30112;
                 L_L0044EC68: ;
                 r4 = r18 + r19;
-                r5 = r18 + r17; r2 = func_00255CB4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r18 + r17; r2 = List_Append_00255CB4(r4, r5, r6, r7); r3 = Cpu.V1;
                 r16 = r16 + 1u;
                 r2 = (uint)((int)r16 < 100 ? 1 : 0);
                 { bool c_ = r2 != 0; r17 = r17 + 80u; if (c_) goto L_L0044EC68; }

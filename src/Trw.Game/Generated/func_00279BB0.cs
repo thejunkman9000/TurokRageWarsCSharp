@@ -62,7 +62,7 @@ public static partial class Game
                 new Vec3f((_fp + 32u)).z_Set((float)(0));
                 func_002737D0((_fp + 112u), new ActorX(a).f188);
                 func_00272908((_fp + 112u), (_fp + 32u), (_fp + 48u));
-                p = func_0027D950(a, (uint)(0), default(uint), default(uint));
+                p = Actor_GetSharedEffect_0027D950(a, (uint)(0), default(uint), default(uint));
                 if ((p != 0u))
                 {
                     func_00272908(p, (_fp + 48u), (_fp + 64u));
@@ -76,7 +76,7 @@ public static partial class Game
                 Mem.Copy((_fp + 80u), (_fp + 96u), 12);
                 Mem.Set(0x80103FCCu, 0x801041F0u);
                 L_L: ;
-                func_00280094(0x80121990u, a, new ActorX(a).tgt_, (uint)(new ActorX(a).u130), (int)(new ActorX(a).p134_), a1, (_fp + 16u), _fp, (_fp + 80u), 0, a2, (int)(((uint)(a3) | (new ActorX(a).u5C & (uint)(2097158)))));
+                Effect_SpawnFromTemplates(0x80121990u, a, new ActorX(a).tgt_, (uint)(new ActorX(a).u130), (int)(new ActorX(a).p134_), a1, (_fp + 16u), _fp, (_fp + 80u), 0, a2, (int)(((uint)(a3) | (new ActorX(a).u5C & (uint)(2097158)))));
             }
         }
         finally { Stack.Free(440); }

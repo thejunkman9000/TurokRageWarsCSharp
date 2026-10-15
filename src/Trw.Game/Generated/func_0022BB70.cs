@@ -27,7 +27,7 @@ public static partial class Game
                     new Plr(a).unk3_Set(new Plr(a).stats.unk81);
                 }
             }
-            func_0028B250(0x8011FE88u, a, k, new Plr(a).unk86C);
+            Sound_StartForActor(0x8011FE88u, a, k, new Plr(a).unk86C);
         }
     }
 

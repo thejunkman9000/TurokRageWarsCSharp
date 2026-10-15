@@ -17,7 +17,7 @@ public static partial class Game
             }
             else
             {
-                switch (func_0029AA08())
+                switch (Menu_GetMessage())
                 {
                 case 940:
                     func_0041A4B0(new O3Pm(Mem.U32(0x800E4400u)).bar_, 2);

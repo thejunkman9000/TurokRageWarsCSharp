@@ -5,11 +5,11 @@ namespace Trw.Game.PortHud;
 
 /// <summary>
 /// Marks the display-list commands the game's HUD code produced (<see cref="DrawCommand.Hud"/>), without touching any game function or guest memory.
-/// <para>How the HUD is drawn (decompiled C): the per-frame race update func_00236F0C walks the cameras (the split-screen views, list at 0x801450A8) and
-/// for each one runs the world pass (func_802362E8: loads the camera's 3D projection, camera + 0x380 + 0x40 * frame parity), then func_00233C78 -&gt;
-/// func_0022A37C, which emits <c>G_MTX(projection, load)</c> of the camera's 2D projection at camera + 0x448 + 0x40 * parity (func_0023941C) and then runs
-/// the HUD of that view's player (func_0021EED8: crosshair, ammo, health, flash, counters, frags, ...), the on-screen messages (func_00238304) and the
-/// view's 2-pixel frame. After the last view the "own racer" at 0x80145000 gets the same treatment (the shared pass: the match clock func_00228AD0).
+/// <para>How the HUD is drawn (decompiled C): the per-frame race update View_UpdateAll walks the cameras (the split-screen views, list at 0x801450A8) and
+/// for each one runs the world pass (func_802362E8: loads the camera's 3D projection, camera + 0x380 + 0x40 * frame parity), then Hud_DrawViewOverlay -&gt;
+/// Hud_DrawView2D, which emits <c>G_MTX(projection, load)</c> of the camera's 2D projection at camera + 0x448 + 0x40 * parity (Camera_LoadProjection2D) and then runs
+/// the HUD of that view's player (Hud_DrawPlayer: crosshair, ammo, health, flash, counters, frags, ...), the on-screen messages (Hud_DrawMessages) and the
+/// view's 2-pixel frame. After the last view the "own racer" at 0x80145000 gets the same treatment (the shared pass: the match clock Hud_DrawMatchClock).
 /// No other code loads a projection from those offsets.</para>
 /// <para>So the interpreter tags every draw after such a projection load with the view's index + 1 (<see cref="Shared"/> for the shared pass) until the
 /// next projection load that is a camera's 3D projection (the next view's world pass) or the end of the list. Projections from anywhere else (models

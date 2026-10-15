@@ -21,7 +21,7 @@ public static partial class Game
             L_L: ;
             return 1;
             _f2: ;
-            func_002106E0(new BrainB(b).actor_, (uint)(new BrainB(b).step), default(uint), default(uint));
+            Ai_ProbeRay_002106E0(new BrainB(b).actor_, (uint)(new BrainB(b).step), default(uint), default(uint));
             func_00210964(new BrainB(b).actor_, (uint)(new BrainB(b).step), default(uint), default(uint));
             new BrainB(b).step_Set((int)(new BrainB(b).step + 1));
             return 0;

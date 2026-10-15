@@ -41,7 +41,7 @@ public static partial class Game
                 Mem.Copy((o + (uint)80), (_fp + 16u), 12);
                 Mem.Copy(new B10Obj(o).v1C.P, (_fp + 32u), 12);
                 new B10Obj(o).hE4_Set((ushort)(type2));
-                func_0024D860((_fp + 48u), o, default(uint), default(uint));
+                Player_GetBodyLean((_fp + 48u), o, default(uint), default(uint));
                 Mem.Copy((o + 92u), (_fp + 48u), 16);
                 new B10Obj(o).f70_Set((float)(0));
                 new B10Obj(o).bE6_Set((sbyte)(0));

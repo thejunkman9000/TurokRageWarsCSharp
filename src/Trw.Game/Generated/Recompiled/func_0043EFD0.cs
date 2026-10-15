@@ -67,7 +67,7 @@ public static partial class Game
                 Mem.Set((r1 + 24176u), r3);
                 Cpu.SetW(2, (uint)(int)Cpu.S(0));
                 r4 = Cpu.W(2);
-                r2 = func_002AA224(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = Gfx_BeginFlatColorPass(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = 3808428032u;
                 L_L0043F0AC: ;
                 r7 = 2148597760u;
@@ -126,7 +126,7 @@ public static partial class Game
                 Mem.Set((r29 + 24u), r2);
                 Mem.Set((r29 + 20u), Cpu.W(0));
                 r4 = Mem.U32((r19 + 20u));
-                r5 = r0; r2 = (uint)func_002ABC18((int)r4, (int)r5, (short)r6, (short)r7, Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), (int)Mem.U32(r29 + 24u));
+                r5 = r0; r2 = (uint)Sprite_Draw((int)r4, (int)r5, (short)r6, (short)r7, Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), (int)Mem.U32(r29 + 24u));
                 r31 = Mem.U32((r29 + 48u));
                 r19 = Mem.U32((r29 + 44u));
                 r18 = Mem.U32((r29 + 40u));

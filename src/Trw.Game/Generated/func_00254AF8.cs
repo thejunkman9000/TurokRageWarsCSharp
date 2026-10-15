@@ -15,7 +15,7 @@ public static partial class Game
             {
                 v = 0;
             }
-            return (int)(func_002512C8((uint)(0), (uint)(2), (uint)(v), (uint)(a3)));
+            return (int)(ResourcePool_ReclaimNode((uint)(0), (uint)(2), (uint)(v), (uint)(a3)));
         }
     }
 

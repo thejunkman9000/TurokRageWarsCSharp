@@ -28,7 +28,7 @@ public static partial class Game
             {
                 new O01Item(item).unk14__Set(0x800D7984u);
                 buf = new O01Text(0x800D7984u).buf_;
-                func_00265904((buf + (uint)(func_00442158((uint)(item)) - 2)), 0x800E0DCCu, (v + 1), default(int));
+                Str_Sprintf((buf + (uint)(func_00442158((uint)(item)) - 2)), 0x800E0DCCu, (v + 1), default(int));
             }
             return 0;
         }

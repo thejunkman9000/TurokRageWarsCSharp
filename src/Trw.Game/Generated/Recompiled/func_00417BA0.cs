@@ -138,7 +138,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r16);
                 Mem.Set((r29 + 20u), r16);
                 Mem.Set((r29 + 24u), r16);
-                Mem.Set((r29 + 28u), r16); func_00415D10(Cpu.S(12), Cpu.S(14), Cpu.U2F(r6), Cpu.U2F(r7), Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u));
+                Mem.Set((r29 + 28u), r16); Ui_DrawClippedQuad(Cpu.S(12), Cpu.S(14), Cpu.U2F(r6), Cpu.U2F(r7), Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u));
                  goto L_L004181E8;
                 L_L00417D84: ;
                 r2 = Mem.U32((r3 - 8u));
@@ -397,7 +397,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), Cpu.W(20));
                 Mem.Set((r29 + 20u), Cpu.W(21));
                 Mem.Set((r29 + 24u), Cpu.W(22));
-                Mem.Set((r29 + 28u), Cpu.W(23)); func_00418224((int)r4, (int)r5, (int)r6, (int)r7, Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), Cpu.U2F(Mem.U32(r29 + 24u)), Cpu.U2F(Mem.U32(r29 + 28u)));
+                Mem.Set((r29 + 28u), Cpu.W(23)); Gfx_DrawTexRectStrips((int)r4, (int)r5, (int)r6, (int)r7, Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), Cpu.U2F(Mem.U32(r29 + 24u)), Cpu.U2F(Mem.U32(r29 + 28u)));
                  goto L_L004181E8;
                 L_L004181D0: ;
                 r7 = r19;

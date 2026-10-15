@@ -27,7 +27,7 @@ public static partial class Game
                 new Ent24(e).unk678_Set((float)((float)(new Ent24(e).unk678) + new Blk24b(b).unkC));
                 break;
             case 7:
-                func_002A7FA8((e + (uint)3392), 1, 0, 2045, 0, 0.0f, 0, 0x002AE1A4u, 0x002AE254u);
+                Mover_FindOrAllocRecord_002A7FA8((e + (uint)3392), 1, 0, 2045, 0, 0.0f, 0, 0x002AE1A4u, 0x002AE254u);
                 break;
             }
             p = new Fx24_v5(f).unk0_;
@@ -38,7 +38,7 @@ public static partial class Game
                 func_0023919C((uint)(new Ent24(e).unk5DC), (sbyte)(128), (sbyte)(50), (sbyte)(50), (sbyte)(75), (sbyte)(0), (sbyte)(0), (sbyte)(2));
                 if ((p != 0u))
                 {
-                    func_00237E70(0x80145088u, (uint)(new Ent24(e).unk5DC), (uint)(Mem.S32(p)));
+                    Hud_PostMessage(0x80145088u, (uint)(new Ent24(e).unk5DC), (uint)(Mem.S32(p)));
                 }
             }
             if ((bb != 0))

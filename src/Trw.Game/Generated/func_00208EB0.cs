@@ -59,7 +59,7 @@ public static partial class Game
                             if ((((f2 != 0) || (f1 != 0)) && (new B2Ctl(ctl).unk304 != 0)))
                             {
                                 dy = new Vec3f(_fp).y;
-                                func_00209910(ctl, func_0029D044(dy, sqrtf(((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).z * new Vec3f(_fp).z)))));
+                                func_00209910(ctl, Math_Atan2(dy, sqrtf(((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).z * new Vec3f(_fp).z)))));
                                 new B2Actor(o).unk6A8_Set(1.0f);
                             }
                         }
@@ -88,7 +88,7 @@ public static partial class Game
                         new Vec3f((_fp + 48u)).x_Set((-new Vec3f((_fp + 48u)).z));
                         new Vec3f((_fp + 48u)).z_Set(new Vec3f((_fp + 48u)).y);
                         new Vec3f((_fp + 48u)).y_Set(0.0f);
-                        ang3 = func_0029D044(new Vec3f((_fp + 48u)).z, new Vec3f((_fp + 48u)).x);
+                        ang3 = Math_Atan2(new Vec3f((_fp + 48u)).z, new Vec3f((_fp + 48u)).x);
                         new Vec3f((_fp + 48u)).x_Set(cosf(ang3));
                         new Vec3f((_fp + 48u)).z_Set(sinf(ang3));
                         t = (((new Vec3f((_fp + 16u)).x * new Vec3f((_fp + 48u)).x) + (new Vec3f((_fp + 16u)).y * new Vec3f((_fp + 48u)).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f((_fp + 48u)).z));
@@ -108,7 +108,7 @@ public static partial class Game
                     if ((((f2 != 0) || (f1 != 0)) && (new B2Ctl(ctl).unk304 != 0)))
                     {
                         dy = new Vec3f(_fp).y;
-                        func_00209910(ctl, func_0029D044(dy, sqrtf(((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).z * new Vec3f(_fp).z)))));
+                        func_00209910(ctl, Math_Atan2(dy, sqrtf(((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).z * new Vec3f(_fp).z)))));
                         new B2Actor(o).unk6A8_Set(1.0f);
                     }
                     if (((int)(new B2Ctl(ctl).owner.unk650) == 15))

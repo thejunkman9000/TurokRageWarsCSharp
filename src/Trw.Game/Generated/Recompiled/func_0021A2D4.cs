@@ -171,7 +171,7 @@ public static partial class Game
                 r2 = Mem.U32((r16 + 4652u));
                 r2 = r2 & 32u;
                 { bool c_ = r2 == 0; r4 = r17; if (c_) goto L_L0021A584; }
-                r6 = r19; r2 = func_00228F94(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = r19; r2 = Player_DrawModelTinted(r4, r5, r6, r7); r3 = Cpu.V1;
                  goto L_L0021A680;
                 L_L0021A584: ;
                 r3 = 2148794368u;
@@ -279,7 +279,7 @@ public static partial class Game
                 r7 = r7 + r2;
                 r7 = r7 << 3;
                 r7 = r7 + 320u;
-                r7 = r17 + r7; func_0026DA4C(r4, (int)r5, (int)r6, (int)r7, Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
+                r7 = r17 + r7; Light_ShadeVertices(r4, (int)r5, (int)r6, (int)r7, Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
                 r4 = r0;
                 r5 = r16; func_002536F4((int)r4, r5);
                 L_L0021A770: ;

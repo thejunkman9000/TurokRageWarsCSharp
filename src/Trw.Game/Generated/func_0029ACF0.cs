@@ -48,7 +48,7 @@ public static partial class Game
                             }
                             if ((ok != 0))
                             {
-                                func_0029A958();
+                                Ui_PushScreen();
                                 func_0029A5D4((uint)((int)(new SndCtx(n).id)), (uint)(cmd), (uint)(a), (uint)(b), (uint)(c));
                             }
                         }

@@ -39,7 +39,7 @@ public static partial class Game
                     Mem.Copy(@out, (_fp + 112u), 16);
                     return @out;
                 }
-                func_002742B4((_fp + 112u), (_fp + 160u));
+                Quat_ToMatrix((_fp + 112u), (_fp + 160u));
                 func_00272908((_fp + 160u), (_fp + 32u), (_fp + 48u));
                 best = 0u;
                 thr = cosf((new_var2 * Mem.F32(0x800C8A5Cu)));
@@ -76,7 +76,7 @@ public static partial class Game
                 {
                     func_00272088((_fp + 64u), (_fp + 48u), (_fp + 80u));
                     func_002720EC((_fp + 64u));
-                    t = func_00274640(thr);
+                    t = Math_Acosf(thr);
                     t = (float)((float)(t) * sqrtf(sqrtf((Mem.F32(0x800C8A68u) - (t / (new_var2 * Mem.F32(0x800C8A64u)))))));
                     t = (float)((float)(t) * Mem.F32(0x800C8A6Cu));
                     s = sinf(t);
@@ -86,7 +86,7 @@ public static partial class Game
                     new B10Q4((_fp + 128u)).z_Set((new Vec3f((_fp + 64u)).z * s));
                     new_var = t;
                     new B10Q4((_fp + 128u)).w_Set(cosf(new_var));
-                    func_00274108((_fp + 144u), (_fp + 112u), (_fp + 128u));
+                    Quat_Multiply((_fp + 144u), (_fp + 112u), (_fp + 128u));
                     if ((outq != 0u))
                     {
                         Mem.Copy(outq, (_fp + 128u), 16);

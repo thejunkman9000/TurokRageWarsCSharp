@@ -75,7 +75,7 @@ public static partial class Game
             {
                 return;
             }
-            n = new O06H_v2(func_0040ECB0((uint)(Mem.S32(Mem.U32(0x800E59E0u))), (uint)((int)(new O06Row((0x800E5A1Au + (uint)(a * 76))).ent[(int)(b)].v)), default(uint), default(uint))).unk8_;
+            n = new O06H_v2(UiTree_FindNode((uint)(Mem.S32(Mem.U32(0x800E59E0u))), (uint)((int)(new O06Row((0x800E5A1Au + (uint)(a * 76))).ent[(int)(b)].v)), default(uint), default(uint))).unk8_;
             found = 0;
             do
             {

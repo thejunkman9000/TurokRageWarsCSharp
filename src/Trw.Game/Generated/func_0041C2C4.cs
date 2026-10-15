@@ -19,7 +19,7 @@ public static partial class Game
                 Mem.Set(0x8014ADA0u, 1);
                 return;
             }
-            func_0041BF10(default(uint), default(uint), default(uint), default(uint));
+            SaveSlot_UpdateDialog(default(uint), default(uint), default(uint), default(uint));
         }
     }
 

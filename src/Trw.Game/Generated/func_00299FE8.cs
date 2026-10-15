@@ -42,7 +42,7 @@ public static partial class Game
                     func_0040E6FC(new SndStkEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).stk_ + (uint)(i * 28))).ctx_, _fp);
                     func_0040E914();
                     func_002A28FC();
-                    func_0040E154((_fp + 40u), (_fp + 56u), new SndStkEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).stk_ + (uint)(i * 28))).ctx_, _fp);
+                    UiNode_ComputeRect((_fp + 40u), (_fp + 56u), new SndStkEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).stk_ + (uint)(i * 28))).ctx_, _fp);
                 }
                 func_0029864C(0, 3594, 1, (int)(0u), dt);
                 Mem.Set(0x8014D0A0u, 0);

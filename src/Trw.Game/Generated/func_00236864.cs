@@ -58,8 +58,8 @@ public static partial class Game
                     }
                     if ((ok != 0))
                     {
-                        func_00255E78(new S6World(w).listB.P, n, default(uint), default(uint));
-                        func_00255C58(new S6World(w).listA.P, n);
+                        List_Remove(new S6World(w).listB.P, n, default(uint), default(uint));
+                        List_Add(new S6World(w).listA.P, n);
                     }
                     n = nx;
                 }
@@ -188,17 +188,17 @@ public static partial class Game
             Mem.Copy(0x80103208u, new S6World(w).nd.bbA.P, 24);
             Mem.Copy(0x801031F0u, new S6World(w).nd.bbB.P, 24);
             Mem.Set(0x80103220u, (uint)(Mem.S32(0x800D2B40u)));
-            func_00234FDC(new S6World(w).nd.P, default(uint), default(uint), default(uint));
+            Camera_SetupProjection(new S6World(w).nd.P, default(uint), default(uint), default(uint));
             p = new S6World(w).first_;
             if ((p != 0u))
             {
                 if (((Mem.S32(0x80146894u) != 0) || (Flyby_IsHolding() != 0)))
                 {
-                    func_00234FDC(p, default(uint), default(uint), default(uint));
+                    Camera_SetupProjection(p, default(uint), default(uint), default(uint));
                 }
                 if (((Flyby_IsInWindow() != 0) || (Flyby_IsActive() != 0)))
                 {
-                    func_00234FDC(p, default(uint), default(uint), default(uint));
+                    Camera_SetupProjection(p, default(uint), default(uint), default(uint));
                 }
                 Mem.Copy(0x80103208u, new S6Nd(p).bbA.P, 24);
                 Mem.Copy(0x801031F0u, new S6Nd(p).bbB.P, 24);
@@ -211,7 +211,7 @@ public static partial class Game
                         float v = 0f;
                         if (((Mem.S32(0x80146894u) != 0) || (Flyby_IsHolding() != 0)))
                         {
-                            func_00234FDC(p, default(uint), default(uint), default(uint));
+                            Camera_SetupProjection(p, default(uint), default(uint), default(uint));
                         }
                         v = new S6Nd(p).bbA.f[(int)(0)];
                         if (!(v <= new S6BB(0x80103208u).f[(int)(0)]))

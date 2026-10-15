@@ -122,7 +122,7 @@ public static partial class Game
                 r21 = (uint)(int)Mem.S16((r17 + 6u));
                 L_L0029B4CC: ;
                 { bool c_ = r16 == 0;  if (c_) goto L_L0029B4F4; }
-                r2 = (uint)func_0029A958();
+                r2 = (uint)Ui_PushScreen();
                 Mem.Set((r29 + 16u), r22);
                 r4 = r2;
                 r5 = r16;
@@ -130,7 +130,7 @@ public static partial class Game
                 r7 = r19; r2 = func_0029A5D4(r4, r5, r6, r7, Mem.U32(r29 + 16u)); r3 = Cpu.V1;
                 L_L0029B4F4: ;
                 { bool c_ = r18 == 0;  if (c_) goto L_L0029B51C; }
-                r2 = (uint)func_0029A958();
+                r2 = (uint)Ui_PushScreen();
                 Mem.Set((r29 + 16u), r21);
                 r4 = r2;
                 r5 = r18;

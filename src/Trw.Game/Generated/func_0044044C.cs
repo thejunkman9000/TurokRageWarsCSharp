@@ -58,9 +58,9 @@ public static partial class Game
                 if ((Mem.S32(0x800E5E70u) != 3))
                 {
                     Mem.Set(0x800E5E70u, 3);
-                    func_002AA224((uint)((int)((new O06D_v6(d).unk30 * (new O06D_v6(d).unk34 * Mem.F32(0x800E24ACu))))), default(uint), default(uint), default(uint));
+                    Gfx_BeginFlatColorPass((uint)((int)((new O06D_v6(d).unk30 * (new O06D_v6(d).unk34 * Mem.F32(0x800E24ACu))))), default(uint), default(uint), default(uint));
                 }
-                func_002ABC18(new O06A_v9(a).unk14, 0, (short)(new O06B_v11(b).unk14), (short)(new O06B_v11(b).unk1C), new O06B_v11(b).unkC, new O06B_v11(b).unk10, 1);
+                Sprite_Draw(new O06A_v9(a).unk14, 0, (short)(new O06B_v11(b).unk14), (short)(new O06B_v11(b).unk1C), new O06B_v11(b).unkC, new O06B_v11(b).unk10, 1);
             }
         }
     }

@@ -30,14 +30,14 @@ public static partial class Game
             n = ((n + 1) % 18);
             if (((Mem.U32(0x800E28A4u) - (((uint)(Mem.U32(0x80110634u)) - (uint)(new B16Gfx(Mem.U32(0x8011FE80u)).base_)) >> (int)3)) >= (uint)(3000)))
             {
-                if (((int)(func_00269A80(0x8013B2D8u, (uint)(n), default(uint), default(uint))) != 0))
+                if (((int)(Model_DrawGroups(0x8013B2D8u, (uint)(n), default(uint), default(uint))) != 0))
                 {
                     {
                         uint q = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
                         new DlCmd(q).w0_Set(3791650844u);
                         new DlCmd(q).w1_Set((uint)(202919384));
                     }
-                    func_00268CE0((uint)(1));
+                    Gfx_SetCombineMode((uint)(1));
                     root = Mem.U32(p);
                     func_00253B5C(0, p);
                     if ((flag != 0))
@@ -55,26 +55,26 @@ public static partial class Game
                     nd = node;
                     if ((nd == 0u))
                     {
-                        nd = func_0028FD94(root, 0);
+                        nd = Chunk_Get(root, 0);
                     }
                     {
                         uint q_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
                         new DlCmd(q_4).w0_Set(3674603528u);
                         new DlCmd(q_4).w1_Set((uint)(nd));
                     }
-                    nn = func_0028FD94(root, 2);
+                    nn = Chunk_Get(root, 2);
                     count = Mem.S32((nn + (uint)(0 * 4)));
                     for (i = 0; (i < count); ++i)
                     {
-                        c = func_0028FD94(nn, i);
-                        e = func_0028FD94(c, 0);
+                        c = Chunk_Get(nn, i);
+                        e = Chunk_Get(c, 0);
                         if ((i == 0))
                         {
                             func_0026B504(seg, (uint)(arg4), e);
                         }
-                        if (((((int)(Mem.U8((e + (uint)6))) & 56) == 56) && ((int)(func_00269A80(e, (uint)(n), default(uint), default(uint))) != 0)))
+                        if (((((int)(Mem.U8((e + (uint)6))) & 56) == 56) && ((int)(Model_DrawGroups(e, (uint)(n), default(uint), default(uint))) != 0)))
                         {
-                            uint w = func_0028FD94(c, 1);
+                            uint w = Chunk_Get(c, 1);
                             uint q_5 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
                             new DlCmd(q_5).w0_Set(3724541952u);
                             new DlCmd(q_5).w1_Set((uint)(w));

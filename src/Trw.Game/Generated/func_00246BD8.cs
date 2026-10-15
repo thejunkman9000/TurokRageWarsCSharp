@@ -27,7 +27,7 @@ public static partial class Game
                 new B10Obj(o).fE0_Set(0);
                 new B10Obj(o).flags100_Set((uint)((uint)(new B10Obj(o).flags100) & 4294705151u));
                 t = func_0028FE08((uint)(a1), a2, (int)(new B10Obj(o).h4));
-                r1 = func_002518DC(0, (uint)(t), t, (uint)(24), 0, (uint)(0), (uint)(0), 0x800C898Cu, 1);
+                r1 = ResourceCache_Hash(0, (uint)(t), t, (uint)(24), 0, (uint)(0), (uint)(0), 0x800C898Cu, 1);
                 if ((r1 != 0u))
                 {
                     s0 = (int)(Mem.U32(r1));
@@ -39,18 +39,18 @@ public static partial class Game
                         new B10Obj(o).fD4_Set((((Mem.S32(Mem.U32(_fp)) << (int)2) + 15) & (~7)));
                         func_002536F4(0, r2);
                     }
-                    new B10Obj(o).fC4_Set((int)(func_0028FE1C((uint)(s0), (uint)(t), 0, (o + 208u))));
+                    new B10Obj(o).fC4_Set((int)(Resource_GetCartridgeKey((uint)(s0), (uint)(t), 0, (o + 208u))));
                     new B10Obj(o).fC8_Set(func_0028FE08((uint)(s0), t, 2));
-                    r3 = func_002518DC(0, (uint)(new B10Obj(o).fC4), new B10Obj(o).fC4, (uint)(new B10Obj(o).fD0), 0, (uint)(0), (uint)(0), 0x800C89B4u, 1);
+                    r3 = ResourceCache_Hash(0, (uint)(new B10Obj(o).fC4), new B10Obj(o).fC4, (uint)(new B10Obj(o).fD0), 0, (uint)(0), (uint)(0), 0x800C89B4u, 1);
                     if ((r3 != 0u))
                     {
                         s1 = (int)(Mem.U32(r3));
-                        n = func_0028FD94((uint)(s1), 0);
+                        n = Chunk_Get((uint)(s1), 0);
                         Funcs.CallReg(new B10Obj(o).fn28C, o, (o + 368u), 0u, 0u);
                         func_0026EE90((o + 116u), n, (o + 232u));
                         func_002624A0((o + 260u));
                         func_002624A0(new B10Obj(o).an118.P);
-                        new B10Obj(o).bE6_Set((sbyte)(Mem.U8((func_0028FD94((uint)(s1), 1) + (uint)7))));
+                        new B10Obj(o).bE6_Set((sbyte)(Mem.U8((Chunk_Get((uint)(s1), 1) + (uint)7))));
                         new B10Obj(o).flags100_Set((uint)((uint)(new B10Obj(o).flags100) | (uint)(262144)));
                         if ((a3 > 0))
                         {

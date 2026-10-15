@@ -22,13 +22,13 @@ public static partial class Game
                 int start = 0;
                 if (((new B10Obj(o).flags100 & (uint)(262144)) != 0u))
                 {
-                    r = func_002518DC(0, (uint)(new B10Obj(o).fC4), new B10Obj(o).fC4, (uint)(new B10Obj(o).fD0), 0, (uint)(0), (uint)(0), 0x800C8954u, 1);
+                    r = ResourceCache_Hash(0, (uint)(new B10Obj(o).fC4), new B10Obj(o).fC4, (uint)(new B10Obj(o).fD0), 0, (uint)(0), (uint)(0), 0x800C8954u, 1);
                     if ((r != 0u))
                     {
-                        node = func_0028FD94(Mem.U32(r), 1);
+                        node = Chunk_Get(Mem.U32(r), 1);
                         tab = (node + (uint)8);
                         cnt = new B10Nd2(node).cnt;
-                        i = func_00265508(tab, (int)(new B10Obj(o).bE6), (uint)(key));
+                        i = Sprite_FindIndex(tab, (int)(new B10Obj(o).bE6), (uint)(key));
                         if ((i != (-1)))
                         {
                             start = i;

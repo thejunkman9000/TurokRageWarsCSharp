@@ -29,7 +29,7 @@ public static partial class Game
             Mem.Set((p + (uint)1648), Mem.F32(0x800C73B8u));
             Mem.Set((p + (uint)4532), 1);
             Mem.Set((p + (uint)4536), 1);
-            v = func_00218988(p);
+            v = TeamMenu_StickDirection4(p);
             if (!((v != new B04MenuL(o).unk70))) goto _f3;
             if (!((v != (-1)))) goto _f4;
             e = (o + (uint)(v * 20));

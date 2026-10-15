@@ -28,8 +28,8 @@ public static partial class Game
                     {
                         Mem.Set(new B19Spawn(n).link, 0u);
                     }
-                    func_00255E78((pool + 20u), n, default(uint), default(uint));
-                    func_00255CB4(pool, n, default(uint), default(uint));
+                    List_Remove((pool + 20u), n, default(uint), default(uint));
+                    List_Append_00255CB4(pool, n, default(uint), default(uint));
                 }
             }
             __osRestoreInt(mask);

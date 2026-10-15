@@ -70,7 +70,7 @@ public static partial class Game
                 Mem.Set((r29 + 68u), r0);
                 Mem.Set((r29 + 72u), r0);
                 Mem.Set((r29 + 140u), r20);
-                Mem.Set((r29 + 144u), r2); r2 = func_00241940(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r29 + 144u), r2); r2 = Collision_BuildBoxCorners(r4, r5, r6, r7); r3 = Cpu.V1;
                 r3 = Mem.U16((r21 + 4u));
                 { bool c_ = r3 == r16; r2 = (uint)2; if (c_) goto L_L00242634; }
                 if (r3 == r2) { Mem.Set((r29 + 16u), r20); goto L_L00242654; }

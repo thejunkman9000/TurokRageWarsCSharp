@@ -16,7 +16,7 @@ public static partial class Game
             int t = 0;
             if (((int)(new BrainB(b).actor.stats.unk8F) == 0))
             {
-                func_00209874(b, 2);
+                Ai_SetState(b, 2);
                 return;
             }
             func_00211020(b, default(uint), default(uint), default(uint));

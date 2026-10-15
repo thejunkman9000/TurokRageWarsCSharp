@@ -13,7 +13,7 @@ public static partial class Game
             uint r = dst;
             if ((n != (uint)(0)))
             {
-                r = func_002A0470(dst, src, (int)(n));
+                r = Mem_Move(dst, src, (int)(n));
             }
             return r;
         }

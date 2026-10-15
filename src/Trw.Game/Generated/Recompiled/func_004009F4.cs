@@ -50,7 +50,7 @@ public static partial class Game
                 L_L00400A6C: ;
                 r4 = Mem.U32((r16 + 116u));
                 r5 = Mem.U32((r16 + 52u));
-                r7 = r29 + 40u; r2 = func_0028FE1C(r4, r5, (int)r6, r7);
+                r7 = r29 + 40u; r2 = Resource_GetCartridgeKey(r4, r5, (int)r6, r7);
                 r4 = r0;
                 r5 = r2;
                 r6 = r5;
@@ -65,7 +65,7 @@ public static partial class Game
                 Mem.Set((r29 + 28u), r2);
                 r2 = (uint)1;
                 Mem.Set((r29 + 20u), r0);
-                Mem.Set((r29 + 32u), r2); r2 = func_002518DC((int)r4, r5, (int)r6, r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u));
+                Mem.Set((r29 + 32u), r2); r2 = ResourceCache_Hash((int)r4, r5, (int)r6, r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u));
                 { bool c_ = r2 == 0; r16 = r0; if (c_) goto L_L00400A4C; }
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 10288u));
@@ -128,7 +128,7 @@ public static partial class Game
                 r5 = 2148663296u;
                 r5 = Mem.U32((r5 - 324u));
                 r16 = Mem.U32((r2 + 112u));
-                r7 = r29 + 44u; r2 = func_0028FE1C(r4, r5, (int)r6, r7);
+                r7 = r29 + 44u; r2 = Resource_GetCartridgeKey(r4, r5, (int)r6, r7);
                 { bool c_ = r2 != 0; r4 = r0; if (c_) goto L_L00400BE4; }
                 r5 = r0; goto L_L00400C1C;
                 L_L00400BE4: ;
@@ -143,7 +143,7 @@ public static partial class Game
                 r2 = (uint)1;
                 Mem.Set((r29 + 20u), r0);
                 Mem.Set((r29 + 24u), r0);
-                Mem.Set((r29 + 32u), r2); r2 = func_002518DC((int)r4, r5, (int)r6, r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u));
+                Mem.Set((r29 + 32u), r2); r2 = ResourceCache_Hash((int)r4, r5, (int)r6, r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u));
                 r5 = r2;
                 L_L00400C1C: ;
                 r2 = r20 << 2;

@@ -83,16 +83,16 @@ public static partial class Game
                 Mem.Set((r7 + 4u), r5); func_0026D980();
                 r12 = Mem.U32((r29 + 14264u));
                 r4 = Mem.U32((r12 + 104u));
-                r5 = r0; r2 = func_0028FD94(r4, (int)r5);
+                r5 = r0; r2 = Chunk_Get(r4, (int)r5);
                 r13 = Mem.U32((r29 + 14264u));
                 r2 = Mem.U32((r2 + 4u));
                 r4 = Mem.U32((r13 + 104u));
                 r5 = (uint)2;
-                Mem.Set((r29 + 14188u), r2); r2 = func_0028FD94(r4, (int)r5);
+                Mem.Set((r29 + 14188u), r2); r2 = Chunk_Get(r4, (int)r5);
                 r12 = Mem.U32((r29 + 14264u));
                 r4 = Mem.U32((r12 + 104u));
                 r16 = Mem.U32((r2 + 4u));
-                r5 = (uint)4; r2 = func_0028FD94(r4, (int)r5);
+                r5 = (uint)4; r2 = Chunk_Get(r4, (int)r5);
                 r2 = r2 + 8u;
                 r13 = Mem.U32((r29 + 14188u));
                 r16 = r16 - 1u;
@@ -119,7 +119,7 @@ public static partial class Game
                 r13 = Mem.U32((r29 + 14264u));
                 r4 = Mem.U32((r13 + 100u));
                 r5 = Mem.U32((r13 + 48u));
-                r7 = r29 + 14184u; r2 = func_0028FE1C(r4, r5, (int)r6, r7);
+                r7 = r29 + 14184u; r2 = Resource_GetCartridgeKey(r4, r5, (int)r6, r7);
                 r4 = r0;
                 r5 = r2;
                 r6 = r5;
@@ -135,7 +135,7 @@ public static partial class Game
                 Mem.Set((r29 + 28u), r2);
                 r2 = (uint)1;
                 Mem.Set((r29 + 32u), r2);
-                Mem.Set((r29 + 20u), r12); r2 = func_002518DC((int)r4, r5, (int)r6, r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u));
+                Mem.Set((r29 + 20u), r12); r2 = ResourceCache_Hash((int)r4, r5, (int)r6, r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u));
                 r19 = r2;
                 { bool c_ = r19 == 0;  if (c_) goto L_L00288CCC; }
                 r16 = Mem.U32((r19 + 0u));
@@ -145,7 +145,7 @@ public static partial class Game
                 Mem.Set((r30 + 0u), r19);
                 r30 = r30 + 4u;
                 r4 = r16;
-                r5 = r0; r2 = func_0028FD94(r4, (int)r5);
+                r5 = r0; r2 = Chunk_Get(r4, (int)r5);
                 r21 = r0;
                 r13 = Mem.U32((r2 + 4u));
                 r4 = r2 + 8u;
@@ -184,7 +184,7 @@ public static partial class Game
                 { bool c_ = r20 == 0;  if (c_) goto L_L00288CAC; }
                 r5 = r0;
                 r4 = Mem.U32((r20 + 0u));
-                r16 = r5; r2 = func_0028FD94(r4, (int)r5);
+                r16 = r5; r2 = Chunk_Get(r4, (int)r5);
                 r4 = r29 + 40u;
                 r18 = r2;
                 r22 = Mem.U32((r18 + 4u));
@@ -305,19 +305,19 @@ public static partial class Game
                 r2 = Mem.U32((r12 + 136u));
                 Mem.Set((r2 + 12u), r16);
                 r4 = Mem.U32((r12 + 136u));
-                r5 = r0; r2 = func_0028FD94(r4, (int)r5);
+                r5 = r0; r2 = Chunk_Get(r4, (int)r5);
                 r4 = r2;
                 r5 = r18;
                 r6 = r19; r2 = memcpy(r4, r5, r6);
                 r13 = Mem.U32((r29 + 14264u));
                 r4 = Mem.U32((r13 + 136u));
-                r5 = (uint)1; r2 = func_0028FD94(r4, (int)r5);
+                r5 = (uint)1; r2 = Chunk_Get(r4, (int)r5);
                 r4 = r2;
                 r5 = r20;
                 r6 = r21; r2 = memcpy(r4, r5, r6);
                 r12 = Mem.U32((r29 + 14264u));
                 r4 = Mem.U32((r12 + 136u));
-                r5 = (uint)2; r2 = func_0028FD94(r4, (int)r5);
+                r5 = (uint)2; r2 = Chunk_Get(r4, (int)r5);
                 r4 = r2;
                 r5 = Mem.U32((r29 + 14216u));
                 r6 = r17; r2 = memcpy(r4, r5, r6);

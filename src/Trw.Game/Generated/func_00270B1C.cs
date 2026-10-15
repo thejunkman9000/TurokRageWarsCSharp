@@ -32,7 +32,7 @@ public static partial class Game
                     d1 = d2;
                     q2 = _fp;
                 }
-                th = func_00274640(d1);
+                th = Math_Acosf(d1);
                 s = sinf(th);
                 if ((s == 0.0f))
                 {

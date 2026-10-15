@@ -33,7 +33,7 @@ public static partial class Game
                 Mem.Set((r29 + 56u), r18);
                 r18 = Mem.U32((r29 + 88u));
                 Mem.Set((r29 + 60u), r31);
-                r7 = r29 + 40u; r2 = func_0028FE1C(r4, r5, (int)r6, r7);
+                r7 = r29 + 40u; r2 = Resource_GetCartridgeKey(r4, r5, (int)r6, r7);
                 r4 = r0;
                 r5 = r2;
                 r6 = r5;
@@ -44,7 +44,7 @@ public static partial class Game
                 Mem.Set((r29 + 32u), r2);
                 Mem.Set((r29 + 20u), r16);
                 Mem.Set((r29 + 24u), r17);
-                Mem.Set((r29 + 28u), r18); r2 = func_002518DC((int)r4, r5, (int)r6, r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u));
+                Mem.Set((r29 + 28u), r18); r2 = ResourceCache_Hash((int)r4, r5, (int)r6, r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u));
                 r31 = Mem.U32((r29 + 60u));
                 r18 = Mem.U32((r29 + 56u));
                 r17 = Mem.U32((r29 + 52u));

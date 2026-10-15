@@ -26,7 +26,7 @@ public static partial class Game
             gm = new Game2B6(0x8014687Cu).game.P;
             _f2: ;
             if (!((a != 0u))) goto _f4;
-            func_002631D0(new Plr(a).unk688.P, a, default(uint), default(uint));
+            Pad_UpdatePlayerControls(new Plr(a).unk688.P, a, default(uint), default(uint));
             Mem.Set(0x800D2988u, save);
             if (!(((new GameB6(gm).unk24 != 0) || (new GameB6(gm).unk78 != 0)))) goto _f5;
             func_0022C480(a);
@@ -34,7 +34,7 @@ public static partial class Game
             if (!((Mem.S32(0x80146894u) == 0))) goto _f6;
             func_00220EB0(a, default(uint), default(uint), default(uint));
             _f6: ;
-            func_00220A5C(a, a, default(uint), default(uint));
+            Player_UpdateViewCamera(a, a, default(uint), default(uint));
             _f3: ;
             a = new Plr(a).next_;
             goto _f2;
@@ -71,8 +71,8 @@ public static partial class Game
             a = new Plr(a).next_;
             goto _f7;
             _f9: ;
-            func_00228394(g);
-            func_00227014(g, default(uint), default(uint), default(uint));
+            Match_UpdateClock(g);
+            Match_UpdateRound(g, default(uint), default(uint), default(uint));
             func_00227E68(g, default(uint), default(uint), default(uint));
             Mem.Set(0x800D2988u, save);
         }

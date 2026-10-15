@@ -76,16 +76,16 @@ public static partial class Game
                 r2 = Mem.U32((r17 + 0u));
                 r4 = Mem.U32((r2 + 11104u));
                 r5 = Mem.U32((r2 + 11108u));
-                r2 = (uint)func_00265508(r4, (int)r5, r6);
+                r2 = (uint)Sprite_FindIndex(r4, (int)r5, r6);
                 r16 = r2;
                 { bool c_ = r16 == r18; r16 = r16 << 1; if (c_) goto L_L0025D5E4; }
                 r2 = Mem.U32((r17 + 0u));
                 r4 = Mem.U32((r2 + 11088u));
-                r5 = r16 | 1u; r2 = func_0028FD94(r4, (int)r5);
+                r5 = r16 | 1u; r2 = Chunk_Get(r4, (int)r5);
                 r3 = Mem.U32((r17 + 0u));
                 r5 = r16;
                 r4 = Mem.U32((r3 + 11088u));
-                r16 = r2; r2 = func_0028FD94(r4, (int)r5);
+                r16 = r2; r2 = Chunk_Get(r4, (int)r5);
                 r3 = Mem.U32((r2 + 0u));
                 Mem.Set((r17 + 36u), r3);
                 r4 = Mem.U16((r2 + 4u));

@@ -24,7 +24,7 @@ public static partial class Game
             int nxt = 0;
             uint it = 0u;
             cur = new O3Pj(func_00420214_pj(idx)).f18;
-            it = func_0040ECB0((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new Q2IdRow((0x800E42D4u + (uint)(idx * 36))).b[(int)(cur)].id)), default(uint), default(uint));
+            it = UiTree_FindNode((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new Q2IdRow((0x800E42D4u + (uint)(idx * 36))).b[(int)(cur)].id)), default(uint), default(uint));
             func_0040E9A8(it, 0);
             new O3Hdr(it).alpha_Set((byte)(80));
             n = (int)(Mem.U8((0x80102B57u + (uint)(func_0041F248(new O3Pj(func_00420214_pj(idx)).f10) + (idx * 400)))));
@@ -34,7 +34,7 @@ public static partial class Game
             }
             cur = ((cur + 1) % n);
             nxt = cur;
-            it = func_0040ECB0((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new Q2IdRow((0x800E42D4u + (uint)(idx * 36))).b[(int)(nxt)].id)), default(uint), default(uint));
+            it = UiTree_FindNode((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new Q2IdRow((0x800E42D4u + (uint)(idx * 36))).b[(int)(nxt)].id)), default(uint), default(uint));
             func_0040E9A8(it, 1);
             new O3Hdr(it).alpha_Set((byte)(150));
             new O3Pj(func_00420214_pj(idx)).f18_Set(nxt);

@@ -33,10 +33,10 @@ public static partial class Game
                 return 0;
             }
             key = new B19Owner(owner).key;
-            n = (int)(func_0028FD94((uint)((int)(func_0028FD94((uint)((int)(func_0028FD94((uint)(new B19Owner(owner).root), 0))), key))), 0));
-            func_0028FD94((uint)(n), 0);
-            func_0028FDD8((uint)(n), 1);
-            bits = (uint)((int)(func_0028FD94((uint)(n), 1)));
+            n = (int)(Chunk_Get((uint)((int)(Chunk_Get((uint)((int)(Chunk_Get((uint)(new B19Owner(owner).root), 0))), key))), 0));
+            Chunk_Get((uint)(n), 0);
+            Chunk_GetSize((uint)(n), 1);
+            bits = (uint)((int)(Chunk_Get((uint)(n), 1)));
             m = (1 << (int)(idx & 7));
             return ((((int)(Mem.U8((bits + (uint)(idx / 8)))) & m) != 0) ? 1 : 0);
         }

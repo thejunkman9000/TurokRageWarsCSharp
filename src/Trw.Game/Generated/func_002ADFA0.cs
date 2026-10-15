@@ -24,7 +24,7 @@ public static partial class Game
                 func_0023919C((uint)(new Ent24(e).unk5DC), (sbyte)(128), (sbyte)(50), (sbyte)(50), (sbyte)(75), (sbyte)(0), (sbyte)(0), (sbyte)(2));
                 if ((p != 0u))
                 {
-                    func_00237E70(0x80145088u, (uint)(new Ent24(e).unk5DC), (uint)(Mem.S32(p)));
+                    Hud_PostMessage(0x80145088u, (uint)(new Ent24(e).unk5DC), (uint)(Mem.S32(p)));
                 }
             }
             if ((b != 0))

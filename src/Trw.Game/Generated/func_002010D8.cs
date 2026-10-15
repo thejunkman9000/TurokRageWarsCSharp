@@ -16,10 +16,10 @@ public static partial class Game
             uint len = 0u;
             uint i = 0u;
             int fl = 0;
-            func_00200610(default(uint), default(uint), default(uint), default(uint));
+            Boot_BuildTlbMapTable(default(uint), default(uint), default(uint), default(uint));
             dst = 2986213376u;
-            src = func_002005A0(2986344436u);
-            n = func_002005A0(2986344440u);
+            src = Bus_ReadWord(2986344436u);
+            n = Bus_ReadWord(2986344440u);
             if ((src > 4026531839u))
             {
                 src = (uint)((uint)(src) + (uint)(0x8F0F7130u));
@@ -74,19 +74,19 @@ public static partial class Game
                     {
                         if ((dir == 1))
                         {
-                            func_00200D18(dst, src, len);
+                            Bus_WriteBlock(dst, src, len);
                             dst = (uint)((uint)(dst) + len);
                         }
                         else
                         {
                             if (((fl & 8) != 0))
                             {
-                                func_00200B14(dst, src, len);
+                                Bus_ReadBlock(dst, src, len);
                                 dst = (uint)((uint)(dst) + len);
                             }
                             else
                             {
-                                func_00200880(dst, src, len);
+                                Bus_CopyRomToRam(dst, src, len);
                                 dst = (uint)((uint)(dst) + len);
                             }
                         }

@@ -15,12 +15,12 @@ public static partial class Game
             int s1 = 0;
             if (((new Obj(a).unk17C & (uint)((1 << (int)bit))) != 0u))
             {
-                n3 = func_0028FD94(node, 3);
+                n3 = Chunk_Get(node, 3);
                 s1 = new B11Node(n3).unk4;
                 if ((s1 != 0))
                 {
                     p = new B11Node(n3).unk8.P;
-                    func_0026E5E0(p, s1, (uint)(c), a, func_0028FD94(node, 5));
+                    func_0026E5E0(p, s1, (uint)(c), a, Chunk_Get(node, 5));
                 }
             }
         }

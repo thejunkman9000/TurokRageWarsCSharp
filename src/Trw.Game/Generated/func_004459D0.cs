@@ -16,7 +16,7 @@ public static partial class Game
             {
                 func_0025E380();
             }
-            func_0025E2F4(Mem.S32(0x800E63B0u));
+            Audio_PlayCue(Mem.S32(0x800E63B0u));
             func_00264A2C();
             return func_004424F4(a, b, c);
         }

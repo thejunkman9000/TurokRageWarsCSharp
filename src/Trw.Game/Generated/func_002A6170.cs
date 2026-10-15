@@ -89,8 +89,8 @@ public static partial class Game
                         new Vec3fv(_fp).z_Set((float)(new VInfo(p).z));
                         if (!((((((new Vec3fv(_fp).x < Mem.F32((0x801031F0u + (uint)(3 * 4)))) && (new Vec3fv(_fp).y < Mem.F32((0x801031F0u + (uint)(4 * 4))))) && (new Vec3fv(_fp).z < Mem.F32((0x801031F0u + (uint)(5 * 4))))) && (Mem.F32((0x801031F0u + (uint)(0 * 4))) <= new Vec3fv(_fp).x)) && (Mem.F32((0x801031F0u + (uint)(1 * 4))) <= new Vec3fv(_fp).y)) && (Mem.F32((0x801031F0u + (uint)(2 * 4))) <= new Vec3fv(_fp).z)))
                         {
-                            func_00255E78(l, n, default(uint), default(uint));
-                            func_00255CB4((c + (uint)38312), n, default(uint), default(uint));
+                            List_Remove(l, n, default(uint), default(uint));
+                            List_Append_00255CB4((c + (uint)38312), n, default(uint), default(uint));
                         }
                         else
                         {

@@ -13,9 +13,9 @@ public static partial class Game
             uint n = Mem.U32(0x801050F8u);
             if ((n != 0u))
             {
-                func_00255E78(0x801050F8u, n, default(uint), default(uint));
+                List_Remove(0x801050F8u, n, default(uint), default(uint));
                 new B12Node(n).unk10_Set((uint)(v));
-                func_00255C58(0x8010510Cu, n);
+                List_Add(0x8010510Cu, n);
             }
             return n;
         }
@@ -33,7 +33,7 @@ public static partial class Game
                 flags = (uint)((uint)(flags) & (uint)(16));
                 for (; ; )
                 {
-                    if (((int)(func_002512C8((uint)(0), (uint)(2), (uint)(((flags == (uint)(0)) ? 1 : 0)), default(uint))) == 0))
+                    if (((int)(ResourcePool_ReclaimNode((uint)(0), (uint)(2), (uint)(((flags == (uint)(0)) ? 1 : 0)), default(uint))) == 0))
                     {
                         return n;
                     }

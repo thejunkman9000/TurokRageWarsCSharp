@@ -24,7 +24,7 @@ public static partial class Game
                 do
                 {
                     s = new R06Node(n).head_;
-                    if (((s != 0u) && ((int)(func_00269A80(new R06Node(n).rec, (uint)((int)((sbyte)(new R06Node(n).key))), default(uint), default(uint))) != 0)))
+                    if (((s != 0u) && ((int)(Model_DrawGroups(new R06Node(n).rec, (uint)((int)((sbyte)(new R06Node(n).key))), default(uint), default(uint))) != 0)))
                     {
                         p12 = (ushort)(0);
                         p10 = (ushort)(0);
@@ -168,7 +168,7 @@ public static partial class Game
                 do
                 {
                     s = new R06Node(n).head_;
-                    if (((s != 0u) && ((int)(func_00269A80(new R06Node(n).rec, (uint)((int)((sbyte)(new R06Node(n).key))), default(uint), default(uint))) != 0)))
+                    if (((s != 0u) && ((int)(Model_DrawGroups(new R06Node(n).rec, (uint)((int)((sbyte)(new R06Node(n).key))), default(uint), default(uint))) != 0)))
                     {
                         p12 = (ushort)(0);
                         p10 = (ushort)(0);

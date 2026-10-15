@@ -86,8 +86,8 @@ public static partial class Game
                 Mem.Set((r5 + 4u), r0);
                 Mem.Set((r16 + 0u), r3);
                 Mem.Set((r2 + 0u), r6);
-                Mem.Set((r2 + 4u), r0); r2 = (uint)func_0026925C(r4);
-                r4 = (uint)25; func_00268CE0(r4);
+                Mem.Set((r2 + 4u), r0); r2 = (uint)Gfx_SetOtherModeL(r4);
+                r4 = (uint)25; Gfx_SetCombineMode(r4);
                 r2 = 4194304000u;
                 r2 = r2 | 65535u;
                 r4 = Mem.U32((r16 + 0u));
@@ -159,7 +159,7 @@ public static partial class Game
                 r2 = r2 << 2;
                 Cpu.SetW(5, (uint)(int)Cpu.S(20));
                 r4 = Cpu.W(5);
-                Mem.Set((r6 + 4u), r2); r2 = func_00401D74(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r6 + 4u), r2); r2 = View_DrawInsetBorder(r4, r5, r6, r7); r3 = Cpu.V1;
                 r31 = Mem.U32((r29 + 20u));
                 r16 = Mem.U32((r29 + 16u));
                 Cpu.Fpr[20] = Mem.U64((r29 + 24u));

@@ -47,7 +47,7 @@ public static partial class Game
                 r5 = Mem.U32((r16 + 0u));
                 r4 = 2148532224u;
                 r4 = r4 + 20896u;
-                r2 = func_00255ACC(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = Heap_Free(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r0;
                 r5 = r16; func_00254A70((int)r4, r5);
                 L_L002549B8: ;

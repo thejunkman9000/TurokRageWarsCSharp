@@ -36,11 +36,11 @@ public static partial class Game
                 {
                     new Q04L2(Mem.U32(0x800E59E0u)).row[(int)(i)].f4A8_Set(0);
                     new Q04L2(Mem.U32(0x800E59E0u)).row[(int)(i)].f4AC_Set(5);
-                    w = func_0040ECB0(new Q04L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E59EAu + (uint)(i * 76))).w[(int)(0)])), default(uint), default(uint));
+                    w = UiTree_FindNode(new Q04L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E59EAu + (uint)(i * 76))).w[(int)(0)])), default(uint), default(uint));
                     new Q04L2(Mem.U32(0x800E59E0u)).row[(int)(i)].f4C8_Set(w);
                     new Q4Wd(w).b10_Set((byte)(100));
                     func_0040E958(w, 0);
-                    new Q4Wd(func_0040ECB0(new Q04L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E59E6u + (uint)(i * 76))).w[(int)(0)])), default(uint), default(uint))).b10_Set((byte)(110));
+                    new Q4Wd(UiTree_FindNode(new Q04L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E59E6u + (uint)(i * 76))).w[(int)(0)])), default(uint), default(uint))).b10_Set((byte)(110));
                     e = (0x80146398u + (uint)(i * 150));
                     if (((int)(new Q4Rec(e).b78) == 1))
                     {
@@ -48,26 +48,26 @@ public static partial class Game
                         new O3Vec3(_fp).x_Set(new O3Row((0x800E3A50u + (uint)(s * 112))).fC[(int)(i)]);
                         new O3Vec3(_fp).y_Set(new O3Row((0x800E3A50u + (uint)(s * 112))).fC[(int)(i)]);
                         new O3Vec3(_fp).z_Set(new O3Row((0x800E3A50u + (uint)(s * 112))).fC[(int)(i)]);
-                        func_0041CB48((new Q04L2(Mem.U32(0x800E59E0u)).row.P + (uint)(i * 1232)), 9, ((int)(new Q4Rec(e).b80) + 911), 75, 24000, _fp, (new O3Row((0x800E3A50u + (uint)(s * 112))).v2C.P + (uint)(i * 12)), new O3Row((0x800E3A50u + (uint)(s * 112))).f1C[(int)(i)], new O3Row((0x800E3A50u + (uint)(s * 112))).f5C[(int)(i)]);
+                        Portrait_CreateActor((new Q04L2(Mem.U32(0x800E59E0u)).row.P + (uint)(i * 1232)), 9, ((int)(new Q4Rec(e).b80) + 911), 75, 24000, _fp, (new O3Row((0x800E3A50u + (uint)(s * 112))).v2C.P + (uint)(i * 12)), new O3Row((0x800E3A50u + (uint)(s * 112))).f1C[(int)(i)], new O3Row((0x800E3A50u + (uint)(s * 112))).f5C[(int)(i)]);
                     }
                     ++i;
                 }
                 while ((i < 4));
                 new Q04L2(Mem.U32(0x800E59E0u)).f1358_Set(1);
                 new Q04L2(Mem.U32(0x800E59E0u)).f135C_Set(4);
-                new Q04L2(Mem.U32(0x800E59E0u)).f1348_Set(func_0040ECB0((uint)(a), (uint)(206), default(uint), default(uint)));
+                new Q04L2(Mem.U32(0x800E59E0u)).f1348_Set(UiTree_FindNode((uint)(a), (uint)(206), default(uint), default(uint)));
                 new Q4Wd(new Q04L2(Mem.U32(0x800E59E0u)).f1348).h14_Set((ushort)(((int)(new Q4Wd(new Q04L2(Mem.U32(0x800E59E0u)).f1348).h14) - (int)(new Q4Wd(new Q04L2(Mem.U32(0x800E59E0u)).f1348).h18))));
                 new Q04L2(Mem.U32(0x800E59E0u)).f134C_Set(((int)(new Q4Wd(new Q04L2(Mem.U32(0x800E59E0u)).f1348).h18) / 4));
                 t = ((int)(new Q4Wd(new Q04L2(Mem.U32(0x800E59E0u)).f1348).h18) - (new Q04L2(Mem.U32(0x800E59E0u)).f134C * 4));
                 new Q4Wd(new Q04L2(Mem.U32(0x800E59E0u)).f1348).h14_Set((ushort)(((int)(new Q4Wd(new Q04L2(Mem.U32(0x800E59E0u)).f1348).h14) + t)));
-                new Q04L2(Mem.U32(0x800E59E0u)).f1350_Set(func_0040ECB0((uint)(a), (uint)(246), default(uint), default(uint)));
+                new Q04L2(Mem.U32(0x800E59E0u)).f1350_Set(UiTree_FindNode((uint)(a), (uint)(246), default(uint), default(uint)));
                 new Q4Wd(new Q04L2(Mem.U32(0x800E59E0u)).f1350).h14_Set((ushort)(((int)(new Q4Wd(new Q04L2(Mem.U32(0x800E59E0u)).f1350).h14) + (int)(new Q4Wd(new Q04L2(Mem.U32(0x800E59E0u)).f1350).h18))));
                 new Q04L2(Mem.U32(0x800E59E0u)).f1354_Set(((int)(new Q4Wd(new Q04L2(Mem.U32(0x800E59E0u)).f1350).h18) / 4));
                 t = ((int)(new Q4Wd(new Q04L2(Mem.U32(0x800E59E0u)).f1350).h18) - (new Q04L2(Mem.U32(0x800E59E0u)).f1354 * 4));
                 new Q4Wd(new Q04L2(Mem.U32(0x800E59E0u)).f1350).h14_Set((ushort)(((int)(new Q4Wd(new Q04L2(Mem.U32(0x800E59E0u)).f1350).h14) - t)));
-                new Q4Wd(func_0040ECB0((uint)(a), (uint)(203), default(uint), default(uint))).b10_Set((byte)(110));
+                new Q4Wd(UiTree_FindNode((uint)(a), (uint)(203), default(uint), default(uint))).b10_Set((byte)(110));
                 new Q04L2(Mem.U32(0x800E59E0u)).f1360_Set(func_00419ED4((uint)(201), (uint)(255), default(uint), default(uint)));
-                w = func_0040ECB0((uint)(a), (uint)(201), default(uint), default(uint));
+                w = UiTree_FindNode((uint)(a), (uint)(201), default(uint), default(uint));
                 new Q04L2(Mem.U32(0x800E59E0u)).f1364_Set(w);
                 func_0040E958(w, 0);
                 p = Mem.U32(0x800E59E0u);
@@ -90,7 +90,7 @@ public static partial class Game
                         }
                     }
                 }
-                func_0043BB4C(default(uint), default(uint), default(uint), default(uint));
+                Loadout_ResetOwned(default(uint), default(uint), default(uint), default(uint));
                 for (i = 0; (i < 4); ++i)
                 {
                     e = (0x80146398u + (uint)(i * 150));

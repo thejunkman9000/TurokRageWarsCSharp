@@ -19,7 +19,7 @@ public static partial class Game
             }
             for (i = 0; (i < 4); ++i)
             {
-                if (((int)(func_0026439C((0x8010F328u + (uint)(i * 548)))) != 0))
+                if (((int)(Pad_IsConfirm((0x8010F328u + (uint)(i * 548)))) != 0))
                 {
                     new S10Row(0x80146302u).b78_Set((byte)(1));
                     Mem.Set(0x80146381u, (byte)(i));

@@ -17,7 +17,7 @@ public static partial class Game
             uint n1 = 0u;
             uint i1 = 0u;
             uint t = 0u;
-            func_002567C4(new B12Mgr(0x80103F70u).q11D0.P);
+            Lock_Init(new B12Mgr(0x80103F70u).q11D0.P);
             mask = __osDisableInt();
             if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
             {
@@ -33,14 +33,14 @@ public static partial class Game
             {
                 Mem.Set(0x800D0920u, (uint)((uint)(Mem.U32(0x800D0920u)) * (uint)(2)));
             }
-            new B12Mgr(0x80103F70u).nodes__Set(func_002558C0(0x801051A0u, (Mem.U32(0x800D0920u) * (uint)(40)), default(uint), default(uint)));
-            new B12Mgr(0x80103F70u).stk_Set(func_002558C0(0x801051A0u, (Mem.U32(0x800D0920u) * (uint)(4)), default(uint), default(uint)));
-            new B12Mgr(0x80103F70u).pool2__Set(func_002558C0(0x801051A0u, (Mem.U32(0x800D0920u) * (uint)(44)), default(uint), default(uint)));
+            new B12Mgr(0x80103F70u).nodes__Set(Heap_Alloc(0x801051A0u, (Mem.U32(0x800D0920u) * (uint)(40)), default(uint), default(uint)));
+            new B12Mgr(0x80103F70u).stk_Set(Heap_Alloc(0x801051A0u, (Mem.U32(0x800D0920u) * (uint)(4)), default(uint), default(uint)));
+            new B12Mgr(0x80103F70u).pool2__Set(Heap_Alloc(0x801051A0u, (Mem.U32(0x800D0920u) * (uint)(44)), default(uint), default(uint)));
             osCreateMesgQueue(new B12Mgr(0x80103F70u).q11F0.P, (0x80103F70u + 4616u), 1);
             new B12Mgr(0x80103F70u).tbl630.Set((int)(1), 0);
             new B12Mgr(0x80103F70u).tbl630.Set((int)(0), 0);
-            func_00255C40((new B12Mgr(0x80103F70u).lists.P + (uint)(0 * 20)), 24, 28);
-            func_00255C40((new B12Mgr(0x80103F70u).lists.P + (uint)(1 * 20)), 32, 36);
+            List_Init((new B12Mgr(0x80103F70u).lists.P + (uint)(0 * 20)), 24, 28);
+            List_Init((new B12Mgr(0x80103F70u).lists.P + (uint)(1 * 20)), 32, 36);
             new B12Mgr(0x80103F70u).cnt_Set(0);
             for (i = (uint)(0); (i < Mem.U32(0x800D0920u)); ++i)
             {
@@ -59,17 +59,17 @@ public static partial class Game
             new B12Mgr(0x80103F70u).cur__Set(0u);
             new B12Mgr(0x80103F70u).f120C_Set(1);
             new B12Mgr(0x80103F70u).stamp_Set((uint)(0));
-            func_00255C40((new B12Mgr(0x80103F70u).lists3.P + (uint)(0 * 20)), 40, 36);
-            func_00255C40((new B12Mgr(0x80103F70u).lists3.P + (uint)(1 * 20)), 40, 36);
-            func_00255C40((new B12Mgr(0x80103F70u).lists3.P + (uint)(2 * 20)), 40, 36);
+            List_Init((new B12Mgr(0x80103F70u).lists3.P + (uint)(0 * 20)), 40, 36);
+            List_Init((new B12Mgr(0x80103F70u).lists3.P + (uint)(1 * 20)), 40, 36);
+            List_Init((new B12Mgr(0x80103F70u).lists3.P + (uint)(2 * 20)), 40, 36);
             for (i = (uint)(0); (i < Mem.U32(0x800D0920u)); ++i)
             {
                 n = new B12Mgr(0x80103F70u).pool2_;
                 n = (n + (uint)(i * (uint)(44)));
                 new B12Node(n).unk10_Set((uint)(0));
-                func_00255CB4((new B12Mgr(0x80103F70u).lists3.P + (uint)(0 * 20)), n, default(uint), default(uint));
+                List_Append_00255CB4((new B12Mgr(0x80103F70u).lists3.P + (uint)(0 * 20)), n, default(uint), default(uint));
             }
-            func_00255280(Mem.U32(0x800D0920u), default(uint), default(uint), default(uint));
+            AddrHash_Create(Mem.U32(0x800D0920u), default(uint), default(uint), default(uint));
             osCreateMesgQueue(new B12Mgr(0x80103F70u).q870.P, new B12Mgr(0x80103F70u).buf870.P, 64);
             m2 = __osDisableInt();
             if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))

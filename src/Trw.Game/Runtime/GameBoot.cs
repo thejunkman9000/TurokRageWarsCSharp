@@ -55,12 +55,12 @@ public static class GameBoot
         Mem.Write(Ram + 0xC7010 - 0xC00, rom.AsSpan(0xC7010, 0xE8C00 - 0xC7010));
         Mem.Write(0x400000 + 0x1BCDA0 - 0x16E000, rom.AsSpan(0x1BCDA0, 0x1EE000 - 0x1BCDA0));
         // two data blobs sit inside overlay A's code range (C port asm/1B94A0.s, asm/1B9DD0.s): the overlay code is translated, so they must be copied on their own.
-        // D_44B4A0 is the template table func_0023EDF0 copies into the collision profiles (0x80103FF0..0x80104460, the flags word func_00243A80 gets as arg4
+        // D_44B4A0 is the template table Collision_InitProfiles copies into the collision profiles (0x80103FF0..0x80104460, the flags word Collision_MoveActor gets as arg4
         // for every actor state); without it every profile stays 0 and actors walk through walls and never fall. D_44BDD0 is passed on by func_0026AC38.
         Mem.Write(0x400000 + 0x1B94A0 - 0x16E000, rom.AsSpan(0x1B94A0, 0x1B9A40 - 0x1B94A0));
         Mem.Write(0x400000 + 0x1B9DD0 - 0x16E000, rom.AsSpan(0x1B9DD0, 0x1B9FD0 - 0x1B9DD0));
-        // Cold boot: the ROM entry point (func_00200400) calls func_002A81B0, which finds no "systembootdone" marker and sets D_8014D330 = 1. We start at the
-        // boot thread instead, so without this func_002911E8 skips func_00444030, the initialiser of the whole settings block 0x801462C8..0x8014684C (Game Speed,
+        // Cold boot: the ROM entry point (func_00200400) calls Game_SoftReset, which finds no "systembootdone" marker and sets D_8014D330 = 1. We start at the
+        // boot thread instead, so without this Game_ColdBootInit skips Settings_InitDefaults, the initialiser of the whole settings block 0x801462C8..0x8014684C (Game Speed,
         // volumes, match / bot / item options): actors never moved, no items, wrong damage (C port 4675740, verified against Project64).
         Mem.Set(0x8014D330, 1);
         Mem.Set(0x80000300, 1);              // osTvType = NTSC
@@ -116,7 +116,7 @@ public static class GameBoot
         var t = new Thread(() =>
         {
             Stack.Init(0x7F800000, 0x100000);
-            try { Game.func_00293518(); }
+            try { Game.Game_BootThread(); }
             catch (Exception e) { Console.Error.WriteLine($"game thread ended: {e}"); }
         }, 4 << 20) { IsBackground = true, Name = "game boot" };
         t.Start();

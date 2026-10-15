@@ -100,7 +100,7 @@ public static partial class Game
                         {
                             if ((new M1Actor(pl).pawn != 0u))
                             {
-                                func_00237E70(0x80145088u, new M1Actor(pl).pawn, (uint)(Mem.S32(0x800D70DCu)));
+                                Hud_PostMessage(0x80145088u, new M1Actor(pl).pawn, (uint)(Mem.S32(0x800D70DCu)));
                             }
                         }
                     }
@@ -115,11 +115,11 @@ public static partial class Game
                     }
                     if ((new M1State(state).unk128.i != 0))
                     {
-                        func_00214178(actor, state, 0);
+                        Actor_DispatchEvent(actor, state, 0);
                     }
                     if (((int)(new M1Actor(actor).unkE4) == 1612))
                     {
-                        func_00214178(actor, state, 2);
+                        Actor_DispatchEvent(actor, state, 2);
                     }
                 }
             }

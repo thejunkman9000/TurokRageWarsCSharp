@@ -62,7 +62,7 @@ public static partial class Game
                             if ((((f2 != 0) || (f1 != 0)) && (new B2Ctl(ctl).unk304 != 0)))
                             {
                                 dy = new Vec3f(_fp).y;
-                                func_00209910(ctl, func_0029D044(dy, sqrtf(((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).z * new Vec3f(_fp).z)))));
+                                func_00209910(ctl, Math_Atan2(dy, sqrtf(((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).z * new Vec3f(_fp).z)))));
                                 new B2Actor(o).unk6A8_Set(Mem.F32(0x800C6CDCu));
                             }
                         }
@@ -74,7 +74,7 @@ public static partial class Game
                         new Vec3f((_fp + 32u)).x_Set(sinf(ang));
                         new Vec3f((_fp + 32u)).y_Set(0.0f);
                         new Vec3f((_fp + 32u)).z_Set(cosf(ang));
-                        ang = func_0029D044((new B2Ctl(ctl).v2C.z - new Vec3f(new_var).z), (new B2Ctl(ctl).v2C.x - new Vec3f(new_var).x));
+                        ang = Math_Atan2((new B2Ctl(ctl).v2C.z - new Vec3f(new_var).z), (new B2Ctl(ctl).v2C.x - new Vec3f(new_var).x));
                         new Vec3f((_fp + 16u)).x_Set(cosf(ang));
                         new Vec3f((_fp + 16u)).y_Set(0.0f);
                         new Vec3f((_fp + 16u)).z_Set(sinf(ang));
@@ -91,7 +91,7 @@ public static partial class Game
                         new Vec3f((_fp + 48u)).x_Set((-new Vec3f((_fp + 48u)).z));
                         new Vec3f((_fp + 48u)).z_Set(new Vec3f((_fp + 48u)).y);
                         Mem.Set(((_fp + 48u) + 4u), (uint)(0));
-                        ang3 = func_0029D044(new Vec3f((_fp + 48u)).z, new Vec3f((_fp + 48u)).x);
+                        ang3 = Math_Atan2(new Vec3f((_fp + 48u)).z, new Vec3f((_fp + 48u)).x);
                         new Vec3f((_fp + 48u)).x_Set(cosf(ang3));
                         new Vec3f((_fp + 48u)).z_Set(sinf(ang3));
                         t = (((new Vec3f((_fp + 16u)).x * new Vec3f((_fp + 48u)).x) + (new Vec3f((_fp + 16u)).y * new Vec3f((_fp + 48u)).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f((_fp + 48u)).z));
@@ -106,7 +106,7 @@ public static partial class Game
                     if ((((f2 != 0) || (f1 != 0)) && (new B2Ctl(ctl).unk304 != 0)))
                     {
                         dy = new Vec3f(_fp).y;
-                        func_00209910(ctl, func_0029D044(dy, sqrtf(((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).z * new Vec3f(_fp).z)))));
+                        func_00209910(ctl, Math_Atan2(dy, sqrtf(((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).z * new Vec3f(_fp).z)))));
                         new B2Actor(o).unk6A8_Set(Mem.F32(0x800C6CE4u));
                     }
                     if (((int)(new B2Ctl(ctl).owner.unk650) == 15))

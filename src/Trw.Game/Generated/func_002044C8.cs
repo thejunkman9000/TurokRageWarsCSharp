@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002044C8", (uint)actor, (uint)state);
             if ((func_00285F28(0x8011FE88u, actor) == 1))
             {
-                func_00214178(actor, state, 1);
+                Actor_DispatchEvent(actor, state, 1);
                 switch ((int)(new B01Actor(actor).unkE4))
                 {
                 case 1612:
@@ -28,7 +28,7 @@ public static partial class Game
             else
             {
                 Mem.Set(0x800CD4C0u, 1);
-                func_00214178(actor, state, 0);
+                Actor_DispatchEvent(actor, state, 0);
                 Mem.Set(0x800CD4C0u, 0);
             }
         }

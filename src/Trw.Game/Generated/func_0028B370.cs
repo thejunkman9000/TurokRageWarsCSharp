@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028B370", (uint)lv, (uint)idx);
-            uint tbl = func_0028FD94(new Level(lv).unk6C_, 2);
+            uint tbl = Chunk_Get(new Level(lv).unk6C_, 2);
             uint ents = (tbl + (uint)8);
             if (((idx < 0) || (idx >= Mem.S32((tbl + (uint)(1 * 4))))))
             {

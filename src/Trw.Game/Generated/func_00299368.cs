@@ -81,7 +81,7 @@ public static partial class Game
             var_s2 = 0;
             var_s5 = 1;
             if (!((new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4 >= 0))) goto _f0;
-            func_0029A958();
+            Ui_PushScreen();
             _f0: ;
             temp_v1 = new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4;
             temp_s0 = new Shared_MenuManager(Mem.U32(0x8014D080u)).unkC_;
@@ -104,7 +104,7 @@ public static partial class Game
             if (!((var_v0 == 0))) goto _f4;
             goto L_block_not_found;
             _f4: ;
-            temp_s4 = func_0029A958();
+            temp_s4 = Ui_PushScreen();
             var_a0_2 = new Shared_MenuManager(Mem.U32(0x8014D080u)).unk8;
             temp_a1 = new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4;
             if (!((temp_a1 >= var_a0_2))) goto _f5;
@@ -220,7 +220,7 @@ public static partial class Game
             _f27: ;
             _f23: ;
             L_after_focus10: ;
-            new Shared_MenuManager(Mem.U32(0x8014D080u)).unk528_Set(func_0029A958());
+            new Shared_MenuManager(Mem.U32(0x8014D080u)).unk528_Set(Ui_PushScreen());
             new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4_Set((new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4 + 1));
             temp_v0_6 = func_00411E4C(arg0);
             temp_a0_5 = (new Shared_MenuManager(Mem.U32(0x8014D080u)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4 * 28));
@@ -331,7 +331,7 @@ public static partial class Game
             temp_v1_2 = Mem.U32(0x8014D080u);
             _f41: ;
             new Shared_MenuManager(temp_v1_2).unk8_Set(new Shared_MenuManager(temp_v1_2).unk4);
-            new Shared_MenuManager(Mem.U32(0x8014D080u)).unk528_Set(func_0029A958());
+            new Shared_MenuManager(Mem.U32(0x8014D080u)).unk528_Set(Ui_PushScreen());
             new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4_Set((new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4 + 1));
             temp_v0_13 = func_00411E4C(arg0);
             temp_a0_6 = (new Shared_MenuManager(Mem.U32(0x8014D080u)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4 * 28));
@@ -378,7 +378,7 @@ public static partial class Game
             func_00298310((uint)(1), (uint)(3591), (uint)(0), (uint)(0), (uint)(0));
             _f53: ;
             L_after_e07_second: ;
-            if (!((func_0029A958() != arg0))) goto _f56;
+            if (!((Ui_PushScreen() != arg0))) goto _f56;
             new Shared_MenuManager(Mem.U32(0x8014D080u)).unk540_Set(0);
             return;
             _f56: ;

@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004217EC");
             func_0040E958(new O3Pm(Mem.U32(0x800E4400u)).item_, 0);
-            func_0040E958(func_0040ECB0(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(939), default(uint), default(uint)), 1);
+            func_0040E958(UiTree_FindNode(new O3Pm(Mem.U32(0x800E4400u)).w8_, (uint)(939), default(uint), default(uint)), 1);
             new O3Pm(Mem.U32(0x800E4400u)).f34_Set(1);
         }
     }

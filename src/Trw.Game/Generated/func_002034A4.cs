@@ -17,7 +17,7 @@ public static partial class Game
                 new V16((_fp + 32u)).y_Set(new M1State(state).vec130.y);
                 new V16((_fp + 32u)).z_Set(new M1State(state).vec130.z);
                 Mem.Copy((_fp + 16u), C.Seq(func_00202CA0(_fp, (_fp + 32u)), _fp), 16);
-                func_002742B4((_fp + 16u), m);
+                Quat_ToMatrix((_fp + 16u), m);
             }
         }
         finally { Stack.Free(48); }
@@ -79,7 +79,7 @@ public static partial class Game
                     func_00271FA4((_fp + 152u), (_fp + 152u), (_fp + 136u));
                     func_00271FD8((_fp + 168u), (_fp + 152u), (_fp + 136u));
                     k = func_0027266C((_fp + 168u));
-                    fs0 = func_00216F44(actor, (_fp + 152u));
+                    fs0 = Actor_AngleToPoint(actor, (_fp + 152u));
                     new B801Out(_fp).f8_Set(fs0);
                     if ((new B801Out(_fp).f40 <= new M1Info(info).f54))
                     {

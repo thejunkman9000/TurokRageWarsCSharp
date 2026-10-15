@@ -125,7 +125,7 @@ public static partial class Game
                 new Vec3f((_fp + 16u)).y_Set(0.0f);
                 new Vec3f((_fp + 16u)).z_Set(0.0f);
                 func_0024795C((_fp + 144u), a);
-                func_002742B4((_fp + 144u), (_fp + 80u));
+                Quat_ToMatrix((_fp + 144u), (_fp + 80u));
                 func_00272908((_fp + 80u), _fp, (_fp + 32u));
                 func_00272908((_fp + 80u), (_fp + 16u), (_fp + 48u));
                 new B05P17(p).v6E8.x_Set((new B05P17(p).v6E8.x + ((new Vec3f((_fp + 32u)).x + new Vec3f((_fp + 48u)).x) * new B05P17(p).f66C)));

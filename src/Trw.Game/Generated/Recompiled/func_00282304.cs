@@ -179,13 +179,13 @@ public static partial class Game
                 r5 = r19; func_0027EB00(r4, r5);
                  goto L_L002825F0;
                 L_L002825E8: ;
-                r5 = r19; r2 = func_0027ED40(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r19; r2 = Particle_Draw(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_L002825F0: ;
                 r2 = Mem.U32((r17 + 280u));
                 r2 = Mem.U32((r2 + 0u));
                 r2 = r2 & r20;
                 { bool c_ = r2 == 0; r4 = r17; if (c_) goto L_L0028260C; }
-                r5 = r19; r2 = func_0027E758(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r19; r2 = Actor_DrawShadow(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_L0028260C: ;
                 r2 = Mem.U8((r17 + 473u));
                 { bool c_ = r2 == 0;  if (c_) goto L_L002826F8; }

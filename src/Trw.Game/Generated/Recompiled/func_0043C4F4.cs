@@ -463,7 +463,7 @@ public static partial class Game
                 L_I0043C8F8: ;
                 r4 = Mem.U32((r17 + 32u));
                 L_I0043C8FC: ;
-                r2 = func_0026439C(r4);
+                r2 = Pad_IsConfirm(r4);
                 L_I0043C904: ;
                 { bool c_ = r2 == 0; r2 = (uint)8000; if (c_) goto L_L0043C998; }
                 L_I0043C90C: ;
@@ -492,7 +492,7 @@ public static partial class Game
                 L_I0043C950: ;
                 r4 = r4 - 376u;
                 L_I0043C954: ;
-                r6 = (uint)2; func_0044E178(r4, (int)r5, (int)r6);
+                r6 = (uint)2; Level_SetTransitionState_0044E178(r4, (int)r5, (int)r6);
                 L_I0043C95C: ;
                 r2 = r0; goto L_L0043CB64;
                 L_L0043C964: ;
@@ -520,7 +520,7 @@ public static partial class Game
                 L_I0043C998: ;
                 r4 = Mem.U32((r17 + 32u));
                 L_I0043C99C: ;
-                r2 = (uint)func_002643A8(r4);
+                r2 = (uint)Pad_IsLeft(r4);
                 L_I0043C9A4: ;
                 { bool c_ = r2 == 0; r4 = r0; if (c_) goto L_L0043CA7C; }
                 L_I0043C9AC: ;
@@ -609,7 +609,7 @@ public static partial class Game
                 L_I0043CA7C: ;
                 r4 = Mem.U32((r17 + 32u));
                 L_I0043CA80: ;
-                r2 = (uint)func_002643C0(r4);
+                r2 = (uint)Pad_IsRight(r4);
                 L_I0043CA88: ;
                 { bool c_ = r2 == 0; r2 = r0; if (c_) goto L_L0043CB64; }
                 L_I0043CA90: ;
@@ -943,7 +943,7 @@ public static partial class Game
                 L_I0043CD6C: ;
                 r4 = Mem.U32((r17 + 32u));
                 L_I0043CD70: ;
-                r2 = (uint)func_002643A8(r4);
+                r2 = (uint)Pad_IsLeft(r4);
                 L_I0043CD78: ;
                 { bool c_ = r2 == 0;  if (c_) goto L_L0043CD98; }
                 L_I0043CD80: ;
@@ -958,7 +958,7 @@ public static partial class Game
                 L_I0043CD98: ;
                 r4 = Mem.U32((r17 + 32u));
                 L_I0043CD9C: ;
-                r2 = (uint)func_002643C0(r4);
+                r2 = (uint)Pad_IsRight(r4);
                 L_I0043CDA4: ;
                 { bool c_ = r2 == 0;  if (c_) goto L_L0043CDD0; }
                 L_I0043CDAC: ;

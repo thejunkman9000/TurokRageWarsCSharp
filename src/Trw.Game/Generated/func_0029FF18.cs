@@ -27,7 +27,7 @@ public static partial class Game
                     Mem.Set(((new Mtx4f(_fp).m.P + (uint)(1 * 16)) + (uint)(0 * 4)), (-Mem.F32((_fp + 64u))));
                     Mem.Set(((new Mtx4f(_fp).m.P + (uint)(0 * 16)) + (uint)(1 * 4)), Mem.F32((_fp + 64u)));
                     Mem.Set(((new Mtx4f(_fp).m.P + (uint)(1 * 16)) + (uint)(1 * 4)), Mem.F32((_fp + 68u)));
-                    func_0029DE3C(m, r, m);
+                    Math_MtxMultiply(m, r, m);
                 }
             }
         }

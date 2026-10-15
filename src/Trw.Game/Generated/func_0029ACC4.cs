@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029ACC4");
-            func_002551C8(0x8010A248u);
+            MsgPort_Flush(0x8010A248u);
             func_002538A8();
         }
     }

@@ -14,10 +14,10 @@ public static partial class Game
             uint bits = 0u;
             int m = 0;
             int idx = new Level(lv).unk1B40C;
-            t = func_0028FD94(func_0028FD94(func_0028FD94(new Level(lv).unk84_, 0), idx), 0);
-            func_0028FD94(t, 0);
-            func_0028FDD8(t, 1);
-            bits = func_0028FD94(t, 1);
+            t = Chunk_Get(Chunk_Get(Chunk_Get(new Level(lv).unk84_, 0), idx), 0);
+            Chunk_Get(t, 0);
+            Chunk_GetSize(t, 1);
+            bits = Chunk_Get(t, 1);
             m = (1 << (int)(bit & 7));
             return ((((int)(Mem.U8((bits + (uint)(bit / 8)))) & m) != 0) ? 1 : 0);
         }

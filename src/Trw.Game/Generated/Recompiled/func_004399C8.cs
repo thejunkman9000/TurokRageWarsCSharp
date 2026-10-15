@@ -110,7 +110,7 @@ public static partial class Game
                 Cpu.SetW(0, Mem.U32((r1 + 8064u)));
                 Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
                 r5 = Cpu.W(1);
-                r4 = r29 + 24u; func_00273860(r4, Cpu.U2F(r5));
+                r4 = r29 + 24u; Math_MtxRotateRowsC_00273860(r4, Cpu.U2F(r5));
                 L_L00439B54: ;
                 Cpu.SetW(0, Mem.U32((r17 + 44u)));
                 fcc = Cpu.S(0) == Cpu.S(21);
@@ -120,7 +120,7 @@ public static partial class Game
                 Cpu.SetW(0, Mem.U32((r1 + 8068u)));
                 Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
                 r5 = Cpu.W(1);
-                r4 = r29 + 24u; func_00273A34(r4, Cpu.U2F(r5));
+                r4 = r29 + 24u; Math_MtxRotateRowsB_00273A34(r4, Cpu.U2F(r5));
                 L_L00439B84: ;
                 Cpu.SetW(0, Mem.U32((r17 + 48u)));
                 fcc = Cpu.S(0) == Cpu.S(21);
@@ -130,7 +130,7 @@ public static partial class Game
                 Cpu.SetW(0, Mem.U32((r1 + 8072u)));
                 Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
                 r5 = Cpu.W(1);
-                r4 = r29 + 24u; func_00273C08(r4, Cpu.U2F(r5));
+                r4 = r29 + 24u; Math_MtxRotateRowsA_00273C08(r4, Cpu.U2F(r5));
                 L_L00439BB4: ;
                 Cpu.SetW(1, Mem.U32((r17 + 28u)));
                 fcc = Cpu.S(1) == Cpu.S(21);
@@ -139,7 +139,7 @@ public static partial class Game
                 Cpu.SetW(0, Mem.U32((r1 + 8076u)));
                 Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
                 r5 = Cpu.W(1);
-                r4 = r29 + 24u; func_00273860(r4, Cpu.U2F(r5));
+                r4 = r29 + 24u; Math_MtxRotateRowsC_00273860(r4, Cpu.U2F(r5));
                 L_L00439BE0: ;
                 Cpu.SetW(1, Mem.U32((r17 + 32u)));
                 fcc = Cpu.S(1) == Cpu.S(21);
@@ -148,7 +148,7 @@ public static partial class Game
                 Cpu.SetW(0, Mem.U32((r1 + 8080u)));
                 Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
                 r5 = Cpu.W(1);
-                r4 = r29 + 24u; func_00273A34(r4, Cpu.U2F(r5));
+                r4 = r29 + 24u; Math_MtxRotateRowsB_00273A34(r4, Cpu.U2F(r5));
                 L_L00439C0C: ;
                 Cpu.SetW(1, Mem.U32((r17 + 36u)));
                 fcc = Cpu.S(1) == Cpu.S(21);
@@ -157,7 +157,7 @@ public static partial class Game
                 Cpu.SetW(0, Mem.U32((r1 + 8084u)));
                 Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
                 r5 = Cpu.W(1);
-                r4 = r29 + 24u; func_00273C08(r4, Cpu.U2F(r5));
+                r4 = r29 + 24u; Math_MtxRotateRowsA_00273C08(r4, Cpu.U2F(r5));
                 L_L00439C38: ;
                 r1 = 2148401152u;
                 Cpu.SetW(1, Mem.U32((r1 + 10448u)));
@@ -188,7 +188,7 @@ public static partial class Game
                 r4 = r29 + 24u;
                 r5 = r5 << 6;
                 r5 = r5 + 56u;
-                r5 = r17 + r5; func_002702EC(r4, r5);
+                r5 = r17 + r5; Math_MtxFloatToFixed(r4, r5);
                 r5 = Mem.U32((r17 + 52u));
                 r4 = 2148663296u;
                 r4 = r4 - 376u;

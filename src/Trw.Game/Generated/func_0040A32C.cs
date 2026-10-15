@@ -21,7 +21,7 @@ public static partial class Game
                 v = (int)(new O01Owner(own).unk20.unk4);
                 new O01Item(item).unk14__Set(0x800D7710u);
                 buf = new O01Text(0x800D7710u).buf_;
-                func_00265904((buf + (uint)(func_00442158((uint)(item)) - 1)), 0x800E0DACu, (v + 1), default(int));
+                Str_Sprintf((buf + (uint)(func_00442158((uint)(item)) - 1)), 0x800E0DACu, (v + 1), default(int));
             }
             return 0;
         }

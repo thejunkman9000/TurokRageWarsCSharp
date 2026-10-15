@@ -104,7 +104,7 @@ public static partial class Game
                 r2 = (uint)3;
                 Mem.Set((r3 + 36u), r2);
                 r2 = (uint)-1;
-                Mem.Set((r3 + 32u), r2); r2 = func_0040ECB0(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r3 + 32u), r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 22160u));
                 r4 = r0;

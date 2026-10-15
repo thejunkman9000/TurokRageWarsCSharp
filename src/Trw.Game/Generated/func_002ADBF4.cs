@@ -22,7 +22,7 @@ public static partial class Game
             if ((t > 0))
             {
                 new Ent24(e).unk5E4_Set((t + (new Fx24_v3(f).unkC << (int)8)));
-                v = func_0022ABF0(e);
+                v = Player_GetMaxHealth(e);
                 t2 = new Ent24(e).unk5E4;
                 if ((t2 < v))
                 {
@@ -42,7 +42,7 @@ public static partial class Game
                     func_0023919C((uint)(new Ent24(e).unk5DC), (sbyte)(128), (sbyte)(50), (sbyte)(50), (sbyte)(75), (sbyte)(0), (sbyte)(0), (sbyte)(2));
                     if ((p != 0u))
                     {
-                        func_00237E70(0x80145088u, (uint)(new Ent24(e).unk5DC), (uint)(Mem.S32(p)));
+                        Hud_PostMessage(0x80145088u, (uint)(new Ent24(e).unk5DC), (uint)(Mem.S32(p)));
                     }
                 }
                 if ((b != 0))

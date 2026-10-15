@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0028D578", (uint)o);
             if ((new P4Rsrc(o).fF8 != 0))
             {
-                uint p = func_0028FD94((uint)(new P4Rsrc(o).f88), 0);
+                uint p = Chunk_Get((uint)(new P4Rsrc(o).f88), 0);
                 while ((Mem.S32(p) != 0))
                 {
                     func_002536F4(0, (uint)(Mem.S32(((p += 4u) - 4u))));

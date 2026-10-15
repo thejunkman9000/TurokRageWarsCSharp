@@ -32,13 +32,13 @@ public static partial class Game
                 {
                     s = Mem.S32((0x800D7630u + (uint)(0 * 4)));
                     new O06A_v5(a).unk14_Set(0x800D7630u);
-                    func_00265904((uint)(((s - 4) + func_00442158(a))), 0x800E2788u, n, default(int));
+                    Str_Sprintf((uint)(((s - 4) + func_00442158(a))), 0x800E2788u, n, default(int));
                 }
                 else
                 {
                     s = Mem.S32((0x800D7630u + (uint)(0 * 4)));
                     new O06A_v5(a).unk14_Set(0x800D7630u);
-                    func_00265904((uint)(((s - 4) + func_00442158(a))), 0x800E2790u, n, default(int));
+                    Str_Sprintf((uint)(((s - 4) + func_00442158(a))), 0x800E2790u, n, default(int));
                 }
             }
             return 0;

@@ -45,7 +45,7 @@ public static partial class Game
         }
     }
 
-    public static void func_0044E9A0(uint match)
+    public static void Match_Reset(uint match)
     {
         unchecked
         {

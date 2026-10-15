@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00201064", (uint)dst, (uint)src, (uint)n);
             while (((n--) != 0u))
             {
-                func_00200C28((dst++), (byte)((func_00200800((src++)) & (uint)(255))));
+                func_00200C28((dst++), (byte)((Bus_ReadByte((src++)) & (uint)(255))));
             }
         }
     }

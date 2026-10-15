@@ -29,7 +29,7 @@ public static partial class Game
                 }
                 else
                 {
-                    func_002702EC(_fp, (new SEnt(e).m28.P + (uint)(Mem.S32(0x800D297Cu) * 64)));
+                    Math_MtxFloatToFixed(_fp, (new SEnt(e).m28.P + (uint)(Mem.S32(0x800D297Cu) * 64)));
                 }
             }
         }

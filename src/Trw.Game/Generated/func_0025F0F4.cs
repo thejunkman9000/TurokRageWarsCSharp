@@ -75,7 +75,7 @@ public static partial class Game
                 {
                     do
                     {
-                        r3 = func_0028FD94(tab, i);
+                        r3 = Chunk_Get(tab, i);
                         j = 0;
                         if ((m > 0))
                         {
@@ -98,7 +98,7 @@ public static partial class Game
                 {
                     do
                     {
-                        t0 = func_0028FD94(tab, i);
+                        t0 = Chunk_Get(tab, i);
                         if (((m == 4) && (blur != 0)))
                         {
                             int D = 0;
@@ -133,7 +133,7 @@ public static partial class Game
                         j = 0;
                         do
                         {
-                            r5 = func_0028FD94(tab, j);
+                            r5 = Chunk_Get(tab, j);
                             for (i = 0; (i < Mem.S32(0x8010EC88u)); ++i)
                             {
                                 func_00274214((r5 + (uint)(i * 16)), default(uint), default(uint), default(uint));

@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0025C27C", (uint)a, (uint)b);
             float x = (float)(a);
             float y = (float)(b);
-            return (short)((int)(((func_00274B00(y, x) < 0.0f) ? (x - func_00274B00(y, x)) : (x + func_00274B00(y, x)))));
+            return (short)((int)(((Random_Symmetric(y, x) < 0.0f) ? (x - Random_Symmetric(y, x)) : (x + Random_Symmetric(y, x)))));
         }
     }
 

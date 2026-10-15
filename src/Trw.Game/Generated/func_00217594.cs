@@ -14,7 +14,7 @@ public static partial class Game
             {
                 if (((mask & new B04Ent(e).mask) != 0u))
                 {
-                    func_0024DBB0(o, C.Tmp((uint)(new B04O(o).x), (uint)(new B04O(o).y), (uint)(new B04O(o).z)), (int)((uint)(new B04Ent(e).val)), Cpu.U2F(Cpu.F2U(func_00274B00(Mem.F32(0x800C72DCu), Mem.F32(0x800C72E0u)))));
+                    func_0024DBB0(o, C.Tmp((uint)(new B04O(o).x), (uint)(new B04O(o).y), (uint)(new B04O(o).z)), (int)((uint)(new B04Ent(e).val)), Cpu.U2F(Cpu.F2U(Random_Symmetric(Mem.F32(0x800C72DCu), Mem.F32(0x800C72E0u)))));
                 }
             }
         }

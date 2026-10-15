@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0042D5F8", (uint)a);
             int i = 0;
-            int h = (int)(func_0040ECB0((uint)(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unkE0), (uint)((ushort)(a)), default(uint), default(uint)));
+            int h = (int)(UiTree_FindNode((uint)(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unkE0), (uint)((ushort)(a)), default(uint), default(uint)));
             for (i = 0; (i < 4); ++i)
             {
                 int id = 0;
@@ -33,7 +33,7 @@ public static partial class Game
                     id = 621;
                     break;
                 }
-                func_0040E958((uint)((int)(func_0040ECB0((uint)(h), (uint)((ushort)(id)), default(uint), default(uint)))), 0);
+                func_0040E958((uint)((int)(UiTree_FindNode((uint)(h), (uint)((ushort)(id)), default(uint), default(uint)))), 0);
             }
         }
     }

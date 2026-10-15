@@ -43,7 +43,7 @@ public static partial class Game
             }
             if ((func_0022A67C(0x80145040u) != 0))
             {
-                func_0025E2F4((int)((t34 = (uint)(52))));
+                Audio_PlayCue((int)((t34 = (uint)(52))));
                 switch ((int)(Mem.U8((0x80145040u + (uint)4757))))
                 {
                 case 0:
@@ -53,7 +53,7 @@ public static partial class Game
                 case 1:
                 case 3:
                 case 4:
-                    func_00438BA4();
+                    Game_RestartToMenu();
                     break;
                 }
             }

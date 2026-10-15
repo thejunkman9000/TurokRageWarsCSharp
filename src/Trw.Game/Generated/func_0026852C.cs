@@ -38,7 +38,7 @@ public static partial class Game
                     new Vec3f((_fp + 40u)).y_Set((float)(0));
                     new Vec3f((_fp + 40u)).z_Set((float)(0));
                 }
-                fx = func_002627C0(0x80135210u, new B15PairF((_fp + 16u)).a, new B15Spawner(src).unk14, _fp, 0, (_fp + 40u), (_fp + 24u), 0);
+                fx = Effect_SpawnItemVariant(0x80135210u, new B15PairF((_fp + 16u)).a, new B15Spawner(src).unk14, _fp, 0, (_fp + 40u), (_fp + 24u), 0);
                 if ((fx != 0u))
                 {
                     if ((new B15PairF((_fp + 16u)).a == 1036))

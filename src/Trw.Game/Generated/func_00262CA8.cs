@@ -16,8 +16,8 @@ public static partial class Game
             {
                 Mem.Set(p, (int)((int)(Mem.S32(p)) - 1));
             }
-            func_00255E78(0x8013B124u, o, default(uint), default(uint));
-            func_00255CB4(0x8013B110u, o, default(uint), default(uint));
+            List_Remove(0x8013B124u, o, default(uint), default(uint));
+            List_Append_00255CB4(0x8013B110u, o, default(uint), default(uint));
         }
     }
 

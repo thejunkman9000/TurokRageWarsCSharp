@@ -40,7 +40,7 @@ public static partial class Game
                 r4 = r16;
                 r5 = r6;
                 Mem.Set((r29 + 28u), r31);
-                r6 = r29 + 44u; r2 = func_00414D4C(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
+                r6 = r29 + 44u; r2 = Printf_VFormat(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
                 r4 = r16;
                 r5 = r17;
                 r3 = 2148335616u;

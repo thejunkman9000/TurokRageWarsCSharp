@@ -33,7 +33,7 @@ public static partial class Game
             }
             if ((new B2State(state).unk64 <= 0.0f))
             {
-                func_00214178(actor, state, 0);
+                Actor_DispatchEvent(actor, state, 0);
             }
         }
     }

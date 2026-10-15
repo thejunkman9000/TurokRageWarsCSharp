@@ -13,7 +13,7 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 4); ++i)
             {
-                if (((int)(func_0026439C((0x8010F328u + (uint)(i * 548)))) != 0))
+                if (((int)(Pad_IsConfirm((0x8010F328u + (uint)(i * 548)))) != 0))
                 {
                     Mem.Set(@out, i);
                     return (0x8010F328u + (uint)(i * 548));

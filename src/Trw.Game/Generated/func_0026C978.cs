@@ -25,12 +25,12 @@ public static partial class Game
             uint g3 = 0u;
             uint g4 = 0u;
             uint p = 0u;
-            if (((((uint)(Mem.S32(0x800E28A4u)) - (((uint)(Mem.U32(0x80110634u)) - (uint)(new B15GfxCtx(Mem.U32(0x8011FE80u)).start_)) >> (int)3)) >= (uint)(3000)) && ((int)(func_00269A80(0x8013B2D8u, (uint)(a5), default(uint), default(uint))) != 0)))
+            if (((((uint)(Mem.S32(0x800E28A4u)) - (((uint)(Mem.U32(0x80110634u)) - (uint)(new B15GfxCtx(Mem.U32(0x8011FE80u)).start_)) >> (int)3)) >= (uint)(3000)) && ((int)(Model_DrawGroups(0x8013B2D8u, (uint)(a5), default(uint), default(uint))) != 0)))
             {
                 g0 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
                 Mem.Set(new P4Gfx(g0).words.P, 3791650844u);
                 Mem.Set((new P4Gfx(g0).words.P + 4u), (uint)(202919760));
-                func_00268CE0((uint)(2));
+                Gfx_SetCombineMode((uint)(2));
                 if ((flag != 0))
                 {
                     g1 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
@@ -60,18 +60,18 @@ public static partial class Game
                 root = Mem.U32(a0);
                 if ((p == 0u))
                 {
-                    p = func_0028FD94(root, 0);
+                    p = Chunk_Get(root, 0);
                 }
                 g3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
                 Mem.Set(new P4Gfx(g3).words.P, 3674603528u);
                 Mem.Set((new P4Gfx(g3).words.P + 4u), (uint)(p));
-                arr = func_0028FD94(root, 2);
+                arr = Chunk_Get(root, 2);
                 n = Mem.S32(arr);
                 for (i = 0; (i < n); ++i)
                 {
-                    part = func_0028FD94(arr, i);
-                    func_0028FD94(part, 0);
-                    dl = func_0028FD94(part, 1);
+                    part = Chunk_Get(arr, i);
+                    Chunk_Get(part, 0);
+                    dl = Chunk_Get(part, 1);
                     g4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
                     Mem.Set(new P4Gfx(g4).words.P, 3724541952u);
                     Mem.Set((new P4Gfx(g4).words.P + 4u), (uint)(dl));

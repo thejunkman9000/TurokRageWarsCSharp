@@ -123,7 +123,7 @@ public static partial class Game
                                     new O3Vec3(_fp).x_Set(new O3Row((0x800E3A50u + (uint)(row * 112))).fC[(int)(i)]);
                                     new O3Vec3(_fp).y_Set(new O3Row((0x800E3A50u + (uint)(row * 112))).fC[(int)(i)]);
                                     new O3Vec3(_fp).z_Set(new O3Row((0x800E3A50u + (uint)(row * 112))).fC[(int)(i)]);
-                                    func_0041CB48(new Q2Rec((uint)(((i * 1224) + (int)(Mem.U32(0x800E42D0u))))).sub.P, 9, (ch + 911), 75, 24000, _fp, (new O3Row((0x800E3A50u + (uint)(row * 112))).v2C.P + (uint)(i * 12)), new O3Row((0x800E3A50u + (uint)(row * 112))).f1C[(int)(i)], new O3Row((0x800E3A50u + (uint)(row * 112))).f5C[(int)(i)]);
+                                    Portrait_CreateActor(new Q2Rec((uint)(((i * 1224) + (int)(Mem.U32(0x800E42D0u))))).sub.P, 9, (ch + 911), 75, 24000, _fp, (new O3Row((0x800E3A50u + (uint)(row * 112))).v2C.P + (uint)(i * 12)), new O3Row((0x800E3A50u + (uint)(row * 112))).f1C[(int)(i)], new O3Row((0x800E3A50u + (uint)(row * 112))).f5C[(int)(i)]);
                                 }
                                 else
                                 {

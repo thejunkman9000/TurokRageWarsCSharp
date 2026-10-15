@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0023330C", (uint)actor, (uint)state);
             Mem.Set((state + (uint)328), Mem.F32(0x800C8140u));
-            func_00214178(actor, state, 8);
+            Actor_DispatchEvent(actor, state, 8);
         }
     }
 

@@ -15,7 +15,7 @@ public static partial class Game
             float z = 0.0f;
             func_00224028(actor);
             func_002748E0((actor + (uint)1836), z, 0.25f);
-            func_002231B0(actor, state, 0x800CE7FCu);
+            Player_UpdateViewTurn(actor, state, 0x800CE7FCu);
             func_002233CC(actor, state, 0x800CE7C0u);
             if (!((Mem.U32((actor + (uint)1708)) & (uint)(16)) != 0u))
             {

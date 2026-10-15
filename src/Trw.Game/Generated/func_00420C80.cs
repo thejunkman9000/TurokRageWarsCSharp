@@ -28,7 +28,7 @@ public static partial class Game
             case 3:
                 new O3Pj(e).state_Set(1);
                 func_0041B834((uint)(new O3Pj(Mem.U32(0x800E42D0u)).menu), idx, 0);
-                func_0041CE80((uint)((((idx * 1224) + (int)(Mem.U32(0x800E42D0u))) + 32)), (uint)(1), default(uint), default(uint));
+                MenuModel_SetWord49C_0041CE80((uint)((((idx * 1224) + (int)(Mem.U32(0x800E42D0u))) + 32)), (uint)(1), default(uint), default(uint));
                 func_004204A8(idx);
                 break;
             }

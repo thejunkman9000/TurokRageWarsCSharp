@@ -15,8 +15,8 @@ public static partial class Game
             {
                 return (-2);
             }
-            func_0026451C(1);
-            func_00263760();
+            Pad_TryAcquire(1);
+            Pad_ReadController_00263760();
             r = Mem.S32((0x80153500u + (uint)(pad * 4)));
             Mem.Set(0x8010FBB8u, (byte)(2));
             if ((r == (-4)))

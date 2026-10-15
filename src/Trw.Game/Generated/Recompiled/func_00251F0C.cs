@@ -160,9 +160,9 @@ public static partial class Game
                 r16 = 2148532224u;
                 r16 = r16 + 20748u;
                 r5 = Mem.U32((r29 + 16u));
-                r4 = r16; r2 = func_00255E78(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r16; r2 = List_Remove(r4, r5, r6, r7); r3 = Cpu.V1;
                 r5 = Mem.U32((r29 + 16u));
-                r4 = r16 + 20u; r2 = func_00255CB4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r16 + 20u; r2 = List_Append_00255CB4(r4, r5, r6, r7); r3 = Cpu.V1;
                 r2 = __osDisableInt();
                 r3 = 2148532224u;
                 r3 = Mem.U32((r3 + 20828u));
@@ -205,7 +205,7 @@ public static partial class Game
                 r4 = r0;
                 L_L00252248: ;
                 r5 = Mem.U32((r29 + 16u));
-                r6 = r4; r2 = func_00252714(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = r4; r2 = Resource_ActivateLoadRequest(r4, r5, r6, r7); r3 = Cpu.V1;
                 Mem.Set((r29 + 16u), r2); r2 = __osDisableInt();
                 r3 = 2148532224u;
                 r3 = Mem.U32((r3 + 20828u));
@@ -232,7 +232,7 @@ public static partial class Game
                 r5 = Mem.U32((r29 + 16u));
                 r16 = 2148532224u;
                 r16 = r16 + 18400u;
-                r6 = r16; r2 = (uint)func_0025519C(r4, r5, r6);
+                r6 = r16; r2 = (uint)MsgPort_Send(r4, r5, r6);
                 { bool c_ = r2 != 0; r2 = r0; if (c_) goto L_L00252430; }
                 r2 = __osDisableInt();
                 r4 = r2;
@@ -272,9 +272,9 @@ public static partial class Game
                 r16 = 2148532224u;
                 r16 = r16 + 20768u;
                 r5 = Mem.U32((r29 + 16u));
-                r4 = r16; r2 = func_00255E78(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r16; r2 = List_Remove(r4, r5, r6, r7); r3 = Cpu.V1;
                 r5 = Mem.U32((r29 + 16u));
-                r4 = r16 - 20u; func_00255C58(r4, r5);
+                r4 = r16 - 20u; List_Add(r4, r5);
                 r5 = Mem.U32((r29 + 16u));
                 r4 = r0; func_00254E28(r4, r5);
                 r2 = __osDisableInt();

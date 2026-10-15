@@ -82,7 +82,7 @@ public static partial class Game
             {
                 do
                 {
-                    arr = func_0028FD94(Mem.U32(Mem.U32(0x8011064Cu)), 2);
+                    arr = Chunk_Get(Mem.U32(Mem.U32(0x8011064Cu)), 2);
                     n = Mem.S32(arr);
                     if ((n > 0))
                     {
@@ -94,8 +94,8 @@ public static partial class Game
                         lim = 500;
                         pc2 = 0x80110630u;
                         L_top: ;
-                        part = func_0028FD94(arr, i);
-                        rec = func_0028FD94(part, 0);
+                        part = Chunk_Get(arr, i);
+                        rec = Chunk_Get(part, 0);
                         key = (uint)((((int)(new R06Rec(rec).id) << (int)8) | (int)(Mem.U8(0x80110627u))));
                         if (((new R06Rec(rec).flags & (uint)(1792)) != 0u))
                         {
@@ -213,7 +213,7 @@ public static partial class Game
                         {
                             nd = near;
                         }
-                        data = func_0028FD94(part, 1);
+                        data = Chunk_Get(part, 1);
                         j = 0;
                         cnt = Mem.S32(0x80110640u);
                         if ((cnt > 0))

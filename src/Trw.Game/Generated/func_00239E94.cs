@@ -31,9 +31,9 @@ public static partial class Game
             new ObjF4(o).unkF4_Set((new ObjF4(o).unkF4 + ((tx - new ObjF4(o).unkF4) * Mem.F32(0x800C8670u))));
             k = Mem.F32(0x800C8674u);
             new ObjF4(o).unkF8_Set((new ObjF4(o).unkF8 + ((ty - new ObjF4(o).unkF8) * Mem.F32(0x800C8678u))));
-            new Vec3f(@out).x_Set(func_00274B00(((-new ObjF4(o).unkF4) * k), (new ObjF4(o).unkF4 * k)));
-            new Vec3f(@out).y_Set(func_00274B00(0.0f, (new ObjF4(o).unkF8 * Mem.F32(0x800C867Cu))));
-            new Vec3f(@out).z_Set(func_00274B00(((-new ObjF4(o).unkF4) * k), (new ObjF4(o).unkF4 * k)));
+            new Vec3f(@out).x_Set(Random_Symmetric(((-new ObjF4(o).unkF4) * k), (new ObjF4(o).unkF4 * k)));
+            new Vec3f(@out).y_Set(Random_Symmetric(0.0f, (new ObjF4(o).unkF8 * Mem.F32(0x800C867Cu))));
+            new Vec3f(@out).z_Set(Random_Symmetric(((-new ObjF4(o).unkF4) * k), (new ObjF4(o).unkF4 * k)));
         }
     }
 

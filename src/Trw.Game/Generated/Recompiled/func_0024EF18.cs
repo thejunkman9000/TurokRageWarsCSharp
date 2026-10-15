@@ -80,7 +80,7 @@ public static partial class Game
                 r16 = r29 + 96u;
                 L_L0024F030: ;
                 r4 = r16;
-                r5 = r17; r2 = func_0024D860(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r17; r2 = Player_GetBodyLean(r4, r5, r6, r7); r3 = Cpu.V1;
                 Cpu.SetW(0, Mem.U32((r17 + 8u)));
                 r5 = 1184628736u;
                 r5 = r5 | 16384u;
@@ -90,7 +90,7 @@ public static partial class Game
                 Mem.Set((r29 + 84u), Cpu.W(24));
                 Mem.Set((r29 + 88u), Cpu.W(0)); r2 = (uint)func_002725BC(r4, Cpu.U2F(r5));
                 r4 = r16;
-                r5 = r29 + 16u; func_002742B4(r4, r5);
+                r5 = r29 + 16u; Quat_ToMatrix(r4, r5);
                 r4 = r29 + 16u;
                 r5 = Cpu.W(20);
                 r6 = 1065353216u;
@@ -104,7 +104,7 @@ public static partial class Game
                 r4 = r29 + 16u;
                 r5 = r5 << 6;
                 r5 = r5 + 232u;
-                r5 = r17 + r5; func_002702EC(r4, r5);
+                r5 = r17 + r5; Math_MtxFloatToFixed(r4, r5);
                 r5 = (uint)1;
                 r4 = 2148335616u;
                 r4 = Mem.U32((r4 + 10620u));

@@ -14,7 +14,7 @@ public static partial class Game
             {
                 Mem.Copy(_fp + 0u, v_in, 12);
                 if (Dbg.On) Dbg.Enter("func_002064A0", (uint)actor, (uint)state, (uint)v_in);
-                new B01State(state).unk128.i_Set((new B01State(state).unk128.i - func_00280094(0x80121990u, actor, actor, new B01State(state).unk124.P, 0, p70, new B01Actor(actor).vec1C.P, new B01Actor(actor).vec5C.P, _fp, 0, (-1), 0)));
+                new B01State(state).unk128.i_Set((new B01State(state).unk128.i - Effect_SpawnFromTemplates(0x80121990u, actor, actor, new B01State(state).unk124.P, 0, p70, new B01Actor(actor).vec1C.P, new B01Actor(actor).vec5C.P, _fp, 0, (-1), 0)));
             }
         }
         finally { Stack.Free(12); }

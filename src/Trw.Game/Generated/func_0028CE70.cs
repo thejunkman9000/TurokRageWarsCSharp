@@ -25,7 +25,7 @@ public static partial class Game
                         do
                         {
                             uint tbl = new Level(lv).unkAC_;
-                            func_00285B34(a1, (tbl + (uint)((i * Mem.S32((tbl + (uint)(0 * 4)))) + 8)), _fp, f6, f7, 0);
+                            Pool_AcquireNode_00285B34(a1, (tbl + (uint)((i * Mem.S32((tbl + (uint)(0 * 4)))) + 8)), _fp, f6, f7, 0);
                             ++i;
                         }
                         while ((Mem.S32((_fp + 16u)) >= i));

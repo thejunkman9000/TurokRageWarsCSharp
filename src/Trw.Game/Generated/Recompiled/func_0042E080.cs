@@ -185,7 +185,7 @@ public static partial class Game
                 r4 = Mem.U8((r4 + 1408u));
                 L_L0042E360: ;
                 func_0040C4A8((int)r4);
-                r2 = (uint)func_0025E2E4();
+                r2 = (uint)Audio_IsSoundOn();
                 { bool c_ = r2 == 0;  if (c_) goto L_L0042E3A0; }
                 r2 = (uint)Random_Next();
                 { bool c_ = (int)r2 >= 0; r4 = r2; if (c_) goto L_L0042E38C; }
@@ -194,7 +194,7 @@ public static partial class Game
                 r4 = (uint)((int)r4 >> 2);
                 r4 = r4 << 2;
                 r4 = r2 - r4;
-                r4 = r4 + 56u; func_0025E2F4((int)r4);
+                r4 = r4 + 56u; Audio_PlayCue((int)r4);
                 L_L0042E3A0: ;
                 r31 = Mem.U32((r29 + 52u));
                 r30 = Mem.U32((r29 + 48u));

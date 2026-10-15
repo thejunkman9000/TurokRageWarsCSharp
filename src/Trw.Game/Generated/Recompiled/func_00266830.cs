@@ -306,7 +306,7 @@ public static partial class Game
                 r3 = Mem.U32((r16 + 1508u));
                 Cpu.SetW(2, (uint)(int)Cpu.S(0));
                 r2 = Cpu.W(2);
-                r17 = r3 + r2; r2 = (uint)func_0022ABF0(r4);
+                r17 = r3 + r2; r2 = (uint)Player_GetMaxHealth(r4);
                 r3 = r2;
                 r2 = (uint)((int)r17 < (int)r3 ? 1 : 0);
                 if (r2 != 0) { r3 = r17; goto L_L00266D60; }
@@ -335,7 +335,7 @@ public static partial class Game
                 fcc = Cpu.S(1) < Cpu.S(0);
                 { bool c_ = !fcc; r4 = r16; if (c_) goto L_L00266DD8; }
                 r5 = r16 + 368u;
-                r6 = r17; func_002171FC(r4, r5, r6, r7);
+                r6 = r17; ActorState_CallHandler(r4, r5, r6, r7);
                 L_L00266DD8: ;
                 { bool c_ = r18 == 0;  if (c_) goto L_L00266E38; }
                 r2 = Mem.U32((r18 + 4652u));
@@ -346,7 +346,7 @@ public static partial class Game
                 r3 = Mem.U32((r18 + 1508u));
                 Cpu.SetW(2, (uint)(int)Cpu.S(22));
                 r2 = Cpu.W(2);
-                r17 = r3 + r2; r2 = (uint)func_0022ABF0(r4);
+                r17 = r3 + r2; r2 = (uint)Player_GetMaxHealth(r4);
                 r3 = r2;
                 r2 = (uint)((int)r17 < (int)r3 ? 1 : 0);
                 if (r2 != 0) { r3 = r17; goto L_L00266E24; }
@@ -432,7 +432,7 @@ public static partial class Game
                 r3 = Mem.U32((r16 + 1508u));
                 Cpu.SetW(2, (uint)(int)Cpu.S(0));
                 r2 = Cpu.W(2);
-                r17 = r3 + r2; r2 = (uint)func_0022ABF0(r4);
+                r17 = r3 + r2; r2 = (uint)Player_GetMaxHealth(r4);
                 r3 = r2;
                 r2 = (uint)((int)r17 < (int)r3 ? 1 : 0);
                 if (r2 != 0) { r3 = r17; goto L_L00266FC0; }
@@ -460,7 +460,7 @@ public static partial class Game
                 fcc = Cpu.S(0) < Cpu.S(20);
                 { bool c_ = !fcc; r4 = r16; if (c_) goto L_L00267038; }
                 r5 = r16 + 368u;
-                r6 = r17; func_002171FC(r4, r5, r6, r7);
+                r6 = r17; ActorState_CallHandler(r4, r5, r6, r7);
                 L_L00267034: ;
                 Cpu.SetW(0, r0);
                 L_L00267038: ;
@@ -511,7 +511,7 @@ public static partial class Game
                 fcc = Cpu.S(22) == Cpu.S(0);
                 { bool c_ = fcc; r4 = r20; if (c_) goto L_L00267170; }
                 r5 = r20 + 368u;
-                r6 = r29 + 64u; func_002171FC(r4, r5, r6, r7);
+                r6 = r29 + 64u; ActorState_CallHandler(r4, r5, r6, r7);
                 r8 = Mem.U32((r29 + 48u));
                 r9 = Mem.U32((r29 + 52u));
                 r10 = Mem.U32((r29 + 56u));

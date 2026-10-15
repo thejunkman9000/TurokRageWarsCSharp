@@ -133,7 +133,7 @@ public static partial class Game
                 fcc = Cpu.S(2) < Cpu.S(12);
                 if (fcc) { Cpu.SetS(12, Cpu.S(2)); goto L_L00215DB0; }
                 L_L00215DB0: ;
-                Cpu.SetS(0, func_00274640(Cpu.S(12)));
+                Cpu.SetS(0, Math_Acosf(Cpu.S(12)));
                 Cpu.SetS(1, Cpu.S(22) * Cpu.S(24));
                 Cpu.SetS(2, Cpu.S(21) * Cpu.S(20));
                 Cpu.SetS(1, Cpu.S(1) + Cpu.S(2));
@@ -183,7 +183,7 @@ public static partial class Game
                 fcc = Cpu.S(2) < Cpu.S(12);
                 if (fcc) { Cpu.SetS(12, Cpu.S(2)); goto L_L00215EB4; }
                 L_L00215EB4: ;
-                Cpu.SetS(0, func_00274640(Cpu.S(12)));
+                Cpu.SetS(0, Math_Acosf(Cpu.S(12)));
                 Cpu.SetS(1, Cpu.S(22) * Cpu.S(24));
                 Cpu.SetS(2, Cpu.S(21) * Cpu.S(20));
                 Cpu.SetS(1, Cpu.S(1) + Cpu.S(2));
@@ -232,7 +232,7 @@ public static partial class Game
                 fcc = Cpu.S(2) < Cpu.S(12);
                 if (fcc) { Cpu.SetS(12, Cpu.S(2)); goto L_L00215FAC; }
                 L_L00215FAC: ;
-                Cpu.SetS(0, func_00274640(Cpu.S(12)));
+                Cpu.SetS(0, Math_Acosf(Cpu.S(12)));
                 Cpu.SetS(1, Cpu.S(22) * Cpu.S(24));
                 Cpu.SetS(2, Cpu.S(21) * Cpu.S(20));
                 Cpu.SetS(1, Cpu.S(1) + Cpu.S(2));
@@ -276,7 +276,7 @@ public static partial class Game
                 Cpu.SetW(0, Mem.U32((r29 + 48u)));
                 Cpu.SetS(12, Cpu.S(12) * Cpu.S(0));
                 Cpu.SetS(2, Cpu.S(2) + Cpu.S(1));
-                Cpu.SetS(12, Cpu.S(2) + Cpu.S(12)); Cpu.SetS(0, func_00274640(Cpu.S(12)));
+                Cpu.SetS(12, Cpu.S(2) + Cpu.S(12)); Cpu.SetS(0, Math_Acosf(Cpu.S(12)));
                 r1 = 2148270080u;
                 Cpu.SetW(1, Mem.U32((r1 + 29360u)));
                 Cpu.SetS(1, Cpu.S(25) * Cpu.S(1));

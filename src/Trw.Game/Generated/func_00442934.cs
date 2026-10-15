@@ -47,7 +47,7 @@ public static partial class Game
                 return 0;
             }
             func_00440F10((uint)(s), r, b, p1, p2, (uint)(p3), p4, a);
-            func_00255C58(a, (uint)(s));
+            List_Add(a, (uint)(s));
             {
                 short t = (short)(((int)(new O06A_v6(a).unk14) + 1));
                 new O06A_v6(a).unk14_Set(t);

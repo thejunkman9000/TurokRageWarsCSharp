@@ -31,7 +31,7 @@ public static partial class Game
             mgr = 0x8013B364u;
             if (!((new B2Ctl(ctl).target_ != 0u))) goto _f0;
             if (!(!((new B2Ctl(ctl).unk318 & 3) != 0))) goto _f1;
-            new B2Ctl(ctl).unk31C_Set(func_002099B4(ctl, new B2Ctl(ctl).target_));
+            new B2Ctl(ctl).unk31C_Set(Ai_IsTargetReached(ctl, new B2Ctl(ctl).target_));
             _f1: ;
             new B2Ctl(ctl).unk318_Set((new B2Ctl(ctl).unk318 + 1));
             t = new B2Ctl(ctl).target.owner_;
@@ -39,7 +39,7 @@ public static partial class Game
             fb = (new B2Actor(t).flags38 & (uint)(12288));
             nb = ((fb != (uint)(0)) ? 1 : 0);
             if (!(((fa != 0u) && !(nb != 0)))) goto _f2;
-            func_00209874(ctl, 12);
+            Ai_SetState(ctl, 12);
             return;
             _f2: ;
             s2 = new B2Ctl(new B2Actor(t).brain_).unk4;
@@ -63,7 +63,7 @@ public static partial class Game
             d = func_0027272C(tp, new B2Ctl(ctl).owner.pos.P);
             if (!((Mem.F32(0x800C7158u) < d))) goto _f6;
             new B2Ctl(ctl).unk230_Set(5);
-            func_00209874(ctl, 6);
+            Ai_SetState(ctl, 6);
             return;
             _f6: ;
             dd = (d + Mem.F32(0x800C715Cu));
@@ -159,7 +159,7 @@ public static partial class Game
             if (!((s2 != new B2Ctl(ctl).unk10))) goto _f31;
             new B2Ctl(ctl).unk10_Set(s2);
             if (!((func_0020D1CC(mgr, new B2Ctl(ctl).unk4, s2) == 0))) goto _f32;
-            func_00209874(ctl, 1);
+            Ai_SetState(ctl, 1);
             _f32: ;
             _f31: ;
             _f0: ;

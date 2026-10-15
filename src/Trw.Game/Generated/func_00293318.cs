@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00293318", (uint)g, (uint)a, (uint)b);
-            func_0044AFC0(new B21Game(g).sub255C8.P, (int)(uint)(a));
+            CameraManager_Init(new B21Game(g).sub255C8.P, (int)(uint)(a));
             func_0044A600(new B21Game(g).sub25580.P, a, b);
         }
     }

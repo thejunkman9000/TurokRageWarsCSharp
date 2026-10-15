@@ -56,7 +56,7 @@ public static partial class Game
                 new M1Actor(actor).unk1_Set(new M1Info(info).unk48.b[(int)(best)]);
                 if ((new M1State(state).unk4 == 0))
                 {
-                    func_00214178(actor, state, (((new M1Actor(actor).def.info.flags & (uint)(64)) != 0u) ? 2 : 1));
+                    Actor_DispatchEvent(actor, state, (((new M1Actor(actor).def.info.flags & (uint)(64)) != 0u) ? 2 : 1));
                 }
             }
         }

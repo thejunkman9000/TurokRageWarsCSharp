@@ -17,7 +17,7 @@ public static partial class Game
                 new M5Dl(q).w0_Set(3875536896u);
                 new M5Dl(q).w1_Set((uint)(0));
             }
-            func_0026925C((uint)(20));
+            Gfx_SetOtherModeL((uint)(20));
             {
                 uint pp_2 = 0x80110634u;
                 uint q_2 = (Mem.Set(pp_2, (uint)(Mem.U32(pp_2) + 8u)) - 8u);

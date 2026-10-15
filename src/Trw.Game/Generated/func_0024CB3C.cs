@@ -23,7 +23,7 @@ public static partial class Game
             }
             else
             {
-                n = func_0028FD94((uint)(new B11Trk(s).nodeC), key);
+                n = Chunk_Get((uint)(new B11Trk(s).nodeC), key);
                 func_00270B1C(@out, new B11Trk(s).t, (n + (uint)(new B11Trk(s).unk10 * 4)), (n + (uint)(new B11Trk(s).unk14 * 4)));
             }
         }

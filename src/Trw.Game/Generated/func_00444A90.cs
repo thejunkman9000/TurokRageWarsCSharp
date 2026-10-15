@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00444A90", (uint)a, (uint)b);
             byte x = 0;
-            new O06D_v5(0x801462DCu).unk0_Set((ushort)(func_0044252C((uint)(b), (int)(new O06D_v5(0x801462DCu).unk0), 16, 0, 256, 0)));
+            new O06D_v5(0x801462DCu).unk0_Set((ushort)(MenuSpinner_Step((uint)(b), (int)(new O06D_v5(0x801462DCu).unk0), 16, 0, 256, 0)));
             x = (byte)(255);
             if (((int)(new O06D_v5(0x801462DCu).unk0) < 255))
             {

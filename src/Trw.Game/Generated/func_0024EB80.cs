@@ -49,11 +49,11 @@ public static partial class Game
                     func_002725BC(new Obj(a).pos.P, 2.0E+4f);
                     func_002734B8(_fp, new Obj(a).pos.x, (new Obj(a).pos.y + Mem.F32((a + (uint)408))), new Obj(a).pos.z);
                     func_00273DDC(_fp);
-                    func_002702EC(_fp, (a + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 104)));
+                    Math_MtxFloatToFixed(_fp, (a + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 104)));
                     new_var = 0;
                     if ((Mem.S32(new Obj(a).def_) != 12))
                     {
-                        func_0026DA4C(h, (int)((a + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 104))), new_var, (int)((a + (uint)424)), (uint)(new_var), (int)(new Obj(a).unk3));
+                        Light_ShadeVertices(h, (int)((a + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 104))), new_var, (int)((a + (uint)424)), (uint)(new_var), (int)(new Obj(a).unk3));
                         func_0024ED80(a, h);
                     }
                     d3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);

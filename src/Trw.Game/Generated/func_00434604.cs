@@ -79,7 +79,7 @@ public static partial class Game
                 {
                     new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].f14_Set(2);
                     new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].state_Set(2);
-                    func_00432488((uint)(idx), default(uint), default(uint), default(uint));
+                    PlayerMenu_RefreshPanel((uint)(idx), default(uint), default(uint), default(uint));
                 }
                 return ok;
             }

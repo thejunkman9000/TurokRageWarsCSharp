@@ -20,11 +20,11 @@ public static partial class Game
                 uint p = 0u;
                 int i = 0;
                 int cnt = 0;
-                h = func_002518DC(0, (uint)(new B12Obj(o).unk1C), new B12Obj(o).unk1C, (uint)(24), 4, (uint)(0), (uint)(0), 0x800C8F4Cu, 0);
+                h = ResourceCache_Hash(0, (uint)(new B12Obj(o).unk1C), new B12Obj(o).unk1C, (uint)(24), 4, (uint)(0), (uint)(0), 0x800C8F4Cu, 0);
                 if ((h != 0u))
                 {
-                    r = (int)(func_0028FE1C(Mem.U32(h), (uint)(new B12Obj(o).unk1C), 3, _fp));
-                    n = func_002518DC(0, (uint)(r), r, (uint)(Mem.S32(_fp)), 0, (uint)(0), (uint)(0), 0x800C8F60u, 0);
+                    r = (int)(Resource_GetCartridgeKey(Mem.U32(h), (uint)(new B12Obj(o).unk1C), 3, _fp));
+                    n = ResourceCache_Hash(0, (uint)(r), r, (uint)(Mem.S32(_fp)), 0, (uint)(0), (uint)(0), 0x800C8F60u, 0);
                     if ((n != 0u))
                     {
                         @base = Mem.U32(n);

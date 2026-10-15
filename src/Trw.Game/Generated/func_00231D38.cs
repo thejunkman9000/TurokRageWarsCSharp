@@ -52,7 +52,7 @@ public static partial class Game
                                     {
                                         v = func_0022A590(0x80145040u, (int)(owner));
                                         xx = Mem.S32(0x800D70E8u);
-                                        func_002398F8(0x80145088u, Mem.U32((owner + (uint)1500)), (uint)(xx), v, Mem.F32(0x800C80ACu));
+                                        Hud_SpawnTextLineA(0x80145088u, Mem.U32((owner + (uint)1500)), (uint)(xx), v, Mem.F32(0x800C80ACu));
                                     }
                                 }
                                 ok = res;
@@ -70,7 +70,7 @@ public static partial class Game
                                     goto L_special;
                                 }
                             }
-                            func_00214178(actor, state, 5);
+                            Actor_DispatchEvent(actor, state, 5);
                             nxt = 2;
                             goto L_set13c;
                             L_special: ;
@@ -80,7 +80,7 @@ public static partial class Game
                                 g = 0x80145040u;
                                 v = func_0022A590(g, (int)(owner));
                                 xx = Mem.S32(0x800D70E8u);
-                                func_002398F8((g + (uint)72), Mem.U32((owner + (uint)1500)), (uint)(xx), v, Mem.F32(0x800C80B0u));
+                                Hud_SpawnTextLineA((g + (uint)72), Mem.U32((owner + (uint)1500)), (uint)(xx), v, Mem.F32(0x800C80B0u));
                             }
                             return;
                         }
@@ -95,7 +95,7 @@ public static partial class Game
             }
             if (!((new Actor(actor).flags & (uint)(1024)) != 0u))
             {
-                func_00214178(actor, state, kind);
+                Actor_DispatchEvent(actor, state, kind);
             }
             return;
             L_set13c: ;

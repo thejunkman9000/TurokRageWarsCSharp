@@ -7,7 +7,7 @@ public sealed record HudView(int Index, uint Camera, float X, float Y, float W, 
 
 /// <summary>
 /// The values the layout binds to, read from guest RAM for one view (read-only; values may be a frame newer than the drawn frame, like the scoreboard's).
-/// Offsets are the decompiled C's (func_0021EED8 <c>Shared_HudPlayer</c>, func_0021EA30 ammo slots, func_00228AD0 clock, <c>HudStatusShared_Settings</c> at 0x801462C8).
+/// Offsets are the decompiled C's (Hud_DrawPlayer <c>Shared_HudPlayer</c>, Hud_DrawAmmo ammo slots, Hud_DrawMatchClock clock, <c>HudStatusShared_Settings</c> at 0x801462C8).
 /// <list type="table">
 /// <item><term>health</term><description>displayed health: (s32 player+0x5E4 + 0xFF) &gt;&gt; 8 (the raw value is in 1/256)</description></item>
 /// <item><term>frags</term><description>the HUD's score: team score (rules+0x2C + team*4) in team games, else the owner record's s16 +0x04 (clamped at -99)</description></item>
@@ -55,7 +55,7 @@ public sealed class HudValues : IHudValues
         v["screen.w"] = sw; v["screen.h"] = sh;
         int hires = Mem.S32(HiRes);
         v["hires"] = hires;
-        // func_0021EED8's two scale factors: health and the hurt flash use kh, the counters ks (D_800E28D8 = the hi-res mode)
+        // Hud_DrawPlayer's two scale factors: health and the hurt flash use kh, the counters ks (D_800E28D8 = the hi-res mode)
         v["kh"] = hires != 0 ? 1.5 : 1.0;
         v["ks"] = hires != 0 ? 1.0 : 0.75;
         v["localView"] = LocalView.Enabled ? 1 : 0;
@@ -79,7 +79,7 @@ public sealed class HudValues : IHudValues
         v["clock"] = secs;
         int min = (int)(secs / 60.0), sec = (int)(secs - min * 60.0);
         v["clock.min"] = min; v["clock.sec"] = sec;
-        // func_00228AD0: shown while the clock runs; in the last 30 s of the last minute it blinks (off for 5 of every 15 frames)
+        // Hud_DrawMatchClock: shown while the clock runs; in the last 30 s of the last minute it blinks (off for 5 of every 15 frames)
         v["clock.shown"] = clk > 0 && (min >= 1 || sec >= 30 || Mem.U32(FrameCounter) % 15 >= 5) ? 1 : 0;
 
         uint p = view.Player;
@@ -91,7 +91,7 @@ public sealed class HudValues : IHudValues
         v["lives"] = Mem.S16(p + 0x5EA);
         v["weapon"] = Mem.S16(p + 0x62E);
         v["kind"] = Mem.U16(p + 0xE4);
-        // func_0022AB8C: the current weapon's ammo type (-1 = none: the game shows no ammo counters); weapon table D_800D052C, +0x20 / +0x24 by the mode +0x594
+        // Weapon_GetAmmoType: the current weapon's ammo type (-1 = none: the game shows no ammo counters); weapon table D_800D052C, +0x20 / +0x24 by the mode +0x594
         int ammoType = -1;
         {
             int w = Mem.S16(p + 0x62E);
@@ -127,18 +127,18 @@ public sealed class HudValues : IHudValues
         v["zoom"] = Mem.F32(p + 0x12C0);
         v["trialCount"] = Math.Max(0, Mem.S32(p + 0x133C) - 1);
         v["hideLives"] = Mem.S32(p + 0x1450);
-        // crosshair (func_0021E27C): sprite id +0x798 (-1 = none), animation frame f32 +0x7BC, shown while +0x788 is set
+        // crosshair (Hud_DrawCrosshair): sprite id +0x798 (-1 = none), animation frame f32 +0x7BC, shown while +0x788 is set
         v["crosshair.id"] = Mem.S32(p + 0x798);
         v["crosshair.frame"] = Mem.F32(p + 0x7BC);
         v["crosshair.on"] = Mem.S32(p + 0x788) != 0 && Mem.S16(p + 0x650) != 0x27 ? 1 : 0;
-        {   // func_0021E068 draws it at the centre minus (scale * size - 1), scale by the sprite's class (D_800C767C / 80 / 84), size D_800C7688
+        {   // Hud_DrawIconSprite draws it at the centre minus (scale * size - 1), scale by the sprite's class (D_800C767C / 80 / 84), size D_800C7688
             int id = Mem.S32(p + 0x798);
             uint k = id is 0x2DA or 0x2EF or 0x2F0 ? 0x800C767Cu : id is 0x2BC or 0x2E4 or 0x2F1 or 0x2F2 or 0x302 or 0x320 ? 0x800C7680u : 0x800C7684u;
             float size = Mem.F32(0x800C7688);
             v["crosshair.size"] = size;
             v["crosshair.half"] = Mem.F32(k) * size - 1f;
         }
-        // the score record (func_0021EED8 player->owner, MatchInfo)
+        // the score record (Hud_DrawPlayer player->owner, MatchInfo)
         uint own = Mem.U32(p + 0x5D8);
         if (Ram(own, 0x94))
         {
@@ -157,7 +157,7 @@ public sealed class HudValues : IHudValues
 
     // ---------------------------------------------------------------------------------------------- views and players of the current frame
 
-    /// <summary>The views of the match with their players (player whose view pointer +0x5DC is the camera; func_0022A37C).</summary>
+    /// <summary>The views of the match with their players (player whose view pointer +0x5DC is the camera; Hud_DrawView2D).</summary>
     public static List<HudView> Views()
     {
         var list = new List<HudView>();
@@ -179,7 +179,7 @@ public sealed class HudValues : IHudValues
         return list;
     }
 
-    /// <summary>The shared pass: the own racer's full-screen view (the clock is laid out from the first view's size, see func_00228AD0).</summary>
+    /// <summary>The shared pass: the own racer's full-screen view (the clock is laid out from the first view's size, see Hud_DrawMatchClock).</summary>
     public static HudView SharedView(List<HudView> views)
     {
         float w = 480, h = 360;

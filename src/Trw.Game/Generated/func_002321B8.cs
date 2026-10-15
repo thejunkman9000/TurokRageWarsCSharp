@@ -49,7 +49,7 @@ public static partial class Game
                                     if ((Mem.U32((owner + (uint)1500)) != 0u))
                                     {
                                         v = func_0022A590(0x80145040u, (int)(owner));
-                                        func_002398F8(0x80145088u, Mem.U32((owner + (uint)1500)), (uint)(Mem.S32(0x800D70E8u)), v, Mem.F32(0x800C80BCu));
+                                        Hud_SpawnTextLineA(0x80145088u, Mem.U32((owner + (uint)1500)), (uint)(Mem.S32(0x800D70E8u)), v, Mem.F32(0x800C80BCu));
                                     }
                                 }
                             }
@@ -85,7 +85,7 @@ public static partial class Game
             L_check: ;
             if (((func_002301E4(actor, st) == 0) && !((new Actor(actor).flags & (uint)(1024)) != 0u)))
             {
-                func_00214178(actor, st, kind);
+                Actor_DispatchEvent(actor, st, kind);
             }
         }
     }

@@ -22,11 +22,11 @@ public static partial class Game
             high = ((new B05P16(p).f718 > Mem.F32(0x800C7AB0u)) ? 1 : 0);
             if ((high != 0))
             {
-                func_002231B0(p, a, 0x800CE7FCu);
+                Player_UpdateViewTurn(p, a, 0x800CE7FCu);
             }
             else
             {
-                func_002231B0(p, a, 0x800CE7E4u);
+                Player_UpdateViewTurn(p, a, 0x800CE7E4u);
             }
             high = ((new B05P16(p).f718 > Mem.F32(0x800C7AB4u)) ? 1 : 0);
             if ((high != 0))

@@ -14,7 +14,7 @@ public static partial class Game
             uint t = func_0022A82C(0x80145040u);
             if (((t == 0u) || (t != new BrainB(b).actor_)))
             {
-                func_00209874(b, 2);
+                Ai_SetState(b, 2);
             }
             else
             {

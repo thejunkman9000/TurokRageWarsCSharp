@@ -52,11 +52,11 @@ public static partial class Game
                 Mem.Set((r29 + 32u), r2);
                 r5 = Mem.U32((r18 + 196u));
                 r7 = Mem.U32((r18 + 208u));
-                r6 = r5; r2 = func_002518DC((int)r4, r5, (int)r6, r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u));
+                r6 = r5; r2 = ResourceCache_Hash((int)r4, r5, (int)r6, r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u));
                 r21 = r2;
                 { bool c_ = r21 == 0;  if (c_) goto L_L0024A194; }
                 r4 = Mem.U32((r21 + 0u));
-                r5 = r0; r2 = func_0028FD94(r4, (int)r5);
+                r5 = r0; r2 = Chunk_Get(r4, (int)r5);
                 r3 = 2148794368u;
                 r3 = Mem.U32((r3 + 26772u));
                 { bool c_ = r3 == 0; r16 = r2; if (c_) goto L_L00249EF4; }
@@ -137,7 +137,7 @@ public static partial class Game
                 r2 = r2 & 512u;
                 { bool c_ = r2 != 0; r4 = r18; if (c_) goto L_L0024A07C; }
                 r5 = Mem.U32((r19 + 0u));
-                r6 = r16; r2 = func_002484A0(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = r16; r2 = Actor_BuildPoseMatrices(r4, r5, r6, r7); r3 = Cpu.V1;
                 { bool c_ = r2 != 0; r4 = r0; if (c_) goto L_L0024A07C; }
                 r5 = r19; goto L_L0024A17C;
                 L_L0024A07C: ;

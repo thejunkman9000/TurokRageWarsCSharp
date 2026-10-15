@@ -26,7 +26,7 @@ public static partial class Game
                 return 0;
             }
             func_0029A73C();
-            func_0043B8C8((uint)(i), default(uint), default(uint), default(uint));
+            Loadout_FillColumns((uint)(i), default(uint), default(uint), default(uint));
             for (k = 0; (k < 6); ++k)
             {
                 func_0043B67C(i, k, Mem.S32(((Mem.U32(0x800E59E0u) + (uint)((i * 1232) + (k * 4))) + (uint)1208)));

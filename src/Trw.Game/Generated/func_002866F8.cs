@@ -29,11 +29,11 @@ public static partial class Game
                 return 0u;
             }
             best = 0.0f;
-            tri = (uint)(((int)(func_0028FD94((uint)(new B19Owner(ow).f6C), 2)) + 8));
+            tri = (uint)(((int)(Chunk_Get((uint)(new B19Owner(ow).f6C), 2)) + 8));
             idx = 0;
             i = 0;
             bestt = 0u;
-            cells = (uint)((int)(func_0028FD94((uint)(new B19Owner(ow).f6C), 3)));
+            cells = (uint)((int)(Chunk_Get((uint)(new B19Owner(ow).f6C), 3)));
             n = new B19Cells(cells).cnt;
             cb = new B19Cells(cells).c.P;
             if ((n > 0))

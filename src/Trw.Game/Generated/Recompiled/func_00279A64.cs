@@ -41,7 +41,7 @@ public static partial class Game
                 { bool c_ = r2 != 0;  if (c_) goto L_L00279AD8; }
                 r5 = Mem.U32((r16 + 1444u));
                 r6 = Mem.U32((r16 + 1448u));
-                r4 = r16; r2 = func_00229530(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r16; r2 = Player_GiveAmmo(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_L00279AD8: ;
                 r4 = r17; r2 = (uint)func_002833A4(r4);
                 r16 = r2;

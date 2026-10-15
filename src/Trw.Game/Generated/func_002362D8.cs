@@ -56,7 +56,7 @@ public static partial class Game
                 dl = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
                 new DlCmd(dl).w0_Set(3791658240u);
                 new DlCmd(dl).w1_Set((uint)(4));
-                func_0026925C((uint)(22));
+                Gfx_SetOtherModeL((uint)(22));
                 dl6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
                 new DlCmd(dl6).w0_Set(((4127195136u | ((Cpu.TruncU32((new ViewObj(a).unk2A4 + new ViewObj(a).unk29C)) & (uint)(1023)) << (int)14)) | ((Cpu.TruncU32((new ViewObj(a).unk2A8 + new ViewObj(a).unk2A0)) & (uint)(1023)) << (int)2)));
                 new DlCmd(dl6).w1_Set((((Cpu.TruncU32(new ViewObj(a).unk2A4) & (uint)(1023)) << (int)14) | ((Cpu.TruncU32(new ViewObj(a).unk2A8) & (uint)(1023)) << (int)2)));

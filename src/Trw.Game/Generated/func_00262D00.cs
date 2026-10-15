@@ -36,8 +36,8 @@ public static partial class Game
                         e = new B14World2(w).freeHead_;
                         if ((e != 0u))
                         {
-                            func_00255E78((w + 24320u), e, default(uint), default(uint));
-                            func_00255C58(new B14World2(w).usedList.P, e);
+                            List_Remove((w + 24320u), e, default(uint), default(uint));
+                            List_Add(new B14World2(w).usedList.P, e);
                             new B14Ent3(e).counter__Set(counter);
                             if ((counter != 0u))
                             {

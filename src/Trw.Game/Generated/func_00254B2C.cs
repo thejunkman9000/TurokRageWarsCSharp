@@ -13,11 +13,11 @@ public static partial class Game
             uint p = 0u;
             if ((flag != 0))
             {
-                p = func_002559D4(0x801051A0u, size, default(uint), default(uint));
+                p = Heap_AllocTop(0x801051A0u, size, default(uint), default(uint));
             }
             else
             {
-                p = func_002558C0(0x801051A0u, size, default(uint), default(uint));
+                p = Heap_Alloc(0x801051A0u, size, default(uint), default(uint));
             }
             if ((p == (uint)(0)))
             {
@@ -25,18 +25,18 @@ public static partial class Game
                 uint f = (flags & (uint)(16));
                 do
                 {
-                    r = func_002512C8((uint)(0), (uint)(2), (uint)(((f == (uint)(0)) ? 1 : 0)), default(uint));
+                    r = ResourcePool_ReclaimNode((uint)(0), (uint)(2), (uint)(((f == (uint)(0)) ? 1 : 0)), default(uint));
                 }
                 while (((r != (uint)(0)) && (r < size)));
                 if (!(r < size))
                 {
                     if ((flag != 0))
                     {
-                        p = func_002559D4(0x801051A0u, size, default(uint), default(uint));
+                        p = Heap_AllocTop(0x801051A0u, size, default(uint), default(uint));
                     }
                     else
                     {
-                        p = func_002558C0(0x801051A0u, size, default(uint), default(uint));
+                        p = Heap_Alloc(0x801051A0u, size, default(uint), default(uint));
                     }
                 }
             }

@@ -140,7 +140,7 @@ public static partial class Game
             code = 8000;
             goto _f0;
             _f0: ;
-            if (!(((int)(func_0026439C((uint)(new Q4O(o).f20))) != 0))) goto _f13;
+            if (!(((int)(Pad_IsConfirm((uint)(new Q4O(o).f20))) != 0))) goto _f13;
             if (!((code == 8000))) goto _f14;
             Mem.Set(0x801462E6u, (byte)(1));
             func_0043DEDC(o);
@@ -148,7 +148,7 @@ public static partial class Game
             return 1;
             _f14: ;
             if (!((func_002934DC() != 0))) goto _f15;
-            func_0044E178(0x8011FE88u, code, 2);
+            Level_SetTransitionState_0044E178(0x8011FE88u, code, 2);
             return 0;
             _f15: ;
             g = 0x801462C8u;
@@ -158,7 +158,7 @@ public static partial class Game
             func_00293268(0x8011FAC0u, code);
             return 1;
             _f13: ;
-            if (!((func_002643A8((uint)(new Q4O(o).f20)) != 0))) goto _f16;
+            if (!((Pad_IsLeft((uint)(new Q4O(o).f20)) != 0))) goto _f16;
             i = Mem.S32(0x80154034u);
             n = 0;
             _f17: ;
@@ -221,7 +221,7 @@ public static partial class Game
             r = i;
             goto L_done;
             _f16: ;
-            if (!((func_002643C0((uint)(new Q4O(o).f20)) != 0))) goto _f37;
+            if (!((Pad_IsRight((uint)(new Q4O(o).f20)) != 0))) goto _f37;
             i = Mem.S32(0x80154034u);
             n = 0;
             _f38: ;
@@ -345,14 +345,14 @@ public static partial class Game
             }
             if (((int)(new Q4O9(o).id) == 2))
             {
-                if (((func_002643A8((uint)(new Q4O9(o).f20)) != 0) && (new Q4T(0x800E5CA0u).cur > 0)))
+                if (((Pad_IsLeft((uint)(new Q4O9(o).f20)) != 0) && (new Q4T(0x800E5CA0u).cur > 0)))
                 {
                     new Q4T(0x800E5CA0u).cur_Set((int)(new Q4T(0x800E5CA0u).cur - 1));
                     Mem.Set((0x800E5CA0u + 4u), 0);
                 }
                 else
                 {
-                    if ((func_002643C0((uint)(new Q4O9(o).f20)) != 0))
+                    if ((Pad_IsRight((uint)(new Q4O9(o).f20)) != 0))
                     {
                         if ((new Q4T(0x800E5CA0u).cur < new Q4T(0x800E5CA0u).len))
                         {

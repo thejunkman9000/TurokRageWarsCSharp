@@ -92,7 +92,7 @@ public static partial class Game
                     func_002227D0(p, (int)(a), 2);
                     if ((new B05P12(p).handle != 0u))
                     {
-                        func_00237E70(0x80145088u, new B05P12(p).handle, 0x800C7A40u);
+                        Hud_PostMessage(0x80145088u, new B05P12(p).handle, 0x800C7A40u);
                     }
                 }
             }

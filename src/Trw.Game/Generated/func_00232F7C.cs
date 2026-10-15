@@ -15,14 +15,14 @@ public static partial class Game
             {
                 if ((Mem.S32((obj + (uint)4)) == 2))
                 {
-                    func_00273A34(actor, (-v));
+                    Math_MtxRotateRowsB_00273A34(actor, (-v));
                 }
             }
             else
             {
                 if ((Mem.S32((obj + (uint)4)) == 0))
                 {
-                    func_00273A34(actor, (-v));
+                    Math_MtxRotateRowsB_00273A34(actor, (-v));
                 }
             }
         }

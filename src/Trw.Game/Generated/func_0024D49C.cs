@@ -23,7 +23,7 @@ public static partial class Game
                 {
                     t = Mem.U32((o + (uint)496));
                     func_0024795C((_fp + 112u), (uint)(o));
-                    func_002742B4((_fp + 112u), (_fp + 144u));
+                    Quat_ToMatrix((_fp + 112u), (_fp + 144u));
                     new Vec3f((_fp + 64u)).x_Set((float)(0));
                     new Vec3f((_fp + 64u)).y_Set((float)(0));
                     new Vec3f((_fp + 64u)).z_Set(Mem.F32(0x800C8D74u));
@@ -60,7 +60,7 @@ public static partial class Game
                 func_002720EC((_fp + 32u));
                 func_00272088((_fp + 80u), (_fp + 48u), (_fp + 32u));
                 func_002720EC((_fp + 80u));
-                ang = (func_00274640((((new Vec3f((_fp + 48u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 48u)).y * new Vec3f((_fp + 32u)).y)) + (new Vec3f((_fp + 48u)).z * new Vec3f((_fp + 32u)).z))) * Mem.F32(0x800C8D84u));
+                ang = (Math_Acosf((((new Vec3f((_fp + 48u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 48u)).y * new Vec3f((_fp + 32u)).y)) + (new Vec3f((_fp + 48u)).z * new Vec3f((_fp + 32u)).z))) * Mem.F32(0x800C8D84u));
                 s = sinf(ang);
                 Mem.Set(0x80115DECu, s);
                 new Quat4((_fp + 96u)).x_Set((new Vec3f((_fp + 80u)).x * s));
@@ -69,7 +69,7 @@ public static partial class Game
                 new Quat4((_fp + 96u)).w_Set(cosf(ang));
                 if (((o != 0u) && ((int)(new Obj(o).type) == 1)))
                 {
-                    func_00274108((_fp + 128u), (_fp + 112u), (_fp + 96u));
+                    Quat_Multiply((_fp + 128u), (_fp + 112u), (_fp + 96u));
                 }
                 else
                 {

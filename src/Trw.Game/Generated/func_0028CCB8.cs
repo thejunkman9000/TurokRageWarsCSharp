@@ -23,7 +23,7 @@ public static partial class Game
                 for (; (i < n); ++i)
                 {
                     uint a = Mem.U32((arr + (uint)(i * 4)));
-                    func_002171FC(a, (a + (uint)368), _fp, default(uint));
+                    ActorState_CallHandler(a, (a + (uint)368), _fp, default(uint));
                 }
             }
         }

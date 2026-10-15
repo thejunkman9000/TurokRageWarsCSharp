@@ -50,7 +50,7 @@ public static partial class Game
                 r5 = Mem.U16((r18 + 14u));
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
-                r2 = func_0028CF48(r4, (int)r5);
+                r2 = Level_GetDefinition(r4, (int)r5);
                 Mem.Set((r17 + 24u), r2);
                 r4 = r2;
                 r2 = (uint)16;
@@ -226,7 +226,7 @@ public static partial class Game
                 r4 = r17 + 104u;
                 r5 = r29 + 16u; func_0027302C(r4, r5);
                 r4 = r29 + 16u;
-                r5 = r17 + 40u; func_002702EC(r4, r5);
+                r5 = r17 + 40u; Math_MtxFloatToFixed(r4, r5);
                 r8 = Mem.U32((r29 + 80u));
                 r9 = Mem.U32((r29 + 84u));
                 r10 = Mem.U32((r29 + 88u));

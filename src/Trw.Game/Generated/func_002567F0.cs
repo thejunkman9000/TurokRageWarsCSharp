@@ -19,8 +19,8 @@ public static partial class Game
             }
             size = (end - (uint)(@base));
             memset(@base, 0, size);
-            func_00255854(0x801051A0u, @base, size, default(uint));
-            func_00255090(0x8010A248u, 3);
+            Heap_Init(0x801051A0u, @base, size, default(uint));
+            MsgPort_Create(0x8010A248u, 3);
             func_00256220(0x801051B8u, 4);
             func_0023B9A0();
             func_00250E10(0, 5);

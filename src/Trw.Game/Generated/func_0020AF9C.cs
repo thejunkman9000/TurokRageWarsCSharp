@@ -98,7 +98,7 @@ public static partial class Game
                 }
                 new B2Opts((_fp + 16u)).w0_Set(16384);
                 Mem.Copy((_fp + 48u), a, 80);
-                r = func_00243A80((int)(a), Cpu.U2F(Mem.U32(_fp + 0u)), Cpu.U2F(Mem.U32(_fp + 4u)), Cpu.U2F(Mem.U32(_fp + 8u)), (int)((_fp + 16u)));
+                r = Collision_MoveActor((int)(a), Cpu.U2F(Mem.U32(_fp + 0u)), Cpu.U2F(Mem.U32(_fp + 4u)), Cpu.U2F(Mem.U32(_fp + 8u)), (int)((_fp + 16u)));
                 Mem.Copy(a, (_fp + 48u), 80);
                 return r;
             }

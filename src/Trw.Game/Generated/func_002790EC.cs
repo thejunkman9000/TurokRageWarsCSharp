@@ -16,7 +16,7 @@ public static partial class Game
             }
             else
             {
-                func_0025E2F4((int)(new Evt(e).id));
+                Audio_PlayCue((int)(new Evt(e).id));
             }
         }
     }

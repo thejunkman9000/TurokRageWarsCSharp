@@ -13,15 +13,15 @@ public static partial class Game
             uint g = 0u;
             int s = 0;
             uint o = 0u;
-            g = func_0040ECB0((uint)((int)(func_00411E4C(func_0029A958()))), (uint)((a & 65535)), default(uint), default(uint));
-            s = (int)(func_00411E4C(func_0029A958()));
+            g = UiTree_FindNode((uint)((int)(func_00411E4C(Ui_PushScreen()))), (uint)((a & 65535)), default(uint), default(uint));
+            s = (int)(func_00411E4C(Ui_PushScreen()));
             o = func_00252FFC((uint)(124));
             func_002A1748(o, 0, (uint)(124));
             new O3B60(o).h.id2_Set((ushort)(2912));
             new O3B60(o).h.unk12_Set((short)(8));
             new O3B60(o).h.id_Set((short)(2912));
             new O3B60(o).g__Set(g);
-            new O3B60(o).g2__Set(func_0040ECB0((uint)(s), (uint)((b & 65535)), default(uint), default(uint)));
+            new O3B60(o).g2__Set(UiTree_FindNode((uint)(s), (uint)((b & 65535)), default(uint), default(uint)));
             new O3B60(o).sp1_Set(0.333333343f);
             new O3B60(o).sp2_Set(0.333333343f);
             new O3B60(o).g.fx_Set((float)(0));
@@ -35,7 +35,7 @@ public static partial class Game
             new O3B60(o).f78_Set(1);
             func_0041A4FC(o);
             func_0041A4B0(o, 1);
-            func_0040EE64(g, o, default(uint), default(uint));
+            UiTree_InsertBefore(g, o, default(uint), default(uint));
             return o;
         }
     }

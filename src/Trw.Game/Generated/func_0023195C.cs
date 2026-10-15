@@ -51,7 +51,7 @@ public static partial class Game
                                 {
                                     v = func_0022A590(0x80145040u, (int)(owner));
                                     xx = Mem.S32(0x800D70E8u);
-                                    func_002398F8(0x80145088u, Mem.U32((owner + (uint)1500)), (uint)(xx), v, Mem.F32(0x800C80A0u));
+                                    Hud_SpawnTextLineA(0x80145088u, Mem.U32((owner + (uint)1500)), (uint)(xx), v, Mem.F32(0x800C80A0u));
                                 }
                             }
                             ok = res;
@@ -65,7 +65,7 @@ public static partial class Game
                         if (((int)(Mem.S16((owner + (uint)1524))) >= 25))
                         {
                             func_0025DE74((int)((uint)(1070)), C.Tmp(Cpu.F2U(Mem.F32((owner + (uint)8))), Cpu.F2U(Mem.F32((owner + (uint)12))), Cpu.F2U(Mem.F32((owner + (uint)16)))), (int)((owner + (uint)8)), (int)((uint)((-1))));
-                            func_00214178(actor, state, 11);
+                            Actor_DispatchEvent(actor, state, 11);
                             return;
                         }
                         if (((Mem.U32((owner + (uint)1712)) & (uint)(16384)) != 0u))
@@ -76,7 +76,7 @@ public static partial class Game
                                 g = 0x80145040u;
                                 v = func_0022A590(g, (int)(owner));
                                 xx = Mem.S32(0x800D70E8u);
-                                func_002398F8((g + (uint)72), Mem.U32((owner + (uint)1500)), (uint)(xx), v, Mem.F32(0x800C80A4u));
+                                Hud_SpawnTextLineA((g + (uint)72), Mem.U32((owner + (uint)1500)), (uint)(xx), v, Mem.F32(0x800C80A4u));
                             }
                         }
                         return;
@@ -85,7 +85,7 @@ public static partial class Game
             }
             if (((func_002301E4(actor, state) == 0) && !((new Actor(actor).flags & (uint)(1024)) != 0u)))
             {
-                func_00214178(actor, state, kind);
+                Actor_DispatchEvent(actor, state, kind);
             }
         }
     }

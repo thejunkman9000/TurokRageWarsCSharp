@@ -19,7 +19,7 @@ public static partial class Game
                 int s = 0;
                 new O06A_v2(a).unk14_Set(0x800D7DECu);
                 s = Mem.S32((0x800D7DECu + (uint)(0 * 4)));
-                func_00265904((uint)(((s - 2) + func_00442158(a))), 0x800E27F0u, Mem.S32(0x800E63B8u), default(int));
+                Str_Sprintf((uint)(((s - 2) + func_00442158(a))), 0x800E27F0u, Mem.S32(0x800E63B8u), default(int));
             }
             return 0;
         }

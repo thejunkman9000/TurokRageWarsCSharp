@@ -14,10 +14,10 @@ public static partial class Game
             int r = 0;
             if (((new Obj(a).flags & (uint)(262144)) != 0u))
             {
-                h = func_002518DC(0, (uint)(new Obj(a).unkC4), new Obj(a).unkC4, (uint)(new Obj(a).unkD0), 4, (uint)(0), (uint)(0), 0x800C8920u, 1);
+                h = ResourceCache_Hash(0, (uint)(new Obj(a).unkC4), new Obj(a).unkC4, (uint)(new Obj(a).unkD0), 4, (uint)(0), (uint)(0), 0x800C8920u, 1);
                 if ((h != 0u))
                 {
-                    r = new B11Node(func_0028FD94((uint)(Mem.S32(h)), 1)).unk8[(int)(i)];
+                    r = new B11Node(Chunk_Get((uint)(Mem.S32(h)), 1)).unk8[(int)(i)];
                     func_002536F4(0, h);
                     return r;
                 }

@@ -13,14 +13,14 @@ public static partial class Game
             uint t = 0u;
             uint o = 0u;
             int s2 = 0;
-            t = func_0040ECB0((uint)((int)(func_00411E4C(func_0029A958()))), (uint)((a0 & 65535)), default(uint), default(uint));
-            s2 = (int)(func_00411E4C(func_0029A958()));
+            t = UiTree_FindNode((uint)((int)(func_00411E4C(Ui_PushScreen()))), (uint)((a0 & 65535)), default(uint), default(uint));
+            s2 = (int)(func_00411E4C(Ui_PushScreen()));
             o = (uint)((int)(func_00252FFC((uint)(108))));
             func_002A1748(o, 0, (uint)(108));
             Mem.Copy(new Obj2990(o).head.P, new Tmpl2990(t).head.P, 44);
             Mem.Set((o + (uint)14), (ushort)(2917));
             Mem.Copy(new Obj2990(o).tail.P, new Tmpl2990(t).tail.P, 20);
-            new Obj2990(o).sub__Set(func_0040ECB0((uint)(s2), (uint)((a1 & 65535)), default(uint), default(uint)));
+            new Obj2990(o).sub__Set(UiTree_FindNode((uint)(s2), (uint)((a1 & 65535)), default(uint), default(uint)));
             new Obj2990(o).sub.unk38_Set((o + (uint)96));
             new Obj2990(o).unk4C_Set(a3);
             new Obj2990(o).unk50_Set(a2);
@@ -29,9 +29,9 @@ public static partial class Game
             new Obj2990(o).unk54_Set(a4);
             func_002A2B24(o, a2);
             new Obj2990(o).unk5C_Set(2);
-            func_0040EF24(t, o, default(uint), default(uint));
+            UiTree_ReplaceNode(t, o, default(uint), default(uint));
             Mem.Set((t + (uint)12), (short)((-1)));
-            func_0040F004((uint)(s2), t, o, default(uint));
+            UiTree_ReplaceRefs((uint)(s2), t, o, default(uint));
             return o;
         }
     }

@@ -84,7 +84,7 @@ public static partial class Game
                 Mem.Set((r1 - 3312u), r0);
                 r4 = r17; func_002647A8((int)r4);
                 r4 = r18;
-                r5 = r17; r2 = (uint)func_0044BC58(r4, (int)r5);
+                r5 = r17; r2 = (uint)Pad_InitSlot(r4, (int)r5);
                 if (r2 == 0) { r17 = r17 - 1u; goto L_L0044BBFC; }
                 r2 = 2148335616u;
                 r2 = Mem.U8((r2 + 3666u));
@@ -104,7 +104,7 @@ public static partial class Game
                 r2 = 2148597760u;
                 r2 = r2 - 3288u;
                 r4 = r4 + r2;
-                r5 = (uint)4; r2 = (uint)func_0044BC58(r4, (int)r5);
+                r5 = (uint)4; r2 = (uint)Pad_InitSlot(r4, (int)r5);
                 r2 = 2148597760u;
                 r2 = (uint)(int)Mem.S16((r2 - 3296u));
                 r31 = Mem.U32((r29 + 28u));

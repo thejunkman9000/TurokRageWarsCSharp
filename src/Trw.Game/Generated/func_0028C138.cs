@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028C138", (uint)lv, (uint)idx, (uint)@out, (uint)size);
-            Mem.Set(@out, func_0028FE1C(new Level(lv).unk50_, new Level(lv).unk20_, idx, size));
+            Mem.Set(@out, Resource_GetCartridgeKey(new Level(lv).unk50_, new Level(lv).unk20_, idx, size));
         }
     }
 

@@ -14,14 +14,14 @@ public static partial class Game
             float f = 0f;
             if ((n != 0u))
             {
-                func_00255E78((lv + 4588u), n, default(uint), default(uint));
-                func_00255C58((lv + 4568u), n);
+                List_Remove((lv + 4588u), n, default(uint), default(uint));
+                List_Add((lv + 4568u), n);
                 new Obj2(n).unk8_Set(s);
             }
             else
             {
                 n = new Level(lv).unk11DC_;
-                func_00278C80(new Obj2(n).unk8);
+                Entity_Spawn(new Obj2(n).unk8);
                 new Obj2(n).unk8_Set(s);
             }
             f = Trunc16ToF32(new SndDesc(s).unkC);

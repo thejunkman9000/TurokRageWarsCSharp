@@ -51,7 +51,7 @@ public static partial class Game
                 new O05ItemWd(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].wd[(int)(j)]).f38_Set((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].cur + j) * 70)));
             }
             sc = new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].scroll;
-            w = func_0040ECB0(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fC, (uint)(726), default(uint), default(uint));
+            w = UiTree_FindNode(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fC, (uint)(726), default(uint), default(uint));
             new O05ItemWd(w).f38_Set(((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(sc * 70)) + (uint)60));
         }
     }

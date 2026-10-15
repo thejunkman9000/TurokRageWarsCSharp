@@ -128,7 +128,7 @@ public static partial class Game
                 {
                     func_00272088((_fp + 112u), (_fp + 64u), (_fp + 96u));
                     func_002720EC((_fp + 112u));
-                    e = func_00274640(fs0);
+                    e = Math_Acosf(fs0);
                     fs0 = ((e * func_002BC380(func_002BC380((1.0f - (e / (fs1 * 0.5f)))))) * 0.5f);
                     Mem.Set(0x80115DECu, sinf(fs0));
                     new M2Quat((_fp + 128u)).x_Set((new Vec3f((_fp + 112u)).x * Mem.F32(0x80115DECu)));
@@ -136,7 +136,7 @@ public static partial class Game
                     new M2Quat((_fp + 128u)).z_Set((new Vec3f((_fp + 112u)).z * Mem.F32(0x80115DECu)));
                     new M2Quat((_fp + 128u)).w_Set(cosf(fs0));
                     func_0024795C((_fp + 144u), p);
-                    func_00274108((_fp + 160u), (_fp + 144u), (_fp + 128u));
+                    Quat_Multiply((_fp + 160u), (_fp + 144u), (_fp + 128u));
                 }
                 Mem.Copy(_ret, (_fp + 160u), 16);
                 return _ret;

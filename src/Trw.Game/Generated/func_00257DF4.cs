@@ -152,10 +152,10 @@ public static partial class Game
                     return (-1);
                 }
                 sh = (int)((short)(idx));
-                new SndMgr(m).unk2B88_Set(func_0028FD94(func_0028FD94(new SndMgr(m).tree2B4C, sh), 0));
+                new SndMgr(m).unk2B88_Set(Chunk_Get(Chunk_Get(new SndMgr(m).tree2B4C, sh), 0));
                 new SndMgr(m).unk2B8C_Set((short)(id));
                 new SndMgr(m).unk2B90_Set(a6);
-                nd = func_0028FD94(func_0028FD94(new SndMgr(m).tree2B4C, sh), 1);
+                nd = Chunk_Get(Chunk_Get(new SndMgr(m).tree2B4C, sh), 1);
                 cnt = (int)(new M04Node2(nd).cnt);
                 if ((cnt != 0))
                 {

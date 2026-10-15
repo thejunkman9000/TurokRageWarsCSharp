@@ -18,7 +18,7 @@ public static partial class Game
             }
             for (i = 0; (i < (int)(Mem.S16(0x80153C0Cu))); ++i)
             {
-                func_004106F4((uint)(i), (uint)(2), default(uint), default(uint));
+                Texture_GetResourceId((uint)(i), (uint)(2), default(uint), default(uint));
             }
             for (i = 0; (i < (int)(Mem.S16(0x80153C20u))); ++i)
             {

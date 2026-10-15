@@ -26,7 +26,7 @@ public static partial class Game
             {
                 func_0021A9A4(new Actor(actor).owner_, (uint)(1229), default(uint), default(uint));
             }
-            func_00214178(actor, state, 4);
+            Actor_DispatchEvent(actor, state, 4);
             func_0022AE90(owner, 2423);
             func_0022AF64(owner, 2420);
             o2 = new Actor(actor).owner_;

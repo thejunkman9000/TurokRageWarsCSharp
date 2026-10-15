@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00262610", (uint)c);
-            uint tbl = (func_0028FD94((uint)(func_002604BC(c)), (int)((short)(0))) + (uint)8);
+            uint tbl = (Chunk_Get((uint)(func_002604BC(c)), (int)((short)(0))) + (uint)8);
             int last = ((int)(new B14Curve(c).count) - 1);
             int i = (int)(t);
             int j = (i + 1);

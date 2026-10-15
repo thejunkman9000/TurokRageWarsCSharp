@@ -19,7 +19,7 @@ public static partial class Game
             {
                 o = Mem.S32(new O06A_v40(a).unk14_);
             }
-            return func_00442460((uint)(o), x, x);
+            return Text_MeasureString((uint)(o), x, x);
         }
     }
 

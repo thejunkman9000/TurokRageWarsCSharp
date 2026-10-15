@@ -19,17 +19,17 @@ public static partial class Game
             if ((new O05M30_v3(Mem.U32(0x800E5830u)).f90 == 0))
             {
                 new O05M30_v3(Mem.U32(0x800E5830u)).f90_Set(1);
-                if ((func_0040EC50(func_0040ECB0(cfg, (uint)(627), default(uint), default(uint))) == 0))
+                if ((func_0040EC50(UiTree_FindNode(cfg, (uint)(627), default(uint), default(uint))) == 0))
                 {
-                    func_0029A1D4((uint)(627), default(uint), default(uint), default(uint));
+                    Menu_MoveFocus((uint)(627), default(uint), default(uint), default(uint));
                 }
                 else
                 {
-                    func_0029A1D4((uint)(626), default(uint), default(uint), default(uint));
+                    Menu_MoveFocus((uint)(626), default(uint), default(uint), default(uint));
                 }
                 if ((Mem.S32(0x80146948u) == 0))
                 {
-                    func_0029A1D4((uint)(626), default(uint), default(uint), default(uint));
+                    Menu_MoveFocus((uint)(626), default(uint), default(uint), default(uint));
                 }
                 func_002A3358();
             }

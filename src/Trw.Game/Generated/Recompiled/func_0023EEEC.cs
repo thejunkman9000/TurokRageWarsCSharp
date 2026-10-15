@@ -95,7 +95,7 @@ public static partial class Game
                 r3 = Mem.U8((r17 + 0u));
                 r2 = (uint)3;
                 { bool c_ = r3 != r2; r4 = r17; if (c_) goto L_L0023F074; }
-                r5 = r16; r2 = func_002AC3F0(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r16; r2 = Pickup_CanUse(r4, r5, r6, r7); r3 = Cpu.V1;
                 { bool c_ = r2 == 0; r20 = (uint)1; if (c_) goto L_L0023F3E4; }
                 r4 = r17;
                 L_L0023F074: ;

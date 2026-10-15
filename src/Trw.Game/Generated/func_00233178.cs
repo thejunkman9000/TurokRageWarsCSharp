@@ -21,12 +21,12 @@ public static partial class Game
                 switch (Mem.S32(new_var3))
                 {
                 case 1:
-                    func_00273A34(actor, (-v));
+                    Math_MtxRotateRowsB_00273A34(actor, (-v));
                     break;
                     break;
                 case 2:
                     new_var = v;
-                    func_00273A34(actor, (v + new_var));
+                    Math_MtxRotateRowsB_00273A34(actor, (v + new_var));
                     break;
                 }
             }
@@ -37,7 +37,7 @@ public static partial class Game
                 case 0:
                     v = (-v);
                     new_var = v;
-                    func_00273A34(actor, (new_var + new_var));
+                    Math_MtxRotateRowsB_00273A34(actor, (new_var + new_var));
                     break;
                 }
             }

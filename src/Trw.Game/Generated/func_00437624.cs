@@ -24,7 +24,7 @@ public static partial class Game
                 {
                     return 0;
                 }
-                func_0029A1D4((uint)(315), default(uint), default(uint), default(uint));
+                Menu_MoveFocus((uint)(315), default(uint), default(uint), default(uint));
                 return 0;
             case 3:
                 new O05M80(Mem.U32(0x800E5780u)).fC_Set((int)(new O05M80(Mem.U32(0x800E5780u)).fC - 1));

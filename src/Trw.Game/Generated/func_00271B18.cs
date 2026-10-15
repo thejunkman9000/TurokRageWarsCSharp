@@ -29,7 +29,7 @@ public static partial class Game
             if ((((x < 0.0f) ? (-x) : x) < ((z < 0.0f) ? (-z) : z)))
             {
                 x = (float)((float)(x) / len);
-                r = func_00274640((((-1.0f) > ((1.0f < x) ? 1.0f : x)) ? (-1.0f) : ((1.0f < x) ? 1.0f : x)));
+                r = Math_Acosf((((-1.0f) > ((1.0f < x) ? 1.0f : x)) ? (-1.0f) : ((1.0f < x) ? 1.0f : x)));
                 res = (-r);
                 if ((z < 0.0f))
                 {
@@ -41,7 +41,7 @@ public static partial class Game
             {
                 z = (float)((float)(z) / len);
                 t = (((-1.0f) > ((1.0f < z) ? 1.0f : z)) ? (-1.0f) : ((1.0f < z) ? 1.0f : z));
-                r = func_00274640((-t));
+                r = Math_Acosf((-t));
                 res = (-r);
                 if ((x < 0.0f))
                 {

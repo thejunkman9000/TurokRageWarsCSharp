@@ -22,12 +22,12 @@ public static partial class Game
                 {
                     if ((new ActorCmd(c).fC != 0u))
                     {
-                        func_0026DA4C(new ActorCmd(c).fC, new Actor_v2(a).fB4, 1, (int)((new Actor_v2(a).seg.P + (uint)(Mem.S32(0x800D297Cu) * 24))), (uint)(0), (int)(new Actor_v2(a).f3));
+                        Light_ShadeVertices(new ActorCmd(c).fC, new Actor_v2(a).fB4, 1, (int)((new Actor_v2(a).seg.P + (uint)(Mem.S32(0x800D297Cu) * 24))), (uint)(0), (int)(new Actor_v2(a).f3));
                         func_0024C444(a, c);
                     }
                     else
                     {
-                        func_0026DA4C(new ActorCmd(c).fC, new Actor_v2(a).fB4, 1, (int)((new Actor_v2(a).seg.P + (uint)(Mem.S32(0x800D297Cu) * 24))), (uint)(0), (int)(new Actor_v2(a).f3));
+                        Light_ShadeVertices(new ActorCmd(c).fC, new Actor_v2(a).fB4, 1, (int)((new Actor_v2(a).seg.P + (uint)(Mem.S32(0x800D297Cu) * 24))), (uint)(0), (int)(new Actor_v2(a).f3));
                         func_0024C444(a, c);
                     }
                 }

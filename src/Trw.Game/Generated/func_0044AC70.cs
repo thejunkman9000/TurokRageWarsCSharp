@@ -11,9 +11,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0044AC70", (uint)actor, (uint)second);
             new Actor_func_8044A020_de(actor).part.active_Set((byte)(1));
-            func_00449B44(actor, (int)(second), 1);
-            func_00214178((actor + 744u), (actor + 1112u), 2);
-            func_0021B1E4(actor, (uint)(Mem.S32(0x80146898u)), (uint)(0), (uint)(1));
+            Player_InitSlot(actor, (int)(second), 1);
+            Actor_DispatchEvent((actor + 744u), (actor + 1112u), 2);
+            Player_PlaceAtSpawn(actor, (uint)(Mem.S32(0x80146898u)), (uint)(0), (uint)(1));
         }
     }
 

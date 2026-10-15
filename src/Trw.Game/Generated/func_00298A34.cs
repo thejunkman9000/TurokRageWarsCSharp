@@ -17,7 +17,7 @@ public static partial class Game
             int now = 0;
             int kind = 0;
             uint fn = 0u;
-            func_0029A958();
+            Ui_PushScreen();
             if ((cmd < (uint)(3584)))
             {
                 kind = ret;

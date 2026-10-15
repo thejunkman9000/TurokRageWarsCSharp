@@ -87,7 +87,7 @@ public static partial class Game
                 Cpu.SetW(3, (uint)(int)Cpu.S(1));
                 r19 = Cpu.W(3);
                 func_002AB9E4();
-                r4 = r16; r2 = func_002A8A94(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r16; r2 = ScreenMover_Step(r4, r5, r6, r7); r3 = Cpu.V1;
                 r3 = Mem.U32((r16 + 8u));
                 r2 = (uint)1;
                 { bool c_ = r3 != r2;  if (c_) goto L_L002A87F8; }
@@ -165,9 +165,9 @@ public static partial class Game
                 r3 = (uint)((int)r3 >> 31);
                 r2 = r2 - r3;
                 r2 = r2 & 255u;
-                Mem.Set((r29 + 28u), r2); r2 = func_002ABA44(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u)); r3 = Cpu.V1;
+                Mem.Set((r29 + 28u), r2); r2 = Gfx_FillRect(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u)); r3 = Cpu.V1;
                 r4 = Mem.U8((r30 + 0u));
-                r2 = func_002AA224(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = Gfx_BeginFlatColorPass(r4, r5, r6, r7); r3 = Cpu.V1;
                 r2 = (uint)1;
                 { bool c_ = r23 != r2; r4 = (uint)514; if (c_) goto L_L002A89E8; }
                 r1 = 2148335616u;
@@ -190,7 +190,7 @@ public static partial class Game
                 Cpu.SetW(3, (uint)(int)Cpu.S(0));
                 r7 = Cpu.W(3);
                 r7 = r7 << 16;
-                r7 = (uint)((int)r7 >> 16); r2 = (uint)func_002ABC18((int)r4, (int)r5, (short)r6, (short)r7, Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), (int)Mem.U32(r29 + 24u));
+                r7 = (uint)((int)r7 >> 16); r2 = (uint)Sprite_Draw((int)r4, (int)r5, (short)r6, (short)r7, Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), (int)Mem.U32(r29 + 24u));
                 r4 = (uint)515;
                 r6 = 2148401152u;
                 r6 = Mem.U16((r6 + 10450u));
@@ -207,7 +207,7 @@ public static partial class Game
                 Cpu.SetW(3, (uint)(int)Cpu.S(0));
                 r7 = Cpu.W(3);
                 r7 = r7 << 16;
-                r7 = (uint)((int)r7 >> 16); r2 = (uint)func_002ABC18((int)r4, (int)r5, (short)r6, (short)r7, Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), (int)Mem.U32(r29 + 24u));
+                r7 = (uint)((int)r7 >> 16); r2 = (uint)Sprite_Draw((int)r4, (int)r5, (short)r6, (short)r7, Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), (int)Mem.U32(r29 + 24u));
                 func_002A94E8();
                 r1 = 2148335616u;
                 Cpu.SetW(12, Mem.U32((r1 - 20276u)));

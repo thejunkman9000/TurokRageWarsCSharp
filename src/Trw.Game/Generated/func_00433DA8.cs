@@ -31,7 +31,7 @@ public static partial class Game
                     id = 657;
                     break;
                 }
-                w = func_0040ECB0(new O05Lobby(Mem.U32(0x800E54A4u)).h.f0, (uint)(id), default(uint), default(uint));
+                w = UiTree_FindNode(new O05Lobby(Mem.U32(0x800E54A4u)).h.f0, (uint)(id), default(uint), default(uint));
                 func_0040E9D0(w, 0);
                 o = new O05WdA(w).f8;
                 if (((k != (-1)) && (w == func_0041B87C(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k))))

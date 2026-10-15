@@ -14,14 +14,14 @@ public static partial class Game
             Mem.Set(0x80146928u, 0);
             Mem.Set(0x800D2980u, 0);
             func_0029324C();
-            func_0023EDF0();
+            Collision_InitProfiles();
             func_002954E0();
             v = Mem.F32(0x800CA5C0u);
             Mem.Set(0x800D2970u, 0);
             Mem.Set(0x800D2994u, v);
             Mem.Set(0x800D298Cu, v);
             Mem.Set(0x800D2990u, v);
-            func_0044E178(0x8011FE88u, new B21Game(g).unk26DD8, 0);
+            Level_SetTransitionState_0044E178(0x8011FE88u, new B21Game(g).unk26DD8, 0);
             new B21Game(g).unk26DB8_Set(13);
             Mem.Set(0x80154048u, 0);
         }

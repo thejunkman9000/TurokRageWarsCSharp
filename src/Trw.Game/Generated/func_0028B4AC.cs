@@ -11,13 +11,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0028B4AC", (uint)lv, (uint)bit, (uint)set);
             int idx = new Level(lv).unk1B40C;
-            uint t = func_0028FD94(func_0028FD94(func_0028FD94(new Level(lv).unk84_, 0), idx), 0);
+            uint t = Chunk_Get(Chunk_Get(Chunk_Get(new Level(lv).unk84_, 0), idx), 0);
             uint bits = 0u;
             uint b2 = 0u;
             int m = 0;
-            func_0028FD94(t, 0);
-            func_0028FDD8(t, 1);
-            bits = func_0028FD94(t, 1);
+            Chunk_Get(t, 0);
+            Chunk_GetSize(t, 1);
+            bits = Chunk_Get(t, 1);
             b2 = bits;
             m = (1 << (int)(bit & 7));
             if ((set != 0))

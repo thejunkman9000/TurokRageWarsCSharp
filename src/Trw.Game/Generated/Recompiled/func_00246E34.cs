@@ -93,11 +93,11 @@ public static partial class Game
                 Mem.Set((r29 + 32u), r2);
                 r5 = Mem.U32((r18 + 196u));
                 r7 = Mem.U32((r18 + 208u));
-                r6 = r5; r2 = func_002518DC((int)r4, r5, (int)r6, r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u));
+                r6 = r5; r2 = ResourceCache_Hash((int)r4, r5, (int)r6, r7, (int)Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u));
                 r17 = r2;
                 { bool c_ = r17 == 0;  if (c_) goto L_L00246FD0; }
                 r4 = Mem.U32((r17 + 0u));
-                r5 = r0; r2 = func_0028FD94(r4, (int)r5);
+                r5 = r0; r2 = Chunk_Get(r4, (int)r5);
                 r4 = r18;
                 r5 = r18 + 368u;
                 r3 = Mem.U32((r18 + 652u));

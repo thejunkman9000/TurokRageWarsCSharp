@@ -21,7 +21,7 @@ public static partial class Game
                 r29 = _fp + 256u;
                 L_func_0044BDC8: ;
                 r5 = r0 + 2u;
-                r29 = r29 - 40u; r2 = func_0028FD94(r4, (int)r5);
+                r29 = r29 - 40u; r2 = Chunk_Get(r4, (int)r5);
                 Mem.Set((r29 + 28u), r19);
                 r19 = r4;
                 r4 = r5;

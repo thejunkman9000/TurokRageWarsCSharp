@@ -268,7 +268,7 @@ public static partial class Game
                 L_I002A5C74: ;
                 r2 = (uint)1;
                 L_I002A5C78: ;
-                Mem.Set((r16 + 4u), r2); Cpu.SetS(0, func_00274B00(Cpu.S(12), Cpu.S(14)));
+                Mem.Set((r16 + 4u), r2); Cpu.SetS(0, Random_Symmetric(Cpu.S(12), Cpu.S(14)));
                 L_I002A5C80: ;
                 Mem.Set((r16 + 8u), Cpu.W(0)); goto L_L002A5DBC;
                 L_L002A5C88: ;

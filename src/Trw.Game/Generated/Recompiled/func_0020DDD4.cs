@@ -217,7 +217,7 @@ public static partial class Game
                 Mem.Set((r17 + 584u), Cpu.W(0)); goto L_L0020DFA0;
                 L_L0020DF88: ;
                 L_I0020DF88: ;
-                Cpu.SetS(14, Cpu.S(21)); Cpu.SetS(0, func_0029D044(Cpu.S(12), Cpu.S(14)));
+                Cpu.SetS(14, Cpu.S(21)); Cpu.SetS(0, Math_Atan2(Cpu.S(12), Cpu.S(14)));
                 L_I0020DF90: ;
                 r1 = 2148270080u;
                 L_I0020DF94: ;
@@ -271,7 +271,7 @@ public static partial class Game
                 Mem.Set((r17 + 632u), Cpu.W(0)); goto L_L0020E020;
                 L_L0020E008: ;
                 L_I0020E008: ;
-                Cpu.SetS(14, Cpu.S(21)); Cpu.SetS(0, func_0029D044(Cpu.S(12), Cpu.S(14)));
+                Cpu.SetS(14, Cpu.S(21)); Cpu.SetS(0, Math_Atan2(Cpu.S(12), Cpu.S(14)));
                 L_I0020E010: ;
                 r1 = 2148270080u;
                 L_I0020E014: ;
@@ -409,7 +409,7 @@ public static partial class Game
                 L_I0020E15C: ;
                 r16 = Mem.U32((r16 + 5620u));
                 L_I0020E160: ;
-                r4 = r16; r2 = func_0028FD94(r4, (int)r5);
+                r4 = r16; r2 = Chunk_Get(r4, (int)r5);
                 L_I0020E168: ;
                 r4 = r2 + 8u;
                 L_I0020E16C: ;
@@ -434,7 +434,7 @@ public static partial class Game
                 Mem.Set((r17 + 616u), r0); goto L_L0020E648;
                 L_L0020E1A0: ;
                 L_I0020E1A0: ;
-                r5 = (uint)2; r2 = func_0028FD94(r4, (int)r5);
+                r5 = (uint)2; r2 = Chunk_Get(r4, (int)r5);
                 L_I0020E1A8: ;
                 r3 = Mem.U32((r29 + 56u));
                 L_I0020E1AC: ;

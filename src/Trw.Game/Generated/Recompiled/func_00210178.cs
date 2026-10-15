@@ -29,7 +29,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r16);
                 r5 = Mem.U32((r17 + 100u));
                 { bool c_ = r5 == 0; r2 = (uint)1; if (c_) goto L_L00210214; }
-                r4 = r17; r2 = (uint)func_002099B4(r4, r5);
+                r4 = r17; r2 = (uint)Ai_IsTargetReached(r4, r5);
                 { bool c_ = r2 == 0;  if (c_) goto L_L002101B8; }
                 r4 = r17; r2 = (uint)func_0020DC10(r4);
                 L_L002101B8: ;

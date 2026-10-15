@@ -25,8 +25,8 @@ public static partial class Game
                         next = new Node6D28(n).next_;
                         if ((new Node6D28(n).key == key))
                         {
-                            func_00255E78(list, n, default(uint), default(uint));
-                            func_00255CB4((o + (uint)38312), n, default(uint), default(uint));
+                            List_Remove(list, n, default(uint), default(uint));
+                            List_Append_00255CB4((o + (uint)38312), n, default(uint), default(uint));
                         }
                         n = next;
                     }

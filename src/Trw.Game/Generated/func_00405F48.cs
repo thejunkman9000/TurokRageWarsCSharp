@@ -36,7 +36,7 @@ public static partial class Game
                         switch (Mem.S32(0x800E28C4u))
                         {
                         case 1:
-                            if (((((func_002A1238((_fp + 16u)) == 4) && (func_002A1238((_fp + 8u)) == 2)) && (func_002A137C((_fp + 16u), Mem.U32(0x800D770Cu)) == 0)) && (func_002A137C((_fp + 8u), Mem.U32(0x800D7708u)) == 0)))
+                            if (((((Str_Length((_fp + 16u)) == 4) && (Str_Length((_fp + 8u)) == 2)) && (func_002A137C((_fp + 16u), Mem.U32(0x800D770Cu)) == 0)) && (func_002A137C((_fp + 8u), Mem.U32(0x800D7708u)) == 0)))
                             {
                                 match = 1;
                             }
@@ -47,7 +47,7 @@ public static partial class Game
                             title = (uint)(Mem.S32(0x800D7700u));
                             break;
                         case 2:
-                            if (((((func_002A1238((_fp + 16u)) == 4) && (func_002A1238((_fp + 8u)) == 2)) && (func_002A137C((_fp + 16u), Mem.U32(0x800D770Cu)) == 0)) && (func_002A137C((_fp + 8u), Mem.U32(0x800D7708u)) == 0)))
+                            if (((((Str_Length((_fp + 16u)) == 4) && (Str_Length((_fp + 8u)) == 2)) && (func_002A137C((_fp + 16u), Mem.U32(0x800D770Cu)) == 0)) && (func_002A137C((_fp + 8u), Mem.U32(0x800D7708u)) == 0)))
                             {
                                 match = 1;
                             }

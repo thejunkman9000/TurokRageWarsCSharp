@@ -31,16 +31,16 @@ public static partial class Game
                 if (((new B01Info(info).flags & (uint)(2048)) != 0u))
                 {
                     new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~256))));
-                    func_00214178(actor, state, 0);
+                    Actor_DispatchEvent(actor, state, 0);
                 }
                 else
                 {
-                    func_00214178(actor, state, 1);
+                    Actor_DispatchEvent(actor, state, 1);
                 }
             }
             else
             {
-                func_00214178(actor, state, 64);
+                Actor_DispatchEvent(actor, state, 64);
             }
             new B01State(state).unk37_Set((sbyte)(0));
         }

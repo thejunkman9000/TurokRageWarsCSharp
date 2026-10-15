@@ -67,7 +67,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028E5AC", (uint)unused, (uint)obj);
-            if ((func_00285150(obj, 0) != 0))
+            if ((Resource_UnpackRnc(obj, 0) != 0))
             {
                 func_0028E5AC_remap(Mem.S32((obj + (uint)(0 * 4))), 0x800D2920u);
             }

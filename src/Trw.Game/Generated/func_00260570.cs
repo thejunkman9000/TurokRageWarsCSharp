@@ -22,7 +22,7 @@ public static partial class Game
             }
             else
             {
-                n = func_0028FD94(new B14Anim2(a).tree, (int)(new B14Key((new B14Anim2(a).keys_ + (uint)(idx * 4))).b));
+                n = Chunk_Get(new B14Anim2(a).tree, (int)(new B14Key((new B14Anim2(a).keys_ + (uint)(idx * 4))).b));
                 func_00270B1C(@out, Cpu.U2F((uint)(new B14Anim2(a).t)), (n + (uint)(new B14Anim2(a).lo * 4)), (n + (uint)(new B14Anim2(a).hi * 4)));
             }
         }

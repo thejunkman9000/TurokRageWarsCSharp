@@ -24,7 +24,7 @@ public static partial class Game
                     {
                         mp = (_fp + 32u);
                         func_0029FB14(mp);
-                        func_004194B0(mp);
+                        Gfx_PushMatrixF(mp);
                         new O02V3(_fp).x_Set((float)(0));
                         new O02V3(_fp).y_Set((float)(0));
                         new O02V3(_fp).z_Set(Mem.F32(0x800E142Cu));

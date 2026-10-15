@@ -124,7 +124,7 @@ public static partial class Game
                 L_I0042F218: ;
                 Mem.Set((r3 + 76u), r2);
                 L_I0042F21C: ;
-                Mem.Set((r3 + 80u), r18); r2 = func_0040ECB0(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r3 + 80u), r18); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I0042F224: ;
                 r6 = 2148401152u;
                 L_I0042F228: ;
@@ -167,7 +167,7 @@ public static partial class Game
                 L_I0042F274: ;
                 r2 = r2 + r7;
                 L_I0042F278: ;
-                Mem.Set((r6 + 20u), (ushort)r2); r2 = func_0040ECB0(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r6 + 20u), (ushort)r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I0042F280: ;
                 r6 = 2148401152u;
                 L_I0042F284: ;
@@ -212,7 +212,7 @@ public static partial class Game
                 L_I0042F2D4: ;
                 r2 = r2 - r7;
                 L_I0042F2D8: ;
-                Mem.Set((r6 + 20u), (ushort)r2); r2 = func_0040ECB0(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r6 + 20u), (ushort)r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I0042F2E0: ;
                 r4 = (uint)647;
                 L_I0042F2E4: ;
@@ -230,7 +230,7 @@ public static partial class Game
                 L_I0042F300: ;
                 r5 = (uint)647;
                 L_I0042F304: ;
-                Mem.Set((r3 + 36u), r2); r2 = func_0040ECB0(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r3 + 36u), r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I0042F30C: ;
                 r4 = r2;
                 L_I0042F310: ;
@@ -244,7 +244,7 @@ public static partial class Game
                 L_I0042F324: ;
                 r4 = r16;
                 L_I0042F328: ;
-                r5 = (uint)764; r2 = func_0040ECB0(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = (uint)764; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I0042F330: ;
                 r4 = r16;
                 L_I0042F334: ;
@@ -254,7 +254,7 @@ public static partial class Game
                 L_I0042F33C: ;
                 r5 = (uint)675;
                 L_I0042F340: ;
-                Mem.Set((r3 + 104u), r2); r2 = func_0040ECB0(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r3 + 104u), r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I0042F348: ;
                 r4 = r16;
                 L_I0042F34C: ;
@@ -264,7 +264,7 @@ public static partial class Game
                 L_I0042F354: ;
                 r5 = (uint)765;
                 L_I0042F358: ;
-                Mem.Set((r3 + 3024u), r2); r2 = func_0040ECB0(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r3 + 3024u), r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I0042F360: ;
                 r4 = r16;
                 L_I0042F364: ;
@@ -274,7 +274,7 @@ public static partial class Game
                 L_I0042F36C: ;
                 r5 = (uint)762;
                 L_I0042F370: ;
-                Mem.Set((r3 + 5944u), r2); r2 = func_0040ECB0(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r3 + 5944u), r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I0042F378: ;
                 r6 = (uint)-1;
                 L_I0042F37C: ;
@@ -351,7 +351,7 @@ public static partial class Game
                 L_I0042F41C: ;
                 r4 = r16;
                 L_I0042F420: ;
-                r5 = (uint)649; r2 = func_0040ECB0(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = (uint)649; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I0042F428: ;
                 r16 = r2;
                 L_I0042F42C: ;
@@ -428,7 +428,7 @@ public static partial class Game
                 r5 = (uint)663;
                 L_L0042F4D0: ;
                 L_I0042F4D0: ;
-                r2 = func_0040ECB0(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I0042F4D8: ;
                 r16 = r2;
                 L_I0042F4DC: ;
@@ -471,7 +471,7 @@ public static partial class Game
                 L_I0042F524: ;
                 Mem.Set((r2 + 100u), r0);
                 L_I0042F528: ;
-                Mem.Set((r2 + 108u), r22); r2 = func_00432488(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r2 + 108u), r22); r2 = PlayerMenu_RefreshPanel(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I0042F530: ;
                 r4 = r18; func_00264790((int)r4);
                 L_L0042F538: ;
@@ -774,7 +774,7 @@ public static partial class Game
                 r18 = r0;
                 L_L0042F7D4: ;
                 L_I0042F7D4: ;
-                r4 = r18; r2 = func_00432488(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r18; r2 = PlayerMenu_RefreshPanel(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I0042F7DC: ;
                 r18 = r18 + 1u;
                 L_I0042F7E0: ;
@@ -831,7 +831,7 @@ public static partial class Game
                 L_I0042F864: ;
                 Mem.Set((r2 + 88u), r17);
                 L_I0042F868: ;
-                Mem.Set((r2 + 96u), r19); r2 = func_00432488(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r2 + 96u), r19); r2 = PlayerMenu_RefreshPanel(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I0042F870: ;
                 r18 = r18 + 1u;
                 L_L0042F874: ;
@@ -916,7 +916,7 @@ public static partial class Game
                 Mem.Set((r5 + 92u), r6);
                 L_L0042F930: ;
                 L_I0042F930: ;
-                r2 = func_00432488(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = PlayerMenu_RefreshPanel(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_L0042F938: ;
                 L_I0042F938: ;
                 r4 = r0; func_0040C4A8((int)r4);

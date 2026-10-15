@@ -14,7 +14,7 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_00226524", (uint)a, (uint)b);
                 float d = 0f;
-                func_002231B0(a, b, 0x800CE7E4u);
+                Player_UpdateViewTurn(a, b, 0x800CE7E4u);
                 if ((new Plr(a).unk1210 != 0))
                 {
                     func_0021CF04(_fp, a, (_fp + 44u), (_fp + 16u));
@@ -23,7 +23,7 @@ public static partial class Game
                         d = func_00272768(new Plr(a).pos.P, new Plr(Mem.U32((_fp + 44u))).pos.P);
                         if (!(Mem.F32(0x800C7C3Cu) < d))
                         {
-                            if (((func_00244494(a, new Plr(a).pos.P, new Plr(Mem.U32((_fp + 44u))).pos.P, 0x80103FD0u) == 0) || (Mem.U32(Mem.U32(0x80103FCCu)) == Mem.U32((_fp + 44u)))))
+                            if (((Collision_RayCast(a, new Plr(a).pos.P, new Plr(Mem.U32((_fp + 44u))).pos.P, 0x80103FD0u) == 0) || (Mem.U32(Mem.U32(0x80103FCCu)) == Mem.U32((_fp + 44u)))))
                             {
                                 func_00271FD8((_fp + 32u), new Plr(Mem.U32((_fp + 44u))).pos.P, new Plr(a).pos.P);
                                 Mem.Set((_fp + 48u), func_00271B18((_fp + 32u)));

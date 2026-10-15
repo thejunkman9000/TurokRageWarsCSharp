@@ -11,10 +11,10 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043E81C", (uint)a, (uint)m);
             float v = 0f;
-            Mem.Set(0x800E5E48u, func_0044252C(m, Mem.S32(0x800E5E48u), 1, 0, 15, 0));
-            if (((func_002643C0(new S10Menu(m).ctrl_) != 0) || ((int)(func_0026439C(new S10Menu(m).ctrl_)) != 0)))
+            Mem.Set(0x800E5E48u, MenuSpinner_Step(m, Mem.S32(0x800E5E48u), 1, 0, 15, 0));
+            if (((Pad_IsRight(new S10Menu(m).ctrl_) != 0) || ((int)(Pad_IsConfirm(new S10Menu(m).ctrl_)) != 0)))
             {
-                func_0044252C(m, Mem.S32(0x800E5E48u), 1, 0, 15, 0);
+                MenuSpinner_Step(m, Mem.S32(0x800E5E48u), 1, 0, 15, 0);
             }
             v = (Mem.F32((0x00450854u + (uint)(Mem.S32(0x800E5E48u) * 4))) + 1.0f);
             v = ((2.0f < ((v < 0.5f) ? 0.5f : v)) ? 2.0f : ((v < 0.5f) ? 0.5f : v));

@@ -73,17 +73,17 @@ public static partial class Game
                 r2 = Mem.U32((r16 + 92u));
                 r4 = Mem.U32((r16 + 484u));
                 r2 = r2 & r3;
-                Mem.Set((r16 + 92u), r2); r2 = func_00255E78(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r16 + 92u), r2); r2 = List_Remove(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = (uint)64512;
                 r4 = r18 + r4;
                 r5 = r16;
-                Mem.Set((r16 + 484u), r0); func_00255C58(r4, r5);
+                Mem.Set((r16 + 484u), r0); List_Add(r4, r5);
                 r2 = Mem.U32((r16 + 92u));
                 r3 = 16777216u;
                 r2 = r2 & r3;
                 { bool c_ = r2 == 0; r4 = (uint)64532; if (c_) goto L_L002831D0; }
                 r4 = r18 + r4;
-                r5 = r16; r2 = func_00255E78(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r16; r2 = List_Remove(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_L002831D0: ;
                 r16 = r17;
                 L_L002831D4: ;

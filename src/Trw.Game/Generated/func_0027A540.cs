@@ -112,7 +112,7 @@ public static partial class Game
                 func_002720EC((_fp + 16u));
                 Mem.Copy((_fp + 32u), new M5Obj(o).vel.P, 12);
                 func_002720EC((_fp + 32u));
-                ang = func_00274640((((new M5Vec3((_fp + 16u)).x * new M5Vec3((_fp + 32u)).x) + (new M5Vec3((_fp + 16u)).y * new M5Vec3((_fp + 32u)).y)) + (new M5Vec3((_fp + 16u)).z * new M5Vec3((_fp + 32u)).z)));
+                ang = Math_Acosf((((new M5Vec3((_fp + 16u)).x * new M5Vec3((_fp + 32u)).x) + (new M5Vec3((_fp + 16u)).y * new M5Vec3((_fp + 32u)).y)) + (new M5Vec3((_fp + 16u)).z * new M5Vec3((_fp + 32u)).z)));
                 w = 0.0f;
                 if (!(!(new M5Obj(o).f140 < Mem.F32(0x800C9C7Cu)))) goto _f10;
                 w = Mem.F32(0x800C9C84u);
@@ -120,8 +120,8 @@ public static partial class Game
                 w = Mem.F32(0x800C9C8Cu);
                 _f11: ;
                 _f10: ;
-                func_00270D40((_fp + 128u), w, (_fp + 96u), (_fp + 112u));
-                func_002742B4((_fp + 128u), (_fp + 144u));
+                Quat_Blend((_fp + 128u), w, (_fp + 96u), (_fp + 112u));
+                Quat_ToMatrix((_fp + 128u), (_fp + 144u));
                 Mem.Set((_fp + 48u), 0);
                 Mem.Set(((_fp + 48u) + 4u), 0);
                 new M5Vec3((_fp + 48u)).z_Set(Mem.F32(0x800C9C90u));

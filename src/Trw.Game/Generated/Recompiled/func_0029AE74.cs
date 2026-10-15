@@ -42,7 +42,7 @@ public static partial class Game
                 L_I0029AE98: ;
                 Mem.Set((r29 + 28u), r17);
                 L_I0029AE9C: ;
-                Mem.Set((r29 + 24u), r16); r2 = (uint)func_0029A958();
+                Mem.Set((r29 + 24u), r16); r2 = (uint)Ui_PushScreen();
                 L_I0029AEA4: ;
                 r17 = r2;
                 L_I0029AEA8: ;

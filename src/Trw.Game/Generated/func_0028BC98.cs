@@ -18,9 +18,9 @@ public static partial class Game
             {
                 if ((Mem.S32((ents + (uint)(i * 4))) == key))
                 {
-                    uint u = func_0028FD94(new Level(lv).unk80_, 1);
-                    func_0028FD94(u, 0);
-                    return (int)(Mem.U8((func_0028FD94(u, 1) + (uint)i)));
+                    uint u = Chunk_Get(new Level(lv).unk80_, 1);
+                    Chunk_Get(u, 0);
+                    return (int)(Mem.U8((Chunk_Get(u, 1) + (uint)i)));
                 }
             }
             return (-1);

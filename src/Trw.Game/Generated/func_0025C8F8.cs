@@ -11,11 +11,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0025C8F8", (uint)l, (uint)src, (uint)n);
             int i = 0;
-            func_00255C40(l, 0, 4);
-            func_00255C40(new P3List(l).list.P, 0, 4);
+            List_Init(l, 0, 4);
+            List_Init(new P3List(l).list.P, 0, 4);
             for (i = 0; (i < n); ++i)
             {
-                func_00255CB4(l, src, default(uint), default(uint));
+                List_Append_00255CB4(l, src, default(uint), default(uint));
                 src = (uint)(src + (uint)(32 * 1));
             }
             new P3List(l).f28_Set(0);

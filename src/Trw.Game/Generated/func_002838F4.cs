@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002838F4", (uint)o, (uint)def);
             int t = 0;
-            func_0027DAA4(o, (uint)(0), (uint)(0), default(uint));
+            Actor_UpdateAttachedPlacement(o, (uint)(0), (uint)(0), default(uint));
             if (((int)(new B19Def(def).b6) != (-1)))
             {
                 func_002A5588(0x8013BA80u, o, (uint)((int)(new B19Def(def).b6)), default(uint));

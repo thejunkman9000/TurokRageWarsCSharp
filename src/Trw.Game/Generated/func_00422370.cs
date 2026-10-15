@@ -25,7 +25,7 @@ public static partial class Game
                 Flyby_Abort();
                 func_0042B4C4();
             }
-            func_0043C458(Mem.U32(0x800E44A0u));
+            Menu_ShowScreen_0043C458(Mem.U32(0x800E44A0u));
             return 0;
         }
     }

@@ -24,7 +24,7 @@ public static partial class Game
                 uint e = 0u;
                 int x = 0;
                 int y = 0;
-                func_002567C4(new SndMgr(m).@lock.P);
+                Lock_Init(new SndMgr(m).@lock.P);
                 func_00257380_SndMgr_Lock(m);
                 x = Mem.S32(0x801536B0u);
                 y = Mem.S32(0x801536ECu);

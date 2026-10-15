@@ -6,7 +6,7 @@ namespace Trw.Game;
 /// Widescreen and the full-height own view, chosen per machine like any PC game: nothing about the window reaches guest RAM, so every netplay peer can run
 /// its own resolution, aspect and view mode while the simulation stays identical.
 /// <list type="bullet">
-/// <item>Game side (the same on every machine): func_00234FDC (recompiled) builds each view's projection from a horizontal field of view and the view's aspect and
+/// <item>Game side (the same on every machine): Camera_SetupProjection (recompiled) builds each view's projection from a horizontal field of view and the view's aspect and
 /// keeps the frustum extents at the far plane in the camera (+0x74 horizontal, +0x78 vertical), which the culling reads. A hook (tools/mips2cs/hooks.txt)
 /// widens those two extents by fixed factors (<see cref="CullH"/> x <see cref="CullV"/>): enough for a 32:9 picture and for a 2-player half shown full height.
 /// The projection matrix stays exactly the game's.</item>
@@ -33,7 +33,7 @@ public static class Widescreen
     /// opened over a match stay 4:3, pillarboxed.</summary>
     public static bool InLevel => Mem.S32(0x80146878) is 8 or 13 && Game.ScreenId is -1 or 2;       // D_80146878 = the game state
 
-    /// <summary>Hook after func_00234FDC 0x00235610 (camera r19: +0x74 just stored; $f0 = the +0x78 value stored in the next call's delay slot).
+    /// <summary>Hook after Camera_SetupProjection 0x00235610 (camera r19: +0x74 just stored; $f0 = the +0x78 value stored in the next call's delay slot).
     /// Fixed factors, independent of this machine's window, so netplay peers stay identical.</summary>
     public static void WidenCulling(uint cam)
     {

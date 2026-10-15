@@ -38,7 +38,7 @@ public static partial class Game
                 r16 = r16 - 12080u;
                 r4 = r16;
                 Mem.Set((r29 + 20u), r31);
-                r6 = r29 + 28u; r2 = func_00414D4C(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
+                r6 = r29 + 28u; r2 = Printf_VFormat(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
                 r3 = 2148335616u;
                 r3 = Mem.U32((r3 + 11148u));
                 r1 = 2148335616u;

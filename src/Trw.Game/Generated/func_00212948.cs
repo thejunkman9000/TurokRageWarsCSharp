@@ -23,13 +23,13 @@ public static partial class Game
                 func_00212670(b);
                 if (((new BrainB(b).unkC == c) || (new BrainB(b).unkC == new BrainB(b).unk4)))
                 {
-                    func_00209874(b, 4);
+                    Ai_SetState(b, 4);
                     return;
                 }
             }
             if ((Mem.F32(0x800C71B8u) < func_0027272C(new BrainB(b).unk64.owner.pos.P, new BrainB(b).actor.pos.P)))
             {
-                func_00209874(b, new BrainB(b).unk230);
+                Ai_SetState(b, new BrainB(b).unk230);
                 return;
             }
             func_00211020(b, default(uint), default(uint), default(uint));

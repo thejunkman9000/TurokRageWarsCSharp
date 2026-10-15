@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00262524", (uint)p, (uint)@out);
-            Mem.Copy(@out, func_0028FD94((uint)(func_002604BC(p)), (int)((short)(6))), 24);
+            Mem.Copy(@out, Chunk_Get((uint)(func_002604BC(p)), (int)((short)(6))), 24);
         }
     }
 

@@ -29,7 +29,7 @@ public static partial class Game
                 {
                     new B2Ctl(ctl).unk2E4_Set((-1));
                     t = new B2Ctl(ctl).target.owner_;
-                    dist = func_00216F44(new B2Ctl(ctl).owner_, C.Tmp(Cpu.F2U(new B2Actor(t).pos.x), Cpu.F2U(new B2Actor(t).pos.y), Cpu.F2U(new B2Actor(t).pos.z)));
+                    dist = Actor_AngleToPoint(new B2Ctl(ctl).owner_, C.Tmp(Cpu.F2U(new B2Actor(t).pos.x), Cpu.F2U(new B2Actor(t).pos.y), Cpu.F2U(new B2Actor(t).pos.z)));
                     if ((func_0020AA0C(ctl) < dist))
                     {
                         new B2Ctl(ctl).unk23C_Set(1);

@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0022CE68", (uint)p, (uint)o);
             func_002748E0((p + 1836u), 0.0f, 0.25f);
-            func_002231B0(p, o, 0x800CE7E4u);
+            Player_UpdateViewTurn(p, o, 0x800CE7E4u);
             func_002233CC(p, o, 0x800CE79Cu);
             if ((new ObjDef_v2(o).f20 <= 0.0f))
             {

@@ -13,7 +13,7 @@ public static partial class Game
             uint actor = Mem.U32(0x801029F0u);
             if (((int)(Mem.S16((actor + (uint)1514))) == 1))
             {
-                func_0044A4C0(actor);
+                Player_Respawn(actor);
             }
             else
             {

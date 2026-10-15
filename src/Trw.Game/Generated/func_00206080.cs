@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00206080", (uint)actor, (uint)state);
             uint info = (new B01Actor(actor).def_ + (uint)20);
-            float v = func_00274B00(new B01Info(info).unkC.f, new B01Info(info).unk10.f);
+            float v = Random_Symmetric(new B01Info(info).unkC.f, new B01Info(info).unk10.f);
             uint g = 0x801462C8u;
             new B01State(state).unk64_Set(v);
             if (((int)(Mem.U8((g + (uint)29))) != 0))

@@ -58,7 +58,7 @@ public static partial class Game
                                         func_0025DF54(3405);
                                         if ((new M2Own(o).pawn_ != 0u))
                                         {
-                                            func_002398F8(0x80145088u, new M2Own(o).pawn_, (uint)(Mem.S32(0x800D70E8u)), func_0022A590(0x80145040u, (int)(o)), 1.0f);
+                                            Hud_SpawnTextLineA(0x80145088u, new M2Own(o).pawn_, (uint)(Mem.S32(0x800D70E8u)), func_0022A590(0x80145040u, (int)(o)), 1.0f);
                                         }
                                     }
                                     ok = t;
@@ -67,11 +67,11 @@ public static partial class Game
                         }
                         if ((ok != 0))
                         {
-                            func_00214178(a, s, 8);
+                            Actor_DispatchEvent(a, s, 8);
                             return 2;
                         }
                     }
-                    func_00214178(a, s, 4);
+                    Actor_DispatchEvent(a, s, 4);
                     new M2St(s).unkCB_Set((sbyte)(0));
                     return 1;
                 }

@@ -77,7 +77,7 @@ public static partial class Game
                 Cpu.SetW(0, Mem.U32((r29 + 40u)));
                 Cpu.SetS(12, Cpu.S(12) * Cpu.S(0));
                 Cpu.SetS(2, Cpu.S(2) + Cpu.S(1));
-                Cpu.SetS(12, Cpu.S(2) + Cpu.S(12)); Cpu.SetS(0, func_00274640(Cpu.S(12)));
+                Cpu.SetS(12, Cpu.S(2) + Cpu.S(12)); Cpu.SetS(0, Math_Acosf(Cpu.S(12)));
                 r16 = r29 + 48u;
                 r4 = r16;
                 Cpu.SetS(20, Cpu.S(0));

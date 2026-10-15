@@ -17,7 +17,7 @@ public static partial class Game
                 new Vec3f((_fp + 16u)).y_Set(new M1State(state).vec130.y);
                 new Vec3f((_fp + 16u)).z_Set(new M1State(state).vec130.z);
                 func_00202CA0(_fp, (_fp + 16u));
-                func_002742B4(_fp, m2);
+                Quat_ToMatrix(_fp, m2);
             }
         }
         finally { Stack.Free(28); }
@@ -53,8 +53,8 @@ public static partial class Game
                 new M1Quat(_fp).z_Set(0.0f);
                 new M1Quat(_fp).y_Set(Mem.F32(0x80115DECu));
                 new M1Quat(_fp).w_Set(cosf((new M1State(state).f9C * Mem.F32(0x800C6B08u))));
-                func_00274108((_fp + 16u), _fp, new M1Actor(actor).v5C.P);
-                func_002742B4((_fp + 16u), (_fp + 32u));
+                Quat_Multiply((_fp + 16u), _fp, new M1Actor(actor).v5C.P);
+                Quat_ToMatrix((_fp + 16u), (_fp + 32u));
                 func_002734EC((_fp + 32u), new M1Actor(actor).f50, new M1Actor(actor).f54, new M1Actor(actor).f58);
                 func_002725BC(new M1Actor(actor).pos.P, 2.0E+4f);
                 func_002734B8((_fp + 32u), new M1Actor(actor).pos.x, new M1Actor(actor).pos.y, new M1Actor(actor).pos.z);

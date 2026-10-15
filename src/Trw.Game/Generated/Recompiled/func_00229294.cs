@@ -101,7 +101,7 @@ public static partial class Game
                 r4 = r29 + 24u; func_00216488(r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
                 r4 = r17;
                 r5 = r17 + 368u;
-                r6 = r29 + 24u; r2 = func_00219A40(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = r29 + 24u; r2 = Player_StateHandler(r4, r5, r6, r7); r3 = Cpu.V1;
                 r19 = r19 + 1u;
                 L_L00229410: ;
                 r2 = (uint)((int)r19 < 5 ? 1 : 0);

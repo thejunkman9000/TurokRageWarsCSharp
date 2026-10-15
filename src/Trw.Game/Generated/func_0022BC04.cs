@@ -28,7 +28,7 @@ public static partial class Game
                 k = 23;
             }
             L_l2: ;
-            func_0028B250(0x8011FE88u, (a + (uint)744), ((int)(new PlrDef(Mem.U32((0x800D052Cu + (uint)(new Plr(a).unk62E * 4)))).unk4) + k), new Plr(a).unk484.unk10);
+            Sound_StartForActor(0x8011FE88u, (a + (uint)744), ((int)(new PlrDef(Mem.U32((0x800D052Cu + (uint)(new Plr(a).unk62E * 4)))).unk4) + k), new Plr(a).unk484.unk10);
         }
     }
 

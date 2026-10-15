@@ -20,12 +20,12 @@ public static partial class Game
             {
                 func_0026F690((o + 100u), new B10X(x).m68.P, (o + 12u));
                 node = Mem.U32(p);
-                new B10Obj(o).pA4__Set(func_0028FD94(node, 0));
-                t = func_0028FD94(node, 2);
+                new B10Obj(o).pA4__Set(Chunk_Get(node, 0));
+                t = Chunk_Get(node, 2);
                 n = Mem.S32(t);
                 for (i = 0; (i < n); ++i)
                 {
-                    func_00242FD8(o, func_0028FD94(t, i));
+                    func_00242FD8(o, Chunk_Get(t, i));
                 }
             }
         }

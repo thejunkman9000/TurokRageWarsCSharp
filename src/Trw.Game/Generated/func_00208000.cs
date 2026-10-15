@@ -44,7 +44,7 @@ public static partial class Game
             }
             new B2Ctl(ctl).unk238_Set(0);
             func_0020986C(ctl, 0x800CE040u);
-            func_00209874(ctl, 2);
+            Ai_SetState(ctl, 2);
             new B2Ctl(ctl).unk244_Set((float)(0));
             new B2Ctl(ctl).unk23C_Set(0);
             new B2Ctl(ctl).unk240_Set(0);

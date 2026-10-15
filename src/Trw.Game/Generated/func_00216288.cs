@@ -41,7 +41,7 @@ public static partial class Game
                     func_0024F468((_fp + 48u), o);
                     break;
                 }
-                func_00280094(0x80121990u, o, o, (uint)(0), extra, a1, (_fp + 32u), (_fp + 48u), (_fp + 16u), 0, (-1), mode);
+                Effect_SpawnFromTemplates(0x80121990u, o, o, (uint)(0), extra, a1, (_fp + 32u), (_fp + 48u), (_fp + 16u), 0, (-1), mode);
                 if ((((int)(new B04Ent_v3(o).type) == 1) && ((int)(new B04Ent_v3(e).unkE4) == 1036)))
                 {
                     int v = (new B04Ent_v3(e).unk29C - 1);

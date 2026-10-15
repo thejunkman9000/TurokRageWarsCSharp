@@ -19,7 +19,7 @@ public static partial class Game
                     p = q;
                 }
             }
-            new O06C_v12(p).f_Set((byte)(func_0044252C((uint)((int)(b)), (int)(new O06C_v12(p).f), 8, 8, 248, 0)));
+            new O06C_v12(p).f_Set((byte)(MenuSpinner_Step((uint)((int)(b)), (int)(new O06C_v12(p).f), 8, 8, 248, 0)));
             return 0;
         }
     }

@@ -21,7 +21,7 @@ public static partial class Game
             }
             if ((c == 0u))
             {
-                func_00255CB4(0x80104584u, n, default(uint), default(uint));
+                List_Append_00255CB4(0x80104584u, n, default(uint), default(uint));
             }
             new PNode(n).fC_Set((uint)((uint)(new PNode(n).fC) | (uint)(4096)));
         }

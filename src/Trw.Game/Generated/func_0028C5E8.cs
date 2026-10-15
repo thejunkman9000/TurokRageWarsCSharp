@@ -28,12 +28,12 @@ public static partial class Game
                 }
                 if ((done != 0))
                 {
-                    func_00278C80(o);
+                    Entity_Spawn(o);
                 }
                 if ((expired != 0))
                 {
-                    func_00255E78((m + (uint)4568), n, default(uint), default(uint));
-                    func_00255C58((m + (uint)4588), n);
+                    List_Remove((m + (uint)4568), n, default(uint), default(uint));
+                    List_Add((m + (uint)4588), n);
                 }
                 n = next;
                 expired = 0;

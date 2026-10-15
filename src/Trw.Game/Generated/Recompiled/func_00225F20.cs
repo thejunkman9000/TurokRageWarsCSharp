@@ -78,13 +78,13 @@ public static partial class Game
                 r4 = r16;
                 r6 = 2148335616u;
                 r6 = r6 - 6124u;
-                r5 = r18; func_002231B0(r4, r5, r6);
+                r5 = r18; Player_UpdateViewTurn(r4, r5, r6);
                 r2 = Mem.U32((r16 + 1720u));
                 r2 = r2 & 8u;
                 { bool c_ = r2 == 0; r19 = r0; if (c_) goto L_L00226058; }
                 r4 = r17;
                 r5 = r17 + 368u;
-                r6 = (uint)46; r2 = (uint)func_00214178(r4, r5, (int)r6);
+                r6 = (uint)46; r2 = (uint)Actor_DispatchEvent(r4, r5, (int)r6);
                 r1 = 2148335616u;
                 Cpu.SetW(0, Mem.U32((r1 - 6312u)));
                 r1 = 2148270080u;

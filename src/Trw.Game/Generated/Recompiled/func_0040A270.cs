@@ -54,7 +54,7 @@ public static partial class Game
                 r5 = 2148401152u;
                 r5 = r5 + 3500u;
                 r4 = r16 + r2;
-                r6 = r17 + 1u; func_00265904(r4, r5, (int)r6, (int)r7);
+                r6 = r17 + 1u; Str_Sprintf(r4, r5, (int)r6, (int)r7);
                 L_L0040A314: ;
                 r31 = Mem.U32((r29 + 24u));
                 r17 = Mem.U32((r29 + 20u));

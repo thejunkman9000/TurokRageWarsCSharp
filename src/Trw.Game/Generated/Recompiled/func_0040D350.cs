@@ -53,7 +53,7 @@ public static partial class Game
                 r4 = r29 + 64u;
                 r5 = r29 + 16u;
                 r6 = r17;
-                r7 = r29 + 148u; r2 = (uint)func_0040E154(r4, r5, r6, r7);
+                r7 = r29 + 148u; r2 = (uint)UiNode_ComputeRect(r4, r5, r6, r7);
                 { bool c_ = r2 == 0;  if (c_) goto L_L0040DB54; }
                 r2 = Mem.U16((r17 + 18u));
                 r2 = r2 & 512u;
@@ -78,7 +78,7 @@ public static partial class Game
                 r7 = Mem.U32((r29 + 60u));
                 r22 = (uint)1; func_002A2870((int)r4, (int)r5, (int)r6, (int)r7);
                 L_L0040D43C: ;
-                r4 = r20; r2 = (uint)func_002A1238(r4);
+                r4 = r20; r2 = (uint)Str_Length(r4);
                 r3 = Mem.U32((r29 + 156u));
                 r21 = r2;
                 r2 = r3 & 256u;
@@ -179,7 +179,7 @@ public static partial class Game
                 L_L0040D5FC: ;
                 r4 = (uint)((int)r4 >> 24);
                 r5 = r20;
-                r6 = r21; r2 = (uint)func_0040F1E0((int)r4, r5, (int)r6);
+                r6 = r21; r2 = (uint)Text_MeasureWidth_0040F1E0((int)r4, r5, (int)r6);
                 Cpu.SetW(1, Mem.U32((r29 + 160u)));
                 Cpu.SetW(0, r2);
                 Cpu.SetS(0, (float)(int)Cpu.W(0));
@@ -487,7 +487,7 @@ public static partial class Game
                 r4 = Mem.U32((r1 + 14384u));
                 r7 = 4259840u;
                 r7 = r7 - 2576u;
-                r6 = (uint)24; func_002A0E38(r4, (int)r5, (int)r6, r7);
+                r6 = (uint)24; Sort_Quick(r4, (int)r5, (int)r6, r7);
                 r2 = 2148859904u;
                 r2 = Mem.U32((r2 + 14336u));
                 r2 = r2 + 1u;

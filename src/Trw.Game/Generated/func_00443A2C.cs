@@ -19,7 +19,7 @@ public static partial class Game
                     new O06P_v5(p).unk1340_Set((int)(new O06P_v5(p).unk1340 + 1));
                     if ((new O06P_v5(p).unk1340 >= 76))
                     {
-                        func_0044A37C(new O06A_v27(a).unk1C_);
+                        Player_StartRun_0044A37C(new O06A_v27(a).unk1C_);
                         return 1;
                     }
                 }

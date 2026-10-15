@@ -15,7 +15,7 @@ public static partial class Game
             do
             {
                 cont = 1;
-                while (((cmd = func_002005A0(2986344432u)) == (uint)(0)))
+                while (((cmd = Bus_ReadWord(2986344432u)) == (uint)(0)))
                 {
                     func_002005DC((int)((uint)(1000)));
                 }
@@ -27,11 +27,11 @@ public static partial class Game
                 else
                 {
                     func_00200568(2986344444u, (uint)(257));
-                    while ((func_002005A0(2986344432u) == cmd))
+                    while ((Bus_ReadWord(2986344432u) == cmd))
                     {
                         func_002005DC((int)((uint)(500)));
                     }
-                    if ((func_002005A0(2986344432u) == (uint)(2)))
+                    if ((Bus_ReadWord(2986344432u) == (uint)(2)))
                     {
                         func_00200568(2986344444u, (uint)(0));
                     }
@@ -70,11 +70,11 @@ public static partial class Game
                             func_002010D8(1);
                             break;
                         case (uint)(25):
-                            func_002012D8();
+                            DevLink_CopyBusBlock();
                             break;
                         }
                         func_00200568(2986344444u, (uint)(0));
-                        while ((func_002005A0(2986344432u) == (uint)(1)))
+                        while ((Bus_ReadWord(2986344432u) == (uint)(1)))
                         {
                             func_002005DC((int)((uint)(500)));
                         }

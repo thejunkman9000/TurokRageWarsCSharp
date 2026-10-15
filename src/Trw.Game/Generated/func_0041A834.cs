@@ -15,7 +15,7 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, x_in, 40);
                 if (Dbg.On) Dbg.Enter("func_0041A834", (uint)self, (uint)x_in);
                 int flag = 0;
-                if ((func_0040E154((_fp + 40u), (_fp + 56u), self, _fp) != 0))
+                if ((UiNode_ComputeRect((_fp + 40u), (_fp + 56u), self, _fp) != 0))
                 {
                     if ((((int)(new O3Hdr(self).unk12) & 512) != 0))
                     {

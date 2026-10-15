@@ -37,7 +37,7 @@ public static partial class Game
                 new O04ModeS4690(Mem.U32(0x800E4690u)).unkA48.unk10_Set((byte)(170));
             }
             new O04ModeS4690(Mem.U32(0x800E4690u)).unkA44_Set(s0);
-            new O04ModeS4690(Mem.U32(0x800E4690u)).unkA48__Set(func_0040ECB0((uint)(a), (uint)((int)(new O04Nav((0x800E4694u + (uint)(s0 * 28))).unk2)), default(uint), default(uint)));
+            new O04ModeS4690(Mem.U32(0x800E4690u)).unkA48__Set(UiTree_FindNode((uint)(a), (uint)((int)(new O04Nav((0x800E4694u + (uint)(s0 * 28))).unk2)), default(uint), default(uint)));
             func_0042829C();
             if (((int)(new O04Cfg(0x801462C8u).unkD) != 2))
             {

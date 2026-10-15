@@ -21,7 +21,7 @@ public static partial class Game
                 r29 = _fp + 256u;
                 L_func_00255278: ;
                 r5 = r0 + 24u;
-                r29 = r29 - 24u; func_00255C40(r4, (int)r5, (int)r6);
+                r29 = r29 - 24u; List_Init(r4, (int)r5, (int)r6);
                 Mem.Set((r29 + 16u), r31);
                 r6 = r0;
                 r7 = r6;
@@ -54,7 +54,7 @@ public static partial class Game
                 Mem.Set((r1 + 20880u), r3);
                 r1 = 2148532224u;
                 Mem.Set((r1 + 20888u), r2);
-                r5 = r5 << 5; r2 = func_002558C0(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r5 << 5; r2 = Heap_Alloc(r4, r5, r6, r7); r3 = Cpu.V1;
                 r5 = 2148335616u;
                 r5 = Mem.U32((r5 + 2356u));
                 r1 = 2148532224u;

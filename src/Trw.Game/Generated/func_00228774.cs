@@ -28,10 +28,10 @@ public static partial class Game
                 if (!((new Pawn(pw).unk24 == 0))) goto _f5;
                 e = (a + (uint)744);
                 if (!(((new PlrObj(e).flags100 & (uint)(262144)) != 0u))) goto _f6;
-                r = func_002518DC(0, (uint)(new PlrObj(e).unkC4), new PlrObj(e).unkC4, (uint)(new PlrObj(e).unkD0), 4, (uint)(0), (uint)(0), 0x800C7CB0u, 1);
+                r = ResourceCache_Hash(0, (uint)(new PlrObj(e).unkC4), new PlrObj(e).unkC4, (uint)(new PlrObj(e).unkD0), 4, (uint)(0), (uint)(0), 0x800C7CB0u, 1);
                 if (!((r != 0u))) goto _f7;
                 other = new PlrObj(e).unk1D8_;
-                func_0024B4E4(e, (int)(func_0028FD94((uint)(Mem.S32((r + (uint)(0 * 4)))), 0)));
+                func_0024B4E4(e, (int)(Chunk_Get((uint)(Mem.S32((r + (uint)(0 * 4)))), 0)));
                 if (!((new Plr(other).unk5DC_ != 0u))) goto _f8;
                 new Vec3f(_fp).x_Set((new Pawn(new Plr(other).unk5DC_).pos128.x - new PlrObj(e).pos.x));
                 new Vec3f(_fp).y_Set((float)(0));
@@ -50,9 +50,9 @@ public static partial class Game
                 if (!((pw != 0u))) goto _f11;
                 L_blk: ;
                 if (!(((new Plr(a).flags100 & (uint)(262144)) != 0u))) goto _f12;
-                r2 = func_002518DC(0, (uint)(new Plr(a).unkC4), new Plr(a).unkC4, (uint)(new Plr(a).unkD0), 4, (uint)(0), (uint)(0), 0x800C7CB0u, 1);
+                r2 = ResourceCache_Hash(0, (uint)(new Plr(a).unkC4), new Plr(a).unkC4, (uint)(new Plr(a).unkD0), 4, (uint)(0), (uint)(0), 0x800C7CB0u, 1);
                 if (!((r2 != 0u))) goto _f13;
-                func_0024B4E4(a, (int)(func_0028FD94((uint)(Mem.S32((r2 + (uint)(0 * 4)))), 0)));
+                func_0024B4E4(a, (int)(Chunk_Get((uint)(Mem.S32((r2 + (uint)(0 * 4)))), 0)));
                 func_002536F4(0, r2);
                 _f13: ;
                 _f12: ;

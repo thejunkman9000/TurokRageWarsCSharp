@@ -200,7 +200,7 @@ public static partial class Game
                 L_L0028A59C: ;
                 { bool c_ = r3 == 0; r4 = r16; if (c_) goto L_L0028A5B0; }
                 r5 = r16 + 368u;
-                r6 = r18; r2 = (uint)func_00214178(r4, r5, (int)r6);
+                r6 = r18; r2 = (uint)Actor_DispatchEvent(r4, r5, (int)r6);
                 L_L0028A5B0: ;
                 { bool c_ = r17 == 0;  if (c_) goto L_L0028A618; }
                 { bool c_ = r20 == 0;  if (c_) goto L_L0028A5EC; }
@@ -218,7 +218,7 @@ public static partial class Game
                 L_L0028A604: ;
                 { bool c_ = r3 == 0; r4 = r16; if (c_) goto L_L0028A618; }
                 r5 = r4 + 368u;
-                r6 = r19; r2 = (uint)func_00214178(r4, r5, (int)r6);
+                r6 = r19; r2 = (uint)Actor_DispatchEvent(r4, r5, (int)r6);
                 L_L0028A618: ;
                 r8 = Mem.U32((r29 + 104u));
                 L_L0028A61C: ;

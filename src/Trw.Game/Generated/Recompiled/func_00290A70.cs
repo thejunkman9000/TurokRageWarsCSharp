@@ -48,7 +48,7 @@ public static partial class Game
                 { bool c_ = r16 == r18; Mem.Set((r3 + 12u), Cpu.W(0)); if (c_) goto L_L00290BE4; }
                 r4 = 2148794368u;
                 r4 = r4 + 20680u;
-                r2 = func_00235AD0(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = View_SetupViewport(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r29 + 32u;
                 r6 = 3267887104u;
                 r7 = 3287941120u;
@@ -60,7 +60,7 @@ public static partial class Game
                 Cpu.SetW(0, Mem.U32((r1 - 23372u)));
                 Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
                 r5 = Cpu.W(1);
-                r4 = r29 + 32u; func_00273A34(r4, Cpu.U2F(r5));
+                r4 = r29 + 32u; Math_MtxRotateRowsB_00273A34(r4, Cpu.U2F(r5));
                 r4 = r29 + 32u; func_00273DDC(r4);
                 r4 = r29 + 32u;
                 r5 = 2148335616u;
@@ -68,7 +68,7 @@ public static partial class Game
                 r17 = 2148663296u;
                 r17 = r17 - 2608u;
                 r5 = r5 << 6;
-                r5 = r5 + r17; func_002702EC(r4, r5);
+                r5 = r5 + r17; Math_MtxFloatToFixed(r4, r5);
                 r4 = r19;
                 r5 = r16; r2 = (uint)func_0028C174(r4, (int)r5);
                 r16 = r2; func_0026D980();

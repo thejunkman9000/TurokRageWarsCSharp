@@ -39,7 +39,7 @@ public static partial class Game
             _f20: ;
             return 1;
             _f24: ;
-            return (int)(func_002831FC(0x80121990u, p, default(uint), default(uint)));
+            return (int)(Hud_DrawAmmoPips(0x80121990u, p, default(uint), default(uint)));
             _f21: ;
             _f22: ;
             _f23: ;

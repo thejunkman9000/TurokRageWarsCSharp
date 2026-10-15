@@ -12,8 +12,8 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00404E28", (uint)ch);
             uint r = 0u;
             int ok = 0;
-            func_0026451C(1);
-            func_00263760();
+            Pad_TryAcquire(1);
+            Pad_ReadController_00263760();
             Mem.Set(0x8010FBB8u, (byte)(2));
             r = (0x80153330u + (uint)(ch * 112));
             if (((int)(new O01Pad4((0x8010FBE0u + (uint)(ch * 4))).unk3) != 0))

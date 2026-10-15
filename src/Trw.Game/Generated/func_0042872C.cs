@@ -35,10 +35,10 @@ public static partial class Game
                 id = 329;
                 break;
             }
-            h = func_0040ECB0((uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unk970), (uint)(id), default(uint), default(uint));
-            func_0040E958(func_0040ECB0(h, (uint)(331), default(uint), default(uint)), 0);
+            h = UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unk970), (uint)(id), default(uint), default(uint));
+            func_0040E958(UiTree_FindNode(h, (uint)(331), default(uint), default(uint)), 0);
             r = func_0042881C(b);
-            p = func_0040ECB0(h, (uint)(330), default(uint), default(uint));
+            p = UiTree_FindNode(h, (uint)(330), default(uint), default(uint));
             new O04Sub2C(p).unk10_Set((byte)(100));
             new O04Sub2C(p).unk2C_Set(r);
         }

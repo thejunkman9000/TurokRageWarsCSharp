@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043E318", (uint)a, (uint)m);
             uint sub = new S10Menu(m).ctx.sub_;
-            new S10Sub(sub).b83_Set((byte)(func_0044252C(m, (int)(new S10Sub(sub).b83), 1, 0, 10, 0)));
+            new S10Sub(sub).b83_Set((byte)(MenuSpinner_Step(m, (int)(new S10Sub(sub).b83), 1, 0, 10, 0)));
             return 0;
         }
     }

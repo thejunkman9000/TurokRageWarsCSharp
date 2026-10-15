@@ -43,7 +43,7 @@ public static partial class Game
                     }
                     if ((Mem.S32(0x800D15E0u) != 0))
                     {
-                        func_0026DA4C((uint)(h), (int)(new B12Obj(o).unk28.P), 0, 0, v1, s4);
+                        Light_ShadeVertices((uint)(h), (int)(new B12Obj(o).unk28.P), 0, 0, v1, s4);
                     }
                     else
                     {

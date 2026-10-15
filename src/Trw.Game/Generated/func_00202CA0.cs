@@ -41,7 +41,7 @@ public static partial class Game
                     }
                     else
                     {
-                        ang2 = func_00274640((((new Vec3f(v).x * new Vec3f((_fp + 16u)).x) + (y * new Vec3f((_fp + 16u)).y)) + (new Vec3f(v).z * new Vec3f((_fp + 16u)).z)));
+                        ang2 = Math_Acosf((((new Vec3f(v).x * new Vec3f((_fp + 16u)).x) + (y * new Vec3f((_fp + 16u)).y)) + (new Vec3f(v).z * new Vec3f((_fp + 16u)).z)));
                         func_00272088((_fp + 32u), (_fp + 16u), v);
                         func_002720EC((_fp + 32u));
                         ang = (ang2 * Mem.F32(0x800C6AFCu));

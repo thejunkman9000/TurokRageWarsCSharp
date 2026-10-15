@@ -56,7 +56,7 @@ public static partial class Game
             {
                 if ((new O01CtxD(Mem.U32(0x800E2830u)).unk50 != 0))
                 {
-                    n = func_0028FD94(new O01CtxD(Mem.U32(0x800E2830u)).tree, 2);
+                    n = Chunk_Get(new O01CtxD(Mem.U32(0x800E2830u)).tree, 2);
                     cnt = new O01Node(n).unk4;
                     ents = (n + (uint)8);
                     if ((cnt != 0))

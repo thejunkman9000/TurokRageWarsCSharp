@@ -52,7 +52,7 @@ public static partial class Game
             }
             if ((ok != 0))
             {
-                func_00214178(a, s, 2);
+                Actor_DispatchEvent(a, s, 2);
                 func_0022AF30(o);
                 func_0022AFFC(o);
                 func_0025DE74(1940, pv, (int)(pv), (-1));

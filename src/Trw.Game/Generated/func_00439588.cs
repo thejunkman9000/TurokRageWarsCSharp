@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00439588");
             func_0029A73C();
-            if ((func_0029AA08() == 467))
+            if ((Menu_GetMessage() == 467))
             {
                 func_0042EB68(((func_0029A9A0(0) == 22) ? (-1) : 11));
                 func_0029A8A8();

@@ -18,8 +18,8 @@ public static partial class Game
             effect = new func_80262ABC_S1(scene).unk5F00.v0_;
             if ((effect != 0u))
             {
-                func_00255E78(new func_80262ABC_S1(scene).unk5F00.P, effect, default(uint), default(uint));
-                func_00255C58((scene + 24340u), effect);
+                List_Remove(new func_80262ABC_S1(scene).unk5F00.P, effect, default(uint), default(uint));
+                List_Add((scene + 24340u), effect);
                 new Effect_func_80262A9C_de(effect).ref__Set(@ref);
                 if ((@ref != 0u))
                 {

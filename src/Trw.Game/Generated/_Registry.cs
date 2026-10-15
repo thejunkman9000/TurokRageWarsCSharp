@@ -40,12 +40,12 @@ public static partial class Game
     {
         Funcs.Add(0x00200500u, "func_00200500", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00200500();
+            var v_ = Int_DisableMask();
             return (uint)v_;
         });
         Funcs.Add(0x00200538u, "func_00200538", (a0, a1, a2, a3) =>
         {
-            func_00200538((int)a0);
+            Int_RestoreMask((int)a0);
             return 0;
         });
         Funcs.Add(0x00200568u, "func_00200568", (a0, a1, a2, a3) =>
@@ -55,7 +55,7 @@ public static partial class Game
         });
         Funcs.Add(0x002005A0u, "func_002005A0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_002005A0(a0);
+            var v_ = Bus_ReadWord(a0);
             return v_;
         });
         Funcs.Add(0x002005DCu, "func_002005DC", (a0, a1, a2, a3) =>
@@ -65,27 +65,27 @@ public static partial class Game
         });
         Funcs.Add(0x00200800u, "func_00200800", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00200800(a0);
+            var v_ = Bus_ReadByte(a0);
             return v_;
         });
         Funcs.Add(0x00200840u, "func_00200840", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00200840(a0);
+            var v_ = Bus_ReadByte2(a0);
             return v_;
         });
         Funcs.Add(0x00200880u, "func_00200880", (a0, a1, a2, a3) =>
         {
-            func_00200880(a0, a1, a2);
+            Bus_CopyRomToRam(a0, a1, a2);
             return 0;
         });
         Funcs.Add(0x0020095Cu, "func_0020095C", (a0, a1, a2, a3) =>
         {
-            func_0020095C(a0, a1, a2);
+            Bus_ReadBlockDma(a0, a1, a2);
             return 0;
         });
         Funcs.Add(0x00200B14u, "func_00200B14", (a0, a1, a2, a3) =>
         {
-            func_00200B14(a0, a1, a2);
+            Bus_ReadBlock(a0, a1, a2);
             return 0;
         });
         Funcs.Add(0x00200C28u, "func_00200C28", (a0, a1, a2, a3) =>
@@ -100,12 +100,12 @@ public static partial class Game
         });
         Funcs.Add(0x00200D18u, "func_00200D18", (a0, a1, a2, a3) =>
         {
-            func_00200D18(a0, a1, a2);
+            Bus_WriteBlock(a0, a1, a2);
             return 0;
         });
         Funcs.Add(0x00200E04u, "func_00200E04", (a0, a1, a2, a3) =>
         {
-            func_00200E04(a0, a1, a2);
+            Bus_WriteBlockDma(a0, a1, a2);
             return 0;
         });
         Funcs.Add(0x00200F98u, "func_00200F98", (a0, a1, a2, a3) =>
@@ -125,7 +125,7 @@ public static partial class Game
         });
         Funcs.Add(0x002012D8u, "func_002012D8", (a0, a1, a2, a3) =>
         {
-            func_002012D8();
+            DevLink_CopyBusBlock();
             return 0;
         });
         Funcs.Add(0x002013D8u, "func_002013D8", (a0, a1, a2, a3) =>
@@ -140,7 +140,7 @@ public static partial class Game
         });
         Funcs.Add(0x002016DCu, "func_002016DC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_002016DC(a0);
+            var v_ = Str_LengthWithNul(a0);
             return (uint)v_;
         });
         Funcs.Add(0x002016FCu, "func_002016FC", (a0, a1, a2, a3) =>
@@ -150,12 +150,12 @@ public static partial class Game
         });
         Funcs.Add(0x002018A0u, "func_002018A0", (a0, a1, a2, a3) =>
         {
-            func_002018A0(a0);
+            DevLink_IoThread(a0);
             return 0;
         });
         Funcs.Add(0x00201A74u, "func_00201A74", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00201A74();
+            var v_ = DevLink_RequestA_00201A74();
             return (uint)v_;
         });
         Funcs.Add(0x00201ACCu, "func_00201ACC", (a0, a1, a2, a3) =>
@@ -165,12 +165,12 @@ public static partial class Game
         });
         Funcs.Add(0x00201B50u, "func_00201B50", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00201B50(a0, (int)a1);
+            var v_ = DevLink_SendBlock202(a0, (int)a1);
             return (uint)v_;
         });
         Funcs.Add(0x00201C80u, "func_00201C80", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00201C80(a0, (int)a1);
+            var v_ = DevLink_SendBlock303(a0, (int)a1);
             return (uint)v_;
         });
         Funcs.Add(0x00201DB0u, "func_00201DB0", (a0, a1, a2, a3) =>
@@ -180,17 +180,17 @@ public static partial class Game
         });
         Funcs.Add(0x00201E94u, "func_00201E94", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00201E94((int)a0, a1, a2);
+            var v_ = DevLink_Read((int)a0, a1, a2);
             return (uint)v_;
         });
         Funcs.Add(0x00202018u, "func_00202018", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00202018((int)a0, a1, a2);
+            var v_ = DevLink_Write((int)a0, a1, a2);
             return (uint)v_;
         });
         Funcs.Add(0x00202198u, "func_00202198", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00202198((int)a0, (int)a1, (int)a2);
+            var v_ = DevLink_RequestB_00202198((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x00202CA0u, "func_00202CA0", (a0, a1, a2, a3) =>
@@ -874,7 +874,7 @@ public static partial class Game
         });
         Funcs.Add(0x00209874u, "func_00209874", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00209874(a0, (int)a1);
+            var v_ = Ai_SetState(a0, (int)a1);
             return (uint)v_;
         });
         Funcs.Add(0x00209910u, "func_00209910", (a0, a1, a2, a3) =>
@@ -899,7 +899,7 @@ public static partial class Game
         });
         Funcs.Add(0x002099B4u, "func_002099B4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_002099B4(a0, a1);
+            var v_ = Ai_IsTargetReached(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00209A94u, "func_00209A94", (a0, a1, a2, a3) =>
@@ -1349,7 +1349,7 @@ public static partial class Game
         });
         Funcs.Add(0x00210180u, "func_00210180", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00210180(a0);
+            var v_ = Ai_CheckTargetReached_00210180(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00210228u, "func_00210228", (a0, a1, a2, a3) =>
@@ -1389,7 +1389,7 @@ public static partial class Game
         });
         Funcs.Add(0x00211120u, "func_00211120", (a0, a1, a2, a3) =>
         {
-            func_00211120(a0);
+            Ai_UpdateCloseAttack(a0);
             return 0;
         });
         Funcs.Add(0x00211470u, "func_00211470", (a0, a1, a2, a3) =>
@@ -1564,7 +1564,7 @@ public static partial class Game
         });
         Funcs.Add(0x00214178u, "func_00214178", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00214178(a0, a1, (int)a2);
+            var v_ = Actor_DispatchEvent(a0, a1, (int)a2);
             return (uint)v_;
         });
     }
@@ -1668,7 +1668,7 @@ public static partial class Game
         });
         Funcs.Add(0x002171FCu, "func_002171FC", (a0, a1, a2, a3) =>
         {
-            func_002171FC(a0, a1, a2, a3);
+            ActorState_CallHandler(a0, a1, a2, a3);
             return 0;
         });
         Funcs.Add(0x00217224u, "func_00217224", (a0, a1, a2, a3) =>
@@ -1723,7 +1723,7 @@ public static partial class Game
         });
         Funcs.Add(0x00217630u, "func_00217630", (a0, a1, a2, a3) =>
         {
-            func_00217630(a0, a1, (int)a2, a3);
+            WeaponMenu_Draw(a0, a1, (int)a2, a3);
             return 0;
         });
         Funcs.Add(0x00217D74u, "func_00217D74", (a0, a1, a2, a3) =>
@@ -1768,7 +1768,7 @@ public static partial class Game
         });
         Funcs.Add(0x00218988u, "func_00218988", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00218988(a0);
+            var v_ = TeamMenu_StickDirection4(a0);
             return (uint)v_;
         });
         Funcs.Add(0x00218B84u, "func_00218B84", (a0, a1, a2, a3) =>
@@ -1833,7 +1833,7 @@ public static partial class Game
         });
         Funcs.Add(0x00219490u, "func_00219490", (a0, a1, a2, a3) =>
         {
-            func_00219490(a0, a1);
+            Hud_DrawModel3D(a0, a1);
             return 0;
         });
         Funcs.Add(0x00219688u, "func_00219688", (a0, a1, a2, a3) =>
@@ -1853,12 +1853,12 @@ public static partial class Game
         });
         Funcs.Add(0x0021B468u, "func_0021B468", (a0, a1, a2, a3) =>
         {
-            func_0021B468(a0, a1, (int)a2, (int)a3);
+            Player_UpdateState(a0, a1, (int)a2, (int)a3);
             return 0;
         });
         Funcs.Add(0x0021BFBCu, "func_0021BFBC", (a0, a1, a2, a3) =>
         {
-            func_0021BFBC(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
+            Player_ApplyDamage(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
             return 0;
         });
         Funcs.Add(0x0021C440u, "func_0021C440", (a0, a1, a2, a3) =>
@@ -1903,7 +1903,7 @@ public static partial class Game
         });
         Funcs.Add(0x0021E27Cu, "func_0021E27C", (a0, a1, a2, a3) =>
         {
-            func_0021E27C(a0, a1);
+            Hud_DrawCrosshair(a0, a1);
             return 0;
         });
         Funcs.Add(0x0021E5D4u, "func_0021E5D4", (a0, a1, a2, a3) =>
@@ -1918,7 +1918,7 @@ public static partial class Game
         });
         Funcs.Add(0x002228E4u, "func_002228E4", (a0, a1, a2, a3) =>
         {
-            func_002228E4(a0, a1, a2);
+            Actor_ApplyGameSpeed(a0, a1, a2);
             return 0;
         });
         Funcs.Add(0x00222BC4u, "func_00222BC4", (a0, a1, a2, a3) =>
@@ -1943,7 +1943,7 @@ public static partial class Game
         });
         Funcs.Add(0x002231B0u, "func_002231B0", (a0, a1, a2, a3) =>
         {
-            func_002231B0(a0, a1, a2);
+            Player_UpdateViewTurn(a0, a1, a2);
             return 0;
         });
         Funcs.Add(0x002233CCu, "func_002233CC", (a0, a1, a2, a3) =>
@@ -2038,12 +2038,12 @@ public static partial class Game
         });
         Funcs.Add(0x00226DACu, "func_00226DAC", (a0, a1, a2, a3) =>
         {
-            func_00226DAC(a0, a1);
+            Actor_BuildModelMatrix(a0, a1);
             return 0;
         });
         Funcs.Add(0x0022804Cu, "func_0022804C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0022804C(a0);
+            var v_ = Match_CheckFragLimit(a0);
             return (uint)v_;
         });
         Funcs.Add(0x002281CCu, "func_002281CC", (a0, a1, a2, a3) =>
@@ -2058,7 +2058,7 @@ public static partial class Game
         });
         Funcs.Add(0x00228394u, "func_00228394", (a0, a1, a2, a3) =>
         {
-            func_00228394(a0);
+            Match_UpdateClock(a0);
             return 0;
         });
         Funcs.Add(0x002285C4u, "func_002285C4", (a0, a1, a2, a3) =>
@@ -2078,7 +2078,7 @@ public static partial class Game
         });
         Funcs.Add(0x00228AD0u, "func_00228AD0", (a0, a1, a2, a3) =>
         {
-            func_00228AD0((int)a0, a1);
+            Hud_DrawMatchClock((int)a0, a1);
             return 0;
         });
         Funcs.Add(0x00228DA0u, "func_00228DA0", (a0, a1, a2, a3) =>
@@ -2133,7 +2133,7 @@ public static partial class Game
         });
         Funcs.Add(0x0022A37Cu, "func_0022A37C", (a0, a1, a2, a3) =>
         {
-            func_0022A37C(a0, a1);
+            Hud_DrawView2D(a0, a1);
             return 0;
         });
         Funcs.Add(0x0022A3E8u, "func_0022A3E8", (a0, a1, a2, a3) =>
@@ -2253,12 +2253,12 @@ public static partial class Game
         });
         Funcs.Add(0x0022AB8Cu, "func_0022AB8C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0022AB8C(a0);
+            var v_ = Weapon_GetAmmoType(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0022ABF0u, "func_0022ABF0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0022ABF0(a0);
+            var v_ = Player_GetMaxHealth(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0022ACA8u, "func_0022ACA8", (a0, a1, a2, a3) =>
@@ -2407,7 +2407,7 @@ public static partial class Game
         });
         Funcs.Add(0x0022B74Cu, "func_0022B74C", (a0, a1, a2, a3) =>
         {
-            func_0022B74C(a0, (int)a1, Cpu.U2F(a2));
+            Hud_ShowPlayerMessage(a0, (int)a1, Cpu.U2F(a2));
             return 0;
         });
         Funcs.Add(0x0022B7E8u, "func_0022B7E8", (a0, a1, a2, a3) =>
@@ -3266,7 +3266,7 @@ public static partial class Game
         });
         Funcs.Add(0x0022F5D0u, "func_0022F5D0", (a0, a1, a2, a3) =>
         {
-            func_0022F5D0(a0);
+            Player_UpdateWeaponMatrix(a0);
             return 0;
         });
         Funcs.Add(0x0022F760u, "func_0022F760", (a0, a1, a2, a3) =>
@@ -3570,18 +3570,18 @@ public static partial class Game
             Mem.Set(s1 + 0u, a1);
             Mem.Set(s1 + 4u, a2);
             Mem.Set(s1 + 8u, a3);
-            func_00233920(a0, s1, Cpu.Stk[4]);
+            Emitter_ApplyForce(a0, s1, Cpu.Stk[4]);
             Stack.Free(12);
             return 0;
         });
         Funcs.Add(0x00233B04u, "func_00233B04", (a0, a1, a2, a3) =>
         {
-            func_00233B04(a0);
+            Fade_Update(a0);
             return 0;
         });
         Funcs.Add(0x00233C78u, "func_00233C78", (a0, a1, a2, a3) =>
         {
-            func_00233C78(a0);
+            Hud_DrawViewOverlay(a0);
             return 0;
         });
         Funcs.Add(0x00233DECu, "func_00233DEC", (a0, a1, a2, a3) =>
@@ -3591,7 +3591,7 @@ public static partial class Game
         });
         Funcs.Add(0x002349B0u, "func_002349B0", (a0, a1, a2, a3) =>
         {
-            func_002349B0(a0);
+            Camera_UpdateQuaternion(a0);
             return 0;
         });
         Funcs.Add(0x00234DD0u, "func_00234DD0", (a0, a1, a2, a3) =>
@@ -3606,7 +3606,7 @@ public static partial class Game
         });
         Funcs.Add(0x002365FCu, "func_002365FC", (a0, a1, a2, a3) =>
         {
-            func_002365FC(a0, Cpu.U2F(a1), Cpu.U2F(a2), Cpu.U2F(a3), Cpu.U2F(Cpu.Stk[4]));
+            View_ApproachHudRect(a0, Cpu.U2F(a1), Cpu.U2F(a2), Cpu.U2F(a3), Cpu.U2F(Cpu.Stk[4]));
             return 0;
         });
         Funcs.Add(0x00236864u, "func_00236864", (a0, a1, a2, a3) =>
@@ -3616,22 +3616,22 @@ public static partial class Game
         });
         Funcs.Add(0x00236F0Cu, "func_00236F0C", (a0, a1, a2, a3) =>
         {
-            func_00236F0C(a0, (int)a1);
+            View_UpdateAll(a0, (int)a1);
             return 0;
         });
         Funcs.Add(0x002372C4u, "func_002372C4", (a0, a1, a2, a3) =>
         {
-            func_002372C4(a0);
+            View_DrawFrame(a0);
             return 0;
         });
         Funcs.Add(0x00237E70u, "func_00237E70", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00237E70(a0, a1, a2);
+            var v_ = Hud_PostMessage(a0, a1, a2);
             return v_;
         });
         Funcs.Add(0x00238040u, "func_00238040", (a0, a1, a2, a3) =>
         {
-            func_00238040(a0, a1);
+            Hud_UpdateMessages(a0, a1);
             return 0;
         });
         Funcs.Add(0x00238EA8u, "func_00238EA8", (a0, a1, a2, a3) =>
@@ -3687,7 +3687,7 @@ public static partial class Game
         });
         Funcs.Add(0x00239234u, "func_00239234", (a0, a1, a2, a3) =>
         {
-            func_00239234(a0, (int)a1, a2, a3);
+            Camera_ProjectPoint(a0, (int)a1, a2, a3);
             return 0;
         });
         Funcs.Add(0x002392DCu, "func_002392DC", (a0, a1, a2, a3) =>
@@ -3727,7 +3727,7 @@ public static partial class Game
         });
         Funcs.Add(0x0023941Cu, "func_0023941C", (a0, a1, a2, a3) =>
         {
-            func_0023941C(a0);
+            Camera_LoadProjection2D(a0);
             return 0;
         });
         Funcs.Add(0x0023945Cu, "func_0023945C", (a0, a1, a2, a3) =>
@@ -3767,7 +3767,7 @@ public static partial class Game
         });
         Funcs.Add(0x00239760u, "func_00239760", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00239760(a0, a1, a2, Cpu.U2F(a3));
+            var v_ = Hud_SpawnTextLineC(a0, a1, a2, Cpu.U2F(a3));
             return v_;
         });
         Funcs.Add(0x00239C10u, "func_00239C10", (a0, a1, a2, a3) =>
@@ -3872,7 +3872,7 @@ public static partial class Game
         });
         Funcs.Add(0x0023A334u, "func_0023A334", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0023A334(a0, a1, a2, (int)a3, Cpu.U2F(Cpu.Stk[4]), (int)Cpu.Stk[5]);
+            var v_ = Hud_SpawnTextLineB(a0, a1, a2, (int)a3, Cpu.U2F(Cpu.Stk[4]), (int)Cpu.Stk[5]);
             return v_;
         });
         Funcs.Add(0x0023B3E8u, "func_0023B3E8", (a0, a1, a2, a3) =>
@@ -4001,7 +4001,7 @@ public static partial class Game
         });
         Funcs.Add(0x0023CCC4u, "func_0023CCC4", (a0, a1, a2, a3) =>
         {
-            func_0023CCC4(a0);
+            Resource_MapPages_0023CCC4(a0);
             return 0;
         });
         Funcs.Add(0x0023CE8Cu, "func_0023CE8C", (a0, a1, a2, a3) =>
@@ -4116,7 +4116,7 @@ public static partial class Game
         });
         Funcs.Add(0x0023EDF0u, "func_0023EDF0", (a0, a1, a2, a3) =>
         {
-            func_0023EDF0();
+            Collision_InitProfiles();
             return 0;
         });
         Funcs.Add(0x0023EE24u, "func_0023EE24", (a0, a1, a2, a3) =>
@@ -4616,7 +4616,7 @@ public static partial class Game
         });
         Funcs.Add(0x002476B8u, "func_002476B8", (a0, a1, a2, a3) =>
         {
-            func_002476B8(a0, (int)a1, Cpu.U2F(a2), Cpu.U2F(a3));
+            Anim_SendEvent(a0, (int)a1, Cpu.U2F(a2), Cpu.U2F(a3));
             return 0;
         });
         Funcs.Add(0x0024795Cu, "func_0024795C", (a0, a1, a2, a3) =>
@@ -5295,7 +5295,7 @@ public static partial class Game
         });
         Funcs.Add(0x0024F940u, "func_0024F940", (a0, a1, a2, a3) =>
         {
-            func_0024F940(a0, a1, (int)a2, a3, Cpu.U2F(Cpu.Stk[4]));
+            Prop_InitFromRecord(a0, a1, (int)a2, a3, Cpu.U2F(Cpu.Stk[4]));
             return 0;
         });
         Funcs.Add(0x0024FD4Cu, "func_0024FD4C", (a0, a1, a2, a3) =>
@@ -5365,7 +5365,7 @@ public static partial class Game
         });
         Funcs.Add(0x00250BD4u, "func_00250BD4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00250BD4(a0, a1);
+            var v_ = Light_FillVertexCache(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00250C2Cu, "func_00250C2C", (a0, a1, a2, a3) =>
@@ -5405,7 +5405,7 @@ public static partial class Game
         });
         Funcs.Add(0x002518DCu, "func_002518DC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_002518DC((int)a0, a1, (int)a2, a3, (int)Cpu.Stk[4], Cpu.Stk[5], Cpu.Stk[6], Cpu.Stk[7], (int)Cpu.Stk[8]);
+            var v_ = ResourceCache_Hash((int)a0, a1, (int)a2, a3, (int)Cpu.Stk[4], Cpu.Stk[5], Cpu.Stk[6], Cpu.Stk[7], (int)Cpu.Stk[8]);
             return v_;
         });
         Funcs.Add(0x00252450u, "func_00252450", (a0, a1, a2, a3) =>
@@ -5504,7 +5504,7 @@ public static partial class Game
         });
         Funcs.Add(0x00254420u, "func_00254420", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00254420((int)a0, a1, (int)a2);
+            var v_ = ResourcePool_GetBlock_00254420((int)a0, a1, (int)a2);
             return v_;
         });
         Funcs.Add(0x002545A0u, "func_002545A0", (a0, a1, a2, a3) =>
@@ -5564,7 +5564,7 @@ public static partial class Game
         });
         Funcs.Add(0x002549C8u, "func_002549C8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_002549C8(a0, a1);
+            var v_ = ResourcePool_PopFree(a0, a1);
             return v_;
         });
         Funcs.Add(0x00254A70u, "func_00254A70", (a0, a1, a2, a3) =>
@@ -5629,7 +5629,7 @@ public static partial class Game
         });
         Funcs.Add(0x00255090u, "func_00255090", (a0, a1, a2, a3) =>
         {
-            func_00255090(a0, (int)a1);
+            MsgPort_Create(a0, (int)a1);
             return 0;
         });
         Funcs.Add(0x00255110u, "func_00255110", (a0, a1, a2, a3) =>
@@ -5639,17 +5639,17 @@ public static partial class Game
         });
         Funcs.Add(0x0025519Cu, "func_0025519C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0025519C(a0, a1, a2);
+            var v_ = MsgPort_Send(a0, a1, a2);
             return (uint)v_;
         });
         Funcs.Add(0x002551C8u, "func_002551C8", (a0, a1, a2, a3) =>
         {
-            func_002551C8(a0);
+            MsgPort_Flush(a0);
             return 0;
         });
         Funcs.Add(0x00255220u, "func_00255220", (a0, a1, a2, a3) =>
         {
-            func_00255220(a0);
+            MsgPort_ThreadMain(a0);
             return 0;
         });
         Funcs.Add(0x00255354u, "func_00255354", (a0, a1, a2, a3) =>
@@ -5679,12 +5679,12 @@ public static partial class Game
         });
         Funcs.Add(0x00255C40u, "func_00255C40", (a0, a1, a2, a3) =>
         {
-            func_00255C40(a0, (int)a1, (int)a2);
+            List_Init(a0, (int)a1, (int)a2);
             return 0;
         });
         Funcs.Add(0x00255C58u, "func_00255C58", (a0, a1, a2, a3) =>
         {
-            func_00255C58(a0, a1);
+            List_Add(a0, a1);
             return 0;
         });
         Funcs.Add(0x00256220u, "func_00256220", (a0, a1, a2, a3) =>
@@ -5719,7 +5719,7 @@ public static partial class Game
         });
         Funcs.Add(0x002567C4u, "func_002567C4", (a0, a1, a2, a3) =>
         {
-            func_002567C4(a0);
+            Lock_Init(a0);
             return 0;
         });
         Funcs.Add(0x002567F0u, "func_002567F0", (a0, a1, a2, a3) =>
@@ -5754,7 +5754,7 @@ public static partial class Game
         });
         Funcs.Add(0x002570E0u, "func_002570E0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_002570E0(a0, a1);
+            var v_ = Audio_DmaCacheLoad(a0, a1);
             return v_;
         });
         Funcs.Add(0x00257210u, "func_00257210", (a0, a1, a2, a3) =>
@@ -6099,7 +6099,7 @@ public static partial class Game
         });
         Funcs.Add(0x0025B8DCu, "func_0025B8DC", (a0, a1, a2, a3) =>
         {
-            func_0025B8DC(a0, (int)a1);
+            Sound_PlayVoice(a0, (int)a1);
             return 0;
         });
         Funcs.Add(0x0025B940u, "func_0025B940", (a0, a1, a2, a3) =>
@@ -6189,27 +6189,27 @@ public static partial class Game
         });
         Funcs.Add(0x0025C458u, "func_0025C458", (a0, a1, a2, a3) =>
         {
-            func_0025C458(a0, (int)a1);
+            Sound_SetSoundVolume(a0, (int)a1);
             return 0;
         });
         Funcs.Add(0x0025C4D4u, "func_0025C4D4", (a0, a1, a2, a3) =>
         {
-            func_0025C4D4(a0, Cpu.U2F(a1));
+            SndVoice_SetPitch(a0, Cpu.U2F(a1));
             return 0;
         });
         Funcs.Add(0x0025C544u, "func_0025C544", (a0, a1, a2, a3) =>
         {
-            func_0025C544(a0, (int)a1);
+            SndVoice_SetPan(a0, (int)a1);
             return 0;
         });
         Funcs.Add(0x0025C598u, "func_0025C598", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0025C598(a0);
+            var v_ = SndVoice_GetState(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0025C5DCu, "func_0025C5DC", (a0, a1, a2, a3) =>
         {
-            func_0025C5DC(a0);
+            SndVoice_Play(a0);
             return 0;
         });
         Funcs.Add(0x0025C5FCu, "func_0025C5FC", (a0, a1, a2, a3) =>
@@ -6318,7 +6318,7 @@ public static partial class Game
         });
         Funcs.Add(0x0025D404u, "func_0025D404", (a0, a1, a2, a3) =>
         {
-            func_0025D404(a0);
+            SndFx_Stop(a0);
             return 0;
         });
         Funcs.Add(0x0025D470u, "func_0025D470", (a0, a1, a2, a3) =>
@@ -6358,7 +6358,7 @@ public static partial class Game
         });
         Funcs.Add(0x0025DB78u, "func_0025DB78", (a0, a1, a2, a3) =>
         {
-            func_0025DB78(a0);
+            Seq_Stop(a0);
             return 0;
         });
         Funcs.Add(0x0025DBA0u, "func_0025DBA0", (a0, a1, a2, a3) =>
@@ -6368,7 +6368,7 @@ public static partial class Game
         });
         Funcs.Add(0x0025DC54u, "func_0025DC54", (a0, a1, a2, a3) =>
         {
-            func_0025DC54(a0, Cpu.U2F(a1));
+            Seq_SetVolume(a0, Cpu.U2F(a1));
             return 0;
         });
         Funcs.Add(0x0025DCA8u, "func_0025DCA8", (a0, a1, a2, a3) =>
@@ -6483,12 +6483,12 @@ public static partial class Game
         });
         Funcs.Add(0x0025E2E4u, "func_0025E2E4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0025E2E4();
+            var v_ = Audio_IsSoundOn();
             return (uint)v_;
         });
         Funcs.Add(0x0025E2F4u, "func_0025E2F4", (a0, a1, a2, a3) =>
         {
-            func_0025E2F4((int)a0);
+            Audio_PlayCue((int)a0);
             return 0;
         });
         Funcs.Add(0x0025E338u, "func_0025E338", (a0, a1, a2, a3) =>
@@ -6863,7 +6863,7 @@ public static partial class Game
         });
         Funcs.Add(0x00261634u, "func_00261634", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00261634(a0);
+            var v_ = Math_HighestBit(a0);
             return v_;
         });
         Funcs.Add(0x002624A0u, "func_002624A0", (a0, a1, a2, a3) =>
@@ -6938,12 +6938,12 @@ public static partial class Game
         });
         Funcs.Add(0x00263018u, "func_00263018", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00263018(a0, a1);
+            var v_ = EffectPool_Acquire(a0, a1);
             return v_;
         });
         Funcs.Add(0x002630A0u, "func_002630A0", (a0, a1, a2, a3) =>
         {
-            func_002630A0(a0, a1);
+            EffectPool_Release(a0, a1);
             return 0;
         });
         Funcs.Add(0x00263100u, "func_00263100", (a0, a1, a2, a3) =>
@@ -6973,12 +6973,12 @@ public static partial class Game
         });
         Funcs.Add(0x00263708u, "func_00263708", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00263708((int)a0);
+            var v_ = Flags_SwapBitPairs_00263708((int)a0);
             return (uint)v_;
         });
         Funcs.Add(0x00263760u, "func_00263760", (a0, a1, a2, a3) =>
         {
-            func_00263760();
+            Pad_ReadController_00263760();
             return 0;
         });
         Funcs.Add(0x00263B14u, "func_00263B14", (a0, a1, a2, a3) =>
@@ -6993,7 +6993,7 @@ public static partial class Game
         });
         Funcs.Add(0x00263D10u, "func_00263D10", (a0, a1, a2, a3) =>
         {
-            func_00263D10(a0);
+            Pad_InitSlot2(a0);
             return 0;
         });
         Funcs.Add(0x00264124u, "func_00264124", (a0, a1, a2, a3) =>
@@ -7018,17 +7018,17 @@ public static partial class Game
         });
         Funcs.Add(0x0026439Cu, "func_0026439C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0026439C(a0);
+            var v_ = Pad_IsConfirm(a0);
             return v_;
         });
         Funcs.Add(0x002643A8u, "func_002643A8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_002643A8(a0);
+            var v_ = Pad_IsLeft(a0);
             return (uint)v_;
         });
         Funcs.Add(0x002643C0u, "func_002643C0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_002643C0(a0);
+            var v_ = Pad_IsRight(a0);
             return (uint)v_;
         });
         Funcs.Add(0x002643D8u, "func_002643D8", (a0, a1, a2, a3) =>
@@ -7067,7 +7067,7 @@ public static partial class Game
         });
         Funcs.Add(0x0026451Cu, "func_0026451C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0026451C((int)a0);
+            var v_ = Pad_TryAcquire((int)a0);
             return (uint)v_;
         });
         Funcs.Add(0x002645A0u, "func_002645A0", (a0, a1, a2, a3) =>
@@ -7242,7 +7242,7 @@ public static partial class Game
         });
         Funcs.Add(0x00265508u, "func_00265508", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00265508(a0, (int)a1, a2);
+            var v_ = Sprite_FindIndex(a0, (int)a1, a2);
             return (uint)v_;
         });
         Funcs.Add(0x00265570u, "func_00265570", (a0, a1, a2, a3) =>
@@ -7272,7 +7272,7 @@ public static partial class Game
         });
         Funcs.Add(0x00265734u, "func_00265734", (a0, a1, a2, a3) =>
         {
-            Cpu.SetS(0, func_00265734(Cpu.S(12)));
+            Cpu.SetS(0, Emitter_Falloff_00265734(Cpu.S(12)));
             return 0;
         });
         Funcs.Add(0x002657A4u, "func_002657A4", (a0, a1, a2, a3) =>
@@ -7297,22 +7297,22 @@ public static partial class Game
         });
         Funcs.Add(0x00265904u, "func_00265904", (a0, a1, a2, a3) =>
         {
-            func_00265904(a0, a1, (int)a2, (int)a3);
+            Str_Sprintf(a0, a1, (int)a2, (int)a3);
             return 0;
         });
         Funcs.Add(0x00265920u, "func_00265920", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00265920(a0, a1, (int)a2, (int)a3);
+            var v_ = Str_FormatRet2(a0, a1, (int)a2, (int)a3);
             return (uint)v_;
         });
         Funcs.Add(0x0026593Cu, "func_0026593C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0026593C(a0, a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
+            var v_ = Str_FormatRet3(a0, a1, (int)a2, (int)a3, (int)Cpu.Stk[4]);
             return (uint)v_;
         });
         Funcs.Add(0x0026595Cu, "func_0026595C", (a0, a1, a2, a3) =>
         {
-            func_0026595C(a0, a1, (int)a2, (int)a3, (int)Cpu.Stk[4], (int)Cpu.Stk[5]);
+            Str_Format4(a0, a1, (int)a2, (int)a3, (int)Cpu.Stk[4], (int)Cpu.Stk[5]);
             return 0;
         });
         Funcs.Add(0x00265984u, "func_00265984", (a0, a1, a2, a3) =>
@@ -7411,7 +7411,7 @@ public static partial class Game
             uint s4 = Stack.Alloc(8);
             Mem.Set(s4 + 0u, Cpu.Stk[6]);
             Mem.Set(s4 + 4u, Cpu.Stk[7]);
-            func_00267324((int)a0, a1, (int)a2, s3, s4);
+            Sound_HandleEvent((int)a0, a1, (int)a2, s3, s4);
             Stack.Free(12);
             Stack.Free(8);
             return 0;
@@ -7528,7 +7528,7 @@ public static partial class Game
             Mem.Set(s3 + 0u, a3);
             Mem.Set(s3 + 4u, Cpu.Stk[4]);
             Mem.Set(s3 + 8u, Cpu.Stk[5]);
-            func_00267C88((int)a0, (int)a1, (int)a2, s3);
+            Debug_Stub_00267C88((int)a0, (int)a1, (int)a2, s3);
             Stack.Free(12);
             return 0;
         });
@@ -7572,7 +7572,7 @@ public static partial class Game
             Mem.Set(s3 + 0u, a3);
             Mem.Set(s3 + 4u, Cpu.Stk[4]);
             Mem.Set(s3 + 8u, Cpu.Stk[5]);
-            func_00267D78((int)a0, (int)a1, (int)a2, s3);
+            Debug_Stub_00267D78((int)a0, (int)a1, (int)a2, s3);
             Stack.Free(12);
             return 0;
         });
@@ -7732,7 +7732,7 @@ public static partial class Game
             Mem.Set(s3 + 0u, a3);
             Mem.Set(s3 + 4u, Cpu.Stk[4]);
             Mem.Set(s3 + 8u, Cpu.Stk[5]);
-            func_00268274((int)a0, (int)a1, (int)a2, s3);
+            Debug_Stub_00268274((int)a0, (int)a1, (int)a2, s3);
             Stack.Free(12);
             return 0;
         });
@@ -7930,12 +7930,12 @@ public static partial class Game
         });
         Funcs.Add(0x00268CE0u, "func_00268CE0", (a0, a1, a2, a3) =>
         {
-            func_00268CE0(a0);
+            Gfx_SetCombineMode(a0);
             return 0;
         });
         Funcs.Add(0x0026925Cu, "func_0026925C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0026925C(a0);
+            var v_ = Gfx_SetOtherModeL(a0);
             return (uint)v_;
         });
         Funcs.Add(0x0026992Cu, "func_0026992C", (a0, a1, a2, a3) =>
@@ -8060,7 +8060,7 @@ public static partial class Game
         });
         Funcs.Add(0x0026DA4Cu, "func_0026DA4C", (a0, a1, a2, a3) =>
         {
-            func_0026DA4C(a0, (int)a1, (int)a2, (int)a3, Cpu.Stk[4], (int)Cpu.Stk[5]);
+            Light_ShadeVertices(a0, (int)a1, (int)a2, (int)a3, Cpu.Stk[4], (int)Cpu.Stk[5]);
             return 0;
         });
         Funcs.Add(0x0026DC24u, "func_0026DC24", (a0, a1, a2, a3) =>
@@ -8194,7 +8194,7 @@ public static partial class Game
         });
         Funcs.Add(0x002702ECu, "func_002702EC", (a0, a1, a2, a3) =>
         {
-            func_002702EC(a0, a1);
+            Math_MtxFloatToFixed(a0, a1);
             return 0;
         });
         Funcs.Add(0x00270770u, "func_00270770", (a0, a1, a2, a3) =>
@@ -8209,7 +8209,7 @@ public static partial class Game
         });
         Funcs.Add(0x00270D40u, "func_00270D40", (a0, a1, a2, a3) =>
         {
-            func_00270D40(a0, Cpu.U2F(a1), a2, a3);
+            Quat_Blend(a0, Cpu.U2F(a1), a2, a3);
             return 0;
         });
         Funcs.Add(0x00271058u, "func_00271058", (a0, a1, a2, a3) =>
@@ -8299,7 +8299,7 @@ public static partial class Game
         });
         Funcs.Add(0x0027230Cu, "func_0027230C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0027230C(a0, a1, a2, a3);
+            var v_ = Vec_ProjectOnPlane(a0, a1, a2, a3);
             return v_;
         });
         Funcs.Add(0x0027246Cu, "func_0027246C", (a0, a1, a2, a3) =>
@@ -8459,7 +8459,7 @@ public static partial class Game
         });
         Funcs.Add(0x00273860u, "func_00273860", (a0, a1, a2, a3) =>
         {
-            func_00273860(a0, Cpu.U2F(a1));
+            Math_MtxRotateRowsC_00273860(a0, Cpu.U2F(a1));
             return 0;
         });
         Funcs.Add(0x00273930u, "func_00273930", (a0, a1, a2, a3) =>
@@ -8469,7 +8469,7 @@ public static partial class Game
         });
         Funcs.Add(0x00273A34u, "func_00273A34", (a0, a1, a2, a3) =>
         {
-            func_00273A34(a0, Cpu.U2F(a1));
+            Math_MtxRotateRowsB_00273A34(a0, Cpu.U2F(a1));
             return 0;
         });
         Funcs.Add(0x00273B08u, "func_00273B08", (a0, a1, a2, a3) =>
@@ -8479,7 +8479,7 @@ public static partial class Game
         });
         Funcs.Add(0x00273C08u, "func_00273C08", (a0, a1, a2, a3) =>
         {
-            func_00273C08(a0, Cpu.U2F(a1));
+            Math_MtxRotateRowsA_00273C08(a0, Cpu.U2F(a1));
             return 0;
         });
         Funcs.Add(0x00273CD8u, "func_00273CD8", (a0, a1, a2, a3) =>
@@ -8519,12 +8519,12 @@ public static partial class Game
         });
         Funcs.Add(0x00274108u, "func_00274108", (a0, a1, a2, a3) =>
         {
-            func_00274108(a0, a1, a2);
+            Quat_Multiply(a0, a1, a2);
             return 0;
         });
         Funcs.Add(0x002742B4u, "func_002742B4", (a0, a1, a2, a3) =>
         {
-            func_002742B4(a0, a1);
+            Quat_ToMatrix(a0, a1);
             return 0;
         });
         Funcs.Add(0x00274388u, "func_00274388", (a0, a1, a2, a3) =>
@@ -8559,7 +8559,7 @@ public static partial class Game
         });
         Funcs.Add(0x00274640u, "func_00274640", (a0, a1, a2, a3) =>
         {
-            Cpu.SetS(0, func_00274640(Cpu.S(12)));
+            Cpu.SetS(0, Math_Acosf(Cpu.S(12)));
             return 0;
         });
         Funcs.Add(0x00274710u, "func_00274710", (a0, a1, a2, a3) =>
@@ -8599,7 +8599,7 @@ public static partial class Game
         });
         Funcs.Add(0x00274B00u, "func_00274B00", (a0, a1, a2, a3) =>
         {
-            Cpu.SetS(0, func_00274B00(Cpu.S(12), Cpu.S(14)));
+            Cpu.SetS(0, Random_Symmetric(Cpu.S(12), Cpu.S(14)));
             return 0;
         });
         Funcs.Add(0x00274BB4u, "func_00274BB4", (a0, a1, a2, a3) =>
@@ -8674,7 +8674,7 @@ public static partial class Game
         });
         Funcs.Add(0x00275B14u, "func_00275B14", (a0, a1, a2, a3) =>
         {
-            func_00275B14(a0, a1, a2, (int)a3, Cpu.Stk[4]);
+            Collision_DecodeFace_00275B14(a0, a1, a2, (int)a3, Cpu.Stk[4]);
             return 0;
         });
         Funcs.Add(0x00275B80u, "func_00275B80", (a0, a1, a2, a3) =>
@@ -8759,7 +8759,7 @@ public static partial class Game
         });
         Funcs.Add(0x00276580u, "func_00276580", (a0, a1, a2, a3) =>
         {
-            func_00276580(a0, (int)a1, a2);
+            Math_BoundsOfPoints(a0, (int)a1, a2);
             return 0;
         });
         Funcs.Add(0x00276610u, "func_00276610", (a0, a1, a2, a3) =>
@@ -8797,14 +8797,14 @@ public static partial class Game
             Mem.Set(s2 + 0u, Cpu.Stk[4]);
             Mem.Set(s2 + 4u, Cpu.Stk[5]);
             Mem.Set(s2 + 8u, Cpu.Stk[6]);
-            var v_ = func_00277444(a0, s1, s2, Cpu.Stk[7], Cpu.Stk[8], Cpu.Stk[9]);
+            var v_ = Light_TestVolume(a0, s1, s2, Cpu.Stk[7], Cpu.Stk[8], Cpu.Stk[9]);
             Stack.Free(12);
             Stack.Free(12);
             return (uint)v_;
         });
         Funcs.Add(0x00277620u, "func_00277620", (a0, a1, a2, a3) =>
         {
-            func_00277620(a0, (int)a1, a2, a3, Cpu.Stk[4], (int)Cpu.Stk[5]);
+            Light_TestVertexVolumes(a0, (int)a1, a2, a3, Cpu.Stk[4], (int)Cpu.Stk[5]);
             return 0;
         });
         Funcs.Add(0x00277B08u, "func_00277B08", (a0, a1, a2, a3) =>
@@ -8839,7 +8839,7 @@ public static partial class Game
         });
         Funcs.Add(0x00278C80u, "func_00278C80", (a0, a1, a2, a3) =>
         {
-            func_00278C80(a0);
+            Entity_Spawn(a0);
             return 0;
         });
         Funcs.Add(0x00278DE8u, "func_00278DE8", (a0, a1, a2, a3) =>
@@ -9068,7 +9068,7 @@ public static partial class Game
         });
         Funcs.Add(0x0027CCD0u, "func_0027CCD0", (a0, a1, a2, a3) =>
         {
-            func_0027CCD0(a0);
+            Actor_UpdateHitEffects(a0);
             return 0;
         });
         Funcs.Add(0x0027D47Cu, "func_0027D47C", (a0, a1, a2, a3) =>
@@ -9348,7 +9348,7 @@ public static partial class Game
         });
         Funcs.Add(0x00285150u, "func_00285150", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00285150(a0, (int)a1);
+            var v_ = Resource_UnpackRnc(a0, (int)a1);
             return (uint)v_;
         });
         Funcs.Add(0x00285290u, "func_00285290", (a0, a1, a2, a3) =>
@@ -9486,7 +9486,7 @@ public static partial class Game
         });
         Funcs.Add(0x0028B250u, "func_0028B250", (a0, a1, a2, a3) =>
         {
-            func_0028B250(a0, a1, (int)a2, (int)a3);
+            Sound_StartForActor(a0, a1, (int)a2, (int)a3);
             return 0;
         });
         Funcs.Add(0x0028B2D4u, "func_0028B2D4", (a0, a1, a2, a3) =>
@@ -9536,7 +9536,7 @@ public static partial class Game
         });
         Funcs.Add(0x0028B874u, "func_0028B874", (a0, a1, a2, a3) =>
         {
-            func_0028B874(a0, a1, (int)a2);
+            PropTree_SetBit(a0, a1, (int)a2);
             return 0;
         });
         Funcs.Add(0x0028B964u, "func_0028B964", (a0, a1, a2, a3) =>
@@ -9581,7 +9581,7 @@ public static partial class Game
         });
         Funcs.Add(0x0028BE88u, "func_0028BE88", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0028BE88(a0, (int)a1, (int)a2, (int)a3);
+            var v_ = Sprite_Lookup(a0, (int)a1, (int)a2, (int)a3);
             return (uint)v_;
         });
         Funcs.Add(0x0028BFB4u, "func_0028BFB4", (a0, a1, a2, a3) =>
@@ -9725,7 +9725,7 @@ public static partial class Game
         });
         Funcs.Add(0x0028CF48u, "func_0028CF48", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0028CF48(a0, (int)a1);
+            var v_ = Level_GetDefinition(a0, (int)a1);
             return v_;
         });
         Funcs.Add(0x0028CF7Cu, "func_0028CF7C", (a0, a1, a2, a3) =>
@@ -9840,7 +9840,7 @@ public static partial class Game
         });
         Funcs.Add(0x0028DD80u, "func_0028DD80", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0028DD80(a0, (int)a1, (int)a2);
+            var v_ = PropTree_TestBit(a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x0028DE24u, "func_0028DE24", (a0, a1, a2, a3) =>
@@ -9970,7 +9970,7 @@ public static partial class Game
         });
         Funcs.Add(0x0028F9ECu, "func_0028F9EC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0028F9EC((int)a0, a1);
+            var v_ = Video_SwapIfReady((int)a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0028FA40u, "func_0028FA40", (a0, a1, a2, a3) =>
@@ -10005,17 +10005,17 @@ public static partial class Game
         });
         Funcs.Add(0x0028FD94u, "func_0028FD94", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0028FD94(a0, (int)a1);
+            var v_ = Chunk_Get(a0, (int)a1);
             return v_;
         });
         Funcs.Add(0x0028FDA8u, "func_0028FDA8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0028FDA8(a0, (int)a1, a2);
+            var v_ = Chunk_GetWithSize(a0, (int)a1, a2);
             return v_;
         });
         Funcs.Add(0x0028FDD8u, "func_0028FDD8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0028FDD8(a0, (int)a1);
+            var v_ = Chunk_GetSize(a0, (int)a1);
             return (uint)v_;
         });
         Funcs.Add(0x0028FE08u, "func_0028FE08", (a0, a1, a2, a3) =>
@@ -10025,7 +10025,7 @@ public static partial class Game
         });
         Funcs.Add(0x0028FE1Cu, "func_0028FE1C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0028FE1C(a0, a1, (int)a2, a3);
+            var v_ = Resource_GetCartridgeKey(a0, a1, (int)a2, a3);
             return v_;
         });
         Funcs.Add(0x0028FE4Cu, "func_0028FE4C", (a0, a1, a2, a3) =>
@@ -10170,7 +10170,7 @@ public static partial class Game
         });
         Funcs.Add(0x002911E8u, "func_002911E8", (a0, a1, a2, a3) =>
         {
-            func_002911E8(a0);
+            Game_ColdBootInit(a0);
             return 0;
         });
         Funcs.Add(0x002917E8u, "func_002917E8", (a0, a1, a2, a3) =>
@@ -10200,12 +10200,12 @@ public static partial class Game
         });
         Funcs.Add(0x00292F2Cu, "func_00292F2C", (a0, a1, a2, a3) =>
         {
-            func_00292F2C(a0);
+            Boot_StartThread0_00292F2C(a0);
             return 0;
         });
         Funcs.Add(0x00292FA4u, "func_00292FA4", (a0, a1, a2, a3) =>
         {
-            func_00292FA4(a0, a1);
+            Boot_StartGameThread(a0, a1);
             return 0;
         });
         Funcs.Add(0x00293038u, "func_00293038", (a0, a1, a2, a3) =>
@@ -10260,7 +10260,7 @@ public static partial class Game
         });
         Funcs.Add(0x00293518u, "func_00293518", (a0, a1, a2, a3) =>
         {
-            func_00293518();
+            Game_BootThread();
             return 0;
         });
         Funcs.Add(0x00293574u, "func_00293574", (a0, a1, a2, a3) =>
@@ -10285,7 +10285,7 @@ public static partial class Game
         });
         Funcs.Add(0x0029382Cu, "func_0029382C", (a0, a1, a2, a3) =>
         {
-            func_0029382C(a0);
+            Game_StateDispatch(a0);
             return 0;
         });
         Funcs.Add(0x002938E8u, "func_002938E8", (a0, a1, a2, a3) =>
@@ -10340,12 +10340,12 @@ public static partial class Game
         });
         Funcs.Add(0x00293EACu, "func_00293EAC", (a0, a1, a2, a3) =>
         {
-            func_00293EAC(a0);
+            State_TitleInit(a0);
             return 0;
         });
         Funcs.Add(0x00293F38u, "func_00293F38", (a0, a1, a2, a3) =>
         {
-            func_00293F38(a0);
+            State_TitleUpdate(a0);
             return 0;
         });
         Funcs.Add(0x00293FE4u, "func_00293FE4", (a0, a1, a2, a3) =>
@@ -10380,12 +10380,12 @@ public static partial class Game
         });
         Funcs.Add(0x002941ACu, "func_002941AC", (a0, a1, a2, a3) =>
         {
-            func_002941AC();
+            State_4Init();
             return 0;
         });
         Funcs.Add(0x002941D0u, "func_002941D0", (a0, a1, a2, a3) =>
         {
-            func_002941D0(a0);
+            State_4Update(a0);
             return 0;
         });
         Funcs.Add(0x002941F4u, "func_002941F4", (a0, a1, a2, a3) =>
@@ -10435,12 +10435,12 @@ public static partial class Game
         });
         Funcs.Add(0x002943B8u, "func_002943B8", (a0, a1, a2, a3) =>
         {
-            func_002943B8((int)a0);
+            State_DemoInit((int)a0);
             return 0;
         });
         Funcs.Add(0x00294404u, "func_00294404", (a0, a1, a2, a3) =>
         {
-            func_00294404();
+            State_DemoUpdate();
             return 0;
         });
         Funcs.Add(0x0029440Cu, "func_0029440C", (a0, a1, a2, a3) =>
@@ -10519,12 +10519,12 @@ public static partial class Game
         });
         Funcs.Add(0x002946A8u, "func_002946A8", (a0, a1, a2, a3) =>
         {
-            func_002946A8(a0);
+            State_AttractInit(a0);
             return 0;
         });
         Funcs.Add(0x002947BCu, "func_002947BC", (a0, a1, a2, a3) =>
         {
-            func_002947BC();
+            State_AttractUpdate();
             return 0;
         });
         Funcs.Add(0x002947C4u, "func_002947C4", (a0, a1, a2, a3) =>
@@ -10584,7 +10584,7 @@ public static partial class Game
         });
         Funcs.Add(0x00294AC4u, "func_00294AC4", (a0, a1, a2, a3) =>
         {
-            func_00294AC4(a0);
+            State_TransitionUpdate(a0);
             return 0;
         });
         Funcs.Add(0x00294B78u, "func_00294B78", (a0, a1, a2, a3) =>
@@ -10639,7 +10639,7 @@ public static partial class Game
         });
         Funcs.Add(0x002953FCu, "func_002953FC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_002953FC((int)a0);
+            var v_ = Frontend_GetButtonMask((int)a0);
             return (uint)v_;
         });
         Funcs.Add(0x002954E0u, "func_002954E0", (a0, a1, a2, a3) =>
@@ -10734,7 +10734,7 @@ public static partial class Game
         });
         Funcs.Add(0x00295FB4u, "func_00295FB4", (a0, a1, a2, a3) =>
         {
-            func_00295FB4(a0, a1, (int)a2, (int)a3, (int)Cpu.Stk[4], (int)Cpu.Stk[5], (int)Cpu.Stk[6], (int)Cpu.Stk[7], (int)Cpu.Stk[8]);
+            Texture_EmitLoad_00295FB4(a0, a1, (int)a2, (int)a3, (int)Cpu.Stk[4], (int)Cpu.Stk[5], (int)Cpu.Stk[6], (int)Cpu.Stk[7], (int)Cpu.Stk[8]);
             return 0;
         });
         Funcs.Add(0x00296DD0u, "func_00296DD0", (a0, a1, a2, a3) =>
@@ -10944,7 +10944,7 @@ public static partial class Game
         });
         Funcs.Add(0x0029A958u, "func_0029A958", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0029A958();
+            var v_ = Ui_PushScreen();
             return (uint)v_;
         });
         Funcs.Add(0x0029A9A0u, "func_0029A9A0", (a0, a1, a2, a3) =>
@@ -10964,7 +10964,7 @@ public static partial class Game
         });
         Funcs.Add(0x0029AA08u, "func_0029AA08", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0029AA08();
+            var v_ = Menu_GetMessage();
             return (uint)v_;
         });
         Funcs.Add(0x0029AA48u, "func_0029AA48", (a0, a1, a2, a3) =>
@@ -11096,22 +11096,22 @@ public static partial class Game
         });
         Funcs.Add(0x0029C278u, "func_0029C278", (a0, a1, a2, a3) =>
         {
-            Cpu.SetD(0, func_0029C278(Cpu.D(12), Cpu.D(14)));
+            Cpu.SetD(0, Math_Fmod(Cpu.D(12), Cpu.D(14)));
             return 0;
         });
         Funcs.Add(0x0029C3C0u, "func_0029C3C0", (a0, a1, a2, a3) =>
         {
-            func_0029C3C0(a0);
+            Math_EulerFromMtx4(a0);
             return 0;
         });
         Funcs.Add(0x0029C54Cu, "func_0029C54C", (a0, a1, a2, a3) =>
         {
-            func_0029C54C(a0);
+            Math_EulerFromMtx2(a0);
             return 0;
         });
         Funcs.Add(0x0029C6E0u, "func_0029C6E0", (a0, a1, a2, a3) =>
         {
-            func_0029C6E0(a0);
+            Math_EulerFromMtx1(a0);
             return 0;
         });
         Funcs.Add(0x0029C9FCu, "func_0029C9FC", (a0, a1, a2, a3) =>
@@ -11126,7 +11126,7 @@ public static partial class Game
         });
         Funcs.Add(0x0029D044u, "func_0029D044", (a0, a1, a2, a3) =>
         {
-            Cpu.SetS(0, func_0029D044(Cpu.S(12), Cpu.S(14)));
+            Cpu.SetS(0, Math_Atan2(Cpu.S(12), Cpu.S(14)));
             return 0;
         });
         Funcs.Add(0x0029D4A0u, "func_0029D4A0", (a0, a1, a2, a3) =>
@@ -11141,7 +11141,7 @@ public static partial class Game
         });
         Funcs.Add(0x0029D984u, "func_0029D984", (a0, a1, a2, a3) =>
         {
-            func_0029D984(a0, a1);
+            Math_MtxFromEuler(a0, a1);
             return 0;
         });
         Funcs.Add(0x0029DAB4u, "func_0029DAB4", (a0, a1, a2, a3) =>
@@ -11156,7 +11156,7 @@ public static partial class Game
         });
         Funcs.Add(0x0029DE3Cu, "func_0029DE3C", (a0, a1, a2, a3) =>
         {
-            func_0029DE3C(a0, a1, a2);
+            Math_MtxMultiply(a0, a1, a2);
             return 0;
         });
         Funcs.Add(0x0029E000u, "func_0029E000", (a0, a1, a2, a3) =>
@@ -11166,12 +11166,12 @@ public static partial class Game
         });
         Funcs.Add(0x0029E248u, "func_0029E248", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0029E248(a0, a1);
+            var v_ = Math_MtxInverseCofactor(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0029E510u, "func_0029E510", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0029E510(a0, a1);
+            var v_ = Math_MtxInverse(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x0029E8A0u, "func_0029E8A0", (a0, a1, a2, a3) =>
@@ -11191,12 +11191,12 @@ public static partial class Game
         });
         Funcs.Add(0x0029E8BCu, "func_0029E8BC", (a0, a1, a2, a3) =>
         {
-            Cpu.SetS(0, func_0029E8BC(Cpu.S(12)));
+            Cpu.SetS(0, Math_SqrtNonNeg(Cpu.S(12)));
             return 0;
         });
         Funcs.Add(0x0029E8E8u, "func_0029E8E8", (a0, a1, a2, a3) =>
         {
-            Cpu.SetS(0, func_0029E8E8(Cpu.S(12)));
+            Cpu.SetS(0, Math_InvSqrt(Cpu.S(12)));
             return 0;
         });
         Funcs.Add(0x0029E924u, "func_0029E924", (a0, a1, a2, a3) =>
@@ -11206,7 +11206,7 @@ public static partial class Game
         });
         Funcs.Add(0x0029E964u, "func_0029E964", (a0, a1, a2, a3) =>
         {
-            Cpu.SetD(0, func_0029E964(Cpu.D(12)));
+            Cpu.SetD(0, Math_Floor(Cpu.D(12)));
             return 0;
         });
         Funcs.Add(0x0029EB34u, "func_0029EB34", (a0, a1, a2, a3) =>
@@ -11250,7 +11250,7 @@ public static partial class Game
         });
         Funcs.Add(0x0029F04Cu, "func_0029F04C", (a0, a1, a2, a3) =>
         {
-            Cpu.SetS(0, func_0029F04C(Cpu.S(12)));
+            Cpu.SetS(0, Math_WrapAngle(Cpu.S(12)));
             return 0;
         });
         Funcs.Add(0x0029F2A8u, "func_0029F2A8", (a0, a1, a2, a3) =>
@@ -11310,7 +11310,7 @@ public static partial class Game
         });
         Funcs.Add(0x0029F4DCu, "func_0029F4DC", (a0, a1, a2, a3) =>
         {
-            Cpu.SetS(0, func_0029F4DC(a0));
+            Cpu.SetS(0, Vec_Length(a0));
             return 0;
         });
         Funcs.Add(0x0029F52Cu, "func_0029F52C", (a0, a1, a2, a3) =>
@@ -11355,7 +11355,7 @@ public static partial class Game
         });
         Funcs.Add(0x0029F93Cu, "func_0029F93C", (a0, a1, a2, a3) =>
         {
-            func_0029F93C(a0, a1, a2, Cpu.U2F(a3), Cpu.U2F(Cpu.Stk[4]), Cpu.U2F(Cpu.Stk[5]), Cpu.U2F(Cpu.Stk[6]));
+            Math_IntersectPoly_0029F93C(a0, a1, a2, Cpu.U2F(a3), Cpu.U2F(Cpu.Stk[4]), Cpu.U2F(Cpu.Stk[5]), Cpu.U2F(Cpu.Stk[6]));
             return 0;
         });
         Funcs.Add(0x0029FA44u, "func_0029FA44", (a0, a1, a2, a3) =>
@@ -11390,7 +11390,7 @@ public static partial class Game
         });
         Funcs.Add(0x0029FBE4u, "func_0029FBE4", (a0, a1, a2, a3) =>
         {
-            func_0029FBE4(a0, a1);
+            Math_MtxScaleVec(a0, a1);
             return 0;
         });
         Funcs.Add(0x0029FCA8u, "func_0029FCA8", (a0, a1, a2, a3) =>
@@ -11400,7 +11400,7 @@ public static partial class Game
         });
         Funcs.Add(0x0029FCBCu, "func_0029FCBC", (a0, a1, a2, a3) =>
         {
-            func_0029FCBC(a0, Cpu.U2F(a1));
+            Math_MtxScaleUniform(a0, Cpu.U2F(a1));
             return 0;
         });
         Funcs.Add(0x0029FD54u, "func_0029FD54", (a0, a1, a2, a3) =>
@@ -11440,7 +11440,7 @@ public static partial class Game
         });
         Funcs.Add(0x0029FFE4u, "func_0029FFE4", (a0, a1, a2, a3) =>
         {
-            func_0029FFE4(a0, a1);
+            Math_MtxGetTranslation(a0, a1);
             return 0;
         });
         Funcs.Add(0x002A0000u, "func_002A0000", (a0, a1, a2, a3) =>
@@ -11465,7 +11465,7 @@ public static partial class Game
         });
         Funcs.Add(0x002A0118u, "func_002A0118", (a0, a1, a2, a3) =>
         {
-            func_002A0118(a0, a1, a2, a3);
+            Math_MtxGetBasisRows(a0, a1, a2, a3);
             return 0;
         });
         Funcs.Add(0x002A0164u, "func_002A0164", (a0, a1, a2, a3) =>
@@ -11495,7 +11495,7 @@ public static partial class Game
         });
         Funcs.Add(0x002A0470u, "func_002A0470", (a0, a1, a2, a3) =>
         {
-            var v_ = func_002A0470(a0, a1, (int)a2);
+            var v_ = Mem_Move(a0, a1, (int)a2);
             return v_;
         });
         Funcs.Add(0x002A05E0u, "func_002A05E0", (a0, a1, a2, a3) =>
@@ -11510,7 +11510,7 @@ public static partial class Game
         });
         Funcs.Add(0x002A0E38u, "func_002A0E38", (a0, a1, a2, a3) =>
         {
-            func_002A0E38(a0, (int)a1, (int)a2, a3);
+            Sort_Quick(a0, (int)a1, (int)a2, a3);
             return 0;
         });
         Funcs.Add(0x002A101Cu, "memset", (a0, a1, a2, a3) =>
@@ -11530,7 +11530,7 @@ public static partial class Game
         });
         Funcs.Add(0x002A1238u, "func_002A1238", (a0, a1, a2, a3) =>
         {
-            var v_ = func_002A1238(a0);
+            var v_ = Str_Length(a0);
             return (uint)v_;
         });
         Funcs.Add(0x002A125Cu, "func_002A125C", (a0, a1, a2, a3) =>
@@ -11540,12 +11540,12 @@ public static partial class Game
         });
         Funcs.Add(0x002A1294u, "func_002A1294", (a0, a1, a2, a3) =>
         {
-            var v_ = func_002A1294(a0, a1, (int)a2);
+            var v_ = Str_CopyN(a0, a1, (int)a2);
             return v_;
         });
         Funcs.Add(0x002A12E8u, "func_002A12E8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_002A12E8(a0, a1);
+            var v_ = Str_Concat(a0, a1);
             return v_;
         });
         Funcs.Add(0x002A1324u, "func_002A1324", (a0, a1, a2, a3) =>
@@ -11565,7 +11565,7 @@ public static partial class Game
         });
         Funcs.Add(0x002A13F4u, "func_002A13F4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_002A13F4(a0, a1);
+            var v_ = Str_CompareNoCase(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x002A1444u, "func_002A1444", (a0, a1, a2, a3) =>
@@ -11630,22 +11630,22 @@ public static partial class Game
         });
         Funcs.Add(0x002A1960u, "func_002A1960", (a0, a1, a2, a3) =>
         {
-            func_002A1960(a0, a1, a2, a3, Cpu.Stk[4]);
+            Path_Make(a0, a1, a2, a3, Cpu.Stk[4]);
             return 0;
         });
         Funcs.Add(0x002A1A48u, "func_002A1A48", (a0, a1, a2, a3) =>
         {
-            func_002A1A48(a0);
+            Mutex_Init(a0);
             return 0;
         });
         Funcs.Add(0x002A1A84u, "func_002A1A84", (a0, a1, a2, a3) =>
         {
-            func_002A1A84(a0);
+            Mutex_Lock(a0);
             return 0;
         });
         Funcs.Add(0x002A1AA4u, "func_002A1AA4", (a0, a1, a2, a3) =>
         {
-            func_002A1AA4(a0);
+            Mutex_Unlock(a0);
             return 0;
         });
         Funcs.Add(0x002A1D38u, "func_002A1D38", (a0, a1, a2, a3) =>
@@ -11907,7 +11907,7 @@ public static partial class Game
         });
         Funcs.Add(0x002A3090u, "func_002A3090", (a0, a1, a2, a3) =>
         {
-            func_002A3090();
+            Menu_UpdateIdleTimer();
             return 0;
         });
         Funcs.Add(0x002A31F4u, "func_002A31F4", (a0, a1, a2, a3) =>
@@ -12211,7 +12211,7 @@ public static partial class Game
         });
         Funcs.Add(0x002A921Cu, "func_002A921C", (a0, a1, a2, a3) =>
         {
-            func_002A921C((int)a0, Cpu.U2F(a1), Cpu.U2F(a2), Cpu.U2F(a3), Cpu.U2F(Cpu.Stk[4]), (int)Cpu.Stk[5], (int)Cpu.Stk[6], (int)Cpu.Stk[7]);
+            Hud_DrawNumber((int)a0, Cpu.U2F(a1), Cpu.U2F(a2), Cpu.U2F(a3), Cpu.U2F(Cpu.Stk[4]), (int)Cpu.Stk[5], (int)Cpu.Stk[6], (int)Cpu.Stk[7]);
             return 0;
         });
         Funcs.Add(0x002A94E8u, "func_002A94E8", (a0, a1, a2, a3) =>
@@ -12221,17 +12221,17 @@ public static partial class Game
         });
         Funcs.Add(0x002A9700u, "func_002A9700", (a0, a1, a2, a3) =>
         {
-            func_002A9700();
+            Gfx_LoadTexImage16();
             return 0;
         });
         Funcs.Add(0x002A97F0u, "func_002A97F0", (a0, a1, a2, a3) =>
         {
-            func_002A97F0();
+            Gfx_LoadTexImage16b();
             return 0;
         });
         Funcs.Add(0x002AB19Cu, "func_002AB19C", (a0, a1, a2, a3) =>
         {
-            func_002AB19C((int)a0, (int)a1, (int)a2, (short)a3, Cpu.U2F(Cpu.Stk[4]), Cpu.U2F(Cpu.Stk[5]), (int)Cpu.Stk[6]);
+            Sprite_GetFrameData_002AB19C((int)a0, (int)a1, (int)a2, (short)a3, Cpu.U2F(Cpu.Stk[4]), Cpu.U2F(Cpu.Stk[5]), (int)Cpu.Stk[6]);
             return 0;
         });
         Funcs.Add(0x002AB6C0u, "func_002AB6C0", (a0, a1, a2, a3) =>
@@ -12306,7 +12306,7 @@ public static partial class Game
         });
         Funcs.Add(0x002ABC18u, "func_002ABC18", (a0, a1, a2, a3) =>
         {
-            var v_ = func_002ABC18((int)a0, (int)a1, (short)a2, (short)a3, Cpu.U2F(Cpu.Stk[4]), Cpu.U2F(Cpu.Stk[5]), (int)Cpu.Stk[6]);
+            var v_ = Sprite_Draw((int)a0, (int)a1, (short)a2, (short)a3, Cpu.U2F(Cpu.Stk[4]), Cpu.U2F(Cpu.Stk[5]), (int)Cpu.Stk[6]);
             return (uint)v_;
         });
         Funcs.Add(0x002ABDACu, "func_002ABDAC", (a0, a1, a2, a3) =>
@@ -12326,7 +12326,7 @@ public static partial class Game
         });
         Funcs.Add(0x002ABED4u, "func_002ABED4", (a0, a1, a2, a3) =>
         {
-            func_002ABED4(a0, Cpu.U2F(a1), Cpu.U2F(a2), Cpu.U2F(a3), Cpu.U2F(Cpu.Stk[4]));
+            Sprite_DrawFrameScaled(a0, Cpu.U2F(a1), Cpu.U2F(a2), Cpu.U2F(a3), Cpu.U2F(Cpu.Stk[4]));
             return 0;
         });
         Funcs.Add(0x002AC0A0u, "func_002AB19C_func_002AC0A0", (a0, a1, a2, a3) =>
@@ -12336,7 +12336,7 @@ public static partial class Game
         });
         Funcs.Add(0x002AC0A0u, "func_002AC0A0", (a0, a1, a2, a3) =>
         {
-            func_002AC0A0(a0, (int)a1, (short)a2);
+            Gfx_DrawTileGrid(a0, (int)a1, (short)a2);
             return 0;
         });
         Funcs.Add(0x002AC1A0u, "func_002AB19C_func_002AC1A0", (a0, a1, a2, a3) =>
@@ -14215,7 +14215,7 @@ public static partial class Game
         });
         Funcs.Add(0x004055D4u, "func_004055D4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004055D4((int)a0);
+            var v_ = Rumble_InitPak((int)a0);
             return (uint)v_;
         });
         Funcs.Add(0x00405648u, "func_00405648", (a0, a1, a2, a3) =>
@@ -14250,7 +14250,7 @@ public static partial class Game
         });
         Funcs.Add(0x004058B0u, "func_004058B0", (a0, a1, a2, a3) =>
         {
-            func_004058B0(a0);
+            FramePool_Reinit(a0);
             return 0;
         });
         Funcs.Add(0x00405CA8u, "func_00405CA8", (a0, a1, a2, a3) =>
@@ -14937,7 +14937,7 @@ public static partial class Game
         });
         Funcs.Add(0x0040E154u, "func_0040E154", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0040E154(a0, a1, a2, a3);
+            var v_ = UiNode_ComputeRect(a0, a1, a2, a3);
             return (uint)v_;
         });
         Funcs.Add(0x0040E6FCu, "func_0040E6FC", (a0, a1, a2, a3) =>
@@ -15058,7 +15058,7 @@ public static partial class Game
         });
         Funcs.Add(0x0040F1E0u, "func_0040F1E0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0040F1E0((int)a0, a1, (int)a2);
+            var v_ = Text_MeasureWidth_0040F1E0((int)a0, a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x0040F27Cu, "func_0040F27C", (a0, a1, a2, a3) =>
@@ -15668,7 +15668,7 @@ public static partial class Game
         });
         Funcs.Add(0x00414430u, "func_00414430", (a0, a1, a2, a3) =>
         {
-            Cpu.SetD(0, func_00414430());
+            Cpu.SetD(0, Time_GetSeconds());
             return 0;
         });
         Funcs.Add(0x00415C9Cu, "func_00415C9C", (a0, a1, a2, a3) =>
@@ -15678,7 +15678,7 @@ public static partial class Game
         });
         Funcs.Add(0x00415D10u, "func_00415D10", (a0, a1, a2, a3) =>
         {
-            func_00415D10(Cpu.S(12), Cpu.S(14), Cpu.U2F(a2), Cpu.U2F(a3), Cpu.Stk[4], Cpu.Stk[5], Cpu.Stk[6], Cpu.Stk[7]);
+            Ui_DrawClippedQuad(Cpu.S(12), Cpu.S(14), Cpu.U2F(a2), Cpu.U2F(a3), Cpu.Stk[4], Cpu.Stk[5], Cpu.Stk[6], Cpu.Stk[7]);
             return 0;
         });
         Funcs.Add(0x00416D74u, "func_00416D74", (a0, a1, a2, a3) =>
@@ -15713,7 +15713,7 @@ public static partial class Game
         });
         Funcs.Add(0x00418224u, "func_00418224", (a0, a1, a2, a3) =>
         {
-            func_00418224((int)a0, (int)a1, (int)a2, (int)a3, Cpu.U2F(Cpu.Stk[4]), Cpu.U2F(Cpu.Stk[5]), Cpu.U2F(Cpu.Stk[6]), Cpu.U2F(Cpu.Stk[7]));
+            Gfx_DrawTexRectStrips((int)a0, (int)a1, (int)a2, (int)a3, Cpu.U2F(Cpu.Stk[4]), Cpu.U2F(Cpu.Stk[5]), Cpu.U2F(Cpu.Stk[6]), Cpu.U2F(Cpu.Stk[7]));
             return 0;
         });
         Funcs.Add(0x00418E20u, "func_00418E20", (a0, a1, a2, a3) =>
@@ -15733,17 +15733,17 @@ public static partial class Game
         });
         Funcs.Add(0x00419074u, "func_00419074", (a0, a1, a2, a3) =>
         {
-            func_00419074((int)a0);
+            Gfx_SetModeA_00419074((int)a0);
             return 0;
         });
         Funcs.Add(0x00419144u, "func_00419144", (a0, a1, a2, a3) =>
         {
-            func_00419144((int)a0);
+            Gfx_SetModeB_00419144((int)a0);
             return 0;
         });
         Funcs.Add(0x00419224u, "func_00419224", (a0, a1, a2, a3) =>
         {
-            func_00419224();
+            Gfx_PipeSyncOnce();
             return 0;
         });
         Funcs.Add(0x00419268u, "func_00419268", (a0, a1, a2, a3) =>
@@ -15763,7 +15763,7 @@ public static partial class Game
         });
         Funcs.Add(0x004194B0u, "func_004194B0", (a0, a1, a2, a3) =>
         {
-            func_004194B0(a0);
+            Gfx_PushMatrixF(a0);
             return 0;
         });
         Funcs.Add(0x00419510u, "func_00419510", (a0, a1, a2, a3) =>
@@ -16345,7 +16345,7 @@ public static partial class Game
         });
         Funcs.Add(0x0041C680u, "func_0041C680", (a0, a1, a2, a3) =>
         {
-            func_0041C680(a0, (int)a1, (int)a2, (int)a3);
+            MenuModel_SelectPose(a0, (int)a1, (int)a2, (int)a3);
             return 0;
         });
         Funcs.Add(0x0041C864u, "func_0041C864", (a0, a1, a2, a3) =>
@@ -16360,7 +16360,7 @@ public static partial class Game
         });
         Funcs.Add(0x0041D1A4u, "func_0041D1A4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0041D1A4((int)a0, (int)a1, (int)a2);
+            var v_ = SaveSlotScreen_Update((int)a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x0041D550u, "func_0041D550", (a0, a1, a2, a3) =>
@@ -17274,7 +17274,7 @@ public static partial class Game
         });
         Funcs.Add(0x0042A490u, "func_0042A490", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0042A490(a0, (int)a1, (int)a2);
+            var v_ = Menu_UpdateTransition_0042A490(a0, (int)a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x0042A994u, "func_0042A994", (a0, a1, a2, a3) =>
@@ -17294,7 +17294,7 @@ public static partial class Game
         });
         Funcs.Add(0x0042AEB8u, "func_0042AEB8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0042AEB8();
+            var v_ = MatchSetup_PickRandomArena();
             return (uint)v_;
         });
         Funcs.Add(0x0042B108u, "func_0042B108", (a0, a1, a2, a3) =>
@@ -17638,12 +17638,12 @@ public static partial class Game
         });
         Funcs.Add(0x00430120u, "func_00430120", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00430120((int)a0, (int)a1, a2, (int)a3);
+            var v_ = NameEntry_EnterSlot((int)a0, (int)a1, a2, (int)a3);
             return (uint)v_;
         });
         Funcs.Add(0x00430208u, "func_00430208", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00430208((int)a0, (int)a1, a2, (int)a3);
+            var v_ = NameEntry_EnterSlot2((int)a0, (int)a1, a2, (int)a3);
             return (uint)v_;
         });
         Funcs.Add(0x004302F8u, "func_004302F8", (a0, a1, a2, a3) =>
@@ -17658,7 +17658,7 @@ public static partial class Game
         });
         Funcs.Add(0x00432334u, "func_00432334", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00432334((int)a0, (int)a1, a2);
+            var v_ = NameEntry_Cancel((int)a0, (int)a1, a2);
             return (uint)v_;
         });
         Funcs.Add(0x00433574u, "func_00433574", (a0, a1, a2, a3) =>
@@ -17728,12 +17728,12 @@ public static partial class Game
         });
         Funcs.Add(0x00435010u, "func_00435010", (a0, a1, a2, a3) =>
         {
-            func_00435010((int)a0);
+            NameEntry_LetterUp((int)a0);
             return 0;
         });
         Funcs.Add(0x004350D0u, "func_004350D0", (a0, a1, a2, a3) =>
         {
-            func_004350D0((int)a0);
+            NameEntry_LetterDown((int)a0);
             return 0;
         });
         Funcs.Add(0x00435190u, "func_00435190", (a0, a1, a2, a3) =>
@@ -18202,7 +18202,7 @@ public static partial class Game
     {
         Funcs.Add(0x00438BA4u, "func_00438BA4", (a0, a1, a2, a3) =>
         {
-            func_00438BA4();
+            Game_RestartToMenu();
             return 0;
         });
         Funcs.Add(0x00438BD0u, "func_00438BD0", (a0, a1, a2, a3) =>
@@ -18322,7 +18322,7 @@ public static partial class Game
         });
         Funcs.Add(0x004396BCu, "func_004396BC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004396BC(a0);
+            var v_ = MatchSetup_SetDefaults(a0);
             return (uint)v_;
         });
         Funcs.Add(0x004397D8u, "func_004397D8", (a0, a1, a2, a3) =>
@@ -18552,7 +18552,7 @@ public static partial class Game
         });
         Funcs.Add(0x0043C458u, "func_0043C458", (a0, a1, a2, a3) =>
         {
-            func_0043C458(a0);
+            Menu_ShowScreen_0043C458(a0);
             return 0;
         });
         Funcs.Add(0x0043C484u, "func_0043C484", (a0, a1, a2, a3) =>
@@ -18587,7 +18587,7 @@ public static partial class Game
         });
         Funcs.Add(0x0043C500u, "func_0043C500", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0043C500((int)a0);
+            var v_ = CheatMenu_GetHandler_0043C500((int)a0);
             return v_;
         });
         Funcs.Add(0x0043C730u, "func_0043C730", (a0, a1, a2, a3) =>
@@ -19161,7 +19161,7 @@ public static partial class Game
         });
         Funcs.Add(0x00441384u, "func_00441384", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00441384(a0, a1);
+            var v_ = Ui_InvokeHeaderCallback_00441384(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00442020u, "func_00442020", (a0, a1, a2, a3) =>
@@ -19211,7 +19211,7 @@ public static partial class Game
         });
         Funcs.Add(0x00442460u, "func_00442460", (a0, a1, a2, a3) =>
         {
-            Cpu.SetS(0, func_00442460(a0, Cpu.U2F(a1), Cpu.U2F(a2)));
+            Cpu.SetS(0, Text_MeasureString(a0, Cpu.U2F(a1), Cpu.U2F(a2)));
             return 0;
         });
         Funcs.Add(0x004424F4u, "func_004424F4", (a0, a1, a2, a3) =>
@@ -19231,12 +19231,12 @@ public static partial class Game
         });
         Funcs.Add(0x0044252Cu, "func_0044252C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0044252C(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4], (int)Cpu.Stk[5]);
+            var v_ = MenuSpinner_Step(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4], (int)Cpu.Stk[5]);
             return (uint)v_;
         });
         Funcs.Add(0x004425F8u, "func_004425F8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004425F8(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4], (int)Cpu.Stk[5]);
+            var v_ = MenuSpinner_Step2_004425F8(a0, (int)a1, (int)a2, (int)a3, (int)Cpu.Stk[4], (int)Cpu.Stk[5]);
             return (uint)v_;
         });
         Funcs.Add(0x004426B4u, "func_004426B4", (a0, a1, a2, a3) =>
@@ -19471,7 +19471,7 @@ public static partial class Game
         });
         Funcs.Add(0x00443B08u, "func_00443B08", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00443B08(a0, a1);
+            var v_ = Results_FormatStats_00443B08(a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00443B94u, "func_00443B94", (a0, a1, a2, a3) =>
@@ -19516,7 +19516,7 @@ public static partial class Game
         });
         Funcs.Add(0x00444030u, "func_00444030", (a0, a1, a2, a3) =>
         {
-            func_00444030(a0);
+            Settings_InitDefaults(a0);
             return 0;
         });
         Funcs.Add(0x00444204u, "func_00444030_func_00444204", (a0, a1, a2, a3) =>
@@ -19960,17 +19960,17 @@ public static partial class Game
         });
         Funcs.Add(0x00446810u, "func_00446810", (a0, a1, a2, a3) =>
         {
-            func_00446810(a0, a1, a2, a3);
+            MenuSpinner_Draw(a0, a1, a2, a3);
             return 0;
         });
         Funcs.Add(0x004469BCu, "func_004469BC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_004469BC((int)a0, a1);
+            var v_ = NameEntry_DeleteChar((int)a0, a1);
             return (uint)v_;
         });
         Funcs.Add(0x00446A54u, "func_00446A54", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00446A54((int)a0, a1, (int)a2);
+            var v_ = NameEntry_CopyLabel((int)a0, a1, (int)a2);
             return (uint)v_;
         });
         Funcs.Add(0x00446B44u, "func_00446B44", (a0, a1, a2, a3) =>
@@ -20123,32 +20123,32 @@ public static partial class Game
         });
         Funcs.Add(0x00449970u, "func_00449970", (a0, a1, a2, a3) =>
         {
-            func_00449970(a0, a1, (int)a2);
+            Player_ConstructEntities(a0, a1, (int)a2);
             return 0;
         });
         Funcs.Add(0x00449B44u, "func_00449B44", (a0, a1, a2, a3) =>
         {
-            func_00449B44(a0, (int)a1, (int)a2);
+            Player_InitSlot(a0, (int)a1, (int)a2);
             return 0;
         });
         Funcs.Add(0x00449E38u, "func_00449E38", (a0, a1, a2, a3) =>
         {
-            func_00449E38(a0);
+            Player_Restart(a0);
             return 0;
         });
         Funcs.Add(0x0044A17Cu, "func_0044A17C", (a0, a1, a2, a3) =>
         {
-            func_0044A17C(a0);
+            Player_ResetForNewLife(a0);
             return 0;
         });
         Funcs.Add(0x0044A37Cu, "func_0044A37C", (a0, a1, a2, a3) =>
         {
-            func_0044A37C(a0);
+            Player_StartRun_0044A37C(a0);
             return 0;
         });
         Funcs.Add(0x0044A4C0u, "func_0044A4C0", (a0, a1, a2, a3) =>
         {
-            func_0044A4C0(a0);
+            Player_Respawn(a0);
             return 0;
         });
         Funcs.Add(0x0044A600u, "func_0044A600", (a0, a1, a2, a3) =>
@@ -20158,17 +20158,17 @@ public static partial class Game
         });
         Funcs.Add(0x0044AA00u, "func_0044AA00", (a0, a1, a2, a3) =>
         {
-            func_0044AA00(a0);
+            List44_Reset_0044AA00(a0);
             return 0;
         });
         Funcs.Add(0x0044AA68u, "func_0044AA68", (a0, a1, a2, a3) =>
         {
-            func_0044AA68(a0);
+            Holder_RefreshInstances_0044AA68(a0);
             return 0;
         });
         Funcs.Add(0x0044AB34u, "func_0044AB34", (a0, a1, a2, a3) =>
         {
-            func_0044AB34(a0, (int)a1, a2);
+            Player_SetupSlot_0044AB34(a0, (int)a1, a2);
             return 0;
         });
         Funcs.Add(0x0044AC70u, "func_0044AC70", (a0, a1, a2, a3) =>
@@ -20178,7 +20178,7 @@ public static partial class Game
         });
         Funcs.Add(0x0044ACCCu, "func_0044ACCC", (a0, a1, a2, a3) =>
         {
-            func_0044ACCC(a0);
+            Object_ReleaseHandles_0044ACCC(a0);
             return 0;
         });
         Funcs.Add(0x0044AD14u, "func_0044AD14", (a0, a1, a2, a3) =>
@@ -20188,12 +20188,12 @@ public static partial class Game
         });
         Funcs.Add(0x0044AFC0u, "func_0044AFC0", (a0, a1, a2, a3) =>
         {
-            func_0044AFC0(a0, (int)a1);
+            CameraManager_Init(a0, (int)a1);
             return 0;
         });
         Funcs.Add(0x0044B27Cu, "func_0044B27C", (a0, a1, a2, a3) =>
         {
-            func_0044B27C(a0);
+            View_ResetRecord(a0);
             return 0;
         });
         Funcs.Add(0x0044B31Cu, "func_0044B31C", (a0, a1, a2, a3) =>
@@ -20203,17 +20203,17 @@ public static partial class Game
         });
         Funcs.Add(0x0044B388u, "func_0044B388", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0044B388(a0);
+            var v_ = View_DetachObject_0044B388(a0);
             return v_;
         });
         Funcs.Add(0x0044B3E0u, "func_0044B3E0", (a0, a1, a2, a3) =>
         {
-            func_0044B3E0(a0, a1);
+            Object_MoveNodeToActiveList_0044B3E0(a0, a1);
             return 0;
         });
         Funcs.Add(0x0044B420u, "func_0044B420", (a0, a1, a2, a3) =>
         {
-            func_0044B420(a0);
+            Pool228_Init_0044B420(a0);
             return 0;
         });
         Funcs.Add(0x0044BA40u, "func_0044BA40", (a0, a1, a2, a3) =>
@@ -20223,82 +20223,82 @@ public static partial class Game
         });
         Funcs.Add(0x0044BAC0u, "func_0044BAC0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0044BAC0();
+            var v_ = Pad_ResetSession();
             return (uint)v_;
         });
         Funcs.Add(0x0044BC58u, "func_0044BC58", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0044BC58(a0, (int)a1);
+            var v_ = Pad_InitSlot(a0, (int)a1);
             return (uint)v_;
         });
         Funcs.Add(0x0044BD30u, "func_0044BD30", (a0, a1, a2, a3) =>
         {
-            func_0044BD30(a0);
+            List8_Init_0044BD30(a0);
             return 0;
         });
         Funcs.Add(0x0044BFD0u, "func_0044BFD0", (a0, a1, a2, a3) =>
         {
-            func_0044BFD0(a0, a1, (int)a2);
+            MtxStack_Init(a0, a1, (int)a2);
             return 0;
         });
         Funcs.Add(0x0044C050u, "func_0044C050", (a0, a1, a2, a3) =>
         {
-            func_0044C050(a0, (int)a1);
+            ObjectPool_InitQuad_0044C050(a0, (int)a1);
             return 0;
         });
         Funcs.Add(0x0044C250u, "func_0044C250", (a0, a1, a2, a3) =>
         {
-            func_0044C250(a0, a1, (int)a2);
+            Scene_HelperA_0044C250(a0, a1, (int)a2);
             return 0;
         });
         Funcs.Add(0x0044C410u, "func_0044C410", (a0, a1, a2, a3) =>
         {
-            func_0044C410(a0, (int)a1);
+            Scene_LoadLevelData_0044C410(a0, (int)a1);
             return 0;
         });
         Funcs.Add(0x0044CA54u, "func_0044CA54", (a0, a1, a2, a3) =>
         {
-            func_0044CA54(a0);
+            Scene_LoadLight(a0);
             return 0;
         });
         Funcs.Add(0x0044CBE0u, "func_0044CBE0", (a0, a1, a2, a3) =>
         {
-            func_0044CBE0(a0);
+            Scene_Shutdown_0044CBE0(a0);
             return 0;
         });
         Funcs.Add(0x0044CD58u, "func_0044CD58", (a0, a1, a2, a3) =>
         {
-            func_0044CD58(a0, a1);
+            Collision_BindMesh(a0, a1);
             return 0;
         });
         Funcs.Add(0x0044D024u, "func_0044D024", (a0, a1, a2, a3) =>
         {
-            func_0044D024(a0, a1);
+            Collision_BuildSurfaceMesh(a0, a1);
             return 0;
         });
         Funcs.Add(0x0044D408u, "func_0044D408", (a0, a1, a2, a3) =>
         {
-            func_0044D408(a0, a1);
+            Level_SpawnActors(a0, a1);
             return 0;
         });
         Funcs.Add(0x0044D9DCu, "func_0044D9DC", (a0, a1, a2, a3) =>
         {
-            func_0044D9DC(a0);
+            Level_LoadGridCells(a0);
             return 0;
         });
         Funcs.Add(0x0044DC48u, "func_0044DC48", (a0, a1, a2, a3) =>
         {
-            func_0044DC48(a0);
+            Level_InitState_0044DC48(a0);
             return 0;
         });
         Funcs.Add(0x0044DCA4u, "func_0044DCA4", (a0, a1, a2, a3) =>
         {
-            func_0044DCA4(a0);
+            Level_LoadSelectedResource_0044DCA4(a0);
             return 0;
         });
         Funcs.Add(0x0044DD40u, "func_0044DD40", (a0, a1, a2, a3) =>
         {
-            func_0044DD40(a0);
+            Level_LoadPreviewSound_0044DD40(a0);
             return 0;
         });
         Funcs.Add(0x0044DDC8u, "func_0044DDC8", (a0, a1, a2, a3) =>
@@ -20308,12 +20308,12 @@ public static partial class Game
         });
         Funcs.Add(0x0044DE04u, "func_0044DE04", (a0, a1, a2, a3) =>
         {
-            func_0044DE04(a0);
+            Level_ResetStateBlock_0044DE04(a0);
             return 0;
         });
         Funcs.Add(0x0044DE70u, "func_0044DE70", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0044DE70(a0, (int)a1, (int)a2, a3, (int)Cpu.Stk[4]);
+            var v_ = Track_FindPlacedObjects(a0, (int)a1, (int)a2, a3, (int)Cpu.Stk[4]);
             return (uint)v_;
         });
         Funcs.Add(0x0044E038u, "func_0044E038", (a0, a1, a2, a3) =>
@@ -20323,7 +20323,7 @@ public static partial class Game
         });
         Funcs.Add(0x0044E178u, "func_0044E178", (a0, a1, a2, a3) =>
         {
-            func_0044E178(a0, (int)a1, (int)a2);
+            Level_SetTransitionState_0044E178(a0, (int)a1, (int)a2);
             return 0;
         });
         Funcs.Add(0x0044E1D0u, "func_0044E1D0", (a0, a1, a2, a3) =>
@@ -20333,12 +20333,12 @@ public static partial class Game
         });
         Funcs.Add(0x0044E214u, "func_0044E214", (a0, a1, a2, a3) =>
         {
-            func_0044E214(a0);
+            Level_ProcessPendingObjects_0044E214(a0);
             return 0;
         });
         Funcs.Add(0x0044E2B8u, "func_0044E2B8", (a0, a1, a2, a3) =>
         {
-            func_0044E2B8(a0);
+            Level_SpawnPickups(a0);
             return 0;
         });
         Funcs.Add(0x0044E3E4u, "func_0044E3E4", (a0, a1, a2, a3) =>
@@ -20378,12 +20378,12 @@ public static partial class Game
         });
         Funcs.Add(0x0044E9A0u, "func_0044E9A0", (a0, a1, a2, a3) =>
         {
-            func_0044E9A0(a0);
+            Match_Reset(a0);
             return 0;
         });
         Funcs.Add(0x0044EA24u, "func_0044EA24", (a0, a1, a2, a3) =>
         {
-            func_0044EA24(a0);
+            Match_EnterState0C_0044EA24(a0);
             return 0;
         });
         Funcs.Add(0x0044EACCu, "func_0044EACC", (a0, a1, a2, a3) =>

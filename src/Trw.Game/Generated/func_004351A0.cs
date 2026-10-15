@@ -14,8 +14,8 @@ public static partial class Game
             byte v = 0;
             x = ((cosf(((float)(k) + ((float)(new O05Lobby(Mem.U32(0x800E54A4u)).h.w2C[(int)(k)]) * 0.00333333341f))) * 100.0f) + 150.0f);
             v = (byte)(Cpu.TruncU32(x));
-            new O05Obj10(func_0040ECB0(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f10, (uint)(706), default(uint), default(uint))).b10_Set(v);
-            new O05Obj10(func_0040ECB0(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f10, (uint)(707), default(uint), default(uint))).b10_Set(v);
+            new O05Obj10(UiTree_FindNode(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f10, (uint)(706), default(uint), default(uint))).b10_Set(v);
+            new O05Obj10(UiTree_FindNode(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f10, (uint)(707), default(uint), default(uint))).b10_Set(v);
         }
     }
 

@@ -31,7 +31,7 @@ public static partial class Game
                     new Obj_v12(o).vy_Set(0.0f);
                     new Obj_v12(o).vz_Set(0.0f);
                 }
-                func_00243A80((int)(o), new Obj_v12(o).pos.x, new Obj_v12(o).pos.y, new Obj_v12(o).pos.z, (int)(t));
+                Collision_MoveActor((int)(o), new Obj_v12(o).pos.x, new Obj_v12(o).pos.y, new Obj_v12(o).pos.z, (int)(t));
                 new Obj_v12(o).box.Set((int)(0), (new Obj_v12(o).pos.x - 81.9199981f));
                 new Obj_v12(o).box.Set((int)(1), (new Obj_v12(o).pos.y - 81.9199981f));
                 new Obj_v12(o).box.Set((int)(2), (new Obj_v12(o).pos.z - 81.9199981f));

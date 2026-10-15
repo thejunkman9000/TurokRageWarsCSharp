@@ -116,7 +116,7 @@ public static partial class Game
                 Cpu.SetW(0, Mem.U32((r1 + 28016u)));
                 Mem.Set((r17 + 584u), Cpu.W(0)); goto L_L002097C0;
                 L_L002097A0: ;
-                Cpu.SetS(14, Cpu.S(0)); Cpu.SetS(0, func_0029D044(Cpu.S(12), Cpu.S(14)));
+                Cpu.SetS(14, Cpu.S(0)); Cpu.SetS(0, Math_Atan2(Cpu.S(12), Cpu.S(14)));
                 r1 = 2148270080u;
                 Cpu.SetW(1, Mem.U32((r1 + 28020u)));
                 Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));

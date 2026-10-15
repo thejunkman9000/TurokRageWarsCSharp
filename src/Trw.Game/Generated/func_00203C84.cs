@@ -13,7 +13,7 @@ public static partial class Game
             if (((func_00285F28(0x8011FE88u, actor) == 0) && ((int)(new B01State(state).unk34) == 0)))
             {
                 func_00203C40(actor, state, arg);
-                func_00214178(actor, state, 1);
+                Actor_DispatchEvent(actor, state, 1);
             }
         }
     }

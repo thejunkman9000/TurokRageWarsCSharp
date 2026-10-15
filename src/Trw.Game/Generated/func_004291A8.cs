@@ -11,14 +11,14 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004291A8");
             func_0029A73C();
-            switch (func_0029AA08())
+            switch (Menu_GetMessage())
             {
             case 473:
                 if ((func_0029A9A0(0) == 22))
                 {
-                    func_0044AFC0(0x80145088u, 0);
+                    CameraManager_Init(0x80145088u, 0);
                     func_0044A600((0x80145088u - (uint)72), 0, 0);
-                    func_00286A78(0x8011FE88u, (uint)(0), (uint)(0), default(uint));
+                    Level_Load(0x8011FE88u, (uint)(0), (uint)(0), default(uint));
                     if ((func_0025471C() == 0))
                     {
                         func_0025470C(1);

@@ -56,7 +56,7 @@ public static partial class Game
                                 new V16(_fp).y_Set((new V16(_fp).y + (func_0024D274(actor) * k)));
                                 Mem.Copy((_fp + 16u), new M1Actor(p).pos.P, 12);
                                 new V16((_fp + 16u)).y_Set((new V16((_fp + 16u)).y + (func_0024D274(p) * k)));
-                                ok = func_00244494(actor, _fp, (_fp + 16u), 0x80103FD0u);
+                                ok = Collision_RayCast(actor, _fp, (_fp + 16u), 0x80103FD0u);
                                 vis = 1;
                                 if ((ok != 0))
                                 {

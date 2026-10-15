@@ -23,13 +23,13 @@ public static partial class Game
                 {
                     return (-1);
                 }
-                n = func_0028FD94(new SndMgr(m).tree2B4C, (int)((short)(id)));
-                n = func_0028FD94(n, 0);
+                n = Chunk_Get(new SndMgr(m).tree2B4C, (int)((short)(id)));
+                n = Chunk_Get(n, 0);
                 new SndMgr(m).unk2B88_Set(n);
                 new SndMgr(m).unk2B8C_Set((short)(256));
                 new SndMgr(m).unk2B90_Set((-1));
-                n = func_0028FD94(new SndMgr(m).tree2B4C, (int)((short)(id)));
-                rec = func_0028FD94(n, 1);
+                n = Chunk_Get(new SndMgr(m).tree2B4C, (int)((short)(id)));
+                rec = Chunk_Get(n, 1);
                 count = Mem.U32((rec + (uint)(1 * 4)));
                 if ((count != (uint)(0)))
                 {

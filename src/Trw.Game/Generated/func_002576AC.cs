@@ -20,31 +20,31 @@ public static partial class Game
             uint r = 0u;
             uint z = 0u;
             new SndMgr(m).root2B48_Set(func_0023C77C((uint)((func_00265984(20) - func_00265984(16))), 0, func_00265984(16)));
-            s3 = func_0028FD94(new SndMgr(m).root2B48, 0);
-            func_0028FD94(new SndMgr(m).root2B48, 1);
+            s3 = Chunk_Get(new SndMgr(m).root2B48, 0);
+            Chunk_Get(new SndMgr(m).root2B48, 1);
             do
             {
-                t0 = func_0028FD94(s3, 0);
-                t1 = func_0028FD94(s3, 1);
-                t2 = func_0028FD94(s3, 2);
+                t0 = Chunk_Get(s3, 0);
+                t1 = Chunk_Get(s3, 1);
+                t2 = Chunk_Get(s3, 2);
                 new SndMgr(m).tree2B4C_Set(t2);
                 new SndMgr(m).unk2B54_Set((int)(Mem.U32((t2 + (uint)(0 * 4)))));
                 new SndMgr(m).unk2B58_Set((t0 + (uint)8));
                 new SndMgr(m).unk2B5C__Set((t1 + (uint)8));
-                n3 = func_0028FD94(s3, 3);
-                n4 = func_0028FD94(s3, 4);
-                n5 = func_0028FD94(s3, 5);
+                n3 = Chunk_Get(s3, 3);
+                n4 = Chunk_Get(s3, 4);
+                n5 = Chunk_Get(s3, 5);
                 new SndMgr(m).unk2B7C_Set((int)(Mem.U32((n3 + (uint)(1 * 4)))));
                 new SndMgr(m).tab70__Set((n3 + (uint)8));
                 new SndMgr(m).unk2B80_Set((int)(Mem.U32((n4 + (uint)(1 * 4)))));
                 new SndMgr(m).tab74__Set((n4 + (uint)8));
                 new SndMgr(m).unk2B84_Set((int)(Mem.U32((n5 + (uint)(1 * 4)))));
                 new SndMgr(m).tab78__Set((n5 + (uint)8));
-                r = func_0028FD94(new SndMgr(m).root2B48, 1);
-                z = func_0028FD94(r, 0);
+                r = Chunk_Get(new SndMgr(m).root2B48, 1);
+                z = Chunk_Get(r, 0);
                 new SndMgr(m).unk2B60_Set((z + (uint)8));
                 new SndMgr(m).unk2B64_Set((int)(Mem.U32((z + (uint)(1 * 4)))));
-                new SndMgr(m).node2B50_Set(func_0028FD94(r, 1));
+                new SndMgr(m).node2B50_Set(Chunk_Get(r, 1));
             }
             while ((0 != 0));
         }

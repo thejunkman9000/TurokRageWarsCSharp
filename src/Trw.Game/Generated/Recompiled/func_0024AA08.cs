@@ -199,7 +199,7 @@ public static partial class Game
                 r7 = r5; func_00273618(r4, Cpu.U2F(r5), Cpu.U2F(r6), Cpu.U2F(r7));
                 r4 = r18 + 92u;
                 r16 = r29 + 104u;
-                r5 = r16; func_002742B4(r4, r5);
+                r5 = r16; Quat_ToMatrix(r4, r5);
                 r5 = r17;
                 r4 = Mem.U32((r18 + 188u));
                 r6 = r16; func_0026F690(r4, r5, r6);

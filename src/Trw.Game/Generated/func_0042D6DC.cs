@@ -29,9 +29,9 @@ public static partial class Game
                             {
                                 func_0040C4A8(0);
                                 func_0040E958((uint)(a), 1);
-                                func_0044AFC0(0x80145088u, 0);
+                                CameraManager_Init(0x80145088u, 0);
                                 func_0044A600((0x80145088u - (uint)72), 0, 0);
-                                func_00286A78(0x8011FE88u, (uint)(0), (uint)(0), default(uint));
+                                Level_Load(0x8011FE88u, (uint)(0), (uint)(0), default(uint));
                                 Mem.Set((0x80145088u + (uint)6128), 8);
                             }
                         }
@@ -44,7 +44,7 @@ public static partial class Game
                             {
                                 Mem.Set(0x80146918u, 0);
                                 Mem.Set(0x801468F4u, 0);
-                                if (((func_0042B108() != 0) && (func_0042AEB8() != 0)))
+                                if (((func_0042B108() != 0) && (MatchSetup_PickRandomArena() != 0)))
                                 {
                                     func_0042E080(default(uint), default(uint), default(uint), default(uint));
                                     return 0;

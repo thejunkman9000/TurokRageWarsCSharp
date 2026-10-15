@@ -13,7 +13,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0022B134", (uint)a, (uint)b);
-                func_00226DAC(a, _fp);
+                Actor_BuildModelMatrix(a, _fp);
                 func_00273340(_fp, (uint)(b));
             }
         }

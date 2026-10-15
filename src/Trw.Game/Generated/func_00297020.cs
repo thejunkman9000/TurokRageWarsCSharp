@@ -28,7 +28,7 @@ public static partial class Game
                 n = Mem.U32(sd);
                 for (i = (uint)(1); (i < n); ++i)
                 {
-                    func_00263100(g, func_0028FD94(sd, (int)(i)));
+                    func_00263100(g, Chunk_Get(sd, (int)(i)));
                     Mem.Set((_fp + (uint)(0 * 4)), func_00263174(g, 32));
                     Mem.Set((_fp + (uint)(1 * 4)), func_00263174(g, 32));
                     Mem.Set((_fp + (uint)(2 * 4)), func_00263174(g, 32));
@@ -44,7 +44,7 @@ public static partial class Game
                 }
                 if ((i == n))
                 {
-                    func_00263100(g, func_0028FD94(sd, (int)((uint)(0))));
+                    func_00263100(g, Chunk_Get(sd, (int)((uint)(0))));
                 }
                 j = 0;
                 idx = 0;

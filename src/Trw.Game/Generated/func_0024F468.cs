@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024F468", (uint)a, _a1);
-            func_0024D860(a, (uint)(_a1), default(uint), default(uint));
+            Player_GetBodyLean(a, (uint)(_a1), default(uint), default(uint));
             return a;
         }
     }

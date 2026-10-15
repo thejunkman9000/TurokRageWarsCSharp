@@ -104,9 +104,9 @@ public static partial class Game
                 if (r2 != 0) { r18 = r18 + 44u; goto L_L0023B1C8; }
                 r16 = Mem.U32((r21 + 2208u));
                 { bool c_ = r16 == 0; r4 = r21 + 2208u; if (c_) goto L_L0023B17C; }
-                r5 = r16; r2 = func_00255E78(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r16; r2 = List_Remove(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r21 + 2228u;
-                r5 = r16; r2 = func_00255CB4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r16; r2 = List_Append_00255CB4(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_L0023B17C: ;
                 if (r16 == 0) { r18 = r18 + 44u; goto L_L0023B1C8; }
                 Mem.Set((r16 + 12u), r18);
@@ -227,9 +227,9 @@ public static partial class Game
                 r3 = Mem.U16((r21 + 2248u));
                 r2 = ~(r0 | r2);
                 r3 = r3 & r2;
-                Mem.Set((r21 + 2248u), (ushort)r3); r2 = func_00255E78(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r21 + 2248u), (ushort)r3); r2 = List_Remove(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r21 + 2208u;
-                r5 = r16; func_00255C58(r4, r5);
+                r5 = r16; List_Add(r4, r5);
                 L_L0023B39C: ;
                 r16 = r17;
                 { bool c_ = r16 != 0;  if (c_) goto L_L0023B1F8; }

@@ -47,7 +47,7 @@ public static partial class Game
                 Mem.Set((r16 + 0u), r2);
                 r4 = Mem.U32((r20 + 136u));
                 r3 = r3 + 8u;
-                Mem.Set((r18 + 0u), r3); r2 = func_0028FD94(r4, (int)r5);
+                Mem.Set((r18 + 0u), r3); r2 = Chunk_Get(r4, (int)r5);
                 Mem.Set((r16 + 4u), r2);
                 r2 = Mem.U32((r20 + 288u));
                 { bool c_ = r2 != 0; r17 = r0; if (c_) goto L_L00289000; }
@@ -66,7 +66,7 @@ public static partial class Game
                 Mem.Set((r4 + 0u), r21);
                 Mem.Set((r4 + 4u), r0); func_0026D980();
                 r4 = Mem.U32((r20 + 136u));
-                r5 = (uint)1; r2 = func_0028FD94(r4, (int)r5);
+                r5 = (uint)1; r2 = Chunk_Get(r4, (int)r5);
                 r16 = r2;
                 L_L00288F50: ;
                 r2 = Mem.U32((r16 + 0u));

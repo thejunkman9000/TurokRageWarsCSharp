@@ -74,18 +74,18 @@ public static partial class Game
                 Mem.Set((r29 + 20u), r2);
                 r4 = Mem.U32((r18 + 12u));
                 r5 = Mem.U32((r17 + 180u));
-                r7 = r0; func_0026DA4C(r4, (int)r5, (int)r6, (int)r7, Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
+                r7 = r0; Light_ShadeVertices(r4, (int)r5, (int)r6, (int)r7, Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
                 r2 = (uint)func_0026E340();
                 { bool c_ = r2 == 0; r4 = r0; if (c_) goto L_L0024A9E0; }
                 r2 = Mem.U32((r18 + 12u));
                 r4 = Mem.U32((r2 + 0u));
-                r5 = (uint)2; r2 = func_0028FD94(r4, (int)r5);
+                r5 = (uint)2; r2 = Chunk_Get(r4, (int)r5);
                 r4 = r2;
                 r2 = Mem.U32((r4 + 0u));
                 if (r2 == 0) { r4 = r0; goto L_L0024A9E0; }
-                r5 = r0; r2 = func_0028FD94(r4, (int)r5);
+                r5 = r0; r2 = Chunk_Get(r4, (int)r5);
                 r4 = r2;
-                r5 = r0; r2 = func_0028FD94(r4, (int)r5);
+                r5 = r0; r2 = Chunk_Get(r4, (int)r5);
                 r2 = Mem.U32((r2 + 0u));
                 r2 = r2 & 32768u;
                 { bool c_ = r2 == 0; r4 = r0; if (c_) goto L_L0024A9E0; }

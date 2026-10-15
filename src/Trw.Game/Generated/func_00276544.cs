@@ -14,7 +14,7 @@ public static partial class Game
             {
                 new Rect4(r).x0_Set(new Rect4(r).x1_Set(new Vec3f(pts).x));
                 new Rect4(r).z0_Set(new Rect4(r).z1_Set(new Vec3f(pts).z));
-                func_00276580(r, (n - 1), (pts + (uint)(1 * 12)));
+                Math_BoundsOfPoints(r, (n - 1), (pts + (uint)(1 * 12)));
             }
         }
     }

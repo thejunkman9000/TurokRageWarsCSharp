@@ -14,7 +14,7 @@ public static partial class Game
             int id = 0;
             func_0029A73C();
             ok = 1;
-            id = func_0029AA08();
+            id = Menu_GetMessage();
             switch (id)
             {
             case 80:

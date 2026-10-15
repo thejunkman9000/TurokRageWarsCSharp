@@ -22,7 +22,7 @@ public static partial class Game
             t = new O06A_v29(a).unk1C8;
             v = ((t < 24) ? t : (47 - t));
             func_002A94E8();
-            func_0026925C((uint)(21));
+            Gfx_SetOtherModeL((uint)(21));
             x = new O06V_v3(new O06A_v29(a).unk40_).unk29C;
             y = new O06V_v3(new O06A_v29(a).unk40_).unk2A0;
             g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
@@ -31,7 +31,7 @@ public static partial class Game
             g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
             new O06Gfx(g).w0_Set(4194304000u);
             new O06Gfx(g).w1_Set(3758096639u);
-            func_002ABC18(103, v, (short)((int)(new O06V_v3(new O06A_v29(a).unk40_).unk2A4)), (short)((int)(new O06V_v3(new O06A_v29(a).unk40_).unk2A8)), ((x / (float)(Mem.S32(0x800E28D0u))) * 5.0f), ((y / (float)(Mem.S32(0x800E28D4u))) * 4.0f), 1);
+            Sprite_Draw(103, v, (short)((int)(new O06V_v3(new O06A_v29(a).unk40_).unk2A4)), (short)((int)(new O06V_v3(new O06A_v29(a).unk40_).unk2A8)), ((x / (float)(Mem.S32(0x800E28D0u))) * 5.0f), ((y / (float)(Mem.S32(0x800E28D4u))) * 4.0f), 1);
         }
     }
 

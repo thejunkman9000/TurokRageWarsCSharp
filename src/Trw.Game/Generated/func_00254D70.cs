@@ -14,9 +14,9 @@ public static partial class Game
             {
                 func_00255428((uint)(new B12Node(n).link.refs));
                 n = new B12Node(n).link_;
-                func_00255E78(0x8010510Cu, n, default(uint), default(uint));
+                List_Remove(0x8010510Cu, n, default(uint), default(uint));
                 new B12Node(n).unk10_Set((uint)(0));
-                func_00255C58(0x801050F8u, n);
+                List_Add(0x801050F8u, n);
             }
         }
     }

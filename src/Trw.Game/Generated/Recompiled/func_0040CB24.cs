@@ -20,7 +20,7 @@ public static partial class Game
                 r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
                 r29 = _fp + 256u;
                 L_func_0040CB24: ;
-                r6 = r0 + 24u; func_002A0E38(r4, (int)r5, (int)r6, r7);
+                r6 = r0 + 24u; Sort_Quick(r4, (int)r5, (int)r6, r7);
                 r2 = 2148859904u;
                 L_func_0040CB30: ;
                 r2 = 2148859904u;

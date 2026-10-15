@@ -87,7 +87,7 @@ public static partial class Game
                 r4 = r29 + 80u;
                 Mem.Set((r29 + 84u), Cpu.W(1)); r2 = (uint)func_002725BC(r4, Cpu.U2F(r5));
                 r4 = r16 + 92u;
-                r5 = r29 + 16u; func_002742B4(r4, r5);
+                r5 = r29 + 16u; Quat_ToMatrix(r4, r5);
                 r4 = r29 + 16u;
                 r5 = Cpu.W(20);
                 r6 = 1065353216u;
@@ -97,7 +97,7 @@ public static partial class Game
                 r7 = Mem.U32((r29 + 88u));
                 r4 = r29 + 16u; func_002734B8(r4, Cpu.U2F(r5), Cpu.U2F(r6), Cpu.U2F(r7));
                 r4 = r29 + 16u;
-                r5 = r18; func_002702EC(r4, r5);
+                r5 = r18; Math_MtxFloatToFixed(r4, r5);
                 r1 = 2148335616u;
                 Cpu.SetW(0, Mem.U32((r1 - 29768u)));
                 Cpu.SetS(0, Cpu.S(22) * Cpu.S(0));

@@ -72,7 +72,7 @@ public static partial class Game
                                     {
                                         yy = func_0022A590(0x80145040u, (int)(o));
                                         xx = Mem.S32(0x800D70E8u);
-                                        func_002398F8(0x80145088u, new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C7FD8u));
+                                        Hud_SpawnTextLineA(0x80145088u, new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C7FD8u));
                                     }
                                 }
                                 ok = t;
@@ -91,7 +91,7 @@ public static partial class Game
                                 {
                                     yy = func_0022A590(0x80145040u, (int)(o));
                                     xx = Mem.S32(0x800D70E8u);
-                                    func_002398F8((0x80145040u + (uint)72), new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C7FDCu));
+                                    Hud_SpawnTextLineA((0x80145040u + (uint)72), new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C7FDCu));
                                 }
                                 new M2St(s).unk13C_Set(1);
                             }
@@ -116,7 +116,7 @@ public static partial class Game
             }
             if (((func_002301E4(a, s) == 0) && !((new M2Act(a).flags & (uint)(1024)) != 0u)))
             {
-                func_00214178(a, s, kind);
+                Actor_DispatchEvent(a, s, kind);
             }
         }
     }

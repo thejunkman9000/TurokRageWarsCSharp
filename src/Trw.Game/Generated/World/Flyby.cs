@@ -105,7 +105,7 @@ public static partial class Game
                             r = func_0044E038(snd, _fp, id, 0x8013B2A8u);
                             Mem.Set(0x8013B2BCu, r);
                             Mem.Set(0x8013B2A4u, ((r != 0) ? 1 : 0));
-                            func_00286A78(snd, (uint)(id), (uint)(((r != 0) ? 1 : 0)), default(uint));
+                            Level_Load(snd, (uint)(id), (uint)(((r != 0) ? 1 : 0)), default(uint));
                         }
                     }
                     new B10Ctl(Mem.U32(0x800E2830u)).f5C_Set(func_0040332C());
@@ -334,7 +334,7 @@ public static partial class Game
                 Mem.Set((0x8013B878u + (uint)(1 * 4)), 1);
                 for (i = 0; (i < new B10Ctl(Mem.U32(0x800E2830u)).f1E0); ++i)
                 {
-                    func_002A9F18((new B10Ctl(Mem.U32(0x800E2830u)).ent.P + (uint)(i * 40)), half, y, 255, 1, 1, Mem.F32(0x800C88B8u), Mem.F32(0x800C88B8u));
+                    Text_Draw((new B10Ctl(Mem.U32(0x800E2830u)).ent.P + (uint)(i * 40)), half, y, 255, 1, 1, Mem.F32(0x800C88B8u), Mem.F32(0x800C88B8u));
                     t = ((float)(step) * fy);
                     fx2 = ((float)((Mem.S32(0x800E28D0u) / 284)) * Mem.F32(0x800C88BCu));
                     fy = ((float)((Mem.S32(0x800E28D4u) / 222)) * Mem.F32(0x800C88BCu));

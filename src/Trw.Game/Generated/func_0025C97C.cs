@@ -13,8 +13,8 @@ public static partial class Game
             uint n = new P3SList(l).first_;
             if ((n != 0u))
             {
-                func_00255E78(l, n, default(uint), default(uint));
-                func_00255CB4(new P3SList(l).list2.P, n, default(uint), default(uint));
+                List_Remove(l, n, default(uint), default(uint));
+                List_Append_00255CB4(new P3SList(l).list2.P, n, default(uint), default(uint));
                 new P3SNode(n).id_Set((-1));
                 new P3SNode(n).handle_Set((-1));
                 new P3SNode(n).handle_Set(func_0025DE74((int)((short)(id)), pos, a, b));

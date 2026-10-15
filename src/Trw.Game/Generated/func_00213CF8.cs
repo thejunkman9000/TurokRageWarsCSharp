@@ -36,7 +36,7 @@ public static partial class Game
                     func_00271FD8((_fp + 32u), (_fp + 32u), (_fp + 16u));
                     new ActorB(a).unk6C_Set((new ActorB(a).unk6C + ang));
                     func_00271FA4((_fp + 16u), (_fp + 16u), (_fp + 32u));
-                    func_00243A80((int)(a), Cpu.U2F(Mem.U32((_fp + 16u) + 0u)), Cpu.U2F(Mem.U32((_fp + 16u) + 4u)), Cpu.U2F(Mem.U32((_fp + 16u) + 8u)), (int)(0x80104338u));
+                    Collision_MoveActor((int)(a), Cpu.U2F(Mem.U32((_fp + 16u) + 0u)), Cpu.U2F(Mem.U32((_fp + 16u) + 4u)), Cpu.U2F(Mem.U32((_fp + 16u) + 8u)), (int)(0x80104338u));
                     Mem.Copy(new ActorB(a).vel.P, _fp, 12);
                     if ((((int)(new ActorB(t).type) == 1) && (new ActorDef(new ActorB(t).def_).type == 2)))
                     {

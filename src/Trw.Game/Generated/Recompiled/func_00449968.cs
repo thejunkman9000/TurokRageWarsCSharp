@@ -104,11 +104,11 @@ public static partial class Game
                 Mem.Set((r18 + 824u), Cpu.W(0));
                 Mem.Set((r18 + 828u), Cpu.W(0));
                 Mem.Set((r18 + 832u), Cpu.W(0));
-                Mem.Set((r18 + 1000u), r3); r2 = (uint)func_00214178(r4, r5, (int)r6);
+                Mem.Set((r18 + 1000u), r3); r2 = (uint)Actor_DispatchEvent(r4, r5, (int)r6);
                 r4 = r16;
                 r5 = r17; func_002325EC(r4, r5);
                 r4 = r18;
-                r5 = r18; r2 = func_00220A5C(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r18; r2 = Player_UpdateViewCamera(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = Mem.U32((r18 + 1500u));
                 { bool c_ = r4 == 0;  if (c_) goto L_L00449AF0; }
                 Flyby_Hook_00245854(r4);

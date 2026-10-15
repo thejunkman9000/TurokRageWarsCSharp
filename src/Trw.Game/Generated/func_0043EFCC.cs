@@ -57,7 +57,7 @@ public static partial class Game
             if ((Mem.S32(0x800E5E70u) != 5))
             {
                 Mem.Set(0x800E5E70u, 5);
-                func_002AA224((uint)((int)((new O06V_v5(d).unk30 * (new O06V_v5(d).unk34 * 255.0f)))), default(uint), default(uint), default(uint));
+                Gfx_BeginFlatColorPass((uint)((int)((new O06V_v5(d).unk30 * (new O06V_v5(d).unk34 * 255.0f)))), default(uint), default(uint), default(uint));
             }
             g1 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
             new O06Gfx(g1).w0_Set(3875536896u);
@@ -77,7 +77,7 @@ public static partial class Game
                 new O06Gfx(g3).w0_Set(4211081216u);
                 new O06Gfx(g3).w1_Set((uint)((((int)((new O06V_v5(d).unk30 * (new O06V_v5(d).unk34 * 255.0f))) & 255) | 842150400)));
             }
-            func_002ABC18(new O06A_v39(a).unk14, 0, new O06E_v2(b).unk16, new O06E_v2(b).unk1E, new O06E_v2(b).unkC, new O06E_v2(b).unk10, 1);
+            Sprite_Draw(new O06A_v39(a).unk14, 0, new O06E_v2(b).unk16, new O06E_v2(b).unk1E, new O06E_v2(b).unkC, new O06E_v2(b).unk10, 1);
         }
     }
 

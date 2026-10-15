@@ -18,7 +18,7 @@ public static partial class Game
                 if ((((int)(new S_func_0040E6FC(n).flags) & 8) != 0))
                 {
                     Mem.Copy((_fp + 104u), _fp, 40);
-                    if ((func_0040E154((_fp + 56u), (_fp + 40u), n, (new O02Ctx((_fp + 104u)).w.P + (uint)(0 * 4))) != 0))
+                    if ((UiNode_ComputeRect((_fp + 56u), (_fp + 40u), n, (new O02Ctx((_fp + 104u)).w.P + (uint)(0 * 4))) != 0))
                     {
                         if (((new O02Ctx((_fp + 104u)).w[(int)(2)] & 512) != 0))
                         {

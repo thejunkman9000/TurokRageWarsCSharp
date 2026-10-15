@@ -26,7 +26,7 @@ public static partial class Game
                 }
                 func_0029A73C();
                 new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fB48_Set(1);
-                func_00435010(k);
+                NameEntry_LetterUp(k);
                 func_0025DF54(3713);
                 return 0;
             case 4:

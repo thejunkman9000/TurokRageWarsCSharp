@@ -127,7 +127,7 @@ public static partial class Game
                 r2 = r0;
                 L_L002AC5D0: ;
                 { bool c_ = r2 == 0; r4 = (uint)15; if (c_) goto L_L002AC5F4; }
-                r4 = r17; r2 = (uint)func_0022ABF0(r4);
+                r4 = r17; r2 = (uint)Player_GetMaxHealth(r4);
                 r3 = Mem.U32((r17 + 1508u));
                 r2 = (uint)((int)r3 < (int)r2 ? 1 : 0); goto L_L002AC6C8;
                 L_L002AC5EC: ;

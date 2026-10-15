@@ -23,8 +23,8 @@ public static partial class Game
             uint entry = 0u;
             uint global = 0u;
             uint state = 0u;
-            func_00255C40(new ObjectPool(pool).active_queue.P, 5852, 5856);
-            func_00255C40(new ObjectPool(pool).object_queue.P, 5852, 5856);
+            List_Init(new ObjectPool(pool).active_queue.P, 5852, 5856);
+            List_Init(new ObjectPool(pool).object_queue.P, 5852, 5856);
             func_00264874(0);
             func_002538A8();
             global = 0x801462C8u;
@@ -42,7 +42,7 @@ public static partial class Game
             func_0022692C(pool, count);
             for (i = 0; (i < new ObjectPool(pool).count); ++i)
             {
-                func_00255CB4(new ObjectPool(pool).active_queue.P, (new ObjectPool(pool).objects_ + (uint)(i * 5864)), default(uint), default(uint));
+                List_Append_00255CB4(new ObjectPool(pool).active_queue.P, (new ObjectPool(pool).objects_ + (uint)(i * 5864)), default(uint), default(uint));
             }
             for (i = 0; (i < new ObjectPool(pool).count); ++i)
             {
@@ -111,12 +111,12 @@ public static partial class Game
                 func_0021A78C(@object);
                 new func_804499B0_de_S3(@object).unk16D4_Set(0);
                 new func_804499B0_de_S3(@object).unk16D8_Set((short)(0));
-                func_002A7F58((@object + (uint)3392), default(uint), default(uint), default(uint));
+                Mover_ClearRecord_002A7F58((@object + (uint)3392), default(uint), default(uint), default(uint));
                 if (((int)(new ObjectState96(entry).unk_78) != 0))
                 {
-                    func_00449B44(@object, (int)(new ObjectState96(entry).unk_80), 1);
-                    func_00255E78(new ObjectPool(pool).active_queue.P, @object, default(uint), default(uint));
-                    func_00255C58(new ObjectPool(pool).object_queue.P, @object);
+                    Player_InitSlot(@object, (int)(new ObjectState96(entry).unk_80), 1);
+                    List_Remove(new ObjectPool(pool).active_queue.P, @object, default(uint), default(uint));
+                    List_Add(new ObjectPool(pool).object_queue.P, @object);
                 }
                 player_index = (int)((int)(player_index) + 2);
                 attribute_offset = (int)((int)(attribute_offset) + 548);
@@ -175,10 +175,10 @@ public static partial class Game
                 func_0021A78C(@object);
                 new func_804499B0_de_S3(@object).unk16D4_Set(0);
                 new func_804499B0_de_S3(@object).unk16D8_Set((short)(0));
-                func_002A7F58((@object + (uint)3392), default(uint), default(uint), default(uint));
-                func_00449B44(@object, (int)(new ObjectState96(entry).unk_80), force_active);
-                func_00255E78(new ObjectPool(pool).active_queue.P, @object, default(uint), default(uint));
-                func_00255C58(new ObjectPool(pool).object_queue.P, @object);
+                Mover_ClearRecord_002A7F58((@object + (uint)3392), default(uint), default(uint), default(uint));
+                Player_InitSlot(@object, (int)(new ObjectState96(entry).unk_80), force_active);
+                List_Remove(new ObjectPool(pool).active_queue.P, @object, default(uint), default(uint));
+                List_Add(new ObjectPool(pool).object_queue.P, @object);
             }
             L_initialized: ;
             state = 0x801468A0u;

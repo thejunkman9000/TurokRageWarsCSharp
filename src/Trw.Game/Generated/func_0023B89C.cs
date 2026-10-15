@@ -13,8 +13,8 @@ public static partial class Game
             uint n = new Player_v3(o).listA.head_;
             if ((n != 0u))
             {
-                func_00255E78(new Player_v3(o).listA.P, n, default(uint), default(uint));
-                func_00255CB4(new Player_v3(o).listB.P, n, default(uint), default(uint));
+                List_Remove(new Player_v3(o).listA.P, n, default(uint), default(uint));
+                List_Append_00255CB4(new Player_v3(o).listB.P, n, default(uint), default(uint));
             }
             return n;
         }

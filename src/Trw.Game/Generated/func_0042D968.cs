@@ -16,12 +16,12 @@ public static partial class Game
                 return 0;
             }
             Mem.Set((0x80146894u + (uint)(0 * 4)), 0);
-            switch (func_0029AA08())
+            switch (Menu_GetMessage())
             {
             case 567:
                 if (((int)(Mem.U8((0x80146894u + (uint)(-1471)))) == 0))
                 {
-                    func_0043C458(Mem.U32(0x800E53C0u));
+                    Menu_ShowScreen_0043C458(Mem.U32(0x800E53C0u));
                     new O04ModeS53C0(Mem.U32(0x800E53C0u)).unk1C_Set(0);
                 }
                 else

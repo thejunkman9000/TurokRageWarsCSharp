@@ -26,7 +26,7 @@ public static partial class Game
                 new BrainB(b).unk10_Set(id);
                 if ((func_0020D1CC(0x8013B364u, new BrainB(b).unk4, id) == 0))
                 {
-                    func_00209874(b, 1);
+                    Ai_SetState(b, 1);
                     return;
                 }
             }
@@ -35,7 +35,7 @@ public static partial class Game
             func_00208EB0(b);
             if (((func_0027272C(new ActorB(to).pos.P, new BrainB(b).actor.pos.P) < Mem.F32(0x800C71B4u)) || (new BrainB(b).unk4 == new BrainB(b).unkC)))
             {
-                func_00209874(b, new BrainB(b).unk230);
+                Ai_SetState(b, new BrainB(b).unk230);
             }
         }
     }

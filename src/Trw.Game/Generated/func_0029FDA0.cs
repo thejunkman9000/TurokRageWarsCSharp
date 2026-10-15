@@ -14,7 +14,7 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_0029FDA0", (uint)m, _a1);
                 func_0029D6A8(_fp, (uint)(_a1));
-                func_0029DE3C(m, _fp, m);
+                Math_MtxMultiply(m, _fp, m);
             }
         }
         finally { Stack.Free(64); }

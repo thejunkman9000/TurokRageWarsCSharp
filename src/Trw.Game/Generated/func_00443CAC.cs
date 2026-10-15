@@ -13,7 +13,7 @@ public static partial class Game
             int n = func_0022A590(0x80145040u, new O06B_v2(b).unk1C);
             int h = (int)(new O06R((0x80146398u + (uint)(n * 150))).unk0);
             int s = Mem.S32(new O06X_v2(new O06A_v11(a).unk18_).unk10_);
-            func_00265904((uint)(((s - 4) + func_00442158(a))), 0x800E2730u, h, default(int));
+            Str_Sprintf((uint)(((s - 4) + func_00442158(a))), 0x800E2730u, h, default(int));
             return 0;
         }
     }

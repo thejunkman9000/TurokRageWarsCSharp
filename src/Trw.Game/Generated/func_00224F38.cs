@@ -23,7 +23,7 @@ public static partial class Game
             {
                 new Plr(a).unk650_Set((short)(12));
             }
-            func_002231B0(a, b, 0x800CE874u);
+            Player_UpdateViewTurn(a, b, 0x800CE874u);
             new Plr(a).unk730_Set(((2.0f * sinf((new Plr(a).unk658 * 0.069813177f))) * 0.0174532942f));
             new Plr(a).unk734_Set(((2.0f * sinf((new Plr(a).unk658 * 0.0872664749f))) * 0.0174532942f));
             new Plr(a).unk738_Set(((2.0f * sinf((new Plr(a).unk658 * 0.104719765f))) * 0.0174532942f));

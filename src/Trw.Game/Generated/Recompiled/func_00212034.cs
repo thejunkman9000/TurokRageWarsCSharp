@@ -32,7 +32,7 @@ public static partial class Game
                 Mem.Set((r17 + 16u), r6); r2 = (uint)func_0020D1CC(r4, (int)r5, (int)r6);
                 { bool c_ = r2 != 0; r4 = r17; if (c_) goto L_L00212064; }
                 r5 = (uint)1;
-                r2 = (uint)func_00209874(r4, (int)r5);
+                r2 = (uint)Ai_SetState(r4, (int)r5);
                 L_L00212064: ;
                 r31 = Mem.U32((r29 + 32u));
                 r19 = Mem.U32((r29 + 28u));

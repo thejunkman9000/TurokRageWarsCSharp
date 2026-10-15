@@ -20,13 +20,13 @@ public static partial class Game
                 case 2:
                     if ((Mem.S32((state + (uint)316)) == 1))
                     {
-                        func_00214178(actor, state, 5);
+                        Actor_DispatchEvent(actor, state, 5);
                     }
                     else
                     {
                         if ((Mem.S32((state + (uint)316)) == 2))
                         {
-                            func_00214178(actor, state, 9);
+                            Actor_DispatchEvent(actor, state, 9);
                         }
                         else
                         {
@@ -38,21 +38,21 @@ public static partial class Game
                     L_zero: ;
                     if ((Mem.F32((state + (uint)64)) > Mem.F32(0x800C8004u)))
                     {
-                        func_00214178(actor, state, 5);
+                        Actor_DispatchEvent(actor, state, 5);
                     }
                     else
                     {
-                        func_00214178(actor, state, 9);
+                        Actor_DispatchEvent(actor, state, 9);
                     }
                     break;
                 default:
                     if ((func_0022AB10(owner, w) == 1))
                     {
-                        func_00214178(actor, state, 7);
+                        Actor_DispatchEvent(actor, state, 7);
                     }
                     else
                     {
-                        func_00214178(actor, state, 5);
+                        Actor_DispatchEvent(actor, state, 5);
                     }
                     break;
                 }

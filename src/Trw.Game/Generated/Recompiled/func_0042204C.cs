@@ -28,14 +28,14 @@ public static partial class Game
                 r16 = 2148794368u;
                 r16 = r16 + 20616u;
                 r4 = r16;
-                r5 = r0; func_0044AFC0(r4, (int)r5);
+                r5 = r0; CameraManager_Init(r4, (int)r5);
                 r4 = r16 - 72u;
                 r5 = r0;
                 r6 = r5; func_0044A600(r4, (int)r5, (int)r6);
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
                 r5 = (uint)36;
-                r6 = r0; r2 = func_00286A78(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = r0; r2 = Level_Load(r4, r5, r6, r7); r3 = Cpu.V1;
                 r2 = (uint)func_0025471C();
                 { bool c_ = r2 != 0;  if (c_) goto L_L004220B0; }
                 r4 = (uint)1; func_0025470C((int)r4);

@@ -14,7 +14,7 @@ public static partial class Game
             uint m2 = 0u;
             uint n = 0u;
             int cnt = 0;
-            n = func_002518DC(0, (uint)(id), id, (uint)(4), 27, (uint)(0), (uint)(0), 0x800C8F90u, 1);
+            n = ResourceCache_Hash(0, (uint)(id), id, (uint)(4), 27, (uint)(0), (uint)(0), 0x800C8F90u, 1);
             cnt = Mem.S32(Mem.U32(n));
             mask = __osDisableInt();
             if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
@@ -37,7 +37,7 @@ public static partial class Game
             {
                 __osRestoreInt(m2);
             }
-            n = func_002518DC(0, (uint)(id), id, (uint)((((cnt * 4) + 15) & (~7))), 27, (uint)(0), (uint)(0), arg3, 1);
+            n = ResourceCache_Hash(0, (uint)(id), id, (uint)((((cnt * 4) + 15) & (~7))), 27, (uint)(0), (uint)(0), arg3, 1);
             Mem.Set(@out, Mem.U32(n));
             return n;
         }

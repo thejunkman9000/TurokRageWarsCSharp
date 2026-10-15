@@ -23,7 +23,7 @@ public static partial class Game
             {
                 __osRestoreInt(mask);
             }
-            n = func_00251448((uint)(0), (uint)(0), default(uint), default(uint));
+            n = ResourcePool_AllocNode((uint)(0), (uint)(0), default(uint), default(uint));
             if ((n != 0u))
             {
                 new B12Node(n).key_Set((uint)((int)(func_002555D0(0x801051A0u, (uint)(ptr), (uint)(size)))));

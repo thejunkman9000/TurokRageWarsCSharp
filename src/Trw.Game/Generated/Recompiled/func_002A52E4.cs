@@ -93,7 +93,7 @@ public static partial class Game
                 r5 = Mem.U32((r5 + 10620u));
                 r5 = r5 << 6;
                 r5 = r5 + 40u;
-                r5 = r16 + r5; func_002702EC(r4, r5);
+                r5 = r16 + r5; Math_MtxFloatToFixed(r4, r5);
                 L_L002A5438: ;
                 r2 = Mem.U32((r17 + 8u));
                 Cpu.SetW(0, Mem.U32((r2 + 8u)));

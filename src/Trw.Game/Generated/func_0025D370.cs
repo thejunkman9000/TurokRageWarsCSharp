@@ -11,10 +11,10 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0025D370", (uint)o, (uint)i);
             uint e = 0u;
-            e = func_0028FD94(new P3Anim(o).res.tab, (i * 2));
+            e = Chunk_Get(new P3Anim(o).res.tab, (i * 2));
             new P3Anim(o).f20_Set(((float)(new P3Ent(e).a) * Mem.F32(0x800C90B0u)));
             new P3Anim(o).f24_Set((float)(new P3Ent(e).b));
-            func_0028FD94(new P3Anim(o).res.tab, ((i * 2) + 1));
+            Chunk_Get(new P3Anim(o).res.tab, ((i * 2) + 1));
         }
     }
 

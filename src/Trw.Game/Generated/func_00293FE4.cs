@@ -22,8 +22,8 @@ public static partial class Game
                 func_002AB940(904, 0, _fp, (_fp + 4u));
                 if (((Mem.S32(_fp) != 0) && (Mem.S32((_fp + 4u)) != 0)))
                 {
-                    func_002AA224((uint)(250), default(uint), default(uint), default(uint));
-                    func_002ABC18(904, 0, (short)(0), (short)(0), ((float)(Mem.S32(0x800E28D0u)) / (float)(Mem.S32(_fp))), ((float)(Mem.S32(0x800E28D4u)) / (float)(Mem.S32((_fp + 4u)))), 1);
+                    Gfx_BeginFlatColorPass((uint)(250), default(uint), default(uint), default(uint));
+                    Sprite_Draw(904, 0, (short)(0), (short)(0), ((float)(Mem.S32(0x800E28D0u)) / (float)(Mem.S32(_fp))), ((float)(Mem.S32(0x800E28D4u)) / (float)(Mem.S32((_fp + 4u)))), 1);
                 }
             }
         }

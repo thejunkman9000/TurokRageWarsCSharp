@@ -11,15 +11,15 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00445B98", (uint)a, (uint)b);
             int v = (int)(Mem.U8((0x801462E0u + (uint)0)));
-            v = func_0044252C((uint)(b), v, 8, 0, 255, 0);
+            v = MenuSpinner_Step((uint)(b), v, 8, 0, 255, 0);
             if ((v == 247))
             {
                 v = 248;
             }
             Mem.Set((0x801462E0u + (uint)0), (byte)(v));
-            if ((func_0025E2E4() <= 0))
+            if ((Audio_IsSoundOn() <= 0))
             {
-                func_0025E2F4(1);
+                Audio_PlayCue(1);
             }
             return 0;
         }

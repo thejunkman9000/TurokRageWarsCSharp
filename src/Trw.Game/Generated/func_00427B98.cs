@@ -28,7 +28,7 @@ public static partial class Game
                 new O04V3(_fp).x_Set(new O04Tbl70((0x800E3A58u + (uint)(k * 112))).unk4);
                 new O04V3(_fp).y_Set(new O04Tbl70((0x800E3A58u + (uint)(k * 112))).unk4);
                 new O04V3(_fp).z_Set(new O04Tbl70((0x800E3A58u + (uint)(k * 112))).unk4);
-                func_0041CB48(new O04ModeS4690(Mem.U32(0x800E4690u)).unk20.P, 9, ((int)(new O04Ent96j(e).unk80) + 911), 75, 24000, _fp, new O04Tbl70((0x800E3A58u + (uint)(k * 112))).unk24.P, new O04Tbl70((0x800E3A58u + (uint)(k * 112))).unk14, new O04Tbl70((0x800E3A58u + (uint)(k * 112))).unk54);
+                Portrait_CreateActor(new O04ModeS4690(Mem.U32(0x800E4690u)).unk20.P, 9, ((int)(new O04Ent96j(e).unk80) + 911), 75, 24000, _fp, new O04Tbl70((0x800E3A58u + (uint)(k * 112))).unk24.P, new O04Tbl70((0x800E3A58u + (uint)(k * 112))).unk14, new O04Tbl70((0x800E3A58u + (uint)(k * 112))).unk54);
             }
         }
         finally { Stack.Free(12); }

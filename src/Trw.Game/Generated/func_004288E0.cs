@@ -32,7 +32,7 @@ public static partial class Game
                     id = 335;
                     break;
                 }
-                func_0040E958((uint)((int)(func_0040ECB0((uint)((int)(func_0040ECB0((uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unk970), (uint)(id), default(uint), default(uint)))), (uint)(331), default(uint), default(uint)))), 1);
+                func_0040E958((uint)((int)(UiTree_FindNode((uint)((int)(UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unk970), (uint)(id), default(uint), default(uint)))), (uint)(331), default(uint), default(uint)))), 1);
             }
         }
     }

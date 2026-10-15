@@ -84,7 +84,7 @@ public static partial class Game
                 }
                 if (((new B09BodyDef(d).flags & (uint)(16384)) != 0u))
                 {
-                    func_00242BE0(m, default(uint), default(uint), default(uint));
+                    Collision_GatherRayHits(m, default(uint), default(uint), default(uint));
                 }
                 if (((new B09BodyDef(d).flags & (uint)(524288)) != 0u))
                 {

@@ -33,7 +33,7 @@ public static partial class Game
                 r2 = Mem.U32((r3 + 0u));
                 { bool c_ = r2 == 0;  if (c_) goto L_L0023499C; }
                 r4 = Mem.U32((r3 + 108u));
-                r5 = r0; r2 = func_0028FD94(r4, (int)r5);
+                r5 = r0; r2 = Chunk_Get(r4, (int)r5);
                 r5 = r2 + 8u; goto L_L00234424;
                 L_L00234408: ;
                 r4 = 2148663296u;

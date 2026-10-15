@@ -3,9 +3,9 @@ using Trw.Platform;
 namespace Trw.Game;
 
 /// <summary>
-/// Native FPS mouse look, the port of the C port's native_controls (port/overrides/func_002231B0.c there): the mouse turns the player's view by exactly the motion
+/// Native FPS mouse look, the port of the C port's native_controls (port/overrides/Player_UpdateViewTurn.c there): the mouse turns the player's view by exactly the motion
 /// and sets the view tilt to an absolute, 1:1 pitch, instead of being converted into analogue-stick values (whose cubic turn rate, dead zone and speed cap the
-/// stick path imitates). Called from the game's view update func_002231B0 (tools/overrides/func_002231B0.c): <see cref="trw_mouse_reset"/> at its start,
+/// stick path imitates). Called from the game's view update Player_UpdateViewTurn (tools/overrides/Player_UpdateViewTurn.c): <see cref="trw_mouse_reset"/> at its start,
 /// <see cref="trw_mouse_look"/> after the game's own turn / tilt.
 /// <para>Determinism (netplay): the motion is latched with each controller read (<see cref="Host.ReadMouse"/>, part of the controller sample and of the netplay
 /// frame) and consumed by the view update on the game thread; the pitch kept per controller slot is derived from that input only.</para>
@@ -57,7 +57,7 @@ public static partial class Game
         return (int)(off / CtlStride) - 1;
     }
 
-    /// <summary>Start of func_002231B0: dead or in a cut-scene (the view update is skipped) - the next life starts with a level view.</summary>
+    /// <summary>Start of Player_UpdateViewTurn: dead or in a cut-scene (the view update is skipped) - the next life starts with a level view.</summary>
     public static void trw_mouse_reset(uint p)
     {
         if (Mem.S32(p + 0x11B4) == 0 && !(Mem.F32(p + 0x11D8) > 0f)) return;
@@ -65,7 +65,7 @@ public static partial class Game
         if (sl >= -1) { lookPitch[sl + 1] = 0; TakeLatched(Math.Max(sl, 0), out _, out _); }
     }
 
-    /// <summary>After the game's own turn and tilt in func_002231B0 (p = player record, a = actor, input = the pad output, h = what the actor stands on).</summary>
+    /// <summary>After the game's own turn and tilt in Player_UpdateViewTurn (p = player record, a = actor, input = the pad output, h = what the actor stands on).</summary>
     public static void trw_mouse_look(uint p, uint a, uint input, uint h)
     {
         int sl = HumanSlot(p);

@@ -32,11 +32,11 @@ public static partial class Game
                 Mem.Set(0x8014AED4u, 0u);
                 Mem.Set(0x8014AED8u, 0u);
                 Mem.Set(0x8014AED0u, 0u);
-                v0 = (int)(func_0028FE1C((uint)(new B21Ctx(c).unk50), (uint)(new B21Ctx(c).unk20), new B21RecX(0x8014AEBCu).unk0, _fp));
-                obj = func_002518DC(0, (uint)((v0 - 1)), v0, (uint)(Mem.S32(_fp)), 9, (uint)((-1)), 0x00295B90u, 0x800CA5D0u, 1);
+                v0 = (int)(Resource_GetCartridgeKey((uint)(new B21Ctx(c).unk50), (uint)(new B21Ctx(c).unk20), new B21RecX(0x8014AEBCu).unk0, _fp));
+                obj = ResourceCache_Hash(0, (uint)((v0 - 1)), v0, (uint)(Mem.S32(_fp)), 9, (uint)((-1)), 0x00295B90u, 0x800CA5D0u, 1);
                 s3 = Mem.U32(obj);
-                s2 = func_0028FD94(s3, 1);
-                s5 = func_0028FD94(s3, 2);
+                s2 = Chunk_Get(s3, 1);
+                s5 = Chunk_Get(s3, 2);
                 while ((new B21RecX(0x8014AEBCu).unk4 < 0))
                 {
                     new B21RecX(0x8014AEBCu).unk4_Set((int)((int)(new B21RecX(0x8014AEBCu).unk4) + Mem.S32(s2)));
@@ -44,16 +44,16 @@ public static partial class Game
                 s4 = (new B21RecX(0x8014AEBCu).unk4 % Mem.S32(s2));
                 s0 = (new B21RecX(0x8014AEBCu).unk4 % Mem.S32(s5));
                 new B21RecX(0x8014AEBCu).unk10_Set(obj);
-                new B21RecX(0x8014AEBCu).unk18__Set(func_0028FD94(s2, s4));
-                new B21RecX(0x8014AEBCu).unk1C__Set(func_0028FD94(s5, s0));
-                new B21RecX(0x8014AEBCu).unk14__Set(func_0028FD94(s3, 0));
+                new B21RecX(0x8014AEBCu).unk18__Set(Chunk_Get(s2, s4));
+                new B21RecX(0x8014AEBCu).unk1C__Set(Chunk_Get(s5, s0));
+                new B21RecX(0x8014AEBCu).unk14__Set(Chunk_Get(s3, 0));
                 new B21RecX(0x8014AEBCu).unkC_Set(0);
                 new B21RecX(0x8014AEBCu).unk2120__Set(s3);
                 new B21RecX(0x8014AEBCu).unk2124__Set(s2);
                 new B21RecX(0x8014AEBCu).unk2128__Set(s5);
                 if ((Mem.S32(s3) == 4))
                 {
-                    s1 = func_0028FD94(s3, 3);
+                    s1 = Chunk_Get(s3, 3);
                     i = 0;
                     while ((i < (int)(strlen(s1))))
                     {

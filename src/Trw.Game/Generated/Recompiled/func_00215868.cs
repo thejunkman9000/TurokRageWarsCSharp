@@ -83,7 +83,7 @@ public static partial class Game
                 fcc = Cpu.S(2) < Cpu.S(12);
                 if (fcc) { Cpu.SetS(12, Cpu.S(2)); goto L_L00215984; }
                 L_L00215984: ;
-                Cpu.SetS(0, func_00274640(Cpu.S(12)));
+                Cpu.SetS(0, Math_Acosf(Cpu.S(12)));
                 Cpu.SetS(1, Cpu.S(22) * Cpu.S(24));
                 Cpu.SetS(2, Cpu.S(21) * Cpu.S(20));
                 Cpu.SetS(1, Cpu.S(1) + Cpu.S(2));

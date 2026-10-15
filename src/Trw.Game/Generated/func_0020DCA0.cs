@@ -16,7 +16,7 @@ public static partial class Game
             {
                 v = func_0020DD04(new B2Ctl(ctl).owner.def.info.P);
                 new B2Ctl(ctl).unk230_Set(v);
-                func_00209874(ctl, v);
+                Ai_SetState(ctl, v);
             }
         }
     }

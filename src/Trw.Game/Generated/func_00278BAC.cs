@@ -21,7 +21,7 @@ public static partial class Game
             int iy = 0;
             int iz = 0;
             uint wp = 0u;
-            r = func_0028FD94((uint)(a), 1);
+            r = Chunk_Get((uint)(a), 1);
             if ((new RecW(r).u4 != 0))
             {
                 wp = new RecW(r).w.P;

@@ -68,9 +68,9 @@ public static partial class Game
             case 3:
                 lo = (-0.512000024f);
                 hi = 0.512000024f;
-                new M1State(state).unk128.f_Set(func_00274B00(lo, hi));
-                new M1State(state).unk12C.f_Set(func_00274B00(lo, hi));
-                new M1State(state).vec130.x_Set(func_00274B00(lo, hi));
+                new M1State(state).unk128.f_Set(Random_Symmetric(lo, hi));
+                new M1State(state).unk12C.f_Set(Random_Symmetric(lo, hi));
+                new M1State(state).vec130.x_Set(Random_Symmetric(lo, hi));
                 new M1State(state).f44_Set((new M1State(state).f44 + Mem.F32(0x800D2988u)));
                 if ((45.0f < new M1State(state).f44))
                 {
@@ -125,7 +125,7 @@ public static partial class Game
                 }
                 if ((new M1Info(info).f5C > 0.0f))
                 {
-                    new M1State(state).unk12C.f_Set(((-new M1Info(info).f58) * func_00265734((new M1State(state).f44 / new M1Info(info).f5C))));
+                    new M1State(state).unk12C.f_Set(((-new M1Info(info).f58) * Emitter_Falloff_00265734((new M1State(state).f44 / new M1Info(info).f5C))));
                 }
                 else
                 {
@@ -144,7 +144,7 @@ public static partial class Game
                 }
                 if ((new M1Info(info).f5C > 0.0f))
                 {
-                    new M1State(state).unk12C.f_Set(((-new M1Info(info).f58) * func_00265734((new M1State(state).f44 / new M1Info(info).f5C))));
+                    new M1State(state).unk12C.f_Set(((-new M1Info(info).f58) * Emitter_Falloff_00265734((new M1State(state).f44 / new M1Info(info).f5C))));
                 }
                 else
                 {
@@ -158,7 +158,7 @@ public static partial class Game
                 }
                 if ((new M1Info(info).f5C > 0.0f))
                 {
-                    new M1State(state).unk12C.f_Set(((-new M1Info(info).f58) * func_00265734((new M1State(state).f44 / new M1Info(info).f5C))));
+                    new M1State(state).unk12C.f_Set(((-new M1Info(info).f58) * Emitter_Falloff_00265734((new M1State(state).f44 / new M1Info(info).f5C))));
                 }
                 else
                 {

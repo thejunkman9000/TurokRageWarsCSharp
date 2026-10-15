@@ -38,7 +38,7 @@ public static partial class Game
             if ((((int)(Mem.U8(0x800D0E50u)) != 0) && (new B14Ctl(c).f0 != 0)))
             {
                 func_00264268_b14_lock(1);
-                func_00263760();
+                Pad_ReadController_00263760();
                 Mem.Set(0x8010FBB8u, (sbyte)(2));
                 new B14Ctl(c).fCC_Set(0);
                 Mem.Set(new B14Ctl(c).fD0.P, 0);

@@ -63,7 +63,7 @@ public static partial class Game
                 i = (int)(y);
                 if (((double)(i) == y))
                 {
-                    w = (func_0029BD38((-x)) * y);
+                    w = (Math_Log((-x)) * y);
                     if (((i & 1) != 0))
                     {
                         return (-func_0029BEA4_Exp_(w));
@@ -76,10 +76,10 @@ public static partial class Game
                 {
                     return ((-1.0) / 0.0);
                 }
-                w = (func_0029BD38((-x)) * y);
+                w = (Math_Log((-x)) * y);
                 return (-func_0029BEA4_Exp_(w));
             }
-            w = (func_0029BD38(x) * y);
+            w = (Math_Log(x) * y);
             return func_0029BEA4_Exp_(w);
         }
     }

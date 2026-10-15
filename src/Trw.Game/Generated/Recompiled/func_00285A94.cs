@@ -33,14 +33,14 @@ public static partial class Game
                 r4 = r18;
                 r5 = r0;
                 r6 = (uint)4;
-                r20 = r2; func_00255C40(r4, (int)r5, (int)r6);
+                r20 = r2; List_Init(r4, (int)r5, (int)r6);
                 r4 = r18 + 20u;
                 r5 = r0;
-                r6 = (uint)4; func_00255C40(r4, (int)r5, (int)r6);
+                r6 = (uint)4; List_Init(r4, (int)r5, (int)r6);
                 { bool c_ = (int)r19 <= 0; r16 = r0; if (c_) goto L_L00285B08; }
                 L_L00285AEC: ;
                 r4 = r18;
-                r5 = r17; r2 = func_00255CB4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r17; r2 = List_Append_00255CB4(r4, r5, r6, r7); r3 = Cpu.V1;
                 r16 = r16 + 1u;
                 r2 = (uint)((int)r16 < (int)r19 ? 1 : 0);
                 { bool c_ = r2 != 0; r17 = r17 + 60u; if (c_) goto L_L00285AEC; }

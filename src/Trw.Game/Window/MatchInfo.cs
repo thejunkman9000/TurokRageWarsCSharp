@@ -4,7 +4,7 @@ namespace Trw.Game;
 
 /// <summary>
 /// Read-only view of the game's match data in guest RAM, for the presentation layer (local view, scoreboard). Never writes guest memory.
-/// Layout (decompiled C: func_00235AD0 per-view setup, func_0021EED8 HUD, func_0022804C frag-limit check, results-screen formatters func_00443B08..CAC):
+/// Layout (decompiled C: View_SetupViewport per-view setup, Hud_DrawPlayer HUD, Match_CheckFragLimit frag-limit check, results-screen formatters Results_FormatStats_00443B08..CAC):
 /// <list type="bullet">
 /// <item>player actors: list head <c>D_80145060</c>, next pointer at +0x16E0, the score record pointer at +0x5D8 and the controller object at +0x698
 /// (controller objects are 0x224 bytes from 0x8010F328: port = (ptr - 0x8010F328) / 0x224; bots have none).</item>
@@ -16,7 +16,7 @@ internal static class MatchInfo
 {
     public const uint PlayerListHead = 0x80145060, RosterBase = 0x80146398, RosterStride = 0x96, ControllerBase = 0x8010F328, ControllerStride = 0x224;
     public const uint ActNext = 0x16E0, ActStats = 0x5D8, ActPad = 0x698;
-    /// <summary>Offsets in a score record (s16 unless noted). Frags: compared with the frag limit (func_0022804C) and shown by the HUD (func_0021EED8).</summary>
+    /// <summary>Offsets in a score record (s16 unless noted). Frags: compared with the frag limit (Match_CheckFragLimit) and shown by the HUD (Hud_DrawPlayer).</summary>
     public static class Fields { public const uint Frags = 0x04, Deaths = 0x02, Suicides = 0x00, Name = 0x84 /* char[11] */, Team = 0x92 /* u8 */; }
 
     public struct Player
@@ -61,7 +61,7 @@ internal static class MatchInfo
     }
 
     /// <summary>The cameras of the match (the game's split-screen views), in drawing order: list head at 0x801450A8 (D_80145088 + 0x20, walked by
-    /// func_00236F0C, which runs the per-view setup func_00235AD0 for each), next pointer at +4, view rectangle f32 width/height/x/y at +0x29C.</summary>
+    /// View_UpdateAll, which runs the per-view setup View_SetupViewport for each), next pointer at +4, view rectangle f32 width/height/x/y at +0x29C.</summary>
     public static List<(uint Cam, float X, float Y, float W, float H)> Views()
     {
         var list = new List<(uint, float, float, float, float)>();

@@ -32,7 +32,7 @@ public static partial class Game
                         new B04O6(o).unk3_Set(new B04O6(o).stats.unk81);
                     }
                 }
-                func_0028B250(0x8011FE88u, o, a2, new B04O6(o).unk86C);
+                Sound_StartForActor(0x8011FE88u, o, a2, new B04O6(o).unk86C);
                 g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
                 new DlCmd(g).w0_Set(3875536896u);
                 new DlCmd(g).w1_Set((uint)(0));

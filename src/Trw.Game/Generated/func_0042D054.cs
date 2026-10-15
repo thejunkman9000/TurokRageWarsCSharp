@@ -16,7 +16,7 @@ public static partial class Game
                 uint o = 0u;
                 if ((new O04ModeS53C0(Mem.U32(0x800E53C0u)).unk32C != (-1)))
                 {
-                    o = func_0040ECB0((uint)(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unkE0), (uint)(616), default(uint), default(uint));
+                    o = UiTree_FindNode((uint)(new O04ModeS53C0(Mem.U32(0x800E53C0u)).unkE0), (uint)(616), default(uint), default(uint));
                     func_0040E958(o, 1);
                     new O04Sub2C(o).unk10_Set((byte)(175));
                     new O04Sub2C(o).unk38_Set(Mem.S32(0x800D752Cu));

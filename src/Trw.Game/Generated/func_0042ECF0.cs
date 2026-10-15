@@ -12,11 +12,11 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0042ECF0");
             if ((new O04Cfg(0x801462C8u).unkD != 0))
             {
-                func_0042EF50((float)(new O04ModeS4680(Mem.U32(0x800E4680u)).u24), 0, (int)(new O04ModeS4680(Mem.U32(0x800E4680u)).u21), (int)(new O04ModeS4680(Mem.U32(0x800E4680u)).u23), 1, 0, 0);
+                MatchSetup_ApplySettings((float)(new O04ModeS4680(Mem.U32(0x800E4680u)).u24), 0, (int)(new O04ModeS4680(Mem.U32(0x800E4680u)).u21), (int)(new O04ModeS4680(Mem.U32(0x800E4680u)).u23), 1, 0, 0);
             }
             else
             {
-                func_0042EF50((float)(new O04Cfg(0x801462C8u).s24), 0, (int)(new O04Cfg(0x801462C8u).s27), (int)(new O04Cfg(0x801462C8u).s26), 1, 0, 0);
+                MatchSetup_ApplySettings((float)(new O04Cfg(0x801462C8u).s24), 0, (int)(new O04Cfg(0x801462C8u).s27), (int)(new O04Cfg(0x801462C8u).s26), 1, 0, 0);
             }
             func_0044EACC(0x8011FAC0u, func_0042F014());
         }

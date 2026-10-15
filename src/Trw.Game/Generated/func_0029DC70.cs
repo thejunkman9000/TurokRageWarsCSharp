@@ -69,12 +69,12 @@ public static partial class Game
             c = func_0029C9FC((a + 1.57079637f));
             if (((0.0f < c) || (c < 0.0f)))
             {
-                e1 = func_0029D044(Mem.F32((m + (uint)(6 * 4))), Mem.F32((m + (uint)(10 * 4))));
-                e2 = func_0029D044(Mem.F32((m + (uint)(1 * 4))), Mem.F32((m + (uint)(0 * 4))));
+                e1 = Math_Atan2(Mem.F32((m + (uint)(6 * 4))), Mem.F32((m + (uint)(10 * 4))));
+                e2 = Math_Atan2(Mem.F32((m + (uint)(1 * 4))), Mem.F32((m + (uint)(0 * 4))));
             }
             else
             {
-                e1 = func_0029D044((-Mem.F32((m + (uint)(9 * 4)))), Mem.F32((m + (uint)(5 * 4))));
+                e1 = Math_Atan2((-Mem.F32((m + (uint)(9 * 4)))), Mem.F32((m + (uint)(5 * 4))));
                 e2 = 0.0f;
             }
             new Vec3f(@out).x_Set(e1);

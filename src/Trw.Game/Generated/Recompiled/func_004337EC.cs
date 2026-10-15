@@ -323,7 +323,7 @@ public static partial class Game
                 L_I00433ABC: ;
                 { bool c_ = r21 == 0; r2 = (uint)(r19 < (uint)(6) ? 1 : 0); if (c_) goto L_L00433850; }
                 L_I00433AC4: ;
-                r4 = r17; r2 = func_00432488(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r17; r2 = PlayerMenu_RefreshPanel(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I00433ACC: ;
                 r31 = Mem.U32((r29 + 48u));
                 L_I00433AD0: ;

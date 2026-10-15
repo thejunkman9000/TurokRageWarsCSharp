@@ -36,7 +36,7 @@ public static partial class Game
                 r3 = Mem.U32((r16 + 20u));
                 { bool c_ = r3 == 0; r18 = r2; if (c_) goto L_L00247130; }
                 r4 = r29 + 16u;
-                r5 = r16; r2 = func_0024D860(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r16; r2 = Player_GetBodyLean(r4, r5, r6, r7); r3 = Cpu.V1;
                 r2 = Mem.U32((r16 + 20u));
                 r2 = Mem.U16((r2 + 2u));
                 r4 = r16;
@@ -86,7 +86,7 @@ public static partial class Game
                 L_L00247120: ;
                 r5 = Cpu.W(0);
                 r6 = r4;
-                r7 = r29 + 16u; func_00270D40(r4, Cpu.U2F(r5), r6, r7);
+                r7 = r29 + 16u; Quat_Blend(r4, Cpu.U2F(r5), r6, r7);
                 L_L00247130: ;
                 r31 = Mem.U32((r29 + 48u));
                 r19 = Mem.U32((r29 + 44u));

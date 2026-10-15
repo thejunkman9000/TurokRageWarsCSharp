@@ -37,7 +37,7 @@ public static partial class Game
                 r4 = r16;
                 r6 = 2148335616u;
                 r6 = r6 - 6004u;
-                r5 = r17; func_002231B0(r4, r5, r6);
+                r5 = r17; Player_UpdateViewTurn(r4, r5, r6);
                 r4 = r16;
                 r6 = 2148335616u;
                 r6 = r6 - 5980u;

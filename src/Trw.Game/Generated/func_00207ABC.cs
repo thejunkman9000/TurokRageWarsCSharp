@@ -35,7 +35,7 @@ public static partial class Game
             {
                 if ((new B01State(state).unk40 >= new B01Info(info).unk4C))
                 {
-                    func_00214178(actor, state, 1);
+                    Actor_DispatchEvent(actor, state, 1);
                 }
             }
             else

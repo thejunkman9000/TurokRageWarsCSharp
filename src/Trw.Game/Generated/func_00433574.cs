@@ -28,14 +28,14 @@ public static partial class Game
                         new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].fB4C_Set((int)(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].fB4C + 1));
                         if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].fB4C >= 6))
                         {
-                            func_004350D0(i);
+                            NameEntry_LetterDown(i);
                         }
                         break;
                     case 1:
                         new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].fB4C_Set((int)(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].fB4C + 1));
                         if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].fB4C >= 6))
                         {
-                            func_00435010(i);
+                            NameEntry_LetterUp(i);
                         }
                         break;
                     case 2:

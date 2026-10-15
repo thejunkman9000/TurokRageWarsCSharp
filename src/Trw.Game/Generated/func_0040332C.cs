@@ -46,7 +46,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0040332C");
             int any = 0;
             int i = 0;
-            uint n = func_0028FD94(new O01Ctx(Mem.U32(0x800E2830u)).tree, 2);
+            uint n = Chunk_Get(new O01Ctx(Mem.U32(0x800E2830u)).tree, 2);
             int cnt = new O01Node(n).unk4;
             uint ents = (n + (uint)8);
             uint e = 0u;

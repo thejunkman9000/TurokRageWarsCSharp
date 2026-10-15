@@ -13,10 +13,10 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 40); ++i)
             {
-                func_0040E958((uint)((int)(func_0040ECB0(new O04ModeF60(Mem.U32(0x800E4F60u)).unk0, (uint)((int)(new O04Ent16((0x800E4F64u + (uint)(i * 16))).unk2)), default(uint), default(uint)))), 0);
+                func_0040E958((uint)((int)(UiTree_FindNode(new O04ModeF60(Mem.U32(0x800E4F60u)).unk0, (uint)((int)(new O04Ent16((0x800E4F64u + (uint)(i * 16))).unk2)), default(uint), default(uint)))), 0);
                 if ((Mem.S32(new O04Ent16((0x800E4F64u + (uint)(i * 16))).u4.P) != (-1)))
                 {
-                    func_0040E958((uint)((int)(func_0040ECB0(new O04ModeF60(Mem.U32(0x800E4F60u)).unk0, (uint)((int)(Mem.U16((new O04Ent16((0x800E4F64u + (uint)(i * 16))).u4.P + 2u)))), default(uint), default(uint)))), 0);
+                    func_0040E958((uint)((int)(UiTree_FindNode(new O04ModeF60(Mem.U32(0x800E4F60u)).unk0, (uint)((int)(Mem.U16((new O04Ent16((0x800E4F64u + (uint)(i * 16))).u4.P + 2u)))), default(uint), default(uint)))), 0);
                 }
             }
         }

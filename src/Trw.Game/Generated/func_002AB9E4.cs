@@ -17,8 +17,8 @@ public static partial class Game
             g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
             new DlCmd(g).w0_Set(3808430593u);
             new DlCmd(g).w1_Set((uint)(0));
-            func_0026925C((uint)(21));
-            func_00268CE0((uint)(25));
+            Gfx_SetOtherModeL((uint)(21));
+            Gfx_SetCombineMode((uint)(25));
         }
     }
 

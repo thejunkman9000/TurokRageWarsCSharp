@@ -13,7 +13,7 @@ public static partial class Game
             if ((((c >> (int)16) == (uint)(3)) && (d == 2)))
             {
                 func_0029A73C();
-                switch (func_0029AA08())
+                switch (Menu_GetMessage())
                 {
                 case 867:
                     func_002A2B24((uint)(new O04S4EF0c(Mem.U32(0x800E4EF0u)).unk24), 0);

@@ -21,8 +21,8 @@ public static partial class Game
                 {
                     func_0025E194(new SndListNode(n).id);
                     Mem.Set(0x800D0D54u, new SndListNode(n).id);
-                    func_00255E78((l + 20u), n, default(uint), default(uint));
-                    func_00255CB4(l, n, default(uint), default(uint));
+                    List_Remove((l + 20u), n, default(uint), default(uint));
+                    List_Append_00255CB4(l, n, default(uint), default(uint));
                     return 1;
                 }
             }

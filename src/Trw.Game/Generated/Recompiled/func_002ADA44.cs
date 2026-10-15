@@ -39,7 +39,7 @@ public static partial class Game
                 r4 = r16; r2 = (uint)func_0024E914(r4);
                 r4 = r17;
                 r5 = r16;
-                r6 = r2; r2 = func_002AC6DC(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = r2; r2 = Pickup_DispatchEffect(r4, r5, r6, r7); r3 = Cpu.V1;
                 { bool c_ = r2 == 0;  if (c_) goto L_L002ADAF4; }
                 r2 = Mem.U16((r16 + 412u));
                 r2 = r2 | 1u;
@@ -51,7 +51,7 @@ public static partial class Game
                 L_L002ADAD4: ;
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
-                r6 = (uint)1; func_0028B874(r4, r5, (int)r6);
+                r6 = (uint)1; PropTree_SetBit(r4, r5, (int)r6);
                 r4 = Mem.U32((r16 + 20u));
                 r5 = (uint)1024;
                 r6 = r17; func_00278E74(r4, (int)r5, (int)r6);

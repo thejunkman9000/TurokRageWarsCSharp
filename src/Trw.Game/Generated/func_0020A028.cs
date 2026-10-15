@@ -72,7 +72,7 @@ public static partial class Game
                 lim = Mem.F32(0x800C6DFCu);
             }
             a = new B2Ctl(ctl).target.owner_;
-            if (!(lim < func_00216F44(new B2Ctl(ctl).owner_, C.Tmp(Cpu.F2U(new B2Actor(a).pos.x), Cpu.F2U(new B2Actor(a).pos.y), Cpu.F2U(new B2Actor(a).pos.z)))))
+            if (!(lim < Actor_AngleToPoint(new B2Ctl(ctl).owner_, C.Tmp(Cpu.F2U(new B2Actor(a).pos.x), Cpu.F2U(new B2Actor(a).pos.y), Cpu.F2U(new B2Actor(a).pos.z)))))
             {
                 new B2Ctl(ctl).unk23C_Set(1);
                 new B2Ctl(ctl).unk2E4_Set(nv);

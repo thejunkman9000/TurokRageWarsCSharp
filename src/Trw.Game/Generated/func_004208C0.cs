@@ -33,7 +33,7 @@ public static partial class Game
                 do
                 {
                     id = new O3Row((0x800E3A50u + (uint)((Random_Next() % 17) * 112))).f0;
-                    if (((func_0040EC50((uint)((int)(func_0040ECB0((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((id & 65535)), default(uint), default(uint))))) != 0) || (new O3Pj(func_004208C0_pj(idx)).f10 == id)))
+                    if (((func_0040EC50((uint)((int)(UiTree_FindNode((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((id & 65535)), default(uint), default(uint))))) != 0) || (new O3Pj(func_004208C0_pj(idx)).f10 == id)))
                     {
                         ++tries;
                         if ((tries >= 5001))
@@ -54,7 +54,7 @@ public static partial class Game
                 new O3Vec3(_fp).x_Set(new O3Row((0x800E3A50u + (uint)(row * 112))).fC[(int)(idx)]);
                 new O3Vec3(_fp).y_Set(new O3Row((0x800E3A50u + (uint)(row * 112))).fC[(int)(idx)]);
                 new O3Vec3(_fp).z_Set(new O3Row((0x800E3A50u + (uint)(row * 112))).fC[(int)(idx)]);
-                func_0041CB48(new O3Pj((uint)(((idx * 1224) + (int)(Mem.U32(0x800E42D0u))))).sub.P, 9, (ch + 911), 75, 24000, _fp, (new O3Row((0x800E3A50u + (uint)(row * 112))).v2C.P + (uint)(idx * 12)), new O3Row((0x800E3A50u + (uint)(row * 112))).f1C[(int)(idx)], new O3Row((0x800E3A50u + (uint)(row * 112))).f5C[(int)(idx)]);
+                Portrait_CreateActor(new O3Pj((uint)(((idx * 1224) + (int)(Mem.U32(0x800E42D0u))))).sub.P, 9, (ch + 911), 75, 24000, _fp, (new O3Row((0x800E3A50u + (uint)(row * 112))).v2C.P + (uint)(idx * 12)), new O3Row((0x800E3A50u + (uint)(row * 112))).f1C[(int)(idx)], new O3Row((0x800E3A50u + (uint)(row * 112))).f5C[(int)(idx)]);
                 n = (int)(Mem.U8((0x80102B57u + (uint)(ch + (idx * 400)))));
                 if ((n <= 0))
                 {

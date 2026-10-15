@@ -14,7 +14,7 @@ public static partial class Game
             uint m2 = 0u;
             uint n = 0u;
             int cnt = 0;
-            n = func_002518DC(0, (uint)(id), id, (uint)(4), 0, (uint)(0), (uint)(0), 0x800C8F90u, arg4);
+            n = ResourceCache_Hash(0, (uint)(id), id, (uint)(4), 0, (uint)(0), (uint)(0), 0x800C8F90u, arg4);
             if (!(n != 0u))
             {
                 return 0u;
@@ -41,7 +41,7 @@ public static partial class Game
             {
                 __osRestoreInt(m2);
             }
-            n = func_002518DC(0, (uint)(id), id, (uint)((((cnt * 4) + 15) & (~7))), 0, (uint)(0), (uint)(0), arg3, arg4);
+            n = ResourceCache_Hash(0, (uint)(id), id, (uint)((((cnt * 4) + 15) & (~7))), 0, (uint)(0), (uint)(0), arg3, arg4);
             if (!(n != 0u))
             {
                 return 0u;

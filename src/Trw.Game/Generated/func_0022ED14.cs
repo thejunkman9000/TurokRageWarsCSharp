@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022ED14");
-            func_0044A4C0(Mem.U32(0x80102A48u));
+            Player_Respawn(Mem.U32(0x80102A48u));
         }
     }
 

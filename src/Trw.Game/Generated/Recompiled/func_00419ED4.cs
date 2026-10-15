@@ -26,11 +26,11 @@ public static partial class Game
                 Mem.Set((r29 + 24u), r18);
                 r18 = r5;
                 Mem.Set((r29 + 28u), r31);
-                Mem.Set((r29 + 20u), r17); r2 = (uint)func_0029A958();
+                Mem.Set((r29 + 20u), r17); r2 = (uint)Ui_PushScreen();
                 r4 = r2; r2 = func_00411E4C((int)r4);
                 r4 = r2;
-                r5 = r16 & 65535u; r2 = func_0040ECB0(r4, r5, r6, r7); r3 = Cpu.V1;
-                r17 = r2; r2 = (uint)func_0029A958();
+                r5 = r16 & 65535u; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r17 = r2; r2 = (uint)Ui_PushScreen();
                 r4 = r2; r2 = func_00411E4C((int)r4);
                 r4 = (uint)136; r2 = func_00252FFC(r4);
                 r16 = r2;
@@ -51,7 +51,7 @@ public static partial class Game
                 Mem.Set((r6 + 16u), (byte)r3); func_00419D04(r4, (int)r5);
                 r4 = r16; func_00419F98(r4);
                 r4 = r17;
-                r5 = r16; r2 = func_0040EE64(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r16; r2 = UiTree_InsertBefore(r4, r5, r6, r7); r3 = Cpu.V1;
                 r2 = r16;
                 r31 = Mem.U32((r29 + 28u));
                 r18 = Mem.U32((r29 + 24u));
