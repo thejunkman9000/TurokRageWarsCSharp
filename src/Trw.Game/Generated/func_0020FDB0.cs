@@ -102,14 +102,14 @@ public static partial class Game
                     {
                         return;
                     }
-                    if (((func_00274544() % 100) >= 21))
+                    if (((Random_Next() % 100) >= 21))
                     {
                         return;
                     }
                 }
                 if ((n != (uint)(0)))
                 {
-                    pick = Mem.S32((_fp + (uint)(((uint)(func_00274544()) % n) * 4)));
+                    pick = Mem.S32((_fp + (uint)(((uint)(Random_Next()) % n) * 4)));
                     new CtlB(c).actor.unk770_Set((short)(pick));
                     if ((pick != (int)(new CtlB(c).actor.unk62E)))
                     {

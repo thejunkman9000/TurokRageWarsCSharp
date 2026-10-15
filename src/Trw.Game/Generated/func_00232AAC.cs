@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00232AAC", (uint)actor);
             int i = (int)(Mem.S16((actor + (uint)1582)));
-            int n = (func_00274544() % 22);
+            int n = (Random_Next() % 22);
             if ((n >= 0))
             {
                 do

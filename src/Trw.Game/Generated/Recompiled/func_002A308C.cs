@@ -59,7 +59,7 @@ public static partial class Game
                 Cpu.SetS(0, (float)(int)Cpu.W(0));
                 fcc = Cpu.S(0) < Cpu.S(1);
                 { bool c_ = !fcc;  if (c_) goto L_L002A3174; }
-                func_0042E7CC();
+                AttractDemo_Setup();
                 r2 = func_0042E080(r4, r5, r6, r7); r3 = Cpu.V1;
                 Cpu.SetW(12, r0);
                 func_002A33F8(Cpu.S(12));

@@ -309,9 +309,9 @@ public static partial class Game
                 r2 = r2 & 248u;
                 Mem.Set((r29 + 26u), (byte)r2);
                 L_L00235F7C: ;
-                r2 = (uint)func_00245788();
+                r2 = (uint)Water_IsCameraUnderwater();
                 { bool c_ = r2 == 0; r2 = 3657367552u; if (c_) goto L_L00235FB8; }
-                r2 = (uint)func_00245AE8();
+                r2 = (uint)Water_GetFogColor();
                 r3 = r2;
                 r2 = (uint)65280;
                 { bool c_ = r3 == r2; r2 = r3 >> 16; if (c_) goto L_L00235FB4; }

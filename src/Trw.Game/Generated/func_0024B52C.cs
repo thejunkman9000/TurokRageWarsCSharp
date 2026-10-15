@@ -15,7 +15,7 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0024B52C", (uint)a);
                 float s = 0f;
                 Mem.Copy((_fp + 32u), new Obj(a).q5C.P, 16);
-                if ((func_00245788() != 0))
+                if ((Water_IsCameraUnderwater() != 0))
                 {
                     func_0024D718((_fp + 32u), a);
                 }

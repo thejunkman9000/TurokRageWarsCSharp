@@ -97,7 +97,7 @@ public static partial class Game
                 {
                     do
                     {
-                        s1 = ((func_00274544() % s2) + 1);
+                        s1 = ((Random_Next() % s2) + 1);
                         if ((func_00265670(0x80154018u, s1) == 0))
                         {
                             s0 = 1;
@@ -112,7 +112,7 @@ public static partial class Game
                     while ((s0 == 0));
                 }
                 Mem.Set((0x80154014u + (uint)(0 * 4)), (Mem.S32((0x80154014u + (uint)(0 * 4))) + 1));
-                func_0042EB80(Mem.S32(0x80154010u), func_0042AEB8_o04_look(Mem.S32(0x80154010u), s1));
+                Arena_Set(Mem.S32(0x80154010u), func_0042AEB8_o04_look(Mem.S32(0x80154010u), s1));
             }
             return s5;
         }

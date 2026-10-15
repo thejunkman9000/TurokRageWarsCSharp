@@ -13,9 +13,9 @@ public static partial class Game
             uint b = new Actor(new Actor(actor).owner_).brain_;
             new BrainB(b).unk220_Set(0);
             func_00209988(b);
-            new BrainB(b).unk2D8_Set(((func_00274544() % 4) + 12));
-            new BrainB(b).unk2DC_Set((func_00274544() % 2));
-            new BrainB(b).unk2E0_Set(((func_00274544() % 250000) + 360000));
+            new BrainB(b).unk2D8_Set(((Random_Next() % 4) + 12));
+            new BrainB(b).unk2DC_Set((Random_Next() % 2));
+            new BrainB(b).unk2E0_Set(((Random_Next() % 250000) + 360000));
             new BrainB(b).unk320_Set((-1));
             new BrainB(b).unk318_Set(0);
             new BrainB(b).unk31C_Set(0);

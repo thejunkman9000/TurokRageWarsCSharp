@@ -31,7 +31,7 @@ public static partial class Game
                 Mem.Set((r29 + 28u), r17);
                 Mem.Set((r29 + 24u), r16); func_0042B1A0((int)r4);
                 r4 = r0;
-                r5 = r4; func_0042EB80((int)r4, (int)r5);
+                r5 = r4; Arena_Set((int)r4, (int)r5);
                 Cpu.SetW(12, r0);
                 r16 = 2148794368u;
                 r16 = r16 + 26784u;

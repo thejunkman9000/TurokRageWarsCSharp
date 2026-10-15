@@ -993,7 +993,7 @@ public static partial class Game
                 r17 = r3 - r2; goto L_L0027F678;
                 L_L0027F5E8: ;
                 L_I0027F5E8: ;
-                r2 = (uint)func_00274544();
+                r2 = (uint)Random_Next();
                 L_I0027F5F0: ;
                 r3 = Mem.U32((r29 + 40u));
                 L_I0027F5F4: ;
@@ -1024,7 +1024,7 @@ public static partial class Game
                 L_I0027F630: ;
                 { bool c_ = r3 != r2;  if (c_) goto L_L0027F674; }
                 L_I0027F638: ;
-                r2 = (uint)func_00274544();
+                r2 = (uint)Random_Next();
                 L_I0027F640: ;
                 r3 = Mem.U32((r29 + 40u));
                 L_I0027F644: ;

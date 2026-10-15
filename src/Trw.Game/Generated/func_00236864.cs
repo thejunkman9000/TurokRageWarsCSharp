@@ -70,7 +70,7 @@ public static partial class Game
             new S6Nd(p).r1_Set((float)(Mem.S32(0x800E28D4u)));
             new S6Nd(p).r2_Set((float)(0));
             new S6Nd(p).r3_Set((float)(0));
-            if (((func_00245788() == 0) && (func_00245774() == 0)))
+            if (((Water_IsCameraUnderwater() == 0) && (func_00245774() == 0)))
             {
                 p = new S6World(w).first_;
                 switch (new S6World(w).mode)
@@ -196,7 +196,7 @@ public static partial class Game
                 {
                     func_00234FDC(p, default(uint), default(uint), default(uint));
                 }
-                if (((func_00245788() != 0) || (func_00245774() != 0)))
+                if (((Water_IsCameraUnderwater() != 0) || (func_00245774() != 0)))
                 {
                     func_00234FDC(p, default(uint), default(uint), default(uint));
                 }

@@ -75,7 +75,7 @@ public static partial class Game
                                 {
                                     sum = (int)((int)(sum) + (Mem.S32((new SndMgr(m).unk2B5C_ + (uint)(j * 4))) * 10));
                                 }
-                                r = (func_00274544() % sum);
+                                r = (Random_Next() % sum);
                                 sum = 0;
                                 for (i = Mem.S32((_fp + 12u)); (i < Mem.S32((_fp + 16u))); ++i)
                                 {
@@ -124,7 +124,7 @@ public static partial class Game
                                 {
                                     sum = (int)((int)(sum) + (Mem.S32((new SndMgr(m).unk2B5C_ + (uint)(j2 * 4))) * 10));
                                 }
-                                r = (func_00274544() % sum);
+                                r = (Random_Next() % sum);
                                 sum = 0;
                                 for (i = Mem.S32((_fp + 20u)); (i < Mem.S32((_fp + 24u))); ++i)
                                 {

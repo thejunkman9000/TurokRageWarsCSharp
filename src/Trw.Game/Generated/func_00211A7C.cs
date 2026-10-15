@@ -54,9 +54,9 @@ public static partial class Game
             fs0 = fs0f;
             new B2Ctl(ctl).unk2D8_Set(v);
             if (!((v <= 0))) goto _f5;
-            new B2Ctl(ctl).unk2D8_Set(((func_00274544() % 4) + 2));
-            new B2Ctl(ctl).unk2DC_Set((func_00274544() % 2));
-            Mem.Set((ctl + (uint)736), ((func_00274544() % 32400) + 10000));
+            new B2Ctl(ctl).unk2D8_Set(((Random_Next() % 4) + 2));
+            new B2Ctl(ctl).unk2DC_Set((Random_Next() % 2));
+            Mem.Set((ctl + (uint)736), ((Random_Next() % 32400) + 10000));
             _f5: ;
             tp = new B2Actor(t).pos.P;
             func_00209308(ctl, tp, 2.0f, func_00209DAC(ctl));
@@ -141,12 +141,12 @@ public static partial class Game
             _f27: ;
             _f22: ;
             new B2Ctl(ctl).q.Set((int)(0), (-1));
-            if (!(((Mem.Set((ctl + (uint)800), (int)(Mem.S32((ctl + (uint)800)) - 1)) == 0) && ((func_00274544() % 100) < (int)(fs0f))))) goto _f28;
+            if (!(((Mem.Set((ctl + (uint)800), (int)(Mem.S32((ctl + (uint)800)) - 1)) == 0) && ((Random_Next() % 100) < (int)(fs0f))))) goto _f28;
             f6 = Mem.U32((new B2Ctl(ctl).owner_ + (uint)1712));
             Mem.Set((new B2Ctl(ctl).owner_ + (uint)1712), (f6 | (uint)(16)));
             _f28: ;
             if (!((Mem.S32((ctl + (uint)800)) < 0))) goto _f29;
-            func_00274544();
+            Random_Next();
             Mem.Set((ctl + (uint)800), 30);
             _f29: ;
             func_00209E80(ctl);

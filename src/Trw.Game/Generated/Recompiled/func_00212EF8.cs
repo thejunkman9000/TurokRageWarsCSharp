@@ -34,7 +34,7 @@ public static partial class Game
                 { bool c_ = r3 != r2; r2 = (uint)-2; if (c_) goto L_L00212F8C; }
                 r5 = Mem.U32((r17 + 548u));
                 { bool c_ = r5 != r2;  if (c_) goto L_L00212F68; }
-                r2 = (uint)func_00274544();
+                r2 = (uint)Random_Next();
                 r3 = Mem.U32((r18 + 4u));
                 if (r3 != 0) { lo = (uint)Cpu.SDiv((int)r2, (int)r3); hi = (uint)Cpu.SRem((int)r2, (int)r3); }
                 { bool c_ = r3 != 0;  if (c_) goto L_L00212F44; }

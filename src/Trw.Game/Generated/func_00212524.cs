@@ -12,9 +12,9 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00212524", (uint)actor);
             uint b = new Actor(new Actor(actor).owner_).brain_;
             new BrainB(b).unk220_Set(0);
-            new BrainB(b).unk2D8_Set(((func_00274544() % 4) + 2));
-            new BrainB(b).unk2DC_Set((func_00274544() % 2));
-            new BrainB(b).unk2E0_Set(((func_00274544() % 32400) + 10000));
+            new BrainB(b).unk2D8_Set(((Random_Next() % 4) + 2));
+            new BrainB(b).unk2DC_Set((Random_Next() % 2));
+            new BrainB(b).unk2E0_Set(((Random_Next() % 32400) + 10000));
             func_00209988(b);
             new BrainB(b).unk318_Set(0);
             new BrainB(b).unk31C_Set(0);

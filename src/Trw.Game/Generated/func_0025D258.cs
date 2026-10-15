@@ -26,7 +26,7 @@ public static partial class Game
                     {
                         total = (int)((int)(total) + 100);
                     }
-                    r = (func_00274544() % total);
+                    r = (Random_Next() % total);
                     total = 0;
                     for (i = Mem.S32(_fp); (i < Mem.S32((_fp + 4u))); ++i)
                     {

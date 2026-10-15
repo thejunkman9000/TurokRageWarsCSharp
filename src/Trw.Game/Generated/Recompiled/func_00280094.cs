@@ -492,7 +492,7 @@ public static partial class Game
                 L_I002804BC: ;
                 { bool c_ = r3 == r2;  if (c_) goto L_L00280524; }
                 L_I002804C4: ;
-                r2 = (uint)func_00274544();
+                r2 = (uint)Random_Next();
                 L_I002804CC: ;
                 r3 = 274857984u;
                 L_I002804D0: ;
@@ -778,7 +778,7 @@ public static partial class Game
                 L_I00280758: ;
                 { bool c_ = r16 == 0; r3 = r0; if (c_) goto L_L0028079C; }
                 L_I00280760: ;
-                r2 = (uint)func_00274544();
+                r2 = (uint)Random_Next();
                 L_I00280768: ;
                 r3 = r16 + 1u;
                 L_I0028076C: ;
@@ -818,7 +818,7 @@ public static partial class Game
                 L_I002807B8: ;
                 { bool c_ = r16 == 0; r3 = r0; if (c_) goto L_L00280814; }
                 L_I002807C0: ;
-                r2 = (uint)func_00274544();
+                r2 = (uint)Random_Next();
                 L_I002807C8: ;
                 r3 = r16 + 1u;
                 L_I002807CC: ;
@@ -1079,7 +1079,7 @@ public static partial class Game
                 L_I00280A18: ;
                 { bool c_ = r16 == 0; r3 = r0; if (c_) goto L_L00280A58; }
                 L_I00280A20: ;
-                r2 = (uint)func_00274544();
+                r2 = (uint)Random_Next();
                 L_I00280A28: ;
                 r3 = r16 + 1u;
                 L_I00280A2C: ;
@@ -1227,7 +1227,7 @@ public static partial class Game
                 L_I00280B68: ;
                 { bool c_ = r18 == 0; r3 = r0; if (c_) goto L_L00280BA8; }
                 L_I00280B70: ;
-                r2 = (uint)func_00274544();
+                r2 = (uint)Random_Next();
                 L_I00280B78: ;
                 r3 = r18 + 1u;
                 L_I00280B7C: ;
@@ -2051,7 +2051,7 @@ public static partial class Game
                 L_I002812CC: ;
                 { bool c_ = r2 == 0; r16 = r0; if (c_) goto L_L0028131C; }
                 L_I002812D4: ;
-                r2 = (uint)func_00274544();
+                r2 = (uint)Random_Next();
                 L_I002812DC: ;
                 r4 = Mem.U32((r30 + 52u));
                 L_I002812E0: ;
@@ -2088,7 +2088,7 @@ public static partial class Game
                 L_I00281324: ;
                 { bool c_ = r2 == 0; r22 = r0; if (c_) goto L_L0028136C; }
                 L_I0028132C: ;
-                r2 = (uint)func_00274544();
+                r2 = (uint)Random_Next();
                 L_I00281334: ;
                 r3 = Mem.U32((r30 + 52u));
                 L_I00281338: ;
@@ -2121,7 +2121,7 @@ public static partial class Game
                 L_I00281374: ;
                 { bool c_ = r2 == 0; r17 = r0; if (c_) goto L_L002813C0; }
                 L_I0028137C: ;
-                r16 = r16 << 24; r2 = (uint)func_00274544();
+                r16 = r16 << 24; r2 = (uint)Random_Next();
                 L_I00281384: ;
                 r3 = Mem.U32((r30 + 52u));
                 L_I00281388: ;

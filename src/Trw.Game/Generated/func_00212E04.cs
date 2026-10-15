@@ -49,7 +49,7 @@ public static partial class Game
             {
                 if ((new BrainB(b).unk224 == (-2)))
                 {
-                    new BrainB(b).unkC_Set((func_00274544() % new EntList(L).count));
+                    new BrainB(b).unkC_Set((Random_Next() % new EntList(L).count));
                 }
                 else
                 {

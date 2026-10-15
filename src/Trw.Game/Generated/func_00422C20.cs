@@ -46,7 +46,7 @@ public static partial class Game
                     func_0029A73C();
                     if (((new O3Words(Mem.U32(0x800E4518u)).w[(int)(25)] == 0) && (func_0025E2E4() != 0)))
                     {
-                        r = func_00274544();
+                        r = Random_Next();
                         if ((r >= 0))
                         {
                             qq = r;

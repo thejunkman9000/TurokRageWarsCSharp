@@ -73,7 +73,7 @@ public static partial class Game
                 r2 = (uint)((int)r17 < 10 ? 1 : 0);
                 L_L00213410: ;
                 if (r2 == 0) { Mem.Set((r20 + 556u), r16); goto L_L0021348C; }
-                r2 = (uint)func_00274544();
+                r2 = (uint)Random_Next();
                 r3 = Mem.U32((r18 + 4u));
                 if (r3 != 0) { lo = (uint)Cpu.SDiv((int)r2, (int)r3); hi = (uint)Cpu.SRem((int)r2, (int)r3); }
                 { bool c_ = r3 != 0;  if (c_) goto L_L00213434; }
@@ -102,7 +102,7 @@ public static partial class Game
                 L_L0021348C: ;
                 Mem.Set((r20 + 12u), r16); goto L_L002134D4;
                 L_L00213494: ;
-                r2 = (uint)func_00274544();
+                r2 = (uint)Random_Next();
                 if (r18 != 0) { lo = (uint)Cpu.SDiv((int)r2, (int)r18); hi = (uint)Cpu.SRem((int)r2, (int)r18); }
                 { bool c_ = r18 != 0;  if (c_) goto L_L002134AC; }
                 throw new InvalidOperationException("MIPS break");

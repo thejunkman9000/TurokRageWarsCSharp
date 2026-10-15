@@ -93,7 +93,7 @@ public static partial class Game
                             t2 = 0;
                         }
                         Mem.Set((p + (uint)1508), t2);
-                        t3 = func_00274544();
+                        t3 = Random_Next();
                         if ((((t3 / 2) * 2) == (t3 - 1)))
                         {
                             if ((Mem.S32((p + (uint)1508)) > 0))

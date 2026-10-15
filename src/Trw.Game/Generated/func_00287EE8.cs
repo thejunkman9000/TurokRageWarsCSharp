@@ -45,7 +45,7 @@ public static partial class Game
             s5 = Mem.S32((0x801462D0u - (uint)4648));
             _f0: ;
             sflag = 0;
-            if (!((func_00245788() == 0))) goto _f1;
+            if (!((Water_IsCameraUnderwater() == 0))) goto _f1;
             sflag = ((new B19bWorld(w).f1B408 == 0) ? 1 : 0);
             _f1: ;
             i = new B19bWorld(w).first;
@@ -98,7 +98,7 @@ public static partial class Game
             _f19: ;
             _f16: ;
             _f7: ;
-            if (!(((func_00245788() != 0) && (Mem.S32(0x800D2930u) != 0)))) goto _f21;
+            if (!(((Water_IsCameraUnderwater() != 0) && (Mem.S32(0x800D2930u) != 0)))) goto _f21;
             if (!(!((new B19bInfo(info).flags & (uint)(512)) != 0u))) goto _f22;
             s2 = 0;
             _f22: ;

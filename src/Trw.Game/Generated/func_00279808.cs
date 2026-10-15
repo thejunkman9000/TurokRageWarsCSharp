@@ -20,7 +20,7 @@ public static partial class Game
                 total = (int)((int)(total) + (int)(new WEnt(p).w));
                 p += 4u;
             }
-            r = (func_00274544() % total);
+            r = (Random_Next() % total);
             p = start;
             total = 0;
             while (((int)(new WEnt(p).id) != (-1)))

@@ -60,11 +60,11 @@ public static partial class Game
                     vis = 1;
                     if ((new B05P14(p).f678 < 20.0f))
                     {
-                        vis = ((((func_00274544() % 100) < 50) ? 1 : 0) ^ vis);
+                        vis = ((((Random_Next() % 100) < 50) ? 1 : 0) ^ vis);
                     }
                     else
                     {
-                        if (((func_00274544() % 100) < 15))
+                        if (((Random_Next() % 100) < 15))
                         {
                             vis = 0;
                         }

@@ -35,7 +35,7 @@ public static partial class Game
                         {
                             sum = (int)((int)(sum) + 100);
                         }
-                        r = (func_00274544() % sum);
+                        r = (Random_Next() % sum);
                         sum = 0;
                         for (i = Mem.S32(_fp); (i < Mem.S32((_fp + 4u))); ++i)
                         {
@@ -73,7 +73,7 @@ public static partial class Game
                         {
                             sum = (int)((int)(sum) + 100);
                         }
-                        r = (func_00274544() % sum);
+                        r = (Random_Next() % sum);
                         sum = 0;
                         for (i = Mem.S32((_fp + 8u)); (i < Mem.S32((_fp + 12u))); ++i)
                         {

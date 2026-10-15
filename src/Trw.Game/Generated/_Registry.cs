@@ -4386,7 +4386,7 @@ public static partial class Game
         });
         Funcs.Add(0x00245788u, "func_00245788", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00245788();
+            var v_ = Water_IsCameraUnderwater();
             return (uint)v_;
         });
         Funcs.Add(0x002457D0u, "func_002457D0", (a0, a1, a2, a3) =>
@@ -4501,7 +4501,7 @@ public static partial class Game
         });
         Funcs.Add(0x00245AE8u, "func_00245AE8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00245AE8();
+            var v_ = Water_GetFogColor();
             return (uint)v_;
         });
         Funcs.Add(0x00245AFCu, "func_00245AFC", (a0, a1, a2, a3) =>
@@ -8544,7 +8544,7 @@ public static partial class Game
         });
         Funcs.Add(0x00274544u, "func_00274544", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00274544();
+            var v_ = Random_Next();
             return (uint)v_;
         });
         Funcs.Add(0x0027458Cu, "func_0027458C", (a0, a1, a2, a3) =>
@@ -17568,7 +17568,7 @@ public static partial class Game
         });
         Funcs.Add(0x0042E7CCu, "func_0042E7CC", (a0, a1, a2, a3) =>
         {
-            func_0042E7CC();
+            AttractDemo_Setup();
             return 0;
         });
         Funcs.Add(0x0042EB68u, "func_0042EB68", (a0, a1, a2, a3) =>
@@ -17578,7 +17578,7 @@ public static partial class Game
         });
         Funcs.Add(0x0042EB80u, "func_0042EB80", (a0, a1, a2, a3) =>
         {
-            func_0042EB80((int)a0, (int)a1);
+            Arena_Set((int)a0, (int)a1);
             return 0;
         });
         Funcs.Add(0x0042EB94u, "func_0042EB94", (a0, a1, a2, a3) =>

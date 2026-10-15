@@ -39,7 +39,7 @@ public static partial class Game
                 r4 = r0;
                 L_L00419BE4: ;
                 { bool c_ = (int)r4 > 0; Mem.Set((r17 + 124u), r4); if (c_) goto L_L00419CEC; }
-                r2 = (uint)func_00274544();
+                r2 = (uint)Random_Next();
                 r3 = 1374355456u;
                 r3 = r3 | 34079u;
                 { long p_ = (long)(int)r2 * (int)r3; lo = (uint)p_; hi = (uint)(p_ >> 32); }

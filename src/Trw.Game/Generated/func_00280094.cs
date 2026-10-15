@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00280094_effect_spawn_random_count", (uint)range);
-            return ((range != 0) ? (func_00274544() % (range + 1)) : 0);
+            return ((range != 0) ? (Random_Next() % (range + 1)) : 0);
         }
     }
 

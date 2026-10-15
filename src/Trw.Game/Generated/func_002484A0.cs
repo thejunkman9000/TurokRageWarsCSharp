@@ -13,9 +13,9 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_002484A0_randVec");
-                new Vec3(_fp).x_Set((float)((func_00274544() % 100)));
-                new Vec3(_fp).y_Set((float)((func_00274544() % 100)));
-                new Vec3(_fp).z_Set((float)((func_00274544() % 100)));
+                new Vec3(_fp).x_Set((float)((Random_Next() % 100)));
+                new Vec3(_fp).y_Set((float)((Random_Next() % 100)));
+                new Vec3(_fp).z_Set((float)((Random_Next() % 100)));
                 Mem.Copy(_ret, _fp, 12);
                 return _ret;
             }

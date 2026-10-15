@@ -166,10 +166,10 @@ public static partial class Game
                 L_L00248724: ;
                 Mem.Set((r29 + 8424u), r2);
                 L_L00248728: ;
-                r2 = (uint)func_00245788();
+                r2 = (uint)Water_IsCameraUnderwater();
                 if (r2 != 0) { Mem.Set((r29 + 8424u), r0); goto L_L00248738; }
                 L_L00248738: ;
-                r2 = (uint)func_00245788();
+                r2 = (uint)Water_IsCameraUnderwater();
                 { bool c_ = r2 != 0; r2 = (uint)1; if (c_) goto L_L00248780; }
                 r12 = Mem.U32((r29 + 8784u));
                 r2 = (uint)(int)Mem.S8((r12 + 11u));
@@ -786,7 +786,7 @@ public static partial class Game
                 { bool c_ = r2 == 0;  if (c_) goto L_L002492B8; }
                 r2 = Mem.U32((r18 + 184u));
                 { bool c_ = r2 == 0;  if (c_) goto L_L002492B8; }
-                r2 = (uint)func_00274544();
+                r2 = (uint)Random_Next();
                 r10 = Mem.U32((r29 + 8832u));
                 { long p_ = (long)(int)r2 * (int)r10; lo = (uint)p_; hi = (uint)(p_ >> 32); }
                 r3 = (uint)((int)r2 >> 31);
@@ -801,7 +801,7 @@ public static partial class Game
                 r2 = r2 - r3;
                 Cpu.SetW(0, r2);
                 Cpu.SetS(0, (float)(int)Cpu.W(0));
-                Mem.Set((r29 + 8696u), Cpu.W(0)); r2 = (uint)func_00274544();
+                Mem.Set((r29 + 8696u), Cpu.W(0)); r2 = (uint)Random_Next();
                 r10 = Mem.U32((r29 + 8832u));
                 { long p_ = (long)(int)r2 * (int)r10; lo = (uint)p_; hi = (uint)(p_ >> 32); }
                 r3 = (uint)((int)r2 >> 31);
@@ -816,7 +816,7 @@ public static partial class Game
                 r2 = r2 - r3;
                 Cpu.SetW(0, r2);
                 Cpu.SetS(0, (float)(int)Cpu.W(0));
-                Mem.Set((r29 + 8700u), Cpu.W(0)); r2 = (uint)func_00274544();
+                Mem.Set((r29 + 8700u), Cpu.W(0)); r2 = (uint)Random_Next();
                 r10 = Mem.U32((r29 + 8832u));
                 { long p_ = (long)(int)r2 * (int)r10; lo = (uint)p_; hi = (uint)(p_ >> 32); }
                 r16 = r29 + 8616u;

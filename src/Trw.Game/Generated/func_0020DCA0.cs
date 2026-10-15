@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020DCA0", (uint)ctl);
-            int n = func_00274544();
+            int n = Random_Next();
             int v = 0;
             if ((((n / 4) * 4) == (n - 1)))
             {

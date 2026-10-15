@@ -5,7 +5,7 @@ namespace Trw.Game;
 
 public static partial class Game
 {
-    public static int func_00274544()
+    public static int Random_Next()
     {
         unchecked
         {

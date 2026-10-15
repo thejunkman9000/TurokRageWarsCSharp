@@ -41,7 +41,7 @@ public static partial class Game
                 t = (int)(Mem.U8((a + (uint)1)));
                 if ((t == 3))
                 {
-                    new Q03Ent(e).f93_Set((byte)((func_00274544() % 3)));
+                    new Q03Ent(e).f93_Set((byte)((Random_Next() % 3)));
                 }
                 else
                 {

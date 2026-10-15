@@ -40,11 +40,11 @@ public static partial class Game
             new B2Node(n).v44.z_Set((float)(0));
             if ((((int)(new B2Rec(r).flags) & 64) != 0))
             {
-                new B2Node(n).unk38_Set(((func_00274544() % 5) + 5));
+                new B2Node(n).unk38_Set(((Random_Next() % 5) + 5));
             }
             if ((((int)(new B2Rec(r).flags) & 128) != 0))
             {
-                new B2Node(n).unk3C_Set(((func_00274544() % 5) + 5));
+                new B2Node(n).unk3C_Set(((Random_Next() % 5) + 5));
             }
         }
     }

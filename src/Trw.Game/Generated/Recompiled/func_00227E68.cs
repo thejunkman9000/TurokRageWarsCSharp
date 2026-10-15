@@ -28,7 +28,7 @@ public static partial class Game
                 { bool c_ = r2 == 0; Mem.Set((r29 + 20u), r31); if (c_) goto L_L0022803C; }
                 r2 = (uint)func_00245774();
                 { bool c_ = r2 != 0;  if (c_) goto L_L0022803C; }
-                r2 = (uint)func_00245788();
+                r2 = (uint)Water_IsCameraUnderwater();
                 { bool c_ = r2 != 0;  if (c_) goto L_L0022803C; }
                 r3 = Mem.U32((r16 + 32u));
                 { bool c_ = r3 == 0; r4 = r0; if (c_) goto L_L00227ECC; }

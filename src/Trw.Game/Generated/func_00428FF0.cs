@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00428FF0");
             func_0029A73C();
             func_004275B4();
-            func_0042EB80(new O04Ent1C((0x800E4694u + (uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA44 * 28))).a, new O04Ent1C((0x800E4694u + (uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA44 * 28))).b);
+            Arena_Set(new O04Ent1C((0x800E4694u + (uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA44 * 28))).a, new O04Ent1C((0x800E4694u + (uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA44 * 28))).b);
             func_0042EB68(25);
             return 0;
         }

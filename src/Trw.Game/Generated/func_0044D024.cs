@@ -115,7 +115,7 @@ public static partial class Game
                             {
                                 new S6Face(face).attr_Set(Mem.S32(0x800D2B40u));
                             }
-                            if ((func_00245788() != 0))
+                            if ((Water_IsCameraUnderwater() != 0))
                             {
                                 new S6Face(face).attr_Set(Mem.S32(0x800D2B40u));
                             }

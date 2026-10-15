@@ -23,7 +23,7 @@ public static partial class Game
                 {
                     fs1 = new CamObj_v2(o).unk2C;
                     fs1f = new CamObj_v2(o).unk34;
-                    if ((func_00245788() == 0))
+                    if ((Water_IsCameraUnderwater() == 0))
                     {
                         func_00239E94(o, (_fp + 464u));
                         fs1f = (float)((float)(fs1f) + new Vec3f((_fp + 464u)).z);

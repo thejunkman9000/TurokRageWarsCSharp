@@ -43,9 +43,9 @@ public static partial class Game
             _f4: ;
             speed = (func_00209BE0(brain) * 0.400000006f);
             if (!((new CloseAttackBrain(brain).timer_Set((int)(new CloseAttackBrain(brain).timer - 1)) <= 0))) goto _f5;
-            new CloseAttackBrain(brain).timer_Set(((func_00274544() % 4) + 12));
-            new CloseAttackBrain(brain).pattern_Set((func_00274544() % 2));
-            if (!(((func_00274544() % 2) == 1))) goto _f6;
+            new CloseAttackBrain(brain).timer_Set(((Random_Next() % 4) + 12));
+            new CloseAttackBrain(brain).pattern_Set((Random_Next() % 2));
+            if (!(((Random_Next() % 2) == 1))) goto _f6;
             new CloseAttackBrain(brain).pattern_Set(2);
             _f6: ;
             _f5: ;

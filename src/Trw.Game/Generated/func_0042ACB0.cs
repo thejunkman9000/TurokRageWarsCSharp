@@ -66,7 +66,7 @@ public static partial class Game
                     func_0040E958(func_0040ECB0(new O04ModeF60(Mem.U32(0x800E4F60u)).unk0, (uint)((int)(Mem.U16((new O04Ent16((0x800E4F64u + (uint)(s1 * 16))).u4.P + 2u)))), default(uint), default(uint)), 0);
                 }
             }
-            func_0042EB80(s2, s3);
+            Arena_Set(s2, s3);
             func_0042EB68(21);
             func_0040E958(new O04ModeF60(Mem.U32(0x800E4F60u)).unk440, 0);
             func_0040E958(new O04ModeF60(Mem.U32(0x800E4F60u)).unk448_, 0);

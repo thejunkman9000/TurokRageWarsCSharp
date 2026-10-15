@@ -11,5 +11,4 @@ public static partial class Game
     public static uint __osProbeTLB(uint a0 = 0, uint a1 = 0, uint a2 = 0, uint a3 = 0) { Stub("__osProbeTLB"); return 0; }
     public static uint func_002023DC() { Stub("func_002023DC"); return default; }
     public static uint func_002023DC(uint a0 = 0, uint a1 = 0, uint a2 = 0, uint a3 = 0) { Stub("func_002023DC"); return 0; }
-    public static uint func_0041D694(uint a0 = 0, uint a1 = 0, uint a2 = 0, uint a3 = 0) { Stub("func_0041D694"); return 0; }
 }

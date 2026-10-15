@@ -187,7 +187,7 @@ public static partial class Game
                 func_0040C4A8((int)r4);
                 r2 = (uint)func_0025E2E4();
                 { bool c_ = r2 == 0;  if (c_) goto L_L0042E3A0; }
-                r2 = (uint)func_00274544();
+                r2 = (uint)Random_Next();
                 { bool c_ = (int)r2 >= 0; r4 = r2; if (c_) goto L_L0042E38C; }
                 r4 = r2 + 3u;
                 L_L0042E38C: ;

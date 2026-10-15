@@ -19,7 +19,7 @@ public static partial class Game
             {
                 return 0;
             }
-            if ((func_00245788() != 0))
+            if ((Water_IsCameraUnderwater() != 0))
             {
                 return 0;
             }

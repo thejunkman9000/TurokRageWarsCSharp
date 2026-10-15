@@ -28,7 +28,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r16);
                 r2 = Mem.U32((r18 + 1448u));
                 { bool c_ = r2 != 0; r17 = r4; if (c_) goto L_L00229518; }
-                r16 = (uint)15; r2 = (uint)func_00274544();
+                r16 = (uint)15; r2 = (uint)Random_Next();
                 r3 = 1431633920u;
                 r3 = r3 | 21846u;
                 { long p_ = (long)(int)r2 * (int)r3; lo = (uint)p_; hi = (uint)(p_ >> 32); }
@@ -45,7 +45,7 @@ public static partial class Game
                 if (r2 != 0) { r16 = r3; goto L_L002294AC; }
                 L_L002294AC: ;
                 { bool c_ = r16 != 0; r3 = r4 << 1; if (c_) goto L_L00229500; }
-                r2 = (uint)func_00274544();
+                r2 = (uint)Random_Next();
                 r4 = r0;
                 r5 = r17;
                 L_L002294C4: ;

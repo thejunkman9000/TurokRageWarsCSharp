@@ -21,7 +21,7 @@ public static partial class Game
             }
             for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
             {
-                if (((func_00245788() != 0) || ((int)(new Plr(a).unk5EA) == 0)))
+                if (((Water_IsCameraUnderwater() != 0) || ((int)(new Plr(a).unk5EA) == 0)))
                 {
                     func_0025CA44((uint)((int)(func_0025CC8C())), (uint)(new Plr(a).unk11BC));
                     new Plr(a).unk11BC_Set(0);

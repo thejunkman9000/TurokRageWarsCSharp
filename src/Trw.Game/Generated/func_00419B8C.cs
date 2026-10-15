@@ -36,7 +36,7 @@ public static partial class Game
                     new O3A(p).timer_Set(t);
                     if ((t <= 0))
                     {
-                        if (((func_00274544() % 100) < 2))
+                        if (((Random_Next() % 100) < 2))
                         {
                             new O3A(p).flag_Set(1);
                             new O3A(p).gobj.alpha_Set((byte)(new O3A(p).vals[(int)(new O3A(p).idx)]));

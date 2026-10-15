@@ -246,7 +246,7 @@ public static partial class Game
                 Mem.Set((r17 + 320u), r0);
                 r2 = r2 & r4;
                 r2 = r2 | r3;
-                Mem.Set((r17 + 92u), r2); r2 = (uint)func_00274544();
+                Mem.Set((r17 + 92u), r2); r2 = (uint)Random_Next();
                 r3 = 3054174208u;
                 r3 = r3 | 24759u;
                 { long p_ = (long)(int)r2 * (int)r3; lo = (uint)p_; hi = (uint)(p_ >> 32); }

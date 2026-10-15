@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002100E0", (uint)c);
             int w = 0;
-            if (((func_00274544() % 100) < 21))
+            if (((Random_Next() % 100) < 21))
             {
                 do
                 {

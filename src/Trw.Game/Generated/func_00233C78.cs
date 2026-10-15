@@ -56,7 +56,7 @@ public static partial class Game
                         }
                         func_00293100(0x8011FAC0u, _fp, (int)(new PawnFx(a).unk2A4), (int)(new PawnFx(a).unk2A8), (int)((new PawnFx(a).unk2A4 + new PawnFx(a).unk29C)), (int)((new PawnFx(a).unk2A8 + new PawnFx(a).unk2A0)));
                     }
-                    if (((func_00245788() == 0) && (func_002934DC() != 0)))
+                    if (((Water_IsCameraUnderwater() == 0) && (func_002934DC() != 0)))
                     {
                         func_0022A37C(0x80145040u, a);
                     }

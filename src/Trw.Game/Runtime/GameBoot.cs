@@ -74,7 +74,7 @@ public static class GameBoot
         var t = new Thread(() =>
         {
             Stack.Init(0x7F800000, 0x100000);
-            Game.RegisterFunctions(); Game.RegisterRecompiled();
+            Game.RegisterFunctions(); Game.RegisterRecompiled(); Game.RegisterPreserved();
             foreach (float x in new[] { 0f, 0.1f, 0.5f, 1f, 1.5707964f, 2f, 3.1415927f, -0.7f, -2.5f, 6f, 100f })
             {
                 float s = Game.sinf(x), c = Game.cosf(x);
@@ -110,6 +110,8 @@ public static class GameBoot
     {
         Game.RegisterFunctions();
         Game.RegisterRecompiled();
+        Game.RegisterPreserved();
+        Dbg.ReadableName = n => Game.ReadableNames.TryGetValue(n, out var r) ? r : null;      // TRW_TRACE_FN accepts readable names (tools/names)
         InstallAudio();
         var t = new Thread(() =>
         {

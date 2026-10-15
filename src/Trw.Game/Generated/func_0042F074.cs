@@ -16,7 +16,7 @@ public static partial class Game
             uint e = 0u;
             do
             {
-                r = (func_00274544() % 11);
+                r = (Random_Next() % 11);
                 if (((r == 0) || (r == 5)))
                 {
                     ok = 1;

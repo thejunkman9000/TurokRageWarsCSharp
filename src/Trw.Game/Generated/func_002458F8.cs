@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002458F8");
             uint v = 0u;
-            if ((func_00245788() == 0))
+            if ((Water_IsCameraUnderwater() == 0))
             {
                 return 0;
             }

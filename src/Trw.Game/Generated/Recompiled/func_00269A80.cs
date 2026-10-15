@@ -136,7 +136,7 @@ public static partial class Game
                 L_I00269B9C: ;
                 { bool c_ = r3 == r16;  if (c_) goto L_L00269C00; }
                 L_I00269BA4: ;
-                r2 = (uint)func_00274544();
+                r2 = (uint)Random_Next();
                 L_I00269BAC: ;
                 r3 = Mem.U32((r29 + 40u));
                 L_I00269BB0: ;

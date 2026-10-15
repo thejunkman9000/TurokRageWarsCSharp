@@ -51,7 +51,7 @@ public static partial class Game
                 float v = 0f;
                 uint n = 0u;
                 uint mask = __osDisableInt();
-                if (((Mem.S32(0x8014694Cu) == 1) || (func_00245788() != 0)))
+                if (((Mem.S32(0x8014694Cu) == 1) || (Water_IsCameraUnderwater() != 0)))
                 {
                     total = 0.0f;
                 }

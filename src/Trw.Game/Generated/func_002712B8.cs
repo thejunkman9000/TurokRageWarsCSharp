@@ -49,7 +49,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_002712B8", 0u, (uint)v);
-                new Vec3f((_fp + 16u)).x_Set(((float)(((func_00274544() % 20000) - 10000)) * 9.99999974E-5f));
+                new Vec3f((_fp + 16u)).x_Set(((float)(((Random_Next() % 20000) - 10000)) * 9.99999974E-5f));
                 new Vec3f((_fp + 16u)).y_Set(new Vec3f(v).y);
                 new Vec3f((_fp + 16u)).z_Set(new Vec3f(v).z);
                 func_002712B8_vnorm((_fp + 16u));

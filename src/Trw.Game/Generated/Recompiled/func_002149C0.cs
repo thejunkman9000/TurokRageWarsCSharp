@@ -48,7 +48,7 @@ public static partial class Game
                 L_L00214A30: ;
                 r20 = r0;
                 r21 = r20;
-                r16 = (uint)1; r2 = (uint)func_00245788();
+                r16 = (uint)1; r2 = (uint)Water_IsCameraUnderwater();
                 { bool c_ = r2 == 0;  if (c_) goto L_L00214A68; }
                 r16 = r20; r2 = (uint)func_00245AFC();
                 r2 = (uint)((int)r2 < 10 ? 1 : 0);

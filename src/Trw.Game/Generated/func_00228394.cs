@@ -18,7 +18,7 @@ public static partial class Game
             uint a = 0u;
             uint r = 0u;
             uint h = 0u;
-            if (!(((((func_00245774() == 0) && (func_00245788() == 0)) && (new GameB6(0x801468A0u).unk1C == 0)) && ((int)(Mem.U8((0x801468A0u + (uint)(-1467)))) != 0)))) goto _f0;
+            if (!(((((func_00245774() == 0) && (Water_IsCameraUnderwater() == 0)) && (new GameB6(0x801468A0u).unk1C == 0)) && ((int)(Mem.U8((0x801468A0u + (uint)(-1467)))) != 0)))) goto _f0;
             if (!((((func_00442B98((0x801468A0u - (uint)4740)) == 0) && (new GameB6(0x801468A0u).unk14 > 0.0f)) && (Mem.S32((0x801468A0u - (uint)12)) == 0)))) goto _f1;
             if (!((func_0022C640(g) != 0))) goto _f2;
             new GameB6(0x801468A0u).unk14_Set((new GameB6(0x801468A0u).unk14 - Mem.F32(0x800D2988u)));

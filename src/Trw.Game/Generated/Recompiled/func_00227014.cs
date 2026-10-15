@@ -47,7 +47,7 @@ public static partial class Game
                 L_I00227048: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L00227E38; }
                 L_I00227050: ;
-                r2 = (uint)func_00245788();
+                r2 = (uint)Water_IsCameraUnderwater();
                 L_I00227058: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L00227E38; }
                 L_I00227060: ;
@@ -120,7 +120,7 @@ public static partial class Game
                 L_I0022711C: ;
                 { bool c_ = r17 != r2;  if (c_) goto L_L00227160; }
                 L_I00227124: ;
-                r2 = (uint)func_00274544();
+                r2 = (uint)Random_Next();
                 L_I0022712C: ;
                 if (r19 != 0) { lo = (uint)Cpu.SDiv((int)r2, (int)r19); hi = (uint)Cpu.SRem((int)r2, (int)r19); }
                 L_I00227130: ;

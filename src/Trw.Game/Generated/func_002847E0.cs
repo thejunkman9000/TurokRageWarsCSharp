@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002847E0", (uint)n);
             if ((n != 0))
             {
-                return (func_00274544() % (n + 1));
+                return (Random_Next() % (n + 1));
             }
             return 0;
         }

@@ -32,7 +32,7 @@ public static partial class Game
                 done = 0;
                 do
                 {
-                    id = new O3Row((0x800E3A50u + (uint)((func_00274544() % 17) * 112))).f0;
+                    id = new O3Row((0x800E3A50u + (uint)((Random_Next() % 17) * 112))).f0;
                     if (((func_0040EC50((uint)((int)(func_0040ECB0((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((id & 65535)), default(uint), default(uint))))) != 0) || (new O3Pj(func_004208C0_pj(idx)).f10 == id)))
                     {
                         ++tries;
@@ -60,7 +60,7 @@ public static partial class Game
                 {
                     n = 1;
                 }
-                new O3Pj((Mem.U32(0x800E42D0u) - (uint)(-(idx * 1224)))).f18_Set((func_00274544() % n));
+                new O3Pj((Mem.U32(0x800E42D0u) - (uint)(-(idx * 1224)))).f18_Set((Random_Next() % n));
             }
         }
         finally { Stack.Free(12); }

@@ -33,7 +33,7 @@ public static partial class Game
                 Mem.Set((r29 + 28u), r17);
                 Mem.Set((r29 + 24u), r16);
                 Mem.Set((r29 + 56u), Cpu.Fpr[20]);
-                r19 = (uint)-1; r2 = (uint)func_00245788();
+                r19 = (uint)-1; r2 = (uint)Water_IsCameraUnderwater();
                 { bool c_ = r2 != 0;  if (c_) goto L_L0021A2A8; }
                 r2 = (uint)func_00245774();
                 { bool c_ = r2 != 0;  if (c_) goto L_L0021A2A8; }

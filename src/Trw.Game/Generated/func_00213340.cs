@@ -48,7 +48,7 @@ public static partial class Game
                             {
                                 break;
                             }
-                            id = (func_00274544() % new EntList(L).count);
+                            id = (Random_Next() % new EntList(L).count);
                             if ((((int)(new EntRec(func_0020C994(L, id)).flags) & 1024) != 0))
                             {
                                 id = new BrainB(b).unk22C;
@@ -70,7 +70,7 @@ public static partial class Game
                 }
                 else
                 {
-                    sel = Mem.S32((_fp + (uint)((func_00274544() % n) * 4)));
+                    sel = Mem.S32((_fp + (uint)((Random_Next() % n) * 4)));
                 }
                 new BrainB(b).unk22C_Set(sel);
                 new BrainB(b).unkC_Set(sel);

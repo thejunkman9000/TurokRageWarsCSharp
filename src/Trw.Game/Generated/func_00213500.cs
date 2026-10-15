@@ -39,7 +39,7 @@ public static partial class Game
                             {
                                 break;
                             }
-                            id = (func_00274544() % new EntList(L).count);
+                            id = (Random_Next() % new EntList(L).count);
                             if ((((int)(new EntRec(func_0020C994(L, id)).flags) & 1024) != 0))
                             {
                                 id = new BrainB(b).unk22C;
@@ -75,7 +75,7 @@ public static partial class Game
             }
             if ((new BrainB(b).unk320 < 0))
             {
-                new BrainB(b).unk320_Set((((func_00274544() % 7) + 3) * 15));
+                new BrainB(b).unk320_Set((((Random_Next() % 7) + 3) * 15));
             }
             func_00211020(b, default(uint), default(uint), default(uint));
             func_00208410(b);

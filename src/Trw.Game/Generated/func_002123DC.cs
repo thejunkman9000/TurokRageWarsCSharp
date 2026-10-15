@@ -13,8 +13,8 @@ public static partial class Game
             uint brain = new Actor(new Actor(actor).owner_).brain_;
             new Brain(brain).unk220_Set(0);
             func_00209988(brain);
-            new Brain(brain).unk2D8_Set(((func_00274544() % 4) + 12));
-            new Brain(brain).unk2DC_Set((func_00274544() % 2));
+            new Brain(brain).unk2D8_Set(((Random_Next() % 4) + 12));
+            new Brain(brain).unk2DC_Set((Random_Next() % 2));
         }
     }
 

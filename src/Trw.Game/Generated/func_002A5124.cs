@@ -55,12 +55,12 @@ public static partial class Game
                     }
                     break;
                 case 4:
-                    Mem.Set(p, (func_00274544() % Mem.S32(lenp)));
+                    Mem.Set(p, (Random_Next() % Mem.S32(lenp)));
                     break;
                 case 5:
                     if ((new Obj5124(o).unk38 == (-1)))
                     {
-                        new Obj5124(o).unk38_Set((func_00274544() % Mem.S32(lenp)));
+                        new Obj5124(o).unk38_Set((Random_Next() % Mem.S32(lenp)));
                     }
                     Mem.Set(p, new Obj5124(o).unk38);
                     break;

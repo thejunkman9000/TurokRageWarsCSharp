@@ -47,7 +47,7 @@ public static partial class Game
                         new O05Vec3((_fp + 16u)).y_Set((-18.0f));
                         break;
                     }
-                    new O05Vec3((_fp + 32u)).y_Set((float)((@base + (func_00274544() % 10))));
+                    new O05Vec3((_fp + 32u)).y_Set((float)((@base + (Random_Next() % 10))));
                     @base = (int)((int)(@base) + 45);
                     func_00439D3C((Mem.U32(0x800E59E0u) + (uint)off), 0, _fp, (_fp + 16u));
                     func_00439DC0((Mem.U32(0x800E59E0u) + (uint)off), (_fp + 32u));

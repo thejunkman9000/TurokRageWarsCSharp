@@ -112,6 +112,9 @@ Copy-Item $merged (Join-Path $gen "sigs.txt")          # signatures of every fun
 
 # stubs for the functions that are called but defined nowhere (the C port stubs these too)
 & (Join-Path $PSScriptRoot 'make_stubs.ps1') -Gen $gen -Merged $merged -CalledFiles @((Join-Path $tmp 'called.txt'), (Join-Path $tmp 'rc_called.txt'))
+# readable names and file groups (tools/names/functions.tsv, docs/NAMING.md): the generators emit the original names, one file per function
+python tools/rename/apply_names.py
+if ($LASTEXITCODE) { throw "tools/rename/apply_names.py failed" }
 Write-Host "done"
 
 

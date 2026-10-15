@@ -34,7 +34,7 @@ public static partial class Game
             total = ((a + b) + c);
             if ((total != 0))
             {
-                v = ((func_00274544() % total) + 1);
+                v = ((Random_Next() % total) + 1);
                 if ((t1 >= v))
                 {
                     return 5;

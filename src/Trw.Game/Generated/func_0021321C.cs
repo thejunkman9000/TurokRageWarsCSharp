@@ -34,7 +34,7 @@ public static partial class Game
             }
             if ((new BrainB(b).unk320 < 0))
             {
-                new BrainB(b).unk320_Set((((func_00274544() % 5) + 3) * 15));
+                new BrainB(b).unk320_Set((((Random_Next() % 5) + 3) * 15));
             }
             if ((func_00209948(b, new BrainB(b).unkC) < Mem.F32(0x800C71E0u)))
             {

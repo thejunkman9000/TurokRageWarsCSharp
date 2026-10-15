@@ -40,7 +40,7 @@ public static partial class Game
                 L_join: ;
                 if ((((Mem.S32(0x8014694Cu) == 0) && (a1 == 1)) && ((float)((a0 * 15)) < new TimerVar(0x800D2CA0u).t)))
                 {
-                    func_0042E7CC();
+                    AttractDemo_Setup();
                     func_0042E080(default(uint), default(uint), default(uint), default(uint));
                     func_002A33F8(0.0f);
                 }

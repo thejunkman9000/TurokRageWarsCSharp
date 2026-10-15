@@ -61,7 +61,7 @@ public static partial class Game
                 r5 = (uint)3;
                 r6 = (uint)122; func_0041B768(r4, (int)r5, (int)r6);
                 r4 = r0;
-                r5 = r4; func_0042EB80((int)r4, (int)r5);
+                r5 = r4; Arena_Set((int)r4, (int)r5);
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 17104u));
                 r1 = 2148401152u;

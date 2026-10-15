@@ -37,7 +37,18 @@ public static class Dbg
 
     private static readonly string[] prefixes = names == null ? Array.Empty<string>() : names.Where(n => n.EndsWith('*') && n.Length > 1).Select(n => n[..^1]).ToArray();   // "func_0044*" = prefix
 
-    private static bool Wanted(string name) => Armed && names != null && (all || names.Contains(name) || (prefixes.Length > 0 && prefixes.Any(name.StartsWith)));
+    /// <summary>Readable name of a function given its original name (tools/names/functions.tsv, set by the game at boot): TRW_TRACE_FN accepts either, the
+    /// trace prints both. Functions keep their original names in the debug paths (Dbg.Enter, the call histogram, the differential tests).</summary>
+    public static Func<string, string?>? ReadableName;
+
+    private static bool Wanted(string name)
+    {
+        if (!Armed || names == null) return false;
+        if (all || names.Contains(name) || (prefixes.Length > 0 && prefixes.Any(name.StartsWith))) return true;
+        return ReadableName?.Invoke(name) is string r && (names.Contains(r) || (prefixes.Length > 0 && prefixes.Any(r.StartsWith)));
+    }
+
+    private static string Show(string name) => ReadableName?.Invoke(name) is string r ? $"{r} ({name})" : name;
 
     public static void Enter(string name, uint a0 = 0, uint a1 = 0, uint a2 = 0, uint a3 = 0)
     {
@@ -46,7 +57,7 @@ public static class Dbg
             Console.Error.WriteLine($"[batch] {name}: DLptr={Mem.U32(0x80110634):X8} count(D_80110640)={Mem.S32(0x80110640)} model(D_8011064C)={Mem.U32(0x8011064C):X8} key(D_80110624)={Mem.S32(0x80110624):X} nres(D_801153D0)={Mem.S32(0x801153D0)} e0={Mem.U32(0x801157D8):X8},{Mem.U32(0x801157DC):X8},{Mem.U32(0x801157E0):X8},{Mem.U32(0x801157E4):X8}");
         if (hist != null) Interlocked.Increment(ref hist.GetOrAdd(name, _ => new int[1])[0]);
         if (!Wanted(name) || Interlocked.Increment(ref printed) > limit) return;
-        Console.Error.WriteLine($"[call] {name}({a0:X8}, {a1:X8}, {a2:X8}, {a3:X8})");
+        Console.Error.WriteLine($"[call] {Show(name)}({a0:X8}, {a1:X8}, {a2:X8}, {a3:X8})");
         if (dumpBytes > 0 && Mem.IsMapped(a0) && Mem.IsMapped(a0 + (uint)dumpBytes - 1))       // TRW_TRACE_DUMP=<bytes>: the memory a0 points to
         {
             var sb = new System.Text.StringBuilder("       a0:");
@@ -61,14 +72,14 @@ public static class Dbg
         if (batchLog && Armed && (name == "func_0026C020" || name == "func_0026D9D0") && batchPrinted < 400)
             Console.Error.WriteLine($"[batch] leave {name}: DLptr={Mem.U32(0x80110634):X8} lists: D_80110628={Mem.U32(0x80110628):X8} D_8011063C={Mem.U32(0x8011063C):X8} D_80110630(n)={Mem.S32(0x80110630)} D_80110638(n)={Mem.S32(0x80110638)}");
         if (!Wanted(name) || printed > limit) return;
-        Console.Error.WriteLine($"[ret ] {name} -> {v0:X8}");
+        Console.Error.WriteLine($"[ret ] {Show(name)} -> {v0:X8}");
     }
 
     /// <summary>Writes the call counts gathered so far (TRW_TRACE_HIST).</summary>
     public static void DumpHistogram()
     {
         if (hist == null || histPath == null) return;
-        try { File.WriteAllLines(histPath, hist.OrderBy(k => k.Key, StringComparer.Ordinal).Select(k => $"{k.Key} {k.Value[0]}")); }
+        try { File.WriteAllLines(histPath, hist.OrderBy(k => k.Key, StringComparer.Ordinal).Select(k => $"{k.Key} {k.Value[0]}{(ReadableName?.Invoke(k.Key) is string r ? " " + r : "")}")); }
         catch (IOException) { }
     }
 }

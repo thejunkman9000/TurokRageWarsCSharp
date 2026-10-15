@@ -51,7 +51,7 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00271694", 0u, (uint)v);
                 new Vec3f((_fp + 16u)).x_Set(new Vec3f(v).x);
                 new Vec3f((_fp + 16u)).y_Set(new Vec3f(v).y);
-                new Vec3f((_fp + 16u)).z_Set((((float)((func_00274544() % 20000)) - 1.0E+4f) * 9.99999974E-5f));
+                new Vec3f((_fp + 16u)).z_Set((((float)((Random_Next() % 20000)) - 1.0E+4f) * 9.99999974E-5f));
                 func_00271694_vnorm((_fp + 16u));
                 func_00271694_vnorm(v);
                 Mem.Copy(_ret, C.Seq(func_00271694_vlerp(_fp, v, (_fp + 16u), t), _fp), 12);

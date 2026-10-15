@@ -19,12 +19,12 @@ public static partial class Game
             }
             else
             {
-                new O3A(o).count_Set(((func_00274544() % 5) + 1));
+                new O3A(o).count_Set(((Random_Next() % 5) + 1));
             }
             for (i = 0; (i < new O3A(o).count); ++i)
             {
-                new O3A(o).cnts.Set((int)(i), ((func_00274544() % 3) + 1));
-                new O3A(o).vals.Set((int)(i), ((((-((func_00274544() % 40) + 30)) + (int)(new O3A(o).@base)) < 0) ? 0 : ((((-((func_00274544() % 40) + 30)) + (int)(new O3A(o).@base)) >= 256) ? 255 : ((-((func_00274544() % 40) + 30)) + (int)(new O3A(o).@base)))));
+                new O3A(o).cnts.Set((int)(i), ((Random_Next() % 3) + 1));
+                new O3A(o).vals.Set((int)(i), ((((-((Random_Next() % 40) + 30)) + (int)(new O3A(o).@base)) < 0) ? 0 : ((((-((Random_Next() % 40) + 30)) + (int)(new O3A(o).@base)) >= 256) ? 255 : ((-((Random_Next() % 40) + 30)) + (int)(new O3A(o).@base)))));
             }
         }
     }

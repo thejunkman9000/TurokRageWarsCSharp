@@ -27,7 +27,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r16);
                 r16 = Mem.U32((r17 + 0u));
                 { bool c_ = r16 == 0; r2 = r0; if (c_) goto L_L002561A0; }
-                r2 = (uint)func_00274544();
+                r2 = (uint)Random_Next();
                 r3 = Mem.U32((r17 + 16u));
                 if (r3 != 0) { lo = r2 / r3; hi = r2 % r3; }
                 { bool c_ = r3 != 0;  if (c_) goto L_L0025616C; }

@@ -73,7 +73,7 @@ public static partial class Game
                 r2 = r2 - 1u;
                 Cpu.SetS(20, Cpu.S(0) * Cpu.S(1));
                 { bool c_ = (int)r2 > 0; Mem.Set((r16 + 728u), r2); if (c_) goto L_L00211284; }
-                r2 = (uint)func_00274544();
+                r2 = (uint)Random_Next();
                 r3 = r2;
                 if ((int)r3 < 0) { r2 = r3 + 3u; goto L_L00211230; }
                 L_L00211230: ;
@@ -81,13 +81,13 @@ public static partial class Game
                 r2 = r2 << 2;
                 r2 = r3 - r2;
                 r2 = r2 + 12u;
-                Mem.Set((r16 + 728u), r2); r2 = (uint)func_00274544();
+                Mem.Set((r16 + 728u), r2); r2 = (uint)Random_Next();
                 r3 = r2 >> 31;
                 r3 = r2 + r3;
                 r3 = (uint)((int)r3 >> 1);
                 r3 = r3 << 1;
                 r2 = r2 - r3;
-                Mem.Set((r16 + 732u), r2); r2 = (uint)func_00274544();
+                Mem.Set((r16 + 732u), r2); r2 = (uint)Random_Next();
                 r3 = r2 >> 31;
                 r3 = r2 + r3;
                 r3 = (uint)((int)r3 >> 1);

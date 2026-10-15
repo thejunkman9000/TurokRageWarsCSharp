@@ -6,7 +6,7 @@ namespace Trw.Game;
 /// so map-specific bugs need a fixed map); each pick is logged as <c>[arena]</c>.
 /// n is the game's internal level number, not the menu order: Dire Straits 7, Grim Retreat 3, Warehouse 9, Water Temple 10, Earth Temple 13, Courtyard 34.
 /// The pick that counts is the last one before the match starts (the menus call the setter while browsing). The main-menu attract demo picks its own
-/// arena (func_0042E7CC, one of 0 / 3 / 27 / 1); the pin covers it too (its type stays 2), so headless runs can visit any map.
+/// arena (AttractDemo_Setup, one of 0 / 3 / 27 / 1); the pin covers it too (its type stays 2), so headless runs can visit any map.
 /// </summary>
 public static partial class Game
 {

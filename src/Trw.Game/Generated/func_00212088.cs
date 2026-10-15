@@ -46,9 +46,9 @@ public static partial class Game
             v = (new B2Ctl(ctl).unk2D8 - 1);
             new B2Ctl(ctl).unk2D8_Set(v);
             if (!((v <= 0))) goto _f5;
-            new B2Ctl(ctl).unk2D8_Set(((func_00274544() % 4) + 12));
-            new B2Ctl(ctl).unk2DC_Set((func_00274544() % 2));
-            r = func_00274544();
+            new B2Ctl(ctl).unk2D8_Set(((Random_Next() % 4) + 12));
+            new B2Ctl(ctl).unk2DC_Set((Random_Next() % 2));
+            r = Random_Next();
             if (!((((r / 2) * 2) == (r - 1)))) goto _f6;
             new B2Ctl(ctl).unk2DC_Set(2);
             _f6: ;

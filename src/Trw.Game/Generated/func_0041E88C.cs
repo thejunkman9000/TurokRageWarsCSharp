@@ -45,7 +45,7 @@ public static partial class Game
                     {
                         do
                         {
-                            p = (_fp + (uint)((func_00274544() % n) * 4));
+                            p = (_fp + (uint)((Random_Next() % n) * 4));
                             v = Mem.S32(p);
                             if (((v < 20) && (total >= v)))
                             {
@@ -64,7 +64,7 @@ public static partial class Game
                         new O3Plr((0x80153F80u + (uint)(i * 28))).fC_Set(t);
                         do
                         {
-                            r = (func_00274544() % 17);
+                            r = (Random_Next() % 17);
                             new O3Plr((0x80153F80u + (uint)(i * 28))).id_Set(new O3Chr(((0x800E381Cu + (uint)(t * 136)) + (uint)(r * 8))).ch);
                             func_002A125C(new O3Plr((0x80153F80u + (uint)(i * 28))).name.P, Mem.U32(new O3Chr(((0x800E381Cu + (uint)(t * 136)) + (uint)(r * 8))).s));
                         }
