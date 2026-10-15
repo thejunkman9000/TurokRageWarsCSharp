@@ -32,8 +32,8 @@ public static partial class Game
                     Mem.Set((_fp + 8u), BitStream_ReadBits(_fp, (uint)(6)));
                     lo = BitStream_DequantizeUnit((float)(Mem.U32((_fp + 4u))), 6);
                     hi = BitStream_DequantizeUnit((float)(Mem.U32((_fp + 8u))), 6);
-                    lo = Math_LerpScalar(lo, Mem.F32(0x8010EC7Cu), Mem.F32(0x8010EC80u));
-                    hi = Math_LerpScalar(hi, Mem.F32(0x8010EC7Cu), Mem.F32(0x8010EC80u));
+                    lo = Math_LerpScalar(lo, Mem.F32(Gv.AnimCodec_QuantRangeMin), Mem.F32(Gv.AnimCodec_QuantRangeMax));
+                    hi = Math_LerpScalar(hi, Mem.F32(Gv.AnimCodec_QuantRangeMin), Mem.F32(Gv.AnimCodec_QuantRangeMax));
                 }
                 new B14FRange((_fp + 16u)).min_Set(lo);
                 new B14FRange((_fp + 16u)).range_Set((hi - lo));
@@ -374,8 +374,8 @@ public static partial class Game
                     Mem.Set((_fp + 8u), BitStream_ReadBits(_fp, (uint)(6)));
                     lo = BitStream_DequantizeUnit((float)(Mem.U32((_fp + 4u))), 6);
                     hi = BitStream_DequantizeUnit((float)(Mem.U32((_fp + 8u))), 6);
-                    lo = Math_LerpScalar(lo, Mem.F32(0x8010EC7Cu), Mem.F32(0x8010EC80u));
-                    hi = Math_LerpScalar(hi, Mem.F32(0x8010EC7Cu), Mem.F32(0x8010EC80u));
+                    lo = Math_LerpScalar(lo, Mem.F32(Gv.AnimCodec_QuantRangeMin), Mem.F32(Gv.AnimCodec_QuantRangeMax));
+                    hi = Math_LerpScalar(hi, Mem.F32(Gv.AnimCodec_QuantRangeMin), Mem.F32(Gv.AnimCodec_QuantRangeMax));
                 }
                 new B14Trk(t).base_Set(lo);
                 new B14Trk(t).range_Set((hi - lo));
@@ -601,15 +601,15 @@ public static partial class Game
             uint b2 = Chunk_Get(b, 2);
             Mem.Set(0x8010EC78u, 1);
             Mem.Set(0x8010EC74u, 0);
-            Mem.Set(0x8010EC7Cu, Mem.F32(0x800C9288u));
-            Mem.Set(0x8010EC80u, Mem.F32(0x800C928Cu));
+            Mem.Set(Gv.AnimCodec_QuantRangeMin, Mem.F32(0x800C9288u));
+            Mem.Set(Gv.AnimCodec_QuantRangeMax, Mem.F32(0x800C928Cu));
             Mem.Set(0x8010EC70u, new B14Hdr(h).fC);
             if ((AnimCodec_DecodeTracks((int)(a1), b1, new B14Hdr(h).f14, 3, new B14Hdr(h).f0, new B14Hdr(h).f8) != 0))
             {
                 Mem.Set(0x8010EC78u, 0);
                 Mem.Set(0x8010EC74u, 1);
-                Mem.Set(0x8010EC7Cu, Mem.F32(0x800C9290u));
-                Mem.Set(0x8010EC80u, Mem.F32(0x800C9294u));
+                Mem.Set(Gv.AnimCodec_QuantRangeMin, Mem.F32(0x800C9290u));
+                Mem.Set(Gv.AnimCodec_QuantRangeMax, Mem.F32(0x800C9294u));
                 Mem.Set(0x8010EC70u, new B14Hdr(h).fC);
                 r = ((AnimCodec_DecodeTracks((int)(a2), b2, new B14Hdr(h).f10, 4, new B14Hdr(h).f0, new B14Hdr(h).f8) != 0) ? 1 : 0);
             }

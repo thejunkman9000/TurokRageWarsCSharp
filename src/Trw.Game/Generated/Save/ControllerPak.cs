@@ -20,33 +20,33 @@ public static partial class Game
                 uint pfs = 0u;
                 uint q = 0u;
                 uint n = 0u;
-                if ((Mem.U32(0x800E2854u) != 0u))
+                if ((Mem.U32(Gv.CPak_DirectoryPtr) != 0u))
                 {
                     i = 0;
-                    pfs = (0x80153510u + (uint)(pad * 104));
+                    pfs = (Gv.CPak_PfsArray + (uint)(pad * 104));
                     for (; (i < 16); ++i)
                     {
-                        r = osPfsFileState(pfs, i, (new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent.P + (uint)(i * 32)));
+                        r = osPfsFileState(pfs, i, (new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent.P + (uint)(i * 32)));
                         if (((r != 0) && (r != 5)))
                         {
-                            r = osPfsFileState(pfs, i, (new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent.P + (uint)(i * 32)));
+                            r = osPfsFileState(pfs, i, (new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent.P + (uint)(i * 32)));
                         }
                         if ((r == 5))
                         {
-                            q = (uint)((((uint)((pad * 516)) + (uint)(Mem.U32(0x800E2854u))) + (uint)((i * 32))));
+                            q = (uint)((((uint)((pad * 516)) + (uint)(Mem.U32(Gv.CPak_DirectoryPtr))) + (uint)((i * 32))));
                             new O01E2(q).unkE.Set((int)(0), (byte)(0));
                             new O01E2(q).unk4_Set(0);
                             new O01E2(q).unk8_Set(0);
                             new O01E2(q).unkC_Set((ushort)(0));
-                            n = (uint)((((uint)((pad * 516)) + (uint)(Mem.U32(0x800E2854u))) + (uint)((i * 32))));
+                            n = (uint)((((uint)((pad * 516)) + (uint)(Mem.U32(Gv.CPak_DirectoryPtr))) + (uint)((i * 32))));
                             new O01E2(n).unk12.Set((int)(0), (byte)(0));
                         }
                     }
                 }
-                r = osPfsFreeBlocks((0x80153510u + (uint)(pad * 104)), _fp);
+                r = osPfsFreeBlocks((Gv.CPak_PfsArray + (uint)(pad * 104)), _fp);
                 if ((r == 0))
                 {
-                    new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).unk0_Set(Mem.S32(_fp));
+                    new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).unk0_Set(Mem.S32(_fp));
                 }
                 return r;
             }
@@ -66,9 +66,9 @@ public static partial class Game
             int code = 0;
             int ok = 0;
             int ret = 0;
-            if (((int)(new O01Pad4((0x8010FBE0u + (uint)(pad * 4))).unk3) != 0))
+            if (((int)(new O01Pad4((Gv.Pad_ContStatus + (uint)(pad * 4))).unk3) != 0))
             {
-                Mem.Set((0x80153500u + (uint)(pad * 4)), (-2));
+                Mem.Set((Gv.CPak_Status + (uint)(pad * 4)), (-2));
                 ret = 0;
             }
             else
@@ -76,15 +76,15 @@ public static partial class Game
                 i = 0;
                 do
                 {
-                    r = osPfsInitPak(0x8010FC00u, (0x80153510u + (uint)(pad * 104)), pad);
+                    r = osPfsInitPak(Gv.Pad_SiMesgQueue, (Gv.CPak_PfsArray + (uint)(pad * 104)), pad);
                     switch (r)
                     {
                     case 0:
                     case 2:
-                        Mem.Set((0x80153500u + (uint)(pad * 4)), (-5));
+                        Mem.Set((Gv.CPak_Status + (uint)(pad * 4)), (-5));
                         break;
                     case 1:
-                        Mem.Set((0x80153500u + (uint)(pad * 4)), (-2));
+                        Mem.Set((Gv.CPak_Status + (uint)(pad * 4)), (-2));
                         break;
                     case 4:
                     case 11:
@@ -93,14 +93,14 @@ public static partial class Game
                     case 10:
                         code = (-4);
                         L_st: ;
-                        Mem.Set((0x80153500u + (uint)(pad * 4)), code);
+                        Mem.Set((Gv.CPak_Status + (uint)(pad * 4)), code);
                         break;
                     }
-                    if ((Mem.S32((0x80153500u + (uint)(pad * 4))) == (-5)))
+                    if ((Mem.S32((Gv.CPak_Status + (uint)(pad * 4))) == (-5)))
                     {
                         goto L_got5;
                     }
-                    if ((Mem.S32((0x80153500u + (uint)(pad * 4))) == (-2)))
+                    if ((Mem.S32((Gv.CPak_Status + (uint)(pad * 4))) == (-2)))
                     {
                         goto L_fin;
                     }
@@ -109,16 +109,16 @@ public static partial class Game
                 while ((i < 4));
                 goto L_fin2;
                 L_got5: ;
-                Mem.Set((0x801534F0u + (uint)(pad * 4)), 3);
+                Mem.Set((Gv.CPak_Accessory + (uint)(pad * 4)), 3);
                 if ((CPak_ReadDirectory(pad) != 0))
                 {
-                    Mem.Set((0x80153500u + (uint)(pad * 4)), (-4));
+                    Mem.Set((Gv.CPak_Status + (uint)(pad * 4)), (-4));
                     goto L_fin2;
                 }
-                Mem.Set((0x80153500u + (uint)(pad * 4)), 0);
+                Mem.Set((Gv.CPak_Status + (uint)(pad * 4)), 0);
                 L_fin: ;
                 L_fin2: ;
-                v = Mem.S32((0x80153500u + (uint)(pad * 4)));
+                v = Mem.S32((Gv.CPak_Status + (uint)(pad * 4)));
                 ok = 0;
                 if (((v == 0) || (v == (-4))))
                 {
@@ -140,33 +140,33 @@ public static partial class Game
             uint r = 0u;
             Pad_TryAcquire(1);
             Pad_ReadController_00263760();
-            Mem.Set(0x8010FBB8u, (byte)(2));
+            Mem.Set(Gv.Pad_SiPendingOp, (byte)(2));
             for (i = 0; (i < 4); ++i)
             {
                 r = (0x80153330u + (uint)(i * 112));
-                if (((int)(new O01Pad4((0x8010FBE0u + (uint)(i * 4))).unk3) != 0))
+                if (((int)(new O01Pad4((Gv.Pad_ContStatus + (uint)(i * 4))).unk3) != 0))
                 {
                     new O01Rumble(r).ok_Set((byte)(0));
                     ok = 0;
                 }
                 else
                 {
-                    new O01Rumble(r).ok_Set((byte)(((osMotorInit(0x8010FC00u, new O01Rumble(r).pfs.P, i) == 0) ? 1 : 0)));
+                    new O01Rumble(r).ok_Set((byte)(((osMotorInit(Gv.Pad_SiMesgQueue, new O01Rumble(r).pfs.P, i) == 0) ? 1 : 0)));
                     ok = (int)(new O01Rumble(r).ok);
                 }
                 if ((ok != 0))
                 {
-                    Mem.Set((0x801534F0u + (uint)(i * 4)), 2);
+                    Mem.Set((Gv.CPak_Accessory + (uint)(i * 4)), 2);
                 }
                 else
                 {
                     if ((CPak_Mount(i) != 0))
                     {
-                        Mem.Set((0x801534F0u + (uint)(i * 4)), 3);
+                        Mem.Set((Gv.CPak_Accessory + (uint)(i * 4)), 3);
                     }
                     else
                     {
-                        Mem.Set((0x801534F0u + (uint)(i * 4)), 1);
+                        Mem.Set((Gv.CPak_Accessory + (uint)(i * 4)), 1);
                     }
                 }
             }
@@ -214,21 +214,21 @@ public static partial class Game
                 uint gcode = 0u;
                 int r = 0;
                 int zero = 0;
-                if ((Mem.S32((0x801534F0u + (uint)(pad * 4))) != 3))
+                if ((Mem.S32((Gv.CPak_Accessory + (uint)(pad * 4))) != 3))
                 {
                     return (-2);
                 }
                 Pad_TryAcquire(1);
                 Pad_ReadController_00263760();
-                r = Mem.S32((0x80153500u + (uint)(pad * 4)));
-                Mem.Set(0x8010FBB8u, (byte)(2));
+                r = Mem.S32((Gv.CPak_Status + (uint)(pad * 4)));
+                Mem.Set(Gv.Pad_SiPendingOp, (byte)(2));
                 if ((r == 0))
                 {
                     func_004042F0_O01Rev(ext, (_fp + 16u), 4);
                     size = ((size + 255) & (~255));
                     memcpy(_fp, name, (uint)(16));
                     func_004042F0_O01Rev(name, _fp, 16);
-                    pfs = (0x80153510u + (uint)(pad * 104));
+                    pfs = (Gv.CPak_PfsArray + (uint)(pad * 104));
                     ccode = (ushort)((((int)(Mem.U8((company + (uint)0))) << (int)8) | (int)(Mem.U8((company + (uint)1)))));
                     gcode = (uint)((((((int)(Mem.U8((game + (uint)0))) << (int)24) | ((int)(Mem.U8((game + (uint)1))) << (int)16)) | ((int)(Mem.U8((game + (uint)2))) << (int)8)) | (int)(Mem.U8((game + (uint)3)))));
                     r = osPfsAllocateFile(pfs, ccode, gcode, _fp, (_fp + 16u), size, outFileNo);
@@ -304,22 +304,22 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0040458C", (uint)pad, (uint)idx, (uint)valid, (uint)name);
-            if ((Mem.S32((0x801534F0u + (uint)(pad * 4))) != 3))
+            if ((Mem.S32((Gv.CPak_Accessory + (uint)(pad * 4))) != 3))
             {
                 return (-2);
             }
-            if ((new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent[(int)(idx)].unk0 == 0))
+            if ((new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].unk0 == 0))
             {
                 Mem.Set(valid, 0);
             }
             else
             {
                 Mem.Set(valid, 1);
-                Mem.Set(blocks, (int)(((uint)(new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent[(int)(idx)].unk0) >> (int)8)));
-                memcpy(company, ((new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent.P + (uint)(idx * 32)) + 8u), (uint)(2));
-                memcpy(game, ((new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent.P + (uint)(idx * 32)) + 4u), (uint)(4));
-                func_0040458C_O01ConvName(new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent[(int)(idx)].unkE.P, name, 17);
-                func_0040458C_O01ConvName(new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent[(int)(idx)].unkA.P, ext, 4);
+                Mem.Set(blocks, (int)(((uint)(new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].unk0) >> (int)8)));
+                memcpy(company, ((new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent.P + (uint)(idx * 32)) + 8u), (uint)(2));
+                memcpy(game, ((new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent.P + (uint)(idx * 32)) + 4u), (uint)(4));
+                func_0040458C_O01ConvName(new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].unkE.P, name, 17);
+                func_0040458C_O01ConvName(new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].unkA.P, ext, 4);
                 Mem.Set((game + (uint)4), (byte)(0));
                 Mem.Set((company + (uint)2), (byte)(0));
             }
@@ -335,17 +335,17 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00404858", (uint)pad, (uint)idx);
             int r = 0;
             uint e = 0u;
-            if ((Mem.S32((0x801534F0u + (uint)(pad * 4))) != 3))
+            if ((Mem.S32((Gv.CPak_Accessory + (uint)(pad * 4))) != 3))
             {
                 return (-2);
             }
             Pad_TryAcquire(1);
             Pad_ReadController_00263760();
-            r = Mem.S32((0x80153500u + (uint)(pad * 4)));
-            Mem.Set(0x8010FBB8u, (byte)(2));
+            r = Mem.S32((Gv.CPak_Status + (uint)(pad * 4)));
+            Mem.Set(Gv.Pad_SiPendingOp, (byte)(2));
             if ((r == 0))
             {
-                r = osPfsDeleteFile((0x80153510u + (uint)(pad * 104)), new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent[(int)(idx)].unk8, (uint)(new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent[(int)(idx)].unk4), new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent[(int)(idx)].unkE.P, new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent[(int)(idx)].unkA.P);
+                r = osPfsDeleteFile((Gv.CPak_PfsArray + (uint)(pad * 104)), new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].unk8, (uint)(new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].unk4), new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].unkE.P, new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].unkA.P);
                 if ((r != 0))
                 {
                     r = (-1);
@@ -368,7 +368,7 @@ public static partial class Game
             uint buf = 0u;
             int r = 0;
             int zero = 0;
-            if ((Mem.S32((0x801534F0u + (uint)(pad * 4))) != 3))
+            if ((Mem.S32((Gv.CPak_Accessory + (uint)(pad * 4))) != 3))
             {
                 return (-2);
             }
@@ -380,11 +380,11 @@ public static partial class Game
             buf = (uint)(Mem.S32(h));
             Pad_TryAcquire(1);
             Pad_ReadController_00263760();
-            r = Mem.S32((0x80153500u + (uint)(pad * 4)));
-            Mem.Set(0x8010FBB8u, (byte)(2));
+            r = Mem.S32((Gv.CPak_Status + (uint)(pad * 4)));
+            Mem.Set(Gv.Pad_SiPendingOp, (byte)(2));
             if ((r == 0))
             {
-                r = osPfsReadWriteFile((0x80153510u + (uint)(pad * 104)), fileNo, (byte)(0), 0, rsize, buf);
+                r = osPfsReadWriteFile((Gv.CPak_PfsArray + (uint)(pad * 104)), fileNo, (byte)(0), 0, rsize, buf);
                 zero = 0;
                 if ((r != zero))
                 {
@@ -419,7 +419,7 @@ public static partial class Game
                 int i = 0;
                 int r = 0;
                 rsize = ((size + 255) & (~255));
-                if ((Mem.S32((0x801534F0u + (uint)(pad * 4))) != 3))
+                if ((Mem.S32((Gv.CPak_Accessory + (uint)(pad * 4))) != 3))
                 {
                     return (-2);
                 }
@@ -428,7 +428,7 @@ public static partial class Game
                 i = 0;
                 do
                 {
-                    r = CPak_WriteNewFile(pad, size, data, name, _fp, ext, Mem.U32(0x800D7708u), game);
+                    r = CPak_WriteNewFile(pad, size, data, name, _fp, ext, Mem.U32(Gv.CPak_CompanyCodeStrPtr), game);
                     if ((r != 0))
                     {
                         break;
@@ -513,9 +513,9 @@ public static partial class Game
                 int i = 0;
                 do
                 {
-                    if ((Mem.S32((0x801534F0u + (uint)(pad * 4))) == 3))
+                    if ((Mem.S32((Gv.CPak_Accessory + (uint)(pad * 4))) == 3))
                     {
-                        new O01Pp((_fp + 16u)).p__Set(new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent[(int)(i)].unkE.P);
+                        new O01Pp((_fp + 16u)).p__Set(new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(i)].unkE.P);
                     }
                     func_00404BE8_O01ConvName(new O01Pp((_fp + 16u)).p_, _fp, 16);
                     if ((LibC_StrCompare(_fp, name) == 0))
@@ -545,7 +545,7 @@ public static partial class Game
             h = ResourcePool_Alloc(0, 2064, (uint)(35), (int)(0x800E0CF0u));
             p = (uint)(Mem.S32(h));
             Mem.Set(0x800E2858u, (int)(h));
-            Mem.Set(0x800E2854u, p);
+            Mem.Set(Gv.CPak_DirectoryPtr, p);
             memset(p, 0, (uint)(2064));
             Mem.Set(0x800E2850u, 1);
         }
@@ -561,7 +561,7 @@ public static partial class Game
             {
                 ResourcePool_Release(0, (uint)(Mem.S32(0x800E2858u)));
                 Mem.Set(0x800E2858u, 0);
-                Mem.Set(0x800E2854u, 0u);
+                Mem.Set(Gv.CPak_DirectoryPtr, 0u);
             }
             Mem.Set(0x800E2850u, 0);
         }
@@ -577,31 +577,31 @@ public static partial class Game
             int ok = 0;
             Pad_TryAcquire(1);
             Pad_ReadController_00263760();
-            Mem.Set(0x8010FBB8u, (byte)(2));
+            Mem.Set(Gv.Pad_SiPendingOp, (byte)(2));
             r = (0x80153330u + (uint)(ch * 112));
-            if (((int)(new O01Pad4((0x8010FBE0u + (uint)(ch * 4))).unk3) != 0))
+            if (((int)(new O01Pad4((Gv.Pad_ContStatus + (uint)(ch * 4))).unk3) != 0))
             {
                 new O01Rumble(r).ok_Set((byte)(0));
                 ok = 0;
             }
             else
             {
-                new O01Rumble(r).ok_Set((byte)(((osMotorInit(0x8010FC00u, new O01Rumble(r).pfs.P, ch) == 0) ? 1 : 0)));
+                new O01Rumble(r).ok_Set((byte)(((osMotorInit(Gv.Pad_SiMesgQueue, new O01Rumble(r).pfs.P, ch) == 0) ? 1 : 0)));
                 ok = (int)(new O01Rumble(r).ok);
             }
             if ((ok != 0))
             {
-                Mem.Set((0x801534F0u + (uint)(ch * 4)), 2);
+                Mem.Set((Gv.CPak_Accessory + (uint)(ch * 4)), 2);
             }
             else
             {
                 if ((CPak_Mount(ch) != 0))
                 {
-                    Mem.Set((0x801534F0u + (uint)(ch * 4)), 3);
+                    Mem.Set((Gv.CPak_Accessory + (uint)(ch * 4)), 3);
                 }
                 else
                 {
-                    Mem.Set((0x801534F0u + (uint)(ch * 4)), 1);
+                    Mem.Set((Gv.CPak_Accessory + (uint)(ch * 4)), 1);
                 }
             }
             Pad_Release(default(uint), default(uint), default(uint), default(uint));
@@ -655,11 +655,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00404F04", (uint)i);
-            if ((Mem.S32((0x801534F0u + (uint)(i * 4))) != 3))
+            if ((Mem.S32((Gv.CPak_Accessory + (uint)(i * 4))) != 3))
             {
                 return (-2);
             }
-            return Mem.S32((0x80153500u + (uint)(i * 4)));
+            return Mem.S32((Gv.CPak_Status + (uint)(i * 4)));
         }
     }
 
@@ -669,7 +669,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00404F3C", (uint)i);
-            return ((Mem.S32((0x801534F0u + (uint)(i * 4))) == 2) ? 1 : 0);
+            return ((Mem.S32((Gv.CPak_Accessory + (uint)(i * 4))) == 2) ? 1 : 0);
         }
     }
 
@@ -684,7 +684,7 @@ public static partial class Game
             int zero = 0;
             uint buf = 0u;
             int r = 0;
-            if ((Mem.S32((0x801534F0u + (uint)(pad * 4))) != 3))
+            if ((Mem.S32((Gv.CPak_Accessory + (uint)(pad * 4))) != 3))
             {
                 return (-2);
             }
@@ -696,11 +696,11 @@ public static partial class Game
             buf = (uint)(Mem.S32(h));
             Pad_TryAcquire(1);
             Pad_ReadController_00263760();
-            r = Mem.S32((0x80153500u + (uint)(pad * 4)));
-            Mem.Set(0x8010FBB8u, (byte)(2));
+            r = Mem.S32((Gv.CPak_Status + (uint)(pad * 4)));
+            Mem.Set(Gv.Pad_SiPendingOp, (byte)(2));
             if ((r == 0))
             {
-                r = osPfsReadWriteFile((0x80153510u + (uint)(pad * 104)), fileNo, (byte)(0), 0, rsize, buf);
+                r = osPfsReadWriteFile((Gv.CPak_PfsArray + (uint)(pad * 104)), fileNo, (byte)(0), 0, rsize, buf);
                 zero = 0;
                 if ((r != zero))
                 {
@@ -728,22 +728,22 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004050CC", (uint)pad, (uint)cnt);
             int i = 0;
-            if ((Mem.S32((0x801534F0u + (uint)(pad * 4))) != 3))
+            if ((Mem.S32((Gv.CPak_Accessory + (uint)(pad * 4))) != 3))
             {
                 return (-2);
             }
             Mem.Set(cnt, 0);
-            if ((Mem.S32((0x80153500u + (uint)(pad * 4))) == 0))
+            if ((Mem.S32((Gv.CPak_Status + (uint)(pad * 4))) == 0))
             {
                 for (i = 0; (i < 16); ++i)
                 {
-                    if ((new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent[(int)(i)].unk0 == 0))
+                    if ((new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(i)].unk0 == 0))
                     {
                         Mem.Set(cnt, (int)(Mem.S32(cnt) + 1));
                     }
                 }
             }
-            return Mem.S32((0x80153500u + (uint)(pad * 4)));
+            return Mem.S32((Gv.CPak_Status + (uint)(pad * 4)));
         }
     }
 
@@ -753,19 +753,19 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00405160", (uint)pad, (uint)@out);
-            if ((Mem.S32((0x801534F0u + (uint)(pad * 4))) != 3))
+            if ((Mem.S32((Gv.CPak_Accessory + (uint)(pad * 4))) != 3))
             {
                 return (-2);
             }
-            if ((Mem.S32((0x80153500u + (uint)(pad * 4))) == 0))
+            if ((Mem.S32((Gv.CPak_Status + (uint)(pad * 4))) == 0))
             {
-                Mem.Set(@out, (new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).unk0 / 256));
+                Mem.Set(@out, (new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).unk0 / 256));
             }
             else
             {
                 Mem.Set(@out, 0);
             }
-            return Mem.S32((0x80153500u + (uint)(pad * 4)));
+            return Mem.S32((Gv.CPak_Status + (uint)(pad * 4)));
         }
     }
 
@@ -776,17 +776,17 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004051D4", (uint)pad);
             int r = 0;
-            if ((Mem.S32((0x801534F0u + (uint)(pad * 4))) != 3))
+            if ((Mem.S32((Gv.CPak_Accessory + (uint)(pad * 4))) != 3))
             {
                 return (-2);
             }
             Pad_TryAcquire(1);
             Pad_ReadController_00263760();
-            r = Mem.S32((0x80153500u + (uint)(pad * 4)));
-            Mem.Set(0x8010FBB8u, (byte)(2));
+            r = Mem.S32((Gv.CPak_Status + (uint)(pad * 4)));
+            Mem.Set(Gv.Pad_SiPendingOp, (byte)(2));
             if ((r == (-4)))
             {
-                r = __osGetId((0x80153510u + (uint)(pad * 104)));
+                r = __osGetId((Gv.CPak_PfsArray + (uint)(pad * 104)));
                 if ((r != 0))
                 {
                     r = (-1);
@@ -805,14 +805,14 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00405290", (uint)pad);
             int r = 0;
-            if ((Mem.S32((0x801534F0u + (uint)(pad * 4))) != 3))
+            if ((Mem.S32((Gv.CPak_Accessory + (uint)(pad * 4))) != 3))
             {
                 return (-2);
             }
             Pad_TryAcquire(1);
             Pad_ReadController_00263760();
-            Mem.Set(0x8010FBB8u, (byte)(2));
-            r = __osGetId((0x80153510u + (uint)(pad * 104)));
+            Mem.Set(Gv.Pad_SiPendingOp, (byte)(2));
+            r = __osGetId((Gv.CPak_PfsArray + (uint)(pad * 104)));
             if ((r != 0))
             {
                 r = (-1);
@@ -829,11 +829,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00405338", (uint)pad, (uint)idx, (uint)@out);
-            if ((Mem.S32((0x801534F0u + (uint)(pad * 4))) != 3))
+            if ((Mem.S32((Gv.CPak_Accessory + (uint)(pad * 4))) != 3))
             {
                 return (-2);
             }
-            Mem.Set(@out, new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent[(int)(idx)].unkE.P);
+            Mem.Set(@out, new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].unkE.P);
             return 0;
         }
     }
@@ -844,11 +844,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0040538C", (uint)pad, (uint)idx, (uint)@out);
-            if ((Mem.S32((0x801534F0u + (uint)(pad * 4))) != 3))
+            if ((Mem.S32((Gv.CPak_Accessory + (uint)(pad * 4))) != 3))
             {
                 return (-2);
             }
-            Mem.Set(@out, new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent[(int)(idx)].unkA.P);
+            Mem.Set(@out, new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].unkA.P);
             return 0;
         }
     }
@@ -859,11 +859,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004053E0", (uint)pad, (uint)idx, (uint)@out);
-            if ((Mem.S32((0x801534F0u + (uint)(pad * 4))) != 3))
+            if ((Mem.S32((Gv.CPak_Accessory + (uint)(pad * 4))) != 3))
             {
                 return (-2);
             }
-            Mem.Set(@out, CPak_BytesToPages((uint)(new O01PadTab((Mem.U32(0x800E2854u) + (uint)(pad * 516))).ent[(int)(idx)].unk0)));
+            Mem.Set(@out, CPak_BytesToPages((uint)(new O01PadTab((Mem.U32(Gv.CPak_DirectoryPtr) + (uint)(pad * 516))).ent[(int)(idx)].unk0)));
             return 0;
         }
     }
@@ -880,7 +880,7 @@ public static partial class Game
                 int mask = 0;
                 int i = 0;
                 ushort t = 0;
-                if ((Mem.S32((0x801534F0u + (uint)(pad * 4))) != 3))
+                if ((Mem.S32((Gv.CPak_Accessory + (uint)(pad * 4))) != 3))
                 {
                     return (-2);
                 }
@@ -926,11 +926,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00405598", (uint)i);
-            if ((Mem.S32((0x801534F0u + (uint)(i * 4))) != 3))
+            if ((Mem.S32((Gv.CPak_Accessory + (uint)(i * 4))) != 3))
             {
                 return 0;
             }
-            return ((Mem.S32((0x80153500u + (uint)(i * 4))) == (-4)) ? 1 : 0);
+            return ((Mem.S32((Gv.CPak_Status + (uint)(i * 4))) == (-4)) ? 1 : 0);
         }
     }
 
@@ -1083,7 +1083,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00409824", (uint)a, (uint)b);
-            if (((((Str_Length(b) == 4) && (Str_Length(a) == 2)) && (LibC_StrCompare(b, Mem.U32(0x800D770Cu)) == 0)) && (LibC_StrCompare(a, Mem.U32(0x800D7708u)) == 0)))
+            if (((((Str_Length(b) == 4) && (Str_Length(a) == 2)) && (LibC_StrCompare(b, Mem.U32(Gv.Pak_GameCodePtr)) == 0)) && (LibC_StrCompare(a, Mem.U32(Gv.CPak_CompanyCodeStrPtr)) == 0)))
             {
                 return 1;
             }

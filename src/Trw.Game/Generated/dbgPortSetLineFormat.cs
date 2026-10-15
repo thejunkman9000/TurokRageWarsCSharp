@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("dbgPortSetLineFormat", (uint)v);
-            v = (byte)((int)(v) | ((int)(Mem.U8(0x8014D3E3u)) & 248));
-            Mem.Set(0x8014D3E3u, v);
+            v = (byte)((int)(v) | ((int)(Mem.U8(Gv.DbgPort_LineCtlShadow)) & 248));
+            Mem.Set(Gv.DbgPort_LineCtlShadow, v);
             while (((osPiGetStatus() & (uint)(3)) != 0u))
             {
             }

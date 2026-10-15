@@ -31,7 +31,7 @@ public static partial class Game
             new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) | (uint)(16777216)));
             new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) | (uint)(33554432)));
             new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) | (uint)(131072)));
-            if (((int)(new GFx(0x801462C8u).f) == 0))
+            if (((int)(new GFx(Gv.Settings).f) == 0))
             {
                 new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) | (uint)(268435456)));
             }
@@ -52,7 +52,7 @@ public static partial class Game
             Actor_DispatchEvent(actor, state, 0);
             Mem.Set(new ActorState(state).unk128.P, Mem.F32(0x800C6BD0u));
             Mem.Set(new ActorState(state).unk12C.P, Mem.F32(0x800C6BD0u));
-            if ((Level_IsEntitySavedFlagSet(0x8011FE88u, actor) == 1))
+            if ((Level_IsEntitySavedFlagSet(Gv.LevelMgr, actor) == 1))
             {
                 new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~8192))));
                 new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~256))));
@@ -119,7 +119,7 @@ public static partial class Game
             AnimProp_PlayAnim(actor, state, (int)(new B01Evt6(evt).unk6));
             new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) | (uint)(8448)));
             Actor_ApplyAnimRootMotion(actor);
-            Level_SetEntitySavedFlag(0x8011FE88u, actor, 0);
+            Level_SetEntitySavedFlag(Gv.LevelMgr, actor, 0);
         }
     }
 
@@ -131,7 +131,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002067BC", (uint)actor);
             new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~8192))));
             new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~256))));
-            Level_SetEntitySavedFlag(0x8011FE88u, actor, 1);
+            Level_SetEntitySavedFlag(Gv.LevelMgr, actor, 1);
         }
     }
 
@@ -141,7 +141,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002067FC", (uint)msg);
-            Level_SetEntitySavedFlagInMap(0x8011FE88u, (int)(new Msg2067FC(msg).unkA), (int)(new Msg2067FC(msg).unk4), 1);
+            Level_SetEntitySavedFlagInMap(Gv.LevelMgr, (int)(new Msg2067FC(msg).unkA), (int)(new Msg2067FC(msg).unk4), 1);
         }
     }
 
@@ -157,7 +157,7 @@ public static partial class Game
                 new ActorState(state).flags_Set((uint)((uint)(new ActorState(state).flags) | (uint)(512)));
             }
             Actor_ApplyAnimRootMotion(actor);
-            Level_SetEntitySavedFlag(0x8011FE88u, actor, 0);
+            Level_SetEntitySavedFlag(Gv.LevelMgr, actor, 0);
         }
     }
 
@@ -167,7 +167,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00206898", (uint)msg);
-            Level_SetEntitySavedFlagInMap(0x8011FE88u, (int)(new Msg206898(msg).unkA), (int)(new Msg206898(msg).unk4), 0);
+            Level_SetEntitySavedFlagInMap(Gv.LevelMgr, (int)(new Msg206898(msg).unkA), (int)(new Msg206898(msg).unk4), 0);
         }
     }
 
@@ -179,7 +179,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002068C8", (uint)actor, (uint)unused, (uint)arg);
             Flyby_QueueByTrigger((int)(actor), (uint)(arg));
             new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) | (uint)(8448)));
-            Level_SetEntitySavedFlag(0x8011FE88u, actor, 0);
+            Level_SetEntitySavedFlag(Gv.LevelMgr, actor, 0);
         }
     }
 
@@ -220,7 +220,7 @@ public static partial class Game
                     new B01Evt(evt).unkC_Set(p);
                     new B01Evt(evt).unk10_Set(p);
                     Shadow_DrawForActor(actor, state, evt, default(uint));
-                    Light_ShadeVertices((uint)(p), new B01Actor(actor).unkB4, 1, (int)((new B01Actor(actor).seg.P + (uint)(Mem.S32(0x800D297Cu) * 24))), (uint)(0), (int)(new B01Actor(actor).unk3));
+                    Light_ShadeVertices((uint)(p), new B01Actor(actor).unkB4, 1, (int)((new B01Actor(actor).seg.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), (int)(new B01Actor(actor).unk3));
                 }
             }
         }

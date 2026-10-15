@@ -7,14 +7,14 @@ namespace Trw.Game;
 /// Layout (decompiled C: View_SetupViewport per-view setup, Hud_DrawPlayer HUD, Match_IsFragLimitReached frag-limit check, results-screen formatters Results_FormatStats_00443B08..CAC):
 /// <list type="bullet">
 /// <item>player actors: list head <c>D_80145060</c>, next pointer at +0x16E0, the score record pointer at +0x5D8 and the controller object at +0x698
-/// (controller objects are 0x224 bytes from 0x8010F328: port = (ptr - 0x8010F328) / 0x224; bots have none).</item>
+/// (controller objects are 0x224 bytes from Gv.Pad_Slots: port = (ptr - Gv.Pad_Slots) / 0x224; bots have none).</item>
 /// <item>cameras (the split-screen views): see <see cref="Views"/>.</item>
 /// <item>score records: <c>D_80146398</c> = <c>D_801462C8</c> + 0xD0, 8 records of 0x96 bytes; s16 +0x04 frags (the frag limit compares it), s16 +0x02 deaths (killed by another player: the results screen's DEATHS column), s16 +0x00 suicides (a suicide: +0x00 +1 and frags -1), see <see cref="Fields"/>.</item>
 /// </list>
 /// </summary>
 internal static class MatchInfo
 {
-    public const uint PlayerListHead = 0x80145060, RosterBase = 0x80146398, RosterStride = 0x96, ControllerBase = 0x8010F328, ControllerStride = 0x224;
+    public const uint PlayerListHead = Gv.PlayerListHead, RosterBase = Gv.Settings_PlayerRecords, RosterStride = 0x96, ControllerBase = Gv.Pad_Slots, ControllerStride = 0x224;
     public const uint ActNext = 0x16E0, ActStats = 0x5D8, ActPad = 0x698;
     /// <summary>Offsets in a score record (s16 unless noted). Frags: compared with the frag limit (Match_IsFragLimitReached) and shown by the HUD (Hud_DrawPlayer).</summary>
     public static class Fields { public const uint Frags = 0x04, Deaths = 0x02, Suicides = 0x00, Name = 0x84 /* char[11] */, Team = 0x92 /* u8 */; }
@@ -60,7 +60,7 @@ internal static class MatchInfo
         return list;
     }
 
-    /// <summary>The cameras of the match (the game's split-screen views), in drawing order: list head at 0x801450A8 (D_80145088 + 0x20, walked by
+    /// <summary>The cameras of the match (the game's split-screen views), in drawing order: list head at Gv.Camera_ListHead (D_80145088 + 0x20, walked by
     /// View_UpdateAll, which runs the per-view setup View_SetupViewport for each), next pointer at +4, view rectangle f32 width/height/x/y at +0x29C.</summary>
     public static List<(uint Cam, float X, float Y, float W, float H)> Views()
     {
@@ -74,7 +74,7 @@ internal static class MatchInfo
         catch (Mem.GuestFault) { }
         return list;
     }
-    public const uint CameraListHead = 0x801450A8;
+    public const uint CameraListHead = Gv.Camera_ListHead;
 
     /// <summary>The view rectangle of controller port <paramref name="port"/>: the cameras are created for the human players in port order
     /// (port 0's camera first), so the n-th camera belongs to the n-th human player by port.</summary>

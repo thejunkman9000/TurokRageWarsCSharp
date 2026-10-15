@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("__osViGetCurrentContext");
-            return Mem.U32(0x800D8440u);
+            return Mem.U32(Gv.ViCurrentContextPtr);
         }
     }
 

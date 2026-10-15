@@ -15,9 +15,9 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("__osPfsGetStatus", (uint)queue, (uint)channel);
                 int ret = 0;
                 __osPfsRequestOneChannel(channel);
-                __osSiRawStartDma(1, 0x80154110u);
+                __osSiRawStartDma(1, Gv.OsPfsPifRam);
                 osRecvMesg(queue, _fp, 1);
-                ret = __osSiRawStartDma(0, 0x80154110u);
+                ret = __osSiRawStartDma(0, Gv.OsPfsPifRam);
                 osRecvMesg(queue, _fp, 1);
                 __osPfsGetOneChannelData(channel, (_fp + 8u));
                 if (((((int)(new OSContStatus((_fp + 8u)).status) & 1) != 0) && (((int)(new OSContStatus((_fp + 8u)).status) & 2) != 0)))

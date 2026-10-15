@@ -112,7 +112,7 @@ public sealed class GfxRenderer : IDisposable
         }
         // game state 20 is the fade between two states (e.g. the intro camera -> the match): it keeps the shape of the frame before, so the picture
         // does not flip to 4:3 for half a second on the way into a level
-        else if (Widescreen.Allowed && (Widescreen.InLevel || (prevWide && Trw.Platform.Mem.S32(G.GameState) == 20)) && windowW / (float)Math.Max(1, windowH) > 4f / 3f + 0.01f)
+        else if (Widescreen.Allowed && (Widescreen.InLevel || (prevWide && Trw.Platform.Mem.S32(Gv.GameState) == 20)) && windowW / (float)Math.Max(1, windowH) > 4f / 3f + 0.01f)
         {
             int h = InternalHeight, w = Math.Min(4096, (int)MathF.Round(h * windowW / (float)Math.Max(1, windowH)));
             if (wideTarget == null || wideTarget.Width != w || wideTarget.Height != h)
@@ -130,7 +130,7 @@ public sealed class GfxRenderer : IDisposable
             device.SetRenderTarget(target);
             targetW = InternalWidth; targetH = InternalHeight;
         }
-        if (lastWide != prevWide && wideLog) Console.Error.WriteLine($"[wide] tick {Game.CurrentTick}: {(lastWide ? "wide" : "4:3")} (state {Trw.Platform.Mem.S32(G.GameState)}, screen {Game.ScreenId}, local {lastLocal})");
+        if (lastWide != prevWide && wideLog) Console.Error.WriteLine($"[wide] tick {Game.CurrentTick}: {(lastWide ? "wide" : "4:3")} (state {Trw.Platform.Mem.S32(Gv.GameState)}, screen {Game.ScreenId}, local {lastLocal})");
         prevWide = lastWide;
         device.Viewport = new Viewport(0, 0, targetW, targetH);
         if (!anyFrame) { device.Clear(Environment.GetEnvironmentVariable("TRW_GFX_BG") != null ? new Color(0, 0, 90) : Color.Black); anyFrame = true; }

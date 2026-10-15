@@ -157,7 +157,7 @@ public static partial class Game
                     if ((y < Mem.F32(0x800C6AF4u)))
                     {
                         ang = Mem.F32(0x800C6AF8u);
-                        new M1Quat(_fp).x_Set(Mem.Set(0x80115DECu, sinf(ang)));
+                        new M1Quat(_fp).x_Set(Mem.Set(Gv.Quat_SinScratch, sinf(ang)));
                         new M1Quat(_fp).y_Set(0.0f);
                         new M1Quat(_fp).z_Set(0.0f);
                         new M1Quat(_fp).w_Set(cosf(ang));
@@ -169,7 +169,7 @@ public static partial class Game
                         Vec_Normalize((_fp + 32u));
                         ang = (ang2 * Mem.F32(0x800C6AFCu));
                         sn = sinf(ang);
-                        Mem.Set(0x80115DECu, sn);
+                        Mem.Set(Gv.Quat_SinScratch, sn);
                         new M1Quat(_fp).x_Set((new Vec3f((_fp + 32u)).x * sn));
                         new M1Quat(_fp).y_Set((new Vec3f((_fp + 32u)).y * sn));
                         new M1Quat(_fp).z_Set((new Vec3f((_fp + 32u)).z * sn));
@@ -661,7 +661,7 @@ public static partial class Game
                     half = 0.0f;
                     s0 = sinf(half);
                     new B16Vec4(_fp).z_Set((new Vec3f((_fp + 16u)).z * s0));
-                    Mem.Set(0x80115DECu, s0);
+                    Mem.Set(Gv.Quat_SinScratch, s0);
                     new B16Vec4(_fp).x_Set(half);
                     new B16Vec4(_fp).y_Set(half);
                     new B16Vec4(_fp).w_Set(cosf(half));
@@ -684,7 +684,7 @@ public static partial class Game
                     new B16Vec4(_fp).x_Set((new Vec3f((_fp + 48u)).x * s));
                     new B16Vec4(_fp).y_Set((new Vec3f((_fp + 48u)).y * s));
                     new B16Vec4(_fp).z_Set((new Vec3f((_fp + 48u)).z * s));
-                    Mem.Set(0x80115DECu, s);
+                    Mem.Set(Gv.Quat_SinScratch, s);
                     half = (ang * 0.5f);
                     new B16Vec4(_fp).w_Set(cosf(half));
                 }
@@ -2260,7 +2260,7 @@ public static partial class Game
                     Vec_Scale((_fp + 32u), (_fp + 32u), (one / len));
                     ang = (Math_Acosf((((new Vec3f((_fp + 16u)).x * new Vec3f(_fp).x) + (new Vec3f((_fp + 16u)).y * new Vec3f(_fp).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f(_fp).z))) * Mem.F32(0x800CB01Cu));
                     s = sinf(ang);
-                    Mem.Set(0x80115DECu, s);
+                    Mem.Set(Gv.Quat_SinScratch, s);
                     new Quat4f((_fp + 48u)).x_Set((new Vec3f((_fp + 32u)).x * s));
                     new Quat4f((_fp + 48u)).y_Set((new Vec3f((_fp + 32u)).y * s));
                     new Quat4f((_fp + 48u)).z_Set((new Vec3f((_fp + 32u)).z * s));

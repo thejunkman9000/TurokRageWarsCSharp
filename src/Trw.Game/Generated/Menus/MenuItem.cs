@@ -891,19 +891,19 @@ public static partial class Game
                     if (((new Q04Item(it).flags & (uint)(134217728)) != 0u))
                     {
                         k = 0.108108111f;
-                        hh = (float)(Mem.S32(0x800E28D4u));
+                        hh = (float)(Mem.S32(Gv.ScreenHeight));
                         v = hh;
                     }
                     else
                     {
-                        if (((new Q04Ent_v2(E).mode == 2) && (Mem.S32(0x800E28D4u) >= 223)))
+                        if (((new Q04Ent_v2(E).mode == 2) && (Mem.S32(Gv.ScreenHeight) >= 223)))
                         {
-                            hh = (float)(Mem.S32(0x800E28D4u));
+                            hh = (float)(Mem.S32(Gv.ScreenHeight));
                             v = ((new Q04Ent_v2(E).f8 + 0.5f) * hh);
                         }
                         else
                         {
-                            hh = (float)(Mem.S32(0x800E28D4u));
+                            hh = (float)(Mem.S32(Gv.ScreenHeight));
                             v = (new Q04Ent_v2(E).f8 * hh);
                         }
                         k = 0.00450450461f;
@@ -911,17 +911,17 @@ public static partial class Game
                     new Q04Info(o).f8_Set((int)((v * k)));
                     do
                     {
-                        new Q04Info(o).f4_Set(((new Q04Info(o).f4 * Mem.S32((0x800E28D0u + (uint)(0 * 4)))) / 284));
+                        new Q04Info(o).f4_Set(((new Q04Info(o).f4 * Mem.S32((Gv.ScreenWidth + (uint)(0 * 4)))) / 284));
                     }
                     while ((0 != 0));
                     break;
                 case 4:
                     E = func_0043F69C_Q04TypeEnt(it);
                     new Q04Info(o).f4_Set((int)(new Q04Ent_v2(E).f4));
-                    new Q04Info(o).f8_Set((int)(((new Q04Ent_v2(E).f8 * (float)(Mem.S32(0x800E28D4u))) * 0.00450450461f)));
+                    new Q04Info(o).f8_Set((int)(((new Q04Ent_v2(E).f8 * (float)(Mem.S32(Gv.ScreenHeight))) * 0.00450450461f)));
                     break;
                 case 1:
-                    if ((((Game_IsInState13() != 0) && ((new Q04Item(it).flags & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(0x801462E5u)) != 0) && ((int)(new Q04Item(it).flags) < 0)) && ((int)(Mem_GetRamSize()) == 4194304))))
+                    if ((((Game_IsInState13() != 0) && ((new Q04Item(it).flags & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0) && ((int)(new Q04Item(it).flags) < 0)) && ((int)(Mem_GetRamSize()) == 4194304))))
                     {
                         new Q04Info(o).f4_Set(284);
                         new Q04Info(o).f8_Set(222);
@@ -937,8 +937,8 @@ public static partial class Game
                     }
                     else
                     {
-                        fa = ((float)(Mem.S32((0x800E28D0u + (uint)(0 * 4)))) * 0.00352112669f);
-                        fb = ((float)(Mem.S32(0x800E28D4u)) * 0.00450450461f);
+                        fa = ((float)(Mem.S32((Gv.ScreenWidth + (uint)(0 * 4)))) * 0.00352112669f);
+                        fb = ((float)(Mem.S32(Gv.ScreenHeight)) * 0.00450450461f);
                     }
                     new Q04Info(o).fC_Set(fa);
                     new Q04Info(o).f10_Set(fb);
@@ -968,15 +968,15 @@ public static partial class Game
                     break;
                 case 3:
                     sub = (uint)(new Q04Item(it).f14);
-                    new Q04Info(o).f4_Set((int)((((float)(new Q04Sub(sub).f24) * new Q04Cam(cam).f29C) / (float)(Mem.S32((0x800E28D0u + (uint)(0 * 4)))))));
-                    new Q04Info(o).f8_Set((int)((((float)(new Q04Sub(sub).f28) * new Q04Cam(cam).f2A0) / (float)(Mem.S32(0x800E28D4u)))));
+                    new Q04Info(o).f4_Set((int)((((float)(new Q04Sub(sub).f24) * new Q04Cam(cam).f29C) / (float)(Mem.S32((Gv.ScreenWidth + (uint)(0 * 4)))))));
+                    new Q04Info(o).f8_Set((int)((((float)(new Q04Sub(sub).f28) * new Q04Cam(cam).f2A0) / (float)(Mem.S32(Gv.ScreenHeight)))));
                     break;
                 default:
                     new Q04Info(o).f4_Set(1);
                     new Q04Info(o).f8_Set(1);
                     break;
                 }
-                vt = (float)((((int)((short)(new Q04Item(it).wC)) * Mem.S32((0x800E28D0u + (uint)(0 * 4)))) / 284));
+                vt = (float)((((int)((short)(new Q04Item(it).wC)) * Mem.S32((Gv.ScreenWidth + (uint)(0 * 4)))) / 284));
                 if (!((new Q04Item(it).flags & (uint)(32768)) != 0u))
                 {
                     if (((new Q04Item(it).flags & (uint)(16384)) != 0u))
@@ -989,7 +989,7 @@ public static partial class Game
                     }
                 }
                 new Q04Info(o).x1_Set((int)(((float)(new Q04Info(o).x0) + ((float)(new Q04Info(o).f4) * new Q04Info(o).fC))));
-                vt2 = (float)((((int)((short)(new Q04Item(it).wE)) * Mem.S32(0x800E28D4u)) / 222));
+                vt2 = (float)((((int)((short)(new Q04Item(it).wE)) * Mem.S32(Gv.ScreenHeight)) / 222));
                 if (!((new Q04Item(it).flags & (uint)(131072)) != 0u))
                 {
                     if (((new Q04Item(it).flags & (uint)(65536)) != 0u))
@@ -1068,7 +1068,7 @@ public static partial class Game
             int t = 0;
             int t2 = 0;
             en = (byte)(1);
-            if ((((Game_IsInState13() != 0) && ((new Q04Item(it).flags & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(0x801462E5u)) != 0) && ((int)(new Q04Item(it).flags) < 0)) && ((int)(Mem_GetRamSize()) == 4194304))))
+            if ((((Game_IsInState13() != 0) && ((new Q04Item(it).flags & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0) && ((int)(new Q04Item(it).flags) < 0)) && ((int)(Mem_GetRamSize()) == 4194304))))
             {
                 new Q04W(w).f38_Set(0);
             }
@@ -1092,7 +1092,7 @@ public static partial class Game
             {
                 m = 6;
             }
-            if ((Mem.S32(0x800E5E70u) != m))
+            if ((Mem.S32(Gv.Menu_CurrentDrawPass) != m))
             {
                 switch (m)
                 {
@@ -1110,10 +1110,10 @@ public static partial class Game
                 case 6:
                     Text_BeginFontPass();
                     Gfx_LoadTexImage16();
-                    Mem.Set(0x8014D3D0u, 1);
+                    Mem.Set(Gv.Text_FontId, 1);
                     break;
                 }
-                Mem.Set(0x800E5E70u, m);
+                Mem.Set(Gv.Menu_CurrentDrawPass, m);
             }
             if ((new Q04B(b).x0 == (int)((short)(new Q04W(w).w0))))
             {
@@ -1148,9 +1148,9 @@ public static partial class Game
                 a = t;
             }
             Text_SetColors(r, g, bl, a, (((t = (int)(((float)(new Q04Ent(E).b19) * k))) < 256) ? t : 255), (((t2 = (int)(((float)(new Q04Ent(E).b1A) * k))) < 256) ? t2 : 255));
-            Mem.Set((0x8013B878u + (uint)(0 * 4)), (int)(new Q04Ent(E).b14));
-            Mem.Set((0x8013B878u + (uint)(1 * 4)), (int)(new Q04Ent(E).b14));
-            Text_SetScale(((new Q04Ent(E).fC * (float)(Mem.S32(0x800E28D0u))) * 0.00352112669f), ((new Q04Ent(E).f10 * (float)(Mem.S32(0x800E28D4u))) * 0.00450450461f));
+            Mem.Set((Gv.Text_Style_8013B878 + (uint)(0 * 4)), (int)(new Q04Ent(E).b14));
+            Mem.Set((Gv.Text_Style_8013B878 + (uint)(1 * 4)), (int)(new Q04Ent(E).b14));
+            Text_SetScale(((new Q04Ent(E).fC * (float)(Mem.S32(Gv.ScreenWidth))) * 0.00352112669f), ((new Q04Ent(E).f10 * (float)(Mem.S32(Gv.ScreenHeight))) * 0.00450450461f));
             if (((int)(en) != 0))
             {
                 en = new Q04Ent(E).b14;
@@ -1170,12 +1170,12 @@ public static partial class Game
             float fy = 0f;
             float t1 = 0f;
             float t2 = 0f;
-            if ((((Game_IsInState13() != 0) && ((new O06A_v9(a).unk8 & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(0x801462E5u)) != 0) && ((int)(new O06A_v9(a).unk8) < 0)) && ((int)(Mem_GetRamSize()) == 4194304))))
+            if ((((Game_IsInState13() != 0) && ((new O06A_v9(a).unk8 & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0) && ((int)(new O06A_v9(a).unk8) < 0)) && ((int)(Mem_GetRamSize()) == 4194304))))
             {
                 new O06D_v6(d).unk3C_Set(1);
-                if ((Mem.S32(0x800E5E70u) != 3))
+                if ((Mem.S32(Gv.Menu_CurrentDrawPass) != 3))
                 {
-                    Mem.Set(0x800E5E70u, 3);
+                    Mem.Set(Gv.Menu_CurrentDrawPass, 3);
                 }
                 Gfx_BeginFillRectPass();
                 t1 = ((float)(new O06B_v11(b).unk4) * new O06B_v11(b).unkC);
@@ -1184,9 +1184,9 @@ public static partial class Game
                 fx = (float)(new O06B_v11(b).unk14);
                 fx = (fx + t1);
                 fy = (fy + t2);
-                if ((Mem.S32((0x80146894u + (uint)(0 * 4))) != 0))
+                if ((Mem.S32((Gv.GamePaused + (uint)(0 * 4))) != 0))
                 {
-                    if (((int)(Mem.U8((0x80146894u + (uint)(-1455)))) != 0))
+                    if (((int)(Mem.U8((Gv.GamePaused + (uint)(-1455)))) != 0))
                     {
                         if (((int)(new O06A_v9(a).unk8) < 0))
                         {
@@ -1210,9 +1210,9 @@ public static partial class Game
             }
             else
             {
-                if ((Mem.S32(0x800E5E70u) != 3))
+                if ((Mem.S32(Gv.Menu_CurrentDrawPass) != 3))
                 {
-                    Mem.Set(0x800E5E70u, 3);
+                    Mem.Set(Gv.Menu_CurrentDrawPass, 3);
                     Gfx_BeginFlatColorPass((uint)((int)((new O06D_v6(d).unk30 * (new O06D_v6(d).unk34 * Mem.F32(0x800E24ACu))))), default(uint), default(uint), default(uint));
                 }
                 Sprite_Draw(new O06A_v9(a).unk14, 0, (short)(new O06B_v11(b).unk14), (short)(new O06B_v11(b).unk1C), new O06B_v11(b).unkC, new O06B_v11(b).unk10, 1);
@@ -1311,14 +1311,14 @@ public static partial class Game
                     if ((new Q4X(x).f478 != 0))
                     {
                         {
-                            uint pp = 0x80110634u;
+                            uint pp = Gv.DisplayListPtr;
                             d = (Mem.Set(pp, (uint)(Mem.U32(pp) + 8u)) - 8u);
                             new Q4Gfx(d).w0_Set(3661103111u);
-                            new Q4Gfx(d).w1_Set((uint)((new Q4Win(w).cam.mtx380.P + (uint)(Mem.S32(0x800D297Cu) * 64))));
+                            new Q4Gfx(d).w1_Set((uint)((new Q4Win(w).cam.mtx380.P + (uint)(Mem.S32(Gv.FrameParity) * 64))));
                         }
                         c = new Q4Win(w).cam_;
-                        k = (new Q4Cam(c).f29C / (float)(Mem.S32(0x800E28D0u)));
-                        k2 = (new Q4Cam(c).f2A0 / (float)(Mem.S32(0x800E28D4u)));
+                        k = (new Q4Cam(c).f29C / (float)(Mem.S32(Gv.ScreenWidth)));
+                        k2 = (new Q4Cam(c).f2A0 / (float)(Mem.S32(Gv.ScreenHeight)));
                         new Q4V3((_fp + 48u)).x_Set((new Q4Part(p).f18.x * k));
                         new Q4V3((_fp + 48u)).z_Set((new Q4Part(p).f18.z * k));
                         new Q4V3((_fp + 48u)).y_Set((new Q4Part(p).f18.y * k2));
@@ -1328,7 +1328,7 @@ public static partial class Game
                         {
                             s2 = new Q4Part(p).f4;
                             x2 = new Q4O_v2(o).f20_;
-                            src = Level_FindDefinition(0x8011FE88u, s2, new Q4Part(p).f8);
+                            src = Level_FindDefinition(Gv.LevelMgr, s2, new Q4Part(p).f8);
                             if ((src == 0u))
                             {
                                 new Q4X(x2).f478_Set(0);
@@ -1353,11 +1353,11 @@ public static partial class Game
                         Math_MtxTransformPoint(new Q4Win(w).cam.view.P, (_fp + 16u), (_fp + 32u));
                         if (((s3 != 0u) && !((new Q4O_v2(o).f8 & (uint)(33554432)) != 0u)))
                         {
-                            Actor_Init(fx, (-1), new Q4Part(p).f0, Mem.S32(0x800D2B40u), s3, (-1), (uint)(0), (new Q4Win(w).cam.f28 + 3.14159298f), (_fp + 32u), (uint)(0), new Q4Part(p).f18.P, _fp);
+                            Actor_Init(fx, (-1), new Q4Part(p).f0, Mem.S32(Gv.NoRegionId), s3, (-1), (uint)(0), (new Q4Win(w).cam.f28 + 3.14159298f), (_fp + 32u), (uint)(0), new Q4Part(p).f18.P, _fp);
                             Actor_CallRestore(fx);
                             new Q4O_v2(o).f8_Set((new Q4O_v2(o).f8 | (uint)(33554432)));
                         }
-                        tt = sinf(((float)((uint)((Mem.S32(0x800D2980u) * 10))) * 0.0174532942f));
+                        tt = sinf(((float)((uint)((Mem.S32(Gv.LevelFrameCount) * 10))) * 0.0174532942f));
                         ta = new Q4Win(w).f30;
                         tb = new Q4Win(w).f34;
                         Mem.Set(0x801540E0u, (int)(((ta * tb) * (((tt + 1.0f) * 50.0f) + 50.0f))));
@@ -1375,31 +1375,31 @@ public static partial class Game
                         }
                         if ((new Q4X(x).id == 11))
                         {
-                            Level_SetActorType(0x8011FE88u, fx, Mem.S32((0x800CE430u + (uint)(new Q4Sub(new Q4Fx(fx).f18).h0C * 4))), 1);
+                            Level_SetActorType(Gv.LevelMgr, fx, Mem.S32((0x800CE430u + (uint)(new Q4Sub(new Q4Fx(fx).f18).h0C * 4))), 1);
                         }
-                        if ((Mem.S32(0x800E5E70u) != 4))
+                        if ((Mem.S32(Gv.Menu_CurrentDrawPass) != 4))
                         {
-                            Mem.Set(0x800E5E70u, 4);
+                            Mem.Set(Gv.Menu_CurrentDrawPass, 4);
                             {
-                                uint pp_2 = 0x80110634u;
+                                uint pp_2 = Gv.DisplayListPtr;
                                 uint q = (Mem.Set(pp_2, (uint)(Mem.U32(pp_2) + 8u)) - 8u);
                                 new Q4Gfx(q).w0_Set(3875536896u);
                                 new Q4Gfx(q).w1_Set((uint)(0));
                             }
                             {
-                                uint pp_3 = 0x80110634u;
+                                uint pp_3 = Gv.DisplayListPtr;
                                 uint q_2 = (Mem.Set(pp_3, (uint)(Mem.U32(pp_3) + 8u)) - 8u);
                                 new Q4Gfx(q_2).w0_Set(3808430593u);
                                 new Q4Gfx(q_2).w1_Set((uint)(1048576));
                             }
                             {
-                                uint pp_4 = 0x80110634u;
+                                uint pp_4 = Gv.DisplayListPtr;
                                 uint q_3 = (Mem.Set(pp_4, (uint)(Mem.U32(pp_4) + 8u)) - 8u);
                                 new Q4Gfx(q_3).w0_Set(3808431104u);
                                 new Q4Gfx(q_3).w1_Set((uint)(524288));
                             }
                             {
-                                uint pp_5 = 0x80110634u;
+                                uint pp_5 = Gv.DisplayListPtr;
                                 uint q_4 = (Mem.Set(pp_5, (uint)(Mem.U32(pp_5) + 8u)) - 8u);
                                 new Q4Gfx(q_4).w0_Set(3808432641u);
                                 new Q4Gfx(q_4).w1_Set((uint)(8192));
@@ -1412,7 +1412,7 @@ public static partial class Game
                         Mem.Copy(new Q4Fx(fx).pos8.P, (_fp + 32u), 12);
                         Mem.Copy(new Q4Fx(fx).v1C4.P, (_fp + 32u), 12);
                         Actor_Advance(fx, default(uint), default(uint), default(uint));
-                        new Q4Fx(fx).f6C_Set((new Q4Fx(fx).f6C + (new Q4Part(p).f2C * Mem.F32(0x800D2988u))));
+                        new Q4Fx(fx).f6C_Set((new Q4Fx(fx).f6C + (new Q4Part(p).f2C * Mem.F32(Gv.FrameTime))));
                         Mem.Copy(new Q4Fx(fx).pos8.P, (_fp + 32u), 12);
                         Mem.Copy(new Q4Fx(fx).v1C4.P, (_fp + 32u), 12);
                         Model_ClearBatchQueue();
@@ -1503,7 +1503,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004422BC", (uint)a, (uint)b, (uint)c);
             uint p = new O06D_v4(a).unk20_;
-            uint v = Level_FindDefinition(0x8011FE88u, b, c);
+            uint v = Level_FindDefinition(Gv.LevelMgr, b, c);
             if ((v == 0u))
             {
                 new O06A_v41(p).unk478_Set(0);

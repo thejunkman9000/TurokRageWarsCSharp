@@ -16,44 +16,44 @@ public static partial class Game
             ushort curWord = 0;
             int fldA = 0;
             int fldB = 0;
-            if (((int)(Mem.U16(0x800D94E8u)) == 0))
+            if (((int)(Mem.U16(Gv.Adec_BitsLeft)) == 0))
             {
-                Mem.Set(0x80151090u, Mem.U16((new AdecStream(st).rd__Set((uint)(new AdecStream(st).rd_ + 2u)) - 2u)));
-                Mem.Set(0x800D94E8u, (ushort)(16));
+                Mem.Set(Gv.Adec_BitWord, Mem.U16((new AdecStream(st).rd__Set((uint)(new AdecStream(st).rd_ + 2u)) - 2u)));
+                Mem.Set(Gv.Adec_BitsLeft, (ushort)(16));
             }
             for (i = (short)(0); ((int)(i) < (int)(count)); ++i)
             {
-                if (((int)(Mem.U16(0x800D94E8u)) < (int)(nbits)))
+                if (((int)(Mem.U16(Gv.Adec_BitsLeft)) < (int)(nbits)))
                 {
-                    extra = (ushort)(((int)(nbits) - (int)(Mem.U16(0x800D94E8u))));
-                    curWord = Mem.U16(0x80151090u);
-                    maskLeft = Mem.U16((0x800D9380u + (uint)(Mem.U16(0x800D94E8u) * 2)));
+                    extra = (ushort)(((int)(nbits) - (int)(Mem.U16(Gv.Adec_BitsLeft))));
+                    curWord = Mem.U16(Gv.Adec_BitWord);
+                    maskLeft = Mem.U16((Gv.Adec_BitMaskTable + (uint)(Mem.U16(Gv.Adec_BitsLeft) * 2)));
                     Mem.Set((dst + (uint)(i * 2)), (ushort)((((int)(curWord) & (int)(maskLeft)) << (int)(int)(extra))));
-                    Mem.Set(0x80151090u, Mem.U16((new AdecStream(st).rd__Set((uint)(new AdecStream(st).rd_ + 2u)) - 2u)));
-                    Mem.Set(0x80151090u, (ushort)((int)(Mem.U16(0x80151090u)) + 0));
-                    fldA = (((int)(Mem.U16(0x80151090u)) >> (int)(16 - (int)(extra))) & (int)(Mem.U16((0x800D9380u + (uint)(extra * 2)))));
+                    Mem.Set(Gv.Adec_BitWord, Mem.U16((new AdecStream(st).rd__Set((uint)(new AdecStream(st).rd_ + 2u)) - 2u)));
+                    Mem.Set(Gv.Adec_BitWord, (ushort)((int)(Mem.U16(Gv.Adec_BitWord)) + 0));
+                    fldA = (((int)(Mem.U16(Gv.Adec_BitWord)) >> (int)(16 - (int)(extra))) & (int)(Mem.U16((Gv.Adec_BitMaskTable + (uint)(extra * 2)))));
                     Mem.Set((dst + (uint)(i * 2)), (ushort)((int)(Mem.U16((dst + (uint)(i * 2)))) | fldA));
                     if ((sign != 0))
                     {
                         if ((((int)((short)(Mem.U16((dst + (uint)(i * 2))))) & (int)(Mem.U16((0x800D93A4u + (uint)(nbits * 2))))) != 0))
                         {
-                            Mem.Set((dst + (uint)(i * 2)), (ushort)((int)(Mem.U16((dst + (uint)(i * 2)))) | (~(int)(Mem.U16((0x800D9380u + (uint)(nbits * 2)))))));
+                            Mem.Set((dst + (uint)(i * 2)), (ushort)((int)(Mem.U16((dst + (uint)(i * 2)))) | (~(int)(Mem.U16((Gv.Adec_BitMaskTable + (uint)(nbits * 2)))))));
                         }
                     }
-                    Mem.Set(0x800D94E8u, (ushort)((16 - (int)(extra))));
+                    Mem.Set(Gv.Adec_BitsLeft, (ushort)((16 - (int)(extra))));
                 }
                 else
                 {
-                    fldB = (((int)(Mem.U16(0x80151090u)) >> (int)((int)(Mem.U16(0x800D94E8u)) - (int)(nbits))) & (int)(Mem.U16((0x800D9380u + (uint)(nbits * 2)))));
+                    fldB = (((int)(Mem.U16(Gv.Adec_BitWord)) >> (int)((int)(Mem.U16(Gv.Adec_BitsLeft)) - (int)(nbits))) & (int)(Mem.U16((Gv.Adec_BitMaskTable + (uint)(nbits * 2)))));
                     Mem.Set((dst + (uint)(i * 2)), (ushort)(fldB));
                     if ((sign != 0))
                     {
                         if ((((int)((short)(Mem.U16((dst + (uint)(i * 2))))) & (int)(Mem.U16((0x800D93A4u + (uint)(nbits * 2))))) != 0))
                         {
-                            Mem.Set((dst + (uint)(i * 2)), (ushort)((int)(Mem.U16((dst + (uint)(i * 2)))) | (~(int)(Mem.U16((0x800D9380u + (uint)(nbits * 2)))))));
+                            Mem.Set((dst + (uint)(i * 2)), (ushort)((int)(Mem.U16((dst + (uint)(i * 2)))) | (~(int)(Mem.U16((Gv.Adec_BitMaskTable + (uint)(nbits * 2)))))));
                         }
                     }
-                    Mem.Set(0x800D94E8u, (ushort)((int)(Mem.U16(0x800D94E8u)) - (int)(nbits)));
+                    Mem.Set(Gv.Adec_BitsLeft, (ushort)((int)(Mem.U16(Gv.Adec_BitsLeft)) - (int)(nbits)));
                 }
             }
             return 1;
@@ -81,11 +81,11 @@ public static partial class Game
             nodes = new AdecHuffTree(tree).nodes;
             while (((int)(k) < (int)(n)))
             {
-                if (((int)(Mem.U16(0x800D94ECu)) != 0))
+                if (((int)(Mem.U16(Gv.Adec_BitCount)) != 0))
                 {
-                    Mem.Set(0x800D94ECu, (ushort)(Mem.U16(0x800D94ECu) - 1));
-                    bit = (ushort)(((int)(Mem.U16(0x800D94EAu)) & 32768));
-                    Mem.Set(0x800D94EAu, (ushort)((int)(Mem.U16(0x800D94EAu)) << (int)1));
+                    Mem.Set(Gv.Adec_BitCount, (ushort)(Mem.U16(Gv.Adec_BitCount) - 1));
+                    bit = (ushort)(((int)(Mem.U16(Gv.Adec_BitBuffer)) & 32768));
+                    Mem.Set(Gv.Adec_BitBuffer, (ushort)((int)(Mem.U16(Gv.Adec_BitBuffer)) << (int)1));
                     if ((bit != 0))
                     {
                         next = (short)(Mem.U16(((nodes + (uint)(node * 4)) + (uint)(1 * 2))));
@@ -108,8 +108,8 @@ public static partial class Game
                         {
                             if (((int)((short)(v)) == 2304))
                             {
-                                v = Mem.U16(0x800D94EAu);
-                                if (((int)((ushort)(adecReadBits(0x800D94EAu, new AdecHuffTree(tree).escBits, (ushort)(1), (short)(0), st))) == 0))
+                                v = Mem.U16(Gv.Adec_BitBuffer);
+                                if (((int)((ushort)(adecReadBits(Gv.Adec_BitBuffer, new AdecHuffTree(tree).escBits, (ushort)(1), (short)(0), st))) == 0))
                                 {
                                     return (short)((-1));
                                 }
@@ -118,9 +118,9 @@ public static partial class Game
                                     ushort w = 0;
                                     uint o = (uint)((((int)(k) * 2) + (int)(@out)));
                                     ++k;
-                                    bits = Mem.U16(0x800D94ECu);
-                                    w = Mem.U16(0x800D94EAu);
-                                    Mem.Set(0x800D94EAu, (ushort)(((int)(w) << (int)(16 - (int)(bits)))));
+                                    bits = Mem.U16(Gv.Adec_BitCount);
+                                    w = Mem.U16(Gv.Adec_BitBuffer);
+                                    Mem.Set(Gv.Adec_BitBuffer, (ushort)(((int)(w) << (int)(16 - (int)(bits)))));
                                     Mem.Set(o, (short)(((int)(v) | ((int)(w) >> (int)(int)(bits)))));
                                 }
                             }
@@ -172,11 +172,11 @@ public static partial class Game
                 }
                 else
                 {
-                    if (((int)((ushort)(adecReadBits(0x800D94EAu, (ushort)(16), (ushort)(1), (short)(0), st))) == 0))
+                    if (((int)((ushort)(adecReadBits(Gv.Adec_BitBuffer, (ushort)(16), (ushort)(1), (short)(0), st))) == 0))
                     {
                         return (short)((-1));
                     }
-                    Mem.Set(0x800D94ECu, (ushort)((int)(Mem.U16(0x800D94ECu)) + 16));
+                    Mem.Set(Gv.Adec_BitCount, (ushort)((int)(Mem.U16(Gv.Adec_BitCount)) + 16));
                 }
             }
             return k;
@@ -565,7 +565,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("adecStreamOpen", (uint)hdr, (uint)rate, (uint)outWord0);
-            uint st = 0x80151CC8u;
+            uint st = Gv.Adec_Stream;
             new AdecStream(st).hdr__Set(hdr);
             new AdecStream(st).rd__Set(hdr);
             new AdecStream(st).hdr0_Set(Mem.U32(new AdecStream(st).rd_));
@@ -577,9 +577,9 @@ public static partial class Game
             new AdecStream(st).rd__Set((uint)(new AdecStream(st).rd_ + (uint)(2 * 2)));
             Mem.Set(0x800D94EEu, (short)(0));
             Mem.Set(0x800D94F0u, (short)(0));
-            Mem.Set(0x800D94E8u, (ushort)(0));
-            Mem.Set(0x800D94EAu, (ushort)(0));
-            Mem.Set(0x800D94ECu, (ushort)(0));
+            Mem.Set(Gv.Adec_BitsLeft, (ushort)(0));
+            Mem.Set(Gv.Adec_BitBuffer, (ushort)(0));
+            Mem.Set(Gv.Adec_BitCount, (ushort)(0));
             Mem.Set(outWord0, new AdecStream(st).hdr0);
             return (uint)(((ulong)(((long)((int)(new AdecStream(st).remaining)) * (long)(256000000))) / (ulong)(rate)));
         }
@@ -590,17 +590,17 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("adecNextFrame");
-            if ((new AdecStream(0x80151CC8u).remaining != (uint)(0)))
+            if ((new AdecStream(Gv.Adec_Stream).remaining != (uint)(0)))
             {
-                adecDecodeFrame(0x80151CC8u);
-                Mem.Set(0x800D94F2u, (ushort)(Mem.U16(0x800D94F2u) + 1));
-                if (((int)(Mem.U16(0x800D94F2u)) >= 6))
+                adecDecodeFrame(Gv.Adec_Stream);
+                Mem.Set(Gv.Adec_FrameRingIndex, (ushort)(Mem.U16(Gv.Adec_FrameRingIndex) + 1));
+                if (((int)(Mem.U16(Gv.Adec_FrameRingIndex)) >= 6))
                 {
-                    Mem.Set(0x800D94F2u, (ushort)(0));
+                    Mem.Set(Gv.Adec_FrameRingIndex, (ushort)(0));
                 }
-                adecImdctFrame((0x80151F80u + (uint)((int)(Mem.U16(0x800D94F2u)) * 512)), 0x80151CC8u);
-                new AdecStream(0x80151CC8u).remaining_Set((uint)(new AdecStream(0x80151CC8u).remaining - 1));
-                return (0x80151F80u + (uint)((int)(Mem.U16(0x800D94F2u)) * 512));
+                adecImdctFrame((0x80151F80u + (uint)((int)(Mem.U16(Gv.Adec_FrameRingIndex)) * 512)), Gv.Adec_Stream);
+                new AdecStream(Gv.Adec_Stream).remaining_Set((uint)(new AdecStream(Gv.Adec_Stream).remaining - 1));
+                return (0x80151F80u + (uint)((int)(Mem.U16(Gv.Adec_FrameRingIndex)) * 512));
             }
             return 0u;
         }

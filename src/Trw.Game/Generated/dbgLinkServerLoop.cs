@@ -46,21 +46,21 @@ public static partial class Game
                     case 68:
                         p = (_fp + 4u);
                         dbgLinkRecvByte((_fp + 8u));
-                        if ((Mem.S32(0x8014D3E8u) == 0))
+                        if ((Mem.S32(Gv.DbgLink_Error) == 0))
                         {
                             v = (uint)(((int)(Mem.U8((_fp + 8u))) << (int)8));
                             dbgLinkRecvByte((_fp + 8u));
-                            if ((Mem.S32(0x8014D3E8u) == 0))
+                            if ((Mem.S32(Gv.DbgLink_Error) == 0))
                             {
                                 v = (uint)((uint)(v) | (uint)(Mem.U8((_fp + 8u))));
                                 v = (uint)((uint)(v) << (int)8);
                                 dbgLinkRecvByte((_fp + 8u));
-                                if ((Mem.S32(0x8014D3E8u) == 0))
+                                if ((Mem.S32(Gv.DbgLink_Error) == 0))
                                 {
                                     v = (uint)((uint)(v) | (uint)(Mem.U8((_fp + 8u))));
                                     v = (uint)((uint)(v) << (int)8);
                                     dbgLinkRecvByte((_fp + 8u));
-                                    if ((Mem.S32(0x8014D3E8u) == 0))
+                                    if ((Mem.S32(Gv.DbgLink_Error) == 0))
                                     {
                                         v = (uint)((uint)(v) | (uint)(Mem.U8((_fp + 8u))));
                                         Mem.Set(p, v);
@@ -79,21 +79,21 @@ public static partial class Game
                     case 34:
                         p = (_fp + 12u);
                         dbgLinkRecvByte((_fp + 16u));
-                        if ((Mem.S32(0x8014D3E8u) == 0))
+                        if ((Mem.S32(Gv.DbgLink_Error) == 0))
                         {
                             v = (uint)(((int)(Mem.U8((_fp + 16u))) << (int)8));
                             dbgLinkRecvByte((_fp + 16u));
-                            if ((Mem.S32(0x8014D3E8u) == 0))
+                            if ((Mem.S32(Gv.DbgLink_Error) == 0))
                             {
                                 v = (uint)((uint)(v) | (uint)(Mem.U8((_fp + 16u))));
                                 v = (uint)((uint)(v) << (int)8);
                                 dbgLinkRecvByte((_fp + 16u));
-                                if ((Mem.S32(0x8014D3E8u) == 0))
+                                if ((Mem.S32(Gv.DbgLink_Error) == 0))
                                 {
                                     v = (uint)((uint)(v) | (uint)(Mem.U8((_fp + 16u))));
                                     v = (uint)((uint)(v) << (int)8);
                                     dbgLinkRecvByte((_fp + 16u));
-                                    if ((Mem.S32(0x8014D3E8u) == 0))
+                                    if ((Mem.S32(Gv.DbgLink_Error) == 0))
                                     {
                                         v = (uint)((uint)(v) | (uint)(Mem.U8((_fp + 16u))));
                                         Mem.Set(p, v);
@@ -113,26 +113,26 @@ public static partial class Game
                     case 64:
                         p = (_fp + 20u);
                         dbgLinkRecvByte((_fp + 24u));
-                        if ((Mem.S32(0x8014D3E8u) == 0))
+                        if ((Mem.S32(Gv.DbgLink_Error) == 0))
                         {
                             v = (uint)(((int)(Mem.U8((_fp + 24u))) << (int)8));
                             dbgLinkRecvByte((_fp + 24u));
-                            if ((Mem.S32(0x8014D3E8u) == 0))
+                            if ((Mem.S32(Gv.DbgLink_Error) == 0))
                             {
                                 v = (uint)((uint)(v) | (uint)(Mem.U8((_fp + 24u))));
                                 v = (uint)((uint)(v) << (int)8);
                                 dbgLinkRecvByte((_fp + 24u));
-                                if ((Mem.S32(0x8014D3E8u) == 0))
+                                if ((Mem.S32(Gv.DbgLink_Error) == 0))
                                 {
                                     v = (uint)((uint)(v) | (uint)(Mem.U8((_fp + 24u))));
                                     v = (uint)((uint)(v) << (int)8);
                                     dbgLinkRecvByte((_fp + 24u));
-                                    if ((Mem.S32(0x8014D3E8u) == 0))
+                                    if ((Mem.S32(Gv.DbgLink_Error) == 0))
                                     {
                                         v = (uint)((uint)(v) | (uint)(Mem.U8((_fp + 24u))));
                                         Mem.Set(p, v);
                                         dbgLinkRecvByte((_fp + 25u));
-                                        if ((Mem.S32(0x8014D3E8u) == 0))
+                                        if ((Mem.S32(Gv.DbgLink_Error) == 0))
                                         {
                                             Mem.Set((uint)(Mem.U32((_fp + 20u))), Mem.U8((_fp + 25u)));
                                         }
@@ -165,8 +165,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("dbgLinkServerLoop_dbgPortSetFifoTrigger_i", (uint)v);
-            byte tmp = (byte)((((int)(Mem.U8(0x8014D3E2u)) & 191) | (v << (int)6)));
-            Mem.Set(0x8014D3E2u, tmp);
+            byte tmp = (byte)((((int)(Mem.U8(Gv.DbgPort_FifoCtlShadow)) & 191) | (v << (int)6)));
+            Mem.Set(Gv.DbgPort_FifoCtlShadow, tmp);
             while (((osPiGetStatus() & (uint)(3)) != 0u))
             {
             }

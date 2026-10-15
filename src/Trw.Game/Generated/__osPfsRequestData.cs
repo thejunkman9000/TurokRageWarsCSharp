@@ -15,9 +15,9 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("__osPfsRequestData", (uint)cmd);
                 uint pkt = 0u;
                 int i = 0;
-                pkt = new OSPifRam(0x80154110u).ramarray.P;
-                Mem.Set(0x8014D4B0u, cmd);
-                new OSPifRam(0x80154110u).pifstatus_Set((uint)(1));
+                pkt = new OSPifRam(Gv.OsPfsPifRam).ramarray.P;
+                Mem.Set(Gv.__osContLastCmd, cmd);
+                new OSPifRam(Gv.OsPfsPifRam).pifstatus_Set((uint)(1));
                 new OSContPackedRequest(_fp).unk00_Set((byte)(255));
                 new OSContPackedRequest(_fp).unk01_Set((byte)(1));
                 new OSContPackedRequest(_fp).unk02_Set((byte)(3));
@@ -26,7 +26,7 @@ public static partial class Game
                 new OSContPackedRequest(_fp).unk05_Set((byte)(255));
                 new OSContPackedRequest(_fp).unk06_Set((byte)(255));
                 new OSContPackedRequest(_fp).unk07_Set((byte)(255));
-                for (i = 0; (i < (int)(Mem.U8(0x8014D46Cu))); ++i)
+                for (i = 0; (i < (int)(Mem.U8(Gv.__osMaxControllers))); ++i)
                 {
                     Mem.Copy(((pkt += 8u) - 8u), _fp, 8);
                 }

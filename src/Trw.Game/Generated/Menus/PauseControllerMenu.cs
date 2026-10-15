@@ -12,11 +12,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00436AD8", (uint)i);
             Mem.Set((0x80146410u + (uint)((i * 150) + 7)), (byte)(i));
-            OptionList_SetSelection(new O05M94_v2(Mem.U32(0x800E5694u)).fC, (int)(new O05Rec((0x80102B00u + (uint)(i * 400))).b189));
-            OptionList_SetSelection(new O05M94_v2(Mem.U32(0x800E5694u)).f8, (int)(new O05Rec((0x80102B00u + (uint)(i * 400))).b18A));
-            Slider_SetValue(new O05M94_v2(Mem.U32(0x800E5694u)).f0, (int)(new O05Rec((0x80102B00u + (uint)(i * 400))).b18B));
-            Slider_SetValue(new O05M94_v2(Mem.U32(0x800E5694u)).f4, (int)(new O05Rec((0x80102B00u + (uint)(i * 400))).b18C));
-            OptionList_SetSelection(new O05M94_v2(Mem.U32(0x800E5694u)).f10, (int)(new O05Rec((0x80102B00u + (uint)(i * 400))).b18D));
+            OptionList_SetSelection(new O05M94_v2(Mem.U32(Gv.PauseControllerMenu_PagePtr)).fC, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).b189));
+            OptionList_SetSelection(new O05M94_v2(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f8, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).b18A));
+            Slider_SetValue(new O05M94_v2(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f0, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).b18B));
+            Slider_SetValue(new O05M94_v2(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f4, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).b18C));
+            OptionList_SetSelection(new O05M94_v2(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f10, (int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).b18D));
         }
     }
 
@@ -26,17 +26,17 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00436BC8", (uint)k);
-            uint r = (0x80146398u + (uint)(k * 150));
-            new O05Rec((0x80102B00u + (uint)(k * 400))).b189_Set((sbyte)(OptionList_GetSelection(new O05M94_v2(Mem.U32(0x800E5694u)).fC)));
-            new O05Rec((0x80102B00u + (uint)(k * 400))).b18A_Set((byte)(OptionList_GetSelection(new O05M94_v2(Mem.U32(0x800E5694u)).f8)));
-            new O05Rec((0x80102B00u + (uint)(k * 400))).b18B_Set((byte)(Slider_GetValue(new O05M94_v2(Mem.U32(0x800E5694u)).f0)));
-            new O05Rec((0x80102B00u + (uint)(k * 400))).b18C_Set((byte)(Slider_GetValue(new O05M94_v2(Mem.U32(0x800E5694u)).f4)));
-            new O05Rec((0x80102B00u + (uint)(k * 400))).b18D_Set((byte)(OptionList_GetSelection(new O05M94_v2(Mem.U32(0x800E5694u)).f10)));
-            new O05R150b(r).b7B_Set((byte)(new O05Rec((0x80102B00u + (uint)(k * 400))).b189));
-            new O05R150b(r).b7D_Set(new O05Rec((0x80102B00u + (uint)(k * 400))).b18A);
-            new O05R150b(r).b79_Set(new O05Rec((0x80102B00u + (uint)(k * 400))).b18B);
-            new O05R150b(r).b7A_Set(new O05Rec((0x80102B00u + (uint)(k * 400))).b18C);
-            new O05R150b(r).b82_Set(new O05Rec((0x80102B00u + (uint)(k * 400))).b18D);
+            uint r = (Gv.Settings_PlayerRecords + (uint)(k * 150));
+            new O05Rec((Gv.ProfileTable + (uint)(k * 400))).b189_Set((sbyte)(OptionList_GetSelection(new O05M94_v2(Mem.U32(Gv.PauseControllerMenu_PagePtr)).fC)));
+            new O05Rec((Gv.ProfileTable + (uint)(k * 400))).b18A_Set((byte)(OptionList_GetSelection(new O05M94_v2(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f8)));
+            new O05Rec((Gv.ProfileTable + (uint)(k * 400))).b18B_Set((byte)(Slider_GetValue(new O05M94_v2(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f0)));
+            new O05Rec((Gv.ProfileTable + (uint)(k * 400))).b18C_Set((byte)(Slider_GetValue(new O05M94_v2(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f4)));
+            new O05Rec((Gv.ProfileTable + (uint)(k * 400))).b18D_Set((byte)(OptionList_GetSelection(new O05M94_v2(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f10)));
+            new O05R150b(r).b7B_Set((byte)(new O05Rec((Gv.ProfileTable + (uint)(k * 400))).b189));
+            new O05R150b(r).b7D_Set(new O05Rec((Gv.ProfileTable + (uint)(k * 400))).b18A);
+            new O05R150b(r).b79_Set(new O05Rec((Gv.ProfileTable + (uint)(k * 400))).b18B);
+            new O05R150b(r).b7A_Set(new O05Rec((Gv.ProfileTable + (uint)(k * 400))).b18C);
+            new O05R150b(r).b82_Set(new O05Rec((Gv.ProfileTable + (uint)(k * 400))).b18D);
         }
     }
 
@@ -46,20 +46,20 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00437074", (uint)cfg);
-            Mem.Set(0x800E5694u, ResourcePool_Malloc((uint)(80)));
+            Mem.Set(Gv.PauseControllerMenu_PagePtr, ResourcePool_Malloc((uint)(80)));
             MenuButton_Create(454);
-            OptionList_AddOption(new O05M94_v3(Mem.U32(0x800E5694u)).fC_Set(OptionList_Create(457, 458)), Mem.U32((0x800D74D0u + (uint)(0 * 4))));
-            OptionList_AddOption(new O05M94_v3(Mem.U32(0x800E5694u)).fC, Mem.U32((0x800D74DCu + (uint)(0 * 4))));
-            OptionList_AddOption(new O05M94_v3(Mem.U32(0x800E5694u)).f8_Set(OptionList_Create(465, 466)), Mem.U32((0x800D749Cu + (uint)(0 * 4))));
-            OptionList_AddOption(new O05M94_v3(Mem.U32(0x800E5694u)).f8, Mem.U32((0x800D74A0u + (uint)(0 * 4))));
-            new O05M94_v3(Mem.U32(0x800E5694u)).f0_Set(Slider_Create(463, 464, 255));
-            new O05M94_v3(Mem.U32(0x800E5694u)).f4_Set(Slider_Create(461, 462, 255));
-            OptionList_AddOption(new O05M94_v3(Mem.U32(0x800E5694u)).f10_Set(OptionList_Create(459, 460)), Mem.U32((0x800D74E0u + (uint)(0 * 4))));
-            OptionList_AddOption(new O05M94_v3(Mem.U32(0x800E5694u)).f10, Mem.U32((0x800D74E4u + (uint)(0 * 4))));
-            OptionList_AddOption(new O05M94_v3(Mem.U32(0x800E5694u)).f10, Mem.U32((0x800D74E8u + (uint)(0 * 4))));
+            OptionList_AddOption(new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).fC_Set(OptionList_Create(457, 458)), Mem.U32((0x800D74D0u + (uint)(0 * 4))));
+            OptionList_AddOption(new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).fC, Mem.U32((0x800D74DCu + (uint)(0 * 4))));
+            OptionList_AddOption(new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f8_Set(OptionList_Create(465, 466)), Mem.U32((Gv.Option_OffOnStrings + (uint)(0 * 4))));
+            OptionList_AddOption(new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f8, Mem.U32((Gv.Str_OnPtr + (uint)(0 * 4))));
+            new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f0_Set(Slider_Create(463, 464, 255));
+            new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f4_Set(Slider_Create(461, 462, 255));
+            OptionList_AddOption(new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f10_Set(OptionList_Create(459, 460)), Mem.U32((0x800D74E0u + (uint)(0 * 4))));
+            OptionList_AddOption(new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f10, Mem.U32((0x800D74E4u + (uint)(0 * 4))));
+            OptionList_AddOption(new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f10, Mem.U32((0x800D74E8u + (uint)(0 * 4))));
             MenuButton_Create(456);
-            new O05M94_v3(Mem.U32(0x800E5694u)).f18_Set(UiTree_FindNode(cfg, (uint)(455), default(uint), default(uint)));
-            new O05M94_v3(Mem.U32(0x800E5694u)).f14_Set(0);
+            new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f18_Set(UiTree_FindNode(cfg, (uint)(455), default(uint), default(uint)));
+            new O05M94_v3(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f14_Set(0);
             PauseControllerMenu_LoadSettings(0);
             return 0;
         }
@@ -71,8 +71,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004371FC");
-            ResourcePool_MallocFree(Mem.U32(0x800E5694u));
-            Mem.Set(0x800E5694u, 0u);
+            ResourcePool_MallocFree(Mem.U32(Gv.PauseControllerMenu_PagePtr));
+            Mem.Set(Gv.PauseControllerMenu_PagePtr, 0u);
             return 0;
         }
     }
@@ -106,7 +106,7 @@ public static partial class Game
             Menu_ConsumeEvent();
             if ((Menu_GetMessage() == 456))
             {
-                PauseControllerMenu_StoreSettings(new O05M94_v4(Mem.U32(0x800E5694u)).f14);
+                PauseControllerMenu_StoreSettings(new O05M94_v4(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f14);
                 Menu_RequestScreen(((Menu_GetStackScreenId(0) == 22) ? (-1) : 11));
                 Menu_GoBack();
             }
@@ -138,15 +138,15 @@ public static partial class Game
             {
                 return 0;
             }
-            PauseControllerMenu_StoreSettings(new O05M94(Mem.U32(0x800E5694u)).f14);
-            new O05M94(Mem.U32(0x800E5694u)).f14_Set((int)(new O05M94(Mem.U32(0x800E5694u)).f14 + 1));
-            if ((new O05M94(Mem.U32(0x800E5694u)).f14 >= 4))
+            PauseControllerMenu_StoreSettings(new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f14);
+            new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f14_Set((int)(new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f14 + 1));
+            if ((new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f14 >= 4))
             {
-                new O05M94(Mem.U32(0x800E5694u)).f14_Set(0);
+                new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f14_Set(0);
             }
-            PauseControllerMenu_LoadSettings(new O05M94(Mem.U32(0x800E5694u)).f14);
-            Str_FormatInto(new O05M94(Mem.U32(0x800E5694u)).buf.P, (uint)(Mem.S32(0x800D74ECu)), (uint)((new O05M94(Mem.U32(0x800E5694u)).f14 + 1)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-            new O05Wd(new O05M94(Mem.U32(0x800E5694u)).f18).f38_Set(new O05M94(Mem.U32(0x800E5694u)).buf.P);
+            PauseControllerMenu_LoadSettings(new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f14);
+            Str_FormatInto(new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).buf.P, (uint)(Mem.S32(0x800D74ECu)), (uint)((new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f14 + 1)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            new O05Wd(new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f18).f38_Set(new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).buf.P);
             return 0;
         }
     }
@@ -162,15 +162,15 @@ public static partial class Game
             {
                 return 0;
             }
-            PauseControllerMenu_StoreSettings(new O05M94(Mem.U32(0x800E5694u)).f14);
-            new O05M94(Mem.U32(0x800E5694u)).f14_Set((int)(new O05M94(Mem.U32(0x800E5694u)).f14 - 1));
-            if ((new O05M94(Mem.U32(0x800E5694u)).f14 < 0))
+            PauseControllerMenu_StoreSettings(new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f14);
+            new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f14_Set((int)(new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f14 - 1));
+            if ((new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f14 < 0))
             {
-                new O05M94(Mem.U32(0x800E5694u)).f14_Set(3);
+                new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f14_Set(3);
             }
-            PauseControllerMenu_LoadSettings(new O05M94(Mem.U32(0x800E5694u)).f14);
-            Str_FormatInto(new O05M94(Mem.U32(0x800E5694u)).buf.P, (uint)(Mem.S32(0x800D74ECu)), (uint)((new O05M94(Mem.U32(0x800E5694u)).f14 + 1)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-            new O05Wd(new O05M94(Mem.U32(0x800E5694u)).f18).f38_Set(new O05M94(Mem.U32(0x800E5694u)).buf.P);
+            PauseControllerMenu_LoadSettings(new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f14);
+            Str_FormatInto(new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).buf.P, (uint)(Mem.S32(0x800D74ECu)), (uint)((new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f14 + 1)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            new O05Wd(new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).f18).f38_Set(new O05M94(Mem.U32(Gv.PauseControllerMenu_PagePtr)).buf.P);
             return 0;
         }
     }
@@ -182,13 +182,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00437454", (uint)o, (uint)id, (uint)a2, (uint)a3);
             int i = 0;
-            for (i = 0; (new O05Disp((0x800E5710u + (uint)(i * 12))).fn != 0u); ++i)
+            for (i = 0; (new O05Disp((Gv.PauseControllerMenu_EventTable + (uint)(i * 12))).fn != 0u); ++i)
             {
-                if ((new O05Disp((0x800E5710u + (uint)(i * 12))).id == id))
+                if ((new O05Disp((Gv.PauseControllerMenu_EventTable + (uint)(i * 12))).id == id))
                 {
-                    if (((new O05Disp((0x800E5710u + (uint)(i * 12))).key == (int)(new O05Obj(o).key)) || (new O05Disp((0x800E5710u + (uint)(i * 12))).key == 30000)))
+                    if (((new O05Disp((Gv.PauseControllerMenu_EventTable + (uint)(i * 12))).key == (int)(new O05Obj(o).key)) || (new O05Disp((Gv.PauseControllerMenu_EventTable + (uint)(i * 12))).key == 30000)))
                     {
-                        return (int)(Funcs.CallRegX(new O05Disp((0x800E5710u + (uint)(i * 12))).fn, o, (uint)(id), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
+                        return (int)(Funcs.CallRegX(new O05Disp((Gv.PauseControllerMenu_EventTable + (uint)(i * 12))).fn, o, (uint)(id), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
                     }
                 }
             }

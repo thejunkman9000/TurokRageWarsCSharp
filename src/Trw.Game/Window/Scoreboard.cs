@@ -155,7 +155,7 @@ public sealed class Scoreboard : IDisposable
 
     // match settings (D_801462C8 + 0x5D8 = D_801468A0, the match rules): +0x14 f32 clock (time left, 15 per second: minutes * 900, counted down in
     // Match_UpdateClock), +0x18 s32 frag limit (Match_IsFragLimitReached)
-    private const uint Rules = 0x801468A0;
+    private const uint Rules = Gv.Settings_MatchRules;
 
     private static string MatchTitle()
     {

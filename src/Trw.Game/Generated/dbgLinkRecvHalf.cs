@@ -16,11 +16,11 @@ public static partial class Game
                 ushort v = 0;
                 int ret = 0;
                 dbgLinkRecvByte(_fp);
-                if ((Mem.S32(0x8014D3E8u) == 0))
+                if ((Mem.S32(Gv.DbgLink_Error) == 0))
                 {
                     v = (ushort)(((int)(Mem.U8(_fp)) << (int)8));
                     dbgLinkRecvByte(_fp);
-                    if ((Mem.S32(0x8014D3E8u) == 0))
+                    if ((Mem.S32(Gv.DbgLink_Error) == 0))
                     {
                         v = (ushort)((int)(v) | (int)(Mem.U8(_fp)));
                         ret = 1;

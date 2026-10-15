@@ -13,7 +13,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("alAudioFrame", (uint)cmdList, (uint)cmdLen, (uint)outBuf, (uint)outLen);
-                uint drvr = new ALGlobals(Mem.U32(0x800D80A0u)).drvr.P;
+                uint drvr = new ALGlobals(Mem.U32(Gv.alGlobals)).drvr.P;
                 Mem.Set(_fp + 4u, (short)(0));
                 int samplesLeft = outLen;
                 uint cmdp = cmdList;

@@ -78,9 +78,9 @@ public static partial class Game
             }
             size = (end - (uint)(@base));
             memset(@base, 0, size);
-            Heap_Init(0x801051A0u, @base, size, default(uint));
-            MsgPort_Create(0x8010A248u, 3);
-            RomDma_Init(0x801051B8u, 4);
+            Heap_Init(Gv.Resource_Heap, @base, size, default(uint));
+            MsgPort_Create(Gv.ResourceLoader_Port, 3);
+            RomDma_Init(Gv.RomDma_Ctl, 4);
             Resource_InitPager();
             Resource_InitManager(0, 5);
         }
@@ -100,16 +100,16 @@ public static partial class Game
             uint dp1 = 0u;
             osCreateMesgQueue(0x80146980u, 0x80146D78u, 4096);
             memset(0x800F3C80u, 7, (uint)(8192));
-            Sched_Create(0x801469E8u, (0x800F3C80u + (uint)8192), (uint)(Mem.S32(0x800D2B38u)), (uint)(0), (uint)((byte)(1)));
-            Sched_AddClient(0x801469E8u, 0x8014AD80u, (int)(0x80146980u));
+            Sched_Create(Gv.Sched_Main, (0x800F3C80u + (uint)8192), (uint)(Mem.S32(0x800D2B38u)), (uint)(0), (uint)((byte)(1)));
+            Sched_AddClient(Gv.Sched_Main, 0x8014AD80u, (int)(0x80146980u));
             new Level(lv).unk26DB4_Set((-1));
             Game_StartFadeIn(lv);
-            Mem.Set(0x80110634u, 0);
+            Mem.Set(Gv.DisplayListPtr, 0);
             guMtxIdent(0x80146D20u);
             if ((Mem.S32(0x8014D330u) != 0))
             {
                 Level_InitRestartState();
-                Settings_InitDefaults(0x801462C8u);
+                Settings_InitDefaults(Gv.Settings);
             }
             Flyby_Reset();
             i = (uint)(0);
@@ -119,15 +119,15 @@ public static partial class Game
             new Level(lv).unk26DC8_Set(1);
             new Level(lv).unk26DCC_Set(0);
             new Level(lv).unk26DD4_Set(0);
-            new R07Blk(0x801468A0u).a88_Set(0);
-            new R07Blk(0x801468A0u).a8C_Set(0);
+            new R07Blk(Gv.Settings_MatchRules).a88_Set(0);
+            new R07Blk(Gv.Settings_MatchRules).a8C_Set(0);
             sl = lv;
-            while ((i < Mem.U32(0x800E28A0u)))
+            while ((i < Mem.U32(Gv.Video_FrameSlotCount)))
             {
-                dm1 = (Mem.U32(0x800E28A0u) - (uint)(1));
-                a = ((i + dm1) % Mem.U32(0x800E28A0u));
-                dp1 = (Mem.U32(0x800E28A0u) + (uint)(1));
-                b = ((i + dp1) % Mem.U32(0x800E28A0u));
+                dm1 = (Mem.U32(Gv.Video_FrameSlotCount) - (uint)(1));
+                a = ((i + dm1) % Mem.U32(Gv.Video_FrameSlotCount));
+                dp1 = (Mem.U32(Gv.Video_FrameSlotCount) + (uint)(1));
+                b = ((i + dp1) % Mem.U32(Gv.Video_FrameSlotCount));
                 new Slot_v2((sl + (uint)(i * 320))).unkF0_Set((short)(2));
                 new Slot_v2((sl + (uint)(i * 320))).unk110_Set(Mem.S32((0x801536F8u + (uint)(i * 4))));
                 new Slot_v2((sl + (uint)(i * 320))).prev__Set((lv + (uint)(a * 320)));
@@ -379,7 +379,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00292F08");
-            Boot_StartThread0_00292F2C(0x8011FAC0u);
+            Boot_StartThread0_00292F2C(Gv.GameCtx);
         }
     }
 
@@ -418,7 +418,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002934F0", (uint)a);
-            Boot_StartGameThread(0x8011FAC0u, (uint)(a));
+            Boot_StartGameThread(Gv.GameCtx, (uint)(a));
         }
     }
 
@@ -430,7 +430,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00293518");
             sprintf(0x8014ADA8u, 0x800CA4F0u, 0x800CA4F8u, 0x800CA504u, default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             __osSetFpcCsr((uint)(((int)(__osGetFpcCsr()) | 1024)));
-            Game_Init(0x8011FAC0u, default(uint), default(uint), default(uint));
+            Game_Init(Gv.GameCtx, default(uint), default(uint), default(uint));
         }
     }
 

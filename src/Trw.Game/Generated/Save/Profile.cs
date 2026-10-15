@@ -82,18 +82,18 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0022F1F4", (uint)i);
             uint r = 0u;
-            Profile_Init((0x80102B00u + (uint)(i * 400)));
-            new B07Row((0x80102B00u + (uint)(i * 400))).unk8_Set(0);
-            new B07Row((0x80102B00u + (uint)(i * 400))).unkD_Set((byte)(i));
-            new B07Row((0x80102B00u + (uint)(i * 400))).unkC_Set((byte)(0));
-            new B07Row((0x80102B00u + (uint)(i * 400))).unkE_Set((byte)(1));
-            Str_FormatInto((0x80102B00u + (uint)(i * 400)), (uint)(Mem.S32((0x800D750Cu + (uint)(0 * 4)))), (uint)((i + 1)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-            r = (0x80146398u + (uint)(i * 150));
-            new B07Row((0x80102B00u + (uint)(i * 400))).unk189_Set(new B07Rec96(r).unk7B);
-            new B07Row((0x80102B00u + (uint)(i * 400))).unk18A_Set(new B07Rec96(r).unk7D);
-            new B07Row((0x80102B00u + (uint)(i * 400))).unk18B_Set(new B07Rec96(r).unk79);
-            new B07Row((0x80102B00u + (uint)(i * 400))).unk18C_Set(new B07Rec96(r).unk7A);
-            new B07Row((0x80102B00u + (uint)(i * 400))).unk18D_Set(new B07Rec96(r).unk82);
+            Profile_Init((Gv.ProfileTable + (uint)(i * 400)));
+            new B07Row((Gv.ProfileTable + (uint)(i * 400))).unk8_Set(0);
+            new B07Row((Gv.ProfileTable + (uint)(i * 400))).unkD_Set((byte)(i));
+            new B07Row((Gv.ProfileTable + (uint)(i * 400))).unkC_Set((byte)(0));
+            new B07Row((Gv.ProfileTable + (uint)(i * 400))).unkE_Set((byte)(1));
+            Str_FormatInto((Gv.ProfileTable + (uint)(i * 400)), (uint)(Mem.S32((0x800D750Cu + (uint)(0 * 4)))), (uint)((i + 1)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            r = (Gv.Settings_PlayerRecords + (uint)(i * 150));
+            new B07Row((Gv.ProfileTable + (uint)(i * 400))).unk189_Set(new B07Rec96(r).unk7B);
+            new B07Row((Gv.ProfileTable + (uint)(i * 400))).unk18A_Set(new B07Rec96(r).unk7D);
+            new B07Row((Gv.ProfileTable + (uint)(i * 400))).unk18B_Set(new B07Rec96(r).unk79);
+            new B07Row((Gv.ProfileTable + (uint)(i * 400))).unk18C_Set(new B07Rec96(r).unk7A);
+            new B07Row((Gv.ProfileTable + (uint)(i * 400))).unk18D_Set(new B07Rec96(r).unk82);
         }
     }
 
@@ -523,7 +523,7 @@ public static partial class Game
             {
                 return;
             }
-            e = (0x80146398u + (uint)(p * 150));
+            e = (Gv.Settings_PlayerRecords + (uint)(p * 150));
             if (((int)(new Q2Pl(e).f78) != 1))
             {
                 return;
@@ -534,9 +534,9 @@ public static partial class Game
             }
             for (i = 0; (i < 36); ++i)
             {
-                if (((Bits_Test((0x80102B4Au + (uint)(p * 400)), i) == 0) && ((int)(Mem.U8((0x80102B26u + (uint)(i + (p * 400))))) >= 2)))
+                if (((Bits_Test((Gv.Profile_AwardBits + (uint)(p * 400)), i) == 0) && ((int)(Mem.U8((0x80102B26u + (uint)(i + (p * 400))))) >= 2)))
                 {
-                    Bits_Assign((0x80102B4Au + (uint)(p * 400)), i, 1);
+                    Bits_Assign((Gv.Profile_AwardBits + (uint)(p * 400)), i, 1);
                     if ((n < 2))
                     {
                         Mem.Set((@out + (uint)(n * 4)), i);
@@ -544,7 +544,7 @@ public static partial class Game
                     }
                 }
             }
-            if ((Bits_Test((0x80102B4Au + (uint)(p * 400)), 36) == 0))
+            if ((Bits_Test((Gv.Profile_AwardBits + (uint)(p * 400)), 36) == 0))
             {
                 met = 0;
                 if ((((uint)(((int)(Mem.U8(0x801462ECu)) - 1)) < (uint)(5)) && ((int)(new Q2Pl(e).f4) >= 15)))
@@ -553,12 +553,12 @@ public static partial class Game
                 }
                 else
                 {
-                    if (((new Q2G(0x801468A0u).f14 >= 0.0f) && ((int)(new Q2Pl(e).f4) >= 15)))
+                    if (((new Q2G(Gv.Settings_MatchRules).f14 >= 0.0f) && ((int)(new Q2Pl(e).f4) >= 15)))
                     {
-                        y = (new Q2G(0x801468A0u).f14 * 0.0666666701f);
+                        y = (new Q2G(Gv.Settings_MatchRules).f14 * 0.0666666701f);
                         {
                             float ft = (float)((int)((y * 0.0166666675f)));
-                            if ((((float)(Mem.S8((0x801468A0u + (uint)(-1460)))) - ft) <= 5.0f))
+                            if ((((float)(Mem.S8((Gv.Settings_MatchRules + (uint)(-1460)))) - ft) <= 5.0f))
                             {
                                 met = 1;
                             }
@@ -567,7 +567,7 @@ public static partial class Game
                 }
                 if ((met == 1))
                 {
-                    Bits_Assign((0x80102B4Au + (uint)(p * 400)), 36, 1);
+                    Bits_Assign((Gv.Profile_AwardBits + (uint)(p * 400)), 36, 1);
                     if ((n < 2))
                     {
                         Mem.Set((@out + (uint)(n * 4)), 36);
@@ -575,7 +575,7 @@ public static partial class Game
                     }
                 }
             }
-            if ((Bits_Test((0x80102B4Au + (uint)(p * 400)), 37) == 0))
+            if ((Bits_Test((Gv.Profile_AwardBits + (uint)(p * 400)), 37) == 0))
             {
                 met = 0;
                 if ((((uint)(((int)(Mem.U8(0x801462ECu)) - 1)) < (uint)(10)) && ((int)(new Q2Pl(e).f4) >= 25)))
@@ -584,12 +584,12 @@ public static partial class Game
                 }
                 else
                 {
-                    if (((new Q2G(0x801468A0u).f14 >= 0.0f) && ((int)(new Q2Pl(e).f4) >= 25)))
+                    if (((new Q2G(Gv.Settings_MatchRules).f14 >= 0.0f) && ((int)(new Q2Pl(e).f4) >= 25)))
                     {
-                        y = (new Q2G(0x801468A0u).f14 * 0.0666666701f);
+                        y = (new Q2G(Gv.Settings_MatchRules).f14 * 0.0666666701f);
                         {
                             float ft_2 = (float)((int)((y * 0.0166666675f)));
-                            if ((((float)(Mem.S8((0x801468A0u + (uint)(-1460)))) - ft_2) <= 10.0f))
+                            if ((((float)(Mem.S8((Gv.Settings_MatchRules + (uint)(-1460)))) - ft_2) <= 10.0f))
                             {
                                 met = 1;
                             }
@@ -598,7 +598,7 @@ public static partial class Game
                 }
                 if ((met == 1))
                 {
-                    Bits_Assign((0x80102B4Au + (uint)(p * 400)), 37, 1);
+                    Bits_Assign((Gv.Profile_AwardBits + (uint)(p * 400)), 37, 1);
                     if ((n < 2))
                     {
                         Mem.Set((@out + (uint)(n * 4)), 37);
@@ -606,25 +606,25 @@ public static partial class Game
                     }
                 }
             }
-            if (((((Bits_Test((0x80102B4Au + (uint)(p * 400)), 38) == 0) && ((int)(new Q2Pl(e).f4) == 0)) && ((int)(new Q2Cfg(0x801462C8u).s24) >= 10)) && ((int)(new Q2Cfg(0x801462C8u).s25) >= 20)))
+            if (((((Bits_Test((Gv.Profile_AwardBits + (uint)(p * 400)), 38) == 0) && ((int)(new Q2Pl(e).f4) == 0)) && ((int)(new Q2Cfg(Gv.Settings).s24) >= 10)) && ((int)(new Q2Cfg(Gv.Settings).s25) >= 20)))
             {
-                Bits_Assign((0x80102B4Au + (uint)(p * 400)), 38, 1);
+                Bits_Assign((Gv.Profile_AwardBits + (uint)(p * 400)), 38, 1);
                 if ((n < 2))
                 {
                     Mem.Set((@out + (uint)(n * 4)), 38);
                     ++n;
                 }
             }
-            if (((Bits_Test((0x80102B4Au + (uint)(p * 400)), 39) == 0) && ((int)(new Q2Pl(e).f0) >= 5)))
+            if (((Bits_Test((Gv.Profile_AwardBits + (uint)(p * 400)), 39) == 0) && ((int)(new Q2Pl(e).f0) >= 5)))
             {
-                Bits_Assign((0x80102B4Au + (uint)(p * 400)), 39, 1);
+                Bits_Assign((Gv.Profile_AwardBits + (uint)(p * 400)), 39, 1);
                 if ((n < 2))
                 {
                     Mem.Set((@out + (uint)(n * 4)), 39);
                     ++n;
                 }
             }
-            if (((Bits_Test((0x80102B4Au + (uint)(p * 400)), 40) == 0) && ((int)(new Q2Cfg(0x801462C8u).s25) >= 20)))
+            if (((Bits_Test((Gv.Profile_AwardBits + (uint)(p * 400)), 40) == 0) && ((int)(new Q2Cfg(Gv.Settings).s25) >= 20)))
             {
                 t = (int)(new Q2Pl(e).f4);
                 met = 1;
@@ -636,7 +636,7 @@ public static partial class Game
                     }
                     if ((p != i))
                     {
-                        if (((((int)(new Q2Cfg(0x801462C8u).pl[(int)(i)].f78) != 1) || ((int)(new Q2Cfg(0x801462C8u).pl[(int)(i)].f91) != 0)) || (((int)(new Q2Cfg(0x801462C8u).pl[(int)(i)].f4) - t) < 10)))
+                        if (((((int)(new Q2Cfg(Gv.Settings).pl[(int)(i)].f78) != 1) || ((int)(new Q2Cfg(Gv.Settings).pl[(int)(i)].f91) != 0)) || (((int)(new Q2Cfg(Gv.Settings).pl[(int)(i)].f4) - t) < 10)))
                         {
                             met = 0;
                         }
@@ -644,7 +644,7 @@ public static partial class Game
                 }
                 if ((met == 1))
                 {
-                    Bits_Assign((0x80102B4Au + (uint)(p * 400)), 40, 1);
+                    Bits_Assign((Gv.Profile_AwardBits + (uint)(p * 400)), 40, 1);
                     if ((n < 2))
                     {
                         Mem.Set((@out + (uint)(n * 4)), 40);
@@ -652,36 +652,36 @@ public static partial class Game
                     }
                 }
             }
-            if (((Bits_Test((0x80102B4Au + (uint)(p * 400)), 41) == 0) && (Mem.S32((0x80102B6Cu + (uint)(p * 400))) >= 1001)))
+            if (((Bits_Test((Gv.Profile_AwardBits + (uint)(p * 400)), 41) == 0) && (Mem.S32((0x80102B6Cu + (uint)(p * 400))) >= 1001)))
             {
-                Bits_Assign((0x80102B4Au + (uint)(p * 400)), 41, 1);
+                Bits_Assign((Gv.Profile_AwardBits + (uint)(p * 400)), 41, 1);
                 if ((n < 2))
                 {
                     Mem.Set((@out + (uint)(n * 4)), 41);
                     ++n;
                 }
             }
-            if (((Bits_Test((0x80102B4Au + (uint)(p * 400)), 42) == 0) && (Mem.S32((0x80102B74u + (uint)(p * 400))) >= 1001)))
+            if (((Bits_Test((Gv.Profile_AwardBits + (uint)(p * 400)), 42) == 0) && (Mem.S32((0x80102B74u + (uint)(p * 400))) >= 1001)))
             {
-                Bits_Assign((0x80102B4Au + (uint)(p * 400)), 42, 1);
+                Bits_Assign((Gv.Profile_AwardBits + (uint)(p * 400)), 42, 1);
                 if ((n < 2))
                 {
                     Mem.Set((@out + (uint)(n * 4)), 42);
                     ++n;
                 }
             }
-            if (((((Bits_Test((0x80102B4Au + (uint)(p * 400)), 43) == 0) && ((int)(new Q2Pl(e).fA) >= 10)) && ((int)(new Q2Cfg(0x801462C8u).s24) >= 10)) && ((int)(new Q2Cfg(0x801462C8u).s25) >= 20)))
+            if (((((Bits_Test((Gv.Profile_AwardBits + (uint)(p * 400)), 43) == 0) && ((int)(new Q2Pl(e).fA) >= 10)) && ((int)(new Q2Cfg(Gv.Settings).s24) >= 10)) && ((int)(new Q2Cfg(Gv.Settings).s25) >= 20)))
             {
-                Bits_Assign((0x80102B4Au + (uint)(p * 400)), 43, 1);
+                Bits_Assign((Gv.Profile_AwardBits + (uint)(p * 400)), 43, 1);
                 if ((n < 2))
                 {
                     Mem.Set((@out + (uint)(n * 4)), 43);
                     ++n;
                 }
             }
-            if (((((Bits_Test((0x80102B4Au + (uint)(p * 400)), 44) == 0) && ((int)(new Q2Pl(e).f2) == 0)) && ((int)(new Q2Cfg(0x801462C8u).s24) >= 10)) && ((int)(new Q2Cfg(0x801462C8u).s25) >= 20)))
+            if (((((Bits_Test((Gv.Profile_AwardBits + (uint)(p * 400)), 44) == 0) && ((int)(new Q2Pl(e).f2) == 0)) && ((int)(new Q2Cfg(Gv.Settings).s24) >= 10)) && ((int)(new Q2Cfg(Gv.Settings).s25) >= 20)))
             {
-                Bits_Assign((0x80102B4Au + (uint)(p * 400)), 44, 1);
+                Bits_Assign((Gv.Profile_AwardBits + (uint)(p * 400)), 44, 1);
                 if ((n < 2))
                 {
                     Mem.Set((@out + (uint)(n * 4)), 44);
@@ -703,27 +703,27 @@ public static partial class Game
             uint e2 = 0u;
             for (i = 0; (i < 4); ++i)
             {
-                e = (0x80146398u + (uint)(i * 150));
-                if (((int)(new O04Row190g((0x80102B00u + (uint)(i * 400))).unkD) >= 0))
+                e = (Gv.Settings_PlayerRecords + (uint)(i * 150));
+                if (((int)(new O04Row190g((Gv.ProfileTable + (uint)(i * 400))).unkD) >= 0))
                 {
-                    x = (new O04Row190g((0x80102B00u + (uint)(i * 400))).unk6C + (int)(new O04Ent96i(e).unk4));
+                    x = (new O04Row190g((Gv.ProfileTable + (uint)(i * 400))).unk6C + (int)(new O04Ent96i(e).unk4));
                     e2 = e;
                     if ((x > 99999))
                     {
-                        new O04Row190g((0x80102B00u + (uint)(i * 400))).unk6C_Set(99999);
+                        new O04Row190g((Gv.ProfileTable + (uint)(i * 400))).unk6C_Set(99999);
                     }
                     else
                     {
-                        new O04Row190g((0x80102B00u + (uint)(i * 400))).unk6C_Set(x);
+                        new O04Row190g((Gv.ProfileTable + (uint)(i * 400))).unk6C_Set(x);
                     }
-                    y = (new O04Row190g((0x80102B00u + (uint)(i * 400))).unk74 + (int)(new O04Ent96i(e2).unk2));
+                    y = (new O04Row190g((Gv.ProfileTable + (uint)(i * 400))).unk74 + (int)(new O04Ent96i(e2).unk2));
                     if ((y > 99999))
                     {
-                        new O04Row190g((0x80102B00u + (uint)(i * 400))).unk74_Set(99999);
+                        new O04Row190g((Gv.ProfileTable + (uint)(i * 400))).unk74_Set(99999);
                     }
                     else
                     {
-                        new O04Row190g((0x80102B00u + (uint)(i * 400))).unk74_Set(y);
+                        new O04Row190g((Gv.ProfileTable + (uint)(i * 400))).unk74_Set(y);
                     }
                 }
             }
@@ -740,16 +740,16 @@ public static partial class Game
             int n = 0;
             int i = 0;
             uint e = 0u;
-            if ((((int)(new O04P(0x801462C8u).a) <= 0) && ((int)(new O04P(0x801462C8u).b) <= 0)))
+            if ((((int)(new O04P(Gv.Settings).a) <= 0) && ((int)(new O04P(Gv.Settings).b) <= 0)))
             {
                 return 0;
             }
             r = 1;
             n = 0;
-            e = 0x80146398u;
+            e = Gv.Settings_PlayerRecords;
             for (i = 0; (i < 8); ++i)
             {
-                if (((((int)(new O04Ent96((e + (uint)(i * 150))).unk78) == 1) && ((int)(new O04Ent96((e + (uint)(i * 150))).unk91) != (int)(new O04Ent96((e + (uint)(i * 150))).unk78))) && (Mem.S32((0x80103140u + (uint)(i * 4))) >= 76)))
+                if (((((int)(new O04Ent96((e + (uint)(i * 150))).unk78) == 1) && ((int)(new O04Ent96((e + (uint)(i * 150))).unk91) != (int)(new O04Ent96((e + (uint)(i * 150))).unk78))) && (Mem.S32((Gv.Stats_ShotsFiredTable + (uint)(i * 4))) >= 76)))
                 {
                     ++n;
                 }
@@ -769,26 +769,26 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00424E30", (uint)idx, (uint)b);
             int x = 0;
             int v = 0;
-            if (((int)(new O04Ent96((0x80146398u + (uint)(idx * 150))).unk91) == 1))
+            if (((int)(new O04Ent96((Gv.Settings_PlayerRecords + (uint)(idx * 150))).unk91) == 1))
             {
                 return;
             }
-            x = (new O04Row190h((0x80102B00u + (uint)(idx * 400))).unk70 + 1);
+            x = (new O04Row190h((Gv.ProfileTable + (uint)(idx * 400))).unk70 + 1);
             if ((x > 99999))
             {
-                new O04Row190h((0x80102B00u + (uint)(idx * 400))).unk70_Set(99999);
+                new O04Row190h((Gv.ProfileTable + (uint)(idx * 400))).unk70_Set(99999);
             }
             else
             {
                 do
                 {
-                    new O04Row190h((0x80102B00u + (uint)(idx * 400))).unk70_Set(x);
+                    new O04Row190h((Gv.ProfileTable + (uint)(idx * 400))).unk70_Set(x);
                 }
                 while ((0 != 0));
             }
             if ((func_00424E30_o04_chk() == 1))
             {
-                if ((((int)(new O04P(0x801462C8u).a) >= 10) || ((int)(new O04P(0x801462C8u).b) >= 10)))
+                if ((((int)(new O04P(Gv.Settings).a) >= 10) || ((int)(new O04P(Gv.Settings).b) >= 10)))
                 {
                     v = ((int)(Mem.U8((0x80102B26u + (uint)(b + (idx * 400))))) + 1);
                     if ((v >= 6))
@@ -821,7 +821,7 @@ public static partial class Game
             n = 0;
             for (i = 0; (i < 50); ++i)
             {
-                if ((Bits_Test(new O04Row190t((0x80102B10u + (uint)(a * 400))).unk3A.P, i) == 1))
+                if ((Bits_Test(new O04Row190t((Gv.CharacterClassTable + (uint)(a * 400))).unk3A.P, i) == 1))
                 {
                     ++n;
                 }
@@ -940,7 +940,7 @@ public static partial class Game
                 s = Mem.U32(0x800D7278u);
                 break;
             }
-            new O04Row190t((0x80102B10u + (uint)(a * 400))).unk15_Set((byte)(lv));
+            new O04Row190t((Gv.CharacterClassTable + (uint)(a * 400))).unk15_Set((byte)(lv));
             return s;
         }
     }
@@ -954,11 +954,11 @@ public static partial class Game
             int c = 0;
             int n = 0;
             int i = 0;
-            uint r = (0x80102B00u + (uint)(a * 400));
+            uint r = (Gv.ProfileTable + (uint)(a * 400));
             c = 0;
             for (i = 0; (i < 50); ++i)
             {
-                if ((Bits_Test(((0x80102B00u + (uint)74) + (uint)(a * 400)), i) == 1))
+                if ((Bits_Test(((Gv.ProfileTable + (uint)74) + (uint)(a * 400)), i) == 1))
                 {
                     ++c;
                 }
@@ -1073,19 +1073,19 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00425EF4", (uint)a);
-            switch ((int)(Mem.U8(0x801462D5u)))
+            switch ((int)(Mem.U8(Gv.Settings_GameMode)))
             {
             case 1:
-                Bits_Assign(new O04Row190e((0x80102B00u + (uint)(a * 400))).unk7E.P, Mem.S32(G.ArenaLevel), 1);
+                Bits_Assign(new O04Row190e((Gv.ProfileTable + (uint)(a * 400))).unk7E.P, Mem.S32(Gv.ArenaLevel), 1);
                 break;
             case 2:
-                Bits_Assign(new O04Row190e((0x80102B00u + (uint)(a * 400))).unk83.P, Mem.S32(G.ArenaLevel), 1);
+                Bits_Assign(new O04Row190e((Gv.ProfileTable + (uint)(a * 400))).unk83.P, Mem.S32(Gv.ArenaLevel), 1);
                 break;
             case 3:
-                Bits_Assign(new O04Row190e((0x80102B00u + (uint)(a * 400))).unk88.P, Mem.S32(G.ArenaLevel), 1);
+                Bits_Assign(new O04Row190e((Gv.ProfileTable + (uint)(a * 400))).unk88.P, Mem.S32(Gv.ArenaLevel), 1);
                 break;
             case 4:
-                Bits_Assign(new O04Row190e((0x80102B00u + (uint)(a * 400))).unk8D.P, Mem.S32(G.ArenaLevel), 1);
+                Bits_Assign(new O04Row190e((Gv.ProfileTable + (uint)(a * 400))).unk8D.P, Mem.S32(Gv.ArenaLevel), 1);
                 break;
             }
         }
@@ -1100,11 +1100,11 @@ public static partial class Game
             int flag = 1;
             int i = 0;
             int row = 0;
-            uint e = (0x80146398u + (uint)(a * 150));
+            uint e = (Gv.Settings_PlayerRecords + (uint)(a * 150));
             if ((((int)(new O04Ent96g(e).unk78) == 1) && ((int)(new O04Ent96g(e).unk91) == 0)))
             {
                 row = (a * 400);
-                if ((Bits_Test((0x80102B4Au + (uint)row), 49) == 0))
+                if ((Bits_Test((Gv.Profile_AwardBits + (uint)row), 49) == 0))
                 {
                     for (i = 0; (i < 4); ++i)
                     {
@@ -1112,14 +1112,14 @@ public static partial class Game
                         {
                             return;
                         }
-                        if ((Bits_Test(((0x80102B4Au + (uint)218) + (uint)row), i) == 0))
+                        if ((Bits_Test(((Gv.Profile_AwardBits + (uint)218) + (uint)row), i) == 0))
                         {
                             flag = 0;
                         }
                     }
                     if ((flag == 1))
                     {
-                        Bits_Assign((0x80102B4Au + (uint)(a * 400)), 49, 1);
+                        Bits_Assign((Gv.Profile_AwardBits + (uint)(a * 400)), 49, 1);
                         Mem.Set(@out, 49);
                     }
                 }
@@ -1137,7 +1137,7 @@ public static partial class Game
             int n = 0;
             for (i = 0; (i < 50); ++i)
             {
-                if ((Bits_Test(new O04Row190((0x80102B10u + (uint)(a * 400))).unk3A.P, i) == 1))
+                if ((Bits_Test(new O04Row190((Gv.CharacterClassTable + (uint)(a * 400))).unk3A.P, i) == 1))
                 {
                     ++n;
                 }
@@ -1156,16 +1156,16 @@ public static partial class Game
             int n = 0;
             int i = 0;
             uint e = 0u;
-            if ((((int)(new O04P(0x801462C8u).a) <= 0) && ((int)(new O04P(0x801462C8u).b) <= 0)))
+            if ((((int)(new O04P(Gv.Settings).a) <= 0) && ((int)(new O04P(Gv.Settings).b) <= 0)))
             {
                 return 0;
             }
             r = 1;
             n = 0;
-            e = 0x80146398u;
+            e = Gv.Settings_PlayerRecords;
             for (i = 0; (i < 8); ++i)
             {
-                if (((((int)(new O04Ent96((e + (uint)(i * 150))).unk78) == 1) && ((int)(new O04Ent96((e + (uint)(i * 150))).unk91) != (int)(new O04Ent96((e + (uint)(i * 150))).unk78))) && (Mem.S32((0x80103140u + (uint)(i * 4))) >= 76)))
+                if (((((int)(new O04Ent96((e + (uint)(i * 150))).unk78) == 1) && ((int)(new O04Ent96((e + (uint)(i * 150))).unk91) != (int)(new O04Ent96((e + (uint)(i * 150))).unk78))) && (Mem.S32((Gv.Stats_ShotsFiredTable + (uint)(i * 4))) >= 76)))
                 {
                     ++n;
                 }
@@ -1187,7 +1187,7 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 4); ++i)
             {
-                if ((((int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bC) == b) && (new O05Rec((0x80102B00u + (uint)(i * 400))).w8 == a)))
+                if ((((int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).bC) == b) && (new O05Rec((Gv.ProfileTable + (uint)(i * 400))).w8 == a)))
                 {
                     return i;
                 }

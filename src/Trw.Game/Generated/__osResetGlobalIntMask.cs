@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("__osResetGlobalIntMask", (uint)mask);
             uint saveMask = __osDisableInt();
-            Mem.Set(0x800D9288u, (uint)((uint)(Mem.U32(0x800D9288u)) & (~(mask & (uint)((~1025))))));
+            Mem.Set(Gv.__OSGlobalIntMask, (uint)((uint)(Mem.U32(Gv.__OSGlobalIntMask)) & (~(mask & (uint)((~1025))))));
             __osRestoreInt(saveMask);
         }
     }

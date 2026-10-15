@@ -1651,63 +1651,63 @@ public static partial class Game
                 if (((new B09Scene(sc).unk8C4 != 0) && (new B09Cam(cam).unk120 == 0)))
                 {
                     {
-                        uint p = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint p = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         new DlCmd(p).w0_Set(3875536896u);
                         new DlCmd(p).w1_Set((uint)(0));
                     }
                     {
-                        uint p_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint p_2 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         new DlCmd(p_2).w0_Set(3661103107u);
                         new DlCmd(p_2).w1_Set((uint)(0x80146D20u));
                     }
                     {
-                        uint p_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint p_3 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         new DlCmd(p_3).w0_Set(3674472452u);
                         new DlCmd(p_3).w1_Set((uint)(2));
                     }
                     {
-                        uint p_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint p_4 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         new DlCmd(p_4).w0_Set(3674472460u);
                         new DlCmd(p_4).w1_Set((uint)(2));
                     }
                     {
-                        uint p_5 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint p_5 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         new DlCmd(p_5).w0_Set(3674472468u);
                         new DlCmd(p_5).w1_Set((uint)(65534));
                     }
                     {
-                        uint p_6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint p_6 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         new DlCmd(p_6).w0_Set(3674472476u);
                         new DlCmd(p_6).w1_Set((uint)(65534));
                     }
                     {
-                        uint p_7 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint p_7 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         new DlCmd(p_7).w0_Set(3657367551u);
                         new DlCmd(p_7).w1_Set((uint)(0));
                     }
                     {
-                        uint p_8 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint p_8 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         new DlCmd(p_8).w0_Set(3808430593u);
                         new DlCmd(p_8).w1_Set((uint)(0));
                     }
                     Gfx_SetOtherModeL((uint)(13));
                     {
-                        uint p_9 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint p_9 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         new DlCmd(p_9).w0_Set(3657038847u);
                         new DlCmd(p_9).w1_Set((uint)(0));
                     }
                     {
-                        uint p_10 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint p_10 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         new DlCmd(p_10).w0_Set(3657433087u);
                         new DlCmd(p_10).w1_Set((uint)(2097156));
                     }
                     {
-                        uint p_11 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint p_11 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         new DlCmd(p_11).w0_Set(3808431104u);
                         new DlCmd(p_11).w1_Set((uint)(524288));
                     }
                     {
-                        uint p_12 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint p_12 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         new DlCmd(p_12).w0_Set(3808432641u);
                         new DlCmd(p_12).w1_Set((uint)(8192));
                     }
@@ -1785,7 +1785,7 @@ public static partial class Game
             if ((((int)(new B09Emitter(e).mask) & mask) != 0))
             {
                 float up = new B09Emitter(e).f208;
-                up = (float)((float)(up) + (new B09EDef(def).f20 * Mem.F32(0x800D2988u)));
+                up = (float)((float)(up) + (new B09EDef(def).f20 * Mem.F32(Gv.FrameTime)));
                 if ((Mem.F32(0x800C86E0u) < up))
                 {
                     up = Mem.F32(0x800C86E0u);
@@ -1799,12 +1799,12 @@ public static partial class Game
                 {
                     return 1;
                 }
-                dn = (new B09Emitter(e).f208 - (new B09EDef(def).f20 * Mem.F32(0x800D2988u)));
+                dn = (new B09Emitter(e).f208 - (new B09EDef(def).f20 * Mem.F32(Gv.FrameTime)));
                 dn = ((dn < 0.0f) ? 0.0f : dn);
                 new B09Emitter(e).f208_Set(dn);
             }
-            new B09Emitter(e).f20C_Set((new B09Emitter(e).f20C + ((Mem.F32(0x800D2988u) * new B09EDef(def).f10) * new B09Emitter(e).f214)));
-            step = ((Mem.F32(0x800D2988u) * Mem.F32(0x800D2994u)) * new B09EDef(def).f8);
+            new B09Emitter(e).f20C_Set((new B09Emitter(e).f20C + ((Mem.F32(Gv.FrameTime) * new B09EDef(def).f10) * new B09Emitter(e).f214)));
+            step = ((Mem.F32(Gv.FrameTime) * Mem.F32(0x800D2994u)) * new B09EDef(def).f8);
             t = (new B09Emitter(e).f1C + (step * Mem.F32(0x800C86E4u)));
             new B09Emitter(e).f1C_Set(t);
             if ((Mem.F32(0x800C86E8u) < t))

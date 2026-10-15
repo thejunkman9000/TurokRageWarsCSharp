@@ -234,45 +234,45 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_004399D0", (uint)o);
                 uint cam = 0u;
-                int saved = Mem.S32(0x800D15D0u);
+                int saved = Mem.S32(Gv.Render_FogEnabled);
                 float t = 0f;
                 float sc = 0f;
                 int h = 0;
-                Mem.Set(0x800D15D0u, 0);
+                Mem.Set(Gv.Render_FogEnabled, 0);
                 if ((new O05Obj_v2(o).f34 != (-1)))
                 {
                     Gfx_ApplyRenderFlags((uint)(209717));
                     {
-                        uint pp = 0x80110634u;
+                        uint pp = Gv.DisplayListPtr;
                         uint q = (Mem.Set(pp, (uint)(Mem.U32(pp) + 8u)) - 8u);
                         new O05Gfx(q).w0_Set(3875536896u);
                         new O05Gfx(q).w1_Set((uint)(0));
                     }
                     {
-                        uint pp_2 = 0x80110634u;
+                        uint pp_2 = Gv.DisplayListPtr;
                         uint q_2 = (Mem.Set(pp_2, (uint)(Mem.U32(pp_2) + 8u)) - 8u);
                         new O05Gfx(q_2).w0_Set(3808430593u);
                         new O05Gfx(q_2).w1_Set((uint)(1048576));
                     }
                     {
-                        uint pp_3 = 0x80110634u;
+                        uint pp_3 = Gv.DisplayListPtr;
                         uint q_3 = (Mem.Set(pp_3, (uint)(Mem.U32(pp_3) + 8u)) - 8u);
                         new O05Gfx(q_3).w0_Set(3808431104u);
                         new O05Gfx(q_3).w1_Set((uint)(524288));
                     }
                     {
-                        uint pp_4 = 0x80110634u;
+                        uint pp_4 = Gv.DisplayListPtr;
                         uint q_4 = (Mem.Set(pp_4, (uint)(Mem.U32(pp_4) + 8u)) - 8u);
                         new O05Gfx(q_4).w0_Set(3808432641u);
                         new O05Gfx(q_4).w1_Set((uint)(8192));
                     }
                     Model_ResetDrawState();
-                    cam = 0x801450C8u;
+                    cam = Gv.Camera_MainView;
                     {
-                        uint pp_5 = 0x80110634u;
+                        uint pp_5 = Gv.DisplayListPtr;
                         uint q_5 = (Mem.Set(pp_5, (uint)(Mem.U32(pp_5) + 8u)) - 8u);
                         new O05Gfx(q_5).w0_Set(3661103111u);
-                        new O05Gfx(q_5).w1_Set((uint)((new O05Cam(cam).mtx.P + (uint)(Mem.S32(0x800D297Cu) * 64))));
+                        new O05Gfx(q_5).w1_Set((uint)((new O05Cam(cam).mtx.P + (uint)(Mem.S32(Gv.FrameParity) * 64))));
                     }
                     Mem.Copy((_fp + 64u), new O05Obj_v2(o).v10.P, 12);
                     Math_MtxTransformPoint(new O05Cam(cam).view.P, (_fp + 64u), (_fp + 80u));
@@ -302,19 +302,19 @@ public static partial class Game
                     {
                         Math_MtxRotateRowsA_00273C08(_fp, (new O05Obj_v2(o).f24 * 0.0174532942f));
                     }
-                    sc = (new O05Cam(cam).f29C / (float)(Mem.S32(0x800E28D0u)));
+                    sc = (new O05Cam(cam).f29C / (float)(Mem.S32(Gv.ScreenWidth)));
                     Mem.Set(((_fp + 96u) + (uint)(0 * 4)), (new O05Obj_v2(o).f4 * sc));
                     Mem.Set(((_fp + 96u) + (uint)(2 * 4)), (new O05Obj_v2(o).fC * sc));
-                    Mem.Set(((_fp + 96u) + (uint)(1 * 4)), (new O05Obj_v2(o).f8 * (new O05Cam(cam).f2A0 / (float)(Mem.S32(0x800E28D4u)))));
+                    Mem.Set(((_fp + 96u) + (uint)(1 * 4)), (new O05Obj_v2(o).f8 * (new O05Cam(cam).f2A0 / (float)(Mem.S32(Gv.ScreenHeight)))));
                     Math_MtxScaleRows(_fp, Mem.F32(((_fp + 96u) + (uint)(0 * 4))), Mem.F32(((_fp + 96u) + (uint)(1 * 4))), Mem.F32(((_fp + 96u) + (uint)(2 * 4))));
                     Math_MtxSwapRowsYZ(_fp);
-                    Math_MtxFloatToFixed(_fp, (o + (uint)((Mem.S32(0x800D297Cu) * 64) + 56)));
-                    h = Level_GetModelKey(0x8011FE88u, new O05Obj_v2(o).f34);
+                    Math_MtxFloatToFixed(_fp, (o + (uint)((Mem.S32(Gv.FrameParity) * 64) + 56)));
+                    h = Level_GetModelKey(Gv.LevelMgr, new O05Obj_v2(o).f34);
                     Model_ClearBatchQueue();
-                    Model_QueueByIndex(h, (int)((o + (uint)((Mem.S32(0x800D297Cu) * 64) + 56))), (int)(0x800D0EF8u), 0, new O05Obj_v2(o).fB8);
+                    Model_QueueByIndex(h, (int)((o + (uint)((Mem.S32(Gv.FrameParity) * 64) + 56))), (int)(Gv.Model_DefaultLights), 0, new O05Obj_v2(o).fB8);
                     Model_FlushBatches();
                 }
-                Mem.Set(0x800D15D0u, saved);
+                Mem.Set(Gv.Render_FogEnabled, saved);
             }
         }
         finally { Stack.Free(108); }
@@ -411,7 +411,7 @@ public static partial class Game
             new S_v8(o).f34_Set((-1));
             if ((n > 0))
             {
-                new S_v8(o).f34_Set(Level_FindTypeIndexById(0x8011FE88u, (int)(uint)(n)));
+                new S_v8(o).f34_Set(Level_FindTypeIndexById(Gv.LevelMgr, (int)(uint)(n)));
             }
             return new S_v8(o).f34;
         }

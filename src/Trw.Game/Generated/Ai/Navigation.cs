@@ -236,12 +236,12 @@ public static partial class Game
                                 info = new B2Obj(a).def.info.P;
                                 if (((int)(new B2Sub(st).unk34) == 4))
                                 {
-                                    t = LevelPath_GetHeader(0x8011FE88u, (uint)(new B2Sub(st).unk95), default(uint), default(uint));
+                                    t = LevelPath_GetHeader(Gv.LevelMgr, (uint)(new B2Sub(st).unk95), default(uint), default(uint));
                                     if ((t != 0u))
                                     {
                                         for (j = 0; (j < (int)(Mem.S16((t + (uint)(1 * 2))))); ++j)
                                         {
-                                            p = LevelPath_GetPoint(0x8011FE88u, (int)(new B2Sub(st).unk95), j);
+                                            p = LevelPath_GetPoint(Gv.LevelMgr, (int)(new B2Sub(st).unk95), j);
                                             d = Vec_Distance(r, p);
                                             if (((d < best) || (best == Mem.F32(0x800C6E3Cu))))
                                             {
@@ -371,7 +371,7 @@ public static partial class Game
                 new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + 61.4399986f));
                 if ((((int)(new S5Actor(a).kind) == 1) && ((new S5Actor(a).flags & (uint)(3145728)) != 0u)))
                 {
-                    Mem.Copy((_fp + 16u), 0x801040D0u, 28);
+                    Mem.Copy((_fp + 16u), Gv.Collision_MoveCtx, 28);
                 }
                 else
                 {
@@ -384,7 +384,7 @@ public static partial class Game
                         }
                         else
                         {
-                            Mem.Copy((_fp + 16u), 0x801040D0u, 28);
+                            Mem.Copy((_fp + 16u), Gv.Collision_MoveCtx, 28);
                         }
                     }
                     else
@@ -1300,7 +1300,7 @@ public static partial class Game
             new B2Node(n).unkC_Set(0);
             new B2Node(n).next__Set(0u);
             new B2Node(n).unk4_Set(Mem.F32(0x800C6E7Cu));
-            r = func_0020CA10_getRec0(0x8013B364u, idx);
+            r = func_0020CA10_getRec0(Gv.AiNavGraph, idx);
             if ((((int)(new B2Rec(r).flags) & 2) != 0))
             {
                 new B2Node(n).unk14_Set(Mem.F32(0x800C6E80u));
@@ -1483,7 +1483,7 @@ public static partial class Game
                 new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + Mem.F32(0x800C6E84u)));
                 if ((((int)(new B2Actor(a).kind) == 1) && ((new B2Actor(a).flags & (uint)(3145728)) != 0u)))
                 {
-                    Mem.Copy((_fp + 16u), 0x801040D0u, 28);
+                    Mem.Copy((_fp + 16u), Gv.Collision_MoveCtx, 28);
                 }
                 else
                 {
@@ -1496,7 +1496,7 @@ public static partial class Game
                         }
                         else
                         {
-                            Mem.Copy((_fp + 16u), 0x801040D0u, 28);
+                            Mem.Copy((_fp + 16u), Gv.Collision_MoveCtx, 28);
                         }
                     }
                     else
@@ -1825,13 +1825,13 @@ public static partial class Game
             int i = 0;
             uint row = 0u;
             int off = 0;
-            m = 0x8013B364u;
+            m = Gv.AiNavGraph;
             if (!((m != 0u))) goto _f0;
             i = 0;
             _f1: ;
             if (!((i < 3))) goto _f3;
             off = 64552;
-            row = (0x80121990u + (uint)(i * 20));
+            row = (Gv.EffectMgr + (uint)(i * 20));
             n = Mem.U32((row + (uint)off));
             _f4: ;
             if (!((n != 0u))) goto _f6;
@@ -1883,7 +1883,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020EDCC", (uint)ctl);
-            uint m = 0x8013B364u;
+            uint m = Gv.AiNavGraph;
             int i = 0;
             if ((m != 0u))
             {
@@ -1918,7 +1918,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020EEA4", (uint)ctl);
-            uint m = 0x8013B364u;
+            uint m = Gv.AiNavGraph;
             uint n = 0u;
             uint r = 0u;
             for (n = new B2Mgr(m).head_; (n != 0u); n = new B2Node(n).next_)
@@ -1941,7 +1941,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020F150", (uint)ids);
-            uint L = 0x8013B364u;
+            uint L = Gv.AiNavGraph;
             uint n = 0u;
             uint r = 0u;
             int count = 0;
@@ -1993,7 +1993,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020F614");
-            uint L = 0x8013B364u;
+            uint L = Gv.AiNavGraph;
             uint n = 0u;
             int count = 0;
             uint r = 0u;

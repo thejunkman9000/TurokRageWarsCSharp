@@ -11,10 +11,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00436000", (uint)cfg);
-            Mem.Set(0x800E5554u, ResourcePool_Malloc((uint)(32)));
+            Mem.Set(Gv.MatchQuitConfirm_StatePtr, ResourcePool_Malloc((uint)(32)));
             Menu_EnableInput();
-            new O05W20(Mem.U32(0x800E5554u)).f1C_Set((-1));
-            ScreenWipe_Init(Mem.U32(0x800E5554u), 103, 0, 0, 0);
+            new O05W20(Mem.U32(Gv.MatchQuitConfirm_StatePtr)).f1C_Set((-1));
+            ScreenWipe_Init(Mem.U32(Gv.MatchQuitConfirm_StatePtr), 103, 0, 0, 0);
             if ((Video_GetResolution() == 1))
             {
                 new O05Cfg(cfg).h14_Set((short)(98));
@@ -37,8 +37,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043609C");
-            ResourcePool_MallocFree(Mem.U32(0x800E5554u));
-            Mem.Set(0x800E5554u, 0u);
+            ResourcePool_MallocFree(Mem.U32(Gv.MatchQuitConfirm_StatePtr));
+            Mem.Set(Gv.MatchQuitConfirm_StatePtr, 0u);
             Menu_SetFixedFov(2);
             return 0;
         }
@@ -64,29 +64,29 @@ public static partial class Game
             uint g = 0u;
             if ((ev == 1))
             {
-                if ((ScreenWipe_GetState(Mem.U32(0x800E5554u)) != ev))
+                if ((ScreenWipe_GetState(Mem.U32(Gv.MatchQuitConfirm_StatePtr)) != ev))
                 {
                     return 0;
                 }
-                ScreenWipe_Draw(Mem.U32(0x800E5554u));
-                ScreenWipe_Advance(Mem.U32(0x800E5554u));
-                if ((ScreenWipe_GetState(Mem.U32(0x800E5554u)) != 2))
+                ScreenWipe_Draw(Mem.U32(Gv.MatchQuitConfirm_StatePtr));
+                ScreenWipe_Advance(Mem.U32(Gv.MatchQuitConfirm_StatePtr));
+                if ((ScreenWipe_GetState(Mem.U32(Gv.MatchQuitConfirm_StatePtr)) != 2))
                 {
                     return 0;
                 }
                 Video_RequestResolution(0);
                 Menu_ConsumeEvent();
-                g = 0x80146894u;
+                g = Gv.GamePaused;
                 Mem.Set((g + (uint)(0 * 4)), 0);
                 CameraManager_Init((g - (uint)(1539 * 4)), 0);
                 Player_InitPool((g - (uint)(1557 * 4)), 0, 0);
-                Level_Load(0x8011FE88u, (uint)(36), (uint)(0), default(uint));
+                Level_Load(Gv.LevelMgr, (uint)(36), (uint)(0), default(uint));
                 if ((Resource_GetLoadFlags() == 0))
                 {
                     Resource_SetLoadFlags(1);
                 }
                 Mem.Set((g + (uint)((-7) * 4)), 8);
-                Menu_GotoScreen(new O05W20(Mem.U32(0x800E5554u)).f1C);
+                Menu_GotoScreen(new O05W20(Mem.U32(Gv.MatchQuitConfirm_StatePtr)).f1C);
                 Audio_UnduckMusic();
             }
             return 0;
@@ -121,13 +121,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043630C", (uint)o, (uint)id, (uint)a2, (uint)a3);
             int i = 0;
-            for (i = 0; (new O05Disp((0x800E55C8u + (uint)(i * 12))).fn != 0u); ++i)
+            for (i = 0; (new O05Disp((Gv.MatchQuitConfirm_EventTable + (uint)(i * 12))).fn != 0u); ++i)
             {
-                if ((new O05Disp((0x800E55C8u + (uint)(i * 12))).id == id))
+                if ((new O05Disp((Gv.MatchQuitConfirm_EventTable + (uint)(i * 12))).id == id))
                 {
-                    if (((new O05Disp((0x800E55C8u + (uint)(i * 12))).key == (int)(new O05Obj(o).key)) || (new O05Disp((0x800E55C8u + (uint)(i * 12))).key == 30000)))
+                    if (((new O05Disp((Gv.MatchQuitConfirm_EventTable + (uint)(i * 12))).key == (int)(new O05Obj(o).key)) || (new O05Disp((Gv.MatchQuitConfirm_EventTable + (uint)(i * 12))).key == 30000)))
                     {
-                        return (int)(Funcs.CallRegX(new O05Disp((0x800E55C8u + (uint)(i * 12))).fn, o, (uint)(id), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
+                        return (int)(Funcs.CallRegX(new O05Disp((Gv.MatchQuitConfirm_EventTable + (uint)(i * 12))).fn, o, (uint)(id), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
                     }
                 }
             }

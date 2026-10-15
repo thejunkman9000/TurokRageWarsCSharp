@@ -13,7 +13,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00422258");
             uint p = ResourcePool_Malloc((uint)(36));
-            Mem.Set(0x800E44A0u, p);
+            Mem.Set(Gv.RumblePrompt_StatePtr, p);
             new O3Q24_v2(p).f1C_Set(0);
             new O3Q24_v2(p).f20_Set(0);
             ScreenWipe_Init(p, 103, 0, 0, 0);
@@ -63,8 +63,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004222A8");
-            ResourcePool_MallocFree(Mem.U32(0x800E44A0u));
-            Mem.Set(0x800E44A0u, 0u);
+            ResourcePool_MallocFree(Mem.U32(Gv.RumblePrompt_StatePtr));
+            Mem.Set(Gv.RumblePrompt_StatePtr, 0u);
             return 0;
         }
     }
@@ -79,13 +79,13 @@ public static partial class Game
             {
                 return 0;
             }
-            if ((ScreenWipe_GetState(Mem.U32(0x800E44A0u)) != a2))
+            if ((ScreenWipe_GetState(Mem.U32(Gv.RumblePrompt_StatePtr)) != a2))
             {
                 return 0;
             }
-            ScreenWipe_Draw(Mem.U32(0x800E44A0u));
-            ScreenWipe_Advance(Mem.U32(0x800E44A0u));
-            if ((ScreenWipe_GetState(Mem.U32(0x800E44A0u)) != 2))
+            ScreenWipe_Draw(Mem.U32(Gv.RumblePrompt_StatePtr));
+            ScreenWipe_Advance(Mem.U32(Gv.RumblePrompt_StatePtr));
+            if ((ScreenWipe_GetState(Mem.U32(Gv.RumblePrompt_StatePtr)) != 2))
             {
                 return 0;
             }
@@ -102,22 +102,22 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00422370");
-            if ((ScreenWipe_GetState(Mem.U32(0x800E44A0u)) == 1))
+            if ((ScreenWipe_GetState(Mem.U32(Gv.RumblePrompt_StatePtr)) == 1))
             {
                 return 0;
             }
             Menu_EnableInput();
-            if ((new O3Q24(Mem.U32(0x800E44A0u)).f20 != 1))
+            if ((new O3Q24(Mem.U32(Gv.RumblePrompt_StatePtr)).f20 != 1))
             {
                 return 0;
             }
             Menu_DisableInput();
-            if (((int)(Mem.U8(0x801462D5u)) == 0))
+            if (((int)(Mem.U8(Gv.Settings_GameMode)) == 0))
             {
                 Flyby_Abort();
                 ArenaSelect_ShowMarkers();
             }
-            Menu_ShowScreen_0043C458(Mem.U32(0x800E44A0u));
+            Menu_ShowScreen_0043C458(Mem.U32(Gv.RumblePrompt_StatePtr));
             return 0;
         }
     }
@@ -131,7 +131,7 @@ public static partial class Game
             if ((((a2 >> (int)16) == (uint)(3)) && (a3 == 11)))
             {
                 Menu_ConsumeEvent();
-                new O3Q24(Mem.U32(0x800E44A0u)).f20_Set(1);
+                new O3Q24(Mem.U32(Gv.RumblePrompt_StatePtr)).f20_Set(1);
             }
             return 0;
         }
@@ -143,7 +143,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00422444");
-            new O3Y(Mem.U32(0x800E44A0u)).f20_Set(1);
+            new O3Y(Mem.U32(Gv.RumblePrompt_StatePtr)).f20_Set(1);
             return 0;
         }
     }
@@ -166,13 +166,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0042247C", (uint)obj, (uint)msg, (uint)a2, (uint)a3);
             int i = 0;
-            for (i = 0; (new O3Msg((0x800E44A4u + (uint)(i * 12))).fn != 0u); ++i)
+            for (i = 0; (new O3Msg((Gv.RumblePrompt_MsgTable + (uint)(i * 12))).fn != 0u); ++i)
             {
-                if ((new O3Msg((0x800E44A4u + (uint)(i * 12))).msg == msg))
+                if ((new O3Msg((Gv.RumblePrompt_MsgTable + (uint)(i * 12))).msg == msg))
                 {
-                    if (((new O3Msg((0x800E44A4u + (uint)(i * 12))).type == (int)(new O3Hdr(obj).id)) || (new O3Msg((0x800E44A4u + (uint)(i * 12))).type == 30000)))
+                    if (((new O3Msg((Gv.RumblePrompt_MsgTable + (uint)(i * 12))).type == (int)(new O3Hdr(obj).id)) || (new O3Msg((Gv.RumblePrompt_MsgTable + (uint)(i * 12))).type == 30000)))
                     {
-                        return (int)(Funcs.CallRegX(new O3Msg((0x800E44A4u + (uint)(i * 12))).fn, obj, (uint)(msg), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
+                        return (int)(Funcs.CallRegX(new O3Msg((Gv.RumblePrompt_MsgTable + (uint)(i * 12))).fn, obj, (uint)(msg), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
                     }
                 }
             }

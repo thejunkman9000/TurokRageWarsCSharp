@@ -15,24 +15,24 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("osCartRomInit");
                 uint saveMask = 0u;
                 Mem.Set(_fp, (uint)(0));
-                if ((new OSPiHandle(0x8014E950u).baseAddress != 2952790016u))
+                if ((new OSPiHandle(Gv.__CartRomHandle).baseAddress != 2952790016u))
                 {
-                    new OSPiHandle(0x8014E950u).type_Set((byte)(0));
-                    new OSPiHandle(0x8014E950u).baseAddress_Set(2952790016u);
+                    new OSPiHandle(Gv.__CartRomHandle).type_Set((byte)(0));
+                    new OSPiHandle(Gv.__CartRomHandle).baseAddress_Set(2952790016u);
                     osPiRawReadIo((uint)(0), _fp);
-                    new OSPiHandle(0x8014E950u).latency_Set((byte)((Mem.U32(_fp) & (uint)(255))));
-                    new OSPiHandle(0x8014E950u).pulse_Set((byte)(((Mem.U32(_fp) >> (int)8) & (uint)(255))));
-                    new OSPiHandle(0x8014E950u).pageSize_Set((byte)(((Mem.U32(_fp) >> (int)16) & (uint)(15))));
-                    new OSPiHandle(0x8014E950u).relDuration_Set((byte)(((Mem.U32(_fp) >> (int)20) & (uint)(15))));
-                    new OSPiHandle(0x8014E950u).domain_Set((byte)(0));
-                    new OSPiHandle(0x8014E950u).speed_Set((uint)(0));
-                    memset(new OSPiHandle(0x8014E950u).transferInfo.P, 0, 96u);
+                    new OSPiHandle(Gv.__CartRomHandle).latency_Set((byte)((Mem.U32(_fp) & (uint)(255))));
+                    new OSPiHandle(Gv.__CartRomHandle).pulse_Set((byte)(((Mem.U32(_fp) >> (int)8) & (uint)(255))));
+                    new OSPiHandle(Gv.__CartRomHandle).pageSize_Set((byte)(((Mem.U32(_fp) >> (int)16) & (uint)(15))));
+                    new OSPiHandle(Gv.__CartRomHandle).relDuration_Set((byte)(((Mem.U32(_fp) >> (int)20) & (uint)(15))));
+                    new OSPiHandle(Gv.__CartRomHandle).domain_Set((byte)(0));
+                    new OSPiHandle(Gv.__CartRomHandle).speed_Set((uint)(0));
+                    memset(new OSPiHandle(Gv.__CartRomHandle).transferInfo.P, 0, 96u);
                     saveMask = __osDisableInt();
-                    new OSPiHandle(0x8014E950u).next__Set(Mem.U32(0x800D83ACu));
-                    Mem.Set(0x800D83ACu, 0x8014E950u);
+                    new OSPiHandle(Gv.__CartRomHandle).next__Set(Mem.U32(0x800D83ACu));
+                    Mem.Set(0x800D83ACu, Gv.__CartRomHandle);
                     __osRestoreInt(saveMask);
                 }
-                return 0x8014E950u;
+                return Gv.__CartRomHandle;
             }
         }
         finally { Stack.Free(4); }

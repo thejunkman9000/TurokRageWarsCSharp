@@ -23,9 +23,9 @@ public static partial class Game
                 stat = Mem.U32((uint)(((uint)(73400336) | 2684354560u)));
             }
             domain = (uint)(new OSPiHandle(pihandle).domain);
-            if ((Mem.U32((0x800D83B0u + (uint)(domain * 4))) != pihandle))
+            if ((Mem.U32((Gv.__osCurrentHandle + (uint)(domain * 4))) != pihandle))
             {
-                cHandle = Mem.U32((0x800D83B0u + (uint)(domain * 4)));
+                cHandle = Mem.U32((Gv.__osCurrentHandle + (uint)(domain * 4)));
                 if ((domain == (uint)(0)))
                 {
                     if (((int)(new OSPiHandle(cHandle).latency) != (int)(new OSPiHandle(pihandle).latency)))
@@ -64,7 +64,7 @@ public static partial class Game
                         Mem.Set((uint)(((uint)(73400360) | 2684354560u)), (uint)(new OSPiHandle(pihandle).pulse));
                     }
                 }
-                Mem.Set((0x800D83B0u + (uint)(domain * 4)), pihandle);
+                Mem.Set((Gv.__osCurrentHandle + (uint)(domain * 4)), pihandle);
             }
             Mem.Set(data, Mem.U32((uint)(((new OSPiHandle(pihandle).baseAddress | devAddr) | 2684354560u))));
             return 0;

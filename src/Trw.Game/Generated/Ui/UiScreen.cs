@@ -11,30 +11,30 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0041174C", (uint)i);
-            Mem.Set((Mem.U32(0x80153C50u) + (uint)(i * 2)), (ushort)(Mem.U16((Mem.U32(0x80153C50u) + (uint)(i * 2))) + 1));
+            Mem.Set((Mem.U32(Gv.UiScreen_RefCountsPtr) + (uint)(i * 2)), (ushort)(Mem.U16((Mem.U32(Gv.UiScreen_RefCountsPtr) + (uint)(i * 2))) + 1));
             if ((Mem.S32(0x80153C54u) == 1))
             {
-                if ((new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).p != 0u))
+                if ((new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p != 0u))
                 {
-                    Mem_Copy(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).p, new S12_v2((Mem.U32(0x80153C48u) + (uint)(i * 12))).p, (uint)(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).cnt));
-                    UiTree_Relocate(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).p, (int)(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).p), (new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).off - new S12_v2((Mem.U32(0x80153C44u) + (uint)(0 * 12))).off));
+                    Mem_Copy(new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p, new S12_v2((Mem.U32(Gv.UiScreen_PristineCopiesPtr) + (uint)(i * 12))).p, (uint)(new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).cnt));
+                    UiTree_Relocate(new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p, (int)(new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p), (new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).off - new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(0 * 12))).off));
                 }
             }
-            if ((new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).p == 0u))
+            if ((new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p == 0u))
             {
                 Time_GetSecondsSinceStart();
-                new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).p_Set(ResourcePool_Malloc((uint)(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).cnt)));
-                new S_G_v2(0x801539B0u).h_Set((int)(File_Open(new S_G_v2(0x801539B0u).b4.P, 0x800E10E0u, default(uint), default(uint))));
-                File_Seek((uint)(new S_G_v2(0x801539B0u).h), (uint)((new S_G_v2(0x801539B0u).f240 + new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).off)), (uint)(0), default(uint));
-                File_Read(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).p, (uint)(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).cnt), (uint)(1), (uint)(new S_G_v2(0x801539B0u).h));
+                new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p_Set(ResourcePool_Malloc((uint)(new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).cnt)));
+                new S_G_v2(Gv.Image_ArchiveCtx).h_Set((int)(File_Open(new S_G_v2(Gv.Image_ArchiveCtx).b4.P, 0x800E10E0u, default(uint), default(uint))));
+                File_Seek((uint)(new S_G_v2(Gv.Image_ArchiveCtx).h), (uint)((new S_G_v2(Gv.Image_ArchiveCtx).f240 + new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).off)), (uint)(0), default(uint));
+                File_Read(new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p, (uint)(new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).cnt), (uint)(1), (uint)(new S_G_v2(Gv.Image_ArchiveCtx).h));
                 if ((Mem.S32(0x800E2AC4u) != 0))
                 {
-                    Mem.Set(((Mem.U32(0x80153C48u) + (uint)(i * 12)) + 8u), (int)(ResourcePool_Malloc((uint)(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).cnt))));
-                    Mem_Copy(new S12_v2((Mem.U32(0x80153C48u) + (uint)(i * 12))).p, new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).p, (uint)(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).cnt));
+                    Mem.Set(((Mem.U32(Gv.UiScreen_PristineCopiesPtr) + (uint)(i * 12)) + 8u), (int)(ResourcePool_Malloc((uint)(new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).cnt))));
+                    Mem_Copy(new S12_v2((Mem.U32(Gv.UiScreen_PristineCopiesPtr) + (uint)(i * 12))).p, new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p, (uint)(new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).cnt));
                 }
-                File_Close((uint)(new S_G_v2(0x801539B0u).h), default(uint), default(uint), default(uint));
-                new S_G_v2(0x801539B0u).h_Set(0);
-                UiTree_Relocate(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).p, (int)(new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).p), (new S12_v2((Mem.U32(0x80153C44u) + (uint)(i * 12))).off - new S12_v2((Mem.U32(0x80153C44u) + (uint)(0 * 12))).off));
+                File_Close((uint)(new S_G_v2(Gv.Image_ArchiveCtx).h), default(uint), default(uint), default(uint));
+                new S_G_v2(Gv.Image_ArchiveCtx).h_Set(0);
+                UiTree_Relocate(new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p, (int)(new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p), (new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).off - new S12_v2((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(0 * 12))).off));
                 Time_GetSecondsSinceStart();
             }
         }
@@ -49,36 +49,36 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < (int)(Mem.S16(0x80153C40u))); ++i)
             {
-                if ((new S12((Mem.U32(0x80153C44u) + (uint)(i * 12))).p == 0u))
+                if ((new S12((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p == 0u))
                 {
                     continue;
                 }
-                if (((((int)(Mem.U16((Mem.U32(0x80153C4Cu) + (uint)(i * 2)))) & 1) != 0) && (force == 0)))
+                if (((((int)(Mem.U16((Mem.U32(Gv.UiScreen_FlagsPtr) + (uint)(i * 2)))) & 1) != 0) && (force == 0)))
                 {
                     continue;
                 }
-                Mem.Set((Mem.U32(0x80153C50u) + (uint)(i * 2)), (ushort)(1));
-                Mem.Set((Mem.U32(0x80153C50u) + (uint)(i * 2)), (ushort)((int)(Mem.U16((Mem.U32(0x80153C50u) + (uint)(i * 2)))) - 1));
-                if ((new S12((Mem.U32(0x80153C44u) + (uint)(i * 12))).p == 0u))
+                Mem.Set((Mem.U32(Gv.UiScreen_RefCountsPtr) + (uint)(i * 2)), (ushort)(1));
+                Mem.Set((Mem.U32(Gv.UiScreen_RefCountsPtr) + (uint)(i * 2)), (ushort)((int)(Mem.U16((Mem.U32(Gv.UiScreen_RefCountsPtr) + (uint)(i * 2)))) - 1));
+                if ((new S12((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p == 0u))
                 {
                     continue;
                 }
-                if (((int)(Mem.S16((Mem.U32(0x80153C50u) + (uint)(i * 2)))) != 0))
+                if (((int)(Mem.S16((Mem.U32(Gv.UiScreen_RefCountsPtr) + (uint)(i * 2)))) != 0))
                 {
                     continue;
                 }
-                ResourcePool_MallocFree(new S12((Mem.U32(0x80153C44u) + (uint)(i * 12))).p);
+                ResourcePool_MallocFree(new S12((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p);
                 if ((Mem.S32(0x800E2AC4u) != 0))
                 {
-                    if ((Mem.U32(0x80153C48u) != 0u))
+                    if ((Mem.U32(Gv.UiScreen_PristineCopiesPtr) != 0u))
                     {
-                        if ((new S12((Mem.U32(0x80153C48u) + (uint)(i * 12))).p != 0u))
+                        if ((new S12((Mem.U32(Gv.UiScreen_PristineCopiesPtr) + (uint)(i * 12))).p != 0u))
                         {
-                            ResourcePool_MallocFree(new S12((Mem.U32(0x80153C48u) + (uint)(i * 12))).p);
+                            ResourcePool_MallocFree(new S12((Mem.U32(Gv.UiScreen_PristineCopiesPtr) + (uint)(i * 12))).p);
                         }
                     }
                 }
-                new S12((Mem.U32(0x80153C44u) + (uint)(i * 12))).p_Set(0u);
+                new S12((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p_Set(0u);
             }
         }
     }
@@ -108,7 +108,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00411E4C", (uint)i);
-            return new S_func_00411E4C((Mem.U32(0x80153C44u) + (uint)(i * 12))).p;
+            return new S_func_00411E4C((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p;
         }
     }
 
@@ -135,21 +135,21 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00411E98", (uint)i);
-            Mem.Set((Mem.U32(0x80153C50u) + (uint)(i * 2)), (ushort)((int)(Mem.U16((Mem.U32(0x80153C50u) + (uint)(i * 2)))) - 1));
-            if (((new S12((Mem.U32(0x80153C44u) + (uint)(i * 12))).p != 0u) && ((int)(Mem.S16((Mem.U32(0x80153C50u) + (uint)(i * 2)))) == 0)))
+            Mem.Set((Mem.U32(Gv.UiScreen_RefCountsPtr) + (uint)(i * 2)), (ushort)((int)(Mem.U16((Mem.U32(Gv.UiScreen_RefCountsPtr) + (uint)(i * 2)))) - 1));
+            if (((new S12((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p != 0u) && ((int)(Mem.S16((Mem.U32(Gv.UiScreen_RefCountsPtr) + (uint)(i * 2)))) == 0)))
             {
-                ResourcePool_MallocFree(new S12((Mem.U32(0x80153C44u) + (uint)(i * 12))).p);
+                ResourcePool_MallocFree(new S12((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p);
                 if ((Mem.S32(0x800E2AC4u) != 0))
                 {
-                    if ((Mem.U32(0x80153C48u) != 0u))
+                    if ((Mem.U32(Gv.UiScreen_PristineCopiesPtr) != 0u))
                     {
-                        if ((new S12((Mem.U32(0x80153C48u) + (uint)(i * 12))).p != 0u))
+                        if ((new S12((Mem.U32(Gv.UiScreen_PristineCopiesPtr) + (uint)(i * 12))).p != 0u))
                         {
-                            ResourcePool_MallocFree(new S12((Mem.U32(0x80153C48u) + (uint)(i * 12))).p);
+                            ResourcePool_MallocFree(new S12((Mem.U32(Gv.UiScreen_PristineCopiesPtr) + (uint)(i * 12))).p);
                         }
                     }
                 }
-                new S12((Mem.U32(0x80153C44u) + (uint)(i * 12))).p_Set(0u);
+                new S12((Mem.U32(Gv.UiScreen_TablePtr) + (uint)(i * 12))).p_Set(0u);
             }
         }
     }

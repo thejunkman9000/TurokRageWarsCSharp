@@ -11,8 +11,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("__osPiCreateAccessQueue");
             Mem.Set(0x800D83C0u, (uint)(1));
-            osCreateMesgQueue(0x8014EA58u, 0x8014EA50u, 1);
-            osSendMesg(0x8014EA58u, 0u, 0);
+            osCreateMesgQueue(Gv.PiAccessQueue, 0x8014EA50u, 1);
+            osSendMesg(Gv.PiAccessQueue, 0u, 0);
         }
     }
 
@@ -28,7 +28,7 @@ public static partial class Game
                 {
                     __osPiCreateAccessQueue();
                 }
-                osRecvMesg(0x8014EA58u, _fp, 1);
+                osRecvMesg(Gv.PiAccessQueue, _fp, 1);
             }
         }
         finally { Stack.Free(4); }
@@ -39,7 +39,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("__osPiRelAccess");
-            osSendMesg(0x8014EA58u, 0u, 0);
+            osSendMesg(Gv.PiAccessQueue, 0u, 0);
         }
     }
 

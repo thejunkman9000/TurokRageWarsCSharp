@@ -15,10 +15,10 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("dbgLinkHandshake");
                 int ret = 0;
                 dbgLinkSendByte((byte)(16));
-                if ((Mem.S32(0x8014D3E8u) == 0))
+                if ((Mem.S32(Gv.DbgLink_Error) == 0))
                 {
                     dbgLinkRecvByte(_fp);
-                    if ((Mem.S32(0x8014D3E8u) == 0))
+                    if ((Mem.S32(Gv.DbgLink_Error) == 0))
                     {
                         ret = (((int)(Mem.U8(_fp)) == 17) ? 1 : 0);
                     }

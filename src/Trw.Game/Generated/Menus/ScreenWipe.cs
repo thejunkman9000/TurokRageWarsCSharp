@@ -19,12 +19,12 @@ public static partial class Game
             if ((new O06A_v36(a).unk18 == 1))
             {
                 s = new O06A_v36(a).unk14;
-                v = 0x801450C8u;
+                v = Gv.Camera_MainView;
                 Text_BeginFontPass();
                 Gfx_SetOtherModeL((uint)(21));
                 f1 = 1.0f;
                 f0 = f1;
-                switch (Mem.S32(0x800E28D8u))
+                switch (Mem.S32(Gv.VideoResolution))
                 {
                 case 0:
                     f0 = f1;
@@ -38,10 +38,10 @@ public static partial class Game
                     f1 = 1.08108115f;
                     break;
                 }
-                g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new O06Gfx(g).w0_Set(4211081216u);
                 new O06Gfx(g).w1_Set((uint)((((((int)(new O06A_v36(a).unk7) << (int)24) | ((int)(new O06A_v36(a).unkB) << (int)16)) | ((int)(new O06A_v36(a).unkF) << (int)8)) | 255)));
-                g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new O06Gfx(g).w0_Set(4194304000u);
                 new O06Gfx(g).w1_Set(3758096639u);
                 Sprite_Draw(new O06A_v36(a).unk0, s, (short)((int)(new O06V_v2(v).unk2A4)), (short)((int)(new O06V_v2(v).unk2A8)), (f0 * 9.0f), (f1 * 4.0f), 1);

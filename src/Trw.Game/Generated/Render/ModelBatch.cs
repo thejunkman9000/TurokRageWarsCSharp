@@ -14,34 +14,34 @@ public static partial class Game
             uint g = 0u;
             uint h = 0u;
             Texture_InvalidateLoadCache();
-            h = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+            h = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             Mem.Set(new P4Gfx(h).words.P, 4254072832u);
             Mem.Set((new P4Gfx(h).words.P + 4u), (uint)(0x0044BDD0u));
-            g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+            g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             Mem.Set(new P4Gfx(g).words.P, 4119855104u);
             Mem.Set((new P4Gfx(g).words.P + 4u), (uint)(117522512));
-            g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+            g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             Mem.Set(new P4Gfx(g).words.P, 3858759680u);
             Mem.Set((new P4Gfx(g).words.P + 4u), (uint)(0));
-            g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+            g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             Mem.Set(new P4Gfx(g).words.P, 4076863488u);
             Mem.Set((new P4Gfx(g).words.P + 4u), (uint)(118486016));
-            g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+            g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             Mem.Set(new P4Gfx(g).words.P, 3875536896u);
             Mem.Set((new P4Gfx(g).words.P + 4u), (uint)(0));
-            g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+            g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             Mem.Set(new P4Gfx(g).words.P, 4118807552u);
             Mem.Set((new P4Gfx(g).words.P + 4u), (uint)(82000));
-            g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+            g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             Mem.Set(new P4Gfx(g).words.P, 4060086272u);
             Mem.Set((new P4Gfx(g).words.P + 4u), (uint)(508028));
-            g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+            g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             Mem.Set(new P4Gfx(g).words.P, 3607101442u);
             Mem.Set((new P4Gfx(g).words.P + 4u), (uint)(134219776));
-            g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+            g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             Mem.Set(new P4Gfx(g).words.P, 3808432129u);
             Mem.Set((new P4Gfx(g).words.P + 4u), (uint)(0));
-            g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+            g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             Mem.Set(new P4Gfx(g).words.P, 3657433087u);
             Mem.Set((new P4Gfx(g).words.P + 4u), (uint)((Mem.S32(0x800D15D4u) | 2491396)));
             Gfx_SetOtherModeL((uint)(29));
@@ -122,11 +122,11 @@ public static partial class Game
             uint near = 0u;
             uint nd = 0u;
             uint data = 0u;
-            if ((Mem.S32(0x80110640u) != 0))
+            if ((Mem.S32(Gv.ModelBatch_QueueCount) != 0))
             {
                 do
                 {
-                    arr = Chunk_Get(Mem.U32(Mem.U32(0x8011064Cu)), 2);
+                    arr = Chunk_Get(Mem.U32(Mem.U32(Gv.ModelBatch_CurrentModelPtr)), 2);
                     n = Mem.S32(arr);
                     if ((n > 0))
                     {
@@ -178,9 +178,9 @@ public static partial class Game
                                             new R06Node(new R06Node(near).nxt_).prv__Set(nd);
                                         }
                                         new R06Node(near).nxt__Set(nd);
-                                        if ((Mem.U32(0x80110644u) == near))
+                                        if ((Mem.U32(Gv.ModelBatch_FlaggedListTail) == near))
                                         {
-                                            Mem.Set(0x80110644u, nd);
+                                            Mem.Set(Gv.ModelBatch_FlaggedListTail, nd);
                                         }
                                     }
                                     else
@@ -200,7 +200,7 @@ public static partial class Game
                                 else
                                 {
                                     Mem.Set(0x8011063Cu, nd);
-                                    Mem.Set(0x80110644u, nd);
+                                    Mem.Set(Gv.ModelBatch_FlaggedListTail, nd);
                                     new R06Node(nd).r__Set(0u);
                                     new R06Node(nd).l__Set(0u);
                                     new R06Node(nd).prv__Set(0u);
@@ -223,9 +223,9 @@ public static partial class Game
                                             new R06Node(new R06Node(near).nxt_).prv__Set(nd);
                                         }
                                         new R06Node(near).nxt__Set(nd);
-                                        if ((Mem.U32(0x8011062Cu) == near))
+                                        if ((Mem.U32(Gv.ModelBatch_ListTail) == near))
                                         {
-                                            Mem.Set(0x8011062Cu, nd);
+                                            Mem.Set(Gv.ModelBatch_ListTail, nd);
                                         }
                                     }
                                     else
@@ -245,7 +245,7 @@ public static partial class Game
                                 else
                                 {
                                     Mem.Set(0x80110628u, nd);
-                                    Mem.Set(0x8011062Cu, nd);
+                                    Mem.Set(Gv.ModelBatch_ListTail, nd);
                                     new R06Node(nd).r__Set(0u);
                                     new R06Node(nd).l__Set(0u);
                                     new R06Node(nd).prv__Set(0u);
@@ -259,7 +259,7 @@ public static partial class Game
                         }
                         data = Chunk_Get(part, 1);
                         j = 0;
-                        cnt = Mem.S32(0x80110640u);
+                        cnt = Mem.S32(Gv.ModelBatch_QueueCount);
                         if ((cnt > 0))
                         {
                             uint sr = 0u;
@@ -306,7 +306,7 @@ public static partial class Game
                         }
                     }
                     L_brk: ;
-                    Mem.Set(0x80110640u, 0);
+                    Mem.Set(Gv.ModelBatch_QueueCount, 0);
                 }
                 while ((0 != 0));
             }
@@ -326,7 +326,7 @@ public static partial class Game
             ushort p10 = 0;
             ushort p12 = 0;
             uint w = 0u;
-            n = Mem.U32(0x8011062Cu);
+            n = Mem.U32(Gv.ModelBatch_ListTail);
             defer = 0u;
             if ((n != 0u))
             {
@@ -343,7 +343,7 @@ public static partial class Game
                             if ((new R06Sub(s).w14 != 0))
                             {
                                 {
-                                    uint g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                    uint g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                     new R06Dl(g).w0_Set(3674603524u);
                                     new R06Dl(g).w1_Set((uint)(new R06Sub(s).a));
                                 }
@@ -351,13 +351,13 @@ public static partial class Game
                             else
                             {
                                 {
-                                    uint g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                    uint g_2 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                     new R06Dl(g_2).w0_Set(3661103107u);
                                     new R06Dl(g_2).w1_Set((uint)(new R06Sub(s).a));
                                 }
                             }
                             {
-                                uint g_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                uint g_3 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                 new R06Dl(g_3).w0_Set(3674603528u);
                                 new R06Dl(g_3).w1_Set((uint)(new R06Sub(s).c));
                             }
@@ -368,7 +368,7 @@ public static partial class Game
                                     if (((new R06Rec(new R06Node(n).rec).flags & (uint)(8192)) != 0u))
                                     {
                                         {
-                                            uint g_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint g_4 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new R06Dl(g_4).w0_Set(3607111682u);
                                             new R06Dl(g_4).w1_Set((uint)((((int)(new R06Sub(s).h10) << (int)16) | (int)(new R06Sub(s).h12))));
                                         }
@@ -376,7 +376,7 @@ public static partial class Game
                                     else
                                     {
                                         {
-                                            uint g_5 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint g_5 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new R06Dl(g_5).w0_Set(3607101442u);
                                             new R06Dl(g_5).w1_Set((uint)((((int)(new R06Sub(s).h10) << (int)16) | (int)(new R06Sub(s).h12))));
                                         }
@@ -386,7 +386,7 @@ public static partial class Game
                                 p12 = new R06Sub(s).h12;
                             }
                             {
-                                uint g_6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                uint g_6 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                 new R06Dl(g_6).w0_Set(3724541952u);
                                 new R06Dl(g_6).w1_Set((uint)(new R06Sub(s).data));
                             }
@@ -396,7 +396,7 @@ public static partial class Game
                         if (((new R06Rec(new R06Node(n).rec).flags & (uint)(8192)) != 0u))
                         {
                             {
-                                uint g_7 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                uint g_7 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                 new R06Dl(g_7).w0_Set(3808431872u);
                                 new R06Dl(g_7).w1_Set((uint)(0));
                             }
@@ -430,7 +430,7 @@ public static partial class Game
                     if ((s != 0u))
                     {
                         {
-                            uint g_8 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            uint g_8 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                             new R06Dl(g_8).w0_Set(4194304000u);
                             new R06Dl(g_8).w1_Set((uint)(new R06Rec(new R06Node(n).rec).b17));
                         }
@@ -440,7 +440,7 @@ public static partial class Game
                             if ((new R06Sub(s).w14 != 0))
                             {
                                 {
-                                    uint g_9 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                    uint g_9 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                     new R06Dl(g_9).w0_Set(3674603524u);
                                     new R06Dl(g_9).w1_Set((uint)(new R06Sub(s).a));
                                 }
@@ -448,18 +448,18 @@ public static partial class Game
                             else
                             {
                                 {
-                                    uint g_10 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                    uint g_10 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                     new R06Dl(g_10).w0_Set(3661103107u);
                                     new R06Dl(g_10).w1_Set((uint)(new R06Sub(s).a));
                                 }
                             }
                             {
-                                uint g_11 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                uint g_11 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                 new R06Dl(g_11).w0_Set(3674603528u);
                                 new R06Dl(g_11).w1_Set((uint)(new R06Sub(s).c));
                             }
                             {
-                                uint g_12 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                uint g_12 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                 new R06Dl(g_12).w0_Set(3724541952u);
                                 new R06Dl(g_12).w1_Set((uint)(new R06Sub(s).data));
                             }
@@ -471,7 +471,7 @@ public static partial class Game
                 }
                 while ((n != 0u));
             }
-            n = Mem.U32(0x80110644u);
+            n = Mem.U32(Gv.ModelBatch_FlaggedListTail);
             if ((n != 0u))
             {
                 do
@@ -487,7 +487,7 @@ public static partial class Game
                             if ((new R06Sub(s).w14 != 0))
                             {
                                 {
-                                    uint g_13 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                    uint g_13 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                     new R06Dl(g_13).w0_Set(3674603524u);
                                     new R06Dl(g_13).w1_Set((uint)(new R06Sub(s).a));
                                 }
@@ -495,13 +495,13 @@ public static partial class Game
                             else
                             {
                                 {
-                                    uint g_14 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                    uint g_14 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                     new R06Dl(g_14).w0_Set(3661103107u);
                                     new R06Dl(g_14).w1_Set((uint)(new R06Sub(s).a));
                                 }
                             }
                             {
-                                uint g_15 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                uint g_15 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                 new R06Dl(g_15).w0_Set(3674603528u);
                                 new R06Dl(g_15).w1_Set((uint)(new R06Sub(s).c));
                             }
@@ -512,7 +512,7 @@ public static partial class Game
                                     if (((new R06Rec(new R06Node(n).rec).flags & (uint)(8192)) != 0u))
                                     {
                                         {
-                                            uint g_16 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint g_16 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new R06Dl(g_16).w0_Set(3607111682u);
                                             new R06Dl(g_16).w1_Set((uint)((((int)(new R06Sub(s).h10) << (int)16) | (int)(new R06Sub(s).h12))));
                                         }
@@ -520,7 +520,7 @@ public static partial class Game
                                     else
                                     {
                                         {
-                                            uint g_17 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint g_17 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new R06Dl(g_17).w0_Set(3607101442u);
                                             new R06Dl(g_17).w1_Set((uint)((((int)(new R06Sub(s).h10) << (int)16) | (int)(new R06Sub(s).h12))));
                                         }
@@ -530,7 +530,7 @@ public static partial class Game
                                 p12 = new R06Sub(s).h12;
                             }
                             {
-                                uint g_18 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                uint g_18 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                 new R06Dl(g_18).w0_Set(3724541952u);
                                 new R06Dl(g_18).w1_Set((uint)(new R06Sub(s).data));
                             }
@@ -540,7 +540,7 @@ public static partial class Game
                         if (((new R06Rec(new R06Node(n).rec).flags & (uint)(8192)) != 0u))
                         {
                             {
-                                uint g_19 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                uint g_19 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                 new R06Dl(g_19).w0_Set(3808431872u);
                                 new R06Dl(g_19).w1_Set((uint)(0));
                             }
@@ -584,28 +584,28 @@ public static partial class Game
                         if ((v != 0u))
                         {
                             z = (int)(Chunk_Get((uint)(Mem.S32(v)), 0));
-                            if ((((Mem.U32(0x8011064Cu) != v) || (Mem.S32(0x80110624u) != a4)) || (Mem.S32(0x80110640u) == 32)))
+                            if ((((Mem.U32(Gv.ModelBatch_CurrentModelPtr) != v) || (Mem.S32(0x80110624u) != a4)) || (Mem.S32(Gv.ModelBatch_QueueCount) == 32)))
                             {
                                 ModelBatch_CollectParts();
-                                if ((Mem.S32(0x801153D0u) == 256))
+                                if ((Mem.S32(Gv.ModelBatch_Count) == 256))
                                 {
                                     goto L_done;
                                 }
                                 ResourcePool_TouchAndRef(0, v);
-                                Mem.Set((0x801153D8u + (uint)(Mem.S32(0x801153D0u) * 4)), v);
-                                Mem.Set(0x801153D0u, (int)(Mem.S32(0x801153D0u) + 1));
+                                Mem.Set((0x801153D8u + (uint)(Mem.S32(Gv.ModelBatch_Count) * 4)), v);
+                                Mem.Set(Gv.ModelBatch_Count, (int)(Mem.S32(Gv.ModelBatch_Count) + 1));
                             }
-                            k = Mem.S32(0x80110640u);
+                            k = Mem.S32(Gv.ModelBatch_QueueCount);
                             do
                             {
-                                Mem.Set(0x8011064Cu, v);
+                                Mem.Set(Gv.ModelBatch_CurrentModelPtr, v);
                             }
                             while ((0 != 0));
                             Mem.Set(0x80110624u, a4);
                             do
                             {
                                 rec = (0x801157D8u + (uint)(k * 16));
-                                Mem.Set(0x80110640u, (k + 1));
+                                Mem.Set(Gv.ModelBatch_QueueCount, (k + 1));
                             }
                             while ((0 != 0));
                             new B15Rec(rec).a_Set(a1);

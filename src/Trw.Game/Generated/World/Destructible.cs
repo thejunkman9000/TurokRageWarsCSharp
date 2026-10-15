@@ -85,7 +85,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020524C", (uint)actor, (uint)state);
-            if ((Level_IsEntitySavedFlagSet(0x8011FE88u, actor) == 1))
+            if ((Level_IsEntitySavedFlagSet(Gv.LevelMgr, actor) == 1))
             {
                 Actor_DispatchEvent(actor, state, 1);
             }
@@ -162,7 +162,7 @@ public static partial class Game
             uint info = 0u;
             int mode = 0;
             info = new M1Actor(actor).def.info.P;
-            Level_SetEntitySavedFlag(0x8011FE88u, actor, 1);
+            Level_SetEntitySavedFlag(Gv.LevelMgr, actor, 1);
             Level_FireEntityTriggers(actor, 262144, (int)(actor));
             if (!((new M1State(state).unk4 == 0))) goto _f0;
             new M1Actor(actor).flags_Set((uint)((uint)(new M1Actor(actor).flags) & (uint)((~65536))));
@@ -171,7 +171,7 @@ public static partial class Game
             new M1Actor(actor).flags_Set((uint)((uint)(new M1Actor(actor).flags) & (uint)((~8192))));
             new M1Actor(actor).flags_Set((uint)((uint)(new M1Actor(actor).flags) & (uint)((~256))));
             _f1: ;
-            mode = Mem.S32((0x8011FE88u + (uint)(0 * 4)));
+            mode = Mem.S32((Gv.LevelMgr + (uint)(0 * 4)));
             if (!((mode == 4))) goto _f2;
             if (!((new M1Info(info).unk20.i != (-1)))) goto _f3;
             Audio_PlaySound((int)(new M1Info(info).unk20.h[(int)(1)]), new M1Actor(actor).pos.P, 0, (-1));
@@ -180,8 +180,8 @@ public static partial class Game
             Effect_SpawnForObject(actor, new M1Info(info).unk1C, new M1Actor(actor).pos.P);
             _f4: ;
             Actor_DropItemsOnce(actor, state, (uint)(4), (uint)(new M1Info(info).unk24.i), (uint)(new M1Info(info).unk28.i));
-            Decal_RemoveByKey(0x8013BA80u, (int)(actor));
-            if (!((Mem.S32((0x8011FE88u + (uint)(0 * 4))) != mode))) goto _f5;
+            Decal_RemoveByKey(Gv.Fx_TrailMgr, (int)(actor));
+            if (!((Mem.S32((Gv.LevelMgr + (uint)(0 * 4))) != mode))) goto _f5;
             goto L_L;
             _f5: ;
             goto _f6;
@@ -232,7 +232,7 @@ public static partial class Game
                 new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~8192))));
                 new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~256))));
             }
-            if ((Mem.S32((0x8011FE88u + (uint)(0 * 4))) == 4))
+            if ((Mem.S32((Gv.LevelMgr + (uint)(0 * 4))) == 4))
             {
                 if ((new B01Info(info).unk34.i != (-1)))
                 {
@@ -271,7 +271,7 @@ public static partial class Game
             new B01Actor(obj).unk17C_Set((1 << (int)new ActorState(state).unk124));
             if ((new B01Evt(evt).unk0 != 0))
             {
-                Model_QueueBatched((uint)(new B01Evt(evt).unkC), new B01Actor(obj).unkB4, 1, (int)((new B01Actor(obj).seg.P + (uint)(Mem.S32(0x800D297Cu) * 24))), (uint)(0), Mem.S32(new ActorState(state).unk128.P));
+                Model_QueueBatched((uint)(new B01Evt(evt).unkC), new B01Actor(obj).unkB4, 1, (int)((new B01Actor(obj).seg.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), Mem.S32(new ActorState(state).unk128.P));
             }
         }
     }
@@ -283,7 +283,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00205694", (uint)actor, (uint)state);
             Actor_DispatchEvent(actor, state, 1);
-            Level_SetEntitySavedFlag(0x8011FE88u, actor, 1);
+            Level_SetEntitySavedFlag(Gv.LevelMgr, actor, 1);
         }
     }
 
@@ -293,7 +293,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002056D0", (uint)arg0);
-            Level_SetEntitySavedFlagInMap(0x8011FE88u, (int)(Mem.U16((arg0 + (uint)(5 * 2)))), (int)(Mem.U16((arg0 + (uint)(2 * 2)))), 1);
+            Level_SetEntitySavedFlagInMap(Gv.LevelMgr, (int)(Mem.U16((arg0 + (uint)(5 * 2)))), (int)(Mem.U16((arg0 + (uint)(2 * 2)))), 1);
         }
     }
 

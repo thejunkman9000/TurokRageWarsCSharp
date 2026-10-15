@@ -15,8 +15,8 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("__osPackRamWriteData", (uint)channel, (uint)address, (uint)buffer);
                 uint ptr = 0u;
                 int i = 0;
-                ptr = new OSPifRam(0x80154110u).ramarray.P;
-                new OSPifRam(0x80154110u).pifstatus_Set((uint)(1));
+                ptr = new OSPifRam(Gv.OsPfsPifRam).ramarray.P;
+                new OSPifRam(Gv.OsPfsPifRam).pifstatus_Set((uint)(1));
                 new __OSContRamReadFormat(_fp).dummy_Set((byte)(255));
                 new __OSContRamReadFormat(_fp).txsize_Set((byte)(35));
                 new __OSContRamReadFormat(_fp).rxsize_Set((byte)(1));

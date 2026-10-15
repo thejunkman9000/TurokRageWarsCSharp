@@ -13,12 +13,12 @@ public static partial class Game
             uint stat = (uint)(0);
             uint pi_stat = 0u;
             uint bm_stat = 0u;
-            uint info = new OSPiHandle(Mem.U32(0x8014EA44u)).transferInfo.P;
+            uint info = new OSPiHandle(Mem.U32(Gv.__osDiskHandle)).transferInfo.P;
             uint blockInfo = (new __OSTranxInfo(info).block.P + (uint)(new __OSTranxInfo(info).blockNum * 36));
             pi_stat = Mem.U32((uint)(((uint)(73400336) | 2684354560u)));
             if (((pi_stat & (uint)(1)) != 0u))
             {
-                Mem.Set(0x800D9288u, (Mem.U32(0x800D9288u) & (uint)((~2048))));
+                Mem.Set(Gv.__OSGlobalIntMask, (Mem.U32(Gv.__OSGlobalIntMask) & (uint)((~2048))));
                 new __OSBlockInfo(blockInfo).errStatus_Set((uint)(29));
                 __osLeoResume();
                 return 1;
@@ -55,7 +55,7 @@ public static partial class Game
                 new __OSBlockInfo(blockInfo).errStatus_Set((uint)(22));
                 __osLeoResume();
                 Mem.Set((uint)(((uint)(73400336) | 2684354560u)), (uint)(2));
-                Mem.Set(0x800D9288u, (uint)((uint)(Mem.U32(0x800D9288u)) | (uint)(1049601)));
+                Mem.Set(Gv.__OSGlobalIntMask, (uint)((uint)(Mem.U32(Gv.__OSGlobalIntMask)) | (uint)(1049601)));
                 return 1;
             }
             if ((new __OSTranxInfo(info).cmdType == (uint)(1)))
@@ -69,7 +69,7 @@ public static partial class Game
                         return 1;
                     }
                     Mem.Set((uint)(((uint)(73400336) | 2684354560u)), (uint)(2));
-                    Mem.Set(0x800D9288u, (uint)((uint)(Mem.U32(0x800D9288u)) | (uint)(1049601)));
+                    Mem.Set(Gv.__OSGlobalIntMask, (uint)((uint)(Mem.U32(Gv.__OSGlobalIntMask)) | (uint)(1049601)));
                     new __OSBlockInfo(blockInfo).errStatus_Set((uint)(0));
                     __osLeoResume();
                     return 1;
@@ -78,7 +78,7 @@ public static partial class Game
                 {
                     new __OSBlockInfo(blockInfo).dramAddr_Set((uint)(((uint)(new __OSBlockInfo(blockInfo).dramAddr) + new __OSBlockInfo(blockInfo).sectorSize)));
                     new __OSTranxInfo(info).sectorNum_Set((int)(new __OSTranxInfo(info).sectorNum + 1));
-                    osEPiRawStartDma(Mem.U32(0x8014EA44u), 1, (uint)(83887104), new __OSBlockInfo(blockInfo).dramAddr, new __OSBlockInfo(blockInfo).sectorSize);
+                    osEPiRawStartDma(Mem.U32(Gv.__osDiskHandle), 1, (uint)(83887104), new __OSBlockInfo(blockInfo).dramAddr, new __OSBlockInfo(blockInfo).sectorSize);
                     return 1;
                 }
             }
@@ -141,11 +141,11 @@ public static partial class Game
                         else
                         {
                             Mem.Set((uint)(((uint)(73400336) | 2684354560u)), (uint)(2));
-                            Mem.Set(0x800D9288u, (uint)((uint)(Mem.U32(0x800D9288u)) | (uint)(1049601)));
+                            Mem.Set(Gv.__OSGlobalIntMask, (uint)((uint)(Mem.U32(Gv.__OSGlobalIntMask)) | (uint)(1049601)));
                             new __OSTranxInfo(info).cmdType_Set((uint)(2));
                             new __OSBlockInfo(blockInfo).errStatus_Set((uint)(0));
                         }
-                        osEPiRawStartDma(Mem.U32(0x8014EA44u), 0, (uint)(83886080), new __OSBlockInfo(blockInfo).C2Addr, (new __OSBlockInfo(blockInfo).sectorSize * (uint)(4)));
+                        osEPiRawStartDma(Mem.U32(Gv.__osDiskHandle), 0, (uint)(83886080), new __OSBlockInfo(blockInfo).C2Addr, (new __OSBlockInfo(blockInfo).sectorSize * (uint)(4)));
                         return 1;
                     }
                     if ((((new __OSTranxInfo(info).sectorNum == (-1)) && ((int)(new __OSTranxInfo(info).transferMode) == 2)) && ((int)(new __OSTranxInfo(info).blockNum) == 1)))
@@ -172,7 +172,7 @@ public static partial class Game
                             __osLeoAbnormalResume();
                             return 1;
                         }
-                        osEPiRawStartDma(Mem.U32(0x8014EA44u), 0, (uint)(83887104), new __OSBlockInfo(blockInfo).dramAddr, new __OSBlockInfo(blockInfo).sectorSize);
+                        osEPiRawStartDma(Mem.U32(Gv.__osDiskHandle), 0, (uint)(83887104), new __OSBlockInfo(blockInfo).dramAddr, new __OSBlockInfo(blockInfo).sectorSize);
                         new __OSBlockInfo(blockInfo).errStatus_Set((uint)(0));
                         return 1;
                     }
@@ -203,7 +203,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("__osLeoAbnormalResume");
-            uint info = new OSPiHandle(Mem.U32(0x8014EA44u)).transferInfo.P;
+            uint info = new OSPiHandle(Mem.U32(Gv.__osDiskHandle)).transferInfo.P;
             uint pi_stat = 0u;
             pi_stat = Mem.U32((uint)(((uint)(73400336) | 2684354560u)));
             while (((pi_stat & (uint)((2 | 1))) != 0u))
@@ -219,7 +219,7 @@ public static partial class Game
             Mem.Set((uint)(((uint)(83887376) | 2684354560u)), new __OSTranxInfo(info).bmCtlShadow);
             __osLeoResume();
             Mem.Set((uint)(((uint)(73400336) | 2684354560u)), (uint)(2));
-            Mem.Set(0x800D9288u, (uint)((uint)(Mem.U32(0x800D9288u)) | (uint)(1049601)));
+            Mem.Set(Gv.__OSGlobalIntMask, (uint)((uint)(Mem.U32(Gv.__OSGlobalIntMask)) | (uint)(1049601)));
         }
     }
 

@@ -184,18 +184,18 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002A6A54", (uint)o);
             if ((new Obj6A54(o).unk24 != 0.0f))
             {
-                Mem.Set((0x800D15E4u + (uint)(0 * 4)), new Obj6A54(o).unk34);
-                Mem.Set((0x800D15E4u + (uint)(1 * 4)), new Obj6A54(o).unk38);
-                Mem.Set((0x800D15E4u + (uint)(2 * 4)), new Obj6A54(o).unk3C);
+                Mem.Set((Gv.Model_ColorOverride + (uint)(0 * 4)), new Obj6A54(o).unk34);
+                Mem.Set((Gv.Model_ColorOverride + (uint)(1 * 4)), new Obj6A54(o).unk38);
+                Mem.Set((Gv.Model_ColorOverride + (uint)(2 * 4)), new Obj6A54(o).unk3C);
             }
             else
             {
-                Mem.Set((0x800D15E4u + (uint)(0 * 4)), 0.0f);
-                Mem.Set((0x800D15E4u + (uint)(1 * 4)), 0.0f);
-                Mem.Set((0x800D15E4u + (uint)(2 * 4)), 0.0f);
+                Mem.Set((Gv.Model_ColorOverride + (uint)(0 * 4)), 0.0f);
+                Mem.Set((Gv.Model_ColorOverride + (uint)(1 * 4)), 0.0f);
+                Mem.Set((Gv.Model_ColorOverride + (uint)(2 * 4)), 0.0f);
             }
-            Mem.Set((0x800D15F0u + (uint)(0 * 4)), new Obj6A54(o).unk24);
-            Mem.Set((0x800D15F0u + (uint)(1 * 4)), new Obj6A54(o).unk14);
+            Mem.Set((Gv.Draw_TintColor + (uint)(0 * 4)), new Obj6A54(o).unk24);
+            Mem.Set((Gv.Draw_TintColor + (uint)(1 * 4)), new Obj6A54(o).unk14);
         }
     }
 
@@ -207,10 +207,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002A6AC0", (uint)o);
             if ((new Obj6A54(o).unk24 != 0.0f))
             {
-                Mem.Set((0x800D15E4u + (uint)(0 * 4)), (float)((float)(Mem.F32((0x800D15E4u + (uint)(0 * 4)))) + new Obj6A54(o).unk34));
-                Mem.Set((0x800D15E4u + (uint)(1 * 4)), (float)((float)(Mem.F32((0x800D15E4u + (uint)(1 * 4)))) + new Obj6A54(o).unk38));
-                Mem.Set((0x800D15E4u + (uint)(2 * 4)), (float)((float)(Mem.F32((0x800D15E4u + (uint)(2 * 4)))) + new Obj6A54(o).unk3C));
-                Mem.Set((0x800D15E4u + (uint)(3 * 4)), (float)((float)(Mem.F32((0x800D15E4u + (uint)(3 * 4)))) + new Obj6A54(o).unk24));
+                Mem.Set((Gv.Model_ColorOverride + (uint)(0 * 4)), (float)((float)(Mem.F32((Gv.Model_ColorOverride + (uint)(0 * 4)))) + new Obj6A54(o).unk34));
+                Mem.Set((Gv.Model_ColorOverride + (uint)(1 * 4)), (float)((float)(Mem.F32((Gv.Model_ColorOverride + (uint)(1 * 4)))) + new Obj6A54(o).unk38));
+                Mem.Set((Gv.Model_ColorOverride + (uint)(2 * 4)), (float)((float)(Mem.F32((Gv.Model_ColorOverride + (uint)(2 * 4)))) + new Obj6A54(o).unk3C));
+                Mem.Set((Gv.Model_ColorOverride + (uint)(3 * 4)), (float)((float)(Mem.F32((Gv.Model_ColorOverride + (uint)(3 * 4)))) + new Obj6A54(o).unk24));
             }
             Mem.Set((0x800D15F4u + (uint)(0 * 4)), (float)((float)(Mem.F32((0x800D15F4u + (uint)(0 * 4)))) + new Obj6A54(o).unk14));
         }

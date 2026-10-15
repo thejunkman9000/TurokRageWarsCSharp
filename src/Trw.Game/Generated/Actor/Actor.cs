@@ -218,7 +218,7 @@ public static partial class Game
                     }
                     if (((new DefC_v3(def).type == 1) || (new DefC_v3(def).type == 4)))
                     {
-                        switch (Mem.S32(0x801462D0u))
+                        switch (Mem.S32(Gv.Settings_DifficultyMask))
                         {
                         case 8:
                             f = (c * Mem.F32(0x800C7208u));
@@ -551,7 +551,7 @@ public static partial class Game
             {
                 sp = (new StateB(s).unkC0 * new StateB(s).unkC4);
             }
-            Mem.Set(0x800D2988u, (float)((float)(Mem.F32(0x800D2988u)) * sp));
+            Mem.Set(Gv.FrameTime, (float)((float)(Mem.F32(Gv.FrameTime)) * sp));
             Anim_TryRequestClip(a, (int)(new StateB(s).unkCA), (int)(((new StateB(s).unk3C >> (int)5) & (uint)(1))));
             if ((((int)(new StateB(s).unkCA) != (-1)) && ((int)(new ActorB(a).unk10A) != (int)(new StateB(s).unkCA))))
             {
@@ -575,11 +575,11 @@ public static partial class Game
             uint t = 0u;
             uint e = 0u;
             uint found = 0u;
-            if ((new PathTbl(0x8011FE88u).mode == 2))
+            if ((new PathTbl(Gv.LevelMgr).mode == 2))
             {
                 return 1;
             }
-            if ((new PathTbl(0x8011FE88u).mode == 4))
+            if ((new PathTbl(Gv.LevelMgr).mode == 4))
             {
                 new ActorB(a).flags_Set((uint)((uint)(new ActorB(a).flags) | (uint)(256)));
             }
@@ -875,11 +875,11 @@ public static partial class Game
                         {
                             return 9;
                         }
-                        if ((new GameFlagsC(0x801468A0u).unk98 != 0))
+                        if ((new GameFlagsC(Gv.Settings_MatchRules).unk98 != 0))
                         {
                             if (((int)(new ActorB(a).stats.unk80) == 11))
                             {
-                                if ((new GameFlagsC(0x801468A0u).unkA0 > 0))
+                                if ((new GameFlagsC(Gv.Settings_MatchRules).unkA0 > 0))
                                 {
                                     return 9;
                                 }
@@ -924,7 +924,7 @@ public static partial class Game
             if (((int)(new M1State(state).unkCD) != 0))
             {
                 new M1State(state).unkCD_Set((byte)(new M1State(state).unkCD - 1));
-                Mem.Set(0x800D2988u, 0.0f);
+                Mem.Set(Gv.FrameTime, 0.0f);
                 return;
             }
             if (((new M1Actor(actor).unk19C != 0) && (new M1Actor(actor).def_ != 0u)))
@@ -935,7 +935,7 @@ public static partial class Game
                     new M1State(state).f60_Set(new M1Actor(actor).f6C);
                 }
                 Mem.Copy(new M1State(state).v54.P, new M1Actor(actor).pos.P, 12);
-                new M1State(state).f40_Set((new M1State(state).f40 + Mem.F32(0x800D2988u)));
+                new M1State(state).f40_Set((new M1State(state).f40 + Mem.F32(Gv.FrameTime)));
                 if (((new M1Actor(actor).flags & (uint)(65536)) != 0u))
                 {
                     Actor_RideMovingPlatform(actor);
@@ -993,7 +993,7 @@ public static partial class Game
             r = (-x);
             _f2: ;
             _f1: ;
-            r = (r * Mem.F32(0x800D2988u));
+            r = (r * Mem.F32(Gv.FrameTime));
             a = r;
             if (!((a < 0.0f))) goto _f3;
             a = (-a);
@@ -1209,9 +1209,9 @@ public static partial class Game
                     }
                 }
             }
-            if (((int)(new B05Cfg7(0x801462C8u).unk1D) != 0))
+            if (((int)(new B05Cfg7(Gv.Settings).unk1D) != 0))
             {
-                new B05P7(p).f784_Set((new B05P7(p).f784 * new B05Cfg7(0x801462C8u).unk20));
+                new B05P7(p).f784_Set((new B05P7(p).f784 * new B05Cfg7(Gv.Settings).unk20));
             }
             if (((!((new B05Src7(s).flags38 & (uint)(3)) != 0u) && (x != 0u)) && ((Actor_IsOnGround(s) != 0) || (((int)(new B05X7(x).unk52) & 2048) != 0))))
             {
@@ -1255,21 +1255,21 @@ public static partial class Game
                 k = 0.5f;
                 h1 = (u1 * k);
                 Mem.Copy((_fp + 48u), new M2Cam(c).q5C.P, 16);
-                Mem.Set(0x80115DECu, sinf(h1));
+                Mem.Set(Gv.Quat_SinScratch, sinf(h1));
                 new M2Quat((_fp + 32u)).x_Set(0.0f);
                 new M2Quat((_fp + 32u)).y_Set(0.0f);
-                new M2Quat((_fp + 32u)).z_Set(Mem.F32(0x80115DECu));
+                new M2Quat((_fp + 32u)).z_Set(Mem.F32(Gv.Quat_SinScratch));
                 new M2Quat((_fp + 32u)).w_Set(cosf(h1));
                 h2 = (a * k);
-                Mem.Set(0x80115DECu, sinf(h2));
-                new M2Quat(_fp).x_Set(Mem.F32(0x80115DECu));
+                Mem.Set(Gv.Quat_SinScratch, sinf(h2));
+                new M2Quat(_fp).x_Set(Mem.F32(Gv.Quat_SinScratch));
                 new M2Quat(_fp).y_Set(0.0f);
                 new M2Quat(_fp).z_Set(0.0f);
                 new M2Quat(_fp).w_Set(cosf(h2));
                 h3 = ((d + b) * k);
-                Mem.Set(0x80115DECu, sinf(h3));
+                Mem.Set(Gv.Quat_SinScratch, sinf(h3));
                 new M2Quat((_fp + 16u)).x_Set(0.0f);
-                new M2Quat((_fp + 16u)).y_Set(Mem.F32(0x80115DECu));
+                new M2Quat((_fp + 16u)).y_Set(Mem.F32(Gv.Quat_SinScratch));
                 new M2Quat((_fp + 16u)).z_Set(0.0f);
                 new M2Quat((_fp + 16u)).w_Set(cosf(h3));
                 Quat_Multiply((_fp + 64u), _fp, (_fp + 16u));
@@ -1361,7 +1361,7 @@ public static partial class Game
             int id = Mem.S32((actor + (uint)20));
             if ((id != 0))
             {
-                uint p = Level_GetRegion(0x8011FE88u, (uint)(id));
+                uint p = Level_GetRegion(Gv.LevelMgr, (uint)(id));
                 if ((p != 0u))
                 {
                     if ((((int)(Mem.U16((p + (uint)82))) & 64) != 0))
@@ -2051,9 +2051,9 @@ public static partial class Game
                 new Vec3f((_fp + 16u)).x_Set(x);
                 new Vec3f((_fp + 16u)).y_Set(new B10Obj(new_var2).fC);
                 new Vec3f((_fp + 16u)).z_Set(z);
-                s = Mem.S32((0x801040D0u + (uint)(0 * 4)));
-                Collision_MoveActor((int)(new_var2), Cpu.U2F(Mem.U32((_fp + 16u) + 0u)), Cpu.U2F(Mem.U32((_fp + 16u) + 4u)), Cpu.U2F(Mem.U32((_fp + 16u) + 8u)), (int)(0x801040D0u));
-                Mem.Set((0x801040D0u + (uint)(0 * 4)), s);
+                s = Mem.S32((Gv.Collision_MoveCtx + (uint)(0 * 4)));
+                Collision_MoveActor((int)(new_var2), Cpu.U2F(Mem.U32((_fp + 16u) + 0u)), Cpu.U2F(Mem.U32((_fp + 16u) + 4u)), Cpu.U2F(Mem.U32((_fp + 16u) + 8u)), (int)(Gv.Collision_MoveCtx));
+                Mem.Set((Gv.Collision_MoveCtx + (uint)(0 * 4)), s);
                 Mem.Copy(new B10Obj(new_var2).v1C.P, _fp, 12);
                 new B10Obj(new_var2).fC_Set((Collision_GetFloorHeightAt((uint)((int)(new B10Obj(new_var2).p14_)), Cpu.U2F((uint)(new B10Obj(new_var2).u8)), Cpu.U2F((uint)(new B10Obj(new_var2).u10))) + d));
             }
@@ -2076,14 +2076,14 @@ public static partial class Game
                 int r = 0;
                 if ((((int)(new B10Obj(o).type) == 1) && ((new B10Obj(o).flags100 & (uint)(3145728)) != 0u)))
                 {
-                    ctx = 0x801040D0u;
+                    ctx = Gv.Collision_MoveCtx;
                 }
                 else
                 {
                     r = Actor_HasDefFlag4Cx01_0024DED0(o);
                     if ((Actor_IsDeadOrDefFlag4Cx04_0024DF4C(o) == 0))
                     {
-                        ctx = 0x801040D0u;
+                        ctx = Gv.Collision_MoveCtx;
                         if ((r != 0))
                         {
                             ctx = 0x80104050u;
@@ -2130,7 +2130,7 @@ public static partial class Game
                 new B10Obj(o).fC_Set((float)((float)(new B10Obj(o).fC) + (Actor_GetHeight(o) * k)));
                 Mem.Copy((_fp + 80u), (other + 8u), 12);
                 new Vec3f((_fp + 80u)).y_Set((float)((float)(new Vec3f((_fp + 80u)).y) + (Actor_GetHeight(other) * k)));
-                r = Collision_MoveActor((int)(o), Cpu.U2F(Mem.U32((_fp + 80u) + 0u)), Cpu.U2F(Mem.U32((_fp + 80u) + 4u)), Cpu.U2F(Mem.U32((_fp + 80u) + 8u)), (int)(0x80103FD0u));
+                r = Collision_MoveActor((int)(o), Cpu.U2F(Mem.U32((_fp + 80u) + 0u)), Cpu.U2F(Mem.U32((_fp + 80u) + 4u)), Cpu.U2F(Mem.U32((_fp + 80u) + 8u)), (int)(Gv.Collision_LosResult));
                 Mem.Copy(o, _fp, 80);
                 return ((r == 0) ? 1 : 0);
             }
@@ -2156,7 +2156,7 @@ public static partial class Game
                 Collision_MoveActor((int)(o), Cpu.U2F(Mem.U32(_fp + 0u)), Cpu.U2F(Mem.U32(_fp + 4u)), Cpu.U2F(Mem.U32(_fp + 8u)), (int)((_fp + 96u)));
                 Mem.Copy(o, (_fp + 16u), 80);
                 r = 0;
-                if (((new B10G((0x801041F0u + (uint)(0 * 160))).f0 != 0) || (new B10G((0x801041F0u + (uint)(0 * 160))).f9C != 0)))
+                if (((new B10G((Gv.Collision_Contacts + (uint)(0 * 160))).f0 != 0) || (new B10G((Gv.Collision_Contacts + (uint)(0 * 160))).f9C != 0)))
                 {
                     r = 1;
                 }
@@ -2197,7 +2197,7 @@ public static partial class Game
                 uint pl = 0u;
                 new B10Obj(o).flags100_Set((uint)((uint)(new B10Obj(o).flags100) & 4294705151u));
                 if (!((id == (-1)))) goto _f0;
-                id = Level_FindTypeIndexById(0x8011FE88u, type2);
+                id = Level_FindTypeIndexById(Gv.LevelMgr, type2);
                 if (!((id == (-1)))) goto _f1;
                 return;
                 _f1: ;
@@ -2244,9 +2244,9 @@ public static partial class Game
                 goto L_call;
                 _f3: ;
                 if (!((k == (uint)(11)))) goto _f4;
-                if (!((s1 < Mem.S32(0x80145048u)))) goto _f5;
+                if (!((s1 < Mem.S32(Gv.PlayerCount)))) goto _f5;
                 j = 0;
-                n = Mem.S32(0x80145048u);
+                n = Mem.S32(Gv.PlayerCount);
                 pl = (uint)(Mem.S32(0x80145044u));
                 _f6: ;
                 if (!((j < n))) goto _f8;
@@ -2274,7 +2274,7 @@ public static partial class Game
                 if (!((a5 != (-1)))) goto _f12;
                 LevelPath_InitCursor((o + 516u), a5, (o + 8u));
                 _f12: ;
-                Actor_ResetAnimObject(o, new B10Gx(0x8011FE88u).f54, new B10Gx(0x8011FE88u).f24, s2);
+                Actor_ResetAnimObject(o, new B10Gx(Gv.LevelMgr).f54, new B10Gx(Gv.LevelMgr).f24, s2);
                 if (!((s1 != 0))) goto _f13;
                 new B10Obj(o).f104_Set((float)(s1));
                 new B10Obj(o).flags100_Set((uint)((uint)(new B10Obj(o).flags100) & (uint)((~1024))));
@@ -2282,8 +2282,8 @@ public static partial class Game
                 new B10Obj(o).w2E4_Set((Resource_NextDynamicKey() << (int)10));
                 if (!(((new B10Obj(o).flags100 & (uint)(8)) != 0u))) goto _f14;
                 new B10Obj(o).fn27C_Set(0x0024A790u);
-                Mem.Copy(new B10Obj(o).s140.P, 0x800D0EF8u, 24);
-                Mem.Copy(new B10Obj(o).s158.P, 0x800D0EF8u, 24);
+                Mem.Copy(new B10Obj(o).s140.P, Gv.Model_DefaultLights, 24);
+                Mem.Copy(new B10Obj(o).s158.P, Gv.Model_DefaultLights, 24);
                 _f14: ;
             }
         }
@@ -2689,9 +2689,9 @@ public static partial class Game
                 {
                     if ((Mem.S32(new B10Obj(o).p18_) == 1))
                     {
-                        if (((Mem.U32((0x801041F0u + (uint)(0 * 4))) != 0u) && ((int)(new B10Pu(Mem.U32((0x801041F0u + (uint)(0 * 4)))).b0) == 1)))
+                        if (((Mem.U32((Gv.Collision_Contacts + (uint)(0 * 4))) != 0u) && ((int)(new B10Pu(Mem.U32((Gv.Collision_Contacts + (uint)(0 * 4)))).b0) == 1)))
                         {
-                            Level_FireEntityTriggers(Mem.U32((0x801041F0u + (uint)(0 * 4))), 32, (int)(o));
+                            Level_FireEntityTriggers(Mem.U32((Gv.Collision_Contacts + (uint)(0 * 4))), 32, (int)(o));
                         }
                     }
                 }
@@ -2727,7 +2727,7 @@ public static partial class Game
                 float fv1 = 0f;
                 float ft0 = 0f;
                 float tmp = 0f;
-                if ((Mem.S32((0x8011FE88u + (uint)(0 * 4))) == 4))
+                if ((Mem.S32((Gv.LevelMgr + (uint)(0 * 4))) == 4))
                 {
                     if (((int)(new B10Obj(o).b10F) == 0))
                     {
@@ -2774,7 +2774,7 @@ public static partial class Game
                             Anim_SwitchClip(s2, (uint)((int)(Mem.U32(r))), (uint)(new B10Obj(o).fC8), (uint)(0), 0u, 0u);
                             if ((Anim_IsClipLoaded(s2) != 0))
                             {
-                                fv0 = (new B10Obj(o).f134 + Mem.F32(0x800D2988u));
+                                fv0 = (new B10Obj(o).f134 + Mem.F32(Gv.FrameTime));
                                 fv1f = (float)(new B10Obj(o).h12C);
                                 new B10Obj(o).f134_Set(fv0);
                                 if ((fv1f < fv0))
@@ -2785,7 +2785,7 @@ public static partial class Game
                                 {
                                     fv1 = (float)(new B10Obj(o).b139);
                                     ft0 = (float)(new B10Obj(o).b138);
-                                    t = (fv0 / (fv1f + Mem.F32(0x800D2988u)));
+                                    t = (fv0 / (fv1f + Mem.F32(Gv.FrameTime)));
                                     new B10Obj(o).f130_Set((((((((fv1 + Mem.F32(0x800C8A38u)) + ft0) * t) * t) * t) + ((((Mem.F32(0x800C8A3Cu) - fv1) - (2.0f * ft0)) * t) * t)) + (ft0 * t)));
                                     Anim_SampleTrack(new B10Obj(o).an118.P, (_fp + 16u), (_fp + 136u), o);
                                     Vec_Lerp((_fp + 32u), new B10Obj(o).f130, (_fp + 16u), _fp);
@@ -2849,7 +2849,7 @@ public static partial class Game
                     {
                         k = Mem.F32(0x800C8A40u);
                         s = sinf(k);
-                        Mem.Set(0x80115DECu, s);
+                        Mem.Set(Gv.Quat_SinScratch, s);
                         new B10Q4((_fp + 32u)).x_Set(0.0f);
                         new B10Q4((_fp + 32u)).y_Set(s);
                         new B10Q4((_fp + 32u)).z_Set(0.0f);
@@ -2861,7 +2861,7 @@ public static partial class Game
                         k = Mem.F32(0x800C8A44u);
                         Player_GetViewQuat(ow, (_fp + 80u));
                         s = sinf(k);
-                        Mem.Set(0x80115DECu, s);
+                        Mem.Set(Gv.Quat_SinScratch, s);
                         new B10Q4((_fp + 32u)).x_Set(0.0f);
                         new B10Q4((_fp + 32u)).y_Set(s);
                         new B10Q4((_fp + 32u)).z_Set(0.0f);
@@ -2877,13 +2877,13 @@ public static partial class Game
                         new B10Q4((_fp + 16u)).x_Set(s);
                         new B10Q4((_fp + 16u)).y_Set(0.0f);
                         new B10Q4((_fp + 16u)).z_Set(0.0f);
-                        Mem.Set(0x80115DECu, s);
+                        Mem.Set(Gv.Quat_SinScratch, s);
                         new B10Q4((_fp + 16u)).w_Set(cosf((new B10Obj(o).f294 * Mem.F32(0x800C8A48u))));
                         s = sinf(((new B10Obj(o).f6C + Mem.F32(0x800C8A4Cu)) * Mem.F32(0x800C8A48u)));
                         new B10Q4((_fp + 32u)).x_Set(0.0f);
                         new B10Q4((_fp + 32u)).y_Set(s);
                         new B10Q4((_fp + 32u)).z_Set(0.0f);
-                        Mem.Set(0x80115DECu, s);
+                        Mem.Set(Gv.Quat_SinScratch, s);
                         new B10Q4((_fp + 32u)).w_Set(cosf(((new B10Obj(o).f6C + Mem.F32(0x800C8A4Cu)) * Mem.F32(0x800C8A48u))));
                         Quat_Multiply((_fp + 48u), (_fp + 16u), (_fp + 32u));
                         Turret_GetBaseQuat((_fp + 64u), o, (o + 368u));
@@ -2895,7 +2895,7 @@ public static partial class Game
                         new B10Q4((_fp + 32u)).x_Set(0.0f);
                         new B10Q4((_fp + 32u)).y_Set(s);
                         new B10Q4((_fp + 32u)).z_Set(0.0f);
-                        Mem.Set(0x80115DECu, s);
+                        Mem.Set(Gv.Quat_SinScratch, s);
                         new B10Q4((_fp + 32u)).w_Set(cosf(((new B10Obj(o).f6C + Mem.F32(0x800C8A50u)) * Mem.F32(0x800C8A54u))));
                         Quat_Multiply(_fp, (_fp + 32u), (o + 92u));
                     }
@@ -2983,7 +2983,7 @@ public static partial class Game
                     t = (float)((float)(t) * sqrtf(sqrtf((Mem.F32(0x800C8A68u) - (t / (new_var2 * Mem.F32(0x800C8A64u)))))));
                     t = (float)((float)(t) * Mem.F32(0x800C8A6Cu));
                     s = sinf(t);
-                    Mem.Set(0x80115DECu, s);
+                    Mem.Set(Gv.Quat_SinScratch, s);
                     new B10Q4((_fp + 128u)).x_Set((new Vec3f((_fp + 64u)).x * s));
                     new B10Q4((_fp + 128u)).y_Set((new Vec3f((_fp + 64u)).y * s));
                     new B10Q4((_fp + 128u)).z_Set((new Vec3f((_fp + 64u)).z * s));
@@ -3248,7 +3248,7 @@ public static partial class Game
                 }
                 if ((new B11R(b).unk0 != 0))
                 {
-                    Light_ShadeVertices(new B11R(b).unkC_, new Obj(a).unkB4, 1, (int)((new Obj(a).seg.P + (uint)(Mem.S32(0x800D297Cu) * 24))), (uint)(0), (int)(new Obj(a).unk3));
+                    Light_ShadeVertices(new B11R(b).unkC_, new Obj(a).unkB4, 1, (int)((new Obj(a).seg.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), (int)(new Obj(a).unk3));
                     if ((Model_GetViewFlag() != 0))
                     {
                         n = Chunk_Get((uint)(Mem.S32(new B11R(b).unkC_)), 2);
@@ -3258,8 +3258,8 @@ public static partial class Game
                             {
                                 Mem.Copy(_fp, new Obj(a).pos.P, 12);
                                 new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + (Actor_GetHeight(a) * Mem.F32(0x800C8B3Cu))));
-                                Effect_SpawnFromTemplates(0x80121990u, a, a, (uint)(0), 0, 148, new Obj(a).v1C.P, new Obj(a).q5C.P, _fp, 0, (-1), 0);
-                                r = Particle_GetMgrFieldFC68_0028308C(0x80121990u, default(uint), default(uint), default(uint));
+                                Effect_SpawnFromTemplates(Gv.EffectMgr, a, a, (uint)(0), 0, 148, new Obj(a).v1C.P, new Obj(a).q5C.P, _fp, 0, (-1), 0);
+                                r = Particle_GetMgrFieldFC68_0028308C(Gv.EffectMgr, default(uint), default(uint), default(uint));
                                 if ((r != 0u))
                                 {
                                     k = Mem.F32(0x800C8B40u);
@@ -3270,7 +3270,7 @@ public static partial class Game
                         }
                     }
                 }
-                Mem.Set(0x800D15E0u, 0);
+                Mem.Set(Gv.Model_ColorOverrideMode, 0);
             }
         }
         finally { Stack.Free(12); }
@@ -3294,7 +3294,7 @@ public static partial class Game
                 }
                 if ((new B11R(b).unk0 != 0))
                 {
-                    Model_DrawCharacterParts(new B11R(b).unkC_, (uint)(b1), new Obj(a).unkB4, 1, (new Obj(a).seg.P + (uint)(Mem.S32(0x800D297Cu) * 24)), (uint)(0), (int)(new Obj(a).unk3));
+                    Model_DrawCharacterParts(new B11R(b).unkC_, (uint)(b1), new Obj(a).unkB4, 1, (new Obj(a).seg.P + (uint)(Mem.S32(Gv.FrameParity) * 24)), (uint)(0), (int)(new Obj(a).unk3));
                     if ((Model_GetViewFlag() != 0))
                     {
                         n = Chunk_Get((uint)(Mem.S32(new B11R(b).unkC_)), 2);
@@ -3304,8 +3304,8 @@ public static partial class Game
                             {
                                 Mem.Copy(_fp, new Obj(a).pos.P, 12);
                                 new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + (Actor_GetHeight(a) * Mem.F32(0x800C8B44u))));
-                                Effect_SpawnFromTemplates(0x80121990u, a, a, (uint)(0), 0, 148, new Obj(a).v1C.P, new Obj(a).q5C.P, _fp, 0, (-1), 0);
-                                r = Particle_GetMgrFieldFC68_0028308C(0x80121990u, default(uint), default(uint), default(uint));
+                                Effect_SpawnFromTemplates(Gv.EffectMgr, a, a, (uint)(0), 0, 148, new Obj(a).v1C.P, new Obj(a).q5C.P, _fp, 0, (-1), 0);
+                                r = Particle_GetMgrFieldFC68_0028308C(Gv.EffectMgr, default(uint), default(uint), default(uint));
                                 if ((r != 0u))
                                 {
                                     k = Mem.F32(0x800C8B48u);
@@ -3316,7 +3316,7 @@ public static partial class Game
                         }
                     }
                 }
-                Mem.Set(0x800D15E0u, 0);
+                Mem.Set(Gv.Model_ColorOverrideMode, 0);
             }
         }
         finally { Stack.Free(12); }
@@ -3340,7 +3340,7 @@ public static partial class Game
                 }
                 if ((new B11R(b).unk0 != 0))
                 {
-                    Model_DrawOverlayParts(new B11R(b).unkC_, b1, new Obj(a).unkB4, 1, (int)((new Obj(a).seg.P + (uint)(Mem.S32(0x800D297Cu) * 24))), (uint)(0), (int)(new Obj(a).unk3));
+                    Model_DrawOverlayParts(new B11R(b).unkC_, b1, new Obj(a).unkB4, 1, (int)((new Obj(a).seg.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), (int)(new Obj(a).unk3));
                     if ((Model_GetViewFlag() != 0))
                     {
                         n = Chunk_Get((uint)(Mem.S32(new B11R(b).unkC_)), 2);
@@ -3350,8 +3350,8 @@ public static partial class Game
                             {
                                 Mem.Copy(_fp, new Obj(a).pos.P, 12);
                                 new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + (Actor_GetHeight(a) * Mem.F32(0x800C8B4Cu))));
-                                Effect_SpawnFromTemplates(0x80121990u, a, a, (uint)(0), 0, 148, new Obj(a).v1C.P, new Obj(a).q5C.P, _fp, 0, (-1), 0);
-                                r = Particle_GetMgrFieldFC68_0028308C(0x80121990u, default(uint), default(uint), default(uint));
+                                Effect_SpawnFromTemplates(Gv.EffectMgr, a, a, (uint)(0), 0, 148, new Obj(a).v1C.P, new Obj(a).q5C.P, _fp, 0, (-1), 0);
+                                r = Particle_GetMgrFieldFC68_0028308C(Gv.EffectMgr, default(uint), default(uint), default(uint));
                                 if ((r != 0u))
                                 {
                                     k = Mem.F32(0x800C8B50u);
@@ -3362,7 +3362,7 @@ public static partial class Game
                         }
                     }
                 }
-                Mem.Set(0x800D15E0u, 0);
+                Mem.Set(Gv.Model_ColorOverrideMode, 0);
             }
         }
         finally { Stack.Free(12); }
@@ -3590,7 +3590,7 @@ public static partial class Game
                 if ((best != 0u))
                 {
                     Mem.Copy(@out, best, 112);
-                    if ((((new Obj(a).flags & (uint)(3145728)) != 0u) && ((int)(Mem.U8(0x801462E5u)) == 0)))
+                    if ((((new Obj(a).flags & (uint)(3145728)) != 0u) && ((int)(Mem.U8(Gv.Settings_IsMultiplayer)) == 0)))
                     {
                         Mem.Set((@out + (uint)104), Mem.F32(0x800C8BD4u));
                     }
@@ -3620,7 +3620,7 @@ public static partial class Game
             {
                 if ((t == (uint)(11)))
                 {
-                    for (i = 0; (i < Mem.S32(0x80145048u)); ++i)
+                    for (i = 0; (i < Mem.S32(Gv.PlayerCount)); ++i)
                     {
                         p = (Mem.U32(0x80145044u) + (uint)(i * 5864));
                         if ((p == a))
@@ -3679,7 +3679,7 @@ public static partial class Game
                 new Quat4(_fp).x_Set((float)(0));
                 new Quat4(_fp).y_Set(s);
                 new Quat4(_fp).z_Set((float)(0));
-                Mem.Set(0x80115DECu, s);
+                Mem.Set(Gv.Quat_SinScratch, s);
                 new Quat4(_fp).w_Set(cosf((new Obj(a).unk6C.f * Mem.F32(0x800C8C40u))));
                 Quat_Multiply((_fp + 16u), _fp, (_fp + 32u));
                 Quat_ToMatrix((_fp + 16u), new Obj(a).unk74.P);
@@ -3771,12 +3771,12 @@ public static partial class Game
                 {
                     if ((new ActorCmd(c).f4 != 0))
                     {
-                        Light_ShadeVertices(new ActorCmd(c).fC, new Actor_v2(a).fB4, 1, (int)((new Actor_v2(a).seg.P + (uint)(Mem.S32(0x800D297Cu) * 24))), (uint)(0), (int)(new Actor_v2(a).f3));
+                        Light_ShadeVertices(new ActorCmd(c).fC, new Actor_v2(a).fB4, 1, (int)((new Actor_v2(a).seg.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), (int)(new Actor_v2(a).f3));
                         Actor_SpawnMaterialEffect_0024C444(a, c);
                     }
                     else
                     {
-                        Light_ShadeVertices(new ActorCmd(c).fC, new Actor_v2(a).fB4, 1, (int)((new Actor_v2(a).seg.P + (uint)(Mem.S32(0x800D297Cu) * 24))), (uint)(0), (int)(new Actor_v2(a).f3));
+                        Light_ShadeVertices(new ActorCmd(c).fC, new Actor_v2(a).fB4, 1, (int)((new Actor_v2(a).seg.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), (int)(new Actor_v2(a).f3));
                         Actor_SpawnMaterialEffect_0024C444(a, c);
                     }
                 }
@@ -3790,7 +3790,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024B980", (uint)a, (uint)unused, (uint)c, (uint)src);
-            Mem.Copy((new Actor_v2(a).seg.P + (uint)(Mem.S32(0x800D297Cu) * 24)), src, 24);
+            Mem.Copy((new Actor_v2(a).seg.P + (uint)(Mem.S32(Gv.FrameParity) * 24)), src, 24);
             if (((int)(new Actor_v2(a).f1) != (-1)))
             {
                 new Actor_v2(a).f17C_Set((uint)((1 << (int)(int)(new Actor_v2(a).f1))));
@@ -3802,12 +3802,12 @@ public static partial class Game
                 {
                     if ((new ActorCmd(c).fC != 0u))
                     {
-                        Light_ShadeVertices(new ActorCmd(c).fC, new Actor_v2(a).fB4, 1, (int)((new Actor_v2(a).seg.P + (uint)(Mem.S32(0x800D297Cu) * 24))), (uint)(0), (int)(new Actor_v2(a).f3));
+                        Light_ShadeVertices(new ActorCmd(c).fC, new Actor_v2(a).fB4, 1, (int)((new Actor_v2(a).seg.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), (int)(new Actor_v2(a).f3));
                         Actor_SpawnMaterialEffect_0024C444(a, c);
                     }
                     else
                     {
-                        Light_ShadeVertices(new ActorCmd(c).fC, new Actor_v2(a).fB4, 1, (int)((new Actor_v2(a).seg.P + (uint)(Mem.S32(0x800D297Cu) * 24))), (uint)(0), (int)(new Actor_v2(a).f3));
+                        Light_ShadeVertices(new ActorCmd(c).fC, new Actor_v2(a).fB4, 1, (int)((new Actor_v2(a).seg.P + (uint)(Mem.S32(Gv.FrameParity) * 24))), (uint)(0), (int)(new Actor_v2(a).f3));
                         Actor_SpawnMaterialEffect_0024C444(a, c);
                     }
                 }
@@ -4176,8 +4176,8 @@ public static partial class Game
                         {
                             Mem.Copy(_fp, new Obj(a).pos.P, 12);
                             new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + (Actor_GetHeight(a) * Mem.F32(0x800C8C50u))));
-                            Effect_SpawnFromTemplates(0x80121990u, a, a, (uint)(0), 0, 148, new Obj(a).v1C.P, new Obj(a).q5C.P, _fp, 0, (-1), 0);
-                            r = Particle_GetMgrFieldFC68_0028308C(0x80121990u, default(uint), default(uint), default(uint));
+                            Effect_SpawnFromTemplates(Gv.EffectMgr, a, a, (uint)(0), 0, 148, new Obj(a).v1C.P, new Obj(a).q5C.P, _fp, 0, (-1), 0);
+                            r = Particle_GetMgrFieldFC68_0028308C(Gv.EffectMgr, default(uint), default(uint), default(uint));
                             if ((r != 0u))
                             {
                                 k = Mem.F32(0x800C8C54u);
@@ -4228,9 +4228,9 @@ public static partial class Game
             }
             if ((t == (uint)(11)))
             {
-                for (i = 0; (i < new B11PlayerList(0x80145040u).count); ++i)
+                for (i = 0; (i < new B11PlayerList(Gv.PlayerPool).count); ++i)
                 {
-                    uint p = (new B11PlayerList(0x80145040u).head_ + (uint)(i * 5864));
+                    uint p = (new B11PlayerList(Gv.PlayerPool).head_ + (uint)(i * 5864));
                     if ((p == a))
                     {
                         return 0u;
@@ -4273,7 +4273,7 @@ public static partial class Game
                 if ((((int)(new Obj(a).type) == 1) && ((new Obj(a).flags & (uint)(3145728)) != 0u)))
                 {
                     o = new Obj(a).unk1D8_;
-                    if (((int)(Mem.U8(0x801462E5u)) != 0))
+                    if (((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0))
                     {
                         if ((new B11Own(o).unk85C != 0))
                         {
@@ -4469,7 +4469,7 @@ public static partial class Game
                 new Quat4((_fp + 48u)).x_Set((new Quat4((_fp + 32u)).x * s));
                 new Quat4((_fp + 48u)).y_Set((new Quat4((_fp + 32u)).y * s));
                 new Quat4((_fp + 48u)).z_Set((new Quat4((_fp + 32u)).z * s));
-                Mem.Set(0x80115DECu, s);
+                Mem.Set(Gv.Quat_SinScratch, s);
                 new Quat4((_fp + 48u)).w_Set(cosf(ang));
                 Mem.Copy(_ret, (_fp + 48u), 16);
                 return _ret;
@@ -4664,7 +4664,7 @@ public static partial class Game
             uint d = new Obj(a).def_;
             if ((new ObjDef(d).type == 11))
             {
-                if ((Mem.U8(0x801462E5u) != 0))
+                if ((Mem.U8(Gv.Settings_IsMultiplayer) != 0))
                 {
                     return (int)((new ObjDef(d).flags14 & (uint)(1)));
                 }
@@ -5336,7 +5336,7 @@ public static partial class Game
             int k = (int)(new Obj(a).unk14_);
             if ((k != 0))
             {
-                r = (int)(Level_GetRegion(0x8011FE88u, (uint)(k)));
+                r = (int)(Level_GetRegion(Gv.LevelMgr, (uint)(k)));
             }
             return r;
         }
@@ -5351,7 +5351,7 @@ public static partial class Game
             uint b = new Obj(a).unk14_;
             if (((b != 0u) && (((int)(new B11Box(b).flags2) & 1) != 0)))
             {
-                uint n = Level_GetRegion(0x8011FE88u, b);
+                uint n = Level_GetRegion(Gv.LevelMgr, b);
                 if ((n != 0u))
                 {
                     return Mem.F32((n + (uint)(8 * 4)));
@@ -5439,7 +5439,7 @@ public static partial class Game
             {
                 return (int)(new Obj(a).unkE4);
             }
-            return (int)(Level_GetTypeIdByIndex(0x8011FE88u, (int)(new Obj(a).unk4)));
+            return (int)(Level_GetTypeIdByIndex(Gv.LevelMgr, (int)(new Obj(a).unk4)));
         }
     }
 
@@ -6027,9 +6027,9 @@ public static partial class Game
                                 new Vec3f((_fp + 48u)).z_Set((float)(0));
                                 if ((new B16Obj(obj).unk1B0 < 15.0f))
                                 {
-                                    Effect_SpawnFromTemplates(0x80121990u, obj, obj, (uint)(0), 0, 230, (_fp + 48u), (_fp + 64u), (_fp + 32u), 0, (-1), (flag | 1));
+                                    Effect_SpawnFromTemplates(Gv.EffectMgr, obj, obj, (uint)(0), 0, 230, (_fp + 48u), (_fp + 64u), (_fp + 32u), 0, (-1), (flag | 1));
                                 }
-                                Effect_SpawnFromTemplates(0x80121990u, obj, obj, (uint)(0), 0, 138, (_fp + 48u), (_fp + 64u), (_fp + 32u), 0, (-1), (flag | 1));
+                                Effect_SpawnFromTemplates(Gv.EffectMgr, obj, obj, (uint)(0), 0, 138, (_fp + 48u), (_fp + 64u), (_fp + 32u), 0, (-1), (flag | 1));
                             }
                             break;
                         case (uint)(128):
@@ -6530,15 +6530,15 @@ public static partial class Game
             new func_8044AD14_S1(arg0).unk5E0_Set(arg1);
             Player_ApplyCharacterClass((uint)(arg0));
             Player_InitWeapons(arg0, default(int));
-            if (((int)(Mem.U8(0x801462E5u)) == 0))
+            if (((int)(Mem.U8(Gv.Settings_IsMultiplayer)) == 0))
             {
                 var_a2 = 102;
             }
             else
             {
-                if (((Mem.S32(0x801468F4u) != 0) && ((int)(new func_8021C9B4_S2(new func_8044AD14_S1(arg0).unk5D8).unk8F) != 0)))
+                if (((Mem.S32(Gv.Settings_MonkeyTagMode) != 0) && ((int)(new func_8021C9B4_S2(new func_8044AD14_S1(arg0).unk5D8).unk8F) != 0)))
                 {
-                    var_a2 = Mem.S32(0x800CE47Cu);
+                    var_a2 = Mem.S32(Gv.Player_RemoteBodyType_800CE47C);
                 }
                 else
                 {
@@ -6546,7 +6546,7 @@ public static partial class Game
                     new func_8044AD14_S1(arg0).unk3_Set(new func_8021C9B4_S2(new func_8044AD14_S1(arg0).unk5D8).unk81);
                 }
             }
-            Funcs.CallReg(0x0028B250u, 0x8011FE88u, arg0, (uint)(var_a2), (uint)(new func_8044AD14_S1(arg0).unk86C));
+            Funcs.CallReg(0x0028B250u, Gv.LevelMgr, arg0, (uint)(var_a2), (uint)(new func_8044AD14_S1(arg0).unk86C));
         }
     }
 }

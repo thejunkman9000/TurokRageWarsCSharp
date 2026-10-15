@@ -177,14 +177,14 @@ public static partial class Game
             }
             if ((outCount != 0))
             {
-                stream = 0x800D9360u;
+                stream = Gv.Adec_CurFramePtr;
                 do
                 {
                     nSam = outCount;
                     if ((new S13Loader(f).sample == 0))
                     {
-                        Mem.Set(0x800D9360u, (int)(adecNextFrame()));
-                        if ((Mem.S32(0x800D9360u) == 0))
+                        Mem.Set(Gv.Adec_CurFramePtr, (int)(adecNextFrame()));
+                        if ((Mem.S32(Gv.Adec_CurFramePtr) == 0))
                         {
                             {
                                 uint _a_2 = ((ptr += 8u) - 8u);
@@ -193,7 +193,7 @@ public static partial class Game
                             }
                             return ptr;
                         }
-                        osWritebackDCache((uint)(Mem.S32(0x800D9360u)), 512);
+                        osWritebackDCache((uint)(Mem.S32(Gv.Adec_CurFramePtr)), 512);
                         new S13Loader(f).sample_Set(256);
                     }
                     if ((new S13Loader(f).sample < outCount))
@@ -201,7 +201,7 @@ public static partial class Game
                         nSam = new S13Loader(f).sample;
                     }
                     nbytes = (nSam << (int)1);
-                    dramAlign = (Mem.S32(0x800D9360u) & 7);
+                    dramAlign = (Mem.S32(Gv.Adec_CurFramePtr) & 7);
                     nbytes = (int)((int)(nbytes) + dramAlign);
                     if (((op & 7) != 0))
                     {
@@ -219,7 +219,7 @@ public static partial class Game
                     {
                         uint _a_4 = ((ptr += 8u) - 8u);
                         new Acmd_v2(_a_4).w0_Set((((uint)(4) & (uint)(((1 << (int)8) - 1))) << (int)24));
-                        new Acmd_v2(_a_4).w1_Set((uint)(((Mem.S32(0x800D9360u) & 536870911) - dramAlign)));
+                        new Acmd_v2(_a_4).w1_Set((uint)(((Mem.S32(Gv.Adec_CurFramePtr) & 536870911) - dramAlign)));
                     }
                     if (((dramAlign != 0) || (dmemAlign != 0)))
                     {

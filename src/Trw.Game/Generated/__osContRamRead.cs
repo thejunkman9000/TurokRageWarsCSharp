@@ -18,18 +18,18 @@ public static partial class Game
                 uint ptr = 0u;
                 int retry = 0;
                 ret = 0;
-                ptr = 0x80154110u;
+                ptr = Gv.OsPfsPifRam;
                 retry = 2;
                 __osSiGetAccess();
-                Mem.Set(0x8014D4B0u, (byte)(2));
+                Mem.Set(Gv.__osContLastCmd, (byte)(2));
                 __osPackRamReadData(channel, address);
-                ret = __osSiRawStartDma(1, 0x80154110u);
+                ret = __osSiRawStartDma(1, Gv.OsPfsPifRam);
                 osRecvMesg(mq, 0u, 1);
                 do
                 {
-                    ret = __osSiRawStartDma(0, 0x80154110u);
+                    ret = __osSiRawStartDma(0, Gv.OsPfsPifRam);
                     osRecvMesg(mq, 0u, 1);
-                    ptr = 0x80154110u;
+                    ptr = Gv.OsPfsPifRam;
                     if ((channel != 0))
                     {
                         for (i = 0; (i < channel); ++i)

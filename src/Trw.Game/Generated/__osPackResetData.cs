@@ -12,8 +12,8 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("__osPackResetData");
             uint ptr = 0u;
             int i = 0;
-            ptr = new OSPifRam(0x8014D470u).ramarray.P;
-            new OSPifRam(0x8014D470u).pifstatus_Set((uint)(1));
+            ptr = new OSPifRam(Gv.__osContPifRam).ramarray.P;
+            new OSPifRam(Gv.__osContPifRam).pifstatus_Set((uint)(1));
             for (i = 0; (i < 4); ++i)
             {
                 Mem.Set(((ptr += 1u) - 1u), (byte)(253));

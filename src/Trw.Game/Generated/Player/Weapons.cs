@@ -12,7 +12,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022B180", (uint)a);
-            Particle_DetonateOwnedCharges(0x80121990u, a);
+            Particle_DetonateOwnedCharges(Gv.EffectMgr, a);
         }
     }
 
@@ -177,15 +177,15 @@ public static partial class Game
             int r = 0;
             if ((Mem.S32((a + (uint)4620)) != 0))
             {
-                r = Level_FindTypeIndexById(0x8011FE88u, 3204);
+                r = Level_FindTypeIndexById(Gv.LevelMgr, 3204);
             }
             else
             {
-                r = Level_FindTypeIndexById(0x8011FE88u, 3205);
+                r = Level_FindTypeIndexById(Gv.LevelMgr, 3205);
             }
             if ((r != (-1)))
             {
-                Model_QueueByIndex(Level_GetModelKey(0x8011FE88u, r), (int)((a + (uint)5632)), (int)(0x800D0EF8u), 0, (-1));
+                Model_QueueByIndex(Level_GetModelKey(Gv.LevelMgr, r), (int)((a + (uint)5632)), (int)(Gv.Model_DefaultLights), 0, (-1));
             }
         }
     }
@@ -201,7 +201,7 @@ public static partial class Game
             {
                 goto L_l1;
             }
-            if ((Mem.S32(0x8014694Cu) != 0))
+            if ((Mem.S32(Gv.Demo_Active) != 0))
             {
                 goto L_l1;
             }
@@ -209,12 +209,12 @@ public static partial class Game
             goto L_l2;
             L_l1: ;
             k = 0;
-            if ((Mem.S32(0x801450B8u) != 1))
+            if ((Mem.S32(Gv.ViewCount) != 1))
             {
                 k = 23;
             }
             L_l2: ;
-            Level_SetActorType(0x8011FE88u, (a + (uint)744), ((int)(new PlrDef(Mem.U32((0x800D052Cu + (uint)(new Plr(a).unk62E * 4)))).unk4) + k), new Plr(a).unk484.unk10);
+            Level_SetActorType(Gv.LevelMgr, (a + (uint)744), ((int)(new PlrDef(Mem.U32((Gv.WeaponDefTable + (uint)(new Plr(a).unk62E * 4)))).unk4) + k), new Plr(a).unk484.unk10);
         }
     }
 
@@ -224,7 +224,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022BECC", (uint)actor);
-            return (((int)(new B07Weapon(Mem.U32((0x800D052Cu + (uint)(Mem.S16((actor + (uint)1582)) * 4)))).unk8) > 0) ? 1 : 0);
+            return (((int)(new B07Weapon(Mem.U32((Gv.WeaponDefTable + (uint)(Mem.S16((actor + (uint)1582)) * 4)))).unk8) > 0) ? 1 : 0);
         }
     }
 
@@ -238,7 +238,7 @@ public static partial class Game
             short idx = 0;
             uint q = 0u;
             ushort nxt = 0;
-            if (((int)(Mem.U8((0x801462E5u + (uint)0))) != 0))
+            if (((int)(Mem.U8((Gv.Settings_IsMultiplayer + (uint)0))) != 0))
             {
                 return;
             }
@@ -246,13 +246,13 @@ public static partial class Game
             {
                 return;
             }
-            if (((Mem.S32((0x801462E5u - (uint)85)) != 0) && ((Mem.U32((actor + (uint)1708)) & (uint)(32)) != 0u)))
+            if (((Mem.S32((Gv.Settings_IsMultiplayer - (uint)85)) != 0) && ((Mem.U32((actor + (uint)1708)) & (uint)(32)) != 0u)))
             {
                 return;
             }
             if (((Mem.U32((actor + (uint)1712)) & (uint)(512)) != 0u))
             {
-                w = Mem.U32((0x800D052Cu + (uint)(Mem.S16((actor + (uint)1904)) * 4)));
+                w = Mem.U32((Gv.WeaponDefTable + (uint)(Mem.S16((actor + (uint)1904)) * 4)));
                 idx = Mem.S16((w + (uint)12));
                 nxt = Mem.U16((w + (uint)12));
                 if ((((int)(idx) != (-1)) && ((int)(Mem.S8((q = ((actor + (uint)((int)(idx) * 2)) + (uint)1538)))) != 0)))
@@ -270,7 +270,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0022EAFC", (uint)p, (uint)idx);
             uint w = 0u;
-            w = Mem.U32((0x800D052Cu + (uint)(idx * 4)));
+            w = Mem.U32((Gv.WeaponDefTable + (uint)(idx * 4)));
             switch (idx) { case 1: goto _f1; case 2: goto _f2; case 5: goto _f3; case 6: goto _f4; case 7: goto _f5; case 8: goto _f6; case 9: goto _f7; case 10: goto _f8; case 11: goto _f9; case 13: goto _f10; case 14: goto _f11; case 15: goto _f12; case 3: goto _f13; case 4: goto _f14; case 12: goto _f15; case 0: goto _f16; case 18: goto _f17; case 19: goto _f18; case 20: goto _f19; case 21: goto _f20; case 16: goto _f21; case 17: goto _f22; default: goto _f23; }
             _f1: ;
             _f2: ;
@@ -298,7 +298,7 @@ public static partial class Game
             _f20: ;
             return 1;
             _f24: ;
-            return (int)(Particle_CountOwnedCharges(0x80121990u, p, default(uint), default(uint)));
+            return (int)(Particle_CountOwnedCharges(Gv.EffectMgr, p, default(uint), default(uint)));
             _f21: ;
             _f22: ;
             _f23: ;
@@ -319,12 +319,12 @@ public static partial class Game
             if ((new OW(owner).f1214 != 0))
             {
                 {
-                    uint d = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint d = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(d).w0_Set(3661103107u);
-                    new DlCmd(d).w1_Set((uint)((owner + (uint)((Mem.S32(0x800D297Cu) * 64) + 5248))));
+                    new DlCmd(d).w1_Set((uint)((owner + (uint)((Mem.S32(Gv.FrameParity) * 64) + 5248))));
                 }
                 {
-                    uint d_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint d_2 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(d_2).w0_Set(3875536896u);
                     new DlCmd(d_2).w1_Set((uint)(0));
                 }
@@ -332,73 +332,73 @@ public static partial class Game
                 Gfx_SetOtherModeL((uint)(14));
                 Gfx_SetCombineMode((uint)(28));
                 {
-                    uint d_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint d_3 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(d_3).w0_Set(3656973183u);
                     new DlCmd(d_3).w1_Set((uint)(0));
                 }
                 {
-                    uint d_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint d_4 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(d_4).w0_Set(3657433087u);
                     new DlCmd(d_4).w1_Set((uint)(2097156));
                 }
-                new B07Vtx((0x801031B0u + (uint)(0 * 16))).x_Set((short)(1));
-                new B07Vtx((0x801031B0u + (uint)(0 * 16))).y_Set((short)(1));
-                new B07Vtx((0x801031B0u + (uint)(0 * 16))).z_Set((short)(0));
-                new B07Vtx((0x801031B0u + (uint)(0 * 16))).flag_Set((short)(0));
-                new B07Vtx((0x801031B0u + (uint)(0 * 16))).s_Set((short)(0));
-                new B07Vtx((0x801031B0u + (uint)(0 * 16))).t_Set((short)(0));
-                new B07Vtx((0x801031B0u + (uint)(0 * 16))).r_Set((byte)(200));
-                new B07Vtx((0x801031B0u + (uint)(0 * 16))).g_Set((byte)(0));
-                new B07Vtx((0x801031B0u + (uint)(0 * 16))).b_Set((byte)(0));
-                new B07Vtx((0x801031B0u + (uint)(0 * 16))).a_Set((byte)(200));
-                new B07Vtx((0x801031B0u + (uint)(1 * 16))).x_Set((short)((-1)));
-                new B07Vtx((0x801031B0u + (uint)(1 * 16))).y_Set((short)(1));
-                new B07Vtx((0x801031B0u + (uint)(1 * 16))).z_Set((short)(0));
-                new B07Vtx((0x801031B0u + (uint)(1 * 16))).flag_Set((short)(0));
-                new B07Vtx((0x801031B0u + (uint)(1 * 16))).s_Set((short)(0));
-                new B07Vtx((0x801031B0u + (uint)(1 * 16))).t_Set((short)(0));
-                new B07Vtx((0x801031B0u + (uint)(1 * 16))).r_Set((byte)(200));
-                new B07Vtx((0x801031B0u + (uint)(1 * 16))).g_Set((byte)(0));
-                new B07Vtx((0x801031B0u + (uint)(1 * 16))).b_Set((byte)(0));
-                new B07Vtx((0x801031B0u + (uint)(1 * 16))).a_Set((byte)(200));
-                new B07Vtx((0x801031B0u + (uint)(2 * 16))).x_Set((short)(15));
-                new B07Vtx((0x801031B0u + (uint)(2 * 16))).y_Set((short)(1));
-                new B07Vtx((0x801031B0u + (uint)(2 * 16))).z_Set((short)((-1)));
-                new B07Vtx((0x801031B0u + (uint)(2 * 16))).flag_Set((short)(0));
-                new B07Vtx((0x801031B0u + (uint)(2 * 16))).s_Set((short)(0));
-                new B07Vtx((0x801031B0u + (uint)(2 * 16))).t_Set((short)(0));
-                new B07Vtx((0x801031B0u + (uint)(2 * 16))).r_Set((byte)(200));
-                new B07Vtx((0x801031B0u + (uint)(2 * 16))).g_Set((byte)(0));
-                new B07Vtx((0x801031B0u + (uint)(2 * 16))).b_Set((byte)(0));
-                new B07Vtx((0x801031B0u + (uint)(2 * 16))).a_Set((byte)(150));
-                new B07Vtx((0x801031B0u + (uint)(3 * 16))).x_Set((short)((-15)));
-                new B07Vtx((0x801031B0u + (uint)(3 * 16))).y_Set((short)(1));
-                new B07Vtx((0x801031B0u + (uint)(3 * 16))).z_Set((short)((-1)));
-                new B07Vtx((0x801031B0u + (uint)(3 * 16))).flag_Set((short)(0));
-                new B07Vtx((0x801031B0u + (uint)(3 * 16))).s_Set((short)(0));
-                new B07Vtx((0x801031B0u + (uint)(3 * 16))).t_Set((short)(0));
-                new B07Vtx((0x801031B0u + (uint)(3 * 16))).r_Set((byte)(200));
-                new B07Vtx((0x801031B0u + (uint)(3 * 16))).g_Set((byte)(0));
-                new B07Vtx((0x801031B0u + (uint)(3 * 16))).b_Set((byte)(0));
-                new B07Vtx((0x801031B0u + (uint)(3 * 16))).a_Set((byte)(150));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(0 * 16))).x_Set((short)(1));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(0 * 16))).y_Set((short)(1));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(0 * 16))).z_Set((short)(0));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(0 * 16))).flag_Set((short)(0));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(0 * 16))).s_Set((short)(0));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(0 * 16))).t_Set((short)(0));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(0 * 16))).r_Set((byte)(200));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(0 * 16))).g_Set((byte)(0));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(0 * 16))).b_Set((byte)(0));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(0 * 16))).a_Set((byte)(200));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(1 * 16))).x_Set((short)((-1)));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(1 * 16))).y_Set((short)(1));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(1 * 16))).z_Set((short)(0));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(1 * 16))).flag_Set((short)(0));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(1 * 16))).s_Set((short)(0));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(1 * 16))).t_Set((short)(0));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(1 * 16))).r_Set((byte)(200));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(1 * 16))).g_Set((byte)(0));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(1 * 16))).b_Set((byte)(0));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(1 * 16))).a_Set((byte)(200));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(2 * 16))).x_Set((short)(15));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(2 * 16))).y_Set((short)(1));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(2 * 16))).z_Set((short)((-1)));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(2 * 16))).flag_Set((short)(0));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(2 * 16))).s_Set((short)(0));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(2 * 16))).t_Set((short)(0));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(2 * 16))).r_Set((byte)(200));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(2 * 16))).g_Set((byte)(0));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(2 * 16))).b_Set((byte)(0));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(2 * 16))).a_Set((byte)(150));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(3 * 16))).x_Set((short)((-15)));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(3 * 16))).y_Set((short)(1));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(3 * 16))).z_Set((short)((-1)));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(3 * 16))).flag_Set((short)(0));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(3 * 16))).s_Set((short)(0));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(3 * 16))).t_Set((short)(0));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(3 * 16))).r_Set((byte)(200));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(3 * 16))).g_Set((byte)(0));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(3 * 16))).b_Set((byte)(0));
+                new B07Vtx((Gv.Player_LaserBeamVtx + (uint)(3 * 16))).a_Set((byte)(150));
                 {
-                    uint d_5 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint d_5 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(d_5).w0_Set((uint)(16793608));
-                    new DlCmd(d_5).w1_Set((uint)(0x801031B0u));
+                    new DlCmd(d_5).w1_Set((uint)(Gv.Player_LaserBeamVtx));
                 }
                 {
-                    uint d_6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint d_6 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(d_6).w0_Set((uint)(83886596));
                     new DlCmd(d_6).w1_Set((uint)(0));
                 }
                 {
-                    uint d_7 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint d_7 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(d_7).w0_Set((uint)(84018182));
                     new DlCmd(d_7).w1_Set((uint)(0));
                 }
                 if ((new OW(owner).f147C != 0))
                 {
-                    Decal_DrawLaserDot((owner + (uint)((Mem.S32(0x800D297Cu) * 64) + 5504)));
+                    Decal_DrawLaserDot((owner + (uint)((Mem.S32(Gv.FrameParity) * 64) + 5504)));
                 }
             }
         }
@@ -578,19 +578,19 @@ public static partial class Game
             {
                 return 1;
             }
-            g = 0x801462C8u;
+            g = Gv.Settings;
             if (((int)(Mem.U8((g + (uint)13))) != 1))
             {
                 return 1;
             }
-            r = (int)(Profile_HasAltFire((0x80102B00u + (uint)(new Actor(actor).unk5D4 * 400)), (uint)((int)(Mem.S16((actor + (uint)1582)))), default(uint), default(uint)));
+            r = (int)(Profile_HasAltFire((Gv.ProfileTable + (uint)(new Actor(actor).unk5D4 * 400)), (uint)((int)(Mem.S16((actor + (uint)1582)))), default(uint), default(uint)));
             if ((r == 0))
             {
                 Audio_PlaySound2D(3405);
                 if ((Mem.U32((actor + (uint)1500)) != 0u))
                 {
                     v = Player_GetIndex((g - (uint)4744), (int)(actor));
-                    Hud_SpawnTextLineA((g - (uint)4672), Mem.U32((actor + (uint)1500)), (uint)(Mem.S32(0x800D70E8u)), v, Mem.F32(0x800C8100u));
+                    Hud_SpawnTextLineA((g - (uint)4672), Mem.U32((actor + (uint)1500)), (uint)(Mem.S32(Gv.HudMsg_FunctionNotAvailable)), v, Mem.F32(0x800C8100u));
                 }
             }
             return r;

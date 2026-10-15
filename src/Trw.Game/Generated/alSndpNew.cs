@@ -28,7 +28,7 @@ public static partial class Game
                 alEvtqNew(new ALSndPlayer(sndp).evtq.P, alHeapDBAlloc(0u, 0, new ALSndpConfig(c).heap_, 1, (int)(((uint)(new ALSndpConfig(c).maxEvents) * 28u))), new ALSndpConfig(c).maxEvents);
                 new ALSndPlayer(sndp).node.next__Set(0u);
                 new ALSndPlayer(sndp).node.clientData_Set(sndp);
-                new ALSndPlayer(sndp).drvr_Set(Mem.U32(0x800D80A0u));
+                new ALSndPlayer(sndp).drvr_Set(Mem.U32(Gv.alGlobals));
                 new ALSndPlayer(sndp).node.handler_Set(0x002B7C8Cu);
                 alSynAddPlayer(new ALSndPlayer(sndp).drvr, new ALSndPlayer(sndp).node.P);
                 new ALEvent(_fp).type_Set((short)(5));

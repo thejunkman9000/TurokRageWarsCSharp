@@ -193,34 +193,34 @@ public static partial class Game
                 uint s1 = 0u;
                 int i = 0;
                 uint p = 0u;
-                uint c = 0x8011FE88u;
-                if ((Mem.U32(0x8014AECCu) != 0u))
+                uint c = Gv.LevelMgr;
+                if ((Mem.U32(Gv.Artsend_TextureRes) != 0u))
                 {
-                    ResourcePool_Unref(0, Mem.U32(0x8014AECCu));
+                    ResourcePool_Unref(0, Mem.U32(Gv.Artsend_TextureRes));
                 }
-                Mem.Set(0x8014AECCu, 0u);
-                Mem.Set(0x8014AED4u, 0u);
-                Mem.Set(0x8014AED8u, 0u);
-                Mem.Set(0x8014AED0u, 0u);
-                v0 = (int)(Resource_GetCartridgeKey((uint)(new B21Ctx(c).unk50), (uint)(new B21Ctx(c).unk20), new B21RecX(0x8014AEBCu).unk0, _fp));
+                Mem.Set(Gv.Artsend_TextureRes, 0u);
+                Mem.Set(Gv.Artsend_ImagePtr, 0u);
+                Mem.Set(Gv.Artsend_PalettePtr, 0u);
+                Mem.Set(Gv.Artsend_TexturePtr, 0u);
+                v0 = (int)(Resource_GetCartridgeKey((uint)(new B21Ctx(c).unk50), (uint)(new B21Ctx(c).unk20), new B21RecX(Gv.Artsend_TextureIndex).unk0, _fp));
                 obj = ResourceCache_Hash(0, (uint)((v0 - 1)), v0, (uint)(Mem.S32(_fp)), 9, (uint)((-1)), 0x00295B90u, 0x800CA5D0u, 1);
                 s3 = Mem.U32(obj);
                 s2 = Chunk_Get(s3, 1);
                 s5 = Chunk_Get(s3, 2);
-                while ((new B21RecX(0x8014AEBCu).unk4 < 0))
+                while ((new B21RecX(Gv.Artsend_TextureIndex).unk4 < 0))
                 {
-                    new B21RecX(0x8014AEBCu).unk4_Set((int)((int)(new B21RecX(0x8014AEBCu).unk4) + Mem.S32(s2)));
+                    new B21RecX(Gv.Artsend_TextureIndex).unk4_Set((int)((int)(new B21RecX(Gv.Artsend_TextureIndex).unk4) + Mem.S32(s2)));
                 }
-                s4 = (new B21RecX(0x8014AEBCu).unk4 % Mem.S32(s2));
-                s0 = (new B21RecX(0x8014AEBCu).unk4 % Mem.S32(s5));
-                new B21RecX(0x8014AEBCu).unk10_Set(obj);
-                new B21RecX(0x8014AEBCu).unk18__Set(Chunk_Get(s2, s4));
-                new B21RecX(0x8014AEBCu).unk1C__Set(Chunk_Get(s5, s0));
-                new B21RecX(0x8014AEBCu).unk14__Set(Chunk_Get(s3, 0));
-                new B21RecX(0x8014AEBCu).unkC_Set(0);
-                new B21RecX(0x8014AEBCu).unk2120__Set(s3);
-                new B21RecX(0x8014AEBCu).unk2124__Set(s2);
-                new B21RecX(0x8014AEBCu).unk2128__Set(s5);
+                s4 = (new B21RecX(Gv.Artsend_TextureIndex).unk4 % Mem.S32(s2));
+                s0 = (new B21RecX(Gv.Artsend_TextureIndex).unk4 % Mem.S32(s5));
+                new B21RecX(Gv.Artsend_TextureIndex).unk10_Set(obj);
+                new B21RecX(Gv.Artsend_TextureIndex).unk18__Set(Chunk_Get(s2, s4));
+                new B21RecX(Gv.Artsend_TextureIndex).unk1C__Set(Chunk_Get(s5, s0));
+                new B21RecX(Gv.Artsend_TextureIndex).unk14__Set(Chunk_Get(s3, 0));
+                new B21RecX(Gv.Artsend_TextureIndex).unkC_Set(0);
+                new B21RecX(Gv.Artsend_TextureIndex).unk2120__Set(s3);
+                new B21RecX(Gv.Artsend_TextureIndex).unk2124__Set(s2);
+                new B21RecX(Gv.Artsend_TextureIndex).unk2128__Set(s5);
                 if ((Mem.S32(s3) == 4))
                 {
                     s1 = Chunk_Get(s3, 3);
@@ -235,11 +235,11 @@ public static partial class Game
                             break;
                         }
                     }
-                    sprintf(new B21RecX(0x8014AEBCu).buf212C.P, 0x800CA5E0u, (uint)(new B21RecX(0x8014AEBCu).unk0), (uint)(s4), (uint)(Mem.S32(s2)), s1, default(uint), default(uint), default(uint), default(uint), default(uint));
+                    sprintf(new B21RecX(Gv.Artsend_TextureIndex).buf212C.P, 0x800CA5E0u, (uint)(new B21RecX(Gv.Artsend_TextureIndex).unk0), (uint)(s4), (uint)(Mem.S32(s2)), s1, default(uint), default(uint), default(uint), default(uint), default(uint));
                 }
                 else
                 {
-                    sprintf(new B21RecX(0x8014AEBCu).buf212C.P, 0x800CA5F8u, (uint)(new B21RecX(0x8014AEBCu).unk0), (uint)(s4), (uint)(Mem.S32(s2)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                    sprintf(new B21RecX(Gv.Artsend_TextureIndex).buf212C.P, 0x800CA5F8u, (uint)(new B21RecX(Gv.Artsend_TextureIndex).unk0), (uint)(s4), (uint)(Mem.S32(s2)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                 }
                 Mem.Set(0x8014D068u, 0);
             }
@@ -564,24 +564,24 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002954E0");
-            Mem.Set(0x8014AEB0u, (byte)(0));
+            Mem.Set(Gv.Artsend_Active, (byte)(0));
             Mem.Set(0x8014AEB1u, (byte)(0));
-            Mem.Set(0x8014AEBCu, 0);
-            Mem.Set(0x8014AEC0u, 0);
-            Mem.Set((0x8014AEB8u + (uint)(0 * 4)), 1);
+            Mem.Set(Gv.Artsend_TextureIndex, 0);
+            Mem.Set(Gv.Artsend_FrameIndex, 0);
+            Mem.Set((Gv.Artsend_TextureCount + (uint)(0 * 4)), 1);
             Mem.Set(0x8014AEB4u, 0);
             Mem.Set(0x8014AEC4u, 0);
-            Mem.Set(0x8014AECCu, 0);
-            Mem.Set(0x8014AED4u, 0);
-            Mem.Set(0x8014AED8u, 0);
-            Mem.Set(0x8014AED0u, 0);
+            Mem.Set(Gv.Artsend_TextureRes, 0);
+            Mem.Set(Gv.Artsend_ImagePtr, 0);
+            Mem.Set(Gv.Artsend_PalettePtr, 0);
+            Mem.Set(Gv.Artsend_TexturePtr, 0);
             Mem.Set(0x8014CFDCu, 0);
             Mem.Set(0x8014CFE0u, 0);
             Mem.Set(0x8014CFE4u, 0);
             Mem.Set(0x8014D068u, 0);
-            memset((0x8014AEB8u + (uint)36), 0, (uint)(8192));
-            memset((0x8014AEB8u + (uint)8228), 255, (uint)(256));
-            Mem.Set((0x8014AEB8u + (uint)(0 * 4)), Mem.S32(Mem.U32(0x8011FED8u)));
+            memset((Gv.Artsend_TextureCount + (uint)36), 0, (uint)(8192));
+            memset((Gv.Artsend_TextureCount + (uint)8228), 255, (uint)(256));
+            Mem.Set((Gv.Artsend_TextureCount + (uint)(0 * 4)), Mem.S32(Mem.U32(0x8011FED8u)));
         }
     }
 
@@ -602,9 +602,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002955C8");
             int r = 0;
-            if ((new B21Rec(0x8014AEB0u).unk0 != 0))
+            if ((new B21Rec(Gv.Artsend_Active).unk0 != 0))
             {
-                r = ((Mem.U32(0x800D2AE0u) != (uint)(0)) ? 1 : 0);
+                r = ((Mem.U32(Gv.Artsend_Mode) != (uint)(0)) ? 1 : 0);
             }
             return r;
         }
@@ -616,11 +616,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002955EC", (uint)a, (uint)@out);
-            uint cnt = Mem.U32(0x800D2AE0u);
-            if ((((cnt != (uint)(0)) && (Mem.U32(@out) != 0u)) && (Mem.S32((0x8014AEC8u + (uint)(0 * 4))) == 0)))
+            uint cnt = Mem.U32(Gv.Artsend_Mode);
+            if ((((cnt != (uint)(0)) && (Mem.U32(@out) != 0u)) && (Mem.S32((Gv.Artsend_State_8014AEC8 + (uint)(0 * 4))) == 0)))
             {
                 int ok = 0;
-                if (((int)(Mem.U8(0x8014AEB0u)) != 0))
+                if (((int)(Mem.U8(Gv.Artsend_Active)) != 0))
                 {
                     ok = ((cnt != (uint)(0)) ? 1 : 0);
                 }
@@ -630,21 +630,21 @@ public static partial class Game
                 }
                 if ((ok != 0))
                 {
-                    ok = (((Mem.S32((0x8014AEC8u + (uint)((8608 / 4) * 4))) % 10) < 3) ? 1 : 0);
+                    ok = (((Mem.S32((Gv.Artsend_State_8014AEC8 + (uint)((8608 / 4) * 4))) % 10) < 3) ? 1 : 0);
                 }
                 else
                 {
                     ok = 1;
                 }
-                if ((a == Mem.S32((0x8014AECCu + (uint)(0 * 4)))))
+                if ((a == Mem.S32((Gv.Artsend_TextureRes + (uint)(0 * 4)))))
                 {
                     if ((ok != 0))
                     {
-                        Mem.Set(@out, (0x8014AECCu + (uint)(4 * 4)));
+                        Mem.Set(@out, (Gv.Artsend_TextureRes + (uint)(4 * 4)));
                     }
                     else
                     {
-                        Mem.Set(@out, Mem.U32(0x8014AED4u));
+                        Mem.Set(@out, Mem.U32(Gv.Artsend_ImagePtr));
                     }
                 }
             }
@@ -658,11 +658,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002956AC", (uint)x, (uint)@out);
             int ok = 0;
-            if ((((Mem.U32(0x800D2AE0u) != (uint)(0)) && (Mem.S32(@out) != 0)) && (Mem.S32((0x8014AEC8u + (uint)(0 * 4))) == 0)))
+            if ((((Mem.U32(Gv.Artsend_Mode) != (uint)(0)) && (Mem.S32(@out) != 0)) && (Mem.S32((Gv.Artsend_State_8014AEC8 + (uint)(0 * 4))) == 0)))
             {
-                if (((int)(Mem.U8(0x8014AEB0u)) != 0))
+                if (((int)(Mem.U8(Gv.Artsend_Active)) != 0))
                 {
-                    ok = ((Mem.U32(0x800D2AE0u) != (uint)(0)) ? 1 : 0);
+                    ok = ((Mem.U32(Gv.Artsend_Mode) != (uint)(0)) ? 1 : 0);
                 }
                 else
                 {
@@ -670,21 +670,21 @@ public static partial class Game
                 }
                 if ((ok != 0))
                 {
-                    ok = (((Mem.S32((0x8014AEC8u + (uint)((8608 / 4) * 4))) % 10) < 3) ? 1 : 0);
+                    ok = (((Mem.S32((Gv.Artsend_State_8014AEC8 + (uint)((8608 / 4) * 4))) % 10) < 3) ? 1 : 0);
                 }
                 else
                 {
                     ok = 1;
                 }
-                if ((x == Mem.S32((0x8014AECCu + (uint)(0 * 4)))))
+                if ((x == Mem.S32((Gv.Artsend_TextureRes + (uint)(0 * 4)))))
                 {
                     if ((ok != 0))
                     {
-                        Mem.Set(@out, (int)((0x8014AECCu + (uint)8208)));
+                        Mem.Set(@out, (int)((Gv.Artsend_TextureRes + (uint)8208)));
                     }
                     else
                     {
-                        Mem.Set(@out, Mem.S32(0x8014AED8u));
+                        Mem.Set(@out, Mem.S32(Gv.Artsend_PalettePtr));
                     }
                 }
             }
@@ -699,10 +699,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0029576C");
             if (((Mem.Set(0x800D2AE8u, (int)(Mem.S32(0x800D2AE8u) + 1)) - 1) >= 3))
             {
-                Mem.Set((0x8014AEB8u + (uint)(1 * 4)), (int)(Mem.S32((0x8014AEB8u + (uint)(1 * 4))) + 1));
+                Mem.Set((Gv.Artsend_TextureCount + (uint)(1 * 4)), (int)(Mem.S32((Gv.Artsend_TextureCount + (uint)(1 * 4))) + 1));
                 Mem.Set(0x800D2AE8u, 0);
-                Mem.Set((0x8014AEB8u + (uint)(3 * 4)), 1);
-                Mem.Set((0x8014AEB8u + (uint)(1 * 4)), (int)((int)(Mem.S32((0x8014AEB8u + (uint)(1 * 4)))) % Mem.S32((0x8014AEB8u + (uint)(0 * 4)))));
+                Mem.Set((Gv.Artsend_TextureCount + (uint)(3 * 4)), 1);
+                Mem.Set((Gv.Artsend_TextureCount + (uint)(1 * 4)), (int)((int)(Mem.S32((Gv.Artsend_TextureCount + (uint)(1 * 4)))) % Mem.S32((Gv.Artsend_TextureCount + (uint)(0 * 4)))));
             }
         }
     }
@@ -715,10 +715,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002957EC");
             if (((Mem.Set(0x800D2AE4u, (int)(Mem.S32(0x800D2AE4u) + 1)) - 1) >= 3))
             {
-                Mem.Set((0x8014AEB8u + (uint)(1 * 4)), (int)(Mem.S32((0x8014AEB8u + (uint)(1 * 4))) - 1));
-                Mem.Set((0x8014AEB8u + (uint)(3 * 4)), 1);
-                Mem.Set((0x8014AEB8u + (uint)(1 * 4)), ((Mem.S32((0x8014AEB8u + (uint)(1 * 4))) + Mem.S32((0x8014AEB8u + (uint)(0 * 4)))) % Mem.S32((0x8014AEB8u + (uint)(0 * 4)))));
-                Mem.Set((0x8014AEB8u + (uint)(1 * 4)), (((float)(Mem.S32((0x8014AEB8u + (uint)(1 * 4)))) < 0.0f) ? (-Mem.S32((0x8014AEB8u + (uint)(1 * 4)))) : Mem.S32((0x8014AEB8u + (uint)(1 * 4)))));
+                Mem.Set((Gv.Artsend_TextureCount + (uint)(1 * 4)), (int)(Mem.S32((Gv.Artsend_TextureCount + (uint)(1 * 4))) - 1));
+                Mem.Set((Gv.Artsend_TextureCount + (uint)(3 * 4)), 1);
+                Mem.Set((Gv.Artsend_TextureCount + (uint)(1 * 4)), ((Mem.S32((Gv.Artsend_TextureCount + (uint)(1 * 4))) + Mem.S32((Gv.Artsend_TextureCount + (uint)(0 * 4)))) % Mem.S32((Gv.Artsend_TextureCount + (uint)(0 * 4)))));
+                Mem.Set((Gv.Artsend_TextureCount + (uint)(1 * 4)), (((float)(Mem.S32((Gv.Artsend_TextureCount + (uint)(1 * 4)))) < 0.0f) ? (-Mem.S32((Gv.Artsend_TextureCount + (uint)(1 * 4)))) : Mem.S32((Gv.Artsend_TextureCount + (uint)(1 * 4)))));
                 Mem.Set(0x800D2AE4u, 0);
             }
         }
@@ -730,15 +730,15 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00295890");
-            uint p = Mem.U32((0x8014AECCu + (uint)(0 * 4)));
+            uint p = Mem.U32((Gv.Artsend_TextureRes + (uint)(0 * 4)));
             if ((p != 0u))
             {
                 ResourcePool_Unref(0, p);
             }
-            Mem.Set((0x8014AECCu + (uint)(0 * 4)), 0u);
-            Mem.Set((0x8014AECCu + (uint)(2 * 4)), 0u);
-            Mem.Set((0x8014AECCu + (uint)(3 * 4)), 0u);
-            Mem.Set((0x8014AECCu + (uint)(1 * 4)), 0u);
+            Mem.Set((Gv.Artsend_TextureRes + (uint)(0 * 4)), 0u);
+            Mem.Set((Gv.Artsend_TextureRes + (uint)(2 * 4)), 0u);
+            Mem.Set((Gv.Artsend_TextureRes + (uint)(3 * 4)), 0u);
+            Mem.Set((Gv.Artsend_TextureRes + (uint)(1 * 4)), 0u);
         }
     }
 
@@ -748,21 +748,21 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002958D8");
-            new B21Blk(0x8014AEB0u).unk0_Set((byte)(0));
-            new B21Blk(0x8014AEB0u).unk1_Set((byte)(0));
-            new B21Blk(0x8014AEB0u).unkC_Set(0);
-            new B21Blk(0x8014AEB0u).unk10_Set(0);
-            new B21Blk(0x8014AEB0u).unk8_Set(1);
-            new B21Blk(0x8014AEB0u).unk4_Set(0);
-            new B21Blk(0x8014AEB0u).unk14_Set(0);
-            new B21Blk(0x8014AEB0u).unk1C_Set(0);
-            new B21Blk(0x8014AEB0u).unk24_Set(0);
-            new B21Blk(0x8014AEB0u).unk28_Set(0);
-            new B21Blk(0x8014AEB0u).unk20_Set(0);
-            new B21Blk(0x8014AEB0u).unk212C_Set(0);
-            new B21Blk(0x8014AEB0u).unk2130_Set(0);
-            new B21Blk(0x8014AEB0u).unk2134_Set(0);
-            new B21Blk(0x8014AEB0u).unk21B8_Set(0);
+            new B21Blk(Gv.Artsend_Active).unk0_Set((byte)(0));
+            new B21Blk(Gv.Artsend_Active).unk1_Set((byte)(0));
+            new B21Blk(Gv.Artsend_Active).unkC_Set(0);
+            new B21Blk(Gv.Artsend_Active).unk10_Set(0);
+            new B21Blk(Gv.Artsend_Active).unk8_Set(1);
+            new B21Blk(Gv.Artsend_Active).unk4_Set(0);
+            new B21Blk(Gv.Artsend_Active).unk14_Set(0);
+            new B21Blk(Gv.Artsend_Active).unk1C_Set(0);
+            new B21Blk(Gv.Artsend_Active).unk24_Set(0);
+            new B21Blk(Gv.Artsend_Active).unk28_Set(0);
+            new B21Blk(Gv.Artsend_Active).unk20_Set(0);
+            new B21Blk(Gv.Artsend_Active).unk212C_Set(0);
+            new B21Blk(Gv.Artsend_Active).unk2130_Set(0);
+            new B21Blk(Gv.Artsend_Active).unk2134_Set(0);
+            new B21Blk(Gv.Artsend_Active).unk21B8_Set(0);
         }
     }
 
@@ -774,10 +774,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00295924");
             if (((Mem.Set(0x800D2AECu, (int)(Mem.S32(0x800D2AECu) + 1)) - 1) >= 3))
             {
-                int t = new B21Cnt(0x8014AEC0u).unk0;
-                new B21Cnt(0x8014AEC0u).unk4_Set(1);
+                int t = new B21Cnt(Gv.Artsend_FrameIndex).unk0;
+                new B21Cnt(Gv.Artsend_FrameIndex).unk4_Set(1);
                 Mem.Set(0x800D2AECu, 0);
-                new B21Cnt(0x8014AEC0u).unk0_Set((t - 1));
+                new B21Cnt(Gv.Artsend_FrameIndex).unk0_Set((t - 1));
             }
         }
     }
@@ -790,10 +790,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00295970");
             if (((Mem.Set(0x800D2AF0u, (int)(Mem.S32(0x800D2AF0u) + 1)) - 1) >= 3))
             {
-                int t = new B21Cnt(0x8014AEC0u).unk0;
-                new B21Cnt(0x8014AEC0u).unk4_Set(1);
+                int t = new B21Cnt(Gv.Artsend_FrameIndex).unk0;
+                new B21Cnt(Gv.Artsend_FrameIndex).unk4_Set(1);
                 Mem.Set(0x800D2AF0u, 0);
-                new B21Cnt(0x8014AEC0u).unk0_Set((t + 1));
+                new B21Cnt(Gv.Artsend_FrameIndex).unk0_Set((t + 1));
             }
         }
     }
@@ -808,7 +808,7 @@ public static partial class Game
             int r = 0;
             if (((Mem.Set(0x800D2AF4u, (int)(Mem.S32(0x800D2AF4u) + 1)) - 1) >= 3))
             {
-                p = (0x8014AEB8u + (uint)(1 * 4));
+                p = (Gv.Artsend_TextureCount + (uint)(1 * 4));
                 Mem.Set((p + (uint)(0 * 4)), (int)((int)(Mem.S32((p + (uint)(0 * 4)))) - 5));
                 Mem.Set((p + (uint)(0 * 4)), ((Mem.S32((p + (uint)(0 * 4))) + Mem.S32((p + (uint)((-1) * 4)))) % Mem.S32((p + (uint)((-1) * 4)))));
                 Mem.Set((p + (uint)(0 * 4)), (((float)(Mem.S32((p + (uint)(0 * 4)))) < 0.0f) ? (-Mem.S32((p + (uint)(0 * 4)))) : Mem.S32((p + (uint)(0 * 4)))));
@@ -826,10 +826,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00295A60");
             if (((Mem.Set(0x800D2AF8u, (int)(Mem.S32(0x800D2AF8u) + 1)) - 1) >= 3))
             {
-                Mem.Set((0x8014AEB8u + (uint)(1 * 4)), (int)((int)(Mem.S32((0x8014AEB8u + (uint)(1 * 4)))) + 5));
+                Mem.Set((Gv.Artsend_TextureCount + (uint)(1 * 4)), (int)((int)(Mem.S32((Gv.Artsend_TextureCount + (uint)(1 * 4)))) + 5));
                 Mem.Set(0x800D2AF8u, 0);
-                Mem.Set((0x8014AEB8u + (uint)(3 * 4)), 1);
-                Mem.Set((0x8014AEB8u + (uint)(1 * 4)), (int)((int)(Mem.S32((0x8014AEB8u + (uint)(1 * 4)))) % Mem.S32((0x8014AEB8u + (uint)(0 * 4)))));
+                Mem.Set((Gv.Artsend_TextureCount + (uint)(3 * 4)), 1);
+                Mem.Set((Gv.Artsend_TextureCount + (uint)(1 * 4)), (int)((int)(Mem.S32((Gv.Artsend_TextureCount + (uint)(1 * 4)))) % Mem.S32((Gv.Artsend_TextureCount + (uint)(0 * 4)))));
             }
         }
     }
@@ -840,7 +840,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00295AE0");
-            return Mem.S32(0x8014AED4u);
+            return Mem.S32(Gv.Artsend_ImagePtr);
         }
     }
 
@@ -850,7 +850,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00295AF0");
-            return Mem.S32(0x8014AED8u);
+            return Mem.S32(Gv.Artsend_PalettePtr);
         }
     }
 
@@ -860,7 +860,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00295B00");
-            return (1 << (int)(int)(new func_80295B00_S1(Mem.U32(0x8014AED0u)).unk2));
+            return (1 << (int)(int)(new func_80295B00_S1(Mem.U32(Gv.Artsend_TexturePtr)).unk2));
         }
     }
 
@@ -870,7 +870,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00295B18");
-            byte shift = (byte)(new func_80295B18_S1(Mem.U32(0x8014AED0u)).unk3);
+            byte shift = (byte)(new func_80295B18_S1(Mem.U32(Gv.Artsend_TexturePtr)).unk3);
             return (1 << (int)(int)(shift));
         }
     }
@@ -882,7 +882,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00295B30");
             int sw_mode_value = 0;
-            sw_mode_value = (int)(Mem.U8(Mem.U32(0x8014AED0u)));
+            sw_mode_value = (int)(Mem.U8(Mem.U32(Gv.Artsend_TexturePtr)));
             if (!(((uint)(sw_mode_value) > (uint)(5)))) goto _f0;
             goto L_sw_mode_default;
             _f0: ;

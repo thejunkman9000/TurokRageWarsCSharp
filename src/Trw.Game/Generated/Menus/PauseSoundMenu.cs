@@ -11,11 +11,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00439420");
-            Mem.Set(0x800E58A4u, ResourcePool_Malloc((uint)(8)));
-            new O05M0A4(Mem.U32(0x800E58A4u)).f0_Set(Slider_Create(469, 470, 255));
-            Slider_SetValue(new O05M0A4(Mem.U32(0x800E58A4u)).f0, (int)(Mem.U8((0x801462E0u + (uint)0))));
-            new O05M0A4(Mem.U32(0x800E58A4u)).f4_Set(Slider_Create(471, 472, 255));
-            Slider_SetValue(new O05M0A4(Mem.U32(0x800E58A4u)).f4, (int)(Mem.U8((0x801462E0u + (uint)1))));
+            Mem.Set(Gv.PauseSoundMenu_StatePtr, ResourcePool_Malloc((uint)(8)));
+            new O05M0A4(Mem.U32(Gv.PauseSoundMenu_StatePtr)).f0_Set(Slider_Create(469, 470, 255));
+            Slider_SetValue(new O05M0A4(Mem.U32(Gv.PauseSoundMenu_StatePtr)).f0, (int)(Mem.U8((Gv.Settings_MusicVolume + (uint)0))));
+            new O05M0A4(Mem.U32(Gv.PauseSoundMenu_StatePtr)).f4_Set(Slider_Create(471, 472, 255));
+            Slider_SetValue(new O05M0A4(Mem.U32(Gv.PauseSoundMenu_StatePtr)).f4, (int)(Mem.U8((Gv.Settings_MusicVolume + (uint)1))));
             MenuButton_Create(467);
             return 0;
         }
@@ -27,8 +27,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004394B0");
-            ResourcePool_MallocFree(Mem.U32(0x800E58A4u));
-            Mem.Set(0x800E58A4u, 0u);
+            ResourcePool_MallocFree(Mem.U32(Gv.PauseSoundMenu_StatePtr));
+            Mem.Set(Gv.PauseSoundMenu_StatePtr, 0u);
             return 0;
         }
     }
@@ -50,16 +50,16 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004394E8");
             int t = 0;
-            t = Slider_GetValue(new O05M0A4(Mem.U32(0x800E58A4u)).f4);
-            if ((t != (int)(Mem.U8((0x801462E0u + (uint)1)))))
+            t = Slider_GetValue(new O05M0A4(Mem.U32(Gv.PauseSoundMenu_StatePtr)).f4);
+            if ((t != (int)(Mem.U8((Gv.Settings_MusicVolume + (uint)1)))))
             {
-                Mem.Set((0x801462E0u + (uint)1), (byte)(t));
+                Mem.Set((Gv.Settings_MusicVolume + (uint)1), (byte)(t));
                 Audio_PlaySound2D(1120);
             }
-            t = Slider_GetValue(new O05M0A4(Mem.U32(0x800E58A4u)).f0);
-            if ((t != (int)(Mem.U8((0x801462E0u + (uint)0)))))
+            t = Slider_GetValue(new O05M0A4(Mem.U32(Gv.PauseSoundMenu_StatePtr)).f0);
+            if ((t != (int)(Mem.U8((Gv.Settings_MusicVolume + (uint)0)))))
             {
-                Mem.Set((0x801462E0u + (uint)0), (byte)(t));
+                Mem.Set((Gv.Settings_MusicVolume + (uint)0), (byte)(t));
                 if (((int)((byte)(t)) >= 5))
                 {
                     if ((Audio_IsSoundOn() == 0))
@@ -112,13 +112,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043962C", (uint)o, (uint)id, (uint)a2, (uint)a3);
             int i = 0;
-            for (i = 0; (new O05Disp((0x800E58FCu + (uint)(i * 12))).fn != 0u); ++i)
+            for (i = 0; (new O05Disp((Gv.PauseSoundMenu_EventTable + (uint)(i * 12))).fn != 0u); ++i)
             {
-                if ((new O05Disp((0x800E58FCu + (uint)(i * 12))).id == id))
+                if ((new O05Disp((Gv.PauseSoundMenu_EventTable + (uint)(i * 12))).id == id))
                 {
-                    if (((new O05Disp((0x800E58FCu + (uint)(i * 12))).key == (int)(new O05Obj(o).key)) || (new O05Disp((0x800E58FCu + (uint)(i * 12))).key == 30000)))
+                    if (((new O05Disp((Gv.PauseSoundMenu_EventTable + (uint)(i * 12))).key == (int)(new O05Obj(o).key)) || (new O05Disp((Gv.PauseSoundMenu_EventTable + (uint)(i * 12))).key == 30000)))
                     {
-                        return (int)(Funcs.CallRegX(new O05Disp((0x800E58FCu + (uint)(i * 12))).fn, o, (uint)(id), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
+                        return (int)(Funcs.CallRegX(new O05Disp((Gv.PauseSoundMenu_EventTable + (uint)(i * 12))).fn, o, (uint)(id), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
                     }
                 }
             }

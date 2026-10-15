@@ -244,7 +244,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_004098B0", (uint)a);
             if ((a == 0))
             {
-                return ((int)(Mem.U32(0x8011FECCu)) + 1552);
+                return ((int)(Mem.U32(Gv.GameSave_DataSize)) + 1552);
             }
             return (a << (int)8);
         }
@@ -256,7 +256,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004098D0", (uint)off, (uint)v);
-            Mem.Set(((Mem.U32(0x8011FECCu) + (uint)off) + (uint)1548), v);
+            Mem.Set(((Mem.U32(Gv.GameSave_DataSize) + (uint)off) + (uint)1548), v);
         }
     }
 
@@ -290,7 +290,7 @@ public static partial class Game
             }
             else
             {
-                size = ((int)(Mem.U32(0x8011FECCu)) + 1552);
+                size = ((int)(Mem.U32(Gv.GameSave_DataSize)) + 1552);
             }
             r = ResourcePool_Alloc(0, size, (uint)(51), (int)(0x800E0D90u));
             Mem.Set(slot, (int)(r));
@@ -306,22 +306,22 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00409990");
-            if (((Mem.S32(0x800E28B0u) != 0) || (Mem.S32(0x800E28B4u) != 0)))
+            if (((Mem.S32(Gv.GameSave_BufferA) != 0) || (Mem.S32(Gv.GameSave_BufferB) != 0)))
             {
                 ResourcePool_Purge();
             }
-            if ((Mem.S32(0x800E28B0u) != 0))
+            if ((Mem.S32(Gv.GameSave_BufferA) != 0))
             {
-                ResourcePool_Release(0, (uint)(Mem.S32(0x800E28B0u)));
+                ResourcePool_Release(0, (uint)(Mem.S32(Gv.GameSave_BufferA)));
             }
-            if ((Mem.S32(0x800E28B4u) != 0))
+            if ((Mem.S32(Gv.GameSave_BufferB) != 0))
             {
-                ResourcePool_Release(0, (uint)(Mem.S32(0x800E28B4u)));
+                ResourcePool_Release(0, (uint)(Mem.S32(Gv.GameSave_BufferB)));
             }
-            Mem.Set(0x800E28B0u, 0);
-            Mem.Set(0x800E28B4u, 0);
+            Mem.Set(Gv.GameSave_BufferA, 0);
+            Mem.Set(Gv.GameSave_BufferB, 0);
             Mem.Set(0x800E28B8u, 0);
-            Mem.Set(0x800E28BCu, 0);
+            Mem.Set(Gv.GameSave_DataPtr, 0);
         }
     }
 
@@ -333,14 +333,14 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00409A18", (uint)a);
             uint p = new O01Actor(a).save_;
             int i = 0;
-            new O01Save(0x80153738u).b0_Set(new O01SaveSrc(p).b0);
-            new O01Save(0x80153738u).w.Set((int)(0), new O01SaveSrc(p).w[(int)(0)]);
-            new O01Save(0x80153738u).w.Set((int)(1), new O01SaveSrc(p).w[(int)(1)]);
-            new O01Save(0x80153738u).w.Set((int)(2), new O01SaveSrc(p).w[(int)(2)]);
-            new O01Save(0x80153738u).w.Set((int)(3), new O01SaveSrc(p).w[(int)(3)]);
-            new O01Save(0x80153738u).b1_Set((byte)(0));
-            new O01Save(0x80153738u).b2_Set((byte)(0));
-            new O01Save(0x80153738u).b3_Set((byte)(0));
+            new O01Save(Gv.PakSave_PlayerRecord).b0_Set(new O01SaveSrc(p).b0);
+            new O01Save(Gv.PakSave_PlayerRecord).w.Set((int)(0), new O01SaveSrc(p).w[(int)(0)]);
+            new O01Save(Gv.PakSave_PlayerRecord).w.Set((int)(1), new O01SaveSrc(p).w[(int)(1)]);
+            new O01Save(Gv.PakSave_PlayerRecord).w.Set((int)(2), new O01SaveSrc(p).w[(int)(2)]);
+            new O01Save(Gv.PakSave_PlayerRecord).w.Set((int)(3), new O01SaveSrc(p).w[(int)(3)]);
+            new O01Save(Gv.PakSave_PlayerRecord).b1_Set((byte)(0));
+            new O01Save(Gv.PakSave_PlayerRecord).b2_Set((byte)(0));
+            new O01Save(Gv.PakSave_PlayerRecord).b3_Set((byte)(0));
             for (i = 0; (i < 8); ++i)
             {
                 Mem.Set((0x80153744u + (uint)i), new O01SaveSrc(p).tail[(int)(i)]);
@@ -356,11 +356,11 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00409A88", (uint)a);
             uint p = new O01Actor(a).save_;
             int i = 0;
-            new O01SaveSrc(p).b0_Set(new O01Save(0x80153738u).b0);
-            new O01SaveSrc(p).w.Set((int)(0), new O01Save(0x80153738u).w[(int)(0)]);
-            new O01SaveSrc(p).w.Set((int)(1), new O01Save(0x80153738u).w[(int)(1)]);
-            new O01SaveSrc(p).w.Set((int)(2), new O01Save(0x80153738u).w[(int)(2)]);
-            new O01SaveSrc(p).w.Set((int)(3), new O01Save(0x80153738u).w[(int)(3)]);
+            new O01SaveSrc(p).b0_Set(new O01Save(Gv.PakSave_PlayerRecord).b0);
+            new O01SaveSrc(p).w.Set((int)(0), new O01Save(Gv.PakSave_PlayerRecord).w[(int)(0)]);
+            new O01SaveSrc(p).w.Set((int)(1), new O01Save(Gv.PakSave_PlayerRecord).w[(int)(1)]);
+            new O01SaveSrc(p).w.Set((int)(2), new O01Save(Gv.PakSave_PlayerRecord).w[(int)(2)]);
+            new O01SaveSrc(p).w.Set((int)(3), new O01Save(Gv.PakSave_PlayerRecord).w[(int)(3)]);
             for (i = 0; (i < 8); ++i)
             {
                 new O01SaveSrc(p).tail.Set((int)(i), Mem.U8((0x80153744u + (uint)i)));
@@ -376,27 +376,27 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00409AEC", (uint)dst);
             int zero = 0;
             uint c3 = 0u;
-            uint g = 0x8011FE88u;
-            byte save = Mem.U8(0x80146848u);
+            uint g = Gv.LevelMgr;
+            byte save = Mem.U8(Gv.Settings_ResolutionMode);
             int i = 0;
             uint c = 0u;
             uint c2 = 0u;
             uint src = 0u;
-            Mem.Copy(new O01Dst(dst).unk5E0.P, new O01Cfg2(Mem.U32(0x800E28BCu)).blk18.P, 112);
-            Mem.Copy(0x801462C8u, new O01Cfg2(Mem.U32(0x800E28BCu)).blk88.P, 1412);
-            c = Mem.U32(0x800E28BCu);
+            Mem.Copy(new O01Dst(dst).unk5E0.P, new O01Cfg2(Mem.U32(Gv.GameSave_DataPtr)).blk18.P, 112);
+            Mem.Copy(Gv.Settings, new O01Cfg2(Mem.U32(Gv.GameSave_DataPtr)).blk88.P, 1412);
+            c = Mem.U32(Gv.GameSave_DataPtr);
             c2 = c;
-            Mem.Set((0x801468A0u + (uint)(0 * 4)), new O01Cfg2(c2).unk8);
-            Mem.Set((0x801468A0u + (uint)(1 * 4)), new O01Cfg2(c).unkC);
-            Mem.Set((0x801468A0u + (uint)(2 * 4)), new O01Cfg2(c).unk10);
+            Mem.Set((Gv.Settings_MatchRules + (uint)(0 * 4)), new O01Cfg2(c2).unk8);
+            Mem.Set((Gv.Settings_MatchRules + (uint)(1 * 4)), new O01Cfg2(c).unkC);
+            Mem.Set((Gv.Settings_MatchRules + (uint)(2 * 4)), new O01Cfg2(c).unk10);
             c3 = c2;
-            Mem.Set((0x801468A0u + (uint)(3 * 4)), new O01Cfg2(c3).unk14);
+            Mem.Set((Gv.Settings_MatchRules + (uint)(3 * 4)), new O01Cfg2(c3).unk14);
             zero = 0;
-            Mem.Set((0x8013B2D4u + (uint)(zero * 4)), Mem.S32((0x801468A0u - (uint)1492)));
-            Mem.Set((0x801468A0u + (uint)(-88)), save);
+            Mem.Set((0x8013B2D4u + (uint)(zero * 4)), Mem.S32((Gv.Settings_MatchRules - (uint)1492)));
+            Mem.Set((Gv.Settings_MatchRules + (uint)(-88)), save);
             src = new O01Cfg2(c3).unk60C.P;
             {
-                uint d = 0x800FD1F0u;
+                uint d = Gv.LevelPersistBuffer;
                 for (i = zero; (i < new O01G2(g).unk44); ++i)
                 {
                     Mem.Set(((d += 1u) - 1u), Mem.U8(((src += 1u) - 1u)));

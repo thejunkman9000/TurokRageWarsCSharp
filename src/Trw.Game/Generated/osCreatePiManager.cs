@@ -13,7 +13,7 @@ public static partial class Game
             uint savedMask = 0u;
             int oldPri = 0;
             int myPri = 0;
-            if (!(new OSMgrArgs(0x800D8390u).initialized != 0u))
+            if (!(new OSMgrArgs(Gv.__osPiDevMgr).initialized != 0u))
             {
                 osCreateMesgQueue(cmdQ, cmdBuf, cmdMsgCnt);
                 osCreateMesgQueue(0x8014E930u, 0x8014E948u, 1);
@@ -30,14 +30,14 @@ public static partial class Game
                     osSetThreadPri(0u, pri);
                 }
                 savedMask = __osDisableInt();
-                new OSMgrArgs(0x800D8390u).initialized_Set((uint)(1));
-                new OSMgrArgs(0x800D8390u).acsQueue__Set(0x8014EA58u);
-                new OSMgrArgs(0x800D8390u).dma_func_Set(0x002BEB30u);
-                new OSMgrArgs(0x800D8390u).edma_func_Set(0x002BE4A0u);
-                new OSMgrArgs(0x800D8390u).evtQueue__Set(0x8014E930u);
-                new OSMgrArgs(0x800D8390u).thread__Set(0x8014D700u);
-                new OSMgrArgs(0x800D8390u).cmdQueue__Set(cmdQ);
-                osCreateThread(0x8014D700u, 0, 0x002BE100u, 0x800D8390u, (0x8014D930u + (uint)4096), pri);
+                new OSMgrArgs(Gv.__osPiDevMgr).initialized_Set((uint)(1));
+                new OSMgrArgs(Gv.__osPiDevMgr).acsQueue__Set(Gv.PiAccessQueue);
+                new OSMgrArgs(Gv.__osPiDevMgr).dma_func_Set(0x002BEB30u);
+                new OSMgrArgs(Gv.__osPiDevMgr).edma_func_Set(0x002BE4A0u);
+                new OSMgrArgs(Gv.__osPiDevMgr).evtQueue__Set(0x8014E930u);
+                new OSMgrArgs(Gv.__osPiDevMgr).thread__Set(0x8014D700u);
+                new OSMgrArgs(Gv.__osPiDevMgr).cmdQueue__Set(cmdQ);
+                osCreateThread(0x8014D700u, 0, 0x002BE100u, Gv.__osPiDevMgr, (0x8014D930u + (uint)4096), pri);
                 osStartThread(0x8014D700u);
                 __osRestoreInt(savedMask);
                 if ((oldPri != (-1)))

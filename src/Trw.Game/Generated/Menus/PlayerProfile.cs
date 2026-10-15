@@ -366,50 +366,50 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0041CEB0", (uint)arg0);
             int t = 0;
-            Mem.Set(0x800E3590u, ResourcePool_Malloc((uint)(528)));
-            new S1008Menu(Mem.U32(0x800E3590u)).owner_Set(arg0);
-            new S1008Menu(Mem.U32(0x800E3590u)).handle_Set(CursorGroup_Create(arg0, 4));
+            Mem.Set(Gv.ProfileStats_PagePtr, ResourcePool_Malloc((uint)(528)));
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).owner_Set(arg0);
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).handle_Set(CursorGroup_Create(arg0, 4));
             CursorGroup_SetCursorById(arg0, 0, 513);
             CursorGroup_SetCursorById(arg0, 1, 513);
             CursorGroup_SetCursorById(arg0, 2, 513);
             CursorGroup_SetCursorById(arg0, 3, 513);
-            CursorGroup_SetShared(new S1008Menu(Mem.U32(0x800E3590u)).handle, 1);
-            new S1008Menu(Mem.U32(0x800E3590u)).state_Set(1);
-            new S1008Menu(Mem.U32(0x800E3590u)).timer_Set(4);
-            new S1008Menu(Mem.U32(0x800E3590u)).left__Set(UiTree_FindNode(arg0, (uint)(492), default(uint), default(uint)));
-            new S1008Menu(Mem.U32(0x800E3590u)).left.x_Set((ushort)((int)(new S1008Menu(Mem.U32(0x800E3590u)).left.x) - (int)(new S1008Menu(Mem.U32(0x800E3590u)).left.w)));
-            new S1008Menu(Mem.U32(0x800E3590u)).leftStep_Set(((int)(new S1008Menu(Mem.U32(0x800E3590u)).left.w) / 4));
-            t = ((int)(new S1008Menu(Mem.U32(0x800E3590u)).left.w) - (new S1008Menu(Mem.U32(0x800E3590u)).leftStep * 4));
-            new S1008Menu(Mem.U32(0x800E3590u)).left.x_Set((ushort)((int)(new S1008Menu(Mem.U32(0x800E3590u)).left.x) + t));
-            new S1008Menu(Mem.U32(0x800E3590u)).right__Set(UiTree_FindNode(arg0, (uint)(491), default(uint), default(uint)));
-            new S1008Menu(Mem.U32(0x800E3590u)).right.x_Set((ushort)((int)(new S1008Menu(Mem.U32(0x800E3590u)).right.x) + (int)(new S1008Menu(Mem.U32(0x800E3590u)).right.w)));
-            new S1008Menu(Mem.U32(0x800E3590u)).rightStep_Set(((int)(new S1008Menu(Mem.U32(0x800E3590u)).right.w) / 4));
-            t = ((int)(new S1008Menu(Mem.U32(0x800E3590u)).right.w) - (new S1008Menu(Mem.U32(0x800E3590u)).rightStep * 4));
-            new S1008Menu(Mem.U32(0x800E3590u)).right.x_Set((ushort)((int)(new S1008Menu(Mem.U32(0x800E3590u)).right.x) - t));
+            CursorGroup_SetShared(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).handle, 1);
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).state_Set(1);
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).timer_Set(4);
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).left__Set(UiTree_FindNode(arg0, (uint)(492), default(uint), default(uint)));
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).left.x_Set((ushort)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).left.x) - (int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).left.w)));
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).leftStep_Set(((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).left.w) / 4));
+            t = ((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).left.w) - (new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).leftStep * 4));
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).left.x_Set((ushort)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).left.x) + t));
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).right__Set(UiTree_FindNode(arg0, (uint)(491), default(uint), default(uint)));
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).right.x_Set((ushort)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).right.x) + (int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).right.w)));
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).rightStep_Set(((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).right.w) / 4));
+            t = ((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).right.w) - (new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).rightStep * 4));
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).right.x_Set((ushort)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).right.x) - t));
             new S1008Node(UiTree_FindNode(arg0, (uint)(488), default(uint), default(uint))).style_Set((byte)(110));
-            new S1008Menu(Mem.U32(0x800E3590u)).fade_Set((int)(Flicker_Create((uint)(486), (uint)(255), default(uint), default(uint))));
-            new S1008Menu(Mem.U32(0x800E3590u)).groupA__Set(UiTree_FindNode(arg0, (uint)(486), default(uint), default(uint)));
-            UiNode_SetVisible(new S1008Menu(Mem.U32(0x800E3590u)).groupA_, 0);
-            new S1008Menu(Mem.U32(0x800E3590u)).cursor__Set(UiTree_FindNode(arg0, (uint)(563), default(uint), default(uint)));
-            UiNode_SetVisible(new S1008Menu(Mem.U32(0x800E3590u)).cursor_, 0);
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).fade_Set((int)(Flicker_Create((uint)(486), (uint)(255), default(uint), default(uint))));
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupA__Set(UiTree_FindNode(arg0, (uint)(486), default(uint), default(uint)));
+            UiNode_SetVisible(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupA_, 0);
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).cursor__Set(UiTree_FindNode(arg0, (uint)(563), default(uint), default(uint)));
+            UiNode_SetVisible(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).cursor_, 0);
             new S1008Node(UiTree_FindNode(arg0, (uint)(496), default(uint), default(uint))).style_Set((byte)(110));
             new S1008Node(UiTree_FindNode(arg0, (uint)(497), default(uint), default(uint))).style_Set((byte)(120));
-            new S1008Menu(Mem.U32(0x800E3590u)).groupB__Set(UiTree_FindNode(arg0, (uint)(512), default(uint), default(uint)));
-            UiNode_SetVisible(new S1008Menu(Mem.U32(0x800E3590u)).groupB_, 0);
-            new S1008Menu(Mem.U32(0x800E3590u)).styleValue_Set(0);
-            new S1008Menu(Mem.U32(0x800E3590u)).styleStep_Set(27);
-            new S1008Menu(Mem.U32(0x800E3590u)).groupC__Set(UiTree_FindNode(arg0, (uint)(511), default(uint), default(uint)));
-            UiNode_SetVisible(new S1008Menu(Mem.U32(0x800E3590u)).groupC_, 0);
-            new S1008Menu(Mem.U32(0x800E3590u)).groupC.style_Set((byte)(0));
-            new S1008Menu(Mem.U32(0x800E3590u)).alphaStep_Set(25);
-            new S1008Menu(Mem.U32(0x800E3590u)).nodeF0__Set(UiTree_FindNode(arg0, (uint)(510), default(uint), default(uint)));
-            new S1008Menu(Mem.U32(0x800E3590u)).clock_Set(0);
-            new S1008Menu(Mem.U32(0x800E3590u)).f10C_Set((-1));
-            Profile_NextActiveSlot((Mem.U32(0x800E3590u) + 268u));
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupB__Set(UiTree_FindNode(arg0, (uint)(512), default(uint), default(uint)));
+            UiNode_SetVisible(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupB_, 0);
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).styleValue_Set(0);
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).styleStep_Set(27);
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupC__Set(UiTree_FindNode(arg0, (uint)(511), default(uint), default(uint)));
+            UiNode_SetVisible(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupC_, 0);
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupC.style_Set((byte)(0));
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).alphaStep_Set(25);
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).nodeF0__Set(UiTree_FindNode(arg0, (uint)(510), default(uint), default(uint)));
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).clock_Set(0);
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).f10C_Set((-1));
+            Profile_NextActiveSlot((Mem.U32(Gv.ProfileStats_PagePtr) + 268u));
             ProfileStats_ShowStats();
-            ProfileStats_ShowAwardIcons(new S1008Menu(Mem.U32(0x800E3590u)).styleValue);
+            ProfileStats_ShowAwardIcons(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).styleValue);
             new S1008Node(UiTree_FindNode(arg0, (uint)(493), default(uint), default(uint))).style_Set((byte)(110));
-            new S1008Menu(Mem.U32(0x800E3590u)).focus__Set(0u);
+            new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).focus__Set(0u);
             return 0;
         }
     }
@@ -421,82 +421,82 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0041D1A4", (uint)arg0, (uint)arg1, (uint)arg2);
             uint node = 0u;
-            switch (new S1008Menu(Mem.U32(0x800E3590u)).state)
+            switch (new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).state)
             {
             case 1:
-                new S1008Menu(Mem.U32(0x800E3590u)).left.x_Set((ushort)((int)(new S1008Menu(Mem.U32(0x800E3590u)).left.x) + (int)((ushort)(new S1008Menu(Mem.U32(0x800E3590u)).leftStep))));
-                new S1008Menu(Mem.U32(0x800E3590u)).right.x_Set((ushort)((int)(new S1008Menu(Mem.U32(0x800E3590u)).right.x) - (int)((ushort)(new S1008Menu(Mem.U32(0x800E3590u)).rightStep))));
-                if ((new S1008Menu(Mem.U32(0x800E3590u)).timer_Set((int)(new S1008Menu(Mem.U32(0x800E3590u)).timer - 1)) <= 0))
+                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).left.x_Set((ushort)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).left.x) + (int)((ushort)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).leftStep))));
+                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).right.x_Set((ushort)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).right.x) - (int)((ushort)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).rightStep))));
+                if ((new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).timer_Set((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).timer - 1)) <= 0))
                 {
                     Audio_PlaySound2D(3705);
-                    UiNode_SetVisible(new S1008Menu(Mem.U32(0x800E3590u)).groupA_, 1);
-                    Flicker_Trigger((uint)(new S1008Menu(Mem.U32(0x800E3590u)).fade), 4);
-                    new S1008Menu(Mem.U32(0x800E3590u)).state_Set(4);
-                    new S1008Menu(Mem.U32(0x800E3590u)).timer_Set(4);
+                    UiNode_SetVisible(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupA_, 1);
+                    Flicker_Trigger((uint)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).fade), 4);
+                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).state_Set(4);
+                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).timer_Set(4);
                 }
                 break;
             case 2:
-                new S1008Menu(Mem.U32(0x800E3590u)).left.x_Set((ushort)((int)(new S1008Menu(Mem.U32(0x800E3590u)).left.x) - (int)((ushort)(new S1008Menu(Mem.U32(0x800E3590u)).leftStep))));
-                new S1008Menu(Mem.U32(0x800E3590u)).right.x_Set((ushort)((int)(new S1008Menu(Mem.U32(0x800E3590u)).right.x) + (int)((ushort)(new S1008Menu(Mem.U32(0x800E3590u)).rightStep))));
-                if ((new S1008Menu(Mem.U32(0x800E3590u)).timer_Set((int)(new S1008Menu(Mem.U32(0x800E3590u)).timer - 1)) <= 0))
+                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).left.x_Set((ushort)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).left.x) - (int)((ushort)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).leftStep))));
+                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).right.x_Set((ushort)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).right.x) + (int)((ushort)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).rightStep))));
+                if ((new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).timer_Set((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).timer - 1)) <= 0))
                 {
-                    new S1008Menu(Mem.U32(0x800E3590u)).state_Set(3);
+                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).state_Set(3);
                     Menu_ConsumeEvent();
                     Menu_GoBack();
                     return 0;
                 }
                 break;
             case 4:
-                if ((Flicker_IsSteady((uint)(new S1008Menu(Mem.U32(0x800E3590u)).fade)) != 0))
+                if ((Flicker_IsSteady((uint)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).fade)) != 0))
                 {
-                    Flicker_Stop((uint)(new S1008Menu(Mem.U32(0x800E3590u)).fade));
-                    new S1008Menu(Mem.U32(0x800E3590u)).state_Set(6);
-                    new S1008Menu(Mem.U32(0x800E3590u)).timer_Set(4);
-                    UiNode_SetVisible(new S1008Menu(Mem.U32(0x800E3590u)).groupB_, 1);
-                    UiNode_SetVisible(new S1008Menu(Mem.U32(0x800E3590u)).groupC_, 1);
+                    Flicker_Stop((uint)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).fade));
+                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).state_Set(6);
+                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).timer_Set(4);
+                    UiNode_SetVisible(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupB_, 1);
+                    UiNode_SetVisible(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupC_, 1);
                 }
                 break;
             case 5:
                 Audio_PlaySound2D(3704);
-                new S1008Menu(Mem.U32(0x800E3590u)).state_Set(2);
-                new S1008Menu(Mem.U32(0x800E3590u)).timer_Set(4);
-                UiNode_SetVisible(new S1008Menu(Mem.U32(0x800E3590u)).groupB_, 0);
-                UiNode_SetVisible(new S1008Menu(Mem.U32(0x800E3590u)).groupC_, 0);
-                UiNode_SetVisible(new S1008Menu(Mem.U32(0x800E3590u)).groupA_, 0);
+                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).state_Set(2);
+                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).timer_Set(4);
+                UiNode_SetVisible(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupB_, 0);
+                UiNode_SetVisible(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupC_, 0);
+                UiNode_SetVisible(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupA_, 0);
                 break;
             case 6:
-                new S1008Menu(Mem.U32(0x800E3590u)).styleValue_Set((int)((int)(new S1008Menu(Mem.U32(0x800E3590u)).styleValue) + new S1008Menu(Mem.U32(0x800E3590u)).styleStep));
-                new S1008Menu(Mem.U32(0x800E3590u)).groupC.style_Set((byte)((int)(new S1008Menu(Mem.U32(0x800E3590u)).groupC.style) + (int)((byte)(new S1008Menu(Mem.U32(0x800E3590u)).alphaStep))));
-                ProfileStats_ShowAwardIcons(new S1008Menu(Mem.U32(0x800E3590u)).styleValue);
-                if ((new S1008Menu(Mem.U32(0x800E3590u)).timer_Set((int)(new S1008Menu(Mem.U32(0x800E3590u)).timer - 1)) <= 0))
+                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).styleValue_Set((int)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).styleValue) + new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).styleStep));
+                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupC.style_Set((byte)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupC.style) + (int)((byte)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).alphaStep))));
+                ProfileStats_ShowAwardIcons(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).styleValue);
+                if ((new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).timer_Set((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).timer - 1)) <= 0))
                 {
-                    new S1008Menu(Mem.U32(0x800E3590u)).groupC.style_Set((byte)(100));
+                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).groupC.style_Set((byte)(100));
                     ProfileStats_ShowAwardIcons(110);
-                    new S1008Menu(Mem.U32(0x800E3590u)).state_Set(3);
-                    UiNode_SetVisible(new S1008Menu(Mem.U32(0x800E3590u)).cursor_, 1);
+                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).state_Set(3);
+                    UiNode_SetVisible(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).cursor_, 1);
                 }
                 break;
             case 7:
                 break;
             }
-            if ((new S1008Menu(Mem.U32(0x800E3590u)).state == 3))
+            if ((new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).state == 3))
             {
-                new S1008Menu(Mem.U32(0x800E3590u)).clock_Set((int)((int)(new S1008Menu(Mem.U32(0x800E3590u)).clock) + arg2));
-                new S1008Menu(Mem.U32(0x800E3590u)).cursor.style_Set((byte)(int)(((cosf_Recompiled(((float)(new S1008Menu(Mem.U32(0x800E3590u)).clock) * 0.00333333341f)) * 30.0f) + 220.0f)));
-                node = CursorGroup_GetItem(new S1008Menu(Mem.U32(0x800E3590u)).handle, 0);
-                if ((node != new S1008Menu(Mem.U32(0x800E3590u)).focus_))
+                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).clock_Set((int)((int)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).clock) + arg2));
+                new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).cursor.style_Set((byte)(int)(((cosf_Recompiled(((float)(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).clock) * 0.00333333341f)) * 30.0f) + 220.0f)));
+                node = CursorGroup_GetItem(new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).handle, 0);
+                if ((node != new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).focus_))
                 {
                     Audio_PlaySound2D(3710);
-                    if ((new S1008Menu(Mem.U32(0x800E3590u)).focus_ != 0u))
+                    if ((new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).focus_ != 0u))
                     {
-                        new S1008Menu(Mem.U32(0x800E3590u)).focus.style_Set((byte)(110));
+                        new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).focus.style_Set((byte)(110));
                     }
-                    new S1008Menu(Mem.U32(0x800E3590u)).focus__Set(node);
+                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).focus__Set(node);
                     new S1008Node(node).style_Set((byte)(225));
                     ProfileStats_ShowAwardText();
                     ProfileStats_ShowAwardModel_0041D550();
-                    new S1008Menu(Mem.U32(0x800E3590u)).cursor.x_Set((ushort)(((int)(new S1008Node(node).x) - 2)));
-                    new S1008Menu(Mem.U32(0x800E3590u)).cursor.y_Set(new S1008Node(node).y);
+                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).cursor.x_Set((ushort)(((int)(new S1008Node(node).x) - 2)));
+                    new S1008Menu(Mem.U32(Gv.ProfileStats_PagePtr)).cursor.y_Set(new S1008Node(node).y);
                 }
             }
             return 0;
@@ -512,18 +512,18 @@ public static partial class Game
             int i = 0;
             int snd = 0;
             int idx = 0;
-            if ((new O3Pk(Mem.U32(0x800E3590u)).cur_ == 0u))
+            if ((new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).cur_ == 0u))
             {
-                PreviewModel_SetModel(new O3Pk(Mem.U32(0x800E3590u)).sub.P, 0);
+                PreviewModel_SetModel(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).sub.P, 0);
                 return;
             }
             i = 0;
             do
             {
-                if ((new O3Tbl((0x800E3594u + (uint)(i * 8))).key == (int)(new O3Pk(Mem.U32(0x800E3590u)).cur.id)))
+                if ((new O3Tbl((0x800E3594u + (uint)(i * 8))).key == (int)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).cur.id)))
                 {
                     snd = 0;
-                    if ((Bits_Test((0x80102B4Au + (uint)(new O3Pk(Mem.U32(0x800E3590u)).slot * 400)), i) == 1))
+                    if ((Bits_Test((Gv.Profile_AwardBits + (uint)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).slot * 400)), i) == 1))
                     {
                         idx = 0;
                         switch (i)
@@ -575,8 +575,8 @@ public static partial class Game
                             idx = i;
                             break;
                         }
-                        PreviewModel_SetModel(new O3Pk(Mem.U32(0x800E3590u)).sub.P, snd);
-                        PreviewModel_SetDrawArg(new O3Pk(Mem.U32(0x800E3590u)).sub.P, idx);
+                        PreviewModel_SetModel(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).sub.P, snd);
+                        PreviewModel_SetDrawArg(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).sub.P, idx);
                         if ((Resource_GetLoadFlags() == 0))
                         {
                             Resource_SetLoadFlags(1);
@@ -584,7 +584,7 @@ public static partial class Game
                     }
                     else
                     {
-                        PreviewModel_SetModel(new O3Pk(Mem.U32(0x800E3590u)).sub.P, snd);
+                        PreviewModel_SetModel(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).sub.P, snd);
                     }
                     return;
                 }
@@ -602,33 +602,33 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0041D718");
             uint it = 0u;
             int v = 0;
-            it = UiTree_FindNode((uint)(new O3Pk(Mem.U32(0x800E3590u)).parent), (uint)(499), default(uint), default(uint));
+            it = UiTree_FindNode((uint)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).parent), (uint)(499), default(uint), default(uint));
             UiNode_SetVisible(it, 1);
-            new O3TxtItem(it).txt_Set((0x80102B00u + (uint)(new O3Pk(Mem.U32(0x800E3590u)).slot * 400)));
-            it = UiTree_FindNode((uint)(new O3Pk(Mem.U32(0x800E3590u)).parent), (uint)(498), default(uint), default(uint));
+            new O3TxtItem(it).txt_Set((Gv.ProfileTable + (uint)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).slot * 400)));
+            it = UiTree_FindNode((uint)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).parent), (uint)(498), default(uint), default(uint));
             UiNode_SetVisible(it, 1);
-            new O3TxtItem(it).txt_Set(Profile_GetRankName(new O3Pk(Mem.U32(0x800E3590u)).slot));
-            it = UiTree_FindNode((uint)(new O3Pk(Mem.U32(0x800E3590u)).parent), (uint)(509), default(uint), default(uint));
+            new O3TxtItem(it).txt_Set(Profile_GetRankName(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).slot));
+            it = UiTree_FindNode((uint)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).parent), (uint)(509), default(uint), default(uint));
             UiNode_SetVisible(it, 1);
-            Str_FormatInto(new O3Pk(Mem.U32(0x800E3590u)).name.P, Str.Lit("%ld"), (uint)(new O3Rec((0x80102B00u + (uint)(new O3Pk(Mem.U32(0x800E3590u)).slot * 400))).f70), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-            new O3TxtItem(it).txt_Set(new O3Pk(Mem.U32(0x800E3590u)).name.P);
-            it = UiTree_FindNode((uint)(new O3Pk(Mem.U32(0x800E3590u)).parent), (uint)(500), default(uint), default(uint));
+            Str_FormatInto(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).name.P, Str.Lit("%ld"), (uint)(new O3Rec((Gv.ProfileTable + (uint)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).slot * 400))).f70), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            new O3TxtItem(it).txt_Set(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).name.P);
+            it = UiTree_FindNode((uint)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).parent), (uint)(500), default(uint), default(uint));
             UiNode_SetVisible(it, 1);
-            Str_FormatInto(new O3Pk(Mem.U32(0x800E3590u)).str142.P, Str.Lit("%ld"), (uint)(new O3Rec((0x80102B00u + (uint)(new O3Pk(Mem.U32(0x800E3590u)).slot * 400))).f6C), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-            new O3TxtItem(it).txt_Set(new O3Pk(Mem.U32(0x800E3590u)).str142.P);
-            it = UiTree_FindNode((uint)(new O3Pk(Mem.U32(0x800E3590u)).parent), (uint)(502), default(uint), default(uint));
+            Str_FormatInto(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).str142.P, Str.Lit("%ld"), (uint)(new O3Rec((Gv.ProfileTable + (uint)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).slot * 400))).f6C), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            new O3TxtItem(it).txt_Set(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).str142.P);
+            it = UiTree_FindNode((uint)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).parent), (uint)(502), default(uint), default(uint));
             UiNode_SetVisible(it, 1);
-            Str_FormatInto(new O3Pk(Mem.U32(0x800E3590u)).str174.P, Str.Lit("%ld"), (uint)(new O3Rec((0x80102B00u + (uint)(new O3Pk(Mem.U32(0x800E3590u)).slot * 400))).f74), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-            new O3TxtItem(it).txt_Set(new O3Pk(Mem.U32(0x800E3590u)).str174.P);
-            v = Profile_CountMedals(new O3Pk(Mem.U32(0x800E3590u)).slot);
-            it = UiTree_FindNode((uint)(new O3Pk(Mem.U32(0x800E3590u)).parent), (uint)(505), default(uint), default(uint));
+            Str_FormatInto(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).str174.P, Str.Lit("%ld"), (uint)(new O3Rec((Gv.ProfileTable + (uint)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).slot * 400))).f74), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            new O3TxtItem(it).txt_Set(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).str174.P);
+            v = Profile_CountMedals(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).slot);
+            it = UiTree_FindNode((uint)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).parent), (uint)(505), default(uint), default(uint));
             UiNode_SetVisible(it, 1);
-            Str_FormatInto(new O3Pk(Mem.U32(0x800E3590u)).str1A6.P, Str.Lit("%d"), (uint)(v), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-            new O3TxtItem(it).txt_Set(new O3Pk(Mem.U32(0x800E3590u)).str1A6.P);
-            it = UiTree_FindNode((uint)(new O3Pk(Mem.U32(0x800E3590u)).parent), (uint)(506), default(uint), default(uint));
+            Str_FormatInto(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).str1A6.P, Str.Lit("%d"), (uint)(v), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            new O3TxtItem(it).txt_Set(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).str1A6.P);
+            it = UiTree_FindNode((uint)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).parent), (uint)(506), default(uint), default(uint));
             UiNode_SetVisible(it, 1);
-            Str_FormatInto(new O3Pk(Mem.U32(0x800E3590u)).str1D8.P, Str.Lit("%d"), (uint)((int)(new O3Rec((0x80102B00u + (uint)(new O3Pk(Mem.U32(0x800E3590u)).slot * 400))).f17)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-            new O3TxtItem(it).txt_Set(new O3Pk(Mem.U32(0x800E3590u)).str1D8.P);
+            Str_FormatInto(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).str1D8.P, Str.Lit("%d"), (uint)((int)(new O3Rec((Gv.ProfileTable + (uint)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).slot * 400))).f17)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+            new O3TxtItem(it).txt_Set(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).str1D8.P);
         }
     }
 
@@ -640,23 +640,23 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0041D9D0");
             int i = 0;
             i = 0;
-            if ((new O3Pk(Mem.U32(0x800E3590u)).cur_ == 0u))
+            if ((new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).cur_ == 0u))
             {
-                new O3Pk(Mem.U32(0x800E3590u)).tgt.txt_Set((0x800E14F8u + (uint)4));
+                new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).tgt.txt_Set((0x800E14F8u + (uint)4));
             }
             else
             {
                 for (; (i < 50); ++i)
                 {
-                    if ((new O3Tbl((0x800E3594u + (uint)(i * 8))).key == (int)(new O3Pk(Mem.U32(0x800E3590u)).cur.id)))
+                    if ((new O3Tbl((0x800E3594u + (uint)(i * 8))).key == (int)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).cur.id)))
                     {
-                        if ((Bits_Test((0x80102B4Au + (uint)(new O3Pk(Mem.U32(0x800E3590u)).slot * 400)), i) == 1))
+                        if ((Bits_Test((Gv.Profile_AwardBits + (uint)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).slot * 400)), i) == 1))
                         {
-                            new O3Pk(Mem.U32(0x800E3590u)).tgt.txt_Set((uint)(Mem.S32(new O3Tbl((0x800E3594u + (uint)(i * 8))).val_)));
+                            new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).tgt.txt_Set((uint)(Mem.S32(new O3Tbl((0x800E3594u + (uint)(i * 8))).val_)));
                         }
                         else
                         {
-                            new O3Pk(Mem.U32(0x800E3590u)).tgt.txt_Set((0x800E14F8u + (uint)4));
+                            new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).tgt.txt_Set((0x800E14F8u + (uint)4));
                         }
                         break;
                     }
@@ -676,8 +676,8 @@ public static partial class Game
             i = 0;
             do
             {
-                it = UiTree_FindNode((uint)(new O3Pk(Mem.U32(0x800E3590u)).parent), (uint)((int)((ushort)(new O3Tbl((0x800E3594u + (uint)(i * 8))).key))), default(uint), default(uint));
-                if ((Bits_Test((0x80102B4Au + (uint)(new O3Pk(Mem.U32(0x800E3590u)).slot * 400)), i) == 1))
+                it = UiTree_FindNode((uint)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).parent), (uint)((int)((ushort)(new O3Tbl((0x800E3594u + (uint)(i * 8))).key))), default(uint), default(uint));
+                if ((Bits_Test((Gv.Profile_AwardBits + (uint)(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).slot * 400)), i) == 1))
                 {
                     UiNode_SetVisible(it, 1);
                     new O3Hdr(it).alpha_Set((byte)(alpha));
@@ -698,8 +698,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0041DC0C");
-            ResourcePool_MallocFree(Mem.U32(0x800E3590u));
-            Mem.Set(0x800E3590u, 0u);
+            ResourcePool_MallocFree(Mem.U32(Gv.ProfileStats_PagePtr));
+            Mem.Set(Gv.ProfileStats_PagePtr, 0u);
             return 0;
         }
     }
@@ -726,9 +726,9 @@ public static partial class Game
                 new O3Vec3((_fp + 16u)).x_Set(17.0f);
                 new O3Vec3((_fp + 16u)).y_Set((-10.0f));
                 new O3Vec3((_fp + 16u)).z_Set((-50.0f));
-                PreviewModel_Init(new O3Pk(Mem.U32(0x800E3590u)).sub.P, 0, _fp, (_fp + 16u));
-                PreviewModel_SetRotation(new O3Pk(Mem.U32(0x800E3590u)).sub.P, (_fp + 32u));
-                PreviewModel_SetSpin(new O3Pk(Mem.U32(0x800E3590u)).sub.P, (_fp + 48u));
+                PreviewModel_Init(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).sub.P, 0, _fp, (_fp + 16u));
+                PreviewModel_SetRotation(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).sub.P, (_fp + 32u));
+                PreviewModel_SetSpin(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).sub.P, (_fp + 48u));
                 Audio_PlaySound2D(3704);
                 return 0;
             }
@@ -744,24 +744,24 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0041DD30", (uint)a0, (uint)a1, (uint)a2);
             float k = 0f;
             uint g = 0u;
-            if (((a2 == 1) && (new O3Pk(Mem.U32(0x800E3590u)).fD8 == 3)))
+            if (((a2 == 1) && (new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).fD8 == 3)))
             {
                 k = 255.0f;
-                Mem.Set(0x800D15E0u, 0);
-                Mem.Set((0x800D15E4u + (uint)(0 * 4)), k);
-                Mem.Set((0x800D15E4u + (uint)(1 * 4)), k);
-                Mem.Set((0x800D15E4u + (uint)(2 * 4)), k);
-                Mem.Set((0x800D15E4u + (uint)(3 * 4)), k);
-                g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                Mem.Set(Gv.Model_ColorOverrideMode, 0);
+                Mem.Set((Gv.Model_ColorOverride + (uint)(0 * 4)), k);
+                Mem.Set((Gv.Model_ColorOverride + (uint)(1 * 4)), k);
+                Mem.Set((Gv.Model_ColorOverride + (uint)(2 * 4)), k);
+                Mem.Set((Gv.Model_ColorOverride + (uint)(3 * 4)), k);
+                g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new O3Dl(g).w0_Set(3976200192u);
-                new O3Dl(g).w1_Set((uint)(((((int)(((float)((Mem.S32(0x800E28D0u) - 1)) * 4.0f)) & 4095) << (int)12) | ((int)(((float)((Mem.S32(0x800E28D4u) - 1)) * 4.0f)) & 4095))));
-                if ((PreviewModel_GetModelId(new O3Pk(Mem.U32(0x800E3590u)).sub.P) != 0))
+                new O3Dl(g).w1_Set((uint)(((((int)(((float)((Mem.S32(Gv.ScreenWidth) - 1)) * 4.0f)) & 4095) << (int)12) | ((int)(((float)((Mem.S32(Gv.ScreenHeight) - 1)) * 4.0f)) & 4095))));
+                if ((PreviewModel_GetModelId(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).sub.P) != 0))
                 {
-                    Mem.Set(0x800D15E0u, a2);
-                    Mem.Set((0x800D15E4u + (uint)(3 * 4)), 210.0f);
-                    PreviewModel_Draw(new O3Pk(Mem.U32(0x800E3590u)).sub.P);
-                    Mem.Set(0x800D15E0u, 0);
-                    Mem.Set((0x800D15E4u + (uint)(3 * 4)), k);
+                    Mem.Set(Gv.Model_ColorOverrideMode, a2);
+                    Mem.Set((Gv.Model_ColorOverride + (uint)(3 * 4)), 210.0f);
+                    PreviewModel_Draw(new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).sub.P);
+                    Mem.Set(Gv.Model_ColorOverrideMode, 0);
+                    Mem.Set((Gv.Model_ColorOverride + (uint)(3 * 4)), k);
                 }
             }
             return 0;
@@ -777,11 +777,11 @@ public static partial class Game
             if ((((a2 >> (int)16) == (uint)(3)) && (a3 == 0)))
             {
                 Menu_ConsumeEvent();
-                Profile_NextActiveSlot((Mem.U32(0x800E3590u) + 268u));
+                Profile_NextActiveSlot((Mem.U32(Gv.ProfileStats_PagePtr) + 268u));
                 ProfileStats_ShowAwardIcons(110);
                 ProfileStats_ShowStats();
                 ProfileStats_ShowAwardText();
-                new O3Pk(Mem.U32(0x800E3590u)).cur__Set(0u);
+                new O3Pk(Mem.U32(Gv.ProfileStats_PagePtr)).cur__Set(0u);
             }
             return 0;
         }
@@ -794,8 +794,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0041DECC");
             Menu_ConsumeEvent();
-            new O3X(Mem.U32(0x800E3590u)).fD8_Set(5);
-            new O3X(Mem.U32(0x800E3590u)).fDC_Set(4);
+            new O3X(Mem.U32(Gv.ProfileStats_PagePtr)).fD8_Set(5);
+            new O3X(Mem.U32(Gv.ProfileStats_PagePtr)).fDC_Set(4);
             return 0;
         }
     }
@@ -818,13 +818,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0041DF24", (uint)obj, (uint)msg, (uint)a2, (uint)a3);
             int i = 0;
-            for (i = 0; (new O3Msg((0x800E3724u + (uint)(i * 12))).fn != 0u); ++i)
+            for (i = 0; (new O3Msg((Gv.ProfileStats_MsgTable + (uint)(i * 12))).fn != 0u); ++i)
             {
-                if ((new O3Msg((0x800E3724u + (uint)(i * 12))).msg == msg))
+                if ((new O3Msg((Gv.ProfileStats_MsgTable + (uint)(i * 12))).msg == msg))
                 {
-                    if (((new O3Msg((0x800E3724u + (uint)(i * 12))).type == (int)(new O3Hdr(obj).id)) || (new O3Msg((0x800E3724u + (uint)(i * 12))).type == 30000)))
+                    if (((new O3Msg((Gv.ProfileStats_MsgTable + (uint)(i * 12))).type == (int)(new O3Hdr(obj).id)) || (new O3Msg((Gv.ProfileStats_MsgTable + (uint)(i * 12))).type == 30000)))
                     {
-                        return (int)(Funcs.CallRegX(new O3Msg((0x800E3724u + (uint)(i * 12))).fn, obj, (uint)(msg), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
+                        return (int)(Funcs.CallRegX(new O3Msg((Gv.ProfileStats_MsgTable + (uint)(i * 12))).fn, obj, (uint)(msg), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
                     }
                 }
             }
@@ -845,54 +845,54 @@ public static partial class Game
             int id = 0;
             uint w = 0u;
             uint t = 0u;
-            Mem.Set(0x800E54A4u, ResourcePool_Malloc((uint)(13428)));
-            new Q03Lob(Mem.U32(0x800E54A4u)).h.f0_Set(arg0);
-            ScreenWipe_Init(new Q03Lob(Mem.U32(0x800E54A4u)).h.blk8.P, 103, 0, 0, 0);
-            new Q03Lob(Mem.U32(0x800E54A4u)).h.f4_Set(CursorGroup_Create(arg0, 4));
+            Mem.Set(Gv.PlayerMenu_PagePtr, ResourcePool_Malloc((uint)(13428)));
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f0_Set(arg0);
+            ScreenWipe_Init(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.blk8.P, 103, 0, 0, 0);
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4_Set(CursorGroup_Create(arg0, 4));
             CursorGroup_SetCursorById(arg0, 0, 645);
             CursorGroup_SetCursorById(arg0, 1, 645);
             CursorGroup_SetCursorById(arg0, 2, 645);
             CursorGroup_SetCursorById(arg0, 3, 645);
             for (i = 3; (i >= 0); --i)
             {
-                new Q03Lob(Mem.U32(0x800E54A4u)).h.w2C.Set((int)(i), 0);
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.w2C.Set((int)(i), 0);
             }
-            new Q03Lob(Mem.U32(0x800E54A4u)).h.f4C_Set(1);
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4C_Set(1);
             i = 4;
-            new Q03Lob(Mem.U32(0x800E54A4u)).h.f50_Set(i);
-            new Q03Lob(Mem.U32(0x800E54A4u)).h.f3C__Set(UiTree_FindNode(arg0, (uint)(763), default(uint), default(uint)));
-            new Q03Lob(Mem.U32(0x800E54A4u)).h.f3C.u14_Set((ushort)(((int)(new Q03Lob(Mem.U32(0x800E54A4u)).h.f3C.u14) - (int)(Mem.U16(new Q03Lob(Mem.U32(0x800E54A4u)).h.f3C.w18.P)))));
-            new Q03Lob(Mem.U32(0x800E54A4u)).h.f40_Set(((int)(Mem.S16(new Q03Lob(Mem.U32(0x800E54A4u)).h.f3C.w18.P)) / 4));
-            m = ((int)(Mem.S16(new Q03Lob(Mem.U32(0x800E54A4u)).h.f3C.w18.P)) - (new Q03Lob(Mem.U32(0x800E54A4u)).h.f40 * 4));
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f50_Set(i);
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f3C__Set(UiTree_FindNode(arg0, (uint)(763), default(uint), default(uint)));
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f3C.u14_Set((ushort)(((int)(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f3C.u14) - (int)(Mem.U16(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f3C.w18.P)))));
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f40_Set(((int)(Mem.S16(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f3C.w18.P)) / 4));
+            m = ((int)(Mem.S16(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f3C.w18.P)) - (new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f40 * 4));
             {
                 int r = m;
-                new Q03Lob(Mem.U32(0x800E54A4u)).h.f3C.u14_Set((ushort)(((int)(new Q03Lob(Mem.U32(0x800E54A4u)).h.f3C.u14) + r)));
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f3C.u14_Set((ushort)(((int)(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f3C.u14) + r)));
             }
-            new Q03Lob(Mem.U32(0x800E54A4u)).h.f44__Set(UiTree_FindNode(arg0, (uint)(674), default(uint), default(uint)));
-            new Q03Lob(Mem.U32(0x800E54A4u)).h.f44.u14_Set((ushort)(((int)(new Q03Lob(Mem.U32(0x800E54A4u)).h.f44.u14) + (int)(Mem.U16(new Q03Lob(Mem.U32(0x800E54A4u)).h.f44.w18.P)))));
-            new Q03Lob(Mem.U32(0x800E54A4u)).h.f48_Set(((int)(Mem.S16(new Q03Lob(Mem.U32(0x800E54A4u)).h.f44.w18.P)) / 4));
-            m = ((int)(Mem.S16(new Q03Lob(Mem.U32(0x800E54A4u)).h.f44.w18.P)) - (new Q03Lob(Mem.U32(0x800E54A4u)).h.f48 * 4));
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f44__Set(UiTree_FindNode(arg0, (uint)(674), default(uint), default(uint)));
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f44.u14_Set((ushort)(((int)(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f44.u14) + (int)(Mem.U16(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f44.w18.P)))));
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f48_Set(((int)(Mem.S16(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f44.w18.P)) / 4));
+            m = ((int)(Mem.S16(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f44.w18.P)) - (new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f48 * 4));
             {
                 int r_2 = m;
-                new Q03Lob(Mem.U32(0x800E54A4u)).h.f44.u14_Set((ushort)(((int)(new Q03Lob(Mem.U32(0x800E54A4u)).h.f44.u14) - r_2)));
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f44.u14_Set((ushort)(((int)(new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f44.u14) - r_2)));
             }
             new Q03WdS(UiTree_FindNode(arg0, (uint)(646), default(uint), default(uint))).b10_Set((byte)(110));
-            new Q03Lob(Mem.U32(0x800E54A4u)).h.f24_Set(Flicker_Create((uint)(647), (uint)(255), default(uint), default(uint)));
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f24_Set(Flicker_Create((uint)(647), (uint)(255), default(uint), default(uint)));
             t = UiTree_FindNode(arg0, (uint)(647), default(uint), default(uint));
-            new Q03Lob(Mem.U32(0x800E54A4u)).h.f28_Set(t);
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f28_Set(t);
             UiNode_SetVisible(t, 0);
-            new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(0)].f10_Set(UiTree_FindNode(arg0, (uint)(764), default(uint), default(uint)));
-            new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(1)].f10_Set(UiTree_FindNode(arg0, (uint)(675), default(uint), default(uint)));
-            new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(2)].f10_Set(UiTree_FindNode(arg0, (uint)(765), default(uint), default(uint)));
-            new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(3)].f10_Set(UiTree_FindNode(arg0, (uint)(762), default(uint), default(uint)));
-            new Q03Lob(Mem.U32(0x800E54A4u)).h.f54_Set((int)(Mem.U32(0x800E54A0u)));
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(0)].f10_Set(UiTree_FindNode(arg0, (uint)(764), default(uint), default(uint)));
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(1)].f10_Set(UiTree_FindNode(arg0, (uint)(675), default(uint), default(uint)));
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(2)].f10_Set(UiTree_FindNode(arg0, (uint)(765), default(uint), default(uint)));
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(3)].f10_Set(UiTree_FindNode(arg0, (uint)(762), default(uint), default(uint)));
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f54_Set((int)(Mem.U32(0x800E54A0u)));
             for (i = 0; (i < 4); ++i)
             {
-                new Q03Lob(Mem.U32(0x800E54A4u)).slot[(int)(i)].a_Set((-1));
-                new Q03Lob(Mem.U32(0x800E54A4u)).slot[(int)(i)].b_Set(0);
-                new Q03Lob(Mem.U32(0x800E54A4u)).slot[(int)(i)].c_Set(2);
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).slot[(int)(i)].a_Set((-1));
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).slot[(int)(i)].b_Set(0);
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).slot[(int)(i)].c_Set(2);
             }
-            switch (new Q03Lob(Mem.U32(0x800E54A4u)).h.f54)
+            switch (new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f54)
             {
             case 7:
                 break;
@@ -932,18 +932,18 @@ public static partial class Game
                 new Q03WdS(w).b10_Set((byte)(255));
                 for (i = 0; (i < 4); ++i)
                 {
-                    if (((int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bD) >= 0))
+                    if (((int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).bD) >= 0))
                     {
-                        if (((int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bE) == 1))
+                        if (((int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).bE) == 1))
                         {
-                            new O05Rec((0x80102B00u + (uint)(i * 400))).bD_Set((sbyte)((-1)));
-                            new O05Rec((0x80102B00u + (uint)(i * 400))).bE_Set((sbyte)(0));
+                            new O05Rec((Gv.ProfileTable + (uint)(i * 400))).bD_Set((sbyte)((-1)));
+                            new O05Rec((Gv.ProfileTable + (uint)(i * 400))).bE_Set((sbyte)(0));
                         }
-                        if (((int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bD) >= 0))
+                        if (((int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).bD) >= 0))
                         {
-                            new Q03Lob(Mem.U32(0x800E54A4u)).slot[(int)(i)].a_Set(0);
-                            new Q03Lob(Mem.U32(0x800E54A4u)).slot[(int)(i)].b_Set(i);
-                            new Q03Lob(Mem.U32(0x800E54A4u)).slot[(int)(i)].c_Set(1);
+                            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).slot[(int)(i)].a_Set(0);
+                            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).slot[(int)(i)].b_Set(i);
+                            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).slot[(int)(i)].c_Set(1);
                         }
                     }
                 }
@@ -962,32 +962,32 @@ public static partial class Game
             }
             for (i = 0; (i < 4); ++i)
             {
-                new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(i)].state_Set(0);
-                new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(i)].fC_Set(0u);
-                new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(i)].f14_Set((-1));
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].state_Set(0);
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].fC_Set(0u);
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].f14_Set((-1));
                 PlayerMenu_RefreshPanel((uint)(i), default(uint), default(uint), default(uint));
                 Pad_EnableStatusPoll(i);
                 for (j = 0; (j < 4); ++j)
                 {
-                    Profile_Init((new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(i)].rec.P + (uint)(j * 400)));
+                    Profile_Init((new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].rec.P + (uint)(j * 400)));
                 }
                 for (j = 0; (j < 16); ++j)
                 {
-                    memset((new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(i)].items[(int)(j)].b.P + (uint)40), 0, (uint)(20));
-                    memset((new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(i)].items[(int)(j)].b.P + (uint)60), 0, (uint)(10));
+                    memset((new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].items[(int)(j)].b.P + (uint)40), 0, (uint)(20));
+                    memset((new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].items[(int)(j)].b.P + (uint)60), 0, (uint)(10));
                 }
-                memset((new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(i)].padAB8.P + (uint)20), 0, (uint)(10));
-                memset((new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(i)].padAB8.P + (uint)10), 0, (uint)(10));
-                memset((new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(i)].padAB8.P + (uint)0), 0, (uint)(10));
-                new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(i)].scroll_Set(0);
-                new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(i)].fAEC_Set(0);
+                memset((new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].padAB8.P + (uint)20), 0, (uint)(10));
+                memset((new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].padAB8.P + (uint)10), 0, (uint)(10));
+                memset((new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].padAB8.P + (uint)0), 0, (uint)(10));
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].scroll_Set(0);
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].fAEC_Set(0);
                 for (j = 0; (j < 4); ++j)
                 {
-                    new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(i)].tabAF0.Set((int)(j), 2);
-                    new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(i)].wdB00.Set((int)(j), 0u);
+                    new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].tabAF0.Set((int)(j), 2);
+                    new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].wdB00.Set((int)(j), 0u);
                 }
                 {
-                    uint P = (Mem.U32(0x800E54A4u) + (uint)(i * 2920));
+                    uint P = (Mem.U32(Gv.PlayerMenu_PagePtr) + (uint)(i * 2920));
                     Mem.Set((P + (uint)2948), 0);
                     Mem.Set((P + (uint)2952), 0);
                     Mem.Set((P + (uint)3004), 0);
@@ -996,24 +996,24 @@ public static partial class Game
                     Mem.Set((P + (uint)2944), (-1));
                 }
             }
-            new Q03Lob(Mem.U32(0x800E54A4u)).f3470_Set((-1));
-            switch (new Q03Lob(Mem.U32(0x800E54A4u)).h.f54)
+            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).f3470_Set((-1));
+            switch (new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f54)
             {
             case 5:
                 id = 14;
                 for (i = 3; (i >= 0); --i)
                 {
-                    new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(i)].state_Set(id);
+                    new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].state_Set(id);
                 }
                 for (i = 0; (i < 4); ++i)
                 {
-                    if (((int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bE) == 0))
+                    if (((int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).bE) == 0))
                     {
-                        if (((((int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bD) >= 0) && ((int)(new O05GameState(0x801462C8u).rec[(int)(i)].b0) == 1)) && ((int)(new O05GameState(0x801462C8u).rec[(int)(i)].b19) == 0)))
+                        if (((((int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).bD) >= 0) && ((int)(new O05GameState(Gv.Settings).rec[(int)(i)].b0) == 1)) && ((int)(new O05GameState(Gv.Settings).rec[(int)(i)].b19) == 0)))
                         {
-                            new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bD)].f14_Set(2);
-                            new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bD)].state_Set(2);
-                            new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bD)].f8_Set(6);
+                            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).bD)].f14_Set(2);
+                            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).bD)].state_Set(2);
+                            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).bD)].f8_Set(6);
                         }
                     }
                 }
@@ -1034,31 +1034,31 @@ public static partial class Game
                         m2 = CPak_GetStatus(i);
                         if (((m2 >= (-4)) && ((m2 < (-2)) || (((m2 <= 0) ? ((m2 >= (-1)) ? 1 : 0) : 0) != 0))))
                         {
-                            new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(i)].f14_Set(2);
-                            new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(i)].state_Set(2);
-                            new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(i)].f8_Set(4);
+                            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].f14_Set(2);
+                            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].state_Set(2);
+                            new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].f8_Set(4);
                             PlayerMenu_RefreshPanel((uint)(i), default(uint), default(uint), default(uint));
                         }
                     }
                 }
                 else
                 {
-                    CPak_DetectPort(Mem.S32(0x800E3510u));
-                    m2 = CPak_GetStatus(Mem.S32(0x800E3510u));
+                    CPak_DetectPort(Mem.S32(Gv.PakCheck_Port));
+                    m2 = CPak_GetStatus(Mem.S32(Gv.PakCheck_Port));
                     if (((m2 >= (-4)) && ((m2 < (-2)) || (((m2 <= 0) ? ((m2 >= (-1)) ? 1 : 0) : 0) != 0))))
                     {
-                        new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(Mem.S32(0x800E3510u))].f14_Set(2);
-                        new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(Mem.S32(0x800E3510u))].state_Set(2);
-                        new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(Mem.S32(0x800E3510u))].f8_Set(4);
-                        PlayerMenu_RefreshPanel((uint)(Mem.S32(0x800E3510u)), default(uint), default(uint), default(uint));
+                        new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(Mem.S32(Gv.PakCheck_Port))].f14_Set(2);
+                        new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(Mem.S32(Gv.PakCheck_Port))].state_Set(2);
+                        new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(Mem.S32(Gv.PakCheck_Port))].f8_Set(4);
+                        PlayerMenu_RefreshPanel((uint)(Mem.S32(Gv.PakCheck_Port)), default(uint), default(uint), default(uint));
                     }
                 }
                 break;
             case 7:
-                new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(0)].f14_Set(2);
-                new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(0)].state_Set(2);
-                new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(0)].f8_Set(13);
-                new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(0)].f4_Set(6);
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(0)].f14_Set(2);
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(0)].state_Set(2);
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(0)].f8_Set(13);
+                new Q03Lob(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(0)].f4_Set(6);
                 PlayerMenu_RefreshPanel((uint)(0), default(uint), default(uint), default(uint));
                 break;
             }
@@ -2030,16 +2030,16 @@ public static partial class Game
             {
                 return 0;
             }
-            if ((new O05Lobby(Mem.U32(0x800E54A4u)).h.f4C == 3))
+            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4C == 3))
             {
                 for (i = 0; (i < 4); ++i)
                 {
-                    if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].f14 > 0))
+                    if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].f14 > 0))
                     {
-                        new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].f14_Set((int)(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].f14 - 1));
-                        if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].f14 == 0))
+                        new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].f14_Set((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].f14 - 1));
+                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].f14 == 0))
                         {
-                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].f14_Set((-1));
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].f14_Set((-1));
                             Menu_DisableInput();
                             CPak_DetectPort(i);
                             PlayerMenu_ProbePak((uint)(i), default(uint), default(uint), default(uint));
@@ -2048,22 +2048,22 @@ public static partial class Game
                     }
                 }
             }
-            if ((ScreenWipe_GetState(new O05Lobby(Mem.U32(0x800E54A4u)).h.blk8.P) != 1))
+            if ((ScreenWipe_GetState(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.blk8.P) != 1))
             {
                 return 0;
             }
-            ScreenWipe_Draw(new O05Lobby(Mem.U32(0x800E54A4u)).h.blk8.P);
-            ScreenWipe_Advance(new O05Lobby(Mem.U32(0x800E54A4u)).h.blk8.P);
-            if ((ScreenWipe_GetState(new O05Lobby(Mem.U32(0x800E54A4u)).h.blk8.P) != 2))
+            ScreenWipe_Draw(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.blk8.P);
+            ScreenWipe_Advance(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.blk8.P);
+            if ((ScreenWipe_GetState(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.blk8.P) != 2))
             {
                 return 0;
             }
-            if ((new O05Lobby(Mem.U32(0x800E54A4u)).h.f54 != 5))
+            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f54 != 5))
             {
                 return 0;
             }
             Menu_ConsumeEvent();
-            switch ((int)(Mem.U8(0x801462D5u)))
+            switch ((int)(Mem.U8(Gv.Settings_GameMode)))
             {
             case 0:
                 Results_ContinueCustomMatch();
@@ -2087,34 +2087,34 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0042FAFC", (uint)a, (uint)b, (uint)ev);
-            if ((Mem.S32(0x800E28E0u) >= 2))
+            if ((Mem.S32(Gv.Video_ResChangeCountdown) >= 2))
             {
                 return 0;
             }
-            switch (new O05Lobby(Mem.U32(0x800E54A4u)).h.f4C)
+            switch (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4C)
             {
             case 1:
-                new O05Wh(new O05Lobby(Mem.U32(0x800E54A4u)).h.f3C).h14_Set((ushort)((int)(new O05Wh(new O05Lobby(Mem.U32(0x800E54A4u)).h.f3C).h14) + (int)(new O05Lobby(Mem.U32(0x800E54A4u)).h.h42)));
-                new O05Wh(new O05Lobby(Mem.U32(0x800E54A4u)).h.f44).h14_Set((ushort)((int)(new O05Wh(new O05Lobby(Mem.U32(0x800E54A4u)).h.f44).h14) - (int)(new O05Lobby(Mem.U32(0x800E54A4u)).h.h4A)));
-                new O05Lobby(Mem.U32(0x800E54A4u)).h.f50_Set((int)(new O05Lobby(Mem.U32(0x800E54A4u)).h.f50 - 1));
-                if ((new O05Lobby(Mem.U32(0x800E54A4u)).h.f50 <= 0))
+                new O05Wh(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f3C).h14_Set((ushort)((int)(new O05Wh(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f3C).h14) + (int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.h42)));
+                new O05Wh(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f44).h14_Set((ushort)((int)(new O05Wh(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f44).h14) - (int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.h4A)));
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f50_Set((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f50 - 1));
+                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f50 <= 0))
                 {
                     Audio_PlaySound2D(3705);
-                    UiNode_SetVisible(new O05Lobby(Mem.U32(0x800E54A4u)).h.f28, 1);
-                    Flicker_Trigger(new O05Lobby(Mem.U32(0x800E54A4u)).h.f24, 4);
-                    new O05Lobby(Mem.U32(0x800E54A4u)).h.f4C_Set(4);
-                    new O05Lobby(Mem.U32(0x800E54A4u)).h.f50_Set(4);
+                    UiNode_SetVisible(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f28, 1);
+                    Flicker_Trigger(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f24, 4);
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4C_Set(4);
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f50_Set(4);
                 }
                 break;
             case 2:
-                new O05Wh(new O05Lobby(Mem.U32(0x800E54A4u)).h.f3C).h14_Set((ushort)((int)(new O05Wh(new O05Lobby(Mem.U32(0x800E54A4u)).h.f3C).h14) - (int)(new O05Lobby(Mem.U32(0x800E54A4u)).h.h42)));
-                new O05Wh(new O05Lobby(Mem.U32(0x800E54A4u)).h.f44).h14_Set((ushort)((int)(new O05Wh(new O05Lobby(Mem.U32(0x800E54A4u)).h.f44).h14) + (int)(new O05Lobby(Mem.U32(0x800E54A4u)).h.h4A)));
-                new O05Lobby(Mem.U32(0x800E54A4u)).h.f50_Set((int)(new O05Lobby(Mem.U32(0x800E54A4u)).h.f50 - 1));
-                if ((new O05Lobby(Mem.U32(0x800E54A4u)).h.f50 <= 0))
+                new O05Wh(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f3C).h14_Set((ushort)((int)(new O05Wh(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f3C).h14) - (int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.h42)));
+                new O05Wh(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f44).h14_Set((ushort)((int)(new O05Wh(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f44).h14) + (int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.h4A)));
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f50_Set((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f50 - 1));
+                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f50 <= 0))
                 {
-                    new O05Lobby(Mem.U32(0x800E54A4u)).h.f4C_Set(3);
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4C_Set(3);
                     Menu_ConsumeEvent();
-                    Menu_GotoScreen(new O05Lobby(Mem.U32(0x800E54A4u)).f3470);
+                    Menu_GotoScreen(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).f3470);
                     return 0;
                 }
                 break;
@@ -2123,29 +2123,29 @@ public static partial class Game
                 break;
             case 4:
                 {
-                    uint p = new O05Lobby(Mem.U32(0x800E54A4u)).h.P;
+                    uint p = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.P;
                     int y = new O05Hdr(p).f50;
                     int x = (y - 1);
                     int t = ((x >= 0) ? (y - ((y >= x) ? 1 : 0)) : 0);
                     new O05Hdr(p).f50_Set(t);
                 }
-                if ((new O05Lobby(Mem.U32(0x800E54A4u)).h.f50 <= 0))
+                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f50 <= 0))
                 {
-                    if ((Flicker_IsSteady(new O05Lobby(Mem.U32(0x800E54A4u)).h.f24) != 0))
+                    if ((Flicker_IsSteady(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f24) != 0))
                     {
-                        Flicker_Stop(new O05Lobby(Mem.U32(0x800E54A4u)).h.f24);
-                        new O05Lobby(Mem.U32(0x800E54A4u)).h.f4C_Set(3);
+                        Flicker_Stop(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f24);
+                        new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4C_Set(3);
                     }
                 }
                 break;
             case 5:
                 Audio_PlaySound2D(3704);
-                new O05Lobby(Mem.U32(0x800E54A4u)).h.f4C_Set(2);
-                new O05Lobby(Mem.U32(0x800E54A4u)).h.f50_Set(4);
-                UiNode_SetVisible(new O05Lobby(Mem.U32(0x800E54A4u)).h.f28, 0);
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4C_Set(2);
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f50_Set(4);
+                UiNode_SetVisible(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f28, 0);
                 break;
             }
-            if ((new O05Lobby(Mem.U32(0x800E54A4u)).h.f4C == 3))
+            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4C == 3))
             {
                 PlayerMenu_AnimateCursors(ev);
             }
@@ -2162,7 +2162,7 @@ public static partial class Game
             int k = (int)((c & (uint)(65535)));
             if (((c >> (int)16) == (uint)(3)))
             {
-                switch (new O05Lobby(Mem.U32(0x800E54A4u)).h.f54)
+                switch (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f54)
                 {
                 case 7:
                     break;
@@ -2171,12 +2171,12 @@ public static partial class Game
                 case 6:
                     if ((d == 10))
                     {
-                        if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state == 4))
+                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].state == 4))
                         {
                             Menu_ConsumeEvent();
-                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f14_Set(2);
-                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state_Set(2);
-                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f8_Set(4);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].f14_Set(2);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].state_Set(2);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].f8_Set(4);
                             PlayerMenu_RefreshPanel((uint)(k), default(uint), default(uint), default(uint));
                         }
                     }
@@ -2186,22 +2186,22 @@ public static partial class Game
                     {
                     case 11:
                     case 13:
-                        if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state == 0))
+                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].state == 0))
                         {
                             Menu_ConsumeEvent();
-                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f14_Set(2);
-                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state_Set(2);
-                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f8_Set(4);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].f14_Set(2);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].state_Set(2);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].f8_Set(4);
                             PlayerMenu_RefreshPanel((uint)(k), default(uint), default(uint), default(uint));
                         }
                         break;
                     case 10:
-                        if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state == 4))
+                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].state == 4))
                         {
                             Menu_ConsumeEvent();
-                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f14_Set(2);
-                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state_Set(2);
-                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f8_Set(4);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].f14_Set(2);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].state_Set(2);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].f8_Set(4);
                             PlayerMenu_RefreshPanel((uint)(k), default(uint), default(uint), default(uint));
                         }
                         break;
@@ -2210,12 +2210,12 @@ public static partial class Game
                 case 0:
                     if (((d == 11) || (d == 13)))
                     {
-                        if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state == 0))
+                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].state == 0))
                         {
                             Menu_ConsumeEvent();
-                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f14_Set(2);
-                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state_Set(2);
-                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f8_Set(12);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].f14_Set(2);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].state_Set(2);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].f8_Set(12);
                             PlayerMenu_RefreshPanel((uint)(k), default(uint), default(uint), default(uint));
                         }
                     }
@@ -2223,13 +2223,13 @@ public static partial class Game
                 case 3:
                     if (((d == 11) || (d == 13)))
                     {
-                        if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state == 0))
+                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].state == 0))
                         {
                             Menu_ConsumeEvent();
-                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f14_Set(2);
-                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state_Set(2);
-                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f8_Set(13);
-                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f4_Set(5);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].f14_Set(2);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].state_Set(2);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].f8_Set(13);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].f4_Set(5);
                             PlayerMenu_RefreshPanel((uint)(k), default(uint), default(uint), default(uint));
                         }
                     }
@@ -2237,16 +2237,16 @@ public static partial class Game
                 case 1:
                     if (((d == 11) || (d == 13)))
                     {
-                        if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state == 0))
+                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].state == 0))
                         {
                             Menu_ConsumeEvent();
-                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state_Set(14);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].state_Set(14);
                             if ((PlayerMenu_FindWaitingPad() >= 0))
                             {
-                                new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f14_Set(2);
-                                new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state_Set(2);
-                                new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f8_Set(13);
-                                new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f4_Set(6);
+                                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].f14_Set(2);
+                                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].state_Set(2);
+                                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].f8_Set(13);
+                                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].f4_Set(6);
                             }
                             PlayerMenu_RefreshPanel((uint)(k), default(uint), default(uint), default(uint));
                         }
@@ -2255,16 +2255,16 @@ public static partial class Game
                 case 2:
                     if (((d == 11) || (d == 13)))
                     {
-                        if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state == 0))
+                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].state == 0))
                         {
                             Menu_ConsumeEvent();
-                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state_Set(14);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].state_Set(14);
                             if ((PlayerMenu_FindWaitingPad() >= 0))
                             {
-                                new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f14_Set(2);
-                                new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state_Set(2);
-                                new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f8_Set(13);
-                                new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f4_Set(3);
+                                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].f14_Set(2);
+                                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].state_Set(2);
+                                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].f8_Set(13);
+                                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].f4_Set(3);
                             }
                             PlayerMenu_RefreshPanel((uint)(k), default(uint), default(uint), default(uint));
                         }
@@ -2284,23 +2284,23 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00430120", (uint)a, (uint)b, (uint)c, (uint)d);
             int idx = (int)((c & (uint)(65535)));
             uint obj = 0u;
-            if ((new LR(Mem.U32(0x800E54A4u)).plr[(int)(idx)].state != 12))
+            if ((new LR(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].state != 12))
             {
                 return 0;
             }
-            obj = CursorGroup_GetItem(Mem.U32((Mem.U32(0x800E54A4u) + (uint)4)), idx);
-            new LR(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB4C_Set(0);
-            new LR(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB48_Set(2);
+            obj = CursorGroup_GetItem(Mem.U32((Mem.U32(Gv.PlayerMenu_PagePtr) + (uint)4)), idx);
+            new LR(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB4C_Set(0);
+            new LR(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB48_Set(2);
             if ((d == 1))
             {
-                int v = (new LR(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 + 1);
+                int v = (new LR(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB44 + 1);
                 if ((v < 7))
                 {
-                    new LR(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44_Set(v);
+                    new LR(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB44_Set(v);
                 }
-                if (((int)(Mem.U8(((Mem.U32(0x800E54A4u) + (uint)((idx * 2920) + (new LR(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 * 2))) + (uint)2956))) == 0))
+                if (((int)(Mem.U8(((Mem.U32(Gv.PlayerMenu_PagePtr) + (uint)((idx * 2920) + (new LR(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB44 * 2))) + (uint)2956))) == 0))
                 {
-                    Mem.Set(((Mem.U32(0x800E54A4u) + (uint)((idx * 2920) + (new LR(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 * 2))) + (uint)2956), (byte)(65));
+                    Mem.Set(((Mem.U32(Gv.PlayerMenu_PagePtr) + (uint)((idx * 2920) + (new LR(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB44 * 2))) + (uint)2956), (byte)(65));
                 }
                 new O05Obj10(obj).b10_Set((byte)(255));
                 Audio_PlaySound2D(3700);
@@ -2317,15 +2317,15 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00430208", (uint)a, (uint)b, (uint)c, (uint)d);
             int idx = (int)((c & (uint)(65535)));
             uint obj = 0u;
-            if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].state == 13))
+            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].state == 13))
             {
                 return 0;
             }
-            if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].state >= 14))
+            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].state >= 14))
             {
                 return 0;
             }
-            if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].state != 12))
+            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].state != 12))
             {
                 return 0;
             }
@@ -2333,16 +2333,16 @@ public static partial class Game
             {
                 return 0;
             }
-            obj = CursorGroup_GetItem(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, idx);
-            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB48_Set(2);
-            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB4C_Set(0);
-            if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 > 0))
+            obj = CursorGroup_GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4, idx);
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB48_Set(2);
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB4C_Set(0);
+            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB44 > 0))
             {
-                new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44_Set((int)(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 - 1));
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB44_Set((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB44 - 1));
             }
-            if (((int)(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].name[(int)((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 * 2))]) == 0))
+            if (((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].name[(int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB44 * 2))]) == 0))
             {
-                new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].name.Set((int)((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 * 2)), (byte)(65));
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].name.Set((int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB44 * 2)), (byte)(65));
             }
             new O05Obj10(obj).b10_Set((byte)(255));
             Audio_PlaySound2D(3700);
@@ -2358,13 +2358,13 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_004302F8", (uint)a, (uint)b, (uint)c, (uint)ev);
             int k = (int)((c & (uint)(65535)));
             uint s = 0u;
-            switch (new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state)
+            switch (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].state)
             {
             case 12:
                 if ((Math_AbsInt(e5) < Menu_GetStickDeadzone()))
                 {
-                    new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fB4C_Set(0);
-                    new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fB48_Set(2);
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].fB4C_Set(0);
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].fB48_Set(2);
                 }
                 if ((ev != 1))
                 {
@@ -2372,7 +2372,7 @@ public static partial class Game
                 }
                 Menu_ConsumeEvent();
                 NameEntry_LetterDown(k);
-                new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fB48_Set(0);
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].fB48_Set(0);
                 Audio_PlaySound2D(3713);
                 return 0;
             case 4:
@@ -2382,11 +2382,11 @@ public static partial class Game
                 }
                 Menu_ConsumeEvent();
                 PlayerMenu_ScrollNoteList(k, 1);
-                new O05Lobby(Mem.U32(0x800E54A4u)).h.w2C.Set((int)(k), 0);
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.w2C.Set((int)(k), 0);
                 Audio_PlaySound2D(3700);
                 return 0;
             case 13:
-                if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f4 != 6))
+                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].f4 != 6))
                 {
                     return 0;
                 }
@@ -2395,23 +2395,23 @@ public static partial class Game
                     return 0;
                 }
                 Menu_ConsumeEvent();
-                s = new O05Ch(CursorGroup_GetItem(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k)).f30_;
+                s = new O05Ch(CursorGroup_GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4, k)).f30_;
                 while ((UiNode_IsDisabledInherited(s) != 0))
                 {
                     s = new O05Ch(s).f30_;
                 }
-                CursorGroup_MoveCursor(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k, s);
+                CursorGroup_MoveCursor(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4, k, s);
                 Audio_PlaySound2D(3700);
                 return 0;
             case 22:
                 if ((ev == 1))
                 {
-                    s = new O05Ch(CursorGroup_GetItem(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k)).f30_;
+                    s = new O05Ch(CursorGroup_GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4, k)).f30_;
                     while ((UiNode_IsDisabledInherited(s) != 0))
                     {
                         s = new O05Ch(s).f30_;
                     }
-                    CursorGroup_MoveCursor(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k, s);
+                    CursorGroup_MoveCursor(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4, k, s);
                     PlayerMenu_BindProfileWidgets(k);
                 }
                 Menu_ConsumeEvent();
@@ -2419,12 +2419,12 @@ public static partial class Game
             case 27:
                 if ((ev == 1))
                 {
-                    s = new O05Ch(CursorGroup_GetItem(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k)).f30_;
+                    s = new O05Ch(CursorGroup_GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4, k)).f30_;
                     while ((UiNode_IsDisabledInherited(s) != 0))
                     {
                         s = new O05Ch(s).f30_;
                     }
-                    CursorGroup_MoveCursor(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k, s);
+                    CursorGroup_MoveCursor(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4, k, s);
                     PlayerMenu_BindPadWidgets(k);
                 }
                 Menu_ConsumeEvent();
@@ -2442,20 +2442,20 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_004305D8", (uint)a, (uint)b, (uint)c, (uint)ev);
             int k = (int)((c & (uint)(65535)));
             uint s = 0u;
-            switch (new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state)
+            switch (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].state)
             {
             case 12:
                 if ((Math_AbsInt(e5) < Menu_GetStickDeadzone()))
                 {
-                    new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fB4C_Set(0);
-                    new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fB48_Set(2);
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].fB4C_Set(0);
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].fB48_Set(2);
                 }
                 if ((ev != 1))
                 {
                     return 0;
                 }
                 Menu_ConsumeEvent();
-                new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fB48_Set(1);
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].fB48_Set(1);
                 NameEntry_LetterUp(k);
                 Audio_PlaySound2D(3713);
                 return 0;
@@ -2466,11 +2466,11 @@ public static partial class Game
                 }
                 Menu_ConsumeEvent();
                 PlayerMenu_ScrollNoteList(k, 0);
-                new O05Lobby(Mem.U32(0x800E54A4u)).h.w2C.Set((int)(k), 0);
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.w2C.Set((int)(k), 0);
                 Audio_PlaySound2D(3700);
                 return 0;
             case 13:
-                if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f4 != 6))
+                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].f4 != 6))
                 {
                     return 0;
                 }
@@ -2479,23 +2479,23 @@ public static partial class Game
                     return 0;
                 }
                 Menu_ConsumeEvent();
-                s = new O05Ch_v2(CursorGroup_GetItem(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k)).f2C_;
+                s = new O05Ch_v2(CursorGroup_GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4, k)).f2C_;
                 while ((UiNode_IsDisabledInherited(s) != 0))
                 {
                     s = new O05Ch_v2(s).f2C_;
                 }
-                CursorGroup_MoveCursor(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k, s);
+                CursorGroup_MoveCursor(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4, k, s);
                 Audio_PlaySound2D(3700);
                 return 0;
             case 22:
                 if ((ev == 1))
                 {
-                    s = new O05Ch_v2(CursorGroup_GetItem(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k)).f2C_;
+                    s = new O05Ch_v2(CursorGroup_GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4, k)).f2C_;
                     while ((UiNode_IsDisabledInherited(s) != 0))
                     {
                         s = new O05Ch_v2(s).f2C_;
                     }
-                    CursorGroup_MoveCursor(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k, s);
+                    CursorGroup_MoveCursor(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4, k, s);
                     PlayerMenu_BindProfileWidgets(k);
                 }
                 Menu_ConsumeEvent();
@@ -2503,12 +2503,12 @@ public static partial class Game
             case 27:
                 if ((ev == 1))
                 {
-                    s = new O05Ch_v2(CursorGroup_GetItem(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k)).f2C_;
+                    s = new O05Ch_v2(CursorGroup_GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4, k)).f2C_;
                     while ((UiNode_IsDisabledInherited(s) != 0))
                     {
                         s = new O05Ch_v2(s).f2C_;
                     }
-                    CursorGroup_MoveCursor(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k, s);
+                    CursorGroup_MoveCursor(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4, k, s);
                     PlayerMenu_BindPadWidgets(k);
                 }
                 Menu_ConsumeEvent();
@@ -5528,12 +5528,12 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00432334", (uint)a, (uint)b, (uint)idx);
             Menu_ConsumeEvent();
             idx = (uint)((uint)(idx) & (uint)(65535));
-            if ((new O05Lobby(Mem.U32(0x800E54A4u)).h.f54 == 7))
+            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f54 == 7))
             {
                 Menu_EnterSelectedState_00435958((uint)(3), default(uint), default(uint), default(uint));
                 return 0;
             }
-            switch (new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].state)
+            switch (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].state)
             {
             case 0:
                 if ((PlayerMenu_CountJoinedPads() > 0))
@@ -5545,18 +5545,18 @@ public static partial class Game
                 return 0;
             case 12:
                 Menu_ConsumeEvent();
-                new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].name.Set((int)((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 * 2)), (byte)(32));
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].name.Set((int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB44 * 2)), (byte)(32));
                 break;
             case 22:
                 Menu_ConsumeEvent();
                 PlayerMenu_BindProfileWidgets((-1));
-                new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].state_Set(13);
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].state_Set(13);
                 PlayerMenu_RefreshPanel((uint)((int)(idx)), default(uint), default(uint), default(uint));
                 break;
             case 27:
                 Menu_ConsumeEvent();
                 PlayerMenu_BindPadWidgets((-1));
-                new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].state_Set(13);
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].state_Set(13);
                 PlayerMenu_RefreshPanel((uint)((int)(idx)), default(uint), default(uint), default(uint));
                 break;
             default:
@@ -7492,26 +7492,26 @@ public static partial class Game
             uint w = 0u;
             for (i = 0; (i < 4); ++i)
             {
-                switch (new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].state)
+                switch (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].state)
                 {
                 case 0:
                     PlayerMenu_PulseJoinPrompt(i);
                     break;
                 case 12:
-                    w = CursorGroup_GetItem(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, i);
-                    new O05ItemWd(w).b10_Set((byte)(Cpu.TruncU32(((cosf(((float)(i) + ((float)(new O05Lobby(Mem.U32(0x800E54A4u)).h.w2C[(int)(i)]) * 0.00499999989f))) * 100.0f) + 150.0f))));
-                    switch (new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].fB48)
+                    w = CursorGroup_GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4, i);
+                    new O05ItemWd(w).b10_Set((byte)(Cpu.TruncU32(((cosf(((float)(i) + ((float)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.w2C[(int)(i)]) * 0.00499999989f))) * 100.0f) + 150.0f))));
+                    switch (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].fB48)
                     {
                     case 0:
-                        new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].fB4C_Set((int)(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].fB4C + 1));
-                        if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].fB4C >= 6))
+                        new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].fB4C_Set((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].fB4C + 1));
+                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].fB4C >= 6))
                         {
                             NameEntry_LetterDown(i);
                         }
                         break;
                     case 1:
-                        new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].fB4C_Set((int)(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].fB4C + 1));
-                        if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].fB4C >= 6))
+                        new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].fB4C_Set((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].fB4C + 1));
+                        if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].fB4C >= 6))
                         {
                             NameEntry_LetterUp(i);
                         }
@@ -7521,11 +7521,11 @@ public static partial class Game
                     }
                     break;
                 case 4:
-                    w = new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].wd[(int)((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].scroll - new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].cur))];
-                    new O05ItemWd(w).b10_Set((byte)(Cpu.TruncU32(((cosf(((float)(i) + ((float)(new O05Lobby(Mem.U32(0x800E54A4u)).h.w2C[(int)(i)]) * 0.00499999989f))) * 100.0f) + 150.0f))));
+                    w = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].wd[(int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].scroll - new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].cur))];
+                    new O05ItemWd(w).b10_Set((byte)(Cpu.TruncU32(((cosf(((float)(i) + ((float)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.w2C[(int)(i)]) * 0.00499999989f))) * 100.0f) + 150.0f))));
                     break;
                 }
-                new O05Lobby(Mem.U32(0x800E54A4u)).h.w2C.Set((int)(i), (int)((int)(new O05Lobby(Mem.U32(0x800E54A4u)).h.w2C[(int)(i)]) + dt));
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.w2C.Set((int)(i), (int)((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.w2C[(int)(i)]) + dt));
             }
         }
     }
@@ -8076,18 +8076,18 @@ public static partial class Game
                     id = 657;
                     break;
                 }
-                w = UiTree_FindNode(new O05Lobby(Mem.U32(0x800E54A4u)).h.f0, (uint)(id), default(uint), default(uint));
+                w = UiTree_FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f0, (uint)(id), default(uint), default(uint));
                 UiNode_SetDisabled(w, 0);
                 o = new O05WdA(w).f8;
-                if (((k != (-1)) && (w == CursorGroup_GetItem(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k))))
+                if (((k != (-1)) && (w == CursorGroup_GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4, k))))
                 {
-                    new O05Wd(o).f38_Set((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].rec.P + (uint)(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fAEC * 400)));
+                    new O05Wd(o).f38_Set((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].rec.P + (uint)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].fAEC * 400)));
                 }
                 else
                 {
-                    if (((int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bD) >= 0))
+                    if (((int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).bD) >= 0))
                     {
-                        new O05Wd(o).f38_Set((0x80102B00u + (uint)(i * 400)));
+                        new O05Wd(o).f38_Set((Gv.ProfileTable + (uint)(i * 400)));
                     }
                     else
                     {
@@ -8125,7 +8125,7 @@ public static partial class Game
                     id = 671;
                     break;
                 }
-                w = UiTree_FindNode(new O05Lobby(Mem.U32(0x800E54A4u)).h.f0, (uint)(id), default(uint), default(uint));
+                w = UiTree_FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f0, (uint)(id), default(uint), default(uint));
                 if ((Pad_IsConnected(i) == 1))
                 {
                     UiNode_SetDisabled(w, 0);
@@ -8135,9 +8135,9 @@ public static partial class Game
                     UiNode_SetDisabled(w, 1);
                 }
                 o = new O05WdA(w).f8;
-                if (((k != (-1)) && (w == CursorGroup_GetItem(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k))))
+                if (((k != (-1)) && (w == CursorGroup_GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4, k))))
                 {
-                    new O05Wd(o).f38_Set((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].rec.P + (uint)(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fAEC * 400)));
+                    new O05Wd(o).f38_Set((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].rec.P + (uint)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].fAEC * 400)));
                 }
                 else
                 {
@@ -8170,11 +8170,11 @@ public static partial class Game
                         {
                             LibC_StrCopy(_fp, Mem.U32(0x800D7784u));
                         }
-                        LibC_StrCopy(((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(i * 70)) + (uint)40), _fp);
-                        Str_FormatInto(((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(i * 70)) + (uint)60), Str.Lit("%d"), (uint)(Mem.S32((_fp + 52u))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        LibC_StrCopy(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].items.P + (uint)(i * 70)) + (uint)40), _fp);
+                        Str_FormatInto(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].items.P + (uint)(i * 70)) + (uint)60), Str.Lit("%d"), (uint)(Mem.S32((_fp + 52u))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                         if (((int)(Mem.U8(((_fp + 24u) + (uint)0))) != 0))
                         {
-                            Str_FormatInto((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(i * 70)), Str.Lit("%d.%s.%s"), (uint)((i + 1)), ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(i * 70)) + (uint)40), (_fp + 24u), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                            Str_FormatInto((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].items.P + (uint)(i * 70)), Str.Lit("%d.%s.%s"), (uint)((i + 1)), ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].items.P + (uint)(i * 70)) + (uint)40), (_fp + 24u), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                             continue;
                         }
                     }
@@ -8184,22 +8184,22 @@ public static partial class Game
                         {
                             found = 1;
                         }
-                        LibC_StrCopy(((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(i * 70)) + (uint)40), Mem.U32(0x800D727Cu));
-                        Str_FormatInto(((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(i * 70)) + (uint)60), Str.Lit("%d"), (uint)(0), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        LibC_StrCopy(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].items.P + (uint)(i * 70)) + (uint)40), Mem.U32(0x800D727Cu));
+                        Str_FormatInto(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].items.P + (uint)(i * 70)) + (uint)60), Str.Lit("%d"), (uint)(0), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                     }
-                    Str_FormatInto((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(i * 70)), Str.Lit("%d.%s"), (uint)((i + 1)), ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(i * 70)) + (uint)40), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                    Str_FormatInto((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].items.P + (uint)(i * 70)), Str.Lit("%d.%s"), (uint)((i + 1)), ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].items.P + (uint)(i * 70)) + (uint)40), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
                 }
                 if ((found == 0))
                 {
-                    w = UiTree_FindNode(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fC, (uint)(728), default(uint), default(uint));
+                    w = UiTree_FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].fC, (uint)(728), default(uint), default(uint));
                     if ((CPak_GetFreePages(k, (_fp + 52u)) == 0))
                     {
-                        Str_FormatInto(((new O05Lobby(Mem.U32(0x800E54A4u)).plr.P + (uint)(k * 2920)) + (uint)2764), Str.Lit("%d"), (uint)(Mem.S32((_fp + 52u))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-                        new O05Wd(w).f38_Set(((new O05Lobby(Mem.U32(0x800E54A4u)).plr.P + (uint)(k * 2920)) + (uint)2764));
-                        w = UiTree_FindNode(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fC, (uint)(727), default(uint), default(uint));
+                        Str_FormatInto(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr.P + (uint)(k * 2920)) + (uint)2764), Str.Lit("%d"), (uint)(Mem.S32((_fp + 52u))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        new O05Wd(w).f38_Set(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr.P + (uint)(k * 2920)) + (uint)2764));
+                        w = UiTree_FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].fC, (uint)(727), default(uint), default(uint));
                         Mem.Set((_fp + 52u), PlayerMenu_GetSaveSize());
-                        Str_FormatInto(((new O05Lobby(Mem.U32(0x800E54A4u)).plr.P + (uint)(k * 2920)) + (uint)2754), Str.Lit("%d"), (uint)((int)(CPak_BytesToPages((uint)(Mem.S32((_fp + 52u)))))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-                        new O05Wd(w).f38_Set(((new O05Lobby(Mem.U32(0x800E54A4u)).plr.P + (uint)(k * 2920)) + (uint)2754));
+                        Str_FormatInto(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr.P + (uint)(k * 2920)) + (uint)2754), Str.Lit("%d"), (uint)((int)(CPak_BytesToPages((uint)(Mem.S32((_fp + 52u)))))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                        new O05Wd(w).f38_Set(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr.P + (uint)(k * 2920)) + (uint)2754));
                     }
                     else
                     {
@@ -8208,17 +8208,17 @@ public static partial class Game
                 }
                 if ((found == 1))
                 {
-                    new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].state_Set(found);
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].state_Set(found);
                     PlayerMenu_RefreshPanel((uint)(k), default(uint), default(uint), default(uint));
                 }
                 else
                 {
-                    new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].scroll_Set((-1));
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].scroll_Set((-1));
                     i = k;
-                    new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].cur_Set(0);
-                    new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].wd.Set((int)(0), UiTree_FindNode(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fC, (uint)(731), default(uint), default(uint)));
-                    new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].wd.Set((int)(1), UiTree_FindNode(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fC, (uint)(732), default(uint), default(uint)));
-                    new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].wd.Set((int)(2), UiTree_FindNode(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fC, (uint)(733), default(uint), default(uint)));
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].cur_Set(0);
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].wd.Set((int)(0), UiTree_FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].fC, (uint)(731), default(uint), default(uint)));
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].wd.Set((int)(1), UiTree_FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].fC, (uint)(732), default(uint), default(uint)));
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].wd.Set((int)(2), UiTree_FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].fC, (uint)(733), default(uint), default(uint)));
                     PlayerMenu_ScrollNoteList(k, 1);
                 }
             }
@@ -8237,44 +8237,44 @@ public static partial class Game
             uint w = 0u;
             if ((dir == 1))
             {
-                if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].scroll < 15))
+                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].scroll < 15))
                 {
-                    new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].scroll_Set((int)(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].scroll + 1));
-                    if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].scroll >= (new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].cur + 3)))
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].scroll_Set((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].scroll + 1));
+                    if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].scroll >= (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].cur + 3)))
                     {
-                        if (((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].cur + 3) < 15))
+                        if (((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].cur + 3) < 15))
                         {
-                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].cur_Set((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].cur + 1));
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].cur_Set((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].cur + 1));
                         }
                         else
                         {
-                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].cur_Set(13);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].cur_Set(13);
                         }
                     }
                 }
             }
             else
             {
-                if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].scroll > 0))
+                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].scroll > 0))
                 {
-                    new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].scroll_Set((int)(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].scroll - 1));
-                    if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].cur > 0))
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].scroll_Set((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].scroll - 1));
+                    if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].cur > 0))
                     {
-                        if (((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].scroll - new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].cur) < 0))
+                        if (((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].scroll - new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].cur) < 0))
                         {
-                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].cur_Set((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].cur - 1));
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].cur_Set((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].cur - 1));
                         }
                     }
                 }
             }
             for (j = 0; (j < 3); ++j)
             {
-                new O05ItemWd(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].wd[(int)(j)]).b10_Set((byte)(255));
-                new O05ItemWd(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].wd[(int)(j)]).f38_Set((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].cur + j) * 70)));
+                new O05ItemWd(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].wd[(int)(j)]).b10_Set((byte)(255));
+                new O05ItemWd(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].wd[(int)(j)]).f38_Set((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].items.P + (uint)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].cur + j) * 70)));
             }
-            sc = new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].scroll;
-            w = UiTree_FindNode(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fC, (uint)(726), default(uint), default(uint));
-            new O05ItemWd(w).f38_Set(((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].items.P + (uint)(sc * 70)) + (uint)60));
+            sc = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].scroll;
+            w = UiTree_FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].fC, (uint)(726), default(uint), default(uint));
+            new O05ItemWd(w).f38_Set(((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].items.P + (uint)(sc * 70)) + (uint)60));
         }
     }
 
@@ -8294,7 +8294,7 @@ public static partial class Game
                 int r = 0;
                 int new_var = 0;
                 ok = 0;
-                r = CPak_FindFile((uint)(Mem.S32(0x800D7700u)), idx, ((_fp + 24u) + (uint)(0 * 4)));
+                r = CPak_FindFile((uint)(Mem.S32(Gv.Pak_PlayerNoteNamePtr)), idx, ((_fp + 24u) + (uint)(0 * 4)));
                 if ((r == 1))
                 {
                     ok = ((CPak_DeleteFile(idx, Mem.S32(((_fp + 24u) + (uint)(0 * 4)))) == 0) ? 1 : 0);
@@ -8333,17 +8333,17 @@ public static partial class Game
                     ok = 0;
                     if ((CPak_FindFreeExtension(idx, _fp) == 0))
                     {
-                        recs = new O05Lobby(Mem.U32(0x800E54A4u)).recs.P;
-                        Mem_Copy(recs, new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].rec.P, (uint)(1600));
-                        new O05Lobby(Mem.U32(0x800E54A4u)).f3468_Set(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB64);
-                        new O05Lobby(Mem.U32(0x800E54A4u)).f346C_Set((int)(CPak_Crc32(recs, 1600, (uint)(7))));
-                        recs = new O05Lobby(Mem.U32(0x800E54A4u)).recs.P;
+                        recs = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).recs.P;
+                        Mem_Copy(recs, new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].rec.P, (uint)(1600));
+                        new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).f3468_Set(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB64);
+                        new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).f346C_Set((int)(CPak_Crc32(recs, 1600, (uint)(7))));
+                        recs = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).recs.P;
                         for (i = 0; (i < 16); ++i)
                         {
                             Mem.Set(((_fp + 8u) + (uint)i), (sbyte)(0));
                         }
-                        LibC_StrCopy((_fp + 8u), (uint)(Mem.S32(0x800D7700u)));
-                        if ((CPak_SaveFileVerified(idx, 1608, recs, (_fp + 8u), _fp, (uint)(Mem.S32(0x800D770Cu))) == 0))
+                        LibC_StrCopy((_fp + 8u), (uint)(Mem.S32(Gv.Pak_PlayerNoteNamePtr)));
+                        if ((CPak_SaveFileVerified(idx, 1608, recs, (_fp + 8u), _fp, (uint)(Mem.S32(Gv.Pak_GameCodePtr))) == 0))
                         {
                             ok = 1;
                         }
@@ -8351,8 +8351,8 @@ public static partial class Game
                 }
                 if ((ok == 0))
                 {
-                    new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].f14_Set(2);
-                    new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].state_Set(2);
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].f14_Set(2);
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].state_Set(2);
                     PlayerMenu_RefreshPanel((uint)(idx), default(uint), default(uint), default(uint));
                 }
                 return ok;
@@ -8368,16 +8368,16 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00434814", (uint)idx, (uint)a);
             int ok = 0;
-            uint buf = new O05Lobby(Mem.U32(0x800E54A4u)).recs.P;
+            uint buf = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).recs.P;
             if (((CPak_ReadFile(idx, a, buf, 1608) == 0) && ((int)(CPak_Crc32(buf, 1600, (uint)(7))) == Mem.S32((buf + (uint)((1604 / 4) * 4))))))
             {
-                Mem_Copy(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].rec.P, new O05Lobby(Mem.U32(0x800E54A4u)).recs.P, (uint)(1600));
-                new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB64_Set(new O05Lobby(Mem.U32(0x800E54A4u)).f3468);
+                Mem_Copy(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].rec.P, new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).recs.P, (uint)(1600));
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB64_Set(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).f3468);
                 ok = 1;
             }
             else
             {
-                if ((new O05Lobby(Mem.U32(0x800E54A4u)).f3468 != 0))
+                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).f3468 != 0))
                 {
                     CPak_DeleteFile(idx, a);
                 }
@@ -8388,8 +8388,8 @@ public static partial class Game
             }
             if ((ok == 0))
             {
-                new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].f14_Set(2);
-                new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].state_Set(2);
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].f14_Set(2);
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].state_Set(2);
             }
             return ok;
         }
@@ -8404,7 +8404,7 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 4); ++i)
             {
-                int st = new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].state;
+                int st = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].state;
                 if ((((st != 0) && (st != 17)) && (st != 14)))
                 {
                     return (-1);
@@ -8412,7 +8412,7 @@ public static partial class Game
             }
             for (i = 0; (i < 4); ++i)
             {
-                if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].state == 14))
+                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].state == 14))
                 {
                     return i;
                 }
@@ -8434,30 +8434,30 @@ public static partial class Game
                 int j = 0;
                 int s = 0;
                 int sz = 400;
-                Mem_Copy(new O05Lobby(Mem.U32(0x800E54A4u)).recs.P, 0x80102B00u, (uint)(1600));
+                Mem_Copy(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).recs.P, Gv.ProfileTable, (uint)(1600));
                 for (i = 0; (i < 4); ++i)
                 {
-                    Profile_Init((0x80102B00u + (uint)(i * 400)));
+                    Profile_Init((Gv.ProfileTable + (uint)(i * 400)));
                     Mem.Set((_fp + (uint)(i * 4)), 0);
                 }
                 for (i = 0; (i < 4); ++i)
                 {
-                    s = new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].fB28;
+                    s = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].fB28;
                     if ((s >= 0))
                     {
-                        Mem_Copy((0x80102B00u + (uint)(i * 400)), (new O05Lobby(Mem.U32(0x800E54A4u)).recs.P + (uint)(s * 400)), (uint)(sz));
+                        Mem_Copy((Gv.ProfileTable + (uint)(i * 400)), (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).recs.P + (uint)(s * 400)), (uint)(sz));
                         Mem.Set((_fp + (uint)(s * 4)), 1);
                     }
                 }
                 for (i = 0; (i < 4); ++i)
                 {
-                    if (((Mem.S32((_fp + (uint)(i * 4))) == 0) && ((int)(new O05Lobby(Mem.U32(0x800E54A4u)).recs[(int)(i)].bD) >= 0)))
+                    if (((Mem.S32((_fp + (uint)(i * 4))) == 0) && ((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).recs[(int)(i)].bD) >= 0)))
                     {
                         for (j = 0; (j < 4); ++j)
                         {
-                            if (((int)(new O05Rec((0x80102B00u + (uint)(j * 400))).bD) < 0))
+                            if (((int)(new O05Rec((Gv.ProfileTable + (uint)(j * 400))).bD) < 0))
                             {
-                                Mem_Copy((0x80102B00u + (uint)(j * 400)), (new O05Lobby(Mem.U32(0x800E54A4u)).recs.P + (uint)(i * 400)), (uint)(sz));
+                                Mem_Copy((Gv.ProfileTable + (uint)(j * 400)), (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).recs.P + (uint)(i * 400)), (uint)(sz));
                                 break;
                             }
                         }
@@ -8475,12 +8475,12 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00434B58", (uint)k);
             int r = 0;
-            int sel = new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fAEC;
+            int sel = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].fAEC;
             int found = 0;
             int idx = 0;
             int i = 0;
             int v = 0;
-            if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].tabAF0[(int)(sel)] == 1))
+            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].tabAF0[(int)(sel)] == 1))
             {
                 found = (-1);
                 for (i = 0; (i < 4); ++i)
@@ -8489,7 +8489,7 @@ public static partial class Game
                     {
                         break;
                     }
-                    if ((new O05Lobby(Mem.U32(0x800E54A4u)).slot[(int)(i)].a == (-1)))
+                    if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).slot[(int)(i)].a == (-1)))
                     {
                         found = i;
                     }
@@ -8500,13 +8500,13 @@ public static partial class Game
                     v = PlayerMenu_FindFreeSlot();
                     if ((v >= 0))
                     {
-                        new O05Lobby(Mem.U32(0x800E54A4u)).slot[(int)(v)].a_Set(0);
-                        new O05Lobby(Mem.U32(0x800E54A4u)).slot[(int)(v)].b_Set(idx);
-                        new O05Lobby(Mem.U32(0x800E54A4u)).slot[(int)(v)].c_Set(1);
+                        new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).slot[(int)(v)].a_Set(0);
+                        new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).slot[(int)(v)].b_Set(idx);
+                        new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).slot[(int)(v)].c_Set(1);
                     }
-                    Mem_Copy((0x80102B00u + (uint)(found * 400)), (new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].rec.P + (uint)(sel * 400)), (uint)(400));
-                    new O05Rec((0x80102B00u + (uint)(found * 400))).bD_Set((sbyte)(k));
-                    new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f4_Set(0);
+                    Mem_Copy((Gv.ProfileTable + (uint)(found * 400)), (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].rec.P + (uint)(sel * 400)), (uint)(400));
+                    new O05Rec((Gv.ProfileTable + (uint)(found * 400))).bD_Set((sbyte)(k));
+                    new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].f4_Set(0);
                     PlayerMenu_BindProfileWidgets((idx = (-1)));
                     r = 1;
                 }
@@ -8525,9 +8525,9 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 4); ++i)
             {
-                if ((((((int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bE) == 0) && ((int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bD) == k)) && ((int)(new O05GameState(0x801462C8u).rec[(int)(i)].b0) == 1)) && ((int)(new O05GameState(0x801462C8u).rec[(int)(i)].b19) == 0)))
+                if ((((((int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).bE) == 0) && ((int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).bD) == k)) && ((int)(new O05GameState(Gv.Settings).rec[(int)(i)].b0) == 1)) && ((int)(new O05GameState(Gv.Settings).rec[(int)(i)].b19) == 0)))
                 {
-                    Mem_Copy((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].rec.P + (uint)(new O05Rec((0x80102B00u + (uint)(i * 400))).bC * 400)), (0x80102B00u + (uint)(i * 400)), (uint)(sz));
+                    Mem_Copy((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].rec.P + (uint)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).bC * 400)), (Gv.ProfileTable + (uint)(i * 400)), (uint)(sz));
                 }
             }
         }
@@ -8559,11 +8559,11 @@ public static partial class Game
                     id = 743;
                     break;
                 }
-                if ((((((int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bE) == 0) && ((int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bD) == k)) && ((int)(new O05GameState(0x801462C8u).rec[(int)(i)].b0) == 1)) && ((int)(new O05GameState(0x801462C8u).rec[(int)(i)].b19) == 0)))
+                if ((((((int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).bE) == 0) && ((int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).bD) == k)) && ((int)(new O05GameState(Gv.Settings).rec[(int)(i)].b0) == 1)) && ((int)(new O05GameState(Gv.Settings).rec[(int)(i)].b19) == 0)))
                 {
-                    uint w = UiTree_FindNode(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fC, (uint)(id), default(uint), default(uint));
+                    uint w = UiTree_FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].fC, (uint)(id), default(uint), default(uint));
                     ++n;
-                    new O05Wd(w).f38_Set((0x80102B00u + (uint)(i * 400)));
+                    new O05Wd(w).f38_Set((Gv.ProfileTable + (uint)(i * 400)));
                 }
             }
         }
@@ -8575,14 +8575,14 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00434F4C", (uint)idx);
-            int pl = new O05Lobby(Mem.U32(0x800E54A4u)).slot[(int)(0)].a;
-            CursorGroup_SetLocked(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, pl, 0);
-            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].state_Set(17);
-            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB30_Set(0);
-            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(pl)].f14_Set(2);
-            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(pl)].state_Set(2);
-            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(pl)].f8_Set(13);
-            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(pl)].f4_Set(3);
+            int pl = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).slot[(int)(0)].a;
+            CursorGroup_SetLocked(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4, pl, 0);
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].state_Set(17);
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB30_Set(0);
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(pl)].f14_Set(2);
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(pl)].state_Set(2);
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(pl)].f8_Set(13);
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(pl)].f4_Set(3);
             PlayerMenu_RefreshPanel((uint)(pl), default(uint), default(uint), default(uint));
             PlayerMenu_BindPadWidgets((-1));
         }
@@ -8595,19 +8595,19 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00435010", (uint)idx);
             byte c = 0;
-            new O05Lobby(Mem.U32(0x800E54A4u)).h.w2C.Set((int)(idx), 0);
-            CursorGroup_GetItem(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, idx);
-            if (((int)(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].name[(int)((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 * 2))]) == 0))
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.w2C.Set((int)(idx), 0);
+            CursorGroup_GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4, idx);
+            if (((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].name[(int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB44 * 2))]) == 0))
             {
-                new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].name.Set((int)((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 * 2)), (byte)(65));
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].name.Set((int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB44 * 2)), (byte)(65));
             }
-            c = new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].name[(int)((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 * 2))];
+            c = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].name[(int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB44 * 2))];
             ++c;
             if (((int)(c) >= 91))
             {
                 c = (byte)(32);
             }
-            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].name.Set((int)((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 * 2)), c);
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].name.Set((int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB44 * 2)), c);
         }
     }
 
@@ -8618,19 +8618,19 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004350D0", (uint)idx);
             byte c = 0;
-            new O05Lobby(Mem.U32(0x800E54A4u)).h.w2C.Set((int)(idx), 0);
-            CursorGroup_GetItem(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, idx);
-            if (((int)(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].name[(int)((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 * 2))]) == 0))
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.w2C.Set((int)(idx), 0);
+            CursorGroup_GetItem(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.f4, idx);
+            if (((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].name[(int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB44 * 2))]) == 0))
             {
-                new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].name.Set((int)((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 * 2)), (byte)(65));
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].name.Set((int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB44 * 2)), (byte)(65));
             }
-            c = new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].name[(int)((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 * 2))];
+            c = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].name[(int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB44 * 2))];
             --c;
             if (((int)(c) < 32))
             {
                 c = (byte)(90);
             }
-            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].name.Set((int)((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 * 2)), c);
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].name.Set((int)((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB44 * 2)), c);
         }
     }
 
@@ -8652,10 +8652,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_004351A0", (uint)k);
             float x = 0f;
             byte v = 0;
-            x = ((cosf(((float)(k) + ((float)(new O05Lobby(Mem.U32(0x800E54A4u)).h.w2C[(int)(k)]) * 0.00333333341f))) * 100.0f) + 150.0f);
+            x = ((cosf(((float)(k) + ((float)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).h.w2C[(int)(k)]) * 0.00333333341f))) * 100.0f) + 150.0f);
             v = (byte)(Cpu.TruncU32(x));
-            new O05Obj10(UiTree_FindNode(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f10, (uint)(706), default(uint), default(uint))).b10_Set(v);
-            new O05Obj10(UiTree_FindNode(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f10, (uint)(707), default(uint), default(uint))).b10_Set(v);
+            new O05Obj10(UiTree_FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].f10, (uint)(706), default(uint), default(uint))).b10_Set(v);
+            new O05Obj10(UiTree_FindNode(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(k)].f10, (uint)(707), default(uint), default(uint))).b10_Set(v);
         }
     }
 
@@ -8666,8 +8666,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004352A8", (uint)i);
             new O05R150((0x80146410u + (uint)(i * 150))).b0_Set((byte)(1));
-            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].f14_Set(2);
-            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].state_Set(2);
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].f14_Set(2);
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].state_Set(2);
         }
     }
 
@@ -8685,7 +8685,7 @@ public static partial class Game
                 {
                     break;
                 }
-                if (((int)(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].rec[(int)(i)].bD) == (-1)))
+                if (((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].rec[(int)(i)].bD) == (-1)))
                 {
                     r = i;
                 }
@@ -8708,7 +8708,7 @@ public static partial class Game
                 {
                     break;
                 }
-                if (((int)(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].rec[(int)(i)].bD) != (-1)))
+                if (((int)(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].rec[(int)(i)].bD) != (-1)))
                 {
                     r = 0;
                 }
@@ -8731,7 +8731,7 @@ public static partial class Game
                 {
                     break;
                 }
-                if ((new O05SlotAt((Mem.U32(0x800E54A4u) + (uint)(i * 12))).s.a == (-1)))
+                if ((new O05SlotAt((Mem.U32(Gv.PlayerMenu_PagePtr) + (uint)(i * 12))).s.a == (-1)))
                 {
                     r = i;
                 }
@@ -8754,7 +8754,7 @@ public static partial class Game
                 {
                     break;
                 }
-                if (((new O05SlotAt((Mem.U32(0x800E54A4u) + (uint)(i * 12))).s.a == a) && (new O05SlotAt((Mem.U32(0x800E54A4u) + (uint)(i * 12))).s.b == b)))
+                if (((new O05SlotAt((Mem.U32(Gv.PlayerMenu_PagePtr) + (uint)(i * 12))).s.a == a) && (new O05SlotAt((Mem.U32(Gv.PlayerMenu_PagePtr) + (uint)(i * 12))).s.b == b)))
                 {
                     r = i;
                 }
@@ -8773,7 +8773,7 @@ public static partial class Game
             int i = 0;
             for (i = 0; ((i < 4) && !(found != 0)); ++i)
             {
-                uint p = (Mem.U32(0x800E54A4u) + (uint)(i * 12));
+                uint p = (Mem.U32(Gv.PlayerMenu_PagePtr) + (uint)(i * 12));
                 if (((new O05SlotAt(p).s.a == a) && (new O05SlotAt(p).s.b == b)))
                 {
                     found = 1;
@@ -8795,7 +8795,7 @@ public static partial class Game
             int i = PlayerMenu_FindFreeSlot();
             if ((i >= 0))
             {
-                uint p = (Mem.U32(0x800E54A4u) + (uint)(i * 12));
+                uint p = (Mem.U32(Gv.PlayerMenu_PagePtr) + (uint)(i * 12));
                 new O05SlotAt(p).s.a_Set(a);
                 new O05SlotAt(p).s.b_Set(b);
                 r = new O05SlotAt(p).s.c_Set(1);
@@ -8818,7 +8818,7 @@ public static partial class Game
                 {
                     break;
                 }
-                if ((new O05SlotAt((Mem.U32(0x800E54A4u) + (uint)(i * 12))).s.a != (-1)))
+                if ((new O05SlotAt((Mem.U32(Gv.PlayerMenu_PagePtr) + (uint)(i * 12))).s.a != (-1)))
                 {
                     r = 0;
                 }
@@ -8878,10 +8878,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00435608", (uint)idx);
-            uint buf = new O05Lobby(Mem.U32(0x800E54A4u)).recs.P;
-            Mem_Copy(buf, new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].rec.P, (uint)(1600));
-            new O05Lobby(Mem.U32(0x800E54A4u)).f3468_Set(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB64);
-            new O05Lobby(Mem.U32(0x800E54A4u)).f346C_Set((int)(CPak_Crc32(buf, 1600, (uint)(7))));
+            uint buf = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).recs.P;
+            Mem_Copy(buf, new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].rec.P, (uint)(1600));
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).f3468_Set(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB64);
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).f346C_Set((int)(CPak_Crc32(buf, 1600, (uint)(7))));
         }
     }
 
@@ -8891,8 +8891,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043569C", (uint)idx);
-            Mem_Copy(new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].rec.P, new O05Lobby(Mem.U32(0x800E54A4u)).recs.P, (uint)(1600));
-            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB64_Set(new O05Lobby(Mem.U32(0x800E54A4u)).f3468);
+            Mem_Copy(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].rec.P, new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).recs.P, (uint)(1600));
+            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB64_Set(new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).f3468);
         }
     }
 
@@ -8906,7 +8906,7 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 4); ++i)
             {
-                int st = new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].state;
+                int st = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].state;
                 if ((((st != 0) && (st != 14)) && (st != 17)))
                 {
                     ++n;
@@ -8926,7 +8926,7 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 4); ++i)
             {
-                int st = new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].state;
+                int st = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].state;
                 if (((st != 0) && (st != 17)))
                 {
                     ++n;
@@ -8946,7 +8946,7 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 4); ++i)
             {
-                if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].state != 0))
+                if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(i)].state != 0))
                 {
                     ++n;
                 }
@@ -8964,12 +8964,12 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 4); ++i)
             {
-                int a = new O05Lobby(Mem.U32(0x800E54A4u)).slot[(int)(i)].a;
-                int b = new O05Lobby(Mem.U32(0x800E54A4u)).slot[(int)(i)].b;
-                uint rec = (0x80102B00u + (uint)(i * 400));
+                int a = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).slot[(int)(i)].a;
+                int b = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).slot[(int)(i)].b;
+                uint rec = (Gv.ProfileTable + (uint)(i * 400));
                 if ((a != (-1)))
                 {
-                    Mem_Copy(rec, (new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(a)].rec.P + (uint)(b * 400)), (uint)(400));
+                    Mem_Copy(rec, (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(a)].rec.P + (uint)(b * 400)), (uint)(400));
                     new O05Rec(rec).bC_Set((sbyte)(b));
                 }
                 else
@@ -8986,12 +8986,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00435898", (uint)k);
-            int a = new O05Lobby(Mem.U32(0x800E54A4u)).slot[(int)(k)].a;
-            int b = new O05Lobby(Mem.U32(0x800E54A4u)).slot[(int)(k)].b;
-            uint rec = (0x80102B00u + (uint)(k * 400));
+            int a = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).slot[(int)(k)].a;
+            int b = new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).slot[(int)(k)].b;
+            uint rec = (Gv.ProfileTable + (uint)(k * 400));
             if ((a != (-1)))
             {
-                Mem_Copy(rec, (new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(a)].rec.P + (uint)(b * 400)), (uint)(400));
+                Mem_Copy(rec, (new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(a)].rec.P + (uint)(b * 400)), (uint)(400));
                 new O05Rec(rec).bC_Set((sbyte)(b));
             }
             new O05Rec(rec).bD_Set((sbyte)(a));
@@ -9013,10 +9013,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00435A20", (uint)i);
-            if ((new O05Lobby(Mem.U32(0x800E54A4u)).slot[(int)(i)].c == 1))
+            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).slot[(int)(i)].c == 1))
             {
-                Profile_Init((0x80102B00u + (uint)(i * 400)));
-                new O05Lobby(Mem.U32(0x800E54A4u)).slot[(int)(i)].c_Set(2);
+                Profile_Init((Gv.ProfileTable + (uint)(i * 400)));
+                new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).slot[(int)(i)].c_Set(2);
                 PlayerMenu_BindProfileWidgets((-1));
             }
         }
@@ -9032,9 +9032,9 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 4); ++i)
             {
-                if ((((int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bE) == 0) && ((int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bD) == idx)))
+                if ((((int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).bE) == 0) && ((int)(new O05Rec((Gv.ProfileTable + (uint)(i * 400))).bD) == idx)))
                 {
-                    if ((new O05Rec((0x80102B00u + (uint)(i * 400))).w8 != new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB64))
+                    if ((new O05Rec((Gv.ProfileTable + (uint)(i * 400))).w8 != new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB64))
                     {
                         r = 0;
                     }
@@ -9050,7 +9050,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00435B78", (uint)a, (uint)b, (uint)i);
-            uint p = (Mem.U32(0x800E54A4u) + (uint)(i * 12));
+            uint p = (Mem.U32(Gv.PlayerMenu_PagePtr) + (uint)(i * 12));
             new O05SlotAt(p).s.a_Set(a);
             new O05SlotAt(p).s.b_Set(b);
             new O05SlotAt(p).s.c_Set(1);
@@ -9073,8 +9073,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00435BAC");
-            ResourcePool_MallocFree(Mem.U32(0x800E54A4u));
-            Mem.Set(0x800E54A4u, 0u);
+            ResourcePool_MallocFree(Mem.U32(Gv.PlayerMenu_PagePtr));
+            Mem.Set(Gv.PlayerMenu_PagePtr, 0u);
             Menu_EnableInput();
             Menu_SetPeriodicStateKick_002A3410(1);
             return 0;
@@ -9088,7 +9088,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00435BEC", (uint)a, (uint)b, (uint)c, (uint)d);
             int idx = (int)((c & (uint)(65535)));
-            if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].state == 12))
+            if ((new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].state == 12))
             {
                 if (((c >> (int)16) == (uint)(3)))
                 {
@@ -9096,8 +9096,8 @@ public static partial class Game
                     {
                         if ((d >= 4))
                         {
-                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB4C_Set(0);
-                            new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB48_Set(2);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB4C_Set(0);
+                            new O05Lobby(Mem.U32(Gv.PlayerMenu_PagePtr)).plr[(int)(idx)].fB48_Set(2);
                         }
                     }
                 }
@@ -9113,13 +9113,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00435C54", (uint)o, (uint)id, (uint)a2, (uint)a3);
             int i = 0;
-            for (i = 0; (new O05Disp((0x800E54A8u + (uint)(i * 12))).fn != 0u); ++i)
+            for (i = 0; (new O05Disp((Gv.PlayerMenu_EventTable + (uint)(i * 12))).fn != 0u); ++i)
             {
-                if ((new O05Disp((0x800E54A8u + (uint)(i * 12))).id == id))
+                if ((new O05Disp((Gv.PlayerMenu_EventTable + (uint)(i * 12))).id == id))
                 {
-                    if (((new O05Disp((0x800E54A8u + (uint)(i * 12))).key == (int)(new O05Obj(o).key)) || (new O05Disp((0x800E54A8u + (uint)(i * 12))).key == 30000)))
+                    if (((new O05Disp((Gv.PlayerMenu_EventTable + (uint)(i * 12))).key == (int)(new O05Obj(o).key)) || (new O05Disp((Gv.PlayerMenu_EventTable + (uint)(i * 12))).key == 30000)))
                     {
-                        return (int)(Funcs.CallRegX(new O05Disp((0x800E54A8u + (uint)(i * 12))).fn, o, (uint)(id), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
+                        return (int)(Funcs.CallRegX(new O05Disp((Gv.PlayerMenu_EventTable + (uint)(i * 12))).fn, o, (uint)(id), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
                     }
                 }
             }
@@ -9330,7 +9330,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00446330", (uint)a);
-            int n = Player_GetIndex(0x80145040u, new O06A_v30(a).unk1C);
+            int n = Player_GetIndex(Gv.PlayerPool, new O06A_v30(a).unk1C);
             int i = 0;
             int cnt = 0;
             int len = 0;
@@ -9365,8 +9365,8 @@ public static partial class Game
                 new O06B_v21(new O06A_v30(a).unkC_).unk80_Set((uint)((uint)(new O06B_v21(new O06A_v30(a).unkC_).unk80) & (uint)((~25165824))));
                 break;
             }
-            new O06R_v2((0x800E63C0u + (uint)(n * 24))).unk4_Set(0);
-            dst = new O06R_v2((0x800E63C0u + (uint)(n * 24))).unkC.P;
+            new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unk4_Set(0);
+            dst = new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unkC.P;
             do
             {
                 src = new O06N_v2((0x8014641Cu + (uint)(n * 150))).b.P;
@@ -9393,8 +9393,8 @@ public static partial class Game
                 Mem.Set(((dst += 1u) - 1u), Mem.U8(((src += 1u) - 1u)));
             }
             Mem.Set(dst, (byte)(0));
-            new O06R_v2((0x800E63C0u + (uint)(n * 24))).unk0_Set((8 - cnt));
-            new O06R_v2((0x800E63C0u + (uint)(n * 24))).unk8_Set((8 - cnt));
+            new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unk0_Set((8 - cnt));
+            new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unk8_Set((8 - cnt));
         }
     }
 
@@ -9404,26 +9404,26 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004465B4", (uint)a, (uint)b);
-            int n = Player_GetIndex(0x80145040u, Mem.S32((b + (uint)28)));
-            float v = (new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk4 + Mem.F32(0x800D2988u));
-            new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk4_Set(v);
+            int n = Player_GetIndex(Gv.PlayerPool, Mem.S32((b + (uint)28)));
+            float v = (new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).unk4 + Mem.F32(Gv.FrameTime));
+            new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).unk4_Set(v);
             if ((Mem.F32(0x800E2810u) <= v))
             {
-                new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk4_Set((v - Mem.F32(0x800E2810u)));
+                new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).unk4_Set((v - Mem.F32(0x800E2810u)));
             }
             if (((int)(new O06A2(b).unk0) == 1))
             {
-                if (((Pad_IsLeft(new O06A2(b).unk20) != 0) && (new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0 > 0)))
+                if (((Pad_IsLeft(new O06A2(b).unk20) != 0) && (new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).unk0 > 0)))
                 {
-                    new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0_Set((int)(new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0 - 1));
-                    new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk4_Set((float)(0));
+                    new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).unk0_Set((int)(new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).unk0 - 1));
+                    new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).unk4_Set((float)(0));
                 }
                 else
                 {
-                    if (((Pad_IsRight(new O06A2(b).unk20) != 0) && (new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0 < new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk8)))
+                    if (((Pad_IsRight(new O06A2(b).unk20) != 0) && (new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).unk0 < new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).unk8)))
                     {
-                        new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0_Set((int)(new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk0 + 1));
-                        new O06R_v3((0x800E63C0u + (uint)(n * 24))).unk4_Set((float)(0));
+                        new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).unk0_Set((int)(new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).unk0 + 1));
+                        new O06R_v3((Gv.NameEntry_EditFields + (uint)(n * 24))).unk4_Set((float)(0));
                     }
                 }
             }
@@ -9437,16 +9437,16 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00446704", (uint)a, (uint)b);
-            int n = Player_GetIndex(0x80145040u, new O06A_v4(b).unk1C);
-            new O06R_v2((0x800E63C0u + (uint)(n * 24))).unk4_Set(0);
-            if ((new O06R_v2((0x800E63C0u + (uint)(n * 24))).unk8 == 8))
+            int n = Player_GetIndex(Gv.PlayerPool, new O06A_v4(b).unk1C);
+            new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unk4_Set(0);
+            if ((new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unk8 == 8))
             {
                 return 0;
             }
-            new O06R_v2((0x800E63C0u + (uint)(n * 24))).unkC.Set((int)(new O06R_v2((0x800E63C0u + (uint)(n * 24))).unk0), Mem.U8(Mem.U32(new O06A_v4(a).unk14)));
-            new O06R_v2((0x800E63C0u + (uint)(n * 24))).unk0_Set((int)(new O06R_v2((0x800E63C0u + (uint)(n * 24))).unk0 + 1));
-            new O06R_v2((0x800E63C0u + (uint)(n * 24))).unk8_Set((int)(new O06R_v2((0x800E63C0u + (uint)(n * 24))).unk8 + 1));
-            new O06R_v2((0x800E63C0u + (uint)(n * 24))).unkC.Set((int)(new O06R_v2((0x800E63C0u + (uint)(n * 24))).unk8), (byte)(0));
+            new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unkC.Set((int)(new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unk0), Mem.U8(Mem.U32(new O06A_v4(a).unk14)));
+            new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unk0_Set((int)(new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unk0 + 1));
+            new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unk8_Set((int)(new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unk8 + 1));
+            new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unkC.Set((int)(new O06R_v2((Gv.NameEntry_EditFields + (uint)(n * 24))).unk8), (byte)(0));
             return 0;
         }
     }
@@ -9476,16 +9476,16 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_004469BC", (uint)unused, (uint)menu);
             int i = 0;
             int count = 0;
-            i = Player_GetIndex(0x80145040u, new MenuRules(menu).locked);
-            count = new TextEntry_func_80445D6C_de((0x800E63C0u + (uint)(i * 24))).count;
-            new TextEntry_func_80445D6C_de((0x800E63C0u + (uint)(i * 24))).cursor_Set(0);
+            i = Player_GetIndex(Gv.PlayerPool, new MenuRules(menu).locked);
+            count = new TextEntry_func_80445D6C_de((Gv.NameEntry_EditFields + (uint)(i * 24))).count;
+            new TextEntry_func_80445D6C_de((Gv.NameEntry_EditFields + (uint)(i * 24))).cursor_Set(0);
             if ((count == 0))
             {
                 return 0;
             }
-            new TextEntry_func_80445D6C_de((0x800E63C0u + (uint)(i * 24))).count_Set((count - 1));
-            new TextEntry_func_80445D6C_de((0x800E63C0u + (uint)(i * 24))).length_Set((int)(new TextEntry_func_80445D6C_de((0x800E63C0u + (uint)(i * 24))).length - 1));
-            new TextEntry_func_80445D6C_de((0x800E63C0u + (uint)(i * 24))).text.Set((int)(new TextEntry_func_80445D6C_de((0x800E63C0u + (uint)(i * 24))).length), (sbyte)(0));
+            new TextEntry_func_80445D6C_de((Gv.NameEntry_EditFields + (uint)(i * 24))).count_Set((count - 1));
+            new TextEntry_func_80445D6C_de((Gv.NameEntry_EditFields + (uint)(i * 24))).length_Set((int)(new TextEntry_func_80445D6C_de((Gv.NameEntry_EditFields + (uint)(i * 24))).length - 1));
+            new TextEntry_func_80445D6C_de((Gv.NameEntry_EditFields + (uint)(i * 24))).text.Set((int)(new TextEntry_func_80445D6C_de((Gv.NameEntry_EditFields + (uint)(i * 24))).length), (sbyte)(0));
             return 0;
         }
     }
@@ -9504,9 +9504,9 @@ public static partial class Game
             byte var_v0 = 0;
             uint temp_s1 = 0u;
             temp_s1 = new Entry_func_80445E04_de(arg1).unk1C_;
-            temp_v0 = Player_GetIndex(0x80145040u, (int)(temp_s1));
+            temp_v0 = Player_GetIndex(Gv.PlayerPool, (int)(temp_s1));
             var_a2 = (0x800E63CCu + (uint)(temp_v0 * 24));
-            var_v1 = ((0x80145040u + (uint)5084) + (uint)(temp_v0 * 150));
+            var_v1 = ((Gv.PlayerPool + (uint)5084) + (uint)(temp_v0 * 150));
             var_a1 = 0;
             var_a0 = 0;
             do
@@ -9542,7 +9542,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00446B44");
-            uint s = 0x801468A0u;
+            uint s = Gv.Settings_MatchRules;
             int ret = 0;
             ret = 0;
             if ((((new State_func_80445EF4_de(s).unk28 != 0) || (new State_func_80445EF4_de(s).unk1C != 0)) || (new State_func_80445EF4_de(s).unk20 != 0)))

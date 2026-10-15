@@ -412,7 +412,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002657A4", (uint)a);
-            if (((a >= (uint)(0x800CD390u)) && (a < ((uint)(0x800CD390u) + (uint)(0x0000F641u)))))
+            if (((a >= (uint)(Gv.DevLink_IoThreadActive)) && (a < ((uint)(Gv.DevLink_IoThreadActive) + (uint)(0x0000F641u)))))
             {
                 return 1;
             }
@@ -420,7 +420,7 @@ public static partial class Game
             {
                 return 1;
             }
-            if (((a >= (uint)(0x800E2830u)) && (a < ((uint)(0x800E2830u) + (uint)(0x00003B6Eu)))))
+            if (((a >= (uint)(Gv.FlybyCtlPtr)) && (a < ((uint)(Gv.FlybyCtlPtr) + (uint)(0x00003B6Eu)))))
             {
                 return 1;
             }

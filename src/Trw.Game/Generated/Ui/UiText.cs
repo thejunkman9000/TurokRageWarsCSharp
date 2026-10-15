@@ -205,30 +205,30 @@ public static partial class Game
                 uint it = 0u;
                 uint e = 0u;
                 uint p = 0u;
-                if ((Mem.S32(0x80153800u) != 0))
+                if ((Mem.S32(Gv.UiText_BatchCount) != 0))
                 {
                     lo = (ushort)(96);
                     hi = (ushort)(0);
-                    if (((Mem.S32(0x800E2ABCu) != 340787) || (Mem.S32(0x800E2AB8u) == 0)))
+                    if (((Mem.S32(Gv.Ui_LastBatchRenderKey) != 340787) || (Mem.S32(Gv.Ui_DrawModeValid) == 0)))
                     {
-                        Mem.Set(0x800E2ABCu, 340787);
+                        Mem.Set(Gv.Ui_LastBatchRenderKey, 340787);
                         Gfx_ApplyRenderFlags((uint)(340787));
-                        Mem.Set(0x800E2AB8u, 1);
+                        Mem.Set(Gv.Ui_DrawModeValid, 1);
                     }
                     Ui_GetClipRect((new O02Rect(_fp).w.P + (uint)(0 * 4)), (new O02Rect(_fp).w.P + (uint)(2 * 4)), (new O02Rect(_fp).w.P + (uint)(1 * 4)), (new O02Rect(_fp).w.P + (uint)(3 * 4)));
-                    Ui_SetClipRect(Mem.S32(0x80153810u), Mem.S32(0x80153818u), Mem.S32(0x80153814u), Mem.S32(0x8015381Cu));
-                    for (i = 0; (i < Mem.S32(0x80153800u)); ++i)
+                    Ui_SetClipRect(Mem.S32(Gv.UiText_BatchClip), Mem.S32(0x80153818u), Mem.S32(0x80153814u), Mem.S32(0x8015381Cu));
+                    for (i = 0; (i < Mem.S32(Gv.UiText_BatchCount)); ++i)
                     {
-                        it = new O02Ent((0x80153820u + (uint)(i * 24))).items_;
+                        it = new O02Ent((Gv.UiDraw_BatchTable + (uint)(i * 24))).items_;
                         lo = (ushort)((((int)(lo) < (int)(new O02Item(it).f14)) ? (int)(lo) : (int)(new O02Item(it).f14)));
-                        hi = (ushort)((((int)(new O02Item((it + (uint)((new O02Ent((0x80153820u + (uint)(i * 24))).count - 1) * 24))).f14) < (int)(hi)) ? (int)(hi) : (int)(new O02Item((it + (uint)((new O02Ent((0x80153820u + (uint)(i * 24))).count - 1) * 24))).f14)));
+                        hi = (ushort)((((int)(new O02Item((it + (uint)((new O02Ent((Gv.UiDraw_BatchTable + (uint)(i * 24))).count - 1) * 24))).f14) < (int)(hi)) ? (int)(hi) : (int)(new O02Item((it + (uint)((new O02Ent((Gv.UiDraw_BatchTable + (uint)(i * 24))).count - 1) * 24))).f14)));
                     }
                     for (i = (int)(lo); (i <= (int)(hi)); ++i)
                     {
                         started = 0;
-                        for (j = 0; (j < Mem.S32(0x80153800u)); ++j)
+                        for (j = 0; (j < Mem.S32(Gv.UiText_BatchCount)); ++j)
                         {
-                            e = (0x80153820u + (uint)(j * 24));
+                            e = (Gv.UiDraw_BatchTable + (uint)(j * 24));
                             while (((i == (int)(new O02Ent(e).items.f14)) && (new O02Ent(e).count > 0)))
                             {
                                 it = new O02Ent(e).items_;
@@ -237,7 +237,7 @@ public static partial class Game
                                     int r2 = (int)(UiFont_GetGlyphTexture((byte)((i & 255)), Mem.S32(0x801539A0u), Mem.S32(0x801539A4u)));
                                     if (!(r2 != 0))
                                     {
-                                        j = Mem.S32(0x80153800u);
+                                        j = Mem.S32(Gv.UiText_BatchCount);
                                         break;
                                     }
                                     Gfx_LoadTextureImage((uint)(r2));
@@ -251,7 +251,7 @@ public static partial class Game
                     }
                     p = _fp;
                     Ui_SetClipRect(new O02Rect(_fp).w[(int)(0)], new O02Rect(p).w[(int)(2)], new O02Rect(p).w[(int)(1)], new O02Rect(p).w[(int)(3)]);
-                    Mem.Set(0x80153800u, 0);
+                    Mem.Set(Gv.UiText_BatchCount, 0);
                 }
             }
         }
@@ -265,9 +265,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0040E914");
             UiText_FlushGlyphBatches();
-            new O02Q(0x80153810u).a_Set(new O02Q(0x80153810u).c_Set(0));
-            new O02Q(0x80153810u).b_Set(Mem.S32(0x800E2AB0u));
-            new O02Q(0x80153810u).d_Set(Mem.S32(0x800E2AB4u));
+            new O02Q(Gv.UiText_BatchClip).a_Set(new O02Q(Gv.UiText_BatchClip).c_Set(0));
+            new O02Q(Gv.UiText_BatchClip).b_Set(Mem.S32(0x800E2AB0u));
+            new O02Q(Gv.UiText_BatchClip).d_Set(Mem.S32(0x800E2AB4u));
         }
     }
 

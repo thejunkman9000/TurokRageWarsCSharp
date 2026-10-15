@@ -265,10 +265,10 @@ public static partial class Game
 
     private static void TrackScreen()
     {
-        int st = Mem.S32(G.GameState);
+        int st = Mem.S32(Gv.GameState);
         if (st != StateId) { StateId = st; StateSince = tickCount; }
         int scr = Mem.S32(0x8014D098);
-        if (scr < 0) { uint mgr = Mem.U32(0x8014D080); int top; scr = mgr == 0 || !Mem.IsMapped(mgr) || (top = Mem.S32(mgr + 4)) < 0 ? -1 : Mem.S32(Mem.U32(mgr + 0xC) + (uint)top * 0x1C + 4); }
+        if (scr < 0) { uint mgr = Mem.U32(Gv.MenuMgrPtr); int top; scr = mgr == 0 || !Mem.IsMapped(mgr) || (top = Mem.S32(mgr + 4)) < 0 ? -1 : Mem.S32(Mem.U32(mgr + 0xC) + (uint)top * 0x1C + 4); }
         if (scr != ScreenId) { ScreenId = scr; ScreenSince = tickCount; }
     }
 
@@ -306,16 +306,16 @@ public static partial class Game
         TrackScreen();
         if (statusLog)
         {
-            int st = Mem.S32(G.GameState);
+            int st = Mem.S32(Gv.GameState);
             if (st != lastState) { Console.Error.WriteLine($"[state] tick {tickCount}: {lastState} -> {st}"); lastState = st; if (st == Dbg.ArmState) Dbg.Armed = true; }
             int scr = Mem.S32(0x8014D098);
-            if (scr < 0) { uint mgr = Mem.U32(0x8014D080); int top; scr = mgr == 0 || Mem.IsMapped(mgr) == false || (top = Mem.S32(mgr + 4)) < 0 ? -1 : Mem.S32(Mem.U32(mgr + 0xC) + (uint)top * 0x1C + 4); }
+            if (scr < 0) { uint mgr = Mem.U32(Gv.MenuMgrPtr); int top; scr = mgr == 0 || Mem.IsMapped(mgr) == false || (top = Mem.S32(mgr + 4)) < 0 ? -1 : Mem.S32(Mem.U32(mgr + 0xC) + (uint)top * 0x1C + 4); }
             if (scr != lastScreen) { Console.Error.WriteLine($"[screen] tick {tickCount}: {lastScreen} -> {scr}"); lastScreen = scr; }
         }
         if (statusLog && tickCount % 300 == 0)
-            Console.Error.WriteLine($"[status] tick {tickCount}: fade t={Mem.F32(0x80146884)} (clear above {Mem.F32(0x800CA564)}, scale {Mem.F32(0x800CA568)}); gfx tasks {gfxTasks}, audio tasks {audioTasks} (done {audioDone}), AI blocks {aiBlocks} ({aiBytes} bytes, {aiFifo.Frequency} Hz), state D_80146878={Mem.S32(G.GameState)} D_800D2984={Mem.S32(0x800D2984)} D_80146D68={Mem.S32(0x80146D68)} D_8014ADA0={Mem.S32(0x8014ADA0)}");
+            Console.Error.WriteLine($"[status] tick {tickCount}: fade t={Mem.F32(0x80146884)} (clear above {Mem.F32(0x800CA564)}, scale {Mem.F32(0x800CA568)}); gfx tasks {gfxTasks}, audio tasks {audioTasks} (done {audioDone}), AI blocks {aiBlocks} ({aiBytes} bytes, {aiFifo.Frequency} Hz), state D_80146878={Mem.S32(Gv.GameState)} D_800D2984={Mem.S32(0x800D2984)} D_80146D68={Mem.S32(0x80146D68)} D_8014ADA0={Mem.S32(Gv.PakMenu_BootDialogsDone)}");
         // TRW_PEEK="addr:bytes;addr:bytes": dump guest memory once the match runs (TRW_PEEK_EVERY=<ticks>: and again every <ticks> after that)
-        if (peekSpec != null && !peeked && Mem.S32(G.GameState) == 13 && ++peekWait > 240)
+        if (peekSpec != null && !peeked && Mem.S32(Gv.GameState) == 13 && ++peekWait > 240)
         {
             peeked = peekEvery <= 0; peekWait = 240 - peekEvery;
             Console.Error.WriteLine($"[peek] tick {tickCount}");

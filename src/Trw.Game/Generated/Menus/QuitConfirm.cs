@@ -71,15 +71,15 @@ public static partial class Game
             case 473:
                 if ((Menu_GetStackScreenId(0) == 22))
                 {
-                    CameraManager_Init(0x80145088u, 0);
-                    Player_InitPool((0x80145088u - (uint)72), 0, 0);
-                    Level_Load(0x8011FE88u, (uint)(0), (uint)(0), default(uint));
+                    CameraManager_Init(Gv.ViewMgr, 0);
+                    Player_InitPool((Gv.ViewMgr - (uint)72), 0, 0);
+                    Level_Load(Gv.LevelMgr, (uint)(0), (uint)(0), default(uint));
                     if ((Resource_GetLoadFlags() == 0))
                     {
                         Resource_SetLoadFlags(1);
                     }
-                    Mem.Set((0x80145088u + (uint)6128), 8);
-                    switch ((int)(Mem.U8((0x80145088u + (uint)4685))))
+                    Mem.Set((Gv.ViewMgr + (uint)6128), 8);
+                    switch ((int)(Mem.U8((Gv.ViewMgr + (uint)4685))))
                     {
                     case 0:
                         Menu_RequestScreen(20);
@@ -145,13 +145,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0042931C", (uint)a, (uint)b, (uint)c, (uint)d);
             int i = 0;
-            for (i = 0; (new O04Evt((0x800E4EC0u + (uint)(i * 12))).fn != 0u); ++i)
+            for (i = 0; (new O04Evt((Gv.QuitConfirm_EventTable + (uint)(i * 12))).fn != 0u); ++i)
             {
-                if ((new O04Evt((0x800E4EC0u + (uint)(i * 12))).ev == b))
+                if ((new O04Evt((Gv.QuitConfirm_EventTable + (uint)(i * 12))).ev == b))
                 {
-                    if (((new O04Evt((0x800E4EC0u + (uint)(i * 12))).key == (int)(new O04Obj(a).unkC)) || (new O04Evt((0x800E4EC0u + (uint)(i * 12))).key == 30000)))
+                    if (((new O04Evt((Gv.QuitConfirm_EventTable + (uint)(i * 12))).key == (int)(new O04Obj(a).unkC)) || (new O04Evt((Gv.QuitConfirm_EventTable + (uint)(i * 12))).key == 30000)))
                     {
-                        return (int)(Funcs.CallRegX(new O04Evt((0x800E4EC0u + (uint)(i * 12))).fn, a, (uint)(b), (uint)(c), (uint)(d), new uint[] { (uint)(e) }));
+                        return (int)(Funcs.CallRegX(new O04Evt((Gv.QuitConfirm_EventTable + (uint)(i * 12))).fn, a, (uint)(b), (uint)(c), (uint)(d), new uint[] { (uint)(e) }));
                     }
                 }
             }

@@ -7,7 +7,7 @@ public sealed record HudView(int Index, uint Camera, float X, float Y, float W, 
 
 /// <summary>
 /// The values the layout binds to, read from guest RAM for one view (read-only; values may be a frame newer than the drawn frame, like the scoreboard's).
-/// Offsets are the decompiled C's (Hud_DrawPlayer <c>Shared_HudPlayer</c>, Hud_DrawAmmo ammo slots, Hud_DrawMatchClock clock, <c>HudStatusShared_Settings</c> at 0x801462C8).
+/// Offsets are the decompiled C's (Hud_DrawPlayer <c>Shared_HudPlayer</c>, Hud_DrawAmmo ammo slots, Hud_DrawMatchClock clock, <c>HudStatusShared_Settings</c> at Gv.Settings).
 /// <list type="table">
 /// <item><term>health</term><description>displayed health: (s32 player+0x5E4 + 0xFF) &gt;&gt; 8 (the raw value is in 1/256)</description></item>
 /// <item><term>frags</term><description>the HUD's score: team score (rules+0x2C + team*4) in team games, else the owner record's s16 +0x04 (clamped at -99)</description></item>
@@ -18,8 +18,8 @@ public sealed record HudView(int Index, uint Camera, float X, float Y, float W, 
 /// </summary>
 public sealed class HudValues : IHudValues
 {
-    public const uint Settings = 0x801462C8, Rules = Settings + 0x5D8, ClockAddr = Rules + 0x14, FragLimitAddr = Rules + 0x18;
-    public const uint ScreenW = 0x800E28D0, ScreenH = 0x800E28D4, HiRes = 0x800E28D8, ViewCount = 0x801450B8, FrameCounter = 0x800D2980;
+    public const uint Settings = Gv.Settings, Rules = Settings + 0x5D8, ClockAddr = Rules + 0x14, FragLimitAddr = Rules + 0x18;
+    public const uint ScreenW = Gv.ScreenWidth, ScreenH = Gv.ScreenHeight, HiRes = Gv.VideoResolution, ViewCount = Gv.ViewCount, FrameCounter = Gv.LevelFrameCount;
 
     private readonly Dictionary<string, double> v = new(StringComparer.OrdinalIgnoreCase);
     public HudView View { get; }
@@ -60,7 +60,7 @@ public sealed class HudValues : IHudValues
         v["ks"] = hires != 0 ? 1.0 : 0.75;
         v["localView"] = LocalView.Enabled ? 1 : 0;
         v["views"] = Mem.S32(ViewCount);
-        v["state"] = Mem.S32(G.GameState);
+        v["state"] = Mem.S32(Gv.GameState);
         v["frame"] = Mem.U32(FrameCounter);
         // match settings / rules
         v["trialKind"] = Mem.U8(Settings + 0xD);
@@ -95,7 +95,7 @@ public sealed class HudValues : IHudValues
         int ammoType = -1;
         {
             int w = Mem.S16(p + 0x62E);
-            uint t = w >= 0 && w < 64 ? Mem.U32(0x800D052Cu + (uint)w * 4) : 0;
+            uint t = w >= 0 && w < 64 ? Mem.U32(Gv.WeaponDefTable + (uint)w * 4) : 0;
             if (Ram(t, 0x28))
             {
                 uint q = Mem.S32(p + 0x594) == 1 ? Mem.U32(t + 0x20) : Mem.U32(t + 0x24);

@@ -2,3 +2,403 @@
 0x80146878	GameState	high	the game state id (State_* table D_800D29D8 index): 8 attract demo, 13 in-level play, 20 transition
 0x8015402C	ArenaLevel	high	level number of the next match (Arena_Set)
 0x80154028	ArenaType	high	game type of the next match (Arena_Set)
+0x800D052C	WeaponDefTable	high	array of pointers to weapon definitions indexed by weapon id (WpnDesc info.type, ammo slot fields); read by Weapon_*/Player_* code
+0x800D15DC	Model_FogBlendMode	medium	othermode-L blender word ORed into G_SETOTHERMODE_L; Model_UpdateFogRenderModes stores 0xC8000000 (fog shade) or 0x0C080000 (pass)
+0x800D15E0	Model_ColorOverrideMode	medium	model colour override mode 0/1/3/6 picked by Tint_ResolveModelOverride, set by menu/actor draw code before drawing models
+0x800D15E4	Model_ColorOverride	medium	float[] rgb/alpha model colour override (D_800D15E4..F4) written by Tint_ApplyToModels/Tint_AddToModels and menu draws (255.0f)
+0x800D297C	FrameParity	high	0/1 toggled every frame by Video_AdvanceFrameSlot; indexes the double-buffered matrix stack and per-frame segments (seg + n*24)
+0x800D2980	LevelFrameCount	high	incremented every frame by Video_AdvanceFrameSlot, reset to 0 by State_PlayInit/State_PlayResumeInit; drives sine animations and start delays
+0x800D2988	FrameTime	high	per-frame time step (float) multiplied into every timer/turn/motion update; scaled by game speed
+0x800D2B40	NoRegionId	medium	ROM constant -1 used as the default region/zone id for Actor_Init, camera trackers, props and face attributes; never written
+0x800D2BB0	RomFile_ArchiveBuffer	high	pointer to the archive buffer malloc'd by RomFile_LoadArchive (size D_800D2BB8), freed by RomFile_FreeArchive/File_Shutdown
+0x800D2BDC	FrameAlloc_FreeStat	medium	MinMaxF usage record decreased by both FrameAlloc_AllocLow/AllocHigh sizes (free space), reset by ScratchHeap_ResetStats
+0x800D2BE8	FrameAlloc_LowUsedStat	medium	MinMaxF usage record increased by FrameAlloc_AllocLow sizes (high side uses D_800D2BF4), reset by ScratchHeap_ResetStats
+0x800D3650	DbgPort_PollCount	medium	poll/retry count of the debug-port wait loops (dbgPortWaitRegMask outer loop), set to 100 or 1 by the dbgHost* calls
+0x800D70E8	HudMsg_FunctionNotAvailable	high	pointer to the ROM string 'Function Not Available' shown via Hud_SpawnTextLineA when a weapon fire/alt-fire is refused
+0x800E2830	FlybyCtlPtr	high	pointer to the flyby control block; every Flyby_* function reads/writes its fields
+0x800E2854	CPak_DirectoryPtr	high	pointer to the per-pad controller pak directory buffers (516 bytes per pad: free bytes + 16 x 32-byte note entries)
+0x800E28C8	PakMenu_BootPad	medium	pad/port used by the pak menu in boot mode (-1 none), set by PakMenu_SelectFirstPakPort, read by PakMenu_GetPad
+0x800E28D0	ScreenWidth	high	screen width in pixels (Video_GetScreenSize), used to scale 2D UI against 284x222
+0x800E28D4	ScreenHeight	high	screen height in pixels (Video_GetScreenSize), used to scale 2D UI against 284x222
+0x800E28D8	VideoResolution	high	current resolution mode (0 lo-res, 1 hi-res, -1 unset/letterbox) set by Video_SetResolution, read by Video_GetResolution and hi-res UI scaling
+0x800E32A4	Gfx_BoundImagePtr	high	image record bound by Gfx_LoadTextureImage (size/format/palette) used by Gfx_EmitTexRect/Gfx_DrawTexRectStrips
+0x800E3518	TitleScreen_PagePtr	high	title screen (29) page malloc'd (44 bytes) by TitleScreen_Open, freed by TitleScreen_Close
+0x800E3590	ProfileStats_PagePtr	high	profile stats screen state malloc'd (528 bytes) by ProfileStats_Open, used by all ProfileStats_* handlers
+0x800E39C0	BotSetup_PagePtr	high	bot setup screen (23) page malloc'd (32 bytes) by BotSetup_Open, freed by BotSetup_OnClose
+0x800E3A50	CharSelect_CharacterTable	high	inline 17-entry character table (0x70 bytes: node id, character id, portrait..) searched by CharSelect_FindRowBy*
+0x800E42D0	CharSelect_PagePtr	high	character select (screen 7) page allocated by its open handler (0x1358), freed by CharSelect_OnClose
+0x800E4400	CheatsMenu_PagePtr	high	cheats screen (0x1C) page malloc'd (60 bytes) by CheatsMenu_OnOpen, freed by CheatsMenu_OnClose
+0x800E4510	OptionsMenu_PagePtr	high	options screen (4) widget words malloc'd (40 bytes) by OptionsMenu_OnOpen, freed by OptionsMenu_OnClose
+0x800E4514	TrialPauseMenu_PagePtr	high	trial pause options screen (0xB) widgets malloc'd (16 bytes) by TrialPauseMenu_OnOpen, freed by TrialPauseMenu_OnClose
+0x800E4518	PauseOptions_PagePtr	high	pause options screen state malloc'd (0x6C bytes: sound, page, pages..) by PauseOptions_OnOpen
+0x800E4600	MainMenu_PagePtr	high	main menu (screen 3) page allocated by its open handler, freed by MainMenu_OnClose
+0x800E4680	ArenaTreeRecordPtr	medium	pointer to the mission-tree arena record (Arena_GetTreeRecord) set by MatchSetup_StartMatch, 0 in custom matches; supplies trial time/lives/pickup variants
+0x800E4690	MissionTree_PagePtr	high	mission tree screen (0xA/0xF) page malloc'd (0xA80) by MissionTree_OnOpen, freed by MissionTree_OnClose
+0x800E4EF0	MatchOptions_PagePtr	high	match options page malloc'd (64 bytes) by MatchOptions_Open, freed by MatchOptions_Close
+0x800E4F60	ArenaSelect_PagePtr	high	arena/gauntlet select (screen 0x14) page, freed by ArenaSelect_Close
+0x800E53C0	Results_PagePtr	high	results screen page malloc'd (816 bytes) by Results_Open, freed by Results_Close
+0x800E5430	PlayerCount_PagePtr	high	how-many-players screen (26) page malloc'd (36 bytes) by PlayerCount_Open, freed by PlayerCount_Close
+0x800E54A4	PlayerMenu_PagePtr	high	player/profile lobby page malloc'd (0x3474) by PlayerMenu_Open, freed by PlayerMenu_Close
+0x800E5690	ControllerMenu_PagePtr	high	controller options screen (5) page malloc'd (100 bytes) by ControllerMenu_Open, freed by ControllerMenu_Close
+0x800E5694	PauseControllerMenu_PagePtr	high	pause controller options screen (0xC) widgets used by the PauseControllerMenu_* handlers
+0x800E5780	TrialMenu_PagePtr	high	trial menu (screen 9) page from TrialMenu_Open, freed by TrialMenu_Close
+0x800E5784	TrialResetConfirm_PagePtr	high	trial reset confirm (screen 0x1E) page malloc'd (20 bytes) by TrialResetConfirm_Open
+0x800E5830	TrialResults_PagePtr	high	trial results (screen 0x12) page from TrialResults_Open, freed by TrialResults_Close
+0x800E59E0	Loadout_PagePtr	high	loadout screen (8) page (0x1670) set by Loadout_Open, freed by Loadout_Close
+0x800E5CA0	LegacyCheats_CodeCursor	medium	inline cursor/blink record (timer advanced by FrameTime, cur position) of the legacy cheat code entry field
+0x800E63C0	NameEntry_EditFields	medium	inline array (24-byte records: blink timer, cursor, length, text at +0xC) of the per-player name edit buffers
+0x801029F8	Player_TeamMarkerVtx	high	inline vertex array of the team-mate marker filled and drawn by Player_DrawTeamMarker
+0x80102B00	ProfileTable	high	inline array of player profile records (400 bytes each): unlocks, lives, settings; Profile_Init/PlayerMenu_*
+0x80102B4A	Profile_AwardBits	medium	ProfileTable+0x4A: per-profile award/medal bit set (Bits_Test/Bits_Assign with stride 400)
+0x801031B0	Player_LaserBeamVtx	high	inline vertex array of the laser beam filled and drawn by Player_DrawLaserBeamWorld
+0x801031F0	View_UpdateBounds	medium	AABB (6 floats) = union of the views' bbB set by View_UpdateLayout; actors/particles/pickups outside it are not updated
+0x80103208	View_BoundsA_80103208	low	second AABB (6 floats, right after View_UpdateBounds) = union of the views' bbA, written only by View_UpdateLayout
+0x80103230	Pager	high	resource pager block (counters, TLB slots, page slots, queues) cleared/built by Resource_InitPager
+0x80103E20	Pager_PageLru	medium	Pager+0xBF0: head/tail list of mapped pages (push/unlink), oldest stolen by Resource_StealOldestPage
+0x80103F28	Pager_TlbSlots	medium	Pager+0xCF8: per-TLB-index pair of page node ids (0xFF = free) used by Resource_MapPage/Resource_UnmapPage
+0x80103F70	ResourceMgr	high	resource manager block (hash buckets, nodes, lock queue +0x11D0) initialised by Resource_InitManager
+0x80103FCC	Collision_ContactPtr	medium	pointer to the collision contact record filled by Collision_RecordContact, cleared by Collision_ClearContacts
+0x801041F0	Collision_Contacts	medium	inline contact slots (160 bytes; first word = hit object) checked after moves for the last collision object
+0x80105140	ResourceMgr_LockQueue	high	ResourceMgr+0x11D0 OSMesgQueue used as the resource pool mutex (osRecvMesg/osSendMesg)
+0x8010515C	ResourceMgr_LockDepth	high	ResourceMgr+0x11EC recursive lock counter: ++ == 1 takes the queue, -- == 0 releases it
+0x8010C080	SoundMgr	high	global sound manager struct passed to Sound_Init/Sound_Play by every Audio_* wrapper
+0x8010F0E0	Pad_Combined	high	pad record combining the four pads on every read (buttons ORed, sticks summed), latched by Pad_LatchAll
+0x8010F328	Pad_Slots	high	inline array of the 4 controller pad records (548 bytes each) latched/polled by Pad_*
+0x80110634	DisplayListPtr	high	current display-list write pointer, advanced by 8 for every Gfx command
+0x80115DEC	Quat_SinScratch	medium	float scratch holding sinf(half angle) while building quaternions (Quat_From*/Actor_Get*Quat)
+0x80115E10	Collision_FaceNormal	medium	Vec3f scratch: cached (v1-v0)x(v2-v1) face normal of Collision_GetFloorNormal and the tri helpers
+0x8011FAC0	GameCtx	high	the game object passed to Game_FadeToLevel/Game_FadeOutToState/Match_Reset and the boot thread (contains LevelMgr, PlayerPool, Settings)
+0x8011FE88	LevelMgr	high	level object (GameCtx+0x3C8) passed to Level_Load/Level_FindDefinition/Level_FindTypeIndexById
+0x80121990	EffectMgr	high	effect/particle manager passed to Effect_SpawnFromTemplates and Particle_* functions
+0x8013B364	AiNavGraph	medium	AI path-node graph base used by AiNav_*/Ai_Pick*Node route planning
+0x80145040	PlayerPool	high	player pool (count, players 5864 bytes each) passed to Player_InitPool/Player_GetIndex/Match_Find*Player
+0x80145088	ViewMgr	medium	PlayerPool+0x48 sub-block receiving camera shakes (CameraShake_Add) and HUD messages (Hud_PostMessage)
+0x8014561C	MenuPanel_SharedList	medium	PlayerPool+0x5DC list of global (non-player) menu panels for MenuPanel_Open/MenuPanel_CountOpen
+0x801462C8	Settings	high	base of the settings/match-config block (flags, cheats +4, mode +0xD, game speed +0x20, limits +0x24..)
+0x801462CC	Settings_UnlockedCheats	medium	Settings+4: unlocked cheat mask; the legacy cheat list enables an item when its bit is set here
+0x801462D5	Settings_GameMode	medium	Settings+0xD byte: 0 custom match, 1..4 trial/mission modes (per-mode arena bit sets, handicap in mode 1)
+0x801462E5	Settings_IsMultiplayer	medium	Settings+0x1D byte: set 1 by LegacyMenu_OnMulti/MatchSetup (max players at +0x1E), 0 in single player
+0x80146302	Settings_DefaultPlayerRecord	medium	Settings+0x3A: default player control-settings record used when a menu page has no player
+0x80146398	Settings_PlayerRecords	high	Settings+0xD0: inline array of 8 player setup records (150 bytes; +0x78 active)
+0x80146894	GamePaused	high	GameCtx+0x26DD4 (Settings+0x5CC): set 1 by PauseMenu_Open/Results_Open, 0 on resume; stops the clock/effects/loop sounds
+0x801468A0	Settings_MatchRules	medium	Settings+0x5D8 match rule block (kill limit +0x58, flag/tag rule bits +0x78..) read by Match_*/Ai_* code
+0x801468F4	Settings_MonkeyTagMode	medium	Settings_MatchRules+0x54: Frag Tag monkey mode on; gates stats+0x8F monkey handling and the 'you tagged' label
+0x8014AEB0	Artsend_Active	high	art-send block start; active flag byte cleared by Artsend_Init, read by Artsend_IsActive
+0x8014AEB8	Artsend_TextureCount	medium	texture count (= *D_8011FED8) set by Artsend_Init; next/prev texture wraps modulo it; buffers follow at +0x24
+0x8014AEBC	Artsend_TextureIndex	high	current art-send texture index stepped by Artsend_Next/Prev and loaded by Artsend_LoadTexture
+0x8014D080	MenuMgrPtr	high	pointer to the menu manager (0x544) allocated by Menu_Init, used by every Menu_* function
+0x8014D0C0	Qsort_ElemSize	high	BSD qsort global qsz (element size) used by Sort_Quick/Sort_QuickRecurse (thresh/mthresh/qcmp follow)
+0x8014D3E1	DbgPort_IntEnable	medium	shadow byte of the debug-port interrupt-enable bits, set bit by bit by dbgPortSetInt*
+0x8014D3E8	DbgLink_Error	medium	debug link error/abort flag cleared at reset, checked after every dbgHost*/dbgLink* step
+0x801534F0	CPak_Accessory	high	per-pad accessory type array (2 rumble pak, 3 controller pak) set by CPak_DetectPort
+0x80153500	CPak_Status	high	per-pad controller pak status codes (0 ok, -2, -5..) returned by CPak_GetStatus
+0x80153738	PakSave_PlayerRecord	high	pak note buffer of the player save record captured by GameSave_CapturePlayerRecord (CRC'd) and restored on load
+0x8015375C	PakMenu_BootMode	medium	1 while the pak menu runs the boot check (PakMenu_OpenBootCheck), 0 for in-game load/save; selects PakMenu_BootPad as pad
+0x80153784	PakMenu_MessageOpen	medium	set 1 when the pak screen opens an error/message panel instead of the note list, 0 on open; gates the note refresh
+0x80153788	PakMenu_MessageId	high	id of the pak message box shown (PakMenu_OpenMsg*), read by the message label/ok handlers
+0x801539B0	Image_ArchiveCtx	high	archive context block (0x2A8: file handle, buffers) cleared by Image_InitArchives, closed by Image_CloseArchives
+0x80153C20	UiFont_Pool	medium	font pool header: s16 font count (UiFont_GetCount) and entries pointer of 1180-byte font records
+0x80153C28	UiFont_TablePtr	medium	pointer to the array of 1180-byte font records (UiFont_Get, glyph textures +0x484/+0x488)
+0x80153C44	UiScreen_TablePtr	high	pointer to the 12-byte loaded-screen records (layout pointer, size, offset) of UiScreen_Load/UiScreen_GetData
+0x80153F80	BotSetup_Slots	high	inline array of the 3 bot slots (28 bytes: type, character id, difficulty/team) reset by BotSetup_Reset
+0x80154110	OsPfsPifRam	high	libultra __osPfsPifRam: PIF command buffer passed to __osSiRawStartDma by the pfs/motor routines
+0x800CD390	DevLink_IoThreadActive	medium	set 1 by DevLink_StartIoThread, toggled around writes in DevLink_IoThread; Bus_*BlockDma use DMA only when 0 (address also = .data start for Debug_IsDataPointer range)
+0x800CE47C	Player_RemoteBodyType_800CE47C	low	ROM value 0x463; body type id used for remote/net players (Player_SetCharacter) and compared to p->unkE4 in player state updates
+0x800CE8DC	Weapon_InfoTable	medium	24-byte rows indexed by player weapon (p+0x650); row.unk0 = weapon kind read by all Weapon_UpdateIdle*
+0x800CED30	Player_StateTableChar0	medium	Shared_StateInfo[] assigned to p->13B4 states when character==0 (Player_SetCharacter); compared in player state code
+0x800D0910	Resource_DynamicKeyCounter	high	Resource_NextDynamicKey increments, wraps 0x3FFFFF -> 0x380000 (ROM init 0x380000)
+0x800D0920	Resource_NodeCapacity	high	init 1024, doubled on growth; Resource_InitManager allocs nodes*40/stack*4/pool*44
+0x800D0EE0	Light_AmbientColor	medium	RGB bytes (+4 holds copy) edited by InGameMenu_UpdateLightAmbient*, read by Scene_LoadLight/Light_GetLightsAt
+0x800D0EE8	Light_DirectionalColor	medium	RGB bytes (+4 copy) edited by InGameMenu_UpdateLightDir*; follows Light_AmbientColor
+0x800D1380	Event_HandlerTable	high	8-byte rows indexed by event kind: {fn, flags}; Event_Send/Invoke call row.fn and test flags 2/16
+0x800D15C0	Video_AntiAliasEnabled	medium	Video_ApplyResolution copies vi-config word 1; Gfx_SetOtherModeL picks AA_EN render modes when nonzero
+0x800D15D0	Render_FogEnabled	medium	ROM init 1; Scene_ApplyLightAndFog/Model_UpdateFogRenderModes test it; menu/preview model draws save, clear, restore
+0x800D15F0	Draw_TintColor	medium	float RGBA (Q4F) set to 255/150 by menu/results draws, read by Tint_ApplyToModels/Prop_DrawLodFaded
+0x800D2638	Collision_NormalCacheTri	medium	last triangle whose normal was cached (Collision_GetFloorNormal compares/stores t)
+0x800D2640	Model_VariantKeyBits	medium	Level_UpdateFrame sets from Settings val (+0x100/+0x200 by flags); ORed into model resource keys for Resource_Request
+0x800D2978	Video_FrameCount	high	incremented per submitted frame in Video_AdvanceFrameSlot; frame slot = count % Video_FrameSlotCount; used for flicker phase
+0x800D2BF4	FrameAlloc_UsageStats	medium	MinMaxF {cur,min,max}: FrameAlloc_AllocHigh adds size, ScratchHeap_ResetStats resets
+0x800D749C	Option_OffOnStrings	high	char*[] -> "OFF","ON" (ROM); passed to OptionList_AddOption in options menus
+0x800D7F84	Event_HudMessageTable	medium	8-byte rows {text ptr, sound id}; Event_ShowHudMessage posts text via Hud_PostMessage and plays .b sound
+0x800D80A0	alGlobals	high	libultra ALGlobals pointer; set by alInit, cleared by alClose, ->drvr used by al*New
+0x800D8390	__osPiDevMgr	high	libultra OSDevMgr {initialized, acsQueue, dma func...} set by osCreatePiManager
+0x800D83B0	__osCurrentHandle	high	libultra per-domain OSPiHandle* array used by osEPiRaw*
+0x800D8444	__osViNext	high	libultra pointer to next OSViContext (set to &vi[1] in __osViInit, used by __osViSwapContext)
+0x800D9288	__OSGlobalIntMask	high	libultra global interrupt mask (__osSet/ResetGlobalIntMask)
+0x800D92B0	__osTimerList	high	libultra OSTimer* list head (__osInsertTimer, __osTimerInterrupt)
+0x800D94E8	Adec_BitsLeft	medium	u16 bits remaining in bit buffer; adecStreamOpen sets 16, adecReadBits refills
+0x800D94EA	Adec_BitBuffer	medium	u16 bit buffer shifted left by adecHuffDecode; follows Adec_BitsLeft
+0x800E0B50	Flyby_SplineOne	high	float constant 1.0 (ROM 3F800000) used as (1-w) in Flyby_EvalSpline
+0x800E28A0	Video_FrameSlotCount	high	ROM init 2; modulus for frame slots in Video_AdvanceFrameSlot / Sched handlers / FramePool_Reinit
+0x800E28A4	Gfx_DisplayListCapacity	high	ROM init 0x2C00 Gfx commands; model draws compare remaining (cap - used) >= 3000
+0x800E28B0	GameSave_BufferA	medium	resource handle released and zeroed by GameSave_FreeBuffers
+0x800E28B4	GameSave_BufferB	medium	second resource handle released and zeroed with GameSave_BufferA
+0x800E28BC	GameSave_DataPtr	medium	pointer to loaded save data (cfg blocks at +0x18 player, +0x88 settings) used by GameSave_Apply / PakMenu labels
+0x800E28CC	PakMenu_BootCheckDone	medium	set 1 when boot controller-pak check finishes or is skipped (State_BootInit, PakMenu_OpenBootCheck)
+0x800E28E0	Video_ResChangeCountdown	high	set to 20 by Video_RequestResolution, decremented by Video_UpdateResolution; menus ignore input while >=2
+0x800E2AB8	Ui_DrawModeValid	medium	set 1 after UI draw sets render mode id (0x800E2ABC == 0x53333/0x53533), cleared to force re-setup
+0x800E2B20	Image_PixelFormatTable	high	52-byte pixel format descriptors scanned by Image_FindPixelFormat / Image_PackColor
+0x800E32E4	Gfx_PipeSyncDone	medium	Gfx_PipeSyncOnce emits sync only when 0 then sets 1; Gfx_ClearPipeSyncFlag clears
+0x800E3A58	Menu_CharacterPortraitTable	medium	112-byte rows per character (scale[layout], model at +0x24) used by MissionTree/Results portraits
+0x800E42D4	CharSelect_NodeIdTable	medium	36-byte rows per player of UI node ids for skins/cursors (CharSelect_*)
+0x800E4450	PakManageMenu_StatePtr	high	malloc'd state of PakManageMenu, freed/zeroed on close
+0x800E44A0	RumblePrompt_StatePtr	high	malloc'd screen-wipe state of RumblePrompt, freed/zeroed on close
+0x800E4694	MissionTree_NodeTable	medium	28-byte rows {id, ui node ids} for mission tree arenas and navigation
+0x800E4A84	MissionTree_LinkTable	medium	12-byte rows of links between arenas (node ids to show/hide), MissionTree_AreArenasLinked
+0x800E4F64	ArenaSelect_NodeTable	medium	16-byte rows {arena type, ui node ids a/b} used by ArenaSelect_* and Arena_GetLevelForType
+0x800E5320	Results_RowNodeTable	medium	40-byte rows of ui node ids per results row (Results_HideRows)
+0x800E5322	Results_RowNodeTable_Ids	medium	Results_RowNodeTable+2: id fields read by Results_FillRows
+0x800E5554	MatchQuitConfirm_StatePtr	high	malloc(32) screen-wipe state of MatchQuitConfirm
+0x800E58A0	SoundMenu_StatePtr	high	malloc(28) SoundMenu state: popup + sliders
+0x800E58A4	PauseSoundMenu_StatePtr	high	malloc(8) PauseSoundMenu state: two sliders
+0x800E5E70	Menu_CurrentDrawPass	medium	cached menu draw pass (-1 reset, 5 flat colour...) so MenuItem_Draw* switch modes only on change
+0x800F6F40	DevLink_RequestQueue	medium	OSMesgQueue the DevLink I/O thread receives requests on
+0x800F7110	DevLink_ReplyQueue	medium	OSMesgQueue requests reply to (IoReq.reply) for DevLink_Read/Write
+0x80102B10	CharacterClassTable	high	400-byte rows per character: health/ammo caps (Player_GetMaxHealth, Player_GetAmmoCapacity)
+0x80103224	View_Timer_80103224	low	float set to 30 or constants, decremented by frame time in View_UpdateAll / camera approach
+0x80103B50	Resource_PageTable	medium	16-byte page nodes with tlb index (Resource_MapPage, Resource_AllocTlbIndex)
+0x801040D0	Collision_MoveCtx	medium	collision context passed to Collision_MoveActor by Actor_TryMove/SlideToXZ
+0x801041F8	Collision_HitInfo	medium	B18GPos {pos, normal at +0xF0} of last hit; read by particle hit handlers/Decal_Spawn
+0x801042C8	Collision_HitInfo_Vec_D0	medium	Collision_HitInfo+0xD0: 12-byte vector copied by Particle_OnHit*/SpawnEffect*
+0x80105194	AddrHash_BucketsPtr	high	pointer to 16-byte hash buckets indexed by (hash & mask 0x80105190)
+0x801051A0	Resource_Heap	high	heap for resource manager (Heap_Init in Game_InitMemoryServices, Heap_Alloc)
+0x8010BDF4	AudioMgr_DmaList	medium	{first,last} list of audio DMA buffers walked by AudioMgr_DmaProc/ClearDma
+0x8010EC90	Rumble_Mgr	high	rumble manager struct passed to Rumble_* (ClearAll, RemoveFinished, GetIntensityAt)
+0x8010FBB8	Pad_SiPendingOp	medium	u8 SI request in flight (0 read data, 1 pak op, 2 idle) switched on by Pad_ReadController and CPak_*
+0x8010FBE0	Pad_ContStatus	high	OSContStatus[4] filled by osContGetQuery/osContReset; per-port pak flags
+0x8010FC00	Pad_SiMesgQueue	high	OSMesgQueue for SI events (osContReset/StartReadData/recv)
+0x8010FC40	Level_RestartState	high	1072-byte block saved/restored by Level_SavePlayersForRestart / RestorePlayersAfterRestart
+0x8011007C	Audio_AdpcmWord	medium	32-bit little-endian word assembled from bytes in Audio_DecodeAdpcmChannels
+0x80110160	Light_PointVtxBuffer	medium	16-byte Vtx array of point lights written by Light_EmitPointLights
+0x80110560	Light_PointVtxOffset	medium	index offset into Light_PointVtxBuffer (+8 per light, swapped by Light_SwapPointLightBuffers)
+0x80110640	ModelBatch_QueueCount	high	number of queued batch entries (max 32, entries at 0x801157D8)
+0x80115DE4	Random_State	high	LCG state: s = s*0xA8496AD3 + 0x5835902D (Random_Next, Random_Seed)
+0x80115DF0	Collision_CeilingNormal	medium	Vec3f result of Collision_GetCeilingNormal (default up, cross products)
+0x80115E20	Collision_FloorUnitNormal	medium	Vec3f result of Collision_GetFloorUnitNormal (default up, normalised)
+0x8011FE80	Gfx_FrameCtxPtr	high	pointer to current frame gfx context (->start of display list)
+0x8013B1A8	Light_Pool	high	light pool passed to Light_Acquire/Light_Release (player flashlights, particle lights)
+0x8013B290	Game_Flag_8013B290	low	described as a debug flag; gates EffectPool_Acquire, non-player damage in Damage_IsHostile, AI targeting
+0x8013B2BC	Level_StartPointId	medium	placed object id found by Level_FindNearestPlacedObject on level load (Flyby); player restart uses it (999 = none)
+0x8013BA80	Fx_TrailMgr	medium	trail/decal manager passed to Trail_Attach/DetachOwner and Decal_Spawn
+0x80145048	PlayerCount	medium	number of players; loops in Level_SpawnActors/Player_Respawn
+0x80145060	PlayerListHead	high	first player (linked through ->next) used by Player_FindByPawn and proximity scans
+0x801450B8	ViewCount	medium	number of viewports (HudValues.ViewCount); weapon barrel/fire effects only when ==1
+0x801462D0	Settings_DifficultyMask	high	Settings+0x08: difficulty bits (8/32) set by InGameMenu_OnDifficultySelect, used for actor lists
+0x801462E0	Settings_MusicVolume	high	Settings+0x18 byte volume edited by SoundMenu/PauseSoundMenu sliders
+0x80146D60	PakMenu_BootCheckSkipped	medium	set 1 when Start skips the boot pak check or it errors; returned by PakMenu_PollStartSkip
+0x8014AD78	Credits_ScrollY	high	float credits scroll position decremented each frame by State_UpdateCreditsScroll
+0x8014AD94	PakMenu_BootCheckBusy_8014AD94	low	cleared to 0 at every boot pak check exit (State_BootInit, PakMenu_UpdateBootCheck)
+0x8014AECC	Artsend_TextureRes	medium	resource handle of artsend override texture; unref'd and zeroed on release
+0x8014D0B0	MenuInput_StatePtr	medium	pointer to menu input state (fn hook at +0, button bitset at +0xC04)
+0x8014D3E2	DbgPort_FifoCtlShadow	medium	shadow byte of debug port FIFO control register (rx reset bit1, trigger bit6)
+0x8014D3E3	DbgPort_LineCtlShadow	medium	shadow byte of debug port line format/parity register
+0x8014E950	__CartRomHandle	high	libultra OSPiHandle set up by osCartRomInit
+0x8014E9D0	__DriveRomHandle	high	libultra OSPiHandle set up by osDriveRomInit
+0x80153750	PakMenu_IsSaving	medium	set 1 by PakMenu_OpenSavePlayer, 0 by OpenLoadPlayer/OpenBootCheck; selects messages
+0x80153760	PakMenu_IsLoading	medium	set 1 by PakMenu_OpenLoadPlayer, 0 by OpenSavePlayer/OpenBootCheck
+0x80153778	PakMenu_ConfirmKind	high	0..4 set by PakMenu_OpenConfirm*; switched on by FormatConfirmLine*/OnConfirmYes
+0x8015377C	PakMenu_IsPlayerNote	medium	1 for player-note save/load, 0 for boot check/game note; selects messages
+0x80153800	UiText_BatchCount	medium	number of pending glyph batches (24-byte entries at 0x80153820) flushed by UiText_FlushGlyphBatches
+0x80153C10	Image_EntryTablePtr	high	pointer to 28-byte image entries (flags, bitmap, w/h) used by Image_*
+0x80153C18	Image_UsageTablePtr	high	pointer to 8-byte usage records {.., expiry} per image (Image_EvictExpired)
+0x80153C60	Image_ReadPixelIndex	medium	current pixel index used by Image_Read* (source ptr 0x80153C64, value 0x80153C68)
+0x800C9044	SndVoice_PitchNeutral	medium	rodata float 1.0; SndVoice_UpdateDoppler steps the chased pitch toward it and clamps at it
+0x800CD394	DevLink_State	medium	DevLink_* request functions set it to 1/2 and test == 2 (link state of the dev-host protocol)
+0x800CE474	Player_SpecialCharacterIds	medium	s32[3] = {0x461,0x462,0x463}; Player_GetCharacterSoundId/Hud_DrawCrosshair/Player_UpdateState compare actor kind/unkE4 with entries
+0x800CE7E4	Player_ViewTurnParams	medium	float table {0.25,0.9,0.6,0.3,-pi/2,pi/2} passed to Player_UpdateViewTurn by the walk/stand/swim/fall states
+0x800D0724	Anim_SwaySineTable	medium	float[120] sine table indexed (timer+k)%120 by Anim_ApplyBoneSway
+0x800D0940	AudioMgr_FrameCount	medium	incremented by AudioMgr_ThreadMain, selects the 3 audio task buffers (%3), stamps DMA buffers in AudioMgr_DmaProc/ClearDma
+0x800D0D10	Sound_MaxDistanceSq	high	float 26214400 (5120^2); Sound_GetDistanceGain returns 1 - d2/max and 0 beyond it
+0x800D0D90	Seq_PlayingSongId	medium	Seq_Update sets it to the started sequence id (SndSeq+0x28), -1 on stop, 0 when the player finishes
+0x800D0E54	Menu_KickCountdown	medium	60-frame countdown in Menu_UpdateFrontendFrame; at 0 resets to 60 and fires the periodic state kick (D_8010FBB8)
+0x800D0EF8	Model_DefaultLights	medium	24-byte lights block (ambient 0x38 grey, white light dir +Y) copied into actor/menu model light segments
+0x800D2954	ResourceLoader_BoostFrames	medium	MsgPort_SendSync/Sched_HandleTaskQueued set 2 and raise the loader thread priority; Sched_HandleRetrace counts down and restores it
+0x800D297B	Video_FrameCountLowByte	medium	low byte of the gfx frame counter D_800D2978 (incremented by Video_SubmitGfxTasks); props stamp/compare it as a colour frame
+0x800D29B4	Level_DataLoaded	medium	set to 1 by Scene_LoadLevelData; spawners, collision and sprites return early while 0
+0x800D29D0	Credits_ReturnToTitle	medium	State_CreditsAltInit sets 1 (return to title after the roll), State_CreditsInit clears it, credits updates test it
+0x800D2AE0	Artsend_Mode	high	debug 'artsend mode' toggle (InGameMenu_OnArtsendModeSelect / label); Artsend_IsActive requires it nonzero
+0x800D2BB4	RomFile_ReadPos	high	ROM file read position (+0), open flag at +8; RomFile_Open resets, RomFile_Seek/Tell/IsEof use it
+0x800D2C90	Menu_ShutdownRequest	medium	Menu_RequestShutdown sets 1, Menu_UpdateFrontendFrame then calls Menu_ShutdownFrontend; +8 is the frontend active flag
+0x800D2CA0	Menu_IdleTimer	high	TimerVar {t, flag}: Menu_SetIdleTime stores it, Menu_UpdateFrontendFrame adds frame time and compares with the attract timeout
+0x800D74A0	Str_OnPtr	medium	pointer to "ON" (after the "OFF" pointer at 800D749C); CheatsMenu/Controller menus add it as an option label
+0x800D7700	Pak_PlayerNoteNamePtr	medium	pointer to "RAGE WARS"; PakMenu note lookup/write uses it as the player note name
+0x800D770C	Pak_GameCodePtr	high	pointer to "NRWE" (game code; company code "51" ptr at 800D7708); CPak_IsOwnNoteCode and note writes compare/pass it
+0x800D9360	Adec_CurFramePtr	medium	alAdecPull stores the adecNextFrame() result here and writes back 512 bytes from it
+0x800D94EC	Adec_BitCount	medium	u16 bit counter of the Huffman reader: adecHuffDecode decrements it and refills +16
+0x800D94F2	Adec_FrameRingIndex	medium	u16 0..5 ring index of decoded frames (adecNextFrame wraps at 6, selects 512-byte buffer at 80151F80)
+0x800DCC40	Rsp_BootUcode	high	208-byte rspboot code (to 800DCD10) set as ucode_boot of audio and gfx tasks (AudioMgr_Init, Video_SubmitGfxTasks)
+0x800E27D8	Str_Fmt03d	high	format string "%03d" used by sprintf in the in-game light-colour menu items
+0x800E28C0	PakMenu_SkipPak	medium	set 1 by 'continue without pak'/repair skip, cleared by the load/save player menu openers, tested to skip pak access
+0x800E3510	PakCheck_Port	medium	TitleScreen_RetryPakCheck steps it (stops at 4); PlayerMenu_Open detects/reads the controller pak on that port
+0x800E381C	BotSetup_NameTable	high	[character][17] entries of 8 bytes {index, name ptr}; BotSetup_* step through it and copy the bot name
+0x800E41C0	Menu_PlayerQuadrantRects	medium	4 x {x0,y0,x1,y1} screen quadrants (18,15,52,94...) used as scissor by CharSelect_Draw/Loadout_OnDraw
+0x800E5558	SkipMapConfirm_StatePtr	high	SkipMapConfirm_Open mallocs 0x1C into it (ScreenWipe_Init), Close frees and clears it
+0x800E5950	PressStart_StatePtr	high	PressStart_Open mallocs 8 bytes (UI node 919, counter), Close frees it
+0x800E5A1A	Loadout_RowNodeIds	medium	per-row (stride 76) table of UI node ids used by Loadout_* with UiTree_FindNode
+0x800E5BC4	Loadout_WeaponTableA	medium	4-entry {id, icon, ...} weapon table (16 bytes each) for loadout slots 0/1; MissionTree_GetWeaponIconId searches it
+0x800E5F72	MenuPanel_SlotTemplates	medium	8 x 24-byte templates copied into each panel slot by MenuPanel_Init
+0x800E63B8	InGameMenu_MusicTrack	high	music track number stepped by the 'music' select, label '%2d'/none, played by sound options open
+0x800F7452	DevLink_Flag_800F7452	low	DevLink monitor byte set 255/0 by commands, packed with D_800F7450 into a bus word; monitor loop waits on it
+0x800F7D20	Ai_FireConfigTable	high	[22 weapons][2 modes] x 28-byte fire pattern configs filled by Ai_LoadFireConfigs, used by Ai_UpdateFiring
+0x80103FD0	Collision_LosResult	medium	bss hit-result buffer passed to Collision_RayCast/MoveActor by the line-of-sight and aiming checks
+0x80104030	Collision_ProbeResult	medium	bss hit-result buffer passed to Collision_RayCast/MoveActor by probe/move/flyby camera checks
+0x801042A8	Particle_HitResult	medium	bss struct (Vec3f first) passed as position to Event_Send/Effect_SpawnFromTemplates/Audio_PlaySound on particle floor/ceiling hits
+0x80104570	Resource_LruList	medium	list head (second list at +20) for List_MoveToHead/List_Remove of cached resource nodes
+0x8010513C	Resource_NodePool	medium	Pool struct: count of free nodes popped/pushed by the resource node allocator
+0x801051B8	RomDma_Ctl	high	ROM DMA manager passed to RomDma_Init/ReadSync/ReadAsync
+0x8010A248	ResourceLoader_Port	medium	MsgPort created with 3 slots in Game_InitMemoryServices, read by Resource_LoaderThreadMain, flushed by Menu_FlushResources
+0x8010B928	AudioMgr_DmaBuffers	medium	array of 20-byte DMA buffer entries linked into a list by AudioMgr_Init / AudioMgr_DmaNew
+0x8010BDF0	AudioMgr_DmaState	medium	DMA state {inited byte, count +4, list head +8 = 8010B928} used by AudioMgr_DmaNew
+0x8010BE98	AudioMgr_FrameSamples	high	samples per audio frame (rate * frame period, rounded up to 16) computed in AudioMgr_Init
+0x8010F194	Pad_PressedButtons	medium	pressed-button mask (bit 0x1000 START) tested and cleared by credits/attract state exit functions
+0x8010FBC0	Pad_LockQueue	high	OSMesgQueue (1 slot) used as the controller lock by Pad_TryAcquire/Pad_PollAll
+0x80110070	Adpcm_BitBuf	medium	32-bit bit-reader word loaded byte by byte in Audio_DecodeAdpcmChannels (bit count at +4)
+0x801153D0	ModelBatch_Count	high	number of queued instances (max 256) in the array at 801153D8; cleared by Model_ClearBatchQueue
+0x8011F2C0	PickupPool_AltDef_8011F2C0	low	object def (kind 8) given to spawned pickups when mode flag D_801462E5 is set, else 8011F448
+0x8011F448	PickupPool_PickupDef	medium	default object def assigned to pickups by PickupPool_Spawn / Pickup_InitFromRecord
+0x8011FECC	GameSave_DataSize	medium	save data size; game save block is this + 0x610 bytes (GameSave_GetBufferSize, pak free-page checks)
+0x8011FEFC	Flyby_IndexTablePtr	medium	pointer to the flyby index table (count+1 first word) searched by Flyby_QueueBy*
+0x8013B29C	Debug_Freeze_8013B29C	low	never written by game code; when nonzero suppresses damage, ammo drain, loop sounds, rumble, particle time scaling
+0x8013B2D8	Model_DrawEnv	medium	B16Env colour/environment block filled by Model_DrawColorOverlay/GoldTinted, passed to Model_DrawGroups
+0x8013B878	Text_Style_8013B878	low	int[2] text style values (1 or 2, or entry b14) set beside colours 8013B858 and scale 8013B870 before text draws
+0x801450A8	Camera_ListHead	medium	pointer to the first camera; Level_StreamVisibleCells/Event_ScreenFlash walk the list, Video sets viewport size
+0x801450C8	Camera_MainView	medium	inline main camera/view object (matrix at +0x160, display list +0x380); used for menu models, wipes and as default target
+0x801462DC	Settings_Opacity	high	u16 setting (>>4 shown as 'opacity' clear/opaque/%02d), stepped by InGameMenu_OnOpacitySelect; settings block 801462C8+0x14
+0x801462E3	Settings_BloodColor	high	byte 0..2 'blood color' setting (801462C8+0x1B); particle blend mode uses value 2
+0x80146848	Settings_ResolutionMode	medium	byte at settings 801462C8+0x580, copied from D_800E28DB on resolution change, preserved by GameSave_Apply
+0x80146890	Audio_SoundDisabled	high	all Audio_Play* functions do nothing while it is nonzero
+0x80146918	Match_MonkeyTagMode	medium	match flag (801468A0+0x78): monkey role (stats+0x8F) drawing/handing, AI objective; cleared by results
+0x80146938	Match_FragTagMode	medium	match flag (801468A0+0x98): frag-tag priority (stats+0x94) in AI sight, end reason, character class/max health
+0x8014694C	Demo_Active	high	set to 1 by AttractDemo_Setup/State_DemoInit; frontend idle and rumble check it
+0x80146958	Credits_SkipRequested	high	Start during credits sets it (skip to end), credits init clears it
+0x801469E8	Sched_Main	high	main scheduler created by Sched_Create; clients added and tasks submitted to it
+0x8014AD88	Sched_FbSwapPending	medium	incremented after osViSwapBuffer, cleared on retrace in Sched_HandleRetrace; DP-done swaps only when 0
+0x8014AEC0	Artsend_FrameIndex	high	frame index stepped by Artsend_NextFrame/PrevFrame (dirty flag at +4)
+0x8014AED0	Artsend_TexturePtr	medium	pointer to the art-send texture header (width/height/bpp bytes) read by Artsend_Get*
+0x8014D0CC	Sort_CompareFn	high	qsort comparison function pointer called by Sort_QuickRecurse (element size at 8014D0C0)
+0x8014D3D0	Text_FontId	medium	font id 0/1/2 set by Text_BeginFontPass, texture loaders and credits text
+0x8014D46C	__osMaxControllers	high	libultra controller count, loop bound in __osContGetInitData/__osPack*
+0x8014D470	__osContPifRam	high	OSPifRam buffer filled by __osPackRequestData/ReadData/ResetData
+0x8014D4B0	__osContLastCmd	high	libultra last PIF command byte set by __osContRamRead/Write, osMotorStart/Stop
+0x8014EA44	__osDiskHandle	medium	OSPiHandle pointer used by __osLeoInterrupt/__osLeoAbnormalResume, set by osDriveRomInit
+0x8014EAD0	ViMgr_Retrace	medium	u16 retrace countdown in the VI manager thread (viMgrMain static retrace)
+0x80151090	Adec_BitWord	medium	current 16-bit word of the adec bit reader (adecReadBits)
+0x80151CC8	Adec_Stream	high	AdecStream state passed to adecDecodeFrame/adecImdctFrame by adecNextFrame/adecStreamOpen
+0x80153510	CPak_PfsArray	high	OSPfs[4] (104 bytes each) per controller port used by all CPak_* osPfs calls
+0x80153730	PakMenu_NoteLoadMode	medium	1 = player note load, 0 = delete; chooses note prompts/titles and yes/no actions
+0x80153770	PakMenu_ConfirmOpen	medium	set 1 by PakMenu_OpenConfirm* dialogs, cleared/returned by PakMenu_UpdateConfirmDialog
+0x80153810	UiText_BatchClip	medium	clip rect {a,b,c,d} of the glyph batch; reset to the full screen, passed to Ui_SetClipRect
+0x80153C0C	Image_ArchiveCount	medium	s16 archive image count (S_v n/mode) looped over by Image_* release/preload
+0x80153C48	UiScreen_PristineCopiesPtr	medium	pointer to per-screen 12-byte {p, ?, cnt} entries holding pristine layout copies (UiScreen_Load/Release)
+0x80153C4C	UiScreen_FlagsPtr	medium	pointer to u16 per-screen flags (bit 1 set by UiTree_Relocate, checked by UiScreen_FreeAll)
+0x80153C50	UiScreen_RefCountsPtr	medium	pointer to u16 per-screen reference counts inc/dec by UiScreen_Load/Release
+0x80153C64	Image_SrcPixelsPtr	medium	source pixel/palette pointer set by Image_BindSurfaces, read by Image_ReadColor16/24/32
+0x80153C6C	Image_DstIndex	medium	destination pixel index used by Image_WriteColor16/24/32 and Image_SetPaletteColor
+0x80153C70	Image_DstPixelsPtr	medium	destination pixel pointer set by Image_BindSurfaces for Image_WriteColor16/24/32
+0x80153C88	Image_DstIndexPixelsPtr	medium	destination CI4/CI8 pixel pointer set by Image_BindSurfaces for Image_WriteIndex4/8
+0x80154010	Gauntlet_GameType	high	game type of the running gauntlet, -1 = none (Gauntlet_SetGameType/IsActive)
+0x80154020	Menu_ScreenRequest	medium	requested screen id (+0), pending flag at +4; Menu_GotoScreen when pending
+0x80154024	Menu_ScreenRequest_Pending	medium	set 1 by Menu_RequestScreen (id at -4), consumed by PauseOptions/Results/ArenaSelect
+0x80154034	LegacyCheats_WarpIndex	high	selected warp index switched on by LegacyCheats_GetWarpLevelKey
+0x80154100	InGameMenu_ResolutionCooldown	high	float cooldown before another resolution change; counted down by frame time
+0x80156000	Resource_PageFrames	high	TLB-mapped 4 KB page frames filled by Resource_DmaThreadMain and mapped by Resource_MapPage/UnmapPage
+0x800C74B8	Player_AimBoxHalfSize	medium	const float 20.48; Player_UpdateAiming subtracts/adds it to x/z to build a min/max box around the aim point
+0x800D0944	AudioMgr_PendingDmaCount	medium	AudioMgr_DmaProc increments per DMA issued, AudioMgr_ClearDma loops over and zeroes it
+0x800D0948	AudioMgr_CmdListIndex	high	toggled ^1 each AudioMgr_HandleFrame; indexes the double-buffered audio cmd list array 0x8010BE20
+0x800D0E5C	Pad_LockOwnerThreadId	high	set to osGetThreadId(0) when the pad mesg-queue lock 0x8010FBC0 is taken, -1 on release
+0x800D0EBC	Settings_ShowViewWeapon	high	in-game menu weapon-visible spinner 0/1 (InGameMenu_OnWeaponVisibleSelect); read by Player_DrawViewWeapons/Hud_DrawView2D
+0x800D1384	Anim_EventDefTable	medium	ROM table of 8-byte {flags, handler fn} entries indexed by anim event id (Anim_SendEvent; Actor_UpdateHitEffects tests flags &2/&4)
+0x800D15B0	Gfx_CachedCombineMode	high	Gfx_SetCombineMode skips emitting if equal; reset to -1 by Model_ResetStateCache
+0x800D15B4	Gfx_CachedOtherModeL	high	Gfx_SetOtherModeL skips emitting if equal; reset to -1 by Model_ResetStateCache
+0x800D2630	Collision_CeilingNormalTriPtr	medium	Tri4* whose normal was last computed (func_00275120_tri4_normal); recompute when t differs
+0x800D263C	Collision_FloorNormalTriPtr	medium	Tri3* whose unit normal was last computed (Collision_GetFloorUnitNormal); recompute when t differs
+0x800D2BD4	ScratchHeap_Buffers	high	array of 2 buffer pointers ResourcePool_Malloc'd in ScratchHeap_Init, freed in ScratchHeap_Free
+0x800D7708	CPak_CompanyCodeStrPtr	high	char* to "51" (2-char note company code) compared/written by CPak_*; 0x800D770C is the game code ptr ("NRWE")
+0x800D7E14	Menu_BlankLabelText	medium	text object whose first string is " "; assigned as item label (unk14) when there is nothing to show (PakMenu/LegacyCheats formatters)
+0x800D83E0	ViContexts	high	libultra vi[2] OSViContext array (2*48 bytes) cleared/initialised in __osViInit
+0x800D8440	ViCurrentContextPtr	high	libultra __osViCurr: returned by __osViGetCurrentContext, set in __osViSwapContext
+0x800D9380	Adec_BitMaskTable	high	u16 table of (1<<n)-1 masks indexed by bit count in adecReadBits
+0x800E0DA4	FmtStr_3d	high	ROM string "%3d" passed to Str_Sprintf by PakMenu label formatters
+0x800E1B20	FmtStr_d	high	ROM string "%d" passed to Str_FormatInto by Results_FillRows
+0x800E2518	Str_O	medium	ROM string "O"; every use passes +4 = "menu" as the ResourcePool_Alloc tag (MenuPanel_Open etc.)
+0x800E2838	Flyby_QueueEnabled	medium	init 1; Flyby_SetFlag/ClearFlag/GetFlag; Flyby_QueueBy* return early when 0
+0x800E28F8	Video_ModeTable	high	resolution rows (28 bytes each, 5 per mode = 140) indexed by mode and 0x800E28D8 in Video_ApplyResolution
+0x800E2ABC	Ui_LastBatchRenderKey	medium	render-setup key (0x53333/0x53533) of the last UI batch; re-emit setup when it differs or valid flag 0x800E2AB8 is 0
+0x800E32B0	Gfx_TexNeedsStrips	medium	set 1 in Gfx_LoadTextureImage when the texture is too big for TMEM (>2048/4096); Gfx_DrawTexRectStrips then loads strips
+0x800E32B8	Gfx_TexBitsPerPixel	high	Image_GetBitsPerPixel of the bound texture; 4/8 select palette load (Gfx_LoadTextureImage)
+0x800E351C	TitleScreen_MsgTable	high	12-byte {msg,type,fn} dispatch table, fn==0 terminated (TitleScreen_HandleMessage)
+0x800E3724	ProfileStats_MsgTable	high	12-byte {msg,type,fn} dispatch table (ProfileStats_HandleMessage)
+0x800E39C4	BotSetup_MsgTable	high	12-byte {msg,type,fn} dispatch table (BotSetup_HandleMessage)
+0x800E4364	CharSelect_MsgTable	high	12-byte {msg,type,fn} dispatch table (CharSelect_HandleMessage)
+0x800E4404	CheatsMenu_MsgTable	high	12-byte {msg,type,fn} dispatch table (CheatsMenu_HandleMessage)
+0x800E4454	PakManageMenu_MsgTable	high	12-byte {msg,type,fn} dispatch table (PakManageMenu_HandleMessage)
+0x800E44A4	RumblePrompt_MsgTable	high	12-byte {msg,type,fn} dispatch table (RumblePrompt_HandleMessage)
+0x800E451C	OptionsMenu_MsgTable	high	12-byte {msg,type,fn} dispatch table (OptionsMenu_HandleMessage)
+0x800E4564	TrialPauseMenu_EventTable	high	12-byte {ev,key,fn} dispatch table (TrialPauseMenu_HandleMessage)
+0x800E45AC	PauseOptions_EventTable	high	12-byte {ev,key,fn} dispatch table (PauseOptions_HandleMessage)
+0x800E4604	MainMenu_EventTable	high	12-byte {ev,key,fn} dispatch table (MainMenu_HandleMessage)
+0x800E4D84	MissionTree_EventTable	high	12-byte {ev,key,fn} dispatch table (MissionTree_HandleEvent)
+0x800E4E20	MissionTree_EventTableAlt	high	12-byte {ev,key,fn} dispatch table (MissionTree_HandleEventAlt)
+0x800E4EC0	QuitConfirm_EventTable	high	12-byte {ev,key,fn} dispatch table (QuitConfirm_HandleEvent)
+0x800E4EF4	MatchOptions_EventTable	high	12-byte {ev,key,fn} dispatch table (MatchOptions_HandleEvent)
+0x800E5284	ArenaSelect_EventTable	high	12-byte {ev,key,fn} dispatch table (ArenaSelect_HandleEvent)
+0x800E53C4	Results_EventTable	high	12-byte {ev,key,fn} dispatch table (Results_HandleEvent)
+0x800E5434	PlayerCount_EventTable	high	12-byte {ev,key,fn} dispatch table (PlayerCount_HandleEvent)
+0x800E54A8	PlayerMenu_EventTable	high	12-byte {id,key,fn} dispatch table (PlayerMenu_HandleEvent)
+0x800E555C	PauseMenu_EventTable	high	12-byte {id,key,fn} dispatch table (PauseMenu_HandleEvent)
+0x800E55C8	MatchQuitConfirm_EventTable	high	12-byte {id,key,fn} dispatch table (MatchQuitConfirm_HandleEvent)
+0x800E5628	SkipMapConfirm_EventTable	high	12-byte {id,key,fn} dispatch table (SkipMapConfirm_HandleEvent)
+0x800E5698	ControllerMenu_EventTable	high	12-byte {id,key,fn} dispatch table (ControllerMenu_HandleEvent)
+0x800E5710	PauseControllerMenu_EventTable	high	12-byte {id,key,fn} dispatch table (PauseControllerMenu_HandleEvent)
+0x800E5788	TrialMenu_EventTable	high	12-byte {id,key,fn} dispatch table (TrialMenu_HandleEvent)
+0x800E57DC	TrialResetConfirm_EventTable	high	12-byte {id,key,fn} dispatch table (TrialResetConfirm_HandleEvent)
+0x800E5834	TrialResults_EventTable	high	12-byte {id,key,fn} dispatch table (TrialResults_HandleEvent)
+0x800E58A8	SoundMenu_EventTable	high	12-byte {id,key,fn} dispatch table (SoundMenu_HandleEvent)
+0x800E58FC	PauseSoundMenu_EventTable	high	12-byte {id,key,fn} dispatch table (PauseSoundMenu_HandleEvent)
+0x800E5954	PressStart_EventTable	high	12-byte {id,key,fn} dispatch table (PressStart_HandleEvent)
+0x800E5B14	Loadout_Slot4WeaponTable	medium	16-byte {weapon,icon,item,name*} choices (3 rows) for loadout slot 4; slots 0-1 use 0x800E5BC4, 2-3 use 0x800E5B44 (Loadout_SetSlotWeapon)
+0x800E5B44	Loadout_Slot23WeaponTable	medium	16-byte {weapon,icon,item,name*} choices (8 rows) for loadout slots 2-3 (Loadout_SetSlotWeapon, Loadout_ApplyToPlayers)
+0x800E5C04	Loadout_EventTable	high	12-byte {key,sub,fn} dispatch table (Loadout_HandleEvent)
+0x800E5E48	LegacyMenu_PlayerSpeedIndex	high	spinner 0..15 (init 5, shown as idx-5); indexes speed float table 0x00450854 (LegacyMenu_StepPlayerSpeed)
+0x800F6CC0	DevLink_PiDmaMesgQueue	high	OSMesgQueue created in DevLink_StartIoThread; completion queue for osPiStartDma in Bus_ReadBlockDma/WriteBlockDma
+0x800F7D08	Level_TagObjectiveEntityPtr	medium	Level_FindTagObjectives stores the entity with type id 3031; Player_UpdateState dispatches an event to it and clears it
+0x800FD1F0	LevelPersistBuffer	medium	22528-byte buffer: scene f80 points here (Scene_LoadLevelData), filled from save config unk60C in GameSave_Apply; excluded from restore checks
+0x80103140	Stats_ShotsFiredTable	medium	per-player s32 counts; Results/TrialResults compute accuracy = 0x80102AE0[i]*100/this[i]; zeroed in Player_InitSlot
+0x80104418	PlayerFlags_80104418	low	s32 flag word [0]; bit 0x100000 set when looking steeply down while swimming (Player_UpdateSurfaceSwimState), cleared in PlayerState_EnterState09
+0x801050F8	Resource_RequestLists	high	2 linked lists (20 bytes each: [0] free, [1] in use) of resource request nodes (Resource_TryAllocRequest/FreeNodeRequest)
+0x8010BDFC	AudioMgr_DmaCacheList	high	head of the audio DMA buffer linked list (B12DbEnt.next), walked by Audio_DmaCacheLoad
+0x8010BE00	AudioMgr_MesgQueue	high	audio thread OSMesgQueue: scheduler client queue and event mesg target (AudioMgr_Init)
+0x8010EC7C	AnimCodec_QuantRangeMin	medium	float lower bound used by Math_LerpScalar to dequantise channel values; set per track by AnimCodec_InitCubicTrack
+0x8010EC80	AnimCodec_QuantRangeMax	medium	float upper bound paired with 0x8010EC7C for dequantising channel values
+0x8010FBF0	Pad_PakChangedFlags	high	s32[4] per-port pak inserted/changed flags set by Pad_UpdatePakInsertion, consumed by Pad_TakePakChanged
+0x8011062C	ModelBatch_ListTail	medium	tail node of the sorted model batch list (head 0x80110628); ModelBatch_Flush walks it backwards via prv
+0x80110644	ModelBatch_FlaggedListTail	medium	tail of the second batch list (head 0x8011063C) for parts with flags&0x700; flushed after the main list
+0x8011064C	ModelBatch_CurrentModelPtr	medium	model last queued (ModelBatch_QueueInstance compares with p and key 0x80110624 to reuse the batch)
+0x80115DE8	Random_AltSeed	high	LCG state of Random_NextAlt (x*2823445331+1479838765), seeded by Random_Seed
+0x8011F298	Sched_SpTaskTimeMs	medium	accumulated RSP task time in ms (osGetTime delta) in Sched_HandleSpDone; copied to 0x800D29A0 and reset in Sched_StartTasks
+0x8011FAB0	Credits_LineIndex	medium	current credits text line index; incremented by State_UpdateCreditsScroll, zeroed in State_CreditsInit
+0x8013B858	Text_Colors	high	s32 array of colour words set by Text_SetColors
+0x801462E1	Settings_SfxVolume	medium	u8 volume 0..255 stepped by 8 in InGameMenu_OnSfxVolumeSelect; Sound_Init scales it (neighbours at -1/+1 are the other volumes)
+0x801468C4	TeamPlayEnabled	high	non-zero = team match; Turret/Ai targeting skips actors of the same team (stats.unk92); set by TeamMenu
+0x80146D74	Credits_ScrollTimer	medium	float counting down by frame time in State_CreditsUpdate; reset to 67.5 / const when it reaches 0
+0x8014AD90	Sched_PendingSwapCount	medium	frames queued for display: incremented in Sched_HandleDpDone, decremented on osViSwapBuffer in Sched_HandleRetrace
+0x8014AD9C	PakMenu_BootCheckOk	medium	set 1 when the boot controller-pak check passes, 0 on error; PakMenu_UpdateBootCheck then sets 0x8014ADA0
+0x8014AEC8	Artsend_State_8014AEC8	low	artsend debug block: [0] non-zero disables overrides (set by Frontend_GetButtonMask), [0x868] frame counter for blink
+0x8014AED4	Artsend_ImagePtr	high	override image pointer returned by Artsend_GetImage, set by Artsend_LoadTexture
+0x8014AED8	Artsend_PalettePtr	high	override palette pointer returned by Artsend_GetPalette, set by Artsend_LoadTexture
+0x8014D090	Menu_ScreenDefaultFocus	medium	Menu_GotoScreen stores the new screen definition's unk44 (initial focus) here and later compares it
+0x8014D0C4	Sort_QuickThresholdBytes	high	decomp #define thresh; = 0x8014D0C0 (qsz) * 4, recursion cut-off in Sort_QuickRecurse
+0x8014D320	ScratchHeap_MarkDepth	high	index into the mark stack 0x8014D2E0; ScratchHeap_PushMark ++ and saves 0x8014D328, FrameAlloc_PopMark --
+0x8014EA58	PiAccessQueue	high	libultra __osPiAccessQueue (osCreateMesgQueue in __osPiCreateAccessQueue; __osPiGetAccess/RelAccess)
+0x8014FE30	TimerCounter	high	libultra __osTimerCounter: osGetCount snapshot in __osSetTimerIntr, used for elapsed time in __osTimerInterrupt
+0x80153734	PakMenu_RepairFailed	high	1 in PakMenu_OpenRepairFailed, 0 in PakMenu_OpenRepairPrompt; selects repair dialog text lines
+0x80153768	PakMenu_RepairPakChanged	medium	set 1 in PakMenu_UpdateRepairDialog when the pak was changed and re-checks OK; returned, cleared when dialog opens
+0x80153774	PakMenu_NoteIsForeign	high	1 in PakMenu_OpenForeignNoteDelete, 0 for own player note load/delete; picks prompt/title text
+0x80153780	PakMenu_GameNoteIsLoad	high	1 in PakMenu_OpenGameNoteLoad, 0 in OpenGameNoteDelete; PakMenu_OnGameNoteYes loads when set
+0x80153820	UiDraw_BatchTable	medium	array of 24-byte {items,count,...} UI draw batches walked by UiText_FlushGlyphBatches / UiNode_Draw*
+0x80153C78	Image_ReadPos	medium	current pixel index/offset used by Image_Read* pixel readers; reset in Image_BindSurfaces
+0x80153CD8	Image_ReadPixelFn	high	function pointer chosen per format in Image_BindSurfaces (func_004141B8/004141E8/00414240...), called per pixel
+0x80153F6C	Gfx_UiModeFlag_80153F6C	low	never written in code; selects alternate rendermode bits (0x3000 vs 0x5000) in Gfx_SelectRenderMode/Gfx_SetUiCombineMode
+0x80115E00	Collision_CeilingUnitNormal	high	Vec3f result buffer filled by Collision_GetCeilingUnitNormal (default 0,1,0); Collision_CeilingNormal (0x80115DF0) is the non-normalised one
+0x8014ADA0	PakMenu_BootDialogsDone	medium	set 1 when the boot pak check dialogs finish; State_BootUpdate waits on it (PakMenu_BootCheckDone 0x800E28CC is the check itself)
+0x80153C7C	Image_SrcIndexPixelsPtr	medium	source pixel data pointer for indexed formats, read byte-wise by Image_ReadIndex4/8

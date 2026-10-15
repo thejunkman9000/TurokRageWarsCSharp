@@ -325,7 +325,7 @@ public static partial class Game
             fs = 0.0f;
             _f17: ;
             _f14: ;
-            g = 0x801468A0u;
+            g = Gv.Settings_MatchRules;
             if (!((new B2GameFlags(g).unk98 != 0))) goto _f18;
             if (!(((int)(new B2Ctl(ctl).owner.stats.unk80) == 11))) goto _f19;
             BossBar_SetPercent1(0x8013B7B8u, (int)((float)(new B2GameFlags(g).unkA0)));
@@ -389,7 +389,7 @@ public static partial class Game
                 int f1 = 0;
                 int fl = 0;
                 uint t = 0u;
-                uint m = 0x8013B364u;
+                uint m = Gv.AiNavGraph;
                 o = new B2Ctl(ctl).owner_;
                 if (((new B2Ctl(ctl).unkC != (-1)) && (C.Seq((object?)(C.Seq((object?)(C.Seq((object?)(C.Seq((object?)(C.Seq((object?)(new B2Ctl(ctl).unk300_Set(0)), new B2Ctl(ctl).unk310_Set(0))), new B2Ctl(ctl).unk304_Set(0))), new B2Ctl(ctl).unk308_Set(0))), new B2Ctl(ctl).unk30C_Set(0))), ((new B2Ctl(ctl).q[(int)(0)] != (-1)) ? 1 : 0)) != 0)))
                 {
@@ -658,7 +658,7 @@ public static partial class Game
                     new_var = op;
                     f1 = (int)((new B2Actor(o).flags38 & (uint)(4096)));
                     Vec_Sub(_fp, ctlp, new_var);
-                    m = 0x8013B364u;
+                    m = Gv.AiNavGraph;
                     len = sqrtf((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z)));
                     if ((f1 != 0))
                     {
@@ -783,7 +783,7 @@ public static partial class Game
                     f1 = (int)((new B2Actor(o).flags38 & (uint)(4096)));
                     Vec_Sub(_fp, ctlp, new_var);
                     len = sqrtf((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z)));
-                    m = 0x8013B364u;
+                    m = Gv.AiNavGraph;
                     if ((f1 != 0))
                     {
                         if ((10.0f < len))
@@ -1083,9 +1083,9 @@ public static partial class Game
                 Mem.Copy((_fp + 16u), new B2Actor(target).pos.P, 12);
                 new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + Mem.F32(0x800C6D7Cu)));
                 new Vec3f((_fp + 16u)).y_Set((float)((float)(new Vec3f((_fp + 16u)).y) + Mem.F32(0x800C6D7Cu)));
-                if ((Collision_RayCast(new B2Ctl(ctl).owner_, _fp, (_fp + 16u), 0x80103FD0u) != 0))
+                if ((Collision_RayCast(new B2Ctl(ctl).owner_, _fp, (_fp + 16u), Gv.Collision_LosResult) != 0))
                 {
-                    return ((Mem.U32(Mem.U32(0x80103FCCu)) == target) ? 1 : 0);
+                    return ((Mem.U32(Mem.U32(Gv.Collision_ContactPtr)) == target) ? 1 : 0);
                 }
                 return 1;
             }
@@ -1213,7 +1213,7 @@ public static partial class Game
             uint stats = 0u;
             uint o = 0u;
             uint g = 0u;
-            if ((Mem.S32(0x80146938u) != 0))
+            if ((Mem.S32(Gv.Match_FragTagMode) != 0))
             {
                 st = (int)(new B2Ctl(ctl).owner.stats.unk80);
                 if ((st != 12))
@@ -1236,7 +1236,7 @@ public static partial class Game
             if ((lim < new B2Ctl(ctl).owner.unk1340))
             {
                 new B2Ctl(ctl).owner.unk1340_Set(0);
-                g = 0x801468A0u;
+                g = Gv.Settings_MatchRules;
                 if ((new B2GameFlags(g).unk98 != 0))
                 {
                     o = new B2Ctl(ctl).owner_;
@@ -1417,7 +1417,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020D364", (uint)ctl);
-            uint m = 0x8013B364u;
+            uint m = Gv.AiNavGraph;
             int i = 0;
             uint e = 0u;
             if ((m == 0u))
@@ -1553,7 +1553,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0020D4AC", (uint)ctl);
-                uint m = 0x8013B364u;
+                uint m = Gv.AiNavGraph;
                 uint e = 0u;
                 uint tp = 0u;
                 float k = 0f;
@@ -1630,7 +1630,7 @@ public static partial class Game
                 float zero = 0f;
                 int z = 0;
                 int m1 = 0;
-                m = 0x8013B364u;
+                m = Gv.AiNavGraph;
                 nxt = (-1);
                 i = 0;
                 sel = new B2Ctl(ctl).unk38;
@@ -1742,7 +1742,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0020D9C0", (uint)ctl);
-                uint m = 0x8013B364u;
+                uint m = Gv.AiNavGraph;
                 uint p = 0u;
                 uint n = 0u;
                 float k = 0f;
@@ -1785,7 +1785,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020DB14", (uint)ctl);
-            uint m = 0x8013B364u;
+            uint m = Gv.AiNavGraph;
             int i = 0;
             int j = 0;
             new B2Ctl(ctl).unk1C0_Set((-1));
@@ -1957,11 +1957,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0020EA10", (uint)ctl);
             float v = 0f;
-            if ((new B2GameFlags(0x801468A0u).unk78 != 0))
+            if ((new B2GameFlags(Gv.Settings_MatchRules).unk78 != 0))
             {
                 if (((int)(new B2Ctl(ctl).owner.stats.unk8F) == 0))
                 {
-                    if (((int)(Match_FindTaggedPlayer((0x801468A0u - (uint)6240))) == 0))
+                    if (((int)(Match_FindTaggedPlayer((Gv.Settings_MatchRules - (uint)6240))) == 0))
                     {
                         v = ((Ai_GetAggression_00209B64(ctl) * Mem.F32(0x800C6F40u)) + Mem.F32(0x800C6F44u));
                         if ((v < Random_Symmetric(0.0f, Mem.F32(0x800C6F48u))))
@@ -1982,7 +1982,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020EAB4", _a0);
-            if ((Mem.S32(0x80146918u) != 0))
+            if ((Mem.S32(Gv.Match_MonkeyTagMode) != 0))
             {
                 Ai_WantsObjective_0020EA10((uint)(_a0));
             }
@@ -1996,7 +1996,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020EAE0", (uint)ctl);
-            uint m = 0x8013B364u;
+            uint m = Gv.AiNavGraph;
             if ((m == 0u))
             {
                 return 1;
@@ -2052,7 +2052,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020ED50", (uint)obj);
-            uint m = 0x8013B364u;
+            uint m = Gv.AiNavGraph;
             if ((m != 0u))
             {
                 if ((new B2Edge2(obj).dst == (-1)))
@@ -2090,7 +2090,7 @@ public static partial class Game
                 {
                     return 1;
                 }
-                m = 0x8013B364u;
+                m = Gv.AiNavGraph;
                 for (i = 29; (i >= 0); --i)
                 {
                     Mem.Set((_fp + (uint)(i * 4)), 0);
@@ -2419,7 +2419,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0020F2A8", (uint)o);
-                uint L = 0x8013B364u;
+                uint L = Gv.AiNavGraph;
                 int i = 0;
                 int sel = 0;
                 uint n = 0u;
@@ -2466,7 +2466,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0020F388", (uint)o);
-                uint L = 0x8013B364u;
+                uint L = Gv.AiNavGraph;
                 int i = 0;
                 AiNav_ResetSearch(L);
                 AiNav_ClearGoals(L);
@@ -2500,8 +2500,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020F444", (uint)o);
-            uint L = 0x8013B364u;
-            uint L2 = 0x8013B364u;
+            uint L = Gv.AiNavGraph;
+            uint L2 = Gv.AiNavGraph;
             uint n = 0u;
             uint r = 0u;
             int count = 0;
@@ -2629,7 +2629,7 @@ public static partial class Game
                 {
                     new BrainB(b).unk64__Set(0u);
                 }
-                if (((Mem.S32(0x801468C4u) != 0) && ((int)(new BrainB(b).actor.stats.unk92) == (int)(new ActorB(cur).stats.unk92))))
+                if (((Mem.S32(Gv.TeamPlayEnabled) != 0) && ((int)(new BrainB(b).actor.stats.unk92) == (int)(new ActorB(cur).stats.unk92))))
                 {
                     new BrainB(b).unk64__Set(0u);
                 }
@@ -2972,8 +2972,8 @@ public static partial class Game
             s2 = (int)(new G20Actor(new B2Ctl(ctl).owner_).h5F4);
             s3 = (int)(new G20Actor(new B2Ctl(ctl).owner_).h5F6);
             s4 = (int)(new G20Actor(new B2Ctl(ctl).owner_).h5F8);
-            p = Match_FindTaggedPlayer(0x80145040u);
-            if (!(((p != 0u) && (Mem.S32((0x80145040u + (uint)6360)) != 0)))) goto _f5;
+            p = Match_FindTaggedPlayer(Gv.PlayerPool);
+            if (!(((p != 0u) && (Mem.S32((Gv.PlayerPool + (uint)6360)) != 0)))) goto _f5;
             if (!((p == new B2Ctl(ctl).owner_))) goto _f6;
             Ai_SetState(ctl, 10);
             goto L_done;
@@ -2983,8 +2983,8 @@ public static partial class Game
             goto L_done;
             _f7: ;
             _f5: ;
-            if (!(((new B2GameFlags(0x801468A0u).unk54 != 0) && ((int)(new B2Ctl(ctl).owner.stats.unk8F) != 0)))) goto _f8;
-            if (!((new B2GameFlags(0x801468A0u).unk68 > 0))) goto _f9;
+            if (!(((new B2GameFlags(Gv.Settings_MatchRules).unk54 != 0) && ((int)(new B2Ctl(ctl).owner.stats.unk8F) != 0)))) goto _f8;
+            if (!((new B2GameFlags(Gv.Settings_MatchRules).unk68 > 0))) goto _f9;
             if (!((new B2Ctl(ctl).curId != 2))) goto _f10;
             Ai_SetState(ctl, 2);
             new B2Ctl(ctl).unk2F4_Set(1);
@@ -2997,7 +2997,7 @@ public static partial class Game
             goto L_done;
             _f8: ;
             var_s0 = (int)(((Mem.F32(0x800C7018u) - Ai_GetAggression_00209B64(ctl)) * Mem.F32(0x800C701Cu)));
-            if (!(((Mem.S32(0x80146938u) != 0) && ((int)(new B2Ctl(ctl).owner.stats.unk94) != 0)))) goto _f11;
+            if (!(((Mem.S32(Gv.Match_FragTagMode) != 0) && ((int)(new B2Ctl(ctl).owner.stats.unk94) != 0)))) goto _f11;
             var_s0 = 0;
             _f11: ;
             if (!((Ai_IsSeekingItem(ctl) == 0))) goto _f12;
@@ -3144,7 +3144,7 @@ public static partial class Game
                 return 1;
             }
             pos = Ai_GetPosition(brain);
-            if ((Vec_Distance(pos, AiNav_GetNode(0x8013B364u, new RouteArrivalBrain(brain).node)) < 100.0f))
+            if ((Vec_Distance(pos, AiNav_GetNode(Gv.AiNavGraph, new RouteArrivalBrain(brain).node)) < 100.0f))
             {
                 Ai_ThinkChooseAttack(brain);
             }
@@ -3170,7 +3170,7 @@ public static partial class Game
                 new BrainB(b).value.Set((int)(i), (-1));
             }
             n = 0;
-            for (i = 0, g = 0x80145040u, gf = new GameB(g).gf.P; (i < 8); ++i)
+            for (i = 0, g = Gv.PlayerPool, gf = new GameB(g).gf.P; (i < 8); ++i)
             {
                 a = Player_GetByIndex(g, (uint)(i));
                 if (((((a != 0u) && (a != new BrainB(b).actor_)) && ((new GameFlagsB(gf).unk24 == 0) || ((int)(new ActorB(a).stats.unk92) != (int)(new BrainB(b).actor.stats.unk92)))) && ((new ActorB(a).unk5E4 >> (int)8) > 0)))
@@ -3326,7 +3326,7 @@ public static partial class Game
                     zone = 1;
                     if ((v < th2))
                     {
-                        if ((0x8013B364u != 0u))
+                        if ((Gv.AiNavGraph != 0u))
                         {
                             new BrainB(b).value.Set((int)(idx), (int)(((float)(v) * Mem.F32(0x800C7054u))));
                             hit = 1;
@@ -3349,7 +3349,7 @@ public static partial class Game
                     zone = 2;
                 }
             }
-            if ((Mem.S32(0x80146938u) != 0))
+            if ((Mem.S32(Gv.Match_FragTagMode) != 0))
             {
                 if (((((int)(new BrainB(b).actor.stats.unk94) ^ 0) != 0) && ((int)(new BrainB(b).actor.stats.unk80) == 12)))
                 {
@@ -3358,7 +3358,7 @@ public static partial class Game
             }
             if ((hit != 0))
             {
-                if (((Mem.S32(0x801468F4u) != 0) && ((int)(new ActorB(t).stats.unk8F) != 0)))
+                if (((Mem.S32(Gv.Settings_MonkeyTagMode) != 0) && ((int)(new ActorB(t).stats.unk8F) != 0)))
                 {
                     new BrainB(b).value.Set((int)(idx), (int)(((float)(new BrainB(b).value[(int)(idx)]) * Mem.F32(0x800C705Cu))));
                 }
@@ -3367,7 +3367,7 @@ public static partial class Game
                     new_var = (float)(new BrainB(b).value[(int)(idx)]);
                     new BrainB(b).value.Set((int)(idx), (int)((new_var * Mem.F32(0x800C7060u))));
                 }
-                if ((AiNav_IsNodeVisible(0x8013B364u, new BrainB(b).unk4, new ActorB(t).brain.unk4) != 0))
+                if ((AiNav_IsNodeVisible(Gv.AiNavGraph, new BrainB(b).unk4, new ActorB(t).brain.unk4) != 0))
                 {
                     return 1;
                 }
@@ -4321,7 +4321,7 @@ public static partial class Game
             if (!((pattern == 0))) goto _f7;
             dir = Ai_YawToSector(((new CloseAttackBrain(brain).player.yaw - 3.14159274f) - 1.57079637f));
             player = new CloseAttackBrain(brain).player_;
-            if (!(((new CloseAttackActor(player).slot % 2) == Mem.S32(0x800D297Cu)))) goto _f8;
+            if (!(((new CloseAttackActor(player).slot % 2) == Mem.S32(Gv.FrameParity)))) goto _f8;
             Ai_ProbeWalkDistance(player, (uint)(dir), default(uint), default(uint));
             _f8: ;
             if (!(!(new CloseAttackBrain(brain).walk[(int)(dir)] < 100.0f))) goto _f9;
@@ -4335,7 +4335,7 @@ public static partial class Game
             if (!((pattern == 1))) goto _f12;
             dir = Ai_YawToSector(((new CloseAttackBrain(brain).player.yaw - 3.14159274f) + 1.57079637f));
             player = new CloseAttackBrain(brain).player_;
-            if (!(((new CloseAttackActor(player).slot % 2) == Mem.S32(0x800D297Cu)))) goto _f13;
+            if (!(((new CloseAttackActor(player).slot % 2) == Mem.S32(Gv.FrameParity)))) goto _f13;
             Ai_ProbeWalkDistance(player, (uint)(dir), default(uint), default(uint));
             _f13: ;
             if (!((new CloseAttackBrain(brain).walk[(int)(dir)] < 100.0f))) goto _f14;
@@ -4361,7 +4361,7 @@ public static partial class Game
             _f17: ;
             if (!((route != new CloseAttackBrain(brain).node))) goto _f18;
             new CloseAttackBrain(brain).node_Set(route);
-            if (!((AiNav_IsNodeVisible(0x8013B364u, new CloseAttackBrain(brain).route, route) == 0))) goto _f19;
+            if (!((AiNav_IsNodeVisible(Gv.AiNavGraph, new CloseAttackBrain(brain).route, route) == 0))) goto _f19;
             Ai_SetState(brain, 1);
             _f19: ;
             _f18: ;
@@ -4456,7 +4456,7 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_00212FD4", (uint)actor, _a1);
                 uint b = new ActorB(actor).owner.brain_;
-                uint L = 0x8013B364u;
+                uint L = Gv.AiNavGraph;
                 float d = 0f;
                 int i = 0;
                 int n = 0;
@@ -4884,7 +4884,7 @@ public static partial class Game
                 {
                     Mem.Set((_fp + (uint)(i * 4)), (-1));
                 }
-                L1 = 0x8013B364u;
+                L1 = Gv.AiNavGraph;
                 for (i = 0; (i < new EntList(L1).count); ++i)
                 {
                     if ((((int)(new EntRec(AiNav_GetNode(L1, i)).flags) & 2048) != 0))
@@ -4895,7 +4895,7 @@ public static partial class Game
                 }
                 if ((n == 0))
                 {
-                    L = 0x8013B364u;
+                    L = Gv.AiNavGraph;
                     k = 0;
                     if ((Mem.S32(0x8013B368u) >= 2))
                     {
@@ -4962,7 +4962,7 @@ public static partial class Game
                 else
                 {
                     i = 0;
-                    L = 0x8013B364u;
+                    L = Gv.AiNavGraph;
                     if ((Mem.S32(0x8013B368u) >= 2))
                     {
                         id = new BrainB(b).unk22C;
@@ -5036,7 +5036,7 @@ public static partial class Game
             else
             {
                 i = 0;
-                L = 0x8013B364u;
+                L = Gv.AiNavGraph;
                 if ((Mem.S32(0x8013B368u) >= 2))
                 {
                     id = new BrainB(b).unk22C;
@@ -5077,7 +5077,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00213810", (uint)b);
-            uint L = 0x8013B364u;
+            uint L = Gv.AiNavGraph;
             int i = 0;
             int id = 0;
             if ((new EntList(L).count >= 2))
@@ -5149,7 +5149,7 @@ public static partial class Game
                 goto _f9;
                 _f8: ;
                 var_s1 = 0;
-                if (!(!(Mem.S32(0x8013B290u) != 0))) goto _f10;
+                if (!(!(Mem.S32(Gv.Game_Flag_8013B290) != 0))) goto _f10;
                 if (!((((!((new Actor_func_80214624_de(arg2).unk100 & 3145728) != 0) || (new Actor_func_80214624_de(arg2).unk1D8.unk794_ != arg0)) || (C.Seq((object?)((var_s1 = 1)), ((new Actor_func_80214624_de(arg2).unk1D8.unk788 != 2) ? 1 : 0)) != 0)) && (!((new Actor_func_80214624_de(arg0).unk2E0 & 2) != 0) || (C.Seq((object?)((var_s1 = 1)), (((int)(new Actor_func_80214624_de(arg0).unkE4) == 202) ? 1 : 0)) != 0))))) goto _f11;
                 var_s1 = 0;
                 _f11: ;
@@ -5913,7 +5913,7 @@ public static partial class Game
             {
                 return 7;
             }
-            if ((Mem.S32(0x8013B290u) == 0))
+            if ((Mem.S32(Gv.Game_Flag_8013B290) == 0))
             {
                 if (((((new func_80203C40_S1(target).unk100 & 3145728) != 0) && (new Field_void_794(new func_8020A028_S3(target).unk1D8).value == self)) && (new Field_s32_788(new func_8020A028_S3(target).unk1D8).value == 2)))
                 {
@@ -6735,7 +6735,7 @@ public static partial class Game
             r = (-lim);
             _f3: ;
             _f2: ;
-            r = (r * Mem.F32(0x800D2988u));
+            r = (r * Mem.F32(Gv.FrameTime));
             a = r;
             if (!((a < 0.0f))) goto _f4;
             a = (-a);
@@ -6786,7 +6786,7 @@ public static partial class Game
             {
                 return 7;
             }
-            if ((Mem.S32(0x8013B290u) == 0))
+            if ((Mem.S32(Gv.Game_Flag_8013B290) == 0))
             {
                 if (((new B04Act(t).flags & (uint)(3145728)) != 0u))
                 {
@@ -6825,7 +6825,7 @@ public static partial class Game
                 Mem.Copy((_fp + 80u), new B04Obj2(t).pos.P, 12);
                 new Vec3f((_fp + 80u)).y_Set((new Vec3f((_fp + 80u)).y + (Actor_GetHeight(t) * k)));
                 new Vec3f((_fp + 80u)).y_Set((new Vec3f((_fp + 80u)).y + new B04Obj2(t).unk70));
-                Collision_RayCast(o, new B04Obj2(o).pos.P, (_fp + 80u), 0x80103FD0u);
+                Collision_RayCast(o, new B04Obj2(o).pos.P, (_fp + 80u), Gv.Collision_LosResult);
                 Mem.Copy(o, _fp, 80);
                 if (((Mem.U32(0x8010428Cu) != 0u) && (((int)(new B04Flg(Mem.U32(0x8010428Cu)).flags) & 2) != 0)))
                 {
@@ -6857,8 +6857,8 @@ public static partial class Game
                 Mem.Copy((_fp + 80u), new B04Obj2(t).pos.P, 12);
                 new Vec3f((_fp + 80u)).y_Set((new Vec3f((_fp + 80u)).y + Actor_GetHeight(t)));
                 new Vec3f((_fp + 80u)).y_Set((new Vec3f((_fp + 80u)).y + new B04Obj2(t).unk70));
-                r = Collision_RayCast(o, new B04Obj2(o).pos.P, (_fp + 80u), 0x80104030u);
-                if ((Mem.U32(0x801041F0u) == t))
+                r = Collision_RayCast(o, new B04Obj2(o).pos.P, (_fp + 80u), Gv.Collision_ProbeResult);
+                if ((Mem.U32(Gv.Collision_Contacts) == t))
                 {
                     r = 0;
                 }
@@ -6917,7 +6917,7 @@ public static partial class Game
             float t = 0f;
             if ((new B04B_v2(b).unk7C > 0.0f))
             {
-                t = (new B04B_v2(b).unk7C - Mem.F32(0x800D2988u));
+                t = (new B04B_v2(b).unk7C - Mem.F32(Gv.FrameTime));
                 new B04B_v2(b).unk7C_Set(t);
                 if ((t <= 0.0f))
                 {

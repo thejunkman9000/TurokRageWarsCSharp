@@ -17,8 +17,8 @@ public static partial class Game
                 int i = 0;
                 byte bits = 0;
                 bits = (byte)(0);
-                pkt = new OSContPackedStruct((0x8014D470u + (uint)(0 * 8))).request.P;
-                for (i = 0; (i < (int)(Mem.U8(0x8014D46Cu))); ++i, pkt += 8u, status += 4u)
+                pkt = new OSContPackedStruct((Gv.__osContPifRam + (uint)(0 * 8))).request.P;
+                for (i = 0; (i < (int)(Mem.U8(Gv.__osMaxControllers))); ++i, pkt += 8u, status += 4u)
                 {
                     Mem.Copy(_fp, pkt, 8);
                     new OSContStatus(status).errno_Set((byte)((((int)(new OSContPackedRequest(_fp).unk02) & 192) >> (int)4)));

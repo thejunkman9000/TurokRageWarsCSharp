@@ -12,8 +12,8 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("__osSetTimerIntr");
             ulong target = 0UL;
             int saveMask = (int)(__osDisableInt());
-            Mem.Set(0x8014FE30u, osGetCount());
-            target = ((ulong)(Mem.U32(0x8014FE30u)) + time);
+            Mem.Set(Gv.TimerCounter, osGetCount());
+            target = ((ulong)(Mem.U32(Gv.TimerCounter)) + time);
             __osSetCompare((uint)(target), default(uint), default(uint), default(uint));
             __osRestoreInt((uint)(saveMask));
         }

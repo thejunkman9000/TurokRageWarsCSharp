@@ -21,7 +21,7 @@ public static partial class Game
             new ALSeqPlayerFull(seqp).nextDelta_Set(0);
             new ALSeqPlayerFull(seqp).state_Set(0);
             new ALSeqPlayerFull(seqp).vol_Set((short)(32767));
-            new ALSeqPlayerFull(seqp).drvr_Set(Mem.U32(0x800D80A0u));
+            new ALSeqPlayerFull(seqp).drvr_Set(Mem.U32(Gv.alGlobals));
             new ALSeqPlayerFull(seqp).debugFlags_Set(new ALSeqpConfigX(c).debugFlags);
             new ALSeqPlayerFull(seqp).frameTime_Set(16000);
             new ALSeqPlayerFull(seqp).curTime_Set(0);
@@ -49,7 +49,7 @@ public static partial class Game
             new ALSeqPlayerFull(seqp).node.next__Set(0u);
             new ALSeqPlayerFull(seqp).node.handler_Set(0x002B5624u);
             new ALSeqPlayerFull(seqp).node.clientData_Set(seqp);
-            alSynAddPlayer(Mem.U32(0x800D80A0u), seqp);
+            alSynAddPlayer(Mem.U32(Gv.alGlobals), seqp);
         }
     }
 

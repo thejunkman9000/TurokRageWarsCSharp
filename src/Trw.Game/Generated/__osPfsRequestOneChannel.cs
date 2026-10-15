@@ -15,15 +15,15 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("__osPfsRequestOneChannel", (uint)channel);
                 uint ptr = 0u;
                 int i = 0;
-                new OSPifRam(0x80154110u).pifstatus_Set((uint)(1));
+                new OSPifRam(Gv.OsPfsPifRam).pifstatus_Set((uint)(1));
                 new PfsReqFormat(_fp).txsize_Set((byte)(1));
                 new PfsReqFormat(_fp).rxsize_Set((byte)(3));
-                Mem.Set(0x8014D4B0u, (byte)(0));
+                Mem.Set(Gv.__osContLastCmd, (byte)(0));
                 new PfsReqFormat(_fp).cmd_Set((byte)(0));
                 new PfsReqFormat(_fp).typeh_Set((byte)(255));
                 new PfsReqFormat(_fp).typel_Set((byte)(255));
                 new PfsReqFormat(_fp).status_Set((byte)(255));
-                ptr = 0x80154110u;
+                ptr = Gv.OsPfsPifRam;
                 for (i = 0; (i < channel); ++i)
                 {
                     Mem.Set(((ptr += 1u) - 1u), (byte)(0));

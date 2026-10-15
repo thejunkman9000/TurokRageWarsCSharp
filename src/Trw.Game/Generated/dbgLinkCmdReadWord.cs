@@ -19,36 +19,36 @@ public static partial class Game
                 int ret = 0;
                 p = _fp;
                 dbgLinkRecvByte((_fp + 4u));
-                if ((Mem.S32(0x8014D3E8u) == 0))
+                if ((Mem.S32(Gv.DbgLink_Error) == 0))
                 {
                     v = (uint)(((int)(Mem.U8((_fp + 4u))) << (int)8));
                     dbgLinkRecvByte((_fp + 4u));
-                    if ((Mem.S32(0x8014D3E8u) == 0))
+                    if ((Mem.S32(Gv.DbgLink_Error) == 0))
                     {
                         v = (uint)((uint)(v) | (uint)(Mem.U8((_fp + 4u))));
                         v = (uint)((uint)(v) << (int)8);
                         dbgLinkRecvByte((_fp + 4u));
-                        if ((Mem.S32(0x8014D3E8u) == 0))
+                        if ((Mem.S32(Gv.DbgLink_Error) == 0))
                         {
                             v = (uint)((uint)(v) | (uint)(Mem.U8((_fp + 4u))));
                             v = (uint)((uint)(v) << (int)8);
                             dbgLinkRecvByte((_fp + 4u));
-                            if ((Mem.S32(0x8014D3E8u) == 0))
+                            if ((Mem.S32(Gv.DbgLink_Error) == 0))
                             {
                                 v = (uint)((uint)(v) | (uint)(Mem.U8((_fp + 4u))));
                                 Mem.Set(p, v);
                                 w = Mem.U32((uint)(Mem.U32(_fp)));
                                 dbgLinkSendByte((byte)((w >> (int)24)));
-                                if ((Mem.S32(0x8014D3E8u) == 0))
+                                if ((Mem.S32(Gv.DbgLink_Error) == 0))
                                 {
                                     dbgLinkSendByte((byte)(((w >> (int)16) & (uint)(255))));
-                                    if ((Mem.S32(0x8014D3E8u) == 0))
+                                    if ((Mem.S32(Gv.DbgLink_Error) == 0))
                                     {
                                         dbgLinkSendByte((byte)(((w >> (int)8) & (uint)(255))));
-                                        if ((Mem.S32(0x8014D3E8u) == 0))
+                                        if ((Mem.S32(Gv.DbgLink_Error) == 0))
                                         {
                                             dbgLinkSendByte((byte)((w & (uint)(255))));
-                                            ret = ((Mem.S32(0x8014D3E8u) == 0) ? 1 : 0);
+                                            ret = ((Mem.S32(Gv.DbgLink_Error) == 0) ? 1 : 0);
                                         }
                                     }
                                 }

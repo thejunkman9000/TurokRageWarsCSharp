@@ -107,8 +107,8 @@ public static partial class Game
                 {
                     p = 0x800D2BB8u;
                     Mem.Set(p, 569925);
-                    Mem.Set(0x800D2BB0u, (int)(ResourcePool_Malloc((uint)(Mem.S32(0x800D2BB8u)))));
-                    RomDma_ReadSync(0x801051B8u, (uint)(2097152), (uint)(Mem.S32(0x800D2BB8u)), (uint)(Mem.S32(0x800D2BB0u)));
+                    Mem.Set(Gv.RomFile_ArchiveBuffer, (int)(ResourcePool_Malloc((uint)(Mem.S32(0x800D2BB8u)))));
+                    RomDma_ReadSync(Gv.RomDma_Ctl, (uint)(2097152), (uint)(Mem.S32(0x800D2BB8u)), (uint)(Mem.S32(Gv.RomFile_ArchiveBuffer)));
                     Mem.Set(0x800D2BBCu, 0);
                     Mem.Set((p + (uint)(2 * 4)), 1);
                 }
@@ -124,11 +124,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002A1E34");
             Mem.Set(0x800D2B80u, (Mem.S32(0x800D2B80u) - 1));
-            if ((Mem.S32(0x800D2BB0u) != 0))
+            if ((Mem.S32(Gv.RomFile_ArchiveBuffer) != 0))
             {
-                ResourcePool_MallocFree((uint)(Mem.S32(0x800D2BB0u)));
+                ResourcePool_MallocFree((uint)(Mem.S32(Gv.RomFile_ArchiveBuffer)));
             }
-            Mem.Set(0x800D2BB0u, 0);
+            Mem.Set(Gv.RomFile_ArchiveBuffer, 0);
             Mem.Set(0x800D2BBCu, 0);
             Mem.Set(0x800D2BC0u, 0);
         }

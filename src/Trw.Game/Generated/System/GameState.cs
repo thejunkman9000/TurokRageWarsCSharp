@@ -26,7 +26,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022BA80");
-            return Mem.S32(0x80145048u);
+            return Mem.S32(Gv.PlayerCount);
         }
     }
 
@@ -36,7 +36,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022BAB0");
-            return ((Mem.S32(0x80146894u) != 0) ? 1 : 0);
+            return ((Mem.S32(Gv.GamePaused) != 0) ? 1 : 0);
         }
     }
 
@@ -65,9 +65,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022E748", (uint)a0, (uint)id);
-            if (((id == 730) && ((int)(Mem.U8((0x801462E5u + (uint)0))) != 0)))
+            if (((id == 730) && ((int)(Mem.U8((Gv.Settings_IsMultiplayer + (uint)0))) != 0)))
             {
-                return (int)(Mem.U8((0x801462E5u + (uint)14)));
+                return (int)(Mem.U8((Gv.Settings_IsMultiplayer + (uint)14)));
             }
             return 1;
         }
@@ -81,15 +81,15 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00291054", (uint)a);
             float f = 0f;
             int idx = 0;
-            if ((Mem.S32(0x80146958u) != 0))
+            if ((Mem.S32(Gv.Credits_SkipRequested) != 0))
             {
-                Mem.Set(0x80146D74u, (Mem.F32(0x80146D74u) - Mem.F32(0x800D2988u)));
-                if ((Mem.F32(0x80146D74u) <= 0.0f))
+                Mem.Set(Gv.Credits_ScrollTimer, (Mem.F32(Gv.Credits_ScrollTimer) - Mem.F32(Gv.FrameTime)));
+                if ((Mem.F32(Gv.Credits_ScrollTimer) <= 0.0f))
                 {
-                    Obj_GetField20_0022A404(0x80145040u);
+                    Obj_GetField20_0022A404(Gv.PlayerPool);
                     if ((Mem.S32(0x800D29D4u) != 0))
                     {
-                        if ((Mem.S32(0x800D29D0u) == 0))
+                        if ((Mem.S32(Gv.Credits_ReturnToTitle) == 0))
                         {
                             Game_FadeToLevelState14((uint)(a), 1999);
                             return;
@@ -99,7 +99,7 @@ public static partial class Game
                     }
                     else
                     {
-                        if ((Mem.S32(0x800D29D0u) != 0))
+                        if ((Mem.S32(Gv.Credits_ReturnToTitle) != 0))
                         {
                             Game_FadeOutToState((uint)(a), 1);
                             Mem.Set(0x8014692Cu, 1);
@@ -109,24 +109,24 @@ public static partial class Game
             }
             else
             {
-                if ((Mem.S32(0x800E28D4u) >= 223))
+                if ((Mem.S32(Gv.ScreenHeight) >= 223))
                 {
-                    Mem.Set(0x8014AD78u, (Mem.F32(0x8014AD78u) - 1.0f));
+                    Mem.Set(Gv.Credits_ScrollY, (Mem.F32(Gv.Credits_ScrollY) - 1.0f));
                 }
                 else
                 {
-                    Mem.Set(0x8014AD78u, (Mem.F32(0x8014AD78u) - 0.5f));
+                    Mem.Set(Gv.Credits_ScrollY, (Mem.F32(Gv.Credits_ScrollY) - 0.5f));
                 }
-                f = ((float)(Mem.S32(0x800E28D4u)) * 0.045045048f);
-                if ((Mem.F32(0x8014AD78u) <= (-f)))
+                f = ((float)(Mem.S32(Gv.ScreenHeight)) * 0.045045048f);
+                if ((Mem.F32(Gv.Credits_ScrollY) <= (-f)))
                 {
-                    Mem.Set(0x8014AD78u, (Mem.F32(0x8014AD78u) + f));
-                    idx = (Mem.S32(0x8011FAB0u) + 1);
-                    Mem.Set(0x8011FAB0u, idx);
+                    Mem.Set(Gv.Credits_ScrollY, (Mem.F32(Gv.Credits_ScrollY) + f));
+                    idx = (Mem.S32(Gv.Credits_LineIndex) + 1);
+                    Mem.Set(Gv.Credits_LineIndex, idx);
                     if ((Mem.S32((Mem.U32(0x800D7E40u) + (uint)(idx * 4))) == 0))
                     {
-                        Mem.Set(0x80146958u, 1);
-                        Mem.Set(0x80146D74u, 67.5f);
+                        Mem.Set(Gv.Credits_SkipRequested, 1);
+                        Mem.Set(Gv.Credits_ScrollTimer, 67.5f);
                     }
                 }
             }
@@ -893,11 +893,11 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_00293268", (uint)g, (uint)a);
                 uint b = 0u;
-                if (!(Level_FindPlacedObjects(0x8011FE88u, (-1), a, _fp, 1) != 0))
+                if (!(Level_FindPlacedObjects(Gv.LevelMgr, (-1), a, _fp, 1) != 0))
                 {
                     a = 0;
                 }
-                b = new B21World(0x80145040u).blk.P;
+                b = new B21World(Gv.PlayerPool).blk.P;
                 new B21GameBlk(b).unk0_Set((float)(0));
                 new B21GameBlk(b).unk4_Set((float)(0));
                 new B21GameBlk(b).unk8_Set((float)(0));
@@ -954,7 +954,7 @@ public static partial class Game
                 _f3: ;
                 L_done: ;
                 Mem.Set((_fp + (uint)3), (byte)(v));
-                Gfx_FillRectBlended(g, _fp, 0, 0, Mem.S32(0x800E28D0u), Mem.S32(0x800E28D4u));
+                Gfx_FillRectBlended(g, _fp, 0, 0, Mem.S32(Gv.ScreenWidth), Mem.S32(Gv.ScreenHeight));
             }
         }
         finally { Stack.Free(4); }
@@ -966,7 +966,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002934DC");
-            return ((Mem.S32(G.GameState) == 13) ? 1 : 0);
+            return ((Mem.S32(Gv.GameState) == 13) ? 1 : 0);
         }
     }
 
@@ -995,7 +995,7 @@ public static partial class Game
                 speed = 0.100000001f;
                 if (((int)(new B21Game(g).unk26DC0) != 0))
                 {
-                    if (((g != 0u) || (Mem.F32(0x800D2988u) != 0f)))
+                    if (((g != 0u) || (Mem.F32(Gv.FrameTime) != 0f)))
                     {
                         speed = 0.5f;
                     }
@@ -1018,7 +1018,7 @@ public static partial class Game
                     {
                         if ((0.0f < new B21Game(g).unk26DC4))
                         {
-                            new B21Game(g).unk26DC4_Set((new B21Game(g).unk26DC4 - (kk * Mem.F32(0x800D2988u))));
+                            new B21Game(g).unk26DC4_Set((new B21Game(g).unk26DC4 - (kk * Mem.F32(Gv.FrameTime))));
                             if ((new B21Game(g).unk26DC4 < 0.0f))
                             {
                                 new B21Game(g).unk26DC4_Set(0.0f);
@@ -1040,7 +1040,7 @@ public static partial class Game
                 }
                 else
                 {
-                    new B21Game(g).unk26DC4_Set((new B21Game(g).unk26DC4 + (speed * ((Mem.F32(0x800D2988u) < 0.5f) ? 0.5f : Mem.F32(0x800D2988u)))));
+                    new B21Game(g).unk26DC4_Set((new B21Game(g).unk26DC4 + (speed * ((Mem.F32(Gv.FrameTime) < 0.5f) ? 0.5f : Mem.F32(Gv.FrameTime)))));
                     if ((1.0f <= new B21Game(g).unk26DC4))
                     {
                         new B21Game(g).unk26DC1_Set((byte)(0));
@@ -1118,11 +1118,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002938E8", (uint)g, 0u, (uint)a, (uint)b);
-            if (((Mem.S32((0x8010F194u + (uint)(0 * 4))) != 0) && (b != (-1))))
+            if (((Mem.S32((Gv.Pad_PressedButtons + (uint)(0 * 4))) != 0) && (b != (-1))))
             {
                 new B21Game(g).unk26DC1_Set((byte)(2));
                 new B21Game(g).unk26DBC_Set(b);
-                Mem.Set((0x8010F194u + (uint)(0 * 4)), 0);
+                Mem.Set((Gv.Pad_PressedButtons + (uint)(0 * 4)), 0);
                 return 1;
             }
             if (((x * Mem.F32(0x800CA588u)) < new B21Game(g).unk26DB0))
@@ -1143,9 +1143,9 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0029397C", (uint)g, (uint)a);
             CameraManager_Init(new B21Game(g).sub255C8.P, 1);
             Player_InitPool(new B21Game(g).sub25580.P, 1, 0);
-            Level_SetTransitionState_0044E178(0x8011FE88u, (~Flyby_QueueById(a)), 0);
-            Level_LoadSelectedResource_0044DCA4(0x8011FE88u);
-            Level_LoadPreviewSound_0044DD40(0x8011FE88u);
+            Level_SetTransitionState_0044E178(Gv.LevelMgr, (~Flyby_QueueById(a)), 0);
+            Level_LoadSelectedResource_0044DCA4(Gv.LevelMgr);
+            Level_LoadPreviewSound_0044DD40(Gv.LevelMgr);
         }
     }
 
@@ -1155,7 +1155,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00293A04", (uint)g, (uint)a, (uint)b);
-            int f = (Mem.S32((0x8010F194u + (uint)(0 * 4))) & 4096);
+            int f = (Mem.S32((Gv.Pad_PressedButtons + (uint)(0 * 4))) & 4096);
             int old = 0;
             if (((new B21Game(g).unk26DB8 == 11) || (new B21Game(g).unk26DB8 == 12)))
             {
@@ -1165,7 +1165,7 @@ public static partial class Game
             {
                 new B21Game(g).unk26DC1_Set((byte)(2));
                 new B21Game(g).unk26DBC_Set(b);
-                Mem.Set((0x8010F194u + (uint)(0 * 4)), 0);
+                Mem.Set((Gv.Pad_PressedButtons + (uint)(0 * 4)), 0);
             }
             else
             {
@@ -1193,14 +1193,14 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00293B0C", (uint)g);
             float t = 0f;
-            if ((Mem.S32(0x8014694Cu) == 1))
+            if ((Mem.S32(Gv.Demo_Active) == 1))
             {
                 t = new B21Game(g).unk26DB0;
                 if ((Mem.F32(0x800CA590u) < t))
                 {
                     if ((Mem.F32(0x800CA594u) < t))
                     {
-                        Mem.Set(0x8014694Cu, 0);
+                        Mem.Set(Gv.Demo_Active, 0);
                         Menu_InitFrontend();
                         Menu_GotoScreen(2);
                         Video_RequestResolution(0);
@@ -1211,7 +1211,7 @@ public static partial class Game
                     {
                         if ((Mem.S32(0x8010F190u) != 0))
                         {
-                            Mem.Set(0x8014694Cu, 0);
+                            Mem.Set(Gv.Demo_Active, 0);
                             Menu_InitFrontend();
                             Menu_GotoScreen(2);
                             Game_BeginTransition(g, 8);
@@ -1237,8 +1237,8 @@ public static partial class Game
             uint b = 0u;
             if ((new B21Game(g).unk26DD4 == 0))
             {
-                b = new B21World(0x80145040u).blk.P;
-                new B21GameBlk(b).unk0_Set((float)((float)(new B21GameBlk(b).unk0) + Mem.F32(0x800D2988u)));
+                b = new B21World(Gv.PlayerPool).blk.P;
+                new B21GameBlk(b).unk0_Set((float)((float)(new B21GameBlk(b).unk0) + Mem.F32(Gv.FrameTime)));
                 if ((new B21GameBlk(b).unk0 >= Mem.F32(0x800CA598u)))
                 {
                     new B21GameBlk(b).unk0_Set((float)((float)(new B21GameBlk(b).unk0) - Mem.F32(0x800CA598u)));
@@ -1264,7 +1264,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00293CD0", (uint)g);
-            uint b = new B21World(0x80145040u).blk.P;
+            uint b = new B21World(Gv.PlayerPool).blk.P;
             float t = 0f;
             if ((new B21GameBlk(b).unkAC == 1))
             {
@@ -1316,13 +1316,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00293DE4", (uint)g);
-            Mem.Set(0x800E28C8u, (-1));
+            Mem.Set(Gv.PakMenu_BootPad, (-1));
             Mem.Set(0x80146D70u, 0);
             Video_RequestResolution(0);
             Mem.Set(0x800D29C4u, 1);
-            Mem.Set(0x80146D60u, 1);
-            Mem.Set(0x800E28CCu, 1);
-            Mem.Set(0x8014AD94u, 0);
+            Mem.Set(Gv.PakMenu_BootCheckSkipped, 1);
+            Mem.Set(Gv.PakMenu_BootCheckDone, 1);
+            Mem.Set(Gv.PakMenu_BootCheckBusy_8014AD94, 0);
             new B21Game(g).unk26DC4_Set(Mem.F32(0x800CA5ACu));
             Menu_GotoScreen(29);
         }
@@ -1334,7 +1334,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00293E60", (uint)a);
-            if ((Mem.S32(0x8014ADA0u) != 0))
+            if ((Mem.S32(Gv.PakMenu_BootDialogsDone) != 0))
             {
                 Game_FadeOutToState((uint)(a), 1);
                 Pad_DisableStatusPollAll();
@@ -1358,9 +1358,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00293EAC", (uint)g);
-            uint b = new B21World(0x80145040u).blk.P;
-            uint s = new B21World(0x80145040u).sub1288.P;
-            uint q = new B21World(0x80145040u).sub48.P;
+            uint b = new B21World(Gv.PlayerPool).blk.P;
+            uint s = new B21World(Gv.PlayerPool).sub1288.P;
+            uint q = new B21World(Gv.PlayerPool).sub48.P;
             Audio_PlayCue(0);
             new B21GameBlk(b).unkAC_Set(0);
             new B21GameBlk(b).unk88_Set(0);
@@ -1368,7 +1368,7 @@ public static partial class Game
             new B21Sub1288(s).unk1D_Set((byte)(0));
             new B21Sub1288(s).unk1E_Set((byte)(1));
             Game_InitCameras(g, 0, 0);
-            Level_Load(0x8011FE88u, (uint)(0), (uint)(0), default(uint));
+            Level_Load(Gv.LevelMgr, (uint)(0), (uint)(0), default(uint));
             CameraManager_Init(q, 1);
             new B21Sub48(q).unk160_Set(0);
             Material_SetColorMode(0);
@@ -1424,14 +1424,14 @@ public static partial class Game
                 uint dl = 0u;
                 Mem.Set(_fp, 0);
                 Mem.Set((_fp + 4u), 0);
-                dl = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                new DlCmd(dl).w0_Set((4279238656u | (uint)(((Mem.S32(0x800E28D0u) - 1) & 4095))));
-                new DlCmd(dl).w1_Set((uint)(new B21Hdr(Mem.U32(0x8011FE80u)).unk110));
+                dl = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
+                new DlCmd(dl).w0_Set((4279238656u | (uint)(((Mem.S32(Gv.ScreenWidth) - 1) & 4095))));
+                new DlCmd(dl).w1_Set((uint)(new B21Hdr(Mem.U32(Gv.Gfx_FrameCtxPtr)).unk110));
                 Sprite_GetFrameSize(904, 0, _fp, (_fp + 4u));
                 if (((Mem.S32(_fp) != 0) && (Mem.S32((_fp + 4u)) != 0)))
                 {
                     Gfx_BeginFlatColorPass((uint)(250), default(uint), default(uint), default(uint));
-                    Sprite_Draw(904, 0, (short)(0), (short)(0), ((float)(Mem.S32(0x800E28D0u)) / (float)(Mem.S32(_fp))), ((float)(Mem.S32(0x800E28D4u)) / (float)(Mem.S32((_fp + 4u)))), 1);
+                    Sprite_Draw(904, 0, (short)(0), (short)(0), ((float)(Mem.S32(Gv.ScreenWidth)) / (float)(Mem.S32(_fp))), ((float)(Mem.S32(Gv.ScreenHeight)) / (float)(Mem.S32((_fp + 4u)))), 1);
                 }
             }
         }
@@ -1486,7 +1486,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029414C", (uint)a);
-            Text_DrawLineList(a, 1, (uint)(Mem.S32(0x800D7064u)), (Mem.S32(0x800E28D0u) / 2), 5, 10, Mem.F32(0x800CA5B4u), Mem.F32(0x800CA5B8u));
+            Text_DrawLineList(a, 1, (uint)(Mem.S32(0x800D7064u)), (Mem.S32(Gv.ScreenWidth) / 2), 5, 10, Mem.F32(0x800CA5B4u), Mem.F32(0x800CA5B8u));
         }
     }
 
@@ -1521,17 +1521,17 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_002941F4");
                 uint dl = 0u;
-                Mem.Set(0x800D15D0u, 0);
+                Mem.Set(Gv.Render_FogEnabled, 0);
                 Mem.Set(_fp, 0);
                 Mem.Set((_fp + 4u), 0);
-                dl = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                new DlCmd(dl).w0_Set((4279238656u | (uint)(((Mem.S32(0x800E28D0u) - 1) & 4095))));
-                new DlCmd(dl).w1_Set((uint)(new B21Hdr(Mem.U32(0x8011FE80u)).unk110));
+                dl = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
+                new DlCmd(dl).w0_Set((4279238656u | (uint)(((Mem.S32(Gv.ScreenWidth) - 1) & 4095))));
+                new DlCmd(dl).w1_Set((uint)(new B21Hdr(Mem.U32(Gv.Gfx_FrameCtxPtr)).unk110));
                 Sprite_GetFrameSize(905, 0, _fp, (_fp + 4u));
                 if (((Mem.S32(_fp) != 0) && (Mem.S32((_fp + 4u)) != 0)))
                 {
                     Gfx_BeginFlatColorPass((uint)(250), default(uint), default(uint), default(uint));
-                    Sprite_Draw(905, 0, (short)(0), (short)(0), ((float)(Mem.S32(0x800E28D0u)) / (float)(Mem.S32(_fp))), ((float)(Mem.S32(0x800E28D4u)) / (float)(Mem.S32((_fp + 4u)))), 1);
+                    Sprite_Draw(905, 0, (short)(0), (short)(0), ((float)(Mem.S32(Gv.ScreenWidth)) / (float)(Mem.S32(_fp))), ((float)(Mem.S32(Gv.ScreenHeight)) / (float)(Mem.S32((_fp + 4u)))), 1);
                 }
             }
         }
@@ -1624,8 +1624,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002943B8", (uint)a);
             Game_InitCameras((uint)(a), 0, 0);
-            Level_Load(0x8011FE88u, (uint)(0), (uint)(0), default(uint));
-            Mem.Set(0x8014694Cu, 0);
+            Level_Load(Gv.LevelMgr, (uint)(0), (uint)(0), default(uint));
+            Mem.Set(Gv.Demo_Active, 0);
             Menu_GotoScreen(24);
             Audio_PlayCue(52);
         }
@@ -1784,7 +1784,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00294608", (uint)g);
             float v = 0f;
             Mem.Set(0x80146928u, 0);
-            Mem.Set(0x800D2980u, 0);
+            Mem.Set(Gv.LevelFrameCount, 0);
             Game_LatchPads();
             Collision_InitProfiles();
             Artsend_Init();
@@ -1793,7 +1793,7 @@ public static partial class Game
             Mem.Set(0x800D2994u, v);
             Mem.Set(0x800D298Cu, v);
             Mem.Set(0x800D2990u, v);
-            Level_SetTransitionState_0044E178(0x8011FE88u, new B21Game(g).unk26DD8, 0);
+            Level_SetTransitionState_0044E178(Gv.LevelMgr, new B21Game(g).unk26DD8, 0);
             new B21Game(g).unk26DB8_Set(13);
             Mem.Set(0x80154048u, 0);
         }
@@ -1808,16 +1808,16 @@ public static partial class Game
             uint b = 0u;
             uint s = 0u;
             float v = 0f;
-            Mem.Set(0x800D2980u, 0);
+            Mem.Set(Gv.LevelFrameCount, 0);
             Game_LatchPads();
             if ((Level_IsRestartPending() != 0))
             {
                 new B21Game(g).unk26DD8_Set(Level_GetRestartLevelId());
             }
-            b = new B21World(0x80145040u).blk.P;
+            b = new B21World(Gv.PlayerPool).blk.P;
             new B21GameBlk(b).unk20_Set(0);
             new B21GameBlk(b).unk64_Set(3);
-            s = new B21World(0x80145040u).sub1288.P;
+            s = new B21World(Gv.PlayerPool).sub1288.P;
             new B21Sub1288(s).unk1D_Set((byte)(1));
             new B21Sub1288(s).unk1E_Set((byte)(8));
             Game_InitCameras(g, (int)(new B21Game(g).unk26826), 0);
@@ -1832,8 +1832,8 @@ public static partial class Game
             Mem.Set(0x800D2994u, v);
             Mem.Set(0x800D298Cu, v);
             Mem.Set(0x800D2990u, v);
-            Level_InitState_0044DC48(0x8011FE88u);
-            Level_SetTransitionState_0044E178(0x8011FE88u, new B21Game(g).unk26DD8, 0);
+            Level_InitState_0044DC48(Gv.LevelMgr);
+            Level_SetTransitionState_0044E178(Gv.LevelMgr, new B21Game(g).unk26DD8, 0);
         }
     }
 
@@ -1882,7 +1882,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_002947DC", (uint)g, (uint)a);
-                if (!(Level_FindPlacedObjects(0x8011FE88u, (-1), a, _fp, 1) != 0))
+                if (!(Level_FindPlacedObjects(Gv.LevelMgr, (-1), a, _fp, 1) != 0))
                 {
                     a = 0;
                 }
@@ -1900,11 +1900,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029485C", (uint)g);
-            Mem.Set(0x800D29D0u, 0);
-            Mem.Set(0x8011FAB0u, 0);
-            Mem.Set(0x8014AD78u, (float)(Mem.S32(0x800E28D4u)));
-            Mem.Set(0x80146958u, 0);
-            Obj_GetField20_0022A404(0x80145040u);
+            Mem.Set(Gv.Credits_ReturnToTitle, 0);
+            Mem.Set(Gv.Credits_LineIndex, 0);
+            Mem.Set(Gv.Credits_ScrollY, (float)(Mem.S32(Gv.ScreenHeight)));
+            Mem.Set(Gv.Credits_SkipRequested, 0);
+            Obj_GetField20_0022A404(Gv.PlayerPool);
             Mem.Set(0x800D29D4u, 0);
             Flyby_SetDefaultView();
             State_LoadScene(g, 130);
@@ -1917,19 +1917,19 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002948D4", (uint)g);
-            if ((Mem.S32(0x800D29D0u) != 0))
+            if ((Mem.S32(Gv.Credits_ReturnToTitle) != 0))
             {
                 State_ExitOnFlybyEndOrStart(g, 1, 1);
             }
             else
             {
-                if (((Mem.S32((0x8010F194u + (uint)(0 * 4))) & 4096) != 0))
+                if (((Mem.S32((Gv.Pad_PressedButtons + (uint)(0 * 4))) & 4096) != 0))
                 {
-                    if ((Mem.S32(0x80146958u) == 0))
+                    if ((Mem.S32(Gv.Credits_SkipRequested) == 0))
                     {
-                        Mem.Set(0x80146958u, 1);
-                        Mem.Set((0x8010F194u + (uint)(0 * 4)), 0);
-                        Mem.Set(0x80146D74u, Mem.F32(0x800CA5C8u));
+                        Mem.Set(Gv.Credits_SkipRequested, 1);
+                        Mem.Set((Gv.Pad_PressedButtons + (uint)(0 * 4)), 0);
+                        Mem.Set(Gv.Credits_ScrollTimer, Mem.F32(0x800CA5C8u));
                     }
                 }
             }
@@ -1954,17 +1954,17 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00294980", (uint)g);
-            uint s = new B21World(0x80145040u).sub1288.P;
+            uint s = new B21World(Gv.PlayerPool).sub1288.P;
             new B21Sub1288(s).unk1D_Set((byte)(0));
-            Mem.Set(0x800D29D0u, 0);
-            Mem.Set(0x8011FAB0u, 0);
-            Mem.Set(0x8014AD78u, (float)(Mem.S32(0x800E28D4u)));
-            Mem.Set(0x80146958u, 0);
-            Obj_GetField20_0022A404(0x80145040u);
+            Mem.Set(Gv.Credits_ReturnToTitle, 0);
+            Mem.Set(Gv.Credits_LineIndex, 0);
+            Mem.Set(Gv.Credits_ScrollY, (float)(Mem.S32(Gv.ScreenHeight)));
+            Mem.Set(Gv.Credits_SkipRequested, 0);
+            Obj_GetField20_0022A404(Gv.PlayerPool);
             Mem.Set(0x800D29D4u, 0);
             Flyby_SetDefaultView();
             State_LoadScene(g, 130);
-            Mem.Set(0x800D29D0u, 1);
+            Mem.Set(Gv.Credits_ReturnToTitle, 1);
             Mem.Set(0x800D29D4u, 0);
         }
     }
@@ -1975,19 +1975,19 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00294A10", (uint)a);
-            if ((Mem.S32(0x800D29D0u) != 0))
+            if ((Mem.S32(Gv.Credits_ReturnToTitle) != 0))
             {
                 State_ExitOnFlybyEndOrStart((uint)(a), 1, 1);
             }
             else
             {
-                if (((Mem.S32(0x8010F194u) & 4096) != 0))
+                if (((Mem.S32(Gv.Pad_PressedButtons) & 4096) != 0))
                 {
-                    if ((Mem.S32(0x80146958u) == 0))
+                    if ((Mem.S32(Gv.Credits_SkipRequested) == 0))
                     {
-                        Mem.Set(0x80146958u, 1);
-                        Mem.Set(0x8010F194u, 0);
-                        Mem.Set(0x80146D74u, Mem.F32(0x800CA5CCu));
+                        Mem.Set(Gv.Credits_SkipRequested, 1);
+                        Mem.Set(Gv.Pad_PressedButtons, 0);
+                        Mem.Set(Gv.Credits_ScrollTimer, Mem.F32(0x800CA5CCu));
                     }
                 }
             }
@@ -2108,10 +2108,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00294BB0", (uint)g);
             uint b = 0u;
             int r = 0;
-            if (!((MenuPanel_CountOpen(new B21World(0x80145040u).sub5DC.P) == 0))) goto _f0;
+            if (!((MenuPanel_CountOpen(new B21World(Gv.PlayerPool).sub5DC.P) == 0))) goto _f0;
             if (!((Flyby_IsInWindow() != 0))) goto _f1;
             if (!((Flyby_GetId() == 120))) goto _f2;
-            b = new B21World(0x80145040u).blk.P;
+            b = new B21World(Gv.PlayerPool).blk.P;
             if (!((new B21GameBlk(b).unk88 != 0))) goto _f3;
             goto L_check;
             _f3: ;
@@ -2140,8 +2140,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00294C64");
-            Rumble_ClearAll(0x8010EC90u);
-            Player_ClearAllPadInput(0x80145040u);
+            Rumble_ClearAll(Gv.Rumble_Mgr);
+            Player_ClearAllPadInput(Gv.PlayerPool);
         }
     }
 
@@ -2155,11 +2155,11 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_0044EACC", (uint)m, (uint)a);
                 uint b = 0u;
-                if ((Level_FindPlacedObjects(0x8011FE88u, (-1), a, _fp, 1) == 0))
+                if ((Level_FindPlacedObjects(Gv.LevelMgr, (-1), a, _fp, 1) == 0))
                 {
                     a = 0;
                 }
-                b = 0x801468A0u;
+                b = Gv.Settings_MatchRules;
                 new S7Blk(b).unk0_Set(0);
                 new S7Blk(b).unk4_Set(0);
                 new S7Blk(b).unk8_Set(0);

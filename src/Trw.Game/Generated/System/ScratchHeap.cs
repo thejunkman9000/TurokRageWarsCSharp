@@ -12,8 +12,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002A26F8", (uint)size);
             int n = ((size + 7) & (~7));
-            Mem.Set((0x800D2BD4u + (uint)(0 * 4)), (int)(ResourcePool_Malloc((uint)(n))));
-            Mem.Set((0x800D2BD4u + (uint)(1 * 4)), (int)(ResourcePool_Malloc((uint)(n))));
+            Mem.Set((Gv.ScratchHeap_Buffers + (uint)(0 * 4)), (int)(ResourcePool_Malloc((uint)(n))));
+            Mem.Set((Gv.ScratchHeap_Buffers + (uint)(1 * 4)), (int)(ResourcePool_Malloc((uint)(n))));
             Mem.Set(0x8014D2D4u, n);
             Mem.Set(0x8014D2D0u, 0);
             FrameAlloc_ResetBuffer(default(uint), default(uint), default(uint), default(uint));
@@ -29,10 +29,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002A276C");
             if ((Mem.S32(0x800D2BD0u) != 0))
             {
-                ResourcePool_MallocFree((uint)(Mem.S32((0x800D2BD4u + (uint)(0 * 4)))));
-                ResourcePool_MallocFree((uint)(Mem.S32((0x800D2BD4u + (uint)(1 * 4)))));
-                Mem.Set((0x800D2BD4u + (uint)(0 * 4)), 0);
-                Mem.Set((0x800D2BD4u + (uint)(1 * 4)), 0);
+                ResourcePool_MallocFree((uint)(Mem.S32((Gv.ScratchHeap_Buffers + (uint)(0 * 4)))));
+                ResourcePool_MallocFree((uint)(Mem.S32((Gv.ScratchHeap_Buffers + (uint)(1 * 4)))));
+                Mem.Set((Gv.ScratchHeap_Buffers + (uint)(0 * 4)), 0);
+                Mem.Set((Gv.ScratchHeap_Buffers + (uint)(1 * 4)), 0);
                 Mem.Set(0x800D2BD0u, 0);
             }
         }
@@ -55,8 +55,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A27F8");
-            Mem.Set(0x8014D320u, (Mem.S32(0x8014D320u) + 1));
-            Mem.Set((0x8014D2E0u + (uint)(Mem.S32(0x8014D320u) * 4)), Mem.S32(0x8014D328u));
+            Mem.Set(Gv.ScratchHeap_MarkDepth, (Mem.S32(Gv.ScratchHeap_MarkDepth) + 1));
+            Mem.Set((0x8014D2E0u + (uint)(Mem.S32(Gv.ScratchHeap_MarkDepth) * 4)), Mem.S32(0x8014D328u));
         }
     }
 
@@ -66,12 +66,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A282C");
-            new MinMaxF(0x800D2BDCu).lo_Set(new MinMaxF(0x800D2BDCu).cur);
-            new MinMaxF(0x800D2BDCu).hi_Set(new MinMaxF(0x800D2BDCu).cur);
-            new MinMaxF(0x800D2BE8u).lo_Set(new MinMaxF(0x800D2BE8u).cur);
-            new MinMaxF(0x800D2BE8u).hi_Set(new MinMaxF(0x800D2BE8u).cur);
-            new MinMaxF(0x800D2BF4u).lo_Set(new MinMaxF(0x800D2BF4u).cur);
-            new MinMaxF(0x800D2BF4u).hi_Set(new MinMaxF(0x800D2BF4u).cur);
+            new MinMaxF(Gv.FrameAlloc_FreeStat).lo_Set(new MinMaxF(Gv.FrameAlloc_FreeStat).cur);
+            new MinMaxF(Gv.FrameAlloc_FreeStat).hi_Set(new MinMaxF(Gv.FrameAlloc_FreeStat).cur);
+            new MinMaxF(Gv.FrameAlloc_LowUsedStat).lo_Set(new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur);
+            new MinMaxF(Gv.FrameAlloc_LowUsedStat).hi_Set(new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur);
+            new MinMaxF(Gv.FrameAlloc_UsageStats).lo_Set(new MinMaxF(Gv.FrameAlloc_UsageStats).cur);
+            new MinMaxF(Gv.FrameAlloc_UsageStats).hi_Set(new MinMaxF(Gv.FrameAlloc_UsageStats).cur);
         }
     }
 }

@@ -16,21 +16,21 @@ public static partial class Game
                 uint v = 0u;
                 int ret = 0;
                 dbgLinkRecvByte(_fp);
-                if ((Mem.S32(0x8014D3E8u) == 0))
+                if ((Mem.S32(Gv.DbgLink_Error) == 0))
                 {
                     v = (uint)(((int)(Mem.U8(_fp)) << (int)8));
                     dbgLinkRecvByte(_fp);
-                    if ((Mem.S32(0x8014D3E8u) == 0))
+                    if ((Mem.S32(Gv.DbgLink_Error) == 0))
                     {
                         v = (uint)((uint)(v) | (uint)(Mem.U8(_fp)));
                         v = (uint)((uint)(v) << (int)8);
                         dbgLinkRecvByte(_fp);
-                        if ((Mem.S32(0x8014D3E8u) == 0))
+                        if ((Mem.S32(Gv.DbgLink_Error) == 0))
                         {
                             v = (uint)((uint)(v) | (uint)(Mem.U8(_fp)));
                             v = (uint)((uint)(v) << (int)8);
                             dbgLinkRecvByte(_fp);
-                            if ((Mem.S32(0x8014D3E8u) == 0))
+                            if ((Mem.S32(Gv.DbgLink_Error) == 0))
                             {
                                 v = (uint)((uint)(v) | (uint)(Mem.U8(_fp)));
                                 ret = 1;

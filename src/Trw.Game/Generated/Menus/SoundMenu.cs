@@ -12,16 +12,16 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004390EC");
-            Mem.Set(0x800E58A0u, ResourcePool_Malloc((uint)(28)));
-            new O05M0A_v2(Mem.U32(0x800E58A0u)).f0_Set(PopupPanel_Create(108, 109));
-            new O05M0A_v2(Mem.U32(0x800E58A0u)).f8_Set(Slider_Create(111, 112, 255));
-            Slider_SetValue(new O05M0A_v2(Mem.U32(0x800E58A0u)).f8, (int)(Mem.U8((0x801462E0u + (uint)0))));
-            new O05M0A_v2(Mem.U32(0x800E58A0u)).fC_Set(Slider_Create(113, 114, 255));
-            Slider_SetValue(new O05M0A_v2(Mem.U32(0x800E58A0u)).fC, (int)(Mem.U8((0x801462E0u + (uint)1))));
+            Mem.Set(Gv.SoundMenu_StatePtr, ResourcePool_Malloc((uint)(28)));
+            new O05M0A_v2(Mem.U32(Gv.SoundMenu_StatePtr)).f0_Set(PopupPanel_Create(108, 109));
+            new O05M0A_v2(Mem.U32(Gv.SoundMenu_StatePtr)).f8_Set(Slider_Create(111, 112, 255));
+            Slider_SetValue(new O05M0A_v2(Mem.U32(Gv.SoundMenu_StatePtr)).f8, (int)(Mem.U8((Gv.Settings_MusicVolume + (uint)0))));
+            new O05M0A_v2(Mem.U32(Gv.SoundMenu_StatePtr)).fC_Set(Slider_Create(113, 114, 255));
+            Slider_SetValue(new O05M0A_v2(Mem.U32(Gv.SoundMenu_StatePtr)).fC, (int)(Mem.U8((Gv.Settings_MusicVolume + (uint)1))));
             MenuButton_Create(115);
-            new O05M0A_v2(Mem.U32(0x800E58A0u)).f4_Set(Flicker_Create((uint)(110), (uint)(110), default(uint), default(uint)));
-            new O05M0A_v2(Mem.U32(0x800E58A0u)).f18_Set(3);
-            new O05M0A_v2(Mem.U32(0x800E58A0u)).f14_Set((-1));
+            new O05M0A_v2(Mem.U32(Gv.SoundMenu_StatePtr)).f4_Set(Flicker_Create((uint)(110), (uint)(110), default(uint), default(uint)));
+            new O05M0A_v2(Mem.U32(Gv.SoundMenu_StatePtr)).f18_Set(3);
+            new O05M0A_v2(Mem.U32(Gv.SoundMenu_StatePtr)).f14_Set((-1));
             return 0;
         }
     }
@@ -96,8 +96,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004391C0");
-            ResourcePool_MallocFree(Mem.U32(0x800E58A0u));
-            Mem.Set(0x800E58A0u, 0u);
+            ResourcePool_MallocFree(Mem.U32(Gv.SoundMenu_StatePtr));
+            Mem.Set(Gv.SoundMenu_StatePtr, 0u);
             return 0;
         }
     }
@@ -119,30 +119,30 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004391F8");
             int t = 0;
-            switch (PopupPanel_GetState(new O05M0A(Mem.U32(0x800E58A0u)).f0))
+            switch (PopupPanel_GetState(new O05M0A(Mem.U32(Gv.SoundMenu_StatePtr)).f0))
             {
             case 3:
                 break;
             case 4:
                 Menu_ConsumeEvent();
-                if ((new O05M0A(Mem.U32(0x800E58A0u)).f14 != (-1)))
+                if ((new O05M0A(Mem.U32(Gv.SoundMenu_StatePtr)).f14 != (-1)))
                 {
-                    Menu_GotoScreen(new O05M0A(Mem.U32(0x800E58A0u)).f14);
+                    Menu_GotoScreen(new O05M0A(Mem.U32(Gv.SoundMenu_StatePtr)).f14);
                     return 0;
                 }
                 Menu_GoBack();
                 return 0;
             }
-            t = Slider_GetValue(new O05M0A(Mem.U32(0x800E58A0u)).fC);
-            if ((t != (int)(Mem.U8((0x801462E0u + (uint)1)))))
+            t = Slider_GetValue(new O05M0A(Mem.U32(Gv.SoundMenu_StatePtr)).fC);
+            if ((t != (int)(Mem.U8((Gv.Settings_MusicVolume + (uint)1)))))
             {
-                Mem.Set((0x801462E0u + (uint)1), (byte)(t));
+                Mem.Set((Gv.Settings_MusicVolume + (uint)1), (byte)(t));
                 Audio_PlaySound2D(1120);
             }
-            t = Slider_GetValue(new O05M0A(Mem.U32(0x800E58A0u)).f8);
-            if ((t != (int)(Mem.U8((0x801462E0u + (uint)0)))))
+            t = Slider_GetValue(new O05M0A(Mem.U32(Gv.SoundMenu_StatePtr)).f8);
+            if ((t != (int)(Mem.U8((Gv.Settings_MusicVolume + (uint)0)))))
             {
-                Mem.Set((0x801462E0u + (uint)0), (byte)(t));
+                Mem.Set((Gv.Settings_MusicVolume + (uint)0), (byte)(t));
                 if (((int)((byte)(t)) >= 5))
                 {
                     if ((Audio_IsSoundOn() != 0))
@@ -170,7 +170,7 @@ public static partial class Game
             Menu_ConsumeEvent();
             if ((Menu_GetMessage() == 115))
             {
-                p = Mem.U32(0x800E58A0u);
+                p = Mem.U32(Gv.SoundMenu_StatePtr);
                 new S_v9(p).f14_Set((-1));
                 PopupPanel_SetState((uint)(new S_v9(p).f0), 2);
             }
@@ -186,7 +186,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00439354");
             uint p = 0u;
             Menu_ConsumeEvent();
-            p = Mem.U32(0x800E58A0u);
+            p = Mem.U32(Gv.SoundMenu_StatePtr);
             new S_v7(p).fv_Set((-1));
             PopupPanel_SetState((uint)(new S_v7(p).f0), 2);
             return 0;
@@ -200,13 +200,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00439390", (uint)o, (uint)id, (uint)a2, (uint)a3);
             int i = 0;
-            for (i = 0; (new O05Disp((0x800E58A8u + (uint)(i * 12))).fn != 0u); ++i)
+            for (i = 0; (new O05Disp((Gv.SoundMenu_EventTable + (uint)(i * 12))).fn != 0u); ++i)
             {
-                if ((new O05Disp((0x800E58A8u + (uint)(i * 12))).id == id))
+                if ((new O05Disp((Gv.SoundMenu_EventTable + (uint)(i * 12))).id == id))
                 {
-                    if (((new O05Disp((0x800E58A8u + (uint)(i * 12))).key == (int)(new O05Obj(o).key)) || (new O05Disp((0x800E58A8u + (uint)(i * 12))).key == 30000)))
+                    if (((new O05Disp((Gv.SoundMenu_EventTable + (uint)(i * 12))).key == (int)(new O05Obj(o).key)) || (new O05Disp((Gv.SoundMenu_EventTable + (uint)(i * 12))).key == 30000)))
                     {
-                        return (int)(Funcs.CallRegX(new O05Disp((0x800E58A8u + (uint)(i * 12))).fn, o, (uint)(id), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
+                        return (int)(Funcs.CallRegX(new O05Disp((Gv.SoundMenu_EventTable + (uint)(i * 12))).fn, o, (uint)(id), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
                     }
                 }
             }

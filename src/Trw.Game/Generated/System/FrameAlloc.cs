@@ -197,39 +197,39 @@ public static partial class Game
             int n = ((size + 7) & (~7));
             int old = Mem.S32(0x8014D328u);
             Mem.Set(0x8014D328u, (old + n));
-            new MinMaxF(0x800D2BE8u).cur_Set((new MinMaxF(0x800D2BE8u).cur + (float)(n)));
-            if ((new MinMaxF(0x800D2BE8u).cur < Mem.F32(0x800CAF08u)))
+            new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur_Set((new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur + (float)(n)));
+            if ((new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur < Mem.F32(0x800CAF08u)))
             {
-                new MinMaxF(0x800D2BE8u).cur_Set(Mem.F32(0x800CAF08u));
+                new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur_Set(Mem.F32(0x800CAF08u));
             }
-            if ((new MinMaxF(0x800D2BE8u).cur > Mem.F32(0x800CAF0Cu)))
+            if ((new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur > Mem.F32(0x800CAF0Cu)))
             {
-                new MinMaxF(0x800D2BE8u).cur_Set(Mem.F32(0x800CAF0Cu));
+                new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur_Set(Mem.F32(0x800CAF0Cu));
             }
-            if ((new MinMaxF(0x800D2BE8u).cur < new MinMaxF(0x800D2BE8u).lo))
+            if ((new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur < new MinMaxF(Gv.FrameAlloc_LowUsedStat).lo))
             {
-                new MinMaxF(0x800D2BE8u).lo_Set(new MinMaxF(0x800D2BE8u).cur);
+                new MinMaxF(Gv.FrameAlloc_LowUsedStat).lo_Set(new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur);
             }
-            if ((new MinMaxF(0x800D2BE8u).hi < new MinMaxF(0x800D2BE8u).cur))
+            if ((new MinMaxF(Gv.FrameAlloc_LowUsedStat).hi < new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur))
             {
-                new MinMaxF(0x800D2BE8u).hi_Set(new MinMaxF(0x800D2BE8u).cur);
+                new MinMaxF(Gv.FrameAlloc_LowUsedStat).hi_Set(new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur);
             }
-            new MinMaxF(0x800D2BDCu).cur_Set((new MinMaxF(0x800D2BDCu).cur + (float)((-n))));
-            if ((new MinMaxF(0x800D2BDCu).cur < Mem.F32(0x800CAF08u)))
+            new MinMaxF(Gv.FrameAlloc_FreeStat).cur_Set((new MinMaxF(Gv.FrameAlloc_FreeStat).cur + (float)((-n))));
+            if ((new MinMaxF(Gv.FrameAlloc_FreeStat).cur < Mem.F32(0x800CAF08u)))
             {
-                new MinMaxF(0x800D2BDCu).cur_Set(Mem.F32(0x800CAF08u));
+                new MinMaxF(Gv.FrameAlloc_FreeStat).cur_Set(Mem.F32(0x800CAF08u));
             }
-            if ((new MinMaxF(0x800D2BDCu).cur > Mem.F32(0x800CAF0Cu)))
+            if ((new MinMaxF(Gv.FrameAlloc_FreeStat).cur > Mem.F32(0x800CAF0Cu)))
             {
-                new MinMaxF(0x800D2BDCu).cur_Set(Mem.F32(0x800CAF0Cu));
+                new MinMaxF(Gv.FrameAlloc_FreeStat).cur_Set(Mem.F32(0x800CAF0Cu));
             }
-            if ((new MinMaxF(0x800D2BDCu).cur < new MinMaxF(0x800D2BDCu).lo))
+            if ((new MinMaxF(Gv.FrameAlloc_FreeStat).cur < new MinMaxF(Gv.FrameAlloc_FreeStat).lo))
             {
-                new MinMaxF(0x800D2BDCu).lo_Set(new MinMaxF(0x800D2BDCu).cur);
+                new MinMaxF(Gv.FrameAlloc_FreeStat).lo_Set(new MinMaxF(Gv.FrameAlloc_FreeStat).cur);
             }
-            if ((new MinMaxF(0x800D2BDCu).hi < new MinMaxF(0x800D2BDCu).cur))
+            if ((new MinMaxF(Gv.FrameAlloc_FreeStat).hi < new MinMaxF(Gv.FrameAlloc_FreeStat).cur))
             {
-                new MinMaxF(0x800D2BDCu).hi_Set(new MinMaxF(0x800D2BDCu).cur);
+                new MinMaxF(Gv.FrameAlloc_FreeStat).hi_Set(new MinMaxF(Gv.FrameAlloc_FreeStat).cur);
             }
             return old;
         }
@@ -241,43 +241,43 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A24B8");
-            int v = Mem.S32((0x8014D2E0u + (uint)(Mem.S32(0x8014D320u) * 4)));
+            int v = Mem.S32((0x8014D2E0u + (uint)(Mem.S32(Gv.ScratchHeap_MarkDepth) * 4)));
             int d = (v - Mem.S32(0x8014D328u));
-            Mem.Set(0x8014D320u, (Mem.S32(0x8014D320u) - 1));
+            Mem.Set(Gv.ScratchHeap_MarkDepth, (Mem.S32(Gv.ScratchHeap_MarkDepth) - 1));
             Mem.Set(0x8014D328u, v);
-            new MinMaxF(0x800D2BE8u).cur_Set((new MinMaxF(0x800D2BE8u).cur + (float)((-d))));
-            if ((new MinMaxF(0x800D2BE8u).cur < Mem.F32(0x800CAF10u)))
+            new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur_Set((new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur + (float)((-d))));
+            if ((new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur < Mem.F32(0x800CAF10u)))
             {
-                new MinMaxF(0x800D2BE8u).cur_Set(Mem.F32(0x800CAF10u));
+                new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur_Set(Mem.F32(0x800CAF10u));
             }
-            if ((new MinMaxF(0x800D2BE8u).cur > Mem.F32(0x800CAF14u)))
+            if ((new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur > Mem.F32(0x800CAF14u)))
             {
-                new MinMaxF(0x800D2BE8u).cur_Set(Mem.F32(0x800CAF14u));
+                new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur_Set(Mem.F32(0x800CAF14u));
             }
-            if ((new MinMaxF(0x800D2BE8u).cur < new MinMaxF(0x800D2BE8u).lo))
+            if ((new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur < new MinMaxF(Gv.FrameAlloc_LowUsedStat).lo))
             {
-                new MinMaxF(0x800D2BE8u).lo_Set(new MinMaxF(0x800D2BE8u).cur);
+                new MinMaxF(Gv.FrameAlloc_LowUsedStat).lo_Set(new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur);
             }
-            if ((new MinMaxF(0x800D2BE8u).hi < new MinMaxF(0x800D2BE8u).cur))
+            if ((new MinMaxF(Gv.FrameAlloc_LowUsedStat).hi < new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur))
             {
-                new MinMaxF(0x800D2BE8u).hi_Set(new MinMaxF(0x800D2BE8u).cur);
+                new MinMaxF(Gv.FrameAlloc_LowUsedStat).hi_Set(new MinMaxF(Gv.FrameAlloc_LowUsedStat).cur);
             }
-            new MinMaxF(0x800D2BDCu).cur_Set((new MinMaxF(0x800D2BDCu).cur + (float)(d)));
-            if ((new MinMaxF(0x800D2BDCu).cur < Mem.F32(0x800CAF10u)))
+            new MinMaxF(Gv.FrameAlloc_FreeStat).cur_Set((new MinMaxF(Gv.FrameAlloc_FreeStat).cur + (float)(d)));
+            if ((new MinMaxF(Gv.FrameAlloc_FreeStat).cur < Mem.F32(0x800CAF10u)))
             {
-                new MinMaxF(0x800D2BDCu).cur_Set(Mem.F32(0x800CAF10u));
+                new MinMaxF(Gv.FrameAlloc_FreeStat).cur_Set(Mem.F32(0x800CAF10u));
             }
-            if ((new MinMaxF(0x800D2BDCu).cur > Mem.F32(0x800CAF14u)))
+            if ((new MinMaxF(Gv.FrameAlloc_FreeStat).cur > Mem.F32(0x800CAF14u)))
             {
-                new MinMaxF(0x800D2BDCu).cur_Set(Mem.F32(0x800CAF14u));
+                new MinMaxF(Gv.FrameAlloc_FreeStat).cur_Set(Mem.F32(0x800CAF14u));
             }
-            if ((new MinMaxF(0x800D2BDCu).cur < new MinMaxF(0x800D2BDCu).lo))
+            if ((new MinMaxF(Gv.FrameAlloc_FreeStat).cur < new MinMaxF(Gv.FrameAlloc_FreeStat).lo))
             {
-                new MinMaxF(0x800D2BDCu).lo_Set(new MinMaxF(0x800D2BDCu).cur);
+                new MinMaxF(Gv.FrameAlloc_FreeStat).lo_Set(new MinMaxF(Gv.FrameAlloc_FreeStat).cur);
             }
-            if ((new MinMaxF(0x800D2BDCu).hi < new MinMaxF(0x800D2BDCu).cur))
+            if ((new MinMaxF(Gv.FrameAlloc_FreeStat).hi < new MinMaxF(Gv.FrameAlloc_FreeStat).cur))
             {
-                new MinMaxF(0x800D2BDCu).hi_Set(new MinMaxF(0x800D2BDCu).cur);
+                new MinMaxF(Gv.FrameAlloc_FreeStat).hi_Set(new MinMaxF(Gv.FrameAlloc_FreeStat).cur);
             }
         }
     }
@@ -291,39 +291,39 @@ public static partial class Game
             int n = ((size + 7) & (~7));
             int left = (Mem.S32(0x8014D324u) - n);
             Mem.Set(0x8014D324u, left);
-            new MinMaxF(0x800D2BF4u).cur_Set((new MinMaxF(0x800D2BF4u).cur + (float)(n)));
-            if ((new MinMaxF(0x800D2BF4u).cur < Mem.F32(0x800CAF18u)))
+            new MinMaxF(Gv.FrameAlloc_UsageStats).cur_Set((new MinMaxF(Gv.FrameAlloc_UsageStats).cur + (float)(n)));
+            if ((new MinMaxF(Gv.FrameAlloc_UsageStats).cur < Mem.F32(0x800CAF18u)))
             {
-                new MinMaxF(0x800D2BF4u).cur_Set(Mem.F32(0x800CAF18u));
+                new MinMaxF(Gv.FrameAlloc_UsageStats).cur_Set(Mem.F32(0x800CAF18u));
             }
-            if ((new MinMaxF(0x800D2BF4u).cur > Mem.F32(0x800CAF1Cu)))
+            if ((new MinMaxF(Gv.FrameAlloc_UsageStats).cur > Mem.F32(0x800CAF1Cu)))
             {
-                new MinMaxF(0x800D2BF4u).cur_Set(Mem.F32(0x800CAF1Cu));
+                new MinMaxF(Gv.FrameAlloc_UsageStats).cur_Set(Mem.F32(0x800CAF1Cu));
             }
-            if ((new MinMaxF(0x800D2BF4u).cur < new MinMaxF(0x800D2BF4u).lo))
+            if ((new MinMaxF(Gv.FrameAlloc_UsageStats).cur < new MinMaxF(Gv.FrameAlloc_UsageStats).lo))
             {
-                new MinMaxF(0x800D2BF4u).lo_Set(new MinMaxF(0x800D2BF4u).cur);
+                new MinMaxF(Gv.FrameAlloc_UsageStats).lo_Set(new MinMaxF(Gv.FrameAlloc_UsageStats).cur);
             }
-            if ((new MinMaxF(0x800D2BF4u).hi < new MinMaxF(0x800D2BF4u).cur))
+            if ((new MinMaxF(Gv.FrameAlloc_UsageStats).hi < new MinMaxF(Gv.FrameAlloc_UsageStats).cur))
             {
-                new MinMaxF(0x800D2BF4u).hi_Set(new MinMaxF(0x800D2BF4u).cur);
+                new MinMaxF(Gv.FrameAlloc_UsageStats).hi_Set(new MinMaxF(Gv.FrameAlloc_UsageStats).cur);
             }
-            new MinMaxF(0x800D2BDCu).cur_Set((new MinMaxF(0x800D2BDCu).cur + (float)((-n))));
-            if ((new MinMaxF(0x800D2BDCu).cur < Mem.F32(0x800CAF18u)))
+            new MinMaxF(Gv.FrameAlloc_FreeStat).cur_Set((new MinMaxF(Gv.FrameAlloc_FreeStat).cur + (float)((-n))));
+            if ((new MinMaxF(Gv.FrameAlloc_FreeStat).cur < Mem.F32(0x800CAF18u)))
             {
-                new MinMaxF(0x800D2BDCu).cur_Set(Mem.F32(0x800CAF18u));
+                new MinMaxF(Gv.FrameAlloc_FreeStat).cur_Set(Mem.F32(0x800CAF18u));
             }
-            if ((new MinMaxF(0x800D2BDCu).cur > Mem.F32(0x800CAF1Cu)))
+            if ((new MinMaxF(Gv.FrameAlloc_FreeStat).cur > Mem.F32(0x800CAF1Cu)))
             {
-                new MinMaxF(0x800D2BDCu).cur_Set(Mem.F32(0x800CAF1Cu));
+                new MinMaxF(Gv.FrameAlloc_FreeStat).cur_Set(Mem.F32(0x800CAF1Cu));
             }
-            if ((new MinMaxF(0x800D2BDCu).cur < new MinMaxF(0x800D2BDCu).lo))
+            if ((new MinMaxF(Gv.FrameAlloc_FreeStat).cur < new MinMaxF(Gv.FrameAlloc_FreeStat).lo))
             {
-                new MinMaxF(0x800D2BDCu).lo_Set(new MinMaxF(0x800D2BDCu).cur);
+                new MinMaxF(Gv.FrameAlloc_FreeStat).lo_Set(new MinMaxF(Gv.FrameAlloc_FreeStat).cur);
             }
-            if ((new MinMaxF(0x800D2BDCu).hi < new MinMaxF(0x800D2BDCu).cur))
+            if ((new MinMaxF(Gv.FrameAlloc_FreeStat).hi < new MinMaxF(Gv.FrameAlloc_FreeStat).cur))
             {
-                new MinMaxF(0x800D2BDCu).hi_Set(new MinMaxF(0x800D2BDCu).cur);
+                new MinMaxF(Gv.FrameAlloc_FreeStat).hi_Set(new MinMaxF(Gv.FrameAlloc_FreeStat).cur);
             }
             return left;
         }

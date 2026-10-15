@@ -32,7 +32,7 @@ public static partial class Game
                 new S13Delay((new S13Fx(f).delay_ + (uint)(s * 40))).gain_Set((short)(val));
                 break;
             case 5:
-                new S13Delay((new S13Fx(f).delay_ + (uint)(s * 40))).rsinc_Set(((((float)(val) * 0.00100000005f) * 2.0f) / (float)(new ALGlobals(Mem.U32(0x800D80A0u)).drvr.outputRate)));
+                new S13Delay((new S13Fx(f).delay_ + (uint)(s * 40))).rsinc_Set(((((float)(val) * 0.00100000005f) * 2.0f) / (float)(new ALGlobals(Mem.U32(Gv.alGlobals)).drvr.outputRate)));
                 break;
             case 6:
                 {

@@ -13,34 +13,34 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0042250C");
             int t = 0;
-            Mem.Set(0x800E4510u, ResourcePool_Malloc((uint)(40)));
-            new O3Words(Mem.U32(0x800E4510u)).w.Set((int)(0), (int)(PopupPanel_Create(77, 78)));
+            Mem.Set(Gv.OptionsMenu_PagePtr, ResourcePool_Malloc((uint)(40)));
+            new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w.Set((int)(0), (int)(PopupPanel_Create(77, 78)));
             MenuButton_Create(87);
             MenuButton_Create(88);
-            new O3Words(Mem.U32(0x800E4510u)).w.Set((int)(3), (int)(OptionList_Create(89, 90)));
-            OptionList_AddOption((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(3)]), Mem.U32((0x800D749Cu + (uint)(0 * 4))));
-            OptionList_AddOption((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(3)]), Mem.U32((0x800D74A4u + (uint)(0 * 4))));
-            OptionList_AddOption((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(3)]), Mem.U32((0x800D74A8u + (uint)(0 * 4))));
-            OptionList_SetSelection((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(3)]), (int)(new O3Cfg(0x801462C8u).f1B));
-            new O3Words(Mem.U32(0x800E4510u)).w.Set((int)(4), (int)(OptionList_Create(85, 86)));
-            OptionList_AddOption((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(4)]), Mem.U32((0x800D74ACu + (uint)(0 * 4))));
-            OptionList_AddOption((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(4)]), Mem.U32((0x800D74B0u + (uint)(0 * 4))));
-            OptionList_SetSelection((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(4)]), (int)(new O3Cfg(0x801462C8u).f1F));
-            new O3Words(Mem.U32(0x800E4510u)).w.Set((int)(5), (int)(OptionList_Create(81, 82)));
-            OptionList_AddOption((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(5)]), Mem.U32((0x800D74B4u + (uint)(0 * 4))));
+            new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w.Set((int)(3), (int)(OptionList_Create(89, 90)));
+            OptionList_AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(3)]), Mem.U32((Gv.Option_OffOnStrings + (uint)(0 * 4))));
+            OptionList_AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(3)]), Mem.U32((0x800D74A4u + (uint)(0 * 4))));
+            OptionList_AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(3)]), Mem.U32((0x800D74A8u + (uint)(0 * 4))));
+            OptionList_SetSelection((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(3)]), (int)(new O3Cfg(Gv.Settings).f1B));
+            new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w.Set((int)(4), (int)(OptionList_Create(85, 86)));
+            OptionList_AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(4)]), Mem.U32((0x800D74ACu + (uint)(0 * 4))));
+            OptionList_AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(4)]), Mem.U32((0x800D74B0u + (uint)(0 * 4))));
+            OptionList_SetSelection((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(4)]), (int)(new O3Cfg(Gv.Settings).f1F));
+            new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w.Set((int)(5), (int)(OptionList_Create(81, 82)));
+            OptionList_AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(5)]), Mem.U32((0x800D74B4u + (uint)(0 * 4))));
             if (((int)(Mem_GetRamSize()) != 4194304))
             {
-                OptionList_AddOption((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(5)]), Mem.U32((0x800D74B8u + (uint)(0 * 4))));
-                OptionList_AddOption((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(5)]), Mem.U32((0x800D74BCu + (uint)(0 * 4))));
+                OptionList_AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(5)]), Mem.U32((0x800D74B8u + (uint)(0 * 4))));
+                OptionList_AddOption((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(5)]), Mem.U32((0x800D74BCu + (uint)(0 * 4))));
             }
-            OptionList_SetSelection((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(5)]), (int)(new O3Cfg(0x801462C8u).f580));
-            new O3Words(Mem.U32(0x800E4510u)).w.Set((int)(2), (int)(Slider_Create(83, 84, 128)));
-            Slider_SetValue((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(2)]), new O3Cfg(0x801462C8u).f10);
+            OptionList_SetSelection((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(5)]), (int)(new O3Cfg(Gv.Settings).f580));
+            new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w.Set((int)(2), (int)(Slider_Create(83, 84, 128)));
+            Slider_SetValue((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(2)]), new O3Cfg(Gv.Settings).f10);
             MenuButton_Create(80);
             t = (int)(Flicker_Create((uint)(79), (uint)(110), default(uint), default(uint)));
-            new O3Words(Mem.U32(0x800E4510u)).w.Set((int)(9), 3);
-            new O3Words(Mem.U32(0x800E4510u)).w.Set((int)(1), t);
-            new O3Words(Mem.U32(0x800E4510u)).w.Set((int)(8), (-1));
+            new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w.Set((int)(9), 3);
+            new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w.Set((int)(1), t);
+            new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w.Set((int)(8), (-1));
             return 0;
         }
     }
@@ -182,10 +182,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00423280");
-            new O3Cfg(0x801462C8u).f1B_Set((byte)(OptionList_GetSelection((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(3)]))));
-            new O3Cfg(0x801462C8u).f1F_Set((byte)(OptionList_GetSelection((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(4)]))));
-            new O3Cfg(0x801462C8u).f580_Set((byte)(OptionList_GetSelection((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(5)]))));
-            new O3Cfg(0x801462C8u).f10_Set(Slider_GetValue((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(2)])));
+            new O3Cfg(Gv.Settings).f1B_Set((byte)(OptionList_GetSelection((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(3)]))));
+            new O3Cfg(Gv.Settings).f1F_Set((byte)(OptionList_GetSelection((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(4)]))));
+            new O3Cfg(Gv.Settings).f580_Set((byte)(OptionList_GetSelection((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(5)]))));
+            new O3Cfg(Gv.Settings).f10_Set(Slider_GetValue((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(2)])));
         }
     }
 
@@ -195,8 +195,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004233DC");
-            ResourcePool_MallocFree(Mem.U32(0x800E4510u));
-            Mem.Set(0x800E4510u, 0u);
+            ResourcePool_MallocFree(Mem.U32(Gv.OptionsMenu_PagePtr));
+            Mem.Set(Gv.OptionsMenu_PagePtr, 0u);
             return 0;
         }
     }
@@ -208,13 +208,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0042340C");
             int a = 0;
-            switch (PopupPanel_GetState((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(0)])))
+            switch (PopupPanel_GetState((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(0)])))
             {
             case 3:
                 break;
             case 4:
                 Menu_ConsumeEvent();
-                a = new O3Words(Mem.U32(0x800E4510u)).w[(int)(8)];
+                a = new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(8)];
                 if ((a != (-1)))
                 {
                     Menu_GotoScreen(a);
@@ -243,13 +243,13 @@ public static partial class Game
             switch (id)
             {
             case 80:
-                new O3Words(Mem.U32(0x800E4510u)).w.Set((int)(8), (-1));
+                new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w.Set((int)(8), (-1));
                 break;
             case 87:
-                new O3Words(Mem.U32(0x800E4510u)).w.Set((int)(8), 6);
+                new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w.Set((int)(8), 6);
                 break;
             case 88:
-                new O3Words(Mem.U32(0x800E4510u)).w.Set((int)(8), 5);
+                new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w.Set((int)(8), 5);
                 break;
             default:
                 ok = 0;
@@ -258,7 +258,7 @@ public static partial class Game
             if ((ok == 1))
             {
                 OptionsMenu_ApplySettings();
-                PopupPanel_SetState((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(0)]), 2);
+                PopupPanel_SetState((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(0)]), 2);
             }
             return 0;
         }
@@ -271,8 +271,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00423548");
             Menu_ConsumeEvent();
-            new O3Words(Mem.U32(0x800E4510u)).w.Set((int)(8), (-1));
-            PopupPanel_SetState((uint)(new O3Words(Mem.U32(0x800E4510u)).w[(int)(0)]), 2);
+            new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w.Set((int)(8), (-1));
+            PopupPanel_SetState((uint)(new O3Words(Mem.U32(Gv.OptionsMenu_PagePtr)).w[(int)(0)]), 2);
             OptionsMenu_ApplySettings();
             return 0;
         }
@@ -305,13 +305,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0042359C", (uint)obj, (uint)msg, (uint)a2, (uint)a3);
             int i = 0;
-            for (i = 0; (new O3Msg((0x800E451Cu + (uint)(i * 12))).fn != 0u); ++i)
+            for (i = 0; (new O3Msg((Gv.OptionsMenu_MsgTable + (uint)(i * 12))).fn != 0u); ++i)
             {
-                if ((new O3Msg((0x800E451Cu + (uint)(i * 12))).msg == msg))
+                if ((new O3Msg((Gv.OptionsMenu_MsgTable + (uint)(i * 12))).msg == msg))
                 {
-                    if (((new O3Msg((0x800E451Cu + (uint)(i * 12))).type == (int)(new O3Hdr(obj).id)) || (new O3Msg((0x800E451Cu + (uint)(i * 12))).type == 30000)))
+                    if (((new O3Msg((Gv.OptionsMenu_MsgTable + (uint)(i * 12))).type == (int)(new O3Hdr(obj).id)) || (new O3Msg((Gv.OptionsMenu_MsgTable + (uint)(i * 12))).type == 30000)))
                     {
-                        return (int)(Funcs.CallRegX(new O3Msg((0x800E451Cu + (uint)(i * 12))).fn, obj, (uint)(msg), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
+                        return (int)(Funcs.CallRegX(new O3Msg((Gv.OptionsMenu_MsgTable + (uint)(i * 12))).fn, obj, (uint)(msg), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
                     }
                 }
             }

@@ -722,68 +722,68 @@ public static partial class Game
             int v = 0;
             if ((c == 1))
             {
-                if ((((new O04ModeF60(Mem.U32(0x800E4F60u)).state == 3) || (new O04ModeF60(Mem.U32(0x800E4F60u)).state == 8)) || (new O04ModeF60(Mem.U32(0x800E4F60u)).state == 9)))
+                if ((((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).state == 3) || (new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).state == 8)) || (new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).state == 9)))
                 {
-                    Mem.Set(0x800D15E0u, 0);
-                    Mem.Set(0x800D15E0u, 1);
-                    Mem.Set((0x800D15E4u + (uint)(0 * 4)), 255.0f);
-                    Mem.Set((0x800D15E4u + (uint)(1 * 4)), 255.0f);
-                    Mem.Set((0x800D15E4u + (uint)(2 * 4)), 255.0f);
-                    Mem.Set((0x800D15E4u + (uint)(3 * 4)), 255.0f);
-                    dl = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    Mem.Set(Gv.Model_ColorOverrideMode, 0);
+                    Mem.Set(Gv.Model_ColorOverrideMode, 1);
+                    Mem.Set((Gv.Model_ColorOverride + (uint)(0 * 4)), 255.0f);
+                    Mem.Set((Gv.Model_ColorOverride + (uint)(1 * 4)), 255.0f);
+                    Mem.Set((Gv.Model_ColorOverride + (uint)(2 * 4)), 255.0f);
+                    Mem.Set((Gv.Model_ColorOverride + (uint)(3 * 4)), 255.0f);
+                    dl = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new O04Gfx(dl).w0_Set(3976200192u);
-                    new O04Gfx(dl).w1_Set((uint)(((((int)(((float)((Mem.S32(0x800E28D0u) - 1)) * 4.0f)) & 4095) << (int)12) | ((int)(((float)((Mem.S32(0x800E28D4u) - 1)) * 4.0f)) & 4095))));
-                    Mem.Set((0x800D15E4u + (uint)(3 * 4)), 210.0f);
-                    if (((Menu_GetCurrentScreenId() == 20) && (Mem.S32(0x80154024u) == 0)))
+                    new O04Gfx(dl).w1_Set((uint)(((((int)(((float)((Mem.S32(Gv.ScreenWidth) - 1)) * 4.0f)) & 4095) << (int)12) | ((int)(((float)((Mem.S32(Gv.ScreenHeight) - 1)) * 4.0f)) & 4095))));
+                    Mem.Set((Gv.Model_ColorOverride + (uint)(3 * 4)), 210.0f);
+                    if (((Menu_GetCurrentScreenId() == 20) && (Mem.S32(Gv.Menu_ScreenRequest_Pending) == 0)))
                     {
                         for (i = 0, off = 8; (i < 4); ++i, off = (int)((int)(off) + 192))
                         {
-                            PreviewModel_Draw((Mem.U32(0x800E4F60u) + (uint)off));
+                            PreviewModel_Draw((Mem.U32(Gv.ArenaSelect_PagePtr) + (uint)off));
                         }
                     }
-                    if ((new O04ModeF60(Mem.U32(0x800E4F60u)).unk438 == 0))
+                    if ((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438 == 0))
                     {
-                        PreviewModel_Draw(new O04ModeF60(Mem.U32(0x800E4F60u)).unk308.P);
+                        PreviewModel_Draw(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk308.P);
                     }
-                    Mem.Set(0x800D15E0u, 0);
-                    Mem.Set(0x800D15F0u, 255.0f);
+                    Mem.Set(Gv.Model_ColorOverrideMode, 0);
+                    Mem.Set(Gv.Draw_TintColor, 255.0f);
                 }
             }
             if (((c == 0) && (Menu_GetCurrentScreenId() != 25)))
             {
-                v = new O04ModeF60(Mem.U32(0x800E4F60u)).unk464;
+                v = new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk464;
                 if ((v < 20))
                 {
                     ++v;
-                    new O04ModeF60(Mem.U32(0x800E4F60u)).unk464_Set(v);
-                    if (((v == 20) && (new O04ModeF60(Mem.U32(0x800E4F60u)).unk438 > 0)))
+                    new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk464_Set(v);
+                    if (((v == 20) && (new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438 > 0)))
                     {
-                        MenuScene_PlayFlyby((uint)((Arena_GetLevelForType(ArenaSelect_CategoryToGameType(new O04ModeF60(Mem.U32(0x800E4F60u)).unk434), new O04ModeF60(Mem.U32(0x800E4F60u)).unk438) + 601)), default(uint), default(uint), default(uint));
-                        new O04ModeF60(Mem.U32(0x800E4F60u)).unk468_Set(0);
+                        MenuScene_PlayFlyby((uint)((Arena_GetLevelForType(ArenaSelect_CategoryToGameType(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk434), new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438) + 601)), default(uint), default(uint), default(uint));
+                        new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk468_Set(0);
                     }
                 }
-                if ((new O04ModeF60(Mem.U32(0x800E4F60u)).unk468 != (-1)))
+                if ((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk468 != (-1)))
                 {
-                    new O04ModeF60(Mem.U32(0x800E4F60u)).unk468_Set((new O04ModeF60(Mem.U32(0x800E4F60u)).unk468 + 1));
-                    if ((new O04ModeF60(Mem.U32(0x800E4F60u)).unk468 >= 6))
+                    new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk468_Set((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk468 + 1));
+                    if ((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk468 >= 6))
                     {
-                        new O04ModeF60(Mem.U32(0x800E4F60u)).unk46C_Set(1);
-                        new O04ModeF60(Mem.U32(0x800E4F60u)).unk468_Set((-1));
+                        new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk46C_Set(1);
+                        new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk468_Set((-1));
                     }
                 }
-                if ((new O04ModeF60(Mem.U32(0x800E4F60u)).unk46C == 1))
+                if ((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk46C == 1))
                 {
-                    v = (int)(new O04ModeF60(Mem.U32(0x800E4F60u)).unk454.unk10);
+                    v = (int)(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk454.unk10);
                     v = (int)((int)(v) - 30);
                     if ((v <= 0))
                     {
-                        new O04ModeF60(Mem.U32(0x800E4F60u)).unk46C_Set(0);
-                        UiNode_SetVisible(new O04ModeF60(Mem.U32(0x800E4F60u)).unk450_, 0);
-                        UiNode_SetVisible(new O04ModeF60(Mem.U32(0x800E4F60u)).unk454_, 0);
+                        new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk46C_Set(0);
+                        UiNode_SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk450_, 0);
+                        UiNode_SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk454_, 0);
                         v = 255;
                     }
-                    new O04ModeF60(Mem.U32(0x800E4F60u)).unk454.unk10_Set((byte)(v));
-                    new O04ModeF60(Mem.U32(0x800E4F60u)).unk450.unk10_Set((byte)(v));
+                    new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk454.unk10_Set((byte)(v));
+                    new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk450.unk10_Set((byte)(v));
                 }
             }
             return 0;
@@ -814,79 +814,79 @@ public static partial class Game
             uint var_a0 = 0u;
             uint var_a0_2 = 0u;
             uint var_a0_3 = 0u;
-            if ((new MenuTransitionSignal(0x80154020u).trigger == 1))
+            if ((new MenuTransitionSignal(Gv.Menu_ScreenRequest).trigger == 1))
             {
-                new MenuTransitionSignal(0x80154020u).trigger_Set(0);
-                if ((new MenuTransitionSignal(0x80154020u).selection != (-1)))
+                new MenuTransitionSignal(Gv.Menu_ScreenRequest).trigger_Set(0);
+                if ((new MenuTransitionSignal(Gv.Menu_ScreenRequest).selection != (-1)))
                 {
-                    new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_44C.alpha_Set((byte)(90));
+                    new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_44C.alpha_Set((byte)(90));
                     Menu_ConsumeEvent();
-                    Menu_GotoScreen(new MenuTransitionSignal(0x80154020u).selection);
+                    Menu_GotoScreen(new MenuTransitionSignal(Gv.Menu_ScreenRequest).selection);
                     return 0;
                 }
-                new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_44C.alpha_Set((byte)(255));
-                new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC_Set(9);
-                if ((new ListScreenScreen(Mem.U32(0x800E4F60u)).selection == 0))
+                new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_44C.alpha_Set((byte)(255));
+                new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_3DC_Set(9);
+                if ((new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).selection == 0))
                 {
-                    UiNode_SetVisible(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_440_, 1);
-                    var_a0 = new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_448_;
+                    UiNode_SetVisible(new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_440_, 1);
+                    var_a0 = new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_448_;
                 }
                 else
                 {
-                    var_a0 = new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_444_;
+                    var_a0 = new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_444_;
                 }
                 UiNode_SetVisible(var_a0, 1);
-                UiNode_SetVisible(new ListScreenScreen(Mem.U32(0x800E4F60u)).label_, 1);
-                UiNode_SetVisible(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3F0_, 1);
+                UiNode_SetVisible(new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).label_, 1);
+                UiNode_SetVisible(new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_3F0_, 1);
                 goto L_block_7;
             }
             L_block_7: ;
-            temp_v0 = new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC;
+            temp_v0 = new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_3DC;
             switch (temp_v0)
             {
             case 1:
-                temp_a1 = new ListScreenScreen(Mem.U32(0x800E4F60u)).left_;
-                new ListScreenItem(temp_a1).x_Set((short)((ushort)(((int)(new ListScreenItem(temp_a1).x) + (int)((ushort)(new ListScreenScreen(Mem.U32(0x800E4F60u)).leftCount))))));
-                temp_a1_2 = new ListScreenScreen(Mem.U32(0x800E4F60u)).right_;
-                new ListScreenItem(temp_a1_2).x_Set((short)((ushort)(((int)(new ListScreenItem(temp_a1_2).x) - (int)((ushort)(new ListScreenScreen(Mem.U32(0x800E4F60u)).rightCount))))));
-                temp_v0_2 = (new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E0 - 1);
-                new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E0_Set(temp_v0_2);
+                temp_a1 = new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).left_;
+                new ListScreenItem(temp_a1).x_Set((short)((ushort)(((int)(new ListScreenItem(temp_a1).x) + (int)((ushort)(new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).leftCount))))));
+                temp_a1_2 = new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).right_;
+                new ListScreenItem(temp_a1_2).x_Set((short)((ushort)(((int)(new ListScreenItem(temp_a1_2).x) - (int)((ushort)(new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).rightCount))))));
+                temp_v0_2 = (new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_3E0 - 1);
+                new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_3E0_Set(temp_v0_2);
                 if ((temp_v0_2 <= 0))
                 {
                     Audio_PlaySound2D(3705);
-                    UiNode_SetVisible(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E8_, 1);
-                    Flicker_Trigger((uint)(new ListScreenScreen(Mem.U32(0x800E4F60u)).text3E4), 4);
-                    new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC_Set(4);
-                    new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E0_Set(4);
+                    UiNode_SetVisible(new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_3E8_, 1);
+                    Flicker_Trigger((uint)(new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).text3E4), 4);
+                    new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_3DC_Set(4);
+                    new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_3E0_Set(4);
                 }
                 break;
             case 2:
-                temp_a0 = new ListScreenScreen(Mem.U32(0x800E4F60u)).left_;
-                new ListScreenItem(temp_a0).x_Set((short)((ushort)(((int)(new ListScreenItem(temp_a0).x) - (int)((ushort)(new ListScreenScreen(Mem.U32(0x800E4F60u)).leftCount))))));
-                temp_a0_2 = new ListScreenScreen(Mem.U32(0x800E4F60u)).right_;
-                new ListScreenItem(temp_a0_2).x_Set((short)((ushort)(((int)(new ListScreenItem(temp_a0_2).x) + (int)((ushort)(new ListScreenScreen(Mem.U32(0x800E4F60u)).rightCount))))));
-                temp_v0_3 = (new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E0 - 1);
-                new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E0_Set(temp_v0_3);
+                temp_a0 = new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).left_;
+                new ListScreenItem(temp_a0).x_Set((short)((ushort)(((int)(new ListScreenItem(temp_a0).x) - (int)((ushort)(new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).leftCount))))));
+                temp_a0_2 = new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).right_;
+                new ListScreenItem(temp_a0_2).x_Set((short)((ushort)(((int)(new ListScreenItem(temp_a0_2).x) + (int)((ushort)(new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).rightCount))))));
+                temp_v0_3 = (new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_3E0 - 1);
+                new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_3E0_Set(temp_v0_3);
                 if ((temp_v0_3 <= 0))
                 {
-                    new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC_Set(3);
+                    new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_3DC_Set(3);
                     Menu_ConsumeEvent();
                     Menu_GotoScreen(8);
                     return 0;
                 }
                 break;
             case 3:
-                if ((new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_460 == 0))
+                if ((new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_460 == 0))
                 {
                     Menu_EnableInput();
                     var_a1 = 0;
-                    var_a0_3 = new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_458_;
-                    new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_460_Set(1);
+                    var_a0_3 = new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_458_;
+                    new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_460_Set(1);
                     UiNode_SetVisible(var_a0_3, var_a1);
                 }
                 break;
             case 4:
-                countdown = Mem.U32(0x800E4F60u);
+                countdown = Mem.U32(Gv.ArenaSelect_PagePtr);
                 temp_v1 = new ListScreenScreen(countdown).unk_3E0;
                 temp_v0_4 = (temp_v1 - 1);
                 if ((temp_v0_4 >= 0))
@@ -898,21 +898,21 @@ public static partial class Game
                     var_v0 = 0;
                 }
                 new ListScreenScreen(countdown).unk_3E0_Set(var_v0);
-                if (((new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E0 <= 0) && (Flicker_IsSteady((uint)(new ListScreenScreen(Mem.U32(0x800E4F60u)).text3E4)) != 0)))
+                if (((new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_3E0 <= 0) && (Flicker_IsSteady((uint)(new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).text3E4)) != 0)))
                 {
-                    Flicker_Stop((uint)(new ListScreenScreen(Mem.U32(0x800E4F60u)).text3E4));
+                    Flicker_Stop((uint)(new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).text3E4));
                     ArenaSelect_SetArenaNodesAlpha(10);
-                    new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC_Set(9);
+                    new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_3DC_Set(9);
                 }
                 break;
             case 5:
-                UiNode_SetVisible(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_458_, 1);
-                UiNode_SetVisible(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E8_, 0);
+                UiNode_SetVisible(new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_458_, 1);
+                UiNode_SetVisible(new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_3E8_, 0);
                 ArenaSelect_ShowMarkers();
                 ArenaSelect_SetArenaNodesAlpha(0);
-                new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC_Set(2);
-                new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E0_Set(4);
-                UiNode_SetVisible(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_448_, 0);
+                new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_3DC_Set(2);
+                new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_3E0_Set(4);
+                UiNode_SetVisible(new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_448_, 0);
                 Audio_PlaySound2D(3704);
                 break;
             case 8:
@@ -921,7 +921,7 @@ public static partial class Game
                 ArenaSelect_SetArenaNodesAlpha(temp_s0);
                 if ((temp_s0 < 10))
                 {
-                    new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC_Set(3);
+                    new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_3DC_Set(3);
                     Menu_RequestScreen(11);
                     return 0;
                 }
@@ -932,35 +932,35 @@ public static partial class Game
                 if ((temp_s0 >= 66))
                 {
                     temp_s0 = 65;
-                    new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC_Set(3);
+                    new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_3DC_Set(3);
                 }
                 ArenaSelect_SetArenaNodesAlpha(temp_s0);
                 var_a1 = 1;
-                if ((new ListScreenScreen(Mem.U32(0x800E4F60u)).selection == 0))
+                if ((new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).selection == 0))
                 {
-                    var_a0_3 = new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_448_;
+                    var_a0_3 = new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_448_;
                     UiNode_SetVisible(var_a0_3, var_a1);
                 }
                 break;
             default:
                 break;
             }
-            if ((new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC == 3))
+            if ((new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_3DC == 3))
             {
-                temp_a2 = (new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_45C + arg2);
-                new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_45C_Set(temp_a2);
-                if ((new MenuTransitionSignal(0x80154020u).selection == (-1)))
+                temp_a2 = (new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_45C + arg2);
+                new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_45C_Set(temp_a2);
+                if ((new MenuTransitionSignal(Gv.Menu_ScreenRequest).selection == (-1)))
                 {
-                    if ((new ListScreenScreen(Mem.U32(0x800E4F60u)).selection == 0))
+                    if ((new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).selection == 0))
                     {
                         var_f0 = ((cosf(((float)(temp_a2) * 0.00333333341f)) * 100.0f) + 150.0f);
-                        var_a0_2 = new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_448_;
+                        var_a0_2 = new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).unk_448_;
                         new ListScreenItem(var_a0_2).alpha_Set((byte)(Cpu.TruncU32(var_f0)));
                     }
                     else
                     {
                         var_f0 = ((cosf(((float)(temp_a2) * 0.00333333341f)) * 100.0f) + 150.0f);
-                        var_a0_2 = new ListScreenScreen(Mem.U32(0x800E4F60u)).item_;
+                        var_a0_2 = new ListScreenScreen(Mem.U32(Gv.ArenaSelect_PagePtr)).item_;
                         new ListScreenItem(var_a0_2).alpha_Set((byte)(Cpu.TruncU32(var_f0)));
                     }
                 }
@@ -1021,14 +1021,14 @@ public static partial class Game
                     s2 = 0;
                     do
                     {
-                        if ((Mem.S32((tbl + (uint)(s3 * 4))) == new O04Ent16_v2((0x800E4F64u + (uint)(s2 * 16))).a.w))
+                        if ((Mem.S32((tbl + (uint)(s3 * 4))) == new O04Ent16_v2((Gv.ArenaSelect_NodeTable + (uint)(s2 * 16))).a.w))
                         {
-                            h = UiTree_FindNode(new O04ModeF60(Mem.U32(0x800E4F60u)).unk0, (uint)((int)(Mem.U16((new O04Ent16_v2((0x800E4F64u + (uint)(s2 * 16))).a.h.P + 2u)))), default(uint), default(uint));
+                            h = UiTree_FindNode(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk0, (uint)((int)(Mem.U16((new O04Ent16_v2((Gv.ArenaSelect_NodeTable + (uint)(s2 * 16))).a.h.P + 2u)))), default(uint), default(uint));
                             UiNode_SetVisible(h, s7);
                             new O04Sub10(h).unk10_Set((byte)(a));
-                            if ((new O04Ent16_v2((0x800E4F64u + (uint)(s2 * 16))).b.w != (-1)))
+                            if ((new O04Ent16_v2((Gv.ArenaSelect_NodeTable + (uint)(s2 * 16))).b.w != (-1)))
                             {
-                                h = UiTree_FindNode(new O04ModeF60(Mem.U32(0x800E4F60u)).unk0, (uint)((int)(Mem.U16((new O04Ent16_v2((0x800E4F64u + (uint)(s2 * 16))).b.h.P + 2u)))), default(uint), default(uint));
+                                h = UiTree_FindNode(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk0, (uint)((int)(Mem.U16((new O04Ent16_v2((Gv.ArenaSelect_NodeTable + (uint)(s2 * 16))).b.h.P + 2u)))), default(uint), default(uint));
                                 UiNode_SetVisible(h, s7);
                                 new O04Sub10(h).unk10_Set((byte)(a));
                             }
@@ -1053,7 +1053,7 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0042AB70");
                 uint s = 0u;
                 uint tbl = 0u;
-                switch (new O04ModeF60(Mem.U32(0x800E4F60u)).unk434)
+                switch (new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk434)
                 {
                 case 3:
                     tbl = 0x800E51E4u;
@@ -1070,17 +1070,17 @@ public static partial class Game
                 default:
                     return;
                 }
-                new O04ModeF60(Mem.U32(0x800E4F60u)).unk43C__Set(UiTree_FindNode(new O04ModeF60(Mem.U32(0x800E4F60u)).unk0, (uint)((int)(new O04HW((tbl + (uint)(new O04ModeF60(Mem.U32(0x800E4F60u)).unk438 * 4))).b)), default(uint), default(uint)));
-                if ((new O04ModeF60(Mem.U32(0x800E4F60u)).unk438 == 0))
+                new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk43C__Set(UiTree_FindNode(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk0, (uint)((int)(new O04HW((tbl + (uint)(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438 * 4))).b)), default(uint), default(uint)));
+                if ((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438 == 0))
                 {
-                    LibC_StrCopy(new O04ModeF60(Mem.U32(0x800E4F60u)).unk3F4.P, Mem.U32(0x800D7500u));
+                    LibC_StrCopy(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk3F4.P, Mem.U32(0x800D7500u));
                 }
                 else
                 {
-                    Level_CopyLevelName(0x8011FE88u, Arena_GetLevelForType(ArenaSelect_CategoryToGameType(new O04ModeF60(Mem.U32(0x800E4F60u)).unk434), new O04ModeF60(Mem.U32(0x800E4F60u)).unk438), _fp, 63);
-                    LibC_StrCopy(new O04ModeF60(Mem.U32(0x800E4F60u)).unk3F4.P, Str_ToUpper(_fp));
+                    Level_CopyLevelName(Gv.LevelMgr, Arena_GetLevelForType(ArenaSelect_CategoryToGameType(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk434), new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438), _fp, 63);
+                    LibC_StrCopy(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk3F4.P, Str_ToUpper(_fp));
                 }
-                new O04ModeF60(Mem.U32(0x800E4F60u)).unk3EC.unk38_Set(new O04ModeF60(Mem.U32(0x800E4F60u)).unk3F4.P);
+                new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk3EC.unk38_Set(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk3F4.P);
                 Flyby_Abort();
             }
         }
@@ -1120,7 +1120,7 @@ public static partial class Game
             int x = 0;
             int s3 = 0;
             int s1 = 0;
-            switch (new O04ModeF60(Mem.U32(0x800E4F60u)).unk434)
+            switch (new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk434)
             {
             case 3:
                 x = 0;
@@ -1140,24 +1140,24 @@ public static partial class Game
             }
             s2 = x;
             L_Lj: ;
-            s3 = Arena_GetLevelForType(s2, new O04ModeF60(Mem.U32(0x800E4F60u)).unk438);
+            s3 = Arena_GetLevelForType(s2, new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438);
             for (s1 = 0; (s1 < 40); ++s1)
             {
-                UiNode_SetVisible(UiTree_FindNode(new O04ModeF60(Mem.U32(0x800E4F60u)).unk0, (uint)((int)(new O04Ent16((0x800E4F64u + (uint)(s1 * 16))).unk2)), default(uint), default(uint)), 0);
-                if ((Mem.S32(new O04Ent16((0x800E4F64u + (uint)(s1 * 16))).u4.P) != (-1)))
+                UiNode_SetVisible(UiTree_FindNode(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk0, (uint)((int)(new O04Ent16((Gv.ArenaSelect_NodeTable + (uint)(s1 * 16))).unk2)), default(uint), default(uint)), 0);
+                if ((Mem.S32(new O04Ent16((Gv.ArenaSelect_NodeTable + (uint)(s1 * 16))).u4.P) != (-1)))
                 {
-                    UiNode_SetVisible(UiTree_FindNode(new O04ModeF60(Mem.U32(0x800E4F60u)).unk0, (uint)((int)(Mem.U16((new O04Ent16((0x800E4F64u + (uint)(s1 * 16))).u4.P + 2u)))), default(uint), default(uint)), 0);
+                    UiNode_SetVisible(UiTree_FindNode(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk0, (uint)((int)(Mem.U16((new O04Ent16((Gv.ArenaSelect_NodeTable + (uint)(s1 * 16))).u4.P + 2u)))), default(uint), default(uint)), 0);
                 }
             }
             Arena_Set(s2, s3);
             Menu_RequestScreen(21);
-            UiNode_SetVisible(new O04ModeF60(Mem.U32(0x800E4F60u)).unk440, 0);
-            UiNode_SetVisible(new O04ModeF60(Mem.U32(0x800E4F60u)).unk448_, 0);
-            UiNode_SetVisible(new O04ModeF60(Mem.U32(0x800E4F60u)).unk444, 0);
-            UiNode_SetVisible(new O04ModeF60(Mem.U32(0x800E4F60u)).unk3EC_, 0);
-            UiNode_SetVisible(new O04ModeF60(Mem.U32(0x800E4F60u)).unk3F0, 0);
+            UiNode_SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk440, 0);
+            UiNode_SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk448_, 0);
+            UiNode_SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk444, 0);
+            UiNode_SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk3EC_, 0);
+            UiNode_SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk3F0, 0);
             Gauntlet_ClearPlayedArenas();
-            if ((new O04ModeF60(Mem.U32(0x800E4F60u)).unk438 == 0))
+            if ((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438 == 0))
             {
                 Gauntlet_SetGameType(s2);
                 Gauntlet_SetIndex(0);
@@ -1166,7 +1166,7 @@ public static partial class Game
             else
             {
                 Gauntlet_SetGameType((-1));
-                Gauntlet_SetIndex(new O04ModeF60(Mem.U32(0x800E4F60u)).unk438);
+                Gauntlet_SetIndex(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438);
             }
         }
     }
@@ -1180,16 +1180,16 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0042B1C0");
-                if ((new O04ModeF60(Mem.U32(0x800E4F60u)).unk438 == 0))
+                if ((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438 == 0))
                 {
-                    LibC_StrCopy(new O04ModeF60(Mem.U32(0x800E4F60u)).unk3F4.P, Mem.U32(0x800D7500u));
+                    LibC_StrCopy(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk3F4.P, Mem.U32(0x800D7500u));
                 }
                 else
                 {
-                    Level_CopyLevelName(0x8011FE88u, Arena_GetLevelForType(ArenaSelect_CategoryToGameType(new O04ModeF60(Mem.U32(0x800E4F60u)).unk434), new O04ModeF60(Mem.U32(0x800E4F60u)).unk438), _fp, 63);
-                    LibC_StrCopy(new O04ModeF60(Mem.U32(0x800E4F60u)).unk3F4.P, Str_ToUpper(_fp));
+                    Level_CopyLevelName(Gv.LevelMgr, Arena_GetLevelForType(ArenaSelect_CategoryToGameType(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk434), new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438), _fp, 63);
+                    LibC_StrCopy(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk3F4.P, Str_ToUpper(_fp));
                 }
-                new O04ModeF60(Mem.U32(0x800E4F60u)).unk3EC.unk38_Set(new O04ModeF60(Mem.U32(0x800E4F60u)).unk3F4.P);
+                new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk3EC.unk38_Set(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk3F4.P);
             }
         }
         finally { Stack.Free(64); }
@@ -1215,10 +1215,10 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 40); ++i)
             {
-                UiNode_SetVisible((uint)((int)(UiTree_FindNode(new O04ModeF60(Mem.U32(0x800E4F60u)).unk0, (uint)((int)(new O04Ent16((0x800E4F64u + (uint)(i * 16))).unk2)), default(uint), default(uint)))), 0);
-                if ((Mem.S32(new O04Ent16((0x800E4F64u + (uint)(i * 16))).u4.P) != (-1)))
+                UiNode_SetVisible((uint)((int)(UiTree_FindNode(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk0, (uint)((int)(new O04Ent16((Gv.ArenaSelect_NodeTable + (uint)(i * 16))).unk2)), default(uint), default(uint)))), 0);
+                if ((Mem.S32(new O04Ent16((Gv.ArenaSelect_NodeTable + (uint)(i * 16))).u4.P) != (-1)))
                 {
-                    UiNode_SetVisible((uint)((int)(UiTree_FindNode(new O04ModeF60(Mem.U32(0x800E4F60u)).unk0, (uint)((int)(Mem.U16((new O04Ent16((0x800E4F64u + (uint)(i * 16))).u4.P + 2u)))), default(uint), default(uint)))), 0);
+                    UiNode_SetVisible((uint)((int)(UiTree_FindNode(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk0, (uint)((int)(Mem.U16((new O04Ent16((Gv.ArenaSelect_NodeTable + (uint)(i * 16))).u4.P + 2u)))), default(uint), default(uint)))), 0);
                 }
             }
         }
@@ -1264,11 +1264,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0042B4C4");
-            new O04ModeF60(Mem.U32(0x800E4F60u)).unk454.unk10_Set((byte)(255));
-            new O04ModeF60(Mem.U32(0x800E4F60u)).unk450.unk10_Set((byte)(255));
-            UiNode_SetVisible(new O04ModeF60(Mem.U32(0x800E4F60u)).unk450_, 1);
-            UiNode_SetVisible(new O04ModeF60(Mem.U32(0x800E4F60u)).unk454_, 1);
-            new O04ModeF60(Mem.U32(0x800E4F60u)).unk46C_Set(0);
+            new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk454.unk10_Set((byte)(255));
+            new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk450.unk10_Set((byte)(255));
+            UiNode_SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk450_, 1);
+            UiNode_SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk454_, 1);
+            new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk46C_Set(0);
         }
     }
 
@@ -1278,10 +1278,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0042B574");
-            ResourcePool_MallocFree(Mem.U32(0x800E4F60u));
+            ResourcePool_MallocFree(Mem.U32(Gv.ArenaSelect_PagePtr));
             Menu_EnableInput();
             MenuScene_Exit_00422050();
-            Mem.Set(0x800E4F60u, 0u);
+            Mem.Set(Gv.ArenaSelect_PagePtr, 0u);
             return 0;
         }
     }
@@ -1302,11 +1302,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0042B5BC", (uint)a, (uint)b, (uint)c, (uint)d);
-            if ((new O04ModeF60(Mem.U32(0x800E4F60u)).state != 3))
+            if ((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).state != 3))
             {
                 return 0;
             }
-            if ((Mem.S32(0x80154020u) != (-1)))
+            if ((Mem.S32(Gv.Menu_ScreenRequest) != (-1)))
             {
                 return 0;
             }
@@ -1319,14 +1319,14 @@ public static partial class Game
                 return 0;
             }
             Menu_ConsumeEvent();
-            new O04ModeF60(Mem.U32(0x800E4F60u)).state_Set(8);
+            new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).state_Set(8);
             ArenaSelect_SetArenaNodesAlpha(65);
-            UiNode_SetVisible(new O04ModeF60(Mem.U32(0x800E4F60u)).unk440, 0);
-            UiNode_SetVisible(new O04ModeF60(Mem.U32(0x800E4F60u)).unk444, 0);
-            UiNode_SetVisible(new O04ModeF60(Mem.U32(0x800E4F60u)).unk448_, 0);
-            UiNode_SetVisible(new O04ModeF60(Mem.U32(0x800E4F60u)).unk3EC_, 0);
-            UiNode_SetVisible(new O04ModeF60(Mem.U32(0x800E4F60u)).unk3F0, 0);
-            new O04ModeF60(Mem.U32(0x800E4F60u)).unk44C.unk10_Set((byte)(90));
+            UiNode_SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk440, 0);
+            UiNode_SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk444, 0);
+            UiNode_SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk448_, 0);
+            UiNode_SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk3EC_, 0);
+            UiNode_SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk3F0, 0);
+            new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk44C.unk10_Set((byte)(90));
             Audio_PlaySound2D(3708);
             return 0;
         }
@@ -1345,29 +1345,29 @@ public static partial class Game
                 return 0;
             }
             s0 = 0;
-            if ((new O04ModeF60(Mem.U32(0x800E4F60u)).unk434 != 0))
+            if ((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk434 != 0))
             {
-                if ((new O04ModeF60(Mem.U32(0x800E4F60u)).unk438 > 0))
+                if ((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438 > 0))
                 {
                     s0 = 1;
-                    new O04ModeF60(Mem.U32(0x800E4F60u)).unk438_Set((new O04ModeF60(Mem.U32(0x800E4F60u)).unk438 - 1));
+                    new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438_Set((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438 - 1));
                 }
             }
             else
             {
-                if ((new O04ModeF60(Mem.U32(0x800E4F60u)).unk438 >= 11))
+                if ((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438 >= 11))
                 {
-                    if ((Arena_GetCountForType(ArenaSelect_CategoryToGameType(0)) > (new O04ModeF60(Mem.U32(0x800E4F60u)).unk438 + 1)))
+                    if ((Arena_GetCountForType(ArenaSelect_CategoryToGameType(0)) > (new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438 + 1)))
                     {
                         s0 = 1;
-                        new O04ModeF60(Mem.U32(0x800E4F60u)).unk438_Set((new O04ModeF60(Mem.U32(0x800E4F60u)).unk438 + 1));
+                        new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438_Set((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438 + 1));
                     }
                 }
                 else
                 {
-                    if ((new O04ModeF60(Mem.U32(0x800E4F60u)).unk438 > 0))
+                    if ((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438 > 0))
                     {
-                        new O04ModeF60(Mem.U32(0x800E4F60u)).unk438_Set((new O04ModeF60(Mem.U32(0x800E4F60u)).unk438 - 1));
+                        new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438_Set((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438 - 1));
                         s0 = 1;
                     }
                 }
@@ -1376,17 +1376,17 @@ public static partial class Game
             {
                 Audio_PlaySound2D(3709);
                 ArenaSelect_ShowMarkers();
-                new O04ModeF60(Mem.U32(0x800E4F60u)).unk45C_Set(0);
-                new O04ModeF60(Mem.U32(0x800E4F60u)).unk464_Set(0);
-                new O04ModeF60(Mem.U32(0x800E4F60u)).unk43C.unk10_Set((byte)(65));
+                new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk45C_Set(0);
+                new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk464_Set(0);
+                new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk43C.unk10_Set((byte)(65));
                 ArenaSelect_RefreshSelection();
-                if ((new O04ModeF60(Mem.U32(0x800E4F60u)).unk438 == 0))
+                if ((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438 == 0))
                 {
-                    UiNode_SetVisible(new O04ModeF60(Mem.U32(0x800E4F60u)).unk440, 1);
-                    UiNode_SetVisible(new O04ModeF60(Mem.U32(0x800E4F60u)).unk448_, 1);
-                    new O04ModeF60(Mem.U32(0x800E4F60u)).unk448.unk14_Set((ushort)(((new O04ModeF60(Mem.U32(0x800E4F60u)).unk434 * 34) + 124)));
-                    UiNode_SetVisible(new O04ModeF60(Mem.U32(0x800E4F60u)).unk444, 0);
-                    PreviewModel_SetModel(new O04ModeF60(Mem.U32(0x800E4F60u)).unk308.P, (new O04ModeF60(Mem.U32(0x800E4F60u)).unk434 + 3750));
+                    UiNode_SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk440, 1);
+                    UiNode_SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk448_, 1);
+                    new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk448.unk14_Set((ushort)(((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk434 * 34) + 124)));
+                    UiNode_SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk444, 0);
+                    PreviewModel_SetModel(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk308.P, (new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk434 + 3750));
                 }
             }
             return 0;
@@ -1411,8 +1411,8 @@ public static partial class Game
                 return 0;
             }
             s0 = 0;
-            a1 = Arena_GetCountForType(ArenaSelect_CategoryToGameType(new O04ModeF60(Mem.U32(0x800E4F60u)).unk434));
-            p = Mem.U32(0x800E4F60u);
+            a1 = Arena_GetCountForType(ArenaSelect_CategoryToGameType(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk434));
+            p = Mem.U32(Gv.ArenaSelect_PagePtr);
             if ((new O04ModeF60(p).unk434 != 0))
             {
                 v1 = (new O04ModeF60(p).unk438 + 1);
@@ -1434,7 +1434,7 @@ public static partial class Game
                 {
                     lim = Arena_GetCountForType(ArenaSelect_CategoryToGameType(0));
                     a1 = lim;
-                    p = Mem.U32(0x800E4F60u);
+                    p = Mem.U32(Gv.ArenaSelect_PagePtr);
                     v1 = (new O04ModeF60(p).unk438 + 1);
                     if ((v1 == a1))
                     {
@@ -1453,13 +1453,13 @@ public static partial class Game
             {
                 Audio_PlaySound2D(3709);
                 ArenaSelect_ShowMarkers();
-                new O04ModeF60(Mem.U32(0x800E4F60u)).unk45C_Set(0);
-                new O04ModeF60(Mem.U32(0x800E4F60u)).unk464_Set(0);
-                new O04ModeF60(Mem.U32(0x800E4F60u)).unk43C.unk10_Set((byte)(65));
+                new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk45C_Set(0);
+                new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk464_Set(0);
+                new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk43C.unk10_Set((byte)(65));
                 ArenaSelect_RefreshSelection();
-                UiNode_SetVisible(new O04ModeF60((new_var = Mem.U32(0x800E4F60u))).unk440, 0);
-                UiNode_SetVisible(new O04ModeF60(Mem.U32(0x800E4F60u)).unk444, 1);
-                UiNode_SetVisible(new O04ModeF60(Mem.U32(0x800E4F60u)).unk448_, 0);
+                UiNode_SetVisible(new O04ModeF60((new_var = Mem.U32(Gv.ArenaSelect_PagePtr))).unk440, 0);
+                UiNode_SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk444, 1);
+                UiNode_SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk448_, 0);
             }
             return 0;
         }
@@ -1480,20 +1480,20 @@ public static partial class Game
                 return 0;
             }
             s0 = 0;
-            if ((new O04ModeF60(Mem.U32(0x800E4F60u)).unk434 != 0))
+            if ((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk434 != 0))
             {
                 s0 = 1;
-                new O04ModeF60(Mem.U32(0x800E4F60u)).unk434_Set((new O04ModeF60(Mem.U32(0x800E4F60u)).unk434 - 1));
+                new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk434_Set((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk434 - 1));
             }
             else
             {
-                if (((new O04ModeF60(Mem.U32(0x800E4F60u)).unk438 > 4) && (new O04ModeF60(Mem.U32(0x800E4F60u)).unk438 < 11)))
+                if (((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438 > 4) && (new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438 < 11)))
                 {
-                    s1 = (21 - new O04ModeF60(Mem.U32(0x800E4F60u)).unk438);
+                    s1 = (21 - new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438);
                     if ((s1 < Arena_GetCountForType(ArenaSelect_CategoryToGameType(0))))
                     {
                         s0 = 1;
-                        new O04ModeF60(Mem.U32(0x800E4F60u)).unk438_Set(s1);
+                        new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438_Set(s1);
                     }
                 }
             }
@@ -1501,20 +1501,20 @@ public static partial class Game
             {
                 Audio_PlaySound2D(3709);
                 ArenaSelect_ShowMarkers();
-                new O04ModeF60(Mem.U32(0x800E4F60u)).unk45C_Set(0);
-                new O04ModeF60(Mem.U32(0x800E4F60u)).unk464_Set(0);
-                new O04ModeF60(Mem.U32(0x800E4F60u)).unk43C.unk10_Set((byte)(65));
-                r = Arena_GetCountForType(ArenaSelect_CategoryToGameType(new O04ModeF60(Mem.U32(0x800E4F60u)).unk434));
-                if ((new O04ModeF60(Mem.U32(0x800E4F60u)).unk438 >= r))
+                new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk45C_Set(0);
+                new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk464_Set(0);
+                new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk43C.unk10_Set((byte)(65));
+                r = Arena_GetCountForType(ArenaSelect_CategoryToGameType(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk434));
+                if ((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438 >= r))
                 {
-                    new O04ModeF60(Mem.U32(0x800E4F60u)).unk438_Set((r - 1));
+                    new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438_Set((r - 1));
                 }
                 ArenaSelect_RefreshSelection();
-                if ((new O04ModeF60(Mem.U32(0x800E4F60u)).unk438 == 0))
+                if ((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk438 == 0))
                 {
-                    PreviewModel_SetModel(new O04ModeF60(Mem.U32(0x800E4F60u)).unk308.P, (new O04ModeF60(Mem.U32(0x800E4F60u)).unk434 + 3750));
-                    UiNode_SetVisible(new O04ModeF60(Mem.U32(0x800E4F60u)).unk448_, 1);
-                    new O04ModeF60(Mem.U32(0x800E4F60u)).unk448.unk14_Set((ushort)(((new O04ModeF60(Mem.U32(0x800E4F60u)).unk434 * 34) + 124)));
+                    PreviewModel_SetModel(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk308.P, (new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk434 + 3750));
+                    UiNode_SetVisible(new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk448_, 1);
+                    new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk448.unk14_Set((ushort)(((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk434 * 34) + 124)));
                 }
             }
             return 0;
@@ -1620,12 +1620,12 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0042BC34");
             Menu_ConsumeEvent();
-            if ((new O04ModeF60(Mem.U32(0x800E4F60u)).state != 3))
+            if ((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).state != 3))
             {
                 return 0;
             }
-            new O04ModeF60(Mem.U32(0x800E4F60u)).state_Set(5);
-            new O04ModeF60(Mem.U32(0x800E4F60u)).unk3E0_Set(4);
+            new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).state_Set(5);
+            new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).unk3E0_Set(4);
             return 0;
         }
     }
@@ -1636,7 +1636,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0042BC78");
-            if ((new O04ModeF60(Mem.U32(0x800E4F60u)).state != 3))
+            if ((new O04ModeF60(Mem.U32(Gv.ArenaSelect_PagePtr)).state != 3))
             {
                 return 0;
             }
@@ -1652,13 +1652,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0042BCB0", (uint)a, (uint)b, (uint)c, (uint)d);
             int i = 0;
-            for (i = 0; (new O04Evt((0x800E5284u + (uint)(i * 12))).fn != 0u); ++i)
+            for (i = 0; (new O04Evt((Gv.ArenaSelect_EventTable + (uint)(i * 12))).fn != 0u); ++i)
             {
-                if ((new O04Evt((0x800E5284u + (uint)(i * 12))).ev == b))
+                if ((new O04Evt((Gv.ArenaSelect_EventTable + (uint)(i * 12))).ev == b))
                 {
-                    if (((new O04Evt((0x800E5284u + (uint)(i * 12))).key == (int)(new O04Obj(a).unkC)) || (new O04Evt((0x800E5284u + (uint)(i * 12))).key == 30000)))
+                    if (((new O04Evt((Gv.ArenaSelect_EventTable + (uint)(i * 12))).key == (int)(new O04Obj(a).unkC)) || (new O04Evt((Gv.ArenaSelect_EventTable + (uint)(i * 12))).key == 30000)))
                     {
-                        return (int)(Funcs.CallRegX(new O04Evt((0x800E5284u + (uint)(i * 12))).fn, a, (uint)(b), (uint)(c), (uint)(d), new uint[] { (uint)(e) }));
+                        return (int)(Funcs.CallRegX(new O04Evt((Gv.ArenaSelect_EventTable + (uint)(i * 12))).fn, a, (uint)(b), (uint)(c), (uint)(d), new uint[] { (uint)(e) }));
                     }
                 }
             }

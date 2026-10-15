@@ -60,7 +60,7 @@ public static class GameBoot
         Mem.Write(0x400000 + 0x1B94A0 - 0x16E000, rom.AsSpan(0x1B94A0, 0x1B9A40 - 0x1B94A0));
         Mem.Write(0x400000 + 0x1B9DD0 - 0x16E000, rom.AsSpan(0x1B9DD0, 0x1B9FD0 - 0x1B9DD0));
         // Cold boot: the ROM entry point (func_00200400) calls Game_SoftReset, which finds no "systembootdone" marker and sets D_8014D330 = 1. We start at the
-        // boot thread instead, so without this Game_ColdBootInit skips Settings_InitDefaults, the initialiser of the whole settings block 0x801462C8..0x8014684C (Game Speed,
+        // boot thread instead, so without this Game_ColdBootInit skips Settings_InitDefaults, the initialiser of the whole settings block Gv.Settings..0x8014684C (Game Speed,
         // volumes, match / bot / item options): actors never moved, no items, wrong damage (C port 4675740, verified against Project64).
         Mem.Set(0x8014D330, 1);
         Mem.Set(0x80000300, 1);              // osTvType = NTSC

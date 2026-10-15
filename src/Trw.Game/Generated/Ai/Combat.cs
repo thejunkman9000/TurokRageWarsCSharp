@@ -227,22 +227,22 @@ public static partial class Game
                 case (uint)(1):
                 case (uint)(2):
                 case (uint)(3):
-                    Ai_FireWhenAimed(ctl, ((0x800F7D20u + (uint)(w * 56)) + (uint)(slot * 28)));
+                    Ai_FireWhenAimed(ctl, ((Gv.Ai_FireConfigTable + (uint)(w * 56)) + (uint)(slot * 28)));
                     break;
                 case (uint)(4):
-                    Ai_FireChargeRelease_0020A7B0(ctl, ((0x800F7D20u + (uint)(w * 56)) + (uint)(slot * 28)));
+                    Ai_FireChargeRelease_0020A7B0(ctl, ((Gv.Ai_FireConfigTable + (uint)(w * 56)) + (uint)(slot * 28)));
                     break;
                 case (uint)(8):
                     new B2Ctl(ctl).unk240_Set(1);
                     break;
                 case (uint)(5):
-                    Ai_FireRandomBursts_0020A028(ctl, (0x800F7D20u + (uint)(w * 56)));
+                    Ai_FireRandomBursts_0020A028(ctl, (Gv.Ai_FireConfigTable + (uint)(w * 56)));
                     break;
                 case (uint)(7):
-                    Ai_FireRemoteDetonate_0020A2D4(ctl, (0x800F7D20u + (uint)(w * 56)));
+                    Ai_FireRemoteDetonate_0020A2D4(ctl, (Gv.Ai_FireConfigTable + (uint)(w * 56)));
                     break;
                 case (uint)(6):
-                    Ai_FireChargeOrAim_0020A458(ctl, (0x800F7D20u + (uint)(w * 56)));
+                    Ai_FireChargeOrAim_0020A458(ctl, (Gv.Ai_FireConfigTable + (uint)(w * 56)));
                     break;
                 default:
                     return;
@@ -354,7 +354,7 @@ public static partial class Game
                 }
                 if ((new B2Ctl(ctl).unk2E4 == 0))
                 {
-                    n = (int)(Particle_CountOwnedCharges(0x80121990u, new B2Ctl(ctl).owner_, default(uint), default(uint)));
+                    n = (int)(Particle_CountOwnedCharges(Gv.EffectMgr, new B2Ctl(ctl).owner_, default(uint), default(uint)));
                     if ((n == 3))
                     {
                         new B2Ctl(ctl).unk2E8_Set(n);
@@ -371,7 +371,7 @@ public static partial class Game
                 }
                 new B2Ctl(ctl).unk2E8_Set((int)(new B2Ctl(ctl).unk2E8 - 1));
                 t = new B2Ctl(ctl).target.owner_;
-                Particle_GetChargesCentroid(0x80121990u, (int)(new B2Ctl(ctl).owner_), _fp);
+                Particle_GetChargesCentroid(Gv.EffectMgr, (int)(new B2Ctl(ctl).owner_), _fp);
                 k = Mem.F32(0x800C6E08u);
                 new Vec3f(_fp).y_Set(new B2Actor(t).pos.y);
                 if ((Vec_DistanceSq(_fp, new B2Actor(t).pos.P) < k))
@@ -407,7 +407,7 @@ public static partial class Game
                 }
                 if ((new B2Ctl(ctl).unk2EC == 0))
                 {
-                    Particle_GetNearestDistance(0x80121990u, new B2Ctl(ctl).owner_, _fp);
+                    Particle_GetNearestDistance(Gv.EffectMgr, new B2Ctl(ctl).owner_, _fp);
                     if ((Mem.F32(_fp) < Mem.F32(0x800C6E0Cu)))
                     {
                         k = Mem.F32(0x800C6E14u);
@@ -468,7 +468,7 @@ public static partial class Game
             {
                 for (j = 0; (j < 2); ++j)
                 {
-                    Mem.Copy(((0x800F7D20u + (uint)(i * 56)) + (uint)(j * 28)), Chunk_Get(p, ((i * 2) + j)), 28);
+                    Mem.Copy(((Gv.Ai_FireConfigTable + (uint)(i * 56)) + (uint)(j * 28)), Chunk_Get(p, ((i * 2) + j)), 28);
                 }
             }
         }
@@ -1982,9 +1982,9 @@ public static partial class Game
                 new Vec3f((_fp + 16u)).y_Set(((new Vec3f(_fp).y + (new Vec3f((_fp + 32u)).y * dt)) + ay));
                 new Vec3f((_fp + 16u)).z_Set(((new Vec3f(_fp).z + (new Vec3f((_fp + 32u)).z * dt)) + az));
                 tt = dt;
-                if ((Collision_RayCast(new B2Ctl(ctl).owner_, _fp, (_fp + 16u), 0x80103FD0u) != 0))
+                if ((Collision_RayCast(new B2Ctl(ctl).owner_, _fp, (_fp + 16u), Gv.Collision_LosResult) != 0))
                 {
-                    if (((uint)((new B2Hit(Mem.U32(0x80103FCCu)).type - 7)) >= (uint)(2)))
+                    if (((uint)((new B2Hit(Mem.U32(Gv.Collision_ContactPtr)).type - 7)) >= (uint)(2)))
                     {
                         return 1;
                     }
@@ -1999,9 +1999,9 @@ public static partial class Game
                     new Vec3f((_fp + 16u)).x_Set(((new Vec3f(_fp).x + (new Vec3f((_fp + 32u)).x * tt)) + ax));
                     new Vec3f((_fp + 16u)).y_Set(((new Vec3f(_fp).y + (new Vec3f((_fp + 32u)).y * tt)) + ay));
                     new Vec3f((_fp + 16u)).z_Set(((new Vec3f(_fp).z + (new Vec3f((_fp + 32u)).z * tt)) + az));
-                    if ((Collision_RayCast(new B2Ctl(ctl).owner_, _fp, (_fp + 16u), 0x80103FD0u) != 0))
+                    if ((Collision_RayCast(new B2Ctl(ctl).owner_, _fp, (_fp + 16u), Gv.Collision_LosResult) != 0))
                     {
-                        if (((uint)((new B2Hit(Mem.U32(0x80103FCCu)).type - 7)) >= (uint)(2)))
+                        if (((uint)((new B2Hit(Mem.U32(Gv.Collision_ContactPtr)).type - 7)) >= (uint)(2)))
                         {
                             return 1;
                         }
@@ -2083,7 +2083,7 @@ public static partial class Game
                         }
                         new CtlB(c).actor.stats.unk93_Set((byte)(0));
                         L_b14: ;
-                        if (((int)(new WpnDesc(Mem.U32((0x800D052Cu + (uint)(w * 4)))).info.type) == 1))
+                        if (((int)(new WpnDesc(Mem.U32((Gv.WeaponDefTable + (uint)(w * 4)))).info.type) == 1))
                         {
                             continue;
                         }
@@ -2092,7 +2092,7 @@ public static partial class Game
                             w = 5;
                         }
                         L_b17: ;
-                        if (((int)(new WpnDesc(Mem.U32((0x800D052Cu + (uint)(w * 4)))).info.type) == 2))
+                        if (((int)(new WpnDesc(Mem.U32((Gv.WeaponDefTable + (uint)(w * 4)))).info.type) == 2))
                         {
                             continue;
                         }
@@ -2111,7 +2111,7 @@ public static partial class Game
                     {
                         return;
                     }
-                    if (((int)(Particle_CountOwnedCharges(0x80121990u, new CtlB(c).actor_, default(uint), default(uint))) > 0))
+                    if (((int)(Particle_CountOwnedCharges(Gv.EffectMgr, new CtlB(c).actor_, default(uint), default(uint))) > 0))
                     {
                         return;
                     }

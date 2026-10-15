@@ -362,14 +362,14 @@ public static partial class Game
             uint next = 0u;
             uint ow = 0u;
             int r = 0;
-            saved = Mem.F32(0x800D2988u);
+            saved = Mem.F32(Gv.FrameTime);
             if (((new SSlot(s).flags & (uint)(2)) != 0u))
             {
-                Mem.Set(0x800D2988u, (saved * Mem.F32(0x800D2990u)));
+                Mem.Set(Gv.FrameTime, (saved * Mem.F32(0x800D2990u)));
             }
             if (((new SSlot(s).flags & (uint)(1)) != 0u))
             {
-                Mem.Set(0x800D2988u, (Mem.F32(0x800D2988u) * Mem.F32(0x800D298Cu)));
+                Mem.Set(Gv.FrameTime, (Mem.F32(Gv.FrameTime) * Mem.F32(0x800D298Cu)));
             }
             if (((new SSlot(s).flags & (uint)(8)) != 0u))
             {
@@ -381,9 +381,9 @@ public static partial class Game
             }
             if ((new SSlot(s).unk2C >= 0.0f))
             {
-                new SSlot(s).unk30_Set((new SSlot(s).unk30 + Mem.F32(0x800D2988u)));
+                new SSlot(s).unk30_Set((new SSlot(s).unk30 + Mem.F32(Gv.FrameTime)));
             }
-            new SSlot(s).unk24_Set((new SSlot(s).unk24 - Mem.F32(0x800D2988u)));
+            new SSlot(s).unk24_Set((new SSlot(s).unk24 - Mem.F32(Gv.FrameTime)));
             if ((new SSlot(s).unk24 < 0.0f))
             {
                 new SSlot(s).unk24_Set(0.0f);
@@ -410,7 +410,7 @@ public static partial class Game
                     }
                     else
                     {
-                        new SEnt(e).unk8_Set((new SEnt(e).unk8 - Mem.F32(0x800D2988u)));
+                        new SEnt(e).unk8_Set((new SEnt(e).unk8 - Mem.F32(Gv.FrameTime)));
                         if ((new SEnt(e).unk8 < 0.0f))
                         {
                             new SEnt(e).unk8_Set(0.0f);
@@ -425,7 +425,7 @@ public static partial class Game
             {
                 Trail_ReleaseOwner(s);
             }
-            Mem.Set(0x800D2988u, saved);
+            Mem.Set(Gv.FrameTime, saved);
             if (((new SSlot(s).unk48 != 0) || ((new SSlot(s).unk24 != 0.0f) && (new SSlot(s).owner != 0u))))
             {
                 return 1;
@@ -560,7 +560,7 @@ public static partial class Game
                 new Vec3f((_fp + 48u)).y_Set(new E438C(e).pos.y);
                 new Vec3f((_fp + 48u)).z_Set(new E438C(e).pos.z);
                 L_next: ;
-                Math_MtxFloatToFixed(_fp, (new E438C(e).m28.P + (uint)(Mem.S32(0x800D297Cu) * 64)));
+                Math_MtxFloatToFixed(_fp, (new E438C(e).m28.P + (uint)(Mem.S32(Gv.FrameParity) * 64)));
                 e = n;
                 n = new E438C(e).next_;
                 if ((e != 0u))
@@ -571,7 +571,7 @@ public static partial class Game
                 new Vec3f((_fp + 48u)).x_Set(new E438C(e).pos.x);
                 new Vec3f((_fp + 48u)).y_Set(new E438C(e).pos.y);
                 new Vec3f((_fp + 48u)).z_Set(new E438C(e).pos.z);
-                Math_MtxFloatToFixed(_fp, (new E438C(e).m28.P + (uint)(Mem.S32(0x800D297Cu) * 64)));
+                Math_MtxFloatToFixed(_fp, (new E438C(e).m28.P + (uint)(Mem.S32(Gv.FrameParity) * 64)));
             }
         }
         finally { Stack.Free(60); }
@@ -587,7 +587,7 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_002A453C_Attach453C", (uint)slot, (uint)e, (uint)act);
                 float k = 0f;
-                Math_MtxFixedToFloatAffine(_fp, (act + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 96)), default(uint), default(uint));
+                Math_MtxFixedToFloatAffine(_fp, (act + (uint)((Mem.S32(Gv.FrameParity) << (int)6) + 96)), default(uint), default(uint));
                 k = Mem.F32(0x800CAF80u);
                 if ((new Actor453C(act).unk118.unk14 != 0))
                 {
@@ -602,7 +602,7 @@ public static partial class Game
                 }
                 else
                 {
-                    Math_MtxFloatToFixed(_fp, (new SEnt(e).m28.P + (uint)(Mem.S32(0x800D297Cu) * 64)));
+                    Math_MtxFloatToFixed(_fp, (new SEnt(e).m28.P + (uint)(Mem.S32(Gv.FrameParity) * 64)));
                 }
             }
         }
@@ -643,8 +643,8 @@ public static partial class Game
                             {
                                 if ((act == (uint)((-1))))
                                 {
-                                    dst = ((e + (uint)(Mem.S32(0x800D297Cu) << (int)6)) + (uint)40);
-                                    t = (e + (uint)((Mem.S32(0x800D297Cu) ^ 1) << (int)6));
+                                    dst = ((e + (uint)(Mem.S32(Gv.FrameParity) << (int)6)) + (uint)40);
+                                    t = (e + (uint)((Mem.S32(Gv.FrameParity) ^ 1) << (int)6));
                                     src = (t + (uint)40);
                                     do
                                     {
@@ -764,7 +764,7 @@ public static partial class Game
                         while ((k <= f));
                     }
                     {
-                        uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint _g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         new S8Dl(_g).w0_Set(3875536896u);
                         new S8Dl(_g).w1_Set((uint)(0));
                     }
@@ -777,7 +777,7 @@ public static partial class Game
                             {
                                 uint w = (((((uint)((((int)(new S8Info(info).unk19) + (int)(new S8Info(info).unk1A)) + (int)(new S8Info(info).unk1B))) / (uint)(3)) << (int)8) & (uint)(65280)) | (uint)(255));
                                 {
-                                    uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                    uint _g_2 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                     new S8Dl(_g_2).w0_Set(4211081216u);
                                     new S8Dl(_g_2).w1_Set(w);
                                 }
@@ -785,7 +785,7 @@ public static partial class Game
                             {
                                 uint w_2 = (((((uint)((((int)(new S8Info(info).unk16) + (int)(new S8Info(info).unk17)) + (int)(new S8Info(info).unk18))) / (uint)(3)) << (int)8) & (uint)(65280)) | (uint)(255));
                                 {
-                                    uint _g_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                    uint _g_3 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                     new S8Dl(_g_3).w0_Set(4194304000u);
                                     new S8Dl(_g_3).w1_Set(w_2);
                                 }
@@ -794,12 +794,12 @@ public static partial class Game
                         else
                         {
                             {
-                                uint _g_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                uint _g_4 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                 new S8Dl(_g_4).w0_Set(4211081216u);
                                 new S8Dl(_g_4).w1_Set((uint)((((((int)(new S8Info(info).unk19) << (int)24) | ((int)(new S8Info(info).unk1A) << (int)16)) | ((int)(new S8Info(info).unk1B) << (int)8)) | 255)));
                             }
                             {
-                                uint _g_5 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                uint _g_5 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                 new S8Dl(_g_5).w0_Set(4194304000u);
                                 new S8Dl(_g_5).w1_Set((uint)((((((int)(new S8Info(info).unk16) << (int)24) | ((int)(new S8Info(info).unk17) << (int)16)) | ((int)(new S8Info(info).unk18) << (int)8)) | 255)));
                             }
@@ -817,9 +817,9 @@ public static partial class Game
                     Texture_EmitLoad_00295FB4(new S8Emit(e).unk14.P, (uint)(handle), Trail_GetTextureFrame(e, info, _fp), 0, 65535, 65535, 0, 0, 0);
                     idm1 = (id - 1);
                     {
-                        uint _g_6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint _g_6 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         new S8Dl(_g_6).w0_Set(3661103107u);
-                        new S8Dl(_g_6).w1_Set((uint)((new S8Node(n1).mtx.P + (uint)(Mem.S32(0x800D297Cu) * 64))));
+                        new S8Dl(_g_6).w1_Set((uint)((new S8Node(n1).mtx.P + (uint)(Mem.S32(Gv.FrameParity) * 64))));
                     }
                     while ((((((n1 != 0u) && (n2 != 0u)) && (new S8Node(n1).unk8 > 0.0f)) && (new S8Node(n2).unk8 > 0.0f)) && ((total + (id * 2)) < 32)))
                     {
@@ -833,15 +833,15 @@ public static partial class Game
                         {
                             uint wt = 0u;
                             {
-                                uint _g_7 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                uint _g_7 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                 new S8Dl(_g_7).w0_Set(((uint)((id << (int)12)) | (wt = (uint)((((id & 127) * 2) | 16777216)))));
                                 new S8Dl(_g_7).w1_Set((uint)(r));
                             }
                         }
                         {
-                            uint _g_8 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            uint _g_8 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                             new S8Dl(_g_8).w0_Set(3661103107u);
-                            new S8Dl(_g_8).w1_Set((uint)((new S8Node(n2).mtx.P + (uint)(Mem.S32(0x800D297Cu) * 64))));
+                            new S8Dl(_g_8).w1_Set((uint)((new S8Node(n2).mtx.P + (uint)(Mem.S32(Gv.FrameParity) * 64))));
                         }
                         r = (int)(Trail_AllocVertices((uint)(arg0), id));
                         if ((r == 0))
@@ -858,7 +858,7 @@ public static partial class Game
                         {
                             uint wt_2 = 0u;
                             {
-                                uint _g_9 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                uint _g_9 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                 new S8Dl(_g_9).w0_Set(((uint)((id << (int)12)) | (wt_2 = (uint)(((((id * 2) & 127) * 2) | 16777216)))));
                                 new S8Dl(_g_9).w1_Set((uint)(r));
                             }
@@ -868,7 +868,7 @@ public static partial class Game
                             uint t0 = (uint)((((i * 2) & 255) << (int)16));
                             int a = (id + i);
                             {
-                                uint _g_10 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                uint _g_10 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                 new S8Dl(_g_10).w0_Set((((t0 | (uint)(((a << (int)9) & 65024))) | (uint)((((a + 1) * 2) & 255))) | (uint)(100663296)));
                                 new S8Dl(_g_10).w1_Set(((t0 | (uint)(((((a + 1) * 2) & 255) << (int)8))) | (uint)((((i + 1) * 2) & 255))));
                             }
@@ -877,7 +877,7 @@ public static partial class Game
                         {
                             uint t = (uint)((((i * 2) & 255) << (int)16));
                             {
-                                uint _g_11 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                uint _g_11 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                 new S8Dl(_g_11).w0_Set((((t | (uint)((((id + i) << (int)9) & 65024))) | (uint)(((id * 2) & 255))) | (uint)(100663296)));
                                 new S8Dl(_g_11).w1_Set((t | (uint)((((id * 2) & 255) << (int)8))));
                             }
@@ -926,9 +926,9 @@ public static partial class Game
                 n2 = new R4Node(n1).next_;
                 id = (int)(new R4Emit(e).info.unk23);
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g).w0_Set(3661103107u);
-                    new DlCmd(_g).w1_Set((uint)((new R4Node(n1).mtx.P + (uint)(Mem.S32(0x800D297Cu) * 64))));
+                    new DlCmd(_g).w1_Set((uint)((new R4Node(n1).mtx.P + (uint)(Mem.S32(Gv.FrameParity) * 64))));
                 }
                 idm1 = (id - 1);
                 while (((((n1 != 0u) && (n2 != 0u)) && (new R4Node(n1).unk8 > 0.0f)) && (new R4Node(n2).unk8 > 0.0f)))
@@ -942,15 +942,15 @@ public static partial class Game
                     {
                         uint wt = 0u;
                         {
-                            uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            uint _g_2 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                             new DlCmd(_g_2).w0_Set(((uint)((id << (int)12)) | (wt = (uint)((((id & 127) * 2) | 16777216)))));
                             new DlCmd(_g_2).w1_Set((uint)(r));
                         }
                     }
                     {
-                        uint _g_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint _g_3 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         new DlCmd(_g_3).w0_Set(3661103107u);
-                        new DlCmd(_g_3).w1_Set((uint)((new R4Node(n2).mtx.P + (uint)(Mem.S32(0x800D297Cu) * 64))));
+                        new DlCmd(_g_3).w1_Set((uint)((new R4Node(n2).mtx.P + (uint)(Mem.S32(Gv.FrameParity) * 64))));
                     }
                     r = (int)(Trail_AllocVertices((uint)(arg0), id));
                     if ((r == 0))
@@ -961,7 +961,7 @@ public static partial class Game
                     {
                         uint wt_2 = 0u;
                         {
-                            uint _g_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            uint _g_4 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                             new DlCmd(_g_4).w0_Set(((uint)((id << (int)12)) | (wt_2 = (uint)(((((id * 2) & 127) * 2) | 16777216)))));
                             new DlCmd(_g_4).w1_Set((uint)(r));
                         }
@@ -971,7 +971,7 @@ public static partial class Game
                         uint t0 = (uint)((((i * 2) & 255) << (int)16));
                         int a = (id + i);
                         {
-                            uint _g_5 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            uint _g_5 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                             new DlCmd(_g_5).w0_Set((((t0 | (uint)(((a << (int)9) & 65024))) | (uint)((((a + 1) * 2) & 255))) | (uint)(100663296)));
                             new DlCmd(_g_5).w1_Set(((t0 | (uint)(((((a + 1) * 2) & 255) << (int)8))) | (uint)((((i + 1) * 2) & 255))));
                         }
@@ -980,7 +980,7 @@ public static partial class Game
                     {
                         uint t = (uint)((((i * 2) & 255) << (int)16));
                         {
-                            uint _g_6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            uint _g_6 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                             new DlCmd(_g_6).w0_Set((((t | (uint)((((id + i) << (int)9) & 65024))) | (uint)(((id * 2) & 255))) | (uint)(100663296)));
                             new DlCmd(_g_6).w1_Set((t | (uint)((((id * 2) & 255) << (int)8))));
                         }
@@ -1373,47 +1373,47 @@ public static partial class Game
             if ((new Rend(r).dl_ != 0u))
             {
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g).w0_Set(3724541952u);
                     new DlCmd(_g).w1_Set((uint)(new Rend(r).dl_));
                 }
                 return;
             }
-            new Rend(r).dl__Set(Mem.U32(0x80110634u));
+            new Rend(r).dl__Set(Mem.U32(Gv.DisplayListPtr));
             {
-                uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _g_2 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(_g_2).w0_Set(3724607488u);
                 new DlCmd(_g_2).w1_Set((uint)(0));
             }
             {
-                uint _g_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _g_3 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(_g_3).w0_Set(3875536896u);
                 new DlCmd(_g_3).w1_Set((uint)(0));
             }
             Gfx_SetOtherModeL((uint)(14));
             Gfx_SetCombineMode((uint)(28));
             {
-                uint _g_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _g_4 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(_g_4).w0_Set(3656973183u);
                 new DlCmd(_g_4).w1_Set((uint)(0));
             }
             {
-                uint _g_5 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _g_5 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(_g_5).w0_Set(3657433087u);
                 new DlCmd(_g_5).w1_Set((uint)(2097156));
             }
             {
-                uint _g_6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _g_6 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(_g_6).w0_Set(3808430593u);
                 new DlCmd(_g_6).w1_Set((uint)(0));
             }
             {
-                uint _g_7 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _g_7 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(_g_7).w0_Set(3808431104u);
                 new DlCmd(_g_7).w1_Set((uint)(524288));
             }
             {
-                uint _g_8 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _g_8 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(_g_8).w0_Set(3607101440u);
                 new DlCmd(_g_8).w1_Set((uint)(0));
             }
@@ -1468,15 +1468,15 @@ public static partial class Game
                 }
             }
             {
-                uint _g_9 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _g_9 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(_g_9).w0_Set(3741319168u);
                 new DlCmd(_g_9).w1_Set((uint)(0));
             }
             c = (new Rend(r).dl__Set((uint)(new Rend(r).dl_ + 8u)) - 8u);
             new DlCmd(c).w0_Set(3724607488u);
-            new DlCmd(c).w1_Set((uint)(Mem.U32(0x80110634u)));
+            new DlCmd(c).w1_Set((uint)(Mem.U32(Gv.DisplayListPtr)));
             {
-                uint _g_10 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _g_10 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(_g_10).w0_Set(3724541952u);
                 new DlCmd(_g_10).w1_Set((uint)(new Rend(r).dl_));
             }
@@ -1509,7 +1509,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002A66EC", (uint)p);
             new EntPool(p).unk0_Set(0);
             new EntPool(p).cnt_Set(300);
-            new EntPool(p).cur__Set((p + (uint)((Mem.S32(0x800D297Cu) * 4800) + 8)));
+            new EntPool(p).cur__Set((p + (uint)((Mem.S32(Gv.FrameParity) * 4800) + 8)));
         }
     }
 
@@ -1819,12 +1819,12 @@ public static partial class Game
                 {
                     if ((o == (uint)((-1))))
                     {
-                        Mem.Copy((new EmitNode(n).mtx.P + (uint)(Mem.S32(0x800D297Cu) * 64)), (new EmitNode(n).mtx.P + (uint)((Mem.S32(0x800D297Cu) ^ 1) * 64)), 64);
+                        Mem.Copy((new EmitNode(n).mtx.P + (uint)(Mem.S32(Gv.FrameParity) * 64)), (new EmitNode(n).mtx.P + (uint)((Mem.S32(Gv.FrameParity) ^ 1) * 64)), 64);
                         new EmitNode(n).unkB0__Set(0u);
                     }
                     else
                     {
-                        Math_MtxFixedToFloatAffine(_fp, (o + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 96)), default(uint), default(uint));
+                        Math_MtxFixedToFloatAffine(_fp, (o + (uint)((Mem.S32(Gv.FrameParity) << (int)6) + 96)), default(uint), default(uint));
                         s = Mem.F32(0x800CB048u);
                         if ((new EmitOwner(o).info.unk14 != 0))
                         {
@@ -1839,7 +1839,7 @@ public static partial class Game
                         }
                         else
                         {
-                            Math_MtxFloatToFixed(_fp, (new EmitNode(n).mtx.P + (uint)(Mem.S32(0x800D297Cu) * 64)));
+                            Math_MtxFloatToFixed(_fp, (new EmitNode(n).mtx.P + (uint)(Mem.S32(Gv.FrameParity) * 64)));
                         }
                     }
                     new EmitNode(n).unk8_Set(Mem.F32((new Emit(e).def_ + (uint)8)));

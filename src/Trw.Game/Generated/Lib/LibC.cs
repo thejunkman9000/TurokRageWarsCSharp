@@ -921,21 +921,21 @@ public static partial class Game
             lo = ((int)(max - @base));
             do
             {
-                mid = (i = (@base + (uint)((uint)(Mem.S32(0x8014D0C0u)) * ((uint)((lo / Mem.S32(0x8014D0C0u))) >> (int)1))));
+                mid = (i = (@base + (uint)((uint)(Mem.S32(Gv.Qsort_ElemSize)) * ((uint)((lo / Mem.S32(Gv.Qsort_ElemSize))) >> (int)1))));
                 if ((lo >= Mem.S32(0x8014D0C8u)))
                 {
-                    j = (((int)(Funcs.CallReg(Mem.U32(0x8014D0CCu), (jj = @base), i, 0u, 0u)) > 0) ? jj : i);
-                    if (((int)(Funcs.CallReg(Mem.U32(0x8014D0CCu), j, (tmp = (max - (uint)Mem.S32(0x8014D0C0u))), 0u, 0u)) > 0))
+                    j = (((int)(Funcs.CallReg(Mem.U32(Gv.Sort_CompareFn), (jj = @base), i, 0u, 0u)) > 0) ? jj : i);
+                    if (((int)(Funcs.CallReg(Mem.U32(Gv.Sort_CompareFn), j, (tmp = (max - (uint)Mem.S32(Gv.Qsort_ElemSize))), 0u, 0u)) > 0))
                     {
                         j = ((j == jj) ? i : jj);
-                        if (((int)(Funcs.CallReg(Mem.U32(0x8014D0CCu), j, tmp, 0u, 0u)) < 0))
+                        if (((int)(Funcs.CallReg(Mem.U32(Gv.Sort_CompareFn), j, tmp, 0u, 0u)) < 0))
                         {
                             j = tmp;
                         }
                     }
                     if ((j != i))
                     {
-                        ii = Mem.S32(0x8014D0C0u);
+                        ii = Mem.S32(Gv.Qsort_ElemSize);
                         do
                         {
                             c = Mem.S8(i);
@@ -945,20 +945,20 @@ public static partial class Game
                         while (((--ii) != 0));
                     }
                 }
-                for (i = @base, j = (max - (uint)Mem.S32(0x8014D0C0u)); ; )
+                for (i = @base, j = (max - (uint)Mem.S32(Gv.Qsort_ElemSize)); ; )
                 {
-                    while (((i < mid) && ((int)(Funcs.CallReg(Mem.U32(0x8014D0CCu), i, mid, 0u, 0u)) <= 0)))
+                    while (((i < mid) && ((int)(Funcs.CallReg(Mem.U32(Gv.Sort_CompareFn), i, mid, 0u, 0u)) <= 0)))
                     {
-                        i = (uint)(i + (uint)(Mem.S32(0x8014D0C0u) * 1));
+                        i = (uint)(i + (uint)(Mem.S32(Gv.Qsort_ElemSize) * 1));
                     }
                     while ((j > mid))
                     {
-                        if (((int)(Funcs.CallReg(Mem.U32(0x8014D0CCu), mid, j, 0u, 0u)) <= 0))
+                        if (((int)(Funcs.CallReg(Mem.U32(Gv.Sort_CompareFn), mid, j, 0u, 0u)) <= 0))
                         {
-                            j = (uint)(j - (uint)(Mem.S32(0x8014D0C0u) * 1));
+                            j = (uint)(j - (uint)(Mem.S32(Gv.Qsort_ElemSize) * 1));
                             continue;
                         }
-                        tmp = (i + (uint)Mem.S32(0x8014D0C0u));
+                        tmp = (i + (uint)Mem.S32(Gv.Qsort_ElemSize));
                         if ((i == mid))
                         {
                             mid = (jj = j);
@@ -966,7 +966,7 @@ public static partial class Game
                         else
                         {
                             jj = j;
-                            j = (uint)(j - (uint)(Mem.S32(0x8014D0C0u) * 1));
+                            j = (uint)(j - (uint)(Mem.S32(Gv.Qsort_ElemSize) * 1));
                         }
                         goto L_swap;
                     }
@@ -978,10 +978,10 @@ public static partial class Game
                     {
                         jj = mid;
                         tmp = (mid = i);
-                        j = (uint)(j - (uint)(Mem.S32(0x8014D0C0u) * 1));
+                        j = (uint)(j - (uint)(Mem.S32(Gv.Qsort_ElemSize) * 1));
                     }
                     L_swap: ;
-                    ii = Mem.S32(0x8014D0C0u);
+                    ii = Mem.S32(Gv.Qsort_ElemSize);
                     do
                     {
                         c = Mem.S8(i);
@@ -991,10 +991,10 @@ public static partial class Game
                     while (((--ii) != 0));
                     i = tmp;
                 }
-                i = ((j = mid) + (uint)Mem.S32(0x8014D0C0u));
+                i = ((j = mid) + (uint)Mem.S32(Gv.Qsort_ElemSize));
                 if (((lo = ((int)(j - @base))) <= (hi = ((int)(max - i)))))
                 {
-                    if ((lo >= Mem.S32(0x8014D0C4u)))
+                    if ((lo >= Mem.S32(Gv.Sort_QuickThresholdBytes)))
                     {
                         Sort_QuickRecurse(@base, j);
                     }
@@ -1003,14 +1003,14 @@ public static partial class Game
                 }
                 else
                 {
-                    if ((hi >= Mem.S32(0x8014D0C4u)))
+                    if ((hi >= Mem.S32(Gv.Sort_QuickThresholdBytes)))
                     {
                         Sort_QuickRecurse(i, max);
                     }
                     max = j;
                 }
             }
-            while ((lo >= Mem.S32(0x8014D0C4u)));
+            while ((lo >= Mem.S32(Gv.Sort_QuickThresholdBytes)));
         }
     }
 
@@ -1031,47 +1031,47 @@ public static partial class Game
             {
                 return;
             }
-            Mem.Set(0x8014D0C0u, size);
-            Mem.Set(0x8014D0CCu, compar);
-            Mem.Set(0x8014D0C4u, (Mem.S32(0x8014D0C0u) * 4));
-            Mem.Set(0x8014D0C8u, (Mem.S32(0x8014D0C0u) * 6));
-            max = (@base + (uint)(n * Mem.S32(0x8014D0C0u)));
+            Mem.Set(Gv.Qsort_ElemSize, size);
+            Mem.Set(Gv.Sort_CompareFn, compar);
+            Mem.Set(Gv.Sort_QuickThresholdBytes, (Mem.S32(Gv.Qsort_ElemSize) * 4));
+            Mem.Set(0x8014D0C8u, (Mem.S32(Gv.Qsort_ElemSize) * 6));
+            max = (@base + (uint)(n * Mem.S32(Gv.Qsort_ElemSize)));
             if ((n >= 4))
             {
                 Sort_QuickRecurse(@base, max);
-                hi = (@base + (uint)Mem.S32(0x8014D0C4u));
+                hi = (@base + (uint)Mem.S32(Gv.Sort_QuickThresholdBytes));
             }
             else
             {
                 hi = max;
             }
-            for (j = (lo = @base); ((lo = (uint)(lo + (uint)(Mem.S32(0x8014D0C0u) * 1))) < hi); )
+            for (j = (lo = @base); ((lo = (uint)(lo + (uint)(Mem.S32(Gv.Qsort_ElemSize) * 1))) < hi); )
             {
-                if (((int)(Funcs.CallReg(Mem.U32(0x8014D0CCu), j, lo, 0u, 0u)) > 0))
+                if (((int)(Funcs.CallReg(Mem.U32(Gv.Sort_CompareFn), j, lo, 0u, 0u)) > 0))
                 {
                     j = lo;
                 }
             }
             if ((j != @base))
             {
-                for (i = @base, hi = (@base + (uint)Mem.S32(0x8014D0C0u)); (i < hi); )
+                for (i = @base, hi = (@base + (uint)Mem.S32(Gv.Qsort_ElemSize)); (i < hi); )
                 {
                     c = Mem.S8(j);
                     Mem.Set(((j += 1u) - 1u), Mem.S8(i));
                     Mem.Set(((i += 1u) - 1u), c);
                 }
             }
-            for (min = @base; ((hi = (min = (uint)(min + (uint)(Mem.S32(0x8014D0C0u) * 1)))) < max); )
+            for (min = @base; ((hi = (min = (uint)(min + (uint)(Mem.S32(Gv.Qsort_ElemSize) * 1)))) < max); )
             {
-                while (((int)(Funcs.CallReg(Mem.U32(0x8014D0CCu), (hi = (uint)(hi - (uint)(Mem.S32(0x8014D0C0u) * 1))), min, 0u, 0u)) > 0))
+                while (((int)(Funcs.CallReg(Mem.U32(Gv.Sort_CompareFn), (hi = (uint)(hi - (uint)(Mem.S32(Gv.Qsort_ElemSize) * 1))), min, 0u, 0u)) > 0))
                 {
                 }
-                if (((hi = (uint)(hi + (uint)(Mem.S32(0x8014D0C0u) * 1))) != min))
+                if (((hi = (uint)(hi + (uint)(Mem.S32(Gv.Qsort_ElemSize) * 1))) != min))
                 {
-                    for (lo = (min + (uint)Mem.S32(0x8014D0C0u)); ((lo -= 1u) >= min); )
+                    for (lo = (min + (uint)Mem.S32(Gv.Qsort_ElemSize)); ((lo -= 1u) >= min); )
                     {
                         c = Mem.S8(lo);
-                        for (i = (j = lo); ((j = (uint)(j - (uint)(Mem.S32(0x8014D0C0u) * 1))) >= hi); i = j)
+                        for (i = (j = lo); ((j = (uint)(j - (uint)(Mem.S32(Gv.Qsort_ElemSize) * 1))) >= hi); i = j)
                         {
                             Mem.Set(i, Mem.S8(j));
                         }

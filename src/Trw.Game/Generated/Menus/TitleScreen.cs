@@ -45,21 +45,21 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0041C21C");
             int i = 0;
             int r = 0;
-            new O3Pg(Mem.U32(0x800E3518u)).f1C_Set(0);
+            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).f1C_Set(0);
             for (i = 0; (i < 4); ++i)
             {
                 CPak_DetectPort(i);
                 r = CPak_GetStatus(i);
                 if ((r == (-1)))
                 {
-                    new O3Pg(Mem.U32(0x800E3518u)).f1C_Set(1);
+                    new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).f1C_Set(1);
                     return;
                 }
                 if ((r >= 0))
                 {
                     if ((r == 0))
                     {
-                        new O3Pg(Mem.U32(0x800E3518u)).f1C_Set(1);
+                        new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).f1C_Set(1);
                         return;
                     }
                 }
@@ -69,7 +69,7 @@ public static partial class Game
                     {
                         if ((r >= (-4)))
                         {
-                            new O3Pg(Mem.U32(0x800E3518u)).f1C_Set(1);
+                            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).f1C_Set(1);
                             return;
                         }
                     }
@@ -84,13 +84,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0041C2C4");
-            Mem.Set(0x800E3510u, (int)(Mem.S32(0x800E3510u) + 1));
-            if ((Mem.S32(0x800E3510u) >= 4))
+            Mem.Set(Gv.PakCheck_Port, (int)(Mem.S32(Gv.PakCheck_Port) + 1));
+            if ((Mem.S32(Gv.PakCheck_Port) >= 4))
             {
                 Menu_DisableInput();
                 Menu_ConsumeEvent();
                 Menu_GotoScreen(2);
-                Mem.Set(0x8014ADA0u, 1);
+                Mem.Set(Gv.PakMenu_BootDialogsDone, 1);
                 return;
             }
             SaveSlot_UpdateDialog(default(uint), default(uint), default(uint), default(uint));
@@ -103,25 +103,25 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0041C32C", (uint)parent);
-            Mem.Set(0x800E3518u, ResourcePool_Malloc((uint)(44)));
-            new O3Pg(Mem.U32(0x800E3518u)).parent_Set(parent);
-            new O3Pg(Mem.U32(0x800E3518u)).w1_Set((int)(UiTree_FindNode((uint)(parent), (uint)(963), default(uint), default(uint))));
-            UiNode_SetVisible((uint)(new O3Pg(Mem.U32(0x800E3518u)).w1), 1);
-            new O3Pg(Mem.U32(0x800E3518u)).w2_Set((int)(UiTree_FindNode((uint)(parent), (uint)(969), default(uint), default(uint))));
-            UiNode_SetVisible((uint)(new O3Pg(Mem.U32(0x800E3518u)).w2), 0);
-            new O3Pg(Mem.U32(0x800E3518u)).w3_Set((int)(UiTree_FindNode((uint)(parent), (uint)(964), default(uint), default(uint))));
-            UiNode_SetVisible((uint)(new O3Pg(Mem.U32(0x800E3518u)).w3), 0);
-            new O3Pg(Mem.U32(0x800E3518u)).w4_Set((int)(UiTree_FindNode((uint)(parent), (uint)(965), default(uint), default(uint))));
-            UiNode_SetVisible((uint)(new O3Pg(Mem.U32(0x800E3518u)).w4), 0);
-            new O3Pg(Mem.U32(0x800E3518u)).f14_Set(0);
-            new O3Pg(Mem.U32(0x800E3518u)).f18_Set(0);
+            Mem.Set(Gv.TitleScreen_PagePtr, ResourcePool_Malloc((uint)(44)));
+            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).parent_Set(parent);
+            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).w1_Set((int)(UiTree_FindNode((uint)(parent), (uint)(963), default(uint), default(uint))));
+            UiNode_SetVisible((uint)(new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).w1), 1);
+            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).w2_Set((int)(UiTree_FindNode((uint)(parent), (uint)(969), default(uint), default(uint))));
+            UiNode_SetVisible((uint)(new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).w2), 0);
+            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).w3_Set((int)(UiTree_FindNode((uint)(parent), (uint)(964), default(uint), default(uint))));
+            UiNode_SetVisible((uint)(new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).w3), 0);
+            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).w4_Set((int)(UiTree_FindNode((uint)(parent), (uint)(965), default(uint), default(uint))));
+            UiNode_SetVisible((uint)(new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).w4), 0);
+            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).f14_Set(0);
+            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).f18_Set(0);
             Video_RequestResolution(0);
             Menu_DisableInput();
-            Mem.Set(0x800E28C8u, (-1));
+            Mem.Set(Gv.PakMenu_BootPad, (-1));
             Mem.Set(0x80146D70u, 0);
-            Game_InitCameras(0x8011FAC0u, 0, 0);
-            Level_Load((0x8011FAC0u + (uint)968), (uint)(0), (uint)(0), default(uint));
-            new O3Pg(Mem.U32(0x800E3518u)).f1C_Set(0);
+            Game_InitCameras(Gv.GameCtx, 0, 0);
+            Level_Load((Gv.GameCtx + (uint)968), (uint)(0), (uint)(0), default(uint));
+            new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).f1C_Set(0);
             return 0;
         }
     }
@@ -132,8 +132,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0041C45C");
-            ResourcePool_MallocFree(Mem.U32(0x800E3518u));
-            Mem.Set(0x800E3518u, 0u);
+            ResourcePool_MallocFree(Mem.U32(Gv.TitleScreen_PagePtr));
+            Mem.Set(Gv.TitleScreen_PagePtr, 0u);
             return 0;
         }
     }
@@ -146,11 +146,11 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0041C48C");
             int a = 0;
             int n = 0;
-            if ((Mem.S32(0x800E28E0u) < 2))
+            if ((Mem.S32(Gv.Video_ResChangeCountdown) < 2))
             {
-                a = new O3Pg(Mem.U32(0x800E3518u)).f18;
-                n = (new O3Pg(Mem.U32(0x800E3518u)).f14 + 1);
-                new O3Pg(Mem.U32(0x800E3518u)).f14_Set(n);
+                a = new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).f18;
+                n = (new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).f14 + 1);
+                new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).f14_Set(n);
                 if ((a == 0))
                 {
                     if ((n < 6))
@@ -196,7 +196,7 @@ public static partial class Game
             switch (Menu_GetMessage())
             {
             case 971:
-                UiNode_SetVisible((uint)(new O3Pg(Mem.U32(0x800E3518u)).w2), 0);
+                UiNode_SetVisible((uint)(new O3Pg(Mem.U32(Gv.TitleScreen_PagePtr)).w2), 0);
                 SaveSlot_UpdateDialog(default(uint), default(uint), default(uint), default(uint));
                 break;
             case 970:
@@ -206,9 +206,9 @@ public static partial class Game
                 TitleScreen_RetryPakCheck();
                 break;
             case 966:
-                Mem.Set(0x80146D60u, 1);
-                Mem.Set(0x800E28CCu, 1);
-                Mem.Set(0x8014AD94u, 0);
+                Mem.Set(Gv.PakMenu_BootCheckSkipped, 1);
+                Mem.Set(Gv.PakMenu_BootCheckDone, 1);
+                Mem.Set(Gv.PakMenu_BootCheckBusy_8014AD94, 0);
                 Mem.Set(0x800E3514u, 1);
                 PlayerMenu_SetMode(6);
                 Menu_GotoScreen(19);
@@ -225,13 +225,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0041C5EC", (uint)obj, (uint)msg, (uint)a2, (uint)a3);
             int i = 0;
-            for (i = 0; (new O3Msg((0x800E351Cu + (uint)(i * 12))).fn != 0u); ++i)
+            for (i = 0; (new O3Msg((Gv.TitleScreen_MsgTable + (uint)(i * 12))).fn != 0u); ++i)
             {
-                if ((new O3Msg((0x800E351Cu + (uint)(i * 12))).msg == msg))
+                if ((new O3Msg((Gv.TitleScreen_MsgTable + (uint)(i * 12))).msg == msg))
                 {
-                    if (((new O3Msg((0x800E351Cu + (uint)(i * 12))).type == (int)(new O3Hdr(obj).id)) || (new O3Msg((0x800E351Cu + (uint)(i * 12))).type == 30000)))
+                    if (((new O3Msg((Gv.TitleScreen_MsgTable + (uint)(i * 12))).type == (int)(new O3Hdr(obj).id)) || (new O3Msg((Gv.TitleScreen_MsgTable + (uint)(i * 12))).type == 30000)))
                     {
-                        return (int)(Funcs.CallRegX(new O3Msg((0x800E351Cu + (uint)(i * 12))).fn, obj, (uint)(msg), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
+                        return (int)(Funcs.CallRegX(new O3Msg((Gv.TitleScreen_MsgTable + (uint)(i * 12))).fn, obj, (uint)(msg), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
                     }
                 }
             }

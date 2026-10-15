@@ -219,7 +219,7 @@ public static partial class Game
             {
                 s4 = (uint)(0);
             }
-            p = 0x80103230u;
+            p = Gv.Pager;
             n = 3447;
             do
             {
@@ -227,7 +227,7 @@ public static partial class Game
             }
             while (((n--) != 0));
             c = (byte)(255);
-            p = new M03Ldr(0x80103230u).tlbfree.P;
+            p = new M03Ldr(Gv.Pager).tlbfree.P;
             n = 255;
             do
             {
@@ -235,7 +235,7 @@ public static partial class Game
             }
             while (((n--) != 0));
             c = (byte)(255);
-            p = new M03Ldr(0x80103230u).slot.P;
+            p = new M03Ldr(Gv.Pager).slot.P;
             n = 383;
             do
             {
@@ -245,47 +245,47 @@ public static partial class Game
             osUnmapTLBAll();
             for (i = (uint)(0); (i < (uint)(24)); ++i)
             {
-                new M03Ldr(0x80103230u).tlbslot[(int)(i)].key_Set((ushort)(65535));
-                new M03Ldr(0x80103230u).tlbslot[(int)(i)].a_Set((byte)(255));
-                new M03Ldr(0x80103230u).tlbslot[(int)(i)].b_Set((byte)(255));
+                new M03Ldr(Gv.Pager).tlbslot[(int)(i)].key_Set((ushort)(65535));
+                new M03Ldr(Gv.Pager).tlbslot[(int)(i)].a_Set((byte)(255));
+                new M03Ldr(Gv.Pager).tlbslot[(int)(i)].b_Set((byte)(255));
             }
-            new M03Ldr(0x80103230u).list.tail__Set(0u);
-            new M03Ldr(0x80103230u).list.head__Set(0u);
+            new M03Ldr(Gv.Pager).list.tail__Set(0u);
+            new M03Ldr(Gv.Pager).list.head__Set(0u);
             for (i = (uint)(0); (i < (uint)(24)); ++i)
             {
-                new M03Ldr(0x80103230u).slot[(int)(i)].next__Set(0u);
-                new M03Ldr(0x80103230u).slot[(int)(i)].prev__Set(0u);
-                List_PushBackDouble(new M03Ldr(0x80103230u).list.P, (new M03Ldr(0x80103230u).slot.P + (uint)(i * 16)));
-                new M03Ldr(0x80103230u).slot[(int)(i)].id_Set((byte)(i));
+                new M03Ldr(Gv.Pager).slot[(int)(i)].next__Set(0u);
+                new M03Ldr(Gv.Pager).slot[(int)(i)].prev__Set(0u);
+                List_PushBackDouble(new M03Ldr(Gv.Pager).list.P, (new M03Ldr(Gv.Pager).slot.P + (uint)(i * 16)));
+                new M03Ldr(Gv.Pager).slot[(int)(i)].id_Set((byte)(i));
             }
-            osCreateMesgQueue(new M03Ldr(0x80103230u).loadq.P, new M03Ldr(0x80103230u).loadbuf.P, 33);
-            osCreateMesgQueue(new M03Ldr(0x80103230u).freeq.P, new M03Ldr(0x80103230u).freebuf.P, 8);
-            osCreateMesgQueue(new M03Ldr(0x80103230u).dmaq.P, new M03Ldr(0x80103230u).dmabuf.P, 8);
-            new M03Ldr(0x80103230u).region.base_Set((ushort)(1024));
-            new M03Ldr(0x80103230u).region.size_Set((ushort)(256));
-            new M03Ldr(0x80103230u).region.data__Set(new M03Ldr(0x80103230u).tlbfree.P);
-            new M03Ldr(0x80103230u).region.next__Set(0u);
-            new M03Ldr(0x80103230u).region.romAddr_Set(((uint)(0x0016E000u) | 2952790016u));
-            new M03Ldr(0x80103230u).region.mappedB_Set((ushort)(0));
+            osCreateMesgQueue(new M03Ldr(Gv.Pager).loadq.P, new M03Ldr(Gv.Pager).loadbuf.P, 33);
+            osCreateMesgQueue(new M03Ldr(Gv.Pager).freeq.P, new M03Ldr(Gv.Pager).freebuf.P, 8);
+            osCreateMesgQueue(new M03Ldr(Gv.Pager).dmaq.P, new M03Ldr(Gv.Pager).dmabuf.P, 8);
+            new M03Ldr(Gv.Pager).region.base_Set((ushort)(1024));
+            new M03Ldr(Gv.Pager).region.size_Set((ushort)(256));
+            new M03Ldr(Gv.Pager).region.data__Set(new M03Ldr(Gv.Pager).tlbfree.P);
+            new M03Ldr(Gv.Pager).region.next__Set(0u);
+            new M03Ldr(Gv.Pager).region.romAddr_Set(((uint)(0x0016E000u) | 2952790016u));
+            new M03Ldr(Gv.Pager).region.mappedB_Set((ushort)(0));
             if ((Mem_GetRamSize() > 5242879u))
             {
-                RomDma_ReadSync(0x801051B8u, 0x0016E000u, 0x00052860u, s4);
+                RomDma_ReadSync(Gv.RomDma_Ctl, 0x0016E000u, 0x00052860u, s4);
             }
             if ((s4 != (uint)(0)))
             {
                 osMapTLB(0, 2088960, (uint)(4194304), (s4 + func_0023B9A0_K0()), (uint)((-1)), 7);
-                new M03Ldr(0x80103230u).region.mapped_Set((ushort)(1));
-                new M03Ldr(0x80103230u).region.mappedB_Set((ushort)(1));
+                new M03Ldr(Gv.Pager).region.mapped_Set((ushort)(1));
+                new M03Ldr(Gv.Pager).region.mappedB_Set((ushort)(1));
             }
             for (i = (uint)(0); (i < (uint)(8)); ++i)
             {
-                osSendMesg(new M03Ldr(0x80103230u).freeq.P, (new M03Ldr(0x80103230u).req.P + (uint)(i * 28)), 1);
+                osSendMesg(new M03Ldr(Gv.Pager).freeq.P, (new M03Ldr(Gv.Pager).req.P + (uint)(i * 28)), 1);
             }
-            new M03Ldr(0x80103230u).evt_Set((ushort)(0));
-            osSetEventMesg((uint)(12), new M03Ldr(0x80103230u).loadq.P, (0x80103230u + 32u));
-            memset(new M03Ldr(0x80103230u).stack.P, 99, (uint)(512));
-            osCreateThread(new M03Ldr(0x80103230u).thr.P, 99, 0x0023C914u, 0u, (new M03Ldr(0x80103230u).stack.P + (uint)512), 147);
-            osStartThread(new M03Ldr(0x80103230u).thr.P);
+            new M03Ldr(Gv.Pager).evt_Set((ushort)(0));
+            osSetEventMesg((uint)(12), new M03Ldr(Gv.Pager).loadq.P, (Gv.Pager + 32u));
+            memset(new M03Ldr(Gv.Pager).stack.P, 99, (uint)(512));
+            osCreateThread(new M03Ldr(Gv.Pager).thr.P, 99, 0x0023C914u, 0u, (new M03Ldr(Gv.Pager).stack.P + (uint)512), 147);
+            osStartThread(new M03Ldr(Gv.Pager).thr.P);
         }
     }
 
@@ -300,15 +300,15 @@ public static partial class Game
             {
                 new B09SlotCtl(0x80103FA0u).cur_Set(new B09SlotCtl(0x80103FA0u).start);
             }
-            if (((int)(new B09SlotA((0x80103F28u + (uint)(idx * 4))).a) != 255))
+            if (((int)(new B09SlotA((Gv.Pager_TlbSlots + (uint)(idx * 4))).a) != 255))
             {
-                new B09LNode((0x80103B50u + (uint)(new B09SlotA((0x80103F28u + (uint)(idx * 4))).a * 16))).tlb_Set((byte)(255));
-                new B09SlotA((0x80103F28u + (uint)(idx * 4))).a_Set((byte)(255));
+                new B09LNode((Gv.Resource_PageTable + (uint)(new B09SlotA((Gv.Pager_TlbSlots + (uint)(idx * 4))).a * 16))).tlb_Set((byte)(255));
+                new B09SlotA((Gv.Pager_TlbSlots + (uint)(idx * 4))).a_Set((byte)(255));
             }
-            if (((int)(new B09SlotA((0x80103F28u + (uint)(idx * 4))).b) != 255))
+            if (((int)(new B09SlotA((Gv.Pager_TlbSlots + (uint)(idx * 4))).b) != 255))
             {
-                new B09LNode((0x80103B50u + (uint)(new B09SlotA((0x80103F28u + (uint)(idx * 4))).b * 16))).tlb_Set((byte)(255));
-                new B09SlotA((0x80103F28u + (uint)(idx * 4))).b_Set((byte)(255));
+                new B09LNode((Gv.Resource_PageTable + (uint)(new B09SlotA((Gv.Pager_TlbSlots + (uint)(idx * 4))).b * 16))).tlb_Set((byte)(255));
+                new B09SlotA((Gv.Pager_TlbSlots + (uint)(idx * 4))).b_Set((byte)(255));
             }
             return (int)(idx);
         }
@@ -326,7 +326,7 @@ public static partial class Game
             }
             else
             {
-                new B09List(0x80103E20u).head__Set(new B09LNode(n).next_);
+                new B09List(Gv.Pager_PageLru).head__Set(new B09LNode(n).next_);
                 new B09LNode(n).next.prev__Set(0u);
             }
             if ((new B09LNode(n).next_ != 0u))
@@ -335,7 +335,7 @@ public static partial class Game
             }
             else
             {
-                new B09List(0x80103E20u).tail__Set(new B09LNode(n).prev_);
+                new B09List(Gv.Pager_PageLru).tail__Set(new B09LNode(n).prev_);
                 new B09LNode(n).prev.next__Set(0u);
             }
         }
@@ -347,15 +347,15 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0023BD24_m03_push", (uint)n);
             new B09LNode(n).next__Set(0u);
-            new B09LNode(n).prev__Set(new B09List(0x80103E20u).tail_);
-            if ((new B09List(0x80103E20u).tail_ != 0u))
+            new B09LNode(n).prev__Set(new B09List(Gv.Pager_PageLru).tail_);
+            if ((new B09List(Gv.Pager_PageLru).tail_ != 0u))
             {
-                new B09List(0x80103E20u).tail.next__Set(n);
+                new B09List(Gv.Pager_PageLru).tail.next__Set(n);
             }
-            new B09List(0x80103E20u).tail__Set(n);
-            if ((new B09List(0x80103E20u).head_ == 0u))
+            new B09List(Gv.Pager_PageLru).tail__Set(n);
+            if ((new B09List(Gv.Pager_PageLru).head_ == 0u))
             {
-                new B09List(0x80103E20u).head__Set(n);
+                new B09List(Gv.Pager_PageLru).head__Set(n);
             }
         }
     }
@@ -372,28 +372,28 @@ public static partial class Game
             {
                 p = (pair - (uint)1);
             }
-            if ((((int)(Mem.U8((p + (uint)0))) != 255) && ((int)(new B09LNode((0x80103B50u + (uint)(Mem.U8((p + (uint)0)) * 16))).tlb) != 255)))
+            if ((((int)(Mem.U8((p + (uint)0))) != 255) && ((int)(new B09LNode((Gv.Resource_PageTable + (uint)(Mem.U8((p + (uint)0)) * 16))).tlb) != 255)))
             {
-                idx = (int)(new B09LNode((0x80103B50u + (uint)(Mem.U8((p + (uint)0)) * 16))).tlb);
-                new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).b_Set(new B09LNode(n).id);
+                idx = (int)(new B09LNode((Gv.Resource_PageTable + (uint)(Mem.U8((p + (uint)0)) * 16))).tlb);
+                new B09SlotA((Gv.Pager_TlbSlots + (uint)((short)(idx) * 4))).b_Set(new B09LNode(n).id);
             }
             else
             {
-                if ((((int)(Mem.U8((p + (uint)1))) != 255) && ((int)(new B09LNode((0x80103B50u + (uint)(Mem.U8((p + (uint)1)) * 16))).tlb) != 255)))
+                if ((((int)(Mem.U8((p + (uint)1))) != 255) && ((int)(new B09LNode((Gv.Resource_PageTable + (uint)(Mem.U8((p + (uint)1)) * 16))).tlb) != 255)))
                 {
-                    idx = (int)(new B09LNode((0x80103B50u + (uint)(Mem.U8((p + (uint)1)) * 16))).tlb);
-                    new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).a_Set(new B09LNode(n).id);
+                    idx = (int)(new B09LNode((Gv.Resource_PageTable + (uint)(Mem.U8((p + (uint)1)) * 16))).tlb);
+                    new B09SlotA((Gv.Pager_TlbSlots + (uint)((short)(idx) * 4))).a_Set(new B09LNode(n).id);
                 }
                 else
                 {
                     idx = Resource_AllocTlbIndex();
                     if ((((int)(slot) & 1) != 0))
                     {
-                        new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).b_Set(new B09LNode(n).id);
+                        new B09SlotA((Gv.Pager_TlbSlots + (uint)((short)(idx) * 4))).b_Set(new B09LNode(n).id);
                         if (((int)(Mem.U8((p + (uint)0))) != 255))
                         {
-                            q = (0x80103B50u + (uint)(Mem.U8((p + (uint)0)) * 16));
-                            new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).a_Set(new B09LNode(q).id);
+                            q = (Gv.Resource_PageTable + (uint)(Mem.U8((p + (uint)0)) * 16));
+                            new B09SlotA((Gv.Pager_TlbSlots + (uint)((short)(idx) * 4))).a_Set(new B09LNode(q).id);
                             new B09LNode(q).tlb_Set((byte)(idx));
                             func_0023BD24_m03_unlink(q);
                             func_0023BD24_m03_push(q);
@@ -401,23 +401,23 @@ public static partial class Game
                     }
                     else
                     {
-                        new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).a_Set(new B09LNode(n).id);
+                        new B09SlotA((Gv.Pager_TlbSlots + (uint)((short)(idx) * 4))).a_Set(new B09LNode(n).id);
                         if (((int)(Mem.U8((p + (uint)1))) != 255))
                         {
-                            q = (0x80103B50u + (uint)(Mem.U8((p + (uint)1)) * 16));
-                            new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).b_Set(new B09LNode(q).id);
+                            q = (Gv.Resource_PageTable + (uint)(Mem.U8((p + (uint)1)) * 16));
+                            new B09SlotA((Gv.Pager_TlbSlots + (uint)((short)(idx) * 4))).b_Set(new B09LNode(q).id);
                             new B09LNode(q).tlb_Set((byte)(idx));
                             func_0023BD24_m03_unlink(q);
                             func_0023BD24_m03_push(q);
                         }
                     }
-                    new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).key_Set((ushort)(((int)(slot) & 65534)));
+                    new B09SlotA((Gv.Pager_TlbSlots + (uint)((short)(idx) * 4))).key_Set((ushort)(((int)(slot) & 65534)));
                 }
             }
             new B09LNode(n).slot_Set((ushort)(slot));
             new B09LNode(n).tlb_Set((byte)(idx));
             Mem.Set(pair, new B09LNode(n).id);
-            osMapTLB((int)((short)(idx)), 0, (uint)(((int)(new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).key) << (int)12)), (((int)(new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).a) != 255) ? (((uint)(0x80156000u) & (uint)(67108863)) + (uint)(((int)(new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).a) << (int)12))) : (uint)((-1))), (((int)(new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).b) != 255) ? (((uint)(0x80156000u) & (uint)(67108863)) + (uint)(((int)(new B09SlotA((0x80103F28u + (uint)((short)(idx) * 4))).b) << (int)12))) : (uint)((-1))), 7);
+            osMapTLB((int)((short)(idx)), 0, (uint)(((int)(new B09SlotA((Gv.Pager_TlbSlots + (uint)((short)(idx) * 4))).key) << (int)12)), (((int)(new B09SlotA((Gv.Pager_TlbSlots + (uint)((short)(idx) * 4))).a) != 255) ? (((uint)(Gv.Resource_PageFrames) & (uint)(67108863)) + (uint)(((int)(new B09SlotA((Gv.Pager_TlbSlots + (uint)((short)(idx) * 4))).a) << (int)12))) : (uint)((-1))), (((int)(new B09SlotA((Gv.Pager_TlbSlots + (uint)((short)(idx) * 4))).b) != 255) ? (((uint)(Gv.Resource_PageFrames) & (uint)(67108863)) + (uint)(((int)(new B09SlotA((Gv.Pager_TlbSlots + (uint)((short)(idx) * 4))).b) << (int)12))) : (uint)((-1))), 7);
         }
     }
 
@@ -431,28 +431,28 @@ public static partial class Game
             {
                 if ((((int)(new B09LNode(n).slot) & 1) != 0))
                 {
-                    new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).b_Set((byte)(255));
-                    if (((int)(new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).a) == 255))
+                    new B09SlotA((Gv.Pager_TlbSlots + (uint)(new B09LNode(n).tlb * 4))).b_Set((byte)(255));
+                    if (((int)(new B09SlotA((Gv.Pager_TlbSlots + (uint)(new B09LNode(n).tlb * 4))).a) == 255))
                     {
                         osUnmapTLB((int)(new B09LNode(n).tlb));
-                        new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).key_Set((ushort)(65535));
+                        new B09SlotA((Gv.Pager_TlbSlots + (uint)(new B09LNode(n).tlb * 4))).key_Set((ushort)(65535));
                     }
                     else
                     {
-                        osMapTLB((int)(new B09LNode(n).tlb), 0, (uint)(((int)(new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).key) << (int)12)), (((uint)(0x80156000u) & (uint)(67108863)) + (uint)(((int)(new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).a) << (int)12))), (uint)((-1)), 7);
+                        osMapTLB((int)(new B09LNode(n).tlb), 0, (uint)(((int)(new B09SlotA((Gv.Pager_TlbSlots + (uint)(new B09LNode(n).tlb * 4))).key) << (int)12)), (((uint)(Gv.Resource_PageFrames) & (uint)(67108863)) + (uint)(((int)(new B09SlotA((Gv.Pager_TlbSlots + (uint)(new B09LNode(n).tlb * 4))).a) << (int)12))), (uint)((-1)), 7);
                     }
                 }
                 else
                 {
-                    new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).a_Set((byte)(255));
-                    if (((int)(new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).b) == 255))
+                    new B09SlotA((Gv.Pager_TlbSlots + (uint)(new B09LNode(n).tlb * 4))).a_Set((byte)(255));
+                    if (((int)(new B09SlotA((Gv.Pager_TlbSlots + (uint)(new B09LNode(n).tlb * 4))).b) == 255))
                     {
                         osUnmapTLB((int)(new B09LNode(n).tlb));
-                        new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).key_Set((ushort)(65535));
+                        new B09SlotA((Gv.Pager_TlbSlots + (uint)(new B09LNode(n).tlb * 4))).key_Set((ushort)(65535));
                     }
                     else
                     {
-                        osMapTLB((int)(new B09LNode(n).tlb), 0, (uint)(((int)(new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).key) << (int)12)), (uint)((-1)), (((uint)(0x80156000u) & (uint)(67108863)) + (uint)(((int)(new B09SlotA((0x80103F28u + (uint)(new B09LNode(n).tlb * 4))).b) << (int)12))), 7);
+                        osMapTLB((int)(new B09LNode(n).tlb), 0, (uint)(((int)(new B09SlotA((Gv.Pager_TlbSlots + (uint)(new B09LNode(n).tlb * 4))).key) << (int)12)), (uint)((-1)), (((uint)(Gv.Resource_PageFrames) & (uint)(67108863)) + (uint)(((int)(new B09SlotA((Gv.Pager_TlbSlots + (uint)(new B09LNode(n).tlb * 4))).b) << (int)12))), 7);
                     }
                 }
                 new B09LNode(n).tlb_Set((byte)(255));
@@ -472,7 +472,7 @@ public static partial class Game
             }
             else
             {
-                new B09List(0x80103E20u).head__Set(new B09LNode(n).next_);
+                new B09List(Gv.Pager_PageLru).head__Set(new B09LNode(n).next_);
                 new B09LNode(n).next.prev__Set(0u);
             }
             if ((new B09LNode(n).next_ != 0u))
@@ -481,7 +481,7 @@ public static partial class Game
             }
             else
             {
-                new B09List(0x80103E20u).tail__Set(new B09LNode(n).prev_);
+                new B09List(Gv.Pager_PageLru).tail__Set(new B09LNode(n).prev_);
                 new B09LNode(n).prev.next__Set(0u);
             }
         }
@@ -493,15 +493,15 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0023C1E0_m03_push", (uint)n);
             new B09LNode(n).next__Set(0u);
-            new B09LNode(n).prev__Set(new B09List(0x80103E20u).tail_);
-            if ((new B09List(0x80103E20u).tail_ != 0u))
+            new B09LNode(n).prev__Set(new B09List(Gv.Pager_PageLru).tail_);
+            if ((new B09List(Gv.Pager_PageLru).tail_ != 0u))
             {
-                new B09List(0x80103E20u).tail.next__Set(n);
+                new B09List(Gv.Pager_PageLru).tail.next__Set(n);
             }
-            new B09List(0x80103E20u).tail__Set(n);
-            if ((new B09List(0x80103E20u).head_ == 0u))
+            new B09List(Gv.Pager_PageLru).tail__Set(n);
+            if ((new B09List(Gv.Pager_PageLru).head_ == 0u))
             {
-                new B09List(0x80103E20u).head__Set(n);
+                new B09List(Gv.Pager_PageLru).head__Set(n);
             }
         }
     }
@@ -528,9 +528,9 @@ public static partial class Game
                 cause = (int)((new OSThread(t).context.cause & (uint)(124)));
                 if (((cause == 4) || (cause == 8)))
                 {
-                    new M03Ldr(0x80103230u).faults_Set((uint)((uint)(new M03Ldr(0x80103230u).faults) + (uint)(1)));
+                    new M03Ldr(Gv.Pager).faults_Set((uint)((uint)(new M03Ldr(Gv.Pager).faults) + (uint)(1)));
                     page = (new OSThread(t).context.badvaddr >> (int)12);
-                    for (r = new M03Ldr(0x80103230u).region.P; (r != 0u); r = new M03Region(r).next_)
+                    for (r = new M03Ldr(Gv.Pager).region.P; (r != 0u); r = new M03Region(r).next_)
                     {
                         if ((!(page < (uint)(new M03Region(r).@base)) && (page < (uint)(((int)(new M03Region(r).@base) + (int)(new M03Region(r).size))))))
                         {
@@ -540,11 +540,11 @@ public static partial class Game
                     found = r;
                     if ((found != 0u))
                     {
-                        new M03Ldr(0x80103230u).lastAddr_Set(new OSThread(t).context.badvaddr);
+                        new M03Ldr(Gv.Pager).lastAddr_Set(new OSThread(t).context.badvaddr);
                         pair = (new M03Region(found).data_ + (uint)(page - (uint)(new M03Region(found).@base)));
                         if (((int)(Mem.U8(pair)) != 255))
                         {
-                            n = (new M03Ldr(0x80103230u).slot.P + (uint)(Mem.U8(pair) * 16));
+                            n = (new M03Ldr(Gv.Pager).slot.P + (uint)(Mem.U8(pair) * 16));
                             if (((int)(new B09LNode(n).tlb) == 255))
                             {
                                 func_0023C1E0_m03_unlink(n);
@@ -555,11 +555,11 @@ public static partial class Game
                             osStartThread(t);
                             return;
                         }
-                        osRecvMesg(new M03Ldr(0x80103230u).freeq.P, _fp, 1);
-                        new M03Ldr(0x80103230u).loads_Set((new M03Ldr(0x80103230u).loads + (uint)(1)));
+                        osRecvMesg(new M03Ldr(Gv.Pager).freeq.P, _fp, 1);
+                        new M03Ldr(Gv.Pager).loads_Set((new M03Ldr(Gv.Pager).loads + (uint)(1)));
                         new B09LoadReq(Mem.U32(_fp)).src_Set((int)((new M03Region(found).romAddr + ((page - (uint)(new M03Region(found).@base)) << (int)12))));
                         new B09LoadReq(Mem.U32(_fp)).len_Set(4096);
-                        n = new B09List(0x80103E20u).head_;
+                        n = new B09List(Gv.Pager_PageLru).head_;
                         func_0023C1E0_m03_unlink(n);
                         Resource_UnmapPage(n);
                         if (((int)(new B09LNode(n).slot) != 65535))
@@ -573,7 +573,7 @@ public static partial class Game
                         new B09LoadReq(Mem.U32(_fp)).slot_Set((short)(page));
                         new B09LoadReq(Mem.U32(_fp)).data__Set(pair);
                         new B09LoadReq(Mem.U32(_fp)).task__Set(t);
-                        osSendMesg(new M03Ldr(0x80103230u).dmaq.P, Mem.U32(_fp), 1);
+                        osSendMesg(new M03Ldr(Gv.Pager).dmaq.P, Mem.U32(_fp), 1);
                         return;
                     }
                     t0 = osGetTime();
@@ -635,7 +635,7 @@ public static partial class Game
             new BlkStats(0x80103240u).total_Set(total);
             new BlkStats(0x80103240u).max_Set(max);
             new BlkStats(0x80103240u).min_Set(min);
-            new BlkStats(0x80103240u).f8_Set(new Obj0C(Mem.U32(0x80103E20u)).fC);
+            new BlkStats(0x80103240u).f8_Set(new Obj0C(Mem.U32(Gv.Pager_PageLru)).fC);
         }
     }
 
@@ -734,7 +734,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0023C8C4", (uint)dst);
-            Mem.Copy(dst, 0x80103230u, 32);
+            Mem.Copy(dst, Gv.Pager, 32);
         }
     }
 
@@ -825,9 +825,9 @@ public static partial class Game
                     osRecvMesg(new B09IoQ(0x80103254u).dmaq.P, (_fp + 28u), 1);
                     if (((int)(Mem.U8(new B09LoadReq(Mem.U32((_fp + 28u))).data_)) == 255))
                     {
-                        RomDma_ReadSync(0x801051B8u, (uint)(new B09LoadReq(Mem.U32((_fp + 28u))).src), (uint)(((new B09LoadReq(Mem.U32((_fp + 28u))).len + 1) & (~1))), (0x80156000u + (uint)((int)(new B09LoadReq(Mem.U32((_fp + 28u))).node.id) << (int)12)));
-                        osInvalDCache((0x80156000u + (uint)((int)(new B09LoadReq(Mem.U32((_fp + 28u))).node.id) << (int)12)), 4096);
-                        osInvalICache((0x80156000u + (uint)((int)(new B09LoadReq(Mem.U32((_fp + 28u))).node.id) << (int)12)), 4096);
+                        RomDma_ReadSync(Gv.RomDma_Ctl, (uint)(new B09LoadReq(Mem.U32((_fp + 28u))).src), (uint)(((new B09LoadReq(Mem.U32((_fp + 28u))).len + 1) & (~1))), (Gv.Resource_PageFrames + (uint)((int)(new B09LoadReq(Mem.U32((_fp + 28u))).node.id) << (int)12)));
+                        osInvalDCache((Gv.Resource_PageFrames + (uint)((int)(new B09LoadReq(Mem.U32((_fp + 28u))).node.id) << (int)12)), 4096);
+                        osInvalICache((Gv.Resource_PageFrames + (uint)((int)(new B09LoadReq(Mem.U32((_fp + 28u))).node.id) << (int)12)), 4096);
                     }
                     new B09LoadReq(Mem.U32((_fp + 28u))).type_Set((short)(1));
                     osSendMesg(new B09IoQ(0x80103254u).loadq.P, Mem.U32((_fp + 28u)), 1);
@@ -861,7 +861,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0023CBF8");
-            uint n = Mem.U32(0x80103E20u);
+            uint n = Mem.U32(Gv.Pager_PageLru);
             uint r = 0u;
             if ((new B09LNode(n).prev_ != 0u))
             {
@@ -869,7 +869,7 @@ public static partial class Game
             }
             else
             {
-                new B09List(0x80103E20u).head__Set(new B09LNode(n).next_);
+                new B09List(Gv.Pager_PageLru).head__Set(new B09LNode(n).next_);
                 new B09LNode(n).next.prev__Set(0u);
             }
             if ((new B09LNode(n).next_ != 0u))
@@ -878,7 +878,7 @@ public static partial class Game
             }
             else
             {
-                new B09List(0x80103E20u).tail__Set(new B09LNode(n).prev_);
+                new B09List(Gv.Pager_PageLru).tail__Set(new B09LNode(n).prev_);
                 new B09LNode(n).prev.next__Set(0u);
             }
             Resource_UnmapPage(n);
@@ -921,8 +921,8 @@ public static partial class Game
             {
                 if (((int)(Mem.U8(p)) != 255))
                 {
-                    Resource_UnmapPage((0x80103B50u + (uint)(Mem.U8(p) * 16)));
-                    new B09LNode((0x80103B50u + (uint)(Mem.U8(p) * 16))).slot_Set((ushort)(65535));
+                    Resource_UnmapPage((Gv.Resource_PageTable + (uint)(Mem.U8(p) * 16)));
+                    new B09LNode((Gv.Resource_PageTable + (uint)(Mem.U8(p) * 16))).slot_Set((ushort)(65535));
                 }
                 p += 1u;
             }
@@ -1045,14 +1045,14 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0023CE8C", (uint)r);
             if (((int)(Mem.U8(new B09LoadReq(r).data_)) == 255))
             {
-                func_0023CE8C_list_push_back(0x80103E20u, new B09LoadReq(r).node_);
+                func_0023CE8C_list_push_back(Gv.Pager_PageLru, new B09LoadReq(r).node_);
                 Resource_MapPage(new B09LoadReq(r).slot, new B09LoadReq(r).node_, (int)(new B09LoadReq(r).task.b17), new B09LoadReq(r).data_);
                 osInvalDCache((uint)(((int)((ushort)(new B09LoadReq(r).slot)) << (int)12)), 4096);
                 osInvalICache((uint)(((int)((ushort)(new B09LoadReq(r).slot)) << (int)12)), 4096);
             }
             else
             {
-                func_0023CE8C_list_push_front(0x80103E20u, new B09LoadReq(r).node_);
+                func_0023CE8C_list_push_front(Gv.Pager_PageLru, new B09LoadReq(r).node_);
             }
             new B09LoadReq(r).task.state_Set((ushort)(2));
             osStartThread(new B09LoadReq(r).task_);
@@ -1145,11 +1145,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00250B98");
-            if ((Mem.Set(0x800D0910u, (int)(Mem.S32(0x800D0910u) + 1)) == 4194303))
+            if ((Mem.Set(Gv.Resource_DynamicKeyCounter, (int)(Mem.S32(Gv.Resource_DynamicKeyCounter) + 1)) == 4194303))
             {
-                Mem.Set(0x800D0910u, 3670016);
+                Mem.Set(Gv.Resource_DynamicKeyCounter, 3670016);
             }
-            return Mem.S32(0x800D0910u);
+            return Mem.S32(Gv.Resource_DynamicKeyCounter);
         }
     }
 
@@ -1166,73 +1166,73 @@ public static partial class Game
             uint n1 = 0u;
             uint i1 = 0u;
             uint t = 0u;
-            Lock_Init(new B12Mgr(0x80103F70u).q11D0.P);
+            Lock_Init(new B12Mgr(Gv.ResourceMgr).q11D0.P);
             mask = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
             {
                 __osRestoreInt(mask);
-                osRecvMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
+                osRecvMesg(new B12Mgr(Gv.ResourceMgr).q11D0.P, 0u, 1);
             }
             else
             {
                 __osRestoreInt(mask);
             }
-            Mem.Set(0x800D0920u, (uint)(1024));
+            Mem.Set(Gv.Resource_NodeCapacity, (uint)(1024));
             if ((Mem_GetRamSize() > (uint)(4194304)))
             {
-                Mem.Set(0x800D0920u, (uint)((uint)(Mem.U32(0x800D0920u)) * (uint)(2)));
+                Mem.Set(Gv.Resource_NodeCapacity, (uint)((uint)(Mem.U32(Gv.Resource_NodeCapacity)) * (uint)(2)));
             }
-            new B12Mgr(0x80103F70u).nodes__Set(Heap_Alloc(0x801051A0u, (Mem.U32(0x800D0920u) * (uint)(40)), default(uint), default(uint)));
-            new B12Mgr(0x80103F70u).stk_Set(Heap_Alloc(0x801051A0u, (Mem.U32(0x800D0920u) * (uint)(4)), default(uint), default(uint)));
-            new B12Mgr(0x80103F70u).pool2__Set(Heap_Alloc(0x801051A0u, (Mem.U32(0x800D0920u) * (uint)(44)), default(uint), default(uint)));
-            osCreateMesgQueue(new B12Mgr(0x80103F70u).q11F0.P, (0x80103F70u + 4616u), 1);
-            new B12Mgr(0x80103F70u).tbl630.Set((int)(1), 0);
-            new B12Mgr(0x80103F70u).tbl630.Set((int)(0), 0);
-            List_Init((new B12Mgr(0x80103F70u).lists.P + (uint)(0 * 20)), 24, 28);
-            List_Init((new B12Mgr(0x80103F70u).lists.P + (uint)(1 * 20)), 32, 36);
-            new B12Mgr(0x80103F70u).cnt_Set(0);
-            for (i = (uint)(0); (i < Mem.U32(0x800D0920u)); ++i)
+            new B12Mgr(Gv.ResourceMgr).nodes__Set(Heap_Alloc(Gv.Resource_Heap, (Mem.U32(Gv.Resource_NodeCapacity) * (uint)(40)), default(uint), default(uint)));
+            new B12Mgr(Gv.ResourceMgr).stk_Set(Heap_Alloc(Gv.Resource_Heap, (Mem.U32(Gv.Resource_NodeCapacity) * (uint)(4)), default(uint), default(uint)));
+            new B12Mgr(Gv.ResourceMgr).pool2__Set(Heap_Alloc(Gv.Resource_Heap, (Mem.U32(Gv.Resource_NodeCapacity) * (uint)(44)), default(uint), default(uint)));
+            osCreateMesgQueue(new B12Mgr(Gv.ResourceMgr).q11F0.P, (Gv.ResourceMgr + 4616u), 1);
+            new B12Mgr(Gv.ResourceMgr).tbl630.Set((int)(1), 0);
+            new B12Mgr(Gv.ResourceMgr).tbl630.Set((int)(0), 0);
+            List_Init((new B12Mgr(Gv.ResourceMgr).lists.P + (uint)(0 * 20)), 24, 28);
+            List_Init((new B12Mgr(Gv.ResourceMgr).lists.P + (uint)(1 * 20)), 32, 36);
+            new B12Mgr(Gv.ResourceMgr).cnt_Set(0);
+            for (i = (uint)(0); (i < Mem.U32(Gv.Resource_NodeCapacity)); ++i)
             {
-                n1 = new B12Mgr(0x80103F70u).nodes_;
+                n1 = new B12Mgr(Gv.ResourceMgr).nodes_;
                 n1 = (n1 + (uint)(i * (uint)(40)));
                 new B12Node(n1).flags_Set((uint)(0));
-                Mem.Set((new B12Mgr(0x80103F70u).stk + (uint)(i * 4)), n1);
-                new B12Mgr(0x80103F70u).cnt_Set((int)(new B12Mgr(0x80103F70u).cnt + 1));
+                Mem.Set((new B12Mgr(Gv.ResourceMgr).stk + (uint)(i * 4)), n1);
+                new B12Mgr(Gv.ResourceMgr).cnt_Set((int)(new B12Mgr(Gv.ResourceMgr).cnt + 1));
             }
-            t = new B12Mgr(0x80103F70u).tbl628.P;
+            t = new B12Mgr(Gv.ResourceMgr).tbl628.P;
             Mem.Set((t + (uint)(1 * 4)), 1);
             Mem.Set((t + (uint)(0 * 4)), 1);
-            new B12Mgr(0x80103F70u).f638_Set((-1));
-            new B12Mgr(0x80103F70u).tbl11C4.Set((int)(0), 0);
-            new B12Mgr(0x80103F70u).tbl11C4.Set((int)(1), 0);
-            new B12Mgr(0x80103F70u).cur__Set(0u);
-            new B12Mgr(0x80103F70u).f120C_Set(1);
-            new B12Mgr(0x80103F70u).stamp_Set((uint)(0));
-            List_Init((new B12Mgr(0x80103F70u).lists3.P + (uint)(0 * 20)), 40, 36);
-            List_Init((new B12Mgr(0x80103F70u).lists3.P + (uint)(1 * 20)), 40, 36);
-            List_Init((new B12Mgr(0x80103F70u).lists3.P + (uint)(2 * 20)), 40, 36);
-            for (i = (uint)(0); (i < Mem.U32(0x800D0920u)); ++i)
+            new B12Mgr(Gv.ResourceMgr).f638_Set((-1));
+            new B12Mgr(Gv.ResourceMgr).tbl11C4.Set((int)(0), 0);
+            new B12Mgr(Gv.ResourceMgr).tbl11C4.Set((int)(1), 0);
+            new B12Mgr(Gv.ResourceMgr).cur__Set(0u);
+            new B12Mgr(Gv.ResourceMgr).f120C_Set(1);
+            new B12Mgr(Gv.ResourceMgr).stamp_Set((uint)(0));
+            List_Init((new B12Mgr(Gv.ResourceMgr).lists3.P + (uint)(0 * 20)), 40, 36);
+            List_Init((new B12Mgr(Gv.ResourceMgr).lists3.P + (uint)(1 * 20)), 40, 36);
+            List_Init((new B12Mgr(Gv.ResourceMgr).lists3.P + (uint)(2 * 20)), 40, 36);
+            for (i = (uint)(0); (i < Mem.U32(Gv.Resource_NodeCapacity)); ++i)
             {
-                n = new B12Mgr(0x80103F70u).pool2_;
+                n = new B12Mgr(Gv.ResourceMgr).pool2_;
                 n = (n + (uint)(i * (uint)(44)));
                 new B12Node(n).unk10_Set((uint)(0));
-                List_Append_00255CB4((new B12Mgr(0x80103F70u).lists3.P + (uint)(0 * 20)), n, default(uint), default(uint));
+                List_Append_00255CB4((new B12Mgr(Gv.ResourceMgr).lists3.P + (uint)(0 * 20)), n, default(uint), default(uint));
             }
-            AddrHash_Create(Mem.U32(0x800D0920u), default(uint), default(uint), default(uint));
-            osCreateMesgQueue(new B12Mgr(0x80103F70u).q870.P, new B12Mgr(0x80103F70u).buf870.P, 64);
+            AddrHash_Create(Mem.U32(Gv.Resource_NodeCapacity), default(uint), default(uint), default(uint));
+            osCreateMesgQueue(new B12Mgr(Gv.ResourceMgr).q870.P, new B12Mgr(Gv.ResourceMgr).buf870.P, 64);
             m2 = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
             {
                 __osRestoreInt(m2);
-                osSendMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
+                osSendMesg(new B12Mgr(Gv.ResourceMgr).q11D0.P, 0u, 1);
             }
             else
             {
                 __osRestoreInt(m2);
             }
-            memset(new B12Mgr(0x80103F70u).stack.P, id, (uint)(2048));
-            osCreateThread(new B12Mgr(0x80103F70u).thread.P, id, 0x00252450u, 0u, (new B12Mgr(0x80103F70u).stack.P + (uint)2048), Mem.S32(0x800D2B2Cu));
-            osStartThread(new B12Mgr(0x80103F70u).thread.P);
+            memset(new B12Mgr(Gv.ResourceMgr).stack.P, id, (uint)(2048));
+            osCreateThread(new B12Mgr(Gv.ResourceMgr).thread.P, id, 0x00252450u, 0u, (new B12Mgr(Gv.ResourceMgr).stack.P + (uint)2048), Mem.S32(0x800D2B2Cu));
+            osStartThread(new B12Mgr(Gv.ResourceMgr).thread.P);
         }
     }
 
@@ -1266,10 +1266,10 @@ public static partial class Game
             if ((cnt != 0))
             {
                 m2 = __osDisableInt();
-                if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+                if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
                 {
                     __osRestoreInt(m2);
-                    osSendMesg(0x80105140u, 0u, 1);
+                    osSendMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
                 }
                 else
                 {
@@ -1280,10 +1280,10 @@ public static partial class Game
                     osRecvMesg(0x80105160u, 0u, 1);
                 }
                 mask = __osDisableInt();
-                if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+                if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
                 {
                     __osRestoreInt(mask);
-                    osRecvMesg(0x80105140u, 0u, 1);
+                    osRecvMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
                 }
                 else
                 {
@@ -1440,20 +1440,20 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00251448_pool_alloc", (uint)arg1);
             uint temp_s0 = 0u;
-            if ((new Pool(0x8010513Cu).count == 0))
+            if ((new Pool(Gv.Resource_NodePool).count == 0))
             {
                 return 0u;
             }
-            new Pool(0x8010513Cu).count_Set((int)((int)(new Pool(0x8010513Cu).count) - 1));
-            temp_s0 = Mem.U32((Mem.U32(0x80104564u) + (uint)(new Pool(0x8010513Cu).count * 4)));
+            new Pool(Gv.Resource_NodePool).count_Set((int)((int)(new Pool(Gv.Resource_NodePool).count) - 1));
+            temp_s0 = Mem.U32((Mem.U32(0x80104564u) + (uint)(new Pool(Gv.Resource_NodePool).count * 4)));
             new func_80251448_S1(temp_s0).unkC_Set(2048);
             new func_80251448_S1(temp_s0).unk8_Set(0);
             new func_80251448_S1(temp_s0).unk0_Set(0);
             new func_80251448_S1(temp_s0).unk24_Set(0);
             new func_80251448_S1(temp_s0).unk20_Set(0);
             new func_80251448_S1(temp_s0).unk14_Set(0);
-            new func_80251448_S1(temp_s0).unk10_Set(new Pool(0x8010513Cu).field44);
-            List_Add((0x8010513Cu - (uint)3020), (uint)((int)(temp_s0)));
+            new func_80251448_S1(temp_s0).unk10_Set(new Pool(Gv.Resource_NodePool).field44);
+            List_Add((Gv.Resource_NodePool - (uint)3020), (uint)((int)(temp_s0)));
             new func_80251448_S1(temp_s0).unkC_Set((int)((int)(new func_80251448_S1(temp_s0).unkC) | (arg1 & 12)));
             return temp_s0;
         }
@@ -1571,9 +1571,9 @@ public static partial class Game
                 uint p = 0u;
                 uint r = 0u;
                 List_Init(_fp, 32, 36);
-                if ((((flag == 0) && (new B12Mgr(0x80103F70u).cur_ != 0u)) || (C.Seq((object?)(new B12Mgr(0x80103F70u).cur__Set(new B12Mgr(0x80103F70u).lists[(int)(1)].head_)), ((new B12Mgr(0x80103F70u).lists[(int)(1)].head_ != 0u) ? 1 : 0)) != 0)))
+                if ((((flag == 0) && (new B12Mgr(Gv.ResourceMgr).cur_ != 0u)) || (C.Seq((object?)(new B12Mgr(Gv.ResourceMgr).cur__Set(new B12Mgr(Gv.ResourceMgr).lists[(int)(1)].head_)), ((new B12Mgr(Gv.ResourceMgr).lists[(int)(1)].head_ != 0u) ? 1 : 0)) != 0)))
                 {
-                    uint c = (0x80103F70u + 1528u);
+                    uint c = (Gv.ResourceMgr + 1528u);
                     uint firstp = 0x801051A8u;
                     uint heap = (firstp - (uint)8);
                     do
@@ -1597,7 +1597,7 @@ public static partial class Game
                             }
                         }
                     }
-                    while ((new B12Mgr(0x80103F70u).cur_ != 0u));
+                    while ((new B12Mgr(Gv.ResourceMgr).cur_ != 0u));
                 }
                 n = new B12List(_fp).head_;
                 if ((n != 0u))
@@ -1606,14 +1606,14 @@ public static partial class Game
                     {
                         next = new B12Node(n).next_;
                         Cursor_Advance_00255F10(_fp, default(uint), default(uint), default(uint));
-                        p = new B12Mgr(0x80103F70u).lists[(int)(1)].head_;
+                        p = new B12Mgr(Gv.ResourceMgr).lists[(int)(1)].head_;
                         if ((p != 0u))
                         {
                             do
                             {
                                 if ((new B12Node(p).key > new B12Node(n).key))
                                 {
-                                    List_InsertBefore((new B12Mgr(0x80103F70u).lists.P + (uint)(1 * 20)), p, n, default(uint));
+                                    List_InsertBefore((new B12Mgr(Gv.ResourceMgr).lists.P + (uint)(1 * 20)), p, n, default(uint));
                                     break;
                                 }
                                 p = new B12Node(p).next_;
@@ -1622,7 +1622,7 @@ public static partial class Game
                         }
                         if (!(p != 0u))
                         {
-                            List_Append_00255CB4((new B12Mgr(0x80103F70u).lists.P + (uint)(1 * 20)), n, default(uint), default(uint));
+                            List_Append_00255CB4((new B12Mgr(Gv.ResourceMgr).lists.P + (uint)(1 * 20)), n, default(uint), default(uint));
                         }
                         new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) | (uint)(4096)));
                         n = next;
@@ -1640,7 +1640,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00251754_hashFind", (uint)key, (uint)@out);
-            uint b = (Mem.U32(0x80105194u) + (uint)((((((key << (int)5) ^ (key >> (int)1)) ^ (key >> (int)9)) ^ (key >> (int)17)) & Mem.U32(0x80105190u)) * 16));
+            uint b = (Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)((((((key << (int)5) ^ (key >> (int)1)) ^ (key >> (int)9)) ^ (key >> (int)17)) & Mem.U32(0x80105190u)) * 16));
             if ((new B12Bucket(b).unk0 == key))
             {
                 Mem.Set(@out, (uint)(new B12Bucket(b).unk4));
@@ -1670,10 +1670,10 @@ public static partial class Game
                 uint m2 = 0u;
                 uint n = 0u;
                 mask = __osDisableInt();
-                if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+                if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
                 {
                     __osRestoreInt(mask);
-                    osRecvMesg(0x80105140u, 0u, 1);
+                    osRecvMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
                 }
                 else
                 {
@@ -1687,13 +1687,13 @@ public static partial class Game
                     new B12Node(n).refs_Set((int)(new B12Node(n).refs + 1));
                     new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) | (uint)(256)));
                     new B12Node(n).unk10_Set(Mem.U32((0x80105180u + (uint)(0 * 4))));
-                    List_MoveToHead(0x80104570u, n, default(uint), default(uint));
+                    List_MoveToHead(Gv.Resource_LruList, n, default(uint), default(uint));
                 }
                 m2 = __osDisableInt();
-                if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+                if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
                 {
                     __osRestoreInt(m2);
-                    osSendMesg(0x80105140u, 0u, 1);
+                    osSendMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
                 }
                 else
                 {
@@ -1711,7 +1711,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002518DC_hashFind", (uint)key, (uint)@out);
-            uint b = (Mem.U32(0x80105194u) + (uint)((((((key << (int)5) ^ (key >> (int)1)) ^ (key >> (int)9)) ^ (key >> (int)17)) & Mem.U32(0x80105190u)) * 16));
+            uint b = (Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)((((((key << (int)5) ^ (key >> (int)1)) ^ (key >> (int)9)) ^ (key >> (int)17)) & Mem.U32(0x80105190u)) * 16));
             if ((new B12Bucket(b).unk0 == key))
             {
                 Mem.Set(@out, (uint)(new B12Bucket(b).unk4));
@@ -1757,10 +1757,10 @@ public static partial class Game
                 uint fl2 = 0u;
                 uint n2 = 0u;
                 m1 = __osDisableInt();
-                if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+                if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
                 {
                     __osRestoreInt(m1);
-                    osRecvMesg(0x80105140u, 0u, 1);
+                    osRecvMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
                 }
                 else
                 {
@@ -1774,12 +1774,12 @@ public static partial class Game
                     new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) | (uint)(256)));
                     n = new B12Ent(Mem.U32(_fp)).node_;
                     new B12Node(n).unk10_Set(Mem.U32(0x80105180u));
-                    List_MoveToHead(0x80104570u, n, default(uint), default(uint));
+                    List_MoveToHead(Gv.Resource_LruList, n, default(uint), default(uint));
                     m2 = __osDisableInt();
-                    if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+                    if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
                     {
                         __osRestoreInt(m2);
-                        osSendMesg(0x80105140u, 0u, 1);
+                        osSendMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
                     }
                     else
                     {
@@ -1787,11 +1787,11 @@ public static partial class Game
                     }
                     return new B12Ent(Mem.U32(_fp)).node_;
                 }
-                flag = (int)((int)(flag) | new B12Mgr(0x80103F70u).f120C);
+                flag = (int)((int)(flag) | new B12Mgr(Gv.ResourceMgr).f120C);
                 if ((flag == 0))
                 {
                     found = 0;
-                    for (p = new B12Mgr(0x80103F70u).lists3[(int)(2)].head_; (p != 0u); p = new B12Ent(p).next_)
+                    for (p = new B12Mgr(Gv.ResourceMgr).lists3[(int)(2)].head_; (p != 0u); p = new B12Ent(p).next_)
                     {
                         if ((new B12Ent(p).key == key))
                         {
@@ -1857,8 +1857,8 @@ public static partial class Game
                         new B12Ent(q).owner_Set(owner);
                         new B12Ent(q).fn_Set(fn);
                         new B12Ent(q).size_Set(e);
-                        List_Remove((new B12Mgr(0x80103F70u).lists3.P + (uint)(1 * 20)), q, default(uint), default(uint));
-                        List_Append_00255CB4((new B12Mgr(0x80103F70u).lists3.P + (uint)(2 * 20)), Mem.U32(_fp), default(uint), default(uint));
+                        List_Remove((new B12Mgr(Gv.ResourceMgr).lists3.P + (uint)(1 * 20)), q, default(uint), default(uint));
+                        List_Append_00255CB4((new B12Mgr(Gv.ResourceMgr).lists3.P + (uint)(2 * 20)), Mem.U32(_fp), default(uint), default(uint));
                         if ((flag != 0))
                         {
                             if ((fn != 0u))
@@ -1866,25 +1866,25 @@ public static partial class Game
                                 new B12Ent(Mem.U32(_fp)).flags_Set((uint)((uint)(new B12Ent(Mem.U32(_fp)).flags) | (uint)(4)));
                             }
                             m3 = __osDisableInt();
-                            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+                            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
                             {
                                 __osRestoreInt(m3);
-                                osSendMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
+                                osSendMesg(new B12Mgr(Gv.ResourceMgr).q11D0.P, 0u, 1);
                             }
                             else
                             {
                                 __osRestoreInt(m3);
                             }
-                            RomDma_ReadSync(0x801051B8u, (uint)(src), size, (uint)((int)(new B12Ent(Mem.U32(_fp)).node.key)));
+                            RomDma_ReadSync(Gv.RomDma_Ctl, (uint)(src), size, (uint)((int)(new B12Ent(Mem.U32(_fp)).node.key)));
                             if ((fn != 0u))
                             {
-                                MsgPort_SendSync(0x8010A248u, Mem.U32(_fp));
+                                MsgPort_SendSync(Gv.ResourceLoader_Port, Mem.U32(_fp));
                             }
                             m4 = __osDisableInt();
-                            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+                            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
                             {
                                 __osRestoreInt(m4);
-                                osRecvMesg(0x80105140u, 0u, 1);
+                                osRecvMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
                             }
                             else
                             {
@@ -1902,10 +1902,10 @@ public static partial class Game
                                 new B12Node(n2).flags_Set((uint)((uint)(new B12Node(n2).flags) | (uint)(256)));
                             }
                             m5 = __osDisableInt();
-                            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+                            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
                             {
                                 __osRestoreInt(m5);
-                                osSendMesg(0x80105140u, 0u, 1);
+                                osSendMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
                             }
                             else
                             {
@@ -1924,26 +1924,26 @@ public static partial class Game
                             new B12Ent(Mem.U32(_fp)).flags_Set((fl2 | (uint)(14)));
                         }
                         m6 = __osDisableInt();
-                        if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+                        if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
                         {
                             __osRestoreInt(m6);
-                            osSendMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
+                            osSendMesg(new B12Mgr(Gv.ResourceMgr).q11D0.P, 0u, 1);
                         }
                         else
                         {
                             __osRestoreInt(m6);
                         }
-                        RomDma_ReadAsync(0x801051B8u, (uint)(src), size, (uint)((int)(new B12Ent(Mem.U32(_fp)).node.key)), 0x801047E0u, Mem.U32(_fp), 0);
+                        RomDma_ReadAsync(Gv.RomDma_Ctl, (uint)(src), size, (uint)((int)(new B12Ent(Mem.U32(_fp)).node.key)), 0x801047E0u, Mem.U32(_fp), 0);
                         return 0u;
                     }
                     Resource_FreeRequest((uint)(0), Mem.U32(_fp));
                 }
                 L_done: ;
                 m7 = __osDisableInt();
-                if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+                if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
                 {
                     __osRestoreInt(m7);
-                    osSendMesg(0x80105140u, 0u, 1);
+                    osSendMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
                 }
                 else
                 {
@@ -1972,7 +1972,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00251F0C_stamp", (uint)node);
             new Node_func_80251F6C_de(node).stamp_Set(Mem.S32(0x80105180u));
-            List_MoveToHead(0x80104570u, node, default(uint), default(uint));
+            List_MoveToHead(Gv.Resource_LruList, node, default(uint), default(uint));
         }
     }
 
@@ -1994,8 +1994,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00251F0C_acquire");
             uint token = __osDisableInt();
-            int counter = (Mem.S32(0x8010515Cu) + 1);
-            Mem.Set(0x8010515Cu, counter);
+            int counter = (Mem.S32(Gv.ResourceMgr_LockDepth) + 1);
+            Mem.Set(Gv.ResourceMgr_LockDepth, counter);
             if ((counter != 1))
             {
                 __osRestoreInt(token);
@@ -2014,8 +2014,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00251F0C_release");
             uint token = __osDisableInt();
-            int counter = (Mem.S32(0x8010515Cu) - 1);
-            Mem.Set(0x8010515Cu, counter);
+            int counter = (Mem.S32(Gv.ResourceMgr_LockDepth) - 1);
+            Mem.Set(Gv.ResourceMgr_LockDepth, counter);
             if ((counter != 0))
             {
                 __osRestoreInt(token);
@@ -2354,14 +2354,14 @@ public static partial class Game
                 uint m2 = 0u;
                 while ((1 != 0))
                 {
-                    osRecvMesg(new B12Mgr(0x80103F70u).q870.P, _fp, 1);
+                    osRecvMesg(new B12Mgr(Gv.ResourceMgr).q870.P, _fp, 1);
                     if (((uint)(Mem.U32(_fp)) < (uint)(2)))
                     {
                         mask = __osDisableInt();
-                        if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+                        if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
                         {
                             __osRestoreInt(mask);
-                            osRecvMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
+                            osRecvMesg(new B12Mgr(Gv.ResourceMgr).q11D0.P, 0u, 1);
                         }
                         else
                         {
@@ -2369,10 +2369,10 @@ public static partial class Game
                         }
                         Resource_OnFrameDone(0, (int)((uint)(Mem.U32(_fp))));
                         m2 = __osDisableInt();
-                        if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+                        if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
                         {
                             __osRestoreInt(m2);
-                            osSendMesg(0x80105140u, 0u, 1);
+                            osSendMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
                         }
                         else
                         {
@@ -2385,22 +2385,22 @@ public static partial class Game
                         if (((new B12Msg(Mem.U32(_fp)).flags & (uint)(8)) != 0u))
                         {
                             new B12Msg(Mem.U32(_fp)).flags_Set((uint)((uint)(new B12Msg(Mem.U32(_fp)).flags) & (uint)((~8))));
-                            if ((MsgPort_Send(0x8010A248u, Mem.U32(_fp), new B12Mgr(0x80103F70u).q870.P) != 0))
+                            if ((MsgPort_Send(Gv.ResourceLoader_Port, Mem.U32(_fp), new B12Mgr(Gv.ResourceMgr).q870.P) != 0))
                             {
                                 continue;
                             }
                             mask = __osDisableInt();
-                            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+                            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
                             {
                                 __osRestoreInt(mask);
-                                osRecvMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
+                                osRecvMesg(new B12Mgr(Gv.ResourceMgr).q11D0.P, 0u, 1);
                             }
                             else
                             {
                                 __osRestoreInt(mask);
                             }
-                            List_Remove((new B12Mgr(0x80103F70u).lists3.P + (uint)(2 * 20)), Mem.U32(_fp), default(uint), default(uint));
-                            List_Add((new B12Mgr(0x80103F70u).lists3.P + (uint)(1 * 20)), Mem.U32(_fp));
+                            List_Remove((new B12Mgr(Gv.ResourceMgr).lists3.P + (uint)(2 * 20)), Mem.U32(_fp), default(uint), default(uint));
+                            List_Add((new B12Mgr(Gv.ResourceMgr).lists3.P + (uint)(1 * 20)), Mem.U32(_fp));
                             p = new B12Msg(Mem.U32(_fp)).node_;
                             new B12Node(p).flags_Set((uint)((uint)(new B12Node(p).flags) & (uint)((~2))));
                             while ((new B12Node(p).refs != 0))
@@ -2414,15 +2414,15 @@ public static partial class Game
                             if (!((new B12Node(p).flags & (uint)(1794)) != 0u))
                             {
                                 Resource_FreeNodeRequest(0, p);
-                                Heap_Free(0x801051A0u, (uint)((int)(new B12Node(p).key)), default(uint), default(uint));
+                                Heap_Free(Gv.Resource_Heap, (uint)((int)(new B12Node(p).key)), default(uint), default(uint));
                                 ResourcePool_ReturnNode(0, p);
                             }
                             Resource_FreeRequest((uint)(0), Mem.U32(_fp));
                             m2 = __osDisableInt();
-                            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+                            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
                             {
                                 __osRestoreInt(m2);
-                                osSendMesg(0x80105140u, 0u, 1);
+                                osSendMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
                             }
                             else
                             {
@@ -2433,10 +2433,10 @@ public static partial class Game
                         {
                             new B12Msg(Mem.U32(_fp)).flags_Set((uint)((uint)(new B12Msg(Mem.U32(_fp)).flags) & (uint)((~4))));
                             mask = __osDisableInt();
-                            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+                            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
                             {
                                 __osRestoreInt(mask);
-                                osRecvMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
+                                osRecvMesg(new B12Mgr(Gv.ResourceMgr).q11D0.P, 0u, 1);
                             }
                             else
                             {
@@ -2444,10 +2444,10 @@ public static partial class Game
                             }
                             Resource_ActivateLoadRequest((uint)(0), Mem.U32(_fp), (uint)(1), default(uint));
                             m2 = __osDisableInt();
-                            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+                            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
                             {
                                 __osRestoreInt(m2);
-                                osSendMesg(0x80105140u, 0u, 1);
+                                osSendMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
                             }
                             else
                             {
@@ -2467,7 +2467,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00252714_find", (uint)key, (uint)@out);
-            uint node = (Mem.U32(0x80105194u) + (uint)((((((uint)((key << (int)5)) ^ ((uint)(key) >> (int)1)) ^ ((uint)(key) >> (int)9)) ^ ((uint)(key) >> (int)17)) & Mem.U32(0x80105190u)) * 16));
+            uint node = (Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)((((((uint)((key << (int)5)) ^ ((uint)(key) >> (int)1)) ^ ((uint)(key) >> (int)9)) ^ ((uint)(key) >> (int)17)) & Mem.U32(0x80105190u)) * 16));
             if ((new HashNode_func_80252774_de(node).key == key))
             {
                 Mem.Set(@out, new HashNode_func_80252774_de(node).value_);
@@ -2491,18 +2491,18 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00252714_release", (uint)node);
-            List_Remove(0x80104570u, (uint)(node), default(uint), default(uint));
+            List_Remove(Gv.Resource_LruList, (uint)(node), default(uint), default(uint));
             if (((new Node_func_80252774_de((uint)(node)).flags & 4096) != 0))
             {
-                List_Remove((0x80104570u + 20u), (uint)(node), default(uint), default(uint));
+                List_Remove((Gv.Resource_LruList + 20u), (uint)(node), default(uint), default(uint));
             }
-            if ((Mem.S32((0x80104570u - (uint)(2 * 4))) == node))
+            if ((Mem.S32((Gv.Resource_LruList - (uint)(2 * 4))) == node))
             {
-                Mem.Set((0x80104570u - (uint)(2 * 4)), 0);
+                Mem.Set((Gv.Resource_LruList - (uint)(2 * 4)), 0);
             }
             new Node_func_80252774_de((uint)(node)).flags_Set(0);
-            Mem.Set((Mem.U32(0x80104564u) + (uint)(Mem.S32(0x8010513Cu) * 4)), (uint)(node));
-            Mem.Set((0x80104570u + (uint)(755 * 4)), (int)((int)(Mem.S32((0x80104570u + (uint)(755 * 4)))) + 1));
+            Mem.Set((Mem.U32(0x80104564u) + (uint)(Mem.S32(Gv.Resource_NodePool) * 4)), (uint)(node));
+            Mem.Set((Gv.Resource_LruList + (uint)(755 * 4)), (int)((int)(Mem.S32((Gv.Resource_LruList + (uint)(755 * 4)))) + 1));
         }
     }
 
@@ -2705,10 +2705,10 @@ public static partial class Game
             uint data = (p + (uint)16);
             uint blk = 0u;
             m1 = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
             {
                 __osRestoreInt(m1);
-                osRecvMesg(0x80105140u, 0u, 1);
+                osRecvMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -2716,10 +2716,10 @@ public static partial class Game
             }
             n = ResourcePool_AllocUnlocked(0, (int)(data), (uint)(51));
             m2 = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
             {
                 __osRestoreInt(m2);
-                osSendMesg(0x80105140u, 0u, 1);
+                osSendMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -2729,10 +2729,10 @@ public static partial class Game
             if ((q == 0u))
             {
                 m3 = __osDisableInt();
-                if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+                if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
                 {
                     __osRestoreInt(m3);
-                    osRecvMesg(0x80105140u, 0u, 1);
+                    osRecvMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
                 }
                 else
                 {
@@ -2744,20 +2744,20 @@ public static partial class Game
                 }
                 ResourcePool_Defragment(0, 1);
                 m4 = __osDisableInt();
-                if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+                if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
                 {
                     __osRestoreInt(m4);
-                    osSendMesg(0x80105140u, 0u, 1);
+                    osSendMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
                 }
                 else
                 {
                     __osRestoreInt(m4);
                 }
                 m5 = __osDisableInt();
-                if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+                if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
                 {
                     __osRestoreInt(m5);
-                    osRecvMesg(0x80105140u, 0u, 1);
+                    osRecvMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
                 }
                 else
                 {
@@ -2765,10 +2765,10 @@ public static partial class Game
                 }
                 n = ResourcePool_AllocUnlocked(0, (int)(data), (uint)(51));
                 m6 = __osDisableInt();
-                if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+                if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
                 {
                     __osRestoreInt(m6);
-                    osSendMesg(0x80105140u, 0u, 1);
+                    osSendMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
                 }
                 else
                 {
@@ -2829,13 +2829,13 @@ public static partial class Game
             uint mask = 0u;
             uint m2 = 0u;
             int i = 0;
-            new B12Mgr(0x80103F70u).f120C_Set(1);
-            new B12Mgr(0x80103F70u).stamp_Set((uint)(new B12Mgr(0x80103F70u).stamp + 1));
+            new B12Mgr(Gv.ResourceMgr).f120C_Set(1);
+            new B12Mgr(Gv.ResourceMgr).stamp_Set((uint)(new B12Mgr(Gv.ResourceMgr).stamp + 1));
             mask = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
             {
                 __osRestoreInt(mask);
-                osRecvMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
+                osRecvMesg(new B12Mgr(Gv.ResourceMgr).q11D0.P, 0u, 1);
             }
             else
             {
@@ -2849,10 +2849,10 @@ public static partial class Game
             }
             while ((i < 10));
             m2 = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
             {
                 __osRestoreInt(m2);
-                osSendMesg(0x80105140u, 0u, 1);
+                osSendMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -2871,10 +2871,10 @@ public static partial class Game
             uint m2 = 0u;
             uint r = 0u;
             mask = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
             {
                 __osRestoreInt(mask);
-                osRecvMesg(0x80105140u, 0u, 1);
+                osRecvMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -2882,10 +2882,10 @@ public static partial class Game
             }
             r = ResourcePool_AllocUnlocked(0, a1, a2);
             m2 = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
             {
                 __osRestoreInt(m2);
-                osSendMesg(0x80105140u, 0u, 1);
+                osSendMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -2905,10 +2905,10 @@ public static partial class Game
             uint m2 = 0u;
             uint n = 0u;
             mask = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
             {
                 __osRestoreInt(mask);
-                osRecvMesg(0x80105140u, 0u, 1);
+                osRecvMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -2917,7 +2917,7 @@ public static partial class Game
             n = ResourcePool_AllocNode((uint)(0), (uint)(0), default(uint), default(uint));
             if ((n != 0u))
             {
-                new B12Node(n).key_Set((uint)((int)(Heap_AllocAt(0x801051A0u, (uint)(ptr), (uint)(size)))));
+                new B12Node(n).key_Set((uint)((int)(Heap_AllocAt(Gv.Resource_Heap, (uint)(ptr), (uint)(size)))));
                 if ((new B12Node(n).key != 0u))
                 {
                     new B12Node(n).unk4_Set(size);
@@ -2931,10 +2931,10 @@ public static partial class Game
                 }
             }
             m2 = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
             {
                 __osRestoreInt(m2);
-                osSendMesg(0x80105140u, 0u, 1);
+                osSendMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -2953,10 +2953,10 @@ public static partial class Game
             uint mask = 0u;
             uint m2 = 0u;
             mask = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
             {
                 __osRestoreInt(mask);
-                osRecvMesg(0x80105140u, 0u, 1);
+                osRecvMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -2966,10 +2966,10 @@ public static partial class Game
             new B12Node(n).refs_Set((int)(new B12Node(n).refs + 1));
             new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) | (uint)(256)));
             m2 = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
             {
                 __osRestoreInt(m2);
-                osSendMesg(0x80105140u, 0u, 1);
+                osSendMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -2987,10 +2987,10 @@ public static partial class Game
             uint mask = 0u;
             uint m2 = 0u;
             mask = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
             {
                 __osRestoreInt(mask);
-                osRecvMesg(0x80105140u, 0u, 1);
+                osRecvMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -3002,10 +3002,10 @@ public static partial class Game
                 new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) & (uint)((~256))));
             }
             m2 = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
             {
                 __osRestoreInt(m2);
-                osSendMesg(0x80105140u, 0u, 1);
+                osSendMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -3023,10 +3023,10 @@ public static partial class Game
             uint mask = 0u;
             uint m2 = 0u;
             mask = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
             {
                 __osRestoreInt(mask);
-                osRecvMesg(0x80105140u, 0u, 1);
+                osRecvMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -3034,10 +3034,10 @@ public static partial class Game
             }
             ResourcePool_ReleaseUnlocked((uint)(0), n, default(uint), default(uint));
             m2 = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
             {
                 __osRestoreInt(m2);
-                osSendMesg(0x80105140u, 0u, 1);
+                osSendMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -3055,10 +3055,10 @@ public static partial class Game
             uint mask = 0u;
             uint m2 = 0u;
             mask = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
             {
                 __osRestoreInt(mask);
-                osRecvMesg(0x80105140u, 0u, 1);
+                osRecvMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -3070,10 +3070,10 @@ public static partial class Game
             }
             ResourcePool_Defragment(0, 1);
             m2 = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
             {
                 __osRestoreInt(m2);
-                osSendMesg(0x80105140u, 0u, 1);
+                osSendMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -3091,22 +3091,22 @@ public static partial class Game
             uint mask = 0u;
             uint m2 = 0u;
             mask = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
             {
                 __osRestoreInt(mask);
-                osRecvMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
+                osRecvMesg(new B12Mgr(Gv.ResourceMgr).q11D0.P, 0u, 1);
             }
             else
             {
                 __osRestoreInt(mask);
             }
-            new B12Mgr(0x80103F70u).f638_Set(idx);
-            new B12Mgr(0x80103F70u).tbl628.Set((int)(idx), 1);
+            new B12Mgr(Gv.ResourceMgr).f638_Set(idx);
+            new B12Mgr(Gv.ResourceMgr).tbl628.Set((int)(idx), 1);
             m2 = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
             {
                 __osRestoreInt(m2);
-                osSendMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
+                osSendMesg(new B12Mgr(Gv.ResourceMgr).q11D0.P, 0u, 1);
             }
             else
             {
@@ -3125,22 +3125,22 @@ public static partial class Game
             uint m2 = 0u;
             int r = 0;
             mask = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
             {
                 __osRestoreInt(mask);
-                osRecvMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
+                osRecvMesg(new B12Mgr(Gv.ResourceMgr).q11D0.P, 0u, 1);
             }
             else
             {
                 __osRestoreInt(mask);
             }
-            r = new B12Mgr(0x80103F70u).tbl628[(int)(new B12Mgr(0x80103F70u).f638)];
-            new B12Mgr(0x80103F70u).f638_Set((-1));
+            r = new B12Mgr(Gv.ResourceMgr).tbl628[(int)(new B12Mgr(Gv.ResourceMgr).f638)];
+            new B12Mgr(Gv.ResourceMgr).f638_Set((-1));
             m2 = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
             {
                 __osRestoreInt(m2);
-                osSendMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
+                osSendMesg(new B12Mgr(Gv.ResourceMgr).q11D0.P, 0u, 1);
             }
             else
             {
@@ -3158,19 +3158,19 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00253B5C", (uint)unused, (uint)n);
             uint mask = 0u;
             uint m2 = 0u;
-            int idx = new B12Mgr(0x80103F70u).f638;
+            int idx = new B12Mgr(Gv.ResourceMgr).f638;
             uint bit = 0u;
             mask = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
             {
                 __osRestoreInt(mask);
-                osRecvMesg(new B12Mgr(0x80103F70u).q11D0.P, 0u, 1);
+                osRecvMesg(new B12Mgr(Gv.ResourceMgr).q11D0.P, 0u, 1);
             }
             else
             {
                 __osRestoreInt(mask);
             }
-            if ((new B12Mgr(0x80103F70u).tbl628[(int)(idx)] != 0))
+            if ((new B12Mgr(Gv.ResourceMgr).tbl628[(int)(idx)] != 0))
             {
                 if ((idx != 0))
                 {
@@ -3183,14 +3183,14 @@ public static partial class Game
                 if (!((new B12Node(n).flags & bit) != 0u))
                 {
                     new B12Node(n).flags_Set((uint)((uint)(new B12Node(n).flags) | bit));
-                    new B12Mgr(0x80103F70u).tbl11C4.Set((int)(idx), (int)(new B12Mgr(0x80103F70u).tbl11C4[(int)(idx)] + 1));
+                    new B12Mgr(Gv.ResourceMgr).tbl11C4.Set((int)(idx), (int)(new B12Mgr(Gv.ResourceMgr).tbl11C4[(int)(idx)] + 1));
                 }
             }
             m2 = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
             {
                 __osRestoreInt(m2);
-                osSendMesg(0x80105140u, 0u, 1);
+                osSendMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -3503,10 +3503,10 @@ public static partial class Game
             }
             cnt = Mem.S32(Mem.U32(n));
             mask = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
             {
                 __osRestoreInt(mask);
-                osRecvMesg(0x80105140u, 0u, 1);
+                osRecvMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -3514,10 +3514,10 @@ public static partial class Game
             }
             ResourcePool_ReleaseUnlocked((uint)(0), n, default(uint), default(uint));
             m2 = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
             {
                 __osRestoreInt(m2);
-                osSendMesg(0x80105140u, 0u, 1);
+                osSendMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -3546,10 +3546,10 @@ public static partial class Game
             n = ResourceCache_Hash(0, (uint)(id), id, (uint)(4), 27, (uint)(0), (uint)(0), 0x800C8F90u, 1);
             cnt = Mem.S32(Mem.U32(n));
             mask = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
             {
                 __osRestoreInt(mask);
-                osRecvMesg(0x80105140u, 0u, 1);
+                osRecvMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -3557,10 +3557,10 @@ public static partial class Game
             }
             ResourcePool_ReleaseUnlocked((uint)(0), n, default(uint), default(uint));
             m2 = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
             {
                 __osRestoreInt(m2);
-                osSendMesg(0x80105140u, 0u, 1);
+                osSendMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -3634,10 +3634,10 @@ public static partial class Game
             uint n = 0u;
             uint flags = 0u;
             mask = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
             {
                 __osRestoreInt(mask);
-                osRecvMesg(0x80105140u, 0u, 1);
+                osRecvMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -3668,10 +3668,10 @@ public static partial class Game
                 }
             }
             m2 = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
             {
                 __osRestoreInt(m2);
-                osSendMesg(0x80105140u, 0u, 1);
+                osSendMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -3691,10 +3691,10 @@ public static partial class Game
             uint m2 = 0u;
             uint n = 0u;
             mask = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
             {
                 __osRestoreInt(mask);
-                osRecvMesg(0x80105140u, 0u, 1);
+                osRecvMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -3724,10 +3724,10 @@ public static partial class Game
                 }
             }
             m2 = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
             {
                 __osRestoreInt(m2);
-                osSendMesg(0x80105140u, 0u, 1);
+                osSendMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -3773,7 +3773,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025473C");
-            return Mem.S32(0x8010513Cu);
+            return Mem.S32(Gv.Resource_NodePool);
         }
     }
 
@@ -3827,10 +3827,10 @@ public static partial class Game
             uint m2 = 0u;
             uint n = Mem.U32((p + (uint)((-4) * 4)));
             mask = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) + 1)) != 1))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) + 1)) != 1))
             {
                 __osRestoreInt(mask);
-                osRecvMesg(0x80105140u, 0u, 1);
+                osRecvMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -3838,10 +3838,10 @@ public static partial class Game
             }
             ResourcePool_ReleaseUnlocked((uint)(0), n, default(uint), default(uint));
             m2 = __osDisableInt();
-            if ((Mem.Set(0x8010515Cu, (int)(Mem.S32(0x8010515Cu) - 1)) != 0))
+            if ((Mem.Set(Gv.ResourceMgr_LockDepth, (int)(Mem.S32(Gv.ResourceMgr_LockDepth) - 1)) != 0))
             {
                 __osRestoreInt(m2);
-                osSendMesg(0x80105140u, 0u, 1);
+                osSendMesg(Gv.ResourceMgr_LockQueue, 0u, 1);
             }
             else
             {
@@ -3943,20 +3943,20 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002549C8", (uint)unused, (uint)flags);
             uint n = 0u;
-            if ((new PoolMgr(0x80103F70u).cnt == 0))
+            if ((new PoolMgr(Gv.ResourceMgr).cnt == 0))
             {
                 return 0u;
             }
-            new PoolMgr(0x80103F70u).cnt_Set((int)(new PoolMgr(0x80103F70u).cnt - 1));
-            n = Mem.U32((Mem.U32(0x80104564u) + (uint)(new PoolMgr(0x80103F70u).cnt * 4)));
+            new PoolMgr(Gv.ResourceMgr).cnt_Set((int)(new PoolMgr(Gv.ResourceMgr).cnt - 1));
+            n = Mem.U32((Mem.U32(0x80104564u) + (uint)(new PoolMgr(Gv.ResourceMgr).cnt * 4)));
             new PNode(n).fC_Set((uint)(2048));
             new PNode(n).f8_Set(0);
             new PNode(n).key_Set((uint)(0));
             new PNode(n).next__Set(0u);
             new PNode(n).prev__Set(0u);
             new PNode(n).f14_Set(0);
-            new PNode(n).f10_Set(new PoolMgr(0x80103F70u).f10);
-            List_Add((0x80103F70u + (uint)1536), n);
+            new PNode(n).f10_Set(new PoolMgr(Gv.ResourceMgr).f10);
+            List_Add((Gv.ResourceMgr + (uint)1536), n);
             new PNode(n).fC_Set((uint)((uint)(new PNode(n).fC) | (flags & (uint)(12))));
             return n;
         }
@@ -3968,18 +3968,18 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00254A70", (uint)unused, (uint)n);
-            List_Remove((new B12Mgr(0x80103F70u).lists.P + (uint)(0 * 20)), n, default(uint), default(uint));
+            List_Remove((new B12Mgr(Gv.ResourceMgr).lists.P + (uint)(0 * 20)), n, default(uint), default(uint));
             if (((new B12Node(n).flags & (uint)(4096)) != 0u))
             {
-                List_Remove((new B12Mgr(0x80103F70u).lists.P + (uint)(1 * 20)), n, default(uint), default(uint));
+                List_Remove((new B12Mgr(Gv.ResourceMgr).lists.P + (uint)(1 * 20)), n, default(uint), default(uint));
             }
-            if ((new B12Mgr(0x80103F70u).cur_ == n))
+            if ((new B12Mgr(Gv.ResourceMgr).cur_ == n))
             {
-                new B12Mgr(0x80103F70u).cur__Set(0u);
+                new B12Mgr(Gv.ResourceMgr).cur__Set(0u);
             }
             new B12Node(n).flags_Set((uint)(0));
-            Mem.Set((new B12Mgr(0x80103F70u).stk + (uint)(new B12Mgr(0x80103F70u).cnt * 4)), n);
-            new B12Mgr(0x80103F70u).cnt_Set((int)(new B12Mgr(0x80103F70u).cnt + 1));
+            Mem.Set((new B12Mgr(Gv.ResourceMgr).stk + (uint)(new B12Mgr(Gv.ResourceMgr).cnt * 4)), n);
+            new B12Mgr(Gv.ResourceMgr).cnt_Set((int)(new B12Mgr(Gv.ResourceMgr).cnt + 1));
         }
     }
 
@@ -4007,11 +4007,11 @@ public static partial class Game
             uint p = 0u;
             if ((flag != 0))
             {
-                p = Heap_AllocTop(0x801051A0u, size, default(uint), default(uint));
+                p = Heap_AllocTop(Gv.Resource_Heap, size, default(uint), default(uint));
             }
             else
             {
-                p = Heap_Alloc(0x801051A0u, size, default(uint), default(uint));
+                p = Heap_Alloc(Gv.Resource_Heap, size, default(uint), default(uint));
             }
             if ((p == (uint)(0)))
             {
@@ -4026,11 +4026,11 @@ public static partial class Game
                 {
                     if ((flag != 0))
                     {
-                        p = Heap_AllocTop(0x801051A0u, size, default(uint), default(uint));
+                        p = Heap_AllocTop(Gv.Resource_Heap, size, default(uint), default(uint));
                     }
                     else
                     {
-                        p = Heap_Alloc(0x801051A0u, size, default(uint), default(uint));
+                        p = Heap_Alloc(Gv.Resource_Heap, size, default(uint), default(uint));
                     }
                 }
             }
@@ -4080,12 +4080,12 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00254CE4", (uint)unused, (uint)type);
             uint mask = (uint)(((type != 0) ? (~1024) : (~512)));
             uint i = 0u;
-            uint n = Mem.U32(0x800D0920u);
+            uint n = Mem.U32(Gv.Resource_NodeCapacity);
             for (i = (uint)(0); (i < n); ++i)
             {
-                new B12Node((new B12Mgr(0x80103F70u).nodes_ + (uint)(i * 40))).flags_Set((uint)((uint)(new B12Node((new B12Mgr(0x80103F70u).nodes_ + (uint)(i * 40))).flags) & mask));
+                new B12Node((new B12Mgr(Gv.ResourceMgr).nodes_ + (uint)(i * 40))).flags_Set((uint)((uint)(new B12Node((new B12Mgr(Gv.ResourceMgr).nodes_ + (uint)(i * 40))).flags) & mask));
             }
-            new B12Mgr(0x80103F70u).tbl11C4.Set((int)(type), 0);
+            new B12Mgr(Gv.ResourceMgr).tbl11C4.Set((int)(type), 0);
         }
     }
 
@@ -4095,8 +4095,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00254D44", (uint)unused, (uint)n);
-            new B12Node(n).unk10_Set((uint)(new B12Pool(0x80103F70u).stamp));
-            List_MoveToHead(new B12Pool(0x80103F70u).list.P, n, default(uint), default(uint));
+            new B12Node(n).unk10_Set((uint)(new B12Pool(Gv.ResourceMgr).stamp));
+            List_MoveToHead(new B12Pool(Gv.ResourceMgr).list.P, n, default(uint), default(uint));
         }
     }
 
@@ -4112,7 +4112,7 @@ public static partial class Game
                 n = new B12Node(n).link_;
                 List_Remove(0x8010510Cu, n, default(uint), default(uint));
                 new B12Node(n).unk10_Set((uint)(0));
-                List_Add(0x801050F8u, n);
+                List_Add(Gv.Resource_RequestLists, n);
             }
         }
     }
@@ -4123,12 +4123,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00254DD0");
-            uint n = new B12List((0x801050F8u + (uint)(0 * 20))).head_;
+            uint n = new B12List((Gv.Resource_RequestLists + (uint)(0 * 20))).head_;
             if ((n != 0u))
             {
-                List_Remove((0x801050F8u + (uint)(0 * 20)), n, default(uint), default(uint));
+                List_Remove((Gv.Resource_RequestLists + (uint)(0 * 20)), n, default(uint), default(uint));
                 new B12Node(n).unk10_Set((uint)(1));
-                List_Add((0x801050F8u + (uint)(1 * 20)), n);
+                List_Add((Gv.Resource_RequestLists + (uint)(1 * 20)), n);
             }
             return n;
         }
@@ -4152,10 +4152,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00254E70_take", (uint)v);
-            uint n = Mem.U32(0x801050F8u);
+            uint n = Mem.U32(Gv.Resource_RequestLists);
             if ((n != 0u))
             {
-                List_Remove(0x801050F8u, n, default(uint), default(uint));
+                List_Remove(Gv.Resource_RequestLists, n, default(uint), default(uint));
                 new B12Node(n).unk10_Set((uint)(v));
                 List_Add(0x8010510Cu, n);
             }
@@ -4199,10 +4199,10 @@ public static partial class Game
             uint mask = 0u;
             uint i = 0u;
             uint n = 0u;
-            if ((new B12Mgr(0x80103F70u).tbl630[(int)(type)] != 0))
+            if ((new B12Mgr(Gv.ResourceMgr).tbl630[(int)(type)] != 0))
             {
-                new B12Mgr(0x80103F70u).tbl630.Set((int)(type), 0);
-                osSendMesg(new B12Mgr(0x80103F70u).q11F0.P, 0u, 1);
+                new B12Mgr(Gv.ResourceMgr).tbl630.Set((int)(type), 0);
+                osSendMesg(new B12Mgr(Gv.ResourceMgr).q11F0.P, 0u, 1);
             }
             if ((type != 0))
             {
@@ -4212,10 +4212,10 @@ public static partial class Game
             {
                 mask = (uint)((~512));
             }
-            n = Mem.U32(0x800D0920u);
+            n = Mem.U32(Gv.Resource_NodeCapacity);
             for (i = (uint)(0); (i < n); ++i)
             {
-                new B12Node((new B12Mgr(0x80103F70u).nodes_ + (uint)(i * 40))).flags_Set((uint)((uint)(new B12Node((new B12Mgr(0x80103F70u).nodes_ + (uint)(i * 40))).flags) & mask));
+                new B12Node((new B12Mgr(Gv.ResourceMgr).nodes_ + (uint)(i * 40))).flags_Set((uint)((uint)(new B12Node((new B12Mgr(Gv.ResourceMgr).nodes_ + (uint)(i * 40))).flags) & mask));
             }
             Mem.Set((0x80105134u + (uint)(type * 4)), 0);
         }

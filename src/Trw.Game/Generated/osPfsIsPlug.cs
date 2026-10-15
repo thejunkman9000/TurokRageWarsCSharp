@@ -21,12 +21,12 @@ public static partial class Game
                 do
                 {
                     __osPfsRequestData((byte)(0));
-                    ret = __osSiRawStartDma(1, 0x80154110u);
+                    ret = __osSiRawStartDma(1, Gv.OsPfsPifRam);
                     osRecvMesg(queue, _fp, 1);
-                    ret = __osSiRawStartDma(0, 0x80154110u);
+                    ret = __osSiRawStartDma(0, Gv.OsPfsPifRam);
                     osRecvMesg(queue, _fp, 1);
                     __osPfsGetInitData((_fp + 4u), (_fp + 8u));
-                    for (channel = 0; (channel < (int)(Mem.U8(0x8014D46Cu))); ++channel)
+                    for (channel = 0; (channel < (int)(Mem.U8(Gv.__osMaxControllers))); ++channel)
                     {
                         if (!(((int)(new OSContStatus(((_fp + 8u) + (uint)(channel * 4))).status) & 4) != 0))
                         {
@@ -34,13 +34,13 @@ public static partial class Game
                             break;
                         }
                     }
-                    if ((channel == (int)(Mem.U8(0x8014D46Cu))))
+                    if ((channel == (int)(Mem.U8(Gv.__osMaxControllers))))
                     {
                         crcErrorCount = 0;
                     }
                 }
                 while ((crcErrorCount > 0));
-                for (channel = 0; (channel < (int)(Mem.U8(0x8014D46Cu))); ++channel)
+                for (channel = 0; (channel < (int)(Mem.U8(Gv.__osMaxControllers))); ++channel)
                 {
                     if ((((int)(new OSContStatus(((_fp + 8u) + (uint)(channel * 4))).errno) == 0) && (((int)(new OSContStatus(((_fp + 8u) + (uint)(channel * 4))).status) & 1) != 0)))
                     {

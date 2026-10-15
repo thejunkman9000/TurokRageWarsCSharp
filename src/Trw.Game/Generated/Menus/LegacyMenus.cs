@@ -53,7 +53,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043DCE4", (uint)a, (uint)b);
             if ((Mem.S32(0x80145070u) == 1))
             {
-                Match_Reset(0x8011FAC0u);
+                Match_Reset(Gv.GameCtx);
             }
             else
             {
@@ -367,15 +367,15 @@ public static partial class Game
             uint p = 0u;
             for (i = 0; (i < 8); ++i)
             {
-                new O05GameState(0x801462C8u).rec[(int)(i)].b0_Set((byte)(0));
+                new O05GameState(Gv.Settings).rec[(int)(i)].b0_Set((byte)(0));
             }
             for (i = 0; (i < 4); ++i)
             {
-                p = (0x8010F328u + (uint)(i * 548));
+                p = (Gv.Pad_Slots + (uint)(i * 548));
                 if (((int)(Pad_IsConfirm(p)) != 0))
                 {
-                    new Q4Pl(0x80146302u).b78_Set((byte)(1));
-                    new Q4Pl(0x80146302u).b7F_Set((byte)(i));
+                    new Q4Pl(Gv.Settings_DefaultPlayerRecord).b78_Set((byte)(1));
+                    new Q4Pl(Gv.Settings_DefaultPlayerRecord).b7F_Set((byte)(i));
                     new Q4A(a).f20_Set(p);
                     break;
                 }
@@ -411,13 +411,13 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 8); ++i)
             {
-                new S10State(0x801462C8u).rec[(int)(i)].b8_Set((byte)(0));
+                new S10State(Gv.Settings).rec[(int)(i)].b8_Set((byte)(0));
             }
             for (i = 0; (i < 4); ++i)
             {
-                if (((int)(Pad_IsConfirm((0x8010F328u + (uint)(i * 548)))) != 0))
+                if (((int)(Pad_IsConfirm((Gv.Pad_Slots + (uint)(i * 548)))) != 0))
                 {
-                    uint r = (0x80146398u + (uint)(i * 150));
+                    uint r = (Gv.Settings_PlayerRecords + (uint)(i * 150));
                     new S10Row(r).b78_Set((byte)(1));
                     new S10Row(r).b7F_Set((byte)(i));
                     break;
@@ -436,9 +436,9 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 4); ++i)
             {
-                if ((new S10Ctrl((0x8010F328u + (uint)(i * 548))).active != 0))
+                if ((new S10Ctrl((Gv.Pad_Slots + (uint)(i * 548))).active != 0))
                 {
-                    if (((int)(new S10State(0x801462C8u).rec[(int)(i)].b0) == 0))
+                    if (((int)(new S10State(Gv.Settings).rec[(int)(i)].b0) == 0))
                     {
                         return 0;
                     }
@@ -465,11 +465,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043E1C0");
-            Mem.Set(0x8015404Cu, (float)((float)(Mem.F32(0x8015404Cu)) + Mem.F32(0x800D2988u)));
+            Mem.Set(0x8015404Cu, (float)((float)(Mem.F32(0x8015404Cu)) + Mem.F32(Gv.FrameTime)));
             if ((Mem.F32(0x8015404Cu) >= 120.0f))
             {
-                new S10Game(0x801468A0u).unk24_Set(0);
-                Match_EndForAllPlayers((0x801468A0u - (uint)6240));
+                new S10Game(Gv.Settings_MatchRules).unk24_Set(0);
+                Match_EndForAllPlayers((Gv.Settings_MatchRules - (uint)6240));
                 return 1;
             }
             return 0;
@@ -515,7 +515,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043E24C");
             int r = 0;
-            if ((((new S10Game(0x801468A0u).unk28 != 0) || (new S10Game(0x801468A0u).unk1C != 0)) || (new S10Game(0x801468A0u).unk20 != 0)))
+            if ((((new S10Game(Gv.Settings_MatchRules).unk28 != 0) || (new S10Game(Gv.Settings_MatchRules).unk1C != 0)) || (new S10Game(Gv.Settings_MatchRules).unk20 != 0)))
             {
                 r = 1;
             }
@@ -545,7 +545,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043E2E0");
             int r = 0;
-            if ((((new S10Game(0x801468A0u).unk28 != 0) || (new S10Game(0x801468A0u).unk1C != 0)) || (new S10Game(0x801468A0u).unk20 != 0)))
+            if ((((new S10Game(Gv.Settings_MatchRules).unk28 != 0) || (new S10Game(Gv.Settings_MatchRules).unk1C != 0)) || (new S10Game(Gv.Settings_MatchRules).unk20 != 0)))
             {
                 r = 1;
             }
@@ -690,7 +690,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043E590", (uint)m);
             Pad_EnableStatusPoll((int)(new S10Menu(m).ctrl.port));
-            Mem.Set(0x800E28C0u, 0);
+            Mem.Set(Gv.PakMenu_SkipPak, 0);
         }
     }
 
@@ -701,7 +701,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043E5BC");
             int r = 0;
-            if ((((new S10Game(0x801468A0u).unk28 != 0) || (new S10Game(0x801468A0u).unk1C != 0)) || (new S10Game(0x801468A0u).unk20 != 0)))
+            if ((((new S10Game(Gv.Settings_MatchRules).unk28 != 0) || (new S10Game(Gv.Settings_MatchRules).unk1C != 0)) || (new S10Game(Gv.Settings_MatchRules).unk20 != 0)))
             {
                 r = 1;
             }
@@ -718,7 +718,7 @@ public static partial class Game
             uint ctx = new S10Menu(m).ctx_;
             PakMenu_ClearSkipPak();
             Audio_StopAllExcept((-1));
-            MenuPanel_Open(0x8014561Cu, 0x0044F0B8u, (int)(ctx), (int)(new S10Menu(m).ctrl_), 0);
+            MenuPanel_Open(Gv.MenuPanel_SharedList, 0x0044F0B8u, (int)(ctx), (int)(new S10Menu(m).ctrl_), 0);
             return 1;
         }
     }
@@ -777,7 +777,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043E750");
             int r = 0;
-            if ((((new S10Game(0x801468A0u).unk28 != 0) || (new S10Game(0x801468A0u).unk1C != 0)) || (new S10Game(0x801468A0u).unk20 != 0)))
+            if ((((new S10Game(Gv.Settings_MatchRules).unk28 != 0) || (new S10Game(Gv.Settings_MatchRules).unk1C != 0)) || (new S10Game(Gv.Settings_MatchRules).unk20 != 0)))
             {
                 r = 1;
             }
@@ -822,12 +822,12 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043E81C", (uint)a, (uint)m);
             float v = 0f;
-            Mem.Set(0x800E5E48u, MenuSpinner_Step(m, Mem.S32(0x800E5E48u), 1, 0, 15, 0));
+            Mem.Set(Gv.LegacyMenu_PlayerSpeedIndex, MenuSpinner_Step(m, Mem.S32(Gv.LegacyMenu_PlayerSpeedIndex), 1, 0, 15, 0));
             if (((Pad_IsRight(new S10Menu(m).ctrl_) != 0) || ((int)(Pad_IsConfirm(new S10Menu(m).ctrl_)) != 0)))
             {
-                MenuSpinner_Step(m, Mem.S32(0x800E5E48u), 1, 0, 15, 0);
+                MenuSpinner_Step(m, Mem.S32(Gv.LegacyMenu_PlayerSpeedIndex), 1, 0, 15, 0);
             }
-            v = (Mem.F32((0x00450854u + (uint)(Mem.S32(0x800E5E48u) * 4))) + 1.0f);
+            v = (Mem.F32((0x00450854u + (uint)(Mem.S32(Gv.LegacyMenu_PlayerSpeedIndex) * 4))) + 1.0f);
             v = ((2.0f < ((v < 0.5f) ? 0.5f : v)) ? 2.0f : ((v < 0.5f) ? 0.5f : v));
             Mem.Set(0x801462E8u, v);
             return 0;
@@ -849,7 +849,7 @@ public static partial class Game
                 uint s = 0u;
                 new S10Item(a).f14_Set(0x800D7E04u);
                 s = Mem.U32(new S10Item(a).f14);
-                Str_Sprintf((s + (uint)(MenuItem_GetTextLength(a) - 3)), 0x800E2328u, (Mem.S32(0x800E5E48u) - 5), default(int));
+                Str_Sprintf((s + (uint)(MenuItem_GetTextLength(a) - 3)), 0x800E2328u, (Mem.S32(Gv.LegacyMenu_PlayerSpeedIndex) - 5), default(int));
             }
             return 0;
         }
@@ -864,28 +864,28 @@ public static partial class Game
             switch (new S10Msg(a).code)
             {
             case 2:
-                new S10State(0x801462C8u).b2D_Set((byte)((int)(new S10State(0x801462C8u).b2D) ^ 1));
+                new S10State(Gv.Settings).b2D_Set((byte)((int)(new S10State(Gv.Settings).b2D) ^ 1));
                 break;
             case 3:
-                new S10State(0x801462C8u).b2E_Set((byte)((int)(new S10State(0x801462C8u).b2E) ^ 1));
+                new S10State(Gv.Settings).b2E_Set((byte)((int)(new S10State(Gv.Settings).b2E) ^ 1));
                 break;
             case 4:
-                new S10State(0x801462C8u).b2F_Set((byte)((int)(new S10State(0x801462C8u).b2F) ^ 1));
+                new S10State(Gv.Settings).b2F_Set((byte)((int)(new S10State(Gv.Settings).b2F) ^ 1));
                 break;
             case 5:
-                new S10State(0x801462C8u).b30_Set((byte)((int)(new S10State(0x801462C8u).b30) ^ 1));
+                new S10State(Gv.Settings).b30_Set((byte)((int)(new S10State(Gv.Settings).b30) ^ 1));
                 break;
             case 6:
-                new S10State(0x801462C8u).b31_Set((byte)((int)(new S10State(0x801462C8u).b31) ^ 1));
+                new S10State(Gv.Settings).b31_Set((byte)((int)(new S10State(Gv.Settings).b31) ^ 1));
                 break;
             case 7:
-                new S10State(0x801462C8u).b32_Set((byte)((int)(new S10State(0x801462C8u).b32) ^ 1));
+                new S10State(Gv.Settings).b32_Set((byte)((int)(new S10State(Gv.Settings).b32) ^ 1));
                 break;
             case 8:
-                new S10State(0x801462C8u).b33_Set((byte)((int)(new S10State(0x801462C8u).b33) ^ 1));
+                new S10State(Gv.Settings).b33_Set((byte)((int)(new S10State(Gv.Settings).b33) ^ 1));
                 break;
             case 9:
-                new S10State(0x801462C8u).b35_Set((byte)((int)(new S10State(0x801462C8u).b35) ^ 1));
+                new S10State(Gv.Settings).b35_Set((byte)((int)(new S10State(Gv.Settings).b35) ^ 1));
                 break;
             }
             return 0;
@@ -922,7 +922,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043EAF4", (uint)m);
             Pad_EnableStatusPoll((int)(new S10Menu(m).ctrl.port));
-            Mem.Set(0x800E28C0u, 0);
+            Mem.Set(Gv.PakMenu_SkipPak, 0);
         }
     }
 
@@ -933,7 +933,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043EB20", (uint)a, (uint)m);
             Pad_EnableStatusPoll((int)(new S10Menu(m).ctrl.port));
-            MenuPanel_Open(0x8014561Cu, 0x0044F754u, (int)(new S10Menu(m).ctx_), (int)(new S10Menu(m).ctrl_), 0);
+            MenuPanel_Open(Gv.MenuPanel_SharedList, 0x0044F754u, (int)(new S10Menu(m).ctx_), (int)(new S10Menu(m).ctrl_), 0);
             return 1;
         }
     }
@@ -945,7 +945,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043EB78", (uint)a, (uint)m);
             PakMenu_ClearSkipPak();
-            MenuPanel_Open(0x8014561Cu, 0x0044F100u, (int)(new S10Menu(m).ctx_), (int)(new S10Menu(m).ctrl_), 0);
+            MenuPanel_Open(Gv.MenuPanel_SharedList, 0x0044F100u, (int)(new S10Menu(m).ctx_), (int)(new S10Menu(m).ctrl_), 0);
             return 1;
         }
     }
@@ -956,7 +956,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043EBC4", (uint)a, (uint)m);
-            Game_FadeOutToState(0x8011FAC0u, 8);
+            Game_FadeOutToState(Gv.GameCtx, 8);
             Mem.Set(0x80154048u, 0);
             Pad_DisableStatusPoll((int)(new S10Menu(m).ctrl.port));
             return 1;
@@ -970,24 +970,24 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043EC10", (uint)a, (uint)m);
             int i = 0;
-            new S10State(0x801462C8u).b1D_Set((byte)(0));
-            new S10State(0x801462C8u).b1E_Set((byte)(1));
+            new S10State(Gv.Settings).b1D_Set((byte)(0));
+            new S10State(Gv.Settings).b1E_Set((byte)(1));
             for (i = 0; (i < 8); ++i)
             {
-                new S10State(0x801462C8u).rec[(int)(i)].b0_Set((byte)(0));
+                new S10State(Gv.Settings).rec[(int)(i)].b0_Set((byte)(0));
             }
             for (i = 0; (i < 4); ++i)
             {
-                if (((int)(Pad_IsConfirm((0x8010F328u + (uint)(i * 548)))) != 0))
+                if (((int)(Pad_IsConfirm((Gv.Pad_Slots + (uint)(i * 548)))) != 0))
                 {
-                    new S10Row(0x80146302u).b78_Set((byte)(1));
+                    new S10Row(Gv.Settings_DefaultPlayerRecord).b78_Set((byte)(1));
                     Mem.Set(0x80146381u, (byte)(i));
-                    new S10Menu(m).ctrl__Set((0x8010F328u + (uint)(i * 548)));
+                    new S10Menu(m).ctrl__Set((Gv.Pad_Slots + (uint)(i * 548)));
                     break;
                 }
             }
             Audio_UnduckMusic();
-            Game_StartMatchLevel(0x8011FAC0u, (-1));
+            Game_StartMatchLevel(Gv.GameCtx, (-1));
             Mem.Set(0x80154048u, 1);
             return 1;
         }
@@ -1022,11 +1022,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043ED5C", (uint)a, (uint)b, (uint)c);
             int i = 0;
-            new O06Opt(0x801462C8u).unk1D_Set((byte)(1));
-            new O06Opt(0x801462C8u).unk1E_Set((byte)(4));
+            new O06Opt(Gv.Settings).unk1D_Set((byte)(1));
+            new O06Opt(Gv.Settings).unk1E_Set((byte)(4));
             for (i = 7; (i >= 0); --i)
             {
-                new O06Opt(0x801462C8u).rows[(int)(i)].unk78_Set((byte)(0));
+                new O06Opt(Gv.Settings).rows[(int)(i)].unk78_Set((byte)(0));
             }
             MenuPanel_OpenChild((uint)(c), (uint)(b), 0x00450AD4u);
             return 1;
@@ -1074,7 +1074,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043EE3C", (uint)a, (uint)b, (uint)c);
             Audio_StopAllExcept((-1));
             Mem.Set(0x800E63B0u, Audio_IsSoundOn());
-            Audio_PlayCue(Mem.S32(0x800E63B8u));
+            Audio_PlayCue(Mem.S32(Gv.InGameMenu_MusicTrack));
             Audio_SetPosFlag_0025E2BC(1);
             Mem.Set(0x800E63B4u, 0);
             Pad_ClearFlag800D0E60_00264A1C(default(uint), default(uint), default(uint), default(uint));
@@ -1099,7 +1099,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043EEC8");
-            Game_FadeOutToState(0x8011FAC0u, 8);
+            Game_FadeOutToState(Gv.GameCtx, 8);
             return 1;
         }
     }
@@ -1165,7 +1165,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043EF4C");
             if ((Mem.F32(0x801468B0u) <= 0.0f))
             {
-                Match_Reset(0x8011FAC0u);
+                Match_Reset(Gv.GameCtx);
                 return 1;
             }
             return 0;
@@ -1178,11 +1178,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043EF94");
-            float v = (new O06G_v2(0x801468A0u).unk10 - Mem.F32(0x800D2988u));
-            new O06G_v2(0x801468A0u).unk10_Set(v);
+            float v = (new O06G_v2(Gv.Settings_MatchRules).unk10 - Mem.F32(Gv.FrameTime));
+            new O06G_v2(Gv.Settings_MatchRules).unk10_Set(v);
             if ((v < 0.0f))
             {
-                new O06G_v2(0x801468A0u).unk10_Set(0.0f);
+                new O06G_v2(Gv.Settings_MatchRules).unk10_Set(0.0f);
             }
             return 0;
         }
@@ -1238,26 +1238,26 @@ public static partial class Game
             uint g1 = 0u;
             uint g2 = 0u;
             uint g3 = 0u;
-            if ((Mem.S32(0x800E5E70u) != 5))
+            if ((Mem.S32(Gv.Menu_CurrentDrawPass) != 5))
             {
-                Mem.Set(0x800E5E70u, 5);
+                Mem.Set(Gv.Menu_CurrentDrawPass, 5);
                 Gfx_BeginFlatColorPass((uint)((int)((new O06V_v5(d).unk30 * (new O06V_v5(d).unk34 * 255.0f)))), default(uint), default(uint), default(uint));
             }
-            g1 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+            g1 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             new O06Gfx(g1).w0_Set(3875536896u);
             new O06Gfx(g1).w1_Set((uint)(0));
-            g2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+            g2 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             new O06Gfx(g2).w0_Set(3808430593u);
             new O06Gfx(g2).w1_Set((uint)(1048576));
             if ((p != 0))
             {
-                g3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                g3 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new O06Gfx(g3).w0_Set(4211081216u);
                 new O06Gfx(g3).w1_Set(((uint)((int)((new O06V_v5(d).unk30 * (new O06V_v5(d).unk34 * 255.0f)))) | 4294967040u));
             }
             else
             {
-                g3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                g3 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new O06Gfx(g3).w0_Set(4211081216u);
                 new O06Gfx(g3).w1_Set((uint)((((int)((new O06V_v5(d).unk30 * (new O06V_v5(d).unk34 * 255.0f))) & 255) | 842150400)));
             }

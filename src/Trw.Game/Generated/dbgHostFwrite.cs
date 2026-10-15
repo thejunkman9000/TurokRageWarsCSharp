@@ -14,11 +14,11 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("dbgHostFwrite", (uint)buf, (uint)size, (uint)count, (uint)handle);
                 int cnt = 100;
-                Mem.Set(0x8014D3E8u, 0);
-                Mem.Set(0x800D3650u, 100);
+                Mem.Set(Gv.DbgLink_Error, 0);
+                Mem.Set(Gv.DbgPort_PollCount, 100);
                 dbgHostFwrite_dbgPortSetIntLineStatus_i(1);
                 dbgHostFwrite_dbgPortWaitOverrun_i((byte)(1));
-                if ((Mem.S32(0x8014D3E8u) != 0))
+                if ((Mem.S32(Gv.DbgLink_Error) != 0))
                 {
                     goto L_end;
                 }
@@ -27,28 +27,28 @@ public static partial class Game
                     goto L_end;
                 }
                 dbgLinkSendByte((byte)(131));
-                if ((Mem.S32(0x8014D3E8u) != 0))
+                if ((Mem.S32(Gv.DbgLink_Error) != 0))
                 {
                     goto L_end;
                 }
                 dbgHostFwrite_dbgLinkSendWord_i(handle);
-                if ((Mem.S32(0x8014D3E8u) != 0))
+                if ((Mem.S32(Gv.DbgLink_Error) != 0))
                 {
                     goto L_end;
                 }
                 dbgHostFwrite_dbgLinkSendWord_i((size * count));
-                if ((Mem.S32(0x8014D3E8u) != 0))
+                if ((Mem.S32(Gv.DbgLink_Error) != 0))
                 {
                     goto L_end;
                 }
                 dbgLinkSendBlock(buf, (int)((size * count)));
                 do
                 {
-                    Mem.Set(0x8014D3E8u, 0);
+                    Mem.Set(Gv.DbgLink_Error, 0);
                     dbgLinkRecvByte(_fp);
                 }
-                while ((((cnt--) > 0) && (Mem.S32(0x8014D3E8u) != 0)));
-                if ((Mem.S32(0x8014D3E8u) != 0))
+                while ((((cnt--) > 0) && (Mem.S32(Gv.DbgLink_Error) != 0)));
+                if ((Mem.S32(Gv.DbgLink_Error) != 0))
                 {
                     goto L_end;
                 }
@@ -56,7 +56,7 @@ public static partial class Game
                 dbgHostFwrite_dbgPortWaitOverrun_i((byte)(0));
                 L_end: ;
                 dbgHostFwrite_dbgPortSetIntLineStatus_i(0);
-                Mem.Set(0x800D3650u, 1);
+                Mem.Set(Gv.DbgPort_PollCount, 1);
                 return (int)(count);
             }
         }
@@ -68,8 +68,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("dbgHostFwrite_dbgPortSetIntLineStatus_i", (uint)v);
-            byte tmp = (byte)((((int)(Mem.U8(0x8014D3E1u)) & 251) | (v << (int)2)));
-            Mem.Set(0x8014D3E1u, tmp);
+            byte tmp = (byte)((((int)(Mem.U8(Gv.DbgPort_IntEnable)) & 251) | (v << (int)2)));
+            Mem.Set(Gv.DbgPort_IntEnable, tmp);
             while (((osPiGetStatus() & (uint)(3)) != 0u))
             {
             }
@@ -96,10 +96,10 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("dbgHostFwrite_dbgLinkHandshake_i");
                 int ret = 0;
                 dbgLinkSendByte((byte)(16));
-                if ((Mem.S32(0x8014D3E8u) == 0))
+                if ((Mem.S32(Gv.DbgLink_Error) == 0))
                 {
                     dbgLinkRecvByte(_fp);
-                    if ((Mem.S32(0x8014D3E8u) == 0))
+                    if ((Mem.S32(Gv.DbgLink_Error) == 0))
                     {
                         ret = (((int)(Mem.U8(_fp)) == 17) ? 1 : 0);
                     }
@@ -117,16 +117,16 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("dbgHostFwrite_dbgLinkSendWord_i", (uint)v);
             int ret = 0;
             dbgLinkSendByte((byte)((v >> (int)24)));
-            if ((Mem.S32(0x8014D3E8u) == 0))
+            if ((Mem.S32(Gv.DbgLink_Error) == 0))
             {
                 dbgLinkSendByte((byte)(((v >> (int)16) & (uint)(255))));
-                if ((Mem.S32(0x8014D3E8u) == 0))
+                if ((Mem.S32(Gv.DbgLink_Error) == 0))
                 {
                     dbgLinkSendByte((byte)(((v >> (int)8) & (uint)(255))));
-                    if ((Mem.S32(0x8014D3E8u) == 0))
+                    if ((Mem.S32(Gv.DbgLink_Error) == 0))
                     {
                         dbgLinkSendByte((byte)((v & (uint)(255))));
-                        ret = ((Mem.S32(0x8014D3E8u) == 0) ? 1 : 0);
+                        ret = ((Mem.S32(Gv.DbgLink_Error) == 0) ? 1 : 0);
                     }
                 }
             }
@@ -140,7 +140,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("dbgHostFwrite_dbgPortWaitRegMask_i", (uint)reg, (uint)mask, (uint)want, (uint)cnt);
             int ret = 0;
-            int outer = Mem.S32(0x800D3650u);
+            int outer = Mem.S32(Gv.DbgPort_PollCount);
             int c = cnt;
             for (; ; )
             {
@@ -162,7 +162,7 @@ public static partial class Game
                     break;
                 }
             }
-            Mem.Set(0x8014D3E8u, 1);
+            Mem.Set(Gv.DbgLink_Error, 1);
             L_done: ;
             return ret;
             return 0;

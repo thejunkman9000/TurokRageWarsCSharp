@@ -612,72 +612,72 @@ public static partial class Game
             switch (Menu_GetMessage())
             {
             case 69:
-                new O04ModeS4600(Mem.U32(0x800E4600u)).unk18_Set(26);
-                Mem.Set((0x80146398u + (uint)(-195)), (byte)(0));
+                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk18_Set(26);
+                Mem.Set((Gv.Settings_PlayerRecords + (uint)(-195)), (byte)(0));
                 break;
             case 73:
-                new O04ModeS4600(Mem.U32(0x800E4600u)).unk18_Set(7);
-                new Q2Cfg_v2(0x801462C8u).f0D_Set((byte)(2));
+                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk18_Set(7);
+                new Q2Cfg_v2(Gv.Settings).f0D_Set((byte)(2));
                 for (i = 0; (i < 2); ++i)
                 {
-                    p = (new Q2Cfg_v2(0x801462C8u).pl.P + (uint)(i * 150));
+                    p = (new Q2Cfg_v2(Gv.Settings).pl.P + (uint)(i * 150));
                     new Q2Ent96(p).unk78_Set((byte)(1));
                     new Q2Ent96(p).unk7F_Set((byte)(i));
-                    if (((int)(new Q2Row190((0x80102B00u + (uint)(i * 400))).unkD) < 0))
+                    if (((int)(new Q2Row190((Gv.ProfileTable + (uint)(i * 400))).unkD) < 0))
                     {
                         Profile_InitSlot(i);
                     }
                 }
                 break;
             case 70:
-                p = 0x80146398u;
+                p = Gv.Settings_PlayerRecords;
                 new Q2Ent96(p).unk78_Set((byte)(1));
                 new Q2Ent96(p).unk7F_Set((byte)(0));
-                Profile_Init(0x80102B00u);
+                Profile_Init(Gv.ProfileTable);
                 PlayerMenu_SetMode(7);
-                new O04ModeS4600(Mem.U32(0x800E4600u)).unk18_Set(19);
+                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk18_Set(19);
                 Mem.Set((p + (uint)(-195)), (byte)(1));
                 break;
             case 75:
-                new O04ModeS4600(Mem.U32(0x800E4600u)).unk18_Set(27);
+                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk18_Set(27);
                 break;
             case 71:
-                new O04ModeS4600(Mem.U32(0x800E4600u)).unk18_Set(4);
+                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk18_Set(4);
                 break;
             case 76:
-                new O04ModeS4600(Mem.U32(0x800E4600u)).unk18_Set(16);
+                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk18_Set(16);
                 break;
             case 72:
-                p = 0x80146398u;
-                new O04ModeS4600(Mem.U32(0x800E4600u)).unk18_Set(7);
+                p = Gv.Settings_PlayerRecords;
+                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk18_Set(7);
                 new Q2Ent96(p).unk78_Set((byte)(1));
                 new Q2Ent96(p).unk7F_Set((byte)(0));
-                if (((int)(new Q2Row190((0x80102B00u + (uint)(0 * 400))).unkD) < 0))
+                if (((int)(new Q2Row190((Gv.ProfileTable + (uint)(0 * 400))).unkD) < 0))
                 {
                     Profile_InitSlot(0);
                     for (i = 0; (i < 20); ++i)
                     {
-                        Profile_UnlockCharacter(0x80102B00u, i);
+                        Profile_UnlockCharacter(Gv.ProfileTable, i);
                     }
                 }
-                Mem.Set(0x801462D5u, (byte)(3));
+                Mem.Set(Gv.Settings_GameMode, (byte)(3));
                 break;
             case 74:
-                p = 0x80146398u;
-                new O04ModeS4600(Mem.U32(0x800E4600u)).unk18_Set(10);
+                p = Gv.Settings_PlayerRecords;
+                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk18_Set(10);
                 new Q2Ent96(p).unk78_Set((byte)(1));
                 new Q2Ent96(p).unk7F_Set((byte)(0));
-                if (((int)(new Q2Row190((0x80102B00u + (uint)(0 * 400))).unkD) < 0))
+                if (((int)(new Q2Row190((Gv.ProfileTable + (uint)(0 * 400))).unkD) < 0))
                 {
                     Profile_InitSlot(0);
                 }
                 Mem.Set((p + (uint)(-195)), (byte)(4));
-                Mem.Set(0x800E4680u, 0);
+                Mem.Set(Gv.ArenaTreeRecordPtr, 0);
                 break;
             default:
                 return 0;
             }
-            PopupPanel_SetState((uint)(new O04ModeS4600(Mem.U32(0x800E4600u)).unk0), 2);
+            PopupPanel_SetState((uint)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk0), 2);
             return 0;
         }
     }
@@ -688,8 +688,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0042436C");
-            ResourcePool_MallocFree(Mem.U32(0x800E4600u));
-            Mem.Set(0x800E4600u, 0u);
+            ResourcePool_MallocFree(Mem.U32(Gv.MainMenu_PagePtr));
+            Mem.Set(Gv.MainMenu_PagePtr, 0u);
             return 0;
         }
     }
@@ -701,40 +701,40 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0042439C");
             int r = 0;
-            if ((Mem.S32(0x800E28E0u) >= 2))
+            if ((Mem.S32(Gv.Video_ResChangeCountdown) >= 2))
             {
                 Menu_DisableInput();
                 return 0;
             }
             Menu_EnableInput();
-            if ((new O04ModeS4600(Mem.U32(0x800E4600u)).unkC > 0))
+            if ((new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unkC > 0))
             {
-                new O04ModeS4600(Mem.U32(0x800E4600u)).unkC_Set((new O04ModeS4600(Mem.U32(0x800E4600u)).unkC - 1));
-                if ((new O04ModeS4600(Mem.U32(0x800E4600u)).unkC == 0))
+                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unkC_Set((new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unkC - 1));
+                if ((new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unkC == 0))
                 {
-                    PopupPanel_Enable((uint)(new O04ModeS4600(Mem.U32(0x800E4600u)).unk0));
+                    PopupPanel_Enable((uint)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk0));
                     return 0;
                 }
                 return 0;
             }
-            r = PopupPanel_GetState((uint)(new O04ModeS4600(Mem.U32(0x800E4600u)).unk0));
+            r = PopupPanel_GetState((uint)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk0));
             switch (r)
             {
             case 3:
-                new O04ModeS4600(Mem.U32(0x800E4600u)).unk14_Set((new O04ModeS4600(Mem.U32(0x800E4600u)).unk14 - 1));
-                if ((new O04ModeS4600(Mem.U32(0x800E4600u)).unk14 <= 0))
+                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk14_Set((new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk14 - 1));
+                if ((new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk14 <= 0))
                 {
-                    new O04ModeS4600(Mem.U32(0x800E4600u)).unk8.unk16_Set((ushort)(((int)(new O04ModeS4600(Mem.U32(0x800E4600u)).unk8.unk16) - 1)));
-                    if ((((int)((short)(new O04ModeS4600(Mem.U32(0x800E4600u)).unk8.unk16)) + (int)(new O04ModeS4600(Mem.U32(0x800E4600u)).unk8.unk1A)) < 0))
+                    new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk8.unk16_Set((ushort)(((int)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk8.unk16) - 1)));
+                    if ((((int)((short)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk8.unk16)) + (int)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk8.unk1A)) < 0))
                     {
-                        new O04ModeS4600(Mem.U32(0x800E4600u)).unk8.unk16_Set((ushort)(new O04Obj44((uint)(new O04ModeS4600(Mem.U32(0x800E4600u)).unk0)).unk44.unk1A));
+                        new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk8.unk16_Set((ushort)(new O04Obj44((uint)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk0)).unk44.unk1A));
                     }
-                    new O04ModeS4600(Mem.U32(0x800E4600u)).unk14_Set(3);
+                    new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk14_Set(3);
                 }
                 break;
             case 4:
                 Menu_ConsumeEvent();
-                Menu_GotoScreen(new O04ModeS4600(Mem.U32(0x800E4600u)).unk18);
+                Menu_GotoScreen(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk18);
                 break;
             }
             return 0;
@@ -750,8 +750,8 @@ public static partial class Game
             if ((((c >> (int)16) == (uint)(3)) && (d == 10)))
             {
                 Menu_ConsumeEvent();
-                new O04ModeS4600(Mem.U32(0x800E4600u)).unk18_Set(28);
-                PopupPanel_SetState((uint)(new O04ModeS4600(Mem.U32(0x800E4600u)).unk0), 2);
+                new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk18_Set(28);
+                PopupPanel_SetState((uint)(new O04ModeS4600(Mem.U32(Gv.MainMenu_PagePtr)).unk0), 2);
             }
             return 0;
         }
@@ -775,13 +775,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00424528", (uint)a, (uint)b, (uint)c, (uint)d);
             int i = 0;
-            for (i = 0; (new O04Evt((0x800E4604u + (uint)(i * 12))).fn != 0u); ++i)
+            for (i = 0; (new O04Evt((Gv.MainMenu_EventTable + (uint)(i * 12))).fn != 0u); ++i)
             {
-                if ((new O04Evt((0x800E4604u + (uint)(i * 12))).ev == b))
+                if ((new O04Evt((Gv.MainMenu_EventTable + (uint)(i * 12))).ev == b))
                 {
-                    if (((new O04Evt((0x800E4604u + (uint)(i * 12))).key == (int)(new O04Obj(a).unkC)) || (new O04Evt((0x800E4604u + (uint)(i * 12))).key == 30000)))
+                    if (((new O04Evt((Gv.MainMenu_EventTable + (uint)(i * 12))).key == (int)(new O04Obj(a).unkC)) || (new O04Evt((Gv.MainMenu_EventTable + (uint)(i * 12))).key == 30000)))
                     {
-                        return (int)(Funcs.CallRegX(new O04Evt((0x800E4604u + (uint)(i * 12))).fn, a, (uint)(b), (uint)(c), (uint)(d), new uint[] { (uint)(e) }));
+                        return (int)(Funcs.CallRegX(new O04Evt((Gv.MainMenu_EventTable + (uint)(i * 12))).fn, a, (uint)(b), (uint)(c), (uint)(d), new uint[] { (uint)(e) }));
                     }
                 }
             }

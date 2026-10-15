@@ -10,10 +10,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alClose", (uint)glob);
-            if ((Mem.U32(0x800D80A0u) != 0u))
+            if ((Mem.U32(Gv.alGlobals) != 0u))
             {
                 alSynDelete(new ALGlobals(glob).drvr.P);
-                Mem.Set(0x800D80A0u, 0u);
+                Mem.Set(Gv.alGlobals, 0u);
             }
         }
     }

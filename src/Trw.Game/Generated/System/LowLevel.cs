@@ -269,7 +269,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020095C", (uint)src, (uint)dst, (uint)n);
-            int dmaOk = (-((Mem.S32(0x800CD390u) == 0) ? 1 : 0));
+            int dmaOk = (-((Mem.S32(Gv.DevLink_IoThreadActive) == 0) ? 1 : 0));
             uint w = 0u;
             while (((n != (uint)(0)) && ((src & (uint)(3)) != (uint)(0))))
             {
@@ -280,10 +280,10 @@ public static partial class Game
             {
                 if (((n >= (uint)(16)) && ((((((uint)(dst) & (uint)(15)) == (uint)(0)) ? 1 : 0) & ((dmaOk != (-1)) ? 1 : 0)) != 0)))
                 {
-                    dmaOk = osPiStartDma(0x800F6CE0u, 1, 0, src, dst, n, 0x800F6CC0u);
+                    dmaOk = osPiStartDma(0x800F6CE0u, 1, 0, src, dst, n, Gv.DevLink_PiDmaMesgQueue);
                     if ((dmaOk != (-1)))
                     {
-                        osRecvMesg(0x800F6CC0u, 0u, 1);
+                        osRecvMesg(Gv.DevLink_PiDmaMesgQueue, 0u, 1);
                         n = (uint)(0);
                     }
                 }
@@ -431,7 +431,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00200E04", (uint)dst, (uint)src, (uint)n);
-            int dmaOk = (-((Mem.S32(0x800CD390u) == 0) ? 1 : 0));
+            int dmaOk = (-((Mem.S32(Gv.DevLink_IoThreadActive) == 0) ? 1 : 0));
             while (((n != (uint)(0)) && ((dst & (uint)(3)) != (uint)(0))))
             {
                 Bus_WriteByteC((dst++), (byte)((uint)(Mem.U8(((src += 1u) - 1u)))));
@@ -441,10 +441,10 @@ public static partial class Game
             {
                 if (((n >= (uint)(16)) && ((((((uint)(src) & (uint)(15)) == (uint)(0)) ? 1 : 0) & ((dmaOk != (-1)) ? 1 : 0)) != 0)))
                 {
-                    dmaOk = osPiStartDma(0x800F6CE0u, 1, 1, dst, src, n, 0x800F6CC0u);
+                    dmaOk = osPiStartDma(0x800F6CE0u, 1, 1, dst, src, n, Gv.DevLink_PiDmaMesgQueue);
                     if ((dmaOk != (-1)))
                     {
-                        osRecvMesg(0x800F6CC0u, 0u, 1);
+                        osRecvMesg(Gv.DevLink_PiDmaMesgQueue, 0u, 1);
                         n = (uint)(0);
                     }
                 }

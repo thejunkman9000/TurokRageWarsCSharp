@@ -133,7 +133,7 @@ public static partial class Game
                             {
                                 osViSetYScale(1.0f);
                                 mode = 0x800D87E0u;
-                                if ((Mem.S32(0x800E28D8u) == 0))
+                                if ((Mem.S32(Gv.VideoResolution) == 0))
                                 {
                                     mode = 0x800D8560u;
                                 }
@@ -196,12 +196,12 @@ public static partial class Game
                 Mem.Set(_fp, 0u);
                 Mem.Set((_fp + 4u), 0u);
                 Mem.Set((_fp + 8u), 0u);
-                if ((Mem.S32(0x800D2954u) != 0))
+                if ((Mem.S32(Gv.ResourceLoader_BoostFrames) != 0))
                 {
-                    Mem.Set(0x800D2954u, (Mem.S32(0x800D2954u) - 1));
-                    if ((Mem.S32(0x800D2954u) == 0))
+                    Mem.Set(Gv.ResourceLoader_BoostFrames, (Mem.S32(Gv.ResourceLoader_BoostFrames) - 1));
+                    if ((Mem.S32(Gv.ResourceLoader_BoostFrames) == 0))
                     {
-                        osSetThreadPri(0x8010A248u, Mem.S32(0x800D2B1Cu));
+                        osSetThreadPri(Gv.ResourceLoader_Port, Mem.S32(0x800D2B1Cu));
                     }
                 }
                 new Vid(o).unk2FC_Set((new Vid(o).unk2FC + 1));
@@ -210,25 +210,25 @@ public static partial class Game
                     Sched_EnqueueTask(o, Mem.U32(_fp));
                 }
                 Mem.Set(0x801469E0u, (Mem.S32(0x801469E0u) + 1));
-                if ((Mem.S32(0x8014AD88u) != 0))
+                if ((Mem.S32(Gv.Sched_FbSwapPending) != 0))
                 {
                     Mem.Set(0x801469E0u, 0);
-                    Mem.Set(0x8014AD88u, 0);
+                    Mem.Set(Gv.Sched_FbSwapPending, 0);
                     buf = Mem.S32(0x80146CF0u);
                     Mem.Set(0x80146CF0u, 0);
                     Mem.Set(0x80146CF8u, buf);
                 }
-                if ((Mem.S32(0x8014AD90u) != 0))
+                if ((Mem.S32(Gv.Sched_PendingSwapCount) != 0))
                 {
                     fr = Mem.U32((0x80146970u + (uint)(Mem.S32(0x8011FAB4u) * 4)));
                     if (!((uint)((Mem.S32(0x801469E0u) + 1)) < new Frm(fr).unk124))
                     {
                         Mem.Set(0x80146CF0u, new Frm(fr).unk110);
                         osViSwapBuffer((uint)(new Frm(fr).unk110));
-                        Mem.Set(0x8014AD90u, (Mem.S32(0x8014AD90u) - 1));
-                        Mem.Set(0x8014AD88u, (Mem.S32(0x8014AD88u) + 1));
+                        Mem.Set(Gv.Sched_PendingSwapCount, (Mem.S32(Gv.Sched_PendingSwapCount) - 1));
+                        Mem.Set(Gv.Sched_FbSwapPending, (Mem.S32(Gv.Sched_FbSwapPending) + 1));
                         Mem.Set(0x8011FAB4u, (Mem.S32(0x8011FAB4u) + 1));
-                        if (!((uint)(Mem.S32(0x8011FAB4u)) < Mem.U32(0x800E28A0u)))
+                        if (!((uint)(Mem.S32(0x8011FAB4u)) < Mem.U32(Gv.Video_FrameSlotCount)))
                         {
                             Mem.Set(0x8011FAB4u, 0);
                         }
@@ -315,7 +315,7 @@ public static partial class Game
                     }
                     if (((new Job(j).flags8 & (uint)(32)) != 0u))
                     {
-                        Mem.Set(0x8011F298u, (Mem.F32(0x8011F298u) + ((float)((((osGetTime() - Mem.U64(0x8011F2A0u)) * (ulong)(64)) / (ulong)(3))) * 9.99999997E-7f)));
+                        Mem.Set(Gv.Sched_SpTaskTimeMs, (Mem.F32(Gv.Sched_SpTaskTimeMs) + ((float)((((osGetTime() - Mem.U64(0x8011F2A0u)) * (ulong)(64)) / (ulong)(3))) * 9.99999997E-7f)));
                     }
                 }
                 else
@@ -328,10 +328,10 @@ public static partial class Game
                         {
                             goto L_done;
                         }
-                        Mem.Set(0x8011F298u, (Mem.F32(0x8011F298u) + ((float)((((osGetTime() - Mem.U64(0x8011F2A0u)) * (ulong)(64)) / (ulong)(3))) * 9.99999997E-7f)));
-                        Mem.Set(0x800D29A0u, Mem.F32(0x8011F298u));
+                        Mem.Set(Gv.Sched_SpTaskTimeMs, (Mem.F32(Gv.Sched_SpTaskTimeMs) + ((float)((((osGetTime() - Mem.U64(0x8011F2A0u)) * (ulong)(64)) / (ulong)(3))) * 9.99999997E-7f)));
+                        Mem.Set(0x800D29A0u, Mem.F32(Gv.Sched_SpTaskTimeMs));
                         Mem.Set(0x800D299Cu, ((float)((((osGetTime() - Mem.U64(0x8011F290u)) * (ulong)(64)) / (ulong)(3))) * 9.99999997E-7f));
-                        @base = 0x8011FAC0u;
+                        @base = Gv.GameCtx;
                         fb = (uint)(new Job(j).unkC);
                         if ((fb == new View_v2((@base + (uint)(0 * 320))).fb))
                         {
@@ -409,7 +409,7 @@ public static partial class Game
                     {
                         if (((new Job(j).flags8 & (uint)(32)) != 0u))
                         {
-                            @base = 0x8011FAC0u;
+                            @base = Gv.GameCtx;
                             fb = (uint)(new Job(j).unkC);
                             if ((fb == new View_v3((@base + (uint)(0 * 320))).fb))
                             {
@@ -437,26 +437,26 @@ public static partial class Game
                             Mem.Set(0x80146D64u, (Mem.S32(0x801469E0u) + 1));
                             if (!((uint)(Mem.S32(0x80146D64u)) < new View_v3(s).unk124))
                             {
-                                t = Mem.S32(0x8014AD90u);
+                                t = Mem.S32(Gv.Sched_PendingSwapCount);
                                 if ((t != 0))
                                 {
                                     goto L_join;
                                 }
-                                if ((Mem.S32(0x8014AD88u) == 0))
+                                if ((Mem.S32(Gv.Sched_FbSwapPending) == 0))
                                 {
                                     Mem.Set(0x80146CF0u, (int)(new View_v3(s).fb));
                                     osViSwapBuffer((uint)(new View_v3(s).fb));
-                                    Mem.Set(0x8014AD88u, (Mem.S32(0x8014AD88u) + 1));
+                                    Mem.Set(Gv.Sched_FbSwapPending, (Mem.S32(Gv.Sched_FbSwapPending) + 1));
                                     goto L_done;
                                 }
                             }
-                            t = Mem.S32(0x8014AD90u);
+                            t = Mem.S32(Gv.Sched_PendingSwapCount);
                             L_join: ;
-                            Mem.Set(0x8014AD90u, (t + 1));
+                            Mem.Set(Gv.Sched_PendingSwapCount, (t + 1));
                             idx = Mem.S32(0x8014AD8Cu);
                             Mem.Set((0x80146970u + (uint)(idx * 4)), s);
                             Mem.Set(0x8014AD8Cu, (idx + 1));
-                            if (!((uint)((idx + 1)) < Mem.U32(0x800E28A0u)))
+                            if (!((uint)((idx + 1)) < Mem.U32(Gv.Video_FrameSlotCount)))
                             {
                                 Mem.Set(0x8014AD8Cu, 0);
                             }
@@ -946,7 +946,7 @@ public static partial class Game
                         goto L_start;
                     }
                     Mem.Set(0x8011F2B0u, t);
-                    Mem.Set(0x8011F298u, 0);
+                    Mem.Set(Gv.Sched_SpTaskTimeMs, 0);
                 }
                 L_start: ;
                 new Job_v2(cur).flags4_Set((uint)((uint)(new Job_v2(cur).flags4) & (uint)((~48))));
@@ -998,10 +998,10 @@ public static partial class Game
                 Mem.Set((_fp + 8u), 0);
                 while ((osRecvMesg(new Vid_v3(o).q78.P, _fp, 0) != (-1)))
                 {
-                    if ((((new Msg(Mem.U32(_fp)).unk10 == 1) && ((new Msg(Mem.U32(_fp)).flags8 & (uint)(32)) != 0u)) && (Mem.S32(0x800D2954u) == 0)))
+                    if ((((new Msg(Mem.U32(_fp)).unk10 == 1) && ((new Msg(Mem.U32(_fp)).flags8 & (uint)(32)) != 0u)) && (Mem.S32(Gv.ResourceLoader_BoostFrames) == 0)))
                     {
-                        Mem.Set(0x800D2954u, 2);
-                        osSetThreadPri(0x8010A248u, Mem.S32(0x800D2B28u));
+                        Mem.Set(Gv.ResourceLoader_BoostFrames, 2);
+                        osSetThreadPri(Gv.ResourceLoader_Port, Mem.S32(0x800D2B28u));
                     }
                     Sched_EnqueueTask(o, Mem.U32(_fp));
                 }

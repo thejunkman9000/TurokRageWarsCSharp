@@ -9,12 +9,12 @@ namespace Trw.Game;
 /// <see cref="trw_mouse_look"/> after the game's own turn / tilt.
 /// <para>Determinism (netplay): the motion is latched with each controller read (<see cref="Host.ReadMouse"/>, part of the controller sample and of the netplay
 /// frame) and consumed by the view update on the game thread; the pitch kept per controller slot is derived from that input only.</para>
-/// <para>Only actors driven by a real controller slot get the mouse (controller objects 0x224 bytes from 0x8010F328, slot -1 = the merged slot of 1-player
+/// <para>Only actors driven by a real controller slot get the mouse (controller objects 0x224 bytes from Gv.Pad_Slots, slot -1 = the merged slot of 1-player
 /// modes): bots carry their own AI controller object and were turned by the player's mouse in the C port before it checked this.</para>
 /// </summary>
 public static partial class Game
 {
-    private const uint CtlBase = 0x8010F328, CtlStride = 0x224;
+    private const uint CtlBase = Gv.Pad_Slots, CtlStride = 0x224;
     private const float Deg = 0.0174532942f;
 
     // motion latched at the controller reads, not yet applied: the last 4 reads per pad. While the game skips its view update (some player states do for a few

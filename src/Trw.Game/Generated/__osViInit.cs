@@ -10,30 +10,30 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("__osViInit");
-            memset(0x800D83E0u, 0, ((uint)(2) * 48u));
-            Mem.Set(0x800D8444u, (0x800D83E0u + (uint)(1 * 48)));
-            new OSViContext(Mem.U32(0x800D8444u)).retraceCount_Set((ushort)(1));
-            new OSViContext((0x800D83E0u + (uint)(0 * 48))).retraceCount_Set((ushort)(1));
-            Mem.Set(0x800D8440u, (0x800D83E0u + (uint)(0 * 48)));
-            new OSViContext(Mem.U32(0x800D8444u)).buffer_Set((uint)(2147483648u));
-            new OSViContext((0x800D83E0u + (uint)(0 * 48))).buffer_Set((uint)(2147483648u));
+            memset(Gv.ViContexts, 0, ((uint)(2) * 48u));
+            Mem.Set(Gv.__osViNext, (Gv.ViContexts + (uint)(1 * 48)));
+            new OSViContext(Mem.U32(Gv.__osViNext)).retraceCount_Set((ushort)(1));
+            new OSViContext((Gv.ViContexts + (uint)(0 * 48))).retraceCount_Set((ushort)(1));
+            Mem.Set(Gv.ViCurrentContextPtr, (Gv.ViContexts + (uint)(0 * 48)));
+            new OSViContext(Mem.U32(Gv.__osViNext)).buffer_Set((uint)(2147483648u));
+            new OSViContext((Gv.ViContexts + (uint)(0 * 48))).buffer_Set((uint)(2147483648u));
             if ((Mem.U32((uint)(2147484416u)) == (uint)(0)))
             {
-                new OSViContext(Mem.U32(0x800D8444u)).modep__Set(0x800D84C0u);
+                new OSViContext(Mem.U32(Gv.__osViNext)).modep__Set(0x800D84C0u);
             }
             else
             {
                 if ((Mem.U32((uint)(2147484416u)) == (uint)(2)))
                 {
-                    new OSViContext(Mem.U32(0x800D8444u)).modep__Set(0x800D8510u);
+                    new OSViContext(Mem.U32(Gv.__osViNext)).modep__Set(0x800D8510u);
                 }
                 else
                 {
-                    new OSViContext(Mem.U32(0x800D8444u)).modep__Set(0x800D8470u);
+                    new OSViContext(Mem.U32(Gv.__osViNext)).modep__Set(0x800D8470u);
                 }
             }
-            new OSViContext(Mem.U32(0x800D8444u)).state_Set((ushort)(32));
-            new OSViContext(Mem.U32(0x800D8444u)).features_Set(new OSViMode(new OSViContext(Mem.U32(0x800D8444u)).modep_).comRegs.ctrl);
+            new OSViContext(Mem.U32(Gv.__osViNext)).state_Set((ushort)(32));
+            new OSViContext(Mem.U32(Gv.__osViNext)).features_Set(new OSViMode(new OSViContext(Mem.U32(Gv.__osViNext)).modep_).comRegs.ctrl);
             while ((Mem.U32((uint)(((uint)(71303184) | 2684354560u))) >= (uint)(11)))
             {
             }

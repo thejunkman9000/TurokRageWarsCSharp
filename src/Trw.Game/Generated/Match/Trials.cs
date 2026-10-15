@@ -12,12 +12,12 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004251F4", (uint)a);
             int r = (-1);
-            uint row = (0x80102B00u + (uint)(a * 400));
+            uint row = (Gv.ProfileTable + (uint)(a * 400));
             int t = 0;
-            if ((Bits_Test((new O04Row190w(row).grid.P + (uint)(new O04Row190w(row).unkF * 5)), Mem.S32((G.ArenaLevel + (uint)(0 * 4)))) == 0))
+            if ((Bits_Test((new O04Row190w(row).grid.P + (uint)(new O04Row190w(row).unkF * 5)), Mem.S32((Gv.ArenaLevel + (uint)(0 * 4)))) == 0))
             {
-                Bits_Assign((new O04Row190w(row).grid.P + (uint)(new O04Row190w(row).unkF * 5)), Mem.S32((G.ArenaLevel + (uint)(0 * 4))), 1);
-                t = (int)(Mem.U8((Mem.U32(0x800E4680u) + (uint)0)));
+                Bits_Assign((new O04Row190w(row).grid.P + (uint)(new O04Row190w(row).unkF * 5)), Mem.S32((Gv.ArenaLevel + (uint)(0 * 4))), 1);
+                t = (int)(Mem.U8((Mem.U32(Gv.ArenaTreeRecordPtr) + (uint)0)));
                 r = (t + 5000);
                 switch (t)
                 {
@@ -152,7 +152,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004255A8", (uint)a);
-            uint p = 0x80102B00u;
+            uint p = Gv.ProfileTable;
             uint r = 0u;
             if ((a < 0))
             {
@@ -298,11 +298,11 @@ public static partial class Game
             int b1 = 0;
             int a2 = 0;
             int b2 = 0;
-            row = (0x80102B00u + (uint)(a * 400));
+            row = (Gv.ProfileTable + (uint)(a * 400));
             s3 = (-1);
-            if (((((int)(new Q03Cfg(0x801462C8u).unkD) == 1) && (new Q03Cfg(0x801462C8u).unk680 == 1)) && (Mem.S32(G.ArenaLevel) >= 35)))
+            if (((((int)(new Q03Cfg(Gv.Settings).unkD) == 1) && (new Q03Cfg(Gv.Settings).unk680 == 1)) && (Mem.S32(Gv.ArenaLevel) >= 35)))
             {
-                switch ((int)(new Q03Cfg(0x801462C8u).ent[(int)(a)].f80))
+                switch ((int)(new Q03Cfg(Gv.Settings).ent[(int)(a)].f80))
                 {
                 case 0:
                     if (!((int)(Profile_IsCharacterUnlocked(row, (uint)(17), default(uint), default(uint))) != 0))
@@ -442,7 +442,7 @@ public static partial class Game
             int s2 = (-1);
             int s0 = 0;
             uint p = 0u;
-            switch (Mem.S32(G.ArenaLevel))
+            switch (Mem.S32(Gv.ArenaLevel))
             {
             case 4:
                 s0 = 0;

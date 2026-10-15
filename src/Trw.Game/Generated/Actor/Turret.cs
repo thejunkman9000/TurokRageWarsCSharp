@@ -44,16 +44,16 @@ public static partial class Game
                     new M1Quat(_fp).x_Set(0.0f);
                     new M1Quat(_fp).y_Set(sn);
                     new M1Quat(_fp).z_Set(0.0f);
-                    Mem.Set(0x80115DECu, sn);
+                    Mem.Set(Gv.Quat_SinScratch, sn);
                     new M1Quat(_fp).w_Set(cosf((new M1Actor(actor).f6C * 0.5f)));
                 }
                 else
                 {
-                    Mem.Set(0x80115DECu, sinf((new M1State(state).f9C * Mem.F32(0x800C6B04u))));
+                    Mem.Set(Gv.Quat_SinScratch, sinf((new M1State(state).f9C * Mem.F32(0x800C6B04u))));
                 }
                 new M1Quat(_fp).x_Set(0.0f);
                 new M1Quat(_fp).z_Set(0.0f);
-                new M1Quat(_fp).y_Set(Mem.F32(0x80115DECu));
+                new M1Quat(_fp).y_Set(Mem.F32(Gv.Quat_SinScratch));
                 new M1Quat(_fp).w_Set(cosf((new M1State(state).f9C * Mem.F32(0x800C6B08u))));
                 Quat_Multiply((_fp + 16u), _fp, new M1Actor(actor).v5C.P);
                 Quat_ToMatrix((_fp + 16u), (_fp + 32u));
@@ -194,7 +194,7 @@ public static partial class Game
                 uint o = 0u;
                 best = 0.0f;
                 found = 0u;
-                p = Mem.U32(0x80145060u);
+                p = Mem.U32(Gv.PlayerListHead);
                 info = new M1Actor(actor).def.info.P;
                 if ((p != 0u))
                 {
@@ -210,7 +210,7 @@ public static partial class Game
                             if (((o != p) && (new M1Actor(p).unk5E4 != 0)))
                             {
                                 ok = 1;
-                                if ((Mem.S32(0x801468C4u) != 0))
+                                if ((Mem.S32(Gv.TeamPlayEnabled) != 0))
                                 {
                                     ok = (((int)(new M1Actor(o).stats.b92) != (int)(new M1Actor(p).stats.b92)) ? 1 : 0);
                                 }
@@ -225,11 +225,11 @@ public static partial class Game
                                 new V16(_fp).y_Set((new V16(_fp).y + (Actor_GetHeight(actor) * k)));
                                 Mem.Copy((_fp + 16u), new M1Actor(p).pos.P, 12);
                                 new V16((_fp + 16u)).y_Set((new V16((_fp + 16u)).y + (Actor_GetHeight(p) * k)));
-                                ok = Collision_RayCast(actor, _fp, (_fp + 16u), 0x80103FD0u);
+                                ok = Collision_RayCast(actor, _fp, (_fp + 16u), Gv.Collision_LosResult);
                                 vis = 1;
                                 if ((ok != 0))
                                 {
-                                    vis = ((Mem.U32(Mem.U32(0x80103FCCu)) == p) ? 1 : 0);
+                                    vis = ((Mem.U32(Mem.U32(Gv.Collision_ContactPtr)) == p) ? 1 : 0);
                                 }
                                 if (((vis != 0) && ((found == 0u) || (d < best))))
                                 {
@@ -456,7 +456,7 @@ public static partial class Game
             }
             new B01State(state).unk128.i_Set(0);
             new B01State(state).unk64_Set(new B01Info(info).unk6C);
-            if ((Level_IsEntitySavedFlagSet(0x8011FE88u, actor) == 0))
+            if ((Level_IsEntitySavedFlagSet(Gv.LevelMgr, actor) == 0))
             {
                 if (((new B01Info(info).flags & (uint)(4096)) != 0u))
                 {
@@ -598,10 +598,10 @@ public static partial class Game
             uint info = (new B01Actor(actor).def_ + (uint)20);
             Actor_DropItemsOnce(actor, state, (uint)(4), (uint)(new B01Info(info).unkC.i), (uint)(new B01Info(info).unk10.i));
             new B01State(state).fn110_Set(0u);
-            Level_SetEntitySavedFlag(0x8011FE88u, actor, 1);
+            Level_SetEntitySavedFlag(Gv.LevelMgr, actor, 1);
             Level_FireEntityTriggers(actor, 1, (int)(actor));
             new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~65536))));
-            if ((Mem.S32((0x8011FE88u + (uint)(0 * 4))) != 4))
+            if ((Mem.S32((Gv.LevelMgr + (uint)(0 * 4))) != 4))
             {
                 new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) | (uint)(134217728)));
             }
@@ -627,7 +627,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00203C40", (uint)actor, (uint)state, (uint)arg);
-            if ((Level_IsEntitySavedFlagSet(0x8011FE88u, actor) == 0))
+            if ((Level_IsEntitySavedFlagSet(Gv.LevelMgr, actor) == 0))
             {
                 new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) | (uint)(8448)));
             }
@@ -640,7 +640,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00203C84", (uint)actor, (uint)state, (uint)arg);
-            if (((Level_IsEntitySavedFlagSet(0x8011FE88u, actor) == 0) && ((int)(new B01State(state).unk34) == 0)))
+            if (((Level_IsEntitySavedFlagSet(Gv.LevelMgr, actor) == 0) && ((int)(new B01State(state).unk34) == 0)))
             {
                 Turret_Show(actor, state, arg);
                 Actor_DispatchEvent(actor, state, 1);
@@ -751,7 +751,7 @@ public static partial class Game
             {
                 return 0;
             }
-            if (((Mem.S32(0x801468C4u) != 0) && ((int)(new Actor(owner).stats.unk92) == (int)(new Actor(other).stats.unk92))))
+            if (((Mem.S32(Gv.TeamPlayEnabled) != 0) && ((int)(new Actor(owner).stats.unk92) == (int)(new Actor(other).stats.unk92))))
             {
                 return 0;
             }

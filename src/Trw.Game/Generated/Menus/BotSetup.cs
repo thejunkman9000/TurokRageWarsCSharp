@@ -14,9 +14,9 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0041DFB4", (uint)parent);
             uint it = 0u;
             int i = 0;
-            Mem.Set(0x800E39C0u, ResourcePool_Malloc((uint)(32)));
-            new O3Ps(Mem.U32(0x800E39C0u)).parent_Set(parent);
-            new O3Ps(Mem.U32(0x800E39C0u)).menu_Set((int)(CursorGroup_Create((uint)(parent), 4)));
+            Mem.Set(Gv.BotSetup_PagePtr, ResourcePool_Malloc((uint)(32)));
+            new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).parent_Set(parent);
+            new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).menu_Set((int)(CursorGroup_Create((uint)(parent), 4)));
             CursorGroup_SetCursorById((uint)(parent), 0, 905);
             CursorGroup_SetCursorById((uint)(parent), 1, 905);
             CursorGroup_SetCursorById((uint)(parent), 2, 905);
@@ -27,19 +27,19 @@ public static partial class Game
             {
                 UiNode_SetVisible(it, 0);
             }
-            new O3Ps(Mem.U32(0x800E39C0u)).timer_Set(0);
-            new O3Ps(Mem.U32(0x800E39C0u)).sel_Set(0);
-            new O3Ps(Mem.U32(0x800E39C0u)).w.Set((int)(0), (int)(UiTree_FindNode((uint)(parent), (uint)(908), default(uint), default(uint))));
-            new O3Ps(Mem.U32(0x800E39C0u)).w.Set((int)(1), (int)(UiTree_FindNode((uint)(parent), (uint)(917), default(uint), default(uint))));
-            new O3Ps(Mem.U32(0x800E39C0u)).w.Set((int)(2), (int)(UiTree_FindNode((uint)(parent), (uint)(918), default(uint), default(uint))));
-            new O3Ps(Mem.U32(0x800E39C0u)).cnt_Set(BotSetup_CountBots());
+            new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).timer_Set(0);
+            new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel_Set(0);
+            new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).w.Set((int)(0), (int)(UiTree_FindNode((uint)(parent), (uint)(908), default(uint), default(uint))));
+            new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).w.Set((int)(1), (int)(UiTree_FindNode((uint)(parent), (uint)(917), default(uint), default(uint))));
+            new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).w.Set((int)(2), (int)(UiTree_FindNode((uint)(parent), (uint)(918), default(uint), default(uint))));
+            new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).cnt_Set(BotSetup_CountBots());
             for (i = 0; (i < 3); ++i)
             {
                 BotSetup_RefreshSlot(i);
-                UiNode_SetVisible(UiTree_FindNode((uint)(new O3Ps(Mem.U32(0x800E39C0u)).w[(int)(i)]), (uint)(914), default(uint), default(uint)), 0);
+                UiNode_SetVisible(UiTree_FindNode((uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).w[(int)(i)]), (uint)(914), default(uint), default(uint)), 0);
             }
             Menu_EnableInput();
-            UiNode_SetVisible(UiTree_FindNode((uint)(new O3Ps(Mem.U32(0x800E39C0u)).w[(int)(new O3Ps(Mem.U32(0x800E39C0u)).sel)]), (uint)(914), default(uint), default(uint)), 1);
+            UiNode_SetVisible(UiTree_FindNode((uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).w[(int)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel)]), (uint)(914), default(uint), default(uint)), 1);
             return 0;
         }
     }
@@ -171,8 +171,8 @@ public static partial class Game
             {
                 return 0;
             }
-            row = new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).type;
-            col = BotSetup_FindBotNameIndex(row, new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).id);
+            row = new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).type;
+            col = BotSetup_FindBotNameIndex(row, new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).id);
             do
             {
                 --row;
@@ -185,14 +185,14 @@ public static partial class Game
                         col = 16;
                     }
                 }
-                key = new O3Chr(((0x800E381Cu + (uint)(row * 136)) + (uint)(col * 8))).ch;
+                key = new O3Chr(((Gv.BotSetup_NameTable + (uint)(row * 136)) + (uint)(col * 8))).ch;
             }
             while ((key == (-1)));
-            new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).type_Set(row);
-            new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).id_Set(key);
-            LibC_StrCopy(new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).name.P, Mem.U32(new O3Chr((0x800E381Cu + (uint)(((row * 17) + key) * 8))).s));
-            new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).fC_Set(row);
-            BotSetup_RefreshSlot(new O3Ps(Mem.U32(0x800E39C0u)).sel);
+            new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).type_Set(row);
+            new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).id_Set(key);
+            LibC_StrCopy(new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).name.P, Mem.U32(new O3Chr((Gv.BotSetup_NameTable + (uint)(((row * 17) + key) * 8))).s));
+            new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).fC_Set(row);
+            BotSetup_RefreshSlot(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel);
             Audio_PlaySound2D(3713);
             return 0;
         }
@@ -215,8 +215,8 @@ public static partial class Game
             {
                 return 0;
             }
-            row = new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).type;
-            col = BotSetup_FindBotNameIndex(row, new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).id);
+            row = new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).type;
+            col = BotSetup_FindBotNameIndex(row, new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).id);
             do
             {
                 ++row;
@@ -229,14 +229,14 @@ public static partial class Game
                         col = 0;
                     }
                 }
-                a3 = new O3Chr(((0x800E381Cu + (uint)(row * 136)) + (uint)(col * 8))).ch;
+                a3 = new O3Chr(((Gv.BotSetup_NameTable + (uint)(row * 136)) + (uint)(col * 8))).ch;
             }
             while ((a3 == (-1)));
-            new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).type_Set(row);
-            new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).id_Set(a3);
-            LibC_StrCopy(new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).name.P, Mem.U32(new O3Chr((0x800E381Cu + (uint)(((row * 17) + a3) * 8))).s));
-            new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).fC_Set(row);
-            BotSetup_RefreshSlot(new O3Ps(Mem.U32(0x800E39C0u)).sel);
+            new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).type_Set(row);
+            new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).id_Set(a3);
+            LibC_StrCopy(new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).name.P, Mem.U32(new O3Chr((Gv.BotSetup_NameTable + (uint)(((row * 17) + a3) * 8))).s));
+            new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).fC_Set(row);
+            BotSetup_RefreshSlot(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel);
             Audio_PlaySound2D(3713);
             return 0;
         }
@@ -251,34 +251,34 @@ public static partial class Game
             int w = 0;
             int off = 0;
             uint o = 0u;
-            w = new O3Ps(Mem.U32(0x800E39C0u)).w[(int)(i)];
-            if ((new O3Ps(Mem.U32(0x800E39C0u)).cnt < i))
+            w = new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).w[(int)(i)];
+            if ((new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).cnt < i))
             {
                 UiNode_SetVisible((uint)(w), 0);
                 return;
             }
             off = (i * 28);
-            if ((Mem.S32(((0x80153F80u + (uint)off) + (uint)0)) < 0))
+            if ((Mem.S32(((Gv.BotSetup_Slots + (uint)off) + (uint)0)) < 0))
             {
                 UiNode_SetVisible((uint)(w), 0);
                 return;
             }
             o = UiTree_FindNode((uint)(w), (uint)(909), default(uint), default(uint));
             new O3Obj(o).alpha_Set((byte)(125));
-            new O3Obj(o).f2C_Set(new O3Row((0x800E3A50u + (uint)(CharSelect_FindRowByCharacter(Mem.S32(((0x80153F80u + (uint)off) + (uint)0))) * 112))).f8);
+            new O3Obj(o).f2C_Set(new O3Row((Gv.CharSelect_CharacterTable + (uint)(CharSelect_FindRowByCharacter(Mem.S32(((Gv.BotSetup_Slots + (uint)off) + (uint)0))) * 112))).f8);
             o = UiTree_FindNode((uint)(w), (uint)(911), default(uint), default(uint));
             new O3Obj(o).alpha_Set((byte)(125));
-            LibC_StrCopy(((0x80153F80u + (uint)off) + (uint)16), Mem.U32(new O3Chr(((0x800E381Cu + (uint)(Mem.S32(((0x80153F80u + (uint)off) + (uint)4)) * 136)) + (uint)(BotSetup_FindBotNameIndex(Mem.S32(((0x80153F80u + (uint)off) + (uint)4)), Mem.S32(((0x80153F80u + (uint)off) + (uint)0))) * 8))).s));
-            new O3Obj(o).f38_Set(((0x80153F80u + (uint)off) + (uint)16));
+            LibC_StrCopy(((Gv.BotSetup_Slots + (uint)off) + (uint)16), Mem.U32(new O3Chr(((Gv.BotSetup_NameTable + (uint)(Mem.S32(((Gv.BotSetup_Slots + (uint)off) + (uint)4)) * 136)) + (uint)(BotSetup_FindBotNameIndex(Mem.S32(((Gv.BotSetup_Slots + (uint)off) + (uint)4)), Mem.S32(((Gv.BotSetup_Slots + (uint)off) + (uint)0))) * 8))).s));
+            new O3Obj(o).f38_Set(((Gv.BotSetup_Slots + (uint)off) + (uint)16));
             o = UiTree_FindNode((uint)(w), (uint)(910), default(uint), default(uint));
             new O3Obj(o).alpha_Set((byte)(125));
-            new O3Obj(o).f38_Set((uint)(Mem.S32(Mem.U32((0x800E39B4u + (uint)(Mem.S32(((0x80153F80u + (uint)off) + (uint)4)) * 4))))));
+            new O3Obj(o).f38_Set((uint)(Mem.S32(Mem.U32((0x800E39B4u + (uint)(Mem.S32(((Gv.BotSetup_Slots + (uint)off) + (uint)4)) * 4))))));
             o = UiTree_FindNode((uint)(w), (uint)(912), default(uint), default(uint));
             new O3Obj(o).alpha_Set((byte)(125));
-            new O3Obj(o).f2C_Set(new O3P2((0x800E3790u + (uint)(Mem.S32(((0x80153F80u + (uint)off) + (uint)8)) * 8))).a);
+            new O3Obj(o).f2C_Set(new O3P2((0x800E3790u + (uint)(Mem.S32(((Gv.BotSetup_Slots + (uint)off) + (uint)8)) * 8))).a);
             o = UiTree_FindNode((uint)(w), (uint)(913), default(uint), default(uint));
             new O3Obj(o).alpha_Set((byte)(125));
-            new O3Obj(o).f2C_Set(new O3P2((0x800E3790u + (uint)(Mem.S32(((0x80153F80u + (uint)off) + (uint)8)) * 8))).b);
+            new O3Obj(o).f2C_Set(new O3P2((0x800E3790u + (uint)(Mem.S32(((Gv.BotSetup_Slots + (uint)off) + (uint)8)) * 8))).b);
         }
     }
 
@@ -299,14 +299,14 @@ public static partial class Game
             j = 0;
             one = 1;
             off = j;
-            cfg = 0x801462C8u;
+            cfg = Gv.Settings;
             e = (new Q2Cfg_v3(cfg).pl.P + (uint)(7 * 150));
             L_top: ;
             if ((idx <= 0))
             {
                 goto L_done;
             }
-            if ((Mem.S32((0x80153F80u + (uint)off)) >= 0))
+            if ((Mem.S32((Gv.BotSetup_Slots + (uint)off)) >= 0))
             {
                 p = (uint)(((idx * 150) + (int)(cfg)));
                 L_again: ;
@@ -328,11 +328,11 @@ public static partial class Game
                     new Q2Pl_v2(e).f78_Set((byte)(one));
                     new Q2Pl_v2(e).f7F_Set((byte)(idx));
                     --idx;
-                    new Q2Pl_v2(e).f80_Set(Mem.U8((0x80153F80u + (uint)(off + 3))));
-                    new Q2Pl_v2(e).f93_Set(Mem.U8((0x80153F80u + (uint)(off + 7))));
-                    new Q2Pl_v2(e).f92_Set(Mem.U8((0x80153F80u + (uint)(off + 11))));
-                    new Q2Pl_v2(e).f81_Set(Mem.U8((0x80153F80u + (uint)(off + 15))));
-                    LibC_StrCopy(new Q2Pl_v2(e).name.P, ((0x80153F80u + (uint)off) + (uint)16));
+                    new Q2Pl_v2(e).f80_Set(Mem.U8((Gv.BotSetup_Slots + (uint)(off + 3))));
+                    new Q2Pl_v2(e).f93_Set(Mem.U8((Gv.BotSetup_Slots + (uint)(off + 7))));
+                    new Q2Pl_v2(e).f92_Set(Mem.U8((Gv.BotSetup_Slots + (uint)(off + 11))));
+                    new Q2Pl_v2(e).f81_Set(Mem.U8((Gv.BotSetup_Slots + (uint)(off + 15))));
+                    LibC_StrCopy(new Q2Pl_v2(e).name.P, ((Gv.BotSetup_Slots + (uint)off) + (uint)16));
                     e -= 150u;
                 }
             }
@@ -364,9 +364,9 @@ public static partial class Game
             pts = 0;
             for (i = 0; (i < 3); ++i)
             {
-                if ((new O3Plr((0x80153F80u + (uint)(i * 28))).id >= 0))
+                if ((new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).id >= 0))
                 {
-                    switch (new O3Plr((0x80153F80u + (uint)(i * 28))).type)
+                    switch (new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).type)
                     {
                     case 0:
                         pts = 5;
@@ -384,7 +384,7 @@ public static partial class Game
             n = 0;
             for (j = 0; (j < 3); ++j)
             {
-                if ((new O3Plr((0x80153F80u + (uint)(j * 28))).id >= 0))
+                if ((new O3Plr((Gv.BotSetup_Slots + (uint)(j * 28))).id >= 0))
                 {
                     ++n;
                 }
@@ -461,16 +461,16 @@ public static partial class Game
                     for (i = 0; (i < n); ++i)
                     {
                         t = (Mem.S32((_fp + (uint)(i * 4))) / 10);
-                        new O3Plr((0x80153F80u + (uint)(i * 28))).f8_Set(4);
-                        new O3Plr((0x80153F80u + (uint)(i * 28))).type_Set(t);
-                        new O3Plr((0x80153F80u + (uint)(i * 28))).fC_Set(t);
+                        new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).f8_Set(4);
+                        new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).type_Set(t);
+                        new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).fC_Set(t);
                         do
                         {
                             r = (Random_Next() % 17);
-                            new O3Plr((0x80153F80u + (uint)(i * 28))).id_Set(new O3Chr(((0x800E381Cu + (uint)(t * 136)) + (uint)(r * 8))).ch);
-                            LibC_StrCopy(new O3Plr((0x80153F80u + (uint)(i * 28))).name.P, Mem.U32(new O3Chr(((0x800E381Cu + (uint)(t * 136)) + (uint)(r * 8))).s));
+                            new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).id_Set(new O3Chr(((Gv.BotSetup_NameTable + (uint)(t * 136)) + (uint)(r * 8))).ch);
+                            LibC_StrCopy(new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).name.P, Mem.U32(new O3Chr(((Gv.BotSetup_NameTable + (uint)(t * 136)) + (uint)(r * 8))).s));
                         }
-                        while ((new O3Plr((0x80153F80u + (uint)(i * 28))).id == (-1)));
+                        while ((new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).id == (-1)));
                     }
                 }
             }
@@ -487,10 +487,10 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 3); ++i)
             {
-                new O3Plr((0x80153F80u + (uint)(i * 28))).id_Set((-1));
-                new O3Plr((0x80153F80u + (uint)(i * 28))).type_Set(0);
-                new O3Plr((0x80153F80u + (uint)(i * 28))).f8_Set(0);
-                new O3Plr((0x80153F80u + (uint)(i * 28))).fC_Set(0);
+                new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).id_Set((-1));
+                new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).type_Set(0);
+                new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).f8_Set(0);
+                new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).fC_Set(0);
             }
         }
     }
@@ -508,7 +508,7 @@ public static partial class Game
             n = 0;
             for (i = 0; (i < 4); ++i)
             {
-                p = (0x80146398u + (uint)(i * 150));
+                p = (Gv.Settings_PlayerRecords + (uint)(i * 150));
                 if (((int)(new O3Pl4(p).f78) == 1))
                 {
                     ++n;
@@ -541,7 +541,7 @@ public static partial class Game
             int n = 0;
             for (i = 0; (i < 3); ++i)
             {
-                if ((new O3Slot((0x80153F80u + (uint)(i * 28))).v >= 0))
+                if ((new O3Slot((Gv.BotSetup_Slots + (uint)(i * 28))).v >= 0))
                 {
                     ++n;
                 }
@@ -578,9 +578,9 @@ public static partial class Game
             pts = 0;
             for (i = 0; (i < 3); ++i)
             {
-                if ((new O3Plr((0x80153F80u + (uint)(i * 28))).id >= 0))
+                if ((new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).id >= 0))
                 {
-                    switch (new O3Plr((0x80153F80u + (uint)(i * 28))).type)
+                    switch (new O3Plr((Gv.BotSetup_Slots + (uint)(i * 28))).type)
                     {
                     case 0:
                         pts = 5;
@@ -608,7 +608,7 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 17); ++i)
             {
-                if ((new O3Chr(((0x800E381Cu + (uint)(row * 136)) + (uint)(i * 8))).ch == ch))
+                if ((new O3Chr(((Gv.BotSetup_NameTable + (uint)(row * 136)) + (uint)(i * 8))).ch == ch))
                 {
                     return i;
                 }
@@ -623,8 +623,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0041ECF4");
-            ResourcePool_MallocFree(Mem.U32(0x800E39C0u));
-            Mem.Set(0x800E39C0u, 0u);
+            ResourcePool_MallocFree(Mem.U32(Gv.BotSetup_PagePtr));
+            Mem.Set(Gv.BotSetup_PagePtr, 0u);
             return 0;
         }
     }
@@ -637,9 +637,9 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0041ED24", (uint)a0, (uint)a1, (uint)dt);
             uint it = 0u;
             float v = 0f;
-            new O3Ps(Mem.U32(0x800E39C0u)).timer_Set((new O3Ps(Mem.U32(0x800E39C0u)).timer + dt));
-            it = UiTree_FindNode((uint)(new O3Ps(Mem.U32(0x800E39C0u)).w[(int)(new O3Ps(Mem.U32(0x800E39C0u)).sel)]), (uint)(914), default(uint), default(uint));
-            v = ((cosf(((float)(new O3Ps(Mem.U32(0x800E39C0u)).timer) * 0.00333333341f)) * 100.0f) + 150.0f);
+            new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).timer_Set((new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).timer + dt));
+            it = UiTree_FindNode((uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).w[(int)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel)]), (uint)(914), default(uint), default(uint));
+            v = ((cosf(((float)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).timer) * 0.00333333341f)) * 100.0f) + 150.0f);
             new O3Hdr(it).alpha_Set((byte)(Cpu.TruncU32(v)));
             return 0;
         }
@@ -684,18 +684,18 @@ public static partial class Game
             }
             {
                 Menu_ConsumeEvent();
-                it = UiTree_FindNode((uint)(new O3Ps(Mem.U32(0x800E39C0u)).w[(int)(new O3Ps(Mem.U32(0x800E39C0u)).sel)]), (uint)(914), default(uint), default(uint));
+                it = UiTree_FindNode((uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).w[(int)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel)]), (uint)(914), default(uint), default(uint));
                 new O3Hdr(it).alpha_Set((byte)(255));
                 UiNode_SetVisible(it, 0);
-                new O3Ps(Mem.U32(0x800E39C0u)).sel_Set((new O3Ps(Mem.U32(0x800E39C0u)).sel - 1));
-                if ((new O3Ps(Mem.U32(0x800E39C0u)).sel < 0))
+                new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel_Set((new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel - 1));
+                if ((new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel < 0))
                 {
-                    new O3Ps(Mem.U32(0x800E39C0u)).sel_Set((new O3Ps(Mem.U32(0x800E39C0u)).cnt - 1));
+                    new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel_Set((new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).cnt - 1));
                 }
-                it = UiTree_FindNode((uint)(new O3Ps(Mem.U32(0x800E39C0u)).w[(int)(new O3Ps(Mem.U32(0x800E39C0u)).sel)]), (uint)(914), default(uint), default(uint));
+                it = UiTree_FindNode((uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).w[(int)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel)]), (uint)(914), default(uint), default(uint));
                 new O3Hdr(it).alpha_Set((byte)(255));
                 UiNode_SetVisible(it, 1);
-                new O3Ps(Mem.U32(0x800E39C0u)).timer_Set(0);
+                new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).timer_Set(0);
                 Audio_PlaySound2D(3712);
             }
             return 0;
@@ -715,14 +715,14 @@ public static partial class Game
             }
             {
                 Menu_ConsumeEvent();
-                it = UiTree_FindNode((uint)(new O3Ps(Mem.U32(0x800E39C0u)).w[(int)(new O3Ps(Mem.U32(0x800E39C0u)).sel)]), (uint)(914), default(uint), default(uint));
+                it = UiTree_FindNode((uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).w[(int)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel)]), (uint)(914), default(uint), default(uint));
                 new O3Hdr(it).alpha_Set((byte)(255));
                 UiNode_SetVisible(it, 0);
-                new O3Ps(Mem.U32(0x800E39C0u)).sel_Set(((new O3Ps(Mem.U32(0x800E39C0u)).sel + 1) % new O3Ps(Mem.U32(0x800E39C0u)).cnt));
-                it = UiTree_FindNode((uint)(new O3Ps(Mem.U32(0x800E39C0u)).w[(int)(new O3Ps(Mem.U32(0x800E39C0u)).sel)]), (uint)(914), default(uint), default(uint));
+                new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel_Set(((new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel + 1) % new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).cnt));
+                it = UiTree_FindNode((uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).w[(int)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel)]), (uint)(914), default(uint), default(uint));
                 new O3Hdr(it).alpha_Set((byte)(255));
                 UiNode_SetVisible(it, 1);
-                new O3Ps(Mem.U32(0x800E39C0u)).timer_Set(0);
+                new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).timer_Set(0);
                 Audio_PlaySound2D(3712);
             }
             return 0;
@@ -739,12 +739,12 @@ public static partial class Game
             if ((((a2 >> (int)16) == (uint)(3)) && (a3 == 0)))
             {
                 Menu_ConsumeEvent();
-                new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).f8_Set(((new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).f8 + 1) % 5));
-                BotSetup_RefreshSlot(new O3Ps(Mem.U32(0x800E39C0u)).sel);
+                new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).f8_Set(((new O3Plr((Gv.BotSetup_Slots + (uint)(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel * 28))).f8 + 1) % 5));
+                BotSetup_RefreshSlot(new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel);
                 if ((Menu_GetStackScreenId(0) == 22))
                 {
-                    j = new O3Ps(Mem.U32(0x800E39C0u)).sel;
-                    new O3Pl4((0x80146398u + (uint)((7 - j) * 150))).f92_Set((byte)(new O3Plr((0x80153F80u + (uint)(j * 28))).f8));
+                    j = new O3Ps(Mem.U32(Gv.BotSetup_PagePtr)).sel;
+                    new O3Pl4((Gv.Settings_PlayerRecords + (uint)((7 - j) * 150))).f92_Set((byte)(new O3Plr((Gv.BotSetup_Slots + (uint)(j * 28))).f8));
                 }
             }
             return 0;
@@ -758,13 +758,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0041F118", (uint)obj, (uint)msg, (uint)a2, (uint)a3);
             int i = 0;
-            for (i = 0; (new O3Msg((0x800E39C4u + (uint)(i * 12))).fn != 0u); ++i)
+            for (i = 0; (new O3Msg((Gv.BotSetup_MsgTable + (uint)(i * 12))).fn != 0u); ++i)
             {
-                if ((new O3Msg((0x800E39C4u + (uint)(i * 12))).msg == msg))
+                if ((new O3Msg((Gv.BotSetup_MsgTable + (uint)(i * 12))).msg == msg))
                 {
-                    if (((new O3Msg((0x800E39C4u + (uint)(i * 12))).type == (int)(new O3Hdr(obj).id)) || (new O3Msg((0x800E39C4u + (uint)(i * 12))).type == 30000)))
+                    if (((new O3Msg((Gv.BotSetup_MsgTable + (uint)(i * 12))).type == (int)(new O3Hdr(obj).id)) || (new O3Msg((Gv.BotSetup_MsgTable + (uint)(i * 12))).type == 30000)))
                     {
-                        return (int)(Funcs.CallRegX(new O3Msg((0x800E39C4u + (uint)(i * 12))).fn, obj, (uint)(msg), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
+                        return (int)(Funcs.CallRegX(new O3Msg((Gv.BotSetup_MsgTable + (uint)(i * 12))).fn, obj, (uint)(msg), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
                     }
                 }
             }

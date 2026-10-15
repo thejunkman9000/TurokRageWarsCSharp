@@ -43,7 +43,7 @@ public static partial class Game
                     Player_GetBodyLeanRet_0024F468((_fp + 48u), o);
                     break;
                 }
-                Effect_SpawnFromTemplates(0x80121990u, o, o, (uint)(0), extra, a1, (_fp + 32u), (_fp + 48u), (_fp + 16u), 0, (-1), mode);
+                Effect_SpawnFromTemplates(Gv.EffectMgr, o, o, (uint)(0), extra, a1, (_fp + 32u), (_fp + 48u), (_fp + 16u), 0, (-1), mode);
                 if ((((int)(new B04Ent_v3(o).type) == 1) && ((int)(new B04Ent_v3(e).unkE4) == 1036)))
                 {
                     int v = (new B04Ent_v3(e).unk29C - 1);
@@ -127,7 +127,7 @@ public static partial class Game
                 }
                 if ((t == 0u))
                 {
-                    tobj = Player_FindNearest(0x80145040u, _fp);
+                    tobj = Player_FindNearest(Gv.PlayerPool, _fp);
                     if ((tobj != 0u))
                     {
                         t = tobj;
@@ -152,7 +152,7 @@ public static partial class Game
                 Vec_Normalize((_fp + 80u));
                 ang = (Math_Acosf((((new Vec3f((_fp + 48u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 48u)).y * new Vec3f((_fp + 32u)).y)) + (new Vec3f((_fp + 48u)).z * new Vec3f((_fp + 32u)).z))) * Mem.F32(0x800C8D84u));
                 s = sinf(ang);
-                Mem.Set(0x80115DECu, s);
+                Mem.Set(Gv.Quat_SinScratch, s);
                 new Quat4((_fp + 96u)).x_Set((new Vec3f((_fp + 80u)).x * s));
                 new Quat4((_fp + 96u)).y_Set((new Vec3f((_fp + 80u)).y * s));
                 new Quat4((_fp + 96u)).z_Set((new Vec3f((_fp + 80u)).z * s));
@@ -179,7 +179,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002627C0_take_effect", (uint)scene, (uint)@ref);
             uint effect = 0u;
-            if (((Mem.S32(0x8013B290u) == 0) && ((uint)(new func_80262ABC_S1(scene).unk5F24) >= (uint)(3))))
+            if (((Mem.S32(Gv.Game_Flag_8013B290) == 0) && ((uint)(new func_80262ABC_S1(scene).unk5F24) >= (uint)(3))))
             {
                 return 0u;
             }
@@ -210,7 +210,7 @@ public static partial class Game
                 Mem.Copy(_fp + 32u, color_in, 12);
                 if (Dbg.On) Dbg.Enter("func_002627C0_spawn_effect", (uint)scene, (uint)id, (uint)variant, (uint)count);
                 uint effect = 0u;
-                if ((Mem.S32(0x800D29B4u) == 0))
+                if ((Mem.S32(Gv.Level_DataLoaded) == 0))
                 {
                     return 0u;
                 }
@@ -220,7 +220,7 @@ public static partial class Game
                 }
                 if ((id == (-1)))
                 {
-                    id = Level_FindTypeIndexById(0x8011FE88u, variant);
+                    id = Level_FindTypeIndexById(Gv.LevelMgr, variant);
                     if ((id == (-1)))
                     {
                         return 0u;
@@ -228,14 +228,14 @@ public static partial class Game
                 }
                 if (((uint)((variant + 1)) < (uint)(2)))
                 {
-                    variant = (int)(Level_GetTypeIdByIndex(0x8011FE88u, id));
+                    variant = (int)(Level_GetTypeIdByIndex(Gv.LevelMgr, id));
                 }
                 effect = func_002627C0_take_effect(scene, @ref);
                 if ((effect == 0u))
                 {
                     return 0u;
                 }
-                Actor_Init(effect, id, variant, Mem.S32(0x800D2B40u), (uint)(count), (-1), (uint)(owner), scale, _fp, (uint)(524288), (_fp + 32u), (_fp + 16u));
+                Actor_Init(effect, id, variant, Mem.S32(Gv.NoRegionId), (uint)(count), (-1), (uint)(owner), scale, _fp, (uint)(524288), (_fp + 32u), (_fp + 16u));
                 Actor_CallRestore(effect);
                 return effect;
             }
@@ -571,7 +571,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00263018", (uint)w, (uint)counter);
             uint e = 0u;
-            if (((Mem.S32(0x8013B290u) != 0) || (new S1008Pool(w).state < (uint)(3))))
+            if (((Mem.S32(Gv.Game_Flag_8013B290) != 0) || (new S1008Pool(w).state < (uint)(3))))
             {
                 e = new S1008Pool(w).freeHead_;
                 if ((e != 0u))
@@ -795,7 +795,7 @@ public static partial class Game
                 float py = 0f;
                 if (((new ActorX(a).ch118.w0 & (uint)(16)) != 0u))
                 {
-                    Mem.Copy((_fp + 16u), 0x801042C8u, 12);
+                    Mem.Copy((_fp + 16u), Gv.Collision_HitInfo_Vec_D0, 12);
                 }
                 else
                 {
@@ -846,11 +846,11 @@ public static partial class Game
                     Mem.Copy((_fp + 64u), (_fp + 48u), 12);
                 }
                 Vec_Add((_fp + 96u), (_fp + 64u), new ActorX(a).pos.P);
-                Mem.Set(0x80103FCCu, (_fp + 176u));
+                Mem.Set(Gv.Collision_ContactPtr, (_fp + 176u));
                 Mem.Copy((_fp + 80u), (_fp + 96u), 12);
-                Mem.Set(0x80103FCCu, 0x801041F0u);
+                Mem.Set(Gv.Collision_ContactPtr, Gv.Collision_Contacts);
                 L_L: ;
-                Effect_SpawnFromTemplates(0x80121990u, a, new ActorX(a).tgt_, (uint)(new ActorX(a).u130), (int)(new ActorX(a).p134_), a1, (_fp + 16u), _fp, (_fp + 80u), 0, a2, (int)(((uint)(a3) | (new ActorX(a).u5C & (uint)(2097158)))));
+                Effect_SpawnFromTemplates(Gv.EffectMgr, a, new ActorX(a).tgt_, (uint)(new ActorX(a).u130), (int)(new ActorX(a).p134_), a1, (_fp + 16u), _fp, (_fp + 80u), 0, a2, (int)(((uint)(a3) | (new ActorX(a).u5C & (uint)(2097158)))));
             }
         }
         finally { Stack.Free(440); }
@@ -886,7 +886,7 @@ public static partial class Game
                     new Vec3f(_fp).y_Set(Mem.F32(0x800C9C34u));
                     Vec_Cross((_fp + 16u), _fp, (_fp + 32u));
                     Vec_Scale((_fp + 48u), (_fp + 16u), ((sinf(new ActorX(a).f19C) * new ActorX(a).f1AC) * f));
-                    new ActorX(a).f19C_Set((float)((float)(new ActorX(a).f19C) + ((new ActorX(a).f1A4 * f) * Mem.F32(0x800D2988u))));
+                    new ActorX(a).f19C_Set((float)((float)(new ActorX(a).f19C) + ((new ActorX(a).f1A4 * f) * Mem.F32(Gv.FrameTime))));
                     tmp = new ActorX(a).f19C;
                     Vec_Scale((_fp + 64u), (_fp + 16u), ((sinf(tmp) * new ActorX(a).f1AC) * f));
                     Vec_Sub(new ActorX(a).vel.P, new ActorX(a).vel.P, (_fp + 48u));
@@ -894,7 +894,7 @@ public static partial class Game
                 }
                 else
                 {
-                    new ActorX(a).f19C_Set((new ActorX(a).f19C + ((new ActorX(a).f1A4 * f) * Mem.F32(0x800D2988u))));
+                    new ActorX(a).f19C_Set((new ActorX(a).f19C + ((new ActorX(a).f1A4 * f) * Mem.F32(Gv.FrameTime))));
                 }
                 if ((new ActorX(a).f1B0 > 0.0f))
                 {
@@ -904,7 +904,7 @@ public static partial class Game
                     Vec_Cross((_fp + 80u), _fp, (_fp + 32u));
                     Vec_Cross((_fp + 16u), (_fp + 80u), (_fp + 32u));
                     Vec_Scale((_fp + 48u), (_fp + 16u), ((sinf(new ActorX(a).f1A0) * new ActorX(a).f1B0) * f));
-                    new ActorX(a).f1A0_Set((float)((float)(new ActorX(a).f1A0) + ((new ActorX(a).f1A8 * f) * Mem.F32(0x800D2988u))));
+                    new ActorX(a).f1A0_Set((float)((float)(new ActorX(a).f1A0) + ((new ActorX(a).f1A8 * f) * Mem.F32(Gv.FrameTime))));
                     tmp = new ActorX(a).f1A0;
                     Vec_Scale((_fp + 64u), (_fp + 16u), ((sinf(tmp) * new ActorX(a).f1B0) * f));
                     Vec_Sub(new ActorX(a).vel.P, new ActorX(a).vel.P, (_fp + 48u));
@@ -912,7 +912,7 @@ public static partial class Game
                 }
                 else
                 {
-                    new ActorX(a).f1A0_Set((new ActorX(a).f1A0 + ((new ActorX(a).f1A8 * f) * Mem.F32(0x800D2988u))));
+                    new ActorX(a).f1A0_Set((new ActorX(a).f1A0 + ((new ActorX(a).f1A8 * f) * Mem.F32(Gv.FrameTime))));
                 }
             }
         }
@@ -1137,7 +1137,7 @@ public static partial class Game
                 Vec_Sub((_fp + 80u), (_fp + 64u), new M5Obj(o).pos.P);
                 if (!(((sqrtf((((new M5Vec3((_fp + 80u)).x * new M5Vec3((_fp + 80u)).x) + (new M5Vec3((_fp + 80u)).y * new M5Vec3((_fp + 80u)).y)) + (new M5Vec3((_fp + 80u)).z * new M5Vec3((_fp + 80u)).z))) < Mem.F32(0x800C9C70u)) && (new M5Obj(o).f140 > Mem.F32(0x800C9C74u))))) goto _f9;
                 Particle_PlayExpireEvents(o);
-                Particle_Free(0x80121990u, o, default(uint), default(uint));
+                Particle_Free(Gv.EffectMgr, o, default(uint), default(uint));
                 Particle_StopLoopSound(o);
                 return;
                 _f9: ;
@@ -1819,24 +1819,24 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0027B498", (uint)o);
             uint p = 0u;
             int k = 0;
-            if ((Mem.U32(0x801041F0u) != 0u))
+            if ((Mem.U32(Gv.Collision_Contacts) != 0u))
             {
-                if (((int)(Mem.U8(Mem.U32(0x801041F0u))) == 1))
+                if (((int)(Mem.U8(Mem.U32(Gv.Collision_Contacts))) == 1))
                 {
                     p = new M5Obj_v2(o).tgt_;
-                    if ((((p != 0u) && ((int)(Mem.U8((p + (uint)0))) == (int)(Mem.U8((Mem.U32(0x801041F0u) + (uint)0))))) && ((Mem.U32((p + (uint)256)) & (uint)(3145728)) != 0u)))
+                    if ((((p != 0u) && ((int)(Mem.U8((p + (uint)0))) == (int)(Mem.U8((Mem.U32(Gv.Collision_Contacts) + (uint)0))))) && ((Mem.U32((p + (uint)256)) & (uint)(3145728)) != 0u)))
                     {
                         if ((func_0027B498_clsA(new M5Obj_v2(o).type) != 0))
                         {
-                            Level_FireEntityTriggers(Mem.U32(0x801041F0u), 8, (int)(o));
+                            Level_FireEntityTriggers(Mem.U32(Gv.Collision_Contacts), 8, (int)(o));
                         }
                         if ((func_0027B498_clsB(new M5Obj_v2(o).type) != 0))
                         {
-                            Level_FireEntityTriggers(Mem.U32(0x801041F0u), 4, (int)(o));
+                            Level_FireEntityTriggers(Mem.U32(Gv.Collision_Contacts), 4, (int)(o));
                         }
                         if ((func_0027B498_clsC(new M5Obj_v2(o).type) != 0))
                         {
-                            Level_FireEntityTriggers(Mem.U32(0x801041F0u), 16, (int)(o));
+                            Level_FireEntityTriggers(Mem.U32(Gv.Collision_Contacts), 16, (int)(o));
                         }
                     }
                     else
@@ -1846,15 +1846,15 @@ public static partial class Game
                         {
                             if ((func_0027B498_clsA(new M5Obj_v2(o).type) != 0))
                             {
-                                Level_FireEntityTriggers(Mem.U32(0x801041F0u), 128, (int)(o));
+                                Level_FireEntityTriggers(Mem.U32(Gv.Collision_Contacts), 128, (int)(o));
                             }
                             if ((func_0027B498_clsB(new M5Obj_v2(o).type) != 0))
                             {
-                                Level_FireEntityTriggers(Mem.U32(0x801041F0u), 64, (int)(o));
+                                Level_FireEntityTriggers(Mem.U32(Gv.Collision_Contacts), 64, (int)(o));
                             }
                             if ((func_0027B498_clsC(new M5Obj_v2(o).type) != 0))
                             {
-                                Level_FireEntityTriggers(Mem.U32(0x801041F0u), 256, (int)(o));
+                                Level_FireEntityTriggers(Mem.U32(Gv.Collision_Contacts), 256, (int)(o));
                             }
                         }
                     }
@@ -2591,14 +2591,14 @@ public static partial class Game
                 {
                     if (((new B18Fx(o).cfg.flags & (uint)(16)) != 0u))
                     {
-                        Mem.Copy((_fp + 24u), 0x801042C8u, 12);
+                        Mem.Copy((_fp + 24u), Gv.Collision_HitInfo_Vec_D0, 12);
                     }
                     else
                     {
                         Mem.Copy((_fp + 24u), new B18Fx(o).unk1C.P, 12);
                     }
                     Quat_FromDirection((_fp + 8u), (_fp + 24u));
-                    Effect_SpawnFromTemplates(0x80121990u, o, (uint)(new B18Fx(o).unk12C), (uint)(new B18Fx(o).unk130), new B18Fx(o).unk134, s2, (_fp + 24u), (_fp + 8u), 0x80104290u, 0, Mem.S32(0x8010429Cu), (int)(((new B18Fx(o).flags & (uint)(2097158)) | (uint)(1))));
+                    Effect_SpawnFromTemplates(Gv.EffectMgr, o, (uint)(new B18Fx(o).unk12C), (uint)(new B18Fx(o).unk130), new B18Fx(o).unk134, s2, (_fp + 24u), (_fp + 8u), 0x80104290u, 0, Mem.S32(0x8010429Cu), (int)(((new B18Fx(o).flags & (uint)(2097158)) | (uint)(1))));
                 }
                 if ((s3 != 65535))
                 {
@@ -2609,7 +2609,7 @@ public static partial class Game
                 new B18Fx(o).flags_Set((uint)((uint)(new B18Fx(o).flags) | (uint)(1024)));
                 if (((int)(new B18Fx(o).unk1B9) == 1))
                 {
-                    Particle_Free(0x80121990u, o, default(uint), default(uint));
+                    Particle_Free(Gv.EffectMgr, o, default(uint), default(uint));
                     Particle_StopLoopSound(o);
                 }
             }
@@ -2666,14 +2666,14 @@ public static partial class Game
                 {
                     if (((new B18Fx(o).cfg.flags & (uint)(16)) != 0u))
                     {
-                        Mem.Copy((_fp + 24u), 0x801042C8u, 12);
+                        Mem.Copy((_fp + 24u), Gv.Collision_HitInfo_Vec_D0, 12);
                     }
                     else
                     {
                         Mem.Copy((_fp + 24u), new B18Fx(o).unk1C.P, 12);
                     }
                     Quat_FromDirection((_fp + 8u), (_fp + 24u));
-                    Effect_SpawnFromTemplates(0x80121990u, o, (uint)(new B18Fx(o).unk12C), (uint)(new B18Fx(o).unk130), new B18Fx(o).unk134, s2, (_fp + 24u), (_fp + 8u), 0x801042B8u, 0, (-5), (int)(((new B18Fx(o).flags & (uint)(2097158)) | (uint)(1))));
+                    Effect_SpawnFromTemplates(Gv.EffectMgr, o, (uint)(new B18Fx(o).unk12C), (uint)(new B18Fx(o).unk130), new B18Fx(o).unk134, s2, (_fp + 24u), (_fp + 8u), 0x801042B8u, 0, (-5), (int)(((new B18Fx(o).flags & (uint)(2097158)) | (uint)(1))));
                 }
                 if ((s3 != 65535))
                 {
@@ -2682,7 +2682,7 @@ public static partial class Game
                 new B18Fx(o).flags_Set((uint)((uint)(new B18Fx(o).flags) | (uint)(512)));
                 if (((new B18Fx(o).cfg.flags & (uint)(131072)) != 0u))
                 {
-                    Particle_Free(0x80121990u, o, default(uint), default(uint));
+                    Particle_Free(Gv.EffectMgr, o, default(uint), default(uint));
                     Particle_StopLoopSound(o);
                 }
             }
@@ -2723,30 +2723,30 @@ public static partial class Game
                 s3 = (int)(new B18Cfg(c).tab.aA8[(int)(idx)]);
                 if ((v1 != 65535))
                 {
-                    Event_Send(o, o, (int)((ushort)(v1)), (-1), 0x801042A8u, _fp);
+                    Event_Send(o, o, (int)((ushort)(v1)), (-1), Gv.Particle_HitResult, _fp);
                 }
                 if ((s2 != 65535))
                 {
                     if (((new B18Fx(o).cfg.flags & (uint)(16)) != 0u))
                     {
-                        Mem.Copy((_fp + 24u), 0x801042C8u, 12);
+                        Mem.Copy((_fp + 24u), Gv.Collision_HitInfo_Vec_D0, 12);
                     }
                     else
                     {
                         Mem.Copy((_fp + 24u), new B18Fx(o).unk1C.P, 12);
                     }
                     Quat_FromDirection((_fp + 8u), (_fp + 24u));
-                    Effect_SpawnFromTemplates(0x80121990u, o, (uint)(new B18Fx(o).unk12C), (uint)(new B18Fx(o).unk130), new B18Fx(o).unk134, s2, (_fp + 24u), (_fp + 8u), 0x801042A8u, 0, (-3), (int)(((new B18Fx(o).flags & (uint)(2097158)) | (uint)(1))));
+                    Effect_SpawnFromTemplates(Gv.EffectMgr, o, (uint)(new B18Fx(o).unk12C), (uint)(new B18Fx(o).unk130), new B18Fx(o).unk134, s2, (_fp + 24u), (_fp + 8u), Gv.Particle_HitResult, 0, (-3), (int)(((new B18Fx(o).flags & (uint)(2097158)) | (uint)(1))));
                 }
                 if ((s3 != 65535))
                 {
-                    Audio_PlaySound((int)((short)(s3)), 0x801042A8u, 0, (-1));
+                    Audio_PlaySound((int)((short)(s3)), Gv.Particle_HitResult, 0, (-1));
                 }
                 Vec_Scale(new B18Fx(o).unk18C.P, new B18Fx(o).unk18C.P, Cpu.U2F((uint)(new B18Fx(o).unk1C4)));
                 new B18Fx(o).flags_Set((uint)((uint)(new B18Fx(o).flags) | (uint)(512)));
                 if (((int)(new B18Fx(o).unk1BA) == 1))
                 {
-                    Particle_Free(0x80121990u, o, default(uint), default(uint));
+                    Particle_Free(Gv.EffectMgr, o, default(uint), default(uint));
                     Particle_StopLoopSound(o);
                 }
             }
@@ -2780,30 +2780,30 @@ public static partial class Game
                 s3 = (int)(new B18Cfg(c).tab.aA8[(int)(idx)]);
                 if ((v1 != 65535))
                 {
-                    Event_Send(o, o, (int)((ushort)(v1)), (-1), 0x801042A8u, _fp);
+                    Event_Send(o, o, (int)((ushort)(v1)), (-1), Gv.Particle_HitResult, _fp);
                 }
                 if ((s2 != 65535))
                 {
                     if (((new B18Obj(o).cfg.flags & (uint)(16)) != 0u))
                     {
-                        Mem.Copy((_fp + 24u), 0x801042C8u, 12);
+                        Mem.Copy((_fp + 24u), Gv.Collision_HitInfo_Vec_D0, 12);
                     }
                     else
                     {
                         Mem.Copy((_fp + 24u), new B18Obj(o).unk1C.P, 12);
                     }
                     Quat_FromDirection((_fp + 8u), (_fp + 24u));
-                    Effect_SpawnFromTemplates(0x80121990u, o, (uint)(new B18Obj(o).unk12C), (uint)(new B18Obj(o).unk130), new B18Obj(o).unk134, s2, (_fp + 24u), (_fp + 8u), 0x801042A8u, 0, (-2), (int)(((new B18Obj(o).flags & (uint)(2097158)) | (uint)(1))));
+                    Effect_SpawnFromTemplates(Gv.EffectMgr, o, (uint)(new B18Obj(o).unk12C), (uint)(new B18Obj(o).unk130), new B18Obj(o).unk134, s2, (_fp + 24u), (_fp + 8u), Gv.Particle_HitResult, 0, (-2), (int)(((new B18Obj(o).flags & (uint)(2097158)) | (uint)(1))));
                 }
                 if ((s3 != 65535))
                 {
-                    Audio_PlaySound((int)((short)(s3)), 0x801042A8u, 0, (-1));
+                    Audio_PlaySound((int)((short)(s3)), Gv.Particle_HitResult, 0, (-1));
                 }
                 Vec_Scale(new B18Obj(o).unk18C.P, new B18Obj(o).unk18C.P, Cpu.U2F((uint)(new B18Obj(o).unk1C4)));
                 new B18Obj(o).flags_Set((uint)((uint)(new B18Obj(o).flags) | (uint)(512)));
                 if (((int)(new B18Obj(o).unk1BA) == 1))
                 {
-                    Particle_Free(0x80121990u, o, default(uint), default(uint));
+                    Particle_Free(Gv.EffectMgr, o, default(uint), default(uint));
                     Particle_StopLoopSound(o);
                 }
             }
@@ -2820,15 +2820,15 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0027CCD0_attach_actor", (uint)ob, (uint)st, (uint)m);
-                uint pp = new CcGs(0x801041F0u).unk0_;
+                uint pp = new CcGs(Gv.Collision_Contacts).unk0_;
                 Math_MtxInvertAffine(_fp, m);
-                Math_MtxTransformPoint(_fp, new CcGs(0x801041F0u).pos.P, new CcObj(ob).unk50.P);
-                Mem.Copy((_fp + 64u), new CcGs(0x801041F0u).vD8.P, 12);
+                Math_MtxTransformPoint(_fp, new CcGs(Gv.Collision_Contacts).pos.P, new CcObj(ob).unk50.P);
+                Mem.Copy((_fp + 64u), new CcGs(Gv.Collision_Contacts).vD8.P, 12);
                 Vec_Normalize((_fp + 64u));
                 Math_MtxRotateVector(_fp, (_fp + 64u), new CcObj(ob).unk1C.P);
                 new CcObj(ob).flags_Set((uint)((uint)(new CcObj(ob).flags) | (uint)(65536)));
                 new CcObj(ob).unk134_Set(pp);
-                new CcObj(ob).unk1D1_Set((byte)(new CcGs(0x801041F0u).idx));
+                new CcObj(ob).unk1D1_Set((byte)(new CcGs(Gv.Collision_Contacts).idx));
                 if ((((int)(new CcObj(ob).type) == 86) && (st == 2)))
                 {
                     new CcObj(ob).flags_Set((uint)((uint)(new CcObj(ob).flags) | (uint)(67108864)));
@@ -2860,7 +2860,7 @@ public static partial class Game
                 int vA8 = 0;
                 int ok = 0;
                 par = 0u;
-                P = new CcGs(0x801041F0u).unk0_;
+                P = new CcGs(Gv.Collision_Contacts).unk0_;
                 sp10C = 1;
                 f13 = 0;
                 sp110 = 0;
@@ -2877,24 +2877,24 @@ public static partial class Game
                 {
                     new CcObj(o).unk14_Set(0);
                 }
-                if ((new CcGs(0x801041F0u).idx != (-1)))
+                if ((new CcGs(Gv.Collision_Contacts).idx != (-1)))
                 {
                     st = Actor_GetHitClass_00216108(P);
                     if ((st != 9))
                     {
-                        st = (int)(new CcGs(0x801041F0u).unk7E);
+                        st = (int)(new CcGs(Gv.Collision_Contacts).unk7E);
                         if (((int)(new CcObj(o).type) == 13))
                         {
                             st = 4;
                         }
-                        par = new CcGs(0x801041F0u).unk0_;
+                        par = new CcGs(Gv.Collision_Contacts).unk0_;
                         if (((new CcPar(par).flags100 & (uint)(50331648)) != 0u))
                         {
-                            Math_MtxFixedToFloatAffine((_fp + 16u), (new CcPar(par).unkB8_ + (uint)(new CcGs(0x801041F0u).idx << (int)6)), default(uint), default(uint));
+                            Math_MtxFixedToFloatAffine((_fp + 16u), (new CcPar(par).unkB8_ + (uint)(new CcGs(Gv.Collision_Contacts).idx << (int)6)), default(uint), default(uint));
                             sp110 = 1;
                             if (((new CcPar(par).flags100 & (uint)(16777216)) != 0u))
                             {
-                                Anim_StartHitFlinch(par, (par + (uint)368), (_fp + 16u), new CcGs(0x801041F0u).pos.P, new CcGs(0x801041F0u).vD8.P, new CcGs(0x801041F0u).idx);
+                                Anim_StartHitFlinch(par, (par + (uint)368), (_fp + 16u), new CcGs(Gv.Collision_Contacts).pos.P, new CcGs(Gv.Collision_Contacts).vD8.P, new CcGs(Gv.Collision_Contacts).idx);
                             }
                             if (((new CcPar(par).flags100 & (uint)(33554432)) != 0u))
                             {
@@ -2910,17 +2910,17 @@ public static partial class Game
                                         }
                                     }
                                 }
-                                if ((((((((int)(new CcObj(o).type) == 86) || ((int)(new CcObj(o).type) == 2)) || ((int)(new CcObj(o).type) == 294)) || ((int)(new CcObj(o).type) == 15)) || (f13 != 0)) || (((int)(new CcObj(o).type) == 11) && (((int)(new CcGs(0x801041F0u).unk7D) & 3) == 1))))
+                                if ((((((((int)(new CcObj(o).type) == 86) || ((int)(new CcObj(o).type) == 2)) || ((int)(new CcObj(o).type) == 294)) || ((int)(new CcObj(o).type) == 15)) || (f13 != 0)) || (((int)(new CcObj(o).type) == 11) && (((int)(new CcGs(Gv.Collision_Contacts).unk7D) & 3) == 1))))
                                 {
                                     func_0027CCD0_attach_actor(o, st, (_fp + 16u));
                                     if (((int)(new CcObj(o).unk1D9) != 0))
                                     {
                                         Particle_UpdateMatrix(o);
-                                        Trail_DetachOwner(0x8013BA80u, o, default(uint), default(uint));
+                                        Trail_DetachOwner(Gv.Fx_TrailMgr, o, default(uint), default(uint));
                                     }
                                     if ((new CcObj(o).unk138 != 0))
                                     {
-                                        Light_Release(0x8013B1A8u, (uint)(new CcObj(o).unk138));
+                                        Light_Release(Gv.Light_Pool, (uint)(new CcObj(o).unk138));
                                         new CcObj(o).unk138_Set(0);
                                     }
                                 }
@@ -2964,7 +2964,7 @@ public static partial class Game
                 if ((v8C != 65535))
                 {
                     uint a0 = 0u;
-                    if (((new B18T8((0x800D1384u + (uint)(v8C * 8))).w0 & (uint)(4)) != 0u))
+                    if (((new B18T8((Gv.Anim_EventDefTable + (uint)(v8C * 8))).w0 & (uint)(4)) != 0u))
                     {
                         if (((int)(new CcObj(o).type) == 86))
                         {
@@ -2972,16 +2972,16 @@ public static partial class Game
                         }
                     }
                     a0 = P;
-                    if (((new B18T8((0x800D1384u + (uint)(v8C * 8))).w0 & (uint)(2)) != 0u))
+                    if (((new B18T8((Gv.Anim_EventDefTable + (uint)(v8C * 8))).w0 & (uint)(2)) != 0u))
                     {
                         a0 = o;
                     }
-                    Event_Send(a0, o, (int)((ushort)(v8C)), (-1), new CcGs(0x801041F0u).pos.P, _fp);
+                    Event_Send(a0, o, (int)((ushort)(v8C)), (-1), new CcGs(Gv.Collision_Contacts).pos.P, _fp);
                 }
                 if ((st != 4))
                 {
                     ok = 1;
-                    if (((int)(Mem.U8(0x801462E5u)) != 0))
+                    if (((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0))
                     {
                         ok = ((Mem.S32(new CcPar(P).tab18_) != 11) ? 1 : 0);
                         if ((sp108 == (int)(new CcObj(o).unk1B9)))
@@ -2995,7 +2995,7 @@ public static partial class Game
                         int a2 = (int)(Mem.U16((tb + (uint)148)));
                         if ((a2 != 65535))
                         {
-                            int fl = (int)(new B18T8((0x800D1384u + (uint)(a2 * 8))).w0);
+                            int fl = (int)(new B18T8((Gv.Anim_EventDefTable + (uint)(a2 * 8))).w0);
                             Mem.Copy((_fp + 8u), (tb + (uint)32), 8);
                             if (((fl & 4) != 0))
                             {
@@ -3004,7 +3004,7 @@ public static partial class Game
                                 {
                                     a0_2 = o;
                                 }
-                                Event_Send(a0_2, o, (int)((ushort)(a2)), (-1), new CcGs(0x801041F0u).pos.P, (_fp + 8u));
+                                Event_Send(a0_2, o, (int)((ushort)(a2)), (-1), new CcGs(Gv.Collision_Contacts).pos.P, (_fp + 8u));
                             }
                         }
                     }
@@ -3015,7 +3015,7 @@ public static partial class Game
                 }
                 if ((vA8 != 65535))
                 {
-                    Audio_PlaySound((int)((short)(vA8)), new CcGs(0x801041F0u).pos.P, 0, (int)(o));
+                    Audio_PlaySound((int)((short)(vA8)), new CcGs(Gv.Collision_Contacts).pos.P, 0, (int)(o));
                 }
                 if (!((new CcObj(o).flags & (uint)(196608)) != 0u))
                 {
@@ -3024,21 +3024,21 @@ public static partial class Game
                         uint R = 0u;
                         uint R2 = 0u;
                         int rt = 0;
-                        Mem.Copy(new CcObj(Mem.U32(0x801315F8u)).unk180.P, new CcQ(Mem.U32(0x80103FCCu)).unkF0.P, 12);
+                        Mem.Copy(new CcObj(Mem.U32(0x801315F8u)).unk180.P, new CcQ(Mem.U32(Gv.Collision_ContactPtr)).unkF0.P, 12);
                         if ((sp110 == 0))
                         {
-                            Math_MtxFixedToFloatAffine((_fp + 16u), (new CcPar(par).unkB8_ + (uint)(new CcGs(0x801041F0u).idx << (int)6)), default(uint), default(uint));
+                            Math_MtxFixedToFloatAffine((_fp + 16u), (new CcPar(par).unkB8_ + (uint)(new CcGs(Gv.Collision_Contacts).idx << (int)6)), default(uint), default(uint));
                         }
                         Math_MtxRotateRowsC_00273860((_fp + 16u), 3.14159298f);
-                        R = new CcQ(Mem.U32(0x80103FCCu)).unk0_;
+                        R = new CcQ(Mem.U32(Gv.Collision_ContactPtr)).unk0_;
                         rt = (int)(new CcRoot(R).type);
                         if ((rt == 1))
                         {
                             if ((Mem.S32(new CcRoot(R).tab18_) == 2))
                             {
-                                Math_MtxFixedToFloatAffine((_fp + 16u), (new CcPar(par).unkB8_ + (uint)(new CcGs(0x801041F0u).idx << (int)6)), default(uint), default(uint));
+                                Math_MtxFixedToFloatAffine((_fp + 16u), (new CcPar(par).unkB8_ + (uint)(new CcGs(Gv.Collision_Contacts).idx << (int)6)), default(uint), default(uint));
                             }
-                            R2 = new CcQ(Mem.U32(0x80103FCCu)).unk0_;
+                            R2 = new CcQ(Mem.U32(Gv.Collision_ContactPtr)).unk0_;
                             if ((((int)(new CcRoot(R2).type) == rt) && (((new CcRoot(R2).flags100 & (uint)(3145728)) != 0u) || (Mem.S32(new CcRoot(R2).tab18_) == 2))))
                             {
                                 uint tgt = Mem.U32(0x801315F8u);
@@ -3046,9 +3046,9 @@ public static partial class Game
                             }
                         }
                     }
-                    if (((sp108 == 1) || ((v8C != 65535) && ((new B18T8((0x800D1384u + (uint)(v8C * 8))).w0 & (uint)(1)) != 0u))))
+                    if (((sp108 == 1) || ((v8C != 65535) && ((new B18T8((Gv.Anim_EventDefTable + (uint)(v8C * 8))).w0 & (uint)(1)) != 0u))))
                     {
-                        Particle_Free(0x80121990u, o, default(uint), default(uint));
+                        Particle_Free(Gv.EffectMgr, o, default(uint), default(uint));
                         Particle_StopLoopSound(o);
                     }
                 }
@@ -3079,14 +3079,14 @@ public static partial class Game
                 int s3_2 = 0;
                 int v1_2 = 0;
                 uint a0 = 0u;
-                cam = Mem.U32(0x801041F0u);
+                cam = Mem.U32(Gv.Collision_Contacts);
                 cfg = new B18Fy(o).cfg_;
                 st = Actor_GetHitClass_00216108(cam);
                 if (!((st == 5))) goto _f0;
                 st = 4;
                 new B18Fy(o).flags_Set((uint)((uint)(new B18Fy(o).flags) | (uint)(2)));
                 _f0: ;
-                if (!((((int)(Mem.U8(0x801462E5u)) != 0) && (Particle_IsUnderwater(o) != 0)))) goto _f1;
+                if (!((((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0) && (Particle_IsUnderwater(o) != 0)))) goto _f1;
                 c = new B18Fy(o).cfg_;
                 if (!((Particle_IsUnderwater(o) != 0))) goto _f2;
                 idx = 12;
@@ -3114,7 +3114,7 @@ public static partial class Game
                 _f9: ;
                 _f10: ;
                 if (!(((new B18Cfg(cfg).flags & (uint)(8388608)) != 0u))) goto _f11;
-                Decal_Spawn(0x8013BA80u, new B18GPos(0x801041F8u).pos.P, new B18GPos(0x801041F8u).vF0.P, st, 0);
+                Decal_Spawn(Gv.Fx_TrailMgr, new B18GPos(Gv.Collision_HitInfo).pos.P, new B18GPos(Gv.Collision_HitInfo).vF0.P, st, 0);
                 _f11: ;
                 goto _f7;
                 _f7: ;
@@ -3123,8 +3123,8 @@ public static partial class Game
                 p = new B18Fy(o).unk12C_;
                 if (!((((p != 0u) && ((int)(new B18Par(p).type) == 1)) && ((new B18Par(p).flags100 & (uint)(3145728)) != 0u)))) goto _f14;
                 new B18Fy(o).flags_Set((uint)((uint)(new B18Fy(o).flags) | (uint)(131072)));
-                Mem.Copy(new B18Fy(o).pos.P, new B18GPos(0x801041F8u).pos.P, 12);
-                Mem.Copy(new B18Fy(o).unk1C.P, 0x801042C8u, 12);
+                Mem.Copy(new B18Fy(o).pos.P, new B18GPos(Gv.Collision_HitInfo).pos.P, 12);
+                Mem.Copy(new B18Fy(o).unk1C.P, Gv.Collision_HitInfo_Vec_D0, 12);
                 Player_PullToPoint_0022B054(new B18Fy(o).unk12C.owner, new B18Fy(o).pos.P);
                 goto _f15;
                 _f14: ;
@@ -3137,18 +3137,18 @@ public static partial class Game
                 _f12: ;
                 if (!((((((int)(new B18Fy(o).type) == 86) || ((int)(new B18Fy(o).type) == 294)) || ((int)(new B18Fy(o).type) == 205)) || ((int)(new B18Fy(o).type) == 15)))) goto _f17;
                 new B18Fy(o).flags_Set((uint)((uint)(new B18Fy(o).flags) | (uint)(131072)));
-                Mem.Copy(new B18Fy(o).pos.P, new B18GPos(0x801041F8u).pos.P, 12);
-                Mem.Copy(new B18Fy(o).unk1C.P, 0x801042C8u, 12);
+                Mem.Copy(new B18Fy(o).pos.P, new B18GPos(Gv.Collision_HitInfo).pos.P, 12);
+                Mem.Copy(new B18Fy(o).unk1C.P, Gv.Collision_HitInfo_Vec_D0, 12);
                 if (!(((int)(new B18Fy(o).unk1D9) != 0))) goto _f18;
                 Particle_UpdateMatrix(o);
-                Trail_DetachOwner(0x8013BA80u, o, default(uint), default(uint));
+                Trail_DetachOwner(Gv.Fx_TrailMgr, o, default(uint), default(uint));
                 _f18: ;
                 if (!((new B18Fy(o).unk138 != 0))) goto _f19;
-                Light_Release(0x8013B1A8u, (uint)(new B18Fy(o).unk138));
+                Light_Release(Gv.Light_Pool, (uint)(new B18Fy(o).unk138));
                 new B18Fy(o).unk138_Set(0);
                 _f19: ;
                 _f17: ;
-                Mem.Copy((_fp + 8u), new B18GPos(0x801041F8u).vF0.P, 12);
+                Mem.Copy((_fp + 8u), new B18GPos(Gv.Collision_HitInfo).vF0.P, 12);
                 Vec_Normalize((_fp + 8u));
                 Vec_Scale((_fp + 8u), (_fp + 8u), 1.02400005f);
                 Vec_Add(new B18Fy(o).pos.P, new B18Fy(o).pos.P, (_fp + 8u));
@@ -3158,20 +3158,20 @@ public static partial class Game
                 s3_2 = (int)(new B18Cfg(cfg).tab.aA8[(int)(st)]);
                 if (!((v1_2 != 65535))) goto _f20;
                 a0 = cam;
-                if (!(((new B18T8((0x800D1384u + (uint)(v1_2 * 8))).w0 & (uint)(2)) != 0u))) goto _f21;
+                if (!(((new B18T8((Gv.Anim_EventDefTable + (uint)(v1_2 * 8))).w0 & (uint)(2)) != 0u))) goto _f21;
                 a0 = o;
                 _f21: ;
-                Event_Send(a0, o, (int)((ushort)(v1_2)), (-1), new B18GPos(0x801041F8u).pos.P, _fp);
+                Event_Send(a0, o, (int)((ushort)(v1_2)), (-1), new B18GPos(Gv.Collision_HitInfo).pos.P, _fp);
                 _f20: ;
                 if (!((s2_2 != 65535))) goto _f22;
                 Particle_SpawnEffect(o, (int)((ushort)(s2_2)), (int)((sbyte)((-8))), 1);
                 _f22: ;
                 if (!((s3_2 != 65535))) goto _f23;
-                Audio_PlaySound((int)((short)(s3_2)), new B18GPos(0x801041F8u).pos.P, 0, (int)(o));
+                Audio_PlaySound((int)((short)(s3_2)), new B18GPos(Gv.Collision_HitInfo).pos.P, 0, (int)(o));
                 _f23: ;
                 if (!((!((new B18Fy(o).flags & (uint)(196608)) != 0u) && ((int)(new B18Fy(o).unk1B9) == 1)))) goto _f24;
                 L_tail: ;
-                Particle_Free(0x80121990u, o, default(uint), default(uint));
+                Particle_Free(Gv.EffectMgr, o, default(uint), default(uint));
                 Particle_StopLoopSound(o);
                 _f24: ;
             }
@@ -4508,9 +4508,9 @@ public static partial class Game
                 int zero = 0;
                 float f = 0f;
                 zero = 0;
-                if ((Mem.S32(0x801450B8u) == 1))
+                if ((Mem.S32(Gv.ViewCount) == 1))
                 {
-                    s3 = (int)((o + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 96)));
+                    s3 = (int)((o + (uint)((Mem.S32(Gv.FrameParity) << (int)6) + 96)));
                 }
                 else
                 {
@@ -4549,7 +4549,7 @@ public static partial class Game
                 p = ResourceCache_Hash(0, (uint)(new B18Actor(o).unk110), new B18Actor(o).unk110, (uint)(new B18Actor(o).unk114), 0, (uint)(0), 0x0026D7F4u, 0x800C9E58u, 1);
                 if ((p != 0u))
                 {
-                    Model_QueueBatched(p, s3, 0, (int)((o + (uint)((Mem.S32(0x800D297Cu) * 24) + 224))), (uint)(0), (-1));
+                    Model_QueueBatched(p, s3, 0, (int)((o + (uint)((Mem.S32(Gv.FrameParity) * 24) + 224))), (uint)(0), (-1));
                     ResourcePool_Unref(0, p);
                 }
             }
@@ -4573,14 +4573,14 @@ public static partial class Game
                 {
                     Mem.Copy(_fp, inst, 80);
                     Mem.Copy(new Shared_ParticleInstance(inst).pos.P, new Shared_ParticleView(view).unk128.P, 12);
-                    hit = Collision_MoveActor((int)(inst), Cpu.U2F(Mem.U32(new Shared_Particle(particle).inst.pos.P + 0u)), Cpu.U2F(Mem.U32(new Shared_Particle(particle).inst.pos.P + 4u)), Cpu.U2F(Mem.U32(new Shared_Particle(particle).inst.pos.P + 8u)), (int)(0x80104030u));
+                    hit = Collision_MoveActor((int)(inst), Cpu.U2F(Mem.U32(new Shared_Particle(particle).inst.pos.P + 0u)), Cpu.U2F(Mem.U32(new Shared_Particle(particle).inst.pos.P + 4u)), Cpu.U2F(Mem.U32(new Shared_Particle(particle).inst.pos.P + 8u)), (int)(Gv.Collision_ProbeResult));
                     Mem.Copy(inst, _fp, 80);
                 }
                 else
                 {
                     Mem.Copy((_fp + 80u), new Shared_Particle(particle).inst.P, 80);
                     Mem.Copy(new Shared_ParticleInstance((_fp + 80u)).pos.P, new Shared_ParticleView(view).unk128.P, 12);
-                    hit = Collision_MoveActor((int)((_fp + 80u)), Cpu.U2F(Mem.U32(new Shared_Particle(particle).inst.pos.P + 0u)), Cpu.U2F(Mem.U32(new Shared_Particle(particle).inst.pos.P + 4u)), Cpu.U2F(Mem.U32(new Shared_Particle(particle).inst.pos.P + 8u)), (int)(0x80104030u));
+                    hit = Collision_MoveActor((int)((_fp + 80u)), Cpu.U2F(Mem.U32(new Shared_Particle(particle).inst.pos.P + 0u)), Cpu.U2F(Mem.U32(new Shared_Particle(particle).inst.pos.P + 4u)), Cpu.U2F(Mem.U32(new Shared_Particle(particle).inst.pos.P + 8u)), (int)(Gv.Collision_ProbeResult));
                 }
                 return hit;
             }
@@ -4602,7 +4602,7 @@ public static partial class Game
                 }
                 else
                 {
-                    if (((int)(Mem.U8(0x801462E3u)) == 2))
+                    if (((int)(Mem.U8(Gv.Settings_BloodColor)) == 2))
                     {
                         mode = 1;
                     }
@@ -6727,11 +6727,11 @@ public static partial class Game
                                 if (((int)(new B19Obj(o).unk1D9) != 0))
                                 {
                                     Particle_UpdateMatrix(o);
-                                    Trail_DetachOwner(0x8013BA80u, o, default(uint), default(uint));
+                                    Trail_DetachOwner(Gv.Fx_TrailMgr, o, default(uint), default(uint));
                                 }
                                 if ((new B19Obj(o).unk138 != 0))
                                 {
-                                    Light_Release(0x8013B1A8u, (uint)(new B19Obj(o).unk138));
+                                    Light_Release(Gv.Light_Pool, (uint)(new B19Obj(o).unk138));
                                     new B19Obj(o).unk138_Set(0);
                                 }
                                 if ((new B19Obj(o).unk130_ != 0u))
@@ -6846,17 +6846,17 @@ public static partial class Game
                 if ((new EffectTarget(aimTarget).matrixIndex != (-1)))
                 {
                     new Effect_func_802800C0_de(effect).mode_Set((sbyte)((-4)));
-                    targetActor = new EffectTarget(0x801041F0u).actor_;
+                    targetActor = new EffectTarget(Gv.Collision_Contacts).actor_;
                     targetTeam = (int)(new EffectTarget(aimTarget).unk7E);
-                    Math_MtxFixedToFloatAffine(_fp, (Mem.U32((new EffectActor(targetActor).u60.P + 84u)) + (uint)(new EffectTarget(0x801041F0u).matrixIndex * 64)), default(uint), default(uint));
+                    Math_MtxFixedToFloatAffine(_fp, (Mem.U32((new EffectActor(targetActor).u60.P + 84u)) + (uint)(new EffectTarget(Gv.Collision_Contacts).matrixIndex * 64)), default(uint), default(uint));
                     Math_MtxInvertAffine((_fp + 64u), _fp);
                     Math_MtxTransformPoint((_fp + 64u), new EffectTarget(aimTarget).pos.P, new Effect_func_802800C0_de(effect).unk50.P);
-                    Mem.Copy((_fp + 128u), 0x801042C8u, 12);
+                    Mem.Copy((_fp + 128u), Gv.Collision_HitInfo_Vec_D0, 12);
                     Vec_Normalize((_fp + 128u));
                     Math_MtxRotateVector((_fp + 64u), (_fp + 128u), vel);
                     new Effect_func_802800C0_de(effect).unk134_Set((int)(targetActor));
                     new Effect_func_802800C0_de(effect).flags_Set((uint)((uint)(new Effect_func_802800C0_de(effect).flags) | (uint)(65536)));
-                    new Effect_func_802800C0_de(effect).unk1D1_Set((byte)(new EffectTarget(0x801041F0u).matrixIndex));
+                    new Effect_func_802800C0_de(effect).unk1D1_Set((byte)(new EffectTarget(Gv.Collision_Contacts).matrixIndex));
                     if ((((int)(new Effect_func_802800C0_de(effect).kind) == 86) && (targetTeam == sourceType)))
                     {
                         new Effect_func_802800C0_de(effect).flags_Set((uint)((uint)(new Effect_func_802800C0_de(effect).flags) | (uint)(67108864)));
@@ -9786,10 +9786,10 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00281A70", (uint)unused, (uint)o, (uint)arr, (uint)n);
                 int i = 0;
                 int cnt = 0;
-                cnt = new B18Mgr(0x8011FE88u).count;
+                cnt = new B18Mgr(Gv.LevelMgr).count;
                 for (i = 0; (i < cnt); ++i)
                 {
-                    uint e = new B18Mgr(0x8011FE88u).ents[(int)(i)];
+                    uint e = new B18Mgr(Gv.LevelMgr).ents[(int)(i)];
                     if ((new B18Ent(e).unk174 > 0))
                     {
                         Vec_Sub(_fp, new B18Ent(e).pos.P, new B18Ent(o).pos.P);
@@ -9802,7 +9802,7 @@ public static partial class Game
                 }
                 {
                     uint p = 0u;
-                    for (p = Mem.U32(0x80145060u); (p != 0u); p = new B18Ent(p).next_)
+                    for (p = Mem.U32(Gv.PlayerListHead); (p != 0u); p = new B18Ent(p).next_)
                     {
                         if (((new B18Ent(o).unk12C_ != p) && (new B18Ent(p).unk5E4 > 0)))
                         {
@@ -9847,7 +9847,7 @@ public static partial class Game
                 int i = 0;
                 float old = 0f;
                 n = 0;
-                old = Mem.F32(0x800D2988u);
+                old = Mem.F32(Gv.FrameTime);
                 {
                     uint o = 0u;
                     for (i = 0; (i < 3); ++i)
@@ -9859,12 +9859,12 @@ public static partial class Game
                         }
                     }
                 }
-                if ((Mem.S32(0x80146894u) == 0))
+                if ((Mem.S32(Gv.GamePaused) == 0))
                 {
-                    if ((Mem.S32(0x8013B29Cu) == 0))
+                    if ((Mem.S32(Gv.Debug_Freeze_8013B29C) == 0))
                     {
-                        Mem.Set(0x800D2988u, old);
-                        Mem.Set(0x800D2988u, (old * Mem.F32(0x800D2990u)));
+                        Mem.Set(Gv.FrameTime, old);
+                        Mem.Set(Gv.FrameTime, (old * Mem.F32(0x800D2990u)));
                         {
                             i = 0;
                             n2 = 0;
@@ -9883,7 +9883,7 @@ public static partial class Game
                                     }
                                     if ((((new B18Ob(o_2).unk140 < (float)(new B18Ob(o_2).unk14C)) && ((int)(new B18Ob(o_2).unk14C) != one)) && !((new B18Ob(o_2).flags & (uint)(4096)) != 0u)))
                                     {
-                                        if ((((((((new B18Bnd(0x801031F0u).max.x > new B18Ob(o_2).pos.x) && (new B18Bnd(0x801031F0u).max.y > new B18Ob(o_2).pos.y)) && (new B18Bnd(0x801031F0u).max.z > new B18Ob(o_2).pos.z)) && (new B18Bnd(0x801031F0u).min.x <= new B18Ob(o_2).pos.x)) && (new B18Bnd(0x801031F0u).min.y <= new B18Ob(o_2).pos.y)) && (new B18Bnd(0x801031F0u).min.z <= new B18Ob(o_2).pos.z)) || ((int)(new B18Ob(o_2).type) == 1054)))
+                                        if ((((((((new B18Bnd(Gv.View_UpdateBounds).max.x > new B18Ob(o_2).pos.x) && (new B18Bnd(Gv.View_UpdateBounds).max.y > new B18Ob(o_2).pos.y)) && (new B18Bnd(Gv.View_UpdateBounds).max.z > new B18Ob(o_2).pos.z)) && (new B18Bnd(Gv.View_UpdateBounds).min.x <= new B18Ob(o_2).pos.x)) && (new B18Bnd(Gv.View_UpdateBounds).min.y <= new B18Ob(o_2).pos.y)) && (new B18Bnd(Gv.View_UpdateBounds).min.z <= new B18Ob(o_2).pos.z)) || ((int)(new B18Ob(o_2).type) == 1054)))
                                         {
                                             Particle_Update(o_2, default(uint), default(uint), default(uint));
                                             h = new B18Ob(o_2).handle_;
@@ -9895,7 +9895,7 @@ public static partial class Game
                                                 new B18Hnd(h).unk14_Set((short)((int)(new B18Ob(o_2).pos.z)));
                                                 new B18Hnd(h).unkC_Set((new B18Ob(o_2).unk198 * 0.00392156886f));
                                             }
-                                            new B18Ob(o_2).unk140_Set((float)((float)(new B18Ob(o_2).unk140) + Mem.F32(0x800D2988u)));
+                                            new B18Ob(o_2).unk140_Set((float)((float)(new B18Ob(o_2).unk140) + Mem.F32(Gv.FrameTime)));
                                         }
                                         else
                                         {
@@ -9907,11 +9907,11 @@ public static partial class Game
                                                     if (((int)(new B18Ob(o_2).unk1D9) != 0))
                                                     {
                                                         Particle_UpdateMatrix(o_2);
-                                                        Trail_DetachOwner(0x8013BA80u, o_2, default(uint), default(uint));
+                                                        Trail_DetachOwner(Gv.Fx_TrailMgr, o_2, default(uint), default(uint));
                                                     }
                                                     if ((new B18Ob(o_2).handle_ != 0u))
                                                     {
-                                                        Light_Release(0x8013B1A8u, new B18Ob(o_2).handle_);
+                                                        Light_Release(Gv.Light_Pool, new B18Ob(o_2).handle_);
                                                         new B18Ob(o_2).handle__Set(0u);
                                                     }
                                                     if ((new B18Ob(o_2).counter_ != 0u))
@@ -9969,11 +9969,11 @@ public static partial class Game
                                                 if (((int)(new B18Ob(o_2).unk1D9) != 0))
                                                 {
                                                     Particle_UpdateMatrix(o_2);
-                                                    Trail_DetachOwner(0x8013BA80u, o_2, default(uint), default(uint));
+                                                    Trail_DetachOwner(Gv.Fx_TrailMgr, o_2, default(uint), default(uint));
                                                 }
                                                 if ((new B18Ob(o_2).handle_ != 0u))
                                                 {
-                                                    Light_Release(0x8013B1A8u, new B18Ob(o_2).handle_);
+                                                    Light_Release(Gv.Light_Pool, new B18Ob(o_2).handle_);
                                                     new B18Ob(o_2).handle__Set(0u);
                                                 }
                                                 if ((new B18Ob(o_2).counter_ != 0u))
@@ -10040,7 +10040,7 @@ public static partial class Game
                                 }
                             }
                         }
-                        Mem.Set(0x800D2988u, old);
+                        Mem.Set(Gv.FrameTime, old);
                     }
                 }
             }
@@ -10379,11 +10379,11 @@ public static partial class Game
                                 if (((int)(new B19Obj(o).unk1D9) != 0))
                                 {
                                     Particle_UpdateMatrix(o);
-                                    Trail_DetachOwner(0x8013BA80u, o, default(uint), default(uint));
+                                    Trail_DetachOwner(Gv.Fx_TrailMgr, o, default(uint), default(uint));
                                 }
                                 if ((new B19Obj(o).unk138 != 0))
                                 {
-                                    Light_Release(0x8013B1A8u, (uint)(new B19Obj(o).unk138));
+                                    Light_Release(Gv.Light_Pool, (uint)(new B19Obj(o).unk138));
                                     new B19Obj(o).unk138_Set(0);
                                 }
                                 if ((new B19Obj(o).unk130_ != 0u))
@@ -10459,11 +10459,11 @@ public static partial class Game
                     if (((int)(new B19Obj(o).unk1D9) != 0))
                     {
                         Particle_UpdateMatrix(o);
-                        Trail_DetachOwner(0x8013BA80u, o, default(uint), default(uint));
+                        Trail_DetachOwner(Gv.Fx_TrailMgr, o, default(uint), default(uint));
                     }
                     if ((new B19Obj(o).unk138 != 0))
                     {
-                        Light_Release(0x8013B1A8u, (uint)(new B19Obj(o).unk138));
+                        Light_Release(Gv.Light_Pool, (uint)(new B19Obj(o).unk138));
                         new B19Obj(o).unk138_Set(0);
                     }
                     if ((new B19Obj(o).unk130_ != 0u))
@@ -10523,7 +10523,7 @@ public static partial class Game
                 {
                     Audio_PlaySound((int)((uint)((short)(3290))), C.Tmp(Cpu.F2U(new B19Plr(p).pos.x), Cpu.F2U(new B19Plr(p).pos.y), Cpu.F2U(new B19Plr(p).pos.z)), (int)(new B19Plr(p).pos.P), (int)((uint)((-1))));
                     Player_AddDamageOverTime_0022B540(p, 30.0f, 3.0f, new B19Obj(o).unk12C, 0);
-                    Rumble_StartById(0x8011FE88u, (int)((new B19Plr(p).f698_ + (uint)320)), 20, _fp, Mem.F32(0x800C9F4Cu), Mem.F32(0x800C9F50u));
+                    Rumble_StartById(Gv.LevelMgr, (int)((new B19Plr(p).f698_ + (uint)320)), 20, _fp, Mem.F32(0x800C9F4Cu), Mem.F32(0x800C9F50u));
                     new B19Plr(p).f11EC_Set(Mem.F32(0x800C9F54u));
                 }
                 par = new B19Obj(o).parent_;
@@ -10544,7 +10544,7 @@ public static partial class Game
                 {
                     Audio_PlaySound((int)((uint)((short)(s3))), C.Tmp(Cpu.F2U(new B19Obj(o).pos.x), Cpu.F2U(new B19Obj(o).pos.y), Cpu.F2U(new B19Obj(o).pos.z)), (int)(0u), (int)((uint)((-1))));
                 }
-                Particle_Free(0x80121990u, o, default(uint), default(uint));
+                Particle_Free(Gv.EffectMgr, o, default(uint), default(uint));
                 Particle_StopLoopSound(o);
             }
         }
@@ -10566,7 +10566,7 @@ public static partial class Game
                 }
                 else
                 {
-                    if (((int)(Mem.U8(0x801462E3u)) == 2))
+                    if (((int)(Mem.U8(Gv.Settings_BloodColor)) == 2))
                     {
                         v = (uint)(1);
                     }
@@ -10858,7 +10858,7 @@ public static partial class Game
                 }
                 else
                 {
-                    if (((int)(Mem.U8(0x801462E3u)) == 2))
+                    if (((int)(Mem.U8(Gv.Settings_BloodColor)) == 2))
                     {
                         r = 1;
                     }
@@ -10888,7 +10888,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028341C", (uint)o);
-            Particle_Free(0x80121990u, o, default(uint), default(uint));
+            Particle_Free(Gv.EffectMgr, o, default(uint), default(uint));
             Particle_StopLoopSound(o);
         }
     }
@@ -10904,14 +10904,14 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00283454", (uint)o, (uint)arg);
                 if (((new B19Obj(o).parent.flags & (uint)(16)) != 0u))
                 {
-                    Mem.Copy((_fp + 16u), 0x801042C8u, 12);
+                    Mem.Copy((_fp + 16u), Gv.Collision_HitInfo_Vec_D0, 12);
                 }
                 else
                 {
                     Mem.Copy((_fp + 16u), new B19Obj(o).pos2.P, 12);
                 }
                 Quat_FromDirection(_fp, (_fp + 16u));
-                Effect_SpawnFromTemplates(0x80121990u, o, (uint)(new B19Obj(o).unk12C), new B19Obj(o).unk130_, (int)(new B19Obj(o).unk134), arg, (_fp + 16u), _fp, new B19Q(0x80104290u).v.P, 0, new B19Q(0x80104290u).k, (int)(((new B19Obj(o).flags & (uint)(2097158)) | (uint)(1))));
+                Effect_SpawnFromTemplates(Gv.EffectMgr, o, (uint)(new B19Obj(o).unk12C), new B19Obj(o).unk130_, (int)(new B19Obj(o).unk134), arg, (_fp + 16u), _fp, new B19Q(0x80104290u).v.P, 0, new B19Q(0x80104290u).k, (int)(((new B19Obj(o).flags & (uint)(2097158)) | (uint)(1))));
             }
         }
         finally { Stack.Free(28); }
@@ -10928,14 +10928,14 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0028357C", (uint)o, (uint)arg);
                 if (((new B19Obj(o).parent.flags & (uint)(16)) != 0u))
                 {
-                    Mem.Copy((_fp + 16u), 0x801042C8u, 12);
+                    Mem.Copy((_fp + 16u), Gv.Collision_HitInfo_Vec_D0, 12);
                 }
                 else
                 {
                     Mem.Copy((_fp + 16u), new B19Obj(o).pos2.P, 12);
                 }
                 Quat_FromDirection(_fp, (_fp + 16u));
-                Effect_SpawnFromTemplates(0x80121990u, o, (uint)(new B19Obj(o).unk12C), new B19Obj(o).unk130_, (int)(new B19Obj(o).unk134), arg, (_fp + 16u), _fp, new B19Q(0x801042A8u).v.P, 0, (-3), (int)(((new B19Obj(o).flags & (uint)(2097158)) | (uint)(1))));
+                Effect_SpawnFromTemplates(Gv.EffectMgr, o, (uint)(new B19Obj(o).unk12C), new B19Obj(o).unk130_, (int)(new B19Obj(o).unk134), arg, (_fp + 16u), _fp, new B19Q(Gv.Particle_HitResult).v.P, 0, (-3), (int)(((new B19Obj(o).flags & (uint)(2097158)) | (uint)(1))));
             }
         }
         finally { Stack.Free(28); }
@@ -10952,14 +10952,14 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_002836A4", (uint)o, (uint)arg);
                 if (((new B19Obj(o).parent.flags & (uint)(16)) != 0u))
                 {
-                    Mem.Copy((_fp + 16u), 0x801042C8u, 12);
+                    Mem.Copy((_fp + 16u), Gv.Collision_HitInfo_Vec_D0, 12);
                 }
                 else
                 {
                     Mem.Copy((_fp + 16u), new B19Obj(o).pos2.P, 12);
                 }
                 Quat_FromDirection(_fp, (_fp + 16u));
-                Effect_SpawnFromTemplates(0x80121990u, o, (uint)(new B19Obj(o).unk12C), new B19Obj(o).unk130_, (int)(new B19Obj(o).unk134), arg, (_fp + 16u), _fp, new B19Q(0x801042A8u).v.P, 0, (-2), (int)(((new B19Obj(o).flags & (uint)(2097158)) | (uint)(1))));
+                Effect_SpawnFromTemplates(Gv.EffectMgr, o, (uint)(new B19Obj(o).unk12C), new B19Obj(o).unk130_, (int)(new B19Obj(o).unk134), arg, (_fp + 16u), _fp, new B19Q(Gv.Particle_HitResult).v.P, 0, (-2), (int)(((new B19Obj(o).flags & (uint)(2097158)) | (uint)(1))));
             }
         }
         finally { Stack.Free(28); }
@@ -10976,14 +10976,14 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_002837CC", (uint)o, (uint)arg);
                 if (((new B19Obj(o).parent.flags & (uint)(16)) != 0u))
                 {
-                    Mem.Copy((_fp + 16u), 0x801042C8u, 12);
+                    Mem.Copy((_fp + 16u), Gv.Collision_HitInfo_Vec_D0, 12);
                 }
                 else
                 {
                     Mem.Copy((_fp + 16u), new B19Obj(o).pos2.P, 12);
                 }
                 Quat_FromDirection(_fp, (_fp + 16u));
-                Effect_SpawnFromTemplates(0x80121990u, o, (uint)(new B19Obj(o).unk12C), new B19Obj(o).unk130_, (int)(new B19Obj(o).unk134), arg, (_fp + 16u), _fp, new B19Q(0x801042B8u).v.P, 0, (-5), (int)(((new B19Obj(o).flags & (uint)(2097158)) | (uint)(1))));
+                Effect_SpawnFromTemplates(Gv.EffectMgr, o, (uint)(new B19Obj(o).unk12C), new B19Obj(o).unk130_, (int)(new B19Obj(o).unk134), arg, (_fp + 16u), _fp, new B19Q(0x801042B8u).v.P, 0, (-5), (int)(((new B19Obj(o).flags & (uint)(2097158)) | (uint)(1))));
             }
         }
         finally { Stack.Free(28); }
@@ -10999,11 +10999,11 @@ public static partial class Game
             Actor_UpdateAttachedPlacement(o, (uint)(0), (uint)(0), default(uint));
             if (((int)(new B19Def(def).b6) != (-1)))
             {
-                Trail_Attach(0x8013BA80u, o, (uint)((int)(new B19Def(def).b6)), default(uint));
+                Trail_Attach(Gv.Fx_TrailMgr, o, (uint)((int)(new B19Def(def).b6)), default(uint));
             }
             if (((int)(new B19Def(def).b7) != (-1)))
             {
-                new B19Obj(o).unk138_Set((int)(Light_AcquireDefault(0x8013B1A8u, (uint)((int)(new B19Def(def).b7)), default(uint), default(uint))));
+                new B19Obj(o).unk138_Set((int)(Light_AcquireDefault(Gv.Light_Pool, (uint)((int)(new B19Def(def).b7)), default(uint), default(uint))));
             }
             else
             {
@@ -11147,23 +11147,23 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00283BF0", (uint)o, (uint)m, (uint)t);
-                uint g = new B19Glob(0x801041F0u).g;
+                uint g = new B19Glob(Gv.Collision_Contacts).g;
                 if ((m != 0u))
                 {
                     Math_MtxInvertAffine((_fp + 64u), m);
                 }
                 else
                 {
-                    Math_MtxFixedToFloatAffine(_fp, (new B19GObj(g).mtx_ + (uint)(new B19Glob(0x801041F0u).idx << (int)6)), default(uint), default(uint));
+                    Math_MtxFixedToFloatAffine(_fp, (new B19GObj(g).mtx_ + (uint)(new B19Glob(Gv.Collision_Contacts).idx << (int)6)), default(uint), default(uint));
                     Math_MtxInvertAffine((_fp + 64u), _fp);
                 }
-                Math_MtxTransformPoint((_fp + 64u), 0x801041F8u, (o + (uint)80));
-                Mem.Copy((_fp + 128u), new B19Src(0x801041F8u).b.P, 12);
+                Math_MtxTransformPoint((_fp + 64u), Gv.Collision_HitInfo, (o + (uint)80));
+                Mem.Copy((_fp + 128u), new B19Src(Gv.Collision_HitInfo).b.P, 12);
                 Vec_Normalize((_fp + 128u));
                 Math_MtxRotateVector((_fp + 64u), (_fp + 128u), new B19Obj(o).pos2.P);
                 new B19Obj(o).unk134_Set(g);
                 new B19Obj(o).flags_Set((uint)((uint)(new B19Obj(o).flags) | (uint)(65536)));
-                new B19Obj(o).unk1D1_Set(new B19Src(0x801041F8u).fF);
+                new B19Obj(o).unk1D1_Set(new B19Src(Gv.Collision_HitInfo).fF);
                 if ((((int)(new B19Obj(o).id) == 86) && (t == 2)))
                 {
                     new B19Obj(o).flags_Set((uint)((uint)(new B19Obj(o).flags) | (uint)(67108864)));
@@ -11368,7 +11368,7 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0028414C", (uint)o);
                 uint owner = 0u;
                 float y = 0f;
-                uint p = 0x801450B8u;
+                uint p = Gv.ViewCount;
                 if ((Mem.S32((p + (uint)(0 * 4))) == 1))
                 {
                     owner = (uint)(Mem.S32((p + (uint)((-4) * 4))));
@@ -11378,11 +11378,11 @@ public static partial class Game
                     {
                         y = (-y);
                     }
-                    Particle_BuildMatrix(o, ((o + (uint)96) + (uint)(Mem.S32(0x800D297Cu) * 64)), owner, y);
+                    Particle_BuildMatrix(o, ((o + (uint)96) + (uint)(Mem.S32(Gv.FrameParity) * 64)), owner, y);
                 }
                 else
                 {
-                    Particle_BuildMatrix(o, ((o + (uint)96) + (uint)(Mem.S32(0x800D297Cu) * 64)), 0u, 0.0f);
+                    Particle_BuildMatrix(o, ((o + (uint)96) + (uint)(Mem.S32(Gv.FrameParity) * 64)), 0u, 0.0f);
                 }
                 Mem.Set((o + (uint)92), (int)((int)(Mem.S32((o + (uint)92))) | 1048576));
             }
@@ -11408,7 +11408,7 @@ public static partial class Game
                 {
                     Mem.Copy((_fp + 48u), new B19Obj(o).pos2.P, 12);
                     Quat_FromDirection(_fp, (_fp + 48u));
-                    g = 0x80121990u;
+                    g = Gv.EffectMgr;
                     Vec_Sub((_fp + 16u), new B19Obj(o).pos.P, (o + (uint)360));
                     i = 1;
                     if ((i <= n))
@@ -11801,7 +11801,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002849C4", (uint)o);
-            Player_DeflectByFields(0x80145040u, o);
+            Player_DeflectByFields(Gv.PlayerPool, o);
             Physics_AccelerateClampedTwin(o);
             Particle_ApplyWobble(o, 1.0f);
         }
@@ -11823,7 +11823,7 @@ public static partial class Game
                 {
                     r = (r * Mem.F32(0x800C9F80u));
                     r = (r * r);
-                    for (p = Mem.U32(0x80145060u); (p != 0u); )
+                    for (p = Mem.U32(Gv.PlayerListHead); (p != 0u); )
                     {
                         Mem.Copy(_fp, new B19Plr(p).pos.P, 12);
                         done = 0;
@@ -12420,7 +12420,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002A6670", (uint)a);
             Mem.Set(0x800D2E58u, 0);
-            if ((Mem.S32(0x80146894u) == 0))
+            if ((Mem.S32(Gv.GamePaused) == 0))
             {
                 Trail_UpdateAll((uint)(a));
                 Effect_UpdateScheduled((uint)(a), default(uint), default(uint), default(uint));

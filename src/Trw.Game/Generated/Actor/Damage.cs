@@ -13,7 +13,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002661FC_chk", (uint)a, (uint)t);
             uint f = 0u;
-            if (((int)(Mem.U8(0x801462E5u)) != 0))
+            if (((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0))
             {
                 return 1;
             }
@@ -26,7 +26,7 @@ public static partial class Game
             {
                 return 0;
             }
-            if ((((Mem.S32(0x8013B290u) != 0) && !((new B15Obj(t).flags & (uint)(3145728)) != 0u)) && !((f & (uint)(3145728)) != 0u)))
+            if ((((Mem.S32(Gv.Game_Flag_8013B290) != 0) && !((new B15Obj(t).flags & (uint)(3145728)) != 0u)) && !((f & (uint)(3145728)) != 0u)))
             {
                 return 0;
             }
@@ -209,11 +209,11 @@ public static partial class Game
                     new Vec3f((_fp + 64u)).x_Set((float)(0));
                     new Vec3f((_fp + 64u)).y_Set((float)(0));
                     new Vec3f((_fp + 64u)).z_Set((float)(0));
-                    Effect_SpawnFromTemplates(0x80121990u, obj, obj, (uint)(0), 0, 233, (_fp + 64u), (_fp + 80u), (_fp + 48u), 0, (-1), ((mode == 5) ? 3 : 1));
+                    Effect_SpawnFromTemplates(Gv.EffectMgr, obj, obj, (uint)(0), 0, 233, (_fp + 64u), (_fp + 80u), (_fp + 48u), 0, (-1), ((mode == 5) ? 3 : 1));
                     new Vec3f((_fp + 48u)).x_Set((float)(0));
                     new Vec3f((_fp + 48u)).y_Set((float)(0));
                     new Vec3f((_fp + 48u)).z_Set((float)(0));
-                    Rumble_StartById(0x8011FE88u, (int)((new B15Player(o).unk698_ + (uint)320)), 3, (_fp + 48u), Mem.F32(0x800C94C4u), Mem.F32(0x800C94C8u));
+                    Rumble_StartById(Gv.LevelMgr, (int)((new B15Player(o).unk698_ + (uint)320)), 3, (_fp + 48u), Mem.F32(0x800C94C4u), Mem.F32(0x800C94C8u));
                 }
             }
         }
@@ -899,7 +899,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00267540", (uint)a, (uint)b);
-            if (((int)(Mem.U8(0x801462E5u)) != 0))
+            if (((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0))
             {
                 return 1;
             }
@@ -907,7 +907,7 @@ public static partial class Game
             {
                 return 0;
             }
-            if ((((Mem.S32(0x8013B290u) != 0) && !((new P3Actor(a).flags & (uint)(3145728)) != 0u)) && !((new P3Actor(b).flags & (uint)(3145728)) != 0u)))
+            if ((((Mem.S32(Gv.Game_Flag_8013B290) != 0) && !((new P3Actor(a).flags & (uint)(3145728)) != 0u)) && !((new P3Actor(b).flags & (uint)(3145728)) != 0u)))
             {
                 return 0;
             }
@@ -986,7 +986,7 @@ public static partial class Game
                 {
                     own = new B15Act2(a).owner_;
                 }
-                if ((((int)(Mem.U8(0x801462E5u)) != 0) && ((flags & (uint)(512)) != 0u)))
+                if ((((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0) && ((flags & (uint)(512)) != 0u)))
                 {
                     s3 = 0;
                 }
@@ -996,7 +996,7 @@ public static partial class Game
                     {
                         isFx = 1;
                     }
-                    if ((((((int)(new B15Act2(src).type) == 2) && (new B15Slot(0x801041F0u).owner == a)) && (new B15Slot(0x801041F0u).unk14 != (-1))) && (C.Seq((object?)((e = new B15Slot(0x801041F0u).eff.P)), ((isFx == 0) ? 1 : 0)) != 0)))
+                    if ((((((int)(new B15Act2(src).type) == 2) && (new B15Slot(Gv.Collision_Contacts).owner == a)) && (new B15Slot(Gv.Collision_Contacts).unk14 != (-1))) && (C.Seq((object?)((e = new B15Slot(Gv.Collision_Contacts).eff.P)), ((isFx == 0) ? 1 : 0)) != 0)))
                     {
                         s4 = 0;
                         goto L_have;
@@ -1089,11 +1089,11 @@ public static partial class Game
                     new Vec3f((_fp + 64u)).x_Set((float)(0));
                     new Vec3f((_fp + 64u)).y_Set((float)(0));
                     new Vec3f((_fp + 64u)).z_Set((float)(0));
-                    Effect_SpawnFromTemplates(0x80121990u, obj, obj, (uint)(0), 0, 233, (_fp + 64u), (_fp + 80u), (_fp + 48u), 0, (-1), ((mode == 5) ? 3 : 1));
+                    Effect_SpawnFromTemplates(Gv.EffectMgr, obj, obj, (uint)(0), 0, 233, (_fp + 64u), (_fp + 80u), (_fp + 48u), 0, (-1), ((mode == 5) ? 3 : 1));
                     new Vec3f((_fp + 48u)).x_Set((float)(0));
                     new Vec3f((_fp + 48u)).y_Set((float)(0));
                     new Vec3f((_fp + 48u)).z_Set((float)(0));
-                    Rumble_StartById(0x8011FE88u, (int)((new B15Player(o).unk698_ + (uint)320)), 3, (_fp + 48u), Mem.F32(0x800C953Cu), Mem.F32(0x800C9540u));
+                    Rumble_StartById(Gv.LevelMgr, (int)((new B15Player(o).unk698_ + (uint)320)), 3, (_fp + 48u), Mem.F32(0x800C953Cu), Mem.F32(0x800C9540u));
                 }
             }
         }

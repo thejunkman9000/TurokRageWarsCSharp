@@ -227,7 +227,7 @@ public static partial class Game
             uint b = 0u;
             uint prev = 0u;
             uint idx = 0u;
-            b = (Mem.U32(0x80105194u) + (uint)((((((key << (int)5) ^ (key >> (int)1)) ^ (key >> (int)9)) ^ (key >> (int)17)) & Mem.U32(0x80105190u)) * 16));
+            b = (Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)((((((key << (int)5) ^ (key >> (int)1)) ^ (key >> (int)9)) ^ (key >> (int)17)) & Mem.U32(0x80105190u)) * 16));
             if ((new B12Bucket(b).unk4 == (uint)(0)))
             {
                 new B12Bucket(b).unk0_Set(key);
@@ -246,21 +246,21 @@ public static partial class Game
             }
             while ((b != 0u));
             idx = (uint)((new B12Bucket(prev).id | 1));
-            if ((new B12Bucket((Mem.U32(0x80105194u) + (uint)(idx * 16))).unk4 != (uint)(0)))
+            if ((new B12Bucket((Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)(idx * 16))).unk4 != (uint)(0)))
             {
                 for (; ; )
                 {
                     idx = (uint)((uint)(idx) + (uint)(2));
                     idx = (uint)((uint)(idx) & Mem.U32(0x80105198u));
-                    if ((new B12Bucket((Mem.U32(0x80105194u) + (uint)(idx * 16))).unk4 == (uint)(0)))
+                    if ((new B12Bucket((Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)(idx * 16))).unk4 == (uint)(0)))
                     {
                         break;
                     }
                 }
             }
-            new B12Bucket((Mem.U32(0x80105194u) + (uint)(idx * 16))).unk0_Set(key);
-            new B12Bucket((Mem.U32(0x80105194u) + (uint)(idx * 16))).unk4_Set((uint)(val));
-            new B12Bucket(prev).next__Set((Mem.U32(0x80105194u) + (uint)(idx * 16)));
+            new B12Bucket((Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)(idx * 16))).unk0_Set(key);
+            new B12Bucket((Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)(idx * 16))).unk4_Set((uint)(val));
+            new B12Bucket(prev).next__Set((Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)(idx * 16)));
         }
     }
 
@@ -273,7 +273,7 @@ public static partial class Game
             uint p = 0u;
             uint prev = 0u;
             uint nx = 0u;
-            p = (Mem.U32(0x80105194u) + (uint)((((((key << (int)5) ^ (key >> (int)1)) ^ (key >> (int)9)) ^ (key >> (int)17)) & Mem.U32(0x80105190u)) * 16));
+            p = (Mem.U32(Gv.AddrHash_BucketsPtr) + (uint)((((((key << (int)5) ^ (key >> (int)1)) ^ (key >> (int)9)) ^ (key >> (int)17)) & Mem.U32(0x80105190u)) * 16));
             prev = 0u;
             if ((new B12Bucket(p).unk0 != key))
             {
@@ -371,7 +371,7 @@ public static partial class Game
             for (i = (uint)(0); (i < Mem.U32(0x800D0930u)); ++i)
             {
                 len = 0;
-                for (p = (new B12Mgr(0x80103F70u).buckets_ + (uint)(i * 16)); (p != 0u); p = new B12Bucket(p).next_)
+                for (p = (new B12Mgr(Gv.ResourceMgr).buckets_ + (uint)(i * 16)); (p != 0u); p = new B12Bucket(p).next_)
                 {
                     ++len;
                 }
@@ -1844,7 +1844,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00285B34_bind", (uint)node, (uint)offset, (uint)id);
-            Rumble_InitChannel((node + (uint)offset), (int)(Level_GetEnvelopeDef(0x8011FE88u, id)));
+            Rumble_InitChannel((node + (uint)offset), (int)(Level_GetEnvelopeDef(Gv.LevelMgr, id)));
         }
     }
 
@@ -2014,15 +2014,15 @@ public static partial class Game
             {
                 sz = (uint)(345600);
                 @base = (Mem_GetRamSize() | 2147483648u);
-                Mem.Set(0x800E28A0u, (uint)(3));
+                Mem.Set(Gv.Video_FrameSlotCount, (uint)(3));
                 a = ResourcePool_AllocAt(0, (int)((@base - mb)), (int)(sz));
-                b = ResourcePool_AllocAt(0, (int)((@base - (mb * (uint)(2)))), (int)((Mem.U32(0x800E28A0u) * sz)));
+                b = ResourcePool_AllocAt(0, (int)((@base - (mb * (uint)(2)))), (int)((Mem.U32(Gv.Video_FrameSlotCount) * sz)));
                 memset((uint)(new Q01Mem(b).addr), 0, (uint)(1036800));
                 memset((uint)(new Q01Mem(a).addr), 0, (uint)(345600));
                 new Q01Pool(arg0).unk18__Set(a);
                 new Q01Pool(arg0).unkC.Set((int)(0), b);
                 Mem.Set(0x801536E8u, new Q01Pool(arg0).unk18.addr);
-                for (i = (uint)(0); (i < Mem.U32(0x800E28A0u)); ++i)
+                for (i = (uint)(0); (i < Mem.U32(Gv.Video_FrameSlotCount)); ++i)
                 {
                     Mem.Set((0x801536F8u + (uint)(i * 4)), (int)(((uint)(new Q01Mem(b).addr) + (i * sz))));
                 }
@@ -2031,31 +2031,31 @@ public static partial class Game
             {
                 sz = (uint)(126144);
                 @base = 2151677952u;
-                b2 = ResourcePool_AllocAt(0, (int)((@base - ((Mem.U32(0x800E28A0u) + (uint)(1)) * sz))), (int)(((Mem.U32(0x800E28A0u) + (uint)(1)) * sz)));
+                b2 = ResourcePool_AllocAt(0, (int)((@base - ((Mem.U32(Gv.Video_FrameSlotCount) + (uint)(1)) * sz))), (int)(((Mem.U32(Gv.Video_FrameSlotCount) + (uint)(1)) * sz)));
                 new Q01Pool(arg0).unkC.Set((int)(0), b2);
-                for (i = (uint)(0); (i < Mem.U32(0x800E28A0u)); ++i)
+                for (i = (uint)(0); (i < Mem.U32(Gv.Video_FrameSlotCount)); ++i)
                 {
                     Mem.Set((0x801536F8u + (uint)(i * 4)), (int)(((uint)(new Q01Mem(b2).addr) + (i * sz))));
                 }
                 Mem.Set(0x801536E8u, (int)(((uint)(new Q01Mem(b2).addr) + (sz * i))));
             }
-            for (i = (uint)(0); (i < Mem.U32(0x800E28A0u)); ++i)
+            for (i = (uint)(0); (i < Mem.U32(Gv.Video_FrameSlotCount)); ++i)
             {
                 memset((uint)(Mem.S32((0x801536F8u + (uint)(i * 4)))), 0, sz);
             }
             memset((uint)(Mem.S32(0x801536E8u)), 0, sz);
-            new Q01Pool(arg0).unk4__Set(ResourcePool_Alloc(0, ((Mem.S32(0x800E28A4u) + Mem.S32(0x800E28A8u)) * 16), (uint)(35), (int)(0x800E0D6Cu)));
+            new Q01Pool(arg0).unk4__Set(ResourcePool_Alloc(0, ((Mem.S32(Gv.Gfx_DisplayListCapacity) + Mem.S32(0x800E28A8u)) * 16), (uint)(35), (int)(0x800E0D6Cu)));
             new Q01Pool(arg0).unk8__Set(ResourcePool_Alloc(0, 32768, (uint)(35), (int)(0x800E0D7Cu)));
             new Q01Pool(arg0).unk1C__Set(ResourcePool_Alloc(0, 139264, (uint)(35), (int)(0x800E0D84u)));
             Mem.Set(0x801536F0u, new Q01Pool(arg0).unk4.addr);
-            Mem.Set(0x801536BCu, (Mem.S32(0x801536F0u) + (Mem.S32(0x800E28A4u) * 8)));
+            Mem.Set(0x801536BCu, (Mem.S32(0x801536F0u) + (Mem.S32(Gv.Gfx_DisplayListCapacity) * 8)));
             Mem.Set(0x801536F4u, (Mem.S32(0x801536BCu) + (Mem.S32(0x800E28A8u) * 8)));
-            Mem.Set(0x801536C0u, (Mem.S32(0x801536F4u) + (Mem.S32(0x800E28A4u) * 8)));
+            Mem.Set(0x801536C0u, (Mem.S32(0x801536F4u) + (Mem.S32(Gv.Gfx_DisplayListCapacity) * 8)));
             Mem.Set(0x801536B4u, 32768);
             Mem.Set(0x801536ECu, 139264);
             Mem.Set(0x801536B8u, new Q01Pool(arg0).unk8.addr);
             Mem.Set(0x801536B0u, new Q01Pool(arg0).unk1C.addr);
-            for (i = (uint)(0); (i < Mem.U32(0x800E28A0u)); ++i)
+            for (i = (uint)(0); (i < Mem.U32(Gv.Video_FrameSlotCount)); ++i)
             {
             }
             new Q01Pool(arg0).unk0_Set(1);
@@ -2165,7 +2165,7 @@ public static partial class Game
                 do
                 {
                     Player_Restart(var_s0);
-                    temp_v0 = (int)(Funcs.CallReg(0x002866F8u, 0x8011FE88u, (var_s0 + 8u), 0u, 0u));
+                    temp_v0 = (int)(Funcs.CallReg(0x002866F8u, Gv.LevelMgr, (var_s0 + 8u), 0u, 0u));
                     new Node_func_80449E18_de(var_s0).unk2FC_Set(temp_v0);
                     new Node_func_80449E18_de(var_s0).unk14_Set(temp_v0);
                     Player_UpdateViewCamera(var_s0, var_s0, default(uint), default(uint));

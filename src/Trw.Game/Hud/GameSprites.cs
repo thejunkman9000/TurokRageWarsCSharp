@@ -7,7 +7,7 @@ namespace Trw.Game.PortHud;
 /// The game's HUD sprites, read straight from guest RAM (read-only; nothing here calls game code or writes memory).
 /// <para>Lookup (Sprite_Draw -&gt; Sprite_Lookup with the HUD library <c>D_8011FE88</c>, re-implemented without its side effects): the library's key table
 /// at +0x9C (<c>{?, n, keys[n]}</c>, sorted) gives the index of the sprite id (Sprite_FindIndex, binary search); the offset table at +0x5C and the base at +0x2C give
-/// the resource's cartridge key <c>base + off[idx]</c> (Resource_GetCartridgeKey); the resource cache's hash (ResourceCache_Hash: buckets <c>*0x80105194</c>, mask
+/// the resource's cartridge key <c>base + off[idx]</c> (Resource_GetCartridgeKey); the resource cache's hash (ResourceCache_Hash: buckets <c>*Gv.AddrHash_BucketsPtr</c>, mask
 /// <c>*0x80105190</c>, chained through +0xC) maps that key to the cache entry, whose node's first word is the data in RAM. A sprite the game has not loaded
 /// is not found (it is not drawn then either).</para>
 /// <para>Data (Sprite_GetFrameData_002AB19C / Sprite_GetFrame): <c>s16 frames</c>, then at +8 one <c>{s32 offset, u8 kind}</c> per frame; a frame is <c>u16 cols, u16 rows</c> and from +8
@@ -17,7 +17,7 @@ namespace Trw.Game.PortHud;
 /// </summary>
 public static class GameSprites
 {
-    public const uint Library = 0x8011FE88, HashBuckets = 0x80105194, HashMask = 0x80105190;
+    public const uint Library = Gv.LevelMgr, HashBuckets = Gv.AddrHash_BucketsPtr, HashMask = 0x80105190;
     public const int DigitFont = 4;          // Hud_DrawNumber: frames 0..9 = digits, 10 = minus
 
     public sealed class Cell { public float X, Y; public int W, H; public uint Colour, Alpha; public int Kind; public DecodedTexture? Tex0, Tex1; }

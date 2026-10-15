@@ -235,7 +235,7 @@ public static partial class Game
             uint mgr = 0u;
             ctl = new B2Actor(actor).owner.brain_;
             Ai_RunThinkStep(ctl, default(uint), default(uint), default(uint));
-            mgr = 0x8013B364u;
+            mgr = Gv.AiNavGraph;
             if (!((new B2Ctl(ctl).target_ != 0u))) goto _f0;
             if (!(!((new B2Ctl(ctl).unk318 & 3) != 0))) goto _f1;
             new B2Ctl(ctl).unk31C_Set(Ai_IsTargetReached(ctl, new B2Ctl(ctl).target_));
@@ -279,7 +279,7 @@ public static partial class Game
             if (!((nf < dd))) goto _f8;
             L_b19: ;
             idx = Ai_YawToSector((new B2Ctl(ctl).owner.unk6C - Mem.F32(0x800C7128u)));
-            if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(0x800D297Cu)))) goto _f9;
+            if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(Gv.FrameParity)))) goto _f9;
             Ai_ProbeWalkDistance(new B2Ctl(ctl).owner_, (uint)(idx), default(uint), default(uint));
             _f9: ;
             if (!((new G21Ctl(ctl).fb[(int)(idx)] < Mem.F32(0x800C712Cu)))) goto _f10;
@@ -300,7 +300,7 @@ public static partial class Game
             if (!((dd < nf))) goto _f14;
             L_b27: ;
             idx = Ai_YawToSector(new B2Ctl(ctl).owner.unk6C);
-            if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(0x800D297Cu)))) goto _f15;
+            if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(Gv.FrameParity)))) goto _f15;
             Ai_ProbeWalkDistance(new B2Ctl(ctl).owner_, (uint)(idx), default(uint), default(uint));
             _f15: ;
             if (!((new G21Ctl(ctl).fb[(int)(idx)] < Mem.F32(0x800C7138u)))) goto _f16;
@@ -315,7 +315,7 @@ public static partial class Game
             _f11: ;
             if (!((new B2Ctl(ctl).unk2DC == 0))) goto _f18;
             idx = Ai_YawToSector(((new B2Ctl(ctl).owner.unk6C - Mem.F32(0x800C7140u)) - Mem.F32(0x800C7144u)));
-            if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(0x800D297Cu)))) goto _f19;
+            if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(Gv.FrameParity)))) goto _f19;
             Ai_ProbeWalkDistance(new B2Ctl(ctl).owner_, (uint)(idx), default(uint), default(uint));
             _f19: ;
             if (!((new G21Ctl(ctl).fb[(int)(idx)] < Mem.F32(0x800C7148u)))) goto _f20;
@@ -326,7 +326,7 @@ public static partial class Game
             _f18: ;
             if (!((new B2Ctl(ctl).unk2DC == 1))) goto _f22;
             idx = Ai_YawToSector(((new B2Ctl(ctl).owner.unk6C - Mem.F32(0x800C714Cu)) + Mem.F32(0x800C7150u)));
-            if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(0x800D297Cu)))) goto _f23;
+            if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(Gv.FrameParity)))) goto _f23;
             Ai_ProbeWalkDistance(new B2Ctl(ctl).owner_, (uint)(idx), default(uint), default(uint));
             _f23: ;
             if (!((new G21Ctl(ctl).fb[(int)(idx)] < Mem.F32(0x800C7154u)))) goto _f24;
@@ -391,7 +391,7 @@ public static partial class Game
             uint mgr = 0u;
             ctl = new B2Actor(actor).owner.brain_;
             Ai_RunThinkStep(ctl, default(uint), default(uint), default(uint));
-            mgr = 0x8013B364u;
+            mgr = Gv.AiNavGraph;
             if (!((new B2Ctl(ctl).target_ != 0u))) goto _f0;
             if (!(!((new B2Ctl(ctl).unk318 & 3) != 0))) goto _f1;
             new B2Ctl(ctl).unk31C_Set(Ai_IsTargetReached(ctl, new B2Ctl(ctl).target_));
@@ -440,7 +440,7 @@ public static partial class Game
             if (!((nf < dd))) goto _f9;
             L_b19: ;
             idx = Ai_YawToSector((new B2Ctl(ctl).owner.unk6C - Mem.F32(0x800C7160u)));
-            if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(0x800D297Cu)))) goto _f10;
+            if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(Gv.FrameParity)))) goto _f10;
             Ai_ProbeWalkDistance(new B2Ctl(ctl).owner_, (uint)(idx), default(uint), default(uint));
             _f10: ;
             if (!((new G21Ctl(ctl).fb[(int)(idx)] < Mem.F32(0x800C7164u)))) goto _f11;
@@ -461,7 +461,7 @@ public static partial class Game
             if (!((dd < nf))) goto _f15;
             L_b27: ;
             idx = Ai_YawToSector(new B2Ctl(ctl).owner.unk6C);
-            if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(0x800D297Cu)))) goto _f16;
+            if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(Gv.FrameParity)))) goto _f16;
             Ai_ProbeWalkDistance(new B2Ctl(ctl).owner_, (uint)(idx), default(uint), default(uint));
             _f16: ;
             if (!((new G21Ctl(ctl).fb[(int)(idx)] < Mem.F32(0x800C7170u)))) goto _f17;
@@ -476,7 +476,7 @@ public static partial class Game
             _f12: ;
             if (!((new B2Ctl(ctl).unk2DC == 0))) goto _f19;
             idx = Ai_YawToSector(((new B2Ctl(ctl).owner.unk6C - Mem.F32(0x800C7178u)) - Mem.F32(0x800C717Cu)));
-            if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(0x800D297Cu)))) goto _f20;
+            if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(Gv.FrameParity)))) goto _f20;
             Ai_ProbeWalkDistance(new B2Ctl(ctl).owner_, (uint)(idx), default(uint), default(uint));
             _f20: ;
             if (!((new G21Ctl(ctl).fb[(int)(idx)] < Mem.F32(0x800C7180u)))) goto _f21;
@@ -487,7 +487,7 @@ public static partial class Game
             _f19: ;
             if (!((new B2Ctl(ctl).unk2DC == 1))) goto _f23;
             idx = Ai_YawToSector(((new B2Ctl(ctl).owner.unk6C - Mem.F32(0x800C7184u)) + Mem.F32(0x800C7188u)));
-            if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(0x800D297Cu)))) goto _f24;
+            if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(Gv.FrameParity)))) goto _f24;
             Ai_ProbeWalkDistance(new B2Ctl(ctl).owner_, (uint)(idx), default(uint), default(uint));
             _f24: ;
             if (!((new G21Ctl(ctl).fb[(int)(idx)] < Mem.F32(0x800C718Cu)))) goto _f25;
@@ -624,7 +624,7 @@ public static partial class Game
             Ai_TurnTowardPoint(ctl, new B2Actor(t).pos.P, 2.0f, Ai_UpdateAimWobble(ctl));
             if (!((new B2Ctl(ctl).unk2DC == 0))) goto _f7;
             idx = Ai_YawToSector(((new B2Ctl(ctl).owner.unk6C - Mem.F32(0x800C7198u)) - Mem.F32(0x800C719Cu)));
-            if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(0x800D297Cu)))) goto _f8;
+            if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(Gv.FrameParity)))) goto _f8;
             Ai_ProbeWalkDistance(new B2Ctl(ctl).owner_, (uint)(idx), default(uint), default(uint));
             _f8: ;
             if (!((new G21Ctl(ctl).fb[(int)(idx)] < Mem.F32(0x800C71A0u)))) goto _f9;
@@ -635,7 +635,7 @@ public static partial class Game
             _f7: ;
             if (!((new B2Ctl(ctl).unk2DC == 1))) goto _f11;
             idx = Ai_YawToSector(((new B2Ctl(ctl).owner.unk6C - Mem.F32(0x800C71A4u)) + Mem.F32(0x800C71A8u)));
-            if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(0x800D297Cu)))) goto _f12;
+            if (!(((Mem.S32((new B2Ctl(ctl).owner_ + (uint)1492)) % 2) == Mem.S32(Gv.FrameParity)))) goto _f12;
             Ai_ProbeWalkDistance(new B2Ctl(ctl).owner_, (uint)(idx), default(uint), default(uint));
             _f12: ;
             if (!((new G21Ctl(ctl).fb[(int)(idx)] < Mem.F32(0x800C71ACu)))) goto _f13;
@@ -660,7 +660,7 @@ public static partial class Game
             _f16: ;
             if (!((s2 != new B2Ctl(ctl).unk10))) goto _f17;
             new B2Ctl(ctl).unk10_Set(s2);
-            if (!((AiNav_IsNodeVisible(0x8013B364u, new B2Ctl(ctl).unk4, s2) == 0))) goto _f18;
+            if (!((AiNav_IsNodeVisible(Gv.AiNavGraph, new B2Ctl(ctl).unk4, s2) == 0))) goto _f18;
             goto L_b30;
             _f18: ;
             _f17: ;
@@ -746,7 +746,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00212670", (uint)b);
-                uint L = 0x8013B364u;
+                uint L = Gv.AiNavGraph;
                 uint t = 0u;
                 uint r = 0u;
                 float best = 0f;
@@ -823,7 +823,7 @@ public static partial class Game
             if ((id != new BrainB(b).unk10))
             {
                 new BrainB(b).unk10_Set(id);
-                if ((AiNav_IsNodeVisible(0x8013B364u, new BrainB(b).unk4, id) == 0))
+                if ((AiNav_IsNodeVisible(Gv.AiNavGraph, new BrainB(b).unk4, id) == 0))
                 {
                     Ai_SetState(b, 1);
                     return;
@@ -912,7 +912,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00212A7C", (uint)actor);
             uint b = new ActorB(actor).owner.brain_;
-            uint L = 0x8013B364u;
+            uint L = Gv.AiNavGraph;
             uint r = 0u;
             int i = 0;
             int busy = 0;
@@ -965,7 +965,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00212C04", (uint)actor);
             uint b = new Actor(new Actor(actor).owner_).brain_;
-            uint t = Match_FindTaggedPlayer(0x80145040u);
+            uint t = Match_FindTaggedPlayer(Gv.PlayerPool);
             if ((t == new BrainB(b).actor_))
             {
                 Ai_SetState(b, 10);
@@ -1007,7 +1007,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00212CC4", (uint)actor);
             uint b = new Actor(new Actor(actor).owner_).brain_;
-            uint t = Match_FindTaggedPlayer(0x80145040u);
+            uint t = Match_FindTaggedPlayer(Gv.PlayerPool);
             if (((t == 0u) || (t != new BrainB(b).actor_)))
             {
                 Ai_SetState(b, 2);
@@ -1101,15 +1101,15 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00212E04", (uint)actor, _a1, _a2);
             uint b = new Actor(new Actor(actor).owner_).brain_;
-            uint L = 0x8013B364u;
+            uint L = Gv.AiNavGraph;
             int s = 0;
             if ((new BrainB(b).unk224 == (-1)))
             {
-                if ((Mem.S32(new PathTbl(0x8011FE88u).cnt_) > 0))
+                if ((Mem.S32(new PathTbl(Gv.LevelMgr).cnt_) > 0))
                 {
                     new BrainB(b).unk224_Set(0);
                     new BrainB(b).unk228_Set(0);
-                    LevelPath_GetHeader(0x8011FE88u, (uint)(new BrainB(b).unk224), default(uint), default(uint));
+                    LevelPath_GetHeader(Gv.LevelMgr, (uint)(new BrainB(b).unk224), default(uint), default(uint));
                 }
                 else
                 {
@@ -1125,7 +1125,7 @@ public static partial class Game
                 {
                     if ((new BrainB(b).unk224 >= 0))
                     {
-                        uint e = LevelPath_GetHeader(0x8011FE88u, (uint)(new BrainB(b).unk224), default(uint), default(uint));
+                        uint e = LevelPath_GetHeader(Gv.LevelMgr, (uint)(new BrainB(b).unk224), default(uint), default(uint));
                         new BrainB(b).unk228_Set((int)(new BrainB(b).unk228 + 1));
                         if ((new BrainB(b).unk228 == (int)(new PathEnt(e).len)))
                         {
@@ -1143,7 +1143,7 @@ public static partial class Game
                 }
                 else
                 {
-                    new BrainB(b).unkC_Set(AiNav_FindNearestNode(L, (uint)((int)(LevelPath_GetPoint(0x8011FE88u, new BrainB(b).unk224, new BrainB(b).unk228)))));
+                    new BrainB(b).unkC_Set(AiNav_FindNearestNode(L, (uint)((int)(LevelPath_GetPoint(Gv.LevelMgr, new BrainB(b).unk224, new BrainB(b).unk228)))));
                 }
             }
             Ai_FollowPath(b);

@@ -31,7 +31,7 @@ public static class Widescreen
     /// <summary>A level is on screen without a menu: game state 8 (recorded demo) or 13 (playing) AND the UI shows only the HUD layer (screen 2) or nothing (-1).
     /// Only then are frames presented wide; the title screen and the menus (which run inside state 8, the attract sequence: screens 24, 3, 19, ...) and menus
     /// opened over a match stay 4:3, pillarboxed.</summary>
-    public static bool InLevel => Mem.S32(G.GameState) is 8 or 13 && Game.ScreenId is -1 or 2;       // D_80146878 = the game state
+    public static bool InLevel => Mem.S32(Gv.GameState) is 8 or 13 && Game.ScreenId is -1 or 2;       // D_80146878 = the game state
 
     /// <summary>Hook after Camera_SetupProjection 0x00235610 (camera r19: +0x74 just stored; $f0 = the +0x78 value stored in the next call's delay slot).
     /// Fixed factors, independent of this machine's window, so netplay peers stay identical.</summary>

@@ -10,9 +10,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("alInit", (uint)glob, (uint)config);
-            if ((Mem.U32(0x800D80A0u) == 0u))
+            if ((Mem.U32(Gv.alGlobals) == 0u))
             {
-                Mem.Set(0x800D80A0u, glob);
+                Mem.Set(Gv.alGlobals, glob);
                 alSynNew(new ALGlobals(glob).drvr.P, config);
             }
         }

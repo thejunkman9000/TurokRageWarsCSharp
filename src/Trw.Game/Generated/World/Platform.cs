@@ -31,7 +31,7 @@ public static partial class Game
                 {
                     if (((new M1Actor(actor).flags38 & (uint)(64)) != 0u))
                     {
-                        new M1State(state).unk124.f_Set((new M1State(state).unk124.f + Mem.F32(0x800D2988u)));
+                        new M1State(state).unk124.f_Set((new M1State(state).unk124.f + Mem.F32(Gv.FrameTime)));
                     }
                     else
                     {
@@ -43,7 +43,7 @@ public static partial class Game
                 {
                     if (((new M1State(state).unk124.f > 0.0f) || ((new M1Actor(actor).flags38 & (uint)(32)) != 0u)))
                     {
-                        new M1State(state).unk124.f_Set((new M1State(state).unk124.f + Mem.F32(0x800D2988u)));
+                        new M1State(state).unk124.f_Set((new M1State(state).unk124.f + Mem.F32(Gv.FrameTime)));
                     }
                 }
                 if ((new M1State(state).unk124.f >= new M1Info(info).f54))
@@ -73,7 +73,7 @@ public static partial class Game
                 new M1State(state).unk128.f_Set(Random_Symmetric(lo, hi));
                 new M1State(state).unk12C.f_Set(Random_Symmetric(lo, hi));
                 new M1State(state).vec130.x_Set(Random_Symmetric(lo, hi));
-                new M1State(state).f44_Set((new M1State(state).f44 + Mem.F32(0x800D2988u)));
+                new M1State(state).f44_Set((new M1State(state).f44 + Mem.F32(Gv.FrameTime)));
                 if ((45.0f < new M1State(state).f44))
                 {
                     new M1State(state).f44_Set(0.0f);
@@ -93,7 +93,7 @@ public static partial class Game
             case 1:
                 if ((new M1State(state).f44 < new M1Info(info).f5C))
                 {
-                    new M1State(state).f44_Set((new M1State(state).f44 + Mem.F32(0x800D2988u)));
+                    new M1State(state).f44_Set((new M1State(state).f44 + Mem.F32(Gv.FrameTime)));
                 }
                 else
                 {
@@ -137,7 +137,7 @@ public static partial class Game
             case 2:
                 if ((new M1State(state).f44 > 0.0f))
                 {
-                    new M1State(state).f44_Set((new M1State(state).f44 - Mem.F32(0x800D2988u)));
+                    new M1State(state).f44_Set((new M1State(state).f44 - Mem.F32(Gv.FrameTime)));
                 }
                 else
                 {
@@ -156,7 +156,7 @@ public static partial class Game
             case 4:
                 if ((new M1State(state).f44 < new M1Info(info).f5C))
                 {
-                    new M1State(state).f44_Set((new M1State(state).f44 + Mem.F32(0x800D2988u)));
+                    new M1State(state).f44_Set((new M1State(state).f44 + Mem.F32(Gv.FrameTime)));
                 }
                 if ((new M1Info(info).f5C > 0.0f))
                 {
@@ -730,7 +730,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002077CC", (uint)arg);
-            Level_IsEntitySavedFlagSet(0x8011FE88u, arg);
+            Level_IsEntitySavedFlagSet(Gv.LevelMgr, arg);
         }
     }
 
@@ -806,7 +806,7 @@ public static partial class Game
                 new B01State(state).unk98_Set(new B01State(state).unk96);
                 Actor_DispatchEvent(actor, state, 4);
             }
-            if ((Level_IsEntitySavedFlagSet(0x8011FE88u, actor) == 0))
+            if ((Level_IsEntitySavedFlagSet(Gv.LevelMgr, actor) == 0))
             {
                 new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~256))));
             }
@@ -842,7 +842,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002079B0", (uint)actor, (uint)state);
             uint info = (new B01Actor(actor).def_ + (uint)20);
-            if ((Level_IsEntitySavedFlagSet(0x8011FE88u, actor) == 0))
+            if ((Level_IsEntitySavedFlagSet(Gv.LevelMgr, actor) == 0))
             {
                 new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & 4294901759u));
                 new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~256))));
@@ -856,7 +856,7 @@ public static partial class Game
                     Funcs.CallReg(new B01State(state).link.cb, actor, state, 0u, 0u);
                 }
             }
-            new B01State(state).unk13C_Set((new B01State(state).unk13C + (new B01Info(info).unk48 * Mem.F32(0x800D2988u))));
+            new B01State(state).unk13C_Set((new B01State(state).unk13C + (new B01Info(info).unk48 * Mem.F32(Gv.FrameTime))));
             Platform_UpdateSink(actor, state);
             if (((int)(new B01State(state).unk34) != 4))
             {
@@ -959,7 +959,7 @@ public static partial class Game
             }
             if ((ok != 0))
             {
-                new B2State(state).unk64_Set((new B2State(state).unk64 + (Mem.F32(0x800D2988u) / new B2Info(info).unk38)));
+                new B2State(state).unk64_Set((new B2State(state).unk64 + (Mem.F32(Gv.FrameTime) / new B2Info(info).unk38)));
             }
             if ((new B2State(state).unk64 >= Mem.F32(0x800C6C90u)))
             {
@@ -1057,7 +1057,7 @@ public static partial class Game
             }
             if ((ok != 0))
             {
-                new B2State(state).unk64_Set((new B2State(state).unk64 - (Mem.F32(0x800D2988u) / new B2Info(info).unk38)));
+                new B2State(state).unk64_Set((new B2State(state).unk64 - (Mem.F32(Gv.FrameTime) / new B2Info(info).unk38)));
             }
             if ((new B2State(state).unk64 <= 0.0f))
             {
@@ -1096,7 +1096,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00207EAC", (uint)actor);
-            Level_SetEntitySavedFlag(0x8011FE88u, actor, 1);
+            Level_SetEntitySavedFlag(Gv.LevelMgr, actor, 1);
             new B2Actor(actor).flags_Set((uint)((uint)(new B2Actor(actor).flags) | (uint)(256)));
         }
     }
@@ -1107,7 +1107,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00207EEC", (uint)e);
-            Level_SetEntitySavedFlagInMap(0x8011FE88u, (int)(new B2Evt(e).unkA), (int)(new B2Evt(e).unk4), 1);
+            Level_SetEntitySavedFlagInMap(Gv.LevelMgr, (int)(new B2Evt(e).unkA), (int)(new B2Evt(e).unk4), 1);
         }
     }
 
@@ -1117,7 +1117,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00207F1C", (uint)actor);
-            Level_SetEntitySavedFlag(0x8011FE88u, actor, 0);
+            Level_SetEntitySavedFlag(Gv.LevelMgr, actor, 0);
             new B2Actor(actor).flags_Set((uint)((uint)(new B2Actor(actor).flags) & (uint)((~256))));
         }
     }
@@ -1128,7 +1128,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00207F60", (uint)e);
-            Level_SetEntitySavedFlagInMap(0x8011FE88u, (int)(new B2Evt(e).unkA), (int)(new B2Evt(e).unk4), 0);
+            Level_SetEntitySavedFlagInMap(Gv.LevelMgr, (int)(new B2Evt(e).unkA), (int)(new B2Evt(e).unk4), 0);
         }
     }
 

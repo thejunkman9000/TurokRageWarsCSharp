@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00262ABC_take_effect", (uint)scene, (uint)@ref);
             uint effect = 0u;
-            if (((Mem.S32(0x8013B290u) == 0) && ((uint)(new func_80262ABC_S1(scene).unk5F24) >= (uint)(3))))
+            if (((Mem.S32(Gv.Game_Flag_8013B290) == 0) && ((uint)(new func_80262ABC_S1(scene).unk5F24) >= (uint)(3))))
             {
                 return 0u;
             }
@@ -42,7 +42,7 @@ public static partial class Game
                 Mem.Copy(_fp + 32u, color_in, 12);
                 if (Dbg.On) Dbg.Enter("func_00262ABC_spawn_effect", (uint)scene, (uint)id, (uint)variant, (uint)count);
                 uint effect = 0u;
-                if ((Mem.S32(0x800D29B4u) == 0))
+                if ((Mem.S32(Gv.Level_DataLoaded) == 0))
                 {
                     return 0u;
                 }
@@ -52,7 +52,7 @@ public static partial class Game
                 }
                 if ((id == (-1)))
                 {
-                    id = Level_FindTypeIndexById(0x8011FE88u, variant);
+                    id = Level_FindTypeIndexById(Gv.LevelMgr, variant);
                     if ((id == (-1)))
                     {
                         return 0u;
@@ -60,14 +60,14 @@ public static partial class Game
                 }
                 if (((uint)((variant + 1)) < (uint)(2)))
                 {
-                    variant = (int)(Level_GetTypeIdByIndex(0x8011FE88u, id));
+                    variant = (int)(Level_GetTypeIdByIndex(Gv.LevelMgr, id));
                 }
                 effect = func_00262ABC_take_effect(scene, @ref);
                 if ((effect == 0u))
                 {
                     return 0u;
                 }
-                Actor_Init(effect, id, variant, Mem.S32(0x800D2B40u), (uint)(count), (-1), (uint)(owner), scale, _fp, (uint)(524288), (_fp + 32u), (_fp + 16u));
+                Actor_Init(effect, id, variant, Mem.S32(Gv.NoRegionId), (uint)(count), (-1), (uint)(owner), scale, _fp, (uint)(524288), (_fp + 32u), (_fp + 16u));
                 Actor_CallRestore(effect);
                 return effect;
             }

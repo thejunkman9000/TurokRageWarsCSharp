@@ -27,6 +27,18 @@ One tab-separated row per registered function (`--template` adds rows for functi
 * Low-confidence names keep the address: `Actor_Think_0044E910`.
 * A group file collects the functions of one subject in ROM order; one group should match one original source file where that can be recovered.
 
+## Globals: `tools/names/globals.tsv`
+
+Guest RAM addresses of the game's globals get names too: `address <TAB> name <TAB> confidence <TAB> note`. The tool replaces every exact literal of a
+named address (`0x80146878u`, `0x80146878`) in `src/Trw.Game` with `Gv.<Name>` (`Mem.S32(Gv.GameState)`) and writes `Generated/_Globals.cs`
+(`public static class Gv { public const uint GameState = 0x80146878u; ... }`, the note as the doc comment). A `const uint` folds to the same IL as the
+literal. Renaming a global follows through (`tools/names/globals_applied.tsv`); removing one turns its uses back into the literal. The class is `Gv`,
+not `G`: the decompiled C has locals named `G`.
+
+Conventions: `Ptr` for a variable that holds a pointer (`FlybyCtlPtr`, `DisplayListPtr`), `Table` / `Array` for arrays, fields of a larger global
+named as fields (`Settings` = 0x801462C8, `Settings_MusicVolume` = +0x18), SDK names for library globals (`__osPiDevMgr`); low-confidence names end
+with the address (`Debug_Freeze_8013B29C`). Address + offset expressions (`Gv.Settings + 0x5D8`) stay as they are unless the field has a name.
+
 ## Naming in bulk
 
 * `python tools/rename/graph.py` writes `tools/names/graph.tsv` (per function: callers, callees, the guest data addresses its code uses, its height in

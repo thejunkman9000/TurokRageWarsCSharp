@@ -129,16 +129,16 @@ public static partial class Game
             {
                 new Chan(c).v.z_Set(t);
             }
-            g = Mem.F32(0x800D2988u);
+            g = Mem.F32(Gv.FrameTime);
             k = Mem.F32(0x800C8174u);
             new Chan(c).v.x_Set(Math_DecayToZero(new Chan(c).v.x, (g * k)));
-            new Chan(c).v.y_Set(Math_DecayToZero(new Chan(c).v.y, (Mem.F32(0x800D2988u) * k)));
+            new Chan(c).v.y_Set(Math_DecayToZero(new Chan(c).v.y, (Mem.F32(Gv.FrameTime) * k)));
             switch (new Chan(c).mode)
             {
             case 1:
                 if ((new Chan(c).v.z > 0.0f))
                 {
-                    new Chan(c).d_Set((new Chan(c).d + ((2.0f * new Chan(c).v.z) * (Mem.F32(0x800D2988u) * k))));
+                    new Chan(c).d_Set((new Chan(c).d + ((2.0f * new Chan(c).v.z) * (Mem.F32(Gv.FrameTime) * k))));
                     new Chan(c).v.z_Set(Math_DecayToZero(new Chan(c).v.z, Mem.F32(0x800C8178u)));
                 }
                 break;
@@ -212,7 +212,7 @@ public static partial class Game
             }
             goto L_Lend;
             L_Lend: ;
-            new FadeObj(o).timer_Set((new FadeObj(o).timer + Mem.F32(0x800D2988u)));
+            new FadeObj(o).timer_Set((new FadeObj(o).timer + Mem.F32(Gv.FrameTime)));
         }
     }
 
@@ -242,11 +242,11 @@ public static partial class Game
                 one2 = one;
                 i = 0;
                 hi = 2147483648u;
-                p = 0x800D0EE0u;
+                p = Gv.Light_AmbientColor;
                 idx = 2;
                 for (; (i < 3); ++i)
                 {
-                    a = (((one2 * (sinf((((one * (float)(Mem.U32(0x800D2980u))) * ((float)(idx) * 4.0f)) * 0.0174532942f)) * 16.0f)) + 16.0f) + 48.0f);
+                    a = (((one2 * (sinf((((one * (float)(Mem.U32(Gv.LevelFrameCount))) * ((float)(idx) * 4.0f)) * 0.0174532942f)) * 16.0f)) + 16.0f) + 48.0f);
                     w1 = p;
                     if ((a >= 2.14748365E+9f))
                     {
@@ -259,7 +259,7 @@ public static partial class Game
                     L_end1: ;
                     Mem.Set((w1 + (uint)0), (byte)(c));
                     Mem.Set((0x800D0EE2u + (uint)idx), (byte)(c));
-                    b = ((((sinf((((one * (float)(Mem.U32(0x800D2980u))) * ((float)(idx) * 4.0f)) * 0.0174532942f)) * 64.0f) + 255.0f) - 64.0f) - 1.0f);
+                    b = ((((sinf((((one * (float)(Mem.U32(Gv.LevelFrameCount))) * ((float)(idx) * 4.0f)) * 0.0174532942f)) * 64.0f) + 255.0f) - 64.0f) - 1.0f);
                     w2 = p;
                     if ((b >= 2.14748365E+9f))
                     {
@@ -276,9 +276,9 @@ public static partial class Game
                     ++idx;
                     q = 0x800D0EECu;
                 }
-                new Vec3f(_fp).x_Set(sinf(((float)((Mem.U32(0x800D2980u) * (uint)(6))) * 0.0174532942f)));
-                new Vec3f(_fp).y_Set(sinf(((float)((Mem.U32(0x800D2980u) << (int)3)) * 0.0174532942f)));
-                new Vec3f(_fp).z_Set(cosf(((float)((Mem.U32(0x800D2980u) * (uint)(10))) * 0.0174532942f)));
+                new Vec3f(_fp).x_Set(sinf(((float)((Mem.U32(Gv.LevelFrameCount) * (uint)(6))) * 0.0174532942f)));
+                new Vec3f(_fp).y_Set(sinf(((float)((Mem.U32(Gv.LevelFrameCount) << (int)3)) * 0.0174532942f)));
+                new Vec3f(_fp).z_Set(cosf(((float)((Mem.U32(Gv.LevelFrameCount) * (uint)(10))) * 0.0174532942f)));
                 Vec_Normalize(_fp);
                 new Vec3f(_fp).x_Set((new Vec3f(_fp).x * 120.0f));
                 new Vec3f(_fp).y_Set((new Vec3f(_fp).y * 120.0f));
@@ -287,9 +287,9 @@ public static partial class Game
                 Mem.Set(t, (byte)(Cpu.TruncU32(new Vec3f(_fp).x)));
                 Mem.Set(0x800D0EF1u, (byte)(Cpu.TruncU32(new Vec3f(_fp).y)));
                 Mem.Set(0x800D0EF2u, (byte)(Cpu.TruncU32(new Vec3f(_fp).z)));
-                new LightFx(o).old.Set((int)(0), new LightFx(o).rgb.Set((int)(0), (byte)((Cpu.TruncU32(((sinf((((one * (float)(Mem.U32(0x800D2980u))) * 2.0f) * 0.069813177f)) * 64.0f) + 128.0f)) & (uint)(248)))));
-                new LightFx(o).old.Set((int)(1), new LightFx(o).rgb.Set((int)(1), (byte)((Cpu.TruncU32(((sinf(((one * (float)(Mem.U32(0x800D2980u))) * 0.209439531f)) * 64.0f) + 128.0f)) & (uint)(248)))));
-                new LightFx(o).old.Set((int)(2), new LightFx(o).rgb.Set((int)(2), (byte)((Cpu.TruncU32(((sinf(((one * (float)(Mem.U32(0x800D2980u))) * 0.279252708f)) * 64.0f) + 128.0f)) & (uint)(248)))));
+                new LightFx(o).old.Set((int)(0), new LightFx(o).rgb.Set((int)(0), (byte)((Cpu.TruncU32(((sinf((((one * (float)(Mem.U32(Gv.LevelFrameCount))) * 2.0f) * 0.069813177f)) * 64.0f) + 128.0f)) & (uint)(248)))));
+                new LightFx(o).old.Set((int)(1), new LightFx(o).rgb.Set((int)(1), (byte)((Cpu.TruncU32(((sinf(((one * (float)(Mem.U32(Gv.LevelFrameCount))) * 0.209439531f)) * 64.0f) + 128.0f)) & (uint)(248)))));
+                new LightFx(o).old.Set((int)(2), new LightFx(o).rgb.Set((int)(2), (byte)((Cpu.TruncU32(((sinf(((one * (float)(Mem.U32(Gv.LevelFrameCount))) * 0.279252708f)) * 64.0f) + 128.0f)) & (uint)(248)))));
             }
         }
         finally { Stack.Free(12); }
@@ -699,19 +699,19 @@ public static partial class Game
                         fs1f = (float)((float)(fs1f) + new Vec3f((_fp + 464u)).z);
                         k = 0.5f;
                         fs1 = (float)((float)(fs1) + new Vec3f((_fp + 464u)).x);
-                        Mem.Set(0x80115DECu, sinf((fs1f * k)));
+                        Mem.Set(Gv.Quat_SinScratch, sinf((fs1f * k)));
                         new Quat((_fp + 32u)).x_Set((float)(0));
                         new Quat((_fp + 32u)).y_Set((float)(0));
-                        new Quat((_fp + 32u)).z_Set(Mem.F32(0x80115DECu));
+                        new Quat((_fp + 32u)).z_Set(Mem.F32(Gv.Quat_SinScratch));
                         new Quat((_fp + 32u)).w_Set(cosf((fs1f * k)));
-                        Mem.Set(0x80115DECu, sinf((fs1 * k)));
-                        new Quat(_fp).x_Set(Mem.F32(0x80115DECu));
+                        Mem.Set(Gv.Quat_SinScratch, sinf((fs1 * k)));
+                        new Quat(_fp).x_Set(Mem.F32(Gv.Quat_SinScratch));
                         new Quat(_fp).y_Set((float)(0));
                         new Quat(_fp).z_Set((float)(0));
                         new Quat(_fp).w_Set(cosf((fs1 * k)));
-                        Mem.Set(0x80115DECu, sinf(((new CamObj_v2(o).unk28 + new CamObj_v2(o).unk30) * k)));
+                        Mem.Set(Gv.Quat_SinScratch, sinf(((new CamObj_v2(o).unk28 + new CamObj_v2(o).unk30) * k)));
                         new Quat((_fp + 16u)).x_Set((float)(0));
-                        new Quat((_fp + 16u)).y_Set(Mem.F32(0x80115DECu));
+                        new Quat((_fp + 16u)).y_Set(Mem.F32(Gv.Quat_SinScratch));
                         new Quat((_fp + 16u)).z_Set((float)(0));
                         new Quat((_fp + 16u)).w_Set(cosf(((new CamObj_v2(o).unk28 + new CamObj_v2(o).unk30) * k)));
                         Quat_Multiply((_fp + 48u), _fp, (_fp + 16u));
@@ -728,9 +728,9 @@ public static partial class Game
                         Camera_UpdateShakeChannel((new CamObj_v2(o).chans.ch.P + (uint)(1 * 20)));
                         Camera_UpdateShakeChannel((new CamObj_v2(o).chans.ch.P + (uint)(2 * 20)));
                         Camera_UpdateShakeChannel((new CamObj_v2(o).chans.ch.P + (uint)(3 * 20)));
-                        if ((o != 0x801450C8u))
+                        if ((o != Gv.Camera_MainView))
                         {
-                            for (n = Mem.U32((0x801450C8u + (uint)4524)); (n != 0u); n = new EmitNode_v2(n).next4_)
+                            for (n = Mem.U32((Gv.Camera_MainView + (uint)4524)); (n != 0u); n = new EmitNode_v2(n).next4_)
                             {
                                 Emitter_ApplyForce(n, new CamObj_v2(o).pos38.P, (_fp + 480u));
                             }
@@ -744,13 +744,13 @@ public static partial class Game
                     }
                     else
                     {
-                        Mem.Set(0x80115DECu, sinf((new CamObj_v2(o).unk34 * 0.5f)));
+                        Mem.Set(Gv.Quat_SinScratch, sinf((new CamObj_v2(o).unk34 * 0.5f)));
                         new Quat((_fp + 32u)).x_Set((float)(0));
                         new Quat((_fp + 32u)).y_Set((float)(0));
-                        new Quat((_fp + 32u)).z_Set(Mem.F32(0x80115DECu));
+                        new Quat((_fp + 32u)).z_Set(Mem.F32(Gv.Quat_SinScratch));
                         new Quat((_fp + 32u)).w_Set(cosf((new CamObj_v2(o).unk34 * 0.5f)));
-                        Mem.Set(0x80115DECu, sinf((new CamObj_v2(o).unk2C * 0.5f)));
-                        new Quat(_fp).x_Set(Mem.F32(0x80115DECu));
+                        Mem.Set(Gv.Quat_SinScratch, sinf((new CamObj_v2(o).unk2C * 0.5f)));
+                        new Quat(_fp).x_Set(Mem.F32(Gv.Quat_SinScratch));
                         new Quat(_fp).y_Set((float)(0));
                         new Quat(_fp).z_Set((float)(0));
                         new Quat(_fp).w_Set(cosf((new CamObj_v2(o).unk2C * 0.5f)));
@@ -758,7 +758,7 @@ public static partial class Game
                         new Quat((_fp + 16u)).x_Set((float)(0));
                         new Quat((_fp + 16u)).y_Set(sn);
                         new Quat((_fp + 16u)).z_Set((float)(0));
-                        Mem.Set(0x80115DECu, sn);
+                        Mem.Set(Gv.Quat_SinScratch, sn);
                         new Quat((_fp + 16u)).w_Set(cosf(((new CamObj_v2(o).unk28 + new CamObj_v2(o).unk30) * 0.5f)));
                         Quat_Multiply((_fp + 48u), _fp, (_fp + 16u));
                         Mem.Copy(new CamObj_v2(o).unk150.P, (_fp + 48u), 16);
@@ -790,7 +790,7 @@ public static partial class Game
                 uint p = 0u;
                 if ((new CamObj(o).unk7C != 0))
                 {
-                    if (((int)(Mem.U8(0x801462E5u)) == 0))
+                    if (((int)(Mem.U8(Gv.Settings_IsMultiplayer)) == 0))
                     {
                         float a = 0f;
                         float b = 0f;
@@ -2012,47 +2012,47 @@ public static partial class Game
             Level_DrawVisibleCells(w, a, default(uint), default(uint));
             if ((Flyby_IsInWindow() == 0))
             {
-                Player_ReloadAnimObjects(0x80145040u, a);
+                Player_ReloadAnimObjects(Gv.PlayerPool, a);
             }
             if ((Game_IsInState13() != 0))
             {
-                Player_DrawAll(0x80145040u, a);
+                Player_DrawAll(Gv.PlayerPool, a);
             }
             Level_DrawActors(w, (int)(a));
-            Decal_DrawAll(0x8013BA80u);
+            Decal_DrawAll(Gv.Fx_TrailMgr);
             if ((Flyby_IsInWindow() == 0))
             {
                 PickupPool_DrawAll((w + (uint)71544), a);
             }
             Level_DrawObjectsSorted(w, a);
-            Player_DrawWorldEffects(0x80145040u, a);
+            Player_DrawWorldEffects(Gv.PlayerPool, a);
             RegionLayer_DrawAll((a + (uint)1392), a);
             Level_DrawParticles(w, (int)(a));
-            Trail_DrawAll(0x8013BA80u, (int)(a));
+            Trail_DrawAll(Gv.Fx_TrailMgr, (int)(a));
             View_DrawLensFlares(a, default(uint), default(uint), default(uint));
             if (((Flyby_IsInWindow() == 0) && (Game_IsInState13() != 0)))
             {
-                Player_DrawViewWeapons(0x80145040u, a);
+                Player_DrawViewWeapons(Gv.PlayerPool, a);
             }
-            if (((Mem.S32(0x801462C8u) & 512) != 0))
+            if (((Mem.S32(Gv.Settings) & 512) != 0))
             {
-                dl = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                dl = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(dl).w0_Set(3875536896u);
                 new DlCmd(dl).w1_Set((uint)(0));
-                dl = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                dl = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(dl).w0_Set(3808430593u);
                 new DlCmd(dl).w1_Set((uint)(0));
-                dl = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                dl = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(dl).w0_Set(4177526784u);
                 new DlCmd(dl).w1_Set((uint)((-1)));
-                dl = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                dl = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(dl).w0_Set(3992977408u);
                 new DlCmd(dl).w1_Set((uint)((-1)));
-                dl = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                dl = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(dl).w0_Set(3791658240u);
                 new DlCmd(dl).w1_Set((uint)(4));
                 Gfx_SetOtherModeL((uint)(22));
-                dl6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                dl6 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(dl6).w0_Set(((4127195136u | ((Cpu.TruncU32((new ViewObj(a).unk2A4 + new ViewObj(a).unk29C)) & (uint)(1023)) << (int)14)) | ((Cpu.TruncU32((new ViewObj(a).unk2A8 + new ViewObj(a).unk2A0)) & (uint)(1023)) << (int)2)));
                 new DlCmd(dl6).w1_Set((((Cpu.TruncU32(new ViewObj(a).unk2A4) & (uint)(1023)) << (int)14) | ((Cpu.TruncU32(new ViewObj(a).unk2A8) & (uint)(1023)) << (int)2)));
             }
@@ -2072,7 +2072,7 @@ public static partial class Game
             if ((x < target))
             {
                 x = (float)((float)(x) + step);
-                Mem.Set(0x80103224u, 30.0f);
+                Mem.Set(Gv.View_Timer_80103224, 30.0f);
                 if ((target < x))
                 {
                     x = target;
@@ -2083,7 +2083,7 @@ public static partial class Game
                 if ((target < x))
                 {
                     x = (float)((float)(x) - step);
-                    Mem.Set(0x80103224u, 30.0f);
+                    Mem.Set(Gv.View_Timer_80103224, 30.0f);
                     if ((x < target))
                     {
                         x = target;
@@ -2129,9 +2129,9 @@ public static partial class Game
             uint c = 0u;
             uint q = 0u;
             uint pf = 0u;
-            ax = (float)(Mem.S32(0x800E28D0u));
+            ax = (float)(Mem.S32(Gv.ScreenWidth));
             bx = 0.0f;
-            ay = (float)(Mem.S32(0x800E28D4u));
+            ay = (float)(Mem.S32(Gv.ScreenHeight));
             by = 0.0f;
             if ((new S6World(w).mode >= (uint)(2)))
             {
@@ -2168,8 +2168,8 @@ public static partial class Game
                 while ((n != 0u));
             }
             p = new S6World(w).nd.P;
-            new S6Nd(p).r0_Set((float)(Mem.S32(0x800E28D0u)));
-            new S6Nd(p).r1_Set((float)(Mem.S32(0x800E28D4u)));
+            new S6Nd(p).r0_Set((float)(Mem.S32(Gv.ScreenWidth)));
+            new S6Nd(p).r1_Set((float)(Mem.S32(Gv.ScreenHeight)));
             new S6Nd(p).r2_Set((float)(0));
             new S6Nd(p).r3_Set((float)(0));
             if (((Flyby_IsInWindow() == 0) && (Flyby_IsActive() == 0)))
@@ -2210,7 +2210,7 @@ public static partial class Game
                     }
                     break;
                 case (uint)(3):
-                    q = 0x801468A0u;
+                    q = Gv.Settings_MatchRules;
                     if ((Mem.S32((q + (uint)172)) == 0))
                     {
                         uint g = (q - (uint)1496);
@@ -2287,14 +2287,14 @@ public static partial class Game
                     break;
                 }
             }
-            Mem.Copy(0x80103208u, new S6World(w).nd.bbA.P, 24);
-            Mem.Copy(0x801031F0u, new S6World(w).nd.bbB.P, 24);
-            Mem.Set(0x80103220u, (uint)(Mem.S32(0x800D2B40u)));
+            Mem.Copy(Gv.View_BoundsA_80103208, new S6World(w).nd.bbA.P, 24);
+            Mem.Copy(Gv.View_UpdateBounds, new S6World(w).nd.bbB.P, 24);
+            Mem.Set(0x80103220u, (uint)(Mem.S32(Gv.NoRegionId)));
             Camera_SetupProjection(new S6World(w).nd.P, default(uint), default(uint), default(uint));
             p = new S6World(w).first_;
             if ((p != 0u))
             {
-                if (((Mem.S32(0x80146894u) != 0) || (Flyby_IsHolding() != 0)))
+                if (((Mem.S32(Gv.GamePaused) != 0) || (Flyby_IsHolding() != 0)))
                 {
                     Camera_SetupProjection(p, default(uint), default(uint), default(uint));
                 }
@@ -2302,8 +2302,8 @@ public static partial class Game
                 {
                     Camera_SetupProjection(p, default(uint), default(uint), default(uint));
                 }
-                Mem.Copy(0x80103208u, new S6Nd(p).bbA.P, 24);
-                Mem.Copy(0x801031F0u, new S6Nd(p).bbB.P, 24);
+                Mem.Copy(Gv.View_BoundsA_80103208, new S6Nd(p).bbA.P, 24);
+                Mem.Copy(Gv.View_UpdateBounds, new S6Nd(p).bbB.P, 24);
                 Mem.Set(0x80103220u, new S6Nd(p).flags);
                 p = Mem.U32((p + (uint)4));
                 if ((p != 0u))
@@ -2311,82 +2311,82 @@ public static partial class Game
                     do
                     {
                         float v = 0f;
-                        if (((Mem.S32(0x80146894u) != 0) || (Flyby_IsHolding() != 0)))
+                        if (((Mem.S32(Gv.GamePaused) != 0) || (Flyby_IsHolding() != 0)))
                         {
                             Camera_SetupProjection(p, default(uint), default(uint), default(uint));
                         }
                         v = new S6Nd(p).bbA.f[(int)(0)];
-                        if (!(v <= new S6BB(0x80103208u).f[(int)(0)]))
+                        if (!(v <= new S6BB(Gv.View_BoundsA_80103208).f[(int)(0)]))
                         {
-                            v = new S6BB(0x80103208u).f[(int)(0)];
+                            v = new S6BB(Gv.View_BoundsA_80103208).f[(int)(0)];
                         }
-                        new S6BB(0x80103208u).f.Set((int)(0), v);
+                        new S6BB(Gv.View_BoundsA_80103208).f.Set((int)(0), v);
                         v = new S6Nd(p).bbA.f[(int)(1)];
-                        if (!(v <= new S6BB(0x80103208u).f[(int)(1)]))
+                        if (!(v <= new S6BB(Gv.View_BoundsA_80103208).f[(int)(1)]))
                         {
-                            v = new S6BB(0x80103208u).f[(int)(1)];
+                            v = new S6BB(Gv.View_BoundsA_80103208).f[(int)(1)];
                         }
-                        new S6BB(0x80103208u).f.Set((int)(1), v);
+                        new S6BB(Gv.View_BoundsA_80103208).f.Set((int)(1), v);
                         v = new S6Nd(p).bbA.f[(int)(2)];
-                        if (!(v <= new S6BB(0x80103208u).f[(int)(2)]))
+                        if (!(v <= new S6BB(Gv.View_BoundsA_80103208).f[(int)(2)]))
                         {
-                            v = new S6BB(0x80103208u).f[(int)(2)];
+                            v = new S6BB(Gv.View_BoundsA_80103208).f[(int)(2)];
                         }
-                        new S6BB(0x80103208u).f.Set((int)(2), v);
+                        new S6BB(Gv.View_BoundsA_80103208).f.Set((int)(2), v);
                         v = new S6Nd(p).bbA.f[(int)(3)];
-                        if (!(new S6BB(0x80103208u).f[(int)(3)] <= v))
+                        if (!(new S6BB(Gv.View_BoundsA_80103208).f[(int)(3)] <= v))
                         {
-                            v = new S6BB(0x80103208u).f[(int)(3)];
+                            v = new S6BB(Gv.View_BoundsA_80103208).f[(int)(3)];
                         }
-                        new S6BB(0x80103208u).f.Set((int)(3), v);
+                        new S6BB(Gv.View_BoundsA_80103208).f.Set((int)(3), v);
                         v = new S6Nd(p).bbA.f[(int)(4)];
-                        if (!(new S6BB(0x80103208u).f[(int)(4)] <= v))
+                        if (!(new S6BB(Gv.View_BoundsA_80103208).f[(int)(4)] <= v))
                         {
-                            v = new S6BB(0x80103208u).f[(int)(4)];
+                            v = new S6BB(Gv.View_BoundsA_80103208).f[(int)(4)];
                         }
-                        new S6BB(0x80103208u).f.Set((int)(4), v);
+                        new S6BB(Gv.View_BoundsA_80103208).f.Set((int)(4), v);
                         v = new S6Nd(p).bbA.f[(int)(5)];
-                        if (!(new S6BB(0x80103208u).f[(int)(5)] <= v))
+                        if (!(new S6BB(Gv.View_BoundsA_80103208).f[(int)(5)] <= v))
                         {
-                            v = new S6BB(0x80103208u).f[(int)(5)];
+                            v = new S6BB(Gv.View_BoundsA_80103208).f[(int)(5)];
                         }
-                        new S6BB(0x80103208u).f.Set((int)(5), v);
+                        new S6BB(Gv.View_BoundsA_80103208).f.Set((int)(5), v);
                         v = new S6Nd(p).bbB.f[(int)(0)];
-                        if (!(v <= new S6BB(0x801031F0u).f[(int)(0)]))
+                        if (!(v <= new S6BB(Gv.View_UpdateBounds).f[(int)(0)]))
                         {
-                            v = new S6BB(0x801031F0u).f[(int)(0)];
+                            v = new S6BB(Gv.View_UpdateBounds).f[(int)(0)];
                         }
-                        new S6BB(0x801031F0u).f.Set((int)(0), v);
+                        new S6BB(Gv.View_UpdateBounds).f.Set((int)(0), v);
                         v = new S6Nd(p).bbB.f[(int)(1)];
-                        if (!(v <= new S6BB(0x801031F0u).f[(int)(1)]))
+                        if (!(v <= new S6BB(Gv.View_UpdateBounds).f[(int)(1)]))
                         {
-                            v = new S6BB(0x801031F0u).f[(int)(1)];
+                            v = new S6BB(Gv.View_UpdateBounds).f[(int)(1)];
                         }
-                        new S6BB(0x801031F0u).f.Set((int)(1), v);
+                        new S6BB(Gv.View_UpdateBounds).f.Set((int)(1), v);
                         v = new S6Nd(p).bbB.f[(int)(2)];
-                        if (!(v <= new S6BB(0x801031F0u).f[(int)(2)]))
+                        if (!(v <= new S6BB(Gv.View_UpdateBounds).f[(int)(2)]))
                         {
-                            v = new S6BB(0x801031F0u).f[(int)(2)];
+                            v = new S6BB(Gv.View_UpdateBounds).f[(int)(2)];
                         }
-                        new S6BB(0x801031F0u).f.Set((int)(2), v);
+                        new S6BB(Gv.View_UpdateBounds).f.Set((int)(2), v);
                         v = new S6Nd(p).bbB.f[(int)(3)];
-                        if (!(new S6BB(0x801031F0u).f[(int)(3)] <= v))
+                        if (!(new S6BB(Gv.View_UpdateBounds).f[(int)(3)] <= v))
                         {
-                            v = new S6BB(0x801031F0u).f[(int)(3)];
+                            v = new S6BB(Gv.View_UpdateBounds).f[(int)(3)];
                         }
-                        new S6BB(0x801031F0u).f.Set((int)(3), v);
+                        new S6BB(Gv.View_UpdateBounds).f.Set((int)(3), v);
                         v = new S6Nd(p).bbB.f[(int)(4)];
-                        if (!(new S6BB(0x801031F0u).f[(int)(4)] <= v))
+                        if (!(new S6BB(Gv.View_UpdateBounds).f[(int)(4)] <= v))
                         {
-                            v = new S6BB(0x801031F0u).f[(int)(4)];
+                            v = new S6BB(Gv.View_UpdateBounds).f[(int)(4)];
                         }
-                        new S6BB(0x801031F0u).f.Set((int)(4), v);
+                        new S6BB(Gv.View_UpdateBounds).f.Set((int)(4), v);
                         v = new S6Nd(p).bbB.f[(int)(5)];
-                        if (!(new S6BB(0x801031F0u).f[(int)(5)] <= v))
+                        if (!(new S6BB(Gv.View_UpdateBounds).f[(int)(5)] <= v))
                         {
-                            v = new S6BB(0x801031F0u).f[(int)(5)];
+                            v = new S6BB(Gv.View_UpdateBounds).f[(int)(5)];
                         }
-                        new S6BB(0x801031F0u).f.Set((int)(5), v);
+                        new S6BB(Gv.View_UpdateBounds).f.Set((int)(5), v);
                         new S6F(0x80103220u).fl_Set((uint)((uint)(new S6F(0x80103220u).fl) | new S6Nd(p).flags));
                         p = new S6Nd(p).next_;
                     }
@@ -2420,80 +2420,80 @@ public static partial class Game
             {
                 Resource_MarkUsedInFrame(0, (uint)(new Race(race).music));
             }
-            if (((Mem.S32(0x80146894u) != 0) || (new Race(race).mode == 3)))
+            if (((Mem.S32(Gv.GamePaused) != 0) || (new Race(race).mode == 3)))
             {
-                Mem.Set(0x80103224u, 30.0f);
+                Mem.Set(Gv.View_Timer_80103224, 30.0f);
             }
-            if ((Mem.F32(0x80103224u) != 0.0f))
+            if ((Mem.F32(Gv.View_Timer_80103224) != 0.0f))
             {
-                Mem.Set(0x80103224u, (float)((float)(Mem.F32(0x80103224u)) - Mem.F32(0x800D2988u)));
+                Mem.Set(Gv.View_Timer_80103224, (float)((float)(Mem.F32(Gv.View_Timer_80103224)) - Mem.F32(Gv.FrameTime)));
             }
-            if ((Mem.F32(0x80103224u) < 0.0f))
+            if ((Mem.F32(Gv.View_Timer_80103224) < 0.0f))
             {
-                Mem.Set(0x80103224u, 0.0f);
+                Mem.Set(Gv.View_Timer_80103224, 0.0f);
             }
-            if ((Mem.F32(0x80103224u) != 0.0f))
+            if ((Mem.F32(Gv.View_Timer_80103224) != 0.0f))
             {
                 racer = new Race(race).racers_;
                 if ((racer != 0u))
                 {
                     {
-                        uint _gbi = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint _gbi = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         Mem.Set(new Gfx_s(_gbi).words.P, (((uint)(231) & (4294967295u >> (int)(32 - 8))) << (int)24));
                         Mem.Set((new Gfx_s(_gbi).words.P + 4u), (uint)(0));
                     }
                     {
-                        uint _gbi_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint _gbi_2 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         Mem.Set(new Gfx_s(_gbi_2).words.P, ((((uint)(222) & (4294967295u >> (int)(32 - 8))) << (int)24) | (((uint)(0) & (4294967295u >> (int)(32 - 8))) << (int)16)));
                         Mem.Set((new Gfx_s(_gbi_2).words.P + 4u), (uint)(0x800D0F10u));
                     }
                     {
-                        uint _gbi_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint _gbi_3 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         Mem.Set(new Gfx_s(_gbi_3).words.P, ((((uint)(222) & (4294967295u >> (int)(32 - 8))) << (int)24) | (((uint)(0) & (4294967295u >> (int)(32 - 8))) << (int)16)));
                         Mem.Set((new Gfx_s(_gbi_3).words.P + 4u), (uint)(0x800D0F40u));
                     }
-                    new Racer(racer).viewports[(int)(Mem.S32(0x800D297Cu))].vscale.Set((int)(0), (short)(Mem.S32(0x800E28D0u)));
-                    new Racer(racer).viewports[(int)(Mem.S32(0x800D297Cu))].vscale.Set((int)(1), (short)(Mem.S32(0x800E28D4u)));
-                    new Racer(racer).viewports[(int)(Mem.S32(0x800D297Cu))].vtrans.Set((int)(0), (short)(Mem.S32(0x800E28D0u)));
-                    new Racer(racer).viewports[(int)(Mem.S32(0x800D297Cu))].vtrans.Set((int)(1), (short)(Mem.S32(0x800E28D4u)));
+                    new Racer(racer).viewports[(int)(Mem.S32(Gv.FrameParity))].vscale.Set((int)(0), (short)(Mem.S32(Gv.ScreenWidth)));
+                    new Racer(racer).viewports[(int)(Mem.S32(Gv.FrameParity))].vscale.Set((int)(1), (short)(Mem.S32(Gv.ScreenHeight)));
+                    new Racer(racer).viewports[(int)(Mem.S32(Gv.FrameParity))].vtrans.Set((int)(0), (short)(Mem.S32(Gv.ScreenWidth)));
+                    new Racer(racer).viewports[(int)(Mem.S32(Gv.FrameParity))].vtrans.Set((int)(1), (short)(Mem.S32(Gv.ScreenHeight)));
                     {
-                        uint _gbi_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint _gbi_4 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         Mem.Set(new Gfx_s(_gbi_4).words.P, ((((((uint)(220) & (4294967295u >> (int)(32 - 8))) << (int)24) | (((uint)(((16 - 1) / 8)) & (4294967295u >> (int)(32 - 5))) << (int)19)) | (((uint)((0 / 8)) & (4294967295u >> (int)(32 - 8))) << (int)8)) | (((uint)(8) & (4294967295u >> (int)(32 - 8))) << (int)0)));
-                        Mem.Set((new Gfx_s(_gbi_4).words.P + 4u), (uint)((new Racer(racer).viewports.P + (uint)(Mem.S32(0x800D297Cu) * 16))));
+                        Mem.Set((new Gfx_s(_gbi_4).words.P + 4u), (uint)((new Racer(racer).viewports.P + (uint)(Mem.S32(Gv.FrameParity) * 16))));
                     }
                     {
-                        uint _gbi_5 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint _gbi_5 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         Mem.Set(new Gfx_s(_gbi_5).words.P, (((((uint)(237) & (4294967295u >> (int)(32 - 8))) << (int)24) | (((uint)((int)(((float)(0) * 4.0f))) & (4294967295u >> (int)(32 - 12))) << (int)12)) | (((uint)((int)(((float)(0) * 4.0f))) & (4294967295u >> (int)(32 - 12))) << (int)0)));
-                        Mem.Set((new Gfx_s(_gbi_5).words.P + 4u), (((((uint)(0) & (4294967295u >> (int)(32 - 2))) << (int)24) | (((uint)((int)(((float)((Mem.S32(0x800E28D0u) - 1)) * 4.0f))) & (4294967295u >> (int)(32 - 12))) << (int)12)) | (((uint)((int)(((float)((Mem.S32(0x800E28D4u) - 1)) * 4.0f))) & (4294967295u >> (int)(32 - 12))) << (int)0)));
+                        Mem.Set((new Gfx_s(_gbi_5).words.P + 4u), (((((uint)(0) & (4294967295u >> (int)(32 - 2))) << (int)24) | (((uint)((int)(((float)((Mem.S32(Gv.ScreenWidth) - 1)) * 4.0f))) & (4294967295u >> (int)(32 - 12))) << (int)12)) | (((uint)((int)(((float)((Mem.S32(Gv.ScreenHeight) - 1)) * 4.0f))) & (4294967295u >> (int)(32 - 12))) << (int)0)));
                     }
                     {
-                        uint _gbi_6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                        Mem.Set(new Gfx_s(_gbi_6).words.P, ((((((uint)(255) & (4294967295u >> (int)(32 - 8))) << (int)24) | (((uint)(0) & (4294967295u >> (int)(32 - 3))) << (int)21)) | (((uint)(2) & (4294967295u >> (int)(32 - 2))) << (int)19)) | (((uint)((Mem.S32(0x800E28D0u) - 1)) & (4294967295u >> (int)(32 - 12))) << (int)0)));
-                        Mem.Set((new Gfx_s(_gbi_6).words.P + 4u), (uint)(new Frame(Mem.U32(0x8011FE80u)).colorImage));
+                        uint _gbi_6 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
+                        Mem.Set(new Gfx_s(_gbi_6).words.P, ((((((uint)(255) & (4294967295u >> (int)(32 - 8))) << (int)24) | (((uint)(0) & (4294967295u >> (int)(32 - 3))) << (int)21)) | (((uint)(2) & (4294967295u >> (int)(32 - 2))) << (int)19)) | (((uint)((Mem.S32(Gv.ScreenWidth) - 1)) & (4294967295u >> (int)(32 - 12))) << (int)0)));
+                        Mem.Set((new Gfx_s(_gbi_6).words.P + 4u), (uint)(new Frame(Mem.U32(Gv.Gfx_FrameCtxPtr)).colorImage));
                     }
                     {
-                        uint _gbi_7 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint _gbi_7 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         Mem.Set(new Gfx_s(_gbi_7).words.P, (((((uint)(227) & (4294967295u >> (int)(32 - 8))) << (int)24) | (((uint)(((32 - 20) - 2)) & (4294967295u >> (int)(32 - 8))) << (int)8)) | (((uint)((2 - 1)) & (4294967295u >> (int)(32 - 8))) << (int)0)));
                         Mem.Set((new Gfx_s(_gbi_7).words.P + 4u), ((uint)(3) << (int)20));
                     }
                     {
-                        uint _gbi_8 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint _gbi_8 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         Mem.Set(new Gfx_s(_gbi_8).words.P, (((((((((uint)(252) & (4294967295u >> (int)(32 - 8))) << (int)24) | (((uint)(31) & (4294967295u >> (int)(32 - 4))) << (int)20)) | (((uint)(31) & (4294967295u >> (int)(32 - 5))) << (int)15)) | (((uint)(7) & (4294967295u >> (int)(32 - 3))) << (int)12)) | (((uint)(7) & (4294967295u >> (int)(32 - 3))) << (int)9)) | (((uint)(31) & (4294967295u >> (int)(32 - 4))) << (int)5)) | (((uint)(31) & (4294967295u >> (int)(32 - 5))) << (int)0)));
                         Mem.Set((new Gfx_s(_gbi_8).words.P + 4u), ((((((((((((uint)(31) & (4294967295u >> (int)(32 - 4))) << (int)28) | (((uint)(31) & (4294967295u >> (int)(32 - 4))) << (int)24)) | (((uint)(7) & (4294967295u >> (int)(32 - 3))) << (int)21)) | (((uint)(7) & (4294967295u >> (int)(32 - 3))) << (int)18)) | (((uint)(4) & (4294967295u >> (int)(32 - 3))) << (int)15)) | (((uint)(7) & (4294967295u >> (int)(32 - 3))) << (int)12)) | (((uint)(4) & (4294967295u >> (int)(32 - 3))) << (int)9)) | (((uint)(4) & (4294967295u >> (int)(32 - 3))) << (int)6)) | (((uint)(7) & (4294967295u >> (int)(32 - 3))) << (int)3)) | (((uint)(4) & (4294967295u >> (int)(32 - 3))) << (int)0)));
                     }
                     {
-                        uint _gbi_9 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint _gbi_9 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         Mem.Set(new Gfx_s(_gbi_9).words.P, (((((uint)(226) & (4294967295u >> (int)(32 - 8))) << (int)24) | (((uint)(((32 - 3) - 29)) & (4294967295u >> (int)(32 - 8))) << (int)8)) | (((uint)((29 - 1)) & (4294967295u >> (int)(32 - 8))) << (int)0)));
                         Mem.Set((new Gfx_s(_gbi_9).words.P + 4u), (uint)((0 | 0)));
                     }
                     {
-                        uint _gbi_10 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint _gbi_10 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         Mem.Set(new Gfx_s(_gbi_10).words.P, (((uint)(247) & (4294967295u >> (int)(32 - 8))) << (int)24));
                         Mem.Set((new Gfx_s(_gbi_10).words.P + 4u), (uint)(65537));
                     }
                     {
-                        uint _gbi_11 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                        Mem.Set(new Gfx_s(_gbi_11).words.P, (((((uint)(246) & (4294967295u >> (int)(32 - 8))) << (int)24) | (((uint)(Mem.S32(0x800E28D0u)) & (4294967295u >> (int)(32 - 10))) << (int)14)) | (((uint)(Mem.S32(0x800E28D4u)) & (4294967295u >> (int)(32 - 10))) << (int)2)));
+                        uint _gbi_11 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
+                        Mem.Set(new Gfx_s(_gbi_11).words.P, (((((uint)(246) & (4294967295u >> (int)(32 - 8))) << (int)24) | (((uint)(Mem.S32(Gv.ScreenWidth)) & (4294967295u >> (int)(32 - 10))) << (int)14)) | (((uint)(Mem.S32(Gv.ScreenHeight)) & (4294967295u >> (int)(32 - 10))) << (int)2)));
                         Mem.Set((new Gfx_s(_gbi_11).words.P + 4u), ((((uint)(0) & (4294967295u >> (int)(32 - 10))) << (int)14) | (((uint)(0) & (4294967295u >> (int)(32 - 10))) << (int)2)));
                     }
                     Model_ResetStateCache();
@@ -2526,12 +2526,12 @@ public static partial class Game
                 Hud_DrawViewOverlay(new Race(race).self.P);
             }
             Hud_DrawMessages(race, new Race(race).self.P, default(uint), default(uint));
-            if (((int)(new World_func_80236F1C_de(0x80145040u).replay) != 0))
+            if (((int)(new World_func_80236F1C_de(Gv.PlayerPool).replay) != 0))
             {
                 racer = new Race(race).racers_;
                 if ((racer != 0u))
                 {
-                    Match_DrawClock(0x80145040u, racer);
+                    Match_DrawClock(Gv.PlayerPool, racer);
                 }
             }
             MenuPanel_DrawList(new Race(race).self.sound.P);
@@ -2554,92 +2554,92 @@ public static partial class Game
             width = new Entity_func_80233C88_de(entity).width;
             height = new Entity_func_80233C88_de(entity).height;
             {
-                uint _gbi = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _gbi = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 Mem.Set(new Gfx_s(_gbi).words.P, (((uint)(231) & (4294967295u >> (int)(32 - 8))) << (int)24));
                 Mem.Set((new Gfx_s(_gbi).words.P + 4u), (uint)(0));
             }
             {
-                uint _gbi_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _gbi_2 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 Mem.Set(new Gfx_s(_gbi_2).words.P, (((((uint)(227) & (4294967295u >> (int)(32 - 8))) << (int)24) | (((uint)(((32 - 20) - 2)) & (4294967295u >> (int)(32 - 8))) << (int)8)) | (((uint)((2 - 1)) & (4294967295u >> (int)(32 - 8))) << (int)0)));
                 Mem.Set((new Gfx_s(_gbi_2).words.P + 4u), ((uint)(0) << (int)20));
             }
             {
-                uint _gbi_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _gbi_3 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 Mem.Set(new Gfx_s(_gbi_3).words.P, (((((((((uint)(252) & (4294967295u >> (int)(32 - 8))) << (int)24) | (((uint)(31) & (4294967295u >> (int)(32 - 4))) << (int)20)) | (((uint)(31) & (4294967295u >> (int)(32 - 5))) << (int)15)) | (((uint)(7) & (4294967295u >> (int)(32 - 3))) << (int)12)) | (((uint)(7) & (4294967295u >> (int)(32 - 3))) << (int)9)) | (((uint)(31) & (4294967295u >> (int)(32 - 4))) << (int)5)) | (((uint)(31) & (4294967295u >> (int)(32 - 5))) << (int)0)));
                 Mem.Set((new Gfx_s(_gbi_3).words.P + 4u), ((((((((((((uint)(31) & (4294967295u >> (int)(32 - 4))) << (int)28) | (((uint)(31) & (4294967295u >> (int)(32 - 4))) << (int)24)) | (((uint)(7) & (4294967295u >> (int)(32 - 3))) << (int)21)) | (((uint)(7) & (4294967295u >> (int)(32 - 3))) << (int)18)) | (((uint)(3) & (4294967295u >> (int)(32 - 3))) << (int)15)) | (((uint)(7) & (4294967295u >> (int)(32 - 3))) << (int)12)) | (((uint)(3) & (4294967295u >> (int)(32 - 3))) << (int)9)) | (((uint)(3) & (4294967295u >> (int)(32 - 3))) << (int)6)) | (((uint)(7) & (4294967295u >> (int)(32 - 3))) << (int)3)) | (((uint)(3) & (4294967295u >> (int)(32 - 3))) << (int)0)));
             }
             {
-                uint _gbi_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _gbi_4 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 Mem.Set(new Gfx_s(_gbi_4).words.P, (((((uint)(226) & (4294967295u >> (int)(32 - 8))) << (int)24) | (((uint)(((32 - 3) - 29)) & (4294967295u >> (int)(32 - 8))) << (int)8)) | (((uint)((29 - 1)) & (4294967295u >> (int)(32 - 8))) << (int)0)));
                 Mem.Set((new Gfx_s(_gbi_4).words.P + 4u), (((((((uint)(1) << (int)(3 + 3)) | ((uint)(2) << (int)(3 + 5))) | ((uint)(0) << (int)(3 + 7))) | ((uint)(1) << (int)(3 + 11))) | ((((((uint)(0) & (4294967295u >> (int)(32 - 2))) << (int)30) | (((uint)(0) & (4294967295u >> (int)(32 - 2))) << (int)26)) | (((uint)(1) & (4294967295u >> (int)(32 - 2))) << (int)22)) | (((uint)(0) & (4294967295u >> (int)(32 - 2))) << (int)18))) | ((((((uint)(1) << (int)(3 + 3)) | ((uint)(2) << (int)(3 + 5))) | ((uint)(0) << (int)(3 + 7))) | ((uint)(1) << (int)(3 + 11))) | ((((((uint)(0) & (4294967295u >> (int)(32 - 2))) << (int)28) | (((uint)(0) & (4294967295u >> (int)(32 - 2))) << (int)24)) | (((uint)(1) & (4294967295u >> (int)(32 - 2))) << (int)20)) | (((uint)(0) & (4294967295u >> (int)(32 - 2))) << (int)16)))));
             }
             {
-                uint _gbi_5 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _gbi_5 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 Mem.Set(new Gfx_s(_gbi_5).words.P, (((((uint)(250) & (4294967295u >> (int)(32 - 8))) << (int)24) | (((uint)(0) & (4294967295u >> (int)(32 - 8))) << (int)8)) | (((uint)(0) & (4294967295u >> (int)(32 - 8))) << (int)0)));
                 Mem.Set((new Gfx_s(_gbi_5).words.P + 4u), ((((((uint)(0) & (4294967295u >> (int)(32 - 8))) << (int)24) | (((uint)(0) & (4294967295u >> (int)(32 - 8))) << (int)16)) | (((uint)(0) & (4294967295u >> (int)(32 - 8))) << (int)8)) | (((uint)(0) & (4294967295u >> (int)(32 - 8))) << (int)0)));
             }
             {
-                uint _gbi_6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _gbi_6 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 Mem.Set(new Gfx_s(_gbi_6).words.P, (((((uint)(246) & (4294967295u >> (int)(32 - 8))) << (int)24) | ((Cpu.TruncU32(((x + width) - 1.0f)) & (4294967295u >> (int)(32 - 10))) << (int)14)) | ((Cpu.TruncU32((y + 2.0f)) & (4294967295u >> (int)(32 - 10))) << (int)2)));
                 Mem.Set((new Gfx_s(_gbi_6).words.P + 4u), (((Cpu.TruncU32(x) & (4294967295u >> (int)(32 - 10))) << (int)14) | ((Cpu.TruncU32(y) & (4294967295u >> (int)(32 - 10))) << (int)2)));
             }
             {
-                uint _gbi_7 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _gbi_7 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 Mem.Set(new Gfx_s(_gbi_7).words.P, (((((uint)(246) & (4294967295u >> (int)(32 - 8))) << (int)24) | ((Cpu.TruncU32(((x + width) - 1.0f)) & (4294967295u >> (int)(32 - 10))) << (int)14)) | ((Cpu.TruncU32(((y + height) - 1.0f)) & (4294967295u >> (int)(32 - 10))) << (int)2)));
                 Mem.Set((new Gfx_s(_gbi_7).words.P + 4u), (((Cpu.TruncU32(x) & (4294967295u >> (int)(32 - 10))) << (int)14) | ((Cpu.TruncU32(((y + height) - 2.0f)) & (4294967295u >> (int)(32 - 10))) << (int)2)));
             }
             {
-                uint _gbi_8 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _gbi_8 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 Mem.Set(new Gfx_s(_gbi_8).words.P, (((((uint)(246) & (4294967295u >> (int)(32 - 8))) << (int)24) | ((Cpu.TruncU32((x + 2.0f)) & (4294967295u >> (int)(32 - 10))) << (int)14)) | ((Cpu.TruncU32(((y + height) - 1.0f)) & (4294967295u >> (int)(32 - 10))) << (int)2)));
                 Mem.Set((new Gfx_s(_gbi_8).words.P + 4u), (((Cpu.TruncU32(x) & (4294967295u >> (int)(32 - 10))) << (int)14) | ((Cpu.TruncU32(y) & (4294967295u >> (int)(32 - 10))) << (int)2)));
             }
             {
-                uint _gbi_9 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _gbi_9 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 Mem.Set(new Gfx_s(_gbi_9).words.P, (((((uint)(246) & (4294967295u >> (int)(32 - 8))) << (int)24) | ((Cpu.TruncU32(((x + width) - 1.0f)) & (4294967295u >> (int)(32 - 10))) << (int)14)) | ((Cpu.TruncU32(((y + height) - 1.0f)) & (4294967295u >> (int)(32 - 10))) << (int)2)));
                 Mem.Set((new Gfx_s(_gbi_9).words.P + 4u), (((Cpu.TruncU32(((x + width) - 2.0f)) & (4294967295u >> (int)(32 - 10))) << (int)14) | ((Cpu.TruncU32(y) & (4294967295u >> (int)(32 - 10))) << (int)2)));
             }
             {
-                uint _gbi_10 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _gbi_10 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 Mem.Set(new Gfx_s(_gbi_10).words.P, (((uint)(231) & (4294967295u >> (int)(32 - 8))) << (int)24));
                 Mem.Set((new Gfx_s(_gbi_10).words.P + 4u), (uint)(0));
             }
             {
-                uint _gbi_11 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _gbi_11 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 Mem.Set(new Gfx_s(_gbi_11).words.P, (((((uint)(227) & (4294967295u >> (int)(32 - 8))) << (int)24) | (((uint)(((32 - 20) - 2)) & (4294967295u >> (int)(32 - 8))) << (int)8)) | (((uint)((2 - 1)) & (4294967295u >> (int)(32 - 8))) << (int)0)));
                 Mem.Set((new Gfx_s(_gbi_11).words.P + 4u), ((uint)(3) << (int)20));
             }
             {
-                uint _gbi_12 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _gbi_12 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 Mem.Set(new Gfx_s(_gbi_12).words.P, (((((((((uint)(252) & (4294967295u >> (int)(32 - 8))) << (int)24) | (((uint)(31) & (4294967295u >> (int)(32 - 4))) << (int)20)) | (((uint)(31) & (4294967295u >> (int)(32 - 5))) << (int)15)) | (((uint)(7) & (4294967295u >> (int)(32 - 3))) << (int)12)) | (((uint)(7) & (4294967295u >> (int)(32 - 3))) << (int)9)) | (((uint)(31) & (4294967295u >> (int)(32 - 4))) << (int)5)) | (((uint)(31) & (4294967295u >> (int)(32 - 5))) << (int)0)));
                 Mem.Set((new Gfx_s(_gbi_12).words.P + 4u), ((((((((((((uint)(31) & (4294967295u >> (int)(32 - 4))) << (int)28) | (((uint)(31) & (4294967295u >> (int)(32 - 4))) << (int)24)) | (((uint)(7) & (4294967295u >> (int)(32 - 3))) << (int)21)) | (((uint)(7) & (4294967295u >> (int)(32 - 3))) << (int)18)) | (((uint)(4) & (4294967295u >> (int)(32 - 3))) << (int)15)) | (((uint)(7) & (4294967295u >> (int)(32 - 3))) << (int)12)) | (((uint)(4) & (4294967295u >> (int)(32 - 3))) << (int)9)) | (((uint)(4) & (4294967295u >> (int)(32 - 3))) << (int)6)) | (((uint)(7) & (4294967295u >> (int)(32 - 3))) << (int)3)) | (((uint)(4) & (4294967295u >> (int)(32 - 3))) << (int)0)));
             }
             {
-                uint _gbi_13 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _gbi_13 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 Mem.Set(new Gfx_s(_gbi_13).words.P, (((((uint)(226) & (4294967295u >> (int)(32 - 8))) << (int)24) | (((uint)(((32 - 3) - 29)) & (4294967295u >> (int)(32 - 8))) << (int)8)) | (((uint)((29 - 1)) & (4294967295u >> (int)(32 - 8))) << (int)0)));
                 Mem.Set((new Gfx_s(_gbi_13).words.P + 4u), (((((((uint)(0) & (4294967295u >> (int)(32 - 2))) << (int)30) | (((uint)(0) & (4294967295u >> (int)(32 - 2))) << (int)26)) | (((uint)(0) & (4294967295u >> (int)(32 - 2))) << (int)22)) | (((uint)(0) & (4294967295u >> (int)(32 - 2))) << (int)18)) | ((((((uint)(0) & (4294967295u >> (int)(32 - 2))) << (int)28) | (((uint)(0) & (4294967295u >> (int)(32 - 2))) << (int)24)) | (((uint)(0) & (4294967295u >> (int)(32 - 2))) << (int)20)) | (((uint)(0) & (4294967295u >> (int)(32 - 2))) << (int)16))));
             }
             {
-                uint _gbi_14 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _gbi_14 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 Mem.Set(new Gfx_s(_gbi_14).words.P, (((uint)(247) & (4294967295u >> (int)(32 - 8))) << (int)24));
                 Mem.Set((new Gfx_s(_gbi_14).words.P + 4u), (uint)(((1 << (int)16) | 1)));
             }
             {
-                uint _gbi_15 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _gbi_15 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 Mem.Set(new Gfx_s(_gbi_15).words.P, (((((uint)(246) & (4294967295u >> (int)(32 - 8))) << (int)24) | ((Cpu.TruncU32(((x + width) - 1.0f)) & (4294967295u >> (int)(32 - 10))) << (int)14)) | ((Cpu.TruncU32(y) & (4294967295u >> (int)(32 - 10))) << (int)2)));
                 Mem.Set((new Gfx_s(_gbi_15).words.P + 4u), (((Cpu.TruncU32(x) & (4294967295u >> (int)(32 - 10))) << (int)14) | ((Cpu.TruncU32(y) & (4294967295u >> (int)(32 - 10))) << (int)2)));
             }
             {
-                uint _gbi_16 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _gbi_16 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 Mem.Set(new Gfx_s(_gbi_16).words.P, (((((uint)(246) & (4294967295u >> (int)(32 - 8))) << (int)24) | ((Cpu.TruncU32(((x + width) - 1.0f)) & (4294967295u >> (int)(32 - 10))) << (int)14)) | ((Cpu.TruncU32(((y + height) - 1.0f)) & (4294967295u >> (int)(32 - 10))) << (int)2)));
                 Mem.Set((new Gfx_s(_gbi_16).words.P + 4u), (((Cpu.TruncU32(x) & (4294967295u >> (int)(32 - 10))) << (int)14) | ((Cpu.TruncU32(((y + height) - 1.0f)) & (4294967295u >> (int)(32 - 10))) << (int)2)));
             }
             {
-                uint _gbi_17 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _gbi_17 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 Mem.Set(new Gfx_s(_gbi_17).words.P, (((((uint)(246) & (4294967295u >> (int)(32 - 8))) << (int)24) | ((Cpu.TruncU32(x) & (4294967295u >> (int)(32 - 10))) << (int)14)) | ((Cpu.TruncU32(((y + height) - 1.0f)) & (4294967295u >> (int)(32 - 10))) << (int)2)));
                 Mem.Set((new Gfx_s(_gbi_17).words.P + 4u), (((Cpu.TruncU32(x) & (4294967295u >> (int)(32 - 10))) << (int)14) | ((Cpu.TruncU32(y) & (4294967295u >> (int)(32 - 10))) << (int)2)));
             }
             {
-                uint _gbi_18 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                uint _gbi_18 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 Mem.Set(new Gfx_s(_gbi_18).words.P, (((((uint)(246) & (4294967295u >> (int)(32 - 8))) << (int)24) | ((Cpu.TruncU32((x + width)) & (4294967295u >> (int)(32 - 10))) << (int)14)) | ((Cpu.TruncU32(((y + height) - 1.0f)) & (4294967295u >> (int)(32 - 10))) << (int)2)));
                 Mem.Set((new Gfx_s(_gbi_18).words.P + 4u), (((Cpu.TruncU32(((x + width) - 1.0f)) & (4294967295u >> (int)(32 - 10))) << (int)14) | ((Cpu.TruncU32(y) & (4294967295u >> (int)(32 - 10))) << (int)2)));
             }
@@ -2704,8 +2704,8 @@ public static partial class Game
                             new Message(message).pad2C_Set(0);
                             new Message(message).scaleX_Set(1.0f);
                             new Message(message).scaleY_Set(1.0f);
-                            height = Mem.S32((0x800E28D0u + (uint)(1 * 4)));
-                            new Message(message).x_Set((float)((Mem.S32(0x800E28D0u) / 2)));
+                            height = Mem.S32((Gv.ScreenWidth + (uint)(1 * 4)));
+                            new Message(message).x_Set((float)((Mem.S32(Gv.ScreenWidth) / 2)));
                             new Message(message).y_Set((float)((height - 80)));
                         }
                         line = (p + (uint)1);
@@ -3172,8 +3172,8 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_00238D20_worldToScreen", (uint)a, (uint)pos, (uint)outx, (uint)outy);
                 Math_MtxTransformPointProject(new ScreenObj(a).unk1E0.P, pos, _fp);
-                Mem.Set(outx, ((new Vec3f(_fp).x * (float)((Mem.S32(0x800E28D0u) / 2))) + (float)((Mem.S32(0x800E28D0u) / 2))));
-                Mem.Set(outy, ((new Vec3f(_fp).y * (float)(((-Mem.S32(0x800E28D4u)) / 2))) + (float)((Mem.S32(0x800E28D4u) / 2))));
+                Mem.Set(outx, ((new Vec3f(_fp).x * (float)((Mem.S32(Gv.ScreenWidth) / 2))) + (float)((Mem.S32(Gv.ScreenWidth) / 2))));
+                Mem.Set(outy, ((new Vec3f(_fp).y * (float)(((-Mem.S32(Gv.ScreenHeight)) / 2))) + (float)((Mem.S32(Gv.ScreenHeight) / 2))));
             }
         }
         finally { Stack.Free(12); }
@@ -3316,7 +3316,7 @@ public static partial class Game
             new ObjInit(o).unk34_Set(0);
             new ObjInit(o).unk38_Set(z);
             new ObjInit(o).unk3C_Set(Mem.F32(0x800C860Cu));
-            new ObjInit(o).unk40_Set(Mem.S32((0x800D2B40u + (uint)(0 * 4))));
+            new ObjInit(o).unk40_Set(Mem.S32((Gv.NoRegionId + (uint)(0 * 4))));
         }
     }
 
@@ -3351,14 +3351,14 @@ public static partial class Game
                 new Tracker(t).unk60_Set(k);
                 if ((Flyby_IsInWindow() != 0))
                 {
-                    new Tracker(t).unk58__Set(Collision_FindFloorTriangle(0x8011FE88u, (t + 56u)));
+                    new Tracker(t).unk58__Set(Collision_FindFloorTriangle(Gv.LevelMgr, (t + 56u)));
                 }
                 node = new Tracker(t).unk58_;
                 x = new Tracker(t).unk38;
                 y = new Tracker(t).unk3C;
                 z = new Tracker(t).unk40;
                 w = new Tracker(t).unk44;
-                new Tracker(t).unk64_Set(Mem.S32(0x800D2B40u));
+                new Tracker(t).unk64_Set(Mem.S32(Gv.NoRegionId));
                 if (((node != 0u) && (Flyby_IsInWindow() == 0)))
                 {
                     dist = (((y + w) - Collision_GetFloorHeightAt(node, x, z)) * Mem.F32(0x800C8610u));
@@ -3369,11 +3369,11 @@ public static partial class Game
                 }
                 if ((Flyby_IsInWindow() != 0))
                 {
-                    new Tracker(t).unk64_Set(Mem.S32(0x800D2B40u));
+                    new Tracker(t).unk64_Set(Mem.S32(Gv.NoRegionId));
                 }
                 if ((new Tracker(t).unk5C > 0.0f))
                 {
-                    new Tracker(t).unk64_Set(Mem.S32(0x800D2B40u));
+                    new Tracker(t).unk64_Set(Mem.S32(Gv.NoRegionId));
                 }
             }
         }
@@ -3506,7 +3506,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002391E8", (uint)o, (uint)r, (uint)g, (uint)b);
-            if (((Mem.S32(0x801462C8u) & 16384) != 0))
+            if (((Mem.S32(Gv.Settings) & 16384) != 0))
             {
                 Mem.Set(r, (byte)(0));
                 Mem.Set(g, (byte)(0));
@@ -3529,8 +3529,8 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_00239234", (uint)o, (uint)b, (uint)outx, (uint)outy);
                 Math_MtxTransformPointProject((o + (uint)480), (uint)(b), _fp);
-                Mem.Set(outx, ((new Vec3f(_fp).x * (float)((Mem.S32(0x800E28D0u) / 2))) + (float)((Mem.S32(0x800E28D0u) / 2))));
-                Mem.Set(outy, ((new Vec3f(_fp).y * (float)(((-Mem.S32(0x800E28D4u)) / 2))) + (float)((Mem.S32(0x800E28D4u) / 2))));
+                Mem.Set(outx, ((new Vec3f(_fp).x * (float)((Mem.S32(Gv.ScreenWidth) / 2))) + (float)((Mem.S32(Gv.ScreenWidth) / 2))));
+                Mem.Set(outy, ((new Vec3f(_fp).y * (float)(((-Mem.S32(Gv.ScreenHeight)) / 2))) + (float)((Mem.S32(Gv.ScreenHeight) / 2))));
             }
         }
         finally { Stack.Free(12); }
@@ -3674,9 +3674,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0023941C", (uint)@base);
             uint dl = 0u;
-            dl = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+            dl = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             new DlCmd(dl).w0_Set(3661103111u);
-            new DlCmd(dl).w1_Set((uint)((@base + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 1096))));
+            new DlCmd(dl).w1_Set((uint)((@base + (uint)((Mem.S32(Gv.FrameParity) << (int)6) + 1096))));
         }
     }
 
@@ -3929,7 +3929,7 @@ public static partial class Game
             float ty = 0f;
             float k = 0f;
             tx = (ty = 0.0f);
-            r = Level_GetRegion(0x8011FE88u, (uint)(new ObjF4(o).unk58));
+            r = Level_GetRegion(Gv.LevelMgr, (uint)(new ObjF4(o).unk58));
             if ((r == 0u))
             {
                 new Vec3f(@out).x_Set(ty);
@@ -3983,14 +3983,14 @@ public static partial class Game
             float d = 0f;
             if ((Flyby_IsInWindow() != 0))
             {
-                new Tracker(t).unk58__Set(Collision_FindFloorTriangle(0x8011FE88u, (t + 56u)));
+                new Tracker(t).unk58__Set(Collision_FindFloorTriangle(Gv.LevelMgr, (t + 56u)));
             }
             n = new Tracker(t).unk58_;
             x = new Tracker(t).unk38;
             y = new Tracker(t).unk3C;
             z = new Tracker(t).unk40;
             w = new Tracker(t).unk44;
-            new Tracker(t).unk64_Set(Mem.S32(0x800D2B40u));
+            new Tracker(t).unk64_Set(Mem.S32(Gv.NoRegionId));
             if (((n != 0u) && (Flyby_IsInWindow() == 0)))
             {
                 d = (((y + w) - Collision_GetFloorHeightAt(n, x, z)) * Mem.F32(0x800C8680u));
@@ -4001,11 +4001,11 @@ public static partial class Game
             }
             if ((Flyby_IsInWindow() != 0))
             {
-                new Tracker(t).unk64_Set(Mem.S32(0x800D2B40u));
+                new Tracker(t).unk64_Set(Mem.S32(Gv.NoRegionId));
             }
             if ((new Tracker(t).unk5C > 0.0f))
             {
-                new Tracker(t).unk64_Set(Mem.S32(0x800D2B40u));
+                new Tracker(t).unk64_Set(Mem.S32(Gv.NoRegionId));
             }
         }
     }
@@ -4093,7 +4093,7 @@ public static partial class Game
             if ((x < target))
             {
                 x = (float)((float)(x) + step);
-                Mem.Set(0x80103224u, Mem.F32(0x800C868Cu));
+                Mem.Set(Gv.View_Timer_80103224, Mem.F32(0x800C868Cu));
                 if ((target < x))
                 {
                     x = target;
@@ -4104,7 +4104,7 @@ public static partial class Game
                 if ((target < x))
                 {
                     x = (float)((float)(x) - step);
-                    Mem.Set(0x80103224u, Mem.F32(0x800C8690u));
+                    Mem.Set(Gv.View_Timer_80103224, Mem.F32(0x800C8690u));
                     if ((x < target))
                     {
                         x = target;

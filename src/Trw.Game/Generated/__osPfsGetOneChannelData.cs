@@ -15,7 +15,7 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("__osPfsGetOneChannelData", (uint)channel, (uint)data);
                 uint ptr = 0u;
                 int i = 0;
-                ptr = 0x80154110u;
+                ptr = Gv.OsPfsPifRam;
                 for (i = 0; (i < channel); ++i)
                 {
                     ptr += 1u;

@@ -1650,7 +1650,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00279A00", (uint)s);
             new MtxStack(s).left_Set(new MtxStack(s).n);
-            new MtxStack(s).cur__Set((new MtxStack(s).base_ + (uint)((new MtxStack(s).n * Mem.S32(0x800D297Cu)) * 64)));
+            new MtxStack(s).cur__Set((new MtxStack(s).base_ + (uint)((new MtxStack(s).n * Mem.S32(Gv.FrameParity)) * 64)));
         }
     }
 

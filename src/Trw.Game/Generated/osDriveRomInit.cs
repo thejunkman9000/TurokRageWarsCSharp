@@ -11,25 +11,25 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("osDriveRomInit");
             uint saveMask = 0u;
-            new OSPiHandle(0x8014E9D0u).type_Set((byte)(2));
-            new OSPiHandle(0x8014E9D0u).baseAddress_Set(2768240640u);
-            new OSPiHandle(0x8014E9D0u).latency_Set((byte)(3));
-            new OSPiHandle(0x8014E9D0u).pulse_Set((byte)(6));
-            new OSPiHandle(0x8014E9D0u).pageSize_Set((byte)(6));
-            new OSPiHandle(0x8014E9D0u).relDuration_Set((byte)(2));
-            new OSPiHandle(0x8014E9D0u).domain_Set((byte)(1));
+            new OSPiHandle(Gv.__DriveRomHandle).type_Set((byte)(2));
+            new OSPiHandle(Gv.__DriveRomHandle).baseAddress_Set(2768240640u);
+            new OSPiHandle(Gv.__DriveRomHandle).latency_Set((byte)(3));
+            new OSPiHandle(Gv.__DriveRomHandle).pulse_Set((byte)(6));
+            new OSPiHandle(Gv.__DriveRomHandle).pageSize_Set((byte)(6));
+            new OSPiHandle(Gv.__DriveRomHandle).relDuration_Set((byte)(2));
+            new OSPiHandle(Gv.__DriveRomHandle).domain_Set((byte)(1));
             Mem.Set((uint)(((uint)(73400356) | 2684354560u)), (uint)(3));
             Mem.Set((uint)(((uint)(73400360) | 2684354560u)), (uint)(6));
             Mem.Set((uint)(((uint)(73400364) | 2684354560u)), (uint)(6));
             Mem.Set((uint)(((uint)(73400368) | 2684354560u)), (uint)(2));
-            new OSPiHandle(0x8014E9D0u).speed_Set((uint)(0));
-            memset(new OSPiHandle(0x8014E9D0u).transferInfo.P, 0, 96u);
+            new OSPiHandle(Gv.__DriveRomHandle).speed_Set((uint)(0));
+            memset(new OSPiHandle(Gv.__DriveRomHandle).transferInfo.P, 0, 96u);
             saveMask = __osDisableInt();
-            new OSPiHandle(0x8014E9D0u).next__Set(Mem.U32(0x800D83ACu));
-            Mem.Set(0x800D83ACu, 0x8014E9D0u);
-            Mem.Set(0x8014EA44u, 0x8014E9D0u);
+            new OSPiHandle(Gv.__DriveRomHandle).next__Set(Mem.U32(0x800D83ACu));
+            Mem.Set(0x800D83ACu, Gv.__DriveRomHandle);
+            Mem.Set(Gv.__osDiskHandle, Gv.__DriveRomHandle);
             __osRestoreInt(saveMask);
-            return 0x8014E9D0u;
+            return Gv.__DriveRomHandle;
         }
     }
 

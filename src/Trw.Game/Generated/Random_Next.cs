@@ -11,8 +11,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00274544");
             uint s = 0u;
-            s = ((Mem.U32(0x80115DE4u) * 2823445331u) + (uint)(1479838765));
-            Mem.Set(0x80115DE4u, s);
+            s = ((Mem.U32(Gv.Random_State) * 2823445331u) + (uint)(1479838765));
+            Mem.Set(Gv.Random_State, s);
             return (int)((((s << (int)16) | (s >> (int)16)) & (uint)(2147483647)));
         }
     }

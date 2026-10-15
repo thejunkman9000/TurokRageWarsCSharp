@@ -11,9 +11,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043639C", (uint)cfg);
-            Mem.Set(0x800E5558u, ResourcePool_Malloc((uint)(28)));
+            Mem.Set(Gv.SkipMapConfirm_StatePtr, ResourcePool_Malloc((uint)(28)));
             Menu_EnableInput();
-            ScreenWipe_Init(Mem.U32(0x800E5558u), 103, 0, 0, 0);
+            ScreenWipe_Init(Mem.U32(Gv.SkipMapConfirm_StatePtr), 103, 0, 0, 0);
             if ((Video_GetResolution() == 1))
             {
                 new O05Cfg(cfg).h14_Set((short)(98));
@@ -36,8 +36,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00436430");
-            ResourcePool_MallocFree(Mem.U32(0x800E5558u));
-            Mem.Set(0x800E5558u, 0u);
+            ResourcePool_MallocFree(Mem.U32(Gv.SkipMapConfirm_StatePtr));
+            Mem.Set(Gv.SkipMapConfirm_StatePtr, 0u);
             Menu_SetFixedFov(2);
             return 0;
         }
@@ -62,21 +62,21 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00436488", (uint)a, (uint)b, (uint)ev);
             if ((ev == 1))
             {
-                if ((ScreenWipe_GetState(Mem.U32(0x800E5558u)) != ev))
+                if ((ScreenWipe_GetState(Mem.U32(Gv.SkipMapConfirm_StatePtr)) != ev))
                 {
                     return 0;
                 }
-                ScreenWipe_Draw(Mem.U32(0x800E5558u));
-                ScreenWipe_Advance(Mem.U32(0x800E5558u));
-                if ((ScreenWipe_GetState(Mem.U32(0x800E5558u)) != 2))
+                ScreenWipe_Draw(Mem.U32(Gv.SkipMapConfirm_StatePtr));
+                ScreenWipe_Advance(Mem.U32(Gv.SkipMapConfirm_StatePtr));
+                if ((ScreenWipe_GetState(Mem.U32(Gv.SkipMapConfirm_StatePtr)) != 2))
                 {
                     return 0;
                 }
                 Menu_ConsumeEvent();
-                Mem.Set((0x80146894u + (uint)(0 * 4)), 0);
-                CameraManager_Init((0x80146894u - (uint)(1539 * 4)), 0);
-                Player_InitPool((0x80146894u - (uint)(1557 * 4)), 0, 0);
-                Level_Load(0x8011FE88u, (uint)(36), (uint)(0), default(uint));
+                Mem.Set((Gv.GamePaused + (uint)(0 * 4)), 0);
+                CameraManager_Init((Gv.GamePaused - (uint)(1539 * 4)), 0);
+                Player_InitPool((Gv.GamePaused - (uint)(1557 * 4)), 0, 0);
+                Level_Load(Gv.LevelMgr, (uint)(36), (uint)(0), default(uint));
                 if ((Resource_GetLoadFlags() == 0))
                 {
                     Resource_SetLoadFlags(1);
@@ -122,7 +122,7 @@ public static partial class Game
                 Menu_GotoScreen(1);
                 return 0;
             case 984:
-                Mem.Set(0x80146894u, 0);
+                Mem.Set(Gv.GamePaused, 0);
                 Menu_DisableInput();
                 if ((MatchSetup_PickRandomArena() == 0))
                 {
@@ -130,7 +130,7 @@ public static partial class Game
                     Menu_GotoScreen(20);
                     return 0;
                 }
-                Menu_ShowScreen_0043C458(Mem.U32(0x800E5558u));
+                Menu_ShowScreen_0043C458(Mem.U32(Gv.SkipMapConfirm_StatePtr));
                 return 0;
             default:
                 return 0;
@@ -146,13 +146,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00436634", (uint)o, (uint)id, (uint)a2, (uint)a3);
             int i = 0;
-            for (i = 0; (new O05Disp((0x800E5628u + (uint)(i * 12))).fn != 0u); ++i)
+            for (i = 0; (new O05Disp((Gv.SkipMapConfirm_EventTable + (uint)(i * 12))).fn != 0u); ++i)
             {
-                if ((new O05Disp((0x800E5628u + (uint)(i * 12))).id == id))
+                if ((new O05Disp((Gv.SkipMapConfirm_EventTable + (uint)(i * 12))).id == id))
                 {
-                    if (((new O05Disp((0x800E5628u + (uint)(i * 12))).key == (int)(new O05Obj(o).key)) || (new O05Disp((0x800E5628u + (uint)(i * 12))).key == 30000)))
+                    if (((new O05Disp((Gv.SkipMapConfirm_EventTable + (uint)(i * 12))).key == (int)(new O05Obj(o).key)) || (new O05Disp((Gv.SkipMapConfirm_EventTable + (uint)(i * 12))).key == 30000)))
                     {
-                        return (int)(Funcs.CallRegX(new O05Disp((0x800E5628u + (uint)(i * 12))).fn, o, (uint)(id), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
+                        return (int)(Funcs.CallRegX(new O05Disp((Gv.SkipMapConfirm_EventTable + (uint)(i * 12))).fn, o, (uint)(id), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
                     }
                 }
             }

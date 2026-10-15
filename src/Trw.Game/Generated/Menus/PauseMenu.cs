@@ -67,11 +67,11 @@ public static partial class Game
                 }
             }
             Menu_EnableInput();
-            if ((((int)(Mem.U8(0x801462D5u)) != 0) || (Gauntlet_IsActive() == 0)))
+            if ((((int)(Mem.U8(Gv.Settings_GameMode)) != 0) || (Gauntlet_IsActive() == 0)))
             {
                 UiNode_SetDisabled((uint)((int)(UiTree_FindNode(cfg, (uint)(62), default(uint), default(uint)))), 1);
             }
-            Mem.Set(0x80146894u, 1);
+            Mem.Set(Gv.GamePaused, 1);
             return 0;
         }
     }
@@ -133,7 +133,7 @@ public static partial class Game
                 {
                     return 0;
                 }
-                Mem.Set(0x80146894u, 0);
+                Mem.Set(Gv.GamePaused, 0);
                 Menu_RequestShutdown();
                 Audio_UnduckMusic();
             }
@@ -162,12 +162,12 @@ public static partial class Game
             switch (Menu_GetMessage())
             {
             case 64:
-                Mem.Set(0x80146894u, 0);
+                Mem.Set(Gv.GamePaused, 0);
                 Menu_RequestShutdown();
                 Audio_UnduckMusic();
                 return 0;
             case 60:
-                Mem.Set(0x80146894u, 0);
+                Mem.Set(Gv.GamePaused, 0);
                 PauseOptions_Show();
                 return 0;
             case 65:
@@ -190,13 +190,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00435F70", (uint)o, (uint)id, (uint)a2, (uint)a3);
             int i = 0;
-            for (i = 0; (new O05Disp((0x800E555Cu + (uint)(i * 12))).fn != 0u); ++i)
+            for (i = 0; (new O05Disp((Gv.PauseMenu_EventTable + (uint)(i * 12))).fn != 0u); ++i)
             {
-                if ((new O05Disp((0x800E555Cu + (uint)(i * 12))).id == id))
+                if ((new O05Disp((Gv.PauseMenu_EventTable + (uint)(i * 12))).id == id))
                 {
-                    if (((new O05Disp((0x800E555Cu + (uint)(i * 12))).key == (int)(new O05Obj(o).key)) || (new O05Disp((0x800E555Cu + (uint)(i * 12))).key == 30000)))
+                    if (((new O05Disp((Gv.PauseMenu_EventTable + (uint)(i * 12))).key == (int)(new O05Obj(o).key)) || (new O05Disp((Gv.PauseMenu_EventTable + (uint)(i * 12))).key == 30000)))
                     {
-                        return (int)(Funcs.CallRegX(new O05Disp((0x800E555Cu + (uint)(i * 12))).fn, o, (uint)(id), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
+                        return (int)(Funcs.CallRegX(new O05Disp((Gv.PauseMenu_EventTable + (uint)(i * 12))).fn, o, (uint)(id), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
                     }
                 }
             }

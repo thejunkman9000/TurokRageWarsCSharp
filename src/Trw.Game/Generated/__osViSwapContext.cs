@@ -18,7 +18,7 @@ public static partial class Game
             uint field = 0u;
             uint buffer = 0u;
             field = (uint)(0);
-            vc = Mem.U32(0x800D8444u);
+            vc = Mem.U32(Gv.__osViNext);
             modep = new OSViContext(vc).modep_;
             field = (Mem.U32((uint)(((uint)(71303184) | 2684354560u))) & (uint)(1));
             buffer = osVirtualToPhysical(new OSViContext(vc).buffer);
@@ -69,9 +69,9 @@ public static partial class Game
             Mem.Set((uint)(((uint)(71303216) | 2684354560u)), new OSViContext(vc).x.scale);
             Mem.Set((uint)(((uint)(71303220) | 2684354560u)), new OSViContext(vc).y.scale);
             Mem.Set((uint)(((uint)(71303168) | 2684354560u)), new OSViContext(vc).features);
-            Mem.Set(0x800D8444u, Mem.U32(0x800D8440u));
-            Mem.Set(0x800D8440u, vc);
-            Mem.Copy(Mem.U32(0x800D8444u), Mem.U32(0x800D8440u), 48);
+            Mem.Set(Gv.__osViNext, Mem.U32(Gv.ViCurrentContextPtr));
+            Mem.Set(Gv.ViCurrentContextPtr, vc);
+            Mem.Copy(Mem.U32(Gv.__osViNext), Mem.U32(Gv.ViCurrentContextPtr), 48);
         }
     }
 

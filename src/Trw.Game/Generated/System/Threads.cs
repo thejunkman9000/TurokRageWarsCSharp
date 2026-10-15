@@ -30,7 +30,7 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00255110", (uint)p, (uint)m);
                 osCreateMesgQueue(_fp, (_fp + 24u), 1);
                 new B12Req(m).reply__Set(_fp);
-                Mem.Set(0x800D2954u, 2);
+                Mem.Set(Gv.ResourceLoader_BoostFrames, 2);
                 osSetThreadPri(new B12Port(p).thread.P, Mem.S32(0x800D2B28u));
                 osJamMesg(new B12Port(p).q.P, m, 1);
                 osRecvMesg(_fp, (_fp + 28u), 1);
@@ -77,7 +77,7 @@ public static partial class Game
                 while ((1 != 0))
                 {
                     osRecvMesg(new B12Port(p).q.P, _fp, 1);
-                    new B12Port(p).unk1448_Set(Mem.S32(0x800D2978u));
+                    new B12Port(p).unk1448_Set(Mem.S32(Gv.Video_FrameCount));
                     Funcs.CallReg(new B12Req(Mem.U32(_fp)).fn, new B12Req(Mem.U32(_fp)).arg, Mem.U32(_fp), 0u, 0u);
                     osSendMesg(new B12Req(Mem.U32(_fp)).reply_, Mem.U32(_fp), 1);
                 }

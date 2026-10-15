@@ -24,57 +24,57 @@ public static partial class Game
                     return;
                 }
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g).w0_Set(3875536896u);
                     new DlCmd(_g).w1_Set((uint)(0));
                 }
                 {
-                    uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_2 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_2).w0_Set(3808430593u);
                     new DlCmd(_g_2).w1_Set((uint)(1048576));
                 }
                 {
-                    uint _g_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_3 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_3).w0_Set(4254072832u);
                     new DlCmd(_g_3).w1_Set((uint)(0x800D14B0u));
                 }
                 {
-                    uint _g_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_4 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_4).w0_Set(4119855104u);
                     new DlCmd(_g_4).w1_Set((uint)(117965312));
                 }
                 {
-                    uint _g_5 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_5 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_5).w0_Set(3858759680u);
                     new DlCmd(_g_5).w1_Set((uint)(0));
                 }
                 {
-                    uint _g_6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_6 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_6).w0_Set(4076863488u);
                     new DlCmd(_g_6).w1_Set((uint)(117961728));
                 }
                 {
-                    uint _g_7 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_7 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_7).w0_Set(3875536896u);
                     new DlCmd(_g_7).w1_Set((uint)(0));
                 }
                 {
-                    uint _g_8 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_8 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_8).w0_Set(4119331840u);
                     new DlCmd(_g_8).w1_Set((uint)(524800));
                 }
                 {
-                    uint _g_9 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_9 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_9).w0_Set(4060086272u);
                     new DlCmd(_g_9).w1_Set((uint)(245820));
                 }
                 {
-                    uint _g_10 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_10 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_10).w0_Set(4194304000u);
                     new DlCmd(_g_10).w1_Set((uint)((-56)));
                 }
                 {
-                    uint _g_11 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_11 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_11).w0_Set(3724541952u);
                     new DlCmd(_g_11).w1_Set((uint)(0x800D2E60u));
                 }
@@ -88,7 +88,7 @@ public static partial class Game
                         new Vec3fv(_fp).x_Set((float)(new VInfo(p).x));
                         new Vec3fv(_fp).y_Set((float)(new VInfo(p).y));
                         new Vec3fv(_fp).z_Set((float)(new VInfo(p).z));
-                        if (!((((((new Vec3fv(_fp).x < Mem.F32((0x801031F0u + (uint)(3 * 4)))) && (new Vec3fv(_fp).y < Mem.F32((0x801031F0u + (uint)(4 * 4))))) && (new Vec3fv(_fp).z < Mem.F32((0x801031F0u + (uint)(5 * 4))))) && (Mem.F32((0x801031F0u + (uint)(0 * 4))) <= new Vec3fv(_fp).x)) && (Mem.F32((0x801031F0u + (uint)(1 * 4))) <= new Vec3fv(_fp).y)) && (Mem.F32((0x801031F0u + (uint)(2 * 4))) <= new Vec3fv(_fp).z)))
+                        if (!((((((new Vec3fv(_fp).x < Mem.F32((Gv.View_UpdateBounds + (uint)(3 * 4)))) && (new Vec3fv(_fp).y < Mem.F32((Gv.View_UpdateBounds + (uint)(4 * 4))))) && (new Vec3fv(_fp).z < Mem.F32((Gv.View_UpdateBounds + (uint)(5 * 4))))) && (Mem.F32((Gv.View_UpdateBounds + (uint)(0 * 4))) <= new Vec3fv(_fp).x)) && (Mem.F32((Gv.View_UpdateBounds + (uint)(1 * 4))) <= new Vec3fv(_fp).y)) && (Mem.F32((Gv.View_UpdateBounds + (uint)(2 * 4))) <= new Vec3fv(_fp).z)))
                         {
                             List_Remove(l, n, default(uint), default(uint));
                             List_Append_00255CB4((c + (uint)38312), n, default(uint), default(uint));
@@ -96,17 +96,17 @@ public static partial class Game
                         else
                         {
                             {
-                                uint _g_12 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                uint _g_12 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                 new DlCmd(_g_12).w0_Set(3661103107u);
                                 new DlCmd(_g_12).w1_Set((uint)(p));
                             }
                             {
-                                uint _g_13 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                uint _g_13 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                 new DlCmd(_g_13).w0_Set((uint)(16793608));
                                 new DlCmd(_g_13).w1_Set((uint)(0x801469A0u));
                             }
                             {
-                                uint _g_14 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                uint _g_14 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                 new DlCmd(_g_14).w0_Set((uint)(100663812));
                                 new DlCmd(_g_14).w1_Set((uint)(263680));
                             }
@@ -136,72 +136,72 @@ public static partial class Game
                 new Dead28(_fp).f_Set(Mem.F32(0x800CB020u));
                 new Dead28(_fp).g_Set(0);
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g).w0_Set(3875536896u);
                     new DlCmd(_g).w1_Set((uint)(0));
                 }
                 {
-                    uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_2 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_2).w0_Set(3808430593u);
                     new DlCmd(_g_2).w1_Set((uint)(1048576));
                 }
                 {
-                    uint _g_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_3 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_3).w0_Set(4254072832u);
                     new DlCmd(_g_3).w1_Set((uint)(0x800D14B0u));
                 }
                 {
-                    uint _g_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_4 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_4).w0_Set(4119855104u);
                     new DlCmd(_g_4).w1_Set((uint)(117965312));
                 }
                 {
-                    uint _g_5 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_5 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_5).w0_Set(3858759680u);
                     new DlCmd(_g_5).w1_Set((uint)(0));
                 }
                 {
-                    uint _g_6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_6 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_6).w0_Set(4076863488u);
                     new DlCmd(_g_6).w1_Set((uint)(117961728));
                 }
                 {
-                    uint _g_7 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_7 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_7).w0_Set(3875536896u);
                     new DlCmd(_g_7).w1_Set((uint)(0));
                 }
                 {
-                    uint _g_8 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_8 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_8).w0_Set(4119331840u);
                     new DlCmd(_g_8).w1_Set((uint)(524800));
                 }
                 {
-                    uint _g_9 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_9 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_9).w0_Set(4060086272u);
                     new DlCmd(_g_9).w1_Set((uint)(245820));
                 }
                 {
-                    uint _g_10 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_10 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_10).w0_Set(4194369535u);
                     new DlCmd(_g_10).w1_Set(3355443350u);
                 }
                 {
-                    uint _g_11 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_11 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_11).w0_Set(3724541952u);
                     new DlCmd(_g_11).w1_Set((uint)(0x800D2F18u));
                 }
                 {
-                    uint _g_12 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_12 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_12).w0_Set(3661103107u);
                     new DlCmd(_g_12).w1_Set((uint)(dl));
                 }
                 {
-                    uint _g_13 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_13 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_13).w0_Set((uint)(16793608));
                     new DlCmd(_g_13).w1_Set((uint)(0x801469A0u));
                 }
                 {
-                    uint _g_14 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_14 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_14).w0_Set((uint)(100663812));
                     new DlCmd(_g_14).w1_Set((uint)(263680));
                 }
@@ -340,9 +340,9 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0044E9A0", (uint)match);
             uint state = 0u;
             Rumble_SetEnabledAll(0);
-            Rumble_ClearAll(0x8010EC90u);
-            Player_ClearAllPadInput(0x80145040u);
-            state = 0x801468A0u;
+            Rumble_ClearAll(Gv.Rumble_Mgr);
+            Player_ClearAllPadInput(Gv.PlayerPool);
+            state = Gv.Settings_MatchRules;
             new State_func_8044DD50_de(state).a_Set(0);
             new State_func_8044DD50_de(state).b_Set(0);
             new State_func_8044DD50_de(state).c_Set(0);

@@ -18,7 +18,7 @@ public static partial class Game
                 do
                 {
                     dbgLinkRecvByte(_fp);
-                    if ((Mem.S32(0x8014D3E8u) != 0))
+                    if ((Mem.S32(Gv.DbgLink_Error) != 0))
                     {
                         goto L_end;
                     }

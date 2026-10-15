@@ -11,13 +11,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A209C");
-            if ((new StreamBuf(0x800D2BB0u).open != 1))
+            if ((new StreamBuf(Gv.RomFile_ArchiveBuffer).open != 1))
             {
-                new StreamBuf(0x800D2BB0u).size_Set(569925);
-                new StreamBuf(0x800D2BB0u).buf__Set((uint)((int)(ResourcePool_Malloc((uint)(569925)))));
-                RomDma_ReadSync(0x801051B8u, (uint)(2097152), (uint)(new StreamBuf(0x800D2BB0u).size), (uint)((int)(new StreamBuf(0x800D2BB0u).buf_)));
-                new StreamBuf(0x800D2BB0u).unkC_Set(0);
-                new StreamBuf(0x800D2BB0u).open_Set(1);
+                new StreamBuf(Gv.RomFile_ArchiveBuffer).size_Set(569925);
+                new StreamBuf(Gv.RomFile_ArchiveBuffer).buf__Set((uint)((int)(ResourcePool_Malloc((uint)(569925)))));
+                RomDma_ReadSync(Gv.RomDma_Ctl, (uint)(2097152), (uint)(new StreamBuf(Gv.RomFile_ArchiveBuffer).size), (uint)((int)(new StreamBuf(Gv.RomFile_ArchiveBuffer).buf_)));
+                new StreamBuf(Gv.RomFile_ArchiveBuffer).unkC_Set(0);
+                new StreamBuf(Gv.RomFile_ArchiveBuffer).open_Set(1);
             }
         }
     }
@@ -28,13 +28,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A2114");
-            if ((Mem.S32((0x800D2BB0u + (uint)(0 * 4))) != 0))
+            if ((Mem.S32((Gv.RomFile_ArchiveBuffer + (uint)(0 * 4))) != 0))
             {
-                ResourcePool_MallocFree((uint)(Mem.S32((0x800D2BB0u + (uint)(0 * 4)))));
+                ResourcePool_MallocFree((uint)(Mem.S32((Gv.RomFile_ArchiveBuffer + (uint)(0 * 4)))));
             }
-            Mem.Set((0x800D2BB0u + (uint)(0 * 4)), 0);
-            Mem.Set((0x800D2BB0u + (uint)(3 * 4)), 0);
-            Mem.Set((0x800D2BB0u + (uint)(4 * 4)), 0);
+            Mem.Set((Gv.RomFile_ArchiveBuffer + (uint)(0 * 4)), 0);
+            Mem.Set((Gv.RomFile_ArchiveBuffer + (uint)(3 * 4)), 0);
+            Mem.Set((Gv.RomFile_ArchiveBuffer + (uint)(4 * 4)), 0);
         }
     }
 
@@ -48,8 +48,8 @@ public static partial class Game
             {
                 s += 1u;
             }
-            Mem.Set((0x800D2BB4u + (uint)(0 * 4)), 0);
-            Mem.Set((0x800D2BB4u + (uint)(2 * 4)), 1);
+            Mem.Set((Gv.RomFile_ReadPos + (uint)(0 * 4)), 0);
+            Mem.Set((Gv.RomFile_ReadPos + (uint)(2 * 4)), 1);
         }
     }
 
@@ -69,8 +69,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A2198", (uint)a0, (uint)dst, (uint)n);
-            Mem_Copy(dst, (uint)((Mem.S32((0x800D2BB0u + (uint)(0 * 4))) + Mem.S32((0x800D2BB0u + (uint)(1 * 4))))), (uint)(n));
-            Mem.Set((0x800D2BB0u + (uint)(1 * 4)), (int)((int)(Mem.S32((0x800D2BB0u + (uint)(1 * 4)))) + n));
+            Mem_Copy(dst, (uint)((Mem.S32((Gv.RomFile_ArchiveBuffer + (uint)(0 * 4))) + Mem.S32((Gv.RomFile_ArchiveBuffer + (uint)(1 * 4))))), (uint)(n));
+            Mem.Set((Gv.RomFile_ArchiveBuffer + (uint)(1 * 4)), (int)((int)(Mem.S32((Gv.RomFile_ArchiveBuffer + (uint)(1 * 4)))) + n));
             return 1;
         }
     }
@@ -93,9 +93,9 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002A21F4", (uint)a0, (uint)n, (uint)keep);
             if ((keep == 0))
             {
-                Mem.Set((0x800D2BB4u + (uint)(0 * 4)), 0);
+                Mem.Set((Gv.RomFile_ReadPos + (uint)(0 * 4)), 0);
             }
-            Mem.Set((0x800D2BB4u + (uint)(0 * 4)), (int)((int)(Mem.S32((0x800D2BB4u + (uint)(0 * 4)))) + n));
+            Mem.Set((Gv.RomFile_ReadPos + (uint)(0 * 4)), (int)((int)(Mem.S32((Gv.RomFile_ReadPos + (uint)(0 * 4)))) + n));
             return 0;
         }
     }
@@ -106,7 +106,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A2220");
-            return Mem.S32(0x800D2BB4u);
+            return Mem.S32(Gv.RomFile_ReadPos);
         }
     }
 
@@ -116,7 +116,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A2230");
-            return ((Mem.S32((0x800D2BB4u + (uint)(0 * 4))) == Mem.S32((0x800D2BB4u + (uint)(1 * 4)))) ? 1 : 0);
+            return ((Mem.S32((Gv.RomFile_ReadPos + (uint)(0 * 4))) == Mem.S32((Gv.RomFile_ReadPos + (uint)(1 * 4)))) ? 1 : 0);
         }
     }
 }

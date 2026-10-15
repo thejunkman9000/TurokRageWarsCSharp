@@ -298,36 +298,36 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_00290C04", (uint)arg);
                 uint g = 0u;
-                uint vi = Mem.U32(0x8011FE80u);
-                Gfx_ClearZBufferRect(arg, 0, Mem.S32(0x800E28D0u), 0, Mem.S32(0x800E28D4u), 0);
+                uint vi = Mem.U32(Gv.Gfx_FrameCtxPtr);
+                Gfx_ClearZBufferRect(arg, 0, Mem.S32(Gv.ScreenWidth), 0, Mem.S32(Gv.ScreenHeight), 0);
                 Mem.Set(_fp, (uint)(0));
                 Mem.Set((_fp + 4u), (uint)(0));
-                g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(g).w0_Set(3976200192u);
-                new DlCmd(g).w1_Set((uint)(((((int)(((float)((Mem.S32(0x800E28D0u) - 1)) * 4.0f)) & 4095) << (int)12) | ((int)(((float)((Mem.S32(0x800E28D4u) - 1)) * 4.0f)) & 4095))));
-                g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                new DlCmd(g).w0_Set((4279238656u | (uint)(((Mem.S32(0x800E28D0u) - 1) & 4095))));
+                new DlCmd(g).w1_Set((uint)(((((int)(((float)((Mem.S32(Gv.ScreenWidth) - 1)) * 4.0f)) & 4095) << (int)12) | ((int)(((float)((Mem.S32(Gv.ScreenHeight) - 1)) * 4.0f)) & 4095))));
+                g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
+                new DlCmd(g).w0_Set((4279238656u | (uint)(((Mem.S32(Gv.ScreenWidth) - 1) & 4095))));
                 new DlCmd(g).w1_Set(new Vi(vi).fb);
-                g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(g).w0_Set(3808430593u);
                 new DlCmd(g).w1_Set((uint)(3145728));
-                g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(g).w0_Set(4244635647u);
                 new DlCmd(g).w1_Set(4294867260u);
-                g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(g).w0_Set(3791650844u);
                 new DlCmd(g).w1_Set((uint)(0));
-                g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(g).w0_Set(4143972352u);
                 new DlCmd(g).w1_Set((uint)(65537));
-                g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
-                new DlCmd(g).w0_Set(((4127195136u | (uint)(((Mem.S32(0x800E28D0u) & 1023) << (int)14))) | (uint)(((Mem.S32(0x800E28D4u) & 1023) << (int)2))));
+                g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
+                new DlCmd(g).w0_Set(((4127195136u | (uint)(((Mem.S32(Gv.ScreenWidth) & 1023) << (int)14))) | (uint)(((Mem.S32(Gv.ScreenHeight) & 1023) << (int)2))));
                 new DlCmd(g).w1_Set((uint)(0));
                 Sprite_GetFrameSize(902, 0, _fp, (_fp + 4u));
                 if (((Mem.U32(_fp) != (uint)(0)) && (Mem.U32((_fp + 4u)) != (uint)(0))))
                 {
                     Gfx_BeginFlatColorPass((uint)(255), default(uint), default(uint), default(uint));
-                    Sprite_Draw(902, 0, (short)(0), (short)(0), ((float)(Mem.S32(0x800E28D0u)) / (float)((int)(Mem.U32(_fp)))), ((float)(Mem.S32(0x800E28D4u)) / (float)((int)(Mem.U32((_fp + 4u))))), 1);
+                    Sprite_Draw(902, 0, (short)(0), (short)(0), ((float)(Mem.S32(Gv.ScreenWidth)) / (float)((int)(Mem.U32(_fp)))), ((float)(Mem.S32(Gv.ScreenHeight)) / (float)((int)(Mem.U32((_fp + 4u))))), 1);
                 }
             }
         }
@@ -1481,7 +1481,7 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_002AB19C", (uint)h, (uint)idx, (uint)x, (uint)y);
                 uint g = 0u;
-                g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                 new DlCmd(g).w0_Set(3875536896u);
                 new DlCmd(g).w1_Set((uint)(0));
                 if ((h != 0))
@@ -1557,9 +1557,9 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_002AB940", (uint)id, (uint)idx, (uint)out1, (uint)out2);
                 int h = 0;
                 uint q = 0u;
-                if ((Mem.S32(0x800D29B4u) != 0))
+                if ((Mem.S32(Gv.Level_DataLoaded) != 0))
                 {
-                    h = Sprite_Lookup(0x8011FE88u, id, 0, 1);
+                    h = Sprite_Lookup(Gv.LevelMgr, id, 0, 1);
                     if ((h != 0))
                     {
                         Sprite_GetFrame((uint)(h), idx, _fp, (_fp + 4u));
@@ -1581,7 +1581,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002ABC18", (uint)id, (uint)b, (uint)c, (uint)d);
             int h = 0;
-            if ((((((uint)(Mem.S32(0x800E28A4u)) - (((uint)(Mem.U32(0x80110634u)) - new DlOwner(Mem.U32(0x8011FE80u)).unk114) >> (int)3)) < (uint)(1000)) || (Mem.S32(0x800D29B4u) == 0)) || ((h = Sprite_Lookup(0x8011FE88u, id, 0, 1)) == 0)))
+            if ((((((uint)(Mem.S32(Gv.Gfx_DisplayListCapacity)) - (((uint)(Mem.U32(Gv.DisplayListPtr)) - new DlOwner(Mem.U32(Gv.Gfx_FrameCtxPtr)).unk114) >> (int)3)) < (uint)(1000)) || (Mem.S32(Gv.Level_DataLoaded) == 0)) || ((h = Sprite_Lookup(Gv.LevelMgr, id, 0, 1)) == 0)))
             {
                 return 0;
             }
@@ -1792,12 +1792,12 @@ public static partial class Game
             {
                 Mem.Set(0x800E32DCu, color);
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new O3Dl(_g).w0_Set(4211081216u);
                     new O3Dl(_g).w1_Set(((((color >> (int)16) << (int)24) | ((color & (uint)(65280)) << (int)8)) | ((color & (uint)(255)) << (int)8)));
                 }
                 {
-                    uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_2 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new O3Dl(_g_2).w0_Set(4194304000u);
                     new O3Dl(_g_2).w1_Set((((((color >> (int)16) << (int)24) | ((color & (uint)(65280)) << (int)8)) | ((color & (uint)(255)) << (int)8)) | (color >> (int)24)));
                 }
@@ -2263,10 +2263,10 @@ public static partial class Game
             int srcHi = 0;
             float srcH = 0f;
             headerDone = 0;
-            w = (int)(new Q2Tex(Mem.U32(0x800E32A4u)).unk4);
+            w = (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).unk4);
             if ((w != 0))
             {
-                h = (int)(new Q2Tex(Mem.U32(0x800E32A4u)).unk6);
+                h = (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).unk6);
                 if ((((h != 0) && (x0 != x1)) && (y0 != y1)))
                 {
                     hCopy = h;
@@ -2275,8 +2275,8 @@ public static partial class Game
                     wCopy = w;
                     dy = ((y1 - y0) + 1);
                     dsdx = ((int)((((s1 - s0) * (float)(w)) * Mem.F32(0x800E1434u))) / ((x1 - x0) + 1));
-                    mode = Mem.S32(0x800E32B8u);
-                    tw = (int)(new Q2Tex(Mem.U32(0x800E32A4u)).w);
+                    mode = Mem.S32(Gv.Gfx_TexBitsPerPixel);
+                    tw = (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w);
                     Mem.Set(0x800E32B4u, 0);
                     dtdy = ((int)((srcH * Mem.F32(0x800E1434u))) / dy);
                     if ((srcHi == 0))
@@ -2296,35 +2296,35 @@ public static partial class Game
                     {
                     case 4:
                         {
-                            short u = (short)((ushort)(new Q2Tex(Mem.U32(0x800E32A4u)).w));
+                            short u = (short)((ushort)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w));
                             stripRows = ((4096 / (int)(u)) & (~1));
                             rowBytes = ((int)(u) / 2);
                             break;
                         }
                         goto case 8;
                     case 8:
-                        stripRows = ((2048 / (int)(new Q2Tex(Mem.U32(0x800E32A4u)).w)) & (~1));
-                        rowBytes = (int)(new Q2Tex(Mem.U32(0x800E32A4u)).w);
+                        stripRows = ((2048 / (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w)) & (~1));
+                        rowBytes = (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w);
                         break;
                     case 16:
-                        rowBytes = ((int)(new Q2Tex(Mem.U32(0x800E32A4u)).w) * 2);
-                        stripRows = ((2048 / (int)(new Q2Tex(Mem.U32(0x800E32A4u)).w)) & (~1));
+                        rowBytes = ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) * 2);
+                        stripRows = ((2048 / (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w)) & (~1));
                         break;
                     case 24:
-                        stripRows = ((1024 / (int)(new Q2Tex(Mem.U32(0x800E32A4u)).w)) & (~1));
-                        rowBytes = ((int)(new Q2Tex(Mem.U32(0x800E32A4u)).w) * 4);
+                        stripRows = ((1024 / (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w)) & (~1));
+                        rowBytes = ((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).w) * 4);
                         break;
                     default:
                         rowBytes = 0;
                         stripRows = 0;
                         break;
                     }
-                    if (((int)(new Q2Tex(Mem.U32(0x800E32A4u)).unk6) < stripRows))
+                    if (((int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).unk6) < stripRows))
                     {
-                        stripRows = (int)(new Q2Tex(Mem.U32(0x800E32A4u)).unk6);
+                        stripRows = (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).unk6);
                     }
                     rowPos = 0;
-                    texRows = (int)(new Q2Tex(Mem.U32(0x800E32A4u)).unk6);
+                    texRows = (int)(new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).unk6);
                     sStart = (int)(((s0 * (float)(wCopy)) * Mem.F32((0x800E1438u + (uint)(1 * 4)))));
                     if ((texRows >= 0))
                     {
@@ -2333,7 +2333,7 @@ public static partial class Game
                             tOff = 0;
                             top = (y0 + ((invDtdy * ((rowPos << (int)10) - tStart)) >> (int)10));
                             bottom = ((y0 + ((invDtdy * (((rowPos + stripRows) << (int)10) - tStart)) >> (int)10)) - 1024);
-                            imgPtr = (int)((new Q2Tex(Mem.U32(0x800E32A4u)).img + (uint)((rowPos * rowBytes))));
+                            imgPtr = (int)((new Q2Tex(Mem.U32(Gv.Gfx_BoundImagePtr)).img + (uint)((rowPos * rowBytes))));
                             rowPos = (rowPos + stripRows);
                             if ((bottom < top))
                             {
@@ -2353,117 +2353,117 @@ public static partial class Game
                                 {
                                     bottom = y1;
                                 }
-                                if ((Mem.S32(0x800E32B0u) == 0))
+                                if ((Mem.S32(Gv.Gfx_TexNeedsStrips) == 0))
                                 {
                                     switch (mode)
                                     {
                                     case 4:
                                         {
-                                            uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g).w0_Set(4249878528u);
                                             new O3Dl(_g).w1_Set((uint)(imgPtr));
                                         }
                                         {
-                                            uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_2 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_2).w0_Set(4115660800u);
                                             new O3Dl(_g_2).w1_Set((uint)(117965312));
                                         }
                                         {
-                                            uint _g_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_3 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_3).w0_Set(3858759680u);
                                             new O3Dl(_g_3).w1_Set((uint)(0));
                                         }
                                         {
-                                            uint _g_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_4 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_4).w0_Set(4076863488u);
                                             new O3Dl(_g_4).w1_Set((uint)(((117440512 | ((((((((tw * stripRows) + 3) >> (int)2) - 1) < 2047) ? ((((tw * stripRows) + 3) >> (int)2) - 1) : 2047) & 4095) << (int)12)) | ((((2048 + ((1 > (tw / 16)) ? 1 : (tw / 16))) - 1) / ((1 > (tw / 16)) ? 1 : (tw / 16))) & 4095))));
                                         }
                                         {
-                                            uint _g_5 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_5 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_5).w0_Set(3875536896u);
                                             new O3Dl(_g_5).w1_Set((uint)(0));
                                         }
                                         {
-                                            uint _g_6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_6 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_6).w0_Set(((uint)((((((tw >> (int)1) + 7) >> (int)3) & 511) << (int)9)) | 4114612224u));
                                             new O3Dl(_g_6).w1_Set((uint)(524800));
                                         }
                                         {
-                                            uint _g_7 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_7 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_7).w0_Set(4060086272u);
                                             new O3Dl(_g_7).w1_Set((uint)((((((tw - 1) * 4) & 4095) << (int)12) | (((stripRows - 1) * 4) & 4095))));
                                         }
                                         break;
                                     case 8:
                                         {
-                                            uint _g_8 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_8 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_8).w0_Set(4249878528u);
                                             new O3Dl(_g_8).w1_Set((uint)(imgPtr));
                                         }
                                         {
-                                            uint _g_9 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_9 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_9).w0_Set(4115660800u);
                                             new O3Dl(_g_9).w1_Set((uint)(117965312));
                                         }
                                         {
-                                            uint _g_10 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_10 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_10).w0_Set(3858759680u);
                                             new O3Dl(_g_10).w1_Set((uint)(0));
                                         }
                                         {
-                                            uint _g_11 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_11 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_11).w0_Set(4076863488u);
                                             new O3Dl(_g_11).w1_Set((uint)(((117440512 | ((((((((tw * stripRows) + 1) >> (int)1) - 1) < 2047) ? ((((tw * stripRows) + 1) >> (int)1) - 1) : 2047) & 4095) << (int)12)) | ((((2048 + ((1 > (tw / 8)) ? 1 : (tw / 8))) - 1) / ((1 > (tw / 8)) ? 1 : (tw / 8))) & 4095))));
                                         }
                                         {
-                                            uint _g_12 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_12 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_12).w0_Set(3875536896u);
                                             new O3Dl(_g_12).w1_Set((uint)(0));
                                         }
                                         {
-                                            uint _g_13 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_13 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_13).w0_Set((4115136512u | (uint)(((((tw + 7) >> (int)3) & 511) << (int)9))));
                                             new O3Dl(_g_13).w1_Set((uint)(524800));
                                         }
                                         {
-                                            uint _g_14 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_14 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_14).w0_Set(4060086272u);
                                             new O3Dl(_g_14).w1_Set((uint)((((((tw - 1) * 4) & 4095) << (int)12) | (((stripRows - 1) * 4) & 4095))));
                                         }
                                         break;
                                     case 16:
                                         {
-                                            uint _g_15 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_15 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_15).w0_Set(4245684224u);
                                             new O3Dl(_g_15).w1_Set((uint)(imgPtr));
                                         }
                                         {
-                                            uint _g_16 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_16 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_16).w0_Set(4111466496u);
                                             new O3Dl(_g_16).w1_Set((uint)(117965312));
                                         }
                                         {
-                                            uint _g_17 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_17 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_17).w0_Set(3858759680u);
                                             new O3Dl(_g_17).w1_Set((uint)(0));
                                         }
                                         {
-                                            uint _g_18 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_18 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_18).w0_Set(4076863488u);
                                             new O3Dl(_g_18).w1_Set((uint)(((117440512 | ((((((tw * stripRows) - 1) < 2047) ? ((tw * stripRows) - 1) : 2047) & 4095) << (int)12)) | ((((2048 + ((1 > (tw / 4)) ? 1 : (tw / 4))) - 1) / ((1 > (tw / 4)) ? 1 : (tw / 4))) & 4095))));
                                         }
                                         {
-                                            uint _g_19 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_19 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_19).w0_Set(3875536896u);
                                             new O3Dl(_g_19).w1_Set((uint)(0));
                                         }
                                         {
-                                            uint _g_20 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_20 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_20).w0_Set((4111466496u | (uint)((((((tw * 2) + 7) >> (int)3) & 511) << (int)9))));
                                             new O3Dl(_g_20).w1_Set((uint)(524800));
                                         }
                                         {
-                                            uint _g_21 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_21 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_21).w0_Set(4060086272u);
                                             new O3Dl(_g_21).w1_Set((uint)((((((tw - 1) * 4) & 4095) << (int)12) | (((stripRows - 1) * 4) & 4095))));
                                         }
@@ -2476,37 +2476,37 @@ public static partial class Game
                                     {
                                     case 4:
                                         {
-                                            uint _g_22 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_22 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_22).w0_Set(4249878528u);
                                             new O3Dl(_g_22).w1_Set((uint)(imgPtr));
                                         }
                                         {
-                                            uint _g_23 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_23 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_23).w0_Set(4115660800u);
                                             new O3Dl(_g_23).w1_Set((uint)(117965312));
                                         }
                                         {
-                                            uint _g_24 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_24 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_24).w0_Set(3858759680u);
                                             new O3Dl(_g_24).w1_Set((uint)(0));
                                         }
                                         {
-                                            uint _g_25 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_25 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_25).w0_Set(4076863488u);
                                             new O3Dl(_g_25).w1_Set((uint)((((((((((tw * stripRows) + 3) >> (int)2) - 1) < 2047) ? ((((tw * stripRows) + 3) >> (int)2) - 1) : 2047) & 4095) << (int)12) | 117440512)));
                                         }
                                         {
-                                            uint _g_26 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_26 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_26).w0_Set(3875536896u);
                                             new O3Dl(_g_26).w1_Set((uint)(0));
                                         }
                                         {
-                                            uint _g_27 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_27 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_27).w0_Set(((uint)((((((tw >> (int)1) + 7) >> (int)3) & 511) << (int)9)) | 4114612224u));
                                             new O3Dl(_g_27).w1_Set((uint)(524800));
                                         }
                                         {
-                                            uint _g_28 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_28 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_28).w0_Set(4060086272u);
                                             new O3Dl(_g_28).w1_Set((uint)((((((tw - 1) * 4) & 4095) << (int)12) | (((stripRows - 1) * 4) & 4095))));
                                         }
@@ -2516,75 +2516,75 @@ public static partial class Game
                                         {
                                             headerDone = 1;
                                             {
-                                                uint _g_29 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                                uint _g_29 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                                 new O3Dl(_g_29).w0_Set(4115660800u);
                                                 new O3Dl(_g_29).w1_Set((uint)(117965312));
                                             }
                                             {
-                                                uint _g_30 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                                uint _g_30 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                                 new O3Dl(_g_30).w0_Set((4115136512u | (uint)(((((tw + 7) >> (int)3) & 511) << (int)9))));
                                                 new O3Dl(_g_30).w1_Set((uint)(524800));
                                             }
                                             {
-                                                uint _g_31 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                                uint _g_31 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                                 new O3Dl(_g_31).w0_Set(4060086272u);
                                                 new O3Dl(_g_31).w1_Set((uint)((((((tw - 1) * 4) & 4095) << (int)12) | (((stripRows - 1) * 4) & 4095))));
                                             }
                                             {
-                                                uint _g_32 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                                uint _g_32 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                                 new O3Dl(_g_32).w0_Set(3875536896u);
                                                 new O3Dl(_g_32).w1_Set((uint)(0));
                                             }
                                         }
                                         {
-                                            uint _g_33 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_33 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_33).w0_Set(3858759680u);
                                             new O3Dl(_g_33).w1_Set((uint)(0));
                                         }
                                         {
-                                            uint _g_34 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_34 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_34).w0_Set(4249878528u);
                                             new O3Dl(_g_34).w1_Set((uint)(imgPtr));
                                         }
                                         {
-                                            uint _g_35 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_35 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_35).w0_Set(4076863488u);
                                             new O3Dl(_g_35).w1_Set((uint)((((((((((tw * stripRows) + 1) >> (int)1) - 1) < 2047) ? ((((tw * stripRows) + 1) >> (int)1) - 1) : 2047) & 4095) << (int)12) | 117440512)));
                                         }
                                         break;
                                     case 16:
                                         {
-                                            uint _g_36 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_36 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_36).w0_Set(4245684224u);
                                             new O3Dl(_g_36).w1_Set((uint)(imgPtr));
                                         }
                                         {
-                                            uint _g_37 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_37 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_37).w0_Set(4111466496u);
                                             new O3Dl(_g_37).w1_Set((uint)(117965312));
                                         }
                                         {
-                                            uint _g_38 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_38 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_38).w0_Set(3858759680u);
                                             new O3Dl(_g_38).w1_Set((uint)(0));
                                         }
                                         {
-                                            uint _g_39 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_39 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_39).w0_Set(4076863488u);
                                             new O3Dl(_g_39).w1_Set((uint)((((((((tw * stripRows) - 1) < 2047) ? ((tw * stripRows) - 1) : 2047) & 4095) << (int)12) | 117440512)));
                                         }
                                         {
-                                            uint _g_40 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_40 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_40).w0_Set(3875536896u);
                                             new O3Dl(_g_40).w1_Set((uint)(0));
                                         }
                                         {
-                                            uint _g_41 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_41 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_41).w0_Set((4111466496u | (uint)((((((tw * 2) + 7) >> (int)3) & 511) << (int)9))));
                                             new O3Dl(_g_41).w1_Set((uint)(524800));
                                         }
                                         {
-                                            uint _g_42 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                            uint _g_42 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                             new O3Dl(_g_42).w0_Set(4060086272u);
                                             new O3Dl(_g_42).w1_Set((uint)((((((tw - 1) * 4) & 4095) << (int)12) | (((stripRows - 1) * 4) & 4095))));
                                         }
@@ -2592,17 +2592,17 @@ public static partial class Game
                                     }
                                 }
                                 {
-                                    uint _g_43 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                    uint _g_43 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                     new O3Dl(_g_43).w0_Set(((3825205248u | (uint)(((((x1 >> (int)8) + 4) & 4095) << (int)12))) | (uint)((((bottom >> (int)8) + 4) & 4095))));
                                     new O3Dl(_g_43).w1_Set((uint)(((((x0 >> (int)8) & 4095) << (int)12) | ((top >> (int)8) & 4095))));
                                 }
                                 {
-                                    uint _g_44 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                    uint _g_44 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                     new O3Dl(_g_44).w0_Set(3774873600u);
                                     new O3Dl(_g_44).w1_Set((uint)((((sStart >> (int)5) << (int)16) | ((tOff >> (int)5) & 65535))));
                                 }
                                 {
-                                    uint _g_45 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                    uint _g_45 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                                     new O3Dl(_g_45).w0_Set(4043309056u);
                                     new O3Dl(_g_45).w1_Set((uint)(((dsdx << (int)16) | (dtdy & 65535))));
                                 }
@@ -2636,7 +2636,7 @@ public static partial class Game
             float dd = 0f;
             dd = d;
             Mem.Set(0x800E32E0u, 0);
-            Mem.Set(0x800E32E4u, 0);
+            Mem.Set(Gv.Gfx_PipeSyncDone, 0);
             Gfx_SelectRenderMode(12);
             aa = a;
             Gfx_SetUiCombineMode(5);
@@ -2662,7 +2662,7 @@ public static partial class Game
                 if ((mode == 6))
                 {
                     {
-                        uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint _g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         new O3Dl(_g).w0_Set(3808431104u);
                         new O3Dl(_g).w1_Set((uint)(524288));
                     }
@@ -2672,7 +2672,7 @@ public static partial class Game
                     if ((mode == 7))
                     {
                         {
-                            uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            uint _g_2 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                             new O3Dl(_g_2).w0_Set(3808431104u);
                             new O3Dl(_g_2).w1_Set((uint)(0));
                         }
@@ -2698,7 +2698,7 @@ public static partial class Game
                 if ((mode == 13))
                 {
                     {
-                        uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint _g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         new O3Dl(_g).w0_Set(3607101442u);
                         new O3Dl(_g).w1_Set(2147516416u);
                     }
@@ -2708,7 +2708,7 @@ public static partial class Game
                     if ((mode == 14))
                     {
                         {
-                            uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            uint _g_2 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                             new O3Dl(_g_2).w0_Set(3607101440u);
                             new O3Dl(_g_2).w1_Set(2147516416u);
                         }
@@ -2723,11 +2723,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00418E60_O3_Sync");
-            if ((Mem.S32(0x800E32E4u) == 0))
+            if ((Mem.S32(Gv.Gfx_PipeSyncDone) == 0))
             {
-                Mem.Set(0x800E32E4u, 1);
+                Mem.Set(Gv.Gfx_PipeSyncDone, 1);
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new O3Dl(_g).w0_Set(3875536896u);
                     new O3Dl(_g).w1_Set((uint)(0));
                 }
@@ -2748,23 +2748,23 @@ public static partial class Game
             int new_var2 = 0;
             int dsdx = 0;
             int dtdy = 0;
-            if (((int)(new O3TexH(Mem.U32(0x800E32A4u)).w) != 0))
+            if (((int)(new O3TexH(Mem.U32(Gv.Gfx_BoundImagePtr)).w) != 0))
             {
-                if (((((int)(new O3TexH(Mem.U32(0x800E32A4u)).h) != 0) && (x0 != x1)) && (y0 != y1)))
+                if (((((int)(new O3TexH(Mem.U32(Gv.Gfx_BoundImagePtr)).h) != 0) && (x0 != x1)) && (y0 != y1)))
                 {
-                    fw = (float)(((int)(new O3TexH(Mem.U32(0x800E32A4u)).w) << (int)10));
-                    fh = (float)(((int)(new O3TexH(Mem.U32(0x800E32A4u)).h) << (int)10));
+                    fw = (float)(((int)(new O3TexH(Mem.U32(Gv.Gfx_BoundImagePtr)).w) << (int)10));
+                    fh = (float)(((int)(new O3TexH(Mem.U32(Gv.Gfx_BoundImagePtr)).h) << (int)10));
                     new_var = (int)((s0 * fw));
                     dsdx = ((int)(((s1 - s0) * fw)) / ((x1 - x0) + 1));
                     dtdy = ((int)(((t1 - t0) * fh)) / ((y1 - y0) + 1));
-                    c = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    c = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new O3Dl(c).w0_Set((uint)(((long)(((((x1 + 1) * 4) & 4095) << (int)12)) | (long)(((uint)((((y1 + 1) * 4) & 4095)) | 3825205248u)))));
                     new O3Dl(c).w1_Set((uint)(((((x0 * 4) & 4095) << (int)12) | ((y0 * 4) & 4095))));
-                    c = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    c = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new O3Dl(c).w0_Set(3774873600u);
                     new_var2 = (int)((t0 * fh));
                     new O3Dl(c).w1_Set((uint)((((new_var >> (int)5) << (int)16) | ((new_var2 >> (int)5) & 65535))));
-                    c = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    c = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new O3Dl(c).w0_Set(4043309056u);
                     new O3Dl(c).w1_Set((uint)(((dsdx << (int)16) | (dtdy & 65535))));
                 }

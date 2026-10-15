@@ -11,7 +11,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0042B108");
-            return ((Mem.S32(0x80154010u) != (-1)) ? 1 : 0);
+            return ((Mem.S32(Gv.Gauntlet_GameType) != (-1)) ? 1 : 0);
         }
     }
 
@@ -44,9 +44,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0042B11C");
             int r = 1;
-            if ((Mem.S32((0x80154010u + (uint)(0 * 4))) >= 0))
+            if ((Mem.S32((Gv.Gauntlet_GameType + (uint)(0 * 4))) >= 0))
             {
-                int t = (((Mem.S32(0x80154014u) + 1) == func_0042B11C_sub_B334(Mem.S32((0x80154010u + (uint)(0 * 4))))) ? 1 : 0);
+                int t = (((Mem.S32(0x80154014u) + 1) == func_0042B11C_sub_B334(Mem.S32((Gv.Gauntlet_GameType + (uint)(0 * 4))))) ? 1 : 0);
                 r = t;
             }
             return r;
@@ -69,7 +69,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0042B1A0", (uint)a);
-            Mem.Set(0x80154010u, a);
+            Mem.Set(Gv.Gauntlet_GameType, a);
         }
     }
 

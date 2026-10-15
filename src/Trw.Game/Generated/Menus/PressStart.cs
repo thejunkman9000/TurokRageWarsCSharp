@@ -13,10 +13,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_004396BC", (uint)cfg);
             int i = 0;
             uint p = 0u;
-            Mem.Set(0x800E5950u, ResourcePool_Malloc((uint)(8)));
-            CameraManager_Init(0x80145088u, 0);
-            Player_InitPool((0x80145088u - (uint)72), 0, 0);
-            Level_Load(0x8011FE88u, (uint)(0), (uint)(0), default(uint));
+            Mem.Set(Gv.PressStart_StatePtr, ResourcePool_Malloc((uint)(8)));
+            CameraManager_Init(Gv.ViewMgr, 0);
+            Player_InitPool((Gv.ViewMgr - (uint)72), 0, 0);
+            Level_Load(Gv.LevelMgr, (uint)(0), (uint)(0), default(uint));
             if ((Resource_GetLoadFlags() == 0))
             {
                 Resource_SetLoadFlags(1);
@@ -24,19 +24,19 @@ public static partial class Game
             Video_RequestResolution(0);
             Menu_DisableInput();
             i = 7;
-            p = (0x80145088u + (uint)5930);
+            p = (Gv.ViewMgr + (uint)5930);
             for (; (i >= 0); --i)
             {
                 Mem.Set((p + (uint)120), (byte)(0));
                 p = (uint)(p - (uint)(150 * 1));
             }
-            new O05M50(Mem.U32(0x800E5950u)).f0_Set(UiTree_FindNode(cfg, (uint)(919), default(uint), default(uint)));
-            new O05M50(Mem.U32(0x800E5950u)).f4_Set(0);
-            new O05GX(0x801462C8u).f24_Set((byte)(10));
-            new O05GX(0x801462C8u).f25_Set((byte)(10));
+            new O05M50(Mem.U32(Gv.PressStart_StatePtr)).f0_Set(UiTree_FindNode(cfg, (uint)(919), default(uint), default(uint)));
+            new O05M50(Mem.U32(Gv.PressStart_StatePtr)).f4_Set(0);
+            new O05GX(Gv.Settings).f24_Set((byte)(10));
+            new O05GX(Gv.Settings).f25_Set((byte)(10));
             for (i = 0; (i < 4); ++i)
             {
-                Profile_Init((0x80102B00u + (uint)(i * 400)));
+                Profile_Init((Gv.ProfileTable + (uint)(i * 400)));
             }
             Menu_SetIdleTime(0.0f);
             return 0;
@@ -49,8 +49,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004397D8");
-            ResourcePool_MallocFree(Mem.U32(0x800E5950u));
-            Mem.Set(0x800E5950u, 0u);
+            ResourcePool_MallocFree(Mem.U32(Gv.PressStart_StatePtr));
+            Mem.Set(Gv.PressStart_StatePtr, 0u);
             return 0;
         }
     }
@@ -62,14 +62,14 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00439808", (uint)a, (uint)b, (uint)c);
             float x = 0f;
-            if ((Mem.S32(0x800E28E0u) >= 2))
+            if ((Mem.S32(Gv.Video_ResChangeCountdown) >= 2))
             {
                 return 0;
             }
             Menu_EnableInput();
-            new O05M50_v2(Mem.U32(0x800E5950u)).f4_Set((int)((int)(new O05M50_v2(Mem.U32(0x800E5950u)).f4) + c));
-            x = ((cosf(((float)(new O05M50_v2(Mem.U32(0x800E5950u)).f4) * 0.00499999989f)) * 100.0f) + 150.0f);
-            new O05M50_v2(Mem.U32(0x800E5950u)).f0.b10_Set((byte)(Cpu.TruncU32(x)));
+            new O05M50_v2(Mem.U32(Gv.PressStart_StatePtr)).f4_Set((int)((int)(new O05M50_v2(Mem.U32(Gv.PressStart_StatePtr)).f4) + c));
+            x = ((cosf(((float)(new O05M50_v2(Mem.U32(Gv.PressStart_StatePtr)).f4) * 0.00499999989f)) * 100.0f) + 150.0f);
+            new O05M50_v2(Mem.U32(Gv.PressStart_StatePtr)).f0.b10_Set((byte)(Cpu.TruncU32(x)));
             return 0;
         }
     }
@@ -121,13 +121,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00439938", (uint)o, (uint)id, (uint)a2, (uint)a3);
             int i = 0;
-            for (i = 0; (new O05Disp((0x800E5954u + (uint)(i * 12))).fn != 0u); ++i)
+            for (i = 0; (new O05Disp((Gv.PressStart_EventTable + (uint)(i * 12))).fn != 0u); ++i)
             {
-                if ((new O05Disp((0x800E5954u + (uint)(i * 12))).id == id))
+                if ((new O05Disp((Gv.PressStart_EventTable + (uint)(i * 12))).id == id))
                 {
-                    if (((new O05Disp((0x800E5954u + (uint)(i * 12))).key == (int)(new O05Obj(o).key)) || (new O05Disp((0x800E5954u + (uint)(i * 12))).key == 30000)))
+                    if (((new O05Disp((Gv.PressStart_EventTable + (uint)(i * 12))).key == (int)(new O05Obj(o).key)) || (new O05Disp((Gv.PressStart_EventTable + (uint)(i * 12))).key == 30000)))
                     {
-                        return (int)(Funcs.CallRegX(new O05Disp((0x800E5954u + (uint)(i * 12))).fn, o, (uint)(id), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
+                        return (int)(Funcs.CallRegX(new O05Disp((Gv.PressStart_EventTable + (uint)(i * 12))).fn, o, (uint)(id), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
                     }
                 }
             }

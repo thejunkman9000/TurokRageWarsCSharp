@@ -19,7 +19,7 @@ namespace Trw.Game;
 /// </summary>
 internal static class TextEntry
 {
-    private const uint LobbyPtr = 0x800E54A4;                                  // O05Lobby *D_800E54A4
+    private const uint LobbyPtr = Gv.PlayerMenu_PagePtr;                                  // O05Lobby *D_800E54A4
     private const uint PlrOffset = 0x58, PlrStride = 0xB68;                   // O05Plr plr[4]
     private const uint OffState = 0x0, OffName = 0xB34, OffCursor = 0xB44;    // state, name[8 x {glyph, 0}], fB44 (cursor slot)
     private const uint OffPhase = 0x54;                                       // lobby h.f54: 7 = opened from the 1-player menu (B = back)

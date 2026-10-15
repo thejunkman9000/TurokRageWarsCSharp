@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("dbgPortSetFifoTrigger", (uint)v);
-            byte tmp = (byte)((((int)(Mem.U8(0x8014D3E2u)) & 191) | (v << (int)6)));
-            Mem.Set(0x8014D3E2u, tmp);
+            byte tmp = (byte)((((int)(Mem.U8(Gv.DbgPort_FifoCtlShadow)) & 191) | (v << (int)6)));
+            Mem.Set(Gv.DbgPort_FifoCtlShadow, tmp);
             while (((osPiGetStatus() & (uint)(3)) != 0u))
             {
             }

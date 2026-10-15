@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("dbgPortWaitRegMask", (uint)reg, (uint)mask, (uint)want, (uint)cnt);
             int ret = 0;
-            int outer = Mem.S32(0x800D3650u);
+            int outer = Mem.S32(Gv.DbgPort_PollCount);
             int c = cnt;
             for (; ; )
             {
@@ -33,7 +33,7 @@ public static partial class Game
                     break;
                 }
             }
-            Mem.Set(0x8014D3E8u, 1);
+            Mem.Set(Gv.DbgLink_Error, 1);
             L_done: ;
             return ret;
             return 0;

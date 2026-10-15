@@ -289,7 +289,7 @@ public static partial class Game
                             gg = (int)(new_var2);
                             bl = (int)(new_var2);
                         }
-                        g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         new DlCmd(g).w0_Set(4211081216u);
                         new DlCmd(g).w1_Set(((uint)(((((r & 255) << (int)24) | (((gg & 255) << (int)11) << (int)5)) | ((bl & 255) << (int)8))) | (Cpu.TruncU32((alpha * fs3)) & (uint)(255))));
                         new_var2 = (uint)((short)((int)((X - ((((float)(Mem.S32(_fp)) * new B04Draw(sl).f1C) * fs1) * 0.5f)))));
@@ -607,7 +607,7 @@ public static partial class Game
             if (!((Player_IsDying(p) != 0))) goto _f0;
             s0v = 0;
             _f0: ;
-            if (!(((Mem.S32(0x801468F4u) != 0) && ((int)(new B04Act(p).stats.unk8F) == 1)))) goto _f1;
+            if (!(((Mem.S32(Gv.Settings_MonkeyTagMode) != 0) && ((int)(new B04Act(p).stats.unk8F) == 1)))) goto _f1;
             s0v = 0;
             new B04Roster(o).w0_Set(3);
             _f1: ;
@@ -654,7 +654,7 @@ public static partial class Game
             if (!(((int)(idx) != (int)(new B04Act(p).unk62E)))) goto _f14;
             new B04Act(p).unk770_Set((short)(a2));
             if (!(!((new B04Act(p).flags38 & (uint)(4096)) != 0u))) goto _f15;
-            t = (int)(new B04W2(Mem.U32((0x800D052Cu + (uint)(idx * 4)))).unkC);
+            t = (int)(new B04W2(Mem.U32((Gv.WeaponDefTable + (uint)(idx * 4)))).unkC);
             if (!(((t != s0v) && ((int)(new B04Act(p).pr[(int)(t)].a) != 0)))) goto _f16;
             Mem.Set((e + (uint)28), t);
             _f16: ;
@@ -761,7 +761,7 @@ public static partial class Game
             _f8: ;
             switch (new B04Menu(o).w0) { case 1: goto _f11; case 2: goto _f12; case 3: goto _f13; default: goto _f10; }
             _f11: ;
-            new B04Menu(o).f8_Set((new B04Menu(o).f8 + (Mem.F32(0x800D2988u) * Mem.F32(0x800C7324u))));
+            new B04Menu(o).f8_Set((new B04Menu(o).f8 + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C7324u))));
             if (!((new B04Menu(o).w388 != (-1)))) goto _f14;
             new B04Menu(o).f4_Set(Mem.F32(0x800C7328u));
             goto _f15;
@@ -782,7 +782,7 @@ public static partial class Game
             new B04Act(p).unk11B4_Set(0);
             new B04Menu(o).w0_Set(3);
             _f13: ;
-            t = (new B04Menu(o).f8 - (Mem.F32(0x800D2988u) * Mem.F32(0x800C7330u)));
+            t = (new B04Menu(o).f8 - (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C7330u)));
             new B04Menu(o).f8_Set(t);
             if (!((t <= 0.0f))) goto _f19;
             new B04Menu(o).f8_Set(0.0f);
@@ -792,7 +792,7 @@ public static partial class Game
             goto _f10;
             _f10: ;
             if (!((new B04Menu(o).w0 != 0))) goto _f20;
-            new B04Menu(o).f14_Set((new B04Menu(o).f14 + (Mem.F32(0x800D2988u) * Mem.F32(0x800C7334u))));
+            new B04Menu(o).f14_Set((new B04Menu(o).f14 + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C7334u))));
             goto _f21;
             _f20: ;
             new B04Act(p).unk11B4_Set(0);
@@ -871,7 +871,7 @@ public static partial class Game
                     {
                         new B04Roster(o).w37C_Set(i);
                     }
-                    new B04Roster(o).ent[(int)(i)].val_Set(Mem.S32((0x800D052Cu + (uint)(j * 4))));
+                    new B04Roster(o).ent[(int)(i)].val_Set(Mem.S32((Gv.WeaponDefTable + (uint)(j * 4))));
                     if ((Player_CanUseWeapon(p, j) != 0))
                     {
                         new B04Roster(o).ent[(int)(i)].on_Set(1);
@@ -926,7 +926,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0021846C", (uint)o, (uint)p);
             if ((new B04Obj(o).unk4 > 0.0f))
             {
-                new B04Obj(o).unk4_Set((new B04Obj(o).unk4 - Mem.F32(0x800D2988u)));
+                new B04Obj(o).unk4_Set((new B04Obj(o).unk4 - Mem.F32(Gv.FrameTime)));
                 return 0;
             }
             if (((new B04Act(p).wpn.flagsB0 & (uint)(32768)) != 0u))
@@ -1226,14 +1226,14 @@ public static partial class Game
             uint e = 0u;
             ushort a1 = 0;
             if (!((Flyby_IsActive() == 0))) goto _f0;
-            if (!(((Mem.S32(0x8014561Cu) != 0) && (new B04Mn3(o).w0 != 0)))) goto _f1;
+            if (!(((Mem.S32(Gv.MenuPanel_SharedList) != 0) && (new B04Mn3(o).w0 != 0)))) goto _f1;
             TeamMenu_Close(o);
             return;
             _f1: ;
             wf = (int)((new B04Act(p).wpn.flagsB0 & (uint)(32768)));
             k = new B04Mn3(o).w0;
             if (!(((k == 0) || (k == 3)))) goto _f2;
-            if (!(((Mem.S32(0x801468C4u) != 0) && ((int)(new B04Act(p).stats.unk92) == 255)))) goto _f3;
+            if (!(((Mem.S32(Gv.TeamPlayEnabled) != 0) && ((int)(new B04Act(p).stats.unk92) == 255)))) goto _f3;
             TeamMenu_BuildSlots(o);
             new B04Mn3(o).w0_Set(1);
             goto L_blk9;
@@ -1271,7 +1271,7 @@ public static partial class Game
             k2 = new B04Mn3(o).w0;
             switch (k2) { case 1: goto _f13; case 2: goto _f14; case 3: goto _f15; default: goto _f12; }
             _f13: ;
-            new B04Mn3(o).f8_Set((new B04Mn3(o).f8 + (Mem.F32(0x800D2988u) * Mem.F32(0x800C738Cu))));
+            new B04Mn3(o).f8_Set((new B04Mn3(o).f8 + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C738Cu))));
             if (!((Mem.F32(0x800C7390u) <= new B04Mn3(o).f8))) goto _f16;
             new B04Mn3(o).f8_Set(Mem.F32(0x800C7390u));
             new B04Mn3(o).w0_Set(2);
@@ -1284,26 +1284,26 @@ public static partial class Game
             Mem.Set((p + (uint)4536), 0);
             switch ((int)(new B04Act(p).stats.unk92)) { case 0: goto _f19; case 1: goto _f20; case 2: goto _f21; case 3: goto _f22; default: goto _f18; }
             _f19: ;
-            Hud_PostMessage(0x80145088u, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D7194u)));
+            Hud_PostMessage(Gv.ViewMgr, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D7194u)));
             a0 = 742;
             goto L_blk38;
             _f20: ;
-            Hud_PostMessage(0x80145088u, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D7198u)));
+            Hud_PostMessage(Gv.ViewMgr, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D7198u)));
             a0 = 740;
             goto L_blk38;
             _f21: ;
-            Hud_PostMessage(0x80145088u, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D719Cu)));
+            Hud_PostMessage(Gv.ViewMgr, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D719Cu)));
             a0 = 744;
             goto L_blk38;
             _f22: ;
-            Hud_PostMessage(0x80145088u, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D71A0u)));
+            Hud_PostMessage(Gv.ViewMgr, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D71A0u)));
             a0 = 748;
             L_blk38: ;
             Audio_PlaySound2D(a0);
             goto _f18;
             _f18: ;
             _f15: ;
-            t = (new B04Mn3(o).f8 - (Mem.F32(0x800D2988u) * Mem.F32(0x800C7394u)));
+            t = (new B04Mn3(o).f8 - (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C7394u)));
             new B04Mn3(o).f8_Set(t);
             if (!((t <= 0.0f))) goto _f23;
             new B04Mn3(o).f8_Set(0.0f);
@@ -1313,7 +1313,7 @@ public static partial class Game
             goto _f12;
             _f12: ;
             if (!((new B04Mn3(o).w0 != 0))) goto _f24;
-            new B04Mn3(o).f14_Set((new B04Mn3(o).f14 + (Mem.F32(0x800D2988u) * Mem.F32(0x800C7398u))));
+            new B04Mn3(o).f14_Set((new B04Mn3(o).f14 + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800C7398u))));
             _f24: ;
             _f0: ;
         }
@@ -1543,7 +1543,7 @@ public static partial class Game
             wf = (int)((new B04Act(p).wpn.flagsB0 & (uint)(32768)));
             k = new B04MenuL(o).kind;
             if (!(((k == 0) || (k == 3)))) goto _f0;
-            if (!(((Mem.S32(0x801468C4u) != 0) && ((int)(new B04Act(p).stats.unk92) == 255)))) goto _f1;
+            if (!(((Mem.S32(Gv.TeamPlayEnabled) != 0) && ((int)(new B04Act(p).stats.unk92) == 255)))) goto _f1;
             TeamMenu_BuildSlots(o);
             new B04MenuL(o).kind_Set(1);
             goto L_blk5;

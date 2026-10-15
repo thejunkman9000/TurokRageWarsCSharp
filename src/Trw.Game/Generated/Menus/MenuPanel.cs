@@ -95,12 +95,12 @@ public static partial class Game
                     for (i = 0; (i < 8); ++i)
                     {
                         uint rb = (p + (uint)((j << (int)7) + (i * 16)));
-                        Mem.Set((rb + (uint)72), new Q04Tab((0x800E5F72u + (uint)(i * 24))).a);
-                        Mem.Set((rb + (uint)74), new Q04Tab((0x800E5F72u + (uint)(i * 24))).b);
-                        Mem.Set((rb + (uint)76), new Q04Tab((0x800E5F72u + (uint)(i * 24))).c);
-                        Mem.Set((rb + (uint)84), new Q04Tab((0x800E5F72u + (uint)(i * 24))).d);
-                        Mem.Set((rb + (uint)85), new Q04Tab((0x800E5F72u + (uint)(i * 24))).e);
-                        new_var = new Q04Tab((0x800E5F72u + (uint)(i * 24))).f;
+                        Mem.Set((rb + (uint)72), new Q04Tab((Gv.MenuPanel_SlotTemplates + (uint)(i * 24))).a);
+                        Mem.Set((rb + (uint)74), new Q04Tab((Gv.MenuPanel_SlotTemplates + (uint)(i * 24))).b);
+                        Mem.Set((rb + (uint)76), new Q04Tab((Gv.MenuPanel_SlotTemplates + (uint)(i * 24))).c);
+                        Mem.Set((rb + (uint)84), new Q04Tab((Gv.MenuPanel_SlotTemplates + (uint)(i * 24))).d);
+                        Mem.Set((rb + (uint)85), new Q04Tab((Gv.MenuPanel_SlotTemplates + (uint)(i * 24))).e);
+                        new_var = new Q04Tab((Gv.MenuPanel_SlotTemplates + (uint)(i * 24))).f;
                         Mem.Set((rb + (uint)87), (byte)(255));
                         Mem.Set((rb + (uint)80), (ushort)(0));
                         Mem.Set((rb + (uint)82), (ushort)(0));
@@ -823,7 +823,7 @@ public static partial class Game
                 {
                     size = (int)((int)(size) + func_00442020_O06_ItemSize((new O06B_v19(b).unk0_ + (uint)(i * 36))));
                 }
-                r = ResourcePool_Alloc(0, size, (uint)(59), (int)((0x800E2518u + (uint)4)));
+                r = ResourcePool_Alloc(0, size, (uint)(59), (int)((Gv.Str_O + (uint)4)));
                 if ((r != 0u))
                 {
                     s = Mem.S32(r);
@@ -906,7 +906,7 @@ public static partial class Game
             {
                 size = (int)((int)(size) + func_004426E4_O06_ItemSize((new O06B_v3(b).unk0_ + (uint)(i * 36))));
             }
-            r = ResourcePool_Alloc(0, size, (uint)(59), (int)((0x800E2518u + (uint)4)));
+            r = ResourcePool_Alloc(0, size, (uint)(59), (int)((Gv.Str_O + (uint)4)));
             if ((r == 0u))
             {
                 return 0;
@@ -962,7 +962,7 @@ public static partial class Game
             {
                 size = (int)((int)(size) + func_00442800_O06_ItemSize((new O06B_v3(b).unk0_ + (uint)(i * 36))));
             }
-            r = ResourcePool_Alloc(0, size, (uint)(59), (int)((0x800E2518u + (uint)4)));
+            r = ResourcePool_Alloc(0, size, (uint)(59), (int)((Gv.Str_O + (uint)4)));
             if ((r == 0u))
             {
                 return 0;
@@ -1018,7 +1018,7 @@ public static partial class Game
             {
                 size = (int)((int)(size) + func_00442934_O06_ItemSize((new O06B_v3(b).unk0_ + (uint)(i * 36))));
             }
-            r = ResourcePool_Alloc(0, size, (uint)(59), (int)((0x800E2518u + (uint)4)));
+            r = ResourcePool_Alloc(0, size, (uint)(59), (int)((Gv.Str_O + (uint)4)));
             if ((r == 0u))
             {
                 return 0;
@@ -1054,7 +1054,7 @@ public static partial class Game
             for (n = new O06H(a).unk0_; (n != 0u); n = next)
             {
                 next = new O06N(n).unk1D4_;
-                if (((((int)(new O06N(n).unk28) == 2) && (a != 0x8014561Cu)) && (new O06H(0x8014561Cu).unk10 != 0)))
+                if (((((int)(new O06N(n).unk28) == 2) && (a != Gv.MenuPanel_SharedList)) && (new O06H(Gv.MenuPanel_SharedList).unk10 != 0)))
                 {
                     continue;
                 }
@@ -1223,13 +1223,13 @@ public static partial class Game
             Gfx_SetOtherModeL((uint)(21));
             x = new O06V_v3(new O06A_v29(a).unk40_).unk29C;
             y = new O06V_v3(new O06A_v29(a).unk40_).unk2A0;
-            g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+            g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             new O06Gfx(g).w0_Set(4211081216u);
             new O06Gfx(g).w1_Set(4278190335u);
-            g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+            g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             new O06Gfx(g).w0_Set(4194304000u);
             new O06Gfx(g).w1_Set(3758096639u);
-            Sprite_Draw(103, v, (short)((int)(new O06V_v3(new O06A_v29(a).unk40_).unk2A4)), (short)((int)(new O06V_v3(new O06A_v29(a).unk40_).unk2A8)), ((x / (float)(Mem.S32(0x800E28D0u))) * 5.0f), ((y / (float)(Mem.S32(0x800E28D4u))) * 4.0f), 1);
+            Sprite_Draw(103, v, (short)((int)(new O06V_v3(new O06A_v29(a).unk40_).unk2A4)), (short)((int)(new O06V_v3(new O06A_v29(a).unk40_).unk2A8)), ((x / (float)(Mem.S32(Gv.ScreenWidth))) * 5.0f), ((y / (float)(Mem.S32(Gv.ScreenHeight))) * 4.0f), 1);
         }
     }
 }

@@ -11,10 +11,10 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("__allocParam");
             uint update = 0u;
-            if ((new ALGlobals(Mem.U32(0x800D80A0u)).drvr.paramList_ != 0u))
+            if ((new ALGlobals(Mem.U32(Gv.alGlobals)).drvr.paramList_ != 0u))
             {
-                update = new ALGlobals(Mem.U32(0x800D80A0u)).drvr.paramList_;
-                new ALGlobals(Mem.U32(0x800D80A0u)).drvr.paramList__Set(new ALParam(update).next_);
+                update = new ALGlobals(Mem.U32(Gv.alGlobals)).drvr.paramList_;
+                new ALGlobals(Mem.U32(Gv.alGlobals)).drvr.paramList__Set(new ALParam(update).next_);
                 new ALParam(update).next__Set(0u);
             }
             return update;

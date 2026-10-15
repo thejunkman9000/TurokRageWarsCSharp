@@ -12,69 +12,69 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00291FE8", (uint)unused, (uint)bg, (uint)names, (uint)x);
-            uint g = Mem.U32(0x8011FE80u);
+            uint g = Mem.U32(Gv.Gfx_FrameCtxPtr);
             uint p = 0u;
             uint new_var = 0u;
             int new_var2 = 0;
             float s = 0f;
-            y = ((y * Mem.S32(0x800E28D4u)) / 222);
+            y = ((y * Mem.S32(Gv.ScreenHeight)) / 222);
             if (((long)(bg) != (long)(0)))
             {
-                Gfx_ClearZBufferRect(unused, 0, Mem.S32(0x800E28D0u), 0, Mem.S32(0x800E28D4u), 0);
+                Gfx_ClearZBufferRect(unused, 0, Mem.S32(Gv.ScreenWidth), 0, Mem.S32(Gv.ScreenHeight), 0);
                 {
-                    uint pp = 0x80110634u;
+                    uint pp = Gv.DisplayListPtr;
                     uint q = (Mem.Set(pp, (uint)(Mem.U32(pp) + 8u)) - 8u);
                     new M5Dl(q).w0_Set(3976200192u);
-                    new M5Dl(q).w1_Set((uint)(((((int)(((float)((Mem.S32(0x800E28D0u) - 1)) * 4.0f)) & 4095) << (int)12) | ((int)(((float)((Mem.S32(0x800E28D4u) - 1)) * 4.0f)) & 4095))));
+                    new M5Dl(q).w1_Set((uint)(((((int)(((float)((Mem.S32(Gv.ScreenWidth) - 1)) * 4.0f)) & 4095) << (int)12) | ((int)(((float)((Mem.S32(Gv.ScreenHeight) - 1)) * 4.0f)) & 4095))));
                 }
                 {
-                    uint pp_2 = 0x80110634u;
+                    uint pp_2 = Gv.DisplayListPtr;
                     uint q_2 = (Mem.Set(pp_2, (uint)(Mem.U32(pp_2) + 8u)) - 8u);
-                    new M5Dl(q_2).w0_Set(((uint)(((Mem.S32(0x800E28D0u) - 1) & 4095)) | 4279238656u));
+                    new M5Dl(q_2).w0_Set(((uint)(((Mem.S32(Gv.ScreenWidth) - 1) & 4095)) | 4279238656u));
                     new M5Dl(q_2).w1_Set(new M5Gfx(g).fb);
                 }
                 {
-                    uint pp_3 = 0x80110634u;
+                    uint pp_3 = Gv.DisplayListPtr;
                     uint q_3 = (Mem.Set(pp_3, (uint)(Mem.U32(pp_3) + 8u)) - 8u);
                     new M5Dl(q_3).w0_Set(3808430593u);
                     new M5Dl(q_3).w1_Set((uint)(3145728));
                 }
                 {
-                    uint pp_4 = 0x80110634u;
+                    uint pp_4 = Gv.DisplayListPtr;
                     uint q_4 = (Mem.Set(pp_4, (uint)(Mem.U32(pp_4) + 8u)) - 8u);
                     new M5Dl(q_4).w0_Set(4244635647u);
                     new M5Dl(q_4).w1_Set(4294867260u);
                 }
                 {
-                    uint pp_5 = 0x80110634u;
+                    uint pp_5 = Gv.DisplayListPtr;
                     uint q_5 = (Mem.Set(pp_5, (uint)(Mem.U32(pp_5) + 8u)) - 8u);
                     new M5Dl(q_5).w0_Set(3791650844u);
                     new M5Dl(q_5).w1_Set((uint)(0));
                 }
                 {
-                    uint pp_6 = 0x80110634u;
+                    uint pp_6 = Gv.DisplayListPtr;
                     uint q_6 = (Mem.Set(pp_6, (uint)(Mem.U32(pp_6) + 8u)) - 8u);
                     new M5Dl(q_6).w0_Set(4143972352u);
                     new M5Dl(q_6).w1_Set((uint)(65537));
                 }
                 {
-                    uint pp_7 = 0x80110634u;
+                    uint pp_7 = Gv.DisplayListPtr;
                     uint q_7 = (Mem.Set(pp_7, (uint)(Mem.U32(pp_7) + 8u)) - 8u);
                     new_var2 = (int)(4127195136u);
-                    new M5Dl(q_7).w0_Set((uint)((((Mem.S32(0x800E28D0u) & 1023) << (int)14) | (((Mem.S32(0x800E28D4u) & 1023) * 4) | new_var2))));
+                    new M5Dl(q_7).w0_Set((uint)((((Mem.S32(Gv.ScreenWidth) & 1023) << (int)14) | (((Mem.S32(Gv.ScreenHeight) & 1023) * 4) | new_var2))));
                     new M5Dl(q_7).w1_Set((uint)(0));
                 }
             }
             Text_BeginFontPass();
             s = (float)(255);
             Text_SetColors(255, 255, (int)(s), 200, 200, 200);
-            sx = ((sx * (float)(Mem.S32(0x800E28D0u))) * 0.00352112669f);
-            sy = ((sy * (float)(Mem.S32(0x800E28D4u))) * 0.00450450461f);
-            sx = (sx * ((Mem.S32(0x800E28D4u) >= 223) ? 0.800000011f : 0.850000023f));
+            sx = ((sx * (float)(Mem.S32(Gv.ScreenWidth))) * 0.00352112669f);
+            sy = ((sy * (float)(Mem.S32(Gv.ScreenHeight))) * 0.00450450461f);
+            sx = (sx * ((Mem.S32(Gv.ScreenHeight) >= 223) ? 0.800000011f : 0.850000023f));
             sy = (sy * 0.5f);
             Text_SetScale(sx, sy);
-            Mem.Set((0x8013B878u + (uint)(0 * 4)), 1);
-            Mem.Set((0x8013B878u + (uint)(1 * 4)), 1);
+            Mem.Set((Gv.Text_Style_8013B878 + (uint)(0 * 4)), 1);
+            Mem.Set((Gv.Text_Style_8013B878 + (uint)(1 * 4)), 1);
             if ((Mem.U32(names) != 0u))
             {
                 int i = 0;
@@ -101,87 +101,87 @@ public static partial class Game
             if ((tex != 0))
             {
                 {
-                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g).w0_Set(3875536896u);
                     new DlCmd(_g).w1_Set((uint)(0));
                 }
                 {
-                    uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_2 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_2).w0_Set(3808430593u);
                     new DlCmd(_g_2).w1_Set((uint)(1048576));
                 }
                 Gfx_SetCombineMode((uint)(26));
                 Gfx_SetOtherModeL((uint)(21));
-                Mem.Set(0x8014D3D0u, 0);
+                Mem.Set(Gv.Text_FontId, 0);
                 {
-                    uint _g_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_3 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_3).w0_Set(3607101442u);
                     new DlCmd(_g_3).w1_Set(2147516416u);
                 }
                 {
-                    uint _g_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_4 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_4).w0_Set(3808432129u);
                     new DlCmd(_g_4).w1_Set((uint)(0));
                 }
                 {
-                    uint _g_5 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_5 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_5).w0_Set(3808431104u);
                     new DlCmd(_g_5).w1_Set((uint)(0));
                 }
                 {
-                    uint _g_6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_6 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_6).w0_Set(3808432641u);
                     new DlCmd(_g_6).w1_Set((uint)(8192));
                 }
                 {
-                    uint _g_7 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_7 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_7).w0_Set(4254072832u);
                     new DlCmd(_g_7).w1_Set((uint)(tex));
                 }
                 {
-                    uint _g_8 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_8 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_8).w0_Set(4119855104u);
                     new DlCmd(_g_8).w1_Set((uint)(117440512));
                 }
                 {
-                    uint _g_9 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_9 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_9).w0_Set(3858759680u);
                     new DlCmd(_g_9).w1_Set((uint)(0));
                 }
                 {
-                    uint _g_10 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_10 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_10).w0_Set(4076863488u);
                     new DlCmd(_g_10).w1_Set((uint)(118028288));
                 }
                 {
-                    uint _g_11 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_11 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_11).w0_Set(3875536896u);
                     new DlCmd(_g_11).w1_Set((uint)(0));
                 }
                 {
-                    uint _g_12 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_12 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_12).w0_Set(4118807552u);
                     new DlCmd(_g_12).w1_Set((uint)(0));
                 }
                 {
-                    uint _g_13 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_13 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_13).w0_Set(4060086272u);
                     new DlCmd(_g_13).w1_Set((uint)(376924));
                 }
                 {
-                    uint _g_14 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_14 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_14).w0_Set(4118806528u);
                     new DlCmd(_g_14).w1_Set((uint)(16777216));
                 }
                 {
-                    uint _g_15 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint _g_15 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(_g_15).w0_Set(4060086272u);
                     new DlCmd(_g_15).w1_Set((uint)(17023036));
                 }
                 Text_SetColors(140, 140, 140, 140, 140, 140);
                 Text_SetScale(Mem.F32(0x800CB140u), Mem.F32(0x800CB140u));
-                Mem.Set((0x8013B878u + (uint)(0 * 4)), 2);
-                Mem.Set((0x8013B878u + (uint)(1 * 4)), 2);
+                Mem.Set((Gv.Text_Style_8013B878 + (uint)(0 * 4)), 2);
+                Mem.Set((Gv.Text_Style_8013B878 + (uint)(1 * 4)), 2);
             }
         }
     }
@@ -193,7 +193,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002A98E0_sw_val");
             float r = 0f;
-            switch (Mem.U32(0x8014D3D0u))
+            switch (Mem.U32(Gv.Text_FontId))
             {
             case (uint)(0):
                 r = 24.0f;
@@ -1453,12 +1453,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002ABB2C", (uint)a, (uint)b, (uint)c, (uint)d);
-            Mem.Set((0x8013B858u + (uint)(0 * 4)), a);
-            Mem.Set((0x8013B858u + (uint)(1 * 4)), b);
-            Mem.Set((0x8013B858u + (uint)(2 * 4)), c);
-            Mem.Set((0x8013B858u + (uint)(3 * 4)), d);
-            Mem.Set((0x8013B858u + (uint)(4 * 4)), e);
-            Mem.Set((0x8013B858u + (uint)(5 * 4)), f);
+            Mem.Set((Gv.Text_Colors + (uint)(0 * 4)), a);
+            Mem.Set((Gv.Text_Colors + (uint)(1 * 4)), b);
+            Mem.Set((Gv.Text_Colors + (uint)(2 * 4)), c);
+            Mem.Set((Gv.Text_Colors + (uint)(3 * 4)), d);
+            Mem.Set((Gv.Text_Colors + (uint)(4 * 4)), e);
+            Mem.Set((Gv.Text_Colors + (uint)(5 * 4)), f);
         }
     }
 

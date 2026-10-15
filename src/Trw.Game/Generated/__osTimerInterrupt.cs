@@ -13,22 +13,22 @@ public static partial class Game
             uint timer = 0u;
             uint count = 0u;
             uint elapsed = 0u;
-            if ((new OSTimer(Mem.U32(0x800D92B0u)).next_ == Mem.U32(0x800D92B0u)))
+            if ((new OSTimer(Mem.U32(Gv.__osTimerList)).next_ == Mem.U32(Gv.__osTimerList)))
             {
                 return;
             }
             while ((1 != 0))
             {
-                timer = new OSTimer(Mem.U32(0x800D92B0u)).next_;
-                if ((timer == Mem.U32(0x800D92B0u)))
+                timer = new OSTimer(Mem.U32(Gv.__osTimerList)).next_;
+                if ((timer == Mem.U32(Gv.__osTimerList)))
                 {
                     __osSetCompare((uint)(0), default(uint), default(uint), default(uint));
-                    Mem.Set(0x8014FE30u, (uint)(0));
+                    Mem.Set(Gv.TimerCounter, (uint)(0));
                     break;
                 }
                 count = osGetCount();
-                elapsed = (count - Mem.U32(0x8014FE30u));
-                Mem.Set(0x8014FE30u, count);
+                elapsed = (count - Mem.U32(Gv.TimerCounter));
+                Mem.Set(Gv.TimerCounter, count);
                 if (((ulong)(elapsed) < new OSTimer(timer).remaining))
                 {
                     new OSTimer(timer).remaining_Set((ulong)((ulong)(new OSTimer(timer).remaining) - (ulong)(elapsed)));

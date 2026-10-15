@@ -94,7 +94,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002192C0", (uint)o);
-            uint t = LevelPath_GetHeader(0x8011FE88u, (uint)((int)(new B04Cur(o).idx)), default(uint), default(uint));
+            uint t = LevelPath_GetHeader(Gv.LevelMgr, (uint)((int)(new B04Cur(o).idx)), default(uint), default(uint));
             int n = (int)(new B04Tab(t).count);
             new B04Cur(o).prev_Set(new B04Cur(o).cur);
             switch ((int)(new B04Cur(o).state))
@@ -147,7 +147,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002193C8", (uint)e, (uint)a, _a2);
             new B04Ev(e).unk0_Set((byte)(1));
             new B04Ev(e).unk1_Set((byte)(a));
-            new B04Ev(e).unk2_Set((short)(LevelPath_FindNearestPoint(0x8011FE88u, (int)(uint)(a), (uint)(_a2))));
+            new B04Ev(e).unk2_Set((short)(LevelPath_FindNearestPoint(Gv.LevelMgr, (int)(uint)(a), (uint)(_a2))));
             new B04Ev(e).unk4_Set((short)(0));
         }
     }
@@ -188,7 +188,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00219434", (uint)arg0);
-            LevelPath_GetPoint(0x8011FE88u, (int)(Mem.U8((arg0 + (uint)1))), (int)(Mem.S16((arg0 + (uint)4))));
+            LevelPath_GetPoint(Gv.LevelMgr, (int)(Mem.U8((arg0 + (uint)1))), (int)(Mem.S16((arg0 + (uint)4))));
         }
     }
 

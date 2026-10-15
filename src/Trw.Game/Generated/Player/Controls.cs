@@ -1000,64 +1000,64 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00263760");
             int i = 0;
-            switch ((int)(Mem.U8(0x8010FBB8u)))
+            switch ((int)(Mem.U8(Gv.Pad_SiPendingOp)))
             {
             case 0:
-                osRecvMesg(0x8010FC00u, 0x8010FBD8u, 1);
+                osRecvMesg(Gv.Pad_SiMesgQueue, 0x8010FBD8u, 1);
                 osContGetReadData(0x8010EEA0u);
-                new B14Ctl(0x8010F0E0u).port_Set((sbyte)((-1)));
-                new B14Ctl(0x8010F0E0u).f0_Set(0);
-                new B14Ctl(0x8010F0E0u).fC4_Set((byte)(0));
-                new B14Ctl(0x8010F0E0u).fC5_Set((byte)(0));
-                new B14Ctl(0x8010F0E0u).fC6_Set((byte)(0));
-                new B14Ctl(0x8010F0E0u).fC7_Set((byte)(0));
-                new B14Ctl(0x8010F0E0u).fB0_Set(0);
-                new B14Ctl(0x8010F0E0u).fAC_Set(0);
-                new B14Ctl(0x8010F0E0u).fB4_Set(0);
-                new B14Ctl(0x8010F0E0u).fB8_Set(0);
-                new B14Ctl(0x8010F0E0u).fBC_Set(0);
-                new B14Ctl(0x8010F0E0u).fC0_Set(0);
-                new B14Ctl(0x8010F0E0u).f18_Set(0);
-                new B14Ctl(0x8010F0E0u).f14_Set(0);
-                new B14Ctl(0x8010F0E0u).f1C_Set(0);
-                new B14Ctl(0x8010F0E0u).f20_Set(0);
-                new B14Ctl(0x8010F0E0u).f24_Set(0);
-                new B14Ctl(0x8010F0E0u).f28_Set(0);
+                new B14Ctl(Gv.Pad_Combined).port_Set((sbyte)((-1)));
+                new B14Ctl(Gv.Pad_Combined).f0_Set(0);
+                new B14Ctl(Gv.Pad_Combined).fC4_Set((byte)(0));
+                new B14Ctl(Gv.Pad_Combined).fC5_Set((byte)(0));
+                new B14Ctl(Gv.Pad_Combined).fC6_Set((byte)(0));
+                new B14Ctl(Gv.Pad_Combined).fC7_Set((byte)(0));
+                new B14Ctl(Gv.Pad_Combined).fB0_Set(0);
+                new B14Ctl(Gv.Pad_Combined).fAC_Set(0);
+                new B14Ctl(Gv.Pad_Combined).fB4_Set(0);
+                new B14Ctl(Gv.Pad_Combined).fB8_Set(0);
+                new B14Ctl(Gv.Pad_Combined).fBC_Set(0);
+                new B14Ctl(Gv.Pad_Combined).fC0_Set(0);
+                new B14Ctl(Gv.Pad_Combined).f18_Set(0);
+                new B14Ctl(Gv.Pad_Combined).f14_Set(0);
+                new B14Ctl(Gv.Pad_Combined).f1C_Set(0);
+                new B14Ctl(Gv.Pad_Combined).f20_Set(0);
+                new B14Ctl(Gv.Pad_Combined).f24_Set(0);
+                new B14Ctl(Gv.Pad_Combined).f28_Set(0);
                 for (i = 0; (i < 4); ++i)
                 {
-                    Pad_ApplyStickDeadzone((0x8010F328u + (uint)(i * 548)), (uint)(new M04Pad((0x8010EEA0u + (uint)(i * 6))).x), (uint)(new M04Pad((0x8010EEA0u + (uint)(i * 6))).y), (uint)(new M04Pad((0x8010EEA0u + (uint)(i * 6))).button));
-                    new B14Ctl(0x8010F0E0u).f0_Set((int)((int)(new B14Ctl(0x8010F0E0u).f0) | new B14Ctl((0x8010F328u + (uint)(i * 548))).f0));
-                    new B14Ctl(0x8010F0E0u).fC4_Set((byte)((int)(new B14Ctl(0x8010F0E0u).fC4) + (int)(new B14Ctl((0x8010F328u + (uint)(i * 548))).fC4)));
-                    new B14Ctl(0x8010F0E0u).fC5_Set((byte)((int)(new B14Ctl(0x8010F0E0u).fC5) + (int)(new B14Ctl((0x8010F328u + (uint)(i * 548))).fC5)));
-                    new B14Ctl(0x8010F0E0u).fC6_Set((byte)((int)(new B14Ctl(0x8010F0E0u).fC6) + (int)(new B14Ctl((0x8010F328u + (uint)(i * 548))).fC6)));
-                    new B14Ctl(0x8010F0E0u).fC7_Set((byte)((int)(new B14Ctl(0x8010F0E0u).fC7) + (int)(new B14Ctl((0x8010F328u + (uint)(i * 548))).fC7)));
-                    new B14Ctl(0x8010F0E0u).fB0_Set((int)((int)(new B14Ctl(0x8010F0E0u).fB0) | new B14Ctl((0x8010F328u + (uint)(i * 548))).fB0));
-                    new B14Ctl(0x8010F0E0u).fB4_Set((int)((int)(new B14Ctl(0x8010F0E0u).fB4) | new B14Ctl((0x8010F328u + (uint)(i * 548))).fB4));
-                    new B14Ctl(0x8010F0E0u).fB8_Set((int)((int)(new B14Ctl(0x8010F0E0u).fB8) | new B14Ctl((0x8010F328u + (uint)(i * 548))).fB8));
-                    new B14Ctl(0x8010F0E0u).fBC_Set((int)((int)(new B14Ctl(0x8010F0E0u).fBC) | new B14Ctl((0x8010F328u + (uint)(i * 548))).fBC));
-                    new B14Ctl(0x8010F0E0u).fC0_Set((int)((int)(new B14Ctl(0x8010F0E0u).fC0) | new B14Ctl((0x8010F328u + (uint)(i * 548))).fC0));
-                    new B14Ctl(0x8010F0E0u).f18_Set((int)((int)(new B14Ctl(0x8010F0E0u).f18) | new B14Ctl((0x8010F328u + (uint)(i * 548))).f18));
-                    new B14Ctl(0x8010F0E0u).f14_Set((int)((int)(new B14Ctl(0x8010F0E0u).f14) | new B14Ctl((0x8010F328u + (uint)(i * 548))).f14));
-                    new B14Ctl(0x8010F0E0u).f1C_Set((int)((int)(new B14Ctl(0x8010F0E0u).f1C) | new B14Ctl((0x8010F328u + (uint)(i * 548))).f1C));
-                    new B14Ctl(0x8010F0E0u).f20_Set((int)((int)(new B14Ctl(0x8010F0E0u).f20) | new B14Ctl((0x8010F328u + (uint)(i * 548))).f20));
-                    new B14Ctl(0x8010F0E0u).f24_Set((int)((int)(new B14Ctl(0x8010F0E0u).f24) | new B14Ctl((0x8010F328u + (uint)(i * 548))).f24));
-                    new B14Ctl(0x8010F0E0u).f28_Set((int)((int)(new B14Ctl(0x8010F0E0u).f28) | new B14Ctl((0x8010F328u + (uint)(i * 548))).f28));
+                    Pad_ApplyStickDeadzone((Gv.Pad_Slots + (uint)(i * 548)), (uint)(new M04Pad((0x8010EEA0u + (uint)(i * 6))).x), (uint)(new M04Pad((0x8010EEA0u + (uint)(i * 6))).y), (uint)(new M04Pad((0x8010EEA0u + (uint)(i * 6))).button));
+                    new B14Ctl(Gv.Pad_Combined).f0_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).f0) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).f0));
+                    new B14Ctl(Gv.Pad_Combined).fC4_Set((byte)((int)(new B14Ctl(Gv.Pad_Combined).fC4) + (int)(new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).fC4)));
+                    new B14Ctl(Gv.Pad_Combined).fC5_Set((byte)((int)(new B14Ctl(Gv.Pad_Combined).fC5) + (int)(new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).fC5)));
+                    new B14Ctl(Gv.Pad_Combined).fC6_Set((byte)((int)(new B14Ctl(Gv.Pad_Combined).fC6) + (int)(new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).fC6)));
+                    new B14Ctl(Gv.Pad_Combined).fC7_Set((byte)((int)(new B14Ctl(Gv.Pad_Combined).fC7) + (int)(new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).fC7)));
+                    new B14Ctl(Gv.Pad_Combined).fB0_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).fB0) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).fB0));
+                    new B14Ctl(Gv.Pad_Combined).fB4_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).fB4) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).fB4));
+                    new B14Ctl(Gv.Pad_Combined).fB8_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).fB8) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).fB8));
+                    new B14Ctl(Gv.Pad_Combined).fBC_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).fBC) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).fBC));
+                    new B14Ctl(Gv.Pad_Combined).fC0_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).fC0) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).fC0));
+                    new B14Ctl(Gv.Pad_Combined).f18_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).f18) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).f18));
+                    new B14Ctl(Gv.Pad_Combined).f14_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).f14) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).f14));
+                    new B14Ctl(Gv.Pad_Combined).f1C_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).f1C) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).f1C));
+                    new B14Ctl(Gv.Pad_Combined).f20_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).f20) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).f20));
+                    new B14Ctl(Gv.Pad_Combined).f24_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).f24) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).f24));
+                    new B14Ctl(Gv.Pad_Combined).f28_Set((int)((int)(new B14Ctl(Gv.Pad_Combined).f28) | new B14Ctl((Gv.Pad_Slots + (uint)(i * 548))).f28));
                 }
-                new B14Ctl(0x8010F0E0u).fC4_Set((byte)((sbyte)(int)(((float)((sbyte)(new B14Ctl(0x8010F0E0u).fC4)) * Mem.F32(0x800C93E0u)))));
-                new B14Ctl(0x8010F0E0u).fC5_Set((byte)((sbyte)(int)(((float)((sbyte)(new B14Ctl(0x8010F0E0u).fC5)) * Mem.F32(0x800C93E0u)))));
-                new B14Ctl(0x8010F0E0u).fC6_Set((byte)((sbyte)(int)(((float)((sbyte)(new B14Ctl(0x8010F0E0u).fC6)) * Mem.F32(0x800C93E0u)))));
-                new B14Ctl(0x8010F0E0u).fC7_Set((byte)((sbyte)(int)(((float)((sbyte)(new B14Ctl(0x8010F0E0u).fC7)) * Mem.F32(0x800C93E0u)))));
+                new B14Ctl(Gv.Pad_Combined).fC4_Set((byte)((sbyte)(int)(((float)((sbyte)(new B14Ctl(Gv.Pad_Combined).fC4)) * Mem.F32(0x800C93E0u)))));
+                new B14Ctl(Gv.Pad_Combined).fC5_Set((byte)((sbyte)(int)(((float)((sbyte)(new B14Ctl(Gv.Pad_Combined).fC5)) * Mem.F32(0x800C93E0u)))));
+                new B14Ctl(Gv.Pad_Combined).fC6_Set((byte)((sbyte)(int)(((float)((sbyte)(new B14Ctl(Gv.Pad_Combined).fC6)) * Mem.F32(0x800C93E0u)))));
+                new B14Ctl(Gv.Pad_Combined).fC7_Set((byte)((sbyte)(int)(((float)((sbyte)(new B14Ctl(Gv.Pad_Combined).fC7)) * Mem.F32(0x800C93E0u)))));
                 break;
             case 1:
-                osRecvMesg(0x8010FC00u, 0x8010FBD8u, 1);
-                osContGetQuery(0x8010FBE0u);
+                osRecvMesg(Gv.Pad_SiMesgQueue, 0x8010FBD8u, 1);
+                osContGetQuery(Gv.Pad_ContStatus);
                 for (i = 0; (i < 4); ++i)
                 {
-                    Pad_InitSlot2((0x8010F328u + (uint)(i * 548)));
+                    Pad_InitSlot2((Gv.Pad_Slots + (uint)(i * 548)));
                 }
                 break;
             case 3:
-                osContReset(0x8010FC00u, 0x8010FBE0u);
+                osContReset(Gv.Pad_SiMesgQueue, Gv.Pad_ContStatus);
                 goto case 2;
             case 2:
                 break;
@@ -1103,10 +1103,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00263B14_b14_lock", (uint)flag);
-            int r = ((osRecvMesg(0x8010FBC0u, 0u, flag) == 0) ? 1 : 0);
+            int r = ((osRecvMesg(Gv.Pad_LockQueue, 0u, flag) == 0) ? 1 : 0);
             if ((r != 0))
             {
-                Mem.Set(0x800D0E5Cu, osGetThreadId(0u));
+                Mem.Set(Gv.Pad_LockOwnerThreadId, osGetThreadId(0u));
             }
             return r;
         }
@@ -1121,38 +1121,38 @@ public static partial class Game
             uint c = 0u;
             if (((int)(Mem.U8(0x800D0E50u)) != 0))
             {
-                Rumble_RemoveFinished(0x8010EC90u);
+                Rumble_RemoveFinished(Gv.Rumble_Mgr);
                 if ((func_00263B14_b14_lock(0) != 0))
                 {
                     Pad_ReadController_00263760();
-                    for (i = 0, c = 0x8010F328u; (i < 4); ++i, c += 548u)
+                    for (i = 0, c = Gv.Pad_Slots; (i < 4); ++i, c += 548u)
                     {
                         Rumble_Update(c);
                     }
-                    switch ((int)(Mem.U8(0x8010FBB8u)))
+                    switch ((int)(Mem.U8(Gv.Pad_SiPendingOp)))
                     {
                     case 0:
                         if ((Pad_AnyStatusPollEnabled() != 0))
                         {
-                            Mem.Set(0x8010FBB8u, (byte)(1));
-                            osContStartQuery(0x8010FC00u);
+                            Mem.Set(Gv.Pad_SiPendingOp, (byte)(1));
+                            osContStartQuery(Gv.Pad_SiMesgQueue);
                         }
                         else
                         {
-                            osContStartReadData(0x8010FC00u);
+                            osContStartReadData(Gv.Pad_SiMesgQueue);
                         }
                         break;
                     case 1:
                     case 2:
                     case 3:
-                        Mem.Set(0x8010FBB8u, (byte)(0));
-                        osContStartReadData(0x8010FC00u);
+                        Mem.Set(Gv.Pad_SiPendingOp, (byte)(0));
+                        osContStartReadData(Gv.Pad_SiMesgQueue);
                         break;
                     default:
                         break;
                     }
-                    Mem.Set(0x800D0E5Cu, (-1));
-                    osSendMesg(0x8010FBC0u, 0u, 1);
+                    Mem.Set(Gv.Pad_LockOwnerThreadId, (-1));
+                    osSendMesg(Gv.Pad_LockQueue, 0u, 1);
                 }
             }
         }
@@ -1174,7 +1174,7 @@ public static partial class Game
                         Mem.Set((0x8010F310u + (uint)(i * 4)), 1);
                         if ((Mem.S32((0x8010FC28u + (uint)(i * 4))) != 0))
                         {
-                            Mem.Set((0x8010FBF0u + (uint)(i * 4)), 1);
+                            Mem.Set((Gv.Pad_PakChangedFlags + (uint)(i * 4)), 1);
                             Mem.Set((0x8010FC28u + (uint)(i * 4)), 0);
                         }
                     }
@@ -1188,7 +1188,7 @@ public static partial class Game
                 }
                 else
                 {
-                    Mem.Set((0x8010FBF0u + (uint)(i * 4)), 0);
+                    Mem.Set((Gv.Pad_PakChangedFlags + (uint)(i * 4)), 0);
                     Mem.Set((0x8010FC28u + (uint)(i * 4)), 0);
                     Mem.Set((0x8010F310u + (uint)(i * 4)), 0);
                 }
@@ -1203,7 +1203,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00263D10", (uint)c);
             int port = (int)(new B14Ctl(c).port);
-            int v = ((((int)(new B14PortFlags((0x8010FBE0u + (uint)(port * 4))).b[(int)(3)]) >> (int)3) ^ 1) & 1);
+            int v = ((((int)(new B14PortFlags((Gv.Pad_ContStatus + (uint)(port * 4))).b[(int)(3)]) >> (int)3) ^ 1) & 1);
             int i = 0;
             if (((v != 0) && (new B14Ctl(c).f0 == 0)))
             {
@@ -1232,7 +1232,7 @@ public static partial class Game
                     new B14Ctl(c).ent[(int)(i)].c_Set((byte)(48));
                     new B14Ctl(c).ent[(int)(i)].d_Set((byte)(0));
                 }
-                new B14Ctl(c).f0_Set(((((int)(new B14PortFlags((0x8010FBE0u + (uint)(port * 4))).b[(int)(3)]) >> (int)3) ^ 1) & 1));
+                new B14Ctl(c).f0_Set(((((int)(new B14PortFlags((Gv.Pad_ContStatus + (uint)(port * 4))).b[(int)(3)]) >> (int)3) ^ 1) & 1));
                 Mem.Set(new B14Ctl(c).fD0.P, 0);
                 Mem.Set(new B14Ctl(c).fD4.P, 0);
                 Rumble_InitSourcePool(new B14Ctl(c).blkA.P, new B14Ctl(c).blkB.P, (uint)(3), default(uint));
@@ -1461,7 +1461,7 @@ public static partial class Game
                     new B14W3(_fp).a_Set(0);
                     new B14W3(_fp).b_Set(0);
                     new B14W3(_fp).c_Set(0);
-                    if (((((new B14Ctl(c).fCC == 0) || (Mem.S32((g = 0x80146894u)) != 0)) || (Mem.S32(0x8013B29Cu) != 0)) || (Mem.S32((g + (uint)((-6) * 4))) != 13)))
+                    if (((((new B14Ctl(c).fCC == 0) || (Mem.S32((g = Gv.GamePaused)) != 0)) || (Mem.S32(Gv.Debug_Freeze_8013B29C) != 0)) || (Mem.S32((g + (uint)((-6) * 4))) != 13)))
                     {
                         Mem.Set(new B14Ctl(c).fD0.P, 0);
                         Rumble_ClearAll(new B14Ctl(c).blkA.P);
@@ -1469,7 +1469,7 @@ public static partial class Game
                     else
                     {
                         Rumble_RemoveFinished(new B14Ctl(c).blkA.P);
-                        r = Rumble_GetIntensityAt(0x8010EC90u, C.Tmp((uint)(new B14Ctl(c).f8), (uint)(new B14Ctl(c).fC), (uint)(new B14Ctl(c).f10)));
+                        r = Rumble_GetIntensityAt(Gv.Rumble_Mgr, C.Tmp((uint)(new B14Ctl(c).f8), (uint)(new B14Ctl(c).fC), (uint)(new B14Ctl(c).f10)));
                         Mem.Set(new B14Ctl(c).fD0.P, (r + Rumble_GetIntensityAt(new B14Ctl(c).blkA.P, C.Tmp((uint)(new B14W3(_fp).a), (uint)(new B14W3(_fp).b), (uint)(new B14W3(_fp).c)))));
                     }
                     if ((new B14Ctl(c).fC8 != 0))
@@ -1499,10 +1499,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00264268_b14_lock", (uint)flag);
-            int r = ((osRecvMesg(0x8010FBC0u, 0u, flag) == 0) ? 1 : 0);
+            int r = ((osRecvMesg(Gv.Pad_LockQueue, 0u, flag) == 0) ? 1 : 0);
             if ((r != 0))
             {
-                Mem.Set(0x800D0E5Cu, osGetThreadId(0u));
+                Mem.Set(Gv.Pad_LockOwnerThreadId, osGetThreadId(0u));
             }
             return r;
         }
@@ -1513,8 +1513,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00264268_b14_unlock");
-            Mem.Set(0x800D0E5Cu, (-1));
-            osSendMesg(0x8010FBC0u, 0u, 1);
+            Mem.Set(Gv.Pad_LockOwnerThreadId, (-1));
+            osSendMesg(Gv.Pad_LockQueue, 0u, 1);
         }
     }
 
@@ -1528,20 +1528,20 @@ public static partial class Game
             {
                 func_00264268_b14_lock(1);
                 Pad_ReadController_00263760();
-                Mem.Set(0x8010FBB8u, (sbyte)(2));
+                Mem.Set(Gv.Pad_SiPendingOp, (sbyte)(2));
                 new B14Ctl(c).fCC_Set(0);
                 Mem.Set(new B14Ctl(c).fD0.P, 0);
                 Mem.Set(new B14Ctl(c).fD4.P, 0);
                 Rumble_InitSourcePool(new B14Ctl(c).blkA.P, new B14Ctl(c).blkB.P, (uint)(3), default(uint));
                 pfs = new B14Ctl(c).pfs.P;
-                osMotorInit(0x8010FC00u, pfs, (int)(new B14Ctl(c).port));
+                osMotorInit(Gv.Pad_SiMesgQueue, pfs, (int)(new B14Ctl(c).port));
                 osMotorStop(pfs);
                 osMotorStop(pfs);
-                if ((osMotorInit(0x8010FC00u, pfs, (int)(new B14Ctl(c).port)) == 0))
+                if ((osMotorInit(Gv.Pad_SiMesgQueue, pfs, (int)(new B14Ctl(c).port)) == 0))
                 {
                     new B14Ctl(c).fC8_Set(1);
                 }
-                Mem.Set(0x8010FBB8u, (sbyte)(2));
+                Mem.Set(Gv.Pad_SiPendingOp, (sbyte)(2));
                 func_00264268_b14_unlock();
             }
         }
@@ -1652,14 +1652,14 @@ public static partial class Game
             {
                 for (i = 0; (i < 4); ++i)
                 {
-                    Pad_LatchButtons((0x8010F328u + (uint)(i * 548)));
+                    Pad_LatchButtons((Gv.Pad_Slots + (uint)(i * 548)));
                     r = Menu_IsFrontendActive();
                     if (((r == 1) && (Menu_IsInputEnabled() == r)))
                     {
-                        MenuInput_ProcessPad((0x8010F328u + (uint)(i * 548)));
+                        MenuInput_ProcessPad((Gv.Pad_Slots + (uint)(i * 548)));
                     }
                 }
-                Pad_LatchButtons(0x8010F0E0u);
+                Pad_LatchButtons(Gv.Pad_Combined);
             }
         }
     }
@@ -1691,10 +1691,10 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0026451C", (uint)flag);
-            int r = ((osRecvMesg(0x8010FBC0u, 0u, flag) == 0) ? 1 : 0);
+            int r = ((osRecvMesg(Gv.Pad_LockQueue, 0u, flag) == 0) ? 1 : 0);
             if ((r != 0))
             {
-                Mem.Set(0x800D0E5Cu, osGetThreadId(0u));
+                Mem.Set(Gv.Pad_LockOwnerThreadId, osGetThreadId(0u));
             }
             return r;
         }
@@ -1743,8 +1743,8 @@ public static partial class Game
             {
                 return 0;
             }
-            r = Mem.S32((0x8010FBF0u + (uint)(i * 4)));
-            Mem.Set((0x8010FBF0u + (uint)(i * 4)), 0);
+            r = Mem.S32((Gv.Pad_PakChangedFlags + (uint)(i * 4)));
+            Mem.Set((Gv.Pad_PakChangedFlags + (uint)(i * 4)), 0);
             return r;
         }
     }
@@ -1758,7 +1758,7 @@ public static partial class Game
             int r = 0;
             if (((int)(Pad_IsStatusPollEnabled(i)) != 0))
             {
-                r = Mem.S32((0x8010FBF0u + (uint)(i * 4)));
+                r = Mem.S32((Gv.Pad_PakChangedFlags + (uint)(i * 4)));
             }
             else
             {
@@ -1774,7 +1774,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00264634", (uint)i);
-            return ((((int)(new Q4((0x8010FBE0u + (uint)(i * 4))).b[(int)(3)]) >> (int)3) ^ 1) & 1);
+            return ((((int)(new Q4((Gv.Pad_ContStatus + (uint)(i * 4))).b[(int)(3)]) >> (int)3) ^ 1) & 1);
         }
     }
 
@@ -1784,7 +1784,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00264654", (uint)i);
-            return ((int)(new Q4((0x8010FBE0u + (uint)(i * 4))).b[(int)(2)]) & 1);
+            return ((int)(new Q4((Gv.Pad_ContStatus + (uint)(i * 4))).b[(int)(2)]) & 1);
         }
     }
 
@@ -1797,7 +1797,7 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 4); ++i)
             {
-                if ((((((int)(new Q4((0x8010FBE0u + (uint)(i * 4))).b[(int)(3)]) >> (int)3) ^ 1) & 1) != 0))
+                if ((((((int)(new Q4((Gv.Pad_ContStatus + (uint)(i * 4))).b[(int)(3)]) >> (int)3) ^ 1) & 1) != 0))
                 {
                     return 1;
                 }
@@ -1816,7 +1816,7 @@ public static partial class Game
             int n = 0;
             for (i = 0; (i < 4); ++i)
             {
-                if ((((((int)(new Q4((0x8010FBE0u + (uint)(i * 4))).b[(int)(3)]) >> (int)3) ^ 1) & 1) != 0))
+                if ((((((int)(new Q4((Gv.Pad_ContStatus + (uint)(i * 4))).b[(int)(3)]) >> (int)3) ^ 1) & 1) != 0))
                 {
                     ++n;
                 }
@@ -1835,7 +1835,7 @@ public static partial class Game
             int c = 0;
             for (i = 0; (i < 4); ++i)
             {
-                if ((((((int)(new Q4((0x8010FBE0u + (uint)(i * 4))).b[(int)(3)]) >> (int)3) ^ 1) & 1) != 0))
+                if ((((((int)(new Q4((Gv.Pad_ContStatus + (uint)(i * 4))).b[(int)(3)]) >> (int)3) ^ 1) & 1) != 0))
                 {
                     ++c;
                 }
@@ -1955,7 +1955,7 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 4); ++i)
             {
-                Rumble_Reset((0x8010F328u + (uint)(i * 548)));
+                Rumble_Reset((Gv.Pad_Slots + (uint)(i * 548)));
             }
         }
     }
@@ -1968,7 +1968,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00264874", (uint)v);
             uint s = 0u;
             int i = 0;
-            for (i = 0, s = 0x8010F328u; (i < 4); ++i, s += 548u)
+            for (i = 0, s = Gv.Pad_Slots; (i < 4); ++i, s += 548u)
             {
                 new B14Slot(s).fCC_Set(v);
                 if ((v == 0))
@@ -1978,7 +1978,7 @@ public static partial class Game
             }
             if ((v == 0))
             {
-                Rumble_ClearAll(0x8010EC90u);
+                Rumble_ClearAll(Gv.Rumble_Mgr);
             }
         }
     }
@@ -1994,10 +1994,10 @@ public static partial class Game
             uint s = 0u;
             for (i = 0; (i < 4); ++i)
             {
-                Mem.Set((0x8010FC18u + (uint)(i * 4)), new B14Slot((0x8010F328u + (uint)(i * 548))).fCC);
+                Mem.Set((0x8010FC18u + (uint)(i * 4)), new B14Slot((Gv.Pad_Slots + (uint)(i * 548))).fCC);
             }
-            Rumble_ClearAll(0x8010EC90u);
-            for (j = 0, s = 0x8010F328u; (j < 4); ++j, s += 548u)
+            Rumble_ClearAll(Gv.Rumble_Mgr);
+            for (j = 0, s = Gv.Pad_Slots; (j < 4); ++j, s += 548u)
             {
                 Rumble_Reset(s);
             }
@@ -2016,15 +2016,15 @@ public static partial class Game
             uint s = 0u;
             if ((Mem.S32(0x800D0E58u) != 0))
             {
-                for (i = 0, s = 0x8010F328u; (i < 4); ++i, s += 548u)
+                for (i = 0, s = Gv.Pad_Slots; (i < 4); ++i, s += 548u)
                 {
                     Rumble_Reset(s);
                 }
                 for (j = 0; (j < 4); ++j)
                 {
-                    new B14Slot((0x8010F328u + (uint)(j * 548))).fCC_Set(Mem.S32((0x8010FC18u + (uint)(j * 4))));
+                    new B14Slot((Gv.Pad_Slots + (uint)(j * 548))).fCC_Set(Mem.S32((0x8010FC18u + (uint)(j * 4))));
                 }
-                Rumble_ClearAll(0x8010EC90u);
+                Rumble_ClearAll(Gv.Rumble_Mgr);
                 Mem.Set(0x800D0E58u, 0);
             }
         }
@@ -2303,7 +2303,7 @@ public static partial class Game
                 float v = 0f;
                 uint n = 0u;
                 uint mask = __osDisableInt();
-                if (((Mem.S32(0x8014694Cu) == 1) || (Flyby_IsInWindow() != 0)))
+                if (((Mem.S32(Gv.Demo_Active) == 1) || (Flyby_IsInWindow() != 0)))
                 {
                     total = 0.0f;
                 }
@@ -2712,12 +2712,12 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004055D4", (uint)ch);
             uint r = (0x80153330u + (uint)(ch * 112));
-            if (((int)(new O01Pad4((0x8010FBE0u + (uint)(ch * 4))).unk3) != 0))
+            if (((int)(new O01Pad4((Gv.Pad_ContStatus + (uint)(ch * 4))).unk3) != 0))
             {
                 new O01Rumble(r).ok_Set((byte)(0));
                 return 0;
             }
-            new O01Rumble(r).ok_Set((byte)(((osMotorInit(0x8010FC00u, new O01Rumble(r).pfs.P, ch) == 0) ? 1 : 0)));
+            new O01Rumble(r).ok_Set((byte)(((osMotorInit(Gv.Pad_SiMesgQueue, new O01Rumble(r).pfs.P, ch) == 0) ? 1 : 0)));
             return (int)(new O01Rumble(r).ok);
         }
     }
@@ -2731,10 +2731,10 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 4); ++i)
             {
-                if (((int)(Pad_IsConfirm((0x8010F328u + (uint)(i * 548)))) != 0))
+                if (((int)(Pad_IsConfirm((Gv.Pad_Slots + (uint)(i * 548)))) != 0))
                 {
                     Mem.Set(@out, i);
-                    return (0x8010F328u + (uint)(i * 548));
+                    return (Gv.Pad_Slots + (uint)(i * 548));
                 }
             }
             Mem.Set(@out, (-1));
@@ -2865,30 +2865,30 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0044BAC0");
             int i = 0;
-            Rumble_InitSourcePool(0x8010EC90u, 0x8010ECC0u, (uint)(8), default(uint));
-            Mem.Set(0x8010FBB8u, (sbyte)(2));
-            osCreateMesgQueue(0x8010FC00u, 0x8010FBD8u, 1);
-            osCreateMesgQueue(0x8010FBC0u, 0x8010F304u, 1);
-            osSetEventMesg((uint)(5), 0x8010FC00u, (uint)(1));
-            osContInit(0x8010FC00u, 0x800D0E51u, 0x8010FBE0u);
+            Rumble_InitSourcePool(Gv.Rumble_Mgr, 0x8010ECC0u, (uint)(8), default(uint));
+            Mem.Set(Gv.Pad_SiPendingOp, (sbyte)(2));
+            osCreateMesgQueue(Gv.Pad_SiMesgQueue, 0x8010FBD8u, 1);
+            osCreateMesgQueue(Gv.Pad_LockQueue, 0x8010F304u, 1);
+            osSetEventMesg((uint)(5), Gv.Pad_SiMesgQueue, (uint)(1));
+            osContInit(Gv.Pad_SiMesgQueue, 0x800D0E51u, Gv.Pad_ContStatus);
             osGetThreadId(0u);
-            Mem.Set(0x800D0E5Cu, (-1));
-            osSendMesg(0x8010FBC0u, 0u, 1);
+            Mem.Set(Gv.Pad_LockOwnerThreadId, (-1));
+            osSendMesg(Gv.Pad_LockQueue, 0u, 1);
             Mem.Set(0x8010F320u, (short)((-1)));
             Mem.Set(0x800D0E52u, (byte)(0));
             for (i = 3; (i >= 0); --i)
             {
-                Mem.Set((0x8010FBF0u + (uint)(i * 4)), 0);
+                Mem.Set((Gv.Pad_PakChangedFlags + (uint)(i * 4)), 0);
                 Mem.Set((0x8010FC28u + (uint)(i * 4)), 0);
                 Mem.Set((0x8010F310u + (uint)(i * 4)), 0);
                 Pad_DisableStatusPoll(i);
-                if ((Pad_InitSlot((0x8010F328u + (uint)(i * 548)), i) != 0))
+                if ((Pad_InitSlot((Gv.Pad_Slots + (uint)(i * 548)), i) != 0))
                 {
                     Mem.Set(0x8010F320u, (short)(i));
                     Mem.Set(0x800D0E52u, (byte)(Mem.U8(0x800D0E52u) + 1));
                 }
             }
-            Pad_InitSlot((0x8010F328u + (uint)(i * 548)), 4);
+            Pad_InitSlot((Gv.Pad_Slots + (uint)(i * 548)), 4);
             Mem.Set(0x800D0E50u, (sbyte)(1));
             return Mem.S16(0x8010F320u);
         }
@@ -2926,7 +2926,7 @@ public static partial class Game
                 new S5Ctl(c).ent[(int)(i)].c_Set((byte)(48));
                 new S5Ctl(c).ent[(int)(i)].d_Set((byte)(0));
             }
-            new S5Ctl(c).f0_Set(((((int)(new S5PortFlags((0x8010FBE0u + (uint)(port * 4))).b[(int)(3)]) >> (int)3) ^ 1) & 1));
+            new S5Ctl(c).f0_Set(((((int)(new S5PortFlags((Gv.Pad_ContStatus + (uint)(port * 4))).b[(int)(3)]) >> (int)3) ^ 1) & 1));
             new S5Ctl(c).fD0_Set(0);
             new S5Ctl(c).fD4_Set(0);
             Rumble_InitSourcePool(new S5Ctl(c).blkA.P, new S5Ctl(c).blkB.P, (uint)(3), default(uint));

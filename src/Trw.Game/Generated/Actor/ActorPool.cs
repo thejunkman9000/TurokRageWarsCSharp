@@ -35,11 +35,11 @@ public static partial class Game
                 Mem.Copy(_fp + 32u, w12_in, 12);
                 if (Dbg.On) Dbg.Enter("func_00262D00", (uint)w, (uint)id, (uint)x, (uint)a3);
                 uint e = 0u;
-                if (((Mem.S32(0x800D29B4u) != 0) && (a3 != 0)))
+                if (((Mem.S32(Gv.Level_DataLoaded) != 0) && (a3 != 0)))
                 {
                     if ((id == (-1)))
                     {
-                        id = Level_FindTypeIndexById(0x8011FE88u, x);
+                        id = Level_FindTypeIndexById(Gv.LevelMgr, x);
                         if ((id == (-1)))
                         {
                             return 0u;
@@ -47,9 +47,9 @@ public static partial class Game
                     }
                     if (((uint)((x + 1)) < (uint)(2)))
                     {
-                        x = (int)(Level_GetTypeIdByIndex(0x8011FE88u, id));
+                        x = (int)(Level_GetTypeIdByIndex(Gv.LevelMgr, id));
                     }
-                    if (((Mem.S32(0x8013B290u) != 0) || (C.Seq((object?)((e = 0u)), ((new B14World2(w).freeCount < (uint)(3)) ? 1 : 0)) != 0)))
+                    if (((Mem.S32(Gv.Game_Flag_8013B290) != 0) || (C.Seq((object?)((e = 0u)), ((new B14World2(w).freeCount < (uint)(3)) ? 1 : 0)) != 0)))
                     {
                         e = new B14World2(w).freeHead_;
                         if ((e != 0u))
@@ -65,7 +65,7 @@ public static partial class Game
                     }
                     if ((e != 0u))
                     {
-                        Actor_Init(e, id, x, Mem.S32(0x800D2B40u), (uint)(a3), (-1), (uint)(a4), f8, _fp, (uint)(524288), (_fp + 32u), (_fp + 16u));
+                        Actor_Init(e, id, x, Mem.S32(Gv.NoRegionId), (uint)(a3), (-1), (uint)(a4), f8, _fp, (uint)(524288), (_fp + 32u), (_fp + 16u));
                         Actor_CallRestore(e);
                         return e;
                     }
@@ -90,7 +90,7 @@ public static partial class Game
             {
                 next = new B14Ent2(e).next_;
                 inside = 0;
-                if (((((((Mem.F32((0x801031F0u + (uint)(3 * 4))) > new B14Ent2(e).minx) && (Mem.F32((0x801031F0u + (uint)(0 * 4))) < new B14Ent2(e).maxx)) && (Mem.F32((0x801031F0u + (uint)(5 * 4))) > new B14Ent2(e).minz)) && (Mem.F32((0x801031F0u + (uint)(2 * 4))) < new B14Ent2(e).maxz)) && (Mem.F32((0x801031F0u + (uint)(4 * 4))) > new B14Ent2(e).miny)) && (Mem.F32((0x801031F0u + (uint)(1 * 4))) < new B14Ent2(e).maxy)))
+                if (((((((Mem.F32((Gv.View_UpdateBounds + (uint)(3 * 4))) > new B14Ent2(e).minx) && (Mem.F32((Gv.View_UpdateBounds + (uint)(0 * 4))) < new B14Ent2(e).maxx)) && (Mem.F32((Gv.View_UpdateBounds + (uint)(5 * 4))) > new B14Ent2(e).minz)) && (Mem.F32((Gv.View_UpdateBounds + (uint)(2 * 4))) < new B14Ent2(e).maxz)) && (Mem.F32((Gv.View_UpdateBounds + (uint)(4 * 4))) > new B14Ent2(e).miny)) && (Mem.F32((Gv.View_UpdateBounds + (uint)(1 * 4))) < new B14Ent2(e).maxy)))
                 {
                     inside = 1;
                 }

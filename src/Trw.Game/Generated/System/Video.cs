@@ -39,8 +39,8 @@ public static partial class Game
             new B21Task(t).unk40_Set(new B21Slot(s).unk114);
             w11c = new B21Slot(s).unk11C;
             new B21Task(t).unk10_Set(1);
-            new B21Task(t).unk18_Set((int)(0x800DCC40u));
-            new B21Task(t).unk1C_Set(((int)(0x800DCD10u) - (int)(0x800DCC40u)));
+            new B21Task(t).unk18_Set((int)(Gv.Rsp_BootUcode));
+            new B21Task(t).unk1C_Set(((int)(0x800DCD10u) - (int)(Gv.Rsp_BootUcode)));
             new B21Task(t).unk24_Set(4096);
             new B21Task(t).unk2C_Set(2048);
             new B21Task(t).unk48_Set((int)(0x800E8000u));
@@ -71,8 +71,8 @@ public static partial class Game
                 new B21Task(t).unk40_Set(new B21Slot(s).unk118);
                 w120 = new B21Slot(s).unk120;
                 new B21Task(t).unk10_Set(1);
-                new B21Task(t).unk18_Set((int)(0x800DCC40u));
-                new B21Task(t).unk1C_Set(((int)(0x800DCD10u) - (int)(0x800DCC40u)));
+                new B21Task(t).unk18_Set((int)(Gv.Rsp_BootUcode));
+                new B21Task(t).unk1C_Set(((int)(0x800DCD10u) - (int)(Gv.Rsp_BootUcode)));
                 new B21Task(t).unk24_Set(4096);
                 new B21Task(t).unk2C_Set(2048);
                 new B21Task(t).unk48_Set((int)(0x800E8000u));
@@ -92,19 +92,19 @@ public static partial class Game
                 new B21Task(t).unkC_Set(new B21Slot(s).unk110);
             }
             osWritebackDCacheAll();
-            Sched_SubmitTask(0x801469E8u, (new B21Slot(s).task.P + (uint)(0 * 104)));
+            Sched_SubmitTask(Gv.Sched_Main, (new B21Slot(s).task.P + (uint)(0 * 104)));
             if ((new B21Slot(s).unk128 != 0))
             {
-                Sched_SubmitTask(0x801469E8u, (new B21Slot(s).task.P + (uint)(1 * 104)));
+                Sched_SubmitTask(Gv.Sched_Main, (new B21Slot(s).task.P + (uint)(1 * 104)));
             }
-            Mem.Set(0x800D2978u, (uint)(Mem.U32(0x800D2978u) + 1));
-            idx = (Mem.U32(0x800D2978u) % Mem.U32(0x800E28A0u));
-            Mem.Set(0x800D2980u, (int)(Mem.S32(0x800D2980u) + 1));
-            Mem.Set(0x800D297Cu, (int)((int)(Mem.S32(0x800D297Cu)) ^ 1));
+            Mem.Set(Gv.Video_FrameCount, (uint)(Mem.U32(Gv.Video_FrameCount) + 1));
+            idx = (Mem.U32(Gv.Video_FrameCount) % Mem.U32(Gv.Video_FrameSlotCount));
+            Mem.Set(Gv.LevelFrameCount, (int)(Mem.S32(Gv.LevelFrameCount) + 1));
+            Mem.Set(Gv.FrameParity, (int)((int)(Mem.S32(Gv.FrameParity)) ^ 1));
             new B21Game(g).curSlot__Set((new B21Game(g).slots.P + (uint)(idx * 320)));
-            new B21Slot((new B21Game(g).slots.P + (uint)(idx * 320))).unk114_Set(((Mem.S32(0x800D297Cu) != 0) ? Mem.S32(0x801536F4u) : Mem.S32(0x801536F0u)));
+            new B21Slot((new B21Game(g).slots.P + (uint)(idx * 320))).unk114_Set(((Mem.S32(Gv.FrameParity) != 0) ? Mem.S32(0x801536F4u) : Mem.S32(0x801536F0u)));
             u = new B21Game(g).curSlot_;
-            new B21Slot(u).unk118_Set(((Mem.S32(0x800D297Cu) != 0) ? Mem.S32(0x801536BCu) : Mem.S32(0x801536C0u)));
+            new B21Slot(u).unk118_Set(((Mem.S32(Gv.FrameParity) != 0) ? Mem.S32(0x801536BCu) : Mem.S32(0x801536C0u)));
         }
     }
 
@@ -117,14 +117,14 @@ public static partial class Game
             uint idx = 0u;
             uint s = 0u;
             uint t = 0u;
-            Mem.Set(0x800D2978u, (uint)(Mem.U32(0x800D2978u) + 1));
-            idx = (Mem.U32(0x800D2978u) % Mem.U32(0x800E28A0u));
-            Mem.Set(0x800D2980u, (int)(Mem.S32(0x800D2980u) + 1));
-            Mem.Set(0x800D297Cu, (int)((int)(Mem.S32(0x800D297Cu)) ^ 1));
+            Mem.Set(Gv.Video_FrameCount, (uint)(Mem.U32(Gv.Video_FrameCount) + 1));
+            idx = (Mem.U32(Gv.Video_FrameCount) % Mem.U32(Gv.Video_FrameSlotCount));
+            Mem.Set(Gv.LevelFrameCount, (int)(Mem.S32(Gv.LevelFrameCount) + 1));
+            Mem.Set(Gv.FrameParity, (int)((int)(Mem.S32(Gv.FrameParity)) ^ 1));
             s = new B21Game(g).curSlot__Set((new B21Game(g).slots.P + (uint)(idx * 320)));
-            new B21Slot(s).unk114_Set(((Mem.S32(0x800D297Cu) != 0) ? Mem.S32(0x801536F4u) : Mem.S32(0x801536F0u)));
+            new B21Slot(s).unk114_Set(((Mem.S32(Gv.FrameParity) != 0) ? Mem.S32(0x801536F4u) : Mem.S32(0x801536F0u)));
             t = new B21Game(g).curSlot_;
-            new B21Slot(t).unk118_Set(((Mem.S32(0x800D297Cu) != 0) ? Mem.S32(0x801536BCu) : Mem.S32(0x801536C0u)));
+            new B21Slot(t).unk118_Set(((Mem.S32(Gv.FrameParity) != 0) ? Mem.S32(0x801536BCu) : Mem.S32(0x801536C0u)));
         }
     }
 
@@ -134,8 +134,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A2918", (uint)a, (uint)b);
-            Mem.Set(a, Mem.S32(0x800E28D0u));
-            Mem.Set(b, Mem.S32(0x800E28D4u));
+            Mem.Set(a, Mem.S32(Gv.ScreenWidth));
+            Mem.Set(b, Mem.S32(Gv.ScreenHeight));
         }
     }
 
@@ -296,39 +296,39 @@ public static partial class Game
                 uint e = 0u;
                 uint new_var = 0u;
                 Mem.Set(0x801450C0u, 2);
-                if ((Mem.S32(0x800E28D8u) == (-1)))
+                if ((Mem.S32(Gv.VideoResolution) == (-1)))
                 {
                     if (((int)(Mem_GetRamSize()) != 4194304))
                     {
-                        Mem.Set(0x800E28D8u, 1);
+                        Mem.Set(Gv.VideoResolution, 1);
                     }
                     else
                     {
-                        Mem.Set(0x800E28D8u, 0);
+                        Mem.Set(Gv.VideoResolution, 0);
                     }
-                    Mem.Set(0x80146848u, Mem.U8(0x800E28DBu));
+                    Mem.Set(Gv.Settings_ResolutionMode, Mem.U8(0x800E28DBu));
                 }
                 switch (Mem.S32(0x80000300u))
                 {
                 case 1:
-                    e = (0x800E28F8u + (uint)(Mem.S32(0x800E28D8u) * 28));
+                    e = (Gv.Video_ModeTable + (uint)(Mem.S32(Gv.VideoResolution) * 28));
                     break;
                 case 0:
                 case 2:
-                    e = (0x800E2984u + (uint)(Mem.S32(0x800E28D8u) * 28));
+                    e = (0x800E2984u + (uint)(Mem.S32(Gv.VideoResolution) * 28));
                     break;
                 }
                 if ((e != 0u))
                 {
-                    Mem.Copy(_fp, (0x800E2A10u + (uint)(Mem.S32(0x800E28D8u) * 20)), 20);
+                    Mem.Copy(_fp, (0x800E2A10u + (uint)(Mem.S32(Gv.VideoResolution) * 20)), 20);
                     Mem.Set(0x800E28E8u, new O02Vi20(_fp).w[(int)(0)]);
-                    Mem.Set(0x800D15C0u, new O02Vi20(_fp).w[(int)(1)]);
+                    Mem.Set(Gv.Video_AntiAliasEnabled, new O02Vi20(_fp).w[(int)(1)]);
                     Mem.Set(0x800D15C4u, new O02Vi20(_fp).w[(int)(2)]);
                     Mem.Set(0x800D15C8u, new O02Vi20(_fp).w[(int)(3)]);
                     new_var = new O02Vi(e).w.P;
                     Mem.Set(0x800D15CCu, new O02Vi20(_fp).w[(int)(4)]);
-                    Mem.Set(0x800E28D0u, Mem.S32((new_var + (uint)(0 * 4))));
-                    Mem.Set(0x800E28D4u, new O02Vi(e).w[(int)(1)]);
+                    Mem.Set(Gv.ScreenWidth, Mem.S32((new_var + (uint)(0 * 4))));
+                    Mem.Set(Gv.ScreenHeight, new O02Vi(e).w[(int)(1)]);
                     Video_SetViModeAndViewports((uint)(Mem.S32((new_var + (uint)(0 * 4)))), Mem.S32((new_var + (uint)(1 * 4))), Mem.S32((new_var + (uint)(2 * 4))), Mem.S32((new_var + (uint)(3 * 4))), Mem.S32((new_var + (uint)(4 * 4))), Mem.S32((new_var + (uint)(5 * 4))));
                     osViSetSpecialFeatures((uint)(((Mem.S32(0x800E28E8u) != 0) ? 64 : 128)));
                     osViSetSpecialFeatures((uint)(32));
@@ -564,7 +564,7 @@ public static partial class Game
             case 1:
                 break;
             }
-            row = ((0x800E28F8u + (uint)(mode * 140)) + (uint)(Mem.S32(0x800E28D8u) * 28));
+            row = ((Gv.Video_ModeTable + (uint)(mode * 140)) + (uint)(Mem.S32(Gv.VideoResolution) * 28));
             if (((int)(Mem_GetRamSize()) != 4194304))
             {
                 lim = 172800;
@@ -575,30 +575,30 @@ public static partial class Game
             }
             if ((Mem.S32(0x800E28E4u) == 0))
             {
-                Mem.Set(0x800E28D8u, ((Mem.S32(0x800E28D8u) + 1) % Mem.S32((0x800E28F0u + (uint)(mode * 4)))));
+                Mem.Set(Gv.VideoResolution, ((Mem.S32(Gv.VideoResolution) + 1) % Mem.S32((0x800E28F0u + (uint)(mode * 4)))));
                 while ((lim < (Mem.S32((row + (uint)(0 * 4))) * Mem.S32((row + (uint)(1 * 4))))))
                 {
-                    Mem.Set(0x800E28D8u, ((Mem.S32(0x800E28D8u) + 1) % Mem.S32((0x800E28F0u + (uint)(mode * 4)))));
+                    Mem.Set(Gv.VideoResolution, ((Mem.S32(Gv.VideoResolution) + 1) % Mem.S32((0x800E28F0u + (uint)(mode * 4)))));
                 }
             }
             else
             {
                 Mem.Set(0x800E28E4u, 0);
             }
-            b = new Q01Mode(((0x800E28F8u + (uint)(mode * 140)) + (uint)(Mem.S32(0x800E28DCu) * 28))).w;
-            a = new Q01Mode(((0x800E28F8u + (uint)(mode * 140)) + (uint)(Mem.S32(0x800E28D8u) * 28))).w;
+            b = new Q01Mode(((Gv.Video_ModeTable + (uint)(mode * 140)) + (uint)(Mem.S32(0x800E28DCu) * 28))).w;
+            a = new Q01Mode(((Gv.Video_ModeTable + (uint)(mode * 140)) + (uint)(Mem.S32(Gv.VideoResolution) * 28))).w;
             if ((a < b))
             {
                 a = b;
             }
-            Mem.Set(0x800E28D0u, a);
-            c = new Q01Mode(((0x800E28F8u + (uint)(mode * 140)) + (uint)(Mem.S32(0x800E28D8u) * 28))).h;
-            d = new Q01Mode(((0x800E28F8u + (uint)(mode * 140)) + (uint)(Mem.S32(0x800E28DCu) * 28))).h;
+            Mem.Set(Gv.ScreenWidth, a);
+            c = new Q01Mode(((Gv.Video_ModeTable + (uint)(mode * 140)) + (uint)(Mem.S32(Gv.VideoResolution) * 28))).h;
+            d = new Q01Mode(((Gv.Video_ModeTable + (uint)(mode * 140)) + (uint)(Mem.S32(0x800E28DCu) * 28))).h;
             if ((c < d))
             {
                 c = d;
             }
-            Mem.Set(0x800E28D4u, c);
+            Mem.Set(Gv.ScreenHeight, c);
         }
     }
 
@@ -608,7 +608,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0040C354", (uint)mode);
-            Mem.Set(0x800E28D8u, mode);
+            Mem.Set(Gv.VideoResolution, mode);
             Video_ApplyResolution();
         }
     }
@@ -619,9 +619,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0040C378");
-            if ((Mem.S32(0x800E28E0u) == 0))
+            if ((Mem.S32(Gv.Video_ResChangeCountdown) == 0))
             {
-                Mem.Set(0x800E28E0u, 20);
+                Mem.Set(Gv.Video_ResChangeCountdown, 20);
             }
         }
     }
@@ -632,22 +632,22 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0040C398");
-            if ((Mem.S32(0x800E28D8u) == (-1)))
+            if ((Mem.S32(Gv.VideoResolution) == (-1)))
             {
                 if (((int)(Mem_GetRamSize()) != 4194304))
                 {
-                    Mem.Set(0x800E28D8u, 1);
+                    Mem.Set(Gv.VideoResolution, 1);
                 }
                 else
                 {
-                    Mem.Set(0x800E28D8u, 0);
+                    Mem.Set(Gv.VideoResolution, 0);
                 }
-                Mem.Set(0x80146848u, Mem.U8(0x800E28DBu));
+                Mem.Set(Gv.Settings_ResolutionMode, Mem.U8(0x800E28DBu));
             }
-            if (((Mem.S32(0x800E28E0u) < 5) && (Mem.S32(0x800E28DCu) != Mem.S32(0x800E28D8u))))
+            if (((Mem.S32(Gv.Video_ResChangeCountdown) < 5) && (Mem.S32(0x800E28DCu) != Mem.S32(Gv.VideoResolution))))
             {
                 Video_ApplyResolution();
-                Mem.Set(0x800E28DCu, Mem.S32(0x800E28D8u));
+                Mem.Set(0x800E28DCu, Mem.S32(Gv.VideoResolution));
             }
         }
     }
@@ -658,7 +658,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0040C43C");
-            switch (Mem.S32(0x800E28D8u))
+            switch (Mem.S32(Gv.VideoResolution))
             {
             case 0:
             default:
@@ -680,12 +680,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0040C4A8", (uint)mode);
-            if (((Mem.S32(0x800E28E0u) == 0) && (mode != Mem.S32(0x800E28D8u))))
+            if (((Mem.S32(Gv.Video_ResChangeCountdown) == 0) && (mode != Mem.S32(Gv.VideoResolution))))
             {
                 Mem.Set(0x800E28E4u, 1);
-                Mem.Set(0x800E28DCu, Mem.S32(0x800E28D8u));
-                Mem.Set(0x800E28D8u, mode);
-                Mem.Set(0x800E28E0u, 20);
+                Mem.Set(0x800E28DCu, Mem.S32(Gv.VideoResolution));
+                Mem.Set(Gv.VideoResolution, mode);
+                Mem.Set(Gv.Video_ResChangeCountdown, 20);
             }
         }
     }
@@ -696,7 +696,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0040C4F4");
-            return Mem.S32(0x800E28D8u);
+            return Mem.S32(Gv.VideoResolution);
         }
     }
 
@@ -735,19 +735,19 @@ public static partial class Game
             }
             Mem.Set(0x80153790u, Mem.U16(((0x800E2A4Eu + (uint)(flags * 4)) + (uint)(mode * 32))));
             Vi_EditMode((uint)((int)(a0)), (uint)(a1), (uint)(a2), (uint)(a3), (uint)(e), (uint)(f));
-            if ((new O02CamList(0x801450A8u).cam.P != 0u))
+            if ((new O02CamList(Gv.Camera_ListHead).cam.P != 0u))
             {
-                new O02CamList(0x801450A8u).cam.f29C_Set((float)(Mem.S32(0x800E28D0u)));
-                new O02CamList(0x801450A8u).cam.w2A4_Set(0);
-                new O02CamList(0x801450A8u).cam.w2A8_Set(0);
-                new O02CamList(0x801450A8u).cam.f2A0_Set((float)(Mem.S32(0x800E28D4u)));
+                new O02CamList(Gv.Camera_ListHead).cam.f29C_Set((float)(Mem.S32(Gv.ScreenWidth)));
+                new O02CamList(Gv.Camera_ListHead).cam.w2A4_Set(0);
+                new O02CamList(Gv.Camera_ListHead).cam.w2A8_Set(0);
+                new O02CamList(Gv.Camera_ListHead).cam.f2A0_Set((float)(Mem.S32(Gv.ScreenHeight)));
             }
-            for (n = new O02CamList(0x801450A8u).head_; (n != 0u); n = new O02Cam(n).next_)
+            for (n = new O02CamList(Gv.Camera_ListHead).head_; (n != 0u); n = new O02Cam(n).next_)
             {
                 new O02Cam(n).w2A4_Set(0);
                 new O02Cam(n).w2A8_Set(0);
-                new O02Cam(n).f29C_Set((float)(Mem.S32(0x800E28D0u)));
-                new O02Cam(n).f2A0_Set((float)(Mem.S32(0x800E28D4u)));
+                new O02Cam(n).f29C_Set((float)(Mem.S32(Gv.ScreenWidth)));
+                new O02Cam(n).f2A0_Set((float)(Mem.S32(Gv.ScreenHeight)));
             }
         }
     }

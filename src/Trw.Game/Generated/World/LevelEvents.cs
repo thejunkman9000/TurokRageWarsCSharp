@@ -33,7 +33,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00279024", (uint)a, (uint)b, (uint)c);
-            if ((Mem.S32(0x8011FE88u) == 4))
+            if ((Mem.S32(Gv.LevelMgr) == 4))
             {
                 Flyby_SetDefaultView();
                 Flyby_QueueByTrigger(a, (uint)(c));
@@ -47,7 +47,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00279074", (uint)a);
-            if ((Mem.S32(0x8011FE88u) == 4))
+            if ((Mem.S32(Gv.LevelMgr) == 4))
             {
                 Flyby_SetDefaultView();
                 Flyby_QueueByTrigger(0, a);

@@ -33,20 +33,20 @@ public static partial class Game
                 int tx = 0;
                 int ty = 0;
                 int tz = 0;
-                n = (uint)(Light_First(0x8013B1A8u));
+                n = (uint)(Light_First(Gv.Light_Pool));
                 if ((n == 0u))
                 {
                     {
-                        uint pp = 0x80110634u;
+                        uint pp = Gv.DisplayListPtr;
                         uint d = (Mem.Set(pp, (uint)(Mem.U32(pp) + 8u)) - 8u);
                         new S7Gfx(d).w0_Set(3657432959u);
                         new S7Gfx(d).w1_Set((uint)(0));
                     }
-                    Mem.Set(0x80110560u, (int)((int)(Mem.S32(0x80110560u)) + 8));
+                    Mem.Set(Gv.Light_PointVtxOffset, (int)((int)(Mem.S32(Gv.Light_PointVtxOffset)) + 8));
                     return;
                 }
                 {
-                    uint pp_2 = 0x80110634u;
+                    uint pp_2 = Gv.DisplayListPtr;
                     uint d_2 = (Mem.Set(pp_2, (uint)(Mem.U32(pp_2) + 8u)) - 8u);
                     new S7Gfx(d_2).w0_Set(3657433087u);
                     new S7Gfx(d_2).w1_Set((uint)(128));
@@ -63,33 +63,33 @@ public static partial class Game
                         tz = (-(int)(new S7Vec3((_fp + 16u)).z));
                         ty = (int)(new S7Vec3((_fp + 16u)).y);
                         tx = (-(int)(new S7Vec3((_fp + 16u)).x));
-                        new S7Vtx((0x80110160u + (uint)((i + Mem.S32(0x80110560u)) * 16))).x_Set((short)((-(int)(new S7Vec3((_fp + 16u)).x))));
-                        new S7Vtx((0x80110160u + (uint)((i + Mem.S32(0x80110560u)) * 16))).y_Set((short)(ty));
-                        new S7Vtx((0x80110160u + (uint)((i + Mem.S32(0x80110560u)) * 16))).z_Set((short)(tz));
-                        new S7Vtx((0x80110160u + (uint)((i + Mem.S32(0x80110560u)) * 16))).c9_Set((byte)(Cpu.TruncU32(((float)(new S7LtDef(def).b7) * new S7Lt(n).k))));
-                        new S7Vtx((0x80110160u + (uint)((i + Mem.S32(0x80110560u)) * 16))).c8_Set((byte)(Cpu.TruncU32(((float)(new S7LtDef(def).b4) * new S7Lt(n).k))));
-                        new S7Vtx((0x80110160u + (uint)((i + Mem.S32(0x80110560u)) * 16))).c7_Set((byte)(Cpu.TruncU32(((float)(new S7LtDef(def).b5) * new S7Lt(n).k))));
-                        new S7Vtx((0x80110160u + (uint)((i + Mem.S32(0x80110560u)) * 16))).c6_Set((byte)(Cpu.TruncU32(((float)(new S7LtDef(def).b6) * new S7Lt(n).k))));
-                        new S7Vtx((0x80110160u + (uint)((i + Mem.S32(0x80110560u)) * 16))).wA_Set((short)(new S7LtDef(def).w0));
-                        new S7Vtx((0x80110160u + (uint)((i + Mem.S32(0x80110560u)) * 16))).wC_Set((short)(new S7LtDef(def).w2));
-                        new S7Vtx((0x80110160u + (uint)((i + Mem.S32(0x80110560u)) * 16))).wE_Set((short)(32640));
+                        new S7Vtx((Gv.Light_PointVtxBuffer + (uint)((i + Mem.S32(Gv.Light_PointVtxOffset)) * 16))).x_Set((short)((-(int)(new S7Vec3((_fp + 16u)).x))));
+                        new S7Vtx((Gv.Light_PointVtxBuffer + (uint)((i + Mem.S32(Gv.Light_PointVtxOffset)) * 16))).y_Set((short)(ty));
+                        new S7Vtx((Gv.Light_PointVtxBuffer + (uint)((i + Mem.S32(Gv.Light_PointVtxOffset)) * 16))).z_Set((short)(tz));
+                        new S7Vtx((Gv.Light_PointVtxBuffer + (uint)((i + Mem.S32(Gv.Light_PointVtxOffset)) * 16))).c9_Set((byte)(Cpu.TruncU32(((float)(new S7LtDef(def).b7) * new S7Lt(n).k))));
+                        new S7Vtx((Gv.Light_PointVtxBuffer + (uint)((i + Mem.S32(Gv.Light_PointVtxOffset)) * 16))).c8_Set((byte)(Cpu.TruncU32(((float)(new S7LtDef(def).b4) * new S7Lt(n).k))));
+                        new S7Vtx((Gv.Light_PointVtxBuffer + (uint)((i + Mem.S32(Gv.Light_PointVtxOffset)) * 16))).c7_Set((byte)(Cpu.TruncU32(((float)(new S7LtDef(def).b5) * new S7Lt(n).k))));
+                        new S7Vtx((Gv.Light_PointVtxBuffer + (uint)((i + Mem.S32(Gv.Light_PointVtxOffset)) * 16))).c6_Set((byte)(Cpu.TruncU32(((float)(new S7LtDef(def).b6) * new S7Lt(n).k))));
+                        new S7Vtx((Gv.Light_PointVtxBuffer + (uint)((i + Mem.S32(Gv.Light_PointVtxOffset)) * 16))).wA_Set((short)(new S7LtDef(def).w0));
+                        new S7Vtx((Gv.Light_PointVtxBuffer + (uint)((i + Mem.S32(Gv.Light_PointVtxOffset)) * 16))).wC_Set((short)(new S7LtDef(def).w2));
+                        new S7Vtx((Gv.Light_PointVtxBuffer + (uint)((i + Mem.S32(Gv.Light_PointVtxOffset)) * 16))).wE_Set((short)(32640));
                     }
                     else
                     {
-                        new S7Vtx((0x80110160u + (uint)((i + Mem.S32(0x80110560u)) * 16))).wA_Set((short)((-32768)));
+                        new S7Vtx((Gv.Light_PointVtxBuffer + (uint)((i + Mem.S32(Gv.Light_PointVtxOffset)) * 16))).wA_Set((short)((-32768)));
                     }
                     if ((n != 0u))
                     {
-                        n = (uint)(Light_Next(0x8013B1A8u, n));
+                        n = (uint)(Light_Next(Gv.Light_Pool, n));
                     }
                     {
-                        uint pp_3 = 0x80110634u;
+                        uint pp_3 = Gv.DisplayListPtr;
                         uint d_3 = (Mem.Set(pp_3, (uint)(Mem.U32(pp_3) + 8u)) - 8u);
                         new S7Gfx(d_3).w0_Set(((uint)((((((i + 1) * 2) + 10) & 255) << (int)8)) | 3691511818u));
-                        new S7Gfx(d_3).w1_Set((uint)((0x80110160u + (uint)((i + Mem.S32(0x80110560u)) * 16))));
+                        new S7Gfx(d_3).w1_Set((uint)((Gv.Light_PointVtxBuffer + (uint)((i + Mem.S32(Gv.Light_PointVtxOffset)) * 16))));
                     }
                 }
-                Mem.Set(0x80110560u, (int)((int)(Mem.S32(0x80110560u)) + 8));
+                Mem.Set(Gv.Light_PointVtxOffset, (int)((int)(Mem.S32(Gv.Light_PointVtxOffset)) + 8));
             }
         }
         finally { Stack.Free(28); }
@@ -101,7 +101,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00265DF0");
-            Mem.Set(0x80110560u, Mem.S32(0x800D0ED0u));
+            Mem.Set(Gv.Light_PointVtxOffset, Mem.S32(0x800D0ED0u));
             if ((Mem.S32(0x800D0ED0u) == 0))
             {
                 Mem.Set(0x800D0ED0u, 32);
@@ -216,31 +216,31 @@ public static partial class Game
                 {
                     Math_MtxFixedToFloat((_fp + 32u), (uint)(a));
                     Math_MtxGetTranslationVec((_fp + 32u), (_fp + 16u));
-                    Vec_Sub(_fp, ((uint)(Obj_GetField20_0022A404(0x80145040u)) + (uint)1768), (_fp + 16u));
+                    Vec_Sub(_fp, ((uint)(Obj_GetField20_0022A404(Gv.PlayerPool)) + (uint)1768), (_fp + 16u));
                     Vec_Normalize(_fp);
                     new B15Lights1(0x800D1600u).l[(int)(0)].dir.Set((int)(0), (sbyte)(int)((Mem.F32((_fp + (uint)(0 * 4))) * Mem.F32(0x800C9758u))));
                     new B15Lights1(0x800D1600u).l[(int)(0)].dir.Set((int)(1), (sbyte)(int)((Mem.F32((_fp + (uint)(1 * 4))) * Mem.F32(0x800C9758u))));
                     new B15Lights1(0x800D1600u).l[(int)(0)].dir.Set((int)(2), (sbyte)(int)((Mem.F32((_fp + (uint)(2 * 4))) * Mem.F32(0x800C9758u))));
-                    a0 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    a0 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     Mem.Set(new P4Gfx(a0).words.P, 3674341376u);
                     Mem.Set((new P4Gfx(a0).words.P + 4u), (uint)(24));
-                    a1 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    a1 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     Mem.Set(new P4Gfx(a1).words.P, 3691513354u);
                     Mem.Set((new P4Gfx(a1).words.P + 4u), (uint)((new B15Lights1(0x800D1600u).l.P + (uint)(0 * 12))));
-                    a2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    a2 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     Mem.Set(new P4Gfx(a2).words.P, 3691514122u);
                     Mem.Set((new P4Gfx(a2).words.P + 4u), (uint)(new B15Lights1(0x800D1600u).a.P));
                     return 1;
                 }
                 if ((lights != 0u))
                 {
-                    b0 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    b0 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     Mem.Set(new P4Gfx(b0).words.P, 3674341376u);
                     Mem.Set((new P4Gfx(b0).words.P + 4u), (uint)(24));
-                    b1 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    b1 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     Mem.Set(new P4Gfx(b1).words.P, 3691513354u);
                     Mem.Set((new P4Gfx(b1).words.P + 4u), (uint)((new B15Lights1(lights).l.P + (uint)(0 * 12))));
-                    b2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    b2 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     Mem.Set(new P4Gfx(b2).words.P, 3691514122u);
                     Mem.Set((new P4Gfx(b2).words.P + 4u), (uint)(lights));
                 }
@@ -263,19 +263,19 @@ public static partial class Game
             int i = 0;
             int count = 0;
             uint nd = 0u;
-            if (((Mem.U32(0x800E28A4u) - (((uint)(Mem.U32(0x80110634u)) - (uint)(new B16Gfx(Mem.U32(0x8011FE80u)).base_)) >> (int)3)) >= (uint)(3000)))
+            if (((Mem.U32(Gv.Gfx_DisplayListCapacity) - (((uint)(Mem.U32(Gv.DisplayListPtr)) - (uint)(new B16Gfx(Mem.U32(Gv.Gfx_FrameCtxPtr)).base_)) >> (int)3)) >= (uint)(3000)))
             {
                 root = Mem.U32(p);
                 Resource_MarkUsedInFrame(0, p);
                 if ((flag != 0))
                 {
-                    uint q = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint q = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(q).w0_Set(3674603524u);
                     new DlCmd(q).w1_Set((uint)(seg));
                 }
                 else
                 {
-                    uint q_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint q_2 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(q_2).w0_Set(3661103107u);
                     new DlCmd(q_2).w1_Set((uint)(seg));
                 }
@@ -285,7 +285,7 @@ public static partial class Game
                     nd = Chunk_Get(root, 0);
                 }
                 {
-                    uint q_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    uint q_3 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                     new DlCmd(q_3).w0_Set(3674603528u);
                     new DlCmd(q_3).w1_Set((uint)(nd));
                 }
@@ -302,7 +302,7 @@ public static partial class Game
                     if (((int)(Model_DrawGroups(e, (uint)(arg5), default(uint), default(uint))) != 0))
                     {
                         uint w = Chunk_Get(c, 1);
-                        uint q_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        uint q_4 = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
                         new DlCmd(q_4).w0_Set(3724541952u);
                         new DlCmd(q_4).w1_Set((uint)(w));
                     }
@@ -1717,7 +1717,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00278900", (uint)o);
             byte m = new IdObj(o).id;
-            int n = (Mem.S32(0x800D2978u) + (((int)((byte)(((uint)(m) % 7u))) + 1) * 16));
+            int n = (Mem.S32(Gv.Video_FrameCount) + (((int)((byte)(((uint)(m) % 7u))) + 1) * 16));
             n = (int)((int)(n) % 90);
             return (float)(Mem.S8((0x800D2854u + (uint)n)));
         }
@@ -1738,7 +1738,7 @@ public static partial class Game
             uint c = 0u;
             uint f = 0u;
             i = 0;
-            t = Mem.S32(0x800D2978u);
+            t = Mem.S32(Gv.Video_FrameCount);
             if (!((t & 1) != 0))
             {
                 p = new VtxBlk(b).v.P;
@@ -1827,7 +1827,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00278B2C");
             int i = 0;
             int sum = 0;
-            uint s = 0x8011FE88u;
+            uint s = Gv.LevelMgr;
             i = 0;
             sum = 0;
             for (; (i < new SessMgr(s).count); ++i)
@@ -1986,9 +1986,9 @@ public static partial class Game
                 float m2_4 = 0f;
                 float m1_5 = 0f;
                 float m2_5 = 0f;
-                scale = ((float)(new B19bG8(0x801462C8u).f10) * 0.00392156886f);
+                scale = ((float)(new B19bG8(Gv.Settings).f10) * 0.00392156886f);
                 last = 0u;
-                if (((new B19bG8(0x801462C8u).flags & (uint)(16384)) != 0u))
+                if (((new B19bG8(Gv.Settings).flags & (uint)(16384)) != 0u))
                 {
                     Mem.Set((@out + (uint)0), Mem.Set((@out + (uint)4), (byte)(0)));
                     Mem.Set((@out + (uint)1), Mem.Set((@out + (uint)5), (byte)(0)));
@@ -2250,7 +2250,7 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0028C6B0", (uint)lv, (uint)a1, (uint)@out);
                 if (((func_0028C6B0_hasTbl(lv) == 0) || (Mem.S32(0x800D2850u) == 0)))
                 {
-                    Mem.Copy(@out, 0x800D0EE0u, 24);
+                    Mem.Copy(@out, Gv.Light_AmbientColor, 24);
                     return;
                 }
                 Light_FindVolumesAt(lv, a1, _fp, (_fp + 40u));
@@ -2276,7 +2276,7 @@ public static partial class Game
                 for (i = 0; (i < 3); ++i)
                 {
                     c = new Scene_func_8044BE04_de(scene).light.ambient[(int)(i)];
-                    light = 0x800D0EE0u;
+                    light = Gv.Light_AmbientColor;
                     Mem.Set((light + (uint)i), c);
                     Mem.Set((0x800D0EE4u + (uint)i), c);
                     c = new Scene_func_8044BE04_de(scene).light.color[(int)(i)];
@@ -2312,7 +2312,7 @@ public static partial class Game
             uint temp_s0 = 0u;
             uint temp_s1 = 0u;
             uint var_a1 = 0u;
-            temp_v0 = Obj_GetField20_0022A404(0x80145040u);
+            temp_v0 = Obj_GetField20_0022A404(Gv.PlayerPool);
             if ((temp_v0 != 0))
             {
                 Object_ReleaseHandles_0044ACCC((uint)(temp_v0));

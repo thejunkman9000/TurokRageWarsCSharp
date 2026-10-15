@@ -2,12 +2,812 @@
 namespace Trw.Game;
 
 /// <summary>Named guest RAM addresses of the game's globals (docs/NAMING.md). Use them where the code had the raw address.</summary>
-public static class G
+public static class Gv
 {
+    /// <summary>const float 20.48; Player_UpdateAiming subtracts/adds it to x/z to build a min/max box around the aim point [medium]</summary>
+    public const uint Player_AimBoxHalfSize = 0x800C74B8u;
+    /// <summary>rodata float 1.0; SndVoice_UpdateDoppler steps the chased pitch toward it and clamps at it [medium]</summary>
+    public const uint SndVoice_PitchNeutral = 0x800C9044u;
+    /// <summary>set 1 by DevLink_StartIoThread, toggled around writes in DevLink_IoThread; Bus_*BlockDma use DMA only when 0 (address also = .data start for Debug_IsDataPointer range) [medium]</summary>
+    public const uint DevLink_IoThreadActive = 0x800CD390u;
+    /// <summary>DevLink_* request functions set it to 1/2 and test == 2 (link state of the dev-host protocol) [medium]</summary>
+    public const uint DevLink_State = 0x800CD394u;
+    /// <summary>s32[3] = {0x461,0x462,0x463}; Player_GetCharacterSoundId/Hud_DrawCrosshair/Player_UpdateState compare actor kind/unkE4 with entries [medium]</summary>
+    public const uint Player_SpecialCharacterIds = 0x800CE474u;
+    /// <summary>ROM value 0x463; body type id used for remote/net players (Player_SetCharacter) and compared to p-&gt;unkE4 in player state updates [low]</summary>
+    public const uint Player_RemoteBodyType_800CE47C = 0x800CE47Cu;
+    /// <summary>float table {0.25,0.9,0.6,0.3,-pi/2,pi/2} passed to Player_UpdateViewTurn by the walk/stand/swim/fall states [medium]</summary>
+    public const uint Player_ViewTurnParams = 0x800CE7E4u;
+    /// <summary>24-byte rows indexed by player weapon (p+0x650); row.unk0 = weapon kind read by all Weapon_UpdateIdle* [medium]</summary>
+    public const uint Weapon_InfoTable = 0x800CE8DCu;
+    /// <summary>Shared_StateInfo[] assigned to p-&gt;13B4 states when character==0 (Player_SetCharacter); compared in player state code [medium]</summary>
+    public const uint Player_StateTableChar0 = 0x800CED30u;
+    /// <summary>array of pointers to weapon definitions indexed by weapon id (WpnDesc info.type, ammo slot fields); read by Weapon_*/Player_* code [high]</summary>
+    public const uint WeaponDefTable = 0x800D052Cu;
+    /// <summary>float[120] sine table indexed (timer+k)%120 by Anim_ApplyBoneSway [medium]</summary>
+    public const uint Anim_SwaySineTable = 0x800D0724u;
+    /// <summary>Resource_NextDynamicKey increments, wraps 0x3FFFFF -&gt; 0x380000 (ROM init 0x380000) [high]</summary>
+    public const uint Resource_DynamicKeyCounter = 0x800D0910u;
+    /// <summary>init 1024, doubled on growth; Resource_InitManager allocs nodes*40/stack*4/pool*44 [high]</summary>
+    public const uint Resource_NodeCapacity = 0x800D0920u;
+    /// <summary>incremented by AudioMgr_ThreadMain, selects the 3 audio task buffers (%3), stamps DMA buffers in AudioMgr_DmaProc/ClearDma [medium]</summary>
+    public const uint AudioMgr_FrameCount = 0x800D0940u;
+    /// <summary>AudioMgr_DmaProc increments per DMA issued, AudioMgr_ClearDma loops over and zeroes it [medium]</summary>
+    public const uint AudioMgr_PendingDmaCount = 0x800D0944u;
+    /// <summary>toggled ^1 each AudioMgr_HandleFrame; indexes the double-buffered audio cmd list array 0x8010BE20 [high]</summary>
+    public const uint AudioMgr_CmdListIndex = 0x800D0948u;
+    /// <summary>float 26214400 (5120^2); Sound_GetDistanceGain returns 1 - d2/max and 0 beyond it [high]</summary>
+    public const uint Sound_MaxDistanceSq = 0x800D0D10u;
+    /// <summary>Seq_Update sets it to the started sequence id (SndSeq+0x28), -1 on stop, 0 when the player finishes [medium]</summary>
+    public const uint Seq_PlayingSongId = 0x800D0D90u;
+    /// <summary>60-frame countdown in Menu_UpdateFrontendFrame; at 0 resets to 60 and fires the periodic state kick (D_8010FBB8) [medium]</summary>
+    public const uint Menu_KickCountdown = 0x800D0E54u;
+    /// <summary>set to osGetThreadId(0) when the pad mesg-queue lock 0x8010FBC0 is taken, -1 on release [high]</summary>
+    public const uint Pad_LockOwnerThreadId = 0x800D0E5Cu;
+    /// <summary>in-game menu weapon-visible spinner 0/1 (InGameMenu_OnWeaponVisibleSelect); read by Player_DrawViewWeapons/Hud_DrawView2D [high]</summary>
+    public const uint Settings_ShowViewWeapon = 0x800D0EBCu;
+    /// <summary>RGB bytes (+4 holds copy) edited by InGameMenu_UpdateLightAmbient*, read by Scene_LoadLight/Light_GetLightsAt [medium]</summary>
+    public const uint Light_AmbientColor = 0x800D0EE0u;
+    /// <summary>RGB bytes (+4 copy) edited by InGameMenu_UpdateLightDir*; follows Light_AmbientColor [medium]</summary>
+    public const uint Light_DirectionalColor = 0x800D0EE8u;
+    /// <summary>24-byte lights block (ambient 0x38 grey, white light dir +Y) copied into actor/menu model light segments [medium]</summary>
+    public const uint Model_DefaultLights = 0x800D0EF8u;
+    /// <summary>8-byte rows indexed by event kind: {fn, flags}; Event_Send/Invoke call row.fn and test flags 2/16 [high]</summary>
+    public const uint Event_HandlerTable = 0x800D1380u;
+    /// <summary>ROM table of 8-byte {flags, handler fn} entries indexed by anim event id (Anim_SendEvent; Actor_UpdateHitEffects tests flags &amp;2/&amp;4) [medium]</summary>
+    public const uint Anim_EventDefTable = 0x800D1384u;
+    /// <summary>Gfx_SetCombineMode skips emitting if equal; reset to -1 by Model_ResetStateCache [high]</summary>
+    public const uint Gfx_CachedCombineMode = 0x800D15B0u;
+    /// <summary>Gfx_SetOtherModeL skips emitting if equal; reset to -1 by Model_ResetStateCache [high]</summary>
+    public const uint Gfx_CachedOtherModeL = 0x800D15B4u;
+    /// <summary>Video_ApplyResolution copies vi-config word 1; Gfx_SetOtherModeL picks AA_EN render modes when nonzero [medium]</summary>
+    public const uint Video_AntiAliasEnabled = 0x800D15C0u;
+    /// <summary>ROM init 1; Scene_ApplyLightAndFog/Model_UpdateFogRenderModes test it; menu/preview model draws save, clear, restore [medium]</summary>
+    public const uint Render_FogEnabled = 0x800D15D0u;
+    /// <summary>othermode-L blender word ORed into G_SETOTHERMODE_L; Model_UpdateFogRenderModes stores 0xC8000000 (fog shade) or 0x0C080000 (pass) [medium]</summary>
+    public const uint Model_FogBlendMode = 0x800D15DCu;
+    /// <summary>model colour override mode 0/1/3/6 picked by Tint_ResolveModelOverride, set by menu/actor draw code before drawing models [medium]</summary>
+    public const uint Model_ColorOverrideMode = 0x800D15E0u;
+    /// <summary>float[] rgb/alpha model colour override (D_800D15E4..F4) written by Tint_ApplyToModels/Tint_AddToModels and menu draws (255.0f) [medium]</summary>
+    public const uint Model_ColorOverride = 0x800D15E4u;
+    /// <summary>float RGBA (Q4F) set to 255/150 by menu/results draws, read by Tint_ApplyToModels/Prop_DrawLodFaded [medium]</summary>
+    public const uint Draw_TintColor = 0x800D15F0u;
+    /// <summary>Tri4* whose normal was last computed (func_00275120_tri4_normal); recompute when t differs [medium]</summary>
+    public const uint Collision_CeilingNormalTriPtr = 0x800D2630u;
+    /// <summary>last triangle whose normal was cached (Collision_GetFloorNormal compares/stores t) [medium]</summary>
+    public const uint Collision_NormalCacheTri = 0x800D2638u;
+    /// <summary>Tri3* whose unit normal was last computed (Collision_GetFloorUnitNormal); recompute when t differs [medium]</summary>
+    public const uint Collision_FloorNormalTriPtr = 0x800D263Cu;
+    /// <summary>Level_UpdateFrame sets from Settings val (+0x100/+0x200 by flags); ORed into model resource keys for Resource_Request [medium]</summary>
+    public const uint Model_VariantKeyBits = 0x800D2640u;
+    /// <summary>MsgPort_SendSync/Sched_HandleTaskQueued set 2 and raise the loader thread priority; Sched_HandleRetrace counts down and restores it [medium]</summary>
+    public const uint ResourceLoader_BoostFrames = 0x800D2954u;
+    /// <summary>incremented per submitted frame in Video_AdvanceFrameSlot; frame slot = count % Video_FrameSlotCount; used for flicker phase [high]</summary>
+    public const uint Video_FrameCount = 0x800D2978u;
+    /// <summary>low byte of the gfx frame counter D_800D2978 (incremented by Video_SubmitGfxTasks); props stamp/compare it as a colour frame [medium]</summary>
+    public const uint Video_FrameCountLowByte = 0x800D297Bu;
+    /// <summary>0/1 toggled every frame by Video_AdvanceFrameSlot; indexes the double-buffered matrix stack and per-frame segments (seg + n*24) [high]</summary>
+    public const uint FrameParity = 0x800D297Cu;
+    /// <summary>incremented every frame by Video_AdvanceFrameSlot, reset to 0 by State_PlayInit/State_PlayResumeInit; drives sine animations and start delays [high]</summary>
+    public const uint LevelFrameCount = 0x800D2980u;
+    /// <summary>per-frame time step (float) multiplied into every timer/turn/motion update; scaled by game speed [high]</summary>
+    public const uint FrameTime = 0x800D2988u;
+    /// <summary>set to 1 by Scene_LoadLevelData; spawners, collision and sprites return early while 0 [medium]</summary>
+    public const uint Level_DataLoaded = 0x800D29B4u;
+    /// <summary>State_CreditsAltInit sets 1 (return to title after the roll), State_CreditsInit clears it, credits updates test it [medium]</summary>
+    public const uint Credits_ReturnToTitle = 0x800D29D0u;
+    /// <summary>debug 'artsend mode' toggle (InGameMenu_OnArtsendModeSelect / label); Artsend_IsActive requires it nonzero [high]</summary>
+    public const uint Artsend_Mode = 0x800D2AE0u;
+    /// <summary>ROM constant -1 used as the default region/zone id for Actor_Init, camera trackers, props and face attributes; never written [medium]</summary>
+    public const uint NoRegionId = 0x800D2B40u;
+    /// <summary>pointer to the archive buffer malloc'd by RomFile_LoadArchive (size D_800D2BB8), freed by RomFile_FreeArchive/File_Shutdown [high]</summary>
+    public const uint RomFile_ArchiveBuffer = 0x800D2BB0u;
+    /// <summary>ROM file read position (+0), open flag at +8; RomFile_Open resets, RomFile_Seek/Tell/IsEof use it [high]</summary>
+    public const uint RomFile_ReadPos = 0x800D2BB4u;
+    /// <summary>array of 2 buffer pointers ResourcePool_Malloc'd in ScratchHeap_Init, freed in ScratchHeap_Free [high]</summary>
+    public const uint ScratchHeap_Buffers = 0x800D2BD4u;
+    /// <summary>MinMaxF usage record decreased by both FrameAlloc_AllocLow/AllocHigh sizes (free space), reset by ScratchHeap_ResetStats [medium]</summary>
+    public const uint FrameAlloc_FreeStat = 0x800D2BDCu;
+    /// <summary>MinMaxF usage record increased by FrameAlloc_AllocLow sizes (high side uses D_800D2BF4), reset by ScratchHeap_ResetStats [medium]</summary>
+    public const uint FrameAlloc_LowUsedStat = 0x800D2BE8u;
+    /// <summary>MinMaxF {cur,min,max}: FrameAlloc_AllocHigh adds size, ScratchHeap_ResetStats resets [medium]</summary>
+    public const uint FrameAlloc_UsageStats = 0x800D2BF4u;
+    /// <summary>Menu_RequestShutdown sets 1, Menu_UpdateFrontendFrame then calls Menu_ShutdownFrontend; +8 is the frontend active flag [medium]</summary>
+    public const uint Menu_ShutdownRequest = 0x800D2C90u;
+    /// <summary>TimerVar {t, flag}: Menu_SetIdleTime stores it, Menu_UpdateFrontendFrame adds frame time and compares with the attract timeout [high]</summary>
+    public const uint Menu_IdleTimer = 0x800D2CA0u;
+    /// <summary>poll/retry count of the debug-port wait loops (dbgPortWaitRegMask outer loop), set to 100 or 1 by the dbgHost* calls [medium]</summary>
+    public const uint DbgPort_PollCount = 0x800D3650u;
+    /// <summary>pointer to the ROM string 'Function Not Available' shown via Hud_SpawnTextLineA when a weapon fire/alt-fire is refused [high]</summary>
+    public const uint HudMsg_FunctionNotAvailable = 0x800D70E8u;
+    /// <summary>char*[] -&gt; "OFF","ON" (ROM); passed to OptionList_AddOption in options menus [high]</summary>
+    public const uint Option_OffOnStrings = 0x800D749Cu;
+    /// <summary>pointer to "ON" (after the "OFF" pointer at 800D749C); CheatsMenu/Controller menus add it as an option label [medium]</summary>
+    public const uint Str_OnPtr = 0x800D74A0u;
+    /// <summary>pointer to "RAGE WARS"; PakMenu note lookup/write uses it as the player note name [medium]</summary>
+    public const uint Pak_PlayerNoteNamePtr = 0x800D7700u;
+    /// <summary>char* to "51" (2-char note company code) compared/written by CPak_*; 0x800D770C is the game code ptr ("NRWE") [high]</summary>
+    public const uint CPak_CompanyCodeStrPtr = 0x800D7708u;
+    /// <summary>pointer to "NRWE" (game code; company code "51" ptr at 800D7708); CPak_IsOwnNoteCode and note writes compare/pass it [high]</summary>
+    public const uint Pak_GameCodePtr = 0x800D770Cu;
+    /// <summary>text object whose first string is " "; assigned as item label (unk14) when there is nothing to show (PakMenu/LegacyCheats formatters) [medium]</summary>
+    public const uint Menu_BlankLabelText = 0x800D7E14u;
+    /// <summary>8-byte rows {text ptr, sound id}; Event_ShowHudMessage posts text via Hud_PostMessage and plays .b sound [medium]</summary>
+    public const uint Event_HudMessageTable = 0x800D7F84u;
+    /// <summary>libultra ALGlobals pointer; set by alInit, cleared by alClose, -&gt;drvr used by al*New [high]</summary>
+    public const uint alGlobals = 0x800D80A0u;
+    /// <summary>libultra OSDevMgr {initialized, acsQueue, dma func...} set by osCreatePiManager [high]</summary>
+    public const uint __osPiDevMgr = 0x800D8390u;
+    /// <summary>libultra per-domain OSPiHandle* array used by osEPiRaw* [high]</summary>
+    public const uint __osCurrentHandle = 0x800D83B0u;
+    /// <summary>libultra vi[2] OSViContext array (2*48 bytes) cleared/initialised in __osViInit [high]</summary>
+    public const uint ViContexts = 0x800D83E0u;
+    /// <summary>libultra __osViCurr: returned by __osViGetCurrentContext, set in __osViSwapContext [high]</summary>
+    public const uint ViCurrentContextPtr = 0x800D8440u;
+    /// <summary>libultra pointer to next OSViContext (set to &amp;vi[1] in __osViInit, used by __osViSwapContext) [high]</summary>
+    public const uint __osViNext = 0x800D8444u;
+    /// <summary>libultra global interrupt mask (__osSet/ResetGlobalIntMask) [high]</summary>
+    public const uint __OSGlobalIntMask = 0x800D9288u;
+    /// <summary>libultra OSTimer* list head (__osInsertTimer, __osTimerInterrupt) [high]</summary>
+    public const uint __osTimerList = 0x800D92B0u;
+    /// <summary>alAdecPull stores the adecNextFrame() result here and writes back 512 bytes from it [medium]</summary>
+    public const uint Adec_CurFramePtr = 0x800D9360u;
+    /// <summary>u16 table of (1&lt;&lt;n)-1 masks indexed by bit count in adecReadBits [high]</summary>
+    public const uint Adec_BitMaskTable = 0x800D9380u;
+    /// <summary>u16 bits remaining in bit buffer; adecStreamOpen sets 16, adecReadBits refills [medium]</summary>
+    public const uint Adec_BitsLeft = 0x800D94E8u;
+    /// <summary>u16 bit buffer shifted left by adecHuffDecode; follows Adec_BitsLeft [medium]</summary>
+    public const uint Adec_BitBuffer = 0x800D94EAu;
+    /// <summary>u16 bit counter of the Huffman reader: adecHuffDecode decrements it and refills +16 [medium]</summary>
+    public const uint Adec_BitCount = 0x800D94ECu;
+    /// <summary>u16 0..5 ring index of decoded frames (adecNextFrame wraps at 6, selects 512-byte buffer at 80151F80) [medium]</summary>
+    public const uint Adec_FrameRingIndex = 0x800D94F2u;
+    /// <summary>208-byte rspboot code (to 800DCD10) set as ucode_boot of audio and gfx tasks (AudioMgr_Init, Video_SubmitGfxTasks) [high]</summary>
+    public const uint Rsp_BootUcode = 0x800DCC40u;
+    /// <summary>float constant 1.0 (ROM 3F800000) used as (1-w) in Flyby_EvalSpline [high]</summary>
+    public const uint Flyby_SplineOne = 0x800E0B50u;
+    /// <summary>ROM string "%3d" passed to Str_Sprintf by PakMenu label formatters [high]</summary>
+    public const uint FmtStr_3d = 0x800E0DA4u;
+    /// <summary>ROM string "%d" passed to Str_FormatInto by Results_FillRows [high]</summary>
+    public const uint FmtStr_d = 0x800E1B20u;
+    /// <summary>ROM string "O"; every use passes +4 = "menu" as the ResourcePool_Alloc tag (MenuPanel_Open etc.) [medium]</summary>
+    public const uint Str_O = 0x800E2518u;
+    /// <summary>format string "%03d" used by sprintf in the in-game light-colour menu items [high]</summary>
+    public const uint Str_Fmt03d = 0x800E27D8u;
+    /// <summary>pointer to the flyby control block; every Flyby_* function reads/writes its fields [high]</summary>
+    public const uint FlybyCtlPtr = 0x800E2830u;
+    /// <summary>init 1; Flyby_SetFlag/ClearFlag/GetFlag; Flyby_QueueBy* return early when 0 [medium]</summary>
+    public const uint Flyby_QueueEnabled = 0x800E2838u;
+    /// <summary>pointer to the per-pad controller pak directory buffers (516 bytes per pad: free bytes + 16 x 32-byte note entries) [high]</summary>
+    public const uint CPak_DirectoryPtr = 0x800E2854u;
+    /// <summary>ROM init 2; modulus for frame slots in Video_AdvanceFrameSlot / Sched handlers / FramePool_Reinit [high]</summary>
+    public const uint Video_FrameSlotCount = 0x800E28A0u;
+    /// <summary>ROM init 0x2C00 Gfx commands; model draws compare remaining (cap - used) &gt;= 3000 [high]</summary>
+    public const uint Gfx_DisplayListCapacity = 0x800E28A4u;
+    /// <summary>resource handle released and zeroed by GameSave_FreeBuffers [medium]</summary>
+    public const uint GameSave_BufferA = 0x800E28B0u;
+    /// <summary>second resource handle released and zeroed with GameSave_BufferA [medium]</summary>
+    public const uint GameSave_BufferB = 0x800E28B4u;
+    /// <summary>pointer to loaded save data (cfg blocks at +0x18 player, +0x88 settings) used by GameSave_Apply / PakMenu labels [medium]</summary>
+    public const uint GameSave_DataPtr = 0x800E28BCu;
+    /// <summary>set 1 by 'continue without pak'/repair skip, cleared by the load/save player menu openers, tested to skip pak access [medium]</summary>
+    public const uint PakMenu_SkipPak = 0x800E28C0u;
+    /// <summary>pad/port used by the pak menu in boot mode (-1 none), set by PakMenu_SelectFirstPakPort, read by PakMenu_GetPad [medium]</summary>
+    public const uint PakMenu_BootPad = 0x800E28C8u;
+    /// <summary>set 1 when boot controller-pak check finishes or is skipped (State_BootInit, PakMenu_OpenBootCheck) [medium]</summary>
+    public const uint PakMenu_BootCheckDone = 0x800E28CCu;
+    /// <summary>screen width in pixels (Video_GetScreenSize), used to scale 2D UI against 284x222 [high]</summary>
+    public const uint ScreenWidth = 0x800E28D0u;
+    /// <summary>screen height in pixels (Video_GetScreenSize), used to scale 2D UI against 284x222 [high]</summary>
+    public const uint ScreenHeight = 0x800E28D4u;
+    /// <summary>current resolution mode (0 lo-res, 1 hi-res, -1 unset/letterbox) set by Video_SetResolution, read by Video_GetResolution and hi-res UI scaling [high]</summary>
+    public const uint VideoResolution = 0x800E28D8u;
+    /// <summary>set to 20 by Video_RequestResolution, decremented by Video_UpdateResolution; menus ignore input while &gt;=2 [high]</summary>
+    public const uint Video_ResChangeCountdown = 0x800E28E0u;
+    /// <summary>resolution rows (28 bytes each, 5 per mode = 140) indexed by mode and 0x800E28D8 in Video_ApplyResolution [high]</summary>
+    public const uint Video_ModeTable = 0x800E28F8u;
+    /// <summary>set 1 after UI draw sets render mode id (0x800E2ABC == 0x53333/0x53533), cleared to force re-setup [medium]</summary>
+    public const uint Ui_DrawModeValid = 0x800E2AB8u;
+    /// <summary>render-setup key (0x53333/0x53533) of the last UI batch; re-emit setup when it differs or valid flag 0x800E2AB8 is 0 [medium]</summary>
+    public const uint Ui_LastBatchRenderKey = 0x800E2ABCu;
+    /// <summary>52-byte pixel format descriptors scanned by Image_FindPixelFormat / Image_PackColor [high]</summary>
+    public const uint Image_PixelFormatTable = 0x800E2B20u;
+    /// <summary>image record bound by Gfx_LoadTextureImage (size/format/palette) used by Gfx_EmitTexRect/Gfx_DrawTexRectStrips [high]</summary>
+    public const uint Gfx_BoundImagePtr = 0x800E32A4u;
+    /// <summary>set 1 in Gfx_LoadTextureImage when the texture is too big for TMEM (&gt;2048/4096); Gfx_DrawTexRectStrips then loads strips [medium]</summary>
+    public const uint Gfx_TexNeedsStrips = 0x800E32B0u;
+    /// <summary>Image_GetBitsPerPixel of the bound texture; 4/8 select palette load (Gfx_LoadTextureImage) [high]</summary>
+    public const uint Gfx_TexBitsPerPixel = 0x800E32B8u;
+    /// <summary>Gfx_PipeSyncOnce emits sync only when 0 then sets 1; Gfx_ClearPipeSyncFlag clears [medium]</summary>
+    public const uint Gfx_PipeSyncDone = 0x800E32E4u;
+    /// <summary>TitleScreen_RetryPakCheck steps it (stops at 4); PlayerMenu_Open detects/reads the controller pak on that port [medium]</summary>
+    public const uint PakCheck_Port = 0x800E3510u;
+    /// <summary>title screen (29) page malloc'd (44 bytes) by TitleScreen_Open, freed by TitleScreen_Close [high]</summary>
+    public const uint TitleScreen_PagePtr = 0x800E3518u;
+    /// <summary>12-byte {msg,type,fn} dispatch table, fn==0 terminated (TitleScreen_HandleMessage) [high]</summary>
+    public const uint TitleScreen_MsgTable = 0x800E351Cu;
+    /// <summary>profile stats screen state malloc'd (528 bytes) by ProfileStats_Open, used by all ProfileStats_* handlers [high]</summary>
+    public const uint ProfileStats_PagePtr = 0x800E3590u;
+    /// <summary>12-byte {msg,type,fn} dispatch table (ProfileStats_HandleMessage) [high]</summary>
+    public const uint ProfileStats_MsgTable = 0x800E3724u;
+    /// <summary>[character][17] entries of 8 bytes {index, name ptr}; BotSetup_* step through it and copy the bot name [high]</summary>
+    public const uint BotSetup_NameTable = 0x800E381Cu;
+    /// <summary>bot setup screen (23) page malloc'd (32 bytes) by BotSetup_Open, freed by BotSetup_OnClose [high]</summary>
+    public const uint BotSetup_PagePtr = 0x800E39C0u;
+    /// <summary>12-byte {msg,type,fn} dispatch table (BotSetup_HandleMessage) [high]</summary>
+    public const uint BotSetup_MsgTable = 0x800E39C4u;
+    /// <summary>inline 17-entry character table (0x70 bytes: node id, character id, portrait..) searched by CharSelect_FindRowBy* [high]</summary>
+    public const uint CharSelect_CharacterTable = 0x800E3A50u;
+    /// <summary>112-byte rows per character (scale[layout], model at +0x24) used by MissionTree/Results portraits [medium]</summary>
+    public const uint Menu_CharacterPortraitTable = 0x800E3A58u;
+    /// <summary>4 x {x0,y0,x1,y1} screen quadrants (18,15,52,94...) used as scissor by CharSelect_Draw/Loadout_OnDraw [medium]</summary>
+    public const uint Menu_PlayerQuadrantRects = 0x800E41C0u;
+    /// <summary>character select (screen 7) page allocated by its open handler (0x1358), freed by CharSelect_OnClose [high]</summary>
+    public const uint CharSelect_PagePtr = 0x800E42D0u;
+    /// <summary>36-byte rows per player of UI node ids for skins/cursors (CharSelect_*) [medium]</summary>
+    public const uint CharSelect_NodeIdTable = 0x800E42D4u;
+    /// <summary>12-byte {msg,type,fn} dispatch table (CharSelect_HandleMessage) [high]</summary>
+    public const uint CharSelect_MsgTable = 0x800E4364u;
+    /// <summary>cheats screen (0x1C) page malloc'd (60 bytes) by CheatsMenu_OnOpen, freed by CheatsMenu_OnClose [high]</summary>
+    public const uint CheatsMenu_PagePtr = 0x800E4400u;
+    /// <summary>12-byte {msg,type,fn} dispatch table (CheatsMenu_HandleMessage) [high]</summary>
+    public const uint CheatsMenu_MsgTable = 0x800E4404u;
+    /// <summary>malloc'd state of PakManageMenu, freed/zeroed on close [high]</summary>
+    public const uint PakManageMenu_StatePtr = 0x800E4450u;
+    /// <summary>12-byte {msg,type,fn} dispatch table (PakManageMenu_HandleMessage) [high]</summary>
+    public const uint PakManageMenu_MsgTable = 0x800E4454u;
+    /// <summary>malloc'd screen-wipe state of RumblePrompt, freed/zeroed on close [high]</summary>
+    public const uint RumblePrompt_StatePtr = 0x800E44A0u;
+    /// <summary>12-byte {msg,type,fn} dispatch table (RumblePrompt_HandleMessage) [high]</summary>
+    public const uint RumblePrompt_MsgTable = 0x800E44A4u;
+    /// <summary>options screen (4) widget words malloc'd (40 bytes) by OptionsMenu_OnOpen, freed by OptionsMenu_OnClose [high]</summary>
+    public const uint OptionsMenu_PagePtr = 0x800E4510u;
+    /// <summary>trial pause options screen (0xB) widgets malloc'd (16 bytes) by TrialPauseMenu_OnOpen, freed by TrialPauseMenu_OnClose [high]</summary>
+    public const uint TrialPauseMenu_PagePtr = 0x800E4514u;
+    /// <summary>pause options screen state malloc'd (0x6C bytes: sound, page, pages..) by PauseOptions_OnOpen [high]</summary>
+    public const uint PauseOptions_PagePtr = 0x800E4518u;
+    /// <summary>12-byte {msg,type,fn} dispatch table (OptionsMenu_HandleMessage) [high]</summary>
+    public const uint OptionsMenu_MsgTable = 0x800E451Cu;
+    /// <summary>12-byte {ev,key,fn} dispatch table (TrialPauseMenu_HandleMessage) [high]</summary>
+    public const uint TrialPauseMenu_EventTable = 0x800E4564u;
+    /// <summary>12-byte {ev,key,fn} dispatch table (PauseOptions_HandleMessage) [high]</summary>
+    public const uint PauseOptions_EventTable = 0x800E45ACu;
+    /// <summary>main menu (screen 3) page allocated by its open handler, freed by MainMenu_OnClose [high]</summary>
+    public const uint MainMenu_PagePtr = 0x800E4600u;
+    /// <summary>12-byte {ev,key,fn} dispatch table (MainMenu_HandleMessage) [high]</summary>
+    public const uint MainMenu_EventTable = 0x800E4604u;
+    /// <summary>pointer to the mission-tree arena record (Arena_GetTreeRecord) set by MatchSetup_StartMatch, 0 in custom matches; supplies trial time/lives/pickup variants [medium]</summary>
+    public const uint ArenaTreeRecordPtr = 0x800E4680u;
+    /// <summary>mission tree screen (0xA/0xF) page malloc'd (0xA80) by MissionTree_OnOpen, freed by MissionTree_OnClose [high]</summary>
+    public const uint MissionTree_PagePtr = 0x800E4690u;
+    /// <summary>28-byte rows {id, ui node ids} for mission tree arenas and navigation [medium]</summary>
+    public const uint MissionTree_NodeTable = 0x800E4694u;
+    /// <summary>12-byte rows of links between arenas (node ids to show/hide), MissionTree_AreArenasLinked [medium]</summary>
+    public const uint MissionTree_LinkTable = 0x800E4A84u;
+    /// <summary>12-byte {ev,key,fn} dispatch table (MissionTree_HandleEvent) [high]</summary>
+    public const uint MissionTree_EventTable = 0x800E4D84u;
+    /// <summary>12-byte {ev,key,fn} dispatch table (MissionTree_HandleEventAlt) [high]</summary>
+    public const uint MissionTree_EventTableAlt = 0x800E4E20u;
+    /// <summary>12-byte {ev,key,fn} dispatch table (QuitConfirm_HandleEvent) [high]</summary>
+    public const uint QuitConfirm_EventTable = 0x800E4EC0u;
+    /// <summary>match options page malloc'd (64 bytes) by MatchOptions_Open, freed by MatchOptions_Close [high]</summary>
+    public const uint MatchOptions_PagePtr = 0x800E4EF0u;
+    /// <summary>12-byte {ev,key,fn} dispatch table (MatchOptions_HandleEvent) [high]</summary>
+    public const uint MatchOptions_EventTable = 0x800E4EF4u;
+    /// <summary>arena/gauntlet select (screen 0x14) page, freed by ArenaSelect_Close [high]</summary>
+    public const uint ArenaSelect_PagePtr = 0x800E4F60u;
+    /// <summary>16-byte rows {arena type, ui node ids a/b} used by ArenaSelect_* and Arena_GetLevelForType [medium]</summary>
+    public const uint ArenaSelect_NodeTable = 0x800E4F64u;
+    /// <summary>12-byte {ev,key,fn} dispatch table (ArenaSelect_HandleEvent) [high]</summary>
+    public const uint ArenaSelect_EventTable = 0x800E5284u;
+    /// <summary>40-byte rows of ui node ids per results row (Results_HideRows) [medium]</summary>
+    public const uint Results_RowNodeTable = 0x800E5320u;
+    /// <summary>Results_RowNodeTable+2: id fields read by Results_FillRows [medium]</summary>
+    public const uint Results_RowNodeTable_Ids = 0x800E5322u;
+    /// <summary>results screen page malloc'd (816 bytes) by Results_Open, freed by Results_Close [high]</summary>
+    public const uint Results_PagePtr = 0x800E53C0u;
+    /// <summary>12-byte {ev,key,fn} dispatch table (Results_HandleEvent) [high]</summary>
+    public const uint Results_EventTable = 0x800E53C4u;
+    /// <summary>how-many-players screen (26) page malloc'd (36 bytes) by PlayerCount_Open, freed by PlayerCount_Close [high]</summary>
+    public const uint PlayerCount_PagePtr = 0x800E5430u;
+    /// <summary>12-byte {ev,key,fn} dispatch table (PlayerCount_HandleEvent) [high]</summary>
+    public const uint PlayerCount_EventTable = 0x800E5434u;
+    /// <summary>player/profile lobby page malloc'd (0x3474) by PlayerMenu_Open, freed by PlayerMenu_Close [high]</summary>
+    public const uint PlayerMenu_PagePtr = 0x800E54A4u;
+    /// <summary>12-byte {id,key,fn} dispatch table (PlayerMenu_HandleEvent) [high]</summary>
+    public const uint PlayerMenu_EventTable = 0x800E54A8u;
+    /// <summary>malloc(32) screen-wipe state of MatchQuitConfirm [high]</summary>
+    public const uint MatchQuitConfirm_StatePtr = 0x800E5554u;
+    /// <summary>SkipMapConfirm_Open mallocs 0x1C into it (ScreenWipe_Init), Close frees and clears it [high]</summary>
+    public const uint SkipMapConfirm_StatePtr = 0x800E5558u;
+    /// <summary>12-byte {id,key,fn} dispatch table (PauseMenu_HandleEvent) [high]</summary>
+    public const uint PauseMenu_EventTable = 0x800E555Cu;
+    /// <summary>12-byte {id,key,fn} dispatch table (MatchQuitConfirm_HandleEvent) [high]</summary>
+    public const uint MatchQuitConfirm_EventTable = 0x800E55C8u;
+    /// <summary>12-byte {id,key,fn} dispatch table (SkipMapConfirm_HandleEvent) [high]</summary>
+    public const uint SkipMapConfirm_EventTable = 0x800E5628u;
+    /// <summary>controller options screen (5) page malloc'd (100 bytes) by ControllerMenu_Open, freed by ControllerMenu_Close [high]</summary>
+    public const uint ControllerMenu_PagePtr = 0x800E5690u;
+    /// <summary>pause controller options screen (0xC) widgets used by the PauseControllerMenu_* handlers [high]</summary>
+    public const uint PauseControllerMenu_PagePtr = 0x800E5694u;
+    /// <summary>12-byte {id,key,fn} dispatch table (ControllerMenu_HandleEvent) [high]</summary>
+    public const uint ControllerMenu_EventTable = 0x800E5698u;
+    /// <summary>12-byte {id,key,fn} dispatch table (PauseControllerMenu_HandleEvent) [high]</summary>
+    public const uint PauseControllerMenu_EventTable = 0x800E5710u;
+    /// <summary>trial menu (screen 9) page from TrialMenu_Open, freed by TrialMenu_Close [high]</summary>
+    public const uint TrialMenu_PagePtr = 0x800E5780u;
+    /// <summary>trial reset confirm (screen 0x1E) page malloc'd (20 bytes) by TrialResetConfirm_Open [high]</summary>
+    public const uint TrialResetConfirm_PagePtr = 0x800E5784u;
+    /// <summary>12-byte {id,key,fn} dispatch table (TrialMenu_HandleEvent) [high]</summary>
+    public const uint TrialMenu_EventTable = 0x800E5788u;
+    /// <summary>12-byte {id,key,fn} dispatch table (TrialResetConfirm_HandleEvent) [high]</summary>
+    public const uint TrialResetConfirm_EventTable = 0x800E57DCu;
+    /// <summary>trial results (screen 0x12) page from TrialResults_Open, freed by TrialResults_Close [high]</summary>
+    public const uint TrialResults_PagePtr = 0x800E5830u;
+    /// <summary>12-byte {id,key,fn} dispatch table (TrialResults_HandleEvent) [high]</summary>
+    public const uint TrialResults_EventTable = 0x800E5834u;
+    /// <summary>malloc(28) SoundMenu state: popup + sliders [high]</summary>
+    public const uint SoundMenu_StatePtr = 0x800E58A0u;
+    /// <summary>malloc(8) PauseSoundMenu state: two sliders [high]</summary>
+    public const uint PauseSoundMenu_StatePtr = 0x800E58A4u;
+    /// <summary>12-byte {id,key,fn} dispatch table (SoundMenu_HandleEvent) [high]</summary>
+    public const uint SoundMenu_EventTable = 0x800E58A8u;
+    /// <summary>12-byte {id,key,fn} dispatch table (PauseSoundMenu_HandleEvent) [high]</summary>
+    public const uint PauseSoundMenu_EventTable = 0x800E58FCu;
+    /// <summary>PressStart_Open mallocs 8 bytes (UI node 919, counter), Close frees it [high]</summary>
+    public const uint PressStart_StatePtr = 0x800E5950u;
+    /// <summary>12-byte {id,key,fn} dispatch table (PressStart_HandleEvent) [high]</summary>
+    public const uint PressStart_EventTable = 0x800E5954u;
+    /// <summary>loadout screen (8) page (0x1670) set by Loadout_Open, freed by Loadout_Close [high]</summary>
+    public const uint Loadout_PagePtr = 0x800E59E0u;
+    /// <summary>per-row (stride 76) table of UI node ids used by Loadout_* with UiTree_FindNode [medium]</summary>
+    public const uint Loadout_RowNodeIds = 0x800E5A1Au;
+    /// <summary>16-byte {weapon,icon,item,name*} choices (3 rows) for loadout slot 4; slots 0-1 use 0x800E5BC4, 2-3 use 0x800E5B44 (Loadout_SetSlotWeapon) [medium]</summary>
+    public const uint Loadout_Slot4WeaponTable = 0x800E5B14u;
+    /// <summary>16-byte {weapon,icon,item,name*} choices (8 rows) for loadout slots 2-3 (Loadout_SetSlotWeapon, Loadout_ApplyToPlayers) [medium]</summary>
+    public const uint Loadout_Slot23WeaponTable = 0x800E5B44u;
+    /// <summary>4-entry {id, icon, ...} weapon table (16 bytes each) for loadout slots 0/1; MissionTree_GetWeaponIconId searches it [medium]</summary>
+    public const uint Loadout_WeaponTableA = 0x800E5BC4u;
+    /// <summary>12-byte {key,sub,fn} dispatch table (Loadout_HandleEvent) [high]</summary>
+    public const uint Loadout_EventTable = 0x800E5C04u;
+    /// <summary>inline cursor/blink record (timer advanced by FrameTime, cur position) of the legacy cheat code entry field [medium]</summary>
+    public const uint LegacyCheats_CodeCursor = 0x800E5CA0u;
+    /// <summary>spinner 0..15 (init 5, shown as idx-5); indexes speed float table 0x00450854 (LegacyMenu_StepPlayerSpeed) [high]</summary>
+    public const uint LegacyMenu_PlayerSpeedIndex = 0x800E5E48u;
+    /// <summary>cached menu draw pass (-1 reset, 5 flat colour...) so MenuItem_Draw* switch modes only on change [medium]</summary>
+    public const uint Menu_CurrentDrawPass = 0x800E5E70u;
+    /// <summary>8 x 24-byte templates copied into each panel slot by MenuPanel_Init [medium]</summary>
+    public const uint MenuPanel_SlotTemplates = 0x800E5F72u;
+    /// <summary>music track number stepped by the 'music' select, label '%2d'/none, played by sound options open [high]</summary>
+    public const uint InGameMenu_MusicTrack = 0x800E63B8u;
+    /// <summary>inline array (24-byte records: blink timer, cursor, length, text at +0xC) of the per-player name edit buffers [medium]</summary>
+    public const uint NameEntry_EditFields = 0x800E63C0u;
+    /// <summary>OSMesgQueue created in DevLink_StartIoThread; completion queue for osPiStartDma in Bus_ReadBlockDma/WriteBlockDma [high]</summary>
+    public const uint DevLink_PiDmaMesgQueue = 0x800F6CC0u;
+    /// <summary>OSMesgQueue the DevLink I/O thread receives requests on [medium]</summary>
+    public const uint DevLink_RequestQueue = 0x800F6F40u;
+    /// <summary>OSMesgQueue requests reply to (IoReq.reply) for DevLink_Read/Write [medium]</summary>
+    public const uint DevLink_ReplyQueue = 0x800F7110u;
+    /// <summary>DevLink monitor byte set 255/0 by commands, packed with D_800F7450 into a bus word; monitor loop waits on it [low]</summary>
+    public const uint DevLink_Flag_800F7452 = 0x800F7452u;
+    /// <summary>Level_FindTagObjectives stores the entity with type id 3031; Player_UpdateState dispatches an event to it and clears it [medium]</summary>
+    public const uint Level_TagObjectiveEntityPtr = 0x800F7D08u;
+    /// <summary>[22 weapons][2 modes] x 28-byte fire pattern configs filled by Ai_LoadFireConfigs, used by Ai_UpdateFiring [high]</summary>
+    public const uint Ai_FireConfigTable = 0x800F7D20u;
+    /// <summary>22528-byte buffer: scene f80 points here (Scene_LoadLevelData), filled from save config unk60C in GameSave_Apply; excluded from restore checks [medium]</summary>
+    public const uint LevelPersistBuffer = 0x800FD1F0u;
+    /// <summary>inline vertex array of the team-mate marker filled and drawn by Player_DrawTeamMarker [high]</summary>
+    public const uint Player_TeamMarkerVtx = 0x801029F8u;
+    /// <summary>inline array of player profile records (400 bytes each): unlocks, lives, settings; Profile_Init/PlayerMenu_* [high]</summary>
+    public const uint ProfileTable = 0x80102B00u;
+    /// <summary>400-byte rows per character: health/ammo caps (Player_GetMaxHealth, Player_GetAmmoCapacity) [high]</summary>
+    public const uint CharacterClassTable = 0x80102B10u;
+    /// <summary>ProfileTable+0x4A: per-profile award/medal bit set (Bits_Test/Bits_Assign with stride 400) [medium]</summary>
+    public const uint Profile_AwardBits = 0x80102B4Au;
+    /// <summary>per-player s32 counts; Results/TrialResults compute accuracy = 0x80102AE0[i]*100/this[i]; zeroed in Player_InitSlot [medium]</summary>
+    public const uint Stats_ShotsFiredTable = 0x80103140u;
+    /// <summary>inline vertex array of the laser beam filled and drawn by Player_DrawLaserBeamWorld [high]</summary>
+    public const uint Player_LaserBeamVtx = 0x801031B0u;
+    /// <summary>AABB (6 floats) = union of the views' bbB set by View_UpdateLayout; actors/particles/pickups outside it are not updated [medium]</summary>
+    public const uint View_UpdateBounds = 0x801031F0u;
+    /// <summary>second AABB (6 floats, right after View_UpdateBounds) = union of the views' bbA, written only by View_UpdateLayout [low]</summary>
+    public const uint View_BoundsA_80103208 = 0x80103208u;
+    /// <summary>float set to 30 or constants, decremented by frame time in View_UpdateAll / camera approach [low]</summary>
+    public const uint View_Timer_80103224 = 0x80103224u;
+    /// <summary>resource pager block (counters, TLB slots, page slots, queues) cleared/built by Resource_InitPager [high]</summary>
+    public const uint Pager = 0x80103230u;
+    /// <summary>16-byte page nodes with tlb index (Resource_MapPage, Resource_AllocTlbIndex) [medium]</summary>
+    public const uint Resource_PageTable = 0x80103B50u;
+    /// <summary>Pager+0xBF0: head/tail list of mapped pages (push/unlink), oldest stolen by Resource_StealOldestPage [medium]</summary>
+    public const uint Pager_PageLru = 0x80103E20u;
+    /// <summary>Pager+0xCF8: per-TLB-index pair of page node ids (0xFF = free) used by Resource_MapPage/Resource_UnmapPage [medium]</summary>
+    public const uint Pager_TlbSlots = 0x80103F28u;
+    /// <summary>resource manager block (hash buckets, nodes, lock queue +0x11D0) initialised by Resource_InitManager [high]</summary>
+    public const uint ResourceMgr = 0x80103F70u;
+    /// <summary>pointer to the collision contact record filled by Collision_RecordContact, cleared by Collision_ClearContacts [medium]</summary>
+    public const uint Collision_ContactPtr = 0x80103FCCu;
+    /// <summary>bss hit-result buffer passed to Collision_RayCast/MoveActor by the line-of-sight and aiming checks [medium]</summary>
+    public const uint Collision_LosResult = 0x80103FD0u;
+    /// <summary>bss hit-result buffer passed to Collision_RayCast/MoveActor by probe/move/flyby camera checks [medium]</summary>
+    public const uint Collision_ProbeResult = 0x80104030u;
+    /// <summary>collision context passed to Collision_MoveActor by Actor_TryMove/SlideToXZ [medium]</summary>
+    public const uint Collision_MoveCtx = 0x801040D0u;
+    /// <summary>inline contact slots (160 bytes; first word = hit object) checked after moves for the last collision object [medium]</summary>
+    public const uint Collision_Contacts = 0x801041F0u;
+    /// <summary>B18GPos {pos, normal at +0xF0} of last hit; read by particle hit handlers/Decal_Spawn [medium]</summary>
+    public const uint Collision_HitInfo = 0x801041F8u;
+    /// <summary>bss struct (Vec3f first) passed as position to Event_Send/Effect_SpawnFromTemplates/Audio_PlaySound on particle floor/ceiling hits [medium]</summary>
+    public const uint Particle_HitResult = 0x801042A8u;
+    /// <summary>Collision_HitInfo+0xD0: 12-byte vector copied by Particle_OnHit*/SpawnEffect* [medium]</summary>
+    public const uint Collision_HitInfo_Vec_D0 = 0x801042C8u;
+    /// <summary>s32 flag word [0]; bit 0x100000 set when looking steeply down while swimming (Player_UpdateSurfaceSwimState), cleared in PlayerState_EnterState09 [low]</summary>
+    public const uint PlayerFlags_80104418 = 0x80104418u;
+    /// <summary>list head (second list at +20) for List_MoveToHead/List_Remove of cached resource nodes [medium]</summary>
+    public const uint Resource_LruList = 0x80104570u;
+    /// <summary>2 linked lists (20 bytes each: [0] free, [1] in use) of resource request nodes (Resource_TryAllocRequest/FreeNodeRequest) [high]</summary>
+    public const uint Resource_RequestLists = 0x801050F8u;
+    /// <summary>Pool struct: count of free nodes popped/pushed by the resource node allocator [medium]</summary>
+    public const uint Resource_NodePool = 0x8010513Cu;
+    /// <summary>ResourceMgr+0x11D0 OSMesgQueue used as the resource pool mutex (osRecvMesg/osSendMesg) [high]</summary>
+    public const uint ResourceMgr_LockQueue = 0x80105140u;
+    /// <summary>ResourceMgr+0x11EC recursive lock counter: ++ == 1 takes the queue, -- == 0 releases it [high]</summary>
+    public const uint ResourceMgr_LockDepth = 0x8010515Cu;
+    /// <summary>pointer to 16-byte hash buckets indexed by (hash &amp; mask 0x80105190) [high]</summary>
+    public const uint AddrHash_BucketsPtr = 0x80105194u;
+    /// <summary>heap for resource manager (Heap_Init in Game_InitMemoryServices, Heap_Alloc) [high]</summary>
+    public const uint Resource_Heap = 0x801051A0u;
+    /// <summary>ROM DMA manager passed to RomDma_Init/ReadSync/ReadAsync [high]</summary>
+    public const uint RomDma_Ctl = 0x801051B8u;
+    /// <summary>MsgPort created with 3 slots in Game_InitMemoryServices, read by Resource_LoaderThreadMain, flushed by Menu_FlushResources [medium]</summary>
+    public const uint ResourceLoader_Port = 0x8010A248u;
+    /// <summary>array of 20-byte DMA buffer entries linked into a list by AudioMgr_Init / AudioMgr_DmaNew [medium]</summary>
+    public const uint AudioMgr_DmaBuffers = 0x8010B928u;
+    /// <summary>DMA state {inited byte, count +4, list head +8 = 8010B928} used by AudioMgr_DmaNew [medium]</summary>
+    public const uint AudioMgr_DmaState = 0x8010BDF0u;
+    /// <summary>{first,last} list of audio DMA buffers walked by AudioMgr_DmaProc/ClearDma [medium]</summary>
+    public const uint AudioMgr_DmaList = 0x8010BDF4u;
+    /// <summary>head of the audio DMA buffer linked list (B12DbEnt.next), walked by Audio_DmaCacheLoad [high]</summary>
+    public const uint AudioMgr_DmaCacheList = 0x8010BDFCu;
+    /// <summary>audio thread OSMesgQueue: scheduler client queue and event mesg target (AudioMgr_Init) [high]</summary>
+    public const uint AudioMgr_MesgQueue = 0x8010BE00u;
+    /// <summary>samples per audio frame (rate * frame period, rounded up to 16) computed in AudioMgr_Init [high]</summary>
+    public const uint AudioMgr_FrameSamples = 0x8010BE98u;
+    /// <summary>global sound manager struct passed to Sound_Init/Sound_Play by every Audio_* wrapper [high]</summary>
+    public const uint SoundMgr = 0x8010C080u;
+    /// <summary>float lower bound used by Math_LerpScalar to dequantise channel values; set per track by AnimCodec_InitCubicTrack [medium]</summary>
+    public const uint AnimCodec_QuantRangeMin = 0x8010EC7Cu;
+    /// <summary>float upper bound paired with 0x8010EC7C for dequantising channel values [medium]</summary>
+    public const uint AnimCodec_QuantRangeMax = 0x8010EC80u;
+    /// <summary>rumble manager struct passed to Rumble_* (ClearAll, RemoveFinished, GetIntensityAt) [high]</summary>
+    public const uint Rumble_Mgr = 0x8010EC90u;
+    /// <summary>pad record combining the four pads on every read (buttons ORed, sticks summed), latched by Pad_LatchAll [high]</summary>
+    public const uint Pad_Combined = 0x8010F0E0u;
+    /// <summary>pressed-button mask (bit 0x1000 START) tested and cleared by credits/attract state exit functions [medium]</summary>
+    public const uint Pad_PressedButtons = 0x8010F194u;
+    /// <summary>inline array of the 4 controller pad records (548 bytes each) latched/polled by Pad_* [high]</summary>
+    public const uint Pad_Slots = 0x8010F328u;
+    /// <summary>u8 SI request in flight (0 read data, 1 pak op, 2 idle) switched on by Pad_ReadController and CPak_* [medium]</summary>
+    public const uint Pad_SiPendingOp = 0x8010FBB8u;
+    /// <summary>OSMesgQueue (1 slot) used as the controller lock by Pad_TryAcquire/Pad_PollAll [high]</summary>
+    public const uint Pad_LockQueue = 0x8010FBC0u;
+    /// <summary>OSContStatus[4] filled by osContGetQuery/osContReset; per-port pak flags [high]</summary>
+    public const uint Pad_ContStatus = 0x8010FBE0u;
+    /// <summary>s32[4] per-port pak inserted/changed flags set by Pad_UpdatePakInsertion, consumed by Pad_TakePakChanged [high]</summary>
+    public const uint Pad_PakChangedFlags = 0x8010FBF0u;
+    /// <summary>OSMesgQueue for SI events (osContReset/StartReadData/recv) [high]</summary>
+    public const uint Pad_SiMesgQueue = 0x8010FC00u;
+    /// <summary>1072-byte block saved/restored by Level_SavePlayersForRestart / RestorePlayersAfterRestart [high]</summary>
+    public const uint Level_RestartState = 0x8010FC40u;
+    /// <summary>32-bit bit-reader word loaded byte by byte in Audio_DecodeAdpcmChannels (bit count at +4) [medium]</summary>
+    public const uint Adpcm_BitBuf = 0x80110070u;
+    /// <summary>32-bit little-endian word assembled from bytes in Audio_DecodeAdpcmChannels [medium]</summary>
+    public const uint Audio_AdpcmWord = 0x8011007Cu;
+    /// <summary>16-byte Vtx array of point lights written by Light_EmitPointLights [medium]</summary>
+    public const uint Light_PointVtxBuffer = 0x80110160u;
+    /// <summary>index offset into Light_PointVtxBuffer (+8 per light, swapped by Light_SwapPointLightBuffers) [medium]</summary>
+    public const uint Light_PointVtxOffset = 0x80110560u;
+    /// <summary>tail node of the sorted model batch list (head 0x80110628); ModelBatch_Flush walks it backwards via prv [medium]</summary>
+    public const uint ModelBatch_ListTail = 0x8011062Cu;
+    /// <summary>current display-list write pointer, advanced by 8 for every Gfx command [high]</summary>
+    public const uint DisplayListPtr = 0x80110634u;
+    /// <summary>number of queued batch entries (max 32, entries at 0x801157D8) [high]</summary>
+    public const uint ModelBatch_QueueCount = 0x80110640u;
+    /// <summary>tail of the second batch list (head 0x8011063C) for parts with flags&amp;0x700; flushed after the main list [medium]</summary>
+    public const uint ModelBatch_FlaggedListTail = 0x80110644u;
+    /// <summary>model last queued (ModelBatch_QueueInstance compares with p and key 0x80110624 to reuse the batch) [medium]</summary>
+    public const uint ModelBatch_CurrentModelPtr = 0x8011064Cu;
+    /// <summary>number of queued instances (max 256) in the array at 801153D8; cleared by Model_ClearBatchQueue [high]</summary>
+    public const uint ModelBatch_Count = 0x801153D0u;
+    /// <summary>LCG state: s = s*0xA8496AD3 + 0x5835902D (Random_Next, Random_Seed) [high]</summary>
+    public const uint Random_State = 0x80115DE4u;
+    /// <summary>LCG state of Random_NextAlt (x*2823445331+1479838765), seeded by Random_Seed [high]</summary>
+    public const uint Random_AltSeed = 0x80115DE8u;
+    /// <summary>float scratch holding sinf(half angle) while building quaternions (Quat_From*/Actor_Get*Quat) [medium]</summary>
+    public const uint Quat_SinScratch = 0x80115DECu;
+    /// <summary>Vec3f result of Collision_GetCeilingNormal (default up, cross products) [medium]</summary>
+    public const uint Collision_CeilingNormal = 0x80115DF0u;
+    /// <summary>Vec3f result buffer filled by Collision_GetCeilingUnitNormal (default 0,1,0); Collision_CeilingNormal (0x80115DF0) is the non-normalised one [high]</summary>
+    public const uint Collision_CeilingUnitNormal = 0x80115E00u;
+    /// <summary>Vec3f scratch: cached (v1-v0)x(v2-v1) face normal of Collision_GetFloorNormal and the tri helpers [medium]</summary>
+    public const uint Collision_FaceNormal = 0x80115E10u;
+    /// <summary>Vec3f result of Collision_GetFloorUnitNormal (default up, normalised) [medium]</summary>
+    public const uint Collision_FloorUnitNormal = 0x80115E20u;
+    /// <summary>accumulated RSP task time in ms (osGetTime delta) in Sched_HandleSpDone; copied to 0x800D29A0 and reset in Sched_StartTasks [medium]</summary>
+    public const uint Sched_SpTaskTimeMs = 0x8011F298u;
+    /// <summary>object def (kind 8) given to spawned pickups when mode flag D_801462E5 is set, else 8011F448 [low]</summary>
+    public const uint PickupPool_AltDef_8011F2C0 = 0x8011F2C0u;
+    /// <summary>default object def assigned to pickups by PickupPool_Spawn / Pickup_InitFromRecord [medium]</summary>
+    public const uint PickupPool_PickupDef = 0x8011F448u;
+    /// <summary>current credits text line index; incremented by State_UpdateCreditsScroll, zeroed in State_CreditsInit [medium]</summary>
+    public const uint Credits_LineIndex = 0x8011FAB0u;
+    /// <summary>the game object passed to Game_FadeToLevel/Game_FadeOutToState/Match_Reset and the boot thread (contains LevelMgr, PlayerPool, Settings) [high]</summary>
+    public const uint GameCtx = 0x8011FAC0u;
+    /// <summary>pointer to current frame gfx context (-&gt;start of display list) [high]</summary>
+    public const uint Gfx_FrameCtxPtr = 0x8011FE80u;
+    /// <summary>level object (GameCtx+0x3C8) passed to Level_Load/Level_FindDefinition/Level_FindTypeIndexById [high]</summary>
+    public const uint LevelMgr = 0x8011FE88u;
+    /// <summary>save data size; game save block is this + 0x610 bytes (GameSave_GetBufferSize, pak free-page checks) [medium]</summary>
+    public const uint GameSave_DataSize = 0x8011FECCu;
+    /// <summary>pointer to the flyby index table (count+1 first word) searched by Flyby_QueueBy* [medium]</summary>
+    public const uint Flyby_IndexTablePtr = 0x8011FEFCu;
+    /// <summary>effect/particle manager passed to Effect_SpawnFromTemplates and Particle_* functions [high]</summary>
+    public const uint EffectMgr = 0x80121990u;
+    /// <summary>light pool passed to Light_Acquire/Light_Release (player flashlights, particle lights) [high]</summary>
+    public const uint Light_Pool = 0x8013B1A8u;
+    /// <summary>described as a debug flag; gates EffectPool_Acquire, non-player damage in Damage_IsHostile, AI targeting [low]</summary>
+    public const uint Game_Flag_8013B290 = 0x8013B290u;
+    /// <summary>never written by game code; when nonzero suppresses damage, ammo drain, loop sounds, rumble, particle time scaling [low]</summary>
+    public const uint Debug_Freeze_8013B29C = 0x8013B29Cu;
+    /// <summary>placed object id found by Level_FindNearestPlacedObject on level load (Flyby); player restart uses it (999 = none) [medium]</summary>
+    public const uint Level_StartPointId = 0x8013B2BCu;
+    /// <summary>B16Env colour/environment block filled by Model_DrawColorOverlay/GoldTinted, passed to Model_DrawGroups [medium]</summary>
+    public const uint Model_DrawEnv = 0x8013B2D8u;
+    /// <summary>AI path-node graph base used by AiNav_*/Ai_Pick*Node route planning [medium]</summary>
+    public const uint AiNavGraph = 0x8013B364u;
+    /// <summary>s32 array of colour words set by Text_SetColors [high]</summary>
+    public const uint Text_Colors = 0x8013B858u;
+    /// <summary>int[2] text style values (1 or 2, or entry b14) set beside colours 8013B858 and scale 8013B870 before text draws [low]</summary>
+    public const uint Text_Style_8013B878 = 0x8013B878u;
+    /// <summary>trail/decal manager passed to Trail_Attach/DetachOwner and Decal_Spawn [medium]</summary>
+    public const uint Fx_TrailMgr = 0x8013BA80u;
+    /// <summary>player pool (count, players 5864 bytes each) passed to Player_InitPool/Player_GetIndex/Match_Find*Player [high]</summary>
+    public const uint PlayerPool = 0x80145040u;
+    /// <summary>number of players; loops in Level_SpawnActors/Player_Respawn [medium]</summary>
+    public const uint PlayerCount = 0x80145048u;
+    /// <summary>first player (linked through -&gt;next) used by Player_FindByPawn and proximity scans [high]</summary>
+    public const uint PlayerListHead = 0x80145060u;
+    /// <summary>PlayerPool+0x48 sub-block receiving camera shakes (CameraShake_Add) and HUD messages (Hud_PostMessage) [medium]</summary>
+    public const uint ViewMgr = 0x80145088u;
+    /// <summary>pointer to the first camera; Level_StreamVisibleCells/Event_ScreenFlash walk the list, Video sets viewport size [medium]</summary>
+    public const uint Camera_ListHead = 0x801450A8u;
+    /// <summary>number of viewports (HudValues.ViewCount); weapon barrel/fire effects only when ==1 [medium]</summary>
+    public const uint ViewCount = 0x801450B8u;
+    /// <summary>inline main camera/view object (matrix at +0x160, display list +0x380); used for menu models, wipes and as default target [medium]</summary>
+    public const uint Camera_MainView = 0x801450C8u;
+    /// <summary>PlayerPool+0x5DC list of global (non-player) menu panels for MenuPanel_Open/MenuPanel_CountOpen [medium]</summary>
+    public const uint MenuPanel_SharedList = 0x8014561Cu;
+    /// <summary>base of the settings/match-config block (flags, cheats +4, mode +0xD, game speed +0x20, limits +0x24..) [high]</summary>
+    public const uint Settings = 0x801462C8u;
+    /// <summary>Settings+4: unlocked cheat mask; the legacy cheat list enables an item when its bit is set here [medium]</summary>
+    public const uint Settings_UnlockedCheats = 0x801462CCu;
+    /// <summary>Settings+0x08: difficulty bits (8/32) set by InGameMenu_OnDifficultySelect, used for actor lists [high]</summary>
+    public const uint Settings_DifficultyMask = 0x801462D0u;
+    /// <summary>Settings+0xD byte: 0 custom match, 1..4 trial/mission modes (per-mode arena bit sets, handicap in mode 1) [medium]</summary>
+    public const uint Settings_GameMode = 0x801462D5u;
+    /// <summary>u16 setting (&gt;&gt;4 shown as 'opacity' clear/opaque/%02d), stepped by InGameMenu_OnOpacitySelect; settings block 801462C8+0x14 [high]</summary>
+    public const uint Settings_Opacity = 0x801462DCu;
+    /// <summary>Settings+0x18 byte volume edited by SoundMenu/PauseSoundMenu sliders [high]</summary>
+    public const uint Settings_MusicVolume = 0x801462E0u;
+    /// <summary>u8 volume 0..255 stepped by 8 in InGameMenu_OnSfxVolumeSelect; Sound_Init scales it (neighbours at -1/+1 are the other volumes) [medium]</summary>
+    public const uint Settings_SfxVolume = 0x801462E1u;
+    /// <summary>byte 0..2 'blood color' setting (801462C8+0x1B); particle blend mode uses value 2 [high]</summary>
+    public const uint Settings_BloodColor = 0x801462E3u;
+    /// <summary>Settings+0x1D byte: set 1 by LegacyMenu_OnMulti/MatchSetup (max players at +0x1E), 0 in single player [medium]</summary>
+    public const uint Settings_IsMultiplayer = 0x801462E5u;
+    /// <summary>Settings+0x3A: default player control-settings record used when a menu page has no player [medium]</summary>
+    public const uint Settings_DefaultPlayerRecord = 0x80146302u;
+    /// <summary>Settings+0xD0: inline array of 8 player setup records (150 bytes; +0x78 active) [high]</summary>
+    public const uint Settings_PlayerRecords = 0x80146398u;
+    /// <summary>byte at settings 801462C8+0x580, copied from D_800E28DB on resolution change, preserved by GameSave_Apply [medium]</summary>
+    public const uint Settings_ResolutionMode = 0x80146848u;
     /// <summary>the game state id (State_* table D_800D29D8 index): 8 attract demo, 13 in-level play, 20 transition [high]</summary>
     public const uint GameState = 0x80146878u;
+    /// <summary>all Audio_Play* functions do nothing while it is nonzero [high]</summary>
+    public const uint Audio_SoundDisabled = 0x80146890u;
+    /// <summary>GameCtx+0x26DD4 (Settings+0x5CC): set 1 by PauseMenu_Open/Results_Open, 0 on resume; stops the clock/effects/loop sounds [high]</summary>
+    public const uint GamePaused = 0x80146894u;
+    /// <summary>Settings+0x5D8 match rule block (kill limit +0x58, flag/tag rule bits +0x78..) read by Match_*/Ai_* code [medium]</summary>
+    public const uint Settings_MatchRules = 0x801468A0u;
+    /// <summary>non-zero = team match; Turret/Ai targeting skips actors of the same team (stats.unk92); set by TeamMenu [high]</summary>
+    public const uint TeamPlayEnabled = 0x801468C4u;
+    /// <summary>Settings_MatchRules+0x54: Frag Tag monkey mode on; gates stats+0x8F monkey handling and the 'you tagged' label [medium]</summary>
+    public const uint Settings_MonkeyTagMode = 0x801468F4u;
+    /// <summary>match flag (801468A0+0x78): monkey role (stats+0x8F) drawing/handing, AI objective; cleared by results [medium]</summary>
+    public const uint Match_MonkeyTagMode = 0x80146918u;
+    /// <summary>match flag (801468A0+0x98): frag-tag priority (stats+0x94) in AI sight, end reason, character class/max health [medium]</summary>
+    public const uint Match_FragTagMode = 0x80146938u;
+    /// <summary>set to 1 by AttractDemo_Setup/State_DemoInit; frontend idle and rumble check it [high]</summary>
+    public const uint Demo_Active = 0x8014694Cu;
+    /// <summary>Start during credits sets it (skip to end), credits init clears it [high]</summary>
+    public const uint Credits_SkipRequested = 0x80146958u;
+    /// <summary>main scheduler created by Sched_Create; clients added and tasks submitted to it [high]</summary>
+    public const uint Sched_Main = 0x801469E8u;
+    /// <summary>set 1 when Start skips the boot pak check or it errors; returned by PakMenu_PollStartSkip [medium]</summary>
+    public const uint PakMenu_BootCheckSkipped = 0x80146D60u;
+    /// <summary>float counting down by frame time in State_CreditsUpdate; reset to 67.5 / const when it reaches 0 [medium]</summary>
+    public const uint Credits_ScrollTimer = 0x80146D74u;
+    /// <summary>float credits scroll position decremented each frame by State_UpdateCreditsScroll [high]</summary>
+    public const uint Credits_ScrollY = 0x8014AD78u;
+    /// <summary>incremented after osViSwapBuffer, cleared on retrace in Sched_HandleRetrace; DP-done swaps only when 0 [medium]</summary>
+    public const uint Sched_FbSwapPending = 0x8014AD88u;
+    /// <summary>frames queued for display: incremented in Sched_HandleDpDone, decremented on osViSwapBuffer in Sched_HandleRetrace [medium]</summary>
+    public const uint Sched_PendingSwapCount = 0x8014AD90u;
+    /// <summary>cleared to 0 at every boot pak check exit (State_BootInit, PakMenu_UpdateBootCheck) [low]</summary>
+    public const uint PakMenu_BootCheckBusy_8014AD94 = 0x8014AD94u;
+    /// <summary>set 1 when the boot controller-pak check passes, 0 on error; PakMenu_UpdateBootCheck then sets 0x8014ADA0 [medium]</summary>
+    public const uint PakMenu_BootCheckOk = 0x8014AD9Cu;
+    /// <summary>set 1 when the boot pak check dialogs finish; State_BootUpdate waits on it (PakMenu_BootCheckDone 0x800E28CC is the check itself) [medium]</summary>
+    public const uint PakMenu_BootDialogsDone = 0x8014ADA0u;
+    /// <summary>art-send block start; active flag byte cleared by Artsend_Init, read by Artsend_IsActive [high]</summary>
+    public const uint Artsend_Active = 0x8014AEB0u;
+    /// <summary>texture count (= *D_8011FED8) set by Artsend_Init; next/prev texture wraps modulo it; buffers follow at +0x24 [medium]</summary>
+    public const uint Artsend_TextureCount = 0x8014AEB8u;
+    /// <summary>current art-send texture index stepped by Artsend_Next/Prev and loaded by Artsend_LoadTexture [high]</summary>
+    public const uint Artsend_TextureIndex = 0x8014AEBCu;
+    /// <summary>frame index stepped by Artsend_NextFrame/PrevFrame (dirty flag at +4) [high]</summary>
+    public const uint Artsend_FrameIndex = 0x8014AEC0u;
+    /// <summary>artsend debug block: [0] non-zero disables overrides (set by Frontend_GetButtonMask), [0x868] frame counter for blink [low]</summary>
+    public const uint Artsend_State_8014AEC8 = 0x8014AEC8u;
+    /// <summary>resource handle of artsend override texture; unref'd and zeroed on release [medium]</summary>
+    public const uint Artsend_TextureRes = 0x8014AECCu;
+    /// <summary>pointer to the art-send texture header (width/height/bpp bytes) read by Artsend_Get* [medium]</summary>
+    public const uint Artsend_TexturePtr = 0x8014AED0u;
+    /// <summary>override image pointer returned by Artsend_GetImage, set by Artsend_LoadTexture [high]</summary>
+    public const uint Artsend_ImagePtr = 0x8014AED4u;
+    /// <summary>override palette pointer returned by Artsend_GetPalette, set by Artsend_LoadTexture [high]</summary>
+    public const uint Artsend_PalettePtr = 0x8014AED8u;
+    /// <summary>pointer to the menu manager (0x544) allocated by Menu_Init, used by every Menu_* function [high]</summary>
+    public const uint MenuMgrPtr = 0x8014D080u;
+    /// <summary>Menu_GotoScreen stores the new screen definition's unk44 (initial focus) here and later compares it [medium]</summary>
+    public const uint Menu_ScreenDefaultFocus = 0x8014D090u;
+    /// <summary>pointer to menu input state (fn hook at +0, button bitset at +0xC04) [medium]</summary>
+    public const uint MenuInput_StatePtr = 0x8014D0B0u;
+    /// <summary>BSD qsort global qsz (element size) used by Sort_Quick/Sort_QuickRecurse (thresh/mthresh/qcmp follow) [high]</summary>
+    public const uint Qsort_ElemSize = 0x8014D0C0u;
+    /// <summary>decomp #define thresh; = 0x8014D0C0 (qsz) * 4, recursion cut-off in Sort_QuickRecurse [high]</summary>
+    public const uint Sort_QuickThresholdBytes = 0x8014D0C4u;
+    /// <summary>qsort comparison function pointer called by Sort_QuickRecurse (element size at 8014D0C0) [high]</summary>
+    public const uint Sort_CompareFn = 0x8014D0CCu;
+    /// <summary>index into the mark stack 0x8014D2E0; ScratchHeap_PushMark ++ and saves 0x8014D328, FrameAlloc_PopMark -- [high]</summary>
+    public const uint ScratchHeap_MarkDepth = 0x8014D320u;
+    /// <summary>font id 0/1/2 set by Text_BeginFontPass, texture loaders and credits text [medium]</summary>
+    public const uint Text_FontId = 0x8014D3D0u;
+    /// <summary>shadow byte of the debug-port interrupt-enable bits, set bit by bit by dbgPortSetInt* [medium]</summary>
+    public const uint DbgPort_IntEnable = 0x8014D3E1u;
+    /// <summary>shadow byte of debug port FIFO control register (rx reset bit1, trigger bit6) [medium]</summary>
+    public const uint DbgPort_FifoCtlShadow = 0x8014D3E2u;
+    /// <summary>shadow byte of debug port line format/parity register [medium]</summary>
+    public const uint DbgPort_LineCtlShadow = 0x8014D3E3u;
+    /// <summary>debug link error/abort flag cleared at reset, checked after every dbgHost*/dbgLink* step [medium]</summary>
+    public const uint DbgLink_Error = 0x8014D3E8u;
+    /// <summary>libultra controller count, loop bound in __osContGetInitData/__osPack* [high]</summary>
+    public const uint __osMaxControllers = 0x8014D46Cu;
+    /// <summary>OSPifRam buffer filled by __osPackRequestData/ReadData/ResetData [high]</summary>
+    public const uint __osContPifRam = 0x8014D470u;
+    /// <summary>libultra last PIF command byte set by __osContRamRead/Write, osMotorStart/Stop [high]</summary>
+    public const uint __osContLastCmd = 0x8014D4B0u;
+    /// <summary>libultra OSPiHandle set up by osCartRomInit [high]</summary>
+    public const uint __CartRomHandle = 0x8014E950u;
+    /// <summary>libultra OSPiHandle set up by osDriveRomInit [high]</summary>
+    public const uint __DriveRomHandle = 0x8014E9D0u;
+    /// <summary>OSPiHandle pointer used by __osLeoInterrupt/__osLeoAbnormalResume, set by osDriveRomInit [medium]</summary>
+    public const uint __osDiskHandle = 0x8014EA44u;
+    /// <summary>libultra __osPiAccessQueue (osCreateMesgQueue in __osPiCreateAccessQueue; __osPiGetAccess/RelAccess) [high]</summary>
+    public const uint PiAccessQueue = 0x8014EA58u;
+    /// <summary>u16 retrace countdown in the VI manager thread (viMgrMain static retrace) [medium]</summary>
+    public const uint ViMgr_Retrace = 0x8014EAD0u;
+    /// <summary>libultra __osTimerCounter: osGetCount snapshot in __osSetTimerIntr, used for elapsed time in __osTimerInterrupt [high]</summary>
+    public const uint TimerCounter = 0x8014FE30u;
+    /// <summary>current 16-bit word of the adec bit reader (adecReadBits) [medium]</summary>
+    public const uint Adec_BitWord = 0x80151090u;
+    /// <summary>AdecStream state passed to adecDecodeFrame/adecImdctFrame by adecNextFrame/adecStreamOpen [high]</summary>
+    public const uint Adec_Stream = 0x80151CC8u;
+    /// <summary>per-pad accessory type array (2 rumble pak, 3 controller pak) set by CPak_DetectPort [high]</summary>
+    public const uint CPak_Accessory = 0x801534F0u;
+    /// <summary>per-pad controller pak status codes (0 ok, -2, -5..) returned by CPak_GetStatus [high]</summary>
+    public const uint CPak_Status = 0x80153500u;
+    /// <summary>OSPfs[4] (104 bytes each) per controller port used by all CPak_* osPfs calls [high]</summary>
+    public const uint CPak_PfsArray = 0x80153510u;
+    /// <summary>1 = player note load, 0 = delete; chooses note prompts/titles and yes/no actions [medium]</summary>
+    public const uint PakMenu_NoteLoadMode = 0x80153730u;
+    /// <summary>1 in PakMenu_OpenRepairFailed, 0 in PakMenu_OpenRepairPrompt; selects repair dialog text lines [high]</summary>
+    public const uint PakMenu_RepairFailed = 0x80153734u;
+    /// <summary>pak note buffer of the player save record captured by GameSave_CapturePlayerRecord (CRC'd) and restored on load [high]</summary>
+    public const uint PakSave_PlayerRecord = 0x80153738u;
+    /// <summary>set 1 by PakMenu_OpenSavePlayer, 0 by OpenLoadPlayer/OpenBootCheck; selects messages [medium]</summary>
+    public const uint PakMenu_IsSaving = 0x80153750u;
+    /// <summary>1 while the pak menu runs the boot check (PakMenu_OpenBootCheck), 0 for in-game load/save; selects PakMenu_BootPad as pad [medium]</summary>
+    public const uint PakMenu_BootMode = 0x8015375Cu;
+    /// <summary>set 1 by PakMenu_OpenLoadPlayer, 0 by OpenSavePlayer/OpenBootCheck [medium]</summary>
+    public const uint PakMenu_IsLoading = 0x80153760u;
+    /// <summary>set 1 in PakMenu_UpdateRepairDialog when the pak was changed and re-checks OK; returned, cleared when dialog opens [medium]</summary>
+    public const uint PakMenu_RepairPakChanged = 0x80153768u;
+    /// <summary>set 1 by PakMenu_OpenConfirm* dialogs, cleared/returned by PakMenu_UpdateConfirmDialog [medium]</summary>
+    public const uint PakMenu_ConfirmOpen = 0x80153770u;
+    /// <summary>1 in PakMenu_OpenForeignNoteDelete, 0 for own player note load/delete; picks prompt/title text [high]</summary>
+    public const uint PakMenu_NoteIsForeign = 0x80153774u;
+    /// <summary>0..4 set by PakMenu_OpenConfirm*; switched on by FormatConfirmLine*/OnConfirmYes [high]</summary>
+    public const uint PakMenu_ConfirmKind = 0x80153778u;
+    /// <summary>1 for player-note save/load, 0 for boot check/game note; selects messages [medium]</summary>
+    public const uint PakMenu_IsPlayerNote = 0x8015377Cu;
+    /// <summary>1 in PakMenu_OpenGameNoteLoad, 0 in OpenGameNoteDelete; PakMenu_OnGameNoteYes loads when set [high]</summary>
+    public const uint PakMenu_GameNoteIsLoad = 0x80153780u;
+    /// <summary>set 1 when the pak screen opens an error/message panel instead of the note list, 0 on open; gates the note refresh [medium]</summary>
+    public const uint PakMenu_MessageOpen = 0x80153784u;
+    /// <summary>id of the pak message box shown (PakMenu_OpenMsg*), read by the message label/ok handlers [high]</summary>
+    public const uint PakMenu_MessageId = 0x80153788u;
+    /// <summary>number of pending glyph batches (24-byte entries at 0x80153820) flushed by UiText_FlushGlyphBatches [medium]</summary>
+    public const uint UiText_BatchCount = 0x80153800u;
+    /// <summary>clip rect {a,b,c,d} of the glyph batch; reset to the full screen, passed to Ui_SetClipRect [medium]</summary>
+    public const uint UiText_BatchClip = 0x80153810u;
+    /// <summary>array of 24-byte {items,count,...} UI draw batches walked by UiText_FlushGlyphBatches / UiNode_Draw* [medium]</summary>
+    public const uint UiDraw_BatchTable = 0x80153820u;
+    /// <summary>archive context block (0x2A8: file handle, buffers) cleared by Image_InitArchives, closed by Image_CloseArchives [high]</summary>
+    public const uint Image_ArchiveCtx = 0x801539B0u;
+    /// <summary>s16 archive image count (S_v n/mode) looped over by Image_* release/preload [medium]</summary>
+    public const uint Image_ArchiveCount = 0x80153C0Cu;
+    /// <summary>pointer to 28-byte image entries (flags, bitmap, w/h) used by Image_* [high]</summary>
+    public const uint Image_EntryTablePtr = 0x80153C10u;
+    /// <summary>pointer to 8-byte usage records {.., expiry} per image (Image_EvictExpired) [high]</summary>
+    public const uint Image_UsageTablePtr = 0x80153C18u;
+    /// <summary>font pool header: s16 font count (UiFont_GetCount) and entries pointer of 1180-byte font records [medium]</summary>
+    public const uint UiFont_Pool = 0x80153C20u;
+    /// <summary>pointer to the array of 1180-byte font records (UiFont_Get, glyph textures +0x484/+0x488) [medium]</summary>
+    public const uint UiFont_TablePtr = 0x80153C28u;
+    /// <summary>pointer to the 12-byte loaded-screen records (layout pointer, size, offset) of UiScreen_Load/UiScreen_GetData [high]</summary>
+    public const uint UiScreen_TablePtr = 0x80153C44u;
+    /// <summary>pointer to per-screen 12-byte {p, ?, cnt} entries holding pristine layout copies (UiScreen_Load/Release) [medium]</summary>
+    public const uint UiScreen_PristineCopiesPtr = 0x80153C48u;
+    /// <summary>pointer to u16 per-screen flags (bit 1 set by UiTree_Relocate, checked by UiScreen_FreeAll) [medium]</summary>
+    public const uint UiScreen_FlagsPtr = 0x80153C4Cu;
+    /// <summary>pointer to u16 per-screen reference counts inc/dec by UiScreen_Load/Release [medium]</summary>
+    public const uint UiScreen_RefCountsPtr = 0x80153C50u;
+    /// <summary>current pixel index used by Image_Read* (source ptr 0x80153C64, value 0x80153C68) [medium]</summary>
+    public const uint Image_ReadPixelIndex = 0x80153C60u;
+    /// <summary>source pixel/palette pointer set by Image_BindSurfaces, read by Image_ReadColor16/24/32 [medium]</summary>
+    public const uint Image_SrcPixelsPtr = 0x80153C64u;
+    /// <summary>destination pixel index used by Image_WriteColor16/24/32 and Image_SetPaletteColor [medium]</summary>
+    public const uint Image_DstIndex = 0x80153C6Cu;
+    /// <summary>destination pixel pointer set by Image_BindSurfaces for Image_WriteColor16/24/32 [medium]</summary>
+    public const uint Image_DstPixelsPtr = 0x80153C70u;
+    /// <summary>current pixel index/offset used by Image_Read* pixel readers; reset in Image_BindSurfaces [medium]</summary>
+    public const uint Image_ReadPos = 0x80153C78u;
+    /// <summary>source pixel data pointer for indexed formats, read byte-wise by Image_ReadIndex4/8 [medium]</summary>
+    public const uint Image_SrcIndexPixelsPtr = 0x80153C7Cu;
+    /// <summary>destination CI4/CI8 pixel pointer set by Image_BindSurfaces for Image_WriteIndex4/8 [medium]</summary>
+    public const uint Image_DstIndexPixelsPtr = 0x80153C88u;
+    /// <summary>function pointer chosen per format in Image_BindSurfaces (func_004141B8/004141E8/00414240...), called per pixel [high]</summary>
+    public const uint Image_ReadPixelFn = 0x80153CD8u;
+    /// <summary>never written in code; selects alternate rendermode bits (0x3000 vs 0x5000) in Gfx_SelectRenderMode/Gfx_SetUiCombineMode [low]</summary>
+    public const uint Gfx_UiModeFlag_80153F6C = 0x80153F6Cu;
+    /// <summary>inline array of the 3 bot slots (28 bytes: type, character id, difficulty/team) reset by BotSetup_Reset [high]</summary>
+    public const uint BotSetup_Slots = 0x80153F80u;
+    /// <summary>game type of the running gauntlet, -1 = none (Gauntlet_SetGameType/IsActive) [high]</summary>
+    public const uint Gauntlet_GameType = 0x80154010u;
+    /// <summary>requested screen id (+0), pending flag at +4; Menu_GotoScreen when pending [medium]</summary>
+    public const uint Menu_ScreenRequest = 0x80154020u;
+    /// <summary>set 1 by Menu_RequestScreen (id at -4), consumed by PauseOptions/Results/ArenaSelect [medium]</summary>
+    public const uint Menu_ScreenRequest_Pending = 0x80154024u;
     /// <summary>game type of the next match (Arena_Set) [high]</summary>
     public const uint ArenaType = 0x80154028u;
     /// <summary>level number of the next match (Arena_Set) [high]</summary>
     public const uint ArenaLevel = 0x8015402Cu;
+    /// <summary>selected warp index switched on by LegacyCheats_GetWarpLevelKey [high]</summary>
+    public const uint LegacyCheats_WarpIndex = 0x80154034u;
+    /// <summary>float cooldown before another resolution change; counted down by frame time [high]</summary>
+    public const uint InGameMenu_ResolutionCooldown = 0x80154100u;
+    /// <summary>libultra __osPfsPifRam: PIF command buffer passed to __osSiRawStartDma by the pfs/motor routines [high]</summary>
+    public const uint OsPfsPifRam = 0x80154110u;
+    /// <summary>TLB-mapped 4 KB page frames filled by Resource_DmaThreadMain and mapped by Resource_MapPage/UnmapPage [high]</summary>
+    public const uint Resource_PageFrames = 0x80156000u;
 }

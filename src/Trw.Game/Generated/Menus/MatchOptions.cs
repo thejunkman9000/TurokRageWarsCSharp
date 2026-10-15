@@ -14,10 +14,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_004293AC", (uint)a);
             int s0 = 0;
             int t = 0;
-            Mem.Set(0x800E4EF0u, ResourcePool_Malloc((uint)(64)));
-            ScreenWipe_Init(Mem.U32(0x800E4EF0u), 103, 0, 0, 0);
-            new O04S4EF0(Mem.U32(0x800E4EF0u)).unk38_Set(BotSetup_GetMaxBots());
-            switch (Mem.S32(G.ArenaType))
+            Mem.Set(Gv.MatchOptions_PagePtr, ResourcePool_Malloc((uint)(64)));
+            ScreenWipe_Init(Mem.U32(Gv.MatchOptions_PagePtr), 103, 0, 0, 0);
+            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk38_Set(BotSetup_GetMaxBots());
+            switch (Mem.S32(Gv.ArenaType))
             {
             case 1:
                 UiNode_SetDisabled(UiTree_FindNode((uint)(a), (uint)(863), default(uint), default(uint)), 1);
@@ -34,27 +34,27 @@ public static partial class Game
                 break;
             }
             s0 = 1;
-            new O04S4EF0(Mem.U32(0x800E4EF0u)).unk24_Set((int)(NumberField_Create(867, 868, 0, 100, s0)));
-            new O04S4EF0(Mem.U32(0x800E4EF0u)).unk28_Set((int)(NumberField_Create(865, 866, 0, 100, s0)));
-            new O04S4EF0(Mem.U32(0x800E4EF0u)).unk2C_Set((int)(NumberField_Create(863, 864, 0, 100, s0)));
-            new O04S4EF0(Mem.U32(0x800E4EF0u)).unk30_Set((int)(NumberField_Create(869, 870, 0, 100, s0)));
-            new O04S4EF0(Mem.U32(0x800E4EF0u)).unk3C_Set(0);
-            if ((new O04S4EF0(Mem.U32(0x800E4EF0u)).unk38 == 3))
+            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk24_Set((int)(NumberField_Create(867, 868, 0, 100, s0)));
+            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk28_Set((int)(NumberField_Create(865, 866, 0, 100, s0)));
+            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk2C_Set((int)(NumberField_Create(863, 864, 0, 100, s0)));
+            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk30_Set((int)(NumberField_Create(869, 870, 0, 100, s0)));
+            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk3C_Set(0);
+            if ((new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk38 == 3))
             {
-                new O04S4EF0(Mem.U32(0x800E4EF0u)).unk3C_Set(s0);
+                new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk3C_Set(s0);
             }
-            new O04S4EF0(Mem.U32(0x800E4EF0u)).unk34_Set((int)(NumberField_Create(876, 877, new O04S4EF0(Mem.U32(0x800E4EF0u)).unk3C, new O04S4EF0(Mem.U32(0x800E4EF0u)).unk38, s0)));
+            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk34_Set((int)(NumberField_Create(876, 877, new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk3C, new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk38, s0)));
             t = (int)(OptionList_Create(871, 872));
-            new O04S4EF0(Mem.U32(0x800E4EF0u)).unk1C_Set(t);
+            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk1C_Set(t);
             OptionList_AddOption((uint)(t), (uint)(Mem.S32((0x800D74C0u + (uint)(0 * 4)))));
-            OptionList_AddOption((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk1C), (uint)(Mem.S32((0x800D74C4u + (uint)(0 * 4)))));
+            OptionList_AddOption((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk1C), (uint)(Mem.S32((0x800D74C4u + (uint)(0 * 4)))));
             t = (int)(OptionList_Create(878, 879));
-            new O04S4EF0(Mem.U32(0x800E4EF0u)).unk20_Set(t);
+            new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk20_Set(t);
             OptionList_AddOption((uint)(t), (uint)(Mem.S32((0x800D74C8u + (uint)(0 * 4)))));
-            OptionList_AddOption((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk20), (uint)(Mem.S32((0x800D74CCu + (uint)(0 * 4)))));
-            OptionList_AddOption((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk20), (uint)(Mem.S32((0x800D74D0u + (uint)(0 * 4)))));
-            OptionList_AddOption((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk20), (uint)(Mem.S32((0x800D74D4u + (uint)(0 * 4)))));
-            OptionList_AddOption((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk20), (uint)(Mem.S32((0x800D74D8u + (uint)(0 * 4)))));
+            OptionList_AddOption((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk20), (uint)(Mem.S32((0x800D74CCu + (uint)(0 * 4)))));
+            OptionList_AddOption((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk20), (uint)(Mem.S32((0x800D74D0u + (uint)(0 * 4)))));
+            OptionList_AddOption((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk20), (uint)(Mem.S32((0x800D74D4u + (uint)(0 * 4)))));
+            OptionList_AddOption((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk20), (uint)(Mem.S32((0x800D74D8u + (uint)(0 * 4)))));
             MenuButton_Create(873);
             MenuButton_Create(874);
             MenuButton_Create(875);
@@ -248,11 +248,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004296A4");
-            new O04Cfg(0x801462C8u).s24_Set((sbyte)(NumberField_GetValue((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk28))));
-            new O04Cfg(0x801462C8u).s25_Set((sbyte)(NumberField_GetValue((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk24))));
-            new O04Cfg(0x801462C8u).s26_Set((sbyte)(NumberField_GetValue((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk2C))));
-            new O04Cfg(0x801462C8u).s27_Set((sbyte)(NumberField_GetValue((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk30))));
-            new O04Cfg(0x801462C8u).u28_Set((byte)(OptionList_GetSelection((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk1C))));
+            new O04Cfg(Gv.Settings).s24_Set((sbyte)(NumberField_GetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk28))));
+            new O04Cfg(Gv.Settings).s25_Set((sbyte)(NumberField_GetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk24))));
+            new O04Cfg(Gv.Settings).s26_Set((sbyte)(NumberField_GetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk2C))));
+            new O04Cfg(Gv.Settings).s27_Set((sbyte)(NumberField_GetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk30))));
+            new O04Cfg(Gv.Settings).u28_Set((byte)(OptionList_GetSelection((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk1C))));
         }
     }
 
@@ -263,22 +263,22 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00429740");
             int b = 0;
-            NumberField_SetValue((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk24), (int)(new O04Cfg(0x801462C8u).s25));
-            NumberField_SetValue((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk28), (int)(new O04Cfg(0x801462C8u).s24));
-            NumberField_SetValue((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk2C), (int)(new O04Cfg(0x801462C8u).s26));
-            NumberField_SetValue((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk30), (int)(new O04Cfg(0x801462C8u).s27));
+            NumberField_SetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk24), (int)(new O04Cfg(Gv.Settings).s25));
+            NumberField_SetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk28), (int)(new O04Cfg(Gv.Settings).s24));
+            NumberField_SetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk2C), (int)(new O04Cfg(Gv.Settings).s26));
+            NumberField_SetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk30), (int)(new O04Cfg(Gv.Settings).s27));
             b = BotSetup_CountBots();
-            if ((new O04S4EF0(Mem.U32(0x800E4EF0u)).unk38 < b))
+            if ((new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk38 < b))
             {
-                b = new O04S4EF0(Mem.U32(0x800E4EF0u)).unk38;
+                b = new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk38;
             }
             if ((b == 0))
             {
-                b = new O04S4EF0(Mem.U32(0x800E4EF0u)).unk3C;
+                b = new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk3C;
             }
-            NumberField_SetValue((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk34), b);
-            OptionList_SetSelection((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk1C), (int)(new O04Cfg(0x801462C8u).u28));
-            OptionList_SetSelection((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk20), BotSetup_GetDifficultyTier());
+            NumberField_SetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk34), b);
+            OptionList_SetSelection((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk1C), (int)(new O04Cfg(Gv.Settings).u28));
+            OptionList_SetSelection((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk20), BotSetup_GetDifficultyTier());
         }
     }
 
@@ -290,8 +290,8 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00429834", (uint)a);
             int s1 = 0;
             int s0 = 0;
-            s1 = OptionList_GetSelection((uint)(new O04S4EF0b(Mem.U32(0x800E4EF0u)).unk20));
-            s0 = NumberField_GetValue((uint)(new O04S4EF0b(Mem.U32(0x800E4EF0u)).unk34));
+            s1 = OptionList_GetSelection((uint)(new O04S4EF0b(Mem.U32(Gv.MatchOptions_PagePtr)).unk20));
+            s0 = NumberField_GetValue((uint)(new O04S4EF0b(Mem.U32(Gv.MatchOptions_PagePtr)).unk34));
             if ((s0 <= 0))
             {
                 BotSetup_Reset();
@@ -313,8 +313,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004298D4");
-            ResourcePool_MallocFree(Mem.U32(0x800E4EF0u));
-            Mem.Set(0x800E4EF0u, 0u);
+            ResourcePool_MallocFree(Mem.U32(Gv.MatchOptions_PagePtr));
+            Mem.Set(Gv.MatchOptions_PagePtr, 0u);
             return 0;
         }
     }
@@ -341,19 +341,19 @@ public static partial class Game
                 switch (Menu_GetMessage())
                 {
                 case 867:
-                    NumberField_SetValue((uint)(new O04S4EF0c(Mem.U32(0x800E4EF0u)).unk24), 0);
+                    NumberField_SetValue((uint)(new O04S4EF0c(Mem.U32(Gv.MatchOptions_PagePtr)).unk24), 0);
                     break;
                 case 865:
-                    NumberField_SetValue((uint)(new O04S4EF0c(Mem.U32(0x800E4EF0u)).unk28), 0);
+                    NumberField_SetValue((uint)(new O04S4EF0c(Mem.U32(Gv.MatchOptions_PagePtr)).unk28), 0);
                     break;
                 case 863:
-                    NumberField_SetValue((uint)(new O04S4EF0c(Mem.U32(0x800E4EF0u)).unk2C), 0);
+                    NumberField_SetValue((uint)(new O04S4EF0c(Mem.U32(Gv.MatchOptions_PagePtr)).unk2C), 0);
                     break;
                 case 869:
-                    NumberField_SetValue((uint)(new O04S4EF0c(Mem.U32(0x800E4EF0u)).unk30), 0);
+                    NumberField_SetValue((uint)(new O04S4EF0c(Mem.U32(Gv.MatchOptions_PagePtr)).unk30), 0);
                     break;
                 case 876:
-                    NumberField_SetValue((uint)(new O04S4EF0c(Mem.U32(0x800E4EF0u)).unk34), new O04S4EF0c(Mem.U32(0x800E4EF0u)).unk3C);
+                    NumberField_SetValue((uint)(new O04S4EF0c(Mem.U32(Gv.MatchOptions_PagePtr)).unk34), new O04S4EF0c(Mem.U32(Gv.MatchOptions_PagePtr)).unk3C);
                     break;
                 }
             }
@@ -368,7 +368,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004299D8");
             Menu_ConsumeEvent();
-            if ((ScreenWipe_GetState(Mem.U32(0x800E4EF0u)) == 1))
+            if ((ScreenWipe_GetState(Mem.U32(Gv.MatchOptions_PagePtr)) == 1))
             {
                 return 0;
             }
@@ -380,7 +380,7 @@ public static partial class Game
                 Menu_GoBack();
                 break;
             case 873:
-                if ((NumberField_GetValue((uint)(new O04S4EF0(Mem.U32(0x800E4EF0u)).unk34)) > 0))
+                if ((NumberField_GetValue((uint)(new O04S4EF0(Mem.U32(Gv.MatchOptions_PagePtr)).unk34)) > 0))
                 {
                     MatchOptions_StoreSettings();
                     MatchOptions_UpdateBots(0);
@@ -408,7 +408,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00429AD8");
             Menu_ConsumeEvent();
-            if ((ScreenWipe_GetState(Mem.U32(0x800E4EF0u)) == 1))
+            if ((ScreenWipe_GetState(Mem.U32(Gv.MatchOptions_PagePtr)) == 1))
             {
                 return 0;
             }
@@ -456,13 +456,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00429B74", (uint)a, (uint)b, (uint)c, (uint)d);
             int i = 0;
-            for (i = 0; (new O04Evt((0x800E4EF4u + (uint)(i * 12))).fn != 0u); ++i)
+            for (i = 0; (new O04Evt((Gv.MatchOptions_EventTable + (uint)(i * 12))).fn != 0u); ++i)
             {
-                if ((new O04Evt((0x800E4EF4u + (uint)(i * 12))).ev == b))
+                if ((new O04Evt((Gv.MatchOptions_EventTable + (uint)(i * 12))).ev == b))
                 {
-                    if (((new O04Evt((0x800E4EF4u + (uint)(i * 12))).key == (int)(new O04Obj(a).unkC)) || (new O04Evt((0x800E4EF4u + (uint)(i * 12))).key == 30000)))
+                    if (((new O04Evt((Gv.MatchOptions_EventTable + (uint)(i * 12))).key == (int)(new O04Obj(a).unkC)) || (new O04Evt((Gv.MatchOptions_EventTable + (uint)(i * 12))).key == 30000)))
                     {
-                        return (int)(Funcs.CallRegX(new O04Evt((0x800E4EF4u + (uint)(i * 12))).fn, a, (uint)(b), (uint)(c), (uint)(d), new uint[] { (uint)(e) }));
+                        return (int)(Funcs.CallRegX(new O04Evt((Gv.MatchOptions_EventTable + (uint)(i * 12))).fn, a, (uint)(b), (uint)(c), (uint)(d), new uint[] { (uint)(e) }));
                     }
                 }
             }

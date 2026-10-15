@@ -105,7 +105,7 @@ public static partial class Game
                             }
                             else
                             {
-                                if (((fp != 0) && ((new B10Tab((0x800D1384u + (uint)(new B10Le(e).h2 * 8))).f0 & (uint)(4)) != 0u)))
+                                if (((fp != 0) && ((new B10Tab((Gv.Anim_EventDefTable + (uint)(new B10Le(e).h2 * 8))).f0 & (uint)(4)) != 0u)))
                                 {
                                     if ((s2 == 0u))
                                     {
@@ -217,7 +217,7 @@ public static partial class Game
                 uint k = 0u;
                 float fs0f = 0f;
                 float fs0 = 0f;
-                t0 = (uint)(Mem.S32(0x800D2978u));
+                t0 = (uint)(Mem.S32(Gv.Video_FrameCount));
                 t0 = (uint)((uint)(t0) + ((flags & (uint)(56)) * (uint)(50)));
                 t0 = (uint)((uint)(t0) + ((a0 & (uint)(65535)) / (uint)(113)));
                 if (!((flags & (uint)(4)) != 0u))
@@ -232,8 +232,8 @@ public static partial class Game
                 {
                     new Vec3f((_fp + 144u)).z_Set(Mem.F32(0x800C8A74u));
                     new Vec3f((_fp + 144u)).x_Set((float)(0));
-                    fs0f = (Mem.F32((0x800D0724u + (uint)((t0 % (uint)(120)) * 4))) - Mem.F32(0x800C8A78u));
-                    new Vec3f((_fp + 144u)).y_Set(Mem.F32((0x800D0724u + (uint)(((t0 + (uint)(12)) % (uint)(120)) * 4))));
+                    fs0f = (Mem.F32((Gv.Anim_SwaySineTable + (uint)((t0 % (uint)(120)) * 4))) - Mem.F32(0x800C8A78u));
+                    new Vec3f((_fp + 144u)).y_Set(Mem.F32((Gv.Anim_SwaySineTable + (uint)(((t0 + (uint)(12)) % (uint)(120)) * 4))));
                 }
                 else
                 {
@@ -241,25 +241,25 @@ public static partial class Game
                     {
                         new Vec3f((_fp + 144u)).x_Set(Mem.F32(0x800C8A74u));
                         new Vec3f((_fp + 144u)).z_Set((float)(0));
-                        fs0f = (Mem.F32((0x800D0724u + (uint)((t0 % (uint)(120)) * 4))) - Mem.F32(0x800C8A7Cu));
+                        fs0f = (Mem.F32((Gv.Anim_SwaySineTable + (uint)((t0 % (uint)(120)) * 4))) - Mem.F32(0x800C8A7Cu));
                         fs0f = (float)((float)(fs0f) * 2.0f);
-                        new Vec3f((_fp + 144u)).y_Set(Mem.F32((0x800D0724u + (uint)(((t0 + (uint)(12)) % (uint)(120)) * 4))));
+                        new Vec3f((_fp + 144u)).y_Set(Mem.F32((Gv.Anim_SwaySineTable + (uint)(((t0 + (uint)(12)) % (uint)(120)) * 4))));
                     }
                     else
                     {
                         if ((k == (uint)(64)))
                         {
-                            fs0f = (Mem.F32((0x800D0724u + (uint)(((t0 + (uint)(30)) % (uint)(120)) * 4))) - Mem.F32(0x800C8A80u));
+                            fs0f = (Mem.F32((Gv.Anim_SwaySineTable + (uint)(((t0 + (uint)(30)) % (uint)(120)) * 4))) - Mem.F32(0x800C8A80u));
                             fs0f = (float)((float)(fs0f) * 2.0f);
-                            new Vec3f((_fp + 144u)).x_Set(Mem.F32((0x800D0724u + (uint)(((t0 + (uint)(12)) % (uint)(120)) * 4))));
-                            new Vec3f((_fp + 144u)).y_Set(Mem.F32((0x800D0724u + (uint)(((t0 + (uint)(42)) % (uint)(120)) * 4))));
-                            new Vec3f((_fp + 144u)).z_Set(Mem.F32((0x800D0724u + (uint)(((t0 + (uint)(110)) % (uint)(120)) * 4))));
+                            new Vec3f((_fp + 144u)).x_Set(Mem.F32((Gv.Anim_SwaySineTable + (uint)(((t0 + (uint)(12)) % (uint)(120)) * 4))));
+                            new Vec3f((_fp + 144u)).y_Set(Mem.F32((Gv.Anim_SwaySineTable + (uint)(((t0 + (uint)(42)) % (uint)(120)) * 4))));
+                            new Vec3f((_fp + 144u)).z_Set(Mem.F32((Gv.Anim_SwaySineTable + (uint)(((t0 + (uint)(110)) % (uint)(120)) * 4))));
                         }
                         else
                         {
                             if ((k == (uint)(1)))
                             {
-                                fs0f = (Mem.F32((0x800D0724u + (uint)(((t0 + (uint)(70)) % (uint)(120)) * 4))) - Mem.F32(0x800C8A84u));
+                                fs0f = (Mem.F32((Gv.Anim_SwaySineTable + (uint)(((t0 + (uint)(70)) % (uint)(120)) * 4))) - Mem.F32(0x800C8A84u));
                                 fs0f = (fs0f * Mem.F32(0x800C8A88u));
                             }
                             else

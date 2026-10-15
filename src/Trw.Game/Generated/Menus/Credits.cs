@@ -11,8 +11,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00290E4C");
-            int idx = Mem.S32(0x8011FAB0u);
-            float t = Mem.F32(0x8014AD78u);
+            int idx = Mem.S32(Gv.Credits_LineIndex);
+            float t = Mem.F32(Gv.Credits_ScrollY);
             uint p = 0u;
             float v = 0f;
             int c = 0;
@@ -54,13 +54,13 @@ public static partial class Game
                     Text_SetColors(255, 255, 255, c, c, c);
                     if ((0.0f <= t))
                     {
-                        Text_DrawStringShadowed((int)(p), (float)(((Mem.S32(0x800E28D0u) * 14) / 284)), (float)((int)(t)), ((float)(Mem.S32(0x800E28D0u)) * 0.00281690131f), ((float)(Mem.S32(0x800E28D4u)) * 0.00450450461f), 1, c, Mem.S32(0x8014D3D0u));
+                        Text_DrawStringShadowed((int)(p), (float)(((Mem.S32(Gv.ScreenWidth) * 14) / 284)), (float)((int)(t)), ((float)(Mem.S32(Gv.ScreenWidth)) * 0.00281690131f), ((float)(Mem.S32(Gv.ScreenHeight)) * 0.00450450461f), 1, c, Mem.S32(Gv.Text_FontId));
                     }
                     ++idx;
                 }
-                t = (t + ((float)(Mem.S32(0x800E28D4u)) * 0.045045048f));
+                t = (t + ((float)(Mem.S32(Gv.ScreenHeight)) * 0.045045048f));
             }
-            while ((t <= (float)(Mem.S32(0x800E28D4u))));
+            while ((t <= (float)(Mem.S32(Gv.ScreenHeight))));
         }
     }
 }

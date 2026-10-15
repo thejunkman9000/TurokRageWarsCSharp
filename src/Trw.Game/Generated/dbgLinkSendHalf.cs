@@ -12,10 +12,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("dbgLinkSendHalf", (uint)v);
             int ret = 0;
             dbgLinkSendByte((byte)((((int)(v) >> (int)8) & 255)));
-            if ((Mem.S32(0x8014D3E8u) == 0))
+            if ((Mem.S32(Gv.DbgLink_Error) == 0))
             {
                 dbgLinkSendByte((byte)(((int)(v) & 255)));
-                ret = ((Mem.S32(0x8014D3E8u) == 0) ? 1 : 0);
+                ret = ((Mem.S32(Gv.DbgLink_Error) == 0) ? 1 : 0);
             }
             return ret;
         }

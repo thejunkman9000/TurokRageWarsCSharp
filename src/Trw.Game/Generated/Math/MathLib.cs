@@ -33,7 +33,7 @@ public static partial class Game
                 _f3: ;
                 _f2: ;
                 d = (Mem.F32((_fp + 4u)) - Mem.F32(_fp));
-                r = ((d * k) * Mem.F32(0x800D2988u));
+                r = ((d * k) * Mem.F32(Gv.FrameTime));
                 m = r;
                 if (!((m < 0.0f))) goto _f4;
                 m = (-m);
@@ -334,8 +334,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00274524");
-            Mem.Set(0x80115DE4u, 3824563683u);
-            Mem.Set(0x80115DE8u, 3824563683u);
+            Mem.Set(Gv.Random_State, 3824563683u);
+            Mem.Set(Gv.Random_AltSeed, 3824563683u);
         }
     }
 
@@ -345,8 +345,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0027458C");
-            Mem.Set(0x80115DE8u, ((Mem.U32(0x80115DE8u) * 2823445331u) + (uint)(1479838765)));
-            return (int)((((Mem.U32(0x80115DE8u) << (int)16) | (Mem.U32(0x80115DE8u) >> (int)16)) & (uint)(2147483647)));
+            Mem.Set(Gv.Random_AltSeed, ((Mem.U32(Gv.Random_AltSeed) * 2823445331u) + (uint)(1479838765)));
+            return (int)((((Mem.U32(Gv.Random_AltSeed) << (int)16) | (Mem.U32(Gv.Random_AltSeed) >> (int)16)) & (uint)(2147483647)));
         }
     }
 
@@ -356,9 +356,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002745D4");
-            uint r = ((Mem.U32(0x80115DE4u) * 2823445331u) + (uint)(1479838765));
+            uint r = ((Mem.U32(Gv.Random_State) * 2823445331u) + (uint)(1479838765));
             uint v = ((r >> (int)16) & (uint)(32767));
-            Mem.Set(0x80115DE4u, r);
+            Mem.Set(Gv.Random_State, r);
             return (((float)(v) * a) * Mem.F32(0x800C9A38u));
         }
     }
@@ -428,7 +428,7 @@ public static partial class Game
             {
                 v = (float)((float)(v) * Mem.F32(0x800C9A50u));
             }
-            x = (float)((float)(x) + (v * Mem.F32(0x800D2988u)));
+            x = (float)((float)(x) + (v * Mem.F32(Gv.FrameTime)));
             if ((v < 0.0f))
             {
                 t = (-lim);
@@ -456,7 +456,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00274810");
             if ((x > 0.0f))
             {
-                x = (float)((float)(x) - (d * Mem.F32(0x800D2988u)));
+                x = (float)((float)(x) - (d * Mem.F32(Gv.FrameTime)));
                 if ((x < 0.0f))
                 {
                     x = 0.0f;
@@ -466,7 +466,7 @@ public static partial class Game
             {
                 if ((x < 0.0f))
                 {
-                    x = (float)((float)(x) + (d * Mem.F32(0x800D2988u)));
+                    x = (float)((float)(x) + (d * Mem.F32(Gv.FrameTime)));
                     if ((x > 0.0f))
                     {
                         x = 0.0f;
@@ -485,7 +485,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00274878");
             if ((x < lim))
             {
-                x = (float)((float)(x) + (d * Mem.F32(0x800D2988u)));
+                x = (float)((float)(x) + (d * Mem.F32(Gv.FrameTime)));
                 if ((lim < x))
                 {
                     x = lim;
@@ -495,7 +495,7 @@ public static partial class Game
             {
                 if ((lim < x))
                 {
-                    x = (float)((float)(x) - (d * Mem.F32(0x800D2988u)));
+                    x = (float)((float)(x) - (d * Mem.F32(Gv.FrameTime)));
                     if ((x < lim))
                     {
                         x = lim;
@@ -513,7 +513,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002748E0", (uint)p);
             float x = Mem.F32(p);
-            float d = (((t - x) * r) * Mem.F32(0x800D2988u));
+            float d = (((t - x) * r) * Mem.F32(Gv.FrameTime));
             float n = 0f;
             if ((r == Mem.F32((0x800C9A50u + (uint)(1 * 4)))))
             {
@@ -553,7 +553,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00274964", (uint)a, (uint)b, (uint)lim);
             float fb = (float)(b);
-            a = (int)((int)(a) + (int)((fb * Mem.F32(0x800D2988u))));
+            a = (int)((int)(a) + (int)((fb * Mem.F32(Gv.FrameTime))));
             if ((fb < 0.0f))
             {
                 lim = (-lim);
@@ -628,8 +628,8 @@ public static partial class Game
             uint r = 0u;
             int v = 0;
             float t = 0f;
-            r = ((Mem.U32(0x80115DE4u) * 2823445331u) + (uint)(1479838765));
-            Mem.Set(0x80115DE4u, r);
+            r = ((Mem.U32(Gv.Random_State) * 2823445331u) + (uint)(1479838765));
+            Mem.Set(Gv.Random_State, r);
             v = (int)((((r << (int)16) | (r >> (int)16)) & (uint)(2147483647)));
             t = ((float)((v % 10000)) * Mem.F32(0x800C9A88u));
             return ((t * a) + ((Mem.F32(0x800C9A8Cu) - t) * b));
@@ -642,7 +642,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00274BB4", (uint)p);
-            Mem.Set(p, (float)((float)(Mem.F32(p)) - Mem.F32(0x800D2988u)));
+            Mem.Set(p, (float)((float)(Mem.F32(p)) - Mem.F32(Gv.FrameTime)));
             if ((Mem.F32(p) <= 0.0f))
             {
                 Mem.Set(p, 0.0f);
@@ -793,8 +793,8 @@ public static partial class Game
                     return Mem.F32((_fp + 4u));
                 }
                 Mem.Set((_fp + 8u), ((int)(new B19Pair(_fp).b) << (int)16));
-                Mem.Set(0x80115DE4u, ((Mem.U32(0x80115DE4u) * 2823445331u) + (uint)(1479838765)));
-                r = ((Mem.U32(0x80115DE4u) >> (int)16) & (uint)(32767));
+                Mem.Set(Gv.Random_State, ((Mem.U32(Gv.Random_State) * 2823445331u) + (uint)(1479838765)));
+                r = ((Mem.U32(Gv.Random_State) >> (int)16) & (uint)(32767));
                 return (Mem.F32((_fp + 4u)) + (((float)(r) * Mem.F32((_fp + 8u))) * Mem.F32(0x800C9FA8u)));
             }
         }

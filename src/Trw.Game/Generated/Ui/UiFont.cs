@@ -16,13 +16,13 @@ public static partial class Game
             int j = 0;
             int k = 0;
             uint e = 0u;
-            for (i = 0; (i < (int)(Mem.S16(0x80153C20u))); ++i)
+            for (i = 0; (i < (int)(Mem.S16(Gv.UiFont_Pool))); ++i)
             {
-                if ((((int)(new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).b490) != 0) && (new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).w0 != 0)))
+                if ((((int)(new S_obj((Mem.U32(Gv.UiFont_TablePtr) + (uint)(i * 1180))).b490) != 0) && (new S_obj((Mem.U32(Gv.UiFont_TablePtr) + (uint)(i * 1180))).w0 != 0)))
                 {
-                    for (j = 0; (j < (int)(Mem.S16((new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).p48C + 14u)))); ++j)
+                    for (j = 0; (j < (int)(Mem.S16((new S_obj((Mem.U32(Gv.UiFont_TablePtr) + (uint)(i * 1180))).p48C + 14u)))); ++j)
                     {
-                        e = Mem.U32((new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).p484 + (uint)(j * 4)));
+                        e = Mem.U32((new S_obj((Mem.U32(Gv.UiFont_TablePtr) + (uint)(i * 1180))).p484 + (uint)(j * 4)));
                         for (k = 0; (k < 96); ++k)
                         {
                             uint h = ((e + (uint)(k * 44)) + (uint)8);
@@ -31,14 +31,14 @@ public static partial class Game
                                 Image_Free(((e + (uint)(k * 44)) + (uint)12));
                                 Mem.Set(h, (ushort)(0));
                                 Mem.Set(((e + (uint)(k * 44)) + (uint)4), 0);
-                                new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).b490_Set((byte)(new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).b490 - 1));
+                                new S_obj((Mem.U32(Gv.UiFont_TablePtr) + (uint)(i * 1180))).b490_Set((byte)(new S_obj((Mem.U32(Gv.UiFont_TablePtr) + (uint)(i * 1180))).b490 - 1));
                             }
                         }
                     }
-                    if (((int)(new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).b490) == 0))
+                    if (((int)(new S_obj((Mem.U32(Gv.UiFont_TablePtr) + (uint)(i * 1180))).b490) == 0))
                     {
                         UiFont_FreeTextures(i);
-                        new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).w0_Set(0);
+                        new S_obj((Mem.U32(Gv.UiFont_TablePtr) + (uint)(i * 1180))).w0_Set(0);
                     }
                 }
             }
@@ -71,13 +71,13 @@ public static partial class Game
                 uint g = 0u;
                 int sz = 0;
                 int t = 0;
-                blk = Mem.U32((new S705Obj((new S705Pool(0x80153C20u).entries_ + (uint)(idx * 1180))).blocks + (uint)(which * 4)));
+                blk = Mem.U32((new S705Obj((new S705Pool(Gv.UiFont_Pool).entries_ + (uint)(idx * 1180))).blocks + (uint)(which * 4)));
                 off = ((int)(slot) * 44);
                 s = (uint)((off + (int)(blk)));
                 if ((((int)(new S705Slot(s).flags) & 1) != 0))
                 {
                     new S705Slot(s).time_Set((Menu_GetFrameCounter() + 10));
-                    obj = (new S705Pool(0x80153C20u).entries_ + (uint)(idx * 1180));
+                    obj = (new S705Pool(Gv.UiFont_Pool).entries_ + (uint)(idx * 1180));
                     if ((((int)(new S705Obj(obj).timer498) == 0) && (new S705Obj(obj).timer494 != (-1))))
                     {
                         new S705Obj(obj).timer494_Set(new S705Slot(s).time);
@@ -86,8 +86,8 @@ public static partial class Game
                 }
                 fmt = 0;
                 Time_GetSecondsSinceStart();
-                meta = new S705Obj((new S705Pool(0x80153C20u).entries_ + (uint)(idx * 1180))).meta_;
-                r = (new S705Obj((new S705Pool(0x80153C20u).entries_ + (uint)(idx * 1180))).rec.P + (uint)(slot * 8));
+                meta = new S705Obj((new S705Pool(Gv.UiFont_Pool).entries_ + (uint)(idx * 1180))).meta_;
+                r = (new S705Obj((new S705Pool(Gv.UiFont_Pool).entries_ + (uint)(idx * 1180))).rec.P + (uint)(slot * 8));
                 bpp = 0;
                 saved = s;
                 if ((((int)(new S705Rec(r).w) == 0) || ((int)(new S705Rec(r).h) == 0)))
@@ -144,7 +144,7 @@ public static partial class Game
                         }
                     }
                 }
-                if ((new S705Obj((new S705Pool(0x80153C20u).entries_ + (uint)(idx * 1180))).loaded == 0))
+                if ((new S705Obj((new S705Pool(Gv.UiFont_Pool).entries_ + (uint)(idx * 1180))).loaded == 0))
                 {
                     g = 0x80153BD0u;
                     o2 = ((uint)(Mem.S32((g + (uint)(22 * 4)))) + (uint)(idx * 1180));
@@ -155,7 +155,7 @@ public static partial class Game
                         uint st_2 = (g - (uint)(136 * 4));
                         File_Seek((uint)(Mem.S32((g + (uint)((-136) * 4)))), (uint)((Mem.S32((st_2 + (uint)592)) + new S705Obj(o2).meta.@base)), (uint)(0), default(uint));
                     }
-                    File_Read((uint)(new S705Obj((new S705Pool(0x80153C20u).entries_ + (uint)(idx * 1180))).off[(int)(0)]), (uint)(sz), (uint)(1), (uint)(Mem.S32((g + (uint)((-136) * 4)))));
+                    File_Read((uint)(new S705Obj((new S705Pool(Gv.UiFont_Pool).entries_ + (uint)(idx * 1180))).off[(int)(0)]), (uint)(sz), (uint)(1), (uint)(Mem.S32((g + (uint)((-136) * 4)))));
                     for (i = 0; (i < 96); ++i)
                     {
                         t = Mem.Set((_fp + (uint)(i * 4)), ((int)(new S705Obj(o2).rec[(int)(i)].c) * (int)(new S705Obj(o2).rec[(int)(i)].h)));
@@ -171,25 +171,25 @@ public static partial class Game
                     {
                         if ((thr < Mem.S32((_fp + (uint)(i * 4)))))
                         {
-                            uint rr = (new S705Obj((new S705Pool(0x80153C20u).entries_ + (uint)(idx * 1180))).rec.P + (uint)(i * 8));
+                            uint rr = (new S705Obj((new S705Pool(Gv.UiFont_Pool).entries_ + (uint)(idx * 1180))).rec.P + (uint)(i * 8));
                             Image_ClearBitmap((int)((_fp + 384u)));
-                            Image_InitBitmap((_fp + 384u), fmt, (int)(new S705Rec(rr).w), (int)(new S705Rec(rr).h), (int)(new S705Rec(rr).c), (int)(new S705Rec(rr).h), 0, Mem.S32((_fp + (uint)(i * 4))), new S705Obj((new S705Pool(0x80153C20u).entries_ + (uint)(idx * 1180))).off[(int)(i)], 0, ((int)(new S705Meta(meta).fmt) * 2), (int)(Mem.U32((new S705Obj((new S705Pool(0x80153C20u).entries_ + (uint)(idx * 1180))).pals + (uint)(which * 4)))), (int)(new S705Meta(meta).fmt));
+                            Image_InitBitmap((_fp + 384u), fmt, (int)(new S705Rec(rr).w), (int)(new S705Rec(rr).h), (int)(new S705Rec(rr).c), (int)(new S705Rec(rr).h), 0, Mem.S32((_fp + (uint)(i * 4))), new S705Obj((new S705Pool(Gv.UiFont_Pool).entries_ + (uint)(idx * 1180))).off[(int)(i)], 0, ((int)(new S705Meta(meta).fmt) * 2), (int)(Mem.U32((new S705Obj((new S705Pool(Gv.UiFont_Pool).entries_ + (uint)(idx * 1180))).pals + (uint)(which * 4)))), (int)(new S705Meta(meta).fmt));
                             Image_SwapOddRowWords((_fp + 384u));
                             Image_FreeBitmap((_fp + 384u));
                         }
                     }
-                    File_Close((uint)(Mem.S32((0x801539B0u + (uint)(0 * 4)))), default(uint), default(uint), default(uint));
-                    Mem.Set((0x801539B0u + (uint)(0 * 4)), 0);
+                    File_Close((uint)(Mem.S32((Gv.Image_ArchiveCtx + (uint)(0 * 4)))), default(uint), default(uint), default(uint));
+                    Mem.Set((Gv.Image_ArchiveCtx + (uint)(0 * 4)), 0);
                     new S705Obj(o2).loaded_Set(1);
                 }
                 t = ((((int)(new S705Rec(r).c) * (int)(new S705Rec(r).h)) * bpp) >> (int)3);
-                Image_InitBitmap(payload, fmt, (int)(new S705Rec(r).w), (int)(new S705Rec(r).h), (int)(new S705Rec(r).c), (int)(new S705Rec(r).h), 0, t, new S705Obj((new S705Pool(0x80153C20u).entries_ + (uint)(idx * 1180))).off[(int)(slot)], 0, ((int)(new S705Meta(meta).fmt) * 2), (int)(Mem.U32((new S705Obj((new S705Pool(0x80153C20u).entries_ + (uint)(idx * 1180))).pals + (uint)(which * 4)))), (int)(new S705Meta(meta).fmt));
+                Image_InitBitmap(payload, fmt, (int)(new S705Rec(r).w), (int)(new S705Rec(r).h), (int)(new S705Rec(r).c), (int)(new S705Rec(r).h), 0, t, new S705Obj((new S705Pool(Gv.UiFont_Pool).entries_ + (uint)(idx * 1180))).off[(int)(slot)], 0, ((int)(new S705Meta(meta).fmt) * 2), (int)(Mem.U32((new S705Obj((new S705Pool(Gv.UiFont_Pool).entries_ + (uint)(idx * 1180))).pals + (uint)(which * 4)))), (int)(new S705Meta(meta).fmt));
                 Image_SetRowSwapEnabled(0);
                 Image_Copy(payload2, payload, default(uint), default(uint));
                 Image_SetRowSwapEnabled(1);
                 Time_GetSecondsSinceStart();
                 new S705Slot(saved).time_Set((Menu_GetFrameCounter() + 10));
-                new S705Obj((new S705Pool(0x80153C20u).entries_ + (uint)(idx * 1180))).count_Set((byte)(new S705Obj((new S705Pool(0x80153C20u).entries_ + (uint)(idx * 1180))).count + 1));
+                new S705Obj((new S705Pool(Gv.UiFont_Pool).entries_ + (uint)(idx * 1180))).count_Set((byte)(new S705Obj((new S705Pool(Gv.UiFont_Pool).entries_ + (uint)(idx * 1180))).count + 1));
                 new S705Slot(saved).flags_Set((ushort)((int)(new S705Slot(saved).flags) | 1));
                 return new S705Slot(saved).payload.P;
             }
@@ -585,9 +585,9 @@ public static partial class Game
             int j = 0;
             int k = 0;
             uint e = 0u;
-            for (j = 0; (j < (int)(Mem.S16((new S_obj_v2((Mem.U32(0x80153C28u) + (uint)(i * 1180))).p48C + 14u)))); ++j)
+            for (j = 0; (j < (int)(Mem.S16((new S_obj_v2((Mem.U32(Gv.UiFont_TablePtr) + (uint)(i * 1180))).p48C + 14u)))); ++j)
             {
-                e = Mem.U32((new S_obj_v2((Mem.U32(0x80153C28u) + (uint)(i * 1180))).p484 + (uint)(j * 4)));
+                e = Mem.U32((new S_obj_v2((Mem.U32(Gv.UiFont_TablePtr) + (uint)(i * 1180))).p484 + (uint)(j * 4)));
                 for (k = 0; (k < 96); ++k)
                 {
                     uint h = ((e + (uint)(k * 44)) + (uint)8);
@@ -598,19 +598,19 @@ public static partial class Game
                     }
                 }
             }
-            if ((new S_obj_v2((Mem.U32(0x80153C28u) + (uint)(i * 1180))).tbl[(int)(0)] != 0))
+            if ((new S_obj_v2((Mem.U32(Gv.UiFont_TablePtr) + (uint)(i * 1180))).tbl[(int)(0)] != 0))
             {
-                ResourcePool_MallocFree((uint)(new S_obj_v2((Mem.U32(0x80153C28u) + (uint)(i * 1180))).tbl[(int)(0)]));
-                new S_obj_v2((Mem.U32(0x80153C28u) + (uint)(i * 1180))).tbl.Set((int)(0), 0);
+                ResourcePool_MallocFree((uint)(new S_obj_v2((Mem.U32(Gv.UiFont_TablePtr) + (uint)(i * 1180))).tbl[(int)(0)]));
+                new S_obj_v2((Mem.U32(Gv.UiFont_TablePtr) + (uint)(i * 1180))).tbl.Set((int)(0), 0);
                 for (j = 0; (j < 96); ++j)
                 {
                     {
-                        uint b = ((uint)(((i * 1180) + (int)(Mem.U32(0x80153C28u)))) + (uint)772);
+                        uint b = ((uint)(((i * 1180) + (int)(Mem.U32(Gv.UiFont_TablePtr)))) + (uint)772);
                         Mem.Set((b + (uint)(j * 4)), 0);
                     }
                 }
             }
-            new S_obj_v2((Mem.U32(0x80153C28u) + (uint)(i * 1180))).w0_Set(0);
+            new S_obj_v2((Mem.U32(Gv.UiFont_TablePtr) + (uint)(i * 1180))).w0_Set(0);
         }
     }
 
@@ -620,7 +620,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00411AE4");
-            return (int)(Mem.S16(0x80153C20u));
+            return (int)(Mem.S16(Gv.UiFont_Pool));
         }
     }
 
@@ -630,7 +630,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00411C28", (uint)a, (uint)i);
-            return (int)(Mem.S8(((new V((Mem.U32(0x80153C28u) + (uint)(i * 1180))).e.P + (uint)(a * 8)) + 1u)));
+            return (int)(Mem.S8(((new V((Mem.U32(Gv.UiFont_TablePtr) + (uint)(i * 1180))).e.P + (uint)(a * 8)) + 1u)));
         }
     }
 
@@ -640,7 +640,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00411C68", (uint)a, (uint)i);
-            return (int)(Mem.S8(((new V((Mem.U32(0x80153C28u) + (uint)(i * 1180))).e.P + (uint)(a * 8)) + 2u)));
+            return (int)(Mem.S8(((new V((Mem.U32(Gv.UiFont_TablePtr) + (uint)(i * 1180))).e.P + (uint)(a * 8)) + 2u)));
         }
     }
 
@@ -650,7 +650,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00411CA8", (uint)i);
-            return (int)(Mem.S16((new S_func_00411CA8((Mem.U32(0x80153C28u) + (uint)(i * 1180))).p + 14u)));
+            return (int)(Mem.S16((new S_func_00411CA8((Mem.U32(Gv.UiFont_TablePtr) + (uint)(i * 1180))).p + 14u)));
         }
     }
 
@@ -660,7 +660,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00411CE0", (uint)i);
-            return (int)(Mem.S16((new S_func_00411CE0((Mem.U32(0x80153C28u) + (uint)(i * 1180))).p + 16u)));
+            return (int)(Mem.S16((new S_func_00411CE0((Mem.U32(Gv.UiFont_TablePtr) + (uint)(i * 1180))).p + 16u)));
         }
     }
 
@@ -670,7 +670,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00411D18", (uint)i);
-            return (int)(Mem.S16((new S_func_00411D18((Mem.U32(0x80153C28u) + (uint)(i * 1180))).p + 10u)));
+            return (int)(Mem.S16((new S_func_00411D18((Mem.U32(Gv.UiFont_TablePtr) + (uint)(i * 1180))).p + 10u)));
         }
     }
 
@@ -680,7 +680,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00411D50", (uint)i);
-            return (int)(Mem.S16((new S_func_00411D50((Mem.U32(0x80153C28u) + (uint)(i * 1180))).p + 12u)));
+            return (int)(Mem.S16((new S_func_00411D50((Mem.U32(Gv.UiFont_TablePtr) + (uint)(i * 1180))).p + 12u)));
         }
     }
 
@@ -711,9 +711,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00411D98");
             int i = 0;
-            if ((new S_func_00411D98(0x80153C20u).mode != 1))
+            if ((new S_func_00411D98(Gv.UiFont_Pool).mode != 1))
             {
-                for (i = 0; (i < (int)(new S_func_00411D98(0x80153C20u).n)); ++i)
+                for (i = 0; (i < (int)(new S_func_00411D98(Gv.UiFont_Pool).n)); ++i)
                 {
                     UiFont_FreeTextures(i);
                 }
@@ -727,7 +727,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0041208C", (uint)i);
-            return (Mem.U32(0x80153C28u) + (uint)(i * 1180));
+            return (Mem.U32(Gv.UiFont_TablePtr) + (uint)(i * 1180));
         }
     }
 }

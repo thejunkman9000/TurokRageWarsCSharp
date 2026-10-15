@@ -10,8 +10,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("dbgPortSetIntRxData", (uint)v);
-            v = (byte)((int)(v) | ((int)(Mem.U8(0x8014D3E1u)) & 254));
-            Mem.Set(0x8014D3E1u, v);
+            v = (byte)((int)(v) | ((int)(Mem.U8(Gv.DbgPort_IntEnable)) & 254));
+            Mem.Set(Gv.DbgPort_IntEnable, v);
             while (((osPiGetStatus() & (uint)(3)) != 0u))
             {
             }

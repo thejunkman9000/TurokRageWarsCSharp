@@ -586,7 +586,7 @@ public static partial class Game
             r = (b % 8);
             one = 1;
             cx = ((int)((short)(ch)) * 4);
-            return ((int)(Mem.S8(((Mem.U32(0x8014D0B0u) + (uint)(q + cx)) + (uint)3076))) & (one << (int)r));
+            return ((int)(Mem.S8(((Mem.U32(Gv.MenuInput_StatePtr) + (uint)(q + cx)) + (uint)3076))) & (one << (int)r));
         }
     }
 
@@ -601,12 +601,12 @@ public static partial class Game
             if (((int)(on) == 1))
             {
                 cx = ((int)((short)(ch)) * 4);
-                Mem.Set(((Mem.U32(0x8014D0B0u) + (uint)((bi / 8) + cx)) + (uint)3076), (byte)((int)(Mem.U8(((Mem.U32(0x8014D0B0u) + (uint)((bi / 8) + cx)) + (uint)3076))) | mask));
+                Mem.Set(((Mem.U32(Gv.MenuInput_StatePtr) + (uint)((bi / 8) + cx)) + (uint)3076), (byte)((int)(Mem.U8(((Mem.U32(Gv.MenuInput_StatePtr) + (uint)((bi / 8) + cx)) + (uint)3076))) | mask));
             }
             else
             {
                 cx = ((int)((short)(ch)) * 4);
-                Mem.Set(((Mem.U32(0x8014D0B0u) + (uint)((bi / 8) + cx)) + (uint)3076), (byte)((int)(Mem.U8(((Mem.U32(0x8014D0B0u) + (uint)((bi / 8) + cx)) + (uint)3076))) & (~mask)));
+                Mem.Set(((Mem.U32(Gv.MenuInput_StatePtr) + (uint)((bi / 8) + cx)) + (uint)3076), (byte)((int)(Mem.U8(((Mem.U32(Gv.MenuInput_StatePtr) + (uint)((bi / 8) + cx)) + (uint)3076))) & (~mask)));
             }
         }
     }
@@ -1143,7 +1143,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029BA24", (uint)fn);
-            new SndAux(Mem.U32(0x8014D0B0u)).fn0_Set(fn);
+            new SndAux(Mem.U32(Gv.MenuInput_StatePtr)).fn0_Set(fn);
         }
     }
 
@@ -1159,7 +1159,7 @@ public static partial class Game
             {
                 for (j = 0; (j < 4); ++j)
                 {
-                    Mem.Set(((new SndAux(Mem.U32(0x8014D0B0u)).tbl.P + (uint)(i * 4)) + (uint)j), (byte)(0));
+                    Mem.Set(((new SndAux(Mem.U32(Gv.MenuInput_StatePtr)).tbl.P + (uint)(i * 4)) + (uint)j), (byte)(0));
                 }
             }
         }
@@ -1171,7 +1171,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029BA78");
-            Mem_Fill(Mem.Set(0x8014D0B0u, ResourcePool_Malloc((uint)(3140))), 0, (uint)(3140));
+            Mem_Fill(Mem.Set(Gv.MenuInput_StatePtr, ResourcePool_Malloc((uint)(3140))), 0, (uint)(3140));
         }
     }
 
@@ -1181,8 +1181,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029BAAC");
-            ResourcePool_MallocFree(Mem.U32(0x8014D0B0u));
-            Mem.Set(0x8014D0B0u, 0u);
+            ResourcePool_MallocFree(Mem.U32(Gv.MenuInput_StatePtr));
+            Mem.Set(Gv.MenuInput_StatePtr, 0u);
         }
     }
 

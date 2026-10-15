@@ -5,7 +5,7 @@ namespace Trw.Game.PortHud;
 
 /// <summary>
 /// Marks the display-list commands the game's HUD code produced (<see cref="DrawCommand.Hud"/>), without touching any game function or guest memory.
-/// <para>How the HUD is drawn (decompiled C): the per-frame race update View_UpdateAll walks the cameras (the split-screen views, list at 0x801450A8) and
+/// <para>How the HUD is drawn (decompiled C): the per-frame race update View_UpdateAll walks the cameras (the split-screen views, list at Gv.Camera_ListHead) and
 /// for each one runs the world pass (func_802362E8: loads the camera's 3D projection, camera + 0x380 + 0x40 * frame parity), then Hud_DrawViewOverlay -&gt;
 /// Hud_DrawView2D, which emits <c>G_MTX(projection, load)</c> of the camera's 2D projection at camera + 0x448 + 0x40 * parity (Camera_LoadProjection2D) and then runs
 /// the HUD of that view's player (Hud_DrawPlayer: crosshair, ammo, health, flash, counters, frags, ...), the on-screen messages (Hud_DrawMessages) and the

@@ -137,7 +137,7 @@ public static partial class Game
             Bus_WriteWord(2986344444u, (uint)(0));
             mem = Mem.U32((uint)(2147484440u));
             Mem.Set(0x800F7450u, (byte)(1));
-            Mem.Set(0x800F7452u, (byte)(255));
+            Mem.Set(Gv.DevLink_Flag_800F7452, (byte)(255));
             if ((mem > (uint)(4194303)))
             {
                 if ((((((mem & (uint)(131071)) == (uint)(0)) ? 1 : 0) & ((mem <= (uint)(33554432)) ? 1 : 0)) != 0))
@@ -194,21 +194,21 @@ public static partial class Game
                         case (uint)(18):
                             Mem.Set(0x800F72A8u, (uint)((uint)(Mem.U32(0x800F72A8u)) & (uint)((~1))));
                             Mem.Set(0x800F7450u, (byte)(0));
-                            Mem.Set(0x800F7452u, (byte)(0));
+                            Mem.Set(Gv.DevLink_Flag_800F7452, (byte)(0));
                             Cpu_SetStatusReg((Cpu_GetStatusReg(default(uint), default(uint), default(uint), default(uint)) & (uint)((~1))), default(uint), default(uint), default(uint));
                             break;
                         case (uint)(19):
-                            Mem.Set(0x800F7452u, (byte)(0));
+                            Mem.Set(Gv.DevLink_Flag_800F7452, (byte)(0));
                             Mem.Set(0x800F7450u, (byte)(0));
                             break;
                         case (uint)(20):
-                            Mem.Set(0x800F7452u, (byte)(255));
+                            Mem.Set(Gv.DevLink_Flag_800F7452, (byte)(255));
                             break;
                         case (uint)(21):
-                            Mem.Set(0x800F7452u, (byte)(0));
+                            Mem.Set(Gv.DevLink_Flag_800F7452, (byte)(0));
                             break;
                         case (uint)(22):
-                            Bus_WriteWord(2986213376u, (uint)((((int)(Mem.U8(0x800F7452u)) << (int)24) | ((int)(Mem.U8(0x800F7450u)) << (int)16))));
+                            Bus_WriteWord(2986213376u, (uint)((((int)(Mem.U8(Gv.DevLink_Flag_800F7452)) << (int)24) | ((int)(Mem.U8(0x800F7450u)) << (int)16))));
                             break;
                         case (uint)(23):
                             DevLink_TransferMemory(2);
@@ -228,7 +228,7 @@ public static partial class Game
                     }
                 }
             }
-            while (((cont != 0) || ((int)(Mem.U8(0x800F7452u)) == 0)));
+            while (((cont != 0) || ((int)(Mem.U8(Gv.DevLink_Flag_800F7452)) == 0)));
             Bus_WriteWord(2986344432u, (uint)(0));
         }
     }
@@ -239,12 +239,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002016FC", (uint)pri);
-            if ((Mem.S32(0x800CD390u) == 0))
+            if ((Mem.S32(Gv.DevLink_IoThreadActive) == 0))
             {
-                Mem.Set(0x800CD390u, 1);
-                osCreateMesgQueue(0x800F6CC0u, 0x800F6CB4u, 1);
-                osCreateMesgQueue(0x800F6F40u, 0x800F6CB0u, 1);
-                osCreateMesgQueue(0x800F7110u, 0x800F6F58u, 1);
+                Mem.Set(Gv.DevLink_IoThreadActive, 1);
+                osCreateMesgQueue(Gv.DevLink_PiDmaMesgQueue, 0x800F6CB4u, 1);
+                osCreateMesgQueue(Gv.DevLink_RequestQueue, 0x800F6CB0u, 1);
+                osCreateMesgQueue(Gv.DevLink_ReplyQueue, 0x800F6F58u, 1);
                 osCreateMesgQueue(0x800F5C90u, 0x800F5C84u, 1);
                 osSetEventMesg((uint)(0), 0x800F5C90u, (uint)(1));
                 osCreateThread(0x800F6F60u, 18003, 0x002018A0u, 0u, (0x800F6CACu + (uint)4), pri);
@@ -323,17 +323,17 @@ public static partial class Game
                 uint len = 0u;
                 for (; ; )
                 {
-                    osRecvMesg(0x800F6F40u, _fp, 1);
+                    osRecvMesg(Gv.DevLink_RequestQueue, _fp, 1);
                     if (((new B01IoReq(Mem.U32(_fp)).w4 != 0) && (new B01IoReq(Mem.U32(_fp)).w8 == 1)))
                     {
                         if ((((uint)(Mem.S32(new B01IoReq(Mem.U32(_fp)).wC.P)) & 2147483648u) != 0u))
                         {
-                            Mem.Set(0x800CD390u, 0);
+                            Mem.Set(Gv.DevLink_IoThreadActive, 0);
                         }
                         Bus_WriteBlockDma(2986278912u, (uint)(new B01IoReq(Mem.U32(_fp)).w0), (uint)(new B01IoReq(Mem.U32(_fp)).w4));
                         if ((((uint)(Mem.S32(new B01IoReq(Mem.U32(_fp)).wC.P)) & 2147483648u) != 0u))
                         {
-                            Mem.Set(0x800CD390u, 1);
+                            Mem.Set(Gv.DevLink_IoThreadActive, 1);
                         }
                     }
                     osRecvMesg(0x800F5C90u, 0u, 0);
@@ -350,12 +350,12 @@ public static partial class Game
                         {
                             if ((((uint)(Mem.S32(new B01IoReq(Mem.U32(_fp)).wC.P)) & 2147483648u) != 0u))
                             {
-                                Mem.Set(0x800CD390u, 0);
+                                Mem.Set(Gv.DevLink_IoThreadActive, 0);
                             }
                             Bus_ReadBlockDma(2986278912u, (uint)(new B01IoReq(Mem.U32(_fp)).w0), len);
                             if ((((uint)(Mem.S32(new B01IoReq(Mem.U32(_fp)).wC.P)) & 2147483648u) != 0u))
                             {
-                                Mem.Set(0x800CD390u, 1);
+                                Mem.Set(Gv.DevLink_IoThreadActive, 1);
                             }
                         }
                     }
@@ -378,7 +378,7 @@ public static partial class Game
             int mask = 0;
             int r = 0;
             mask = Int_DisableMask();
-            Mem.Set(0x800CD394u, 1);
+            Mem.Set(Gv.DevLink_State, 1);
             r = (int)(DevLink_ProgramTransfer((uint)(257), (uint)(0), (uint)(0), (uint)(0)));
             Int_RestoreMask(mask);
             return r;
@@ -394,16 +394,16 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00201ACC");
-                Mem.Set(0x800CD394u, 2);
+                Mem.Set(Gv.DevLink_State, 2);
                 DevLink_StartIoThread(255);
                 new B01IoReq(_fp).w4_Set(0);
                 Mem.Set(new B01IoReq(_fp).wC.P, (int)(2147483905u));
                 new B01IoReq(_fp).w10_Set(0);
                 new B01IoReq(_fp).w14_Set(0);
                 new B01IoReq(_fp).w18_Set(0);
-                new B01IoReq(_fp).reply__Set(0x800F7110u);
-                osSendMesg(0x800F6F40u, _fp, 1);
-                osRecvMesg(0x800F7110u, (_fp + 32u), 1);
+                new B01IoReq(_fp).reply__Set(Gv.DevLink_ReplyQueue);
+                osSendMesg(Gv.DevLink_RequestQueue, _fp, 1);
+                osRecvMesg(Gv.DevLink_ReplyQueue, (_fp + 32u), 1);
                 return (int)(Mem.U32((_fp + 32u)));
             }
         }
@@ -422,7 +422,7 @@ public static partial class Game
                 int len = 0;
                 int mask = 0;
                 len = Str_LengthWithNul(src);
-                if ((Mem.S32(0x800CD394u) == 2))
+                if ((Mem.S32(Gv.DevLink_State) == 2))
                 {
                     new B01IoReq(_fp).w0_Set((int)(src));
                     new B01IoReq(_fp).w4_Set(len);
@@ -431,9 +431,9 @@ public static partial class Game
                     new B01IoReq(_fp).w10_Set(len);
                     new B01IoReq(_fp).w14_Set(arg);
                     new B01IoReq(_fp).w18_Set(0);
-                    new B01IoReq(_fp).reply__Set(0x800F7110u);
-                    osSendMesg(0x800F6F40u, _fp, 1);
-                    osRecvMesg(0x800F7110u, (_fp + 32u), 1);
+                    new B01IoReq(_fp).reply__Set(Gv.DevLink_ReplyQueue);
+                    osSendMesg(Gv.DevLink_RequestQueue, _fp, 1);
+                    osRecvMesg(Gv.DevLink_ReplyQueue, (_fp + 32u), 1);
                     if (((Mem.S32((_fp + 32u)) & 32768) != 0))
                     {
                         Mem.Set((_fp + 32u), (int)((uint)(Mem.S32((_fp + 32u))) | 4294901760u));
@@ -469,7 +469,7 @@ public static partial class Game
                 int len = 0;
                 int mask = 0;
                 len = Str_LengthWithNul(src);
-                if ((Mem.S32(0x800CD394u) == 2))
+                if ((Mem.S32(Gv.DevLink_State) == 2))
                 {
                     new B01IoReq(_fp).w0_Set((int)(src));
                     new B01IoReq(_fp).w4_Set(len);
@@ -478,9 +478,9 @@ public static partial class Game
                     new B01IoReq(_fp).w10_Set(len);
                     new B01IoReq(_fp).w14_Set(arg);
                     new B01IoReq(_fp).w18_Set(0);
-                    new B01IoReq(_fp).reply__Set(0x800F7110u);
-                    osSendMesg(0x800F6F40u, _fp, 1);
-                    osRecvMesg(0x800F7110u, (_fp + 32u), 1);
+                    new B01IoReq(_fp).reply__Set(Gv.DevLink_ReplyQueue);
+                    osSendMesg(Gv.DevLink_RequestQueue, _fp, 1);
+                    osRecvMesg(Gv.DevLink_ReplyQueue, (_fp + 32u), 1);
                     if (((Mem.S32((_fp + 32u)) & 32768) != 0))
                     {
                         Mem.Set((_fp + 32u), (int)((uint)(Mem.S32((_fp + 32u))) | 4294901760u));
@@ -514,16 +514,16 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_00201DB0", (uint)arg);
                 int mask = 0;
-                if ((Mem.S32(0x800CD394u) == 2))
+                if ((Mem.S32(Gv.DevLink_State) == 2))
                 {
                     new B01IoReq(_fp).w4_Set(0);
                     Mem.Set(new B01IoReq(_fp).wC.P, (int)(2147484676u));
                     new B01IoReq(_fp).w10_Set(arg);
                     new B01IoReq(_fp).w14_Set(0);
                     new B01IoReq(_fp).w18_Set(0);
-                    new B01IoReq(_fp).reply__Set(0x800F7110u);
-                    osSendMesg(0x800F6F40u, _fp, 1);
-                    osRecvMesg(0x800F7110u, (_fp + 32u), 1);
+                    new B01IoReq(_fp).reply__Set(Gv.DevLink_ReplyQueue);
+                    osSendMesg(Gv.DevLink_RequestQueue, _fp, 1);
+                    osRecvMesg(Gv.DevLink_ReplyQueue, (_fp + 32u), 1);
                     if (((Mem.S32((_fp + 32u)) & 32768) != 0))
                     {
                         Mem.Set((_fp + 32u), (int)((uint)(Mem.S32((_fp + 32u))) | 4294901760u));
@@ -557,7 +557,7 @@ public static partial class Game
                 int done = 0;
                 int mask = 0;
                 uint chunk = 0u;
-                if ((Mem.S32(0x800CD394u) == 2))
+                if ((Mem.S32(Gv.DevLink_State) == 2))
                 {
                     while ((n != (uint)(0)))
                     {
@@ -573,9 +573,9 @@ public static partial class Game
                         new B01IoReq(_fp).w10_Set(arg);
                         new B01IoReq(_fp).w14_Set((int)(chunk));
                         new B01IoReq(_fp).w18_Set(0);
-                        new B01IoReq(_fp).reply__Set(0x800F7110u);
-                        osSendMesg(0x800F6F40u, _fp, 1);
-                        osRecvMesg(0x800F7110u, (_fp + 32u), 1);
+                        new B01IoReq(_fp).reply__Set(Gv.DevLink_ReplyQueue);
+                        osSendMesg(Gv.DevLink_RequestQueue, _fp, 1);
+                        osRecvMesg(Gv.DevLink_ReplyQueue, (_fp + 32u), 1);
                         if ((Mem.S32((_fp + 32u)) == 0))
                         {
                             return done;
@@ -625,7 +625,7 @@ public static partial class Game
                 int done = 0;
                 int mask = 0;
                 uint chunk = 0u;
-                if ((Mem.S32(0x800CD394u) == 2))
+                if ((Mem.S32(Gv.DevLink_State) == 2))
                 {
                     while ((n != (uint)(0)))
                     {
@@ -641,9 +641,9 @@ public static partial class Game
                         new B01IoReq(_fp).w10_Set(arg);
                         new B01IoReq(_fp).w14_Set((int)(chunk));
                         new B01IoReq(_fp).w18_Set(0);
-                        new B01IoReq(_fp).reply__Set(0x800F7110u);
-                        osSendMesg(0x800F6F40u, _fp, 1);
-                        osRecvMesg(0x800F7110u, (_fp + 32u), 1);
+                        new B01IoReq(_fp).reply__Set(Gv.DevLink_ReplyQueue);
+                        osSendMesg(Gv.DevLink_RequestQueue, _fp, 1);
+                        osRecvMesg(Gv.DevLink_ReplyQueue, (_fp + 32u), 1);
                         if ((Mem.S32((_fp + 32u)) == 0))
                         {
                             return done;
@@ -815,16 +815,16 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_00202198", (uint)a0, (uint)a1, (uint)a2);
                 int mask = 0;
-                if ((Mem.S32(0x800CD394u) == 2))
+                if ((Mem.S32(Gv.DevLink_State) == 2))
                 {
                     new IoReq(_fp).unk4_Set(0);
                     new IoReq(_fp).cmd_Set(2147485447u);
                     new IoReq(_fp).a0_Set(a0);
                     new IoReq(_fp).a1_Set(a1);
                     new IoReq(_fp).a2_Set(a2);
-                    new IoReq(_fp).reply__Set(0x800F7110u);
-                    osSendMesg(0x800F6F40u, _fp, 1);
-                    osRecvMesg(0x800F7110u, (_fp + 32u), 1);
+                    new IoReq(_fp).reply__Set(Gv.DevLink_ReplyQueue);
+                    osSendMesg(Gv.DevLink_RequestQueue, _fp, 1);
+                    osRecvMesg(Gv.DevLink_ReplyQueue, (_fp + 32u), 1);
                 }
                 else
                 {
@@ -846,9 +846,9 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002AE260");
             byte v = 0;
             Mem.Set(0x8014D3E0u, (sbyte)(0));
-            Mem.Set(0x8014D3E1u, (sbyte)(0));
-            Mem.Set(0x8014D3E2u, (byte)(0));
-            Mem.Set(0x8014D3E3u, (sbyte)(0));
+            Mem.Set(Gv.DbgPort_IntEnable, (sbyte)(0));
+            Mem.Set(Gv.DbgPort_FifoCtlShadow, (byte)(0));
+            Mem.Set(Gv.DbgPort_LineCtlShadow, (sbyte)(0));
             Mem.Set(0x8014D3E4u, (sbyte)(0));
             while (((osPiGetStatus() & (uint)(3)) != 0u))
             {
@@ -873,13 +873,13 @@ public static partial class Game
             while (((osPiGetStatus() & (uint)(3)) != 0u))
             {
             }
-            v = (byte)(((int)(Mem.U8(0x8014D3E2u)) | 64));
-            Mem.Set(0x8014D3E2u, v);
+            v = (byte)(((int)(Mem.U8(Gv.DbgPort_FifoCtlShadow)) | 64));
+            Mem.Set(Gv.DbgPort_FifoCtlShadow, v);
             while (((osPiGetStatus() & (uint)(3)) != 0u))
             {
             }
             Mem.Set(0xB2000008u, (short)(v));
-            Mem.Set(0x8014D3E8u, 0);
+            Mem.Set(Gv.DbgLink_Error, 0);
             return 1;
         }
     }

@@ -16,16 +16,16 @@ public static partial class Game
                 int i = 0;
                 int ret = 0;
                 uint ptr = 0u;
-                ptr = 0x80154110u;
+                ptr = Gv.OsPfsPifRam;
                 if (!(Mem.S32((0x800D8380u + (uint)(new OSPfs(pfs).channel * 4))) != 0))
                 {
                     return 5;
                 }
                 __osSiGetAccess();
-                Mem.Set(0x8014D4B0u, (byte)(3));
+                Mem.Set(Gv.__osContLastCmd, (byte)(3));
                 __osSiRawStartDma(1, (0x8014D4C0u + (uint)(new OSPfs(pfs).channel * 64)));
                 osRecvMesg(new OSPfs(pfs).queue_, 0u, 1);
-                __osSiRawStartDma(0, 0x80154110u);
+                __osSiRawStartDma(0, Gv.OsPfsPifRam);
                 osRecvMesg(new OSPfs(pfs).queue_, 0u, 1);
                 if ((new OSPfs(pfs).channel != 0))
                 {
