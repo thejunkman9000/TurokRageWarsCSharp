@@ -40,10 +40,10 @@ public static partial class Game
                 func_00401214(_fp, new Q01Anim_v2(Mem.U32(0x800E2830u)).f1C);
                 func_004013BC((_fp + 16u), new Q01Anim_v2(Mem.U32(0x800E2830u)).f1C);
                 fs0 = Mem.F32(0x800E0B70u);
-                func_0027200C(_fp, _fp, fs0);
-                func_0027200C((_fp + 16u), (_fp + 16u), fs0);
+                Vec_Scale(_fp, _fp, fs0);
+                Vec_Scale((_fp + 16u), (_fp + 16u), fs0);
                 new Q01Out_v2(arg0).f28_Set(0.0f);
-                func_00271FD8((_fp + 32u), (_fp + 16u), _fp);
+                Vec_Sub((_fp + 32u), (_fp + 16u), _fp);
                 if (((((new Q01Anim_v2(Mem.U32(0x800E2830u)).unk74 & 1) != 0) && (new Q01Anim_v2(Mem.U32(0x800E2830u)).unk18_ != 0u)) || ((new Q01Anim_v2(Mem.U32(0x800E2830u)).unk74 & 2) != 0)))
                 {
                     s3 = Mem.U32(0x80145060u);
@@ -70,15 +70,15 @@ public static partial class Game
                             new Q01Anim_v2(Mem.U32(0x800E2830u)).fFC_Set(0.0f);
                         }
                     }
-                    func_00272848((_fp + 128u));
-                    func_00272EAC((_fp + 128u), 0.0f, new Q01Anim_v2(Mem.U32(0x800E2830u)).fFC, 0.0f);
-                    func_00272908((_fp + 128u), (_fp + 16u), (_fp + 192u));
+                    Math_MtxIdentity((_fp + 128u));
+                    Math_MtxMakeRotateXYZ((_fp + 128u), 0.0f, new Q01Anim_v2(Mem.U32(0x800E2830u)).fFC, 0.0f);
+                    Math_MtxTransformPoint((_fp + 128u), (_fp + 16u), (_fp + 192u));
                     Mem.Copy((_fp + 16u), (_fp + 192u), 12);
-                    func_00272908((_fp + 128u), _fp, (_fp + 192u));
+                    Math_MtxTransformPoint((_fp + 128u), _fp, (_fp + 192u));
                     Mem.Copy(_fp, (_fp + 192u), 12);
-                    func_00271FA4((_fp + 16u), (_fp + 16u), new Q01Anim_v2(Mem.U32(0x800E2830u)).vF0.P);
-                    func_00271FA4(_fp, _fp, new Q01Anim_v2(Mem.U32(0x800E2830u)).vF0.P);
-                    func_00271FD8((_fp + 32u), (_fp + 16u), _fp);
+                    Vec_Add((_fp + 16u), (_fp + 16u), new Q01Anim_v2(Mem.U32(0x800E2830u)).vF0.P);
+                    Vec_Add(_fp, _fp, new Q01Anim_v2(Mem.U32(0x800E2830u)).vF0.P);
+                    Vec_Sub((_fp + 32u), (_fp + 16u), _fp);
                     if ((s3 != 0u))
                     {
                         Mem.Copy((_fp + 48u), s3, 80);
@@ -93,9 +93,9 @@ public static partial class Game
                         }
                     }
                 }
-                fs1 = func_00271B18((_fp + 32u));
+                fs1 = Vec_GetYaw((_fp + 32u));
                 {
-                    float t = func_0027266C((_fp + 32u));
+                    float t = Vec_GetPitch((_fp + 32u));
                     new Q01Out_v2(arg0).f28_Set((new Q01Out_v2(arg0).f28 + fs1));
                     new Q01Out_v2(arg0).f2C_Set((-t));
                 }

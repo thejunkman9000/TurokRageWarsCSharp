@@ -45,24 +45,24 @@ public static partial class Game
                 L_L00297074: ;
                 r5 = r16; r2 = Chunk_Get(r4, (int)r5);
                 r4 = r20;
-                r5 = r2; func_00263100(r4, r5);
+                r5 = r2; BitStream_Init(r4, r5);
                 r4 = r20;
-                r5 = (uint)32; r2 = (uint)func_00263174(r4, (int)r5);
-                r4 = r20;
-                r5 = (uint)32;
-                Mem.Set((r29 + 16u), r2); r2 = (uint)func_00263174(r4, (int)r5);
+                r5 = (uint)32; r2 = (uint)BitStream_ReadBitsLsb(r4, (int)r5);
                 r4 = r20;
                 r5 = (uint)32;
-                Mem.Set((r29 + 20u), r2); r2 = (uint)func_00263174(r4, (int)r5);
+                Mem.Set((r29 + 16u), r2); r2 = (uint)BitStream_ReadBitsLsb(r4, (int)r5);
                 r4 = r20;
                 r5 = (uint)32;
-                Mem.Set((r29 + 24u), r2); r2 = (uint)func_00263174(r4, (int)r5);
+                Mem.Set((r29 + 20u), r2); r2 = (uint)BitStream_ReadBitsLsb(r4, (int)r5);
                 r4 = r20;
                 r5 = (uint)32;
-                Mem.Set((r29 + 32u), r2); r2 = (uint)func_00263174(r4, (int)r5);
+                Mem.Set((r29 + 24u), r2); r2 = (uint)BitStream_ReadBitsLsb(r4, (int)r5);
                 r4 = r20;
                 r5 = (uint)32;
-                Mem.Set((r29 + 36u), r2); r2 = (uint)func_00263174(r4, (int)r5);
+                Mem.Set((r29 + 32u), r2); r2 = (uint)BitStream_ReadBitsLsb(r4, (int)r5);
+                r4 = r20;
+                r5 = (uint)32;
+                Mem.Set((r29 + 36u), r2); r2 = (uint)BitStream_ReadBitsLsb(r4, (int)r5);
                 Cpu.SetW(1, Mem.U32((r19 + 0u)));
                 Cpu.SetW(0, Mem.U32((r29 + 16u)));
                 fcc = Cpu.S(0) < Cpu.S(1);
@@ -94,7 +94,7 @@ public static partial class Game
                 r4 = r18;
                 r5 = r0; r2 = Chunk_Get(r4, (int)r5);
                 r4 = r20;
-                r5 = r2; func_00263100(r4, r5);
+                r5 = r2; BitStream_Init(r4, r5);
                 r19 = r0;
                 L_L0029719C: ;
                 r18 = r19;
@@ -108,7 +108,7 @@ public static partial class Game
                 r16 = r2 + r20;
                 L_L002971BC: ;
                 r4 = r20;
-                r5 = (uint)2; r2 = (uint)func_00263174(r4, (int)r5);
+                r5 = (uint)2; r2 = (uint)BitStream_ReadBitsLsb(r4, (int)r5);
                 r8 = (uint)1;
                 if (r2 == r8) { Mem.Set((r16 + 24u), (ushort)r21); goto L_L002971F4; }
                 if (r2 == 0) { Mem.Set((r16 + 24u), (ushort)r22); goto L_L002971F4; }
@@ -135,7 +135,7 @@ public static partial class Game
                 r4 = r20;
                 r2 = Mem.U16((r20 + 6u));
                 r5 = (uint)9;
-                Mem.Set((r16 + 24u), (ushort)r2); r2 = (uint)func_00263174(r4, (int)r5);
+                Mem.Set((r16 + 24u), (ushort)r2); r2 = (uint)BitStream_ReadBitsLsb(r4, (int)r5);
                 r3 = Mem.U32((r20 + 4u));
                 r3 = r3 + r2;
                 Mem.Set((r20 + 4u), r3);

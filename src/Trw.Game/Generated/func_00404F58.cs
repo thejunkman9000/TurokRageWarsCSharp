@@ -42,7 +42,7 @@ public static partial class Game
                     memcpy(dst, buf, (uint)(size));
                 }
             }
-            func_0026456C(default(uint), default(uint), default(uint), default(uint));
+            Pad_Release(default(uint), default(uint), default(uint), default(uint));
             ResourcePool_Purge();
             if ((h != 0u))
             {

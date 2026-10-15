@@ -52,7 +52,7 @@ public static partial class Game
                 r16 = r0;
                 L_L002A560C: ;
                 { bool c_ = r16 != 0;  if (c_) goto L_L002A5714; }
-                r4 = r21 + 29980u; r2 = func_002796AC(r4);
+                r4 = r21 + 29980u; r2 = Pool_TakeFree(r4);
                 r16 = r2;
                 { bool c_ = r16 == 0;  if (c_) goto L_L002A5758; }
                 r4 = 2148663296u;
@@ -69,7 +69,7 @@ public static partial class Game
                 r1 = 2148335616u;
                 r1 = r1 + r3;
                 r20 = Mem.U32((r1 + 11840u));
-                r4 = r16 + 64u; func_00279520(r4);
+                r4 = r16 + 64u; Vec_SetZero(r4);
                 r2 = (uint)2;
                 Mem.Set((r16 + 60u), r2);
                 r2 = Mem.U32((r18 + 280u));
@@ -105,7 +105,7 @@ public static partial class Game
                 r17 = r16 + 20u;
                 r4 = r17; func_00296DDC(r4, (int)r5);
                 { bool c_ = r18 == 0; r4 = r18; if (c_) goto L_L002A570C; }
-                r5 = r17; func_00283038(r4, r5);
+                r5 = r17; Particle_PackBlendMode_00283038(r4, r5);
                 L_L002A570C: ;
                 { bool c_ = r16 == 0;  if (c_) goto L_L002A5758; }
                 L_L002A5714: ;
@@ -117,7 +117,7 @@ public static partial class Game
                 r3 = 65536u;
                 r2 = r2 & r3;
                 { bool c_ = r2 == 0;  if (c_) goto L_L002A5758; }
-                r4 = r29 + 16u; func_00272848(r4);
+                r4 = r29 + 16u; Math_MtxIdentity(r4);
                 r4 = r21;
                 r5 = r16;
                 r6 = r29 + 16u; r2 = func_002A35C0(r4, r5, r6, r7); r3 = Cpu.V1;

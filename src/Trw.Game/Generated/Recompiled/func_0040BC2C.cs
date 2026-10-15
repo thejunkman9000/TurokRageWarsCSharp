@@ -32,7 +32,7 @@ public static partial class Game
                 Mem.Set((r1 + 20672u), r2);
                 r2 = (uint)-1;
                 { bool c_ = r3 != r2; Mem.Set((r29 + 52u), r31); if (c_) goto L_L0040BC98; }
-                r2 = func_00265370();
+                r2 = Mem_GetRamSize();
                 r3 = 4194304u;
                 { bool c_ = r2 == r3; r2 = (uint)1; if (c_) goto L_L0040BC80; }
                 r1 = 2148401152u;

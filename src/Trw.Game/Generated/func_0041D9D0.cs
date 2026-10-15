@@ -22,7 +22,7 @@ public static partial class Game
                 {
                     if ((new O3Tbl((0x800E3594u + (uint)(i * 8))).key == (int)(new O3Pk(Mem.U32(0x800E3590u)).cur.id)))
                     {
-                        if ((func_00265670((0x80102B4Au + (uint)(new O3Pk(Mem.U32(0x800E3590u)).slot * 400)), i) == 1))
+                        if ((Bits_Test((0x80102B4Au + (uint)(new O3Pk(Mem.U32(0x800E3590u)).slot * 400)), i) == 1))
                         {
                             new O3Pk(Mem.U32(0x800E3590u)).tgt.txt_Set((uint)(Mem.S32(new O3Tbl((0x800E3594u + (uint)(i * 8))).val_)));
                         }

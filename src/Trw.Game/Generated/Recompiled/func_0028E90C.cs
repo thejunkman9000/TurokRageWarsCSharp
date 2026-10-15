@@ -80,10 +80,10 @@ public static partial class Game
                 r4 = r17; func_0028F258(r4);
                 r4 = r17 + 64u; goto L_L0028E928;
                 L_L0028EA34: ;
-                func_0025E338();
-                r4 = (uint)-1; func_0025E234((int)r4);
-                r2 = func_0025CC8C();
-                r4 = r2; func_0025CC0C(r4);
+                Audio_FadeOutMusic();
+                r4 = (uint)-1; Audio_StopAllExcept((int)r4);
+                r2 = LoopSound_GetPool();
+                r4 = r2; LoopSound_StopAll(r4);
                 r16 = Mem.U32((r17 + 736u));
                 r2 = (uint)1;
                 r1 = 2148335616u;

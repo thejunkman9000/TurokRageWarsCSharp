@@ -36,9 +36,9 @@ public static partial class Game
             if ((t > 0))
             {
                 s0 = (t - 1);
-                if ((func_00265670(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, s0) == 0))
+                if ((Bits_Test(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, s0) == 0))
                 {
-                    func_002656A8(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA79.P, s0, 1);
+                    Bits_Assign(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA79.P, s0, 1);
                 }
             }
             for (s1 = 0; (s1 < 3); ++s1)
@@ -46,9 +46,9 @@ public static partial class Game
                 t = (int)(Mem.U8(((r + (uint)s1) + (uint)2)));
                 if ((t > 0))
                 {
-                    if ((func_00265670(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, (t - 1)) == 0))
+                    if ((Bits_Test(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, (t - 1)) == 0))
                     {
-                        func_002656A8(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA79.P, (t - 1), 1);
+                        Bits_Assign(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA79.P, (t - 1), 1);
                     }
                 }
             }

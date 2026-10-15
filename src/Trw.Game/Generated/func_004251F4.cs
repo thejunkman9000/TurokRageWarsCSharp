@@ -13,9 +13,9 @@ public static partial class Game
             int r = (-1);
             uint row = (0x80102B00u + (uint)(a * 400));
             int t = 0;
-            if ((func_00265670((new O04Row190w(row).grid.P + (uint)(new O04Row190w(row).unkF * 5)), Mem.S32((0x8015402Cu + (uint)(0 * 4)))) == 0))
+            if ((Bits_Test((new O04Row190w(row).grid.P + (uint)(new O04Row190w(row).unkF * 5)), Mem.S32((0x8015402Cu + (uint)(0 * 4)))) == 0))
             {
-                func_002656A8((new O04Row190w(row).grid.P + (uint)(new O04Row190w(row).unkF * 5)), Mem.S32((0x8015402Cu + (uint)(0 * 4))), 1);
+                Bits_Assign((new O04Row190w(row).grid.P + (uint)(new O04Row190w(row).unkF * 5)), Mem.S32((0x8015402Cu + (uint)(0 * 4))), 1);
                 t = (int)(Mem.U8((Mem.U32(0x800E4680u) + (uint)0)));
                 r = (t + 5000);
                 switch (t)

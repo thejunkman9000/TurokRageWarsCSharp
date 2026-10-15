@@ -28,14 +28,14 @@ public static partial class Game
                             {
                                 if ((zero < new Slot68A0(s).unk24))
                                 {
-                                    func_00270980(_fp, src, default(uint), default(uint));
+                                    Math_MtxFixedToFloatAffine(_fp, src, default(uint), default(uint));
                                     k = Mem.F32(0x800CB028u);
                                     if ((new Actor68A0(who).unk118.unk14 != 0))
                                     {
                                         k = Mem.F32(0x800CB02Cu);
                                     }
-                                    func_002734EC(_fp, k, k, k);
-                                    func_00272898(_fp);
+                                    Math_MtxScaleRows(_fp, k, k, k);
+                                    Math_MtxClampFixedRange(_fp);
                                     func_002A35C0(o, s, _fp, default(uint));
                                 }
                             }

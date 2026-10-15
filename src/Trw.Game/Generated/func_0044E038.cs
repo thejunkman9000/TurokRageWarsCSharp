@@ -27,7 +27,7 @@ public static partial class Game
             {
                 if (((int)(new S7Obj((objs + (uint)(i * 20))).kind) == kind))
                 {
-                    d = func_00272768(new S7Obj((objs + (uint)(i * 20))).pos.P, pos);
+                    d = Vec_Distance(new S7Obj((objs + (uint)(i * 20))).pos.P, pos);
                     if ((d < bestd))
                     {
                         bestd = d;

@@ -17,7 +17,7 @@ public static partial class Game
                 uint t = 0u;
                 if ((((int)(Mem.U8(e)) == 1) && (new ActorDef(new Entity(e).def_).type == 7)))
                 {
-                    func_00271FD8(_fp, new Entity(e).pos.P, target);
+                    Vec_Sub(_fp, new Entity(e).pos.P, target);
                     dist = ((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).z * new Vec3f(_fp).z));
                     new Vec3f(_fp).y_Set((float)(0));
                     if ((262144.0f < dist))

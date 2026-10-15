@@ -36,11 +36,11 @@ public static partial class Game
                 Cpu.SetW(0, Mem.U32((r2 + 8u)));
                 r5 = r18 + 16u;
                 Mem.Set((r18 + 176u), r0);
-                Mem.Set((r18 + 8u), Cpu.W(0)); func_00273340(r4, r5);
+                Mem.Set((r18 + 8u), Cpu.W(0)); Math_MtxGetTranslationVec(r4, r5);
                 r2 = Mem.U32((r19 + 60u));
                 r2 = r2 & 4u;
                 { bool c_ = r2 == 0; r4 = r17; if (c_) goto L_L002A3630; }
-                r5 = r18 + 28u; func_0027335C(r4, r5);
+                r5 = r18 + 28u; Math_MtxGetScale(r4, r5);
                  goto L_L002A3644;
                 L_L002A3630: ;
                 r5 = r18 + 40u; Math_MtxFloatToFixed(r4, r5);
@@ -52,7 +52,7 @@ public static partial class Game
                 { bool c_ = r17 == 0; Mem.Set((r16 + 168u), r0); if (c_) goto L_L002A3698; }
                 r4 = r29 + 16u;
                 r5 = r16 + 16u;
-                r6 = r17 + 16u; func_00271FD8(r4, r5, r6);
+                r6 = r17 + 16u; Vec_Sub(r4, r5, r6);
                 Cpu.SetW(1, Mem.U32((r29 + 16u)));
                 Cpu.SetS(1, Cpu.S(1) * Cpu.S(1));
                 Cpu.SetW(0, Mem.U32((r29 + 20u)));

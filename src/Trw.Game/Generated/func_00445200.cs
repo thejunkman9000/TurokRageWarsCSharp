@@ -11,8 +11,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00445200");
             Audio_PlayCue((-1));
-            func_0025E3A4();
-            func_0025E35C();
+            Audio_UnduckMusic();
+            Audio_StopMusic();
             Match_Reset(0x8011FAC0u);
             return 1;
         }

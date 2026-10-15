@@ -488,9 +488,9 @@ public static partial class Game
                 r16 = 2148663296u;
                 r16 = r16 + 6544u;
                 r4 = r16;
-                r5 = r17; func_00282A18(r4, (int)r5);
+                r5 = r17; Particle_DetonateAttachedTo(r4, (int)r5);
                 r4 = r16;
-                r5 = r17; r2 = func_002830A0(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r17; r2 = Particle_RemoveOwnedCharges(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_L0021A2A8: ;
                 r31 = Mem.U32((r29 + 52u));
                 r22 = Mem.U32((r29 + 48u));
@@ -541,7 +541,7 @@ public static partial class Game
                 Mem.Set((r29 + 728u), Cpu.Fpr[20]);
                 Mem.Set((r29 + 752u), r6); Object_ReleaseHandles_0044ACCC(r4);
                 r4 = Mem.U32((r20 + 1688u));
-                r5 = r0; func_00264808(r4, (int)r5);
+                r5 = r0; Rumble_SetEnabled(r4, (int)r5);
                 r17 = 2148663296u;
                 r17 = r17 - 376u;
                 { bool c_ = r16 == 0;  if (c_) goto L_L0021B250; }
@@ -571,7 +571,7 @@ public static partial class Game
                 { bool c_ = r16 == 0; r4 = r22 + r19; if (c_) goto L_L0021B2D8; }
                 r18 = r19;
                 L_L0021B2B4: ;
-                r5 = r16 + 8u; Cpu.SetS(0, func_00272768(r4, r5));
+                r5 = r16 + 8u; Cpu.SetS(0, Vec_Distance(r4, r5));
                 fcc = Cpu.S(0) < Cpu.S(20);
                 if (fcc) { Cpu.SetS(20, Cpu.S(0)); goto L_L0021B2CC; }
                 L_L0021B2CC: ;
@@ -771,9 +771,9 @@ public static partial class Game
                             if ((Mem.S32((p + (uint)1508)) > 0))
                             {
                                 s0 = Player_GetCharacterSoundId(p, 5005);
-                                if (((int)(func_0025E4F4((uint)(s0), default(uint), default(uint), default(uint))) == 0))
+                                if (((int)(Audio_IsSoundIdPlaying((uint)(s0), default(uint), default(uint), default(uint))) == 0))
                                 {
-                                    func_0025DE74((int)((uint)((short)(s0))), C.Tmp((uint)(Mem.S32((p + (uint)8))), (uint)(Mem.S32((p + (uint)12))), (uint)(Mem.S32((p + (uint)16)))), (int)((p + (uint)8)), (int)((uint)((-1))));
+                                    Audio_PlaySound((int)((uint)((short)(s0))), C.Tmp((uint)(Mem.S32((p + (uint)8))), (uint)(Mem.S32((p + (uint)12))), (uint)(Mem.S32((p + (uint)16)))), (int)((p + (uint)8)), (int)((uint)((-1))));
                                 }
                             }
                         }
@@ -1027,10 +1027,10 @@ public static partial class Game
                 uint o = 0u;
                 float t = 0f;
                 uint v = 0u;
-                if (((new Plr(a).unk5DC_ != 0u) && (80.0f < func_002745D4(100.0f))))
+                if (((new Plr(a).unk5DC_ != 0u) && (80.0f < Random_Float(100.0f))))
                 {
                     pw = new Plr(a).unk5DC_;
-                    t = func_002745D4(7.5f);
+                    t = Random_Float(7.5f);
                     v = Cpu.TruncU32(t);
                     Fade_Start(pw, (sbyte)(255), (sbyte)(255), (sbyte)(0), (sbyte)(0), (sbyte)((int)((byte)(v))), (sbyte)(3), (sbyte)(7));
                     CameraShake_Add(0x80145088u, 0.0f, 204.799988f, 0.0f, 512.0f, 0, new Pawn(pw).pos128.P);
@@ -1320,7 +1320,7 @@ public static partial class Game
                 {
                     if ((new Pawn(new Plr(a).unk5DC_).unk544 == 0))
                     {
-                        Fade_Start(new Plr(a).unk5DC_, (sbyte)(128), (sbyte)(0), (sbyte)(0), (sbyte)(250), (sbyte)((int)((byte)(Cpu.TruncU32(func_002745D4(7.5f))))), (sbyte)(0), (sbyte)((int)((byte)(Cpu.TruncU32((((new Plr(a).unk11D8 * 0.0666666701f) - 1.5f) * 15.0f))))));
+                        Fade_Start(new Plr(a).unk5DC_, (sbyte)(128), (sbyte)(0), (sbyte)(0), (sbyte)(250), (sbyte)((int)((byte)(Cpu.TruncU32(Random_Float(7.5f))))), (sbyte)(0), (sbyte)((int)((byte)(Cpu.TruncU32((((new Plr(a).unk11D8 * 0.0666666701f) - 1.5f) * 15.0f))))));
                         return;
                     }
                     new Pawn(new Plr(a).unk5DC_).unk544_Set(3);
@@ -1609,7 +1609,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0022B5B0", (uint)a, _a1);
             if ((new Plr(a).unk5E4 != 0))
             {
-                new Plr(a).unk12C0_Set(func_00274878(new Plr(a).unk12C0, Mem.F32(0x800C7E04u), Cpu.U2F((uint)(Mem.S32(0x800CF234u)))));
+                new Plr(a).unk12C0_Set(Math_ApproachLinear(new Plr(a).unk12C0, Mem.F32(0x800C7E04u), Cpu.U2F((uint)(Mem.S32(0x800CF234u)))));
             }
         }
     }
@@ -1675,7 +1675,7 @@ public static partial class Game
             uint name = 0u;
             if ((new Plr(a).unk11E4 == 0.0f))
             {
-                func_0025DF54(2885);
+                Audio_PlaySound2D(2885);
                 new Plr(a).unk13E0_Set((int)(b));
                 new Plr(a).unk11E4_Set(Mem.F32(0x800C7E0Cu));
                 if ((new Plr(a).unk5DC_ != 0u))
@@ -1863,7 +1863,7 @@ public static partial class Game
             new S11E878(e).unk98_Set(0.25f);
             new S11E878(e).unkA0_Set(1.57079649f);
             new S11Obj(p).unk11B0_Set(0);
-            func_00264808(new S11Obj(p).unk698, 1);
+            Rumble_SetEnabled(new S11Obj(p).unk698, 1);
             new S11Obj(p).unk678_Set(0);
             new S11Obj(p).unk67C_Set(0);
             new S11Obj(p).unk680_Set(0);
@@ -1916,7 +1916,7 @@ public static partial class Game
             Flyby_ClearFlag_002458C8();
             if ((new S11Obj(p).unk14 != 0u))
             {
-                func_00278E74(new S11Obj(p).unk14, 1, (int)(p));
+                Level_FireRegionTriggers(new S11Obj(p).unk14, 1, (int)(p));
             }
             Flyby_SetFlag_002458B4();
         }
@@ -1960,7 +1960,7 @@ public static partial class Game
                 Mem.Set((r17 + 4644u), r0); Flyby_ClearFlag_002458C8();
                 r4 = Mem.U32((r17 + 20u));
                 { bool c_ = r4 == 0; r5 = (uint)1; if (c_) goto L_L0044A160; }
-                r6 = r17; func_00278E74(r4, (int)r5, (int)r6);
+                r6 = r17; Level_FireRegionTriggers(r4, (int)r5, (int)r6);
                 L_L0044A160: ;
                 Flyby_SetFlag_002458B4();
                 r31 = Mem.U32((r29 + 24u));
@@ -2006,7 +2006,7 @@ public static partial class Game
             Player_ClearTimedEffects_0022B500(player);
             new RespawnPlayer(player).moving_Set(0);
             new RespawnPlayer(player).fade_Set(Mem.F32(0x800C7428u));
-            func_00264808(new RespawnPlayer(player).anim, 1);
+            Rumble_SetEnabled(new RespawnPlayer(player).anim, 1);
             if (((int)(Mem.U8(0x801462E5u)) != 0))
             {
                 Player_ApplyCharacterClass(player);
@@ -2037,7 +2037,7 @@ public static partial class Game
             new RespawnPlayer(player).field13D4_Set(0);
             if (((((func_002934DC() != 0) && ((int)(Mem.U8(0x801462E5u)) == 0)) && (Mem.U32(0x800D2980u) > (uint)(10))) && ((int)(new RespawnPlayer(player).state) < 11)))
             {
-                func_0025E13C((int)(Mem.S16((0x800CF198u + (uint)(new RespawnPlayer(player).state * 2)))));
+                Audio_PlaySndFx((int)(Mem.S16((0x800CF198u + (uint)(new RespawnPlayer(player).state * 2)))));
             }
             if ((func_0044A17C_isOnline() != 0))
             {
@@ -2064,7 +2064,7 @@ public static partial class Game
                 func_0044A17C_releaseState(carried, new RespawnCarried(carried).state.P);
                 new RespawnCarried(carried).flags_Set((int)((int)(new RespawnCarried(carried).flags) & (~8192)));
                 new RespawnCarried(carried).flags_Set((int)((int)(new RespawnCarried(carried).flags) & (~256)));
-                func_00262CA8(new RespawnPlayer(player).carried_);
+                ActorPool_Free(new RespawnPlayer(player).carried_);
                 new RespawnPlayer(player).carried__Set(0u);
             }
         }

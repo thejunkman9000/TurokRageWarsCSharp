@@ -10,12 +10,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043EE3C", (uint)a, (uint)b, (uint)c);
-            func_0025E234((-1));
+            Audio_StopAllExcept((-1));
             Mem.Set(0x800E63B0u, Audio_IsSoundOn());
             Audio_PlayCue(Mem.S32(0x800E63B8u));
-            func_0025E2BC(1);
+            Audio_SetPosFlag_0025E2BC(1);
             Mem.Set(0x800E63B4u, 0);
-            func_00264A1C(default(uint), default(uint), default(uint), default(uint));
+            Pad_ClearFlag800D0E60_00264A1C(default(uint), default(uint), default(uint), default(uint));
             func_00442934((uint)(c), (uint)(b), 0x00451F58u);
             return 1;
         }

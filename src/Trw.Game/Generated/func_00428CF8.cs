@@ -22,13 +22,13 @@ public static partial class Game
             {
                 return 0;
             }
-            s1 = func_00265670(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, s0);
+            s1 = Bits_Test(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, s0);
             if ((s1 != d))
             {
                 return 0;
             }
-            func_0025DF54(3709);
-            if ((func_00265670(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA79.P, new O04ModeS4690(Mem.U32(0x800E4690u)).unkA44) == s1))
+            Audio_PlaySound2D(3709);
+            if ((Bits_Test(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA79.P, new O04ModeS4690(Mem.U32(0x800E4690u)).unkA44) == s1))
             {
                 new O04ModeS4690(Mem.U32(0x800E4690u)).unkA48.unk10_Set((byte)(70));
             }

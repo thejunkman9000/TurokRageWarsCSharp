@@ -13,8 +13,8 @@ public static partial class Game
             int v = new Big6A90(o).unk6A90;
             if ((v != 0))
             {
-                func_002795C0((o + 27280u), (uint)(v));
-                func_00279578((p + (uint)64), (uint)(v));
+                List_RemoveCounted((o + 27280u), (uint)(v));
+                List_AppendCounted((p + (uint)64), (uint)(v));
             }
             return v;
         }

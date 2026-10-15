@@ -17,7 +17,7 @@ public static partial class Game
             {
                 n = Player_GetIndex(0x80145040u, (int)(new O06A_v13(a).unk1C));
             }
-            func_00264790(n);
+            Pad_EnableStatusPoll(n);
             new O06B_v5(new O06A_v13(a).unkC_).unk238_Set((uint)((uint)(new O06B_v5(new O06A_v13(a).unkC_).unk238) | (uint)(25165824)));
             new O06B_v5(new O06A_v13(a).unkC_).unk260_Set((uint)((uint)(new O06B_v5(new O06A_v13(a).unkC_).unk260) | (uint)(25165824)));
             new O06B_v5(new O06A_v13(a).unkC_).unk1C0_Set((uint)((uint)(new O06B_v5(new O06A_v13(a).unkC_).unk1C0) & (uint)((~25165824))));

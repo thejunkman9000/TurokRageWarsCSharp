@@ -12,7 +12,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022B180", (uint)a);
-            func_0028279C(0x80121990u, a);
+            Particle_DetonateOwnedCharges(0x80121990u, a);
         }
     }
 
@@ -45,7 +45,7 @@ public static partial class Game
                 fcc = Cpu.S(1) < Cpu.S(0);
                 { bool c_ = !fcc; r4 = r29 + 16u; if (c_) goto L_L0022B210; }
                 r4 = (uint)1400;
-                Mem.Set((r18 + 4604u), Cpu.W(1)); r2 = (uint)func_0025DF54((int)r4);
+                Mem.Set((r18 + 4604u), Cpu.W(1)); r2 = (uint)Audio_PlaySound2D((int)r4);
                 r5 = Mem.U32((r18 + 1500u));
                 { bool c_ = r5 == 0;  if (c_) goto L_L0022B2D8; }
                 r6 = 2148335616u;
@@ -64,22 +64,22 @@ public static partial class Game
                 Mem.Set((r18 + 4612u), r8);
                 Mem.Set((r18 + 4616u), r9);
                 Mem.Set((r18 + 4620u), r19);
-                Mem.Set((r18 + 4604u), Cpu.W(0)); func_00273208(r4, r5);
+                Mem.Set((r18 + 4604u), Cpu.W(0)); Math_MtxFromDirection(r4, r5);
                 r4 = r29 + 80u;
                 r6 = 1084424192u;
                 r6 = r6 | 55050u;
-                r5 = r16; func_0027200C(r4, r5, Cpu.U2F(r6));
+                r5 = r16; Vec_Scale(r4, r5, Cpu.U2F(r6));
                 r4 = r29 + 80u;
                 r5 = r4;
-                r6 = r17; func_00271FA4(r4, r5, r6);
+                r6 = r17; Vec_Add(r4, r5, r6);
                 r5 = Mem.U32((r29 + 80u));
                 r6 = Mem.U32((r29 + 84u));
                 r7 = Mem.U32((r29 + 88u));
-                r4 = r29 + 16u; func_002734B8(r4, Cpu.U2F(r5), Cpu.U2F(r6), Cpu.U2F(r7));
-                r4 = r29 + 16u; func_00273DDC(r4);
+                r4 = r29 + 16u; Math_MtxTranslate(r4, Cpu.U2F(r5), Cpu.U2F(r6), Cpu.U2F(r7));
+                r4 = r29 + 16u; Math_MtxSwapRowsYZ(r4);
                 r4 = r29 + 16u;
                 r5 = r18 + 5632u; Math_MtxFloatToFixed(r4, r5);
-                r4 = (uint)1400; r2 = (uint)func_0025DF54((int)r4);
+                r4 = (uint)1400; r2 = (uint)Audio_PlaySound2D((int)r4);
                 r5 = Mem.U32((r18 + 1500u));
                 { bool c_ = r5 == 0;  if (c_) goto L_L0022B2D8; }
                 { bool c_ = r19 == 0;  if (c_) goto L_L0022B2C0; }
@@ -123,7 +123,7 @@ public static partial class Game
                 {
                     if (((new Plr(a).unk5D0 != 0) && (new Plr(a).unk11FC != 0.0f)))
                     {
-                        func_00271FD8(_fp, v, new Plr(a).unk1200.P);
+                        Vec_Sub(_fp, v, new Plr(a).unk1200.P);
                         d = (((Mem.F32((_fp + (uint)(0 * 4))) * Mem.F32((_fp + (uint)(0 * 4)))) + (Mem.F32((_fp + (uint)(1 * 4))) * Mem.F32((_fp + (uint)(1 * 4))))) + (Mem.F32((_fp + (uint)(2 * 4))) * Mem.F32((_fp + (uint)(2 * 4)))));
                         if (((best == 0u) || (d < min)))
                         {
@@ -147,11 +147,11 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0022B3C0", (uint)a, (uint)unused, (uint)v);
-                func_00273208(_fp, v);
-                func_0027200C((_fp + 64u), v, 5.11999989f);
-                func_00271FA4((_fp + 64u), (_fp + 64u), (a + (uint)4608));
-                func_002734B8(_fp, new Vec3f((_fp + 64u)).x, new Vec3f((_fp + 64u)).y, new Vec3f((_fp + 64u)).z);
-                func_00273DDC(_fp);
+                Math_MtxFromDirection(_fp, v);
+                Vec_Scale((_fp + 64u), v, 5.11999989f);
+                Vec_Add((_fp + 64u), (_fp + 64u), (a + (uint)4608));
+                Math_MtxTranslate(_fp, new Vec3f((_fp + 64u)).x, new Vec3f((_fp + 64u)).y, new Vec3f((_fp + 64u)).z);
+                Math_MtxSwapRowsYZ(_fp);
                 Math_MtxFloatToFixed(_fp, (a + (uint)5632));
             }
         }
@@ -185,7 +185,7 @@ public static partial class Game
             }
             if ((r != (-1)))
             {
-                func_0026DF30(func_0028C174(0x8011FE88u, r), (int)((a + (uint)5632)), (int)(0x800D0EF8u), 0, (-1));
+                Model_QueueByIndex(func_0028C174(0x8011FE88u, r), (int)((a + (uint)5632)), (int)(0x800D0EF8u), 0, (-1));
             }
         }
     }
@@ -328,7 +328,7 @@ public static partial class Game
                     new DlCmd(d_2).w0_Set(3875536896u);
                     new DlCmd(d_2).w1_Set((uint)(0));
                 }
-                func_0026D8F8();
+                Model_ResetStateCache();
                 Gfx_SetOtherModeL((uint)(14));
                 Gfx_SetCombineMode((uint)(28));
                 {
@@ -546,7 +546,7 @@ public static partial class Game
                 r2 = (uint)((int)r17 < (int)r18 ? 1 : 0);
                 { bool c_ = r2 != 0; r16 = r0; if (c_) goto L_L0022FB9C; }
                 L_L0022FBE8: ;
-                r4 = (uint)3405; r2 = (uint)func_0025DF54((int)r4);
+                r4 = (uint)3405; r2 = (uint)Audio_PlaySound2D((int)r4);
                 r2 = (uint)(int)Mem.S16((r19 + 1582u));
                 L_L0022FBF4: ;
                 r31 = Mem.U32((r29 + 32u));
@@ -586,7 +586,7 @@ public static partial class Game
             r = (int)(Profile_HasAltFire((0x80102B00u + (uint)(new Actor(actor).unk5D4 * 400)), (uint)((int)(Mem.S16((actor + (uint)1582)))), default(uint), default(uint)));
             if ((r == 0))
             {
-                func_0025DF54(3405);
+                Audio_PlaySound2D(3405);
                 if ((Mem.U32((actor + (uint)1500)) != 0u))
                 {
                     v = Player_GetIndex((g - (uint)4744), (int)(actor));

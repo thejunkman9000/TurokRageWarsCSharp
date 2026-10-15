@@ -44,7 +44,7 @@ public static partial class Game
                         {
                             new Slot697C(s).unk24_Set(new Slot697C(s).cfg.unk4);
                         }
-                        func_00279764((o + (uint)29980), s);
+                        Pool_ReturnToFree((o + (uint)29980), s);
                     }
                     s = next;
                 }

@@ -133,7 +133,7 @@ public static partial class Game
                 L_I00426BE8: ;
                 { bool c_ = (int)r2 > 0; Mem.Set((r4 + 2444u), r2); if (c_) goto L_L00426DF8; }
                 L_I00426BF0: ;
-                r4 = (uint)3705; r2 = (uint)func_0025DF54((int)r4);
+                r4 = (uint)3705; r2 = (uint)Audio_PlaySound2D((int)r4);
                 L_I00426BF8: ;
                 r2 = 2148401152u;
                 L_I00426BFC: ;
@@ -277,7 +277,7 @@ public static partial class Game
                 Mem.Set((r3 + 2440u), r2); goto L_L00426DF8;
                 L_L00426D4C: ;
                 L_I00426D4C: ;
-                r4 = (uint)3704; r2 = (uint)func_0025DF54((int)r4);
+                r4 = (uint)3704; r2 = (uint)Audio_PlaySound2D((int)r4);
                 L_I00426D54: ;
                 r2 = 2148401152u;
                 L_I00426D58: ;

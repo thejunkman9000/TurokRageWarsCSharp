@@ -13,7 +13,7 @@ public static partial class Game
             if ((Mem.S32(0x80146D60u) == 0))
             {
                 func_0029324C();
-                func_00263C44();
+                Pad_UpdatePakInsertion();
                 if ((Mem.S32(0x80146D60u) == 0))
                 {
                     if ((Mem.S32(0x8014AD9Cu) != 0))
@@ -28,7 +28,7 @@ public static partial class Game
             {
                 if ((Mem.S32(0x800E28C8u) != (-1)))
                 {
-                    if ((func_002645F0(Mem.S32(0x800E28C8u)) != 0))
+                    if ((Pad_IsPakChanged(Mem.S32(0x800E28C8u)) != 0))
                     {
                         if (((int)(func_00406178(a, (uint)(Mem.S32(0x800E28C8u)), (uint)(0), default(uint))) != 0))
                         {

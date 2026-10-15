@@ -82,7 +82,7 @@ public static partial class Game
                 r1 = 4521984u;
                 r1 = r1 + r19;
                 r4 = (uint)(int)Mem.S16((r1 - 1122u));
-                r2 = (uint)func_0025DF54((int)r4);
+                r2 = (uint)Audio_PlaySound2D((int)r4);
                 L_L0043D0EC: ;
                 r2 = (uint)(r20 < (uint)(12) ? 1 : 0);
                 { bool c_ = r2 != 0; r19 = r19 + 16u; if (c_) goto L_L0043D01C; }

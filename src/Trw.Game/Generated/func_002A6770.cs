@@ -11,8 +11,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002A6770", (uint)o, (uint)p, (uint)q);
             new Obj6770(p).unk4C_Set((new Obj6770(p).unk4C - new ObjAC(q).unkAC));
-            func_002795C0(new Obj6770(p).sub.P, q);
-            func_00279578(new Big6A90b(o).sub.P, q);
+            List_RemoveCounted(new Obj6770(p).sub.P, q);
+            List_AppendCounted(new Big6A90b(o).sub.P, q);
         }
     }
 

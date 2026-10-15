@@ -97,7 +97,7 @@ public static partial class Game
                 L_L00419CDC: ;
                 r2 = Mem.U8((r2 + 79u));
                 r4 = (uint)3701;
-                Mem.Set((r3 + 16u), (byte)r2); r2 = (uint)func_0025DF54((int)r4);
+                Mem.Set((r3 + 16u), (byte)r2); r2 = (uint)Audio_PlaySound2D((int)r4);
                 L_L00419CEC: ;
                 r31 = Mem.U32((r29 + 24u));
                 r17 = Mem.U32((r29 + 20u));

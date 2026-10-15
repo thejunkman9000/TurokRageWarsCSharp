@@ -51,7 +51,7 @@ public static partial class Game
             {
                 if ((new Player_v3(p).pawn_ != 0u))
                 {
-                    sum = (float)((float)(sum) + func_00272768(v, new Player_v3(p).pos.P));
+                    sum = (float)((float)(sum) + Vec_Distance(v, new Player_v3(p).pos.P));
                 }
             }
             return sum;
@@ -83,7 +83,7 @@ public static partial class Game
             {
                 Mem.Set(0x800D2974u, 0);
             }
-            func_00264CD8();
+            Level_TickRestartTimer();
             st = new B21Game(g).unk26DB8;
             if ((new B21StateEnt((0x800D29DCu + (uint)(st * 12))).fn != 0u))
             {
@@ -132,7 +132,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00293F38", (uint)g);
             int mode = 0;
-            uint r = func_00265370();
+            uint r = Mem_GetRamSize();
             mode = 4;
             if ((r > (uint)(4194304)))
             {
@@ -217,9 +217,9 @@ public static partial class Game
             float v = 0f;
             Mem.Set(0x800D2980u, 0);
             func_0029324C();
-            if ((func_00264B8C() != 0))
+            if ((Level_IsRestartPending() != 0))
             {
-                new B21Game(g).unk26DD8_Set(func_00264B7C());
+                new B21Game(g).unk26DD8_Set(Level_GetRestartLevelId());
             }
             b = new B21World(0x80145040u).blk.P;
             new B21GameBlk(b).unk20_Set(0);
@@ -228,9 +228,9 @@ public static partial class Game
             new B21Sub1288(s).unk1D_Set((byte)(1));
             new B21Sub1288(s).unk1E_Set((byte)(8));
             func_00293318(g, (int)(new B21Game(g).unk26826), 0);
-            if ((func_00264B8C() != 0))
+            if ((Level_IsRestartPending() != 0))
             {
-                func_00264BAC();
+                Level_RestorePlayersAfterRestart();
             }
             Collision_InitProfiles();
             func_002954E0();
@@ -265,8 +265,8 @@ public static partial class Game
                 new P4Game(g).f26DB0_Set(0);
                 new P4Game(g).f26DB8_Set(v);
                 Flyby_Stop();
-                func_0025E234((-1));
-                func_00264874(0);
+                Audio_StopAllExcept((-1));
+                Rumble_SetEnabledAll(0);
                 if ((new P4Hook((0x800D29D8u + (uint)(new P4Game(g).f26DB8 * 12))).fn != 0u))
                 {
                     Funcs.CallReg(new P4Hook((0x800D29D8u + (uint)(new P4Game(g).f26DB8 * 12))).fn, g, 0u, 0u, 0u);

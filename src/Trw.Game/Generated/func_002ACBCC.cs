@@ -98,7 +98,7 @@ public static partial class Game
                         switch (new Plr24d(o).unk122C)
                         {
                         case 1:
-                            func_0025E13C(350);
+                            Audio_PlaySndFx(350);
                             g = 0x80145048u;
                             if ((Mem.S32(g) > 0))
                             {
@@ -125,7 +125,7 @@ public static partial class Game
                             break;
                         case 2:
                             new Plr24d(o).unk1230_Set(300.0f);
-                            func_0025E13C(356);
+                            Audio_PlaySndFx(356);
                             if ((new Plr24d(o).unk5DC != 0))
                             {
                                 Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7158u)));
@@ -136,7 +136,7 @@ public static partial class Game
                             break;
                         case 4:
                             new Plr24d(o).unk1230_Set(225.0f);
-                            func_0025E13C(351);
+                            Audio_PlaySndFx(351);
                             if ((new Plr24d(o).unk5DC != 0))
                             {
                                 Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D715Cu)));
@@ -144,7 +144,7 @@ public static partial class Game
                             break;
                         case 8:
                             new Plr24d(o).unk1230_Set(150.0f);
-                            func_0025E13C(357);
+                            Audio_PlaySndFx(357);
                             if ((new Plr24d(o).unk5DC != 0))
                             {
                                 Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7160u)));
@@ -156,7 +156,7 @@ public static partial class Game
                             break;
                         case 16:
                             new Plr24d(o).unk1230_Set(150.0f);
-                            func_0025E13C(352);
+                            Audio_PlaySndFx(352);
                             if ((new Plr24d(o).unk5DC != 0))
                             {
                                 Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7164u)));
@@ -168,7 +168,7 @@ public static partial class Game
                             break;
                         case 32:
                             new Plr24d(o).unk1230_Set(180.0f);
-                            func_0025E13C(358);
+                            Audio_PlaySndFx(358);
                             if ((new Plr24d(o).unk5DC != 0))
                             {
                                 Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7168u)));
@@ -176,7 +176,7 @@ public static partial class Game
                             break;
                         case 64:
                             new Plr24d(o).unk1230_Set(225.0f);
-                            func_0025E13C(353);
+                            Audio_PlaySndFx(353);
                             if ((new Plr24d(o).unk5DC != 0))
                             {
                                 Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D716Cu)));
@@ -184,7 +184,7 @@ public static partial class Game
                             break;
                         case 128:
                             new Plr24d(o).unk1230_Set(225.0f);
-                            func_0025E13C(361);
+                            Audio_PlaySndFx(361);
                             if ((new Plr24d(o).unk5DC != 0))
                             {
                                 Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7170u)));
@@ -192,7 +192,7 @@ public static partial class Game
                             break;
                         case 256:
                             new Plr24d(o).unk1230_Set(450.0f);
-                            func_0025E13C(354);
+                            Audio_PlaySndFx(354);
                             if ((new Plr24d(o).unk5DC != 0))
                             {
                                 Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7174u)));
@@ -201,7 +201,7 @@ public static partial class Game
                         case 512:
                             i = (int)(270.0f);
                             new Plr24d(o).unk1230_Set((float)(i));
-                            func_0025E13C(362);
+                            Audio_PlaySndFx(362);
                             if ((new Plr24d(o).unk5DC != 0))
                             {
                                 Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D717Cu)));
@@ -211,7 +211,7 @@ public static partial class Game
                             break;
                         case 1024:
                             new Plr24d(o).unk1230_Set(180.0f);
-                            func_0025E13C(355);
+                            Audio_PlaySndFx(355);
                             if ((new Plr24d(o).unk5DC != 0))
                             {
                                 Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7180u)));
@@ -224,7 +224,7 @@ public static partial class Game
                             break;
                         case 2048:
                             new Plr24d(o).unk1230_Set(300.0f);
-                            func_0025E13C(360);
+                            Audio_PlaySndFx(360);
                             if ((new Plr24d(o).unk5DC != 0))
                             {
                                 Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7184u)));
@@ -235,7 +235,7 @@ public static partial class Game
                             break;
                         case 4096:
                             new Plr24d(o).unk1230_Set(300.0f);
-                            func_0025E13C(351);
+                            Audio_PlaySndFx(351);
                             if ((new Plr24d(o).unk5DC != 0))
                             {
                                 Hud_PostMessage(0x80145088u, (uint)(new Plr24d(o).unk5DC), (uint)(Mem.S32(0x800D7188u)));
@@ -342,11 +342,11 @@ public static partial class Game
                 }
                 if ((b != 0))
                 {
-                    func_0025DE74((int)((uint)(b)), C.Tmp((uint)(Mem.S32((o + (uint)8))), (uint)(Mem.S32((o + (uint)12))), (uint)(Mem.S32((o + (uint)16)))), (int)((uint)(0)), (int)((uint)((-1))));
+                    Audio_PlaySound((int)((uint)(b)), C.Tmp((uint)(Mem.S32((o + (uint)8))), (uint)(Mem.S32((o + (uint)12))), (uint)(Mem.S32((o + (uint)16)))), (int)((uint)(0)), (int)((uint)((-1))));
                 }
                 if ((c != 0))
                 {
-                    func_0025E13C(c);
+                    Audio_PlaySndFx(c);
                 }
             }
             return ok;

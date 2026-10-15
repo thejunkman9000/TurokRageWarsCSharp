@@ -23,9 +23,9 @@ public static partial class Game
             g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
             new DlCmd(g).w0_Set(3674472476u);
             new DlCmd(g).w1_Set((uint)(65535));
-            func_0026D980();
-            func_00282304((lv + (uint)6920), (uint)(arg), default(uint), default(uint));
-            func_0026D9D0();
+            Model_ClearBatchQueue();
+            Particle_DrawAll((lv + (uint)6920), (uint)(arg), default(uint), default(uint));
+            Model_FlushBatches();
         }
     }
 

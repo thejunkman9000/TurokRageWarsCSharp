@@ -11,9 +11,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043E284", (uint)a, (uint)m);
             Mem.Set((0x80146914u + (uint)(0 * 4)), 0);
-            func_002647A8((int)(new S10Menu(m).ctrl.port));
-            func_00264268(new S10Menu(m).ctrl_);
-            func_00264808(new S10Menu(m).ctrl_, 1);
+            Pad_DisableStatusPoll((int)(new S10Menu(m).ctrl.port));
+            Rumble_Reset(new S10Menu(m).ctrl_);
+            Rumble_SetEnabled(new S10Menu(m).ctrl_, 1);
             new S10Menu(m).ctx.f85C_Set(0);
             return 1;
         }

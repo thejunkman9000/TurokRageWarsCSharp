@@ -223,7 +223,7 @@ public static partial class Game
                 Mem.Set((r29 + 112u), r9);
                 Mem.Set((r29 + 116u), r10);
                 Mem.Set((r29 + 120u), r11);
-                r6 = r29 + 128u; func_00272908(r4, r5, r6);
+                r6 = r29 + 128u; Math_MtxTransformPoint(r4, r5, r6);
                 r18 = r17 + 4u;
                 r2 = (uint)-1;
                 Mem.Set((r29 + 16u), r18);
@@ -633,7 +633,7 @@ public static partial class Game
                 L_L00420070: ;
                 r4 = r29 + 16u;
                 L_L00420074: ;
-                r5 = r20; func_002656A8(r4, (int)r5, (int)r6);
+                r5 = r20; Bits_Assign(r4, (int)r5, (int)r6);
                 r20 = r20 + 1u;
                 r2 = (uint)((int)r20 < 17 ? 1 : 0);
                 { bool c_ = r2 != 0; r21 = r21 + 112u; if (c_) goto L_L0041FFDC; }
@@ -643,16 +643,16 @@ public static partial class Game
                 r2 = (uint)1;
                 { bool c_ = r3 != r2; r4 = r29 + 16u; if (c_) goto L_L004200E4; }
                 r5 = (uint)11;
-                r6 = r0; func_002656A8(r4, (int)r5, (int)r6);
+                r6 = r0; Bits_Assign(r4, (int)r5, (int)r6);
                 r4 = r29 + 16u;
                 r5 = (uint)12;
-                r6 = r0; func_002656A8(r4, (int)r5, (int)r6);
+                r6 = r0; Bits_Assign(r4, (int)r5, (int)r6);
                 r4 = r29 + 16u;
                 r5 = (uint)13;
-                r6 = r0; func_002656A8(r4, (int)r5, (int)r6);
+                r6 = r0; Bits_Assign(r4, (int)r5, (int)r6);
                 r4 = r29 + 16u;
                 r5 = (uint)14;
-                r6 = r0; func_002656A8(r4, (int)r5, (int)r6);
+                r6 = r0; Bits_Assign(r4, (int)r5, (int)r6);
                 r3 = Mem.U8((r16 + 13u));
                 L_L004200E4: ;
                 { bool c_ = r3 == 0; r2 = (uint)2; if (c_) goto L_L004200F4; }
@@ -660,7 +660,7 @@ public static partial class Game
                 L_L004200F4: ;
                 r4 = r29 + 16u;
                 r5 = (uint)1;
-                r6 = r5; func_002656A8(r4, (int)r5, (int)r6);
+                r6 = r5; Bits_Assign(r4, (int)r5, (int)r6);
                 r20 = r0;
                 L_L00420108: ;
                 r22 = 2148794368u;
@@ -680,7 +680,7 @@ public static partial class Game
                 r4 = r17;
                 r5 = r0; func_0040E9D0(r4, (int)r5);
                 r4 = r29 + 16u;
-                r5 = r20; r2 = (uint)func_00265670(r4, (int)r5);
+                r5 = r20; r2 = (uint)Bits_Test(r4, (int)r5);
                 { bool c_ = r2 != 0;  if (c_) goto L_L00420184; }
                 { bool c_ = r17 == 0; r4 = r17; if (c_) goto L_L004201D4; }
                 r5 = (uint)1; func_0040E9D0(r4, (int)r5);
@@ -695,7 +695,7 @@ public static partial class Game
                 r5 = Mem.U32((r1 + 14932u));
                 r4 = 2148532224u;
                 r4 = r4 + 11092u;
-                r2 = (uint)func_00265670(r4, (int)r5);
+                r2 = (uint)Bits_Test(r4, (int)r5);
                 if (r2 != r16) { r18 = r18 + 112u; goto L_L004201D8; }
                 r4 = r17;
                 r5 = (uint)131; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
@@ -1064,7 +1064,7 @@ public static partial class Game
                 r4 = Mem.U32((r4 + 20320u));
                 r7 = Mem.U32((r29 + 88u));
                 r4 = r4 + 776u; { uint s1_ = Stack.Alloc(12); Mem.Set(s1_ + 0u, r5); Mem.Set(s1_ + 4u, r6); Mem.Set(s1_ + 8u, r7); func_00439E10(r4, s1_); Stack.Free(12); }
-                r4 = (uint)3704; r2 = (uint)func_0025DF54((int)r4);
+                r4 = (uint)3704; r2 = (uint)Audio_PlaySound2D((int)r4);
                 func_004221A0();
                 r31 = Mem.U32((r29 + 116u));
                 r20 = Mem.U32((r29 + 112u));
@@ -1120,7 +1120,7 @@ public static partial class Game
                 L_L0042BB4C: ;
                 r2 = (uint)1;
                 { bool c_ = r4 != r2; r2 = r0; if (c_) goto L_L0042BC24; }
-                r4 = (uint)3709; r2 = (uint)func_0025DF54((int)r4);
+                r4 = (uint)3709; r2 = (uint)Audio_PlaySound2D((int)r4);
                 func_0042B4C4();
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 20320u));

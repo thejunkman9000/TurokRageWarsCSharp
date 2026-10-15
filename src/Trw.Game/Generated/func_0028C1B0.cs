@@ -20,7 +20,7 @@ public static partial class Game
                 id = (int)(Mem.U16(idp));
                 a = new Level(lv).unk11CC;
                 b = new Level(lv).cnt11C4;
-                r = func_00265570((uint)(a), b, (uint)(id), (_fp + 4u), _fp);
+                r = Sort_FindEqualRange((uint)(a), b, (uint)(id), (_fp + 4u), _fp);
                 if ((r != 0))
                 {
                     Mem.Set(outRecs, (new Level(lv).recB_ + (uint)(Mem.S32((_fp + 4u)) * 20)));

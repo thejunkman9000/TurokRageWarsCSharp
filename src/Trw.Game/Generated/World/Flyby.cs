@@ -92,7 +92,7 @@ public static partial class Game
                             new B10Pl(pl).f590_Set(0);
                         }
                         CameraManager_ClearAllTexts((0x80145060u + (uint)(10 * 4)), default(uint), default(uint), default(uint));
-                        func_00285D00(0x8010EC90u);
+                        Rumble_ClearAll(0x8010EC90u);
                     }
                     if ((id != (-1)))
                     {

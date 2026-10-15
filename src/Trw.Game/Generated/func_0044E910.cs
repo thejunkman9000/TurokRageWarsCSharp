@@ -51,8 +51,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0044E9A0", (uint)match);
             uint state = 0u;
-            func_00264874(0);
-            func_00285D00(0x8010EC90u);
+            Rumble_SetEnabledAll(0);
+            Rumble_ClearAll(0x8010EC90u);
             Player_ClearAllPadInput(0x80145040u);
             state = 0x801468A0u;
             new State_func_8044DD50_de(state).a_Set(0);

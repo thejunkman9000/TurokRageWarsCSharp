@@ -14,10 +14,10 @@ public static partial class Game
             switch (v)
             {
             case 1:
-                func_0025DF54(3703);
+                Audio_PlaySound2D(3703);
                 break;
             case 2:
-                func_0025DF54(3702);
+                Audio_PlaySound2D(3702);
                 break;
             }
         }

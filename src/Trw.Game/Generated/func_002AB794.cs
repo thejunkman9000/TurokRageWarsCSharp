@@ -16,7 +16,7 @@ public static partial class Game
                 if ((func_002A33AC() == 1))
                 {
                     Menu_UpdateIdleTimer();
-                    func_0026D8F8();
+                    Model_ResetStateCache();
                     func_00296FF8();
                 }
                 func_002A94E8();

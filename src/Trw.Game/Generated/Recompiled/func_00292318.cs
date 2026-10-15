@@ -38,10 +38,10 @@ public static partial class Game
                 Mem.Set((r1 - 21096u), r6);
                 r21 = r3; Resource_BeginFrameUse((int)r4, (int)r5);
                 func_00296FF8();
-                func_0026D844();
+                Model_ResetDrawState();
                 r4 = r18; func_002917E8();
-                func_00265DF0();
-                func_00263C44();
+                Light_SwapPointLightBuffers();
+                Pad_UpdatePakInsertion();
                 r4 = 131072u;
                 r4 = r4 | 21960u;
                 r4 = r18 + r4; View_UpdateLayout(r4);

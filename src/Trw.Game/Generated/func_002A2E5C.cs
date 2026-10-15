@@ -13,7 +13,7 @@ public static partial class Game
             uint n = 0u;
             new StateObj(o).unk5C_Set(2);
             new StateObj(o).unk48_Set(0);
-            func_0025DF54(3700);
+            Audio_PlaySound2D(3700);
             n = new StateObj(o).list_;
             for (; (n != 0u); n = new SubNode(n).next_)
             {

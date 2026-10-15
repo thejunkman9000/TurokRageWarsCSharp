@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004462F4");
-            func_0026497C();
+            Rumble_Resume();
         }
     }
 

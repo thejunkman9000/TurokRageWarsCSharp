@@ -25,11 +25,11 @@ public static partial class Game
                 n = new E438C(e).next_;
                 if ((e != 0u))
                 {
-                    func_00272D20(_fp, new E438C(e).unk1C, new E438C(e).unk20, new E438C(e).unk24);
+                    Math_MtxMakeScale(_fp, new E438C(e).unk1C, new E438C(e).unk20, new E438C(e).unk24);
                 }
                 else
                 {
-                    func_00272848(_fp);
+                    Math_MtxIdentity(_fp);
                 }
                 if ((e == 0u))
                 {

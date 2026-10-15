@@ -10,9 +10,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004458B4");
-            func_0025CB2C((uint)((int)(func_0025CC8C())));
-            func_0025E3A4();
-            func_0025E3EC();
+            LoopSound_ResumeAll((uint)((int)(LoopSound_GetPool())));
+            Audio_UnduckMusic();
+            Audio_EnableAmbient();
             return 1;
         }
     }

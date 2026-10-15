@@ -95,8 +95,8 @@ public static partial class Game
                         new B19Sort((_fp + (uint)(i * 8))).obj__Set(o);
                         new B19Sort((_fp + (uint)(i * 8))).key_Set((((x * x) + (y * y)) + (z * z)));
                     }
-                    func_00285290(_fp, (uint)(n), (uint)(8), 0x0028E020u, 0x0028DFC0u);
-                    func_0026D980();
+                    Sort_QuickWithSwap(_fp, (uint)(n), (uint)(8), 0x0028E020u, 0x0028DFC0u);
+                    Model_ClearBatchQueue();
                     for (i = 0; (i < n); ++i)
                     {
                         o = new B19Sort((_fp + (uint)(i * 8))).obj_;
@@ -113,7 +113,7 @@ public static partial class Game
                             break;
                         }
                     }
-                    func_0026D9D0();
+                    Model_FlushBatches();
                 }
             }
         }

@@ -21,7 +21,7 @@ public static partial class Game
             func_0041AD90((uint)(new O3Words(Mem.U32(0x800E4514u)).w[(int)(1)]), (int)(new O3Cfg(0x801462C8u).f1B));
             new O3Words(Mem.U32(0x800E4514u)).w.Set((int)(2), (int)(func_0041AC40(446, 447)));
             func_0041ADB4((uint)(new O3Words(Mem.U32(0x800E4514u)).w[(int)(2)]), Mem.U32((0x800D74B4u + (uint)(0 * 4))));
-            if (((int)(func_00265370()) != 4194304))
+            if (((int)(Mem_GetRamSize()) != 4194304))
             {
                 func_0041ADB4((uint)(new O3Words(Mem.U32(0x800E4514u)).w[(int)(2)]), Mem.U32((0x800D74B8u + (uint)(0 * 4))));
                 func_0041ADB4((uint)(new O3Words(Mem.U32(0x800E4514u)).w[(int)(2)]), Mem.U32((0x800D74BCu + (uint)(0 * 4))));

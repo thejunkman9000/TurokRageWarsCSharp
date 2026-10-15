@@ -28,7 +28,7 @@ public static partial class Game
                         new O02V3(_fp).x_Set((float)(0));
                         new O02V3(_fp).y_Set((float)(0));
                         new O02V3(_fp).z_Set(Mem.F32(0x800E142Cu));
-                        func_00272908(0x80145228u, _fp, (_fp + 16u));
+                        Math_MtxTransformPoint(0x80145228u, _fp, (_fp + 16u));
                         n = 4;
                         v = (uint)(func_002A25E4(64));
                         for (k = 0; (k < n); ++k)

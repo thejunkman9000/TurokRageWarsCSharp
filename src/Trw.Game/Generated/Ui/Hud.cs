@@ -47,36 +47,36 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00219490", (uint)o, (uint)c);
                 uint g = 0u;
                 uint mp = 0u;
-                func_0026D8F8();
+                Model_ResetStateCache();
                 if (((new B04O5(o).unk8 != 0) && (new B04O5(o).unkB4 != 0)))
                 {
-                    func_0026D914((uint)(192));
-                    func_0026E378((byte)(1), (byte)(32));
+                    Gfx_SetColorDither((uint)(192));
+                    Model_SetPrimAlphaOverride((byte)(1), (byte)(32));
                     g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
                     new DlCmd(g).w0_Set(3808431104u);
                     new DlCmd(g).w1_Set((uint)(524288));
                     g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
                     new DlCmd(g).w0_Set(3808432641u);
                     new DlCmd(g).w1_Set((uint)(8192));
-                    func_0026D980();
+                    Model_ClearBatchQueue();
                     func_00291BF8((int)(0x8011FAC0u), (int)(new B04C5(c).f2A4), (int)((new B04C5(c).f29C + new B04C5(c).f2A4)), (int)(new B04C5(c).f2A8), (int)((new B04C5(c).f2A0 + new B04C5(c).f2A8)), 0);
-                    func_00272D20(_fp, new B04O5(o).unk90, new B04O5(o).unk94, new B04O5(o).unk98);
-                    func_00273B08(_fp, new B04O5(o).unkA0);
-                    func_00273930(_fp, new B04O5(o).unk9C);
-                    func_002734B8(_fp, new B04O5(o).posA8.x, new B04O5(o).posA8.y, new B04O5(o).posA8.z);
-                    func_00273DDC(_fp);
+                    Math_MtxMakeScale(_fp, new B04O5(o).unk90, new B04O5(o).unk94, new B04O5(o).unk98);
+                    Math_MtxPostRotateY(_fp, new B04O5(o).unkA0);
+                    Math_MtxPostRotateX(_fp, new B04O5(o).unk9C);
+                    Math_MtxTranslate(_fp, new B04O5(o).posA8.x, new B04O5(o).posA8.y, new B04O5(o).posA8.z);
+                    Math_MtxSwapRowsYZ(_fp);
                     mp = (_fp + 64u);
-                    func_0027302C(mp, _fp);
+                    Math_MtxCopy(mp, _fp);
                     if ((Mem.S32(0x800E28D8u) == 2))
                     {
-                        func_00273618(mp, Cpu.U2F((uint)(Mem.S32(0x800CE72Cu))), Mem.F32(0x800C73C0u), Mem.F32(0x800C73C0u));
+                        Math_MtxScaleColumns(mp, Cpu.U2F((uint)(Mem.S32(0x800CE72Cu))), Mem.F32(0x800C73C0u), Mem.F32(0x800C73C0u));
                     }
                     Math_MtxFloatToFixed(mp, (o + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 16)));
-                    func_00272908(_fp, new B04O5(o).posA8.P, (_fp + 128u));
-                    func_0026DF30(new B04O5(o).unk8, (int)((o + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 16))), (int)(0x800D0EE0u), 0, (-1));
-                    func_0026D9D0();
-                    func_0026D914((uint)(0));
-                    func_0026E378((byte)(0), (byte)(32));
+                    Math_MtxTransformPoint(_fp, new B04O5(o).posA8.P, (_fp + 128u));
+                    Model_QueueByIndex(new B04O5(o).unk8, (int)((o + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 16))), (int)(0x800D0EE0u), 0, (-1));
+                    Model_FlushBatches();
+                    Gfx_SetColorDither((uint)(0));
+                    Model_SetPrimAlphaOverride((byte)(0), (byte)(32));
                 }
             }
         }

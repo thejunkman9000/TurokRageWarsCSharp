@@ -111,7 +111,7 @@ public static partial class Game
                 }
                 break;
             case 5:
-                func_0025DF54(3704);
+                Audio_PlaySound2D(3704);
                 func_0040E958(new Q2Lb(Mem.U32(0x800E4518u)).w3C, 0);
                 func_0040E958(new Q2Lb(Mem.U32(0x800E4518u)).w48, 0);
                 func_0040E958(new Q2Lb(Mem.U32(0x800E4518u)).w44, 1);

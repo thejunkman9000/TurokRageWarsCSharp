@@ -336,7 +336,7 @@ public static partial class Game
                 r4 = Mem.U32((r4 + 20320u));
                 r7 = Mem.U32((r29 + 88u));
                 r4 = r4 + 776u; { uint s1_ = Stack.Alloc(12); Mem.Set(s1_ + 0u, r5); Mem.Set(s1_ + 4u, r6); Mem.Set(s1_ + 8u, r7); func_00439E10(r4, s1_); Stack.Free(12); }
-                r4 = (uint)3704; r2 = (uint)func_0025DF54((int)r4);
+                r4 = (uint)3704; r2 = (uint)Audio_PlaySound2D((int)r4);
                 func_004221A0();
                 r31 = Mem.U32((r29 + 116u));
                 r20 = Mem.U32((r29 + 112u));

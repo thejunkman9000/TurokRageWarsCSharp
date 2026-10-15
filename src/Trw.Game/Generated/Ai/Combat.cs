@@ -273,18 +273,18 @@ public static partial class Game
                 if ((new B2Ctl(ctl).unk2EC == 0))
                 {
                     k = Mem.F32(0x800C6DE4u);
-                    if ((func_002745D4(k) < Mem.F32(0x800C6DE8u)))
+                    if ((Random_Float(k) < Mem.F32(0x800C6DE8u)))
                     {
                         new B2Ctl(ctl).unk2EC_Set((-1));
                         new B2Ctl(ctl).unk2E4_Set(new B2Cfg((cfg + (uint)(1 * 28))).unk0);
-                        new B2Ctl(ctl).unk2E4_Set((int)((float)(new B2Ctl(ctl).unk2E4) + (func_002745D4(k) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).unk4))));
+                        new B2Ctl(ctl).unk2E4_Set((int)((float)(new B2Ctl(ctl).unk2E4) + (Random_Float(k) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).unk4))));
                         new B2Ctl(ctl).unk2E8_Set(new B2Cfg((cfg + (uint)(1 * 28))).unk8);
-                        new B2Ctl(ctl).unk2E8_Set((int)((float)(new B2Ctl(ctl).unk2E8) + (func_002745D4(k) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).unkC))));
+                        new B2Ctl(ctl).unk2E8_Set((int)((float)(new B2Ctl(ctl).unk2E8) + (Random_Float(k) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).unkC))));
                     }
                     else
                     {
                         new B2Ctl(ctl).unk2EC_Set(new B2Cfg(cfg).unk10);
-                        new B2Ctl(ctl).unk2EC_Set((int)((float)(new B2Ctl(ctl).unk2EC) + (func_002745D4(k) * (float)(new B2Cfg(cfg).unk14))));
+                        new B2Ctl(ctl).unk2EC_Set((int)((float)(new B2Ctl(ctl).unk2EC) + (Random_Float(k) * (float)(new B2Cfg(cfg).unk14))));
                     }
                 }
             }
@@ -295,11 +295,11 @@ public static partial class Game
                 {
                     k = Mem.F32(0x800C6DECu);
                     new B2Ctl(ctl).unk2EC_Set(new B2Cfg(cfg).unk10);
-                    new B2Ctl(ctl).unk2EC_Set((int)((float)(new B2Ctl(ctl).unk2EC) + (func_002745D4(k) * (float)(new B2Cfg(cfg).unk14))));
+                    new B2Ctl(ctl).unk2EC_Set((int)((float)(new B2Ctl(ctl).unk2EC) + (Random_Float(k) * (float)(new B2Cfg(cfg).unk14))));
                     new B2Ctl(ctl).unk2E4_Set(new B2Cfg(cfg).unk0);
-                    new B2Ctl(ctl).unk2E4_Set((int)((float)(new B2Ctl(ctl).unk2E4) + (func_002745D4(k) * (float)(new B2Cfg(cfg).unk4))));
+                    new B2Ctl(ctl).unk2E4_Set((int)((float)(new B2Ctl(ctl).unk2E4) + (Random_Float(k) * (float)(new B2Cfg(cfg).unk4))));
                     new B2Ctl(ctl).unk2E8_Set(new B2Cfg(cfg).unk8);
-                    new B2Ctl(ctl).unk2E8_Set((int)((float)(new B2Ctl(ctl).unk2E8) + (func_002745D4(k) * (float)(new B2Cfg(cfg).unkC))));
+                    new B2Ctl(ctl).unk2E8_Set((int)((float)(new B2Ctl(ctl).unk2E8) + (Random_Float(k) * (float)(new B2Cfg(cfg).unkC))));
                     new B2Ctl(ctl).unk240_Set(0);
                 }
                 else
@@ -315,13 +315,13 @@ public static partial class Game
             if ((new B2Ctl(ctl).unk240 > 0))
             {
                 nv = new B2Cfg((cfg + (uint)(1 * 28))).unk0;
-                nv = (int)((float)(nv) + (func_002745D4(Mem.F32(0x800C6DF0u)) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).unk4)));
+                nv = (int)((float)(nv) + (Random_Float(Mem.F32(0x800C6DF0u)) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).unk4)));
                 lim = Mem.F32(0x800C6DF4u);
             }
             else
             {
                 nv = new B2Cfg(cfg).unk0;
-                nv = (int)((float)(nv) + (func_002745D4(Mem.F32(0x800C6DF8u)) * (float)(new B2Cfg(cfg).unk4)));
+                nv = (int)((float)(nv) + (Random_Float(Mem.F32(0x800C6DF8u)) * (float)(new B2Cfg(cfg).unk4)));
                 lim = Mem.F32(0x800C6DFCu);
             }
             a = new B2Ctl(ctl).target.owner_;
@@ -348,7 +348,7 @@ public static partial class Game
                 if ((new B2Ctl(ctl).unk2E4 > 0))
                 {
                     new B2Ctl(ctl).unk2E8_Set(new B2Cfg(cfg).unk8);
-                    new B2Ctl(ctl).unk2E8_Set((int)((float)(new B2Ctl(ctl).unk2E8) + (func_002745D4(Mem.F32(0x800C6E00u)) * (float)(new B2Cfg(cfg).unkC))));
+                    new B2Ctl(ctl).unk2E8_Set((int)((float)(new B2Ctl(ctl).unk2E8) + (Random_Float(Mem.F32(0x800C6E00u)) * (float)(new B2Cfg(cfg).unkC))));
                     new B2Ctl(ctl).unk2E4_Set((int)(new B2Ctl(ctl).unk2E4 - 1));
                     return;
                 }
@@ -366,15 +366,15 @@ public static partial class Game
                     }
                     new B2Ctl(ctl).unk2E4_Set((-1));
                     new B2Ctl(ctl).unk2E8_Set(new B2Cfg((cfg + (uint)(1 * 28))).unk8);
-                    new B2Ctl(ctl).unk2E8_Set((int)((float)(new B2Ctl(ctl).unk2E8) + (func_002745D4(Mem.F32(0x800C6E04u)) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).unkC))));
+                    new B2Ctl(ctl).unk2E8_Set((int)((float)(new B2Ctl(ctl).unk2E8) + (Random_Float(Mem.F32(0x800C6E04u)) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).unkC))));
                     return;
                 }
                 new B2Ctl(ctl).unk2E8_Set((int)(new B2Ctl(ctl).unk2E8 - 1));
                 t = new B2Ctl(ctl).target.owner_;
-                func_00284FC8(0x80121990u, (int)(new B2Ctl(ctl).owner_), _fp);
+                Particle_GetChargesCentroid(0x80121990u, (int)(new B2Ctl(ctl).owner_), _fp);
                 k = Mem.F32(0x800C6E08u);
                 new Vec3f(_fp).y_Set(new B2Actor(t).pos.y);
-                if ((func_0027272C(_fp, new B2Actor(t).pos.P) < k))
+                if ((Vec_DistanceSq(_fp, new B2Actor(t).pos.P) < k))
                 {
                     new B2Ctl(ctl).unk2E8_Set(0);
                 }
@@ -407,17 +407,17 @@ public static partial class Game
                 }
                 if ((new B2Ctl(ctl).unk2EC == 0))
                 {
-                    func_0028509C(0x80121990u, new B2Ctl(ctl).owner_, _fp);
+                    Particle_GetNearestDistance(0x80121990u, new B2Ctl(ctl).owner_, _fp);
                     if ((Mem.F32(_fp) < Mem.F32(0x800C6E0Cu)))
                     {
                         k = Mem.F32(0x800C6E14u);
-                        if (((func_002745D4(Mem.F32(0x800C6E10u)) + k) > (float)(new B2Cfg((cfg + (uint)(1 * 28))).unk18)))
+                        if (((Random_Float(Mem.F32(0x800C6E10u)) + k) > (float)(new B2Cfg((cfg + (uint)(1 * 28))).unk18)))
                         {
                             t = new B2Cfg((cfg + (uint)(1 * 28))).unk8;
-                            new B2Ctl(ctl).unk240_Set((int)(((float)(t) + (func_002745D4(k) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).unkC)))));
+                            new B2Ctl(ctl).unk240_Set((int)(((float)(t) + (Random_Float(k) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).unkC)))));
                         }
                         new B2Ctl(ctl).unk2EC_Set(new B2Cfg((cfg + (uint)(1 * 28))).unk10);
-                        new B2Ctl(ctl).unk2EC_Set((int)((float)(new B2Ctl(ctl).unk2EC) + (func_002745D4(k) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).unk14))));
+                        new B2Ctl(ctl).unk2EC_Set((int)((float)(new B2Ctl(ctl).unk2EC) + (Random_Float(k) * (float)(new B2Cfg((cfg + (uint)(1 * 28))).unk14))));
                         new B2Ctl(ctl).unk2EC_Set((int)((int)(new B2Ctl(ctl).unk2EC) + new B2Ctl(ctl).unk240));
                     }
                 }
@@ -568,13 +568,13 @@ public static partial class Game
                 if (((new Brain(brain).unk23C == 0) && (new Brain(brain).unk240 <= 0)))
                 {
                     k = Mem.F32(0x800C6E1Cu);
-                    if (((func_002745D4(Mem.F32(0x800C6E18u)) + k) > (float)(new AiCfg(cfg).unk18)))
+                    if (((Random_Float(Mem.F32(0x800C6E18u)) + k) > (float)(new AiCfg(cfg).unk18)))
                     {
                         new Brain(brain).unk240_Set(1);
                         Ai_ResetFireTimers(brain, cfg);
                     }
                     new Brain(brain).unk2EC_Set(new AiCfg(cfg).unk10);
-                    new Brain(brain).unk2EC_Set((int)(((float)(new Brain(brain).unk2EC) + (func_002745D4(k) * (float)(new AiCfg(cfg).unk14)))));
+                    new Brain(brain).unk2EC_Set((int)(((float)(new Brain(brain).unk2EC) + (Random_Float(k) * (float)(new AiCfg(cfg).unk14)))));
                 }
             }
             else
@@ -592,9 +592,9 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0020A95C", (uint)ctl, (uint)cfg);
             float k = Mem.F32(0x800C6E20u);
             new B2Ctl(ctl).unk2E4_Set(new B2Cfg(cfg).unk0);
-            new B2Ctl(ctl).unk2E4_Set((int)((float)(new B2Ctl(ctl).unk2E4) + (func_002745D4(k) * (float)(new B2Cfg(cfg).unk4))));
+            new B2Ctl(ctl).unk2E4_Set((int)((float)(new B2Ctl(ctl).unk2E4) + (Random_Float(k) * (float)(new B2Cfg(cfg).unk4))));
             new B2Ctl(ctl).unk2E8_Set(new B2Cfg(cfg).unk8);
-            new B2Ctl(ctl).unk2E8_Set((int)((float)(new B2Ctl(ctl).unk2E8) + (func_002745D4(k) * (float)(new B2Cfg(cfg).unkC))));
+            new B2Ctl(ctl).unk2E8_Set((int)((float)(new B2Ctl(ctl).unk2E8) + (Random_Float(k) * (float)(new B2Cfg(cfg).unkC))));
             if ((new B2Cfg(cfg).unk18 == 100))
             {
                 new B2Ctl(ctl).unk240_Set(1);
@@ -1028,7 +1028,7 @@ public static partial class Game
                 L_I0020E178: ;
                 r7 = r29 + 56u;
                 L_I0020E17C: ;
-                Mem.Set((r29 + 16u), r2); r2 = (uint)func_00265570(r4, (int)r5, r6, r7, Mem.U32(r29 + 16u));
+                Mem.Set((r29 + 16u), r2); r2 = (uint)Sort_FindEqualRange(r4, (int)r5, r6, r7, Mem.U32(r29 + 16u));
                 L_I0020E184: ;
                 { bool c_ = r2 != 0; r4 = r16; if (c_) goto L_L0020E1A0; }
                 L_I0020E18C: ;
@@ -1063,7 +1063,7 @@ public static partial class Game
                 L_I0020E1CC: ;
                 r4 = r4 << 16;
                 L_I0020E1D0: ;
-                r4 = r4 | r2; { uint s0_ = Stack.Alloc(4); Mem.Set(s0_ + 0u, r4); Cpu.SetS(0, func_00285600(s0_)); Stack.Free(4); }
+                r4 = r4 | r2; { uint s0_ = Stack.Alloc(4); Mem.Set(s0_ + 0u, r4); Cpu.SetS(0, Random_PackedRange(s0_)); Stack.Free(4); }
                 L_I0020E1D8: ;
                 r2 = Mem.U32((r16 + 48u));
                 L_I0020E1DC: ;
@@ -1075,7 +1075,7 @@ public static partial class Game
                 L_I0020E1E8: ;
                 r4 = r4 << 16;
                 L_I0020E1EC: ;
-                r4 = r4 | r2; { uint s0_ = Stack.Alloc(4); Mem.Set(s0_ + 0u, r4); Cpu.SetS(0, func_00285600(s0_)); Stack.Free(4); }
+                r4 = r4 | r2; { uint s0_ = Stack.Alloc(4); Mem.Set(s0_ + 0u, r4); Cpu.SetS(0, Random_PackedRange(s0_)); Stack.Free(4); }
                 L_I0020E1F4: ;
                 r2 = Mem.U32((r17 + 0u));
                 L_I0020E1F8: ;
@@ -1763,7 +1763,7 @@ public static partial class Game
                     p = Mem.U32(0x801315F4u);
                     t = Chunk_Get(p, 1);
                     n = (int)(Mem.U32((t + (uint)(1 * 4))));
-                    if ((func_00265570((t + (uint)(2 * 4)), n, (uint)(id), (_fp + 28u), (_fp + 32u)) == 0))
+                    if ((Sort_FindEqualRange((t + (uint)(2 * 4)), n, (uint)(id), (_fp + 28u), (_fp + 32u)) == 0))
                     {
                         new S1Ctl(c).unk270_Set(0);
                         new S1Ctl(c).unk274_Set(0);
@@ -1772,8 +1772,8 @@ public static partial class Game
                     }
                     e = (Chunk_Get(p, 2) + (uint)8);
                     e = (uint)(e + (uint)(Mem.S32((_fp + 28u)) * 60));
-                    speed = func_00285600(new S1Elem(e).rec.speed.P);
-                    grav = func_00285600(new S1Elem(e).rec.grav.P);
+                    speed = Random_PackedRange(new S1Elem(e).rec.speed.P);
+                    grav = Random_PackedRange(new S1Elem(e).rec.grav.P);
                     Mem.Copy(_fp, new S1Ctl(c).owner.pos.P, 12);
                     Mem.Copy((_fp + 16u), new S1Ctl(c).v258.P, 12);
                     new Vec3f((_fp + 16u)).x_Set((new Vec3f((_fp + 16u)).x - new Vec3f(_fp).x));

@@ -21,7 +21,7 @@ public static partial class Game
             n = 0;
             for (i = 0; (i < 50); ++i)
             {
-                if ((func_00265670(new O04Row190t((0x80102B10u + (uint)(a * 400))).unk3A.P, i) == 1))
+                if ((Bits_Test(new O04Row190t((0x80102B10u + (uint)(a * 400))).unk3A.P, i) == 1))
                 {
                     ++n;
                 }

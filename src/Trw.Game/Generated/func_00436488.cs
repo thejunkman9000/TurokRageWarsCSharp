@@ -31,7 +31,7 @@ public static partial class Game
                 {
                     Resource_SetLoadFlags(1);
                 }
-                func_0025E3A4();
+                Audio_UnduckMusic();
                 func_0042E080(default(uint), default(uint), default(uint), default(uint));
             }
             return 0;

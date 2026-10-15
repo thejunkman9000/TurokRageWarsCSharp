@@ -36,7 +36,7 @@ public static partial class Game
                 }
                 Mem.Set((g + (uint)((-7) * 4)), 8);
                 func_00299368(new O05W20(Mem.U32(0x800E5554u)).f1C);
-                func_0025E3A4();
+                Audio_UnduckMusic();
             }
             return 0;
         }

@@ -19,7 +19,7 @@ public static partial class Game
             uint t = 0u;
             uint r = 0u;
             uint q = 0u;
-            if ((func_0026437C(new O06B_v18(b).unk20) != 0))
+            if ((Pad_IsStartPressed(new O06B_v18(b).unk20) != 0))
             {
                 return func_004424F4((int)(a), (int)(b), c);
             }

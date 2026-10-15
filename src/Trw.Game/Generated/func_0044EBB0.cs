@@ -11,12 +11,12 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0044EBB0", (uint)o);
             int i = 0;
-            func_00279620(new S7Pools(o).poolA.P, new S7Pools(o).nodesA.P, 84, (uint)(32));
-            func_00279620(new S7Pools(o).poolB.P, new S7Pools(o).nodesB.P, 28, (uint)(3));
-            func_00279520(new S7Pools(o).list.P);
+            Pool_InitFromArray(new S7Pools(o).poolA.P, new S7Pools(o).nodesA.P, 84, (uint)(32));
+            Pool_InitFromArray(new S7Pools(o).poolB.P, new S7Pools(o).nodesB.P, 28, (uint)(3));
+            Vec_SetZero(new S7Pools(o).list.P);
             for (i = 0; (i < 96); ++i)
             {
-                func_00279578(new S7Pools(o).list.P, (new S7Pools(o).items.P + (uint)(i * 184)));
+                List_AppendCounted(new S7Pools(o).list.P, (new S7Pools(o).items.P + (uint)(i * 184)));
             }
             List_Init(new S7Pools(o).queue.P, 0, 4);
             for (i = 0; (i < 10); ++i)

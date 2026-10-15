@@ -89,7 +89,7 @@ public static partial class Game
                     new DlCmd(_g_14).w0_Set((uint)(100663812));
                     new DlCmd(_g_14).w1_Set((uint)(263680));
                 }
-                func_0026D8F8();
+                Model_ResetStateCache();
                 func_00296FF8();
             }
         }

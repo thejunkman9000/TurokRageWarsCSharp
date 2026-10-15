@@ -10,11 +10,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004435D4", (uint)a, (uint)b, (uint)c);
-            func_0025E3A4();
-            func_0025CB2C((uint)((int)(func_0025CC8C())));
+            Audio_UnduckMusic();
+            LoopSound_ResumeAll((uint)((int)(LoopSound_GetPool())));
             if ((Mem.S32(0x801540F0u) == 0))
             {
-                func_0026497C();
+                Rumble_Resume();
                 return 1;
             }
             func_004424F4(a, b, c);

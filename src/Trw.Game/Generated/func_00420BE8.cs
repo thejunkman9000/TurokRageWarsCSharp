@@ -18,7 +18,7 @@ public static partial class Game
                 if (((new O3Pj(e).state == 1) && (new O3Pj(e).f10 != (-1))))
                 {
                     func_00420214(idx);
-                    func_0025DF54(3708);
+                    Audio_PlaySound2D(3708);
                 }
             }
             return 0;

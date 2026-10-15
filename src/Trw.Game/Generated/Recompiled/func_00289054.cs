@@ -89,7 +89,7 @@ public static partial class Game
                 Mem.Set((r16 + 0u), r3);
                 r3 = 1048576u;
                 Mem.Set((r2 + 0u), r5);
-                Mem.Set((r2 + 4u), r3); func_0026D980();
+                Mem.Set((r2 + 4u), r3); Model_ClearBatchQueue();
                 { bool c_ = r18 == 0; Mem.Set((r17 + 4284u), r0); if (c_) goto L_L00289208; }
                 r2 = Mem.U32((r18 + 1636u));
                 r2 = r2 & 256u;
@@ -393,7 +393,7 @@ public static partial class Game
                 r2 = (uint)((int)r10 < (int)r9 ? 1 : 0);
                 { bool c_ = r2 != 0; Mem.Set((r29 + 24u), r10); if (c_) goto L_L0028929C; }
                 L_L0028971C: ;
-                func_0026D9D0();
+                Model_FlushBatches();
                 r1 = 131072u;
                 r1 = r17 + r1;
                 r2 = Mem.U32((r1 - 18136u));

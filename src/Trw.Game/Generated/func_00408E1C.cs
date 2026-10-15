@@ -20,8 +20,8 @@ public static partial class Game
             }
             if (((Mem.S32(0x80153788u) == 9) || (Mem.S32(0x80153788u) == 5)))
             {
-                func_00264268(new Q01Obj_v4(o).unk20_);
-                func_00264808(new Q01Obj_v4(o).unk20_, 1);
+                Rumble_Reset(new Q01Obj_v4(o).unk20_);
+                Rumble_SetEnabled(new Q01Obj_v4(o).unk20_, 1);
             }
             if ((Mem.S32(0x80153788u) == 9))
             {
@@ -35,7 +35,7 @@ public static partial class Game
                     {
                         s1 = (int)(new Q01Sub(new Q01Obj_v4(o).unk20_).unk4);
                     }
-                    func_002647A8(s1);
+                    Pad_DisableStatusPoll(s1);
                     Level_SetTransitionState_0044E178(0x8011FE88u, new Q01Plr(new Q01Obj_v4(o).unk1C_).unk5EC, 2);
                     return 1;
                 }
@@ -52,7 +52,7 @@ public static partial class Game
             }
             if ((Mem.S32(0x80153788u) == 5))
             {
-                func_002647A8(s1);
+                Pad_DisableStatusPoll(s1);
                 Level_SetTransitionState_0044E178(0x8011FE88u, Mem.S32(0x8013B2C8u), 2);
             }
             if ((Mem.S32(0x8015375Cu) != 0))
@@ -66,7 +66,7 @@ public static partial class Game
             {
                 func_00404E28(s1);
                 s0 = func_00404F04(s1);
-                v = func_002645A0(s1);
+                v = Pad_TakePakChanged(s1);
                 if (((((s0 == 0) || (v != 0)) && (s0 != (-2))) && (new Q01Obj_v4(o).unk24 == (uint)(1))))
                 {
                     func_004426E4(0x8014561Cu, 0x0044F100u, (int)(new Q01Obj_v4(o).unk1C_), (int)(new Q01Obj_v4(o).unk20_), 0);
@@ -82,7 +82,7 @@ public static partial class Game
                 {
                     func_00404E28(s1);
                     s0 = func_00404F04(s1);
-                    v = func_002645A0(s1);
+                    v = Pad_TakePakChanged(s1);
                     if ((((s0 == 0) || (v != 0)) && (s0 != (-2))))
                     {
                         if ((new Q01Obj_v4(o).unk24 == (uint)(1)))

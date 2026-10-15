@@ -31,7 +31,7 @@ public static partial class Game
             {
                 n = Player_GetIndex(0x80145040u, (int)(new O06A_v13(a).unk1C));
             }
-            func_00264790(n);
+            Pad_EnableStatusPoll(n);
             func_00404E28(n);
         }
     }

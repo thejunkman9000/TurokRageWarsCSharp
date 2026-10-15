@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029324C");
-            func_00264424();
+            Pad_LatchAll();
         }
     }
 

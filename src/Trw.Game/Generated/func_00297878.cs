@@ -13,10 +13,10 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00297878", (uint)pl, (uint)a, (uint)b, (uint)c);
-                func_00271FD8(_fp, b, a);
-                func_00271FD8((_fp + 16u), c, b);
-                func_00272088(pl, (_fp + 16u), _fp);
-                func_002720EC(pl);
+                Vec_Sub(_fp, b, a);
+                Vec_Sub((_fp + 16u), c, b);
+                Vec_Cross(pl, (_fp + 16u), _fp);
+                Vec_Normalize(pl);
                 new B21Plane(pl).w_Set((((new B21Plane(pl).x * new Vec3f(a).x) + (new B21Plane(pl).y * new Vec3f(a).y)) + (new B21Plane(pl).z * new Vec3f(a).z)));
             }
         }

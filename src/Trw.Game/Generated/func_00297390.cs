@@ -36,7 +36,7 @@ public static partial class Game
                 int u = (k + 9);
                 new B21Grid(o).unk4_Set((t + u));
             }
-            return ((func_00263174(o, 1) != 0) ? 1 : 0);
+            return ((BitStream_ReadBitsLsb(o, 1) != 0) ? 1 : 0);
         }
     }
 

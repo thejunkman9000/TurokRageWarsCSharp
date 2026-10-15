@@ -27,7 +27,7 @@ public static partial class Game
                     break;
                 }
             }
-            func_0025E3A4();
+            Audio_UnduckMusic();
         }
     }
 

@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0041B020", (uint)o);
             uint p = 0u;
-            func_0025DF54(3700);
+            Audio_PlaySound2D(3700);
             for (p = new O3Bar(o).h.child_; (p != 0u); p = new O3Hdr(p).next_)
             {
                 if (((int)(new O3Hdr(p).id2) != 8))

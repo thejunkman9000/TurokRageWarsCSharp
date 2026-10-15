@@ -20,7 +20,7 @@ public static partial class Game
             {
                 new O04ModeS4690(Mem.U32(0x800E4690u)).unkA44_Set(0);
             }
-            if ((func_00265670(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, new O04ModeS4690(Mem.U32(0x800E4690u)).unkA44) == 0))
+            if ((Bits_Test(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, new O04ModeS4690(Mem.U32(0x800E4690u)).unkA44) == 0))
             {
                 return;
             }

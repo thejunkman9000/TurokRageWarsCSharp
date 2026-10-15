@@ -44,7 +44,7 @@ public static partial class Game
                     {
                         new B21Grid(o).unk10_Set(2);
                         new B21Grid(o).unk4_Set(t);
-                        new B21Grid(o).unk14_Set(func_00263174(o, 9));
+                        new B21Grid(o).unk14_Set(BitStream_ReadBitsLsb(o, 9));
                     }
                 }
             }

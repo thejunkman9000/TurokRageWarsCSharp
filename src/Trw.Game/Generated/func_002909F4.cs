@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002909F4", (uint)o, (uint)src);
             Mem.Copy(new Obj_v10(o).pos.P, src, 12);
-            func_002720EC(new Obj_v10(o).pos.P);
+            Vec_Normalize(new Obj_v10(o).pos.P);
         }
     }
 

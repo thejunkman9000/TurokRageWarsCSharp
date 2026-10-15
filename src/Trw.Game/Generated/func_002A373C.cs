@@ -38,13 +38,13 @@ public static partial class Game
                     o8 = @out;
                     pa = (new VAnim_v2(an).tabA_ + (uint)((int)(new VEnt(e).i0) * 20));
                     pb = (new VAnim_v2(an).tabC_ + (uint)((int)(new VEnt(e).i1) * 20));
-                    func_0027200C(_fp, pa, Cpu.U2F((uint)(new VAnim_v2(an).u10)));
-                    func_0027200C((_fp + 16u), pb, Cpu.U2F((uint)(new VAnim_v2(an).u14)));
+                    Vec_Scale(_fp, pa, Cpu.U2F((uint)(new VAnim_v2(an).u10)));
+                    Vec_Scale((_fp + 16u), pb, Cpu.U2F((uint)(new VAnim_v2(an).u14)));
                     Mem.Set((@out + (uint)(0 * 2)), (short)((int)((new V3(_fp).x + (t * (new V3((_fp + 16u)).x - new V3(_fp).x))))));
                     Mem.Set((@out + (uint)(1 * 2)), (short)((int)((new V3(_fp).y + (t * (new V3((_fp + 16u)).y - new V3(_fp).y))))));
                     Mem.Set((@out + (uint)(2 * 2)), (short)((int)((new V3(_fp).z + (t * (new V3((_fp + 16u)).z - new V3(_fp).z))))));
                     pc = e;
-                    if ((func_0026E340() != 0))
+                    if ((Model_GetViewFlag() != 0))
                     {
                         v = Cpu.TruncU32(((float)((((int)(new VEnt(e).c0[(int)(0)]) + (int)(new VEnt(e).c0[(int)(1)])) + (int)(new VEnt(e).c0[(int)(2)]))) + (t * (float)(((((int)(new VEnt(e).c1[(int)(0)]) - (int)(new VEnt(e).c0[(int)(0)])) + ((int)(new VEnt(e).c1[(int)(1)]) - (int)(new VEnt(e).c0[(int)(1)]))) + ((int)(new VEnt(e).c1[(int)(2)]) - (int)(new VEnt(e).c0[(int)(2)])))))));
                         Mem.Set((o8 + (uint)12), (byte)(0));

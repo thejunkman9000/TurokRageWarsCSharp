@@ -40,7 +40,7 @@ public static partial class Game
                         {
                             new O3A(p).flag_Set(1);
                             new O3A(p).gobj.alpha_Set((byte)(new O3A(p).vals[(int)(new O3A(p).idx)]));
-                            func_0025DF54(3701);
+                            Audio_PlaySound2D(3701);
                         }
                     }
                 }
@@ -60,7 +60,7 @@ public static partial class Game
                         else
                         {
                             new O3A(p).gobj.alpha_Set((byte)(new O3A(p).vals[(int)(new O3A(p).idx)]));
-                            func_0025DF54(3701);
+                            Audio_PlaySound2D(3701);
                         }
                     }
                 }

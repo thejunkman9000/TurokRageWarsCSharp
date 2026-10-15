@@ -30,7 +30,7 @@ public static partial class Game
                     new Q2Pg(Mem.U32(0x800E42D0u)).timer_Set((new Q2Pg(Mem.U32(0x800E42D0u)).timer - 1));
                     if ((new Q2Pg(Mem.U32(0x800E42D0u)).timer <= 0))
                     {
-                        func_0025DF54(3705);
+                        Audio_PlaySound2D(3705);
                         func_0040E958(new Q2Pg(Mem.U32(0x800E42D0u)).w24, 1);
                         func_00419FD8(new Q2Pg(Mem.U32(0x800E42D0u)).w20, 4);
                         new Q2Pg(Mem.U32(0x800E42D0u)).state_Set(4);
@@ -77,7 +77,7 @@ public static partial class Game
                     }
                     break;
                 case 5:
-                    func_0025DF54(3704);
+                    Audio_PlaySound2D(3704);
                     new Q2Pg(Mem.U32(0x800E42D0u)).state_Set(2);
                     new Q2Pg(Mem.U32(0x800E42D0u)).timer_Set(4);
                     func_0040E958(new Q2Pg(Mem.U32(0x800E42D0u)).w24, 0);
@@ -112,7 +112,7 @@ public static partial class Game
                         d = func_0041B87C((uint)(new Q2Pg(Mem.U32(0x800E42D0u)).rec[(int)(0)].f4), i);
                         if ((((int)(new Q2Pg(Mem.U32(0x800E42D0u)).rec[(int)(i)].w8.f14) != ((int)(new Q2Dsc(d).f14) - 2)) || ((int)(new Q2Pg(Mem.U32(0x800E42D0u)).rec[(int)(i)].w8.f16) != ((int)(new Q2Dsc(d).f16) - 2))))
                         {
-                            func_0025DF54(3711);
+                            Audio_PlaySound2D(3711);
                             if ((func_0040EC50(d) == 0))
                             {
                                 if (((int)(new Q2Dsc(d).f0C) != 129))

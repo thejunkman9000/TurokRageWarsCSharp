@@ -30,7 +30,7 @@ public static partial class Game
                 r2 = AiNav_GetNode(r4, (int)r5);
                 r4 = Mem.U32((r16 + 0u));
                 r5 = r2;
-                r4 = r4 + 8u; Cpu.SetS(0, func_00272768(r4, r5));
+                r4 = r4 + 8u; Cpu.SetS(0, Vec_Distance(r4, r5));
                 r31 = Mem.U32((r29 + 20u));
                 r16 = Mem.U32((r29 + 16u));
                 r29 = r29 + 24u; Cpu.V1 = r3; return r2;
@@ -128,7 +128,7 @@ public static partial class Game
                 r3 = Mem.U16((r17 + 14u));
                 L_L0020AB2C: ;
                 { bool c_ = r2 != r3; r4 = r17; if (c_) goto L_L0020AB64; }
-                r5 = r16 + 8u; Cpu.SetS(0, func_00272768(r4, r5));
+                r5 = r16 + 8u; Cpu.SetS(0, Vec_Distance(r4, r5));
                 fcc = Cpu.S(0) < Cpu.S(20);
                 if (fcc) { Cpu.SetS(20, Cpu.S(0)); goto L_L0020AB60; }
                 fcc = Cpu.S(20) == Cpu.S(21);
@@ -242,7 +242,7 @@ public static partial class Game
                                         for (j = 0; (j < (int)(Mem.S16((t + (uint)(1 * 2))))); ++j)
                                         {
                                             p = func_0028D220(0x8011FE88u, (int)(new B2Sub(st).unk95), j);
-                                            d = func_00272768(r, p);
+                                            d = Vec_Distance(r, p);
                                             if (((d < best) || (best == Mem.F32(0x800C6E3Cu))))
                                             {
                                                 sel = Mem.U32((_fp + (uint)(k * 4)));
@@ -262,7 +262,7 @@ public static partial class Game
                                         new Vec3f((_fp + 152u)).x_Set((float)((float)(new Vec3f((_fp + 152u)).x) + (new B2Info(info).unk30 * sinf(new B2Info(info).unk34))));
                                         new Vec3f((_fp + 152u)).z_Set((float)((float)(new Vec3f((_fp + 152u)).z) + (new B2Info(info).unk30 * cosf(new B2Info(info).unk34))));
                                     }
-                                    d = func_00272768(r, (_fp + 136u));
+                                    d = Vec_Distance(r, (_fp + 136u));
                                     if (((d < best) || (best == Mem.F32(0x800C6E3Cu))))
                                     {
                                         if ((n != 0u))
@@ -278,7 +278,7 @@ public static partial class Game
                                             Mem.Copy((_fp + 120u), (_fp + 136u), 12);
                                         }
                                     }
-                                    d = func_00272768(r, (_fp + 152u));
+                                    d = Vec_Distance(r, (_fp + 152u));
                                     if (((d < best) || (best == Mem.F32(0x800C6E3Cu))))
                                     {
                                         sel = Mem.U32((_fp + (uint)(k * 4)));
@@ -450,7 +450,7 @@ public static partial class Game
                 started = 0;
                 f1 = (int)((new S5Actor(a).flags38 & (uint)(8192)));
                 f2 = (int)((new S5Actor(a).flags38 & (uint)(4096)));
-                func_00271FD8((_fp + 512u), func_0020AF9C_getRec0(m, new S5Actor(a).brain.key), new S5Actor(a).pos.P);
+                Vec_Sub((_fp + 512u), func_0020AF9C_getRec0(m, new S5Actor(a).brain.key), new S5Actor(a).pos.P);
                 if (!(((f1 != 0) || (f2 != 0)))) goto _f3;
                 dd = (((new Vec3f((_fp + 512u)).x * new Vec3f((_fp + 512u)).x) + (new Vec3f((_fp + 512u)).y * new Vec3f((_fp + 512u)).y)) + (new Vec3f((_fp + 512u)).z * new Vec3f((_fp + 512u)).z));
                 goto _f4;
@@ -480,7 +480,7 @@ public static partial class Game
                 idx = new S5Actor(a).brain.unkC;
                 _f11: ;
                 rec = func_0020AF9C_getRec0(m, idx);
-                func_00271FD8((_fp + 512u), rec, new S5Actor(a).pos.P);
+                Vec_Sub((_fp + 512u), rec, new S5Actor(a).pos.P);
                 if (!((((f1 != 0) || (f2 != 0)) || (((int)(new B2Rec(rec).flags) & 512) != 0)))) goto _f12;
                 dd = (((new Vec3f((_fp + 512u)).x * new Vec3f((_fp + 512u)).x) + (new Vec3f((_fp + 512u)).y * new Vec3f((_fp + 512u)).y)) + (new Vec3f((_fp + 512u)).z * new Vec3f((_fp + 512u)).z));
                 goto _f13;
@@ -525,7 +525,7 @@ public static partial class Game
                 rec = func_0020AF9C_getRec0(m, idx);
                 e = func_0020AF9C_getEdge(m, Mem.S32(((_fp + 256u) + (uint)(i * 4))));
                 if (!(((!((Mem.U32((rec + 12u)) & (uint)(3145728)) != 0u) || (f2 != 0)) || (f1 != 0)))) goto _f27;
-                func_00271FD8((_fp + 512u), rec, new S5Actor(a).pos.P);
+                Vec_Sub((_fp + 512u), rec, new S5Actor(a).pos.P);
                 if (!(((f1 != 0) || (f2 != 0)))) goto _f28;
                 dd = (((new Vec3f((_fp + 512u)).x * new Vec3f((_fp + 512u)).x) + (new Vec3f((_fp + 512u)).y * new Vec3f((_fp + 512u)).y)) + (new Vec3f((_fp + 512u)).z * new Vec3f((_fp + 512u)).z));
                 goto _f29;
@@ -692,8 +692,8 @@ public static partial class Game
                     {
                         ri = func_0020B95C_getRec0(m, Mem.S32((@out + (uint)(i * 4))));
                         rj = func_0020B95C_getRec0(m, Mem.S32((@out + (uint)(j * 4))));
-                        d = func_0027272C(src, ri);
-                        if ((func_0027272C(src, rj) < d))
+                        d = Vec_DistanceSq(src, ri);
+                        if ((Vec_DistanceSq(src, rj) < d))
                         {
                             t = Mem.S32((@out + (uint)(i * 4)));
                             Mem.Set((@out + (uint)(i * 4)), Mem.S32((@out + (uint)(j * 4))));
@@ -786,7 +786,7 @@ public static partial class Game
                 cnt = func_0020BE7C_adj(m, a, _fp, (_fp + 256u));
                 for (i = 0; (i < cnt); ++i)
                 {
-                    Mem.Set((_fp + 512u), func_0027272C(src, func_0020BE7C_getRec0(m, Mem.S32((_fp + (uint)(i * 4))))));
+                    Mem.Set((_fp + 512u), Vec_DistanceSq(src, func_0020BE7C_getRec0(m, Mem.S32((_fp + (uint)(i * 4))))));
                     r = AiNav_FindEdgeKindRecursive(m, a, Mem.S32((_fp + (uint)(i * 4))), kind, (depth - 1), (_fp + 512u), best);
                     if ((r != (-1)))
                     {
@@ -885,7 +885,7 @@ public static partial class Game
                     rec = func_0020C078_getRec0(m, Mem.S32((_fp + (uint)(i * 4))));
                     if ((rec != src))
                     {
-                        Mem.Set((_fp + 512u), (Mem.F32(dist) + func_0027272C(src, rec)));
+                        Mem.Set((_fp + 512u), (Mem.F32(dist) + Vec_DistanceSq(src, rec)));
                         if ((Mem.F32((_fp + 512u)) < limit))
                         {
                             r = AiNav_FindEdgeKindRecursive(m, goal, Mem.S32((_fp + (uint)(i * 4))), kind, (depth - 1), (_fp + 512u), limit);
@@ -983,7 +983,7 @@ public static partial class Game
                 {
                     if ((new B2Mgr(m).slots[(int)(i)] != (-1)))
                     {
-                        d = func_00272768(src, func_0020C2E8_getRec0(m, new B2Mgr(m).slots[(int)(i)]));
+                        d = Vec_Distance(src, func_0020C2E8_getRec0(m, new B2Mgr(m).slots[(int)(i)]));
                         if (((d < best) || (best == Mem.F32(0x800C6E68u))))
                         {
                             best = d;
@@ -1007,7 +1007,7 @@ public static partial class Game
                         {
                             if ((new B2Mgr(m).slots[(int)(i)] != (-1)))
                             {
-                                d = func_00272768(src, func_0020C2E8_getRec0(m, new B2Mgr(m).slots[(int)(i)]));
+                                d = Vec_Distance(src, func_0020C2E8_getRec0(m, new B2Mgr(m).slots[(int)(i)]));
                                 if (((d < best) || (best == Mem.F32(0x800C6E6Cu))))
                                 {
                                     best = d;
@@ -1199,7 +1199,7 @@ public static partial class Game
                                 }
                                 else
                                 {
-                                    d = func_00272768(rec2, rec);
+                                    d = Vec_Distance(rec2, rec);
                                 }
                                 d = (float)((float)(d) + new B2Node(nbr).unk18);
                                 if ((((int)(Mem.U16((rec2 + (uint)12))) & 1024) != 0))
@@ -1348,7 +1348,7 @@ public static partial class Game
                 float d2 = 0f;
                 for (i = 0; (i < new B2Mgr(m).unk4); ++i)
                 {
-                    func_00271FD8(_fp, p, func_0020CB3C_getRec0(m, i));
+                    Vec_Sub(_fp, p, func_0020CB3C_getRec0(m, i));
                     d2 = (((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z));
                     if (((best < 0) || (d2 < bestd)))
                     {

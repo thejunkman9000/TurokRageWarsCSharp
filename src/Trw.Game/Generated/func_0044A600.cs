@@ -25,7 +25,7 @@ public static partial class Game
             uint state = 0u;
             List_Init(new ObjectPool(pool).active_queue.P, 5852, 5856);
             List_Init(new ObjectPool(pool).object_queue.P, 5852, 5856);
-            func_00264874(0);
+            Rumble_SetEnabledAll(0);
             ResourcePool_Purge();
             global = 0x801462C8u;
             if ((new ObjectPool(pool).allocation != 0u))
@@ -71,12 +71,12 @@ public static partial class Game
                 new func_804499B0_de_S3(@object).unk5D0_Set(0);
                 if ((new func_804499B0_de_S3(@object).unk1450 != 0))
                 {
-                    func_0026369C((@object + (uint)1672), (int)(0x8010EEB8u));
+                    Pad_InitPlayerInput((@object + (uint)1672), (int)(0x8010EEB8u));
                     new func_804499B0_de_S3(@object).unk5D4_Set((int)(new ObjectState96(entry).unk_7F));
                 }
                 else
                 {
-                    func_0026369C((@object + (uint)1672), (int)((0x8010F328u + (uint)attribute_offset)));
+                    Pad_InitPlayerInput((@object + (uint)1672), (int)((0x8010F328u + (uint)attribute_offset)));
                     new func_804499B0_de_S3(@object).unk5D4_Set(i);
                 }
                 owner = new func_804499B0_de_S3(@object).unk1454;
@@ -135,12 +135,12 @@ public static partial class Game
                 new func_804499B0_de_S3(@object).unk5D0_Set(0);
                 if ((new func_804499B0_de_S3(@object).unk1450 != 0))
                 {
-                    func_0026369C((@object + (uint)1672), (int)(0x8010EEB8u));
+                    Pad_InitPlayerInput((@object + (uint)1672), (int)(0x8010EEB8u));
                     new func_804499B0_de_S3(@object).unk5D4_Set((int)(new ObjectState96(entry).unk_7F));
                 }
                 else
                 {
-                    func_0026369C((@object + (uint)1672), (int)((0x8010F328u + (uint)(roster_index * 548))));
+                    Pad_InitPlayerInput((@object + (uint)1672), (int)((0x8010F328u + (uint)(roster_index * 548))));
                     new func_804499B0_de_S3(@object).unk5D4_Set(roster_index);
                 }
                 owner = new func_804499B0_de_S3(@object).unk1454;

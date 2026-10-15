@@ -38,7 +38,7 @@ public static partial class Game
                 r3 = Mem.U32((r3 + 22400u));
                 r5 = r0;
                 Mem.Set((r3 + 0u), r2);
-                Mem.Set((r3 + 20u), r0); r2 = (uint)func_00265670(r4, (int)r5);
+                Mem.Set((r3 + 20u), r0); r2 = (uint)Bits_Test(r4, (int)r5);
                 { bool c_ = r2 != 0; r4 = (uint)313; if (c_) goto L_L00437560; }
                 r4 = r16;
                 r5 = (uint)314; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;

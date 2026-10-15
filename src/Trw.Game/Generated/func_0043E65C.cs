@@ -15,7 +15,7 @@ public static partial class Game
             if (((int)(Pad_IsConfirm(new S10Menu(m).ctrl_)) != 0))
             {
                 func_0044AD14(ctx, (int)(new S10Sub(sub).b80));
-                func_0025DF54((int)(new S10Pair((0x800E5DFAu + (uint)(new S10Ctx(ctx).f5E0 * 4))).v));
+                Audio_PlaySound2D((int)(new S10Pair((0x800E5DFAu + (uint)(new S10Ctx(ctx).f5E0 * 4))).v));
                 func_00442934((uint)((int)(y)), (uint)((int)(m)), 0x00450698u);
                 return 1;
             }

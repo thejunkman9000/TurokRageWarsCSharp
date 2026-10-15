@@ -237,7 +237,7 @@ public static partial class Game
                 {
                     if ((new B05In10(@in).f0 != 0.0f))
                     {
-                        func_002748E0((a + 108u), (new B05A10(a).ang + (((new B05P10(p).f69C * 80.0f) * new B05In10(@in).f0) * 0.0174532942f)), turn);
+                        Math_ApproachProportional((a + 108u), (new B05A10(a).ang + (((new B05P10(p).f69C * 80.0f) * new B05In10(@in).f0) * 0.0174532942f)), turn);
                     }
                 }
                 w = ((-new B05P10(p).f6A0) * 80.0f);
@@ -249,7 +249,7 @@ public static partial class Game
                 {
                     x = ((w * 0.716197133f) * new B05In10(@in).f14);
                 }
-                func_002748E0((p + 1828u), (x * 0.0174532942f), spd);
+                Math_ApproachProportional((p + 1828u), (x * 0.0174532942f), spd);
                 trw_mouse_look(p, a, @in, h);
             }
         }
@@ -266,11 +266,11 @@ public static partial class Game
             float r = 0f;
             if (!(new B05P9(p).f11D8 > 0.0f))
             {
-                func_002748E0((p + 1836u), 0.0f, 0.25f);
-                func_002748E0((p + 1832u), 0.0f, 0.5f);
-                new B05P9(p).f730_Set(func_00274810(new B05P9(p).f730, Mem.F32(0x800C7A04u)));
-                new B05P9(p).f734_Set(func_00274810(new B05P9(p).f734, Mem.F32(0x800C7A04u)));
-                new B05P9(p).f738_Set(func_00274810(new B05P9(p).f738, Mem.F32(0x800C7A04u)));
+                Math_ApproachProportional((p + 1836u), 0.0f, 0.25f);
+                Math_ApproachProportional((p + 1832u), 0.0f, 0.5f);
+                new B05P9(p).f730_Set(Math_DecayToZero(new B05P9(p).f730, Mem.F32(0x800C7A04u)));
+                new B05P9(p).f734_Set(Math_DecayToZero(new B05P9(p).f734, Mem.F32(0x800C7A04u)));
+                new B05P9(p).f738_Set(Math_DecayToZero(new B05P9(p).f738, Mem.F32(0x800C7A04u)));
                 if ((new B05P9(p).f75C > Mem.F32(0x800C7A08u)))
                 {
                     new B05P9(p).f75C_Set(Mem.F32(0x800C7A08u));
@@ -279,8 +279,8 @@ public static partial class Game
                 {
                     new B05P9(p).f758_Set(Mem.F32(0x800C7A0Cu));
                 }
-                new B05P9(p).f75C_Set(func_00274810(new B05P9(p).f75C, Mem.F32(0x800C7A10u)));
-                new B05P9(p).f758_Set(func_00274810(new B05P9(p).f758, Mem.F32(0x800C7A14u)));
+                new B05P9(p).f75C_Set(Math_DecayToZero(new B05P9(p).f75C, Mem.F32(0x800C7A10u)));
+                new B05P9(p).f758_Set(Math_DecayToZero(new B05P9(p).f758, Mem.F32(0x800C7A14u)));
                 if ((new B05P9(p).f758 < Mem.F32(0x800C7A18u)))
                 {
                     new B05P9(p).f758_Set(0.0f);
@@ -295,10 +295,10 @@ public static partial class Game
                 {
                     @base = Mem.F32(0x800C7A24u);
                 }
-                func_002748E0((p + 1856u), (@base + (new B05P9(p).f758 * (sinf(ang) * Mem.F32(0x800C7A28u)))), Mem.F32(0x800C7A2Cu));
+                Math_ApproachProportional((p + 1856u), (@base + (new B05P9(p).f758 * (sinf(ang) * Mem.F32(0x800C7A28u)))), Mem.F32(0x800C7A2Cu));
                 r = (new B05P9(p).f758 * (cosf(ang) * Mem.F32(0x800C7A30u)));
-                func_002748E0((p + 1852u), ((-sinf((new B05S9(s).ang + Mem.F32(0x800C7A34u)))) * r), Mem.F32(0x800C7A2Cu));
-                func_002748E0((p + 1860u), ((-cosf((new B05S9(s).ang + Mem.F32(0x800C7A34u)))) * r), Mem.F32(0x800C7A2Cu));
+                Math_ApproachProportional((p + 1852u), ((-sinf((new B05S9(s).ang + Mem.F32(0x800C7A34u)))) * r), Mem.F32(0x800C7A2Cu));
+                Math_ApproachProportional((p + 1860u), ((-cosf((new B05S9(s).ang + Mem.F32(0x800C7A34u)))) * r), Mem.F32(0x800C7A2Cu));
             }
         }
     }
@@ -318,7 +318,7 @@ public static partial class Game
             {
                 v = Mem.F32(0x800C7A3Cu);
             }
-            func_002748E0((obj + (uint)1856), v, 0.5f);
+            Math_ApproachProportional((obj + (uint)1856), v, 0.5f);
         }
     }
 

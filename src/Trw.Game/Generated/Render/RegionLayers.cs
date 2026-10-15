@@ -50,7 +50,7 @@ public static partial class Game
                 r5 = Mem.U32((r22 + 56u));
                 r6 = Mem.U32((r22 + 64u));
                 Cpu.SetW(21, r0);
-                r23 = r0; Cpu.SetS(0, func_00275E44(r4, Cpu.U2F(r5), Cpu.U2F(r6)));
+                r23 = r0; Cpu.SetS(0, Collision_GetFloorHeightAt(r4, Cpu.U2F(r5), Cpu.U2F(r6)));
                 r2 = Mem.U32((r20 + 68u));
                 r2 = r2 & 1u;
                 { bool c_ = r2 == 0; Cpu.SetS(23, Cpu.S(0)); if (c_) goto L_L0023B104; }
@@ -358,8 +358,8 @@ public static partial class Game
                         }
                         while ((e != 0u));
                     }
-                    func_00285290(_fp, (uint)(nn), (uint)(4), 0x0023B93Cu, 0x0023B928u);
-                    func_00285290((_fp + 16u), (uint)(nf), (uint)(4), 0x0023B968u, 0x0023B928u);
+                    Sort_QuickWithSwap(_fp, (uint)(nn), (uint)(4), 0x0023B93Cu, 0x0023B928u);
+                    Sort_QuickWithSwap((_fp + 16u), (uint)(nf), (uint)(4), 0x0023B968u, 0x0023B928u);
                     for (i = 0; (i < nn); ++i)
                     {
                         Shadow_DrawDecal(Mem.U32((_fp + (uint)(i * 4))), cam, default(uint), default(uint));

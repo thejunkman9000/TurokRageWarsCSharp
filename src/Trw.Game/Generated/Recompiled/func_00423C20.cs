@@ -130,7 +130,7 @@ public static partial class Game
                 { bool c_ = (int)r2 < 0;  if (c_) goto L_L00423E8C; }
                 { bool c_ = r19 != 0; r16 = r0; if (c_) goto L_L00423E0C; }
                 r4 = r3 + r20;
-                r5 = r16; r2 = (uint)func_00265670(r4, (int)r5);
+                r5 = r16; r2 = (uint)Bits_Test(r4, (int)r5);
                 { bool c_ = r2 == 0; r19 = r16; if (c_) goto L_L00423E14; }
                 L_L00423E0C: ;
                 r16 = (uint)1;
@@ -144,7 +144,7 @@ public static partial class Game
                 r4 = r4 << 3;
                 r4 = r4 + r2;
                 r4 = r4 << 4;
-                r4 = r4 + r20; r2 = (uint)func_00265670(r4, (int)r5);
+                r4 = r4 + r20; r2 = (uint)Bits_Test(r4, (int)r5);
                 { bool c_ = r2 == 0; r18 = r16; if (c_) goto L_L00423E50; }
                 L_L00423E48: ;
                 r16 = (uint)1;
@@ -158,7 +158,7 @@ public static partial class Game
                 r4 = r4 << 3;
                 r4 = r4 + r2;
                 r4 = r4 << 4;
-                r4 = r4 + r20; r2 = (uint)func_00265670(r4, (int)r5);
+                r4 = r4 + r20; r2 = (uint)Bits_Test(r4, (int)r5);
                 { bool c_ = r2 == 0; r17 = r16; if (c_) goto L_L00423E8C; }
                 L_L00423E84: ;
                 r16 = (uint)1;
@@ -235,11 +235,11 @@ public static partial class Game
                 r4 = r2;
                 r5 = (uint)1; func_0040E9D0(r4, (int)r5);
                 L_L00423FF4: ;
-                r4 = r0; r2 = (uint)func_00264634((int)r4);
+                r4 = r0; r2 = (uint)Pad_IsConnected((int)r4);
                 r16 = r2;
                 r2 = (uint)1;
                 { bool c_ = r16 != r2; r4 = r21; if (c_) goto L_L00424020; }
-                r4 = r2; r2 = (uint)func_00264634((int)r4);
+                r4 = r2; r2 = (uint)Pad_IsConnected((int)r4);
                 if (r2 == r16) { r4 = (uint)66; goto L_L00424038; }
                 r4 = r21;
                 L_L00424020: ;

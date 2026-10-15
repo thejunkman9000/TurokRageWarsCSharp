@@ -64,7 +64,7 @@ public static partial class Game
                 Mem.Set((r18 + 288u), r3);
                 Mem.Set((r19 + 0u), r2);
                 Mem.Set((r4 + 0u), r21);
-                Mem.Set((r4 + 4u), r0); func_0026D980();
+                Mem.Set((r4 + 4u), r0); Model_ClearBatchQueue();
                 r4 = Mem.U32((r20 + 136u));
                 r5 = (uint)1; r2 = Chunk_Get(r4, (int)r5);
                 r16 = r2;
@@ -88,7 +88,7 @@ public static partial class Game
                 r5 = r22; Prop_Draw(r4);
                  goto L_L00288F50;
                 L_L00288FB0: ;
-                r17 = r17 + 1u; func_0026D9D0();
+                r17 = r17 + 1u; Model_FlushBatches();
                 r4 = Mem.U32((r19 + 0u));
                 r2 = 3741319168u;
                 r3 = r4;

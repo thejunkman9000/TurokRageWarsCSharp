@@ -76,7 +76,7 @@ public static partial class Game
                         }
                         Mem.Copy((_fp + 16u), new Q4Part(p).pos.P, 12);
                         new Q4V3((_fp + 16u)).y_Set((new Q4V3((_fp + 16u)).y - ((new Q4X(x).f47C * new Q4V3((_fp + 48u)).y) * 0.800000011f)));
-                        func_00272908(new Q4Win(w).cam.view.P, (_fp + 16u), (_fp + 32u));
+                        Math_MtxTransformPoint(new Q4Win(w).cam.view.P, (_fp + 16u), (_fp + 32u));
                         if (((s3 != 0u) && !((new Q4O_v2(o).f8 & (uint)(33554432)) != 0u)))
                         {
                             Actor_Init(fx, (-1), new Q4Part(p).f0, Mem.S32(0x800D2B40u), s3, (-1), (uint)(0), (new Q4Win(w).cam.f28 + 3.14159298f), (_fp + 32u), (uint)(0), new Q4Part(p).f18.P, _fp);
@@ -141,9 +141,9 @@ public static partial class Game
                         new Q4Fx(fx).f6C_Set((new Q4Fx(fx).f6C + (new Q4Part(p).f2C * Mem.F32(0x800D2988u))));
                         Mem.Copy(new Q4Fx(fx).pos8.P, (_fp + 32u), 12);
                         Mem.Copy(new Q4Fx(fx).v1C4.P, (_fp + 32u), 12);
-                        func_0026D980();
+                        Model_ClearBatchQueue();
                         Actor_Draw(fx, new Q4Win(w).cam_, default(uint), default(uint));
-                        func_0026D9D0();
+                        Model_FlushBatches();
                     }
                 }
             }

@@ -27,7 +27,7 @@ public static partial class Game
                     break;
                 }
             }
-            func_0025E3A4();
+            Audio_UnduckMusic();
             func_0044EACC(0x8011FAC0u, (-1));
             Mem.Set(0x80154048u, 1);
             return 1;

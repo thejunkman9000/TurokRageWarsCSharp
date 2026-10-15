@@ -33,7 +33,7 @@ public static partial class Game
                 Mem.Set((r29 + 28u), r31);
                 Mem.Set((r29 + 24u), r18);
                 Mem.Set((r29 + 20u), r17);
-                Mem.Set((r29 + 16u), r16); r2 = func_00285A94(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r29 + 16u), r16); r2 = Rumble_InitSourcePool(r4, r5, r6, r7); r3 = Cpu.V1;
                 r16 = 2148597760u;
                 r16 = r16 - 1024u;
                 r4 = r16;
@@ -82,7 +82,7 @@ public static partial class Game
                 r1 = 2148597760u;
                 r1 = r1 + r2;
                 Mem.Set((r1 - 3312u), r0);
-                r4 = r17; func_002647A8((int)r4);
+                r4 = r17; Pad_DisableStatusPoll((int)r4);
                 r4 = r18;
                 r5 = r17; r2 = (uint)Pad_InitSlot(r4, (int)r5);
                 if (r2 == 0) { r17 = r17 - 1u; goto L_L0044BBFC; }

@@ -73,33 +73,33 @@ public static partial class Game
                     do
                     {
                         o = Mem.U32((ents + (uint)(k * 4)));
-                        func_00272908((o + (uint)32), pos, (_fp + 2048u));
-                        if ((func_00277198(o, (_fp + 2048u), (_fp + 2160u), (wb + (uint)(k * 4))) != 0))
+                        Math_MtxTransformPoint((o + (uint)32), pos, (_fp + 2048u));
+                        if ((Light_EvalVolumeAtPoint(o, (_fp + 2048u), (_fp + 2160u), (wb + (uint)(k * 4))) != 0))
                         {
-                            func_00271FA4((_fp + 2176u), (_fp + 2160u), (_fp + 2048u));
-                            func_00272A80((o + (uint)96), (_fp + 2176u), (_fp + 2160u));
-                            func_00271FD8((db + (uint)(k * 12)), pos, (_fp + 2160u));
-                            func_002720EC((db + (uint)(k * 12)));
+                            Vec_Add((_fp + 2176u), (_fp + 2160u), (_fp + 2048u));
+                            Math_MtxTransformPointProject((o + (uint)96), (_fp + 2176u), (_fp + 2160u));
+                            Vec_Sub((db + (uint)(k * 12)), pos, (_fp + 2160u));
+                            Vec_Normalize((db + (uint)(k * 12)));
                             Mem.Copy((_fp + 2080u), new B19bLObj(o).pos.P, 12);
                             if (((int)(new B19bLObj(o).fBA) != 0))
                             {
-                                new B19bV3f((_fp + 2192u)).z_Set(new B19bV3f((_fp + 2192u)).y_Set(new B19bV3f((_fp + 2192u)).x_Set(func_00278900(o))));
-                                func_0027200C((_fp + 2144u), (_fp + 2192u), (Mem.F32((wb + (uint)(k * 4))) * new B19bLObj(o).f4));
+                                new B19bV3f((_fp + 2192u)).z_Set(new B19bV3f((_fp + 2192u)).y_Set(new B19bV3f((_fp + 2192u)).x_Set(Light_GetFlickerForObject(o))));
+                                Vec_Scale((_fp + 2144u), (_fp + 2192u), (Mem.F32((wb + (uint)(k * 4))) * new B19bLObj(o).f4));
                                 last = o;
                                 if (((int)(new B19bLObj(o).fB8) != 0))
                                 {
-                                    func_0027200C((_fp + 2144u), (_fp + 2144u), (-1.0f));
+                                    Vec_Scale((_fp + 2144u), (_fp + 2144u), (-1.0f));
                                 }
-                                func_00271FA4((_fp + 2096u), (_fp + 2096u), (_fp + 2144u));
+                                Vec_Add((_fp + 2096u), (_fp + 2096u), (_fp + 2144u));
                             }
                             u1 = (new B19bLObj(o).f4 * 0.5f);
                             u0 = (1.0f - u1);
-                            func_0027200C((_fp + 2144u), (_fp + 2080u), (Mem.F32((wb + (uint)(k * 4))) * u1));
+                            Vec_Scale((_fp + 2144u), (_fp + 2080u), (Mem.F32((wb + (uint)(k * 4))) * u1));
                             if (((int)(new B19bLObj(o).fB8) != 0))
                             {
-                                func_0027200C((_fp + 2144u), (_fp + 2144u), (-1.0f));
+                                Vec_Scale((_fp + 2144u), (_fp + 2144u), (-1.0f));
                             }
-                            func_00271FA4((_fp + 2096u), (_fp + 2096u), (_fp + 2144u));
+                            Vec_Add((_fp + 2096u), (_fp + 2096u), (_fp + 2144u));
                             Mem.Set((wb + (uint)(k * 4)), (float)((float)(Mem.F32((wb + (uint)(k * 4)))) * u0));
                             x = new B19bV3f((_fp + 2080u)).x;
                             if ((x < 0.0f))
@@ -122,9 +122,9 @@ public static partial class Game
                             {
                                 u0 = (x2 + new B19bV3f((_fp + 2080u)).z);
                             }
-                            func_0027200C((_fp + 2144u), (db + (uint)(k * 12)), Mem.F32((wb + (uint)(k * 4))));
-                            func_0027200C((_fp + 2144u), (_fp + 2144u), u0);
-                            func_00271FA4((_fp + 2064u), (_fp + 2064u), (_fp + 2144u));
+                            Vec_Scale((_fp + 2144u), (db + (uint)(k * 12)), Mem.F32((wb + (uint)(k * 4))));
+                            Vec_Scale((_fp + 2144u), (_fp + 2144u), u0);
+                            Vec_Add((_fp + 2064u), (_fp + 2064u), (_fp + 2144u));
                             if (((int)(new B19bLObj(o).fB8) != 0))
                             {
                                 Mem.Set((wb + (uint)(k * 4)), (-Mem.F32((wb + (uint)(k * 4)))));
@@ -141,7 +141,7 @@ public static partial class Game
                     }
                     while ((k < n));
                 }
-                func_002720EC((_fp + 2064u));
+                Vec_Normalize((_fp + 2064u));
                 do
                 {
                     k = 0;
@@ -167,22 +167,22 @@ public static partial class Game
                         s2 = (s1 - s0);
                         if ((o == last))
                         {
-                            new B19bV3f((_fp + 2192u)).z_Set(new B19bV3f((_fp + 2192u)).y_Set(new B19bV3f((_fp + 2192u)).x_Set(func_00278900(o))));
-                            func_0027200C((_fp + 2208u), (_fp + 2192u), (s2 * Mem.F32(pw)));
-                            func_00271FA4((_fp + 2128u), (_fp + 2128u), (_fp + 2208u));
-                            func_0027200C((_fp + 2208u), (_fp + 2192u), (s0 * Mem.F32(pw)));
-                            func_00271FA4((_fp + 2112u), (_fp + 2112u), (_fp + 2208u));
+                            new B19bV3f((_fp + 2192u)).z_Set(new B19bV3f((_fp + 2192u)).y_Set(new B19bV3f((_fp + 2192u)).x_Set(Light_GetFlickerForObject(o))));
+                            Vec_Scale((_fp + 2208u), (_fp + 2192u), (s2 * Mem.F32(pw)));
+                            Vec_Add((_fp + 2128u), (_fp + 2128u), (_fp + 2208u));
+                            Vec_Scale((_fp + 2208u), (_fp + 2192u), (s0 * Mem.F32(pw)));
+                            Vec_Add((_fp + 2112u), (_fp + 2112u), (_fp + 2208u));
                         }
-                        func_0027200C((_fp + 2144u), (_fp + 2080u), (s2 * Mem.F32(pw)));
-                        func_00271FA4((_fp + 2128u), (_fp + 2128u), (_fp + 2144u));
-                        func_0027200C((_fp + 2144u), (_fp + 2080u), (s0 * Mem.F32(pw)));
-                        func_00271FA4((_fp + 2112u), (_fp + 2112u), (_fp + 2144u));
+                        Vec_Scale((_fp + 2144u), (_fp + 2080u), (s2 * Mem.F32(pw)));
+                        Vec_Add((_fp + 2128u), (_fp + 2128u), (_fp + 2144u));
+                        Vec_Scale((_fp + 2144u), (_fp + 2080u), (s0 * Mem.F32(pw)));
+                        Vec_Add((_fp + 2112u), (_fp + 2112u), (_fp + 2144u));
                         ++k;
                     }
                     while ((k < n));
                 }
-                func_0027200C((_fp + 2112u), (_fp + 2112u), 0.5f);
-                func_00271FA4((_fp + 2096u), (_fp + 2096u), (_fp + 2112u));
+                Vec_Scale((_fp + 2112u), (_fp + 2112u), 0.5f);
+                Vec_Add((_fp + 2096u), (_fp + 2096u), (_fp + 2112u));
                 if ((new B19bV3f((_fp + 2096u)).x < 0.0f))
                 {
                     new B19bV3f((_fp + 2128u)).x_Set((float)((float)(new B19bV3f((_fp + 2128u)).x) + new B19bV3f((_fp + 2096u)).x));

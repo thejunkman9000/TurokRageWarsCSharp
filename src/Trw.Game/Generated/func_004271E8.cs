@@ -13,33 +13,33 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 36); ++i)
             {
-                func_002656A8(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, i, 0);
-                func_002656A8(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA79.P, i, 0);
+                Bits_Assign(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, i, 0);
+                Bits_Assign(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA79.P, i, 0);
             }
             switch ((int)(Mem.U8(0x801462D5u)))
             {
             case 1:
                 for (i = 0; (i < 36); ++i)
                 {
-                    func_002656A8(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, i, func_00265670(new O04Row190e((0x80102B00u + (uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA5C * 400))).unk7E.P, i));
+                    Bits_Assign(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, i, Bits_Test(new O04Row190e((0x80102B00u + (uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA5C * 400))).unk7E.P, i));
                 }
                 break;
             case 2:
                 for (i = 0; (i < 36); ++i)
                 {
-                    func_002656A8(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, i, func_00265670(new O04Row190e((0x80102B00u + (uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA5C * 400))).unk83.P, i));
+                    Bits_Assign(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, i, Bits_Test(new O04Row190e((0x80102B00u + (uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA5C * 400))).unk83.P, i));
                 }
                 break;
             case 3:
                 for (i = 0; (i < 36); ++i)
                 {
-                    func_002656A8(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, i, func_00265670(new O04Row190e((0x80102B00u + (uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA5C * 400))).unk88.P, i));
+                    Bits_Assign(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, i, Bits_Test(new O04Row190e((0x80102B00u + (uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA5C * 400))).unk88.P, i));
                 }
                 break;
             case 4:
                 for (i = 0; (i < 36); ++i)
                 {
-                    func_002656A8(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, i, func_00265670(new O04Row190e((0x80102B00u + (uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA5C * 400))).unk8D.P, i));
+                    Bits_Assign(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, i, Bits_Test(new O04Row190e((0x80102B00u + (uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA5C * 400))).unk8D.P, i));
                 }
                 break;
             }

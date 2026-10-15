@@ -121,7 +121,7 @@ public static partial class Game
                 r2 = r2 + r3;
                 r4 = r6 << 2;
                 r4 = r4 + r6;
-                r4 = r2 + r4; r2 = (uint)func_00265670(r4, (int)r5);
+                r4 = r2 + r4; r2 = (uint)Bits_Test(r4, (int)r5);
                 { bool c_ = r2 != r16;  if (c_) goto L_L00437E50; }
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 22576u));
@@ -186,7 +186,7 @@ public static partial class Game
                 r4 = r4 << 3;
                 r4 = r4 + r2;
                 r4 = r4 << 4;
-                r4 = r4 + r17; r2 = (uint)func_00265670(r4, (int)r5);
+                r4 = r4 + r17; r2 = (uint)Bits_Test(r4, (int)r5);
                 { bool c_ = r2 != 0; r5 = r16; if (c_) goto L_L00437F7C; }
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 22576u));
@@ -197,7 +197,7 @@ public static partial class Game
                 r4 = r4 << 3;
                 r4 = r4 + r2;
                 r4 = r4 << 4;
-                r4 = r4 + r17; func_002656A8(r4, (int)r5, (int)r6);
+                r4 = r4 + r17; Bits_Assign(r4, (int)r5, (int)r6);
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 22576u));
                 r4 = Mem.U32((r2 + 148u));
@@ -219,7 +219,7 @@ public static partial class Game
                 r4 = 2148532224u;
                 r4 = r4 + 11133u;
                 r4 = r3 + r4;
-                r6 = r5; func_002656A8(r4, (int)r5, (int)r6);
+                r6 = r5; Bits_Assign(r4, (int)r5, (int)r6);
                 L_L00437FC8: ;
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 22576u));
@@ -237,7 +237,7 @@ public static partial class Game
                 r4 = 2148532224u;
                 r4 = r4 + 11133u;
                 r4 = r3 + r4;
-                r6 = (uint)1; func_002656A8(r4, (int)r5, (int)r6);
+                r6 = (uint)1; Bits_Assign(r4, (int)r5, (int)r6);
                 L_L00438014: ;
                 r2 = 2148859904u;
                 r2 = Mem.U32((r2 + 16428u));
@@ -261,7 +261,7 @@ public static partial class Game
                 r1 = 2148794368u;
                 r1 = r1 + r2;
                 r5 = (uint)(int)Mem.S8((r1 + 25624u));
-                r4 = r4 + r16; func_002656A8(r4, (int)r5, (int)r6);
+                r4 = r4 + r16; Bits_Assign(r4, (int)r5, (int)r6);
                 r5 = r0;
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 22576u));

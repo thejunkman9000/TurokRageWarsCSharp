@@ -29,7 +29,7 @@ public static partial class Game
                     new O3Dl(g).w1_Set((uint)((@base + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 896))));
                     cmd = new O3Dl(g).w0;
                     Mem.Copy(_fp, new O3Act(a).v48C.P, 12);
-                    func_00272908((@base + (uint)352), _fp, (_fp + 16u));
+                    Math_MtxTransformPoint((@base + (uint)352), _fp, (_fp + 16u));
                     if ((Resource_GetLoadFlags() == 0))
                     {
                         Resource_SetLoadFlags(1);
@@ -55,7 +55,7 @@ public static partial class Game
                         new O3Dl(_g_4).w0_Set(3808432641u);
                         new O3Dl(_g_4).w1_Set((uint)(8192));
                     }
-                    func_0026D844();
+                    Model_ResetDrawState();
                     Mem.Copy(new O3Act(a).pos198.P, (_fp + 16u), 12);
                     Mem.Copy(new O3Act(a).pos354.P, (_fp + 16u), 12);
                     Actor_ResetPoseMatrices(b);
@@ -72,11 +72,11 @@ public static partial class Game
                     new O3Body(b).f6C_Set((new O3Act(a).f498 * 0.0174532942f));
                     Mem.Copy(new O3Body(b).pos.P, (_fp + 16u), 12);
                     Mem.Copy(new O3Body(b).p1C4.P, (_fp + 16u), 12);
-                    func_0026D980();
+                    Model_ClearBatchQueue();
                     Actor_Draw(b, @base, default(uint), default(uint));
                     Mem.Copy(new O3Body(b).c140.P, 0x800E3570u, 24);
                     Mem.Copy(new O3Body(b).c158.P, 0x800E3570u, 24);
-                    func_0026D9D0();
+                    Model_FlushBatches();
                     Mem.Set(0x800D15D0u, save);
                 }
             }

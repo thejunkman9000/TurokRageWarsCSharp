@@ -79,10 +79,10 @@ public static partial class Game
                 r5 = Mem.U32((r16 + 8u));
                 r6 = Mem.U32((r16 + 12u));
                 r7 = Mem.U32((r16 + 16u));
-                r4 = r19; { uint s1_ = Stack.Alloc(12); Mem.Set(s1_ + 0u, r5); Mem.Set(s1_ + 4u, r6); Mem.Set(s1_ + 8u, r7); r2 = (uint)func_0025DE74((int)r4, s1_, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u)); Stack.Free(12); }
+                r4 = r19; { uint s1_ = Stack.Alloc(12); Mem.Set(s1_ + 0u, r5); Mem.Set(s1_ + 4u, r6); Mem.Set(s1_ + 8u, r7); r2 = (uint)Audio_PlaySound((int)r4, s1_, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u)); Stack.Free(12); }
                 L_L002AD770: ;
                 { bool c_ = r17 == 0; r2 = (uint)1; if (c_) goto L_L002AD8E8; }
-                r4 = r17; func_0025E13C((int)r4);
+                r4 = r17; Audio_PlaySndFx((int)r4);
                 r2 = (uint)1; goto L_L002AD8E8;
                 L_L002AD788: ;
                 r4 = r0;
@@ -154,10 +154,10 @@ public static partial class Game
                 r5 = Mem.U32((r16 + 8u));
                 r6 = Mem.U32((r16 + 12u));
                 r7 = Mem.U32((r16 + 16u));
-                r4 = r19; { uint s1_ = Stack.Alloc(12); Mem.Set(s1_ + 0u, r5); Mem.Set(s1_ + 4u, r6); Mem.Set(s1_ + 8u, r7); r2 = (uint)func_0025DE74((int)r4, s1_, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u)); Stack.Free(12); }
+                r4 = r19; { uint s1_ = Stack.Alloc(12); Mem.Set(s1_ + 0u, r5); Mem.Set(s1_ + 4u, r6); Mem.Set(s1_ + 8u, r7); r2 = (uint)Audio_PlaySound((int)r4, s1_, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u)); Stack.Free(12); }
                 L_L002AD8BC: ;
                 { bool c_ = r20 == 0;  if (c_) goto L_L002AD8CC; }
-                r4 = r20; func_0025E13C((int)r4);
+                r4 = r20; Audio_PlaySndFx((int)r4);
                 L_L002AD8CC: ;
                 { bool c_ = r21 != 0; r2 = (uint)1; if (c_) goto L_L002AD8E8; }
                 r5 = (uint)(int)Mem.S16((r17 + 14u));

@@ -36,9 +36,9 @@ public static partial class Game
             }
             for (i = 0; (i < 36); ++i)
             {
-                if (((func_00265670((0x80102B4Au + (uint)(p * 400)), i) == 0) && ((int)(Mem.U8((0x80102B26u + (uint)(i + (p * 400))))) >= 2)))
+                if (((Bits_Test((0x80102B4Au + (uint)(p * 400)), i) == 0) && ((int)(Mem.U8((0x80102B26u + (uint)(i + (p * 400))))) >= 2)))
                 {
-                    func_002656A8((0x80102B4Au + (uint)(p * 400)), i, 1);
+                    Bits_Assign((0x80102B4Au + (uint)(p * 400)), i, 1);
                     if ((n < 2))
                     {
                         Mem.Set((@out + (uint)(n * 4)), i);
@@ -46,7 +46,7 @@ public static partial class Game
                     }
                 }
             }
-            if ((func_00265670((0x80102B4Au + (uint)(p * 400)), 36) == 0))
+            if ((Bits_Test((0x80102B4Au + (uint)(p * 400)), 36) == 0))
             {
                 met = 0;
                 if ((((uint)(((int)(Mem.U8(0x801462ECu)) - 1)) < (uint)(5)) && ((int)(new Q2Pl(e).f4) >= 15)))
@@ -69,7 +69,7 @@ public static partial class Game
                 }
                 if ((met == 1))
                 {
-                    func_002656A8((0x80102B4Au + (uint)(p * 400)), 36, 1);
+                    Bits_Assign((0x80102B4Au + (uint)(p * 400)), 36, 1);
                     if ((n < 2))
                     {
                         Mem.Set((@out + (uint)(n * 4)), 36);
@@ -77,7 +77,7 @@ public static partial class Game
                     }
                 }
             }
-            if ((func_00265670((0x80102B4Au + (uint)(p * 400)), 37) == 0))
+            if ((Bits_Test((0x80102B4Au + (uint)(p * 400)), 37) == 0))
             {
                 met = 0;
                 if ((((uint)(((int)(Mem.U8(0x801462ECu)) - 1)) < (uint)(10)) && ((int)(new Q2Pl(e).f4) >= 25)))
@@ -100,7 +100,7 @@ public static partial class Game
                 }
                 if ((met == 1))
                 {
-                    func_002656A8((0x80102B4Au + (uint)(p * 400)), 37, 1);
+                    Bits_Assign((0x80102B4Au + (uint)(p * 400)), 37, 1);
                     if ((n < 2))
                     {
                         Mem.Set((@out + (uint)(n * 4)), 37);
@@ -108,25 +108,25 @@ public static partial class Game
                     }
                 }
             }
-            if (((((func_00265670((0x80102B4Au + (uint)(p * 400)), 38) == 0) && ((int)(new Q2Pl(e).f4) == 0)) && ((int)(new Q2Cfg(0x801462C8u).s24) >= 10)) && ((int)(new Q2Cfg(0x801462C8u).s25) >= 20)))
+            if (((((Bits_Test((0x80102B4Au + (uint)(p * 400)), 38) == 0) && ((int)(new Q2Pl(e).f4) == 0)) && ((int)(new Q2Cfg(0x801462C8u).s24) >= 10)) && ((int)(new Q2Cfg(0x801462C8u).s25) >= 20)))
             {
-                func_002656A8((0x80102B4Au + (uint)(p * 400)), 38, 1);
+                Bits_Assign((0x80102B4Au + (uint)(p * 400)), 38, 1);
                 if ((n < 2))
                 {
                     Mem.Set((@out + (uint)(n * 4)), 38);
                     ++n;
                 }
             }
-            if (((func_00265670((0x80102B4Au + (uint)(p * 400)), 39) == 0) && ((int)(new Q2Pl(e).f0) >= 5)))
+            if (((Bits_Test((0x80102B4Au + (uint)(p * 400)), 39) == 0) && ((int)(new Q2Pl(e).f0) >= 5)))
             {
-                func_002656A8((0x80102B4Au + (uint)(p * 400)), 39, 1);
+                Bits_Assign((0x80102B4Au + (uint)(p * 400)), 39, 1);
                 if ((n < 2))
                 {
                     Mem.Set((@out + (uint)(n * 4)), 39);
                     ++n;
                 }
             }
-            if (((func_00265670((0x80102B4Au + (uint)(p * 400)), 40) == 0) && ((int)(new Q2Cfg(0x801462C8u).s25) >= 20)))
+            if (((Bits_Test((0x80102B4Au + (uint)(p * 400)), 40) == 0) && ((int)(new Q2Cfg(0x801462C8u).s25) >= 20)))
             {
                 t = (int)(new Q2Pl(e).f4);
                 met = 1;
@@ -146,7 +146,7 @@ public static partial class Game
                 }
                 if ((met == 1))
                 {
-                    func_002656A8((0x80102B4Au + (uint)(p * 400)), 40, 1);
+                    Bits_Assign((0x80102B4Au + (uint)(p * 400)), 40, 1);
                     if ((n < 2))
                     {
                         Mem.Set((@out + (uint)(n * 4)), 40);
@@ -154,36 +154,36 @@ public static partial class Game
                     }
                 }
             }
-            if (((func_00265670((0x80102B4Au + (uint)(p * 400)), 41) == 0) && (Mem.S32((0x80102B6Cu + (uint)(p * 400))) >= 1001)))
+            if (((Bits_Test((0x80102B4Au + (uint)(p * 400)), 41) == 0) && (Mem.S32((0x80102B6Cu + (uint)(p * 400))) >= 1001)))
             {
-                func_002656A8((0x80102B4Au + (uint)(p * 400)), 41, 1);
+                Bits_Assign((0x80102B4Au + (uint)(p * 400)), 41, 1);
                 if ((n < 2))
                 {
                     Mem.Set((@out + (uint)(n * 4)), 41);
                     ++n;
                 }
             }
-            if (((func_00265670((0x80102B4Au + (uint)(p * 400)), 42) == 0) && (Mem.S32((0x80102B74u + (uint)(p * 400))) >= 1001)))
+            if (((Bits_Test((0x80102B4Au + (uint)(p * 400)), 42) == 0) && (Mem.S32((0x80102B74u + (uint)(p * 400))) >= 1001)))
             {
-                func_002656A8((0x80102B4Au + (uint)(p * 400)), 42, 1);
+                Bits_Assign((0x80102B4Au + (uint)(p * 400)), 42, 1);
                 if ((n < 2))
                 {
                     Mem.Set((@out + (uint)(n * 4)), 42);
                     ++n;
                 }
             }
-            if (((((func_00265670((0x80102B4Au + (uint)(p * 400)), 43) == 0) && ((int)(new Q2Pl(e).fA) >= 10)) && ((int)(new Q2Cfg(0x801462C8u).s24) >= 10)) && ((int)(new Q2Cfg(0x801462C8u).s25) >= 20)))
+            if (((((Bits_Test((0x80102B4Au + (uint)(p * 400)), 43) == 0) && ((int)(new Q2Pl(e).fA) >= 10)) && ((int)(new Q2Cfg(0x801462C8u).s24) >= 10)) && ((int)(new Q2Cfg(0x801462C8u).s25) >= 20)))
             {
-                func_002656A8((0x80102B4Au + (uint)(p * 400)), 43, 1);
+                Bits_Assign((0x80102B4Au + (uint)(p * 400)), 43, 1);
                 if ((n < 2))
                 {
                     Mem.Set((@out + (uint)(n * 4)), 43);
                     ++n;
                 }
             }
-            if (((((func_00265670((0x80102B4Au + (uint)(p * 400)), 44) == 0) && ((int)(new Q2Pl(e).f2) == 0)) && ((int)(new Q2Cfg(0x801462C8u).s24) >= 10)) && ((int)(new Q2Cfg(0x801462C8u).s25) >= 20)))
+            if (((((Bits_Test((0x80102B4Au + (uint)(p * 400)), 44) == 0) && ((int)(new Q2Pl(e).f2) == 0)) && ((int)(new Q2Cfg(0x801462C8u).s24) >= 10)) && ((int)(new Q2Cfg(0x801462C8u).s25) >= 20)))
             {
-                func_002656A8((0x80102B4Au + (uint)(p * 400)), 44, 1);
+                Bits_Assign((0x80102B4Au + (uint)(p * 400)), 44, 1);
                 if ((n < 2))
                 {
                     Mem.Set((@out + (uint)(n * 4)), 44);

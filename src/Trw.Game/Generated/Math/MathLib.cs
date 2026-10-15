@@ -20,8 +20,8 @@ public static partial class Game
                 float d = 0f;
                 float r = 0f;
                 float m = 0f;
-                func_00274090(_fp, default(uint), default(uint), default(uint));
-                func_00274090((_fp + 4u), default(uint), default(uint), default(uint));
+                Math_WrapAngleInPlace(_fp, default(uint), default(uint), default(uint));
+                Math_WrapAngleInPlace((_fp + 4u), default(uint), default(uint), default(uint));
                 if (!((dir > 0))) goto _f0;
                 if (!((Mem.F32((_fp + 4u)) < Mem.F32(_fp)))) goto _f1;
                 Mem.Set((_fp + 4u), (Mem.F32((_fp + 4u)) + Mem.F32(0x800C7340u)));
@@ -67,6 +67,45 @@ public static partial class Game
         }
     }
 
+    // ==== func_00260670 @ 0x00260670 [C]
+    public static float Math_LerpScalar(float t, float a, float b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00260670");
+            return ((t * (b - a)) + a);
+        }
+    }
+
+    // ==== func_002615D4 @ 0x002615D4 [C]
+    public static float Math_CubicPoly(int a0_in, int a1_in, int a2_in, int a3_in, int unused, float t)
+    {
+        uint _fp = Stack.Alloc(16);
+        try
+        {
+            unchecked
+            {
+                Mem.Set(_fp + 0u, a0_in);
+                Mem.Set(_fp + 4u, a1_in);
+                Mem.Set(_fp + 8u, a2_in);
+                Mem.Set(_fp + 12u, a3_in);
+                if (Dbg.On) Dbg.Enter("func_002615D4", (uint)a0_in, (uint)a1_in, (uint)a2_in, (uint)a3_in);
+                return (((Mem.F32(_fp) + (Mem.F32((_fp + 4u)) * t)) + ((Mem.F32((_fp + 8u)) * t) * t)) + (((Mem.F32((_fp + 12u)) * t) * t) * t));
+            }
+        }
+        finally { Stack.Free(16); }
+    }
+
+    // ==== func_0026162C @ 0x0026162C [C]
+    public static int Math_Mod32_0026162C(int x)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0026162C", (uint)x);
+            return (x & 31);
+        }
+    }
+
     // ==== func_00261634 @ 0x00261634 [C]
     public static uint Math_HighestBit(uint x)
     {
@@ -89,6 +128,238 @@ public static partial class Game
                 return (last + (uint)(1));
             }
             return last;
+        }
+    }
+
+    // ==== func_00271CC4 @ 0x00271CC4 [C]
+    public static float Math_AngleDistance(float a, float b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00271CC4");
+            float d = 0f;
+            float t = b;
+            while ((t < (-3.14159274f)))
+            {
+                t = (float)((float)(t) + 6.28318548f);
+            }
+            while ((t > 3.14159274f))
+            {
+                t = (float)((float)(t) - 6.28318548f);
+            }
+            d = (a - t);
+            while ((d < (-3.14159274f)))
+            {
+                d = (float)((float)(d) + 6.28318548f);
+            }
+            while ((d > 3.14159274f))
+            {
+                d = (float)((float)(d) - 6.28318548f);
+            }
+            if (((-d) < 0.0f))
+            {
+                while ((b < (-3.14159274f)))
+                {
+                    b = (float)((float)(b) + 6.28318548f);
+                }
+                while ((b > 3.14159274f))
+                {
+                    b = (float)((float)(b) - 6.28318548f);
+                }
+                d = (a - b);
+                while ((d < (-3.14159274f)))
+                {
+                    d = (float)((float)(d) + 6.28318548f);
+                }
+                while ((d > 3.14159274f))
+                {
+                    d = (float)((float)(d) - 6.28318548f);
+                }
+                return d;
+            }
+            else
+            {
+                while ((b < (-3.14159274f)))
+                {
+                    b = (float)((float)(b) + 6.28318548f);
+                }
+                while ((b > 3.14159274f))
+                {
+                    b = (float)((float)(b) - 6.28318548f);
+                }
+                d = (a - b);
+                while ((d < (-3.14159274f)))
+                {
+                    d = (float)((float)(d) + 6.28318548f);
+                }
+                while ((d > 3.14159274f))
+                {
+                    d = (float)((float)(d) - 6.28318548f);
+                }
+                return (-d);
+            }
+            return 0f;
+        }
+    }
+
+    // ==== func_00273F54 @ 0x00273F54 [C]
+    public static float Math_LerpAngle(float t, float a_in, float b_in)
+    {
+        uint _fp = Stack.Alloc(12);
+        try
+        {
+            unchecked
+            {
+                Mem.Set(_fp + 0u, a_in);
+                Mem.Set(_fp + 4u, b_in);
+                if (Dbg.On) Dbg.Enter("func_00273F54");
+                float alt = 0f;
+                float d = 0f;
+                Math_WrapAngleInPlace(_fp, default(uint), default(uint), default(uint));
+                Math_WrapAngleInPlace((_fp + 4u), default(uint), default(uint), default(uint));
+                if ((Mem.F32(_fp) > Mem.F32((_fp + 4u))))
+                {
+                    alt = (Mem.F32((_fp + 4u)) + 6.28318548f);
+                    d = (alt - Mem.F32(_fp));
+                    if ((d < (Mem.F32(_fp) - Mem.F32((_fp + 4u)))))
+                    {
+                        Mem.Set((_fp + 4u), alt);
+                    }
+                }
+                else
+                {
+                    alt = (Mem.F32((_fp + 4u)) - 6.28318548f);
+                    d = (Mem.F32(_fp) - alt);
+                    if ((d < (Mem.F32((_fp + 4u)) - Mem.F32(_fp))))
+                    {
+                        Mem.Set((_fp + 4u), alt);
+                    }
+                }
+                Mem.Set((_fp + 8u), (Mem.F32(_fp) + (t * (Mem.F32((_fp + 4u)) - Mem.F32(_fp)))));
+                Math_WrapAngleInPlace((_fp + 8u), default(uint), default(uint), default(uint));
+                return Mem.F32((_fp + 8u));
+            }
+        }
+        finally { Stack.Free(12); }
+    }
+
+    // ==== func_00274004 @ 0x00274004 [C]
+    public static float Math_AngleDelta(float a_in, float b_in)
+    {
+        uint _fp = Stack.Alloc(8);
+        try
+        {
+            unchecked
+            {
+                Mem.Set(_fp + 0u, a_in);
+                Mem.Set(_fp + 4u, b_in);
+                if (Dbg.On) Dbg.Enter("func_00274004");
+                float alt = 0f;
+                float d = 0f;
+                Math_WrapAngleInPlace(_fp, default(uint), default(uint), default(uint));
+                Math_WrapAngleInPlace((_fp + 4u), default(uint), default(uint), default(uint));
+                if ((Mem.F32(_fp) > Mem.F32((_fp + 4u))))
+                {
+                    alt = (Mem.F32((_fp + 4u)) + 6.28318548f);
+                    d = (alt - Mem.F32(_fp));
+                    if ((d < (Mem.F32(_fp) - Mem.F32((_fp + 4u)))))
+                    {
+                        Mem.Set((_fp + 4u), alt);
+                    }
+                }
+                else
+                {
+                    alt = (Mem.F32((_fp + 4u)) - 6.28318548f);
+                    d = (Mem.F32(_fp) - alt);
+                    if ((d < (Mem.F32((_fp + 4u)) - Mem.F32(_fp))))
+                    {
+                        Mem.Set((_fp + 4u), alt);
+                    }
+                }
+                return (Mem.F32(_fp) - Mem.F32((_fp + 4u)));
+            }
+        }
+        finally { Stack.Free(8); }
+    }
+
+    // ==== func_00274090 @ 0x00274090 [MIPS]
+    public static uint Math_WrapAngleInPlace(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00274090", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_00274090: ;
+                Cpu.SetW(0, Mem.U32((r4 + 0u)));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 26100u)));
+                fcc = Cpu.S(0) < Cpu.S(1);
+                { bool c_ = !fcc;  if (c_) goto L_L002740CC; }
+                r1 = 2148335616u;
+                Cpu.SetW(2, Mem.U32((r1 - 26096u)));
+                L_L002740B4: ;
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(2));
+                fcc = Cpu.S(0) < Cpu.S(1);
+                { bool c_ = fcc; Mem.Set((r4 + 0u), Cpu.W(0)); if (c_) goto L_L002740B4; }
+                Cpu.SetW(0, Mem.U32((r4 + 0u)));
+                L_L002740CC: ;
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 26092u)));
+                fcc = Cpu.S(1) <= Cpu.S(0);
+                { bool c_ = !fcc;  if (c_) goto L_L00274100; }
+                r1 = 2148335616u;
+                Cpu.SetW(2, Mem.U32((r1 - 26088u)));
+                L_L002740EC: ;
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(2));
+                fcc = Cpu.S(1) <= Cpu.S(0);
+                { bool c_ = fcc; Mem.Set((r4 + 0u), Cpu.W(0)); if (c_) goto L_L002740EC; }
+                L_L00274100: ;
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00274090", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00274524 @ 0x00274524 [C]
+    public static void Random_Seed()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00274524");
+            Mem.Set(0x80115DE4u, 3824563683u);
+            Mem.Set(0x80115DE8u, 3824563683u);
+        }
+    }
+
+    // ==== func_0027458C @ 0x0027458C [C]
+    public static int Random_NextAlt()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0027458C");
+            Mem.Set(0x80115DE8u, ((Mem.U32(0x80115DE8u) * 2823445331u) + (uint)(1479838765)));
+            return (int)((((Mem.U32(0x80115DE8u) << (int)16) | (Mem.U32(0x80115DE8u) >> (int)16)) & (uint)(2147483647)));
+        }
+    }
+
+    // ==== func_002745D4 @ 0x002745D4 [C]
+    public static float Random_Float(float a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002745D4");
+            uint r = ((Mem.U32(0x80115DE4u) * 2823445331u) + (uint)(1479838765));
+            uint v = ((r >> (int)16) & (uint)(32767));
+            Mem.Set(0x80115DE4u, r);
+            return (((float)(v) * a) * Mem.F32(0x800C9A38u));
         }
     }
 
@@ -135,6 +406,219 @@ public static partial class Game
         }
     }
 
+    // ==== func_00274710 @ 0x00274710 [C]
+    public static float Math_Accelerate(float x, float v, float lim)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00274710");
+            float t = 0f;
+            if ((v < 0.0f))
+            {
+                if ((x <= (-lim)))
+                {
+                    return x;
+                }
+            }
+            if (((v > 0.0f) && (lim <= x)))
+            {
+                return x;
+            }
+            if ((((x < 0.0f) && (v > 0.0f)) || ((x > 0.0f) && (v < 0.0f))))
+            {
+                v = (float)((float)(v) * Mem.F32(0x800C9A50u));
+            }
+            x = (float)((float)(x) + (v * Mem.F32(0x800D2988u)));
+            if ((v < 0.0f))
+            {
+                t = (-lim);
+                if ((x < t))
+                {
+                    x = t;
+                }
+            }
+            else
+            {
+                if ((lim < x))
+                {
+                    x = lim;
+                }
+            }
+            return x;
+        }
+    }
+
+    // ==== func_00274810 @ 0x00274810 [C]
+    public static float Math_DecayToZero(float x, float d)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00274810");
+            if ((x > 0.0f))
+            {
+                x = (float)((float)(x) - (d * Mem.F32(0x800D2988u)));
+                if ((x < 0.0f))
+                {
+                    x = 0.0f;
+                }
+            }
+            else
+            {
+                if ((x < 0.0f))
+                {
+                    x = (float)((float)(x) + (d * Mem.F32(0x800D2988u)));
+                    if ((x > 0.0f))
+                    {
+                        x = 0.0f;
+                    }
+                }
+            }
+            return x;
+        }
+    }
+
+    // ==== func_00274878 @ 0x00274878 [C]
+    public static float Math_ApproachLinear(float x, float lim, float d)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00274878");
+            if ((x < lim))
+            {
+                x = (float)((float)(x) + (d * Mem.F32(0x800D2988u)));
+                if ((lim < x))
+                {
+                    x = lim;
+                }
+            }
+            else
+            {
+                if ((lim < x))
+                {
+                    x = (float)((float)(x) - (d * Mem.F32(0x800D2988u)));
+                    if ((x < lim))
+                    {
+                        x = lim;
+                    }
+                }
+            }
+            return x;
+        }
+    }
+
+    // ==== func_002748E0 @ 0x002748E0 [C]
+    public static void Math_ApproachProportional(uint p, float t, float r)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002748E0", (uint)p);
+            float x = Mem.F32(p);
+            float d = (((t - x) * r) * Mem.F32(0x800D2988u));
+            float n = 0f;
+            if ((r == Mem.F32((0x800C9A50u + (uint)(1 * 4)))))
+            {
+                Mem.Set(p, t);
+            }
+            else
+            {
+                if ((x < t))
+                {
+                    n = (x + d);
+                    Mem.Set(p, n);
+                    if ((t < n))
+                    {
+                        Mem.Set(p, t);
+                    }
+                }
+                else
+                {
+                    if ((t < x))
+                    {
+                        n = (x + d);
+                        Mem.Set(p, n);
+                        if ((n < t))
+                        {
+                            Mem.Set(p, t);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // ==== func_00274964 @ 0x00274964 [C]
+    public static int Math_AddScaledClampInt(int a, int b, int lim)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00274964", (uint)a, (uint)b, (uint)lim);
+            float fb = (float)(b);
+            a = (int)((int)(a) + (int)((fb * Mem.F32(0x800D2988u))));
+            if ((fb < 0.0f))
+            {
+                lim = (-lim);
+                if ((a < lim))
+                {
+                    a = lim;
+                }
+            }
+            else
+            {
+                if ((lim < a))
+                {
+                    a = lim;
+                }
+            }
+            return a;
+        }
+    }
+
+    // ==== func_002749B4 @ 0x002749B4 [C]
+    public static float Math_NegateWrappedAngle(float x)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002749B4");
+            while ((x < Mem.F32(0x800C9A58u)))
+            {
+                x = (float)((float)(x) + Mem.F32(0x800C9A5Cu));
+            }
+            while ((Mem.F32(0x800C9A60u) < x))
+            {
+                x = (float)((float)(x) - Mem.F32(0x800C9A64u));
+            }
+            return (-x);
+        }
+    }
+
+    // ==== func_00274A24 @ 0x00274A24 [C]
+    public static float Math_AngleDeltaTo(float a, float b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00274A24");
+            float d = 0f;
+            while ((b < Mem.F32(0x800C9A68u)))
+            {
+                b = (float)((float)(b) + Mem.F32(0x800C9A6Cu));
+            }
+            while ((Mem.F32(0x800C9A70u) < b))
+            {
+                b = (float)((float)(b) - Mem.F32(0x800C9A74u));
+            }
+            d = (a - b);
+            while ((d < Mem.F32(0x800C9A78u)))
+            {
+                d = (float)((float)(d) + Mem.F32(0x800C9A7Cu));
+            }
+            while ((Mem.F32(0x800C9A80u) < d))
+            {
+                d = (float)((float)(d) - Mem.F32(0x800C9A84u));
+            }
+            return (-d);
+        }
+    }
+
     // ==== func_00274B00 @ 0x00274B00 [C]
     public static float Random_Symmetric(float a, float b)
     {
@@ -150,6 +634,171 @@ public static partial class Game
             t = ((float)((v % 10000)) * Mem.F32(0x800C9A88u));
             return ((t * a) + ((Mem.F32(0x800C9A8Cu) - t) * b));
         }
+    }
+
+    // ==== func_00274BB4 @ 0x00274BB4 [C]
+    public static int Math_CountDown(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00274BB4", (uint)p);
+            Mem.Set(p, (float)((float)(Mem.F32(p)) - Mem.F32(0x800D2988u)));
+            if ((Mem.F32(p) <= 0.0f))
+            {
+                Mem.Set(p, 0.0f);
+                return 1;
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_00279808 @ 0x00279808 [C]
+    public static short Random_PickWeighted(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00279808", (uint)p);
+            uint start = 0u;
+            int total = 0;
+            int r = 0;
+            total = 0;
+            start = p;
+            while (((int)(new WEnt(p).id) != (-1)))
+            {
+                total = (int)((int)(total) + (int)(new WEnt(p).w));
+                p += 4u;
+            }
+            r = (Random_Next() % total);
+            p = start;
+            total = 0;
+            while (((int)(new WEnt(p).id) != (-1)))
+            {
+                total = (int)((int)(total) + (int)(new WEnt(p).w));
+                if ((total >= r))
+                {
+                    break;
+                }
+                p += 4u;
+            }
+            return new WEnt(p).id;
+        }
+    }
+
+    // ==== func_002798CC @ 0x002798CC [C]
+    public static void Random_WeightedClear(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002798CC", (uint)p);
+            Mem.Set(p, (short)(0));
+        }
+    }
+
+    // ==== func_002798D4 @ 0x002798D4 [C]
+    public static int Random_WeightedAdd(uint b, short x, short y)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002798D4", (uint)b, (uint)x, (uint)y);
+            if (((int)(new PBuf(b).n) == 24))
+            {
+                return 0;
+            }
+            new PBuf(b).e[(int)(new PBuf(b).n)].a_Set(x);
+            new PBuf(b).e[(int)(new PBuf(b).n)].b_Set(y);
+            new PBuf(b).n_Set((short)(new PBuf(b).n + 1));
+            return 1;
+        }
+    }
+
+    // ==== func_00279918 @ 0x00279918 [C]
+    public static short Random_WeightedPick(uint b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00279918", (uint)b);
+            uint p = 0u;
+            uint start = 0u;
+            int total = 0;
+            int r = 0;
+            if (((int)(new PBuf_v2(b).n) == 0))
+            {
+                return (short)((-1));
+            }
+            p = (start = new PBuf_v2(b).e.P);
+            total = 0;
+            new PBuf_v2(b).e[(int)(new PBuf_v2(b).n)].id_Set((short)((-1)));
+            while (((int)(new WEnt(p).id) != (-1)))
+            {
+                total = (int)((int)(total) + (int)(new WEnt(p).w));
+                p += 4u;
+            }
+            r = (Random_Next() % total);
+            p = start;
+            total = 0;
+            while (((int)(new WEnt(p).id) != (-1)))
+            {
+                total = (int)((int)(total) + (int)(new WEnt(p).w));
+                if ((total >= r))
+                {
+                    break;
+                }
+                p += 4u;
+            }
+            return new WEnt(p).id;
+        }
+    }
+
+    // ==== func_002847E0 @ 0x002847E0 [C]
+    public static int Random_UpTo(int n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002847E0", (uint)n);
+            if ((n != 0))
+            {
+                return (Random_Next() % (n + 1));
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_00284844 @ 0x00284844 [C]
+    public static void Random_DiscardFloat_00284844(float x)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00284844");
+            if ((x != 0.0f))
+            {
+                Random_Float(default(float));
+            }
+        }
+    }
+
+    // ==== func_00285600 @ 0x00285600 [C]
+    public static float Random_PackedRange(uint p_in)
+    {
+        uint _fp = Stack.Alloc(12);
+        try
+        {
+            unchecked
+            {
+                Mem.Copy(_fp + 0u, p_in, 4);
+                if (Dbg.On) Dbg.Enter("func_00285600", (uint)p_in);
+                Mem.Set(_fp + 4u, ((int)(new B19Pair(_fp).a) << (int)16));
+                uint r = 0u;
+                if (((int)(new B19Pair(_fp).b) == 0))
+                {
+                    return Mem.F32((_fp + 4u));
+                }
+                Mem.Set((_fp + 8u), ((int)(new B19Pair(_fp).b) << (int)16));
+                Mem.Set(0x80115DE4u, ((Mem.U32(0x80115DE4u) * 2823445331u) + (uint)(1479838765)));
+                r = ((Mem.U32(0x80115DE4u) >> (int)16) & (uint)(32767));
+                return (Mem.F32((_fp + 4u)) + (((float)(r) * Mem.F32((_fp + 8u))) * Mem.F32(0x800C9FA8u)));
+            }
+        }
+        finally { Stack.Free(12); }
     }
 
     // ==== func_0029BD38 @ 0x0029BD38 [C]

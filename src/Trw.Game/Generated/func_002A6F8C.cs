@@ -16,7 +16,7 @@ public static partial class Game
                 func_00296DDC(new Obj6F8C(o).sub.P, v);
                 if ((x != 0u))
                 {
-                    func_00283038(x, new Obj6F8C(o).sub.P);
+                    Particle_PackBlendMode_00283038(x, new Obj6F8C(o).sub.P);
                 }
             }
         }

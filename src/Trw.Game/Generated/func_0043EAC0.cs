@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0043EAC0", (uint)m);
             int p = (int)(new S10Menu(m).ctrl.port);
-            func_00264790(p);
+            Pad_EnableStatusPoll(p);
             func_00404E28(p);
         }
     }

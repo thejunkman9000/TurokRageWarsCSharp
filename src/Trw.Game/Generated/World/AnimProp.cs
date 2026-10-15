@@ -52,7 +52,7 @@ public static partial class Game
             Actor_DispatchEvent(actor, state, 0);
             Mem.Set(new ActorState(state).unk128.P, Mem.F32(0x800C6BD0u));
             Mem.Set(new ActorState(state).unk12C.P, Mem.F32(0x800C6BD0u));
-            if ((func_00285F28(0x8011FE88u, actor) == 1))
+            if ((Level_IsEntitySavedFlagSet(0x8011FE88u, actor) == 1))
             {
                 new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~8192))));
                 new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~256))));
@@ -119,7 +119,7 @@ public static partial class Game
             AnimProp_PlayAnim(actor, state, (int)(new B01Evt6(evt).unk6));
             new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) | (uint)(8448)));
             Actor_ApplyAnimRootMotion(actor);
-            func_00285D80(0x8011FE88u, actor, 0);
+            Level_SetEntitySavedFlag(0x8011FE88u, actor, 0);
         }
     }
 
@@ -131,7 +131,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002067BC", (uint)actor);
             new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~8192))));
             new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) & (uint)((~256))));
-            func_00285D80(0x8011FE88u, actor, 1);
+            Level_SetEntitySavedFlag(0x8011FE88u, actor, 1);
         }
     }
 
@@ -157,7 +157,7 @@ public static partial class Game
                 new ActorState(state).flags_Set((uint)((uint)(new ActorState(state).flags) | (uint)(512)));
             }
             Actor_ApplyAnimRootMotion(actor);
-            func_00285D80(0x8011FE88u, actor, 0);
+            Level_SetEntitySavedFlag(0x8011FE88u, actor, 0);
         }
     }
 
@@ -179,7 +179,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002068C8", (uint)actor, (uint)unused, (uint)arg);
             func_00402FB4((int)(actor), (uint)(arg));
             new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) | (uint)(8448)));
-            func_00285D80(0x8011FE88u, actor, 0);
+            Level_SetEntitySavedFlag(0x8011FE88u, actor, 0);
         }
     }
 

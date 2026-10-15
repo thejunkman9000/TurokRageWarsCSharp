@@ -38,7 +38,7 @@ public static partial class Game
                                 new M1Actor(pl).stats.b90_Set((byte)(1));
                                 new M1Blk(blk).unk74_Set(1);
                                 new M1State(state).unk12C.i_Set(1);
-                                func_0025DF54(3597);
+                                Audio_PlaySound2D(3597);
                             }
                         }
                     }
@@ -96,7 +96,7 @@ public static partial class Game
                         default:
                             goto L_after;
                         }
-                        func_0025DF54(id);
+                        Audio_PlaySound2D(id);
                         L_after: ;
                         for (pl = Mem.U32(0x80145060u); (pl != 0u); pl = new M1Actor(pl).next_)
                         {
@@ -155,7 +155,7 @@ public static partial class Game
                             Hud_SpawnTextLineA(0x80145088u, who, (uint)(Mem.S32(new B01Slot((0x800D7F84u + (uint)(idx * 8))).a_)), (int)(actor), 4.0f);
                             if ((new B01Slot((0x800D7F84u + (uint)(new B01Info(info).unk18 * 8))).b != 0))
                             {
-                                func_0025E13C(new B01Slot((0x800D7F84u + (uint)(new B01Info(info).unk18 * 8))).b);
+                                Audio_PlaySndFx(new B01Slot((0x800D7F84u + (uint)(new B01Info(info).unk18 * 8))).b);
                             }
                         }
                         return 0;
@@ -246,7 +246,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002044C8", (uint)actor, (uint)state);
-            if ((func_00285F28(0x8011FE88u, actor) == 1))
+            if ((Level_IsEntitySavedFlagSet(0x8011FE88u, actor) == 1))
             {
                 Actor_DispatchEvent(actor, state, 1);
                 switch ((int)(new B01Actor(actor).unkE4))
@@ -295,8 +295,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002045CC", (uint)actor, (uint)state);
-            func_00285D80(0x8011FE88u, actor, 0);
-            func_00278DE8(actor, 2097152, (int)(actor));
+            Level_SetEntitySavedFlag(0x8011FE88u, actor, 0);
+            Level_FireEntityTriggers(actor, 2097152, (int)(actor));
             Mem.Set(new ActorState(state).unk12C.P, 0);
         }
     }
@@ -328,10 +328,10 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00204658", (uint)actor);
             uint def = new B01Actor(actor).def_;
-            func_00285D80(0x8011FE88u, actor, 1);
+            Level_SetEntitySavedFlag(0x8011FE88u, actor, 1);
             if ((Mem.S32(0x800CD4C0u) == 0))
             {
-                func_00278DE8(actor, 524288, (int)(actor));
+                Level_FireEntityTriggers(actor, 524288, (int)(actor));
             }
             func_002A6D28(0x8013BA80u, (int)(actor));
             if ((Mem.S32((0x8011FE88u + (uint)(0 * 4))) != 4))

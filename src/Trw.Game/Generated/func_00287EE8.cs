@@ -188,7 +188,7 @@ public static partial class Game
             if ((i < lim)) goto _f3;
             _f5: ;
             _f2: ;
-            func_00262EA8((w + (uint)86920), w);
+            ActorPool_UpdateInBounds((w + (uint)86920), w);
             t = (new B19bWorld(w).cur3 + 1);
             new B19bWorld(w).cur3_Set(t);
             if (!((t >= new B19bWorld(w).n3))) goto _f43;

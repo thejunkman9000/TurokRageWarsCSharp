@@ -16,14 +16,14 @@ public static partial class Game
                 float s = 0f;
                 if (((new Emit(e).owner_ == own) && (new Emit(e).unk24 > 0.0f)))
                 {
-                    func_00270980(_fp, (uint)(d), default(uint), default(uint));
+                    Math_MtxFixedToFloatAffine(_fp, (uint)(d), default(uint), default(uint));
                     s = Mem.F32(0x800CB050u);
                     if ((new EmitOwner(own).info.unk14 != 0))
                     {
                         s = Mem.F32(0x800CB054u);
                     }
-                    func_002734EC(_fp, s, s, s);
-                    func_00272898(_fp);
+                    Math_MtxScaleRows(_fp, s, s, s);
+                    Math_MtxClampFixedRange(_fp);
                     func_002A35C0((uint)(a), e, _fp, default(uint));
                 }
             }

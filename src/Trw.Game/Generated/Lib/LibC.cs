@@ -44,6 +44,168 @@ public static partial class Game
         }
     }
 
+    // ==== func_00265398 @ 0x00265398 [C]
+    public static void Mem_MoveFast(uint dst, uint src, int n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00265398", (uint)dst, (uint)src, (uint)n);
+            uint d = 0u;
+            uint s = 0u;
+            if ((n != 0))
+            {
+                if ((((((uint)(src) | (uint)(dst)) | (uint)(n)) & (uint)(3)) != 0u))
+                {
+                    d = dst;
+                    s = src;
+                    if ((dst < src))
+                    {
+                        do
+                        {
+                            Mem.Set(((d += 1u) - 1u), Mem.U8(((s += 1u) - 1u)));
+                        }
+                        while (((--n) != 0));
+                    }
+                    else
+                    {
+                        d = (uint)(d + (uint)((n - 1) * 1));
+                        s = (uint)(s + (uint)((n - 1) * 1));
+                        do
+                        {
+                            Mem.Set(((d -= 1u) + 1u), Mem.U8(((s -= 1u) + 1u)));
+                        }
+                        while (((--n) != 0));
+                    }
+                }
+                else
+                {
+                    n = (int)((int)(n) >> (int)2);
+                    if ((dst < src))
+                    {
+                        do
+                        {
+                            Mem.Set(dst, Mem.U32(src));
+                            src = (uint)(src + (uint)(4 * 1));
+                            dst = (uint)(dst + (uint)(4 * 1));
+                        }
+                        while (((--n) != 0));
+                    }
+                    else
+                    {
+                        dst = (uint)(dst + (uint)(((n * 4) - 4) * 1));
+                        src = (uint)(src + (uint)(((n * 4) - 4) * 1));
+                        do
+                        {
+                            Mem.Set(dst, Mem.U32(src));
+                            src = (uint)(src - (uint)(4 * 1));
+                            dst = (uint)(dst - (uint)(4 * 1));
+                        }
+                        while (((--n) != 0));
+                    }
+                }
+            }
+        }
+    }
+
+    // ==== func_00265464 @ 0x00265464 [C]
+    public static int Mem_Compare(uint a, uint b, int n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00265464", (uint)a, (uint)b, (uint)n);
+            uint end = (a + (uint)n);
+            if ((((n >= 4) && !(((uint)(a) & (uint)(3)) != 0u)) && !(((uint)(b) & (uint)(3)) != 0u)))
+            {
+                end = (uint)(end - (uint)(4 * 1));
+                while (!(end < a))
+                {
+                    if ((Mem.U32(a) != Mem.U32(b)))
+                    {
+                        a = (uint)(a - (uint)(4 * 1));
+                        b = (uint)(b - (uint)(4 * 1));
+                        break;
+                    }
+                    a = (uint)(a + (uint)(4 * 1));
+                    b = (uint)(b + (uint)(4 * 1));
+                }
+                end = (uint)(end + (uint)(4 * 1));
+            }
+            while ((a < end))
+            {
+                if (((int)(Mem.U8(a)) != (int)(Mem.U8(b))))
+                {
+                    if (((int)(Mem.U8(a)) < (int)(Mem.U8(b))))
+                    {
+                        return (-1);
+                    }
+                    return 1;
+                }
+                a += 1u;
+                b += 1u;
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_00265570 @ 0x00265570 [C]
+    public static int func_00265570_b14_bsearch(uint a, int n, uint key)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00265570_b14_bsearch", (uint)a, (uint)n, (uint)key);
+            uint lo = 0u;
+            uint hi = 0u;
+            uint mid = 0u;
+            if ((n != 0))
+            {
+                hi = (uint)((n - 1));
+                lo = (uint)(0);
+                while ((lo < hi))
+                {
+                    mid = ((lo + hi) >> (int)1);
+                    if ((Mem.U32((a + (uint)(mid * 4))) < key))
+                    {
+                        lo = (mid + (uint)(1));
+                    }
+                    else
+                    {
+                        hi = mid;
+                    }
+                }
+                if ((Mem.U32((a + (uint)(lo * 4))) == key))
+                {
+                    return (int)(lo);
+                }
+                return (-1);
+            }
+            return (-1);
+        }
+    }
+
+    public static int Sort_FindEqualRange(uint a, int n, uint key, uint first, uint last)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00265570", (uint)a, (uint)n, (uint)key, (uint)first);
+            int idx = func_00265570_b14_bsearch(a, n, key);
+            int j = 0;
+            int k = 0;
+            if ((idx == (-1)))
+            {
+                return 0;
+            }
+            for (j = (idx - 1); ((j != (-1)) && (Mem.U32((a + (uint)(j * 4))) == key)); --j)
+            {
+            }
+            Mem.Set(first, (j + 1));
+            for (k = (idx + 1); ((k < n) && (Mem.U32((a + (uint)(k * 4))) == key)); ++k)
+            {
+            }
+            Mem.Set(last, (k - 1));
+            return 1;
+        }
+    }
+
     // ==== func_00265904 @ 0x00265904 [C]
     public static void Str_Sprintf(uint buf, uint fmt, int a, int b)
     {
@@ -82,6 +244,171 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0026595C", (uint)buf, (uint)fmt, (uint)a, (uint)b);
             sprintf(buf, fmt, (uint)(a), (uint)(b), (uint)(c), (uint)(d), default(uint), default(uint), default(uint), default(uint), default(uint));
         }
+    }
+
+    // ==== func_00285290 @ 0x00285290 [C]
+    public static void Sort_QuickWithSwap(uint @base, uint n, uint size, uint cmp, uint swap)
+    {
+        uint _fp = Stack.Alloc(240);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_00285290", (uint)@base, (uint)n, (uint)size, (uint)cmp);
+                uint lo = 0u;
+                uint hi = 0u;
+                uint i = 0u;
+                uint j = 0u;
+                uint lo1 = 0u;
+                int sp = 0;
+                uint cnt = 0u;
+                if ((n < (uint)(2)))
+                {
+                    return;
+                }
+                if ((size == (uint)(0)))
+                {
+                    return;
+                }
+                sp = 0;
+                lo = @base;
+                hi = (lo + (uint)(size * (n - (uint)(1))));
+                L_top: ;
+                cnt = (((uint)(((int)(hi - lo))) / size) + (uint)(1));
+                if ((cnt < (uint)(9)))
+                {
+                    Sort_SelectionWithSwap(lo, hi, size, cmp, swap);
+                }
+                else
+                {
+                    Funcs.CallReg(swap, (lo + (uint)((cnt >> (int)1) * size)), lo, 0u, 0u);
+                    i = lo;
+                    j = (hi + (uint)size);
+                    for (; ; )
+                    {
+                        do
+                        {
+                            i = (uint)(i + (uint)(size * 1));
+                        }
+                        while (((i <= hi) && ((int)(Funcs.CallReg(cmp, i, lo, 0u, 0u)) <= 0)));
+                        do
+                        {
+                            j = (uint)(j - (uint)(size * 1));
+                        }
+                        while (((j > lo) && ((int)(Funcs.CallReg(cmp, j, lo, 0u, 0u)) >= 0)));
+                        if ((j < i))
+                        {
+                            break;
+                        }
+                        Funcs.CallReg(swap, i, j, 0u, 0u);
+                    }
+                    Funcs.CallReg(swap, lo, j, 0u, 0u);
+                    lo1 = (lo + (uint)1);
+                    if (!(((int)(j - lo1)) < ((int)(hi - i))))
+                    {
+                        if (((lo + (uint)size) < j))
+                        {
+                            Mem.Set((_fp + (uint)(sp * 4)), lo);
+                            Mem.Set(((_fp + 120u) + (uint)(sp * 4)), (j - (uint)size));
+                            ++sp;
+                        }
+                        if ((i < hi))
+                        {
+                            lo = i;
+                            goto L_top;
+                        }
+                    }
+                    else
+                    {
+                        if ((i < hi))
+                        {
+                            Mem.Set((_fp + (uint)(sp * 4)), i);
+                            Mem.Set(((_fp + 120u) + (uint)(sp * 4)), hi);
+                            ++sp;
+                        }
+                        if (((lo + (uint)size) < j))
+                        {
+                            hi = (j - (uint)size);
+                            goto L_top;
+                        }
+                    }
+                }
+                --sp;
+                if ((sp < 0))
+                {
+                    return;
+                }
+                lo = Mem.U32((_fp + (uint)(sp * 4)));
+                hi = Mem.U32(((_fp + 120u) + (uint)(sp * 4)));
+                goto L_top;
+            }
+        }
+        finally { Stack.Free(240); }
+    }
+
+    // ==== func_00285484 @ 0x00285484 [MIPS]
+    public static uint Sort_SelectionWithSwap(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00285484", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_00285484: ;
+                r29 = r29 - 48u;
+                Mem.Set((r29 + 28u), r19);
+                r19 = r4;
+                Mem.Set((r29 + 24u), r18);
+                r18 = r5;
+                Mem.Set((r29 + 32u), r20);
+                r20 = r6;
+                Mem.Set((r29 + 36u), r21);
+                r21 = r7;
+                Mem.Set((r29 + 40u), r22);
+                r22 = Mem.U32((r29 + 64u));
+                r2 = (uint)(r19 < r18 ? 1 : 0);
+                Mem.Set((r29 + 44u), r31);
+                Mem.Set((r29 + 20u), r17);
+                { bool c_ = r2 == 0; Mem.Set((r29 + 16u), r16); if (c_) goto L_L00285514; }
+                r16 = r19 + r20;
+                L_L002854C8: ;
+                r2 = (uint)(r18 < r16 ? 1 : 0);
+                { bool c_ = r2 != 0; r17 = r19; if (c_) goto L_L002854F8; }
+                r4 = r16;
+                L_L002854D8: ;
+                r5 = r17; r2 = Funcs.CallReg(r21, r4, r5, r6, r7); r3 = Cpu.V1;
+                if ((int)r2 > 0) { r17 = r16; goto L_L002854E8; }
+                L_L002854E8: ;
+                r16 = r16 + r20;
+                r2 = (uint)(r18 < r16 ? 1 : 0);
+                { bool c_ = r2 == 0; r4 = r16; if (c_) goto L_L002854D8; }
+                L_L002854F8: ;
+                r4 = r17;
+                r5 = r18; r2 = Funcs.CallReg(r22, r4, r5, r6, r7); r3 = Cpu.V1;
+                r18 = r18 - r20;
+                r2 = (uint)(r19 < r18 ? 1 : 0);
+                { bool c_ = r2 != 0; r16 = r19 + r20; if (c_) goto L_L002854C8; }
+                L_L00285514: ;
+                r31 = Mem.U32((r29 + 44u));
+                r22 = Mem.U32((r29 + 40u));
+                r21 = Mem.U32((r29 + 36u));
+                r20 = Mem.U32((r29 + 32u));
+                r19 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 48u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00285484", r2); Stack.Free(384); }
     }
 
     // ==== func_002A0470 @ 0x002A0470 [C]

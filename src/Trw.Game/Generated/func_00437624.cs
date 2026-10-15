@@ -20,7 +20,7 @@ public static partial class Game
                     return 0;
                 }
                 new O05M80(Mem.U32(0x800E5780u)).f14_Set(t);
-                if ((func_00265670(0x80102B7Eu, 0) != 0))
+                if ((Bits_Test(0x80102B7Eu, 0) != 0))
                 {
                     return 0;
                 }

@@ -15,7 +15,7 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0028E768", (uint)e, (uint)target);
                 float dist = 0f;
                 uint t = 0u;
-                func_00271FD8(_fp, new Entity(e).pos.P, target);
+                Vec_Sub(_fp, new Entity(e).pos.P, target);
                 dist = (((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z));
                 if ((new ActorDef(new Entity(e).def_).type == 1))
                 {

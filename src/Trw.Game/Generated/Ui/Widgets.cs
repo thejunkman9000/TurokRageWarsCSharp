@@ -677,7 +677,7 @@ public static partial class Game
                 r29 = r29 - 24u;
                 Mem.Set((r29 + 16u), r16);
                 Mem.Set((r29 + 20u), r31);
-                r16 = r4; func_0026D8F8();
+                r16 = r4; Model_ResetStateCache();
                 r6 = 3808428032u;
                 r6 = r6 | 2561u;
                 r9 = 4244570112u;
@@ -2303,11 +2303,11 @@ public static partial class Game
                         }
                         if ((s0 != 0))
                         {
-                            if ((func_002643D8(new Q04Pan2(p).ctl_) != 0))
+                            if ((Pad_IsUp(new Q04Pan2(p).ctl_) != 0))
                             {
                                 func_0044121C(p, (byte)(18));
                             }
-                            if ((func_002643F0(new Q04Pan2(p).ctl_) != 0))
+                            if ((Pad_IsDown(new Q04Pan2(p).ctl_) != 0))
                             {
                                 func_0044121C(p, (byte)(19));
                             }

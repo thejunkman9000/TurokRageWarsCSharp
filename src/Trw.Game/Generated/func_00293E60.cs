@@ -13,7 +13,7 @@ public static partial class Game
             if ((Mem.S32(0x8014ADA0u) != 0))
             {
                 func_00293808((uint)(a), 1);
-                func_002647E4();
+                Pad_DisableStatusPollAll();
             }
         }
     }

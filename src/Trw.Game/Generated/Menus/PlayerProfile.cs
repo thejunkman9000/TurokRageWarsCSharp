@@ -41,7 +41,7 @@ public static partial class Game
                 r17 = (uint)1;
                 r4 = Mem.U32((r2 + 16u));
                 r5 = r18; func_0040E958(r4, (int)r5);
-                r4 = r18; r2 = (uint)func_00264634((int)r4);
+                r4 = r18; r2 = (uint)Pad_IsConnected((int)r4);
                 r16 = r2;
                 { bool c_ = r16 != r17;  if (c_) goto L_L0041C034; }
                 func_0041C21C();
@@ -188,7 +188,7 @@ public static partial class Game
                 new S1008Menu(Mem.U32(0x800E3590u)).right.x_Set((ushort)((int)(new S1008Menu(Mem.U32(0x800E3590u)).right.x) - (int)((ushort)(new S1008Menu(Mem.U32(0x800E3590u)).rightStep))));
                 if ((new S1008Menu(Mem.U32(0x800E3590u)).timer_Set((int)(new S1008Menu(Mem.U32(0x800E3590u)).timer - 1)) <= 0))
                 {
-                    func_0025DF54(3705);
+                    Audio_PlaySound2D(3705);
                     func_0040E958(new S1008Menu(Mem.U32(0x800E3590u)).groupA_, 1);
                     func_00419FD8((uint)(new S1008Menu(Mem.U32(0x800E3590u)).fade), 4);
                     new S1008Menu(Mem.U32(0x800E3590u)).state_Set(4);
@@ -217,7 +217,7 @@ public static partial class Game
                 }
                 break;
             case 5:
-                func_0025DF54(3704);
+                Audio_PlaySound2D(3704);
                 new S1008Menu(Mem.U32(0x800E3590u)).state_Set(2);
                 new S1008Menu(Mem.U32(0x800E3590u)).timer_Set(4);
                 func_0040E958(new S1008Menu(Mem.U32(0x800E3590u)).groupB_, 0);
@@ -246,7 +246,7 @@ public static partial class Game
                 node = func_0041B87C(new S1008Menu(Mem.U32(0x800E3590u)).handle, 0);
                 if ((node != new S1008Menu(Mem.U32(0x800E3590u)).focus_))
                 {
-                    func_0025DF54(3710);
+                    Audio_PlaySound2D(3710);
                     if ((new S1008Menu(Mem.U32(0x800E3590u)).focus_ != 0u))
                     {
                         new S1008Menu(Mem.U32(0x800E3590u)).focus.style_Set((byte)(110));
@@ -290,7 +290,7 @@ public static partial class Game
                     Mem.Set(((Mem.U32(0x800E54A4u) + (uint)((idx * 2920) + (new LR(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 * 2))) + (uint)2956), (byte)(65));
                 }
                 new O05Obj10(obj).b10_Set((byte)(255));
-                func_0025DF54(3700);
+                Audio_PlaySound2D(3700);
             }
             return 0;
         }
@@ -332,7 +332,7 @@ public static partial class Game
                 new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].name.Set((int)((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(idx)].fB44 * 2)), (byte)(65));
             }
             new O05Obj10(obj).b10_Set((byte)(255));
-            func_0025DF54(3700);
+            Audio_PlaySound2D(3700);
             return 0;
         }
     }
@@ -5134,7 +5134,7 @@ public static partial class Game
                 r16 = (uint)669;
                 L_L00433408: ;
                 L_I00433408: ;
-                r4 = r18; r2 = (uint)func_00264634((int)r4);
+                r4 = r18; r2 = (uint)Pad_IsConnected((int)r4);
                 L_I00433410: ;
                 { bool c_ = r2 == r17; r18 = r18 + 1u; if (c_) goto L_L0043334C; }
                 L_I00433418: ;

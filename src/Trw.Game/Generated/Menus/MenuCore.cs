@@ -517,7 +517,7 @@ public static partial class Game
                 new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E0_Set(temp_v0_2);
                 if ((temp_v0_2 <= 0))
                 {
-                    func_0025DF54(3705);
+                    Audio_PlaySound2D(3705);
                     func_0040E958(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E8_, 1);
                     func_00419FD8((uint)(new ListScreenScreen(Mem.U32(0x800E4F60u)).text3E4), 4);
                     new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC_Set(4);
@@ -577,7 +577,7 @@ public static partial class Game
                 new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC_Set(2);
                 new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E0_Set(4);
                 func_0040E958(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_448_, 0);
-                func_0025DF54(3704);
+                Audio_PlaySound2D(3704);
                 break;
             case 8:
                 temp_v0 = (int)(new ListScreenItem(UiTree_FindNode(arg0, (uint)((ushort)(790u)), default(uint), default(uint))).alpha);
@@ -1011,7 +1011,7 @@ public static partial class Game
             new O06A_v12(a).unk10_Set(1);
             new O06A_v12(a).unk14_Set(0);
             new O06A_v12(a).unk18_Set(1);
-            func_0025DF54(3715);
+            Audio_PlaySound2D(3715);
         }
     }
 

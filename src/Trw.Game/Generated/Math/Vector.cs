@@ -41,7 +41,7 @@ public static partial class Game
                 Mem.Set((r29 + 32u), r3);
                 Mem.Set((r29 + 36u), r7);
                 Mem.Set((r29 + 40u), r8);
-                r4 = r17; func_002720EC(r4);
+                r4 = r17; Vec_Normalize(r4);
                 Cpu.SetW(3, Mem.U32((r17 + 4u)));
                 r1 = 2148270080u;
                 Cpu.SetW(0, Mem.U32((r1 + 27372u)));
@@ -83,8 +83,8 @@ public static partial class Game
                 r4 = r16;
                 Cpu.SetS(20, Cpu.S(0));
                 r5 = r18;
-                r6 = r17; func_00272088(r4, r5, r6);
-                r4 = r16; func_002720EC(r4);
+                r6 = r17; Vec_Cross(r4, r5, r6);
+                r4 = r16; Vec_Normalize(r4);
                 r1 = 2148270080u;
                 Cpu.SetW(0, Mem.U32((r1 + 27388u)));
                 Cpu.SetS(20, Cpu.S(20) * Cpu.S(0));
@@ -142,7 +142,7 @@ public static partial class Game
                 float zero = 0f;
                 float y = 0f;
                 Mem.Copy((_fp + 16u), 0x800C6AE0u, 12);
-                func_002720EC(v);
+                Vec_Normalize(v);
                 y = new Vec3f(v).y;
                 if ((Mem.F32(0x800C6AECu) < y))
                 {
@@ -165,8 +165,8 @@ public static partial class Game
                     else
                     {
                         ang2 = Math_Acosf((((new Vec3f(v).x * new Vec3f((_fp + 16u)).x) + (y * new Vec3f((_fp + 16u)).y)) + (new Vec3f(v).z * new Vec3f((_fp + 16u)).z)));
-                        func_00272088((_fp + 32u), (_fp + 16u), v);
-                        func_002720EC((_fp + 32u));
+                        Vec_Cross((_fp + 32u), (_fp + 16u), v);
+                        Vec_Normalize((_fp + 32u));
                         ang = (ang2 * Mem.F32(0x800C6AFCu));
                         sn = sinf(ang);
                         Mem.Set(0x80115DECu, sn);
@@ -194,17 +194,17 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00241830", (uint)a, (uint)b, (uint)p);
                 float t = 0f;
                 float len2 = 0f;
-                func_00271FD8(_fp, p, a);
-                func_00271FD8((_fp + 16u), b, a);
+                Vec_Sub(_fp, p, a);
+                Vec_Sub((_fp + 16u), b, a);
                 t = (((Mem.F32(((_fp + 16u) + (uint)(0 * 4))) * Mem.F32((_fp + (uint)(0 * 4)))) + (Mem.F32(((_fp + 16u) + (uint)(1 * 4))) * Mem.F32((_fp + (uint)(1 * 4))))) + (Mem.F32(((_fp + 16u) + (uint)(2 * 4))) * Mem.F32((_fp + (uint)(2 * 4)))));
                 if (!(t < 0.0f))
                 {
                     len2 = (((Mem.F32(((_fp + 16u) + (uint)(0 * 4))) * Mem.F32(((_fp + 16u) + (uint)(0 * 4)))) + (Mem.F32(((_fp + 16u) + (uint)(1 * 4))) * Mem.F32(((_fp + 16u) + (uint)(1 * 4))))) + (Mem.F32(((_fp + 16u) + (uint)(2 * 4))) * Mem.F32(((_fp + 16u) + (uint)(2 * 4)))));
                     if (!(len2 <= t))
                     {
-                        func_0027200C((_fp + 16u), (_fp + 16u), (t / len2));
+                        Vec_Scale((_fp + 16u), (_fp + 16u), (t / len2));
                     }
-                    func_00271FD8(_fp, _fp, (_fp + 16u));
+                    Vec_Sub(_fp, _fp, (_fp + 16u));
                 }
                 t = sqrtf((((Mem.F32((_fp + (uint)(0 * 4))) * Mem.F32((_fp + (uint)(0 * 4)))) + (Mem.F32((_fp + (uint)(1 * 4))) * Mem.F32((_fp + (uint)(1 * 4))))) + (Mem.F32((_fp + (uint)(2 * 4))) * Mem.F32((_fp + (uint)(2 * 4))))));
                 return t;
@@ -269,6 +269,57 @@ public static partial class Game
             Mem.Set(((new B16Mtx(m).m.P + (uint)(1 * 16)) + (uint)(3 * 4)), 0.0f);
             Mem.Set(((new B16Mtx(m).m.P + (uint)(2 * 16)) + (uint)(3 * 4)), 0.0f);
         }
+    }
+
+    // ==== func_00270B1C @ 0x00270B1C [C]
+    public static void Quat_Slerp(uint dst, float t, uint q1, uint q2)
+    {
+        uint _fp = Stack.Alloc(16);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_00270B1C", (uint)dst, 0u, (uint)q1, (uint)q2);
+                float d1 = 0f;
+                float d2 = 0f;
+                float th = 0f;
+                float s = 0f;
+                float inv = 0f;
+                float w1 = 0f;
+                float w2 = 0f;
+                Mem.Copy(_fp, q2, 16);
+                new B16Vec4(_fp).x_Set((-new B16Vec4(_fp).x));
+                new B16Vec4(_fp).y_Set((-new B16Vec4(_fp).y));
+                new B16Vec4(_fp).z_Set((-new B16Vec4(_fp).z));
+                new B16Vec4(_fp).w_Set((-new B16Vec4(_fp).w));
+                d1 = ((((new B16Vec4(q1).x * new B16Vec4(q2).x) + (new B16Vec4(q1).y * new B16Vec4(q2).y)) + (new B16Vec4(q1).z * new B16Vec4(q2).z)) + (new B16Vec4(q1).w * new B16Vec4(q2).w));
+                d2 = ((((new B16Vec4(q1).x * new B16Vec4(_fp).x) + (new B16Vec4(q1).y * new B16Vec4(_fp).y)) + (new B16Vec4(q1).z * new B16Vec4(_fp).z)) + (new B16Vec4(q1).w * new B16Vec4(_fp).w));
+                if ((d1 < d2))
+                {
+                    d1 = d2;
+                    q2 = _fp;
+                }
+                th = Math_Acosf(d1);
+                s = sinf(th);
+                if ((s == 0.0f))
+                {
+                    Mem.Copy(dst, q1, 16);
+                    return;
+                }
+                inv = (1.0f / s);
+                w1 = (sinf(((1.0f - t) * th)) * inv);
+                w2 = (sinf((t * th)) * inv);
+                if ((d1 < d2))
+                {
+                    q2 = _fp;
+                }
+                new B16Vec4(dst).x_Set(((w1 * new B16Vec4(q1).x) + (w2 * new B16Vec4(q2).x)));
+                new B16Vec4(dst).y_Set(((w1 * new B16Vec4(q1).y) + (w2 * new B16Vec4(q2).y)));
+                new B16Vec4(dst).z_Set(((w1 * new B16Vec4(q1).z) + (w2 * new B16Vec4(q2).z)));
+                new B16Vec4(dst).w_Set(((w1 * new B16Vec4(q1).w) + (w2 * new B16Vec4(q2).w)));
+            }
+        }
+        finally { Stack.Free(16); }
     }
 
     // ==== func_00270D40 @ 0x00270D40 [C]
@@ -345,6 +396,512 @@ public static partial class Game
         finally { Stack.Free(16); }
     }
 
+    // ==== func_00271058 @ 0x00271058 [C]
+    public static void func_00271058_vnorm(uint v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00271058_vnorm", (uint)v);
+            float len = 0f;
+            float inv = 0f;
+            len = func_002BC380((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z)));
+            if ((len != 0.0f))
+            {
+                inv = (1.0f / len);
+                new Vec3f(v).x_Set((float)((float)(new Vec3f(v).x) * inv));
+                new Vec3f(v).y_Set((float)((float)(new Vec3f(v).y) * inv));
+                new Vec3f(v).z_Set((float)((float)(new Vec3f(v).z) * inv));
+            }
+        }
+    }
+
+    public static uint func_00271058_vlerp(uint _ret, uint a, uint b, float t)
+    {
+        uint _fp = Stack.Alloc(12);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_00271058_vlerp", 0u, (uint)a, (uint)b);
+                new Vec3f(_fp).x_Set((new Vec3f(a).x + (t * (new Vec3f(b).x - new Vec3f(a).x))));
+                new Vec3f(_fp).y_Set((new Vec3f(a).y + (t * (new Vec3f(b).y - new Vec3f(a).y))));
+                new Vec3f(_fp).z_Set((new Vec3f(a).z + (t * (new Vec3f(b).z - new Vec3f(a).z))));
+                Mem.Copy(_ret, _fp, 12);
+                return _ret;
+            }
+        }
+        finally { Stack.Free(12); }
+    }
+
+    public static uint Vec_PerturbRandom(uint _ret, uint v, float t)
+    {
+        uint _fp = Stack.Alloc(28);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_00271058", 0u, (uint)v);
+                new Vec3f((_fp + 16u)).x_Set((float)(((Random_Next() % 20000) - 10000)));
+                new Vec3f((_fp + 16u)).y_Set((float)(((Random_Next() % 20000) - 10000)));
+                new Vec3f((_fp + 16u)).z_Set((float)(((Random_Next() % 20000) - 10000)));
+                func_00271058_vnorm((_fp + 16u));
+                func_00271058_vnorm(v);
+                Mem.Copy(_ret, C.Seq(func_00271058_vlerp(_fp, v, (_fp + 16u), t), _fp), 12);
+                return _ret;
+            }
+        }
+        finally { Stack.Free(28); }
+    }
+
+    // ==== func_002712B8 @ 0x002712B8 [C]
+    public static void func_002712B8_vnorm(uint v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002712B8_vnorm", (uint)v);
+            float len = 0f;
+            float inv = 0f;
+            len = func_002BC380((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z)));
+            if ((len != 0.0f))
+            {
+                inv = (1.0f / len);
+                new Vec3f(v).x_Set((float)((float)(new Vec3f(v).x) * inv));
+                new Vec3f(v).y_Set((float)((float)(new Vec3f(v).y) * inv));
+                new Vec3f(v).z_Set((float)((float)(new Vec3f(v).z) * inv));
+            }
+        }
+    }
+
+    public static uint func_002712B8_vlerp(uint _ret, uint a, uint b, float t)
+    {
+        uint _fp = Stack.Alloc(12);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_002712B8_vlerp", 0u, (uint)a, (uint)b);
+                new Vec3f(_fp).x_Set((new Vec3f(a).x + (t * (new Vec3f(b).x - new Vec3f(a).x))));
+                new Vec3f(_fp).y_Set((new Vec3f(a).y + (t * (new Vec3f(b).y - new Vec3f(a).y))));
+                new Vec3f(_fp).z_Set((new Vec3f(a).z + (t * (new Vec3f(b).z - new Vec3f(a).z))));
+                Mem.Copy(_ret, _fp, 12);
+                return _ret;
+            }
+        }
+        finally { Stack.Free(12); }
+    }
+
+    public static uint Vec_PerturbRandomX(uint _ret, uint v, float t)
+    {
+        uint _fp = Stack.Alloc(28);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_002712B8", 0u, (uint)v);
+                new Vec3f((_fp + 16u)).x_Set(((float)(((Random_Next() % 20000) - 10000)) * 9.99999974E-5f));
+                new Vec3f((_fp + 16u)).y_Set(new Vec3f(v).y);
+                new Vec3f((_fp + 16u)).z_Set(new Vec3f(v).z);
+                func_002712B8_vnorm((_fp + 16u));
+                func_002712B8_vnorm(v);
+                Mem.Copy(_ret, C.Seq(func_002712B8_vlerp(_fp, v, (_fp + 16u), t), _fp), 12);
+                return _ret;
+            }
+        }
+        finally { Stack.Free(28); }
+    }
+
+    // ==== func_002714A0 @ 0x002714A0 [C]
+    public static void func_002714A0_vnorm(uint v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002714A0_vnorm", (uint)v);
+            float len = 0f;
+            float inv = 0f;
+            len = func_002BC380((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z)));
+            if ((len != 0.0f))
+            {
+                inv = (1.0f / len);
+                new Vec3f(v).x_Set((float)((float)(new Vec3f(v).x) * inv));
+                new Vec3f(v).y_Set((float)((float)(new Vec3f(v).y) * inv));
+                new Vec3f(v).z_Set((float)((float)(new Vec3f(v).z) * inv));
+            }
+        }
+    }
+
+    public static uint func_002714A0_vlerp(uint _ret, uint a, uint b, float t)
+    {
+        uint _fp = Stack.Alloc(12);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_002714A0_vlerp", 0u, (uint)a, (uint)b);
+                new Vec3f(_fp).x_Set((new Vec3f(a).x + (t * (new Vec3f(b).x - new Vec3f(a).x))));
+                new Vec3f(_fp).y_Set((new Vec3f(a).y + (t * (new Vec3f(b).y - new Vec3f(a).y))));
+                new Vec3f(_fp).z_Set((new Vec3f(a).z + (t * (new Vec3f(b).z - new Vec3f(a).z))));
+                Mem.Copy(_ret, _fp, 12);
+                return _ret;
+            }
+        }
+        finally { Stack.Free(12); }
+    }
+
+    public static uint Vec_PerturbRandomY(uint _ret, uint v, float t)
+    {
+        uint _fp = Stack.Alloc(28);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_002714A0", 0u, (uint)v);
+                new Vec3f((_fp + 16u)).x_Set(new Vec3f(v).x);
+                new Vec3f((_fp + 16u)).y_Set((((float)((Random_Next() % 20000)) - 1.0E+4f) * 9.99999974E-5f));
+                new Vec3f((_fp + 16u)).z_Set(new Vec3f(v).z);
+                func_002714A0_vnorm((_fp + 16u));
+                func_002714A0_vnorm(v);
+                Mem.Copy(_ret, C.Seq(func_002714A0_vlerp(_fp, v, (_fp + 16u), t), _fp), 12);
+                return _ret;
+            }
+        }
+        finally { Stack.Free(28); }
+    }
+
+    // ==== func_00271694 @ 0x00271694 [C]
+    public static void func_00271694_vnorm(uint v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00271694_vnorm", (uint)v);
+            float len = 0f;
+            float inv = 0f;
+            len = func_002BC380((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z)));
+            if ((len != 0.0f))
+            {
+                inv = (1.0f / len);
+                new Vec3f(v).x_Set((float)((float)(new Vec3f(v).x) * inv));
+                new Vec3f(v).y_Set((float)((float)(new Vec3f(v).y) * inv));
+                new Vec3f(v).z_Set((float)((float)(new Vec3f(v).z) * inv));
+            }
+        }
+    }
+
+    public static uint func_00271694_vlerp(uint _ret, uint a, uint b, float t)
+    {
+        uint _fp = Stack.Alloc(12);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_00271694_vlerp", 0u, (uint)a, (uint)b);
+                new Vec3f(_fp).x_Set((new Vec3f(a).x + (t * (new Vec3f(b).x - new Vec3f(a).x))));
+                new Vec3f(_fp).y_Set((new Vec3f(a).y + (t * (new Vec3f(b).y - new Vec3f(a).y))));
+                new Vec3f(_fp).z_Set((new Vec3f(a).z + (t * (new Vec3f(b).z - new Vec3f(a).z))));
+                Mem.Copy(_ret, _fp, 12);
+                return _ret;
+            }
+        }
+        finally { Stack.Free(12); }
+    }
+
+    public static uint Vec_PerturbRandomZ(uint _ret, uint v, float t)
+    {
+        uint _fp = Stack.Alloc(28);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_00271694", 0u, (uint)v);
+                new Vec3f((_fp + 16u)).x_Set(new Vec3f(v).x);
+                new Vec3f((_fp + 16u)).y_Set(new Vec3f(v).y);
+                new Vec3f((_fp + 16u)).z_Set((((float)((Random_Next() % 20000)) - 1.0E+4f) * 9.99999974E-5f));
+                func_00271694_vnorm((_fp + 16u));
+                func_00271694_vnorm(v);
+                Mem.Copy(_ret, C.Seq(func_00271694_vlerp(_fp, v, (_fp + 16u), t), _fp), 12);
+                return _ret;
+            }
+        }
+        finally { Stack.Free(28); }
+    }
+
+    // ==== func_00271888 @ 0x00271888 [C]
+    public static uint Quat_FromDirection(uint _ret, uint v)
+    {
+        uint _fp = Stack.Alloc(60);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_00271888", 0u, (uint)v);
+                float len = 0f;
+                float inv = 0f;
+                float ang = 0f;
+                float new_var = 0f;
+                float half = 0f;
+                float s = 0f;
+                float s0 = 0f;
+                float alen = 0f;
+                float ainv = 0f;
+                len = func_002BC380((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z)));
+                if ((len == 0.0f))
+                {
+                    new B16Vec4(_fp).x_Set(new B16Vec4(_fp).y_Set(new B16Vec4(_fp).z_Set(0.0f)));
+                    new B16Vec4(_fp).w_Set(1.0f);
+                    goto L_done;
+                }
+                inv = (1.0f / len);
+                new Vec3f((_fp + 16u)).x_Set((new Vec3f(v).x * inv));
+                new Vec3f((_fp + 16u)).y_Set((new Vec3f(v).y * inv));
+                new Vec3f((_fp + 16u)).z_Set((new Vec3f(v).z * inv));
+                new Vec3f((_fp + 32u)).x_Set(0.0f);
+                new Vec3f((_fp + 32u)).y_Set(0.0f);
+                new Vec3f((_fp + 32u)).z_Set(1.0f);
+                if ((((new Vec3f((_fp + 16u)).z < 0.0f) ? (-new Vec3f((_fp + 16u)).z) : new Vec3f((_fp + 16u)).z) > 0.999989986f))
+                {
+                    half = 0.0f;
+                    s0 = sinf(half);
+                    new B16Vec4(_fp).z_Set((new Vec3f((_fp + 16u)).z * s0));
+                    Mem.Set(0x80115DECu, s0);
+                    new B16Vec4(_fp).x_Set(half);
+                    new B16Vec4(_fp).y_Set(half);
+                    new B16Vec4(_fp).w_Set(cosf(half));
+                }
+                else
+                {
+                    ang = Math_Acosf((((new Vec3f((_fp + 16u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 16u)).y * new Vec3f((_fp + 32u)).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f((_fp + 32u)).z)));
+                    new Vec3f((_fp + 48u)).x_Set(((new Vec3f((_fp + 32u)).y * new Vec3f((_fp + 16u)).z) - (new Vec3f((_fp + 32u)).z * new Vec3f((_fp + 16u)).y)));
+                    new Vec3f((_fp + 48u)).y_Set(((new Vec3f((_fp + 32u)).z * new Vec3f((_fp + 16u)).x) - (new Vec3f((_fp + 32u)).x * new Vec3f((_fp + 16u)).z)));
+                    new Vec3f((_fp + 48u)).z_Set(((new Vec3f((_fp + 32u)).x * new Vec3f((_fp + 16u)).y) - (new Vec3f((_fp + 32u)).y * new Vec3f((_fp + 16u)).x)));
+                    alen = func_002BC380((((new Vec3f((_fp + 48u)).x * new Vec3f((_fp + 48u)).x) + (new Vec3f((_fp + 48u)).y * new Vec3f((_fp + 48u)).y)) + (new Vec3f((_fp + 48u)).z * new Vec3f((_fp + 48u)).z)));
+                    if ((alen != 0.0f))
+                    {
+                        ainv = (1.0f / alen);
+                        new Vec3f((_fp + 48u)).x_Set((float)((float)(new Vec3f((_fp + 48u)).x) * ainv));
+                        new Vec3f((_fp + 48u)).y_Set((float)((float)(new Vec3f((_fp + 48u)).y) * ainv));
+                        new Vec3f((_fp + 48u)).z_Set((float)((float)(new Vec3f((_fp + 48u)).z) * ainv));
+                    }
+                    s = sinf((ang * 0.5f));
+                    new B16Vec4(_fp).x_Set((new Vec3f((_fp + 48u)).x * s));
+                    new B16Vec4(_fp).y_Set((new Vec3f((_fp + 48u)).y * s));
+                    new B16Vec4(_fp).z_Set((new Vec3f((_fp + 48u)).z * s));
+                    Mem.Set(0x80115DECu, s);
+                    half = (ang * 0.5f);
+                    new B16Vec4(_fp).w_Set(cosf(half));
+                }
+                L_done: ;
+                Mem.Copy(_ret, _fp, 16);
+                return _ret;
+                return _ret;
+            }
+        }
+        finally { Stack.Free(60); }
+    }
+
+    // ==== func_00271B18 @ 0x00271B18 [C]
+    public static float Vec_GetYaw(uint v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00271B18", (uint)v);
+            float x = new Vec3f(v).x;
+            float z = new Vec3f(v).z;
+            float len = 0f;
+            float r = 0f;
+            float res = 0f;
+            float t = 0f;
+            len = ((x * x) + (z * z));
+            if ((len == 0.0f))
+            {
+                return 0.0f;
+            }
+            len = func_002BC380(len);
+            if ((len == 0.0f))
+            {
+                return 0.0f;
+            }
+            if ((((x < 0.0f) ? (-x) : x) < ((z < 0.0f) ? (-z) : z)))
+            {
+                x = (float)((float)(x) / len);
+                r = Math_Acosf((((-1.0f) > ((1.0f < x) ? 1.0f : x)) ? (-1.0f) : ((1.0f < x) ? 1.0f : x)));
+                res = (-r);
+                if ((z < 0.0f))
+                {
+                    res = r;
+                }
+                res = (float)((float)(res) - 1.57079637f);
+            }
+            else
+            {
+                z = (float)((float)(z) / len);
+                t = (((-1.0f) > ((1.0f < z) ? 1.0f : z)) ? (-1.0f) : ((1.0f < z) ? 1.0f : z));
+                r = Math_Acosf((-t));
+                res = (-r);
+                if ((x < 0.0f))
+                {
+                    res = r;
+                }
+            }
+            return res;
+        }
+    }
+
+    // ==== func_00271F70 @ 0x00271F70 [C]
+    public static void Vec_MulComponents(uint dst, uint a, uint b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00271F70", (uint)dst, (uint)a, (uint)b);
+            new Vec3f(dst).x_Set((new Vec3f(a).x * new Vec3f(b).x));
+            new Vec3f(dst).y_Set((new Vec3f(a).y * new Vec3f(b).y));
+            new Vec3f(dst).z_Set((new Vec3f(a).z * new Vec3f(b).z));
+        }
+    }
+
+    // ==== func_00271FA4 @ 0x00271FA4 [C]
+    public static void Vec_Add(uint dst, uint a, uint b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00271FA4", (uint)dst, (uint)a, (uint)b);
+            new Vec3f(dst).x_Set((new Vec3f(a).x + new Vec3f(b).x));
+            new Vec3f(dst).y_Set((new Vec3f(a).y + new Vec3f(b).y));
+            new Vec3f(dst).z_Set((new Vec3f(a).z + new Vec3f(b).z));
+        }
+    }
+
+    // ==== func_00271FD8 @ 0x00271FD8 [C]
+    public static void Vec_Sub(uint dst, uint a, uint b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00271FD8", (uint)dst, (uint)a, (uint)b);
+            new Vec3f(dst).x_Set((new Vec3f(a).x - new Vec3f(b).x));
+            new Vec3f(dst).y_Set((new Vec3f(a).y - new Vec3f(b).y));
+            new Vec3f(dst).z_Set((new Vec3f(a).z - new Vec3f(b).z));
+        }
+    }
+
+    // ==== func_0027200C @ 0x0027200C [C]
+    public static void Vec_Scale(uint dst, uint a, float s)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0027200C", (uint)dst, (uint)a);
+            new Vec3f(dst).x_Set((new Vec3f(a).x * s));
+            new Vec3f(dst).y_Set((new Vec3f(a).y * s));
+            new Vec3f(dst).z_Set((new Vec3f(a).z * s));
+        }
+    }
+
+    // ==== func_00272038 @ 0x00272038 [C]
+    public static void Vec_Lerp(uint dst, float t, uint a, uint b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00272038", (uint)dst, 0u, (uint)a, (uint)b);
+            new Vec3f(dst).x_Set((new Vec3f(a).x + (t * (new Vec3f(b).x - new Vec3f(a).x))));
+            new Vec3f(dst).y_Set((new Vec3f(a).y + (t * (new Vec3f(b).y - new Vec3f(a).y))));
+            new Vec3f(dst).z_Set((new Vec3f(a).z + (t * (new Vec3f(b).z - new Vec3f(a).z))));
+        }
+    }
+
+    // ==== func_00272088 @ 0x00272088 [C]
+    public static void Vec_Cross(uint dst, uint a, uint b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00272088", (uint)dst, (uint)a, (uint)b);
+            new Vec3f(dst).x_Set(((new Vec3f(a).y * new Vec3f(b).z) - (new Vec3f(a).z * new Vec3f(b).y)));
+            new Vec3f(dst).y_Set(((new Vec3f(a).z * new Vec3f(b).x) - (new Vec3f(a).x * new Vec3f(b).z)));
+            new Vec3f(dst).z_Set(((new Vec3f(a).x * new Vec3f(b).y) - (new Vec3f(a).y * new Vec3f(b).x)));
+        }
+    }
+
+    // ==== func_002720EC @ 0x002720EC [C]
+    public static void Vec_Normalize(uint v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002720EC", (uint)v);
+            float len = 0f;
+            float inv = 0f;
+            len = func_002BC380((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z)));
+            if ((len != 0.0f))
+            {
+                inv = (1.0f / len);
+                new Vec3f(v).x_Set((float)((float)(new Vec3f(v).x) * inv));
+                new Vec3f(v).y_Set((float)((float)(new Vec3f(v).y) * inv));
+                new Vec3f(v).z_Set((float)((float)(new Vec3f(v).z) * inv));
+            }
+        }
+    }
+
+    // ==== func_00272174 @ 0x00272174 [C]
+    public static void Vec_PointOnSegmentAtY(uint dst, uint a, uint b, float y)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00272174", (uint)dst, (uint)a, (uint)b);
+            float dy = (new Vec3f(b).y - new Vec3f(a).y);
+            float t = 0f;
+            if ((dy == 0.0f))
+            {
+                Mem.Copy(dst, a, 12);
+            }
+            else
+            {
+                t = ((y - new Vec3f(a).y) / dy);
+                new Vec3f(dst).x_Set((new Vec3f(a).x + (t * (new Vec3f(b).x - new Vec3f(a).x))));
+                new Vec3f(dst).y_Set(y);
+                new Vec3f(dst).z_Set((new Vec3f(a).z + (t * (new Vec3f(b).z - new Vec3f(a).z))));
+            }
+        }
+    }
+
+    // ==== func_002721F0 @ 0x002721F0 [C]
+    public static uint Vec_ReflectBounce(uint _ret, uint a, uint b, float t)
+    {
+        uint _fp = Stack.Alloc(12);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_002721F0", 0u, (uint)a, (uint)b);
+                float dot = 0f;
+                float d = 0f;
+                dot = (((new Vec3f(a).x * new Vec3f(b).x) + (new Vec3f(a).y * new Vec3f(b).y)) + (new Vec3f(a).z * new Vec3f(b).z));
+                d = ((t * dot) + dot);
+                new Vec3f(_fp).x_Set((new Vec3f(a).x - (d * new Vec3f(b).x)));
+                new Vec3f(_fp).y_Set((new Vec3f(a).y - (d * new Vec3f(b).y)));
+                new Vec3f(_fp).z_Set((new Vec3f(a).z - (d * new Vec3f(b).z)));
+                Mem.Copy(_ret, _fp, 12);
+                return _ret;
+            }
+        }
+        finally { Stack.Free(12); }
+    }
+
+    // ==== func_00272284 @ 0x00272284 [C]
+    public static uint Vec_RemoveNormalComponent(uint _ret, uint a, uint b)
+    {
+        uint _fp = Stack.Alloc(12);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_00272284", 0u, (uint)a, (uint)b);
+                float d = 0f;
+                d = (((new Vec3f(a).x * new Vec3f(b).x) + (new Vec3f(a).y * new Vec3f(b).y)) + (new Vec3f(a).z * new Vec3f(b).z));
+                new Vec3f(_fp).x_Set((new Vec3f(a).x - (d * new Vec3f(b).x)));
+                new Vec3f(_fp).y_Set((new Vec3f(a).y - (d * new Vec3f(b).y)));
+                new Vec3f(_fp).z_Set((new Vec3f(a).z - (d * new Vec3f(b).z)));
+                Mem.Copy(_ret, _fp, 12);
+                return _ret;
+            }
+        }
+        finally { Stack.Free(12); }
+    }
+
     // ==== func_0027230C @ 0x0027230C [C]
     public static void func_0027230C_vcross(uint dst, uint a, uint b)
     {
@@ -412,6 +969,155 @@ public static partial class Game
         finally { Stack.Free(28); }
     }
 
+    // ==== func_0027246C @ 0x0027246C [C]
+    public static uint func_0027246C_vproj(uint _ret, uint a, uint b)
+    {
+        uint _fp = Stack.Alloc(12);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0027246C_vproj", 0u, (uint)a, (uint)b);
+                float d = 0f;
+                d = (((new Vec3f(a).x * new Vec3f(b).x) + (new Vec3f(a).y * new Vec3f(b).y)) + (new Vec3f(a).z * new Vec3f(b).z));
+                new Vec3f(_fp).x_Set((new Vec3f(a).x - (d * new Vec3f(b).x)));
+                new Vec3f(_fp).y_Set((new Vec3f(a).y - (d * new Vec3f(b).y)));
+                new Vec3f(_fp).z_Set((new Vec3f(a).z - (d * new Vec3f(b).z)));
+                Mem.Copy(_ret, _fp, 12);
+                return _ret;
+            }
+        }
+        finally { Stack.Free(12); }
+    }
+
+    public static uint Vec_SlideKeepLength(uint _ret, uint v, uint n)
+    {
+        uint _fp = Stack.Alloc(28);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0027246C", 0u, (uint)v, (uint)n);
+                float len = 0f;
+                float s = 0f;
+                Mem.Copy((_fp + 16u), C.Seq(func_0027246C_vproj(_fp, v, n), _fp), 12);
+                len = func_002BC380((((new Vec3f((_fp + 16u)).x * new Vec3f((_fp + 16u)).x) + (new Vec3f((_fp + 16u)).y * new Vec3f((_fp + 16u)).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f((_fp + 16u)).z)));
+                if ((len != 0.0f))
+                {
+                    s = (func_002BC380((((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z))) / len);
+                    new Vec3f((_fp + 16u)).x_Set((float)((float)(new Vec3f((_fp + 16u)).x) * s));
+                    new Vec3f((_fp + 16u)).y_Set((float)((float)(new Vec3f((_fp + 16u)).y) * s));
+                    new Vec3f((_fp + 16u)).z_Set((float)((float)(new Vec3f((_fp + 16u)).z) * s));
+                }
+                Mem.Copy(_ret, (_fp + 16u), 12);
+                return _ret;
+            }
+        }
+        finally { Stack.Free(28); }
+    }
+
+    // ==== func_002725BC @ 0x002725BC [C]
+    public static int Vec_ClampLengthChecked(uint v, float maxLen)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002725BC", (uint)v);
+            float sq = 0f;
+            float len = 0f;
+            float s = 0f;
+            sq = (((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z));
+            if (((maxLen * maxLen) < sq))
+            {
+                len = func_002BC380(sq);
+                if ((len != 0.0f))
+                {
+                    s = (maxLen / len);
+                    new Vec3f(v).x_Set((float)((float)(new Vec3f(v).x) * s));
+                    new Vec3f(v).y_Set((float)((float)(new Vec3f(v).y) * s));
+                    new Vec3f(v).z_Set((float)((float)(new Vec3f(v).z) * s));
+                    return 1;
+                }
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_0027266C @ 0x0027266C [C]
+    public static float Vec_GetPitch(uint v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0027266C", (uint)v);
+            float x = new Vec3f(v).x;
+            float y = new Vec3f(v).y;
+            float z = new Vec3f(v).z;
+            float sq = 0f;
+            float len = 0f;
+            float t = 0f;
+            if ((y == 0.0f))
+            {
+                return 0.0f;
+            }
+            sq = (((x * x) + (y * y)) + (z * z));
+            if ((sq == 0.0f))
+            {
+                return 0.0f;
+            }
+            len = func_002BC380(sq);
+            t = (y / len);
+            if (((t < (-1.0f)) || (1.0f < t)))
+            {
+                return 0.0f;
+            }
+            return (Math_Acosf(t) - 1.57079637f);
+        }
+    }
+
+    // ==== func_0027272C @ 0x0027272C [C]
+    public static float Vec_DistanceSq(uint a, uint b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0027272C", (uint)a, (uint)b);
+            float dx = (new Vec3f(a).x - new Vec3f(b).x);
+            float dy = (new Vec3f(a).y - new Vec3f(b).y);
+            float dz = (new Vec3f(a).z - new Vec3f(b).z);
+            return (((dx * dx) + (dy * dy)) + (dz * dz));
+        }
+    }
+
+    // ==== func_00272768 @ 0x00272768 [C]
+    public static float Vec_Distance(uint a, uint b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00272768", (uint)a, (uint)b);
+            float dx = (new Vec3f(a).x - new Vec3f(b).x);
+            float dy = (new Vec3f(a).y - new Vec3f(b).y);
+            float dz = (new Vec3f(a).z - new Vec3f(b).z);
+            return func_002BC380((((dx * dx) + (dy * dy)) + (dz * dz)));
+        }
+    }
+
+    // ==== func_002727B8 @ 0x002727B8 [C]
+    public static void Vec_ClampLength(uint v, float maxLen)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002727B8", (uint)v);
+            float sq = 0f;
+            float s = 0f;
+            sq = (((new Vec3f(v).x * new Vec3f(v).x) + (new Vec3f(v).y * new Vec3f(v).y)) + (new Vec3f(v).z * new Vec3f(v).z));
+            if (((maxLen * maxLen) < sq))
+            {
+                s = (maxLen / func_002BC380(sq));
+                new Vec3f(v).x_Set((float)((float)(new Vec3f(v).x) * s));
+                new Vec3f(v).y_Set((float)((float)(new Vec3f(v).y) * s));
+                new Vec3f(v).z_Set((float)((float)(new Vec3f(v).z) * s));
+            }
+        }
+    }
+
     // ==== func_00274108 @ 0x00274108 [C]
     public static void Quat_Multiply(uint dst, uint a, uint b)
     {
@@ -423,6 +1129,64 @@ public static partial class Game
             new B16Vec4(dst).z_Set((((((-new B16Vec4(b).y) * new B16Vec4(a).x) + (new B16Vec4(b).x * new B16Vec4(a).y)) + (new B16Vec4(b).w * new B16Vec4(a).z)) + (new B16Vec4(b).z * new B16Vec4(a).w)));
             new B16Vec4(dst).w_Set((((((-new B16Vec4(b).x) * new B16Vec4(a).x) - (new B16Vec4(b).y * new B16Vec4(a).y)) - (new B16Vec4(b).z * new B16Vec4(a).z)) + (new B16Vec4(b).w * new B16Vec4(a).w)));
         }
+    }
+
+    // ==== func_00274214 @ 0x00274214 [MIPS]
+    public static uint Quat_Normalize(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00274214", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_00274214: ;
+                r29 = r29 - 24u;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 20u), r31);
+                Cpu.SetW(12, Mem.U32((r16 + 0u)));
+                Cpu.SetS(12, Cpu.S(12) * Cpu.S(12));
+                Cpu.SetW(2, Mem.U32((r16 + 4u)));
+                Cpu.SetS(2, Cpu.S(2) * Cpu.S(2));
+                Cpu.SetW(1, Mem.U32((r16 + 8u)));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(1));
+                Cpu.SetW(0, Mem.U32((r16 + 12u)));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(0));
+                Cpu.SetS(12, Cpu.S(12) + Cpu.S(2));
+                Cpu.SetS(12, Cpu.S(12) + Cpu.S(1));
+                Cpu.SetS(12, Cpu.S(12) + Cpu.S(0)); r2 = sqrtf_rc(r4, r5, r6, r7); r3 = Cpu.V1;
+                Cpu.SetW(1, r0);
+                fcc = Cpu.S(0) == Cpu.S(1);
+                { bool c_ = fcc;  if (c_) goto L_L002742A4; }
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 26084u)));
+                Cpu.SetW(4, Mem.U32((r16 + 0u)));
+                Cpu.SetS(1, Cpu.S(1) / Cpu.S(0));
+                Cpu.SetS(4, Cpu.S(4) * Cpu.S(1));
+                Cpu.SetW(3, Mem.U32((r16 + 4u)));
+                Cpu.SetS(3, Cpu.S(3) * Cpu.S(1));
+                Cpu.SetW(2, Mem.U32((r16 + 8u)));
+                Cpu.SetS(2, Cpu.S(2) * Cpu.S(1));
+                Cpu.SetW(0, Mem.U32((r16 + 12u)));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                Mem.Set((r16 + 0u), Cpu.W(4));
+                Mem.Set((r16 + 4u), Cpu.W(3));
+                Mem.Set((r16 + 8u), Cpu.W(2));
+                Mem.Set((r16 + 12u), Cpu.W(0));
+                L_L002742A4: ;
+                r31 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00274214", r2); Stack.Free(384); }
     }
 
     // ==== func_002742B4 @ 0x002742B4 [C]
@@ -458,6 +1222,295 @@ public static partial class Game
         }
     }
 
+    // ==== func_00274388 @ 0x00274388 [C]
+    public static void Quat_Lerp(uint dst, float t, uint a, uint b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00274388", (uint)dst, 0u, (uint)a, (uint)b);
+            new B16Vec4(dst).x_Set((new B16Vec4(a).x + (t * (new B16Vec4(b).x - new B16Vec4(a).x))));
+            new B16Vec4(dst).y_Set((new B16Vec4(a).y + (t * (new B16Vec4(b).y - new B16Vec4(a).y))));
+            new B16Vec4(dst).z_Set((new B16Vec4(a).z + (t * (new B16Vec4(b).z - new B16Vec4(a).z))));
+            new B16Vec4(dst).w_Set((new B16Vec4(a).w + (t * (new B16Vec4(b).w - new B16Vec4(a).w))));
+        }
+    }
+
+    // ==== func_002743F0 @ 0x002743F0 [MIPS]
+    public static uint Quat_TurnToward(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002743F0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002743F0: ;
+                r29 = r29 - 48u;
+                Mem.Set((r29 + 32u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 36u), r17);
+                r17 = r5;
+                Mem.Set((r29 + 40u), r31);
+                Cpu.SetW(12, Mem.U32((r16 + 0u)));
+                Cpu.SetW(0, Mem.U32((r17 + 0u)));
+                Cpu.SetS(12, Cpu.S(12) * Cpu.S(0));
+                Cpu.SetW(3, Mem.U32((r16 + 4u)));
+                Cpu.SetW(0, Mem.U32((r17 + 4u)));
+                Cpu.SetS(3, Cpu.S(3) * Cpu.S(0));
+                Cpu.SetW(2, Mem.U32((r16 + 8u)));
+                Cpu.SetW(0, Mem.U32((r17 + 8u)));
+                Cpu.SetS(2, Cpu.S(2) * Cpu.S(0));
+                Cpu.SetW(1, Mem.U32((r16 + 12u)));
+                Cpu.SetW(0, Mem.U32((r17 + 12u)));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
+                Cpu.SetS(12, Cpu.S(12) + Cpu.S(3));
+                Cpu.SetS(12, Cpu.S(12) + Cpu.S(2));
+                Cpu.SetS(12, Cpu.S(12) + Cpu.S(1)); Cpu.SetS(0, Math_Acosf(Cpu.S(12)));
+                Cpu.SetW(4, r0);
+                Cpu.SetS(2, Cpu.S(0));
+                fcc = Cpu.S(2) == Cpu.S(4);
+                { bool c_ = fcc;  if (c_) goto L_L00274508; }
+                r1 = 2148335616u;
+                Cpu.SetW(0, Mem.U32((r1 - 26076u)));
+                Cpu.SetS(0, Cpu.S(2) * Cpu.S(0));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 - 26072u)));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 + 10632u)));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                Cpu.SetS(0, Cpu.S(2) - Cpu.S(0));
+                r1 = 2148335616u;
+                Cpu.SetW(3, Mem.U32((r1 - 26068u)));
+                Cpu.SetS(0, Cpu.S(0) / Cpu.S(2));
+                Cpu.SetS(1, Cpu.S(3) - Cpu.S(0));
+                fcc = Cpu.S(3) < Cpu.S(1);
+                { bool c_ = fcc; Cpu.SetS(0, Cpu.S(3)); if (c_) goto L_L002744BC; }
+                fcc = Cpu.S(1) < Cpu.S(4);
+                { bool c_ = fcc; Cpu.SetS(0, Cpu.S(4)); if (c_) goto L_L002744D4; }
+                Cpu.SetS(0, Cpu.S(3));
+                L_L002744BC: ;
+                fcc = Cpu.S(0) < Cpu.S(1);
+                if (!fcc) { Cpu.SetS(0, Cpu.S(1)); goto L_L002744D4; }
+                r4 = r29 + 16u; goto L_L002744D8;
+                L_L002744D4: ;
+                r4 = r29 + 16u;
+                L_L002744D8: ;
+                r6 = r16;
+                r5 = Cpu.W(0);
+                r7 = r17; Quat_Blend(r4, Cpu.U2F(r5), r6, r7);
+                r2 = Mem.U32((r29 + 16u));
+                r3 = Mem.U32((r29 + 20u));
+                r8 = Mem.U32((r29 + 24u));
+                r9 = Mem.U32((r29 + 28u));
+                Mem.Set((r16 + 0u), r2);
+                Mem.Set((r16 + 4u), r3);
+                Mem.Set((r16 + 8u), r8);
+                Mem.Set((r16 + 12u), r9);
+                L_L00274508: ;
+                r31 = Mem.U32((r29 + 40u));
+                r17 = Mem.U32((r29 + 36u));
+                r16 = Mem.U32((r29 + 32u));
+                r29 = r29 + 48u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002743F0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00274BEC @ 0x00274BEC [C]
+    public static void Math_InitSegment(uint s, uint a, uint b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00274BEC", (uint)s, (uint)a, (uint)b);
+            Mem.Copy(new P3Seg(s).p0.P, a, 12);
+            Mem.Copy(new P3Seg(s).p1.P, b, 12);
+            new P3Seg(s).d.x_Set((new P3Vec3(b).x - new P3Vec3(a).x));
+            new P3Seg(s).d.y_Set((new P3Vec3(b).y - new P3Vec3(a).y));
+            new P3Seg(s).d.z_Set((new P3Vec3(b).z - new P3Vec3(a).z));
+            new P3Seg(s).n0_Set(new P3Seg(s).d.z);
+            new P3Seg(s).n1_Set(0.0f);
+            new P3Seg(s).n2_Set((-new P3Seg(s).d.x));
+        }
+    }
+
+    // ==== func_00274C64 @ 0x00274C64 [C]
+    public static void Math_SetDirFromVelocityXZ_00274C64(uint o)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00274C64", (uint)o);
+            float len2 = 0f;
+            float z = 0f;
+            len2 = ((new VelObj(o).vel.x * new VelObj(o).vel.x) + (new VelObj(o).vel.z * new VelObj(o).vel.z));
+            z = 0.0f;
+            if ((len2 != 0.0f))
+            {
+                len2 = (Mem.F32(0x800C9A90u) / func_002BC380(len2));
+                z = (new VelObj(o).vel.z * len2);
+                new VelObj(o).dir.x_Set((new VelObj(o).vel.x * len2));
+                new VelObj(o).dir.y_Set((new VelObj(o).vel.y * len2));
+            }
+            else
+            {
+                new VelObj(o).dir.x_Set(0.0f);
+                new VelObj(o).dir.y_Set(0.0f);
+            }
+            new VelObj(o).dir.z_Set(z);
+        }
+    }
+
+    // ==== func_00274CEC @ 0x00274CEC [C]
+    public static void Math_SetDirFromVelocity(uint o)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00274CEC", (uint)o);
+            float len2 = 0f;
+            float z = 0f;
+            len2 = (((new VelObj(o).vel.x * new VelObj(o).vel.x) + (new VelObj(o).vel.y * new VelObj(o).vel.y)) + (new VelObj(o).vel.z * new VelObj(o).vel.z));
+            z = 0.0f;
+            if ((len2 != 0.0f))
+            {
+                len2 = (Mem.F32(0x800C9A94u) / func_002BC380(len2));
+                z = (new VelObj(o).vel.z * len2);
+                new VelObj(o).dir.x_Set((new VelObj(o).vel.x * len2));
+                new VelObj(o).dir.y_Set((new VelObj(o).vel.y * len2));
+            }
+            else
+            {
+                new VelObj(o).dir.x_Set(0.0f);
+                new VelObj(o).dir.y_Set(0.0f);
+            }
+            new VelObj(o).dir.z_Set(z);
+        }
+    }
+
+    // ==== func_00274D80 @ 0x00274D80 [C]
+    public static int Math_RayIntersectLineXZ(uint a, uint b, uint @out)
+    {
+        uint _fp = Stack.Alloc(12);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_00274D80", (uint)a, (uint)b, (uint)@out);
+                float den = 0f;
+                int hit = 0;
+                new Vec3f(_fp).x_Set((new PlaneObj(b).pos.x - new RayObj(a).pos.x));
+                new Vec3f(_fp).z_Set((new PlaneObj(b).pos.z - new RayObj(a).pos.z));
+                den = ((new PlaneObj(b).nrm.x * new RayObj(a).dir.x) + (new PlaneObj(b).nrm.z * new RayObj(a).dir.z));
+                hit = 0;
+                if ((den != 0.0f))
+                {
+                    hit = 1;
+                    Mem.Set(@out, (((new Vec3f(_fp).x * new RayObj(a).dir.x) + (new Vec3f(_fp).z * new RayObj(a).dir.z)) / (-den)));
+                }
+                return hit;
+            }
+        }
+        finally { Stack.Free(12); }
+    }
+
+    // ==== func_00274DFC @ 0x00274DFC [C]
+    public static int Math_IsPointAheadXZ(uint a, uint b)
+    {
+        uint _fp = Stack.Alloc(28);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_00274DFC", (uint)a, (uint)b);
+                int r = 0;
+                Mem.Copy(_fp, new RayObj(a).dir.P, 12);
+                new Vec3f((_fp + 16u)).x_Set((new PlaneObj(b).pos.x - new RayObj(a).pos.x));
+                new Vec3f((_fp + 16u)).z_Set((new PlaneObj(b).pos.z - new RayObj(a).pos.z));
+                r = 0;
+                if (!(((new Vec3f(_fp).x * new Vec3f((_fp + 16u)).x) + (new Vec3f(_fp).z * new Vec3f((_fp + 16u)).z)) <= 0.0f))
+                {
+                    r = 1;
+                }
+                return r;
+            }
+        }
+        finally { Stack.Free(28); }
+    }
+
+    // ==== func_002759C4 @ 0x002759C4 [C]
+    public static void Math_AabbOfPoints(uint box, int n, uint pts)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002759C4", (uint)box, (uint)n, (uint)pts);
+            int i = 0;
+            uint p = 0u;
+            int m = 0;
+            if ((n != 0))
+            {
+                new Box3(box).mn.x_Set(new Vec3f(pts).x);
+                new Box3(box).mn.y_Set(new Vec3f(pts).y);
+                new Box3(box).mn.z_Set(new Vec3f(pts).z);
+                new Box3(box).mx.x_Set(new Vec3f(pts).x);
+                new Box3(box).mx.y_Set(new Vec3f(pts).y);
+                new Box3(box).mx.z_Set(new Vec3f(pts).z);
+                m = (n - 1);
+                pts += 12u;
+                for (i = 0; (i < m); ++i)
+                {
+                    p = (pts + (uint)(i * 12));
+                    new Box3(box).mn.x_Set((!(new Vec3f(p).x <= new Box3(box).mn.x) ? new Box3(box).mn.x : new Vec3f(p).x));
+                    new Box3(box).mn.y_Set((!(new Vec3f(p).y <= new Box3(box).mn.y) ? new Box3(box).mn.y : new Vec3f(p).y));
+                    new Box3(box).mn.z_Set((!(new Vec3f(p).z <= new Box3(box).mn.z) ? new Box3(box).mn.z : new Vec3f(p).z));
+                    new Box3(box).mx.x_Set((!(new Box3(box).mx.x <= new Vec3f(p).x) ? new Box3(box).mx.x : new Vec3f(p).x));
+                    new Box3(box).mx.y_Set((!(new Box3(box).mx.y <= new Vec3f(p).y) ? new Box3(box).mx.y : new Vec3f(p).y));
+                    new Box3(box).mx.z_Set((!(new Box3(box).mx.z <= new Vec3f(p).z) ? new Box3(box).mx.z : new Vec3f(p).z));
+                }
+            }
+        }
+    }
+
+    // ==== func_0027647C @ 0x0027647C [C]
+    public static void Math_AabbExtendByPoints(uint box, int n, uint pts)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0027647C", (uint)box, (uint)n, (uint)pts);
+            int i = 0;
+            uint p = 0u;
+            for (i = 0; (i < n); ++i)
+            {
+                p = (pts + (uint)(i * 12));
+                new Box3(box).mn.x_Set((!(new Vec3f(p).x <= new Box3(box).mn.x) ? new Box3(box).mn.x : new Vec3f(p).x));
+                new Box3(box).mn.y_Set((!(new Vec3f(p).y <= new Box3(box).mn.y) ? new Box3(box).mn.y : new Vec3f(p).y));
+                new Box3(box).mn.z_Set((!(new Vec3f(p).z <= new Box3(box).mn.z) ? new Box3(box).mn.z : new Vec3f(p).z));
+                new Box3(box).mx.x_Set((!(new Box3(box).mx.x <= new Vec3f(p).x) ? new Box3(box).mx.x : new Vec3f(p).x));
+                new Box3(box).mx.y_Set((!(new Box3(box).mx.y <= new Vec3f(p).y) ? new Box3(box).mx.y : new Vec3f(p).y));
+                new Box3(box).mx.z_Set((!(new Box3(box).mx.z <= new Vec3f(p).z) ? new Box3(box).mx.z : new Vec3f(p).z));
+            }
+        }
+    }
+
+    // ==== func_00276544 @ 0x00276544 [C]
+    public static void Math_BoundsOfPointsFromFirst(uint r, int n, uint pts)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00276544", (uint)r, (uint)n, (uint)pts);
+            if ((n != 0))
+            {
+                new Rect4(r).x0_Set(new Rect4(r).x1_Set(new Vec3f(pts).x));
+                new Rect4(r).z0_Set(new Rect4(r).z1_Set(new Vec3f(pts).z));
+                Math_BoundsOfPoints(r, (n - 1), (pts + (uint)(1 * 12)));
+            }
+        }
+    }
+
     // ==== func_00276580 @ 0x00276580 [C]
     public static void Math_BoundsOfPoints(uint box, int n, uint pt)
     {
@@ -476,11 +1529,93 @@ public static partial class Game
         }
     }
 
-    public static void func_00276610()
+    public static void Math_EmptyStub_00276610()
     {
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00276610");
+        }
+    }
+
+    // ==== func_00276618 @ 0x00276618 [MIPS]
+    public static uint Math_StrayEpilogue_00276618(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00276618", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_00276618: ;
+                r29 = r29 + 96u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00276618", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00279514 @ 0x00279514 [MIPS]
+    public static uint Vec_SetZeroHead_00279514(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5, uint a6, uint a7, uint a8, uint a9, uint a10, uint a11, uint a12, uint a13, uint a14, uint a15, uint a16, uint a17, uint a18, uint a19, uint a20, uint a21, uint a22, uint a23)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00279514", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                Mem.Set(r29 + 20u, a5);
+                Mem.Set(r29 + 24u, a6);
+                Mem.Set(r29 + 28u, a7);
+                Mem.Set(r29 + 32u, a8);
+                Mem.Set(r29 + 36u, a9);
+                Mem.Set(r29 + 40u, a10);
+                Mem.Set(r29 + 44u, a11);
+                Mem.Set(r29 + 48u, a12);
+                Mem.Set(r29 + 52u, a13);
+                Mem.Set(r29 + 56u, a14);
+                Mem.Set(r29 + 60u, a15);
+                Mem.Set(r29 + 64u, a16);
+                Mem.Set(r29 + 68u, a17);
+                Mem.Set(r29 + 72u, a18);
+                Mem.Set(r29 + 76u, a19);
+                Mem.Set(r29 + 80u, a20);
+                Mem.Set(r29 + 84u, a21);
+                Mem.Set(r29 + 88u, a22);
+                Mem.Set(r29 + 92u, a23);
+                L_func_00279514: ;
+                r21 = Mem.U32((r29 + 236u));
+                r20 = Mem.U32((r29 + 232u));
+                r19 = Mem.U32((r29 + 228u));
+                L_func_00279520: ;
+                Mem.Set((r4 + 0u), r0);
+                Mem.Set((r4 + 4u), r0);
+                Mem.Set((r4 + 8u), r0); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00279514", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00279520 @ 0x00279520 [C]
+    public static void Vec_SetZero(uint v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00279520", (uint)v);
+            new Vec3f(v).x_Set(0.0f);
+            new Vec3f(v).y_Set(0.0f);
+            new Vec3f(v).z_Set(0.0f);
         }
     }
 

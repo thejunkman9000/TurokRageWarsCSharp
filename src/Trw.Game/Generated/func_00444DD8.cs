@@ -16,7 +16,7 @@ public static partial class Game
             {
                 Mem.Set(0x80154100u, 0.0f);
             }
-            if (((int)(func_00265370()) != 4194304))
+            if (((int)(Mem_GetRamSize()) != 4194304))
             {
                 new O06A_v9(a).unk8_Set((uint)((uint)(new O06A_v9(a).unk8) | (uint)(16777216)));
             }

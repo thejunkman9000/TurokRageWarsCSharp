@@ -29,7 +29,7 @@ public static partial class Game
                 Mem.Set((r29 + 36u), r19);
                 Mem.Set((r29 + 32u), r18);
                 Mem.Set((r29 + 28u), r17);
-                Mem.Set((r29 + 24u), r16); r2 = func_00265370();
+                Mem.Set((r29 + 24u), r16); r2 = Mem_GetRamSize();
                 r3 = 2147483648u;
                 r20 = r2 + r3;
                 r2 = 2151677952u;
@@ -125,7 +125,7 @@ public static partial class Game
                 r2 = r18 | r2;
                 Mem.Set((r17 + 3380u), r0);
                 Mem.Set((r17 + 3388u), r2);
-                Mem.Set((r17 + 3406u), (ushort)r0); r2 = func_00265370();
+                Mem.Set((r17 + 3406u), (ushort)r0); r2 = Mem_GetRamSize();
                 r3 = 5177344u;
                 r3 = r3 | 65535u;
                 r3 = (uint)(r3 < r2 ? 1 : 0);
@@ -214,7 +214,7 @@ public static partial class Game
             int n = 0;
             uint i = 0u;
             uint fq = 0u;
-            s4 = (func_00265370() + func_0023B9A0_K0());
+            s4 = (Mem_GetRamSize() + func_0023B9A0_K0());
             if ((s4 <= 2151677952u))
             {
                 s4 = (uint)(0);
@@ -267,7 +267,7 @@ public static partial class Game
             new M03Ldr(0x80103230u).region.next__Set(0u);
             new M03Ldr(0x80103230u).region.romAddr_Set(((uint)(0x0016E000u) | 2952790016u));
             new M03Ldr(0x80103230u).region.mappedB_Set((ushort)(0));
-            if ((func_00265370() > 5242879u))
+            if ((Mem_GetRamSize() > 5242879u))
             {
                 RomDma_ReadSync(0x801051B8u, 0x0016E000u, 0x00052860u, s4);
             }
@@ -1075,7 +1075,7 @@ public static partial class Game
                 r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
                 r29 = _fp + 256u;
                 L_func_0023CFB8: ;
-                r6 = r17 + r0; func_00271FA4(r4, r5, r6);
+                r6 = r17 + r0; Vec_Add(r4, r5, r6);
                 L_func_0023CFC0: ;
                 Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
@@ -1178,7 +1178,7 @@ public static partial class Game
                 __osRestoreInt(mask);
             }
             Mem.Set(0x800D0920u, (uint)(1024));
-            if ((func_00265370() > (uint)(4194304)))
+            if ((Mem_GetRamSize() > (uint)(4194304)))
             {
                 Mem.Set(0x800D0920u, (uint)((uint)(Mem.U32(0x800D0920u)) * (uint)(2)));
             }
@@ -1586,7 +1586,7 @@ public static partial class Game
                             r = Heap_Alloc(heap, (uint)(new B12Node(n).unk4), default(uint), default(uint));
                             if ((r < new B12Node(n).key))
                             {
-                                func_00265398(r, new B12Node(n).key, (int)((uint)(new B12Node(n).unk4)));
+                                Mem_MoveFast(r, new B12Node(n).key, (int)((uint)(new B12Node(n).unk4)));
                                 new B12Node(n).key_Set(r);
                                 List_Remove(new B12Cache(c).l1.P, n, default(uint), default(uint));
                                 List_Append_00255CB4(_fp, n, default(uint), default(uint));
@@ -4916,7 +4916,7 @@ public static partial class Game
                 Mem.Set((r1 - 4992u), Cpu.W(1));
                 r1 = 2148597760u;
                 Mem.Set((r1 - 5008u), Cpu.W(2));
-                r16 = r2; r2 = (uint)func_0025F0F4((int)r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
+                r16 = r2; r2 = (uint)AnimCodec_DecodeTracks((int)r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
                 { bool c_ = r2 != 0; r4 = r20; if (c_) goto L_L0025FCD0; }
                 r2 = r0; goto L_L0025FD30;
                 L_L0025FCD0: ;
@@ -4941,7 +4941,7 @@ public static partial class Game
                 Mem.Set((r1 - 4992u), Cpu.W(1));
                 r1 = 2148597760u;
                 Mem.Set((r1 - 5008u), Cpu.W(2));
-                r7 = (uint)4; r2 = (uint)func_0025F0F4((int)r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
+                r7 = (uint)4; r2 = (uint)AnimCodec_DecodeTracks((int)r4, r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
                 r2 = (uint)(r0 < r2 ? 1 : 0);
                 L_L0025FD30: ;
                 { bool c_ = r2 != 0; r4 = r0; if (c_) goto L_L0025FD54; }
@@ -4972,6 +4972,81 @@ public static partial class Game
             }
         }
         finally { if (Dbg.On) Dbg.Leave("func_0025F58C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002610C8 @ 0x002610C8 [C]
+    public static void Chunk_InitTable(uint p, int n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002610C8", (uint)p, (uint)n);
+            int i = 0;
+            Mem.Set((p + (uint)(0 * 4)), n);
+            Mem.Set((p + (uint)(1 * 4)), (((n * 4) + 15) & (~7)));
+            for (i = 1; (i <= n); ++i)
+            {
+                Mem.Set((p + (uint)((i + 1) * 4)), (int)(3735928559u));
+            }
+        }
+    }
+
+    // ==== func_00261110 @ 0x00261110 [C]
+    public static uint Chunk_Append(uint p, uint src, int size)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00261110", (uint)p, (uint)src, (uint)size);
+            int n = 0;
+            int i = 0;
+            int k = 0;
+            uint dst = 0u;
+            uint q = 0u;
+            uint r = 0u;
+            n = Mem.S32((p + (uint)(0 * 4)));
+            for (i = 0; (i <= n); ++i)
+            {
+                if (((uint)(Mem.S32((p + (uint)((i + 1) * 4)))) == 3735928559u))
+                {
+                    break;
+                }
+            }
+            --i;
+            k = (i + 1);
+            q = (p + (uint)(k * 4));
+            r = (p + (uint)(i * 4));
+            Mem.Set((q + (uint)(1 * 4)), (Mem.S32((r + (uint)(1 * 4))) + size));
+            dst = (p + (uint)Mem.S32((r + (uint)(1 * 4))));
+            if ((src != 0u))
+            {
+                memcpy(dst, src, (uint)(size));
+            }
+            return dst;
+        }
+    }
+
+    // ==== func_00265984 @ 0x00265984 [C]
+    public static int Resource_ReadRomTableWord(int off)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00265984", (uint)off);
+            uint p = 0u;
+            int r = 0;
+            p = ResourceCache_Hash(0, (uint)(2667076), 2667076, (uint)(32), 16, (uint)(0), (uint)(0), 0x800C9478u, 1);
+            r = Mem.S32((uint)((Mem.S32(p) + off)));
+            ResourcePool_Unref(0, p);
+            return r;
+        }
+    }
+
+    // ==== func_00285130 @ 0x00285130 [C]
+    public static int Resource_UnpackRncCallback(int a, int b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00285130", (uint)a, (uint)b);
+            return Resource_UnpackRnc((uint)(b), 0);
+        }
     }
 
     // ==== func_00285150 @ 0x00285150 [C]

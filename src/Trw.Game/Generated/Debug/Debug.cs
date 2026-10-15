@@ -406,6 +406,73 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_002529E4", r2); Stack.Free(384); }
     }
 
+    // ==== func_002657A4 @ 0x002657A4 [C]
+    public static int Debug_IsDataPointer(uint a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002657A4", (uint)a);
+            if (((a >= (uint)(0x800CD390u)) && (a < ((uint)(0x800CD390u) + (uint)(0x0000F641u)))))
+            {
+                return 1;
+            }
+            if (((a >= (uint)(0x800C6AB0u)) && (a < ((uint)(0x800C6AB0u) + (uint)(0x0000655Cu)))))
+            {
+                return 1;
+            }
+            if (((a >= (uint)(0x800E2830u)) && (a < ((uint)(0x800E2830u) + (uint)(0x00003B6Eu)))))
+            {
+                return 1;
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_0026583C @ 0x0026583C [C]
+    public static int Debug_IsHeapPointer_0026583C(uint a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0026583C", (uint)a);
+            if (((a >= (uint)(0x800E8000u)) && (a < (uint)(0x8016E000u))))
+            {
+                return 1;
+            }
+            if (((a >= (uint)(0x80153140u)) && (a < (uint)(0x801540CAu))))
+            {
+                return 1;
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_00265898 @ 0x00265898 [C]
+    public static int Debug_IsCodePointer(uint a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00265898", (uint)a);
+            if (((a >= (uint)(0x00200500u)) && (a < ((uint)(0x00200500u) + (uint)(0x000C5E98u)))))
+            {
+                return 1;
+            }
+            if (((a >= (uint)(0x00400000u)) && (a < ((uint)(0x00400000u) + (uint)(0x00049794u)))))
+            {
+                return 1;
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_002658FC @ 0x002658FC [C]
+    public static void Debug_Stub_002658FC()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002658FC");
+        }
+    }
+
     // ==== func_00267C88 @ 0x00267C88 [C]
     public static void Debug_Stub_00267C88(int a, int b, int c, uint pos_in)
     {
@@ -449,6 +516,56 @@ public static partial class Game
             }
         }
         finally { Stack.Free(12); }
+    }
+
+    // ==== func_0026D834 @ 0x0026D834 [C]
+    public static void Debug_Stub_0026D834()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0026D834");
+        }
+    }
+
+    // ==== func_0026D83C @ 0x0026D83C [C]
+    public static void Debug_Stub_0026D83C()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0026D83C");
+        }
+    }
+
+    // ==== func_00272664 @ 0x00272664 [C]
+    public static void Debug_Stub_00272664()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00272664");
+        }
+    }
+
+    // ==== func_00273014 @ 0x00273014 [C]
+    public static void Debug_Stub_00273014()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00273014");
+            int i = 3;
+            do
+            {
+            }
+            while (((--i) >= 0));
+        }
+    }
+
+    // ==== func_0027451C @ 0x0027451C [C]
+    public static void Debug_Stub_0027451C()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0027451C");
+        }
     }
 
     // ==== func_002A8544 @ 0x002A8544 [MIPS]

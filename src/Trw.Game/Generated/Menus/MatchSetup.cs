@@ -100,10 +100,10 @@ public static partial class Game
                     do
                     {
                         s1 = ((Random_Next() % s2) + 1);
-                        if ((func_00265670(0x80154018u, s1) == 0))
+                        if ((Bits_Test(0x80154018u, s1) == 0))
                         {
                             s0 = 1;
-                            func_002656A8(0x80154018u, s1, s0);
+                            Bits_Assign(0x80154018u, s1, s0);
                         }
                         ++s3;
                         if ((s3 >= 15001))

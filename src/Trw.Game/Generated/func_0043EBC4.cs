@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043EBC4", (uint)a, (uint)m);
             func_00293808(0x8011FAC0u, 8);
             Mem.Set(0x80154048u, 0);
-            func_002647A8((int)(new S10Menu(m).ctrl.port));
+            Pad_DisableStatusPoll((int)(new S10Menu(m).ctrl.port));
             return 1;
         }
     }

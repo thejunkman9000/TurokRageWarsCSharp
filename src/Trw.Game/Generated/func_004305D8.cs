@@ -27,7 +27,7 @@ public static partial class Game
                 func_0029A73C();
                 new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].fB48_Set(1);
                 NameEntry_LetterUp(k);
-                func_0025DF54(3713);
+                Audio_PlaySound2D(3713);
                 return 0;
             case 4:
                 if ((ev != 1))
@@ -37,7 +37,7 @@ public static partial class Game
                 func_0029A73C();
                 func_0043442C(k, 0);
                 new O05Lobby(Mem.U32(0x800E54A4u)).h.w2C.Set((int)(k), 0);
-                func_0025DF54(3700);
+                Audio_PlaySound2D(3700);
                 return 0;
             case 13:
                 if ((new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(k)].f4 != 6))
@@ -55,7 +55,7 @@ public static partial class Game
                     s = new O05Ch_v2(s).f2C_;
                 }
                 func_0041B95C(new O05Lobby(Mem.U32(0x800E54A4u)).h.f4, k, s);
-                func_0025DF54(3700);
+                Audio_PlaySound2D(3700);
                 return 0;
             case 22:
                 if ((ev == 1))

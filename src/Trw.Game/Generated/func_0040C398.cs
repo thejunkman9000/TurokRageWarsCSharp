@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0040C398");
             if ((Mem.S32(0x800E28D8u) == (-1)))
             {
-                if (((int)(func_00265370()) != 4194304))
+                if (((int)(Mem_GetRamSize()) != 4194304))
                 {
                     Mem.Set(0x800E28D8u, 1);
                 }

@@ -35,7 +35,7 @@ public static partial class Game
                 r1 = 2148859904u;
                 r1 = r1 + r3;
                 Mem.Set((r1 + 13552u), r2);
-                r2 = func_0026456C(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = Pad_Release(r4, r5, r6, r7); r3 = Cpu.V1;
                 r31 = Mem.U32((r29 + 24u));
                 r17 = Mem.U32((r29 + 20u));
                 r16 = Mem.U32((r29 + 16u));

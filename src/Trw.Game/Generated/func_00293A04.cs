@@ -32,7 +32,7 @@ public static partial class Game
                     new B21Game(g).unk26DB8_Set(20);
                     new B21Game(g).unk26DBC_Set(a);
                     new B21Game(g).unk26DB4_Set(old);
-                    if ((func_00264B8C() != 0))
+                    if ((Level_IsRestartPending() != 0))
                     {
                         new B21Game(g).unk26DC4_Set(Mem.F32(0x800CA58Cu));
                     }

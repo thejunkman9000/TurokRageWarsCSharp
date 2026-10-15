@@ -56,7 +56,7 @@ public static class GameBoot
         Mem.Write(0x400000 + 0x1BCDA0 - 0x16E000, rom.AsSpan(0x1BCDA0, 0x1EE000 - 0x1BCDA0));
         // two data blobs sit inside overlay A's code range (C port asm/1B94A0.s, asm/1B9DD0.s): the overlay code is translated, so they must be copied on their own.
         // D_44B4A0 is the template table Collision_InitProfiles copies into the collision profiles (0x80103FF0..0x80104460, the flags word Collision_MoveActor gets as arg4
-        // for every actor state); without it every profile stays 0 and actors walk through walls and never fall. D_44BDD0 is passed on by func_0026AC38.
+        // for every actor state); without it every profile stays 0 and actors walk through walls and never fall. D_44BDD0 is passed on by ModelBatch_SetupEnvMapPass.
         Mem.Write(0x400000 + 0x1B94A0 - 0x16E000, rom.AsSpan(0x1B94A0, 0x1B9A40 - 0x1B94A0));
         Mem.Write(0x400000 + 0x1B9DD0 - 0x16E000, rom.AsSpan(0x1B9DD0, 0x1B9FD0 - 0x1B9DD0));
         // Cold boot: the ROM entry point (func_00200400) calls Game_SoftReset, which finds no "systembootdone" marker and sets D_8014D330 = 1. We start at the

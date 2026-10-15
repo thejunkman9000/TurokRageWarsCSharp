@@ -58,7 +58,7 @@ public static partial class Game
                 r18 = Mem.U32((r2 + 4u));
                 { bool c_ = r3 == 0; r4 = r17 + 8u; if (c_) goto L_L0021140C; }
                 r5 = Mem.U32((r16 + 0u));
-                r5 = r5 + 8u; Cpu.SetS(0, func_0027272C(r4, r5));
+                r5 = r5 + 8u; Cpu.SetS(0, Vec_DistanceSq(r4, r5));
                 r1 = 2148270080u;
                 Cpu.SetW(1, Mem.U32((r1 + 28928u)));
                 fcc = Cpu.S(0) < Cpu.S(1);
@@ -267,7 +267,7 @@ public static partial class Game
             _f5: ;
             tp = new B2Actor(t).pos.P;
             Ai_TurnTowardPoint(ctl, tp, 2.0f, Ai_UpdateAimWobble(ctl));
-            d = func_0027272C(tp, new B2Ctl(ctl).owner.pos.P);
+            d = Vec_DistanceSq(tp, new B2Ctl(ctl).owner.pos.P);
             dd = (d + Mem.F32(0x800C7124u));
             nf = (float)(Mem.S32((ctl + (uint)736)));
             if (!((dd < 0.0f))) goto _f6;
@@ -423,7 +423,7 @@ public static partial class Game
             _f5: ;
             tp = new B2Actor(t).pos.P;
             Ai_TurnTowardPoint(ctl, tp, 2.0f, Ai_UpdateAimWobble(ctl));
-            d = func_0027272C(tp, new B2Ctl(ctl).owner.pos.P);
+            d = Vec_DistanceSq(tp, new B2Ctl(ctl).owner.pos.P);
             if (!((Mem.F32(0x800C7158u) < d))) goto _f6;
             new B2Ctl(ctl).unk230_Set(5);
             Ai_SetState(ctl, 6);
@@ -605,7 +605,7 @@ public static partial class Game
             _f2: ;
             s2 = new B2Ctl(new B2Actor(t).brain_).unk4;
             if (!((new B2Ctl(ctl).unk31C != 0))) goto _f3;
-            if (!((func_0027272C(new B2Actor(t).pos.P, new B2Ctl(ctl).owner.pos.P) < Mem.F32(0x800C7190u)))) goto _f4;
+            if (!((Vec_DistanceSq(new B2Actor(t).pos.P, new B2Ctl(ctl).owner.pos.P) < Mem.F32(0x800C7190u)))) goto _f4;
             new B2Ctl(ctl).unk230_Set(13);
             Ai_SetState(ctl, 7);
             return;
@@ -775,7 +775,7 @@ public static partial class Game
                         r = AiNav_GetNode(L, Mem.S32((_fp + (uint)(i * 4))));
                         if ((AiNav_IsNodeVisible(L, me, Mem.S32((_fp + (uint)(i * 4)))) != 0))
                         {
-                            d = func_0027272C((_fp + 512u), r);
+                            d = Vec_DistanceSq((_fp + 512u), r);
                             if ((best < d))
                             {
                                 best = d;
@@ -832,7 +832,7 @@ public static partial class Game
             Ai_RunThinkStep(b, default(uint), default(uint), default(uint));
             Ai_FollowPath(b);
             Ai_SteerWhileFacingTarget(b);
-            if (((func_0027272C(new ActorB(to).pos.P, new BrainB(b).actor.pos.P) < Mem.F32(0x800C71B4u)) || (new BrainB(b).unk4 == new BrainB(b).unkC)))
+            if (((Vec_DistanceSq(new ActorB(to).pos.P, new BrainB(b).actor.pos.P) < Mem.F32(0x800C71B4u)) || (new BrainB(b).unk4 == new BrainB(b).unkC)))
             {
                 Ai_SetState(b, new BrainB(b).unk230);
             }
@@ -876,7 +876,7 @@ public static partial class Game
                     return;
                 }
             }
-            if ((Mem.F32(0x800C71B8u) < func_0027272C(new BrainB(b).unk64.owner.pos.P, new BrainB(b).actor.pos.P)))
+            if ((Mem.F32(0x800C71B8u) < Vec_DistanceSq(new BrainB(b).unk64.owner.pos.P, new BrainB(b).actor.pos.P)))
             {
                 Ai_SetState(b, new BrainB(b).unk230);
                 return;
@@ -925,7 +925,7 @@ public static partial class Game
                 for (i = 0; (i < new EntList(L).count); ++i)
                 {
                     r = AiNav_GetNode(L, i);
-                    if (((func_0027272C(new BrainB(b).actor.pos.P, r) < range) && !((Mem.U32((r + (uint)12)) & (uint)(70254592)) != 0u)))
+                    if (((Vec_DistanceSq(new BrainB(b).actor.pos.P, r) < range) && !((Mem.U32((r + (uint)12)) & (uint)(70254592)) != 0u)))
                     {
                         AiNav_AddGoal(L, i);
                     }
@@ -1121,7 +1121,7 @@ public static partial class Game
             if ((new BrainB(b).unk4 == new BrainB(b).unkC))
             {
                 s = (int)(Ai_GetPosition(b));
-                if ((func_00272768((uint)(s), AiNav_GetNode(L, new BrainB(b).unkC)) < Mem.F32(0x800C71C0u)))
+                if ((Vec_Distance((uint)(s), AiNav_GetNode(L, new BrainB(b).unkC)) < Mem.F32(0x800C71C0u)))
                 {
                     if ((new BrainB(b).unk224 >= 0))
                     {
@@ -1203,7 +1203,7 @@ public static partial class Game
                 r5 = Mem.U32((r17 + 12u));
                 r16 = r2; r2 = AiNav_GetNode(r4, (int)r5);
                 r4 = r16;
-                r5 = r2; Cpu.SetS(0, func_00272768(r4, r5));
+                r5 = r2; Cpu.SetS(0, Vec_Distance(r4, r5));
                 r1 = 2148270080u;
                 Cpu.SetW(1, Mem.U32((r1 + 29120u)));
                 fcc = Cpu.S(0) < Cpu.S(1);

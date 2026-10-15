@@ -30,7 +30,7 @@ public static partial class Game
                 Mem.Set(0x800E28C4u, 0);
                 Mem.Set(0x80153784u, 0);
                 Mem.Set(0x8015375Cu, 1);
-                if ((func_0026466C() == 0))
+                if ((Pad_AnyConnected() == 0))
                 {
                     Mem.Set(0x80153784u, 1);
                     Mem.Set(0x8014AD9Cu, 0);

@@ -103,7 +103,7 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, v1_in, 12);
                 Mem.Copy(_fp + 16u, v2_in, 12);
                 if (Dbg.On) Dbg.Enter("func_00205720_callA", (uint)sp, (uint)own, (uint)v1_in);
-                if (((int)(func_00262D00(0x80135210u, p6C, 0, (int)(p70), p68, _fp, new S5Spawn(sp).ang, new S5Spawn(sp).v1C.P, (_fp + 16u), (own + 292u))) != 0))
+                if (((int)(ActorPool_Spawn(0x80135210u, p6C, 0, (int)(p70), p68, _fp, new S5Spawn(sp).ang, new S5Spawn(sp).v1C.P, (_fp + 16u), (own + 292u))) != 0))
                 {
                     new S5Own(own).count_Set((int)(new S5Own(own).count - 1));
                 }
@@ -152,7 +152,7 @@ public static partial class Game
                 t0 = new S5Spawn(sp).surf;
                 if ((t0 != 0))
                 {
-                    h = func_00275E44((uint)(t0), new S5Spawn(sp).pos.x, new S5Spawn(sp).pos.z);
+                    h = Collision_GetFloorHeightAt((uint)(t0), new S5Spawn(sp).pos.x, new S5Spawn(sp).pos.z);
                     if ((new Vec3f(_fp).y < h))
                     {
                         new Vec3f(_fp).y_Set(h);
@@ -198,23 +198,23 @@ public static partial class Game
                     {
                         if (((new S5Info(info).flags & (uint)(32)) != 0u))
                         {
-                            s5 = (int)((short)((int)(func_00279808(0x800CD764u))));
+                            s5 = (int)((short)((int)(Random_PickWeighted(0x800CD764u))));
                         }
                         if (((new S5Info(info).flags & (uint)(64)) != 0u))
                         {
-                            s6 = (int)((short)((int)(func_00279808(0x800CD784u))));
+                            s6 = (int)((short)((int)(Random_PickWeighted(0x800CD784u))));
                         }
                         if (((new S5Info(info).flags & (uint)(128)) != 0u))
                         {
-                            func_002798CC((_fp + 136u));
+                            Random_WeightedClear((_fp + 136u));
                             for (e = 0x800CD798u; ((int)(new S5Ent(e).id) != (-1)); e += 4u)
                             {
                                 if ((func_00205720_canSpawnTbl((int)(new S5Ent(e).id)) != 0))
                                 {
-                                    func_002798D4((_fp + 136u), (short)((int)(new S5Ent(e).id)), (short)((int)(new S5Ent(e).w)));
+                                    Random_WeightedAdd((_fp + 136u), (short)((int)(new S5Ent(e).id)), (short)((int)(new S5Ent(e).w)));
                                 }
                             }
-                            s3 = (int)((short)((int)(func_00279918((_fp + 136u)))));
+                            s3 = (int)((short)((int)(Random_WeightedPick((_fp + 136u)))));
                         }
                     }
                     else
@@ -226,19 +226,19 @@ public static partial class Game
                         }
                         if (((new S5Info(info).flags & (uint)(32)) != 0u))
                         {
-                            func_002798CC((_fp + 32u));
+                            Random_WeightedClear((_fp + 32u));
                             for (e2 = 0x800CD760u; ((int)(Mem.S16(e2)) != (-1)); e2 = (uint)(e2 + (uint)(2 * 2)))
                             {
                                 if ((Player_CanTakeAmmoItem((uint)(v), (int)(Mem.S16(e2))) != 0))
                                 {
-                                    func_002798D4((_fp + 32u), (short)((int)(Mem.S16((e2 + (uint)(0 * 2))))), (short)((int)(Mem.S16((e2 + (uint)(1 * 2))))));
+                                    Random_WeightedAdd((_fp + 32u), (short)((int)(Mem.S16((e2 + (uint)(0 * 2))))), (short)((int)(Mem.S16((e2 + (uint)(1 * 2))))));
                                 }
                             }
-                            s5 = (int)((short)((int)(func_00279918((_fp + 32u)))));
+                            s5 = (int)((short)((int)(Random_WeightedPick((_fp + 32u)))));
                         }
                         if (((new S5Info(info).flags & (uint)(64)) != 0u))
                         {
-                            func_002798CC((_fp + 32u));
+                            Random_WeightedClear((_fp + 32u));
                             e2 = 0x800CD768u;
                             if ((Mem.S32(0x8013B290u) != 0))
                             {
@@ -248,32 +248,32 @@ public static partial class Game
                             {
                                 if ((Player_IsHurt((uint)(v)) != 0))
                                 {
-                                    func_002798D4((_fp + 32u), (short)((int)(Mem.S16((e2 + (uint)(0 * 2))))), (short)((int)(Mem.S16((e2 + (uint)(1 * 2))))));
+                                    Random_WeightedAdd((_fp + 32u), (short)((int)(Mem.S16((e2 + (uint)(0 * 2))))), (short)((int)(Mem.S16((e2 + (uint)(1 * 2))))));
                                 }
                             }
-                            s6 = (int)((short)((int)(func_00279918((_fp + 32u)))));
+                            s6 = (int)((short)((int)(Random_WeightedPick((_fp + 32u)))));
                         }
                         if (((new S5Info(info).flags & (uint)(128)) != 0u))
                         {
-                            s3 = (int)((short)((int)(func_00279808(0x800CD794u))));
+                            s3 = (int)((short)((int)(Random_PickWeighted(0x800CD794u))));
                         }
                     }
-                    func_002798CC((_fp + 32u));
+                    Random_WeightedClear((_fp + 32u));
                     if ((s5 != (-1)))
                     {
-                        func_002798D4((_fp + 32u), (short)(s5), (short)(100));
+                        Random_WeightedAdd((_fp + 32u), (short)(s5), (short)(100));
                     }
                     if ((s6 != (-1)))
                     {
-                        func_002798D4((_fp + 32u), (short)(s6), (short)(100));
+                        Random_WeightedAdd((_fp + 32u), (short)(s6), (short)(100));
                     }
                     if ((s3 != (-1)))
                     {
-                        func_002798D4((_fp + 32u), (short)(s3), (short)(100));
+                        Random_WeightedAdd((_fp + 32u), (short)(s3), (short)(100));
                     }
                     if (((int)(new S5List_v2((_fp + 32u)).count) != 0))
                     {
-                        id = (int)((short)((int)(func_00279918((_fp + 32u)))));
+                        id = (int)((short)((int)(Random_WeightedPick((_fp + 32u)))));
                         func_00205720_spawnObj(sp, own, _fp, t0, id);
                     }
                     break;
@@ -344,7 +344,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00206018", (uint)actor, (uint)state);
-            if (((func_00285F28(0x8011FE88u, actor) ^ 1) == 0))
+            if (((Level_IsEntitySavedFlagSet(0x8011FE88u, actor) ^ 1) == 0))
             {
                 if ((new ActorState(state).link_ != 0u))
                 {
@@ -437,7 +437,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00206200", (uint)arg);
-            return ((func_00285F28(0x8011FE88u, arg) == 1) ? 1 : 0);
+            return ((Level_IsEntitySavedFlagSet(0x8011FE88u, arg) == 1) ? 1 : 0);
         }
     }
 
@@ -447,7 +447,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00206230", (uint)arg);
-            func_00285D80(0x8011FE88u, arg, 1);
+            Level_SetEntitySavedFlag(0x8011FE88u, arg, 1);
         }
     }
 
@@ -467,7 +467,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00206288", (uint)arg);
-            func_00285D80(0x8011FE88u, arg, 0);
+            Level_SetEntitySavedFlag(0x8011FE88u, arg, 0);
         }
     }
 
@@ -527,7 +527,7 @@ public static partial class Game
                 Mem.Copy(_fp + 0u, v1_in, 12);
                 Mem.Copy(_fp + 16u, v2_in, 12);
                 if (Dbg.On) Dbg.Enter("func_002063EC", (uint)actor, (uint)state, (uint)v1_in);
-                if (((int)(func_00262D00(0x80135210u, p6C, 0, p70, p68, _fp, new B01Actor(actor).unk6C, new B01Actor(actor).vec1C.P, (_fp + 16u), new B01State(state).unk124.P)) != 0))
+                if (((int)(ActorPool_Spawn(0x80135210u, p6C, 0, p70, p68, _fp, new B01Actor(actor).unk6C, new B01Actor(actor).vec1C.P, (_fp + 16u), new B01State(state).unk124.P)) != 0))
                 {
                     new B01State(state).unk128.i_Set((new B01State(state).unk128.i - 1));
                 }

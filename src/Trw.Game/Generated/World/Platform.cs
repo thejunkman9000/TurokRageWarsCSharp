@@ -209,7 +209,7 @@ public static partial class Game
                 new Vec3f(_fp).x_Set((float)((float)(new Vec3f(_fp).x) + (new M1Info(info).f30 * sinf(new M1Info(info).f34))));
                 new Vec3f(_fp).z_Set((float)((float)(new Vec3f(_fp).z) + (new M1Info(info).f30 * cosf(new M1Info(info).f34))));
                 _f2: ;
-                func_00272038(new M1State(state).v54.P, t, new M1State(state).vA0.P, _fp);
+                Vec_Lerp(new M1State(state).v54.P, t, new M1State(state).vA0.P, _fp);
                 switch ((int)(new M1Info(info).unk28.b[(int)(0)])) { case 0: goto _f4; case 1: goto _f5; default: goto _f3; }
                 _f4: ;
                 x = sinf(new M1State(state).f13C);
@@ -245,7 +245,7 @@ public static partial class Game
                 goto _f6;
                 _f6: ;
                 if (!(((int)(new M1Info(info).unk4.hu[(int)(0)]) == 0))) goto _f13;
-                func_0027625C((uint)(new M1Actor(actor).unk14), ((func_00275E44((uint)(new M1Actor(actor).unk14), new M1Actor(actor).pos.x, new M1Actor(actor).pos.z) + new M1State(state).v54.y) - new M1Actor(actor).pos.y));
+                Collision_SetFaceGroupHeight((uint)(new M1Actor(actor).unk14), ((Collision_GetFloorHeightAt((uint)(new M1Actor(actor).unk14), new M1Actor(actor).pos.x, new M1Actor(actor).pos.z) + new M1State(state).v54.y) - new M1Actor(actor).pos.y));
                 _f13: ;
             }
         }
@@ -291,7 +291,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r8);
                 Mem.Set((r29 + 20u), r9);
                 Mem.Set((r29 + 24u), r10);
-                r6 = r21 + 8u; func_00271FD8(r4, r5, r6);
+                r6 = r21 + 8u; Vec_Sub(r4, r5, r6);
                 r4 = r19; LevelPath_GetPrevCursorPoint(r4);
                 Cpu.SetW(1, Mem.U32((r29 + 32u)));
                 Cpu.SetS(1, Cpu.S(1) * Cpu.S(1));
@@ -354,9 +354,9 @@ public static partial class Game
                 r5 = r16;
                 r6 = r18;
                 L_L0020725C: ;
-                func_00271FD8(r4, r5, r6);
+                Vec_Sub(r4, r5, r6);
                 r16 = r29 + 48u;
-                r4 = r16; func_002720EC(r4);
+                r4 = r16; Vec_Normalize(r4);
                 Cpu.SetW(1, Mem.U32((r29 + 48u)));
                 Cpu.SetW(2, Mem.U32((r17 + 320u)));
                 Cpu.SetS(1, Cpu.S(1) - Cpu.S(2));
@@ -378,7 +378,7 @@ public static partial class Game
                 Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
                 Cpu.SetS(2, Cpu.S(2) + Cpu.S(0));
                 r4 = r16;
-                Mem.Set((r29 + 56u), Cpu.W(2)); func_002720EC(r4);
+                Mem.Set((r29 + 56u), Cpu.W(2)); Vec_Normalize(r4);
                 Cpu.SetW(1, Mem.U32((r17 + 332u)));
                 r1 = 2148270080u;
                 Cpu.SetW(0, Mem.U32((r1 + 27684u)));
@@ -386,7 +386,7 @@ public static partial class Game
                 { bool c_ = !fcc;  if (c_) goto L_L00207360; }
                  goto L_L00207348;
                 L_L002072F0: ;
-                r4 = r20; func_002720EC(r4);
+                r4 = r20; Vec_Normalize(r4);
                 Cpu.SetW(0, Mem.U32((r29 + 32u)));
                 Cpu.SetW(1, Mem.U32((r17 + 320u)));
                 Cpu.SetS(0, Cpu.S(0) - Cpu.S(1));
@@ -405,7 +405,7 @@ public static partial class Game
                 Cpu.SetS(0, Cpu.S(20) * Cpu.S(0));
                 Cpu.SetS(1, Cpu.S(1) + Cpu.S(0));
                 r4 = r29 + 48u;
-                Mem.Set((r29 + 56u), Cpu.W(1)); func_002720EC(r4);
+                Mem.Set((r29 + 56u), Cpu.W(1)); Vec_Normalize(r4);
                 L_L00207348: ;
                 Cpu.SetW(0, Mem.U32((r29 + 48u)));
                 Mem.Set((r17 + 320u), Cpu.W(0));
@@ -730,7 +730,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002077CC", (uint)arg);
-            func_00285F28(0x8011FE88u, arg);
+            Level_IsEntitySavedFlagSet(0x8011FE88u, arg);
         }
     }
 
@@ -806,7 +806,7 @@ public static partial class Game
                 new B01State(state).unk98_Set(new B01State(state).unk96);
                 Actor_DispatchEvent(actor, state, 4);
             }
-            if ((func_00285F28(0x8011FE88u, actor) == 0))
+            if ((Level_IsEntitySavedFlagSet(0x8011FE88u, actor) == 0))
             {
                 new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~256))));
             }
@@ -822,14 +822,14 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_00207910", (uint)actor, (uint)state);
-                func_002737D0(_fp, new B01State(state).vec130.z);
-                func_00273930(_fp, new B01State(state).vec130.y);
-                func_00273B08(_fp, new B01Actor(actor).unk6C);
-                func_0027302C(new B01Actor(actor).mtx74.P, _fp);
-                func_002734EC(new B01Actor(actor).mtx74.P, new B01Actor(actor).unk50, new B01Actor(actor).unk54, new B01Actor(actor).unk58);
-                func_002725BC(new B01Actor(actor).pos.P, 2.0E+4f);
-                func_002734B8(new B01Actor(actor).mtx74.P, new B01Actor(actor).pos.x, new B01Actor(actor).pos.y, new B01Actor(actor).pos.z);
-                func_00273DDC(new B01Actor(actor).mtx74.P);
+                Math_MtxMakeRotateZ(_fp, new B01State(state).vec130.z);
+                Math_MtxPostRotateX(_fp, new B01State(state).vec130.y);
+                Math_MtxPostRotateY(_fp, new B01Actor(actor).unk6C);
+                Math_MtxCopy(new B01Actor(actor).mtx74.P, _fp);
+                Math_MtxScaleRows(new B01Actor(actor).mtx74.P, new B01Actor(actor).unk50, new B01Actor(actor).unk54, new B01Actor(actor).unk58);
+                Vec_ClampLengthChecked(new B01Actor(actor).pos.P, 2.0E+4f);
+                Math_MtxTranslate(new B01Actor(actor).mtx74.P, new B01Actor(actor).pos.x, new B01Actor(actor).pos.y, new B01Actor(actor).pos.z);
+                Math_MtxSwapRowsYZ(new B01Actor(actor).mtx74.P);
             }
         }
         finally { Stack.Free(64); }
@@ -842,7 +842,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002079B0", (uint)actor, (uint)state);
             uint info = (new B01Actor(actor).def_ + (uint)20);
-            if ((func_00285F28(0x8011FE88u, actor) == 0))
+            if ((Level_IsEntitySavedFlagSet(0x8011FE88u, actor) == 0))
             {
                 new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & 4294901759u));
                 new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~256))));
@@ -926,7 +926,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00207B5C", (uint)actor, (uint)flags);
             uint info = new ActorDef(new Actor(actor).def_).info.P;
-            func_00278DE8(actor, 65536, (int)(actor));
+            Level_FireEntityTriggers(actor, 65536, (int)(actor));
             if (!((new ActorInfo(info).flags24 & (uint)(64)) != 0u))
             {
                 Mem.Set(flags, (uint)((uint)(Mem.U32(flags)) & 4294901759u));
@@ -1024,7 +1024,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00207D34", (uint)actor, (uint)state);
             uint info = new B2Actor(actor).def.info.P;
-            func_00278DE8(actor, 131072, (int)(actor));
+            Level_FireEntityTriggers(actor, 131072, (int)(actor));
             if (((new B2Info(info).flags24 & (uint)(128)) == (uint)(0)))
             {
                 new B2State(state).flags_Set((uint)((uint)(new B2State(state).flags) & (uint)((~131072))));
@@ -1096,7 +1096,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00207EAC", (uint)actor);
-            func_00285D80(0x8011FE88u, actor, 1);
+            Level_SetEntitySavedFlag(0x8011FE88u, actor, 1);
             new B2Actor(actor).flags_Set((uint)((uint)(new B2Actor(actor).flags) | (uint)(256)));
         }
     }
@@ -1117,7 +1117,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00207F1C", (uint)actor);
-            func_00285D80(0x8011FE88u, actor, 0);
+            Level_SetEntitySavedFlag(0x8011FE88u, actor, 0);
             new B2Actor(actor).flags_Set((uint)((uint)(new B2Actor(actor).flags) & (uint)((~256))));
         }
     }

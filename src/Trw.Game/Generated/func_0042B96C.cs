@@ -38,7 +38,7 @@ public static partial class Game
             }
             if ((s0 == 1))
             {
-                func_0025DF54(3709);
+                Audio_PlaySound2D(3709);
                 func_0042B4C4();
                 new O04ModeF60(Mem.U32(0x800E4F60u)).unk45C_Set(0);
                 new O04ModeF60(Mem.U32(0x800E4F60u)).unk464_Set(0);

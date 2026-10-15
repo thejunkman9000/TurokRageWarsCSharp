@@ -30,7 +30,7 @@ public static partial class Game
                     do
                     {
                         e = new Level(lv).list2[(int)(i)];
-                        func_00271FD8(_fp, new Entity(e).pos.P, new Entity(tgt).pos.P);
+                        Vec_Sub(_fp, new Entity(e).pos.P, new Entity(tgt).pos.P);
                         dist = (int)(sqrtf((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z))));
                         if ((bestd >= dist))
                         {

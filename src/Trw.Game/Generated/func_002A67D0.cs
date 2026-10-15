@@ -27,9 +27,9 @@ public static partial class Game
                         {
                             if ((zero < new Slot67D0(s).unk24))
                             {
-                                func_0027302C(_fp, (tbl + (uint)(new Slot67D0(s).shape.unkC << (int)6)));
-                                func_002734EC(_fp, k, k, k);
-                                func_00272898(_fp);
+                                Math_MtxCopy(_fp, (tbl + (uint)(new Slot67D0(s).shape.unkC << (int)6)));
+                                Math_MtxScaleRows(_fp, k, k, k);
+                                Math_MtxClampFixedRange(_fp);
                                 func_002A35C0(o, s, _fp, default(uint));
                             }
                         }

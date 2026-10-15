@@ -85,7 +85,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020524C", (uint)actor, (uint)state);
-            if ((func_00285F28(0x8011FE88u, actor) == 1))
+            if ((Level_IsEntitySavedFlagSet(0x8011FE88u, actor) == 1))
             {
                 Actor_DispatchEvent(actor, state, 1);
             }
@@ -162,8 +162,8 @@ public static partial class Game
             uint info = 0u;
             int mode = 0;
             info = new M1Actor(actor).def.info.P;
-            func_00285D80(0x8011FE88u, actor, 1);
-            func_00278DE8(actor, 262144, (int)(actor));
+            Level_SetEntitySavedFlag(0x8011FE88u, actor, 1);
+            Level_FireEntityTriggers(actor, 262144, (int)(actor));
             if (!((new M1State(state).unk4 == 0))) goto _f0;
             new M1Actor(actor).flags_Set((uint)((uint)(new M1Actor(actor).flags) & (uint)((~65536))));
             _f0: ;
@@ -174,7 +174,7 @@ public static partial class Game
             mode = Mem.S32((0x8011FE88u + (uint)(0 * 4)));
             if (!((mode == 4))) goto _f2;
             if (!((new M1Info(info).unk20.i != (-1)))) goto _f3;
-            func_0025DE74((int)(new M1Info(info).unk20.h[(int)(1)]), new M1Actor(actor).pos.P, 0, (-1));
+            Audio_PlaySound((int)(new M1Info(info).unk20.h[(int)(1)]), new M1Actor(actor).pos.P, 0, (-1));
             _f3: ;
             if (!((new M1Info(info).unk1C != (-1)))) goto _f4;
             Effect_SpawnForObject(actor, new M1Info(info).unk1C, new M1Actor(actor).pos.P);
@@ -226,7 +226,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002054E0", (uint)actor, (uint)state);
             uint info = (new B01Actor(actor).def_ + (uint)20);
             new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & 4294901759u));
-            func_00278DE8(actor, 262144, (int)(actor));
+            Level_FireEntityTriggers(actor, 262144, (int)(actor));
             if ((new B01Info(info).unk2C == 0))
             {
                 new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) & (uint)((~8192))));
@@ -236,7 +236,7 @@ public static partial class Game
             {
                 if ((new B01Info(info).unk34.i != (-1)))
                 {
-                    func_0025DE74((int)((uint)((int)(new B01Info(info).unk34.h[(int)(1)]))), C.Tmp(Cpu.F2U(new B01Actor(actor).pos.x), Cpu.F2U(new B01Actor(actor).pos.y), Cpu.F2U(new B01Actor(actor).pos.z)), (int)((uint)(0)), (int)((uint)((-1))));
+                    Audio_PlaySound((int)((uint)((int)(new B01Info(info).unk34.h[(int)(1)]))), C.Tmp(Cpu.F2U(new B01Actor(actor).pos.x), Cpu.F2U(new B01Actor(actor).pos.y), Cpu.F2U(new B01Actor(actor).pos.z)), (int)((uint)(0)), (int)((uint)((-1))));
                 }
                 if ((new B01Info(info).unk30 != (-1)))
                 {
@@ -271,7 +271,7 @@ public static partial class Game
             new B01Actor(obj).unk17C_Set((1 << (int)new ActorState(state).unk124));
             if ((new B01Evt(evt).unk0 != 0))
             {
-                func_0026DC24((uint)(new B01Evt(evt).unkC), new B01Actor(obj).unkB4, 1, (int)((new B01Actor(obj).seg.P + (uint)(Mem.S32(0x800D297Cu) * 24))), (uint)(0), Mem.S32(new ActorState(state).unk128.P));
+                Model_QueueBatched((uint)(new B01Evt(evt).unkC), new B01Actor(obj).unkB4, 1, (int)((new B01Actor(obj).seg.P + (uint)(Mem.S32(0x800D297Cu) * 24))), (uint)(0), Mem.S32(new ActorState(state).unk128.P));
             }
         }
     }
@@ -283,7 +283,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00205694", (uint)actor, (uint)state);
             Actor_DispatchEvent(actor, state, 1);
-            func_00285D80(0x8011FE88u, actor, 1);
+            Level_SetEntitySavedFlag(0x8011FE88u, actor, 1);
         }
     }
 

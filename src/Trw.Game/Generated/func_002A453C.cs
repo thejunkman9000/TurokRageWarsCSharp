@@ -14,18 +14,18 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_002A453C_Attach453C", (uint)slot, (uint)e, (uint)act);
                 float k = 0f;
-                func_00270980(_fp, (act + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 96)), default(uint), default(uint));
+                Math_MtxFixedToFloatAffine(_fp, (act + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 96)), default(uint), default(uint));
                 k = Mem.F32(0x800CAF80u);
                 if ((new Actor453C(act).unk118.unk14 != 0))
                 {
                     k = Mem.F32(0x800CAF84u);
                 }
-                func_002734EC(_fp, k, k, k);
-                func_00272898(_fp);
-                func_00273340(_fp, new SEnt(e).m10.P);
+                Math_MtxScaleRows(_fp, k, k, k);
+                Math_MtxClampFixedRange(_fp);
+                Math_MtxGetTranslationVec(_fp, new SEnt(e).m10.P);
                 if (((new SSlot(slot).flags & (uint)(4)) != 0u))
                 {
-                    func_0027335C(_fp, new SEnt(e).m1C.P);
+                    Math_MtxGetScale(_fp, new SEnt(e).m1C.P);
                 }
                 else
                 {
@@ -92,7 +92,7 @@ public static partial class Game
                             pv = new SEnt(e).prev_;
                             if ((pv != 0u))
                             {
-                                func_00271FD8(_fp, new SEnt(e).m10.P, new SEnt(pv).m10.P);
+                                Vec_Sub(_fp, new SEnt(e).m10.P, new SEnt(pv).m10.P);
                                 d = sqrtf((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z)));
                                 new SEnt(pv).unkAC_Set(d);
                                 new SSlot(slot).unk4C_Set((new SSlot(slot).unk4C + d));

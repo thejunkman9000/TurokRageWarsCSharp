@@ -22,7 +22,7 @@ public static partial class Game
                 new Vec3f((_fp + 16u)).x_Set(0.0f);
                 new Vec3f((_fp + 16u)).z_Set(0.0f);
                 new Vec3f((_fp + 16u)).y_Set(one);
-                func_00272088((_fp + 32u), (_fp + 16u), _fp);
+                Vec_Cross((_fp + 32u), (_fp + 16u), _fp);
                 len = sqrtf((((new Vec3f((_fp + 32u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 32u)).y * new Vec3f((_fp + 32u)).y)) + (new Vec3f((_fp + 32u)).z * new Vec3f((_fp + 32u)).z)));
                 if ((len == 0.0f))
                 {
@@ -33,7 +33,7 @@ public static partial class Game
                 }
                 else
                 {
-                    func_0027200C((_fp + 32u), (_fp + 32u), (one / len));
+                    Vec_Scale((_fp + 32u), (_fp + 32u), (one / len));
                     ang = (Math_Acosf((((new Vec3f((_fp + 16u)).x * new Vec3f(_fp).x) + (new Vec3f((_fp + 16u)).y * new Vec3f(_fp).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f(_fp).z))) * Mem.F32(0x800CB01Cu));
                     s = sinf(ang);
                     Mem.Set(0x80115DECu, s);

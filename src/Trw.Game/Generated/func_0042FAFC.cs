@@ -22,7 +22,7 @@ public static partial class Game
                 new O05Lobby(Mem.U32(0x800E54A4u)).h.f50_Set((int)(new O05Lobby(Mem.U32(0x800E54A4u)).h.f50 - 1));
                 if ((new O05Lobby(Mem.U32(0x800E54A4u)).h.f50 <= 0))
                 {
-                    func_0025DF54(3705);
+                    Audio_PlaySound2D(3705);
                     func_0040E958(new O05Lobby(Mem.U32(0x800E54A4u)).h.f28, 1);
                     func_00419FD8(new O05Lobby(Mem.U32(0x800E54A4u)).h.f24, 4);
                     new O05Lobby(Mem.U32(0x800E54A4u)).h.f4C_Set(4);
@@ -62,7 +62,7 @@ public static partial class Game
                 }
                 break;
             case 5:
-                func_0025DF54(3704);
+                Audio_PlaySound2D(3704);
                 new O05Lobby(Mem.U32(0x800E54A4u)).h.f4C_Set(2);
                 new O05Lobby(Mem.U32(0x800E54A4u)).h.f50_Set(4);
                 func_0040E958(new O05Lobby(Mem.U32(0x800E54A4u)).h.f28, 0);

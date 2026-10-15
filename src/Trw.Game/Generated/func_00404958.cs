@@ -42,7 +42,7 @@ public static partial class Game
                     memcpy(dst, buf, (uint)(size));
                 }
             }
-            func_0026456C(default(uint), default(uint), default(uint), default(uint));
+            Pad_Release(default(uint), default(uint), default(uint), default(uint));
             ResourcePool_Purge();
             if ((h != 0u))
             {
@@ -80,7 +80,7 @@ public static partial class Game
                     {
                         break;
                     }
-                    if (((func_00404958_O01ReadFile(pad, Mem.S32(_fp), buf, rsize) != 0) || (func_00265464(buf, data, (int)((uint)(size))) != 0)))
+                    if (((func_00404958_O01ReadFile(pad, Mem.S32(_fp), buf, rsize) != 0) || (Mem_Compare(buf, data, (int)((uint)(size))) != 0)))
                     {
                         if ((func_00404858(pad, Mem.S32(_fp)) != 0))
                         {

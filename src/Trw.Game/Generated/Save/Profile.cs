@@ -326,7 +326,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022F4AC", (uint)p, (uint)a1);
-            func_002656A8((p + (uint)121), a1, 1);
+            Bits_Assign((p + (uint)121), a1, 1);
         }
     }
 
@@ -349,7 +349,7 @@ public static partial class Game
                 }
                 else
                 {
-                    r = func_00265670((p + (uint)121), kind);
+                    r = Bits_Test((p + (uint)121), kind);
                 }
             }
             return r;
@@ -372,7 +372,7 @@ public static partial class Game
                 r29 = _fp + 256u;
                 Mem.Set(r29 + 16u, a4);
                 L_func_0022F4F0: ;
-                r4 = r4 + 121u; r2 = (uint)func_00265670(r4, (int)r5);
+                r4 = r4 + 121u; r2 = (uint)Bits_Test(r4, (int)r5);
                 r31 = Mem.U32((r29 + 16u));
                 r29 = r29 + 24u; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
@@ -390,13 +390,13 @@ public static partial class Game
             switch (kind)
             {
             case 16:
-                func_002656A8((p + (uint)120), 0, 1);
+                Bits_Assign((p + (uint)120), 0, 1);
                 break;
             case 17:
-                func_002656A8((p + (uint)120), 1, 1);
+                Bits_Assign((p + (uint)120), 1, 1);
                 break;
             default:
-                func_002656A8((p + (uint)123), kind, 1);
+                Bits_Assign((p + (uint)123), kind, 1);
                 break;
             }
         }
@@ -429,7 +429,7 @@ public static partial class Game
                 L_L0022F57C: ;
                 r5 = (uint)1;
                 L_L0022F580: ;
-                r2 = (uint)func_00265670(r4, (int)r5);
+                r2 = (uint)Bits_Test(r4, (int)r5);
                 r31 = Mem.U32((r29 + 16u));
                 r29 = r29 + 24u; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;
@@ -444,7 +444,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022F594", (uint)p, (uint)a1);
-            func_002656A8((p + (uint)81), a1, 1);
+            Bits_Assign((p + (uint)81), a1, 1);
         }
     }
 
@@ -465,7 +465,7 @@ public static partial class Game
                 L_func_0022F5B4: ;
                 r29 = r29 - 24u;
                 Mem.Set((r29 + 16u), r31);
-                r4 = r4 + 81u; r2 = (uint)func_00265670(r4, (int)r5);
+                r4 = r4 + 81u; r2 = (uint)Bits_Test(r4, (int)r5);
                 r31 = Mem.U32((r29 + 16u));
                 r29 = r29 + 24u; Cpu.V1 = r3; return r2;
                 Cpu.V1 = r3; return r2;

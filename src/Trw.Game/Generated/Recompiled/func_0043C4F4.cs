@@ -1326,7 +1326,7 @@ public static partial class Game
                 L_I0043D0E0: ;
                 r4 = (uint)(int)Mem.S16((r1 - 1122u));
                 L_I0043D0E4: ;
-                r2 = (uint)func_0025DF54((int)r4);
+                r2 = (uint)Audio_PlaySound2D((int)r4);
                 L_L0043D0EC: ;
                 L_I0043D0EC: ;
                 r2 = (uint)(r20 < (uint)(12) ? 1 : 0);

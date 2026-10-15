@@ -34,10 +34,10 @@ public static partial class Game
             if ((s0 != (-1)))
             {
                 p = (0x80102C24u + (uint)(a * 400));
-                if ((func_00265670(p, s0) == 0))
+                if ((Bits_Test(p, s0) == 0))
                 {
                     s2 = 5052;
-                    func_002656A8(p, s0, 1);
+                    Bits_Assign(p, s0, 1);
                 }
             }
             return s2;

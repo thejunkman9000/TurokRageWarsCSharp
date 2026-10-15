@@ -20,7 +20,7 @@ public static partial class Game
             {
                 new StateObj(o).unk5C_Set(mode);
                 func_002A2D7C(o);
-                func_0025DF54(3713);
+                Audio_PlaySound2D(3713);
                 return 0;
             }
             return 0;

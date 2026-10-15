@@ -94,7 +94,7 @@ public static partial class Game
                             }
                             else
                             {
-                                func_00278EEC(k);
+                                Level_ActivateTriggerRecord(k);
                             }
                             new O01EntF(e).time_Set(Mem.F32(0x800E0CA4u));
                             new O01Kind_v2(k).unkE_Set((byte)((((int)(new O01Kind_v2(k).unkE) | 1) & 239)));

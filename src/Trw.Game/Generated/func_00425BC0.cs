@@ -17,7 +17,7 @@ public static partial class Game
             c = 0;
             for (i = 0; (i < 50); ++i)
             {
-                if ((func_00265670(((0x80102B00u + (uint)74) + (uint)(a * 400)), i) == 1))
+                if ((Bits_Test(((0x80102B00u + (uint)74) + (uint)(a * 400)), i) == 1))
                 {
                     ++c;
                 }

@@ -29,7 +29,7 @@ public static partial class Game
                 func_00439D3C(new O3Pk(Mem.U32(0x800E3590u)).sub.P, 0, _fp, (_fp + 16u));
                 func_00439DC0(new O3Pk(Mem.U32(0x800E3590u)).sub.P, (_fp + 32u));
                 func_00439E10(new O3Pk(Mem.U32(0x800E3590u)).sub.P, (_fp + 48u));
-                func_0025DF54(3704);
+                Audio_PlaySound2D(3704);
                 return 0;
             }
         }

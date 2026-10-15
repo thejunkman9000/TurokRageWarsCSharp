@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00409F98", (uint)a, (uint)b);
-            func_002647A8(b);
+            Pad_DisableStatusPoll(b);
             Level_SetTransitionState_0044E178(0x8011FE88u, Mem.S32(0x8013B2C8u), 2);
         }
     }

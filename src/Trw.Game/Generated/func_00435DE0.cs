@@ -13,7 +13,7 @@ public static partial class Game
             ResourcePool_MallocFree(Mem.U32(0x800E5550u));
             Mem.Set(0x800E5550u, 0u);
             func_002A33BC(2);
-            func_0026497C();
+            Rumble_Resume();
             return 0;
         }
     }

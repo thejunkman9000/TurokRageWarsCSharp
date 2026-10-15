@@ -23,7 +23,7 @@ public static partial class Game
                 new O3ListSel(s).sel_Set(0);
             }
             new O3ListG(g).sel_Set((new O3List(o).ent.P + (uint)(new O3ListSel(s).sel * 20)));
-            func_0025DF54(3713);
+            Audio_PlaySound2D(3713);
             return 0;
         }
     }

@@ -50,9 +50,9 @@ public static partial class Game
                         func_0028F258(o);
                         break;
                     case 669:
-                        func_0025E338();
-                        func_0025E234((-1));
-                        func_0025CC0C((uint)((int)(func_0025CC8C())));
+                        Audio_FadeOutMusic();
+                        Audio_StopAllExcept((-1));
+                        LoopSound_StopAll((uint)((int)(LoopSound_GetPool())));
                         n = new Vid_v4(o).unk2E0_;
                         Mem.Set(0x800D2958u, 1);
                         Mem.Set(0x800D295Cu, 20);

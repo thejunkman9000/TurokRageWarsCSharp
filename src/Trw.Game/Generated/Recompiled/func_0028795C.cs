@@ -264,7 +264,7 @@ public static partial class Game
                 r17 = r19;
                 L_L00287D90: ;
                 r4 = r17;
-                r5 = r16; r2 = func_00276D20(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r16; r2 = Light_InitVolume(r4, r5, r6, r7); r3 = Cpu.V1;
                 r16 = r16 + 76u;
                 r8 = Mem.U32((r29 + 580u));
                 r18 = r18 + 1u;

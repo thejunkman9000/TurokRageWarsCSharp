@@ -120,7 +120,7 @@ public static partial class Game
                     }
                 }
             }
-            func_0026456C(default(uint), default(uint), default(uint), default(uint));
+            Pad_Release(default(uint), default(uint), default(uint), default(uint));
         }
     }
 

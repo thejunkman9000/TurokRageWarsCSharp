@@ -268,7 +268,7 @@ public static partial class Game
             float x = 0f;
             float z = 0.0f;
             Player_EaseEyeHeight(actor);
-            func_002748E0((actor + (uint)1836), z, 0.25f);
+            Math_ApproachProportional((actor + (uint)1836), z, 0.25f);
             Player_UpdateViewTurn(actor, state, 0x800CE7FCu);
             Player_UpdateGroundMovement(actor, state, 0x800CE7C0u);
             if (!((Mem.U32((actor + (uint)1708)) & (uint)(16)) != 0u))
@@ -338,7 +338,7 @@ public static partial class Game
                 if ((p != 0u))
                 {
                     Actor_GetFrameMotion(p, _fp);
-                    func_00271FA4((state + (uint)28), (state + (uint)28), _fp);
+                    Vec_Add((state + (uint)28), (state + (uint)28), _fp);
                 }
                 if (((int)(Mem.U8((new Actor(actor).stats_ + (uint)143))) == 1))
                 {
@@ -347,13 +347,13 @@ public static partial class Game
                         switch (new B07Game(0x801468A0u).unk70)
                         {
                         case 0:
-                            func_0025DE74((int)((uint)(6305)), C.Tmp(Cpu.F2U(Mem.F32((actor + (uint)8))), Cpu.F2U(Mem.F32((actor + (uint)12))), Cpu.F2U(Mem.F32((actor + (uint)16)))), (int)((actor + (uint)8)), (int)((uint)((-1))));
+                            Audio_PlaySound((int)((uint)(6305)), C.Tmp(Cpu.F2U(Mem.F32((actor + (uint)8))), Cpu.F2U(Mem.F32((actor + (uint)12))), Cpu.F2U(Mem.F32((actor + (uint)16)))), (int)((actor + (uint)8)), (int)((uint)((-1))));
                             break;
                         case 1:
-                            func_0025DE74((int)((uint)(6505)), C.Tmp(Cpu.F2U(Mem.F32((actor + (uint)8))), Cpu.F2U(Mem.F32((actor + (uint)12))), Cpu.F2U(Mem.F32((actor + (uint)16)))), (int)((actor + (uint)8)), (int)((uint)((-1))));
+                            Audio_PlaySound((int)((uint)(6505)), C.Tmp(Cpu.F2U(Mem.F32((actor + (uint)8))), Cpu.F2U(Mem.F32((actor + (uint)12))), Cpu.F2U(Mem.F32((actor + (uint)16)))), (int)((actor + (uint)8)), (int)((uint)((-1))));
                             break;
                         case 2:
-                            func_0025DE74((int)((uint)(6405)), C.Tmp(Cpu.F2U(Mem.F32((actor + (uint)8))), Cpu.F2U(Mem.F32((actor + (uint)12))), Cpu.F2U(Mem.F32((actor + (uint)16)))), (int)((actor + (uint)8)), (int)((uint)((-1))));
+                            Audio_PlaySound((int)((uint)(6405)), C.Tmp(Cpu.F2U(Mem.F32((actor + (uint)8))), Cpu.F2U(Mem.F32((actor + (uint)12))), Cpu.F2U(Mem.F32((actor + (uint)16)))), (int)((actor + (uint)8)), (int)((uint)((-1))));
                             break;
                         }
                     }
@@ -407,7 +407,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0022CC24", (uint)actor, (uint)state);
             float x = 0f;
-            func_002748E0((actor + (uint)1836), 0.0f, 0.25f);
+            Math_ApproachProportional((actor + (uint)1836), 0.0f, 0.25f);
             Player_UpdateViewTurn(actor, state, 0x800CE7E4u);
             if (!((Mem.U32((actor + (uint)1632)) & (uint)(32768)) != 0u))
             {
@@ -482,7 +482,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022CE68", (uint)p, (uint)o);
-            func_002748E0((p + 1836u), 0.0f, 0.25f);
+            Math_ApproachProportional((p + 1836u), 0.0f, 0.25f);
             Player_UpdateViewTurn(p, o, 0x800CE7E4u);
             Player_UpdateGroundMovement(p, o, 0x800CE79Cu);
             if ((new ObjDef_v2(o).f20 <= 0.0f))
@@ -527,11 +527,11 @@ public static partial class Game
             Player_StubStop938_00218464();
             if (((Mem.U32((state + (uint)56)) & (uint)(32768)) != 0u))
             {
-                func_0025DE74((int)((uint)(730)), C.Tmp(Cpu.F2U(Mem.F32((state + (uint)8))), Cpu.F2U(Mem.F32((state + (uint)12))), Cpu.F2U(Mem.F32((state + (uint)16)))), (int)(0u), (int)((uint)((-1))));
+                Audio_PlaySound((int)((uint)(730)), C.Tmp(Cpu.F2U(Mem.F32((state + (uint)8))), Cpu.F2U(Mem.F32((state + (uint)12))), Cpu.F2U(Mem.F32((state + (uint)16)))), (int)(0u), (int)((uint)((-1))));
             }
             else
             {
-                func_0025DE74((int)((uint)(732)), C.Tmp(Cpu.F2U(Mem.F32((state + (uint)8))), Cpu.F2U(Mem.F32((state + (uint)12))), Cpu.F2U(Mem.F32((state + (uint)16)))), (int)(0u), (int)((uint)((-1))));
+                Audio_PlaySound((int)((uint)(732)), C.Tmp(Cpu.F2U(Mem.F32((state + (uint)8))), Cpu.F2U(Mem.F32((state + (uint)12))), Cpu.F2U(Mem.F32((state + (uint)16)))), (int)(0u), (int)((uint)((-1))));
             }
         }
     }
@@ -768,10 +768,10 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_0022D198", (uint)actor);
-                func_00271FD8(_fp, (actor + (uint)5828), (actor + (uint)1184));
-                func_002720EC(_fp);
-                func_0027200C(_fp, _fp, 30.0f);
-                func_00271FA4((actor + (uint)1768), (actor + (uint)1184), _fp);
+                Vec_Sub(_fp, (actor + (uint)5828), (actor + (uint)1184));
+                Vec_Normalize(_fp);
+                Vec_Scale(_fp, _fp, 30.0f);
+                Vec_Add((actor + (uint)1768), (actor + (uint)1184), _fp);
             }
         }
         finally { Stack.Free(12); }
@@ -952,7 +952,7 @@ public static partial class Game
             {
                 if (!((new Player_v3(p).f664 & (uint)(32768)) != 0u))
                 {
-                    func_002748E0((p + 1836u), 1.30899704f, 0.25f);
+                    Math_ApproachProportional((p + 1836u), 1.30899704f, 0.25f);
                 }
                 if ((new Player_v3(p).f658 > Mem.F32(0x800C7EA8u)))
                 {
@@ -1009,7 +1009,7 @@ public static partial class Game
             }
             else
             {
-                func_002636D0((actor + (uint)1672));
+                Pad_ClearPlayerInput((actor + (uint)1672));
                 new Brain(new Actor(actor).brain_).unk23C_Set(0);
                 new Brain(new Actor(actor).brain_).unk240_Set(0);
             }
@@ -1037,7 +1037,7 @@ public static partial class Game
             {
                 if (!((Mem.U32((actor + (uint)1636)) & (uint)(32768)) != 0u))
                 {
-                    func_002748E0((actor + (uint)1836), 1.30899704f, 0.25f);
+                    Math_ApproachProportional((actor + (uint)1836), 1.30899704f, 0.25f);
                 }
                 if ((Mem.F32((actor + (uint)1624)) > Mem.F32(0x800C7EB4u)))
                 {
@@ -1388,9 +1388,9 @@ public static partial class Game
                     new Vec3f(_fp).x_Set(Mem.F32((p + (uint)52)));
                     new Vec3f(_fp).y_Set(Mem.F32((p + (uint)56)));
                     new Vec3f(_fp).z_Set(Mem.F32((p + (uint)60)));
-                    func_00271FD8((_fp + 16u), _fp, (actor + (uint)2048));
+                    Vec_Sub((_fp + 16u), _fp, (actor + (uint)2048));
                     new Vec3f((_fp + 16u)).y_Set((float)(0));
-                    Mem.Set((actor + (uint)2040), func_00271B18((_fp + 16u)));
+                    Mem.Set((actor + (uint)2040), Vec_GetYaw((_fp + 16u)));
                 }
             }
         }

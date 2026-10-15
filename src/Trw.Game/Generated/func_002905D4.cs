@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002905D4", (uint)o, (uint)p);
             uint e = 0u;
             float f = 0f;
-            func_0026D980();
+            Model_ClearBatchQueue();
             e = new NodeOwner(o).head_;
             while ((e != 0u))
             {
@@ -36,7 +36,7 @@ public static partial class Game
                 }
                 e = new Node(e).next_;
             }
-            func_0026D9D0();
+            Model_FlushBatches();
         }
     }
 

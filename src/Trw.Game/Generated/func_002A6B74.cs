@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002A6B74", (uint)o, (uint)a, (uint)b, (uint)c);
-            uint e = func_002796AC(new Obj7588(o).sub.P);
+            uint e = Pool_TakeFree(new Obj7588(o).sub.P);
             if ((e != 0u))
             {
                 new Ent6B74(e).unk18_Set(a);

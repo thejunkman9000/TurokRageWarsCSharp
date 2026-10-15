@@ -473,7 +473,7 @@ public static partial class Game
                 L_I0042F528: ;
                 Mem.Set((r2 + 108u), r22); r2 = PlayerMenu_RefreshPanel(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I0042F530: ;
-                r4 = r18; func_00264790((int)r4);
+                r4 = r18; Pad_EnableStatusPoll((int)r4);
                 L_L0042F538: ;
                 L_I0042F538: ;
                 r4 = 2148401152u;
@@ -925,7 +925,7 @@ public static partial class Game
                 L_I0042F948: ;
                 r4 = r0; func_002A3410((int)r4);
                 L_I0042F950: ;
-                r4 = (uint)3704; r2 = (uint)func_0025DF54((int)r4);
+                r4 = (uint)3704; r2 = (uint)Audio_PlaySound2D((int)r4);
                 L_I0042F958: ;
                 r31 = Mem.U32((r29 + 56u));
                 L_I0042F95C: ;

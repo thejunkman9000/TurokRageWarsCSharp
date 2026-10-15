@@ -40,7 +40,7 @@ public static partial class Game
                 }
                 a = new Level(lv).unk11C8;
                 bb = new Level(lv).cnt11C0;
-                if ((func_00265570((uint)(a), bb, (uint)(idx), _fp, (_fp + 4u)) != 0))
+                if ((Sort_FindEqualRange((uint)(a), bb, (uint)(idx), _fp, (_fp + 4u)) != 0))
                 {
                     Mem.Set(outRecs, (new Level(lv).recA_ + (uint)(Mem.S32(_fp) * 20)));
                     Mem.Set(outCount, ((Mem.S32((_fp + 4u)) - Mem.S32(_fp)) + 1));

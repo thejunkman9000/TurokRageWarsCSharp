@@ -43,7 +43,7 @@ public static partial class Game
                 r2 = (uint)((int)r17 < (int)r18 ? 1 : 0);
                 { bool c_ = r2 != 0; r16 = r16 + 64u; if (c_) goto L_L0044C014; }
                 L_L0044C02C: ;
-                r4 = r19; func_00279A00(r4);
+                r4 = r19; MtxStack_Reset(r4);
                 r31 = Mem.U32((r29 + 32u));
                 r19 = Mem.U32((r29 + 28u));
                 r18 = Mem.U32((r29 + 24u));

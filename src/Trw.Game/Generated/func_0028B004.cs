@@ -15,7 +15,7 @@ public static partial class Game
             int n = 0;
             int c = 0;
             uint arr = 0u;
-            func_0026D980();
+            Model_ClearBatchQueue();
             n = new Level(lv).numActors;
             g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
             new DlCmd(g).w0_Set(3674472452u);
@@ -47,7 +47,7 @@ public static partial class Game
                     Actor_Draw(e, (uint)(arg), default(uint), default(uint));
                 }
             }
-            func_0026D9D0();
+            Model_FlushBatches();
         }
     }
 

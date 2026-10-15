@@ -25,8 +25,8 @@ public static partial class Game
             Mem.Set(0x800E4518u, ResourcePool_Malloc((uint)(108)));
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).sound_Set(Audio_IsSoundOn());
             Audio_PlayCue(52);
-            func_0025E3A4();
-            func_0025E234((-1));
+            Audio_UnduckMusic();
+            Audio_StopAllExcept((-1));
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).page_Set(1);
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).pages_Set(4);
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).leftTab__Set(UiTree_FindNode(node, (uint)(897), default(uint), default(uint)));
@@ -67,7 +67,7 @@ public static partial class Game
             secondListHandle = func_0041AC40(888, 889);
             new Shared_OptionsScreen(Mem.U32(0x800E4518u)).secondList__Set(secondListHandle);
             func_0041ADB4(secondListHandle, Mem.U32((0x800D74B4u + (uint)(0 * 4))));
-            if (((int)(func_00265370()) != 4194304))
+            if (((int)(Mem_GetRamSize()) != 4194304))
             {
                 func_0041ADB4(new Shared_OptionsScreen(Mem.U32(0x800E4518u)).secondList_, Mem.U32(0x800D74B8u));
                 func_0041ADB4(new Shared_OptionsScreen(Mem.U32(0x800E4518u)).secondList_, Mem.U32(0x800D74BCu));

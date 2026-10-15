@@ -15,7 +15,7 @@ public static partial class Game
             float fy = 0f;
             float t1 = 0f;
             float t2 = 0f;
-            if ((((func_002934DC() != 0) && ((new O06A_v9(a).unk8 & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(0x801462E5u)) != 0) && ((int)(new O06A_v9(a).unk8) < 0)) && ((int)(func_00265370()) == 4194304))))
+            if ((((func_002934DC() != 0) && ((new O06A_v9(a).unk8 & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(0x801462E5u)) != 0) && ((int)(new O06A_v9(a).unk8) < 0)) && ((int)(Mem_GetRamSize()) == 4194304))))
             {
                 new O06D_v6(d).unk3C_Set(1);
                 if ((Mem.S32(0x800E5E70u) != 3))

@@ -43,11 +43,11 @@ public static partial class Game
             }
             if ((bb != 0))
             {
-                func_0025DE74((int)((uint)(bb)), C.Tmp((uint)(new Ent24(e).unk8), (uint)(new Ent24(e).unkC), (uint)(new Ent24(e).unk10)), (int)((uint)(0)), (int)((uint)((-1))));
+                Audio_PlaySound((int)((uint)(bb)), C.Tmp((uint)(new Ent24(e).unk8), (uint)(new Ent24(e).unkC), (uint)(new Ent24(e).unk10)), (int)((uint)(0)), (int)((uint)((-1))));
             }
             if ((cc != 0))
             {
-                func_0025E13C(cc);
+                Audio_PlaySndFx(cc);
             }
             return 1;
         }

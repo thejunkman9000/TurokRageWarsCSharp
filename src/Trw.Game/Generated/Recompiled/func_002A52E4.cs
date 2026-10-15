@@ -67,7 +67,7 @@ public static partial class Game
                 r5 = Mem.U32((r5 + 10620u));
                 r5 = r5 << 6;
                 r5 = r5 + 96u;
-                r5 = r18 + r5; r2 = func_00270980(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r18 + r5; r2 = Math_MtxFixedToFloatAffine(r4, r5, r6, r7); r3 = Cpu.V1;
                 r2 = Mem.U32((r18 + 280u));
                 r2 = Mem.U32((r2 + 20u));
                 r1 = 2148335616u;
@@ -79,14 +79,14 @@ public static partial class Game
                 r5 = Cpu.W(0);
                 r4 = r29 + 16u;
                 r6 = r5;
-                r7 = r5; func_002734EC(r4, Cpu.U2F(r5), Cpu.U2F(r6), Cpu.U2F(r7));
-                r4 = r29 + 16u; func_00272898(r4);
+                r7 = r5; Math_MtxScaleRows(r4, Cpu.U2F(r5), Cpu.U2F(r6), Cpu.U2F(r7));
+                r4 = r29 + 16u; Math_MtxClampFixedRange(r4);
                 r4 = r29 + 16u;
-                r5 = r16 + 16u; func_00273340(r4, r5);
+                r5 = r16 + 16u; Math_MtxGetTranslationVec(r4, r5);
                 r2 = Mem.U32((r17 + 60u));
                 r2 = r2 & 4u;
                 { bool c_ = r2 == 0; r4 = r29 + 16u; if (c_) goto L_L002A5420; }
-                r5 = r16 + 28u; func_0027335C(r4, r5);
+                r5 = r16 + 28u; Math_MtxGetScale(r4, r5);
                  goto L_L002A5438;
                 L_L002A5420: ;
                 r5 = 2148335616u;
@@ -115,7 +115,7 @@ public static partial class Game
                 r5 = r2 + r18;
                 fcc = Cpu.S(0) < Cpu.S(1);
                 { bool c_ = !fcc; r5 = r5 + 96u; if (c_) goto L_L002A54F0; }
-                r4 = r29 + 16u; r2 = func_00270980(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r29 + 16u; r2 = Math_MtxFixedToFloatAffine(r4, r5, r6, r7); r3 = Cpu.V1;
                 r2 = Mem.U32((r18 + 280u));
                 r2 = Mem.U32((r2 + 20u));
                 r1 = 2148335616u;
@@ -127,8 +127,8 @@ public static partial class Game
                 r5 = Cpu.W(0);
                 r4 = r29 + 16u;
                 r6 = r5;
-                r7 = r5; func_002734EC(r4, Cpu.U2F(r5), Cpu.U2F(r6), Cpu.U2F(r7));
-                r4 = r29 + 16u; func_00272898(r4);
+                r7 = r5; Math_MtxScaleRows(r4, Cpu.U2F(r5), Cpu.U2F(r6), Cpu.U2F(r7));
+                r4 = r29 + 16u; Math_MtxClampFixedRange(r4);
                 r4 = 2148794368u;
                 r4 = r4 - 17792u;
                 r5 = r17;

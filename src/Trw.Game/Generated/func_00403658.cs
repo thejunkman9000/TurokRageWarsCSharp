@@ -74,9 +74,9 @@ public static partial class Game
                 {
                     Mem.Copy((_fp + 32u), C.Seq(func_00403658_getA(_fp), _fp), 12);
                     Mem.Copy((_fp + 48u), C.Seq(func_00403658_getB((_fp + 16u)), (_fp + 16u)), 12);
-                    func_00271FD8((_fp + 64u), (_fp + 48u), (_fp + 32u));
-                    new O01Vec3((_fp + 80u)).x_Set((-func_0027266C((_fp + 64u))));
-                    new O01Vec3((_fp + 80u)).y_Set(func_00271B18((_fp + 64u)));
+                    Vec_Sub((_fp + 64u), (_fp + 48u), (_fp + 32u));
+                    new O01Vec3((_fp + 80u)).x_Set((-Vec_GetPitch((_fp + 64u))));
+                    new O01Vec3((_fp + 80u)).y_Set(Vec_GetYaw((_fp + 64u)));
                 }
                 do
                 {

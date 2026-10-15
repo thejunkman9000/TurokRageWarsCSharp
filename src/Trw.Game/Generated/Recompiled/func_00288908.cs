@@ -80,7 +80,7 @@ public static partial class Game
                 Mem.Set((r6 + 4u), r5);
                 Mem.Set((r4 + 0u), r3);
                 Mem.Set((r2 + 32u), r11);
-                Mem.Set((r7 + 4u), r5); func_0026D980();
+                Mem.Set((r7 + 4u), r5); Model_ClearBatchQueue();
                 r12 = Mem.U32((r29 + 14264u));
                 r4 = Mem.U32((r12 + 104u));
                 r5 = r0; r2 = Chunk_Get(r4, (int)r5);
@@ -188,7 +188,7 @@ public static partial class Game
                 r4 = r29 + 40u;
                 r18 = r2;
                 r22 = Mem.U32((r18 + 4u));
-                r5 = r17 + 40u; r2 = func_00270980(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = r17 + 40u; r2 = Math_MtxFixedToFloatAffine(r4, r5, r6, r7); r3 = Cpu.V1;
                 { bool c_ = (int)r22 <= 0; r4 = r0; if (c_) goto L_L00288CA4; }
                 L_L00288C0C: ;
                 r2 = Mem.U32((r18 + 0u));
@@ -210,7 +210,7 @@ public static partial class Game
                 r6 = r29 + 120u;
                 Cpu.SetW(0, r2);
                 Cpu.SetS(0, (float)(int)Cpu.W(0));
-                Mem.Set((r29 + 112u), Cpu.W(0)); func_00272908(r4, r5, r6);
+                Mem.Set((r29 + 112u), Cpu.W(0)); Math_MtxTransformPoint(r4, r5, r6);
                 r13 = Mem.U32((r29 + 14264u));
                 Cpu.SetW(0, Mem.U32((r29 + 124u)));
                 r1 = 131072u;
@@ -257,7 +257,7 @@ public static partial class Game
                 r30 = r30 + 4u;
                 Mem.Set((r13 + 0u), r0);
                 r13 = r13 + 4u;
-                Mem.Set((r29 + 14212u), r13); func_0026D9D0();
+                Mem.Set((r29 + 14212u), r13); Model_FlushBatches();
                 r18 = r29 + 136u;
                 r19 = r30 - r18;
                 r16 = r19 + 7u;

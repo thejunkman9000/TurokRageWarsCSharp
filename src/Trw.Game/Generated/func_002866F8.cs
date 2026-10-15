@@ -49,12 +49,12 @@ public static partial class Game
                             t = (uint)(((uint)((idx * 32)) + (uint)(tri)));
                             do
                             {
-                                if ((func_00275B80(t, new B19Vec3(p).x, new B19Vec3(p).z) != 0))
+                                if ((Collision_IsPointInFaceXZ(t, new B19Vec3(p).x, new B19Vec3(p).z) != 0))
                                 {
-                                    h = func_00275E44(t, new B19Vec3(p).x, new B19Vec3(p).z);
+                                    h = Collision_GetFloorHeightAt(t, new B19Vec3(p).x, new B19Vec3(p).z);
                                     if ((((int)(new B19Tri(t).fl) & 64) != 0))
                                     {
-                                        top = func_002752CC(t, new B19Vec3(p).x, new B19Vec3(p).z);
+                                        top = Collision_GetCeilingHeightAt(t, new B19Vec3(p).x, new B19Vec3(p).z);
                                         if (((h <= new B19Vec3(p).y) && (new B19Vec3(p).y <= top)))
                                         {
                                             return t;

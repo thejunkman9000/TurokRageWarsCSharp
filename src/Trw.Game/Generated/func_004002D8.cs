@@ -53,7 +53,7 @@ public static partial class Game
                     {
                         break;
                     }
-                    func_00271FD8(_fp, (rec + (uint)(i * 36)), (rec + (uint)((i + 1) * 36)));
+                    Vec_Sub(_fp, (rec + (uint)(i * 36)), (rec + (uint)((i + 1) * 36)));
                     acc = (float)((float)(acc) + sqrtf((((new O01Vec3(_fp).x * new O01Vec3(_fp).x) + (new O01Vec3(_fp).y * new O01Vec3(_fp).y)) + (new O01Vec3(_fp).z * new O01Vec3(_fp).z))));
                 }
                 for (i = 0; (i < n); ++i)

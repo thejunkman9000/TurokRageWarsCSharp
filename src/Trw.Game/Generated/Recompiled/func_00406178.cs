@@ -94,7 +94,7 @@ public static partial class Game
                 r16 = r3;
                 L_L004062BC: ;
                 { bool c_ = r16 == 0; r2 = r0; if (c_) goto L_L00406414; }
-                r4 = r19; r2 = (uint)func_002645A0((int)r4);
+                r4 = r19; r2 = (uint)Pad_TakePakChanged((int)r4);
                 { bool c_ = r18 == 0; r3 = r2; if (c_) goto L_L004062DC; }
                 { bool c_ = r3 == 0;  if (c_) goto L_L0040631C; }
                 L_L004062DC: ;

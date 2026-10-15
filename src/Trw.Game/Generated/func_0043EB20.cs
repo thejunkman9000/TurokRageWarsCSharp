@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043EB20", (uint)a, (uint)m);
-            func_00264790((int)(new S10Menu(m).ctrl.port));
+            Pad_EnableStatusPoll((int)(new S10Menu(m).ctrl.port));
             func_004426E4(0x8014561Cu, 0x0044F754u, (int)(new S10Menu(m).ctx_), (int)(new S10Menu(m).ctrl_), 0);
             return 1;
         }

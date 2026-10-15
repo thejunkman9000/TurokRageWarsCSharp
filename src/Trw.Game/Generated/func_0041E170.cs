@@ -44,7 +44,7 @@ public static partial class Game
             func_002A125C(new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).name.P, Mem.U32(new O3Chr((0x800E381Cu + (uint)(((row * 17) + key) * 8))).s));
             new O3Plr((0x80153F80u + (uint)(new O3Ps(Mem.U32(0x800E39C0u)).sel * 28))).fC_Set(row);
             func_0041E478(new O3Ps(Mem.U32(0x800E39C0u)).sel);
-            func_0025DF54(3713);
+            Audio_PlaySound2D(3713);
             return 0;
         }
     }

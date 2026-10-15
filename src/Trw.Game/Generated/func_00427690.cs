@@ -45,9 +45,9 @@ public static partial class Game
                 func_004275B4();
                 for (i = 0; (i < 36); ++i)
                 {
-                    func_002656A8(_fp, i, 0);
+                    Bits_Assign(_fp, i, 0);
                 }
-                func_002656A8(_fp, 0, 1);
+                Bits_Assign(_fp, 0, 1);
                 i = 0;
                 if (((int)(new Q03Cfg(0x801462C8u).unkD) == 1))
                 {
@@ -57,14 +57,14 @@ public static partial class Game
                         t = (int)(Mem.U8((r + (uint)1)));
                         if ((t > 0))
                         {
-                            func_002656A8(_fp, (t - 1), 1);
+                            Bits_Assign(_fp, (t - 1), 1);
                         }
                         for (j = 0; (j < 3); ++j)
                         {
                             t = (int)(Mem.U8(((r + (uint)j) + (uint)2)));
                             if ((t > 0))
                             {
-                                func_002656A8(_fp, (t - 1), 1);
+                                Bits_Assign(_fp, (t - 1), 1);
                             }
                         }
                         ++i;
@@ -75,7 +75,7 @@ public static partial class Game
                 {
                     do
                     {
-                        func_002656A8(_fp, i, 1);
+                        Bits_Assign(_fp, i, 1);
                         ++i;
                     }
                     while ((i < 36));
@@ -87,13 +87,13 @@ public static partial class Game
                 do
                 {
                     idx = func_00427690_o04_find(Mem.S32(((0x800E4A84u + (uint)off) + (uint)0)));
-                    if ((func_00265670(_fp, idx) == one))
+                    if ((Bits_Test(_fp, idx) == one))
                     {
                         h = UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unk970), (uint)((int)(Mem.U16(((0x800E4A84u + (uint)off) + (uint)2)))), default(uint), default(uint));
                         func_0040E958(h, 1);
                         new O04Sub10(h).unk10_Set((byte)(twenty));
                         idx2 = func_00427690_o04_find(Mem.S32(((0x800E4A84u + (uint)off) + (uint)4)));
-                        if ((func_00265670(_fp, idx2) == one))
+                        if ((Bits_Test(_fp, idx2) == one))
                         {
                             h = UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unk970), (uint)((int)(Mem.U16(((0x800E4A84u + (uint)off) + (uint)6)))), default(uint), default(uint));
                             func_0040E958(h, 1);
@@ -113,7 +113,7 @@ public static partial class Game
                 i = 0;
                 do
                 {
-                    if ((func_00265670(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, i) == 1))
+                    if ((Bits_Test(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, i) == 1))
                     {
                         func_00427F50(i);
                     }
@@ -123,9 +123,9 @@ public static partial class Game
                 i = 0;
                 do
                 {
-                    if ((func_00265670(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA79.P, i) == 1))
+                    if ((Bits_Test(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA79.P, i) == 1))
                     {
-                        func_002656A8(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, i, 1);
+                        Bits_Assign(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, i, 1);
                     }
                     ++i;
                 }
@@ -137,10 +137,10 @@ public static partial class Game
                     c = 170;
                     twenty = off2;
                     idx = func_00427690_o04_find(Mem.S32(((0x800E4A84u + (uint)twenty) + (uint)0)));
-                    if ((func_00265670(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, idx) == 1))
+                    if ((Bits_Test(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, idx) == 1))
                     {
                         h = UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unk970), (uint)((int)(Mem.U16(((0x800E4A84u + (uint)off2) + (uint)2)))), default(uint), default(uint));
-                        if ((func_00265670(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA79.P, idx) == 1))
+                        if ((Bits_Test(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA79.P, idx) == 1))
                         {
                             new O04Sub10(h).unk10_Set((byte)(70));
                             c = 70;
@@ -150,10 +150,10 @@ public static partial class Game
                             new O04Sub10(h).unk10_Set((byte)(170));
                         }
                         idx2 = func_00427690_o04_find(Mem.S32(((0x800E4A84u + (uint)off2) + (uint)4)));
-                        if ((func_00265670(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, idx2) == 1))
+                        if ((Bits_Test(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA74.P, idx2) == 1))
                         {
                             h = UiTree_FindNode((uint)(new O04ModeS4690(Mem.U32(0x800E4690u)).unk970), (uint)((int)(Mem.U16(((0x800E4A84u + (uint)off2) + (uint)6)))), default(uint), default(uint));
-                            if ((func_00265670(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA79.P, idx2) == 1))
+                            if ((Bits_Test(new O04ModeS4690(Mem.U32(0x800E4690u)).unkA79.P, idx2) == 1))
                             {
                                 new O04Sub10(h).unk10_Set((byte)(70));
                                 c = 70;

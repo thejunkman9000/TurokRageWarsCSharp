@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00446198", (uint)a);
-            if (((int)(func_00265370()) != 4194304))
+            if (((int)(Mem_GetRamSize()) != 4194304))
             {
                 new O06A_v9(a).unk8_Set((uint)((uint)(new O06A_v9(a).unk8) | (uint)(8388608)));
             }

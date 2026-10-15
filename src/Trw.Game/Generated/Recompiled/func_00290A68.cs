@@ -54,7 +54,7 @@ public static partial class Game
                 r4 = r29 + 32u;
                 r6 = 3267887104u;
                 r7 = 3287941120u;
-                r5 = r0; func_00272CD0(r4, Cpu.U2F(r5), Cpu.U2F(r6), Cpu.U2F(r7));
+                r5 = r0; Math_MtxMakeTranslate(r4, Cpu.U2F(r5), Cpu.U2F(r6), Cpu.U2F(r7));
                 r1 = 131072u;
                 r1 = r20 + r1;
                 Cpu.SetW(1, Mem.U32((r1 + 28080u)));
@@ -63,7 +63,7 @@ public static partial class Game
                 Cpu.SetS(1, Cpu.S(1) * Cpu.S(0));
                 r5 = Cpu.W(1);
                 r4 = r29 + 32u; Math_MtxRotateRowsB_00273A34(r4, Cpu.U2F(r5));
-                r4 = r29 + 32u; func_00273DDC(r4);
+                r4 = r29 + 32u; Math_MtxSwapRowsYZ(r4);
                 r4 = r29 + 32u;
                 r5 = 2148335616u;
                 r5 = Mem.U32((r5 + 10620u));
@@ -73,7 +73,7 @@ public static partial class Game
                 r5 = r5 + r17; Math_MtxFloatToFixed(r4, r5);
                 r4 = r19;
                 r5 = r16; r2 = (uint)func_0028C174(r4, (int)r5);
-                r16 = r2; func_0026D980();
+                r16 = r2; Model_ClearBatchQueue();
                 r4 = r16;
                 r6 = 2148335616u;
                 r6 = r6 + 3832u;
@@ -82,8 +82,8 @@ public static partial class Game
                 r7 = r0;
                 Mem.Set((r29 + 16u), r18);
                 r5 = r5 << 6;
-                r5 = r5 + r17; func_0026DF30((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
-                func_0026D9D0();
+                r5 = r5 + r17; Model_QueueByIndex((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                Model_FlushBatches();
                 r4 = r20;
                 r5 = r0;
                 r6 = 2148335616u;

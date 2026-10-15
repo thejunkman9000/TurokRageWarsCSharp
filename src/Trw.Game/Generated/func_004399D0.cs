@@ -46,7 +46,7 @@ public static partial class Game
                         new O05Gfx(q_4).w0_Set(3808432641u);
                         new O05Gfx(q_4).w1_Set((uint)(8192));
                     }
-                    func_0026D844();
+                    Model_ResetDrawState();
                     cam = 0x801450C8u;
                     {
                         uint pp_5 = 0x80110634u;
@@ -55,8 +55,8 @@ public static partial class Game
                         new O05Gfx(q_5).w1_Set((uint)((new O05Cam(cam).mtx.P + (uint)(Mem.S32(0x800D297Cu) * 64))));
                     }
                     Mem.Copy((_fp + 64u), new O05Obj_v2(o).v10.P, 12);
-                    func_00272908(new O05Cam(cam).view.P, (_fp + 64u), (_fp + 80u));
-                    func_00272CD0(_fp, Cpu.U2F(Mem.U32((_fp + 80u) + 0u)), Cpu.U2F(Mem.U32((_fp + 80u) + 4u)), Cpu.U2F(Mem.U32((_fp + 80u) + 8u)));
+                    Math_MtxTransformPoint(new O05Cam(cam).view.P, (_fp + 64u), (_fp + 80u));
+                    Math_MtxMakeTranslate(_fp, Cpu.U2F(Mem.U32((_fp + 80u) + 0u)), Cpu.U2F(Mem.U32((_fp + 80u) + 4u)), Cpu.U2F(Mem.U32((_fp + 80u) + 8u)));
                     t = (float)(func_002A2934());
                     if ((new O05Obj_v2(o).f28 != 0.0f))
                     {
@@ -86,13 +86,13 @@ public static partial class Game
                     Mem.Set(((_fp + 96u) + (uint)(0 * 4)), (new O05Obj_v2(o).f4 * sc));
                     Mem.Set(((_fp + 96u) + (uint)(2 * 4)), (new O05Obj_v2(o).fC * sc));
                     Mem.Set(((_fp + 96u) + (uint)(1 * 4)), (new O05Obj_v2(o).f8 * (new O05Cam(cam).f2A0 / (float)(Mem.S32(0x800E28D4u)))));
-                    func_002734EC(_fp, Mem.F32(((_fp + 96u) + (uint)(0 * 4))), Mem.F32(((_fp + 96u) + (uint)(1 * 4))), Mem.F32(((_fp + 96u) + (uint)(2 * 4))));
-                    func_00273DDC(_fp);
+                    Math_MtxScaleRows(_fp, Mem.F32(((_fp + 96u) + (uint)(0 * 4))), Mem.F32(((_fp + 96u) + (uint)(1 * 4))), Mem.F32(((_fp + 96u) + (uint)(2 * 4))));
+                    Math_MtxSwapRowsYZ(_fp);
                     Math_MtxFloatToFixed(_fp, (o + (uint)((Mem.S32(0x800D297Cu) * 64) + 56)));
                     h = func_0028C174(0x8011FE88u, new O05Obj_v2(o).f34);
-                    func_0026D980();
-                    func_0026DF30(h, (int)((o + (uint)((Mem.S32(0x800D297Cu) * 64) + 56))), (int)(0x800D0EF8u), 0, new O05Obj_v2(o).fB8);
-                    func_0026D9D0();
+                    Model_ClearBatchQueue();
+                    Model_QueueByIndex(h, (int)((o + (uint)((Mem.S32(0x800D297Cu) * 64) + 56))), (int)(0x800D0EF8u), 0, new O05Obj_v2(o).fB8);
+                    Model_FlushBatches();
                 }
                 Mem.Set(0x800D15D0u, saved);
             }

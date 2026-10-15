@@ -16,7 +16,7 @@ public static partial class Game
             do
             {
                 it = UiTree_FindNode((uint)(new O3Pk(Mem.U32(0x800E3590u)).parent), (uint)((int)((ushort)(new O3Tbl((0x800E3594u + (uint)(i * 8))).key))), default(uint), default(uint));
-                if ((func_00265670((0x80102B4Au + (uint)(new O3Pk(Mem.U32(0x800E3590u)).slot * 400)), i) == 1))
+                if ((Bits_Test((0x80102B4Au + (uint)(new O3Pk(Mem.U32(0x800E3590u)).slot * 400)), i) == 1))
                 {
                     func_0040E958(it, 1);
                     new O3Hdr(it).alpha_Set((byte)(alpha));

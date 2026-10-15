@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00420BC0");
             func_002A33BC(1);
-            func_0025DF54(3704);
+            Audio_PlaySound2D(3704);
             return 0;
         }
     }

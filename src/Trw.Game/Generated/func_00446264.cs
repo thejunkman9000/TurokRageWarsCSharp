@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00446264", (uint)a);
             new O06A_v34(a).unk0_Set((short)(2));
-            func_002648E8();
+            Rumble_Suspend();
             if ((Mem.U8(0x801462E5u) != 0))
             {
                 new O06B_v15(new O06A_v34(a).unkC_).unk80_Set((uint)((uint)(new O06B_v15(new O06A_v34(a).unkC_).unk80) & (uint)((~8388608))));
@@ -22,7 +22,7 @@ public static partial class Game
                 new O06B_v15(new O06A_v34(a).unkC_).unk80_Set((uint)((uint)(new O06B_v15(new O06A_v34(a).unkC_).unk80) | (uint)(8388608)));
                 new O06B_v15(new O06A_v34(a).unkC_).unkA8_Set((uint)((uint)(new O06B_v15(new O06A_v34(a).unkC_).unkA8) | (uint)(8388608)));
             }
-            func_0025CAD0((uint)((int)(func_0025CC8C())));
+            LoopSound_PauseAll((uint)((int)(LoopSound_GetPool())));
         }
     }
 

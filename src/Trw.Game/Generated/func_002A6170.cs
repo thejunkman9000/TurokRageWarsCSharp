@@ -112,7 +112,7 @@ public static partial class Game
                         }
                     }
                 }
-                func_0026D8F8();
+                Model_ResetStateCache();
                 func_00296FF8();
             }
         }

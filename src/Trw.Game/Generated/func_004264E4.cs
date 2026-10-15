@@ -32,8 +32,8 @@ public static partial class Game
             func_0041B768((uint)(a), 3, 318);
             for (s0 = 0; (s0 < 36); ++s0)
             {
-                func_002656A8(new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unkA74.P, s0, 0);
-                func_002656A8(new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unkA79.P, s0, 0);
+                Bits_Assign(new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unkA74.P, s0, 0);
+                Bits_Assign(new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unkA79.P, s0, 0);
             }
             new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk988_Set(1);
             new O04ModeS4690_v2(Mem.U32(0x800E4690u)).unk98C_Set(4);
@@ -128,7 +128,7 @@ public static partial class Game
             {
                 func_00427CE8();
             }
-            func_0025DF54(3704);
+            Audio_PlaySound2D(3704);
             return 0;
         }
     }

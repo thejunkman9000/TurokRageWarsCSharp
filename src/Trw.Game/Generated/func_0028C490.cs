@@ -18,7 +18,7 @@ public static partial class Game
             {
                 if (((int)(new Rec14_v2(r).key) == key))
                 {
-                    func_00278F70(r);
+                    Level_SpawnTriggerFollowup_00278F70(r);
                 }
                 r += 20u;
             }
@@ -28,7 +28,7 @@ public static partial class Game
             {
                 if (((int)(new Rec14_v2(r).key) == key))
                 {
-                    func_00278F70(r);
+                    Level_SpawnTriggerFollowup_00278F70(r);
                 }
                 r += 20u;
             }

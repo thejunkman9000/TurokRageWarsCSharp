@@ -41,7 +41,7 @@ public static partial class Game
                     Mem.Set((0x801534F0u + (uint)(ch * 4)), 1);
                 }
             }
-            func_0026456C(default(uint), default(uint), default(uint), default(uint));
+            Pad_Release(default(uint), default(uint), default(uint), default(uint));
         }
     }
 

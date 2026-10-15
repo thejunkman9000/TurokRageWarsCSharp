@@ -18,7 +18,7 @@ public static partial class Game
                 uint n = 0u;
                 uint list = 0u;
                 uint l = 0u;
-                func_00271888((_fp + 96u), (_fp + 16u));
+                Quat_FromDirection((_fp + 96u), (_fp + 16u));
                 if (!((Mem.S32(0x800D2E58u) != 0))) goto _f0;
                 return 0u;
                 _f0: ;
@@ -38,11 +38,11 @@ public static partial class Game
                 new Node6BD4(n).unk48_Set(val);
                 Quat_ToMatrix((_fp + 96u), (_fp + 32u));
                 Math_MtxRotateRowsC_00273860((_fp + 32u), 1.57079649f);
-                func_002720EC((_fp + 16u));
-                func_0027200C((_fp + 16u), (_fp + 16u), 2.0480001f);
-                func_00271FA4(_fp, _fp, (_fp + 16u));
-                func_002734B8((_fp + 32u), new Vec3f(_fp).x, new Vec3f(_fp).y, new Vec3f(_fp).z);
-                func_002734EC((_fp + 32u), Mem.F32(0x800CB038u), 1.0f, Mem.F32(0x800CB038u));
+                Vec_Normalize((_fp + 16u));
+                Vec_Scale((_fp + 16u), (_fp + 16u), 2.0480001f);
+                Vec_Add(_fp, _fp, (_fp + 16u));
+                Math_MtxTranslate((_fp + 32u), new Vec3f(_fp).x, new Vec3f(_fp).y, new Vec3f(_fp).z);
+                Math_MtxScaleRows((_fp + 32u), Mem.F32(0x800CB038u), 1.0f, Mem.F32(0x800CB038u));
                 Math_MtxFloatToFixed((_fp + 32u), new Node6BD4(n).sub.P);
                 _f3: ;
                 _f2: ;

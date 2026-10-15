@@ -79,7 +79,7 @@ public static partial class Game
                         }
                     }
                 }
-                func_0025DF54(3704);
+                Audio_PlaySound2D(3704);
                 return 0;
             }
         }

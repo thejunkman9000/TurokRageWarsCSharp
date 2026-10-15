@@ -27,7 +27,7 @@ public static partial class Game
                 break;
             }
             row = ((0x800E28F8u + (uint)(mode * 140)) + (uint)(Mem.S32(0x800E28D8u) * 28));
-            if (((int)(func_00265370()) != 4194304))
+            if (((int)(Mem_GetRamSize()) != 4194304))
             {
                 lim = 172800;
             }

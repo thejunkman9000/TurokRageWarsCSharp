@@ -52,13 +52,13 @@ public static partial class Game
                 r4 = 2148401152u;
                 r4 = Mem.U32((r4 + 18064u));
                 r6 = r0;
-                r4 = r4 + 2676u; func_002656A8(r4, (int)r5, (int)r6);
+                r4 = r4 + 2676u; Bits_Assign(r4, (int)r5, (int)r6);
                 r5 = r16;
                 r6 = r0;
                 r4 = 2148401152u;
                 r4 = Mem.U32((r4 + 18064u));
                 r16 = r16 + 1u;
-                r4 = r4 + 2681u; func_002656A8(r4, (int)r5, (int)r6);
+                r4 = r4 + 2681u; Bits_Assign(r4, (int)r5, (int)r6);
                 r2 = (uint)((int)r16 < 36 ? 1 : 0);
                 { bool c_ = r2 != 0; r5 = r16; if (c_) goto L_L00426578; }
                 r4 = r17;
@@ -264,7 +264,7 @@ public static partial class Game
                 { bool c_ = r3 == r2;  if (c_) goto L_L00426948; }
                 func_00427CE8();
                 L_L00426948: ;
-                r4 = (uint)3704; r2 = (uint)func_0025DF54((int)r4);
+                r4 = (uint)3704; r2 = (uint)Audio_PlaySound2D((int)r4);
                 r31 = Mem.U32((r29 + 32u));
                 r17 = Mem.U32((r29 + 28u));
                 r16 = Mem.U32((r29 + 24u));

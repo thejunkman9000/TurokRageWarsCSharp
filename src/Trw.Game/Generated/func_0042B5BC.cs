@@ -35,7 +35,7 @@ public static partial class Game
             func_0040E958(new O04ModeF60(Mem.U32(0x800E4F60u)).unk3EC_, 0);
             func_0040E958(new O04ModeF60(Mem.U32(0x800E4F60u)).unk3F0, 0);
             new O04ModeF60(Mem.U32(0x800E4F60u)).unk44C.unk10_Set((byte)(90));
-            func_0025DF54(3708);
+            Audio_PlaySound2D(3708);
             return 0;
         }
     }

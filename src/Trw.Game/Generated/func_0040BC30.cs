@@ -18,7 +18,7 @@ public static partial class Game
                 Mem.Set(0x801450C0u, 2);
                 if ((Mem.S32(0x800E28D8u) == (-1)))
                 {
-                    if (((int)(func_00265370()) != 4194304))
+                    if (((int)(Mem_GetRamSize()) != 4194304))
                     {
                         Mem.Set(0x800E28D8u, 1);
                     }

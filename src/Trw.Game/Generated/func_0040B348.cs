@@ -27,7 +27,7 @@ public static partial class Game
             {
                 if ((func_0040B348_O01GetPad(a) != (-1)))
                 {
-                    if ((func_002645F0(func_0040B348_O01GetPad(a)) != 0))
+                    if ((Pad_IsPakChanged(func_0040B348_O01GetPad(a)) != 0))
                     {
                         if (((int)(func_00406178(a, (uint)(func_0040B348_O01GetPad(a)), (uint)(0), default(uint))) != 0))
                         {

@@ -25,18 +25,18 @@ public static partial class Game
                     }
                     else
                     {
-                        func_00270980(_fp, (o + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 96)), default(uint), default(uint));
+                        Math_MtxFixedToFloatAffine(_fp, (o + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 96)), default(uint), default(uint));
                         s = Mem.F32(0x800CB048u);
                         if ((new EmitOwner(o).info.unk14 != 0))
                         {
                             s = Mem.F32(0x800CB04Cu);
                         }
-                        func_002734EC(_fp, s, s, s);
-                        func_00272898(_fp);
-                        func_00273340(_fp, new EmitNode(n).v10.P);
+                        Math_MtxScaleRows(_fp, s, s, s);
+                        Math_MtxClampFixedRange(_fp);
+                        Math_MtxGetTranslationVec(_fp, new EmitNode(n).v10.P);
                         if (((new Emit(e).flags & (uint)(4)) != 0u))
                         {
-                            func_0027335C(_fp, new EmitNode(n).v1C.P);
+                            Math_MtxGetScale(_fp, new EmitNode(n).v1C.P);
                         }
                         else
                         {

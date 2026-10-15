@@ -12,14 +12,14 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0028C02C", (uint)o, (uint)p);
             float lo = 0f;
             float hi = 0f;
-            if (((o != 0u) && (func_00275B80(o, new Vec3f(p).x, new Vec3f(p).z) != 0)))
+            if (((o != 0u) && (Collision_IsPointInFaceXZ(o, new Vec3f(p).x, new Vec3f(p).z) != 0)))
             {
                 if (!(((int)(new Obj_v11(o).flags) & 64) != 0))
                 {
                     return o;
                 }
-                lo = func_00275E44(o, new Vec3f(p).x, new Vec3f(p).z);
-                hi = func_002752CC(o, new Vec3f(p).x, new Vec3f(p).z);
+                lo = Collision_GetFloorHeightAt(o, new Vec3f(p).x, new Vec3f(p).z);
+                hi = Collision_GetCeilingHeightAt(o, new Vec3f(p).x, new Vec3f(p).z);
                 if (((lo <= new Vec3f(p).y) && (new Vec3f(p).y <= hi)))
                 {
                     return o;

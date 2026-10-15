@@ -13,7 +13,7 @@ public static partial class Game
             new S7Light(l).dir.x_Set((-0.667424023f));
             new S7Light(l).dir.y_Set(0.953462004f);
             new S7Light(l).dir.z_Set((-0.57207799f));
-            func_002720EC(new S7Light(l).dir.P);
+            Vec_Normalize(new S7Light(l).dir.P);
             new S7Light(l).enabled_Set(1);
         }
     }

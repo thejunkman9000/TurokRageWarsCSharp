@@ -13,11 +13,11 @@ public static partial class Game
             int p = (int)(new S10Menu(m).ctrl.port);
             if ((on != 0))
             {
-                func_00264790(p);
+                Pad_EnableStatusPoll(p);
             }
             else
             {
-                func_002647A8(p);
+                Pad_DisableStatusPoll(p);
             }
         }
     }

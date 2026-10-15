@@ -26,7 +26,7 @@ public static partial class Game
                     a = new Level(lv).unk11C8;
                     b = new Level(lv).cnt11C0;
                 }
-                if ((func_00265570((uint)(a), b, (uint)(id), _fp, (_fp + 4u)) != 0))
+                if ((Sort_FindEqualRange((uint)(a), b, (uint)(id), _fp, (_fp + 4u)) != 0))
                 {
                     off = (Mem.S32(_fp) * 20);
                     if ((which != 0))

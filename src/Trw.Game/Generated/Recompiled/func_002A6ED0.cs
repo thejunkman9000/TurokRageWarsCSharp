@@ -50,7 +50,7 @@ public static partial class Game
                 r2 = r2 - 1u;
                 { bool c_ = (int)r2 > 0; Mem.Set((r16 + 16u), r2); if (c_) goto L_L002A6F64; }
                 r4 = r18 + 30088u;
-                r5 = r16; func_00279764(r4, r5);
+                r5 = r16; Pool_ReturnToFree(r4, r5);
                 L_L002A6F64: ;
                 r16 = r17;
                 { bool c_ = r16 != 0;  if (c_) goto L_L002A6EFC; }

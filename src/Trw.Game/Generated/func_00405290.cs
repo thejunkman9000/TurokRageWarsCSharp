@@ -24,7 +24,7 @@ public static partial class Game
                 r = (-1);
             }
             func_00404018(pad);
-            func_0026456C(default(uint), default(uint), default(uint), default(uint));
+            Pad_Release(default(uint), default(uint), default(uint), default(uint));
             return r;
         }
     }

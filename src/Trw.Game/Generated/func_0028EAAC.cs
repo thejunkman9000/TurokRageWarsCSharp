@@ -104,7 +104,7 @@ public static partial class Game
                     }
                     n = new Qn(n).next_;
                 }
-                func_00263B14();
+                Pad_PollAll();
             }
         }
         finally { Stack.Free(12); }

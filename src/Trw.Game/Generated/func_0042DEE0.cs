@@ -15,15 +15,15 @@ public static partial class Game
                 return 0;
             }
             func_0029A73C();
-            if ((func_00264634(new O04ModeS5430(Mem.U32(0x800E5430u)).unk20) == d))
+            if ((Pad_IsConnected(new O04ModeS5430(Mem.U32(0x800E5430u)).unk20) == d))
             {
-                if ((new O04ModeS5430(Mem.U32(0x800E5430u)).unk20 < func_002646B0()))
+                if ((new O04ModeS5430(Mem.U32(0x800E5430u)).unk20 < Pad_CountConnected()))
                 {
                     new O04ModeS5430(Mem.U32(0x800E5430u)).unk20_Set((new O04ModeS5430(Mem.U32(0x800E5430u)).unk20 + 1));
                 }
             }
             func_002A1C08(new O04ModeS5430(Mem.U32(0x800E5430u)).unk14.P, 0x800E1B60u, (uint)(new O04ModeS5430(Mem.U32(0x800E5430u)).unk20), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
-            func_0025DF54(3713);
+            Audio_PlaySound2D(3713);
             return 0;
         }
     }

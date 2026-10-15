@@ -26,12 +26,12 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r16);
                 r16 = 2151677952u;
                 Mem.Set((r29 + 24u), r31);
-                Mem.Set((r29 + 20u), r17); r2 = func_00265370();
+                Mem.Set((r29 + 20u), r17); r2 = Mem_GetRamSize();
                 r17 = 2148990976u;
                 r17 = r17 - 8192u;
                 r3 = 4194304u;
                 { bool c_ = r2 == r3; r4 = r17; if (c_) goto L_L00256830; }
-                r2 = func_00265370();
+                r2 = Mem_GetRamSize();
                 r3 = 2147483648u;
                 r16 = r2 | r3;
                 r4 = r17;
@@ -72,9 +72,9 @@ public static partial class Game
             uint end = 2151677952u;
             uint @base = 0x8016E000u;
             uint size = 0u;
-            if ((func_00265370() != (uint)(4194304)))
+            if ((Mem_GetRamSize() != (uint)(4194304)))
             {
-                end = (func_00265370() | 2147483648u);
+                end = (Mem_GetRamSize() | 2147483648u);
             }
             size = (end - (uint)(@base));
             memset(@base, 0, size);
@@ -108,7 +108,7 @@ public static partial class Game
             guMtxIdent(0x80146D20u);
             if ((Mem.S32(0x8014D330u) != 0))
             {
-                func_00264B64();
+                Level_InitRestartState();
                 Settings_InitDefaults(0x801462C8u);
             }
             Flyby_Reset();
@@ -136,7 +136,7 @@ public static partial class Game
                 ++i;
             }
             func_00293038(lv);
-            func_0025DE50();
+            Audio_Init();
         }
     }
 
@@ -258,7 +258,7 @@ public static partial class Game
                 r17 = r18 + r17;
                 r4 = r17; List44_Reset_0044AA00(r4);
                 Collision_InitProfiles();
-                r4 = (uint)24; r2 = (uint)func_00265984((int)r4);
+                r4 = (uint)24; r2 = (uint)Resource_ReadRomTableWord((int)r4);
                 r3 = 1073676288u;
                 r3 = r3 | 65535u;
                 r4 = r16;
@@ -297,7 +297,7 @@ public static partial class Game
                 Mem.Set((r1 - 21092u), r2);
                 r1 = 2148794368u;
                 Mem.Set((r1 + 28012u), r0);
-                func_002647BC();
+                Pad_EnableStatusPollAll();
                 r4 = r18;
                 r5 = r0;
                 r16 = 2148794368u;
@@ -356,8 +356,8 @@ public static partial class Game
                 L_L002917A4: ;
                 r1 = 2148335616u;
                 Mem.Set((r1 + 12160u), (byte)r0);
-                func_0026482C();
-                r4 = r0; func_00264874((int)r4);
+                Rumble_ResetAll();
+                r4 = r0; Rumble_SetEnabledAll((int)r4);
                 r4 = r18;
                 r1 = 131072u;
                 r1 = r18 + r1;

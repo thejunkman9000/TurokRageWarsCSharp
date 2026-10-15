@@ -28,13 +28,13 @@ public static partial class Game
                 n = Mem.U32(sd);
                 for (i = (uint)(1); (i < n); ++i)
                 {
-                    func_00263100(g, Chunk_Get(sd, (int)(i)));
-                    Mem.Set((_fp + (uint)(0 * 4)), func_00263174(g, 32));
-                    Mem.Set((_fp + (uint)(1 * 4)), func_00263174(g, 32));
-                    Mem.Set((_fp + (uint)(2 * 4)), func_00263174(g, 32));
-                    Mem.Set(((_fp + 16u) + (uint)(0 * 4)), func_00263174(g, 32));
-                    Mem.Set(((_fp + 16u) + (uint)(1 * 4)), func_00263174(g, 32));
-                    h2 = func_00263174(g, 32);
+                    BitStream_Init(g, Chunk_Get(sd, (int)(i)));
+                    Mem.Set((_fp + (uint)(0 * 4)), BitStream_ReadBitsLsb(g, 32));
+                    Mem.Set((_fp + (uint)(1 * 4)), BitStream_ReadBitsLsb(g, 32));
+                    Mem.Set((_fp + (uint)(2 * 4)), BitStream_ReadBitsLsb(g, 32));
+                    Mem.Set(((_fp + 16u) + (uint)(0 * 4)), BitStream_ReadBitsLsb(g, 32));
+                    Mem.Set(((_fp + 16u) + (uint)(1 * 4)), BitStream_ReadBitsLsb(g, 32));
+                    h2 = BitStream_ReadBitsLsb(g, 32);
                     p0 = Mem.F32((p + (uint)(0 * 4)));
                     Mem.Set(((_fp + 16u) + (uint)(2 * 4)), h2);
                     if (((((((p0 > Mem.F32((_fp + (uint)(0 * 4)))) && (p0 < Mem.F32(((_fp + 16u) + (uint)(0 * 4))))) && (Mem.F32((p + (uint)(1 * 4))) > Mem.F32((_fp + (uint)(1 * 4))))) && (Mem.F32((p + (uint)(1 * 4))) < Mem.F32(((_fp + 16u) + (uint)(1 * 4))))) && (Mem.F32((p + (uint)(2 * 4))) > Mem.F32((_fp + (uint)(2 * 4))))) && (Mem.F32((p + (uint)(2 * 4))) < Mem.F32(((_fp + 16u) + (uint)(2 * 4))))))
@@ -44,7 +44,7 @@ public static partial class Game
                 }
                 if ((i == n))
                 {
-                    func_00263100(g, Chunk_Get(sd, (int)((uint)(0))));
+                    BitStream_Init(g, Chunk_Get(sd, (int)((uint)(0))));
                 }
                 j = 0;
                 idx = 0;
@@ -52,7 +52,7 @@ public static partial class Game
                 {
                     for (k = 0; (k < 17); ++k, ++idx)
                     {
-                        v = func_00263174(g, 2);
+                        v = BitStream_ReadBitsLsb(g, 2);
                         if ((v == 1))
                         {
                             goto L_c1;
@@ -93,7 +93,7 @@ public static partial class Game
                         if (((int)(new B21Grid(g).map[(int)(idx)]) == 0))
                         {
                             new B21Grid(g).map.Set((int)(idx), (short)(Mem.U16((g + (uint)6))));
-                            new B21Grid(g).unk4_Set((int)((int)(new B21Grid(g).unk4) + func_00263174(g, 9)));
+                            new B21Grid(g).unk4_Set((int)((int)(new B21Grid(g).unk4) + BitStream_ReadBitsLsb(g, 9)));
                         }
                     }
                 }

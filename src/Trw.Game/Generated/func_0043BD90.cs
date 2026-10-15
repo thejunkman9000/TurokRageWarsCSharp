@@ -36,7 +36,7 @@ public static partial class Game
                 int c2 = new O06P_v2((Mem.U32(0x800E59E0u) + (uint)off)).unk4B4;
                 func_0043B67C(i, c2, Mem.S32(((Mem.U32(0x800E59E0u) + (uint)((c2 * 4) + off)) + (uint)1208)));
             }
-            func_0025DF54(3708);
+            Audio_PlaySound2D(3708);
             return 0;
         }
     }

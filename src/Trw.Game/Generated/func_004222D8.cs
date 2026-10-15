@@ -26,7 +26,7 @@ public static partial class Game
             }
             func_00422050();
             func_0042E080(default(uint), default(uint), default(uint), default(uint));
-            func_00264874(1);
+            Rumble_SetEnabledAll(1);
             return 0;
         }
     }

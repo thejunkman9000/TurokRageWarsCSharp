@@ -13,7 +13,7 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 40); ++i)
             {
-                func_002656A8(0x80154018u, i, 0);
+                Bits_Assign(0x80154018u, i, 0);
             }
         }
     }

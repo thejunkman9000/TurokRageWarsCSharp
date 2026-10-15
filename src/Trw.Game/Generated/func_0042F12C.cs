@@ -138,7 +138,7 @@ public static partial class Game
                 new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(i)].fC_Set(0u);
                 new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(i)].f14_Set((-1));
                 PlayerMenu_RefreshPanel((uint)(i), default(uint), default(uint), default(uint));
-                func_00264790(i);
+                Pad_EnableStatusPoll(i);
                 for (j = 0; (j < 4); ++j)
                 {
                     Profile_Init((new Q03Lob(Mem.U32(0x800E54A4u)).plr[(int)(i)].rec.P + (uint)(j * 400)));
@@ -237,7 +237,7 @@ public static partial class Game
             func_0040C4A8(0);
             func_002A338C();
             func_002A3410(0);
-            func_0025DF54(3704);
+            Audio_PlaySound2D(3704);
             return 0;
         }
     }

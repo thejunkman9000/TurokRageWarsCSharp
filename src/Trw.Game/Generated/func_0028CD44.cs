@@ -17,7 +17,7 @@ public static partial class Game
                 uint e = (new Level(lv).entities_ + (uint)(i * 744));
                 if ((new ActorDef(new Entity(e).def_).type == 3))
                 {
-                    func_00285D80(lv, e, 1);
+                    Level_SetEntitySavedFlag(lv, e, 1);
                 }
             }
         }

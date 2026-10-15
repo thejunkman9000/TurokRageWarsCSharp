@@ -27,7 +27,7 @@ public static partial class Game
                     do
                     {
                         float dd = 0f;
-                        func_00271FD8(_fp, pt, p);
+                        Vec_Sub(_fp, pt, p);
                         dd = (((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z));
                         if (((bestIdx < 0.0f) || (dd < bestD)))
                         {

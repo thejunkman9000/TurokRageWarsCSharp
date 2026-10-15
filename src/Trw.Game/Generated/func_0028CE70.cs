@@ -17,7 +17,7 @@ public static partial class Game
                 int i = 0;
                 uint t = new Level(lv).unkA8_;
                 int n = Mem.S32((t + (uint)(1 * 4)));
-                if ((func_00265570((t + (uint)(2 * 4)), n, (uint)(id), (_fp + 12u), (_fp + 16u)) != 0))
+                if ((Sort_FindEqualRange((t + (uint)(2 * 4)), n, (uint)(id), (_fp + 12u), (_fp + 16u)) != 0))
                 {
                     i = Mem.S32((_fp + 12u));
                     if ((Mem.S32((_fp + 16u)) >= i))

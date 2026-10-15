@@ -87,7 +87,7 @@ public static partial class Game
                 r5 = 2148335616u;
                 r5 = Mem.U32((r5 + 29876u));
                 r4 = r2; func_0041ADB4(r4, r5);
-                r2 = func_00265370();
+                r2 = Mem_GetRamSize();
                 r3 = 4194304u;
                 { bool c_ = r2 == r3;  if (c_) goto L_L004226A4; }
                 r2 = 2148401152u;

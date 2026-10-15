@@ -16,7 +16,7 @@ public static partial class Game
             case 64:
                 Mem.Set(0x80146894u, 0);
                 func_002A3304();
-                func_0025E3A4();
+                Audio_UnduckMusic();
                 return 0;
             case 60:
                 Mem.Set(0x80146894u, 0);

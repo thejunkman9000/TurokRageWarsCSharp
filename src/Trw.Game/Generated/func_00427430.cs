@@ -20,7 +20,7 @@ public static partial class Game
             i = (found = 0);
             do
             {
-                if ((func_00265670(available, i) == 1))
+                if ((Bits_Test(available, i) == 1))
                 {
                     if (((available != 0u) || (i != 0)))
                     {
@@ -48,7 +48,7 @@ public static partial class Game
                 last = (uint)(((uint)((count * 4)) + (uint)(sequence)));
                 for (; (i < 36); ++i)
                 {
-                    if ((func_00265670(available, i) != 0))
+                    if ((Bits_Test(available, i) != 0))
                     {
                         compatible = func_00428338(new O04Ent1C((0x800E4694u + (uint)(Mem.S32(last) * 28))).id, new O04Ent1C((0x800E4694u + (uint)(i * 28))).id);
                         if ((compatible == one))
@@ -56,12 +56,12 @@ public static partial class Game
                             last += 4u;
                             Mem.Set((last + (uint)(0 * 4)), i);
                             Mem.Set((last + (uint)(1 * 4)), neg);
-                            func_002656A8(available, i, 0);
+                            Bits_Assign(available, i, 0);
                             if ((func_00427430(available, sequence) == compatible))
                             {
                                 return 1;
                             }
-                            func_002656A8(available, i, 1);
+                            Bits_Assign(available, i, 1);
                             Mem.Set((last + (uint)(0 * 4)), neg);
                             last -= 4u;
                         }

@@ -1624,13 +1624,227 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_002561DC", r2); Stack.Free(384); }
     }
 
+    // ==== func_00265370 @ 0x00265370 [C]
+    public static uint Mem_GetRamSize()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00265370");
+            if ((Mem.U32(0x80000318u) > (uint)(8388607)))
+            {
+                return (uint)(7340032);
+            }
+            return Mem.U32(0x80000318u);
+        }
+    }
+
+    // ==== func_00279530 @ 0x00279530 [C]
+    public static void List_PushAtHeadCounted_00279530(uint l, uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00279530", (uint)l, (uint)n);
+            if ((new P3List2(l).count == 0))
+            {
+                new P3List2(l).head__Set(n);
+                new P3List2(l).tail__Set(n);
+                new P3Node(n).next__Set(0u);
+                new P3Node(n).prev__Set(0u);
+            }
+            else
+            {
+                new P3Node(n).prev__Set(new P3List2(l).head_);
+                new P3Node(n).next__Set(0u);
+                new P3List2(l).head.next__Set(n);
+                new P3List2(l).head__Set(n);
+            }
+            new P3List2(l).count_Set((int)(new P3List2(l).count + 1));
+        }
+    }
+
+    // ==== func_00279578 @ 0x00279578 [C]
+    public static void List_AppendCounted(uint l, uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00279578", (uint)l, (uint)n);
+            if ((new DLList(l).count == 0))
+            {
+                new DLList(l).head__Set(n);
+                new DLList(l).tail__Set(n);
+                new DLNode(n).prev__Set(0u);
+                new DLNode(n).next__Set(0u);
+            }
+            else
+            {
+                new DLNode(n).prev__Set(new DLList(l).tail_);
+                new DLNode(n).next__Set(0u);
+                new DLList(l).tail.next__Set(n);
+                new DLList(l).tail__Set(n);
+            }
+            new DLList(l).count_Set((int)(new DLList(l).count + 1));
+        }
+    }
+
+    // ==== func_002795C0 @ 0x002795C0 [C]
+    public static void List_RemoveCounted(uint l, uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002795C0", (uint)l, (uint)n);
+            if ((new DLNode(n).next_ != 0u))
+            {
+                new DLNode(n).next.prev__Set(new DLNode(n).prev_);
+            }
+            if ((new DLNode(n).prev_ != 0u))
+            {
+                new DLNode(n).prev.next__Set(new DLNode(n).next_);
+            }
+            if ((new DLList(l).head_ == n))
+            {
+                new DLList(l).head__Set(new DLNode(n).next_);
+            }
+            if ((new DLList(l).tail_ == n))
+            {
+                new DLList(l).tail__Set(new DLNode(n).prev_);
+            }
+            new DLList(l).count_Set((int)(new DLList(l).count - 1));
+        }
+    }
+
+    // ==== func_00279620 @ 0x00279620 [C]
+    public static void Pool_InitFromArray(uint p, uint mem, int stride, uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00279620", (uint)p, (uint)mem, (uint)stride, (uint)n);
+            uint u = 0u;
+            new NodePool(p).freel.head__Set(0u);
+            new NodePool(p).freel.tail__Set(0u);
+            new NodePool(p).freel.count_Set(0);
+            u = new NodePool(p).usedl.P;
+            new DLList(u).head__Set(0u);
+            new DLList(u).tail__Set(0u);
+            new DLList(u).count_Set(0);
+            while (((n--) != 0u))
+            {
+                if ((new DLList(new NodePool(p).freel.P).count == 0))
+                {
+                    new DLList(new NodePool(p).freel.P).head__Set(mem);
+                    new DLList(new NodePool(p).freel.P).tail__Set(mem);
+                    new DLNode(mem).prev__Set(0u);
+                    new DLNode(mem).next__Set(0u);
+                }
+                else
+                {
+                    new DLNode(mem).prev__Set(new DLList(new NodePool(p).freel.P).tail_);
+                    new DLNode(mem).next__Set(0u);
+                    new DLList(new NodePool(p).freel.P).tail.next__Set(mem);
+                    new DLList(new NodePool(p).freel.P).tail__Set(mem);
+                }
+                new DLList(new NodePool(p).freel.P).count_Set((int)(new DLList(new NodePool(p).freel.P).count + 1));
+                mem = (mem + (uint)stride);
+            }
+        }
+    }
+
+    // ==== func_002796AC @ 0x002796AC [C]
+    public static uint Pool_TakeFree(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002796AC", (uint)p);
+            uint n = new NodePool(p).freel.head_;
+            uint u = 0u;
+            if ((n != 0u))
+            {
+                if ((new DLNode(n).next_ != 0u))
+                {
+                    new DLNode(n).next.prev__Set(new DLNode(n).prev_);
+                }
+                if ((new DLNode(n).prev_ != 0u))
+                {
+                    new DLNode(n).prev.next__Set(new DLNode(n).next_);
+                }
+                if ((new DLList(new NodePool(p).freel.P).head_ == n))
+                {
+                    new DLList(new NodePool(p).freel.P).head__Set(new DLNode(n).next_);
+                }
+                if ((new DLList(new NodePool(p).freel.P).tail_ == n))
+                {
+                    new DLList(new NodePool(p).freel.P).tail__Set(new DLNode(n).prev_);
+                }
+                new DLList(new NodePool(p).freel.P).count_Set((int)(new DLList(new NodePool(p).freel.P).count - 1));
+                u = new NodePool(p).usedl.P;
+                if ((new DLList(u).count == 0))
+                {
+                    new DLList(u).head__Set(n);
+                    new DLList(u).tail__Set(n);
+                    new DLNode(n).prev__Set(0u);
+                    new DLNode(n).next__Set(0u);
+                }
+                else
+                {
+                    new DLNode(n).prev__Set(new DLList(u).tail_);
+                    new DLNode(n).next__Set(0u);
+                    new DLList(u).tail.next__Set(n);
+                    new DLList(u).tail__Set(n);
+                }
+                new DLList(u).count_Set((int)(new DLList(u).count + 1));
+            }
+            return n;
+        }
+    }
+
+    // ==== func_00279764 @ 0x00279764 [C]
+    public static void Pool_ReturnToFree(uint p, uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00279764", (uint)p, (uint)n);
+            uint u = new NodePool(p).usedl.P;
+            if ((new DLNode(n).next_ != 0u))
+            {
+                new DLNode(n).next.prev__Set(new DLNode(n).prev_);
+            }
+            if ((new DLNode(n).prev_ != 0u))
+            {
+                new DLNode(n).prev.next__Set(new DLNode(n).next_);
+            }
+            if ((new DLList(u).head_ == n))
+            {
+                new DLList(u).head__Set(new DLNode(n).next_);
+            }
+            if ((new DLList(u).tail_ == n))
+            {
+                new DLList(u).tail__Set(new DLNode(n).prev_);
+            }
+            new DLList(u).count_Set((int)(new DLList(u).count - 1));
+            if ((new DLList(new NodePool(p).freel.P).count == 0))
+            {
+                new DLList(new NodePool(p).freel.P).head__Set(n);
+                new DLList(new NodePool(p).freel.P).tail__Set(n);
+                new DLNode(n).prev__Set(0u);
+                new DLNode(n).next__Set(0u);
+            }
+            else
+            {
+                new DLNode(n).prev__Set(new DLList(new NodePool(p).freel.P).tail_);
+                new DLNode(n).next__Set(0u);
+                new DLList(new NodePool(p).freel.P).tail.next__Set(n);
+                new DLList(new NodePool(p).freel.P).tail__Set(n);
+            }
+            new DLList(new NodePool(p).freel.P).count_Set((int)(new DLList(new NodePool(p).freel.P).count + 1));
+        }
+    }
+
     // ==== func_00285B34 @ 0x00285B34 [C]
     public static void func_00285B34_bind(uint node, int offset, int id)
     {
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00285B34_bind", (uint)node, (uint)offset, (uint)id);
-            func_00264E00((node + (uint)offset), (int)(func_0028CE54(0x8011FE88u, id)));
+            Rumble_InitChannel((node + (uint)offset), (int)(func_0028CE54(0x8011FE88u, id)));
         }
     }
 
@@ -1721,13 +1935,13 @@ public static partial class Game
                 r4 = r4 - 376u;
                 r2 = func_0028CE54(r4, (int)r5);
                 r4 = r16 + 32u;
-                r5 = r2; func_00264E00(r4, (int)r5);
+                r5 = r2; Rumble_InitChannel(r4, (int)r5);
                 r5 = (uint)(int)Mem.S16((r19 + 2u));
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
                 r2 = func_0028CE54(r4, (int)r5);
                 r4 = r16 + 44u;
-                r5 = r2; func_00264E00(r4, (int)r5);
+                r5 = r2; Rumble_InitChannel(r4, (int)r5);
                 L_L00285C1C: ;
                 r4 = r20; __osRestoreInt(r4);
                 r2 = r16;
@@ -1796,10 +2010,10 @@ public static partial class Game
             {
                 new Q01Pool(arg0).unkC.Set((int)(j), 0u);
             }
-            if ((func_00265370() >= (mb * (uint)(6))))
+            if ((Mem_GetRamSize() >= (mb * (uint)(6))))
             {
                 sz = (uint)(345600);
-                @base = (func_00265370() | 2147483648u);
+                @base = (Mem_GetRamSize() | 2147483648u);
                 Mem.Set(0x800E28A0u, (uint)(3));
                 a = ResourcePool_AllocAt(0, (int)((@base - mb)), (int)(sz));
                 b = ResourcePool_AllocAt(0, (int)((@base - (mb * (uint)(2)))), (int)((Mem.U32(0x800E28A0u) * sz)));
@@ -1878,10 +2092,10 @@ public static partial class Game
             uint temp_v1 = 0u;
             uint temp_v1_2 = 0u;
             uint var_s0 = 0u;
-            if (((func_002934DC() != 0) && (func_00264B8C() != 0)))
+            if (((func_002934DC() != 0) && (Level_IsRestartPending() != 0)))
             {
-                func_00264BAC();
-                func_00264B9C();
+                Level_RestorePlayersAfterRestart();
+                Level_ClearRestartPending();
             }
             var_s0 = new Node_func_80449E18_de(arg0).unk20_;
             if ((var_s0 != 0u))

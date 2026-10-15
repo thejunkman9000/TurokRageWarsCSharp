@@ -15,7 +15,7 @@ public static partial class Game
             f = new O01Item(item).unkC_;
             Mem.Set(0x80153788u, 8);
             new O01Flags(f).unk120_Set((uint)((uint)(new O01Flags(f).unk120) | (uint)(8)));
-            return (int)(func_00264A1C(f, default(uint), default(uint), default(uint)));
+            return (int)(Pad_ClearFlag800D0E60_00264A1C(f, default(uint), default(uint), default(uint)));
         }
     }
 

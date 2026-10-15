@@ -17,7 +17,7 @@ public static partial class Game
                 new O05M80_v2(Mem.U32(0x800E5780u)).f10_Set((-1));
                 break;
             case 315:
-                if ((func_00265670(0x80102B7Eu, 0) == 0))
+                if ((Bits_Test(0x80102B7Eu, 0) == 0))
                 {
                     new O05M80_v2(Mem.U32(0x800E5780u)).f10_Set(7);
                 }

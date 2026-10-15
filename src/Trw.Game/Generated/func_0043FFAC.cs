@@ -65,7 +65,7 @@ public static partial class Game
             int t = 0;
             int t2 = 0;
             en = (byte)(1);
-            if ((((func_002934DC() != 0) && ((new Q04Item(it).flags & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(0x801462E5u)) != 0) && ((int)(new Q04Item(it).flags) < 0)) && ((int)(func_00265370()) == 4194304))))
+            if ((((func_002934DC() != 0) && ((new Q04Item(it).flags & (uint)(1073741824)) != (uint)(0))) || ((((int)(Mem.U8(0x801462E5u)) != 0) && ((int)(new Q04Item(it).flags) < 0)) && ((int)(Mem_GetRamSize()) == 4194304))))
             {
                 new Q04W(w).f38_Set(0);
             }

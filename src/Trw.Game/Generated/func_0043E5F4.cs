@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043E5F4", (uint)a, (uint)m);
             uint ctx = new S10Menu(m).ctx_;
             func_00409814();
-            func_0025E234((-1));
+            Audio_StopAllExcept((-1));
             func_004426E4(0x8014561Cu, 0x0044F0B8u, (int)(ctx), (int)(new S10Menu(m).ctrl_), 0);
             return 1;
         }

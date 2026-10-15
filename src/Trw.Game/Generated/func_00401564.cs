@@ -58,9 +58,9 @@ public static partial class Game
                             new O01Vec3((_fp + 32u)).x_Set(new O01K5(keys).x);
                             new O01Vec3((_fp + 32u)).y_Set(new O01K5(keys).y);
                             new O01Vec3((_fp + 32u)).z_Set(new O01K5(keys).z);
-                            func_0027200C((_fp + 16u), (_fp + 16u), (Mem.F32(0x800E0B58u) - u));
-                            func_0027200C((_fp + 32u), (_fp + 32u), u);
-                            func_00271FA4(_fp, (_fp + 16u), (_fp + 32u));
+                            Vec_Scale((_fp + 16u), (_fp + 16u), (Mem.F32(0x800E0B58u) - u));
+                            Vec_Scale((_fp + 32u), (_fp + 32u), u);
+                            Vec_Add(_fp, (_fp + 16u), (_fp + 32u));
                         }
                     }
                 }

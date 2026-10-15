@@ -17,7 +17,7 @@ public static partial class Game
             if ((((int)(new O04Ent96g(e).unk78) == 1) && ((int)(new O04Ent96g(e).unk91) == 0)))
             {
                 row = (a * 400);
-                if ((func_00265670((0x80102B4Au + (uint)row), 49) == 0))
+                if ((Bits_Test((0x80102B4Au + (uint)row), 49) == 0))
                 {
                     for (i = 0; (i < 4); ++i)
                     {
@@ -25,14 +25,14 @@ public static partial class Game
                         {
                             return;
                         }
-                        if ((func_00265670(((0x80102B4Au + (uint)218) + (uint)row), i) == 0))
+                        if ((Bits_Test(((0x80102B4Au + (uint)218) + (uint)row), i) == 0))
                         {
                             flag = 0;
                         }
                     }
                     if ((flag == 1))
                     {
-                        func_002656A8((0x80102B4Au + (uint)(a * 400)), 49, 1);
+                        Bits_Assign((0x80102B4Au + (uint)(a * 400)), 49, 1);
                         Mem.Set(@out, 49);
                     }
                 }

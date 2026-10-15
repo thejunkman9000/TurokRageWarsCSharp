@@ -33,17 +33,17 @@ public static partial class Game
                 Mem.Set((r29 + 32u), r31);
                 Mem.Set((r29 + 28u), r19);
                 Mem.Set((r29 + 20u), r17);
-                Mem.Set((r29 + 16u), r16); func_00279620(r4, r5, (int)r6, r7);
+                Mem.Set((r29 + 16u), r16); Pool_InitFromArray(r4, r5, (int)r6, r7);
                 r4 = r18 + 30088u;
                 r5 = r18 + 30004u;
                 r6 = (uint)28;
-                r7 = (uint)3; func_00279620(r4, r5, (int)r6, r7);
-                r4 = r18 + 27280u; func_00279520(r4);
+                r7 = (uint)3; Pool_InitFromArray(r4, r5, (int)r6, r7);
+                r4 = r18 + 27280u; Vec_SetZero(r4);
                 r16 = r0;
                 r17 = (uint)9616;
                 L_L0044EC04: ;
                 r4 = r18 + 27280u;
-                r5 = r18 + r17; func_00279578(r4, r5);
+                r5 = r18 + r17; List_AppendCounted(r4, r5);
                 r16 = r16 + 1u;
                 r2 = (uint)((int)r16 < 96 ? 1 : 0);
                 { bool c_ = r2 != 0; r17 = r17 + 184u; if (c_) goto L_L0044EC04; }

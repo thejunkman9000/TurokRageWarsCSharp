@@ -69,7 +69,7 @@ public static partial class Game
                 Mem.Set((r16 + 0u), r2);
                 r2 = (uint)8192;
                 Mem.Set((r3 + 16u), r7);
-                Mem.Set((r5 + 4u), r2); func_0026D844();
+                Mem.Set((r5 + 4u), r2); Model_ResetDrawState();
                 r8 = 3661103104u;
                 r8 = r8 | 7u;
                 r18 = 2148794368u;
@@ -93,11 +93,11 @@ public static partial class Game
                 Mem.Set((r29 + 88u), r9);
                 Mem.Set((r29 + 92u), r10);
                 Mem.Set((r29 + 96u), r11);
-                r6 = r29 + 104u; func_00272908(r4, r5, r6);
+                r6 = r29 + 104u; Math_MtxTransformPoint(r4, r5, r6);
                 r5 = Mem.U32((r29 + 104u));
                 r6 = Mem.U32((r29 + 108u));
                 r7 = Mem.U32((r29 + 112u));
-                r4 = r29 + 24u; func_00272CD0(r4, Cpu.U2F(r5), Cpu.U2F(r6), Cpu.U2F(r7));
+                r4 = r29 + 24u; Math_MtxMakeTranslate(r4, Cpu.U2F(r5), Cpu.U2F(r6), Cpu.U2F(r7));
                 r2 = (uint)func_002A2934();
                 Cpu.SetW(0, Mem.U32((r17 + 40u)));
                 Cpu.SetW(21, r0);
@@ -181,8 +181,8 @@ public static partial class Game
                 r7 = Cpu.W(2);
                 r6 = Cpu.W(1);
                 r4 = r29 + 24u;
-                Mem.Set((r29 + 124u), r6); func_002734EC(r4, Cpu.U2F(r5), Cpu.U2F(r6), Cpu.U2F(r7));
-                r4 = r29 + 24u; func_00273DDC(r4);
+                Mem.Set((r29 + 124u), r6); Math_MtxScaleRows(r4, Cpu.U2F(r5), Cpu.U2F(r6), Cpu.U2F(r7));
+                r4 = r29 + 24u; Math_MtxSwapRowsYZ(r4);
                 r5 = 2148335616u;
                 r5 = Mem.U32((r5 + 10620u));
                 r4 = r29 + 24u;
@@ -193,7 +193,7 @@ public static partial class Game
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
                 r2 = (uint)func_0028C174(r4, (int)r5);
-                r16 = r2; func_0026D980();
+                r16 = r2; Model_ClearBatchQueue();
                 r4 = r16;
                 r6 = 2148335616u;
                 r6 = r6 + 3832u;
@@ -204,8 +204,8 @@ public static partial class Game
                 r5 = r5 << 6;
                 r5 = r5 + 56u;
                 r5 = r17 + r5;
-                Mem.Set((r29 + 16u), r2); func_0026DF30((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
-                func_0026D9D0();
+                Mem.Set((r29 + 16u), r2); Model_QueueByIndex((int)r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                Model_FlushBatches();
                 L_L00439D10: ;
                 r31 = Mem.U32((r29 + 152u));
                 r1 = 2148335616u;

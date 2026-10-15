@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002A577C", (uint)r, (uint)arg);
             uint e = 0u;
             uint c = 0u;
-            func_0026D8F8();
+            Model_ResetStateCache();
             func_00296FF8();
             if ((new Rend(r).dl_ != 0u))
             {

@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0043ECE8", (uint)a, (uint)m);
-            if ((func_002646B0() < 2))
+            if ((Pad_CountConnected() < 2))
             {
                 new S10Menu(m).fC.flags_Set((uint)((uint)(new S10Menu(m).fC.flags) & (uint)((~16777216))));
                 if (((int)(new S10Menu(m).state) == 2))

@@ -43,7 +43,7 @@ public static partial class Game
                 r23 = Mem.U32((r29 + 80u));
                 r20 = Mem.U32((r29 + 84u));
                 r21 = Mem.U32((r29 + 88u));
-                r17 = r0; r2 = (uint)func_0026437C(r4);
+                r17 = r0; r2 = (uint)Pad_IsStartPressed(r4);
                 { bool c_ = r2 == 0; r4 = r22; if (c_) goto L_L0044500C; }
                 r5 = r18;
                 r6 = r16; r2 = (uint)func_004424F4((int)r4, (int)r5, (int)r6);
