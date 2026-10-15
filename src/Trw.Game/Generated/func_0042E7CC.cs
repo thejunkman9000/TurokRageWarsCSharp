@@ -88,7 +88,7 @@ public static partial class Game
                 new Q03Cfg(c).s24_Set((sbyte)(0));
                 new Q03Cfg(c).s25_Set((sbyte)(0));
                 Mem.Set((0x80154028u + (uint)(0 * 4)), 2);
-                Mem.Set((0x80154028u + (uint)(1 * 4)), Mem.S32(((_fp + 16u) + (uint)((func_00274544() % 4) * 4))));
+                Mem.Set((0x80154028u + (uint)(1 * 4)), trw_arena_index(-1, Mem.S32(((_fp + 16u) + (uint)((func_00274544() % 4) * 4)))));       // tools/overrides/func_0042E7CC.c: TRW_ARENA pins the demo arena too
             }
         }
         finally { Stack.Free(32); }
