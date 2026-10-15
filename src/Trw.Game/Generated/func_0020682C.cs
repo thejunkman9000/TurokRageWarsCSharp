@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0020682C", (uint)actor, (uint)state);
             new Actor(actor).flags_Set((uint)((uint)(new Actor(actor).flags) | (uint)(8448)));
-            if ((Water_IsCameraUnderwater() != 0))
+            if ((Flyby_IsInWindow() != 0))
             {
                 new ActorState(state).flags_Set((uint)((uint)(new ActorState(state).flags) | (uint)(512)));
             }

@@ -21,7 +21,7 @@ public static partial class Game
                 {
                     return;
                 }
-                if ((Water_IsCameraUnderwater() == 0))
+                if ((Flyby_IsInWindow() == 0))
                 {
                     return;
                 }
@@ -35,7 +35,7 @@ public static partial class Game
                 }
                 if ((new Q01Anim_v2(Mem.U32(0x800E2830u)).unk1E0 > 0))
                 {
-                    func_002453C4();
+                    Flyby_DrawText();
                 }
                 func_00401214(_fp, new Q01Anim_v2(Mem.U32(0x800E2830u)).f1C);
                 func_004013BC((_fp + 16u), new Q01Anim_v2(Mem.U32(0x800E2830u)).f1C);

@@ -37,7 +37,7 @@ public static partial class Game
                     }
                 }
             }
-            if ((Water_IsCameraUnderwater() != 0))
+            if ((Flyby_IsInWindow() != 0))
             {
                 new M04Emitter(o).unkC8_Set((new M04Emitter(o).unkC8 * Mem.F32(0x800C9014u)));
             }

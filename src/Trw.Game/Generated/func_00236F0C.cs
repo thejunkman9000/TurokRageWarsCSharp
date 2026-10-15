@@ -109,7 +109,7 @@ public static partial class Game
                 func_00238304(race, racer, default(uint), default(uint));
                 func_00442B44(new Racer(racer).sound.P);
                 func_002372C4(racer);
-                if (((func_00245774() != 0) || (Water_IsCameraUnderwater() != 0)))
+                if (((Flyby_IsActive() != 0) || (Flyby_IsInWindow() != 0)))
                 {
                     racer = 0u;
                 }
@@ -326,7 +326,7 @@ public static partial class Game
             {
                 return 0u;
             }
-            if ((func_00245774() != 0))
+            if ((Flyby_IsActive() != 0))
             {
                 pending = new func_80237E70_S2(pool).unkE40.v1_;
                 if ((pending != 0u))

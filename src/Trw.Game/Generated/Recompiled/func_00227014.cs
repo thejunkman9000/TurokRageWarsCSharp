@@ -43,11 +43,11 @@ public static partial class Game
                 L_I0022703C: ;
                 Mem.Set((r29 + 64u), Cpu.Fpr[20]);
                 L_I00227040: ;
-                r21 = r4; r2 = (uint)func_00245774();
+                r21 = r4; r2 = (uint)Flyby_IsActive();
                 L_I00227048: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L00227E38; }
                 L_I00227050: ;
-                r2 = (uint)Water_IsCameraUnderwater();
+                r2 = (uint)Flyby_IsInWindow();
                 L_I00227058: ;
                 { bool c_ = r2 != 0;  if (c_) goto L_L00227E38; }
                 L_I00227060: ;

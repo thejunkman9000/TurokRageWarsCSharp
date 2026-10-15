@@ -70,7 +70,7 @@ public static partial class Game
                 r19 = r18;
                 r2 = r2 ^ 2u;
                 r2 = (uint)(r2 < (uint)(1) ? 1 : 0);
-                Mem.Set((r29 + 200u), r2); r2 = (uint)Water_IsCameraUnderwater();
+                Mem.Set((r29 + 200u), r2); r2 = (uint)Flyby_IsInWindow();
                 { bool c_ = r2 == 0; r9 = (uint)1; if (c_) goto L_L00220F94; }
                 Mem.Set((r29 + 200u), r9);
                 L_L00220F94: ;
@@ -445,7 +445,7 @@ public static partial class Game
                 fcc = Cpu.S(1) < Cpu.S(0);
                 if (fcc) { Mem.Set((r18 + 2028u), Cpu.W(24)); goto L_L00221668; }
                 L_L00221668: ;
-                r2 = (uint)Water_IsCameraUnderwater();
+                r2 = (uint)Flyby_IsInWindow();
                 { bool c_ = r2 == 0;  if (c_) goto L_L0022168C; }
                 r2 = Mem.U16((r18 + 1616u));
                 r2 = r2 - 22u;
@@ -1013,7 +1013,7 @@ public static partial class Game
                 { bool c_ = r2 == r5; r4 = r19; if (c_) goto L_L002220BC; }
                 r6 = r0; r2 = (uint)func_0024B690(r4, (int)r5, (int)r6);
                 { bool c_ = r2 != 0; r4 = r19; if (c_) goto L_L002220C0; }
-                r2 = (uint)Water_IsCameraUnderwater();
+                r2 = (uint)Flyby_IsInWindow();
                 { bool c_ = r2 == 0; r4 = r19; if (c_) goto L_L002220BC; }
                 r5 = (uint)7000;
                 r6 = r0; r2 = (uint)func_0024B690(r4, (int)r5, (int)r6);

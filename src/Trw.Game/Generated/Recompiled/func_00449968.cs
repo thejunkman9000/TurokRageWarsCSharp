@@ -111,7 +111,7 @@ public static partial class Game
                 r5 = r18; r2 = func_00220A5C(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = Mem.U32((r18 + 1500u));
                 { bool c_ = r4 == 0;  if (c_) goto L_L00449AF0; }
-                func_00245854(r4);
+                Flyby_Hook_00245854(r4);
                 L_L00449AF0: ;
                 r2 = Mem.U32((r18 + 24u));
                 Cpu.SetW(0, Mem.U32((r2 + 252u)));

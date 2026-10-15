@@ -13,7 +13,7 @@ public static partial class Game
             func_00254784(Mem.U32(0x800E4518u));
             func_002A3358();
             Mem.Set(0x800E4518u, 0u);
-            func_00245B18();
+            Flyby_Abort();
             return 0;
         }
     }

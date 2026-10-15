@@ -48,7 +48,7 @@ public static partial class Game
                 r1 = 131072u;
                 r1 = r19 + r1;
                 Mem.Set((r1 - 18772u), r0);
-                r2 = (uint)func_00245774();
+                r2 = (uint)Flyby_IsActive();
                 { bool c_ = r2 != 0;  if (c_) goto L_L00286B74; }
                 { bool c_ = r21 == 0;  if (c_) goto L_L00286B74; }
                 r1 = 131072u;

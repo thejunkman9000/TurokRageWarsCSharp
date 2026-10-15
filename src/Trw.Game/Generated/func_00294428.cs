@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00294428", (uint)g);
             Mem.Set(0x800D29C0u, (int)(Mem.S32(0x800D29C0u) + 1));
             func_0028D8E8();
-            func_002459F0(Mem.F32(0x800CA5BCu));
+            Flyby_SetFieldOfView(Mem.F32(0x800CA5BCu));
             func_0029397C(g, 111);
         }
     }

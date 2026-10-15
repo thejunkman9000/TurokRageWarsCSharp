@@ -33,7 +33,7 @@ public static partial class Game
                 new Tracker(t).unk58__Set(n);
                 new Tracker(t).unk5C_Set(j);
                 new Tracker(t).unk60_Set(k);
-                if ((Water_IsCameraUnderwater() != 0))
+                if ((Flyby_IsInWindow() != 0))
                 {
                     new Tracker(t).unk58__Set(func_002866F8(0x8011FE88u, (t + 56u)));
                 }
@@ -43,7 +43,7 @@ public static partial class Game
                 z = new Tracker(t).unk40;
                 w = new Tracker(t).unk44;
                 new Tracker(t).unk64_Set(Mem.S32(0x800D2B40u));
-                if (((node != 0u) && (Water_IsCameraUnderwater() == 0)))
+                if (((node != 0u) && (Flyby_IsInWindow() == 0)))
                 {
                     dist = (((y + w) - func_00275E44(node, x, z)) * Mem.F32(0x800C8610u));
                     if (((dist < Mem.F32(0x800C8614u)) && (Mem.F32(0x800C8618u) < dist)))
@@ -51,7 +51,7 @@ public static partial class Game
                         new Tracker(t).unk64_Set(new SurfNode(node).unk1C);
                     }
                 }
-                if ((Water_IsCameraUnderwater() != 0))
+                if ((Flyby_IsInWindow() != 0))
                 {
                     new Tracker(t).unk64_Set(Mem.S32(0x800D2B40u));
                 }

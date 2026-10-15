@@ -15,11 +15,11 @@ public static partial class Game
             int want = 0;
             uint p = 0u;
             uint a = 0u;
-            if ((func_00245774() != 0))
+            if ((Flyby_IsActive() != 0))
             {
                 return 0;
             }
-            if ((Water_IsCameraUnderwater() != 0))
+            if ((Flyby_IsInWindow() != 0))
             {
                 return 0;
             }

@@ -12,8 +12,8 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0028D8E8");
             int w = 0;
             int h = 0;
-            func_00245A10(0);
-            func_002459F0(75.0f);
+            Flyby_SetLoop(0);
+            Flyby_SetFieldOfView(75.0f);
             w = 480;
             if ((Mem.S32(0x800E28D8u) == 0))
             {
@@ -24,7 +24,7 @@ public static partial class Game
             {
                 h = 360;
             }
-            func_00245A4C(w, h, 0, 0);
+            Flyby_SetViewport(w, h, 0, 0);
         }
     }
 

@@ -37,7 +37,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0044E214", (uint)arg0);
             int i = 0;
             int n = 0;
-            func_002458C8();
+            Flyby_ClearFlag_002458C8();
             n = new State_func_8044D5C4_de(arg0).unk11C0;
             for (i = 0; (i < n); ++i)
             {
@@ -48,7 +48,7 @@ public static partial class Game
             {
                 func_0028784C(arg0, (uint)((new State_func_8044D5C4_de(arg0).unk11D4 + (i * 20))), default(uint), default(uint));
             }
-            func_002458B4();
+            Flyby_SetFlag_002458B4();
         }
     }
 

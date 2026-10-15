@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0022BEF4", (uint)actor, (uint)unused, (uint)n, (uint)kind);
             int v = 0;
-            if ((func_00245774() != 0))
+            if ((Flyby_IsActive() != 0))
             {
                 return;
             }

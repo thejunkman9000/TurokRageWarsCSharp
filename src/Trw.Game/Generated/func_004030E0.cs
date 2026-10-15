@@ -51,7 +51,7 @@ public static partial class Game
                     }
                 }
                 func_002536F4(0, r);
-                func_00245AB8();
+                Flyby_ClearText();
                 return new O01Ctx(Mem.U32(0x800E2830u)).unkD8;
             }
         }

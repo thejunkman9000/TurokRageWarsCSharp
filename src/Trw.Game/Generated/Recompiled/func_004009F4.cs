@@ -45,7 +45,7 @@ public static partial class Game
                 L_L00400A54: ;
                 r2 = Mem.U32((r3 + 56u));
                 { bool c_ = r2 == 0; r6 = r20 + 1u; if (c_) goto L_L00400A6C; }
-                func_00245B18();
+                Flyby_Abort();
                 r6 = r20 + 1u;
                 L_L00400A6C: ;
                 r4 = Mem.U32((r16 + 116u));

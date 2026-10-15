@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00422050");
-            func_00245B18();
+            Flyby_Abort();
             func_0044AFC0(0x80145088u, 0);
             func_0044A600((0x80145088u - (uint)72), 0, 0);
             func_00286A78(0x8011FE88u, (uint)(36), (uint)(0), default(uint));
@@ -18,9 +18,9 @@ public static partial class Game
             {
                 func_0025470C(1);
             }
-            func_00245A00();
-            func_00245A10(0);
-            func_00245A20();
+            Flyby_ClearFieldOfView();
+            Flyby_SetLoop(0);
+            Flyby_SetViewportFull();
         }
     }
 

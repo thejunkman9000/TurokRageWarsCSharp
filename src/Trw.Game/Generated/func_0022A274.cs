@@ -14,7 +14,7 @@ public static partial class Game
             func_0026D980();
             for (a = new PlrGroup(g).head_; (a != 0u); a = new Plr(a).next_)
             {
-                if ((((new Plr(a).unk5DC_ != p) || (new Pawn(p).unk24 == 1)) || (func_002458F8() != 0)))
+                if ((((new Plr(a).unk5DC_ != p) || (new Pawn(p).unk24 == 1)) || (Flyby_IsInWindowFlag2_002458F8() != 0)))
                 {
                     func_0021C9B4(a, p);
                 }

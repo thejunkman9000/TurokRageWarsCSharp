@@ -15,7 +15,7 @@ public static partial class Game
                 int v = new P4Game(g).f26DBC;
                 new P4Game(g).f26DB0_Set(0);
                 new P4Game(g).f26DB8_Set(v);
-                func_00245690();
+                Flyby_Stop();
                 func_0025E234((-1));
                 func_00264874(0);
                 if ((new P4Hook((0x800D29D8u + (uint)(new P4Game(g).f26DB8 * 12))).fn != 0u))

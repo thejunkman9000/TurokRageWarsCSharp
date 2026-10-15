@@ -22,7 +22,7 @@ public static partial class Game
                 new O04ModeS4518(Mem.U32(0x800E4518u)).unk60_Set((-1));
                 func_0040E958(new O04ModeS4518(Mem.U32(0x800E4518u)).unk44, 1);
                 func_0040E958(new O04ModeS4518(Mem.U32(0x800E4518u)).unk4C, 1);
-                func_00245B18();
+                Flyby_Abort();
                 break;
             case 896:
                 func_0042EB68(23);

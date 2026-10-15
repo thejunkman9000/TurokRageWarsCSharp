@@ -986,48 +986,48 @@ func_00244494	0x00244494
 func_002446D0	0x002446D0				
 func_0024490C	0x0024490C				
 func_00244B58	0x00244B58				
-func_00244D60	0x00244D60				
-func_00244E48	0x00244E48				
-func_00244FA4	0x00244FA4				
-func_002450BC	0x002450BC				
-func_002453C4	0x002453C4				
-func_00245608	0x00245608				
-func_00245690	0x00245690				
-func_002456FC	0x002456FC				
-func_00245754	0x00245754				
-func_0024575C	0x0024575C				
-func_00245774	0x00245774				
-func_00245788	0x00245788	Water_IsCameraUnderwater	Render/Water.cs	medium	true when the camera is inside the water volume (control block *D_800E2830: active +0x38, height +0x1C in +0x30..+0x34)
-func_002457D0	0x002457D0				
-func_00245804	0x00245804				
-func_00245840	0x00245840				
-func_00245854	0x00245854				
-func_00245884	0x00245884				
-func_002458B4	0x002458B4				
-func_002458C8	0x002458C8				
-func_002458D8	0x002458D8				
-func_002458E8	0x002458E8				
-func_002458F8	0x002458F8				
-func_00245930	0x00245930				
-func_00245958	0x00245958				
-func_00245980	0x00245980				
-func_00245990	0x00245990				
-func_002459F0	0x002459F0				
-func_00245A00	0x00245A00				
-func_00245A10	0x00245A10				
-func_00245A20	0x00245A20				
-func_00245A4C	0x00245A4C				
-func_00245A68	0x00245A68				
-func_00245AB8	0x00245AB8				
-func_00245AC8	0x00245AC8				
-func_00245AE8	0x00245AE8	Water_GetFogColor	Render/Water.cs	medium	underwater: fog colour used by func_00235AD0
-func_00245AFC	0x00245AFC				
-func_00245B10	0x00245B10				
-func_00245B18	0x00245B18				
-func_00245B64	0x00245B64				
-func_00245BB0	0x00245BB0				
-func_00245C28	0x00245C28				
-func_00245D04	0x00245D04				
+func_00244D60	0x00244D60	Flyby_Reset	World/Flyby.cs	medium	zeroes the flyby control block *D_800E2830 (ids -1)
+func_00244E48	0x00244E48	Flyby_OnWindowStart	World/Flyby.cs	low	called once the clock passes f30: resets player 0 view state, loads sound bank id fD8 if needed, marks started (f40)
+func_00244FA4	0x00244FA4	Flyby_RunPending	World/Flyby.cs	low	if a pending id (fDC) is set: runs overlay func_4009F4(id), advances the clock like Flyby_Advance
+func_002450BC	0x002450BC	Flyby_Update	World/Flyby.cs	medium	once per retrace: advances the clock (f1C += dt*speed), handles loop/hold, fade-out (f60/f64) and the end callbacks
+func_002453C4	0x002453C4	Flyby_DrawText	World/Flyby.cs	medium	draws the f1E0 text lines centred, scaled to the screen size (D_800E28D0/D4 vs 284x222)
+func_00245608	0x00245608	Flyby_DeferCallbacks	World/Flyby.cs	low	if the running flyby has id fE0 == id, stores two callbacks (fE4/fE8) for later, else calls them now
+func_00245690	0x00245690	Flyby_Stop	World/Flyby.cs	medium	if active: end callbacks (Flyby_RunEndCallback, Flyby_Finish), frees the path data p0, clears the state
+func_002456FC	0x002456FC	Flyby_StartFadeOut	World/Flyby.cs	medium	if active and allowed: starts the fade-out (f60 = 1, f64 = start value)
+func_00245754	0x00245754	Flyby_CanFadeOut	World/Flyby.cs	low	always returns 1
+func_0024575C	0x0024575C	Flyby_IsPending	World/Flyby.cs	medium	fDC != -1
+func_00245774	0x00245774	Flyby_IsActive	World/Flyby.cs	high	returns f38 (the active flag); every other flyby function tests it first
+func_00245788	0x00245788	Flyby_IsInWindow	World/Flyby.cs	high	active and the clock f1C within [f30, f34]; func_00235AD0 then uses the flyby fog colour (formerly misnamed Water_IsCameraUnderwater)
+func_002457D0	0x002457D0	Flyby_IsPastWindow	World/Flyby.cs	medium	not active, or the clock past f34
+func_00245804	0x00245804	Flyby_IsIdle	World/Flyby.cs	medium	neither active nor pending
+func_00245840	0x00245840	Flyby_IsHolding	World/Flyby.cs	medium	f3C: set when a non-looping flyby reaches its end and holds
+func_00245854	0x00245854	Flyby_Hook_00245854	World/Flyby.cs	low	if active calls overlay func_401980; called from func_00234FDC
+func_00245884	0x00245884	Flyby_Hook_00245884	World/Flyby.cs	low	if active calls overlay func_402BA0
+func_002458B4	0x002458B4	Flyby_SetFlag_002458B4	World/Flyby.cs	low	D_800E2838 = 1
+func_002458C8	0x002458C8	Flyby_ClearFlag_002458C8	World/Flyby.cs	low	D_800E2838 = 0
+func_002458D8	0x002458D8	Flyby_GetFlag_002458D8	World/Flyby.cs	low	returns D_800E2838
+func_002458E8	0x002458E8	Flyby_ClearHold	World/Flyby.cs	medium	f3C = 0
+func_002458F8	0x002458F8	Flyby_IsInWindowFlag2_002458F8	World/Flyby.cs	low	Flyby_IsInWindow and (f74 & 2)
+func_00245930	0x00245930	Flyby_GetFieldAC_00245930	World/Flyby.cs	low	active ? fAC : 0
+func_00245958	0x00245958	Flyby_GetFieldA8_00245958	World/Flyby.cs	low	active ? fA8 : 0
+func_00245980	0x00245980	Flyby_SetValue_00245980	World/Flyby.cs	low	D_800E2844 = a
+func_00245990	0x00245990	Flyby_GetFieldOfView	World/Flyby.cs	medium	inactive: default constant; else override f100 if set, else the path function of the clock (func_40184C); used by func_00234FDC for the projection
+func_002459F0	0x002459F0	Flyby_SetFieldOfView	World/Flyby.cs	medium	f100 = v (override)
+func_00245A00	0x00245A00	Flyby_ClearFieldOfView	World/Flyby.cs	medium	f100 = 0
+func_00245A10	0x00245A10	Flyby_SetLoop	World/Flyby.cs	medium	f104 = a (1 = the clock wraps at the end)
+func_00245A20	0x00245A20	Flyby_SetViewportFull	World/Flyby.cs	low	f108/f10C = screen size D_800E28D0/D4, f110/f114 = 0
+func_00245A4C	0x00245A4C	Flyby_SetViewport	World/Flyby.cs	low	f108..f114 = a, b, c, d (copied to the target view in Flyby_OnWindowStart)
+func_00245A68	0x00245A68	Flyby_AddTextLine	World/Flyby.cs	high	copies a string into the next text line (ent[f1E0++]); func_0028A924 adds the level name and mode lines
+func_00245AB8	0x00245AB8	Flyby_ClearText	World/Flyby.cs	high	f1E0 = 0 (func_0028A924 calls it before adding lines)
+func_00245AC8	0x00245AC8	Flyby_GetFarPlane	World/Flyby.cs	medium	fA0 * constant; used by func_00234FDC
+func_00245AE8	0x00245AE8	Flyby_GetFogColor	World/Flyby.cs	medium	returns fB0; func_00235AD0 uses it as the fog colour inside the window (formerly misnamed Water_GetFogColor)
+func_00245AFC	0x00245AFC	Flyby_GetId	World/Flyby.cs	medium	returns fE0
+func_00245B10	0x00245B10	Flyby_Nop_00245B10	World/Flyby.cs	low	empty function
+func_00245B18	0x00245B18	Flyby_Abort	World/Flyby.cs	medium	frees the path data and clears the state without running callbacks
+func_00245B64	0x00245B64	Flyby_RunEndCallback	World/Flyby.cs	medium	once (f44): calls and clears the callback fn10
+func_00245BB0	0x00245BB0	Flyby_Finish	World/Flyby.cs	medium	once (f48): frees the path data, clears the state, calls and clears the callback fn0C
+func_00245C28	0x00245C28	Flyby_Advance	World/Flyby.cs	medium	advances the clock by dt * speed (loop / hold at the end, Flyby_OnWindowStart at f30)
+func_00245D04	0x00245D04	Flyby_IsActive2	World/Flyby.cs	low	returns f38, same as Flyby_IsActive
 func_00245D18	0x00245D18				
 func_00245D20	0x00245D20				
 func_00246174	0x00246174				

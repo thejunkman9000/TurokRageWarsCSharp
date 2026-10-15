@@ -15,7 +15,7 @@ public static partial class Game
             uint x2 = 0u;
             func_002909D0();
             func_00289054(w, a, default(uint), default(uint));
-            if ((Water_IsCameraUnderwater() == 0))
+            if ((Flyby_IsInWindow() == 0))
             {
                 func_00228774(0x80145040u, a);
             }
@@ -25,7 +25,7 @@ public static partial class Game
             }
             func_0028B004(w, (int)(a));
             func_002A6170(0x8013BA80u);
-            if ((Water_IsCameraUnderwater() == 0))
+            if ((Flyby_IsInWindow() == 0))
             {
                 func_002905D4((w + (uint)71544), a);
             }
@@ -35,7 +35,7 @@ public static partial class Game
             func_0028B13C(w, (int)(a));
             func_002A577C(0x8013BA80u, (int)(a));
             func_00238D20(a, default(uint), default(uint), default(uint));
-            if (((Water_IsCameraUnderwater() == 0) && (func_002934DC() != 0)))
+            if (((Flyby_IsInWindow() == 0) && (func_002934DC() != 0)))
             {
                 func_0022A2FC(0x80145040u, a);
             }

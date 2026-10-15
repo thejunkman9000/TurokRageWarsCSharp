@@ -48,12 +48,12 @@ public static partial class Game
                 L_L00214A30: ;
                 r20 = r0;
                 r21 = r20;
-                r16 = (uint)1; r2 = (uint)Water_IsCameraUnderwater();
+                r16 = (uint)1; r2 = (uint)Flyby_IsInWindow();
                 { bool c_ = r2 == 0;  if (c_) goto L_L00214A68; }
-                r16 = r20; r2 = (uint)func_00245AFC();
+                r16 = r20; r2 = (uint)Flyby_GetId();
                 r2 = (uint)((int)r2 < 10 ? 1 : 0);
                 { bool c_ = r2 != 0;  if (c_) goto L_L00214A68; }
-                r2 = (uint)func_00245AFC();
+                r2 = (uint)Flyby_GetId();
                 r16 = (uint)((int)r2 < 61 ? 1 : 0);
                 L_L00214A68: ;
                 { bool c_ = r16 == 0;  if (c_) goto L_L00214D4C; }

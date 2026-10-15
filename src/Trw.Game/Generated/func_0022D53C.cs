@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0022D53C", (uint)actor);
             Mem.Set(0x80102A48u, actor);
-            func_00245608(80, (uint)(0), 0x0022ED14u);
+            Flyby_DeferCallbacks(80, (uint)(0), 0x0022ED14u);
         }
     }
 

@@ -37,7 +37,7 @@ public static partial class Game
                 Mem.Set((r29 + 88u), Cpu.Fpr[22]);
                 Mem.Set((r29 + 80u), Cpu.Fpr[21]);
                 Mem.Set((r29 + 72u), Cpu.Fpr[20]);
-                r17 = r5; r2 = (uint)Water_IsCameraUnderwater();
+                r17 = r5; r2 = (uint)Flyby_IsInWindow();
                 { bool c_ = r2 == 0; r4 = r23; if (c_) goto L_L00238368; }
                 r5 = r17; func_00238040(r4, r5);
                  goto L_L0023861C;

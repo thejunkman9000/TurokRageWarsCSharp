@@ -70,7 +70,7 @@ public static partial class Game
             new S6Nd(p).r1_Set((float)(Mem.S32(0x800E28D4u)));
             new S6Nd(p).r2_Set((float)(0));
             new S6Nd(p).r3_Set((float)(0));
-            if (((Water_IsCameraUnderwater() == 0) && (func_00245774() == 0)))
+            if (((Flyby_IsInWindow() == 0) && (Flyby_IsActive() == 0)))
             {
                 p = new S6World(w).first_;
                 switch (new S6World(w).mode)
@@ -192,11 +192,11 @@ public static partial class Game
             p = new S6World(w).first_;
             if ((p != 0u))
             {
-                if (((Mem.S32(0x80146894u) != 0) || (func_00245840() != 0)))
+                if (((Mem.S32(0x80146894u) != 0) || (Flyby_IsHolding() != 0)))
                 {
                     func_00234FDC(p, default(uint), default(uint), default(uint));
                 }
-                if (((Water_IsCameraUnderwater() != 0) || (func_00245774() != 0)))
+                if (((Flyby_IsInWindow() != 0) || (Flyby_IsActive() != 0)))
                 {
                     func_00234FDC(p, default(uint), default(uint), default(uint));
                 }
@@ -209,7 +209,7 @@ public static partial class Game
                     do
                     {
                         float v = 0f;
-                        if (((Mem.S32(0x80146894u) != 0) || (func_00245840() != 0)))
+                        if (((Mem.S32(0x80146894u) != 0) || (Flyby_IsHolding() != 0)))
                         {
                             func_00234FDC(p, default(uint), default(uint), default(uint));
                         }

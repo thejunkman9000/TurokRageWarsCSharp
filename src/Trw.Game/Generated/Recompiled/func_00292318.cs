@@ -356,7 +356,7 @@ public static partial class Game
                 r1 = r18 + r1;
                 Mem.Set((r1 + 28096u), (byte)r0);
                 L_L002928E8: ;
-                func_002450BC();
+                Flyby_Update();
                 r31 = Mem.U32((r29 + 52u));
                 r21 = Mem.U32((r29 + 48u));
                 r20 = Mem.U32((r29 + 44u));

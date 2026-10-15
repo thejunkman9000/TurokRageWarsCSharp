@@ -24,7 +24,7 @@ public static partial class Game
             }
             else
             {
-                if ((func_00245804() != 0))
+                if ((Flyby_IsIdle() != 0))
                 {
                     old = new B21Game(g).unk26DB8;
                     new B21Game(g).unk26DC1_Set((byte)(1));

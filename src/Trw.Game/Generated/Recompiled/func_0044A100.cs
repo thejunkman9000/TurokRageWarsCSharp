@@ -40,12 +40,12 @@ public static partial class Game
                 Mem.Set((r17 + 1516u), r2);
                 Mem.Set((r17 + 4648u), r0);
                 L_L0044A144: ;
-                Mem.Set((r17 + 4644u), r0); func_002458C8();
+                Mem.Set((r17 + 4644u), r0); Flyby_ClearFlag_002458C8();
                 r4 = Mem.U32((r17 + 20u));
                 { bool c_ = r4 == 0; r5 = (uint)1; if (c_) goto L_L0044A160; }
                 r6 = r17; func_00278E74(r4, (int)r5, (int)r6);
                 L_L0044A160: ;
-                func_002458B4();
+                Flyby_SetFlag_002458B4();
                 r31 = Mem.U32((r29 + 24u));
                 r17 = Mem.U32((r29 + 20u));
                 r16 = Mem.U32((r29 + 16u));

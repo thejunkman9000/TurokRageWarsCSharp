@@ -22,7 +22,7 @@ public static partial class Game
             func_002A338C();
             if (((int)(Mem.U8(0x801462D5u)) == 0))
             {
-                func_00245B18();
+                Flyby_Abort();
                 func_0042B4C4();
             }
             func_0043C458(Mem.U32(0x800E44A0u));

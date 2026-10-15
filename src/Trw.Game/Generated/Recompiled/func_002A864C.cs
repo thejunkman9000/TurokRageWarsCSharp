@@ -38,7 +38,7 @@ public static partial class Game
                 Mem.Set((r29 + 88u), Cpu.Fpr[22]);
                 Mem.Set((r29 + 80u), Cpu.Fpr[21]);
                 Mem.Set((r29 + 72u), Cpu.Fpr[20]);
-                Mem.Set((r29 + 104u), r4); r2 = (uint)Water_IsCameraUnderwater();
+                Mem.Set((r29 + 104u), r4); r2 = (uint)Flyby_IsInWindow();
                 { bool c_ = r2 != 0;  if (c_) goto L_L002A8A54; }
                 r2 = (uint)func_002934DC();
                 { bool c_ = r2 == 0;  if (c_) goto L_L002A8A54; }

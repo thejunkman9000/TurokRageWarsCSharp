@@ -24,7 +24,7 @@ public static partial class Game
                 L_func_00422050: ;
                 r29 = r29 - 24u;
                 Mem.Set((r29 + 20u), r31);
-                Mem.Set((r29 + 16u), r16); func_00245B18();
+                Mem.Set((r29 + 16u), r16); Flyby_Abort();
                 r16 = 2148794368u;
                 r16 = r16 + 20616u;
                 r4 = r16;
@@ -40,9 +40,9 @@ public static partial class Game
                 { bool c_ = r2 != 0;  if (c_) goto L_L004220B0; }
                 r4 = (uint)1; func_0025470C((int)r4);
                 L_L004220B0: ;
-                func_00245A00();
-                r4 = r0; func_00245A10((int)r4);
-                func_00245A20();
+                Flyby_ClearFieldOfView();
+                r4 = r0; Flyby_SetLoop((int)r4);
+                Flyby_SetViewportFull();
                 r31 = Mem.U32((r29 + 20u));
                 r16 = Mem.U32((r29 + 16u));
                 r29 = r29 + 24u; Cpu.V1 = r3; return r2;

@@ -73,7 +73,7 @@ public static partial class Game
                 }
                 Mem.Set(0x800D2930u, 0);
                 Mem.Set(0x801029F0u, a);
-                func_00245608(ev, (uint)(0), 0x0022ECBCu);
+                Flyby_DeferCallbacks(ev, (uint)(0), 0x0022ECBCu);
             }
             c = func_0028CF7C(0x8011FE88u, (-1), 3141);
             if ((c != 0u))

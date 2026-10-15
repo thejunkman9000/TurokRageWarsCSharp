@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0022A67C", (uint)g);
             uint a = 0u;
             int count = 0;
-            if ((((((Water_IsCameraUnderwater() == 0) && (func_00245774() == 0)) && (Mem.S32(0x8013B29Cu) == 0)) && (new GameFlags(0x801468A0u).unk20 == 0)) && (new GameFlags(0x801468A0u).unk1C != 0)))
+            if ((((((Flyby_IsInWindow() == 0) && (Flyby_IsActive() == 0)) && (Mem.S32(0x8013B29Cu) == 0)) && (new GameFlags(0x801468A0u).unk20 == 0)) && (new GameFlags(0x801468A0u).unk1C != 0)))
             {
                 count = 0;
                 for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).next_)

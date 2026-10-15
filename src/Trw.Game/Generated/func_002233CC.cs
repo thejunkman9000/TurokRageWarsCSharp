@@ -33,7 +33,7 @@ public static partial class Game
                 float fv4 = 0f;
                 int s3 = 0;
                 int s4 = 0;
-                if (!((func_00245774() != 0))) goto _f0;
+                if (!((Flyby_IsActive() != 0))) goto _f0;
                 return;
                 _f0: ;
                 if (!((new B05P15(p).unk11B8 != 0))) goto _f1;

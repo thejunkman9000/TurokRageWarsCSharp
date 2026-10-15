@@ -885,7 +885,7 @@ public static partial class Game
         Funcs.Add(0x00246E34U, "func_00246E34", (a0, a1, a2, a3) => func_00246E34(a0, a1, a2, a3));
         Funcs.Add(0x00245D20U, "func_00245D20", (a0, a1, a2, a3) => func_00245D20(a0, a1, a2, a3));
         Funcs.Add(0x00245D18U, "func_00245D18", (a0, a1, a2, a3) => func_00245D18(a0, a1, a2, a3));
-        Funcs.Add(0x00245B64U, "func_00245B64", (a0, a1, a2, a3) => func_00245B64(a0, a1, a2, a3));
+        Funcs.Add(0x00245B64U, "func_00245B64", (a0, a1, a2, a3) => Flyby_RunEndCallback(a0, a1, a2, a3));
         Funcs.Add(0x00244B58U, "func_00244B58", (a0, a1, a2, a3) => func_00244B58(a0, a1, a2, a3, Cpu.Stk[4], Cpu.Stk[5], Cpu.Stk[6], Cpu.Stk[7], Cpu.Stk[8]));
         Funcs.Add(0x0024490CU, "func_0024490C", (a0, a1, a2, a3) => func_0024490C_rc(a0, a1, a2, a3, Cpu.Stk[4], Cpu.Stk[5], Cpu.Stk[6], Cpu.Stk[7], Cpu.Stk[8], Cpu.Stk[9], Cpu.Stk[10], Cpu.Stk[11]));
         Funcs.Add(0x002446D0U, "func_002446D0", (a0, a1, a2, a3) => func_002446D0(a0, a1, a2, a3, Cpu.Stk[4], Cpu.Stk[5], Cpu.Stk[6], Cpu.Stk[7], Cpu.Stk[8]));

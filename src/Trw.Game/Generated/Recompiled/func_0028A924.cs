@@ -25,7 +25,7 @@ public static partial class Game
                 Mem.Set((r29 + 140u), r19);
                 Mem.Set((r29 + 136u), r18);
                 Mem.Set((r29 + 132u), r17);
-                Mem.Set((r29 + 128u), r16); func_00245AB8();
+                Mem.Set((r29 + 128u), r16); Flyby_ClearText();
                 r4 = 2148663296u;
                 r4 = Mem.U32((r4 - 300u));
                 r19 = 2148859904u;
@@ -67,7 +67,7 @@ public static partial class Game
                 { bool c_ = r2 == r19; r4 = r0; if (c_) goto L_L0028A9FC; }
                 r5 = r18; func_002537D8((int)r4, r5);
                 L_L0028A9FC: ;
-                r4 = r17; func_00245A68(r4);
+                r4 = r17; Flyby_AddTextLine(r4);
                 r4 = 2148794368u;
                 r4 = Mem.U8((r4 + 25301u));
                 { bool c_ = r4 == 0; r2 = (uint)1; if (c_) goto L_L0028AFAC; }
@@ -212,7 +212,7 @@ public static partial class Game
                 { bool c_ = r16 == r2;  if (c_) goto L_L0028ADD0; }
                  goto L_L0028AFAC;
                 L_L0028AC98: ;
-                r4 = r29 + 80u; func_00245A68(r4);
+                r4 = r29 + 80u; Flyby_AddTextLine(r4);
                 r4 = 2148532224u;
                 r4 = r4 + 11008u;
                 r5 = Mem.U8((r4 + 15u));
@@ -232,7 +232,7 @@ public static partial class Game
                 r4 = r29 + 40u; r2 = func_002A1C08(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
                 r4 = r29 + 40u; goto L_L0028AFA4;
                 L_L0028ACF4: ;
-                r4 = r29 + 80u; func_00245A68(r4);
+                r4 = r29 + 80u; Flyby_AddTextLine(r4);
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 18048u));
                 r2 = Mem.U8((r3 + 36u));
@@ -355,8 +355,8 @@ public static partial class Game
                 r5 = 2148335616u;
                 r5 = r5 - 23596u;
                 r4 = r29 + 40u; r2 = func_002A1C08(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
-                r4 = r29 + 40u; func_00245A68(r4);
-                r4 = r29 + 80u; func_00245A68(r4);
+                r4 = r29 + 40u; Flyby_AddTextLine(r4);
+                r4 = r29 + 80u; Flyby_AddTextLine(r4);
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 18048u));
                 r2 = Mem.U8((r3 + 40u));
@@ -373,7 +373,7 @@ public static partial class Game
                 r4 = r29 + 40u; r2 = func_002A1C08(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
                 r4 = r29 + 40u; goto L_L0028AFA4;
                 L_L0028AF70: ;
-                r4 = r29 + 80u; func_00245A68(r4);
+                r4 = r29 + 80u; Flyby_AddTextLine(r4);
                 r3 = 2148859904u;
                 r3 = Mem.U32((r3 + 16424u));
                 r2 = (uint)1;
@@ -384,7 +384,7 @@ public static partial class Game
                 r4 = 2148335616u;
                 r4 = Mem.U32((r4 + 29636u));
                 L_L0028AFA4: ;
-                func_00245A68(r4);
+                Flyby_AddTextLine(r4);
                 L_L0028AFAC: ;
                 r31 = Mem.U32((r29 + 144u));
                 r19 = Mem.U32((r29 + 140u));

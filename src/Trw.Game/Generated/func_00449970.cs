@@ -47,7 +47,7 @@ public static partial class Game
             func_00220A5C(p, p, default(uint), default(uint));
             if ((new S11Obj(p).hud_ != 0u))
             {
-                func_00245854(new S11Obj(p).hud_);
+                Flyby_Hook_00245854(new S11Obj(p).hud_);
             }
             new S11Obj(p).unk50_Set(new S11Obj(p).cfg.unkFC);
             new S11Obj(p).unk54_Set(new S11Obj(p).cfg.unk100);

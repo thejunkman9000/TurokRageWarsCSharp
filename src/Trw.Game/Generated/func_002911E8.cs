@@ -29,7 +29,7 @@ public static partial class Game
                 func_00264B64();
                 func_00444030(0x801462C8u);
             }
-            func_00244D60();
+            Flyby_Reset();
             i = (uint)(0);
             func_0044E910();
             func_0044E8B0((lv + 159116u));

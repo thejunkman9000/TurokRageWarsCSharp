@@ -26,9 +26,9 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r16);
                 r16 = r4;
                 { bool c_ = r2 == 0; Mem.Set((r29 + 20u), r31); if (c_) goto L_L0022803C; }
-                r2 = (uint)func_00245774();
+                r2 = (uint)Flyby_IsActive();
                 { bool c_ = r2 != 0;  if (c_) goto L_L0022803C; }
-                r2 = (uint)Water_IsCameraUnderwater();
+                r2 = (uint)Flyby_IsInWindow();
                 { bool c_ = r2 != 0;  if (c_) goto L_L0022803C; }
                 r3 = Mem.U32((r16 + 32u));
                 { bool c_ = r3 == 0; r4 = r0; if (c_) goto L_L00227ECC; }

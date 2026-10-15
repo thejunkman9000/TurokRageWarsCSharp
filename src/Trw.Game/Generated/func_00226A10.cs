@@ -42,13 +42,13 @@ public static partial class Game
             a = new PlrGroup(g).head_;
             _f7: ;
             if (!((a != 0u))) goto _f9;
-            if (!(((func_00245774() != 0) && ((new Plr(a).unk6B0 & (uint)(32768)) != 0u)))) goto _f10;
+            if (!(((Flyby_IsActive() != 0) && ((new Plr(a).unk6B0 & (uint)(32768)) != 0u)))) goto _f10;
             goto L_blk;
             _f10: ;
             if (!((func_0026437C(new Plr(a).unk698_) != 0))) goto _f11;
-            if (!(((func_00245774() != 0) || (func_0024575C() != 0)))) goto _f12;
+            if (!(((Flyby_IsActive() != 0) || (Flyby_IsPending() != 0)))) goto _f12;
             L_blk: ;
-            func_002456FC();
+            Flyby_StartFadeOut();
             goto _f13;
             _f12: ;
             if (!((((func_002A33AC() == 0) && (func_00442B98(0x8014561Cu) == 0)) && (new Plr(a).unk5E4 != 0)))) goto _f14;

@@ -13,8 +13,8 @@ public static partial class Game
             uint b = 0u;
             int r = 0;
             if (!((func_00442B98(new B21World(0x80145040u).sub5DC.P) == 0))) goto _f0;
-            if (!((Water_IsCameraUnderwater() != 0))) goto _f1;
-            if (!((func_00245AFC() == 120))) goto _f2;
+            if (!((Flyby_IsInWindow() != 0))) goto _f1;
+            if (!((Flyby_GetId() == 120))) goto _f2;
             b = new B21World(0x80145040u).blk.P;
             if (!((new B21GameBlk(b).unk88 != 0))) goto _f3;
             goto L_check;
@@ -28,7 +28,7 @@ public static partial class Game
             _f0: ;
             if (!((Mem.S32(0x80146928u) != 0))) goto _f5;
             L_check: ;
-            r = func_00245840();
+            r = Flyby_IsHolding();
             if (!((r != 0))) goto _f6;
             return 1;
             _f6: ;

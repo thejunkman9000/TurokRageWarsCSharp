@@ -4331,207 +4331,207 @@ public static partial class Game
         });
         Funcs.Add(0x00244D60u, "func_00244D60", (a0, a1, a2, a3) =>
         {
-            func_00244D60();
+            Flyby_Reset();
             return 0;
         });
         Funcs.Add(0x00244E48u, "func_00244E48", (a0, a1, a2, a3) =>
         {
-            func_00244E48();
+            Flyby_OnWindowStart();
             return 0;
         });
         Funcs.Add(0x00244FA4u, "func_00244FA4", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00244FA4();
+            var v_ = Flyby_RunPending();
             return (uint)v_;
         });
         Funcs.Add(0x002450BCu, "func_002450BC", (a0, a1, a2, a3) =>
         {
-            func_002450BC();
+            Flyby_Update();
             return 0;
         });
         Funcs.Add(0x002453C4u, "func_002453C4", (a0, a1, a2, a3) =>
         {
-            func_002453C4();
+            Flyby_DrawText();
             return 0;
         });
         Funcs.Add(0x00245608u, "func_00245608", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00245608((int)a0, a1, a2);
+            var v_ = Flyby_DeferCallbacks((int)a0, a1, a2);
             return (uint)v_;
         });
         Funcs.Add(0x00245690u, "func_00245690", (a0, a1, a2, a3) =>
         {
-            func_00245690();
+            Flyby_Stop();
             return 0;
         });
         Funcs.Add(0x002456FCu, "func_002456FC", (a0, a1, a2, a3) =>
         {
-            func_002456FC();
+            Flyby_StartFadeOut();
             return 0;
         });
         Funcs.Add(0x00245754u, "func_00245754", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00245754();
+            var v_ = Flyby_CanFadeOut();
             return (uint)v_;
         });
         Funcs.Add(0x0024575Cu, "func_0024575C", (a0, a1, a2, a3) =>
         {
-            var v_ = func_0024575C();
+            var v_ = Flyby_IsPending();
             return (uint)v_;
         });
         Funcs.Add(0x00245774u, "func_00245774", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00245774();
+            var v_ = Flyby_IsActive();
             return (uint)v_;
         });
         Funcs.Add(0x00245788u, "func_00245788", (a0, a1, a2, a3) =>
         {
-            var v_ = Water_IsCameraUnderwater();
+            var v_ = Flyby_IsInWindow();
             return (uint)v_;
         });
         Funcs.Add(0x002457D0u, "func_002457D0", (a0, a1, a2, a3) =>
         {
-            var v_ = func_002457D0();
+            var v_ = Flyby_IsPastWindow();
             return (uint)v_;
         });
         Funcs.Add(0x00245804u, "func_00245804", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00245804();
+            var v_ = Flyby_IsIdle();
             return (uint)v_;
         });
         Funcs.Add(0x00245840u, "func_00245840", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00245840();
+            var v_ = Flyby_IsHolding();
             return (uint)v_;
         });
         Funcs.Add(0x00245854u, "func_00245854", (a0, a1, a2, a3) =>
         {
-            func_00245854(a0);
+            Flyby_Hook_00245854(a0);
             return 0;
         });
         Funcs.Add(0x00245884u, "func_00245884", (a0, a1, a2, a3) =>
         {
-            func_00245884(a0);
+            Flyby_Hook_00245884(a0);
             return 0;
         });
         Funcs.Add(0x002458B4u, "func_002458B4", (a0, a1, a2, a3) =>
         {
-            func_002458B4();
+            Flyby_SetFlag_002458B4();
             return 0;
         });
         Funcs.Add(0x002458C8u, "func_002458C8", (a0, a1, a2, a3) =>
         {
-            func_002458C8();
+            Flyby_ClearFlag_002458C8();
             return 0;
         });
         Funcs.Add(0x002458D8u, "func_002458D8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_002458D8();
+            var v_ = Flyby_GetFlag_002458D8();
             return (uint)v_;
         });
         Funcs.Add(0x002458E8u, "func_002458E8", (a0, a1, a2, a3) =>
         {
-            func_002458E8();
+            Flyby_ClearHold();
             return 0;
         });
         Funcs.Add(0x002458F8u, "func_002458F8", (a0, a1, a2, a3) =>
         {
-            var v_ = func_002458F8();
+            var v_ = Flyby_IsInWindowFlag2_002458F8();
             return (uint)v_;
         });
         Funcs.Add(0x00245930u, "func_00245930", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00245930();
+            var v_ = Flyby_GetFieldAC_00245930();
             return (uint)v_;
         });
         Funcs.Add(0x00245958u, "func_00245958", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00245958();
+            var v_ = Flyby_GetFieldA8_00245958();
             return (uint)v_;
         });
         Funcs.Add(0x00245980u, "func_00245980", (a0, a1, a2, a3) =>
         {
-            func_00245980((int)a0);
+            Flyby_SetValue_00245980((int)a0);
             return 0;
         });
         Funcs.Add(0x00245990u, "func_00245990", (a0, a1, a2, a3) =>
         {
-            Cpu.SetS(0, func_00245990());
+            Cpu.SetS(0, Flyby_GetFieldOfView());
             return 0;
         });
         Funcs.Add(0x002459F0u, "func_002459F0", (a0, a1, a2, a3) =>
         {
-            func_002459F0(Cpu.S(12));
+            Flyby_SetFieldOfView(Cpu.S(12));
             return 0;
         });
         Funcs.Add(0x00245A00u, "func_00245A00", (a0, a1, a2, a3) =>
         {
-            func_00245A00();
+            Flyby_ClearFieldOfView();
             return 0;
         });
         Funcs.Add(0x00245A10u, "func_00245A10", (a0, a1, a2, a3) =>
         {
-            func_00245A10((int)a0);
+            Flyby_SetLoop((int)a0);
             return 0;
         });
         Funcs.Add(0x00245A20u, "func_00245A20", (a0, a1, a2, a3) =>
         {
-            func_00245A20();
+            Flyby_SetViewportFull();
             return 0;
         });
         Funcs.Add(0x00245A4Cu, "func_00245A4C", (a0, a1, a2, a3) =>
         {
-            func_00245A4C((int)a0, (int)a1, (int)a2, (int)a3);
+            Flyby_SetViewport((int)a0, (int)a1, (int)a2, (int)a3);
             return 0;
         });
         Funcs.Add(0x00245A68u, "func_00245A68", (a0, a1, a2, a3) =>
         {
-            func_00245A68(a0);
+            Flyby_AddTextLine(a0);
             return 0;
         });
         Funcs.Add(0x00245AB8u, "func_00245AB8", (a0, a1, a2, a3) =>
         {
-            func_00245AB8();
+            Flyby_ClearText();
             return 0;
         });
         Funcs.Add(0x00245AC8u, "func_00245AC8", (a0, a1, a2, a3) =>
         {
-            Cpu.SetS(0, func_00245AC8());
+            Cpu.SetS(0, Flyby_GetFarPlane());
             return 0;
         });
         Funcs.Add(0x00245AE8u, "func_00245AE8", (a0, a1, a2, a3) =>
         {
-            var v_ = Water_GetFogColor();
+            var v_ = Flyby_GetFogColor();
             return (uint)v_;
         });
         Funcs.Add(0x00245AFCu, "func_00245AFC", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00245AFC();
+            var v_ = Flyby_GetId();
             return (uint)v_;
         });
         Funcs.Add(0x00245B10u, "func_00245B10", (a0, a1, a2, a3) =>
         {
-            func_00245B10();
+            Flyby_Nop_00245B10();
             return 0;
         });
         Funcs.Add(0x00245B18u, "func_00245B18", (a0, a1, a2, a3) =>
         {
-            func_00245B18();
+            Flyby_Abort();
             return 0;
         });
         Funcs.Add(0x00245BB0u, "func_00245BB0", (a0, a1, a2, a3) =>
         {
-            func_00245BB0();
+            Flyby_Finish();
             return 0;
         });
         Funcs.Add(0x00245C28u, "func_00245C28", (a0, a1, a2, a3) =>
         {
-            func_00245C28();
+            Flyby_Advance();
             return 0;
         });
         Funcs.Add(0x00245D04u, "func_00245D04", (a0, a1, a2, a3) =>
         {
-            var v_ = func_00245D04();
+            var v_ = Flyby_IsActive2();
             return (uint)v_;
         });
         Funcs.Add(0x00246174u, "func_00246174", (a0, a1, a2, a3) =>

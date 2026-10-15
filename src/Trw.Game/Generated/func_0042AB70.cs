@@ -43,7 +43,7 @@ public static partial class Game
                     func_002A125C(new O04ModeF60(Mem.U32(0x800E4F60u)).unk3F4.P, func_002A1494(_fp));
                 }
                 new O04ModeF60(Mem.U32(0x800E4F60u)).unk3EC.unk38_Set(new O04ModeF60(Mem.U32(0x800E4F60u)).unk3F4.P);
-                func_00245B18();
+                Flyby_Abort();
             }
         }
         finally { Stack.Free(64); }

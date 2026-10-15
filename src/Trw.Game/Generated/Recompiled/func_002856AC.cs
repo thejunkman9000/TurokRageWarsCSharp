@@ -42,7 +42,7 @@ public static partial class Game
                 r3 = Mem.U32((r3 + 26956u));
                 r2 = (uint)1;
                 { bool c_ = r3 == r2;  if (c_) goto L_L00285718; }
-                r2 = (uint)Water_IsCameraUnderwater();
+                r2 = (uint)Flyby_IsInWindow();
                 { bool c_ = r2 == 0;  if (c_) goto L_L00285724; }
                 L_L00285718: ;
                 Cpu.SetW(22, r0);

@@ -73,7 +73,7 @@ public static partial class Game
             }
             func_0021A78C(p);
             flag = 0;
-            if ((func_00245774() == 0))
+            if ((Flyby_IsActive() == 0))
             {
                 flag = ((Mem.S32(0x8013B2BCu) != 999) ? 1 : 0);
             }
@@ -87,12 +87,12 @@ public static partial class Game
             }
             new S11Obj(p).unk1228_Set(0);
             new S11Obj(p).unk1224_Set(0);
-            func_002458C8();
+            Flyby_ClearFlag_002458C8();
             if ((new S11Obj(p).unk14 != 0u))
             {
                 func_00278E74(new S11Obj(p).unk14, 1, (int)(p));
             }
-            func_002458B4();
+            Flyby_SetFlag_002458B4();
         }
     }
 

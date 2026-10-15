@@ -18,7 +18,7 @@ public static partial class Game
             float t = 0f;
             uint e = 0u;
             ushort a1 = 0;
-            if (!((func_00245774() == 0))) goto _f0;
+            if (!((Flyby_IsActive() == 0))) goto _f0;
             if (!(((Mem.S32(0x8014561Cu) != 0) && (new B04Mn3(o).w0 != 0)))) goto _f1;
             func_00218F84(o);
             return;

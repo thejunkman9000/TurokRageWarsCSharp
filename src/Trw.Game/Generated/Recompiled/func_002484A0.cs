@@ -166,10 +166,10 @@ public static partial class Game
                 L_L00248724: ;
                 Mem.Set((r29 + 8424u), r2);
                 L_L00248728: ;
-                r2 = (uint)Water_IsCameraUnderwater();
+                r2 = (uint)Flyby_IsInWindow();
                 if (r2 != 0) { Mem.Set((r29 + 8424u), r0); goto L_L00248738; }
                 L_L00248738: ;
-                r2 = (uint)Water_IsCameraUnderwater();
+                r2 = (uint)Flyby_IsInWindow();
                 { bool c_ = r2 != 0; r2 = (uint)1; if (c_) goto L_L00248780; }
                 r12 = Mem.U32((r29 + 8784u));
                 r2 = (uint)(int)Mem.S8((r12 + 11u));

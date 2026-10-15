@@ -19,7 +19,7 @@ public static partial class Game
             {
                 new B01Actor(actor).flags_Set((uint)((uint)(new B01Actor(actor).flags) | (uint)(268435456)));
             }
-            if ((((int)(new B01Actor(actor).unkE4) == 1107) && (func_00245AFC() == 111)))
+            if ((((int)(new B01Actor(actor).unkE4) == 1107) && (Flyby_GetId() == 111)))
             {
                 new B01State(state).fn10C_Set(0x0020694Cu);
             }

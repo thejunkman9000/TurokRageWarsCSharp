@@ -13,7 +13,7 @@ public static partial class Game
             int i = 0;
             int n = 0;
             uint item = 0u;
-            func_002458C8();
+            Flyby_ClearFlag_002458C8();
             n = new Level_v2(level).counts[(int)(0)];
             for (i = 0; (i < n); ++i)
             {
@@ -32,7 +32,7 @@ public static partial class Game
                     func_0028784C(level, item, default(uint), default(uint));
                 }
             }
-            func_002458B4();
+            Flyby_SetFlag_002458B4();
         }
     }
 

@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00217F4C", (uint)o, (uint)p, (uint)a2);
             float t = 0f;
             int a0 = 0;
-            if (!((((((uint)((new B04Act(p).unk5E0 - 17)) >= (uint)(2)) && (new B04Act(p).unkCCC == 0)) && !(new B04Act(p).unk11D8 > 0.0f)) && (func_00245774() == 0)))) goto _f0;
+            if (!((((((uint)((new B04Act(p).unk5E0 - 17)) >= (uint)(2)) && (new B04Act(p).unkCCC == 0)) && !(new B04Act(p).unk11D8 > 0.0f)) && (Flyby_IsActive() == 0)))) goto _f0;
             new B04Menu(o).w380_Set((((int)(new B04Act(p).stats.unk82) == 1) ? 1 : 0));
             if (!((new B04Act(p).unk5E0 == 14))) goto _f1;
             if (!(((int)(new B04Act(p).unk48C) != 0))) goto _f2;

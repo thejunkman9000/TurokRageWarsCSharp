@@ -52,7 +52,7 @@ public static partial class Game
             uint k = 0u;
             int cnt = 0;
             int i = 0;
-            if ((func_00245774() != 0))
+            if ((Flyby_IsActive() != 0))
             {
                 if ((new O01CtxD(Mem.U32(0x800E2830u)).unk50 != 0))
                 {

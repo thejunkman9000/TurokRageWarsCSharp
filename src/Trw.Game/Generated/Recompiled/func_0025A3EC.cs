@@ -134,7 +134,7 @@ public static partial class Game
                 L_L0025A5E4: ;
                 Cpu.SetW(20, r0);
                 L_L0025A5E8: ;
-                r2 = (uint)func_00245774();
+                r2 = (uint)Flyby_IsActive();
                 if (r2 == 0) { Mem.Set((r17 + 28u), Cpu.W(20)); goto L_L0025A620; }
                 Cpu.SetW(12, Mem.U32((r17 + 28u)));
                 r6 = 1015742464u;

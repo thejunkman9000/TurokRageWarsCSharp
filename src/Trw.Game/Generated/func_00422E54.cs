@@ -28,7 +28,7 @@ public static partial class Game
                 return 0;
             }
             s0 = new Q2Scr(Mem.U32(0x800E2830u)).f3C;
-            if (((s0 == 1) && (Water_IsCameraUnderwater() == s0)))
+            if (((s0 == 1) && (Flyby_IsInWindow() == s0)))
             {
                 func_0040E958(new Q2Lb(Mem.U32(0x800E4518u)).w68, 0);
                 func_0040E958(new Q2Lb(Mem.U32(0x800E4518u)).w44, 0);

@@ -13,7 +13,7 @@ public static partial class Game
             switch (new ObjDef(new Obj(a).def_).type)
             {
             case 11:
-                if (((((int)(new Obj(a).type) == 1) && ((new Obj(a).flags & (uint)(3145728)) != 0u)) && ((new Obj(a).unk1D8.unk80C_ != 0u) || (Water_IsCameraUnderwater() != 0))))
+                if (((((int)(new Obj(a).type) == 1) && ((new Obj(a).flags & (uint)(3145728)) != 0u)) && ((new Obj(a).unk1D8.unk80C_ != 0u) || (Flyby_IsInWindow() != 0))))
                 {
                     return 1;
                 }

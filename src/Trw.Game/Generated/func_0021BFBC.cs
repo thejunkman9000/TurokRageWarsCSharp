@@ -28,7 +28,7 @@ public static partial class Game
                 float fv = 0f;
                 float fv2 = 0f;
                 cur = Mem.S32((p + (uint)1508));
-                if ((((((func_00245774() == 0) && (func_0022C450(p) == 0)) && (Mem.S32(0x8013B29Cu) == 0)) && (!((Mem.S32(0x801462C8u) & 1) != 0) || (a4 == 32))) && ((uint)(Mem.U16((p + (uint)1616))) >= 2u)))
+                if ((((((Flyby_IsActive() == 0) && (func_0022C450(p) == 0)) && (Mem.S32(0x8013B29Cu) == 0)) && (!((Mem.S32(0x801462C8u) & 1) != 0) || (a4 == 32))) && ((uint)(Mem.U16((p + (uint)1616))) >= 2u)))
                 {
                     if ((Mem.S32((p + (uint)2060)) != 0))
                     {

@@ -33,7 +33,7 @@ public static partial class Game
                     temp_a0 = new Node_func_80449E18_de(var_s0).unk5DC;
                     if ((temp_a0 != 0))
                     {
-                        func_00245854((uint)(temp_a0));
+                        Flyby_Hook_00245854((uint)(temp_a0));
                     }
                     temp_v1 = new Node_func_80449E18_de(var_s0).unk18_;
                     new Shape_func_802764D4_de_2(temp_v1).field_4_Set((new Shape_func_802764D4_de_2(temp_v1).field_4 & (~4)));
