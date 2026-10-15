@@ -1305,7 +1305,7 @@ public static partial class Game
                         new B04O6(o).unk3_Set(new B04O6(o).stats.unk81);
                     }
                 }
-                Sound_StartForActor(0x8011FE88u, o, a2, new B04O6(o).unk86C);
+                Level_SetActorType(0x8011FE88u, o, a2, new B04O6(o).unk86C);
                 g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
                 new DlCmd(g).w0_Set(3875536896u);
                 new DlCmd(g).w1_Set((uint)(0));
@@ -1512,7 +1512,7 @@ public static partial class Game
         finally { Stack.Free(28); }
     }
 
-    public static void Player_UpdateAttachedSprites_0021E5D4(uint p)
+    public static void Player_UpdateFlashlight(uint p)
     {
         unchecked
         {
@@ -2268,7 +2268,7 @@ public static partial class Game
                 Mem.Set((r18 + 1656u), Cpu.W(24));
                 r4 = r18;
                 L_L00221ABC: ;
-                r5 = r19; Player_UpdateAttachedSprites_0021E5D4(r4);
+                r5 = r19; Player_UpdateFlashlight(r4);
                 r22 = Mem.U32((r19 + 20u));
                 r9 = Mem.U32((r19 + 8u));
                 r10 = Mem.U32((r19 + 12u));
@@ -2447,7 +2447,7 @@ public static partial class Game
                 r2 = (uint)1;
                 Mem.Set((r29 + 16u), r2);
                 r6 = Mem.U32((r20 + 32u));
-                r7 = r29 + 136u; r2 = (uint)Track_FindPlacedObjects(r4, (int)r5, (int)r6, r7, (int)Mem.U32(r29 + 16u));
+                r7 = r29 + 136u; r2 = (uint)Level_FindPlacedObjects(r4, (int)r5, (int)r6, r7, (int)Mem.U32(r29 + 16u));
                 { bool c_ = r2 == 0; r2 = (uint)-1; if (c_) goto L_L00221E5C; }
                 Cpu.SetW(0, Mem.U32((r18 + 8u)));
                 Cpu.SetW(1, Mem.U32((r29 + 136u)));
@@ -2591,7 +2591,7 @@ public static partial class Game
                 r4 = 2148663296u;
                 r4 = r4 - 376u;
                 r7 = Mem.U32((r18 + 2156u));
-                r5 = r18; Sound_StartForActor(r4, r5, (int)r6, (int)r7);
+                r5 = r18; Level_SetActorType(r4, r5, (int)r6, (int)r7);
                 r2 = Mem.U32((r18 + 2160u));
                 r5 = Mem.U32((r18 + 2156u));
                 { bool c_ = r2 == r5; r4 = r19; if (c_) goto L_L002220BC; }
@@ -2814,7 +2814,7 @@ public static partial class Game
                 r3 = Mem.U32((r18 + 1156u));
                 r6 = Mem.U16((r2 + 4u));
                 r7 = Mem.U32((r3 + 16u));
-                r6 = r6 + r8; Sound_StartForActor(r4, r5, (int)r6, (int)r7);
+                r6 = r6 + r8; Level_SetActorType(r4, r5, (int)r6, (int)r7);
                 r2 = Mem.U32((r18 + 256u));
                 r2 = r2 & 1024u;
                 { bool c_ = r2 != 0;  if (c_) goto L_L00222484; }
@@ -6494,7 +6494,7 @@ public static partial class Game
                     new Plr(a).unk3_Set(new Plr(a).stats.unk81);
                 }
             }
-            Sound_StartForActor(0x8011FE88u, a, k, new Plr(a).unk86C);
+            Level_SetActorType(0x8011FE88u, a, k, new Plr(a).unk86C);
         }
     }
 
@@ -6513,7 +6513,7 @@ public static partial class Game
     }
 
     // ==== func_0022C0C0 @ 0x0022C0C0 [C]
-    public static void Player_TickTimer678_0022C0C0(uint actor)
+    public static void Player_TickFlashlightTime(uint actor)
     {
         unchecked
         {
@@ -6995,7 +6995,7 @@ public static partial class Game
     }
 
     // ==== func_0022E77C @ 0x0022E77C [C]
-    public static void Player_PlaceSpriteInFront(uint actor, uint slot, int id, float z)
+    public static void Player_PlaceLightInFront(uint actor, uint slot, int id, float z)
     {
         uint _fp = Stack.Alloc(28);
         try
@@ -7030,7 +7030,7 @@ public static partial class Game
     }
 
     // ==== func_0022E880 @ 0x0022E880 [C]
-    public static void Player_FreeSprite(int a0, uint p)
+    public static void Player_FreeLight(int a0, uint p)
     {
         unchecked
         {
@@ -7793,7 +7793,7 @@ public static partial class Game
                 Player_ResetFields(@object);
                 new func_804499B0_de_S3(@object).unk16D4_Set(0);
                 new func_804499B0_de_S3(@object).unk16D8_Set((short)(0));
-                Mover_ClearRecord_002A7F58((@object + (uint)3392), default(uint), default(uint), default(uint));
+                Inventory_Clear((@object + (uint)3392), default(uint), default(uint), default(uint));
                 if (((int)(new ObjectState96(entry).unk_78) != 0))
                 {
                     Player_InitSlot(@object, (int)(new ObjectState96(entry).unk_80), 1);
@@ -7857,7 +7857,7 @@ public static partial class Game
                 Player_ResetFields(@object);
                 new func_804499B0_de_S3(@object).unk16D4_Set(0);
                 new func_804499B0_de_S3(@object).unk16D8_Set((short)(0));
-                Mover_ClearRecord_002A7F58((@object + (uint)3392), default(uint), default(uint), default(uint));
+                Inventory_Clear((@object + (uint)3392), default(uint), default(uint), default(uint));
                 Player_InitSlot(@object, (int)(new ObjectState96(entry).unk_80), force_active);
                 List_Remove(new ObjectPool(pool).active_queue.P, @object, default(uint), default(uint));
                 List_Add(new ObjectPool(pool).object_queue.P, @object);
@@ -7922,7 +7922,7 @@ public static partial class Game
             Player_ResetFields(player);
             Mem.Set(new SharedPlayer_func_80449EE4_de(player).views16D4.P, 0);
             new func_8044AB34_S1(player).unk16D8_Set((short)(0));
-            Mover_ClearRecord_002A7F58((player + (uint)3392), default(uint), default(uint), default(uint));
+            Inventory_Clear((player + (uint)3392), default(uint), default(uint), default(uint));
         }
     }
 

@@ -100,7 +100,7 @@ public static partial class Game
             uint dp1 = 0u;
             osCreateMesgQueue(0x80146980u, 0x80146D78u, 4096);
             memset(0x800F3C80u, 7, (uint)(8192));
-            Panel_Init(0x801469E8u, (0x800F3C80u + (uint)8192), (uint)(Mem.S32(0x800D2B38u)), (uint)(0), (uint)((byte)(1)));
+            Sched_Create(0x801469E8u, (0x800F3C80u + (uint)8192), (uint)(Mem.S32(0x800D2B38u)), (uint)(0), (uint)((byte)(1)));
             Sched_AddClient(0x801469E8u, 0x8014AD80u, (int)(0x80146980u));
             new Level(lv).unk26DB4_Set((-1));
             Game_StartFadeIn(lv);
@@ -280,7 +280,7 @@ public static partial class Game
                 L_L0029163C: ;
                 r4 = r4 | 48376u;
                 r4 = r18 + r4; Text_InitFont(r4);
-                r17 = (uint)1; Pak_AllocDirectory();
+                r17 = (uint)1; CPak_AllocDirectory();
                 Menu_InitFrontendOnce();
                 r4 = (uint)2; Menu_GotoScreen((int)r4);
                 r2 = (uint)3;

@@ -2088,7 +2088,7 @@ public static partial class Game
                 }
                 goto L_ret1;
             case 12:
-                if (((int)(Hud_DrawAmmoPips(0x80121990u, o, default(uint), default(uint))) < 3))
+                if (((int)(Particle_CountOwnedCharges(0x80121990u, o, default(uint), default(uint))) < 3))
                 {
                     goto L_ret1;
                 }
@@ -4313,7 +4313,7 @@ public static partial class Game
             }
             if (((int)(Weapon_HasAmmoForShot(p, (uint)((int)(new Player_v2(p).unk62E)), default(uint), default(uint))) == 0))
             {
-                if (((int)(Hud_DrawAmmoPips(0x80121990u, p, default(uint), default(uint))) == 0))
+                if (((int)(Particle_CountOwnedCharges(0x80121990u, p, default(uint), default(uint))) == 0))
                 {
                     new Player_v2(p).unk770_Set((short)(Player_PickFallbackWeapon(p)));
                 }
@@ -5918,6 +5918,185 @@ public static partial class Game
             }
         }
         finally { if (Dbg.On) Dbg.Leave("func_002A78F0", r2); Stack.Free(400); }
+    }
+
+    // ==== func_002A7F58 @ 0x002A7F58 [C]
+    public static void func_002A7F58_clear_entry(uint e)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002A7F58_clear_entry", (uint)e);
+            new Entry_func_802A6F68_de(e).unk4_Set(0);
+            new Entry_func_802A6F68_de(e).unk0_Set(0);
+            new Entry_func_802A6F68_de(e).unkD_Set((byte)(0));
+            new Entry_func_802A6F68_de(e).unk18_Set((short)(0));
+            new Entry_func_802A6F68_de(e).unk1C_Set(0);
+        }
+    }
+
+    public static int func_002A7F58_is_restorable(uint address)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002A7F58_is_restorable", (uint)address);
+            if (((address >= (uint)(0x800D2F80u)) && (address < ((uint)(0x800D2F80u) + (uint)(16)))))
+            {
+                return 0;
+            }
+            if ((address == (uint)(0x8014D330u)))
+            {
+                return 0;
+            }
+            if ((Mem.S32(0x8014D330u) != 0))
+            {
+                return 1;
+            }
+            if (((address >= (uint)(0x8010FC40u)) && (address < ((uint)(0x8010FC40u) + (uint)(1072)))))
+            {
+                return 0;
+            }
+            if (((address >= (uint)(0x801462C8u)) && (address < ((uint)(0x801462C8u) + (uint)(1412)))))
+            {
+                return 0;
+            }
+            if (((address >= (uint)(0x800FD1F0u)) && (address < ((uint)(0x800FD1F0u) + (uint)(22528)))))
+            {
+                return 0;
+            }
+            if (((address >= (uint)(0x800F81F0u)) && (address < ((uint)(0x800F81F0u) + (uint)(20480)))))
+            {
+                return 0;
+            }
+            if (((address >= ((uint)(0x801462C8u) + (uint)(1496))) && (address <= ((uint)(0x801462C8u) + (uint)(1672)))))
+            {
+                return 0;
+            }
+            return 1;
+        }
+    }
+
+    // ==== func_002A7F58 @ 0x002A7F58 [MIPS]
+    public static uint Inventory_Clear(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002A7F58", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002A7F58: ;
+                r5 = r0;
+                r3 = r5;
+                L_L002A7F60: ;
+                r2 = r3 + r4;
+                r2 = r2 + 4u;
+                r5 = r5 + 1u;
+                Mem.Set((r2 + 4u), r0);
+                Mem.Set((r2 + 0u), r0);
+                Mem.Set((r2 + 13u), (byte)r0);
+                Mem.Set((r2 + 24u), (ushort)r0);
+                Mem.Set((r2 + 28u), r0);
+                r2 = (uint)((int)r5 < 4 ? 1 : 0);
+                { bool c_ = r2 != 0; r3 = r3 + 56u; if (c_) goto L_L002A7F60; }
+                r2 = (uint)-5;
+                Mem.Set((r4 + 0u), (byte)r0);
+                Mem.Set((r4 + 1u), (byte)r0);
+                Mem.Set((r4 + 228u), (ushort)r0);
+                Mem.Set((r4 + 230u), (ushort)r2);
+                Mem.Set((r4 + 232u), r0); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002A7F58", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002A7FA8 @ 0x002A7FA8 [MIPS]
+    public static uint func_002A7FA8_rc(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5, uint a6, uint a7, uint a8)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002A7FA8", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                Mem.Set(r29 + 20u, a5);
+                Mem.Set(r29 + 24u, a6);
+                Mem.Set(r29 + 28u, a7);
+                Mem.Set(r29 + 32u, a8);
+                L_func_002A7FA8: ;
+                r9 = r5;
+                r5 = r0;
+                r8 = r6 & 65535u;
+                r3 = r4;
+                L_L002A7FB8: ;
+                r2 = Mem.U32((r3 + 4u));
+                if (r2 == 0) { r5 = r5 + 1u; goto L_L002A7FD4; }
+                r2 = Mem.U8((r3 + 16u));
+                { bool c_ = r2 == r8; r2 = (uint)4; if (c_) goto L_L002A7FE4; }
+                r5 = r5 + 1u;
+                L_L002A7FD4: ;
+                r2 = (uint)((int)r5 < 4 ? 1 : 0);
+                { bool c_ = r2 != 0; r3 = r3 + 56u; if (c_) goto L_L002A7FB8; }
+                r2 = (uint)4;
+                L_L002A7FE4: ;
+                { bool c_ = r5 != r2; r2 = (uint)1; if (c_) goto L_L002A8024; }
+                r5 = r0;
+                r3 = r4;
+                L_L002A7FF4: ;
+                r2 = Mem.U32((r3 + 4u));
+                { bool c_ = r2 == 0; r2 = (uint)4; if (c_) goto L_L002A8014; }
+                r5 = r5 + 1u;
+                r2 = (uint)((int)r5 < 4 ? 1 : 0);
+                { bool c_ = r2 != 0; r3 = r3 + 56u; if (c_) goto L_L002A7FF4; }
+                r2 = (uint)4;
+                L_L002A8014: ;
+                { bool c_ = r5 != r2; r2 = (uint)1; if (c_) goto L_L002A8024; }
+                r2 = r0; Cpu.V1 = r3; return r2;
+                L_L002A8024: ;
+                r3 = r5 << 3;
+                r3 = r3 - r5;
+                r3 = r3 << 3;
+                r3 = r3 + 4u;
+                r3 = r4 + r3;
+                Mem.Set((r4 + 228u), (ushort)r5);
+                r4 = r2;
+                Mem.Set((r3 + 0u), r4);
+                Mem.Set((r3 + 8u), r9);
+                Mem.Set((r3 + 12u), (byte)r6);
+                Mem.Set((r3 + 16u), r7);
+                r4 = Mem.U32((r29 + 16u));
+                r5 = Mem.U8((r3 + 13u));
+                Mem.Set((r3 + 20u), r4);
+                Cpu.SetW(0, Mem.U32((r29 + 20u)));
+                Mem.Set((r3 + 40u), Cpu.W(0));
+                r4 = Mem.U32((r29 + 24u));
+                Mem.Set((r3 + 44u), r4);
+                r4 = Mem.U32((r29 + 28u));
+                Mem.Set((r3 + 48u), r4);
+                r4 = Mem.U32((r29 + 32u));
+                r5 = r5 + r2;
+                Mem.Set((r3 + 13u), (byte)r5);
+                Mem.Set((r3 + 52u), r4); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002A7FA8", r2); Stack.Free(384); }
+    }
+
+    public static int Inventory_AddItem(uint p0, int p1, int p2, int p3, int p4, float p5, int p6, uint p7, uint p8)
+    {
+        return (int)func_002A7FA8_rc(p0, (uint)p1, (uint)p2, (uint)p3, (uint)p4, Cpu.F2U(p5), (uint)p6, p7, p8);
     }
 
     // ==== func_002A8088 @ 0x002A8088 [MIPS]
@@ -7579,7 +7758,7 @@ public static partial class Game
                 new Ent24(e).unk678_Set((float)((float)(new Ent24(e).unk678) + new Blk24b(b).unkC));
                 break;
             case 7:
-                Mover_FindOrAllocRecord_002A7FA8((e + (uint)3392), 1, 0, 2045, 0, 0.0f, 0, 0x002AE1A4u, 0x002AE254u);
+                Inventory_AddItem((e + (uint)3392), 1, 0, 2045, 0, 0.0f, 0, 0x002AE1A4u, 0x002AE254u);
                 break;
             }
             p = new Fx24_v5(f).unk0_;

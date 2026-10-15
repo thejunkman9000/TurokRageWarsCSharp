@@ -911,7 +911,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0043EAC0", (uint)m);
             int p = (int)(new S10Menu(m).ctrl.port);
             Pad_EnableStatusPoll(p);
-            Pak_DetectPort(p);
+            CPak_DetectPort(p);
         }
     }
 

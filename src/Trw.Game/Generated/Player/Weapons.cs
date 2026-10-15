@@ -214,7 +214,7 @@ public static partial class Game
                 k = 23;
             }
             L_l2: ;
-            Sound_StartForActor(0x8011FE88u, (a + (uint)744), ((int)(new PlrDef(Mem.U32((0x800D052Cu + (uint)(new Plr(a).unk62E * 4)))).unk4) + k), new Plr(a).unk484.unk10);
+            Level_SetActorType(0x8011FE88u, (a + (uint)744), ((int)(new PlrDef(Mem.U32((0x800D052Cu + (uint)(new Plr(a).unk62E * 4)))).unk4) + k), new Plr(a).unk484.unk10);
         }
     }
 
@@ -298,7 +298,7 @@ public static partial class Game
             _f20: ;
             return 1;
             _f24: ;
-            return (int)(Hud_DrawAmmoPips(0x80121990u, p, default(uint), default(uint)));
+            return (int)(Particle_CountOwnedCharges(0x80121990u, p, default(uint), default(uint)));
             _f21: ;
             _f22: ;
             _f23: ;

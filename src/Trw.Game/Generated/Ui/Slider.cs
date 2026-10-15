@@ -83,7 +83,7 @@ public static partial class Game
                 return 0;
             }
             UiSlider_UpdateThumb(s);
-            Menu_SendEvent((uint)(Ui_PushScreen()), (uint)(4106), (uint)((int)(new O02Widget(w).id)), (uint)(new O02Slider(s).val), (uint)(0));
+            Menu_SendEvent((uint)(Menu_GetCurrentScreenId()), (uint)(4106), (uint)((int)(new O02Widget(w).id)), (uint)(new O02Slider(s).val), (uint)(0));
             Menu_ConsumeEvent();
             return 0;
         }
@@ -147,8 +147,8 @@ public static partial class Game
             int s = 0;
             uint o = 0u;
             uint g = 0u;
-            src = UiTree_FindNode((uint)((int)(UiScreen_GetData(Ui_PushScreen()))), (uint)((a & 65535)), default(uint), default(uint));
-            s = (int)(UiScreen_GetData(Ui_PushScreen()));
+            src = UiTree_FindNode((uint)((int)(UiScreen_GetData(Menu_GetCurrentScreenId()))), (uint)((a & 65535)), default(uint), default(uint));
+            s = (int)(UiScreen_GetData(Menu_GetCurrentScreenId()));
             o = ResourcePool_Malloc((uint)(88));
             Mem_Fill(o, 0, (uint)(88));
             Mem.Copy(o, src, 44);

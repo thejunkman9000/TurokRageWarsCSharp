@@ -605,7 +605,7 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_002AB794", (uint)s);
                 if ((Menu_IsFrontendActive() == 1))
                 {
-                    Menu_UpdateIdleTimer();
+                    Menu_UpdateFrontendFrame();
                     Model_ResetStateCache();
                     Texture_InvalidateLoadCache();
                 }

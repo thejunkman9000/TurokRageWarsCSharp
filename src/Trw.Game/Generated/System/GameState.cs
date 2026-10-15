@@ -893,7 +893,7 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_00293268", (uint)g, (uint)a);
                 uint b = 0u;
-                if (!(Track_FindPlacedObjects(0x8011FE88u, (-1), a, _fp, 1) != 0))
+                if (!(Level_FindPlacedObjects(0x8011FE88u, (-1), a, _fp, 1) != 0))
                 {
                     a = 0;
                 }
@@ -1777,7 +1777,7 @@ public static partial class Game
     }
 
     // ==== func_00294608 @ 0x00294608 [C]
-    public static void State_14Init(uint g)
+    public static void State_PlayResumeInit(uint g)
     {
         unchecked
         {
@@ -1800,7 +1800,7 @@ public static partial class Game
     }
 
     // ==== func_002946A8 @ 0x002946A8 [C]
-    public static void State_AttractInit(uint g)
+    public static void State_PlayInit(uint g)
     {
         unchecked
         {
@@ -1838,7 +1838,7 @@ public static partial class Game
     }
 
     // ==== func_002947BC @ 0x002947BC [C]
-    public static void State_AttractUpdate()
+    public static void State_PlayUpdate()
     {
         unchecked
         {
@@ -1882,7 +1882,7 @@ public static partial class Game
             unchecked
             {
                 if (Dbg.On) Dbg.Enter("func_002947DC", (uint)g, (uint)a);
-                if (!(Track_FindPlacedObjects(0x8011FE88u, (-1), a, _fp, 1) != 0))
+                if (!(Level_FindPlacedObjects(0x8011FE88u, (-1), a, _fp, 1) != 0))
                 {
                     a = 0;
                 }
@@ -2155,7 +2155,7 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_0044EACC", (uint)m, (uint)a);
                 uint b = 0u;
-                if ((Track_FindPlacedObjects(0x8011FE88u, (-1), a, _fp, 1) == 0))
+                if ((Level_FindPlacedObjects(0x8011FE88u, (-1), a, _fp, 1) == 0))
                 {
                     a = 0;
                 }

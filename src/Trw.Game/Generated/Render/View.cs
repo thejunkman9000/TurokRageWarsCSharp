@@ -1727,7 +1727,7 @@ public static partial class Game
                 Mem.Set((r3 + 0u), r4);
                 Mem.Set((r3 + 4u), r2); r2 = (uint)Menu_IsFrontendActive();
                 { bool c_ = r2 == 0;  if (c_) goto L_L00235E94; }
-                r2 = (uint)Ui_PushScreen();
+                r2 = (uint)Menu_GetCurrentScreenId();
                 r2 = r2 ^ 2u;
                 r16 = (uint)(r16 < r2 ? 1 : 0);
                 L_L00235E94: ;

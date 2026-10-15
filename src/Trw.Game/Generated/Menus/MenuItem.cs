@@ -1375,7 +1375,7 @@ public static partial class Game
                         }
                         if ((new Q4X(x).id == 11))
                         {
-                            Sound_StartForActor(0x8011FE88u, fx, Mem.S32((0x800CE430u + (uint)(new Q4Sub(new Q4Fx(fx).f18).h0C * 4))), 1);
+                            Level_SetActorType(0x8011FE88u, fx, Mem.S32((0x800CE430u + (uint)(new Q4Sub(new Q4Fx(fx).f18).h0C * 4))), 1);
                         }
                         if ((Mem.S32(0x800E5E70u) != 4))
                         {

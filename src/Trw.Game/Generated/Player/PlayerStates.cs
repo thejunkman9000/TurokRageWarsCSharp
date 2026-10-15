@@ -506,7 +506,7 @@ public static partial class Game
     }
 
     // ==== func_0022CF28 @ 0x0022CF28 [C]
-    public static void PlayerState_EnterState0B_0022CF28(uint actor, uint state)
+    public static void PlayerState_EnterUnderwater_0022CF28(uint actor, uint state)
     {
         unchecked
         {
@@ -1398,7 +1398,7 @@ public static partial class Game
     }
 
     // ==== func_0022D9F4 @ 0x0022D9F4 [C]
-    public static void PlayerState_EnterSwimIdle_0022D9F4(uint actor)
+    public static void PlayerState_EnterIdle24_0022D9F4(uint actor)
     {
         unchecked
         {
@@ -1409,7 +1409,7 @@ public static partial class Game
     }
 
     // ==== func_0022DA20 @ 0x0022DA20 [C]
-    public static void PlayerState_UpdateSwimIdle_0022DA20(uint actor, uint state)
+    public static void PlayerState_UpdateIdle24_0022DA20(uint actor, uint state)
     {
         unchecked
         {
@@ -1423,7 +1423,7 @@ public static partial class Game
     }
 
     // ==== func_0022DA74 @ 0x0022DA74 [C]
-    public static void PlayerState_EnterSwim_0022DA74(uint actor)
+    public static void PlayerState_EnterMoving25_0022DA74(uint actor)
     {
         unchecked
         {
@@ -1434,7 +1434,7 @@ public static partial class Game
     }
 
     // ==== func_0022DAA0 @ 0x0022DAA0 [C]
-    public static void PlayerState_UpdateSwim_0022DAA0(uint actor, uint state)
+    public static void PlayerState_UpdateMoving25_0022DAA0(uint actor, uint state)
     {
         unchecked
         {

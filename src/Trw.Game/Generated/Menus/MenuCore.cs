@@ -364,7 +364,7 @@ public static partial class Game
                 r19 = (uint)3;
                 L_L00297EF0: ;
                 L_I00297EF0: ;
-                r2 = (uint)Ui_PushScreen();
+                r2 = (uint)Menu_GetCurrentScreenId();
                 L_I00297EF8: ;
                 r4 = r2; r2 = UiScreen_GetData((int)r4);
                 L_I00297F00: ;
@@ -1328,7 +1328,7 @@ public static partial class Game
             int now = 0;
             int kind = 0;
             uint fn = 0u;
-            Ui_PushScreen();
+            Menu_GetCurrentScreenId();
             if ((cmd < (uint)(3584)))
             {
                 kind = ret;
@@ -1661,7 +1661,7 @@ public static partial class Game
             int t = 0;
             uint ctx = 0u;
             uint e = 0u;
-            x = (int)(UiScreen_GetData(Ui_PushScreen()));
+            x = (int)(UiScreen_GetData(Menu_GetCurrentScreenId()));
             for (i = 0; (i < new SndMgr_v2(Mem.U32(0x8014D080u)).unk540); ++i)
             {
                 if (((((new SndCacheEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).unk53C_ + (uint)(i * 12))).unk8 == x) && (new SndCacheEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).unk53C_ + (uint)(i * 12))).id == id)) && (new SndCacheEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).unk53C_ + (uint)(i * 12))).ctx_ != 0u)) && ((int)(new SndCacheEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).unk53C_ + (uint)(i * 12))).ctx.id) == id)))
@@ -1802,7 +1802,7 @@ public static partial class Game
             var_s2 = 0;
             var_s5 = 1;
             if (!((new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4 >= 0))) goto _f0;
-            Ui_PushScreen();
+            Menu_GetCurrentScreenId();
             _f0: ;
             temp_v1 = new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4;
             temp_s0 = new Shared_MenuManager(Mem.U32(0x8014D080u)).unkC_;
@@ -1825,7 +1825,7 @@ public static partial class Game
             if (!((var_v0 == 0))) goto _f4;
             goto L_block_not_found;
             _f4: ;
-            temp_s4 = Ui_PushScreen();
+            temp_s4 = Menu_GetCurrentScreenId();
             var_a0_2 = new Shared_MenuManager(Mem.U32(0x8014D080u)).unk8;
             temp_a1 = new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4;
             if (!((temp_a1 >= var_a0_2))) goto _f5;
@@ -1941,7 +1941,7 @@ public static partial class Game
             _f27: ;
             _f23: ;
             L_after_focus10: ;
-            new Shared_MenuManager(Mem.U32(0x8014D080u)).unk528_Set(Ui_PushScreen());
+            new Shared_MenuManager(Mem.U32(0x8014D080u)).unk528_Set(Menu_GetCurrentScreenId());
             new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4_Set((new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4 + 1));
             temp_v0_6 = UiScreen_GetData(arg0);
             temp_a0_5 = (new Shared_MenuManager(Mem.U32(0x8014D080u)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4 * 28));
@@ -2052,7 +2052,7 @@ public static partial class Game
             temp_v1_2 = Mem.U32(0x8014D080u);
             _f41: ;
             new Shared_MenuManager(temp_v1_2).unk8_Set(new Shared_MenuManager(temp_v1_2).unk4);
-            new Shared_MenuManager(Mem.U32(0x8014D080u)).unk528_Set(Ui_PushScreen());
+            new Shared_MenuManager(Mem.U32(0x8014D080u)).unk528_Set(Menu_GetCurrentScreenId());
             new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4_Set((new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4 + 1));
             temp_v0_13 = UiScreen_GetData(arg0);
             temp_a0_6 = (new Shared_MenuManager(Mem.U32(0x8014D080u)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4 * 28));
@@ -2099,7 +2099,7 @@ public static partial class Game
             Menu_DispatchToTopScreen((uint)(1), (uint)(3591), (uint)(0), (uint)(0), (uint)(0));
             _f53: ;
             L_after_e07_second: ;
-            if (!((Ui_PushScreen() != arg0))) goto _f56;
+            if (!((Menu_GetCurrentScreenId() != arg0))) goto _f56;
             new Shared_MenuManager(Mem.U32(0x8014D080u)).unk540_Set(0);
             return;
             _f56: ;
@@ -2765,7 +2765,7 @@ public static partial class Game
     }
 
     // ==== func_0029A958 @ 0x0029A958 [C]
-    public static int Ui_PushScreen()
+    public static int Menu_GetCurrentScreenId()
     {
         unchecked
         {
@@ -3049,7 +3049,7 @@ public static partial class Game
                             }
                             if ((ok != 0))
                             {
-                                Ui_PushScreen();
+                                Menu_GetCurrentScreenId();
                                 Menu_SendEvent((uint)((int)(new SndCtx(n).id)), (uint)(cmd), (uint)(a), (uint)(b), (uint)(c));
                             }
                         }
@@ -3115,7 +3115,7 @@ public static partial class Game
                 r2 = (uint)1;
                 { bool c_ = r3 != r2; Mem.Set((r29 + 24u), r31); if (c_) goto L_L002A31E8; }
                 ScratchHeap_Flip();
-                r2 = (uint)Ui_PushScreen();
+                r2 = (uint)Menu_GetCurrentScreenId();
                 Mem.Set((r29 + 16u), r0);
                 r4 = r2;
                 r5 = (uint)3592;
@@ -3124,7 +3124,7 @@ public static partial class Game
                 Menu_DrawStack();
                 Image_EvictExpired();
                 Menu_AdvanceFrameCounter();
-                r2 = (uint)Ui_PushScreen();
+                r2 = (uint)Menu_GetCurrentScreenId();
                 r5 = (uint)1;
                 r3 = r2;
                 r2 = (uint)3;
@@ -3187,7 +3187,7 @@ public static partial class Game
     }
 
     // ==== func_002A3090 @ 0x002A3090 [C]
-    public static void Menu_UpdateIdleTimer()
+    public static void Menu_UpdateFrontendFrame()
     {
         unchecked
         {
@@ -3199,11 +3199,11 @@ public static partial class Game
             if ((Mem.S32(0x800D2C98u) == 1))
             {
                 ScratchHeap_Flip();
-                Menu_SendEvent((uint)(Ui_PushScreen()), (uint)(3592), (uint)(0), (uint)(0), (uint)(0));
+                Menu_SendEvent((uint)(Menu_GetCurrentScreenId()), (uint)(3592), (uint)(0), (uint)(0), (uint)(0));
                 Menu_DrawStack();
                 Image_EvictExpired();
                 Menu_AdvanceFrameCounter();
-                type = Ui_PushScreen();
+                type = Menu_GetCurrentScreenId();
                 a1 = 1;
                 a0 = 0;
                 if ((type == 3))
@@ -3307,7 +3307,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002A3318");
             if ((Mem.S32(0x800E28D8u) == 1))
             {
-                UiTree_ScaleForHiRes((uint)((int)(UiScreen_GetData(Ui_PushScreen()))), (uint)(0));
+                UiTree_ScaleForHiRes((uint)((int)(UiScreen_GetData(Menu_GetCurrentScreenId()))), (uint)(0));
             }
         }
     }
@@ -3493,185 +3493,6 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00414404");
             Math_Shutdown();
             File_Shutdown();
-        }
-    }
-
-    // ==== func_0042A490 @ 0x0042A490 [C]
-    public static int Menu_UpdateTransition_0042A490(uint arg0, int arg1, int arg2)
-    {
-        unchecked
-        {
-            if (Dbg.On) Dbg.Enter("func_0042A490", (uint)arg0, (uint)arg1, (uint)arg2);
-            uint countdown = 0u;
-            float var_f0 = 0f;
-            int temp_a2 = 0;
-            int temp_s0 = 0;
-            int temp_v0 = 0;
-            int temp_v0_2 = 0;
-            int temp_v0_3 = 0;
-            int temp_v0_4 = 0;
-            int temp_v1 = 0;
-            int var_a1 = 0;
-            int var_v0 = 0;
-            uint temp_a0 = 0u;
-            uint temp_a0_2 = 0u;
-            uint temp_a1 = 0u;
-            uint temp_a1_2 = 0u;
-            uint var_a0 = 0u;
-            uint var_a0_2 = 0u;
-            uint var_a0_3 = 0u;
-            if ((new MenuTransitionSignal(0x80154020u).trigger == 1))
-            {
-                new MenuTransitionSignal(0x80154020u).trigger_Set(0);
-                if ((new MenuTransitionSignal(0x80154020u).selection != (-1)))
-                {
-                    new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_44C.alpha_Set((byte)(90));
-                    Menu_ConsumeEvent();
-                    Menu_GotoScreen(new MenuTransitionSignal(0x80154020u).selection);
-                    return 0;
-                }
-                new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_44C.alpha_Set((byte)(255));
-                new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC_Set(9);
-                if ((new ListScreenScreen(Mem.U32(0x800E4F60u)).selection == 0))
-                {
-                    UiNode_SetVisible(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_440_, 1);
-                    var_a0 = new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_448_;
-                }
-                else
-                {
-                    var_a0 = new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_444_;
-                }
-                UiNode_SetVisible(var_a0, 1);
-                UiNode_SetVisible(new ListScreenScreen(Mem.U32(0x800E4F60u)).label_, 1);
-                UiNode_SetVisible(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3F0_, 1);
-                goto L_block_7;
-            }
-            L_block_7: ;
-            temp_v0 = new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC;
-            switch (temp_v0)
-            {
-            case 1:
-                temp_a1 = new ListScreenScreen(Mem.U32(0x800E4F60u)).left_;
-                new ListScreenItem(temp_a1).x_Set((short)((ushort)(((int)(new ListScreenItem(temp_a1).x) + (int)((ushort)(new ListScreenScreen(Mem.U32(0x800E4F60u)).leftCount))))));
-                temp_a1_2 = new ListScreenScreen(Mem.U32(0x800E4F60u)).right_;
-                new ListScreenItem(temp_a1_2).x_Set((short)((ushort)(((int)(new ListScreenItem(temp_a1_2).x) - (int)((ushort)(new ListScreenScreen(Mem.U32(0x800E4F60u)).rightCount))))));
-                temp_v0_2 = (new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E0 - 1);
-                new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E0_Set(temp_v0_2);
-                if ((temp_v0_2 <= 0))
-                {
-                    Audio_PlaySound2D(3705);
-                    UiNode_SetVisible(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E8_, 1);
-                    Flicker_Trigger((uint)(new ListScreenScreen(Mem.U32(0x800E4F60u)).text3E4), 4);
-                    new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC_Set(4);
-                    new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E0_Set(4);
-                }
-                break;
-            case 2:
-                temp_a0 = new ListScreenScreen(Mem.U32(0x800E4F60u)).left_;
-                new ListScreenItem(temp_a0).x_Set((short)((ushort)(((int)(new ListScreenItem(temp_a0).x) - (int)((ushort)(new ListScreenScreen(Mem.U32(0x800E4F60u)).leftCount))))));
-                temp_a0_2 = new ListScreenScreen(Mem.U32(0x800E4F60u)).right_;
-                new ListScreenItem(temp_a0_2).x_Set((short)((ushort)(((int)(new ListScreenItem(temp_a0_2).x) + (int)((ushort)(new ListScreenScreen(Mem.U32(0x800E4F60u)).rightCount))))));
-                temp_v0_3 = (new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E0 - 1);
-                new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E0_Set(temp_v0_3);
-                if ((temp_v0_3 <= 0))
-                {
-                    new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC_Set(3);
-                    Menu_ConsumeEvent();
-                    Menu_GotoScreen(8);
-                    return 0;
-                }
-                break;
-            case 3:
-                if ((new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_460 == 0))
-                {
-                    Menu_EnableInput();
-                    var_a1 = 0;
-                    var_a0_3 = new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_458_;
-                    new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_460_Set(1);
-                    UiNode_SetVisible(var_a0_3, var_a1);
-                }
-                break;
-            case 4:
-                countdown = Mem.U32(0x800E4F60u);
-                temp_v1 = new ListScreenScreen(countdown).unk_3E0;
-                temp_v0_4 = (temp_v1 - 1);
-                if ((temp_v0_4 >= 0))
-                {
-                    var_v0 = (temp_v1 - ((temp_v1 >= temp_v0_4) ? 1 : 0));
-                }
-                else
-                {
-                    var_v0 = 0;
-                }
-                new ListScreenScreen(countdown).unk_3E0_Set(var_v0);
-                if (((new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E0 <= 0) && (Flicker_IsSteady((uint)(new ListScreenScreen(Mem.U32(0x800E4F60u)).text3E4)) != 0)))
-                {
-                    Flicker_Stop((uint)(new ListScreenScreen(Mem.U32(0x800E4F60u)).text3E4));
-                    ArenaSelect_SetArenaNodesAlpha(10);
-                    new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC_Set(9);
-                }
-                break;
-            case 5:
-                UiNode_SetVisible(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_458_, 1);
-                UiNode_SetVisible(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E8_, 0);
-                ArenaSelect_ShowMarkers();
-                ArenaSelect_SetArenaNodesAlpha(0);
-                new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC_Set(2);
-                new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E0_Set(4);
-                UiNode_SetVisible(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_448_, 0);
-                Audio_PlaySound2D(3704);
-                break;
-            case 8:
-                temp_v0 = (int)(new ListScreenItem(UiTree_FindNode(arg0, (uint)((ushort)(790u)), default(uint), default(uint))).alpha);
-                temp_s0 = (temp_v0 >> (int)1);
-                ArenaSelect_SetArenaNodesAlpha(temp_s0);
-                if ((temp_s0 < 10))
-                {
-                    new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC_Set(3);
-                    Menu_RequestScreen(11);
-                    return 0;
-                }
-                break;
-            case 9:
-                temp_s0 = (int)(new ListScreenItem(UiTree_FindNode(arg0, (uint)((ushort)(790u)), default(uint), default(uint))).alpha);
-                temp_s0 = ((temp_s0 + 1) * 2);
-                if ((temp_s0 >= 66))
-                {
-                    temp_s0 = 65;
-                    new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC_Set(3);
-                }
-                ArenaSelect_SetArenaNodesAlpha(temp_s0);
-                var_a1 = 1;
-                if ((new ListScreenScreen(Mem.U32(0x800E4F60u)).selection == 0))
-                {
-                    var_a0_3 = new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_448_;
-                    UiNode_SetVisible(var_a0_3, var_a1);
-                }
-                break;
-            default:
-                break;
-            }
-            if ((new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC == 3))
-            {
-                temp_a2 = (new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_45C + arg2);
-                new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_45C_Set(temp_a2);
-                if ((new MenuTransitionSignal(0x80154020u).selection == (-1)))
-                {
-                    if ((new ListScreenScreen(Mem.U32(0x800E4F60u)).selection == 0))
-                    {
-                        var_f0 = ((cosf(((float)(temp_a2) * 0.00333333341f)) * 100.0f) + 150.0f);
-                        var_a0_2 = new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_448_;
-                        new ListScreenItem(var_a0_2).alpha_Set((byte)(Cpu.TruncU32(var_f0)));
-                    }
-                    else
-                    {
-                        var_f0 = ((cosf(((float)(temp_a2) * 0.00333333341f)) * 100.0f) + 150.0f);
-                        var_a0_2 = new ListScreenScreen(Mem.U32(0x800E4F60u)).item_;
-                        new ListScreenItem(var_a0_2).alpha_Set((byte)(Cpu.TruncU32(var_f0)));
-                    }
-                }
-            }
-            return 0;
         }
     }
 
@@ -4070,7 +3891,7 @@ public static partial class Game
     }
 
     // ==== func_0043C500 @ 0x0043C500 [C]
-    public static uint CheatMenu_GetHandler_0043C500(int id)
+    public static uint Menu_GetScreenDispatch(int id)
     {
         unchecked
         {

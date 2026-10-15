@@ -4769,7 +4769,7 @@ public static partial class Game
                     }
                     else
                     {
-                        new Level(lv).unk1B41C_Set(Track_FindPlacedObjects(lv, (-1), v, new Level(lv).unk1B420.P, 1));
+                        new Level(lv).unk1B41C_Set(Level_FindPlacedObjects(lv, (-1), v, new Level(lv).unk1B420.P, 1));
                     }
                     new Level(lv).unk1B434_Set(new Level(lv).unk1B438);
                     if ((new Level(lv).unk1B41C != 0))
@@ -4964,6 +4964,92 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0028B238", (uint)o, (uint)i);
             return new P4Obj94(o).t.tbl[(int)(i)];
         }
+    }
+
+    // ==== func_0028B250 @ 0x0028B250 [C]
+    public static int func_0028B250_find(uint t, ushort id)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0028B250_find", (uint)t, (uint)id);
+            int i = 0;
+            uint p = new P4IdTbl(t).ids.P;
+            int n = new P4IdTbl(t).count;
+            for (i = 0; (i < n); ++i, p += 2u)
+            {
+                if (((int)(Mem.U16(p)) == (int)(id)))
+                {
+                    return i;
+                }
+            }
+            return (-1);
+        }
+    }
+
+    public static void Level_SetActorType(uint o, uint it, int id, int d)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0028B250", (uint)o, (uint)it, (uint)id, (uint)d);
+            int i = 0;
+            if (((int)(new P4Item(it).id) != id))
+            {
+                i = func_0028B250_find(new P4Owner(o).tbl_, (ushort)(id));
+                if ((i != (-1)))
+                {
+                    new P4Item(it).idx_Set((short)(i));
+                    new P4Item(it).id_Set((ushort)(id));
+                    Actor_ResetAnimObject(it, new P4Owner(o).f54, new P4Owner(o).f24, d);
+                }
+            }
+        }
+    }
+
+    // ==== func_0028B264 @ 0x0028B264 [MIPS]
+    public static uint Level_SetActorTypeTwin(uint a0, uint a1, uint a2, uint a3, uint a4)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0028B264", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                L_func_0028B264: ;
+                { bool c_ = r2 == r6; r3 = r0; if (c_) goto L_L0028B2C8; }
+                r2 = Mem.U32((r11 + 148u));
+                r8 = r2 + 8u;
+                r9 = Mem.U32((r2 + 4u));
+                { bool c_ = (int)r9 <= 0; r2 = r6; if (c_) goto L_L0028B2A0; }
+                r10 = r2 & 65535u;
+                L_L0028B284: ;
+                r2 = Mem.U16((r8 + 0u));
+                { bool c_ = r2 == r10; r2 = (uint)-1; if (c_) goto L_L0028B2A8; }
+                r3 = r3 + 1u;
+                r2 = (uint)((int)r3 < (int)r9 ? 1 : 0);
+                { bool c_ = r2 != 0; r8 = r8 + 2u; if (c_) goto L_L0028B284; }
+                L_L0028B2A0: ;
+                r3 = (uint)-1;
+                r2 = (uint)-1;
+                L_L0028B2A8: ;
+                { bool c_ = r3 == r2;  if (c_) goto L_L0028B2C8; }
+                Mem.Set((r4 + 4u), (ushort)r3);
+                Mem.Set((r4 + 228u), (ushort)r6);
+                r5 = Mem.U32((r11 + 84u));
+                r6 = Mem.U32((r11 + 36u));
+                Actor_ResetAnimObject(r4, (int)r5, (int)r6, (int)r7);
+                L_L0028B2C8: ;
+                r31 = Mem.U32((r29 + 16u));
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0028B264", r2); Stack.Free(384); }
     }
 
     // ==== func_0028B2D4 @ 0x0028B2D4 [C]
@@ -7252,7 +7338,7 @@ public static partial class Game
                         actors = (hdr + (uint)(2 * 4));
                         if ((new S6World_v2(world).ready == 0))
                         {
-                            new S6World_v2(world).key_Set(Track_FindNearestPlacedObject(world, (node + (uint)12), new S6World_v2(world).group, new S6World_v2(world).cache.P));
+                            new S6World_v2(world).key_Set(Level_FindNearestPlacedObject(world, (node + (uint)12), new S6World_v2(world).group, new S6World_v2(world).cache.P));
                             if ((new S6World_v2(world).key != 0))
                             {
                                 new S6World_v2(world).ready_Set(1);
@@ -7262,7 +7348,7 @@ public static partial class Game
                         nobj = 0;
                         if ((new S6World_v2(world).ready != 0))
                         {
-                            nobj = Track_FindPlacedObjects(world, new S6World_v2(world).group, new S6World_v2(world).key, _fp, 8);
+                            nobj = Level_FindPlacedObjects(world, new S6World_v2(world).group, new S6World_v2(world).key, _fp, 8);
                         }
                         new S6World_v2(world).actors__Set(actors);
                         new S6World_v2(world).nActors_Set(count);
@@ -7291,7 +7377,7 @@ public static partial class Game
                                     {
                                         if (((((int)(new S6Cfg(cfg).kind) == 12) && (Mem.S32((pl + (uint)5200)) != 0)) && (new S6World_v2(world).group == 9)))
                                         {
-                                            Track_FindPlacedObjects(world, 9, 3101, (_fp + 160u), 1);
+                                            Level_FindPlacedObjects(world, 9, 3101, (_fp + 160u), 1);
                                             obj = (_fp + 160u);
                                         }
                                         else
@@ -7525,7 +7611,7 @@ public static partial class Game
         }
     }
 
-    public static int Track_FindPlacedObjects(uint track, int kind, int key, uint @out, int max)
+    public static int Level_FindPlacedObjects(uint track, int kind, int key, uint @out, int max)
     {
         uint _fp = Stack.Alloc(800);
         try
@@ -7580,7 +7666,7 @@ public static partial class Game
     }
 
     // ==== func_0044E038 @ 0x0044E038 [C]
-    public static int Track_FindNearestPlacedObject(uint track, uint pos, int kind, uint @out)
+    public static int Level_FindNearestPlacedObject(uint track, uint pos, int kind, uint @out)
     {
         unchecked
         {

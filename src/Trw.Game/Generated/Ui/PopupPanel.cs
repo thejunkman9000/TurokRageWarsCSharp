@@ -267,8 +267,8 @@ public static partial class Game
             uint g = 0u;
             int s = 0;
             uint o = 0u;
-            g = UiTree_FindNode((uint)((int)(UiScreen_GetData(Ui_PushScreen()))), (uint)((a & 65535)), default(uint), default(uint));
-            s = (int)(UiScreen_GetData(Ui_PushScreen()));
+            g = UiTree_FindNode((uint)((int)(UiScreen_GetData(Menu_GetCurrentScreenId()))), (uint)((a & 65535)), default(uint), default(uint));
+            s = (int)(UiScreen_GetData(Menu_GetCurrentScreenId()));
             o = ResourcePool_Malloc((uint)(124));
             Mem_Fill(o, 0, (uint)(124));
             new O3B60(o).h.id2_Set((ushort)(2912));

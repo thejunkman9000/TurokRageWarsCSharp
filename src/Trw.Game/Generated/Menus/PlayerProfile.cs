@@ -51,7 +51,7 @@ public static partial class Game
                 { bool c_ = r2 != r17;  if (c_) goto L_L0041C034; }
                 r4 = 2148401152u;
                 r4 = Mem.U32((r4 + 13584u));
-                Pak_DetectPort((int)r4);
+                CPak_DetectPort((int)r4);
                 r4 = 2148401152u;
                 r4 = Mem.U32((r4 + 13584u));
                 r2 = (uint)CPak_GetStatus((int)r4);
@@ -64,7 +64,7 @@ public static partial class Game
                 r4 = Mem.U32((r4 + 30464u));
                 r5 = 2148401152u;
                 r5 = Mem.U32((r5 + 13584u));
-                r6 = r29 + 16u; r2 = (uint)Pak_FindFile(r4, (int)r5, r6);
+                r6 = r29 + 16u; r2 = (uint)CPak_FindFile(r4, (int)r5, r6);
                 { bool c_ = r2 != 0;  if (c_) goto L_L0041C034; }
                 r4 = 2148401152u;
                 r4 = Mem.U32((r4 + 13584u));
@@ -175,7 +175,7 @@ public static partial class Game
     }
 
     // ==== func_0041CEA8 @ 0x0041CEA8 [MIPS]
-    public static uint SaveSlotScreen_OpenHead_0041CEA8(uint a0, uint a1, uint a2, uint a3)
+    public static uint ProfileStats_OpenHead_0041CEA8(uint a0, uint a1, uint a2, uint a3)
     {
         uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
         uint lo = 0, hi = 0; bool fcc = false;
@@ -189,7 +189,7 @@ public static partial class Game
                 r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
                 r29 = _fp + 256u;
                 L_func_0041CEA8: ;
-                SaveSlotScreen_ShowAwardText();
+                ProfileStats_ShowAwardText();
                 L_func_0041CEB0: ;
                 r29 = r29 - 32u;
                 Mem.Set((r29 + 20u), r17);
@@ -337,11 +337,11 @@ public static partial class Game
                 r2 = (uint)-1;
                 Mem.Set((r3 + 264u), r0);
                 Mem.Set((r3 + 268u), r2); Profile_NextActiveSlot(r4);
-                SaveSlotScreen_ShowProfileStats();
+                ProfileStats_ShowStats();
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 13712u));
                 r4 = Mem.U32((r2 + 252u));
-                SaveSlotScreen_ShowAwardIcons((int)r4);
+                ProfileStats_ShowAwardIcons((int)r4);
                 r4 = r17;
                 r5 = (uint)493; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 Mem.Set((r2 + 16u), (byte)r16);
@@ -360,7 +360,7 @@ public static partial class Game
     }
 
     // ==== func_0041CEB0 @ 0x0041CEB0 [C]
-    public static int SaveSlotScreen_Open(uint arg0)
+    public static int ProfileStats_Open(uint arg0)
     {
         unchecked
         {
@@ -406,8 +406,8 @@ public static partial class Game
             new S1008Menu(Mem.U32(0x800E3590u)).clock_Set(0);
             new S1008Menu(Mem.U32(0x800E3590u)).f10C_Set((-1));
             Profile_NextActiveSlot((Mem.U32(0x800E3590u) + 268u));
-            SaveSlotScreen_ShowProfileStats();
-            SaveSlotScreen_ShowAwardIcons(new S1008Menu(Mem.U32(0x800E3590u)).styleValue);
+            ProfileStats_ShowStats();
+            ProfileStats_ShowAwardIcons(new S1008Menu(Mem.U32(0x800E3590u)).styleValue);
             new S1008Node(UiTree_FindNode(arg0, (uint)(493), default(uint), default(uint))).style_Set((byte)(110));
             new S1008Menu(Mem.U32(0x800E3590u)).focus__Set(0u);
             return 0;
@@ -415,7 +415,7 @@ public static partial class Game
     }
 
     // ==== func_0041D1A4 @ 0x0041D1A4 [C]
-    public static int SaveSlotScreen_Update(int arg0, int arg1, int arg2)
+    public static int ProfileStats_Update(int arg0, int arg1, int arg2)
     {
         unchecked
         {
@@ -467,11 +467,11 @@ public static partial class Game
             case 6:
                 new S1008Menu(Mem.U32(0x800E3590u)).styleValue_Set((int)((int)(new S1008Menu(Mem.U32(0x800E3590u)).styleValue) + new S1008Menu(Mem.U32(0x800E3590u)).styleStep));
                 new S1008Menu(Mem.U32(0x800E3590u)).groupC.style_Set((byte)((int)(new S1008Menu(Mem.U32(0x800E3590u)).groupC.style) + (int)((byte)(new S1008Menu(Mem.U32(0x800E3590u)).alphaStep))));
-                SaveSlotScreen_ShowAwardIcons(new S1008Menu(Mem.U32(0x800E3590u)).styleValue);
+                ProfileStats_ShowAwardIcons(new S1008Menu(Mem.U32(0x800E3590u)).styleValue);
                 if ((new S1008Menu(Mem.U32(0x800E3590u)).timer_Set((int)(new S1008Menu(Mem.U32(0x800E3590u)).timer - 1)) <= 0))
                 {
                     new S1008Menu(Mem.U32(0x800E3590u)).groupC.style_Set((byte)(100));
-                    SaveSlotScreen_ShowAwardIcons(110);
+                    ProfileStats_ShowAwardIcons(110);
                     new S1008Menu(Mem.U32(0x800E3590u)).state_Set(3);
                     UiNode_SetVisible(new S1008Menu(Mem.U32(0x800E3590u)).cursor_, 1);
                 }
@@ -493,8 +493,8 @@ public static partial class Game
                     }
                     new S1008Menu(Mem.U32(0x800E3590u)).focus__Set(node);
                     new S1008Node(node).style_Set((byte)(225));
-                    SaveSlotScreen_ShowAwardText();
-                    SaveSlotScreen_ShowAwardModel_0041D550();
+                    ProfileStats_ShowAwardText();
+                    ProfileStats_ShowAwardModel_0041D550();
                     new S1008Menu(Mem.U32(0x800E3590u)).cursor.x_Set((ushort)(((int)(new S1008Node(node).x) - 2)));
                     new S1008Menu(Mem.U32(0x800E3590u)).cursor.y_Set(new S1008Node(node).y);
                 }
@@ -504,7 +504,7 @@ public static partial class Game
     }
 
     // ==== func_0041D550 @ 0x0041D550 [C]
-    public static void SaveSlotScreen_ShowAwardModel_0041D550()
+    public static void ProfileStats_ShowAwardModel_0041D550()
     {
         unchecked
         {
@@ -595,7 +595,7 @@ public static partial class Game
     }
 
     // ==== func_0041D718 @ 0x0041D718 [C]
-    public static void SaveSlotScreen_ShowProfileStats()
+    public static void ProfileStats_ShowStats()
     {
         unchecked
         {
@@ -633,7 +633,7 @@ public static partial class Game
     }
 
     // ==== func_0041D9D0 @ 0x0041D9D0 [C]
-    public static void SaveSlotScreen_ShowAwardText()
+    public static void ProfileStats_ShowAwardText()
     {
         unchecked
         {
@@ -666,7 +666,7 @@ public static partial class Game
     }
 
     // ==== func_0041DACC @ 0x0041DACC [C]
-    public static void SaveSlotScreen_ShowAwardIcons(int alpha)
+    public static void ProfileStats_ShowAwardIcons(int alpha)
     {
         unchecked
         {
@@ -693,7 +693,7 @@ public static partial class Game
     }
 
     // ==== func_0041DC0C @ 0x0041DC0C [C]
-    public static int SaveSlotScreen_Close()
+    public static int ProfileStats_Close()
     {
         unchecked
         {
@@ -705,7 +705,7 @@ public static partial class Game
     }
 
     // ==== func_0041DC3C @ 0x0041DC3C [C]
-    public static int SaveSlotScreen_OnShow()
+    public static int ProfileStats_OnShow()
     {
         uint _fp = Stack.Alloc(60);
         try
@@ -737,7 +737,7 @@ public static partial class Game
     }
 
     // ==== func_0041DD30 @ 0x0041DD30 [C]
-    public static int SaveSlotScreen_Draw(int a0, int a1, int a2)
+    public static int ProfileStats_Draw(int a0, int a1, int a2)
     {
         unchecked
         {
@@ -769,7 +769,7 @@ public static partial class Game
     }
 
     // ==== func_0041DE64 @ 0x0041DE64 [C]
-    public static int SaveSlotScreen_OnButtonDown(int a0, int a1, uint a2, int a3)
+    public static int ProfileStats_OnButtonDown(int a0, int a1, uint a2, int a3)
     {
         unchecked
         {
@@ -778,9 +778,9 @@ public static partial class Game
             {
                 Menu_ConsumeEvent();
                 Profile_NextActiveSlot((Mem.U32(0x800E3590u) + 268u));
-                SaveSlotScreen_ShowAwardIcons(110);
-                SaveSlotScreen_ShowProfileStats();
-                SaveSlotScreen_ShowAwardText();
+                ProfileStats_ShowAwardIcons(110);
+                ProfileStats_ShowStats();
+                ProfileStats_ShowAwardText();
                 new O3Pk(Mem.U32(0x800E3590u)).cur__Set(0u);
             }
             return 0;
@@ -788,7 +788,7 @@ public static partial class Game
     }
 
     // ==== func_0041DECC @ 0x0041DECC [C]
-    public static int SaveSlotScreen_OnBack()
+    public static int ProfileStats_OnBack()
     {
         unchecked
         {
@@ -801,7 +801,7 @@ public static partial class Game
     }
 
     // ==== func_0041DF04 @ 0x0041DF04 [C]
-    public static int SaveSlotScreen_OnAccept()
+    public static int ProfileStats_OnAccept()
     {
         unchecked
         {
@@ -812,7 +812,7 @@ public static partial class Game
     }
 
     // ==== func_0041DF24 @ 0x0041DF24 [C]
-    public static int SaveSlotScreen_HandleMessage(uint obj, int msg, int a2, int a3, int a4)
+    public static int ProfileStats_HandleMessage(uint obj, int msg, int a2, int a3, int a4)
     {
         unchecked
         {
@@ -1030,7 +1030,7 @@ public static partial class Game
                 {
                     for (i = 0; (i < 4); ++i)
                     {
-                        Pak_DetectPort(i);
+                        CPak_DetectPort(i);
                         m2 = CPak_GetStatus(i);
                         if (((m2 >= (-4)) && ((m2 < (-2)) || (((m2 <= 0) ? ((m2 >= (-1)) ? 1 : 0) : 0) != 0))))
                         {
@@ -1043,7 +1043,7 @@ public static partial class Game
                 }
                 else
                 {
-                    Pak_DetectPort(Mem.S32(0x800E3510u));
+                    CPak_DetectPort(Mem.S32(0x800E3510u));
                     m2 = CPak_GetStatus(Mem.S32(0x800E3510u));
                     if (((m2 >= (-4)) && ((m2 < (-2)) || (((m2 <= 0) ? ((m2 >= (-1)) ? 1 : 0) : 0) != 0))))
                     {
@@ -1863,7 +1863,7 @@ public static partial class Game
                 r16 = r18;
                 L_L0042F810: ;
                 L_I0042F810: ;
-                r4 = r18; Pak_DetectPort((int)r4);
+                r4 = r18; CPak_DetectPort((int)r4);
                 L_I0042F818: ;
                 r4 = r18; r2 = (uint)CPak_GetStatus((int)r4);
                 L_I0042F820: ;
@@ -1912,7 +1912,7 @@ public static partial class Game
                 L_I0042F88C: ;
                 r4 = Mem.U32((r4 + 13584u));
                 L_I0042F890: ;
-                Pak_DetectPort((int)r4);
+                CPak_DetectPort((int)r4);
                 L_I0042F898: ;
                 r4 = 2148401152u;
                 L_I0042F89C: ;
@@ -2041,7 +2041,7 @@ public static partial class Game
                         {
                             new O05Lobby(Mem.U32(0x800E54A4u)).plr[(int)(i)].f14_Set((-1));
                             Menu_DisableInput();
-                            Pak_DetectPort(i);
+                            CPak_DetectPort(i);
                             PlayerMenu_ProbePak((uint)(i), default(uint), default(uint), default(uint));
                             Menu_EnableInput();
                         }
@@ -3938,7 +3938,7 @@ public static partial class Game
                 L_I004314CC: ;
                 r5 = Mem.U32((r3 + 2864u));
                 L_I004314D0: ;
-                r4 = r18; r2 = (uint)Pak_DeleteFile((int)r4, (int)r5);
+                r4 = r18; r2 = (uint)CPak_DeleteFile((int)r4, (int)r5);
                 L_I004314D8: ;
                 { bool c_ = r2 != 0; r5 = r17 + 88u; if (c_) goto L_L004315BC; }
                 L_I004314E0: ;
@@ -4042,7 +4042,7 @@ public static partial class Game
                 r2 = (uint)4; goto L_L00432300;
                 L_L004315BC: ;
                 L_I004315BC: ;
-                r4 = r18; Pak_DetectPort((int)r4);
+                r4 = r18; CPak_DetectPort((int)r4);
                 L_I004315C4: ;
                 r4 = r18; r2 = PlayerMenu_ProbePak(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_I004315CC: ;
@@ -7630,7 +7630,7 @@ public static partial class Game
                 L_I004338A0: ;
                 r4 = Mem.U32((r4 + 30464u));
                 L_I004338A4: ;
-                r6 = r29 + 16u; r2 = (uint)Pak_FindFile(r4, (int)r5, r6);
+                r6 = r29 + 16u; r2 = (uint)CPak_FindFile(r4, (int)r5, r6);
                 L_I004338AC: ;
                 { bool c_ = r2 != r18;  if (c_) goto L_L004339CC; }
                 L_I004338B4: ;
@@ -8163,7 +8163,7 @@ public static partial class Game
                 int ok = 0;
                 for (i = 0; ((i < 16) && (found == 0)); ++i)
                 {
-                    r = Pak_GetFileInfo(k, i, (_fp + 48u), _fp, (_fp + 24u), (_fp + 52u), (_fp + 32u), (_fp + 40u));
+                    r = CPak_GetFileInfo(k, i, (_fp + 48u), _fp, (_fp + 24u), (_fp + 52u), (_fp + 32u), (_fp + 40u));
                     if (((r == 0) && ((ok = Mem.S32((_fp + 48u))) == 1)))
                     {
                         if ((CPak_HasInvalidChar(_fp, 16) == ok))
@@ -8294,10 +8294,10 @@ public static partial class Game
                 int r = 0;
                 int new_var = 0;
                 ok = 0;
-                r = Pak_FindFile((uint)(Mem.S32(0x800D7700u)), idx, ((_fp + 24u) + (uint)(0 * 4)));
+                r = CPak_FindFile((uint)(Mem.S32(0x800D7700u)), idx, ((_fp + 24u) + (uint)(0 * 4)));
                 if ((r == 1))
                 {
-                    ok = ((Pak_DeleteFile(idx, Mem.S32(((_fp + 24u) + (uint)(0 * 4)))) == 0) ? 1 : 0);
+                    ok = ((CPak_DeleteFile(idx, Mem.S32(((_fp + 24u) + (uint)(0 * 4)))) == 0) ? 1 : 0);
                 }
                 else
                 {
@@ -8343,7 +8343,7 @@ public static partial class Game
                             Mem.Set(((_fp + 8u) + (uint)i), (sbyte)(0));
                         }
                         LibC_StrCopy((_fp + 8u), (uint)(Mem.S32(0x800D7700u)));
-                        if ((Pak_SaveFileVerified(idx, 1608, recs, (_fp + 8u), _fp, (uint)(Mem.S32(0x800D770Cu))) == 0))
+                        if ((CPak_SaveFileVerified(idx, 1608, recs, (_fp + 8u), _fp, (uint)(Mem.S32(0x800D770Cu))) == 0))
                         {
                             ok = 1;
                         }
@@ -8379,11 +8379,11 @@ public static partial class Game
             {
                 if ((new O05Lobby(Mem.U32(0x800E54A4u)).f3468 != 0))
                 {
-                    Pak_DeleteFile(idx, a);
+                    CPak_DeleteFile(idx, a);
                 }
                 else
                 {
-                    Pak_DeleteFile(idx, a);
+                    CPak_DeleteFile(idx, a);
                 }
             }
             if ((ok == 0))

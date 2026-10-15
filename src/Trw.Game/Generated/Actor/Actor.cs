@@ -1055,7 +1055,7 @@ public static partial class Game
     }
 
     // ==== func_002171BC @ 0x002171BC [C]
-    public static void Seq_Init(uint p, int v)
+    public static void ActorSeq_Init(uint p, int v)
     {
         unchecked
         {
@@ -1066,7 +1066,7 @@ public static partial class Game
     }
 
     // ==== func_002171C8 @ 0x002171C8 [C]
-    public static int Seq_NextLooping(uint s)
+    public static int ActorSeq_NextLooping(uint s)
     {
         unchecked
         {

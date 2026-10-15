@@ -7,7 +7,7 @@ namespace Trw.Game;
 public static partial class Game
 {
     // ==== func_00403E90 @ 0x00403E90 [C]
-    public static int Pak_ReadDirectory(int pad)
+    public static int CPak_ReadDirectory(int pad)
     {
         uint _fp = Stack.Alloc(4);
         try
@@ -55,7 +55,7 @@ public static partial class Game
     }
 
     // ==== func_00404018 @ 0x00404018 [C]
-    public static int Pak_Mount(int pad)
+    public static int CPak_Mount(int pad)
     {
         unchecked
         {
@@ -110,7 +110,7 @@ public static partial class Game
                 goto L_fin2;
                 L_got5: ;
                 Mem.Set((0x801534F0u + (uint)(pad * 4)), 3);
-                if ((Pak_ReadDirectory(pad) != 0))
+                if ((CPak_ReadDirectory(pad) != 0))
                 {
                     Mem.Set((0x80153500u + (uint)(pad * 4)), (-4));
                     goto L_fin2;
@@ -130,7 +130,7 @@ public static partial class Game
         }
     }
 
-    public static void Pak_DetectAll()
+    public static void CPak_DetectAll()
     {
         unchecked
         {
@@ -160,7 +160,7 @@ public static partial class Game
                 }
                 else
                 {
-                    if ((Pak_Mount(i) != 0))
+                    if ((CPak_Mount(i) != 0))
                     {
                         Mem.Set((0x801534F0u + (uint)(i * 4)), 3);
                     }
@@ -201,7 +201,7 @@ public static partial class Game
         }
     }
 
-    public static int Pak_WriteNewFile(int pad, int size, uint data, uint name, uint outFileNo, uint ext, uint company, uint game)
+    public static int CPak_WriteNewFile(int pad, int size, uint data, uint name, uint outFileNo, uint ext, uint company, uint game)
     {
         uint _fp = Stack.Alloc(24);
         try
@@ -246,7 +246,7 @@ public static partial class Game
                             r = (-1);
                         }
                     }
-                    Pak_Mount(pad);
+                    CPak_Mount(pad);
                 }
                 Pad_Release(default(uint), default(uint), default(uint), default(uint));
                 return r;
@@ -299,7 +299,7 @@ public static partial class Game
         }
     }
 
-    public static int Pak_GetFileInfo(int pad, int idx, uint valid, uint name, uint ext, uint blocks, uint company, uint game)
+    public static int CPak_GetFileInfo(int pad, int idx, uint valid, uint name, uint ext, uint blocks, uint company, uint game)
     {
         unchecked
         {
@@ -328,7 +328,7 @@ public static partial class Game
     }
 
     // ==== func_00404858 @ 0x00404858 [C]
-    public static int Pak_DeleteFile(int pad, int idx)
+    public static int CPak_DeleteFile(int pad, int idx)
     {
         unchecked
         {
@@ -350,7 +350,7 @@ public static partial class Game
                 {
                     r = (-1);
                 }
-                Pak_Mount(pad);
+                CPak_Mount(pad);
             }
             Pad_Release(default(uint), default(uint), default(uint), default(uint));
             return r;
@@ -405,7 +405,7 @@ public static partial class Game
         }
     }
 
-    public static int Pak_SaveFileVerified(int pad, int size, uint data, uint name, uint ext, uint game)
+    public static int CPak_SaveFileVerified(int pad, int size, uint data, uint name, uint ext, uint game)
     {
         uint _fp = Stack.Alloc(4);
         try
@@ -428,14 +428,14 @@ public static partial class Game
                 i = 0;
                 do
                 {
-                    r = Pak_WriteNewFile(pad, size, data, name, _fp, ext, Mem.U32(0x800D7708u), game);
+                    r = CPak_WriteNewFile(pad, size, data, name, _fp, ext, Mem.U32(0x800D7708u), game);
                     if ((r != 0))
                     {
                         break;
                     }
                     if (((func_00404958_O01ReadFile(pad, Mem.S32(_fp), buf, rsize) != 0) || (Mem_Compare(buf, data, (int)((uint)(size))) != 0)))
                     {
-                        if ((Pak_DeleteFile(pad, Mem.S32(_fp)) != 0))
+                        if ((CPak_DeleteFile(pad, Mem.S32(_fp)) != 0))
                         {
                             break;
                         }
@@ -502,7 +502,7 @@ public static partial class Game
         }
     }
 
-    public static int Pak_FindFile(uint name, int pad, uint outIdx)
+    public static int CPak_FindFile(uint name, int pad, uint outIdx)
     {
         uint _fp = Stack.Alloc(24);
         try
@@ -535,7 +535,7 @@ public static partial class Game
         finally { Stack.Free(24); }
     }
 
-    public static void Pak_AllocDirectory()
+    public static void CPak_AllocDirectory()
     {
         unchecked
         {
@@ -551,7 +551,7 @@ public static partial class Game
         }
     }
 
-    public static void Pak_FreeDirectory()
+    public static void CPak_FreeDirectory()
     {
         unchecked
         {
@@ -568,7 +568,7 @@ public static partial class Game
     }
 
     // ==== func_00404E28 @ 0x00404E28 [C]
-    public static void Pak_DetectPort(int ch)
+    public static void CPak_DetectPort(int ch)
     {
         unchecked
         {
@@ -595,7 +595,7 @@ public static partial class Game
             }
             else
             {
-                if ((Pak_Mount(ch) != 0))
+                if ((CPak_Mount(ch) != 0))
                 {
                     Mem.Set((0x801534F0u + (uint)(ch * 4)), 3);
                 }
@@ -609,7 +609,7 @@ public static partial class Game
     }
 
     // ==== func_00404EB0 @ 0x00404EB0 [MIPS]
-    public static uint Pak_DetectPort_Tail_00404EB0(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5, uint a6)
+    public static uint CPak_DetectPort_Tail_00404EB0(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5, uint a6)
     {
         uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
         uint lo = 0, hi = 0; bool fcc = false;
@@ -629,7 +629,7 @@ public static partial class Game
                 { bool c_ = r2 == 0; r3 = r17 << 2; if (c_) goto L_L00404EC0; }
                 r2 = (uint)2; goto L_L00404EDC;
                 L_L00404EC0: ;
-                r4 = r17; r2 = (uint)Pak_Mount((int)r4);
+                r4 = r17; r2 = (uint)CPak_Mount((int)r4);
                 { bool c_ = r2 == 0; r3 = r17 << 2; if (c_) goto L_L00404ED8; }
                 r2 = (uint)3; goto L_L00404EDC;
                 L_L00404ED8: ;
@@ -791,7 +791,7 @@ public static partial class Game
                 {
                     r = (-1);
                 }
-                Pak_Mount(pad);
+                CPak_Mount(pad);
             }
             Pad_Release(default(uint), default(uint), default(uint), default(uint));
             return r;
@@ -817,7 +817,7 @@ public static partial class Game
             {
                 r = (-1);
             }
-            Pak_Mount(pad);
+            CPak_Mount(pad);
             Pad_Release(default(uint), default(uint), default(uint), default(uint));
             return r;
         }
@@ -886,7 +886,7 @@ public static partial class Game
                 }
                 for (i = 0; (i < 16); ++i)
                 {
-                    if ((Pak_GetFileInfo(pad, i, (_fp + 32u), (_fp + 16u), ext, (_fp + 36u), _fp, (_fp + 8u)) != 0))
+                    if ((CPak_GetFileInfo(pad, i, (_fp + 32u), (_fp + 16u), ext, (_fp + 36u), _fp, (_fp + 8u)) != 0))
                     {
                         return (-1);
                     }
@@ -1139,7 +1139,7 @@ public static partial class Game
             tries = 0;
             do
             {
-                Pak_DetectPort(sel);
+                CPak_DetectPort(sel);
                 if ((CPak_GetStatus(sel) != (-2)))
                 {
                     break;

@@ -244,8 +244,8 @@ public static partial class Game
             uint n = 0u;
             uint root = 0u;
             int size = 0;
-            parent = UiTree_FindNode(UiScreen_GetData(Ui_PushScreen()), (uint)((ushort)(id)), default(uint), default(uint));
-            root = UiScreen_GetData(Ui_PushScreen());
+            parent = UiTree_FindNode(UiScreen_GetData(Menu_GetCurrentScreenId()), (uint)((ushort)(id)), default(uint), default(uint));
+            root = UiScreen_GetData(Menu_GetCurrentScreenId());
             n = ResourcePool_Malloc((uint)(96));
             Mem_Fill(n, 0, (uint)(96));
             Mem.Copy(new S_node(n).h.P, new S_node(parent).h.P, 44);
@@ -274,7 +274,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00412918", (uint)id, (uint)a, (uint)b, (uint)c);
-            uint p = UiTree_FindNode(UiScreen_GetData(Ui_PushScreen()), (uint)((ushort)(id)), default(uint), default(uint));
+            uint p = UiTree_FindNode(UiScreen_GetData(Menu_GetCurrentScreenId()), (uint)((ushort)(id)), default(uint), default(uint));
             Mem.Set((new S_func_00412918(p).f44 + (uint)((a * (int)(new S_func_00412918(p).b4B)) + b)), c);
             Mem.Set(((new S_func_00412918(p).f44 + (uint)((a * (int)(new S_func_00412918(p).b4B)) + b)) + 4u), d);
         }
@@ -286,7 +286,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_004129C0", (uint)id, (uint)a, (uint)b, (uint)c);
-            uint p = UiTree_FindNode(UiScreen_GetData(Ui_PushScreen()), (uint)((ushort)(id)), default(uint), default(uint));
+            uint p = UiTree_FindNode(UiScreen_GetData(Menu_GetCurrentScreenId()), (uint)((ushort)(id)), default(uint), default(uint));
             Mem.Set(c, Mem.S32((new S_func_004129C0(p).f44 + (uint)((a * (int)(new S_func_004129C0(p).b4B)) + b))));
             Mem.Set(d, Mem.S32(((new S_func_004129C0(p).f44 + (uint)((a * (int)(new S_func_004129C0(p).b4B)) + b)) + 4u)));
         }
@@ -298,7 +298,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00412A70", (uint)id, (uint)a, (uint)b, (uint)c);
-            uint p = UiTree_FindNode(UiScreen_GetData(Ui_PushScreen()), (uint)((ushort)(id)), default(uint), default(uint));
+            uint p = UiTree_FindNode(UiScreen_GetData(Menu_GetCurrentScreenId()), (uint)((ushort)(id)), default(uint), default(uint));
             new S_func_00412A70(p).b54_Set((byte)(b));
             new S_func_00412A70(p).b56_Set((byte)(c));
             new S_func_00412A70(p).b52_Set((byte)(a));
@@ -311,7 +311,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00412AD8", (uint)id, (uint)a, (uint)b, (uint)c);
-            uint p = UiTree_FindNode(UiScreen_GetData(Ui_PushScreen()), (uint)((ushort)(id)), default(uint), default(uint));
+            uint p = UiTree_FindNode(UiScreen_GetData(Menu_GetCurrentScreenId()), (uint)((ushort)(id)), default(uint), default(uint));
             new S_func_00412AD8(p).b55_Set((byte)(b));
             new S_func_00412AD8(p).b57_Set((byte)(c));
             new S_func_00412AD8(p).b53_Set((byte)(a));
@@ -324,7 +324,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00412B40", (uint)id, (uint)a, (uint)b);
-            uint p = UiTree_FindNode(UiScreen_GetData(Ui_PushScreen()), (uint)((ushort)(id)), default(uint), default(uint));
+            uint p = UiTree_FindNode(UiScreen_GetData(Menu_GetCurrentScreenId()), (uint)((ushort)(id)), default(uint), default(uint));
             new S_func_00412B40(p).f5C_Set(b);
             new S_func_00412B40(p).f58_Set(a);
         }
@@ -336,7 +336,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00412B98", (uint)id, (uint)a, (uint)b);
-            uint p = UiTree_FindNode(UiScreen_GetData(Ui_PushScreen()), (uint)((ushort)(id)), default(uint), default(uint));
+            uint p = UiTree_FindNode(UiScreen_GetData(Menu_GetCurrentScreenId()), (uint)((ushort)(id)), default(uint), default(uint));
             Mem.Set(a, (int)(new S_func_00412B98(p).b4C));
             Mem.Set(b, (int)(new S_func_00412B98(p).b4D));
         }

@@ -556,7 +556,7 @@ public static partial class Game
                 r16 = r29 + 48u;
                 r7 = r16;
                 r2 = (uint)32;
-                Mem.Set((r29 + 16u), r2); r2 = (uint)Track_FindPlacedObjects(r4, (int)r5, (int)r6, r7, (int)Mem.U32(r29 + 16u));
+                Mem.Set((r29 + 16u), r2); r2 = (uint)Level_FindPlacedObjects(r4, (int)r5, (int)r6, r7, (int)Mem.U32(r29 + 16u));
                 r21 = (uint)-1;
                 r23 = r2;
                 Cpu.SetW(21, r0);
@@ -617,7 +617,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r5 = (uint)-1;
                 r6 = r30;
-                r7 = r29 + 24u; r2 = (uint)Track_FindPlacedObjects(r4, (int)r5, (int)r6, r7, (int)Mem.U32(r29 + 16u));
+                r7 = r29 + 24u; r2 = (uint)Level_FindPlacedObjects(r4, (int)r5, (int)r6, r7, (int)Mem.U32(r29 + 16u));
                 { bool c_ = r2 == 0;  if (c_) goto L_L0021B404; }
                 r3 = (uint)(int)Mem.S16((r29 + 40u));
                 r2 = 2148794368u;

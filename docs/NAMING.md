@@ -21,7 +21,7 @@ One tab-separated row per registered function (`--template` adds rows for functi
 
 ## Conventions
 
-* `Subject_VerbObject`: `Arena_Set`, `Water_IsCameraUnderwater`, `AttractDemo_Setup`. The prefix is the class the function moves to once the code is split
+* `Subject_VerbObject`: `Arena_Set`, `Flyby_IsInWindow`, `AttractDemo_Setup`. The prefix is the class the function moves to once the code is split
   into real static classes (`Arena_Set` -> `Arena.Set`); until then everything stays in `public static partial class Game`.
 * Library code keeps its SDK names (`osRecvMesg`, `alSynNew`, `sprintf`).
 * Low-confidence names keep the address: `Actor_Think_0044E910`.

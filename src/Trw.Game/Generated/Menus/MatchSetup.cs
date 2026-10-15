@@ -884,44 +884,6 @@ public static partial class Game
         }
     }
 
-    // ==== func_004396BC @ 0x004396BC [C]
-    public static int MatchSetup_SetDefaults(uint cfg)
-    {
-        unchecked
-        {
-            if (Dbg.On) Dbg.Enter("func_004396BC", (uint)cfg);
-            int i = 0;
-            uint p = 0u;
-            Mem.Set(0x800E5950u, ResourcePool_Malloc((uint)(8)));
-            CameraManager_Init(0x80145088u, 0);
-            Player_InitPool((0x80145088u - (uint)72), 0, 0);
-            Level_Load(0x8011FE88u, (uint)(0), (uint)(0), default(uint));
-            if ((Resource_GetLoadFlags() == 0))
-            {
-                Resource_SetLoadFlags(1);
-            }
-            Video_RequestResolution(0);
-            Menu_DisableInput();
-            i = 7;
-            p = (0x80145088u + (uint)5930);
-            for (; (i >= 0); --i)
-            {
-                Mem.Set((p + (uint)120), (byte)(0));
-                p = (uint)(p - (uint)(150 * 1));
-            }
-            new O05M50(Mem.U32(0x800E5950u)).f0_Set(UiTree_FindNode(cfg, (uint)(919), default(uint), default(uint)));
-            new O05M50(Mem.U32(0x800E5950u)).f4_Set(0);
-            new O05GX(0x801462C8u).f24_Set((byte)(10));
-            new O05GX(0x801462C8u).f25_Set((byte)(10));
-            for (i = 0; (i < 4); ++i)
-            {
-                Profile_Init((0x80102B00u + (uint)(i * 400)));
-            }
-            Menu_SetIdleTime(0.0f);
-            return 0;
-        }
-    }
-
     // ==== func_0043DFC0 @ 0x0043DFC0 [C]
     public static void MatchSetup_ApplySettingsLegacy(float a, int b, int c, int d, int e)
     {

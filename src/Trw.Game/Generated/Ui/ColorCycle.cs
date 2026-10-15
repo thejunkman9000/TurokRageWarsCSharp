@@ -110,8 +110,8 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0041994C", (uint)a, (uint)tbl);
             uint g = 0u;
             uint o = 0u;
-            g = UiTree_FindNode((uint)((int)(UiScreen_GetData(Ui_PushScreen()))), (uint)((a & 65535)), default(uint), default(uint));
-            UiScreen_GetData(Ui_PushScreen());
+            g = UiTree_FindNode((uint)((int)(UiScreen_GetData(Menu_GetCurrentScreenId()))), (uint)((a & 65535)), default(uint), default(uint));
+            UiScreen_GetData(Menu_GetCurrentScreenId());
             o = ResourcePool_Malloc((uint)(100));
             Mem_Fill(o, 0, (uint)(100));
             Mem.Set((o + (uint)14), (short)(2911));

@@ -24,8 +24,8 @@ public static partial class Game
             uint t = 0u;
             uint o = 0u;
             int s2 = 0;
-            t = UiTree_FindNode((uint)((int)(UiScreen_GetData(Ui_PushScreen()))), (uint)((a0 & 65535)), default(uint), default(uint));
-            s2 = (int)(UiScreen_GetData(Ui_PushScreen()));
+            t = UiTree_FindNode((uint)((int)(UiScreen_GetData(Menu_GetCurrentScreenId()))), (uint)((a0 & 65535)), default(uint), default(uint));
+            s2 = (int)(UiScreen_GetData(Menu_GetCurrentScreenId()));
             o = (uint)((int)(ResourcePool_Malloc((uint)(108))));
             Mem_Fill(o, 0, (uint)(108));
             Mem.Copy(new Obj2990(o).head.P, new Tmpl2990(t).head.P, 44);

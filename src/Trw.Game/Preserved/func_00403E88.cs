@@ -20,7 +20,7 @@ public static partial class Game
                 r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
                 r29 = _fp + 256u;
                 L_func_00403E88: ;
-                { r2 = r0; r2 = Pak_DetectPort_Tail_00404EB0(r4, r5, r6, r7, 0u, 0u, 0u); r3 = Cpu.V1; Cpu.V1 = r3; return r2; }
+                { r2 = r0; r2 = CPak_DetectPort_Tail_00404EB0(r4, r5, r6, r7, 0u, 0u, 0u); r3 = Cpu.V1; Cpu.V1 = r3; return r2; }
                 Cpu.V1 = r3; return r2;
             }
         }

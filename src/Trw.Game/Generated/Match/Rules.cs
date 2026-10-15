@@ -2500,7 +2500,7 @@ public static partial class Game
     }
 
     // ==== func_0022804C @ 0x0022804C [C]
-    public static int Match_CheckFragLimit(uint g)
+    public static int Match_IsFragLimitReached(uint g)
     {
         unchecked
         {
@@ -2735,7 +2735,7 @@ public static partial class Game
             _f3: ;
             _f1: ;
             if (!((MenuPanel_CountOpen(0x8014561Cu) == 0))) goto _f5;
-            if (!((((((Match_CheckFragLimit(g) != 0) && (C.Seq((object?)((h = (0x8014561Cu + (uint)4740))), ((new GameB6(h).unk1C == 0) ? 1 : 0)) != 0)) && (Mem.S32((0x8014561Cu + (uint)4728)) == 0)) && (new GameB6(h).unk18 > 0)) && (new GameB6(h).unk54 == 0)))) goto _f6;
+            if (!((((((Match_IsFragLimitReached(g) != 0) && (C.Seq((object?)((h = (0x8014561Cu + (uint)4740))), ((new GameB6(h).unk1C == 0) ? 1 : 0)) != 0)) && (Mem.S32((0x8014561Cu + (uint)4728)) == 0)) && (new GameB6(h).unk18 > 0)) && (new GameB6(h).unk54 == 0)))) goto _f6;
             Match_EndForAllPlayers(g);
             _f6: ;
             _f5: ;
@@ -3253,7 +3253,7 @@ public static partial class Game
                 L_L0042D278: ;
                 r16 = 2148794368u;
                 r16 = r16 + 20544u;
-                r4 = r16; r2 = (uint)Match_CheckFragLimit(r4);
+                r4 = r16; r2 = (uint)Match_IsFragLimitReached(r4);
                 { bool c_ = r2 != 0; r2 = (uint)1; if (c_) goto L_L0042D2E8; }
                 r3 = 2148859904u;
                 r3 = Mem.U32((r3 + 16424u));
@@ -3293,7 +3293,7 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0044EA24", (uint)arg0);
                 int var_s0 = 0;
                 var_s0 = (-1);
-                if ((Track_FindPlacedObjects(0x8011FE88u, var_s0, var_s0, _fp, 1) == 0))
+                if ((Level_FindPlacedObjects(0x8011FE88u, var_s0, var_s0, _fp, 1) == 0))
                 {
                     var_s0 = 0;
                 }

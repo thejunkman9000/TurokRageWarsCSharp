@@ -214,7 +214,7 @@ public static partial class Game
     }
 
     // ==== func_0024C864 @ 0x0024C864 [C]
-    public static void Vec3_Lerp(uint @out, float t, uint a, uint b)
+    public static void Vec_LerpDup(uint @out, float t, uint a, uint b)
     {
         unchecked
         {
@@ -1781,7 +1781,7 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_0029D288", r2); Stack.Free(384); }
     }
 
-    public static float Vec3_AngleBetween(uint p0, uint p1)
+    public static float Vec_AngleBetween(uint p0, uint p1)
     {
         func_0029D288_rc(p0, p1, 0u, 0u); return Cpu.S(0);
     }
@@ -1866,7 +1866,7 @@ public static partial class Game
     }
 
     // ==== func_0029F2A8 @ 0x0029F2A8 [C]
-    public static void Vec3_Zero(uint v)
+    public static void Vec_Zero(uint v)
     {
         unchecked
         {
@@ -1876,7 +1876,7 @@ public static partial class Game
     }
 
     // ==== func_0029F2BC @ 0x0029F2BC [C]
-    public static void Vec3_Set(uint v, float x, float y, float z)
+    public static void Vec_Set(uint v, float x, float y, float z)
     {
         unchecked
         {
@@ -1888,7 +1888,7 @@ public static partial class Game
     }
 
     // ==== func_0029F2CC @ 0x0029F2CC [C]
-    public static void Vec3_Get(uint v, uint x, uint y, uint z)
+    public static void Vec_Get(uint v, uint x, uint y, uint z)
     {
         unchecked
         {
@@ -1900,7 +1900,7 @@ public static partial class Game
     }
 
     // ==== func_0029F2E8 @ 0x0029F2E8 [C]
-    public static void Vec3_Copy(uint d, uint s)
+    public static void Vec_Copy(uint d, uint s)
     {
         unchecked
         {
@@ -1910,7 +1910,7 @@ public static partial class Game
     }
 
     // ==== func_0029F304 @ 0x0029F304 [C]
-    public static void Vec3_Add(uint d, uint a, uint b)
+    public static void Vec_AddDup(uint d, uint a, uint b)
     {
         unchecked
         {
@@ -1922,7 +1922,7 @@ public static partial class Game
     }
 
     // ==== func_0029F338 @ 0x0029F338 [C]
-    public static void Vec3_Sub(uint d, uint a, uint b)
+    public static void Vec_SubDup(uint d, uint a, uint b)
     {
         unchecked
         {
@@ -1934,7 +1934,7 @@ public static partial class Game
     }
 
     // ==== func_0029F36C @ 0x0029F36C [C]
-    public static void Vec3_Scale(uint d, uint a, float s)
+    public static void Vec_ScaleDup(uint d, uint a, float s)
     {
         unchecked
         {
@@ -1946,7 +1946,7 @@ public static partial class Game
     }
 
     // ==== func_0029F398 @ 0x0029F398 [C]
-    public static void Vec3_Negate(uint d, uint s)
+    public static void Vec_Negate(uint d, uint s)
     {
         unchecked
         {
@@ -1958,7 +1958,7 @@ public static partial class Game
     }
 
     // ==== func_0029F3C0 @ 0x0029F3C0 [C]
-    public static float Vec3_Distance(uint a, uint b)
+    public static float Vec_DistanceDup(uint a, uint b)
     {
         unchecked
         {
@@ -1984,7 +1984,7 @@ public static partial class Game
     }
 
     // ==== func_0029F428 @ 0x0029F428 [C]
-    public static float Vec3_Dot(uint a, uint b)
+    public static float Vec_Dot(uint a, uint b)
     {
         unchecked
         {
@@ -1994,7 +1994,7 @@ public static partial class Game
     }
 
     // ==== func_0029F458 @ 0x0029F458 [C]
-    public static void Vec3_Cross(uint d, uint a, uint b)
+    public static void Vec_CrossAliasSafe(uint d, uint a, uint b)
     {
         uint _fp = Stack.Alloc(12);
         try
@@ -2035,7 +2035,7 @@ public static partial class Game
     }
 
     // ==== func_0029F52C @ 0x0029F52C [C]
-    public static void Vec3_Normalize(uint v)
+    public static void Vec_NormalizeUnchecked(uint v)
     {
         unchecked
         {
@@ -2061,7 +2061,7 @@ public static partial class Game
     }
 
     // ==== func_0029F5C0 @ 0x0029F5C0 [C]
-    public static void Vec3_RotateX(uint d, uint v, float ang)
+    public static void Vec_RotateX(uint d, uint v, float ang)
     {
         uint _fp = Stack.Alloc(20);
         try
@@ -2080,7 +2080,7 @@ public static partial class Game
     }
 
     // ==== func_0029F654 @ 0x0029F654 [C]
-    public static void Vec3_RotateY(uint d, uint v, float ang)
+    public static void Vec_RotateY(uint d, uint v, float ang)
     {
         uint _fp = Stack.Alloc(20);
         try
@@ -2099,7 +2099,7 @@ public static partial class Game
     }
 
     // ==== func_0029F6E8 @ 0x0029F6E8 [C]
-    public static void Vec3_RotateZ(uint d, uint v, float ang)
+    public static void Vec_RotateZ(uint d, uint v, float ang)
     {
         uint _fp = Stack.Alloc(20);
         try
@@ -2118,7 +2118,7 @@ public static partial class Game
     }
 
     // ==== func_0029F77C @ 0x0029F77C [C]
-    public static void Vec3_ToAnglesNegPitch(uint v, uint p, uint q)
+    public static void Vec_ToAnglesNegPitch(uint v, uint p, uint q)
     {
         unchecked
         {
@@ -2143,7 +2143,7 @@ public static partial class Game
     }
 
     // ==== func_0029F810 @ 0x0029F810 [C]
-    public static void Vec3_ToAnglesNegYaw(uint v, uint p, uint q)
+    public static void Vec_ToAnglesNegYaw(uint v, uint p, uint q)
     {
         unchecked
         {

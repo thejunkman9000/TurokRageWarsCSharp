@@ -232,11 +232,11 @@ public static partial class Game
                 Mem.Set((r29 + 24u), r18);
                 r18 = r5;
                 Mem.Set((r29 + 28u), r31);
-                Mem.Set((r29 + 20u), r17); r2 = (uint)Ui_PushScreen();
+                Mem.Set((r29 + 20u), r17); r2 = (uint)Menu_GetCurrentScreenId();
                 r4 = r2; r2 = UiScreen_GetData((int)r4);
                 r4 = r2;
                 r5 = r16 & 65535u; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
-                r17 = r2; r2 = (uint)Ui_PushScreen();
+                r17 = r2; r2 = (uint)Menu_GetCurrentScreenId();
                 r4 = r2; r2 = UiScreen_GetData((int)r4);
                 r4 = (uint)136; r2 = ResourcePool_Malloc(r4);
                 r16 = r2;

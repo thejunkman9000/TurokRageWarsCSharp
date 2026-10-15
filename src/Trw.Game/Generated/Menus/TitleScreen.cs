@@ -48,7 +48,7 @@ public static partial class Game
             new O3Pg(Mem.U32(0x800E3518u)).f1C_Set(0);
             for (i = 0; (i < 4); ++i)
             {
-                Pak_DetectPort(i);
+                CPak_DetectPort(i);
                 r = CPak_GetStatus(i);
                 if ((r == (-1)))
                 {

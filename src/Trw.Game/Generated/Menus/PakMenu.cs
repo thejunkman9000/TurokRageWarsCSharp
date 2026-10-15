@@ -31,7 +31,7 @@ public static partial class Game
                 }
                 for (i = 0; (i < 16); ++i)
                 {
-                    result = Pak_GetFileInfo(ch, i, (_fp + 40u), (_fp + 24u), _fp, (_fp + 44u), (_fp + 8u), (_fp + 16u));
+                    result = CPak_GetFileInfo(ch, i, (_fp + 40u), (_fp + 24u), _fp, (_fp + 44u), (_fp + 8u), (_fp + 16u));
                     other = 1;
                     if (((result == 0) && (Mem.S32((_fp + 40u)) != 0)))
                     {
@@ -184,7 +184,7 @@ public static partial class Game
                 r4 = r19;
                 Mem.Set((r29 + 52u), r31);
                 Mem.Set((r29 + 40u), r18);
-                Mem.Set((r29 + 32u), r16); Pak_DetectPort((int)r4);
+                Mem.Set((r29 + 32u), r16); CPak_DetectPort((int)r4);
                 r4 = r19; r2 = (uint)CPak_GetStatus((int)r4);
                 r18 = r2;
                 r2 = 2148859904u;
@@ -421,7 +421,7 @@ public static partial class Game
                     {
                         pad = (int)(new O01OwnC(own).unk20.unk4);
                     }
-                    Pak_DetectPort(pad);
+                    CPak_DetectPort(pad);
                     if ((CPak_GetStatus(new O01Sel(_fp).v) == 0))
                     {
                         func_00406434_O01Capture(plr);
@@ -476,7 +476,7 @@ public static partial class Game
             }
             else
             {
-                Pak_DetectPort(pad);
+                CPak_DetectPort(pad);
                 if ((CPak_GetStatus(pad) == 0))
                 {
                     PakMenu_RefreshNoteItemFlags(own);
@@ -614,7 +614,7 @@ public static partial class Game
                     s1 = 0;
                     do
                     {
-                        Pak_DetectPort(s0);
+                        CPak_DetectPort(s0);
                         if ((CPak_GetStatus(s0) != (-2)))
                         {
                             break;
@@ -655,7 +655,7 @@ public static partial class Game
                 Mem.Set(0x800E28CCu, 1);
                 if (((Mem.S32(0x80146D6Cu) != 0) || (Mem.S32(0x80146D60u) != 0)))
                 {
-                    Pak_DetectPort(Mem.S32(0x800E28C8u));
+                    CPak_DetectPort(Mem.S32(0x800E28C8u));
                     if ((CPak_GetStatus(Mem.S32(0x800E28C8u)) != (-2)))
                     {
                         goto L_fin;
@@ -694,7 +694,7 @@ public static partial class Game
                     s1 = 0;
                     do
                     {
-                        Pak_DetectPort(s0);
+                        CPak_DetectPort(s0);
                         if ((CPak_GetStatus(s0) != (-2)))
                         {
                             break;
@@ -719,7 +719,7 @@ public static partial class Game
                 if ((s3 == 0))
                 {
                     Mem.Set(0x800E28C8u, Mem.S32((_fp + 16u)));
-                    Pak_DetectPort(Mem.S32((_fp + 16u)));
+                    CPak_DetectPort(Mem.S32((_fp + 16u)));
                     if ((CPak_GetStatus(Mem.S32(0x800E28C8u)) == (-2)))
                     {
                         Mem.Set(0x80153784u, 1);
@@ -872,7 +872,7 @@ public static partial class Game
                 L_L00406FFC: ;
                 r2 = Mem.U32((r17 + 32u));
                 r4 = (uint)(int)Mem.S8((r2 + 4u));
-                Pak_DetectPort((int)r4);
+                CPak_DetectPort((int)r4);
                 r4 = Mem.U32((r29 + 24u));
                 r2 = (uint)CPak_GetStatus((int)r4);
                 if (r2 != 0) { r17 = (uint)1; goto L_L0040706C; }
@@ -988,7 +988,7 @@ public static partial class Game
                 Mem.Set((r4 + 808u), r2);
                 r2 = Mem.U32((r17 + 32u));
                 r4 = (uint)(int)Mem.S8((r2 + 4u));
-                Pak_DetectPort((int)r4);
+                CPak_DetectPort((int)r4);
                 r4 = r16; r2 = (uint)CPak_GetStatus((int)r4);
                 { bool c_ = r2 != 0; r18 = (uint)1; if (c_) goto L_L004071D4; }
                 r4 = r17; PakMenu_RefreshNoteItemFlags(r4);
@@ -1141,7 +1141,7 @@ public static partial class Game
                                 {
                                     flag = 1;
                                     nv = (uint)(new O01Pad((_fp + 8u)).v);
-                                    r = Pak_SaveFileVerified((int)(nv), 24, 0x80153738u, Mem.U32(new_var), _fp, Mem.U32(0x800D770Cu));
+                                    r = CPak_SaveFileVerified((int)(nv), 24, 0x80153738u, Mem.U32(new_var), _fp, Mem.U32(0x800D770Cu));
                                 }
                             }
                         }
@@ -1243,7 +1243,7 @@ public static partial class Game
                                 if ((CPak_FindFreeExtension(new O01Pad((_fp + 8u)).v, _fp) == 0))
                                 {
                                     new_var2 = new O01Pad((_fp + 8u)).v;
-                                    Pak_SaveFileVerified(new_var2, size, (uint)(Mem.S32(0x800E28B8u)), Mem.U32((0x800D7704u + (uint)(0 * 4))), _fp, Mem.U32(0x800D770Cu));
+                                    CPak_SaveFileVerified(new_var2, size, (uint)(Mem.S32(0x800E28B8u)), Mem.U32((0x800D7704u + (uint)(0 * 4))), _fp, Mem.U32(0x800D770Cu));
                                 }
                             }
                         }
@@ -1337,7 +1337,7 @@ public static partial class Game
                 r2 = r29 + 40u;
                 Mem.Set((r29 + 24u), r2);
                 r2 = r29 + 48u;
-                Mem.Set((r29 + 28u), r2); r2 = (uint)Pak_GetFileInfo((int)r4, (int)r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u));
+                Mem.Set((r29 + 28u), r2); r2 = (uint)CPak_GetFileInfo((int)r4, (int)r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u));
                 r17 = r2;
                 { bool c_ = r17 != 0;  if (c_) goto L_L00407844; }
                 r2 = Mem.U32((r29 + 72u));
@@ -1556,7 +1556,7 @@ public static partial class Game
                 r2 = r29 + 40u;
                 Mem.Set((r29 + 24u), r2);
                 r2 = r29 + 48u;
-                Mem.Set((r29 + 28u), r2); r2 = (uint)Pak_GetFileInfo((int)r4, (int)r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u));
+                Mem.Set((r29 + 28u), r2); r2 = (uint)CPak_GetFileInfo((int)r4, (int)r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u));
                 { bool c_ = r2 != 0;  if (c_) goto L_L00407EE8; }
                 r2 = Mem.U32((r29 + 72u));
                 { bool c_ = r2 == 0;  if (c_) goto L_L00407EE8; }
@@ -1616,7 +1616,7 @@ public static partial class Game
                 r2 = r29 + 40u;
                 Mem.Set((r29 + 24u), r2);
                 r2 = r29 + 48u;
-                Mem.Set((r29 + 28u), r2); r2 = (uint)Pak_GetFileInfo((int)r4, (int)r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u));
+                Mem.Set((r29 + 28u), r2); r2 = (uint)CPak_GetFileInfo((int)r4, (int)r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u));
                 { bool c_ = r2 != 0;  if (c_) goto L_L00407EE8; }
                 r2 = Mem.U32((r29 + 72u));
                 { bool c_ = r2 == 0;  if (c_) goto L_L00407EE8; }
@@ -1778,7 +1778,7 @@ public static partial class Game
                 {
                     pad = (int)(new O01Own7(own).unk20.unk4);
                 }
-                r = Pak_GetFileInfo(pad, idx, (_fp + 40u), _fp, (_fp + 16u), (_fp + 44u), (_fp + 24u), (_fp + 32u));
+                r = CPak_GetFileInfo(pad, idx, (_fp + 40u), _fp, (_fp + 16u), (_fp + 44u), (_fp + 24u), (_fp + 32u));
                 if (((Mem.S32((_fp + 40u)) != 0) && (r == 0)))
                 {
                     if ((CPak_HasInvalidChar(_fp, 16) != 0))
@@ -2075,7 +2075,7 @@ public static partial class Game
                 r17 = r0;
                 r18 = (uint)-2;
                 L_L004084FC: ;
-                r4 = r16; Pak_DetectPort((int)r4);
+                r4 = r16; CPak_DetectPort((int)r4);
                 r4 = r16; r2 = (uint)CPak_GetStatus((int)r4);
                 { bool c_ = r2 != r18; r2 = (uint)4; if (c_) goto L_L00408534; }
                 r16 = r16 + 1u;
@@ -2361,7 +2361,7 @@ public static partial class Game
                 MenuPanel_Open((0x80145040u + (uint)1500), 0x0044F730u, (int)(plr), new O01Plr5(plr).unk698, 0);
                 return 1;
             }
-            if ((Pak_DeleteFile(pad, Mem.S32(0x8015378Cu)) == 0))
+            if ((CPak_DeleteFile(pad, Mem.S32(0x8015378Cu)) == 0))
             {
                 MenuPanel_Open(0x8014561Cu, 0x0044F7C0u, (int)(new O01OwnE(own).unk1C), (int)(new O01OwnE(own).unk20_), new O01OwnE(own).unk24);
             }
@@ -2621,7 +2621,7 @@ public static partial class Game
                 MenuPanel_OpenChild((new O01Actor_v3(plr).unk5DC_ + (uint)1364), own, 0x00450698u);
                 return 1;
             }
-            if ((Pak_DeleteFile(pad, Mem.S32(0x8015378Cu)) == 0))
+            if ((CPak_DeleteFile(pad, Mem.S32(0x8015378Cu)) == 0))
             {
                 MenuPanel_Open(0x8014561Cu, 0x0044F7C0u, (int)(new O01Own8(own).unk1C_), (int)(new O01Own8(own).unk20_), (int)((uint)(new O01Own8(own).unk24)));
             }
@@ -2693,7 +2693,7 @@ public static partial class Game
             }
             if ((((Mem.S32(0x80153788u) == 4) && (Mem.S32(0x80153760u) != 0)) && (Mem.S32(0x8015377Cu) == 0)))
             {
-                Pak_DetectPort(s1);
+                CPak_DetectPort(s1);
                 s0 = CPak_GetStatus(s1);
                 v = Pad_TakePakChanged(s1);
                 if (((((s0 == 0) || (v != 0)) && (s0 != (-2))) && (new Q01Obj_v4(o).unk24 == (uint)(1))))
@@ -2709,7 +2709,7 @@ public static partial class Game
             {
                 if (((Mem.S32(0x80153788u) == 3) && (Mem.S32(0x80153764u) != 0)))
                 {
-                    Pak_DetectPort(s1);
+                    CPak_DetectPort(s1);
                     s0 = CPak_GetStatus(s1);
                     v = Pad_TakePakChanged(s1);
                     if ((((s0 == 0) || (v != 0)) && (s0 != (-2))))
@@ -2769,8 +2769,8 @@ public static partial class Game
                 }
                 else
                 {
-                    Pak_DetectPort(pad);
-                    if ((Pak_DeleteFile(pad, Mem.S32(0x80153754u)) == 0))
+                    CPak_DetectPort(pad);
+                    if ((CPak_DeleteFile(pad, Mem.S32(0x80153754u)) == 0))
                     {
                         MenuPanel_Open(0x8014561Cu, 0x0044F7C0u, (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), new O01OwnH(own).unk24);
                     }
@@ -2796,8 +2796,8 @@ public static partial class Game
                 }
                 else
                 {
-                    Pak_DetectPort(pad);
-                    if ((Pak_DeleteFile(pad, Mem.S32(0x8015378Cu)) == 0))
+                    CPak_DetectPort(pad);
+                    if ((CPak_DeleteFile(pad, Mem.S32(0x8015378Cu)) == 0))
                     {
                         PakMenu_WriteGameNote(a, own);
                         return 1;
@@ -2824,7 +2824,7 @@ public static partial class Game
                 }
                 else
                 {
-                    Pak_DetectPort(pad);
+                    CPak_DetectPort(pad);
                     if ((CPak_RepairId(pad) == 0))
                     {
                         MenuPanel_Open(0x8014561Cu, 0x0044F7E4u, (int)(new O01OwnH(own).unk1C), (int)(new O01OwnH(own).unk20_), new O01OwnH(own).unk24);
@@ -3033,7 +3033,7 @@ public static partial class Game
                 tries = 0;
                 do
                 {
-                    Pak_DetectPort(sel);
+                    CPak_DetectPort(sel);
                     if ((CPak_GetStatus(sel) != (-2)))
                     {
                         break;
@@ -3255,7 +3255,7 @@ public static partial class Game
             {
                 ch = (int)(new O01Obj(a).unk20.unk4);
             }
-            Pak_DetectPort(ch);
+            CPak_DetectPort(ch);
         }
     }
 

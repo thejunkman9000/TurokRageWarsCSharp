@@ -43,7 +43,7 @@ public static partial class Game
                 L_I0029AE98: ;
                 Mem.Set((r29 + 28u), r17);
                 L_I0029AE9C: ;
-                Mem.Set((r29 + 24u), r16); r2 = (uint)Ui_PushScreen();
+                Mem.Set((r29 + 24u), r16); r2 = (uint)Menu_GetCurrentScreenId();
                 L_I0029AEA4: ;
                 r17 = r2;
                 L_I0029AEA8: ;
@@ -616,7 +616,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029AE80", (uint)m);
-            int id = Ui_PushScreen();
+            int id = Menu_GetCurrentScreenId();
             int key = (((int)((ushort)(new SndMsg(m).type)) << (int)16) | (int)(new SndMsg(m).a));
             int c = (int)(new SndMsg(m).c);
             sbyte flag = (sbyte)((((int)(new SndMsg(m).e) == 1) ? 1 : 0));
@@ -818,7 +818,7 @@ public static partial class Game
                 r21 = (uint)(int)Mem.S16((r17 + 6u));
                 L_L0029B4CC: ;
                 { bool c_ = r16 == 0;  if (c_) goto L_L0029B4F4; }
-                r2 = (uint)Ui_PushScreen();
+                r2 = (uint)Menu_GetCurrentScreenId();
                 Mem.Set((r29 + 16u), r22);
                 r4 = r2;
                 r5 = r16;
@@ -826,7 +826,7 @@ public static partial class Game
                 r7 = r19; r2 = Menu_SendEvent(r4, r5, r6, r7, Mem.U32(r29 + 16u)); r3 = Cpu.V1;
                 L_L0029B4F4: ;
                 { bool c_ = r18 == 0;  if (c_) goto L_L0029B51C; }
-                r2 = (uint)Ui_PushScreen();
+                r2 = (uint)Menu_GetCurrentScreenId();
                 Mem.Set((r29 + 16u), r21);
                 r4 = r2;
                 r5 = r18;
@@ -893,7 +893,7 @@ public static partial class Game
                 r16 = Mem.U16((r17 + 0u));
                 r2 = Mem.U16((r17 + 2u));
                 r16 = r16 << 16;
-                r16 = r16 | r2; r2 = (uint)Ui_PushScreen();
+                r16 = r16 | r2; r2 = (uint)Menu_GetCurrentScreenId();
                 r4 = r2;
                 r5 = (uint)17;
                 r7 = (uint)(int)Mem.S16((r17 + 12u));

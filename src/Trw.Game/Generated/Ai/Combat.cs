@@ -354,7 +354,7 @@ public static partial class Game
                 }
                 if ((new B2Ctl(ctl).unk2E4 == 0))
                 {
-                    n = (int)(Hud_DrawAmmoPips(0x80121990u, new B2Ctl(ctl).owner_, default(uint), default(uint)));
+                    n = (int)(Particle_CountOwnedCharges(0x80121990u, new B2Ctl(ctl).owner_, default(uint), default(uint)));
                     if ((n == 3))
                     {
                         new B2Ctl(ctl).unk2E8_Set(n);
@@ -2111,7 +2111,7 @@ public static partial class Game
                     {
                         return;
                     }
-                    if (((int)(Hud_DrawAmmoPips(0x80121990u, new CtlB(c).actor_, default(uint), default(uint))) > 0))
+                    if (((int)(Particle_CountOwnedCharges(0x80121990u, new CtlB(c).actor_, default(uint), default(uint))) > 0))
                     {
                         return;
                     }
