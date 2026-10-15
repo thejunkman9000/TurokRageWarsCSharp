@@ -293,7 +293,7 @@ public static partial class Game
                 L_L00286C68: ;
                 r4 = 2148794368u;
                 r4 = r4 + 20544u;
-                r5 = r18; r2 = func_0022A5E4(r4, r5);
+                r5 = r18; r2 = Player_GetByIndex(r4, r5);
                 r17 = r2;
                 if (r17 == 0) { r18 = r18 + 1u; goto L_L00286D30; }
                 r3 = Mem.U32((r17 + 1496u));
@@ -302,7 +302,7 @@ public static partial class Game
                 r2 = Mem.U8((r3 + 145u));
                 { bool c_ = r2 != r20;  if (c_) goto L_L00286CAC; }
                 r4 = Mem.U32((r17 + 5204u));
-                func_00208000(r4);
+                Ai_ResetBrain(r4);
                 L_L00286CAC: ;
                 r2 = Mem.U32((r30 + 152u));
                 if (r2 == 0) { r18 = r18 + 1u; goto L_L00286D30; }
@@ -655,7 +655,7 @@ public static partial class Game
                 r17 = r17 | 46336u;
                 L_L002872EC: ;
                 r4 = r16;
-                r5 = r18; func_0020CA10(r4, (int)r5);
+                r5 = r18; AiNav_InitSearchNode(r4, (int)r5);
                 r4 = r19 + r17;
                 r5 = r16; r2 = List_Append_00255CB4(r4, r5, r6, r7); r3 = Cpu.V1;
                 r1 = 131072u;
@@ -919,7 +919,7 @@ public static partial class Game
                 r4 = r16; func_0024B2C0(r4);
                 r4 = r16 + 744u; func_0024B2C0(r4);
                 r4 = r19 + r18;
-                r5 = r17 + 8u; r2 = (uint)func_0020CB3C(r4, r5);
+                r5 = r17 + 8u; r2 = (uint)AiNav_FindNearestNode(r4, r5);
                 r3 = Mem.U32((r17 + 5204u));
                 Mem.Set((r3 + 4u), r2);
                 r17 = Mem.U32((r17 + 5856u));
@@ -946,8 +946,8 @@ public static partial class Game
                 r16 = 65536u;
                 r16 = r16 | 46300u;
                 r16 = r19 + r16;
-                r4 = r16; r2 = func_0020AA40(r4, r5, r6, r7); r3 = Cpu.V1;
-                r4 = r16; func_0020ABF0(r4);
+                r4 = r16; r2 = AiNav_LinkPickupNodes(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r16; AiNav_LinkPlatformNodes(r4);
                 r2 = (uint)4;
                 r16 = 2148794368u;
                 r16 = r16 + 20544u;
@@ -1211,7 +1211,7 @@ public static partial class Game
                 if ((Mem.S32(Mem.U32(_fp)) >= 24))
                 {
                     h = func_002543A8((uint)(0), Mem.U32(_fp), (uint)(23), (uint)(data), lv, 0x00285130u, Str.Lit("Bloodlust Weapon Data"));
-                    func_0020A604(Mem.U32(h));
+                    Ai_LoadFireConfigs(Mem.U32(h));
                     func_002537D8(0, h);
                 }
                 Level_InitState_0044DC48(lv);
@@ -1357,7 +1357,7 @@ public static partial class Game
                                     {
                                         if ((new S6Actor(actor).nearest_ != 0u))
                                         {
-                                            d = func_00217224(actor, C.Tmp(Cpu.F2U(new S6Actor(other).pos.x), Cpu.F2U(new S6Actor(other).pos.y), Cpu.F2U(new S6Actor(other).pos.z)));
+                                            d = Actor_EyeDistSqToPoint(actor, C.Tmp(Cpu.F2U(new S6Actor(other).pos.x), Cpu.F2U(new S6Actor(other).pos.y), Cpu.F2U(new S6Actor(other).pos.z)));
                                             if ((d < best))
                                             {
                                                 new S6Actor(actor).nearest__Set(other);
@@ -1367,7 +1367,7 @@ public static partial class Game
                                         else
                                         {
                                             new S6Actor(actor).nearest__Set(other);
-                                            best = func_00217224(actor, C.Tmp(Cpu.F2U(new S6Actor(other).pos.x), Cpu.F2U(new S6Actor(other).pos.y), Cpu.F2U(new S6Actor(other).pos.z)));
+                                            best = Actor_EyeDistSqToPoint(actor, C.Tmp(Cpu.F2U(new S6Actor(other).pos.x), Cpu.F2U(new S6Actor(other).pos.y), Cpu.F2U(new S6Actor(other).pos.z)));
                                         }
                                     }
                                 }

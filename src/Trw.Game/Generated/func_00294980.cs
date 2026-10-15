@@ -16,7 +16,7 @@ public static partial class Game
             Mem.Set(0x8011FAB0u, 0);
             Mem.Set(0x8014AD78u, (float)(Mem.S32(0x800E28D4u)));
             Mem.Set(0x80146958u, 0);
-            func_0022A404(0x80145040u);
+            Obj_GetField20_0022A404(0x80145040u);
             Mem.Set(0x800D29D4u, 0);
             func_0028D8E8();
             func_0029397C(g, 130);

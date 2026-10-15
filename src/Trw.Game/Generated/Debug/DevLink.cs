@@ -6,6 +6,100 @@ namespace Trw.Game;
 
 public static partial class Game
 {
+    // ==== func_002010D8 @ 0x002010D8 [C]
+    public static void DevLink_TransferMemory(int dir)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002010D8", (uint)dir);
+            uint dst = 0u;
+            uint src = 0u;
+            uint n = 0u;
+            uint len = 0u;
+            uint i = 0u;
+            int fl = 0;
+            Boot_BuildTlbMapTable(default(uint), default(uint), default(uint), default(uint));
+            dst = 2986213376u;
+            src = Bus_ReadWord(2986344436u);
+            n = Bus_ReadWord(2986344440u);
+            if ((src > 4026531839u))
+            {
+                src = (uint)((uint)(src) + (uint)(0x8F0F7130u));
+            }
+            while ((n != (uint)(0)))
+            {
+                i = (uint)(0);
+                while (((src < new R1Map((0x800F6D00u + (uint)(i * 12))).lo) || (new R1Map((0x800F6D00u + (uint)(i * 12))).hi < src)))
+                {
+                    ++i;
+                }
+                if ((i >= (uint)(48)))
+                {
+                    fl = 0;
+                    len = ((uint)(4096) - (src & (uint)(4095)));
+                }
+                else
+                {
+                    fl = new R1Map((0x800F6D00u + (uint)(i * 12))).flags;
+                    {
+                        uint e = (src - (uint)(1));
+                        len = (new R1Map((0x800F6D00u + (uint)(i * 12))).hi - e);
+                    }
+                }
+                if ((n < len))
+                {
+                    len = n;
+                }
+                if (((fl & dir) == 0))
+                {
+                    if ((dir == 1))
+                    {
+                        Bus_FillBytes(dst, (byte)((uint)(0)), len);
+                    }
+                    dst = (uint)((uint)(dst) + len);
+                }
+                else
+                {
+                    if (((fl & 4) != 0))
+                    {
+                        if ((dir == 1))
+                        {
+                            Bus_CopyBusToBus(dst, src, len);
+                        }
+                        else
+                        {
+                            Bus_CopyBusToBus(src, dst, len);
+                        }
+                        dst = (uint)((uint)(dst) + len);
+                    }
+                    else
+                    {
+                        if ((dir == 1))
+                        {
+                            Bus_WriteBlock(dst, src, len);
+                            dst = (uint)((uint)(dst) + len);
+                        }
+                        else
+                        {
+                            if (((fl & 8) != 0))
+                            {
+                                Bus_ReadBlock(dst, src, len);
+                                dst = (uint)((uint)(dst) + len);
+                            }
+                            else
+                            {
+                                Bus_CopyRomToRam(dst, src, len);
+                                dst = (uint)((uint)(dst) + len);
+                            }
+                        }
+                    }
+                }
+                n = (uint)((uint)(n) - len);
+                src = (uint)((uint)(src) + len);
+            }
+        }
+    }
+
     // ==== func_002012D8 @ 0x002012D8 [C]
     public static void DevLink_CopyBusBlock()
     {
@@ -15,17 +109,147 @@ public static partial class Game
             uint src = (Bus_ReadWord(2986344436u) & 2986344444u);
             uint len = (Bus_ReadWord(2986344440u) & (uint)(33554428));
             uint i = 0u;
-            func_00200568(2986344444u, (uint)(0));
+            Bus_WriteWord(2986344444u, (uint)(0));
             while ((Bus_ReadWord(2952790032u) == (uint)(0)))
             {
-                func_002005DC(500);
+                Bus_SpinDelay(500);
             }
             for (i = (uint)(0); (i < (len >> (int)2)); ++i)
             {
-                func_00200568(((src & 2961178623u) + (i * (uint)(4))), Bus_ReadWord((src + (i * (uint)(4)))));
+                Bus_WriteWord(((src & 2961178623u) + (i * (uint)(4))), Bus_ReadWord((src + (i * (uint)(4)))));
             }
-            func_002005DC(2000);
-            func_00200568(2986344436u, (uint)(0));
+            Bus_SpinDelay(2000);
+            Bus_WriteWord(2986344436u, (uint)(0));
+        }
+    }
+
+    // ==== func_002013D8 @ 0x002013D8 [C]
+    public static void DevLink_InitMonitor()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002013D8");
+            int mask = Int_DisableMask();
+            uint mem = 0u;
+            uint k = 2147483648u;
+            Exception_InstallStubs(default(uint), default(uint), default(uint), default(uint));
+            Bus_WriteWord(2986344432u, (uint)(0));
+            Bus_WriteWord(2986344444u, (uint)(0));
+            mem = Mem.U32((uint)(2147484440u));
+            Mem.Set(0x800F7450u, (byte)(1));
+            Mem.Set(0x800F7452u, (byte)(255));
+            if ((mem > (uint)(4194303)))
+            {
+                if ((((((mem & (uint)(131071)) == (uint)(0)) ? 1 : 0) & ((mem <= (uint)(33554432)) ? 1 : 0)) != 0))
+                {
+                    --mem;
+                    Mem.Set((0x800D05E0u + (uint)(2 * 4)), (mem - k));
+                    Mem.Set((0x800D05E0u + (uint)(6 * 4)), (mem + 2684354560u));
+                }
+            }
+            Int_RestoreMask(mask);
+        }
+    }
+
+    // ==== func_002014A4 @ 0x002014A4 [C]
+    public static void DevLink_MonitorLoop()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002014A4");
+            int cont = 0;
+            uint cmd = 0u;
+            do
+            {
+                cont = 1;
+                while (((cmd = Bus_ReadWord(2986344432u)) == (uint)(0)))
+                {
+                    Bus_SpinDelay((int)((uint)(1000)));
+                }
+                if ((cmd == (uint)(2)))
+                {
+                    Bus_WriteWord(2986344444u, (uint)(0));
+                    Bus_SpinDelay((int)((uint)(1000)));
+                }
+                else
+                {
+                    Bus_WriteWord(2986344444u, (uint)(257));
+                    while ((Bus_ReadWord(2986344432u) == cmd))
+                    {
+                        Bus_SpinDelay((int)((uint)(500)));
+                    }
+                    if ((Bus_ReadWord(2986344432u) == (uint)(2)))
+                    {
+                        Bus_WriteWord(2986344444u, (uint)(0));
+                    }
+                    else
+                    {
+                        switch (cmd)
+                        {
+                        case (uint)(16):
+                            break;
+                        case (uint)(17):
+                            cont = 0;
+                            break;
+                        case (uint)(18):
+                            Mem.Set(0x800F72A8u, (uint)((uint)(Mem.U32(0x800F72A8u)) & (uint)((~1))));
+                            Mem.Set(0x800F7450u, (byte)(0));
+                            Mem.Set(0x800F7452u, (byte)(0));
+                            Cpu_SetStatusReg((Cpu_GetStatusReg(default(uint), default(uint), default(uint), default(uint)) & (uint)((~1))), default(uint), default(uint), default(uint));
+                            break;
+                        case (uint)(19):
+                            Mem.Set(0x800F7452u, (byte)(0));
+                            Mem.Set(0x800F7450u, (byte)(0));
+                            break;
+                        case (uint)(20):
+                            Mem.Set(0x800F7452u, (byte)(255));
+                            break;
+                        case (uint)(21):
+                            Mem.Set(0x800F7452u, (byte)(0));
+                            break;
+                        case (uint)(22):
+                            Bus_WriteWord(2986213376u, (uint)((((int)(Mem.U8(0x800F7452u)) << (int)24) | ((int)(Mem.U8(0x800F7450u)) << (int)16))));
+                            break;
+                        case (uint)(23):
+                            DevLink_TransferMemory(2);
+                            break;
+                        case (uint)(24):
+                            DevLink_TransferMemory(1);
+                            break;
+                        case (uint)(25):
+                            DevLink_CopyBusBlock();
+                            break;
+                        }
+                        Bus_WriteWord(2986344444u, (uint)(0));
+                        while ((Bus_ReadWord(2986344432u) == (uint)(1)))
+                        {
+                            Bus_SpinDelay((int)((uint)(500)));
+                        }
+                    }
+                }
+            }
+            while (((cont != 0) || ((int)(Mem.U8(0x800F7452u)) == 0)));
+            Bus_WriteWord(2986344432u, (uint)(0));
+        }
+    }
+
+    // ==== func_002016FC @ 0x002016FC [C]
+    public static void DevLink_StartIoThread(int pri)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002016FC", (uint)pri);
+            if ((Mem.S32(0x800CD390u) == 0))
+            {
+                Mem.Set(0x800CD390u, 1);
+                osCreateMesgQueue(0x800F6CC0u, 0x800F6CB4u, 1);
+                osCreateMesgQueue(0x800F6F40u, 0x800F6CB0u, 1);
+                osCreateMesgQueue(0x800F7110u, 0x800F6F58u, 1);
+                osCreateMesgQueue(0x800F5C90u, 0x800F5C84u, 1);
+                osSetEventMesg((uint)(0), 0x800F5C90u, (uint)(1));
+                osCreateThread(0x800F6F60u, 18003, 0x002018A0u, 0u, (0x800F6CACu + (uint)4), pri);
+                osStartThread(0x800F6F60u);
+            }
         }
     }
 
@@ -53,18 +277,18 @@ public static partial class Game
                 r17 = r6;
                 Mem.Set((r29 + 24u), r18);
                 Mem.Set((r29 + 28u), r31);
-                r18 = r7; func_00200568(r4, r5);
+                r18 = r7; Bus_WriteWord(r4, r5);
                 r4 = 2986278912u;
                 r4 = r4 | 65512u;
-                r5 = r17; func_00200568(r4, r5);
+                r5 = r17; Bus_WriteWord(r4, r5);
                 r4 = 2986278912u;
                 r4 = r4 | 65516u;
-                r5 = r18; func_00200568(r4, r5);
+                r5 = r18; Bus_WriteWord(r4, r5);
                 r4 = 2986278912u;
                 r4 = r4 | 65504u;
-                r5 = r16; func_00200568(r4, r5);
+                r5 = r16; Bus_WriteWord(r4, r5);
                 L_L00201844: ;
-                r4 = (uint)1000; func_002005DC((int)r4);
+                r4 = (uint)1000; Bus_SpinDelay((int)r4);
                 r4 = 2986278912u;
                 r4 = r4 | 65520u; r2 = Bus_ReadWord(r4);
                 if (r2 == 0) { r4 = 2986278912u; goto L_L00201868; }
@@ -113,11 +337,11 @@ public static partial class Game
                         }
                     }
                     osRecvMesg(0x800F5C90u, 0u, 0);
-                    func_00200568(2986344420u, (uint)(new B01IoReq(Mem.U32(_fp)).w10));
-                    func_00200568(2986344424u, (uint)(new B01IoReq(Mem.U32(_fp)).w14));
-                    func_00200568(2986344428u, (uint)(new B01IoReq(Mem.U32(_fp)).w18));
-                    func_00200568(2986344408u, (uint)(16843009));
-                    func_00200568(2986344416u, (uint)(Mem.U16((new B01IoReq(Mem.U32(_fp)).wC.P + 2u))));
+                    Bus_WriteWord(2986344420u, (uint)(new B01IoReq(Mem.U32(_fp)).w10));
+                    Bus_WriteWord(2986344424u, (uint)(new B01IoReq(Mem.U32(_fp)).w14));
+                    Bus_WriteWord(2986344428u, (uint)(new B01IoReq(Mem.U32(_fp)).w18));
+                    Bus_WriteWord(2986344408u, (uint)(16843009));
+                    Bus_WriteWord(2986344416u, (uint)(Mem.U16((new B01IoReq(Mem.U32(_fp)).wC.P + 2u))));
                     osRecvMesg(0x800F5C90u, 0u, 1);
                     if (((new B01IoReq(Mem.U32(_fp)).w4 != 0) && (new B01IoReq(Mem.U32(_fp)).w8 == 0)))
                     {
@@ -159,6 +383,31 @@ public static partial class Game
             Int_RestoreMask(mask);
             return r;
         }
+    }
+
+    // ==== func_00201ACC @ 0x00201ACC [C]
+    public static int DevLink_OpenThreaded()
+    {
+        uint _fp = Stack.Alloc(36);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_00201ACC");
+                Mem.Set(0x800CD394u, 2);
+                DevLink_StartIoThread(255);
+                new B01IoReq(_fp).w4_Set(0);
+                Mem.Set(new B01IoReq(_fp).wC.P, (int)(2147483905u));
+                new B01IoReq(_fp).w10_Set(0);
+                new B01IoReq(_fp).w14_Set(0);
+                new B01IoReq(_fp).w18_Set(0);
+                new B01IoReq(_fp).reply__Set(0x800F7110u);
+                osSendMesg(0x800F6F40u, _fp, 1);
+                osRecvMesg(0x800F7110u, (_fp + 32u), 1);
+                return (int)(Mem.U32((_fp + 32u)));
+            }
+        }
+        finally { Stack.Free(36); }
     }
 
     // ==== func_00201B50 @ 0x00201B50 [C]
@@ -243,6 +492,47 @@ public static partial class Game
                     len = Str_LengthWithNul(src);
                     Bus_WriteBlock(2986278912u, src, (uint)(len));
                     Mem.Set((_fp + 32u), (int)(DevLink_ProgramTransfer((uint)(771), (uint)(len), (uint)(arg), (uint)(0))));
+                    if (((Mem.S32((_fp + 32u)) & 32768) != 0))
+                    {
+                        Mem.Set((_fp + 32u), (int)((uint)(Mem.S32((_fp + 32u))) | 4294901760u));
+                    }
+                    Int_RestoreMask(mask);
+                }
+                return Mem.S32((_fp + 32u));
+            }
+        }
+        finally { Stack.Free(36); }
+    }
+
+    // ==== func_00201DB0 @ 0x00201DB0 [C]
+    public static int DevLink_Query404_00201DB0(int arg)
+    {
+        uint _fp = Stack.Alloc(36);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_00201DB0", (uint)arg);
+                int mask = 0;
+                if ((Mem.S32(0x800CD394u) == 2))
+                {
+                    new B01IoReq(_fp).w4_Set(0);
+                    Mem.Set(new B01IoReq(_fp).wC.P, (int)(2147484676u));
+                    new B01IoReq(_fp).w10_Set(arg);
+                    new B01IoReq(_fp).w14_Set(0);
+                    new B01IoReq(_fp).w18_Set(0);
+                    new B01IoReq(_fp).reply__Set(0x800F7110u);
+                    osSendMesg(0x800F6F40u, _fp, 1);
+                    osRecvMesg(0x800F7110u, (_fp + 32u), 1);
+                    if (((Mem.S32((_fp + 32u)) & 32768) != 0))
+                    {
+                        Mem.Set((_fp + 32u), (int)((uint)(Mem.S32((_fp + 32u))) | 4294901760u));
+                    }
+                }
+                else
+                {
+                    mask = Int_DisableMask();
+                    Mem.Set((_fp + 32u), (int)(DevLink_ProgramTransfer((uint)(1028), (uint)(arg), (uint)(0), (uint)(0))));
                     if (((Mem.S32((_fp + 32u)) & 32768) != 0))
                     {
                         Mem.Set((_fp + 32u), (int)((uint)(Mem.S32((_fp + 32u))) | 4294901760u));
@@ -389,6 +679,130 @@ public static partial class Game
             }
         }
         finally { Stack.Free(36); }
+    }
+
+    // ==== func_00202028 @ 0x00202028 [MIPS]
+    public static uint DevLink_WriteChunks(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5, uint a6, uint a7, uint a8, uint a9, uint a10, uint a11, uint a12, uint a13, uint a14, uint a15, uint a16, uint a17, uint a18, uint a19, uint a20, uint a21, uint a22, uint a23)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00202028", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                Mem.Set(r29 + 20u, a5);
+                Mem.Set(r29 + 24u, a6);
+                Mem.Set(r29 + 28u, a7);
+                Mem.Set(r29 + 32u, a8);
+                Mem.Set(r29 + 36u, a9);
+                Mem.Set(r29 + 40u, a10);
+                Mem.Set(r29 + 44u, a11);
+                Mem.Set(r29 + 48u, a12);
+                Mem.Set(r29 + 52u, a13);
+                Mem.Set(r29 + 56u, a14);
+                Mem.Set(r29 + 60u, a15);
+                Mem.Set(r29 + 64u, a16);
+                Mem.Set(r29 + 68u, a17);
+                Mem.Set(r29 + 72u, a18);
+                Mem.Set(r29 + 76u, a19);
+                Mem.Set(r29 + 80u, a20);
+                Mem.Set(r29 + 84u, a21);
+                Mem.Set(r29 + 88u, a22);
+                Mem.Set(r29 + 92u, a23);
+                L_func_00202028: ;
+                r22 = r4;
+                Mem.Set((r29 + 64u), r18);
+                r18 = r5;
+                Mem.Set((r29 + 60u), r17);
+                r17 = r6;
+                Mem.Set((r29 + 68u), r19);
+                r19 = r0;
+                r2 = (uint)2;
+                Mem.Set((r29 + 92u), r31);
+                Mem.Set((r29 + 88u), r30);
+                Mem.Set((r29 + 84u), r23);
+                Mem.Set((r29 + 76u), r21);
+                Mem.Set((r29 + 72u), r20);
+                { bool c_ = r3 != r2; Mem.Set((r29 + 56u), r16); if (c_) goto L_L002020F8; }
+                { bool c_ = r17 == 0; r30 = (uint)1; if (c_) goto L_L00202160; }
+                r21 = 2147483648u;
+                r21 = r21 | 1542u;
+                r2 = 2148466688u;
+                r20 = r2 + 28944u;
+                r23 = 2148466688u;
+                L_L00202080: ;
+                r8 = (uint)32768;
+                r2 = (uint)(r8 < r17 ? 1 : 0);
+                { bool c_ = r2 == 0; r16 = r17; if (c_) goto L_L00202094; }
+                r16 = r8;
+                L_L00202094: ;
+                r4 = r23 + 28480u;
+                r5 = r29 + 16u;
+                r6 = (uint)1;
+                Mem.Set((r29 + 16u), r18);
+                Mem.Set((r29 + 20u), r16);
+                Mem.Set((r29 + 24u), r30);
+                Mem.Set((r29 + 28u), r21);
+                Mem.Set((r29 + 32u), r22);
+                Mem.Set((r29 + 36u), r16);
+                Mem.Set((r29 + 40u), r0);
+                Mem.Set((r29 + 44u), r20); r2 = (uint)osSendMesg(r4, r5, (int)r6);
+                r4 = r20;
+                r5 = r29 + 48u;
+                r6 = (uint)1; r2 = (uint)osRecvMesg(r4, r5, (int)r6);
+                r2 = Mem.U32((r29 + 48u));
+                if (r2 == 0) { r2 = r19; goto L_L00202164; }
+                r18 = r18 + r2;
+                r17 = r17 - r2;
+                { bool c_ = r17 != 0; r19 = r19 + r2; if (c_) goto L_L00202080; }
+                r2 = r19; goto L_L00202164;
+                L_L002020F8: ;
+                r2 = (uint)Int_DisableMask();
+                { bool c_ = r17 == 0; r20 = r2; if (c_) goto L_L00202158; }
+                r21 = (uint)32768;
+                L_L0020210C: ;
+                r2 = (uint)(r21 < r17 ? 1 : 0);
+                { bool c_ = r2 == 0; r16 = r17; if (c_) goto L_L0020211C; }
+                r16 = (uint)32768;
+                L_L0020211C: ;
+                r4 = 2986278912u;
+                r5 = r18;
+                r6 = r16; Bus_WriteBlock(r4, r5, r6);
+                r4 = (uint)1542;
+                r5 = r22;
+                r6 = r16;
+                r7 = r0; r2 = DevLink_ProgramTransfer(r4, r5, r6, r7); r3 = Cpu.V1;
+                { bool c_ = r2 == 0; Mem.Set((r29 + 48u), r2); if (c_) goto L_L00202158; }
+                r18 = r18 + r2;
+                r17 = r17 - r2;
+                { bool c_ = r17 != 0; r19 = r19 + r2; if (c_) goto L_L0020210C; }
+                L_L00202158: ;
+                r4 = r20; Int_RestoreMask((int)r4);
+                L_L00202160: ;
+                r2 = r19;
+                L_L00202164: ;
+                r31 = Mem.U32((r29 + 92u));
+                r30 = Mem.U32((r29 + 88u));
+                r23 = Mem.U32((r29 + 84u));
+                r22 = Mem.U32((r29 + 80u));
+                r21 = Mem.U32((r29 + 76u));
+                r20 = Mem.U32((r29 + 72u));
+                r19 = Mem.U32((r29 + 68u));
+                r18 = Mem.U32((r29 + 64u));
+                r17 = Mem.U32((r29 + 60u));
+                r16 = Mem.U32((r29 + 56u));
+                r29 = r29 + 96u;
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00202028", r2); Stack.Free(384); }
     }
 
     // ==== func_00202198 @ 0x00202198 [C]

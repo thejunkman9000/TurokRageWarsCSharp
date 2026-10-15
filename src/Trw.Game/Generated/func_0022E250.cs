@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0022E250", (uint)actor, (uint)a1, (uint)a2);
-            func_0021C440(new Actor(actor).owner_, (int)(actor), a1, (uint)(a2));
+            Player_ApplyHitStatusEffect(new Actor(actor).owner_, (int)(actor), a1, (uint)(a2));
         }
     }
 

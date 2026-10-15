@@ -28,7 +28,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00446330", (uint)a);
-            int n = func_0022A590(0x80145040u, new O06A_v30(a).unk1C);
+            int n = Player_GetIndex(0x80145040u, new O06A_v30(a).unk1C);
             int i = 0;
             int cnt = 0;
             int len = 0;

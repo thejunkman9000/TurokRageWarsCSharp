@@ -36,7 +36,7 @@ public static partial class Game
                     else
                     {
                         k = Mem.F32(0x800C8A44u);
-                        func_00226C3C(ow, (_fp + 80u));
+                        Player_GetViewQuat(ow, (_fp + 80u));
                         s = sinf(k);
                         Mem.Set(0x80115DECu, s);
                         new B10Q4((_fp + 32u)).x_Set(0.0f);
@@ -63,7 +63,7 @@ public static partial class Game
                         Mem.Set(0x80115DECu, s);
                         new B10Q4((_fp + 32u)).w_Set(cosf(((new B10Obj(o).f6C + Mem.F32(0x800C8A4Cu)) * Mem.F32(0x800C8A48u))));
                         Quat_Multiply((_fp + 48u), (_fp + 16u), (_fp + 32u));
-                        func_00203848((_fp + 64u), o, (o + 368u));
+                        Turret_GetBaseQuat((_fp + 64u), o, (o + 368u));
                         Quat_Multiply(_fp, (_fp + 48u), (_fp + 64u));
                     }
                     else

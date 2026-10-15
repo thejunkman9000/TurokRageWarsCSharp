@@ -32,7 +32,7 @@ public static partial class Game
                 func_0025DF54(3405);
                 if ((Mem.U32((actor + (uint)1500)) != 0u))
                 {
-                    v = func_0022A590((g - (uint)4744), (int)(actor));
+                    v = Player_GetIndex((g - (uint)4744), (int)(actor));
                     Hud_SpawnTextLineA((g - (uint)4672), Mem.U32((actor + (uint)1500)), (uint)(Mem.S32(0x800D70E8u)), v, Mem.F32(0x800C8100u));
                 }
             }

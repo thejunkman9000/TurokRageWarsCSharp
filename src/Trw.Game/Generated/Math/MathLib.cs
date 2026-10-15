@@ -6,6 +6,67 @@ namespace Trw.Game;
 
 public static partial class Game
 {
+    // ==== func_002184C0 @ 0x002184C0 [C]
+    public static float Math_AngleStepToward(float a_in, float b_in, int dir, float k)
+    {
+        uint _fp = Stack.Alloc(8);
+        try
+        {
+            unchecked
+            {
+                Mem.Set(_fp + 0u, a_in);
+                Mem.Set(_fp + 4u, b_in);
+                if (Dbg.On) Dbg.Enter("func_002184C0", 0u, 0u, (uint)dir);
+                float d = 0f;
+                float r = 0f;
+                float m = 0f;
+                func_00274090(_fp, default(uint), default(uint), default(uint));
+                func_00274090((_fp + 4u), default(uint), default(uint), default(uint));
+                if (!((dir > 0))) goto _f0;
+                if (!((Mem.F32((_fp + 4u)) < Mem.F32(_fp)))) goto _f1;
+                Mem.Set((_fp + 4u), (Mem.F32((_fp + 4u)) + Mem.F32(0x800C7340u)));
+                _f1: ;
+                goto _f2;
+                _f0: ;
+                if (!((Mem.F32((_fp + 4u)) > Mem.F32(_fp)))) goto _f3;
+                Mem.Set((_fp + 4u), (Mem.F32((_fp + 4u)) - Mem.F32(0x800C7344u)));
+                _f3: ;
+                _f2: ;
+                d = (Mem.F32((_fp + 4u)) - Mem.F32(_fp));
+                r = ((d * k) * Mem.F32(0x800D2988u));
+                m = r;
+                if (!((m < 0.0f))) goto _f4;
+                m = (-m);
+                _f4: ;
+                if (!((d < 0.0f))) goto _f5;
+                if (!(((-d) < m))) goto _f6;
+                goto L_blk;
+                _f6: ;
+                goto _f7;
+                _f5: ;
+                if (!((d < m))) goto _f8;
+                L_blk: ;
+                r = d;
+                _f8: ;
+                _f7: ;
+                return r;
+                return 0f;
+            }
+        }
+        finally { Stack.Free(8); }
+    }
+
+    // ==== func_0022DBB4 @ 0x0022DBB4 [C]
+    public static float Math_EaseOutCubic(float x)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022DBB4");
+            float t = (Mem.F32(0x800C7EC4u) - x);
+            return (Mem.F32(0x800C7EC4u) - ((t * t) * t));
+        }
+    }
+
     // ==== func_00261634 @ 0x00261634 [C]
     public static uint Math_HighestBit(uint x)
     {

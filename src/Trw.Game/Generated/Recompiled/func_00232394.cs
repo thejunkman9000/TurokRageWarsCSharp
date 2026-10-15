@@ -64,7 +64,7 @@ public static partial class Game
                 r3 = (uint)(int)Mem.S16((r16 + 1582u));
                 r2 = (uint)5;
                 { bool c_ = r3 != r2; r2 = (uint)3; if (c_) goto L_L002324A8; }
-                r4 = r16; func_0022AFFC(r4);
+                r4 = r16; Player_StopLoopSound2(r4);
                 r2 = r16 + 8u;
                 Mem.Set((r29 + 16u), r2);
                 r2 = (uint)-1;
@@ -102,7 +102,7 @@ public static partial class Game
                 { bool c_ = r2 == 0; r2 = r17; if (c_) goto L_L00232568; }
                 r4 = 2148794368u;
                 r4 = r4 + 20544u;
-                r5 = r16; r2 = (uint)func_0022A590(r4, (int)r5);
+                r5 = r16; r2 = (uint)Player_GetIndex(r4, (int)r5);
                 r6 = 2148335616u;
                 r6 = Mem.U32((r6 + 28904u));
                 r1 = 2148335616u;
@@ -119,7 +119,7 @@ public static partial class Game
                 { bool c_ = r3 != r2; r4 = r19; if (c_) goto L_L0023259C; }
                 r5 = r18;
                 r6 = (uint)11; r2 = (uint)Actor_DispatchEvent(r4, r5, (int)r6);
-                r4 = r16; func_0022B974(r4);
+                r4 = r16; Player_EnterWeaponStance_0022B974(r4);
                 r2 = (uint)1; goto L_L002325AC;
                 L_L00232598: ;
                 r4 = r19;

@@ -173,7 +173,7 @@ public static partial class Game
                         continue;
                     }
                     func_002833A4(new R4Hm(m).owner_);
-                    func_0022B720(t, 2.0f);
+                    Player_AddField11DC_0022B720(t, 2.0f);
                 }
                 return ret;
             }

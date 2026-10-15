@@ -20,12 +20,12 @@ public static partial class Game
             int t2 = 0;
             o = new M2Act(a).owner_;
             kind = (int)(new M2Row18((0x800CE8DCu + (uint)(new M2Own(o).unk650 * 24))).unk0);
-            if (((int)(func_00222A80(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
             {
                 if ((new M2St(s).unk13C == 2))
                 {
                     new M2St(s).unk13C_Set(1);
-                    if (((int)(func_00222A80(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) != 0))
+                    if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) != 0))
                     {
                         goto L_b6;
                     }
@@ -60,7 +60,7 @@ public static partial class Game
                                 func_0025DF54(3405);
                                 if ((new M2Own(o).pawn_ != 0u))
                                 {
-                                    yy = func_0022A590(0x80145040u, (int)(o));
+                                    yy = Player_GetIndex(0x80145040u, (int)(o));
                                     xx = Mem.S32(0x800D70E8u);
                                     Hud_SpawnTextLineA(0x80145088u, new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C8040u));
                                 }
@@ -101,7 +101,7 @@ public static partial class Game
                                         func_0025DF54(3405);
                                         if ((new M2Own(o).pawn_ != 0u))
                                         {
-                                            yy = func_0022A590(0x80145040u, (int)(o));
+                                            yy = Player_GetIndex(0x80145040u, (int)(o));
                                             xx = Mem.S32(0x800D70E8u);
                                             Hud_SpawnTextLineA(0x80145088u, new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C8044u));
                                         }
@@ -113,14 +113,14 @@ public static partial class Game
                         if ((ok2 != 0))
                         {
                             new M2St(s).unk13C_Set(2);
-                            if (((int)(func_00222A80(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) != 0))
+                            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) != 0))
                             {
                                 goto L_b6c;
                             }
                             func_0025DF54(3405);
                             if ((new M2Own(o).pawn_ != 0u))
                             {
-                                yy = func_0022A590(0x80145040u, (int)(o));
+                                yy = Player_GetIndex(0x80145040u, (int)(o));
                                 xx = Mem.S32(0x800D70E8u);
                                 Hud_SpawnTextLineA((0x80145040u + (uint)72), new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C8048u));
                             }

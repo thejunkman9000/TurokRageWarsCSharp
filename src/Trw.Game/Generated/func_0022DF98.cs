@@ -33,7 +33,7 @@ public static partial class Game
                 }
             }
             Mem.Set((actor + (uint)2032), f);
-            func_00219480();
+            Game_EmptyStub_00219480();
             func_002748E0((actor + (uint)2028), f, 0.5f);
             if ((f == 0.0f))
             {

@@ -14,7 +14,7 @@ public static partial class Game
             {
                 if ((func_0024E61C(obj) != 0))
                 {
-                    func_002227D0(actor, (int)(obj), 2);
+                    Player_SetState(actor, (int)(obj), 2);
                     return 1;
                 }
             }

@@ -5,6 +5,40 @@ namespace Trw.Game;
 
 public static partial class Game
 {
+    // ==== func_00219480 @ 0x00219480 [C]
+    public static void Game_EmptyStub_00219480()
+    {
+        uint _fp = Stack.Alloc(16);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_00219480");
+            }
+        }
+        finally { Stack.Free(16); }
+    }
+
+    // ==== func_0022BA80 @ 0x0022BA80 [C]
+    public static int Game_GetValue80145048_0022BA80()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022BA80");
+            return Mem.S32(0x80145048u);
+        }
+    }
+
+    // ==== func_0022BAB0 @ 0x0022BAB0 [C]
+    public static int Game_IsFlag80146894Set_0022BAB0()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022BAB0");
+            return ((Mem.S32(0x80146894u) != 0) ? 1 : 0);
+        }
+    }
+
     // ==== func_0029382C @ 0x0029382C [C]
     public static void Game_StateDispatch(uint g)
     {

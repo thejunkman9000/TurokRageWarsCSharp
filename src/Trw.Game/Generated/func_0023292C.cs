@@ -23,7 +23,7 @@ public static partial class Game
                     {
                         return;
                     }
-                    if (((w >= 18) && (func_0022AB10(owner, w) <= 0)))
+                    if (((w >= 18) && (Player_GetWeaponAmmo(owner, w) <= 0)))
                     {
                         return;
                     }

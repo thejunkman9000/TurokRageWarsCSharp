@@ -15,19 +15,19 @@ public static partial class Game
             Mem.Set((state + (uint)100), 0);
             if (((new Actor(owner).unk1450 == 0) && (Mem.S32(0x801450B8u) == 1)))
             {
-                func_0021A9A4(new Actor(actor).owner_, (uint)(1017), default(uint), default(uint));
+                Weapon_FireShot(new Actor(actor).owner_, (uint)(1017), default(uint), default(uint));
             }
             else
             {
-                func_0021A9A4(new Actor(actor).owner_, (uint)(1227), default(uint), default(uint));
+                Weapon_FireShot(new Actor(actor).owner_, (uint)(1227), default(uint), default(uint));
             }
-            func_0022AE90(owner, 1930);
-            func_0022AF64(owner, 1920);
+            Player_PlayLoopSound1(owner, 1930);
+            Player_PlayLoopSound2(owner, 1920);
             o2 = new Actor(actor).owner_;
             Mem.Set((state + (uint)304), (Mem.F32((Mem.U32((0x800D052Cu + (uint)(Mem.S16((o2 + (uint)1582)) * 4))) + (uint)24)) * Mem.F32(0x800C8134u)));
             if ((((int)(Mem.S16((o2 + (uint)1582))) == 8) && (new Actor(o2).unk11C0 == 0)))
             {
-                func_0022AF64(o2, 2620);
+                Player_PlayLoopSound2(o2, 2620);
             }
         }
     }

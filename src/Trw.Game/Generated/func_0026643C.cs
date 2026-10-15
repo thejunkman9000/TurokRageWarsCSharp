@@ -21,7 +21,7 @@ public static partial class Game
                     new Vec3f((_fp + 32u)).x_Set((-new Vec3f((_fp + 16u)).x));
                     new Vec3f((_fp + 32u)).y_Set(new Vec3f((_fp + 16u)).y);
                     new Vec3f((_fp + 32u)).z_Set(new Vec3f((_fp + 16u)).z);
-                    func_0022B08C(o, (_fp + 32u));
+                    Player_TransformPoint(o, (_fp + 32u));
                     new Vec3f((_fp + 32u)).x_Set((new Vec3f((_fp + 32u)).x - new B15Player(o).pawn.pos.x));
                     new Vec3f((_fp + 32u)).y_Set((new Vec3f((_fp + 32u)).y - new B15Player(o).pawn.pos.y));
                     new Vec3f((_fp + 32u)).z_Set((new Vec3f((_fp + 32u)).z - new B15Player(o).pawn.pos.z));

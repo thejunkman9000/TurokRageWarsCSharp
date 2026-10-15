@@ -162,7 +162,7 @@ public static partial class Game
                 { bool c_ = r21 != 0; r2 = (uint)1; if (c_) goto L_L002AD8E8; }
                 r5 = (uint)(int)Mem.S16((r17 + 14u));
                 r6 = (uint)(int)Mem.S16((r17 + 16u));
-                r4 = r16; r2 = (uint)func_00222BC4(r4, (int)r5, (int)r6);
+                r4 = r16; r2 = (uint)Player_AddAmmoCapped(r4, (int)r5, (int)r6);
                 r2 = (uint)1;
                 L_L002AD8E8: ;
                 r31 = Mem.U32((r29 + 56u));

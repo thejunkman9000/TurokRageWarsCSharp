@@ -28,7 +28,7 @@ public static partial class Game
                 uint a0 = 0u;
                 cam = Mem.U32(0x801041F0u);
                 cfg = new B18Fy(o).cfg_;
-                st = func_00216108(cam);
+                st = Actor_GetHitClass_00216108(cam);
                 if (!((st == 5))) goto _f0;
                 st = 4;
                 new B18Fy(o).flags_Set((uint)((uint)(new B18Fy(o).flags) | (uint)(2)));
@@ -72,7 +72,7 @@ public static partial class Game
                 new B18Fy(o).flags_Set((uint)((uint)(new B18Fy(o).flags) | (uint)(131072)));
                 Mem.Copy(new B18Fy(o).pos.P, new B18GPos(0x801041F8u).pos.P, 12);
                 Mem.Copy(new B18Fy(o).unk1C.P, 0x801042C8u, 12);
-                func_0022B054(new B18Fy(o).unk12C.owner, new B18Fy(o).pos.P);
+                Player_PullToPoint_0022B054(new B18Fy(o).unk12C.owner, new B18Fy(o).pos.P);
                 goto _f15;
                 _f14: ;
                 new B18Fy(o).unk14C_Set((short)(1));

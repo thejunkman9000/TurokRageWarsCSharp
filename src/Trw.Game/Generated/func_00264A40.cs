@@ -54,7 +54,7 @@ public static partial class Game
                 new B14Mgr(m).d_Set(Mem.S32(0x8013B2BCu));
                 if (((int)(new B14G2(0x801462C8u).f1D) == 0))
                 {
-                    p = (uint)(func_0022A404((0x801462C8u - (uint)4744)));
+                    p = (uint)(Obj_GetField20_0022A404((0x801462C8u - (uint)4744)));
                     if ((p != 0u))
                     {
                         if (((new B14Mgr(m).b == 1) && ((Mem.S32(0x8013B2BCu) != new B14Pl_v2(p).f5EC) || ((uint)(((int)(new B14Pl_v2(p).f650) - 22)) < (uint)(12)))))

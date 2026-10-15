@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00294C64");
             func_00285D00(0x8010EC90u);
-            func_0022A870(0x80145040u);
+            Player_ClearAllPadInput(0x80145040u);
         }
     }
 

@@ -46,7 +46,7 @@ public static partial class Game
             }
             if ((Mem.S32(0x80153730u) != 0))
             {
-                plr = func_0022A5B0(0x80145040u, new O01Own8(own).unk20_);
+                plr = Player_FindByPad(0x80145040u, new O01Own8(own).unk20_);
                 new O01Own8(own).unk1C__Set(plr);
                 func_00408C78_O01Restore(plr);
                 func_0044AD14(plr, (int)(Mem.S8((0x80153720u + (uint)0))));

@@ -34,7 +34,7 @@ public static partial class Game
             }
             if ((Mem.S32(0x80153780u) != 0))
             {
-                plr = func_0022A5B0(0x80145040u, new O01OwnE(own).unk20_);
+                plr = Player_FindByPad(0x80145040u, new O01OwnE(own).unk20_);
                 g = 0x8011FE88u;
                 save = Mem.U8(0x80146848u);
                 Mem.Copy(new O01Plr5(plr).unk5E0.P, new O01CfgE(Mem.U32(0x800E28BCu)).blk18.P, 112);

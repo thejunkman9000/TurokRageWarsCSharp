@@ -1272,7 +1272,7 @@ public static partial class Game
             float alpha = 0f;
             int x = 0;
             uint bits = 0u;
-            i = func_0022A590(0x80145040u, new Style_func_80445BC0_de(style).id);
+            i = Player_GetIndex(0x80145040u, new Style_func_80445BC0_de(style).id);
             if ((new Spinner((0x800E63C0u + (uint)(i * 24))).timer <= 6.0f))
             {
                 width = ((new func_802077F4_S2(func_00442F4C(menu)).unk4 * (float)(Mem.S32(0x800E28D0u))) * 0.00352112669f);

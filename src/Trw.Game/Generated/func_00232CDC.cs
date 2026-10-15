@@ -27,7 +27,7 @@ public static partial class Game
                         goto case 0;
                     case 0:
                     case 14:
-                        func_0022AFFC(owner);
+                        Player_StopLoopSound2(owner);
                         goto default;
                     default:
                         Actor_DispatchEvent(actor, state, 2);
@@ -41,7 +41,7 @@ public static partial class Game
             {
                 if ((((int)(Mem.S16((owner + (uint)1582))) == 12) && ((Mem.U32((owner + (uint)1708)) & (uint)(16384)) != 0u)))
                 {
-                    func_0022B180((int)(owner));
+                    Player_FireWeapon12Special_0022B180((int)(owner));
                 }
             }
         }

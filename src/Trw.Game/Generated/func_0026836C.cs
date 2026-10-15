@@ -30,7 +30,7 @@ public static partial class Game
                     }
                     break;
                 }
-                func_00216288(act, new B15Pair((_fp + 16u)).a, _fp);
+                Effect_SpawnForObject(act, new B15Pair((_fp + 16u)).a, _fp);
             }
         }
         finally { Stack.Free(24); }

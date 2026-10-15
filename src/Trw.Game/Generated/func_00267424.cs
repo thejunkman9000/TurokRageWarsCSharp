@@ -14,7 +14,7 @@ public static partial class Game
             {
                 Mem.Copy(_fp + 0u, pos_in, 12);
                 if (Dbg.On) Dbg.Enter("func_00267424", (uint)a, (uint)b, (uint)c, (uint)pos_in);
-                func_00216288((uint)(a), e, _fp);
+                Effect_SpawnForObject((uint)(a), e, _fp);
             }
         }
         finally { Stack.Free(12); }

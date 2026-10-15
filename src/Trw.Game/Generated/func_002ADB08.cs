@@ -17,7 +17,7 @@ public static partial class Game
             a = (int)(new Fx24_v4(f).unkC);
             if ((a != (-1)))
             {
-                func_00222BC4(e, a, (int)(new Fx24_v4(f).unkE));
+                Player_AddAmmoCapped(e, a, (int)(new Fx24_v4(f).unkE));
             }
             p = new Fx24_v4(f).unk0_;
             b = (int)(new Fx24_v4(f).unk6);

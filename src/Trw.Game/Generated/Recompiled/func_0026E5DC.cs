@@ -153,7 +153,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r6 = Mem.U32((r29 + 80u));
                 r7 = Mem.U32((r29 + 84u));
-                r5 = (uint)81; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); func_00216288(r4, (int)r5, s2_); Stack.Free(12); }
+                r5 = (uint)81; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); Effect_SpawnForObject(r4, (int)r5, s2_); Stack.Free(12); }
                  goto L_L0026EDC8;
                 L_L0026E8B0: ;
                 Mem.Set((r29 + 20u), r16);
@@ -162,7 +162,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r6 = Mem.U32((r29 + 80u));
                 r7 = Mem.U32((r29 + 84u));
-                r5 = (uint)92; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); func_00216288(r4, (int)r5, s2_); Stack.Free(12); }
+                r5 = (uint)92; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); Effect_SpawnForObject(r4, (int)r5, s2_); Stack.Free(12); }
                  goto L_L0026EDC8;
                 L_L0026E8D8: ;
                 r9 = Mem.U32((r29 + 80u));
@@ -278,7 +278,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r6 = Mem.U32((r29 + 80u));
                 r7 = Mem.U32((r29 + 84u));
-                r5 = (uint)172; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); func_00216288(r4, (int)r5, s2_); Stack.Free(12); }
+                r5 = (uint)172; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); Effect_SpawnForObject(r4, (int)r5, s2_); Stack.Free(12); }
                  goto L_L0026EDC8;
                 L_L0026EAC8: ;
                 r2 = Mem.U32((r29 + 88u));
@@ -286,7 +286,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r6 = Mem.U32((r29 + 80u));
                 r7 = Mem.U32((r29 + 84u));
-                r5 = (uint)173; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); func_00216288(r4, (int)r5, s2_); Stack.Free(12); }
+                r5 = (uint)173; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); Effect_SpawnForObject(r4, (int)r5, s2_); Stack.Free(12); }
                  goto L_L0026EDC8;
                 L_L0026EAEC: ;
                 Mem.Set((r29 + 20u), r16);
@@ -295,7 +295,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r6 = Mem.U32((r29 + 80u));
                 r7 = Mem.U32((r29 + 84u));
-                r5 = (uint)174; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); func_00216288(r4, (int)r5, s2_); Stack.Free(12); }
+                r5 = (uint)174; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); Effect_SpawnForObject(r4, (int)r5, s2_); Stack.Free(12); }
                  goto L_L0026EDC8;
                 L_L0026EB14: ;
                 r2 = Mem.U32((r29 + 88u));
@@ -303,7 +303,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r6 = Mem.U32((r29 + 80u));
                 r7 = Mem.U32((r29 + 84u));
-                r5 = (uint)175; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); func_00216288(r4, (int)r5, s2_); Stack.Free(12); }
+                r5 = (uint)175; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); Effect_SpawnForObject(r4, (int)r5, s2_); Stack.Free(12); }
                  goto L_L0026EDC8;
                 L_L0026EB38: ;
                 Mem.Set((r29 + 20u), r16);
@@ -312,7 +312,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r6 = Mem.U32((r29 + 80u));
                 r7 = Mem.U32((r29 + 84u));
-                r5 = (uint)176; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); func_00216288(r4, (int)r5, s2_); Stack.Free(12); }
+                r5 = (uint)176; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); Effect_SpawnForObject(r4, (int)r5, s2_); Stack.Free(12); }
                  goto L_L0026EDC8;
                 L_L0026EB60: ;
                 r2 = Mem.U32((r29 + 88u));
@@ -320,7 +320,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r6 = Mem.U32((r29 + 80u));
                 r7 = Mem.U32((r29 + 84u));
-                r5 = (uint)177; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); func_00216288(r4, (int)r5, s2_); Stack.Free(12); }
+                r5 = (uint)177; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); Effect_SpawnForObject(r4, (int)r5, s2_); Stack.Free(12); }
                  goto L_L0026EDC8;
                 L_L0026EB84: ;
                 Mem.Set((r29 + 20u), r16);
@@ -329,7 +329,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r6 = Mem.U32((r29 + 80u));
                 r7 = Mem.U32((r29 + 84u));
-                r5 = (uint)178; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); func_00216288(r4, (int)r5, s2_); Stack.Free(12); }
+                r5 = (uint)178; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); Effect_SpawnForObject(r4, (int)r5, s2_); Stack.Free(12); }
                  goto L_L0026EDC8;
                 L_L0026EBAC: ;
                 r2 = Mem.U32((r29 + 88u));
@@ -337,7 +337,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r6 = Mem.U32((r29 + 80u));
                 r7 = Mem.U32((r29 + 84u));
-                r5 = (uint)179; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); func_00216288(r4, (int)r5, s2_); Stack.Free(12); }
+                r5 = (uint)179; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); Effect_SpawnForObject(r4, (int)r5, s2_); Stack.Free(12); }
                  goto L_L0026EDC8;
                 L_L0026EBD0: ;
                 Mem.Set((r29 + 20u), r16);
@@ -346,7 +346,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r6 = Mem.U32((r29 + 80u));
                 r7 = Mem.U32((r29 + 84u));
-                r5 = (uint)180; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); func_00216288(r4, (int)r5, s2_); Stack.Free(12); }
+                r5 = (uint)180; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); Effect_SpawnForObject(r4, (int)r5, s2_); Stack.Free(12); }
                  goto L_L0026EDC8;
                 L_L0026EBF8: ;
                 r2 = Mem.U32((r29 + 88u));
@@ -354,7 +354,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r6 = Mem.U32((r29 + 80u));
                 r7 = Mem.U32((r29 + 84u));
-                r5 = (uint)181; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); func_00216288(r4, (int)r5, s2_); Stack.Free(12); }
+                r5 = (uint)181; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); Effect_SpawnForObject(r4, (int)r5, s2_); Stack.Free(12); }
                  goto L_L0026EDC8;
                 L_L0026EC1C: ;
                 Mem.Set((r29 + 20u), r16);
@@ -363,7 +363,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r6 = Mem.U32((r29 + 80u));
                 r7 = Mem.U32((r29 + 84u));
-                r5 = (uint)182; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); func_00216288(r4, (int)r5, s2_); Stack.Free(12); }
+                r5 = (uint)182; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); Effect_SpawnForObject(r4, (int)r5, s2_); Stack.Free(12); }
                  goto L_L0026EDC8;
                 L_L0026EC44: ;
                 r2 = Mem.U32((r29 + 88u));
@@ -371,7 +371,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r6 = Mem.U32((r29 + 80u));
                 r7 = Mem.U32((r29 + 84u));
-                r5 = (uint)183; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); func_00216288(r4, (int)r5, s2_); Stack.Free(12); }
+                r5 = (uint)183; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); Effect_SpawnForObject(r4, (int)r5, s2_); Stack.Free(12); }
                  goto L_L0026EDC8;
                 L_L0026EC68: ;
                 Mem.Set((r29 + 20u), r16);
@@ -380,7 +380,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r6 = Mem.U32((r29 + 80u));
                 r7 = Mem.U32((r29 + 84u));
-                r5 = (uint)184; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); func_00216288(r4, (int)r5, s2_); Stack.Free(12); }
+                r5 = (uint)184; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); Effect_SpawnForObject(r4, (int)r5, s2_); Stack.Free(12); }
                  goto L_L0026EDC8;
                 L_L0026EC90: ;
                 r2 = Mem.U32((r29 + 88u));
@@ -388,7 +388,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r6 = Mem.U32((r29 + 80u));
                 r7 = Mem.U32((r29 + 84u));
-                r5 = (uint)185; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); func_00216288(r4, (int)r5, s2_); Stack.Free(12); }
+                r5 = (uint)185; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); Effect_SpawnForObject(r4, (int)r5, s2_); Stack.Free(12); }
                  goto L_L0026EDC8;
                 L_L0026ECB4: ;
                 Mem.Set((r29 + 20u), r16);
@@ -397,7 +397,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r6 = Mem.U32((r29 + 80u));
                 r7 = Mem.U32((r29 + 84u));
-                r5 = (uint)186; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); func_00216288(r4, (int)r5, s2_); Stack.Free(12); }
+                r5 = (uint)186; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); Effect_SpawnForObject(r4, (int)r5, s2_); Stack.Free(12); }
                  goto L_L0026EDC8;
                 L_L0026ECDC: ;
                 r2 = Mem.U32((r29 + 88u));
@@ -405,7 +405,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r6 = Mem.U32((r29 + 80u));
                 r7 = Mem.U32((r29 + 84u));
-                r5 = (uint)187; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); func_00216288(r4, (int)r5, s2_); Stack.Free(12); }
+                r5 = (uint)187; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); Effect_SpawnForObject(r4, (int)r5, s2_); Stack.Free(12); }
                  goto L_L0026EDC8;
                 L_L0026ED00: ;
                 Mem.Set((r29 + 20u), r16);
@@ -414,7 +414,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r6 = Mem.U32((r29 + 80u));
                 r7 = Mem.U32((r29 + 84u));
-                r5 = (uint)489; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); func_00216288(r4, (int)r5, s2_); Stack.Free(12); }
+                r5 = (uint)489; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); Effect_SpawnForObject(r4, (int)r5, s2_); Stack.Free(12); }
                  goto L_L0026EDC8;
                 L_L0026ED28: ;
                 Mem.Set((r29 + 20u), r16);
@@ -423,7 +423,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r6 = Mem.U32((r29 + 80u));
                 r7 = Mem.U32((r29 + 84u));
-                r5 = (uint)490; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); func_00216288(r4, (int)r5, s2_); Stack.Free(12); }
+                r5 = (uint)490; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); Effect_SpawnForObject(r4, (int)r5, s2_); Stack.Free(12); }
                  goto L_L0026EDC8;
                 L_L0026ED50: ;
                 r2 = Mem.U32((r29 + 88u));
@@ -431,7 +431,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r6 = Mem.U32((r29 + 80u));
                 r7 = Mem.U32((r29 + 84u));
-                r5 = (uint)491; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); func_00216288(r4, (int)r5, s2_); Stack.Free(12); }
+                r5 = (uint)491; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); Effect_SpawnForObject(r4, (int)r5, s2_); Stack.Free(12); }
                  goto L_L0026EDC8;
                 L_L0026ED74: ;
                 Mem.Set((r29 + 20u), r16);
@@ -440,7 +440,7 @@ public static partial class Game
                 Mem.Set((r29 + 16u), r2);
                 r6 = Mem.U32((r29 + 80u));
                 r7 = Mem.U32((r29 + 84u));
-                r5 = (uint)284; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); func_00216288(r4, (int)r5, s2_); Stack.Free(12); }
+                r5 = (uint)284; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); Effect_SpawnForObject(r4, (int)r5, s2_); Stack.Free(12); }
                  goto L_L0026EDC8;
                 L_L0026ED9C: ;
                 r9 = Mem.U32((r29 + 80u));

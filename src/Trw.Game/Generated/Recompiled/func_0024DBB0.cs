@@ -40,9 +40,9 @@ public static partial class Game
                 r5 = r29 + 484u;
                 Mem.Set((r29 + 476u), r31);
                 Mem.Set((r29 + 488u), r6);
-                Mem.Set((r29 + 492u), r7); r2 = (uint)func_0020CB3C(r4, r5);
+                Mem.Set((r29 + 492u), r7); r2 = (uint)AiNav_FindNearestNode(r4, r5);
                 r4 = r16;
-                r5 = r2; r2 = func_0020C994(r4, (int)r5);
+                r5 = r2; r2 = AiNav_GetNode(r4, (int)r5);
                 r8 = Mem.U32((r29 + 484u));
                 r9 = Mem.U32((r29 + 488u));
                 r10 = Mem.U32((r29 + 492u));

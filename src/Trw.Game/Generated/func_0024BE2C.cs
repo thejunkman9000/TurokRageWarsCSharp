@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0024BE2C", (uint)a);
-            func_002164A8(a, new Obj(a).unk170.P);
+            ActorState_Update(a, new Obj(a).unk170.P);
         }
     }
 

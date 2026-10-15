@@ -93,7 +93,7 @@ public static partial class Game
                 r5 = Mem.U32((r16 + 32u));
                 r1 = 2148859904u;
                 Mem.Set((r1 + 14212u), r2);
-                r2 = func_0022A5B0(r4, r5);
+                r2 = Player_FindByPad(r4, r5);
                 r6 = r2;
                 r4 = Mem.U32((r6 + 1500u));
                 r2 = Mem.U32((r29 + 24u));
@@ -142,7 +142,7 @@ public static partial class Game
                 r5 = Mem.U32((r16 + 32u));
                 r16 = 2148794368u;
                 r16 = r16 + 20544u;
-                r4 = r16; r2 = func_0022A5B0(r4, r5);
+                r4 = r16; r2 = Player_FindByPad(r4, r5);
                 r3 = 2148859904u;
                 r3 = Mem.U32((r3 + 14176u));
                 { bool c_ = r3 == 0; r6 = r2; if (c_) goto L_L0040883C; }

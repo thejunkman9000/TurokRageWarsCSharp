@@ -17,7 +17,7 @@ public static partial class Game
                 Mem.Set(0x80146D74u, (Mem.F32(0x80146D74u) - Mem.F32(0x800D2988u)));
                 if ((Mem.F32(0x80146D74u) <= 0.0f))
                 {
-                    func_0022A404(0x80145040u);
+                    Obj_GetField20_0022A404(0x80145040u);
                     if ((Mem.S32(0x800D29D4u) != 0))
                     {
                         if ((Mem.S32(0x800D29D0u) == 0))

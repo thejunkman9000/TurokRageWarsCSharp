@@ -14,7 +14,7 @@ public static partial class Game
             Object_ReleaseHandles_0044ACCC(owner);
             if (((int)(Mem.S16((owner + (uint)1616))) == 39))
             {
-                func_002227D0(owner, (int)(owner), 2);
+                Player_SetState(owner, (int)(owner), 2);
             }
         }
     }

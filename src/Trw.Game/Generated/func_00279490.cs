@@ -20,7 +20,7 @@ public static partial class Game
                     {
                         if (((int)(new Rec14(r).b12) == 1))
                         {
-                            return func_00204308(e, (e + 368u), (uint)(flag));
+                            return Objective_CheckLockedTouch_00204308(e, (e + 368u), (uint)(flag));
                         }
                     }
                 }

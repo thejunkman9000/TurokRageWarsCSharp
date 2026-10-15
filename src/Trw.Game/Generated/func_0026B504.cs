@@ -23,7 +23,7 @@ public static partial class Game
                 {
                     func_00270770((_fp + 32u), (uint)(a));
                     func_00273340((_fp + 32u), (_fp + 16u));
-                    func_00271FD8(_fp, ((uint)(func_0022A404(0x80145040u)) + (uint)1768), (_fp + 16u));
+                    func_00271FD8(_fp, ((uint)(Obj_GetField20_0022A404(0x80145040u)) + (uint)1768), (_fp + 16u));
                     func_002720EC(_fp);
                     new B15Lights1(0x800D1600u).l[(int)(0)].dir.Set((int)(0), (sbyte)(int)((Mem.F32((_fp + (uint)(0 * 4))) * Mem.F32(0x800C9758u))));
                     new B15Lights1(0x800D1600u).l[(int)(0)].dir.Set((int)(1), (sbyte)(int)((Mem.F32((_fp + (uint)(1 * 4))) * Mem.F32(0x800C9758u))));

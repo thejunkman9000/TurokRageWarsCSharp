@@ -5533,7 +5533,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_004469BC", (uint)unused, (uint)menu);
             int i = 0;
             int count = 0;
-            i = func_0022A590(0x80145040u, new MenuRules(menu).locked);
+            i = Player_GetIndex(0x80145040u, new MenuRules(menu).locked);
             count = new TextEntry_func_80445D6C_de((0x800E63C0u + (uint)(i * 24))).count;
             new TextEntry_func_80445D6C_de((0x800E63C0u + (uint)(i * 24))).cursor_Set(0);
             if ((count == 0))
@@ -5561,7 +5561,7 @@ public static partial class Game
             byte var_v0 = 0;
             uint temp_s1 = 0u;
             temp_s1 = new Entry_func_80445E04_de(arg1).unk1C_;
-            temp_v0 = func_0022A590(0x80145040u, (int)(temp_s1));
+            temp_v0 = Player_GetIndex(0x80145040u, (int)(temp_s1));
             var_a2 = (0x800E63CCu + (uint)(temp_v0 * 24));
             var_v1 = ((0x80145040u + (uint)5084) + (uint)(temp_v0 * 150));
             var_a1 = 0;

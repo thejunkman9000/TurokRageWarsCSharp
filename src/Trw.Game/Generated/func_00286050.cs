@@ -36,7 +36,7 @@ public static partial class Game
             func_00279A00((ow + (uint)296));
             func_00253B5C(0, (uint)(new B19Owner(ow).fE8));
             func_002A66EC(0x8013BA80u);
-            func_0022A144(0x80145040u);
+            Player_FreeAll(0x80145040u);
             func_00287EE8(ow);
             func_00288440(ow);
             func_0028D5F8(ow);
@@ -51,7 +51,7 @@ public static partial class Game
             func_00281C74((ow + (uint)6920));
             if ((new B19Owner(ow).f1B414 == 0))
             {
-                func_002285C4(0x80145040u);
+                Player_AnimateBodies(0x80145040u);
             }
             View_UpdateAll(0x80145088u, (int)(ow));
             if (((new B19Owner(ow).f1B414 == 0) && (new B19Glo(0x80145088u).f180C == 0)))

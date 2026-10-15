@@ -390,7 +390,7 @@ public static partial class Game
                 { bool c_ = !fcc;  if (c_) goto L_L00242FA8; }
                 r19 = Mem.U32((r20 + 0u));
                 r4 = r19;
-                Mem.Set((r29 + 152u), r4); r2 = (uint)func_00216108(r4);
+                Mem.Set((r29 + 152u), r4); r2 = (uint)Actor_GetHitClass_00216108(r4);
                 { bool c_ = r2 != r22; Mem.Set((r29 + 156u), r2); if (c_) goto L_L00242F8C; }
                 Mem.Set((r29 + 232u), r16); goto L_L00242F90;
                 L_L00242F8C: ;

@@ -6,6 +6,205 @@ namespace Trw.Game;
 
 public static partial class Game
 {
+    // ==== func_0021762C @ 0x0021762C [MIPS]
+    public static uint WeaponMenu_DrawHead(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0021762C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_0021762C: ;
+                Cpu.SetW(1, Mem.U32((r20 + 8u)));
+                L_func_00217630: ;
+                r2 = 2148794368u;
+                r2 = Mem.U8((r2 + 25310u));
+                r29 = r29 - 136u;
+                Mem.Set((r29 + 52u), r19);
+                r19 = r4;
+                Mem.Set((r29 + 44u), r17);
+                r17 = r6;
+                Mem.Set((r29 + 60u), r21);
+                Mem.Set((r29 + 64u), r31);
+                Mem.Set((r29 + 56u), r20);
+                Mem.Set((r29 + 48u), r18);
+                Mem.Set((r29 + 40u), r16);
+                Mem.Set((r29 + 128u), Cpu.Fpr[27]);
+                Mem.Set((r29 + 120u), Cpu.Fpr[26]);
+                Mem.Set((r29 + 112u), Cpu.Fpr[25]);
+                Mem.Set((r29 + 104u), Cpu.Fpr[24]);
+                Mem.Set((r29 + 96u), Cpu.Fpr[23]);
+                Mem.Set((r29 + 88u), Cpu.Fpr[22]);
+                Mem.Set((r29 + 80u), Cpu.Fpr[21]);
+                Mem.Set((r29 + 72u), Cpu.Fpr[20]);
+                Cpu.SetW(1, Mem.U32((r19 + 8u)));
+                r3 = r2 + 64u;
+                r2 = (uint)((int)r3 < 256 ? 1 : 0);
+                r1 = 2148270080u;
+                Cpu.SetW(0, Mem.U32((r1 + 29424u)));
+                { bool c_ = r2 == 0; r21 = r7; if (c_) goto L_L002176A4; }
+                Cpu.SetW(0, r3);
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                L_L002176A4: ;
+                Cpu.SetS(26, Cpu.S(1) * Cpu.S(0));
+                r17 = r17 - 1u;
+                r2 = (uint)-1;
+                { bool c_ = r17 == r2; r18 = r5; if (c_) goto L_L002178E4; }
+                r20 = 2148597760u;
+                r20 = r20 + 1588u;
+                r16 = r18 + 20u;
+                r1 = 2148270080u;
+                Cpu.SetW(21, Mem.U32((r1 + 29428u)));
+                r1 = 2148270080u;
+                Cpu.SetW(27, Mem.U32((r1 + 29432u)));
+                L_L002176D4: ;
+                r2 = Mem.U32((r21 + 1500u));
+                r1 = 2148270080u;
+                Cpu.SetW(0, Mem.U32((r1 + 29436u)));
+                Cpu.SetW(2, Mem.U32((r2 + 668u)));
+                Cpu.SetS(22, Cpu.S(2) * Cpu.S(0));
+                Cpu.SetS(4, Cpu.S(2) * Cpu.S(21));
+                Cpu.SetW(1, Mem.U32((r2 + 672u)));
+                r1 = 2148270080u;
+                Cpu.SetW(0, Mem.U32((r1 + 29440u)));
+                Cpu.SetS(23, Cpu.S(1) * Cpu.S(0));
+                Cpu.SetW(1, Mem.U32((r16 - 12u)));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(21));
+                r2 = r2 + 668u;
+                Cpu.SetW(0, Mem.U32((r2 + 4u)));
+                Cpu.SetS(3, Cpu.S(0) * Cpu.S(21));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(2));
+                Cpu.SetW(2, Mem.U32((r16 - 8u)));
+                Cpu.SetS(2, Cpu.S(2) * Cpu.S(21));
+                Cpu.SetS(2, Cpu.S(2) * Cpu.S(0));
+                Cpu.SetW(0, Mem.U32((r2 + 8u)));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(4));
+                Cpu.SetS(25, Cpu.S(0) + Cpu.S(1));
+                Cpu.SetW(0, Mem.U32((r2 + 12u)));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(3));
+                Cpu.SetW(20, Mem.U32((r16 + 4u)));
+                r4 = Mem.U32((r16 + 0u));
+                { bool c_ = r4 == 0; Cpu.SetS(24, Cpu.S(0) + Cpu.S(2)); if (c_) goto L_L002178D0; }
+                r5 = r0;
+                r6 = r29 + 32u;
+                r7 = r29 + 36u; func_002AB940((int)r4, (int)r5, r6, r7);
+                r3 = Mem.U32((r19 + 892u));
+                r2 = Mem.U32((r18 + 0u));
+                { bool c_ = r3 != r2;  if (c_) goto L_L002177B0; }
+                Cpu.SetW(12, Mem.U32((r19 + 20u)));
+                r2 = cosf_rc(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
+                r1 = 2148270080u;
+                Cpu.SetW(1, Mem.U32((r1 + 29444u)));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(1));
+                r1 = 2148270080u;
+                Cpu.SetW(1, Mem.U32((r1 + 29448u)));
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                r1 = 2148270080u;
+                Cpu.SetW(20, Mem.U32((r1 + 29452u)));
+                Cpu.SetW(5, (uint)(int)Cpu.S(0));
+                r3 = Cpu.W(5);
+                r4 = r3;
+                r5 = r4; goto L_L002177D0;
+                L_L002177B0: ;
+                r5 = Mem.U32((r16 - 16u));
+                r4 = r21; r2 = (uint)func_0022EAFC(r4, (int)r5);
+                { bool c_ = r2 != 0; r3 = (uint)200; if (c_) goto L_L002177C8; }
+                r3 = (uint)100;
+                L_L002177C8: ;
+                r5 = r3;
+                r4 = r3;
+                L_L002177D0: ;
+                r3 = r3 << 24;
+                r6 = Mem.U32((r20 + 0u));
+                Cpu.SetS(0, Cpu.S(20) * Cpu.S(26));
+                r2 = r6 + 8u;
+                Mem.Set((r20 + 0u), r2);
+                r2 = 4211081216u;
+                Mem.Set((r6 + 0u), r2);
+                r2 = r5 & 255u;
+                r2 = r2 << 16;
+                r3 = r3 | r2;
+                r2 = r4 & 255u;
+                r2 = r2 << 8;
+                fcc = Cpu.S(27) <= Cpu.S(0);
+                { bool c_ = fcc; r3 = r3 | r2; if (c_) goto L_L00217820; }
+                Cpu.SetW(5, (uint)(int)Cpu.S(0));
+                r4 = Cpu.W(5);
+                r2 = r4 & 255u; goto L_L00217838;
+                L_L00217820: ;
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(27));
+                r2 = 2147483648u;
+                Cpu.SetW(5, (uint)(int)Cpu.S(0));
+                r4 = Cpu.W(5);
+                r4 = r4 | r2;
+                r2 = r4 & 255u;
+                L_L00217838: ;
+                r2 = r3 | r2;
+                Mem.Set((r6 + 4u), r2);
+                Cpu.SetW(2, Mem.U32((r16 + 8u)));
+                Cpu.SetW(0, Mem.U32((r29 + 32u)));
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(2));
+                Cpu.SetW(1, Mem.U32((r29 + 36u)));
+                Cpu.SetS(1, (float)(int)Cpu.W(1));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(2));
+                Cpu.SetS(2, Cpu.S(22) * Cpu.S(2));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(22));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(23));
+                Mem.Set((r29 + 16u), Cpu.W(2));
+                Cpu.SetW(2, Mem.U32((r16 + 8u)));
+                Cpu.SetS(2, Cpu.S(23) * Cpu.S(2));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(21));
+                Cpu.SetS(1, Cpu.S(1) * Cpu.S(21));
+                r5 = r0;
+                r2 = (uint)1;
+                Mem.Set((r29 + 24u), r2);
+                Cpu.SetS(0, Cpu.S(25) - Cpu.S(0));
+                Mem.Set((r29 + 20u), Cpu.W(2));
+                r4 = Mem.U32((r16 + 0u));
+                Cpu.SetS(1, Cpu.S(24) - Cpu.S(1));
+                Cpu.SetW(5, (uint)(int)Cpu.S(0));
+                r6 = Cpu.W(5);
+                r6 = r6 << 16;
+                r6 = (uint)((int)r6 >> 16);
+                Cpu.SetW(5, (uint)(int)Cpu.S(1));
+                r7 = Cpu.W(5);
+                r7 = r7 << 16;
+                r7 = (uint)((int)r7 >> 16); r2 = (uint)Sprite_Draw((int)r4, (int)r5, (short)r6, (short)r7, Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), (int)Mem.U32(r29 + 24u));
+                L_L002178D0: ;
+                r16 = r16 + 32u;
+                r17 = r17 - 1u;
+                r2 = (uint)-1;
+                { bool c_ = r17 != r2; r18 = r18 + 32u; if (c_) goto L_L002176D4; }
+                L_L002178E4: ;
+                r31 = Mem.U32((r29 + 64u));
+                r21 = Mem.U32((r29 + 60u));
+                r20 = Mem.U32((r29 + 56u));
+                r19 = Mem.U32((r29 + 52u));
+                r18 = Mem.U32((r29 + 48u));
+                r17 = Mem.U32((r29 + 44u));
+                r16 = Mem.U32((r29 + 40u));
+                Cpu.Fpr[27] = Mem.U64((r29 + 128u));
+                Cpu.Fpr[26] = Mem.U64((r29 + 120u));
+                Cpu.Fpr[25] = Mem.U64((r29 + 112u));
+                Cpu.Fpr[24] = Mem.U64((r29 + 104u));
+                Cpu.Fpr[23] = Mem.U64((r29 + 96u));
+                Cpu.Fpr[22] = Mem.U64((r29 + 88u));
+                Cpu.Fpr[21] = Mem.U64((r29 + 80u));
+                Cpu.Fpr[20] = Mem.U64((r29 + 72u));
+                r29 = r29 + 136u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0021762C", r2); Stack.Free(384); }
+    }
+
     // ==== func_00217630 @ 0x00217630 [C]
     public static void WeaponMenu_Draw(uint o, uint sel, int n, uint p)
     {
@@ -391,6 +590,354 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_00217B3C", r2); Stack.Free(384); }
     }
 
+    // ==== func_00217D74 @ 0x00217D74 [C]
+    public static void WeaponMenu_UpdateSelection(uint o, uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00217D74", (uint)o, (uint)p);
+            int s0v = 0;
+            int k = 0;
+            int v = 0;
+            int t = 0;
+            uint e = 0u;
+            ushort a2 = 0;
+            short idx = 0;
+            s0v = (int)((new B04Act(p).wpn.flagsB0 & (uint)(32768)));
+            if (!((Player_IsDying(p) != 0))) goto _f0;
+            s0v = 0;
+            _f0: ;
+            if (!(((Mem.S32(0x801468F4u) != 0) && ((int)(new B04Act(p).stats.unk8F) == 1)))) goto _f1;
+            s0v = 0;
+            new B04Roster(o).w0_Set(3);
+            _f1: ;
+            if (!(((s0v != 0) && (new B04Roster(o).f4 > 0.0f)))) goto _f2;
+            new B04Roster(o).w0_Set(3);
+            _f2: ;
+            k = new B04Roster(o).w0;
+            if (!(((k == 0) || (k == 3)))) goto _f3;
+            if (!((s0v == 0))) goto _f4;
+            if (!(((new B04Act(p).unkCC0 != (-1)) && (new B04Roster(o).w388 != 8)))) goto _f5;
+            WeaponMenu_BuildSlots(o, 0, p);
+            new B04Roster(o).w0_Set(1);
+            _f5: ;
+            goto _f6;
+            _f4: ;
+            new B04Act(p).unkCC0_Set((-1));
+            WeaponMenu_BuildSlots(o, s0v, p);
+            new B04Act(p).unk11B4_Set(1);
+            new B04Roster(o).w0_Set(1);
+            goto L_blk15;
+            _f6: ;
+            goto _f7;
+            _f3: ;
+            L_blk15: ;
+            s0v = new B04Roster(o).w388;
+            if (!((s0v == (-1)))) goto _f8;
+            v = (int)(WeaponMenu_StickDirection8(p, default(uint), default(uint), default(uint)));
+            if (!((v != new B04Roster(o).w390))) goto _f9;
+            if (!((v != s0v))) goto _f10;
+            e = (o + (uint)(v * 24));
+            a2 = Mem.U16((e + (uint)30));
+            if (!((Mem.S32((e + (uint)36)) == 0))) goto _f11;
+            func_0025DF54(3405);
+            return;
+            _f11: ;
+            if (!(((int)((short)(a2)) < 0))) goto _f12;
+            new B04Roster(o).w390_Set(s0v);
+            return;
+            _f12: ;
+            if (!((v != new B04Roster(o).w37C))) goto _f13;
+            new B04Roster(o).w37C_Set(v);
+            _f13: ;
+            idx = (short)(a2);
+            if (!(((int)(idx) != (int)(new B04Act(p).unk62E)))) goto _f14;
+            new B04Act(p).unk770_Set((short)(a2));
+            if (!(!((new B04Act(p).flags38 & (uint)(4096)) != 0u))) goto _f15;
+            t = (int)(new B04W2(Mem.U32((0x800D052Cu + (uint)(idx * 4)))).unkC);
+            if (!(((t != s0v) && ((int)(new B04Act(p).pr[(int)(t)].a) != 0)))) goto _f16;
+            Mem.Set((e + (uint)28), t);
+            _f16: ;
+            _f15: ;
+            _f14: ;
+            _f10: ;
+            new B04Roster(o).w390_Set(v);
+            _f9: ;
+            _f8: ;
+            _f7: ;
+        }
+    }
+
+    // ==== func_00217EC8 @ 0x00217EC8 [MIPS]
+    public static uint WeaponMenu_UpdateSelectionTail(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5, uint a6, uint a7)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00217EC8", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                Mem.Set(r29 + 20u, a5);
+                Mem.Set(r29 + 24u, a6);
+                Mem.Set(r29 + 28u, a7);
+                L_func_00217EC8: ;
+                r3 = (uint)((int)r2 >> 16);
+                { bool c_ = (int)r3 >= 0;  if (c_) goto L_L00217EDC; }
+                Mem.Set((r17 + 912u), r16); goto L_L00217F34;
+                L_L00217EDC: ;
+                r2 = Mem.U32((r17 + 892u));
+                if (r4 != r2) { Mem.Set((r17 + 892u), r4); goto L_L00217EE8; }
+                L_L00217EE8: ;
+                r2 = (uint)(int)Mem.S16((r18 + 1582u));
+                if (r3 == r2) { Mem.Set((r17 + 912u), r4); goto L_L00217F34; }
+                r2 = Mem.U32((r18 + 56u));
+                r2 = r2 & 4096u;
+                { bool c_ = r2 != 0; Mem.Set((r18 + 1904u), (ushort)r6); if (c_) goto L_L00217F30; }
+                r2 = r3 << 2;
+                r1 = 2148335616u;
+                r1 = r1 + r2;
+                r2 = Mem.U32((r1 + 1324u));
+                r3 = (uint)(int)Mem.S16((r2 + 12u));
+                { bool c_ = r3 == r16; r2 = r3 << 1; if (c_) goto L_L00217F30; }
+                r2 = r18 + r2;
+                r2 = (uint)(int)Mem.S8((r2 + 1538u));
+                if (r2 != 0) { Mem.Set((r5 + 28u), r3); goto L_L00217F30; }
+                L_L00217F30: ;
+                Mem.Set((r17 + 912u), r4);
+                L_L00217F34: ;
+                r31 = Mem.U32((r29 + 28u));
+                r18 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00217EC8", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00217F4C @ 0x00217F4C [C]
+    public static void WeaponMenu_Update(uint o, uint p, int a2)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00217F4C", (uint)o, (uint)p, (uint)a2);
+            float t = 0f;
+            int a0 = 0;
+            if (!((((((uint)((new B04Act(p).unk5E0 - 17)) >= (uint)(2)) && (new B04Act(p).unkCCC == 0)) && !(new B04Act(p).unk11D8 > 0.0f)) && (Flyby_IsActive() == 0)))) goto _f0;
+            new B04Menu(o).w380_Set((((int)(new B04Act(p).stats.unk82) == 1) ? 1 : 0));
+            if (!((new B04Act(p).unk5E0 == 14))) goto _f1;
+            if (!(((int)(new B04Act(p).unk48C) != 0))) goto _f2;
+            if (!(((new B04Act(p).wpn.flagsB0 & (uint)(32768)) != 0u))) goto _f3;
+            new B04Act(p).unk770_Set((short)(func_00232AAC(p)));
+            _f3: ;
+            goto L_blk15;
+            _f2: ;
+            goto _f4;
+            _f1: ;
+            if (!((((new B04Act(p).wpn.flagsB8 & (uint)(32768)) != 0u) && ((int)(new B04Act(p).stats.unk82) != 0)))) goto _f5;
+            new B04Act(p).unk770_Set((short)((int)(func_0022FAE8(p, default(uint), default(uint), default(uint)))));
+            goto _f6;
+            _f5: ;
+            if (!((((int)(new B04Act(p).stats.unk82) != 1) || ((new B04Act(p).unkCC0 != (-1)) && (new B04Menu(o).w388 != 8))))) goto _f7;
+            WeaponMenu_UpdateSelection(o, p);
+            _f7: ;
+            _f6: ;
+            L_blk15: ;
+            if (!(((int)(new B04Act(p).unk770) != (int)(new B04Act(p).unk62E)))) goto _f8;
+            a0 = new B04Act(p).unk11B0;
+            if (!((a0 != 0))) goto _f9;
+            func_00285944((uint)(a0), (uint)(0), default(uint), default(uint));
+            new B04Act(p).unk11B0_Set(0);
+            _f9: ;
+            new B04Act(p).unk11F0_Set(0);
+            new B04Act(p).unk11F8_Set((-1));
+            _f8: ;
+            switch (new B04Menu(o).w0) { case 1: goto _f11; case 2: goto _f12; case 3: goto _f13; default: goto _f10; }
+            _f11: ;
+            new B04Menu(o).f8_Set((new B04Menu(o).f8 + (Mem.F32(0x800D2988u) * Mem.F32(0x800C7324u))));
+            if (!((new B04Menu(o).w388 != (-1)))) goto _f14;
+            new B04Menu(o).f4_Set(Mem.F32(0x800C7328u));
+            goto _f15;
+            _f14: ;
+            new B04Menu(o).f4_Set((float)(0));
+            _f15: ;
+            if (!((new B04Menu(o).f8 >= Mem.F32(0x800C732Cu)))) goto _f16;
+            new B04Menu(o).w0_Set(2);
+            new B04Menu(o).f8_Set(Mem.F32(0x800C732Cu));
+            if (!((new B04Menu(o).w388 != (-1)))) goto _f17;
+            new B04Menu(o).w388_Set(8);
+            _f17: ;
+            _f16: ;
+            goto _f10;
+            _f12: ;
+            if (!((WeaponMenu_ShouldClose(o, p) != 0))) goto _f18;
+            new B04Menu(o).w388_Set((-1));
+            new B04Act(p).unk11B4_Set(0);
+            new B04Menu(o).w0_Set(3);
+            _f13: ;
+            t = (new B04Menu(o).f8 - (Mem.F32(0x800D2988u) * Mem.F32(0x800C7330u)));
+            new B04Menu(o).f8_Set(t);
+            if (!((t <= 0.0f))) goto _f19;
+            new B04Menu(o).f8_Set(0.0f);
+            new B04Menu(o).w0_Set(0);
+            _f19: ;
+            _f18: ;
+            goto _f10;
+            _f10: ;
+            if (!((new B04Menu(o).w0 != 0))) goto _f20;
+            new B04Menu(o).f14_Set((new B04Menu(o).f14 + (Mem.F32(0x800D2988u) * Mem.F32(0x800C7334u))));
+            goto _f21;
+            _f20: ;
+            new B04Act(p).unk11B4_Set(0);
+            _f21: ;
+            _f4: ;
+            _f0: ;
+        }
+    }
+
+    // ==== func_002181FC @ 0x002181FC [C]
+    public static void WeaponMenu_BuildSlots(uint o, int a1, uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002181FC", (uint)o, (uint)a1, (uint)p);
+            int i = 0;
+            int j = 0;
+            int a0 = 0;
+            int k = 0;
+            new B04Roster(o).w38C_Set(0);
+            new B04Roster(o).w384_Set(a1);
+            new B04Roster(o).w37C_Set((-1));
+            for (i = 0; (i < 8); ++i)
+            {
+                for (j = 0; (j < 22); ++j)
+                {
+                    if ((i == (int)(new B04Pl2(p).pr[(int)(j)].b)))
+                    {
+                        break;
+                    }
+                }
+                if ((j >= 22))
+                {
+                    new B04Roster(o).ent[(int)(i)].idx_Set((-1));
+                    new B04Roster(o).ent[(int)(i)].on_Set(0);
+                    continue;
+                }
+                {
+                    k = new B04Roster(o).w388;
+                    if ((k == (-1)))
+                    {
+                        a0 = 1;
+                    }
+                    else
+                    {
+                        if (((k == 3) || (k == 7)))
+                        {
+                            a0 = ((i == k) ? 1 : 0);
+                        }
+                        else
+                        {
+                            if ((k == 4))
+                            {
+                                a0 = ((i == 4) ? 1 : 0);
+                            }
+                            else
+                            {
+                                a0 = 0;
+                                if (((i == k) || (i == (k + 1))))
+                                {
+                                    a0 = 1;
+                                }
+                            }
+                        }
+                    }
+                }
+                if ((a0 == 0))
+                {
+                    new B04Roster(o).ent[(int)(i)].idx_Set((-1));
+                    new B04Roster(o).ent[(int)(i)].on_Set(0);
+                }
+                else
+                {
+                    new B04Roster(o).ent[(int)(i)].idx_Set(j);
+                    if (((int)(new B04Pl2(p).unk62E) == j))
+                    {
+                        new B04Roster(o).w37C_Set(i);
+                    }
+                    new B04Roster(o).ent[(int)(i)].val_Set(Mem.S32((0x800D052Cu + (uint)(j * 4))));
+                    if ((func_0022EAFC(p, j) != 0))
+                    {
+                        new B04Roster(o).ent[(int)(i)].on_Set(1);
+                    }
+                    else
+                    {
+                        new B04Roster(o).ent[(int)(i)].on_Set(0);
+                    }
+                    new B04Roster(o).ent[(int)(i)].z2C_Set(0);
+                    new B04Roster(o).ent[(int)(i)].f30_Set(Mem.F32(0x800CE38Cu));
+                    new B04Roster(o).ent[(int)(i)].f28_Set(((float)(i) * Mem.F32(0x800C7338u)));
+                }
+            }
+            new B04Roster(o).w380_Set(1);
+        }
+    }
+
+    // ==== func_0021836C @ 0x0021836C [C]
+    public static void WeaponMenu_Init(uint o)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0021836C", (uint)o);
+            int i = 0;
+            float a = Mem.F32(0x800C733Cu);
+            float b = Mem.F32(0x800CE38Cu);
+            new B04Set3(o).w0_Set(0);
+            new B04Set3(o).w4_Set(0);
+            new B04Set3(o).w8_Set(0);
+            new B04Set3(o).wC_Set(0);
+            new B04Set3(o).w14_Set(0);
+            Mem.Set((o + (uint)892), (-1));
+            Mem.Set((o + (uint)896), 1);
+            new B04Set3(o).w388_Set((-1));
+            new B04Set3(o).w18_Set(0);
+            new B04Set3(o).w38C_Set(0);
+            new B04Set3(o).w390_Set((-1));
+            for (i = 0; (i < 36); ++i)
+            {
+                new B04Set3(o).ent[(int)(i)].z2C_Set(0);
+                new B04Set3(o).ent[(int)(i)].f30_Set(b);
+                new B04Set3(o).ent[(int)(i)].f28_Set((-((float)(i) * a)));
+            }
+        }
+    }
+
+    // ==== func_0021846C @ 0x0021846C [C]
+    public static int WeaponMenu_ShouldClose(uint o, uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0021846C", (uint)o, (uint)p);
+            if ((new B04Obj(o).unk4 > 0.0f))
+            {
+                new B04Obj(o).unk4_Set((new B04Obj(o).unk4 - Mem.F32(0x800D2988u)));
+                return 0;
+            }
+            if (((new B04Act(p).wpn.flagsB0 & (uint)(32768)) != 0u))
+            {
+                return 0;
+            }
+            new B04Obj(o).unk37C_Set((-1));
+            return 1;
+        }
+    }
+
     // ==== func_002185D0 @ 0x002185D0 [MIPS]
     public static uint TeamMenu_Draw(uint a0, uint a1, uint a2, uint a3)
     {
@@ -664,6 +1211,153 @@ public static partial class Game
         }
     }
 
+    // ==== func_00218B84 @ 0x00218B84 [C]
+    public static void TeamMenu_Update(uint o, uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00218B84", (uint)o, (uint)p);
+            int v = 0;
+            int k = 0;
+            int wf = 0;
+            int a0 = 0;
+            int k2 = 0;
+            float t = 0f;
+            uint e = 0u;
+            ushort a1 = 0;
+            if (!((Flyby_IsActive() == 0))) goto _f0;
+            if (!(((Mem.S32(0x8014561Cu) != 0) && (new B04Mn3(o).w0 != 0)))) goto _f1;
+            TeamMenu_Close(o);
+            return;
+            _f1: ;
+            wf = (int)((new B04Act(p).wpn.flagsB0 & (uint)(32768)));
+            k = new B04Mn3(o).w0;
+            if (!(((k == 0) || (k == 3)))) goto _f2;
+            if (!(((Mem.S32(0x801468C4u) != 0) && ((int)(new B04Act(p).stats.unk92) == 255)))) goto _f3;
+            TeamMenu_BuildSlots(o);
+            new B04Mn3(o).w0_Set(1);
+            goto L_blk9;
+            _f3: ;
+            goto _f4;
+            _f2: ;
+            L_blk9: ;
+            Mem.Set((p + (uint)1648), Mem.F32(0x800C7388u));
+            new B04Act(p).unk11B4_Set(1);
+            Mem.Set((p + (uint)4536), 1);
+            v = TeamMenu_StickDirection4(p);
+            if (!((v != new B04Mn3(o).w70))) goto _f5;
+            if (!((v != (-1)))) goto _f6;
+            e = (o + (uint)(v * 20));
+            a1 = Mem.U16((e + (uint)30));
+            if (!((Mem.S32((e + (uint)32)) != 0))) goto _f7;
+            if (!(((int)((short)(a1)) < 0))) goto _f8;
+            new B04Mn3(o).w70_Set((-1));
+            goto _f9;
+            _f8: ;
+            if (!((v != new B04Mn3(o).w6C))) goto _f10;
+            new B04Mn3(o).w6C_Set(v);
+            _f10: ;
+            new B04Act(p).stats.unk92_Set((byte)(a1));
+            goto L_blk17;
+            _f9: ;
+            _f7: ;
+            goto _f11;
+            _f6: ;
+            L_blk17: ;
+            new B04Mn3(o).w70_Set(v);
+            _f11: ;
+            _f5: ;
+            _f4: ;
+            k2 = new B04Mn3(o).w0;
+            switch (k2) { case 1: goto _f13; case 2: goto _f14; case 3: goto _f15; default: goto _f12; }
+            _f13: ;
+            new B04Mn3(o).f8_Set((new B04Mn3(o).f8 + (Mem.F32(0x800D2988u) * Mem.F32(0x800C738Cu))));
+            if (!((Mem.F32(0x800C7390u) <= new B04Mn3(o).f8))) goto _f16;
+            new B04Mn3(o).f8_Set(Mem.F32(0x800C7390u));
+            new B04Mn3(o).w0_Set(2);
+            _f16: ;
+            goto _f12;
+            _f14: ;
+            if (!((TeamMenu_ShouldClose(o, p) != 0))) goto _f17;
+            new B04Mn3(o).w0_Set(3);
+            new B04Act(p).unk11B4_Set(0);
+            Mem.Set((p + (uint)4536), 0);
+            switch ((int)(new B04Act(p).stats.unk92)) { case 0: goto _f19; case 1: goto _f20; case 2: goto _f21; case 3: goto _f22; default: goto _f18; }
+            _f19: ;
+            Hud_PostMessage(0x80145088u, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D7194u)));
+            a0 = 742;
+            goto L_blk38;
+            _f20: ;
+            Hud_PostMessage(0x80145088u, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D7198u)));
+            a0 = 740;
+            goto L_blk38;
+            _f21: ;
+            Hud_PostMessage(0x80145088u, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D719Cu)));
+            a0 = 744;
+            goto L_blk38;
+            _f22: ;
+            Hud_PostMessage(0x80145088u, new B04Act(p).sub5DC_, (uint)(Mem.S32(0x800D71A0u)));
+            a0 = 748;
+            L_blk38: ;
+            func_0025DF54(a0);
+            goto _f18;
+            _f18: ;
+            _f15: ;
+            t = (new B04Mn3(o).f8 - (Mem.F32(0x800D2988u) * Mem.F32(0x800C7394u)));
+            new B04Mn3(o).f8_Set(t);
+            if (!((t <= 0.0f))) goto _f23;
+            new B04Mn3(o).f8_Set(0.0f);
+            new B04Mn3(o).w0_Set(0);
+            _f23: ;
+            _f17: ;
+            goto _f12;
+            _f12: ;
+            if (!((new B04Mn3(o).w0 != 0))) goto _f24;
+            new B04Mn3(o).f14_Set((new B04Mn3(o).f14 + (Mem.F32(0x800D2988u) * Mem.F32(0x800C7398u))));
+            _f24: ;
+            _f0: ;
+        }
+    }
+
+    // ==== func_00218E98 @ 0x00218E98 [C]
+    public static void TeamMenu_Init(uint o)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00218E98", (uint)o);
+            int i = 0;
+            float a = Mem.F32(0x800C739Cu);
+            float b = Mem.F32(0x800CE3CCu);
+            new B04Set_v2(o).w0_Set(0);
+            new B04Set_v2(o).w4_Set(0);
+            new B04Set_v2(o).w8_Set(0);
+            new B04Set_v2(o).wC_Set(0);
+            new B04Set_v2(o).w14_Set(0);
+            new B04Set_v2(o).w6C_Set((-1));
+            new B04Set_v2(o).w18_Set(4);
+            new B04Set_v2(o).w70_Set((-1));
+            for (i = 0; (i < 4); ++i)
+            {
+                new B04Set_v2(o).ent[(int)(i)].zero_Set(0);
+                new B04Set_v2(o).ent[(int)(i)].f2C_Set(b);
+                new B04Set_v2(o).ent[(int)(i)].f24_Set((-((float)(i) * a)));
+            }
+        }
+    }
+
+    // ==== func_00218F84 @ 0x00218F84 [C]
+    public static void TeamMenu_Close(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00218F84", (uint)p);
+            Mem.Set((p + (uint)(0 * 4)), 0);
+            Mem.Set((p + (uint)(1 * 4)), 0);
+            Mem.Set((p + (uint)(27 * 4)), (-1));
+            Mem.Set((p + (uint)(2 * 4)), 0);
+        }
+    }
+
     // ==== func_00218F9C @ 0x00218F9C [MIPS]
     public static uint TeamMenu_Layout(uint a0, uint a1, uint a2, uint a3)
     {
@@ -775,5 +1469,114 @@ public static partial class Game
             }
         }
         finally { if (Dbg.On) Dbg.Leave("func_00218F9C", r2); Stack.Free(504); }
+    }
+
+    // ==== func_00219124 @ 0x00219124 [C]
+    public static void TeamMenu_BuildSlots(uint o)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00219124", (uint)o);
+            int i = 0;
+            float a = Mem.F32(0x800C73B4u);
+            float b = Mem.F32(0x800CE3CCu);
+            Mem.Set((o + (uint)108), (-1));
+            for (i = 0; (i < 4); ++i)
+            {
+                new B04Set(o).ent[(int)(i)].idx_Set(i);
+                new B04Set(o).ent[(int)(i)].one_Set(1);
+                new B04Set(o).ent[(int)(i)].zero_Set(0);
+                new B04Set(o).ent[(int)(i)].f24_Set(((float)(i) * a));
+                new B04Set(o).ent[(int)(i)].f2C_Set(b);
+            }
+        }
+    }
+
+    // ==== func_0021917C @ 0x0021917C [C]
+    public static int TeamMenu_ShouldClose(uint t, uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0021917C", (uint)t, (uint)p);
+            if ((((new B04Pl(p).wpn.flagsB0 & (uint)(32768)) != 0u) && ((int)(new B04Pl(p).stats.unk92) != 255)))
+            {
+                new B04Tgt(t).unk6C_Set((-1));
+                return 1;
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_002191B0 @ 0x002191B0 [MIPS]
+    public static uint TeamMenu_ReturnZero_002191B0(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002191B0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002191B0: ;
+                r2 = r0; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002191B0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002191B8 @ 0x002191B8 [C]
+    public static void TeamMenu_UpdateInput(uint o, uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002191B8", (uint)o, (uint)p);
+            int v = 0;
+            int wf = 0;
+            int k = 0;
+            uint e = 0u;
+            ushort a1 = 0;
+            wf = (int)((new B04Act(p).wpn.flagsB0 & (uint)(32768)));
+            k = new B04MenuL(o).kind;
+            if (!(((k == 0) || (k == 3)))) goto _f0;
+            if (!(((Mem.S32(0x801468C4u) != 0) && ((int)(new B04Act(p).stats.unk92) == 255)))) goto _f1;
+            TeamMenu_BuildSlots(o);
+            new B04MenuL(o).kind_Set(1);
+            goto L_blk5;
+            _f1: ;
+            goto _f2;
+            _f0: ;
+            L_blk5: ;
+            Mem.Set((p + (uint)1648), Mem.F32(0x800C73B8u));
+            Mem.Set((p + (uint)4532), 1);
+            Mem.Set((p + (uint)4536), 1);
+            v = TeamMenu_StickDirection4(p);
+            if (!((v != new B04MenuL(o).unk70))) goto _f3;
+            if (!((v != (-1)))) goto _f4;
+            e = (o + (uint)(v * 20));
+            a1 = Mem.U16((e + (uint)30));
+            if (!((Mem.S32((e + (uint)32)) != 0))) goto _f5;
+            if (!(((int)((short)(a1)) < 0))) goto _f6;
+            new B04MenuL(o).unk70_Set((-1));
+            return;
+            _f6: ;
+            if (!((v != new B04MenuL(o).unk6C))) goto _f7;
+            new B04MenuL(o).unk6C_Set(v);
+            _f7: ;
+            new B04Act(p).stats.unk92_Set((byte)(a1));
+            goto L_blk13;
+            _f5: ;
+            goto _f8;
+            _f4: ;
+            L_blk13: ;
+            new B04MenuL(o).unk70_Set(v);
+            _f8: ;
+            _f3: ;
+            _f2: ;
+        }
     }
 }

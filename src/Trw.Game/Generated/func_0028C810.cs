@@ -20,7 +20,7 @@ public static partial class Game
                 int dist = 0;
                 int zero = 0;
                 int i = 0;
-                tgt = (uint)(func_0022A404(0x80145040u));
+                tgt = (uint)(Obj_GetField20_0022A404(0x80145040u));
                 zero = 0;
                 bestd = 9999999;
                 i = zero;

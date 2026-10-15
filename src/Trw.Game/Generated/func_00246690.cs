@@ -94,13 +94,13 @@ public static partial class Game
                 _f4: ;
                 tab = Mem.U32((0x800D0680u + (uint)(k * 4)));
                 L_call: ;
-                func_00213AAC(o, (o + 368u), tab, default(uint));
+                ActorState_Init(o, (o + 368u), tab, default(uint));
                 if (!((new B10Obj(o).p1A0_ != 0u))) goto _f11;
                 s2 = (-(int)(new B10Obj(o).b23A));
                 _f11: ;
                 new B10Obj(o).p1D8__Set(0u);
                 if (!((a5 != (-1)))) goto _f12;
-                func_002193C8((o + 516u), a5, (o + 8u));
+                LevelPath_InitCursor((o + 516u), a5, (o + 8u));
                 _f12: ;
                 func_00246BD8(o, new B10Gx(0x8011FE88u).f54, new B10Gx(0x8011FE88u).f24, s2);
                 if (!((s1 != 0))) goto _f13;

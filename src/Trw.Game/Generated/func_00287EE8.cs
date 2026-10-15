@@ -39,7 +39,7 @@ public static partial class Game
             new B19bWorld(w).n2_Set(0);
             new B19bWorld(w).n3_Set(0);
             new B19bWorld(w).n4_Set(0);
-            func_0022A1D0((0x801462D0u - (uint)4752), w);
+            Player_AddToActorLists((0x801462D0u - (uint)4752), w);
             s5 = 0;
             if (!(((int)(new B19bG0(0x801462D0u).f15) == 0))) goto _f0;
             s5 = Mem.S32((0x801462D0u - (uint)4648));

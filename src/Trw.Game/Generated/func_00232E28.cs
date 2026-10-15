@@ -13,7 +13,7 @@ public static partial class Game
             uint owner = new Actor(actor).owner_;
             if ((new Actor(owner).unk11C0 == 0))
             {
-                func_0022AF64(owner, 2530);
+                Player_PlayLoopSound2(owner, 2530);
             }
         }
     }

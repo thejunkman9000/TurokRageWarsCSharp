@@ -6,6 +6,36 @@ namespace Trw.Game;
 
 public static partial class Game
 {
+    // ==== func_002183E8 @ 0x002183E8 [C]
+    public static void Hud_DrawWeaponMenu(int a, int b, int c)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002183E8", (uint)a, (uint)b, (uint)c);
+            uint dl = 0u;
+            Gfx_BeginFlatColorPass((uint)(255), default(uint), default(uint), default(uint));
+            dl = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+            new DlCmd(dl).w0_Set(3808432641u);
+            new DlCmd(dl).w1_Set((uint)(8192));
+            WeaponMenu_Layout((uint)(a), (uint)(b), (uint)(c), default(uint));
+        }
+    }
+
+    // ==== func_00218F08 @ 0x00218F08 [C]
+    public static void Hud_DrawTeamMenu(int a, int b, int c)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00218F08", (uint)a, (uint)b, (uint)c);
+            uint dl = 0u;
+            Gfx_BeginFlatColorPass((uint)(255), default(uint), default(uint), default(uint));
+            dl = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+            new DlCmd(dl).w0_Set(3808432641u);
+            new DlCmd(dl).w1_Set((uint)(8192));
+            TeamMenu_Layout((uint)(a), (uint)(b), (uint)(c), default(uint));
+        }
+    }
+
     // ==== func_00219490 @ 0x00219490 [C]
     public static void Hud_DrawModel3D(uint o, uint c)
     {
@@ -51,6 +81,72 @@ public static partial class Game
             }
         }
         finally { Stack.Free(140); }
+    }
+
+    // ==== func_00219688 @ 0x00219688 [C]
+    public static void Hud_PostTagAndFlagMessages(uint a, uint b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00219688", (uint)a, (uint)b);
+            uint G = 0u;
+            uint T = 0u;
+            G = 0x801462C8u;
+            if (!(((int)(new B04G2(G).unk1D) != 0))) goto _f0;
+            if (!((a != b))) goto _f1;
+            T = new B04G2(G).sub.P;
+            if (!(((int)(new B04St(new B04Pm(a).stats_).unk8F) != 0))) goto _f2;
+            if (!((new B04Gs(T).unk54 != 0))) goto _f3;
+            func_002934A4((a + (uint)((new B04Pm(a).idx * 25) + 5100)), Mem.U32((0x800D7A6Cu + (uint)(0 * 4))));
+            func_002934A4((uint)((((uint)((new B04Pm(a).idx * 25)) + (uint)(a)) + (uint)(5110))), (new B04Pm(b).stats_ + (uint)132));
+            if (!((new B04Pm(a).cam != 0u))) goto _f4;
+            Hud_SpawnTextLineC((G - (uint)4672), new B04Pm(a).cam, (a + (uint)((new B04Pm(a).idx * 25) + 5100)), 1.5f);
+            _f4: ;
+            new B04Pm(a).idx_Set((new B04Pm(a).idx + 1));
+            new B04Pm(a).idx_Set((new B04Pm(a).idx % 4));
+            func_002934A4((b + (uint)((new B04Pm(b).idx * 25) + 5100)), Mem.U32((0x800D7A70u + (uint)(0 * 4))));
+            func_002934A4((uint)((((uint)((new B04Pm(b).idx * 25)) + (uint)(b)) + (uint)(5111))), (new B04Pm(a).stats_ + (uint)132));
+            if (!((new B04Pm(b).cam != 0u))) goto _f5;
+            Hud_SpawnTextLineC((G - (uint)4672), new B04Pm(b).cam, (b + (uint)((new B04Pm(b).idx * 25) + 5100)), 1.5f);
+            _f5: ;
+            goto L_blk25;
+            _f3: ;
+            if (!((new B04Gs(T).unk78 != 0))) goto _f6;
+            func_002934A4((a + (uint)((new B04Pm(a).idx * 25) + 5100)), Mem.U32((0x800D7A74u + (uint)(0 * 4))));
+            func_002934A4((uint)((((uint)((new B04Pm(a).idx * 25)) + (uint)(a)) + (uint)(5110))), (new B04Pm(b).stats_ + (uint)132));
+            if (!((new B04Pm(a).cam != 0u))) goto _f7;
+            Hud_SpawnTextLineC((G - (uint)4672), new B04Pm(a).cam, (a + (uint)((new B04Pm(a).idx * 25) + 5100)), 1.5f);
+            _f7: ;
+            new B04Pm(a).idx_Set((new B04Pm(a).idx + 1));
+            new B04Pm(a).idx_Set((new B04Pm(a).idx % 4));
+            func_002934A4((a + (uint)((new B04Pm(a).idx * 25) + 5100)), Mem.U32((0x800D7A80u + (uint)(0 * 4))));
+            if (!((new B04Pm(a).cam != 0u))) goto _f8;
+            Hud_SpawnTextLineC((G - (uint)4672), new B04Pm(a).cam, (a + (uint)((new B04Pm(a).idx * 25) + 5100)), 1.5f);
+            _f8: ;
+            new B04Pm(a).idx_Set((new B04Pm(a).idx + 1));
+            new B04Pm(a).idx_Set((new B04Pm(a).idx % 4));
+            func_002934A4((b + (uint)((new B04Pm(b).idx * 25) + 5100)), Mem.U32((0x800D7A70u + (uint)(0 * 4))));
+            func_002934A4((uint)((((uint)((new B04Pm(b).idx * 25)) + (uint)(b)) + (uint)(5111))), (new B04Pm(a).stats_ + (uint)132));
+            if (!((new B04Pm(b).cam != 0u))) goto _f9;
+            Hud_SpawnTextLineC((G - (uint)4672), new B04Pm(b).cam, (b + (uint)((new B04Pm(b).idx * 25) + 5100)), 1.5f);
+            _f9: ;
+            new B04Pm(b).idx_Set((new B04Pm(b).idx + 1));
+            new B04Pm(b).idx_Set((new B04Pm(b).idx % 4));
+            func_002934A4((b + (uint)((new B04Pm(b).idx * 25) + 5100)), Mem.U32((0x800D7A84u + (uint)(0 * 4))));
+            if (!((new B04Pm(b).cam != 0u))) goto _f10;
+            Hud_SpawnTextLineC((G - (uint)4672), new B04Pm(b).cam, (b + (uint)((new B04Pm(b).idx * 25) + 5100)), 1.5f);
+            _f10: ;
+            goto L_blk25;
+            _f6: ;
+            _f2: ;
+            goto _f11;
+            _f1: ;
+            L_blk25: ;
+            new B04Pm(b).idx_Set((new B04Pm(b).idx + 1));
+            new B04Pm(b).idx_Set((new B04Pm(b).idx % 4));
+            _f11: ;
+            _f0: ;
+        }
     }
 
     // ==== func_0021E068 @ 0x0021E068 [MIPS]
@@ -743,10 +839,10 @@ public static partial class Game
                 r4 = r19 + 2360u;
                 L_L0021EFB8: ;
                 r5 = r23;
-                r6 = r19; func_002183E8((int)r4, (int)r5, (int)r6);
+                r6 = r19; Hud_DrawWeaponMenu((int)r4, (int)r5, (int)r6);
                 r4 = r19 + 3276u;
                 r5 = r23;
-                r6 = r19; func_00218F08((int)r4, (int)r5, (int)r6);
+                r6 = r19; Hud_DrawTeamMenu((int)r4, (int)r5, (int)r6);
                 r4 = r19 + 3392u;
                 r5 = r19; r2 = func_002A78F0(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = Mem.U8((r16 - 1438u));
@@ -2472,6 +2568,74 @@ public static partial class Game
             }
         }
         finally { if (Dbg.On) Dbg.Leave("func_0022C1D8", r2); Stack.Free(384); }
+    }
+
+    // ==== func_0022C2A4 @ 0x0022C2A4 [MIPS]
+    public static uint Hud_DrawOverlay1FB_0022C2A4(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0022C2A4", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_0022C2A4: ;
+                r4 = 2148794368u;
+                r4 = Mem.U8((r4 + 25310u));
+                r29 = r29 - 40u;
+                Mem.Set((r29 + 32u), r16);
+                Mem.Set((r29 + 36u), r31);
+                r16 = r5; r2 = Gfx_BeginFlatColorPass(r4, r5, r6, r7); r3 = Cpu.V1;
+                Cpu.SetW(5, Mem.U32((r16 + 668u)));
+                r1 = 2148270080u;
+                Cpu.SetW(2, Mem.U32((r1 + 32288u)));
+                Cpu.SetS(1, Cpu.S(5) * Cpu.S(2));
+                Cpu.SetW(3, Mem.U32((r16 + 672u)));
+                Cpu.SetS(2, Cpu.S(3) * Cpu.S(2));
+                r1 = 2148401152u;
+                Cpu.SetW(0, Mem.U32((r1 + 10448u)));
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                r1 = 2148270080u;
+                Cpu.SetW(4, Mem.U32((r1 + 32292u)));
+                Cpu.SetS(5, Cpu.S(5) / Cpu.S(0));
+                Cpu.SetS(6, Cpu.S(5) * Cpu.S(4));
+                r1 = 2148401152u;
+                Cpu.SetW(0, Mem.U32((r1 + 10452u)));
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                Cpu.SetS(3, Cpu.S(3) / Cpu.S(0));
+                Cpu.SetS(4, Cpu.S(3) * Cpu.S(4));
+                Cpu.SetW(0, Mem.U32((r16 + 676u)));
+                r4 = (uint)507;
+                Cpu.SetS(0, Cpu.S(0) + Cpu.S(1));
+                Cpu.SetW(1, Mem.U32((r16 + 680u)));
+                r2 = (uint)1;
+                Cpu.SetS(1, Cpu.S(1) + Cpu.S(2));
+                r5 = r0;
+                Mem.Set((r29 + 24u), r2);
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(6));
+                Mem.Set((r29 + 16u), Cpu.W(5));
+                Mem.Set((r29 + 20u), Cpu.W(3));
+                Cpu.SetS(1, Cpu.S(1) - Cpu.S(4));
+                Cpu.SetW(7, (uint)(int)Cpu.S(0));
+                r6 = Cpu.W(7);
+                r6 = r6 << 16;
+                r6 = (uint)((int)r6 >> 16);
+                Cpu.SetW(7, (uint)(int)Cpu.S(1));
+                r7 = Cpu.W(7);
+                r7 = r7 << 16;
+                r7 = (uint)((int)r7 >> 16); r2 = (uint)Sprite_Draw((int)r4, (int)r5, (short)r6, (short)r7, Cpu.U2F(Mem.U32(r29 + 16u)), Cpu.U2F(Mem.U32(r29 + 20u)), (int)Mem.U32(r29 + 24u));
+                r31 = Mem.U32((r29 + 36u));
+                r16 = Mem.U32((r29 + 32u));
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0022C2A4", r2); Stack.Free(384); }
     }
 
     // ==== func_0022C36C @ 0x0022C36C [MIPS]

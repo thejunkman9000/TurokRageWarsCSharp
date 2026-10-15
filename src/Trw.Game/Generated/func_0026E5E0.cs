@@ -29,10 +29,10 @@ public static partial class Game
                         switch (new B16Ent(ents).flags)
                         {
                         case (uint)(2):
-                            func_00216288(obj, 81, (_fp + 16u));
+                            Effect_SpawnForObject(obj, 81, (_fp + 16u));
                             break;
                         case (uint)(8):
-                            func_00216288(obj, 92, (_fp + 16u));
+                            Effect_SpawnForObject(obj, 92, (_fp + 16u));
                             break;
                         case (uint)(32):
                             break;
@@ -54,64 +54,64 @@ public static partial class Game
                             }
                             break;
                         case (uint)(128):
-                            func_00216288(obj, 172, (_fp + 16u));
+                            Effect_SpawnForObject(obj, 172, (_fp + 16u));
                             break;
                         case (uint)(256):
-                            func_00216288(obj, 173, (_fp + 16u));
+                            Effect_SpawnForObject(obj, 173, (_fp + 16u));
                             break;
                         case (uint)(512):
-                            func_00216288(obj, 174, (_fp + 16u));
+                            Effect_SpawnForObject(obj, 174, (_fp + 16u));
                             break;
                         case (uint)(1024):
-                            func_00216288(obj, 175, (_fp + 16u));
+                            Effect_SpawnForObject(obj, 175, (_fp + 16u));
                             break;
                         case (uint)(2048):
-                            func_00216288(obj, 176, (_fp + 16u));
+                            Effect_SpawnForObject(obj, 176, (_fp + 16u));
                             break;
                         case (uint)(4096):
-                            func_00216288(obj, 177, (_fp + 16u));
+                            Effect_SpawnForObject(obj, 177, (_fp + 16u));
                             break;
                         case (uint)(8192):
-                            func_00216288(obj, 178, (_fp + 16u));
+                            Effect_SpawnForObject(obj, 178, (_fp + 16u));
                             break;
                         case (uint)(16384):
-                            func_00216288(obj, 179, (_fp + 16u));
+                            Effect_SpawnForObject(obj, 179, (_fp + 16u));
                             break;
                         case (uint)(32768):
-                            func_00216288(obj, 180, (_fp + 16u));
+                            Effect_SpawnForObject(obj, 180, (_fp + 16u));
                             break;
                         case (uint)(65536):
-                            func_00216288(obj, 181, (_fp + 16u));
+                            Effect_SpawnForObject(obj, 181, (_fp + 16u));
                             break;
                         case (uint)(131072):
-                            func_00216288(obj, 182, (_fp + 16u));
+                            Effect_SpawnForObject(obj, 182, (_fp + 16u));
                             break;
                         case (uint)(262144):
-                            func_00216288(obj, 183, (_fp + 16u));
+                            Effect_SpawnForObject(obj, 183, (_fp + 16u));
                             break;
                         case (uint)(524288):
-                            func_00216288(obj, 184, (_fp + 16u));
+                            Effect_SpawnForObject(obj, 184, (_fp + 16u));
                             break;
                         case (uint)(1048576):
-                            func_00216288(obj, 185, (_fp + 16u));
+                            Effect_SpawnForObject(obj, 185, (_fp + 16u));
                             break;
                         case (uint)(2097152):
-                            func_00216288(obj, 186, (_fp + 16u));
+                            Effect_SpawnForObject(obj, 186, (_fp + 16u));
                             break;
                         case (uint)(4194304):
-                            func_00216288(obj, 187, (_fp + 16u));
+                            Effect_SpawnForObject(obj, 187, (_fp + 16u));
                             break;
                         case (uint)(536870912):
-                            func_00216288(obj, 489, (_fp + 16u));
+                            Effect_SpawnForObject(obj, 489, (_fp + 16u));
                             break;
                         case (uint)(1073741824):
-                            func_00216288(obj, 490, (_fp + 16u));
+                            Effect_SpawnForObject(obj, 490, (_fp + 16u));
                             break;
                         case 2147483648u:
-                            func_00216288(obj, 491, (_fp + 16u));
+                            Effect_SpawnForObject(obj, 491, (_fp + 16u));
                             break;
                         case (uint)(134217728):
-                            func_00216288(obj, 284, (_fp + 16u));
+                            Effect_SpawnForObject(obj, 284, (_fp + 16u));
                             break;
                         case (uint)(268435456):
                             Mem.Copy(new B16Obj(obj).unk260.P, (_fp + 16u), 12);

@@ -29,7 +29,7 @@ public static partial class Game
                         d = (((new Vec3f((_fp + 24u)).x * new Vec3f((_fp + 24u)).x) + (new Vec3f((_fp + 24u)).y * new Vec3f((_fp + 24u)).y)) + (new Vec3f((_fp + 24u)).z * new Vec3f((_fp + 24u)).z));
                         if (!(r < d))
                         {
-                            func_0022B10C(o, (int)((ushort)((int)((((r - d) / r) * (float)(new B15Pair((_fp + 16u)).b))))));
+                            Player_AddShake_0022B10C(o, (int)((ushort)((int)((((r - d) / r) * (float)(new B15Pair((_fp + 16u)).b))))));
                         }
                     }
                 }

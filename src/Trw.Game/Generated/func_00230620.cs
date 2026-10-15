@@ -14,15 +14,15 @@ public static partial class Game
             int kind = 0;
             o = new M2Act(a).owner_;
             kind = (int)(new M2Row18((0x800CE8DCu + (uint)(new M2Own(o).unk650 * 24))).unk0);
-            if (((((int)(new M2St(s).unkCB) != 0) && ((int)(func_00222A80(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0)) && (new M2St(s).unk13C == 2)))
+            if (((((int)(new M2St(s).unkCB) != 0) && ((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0)) && (new M2St(s).unk13C == 2)))
             {
                 new M2St(s).unk13C_Set(1);
-                if (((int)(func_00222A80(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+                if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
                 {
                     new M2Own(o).unk770_Set((short)(func_0022F95C(o)));
                 }
             }
-            func_0022B9B4(o);
+            Player_LeaveWeaponStance_0022B9B4(o);
             new M2Own(o).unk11FC_Set(0);
             new M2Own(o).unk698.unk168_Set((float)(0));
             new M2St(s).unk138_Set(0);

@@ -6,6 +6,125 @@ namespace Trw.Game;
 
 public static partial class Game
 {
+    // ==== func_002172D0 @ 0x002172D0 [C]
+    public static void ActorSound_StartLoop(uint src, uint owner, int id)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002172D0", (uint)src, (uint)owner, (uint)id);
+            uint s0 = (uint)((-1));
+            if ((new SndOwner(owner).unkFC_ != 0u))
+            {
+                if ((new SndOwner(owner).unkFC.unkC == id))
+                {
+                    return;
+                }
+                func_0025CA44((uint)((int)(func_0025CC8C())), new SndOwner(owner).unkFC_);
+            }
+            switch ((int)(new SndSrc(src).type))
+            {
+            case 1:
+            case 2:
+                s0 = src;
+                break;
+            case 0:
+                s0 = new SndSrc(src).unkD0;
+                break;
+            }
+            new SndOwner(owner).unkFC__Set(func_0025C97C((uint)((int)(func_0025CC8C())), id, new SndSrc(src).pos.P, (int)(new SndSrc(src).pos.P), (int)(s0)));
+        }
+    }
+
+    // ==== func_00217388 @ 0x00217388 [C]
+    public static void ActorSound_StopLoop(uint src, uint d)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00217388", (uint)src, (uint)d);
+            uint p = 0u;
+            switch ((int)(new B04Src(src).type))
+            {
+            case 1:
+            case 2:
+                p = src;
+                break;
+            case 0:
+                p = new B04Src(src).unkD0;
+                break;
+            }
+            if ((new B04Dst(d).unkFC != 0u))
+            {
+                func_0025E1E4(p);
+                if ((new B04Dst(d).unkFC != 0u))
+                {
+                    func_0025CA44((uint)((int)(func_0025CC8C())), new B04Dst(d).unkFC);
+                    new B04Dst(d).unkFC_Set(0u);
+                }
+            }
+        }
+    }
+
+    // ==== func_0022AE90 @ 0x0022AE90 [C]
+    public static void Player_PlayLoopSound1(uint a, int b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022AE90", (uint)a, (uint)b);
+            uint p = 0u;
+            if ((Mem.U32((a + (uint)1500)) != 0u))
+            {
+                p = (Mem.U32((a + (uint)1500)) + (uint)296);
+            }
+            else
+            {
+                p = (a + (uint)8);
+            }
+            if (((Mem.S32(0x8013B29Cu) == 0) && (Mem.S32(0x80146894u) == 0)))
+            {
+                func_0025CA44((uint)((int)(func_0025CC8C())), (uint)(Mem.S32((a + (uint)4540))));
+                Mem.Set((a + (uint)4540), (int)(func_0025C97C((uint)((int)(func_0025CC8C())), b, p, (int)(p), (int)(a))));
+            }
+        }
+    }
+
+    // ==== func_0022AF30 @ 0x0022AF30 [C]
+    public static void Player_StopLoopSound1(uint a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022AF30", (uint)a);
+            func_0025CA44((uint)((int)(func_0025CC8C())), (uint)(Mem.S32((a + (uint)4540))));
+            Mem.Set((a + (uint)4540), 0);
+        }
+    }
+
+    // ==== func_0022AF64 @ 0x0022AF64 [C]
+    public static void Player_PlayLoopSound2(uint a, int b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022AF64", (uint)a, (uint)b);
+            uint p = 0u;
+            if (((Mem.S32(0x8013B29Cu) == 0) && (Mem.S32(0x80146894u) == 0)))
+            {
+                p = ((new Plr(a).unk5DC_ != 0u) ? new Pawn(new Plr(a).unk5DC_).pos128.P : (a + (uint)8));
+                func_0025CA44((uint)((int)(func_0025CC8C())), (uint)(Mem.S32((a + (uint)4544))));
+                Mem.Set((a + (uint)4544), (int)(func_0025C97C((uint)((int)(func_0025CC8C())), b, p, (int)(p), (int)(a))));
+            }
+        }
+    }
+
+    // ==== func_0022AFFC @ 0x0022AFFC [C]
+    public static void Player_StopLoopSound2(uint actor)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022AFFC", (uint)actor);
+            func_0025CA44((uint)((int)(func_0025CC8C())), (uint)(new Actor(actor).unk11C0));
+            new Actor(actor).unk11C0_Set(0);
+        }
+    }
+
     // ==== func_002570E0 @ 0x002570E0 [C]
     public static uint Audio_DmaCacheLoad(uint src, uint len)
     {

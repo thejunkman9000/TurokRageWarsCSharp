@@ -46,7 +46,7 @@ public static partial class Game
                     }
                     break;
                 default:
-                    if ((func_0022AB10(owner, w) == 1))
+                    if ((Player_GetWeaponAmmo(owner, w) == 1))
                     {
                         Actor_DispatchEvent(actor, state, 7);
                     }

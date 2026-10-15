@@ -181,7 +181,7 @@ public static partial class Game
                 L_L00220CF0: ;
                 r4 = r18; r2 = Camera_SetupProjection(r4, r5, r6, r7); r3 = Cpu.V1;
                 L_L00220CF8: ;
-                r4 = r16; func_0021D750(r4);
+                r4 = r16; Player_UpdateAiming(r4);
                 r31 = Mem.U32((r29 + 84u));
                 r18 = Mem.U32((r29 + 80u));
                 r17 = Mem.U32((r29 + 76u));
@@ -253,5 +253,122 @@ public static partial class Game
                 trw_mouse_look(p, a, @in, h);
             }
         }
+    }
+
+    // ==== func_00223E10 @ 0x00223E10 [C]
+    public static void Player_SettleViewBob(uint p, uint s)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00223E10", (uint)p, (uint)s);
+            float ang = 0f;
+            float @base = 0f;
+            float r = 0f;
+            if (!(new B05P9(p).f11D8 > 0.0f))
+            {
+                func_002748E0((p + 1836u), 0.0f, 0.25f);
+                func_002748E0((p + 1832u), 0.0f, 0.5f);
+                new B05P9(p).f730_Set(func_00274810(new B05P9(p).f730, Mem.F32(0x800C7A04u)));
+                new B05P9(p).f734_Set(func_00274810(new B05P9(p).f734, Mem.F32(0x800C7A04u)));
+                new B05P9(p).f738_Set(func_00274810(new B05P9(p).f738, Mem.F32(0x800C7A04u)));
+                if ((new B05P9(p).f75C > Mem.F32(0x800C7A08u)))
+                {
+                    new B05P9(p).f75C_Set(Mem.F32(0x800C7A08u));
+                }
+                if ((new B05P9(p).f758 > Mem.F32(0x800C7A0Cu)))
+                {
+                    new B05P9(p).f758_Set(Mem.F32(0x800C7A0Cu));
+                }
+                new B05P9(p).f75C_Set(func_00274810(new B05P9(p).f75C, Mem.F32(0x800C7A10u)));
+                new B05P9(p).f758_Set(func_00274810(new B05P9(p).f758, Mem.F32(0x800C7A14u)));
+                if ((new B05P9(p).f758 < Mem.F32(0x800C7A18u)))
+                {
+                    new B05P9(p).f758_Set(0.0f);
+                    new B05P9(p).f75C_Set(0.0f);
+                }
+                ang = ((new B05P9(p).f658 * new B05P9(p).f75C) * Mem.F32(0x800C7A1Cu));
+                if ((new B05P9(p).def != 0u))
+                {
+                    @base = (new B05Def9(new B05P9(p).def).unkF4 * Mem.F32(0x800C7A20u));
+                }
+                else
+                {
+                    @base = Mem.F32(0x800C7A24u);
+                }
+                func_002748E0((p + 1856u), (@base + (new B05P9(p).f758 * (sinf(ang) * Mem.F32(0x800C7A28u)))), Mem.F32(0x800C7A2Cu));
+                r = (new B05P9(p).f758 * (cosf(ang) * Mem.F32(0x800C7A30u)));
+                func_002748E0((p + 1852u), ((-sinf((new B05S9(s).ang + Mem.F32(0x800C7A34u)))) * r), Mem.F32(0x800C7A2Cu));
+                func_002748E0((p + 1860u), ((-cosf((new B05S9(s).ang + Mem.F32(0x800C7A34u)))) * r), Mem.F32(0x800C7A2Cu));
+            }
+        }
+    }
+
+    // ==== func_00224028 @ 0x00224028 [C]
+    public static void Player_EaseEyeHeight(uint obj)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00224028", (uint)obj);
+            float v = 0f;
+            if ((new B05Obj(obj).def_ != 0u))
+            {
+                v = (new B05Obj(obj).def.unkF4 * Mem.F32(0x800C7A38u));
+            }
+            else
+            {
+                v = Mem.F32(0x800C7A3Cu);
+            }
+            func_002748E0((obj + (uint)1856), v, 0.5f);
+        }
+    }
+
+    // ==== func_00226C3C @ 0x00226C3C [C]
+    public static void Player_GetViewQuat(uint a, uint @out)
+    {
+        uint _fp = Stack.Alloc(96);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_00226C3C", (uint)a, (uint)@out);
+                float yaw = 0f;
+                float pitch = 0f;
+                float roll = 0f;
+                float r = 0f;
+                float K = 0f;
+                float yaw0 = 0f;
+                float new_var = 0f;
+                float roll0 = 0f;
+                float pitch0 = 0f;
+                yaw0 = ((new Plr(a).unk724 + new Plr(a).unk730) - new Plr(a).unk708);
+                K = Mem.F32(0x800C7C60u);
+                pitch = ((new Plr(a).unk72C + new Plr(a).unk738) * K);
+                new_var = (new Plr(a).unk728 + new Plr(a).unk734);
+                roll = new_var;
+                r = new Plr(a).unk6C;
+                Mem.Copy((_fp + 48u), new Plr(a).unk5C.P, 16);
+                Mem.Set(0x80115DECu, sinf(pitch));
+                new Vec4f((_fp + 32u)).x_Set(0.0f);
+                new Vec4f((_fp + 32u)).y_Set(0.0f);
+                new Vec4f((_fp + 32u)).z_Set(Mem.F32(0x80115DECu));
+                yaw = (yaw0 * K);
+                new Vec4f((_fp + 32u)).w_Set(cosf(pitch));
+                Mem.Set(0x80115DECu, sinf(yaw));
+                new Vec4f(_fp).x_Set(Mem.F32(0x80115DECu));
+                new Vec4f(_fp).y_Set(0.0f);
+                new Vec4f(_fp).z_Set(0.0f);
+                new Vec4f(_fp).w_Set(cosf(yaw));
+                roll = ((r + roll) * K);
+                Mem.Set(0x80115DECu, sinf(roll));
+                new Vec4f((_fp + 16u)).x_Set(0.0f);
+                new Vec4f((_fp + 16u)).y_Set(Mem.F32(0x80115DECu));
+                new Vec4f((_fp + 16u)).z_Set(0.0f);
+                new Vec4f((_fp + 16u)).w_Set(cosf(roll));
+                Quat_Multiply((_fp + 64u), _fp, (_fp + 16u));
+                Quat_Multiply((_fp + 80u), (_fp + 64u), (_fp + 48u));
+                Quat_Multiply(@out, (_fp + 32u), (_fp + 80u));
+            }
+        }
+        finally { Stack.Free(96); }
     }
 }

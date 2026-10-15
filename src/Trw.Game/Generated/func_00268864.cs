@@ -17,7 +17,7 @@ public static partial class Game
                 int k = e;
                 if ((((Mem.S32(0x80146894u) == 0) && (obj != 0u)) && ((int)(Mem.U8(obj)) == 1)))
                 {
-                    func_002172D0(obj, (obj + (uint)368), k);
+                    ActorSound_StartLoop(obj, (obj + (uint)368), k);
                 }
                 k = 0;
             }

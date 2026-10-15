@@ -16,9 +16,9 @@ public static partial class Game
             id = (int)(new Row24((0x800CE8DCu + (uint)(new Player_v2(p).unk650 * 24))).unk0);
             if ((((new Player_v2(p).unk11D8 <= 0.0f) && (((int)(new Player_v2(p).stats.unk8F) == 0) || (Mem.S32(0x801468F4u) == 0))) && ((new Player_v2(p).flags6AC & (uint)(16384)) != 0u)))
             {
-                func_0022B180((int)(p));
+                Player_FireWeapon12Special_0022B180((int)(p));
             }
-            if (((int)(func_00222A80(p, (uint)((int)(new Player_v2(p).unk62E)), default(uint), default(uint))) == 0))
+            if (((int)(Weapon_HasAmmoForShot(p, (uint)((int)(new Player_v2(p).unk62E)), default(uint), default(uint))) == 0))
             {
                 if (((int)(Hud_DrawAmmoPips(0x80121990u, p, default(uint), default(uint))) == 0))
                 {

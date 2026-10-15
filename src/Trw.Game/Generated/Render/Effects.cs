@@ -6,6 +6,94 @@ namespace Trw.Game;
 
 public static partial class Game
 {
+    // ==== func_00216288 @ 0x00216288 [C]
+    public static void Effect_SpawnForObject(uint o, int a1, uint p_in)
+    {
+        uint _fp = Stack.Alloc(72);
+        try
+        {
+            unchecked
+            {
+                Mem.Copy(_fp + 0u, p_in, 12);
+                if (Dbg.On) Dbg.Enter("func_00216288", (uint)o, (uint)a1, (uint)p_in);
+                uint e = 0u;
+                int mode = 1;
+                int extra = 0;
+                func_0024E78C(o, _fp, (_fp + 16u), (_fp + 64u));
+                switch ((int)(new B04Ent_v3(o).type))
+                {
+                case 2:
+                case 0:
+                    new Vec3f((_fp + 32u)).x_Set(new Vec3f((_fp + 32u)).y_Set(new Vec3f((_fp + 32u)).z_Set(0.0f)));
+                    new B04Vec4((_fp + 48u)).x_Set(new B04Vec4((_fp + 48u)).y_Set(new B04Vec4((_fp + 48u)).z_Set(0.0f)));
+                    new B04Vec4((_fp + 48u)).w_Set(Mem.F32(0x800C72B4u));
+                    break;
+                case 1:
+                    e = o;
+                    Mem.Copy((_fp + 32u), new B04Ent_v3(e).pos.P, 12);
+                    func_0024795C((_fp + 48u), e);
+                    extra = new B04Ent_v3(e).unk1F0;
+                    if ((func_0024BE70(e) == 5))
+                    {
+                        mode = 3;
+                    }
+                    break;
+                case 3:
+                    Mem.Copy((_fp + 32u), new B04Ent_v3(o).pos.P, 12);
+                    func_0024F468((_fp + 48u), o);
+                    break;
+                }
+                Effect_SpawnFromTemplates(0x80121990u, o, o, (uint)(0), extra, a1, (_fp + 32u), (_fp + 48u), (_fp + 16u), 0, (-1), mode);
+                if ((((int)(new B04Ent_v3(o).type) == 1) && ((int)(new B04Ent_v3(e).unkE4) == 1036)))
+                {
+                    int v = (new B04Ent_v3(e).unk29C - 1);
+                    if ((v < 0))
+                    {
+                        v = 0;
+                    }
+                    new B04Ent_v3(e).unk29C_Set(v);
+                }
+            }
+        }
+        finally { Stack.Free(72); }
+    }
+
+    // ==== func_0022BC84 @ 0x0022BC84 [C]
+    public static void Actor_SpawnCachedEffect_0022BC84(uint actor, int arg1)
+    {
+        uint _fp = Stack.Alloc(12);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0022BC84", (uint)actor, (uint)arg1);
+                uint p = 0u;
+                uint owner = 0u;
+                if (((new Actor(actor).flags & (uint)(262144)) != 0u))
+                {
+                    p = ResourceCache_Hash(0, (uint)(Mem.S32((actor + (uint)196))), Mem.S32((actor + (uint)196)), (uint)(Mem.S32((actor + (uint)208))), 4, (uint)(0), (uint)(0), 0x800C7CB0u, 1);
+                    if ((p != 0u))
+                    {
+                        owner = new Actor(actor).owner_;
+                        func_0024B4E4(actor, (int)(Chunk_Get(Mem.U32((p + (uint)0)), 0)));
+                        if ((arg1 != 0))
+                        {
+                            if ((Mem.U32((owner + (uint)1500)) != 0u))
+                            {
+                                new Vec3f(_fp).x_Set((Mem.F32((Mem.U32((owner + (uint)1500)) + (uint)296)) - Mem.F32((actor + (uint)8))));
+                                new Vec3f(_fp).y_Set((float)(0));
+                                new Vec3f(_fp).z_Set((Mem.F32((Mem.U32((owner + (uint)1500)) + (uint)304)) - Mem.F32((actor + (uint)16))));
+                                func_0024ADC0(actor, _fp, (uint)(arg1), default(uint));
+                            }
+                        }
+                        func_002536F4(0, p);
+                    }
+                }
+            }
+        }
+        finally { Stack.Free(12); }
+    }
+
     // ==== func_002627C0 @ 0x002627C0 [C]
     public static uint func_002627C0_take_effect(uint scene, uint @ref)
     {
@@ -1198,7 +1286,7 @@ public static partial class Game
                 }
                 if ((new CcGs(0x801041F0u).idx != (-1)))
                 {
-                    st = func_00216108(P);
+                    st = Actor_GetHitClass_00216108(P);
                     if ((st != 9))
                     {
                         st = (int)(new CcGs(0x801041F0u).unk7E);
@@ -1249,7 +1337,7 @@ public static partial class Game
                 }
                 else
                 {
-                    st = func_00216108(P);
+                    st = Actor_GetHitClass_00216108(P);
                 }
                 if ((st == 5))
                 {
@@ -6224,7 +6312,7 @@ public static partial class Game
                 L_I00281658: ;
                 r4 = Mem.U32((r4 + 472u));
                 L_I0028165C: ;
-                r5 = r23; func_0022B030(r4, (int)r5);
+                r5 = r23; Player_HoldByEffect_0022B030(r4, (int)r5);
                 L_L00281664: ;
                 L_I00281664: ;
                 r9 = Mem.U32((r29 + 772u));

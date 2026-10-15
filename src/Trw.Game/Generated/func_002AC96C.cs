@@ -44,7 +44,7 @@ public static partial class Game
             int a1 = 0;
             a1 = (int)(new Fx24(f).unkE);
             r = 0;
-            if (!(((((a1 == (-1)) || ((int)(new Ent24(e).slot[(int)(new Fx24(f).unkC)].a) == 0)) || (C.Seq((object?)((r = func_00222BC4(e, a1, (int)(new Fx24(f).unk10)))), ((r != 0) ? 1 : 0)) != 0)) || ((((int)(new Glob24(0x801462C8u).unk1D) != 0) && ((int)(new Ent24(e).unk5D8.unk8F) != 0)) && (new Glob24(0x801462C8u).unk62C != 0))))) goto _f0;
+            if (!(((((a1 == (-1)) || ((int)(new Ent24(e).slot[(int)(new Fx24(f).unkC)].a) == 0)) || (C.Seq((object?)((r = Player_AddAmmoCapped(e, a1, (int)(new Fx24(f).unk10)))), ((r != 0) ? 1 : 0)) != 0)) || ((((int)(new Glob24(0x801462C8u).unk1D) != 0) && ((int)(new Ent24(e).unk5D8.unk8F) != 0)) && (new Glob24(0x801462C8u).unk62C != 0))))) goto _f0;
             if (!(((int)(Mem.U8(0x801462E5u)) != 0))) goto _f1;
             if (!(((new Cfg24(Mem.U32((0x800D052Cu + (uint)(new Fx24(f).unkC * 4)))).unk14 & (uint)(8)) == (uint)(0)))) goto _f2;
             return 0;
@@ -76,7 +76,7 @@ public static partial class Game
             _f4: ;
             func_002AC96C_fx(e, f);
             if (!((r == 0))) goto _f10;
-            func_00222BC4(e, (int)(new Fx24(f).unkE), (int)(new Fx24(f).unk10));
+            Player_AddAmmoCapped(e, (int)(new Fx24(f).unkE), (int)(new Fx24(f).unk10));
             _f10: ;
             return 1;
             _f0: ;

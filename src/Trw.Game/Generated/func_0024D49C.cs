@@ -37,7 +37,7 @@ public static partial class Game
                 }
                 if ((t == 0u))
                 {
-                    tobj = func_0022A470(0x80145040u, _fp);
+                    tobj = Player_FindNearest(0x80145040u, _fp);
                     if ((tobj != 0u))
                     {
                         t = tobj;

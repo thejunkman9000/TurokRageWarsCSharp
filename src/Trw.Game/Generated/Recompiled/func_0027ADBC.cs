@@ -181,7 +181,7 @@ public static partial class Game
                 L_L0027B0B8: ;
                 r4 = 2148794368u;
                 r4 = r4 + 20544u;
-                r5 = r17; func_00228DA0(r4, r5);
+                r5 = r17; Player_DeflectByFields(r4, r5);
                 r2 = Mem.U32((r17 + 280u));
                 r2 = Mem.U32((r2 + 48u));
                 r4 = Mem.U16((r2 + 16u));

@@ -29,7 +29,7 @@ public static partial class Game
             }
             if ((new O06A_v13(a).unk1C != 0u))
             {
-                n = func_0022A590(0x80145040u, (int)(new O06A_v13(a).unk1C));
+                n = Player_GetIndex(0x80145040u, (int)(new O06A_v13(a).unk1C));
             }
             func_00264790(n);
             func_00404E28(n);

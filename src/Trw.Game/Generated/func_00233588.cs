@@ -17,7 +17,7 @@ public static partial class Game
                 if ((func_002301E4(c, (uint)(e)) != 0))
                 {
                     new PlayerEvt(e).f13C_Set(1);
-                    func_0022AFFC(p);
+                    Player_StopLoopSound2(p);
                 }
             }
         }

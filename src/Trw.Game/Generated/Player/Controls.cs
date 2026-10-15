@@ -6,6 +6,21 @@ namespace Trw.Game;
 
 public static partial class Game
 {
+    // ==== func_0022A870 @ 0x0022A870 [C]
+    public static void Player_ClearAllPadInput(uint g)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022A870", (uint)g);
+            uint a = 0u;
+            for (a = new ActorGroup(g).head_; (a != 0u); a = new Actor(a).next_)
+            {
+                func_00285D00((Mem.U32((a + (uint)1688)) + (uint)320));
+                Mem.Set((Mem.U32((a + (uint)1688)) + (uint)208), 0);
+            }
+        }
+    }
+
     // ==== func_002631D0 @ 0x002631D0 [MIPS]
     public static uint Pad_UpdatePlayerControls(uint a0, uint a1, uint a2, uint a3)
     {

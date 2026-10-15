@@ -15,7 +15,7 @@ public static partial class Game
             n = 0;
             if ((new O06A_v13(a).unk1C != 0u))
             {
-                n = func_0022A590(0x80145040u, (int)(new O06A_v13(a).unk1C));
+                n = Player_GetIndex(0x80145040u, (int)(new O06A_v13(a).unk1C));
             }
             func_00264790(n);
             new O06B_v5(new O06A_v13(a).unkC_).unk238_Set((uint)((uint)(new O06B_v5(new O06A_v13(a).unkC_).unk238) | (uint)(25165824)));

@@ -16,7 +16,7 @@ public static partial class Game
             int ok = 0;
             int v = 0;
             int res = 0;
-            if (((int)(func_00222A80(owner, (uint)((int)(Mem.S16((owner + (uint)1582)))), default(uint), default(uint))) == 0))
+            if (((int)(Weapon_HasAmmoForShot(owner, (uint)((int)(Mem.S16((owner + (uint)1582)))), default(uint), default(uint))) == 0))
             {
                 Mem.Set((owner + (uint)1904), (short)(func_0022F95C(owner)));
             }
@@ -48,7 +48,7 @@ public static partial class Game
                                     func_0025DF54(3405);
                                     if ((Mem.U32((owner + (uint)1500)) != 0u))
                                     {
-                                        v = func_0022A590(0x80145040u, (int)(owner));
+                                        v = Player_GetIndex(0x80145040u, (int)(owner));
                                         Hud_SpawnTextLineA(0x80145088u, Mem.U32((owner + (uint)1500)), (uint)(Mem.S32(0x800D70E8u)), v, Mem.F32(0x800C80BCu));
                                     }
                                 }
@@ -63,7 +63,7 @@ public static partial class Game
                     Mem.Set((st + (uint)332), 1);
                     if (((Mem.U32((owner + (uint)1712)) & (uint)(8192)) != 0u))
                     {
-                        func_0022B1A8(owner, (uint)(0), default(uint), default(uint));
+                        Player_PlaceAttractMarker(owner, (uint)(0), default(uint), default(uint));
                         Mem.Set((st + (uint)336), 1);
                     }
                     goto L_check;
@@ -73,7 +73,7 @@ public static partial class Game
             {
                 if ((Mem.S32((st + (uint)336)) == 0))
                 {
-                    func_0022B1A8(owner, (uint)(1), default(uint), default(uint));
+                    Player_PlaceAttractMarker(owner, (uint)(1), default(uint), default(uint));
                     Mem.Set((st + (uint)332), 0);
                 }
                 else

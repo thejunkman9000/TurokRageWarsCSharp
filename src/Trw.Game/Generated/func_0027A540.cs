@@ -89,7 +89,7 @@ public static partial class Game
                 Mem.Set((_fp + 64u), 0);
                 Mem.Set(((_fp + 64u) + 4u), 0);
                 new M5Vec3((_fp + 64u)).z_Set(Mem.F32(0x800C9C6Cu));
-                func_0022B08C((uint)(sd), (_fp + 64u));
+                Player_TransformPoint((uint)(sd), (_fp + 64u));
                 func_00271FD8((_fp + 80u), (_fp + 64u), new M5Obj(o).pos.P);
                 if (!(((sqrtf((((new M5Vec3((_fp + 80u)).x * new M5Vec3((_fp + 80u)).x) + (new M5Vec3((_fp + 80u)).y * new M5Vec3((_fp + 80u)).y)) + (new M5Vec3((_fp + 80u)).z * new M5Vec3((_fp + 80u)).z))) < Mem.F32(0x800C9C70u)) && (new M5Obj(o).f140 > Mem.F32(0x800C9C74u))))) goto _f9;
                 func_00283D24(o);

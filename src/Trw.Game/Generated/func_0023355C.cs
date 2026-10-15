@@ -13,7 +13,7 @@ public static partial class Game
             actor = new Actor(actor).owner_;
             if ((new Actor(actor).unk11C0 == 0))
             {
-                func_0022AF64(actor, 2060);
+                Player_PlayLoopSound2(actor, 2060);
             }
         }
     }

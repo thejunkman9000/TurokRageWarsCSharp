@@ -23,11 +23,11 @@ public static partial class Game
                 func_0025DE74((int)((uint)(6405)), C.Tmp(Cpu.F2U(Mem.F32((actor + (uint)8))), Cpu.F2U(Mem.F32((actor + (uint)12))), Cpu.F2U(Mem.F32((actor + (uint)16)))), (int)((actor + (uint)8)), (int)((uint)((-1))));
                 break;
             }
-            func_00218464();
+            Player_StubStop938_00218464();
             Mem.Set((actor + (uint)4532), 0);
             Actor_DispatchEvent((actor + (uint)744), (actor + (uint)1112), 1);
             Player_PlaceAtSpawn(actor, (uint)(Mem.S32((actor + (uint)1516))), (uint)(0), (uint)(1));
-            func_002266E4(actor);
+            Player_ApplyCharacterClass(actor);
         }
     }
 

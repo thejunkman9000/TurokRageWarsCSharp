@@ -23,7 +23,7 @@ public static partial class Game
                 if (!((new F718(actor).f71C != 0))) goto _f0;
                 s1 = 1;
                 if (!(((int)(Mem.S16((actor + (uint)1616))) != 4))) goto _f1;
-                func_002227D0(actor, (int)(state), 4);
+                Player_SetState(actor, (int)(state), 4);
                 _f1: ;
                 _f0: ;
                 v = (float)(0);

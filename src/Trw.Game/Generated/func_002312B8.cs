@@ -44,7 +44,7 @@ public static partial class Game
                         }
                         else
                         {
-                            ok = (((int)(func_00222A80(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0) ? 1 : 0);
+                            ok = (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0) ? 1 : 0);
                         }
                     }
                 }
@@ -52,8 +52,8 @@ public static partial class Game
             if ((ok != 0))
             {
                 Actor_DispatchEvent(a, s, 2);
-                func_0022AF30(o);
-                func_0022AFFC(o);
+                Player_StopLoopSound1(o);
+                Player_StopLoopSound2(o);
                 func_0025DE74(2424, pv, (int)(pv), (-1));
                 return;
             }
@@ -64,11 +64,11 @@ public static partial class Game
                 new M2St(s).unk64_Set(2.5f);
                 if (((new M2Own(o).unk1450 == 0) && (Mem.S32(0x801450B8u) == 1)))
                 {
-                    func_0021A9A4(new M2Act(a).owner_, (uint)(1019), default(uint), default(uint));
+                    Weapon_FireShot(new M2Act(a).owner_, (uint)(1019), default(uint), default(uint));
                 }
                 else
                 {
-                    func_0021A9A4(new M2Act(a).owner_, (uint)(1229), default(uint), default(uint));
+                    Weapon_FireShot(new M2Act(a).owner_, (uint)(1229), default(uint), default(uint));
                 }
             }
         }

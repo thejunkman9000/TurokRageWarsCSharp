@@ -2983,7 +2983,7 @@ public static partial class Game
             {
                 List_Init((new S5QuadPool(p).listC.P + (uint)(i * 20)), 488, 492);
             }
-            func_00219460(0x8011EE70u);
+            ObjectRec_Init_00219460(0x8011EE70u);
             for (j = 0; (j < 4); ++j)
             {
                 v = (0x8011F038u + (uint)(j * 16));

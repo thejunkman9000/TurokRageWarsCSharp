@@ -10,7 +10,7 @@ public static partial class Game
 {
     public static void RegisterPreserved()
     {
-        Funcs.Add(0x00211014U, "func_00211014", (a0, a1, a2, a3) => func_00211014(a0, a1, a2, a3));
+        Funcs.Add(0x00211014U, "func_00211014", (a0, a1, a2, a3) => Ai_UpdateRushAttackTail_00211014(a0, a1, a2, a3));
         Funcs.Add(0x002627B4U, "func_002627B4", (a0, a1, a2, a3) => func_002627B4(a0, a1, a2, a3));
         Funcs.Add(0x00403E88U, "func_00403E88", (a0, a1, a2, a3) => func_00403E88(a0, a1, a2, a3));
         Funcs.Add(0x0041C67CU, "func_0041C67C", (a0, a1, a2, a3) => func_0041C67C(a0, a1, a2, a3));

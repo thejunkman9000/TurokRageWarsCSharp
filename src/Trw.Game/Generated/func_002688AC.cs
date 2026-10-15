@@ -16,7 +16,7 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_002688AC", (uint)a, (uint)src, (uint)c, (uint)pos_in);
                 if (((src != 0u) && ((int)(new B15Src(src).type) == 1)))
                 {
-                    func_00217388(src, (src + (uint)368));
+                    ActorSound_StopLoop(src, (src + (uint)368));
                 }
             }
         }

@@ -21,11 +21,11 @@ public static partial class Game
             }
             new S7Fx(p).slot[(int)(0)].prev__Set(0u);
             new S7Fx(p).slot[(int)(31)].next__Set(0u);
-            func_00219460(0x8011F448u);
+            ObjectRec_Init_00219460(0x8011F448u);
             new S7Rec(0x8011F448u).unk0_Set(8);
             new S7Rec(0x8011F448u).unk14_Set(1);
             new S7Rec(0x8011F448u).unk12_Set((sbyte)(0));
-            func_00219460(0x8011F2C0u);
+            ObjectRec_Init_00219460(0x8011F2C0u);
             new S7Rec(0x8011F2C0u).unk0_Set(8);
             new S7Rec(0x8011F2C0u).unk14_Set(0);
             new S7Rec(0x8011F2C0u).unk12_Set((sbyte)(0));

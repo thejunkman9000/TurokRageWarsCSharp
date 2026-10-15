@@ -100,7 +100,7 @@ public static partial class Game
                 L_L002AC550: ;
                 { bool c_ = r16 == 0; r4 = r17; if (c_) goto L_L002AC5A8; }
                 r5 = (uint)(int)Mem.S16((r16 + 12u));
-                r6 = r0; r2 = (uint)func_0022ACA8(r4, (int)r5);
+                r6 = r0; r2 = (uint)Player_GetAmmoCapacity(r4, (int)r5);
                 r5 = 2148335616u;
                 r5 = r5 - 7052u;
                 r4 = Mem.U16((r17 + 228u));

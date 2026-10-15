@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00279130", (uint)a, (uint)p);
-            func_00217388(a, (uint)(p));
+            ActorSound_StopLoop(a, (uint)(p));
             Mem.Set(p, (uint)((uint)(Mem.U32(p)) | (uint)(32)));
             new ActorX(a).flags_Set((uint)((uint)(new ActorX(a).flags) & (uint)((~65536))));
             new ActorX(a).flags_Set((uint)((uint)(new ActorX(a).flags) & (uint)((~8192))));

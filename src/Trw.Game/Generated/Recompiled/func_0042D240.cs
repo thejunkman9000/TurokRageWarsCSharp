@@ -42,11 +42,11 @@ public static partial class Game
                 { bool c_ = r3 == r2;  if (c_) goto L_L0042D2C8; }
                  goto L_L0042D2D8;
                 L_L0042D2B0: ;
-                r4 = r16; r2 = (uint)func_002282C8(r4, r5, r6);
+                r4 = r16; r2 = (uint)Match_IsTeamScoreLimitReached(r4, r5, r6);
                 { bool c_ = r2 == 0; r2 = (uint)3; if (c_) goto L_L0042D2D8; }
                  goto L_L0042D2E8;
                 L_L0042D2C8: ;
-                r4 = r16; r2 = (uint)func_002281CC(r4);
+                r4 = r16; r2 = (uint)Match_IsKillLimitReached(r4);
                 { bool c_ = r2 != 0; r2 = (uint)2; if (c_) goto L_L0042D2E8; }
                 L_L0042D2D8: ;
                 r2 = 2148794368u;

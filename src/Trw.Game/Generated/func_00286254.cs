@@ -39,9 +39,9 @@ public static partial class Game
             }
             if ((func_002934DC() != 0))
             {
-                func_00226A10(0x80145040u);
+                Player_UpdateAll(0x80145040u);
             }
-            if ((func_0022A67C(0x80145040u) != 0))
+            if ((Match_CheckEndAcknowledged_0022A67C(0x80145040u) != 0))
             {
                 Audio_PlayCue((int)((t34 = (uint)(52))));
                 switch ((int)(Mem.U8((0x80145040u + (uint)4757))))

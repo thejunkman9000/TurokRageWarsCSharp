@@ -6,6 +6,54 @@ namespace Trw.Game;
 
 public static partial class Game
 {
+    // ==== func_002166F4 @ 0x002166F4 [C]
+    public static int Anim_PickRandomByMask(uint o, int a1, uint e, uint mask)
+    {
+        uint _fp = Stack.Alloc(104);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_002166F4", (uint)o, (uint)a1, (uint)e, (uint)mask);
+                int def = 0;
+                short r = 0;
+                func_002798CC(_fp);
+                def = new B04Ent_v4(e).id;
+                while ((new B04Ent_v4(e).mask != (-1)))
+                {
+                    if (((new B04Ent_v4(e).mask == 0) && ((int)(new B04SelL(_fp).cur) != 0)))
+                    {
+                        goto L_done;
+                    }
+                    if (((mask & (uint)(new B04Ent_v4(e).mask)) != 0u))
+                    {
+                        if ((func_002469F8(o, new B04Ent_v4(e).id, (-1)) != (-1)))
+                        {
+                            func_002798D4(_fp, (short)(new B04Ent_v4(e).id), (short)(10));
+                        }
+                    }
+                    e += 8u;
+                }
+                if (((int)(new B04SelL(_fp).cur) == 0))
+                {
+                    func_002798D4(_fp, (short)(def), (short)(10));
+                }
+                L_done: ;
+                r = func_00279918(_fp);
+                {
+                    int c = func_002469F8(o, (int)(r), (-1));
+                    if ((c == (-1)))
+                    {
+                        return def;
+                    }
+                    return (int)(r);
+                }
+                return 0;
+            }
+        }
+        finally { Stack.Free(104); }
+    }
+
     // ==== func_002476B8 @ 0x002476B8 [C]
     public static void Anim_SendEvent(uint o, int list, float lo, float hi)
     {

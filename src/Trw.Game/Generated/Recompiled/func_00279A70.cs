@@ -34,7 +34,7 @@ public static partial class Game
                 r16 = r2;
                 r2 = Mem.U32((r16 + 1448u));
                 { bool c_ = r2 == 0;  if (c_) goto L_L00279AD8; }
-                r4 = r16; r2 = (uint)func_0022B168(r4);
+                r4 = r16; r2 = (uint)Player_IsDead(r4);
                 { bool c_ = r2 != 0;  if (c_) goto L_L00279AD8; }
                 r5 = Mem.U32((r16 + 1444u));
                 r6 = Mem.U32((r16 + 1448u));
@@ -43,7 +43,7 @@ public static partial class Game
                 r4 = r17; r2 = (uint)func_002833A4(r4);
                 r16 = r2;
                 Mem.Set((r16 + 1448u), r0);
-                r4 = r16; r2 = (uint)func_0022B168(r4);
+                r4 = r16; r2 = (uint)Player_IsDead(r4);
                 { bool c_ = r2 != 0; r2 = (uint)1; if (c_) goto L_L00279AFC; }
                 Mem.Set((r16 + 1436u), r2);
                 L_L00279AFC: ;
@@ -63,7 +63,7 @@ public static partial class Game
                 r2 = r2 & r3;
                 { bool c_ = r2 == 0;  if (c_) goto L_L00279B58; }
                 r4 = Mem.U32((r5 + 472u));
-                r6 = (uint)2; r2 = (uint)func_002227D0(r4, (int)r5, (int)r6);
+                r6 = (uint)2; r2 = (uint)Player_SetState(r4, (int)r5, (int)r6);
                 L_L00279B58: ;
                 r4 = r17; func_00284408(r4);
                 r16 = Mem.U32((r17 + 280u));

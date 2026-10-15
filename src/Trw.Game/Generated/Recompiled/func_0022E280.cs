@@ -66,7 +66,7 @@ public static partial class Game
                 Mem.Set((r16 + 1840u), r0);
                 Mem.Set((r16 + 1844u), r0);
                 Mem.Set((r16 + 1848u), r0);
-                Mem.Set((r16 + 1852u), r0); Cpu.SetS(0, func_0022ADAC(r4));
+                Mem.Set((r16 + 1852u), r0); Cpu.SetS(0, Player_GetClassFieldF4_0022ADAC(r4));
                 Mem.Set((r16 + 1856u), Cpu.W(0));
                 Mem.Set((r16 + 1860u), r0);
                 Cpu.SetW(0, Mem.U32((r16 + 1860u)));

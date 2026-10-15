@@ -448,7 +448,7 @@ public static partial class Game
             uint temp_s0 = 0u;
             uint temp_s1 = 0u;
             uint var_a1 = 0u;
-            temp_v0 = func_0022A404(0x80145040u);
+            temp_v0 = Obj_GetField20_0022A404(0x80145040u);
             if ((temp_v0 != 0))
             {
                 Object_ReleaseHandles_0044ACCC((uint)(temp_v0));

@@ -60,7 +60,7 @@ public static partial class Game
                 {
                     Funcs.CallReg(f, a, s, 0u, 0u);
                 }
-                func_0022BC04(o);
+                Player_SetWeaponModel_0022BC04(o);
                 Mem.Set(0x800D2988u, dt);
             }
         }

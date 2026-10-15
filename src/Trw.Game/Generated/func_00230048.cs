@@ -22,7 +22,7 @@ public static partial class Game
             }
             do
             {
-                if (((int)(func_00222A80(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+                if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
                 {
                     return 0;
                 }

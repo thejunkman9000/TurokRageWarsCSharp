@@ -27,7 +27,7 @@ public static partial class Game
                 r5 = Mem.U32((r16 + 28u));
                 r4 = 2148794368u;
                 r4 = r4 + 20544u;
-                r2 = (uint)func_0022A590(r4, (int)r5);
+                r2 = (uint)Player_GetIndex(r4, (int)r5);
                 r11 = r2;
                 r2 = (uint)1;
                 { bool c_ = r11 == r2; r2 = (uint)((int)r11 < 2 ? 1 : 0); if (c_) goto L_L004463BC; }

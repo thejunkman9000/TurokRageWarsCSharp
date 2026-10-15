@@ -14,7 +14,7 @@ public static partial class Game
             new PlayerEvt(e).f130_Set((new WeaponInfo_v2(Mem.U32((0x800D052Cu + (uint)(new Player_v3(p).weapon * 4)))).f18 * Mem.F32(0x800C8110u)));
             if ((((int)(new Player_v3(p).weapon) == 8) && (new Player_v3(p).f11C0 == 0)))
             {
-                func_0022AF64(p, 2620);
+                Player_PlayLoopSound2(p, 2620);
             }
         }
     }

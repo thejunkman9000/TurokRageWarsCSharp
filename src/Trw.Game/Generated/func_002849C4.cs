@@ -50,7 +50,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002849C4", (uint)o);
-            func_00228DA0(0x80145040u, o);
+            Player_DeflectByFields(0x80145040u, o);
             func_002849C4_func_00283A54(o);
             func_00279E40(o, 1.0f);
         }

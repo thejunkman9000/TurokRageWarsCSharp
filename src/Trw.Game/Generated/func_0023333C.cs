@@ -12,27 +12,27 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0023333C", (uint)actor, (uint)state);
             uint owner = new Actor(actor).owner_;
             Mem.Set((state + (uint)316), 2);
-            if (((int)(func_00222A80(owner, (uint)((int)(Mem.S16((owner + (uint)1582)))), default(uint), default(uint))) == 0))
+            if (((int)(Weapon_HasAmmoForShot(owner, (uint)((int)(Mem.S16((owner + (uint)1582)))), default(uint), default(uint))) == 0))
             {
                 Mem.Set((owner + (uint)1904), (short)(func_0022F95C(owner)));
                 return;
             }
             if ((Mem.F32((actor + (uint)260)) >= Mem.F32(0x800C8144u)))
             {
-                if ((func_0022B174(owner) == 0))
+                if ((Player_IsInWeaponStance_0022B174(owner) == 0))
                 {
-                    func_0022B974(owner);
+                    Player_EnterWeaponStance_0022B974(owner);
                 }
             }
             if ((!((Mem.U32((owner + (uint)1708)) & (uint)(16384)) != 0u) || (new Actor(owner).unk5E4 == 0)))
             {
                 Actor_DispatchEvent(actor, state, 2);
-                func_0022B9B4(owner);
+                Player_LeaveWeaponStance_0022B9B4(owner);
                 Mem.Set((state + (uint)316), 1);
             }
             if ((func_002301E4(actor, state) != 0))
             {
-                func_0022B9B4(owner);
+                Player_LeaveWeaponStance_0022B9B4(owner);
             }
         }
     }

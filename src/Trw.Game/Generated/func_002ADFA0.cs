@@ -13,9 +13,9 @@ public static partial class Game
             uint p = 0u;
             int b = 0;
             int c = 0;
-            func_00222BC4(e, 0, (int)(new Fx24(f).unkC));
-            func_00222BC4(e, 1, (int)(new Fx24(f).unkE));
-            func_00222BC4(e, 2, (int)(new Fx24(f).unk10));
+            Player_AddAmmoCapped(e, 0, (int)(new Fx24(f).unkC));
+            Player_AddAmmoCapped(e, 1, (int)(new Fx24(f).unkE));
+            Player_AddAmmoCapped(e, 2, (int)(new Fx24(f).unk10));
             p = new Fx24(f).unk0_;
             b = (int)(new Fx24(f).unk6);
             c = (int)(new Fx24(f).unk8);

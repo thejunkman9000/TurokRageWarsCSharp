@@ -27,7 +27,7 @@ public static partial class Game
                 {
                     return 1;
                 }
-                return (((int)(func_00222A80(c, (uint)((int)(Mem.S16((c + (uint)1582)))), default(uint), default(uint))) == 0) ? 1 : 0);
+                return (((int)(Weapon_HasAmmoForShot(c, (uint)((int)(Mem.S16((c + (uint)1582)))), default(uint), default(uint))) == 0) ? 1 : 0);
             }
             return 1;
         }

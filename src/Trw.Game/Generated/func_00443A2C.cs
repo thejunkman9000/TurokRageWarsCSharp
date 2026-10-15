@@ -14,7 +14,7 @@ public static partial class Game
             int r = 0;
             if ((new O06P_v5(p).unk1450 == 0))
             {
-                if ((func_0022B168(p) != 0))
+                if ((Player_IsDead(p) != 0))
                 {
                     new O06P_v5(p).unk1340_Set((int)(new O06P_v5(p).unk1340 + 1));
                     if ((new O06P_v5(p).unk1340 >= 76))

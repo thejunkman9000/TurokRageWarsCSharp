@@ -1485,7 +1485,7 @@ public static partial class Game
                 racer = new Race(race).racers_;
                 if ((racer != 0u))
                 {
-                    func_0022A3E8(0x80145040u, racer);
+                    Match_DrawClock(0x80145040u, racer);
                 }
             }
             func_00442B44(new Race(race).self.sound.P);

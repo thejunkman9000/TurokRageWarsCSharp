@@ -49,7 +49,7 @@ public static partial class Game
                 if ((func_002301E4(actor, state) != 0))
                 {
                     Mem.Set((state + (uint)316), 1);
-                    func_0022AFFC(owner);
+                    Player_StopLoopSound2(owner);
                 }
             }
         }

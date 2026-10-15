@@ -14,7 +14,7 @@ public static partial class Game
             if ((Mem.F32(0x8015404Cu) >= 120.0f))
             {
                 new S10Game(0x801468A0u).unk24_Set(0);
-                func_0022A738((0x801468A0u - (uint)6240));
+                Match_EndForAllPlayers((0x801468A0u - (uint)6240));
                 return 1;
             }
             return 0;

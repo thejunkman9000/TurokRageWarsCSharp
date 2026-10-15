@@ -6,6 +6,20 @@ namespace Trw.Game;
 
 public static partial class Game
 {
+    // ==== func_00216488 @ 0x00216488 [C]
+    public static void DamageInfo_Set(uint p, int a, int b, int c, int d, int e)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00216488", (uint)p, (uint)a, (uint)b, (uint)c);
+            new B04Five(p).a_Set(a);
+            new B04Five(p).b_Set(b);
+            new B04Five(p).c_Set(c);
+            new B04Five(p).d_Set(d);
+            new B04Five(p).e_Set(e);
+        }
+    }
+
     // ==== func_00219A40 @ 0x00219A40 [MIPS]
     public static uint Player_StateHandler(uint a0, uint a1, uint a2, uint a3)
     {
@@ -96,7 +110,7 @@ public static partial class Game
                 r2 = Mem.U32((r17 + 1508u));
                 { bool c_ = (int)r2 <= 0;  if (c_) goto L_L0021A2A8; }
                 r5 = 1075838976u;
-                r4 = r17; func_002297F0(r4, Cpu.U2F(r5));
+                r4 = r17; Player_ApplyStatusEffect_002297F0(r4, Cpu.U2F(r5));
                  goto L_L0021A2A8;
                 L_L00219BDC: ;
                 r2 = Mem.U32((r17 + 1508u));
@@ -132,7 +146,7 @@ public static partial class Game
                 L_L00219C60: ;
                 r4 = r17;
                 L_L00219C64: ;
-                r5 = r20; func_00229F74(r4, r5);
+                r5 = r20; Player_AdjustIncomingDamage(r4, r5);
                 r4 = r17;
                 Mem.Set((r29 + 16u), r19);
                 r6 = Mem.U32((r20 + 4u));
@@ -162,7 +176,7 @@ public static partial class Game
                 { bool c_ = r3 != r2;  if (c_) goto L_L00219D24; }
                 L_L00219CFC: ;
                 { bool c_ = r22 == 0;  if (c_) goto L_L00219D24; }
-                r4 = r17; r2 = (uint)func_0022B168(r4);
+                r4 = r17; r2 = (uint)Player_IsDead(r4);
                 { bool c_ = r2 == 0;  if (c_) goto L_L00219D24; }
                 r3 = Mem.U32((r18 + 1496u));
                 r2 = Mem.U16((r3 + 10u));
@@ -267,7 +281,7 @@ public static partial class Game
                 r16 = r16 + 20544u;
                 r4 = r16;
                 r5 = r18;
-                Mem.Set((r3 + 141u), (byte)r2); r2 = (uint)func_0022A590(r4, (int)r5);
+                Mem.Set((r3 + 141u), (byte)r2); r2 = (uint)Player_GetIndex(r4, (int)r5);
                 r4 = Mem.U32((r17 + 1496u));
                 r21 = r2;
                 r3 = Mem.U8((r4 + 143u));
@@ -290,7 +304,7 @@ public static partial class Game
                 r16 = 2148794368u;
                 r16 = r16 + 20544u;
                 r4 = r16;
-                r5 = r17; r2 = (uint)func_0022A590(r4, (int)r5);
+                r5 = r17; r2 = (uint)Player_GetIndex(r4, (int)r5);
                 r3 = Mem.U32((r17 + 1496u));
                 r19 = r2;
                 r3 = Mem.U8((r3 + 143u));
@@ -313,7 +327,7 @@ public static partial class Game
                 L_L00219FB8: ;
                 r4 = r17;
                 r5 = r18;
-                r6 = r20; func_00219688(r4, r5);
+                r6 = r20; Hud_PostTagAndFlagMessages(r4, r5);
                 { bool c_ = r18 == 0;  if (c_) goto L_L0021A014; }
                 r4 = Mem.U32((r18 + 4920u));
                 r3 = r4 + 1u;
@@ -382,14 +396,14 @@ public static partial class Game
                 r16 = 2148794368u;
                 r16 = r16 - 19612u;
                 r5 = Mem.U32((r2 + 4u));
-                r4 = r16; r2 = func_0020CFE0(r4, (int)r5);
+                r4 = r16; r2 = AiNav_FindSearchNode(r4, (int)r5);
                 r3 = r2;
                 r2 = Mem.U32((r3 + 56u));
                 r2 = r2 + 1u;
                 Mem.Set((r3 + 56u), r2);
                 r2 = Mem.U32((r18 + 5204u));
                 r5 = Mem.U32((r2 + 4u));
-                r4 = r16; r2 = func_0020CFE0(r4, (int)r5);
+                r4 = r16; r2 = AiNav_FindSearchNode(r4, (int)r5);
                 r3 = r2;
                 r2 = Mem.U32((r3 + 60u));
                 r2 = r2 + 1u;
@@ -640,7 +654,7 @@ public static partial class Game
                 L_L0021B418: ;
                 r4 = 2148794368u;
                 r4 = r4 - 19612u;
-                r5 = r20 + 8u; r2 = (uint)func_0020CB3C(r4, r5);
+                r5 = r20 + 8u; r2 = (uint)AiNav_FindNearestNode(r4, r5);
                 r3 = Mem.U32((r20 + 5204u));
                 Mem.Set((r3 + 4u), r2);
                 r31 = Mem.U32((r29 + 724u));
@@ -686,7 +700,7 @@ public static partial class Game
                 float fv = 0f;
                 float fv2 = 0f;
                 cur = Mem.S32((p + (uint)1508));
-                if ((((((Flyby_IsActive() == 0) && (func_0022C450(p) == 0)) && (Mem.S32(0x8013B29Cu) == 0)) && (!((Mem.S32(0x801462C8u) & 1) != 0) || (a4 == 32))) && ((uint)(Mem.U16((p + (uint)1616))) >= 2u)))
+                if ((((((Flyby_IsActive() == 0) && (Player_IsDying(p) == 0)) && (Mem.S32(0x8013B29Cu) == 0)) && (!((Mem.S32(0x801462C8u) & 1) != 0) || (a4 == 32))) && ((uint)(Mem.U16((p + (uint)1616))) >= 2u)))
                 {
                     if ((Mem.S32((p + (uint)2060)) != 0))
                     {
@@ -737,7 +751,7 @@ public static partial class Game
                                     new B04GF2(0x801468A0u).unkA4_Set(60);
                                     break;
                                 }
-                                func_002227D0(p, (int)(p), 45);
+                                Player_SetState(p, (int)(p), 45);
                             }
                             dmg = 0;
                         }
@@ -756,7 +770,7 @@ public static partial class Game
                         {
                             if ((Mem.S32((p + (uint)1508)) > 0))
                             {
-                                s0 = func_00229BE0(p, 5005);
+                                s0 = Player_GetCharacterSoundId(p, 5005);
                                 if (((int)(func_0025E4F4((uint)(s0), default(uint), default(uint), default(uint))) == 0))
                                 {
                                     func_0025DE74((int)((uint)((short)(s0))), C.Tmp((uint)(Mem.S32((p + (uint)8))), (uint)(Mem.S32((p + (uint)12))), (uint)(Mem.S32((p + (uint)16)))), (int)((p + (uint)8)), (int)((uint)((-1))));
@@ -830,7 +844,7 @@ public static partial class Game
                                 {
                                     v = 100;
                                 }
-                                func_0022B10C(p, (v & 65535));
+                                Player_AddShake_0022B10C(p, (v & 65535));
                             }
                         }
                         fv = 0.0f;
@@ -839,6 +853,57 @@ public static partial class Game
             }
         }
         finally { Stack.Free(12); }
+    }
+
+    // ==== func_0021C440 @ 0x0021C440 [C]
+    public static void Player_ApplyHitStatusEffect(uint a, int a1, int a2, uint e)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0021C440", (uint)a, (uint)a1, (uint)a2, (uint)e);
+            if ((((((new B04Pa7(a).unk5E4 != 0) && (Player_IsDying(a) == 0)) && !(new B04Pa7(a).unk670 > 0.0f)) && (((new B04GF(0x801468A0u).unk98 == 0) || ((int)(new B04Pa7(a).stats.unk80) != 11)) || (new B04GF(0x801468A0u).unkA0 <= 0))) && !((new B04Pa7(a).unk122C & (uint)(32768)) != 0u)))
+            {
+                switch ((int)(new B04Ev7(e).unk4))
+                {
+                case 1229:
+                case 1019:
+                    Player_Shrink_0022B68C(a, 0.100000001f, new B04Ev7(e).unk12C);
+                    return;
+                case 1231:
+                case 1021:
+                    Player_Shrink_0022B68C(a, 0.125f, new B04Ev7(e).unk12C);
+                    return;
+                case 1232:
+                case 1022:
+                    Player_Shrink_0022B68C(a, 0.300000012f, new B04Ev7(e).unk12C);
+                    return;
+                case 1074:
+                case 1251:
+                    Player_AddDamageOverTime_0022B540(a, 80.0f, 2.0f, new B04Ev7(e).unk12C, 1);
+                    return;
+                case 1248:
+                case 1032:
+                    Player_Inflate_0022B5FC(a, 0.25f, new B04Ev7(e).unk12C);
+                    return;
+                case 1235:
+                case 1049:
+                    Player_ImplantEmbryo(a, (uint)(new B04Ev7(e).unk12C));
+                    return;
+                case 297:
+                    new B04Pa7(a).unk11D8_Set(0);
+                    new B04Pa7(a).unk11E4_Set(0);
+                    if (!((new B04Pa7(a).unk122C & (uint)(32768)) != 0u))
+                    {
+                        if ((new B04Pa7(a).unk13D8 == 0))
+                        {
+                            new B04Pa7(a).unk13D8_Set(new B04Ev7(e).unk12C);
+                        }
+                        Player_SetState(a, (int)(a), 38);
+                    }
+                    break;
+                }
+            }
+        }
     }
 
     // ==== func_00220D20 @ 0x00220D20 [MIPS]
@@ -948,6 +1013,453 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_00220D20", r2); Stack.Free(384); }
     }
 
+    // ==== func_0022631C @ 0x0022631C [C]
+    public static void Player_UpdateShockedState(uint a)
+    {
+        uint _fp = Stack.Alloc(24);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0022631C", (uint)a);
+                uint pw = 0u;
+                uint tgt = 0u;
+                uint o = 0u;
+                float t = 0f;
+                uint v = 0u;
+                if (((new Plr(a).unk5DC_ != 0u) && (80.0f < func_002745D4(100.0f))))
+                {
+                    pw = new Plr(a).unk5DC_;
+                    t = func_002745D4(7.5f);
+                    v = Cpu.TruncU32(t);
+                    func_0023919C(pw, (sbyte)(255), (sbyte)(255), (sbyte)(0), (sbyte)(0), (sbyte)((int)((byte)(v))), (sbyte)(3), (sbyte)(7));
+                    func_002394AC(0x80145088u, 0.0f, 204.799988f, 0.0f, 512.0f, 0, new Pawn(pw).pos128.P);
+                }
+                new Plr(a).unk1D4_Set((new Plr(a).unk1D4 - Mem.F32(0x800D2988u)));
+                if (((new Plr(a).unk1D4 <= 0.0f) || (new Plr(a).unk5E4 == 0)))
+                {
+                    o = new Plr(a).unk13D8_;
+                    tgt = 0u;
+                    if ((((int)(new Plr(o).unk0) == 1) && ((new Plr(o).flags100 & (uint)(3145728)) != 0u)))
+                    {
+                        tgt = o;
+                    }
+                    new Plr(a).flags100_Set((uint)((uint)(new Plr(a).flags100) & 4286578687u));
+                    Player_SetState(a, (int)(a), 2);
+                    if (((new Plr(tgt).unk122C & 512) != 0))
+                    {
+                        DamageInfo_Set(_fp, (int)(new Plr(a).unk13D8_), 197120, (int)Cpu.F2U(25.5999985f), 128, 0);
+                    }
+                    else
+                    {
+                        DamageInfo_Set(_fp, (int)(new Plr(a).unk13D8_), 17920, (int)Cpu.F2U(25.5999985f), 128, 0);
+                    }
+                    new Plr(a).unk13D8__Set(0u);
+                    Player_StateHandler(a, (a + (uint)368), _fp, default(uint));
+                }
+            }
+        }
+        finally { Stack.Free(24); }
+    }
+
+    // ==== func_002266E4 @ 0x002266E4 [C]
+    public static uint func_002266E4_find6(int b, int c)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002266E4_find6", (uint)b, (uint)c);
+            return func_0028CF7C(0x8011FE88u, b, c);
+        }
+    }
+
+    public static void Player_ApplyCharacterClass(uint a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002266E4", (uint)a);
+            int k = 0;
+            int v = 0;
+            int w = 0;
+            int s = 0;
+            uint c = 0u;
+            k = new Plr(a).unk5E0;
+            if (!(((Mem.S32((0x801468F4u + (uint)(0 * 4))) != 0) && ((int)(new Plr(a).stats.unk8F) == 1)))) goto _f0;
+            k = 19;
+            _f0: ;
+            c = func_002266E4_find6(11, k);
+            if (!((c == 0u))) goto _f1;
+            c = func_002266E4_find6(11, (-1));
+            if (!((c == 0u))) goto _f2;
+            c = func_002266E4_find6((-1), (-1));
+            _f2: ;
+            _f1: ;
+            new Plr(a).unk18__Set(c);
+            new Plr(a).unk50_Set(new PlrCls(c).unkFC);
+            new Plr(a).unk54_Set(new PlrCls(c).unk100);
+            new Plr(a).unk58_Set(new PlrCls(c).unk104);
+            if (!(((Mem.S32((0x801468F4u + (uint)(0 * 4))) != 0) && ((int)(new Plr(a).stats.unk8F) != 0)))) goto _f3;
+            new Plr(a).unk5E4_Set(2560);
+            new Plr(a).unk174_Set(2560);
+            return;
+            _f3: ;
+            if (!(((Mem.S32((0x80146938u + (uint)(0 * 4))) != 0) && ((int)(new Plr(a).stats.unk94) != 0)))) goto _f4;
+            s = (int)(new Plr(a).stats.unk80);
+            if (!((s == 11))) goto _f5;
+            goto L_A1;
+            _f5: ;
+            if (!((s == 12))) goto _f6;
+            L_A1: ;
+            v = 102400;
+            goto _f7;
+            _f6: ;
+            if (!((s == 14))) goto _f8;
+            goto L_B1;
+            goto _f9;
+            _f8: ;
+            if (!((s == 13))) goto _f10;
+            L_B1: ;
+            v = 76800;
+            goto _f11;
+            _f10: ;
+            goto L_C1;
+            _f11: ;
+            _f9: ;
+            _f7: ;
+            goto _f12;
+            _f4: ;
+            L_C1: ;
+            v = (new Plr(a).unk18.unk18 << (int)8);
+            _f12: ;
+            if (!((((int)(Mem.U8((0x801462D5u + (uint)0))) == 1) && (new Plr(a).unk1450 == 0)))) goto _f13;
+            v = (int)((int)(v) + new ActorRow400((0x80102B10u + (uint)(new Plr(a).unk5D4 * 400))).unk0);
+            _f13: ;
+            new Plr(a).unk5E4_Set(v);
+            if (!(((Mem.S32((0x80146938u + (uint)(0 * 4))) != 0) && ((int)(new Plr(a).stats.unk94) != 0)))) goto _f14;
+            s = (int)(new Plr(a).stats.unk80);
+            if (!((s == 11))) goto _f15;
+            goto L_A2;
+            _f15: ;
+            if (!((s == 12))) goto _f16;
+            L_A2: ;
+            w = 102400;
+            goto _f17;
+            _f16: ;
+            if (!((s == 14))) goto _f18;
+            goto L_B2;
+            goto _f19;
+            _f18: ;
+            if (!((s == 13))) goto _f20;
+            L_B2: ;
+            w = 76800;
+            goto _f21;
+            _f20: ;
+            goto L_C2;
+            _f21: ;
+            _f19: ;
+            _f17: ;
+            goto _f22;
+            _f14: ;
+            L_C2: ;
+            w = (new Plr(a).unk18.unk18 << (int)8);
+            _f22: ;
+            if (!((((int)(Mem.U8((0x801462D5u + (uint)0))) == 1) && (new Plr(a).unk1450 == 0)))) goto _f23;
+            w = (int)((int)(w) + new ActorRow400((0x80102B10u + (uint)(new Plr(a).unk5D4 * 400))).unk0);
+            _f23: ;
+            new Plr(a).unk174_Set(w);
+            Mem.Set((a + 3u), (sbyte)((-1)));
+        }
+    }
+
+    // ==== func_00229294 @ 0x00229294 [MIPS]
+    public static uint Player_ApplyDamageOverTime(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00229294", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_00229294: ;
+                r29 = r29 - 96u;
+                Mem.Set((r29 + 88u), Cpu.Fpr[22]);
+                Cpu.SetW(22, r0);
+                Mem.Set((r29 + 80u), Cpu.Fpr[21]);
+                r1 = 2148270080u;
+                Cpu.SetW(21, Mem.U32((r1 + 32052u)));
+                Mem.Set((r29 + 52u), r17);
+                r17 = r4;
+                Mem.Set((r29 + 60u), r19);
+                r19 = r0;
+                Mem.Set((r29 + 56u), r18);
+                r18 = (uint)4680;
+                Mem.Set((r29 + 64u), r31);
+                Mem.Set((r29 + 48u), r16);
+                Mem.Set((r29 + 72u), Cpu.Fpr[20]);
+                L_L002292D0: ;
+                r16 = r17 + r18;
+                Cpu.SetW(2, Mem.U32((r16 + 4u)));
+                fcc = Cpu.S(22) < Cpu.S(2);
+                if (!fcc) { r19 = r19 + 1u; goto L_L00229410; }
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 + 10632u)));
+                Cpu.SetW(0, Mem.U32((r16 + 0u)));
+                Cpu.SetS(20, Cpu.S(0) * Cpu.S(1));
+                Cpu.SetS(1, Cpu.S(2) - Cpu.S(1));
+                Cpu.SetS(20, Cpu.S(20) * Cpu.S(21));
+                Mem.Set((r16 + 4u), Cpu.W(1));
+                Cpu.SetW(1, Mem.U32((r16 + 16u)));
+                Cpu.SetW(3, (uint)(int)Cpu.S(20));
+                r2 = Cpu.W(3);
+                Cpu.SetW(0, r2);
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                Cpu.SetS(1, Cpu.S(1) + Cpu.S(0));
+                Cpu.SetW(0, Mem.U32((r16 + 4u)));
+                fcc = Cpu.S(0) <= Cpu.S(22);
+                { bool c_ = !fcc; Mem.Set((r16 + 16u), Cpu.W(1)); if (c_) goto L_L00229350; }
+                Cpu.SetW(0, Mem.U32((r16 + 12u)));
+                Cpu.SetS(0, Cpu.S(0) * Cpu.S(21));
+                fcc = Cpu.S(1) < Cpu.S(0);
+                { bool c_ = !fcc;  if (c_) goto L_L00229350; }
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(1));
+                Cpu.SetS(20, Cpu.S(20) + Cpu.S(0));
+                L_L00229350: ;
+                r4 = Mem.U32((r16 + 8u));
+                { bool c_ = r4 == 0; r2 = (uint)1; if (c_) goto L_L00229394; }
+                r3 = Mem.U8((r4 + 0u));
+                { bool c_ = r3 != r2; r3 = 3145728u; if (c_) goto L_L00229394; }
+                r2 = Mem.U32((r4 + 256u));
+                r2 = r2 & r3;
+                { bool c_ = r2 == 0;  if (c_) goto L_L00229394; }
+                r2 = Mem.U32((r4 + 4652u));
+                r2 = r2 & 512u;
+                { bool c_ = r2 == 0;  if (c_) goto L_L00229394; }
+                r1 = 2148270080u;
+                Cpu.SetW(0, Mem.U32((r1 + 32056u)));
+                Cpu.SetS(20, Cpu.S(20) * Cpu.S(0));
+                L_L00229394: ;
+                r2 = Mem.U32((r16 + 20u));
+                { bool c_ = r2 == 0; r2 = 1048576u; if (c_) goto L_L002293D4; }
+                r5 = 1035927552u;
+                r5 = r5 | 9612u;
+                r6 = Mem.U32((r16 + 8u));
+                r4 = r17; Player_Inflate_0022B5FC(r4, Cpu.U2F(r5), (int)r6);
+                Cpu.SetW(0, Mem.U32((r17 + 1508u)));
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                fcc = Cpu.S(0) <= Cpu.S(20);
+                { bool c_ = !fcc; r2 = 1048576u; if (c_) goto L_L002293D4; }
+                r1 = 2148270080u;
+                Cpu.SetW(20, Mem.U32((r1 + 32060u)));
+                L_L002293D4: ;
+                r2 = r2 | 128u;
+                Mem.Set((r29 + 16u), r2);
+                Mem.Set((r29 + 20u), r0);
+                r5 = Mem.U32((r16 + 8u));
+                r7 = 1103888384u;
+                r7 = r7 | 52428u;
+                Cpu.SetW(3, (uint)(int)Cpu.S(20));
+                r6 = Cpu.W(3);
+                r4 = r29 + 24u; DamageInfo_Set(r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u));
+                r4 = r17;
+                r5 = r17 + 368u;
+                r6 = r29 + 24u; r2 = Player_StateHandler(r4, r5, r6, r7); r3 = Cpu.V1;
+                r19 = r19 + 1u;
+                L_L00229410: ;
+                r2 = (uint)((int)r19 < 5 ? 1 : 0);
+                { bool c_ = r2 != 0; r18 = r18 + 24u; if (c_) goto L_L002292D0; }
+                r31 = Mem.U32((r29 + 64u));
+                r19 = Mem.U32((r29 + 60u));
+                r18 = Mem.U32((r29 + 56u));
+                r17 = Mem.U32((r29 + 52u));
+                r16 = Mem.U32((r29 + 48u));
+                Cpu.Fpr[22] = Mem.U64((r29 + 88u));
+                Cpu.Fpr[21] = Mem.U64((r29 + 80u));
+                Cpu.Fpr[20] = Mem.U64((r29 + 72u));
+                r29 = r29 + 96u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00229294", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002297F0 @ 0x002297F0 [C]
+    public static void Player_ApplyStatusEffect_002297F0(uint a, float x)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002297F0", (uint)a);
+            float f = 0f;
+            float t = 0f;
+            uint v = 0u;
+            uint w = 0u;
+            uint pw = 0u;
+            if ((((((x != 0.0f) && !(75.0f <= new Plr(a).unk11D8)) && !(new Plr(a).unk670 > 0.0f)) && (((new GameB6(0x801468A0u).unk98 == 0) || ((int)(new Plr(a).stats.unk80) != 11)) || (new GameB6(0x801468A0u).unkA0 <= 0))) && !((new Plr(a).unk122C & 32768) != 0)))
+            {
+                f = (new Plr(a).unk11D8 + (x * 15.0f));
+                if ((75.0f < f))
+                {
+                    f = 75.0f;
+                }
+                new Plr(a).unk11D8_Set(f);
+                Actor_DispatchEvent((a + (uint)744), (a + (uint)1112), 2);
+                if ((new Plr(a).unk1210 != 0))
+                {
+                    if ((new Plr(a).unk5E4 != 0))
+                    {
+                        Player_SetState(a, (int)(a), 2);
+                    }
+                    new Plr(a).unk1210_Set(0);
+                    new Plr(a).unk1214_Set(0);
+                }
+                new Plr(a).flags100_Set((uint)((uint)(new Plr(a).flags100) & 4278190079u));
+                if ((new Plr(a).unk5DC_ != 0u))
+                {
+                    if ((new Pawn(new Plr(a).unk5DC_).unk544 == 0))
+                    {
+                        func_0023919C(new Plr(a).unk5DC_, (sbyte)(128), (sbyte)(0), (sbyte)(0), (sbyte)(250), (sbyte)((int)((byte)(Cpu.TruncU32(func_002745D4(7.5f))))), (sbyte)(0), (sbyte)((int)((byte)(Cpu.TruncU32((((new Plr(a).unk11D8 * 0.0666666701f) - 1.5f) * 15.0f))))));
+                        return;
+                    }
+                    new Pawn(new Plr(a).unk5DC_).unk544_Set(3);
+                    new Pawn(new Plr(a).unk5DC_).unk54D_Set((byte)(Cpu.TruncU32(new Plr(a).unk11D8)));
+                }
+            }
+        }
+    }
+
+    // ==== func_00229F74 @ 0x00229F74 [C]
+    public static void Player_AdjustIncomingDamage(uint a, uint b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00229F74", (uint)a, (uint)b);
+            uint tgt = 0u;
+            uint o = 0u;
+            uint o2 = 0u;
+            float x = 0f;
+            float y = 0f;
+            o = new HitB6(b).unk0_;
+            if ((o != 0u))
+            {
+                if (((int)(new Plr(o).unk0) != 1))
+                {
+                    if (((int)(new Plr(o).unk0) == 2))
+                    {
+                        o2 = new Plr(o).unk12C_;
+                        if (((o2 != 0u) && ((int)(new Plr(o2).unk0) == 1)))
+                        {
+                            if (((new Plr(o2).flags100 & (uint)(3145728)) != 0u))
+                            {
+                                tgt = o2;
+                                if ((tgt == a))
+                                {
+                                    new HitB6(b).unk4_Set((int)(((((float)(new HitB6(b).unk4) * Mem.F32(0x800C7DB4u)) * Mem.F32(0x800C7DB8u)) * Mem.F32(0x800C7DBCu))));
+                                }
+                            }
+                            else
+                            {
+                                if (((int)(new Plr(o2).unkE4) == 1036))
+                                {
+                                    tgt = new Plr(o2).unk1D8_;
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (((new Plr(o).flags100 & (uint)(3145728)) != 0u))
+                    {
+                        tgt = new Plr(o).unk1D8_;
+                    }
+                }
+            }
+            else
+            {
+                tgt = a;
+            }
+            if ((tgt != 0u))
+            {
+                if ((new Plr(tgt).unk1450 != 0))
+                {
+                    switch ((int)(new Plr(tgt).stats.unk93))
+                    {
+                    case 2:
+                        break;
+                    default:
+                        new Plr(tgt).stats.unk93_Set((byte)(0));
+                        goto case 0;
+                    case 0:
+                        x = ((float)(new HitB6(b).unk4) * Mem.F32(0x800C7DC0u));
+                        y = Mem.F32(0x800C7DC4u);
+                        x = (x * y);
+                        goto L_common;
+                    case 1:
+                        x = ((float)(new HitB6(b).unk4) * Mem.F32(0x800C7DC8u));
+                        y = Mem.F32(0x800C7DCCu);
+                        x = (x * y);
+                        L_common: ;
+                        new HitB6(b).unk4_Set((int)((x * Mem.F32(0x800C7DD0u))));
+                        break;
+                    }
+                }
+                if (((((new GameB6(0x801468A0u).unk24 != 0) && ((int)(Mem.U8((0x801468A0u + (uint)(-1456)))) == 0)) && ((new Plr(tgt).unk1450 == 0) || (new Plr(a).unk1450 == 0))) && ((int)(new Plr(a).stats.unk92) == (int)(new Plr(tgt).stats.unk92))))
+                {
+                    new HitB6(b).unk4_Set(0);
+                }
+            }
+        }
+    }
+
+    // ==== func_0022AA34 @ 0x0022AA34 [MIPS]
+    public static uint func_0022AA34_rc(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0022AA34", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_0022AA34: ;
+                Cpu.SetW(1, Mem.U32((r4 + 2112u)));
+                r1 = 2148270080u;
+                Cpu.SetW(0, Mem.U32((r1 + 32220u)));
+                r2 = Mem.U32((r4 + 2120u));
+                { bool c_ = r2 != 0; Cpu.SetS(1, Cpu.S(1) - Cpu.S(0)); if (c_) goto L_L0022AA74; }
+                r1 = 2148270080u;
+                Cpu.SetW(0, Mem.U32((r1 + 32224u)));
+                Cpu.SetS(0, Cpu.S(1) * Cpu.S(0));
+                r1 = 2148270080u;
+                Cpu.SetW(2, Mem.U32((r1 + 32228u)));
+                Cpu.SetS(1, Cpu.S(0));
+                fcc = Cpu.S(2) < Cpu.S(1);
+                { bool c_ = !fcc;  if (c_) goto L_L0022AA7C; }
+                L_L0022AA74: ;
+                r1 = 2148270080u;
+                Cpu.SetW(1, Mem.U32((r1 + 32232u)));
+                L_L0022AA7C: ;
+                r1 = 2148270080u;
+                Cpu.SetW(0, Mem.U32((r1 + 32236u)));
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(1)); Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0022AA34", r2); Stack.Free(384); }
+    }
+
+    public static float Player_GetAirLevel(uint p0)
+    {
+        func_0022AA34_rc(p0, 0u, 0u, 0u); return Cpu.S(0);
+    }
+
     // ==== func_0022ABF0 @ 0x0022ABF0 [C]
     public static int Player_GetMaxHealth(uint a)
     {
@@ -993,6 +1505,331 @@ public static partial class Game
         }
     }
 
+    // ==== func_0022ADA0 @ 0x0022ADA0 [C]
+    public static int Player_IsHurt(uint a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022ADA0", (uint)a);
+            return ((new Actor(a).unk5E4 < 25600) ? 1 : 0);
+        }
+    }
+
+    // ==== func_0022B10C @ 0x0022B10C [C]
+    public static void Player_AddShake_0022B10C(uint actor, int amount)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022B10C", (uint)actor, (uint)amount);
+            ushort v = (ushort)(((int)(new Actor(actor).unk16D8) + amount));
+            new Actor(actor).unk16D8_Set(v);
+            if (((int)(v) > 100))
+            {
+                v = (ushort)(100);
+            }
+            new Actor(actor).unk16D8_Set(v);
+        }
+    }
+
+    // ==== func_0022B168 @ 0x0022B168 [C]
+    public static int Player_IsDead(uint a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022B168", (uint)a);
+            return ((new Actor(a).unk5E4 == 0) ? 1 : 0);
+        }
+    }
+
+    // ==== func_0022B500 @ 0x0022B500 [C]
+    public static void Player_ClearTimedEffects_0022B500(uint a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022B500", (uint)a);
+            int i = 0;
+            for (i = 4; (i >= 0); --i)
+            {
+                Mem.Set((a + (uint)(4684 + (i * 24))), 0);
+            }
+        }
+    }
+
+    // ==== func_0022B520 @ 0x0022B520 [C]
+    public static void Player_ClearTimedEffectsB_0022B520(uint a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022B520", (uint)a);
+            int i = 0;
+            for (i = 4; (i >= 0); --i)
+            {
+                Mem.Set((a + (uint)(4684 + (i * 24))), 0);
+            }
+        }
+    }
+
+    // ==== func_0022B540 @ 0x0022B540 [C]
+    public static void Player_AddDamageOverTime_0022B540(uint a, float x, float y, int c, int d)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022B540", (uint)a, 0u, 0u, (uint)c);
+            int i = 0;
+            uint e = 0u;
+            for (i = 0; (i < 5); ++i)
+            {
+                if ((x != 0f))
+                {
+                    e = (new Plr(a).ent.P + (uint)(i * 24));
+                }
+                else
+                {
+                    e = (new Plr(a).ent.P + (uint)(i * 24));
+                }
+                if ((new PlrEnt(e).unk4 <= 0.0f))
+                {
+                    new PlrEnt(e).unk8_Set(c);
+                    new PlrEnt(e).unkC_Set(x);
+                    new PlrEnt(e).unk10_Set(0.0f);
+                    new PlrEnt(e).unk14_Set(d);
+                    new PlrEnt(e).unk4_Set((y * Mem.F32(0x800C7E00u)));
+                    new PlrEnt(e).unk0_Set((x / new PlrEnt(e).unk4));
+                    return;
+                }
+            }
+        }
+    }
+
+    // ==== func_0022B5B0 @ 0x0022B5B0 [C]
+    public static void Player_RecoverScale_0022B5B0(uint a, uint _a1)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022B5B0", (uint)a, _a1);
+            if ((new Plr(a).unk5E4 != 0))
+            {
+                new Plr(a).unk12C0_Set(func_00274878(new Plr(a).unk12C0, Mem.F32(0x800C7E04u), Cpu.U2F((uint)(Mem.S32(0x800CF234u)))));
+            }
+        }
+    }
+
+    // ==== func_0022B5FC @ 0x0022B5FC [C]
+    public static void Player_Inflate_0022B5FC(uint a, float x, int y)
+    {
+        uint _fp = Stack.Alloc(24);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0022B5FC", (uint)a, 0u, (uint)y);
+                float v = (new Plr(a).unk12C0 + x);
+                float t = Mem.F32(0x800CE3E0u);
+                if (!(t <= v))
+                {
+                    t = v;
+                }
+                new Plr(a).unk12C0_Set(t);
+                if ((Mem.F32(0x800CE3E0u) <= t))
+                {
+                    DamageInfo_Set(_fp, y, 262144, (int)Cpu.F2U(25.5999985f), 128, 0);
+                    Player_StateHandler(a, (a + (uint)368), _fp, default(uint));
+                }
+            }
+        }
+        finally { Stack.Free(24); }
+    }
+
+    // ==== func_0022B68C @ 0x0022B68C [C]
+    public static void Player_Shrink_0022B68C(uint p, float d, int a)
+    {
+        uint _fp = Stack.Alloc(24);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0022B68C", (uint)p, 0u, (uint)a);
+                float x = (new Player_v3(p).f12C0 - d);
+                float t = Mem.F32(0x800CE3E4u);
+                if (!(x <= t))
+                {
+                    t = x;
+                }
+                new Player_v3(p).f12C0_Set(t);
+                if ((t <= Mem.F32(0x800CE3E4u)))
+                {
+                    DamageInfo_Set(_fp, a, (int)((new Player_v3(p).f174_ + (uint)6400)), (int)Cpu.F2U(25.5999985f), 128, 0);
+                    Player_StateHandler(p, (p + 368u), _fp, default(uint));
+                }
+            }
+        }
+        finally { Stack.Free(24); }
+    }
+
+    // ==== func_0022B7E8 @ 0x0022B7E8 [C]
+    public static void Player_ImplantEmbryo(uint a, uint b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022B7E8", (uint)a, (uint)b);
+            uint name = 0u;
+            if ((new Plr(a).unk11E4 == 0.0f))
+            {
+                func_0025DF54(2885);
+                new Plr(a).unk13E0_Set((int)(b));
+                new Plr(a).unk11E4_Set(Mem.F32(0x800C7E0Cu));
+                if ((new Plr(a).unk5DC_ != 0u))
+                {
+                    Hud_PostMessage(0x80145088u, new Plr(a).unk5DC_, Mem.U32(0x800D71E0u));
+                    if (((b != 0u) && ((int)(new Plr(b).unk0) == 1)))
+                    {
+                        if (((new Plr(b).flags100 & (uint)(3145728)) != 0u))
+                        {
+                            name = new Plr(a).unk13EC.P;
+                            sprintf(name, Mem.U32(0x800D71E8u), (new Plr(b).stats_ + (uint)132), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
+                            Hud_PostMessage(0x80145088u, new Plr(a).unk5DC_, name);
+                            Hud_PostMessage(0x80145088u, new Plr(a).unk5DC_, Mem.U32(0x800D71ECu));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // ==== func_0022B8D0 @ 0x0022B8D0 [C]
+    public static void Player_UpdateEmbryo(uint a)
+    {
+        uint _fp = Stack.Alloc(24);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0022B8D0", (uint)a);
+                float n = 0f;
+                if ((new Plr(a).unk11E4 > 0.0f))
+                {
+                    n = (new Plr(a).unk11E4 - Mem.F32(0x800D2988u));
+                    new Plr(a).unk11E4_Set(n);
+                    if (((n <= 0.0f) && !((Mem.U32(0x801462C8u) & (uint)(1)) != 0u)))
+                    {
+                        DamageInfo_Set(_fp, new Plr(a).unk13E0, (new Plr(a).unk174 + 6400), (int)Cpu.F2U(25.5999985f), 16384, 0);
+                        Player_StateHandler(a, (a + (uint)368), _fp, default(uint));
+                    }
+                }
+            }
+        }
+        finally { Stack.Free(24); }
+    }
+
+    // ==== func_0022BD84 @ 0x0022BD84 [C]
+    public static void Player_ApplyGroundFlags(uint actor, uint state, int flag)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022BD84", (uint)actor, (uint)state, (uint)flag);
+            uint w = 0u;
+            uint b1000 = 0u;
+            uint b8000 = 0u;
+            uint b10000 = 0u;
+            if ((flag != 0))
+            {
+                w = Mem.U32((state + (uint)56));
+                b1000 = (w & (uint)(4096));
+                b8000 = (w & (uint)(32768));
+                b10000 = (w & (uint)(65536));
+                if ((b1000 == (uint)(0)))
+                {
+                    Mem.Set((actor + (uint)2112), 0);
+                }
+                else
+                {
+                    Player_UpdateDrowning(actor, state, default(uint), default(uint));
+                }
+                if ((b8000 != 0u))
+                {
+                    Player_Nop_0022BEEC();
+                }
+                if ((b10000 != 0u))
+                {
+                    Player_ApplyAmmoDrainFloor(actor, state);
+                }
+            }
+        }
+    }
+
+    // ==== func_0022BE10 @ 0x0022BE10 [MIPS]
+    public static uint Player_UpdateDrowning(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0022BE10", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_0022BE10: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 24u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 28u), r31);
+                Cpu.SetW(0, Mem.U32((r16 + 2112u)));
+                r1 = 2148335616u;
+                Cpu.SetW(1, Mem.U32((r1 + 10632u)));
+                Cpu.SetS(2, Cpu.S(0) + Cpu.S(1));
+                r1 = 2148270080u;
+                Cpu.SetW(0, Mem.U32((r1 + 32272u)));
+                fcc = Cpu.S(0) < Cpu.S(2);
+                { bool c_ = !fcc; Mem.Set((r16 + 2112u), Cpu.W(2)); if (c_) goto L_L0022BEBC; }
+                r2 = Mem.U32((r16 + 1508u));
+                r3 = (uint)150;
+                r2 = (uint)((int)r2 >> 8);
+                r3 = r3 - r2;
+                { bool c_ = (int)r3 <= 0; r6 = (uint)1; if (c_) goto L_L0022BE88; }
+                r2 = 2290614272u;
+                r2 = r2 | 34953u;
+                { long p_ = (long)(int)r3 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r8 = hi;
+                r2 = r8 + r3;
+                r2 = (uint)((int)r2 >> 3);
+                r3 = (uint)((int)r3 >> 31);
+                r2 = r2 - r3;
+                if ((int)r2 > 0) { r6 = r2; goto L_L0022BE88; }
+                L_L0022BE88: ;
+                r2 = (uint)1;
+                Mem.Set((r16 + 2120u), r2);
+                r2 = (uint)31;
+                r4 = r16;
+                r6 = r6 << 8;
+                r7 = r0;
+                Mem.Set((r29 + 16u), r2); Player_ApplyDamage(r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u));
+                Cpu.SetW(0, Mem.U32((r16 + 2112u)));
+                r1 = 2148270080u;
+                Cpu.SetW(1, Mem.U32((r1 + 32276u)));
+                Cpu.SetS(0, Cpu.S(0) - Cpu.S(1));
+                Mem.Set((r16 + 2112u), Cpu.W(0));
+                L_L0022BEBC: ;
+                r31 = Mem.U32((r29 + 28u));
+                r16 = Mem.U32((r29 + 24u));
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0022BE10", r2); Stack.Free(384); }
+    }
+
+    // ==== func_0022BEEC @ 0x0022BEEC [C]
+    public static void Player_Nop_0022BEEC()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0022BEEC");
+        }
+    }
+
     // ==== func_00449E38 @ 0x00449E38 [C]
     public static void Player_Restart(uint p)
     {
@@ -1003,8 +1840,8 @@ public static partial class Game
             int flag = 0;
             if (((int)(new S11Game(0x801462C8u).unk1D) != 0))
             {
-                func_0022BAC0((uint)(p));
-                func_0022BB70(p);
+                Player_LookupCharacterDef((uint)(p));
+                Player_SetBodyModel_0022BB70(p);
                 if ((((int)(new S11Obj(p).rec.b91) == 0) && ((int)(new S11Game(0x801462C8u).unkD) == 1)))
                 {
                     func_00426270(p);
@@ -1060,7 +1897,7 @@ public static partial class Game
             {
                 Mem.Copy(new S11Obj(p).quad760.P, new S11Obj(p).hud.quad140.P, 16);
             }
-            func_0021A78C(p);
+            Player_ResetFields(p);
             flag = 0;
             if ((Flyby_IsActive() == 0))
             {
@@ -1153,7 +1990,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0044A17C_releaseState", (uint)carried, (uint)state);
             if ((state != 0u))
             {
-                func_00217388(carried, state);
+                ActorSound_StopLoop(carried, state);
                 new RespawnFlags(state).bits_Set((int)((int)(new RespawnFlags(state).bits) | 32));
             }
         }
@@ -1166,13 +2003,13 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0044A17C", (uint)player);
             int i = 0;
             uint carried = 0u;
-            func_0022B500(player);
+            Player_ClearTimedEffects_0022B500(player);
             new RespawnPlayer(player).moving_Set(0);
             new RespawnPlayer(player).fade_Set(Mem.F32(0x800C7428u));
             func_00264808(new RespawnPlayer(player).anim, 1);
             if (((int)(Mem.U8(0x801462E5u)) != 0))
             {
-                func_002266E4(player);
+                Player_ApplyCharacterClass(player);
             }
             else
             {
@@ -1187,7 +2024,7 @@ public static partial class Game
                 new RespawnPlayer(player).maxHealth_Set(new RespawnPlayer(player).health);
             }
             new RespawnPlayer(player).bob_Set(Mem.F32(0x800C742Cu));
-            func_0021A78C(player);
+            Player_ResetFields(player);
             new RespawnPlayer(player).field11D8_Set(0);
             new RespawnPlayer(player).field11FC_Set(0);
             new RespawnPlayer(player).field13E0_Set(0);
@@ -1204,14 +2041,14 @@ public static partial class Game
             }
             if ((func_0044A17C_isOnline() != 0))
             {
-                func_0021AF6C(player, default(int));
+                Player_InitWeapons(player, default(int));
             }
             new RespawnPlayer(player).field11B4_Set(0);
             new RespawnPlayer(player).field11B8_Set(0);
             new RespawnPlayer(player).field13C8_Set(0);
             if ((new RespawnPlayer(player).isBot != 0))
             {
-                func_00208000(new RespawnPlayer(player).brain);
+                Ai_ResetBrain(new RespawnPlayer(player).brain);
             }
             for (i = 1; (i < 22); ++i)
             {
@@ -1290,7 +2127,7 @@ public static partial class Game
                     if ((new S5Player(p).respawn == 0))
                     {
                         new S5Glob(0x801462C8u).f680_Set(0);
-                        func_0022A738((0x801462C8u - (uint)4744));
+                        Match_EndForAllPlayers((0x801462C8u - (uint)4744));
                     }
                 }
             }
@@ -1306,7 +2143,7 @@ public static partial class Game
                         {
                             return;
                         }
-                        func_002227D0(p, (int)(p), 18);
+                        Player_SetState(p, (int)(p), 18);
                     }
                     else
                     {
@@ -1318,7 +2155,7 @@ public static partial class Game
                 }
                 break;
             }
-            func_002227D0(p, (int)(p), 18);
+            Player_SetState(p, (int)(p), 18);
             new S5Player(p).f1340_Set(0);
         }
     }

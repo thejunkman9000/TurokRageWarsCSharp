@@ -22,7 +22,7 @@ public static partial class Game
                 if (((int)(new B19Obj(o).id) == 1039))
                 {
                     func_0025DE74((int)((uint)((short)(3290))), C.Tmp(Cpu.F2U(new B19Plr(p).pos.x), Cpu.F2U(new B19Plr(p).pos.y), Cpu.F2U(new B19Plr(p).pos.z)), (int)(new B19Plr(p).pos.P), (int)((uint)((-1))));
-                    func_0022B540(p, 30.0f, 3.0f, new B19Obj(o).unk12C, 0);
+                    Player_AddDamageOverTime_0022B540(p, 30.0f, 3.0f, new B19Obj(o).unk12C, 0);
                     func_0028CE70(0x8011FE88u, (int)((new B19Plr(p).f698_ + (uint)320)), 20, _fp, Mem.F32(0x800C9F4Cu), Mem.F32(0x800C9F50u));
                     new B19Plr(p).f11EC_Set(Mem.F32(0x800C9F54u));
                 }

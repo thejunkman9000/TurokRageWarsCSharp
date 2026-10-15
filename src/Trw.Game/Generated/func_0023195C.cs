@@ -18,7 +18,7 @@ public static partial class Game
             int v = 0;
             uint g = 0u;
             Mem.Set((state + (uint)316), 1);
-            if (((int)(func_00222A80(owner, (uint)((int)(Mem.S16((owner + (uint)1582)))), default(uint), default(uint))) == 0))
+            if (((int)(Weapon_HasAmmoForShot(owner, (uint)((int)(Mem.S16((owner + (uint)1582)))), default(uint), default(uint))) == 0))
             {
                 Mem.Set((owner + (uint)1904), (short)(func_0022F95C(owner)));
                 return;
@@ -49,7 +49,7 @@ public static partial class Game
                                 func_0025DF54(3405);
                                 if ((Mem.U32((owner + (uint)1500)) != 0u))
                                 {
-                                    v = func_0022A590(0x80145040u, (int)(owner));
+                                    v = Player_GetIndex(0x80145040u, (int)(owner));
                                     xx = Mem.S32(0x800D70E8u);
                                     Hud_SpawnTextLineA(0x80145088u, Mem.U32((owner + (uint)1500)), (uint)(xx), v, Mem.F32(0x800C80A0u));
                                 }
@@ -74,7 +74,7 @@ public static partial class Game
                             if ((Mem.U32((owner + (uint)1500)) != 0u))
                             {
                                 g = 0x80145040u;
-                                v = func_0022A590(g, (int)(owner));
+                                v = Player_GetIndex(g, (int)(owner));
                                 xx = Mem.S32(0x800D70E8u);
                                 Hud_SpawnTextLineA((g + (uint)72), Mem.U32((owner + (uint)1500)), (uint)(xx), v, Mem.F32(0x800C80A4u));
                             }

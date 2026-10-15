@@ -6,6 +6,15 @@ namespace Trw.Game;
 
 public static partial class Game
 {
+    // ==== func_002172C4 @ 0x002172C4 [C]
+    public static void Debug_PrintfStub(int a, int b, int c)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002172C4", (uint)a, (uint)b, (uint)c);
+        }
+    }
+
     // ==== func_002529E4 @ 0x002529E4 [MIPS]
     public static uint Debug_DrawMemoryMap(uint a0, uint a1, uint a2, uint a3, uint a4)
     {

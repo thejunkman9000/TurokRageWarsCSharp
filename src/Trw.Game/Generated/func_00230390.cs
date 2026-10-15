@@ -21,7 +21,7 @@ public static partial class Game
             o = new M2Act(a).owner_;
             kind = (int)(new M2Row18((0x800CE8DCu + (uint)(new M2Own(o).unk650 * 24))).unk0);
             cls = Mem.U32((0x800D052Cu + (uint)(new M2Own(o).unk62E * 4)));
-            if (((int)(func_00222A80(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
             {
                 if ((new M2St(s).unk13C == 2))
                 {
@@ -30,7 +30,7 @@ public static partial class Game
                     {
                         new M2Own(o).unk7E8_Set(0);
                     }
-                    if (((int)(func_00222A80(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+                    if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
                     {
                         goto L_b5;
                     }
@@ -70,7 +70,7 @@ public static partial class Game
                                     func_0025DF54(3405);
                                     if ((new M2Own(o).pawn_ != 0u))
                                     {
-                                        yy = func_0022A590(0x80145040u, (int)(o));
+                                        yy = Player_GetIndex(0x80145040u, (int)(o));
                                         xx = Mem.S32(0x800D70E8u);
                                         Hud_SpawnTextLineA(0x80145088u, new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C7FD8u));
                                     }
@@ -84,12 +84,12 @@ public static partial class Game
                         if ((new M2St(s).unk13C == 1))
                         {
                             new M2St(s).unk13C_Set(2);
-                            if (((int)(func_00222A80(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
+                            if (((int)(Weapon_HasAmmoForShot(o, (uint)((int)(new M2Own(o).unk62E)), default(uint), default(uint))) == 0))
                             {
                                 func_0025DF54(3405);
                                 if ((new M2Own(o).pawn_ != 0u))
                                 {
-                                    yy = func_0022A590(0x80145040u, (int)(o));
+                                    yy = Player_GetIndex(0x80145040u, (int)(o));
                                     xx = Mem.S32(0x800D70E8u);
                                     Hud_SpawnTextLineA((0x80145040u + (uint)72), new M2Own(o).pawn_, (uint)(xx), yy, Mem.F32(0x800C7FDCu));
                                 }

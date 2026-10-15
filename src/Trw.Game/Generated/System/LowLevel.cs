@@ -12,8 +12,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00200500");
-            int mask = (int)(func_002023C4(default(uint), default(uint), default(uint), default(uint)));
-            func_002023D0((uint)((mask & (~1))), default(uint), default(uint), default(uint));
+            int mask = (int)(Cpu_GetStatusReg(default(uint), default(uint), default(uint), default(uint)));
+            Cpu_SetStatusReg((uint)((mask & (~1))), default(uint), default(uint), default(uint));
             return (mask & 1);
         }
     }
@@ -24,7 +24,23 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00200538", (uint)mask);
-            func_002023D0((uint)(((int)(func_002023C4(default(uint), default(uint), default(uint), default(uint))) | mask)), default(uint), default(uint), default(uint));
+            Cpu_SetStatusReg((uint)(((int)(Cpu_GetStatusReg(default(uint), default(uint), default(uint), default(uint))) | mask)), default(uint), default(uint), default(uint));
+        }
+    }
+
+    // ==== func_00200568 @ 0x00200568 [C]
+    public static void Bus_WriteWord(uint arg0, uint arg1)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00200568", (uint)arg0, (uint)arg1);
+            uint stat = 0u;
+            stat = Mem.U32((uint)(((uint)(73400336) | 2684354560u)));
+            while (((stat & (uint)(3)) != 0u))
+            {
+                stat = Mem.U32((uint)(((uint)(73400336) | 2684354560u)));
+            }
+            Mem.Set(arg0, arg1);
         }
     }
 
@@ -38,6 +54,18 @@ public static partial class Game
             {
             }
             return Mem.U32(addr);
+        }
+    }
+
+    // ==== func_002005DC @ 0x002005DC [C]
+    public static void Bus_SpinDelay(int n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_002005DC", (uint)n);
+            for (Mem.Set(0x800F5C80u, 0); (Mem.S32(0x800F5C80u) < n); Mem.Set(0x800F5C80u, (int)(Mem.S32(0x800F5C80u) + 1)))
+            {
+            }
         }
     }
 
@@ -343,6 +371,30 @@ public static partial class Game
         }
     }
 
+    // ==== func_00200C28 @ 0x00200C28 [C]
+    public static void Bus_WriteByteB(uint addr, byte val)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00200C28", (uint)addr, (uint)val);
+            int sh = (int)((((~addr) & (uint)(3)) * (uint)(8)));
+            addr = (uint)((uint)(addr) & (uint)((~3)));
+            Bus_WriteWord(addr, ((Bus_ReadWord(addr) & (uint)((~(255 << (int)sh)))) | (uint)(((int)(val) << (int)sh))));
+        }
+    }
+
+    // ==== func_00200CA0 @ 0x00200CA0 [C]
+    public static void Bus_WriteByteC(uint addr, byte val)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00200CA0", (uint)addr, (uint)val);
+            int sh = (int)((((~addr) & (uint)(3)) * (uint)(8)));
+            addr = (uint)((uint)(addr) & (uint)((~3)));
+            Bus_WriteWord(addr, ((Bus_ReadWord(addr) & (uint)((~(255 << (int)sh)))) | (uint)(((int)(val) << (int)sh))));
+        }
+    }
+
     // ==== func_00200D18 @ 0x00200D18 [C]
     public static void Bus_WriteBlock(uint dst, uint src, uint n)
     {
@@ -351,14 +403,14 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00200D18", (uint)dst, (uint)src, (uint)n);
             while (((n != (uint)(0)) && ((dst & (uint)(3)) != (uint)(0))))
             {
-                func_00200C28((dst++), (byte)((uint)(Mem.U8(((src += 1u) - 1u)))));
+                Bus_WriteByteB((dst++), (byte)((uint)(Mem.U8(((src += 1u) - 1u)))));
                 --n;
             }
             if ((n >= (uint)(4)))
             {
                 do
                 {
-                    func_00200568(dst, (uint)((((((int)(Mem.U8((src + (uint)0))) << (int)24) | ((int)(Mem.U8((src + (uint)1))) << (int)16)) | ((int)(Mem.U8((src + (uint)2))) << (int)8)) | (int)(Mem.U8((src + (uint)3))))));
+                    Bus_WriteWord(dst, (uint)((((((int)(Mem.U8((src + (uint)0))) << (int)24) | ((int)(Mem.U8((src + (uint)1))) << (int)16)) | ((int)(Mem.U8((src + (uint)2))) << (int)8)) | (int)(Mem.U8((src + (uint)3))))));
                     dst = (uint)((uint)(dst) + (uint)(4));
                     n = (uint)((uint)(n) - (uint)(4));
                     src = (uint)(src + (uint)(4 * 1));
@@ -367,7 +419,7 @@ public static partial class Game
             }
             while ((n != (uint)(0)))
             {
-                func_00200C28((dst++), (byte)((uint)(Mem.U8(((src += 1u) - 1u)))));
+                Bus_WriteByteB((dst++), (byte)((uint)(Mem.U8(((src += 1u) - 1u)))));
                 --n;
             }
         }
@@ -382,7 +434,7 @@ public static partial class Game
             int dmaOk = (-((Mem.S32(0x800CD390u) == 0) ? 1 : 0));
             while (((n != (uint)(0)) && ((dst & (uint)(3)) != (uint)(0))))
             {
-                func_00200CA0((dst++), (byte)((uint)(Mem.U8(((src += 1u) - 1u)))));
+                Bus_WriteByteC((dst++), (byte)((uint)(Mem.U8(((src += 1u) - 1u)))));
                 --n;
             }
             while ((n >= (uint)(4)))
@@ -398,7 +450,7 @@ public static partial class Game
                 }
                 else
                 {
-                    func_00200568(dst, (uint)((((((int)(Mem.U8((src + (uint)0))) << (int)24) | ((int)(Mem.U8((src + (uint)1))) << (int)16)) | ((int)(Mem.U8((src + (uint)2))) << (int)8)) | (int)(Mem.U8((src + (uint)3))))));
+                    Bus_WriteWord(dst, (uint)((((((int)(Mem.U8((src + (uint)0))) << (int)24) | ((int)(Mem.U8((src + (uint)1))) << (int)16)) | ((int)(Mem.U8((src + (uint)2))) << (int)8)) | (int)(Mem.U8((src + (uint)3))))));
                     dst = (uint)((uint)(dst) + (uint)(4));
                     src = (uint)(src + (uint)(4 * 1));
                     n = (uint)((uint)(n) - (uint)(4));
@@ -406,8 +458,52 @@ public static partial class Game
             }
             while ((n != (uint)(0)))
             {
-                func_00200CA0((dst++), (byte)((uint)(Mem.U8(((src += 1u) - 1u)))));
+                Bus_WriteByteC((dst++), (byte)((uint)(Mem.U8(((src += 1u) - 1u)))));
                 --n;
+            }
+        }
+    }
+
+    // ==== func_00200F98 @ 0x00200F98 [C]
+    public static void Bus_FillBytes(uint dst, byte val, uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00200F98", (uint)dst, (uint)val, (uint)n);
+            uint w = 0u;
+            while (((n != (uint)(0)) && ((dst & (uint)(3)) != (uint)(0))))
+            {
+                Bus_WriteByteB((dst++), (byte)((uint)(val)));
+                --n;
+            }
+            if ((n >= (uint)(4)))
+            {
+                w = (uint)((((((int)(val) << (int)24) | ((int)(val) << (int)16)) | ((int)(val) << (int)8)) | (int)(val)));
+                do
+                {
+                    Bus_WriteWord(dst, w);
+                    n = (uint)((uint)(n) - (uint)(4));
+                    dst = (uint)((uint)(dst) + (uint)(4));
+                }
+                while ((n >= (uint)(4)));
+            }
+            while ((n != (uint)(0)))
+            {
+                Bus_WriteByteB((dst++), (byte)((uint)(val)));
+                --n;
+            }
+        }
+    }
+
+    // ==== func_00201064 @ 0x00201064 [C]
+    public static void Bus_CopyBusToBus(uint dst, uint src, uint n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00201064", (uint)dst, (uint)src, (uint)n);
+            while (((n--) != 0u))
+            {
+                Bus_WriteByteB((dst++), (byte)((Bus_ReadByte((src++)) & (uint)(255))));
             }
         }
     }
@@ -586,6 +682,52 @@ public static partial class Game
             }
         }
         finally { if (Dbg.On) Dbg.Leave("func_002023A8", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002023C4 @ 0x002023C4 [MIPS]
+    public static uint Cpu_GetStatusReg(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002023C4", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002023C4: ;
+                r2 = Cpu.Cp0[12];
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002023C4", r2); Stack.Free(384); }
+    }
+
+    // ==== func_002023D0 @ 0x002023D0 [MIPS]
+    public static uint Cpu_SetStatusReg(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_002023D0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_002023D0: ;
+                Cpu.Cp0[12] = r4;
+                Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_002023D0", r2); Stack.Free(384); }
     }
 
     // ==== func_002028D0 @ 0x002028D0 [MIPS]

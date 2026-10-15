@@ -337,7 +337,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00443B08", (uint)a, (uint)b);
-            int n = func_0022A590(0x80145040u, new O06B_v2(b).unk1C);
+            int n = Player_GetIndex(0x80145040u, new O06B_v2(b).unk1C);
             int h = (int)(new O06R((0x80146398u + (uint)(n * 150))).unk6);
             int s = Mem.S32(new O06A_v7(a).unk14_);
             Str_Sprintf((uint)(((s - 4) + func_00442158(a))), 0x800E2730u, h, default(int));

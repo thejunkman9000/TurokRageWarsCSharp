@@ -195,7 +195,7 @@ public static partial class Game
                 { bool c_ = r2 != r8; r2 = (uint)1; if (c_) goto L_L0028A59C; }
                 { bool c_ = r18 != r2; r4 = r16; if (c_) goto L_L0028A59C; }
                 r5 = r16 + 368u;
-                r6 = r22; r2 = (uint)func_00204308(r4, r5, r6);
+                r6 = r22; r2 = (uint)Objective_CheckLockedTouch_00204308(r4, r5, r6);
                 r3 = r2;
                 L_L0028A59C: ;
                 { bool c_ = r3 == 0; r4 = r16; if (c_) goto L_L0028A5B0; }

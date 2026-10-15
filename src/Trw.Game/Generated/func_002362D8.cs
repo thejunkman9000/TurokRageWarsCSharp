@@ -17,11 +17,11 @@ public static partial class Game
             func_00289054(w, a, default(uint), default(uint));
             if ((Flyby_IsInWindow() == 0))
             {
-                func_00228774(0x80145040u, a);
+                Player_ReloadAnimObjects(0x80145040u, a);
             }
             if ((func_002934DC() != 0))
             {
-                func_0022A274(0x80145040u, a);
+                Player_DrawAll(0x80145040u, a);
             }
             func_0028B004(w, (int)(a));
             func_002A6170(0x8013BA80u);
@@ -30,14 +30,14 @@ public static partial class Game
                 func_002905D4((w + (uint)71544), a);
             }
             func_00286424(w, a);
-            func_00228934(0x80145040u, a);
+            Player_DrawWorldEffects(0x80145040u, a);
             func_0023B3E8((a + (uint)1392), a);
             func_0028B13C(w, (int)(a));
             func_002A577C(0x8013BA80u, (int)(a));
             func_00238D20(a, default(uint), default(uint), default(uint));
             if (((Flyby_IsInWindow() == 0) && (func_002934DC() != 0)))
             {
-                func_0022A2FC(0x80145040u, a);
+                Player_DrawViewWeapons(0x80145040u, a);
             }
             if (((Mem.S32(0x801462C8u) & 512) != 0))
             {

@@ -39,7 +39,7 @@ public static partial class Game
             {
                 return;
             }
-            func_0022692C(pool, count);
+            Player_AllocAll(pool, count);
             for (i = 0; (i < new ObjectPool(pool).count); ++i)
             {
                 List_Append_00255CB4(new ObjectPool(pool).active_queue.P, (new ObjectPool(pool).objects_ + (uint)(i * 5864)), default(uint), default(uint));
@@ -90,7 +90,7 @@ public static partial class Game
                 new func_804499B0_de_S3(@object).unk868_Set(0);
                 new func_804499B0_de_S3(@object).unk1D8__Set(@object);
                 new func_804499B0_de_S3(@object).unk3_Set(object_id);
-                func_002097E8(owner, @object);
+                Ai_InitForActor(owner, @object);
                 new func_804499B0_de_S3(@object).unk13C8_Set(0);
                 new func_804499B0_de_S3(@object).unk121C_Set(player_index);
                 new func_804499B0_de_S3(@object).unk1220_Set(0);
@@ -108,7 +108,7 @@ public static partial class Game
                 new func_804499B0_de_S3(@object).unk1334_Set(0);
                 new func_804499B0_de_S3(@object).unk13B4__Set(0x800CE8C8u);
                 new func_804499B0_de_S3(@object).unk11E8_Set(0);
-                func_0021A78C(@object);
+                Player_ResetFields(@object);
                 new func_804499B0_de_S3(@object).unk16D4_Set(0);
                 new func_804499B0_de_S3(@object).unk16D8_Set((short)(0));
                 Mover_ClearRecord_002A7F58((@object + (uint)3392), default(uint), default(uint), default(uint));
@@ -154,7 +154,7 @@ public static partial class Game
                 new func_804499B0_de_S3(@object).unk868_Set(0);
                 new func_804499B0_de_S3(@object).unk1D8__Set(@object);
                 new func_804499B0_de_S3(@object).unk3_Set(object_id);
-                func_002097E8(owner, @object);
+                Ai_InitForActor(owner, @object);
                 new func_804499B0_de_S3(@object).unk13C8_Set(0);
                 new func_804499B0_de_S3(@object).unk121C_Set((roster_index * 2));
                 new func_804499B0_de_S3(@object).unk1220_Set(0);
@@ -172,7 +172,7 @@ public static partial class Game
                 new func_804499B0_de_S3(@object).unk1334_Set(0);
                 new func_804499B0_de_S3(@object).unk13B4__Set(0x800CE8C8u);
                 new func_804499B0_de_S3(@object).unk11E8_Set(0);
-                func_0021A78C(@object);
+                Player_ResetFields(@object);
                 new func_804499B0_de_S3(@object).unk16D4_Set(0);
                 new func_804499B0_de_S3(@object).unk16D8_Set((short)(0));
                 Mover_ClearRecord_002A7F58((@object + (uint)3392), default(uint), default(uint), default(uint));

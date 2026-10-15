@@ -14,7 +14,7 @@ public static partial class Game
             {
                 Mem.Copy(_fp + 0u, pos_in, 12);
                 if (Dbg.On) Dbg.Enter("func_002689CC", (uint)a, (uint)b, (uint)c, (uint)pos_in);
-                func_00217388(a, (a + 368u));
+                ActorSound_StopLoop(a, (a + 368u));
                 new B15A(a).unk170_Set((uint)((uint)(new B15A(a).unk170) | (uint)(32)));
                 new B15A(a).flags_Set((uint)((uint)(new B15A(a).flags) & (uint)((~65536))));
                 new B15A(a).flags_Set((uint)((uint)(new B15A(a).flags) & (uint)((~8192))));

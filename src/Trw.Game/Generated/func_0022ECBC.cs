@@ -17,7 +17,7 @@ public static partial class Game
             }
             else
             {
-                func_002227D0(actor, (int)(actor), 34);
+                Player_SetState(actor, (int)(actor), 34);
             }
             Mem.Set(0x800D2930u, 1);
             Mem.Set(0x800CF228u, 0);

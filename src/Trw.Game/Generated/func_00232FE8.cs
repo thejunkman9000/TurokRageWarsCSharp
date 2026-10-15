@@ -12,7 +12,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00232FE8", (uint)actor, (uint)state);
             uint owner = new Actor(actor).owner_;
             int kind = (int)(new B07Row24((0x800CE8DCu + (uint)(Mem.S16((owner + (uint)1616)) * 24))).unk0);
-            if (((int)(func_00222A80(owner, (uint)((int)(Mem.S16((owner + (uint)1582)))), default(uint), default(uint))) == 0))
+            if (((int)(Weapon_HasAmmoForShot(owner, (uint)((int)(Mem.S16((owner + (uint)1582)))), default(uint), default(uint))) == 0))
             {
                 Mem.Set((owner + (uint)1904), (short)(func_0022F95C(owner)));
             }
