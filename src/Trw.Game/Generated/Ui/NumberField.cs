@@ -24,8 +24,8 @@ public static partial class Game
             uint t = 0u;
             uint o = 0u;
             int s2 = 0;
-            t = UiTree_FindNode((uint)((int)(func_00411E4C(Ui_PushScreen()))), (uint)((a0 & 65535)), default(uint), default(uint));
-            s2 = (int)(func_00411E4C(Ui_PushScreen()));
+            t = UiTree_FindNode((uint)((int)(UiScreen_GetData(Ui_PushScreen()))), (uint)((a0 & 65535)), default(uint), default(uint));
+            s2 = (int)(UiScreen_GetData(Ui_PushScreen()));
             o = (uint)((int)(ResourcePool_Malloc((uint)(108))));
             Mem_Fill(o, 0, (uint)(108));
             Mem.Copy(new Obj2990(o).head.P, new Tmpl2990(t).head.P, 44);
@@ -106,11 +106,11 @@ public static partial class Game
                     {
                         Ui_GetClipRect((_fp + 72u), ((_fp + 72u) + 8u), ((_fp + 72u) + 4u), ((_fp + 72u) + 12u));
                         Mem.Copy((_fp + 88u), (_fp + 72u), 16);
-                        func_0040F508((_fp + 88u), (_fp + 56u));
+                        Ui_IntersectRect((_fp + 88u), (_fp + 56u));
                         flag = 1;
                         Ui_SetClipRect(new IRect4((_fp + 88u)).a, new IRect4((_fp + 88u)).c, new IRect4((_fp + 88u)).b, new IRect4((_fp + 88u)).d);
                     }
-                    func_0040E87C((uint)(new Obj2BE0(o).unk8), _fp);
+                    UiNode_DrawSiblings((uint)(new Obj2BE0(o).unk8), _fp);
                     if ((flag != 0))
                     {
                         Ui_SetClipRect(new IRect4((_fp + 72u)).a, new IRect4((_fp + 72u)).c, new IRect4((_fp + 72u)).b, new IRect4((_fp + 72u)).d);

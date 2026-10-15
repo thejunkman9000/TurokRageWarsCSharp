@@ -21,7 +21,7 @@ public static partial class Game
                 memset(0x80102B7Eu, 0, (uint)(5));
                 break;
             }
-            func_0041A4B0(new O05M84(Mem.U32(0x800E5784u)).f0, 2);
+            PopupPanel_SetState(new O05M84(Mem.U32(0x800E5784u)).f0, 2);
             return 0;
         }
     }

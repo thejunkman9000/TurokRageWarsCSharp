@@ -39,7 +39,7 @@ public static partial class Game
                 r1 = 2148335616u;
                 Mem.Set((r1 + 5584u), r0);
                 { bool c_ = r3 == r2; r4 = 196608u; if (c_) goto L_L00439D10; }
-                r4 = r4 | 13109u; func_004171B8(r4);
+                r4 = r4 | 13109u; Gfx_ApplyRenderFlags(r4);
                 r5 = 3808428032u;
                 r5 = r5 | 2561u;
                 r6 = 3808428032u;

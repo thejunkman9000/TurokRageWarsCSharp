@@ -31,7 +31,7 @@ public static partial class Game
                 r5 = r0;
                 r1 = 2148401152u;
                 Mem.Set((r1 + 22576u), r2);
-                Mem.Set((r2 + 32u), r18); func_0040E958(r4, (int)r5);
+                Mem.Set((r2 + 32u), r18); UiNode_SetVisible(r4, (int)r5);
                 r5 = (uint)103;
                 r6 = r0;
                 r4 = 2148401152u;
@@ -97,7 +97,7 @@ public static partial class Game
                 r16 = Mem.U32((r5 + 1664u));
                 { bool c_ = r16 != r3;  if (c_) goto L_L004382B0; }
                 r4 = Mem.U32((r4 + 148u));
-                func_00425EF4((int)r4);
+                Profile_MarkArenaPlayed((int)r4);
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 22576u));
                 r2 = 2148401152u;
@@ -129,7 +129,7 @@ public static partial class Game
                 r5 = (uint)642; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 r16 = r2;
                 r4 = r16;
-                r5 = (uint)1; func_0040E958(r4, (int)r5);
+                r5 = (uint)1; UiNode_SetVisible(r4, (int)r5);
                 r2 = (uint)175;
                 Mem.Set((r16 + 16u), (byte)r2);
                 r2 = 2148335616u;
@@ -139,11 +139,11 @@ public static partial class Game
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 22576u));
                 r4 = Mem.U32((r2 + 148u));
-                r2 = (uint)func_004251F4((int)r4);
+                r2 = (uint)Trial_CompleteArena((int)r4);
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 22576u));
                 r4 = r2;
-                Mem.Set((r3 + 156u), r4); r2 = func_004255A8((int)r4);
+                Mem.Set((r3 + 156u), r4); r2 = Trial_GetRewardMessage((int)r4);
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 22576u));
                 Mem.Set((r3 + 172u), r2);
@@ -201,7 +201,7 @@ public static partial class Game
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 22576u));
                 r4 = Mem.U32((r2 + 148u));
-                Mem.Set((r2 + 152u), r16); func_00425BC0((int)r4);
+                Mem.Set((r2 + 152u), r16); Profile_UnlockSkinsByMedals((int)r4);
                 L_L00437F7C: ;
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 22576u));
@@ -277,9 +277,9 @@ public static partial class Game
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 22576u));
                 r4 = Mem.U32((r2 + 148u));
-                r2 = (uint)func_00425854((int)r4);
+                r2 = (uint)Trial_UnlockCharacterReward((int)r4);
                 { bool c_ = (int)r2 < 0;  if (c_) goto L_L004382FC; }
-                r4 = r2; r2 = (uint)func_0041F1B0((int)r4);
+                r4 = r2; r2 = (uint)CharSelect_FindRowByCharacter((int)r4);
                 r3 = r2 << 3;
                 r3 = r3 - r2;
                 r3 = r3 << 4;
@@ -299,12 +299,12 @@ public static partial class Game
                 r2 = (uint)1;
                 { bool c_ = r3 != r2;  if (c_) goto L_L004382B0; }
                 r4 = Mem.U32((r4 + 148u));
-                func_00425EF4((int)r4);
+                Profile_MarkArenaPlayed((int)r4);
                 r5 = (uint)3;
                 r16 = 2148859904u;
                 r16 = r16 + 16428u;
                 r4 = Mem.U32((r16 + 0u));
-                r6 = r0; r2 = func_00425E50((int)r4, (int)r5, (int)r6);
+                r6 = r0; r2 = Arena_GetTreeRecord((int)r4, (int)r5, (int)r6);
                 r6 = r2;
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 22576u));
@@ -354,7 +354,7 @@ public static partial class Game
                 r4 = r16;
                 r5 = (uint)1;
                 r2 = (uint)175;
-                Mem.Set((r16 + 16u), (byte)r2); func_0040E958(r4, (int)r5);
+                Mem.Set((r16 + 16u), (byte)r2); UiNode_SetVisible(r4, (int)r5);
                 r2 = 2148335616u;
                 r2 = Mem.U32((r2 + 30148u));
                 Mem.Set((r16 + 56u), r2); goto L_L004382FC;
@@ -362,7 +362,7 @@ public static partial class Game
                 r3 = Mem.U32((r5 + 1664u));
                 { bool c_ = r3 != r2;  if (c_) goto L_L004382B0; }
                 r4 = Mem.U32((r4 + 148u));
-                func_00425EF4((int)r4);
+                Profile_MarkArenaPlayed((int)r4);
                 r3 = 2148859904u;
                 r3 = Mem.U32((r3 + 16428u));
                 r2 = (uint)35;
@@ -375,14 +375,14 @@ public static partial class Game
                 r4 = r16;
                 r5 = (uint)1;
                 r2 = (uint)175;
-                Mem.Set((r16 + 16u), (byte)r2); func_0040E958(r4, (int)r5);
+                Mem.Set((r16 + 16u), (byte)r2); UiNode_SetVisible(r4, (int)r5);
                 r2 = 2148335616u;
                 r2 = Mem.U32((r2 + 30144u));
                 Mem.Set((r16 + 56u), r2); goto L_L004382FC;
                 L_L00438294: ;
                 r5 = (uint)627; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r2;
-                r5 = r0; func_0040E9D0(r4, (int)r5);
+                r5 = r0; UiNode_SetDisabled(r4, (int)r5);
                  goto L_L00438378;
                 L_L004382B0: ;
                 r5 = 2148335616u;
@@ -397,7 +397,7 @@ public static partial class Game
                 r4 = r16;
                 r5 = (uint)1;
                 r2 = (uint)175;
-                Mem.Set((r16 + 16u), (byte)r2); func_0040E958(r4, (int)r5);
+                Mem.Set((r16 + 16u), (byte)r2); UiNode_SetVisible(r4, (int)r5);
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 22576u));
                 r2 = r2 + 396u;
@@ -405,13 +405,13 @@ public static partial class Game
                 L_L004382FC: ;
                 func_0043847C();
                 func_004387F4();
-                r4 = (uint)626; func_0041B190((int)r4);
-                r4 = (uint)627; func_0041B190((int)r4);
-                r4 = (uint)631; func_0041B190((int)r4);
+                r4 = (uint)626; MenuButton_Create((int)r4);
+                r4 = (uint)627; MenuButton_Create((int)r4);
+                r4 = (uint)631; MenuButton_Create((int)r4);
                 r4 = r18;
                 r5 = (uint)627; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r2;
-                r5 = (uint)1; func_0040E9D0(r4, (int)r5);
+                r5 = (uint)1; UiNode_SetDisabled(r4, (int)r5);
                 r4 = r0;
                 r3 = r4;
                 L_L00438344: ;

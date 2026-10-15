@@ -20,7 +20,7 @@ public static partial class Game
                 return 0;
             case 60:
                 Mem.Set(0x80146894u, 0);
-                func_0042325C();
+                PauseMenu_Show();
                 return 0;
             case 65:
                 Menu_GotoScreen(31);

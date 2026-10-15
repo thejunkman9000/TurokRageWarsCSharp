@@ -32,7 +32,7 @@ public static partial class Game
                     Resource_SetLoadFlags(1);
                 }
                 Audio_UnduckMusic();
-                func_0042E080(default(uint), default(uint), default(uint), default(uint));
+                MatchSetup_StartMatch(default(uint), default(uint), default(uint), default(uint));
             }
             return 0;
         }

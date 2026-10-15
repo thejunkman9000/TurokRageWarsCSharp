@@ -21,7 +21,7 @@ public static partial class Game
                 Mem.Set(0x800D15D0u, 0);
                 if ((new O05Obj_v2(o).f34 != (-1)))
                 {
-                    func_004171B8((uint)(209717));
+                    Gfx_ApplyRenderFlags((uint)(209717));
                     {
                         uint pp = 0x80110634u;
                         uint q = (Mem.Set(pp, (uint)(Mem.U32(pp) + 8u)) - 8u);

@@ -29,7 +29,7 @@ public static partial class Game
                             return 0;
                         }
                         Video_RequestResolution(0);
-                        func_0040E958(cfg, 1);
+                        UiNode_SetVisible(cfg, 1);
                         CameraManager_Init(0x80145088u, 0);
                         func_0044A600((0x80145088u - (uint)(18 * 4)), 0, 0);
                         Level_Load(0x8011FE88u, (uint)(0), (uint)(0), default(uint));

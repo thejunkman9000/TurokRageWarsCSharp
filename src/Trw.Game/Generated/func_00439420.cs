@@ -11,11 +11,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00439420");
             Mem.Set(0x800E58A4u, ResourcePool_Malloc((uint)(8)));
-            new O05M0A4(Mem.U32(0x800E58A4u)).f0_Set(func_0041A600(469, 470, 255));
-            func_0041A76C(new O05M0A4(Mem.U32(0x800E58A4u)).f0, (int)(Mem.U8((0x801462E0u + (uint)0))));
-            new O05M0A4(Mem.U32(0x800E58A4u)).f4_Set(func_0041A600(471, 472, 255));
-            func_0041A76C(new O05M0A4(Mem.U32(0x800E58A4u)).f4, (int)(Mem.U8((0x801462E0u + (uint)1))));
-            func_0041B190(467);
+            new O05M0A4(Mem.U32(0x800E58A4u)).f0_Set(Slider_Create(469, 470, 255));
+            Slider_SetValue(new O05M0A4(Mem.U32(0x800E58A4u)).f0, (int)(Mem.U8((0x801462E0u + (uint)0))));
+            new O05M0A4(Mem.U32(0x800E58A4u)).f4_Set(Slider_Create(471, 472, 255));
+            Slider_SetValue(new O05M0A4(Mem.U32(0x800E58A4u)).f4, (int)(Mem.U8((0x801462E0u + (uint)1))));
+            MenuButton_Create(467);
             return 0;
         }
     }

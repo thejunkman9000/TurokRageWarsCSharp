@@ -1844,7 +1844,7 @@ public static partial class Game
                 Player_SetBodyModel_0022BB70(p);
                 if ((((int)(new S11Obj(p).rec.b91) == 0) && ((int)(new S11Game(0x801462C8u).unkD) == 1)))
                 {
-                    func_00426270(p);
+                    Player_GiveUnlockedLoadoutWeapons(p);
                 }
             }
             e = new S11Obj(p).e878.P;

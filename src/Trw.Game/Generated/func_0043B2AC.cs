@@ -13,37 +13,37 @@ public static partial class Game
             int i = 0;
             uint w = 0u;
             new O05L2(Mem.U32(0x800E59E0u)).row[(int)(k)].f4A8_Set(1);
-            func_0040E958(UiTree_FindNode(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E59E6u + (uint)(k * 76))).w[(int)(0)])), default(uint), default(uint)), 0);
+            UiNode_SetVisible(UiTree_FindNode(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E59E6u + (uint)(k * 76))).w[(int)(0)])), default(uint), default(uint)), 0);
             switch (new O05L2(Mem.U32(0x800E59E0u)).row[(int)(k)].f4CC)
             {
             case 0:
-                func_0040E958(UiTree_FindNode(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E5A02u + (uint)(k * 76))).w[(int)(0)])), default(uint), default(uint)), 0);
+                UiNode_SetVisible(UiTree_FindNode(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E5A02u + (uint)(k * 76))).w[(int)(0)])), default(uint), default(uint)), 0);
                 w = UiTree_FindNode(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E5A2Eu + (uint)(k * 76))).w[(int)(0)])), default(uint), default(uint));
-                func_0040E958(w, 1);
+                UiNode_SetVisible(w, 1);
                 new O05Wb(w).b10_Set((byte)(35));
                 break;
             case 1:
                 for (i = 0; (i < 3); ++i)
                 {
-                    func_0040E958(UiTree_FindNode(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E59EEu + (uint)(k * 76))).w[(int)((i * 2))])), default(uint), default(uint)), 0);
+                    UiNode_SetVisible(UiTree_FindNode(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E59EEu + (uint)(k * 76))).w[(int)((i * 2))])), default(uint), default(uint)), 0);
                     w = UiTree_FindNode(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E5A1Au + (uint)(k * 76))).w[(int)((i * 2))])), default(uint), default(uint));
-                    func_0040E958(w, 1);
+                    UiNode_SetVisible(w, 1);
                     new O05Wb(w).b10_Set((byte)(35));
                     func_0043B67C(k, i, new O05L2(Mem.U32(0x800E59E0u)).row[(int)(k)].tab4B0[(int)(i)]);
                 }
-                func_0040E958(UiTree_FindNode(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E5A02u + (uint)(k * 76))).w[(int)(0)])), default(uint), default(uint)), 0);
+                UiNode_SetVisible(UiTree_FindNode(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E5A02u + (uint)(k * 76))).w[(int)(0)])), default(uint), default(uint)), 0);
                 w = UiTree_FindNode(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E5A2Eu + (uint)(k * 76))).w[(int)(0)])), default(uint), default(uint));
-                func_0040E958(w, 1);
+                UiNode_SetVisible(w, 1);
                 new O05Wb(w).b10_Set((byte)(35));
-                func_0040E958(new O05L2(Mem.U32(0x800E59E0u)).row[(int)(k)].f4C8, 0);
+                UiNode_SetVisible(new O05L2(Mem.U32(0x800E59E0u)).row[(int)(k)].f4C8, 0);
                 break;
             case 2:
             default:
                 for (i = 0; (i < 6); ++i)
                 {
-                    func_0040E958(UiTree_FindNode(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E59EEu + (uint)(k * 76))).w[(int)((i * 2))])), default(uint), default(uint)), 0);
+                    UiNode_SetVisible(UiTree_FindNode(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E59EEu + (uint)(k * 76))).w[(int)((i * 2))])), default(uint), default(uint)), 0);
                     w = UiTree_FindNode(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E5A1Au + (uint)(k * 76))).w[(int)((i * 2))])), default(uint), default(uint));
-                    func_0040E958(w, 1);
+                    UiNode_SetVisible(w, 1);
                     new O05Wb(w).b10_Set((byte)(35));
                     func_0043B67C(k, i, new O05L2(Mem.U32(0x800E59E0u)).row[(int)(k)].tab4B0[(int)(i)]);
                 }
@@ -52,11 +52,11 @@ public static partial class Game
             for (i = 0; (i < 5); ++i)
             {
                 w = UiTree_FindNode(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E5A06u + (uint)(k * 76))).w[(int)((i * 2))])), default(uint), default(uint));
-                func_0040E958(w, 0);
+                UiNode_SetVisible(w, 0);
                 new O05Wb(w).b10_Set((byte)(55));
             }
             w = UiTree_FindNode(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E5A1Au + (uint)(k * 76))).w[(int)((new O05L2(Mem.U32(0x800E59E0u)).row[(int)(k)].f4AC * 2))])), default(uint), default(uint));
-            func_0040E9A8(w, 1);
+            UiNode_SetHighlighted(w, 1);
             new O05Wb(w).b10_Set((byte)(150));
         }
     }

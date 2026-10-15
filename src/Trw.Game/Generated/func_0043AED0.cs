@@ -14,11 +14,11 @@ public static partial class Game
             uint w = 0u;
             s1 = new O05L2(Mem.U32(0x800E59E0u)).row[(int)(k)].f4AC;
             w = UiTree_FindNode(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E5A1Au + (uint)(k * 76))).w[(int)((s1 * 2))])), default(uint), default(uint));
-            func_0040E9A8(w, 0);
+            UiNode_SetHighlighted(w, 0);
             new O05Wb(w).b10_Set((byte)(35));
             if ((s1 != 5))
             {
-                func_0040E958(UiTree_FindNode(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E5A06u + (uint)(k * 76))).w[(int)((s1 * 2))])), default(uint), default(uint)), 0);
+                UiNode_SetVisible(UiTree_FindNode(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E5A06u + (uint)(k * 76))).w[(int)((s1 * 2))])), default(uint), default(uint)), 0);
             }
             if ((dir == 1))
             {

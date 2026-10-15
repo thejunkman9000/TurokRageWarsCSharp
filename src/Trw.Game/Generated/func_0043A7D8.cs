@@ -26,8 +26,8 @@ public static partial class Game
                 if ((new O05L2(Mem.U32(0x800E59E0u)).f135C <= 0))
                 {
                     Audio_PlaySound2D(3705);
-                    func_0040E958(new O05L2(Mem.U32(0x800E59E0u)).f1364, 1);
-                    func_00419FD8(new O05L2(Mem.U32(0x800E59E0u)).f1360, 4);
+                    UiNode_SetVisible(new O05L2(Mem.U32(0x800E59E0u)).f1364, 1);
+                    Flicker_Trigger(new O05L2(Mem.U32(0x800E59E0u)).f1360, 4);
                     new O05L2(Mem.U32(0x800E59E0u)).f1358_Set(4);
                     new O05L2(Mem.U32(0x800E59E0u)).f135C_Set(4);
                 }
@@ -57,9 +57,9 @@ public static partial class Game
                 }
                 if ((new O05L2(Mem.U32(0x800E59E0u)).f135C <= 0))
                 {
-                    if ((func_00419FB8(new O05L2(Mem.U32(0x800E59E0u)).f1360) != 0))
+                    if ((Flicker_IsSteady(new O05L2(Mem.U32(0x800E59E0u)).f1360) != 0))
                     {
-                        func_00419FA4(new O05L2(Mem.U32(0x800E59E0u)).f1360);
+                        Flicker_Stop(new O05L2(Mem.U32(0x800E59E0u)).f1360);
                         new O05L2(Mem.U32(0x800E59E0u)).f1358_Set(3);
                     }
                 }
@@ -69,14 +69,14 @@ public static partial class Game
                 p = Mem.U32(0x800E59E0u);
                 new O05L2(p).f1358_Set(2);
                 new O05L2(p).f135C_Set(4);
-                func_0040E958(new O05L2(p).f1364, 0);
+                UiNode_SetVisible(new O05L2(p).f1364, 0);
                 for (row = 0; (row < 4); ++row)
                 {
                     for (col = 0; (col < 5); ++col)
                     {
-                        func_0040E958(UiTree_FindNode(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E5A06u + (uint)(row * 76))).w[(int)((col * 2))])), default(uint), default(uint)), 0);
+                        UiNode_SetVisible(UiTree_FindNode(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E5A06u + (uint)(row * 76))).w[(int)((col * 2))])), default(uint), default(uint)), 0);
                     }
-                    func_0040E958(new O05L2(Mem.U32(0x800E59E0u)).row[(int)(row)].f4C8, 0);
+                    UiNode_SetVisible(new O05L2(Mem.U32(0x800E59E0u)).row[(int)(row)].f4C8, 0);
                 }
                 break;
             }

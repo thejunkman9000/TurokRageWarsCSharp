@@ -60,7 +60,7 @@ public static partial class Game
                     if (((int)(new O05Q(row).b78) == 1))
                     {
                         uint w = UiTree_FindNode(new O05L2(Mem.U32(0x800E59E0u)).f0, (uint)((int)(new O05Row((0x800E5A2Eu + (uint)(i * 76))).w[(int)(0)])), default(uint), default(uint));
-                        func_0040E9A8(w, 0);
+                        UiNode_SetHighlighted(w, 0);
                         new O05Wb(w).b10_Set((byte)(35));
                         switch (new O05L2(Mem.U32(0x800E59E0u)).row[(int)(i)].f4CC)
                         {

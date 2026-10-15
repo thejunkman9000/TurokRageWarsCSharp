@@ -23,7 +23,7 @@ public static partial class Game
                 r29 = r29 - 24u;
                 Mem.Set((r29 + 16u), r31);
                 Menu_ConsumeEvent();
-                r4 = (uint)-1; func_0042EB68((int)r4);
+                r4 = (uint)-1; Menu_RequestScreen((int)r4);
                 Menu_GoBack();
                 r31 = Mem.U32((r29 + 16u));
                 r2 = r0;

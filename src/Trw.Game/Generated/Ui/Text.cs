@@ -1603,7 +1603,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0040F1E0", (uint)font, (uint)str, (uint)len);
-            uint t = func_0041208C(font);
+            uint t = UiFont_Get(font);
             int i = 0;
             int sum = 0;
             i = (sum = 0);
@@ -1614,7 +1614,7 @@ public static partial class Game
             }
             ++sum;
             --sum;
-            return (sum + ((int)((short)(func_00411CE0(font))) * (len - 1)));
+            return (sum + ((int)((short)(UiFont_GetSpacing(font))) * (len - 1)));
         }
     }
 

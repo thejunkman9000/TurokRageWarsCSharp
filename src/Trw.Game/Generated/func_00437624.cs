@@ -10,7 +10,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00437624");
-            int t = func_0041A4F0(new O05M80(Mem.U32(0x800E5780u)).f0_);
+            int t = PopupPanel_GetState(new O05M80(Mem.U32(0x800E5780u)).f0_);
             int a = 0;
             switch (t)
             {

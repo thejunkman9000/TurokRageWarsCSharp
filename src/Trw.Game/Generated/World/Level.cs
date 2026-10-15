@@ -1837,7 +1837,7 @@ public static partial class Game
                 {
                 case 0:
                 case 2:
-                    func_0042D190();
+                    Results_EnterFromGame();
                     break;
                 case 1:
                 case 3:

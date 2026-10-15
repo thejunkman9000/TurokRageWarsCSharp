@@ -473,4 +473,726 @@ public static partial class Game
         }
         finally { if (Dbg.On) Dbg.Leave("func_0022F5B4", r2); Stack.Free(384); }
     }
+
+    // ==== func_0041DBA0 @ 0x0041DBA0 [C]
+    public static void Profile_NextActiveSlot(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0041DBA0", (uint)p);
+            int n = 0;
+            while ((1 != 0))
+            {
+                Mem.Set(p, (Mem.S32(p) + 1));
+                if ((Mem.S32(p) >= 4))
+                {
+                    Mem.Set(p, 0);
+                }
+                ++n;
+                if ((n >= 6))
+                {
+                    Mem.Set(p, (-1));
+                    return;
+                }
+                if (((int)(Mem.S8((0x80102B0Du + (uint)(Mem.S32(p) * 400)))) >= 0))
+                {
+                    return;
+                }
+            }
+        }
+    }
+
+    // ==== func_004245C0 @ 0x004245C0 [C]
+    public static void Profile_AwardMatchMedals(int p, uint @out)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004245C0", (uint)p, (uint)@out);
+            int n = 0;
+            int i = 0;
+            int j = 0;
+            int met = 0;
+            int t = 0;
+            float y = 0f;
+            uint w = 0u;
+            uint e = 0u;
+            n = 0;
+            Mem.Set((@out + (uint)(0 * 4)), (-1));
+            Mem.Set((@out + (uint)(1 * 4)), (-1));
+            if ((Profile_MatchCountsForMedals() == 0))
+            {
+                return;
+            }
+            e = (0x80146398u + (uint)(p * 150));
+            if (((int)(new Q2Pl(e).f78) != 1))
+            {
+                return;
+            }
+            if (((int)(new Q2Pl(e).f91) != 0))
+            {
+                return;
+            }
+            for (i = 0; (i < 36); ++i)
+            {
+                if (((Bits_Test((0x80102B4Au + (uint)(p * 400)), i) == 0) && ((int)(Mem.U8((0x80102B26u + (uint)(i + (p * 400))))) >= 2)))
+                {
+                    Bits_Assign((0x80102B4Au + (uint)(p * 400)), i, 1);
+                    if ((n < 2))
+                    {
+                        Mem.Set((@out + (uint)(n * 4)), i);
+                        ++n;
+                    }
+                }
+            }
+            if ((Bits_Test((0x80102B4Au + (uint)(p * 400)), 36) == 0))
+            {
+                met = 0;
+                if ((((uint)(((int)(Mem.U8(0x801462ECu)) - 1)) < (uint)(5)) && ((int)(new Q2Pl(e).f4) >= 15)))
+                {
+                    met = 1;
+                }
+                else
+                {
+                    if (((new Q2G(0x801468A0u).f14 >= 0.0f) && ((int)(new Q2Pl(e).f4) >= 15)))
+                    {
+                        y = (new Q2G(0x801468A0u).f14 * 0.0666666701f);
+                        {
+                            float ft = (float)((int)((y * 0.0166666675f)));
+                            if ((((float)(Mem.S8((0x801468A0u + (uint)(-1460)))) - ft) <= 5.0f))
+                            {
+                                met = 1;
+                            }
+                        }
+                    }
+                }
+                if ((met == 1))
+                {
+                    Bits_Assign((0x80102B4Au + (uint)(p * 400)), 36, 1);
+                    if ((n < 2))
+                    {
+                        Mem.Set((@out + (uint)(n * 4)), 36);
+                        ++n;
+                    }
+                }
+            }
+            if ((Bits_Test((0x80102B4Au + (uint)(p * 400)), 37) == 0))
+            {
+                met = 0;
+                if ((((uint)(((int)(Mem.U8(0x801462ECu)) - 1)) < (uint)(10)) && ((int)(new Q2Pl(e).f4) >= 25)))
+                {
+                    met = 1;
+                }
+                else
+                {
+                    if (((new Q2G(0x801468A0u).f14 >= 0.0f) && ((int)(new Q2Pl(e).f4) >= 25)))
+                    {
+                        y = (new Q2G(0x801468A0u).f14 * 0.0666666701f);
+                        {
+                            float ft_2 = (float)((int)((y * 0.0166666675f)));
+                            if ((((float)(Mem.S8((0x801468A0u + (uint)(-1460)))) - ft_2) <= 10.0f))
+                            {
+                                met = 1;
+                            }
+                        }
+                    }
+                }
+                if ((met == 1))
+                {
+                    Bits_Assign((0x80102B4Au + (uint)(p * 400)), 37, 1);
+                    if ((n < 2))
+                    {
+                        Mem.Set((@out + (uint)(n * 4)), 37);
+                        ++n;
+                    }
+                }
+            }
+            if (((((Bits_Test((0x80102B4Au + (uint)(p * 400)), 38) == 0) && ((int)(new Q2Pl(e).f4) == 0)) && ((int)(new Q2Cfg(0x801462C8u).s24) >= 10)) && ((int)(new Q2Cfg(0x801462C8u).s25) >= 20)))
+            {
+                Bits_Assign((0x80102B4Au + (uint)(p * 400)), 38, 1);
+                if ((n < 2))
+                {
+                    Mem.Set((@out + (uint)(n * 4)), 38);
+                    ++n;
+                }
+            }
+            if (((Bits_Test((0x80102B4Au + (uint)(p * 400)), 39) == 0) && ((int)(new Q2Pl(e).f0) >= 5)))
+            {
+                Bits_Assign((0x80102B4Au + (uint)(p * 400)), 39, 1);
+                if ((n < 2))
+                {
+                    Mem.Set((@out + (uint)(n * 4)), 39);
+                    ++n;
+                }
+            }
+            if (((Bits_Test((0x80102B4Au + (uint)(p * 400)), 40) == 0) && ((int)(new Q2Cfg(0x801462C8u).s25) >= 20)))
+            {
+                t = (int)(new Q2Pl(e).f4);
+                met = 1;
+                for (i = 0; (i < 4); ++i)
+                {
+                    if ((met != 1))
+                    {
+                        break;
+                    }
+                    if ((p != i))
+                    {
+                        if (((((int)(new Q2Cfg(0x801462C8u).pl[(int)(i)].f78) != 1) || ((int)(new Q2Cfg(0x801462C8u).pl[(int)(i)].f91) != 0)) || (((int)(new Q2Cfg(0x801462C8u).pl[(int)(i)].f4) - t) < 10)))
+                        {
+                            met = 0;
+                        }
+                    }
+                }
+                if ((met == 1))
+                {
+                    Bits_Assign((0x80102B4Au + (uint)(p * 400)), 40, 1);
+                    if ((n < 2))
+                    {
+                        Mem.Set((@out + (uint)(n * 4)), 40);
+                        ++n;
+                    }
+                }
+            }
+            if (((Bits_Test((0x80102B4Au + (uint)(p * 400)), 41) == 0) && (Mem.S32((0x80102B6Cu + (uint)(p * 400))) >= 1001)))
+            {
+                Bits_Assign((0x80102B4Au + (uint)(p * 400)), 41, 1);
+                if ((n < 2))
+                {
+                    Mem.Set((@out + (uint)(n * 4)), 41);
+                    ++n;
+                }
+            }
+            if (((Bits_Test((0x80102B4Au + (uint)(p * 400)), 42) == 0) && (Mem.S32((0x80102B74u + (uint)(p * 400))) >= 1001)))
+            {
+                Bits_Assign((0x80102B4Au + (uint)(p * 400)), 42, 1);
+                if ((n < 2))
+                {
+                    Mem.Set((@out + (uint)(n * 4)), 42);
+                    ++n;
+                }
+            }
+            if (((((Bits_Test((0x80102B4Au + (uint)(p * 400)), 43) == 0) && ((int)(new Q2Pl(e).fA) >= 10)) && ((int)(new Q2Cfg(0x801462C8u).s24) >= 10)) && ((int)(new Q2Cfg(0x801462C8u).s25) >= 20)))
+            {
+                Bits_Assign((0x80102B4Au + (uint)(p * 400)), 43, 1);
+                if ((n < 2))
+                {
+                    Mem.Set((@out + (uint)(n * 4)), 43);
+                    ++n;
+                }
+            }
+            if (((((Bits_Test((0x80102B4Au + (uint)(p * 400)), 44) == 0) && ((int)(new Q2Pl(e).f2) == 0)) && ((int)(new Q2Cfg(0x801462C8u).s24) >= 10)) && ((int)(new Q2Cfg(0x801462C8u).s25) >= 20)))
+            {
+                Bits_Assign((0x80102B4Au + (uint)(p * 400)), 44, 1);
+                if ((n < 2))
+                {
+                    Mem.Set((@out + (uint)(n * 4)), 44);
+                }
+            }
+        }
+    }
+
+    // ==== func_00424D70 @ 0x00424D70 [C]
+    public static void Profile_AddMatchKillsAndDeaths()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00424D70");
+            int i = 0;
+            int x = 0;
+            int y = 0;
+            uint e = 0u;
+            uint e2 = 0u;
+            for (i = 0; (i < 4); ++i)
+            {
+                e = (0x80146398u + (uint)(i * 150));
+                if (((int)(new O04Row190g((0x80102B00u + (uint)(i * 400))).unkD) >= 0))
+                {
+                    x = (new O04Row190g((0x80102B00u + (uint)(i * 400))).unk6C + (int)(new O04Ent96i(e).unk4));
+                    e2 = e;
+                    if ((x > 99999))
+                    {
+                        new O04Row190g((0x80102B00u + (uint)(i * 400))).unk6C_Set(99999);
+                    }
+                    else
+                    {
+                        new O04Row190g((0x80102B00u + (uint)(i * 400))).unk6C_Set(x);
+                    }
+                    y = (new O04Row190g((0x80102B00u + (uint)(i * 400))).unk74 + (int)(new O04Ent96i(e2).unk2));
+                    if ((y > 99999))
+                    {
+                        new O04Row190g((0x80102B00u + (uint)(i * 400))).unk74_Set(99999);
+                    }
+                    else
+                    {
+                        new O04Row190g((0x80102B00u + (uint)(i * 400))).unk74_Set(y);
+                    }
+                }
+            }
+        }
+    }
+
+    // ==== func_00424E30 @ 0x00424E30 [C]
+    public static int func_00424E30_o04_chk()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00424E30_o04_chk");
+            int r = 0;
+            int n = 0;
+            int i = 0;
+            uint e = 0u;
+            if ((((int)(new O04P(0x801462C8u).a) <= 0) && ((int)(new O04P(0x801462C8u).b) <= 0)))
+            {
+                return 0;
+            }
+            r = 1;
+            n = 0;
+            e = 0x80146398u;
+            for (i = 0; (i < 8); ++i)
+            {
+                if (((((int)(new O04Ent96((e + (uint)(i * 150))).unk78) == 1) && ((int)(new O04Ent96((e + (uint)(i * 150))).unk91) != (int)(new O04Ent96((e + (uint)(i * 150))).unk78))) && (Mem.S32((0x80103140u + (uint)(i * 4))) >= 76)))
+                {
+                    ++n;
+                }
+            }
+            if ((n < 2))
+            {
+                r = 0;
+            }
+            return r;
+        }
+    }
+
+    public static void Profile_AddWin(int idx, int b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00424E30", (uint)idx, (uint)b);
+            int x = 0;
+            int v = 0;
+            if (((int)(new O04Ent96((0x80146398u + (uint)(idx * 150))).unk91) == 1))
+            {
+                return;
+            }
+            x = (new O04Row190h((0x80102B00u + (uint)(idx * 400))).unk70 + 1);
+            if ((x > 99999))
+            {
+                new O04Row190h((0x80102B00u + (uint)(idx * 400))).unk70_Set(99999);
+            }
+            else
+            {
+                do
+                {
+                    new O04Row190h((0x80102B00u + (uint)(idx * 400))).unk70_Set(x);
+                }
+                while ((0 != 0));
+            }
+            if ((func_00424E30_o04_chk() == 1))
+            {
+                if ((((int)(new O04P(0x801462C8u).a) >= 10) || ((int)(new O04P(0x801462C8u).b) >= 10)))
+                {
+                    v = ((int)(Mem.U8((0x80102B26u + (uint)(b + (idx * 400))))) + 1);
+                    if ((v >= 6))
+                    {
+                        Mem.Set((0x80102B26u + (uint)(b + (idx * 400))), (byte)(5));
+                    }
+                    else
+                    {
+                        Mem.Set((0x80102B26u + (uint)(b + (idx * 400))), (byte)(v));
+                    }
+                }
+            }
+        }
+    }
+
+    // ==== func_00424FC8 @ 0x00424FC8 [C]
+    public static uint Profile_GetRankName(int a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00424FC8", (uint)a);
+            int n = 0;
+            int i = 0;
+            int lv = 0;
+            uint s = 0u;
+            if ((a >= 4))
+            {
+                return Mem.U32(0x800D722Cu);
+            }
+            n = 0;
+            for (i = 0; (i < 50); ++i)
+            {
+                if ((Bits_Test(new O04Row190t((0x80102B10u + (uint)(a * 400))).unk3A.P, i) == 1))
+                {
+                    ++n;
+                }
+            }
+            switch (n)
+            {
+            case 0:
+            case 1:
+                lv = 0;
+                s = Mem.U32(0x800D722Cu);
+                break;
+            case 2:
+            case 3:
+                lv = 1;
+                s = Mem.U32(0x800D7230u);
+                break;
+            case 4:
+            case 5:
+                lv = 2;
+                s = Mem.U32(0x800D7234u);
+                break;
+            case 6:
+            case 7:
+                lv = 3;
+                s = Mem.U32(0x800D7238u);
+                break;
+            case 8:
+            case 9:
+                lv = 4;
+                s = Mem.U32(0x800D723Cu);
+                break;
+            case 10:
+            case 11:
+                lv = 5;
+                s = Mem.U32(0x800D7240u);
+                break;
+            case 12:
+            case 13:
+                lv = 6;
+                s = Mem.U32(0x800D7244u);
+                break;
+            case 14:
+            case 15:
+                lv = 7;
+                s = Mem.U32(0x800D7248u);
+                break;
+            case 16:
+            case 17:
+                lv = 8;
+                s = Mem.U32(0x800D724Cu);
+                break;
+            case 18:
+            case 19:
+                lv = 9;
+                s = Mem.U32(0x800D7250u);
+                break;
+            case 20:
+            case 21:
+                lv = 10;
+                s = Mem.U32(0x800D7254u);
+                break;
+            case 22:
+            case 23:
+            case 24:
+                lv = 11;
+                s = Mem.U32(0x800D7258u);
+                break;
+            case 25:
+            case 26:
+            case 27:
+                lv = 12;
+                s = Mem.U32(0x800D725Cu);
+                break;
+            case 28:
+            case 29:
+            case 30:
+                lv = 13;
+                s = Mem.U32(0x800D7260u);
+                break;
+            case 31:
+            case 32:
+            case 33:
+                lv = 14;
+                s = Mem.U32(0x800D7264u);
+                break;
+            case 34:
+            case 35:
+            case 36:
+                lv = 15;
+                s = Mem.U32(0x800D7268u);
+                break;
+            case 37:
+            case 38:
+            case 39:
+                lv = 16;
+                s = Mem.U32(0x800D726Cu);
+                break;
+            case 40:
+            case 41:
+            case 42:
+            case 43:
+            case 44:
+                lv = 17;
+                s = Mem.U32(0x800D7270u);
+                break;
+            case 45:
+            case 46:
+            case 47:
+            case 48:
+            case 49:
+                lv = 18;
+                s = Mem.U32(0x800D7274u);
+                break;
+            default:
+                lv = 19;
+                s = Mem.U32(0x800D7278u);
+                break;
+            }
+            new O04Row190t((0x80102B10u + (uint)(a * 400))).unk15_Set((byte)(lv));
+            return s;
+        }
+    }
+
+    // ==== func_00425BC0 @ 0x00425BC0 [C]
+    public static void Profile_UnlockSkinsByMedals(int a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00425BC0", (uint)a);
+            int c = 0;
+            int n = 0;
+            int i = 0;
+            uint r = (0x80102B00u + (uint)(a * 400));
+            c = 0;
+            for (i = 0; (i < 50); ++i)
+            {
+                if ((Bits_Test(((0x80102B00u + (uint)74) + (uint)(a * 400)), i) == 1))
+                {
+                    ++c;
+                }
+            }
+            n = c;
+            if ((n >= 2))
+            {
+                new O04Row190s(r).b.Set((int)((87 - 87)), (byte)(2));
+            }
+            if ((n >= 4))
+            {
+                new O04Row190s(r).b.Set((int)((92 - 87)), (byte)(2));
+            }
+            if ((n >= 6))
+            {
+                new O04Row190s(r).b.Set((int)((88 - 87)), (byte)(2));
+            }
+            if ((n >= 8))
+            {
+                new O04Row190s(r).b.Set((int)((96 - 87)), (byte)(2));
+            }
+            if ((n >= 10))
+            {
+                new O04Row190s(r).b.Set((int)((89 - 87)), (byte)(2));
+            }
+            if ((n >= 12))
+            {
+                new O04Row190s(r).b.Set((int)((90 - 87)), (byte)(2));
+            }
+            if ((n >= 14))
+            {
+                new O04Row190s(r).b.Set((int)((97 - 87)), (byte)(2));
+            }
+            if ((n >= 16))
+            {
+                new O04Row190s(r).b.Set((int)((93 - 87)), (byte)(2));
+            }
+            if ((n >= 18))
+            {
+                new O04Row190s(r).b.Set((int)((104 - 87)), (byte)(2));
+            }
+            if ((n >= 20))
+            {
+                new O04Row190s(r).b.Set((int)((94 - 87)), (byte)(2));
+            }
+            if ((n >= 22))
+            {
+                new O04Row190s(r).b.Set((int)((91 - 87)), (byte)(2));
+            }
+            if ((n >= 24))
+            {
+                new O04Row190s(r).b.Set((int)((95 - 87)), (byte)(2));
+            }
+            if ((n >= 26))
+            {
+                new O04Row190s(r).b.Set((int)((105 - 87)), (byte)(2));
+            }
+            if ((n >= 28))
+            {
+                new O04Row190s(r).b.Set((int)((87 - 87)), (byte)(3));
+            }
+            if ((n >= 30))
+            {
+                new O04Row190s(r).b.Set((int)((92 - 87)), (byte)(3));
+            }
+            if ((n >= 32))
+            {
+                new O04Row190s(r).b.Set((int)((88 - 87)), (byte)(3));
+            }
+            if ((n >= 34))
+            {
+                new O04Row190s(r).b.Set((int)((96 - 87)), (byte)(3));
+            }
+            if ((n >= 36))
+            {
+                new O04Row190s(r).b.Set((int)((89 - 87)), (byte)(3));
+            }
+            if ((n >= 38))
+            {
+                new O04Row190s(r).b.Set((int)((90 - 87)), (byte)(3));
+            }
+            if ((n >= 40))
+            {
+                new O04Row190s(r).b.Set((int)((97 - 87)), (byte)(3));
+            }
+            if ((n >= 42))
+            {
+                new O04Row190s(r).b.Set((int)((104 - 87)), (byte)(3));
+            }
+            if ((n >= 44))
+            {
+                new O04Row190s(r).b.Set((int)((94 - 87)), (byte)(3));
+            }
+            if ((n >= 46))
+            {
+                new O04Row190s(r).b.Set((int)((91 - 87)), (byte)(3));
+            }
+            if ((n >= 48))
+            {
+                new O04Row190s(r).b.Set((int)((95 - 87)), (byte)(3));
+            }
+            if ((n >= 50))
+            {
+                new O04Row190s(r).b.Set((int)((105 - 87)), (byte)(3));
+            }
+        }
+    }
+
+    // ==== func_00425EF4 @ 0x00425EF4 [C]
+    public static void Profile_MarkArenaPlayed(int a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00425EF4", (uint)a);
+            switch ((int)(Mem.U8(0x801462D5u)))
+            {
+            case 1:
+                Bits_Assign(new O04Row190e((0x80102B00u + (uint)(a * 400))).unk7E.P, Mem.S32(0x8015402Cu), 1);
+                break;
+            case 2:
+                Bits_Assign(new O04Row190e((0x80102B00u + (uint)(a * 400))).unk83.P, Mem.S32(0x8015402Cu), 1);
+                break;
+            case 3:
+                Bits_Assign(new O04Row190e((0x80102B00u + (uint)(a * 400))).unk88.P, Mem.S32(0x8015402Cu), 1);
+                break;
+            case 4:
+                Bits_Assign(new O04Row190e((0x80102B00u + (uint)(a * 400))).unk8D.P, Mem.S32(0x8015402Cu), 1);
+                break;
+            }
+        }
+    }
+
+    // ==== func_004260C4 @ 0x004260C4 [C]
+    public static void Profile_AwardKeyArenasMedal_004260C4(int a, uint @out)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004260C4", (uint)a, (uint)@out);
+            int flag = 1;
+            int i = 0;
+            int row = 0;
+            uint e = (0x80146398u + (uint)(a * 150));
+            if ((((int)(new O04Ent96g(e).unk78) == 1) && ((int)(new O04Ent96g(e).unk91) == 0)))
+            {
+                row = (a * 400);
+                if ((Bits_Test((0x80102B4Au + (uint)row), 49) == 0))
+                {
+                    for (i = 0; (i < 4); ++i)
+                    {
+                        if ((flag != 1))
+                        {
+                            return;
+                        }
+                        if ((Bits_Test(((0x80102B4Au + (uint)218) + (uint)row), i) == 0))
+                        {
+                            flag = 0;
+                        }
+                    }
+                    if ((flag == 1))
+                    {
+                        Bits_Assign((0x80102B4Au + (uint)(a * 400)), 49, 1);
+                        Mem.Set(@out, 49);
+                    }
+                }
+            }
+        }
+    }
+
+    // ==== func_004261E4 @ 0x004261E4 [C]
+    public static int Profile_CountMedals(int a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004261E4", (uint)a);
+            int i = 0;
+            int n = 0;
+            for (i = 0; (i < 50); ++i)
+            {
+                if ((Bits_Test(new O04Row190((0x80102B10u + (uint)(a * 400))).unk3A.P, i) == 1))
+                {
+                    ++n;
+                }
+            }
+            return n;
+        }
+    }
+
+    // ==== func_00426454 @ 0x00426454 [C]
+    public static int Profile_MatchCountsForMedals()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00426454");
+            int r = 0;
+            int n = 0;
+            int i = 0;
+            uint e = 0u;
+            if ((((int)(new O04P(0x801462C8u).a) <= 0) && ((int)(new O04P(0x801462C8u).b) <= 0)))
+            {
+                return 0;
+            }
+            r = 1;
+            n = 0;
+            e = 0x80146398u;
+            for (i = 0; (i < 8); ++i)
+            {
+                if (((((int)(new O04Ent96((e + (uint)(i * 150))).unk78) == 1) && ((int)(new O04Ent96((e + (uint)(i * 150))).unk91) != (int)(new O04Ent96((e + (uint)(i * 150))).unk78))) && (Mem.S32((0x80103140u + (uint)(i * 4))) >= 76)))
+                {
+                    ++n;
+                }
+            }
+            if ((n < 2))
+            {
+                r = 0;
+            }
+            return r;
+        }
+    }
+
+    // ==== func_00435A9C @ 0x00435A9C [C]
+    public static int Profile_FindByIdAndRecord(int a, int b)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00435A9C", (uint)a, (uint)b);
+            int i = 0;
+            for (i = 0; (i < 4); ++i)
+            {
+                if ((((int)(new O05Rec((0x80102B00u + (uint)(i * 400))).bC) == b) && (new O05Rec((0x80102B00u + (uint)(i * 400))).w8 == a)))
+                {
+                    return i;
+                }
+            }
+            return (-1);
+        }
+    }
 }

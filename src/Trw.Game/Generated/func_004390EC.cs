@@ -11,13 +11,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004390EC");
             Mem.Set(0x800E58A0u, ResourcePool_Malloc((uint)(28)));
-            new O05M0A_v2(Mem.U32(0x800E58A0u)).f0_Set(func_0041A300(108, 109));
-            new O05M0A_v2(Mem.U32(0x800E58A0u)).f8_Set(func_0041A600(111, 112, 255));
-            func_0041A76C(new O05M0A_v2(Mem.U32(0x800E58A0u)).f8, (int)(Mem.U8((0x801462E0u + (uint)0))));
-            new O05M0A_v2(Mem.U32(0x800E58A0u)).fC_Set(func_0041A600(113, 114, 255));
-            func_0041A76C(new O05M0A_v2(Mem.U32(0x800E58A0u)).fC, (int)(Mem.U8((0x801462E0u + (uint)1))));
-            func_0041B190(115);
-            new O05M0A_v2(Mem.U32(0x800E58A0u)).f4_Set(func_00419ED4((uint)(110), (uint)(110), default(uint), default(uint)));
+            new O05M0A_v2(Mem.U32(0x800E58A0u)).f0_Set(PopupPanel_Create(108, 109));
+            new O05M0A_v2(Mem.U32(0x800E58A0u)).f8_Set(Slider_Create(111, 112, 255));
+            Slider_SetValue(new O05M0A_v2(Mem.U32(0x800E58A0u)).f8, (int)(Mem.U8((0x801462E0u + (uint)0))));
+            new O05M0A_v2(Mem.U32(0x800E58A0u)).fC_Set(Slider_Create(113, 114, 255));
+            Slider_SetValue(new O05M0A_v2(Mem.U32(0x800E58A0u)).fC, (int)(Mem.U8((0x801462E0u + (uint)1))));
+            MenuButton_Create(115);
+            new O05M0A_v2(Mem.U32(0x800E58A0u)).f4_Set(Flicker_Create((uint)(110), (uint)(110), default(uint), default(uint)));
             new O05M0A_v2(Mem.U32(0x800E58A0u)).f18_Set(3);
             new O05M0A_v2(Mem.U32(0x800E58A0u)).f14_Set((-1));
             return 0;

@@ -33,7 +33,7 @@ public static partial class Game
                                 new Q4Gfx(q).w0_Set(((3976200192u | (uint)((((int)(((float)(new Q4Scis((0x800E41C0u + (uint)(i * 16))).x0) * 4.0f)) & 4095) << (int)12))) | (uint)(((int)(((float)(new Q4Scis((0x800E41C0u + (uint)(i * 16))).y0) * 4.0f)) & 4095))));
                                 new Q4Gfx(q).w1_Set((uint)(((((int)(((float)(new Q4Scis((0x800E41C0u + (uint)(i * 16))).x1) * 4.0f)) & 4095) << (int)12) | ((int)(((float)(new Q4Scis((0x800E41C0u + (uint)(i * 16))).y1) * 4.0f)) & 4095))));
                             }
-                            func_0041C864((new O05L2(Mem.U32(0x800E59E0u)).row.P + (uint)(i * 1232)));
+                            MenuModel_Draw((new O05L2(Mem.U32(0x800E59E0u)).row.P + (uint)(i * 1232)));
                         }
                     }
                     i = 0;

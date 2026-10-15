@@ -31,7 +31,7 @@ public static partial class Game
                 r4 = (uint)310;
                 r1 = 2148401152u;
                 Mem.Set((r1 + 22400u), r2);
-                r5 = (uint)311; r2 = func_0041A300((int)r4, (int)r5);
+                r5 = (uint)311; r2 = PopupPanel_Create((int)r4, (int)r5);
                 r4 = 2148532224u;
                 r4 = r4 + 11134u;
                 r3 = 2148401152u;
@@ -43,10 +43,10 @@ public static partial class Game
                 r4 = r16;
                 r5 = (uint)314; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r2;
-                r5 = (uint)1; func_0040E9D0(r4, (int)r5);
+                r5 = (uint)1; UiNode_SetDisabled(r4, (int)r5);
                 r4 = (uint)313;
                 L_L00437560: ;
-                r5 = (uint)110; r2 = func_00419ED4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = (uint)110; r2 = Flicker_Create(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r16;
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 22400u));

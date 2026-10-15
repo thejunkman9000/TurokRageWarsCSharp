@@ -23,11 +23,11 @@ public static partial class Game
                 new O05W30(Mem.U32(0x800E5830u)).f1C_Set(0);
                 break;
             case 627:
-                func_00435190(5);
+                PlayerMenu_SetMode(5);
                 Menu_GotoScreen(19);
                 return 0;
             case 631:
-                func_0042EB68(33);
+                Menu_RequestScreen(33);
                 break;
             }
             return 0;

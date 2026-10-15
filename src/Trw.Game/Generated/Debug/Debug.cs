@@ -785,4 +785,94 @@ public static partial class Game
         }
         finally { if (Dbg.On) Dbg.Leave("func_002A8644", r2); Stack.Free(384); }
     }
+
+    // ==== func_0041432C @ 0x0041432C [MIPS]
+    public static uint Debug_FormatAssertMessage(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5, uint a6, uint a7, uint a8, uint a9, uint a10)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0041432C", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                Mem.Set(r29 + 16u, a4);
+                Mem.Set(r29 + 20u, a5);
+                Mem.Set(r29 + 24u, a6);
+                Mem.Set(r29 + 28u, a7);
+                Mem.Set(r29 + 32u, a8);
+                Mem.Set(r29 + 36u, a9);
+                Mem.Set(r29 + 40u, a10);
+                L_func_0041432C: ;
+                { bool c_ = r3 == 0; Mem.Set((r29 + 8u), r6); if (c_) goto L_L0041436C; }
+                Mem.Set((r29 + 12u), r7);
+                r29 = r29 - 32u;
+                r2 = r4;
+                r7 = r5;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r6;
+                Mem.Set((r29 + 24u), r31);
+                { bool c_ = r17 == 0; Mem.Set((r29 + 16u), r16); if (c_) goto L_L004143B0; }
+                { bool c_ = r2 == 0; r16 = r29 + 44u; if (c_) goto L_L00414378; }
+                r4 = 2148859904u;
+                r4 = r4 + 15712u;
+                r5 = 2148401152u;
+                L_L0041436C: ;
+                r5 = r5 + 4336u;
+                r6 = r2; goto L_L00414390;
+                L_L00414378: ;
+                r4 = 2148859904u;
+                r4 = r4 + 15712u;
+                r5 = 2148401152u;
+                r5 = r5 + 4336u;
+                r6 = 2148401152u;
+                r6 = r6 + 4352u;
+                L_L00414390: ;
+                r2 = Str_FormatInto(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
+                r4 = 2148859904u;
+                r4 = r4 + 15712u;
+                r4 = r2 + r4;
+                r5 = r17;
+                r6 = r16; r2 = Printf_VFormat(r4, r5, r6, r7, 0u, 0u, 0u, 0u, 0u, 0u, 0u); r3 = Cpu.V1;
+                L_L004143B0: ;
+                r31 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r2 = (uint)1;
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0041432C", r2); Stack.Free(384); }
+    }
+
+    // ==== func_004143C8 @ 0x004143C8 [C]
+    public static uint Debug_GetAssertMessage()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004143C8");
+            return 0x80153D60u;
+        }
+    }
+
+    // ==== func_00415C9C @ 0x00415C9C [C]
+    public static void Debug_HaltFlashScreen(int n)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00415C9C", (uint)n);
+            int i = 0;
+            uint m = 0u;
+            while ((n != 5))
+            {
+                m = (uint)(((i++) & 1048576));
+                osViBlack((byte)(((m != (uint)(0)) ? 1 : 0)));
+            }
+        }
+    }
 }

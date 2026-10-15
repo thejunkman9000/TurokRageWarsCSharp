@@ -38,7 +38,7 @@ public static partial class Game
                 r1 = 2148401152u;
                 Mem.Set((r1 + 23008u), r2);
                 r10 = r4;
-                Mem.Set((r2 + 0u), r10); r2 = func_0041B690(r4, (int)r5);
+                Mem.Set((r2 + 0u), r10); r2 = CursorGroup_Create(r4, (int)r5);
                 r5 = r0;
                 r6 = (uint)200;
                 r17 = r5;
@@ -49,16 +49,16 @@ public static partial class Game
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 23008u));
                 r20 = r5;
-                Mem.Set((r3 + 4u), r2); func_0041B768(r4, (int)r5, (int)r6);
+                Mem.Set((r3 + 4u), r2); CursorGroup_SetCursorById(r4, (int)r5, (int)r6);
                 r5 = (uint)1;
                 r4 = Mem.U32((r29 + 112u));
-                r6 = (uint)200; func_0041B768(r4, (int)r5, (int)r6);
+                r6 = (uint)200; CursorGroup_SetCursorById(r4, (int)r5, (int)r6);
                 r5 = (uint)2;
                 r4 = Mem.U32((r29 + 112u));
-                r6 = (uint)200; func_0041B768(r4, (int)r5, (int)r6);
+                r6 = (uint)200; CursorGroup_SetCursorById(r4, (int)r5, (int)r6);
                 r5 = (uint)3;
                 r4 = Mem.U32((r29 + 112u));
-                r6 = (uint)200; func_0041B768(r4, (int)r5, (int)r6);
+                r6 = (uint)200; CursorGroup_SetCursorById(r4, (int)r5, (int)r6);
                 r1 = 2148401152u;
                 Cpu.SetW(0, Mem.U32((r1 + 8128u)));
                 r19 = r0;
@@ -84,7 +84,7 @@ public static partial class Game
                 r2 = r2 + r20;
                 Mem.Set((r2 + 1232u), r4);
                 r2 = (uint)100;
-                Mem.Set((r4 + 16u), (byte)r2); func_0040E958(r4, (int)r5);
+                Mem.Set((r4 + 16u), (byte)r2); UiNode_SetVisible(r4, (int)r5);
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 23008u));
                 r1 = 2148401152u;
@@ -100,7 +100,7 @@ public static partial class Game
                 r2 = Mem.U8((r16 + 120u));
                 if (r2 != r30) { r23 = r23 + 12u; goto L_L0043A2E4; }
                 r4 = (uint)(int)Mem.S8((r16 + 128u));
-                r2 = (uint)func_0041F1B0((int)r4);
+                r2 = (uint)CharSelect_FindRowByCharacter((int)r4);
                 r5 = (uint)9;
                 r3 = r2 << 3;
                 r3 = r3 - r2;
@@ -211,7 +211,7 @@ public static partial class Game
                 r4 = (uint)201;
                 r5 = (uint)255;
                 r13 = (uint)110;
-                Mem.Set((r2 + 16u), (byte)r13); r2 = func_00419ED4(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r2 + 16u), (byte)r13); r2 = Flicker_Create(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = Mem.U32((r29 + 112u));
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 23008u));
@@ -221,7 +221,7 @@ public static partial class Game
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 23008u));
                 r5 = r0;
-                Mem.Set((r2 + 4964u), r4); func_0040E958(r4, (int)r5);
+                Mem.Set((r2 + 4964u), r4); UiNode_SetVisible(r4, (int)r5);
                 r9 = (uint)1;
                 r8 = (uint)14;
                 r7 = (uint)2;

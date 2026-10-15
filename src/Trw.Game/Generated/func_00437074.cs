@@ -11,17 +11,17 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00437074", (uint)cfg);
             Mem.Set(0x800E5694u, ResourcePool_Malloc((uint)(80)));
-            func_0041B190(454);
-            func_0041ADB4(new O05M94_v3(Mem.U32(0x800E5694u)).fC_Set(func_0041AC40(457, 458)), Mem.U32((0x800D74D0u + (uint)(0 * 4))));
-            func_0041ADB4(new O05M94_v3(Mem.U32(0x800E5694u)).fC, Mem.U32((0x800D74DCu + (uint)(0 * 4))));
-            func_0041ADB4(new O05M94_v3(Mem.U32(0x800E5694u)).f8_Set(func_0041AC40(465, 466)), Mem.U32((0x800D749Cu + (uint)(0 * 4))));
-            func_0041ADB4(new O05M94_v3(Mem.U32(0x800E5694u)).f8, Mem.U32((0x800D74A0u + (uint)(0 * 4))));
-            new O05M94_v3(Mem.U32(0x800E5694u)).f0_Set(func_0041A600(463, 464, 255));
-            new O05M94_v3(Mem.U32(0x800E5694u)).f4_Set(func_0041A600(461, 462, 255));
-            func_0041ADB4(new O05M94_v3(Mem.U32(0x800E5694u)).f10_Set(func_0041AC40(459, 460)), Mem.U32((0x800D74E0u + (uint)(0 * 4))));
-            func_0041ADB4(new O05M94_v3(Mem.U32(0x800E5694u)).f10, Mem.U32((0x800D74E4u + (uint)(0 * 4))));
-            func_0041ADB4(new O05M94_v3(Mem.U32(0x800E5694u)).f10, Mem.U32((0x800D74E8u + (uint)(0 * 4))));
-            func_0041B190(456);
+            MenuButton_Create(454);
+            OptionList_AddOption(new O05M94_v3(Mem.U32(0x800E5694u)).fC_Set(OptionList_Create(457, 458)), Mem.U32((0x800D74D0u + (uint)(0 * 4))));
+            OptionList_AddOption(new O05M94_v3(Mem.U32(0x800E5694u)).fC, Mem.U32((0x800D74DCu + (uint)(0 * 4))));
+            OptionList_AddOption(new O05M94_v3(Mem.U32(0x800E5694u)).f8_Set(OptionList_Create(465, 466)), Mem.U32((0x800D749Cu + (uint)(0 * 4))));
+            OptionList_AddOption(new O05M94_v3(Mem.U32(0x800E5694u)).f8, Mem.U32((0x800D74A0u + (uint)(0 * 4))));
+            new O05M94_v3(Mem.U32(0x800E5694u)).f0_Set(Slider_Create(463, 464, 255));
+            new O05M94_v3(Mem.U32(0x800E5694u)).f4_Set(Slider_Create(461, 462, 255));
+            OptionList_AddOption(new O05M94_v3(Mem.U32(0x800E5694u)).f10_Set(OptionList_Create(459, 460)), Mem.U32((0x800D74E0u + (uint)(0 * 4))));
+            OptionList_AddOption(new O05M94_v3(Mem.U32(0x800E5694u)).f10, Mem.U32((0x800D74E4u + (uint)(0 * 4))));
+            OptionList_AddOption(new O05M94_v3(Mem.U32(0x800E5694u)).f10, Mem.U32((0x800D74E8u + (uint)(0 * 4))));
+            MenuButton_Create(456);
             new O05M94_v3(Mem.U32(0x800E5694u)).f18_Set(UiTree_FindNode(cfg, (uint)(455), default(uint), default(uint)));
             new O05M94_v3(Mem.U32(0x800E5694u)).f14_Set(0);
             func_00436AD8(0);

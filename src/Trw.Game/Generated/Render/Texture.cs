@@ -1355,7 +1355,7 @@ public static partial class Game
                 Mem.Set((r3 + 0u), r2);
                 r4 = Mem.U32((r19 + 0u));
                 r17 = r17 + 28u;
-                r4 = r4 + r5; func_00419688(r4);
+                r4 = r4 + r5; Image_Clear(r4);
                 r2 = (uint)(int)Mem.S16((r19 - 16u));
                 r2 = (uint)((int)r16 < (int)r2 ? 1 : 0);
                 { bool c_ = r2 != 0; r18 = r18 + 28u; if (c_) goto L_L0040FD14; }
@@ -1376,7 +1376,7 @@ public static partial class Game
                 r5 = Mem.U32((r17 - 80u));
                 r7 = Mem.U32((r21 + 0u));
                 r6 = (uint)1; r2 = File_Read(r4, r5, r6, r7); r3 = Cpu.V1;
-                r4 = r0; func_0040FA60((int)r4);
+                r4 = r0; UiString_LoadBank((int)r4);
                 L_L0040FDD8: ;
                 r4 = Mem.U32((r17 - 64u));
                 r2 = 2863267840u;
@@ -1635,6 +1635,164 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_0040FC14", r2); Stack.Free(384); }
     }
 
+    // ==== func_0041023C @ 0x0041023C [C]
+    public static void Image_CloseArchives()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0041023C");
+            int i = 0;
+            int j = 0;
+            uint q = 0u;
+            for (i = 0; (i < (int)(Mem.S16(0x80153C0Cu))); ++i)
+            {
+                if (((new S_o((Mem.U32(0x80153C10u) + (uint)(i * 28))).flags & 1) != 0))
+                {
+                    uint e = (Mem.U32(0x80153C18u) + (uint)(i * 8));
+                    if (((new S_e(e).id != (-1)) && ((int)(new S_e(e).cnt) == 0)))
+                    {
+                        Image_Release(i);
+                    }
+                }
+            }
+            UiFont_UnloadAllGlyphs();
+            if ((new S_G(0x801539B0u).h != 0))
+            {
+                File_Close((uint)(new S_G(0x801539B0u).h), default(uint), default(uint), default(uint));
+            }
+            UiScreen_FreeAll(1);
+            Image_ReleaseAll(1);
+            if ((new S_G(0x801539B0u).p260 != 0u))
+            {
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p260);
+            }
+            UiFont_FreeAll();
+            for (j = 0; (j < (int)(new S_G(0x801539B0u).n20)); ++j)
+            {
+                if ((new S_obj_v3((Mem.U32(0x80153C28u) + (uint)(j * 1180))).p488 != 0u))
+                {
+                    ResourcePool_MallocFree(Mem.U32(new S_obj_v3((Mem.U32(0x80153C28u) + (uint)(j * 1180))).p488));
+                    ResourcePool_MallocFree(new S_obj_v3((Mem.U32(0x80153C28u) + (uint)(j * 1180))).p488);
+                }
+                ResourcePool_MallocFree(Mem.U32(new S_obj_v3((Mem.U32(0x80153C28u) + (uint)(j * 1180))).p484));
+                ResourcePool_MallocFree(new S_obj_v3((Mem.U32(0x80153C28u) + (uint)(j * 1180))).p484);
+            }
+            if ((new S_G(0x801539B0u).p26C != 0u))
+            {
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p26C);
+            }
+            if ((new S_G(0x801539B0u).p278 != 0u))
+            {
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p278);
+            }
+            if ((new S_G(0x801539B0u).p274 != 0u))
+            {
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p274);
+            }
+            if ((new S_G(0x801539B0u).p2A0 != 0u))
+            {
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p2A0);
+            }
+            if ((new S_G(0x801539B0u).p268 != 0u))
+            {
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p268);
+            }
+            if ((new S_G(0x801539B0u).p294 != 0u))
+            {
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p294);
+            }
+            if ((new S_G(0x801539B0u).p298 != 0u))
+            {
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p298);
+            }
+            if ((new S_G(0x801539B0u).p264 != 0u))
+            {
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p264);
+            }
+            if ((new S_G(0x801539B0u).p29C != 0u))
+            {
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p29C);
+            }
+            if ((new S_G(0x801539B0u).p288 != 0u))
+            {
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p288);
+            }
+            if ((new S_G(0x801539B0u).p28C != 0u))
+            {
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p28C);
+            }
+            if ((new S_G(0x801539B0u).p280 != 0u))
+            {
+                ResourcePool_MallocFree(new S_G(0x801539B0u).p280);
+            }
+            Mem_Fill(0x801539B0u, 0, (uint)(680));
+        }
+    }
+
+    // ==== func_004104C8 @ 0x004104C8 [C]
+    public static void Image_EvictExpired()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004104C8");
+            int i = 0;
+            int j = 0;
+            int k = 0;
+            int t = 0;
+            uint e = 0u;
+            uint q = 0u;
+            t = Menu_GetFrameCounter();
+            if ((new S_v(0x80153C0Cu).mode == 0))
+            {
+                for (i = 0; (i < (int)(new S_v(0x80153C0Cu).n)); ++i)
+                {
+                    if (((new S_o((Mem.U32(0x80153C10u) + (uint)(i * 28))).flags & 1) != 0))
+                    {
+                        q = (Mem.U32(0x80153C18u) + (uint)(i * 8));
+                        if ((((new S_e(q).id != (-1)) && ((int)(new S_e(q).cnt) == 0)) && (new S_e(q).id < t)))
+                        {
+                            Image_Release(i);
+                            return;
+                        }
+                    }
+                }
+                for (i = 0; (i < (int)(Mem.S16(0x80153C20u))); ++i)
+                {
+                    if ((((int)(new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).b490) != 0) && (new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).w0 != 0)))
+                    {
+                        for (j = 0; (j < (int)(Mem.S16((new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).p48C + 14u)))); ++j)
+                        {
+                            e = Mem.U32((new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).p484 + (uint)(j * 4)));
+                            for (k = 0; (k < 96); ++k)
+                            {
+                                uint h = ((e + (uint)(k * 44)) + (uint)8);
+                                if ((((int)(Mem.U16(h)) & 1) != 0))
+                                {
+                                    if ((Mem.S32(((e + (uint)(k * 44)) + (uint)4)) < t))
+                                    {
+                                        Image_Free(((e + (uint)(k * 44)) + (uint)12));
+                                        Mem.Set(h, (ushort)(((int)(Mem.U16(h)) & 65534)));
+                                        Mem.Set(((e + (uint)(k * 44)) + (uint)4), 0);
+                                        new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).b490_Set((byte)(new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).b490 - 1));
+                                        if (((int)(new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).b490) != 0))
+                                        {
+                                            return;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if (((int)(new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).b490) == 0))
+                        {
+                            UiFont_FreeTextures(i);
+                            new S_obj((Mem.U32(0x80153C28u) + (uint)(i * 1180))).w0_Set(0);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     // ==== func_004106F4 @ 0x004106F4 [C]
     public static void func_004106F4_touch(int index, int mode)
     {
@@ -1768,7 +1926,7 @@ public static partial class Game
                 r18 = r2 & r3;
                 L_L00410890: ;
                 r4 = Mem.U32((r29 + 56u));
-                func_00413464((int)r4);
+                Image_ClearBitmap((int)r4);
                 r2 = (uint)(int)Mem.S16((r16 + 12u));
                 { long p_ = (long)(int)r18 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
                 r3 = lo;
@@ -1865,10 +2023,10 @@ public static partial class Game
                 Mem.Set((r29 + 32u), r8);
                 Mem.Set((r29 + 20u), r2);
                 r2 = (uint)(int)Mem.S16((r16 + 14u));
-                Mem.Set((r29 + 48u), r2); func_004137A0(r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u), (int)Mem.U32(r29 + 24u), (int)Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u), (int)Mem.U32(r29 + 36u), (int)Mem.U32(r29 + 40u), (int)Mem.U32(r29 + 44u), (int)Mem.U32(r29 + 48u));
+                Mem.Set((r29 + 48u), r2); Image_InitBitmap(r4, (int)r5, (int)r6, (int)r7, (int)Mem.U32(r29 + 16u), (int)Mem.U32(r29 + 20u), (int)Mem.U32(r29 + 24u), (int)Mem.U32(r29 + 28u), (int)Mem.U32(r29 + 32u), (int)Mem.U32(r29 + 36u), (int)Mem.U32(r29 + 40u), (int)Mem.U32(r29 + 44u), (int)Mem.U32(r29 + 48u));
                 r4 = Mem.U32((r29 + 60u));
                 r5 = Mem.U32((r29 + 56u));
-                r17 = r30 << 3; r2 = func_004196C0(r4, r5, r6, r7); r3 = Cpu.V1;
+                r17 = r30 << 3; r2 = Image_Copy(r4, r5, r6, r7); r3 = Cpu.V1;
                 r3 = r17 - r30;
                 r2 = 2148859904u;
                 r2 = Mem.U32((r2 + 15376u));
@@ -1942,6 +2100,1108 @@ public static partial class Game
             }
         }
         finally { if (Dbg.On) Dbg.Leave("func_004106F4", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00410B94 @ 0x00410B94 [C]
+    public static void Image_LoadBitmap(int idx, int arg1)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00410B94", (uint)idx, (uint)arg1);
+            uint r = 0u;
+            uint pal = 0u;
+            int s2 = 0;
+            int s3 = 0;
+            int s4 = 0;
+            int s6 = 0;
+            uint fp = 0u;
+            int a1 = 0;
+            int a0 = 0;
+            int n2 = 0;
+            int t = 0;
+            uint mask = 0u;
+            if (!(((new Q01Rec((Mem.U32(0x80153C10u) + (uint)(idx * 28))).flags & 1) != 0))) goto _f0;
+            Image_CopyBitmap((uint)(arg1), (uint)(new Q01Rec((Mem.U32(0x80153C10u) + (uint)(idx * 28))).w0));
+            return;
+            _f0: ;
+            pal = 0u;
+            s6 = (int)(pal);
+            s2 = (int)(pal);
+            Mem.Set((0x801539B4u - (uint)4), (int)(File_Open(0x801539B4u, 0x800E10E0u, default(uint), default(uint))));
+            r = (Mem.U32((0x801539B4u + (uint)604)) + (uint)(idx * 28));
+            s3 = (int)(pal);
+            if (!(((int)(new Q01Rec(r).bits) == 8))) goto _f1;
+            s2 = (((int)(new Q01Rec(r).w) + 7) & (-8));
+            goto _f2;
+            _f1: ;
+            if (!(((int)(new Q01Rec(r).bits) == 4))) goto _f3;
+            s2 = (((int)(new Q01Rec(r).w) + 15) & (-16));
+            goto _f4;
+            _f3: ;
+            if (!((0 != 0))) goto _f5;
+            L_found: ;
+            s3 = 1;
+            Mem.Set((Mem.U32(0x80153C14u) + (uint)(idx * 4)), a1);
+            goto L_L84;
+            goto _f6;
+            _f5: ;
+            if (!(((int)(new Q01Rec(r).bits) == 16))) goto _f7;
+            s2 = (((int)(new Q01Rec(r).w) + 3) & (-4));
+            _f7: ;
+            _f6: ;
+            _f4: ;
+            _f2: ;
+            s4 = (((s2 * (int)(new Q01Rec(r).h)) * (int)(new Q01Rec(r).bits)) / 8);
+            fp = ResourcePool_Malloc((uint)(s4));
+            File_Seek((uint)(new Q01H(0x801539B0u).h), (uint)((new Q01H(0x801539B0u).f248 + new Q01Rec(r).off14)), (uint)(0), default(uint));
+            File_Read(fp, (uint)(s4), (uint)(1), (uint)(new Q01H(0x801539B0u).h));
+            if (!(((int)(new Q01Rec(r).n) > 0))) goto _f8;
+            s6 = ((int)(new Q01Rec(r).n) * 2);
+            pal = ResourcePool_Malloc((uint)(s6));
+            File_Seek((uint)(new Q01H(0x801539B0u).h), (uint)((new Q01H(0x801539B0u).f248 + new Q01Rec(r).off18)), (uint)(0), default(uint));
+            File_Read(pal, (uint)(s6), (uint)(1), (uint)(new Q01H(0x801539B0u).h));
+            t = (int)(new Q01Rec(r).n);
+            a0 = 0;
+            if (!((t > 0))) goto _f9;
+            mask = 4278190080u;
+            n2 = t;
+            _f10: ;
+            a1 = Mem.S32((pal + (uint)(a0 * 4)));
+            if (!((((uint)(a1) & mask) == (uint)(0)))) goto _f13;
+            goto L_found;
+            _f13: ;
+            ++a0;
+            _f11: ;
+            if ((a0 < n2)) goto _f10;
+            _f12: ;
+            _f9: ;
+            L_L84: ;
+            if (!((a0 == (int)(new Q01Rec(r).n)))) goto _f14;
+            s3 = 0;
+            Mem.Set((Mem.U32(0x80153C14u) + (uint)(idx * 4)), (int)(4278190080u));
+            _f14: ;
+            _f8: ;
+            a1 = (-1);
+            if (!(((int)(new Q01Rec(r).n) > 0))) goto _f15;
+            if (!(((int)(new Q01Rec(r).bits) == 8))) goto _f16;
+            a1 = 32;
+            if (!((s3 != 0))) goto _f17;
+            a1 = 30;
+            _f17: ;
+            goto _f18;
+            _f16: ;
+            a1 = 22;
+            if (!((s3 != 0))) goto _f19;
+            a1 = 20;
+            _f19: ;
+            _f18: ;
+            goto _f20;
+            _f15: ;
+            if (!(((int)(new Q01Rec(r).bits) == 16))) goto _f21;
+            a1 = 28;
+            goto _f22;
+            _f21: ;
+            if (!(((int)(new Q01Rec(r).bits) == 24))) goto _f23;
+            a1 = 8;
+            goto _f24;
+            _f23: ;
+            if (!(((int)(new Q01Rec(r).bits) == 32))) goto _f25;
+            a1 = 12;
+            _f25: ;
+            _f24: ;
+            _f22: ;
+            _f20: ;
+            Image_InitBitmap((uint)(arg1), a1, (int)(new Q01Rec(r).w), (int)(new Q01Rec(r).h), s2, (int)(new Q01Rec(r).h), 1, s4, (int)(fp), 1, s6, (int)(pal), (int)(new Q01Rec(r).n));
+            File_Close((uint)(new Q01H(0x801539B0u).h), default(uint), default(uint), default(uint));
+            new Q01H(0x801539B0u).h_Set(0);
+        }
+    }
+
+    // ==== func_00410E9C @ 0x00410E9C [C]
+    public static void Image_ReleaseAll(int mode)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00410E9C", (uint)mode);
+            int i = 0;
+            for (i = 0; (i < (int)(Mem.S16(0x80153C0Cu))); ++i)
+            {
+                uint e = 0u;
+                if ((mode == 1))
+                {
+                    new S_e((Mem.U32(0x80153C18u) + (uint)(i * 8))).cnt_Set((short)(0));
+                    do
+                    {
+                        new S_e((Mem.U32(0x80153C18u) + (uint)(i * 8))).id_Set(0);
+                    }
+                    while ((0 != 0));
+                }
+                e = (uint)(((i * 8) + (int)(Mem.U32(0x80153C18u))));
+                if ((new S_e(e).id != (-1)))
+                {
+                    if (((int)(new S_e(e).cnt) > 0))
+                    {
+                        new S_e(e).cnt_Set((short)(((int)(new S_e(e).cnt) - 1)));
+                    }
+                    else
+                    {
+                        if (((new S_o_v2((Mem.U32(0x80153C10u) + (uint)(i * 28))).flags & 1) != 0))
+                        {
+                            Image_Free((uint)(new S_o_v2((Mem.U32(0x80153C10u) + (uint)(i * 28))).p));
+                            new S_o_v2((Mem.U32(0x80153C10u) + (uint)(i * 28))).flags_Set((int)((int)(new S_o_v2((Mem.U32(0x80153C10u) + (uint)(i * 28))).flags) & (~1)));
+                        }
+                        new S_e((Mem.U32(0x80153C18u) + (uint)(i * 8))).id_Set(0);
+                    }
+                }
+            }
+        }
+    }
+
+    // ==== func_00411AD4 @ 0x00411AD4 [C]
+    public static int Image_GetEntryCount()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00411AD4");
+            return (int)(Mem.S16(0x80153C0Cu));
+        }
+    }
+
+    // ==== func_00411AF4 @ 0x00411AF4 [C]
+    public static int Image_GetArchiveHeaderWord_00411AF4()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00411AF4");
+            return Mem.S32(0x80153C08u);
+        }
+    }
+
+    // ==== func_00411B04 @ 0x00411B04 [C]
+    public static int Image_GetEntryWidth(int i)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00411B04", (uint)i);
+            return (int)(new O02Rec((Mem.U32(0x80153C10u) + (uint)(i * 28))).a);
+        }
+    }
+
+    // ==== func_00411B28 @ 0x00411B28 [C]
+    public static int Image_GetEntryHeight(int i)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00411B28", (uint)i);
+            return (int)(new S_func_00411B28((Mem.U32(0x80153C10u) + (uint)(i * 28))).v);
+        }
+    }
+
+    // ==== func_00411B4C @ 0x00411B4C [C]
+    public static int Image_GetEntryKeyColor(int i)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00411B4C", (uint)i);
+            return Mem.S32((Mem.U32(0x80153C14u) + (uint)(i * 4)));
+        }
+    }
+
+    // ==== func_00411B68 @ 0x00411B68 [C]
+    public static int Image_ReturnOne_00411B68()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00411B68");
+            return 1;
+        }
+    }
+
+    // ==== func_00411B70 @ 0x00411B70 [C]
+    public static void Image_Release(int i)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00411B70", (uint)i);
+            uint e = (uint)(((i * 8) + (int)(Mem.U32(0x80153C18u))));
+            if ((new S_e(e).id != (-1)))
+            {
+                if (((int)(new S_e(e).cnt) > 0))
+                {
+                    new S_e(e).cnt_Set((short)(((int)(new S_e(e).cnt) - 1)));
+                }
+                else
+                {
+                    if (((new S_o((Mem.U32(0x80153C10u) + (uint)(i * 28))).flags & 1) != 0))
+                    {
+                        Image_Free((uint)(Mem.S32((Mem.U32(0x80153C10u) + (uint)(i * 28)))));
+                        new S_o((Mem.U32(0x80153C10u) + (uint)(i * 28))).flags_Set((int)((int)(new S_o((Mem.U32(0x80153C10u) + (uint)(i * 28))).flags) & (~1)));
+                    }
+                    new S_e((Mem.U32(0x80153C18u) + (uint)(i * 8))).id_Set(0);
+                }
+            }
+        }
+    }
+
+    // ==== func_00411F6C @ 0x00411F6C [C]
+    public static void Image_InitArchives()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00411F6C");
+            Mem_Fill(0x801539B0u, 0, (uint)(680));
+            Mem.Set(0x800E2AC0u, 1);
+            Mem.Set(0x800E2AC4u, 0);
+        }
+    }
+
+    // ==== func_00411FA8 @ 0x00411FA8 [C]
+    public static void Image_ClearInitFlag()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00411FA8");
+            Mem.Set(0x800E2AC0u, 0);
+        }
+    }
+
+    // ==== func_00411FC8 @ 0x00411FC8 [C]
+    public static void Image_PreloadAll()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00411FC8");
+            int i = 0;
+            new S_vars(0x80153C40u).mode_Set(1);
+            for (i = 0; (i < (int)(new S_vars(0x80153C40u).n)); ++i)
+            {
+                UiScreen_Load(i);
+            }
+            for (i = 0; (i < (int)(Mem.S16(0x80153C0Cu))); ++i)
+            {
+                Texture_GetResourceId((uint)(i), (uint)(2), default(uint), default(uint));
+            }
+            for (i = 0; (i < (int)(Mem.S16(0x80153C20u))); ++i)
+            {
+                UiFont_GetGlyphTexture((byte)(0), i, 0);
+            }
+        }
+    }
+
+    // ==== func_004120B8 @ 0x004120B8 [C]
+    public static void Image_ReleaseUnused()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004120B8");
+            int i = 0;
+            for (i = 0; (i < (int)(Mem.S16(0x80153C0Cu))); ++i)
+            {
+                if (((new S_o((Mem.U32(0x80153C10u) + (uint)(i * 28))).flags & 1) != 0))
+                {
+                    uint e = (Mem.U32(0x80153C18u) + (uint)(i * 8));
+                    if ((new S_e(e).id != (-1)))
+                    {
+                        if (((int)(new S_e(e).cnt) == 0))
+                        {
+                            Image_Release(i);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // ==== func_00412D5C @ 0x00412D5C [C]
+    public static int Image_FindPixelFormat(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00412D5C", (uint)p);
+            int i = 0;
+            for (i = 0; (i < 36); ++i)
+            {
+                if (((((((new S_func_00412D5C((0x800E2B20u + (uint)(i * 52))).w[(int)(1)] == new S_func_00412D5C(p).w[(int)(1)]) && (new S_func_00412D5C((0x800E2B20u + (uint)(i * 52))).w[(int)(2)] == new S_func_00412D5C(p).w[(int)(2)])) && (new S_func_00412D5C((0x800E2B20u + (uint)(i * 52))).w[(int)(5)] == new S_func_00412D5C(p).w[(int)(5)])) && (new S_func_00412D5C((0x800E2B20u + (uint)(i * 52))).w[(int)(6)] == new S_func_00412D5C(p).w[(int)(6)])) && (new S_func_00412D5C((0x800E2B20u + (uint)(i * 52))).w[(int)(7)] == new S_func_00412D5C(p).w[(int)(7)])) && (new S_func_00412D5C((0x800E2B20u + (uint)(i * 52))).w[(int)(8)] == new S_func_00412D5C(p).w[(int)(8)])))
+                {
+                    return i;
+                }
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_00412E14 @ 0x00412E14 [C]
+    public static uint Image_ConvertColor(uint argb, int ia, int ib)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00412E14", (uint)argb, (uint)ia, (uint)ib);
+            uint e = (0x800E2B20u + (uint)(ia * 52));
+            uint c0 = 0u;
+            uint c1 = 0u;
+            uint c2 = 0u;
+            uint c3 = 0u;
+            uint r = 0u;
+            uint g = 0u;
+            uint b = 0u;
+            uint a = 0u;
+            c0 = ((new S_e_v2(e).w[(int)(9)] < 0) ? ((argb & (uint)(new S_e_v2(e).w[(int)(5)])) << (int)(-new S_e_v2(e).w[(int)(9)])) : ((argb & (uint)(new S_e_v2(e).w[(int)(5)])) >> (int)new S_e_v2(e).w[(int)(9)]));
+            c1 = ((new S_e_v2(e).w[(int)(10)] < 0) ? ((argb & (uint)(new S_e_v2(e).w[(int)(6)])) << (int)(-new S_e_v2(e).w[(int)(10)])) : ((argb & (uint)(new S_e_v2(e).w[(int)(6)])) >> (int)new S_e_v2(e).w[(int)(10)]));
+            c2 = ((new S_e_v2(e).w[(int)(11)] < 0) ? ((argb & (uint)(new S_e_v2(e).w[(int)(7)])) << (int)(-new S_e_v2(e).w[(int)(11)])) : ((argb & (uint)(new S_e_v2(e).w[(int)(7)])) >> (int)new S_e_v2(e).w[(int)(11)]));
+            c3 = ((new S_e_v2(e).w[(int)(12)] < 0) ? ((argb & (uint)(new S_e_v2(e).w[(int)(8)])) << (int)(-new S_e_v2(e).w[(int)(12)])) : ((argb & (uint)(new S_e_v2(e).w[(int)(8)])) >> (int)new S_e_v2(e).w[(int)(12)]));
+            argb = (c3 << (int)24);
+            argb = (uint)((uint)(argb) | (c0 << (int)16));
+            argb = (uint)((uint)(argb) | (c1 << (int)8));
+            argb = (uint)((uint)(argb) | c2);
+            r = ((argb >> (int)16) & (uint)(255));
+            g = ((argb & (uint)(65280)) >> (int)8);
+            b = (argb & (uint)(255));
+            e = (0x800E2B20u + (uint)(ib * 52));
+            a = (argb >> (int)24);
+            r = ((new S_e_v2(e).w[(int)(9)] < 0) ? ((r >> (int)(-new S_e_v2(e).w[(int)(9)])) & (uint)(new S_e_v2(e).w[(int)(5)])) : ((r << (int)new S_e_v2(e).w[(int)(9)]) & (uint)(new S_e_v2(e).w[(int)(5)])));
+            g = ((new S_e_v2(e).w[(int)(10)] < 0) ? ((g >> (int)(-new S_e_v2(e).w[(int)(10)])) & (uint)(new S_e_v2(e).w[(int)(6)])) : ((g << (int)new S_e_v2(e).w[(int)(10)]) & (uint)(new S_e_v2(e).w[(int)(6)])));
+            b = ((new S_e_v2(e).w[(int)(11)] < 0) ? ((b >> (int)(-new S_e_v2(e).w[(int)(11)])) & (uint)(new S_e_v2(e).w[(int)(7)])) : ((b << (int)new S_e_v2(e).w[(int)(11)]) & (uint)(new S_e_v2(e).w[(int)(7)])));
+            a = ((new S_e_v2(e).w[(int)(12)] < 0) ? ((a >> (int)(-new S_e_v2(e).w[(int)(12)])) & (uint)(new S_e_v2(e).w[(int)(8)])) : ((a << (int)new S_e_v2(e).w[(int)(12)]) & (uint)(new S_e_v2(e).w[(int)(8)])));
+            return (((r | g) | b) | a);
+        }
+    }
+
+    // ==== func_00412FD4 @ 0x00412FD4 [C]
+    public static void Image_BindSurfaces(uint a, uint b)
+    {
+        uint _fp = Stack.Alloc(108);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_00412FD4", (uint)a, (uint)b);
+                int v = 0;
+                Mem.Set(0x80153CDCu, 0u);
+                Mem.Set(0x80153CD8u, 0u);
+                Mem.Set(0x80153CD4u, 0u);
+                Mem.Set(0x80153CD0u, 0u);
+                Mem.Set(0x80153C88u, 0);
+                Mem.Set(0x80153C7Cu, 0);
+                Mem.Set(0x80153C70u, 0);
+                Mem.Set(0x80153C64u, 0);
+                Mem.Set(0x80153C84u, 0);
+                Mem.Set(0x80153C78u, 0);
+                Mem.Set(0x80153C6Cu, 0);
+                Mem.Set(0x80153C60u, 0);
+                Mem.Set(0x80153D58u, 0u);
+                Mem.Set(0x80153D54u, 0u);
+                if ((a != 0u))
+                {
+                    Mem.Set(0x80153D58u, a);
+                    Mem.Copy(_fp, (0x800E2B20u + (uint)(new S_fmt(a).fmt * 52)), 52);
+                    Mem.Copy(0x80153D20u, _fp, 52);
+                    if ((new S_row(_fp).w[(int)(1)] != 0))
+                    {
+                        Mem.Set(0x80153C70u, new S_fmt(a).f14);
+                    }
+                    else
+                    {
+                        Mem.Set(0x80153C70u, new S_fmt(a).f18);
+                    }
+                    if ((new S_row(_fp).w[(int)(1)] != 0))
+                    {
+                        Mem.Set(0x80153C88u, new S_fmt(a).f18);
+                    }
+                    else
+                    {
+                        Mem.Set(0x80153C88u, 0);
+                    }
+                    if ((new S_row(_fp).w[(int)(3)] == 16))
+                    {
+                        Mem.Set(0x80153CD4u, 0x004140ECu);
+                    }
+                    else
+                    {
+                        if ((new S_row(_fp).w[(int)(3)] == 24))
+                        {
+                            Mem.Set(0x80153CD4u, 0x0041413Cu);
+                        }
+                        else
+                        {
+                            if ((new S_row(_fp).w[(int)(3)] == 32))
+                            {
+                                Mem.Set(0x80153CD4u, 0x00414114u);
+                            }
+                        }
+                    }
+                    if ((new S_row(_fp).w[(int)(2)] == 4))
+                    {
+                        Mem.Set(0x80153CDCu, 0x004142C4u);
+                    }
+                    else
+                    {
+                        if ((new S_row(_fp).w[(int)(2)] == 8))
+                        {
+                            Mem.Set(0x80153CDCu, 0x004142A0u);
+                        }
+                    }
+                    Mem.Set(0x80153CA0u, new S_row(_fp).w[(int)(5)]);
+                    Mem.Set(0x80153CA4u, new S_row(_fp).w[(int)(6)]);
+                    Mem.Set(0x80153CA8u, new S_row(_fp).w[(int)(7)]);
+                    Mem.Set(0x80153CACu, new S_row(_fp).w[(int)(8)]);
+                    Mem.Set(0x80153CC0u, new S_row(_fp).w[(int)(9)]);
+                    Mem.Set(0x80153CC4u, new S_row(_fp).w[(int)(10)]);
+                    Mem.Set(0x80153CC8u, new S_row(_fp).w[(int)(11)]);
+                    Mem.Set(0x80153CCCu, new S_row(_fp).w[(int)(12)]);
+                }
+                if ((b != 0u))
+                {
+                    Mem.Set(0x80153D54u, b);
+                    Mem.Copy((_fp + 56u), (0x800E2B20u + (uint)(new S_fmt(b).fmt * 52)), 52);
+                    Mem.Copy(0x80153CE0u, (_fp + 56u), 52);
+                    if ((new S_row((_fp + 56u)).w[(int)(1)] != 0))
+                    {
+                        Mem.Set(0x80153C64u, new S_fmt(b).f14);
+                    }
+                    else
+                    {
+                        Mem.Set(0x80153C64u, new S_fmt(b).f18);
+                    }
+                    if ((new S_row((_fp + 56u)).w[(int)(1)] != 0))
+                    {
+                        Mem.Set(0x80153C7Cu, new S_fmt(b).f18);
+                    }
+                    else
+                    {
+                        Mem.Set(0x80153C7Cu, 0);
+                    }
+                    if ((new S_row((_fp + 56u)).w[(int)(3)] == 16))
+                    {
+                        Mem.Set(0x80153CD0u, 0x0041404Cu);
+                    }
+                    else
+                    {
+                        if ((new S_row((_fp + 56u)).w[(int)(3)] == 24))
+                        {
+                            Mem.Set(0x80153CD0u, 0x004140A4u);
+                        }
+                        else
+                        {
+                            if ((new S_row((_fp + 56u)).w[(int)(3)] == 32))
+                            {
+                                Mem.Set(0x80153CD0u, 0x00414078u);
+                            }
+                        }
+                    }
+                    if ((new S_row((_fp + 56u)).w[(int)(2)] == 4))
+                    {
+                        Mem.Set(0x80153CD8u, 0x004141E8u);
+                    }
+                    else
+                    {
+                        if ((new S_row((_fp + 56u)).w[(int)(2)] == 8))
+                        {
+                            Mem.Set(0x80153CD8u, 0x004141B8u);
+                        }
+                        else
+                        {
+                            if ((new S_row((_fp + 56u)).w[(int)(2)] == 16))
+                            {
+                                Mem.Set(0x80153CD8u, 0x00414240u);
+                            }
+                            else
+                            {
+                                if ((new S_row((_fp + 56u)).w[(int)(2)] == 24))
+                                {
+                                    Mem.Set(0x80153CD8u, 0x00414260u);
+                                }
+                                else
+                                {
+                                    if ((new S_row((_fp + 56u)).w[(int)(2)] == 32))
+                                    {
+                                        Mem.Set(0x80153CD8u, 0x00414280u);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Mem.Set(0x80153C90u, new S_row((_fp + 56u)).w[(int)(5)]);
+                    Mem.Set(0x80153C94u, new S_row((_fp + 56u)).w[(int)(6)]);
+                    Mem.Set(0x80153C98u, new S_row((_fp + 56u)).w[(int)(7)]);
+                    Mem.Set(0x80153C9Cu, new S_row((_fp + 56u)).w[(int)(8)]);
+                    Mem.Set(0x80153CB0u, new S_row((_fp + 56u)).w[(int)(9)]);
+                    Mem.Set(0x80153CB4u, new S_row((_fp + 56u)).w[(int)(10)]);
+                    Mem.Set(0x80153CB8u, new S_row((_fp + 56u)).w[(int)(11)]);
+                    Mem.Set(0x80153CBCu, new S_row((_fp + 56u)).w[(int)(12)]);
+                }
+            }
+        }
+        finally { Stack.Free(108); }
+    }
+
+    // ==== func_00413464 @ 0x00413464 [C]
+    public static void Image_ClearBitmap(int a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00413464", (uint)a);
+            Mem_Fill((uint)(a), 0, (uint)(32));
+        }
+    }
+
+    // ==== func_00413484 @ 0x00413484 [C]
+    public static void Image_FreeBitmap(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00413484", (uint)p);
+            if ((((int)(new S_func_00413484(p).b1) & 1) != 0))
+            {
+                ResourcePool_MallocFree((uint)(new S_func_00413484(p).f18));
+            }
+            if ((((int)(new S_func_00413484(p).b1) & 2) != 0))
+            {
+                if ((new S_func_00413484(p).f10 > 0))
+                {
+                    ResourcePool_MallocFree((uint)(new S_func_00413484(p).f14));
+                }
+            }
+            Mem_Fill(p, 0, (uint)(32));
+        }
+    }
+
+    // ==== func_004134F8 @ 0x004134F8 [C]
+    public static int Image_ReturnZero_004134F8()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004134F8");
+            return 0;
+        }
+    }
+
+    // ==== func_00413500 @ 0x00413500 [C]
+    public static int Image_CopyBitmap(uint d, uint s)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00413500", (uint)d, (uint)s);
+            int n = 0;
+            if ((((int)(new S_func_00413500(d).b1) & 1) != 0))
+            {
+                ResourcePool_MallocFree((uint)(new S_func_00413500(d).f18));
+            }
+            if ((((int)(new S_func_00413500(d).b1) & 2) != 0))
+            {
+                if ((new S_func_00413500(d).f10 > 0))
+                {
+                    ResourcePool_MallocFree((uint)(new S_func_00413500(d).f14));
+                }
+            }
+            Mem_Fill(d, 0, (uint)(32));
+            Mem.Copy(d, s, 32);
+            if ((new S_func_00413500(d).f10 == 0))
+            {
+                new S_func_00413500(d).f14_Set(0);
+            }
+            new S_func_00413500(d).b1_Set((byte)(1));
+            if ((new S_func_00413500(d).f14 != 0))
+            {
+                new S_func_00413500(d).b1_Set((byte)(3));
+            }
+            n = Image_GetPixelDataSize(s);
+            new S_func_00413500(d).f18_Set((int)(ResourcePool_Malloc((uint)(n))));
+            if ((new S_func_00413500(d).f18 == 0))
+            {
+                return 1;
+            }
+            else
+            {
+                Mem_Copy((uint)(new S_func_00413500(d).f18), (uint)(new S_func_00413500(s).f18), (uint)(n));
+                if ((new S_func_00413500(s).f10 != 0))
+                {
+                    n = Image_GetPaletteSize(s);
+                    new S_func_00413500(d).f14_Set((int)(ResourcePool_Malloc((uint)(n))));
+                    if ((new S_func_00413500(d).f14 == 0))
+                    {
+                        ResourcePool_MallocFree((uint)(new S_func_00413500(d).f18));
+                        Mem_Fill(d, 0, (uint)(32));
+                        return 1;
+                    }
+                    else
+                    {
+                        Mem_Copy((uint)(new S_func_00413500(d).f14), (uint)(new S_func_00413500(s).f14), (uint)(n));
+                        return 0;
+                    }
+                }
+                return 0;
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_0041367C @ 0x0041367C [C]
+    public static int Image_GetFormat(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0041367C", (uint)p);
+            return (int)(new S_func_0041367C(p).v);
+        }
+    }
+
+    // ==== func_00413688 @ 0x00413688 [C]
+    public static int Image_GetBitsPerPixel(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00413688", (uint)p);
+            return new S_func_00413688((0x800E2B28u + (uint)(Mem.U8(p) * 52))).v;
+        }
+    }
+
+    // ==== func_004136B4 @ 0x004136B4 [C]
+    public static int Image_GetPaletteBits(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004136B4", (uint)p);
+            return new S_func_004136B4((0x800E2B2Cu + (uint)(Mem.U8(p) * 52))).v;
+        }
+    }
+
+    // ==== func_004136E0 @ 0x004136E0 [C]
+    public static int Image_GetPaletteCount(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004136E0", (uint)p);
+            return (int)(new S_func_004136E0(p).v);
+        }
+    }
+
+    // ==== func_004136EC @ 0x004136EC [C]
+    public static int Image_GetWidth(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004136EC", (uint)p);
+            return (int)(new S_func_004136EC(p).v);
+        }
+    }
+
+    // ==== func_004136F8 @ 0x004136F8 [C]
+    public static int Image_GetHeight(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004136F8", (uint)p);
+            return (int)(new S_func_004136F8(p).v);
+        }
+    }
+
+    // ==== func_00413704 @ 0x00413704 [C]
+    public static int Image_GetPitch(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00413704", (uint)p);
+            return (int)(new S_func_00413704(p).v);
+        }
+    }
+
+    // ==== func_00413710 @ 0x00413710 [C]
+    public static int Image_GetRowCount(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00413710", (uint)p);
+            return (int)(new S_func_00413710(p).v);
+        }
+    }
+
+    // ==== func_0041371C @ 0x0041371C [C]
+    public static int Image_GetPaletteSize(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0041371C", (uint)p);
+            return new S_func_0041371C(p).v;
+        }
+    }
+
+    // ==== func_00413728 @ 0x00413728 [C]
+    public static int Image_GetPixelDataSize(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00413728", (uint)p);
+            return new S_func_00413728(p).v;
+        }
+    }
+
+    // ==== func_00413734 @ 0x00413734 [C]
+    public static int Image_GetPixels(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00413734", (uint)p);
+            return new S_func_00413734(p).v;
+        }
+    }
+
+    // ==== func_00413740 @ 0x00413740 [C]
+    public static int Image_GetPalette(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00413740", (uint)p);
+            return new S_func_00413740(p).v;
+        }
+    }
+
+    // ==== func_0041374C @ 0x0041374C [C]
+    public static int Image_HasPalette(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0041374C", (uint)p);
+            return ((new S_func_0041374C(p).v > 0) ? 1 : 0);
+        }
+    }
+
+    // ==== func_00413758 @ 0x00413758 [C]
+    public static int Image_HasAlpha(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00413758", (uint)p);
+            return ((new S_func_00413758((0x800E2B40u + (uint)(Mem.U8(p) * 52))).v != 0) ? 1 : 0);
+        }
+    }
+
+    // ==== func_00413784 @ 0x00413784 [C]
+    public static int Image_OwnsPalette(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00413784", (uint)p);
+            return (((int)(new S_func_00413784(p).v) >> (int)1) & 1);
+        }
+    }
+
+    // ==== func_00413794 @ 0x00413794 [C]
+    public static int Image_OwnsPixels(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00413794", (uint)p);
+            return ((int)(new S_func_00413794(p).v) & 1);
+        }
+    }
+
+    // ==== func_004137A0 @ 0x004137A0 [C]
+    public static void Image_InitBitmap(uint p, int a, int b, int c, int d, int e, int flag1, int f, int g, int flag2, int h, int i, int j)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004137A0", (uint)p, (uint)a, (uint)b, (uint)c);
+            new S_func_004137A0(p).b0_Set((byte)(a));
+            new S_func_004137A0(p).f4_Set((short)(b));
+            new S_func_004137A0(p).f6_Set((short)(c));
+            new S_func_004137A0(p).b1_Set((byte)(0));
+            new S_func_004137A0(p).f2_Set((short)(j));
+            new S_func_004137A0(p).f8_Set((short)(d));
+            new S_func_004137A0(p).fA_Set((short)(e));
+            new S_func_004137A0(p).f18_Set(g);
+            new S_func_004137A0(p).fC_Set(f);
+            new S_func_004137A0(p).f14_Set(i);
+            new S_func_004137A0(p).f10_Set(h);
+            if ((flag1 != 0))
+            {
+                new S_func_004137A0(p).b1_Set((byte)(1));
+            }
+            if ((flag2 != 0))
+            {
+                new S_func_004137A0(p).b1_Set((byte)((int)(new S_func_004137A0(p).b1) | 2));
+            }
+        }
+    }
+
+    // ==== func_0041381C @ 0x0041381C [C]
+    public static void Image_GetPixelFormatInfo(int i, uint dst)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0041381C", (uint)i, (uint)dst);
+            Mem.Copy(dst, (0x800E2B20u + (uint)(i * 52)), 52);
+        }
+    }
+
+    // ==== func_00413878 @ 0x00413878 [MIPS]
+    public static uint Image_GetPixelColor(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00413878", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_00413878: ;
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15700u));
+                r29 = r29 - 24u;
+                Mem.Set((r29 + 16u), r31);
+                r2 = (uint)(int)Mem.S16((r2 + 8u));
+                { long p_ = (long)(int)r5 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15576u));
+                r8 = lo;
+                r4 = r4 + r8;
+                r1 = 2148859904u;
+                Mem.Set((r1 + 15480u), r4);
+                r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15568u));
+                r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = 2148859904u;
+                r4 = Mem.U32((r4 + 15536u));
+                { bool c_ = (int)r4 >= 0;  if (c_) goto L_L004138F0; }
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15464u));
+                r3 = 2148859904u;
+                r3 = Mem.U32((r3 + 15504u));
+                r2 = r2 & r3;
+                r3 = 0u - r4;
+                r7 = r2 << (int)(r3 & 31); goto L_L00413908;
+                L_L004138F0: ;
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15464u));
+                r3 = 2148859904u;
+                r3 = Mem.U32((r3 + 15504u));
+                r2 = r2 & r3;
+                r7 = r2 >> (int)(r4 & 31);
+                L_L00413908: ;
+                r4 = 2148859904u;
+                r4 = Mem.U32((r4 + 15540u));
+                { bool c_ = (int)r4 >= 0;  if (c_) goto L_L00413938; }
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15464u));
+                r3 = 2148859904u;
+                r3 = Mem.U32((r3 + 15508u));
+                r2 = r2 & r3;
+                r3 = 0u - r4;
+                r6 = r2 << (int)(r3 & 31); goto L_L00413950;
+                L_L00413938: ;
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15464u));
+                r3 = 2148859904u;
+                r3 = Mem.U32((r3 + 15508u));
+                r2 = r2 & r3;
+                r6 = r2 >> (int)(r4 & 31);
+                L_L00413950: ;
+                r4 = 2148859904u;
+                r4 = Mem.U32((r4 + 15544u));
+                { bool c_ = (int)r4 >= 0;  if (c_) goto L_L00413980; }
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15464u));
+                r3 = 2148859904u;
+                r3 = Mem.U32((r3 + 15512u));
+                r2 = r2 & r3;
+                r3 = 0u - r4;
+                r5 = r2 << (int)(r3 & 31); goto L_L00413998;
+                L_L00413980: ;
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15464u));
+                r3 = 2148859904u;
+                r3 = Mem.U32((r3 + 15512u));
+                r2 = r2 & r3;
+                r5 = r2 >> (int)(r4 & 31);
+                L_L00413998: ;
+                r4 = 2148859904u;
+                r4 = Mem.U32((r4 + 15548u));
+                { bool c_ = (int)r4 >= 0;  if (c_) goto L_L004139C8; }
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15464u));
+                r3 = 2148859904u;
+                r3 = Mem.U32((r3 + 15516u));
+                r2 = r2 & r3;
+                r3 = 0u - r4;
+                r3 = r2 << (int)(r3 & 31); goto L_L004139E0;
+                L_L004139C8: ;
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15464u));
+                r3 = 2148859904u;
+                r3 = Mem.U32((r3 + 15516u));
+                r2 = r2 & r3;
+                r3 = r2 >> (int)(r4 & 31);
+                L_L004139E0: ;
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15516u));
+                if (r2 == 0) { r3 = (uint)255; goto L_L004139F0; }
+                L_L004139F0: ;
+                r2 = r3 << 24;
+                r3 = r7 << 16;
+                r2 = r2 | r3;
+                r3 = r6 << 8;
+                r2 = r2 | r3;
+                r31 = Mem.U32((r29 + 16u));
+                r2 = r2 | r5;
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00413878", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00413A14 @ 0x00413A14 [MIPS]
+    public static uint Image_GetPixelIndex(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00413A14", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_00413A14: ;
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15700u));
+                r29 = r29 - 24u;
+                Mem.Set((r29 + 16u), r31);
+                r2 = (uint)(int)Mem.S16((r2 + 8u));
+                { long p_ = (long)(int)r5 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15576u));
+                r3 = lo;
+                r4 = r4 + r3;
+                r1 = 2148859904u;
+                Mem.Set((r1 + 15480u), r4);
+                r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15488u));
+                r31 = Mem.U32((r29 + 16u));
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00413A14", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00413A60 @ 0x00413A60 [MIPS]
+    public static uint Image_GetPaletteColor(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00413A60", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_00413A60: ;
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15568u));
+                r29 = r29 - 24u;
+                Mem.Set((r29 + 16u), r31);
+                r1 = 2148859904u;
+                Mem.Set((r1 + 15456u), r4);
+                r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = 2148859904u;
+                r4 = Mem.U32((r4 + 15536u));
+                { bool c_ = (int)r4 >= 0;  if (c_) goto L_L00413AB0; }
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15464u));
+                r3 = 2148859904u;
+                r3 = Mem.U32((r3 + 15504u));
+                r2 = r2 & r3;
+                r3 = 0u - r4;
+                r7 = r2 << (int)(r3 & 31); goto L_L00413AC8;
+                L_L00413AB0: ;
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15464u));
+                r3 = 2148859904u;
+                r3 = Mem.U32((r3 + 15504u));
+                r2 = r2 & r3;
+                r7 = r2 >> (int)(r4 & 31);
+                L_L00413AC8: ;
+                r4 = 2148859904u;
+                r4 = Mem.U32((r4 + 15540u));
+                { bool c_ = (int)r4 >= 0;  if (c_) goto L_L00413AF8; }
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15464u));
+                r3 = 2148859904u;
+                r3 = Mem.U32((r3 + 15508u));
+                r2 = r2 & r3;
+                r3 = 0u - r4;
+                r6 = r2 << (int)(r3 & 31); goto L_L00413B10;
+                L_L00413AF8: ;
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15464u));
+                r3 = 2148859904u;
+                r3 = Mem.U32((r3 + 15508u));
+                r2 = r2 & r3;
+                r6 = r2 >> (int)(r4 & 31);
+                L_L00413B10: ;
+                r4 = 2148859904u;
+                r4 = Mem.U32((r4 + 15544u));
+                { bool c_ = (int)r4 >= 0;  if (c_) goto L_L00413B40; }
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15464u));
+                r3 = 2148859904u;
+                r3 = Mem.U32((r3 + 15512u));
+                r2 = r2 & r3;
+                r3 = 0u - r4;
+                r5 = r2 << (int)(r3 & 31); goto L_L00413B58;
+                L_L00413B40: ;
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15464u));
+                r3 = 2148859904u;
+                r3 = Mem.U32((r3 + 15512u));
+                r2 = r2 & r3;
+                r5 = r2 >> (int)(r4 & 31);
+                L_L00413B58: ;
+                r4 = 2148859904u;
+                r4 = Mem.U32((r4 + 15548u));
+                { bool c_ = (int)r4 >= 0;  if (c_) goto L_L00413B88; }
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15464u));
+                r3 = 2148859904u;
+                r3 = Mem.U32((r3 + 15516u));
+                r2 = r2 & r3;
+                r3 = 0u - r4;
+                r3 = r2 << (int)(r3 & 31); goto L_L00413BA0;
+                L_L00413B88: ;
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15464u));
+                r3 = 2148859904u;
+                r3 = Mem.U32((r3 + 15516u));
+                r2 = r2 & r3;
+                r3 = r2 >> (int)(r4 & 31);
+                L_L00413BA0: ;
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15516u));
+                if (r2 == 0) { r3 = (uint)255; goto L_L00413BB0; }
+                L_L00413BB0: ;
+                r2 = r3 << 24;
+                r3 = r7 << 16;
+                r2 = r2 | r3;
+                r3 = r6 << 8;
+                r2 = r2 | r3;
+                r31 = Mem.U32((r29 + 16u));
+                r2 = r2 | r5;
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00413A60", r2); Stack.Free(384); }
     }
 
     // ==== func_00413BD4 @ 0x00413BD4 [MIPS]
@@ -2041,5 +3301,435 @@ public static partial class Game
             }
         }
         finally { if (Dbg.On) Dbg.Leave("func_00413BD4", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00413D14 @ 0x00413D14 [MIPS]
+    public static uint Image_SetPixelIndex(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00413D14", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_00413D14: ;
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15704u));
+                r29 = r29 - 24u;
+                Mem.Set((r29 + 16u), r31);
+                r2 = (uint)(int)Mem.S16((r2 + 8u));
+                { long p_ = (long)(int)r5 * (int)r2; lo = (uint)p_; hi = (uint)(p_ >> 32); }
+                r1 = 2148859904u;
+                Mem.Set((r1 + 15500u), r6);
+                r2 = 2148859904u;
+                r2 = Mem.U32((r2 + 15580u));
+                r3 = lo;
+                r4 = r4 + r3;
+                r1 = 2148859904u;
+                Mem.Set((r1 + 15492u), r4);
+                r2 = Funcs.CallReg(r2, r4, r5, r6, r7); r3 = Cpu.V1;
+                r31 = Mem.U32((r29 + 16u));
+                r29 = r29 + 24u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00413D14", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00413D60 @ 0x00413D60 [C]
+    public static void Image_SetPaletteColor(int idx, uint argb)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00413D60", (uint)idx, (uint)argb);
+            uint r = ((argb >> (int)16) & (uint)(255));
+            uint g = ((argb & (uint)(65280)) >> (int)8);
+            uint b = (argb & (uint)(255));
+            uint a = (argb >> (int)24);
+            uint fn = 0u;
+            uint v = 0u;
+            if ((Mem.S32(0x80153CACu) == 0))
+            {
+                a = (uint)(255);
+            }
+            do
+            {
+                r = ((Mem.S32(0x80153CC0u) < 0) ? ((r >> (int)(-Mem.S32(0x80153CC0u))) & (uint)(Mem.S32(0x80153CA0u))) : ((r << (int)Mem.S32(0x80153CC0u)) & (uint)(Mem.S32(0x80153CA0u))));
+                g = ((Mem.S32(0x80153CC4u) < 0) ? ((g >> (int)(-Mem.S32(0x80153CC4u))) & (uint)(Mem.S32(0x80153CA4u))) : ((g << (int)Mem.S32(0x80153CC4u)) & (uint)(Mem.S32(0x80153CA4u))));
+                b = ((Mem.S32(0x80153CC8u) < 0) ? ((b >> (int)(-Mem.S32(0x80153CC8u))) & (uint)(Mem.S32(0x80153CA8u))) : ((b << (int)Mem.S32(0x80153CC8u)) & (uint)(Mem.S32(0x80153CA8u))));
+                a = ((Mem.S32(0x80153CCCu) < 0) ? ((a >> (int)(-Mem.S32(0x80153CCCu))) & (uint)(Mem.S32(0x80153CACu))) : ((a << (int)Mem.S32(0x80153CCCu)) & (uint)(Mem.S32(0x80153CACu))));
+                v = (((r | g) | b) | a);
+                fn = Mem.U32(0x80153CD4u);
+            }
+            while ((0 != 0));
+            Mem.Set(0x80153C6Cu, idx);
+            Mem.Set(0x80153C74u, (int)(v));
+            Funcs.CallReg(fn, (uint)(idx), 0u, 0u, 0u);
+        }
+    }
+
+    // ==== func_00413E88 @ 0x00413E88 [C]
+    public static uint Image_PackColor(uint argb, int idx)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00413E88", (uint)argb, (uint)idx);
+            uint e = (0x800E2B20u + (uint)(idx * 52));
+            uint r = ((argb >> (int)16) & (uint)(255));
+            uint g = ((argb & (uint)(65280)) >> (int)8);
+            uint b = (argb & (uint)(255));
+            uint a = (argb >> (int)24);
+            r = ((new S_func_00413E88(e).w[(int)(9)] < 0) ? ((r >> (int)(-new S_func_00413E88(e).w[(int)(9)])) & (uint)(new S_func_00413E88(e).w[(int)(5)])) : ((r << (int)new S_func_00413E88(e).w[(int)(9)]) & (uint)(new S_func_00413E88(e).w[(int)(5)])));
+            g = ((new S_func_00413E88(e).w[(int)(10)] < 0) ? ((g >> (int)(-new S_func_00413E88(e).w[(int)(10)])) & (uint)(new S_func_00413E88(e).w[(int)(6)])) : ((g << (int)new S_func_00413E88(e).w[(int)(10)]) & (uint)(new S_func_00413E88(e).w[(int)(6)])));
+            b = ((new S_func_00413E88(e).w[(int)(11)] < 0) ? ((b >> (int)(-new S_func_00413E88(e).w[(int)(11)])) & (uint)(new S_func_00413E88(e).w[(int)(7)])) : ((b << (int)new S_func_00413E88(e).w[(int)(11)]) & (uint)(new S_func_00413E88(e).w[(int)(7)])));
+            a = ((new S_func_00413E88(e).w[(int)(12)] < 0) ? ((a >> (int)(-new S_func_00413E88(e).w[(int)(12)])) & (uint)(new S_func_00413E88(e).w[(int)(8)])) : ((a << (int)new S_func_00413E88(e).w[(int)(12)]) & (uint)(new S_func_00413E88(e).w[(int)(8)])));
+            return (((r | g) | b) | a);
+        }
+    }
+
+    // ==== func_00413F60 @ 0x00413F60 [C]
+    public static uint Image_UnpackColor(uint argb, int idx)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00413F60", (uint)argb, (uint)idx);
+            uint e = (0x800E2B20u + (uint)(idx * 52));
+            uint c0 = 0u;
+            uint c1 = 0u;
+            uint c2 = 0u;
+            uint c3 = 0u;
+            c0 = ((new S_e_v2(e).w[(int)(9)] < 0) ? ((argb & (uint)(new S_e_v2(e).w[(int)(5)])) << (int)(-new S_e_v2(e).w[(int)(9)])) : ((argb & (uint)(new S_e_v2(e).w[(int)(5)])) >> (int)new S_e_v2(e).w[(int)(9)]));
+            c1 = ((new S_e_v2(e).w[(int)(10)] < 0) ? ((argb & (uint)(new S_e_v2(e).w[(int)(6)])) << (int)(-new S_e_v2(e).w[(int)(10)])) : ((argb & (uint)(new S_e_v2(e).w[(int)(6)])) >> (int)new S_e_v2(e).w[(int)(10)]));
+            c2 = ((new S_e_v2(e).w[(int)(11)] < 0) ? ((argb & (uint)(new S_e_v2(e).w[(int)(7)])) << (int)(-new S_e_v2(e).w[(int)(11)])) : ((argb & (uint)(new S_e_v2(e).w[(int)(7)])) >> (int)new S_e_v2(e).w[(int)(11)]));
+            c3 = ((new S_e_v2(e).w[(int)(12)] < 0) ? ((argb & (uint)(new S_e_v2(e).w[(int)(8)])) << (int)(-new S_e_v2(e).w[(int)(12)])) : ((argb & (uint)(new S_e_v2(e).w[(int)(8)])) >> (int)new S_e_v2(e).w[(int)(12)]));
+            return ((((c3 << (int)24) | (c0 << (int)16)) | (c1 << (int)8)) | c2);
+        }
+    }
+
+    // ==== func_0041404C @ 0x0041404C [C]
+    public static void Image_ReadColor16()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0041404C");
+            Mem.Set(0x80153C68u, (int)(Mem.U16((Mem.U32(0x80153C64u) + (uint)(Mem.S32(0x80153C60u) * 2)))));
+        }
+    }
+
+    // ==== func_00414078 @ 0x00414078 [C]
+    public static void Image_ReadColor32()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00414078");
+            Mem.Set(0x80153C68u, Mem.S32((Mem.U32(0x80153C64u) + (uint)(Mem.S32(0x80153C60u) * 4))));
+        }
+    }
+
+    // ==== func_004140A4 @ 0x004140A4 [C]
+    public static void Image_ReadColor24()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004140A4");
+            Mem.Set(0x80153C68u, ((((int)(Mem.U8((Mem.U32(0x80153C64u) + (uint)(Mem.S32(0x80153C60u) * 3)))) << (int)16) | ((int)(Mem.U8((Mem.U32(0x80153C64u) + (uint)((Mem.S32(0x80153C60u) * 3) + 1)))) << (int)8)) | (int)(Mem.U8((Mem.U32(0x80153C64u) + (uint)((Mem.S32(0x80153C60u) * 3) + 2))))));
+        }
+    }
+
+    // ==== func_004140EC @ 0x004140EC [C]
+    public static void Image_WriteColor16()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004140EC");
+            Mem.Set((Mem.U32(0x80153C70u) + (uint)(Mem.S32(0x80153C6Cu) * 2)), Mem.U16(0x80153C76u));
+        }
+    }
+
+    // ==== func_00414114 @ 0x00414114 [C]
+    public static void Image_WriteColor32()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00414114");
+            Mem.Set((Mem.U32(0x80153C70u) + (uint)(Mem.S32(0x80153C6Cu) * 4)), Mem.S32(0x80153C74u));
+        }
+    }
+
+    // ==== func_0041413C @ 0x0041413C [C]
+    public static void Image_WriteColor24()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0041413C");
+            Mem.Set((Mem.U32(0x80153C70u) + (uint)(Mem.S32(0x80153C6Cu) * 3)), Mem.U8(0x80153C75u));
+            Mem.Set((Mem.U32(0x80153C70u) + (uint)((Mem.S32(0x80153C6Cu) * 3) + 1)), Mem.U8(0x80153C76u));
+            Mem.Set((Mem.U32(0x80153C70u) + (uint)((Mem.S32(0x80153C6Cu) * 3) + 2)), Mem.U8(0x80153C77u));
+        }
+    }
+
+    // ==== func_004141B8 @ 0x004141B8 [C]
+    public static void Image_ReadIndex8()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004141B8");
+            Mem.Set(0x80153C60u, Mem.Set(0x80153C80u, (int)(Mem.U8((Mem.U32(0x80153C7Cu) + (uint)Mem.S32(0x80153C78u))))));
+        }
+    }
+
+    // ==== func_004141E8 @ 0x004141E8 [C]
+    public static void Image_ReadIndex4()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004141E8");
+            int i = Mem.S32(0x80153C78u);
+            int v = 0;
+            if (((i & 1) != 0))
+            {
+                v = ((int)(Mem.U8((Mem.U32(0x80153C7Cu) + (uint)(i >> (int)1)))) & 15);
+            }
+            else
+            {
+                v = ((int)(Mem.U8((Mem.U32(0x80153C7Cu) + (uint)(i >> (int)1)))) >> (int)4);
+            }
+            Mem.Set(0x80153C80u, v);
+            Mem.Set(0x80153C60u, v);
+        }
+    }
+
+    // ==== func_00414240 @ 0x00414240 [C]
+    public static void Image_ReadDirect16()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00414240");
+            Mem.Set(0x80153C60u, Mem.Set(0x80153C80u, Mem.S32(0x80153C78u)));
+        }
+    }
+
+    // ==== func_00414260 @ 0x00414260 [C]
+    public static void Image_ReadDirect24()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00414260");
+            Mem.Set(0x80153C60u, Mem.Set(0x80153C80u, Mem.S32(0x80153C78u)));
+        }
+    }
+
+    // ==== func_00414280 @ 0x00414280 [C]
+    public static void Image_ReadDirect32()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00414280");
+            Mem.Set(0x80153C60u, Mem.Set(0x80153C80u, Mem.S32(0x80153C78u)));
+        }
+    }
+
+    // ==== func_004142A0 @ 0x004142A0 [C]
+    public static void Image_WriteIndex8()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004142A0");
+            Mem.Set((Mem.U32(0x80153C88u) + (uint)Mem.S32(0x80153C84u)), Mem.U8(0x80153C8Fu));
+        }
+    }
+
+    // ==== func_004142C4 @ 0x004142C4 [C]
+    public static void Image_WriteIndex4()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004142C4");
+            int i = Mem.S32(0x80153C84u);
+            if (((i & 1) != 0))
+            {
+                Mem.Set((Mem.U32(0x80153C88u) + (uint)(i >> (int)1)), (byte)((((int)(Mem.U8((Mem.U32(0x80153C88u) + (uint)(i >> (int)1)))) & 240) | ((int)(Mem.U8(0x80153C8Fu)) & 15))));
+            }
+            else
+            {
+                Mem.Set((Mem.U32(0x80153C88u) + (uint)(i >> (int)1)), (byte)((((int)(Mem.U8((Mem.U32(0x80153C88u) + (uint)(i >> (int)1)))) & 15) | (((int)(Mem.U8(0x80153C8Fu)) & 15) << (int)4))));
+            }
+        }
+    }
+
+    // ==== func_00419510 @ 0x00419510 [C]
+    public static void Image_SwapOddRowWords(uint t)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00419510", (uint)t);
+            int fmt = 0;
+            int row = 0;
+            int n = 0;
+            int k = 0;
+            uint s0 = 0u;
+            uint s1 = 0u;
+            uint a = 0u;
+            uint b = 0u;
+            if ((((Mem.S32(0x800E32F0u) != 0) && ((row = (((int)(new O3TexB(t).w) != 0) ? 1 : 0)) != 0)) && ((int)(new O3TexB(t).h) != 0)))
+            {
+                fmt = Image_GetBitsPerPixel((uint)(t));
+                switch (fmt)
+                {
+                case 4:
+                    n = ((int)(new O3TexB(t).w) / 16);
+                    break;
+                case 8:
+                    n = ((int)(new O3TexB(t).w) / 8);
+                    break;
+                case 16:
+                    n = ((int)(new O3TexB(t).w) / 4);
+                    break;
+                default:
+                    n = 0;
+                    break;
+                }
+                row = 0;
+                s1 = new O3TexB(t).data_;
+                s0 = s1;
+                if (((int)(new O3TexB(t).h) > 0))
+                {
+                    do
+                    {
+                        if (((row & 1) != 0))
+                        {
+                            for (k = 0; (k < n); ++k)
+                            {
+                                a = Mem.U32(s1);
+                                s1 = (uint)(s1 + (uint)(4 * 1));
+                                b = Mem.U32(s1);
+                                s1 = (uint)(s1 + (uint)(4 * 1));
+                                Mem.Set(s0, b);
+                                s0 = (uint)(s0 + (uint)(4 * 1));
+                                Mem.Set(s0, a);
+                                s0 = (uint)(s0 + (uint)(4 * 1));
+                            }
+                        }
+                        else
+                        {
+                            if ((s1 != s0))
+                            {
+                                Mem_Copy(s0, s1, (uint)((n * 8)));
+                            }
+                            s0 = (uint)(s0 + (uint)((n * 8) * 1));
+                            s1 = (uint)(s1 + (uint)((n * 8) * 1));
+                        }
+                        ++row;
+                    }
+                    while ((row < (int)(new O3TexB(t).h)));
+                }
+            }
+        }
+    }
+
+    // ==== func_00419688 @ 0x00419688 [C]
+    public static void Image_Clear(uint _a0)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00419688", _a0);
+            Image_ClearBitmap((int)(uint)(_a0));
+        }
+    }
+
+    // ==== func_004196A4 @ 0x004196A4 [C]
+    public static void Image_Free(uint _a0)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004196A4", _a0);
+            Image_FreeBitmap((uint)(_a0));
+        }
+    }
+
+    // ==== func_004196C0 @ 0x004196C0 [MIPS]
+    public static uint Image_Copy(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_004196C0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_004196C0: ;
+                r29 = r29 - 32u;
+                Mem.Set((r29 + 16u), r16);
+                r16 = r4;
+                Mem.Set((r29 + 20u), r17);
+                r17 = r5;
+                { bool c_ = r16 == r17; Mem.Set((r29 + 24u), r31); if (c_) goto L_L004196E4; }
+                r2 = (uint)Image_CopyBitmap(r4, r5);
+                L_L004196E4: ;
+                r17 = r16;
+                r4 = r17; r2 = (uint)Image_GetPaletteSize(r4);
+                r4 = r17;
+                r16 = r2; r2 = (uint)Image_GetPixelDataSize(r4);
+                r3 = r0;
+                { bool c_ = (int)r16 <= 0; r4 = r2; if (c_) goto L_L00419710; }
+                r2 = (uint)((int)r4 < 2049 ? 1 : 0);
+                r3 = r2 ^ 1u;
+                L_L00419710: ;
+                { bool c_ = r16 != 0; r2 = (uint)((int)r4 < 4097 ? 1 : 0); if (c_) goto L_L00419720; }
+                if (r2 == 0) { r3 = (uint)1; goto L_L00419720; }
+                L_L00419720: ;
+                { bool c_ = r3 == 0;  if (c_) goto L_L00419730; }
+                r4 = r17; Image_SwapOddRowWords(r4);
+                L_L00419730: ;
+                r31 = Mem.U32((r29 + 24u));
+                r17 = Mem.U32((r29 + 20u));
+                r16 = Mem.U32((r29 + 16u));
+                r2 = r0;
+                r29 = r29 + 32u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_004196C0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00419748 @ 0x00419748 [C]
+    public static void Image_SetRowSwapEnabled(int v)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00419748", (uint)v);
+            Mem.Set(0x800E32F0u, v);
+        }
+    }
+
+    // ==== func_00419758 @ 0x00419758 [MIPS]
+    public static uint Image_StrayEpilogue_00419758(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00419758", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_00419758: ;
+                r29 = r29 + 40u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00419758", r2); Stack.Free(384); }
     }
 }

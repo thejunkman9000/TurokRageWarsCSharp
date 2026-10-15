@@ -18,29 +18,29 @@ public static partial class Game
             byte col = (byte)(175);
             uint fmt = Str.Lit("%d");
             w = UiTree_FindNode(new O05M30_v2(Mem.U32(0x800E5830u)).f20, (uint)(633), default(uint), default(uint));
-            func_0040E958(w, 1);
+            UiNode_SetVisible(w, 1);
             new O05Wd2(w).b10_Set((byte)(150));
-            new O05Wd2(w).f2C_Set((uint)(new O05T112((0x800E3A58u + (uint)(func_0041F1B0((int)(new O05R150c(r).b80)) * 112))).f0));
+            new O05Wd2(w).f2C_Set((uint)(new O05T112((0x800E3A58u + (uint)(CharSelect_FindRowByCharacter((int)(new O05R150c(r).b80)) * 112))).f0));
             w = UiTree_FindNode(new O05M30_v2(Mem.U32(0x800E5830u)).f20, (uint)(634), default(uint), default(uint));
-            func_0040E958(w, 1);
+            UiNode_SetVisible(w, 1);
             new O05Wd2(w).b10_Set(col);
             new O05Wd2(w).f38_Set((0x80102B00u + (uint)(sel * 400)));
             w = UiTree_FindNode(new O05M30_v2(Mem.U32(0x800E5830u)).f20, (uint)(635), default(uint), default(uint));
-            func_0040E958(w, 1);
+            UiNode_SetVisible(w, 1);
             new O05Wd2(w).b10_Set((byte)(115));
-            new O05Wd2(w).f38_Set(func_00424FC8(sel));
+            new O05Wd2(w).f38_Set(Profile_GetRankName(sel));
             w = UiTree_FindNode(new O05M30_v2(Mem.U32(0x800E5830u)).f20, (uint)(636), default(uint), default(uint));
-            func_0040E958(w, 1);
+            UiNode_SetVisible(w, 1);
             new O05Wd2(w).b10_Set(col);
             Str_FormatInto(new O05M30_v2(Mem.U32(0x800E5830u)).buf28.P, fmt, (uint)((int)(new O05R150c(r).h4)), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             new O05Wd2(w).f38_Set(new O05M30_v2(Mem.U32(0x800E5830u)).buf28.P);
             w = UiTree_FindNode(new O05M30_v2(Mem.U32(0x800E5830u)).f20, (uint)(637), default(uint), default(uint));
-            func_0040E958(w, 1);
+            UiNode_SetVisible(w, 1);
             new O05Wd2(w).b10_Set(col);
             Str_FormatInto(new O05M30_v2(Mem.U32(0x800E5830u)).buf32.P, fmt, (uint)(((int)(new O05R150c(r).h2) + (int)(new O05R150c(r).h0))), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             new O05Wd2(w).f38_Set(new O05M30_v2(Mem.U32(0x800E5830u)).buf32.P);
             w = UiTree_FindNode(new O05M30_v2(Mem.U32(0x800E5830u)).f20, (uint)(638), default(uint), default(uint));
-            func_0040E958(w, 1);
+            UiNode_SetVisible(w, 1);
             new O05Wd2(w).b10_Set(col);
             a = 0;
             if ((Mem.S32((0x80103140u + (uint)(sel * 4))) > 0))
@@ -50,7 +50,7 @@ public static partial class Game
             Str_FormatInto(new O05M30_v2(Mem.U32(0x800E5830u)).buf3C.P, Str.Lit("%d%%"), (uint)(a), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint), default(uint));
             new O05Wd2(w).f38_Set(new O05M30_v2(Mem.U32(0x800E5830u)).buf3C.P);
             w = UiTree_FindNode(new O05M30_v2(Mem.U32(0x800E5830u)).f20, (uint)(639), default(uint), default(uint));
-            func_0040E958(w, 1);
+            UiNode_SetVisible(w, 1);
             new O05Wd2(w).b10_Set(col);
             w6 = w;
             switch (Mem.S32(0x80154028u))
@@ -70,7 +70,7 @@ public static partial class Game
             {
                 w = UiTree_FindNode(new O05M30_v2(Mem.U32(0x800E5830u)).f20, (uint)(640), default(uint), default(uint));
                 new O05Wd2(w).b10_Set((byte)(150));
-                func_0040E958(w, 1);
+                UiNode_SetVisible(w, 1);
                 new O05Wd2(w).f2C_Set((uint)(Mem.S32((0x800E4200u + (uint)(new O05M30_v2(Mem.U32(0x800E5830u)).f98 * 4)))));
             }
         }

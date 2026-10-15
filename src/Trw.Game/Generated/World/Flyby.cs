@@ -1239,7 +1239,7 @@ public static partial class Game
                 r2 = Mem.U32((r2 + 0u));
                 L_L0028AEE4: ;
                 r4 = Mem.U8((r2 + 4u));
-                r2 = (uint)func_0041F1B0((int)r4);
+                r2 = (uint)CharSelect_FindRowByCharacter((int)r4);
                 r3 = r2 << 3;
                 r3 = r3 - r2;
                 r3 = r3 << 4;

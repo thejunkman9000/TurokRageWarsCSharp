@@ -13,7 +13,7 @@ public static partial class Game
             Menu_ConsumeEvent();
             if ((Menu_GetMessage() == 467))
             {
-                func_0042EB68(((Menu_GetStackScreenId(0) == 22) ? (-1) : 11));
+                Menu_RequestScreen(((Menu_GetStackScreenId(0) == 22) ? (-1) : 11));
                 Menu_GoBack();
             }
             return 0;

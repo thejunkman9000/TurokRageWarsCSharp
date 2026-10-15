@@ -413,13 +413,13 @@ public static partial class Game
             _f8: ;
             switch ((int)(Mem.U8(0x801462D5u))) { case 1: goto _f13; case 4: goto _f14; default: goto _f15; }
             _f13: ;
-            func_00426270(p);
+            Player_GiveUnlockedLoadoutWeapons(p);
             goto _f12;
             _f14: ;
-            func_004263BC(p);
+            Player_GiveArenaWeapons(p);
             goto _f12;
             _f15: ;
-            func_00426354(p);
+            Player_ApplyLoadout(p);
             goto _f12;
             _f12: ;
             goto L_blk16;
@@ -7712,6 +7712,94 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002AE254");
             return 1;
+        }
+    }
+
+    // ==== func_00426270 @ 0x00426270 [C]
+    public static void Player_GiveUnlockedLoadoutWeapons(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00426270", (uint)p);
+            int i = 0;
+            uint r = 0u;
+            int row = 0;
+            if ((((int)(new O04Plr2(p).unk5D8.unk91) == 1) || ((int)(new O04Plr2(p).unk5D8.unk78) == 0)))
+            {
+                return;
+            }
+            i = 0;
+            r = new O04Plr2(p).unk18_;
+            row = (int)(new O04Plr2(p).unk5D8.unk7F);
+            do
+            {
+                int id = new O04Rec4C(r).ids[(int)(i)];
+                if ((id >= 1219))
+                {
+                    int t = 0;
+                    id = (int)((int)(id) - 1219);
+                    t = Profile_IsWeaponUnlocked((0x80102B00u + (uint)(row * 400)), id);
+                    if ((t == 1))
+                    {
+                        new O04Plr2(p).unk602[(int)(id)].a_Set((byte)(t));
+                        new O04Plr2(p).unk602[(int)(id)].b_Set((byte)(i));
+                    }
+                }
+                ++i;
+            }
+            while ((i < 8));
+        }
+    }
+
+    // ==== func_00426354 @ 0x00426354 [C]
+    public static void Player_ApplyLoadout(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00426354", (uint)p);
+            int i = 0;
+            if (((int)(new O04Plr(p).unk5D8.unk91) == 1))
+            {
+                return;
+            }
+            if (((int)(new O04Plr(p).unk5D8.unk78) == 0))
+            {
+                return;
+            }
+            for (i = 0; (i < 22); ++i)
+            {
+                if (((int)(new O04Plr(p).unk5D8.u4C[(int)(i)]) == 1))
+                {
+                    new O04Plr(p).unk602[(int)(i)].a_Set(new O04Plr(p).unk5D8.u4C[(int)(i)]);
+                    new O04Plr(p).unk602[(int)(i)].b_Set(new O04Plr(p).unk5D8.u62[(int)(i)]);
+                }
+            }
+        }
+    }
+
+    // ==== func_004263BC @ 0x004263BC [C]
+    public static void Player_GiveArenaWeapons(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004263BC", (uint)p);
+            int i = 0;
+            uint r = 0u;
+            if ((((int)(new O04Plr(p).unk5D8.unk91) == 1) || ((int)(new O04Plr(p).unk5D8.unk78) == 0)))
+            {
+                return;
+            }
+            r = (uint)(Resource_GetIndexedCached(0x8011FE88u, Mem.S32(0x8015402Cu)));
+            for (i = 0; (i < 8); ++i)
+            {
+                int id = (int)(new O04Rec(r).ids[(int)(i)]);
+                if ((id >= 1219))
+                {
+                    id = (int)((int)(id) - 1219);
+                    new O04Plr(p).unk602[(int)(id)].a_Set((byte)(1));
+                    new O04Plr(p).unk602[(int)(id)].b_Set((byte)(i));
+                }
+            }
         }
     }
 }

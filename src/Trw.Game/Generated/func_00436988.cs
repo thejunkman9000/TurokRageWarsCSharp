@@ -11,11 +11,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00436988", (uint)k);
             uint r = (0x80146398u + (uint)(k * 150));
-            new O05Rec((0x80102B00u + (uint)(k * 400))).b189_Set((sbyte)(func_0041AD84(new O05M90(Mem.U32(0x800E5690u)).f14)));
-            new O05Rec((0x80102B00u + (uint)(k * 400))).b18A_Set((byte)(func_0041AD84(new O05M90(Mem.U32(0x800E5690u)).f10)));
-            new O05Rec((0x80102B00u + (uint)(k * 400))).b18B_Set((byte)(func_0041A760(new O05M90(Mem.U32(0x800E5690u)).f8)));
-            new O05Rec((0x80102B00u + (uint)(k * 400))).b18C_Set((byte)(func_0041A760(new O05M90(Mem.U32(0x800E5690u)).fC)));
-            new O05Rec((0x80102B00u + (uint)(k * 400))).b18D_Set((byte)(func_0041AD84(new O05M90(Mem.U32(0x800E5690u)).f18)));
+            new O05Rec((0x80102B00u + (uint)(k * 400))).b189_Set((sbyte)(OptionList_GetSelection(new O05M90(Mem.U32(0x800E5690u)).f14)));
+            new O05Rec((0x80102B00u + (uint)(k * 400))).b18A_Set((byte)(OptionList_GetSelection(new O05M90(Mem.U32(0x800E5690u)).f10)));
+            new O05Rec((0x80102B00u + (uint)(k * 400))).b18B_Set((byte)(Slider_GetValue(new O05M90(Mem.U32(0x800E5690u)).f8)));
+            new O05Rec((0x80102B00u + (uint)(k * 400))).b18C_Set((byte)(Slider_GetValue(new O05M90(Mem.U32(0x800E5690u)).fC)));
+            new O05Rec((0x80102B00u + (uint)(k * 400))).b18D_Set((byte)(OptionList_GetSelection(new O05M90(Mem.U32(0x800E5690u)).f18)));
             new O05R150b(r).b7B_Set((byte)(new O05Rec((0x80102B00u + (uint)(k * 400))).b189));
             new O05R150b(r).b7D_Set(new O05Rec((0x80102B00u + (uint)(k * 400))).b18A);
             new O05R150b(r).b79_Set(new O05Rec((0x80102B00u + (uint)(k * 400))).b18B);

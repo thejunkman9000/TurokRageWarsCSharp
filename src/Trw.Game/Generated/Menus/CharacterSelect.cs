@@ -80,6 +80,86 @@ public static partial class Game
         finally { Stack.Free(4); }
     }
 
+    // ==== func_0041C864 @ 0x0041C864 [C]
+    public static void MenuModel_Draw(uint a)
+    {
+        uint _fp = Stack.Alloc(28);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0041C864", (uint)a);
+                uint new_var = 0u;
+                uint cmd = 0u;
+                int save = 0;
+                uint g = 0u;
+                int new_var2 = 0;
+                uint @base = 0x801450C8u;
+                uint b = (a - (uint)(-400));
+                if ((new O3Act(a).f478 != 0))
+                {
+                    save = Mem.S32(0x800D15D0u);
+                    Mem.Set(0x800D15D0u, 0);
+                    g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new O3Dl(g).w0_Set(3661103111u);
+                    new O3Dl(g).w1_Set((uint)((@base + (uint)((Mem.S32(0x800D297Cu) << (int)6) + 896))));
+                    cmd = new O3Dl(g).w0;
+                    Mem.Copy(_fp, new O3Act(a).v48C.P, 12);
+                    Math_MtxTransformPoint((@base + (uint)352), _fp, (_fp + 16u));
+                    if ((Resource_GetLoadFlags() == 0))
+                    {
+                        Resource_SetLoadFlags(1);
+                    }
+                    Gfx_ApplyRenderFlags((uint)(209717));
+                    {
+                        uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new O3Dl(_g).w0_Set(3875536896u);
+                        new O3Dl(_g).w1_Set((uint)(0));
+                    }
+                    {
+                        uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new O3Dl(_g_2).w0_Set(3808430593u);
+                        new O3Dl(_g_2).w1_Set((uint)(1048576));
+                    }
+                    {
+                        uint _g_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new O3Dl(_g_3).w0_Set(3808431104u);
+                        new O3Dl(_g_3).w1_Set((uint)(524288));
+                    }
+                    {
+                        uint _g_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new O3Dl(_g_4).w0_Set(3808432641u);
+                        new O3Dl(_g_4).w1_Set((uint)(8192));
+                    }
+                    Model_ResetDrawState();
+                    Mem.Copy(new O3Act(a).pos198.P, (_fp + 16u), 12);
+                    Mem.Copy(new O3Act(a).pos354.P, (_fp + 16u), 12);
+                    Actor_ResetPoseMatrices(b);
+                    Mem.Copy(new O3Act(a).pos198.P, (_fp + 16u), 12);
+                    Mem.Copy(new O3Act(a).pos354.P, (_fp + 16u), 12);
+                    if (((new O3Act(a).f49C != 0) || ((int)(new O3Body(b).f10E) == 0)))
+                    {
+                        Actor_Advance(b, default(uint), default(uint), default(uint));
+                        if ((new O3Act(a).f4A0 != 0))
+                        {
+                            Math_MtxRotateRowsC_00273860(new O3Act(a).mtx204.P, ((float)(new O3Act(a).f4A0) * 0.0174532942f));
+                        }
+                    }
+                    new O3Body(b).f6C_Set((new O3Act(a).f498 * 0.0174532942f));
+                    Mem.Copy(new O3Body(b).pos.P, (_fp + 16u), 12);
+                    Mem.Copy(new O3Body(b).p1C4.P, (_fp + 16u), 12);
+                    Model_ClearBatchQueue();
+                    Actor_Draw(b, @base, default(uint), default(uint));
+                    Mem.Copy(new O3Body(b).c140.P, 0x800E3570u, 24);
+                    Mem.Copy(new O3Body(b).c158.P, 0x800E3570u, 24);
+                    Model_FlushBatches();
+                    Mem.Set(0x800D15D0u, save);
+                }
+            }
+        }
+        finally { Stack.Free(28); }
+    }
+
     // ==== func_0041CB48 @ 0x0041CB48 [MIPS]
     public static uint func_0041CB48_rc(uint a0, uint a1, uint a2, uint a3, uint a4, uint a5, uint a6, uint a7, uint a8, uint a9, uint a10, uint a11, uint a12)
     {
@@ -395,7 +475,7 @@ public static partial class Game
                 Mem.Set((r4 + 628u), (ushort)r2); MenuModel_SelectPose(r4, (int)r5, (int)r6, (int)r7);
                 r31 = Mem.U32((r29 + 16u));
                 r29 = r29 + 24u; Cpu.V1 = r3; return r2;
-                func_0041D9D0();
+                SaveSlotScreen_ShowAwardText();
                 r29 = r29 - 32u;
                 Mem.Set((r29 + 20u), r17);
                 r17 = r4;
@@ -406,26 +486,26 @@ public static partial class Game
                 r5 = (uint)4;
                 r1 = 2148401152u;
                 Mem.Set((r1 + 13712u), r2);
-                Mem.Set((r2 + 0u), r17); r2 = func_0041B690(r4, (int)r5);
+                Mem.Set((r2 + 0u), r17); r2 = CursorGroup_Create(r4, (int)r5);
                 r4 = r17;
                 r5 = r0;
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 13712u));
                 r6 = (uint)513;
-                Mem.Set((r3 + 4u), r2); func_0041B768(r4, (int)r5, (int)r6);
+                Mem.Set((r3 + 4u), r2); CursorGroup_SetCursorById(r4, (int)r5, (int)r6);
                 r4 = r17;
                 r5 = (uint)1;
-                r6 = (uint)513; func_0041B768(r4, (int)r5, (int)r6);
+                r6 = (uint)513; CursorGroup_SetCursorById(r4, (int)r5, (int)r6);
                 r4 = r17;
                 r5 = (uint)2;
-                r6 = (uint)513; func_0041B768(r4, (int)r5, (int)r6);
+                r6 = (uint)513; CursorGroup_SetCursorById(r4, (int)r5, (int)r6);
                 r4 = r17;
                 r5 = (uint)3;
-                r6 = (uint)513; func_0041B768(r4, (int)r5, (int)r6);
+                r6 = (uint)513; CursorGroup_SetCursorById(r4, (int)r5, (int)r6);
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 13712u));
                 r4 = Mem.U32((r2 + 4u));
-                r5 = (uint)1; func_0041B9E8(r4, (int)r5);
+                r5 = (uint)1; CursorGroup_SetShared(r4, (int)r5);
                 r4 = r17;
                 r5 = (uint)492;
                 r3 = 2148401152u;
@@ -481,7 +561,7 @@ public static partial class Game
                 r4 = (uint)486;
                 r5 = (uint)255;
                 r16 = (uint)110;
-                Mem.Set((r2 + 16u), (byte)r16); r2 = func_00419ED4(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r2 + 16u), (byte)r16); r2 = Flicker_Create(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r17;
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 13712u));
@@ -491,14 +571,14 @@ public static partial class Game
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 13712u));
                 r5 = r0;
-                Mem.Set((r2 + 228u), r4); func_0040E958(r4, (int)r5);
+                Mem.Set((r2 + 228u), r4); UiNode_SetVisible(r4, (int)r5);
                 r4 = r17;
                 r5 = (uint)563; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r2;
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 13712u));
                 r5 = r0;
-                Mem.Set((r2 + 232u), r4); func_0040E958(r4, (int)r5);
+                Mem.Set((r2 + 232u), r4); UiNode_SetVisible(r4, (int)r5);
                 r4 = r17;
                 r5 = (uint)496; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r17;
@@ -512,7 +592,7 @@ public static partial class Game
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 13712u));
                 r5 = r0;
-                Mem.Set((r2 + 244u), r4); func_0040E958(r4, (int)r5);
+                Mem.Set((r2 + 244u), r4); UiNode_SetVisible(r4, (int)r5);
                 r4 = r17;
                 r5 = (uint)511;
                 r3 = 2148401152u;
@@ -524,7 +604,7 @@ public static partial class Game
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 13712u));
                 r5 = r0;
-                Mem.Set((r2 + 256u), r4); func_0040E958(r4, (int)r5);
+                Mem.Set((r2 + 256u), r4); UiNode_SetVisible(r4, (int)r5);
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 13712u));
                 r4 = r17;
@@ -541,12 +621,12 @@ public static partial class Game
                 Mem.Set((r3 + 240u), r2);
                 r2 = (uint)-1;
                 Mem.Set((r3 + 264u), r0);
-                Mem.Set((r3 + 268u), r2); func_0041DBA0(r4);
-                func_0041D718();
+                Mem.Set((r3 + 268u), r2); Profile_NextActiveSlot(r4);
+                SaveSlotScreen_ShowProfileStats();
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 13712u));
                 r4 = Mem.U32((r2 + 252u));
-                func_0041DACC((int)r4);
+                SaveSlotScreen_ShowAwardIcons((int)r4);
                 r4 = r17;
                 r5 = (uint)493; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 Mem.Set((r2 + 16u), (byte)r16);
@@ -562,6 +642,904 @@ public static partial class Game
             }
         }
         finally { if (Dbg.On) Dbg.Leave("func_0041CE88", r2); Stack.Free(384); }
+    }
+
+    // ==== func_0041F1A8 @ 0x0041F1A8 [MIPS]
+    public static uint CharSelect_FindRowByCharacter_Entry_0041F1A8(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0041F1A8", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_0041F1A8: ;
+                L_func_0041F1B0: ;
+                r7 = r0;
+                r6 = r7;
+                r3 = r7;
+                r5 = r7;
+                L_L0041F1C0: ;
+                r1 = 2148401152u;
+                r1 = r1 + r5;
+                r2 = Mem.U32((r1 + 14932u));
+                if (r2 != r4) { r3 = r3 + 1u; goto L_L0041F1E0; }
+                r6 = (uint)1;
+                r7 = r3;
+                r3 = r3 + 1u;
+                L_L0041F1E0: ;
+                r2 = (uint)((int)r3 < 17 ? 1 : 0);
+                { bool c_ = r2 == 0; r5 = r5 + 112u; if (c_) goto L_L0041F1F4; }
+                { bool c_ = r6 == 0;  if (c_) goto L_L0041F1C0; }
+                L_L0041F1F4: ;
+                r2 = r7; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0041F1A8", r2); Stack.Free(384); }
+    }
+
+    // ==== func_0041F1B0 @ 0x0041F1B0 [C]
+    public static int CharSelect_FindRowByCharacter(int key)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0041F1B0", (uint)key);
+            int i = 0;
+            int found = 0;
+            int res = 0;
+            res = 0;
+            found = 0;
+            for (i = 0; ((i < 17) && (found == 0)); ++i)
+            {
+                if ((new O3Row((0x800E3A50u + (uint)(i * 112))).f4 == key))
+                {
+                    found = 1;
+                    res = i;
+                }
+            }
+            return res;
+        }
+    }
+
+    // ==== func_0041F1FC @ 0x0041F1FC [C]
+    public static int CharSelect_FindRowByNode(int key)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0041F1FC", (uint)key);
+            int i = 0;
+            int found = 0;
+            int res = 0;
+            res = 0;
+            found = 0;
+            for (i = 0; ((i < 17) && (found == 0)); ++i)
+            {
+                if ((new O3Row((0x800E3A50u + (uint)(i * 112))).f0 == key))
+                {
+                    found = 1;
+                    res = i;
+                }
+            }
+            return res;
+        }
+    }
+
+    // ==== func_0041F248 @ 0x0041F248 [C]
+    public static int CharSelect_GetCharacterForNode(int key)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0041F248", (uint)key);
+            int i = 0;
+            int found = 0;
+            int res = 0;
+            res = 0;
+            found = 0;
+            for (i = 0; ((i < 17) && (found == 0)); ++i)
+            {
+                if ((new O3Row((0x800E3A50u + (uint)(i * 112))).f0 == key))
+                {
+                    found = 1;
+                    res = new O3Row((0x800E3A50u + (uint)(i * 112))).f4;
+                }
+            }
+            return res;
+        }
+    }
+
+    // ==== func_0041F298 @ 0x0041F298 [MIPS]
+    public static uint CharSelect_OnOpen_Entry_0041F298(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0041F298", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_0041F298: ;
+                r2 = Mem.U32((r2 + 17104u));
+                r2 = r2 + r19;
+                r29 = r29 - 112u;
+                Mem.Set((r29 + 100u), r23);
+                r23 = r4;
+                r4 = (uint)4952;
+                Mem.Set((r29 + 108u), r31);
+                Mem.Set((r29 + 104u), r30);
+                Mem.Set((r29 + 96u), r22);
+                Mem.Set((r29 + 92u), r21);
+                Mem.Set((r29 + 88u), r20);
+                Mem.Set((r29 + 84u), r19);
+                Mem.Set((r29 + 80u), r18);
+                Mem.Set((r29 + 76u), r17);
+                Mem.Set((r29 + 72u), r16); r2 = ResourcePool_Malloc(r4);
+                r4 = r23;
+                r5 = (uint)4;
+                r1 = 2148401152u;
+                Mem.Set((r1 + 17104u), r2);
+                Mem.Set((r2 + 0u), r23); r2 = CursorGroup_Create(r4, (int)r5);
+                r4 = r23;
+                r5 = r0;
+                r6 = (uint)122;
+                r18 = r5;
+                r30 = (uint)80;
+                r20 = r5;
+                r22 = r5;
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 17104u));
+                r21 = (uint)8;
+                Mem.Set((r3 + 4u), r2); CursorGroup_SetCursorById(r4, (int)r5, (int)r6);
+                r4 = r23;
+                r5 = (uint)1;
+                r6 = (uint)122; CursorGroup_SetCursorById(r4, (int)r5, (int)r6);
+                r4 = r23;
+                r5 = (uint)2;
+                r6 = (uint)122; CursorGroup_SetCursorById(r4, (int)r5, (int)r6);
+                r4 = r23;
+                r5 = (uint)3;
+                r6 = (uint)122; CursorGroup_SetCursorById(r4, (int)r5, (int)r6);
+                r4 = r0;
+                r5 = r4; Arena_Set((int)r4, (int)r5);
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 17104u));
+                r1 = 2148401152u;
+                Cpu.SetW(0, Mem.U32((r1 + 5488u)));
+                r19 = r0;
+                Mem.Set((r2 + 4944u), r0);
+                Mem.Set((r29 + 56u), Cpu.W(0));
+                Mem.Set((r29 + 60u), Cpu.W(0));
+                Mem.Set((r29 + 64u), Cpu.W(0));
+                L_L0041F380: ;
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 17104u));
+                r2 = r2 + r19;
+                Mem.Set((r2 + 12u), r0);
+                r1 = 2148401152u;
+                r1 = r1 + r20;
+                r3 = Mem.U32((r1 + 17108u));
+                Mem.Set((r2 + 8u), r0);
+                Mem.Set((r2 + 20u), r0);
+                Mem.Set((r2 + 24u), r0);
+                Mem.Set((r2 + 1224u), r0);
+                Mem.Set((r2 + 16u), r3);
+                r4 = r3; r2 = (uint)CharSelect_GetCharacterForNode((int)r4);
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 17104u));
+                r17 = r0;
+                r3 = r3 + r19;
+                r4 = Mem.U32((r3 + 16u));
+                r16 = r2; r2 = (uint)CharSelect_FindRowByNode((int)r4);
+                r5 = (uint)9;
+                r6 = r16 + 911u;
+                r7 = r18 << 2;
+                r3 = r2 << 3;
+                r3 = r3 - r2;
+                r3 = r3 << 4;
+                r7 = r7 + r3;
+                r2 = (uint)24000;
+                r3 = r22 + r3;
+                r4 = 2148401152u;
+                r4 = Mem.U32((r4 + 17104u));
+                r1 = 2148401152u;
+                r1 = r1 + r7;
+                Cpu.SetW(0, Mem.U32((r1 + 14940u)));
+                r4 = r4 + r21;
+                Cpu.SetS(1, Cpu.S(0));
+                Cpu.SetS(2, Cpu.S(0));
+                Mem.Set((r29 + 56u), Cpu.W(0));
+                r1 = 2148401152u;
+                r1 = r1 + r7;
+                Cpu.SetW(0, Mem.U32((r1 + 14956u)));
+                r4 = r4 + 24u;
+                Mem.Set((r29 + 60u), Cpu.W(1));
+                Mem.Set((r29 + 64u), Cpu.W(2));
+                Mem.Set((r29 + 16u), r2);
+                r1 = 2148401152u;
+                r1 = r1 + r7;
+                r2 = Mem.U32((r1 + 15020u));
+                r7 = (uint)75;
+                r8 = Mem.U32((r29 + 56u));
+                r9 = Mem.U32((r29 + 60u));
+                r10 = Mem.U32((r29 + 64u));
+                Mem.Set((r29 + 20u), r8);
+                Mem.Set((r29 + 24u), r9);
+                Mem.Set((r29 + 28u), r10);
+                r1 = 2148401152u;
+                r1 = r1 + r3;
+                r8 = Mem.U32((r1 + 14972u));
+                r1 = 2148401152u;
+                r1 = r1 + r3;
+                r9 = Mem.U32((r1 + 14976u));
+                r1 = 2148401152u;
+                r1 = r1 + r3;
+                r10 = Mem.U32((r1 + 14980u));
+                Mem.Set((r29 + 32u), r8);
+                Mem.Set((r29 + 36u), r9);
+                Mem.Set((r29 + 40u), r10);
+                Mem.Set((r29 + 44u), Cpu.W(0));
+                Mem.Set((r29 + 48u), r2); r2 = func_0041CB48_rc(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), Mem.U32(r29 + 32u), Mem.U32(r29 + 36u), Mem.U32(r29 + 40u), Mem.U32(r29 + 44u), Mem.U32(r29 + 48u)); r3 = Cpu.V1;
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 17104u));
+                r1 = 2148401152u;
+                r1 = r1 + r20;
+                r5 = Mem.U16((r1 + 17118u));
+                r4 = Mem.U32((r2 + 0u));
+                r16 = r20; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r3 = (uint)110;
+                Mem.Set((r2 + 16u), (byte)r3);
+                L_L0041F4C4: ;
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 17104u));
+                r1 = 2148401152u;
+                r1 = r1 + r16;
+                r5 = Mem.U16((r1 + 17122u));
+                r4 = Mem.U32((r2 + 0u));
+                r17 = r17 + 1u; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r2 + 16u), (byte)r30);
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 17104u));
+                r1 = 2148401152u;
+                r1 = r1 + r16;
+                r5 = Mem.U16((r1 + 17134u));
+                r4 = Mem.U32((r2 + 0u));
+                r16 = r16 + 4u; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r2;
+                r5 = (uint)1; UiNode_SetVisible(r4, (int)r5);
+                r2 = (uint)((int)r17 < 3 ? 1 : 0);
+                { bool c_ = r2 != 0;  if (c_) goto L_L0041F4C4; }
+                r20 = r20 + 36u;
+                r22 = r22 + 12u;
+                r21 = r21 + 1224u;
+                r18 = r18 + 1u;
+                r2 = (uint)((int)r18 < 4 ? 1 : 0);
+                { bool c_ = r2 != 0; r19 = r19 + 1224u; if (c_) goto L_L0041F380; }
+                r4 = r23;
+                r5 = (uint)172;
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 17104u));
+                r2 = (uint)1;
+                Mem.Set((r3 + 4920u), r2);
+                r2 = (uint)4;
+                Mem.Set((r3 + 4924u), r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = 2148401152u;
+                r6 = Mem.U32((r6 + 17104u));
+                Mem.Set((r6 + 4904u), r2);
+                r3 = Mem.U16((r2 + 20u));
+                r4 = Mem.U16((r2 + 24u));
+                r3 = r3 - r4;
+                Mem.Set((r2 + 20u), (ushort)r3);
+                r2 = Mem.U32((r6 + 4904u));
+                r3 = (uint)(int)Mem.S16((r2 + 24u));
+                if ((int)r3 < 0) { r3 = r3 + 3u; goto L_L0041F58C; }
+                L_L0041F58C: ;
+                r4 = r23;
+                r5 = (uint)147;
+                r3 = (uint)((int)r3 >> 2);
+                Mem.Set((r6 + 4908u), r3);
+                r6 = Mem.U32((r6 + 4904u));
+                r3 = r3 << 2;
+                r7 = (uint)(int)Mem.S16((r6 + 24u));
+                r2 = Mem.U16((r6 + 20u));
+                r7 = r7 - r3;
+                r2 = r2 + r7;
+                Mem.Set((r6 + 20u), (ushort)r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = 2148401152u;
+                r6 = Mem.U32((r6 + 17104u));
+                Mem.Set((r6 + 4912u), r2);
+                r3 = Mem.U16((r2 + 20u));
+                r4 = Mem.U16((r2 + 24u));
+                r3 = r3 + r4;
+                Mem.Set((r2 + 20u), (ushort)r3);
+                r2 = Mem.U32((r6 + 4912u));
+                r3 = (uint)(int)Mem.S16((r2 + 24u));
+                if ((int)r3 < 0) { r3 = r3 + 3u; goto L_L0041F5E8; }
+                L_L0041F5E8: ;
+                r4 = r23;
+                r5 = (uint)118;
+                r18 = r0;
+                r3 = (uint)((int)r3 >> 2);
+                Mem.Set((r6 + 4916u), r3);
+                r6 = Mem.U32((r6 + 4912u));
+                r3 = r3 << 2;
+                r7 = (uint)(int)Mem.S16((r6 + 24u));
+                r2 = Mem.U16((r6 + 20u));
+                r7 = r7 - r3;
+                r2 = r2 - r7;
+                Mem.Set((r6 + 20u), (ushort)r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r23;
+                r5 = (uint)121;
+                r3 = (uint)110;
+                Mem.Set((r2 + 16u), (byte)r3); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = (uint)116;
+                r5 = (uint)255;
+                r3 = (uint)25;
+                Mem.Set((r2 + 16u), (byte)r3); r2 = Flicker_Create(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r23;
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 17104u));
+                r5 = (uint)116;
+                Mem.Set((r3 + 4928u), r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r2;
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 17104u));
+                r5 = r18;
+                Mem.Set((r2 + 4932u), r4); UiNode_SetVisible(r4, (int)r5);
+                r4 = r23;
+                r5 = (uint)123; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r2;
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 17104u));
+                r5 = r18;
+                Mem.Set((r2 + 4936u), r4); UiNode_SetVisible(r4, (int)r5);
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 17104u));
+                r17 = (uint)1;
+                r2 = Mem.U32((r2 + 4936u));
+                r16 = 2148794368u;
+                r16 = r16 + 25496u;
+                Mem.Set((r2 + 16u), (byte)r0);
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 17104u));
+                r2 = (uint)50;
+                Mem.Set((r3 + 4940u), r2); r2 = CharSelect_EnableUnlocked(r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L0041F6C8: ;
+                r2 = Mem.U8((r16 + 120u));
+                if (r2 != r17) { r18 = r18 + 1u; goto L_L0041F6E0; }
+                r4 = r18; CharSelect_JoinPlayer((int)r4);
+                r18 = r18 + 1u;
+                L_L0041F6E0: ;
+                r2 = (uint)((int)r18 < 4 ? 1 : 0);
+                { bool c_ = r2 != 0; r16 = r16 + 150u; if (c_) goto L_L0041F6C8; }
+                Menu_DisableInput();
+                r4 = 2148401152u;
+                r4 = Mem.U32((r4 + 17104u));
+                r3 = (uint)-1;
+                Mem.Set((r4 + 4948u), r3);
+                r31 = Mem.U32((r29 + 108u));
+                r30 = Mem.U32((r29 + 104u));
+                r23 = Mem.U32((r29 + 100u));
+                r22 = Mem.U32((r29 + 96u));
+                r21 = Mem.U32((r29 + 92u));
+                r20 = Mem.U32((r29 + 88u));
+                r19 = Mem.U32((r29 + 84u));
+                r18 = Mem.U32((r29 + 80u));
+                r17 = Mem.U32((r29 + 76u));
+                r16 = Mem.U32((r29 + 72u));
+                r2 = r0;
+                r29 = r29 + 112u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0041F298", r2); Stack.Free(384); }
+    }
+
+    // ==== func_0041F2A0 @ 0x0041F2A0 [MIPS]
+    public static uint CharSelect_OnOpen(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_0041F2A0", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_0041F2A0: ;
+                r29 = r29 - 112u;
+                Mem.Set((r29 + 100u), r23);
+                r23 = r4;
+                r4 = (uint)4952;
+                Mem.Set((r29 + 108u), r31);
+                Mem.Set((r29 + 104u), r30);
+                Mem.Set((r29 + 96u), r22);
+                Mem.Set((r29 + 92u), r21);
+                Mem.Set((r29 + 88u), r20);
+                Mem.Set((r29 + 84u), r19);
+                Mem.Set((r29 + 80u), r18);
+                Mem.Set((r29 + 76u), r17);
+                Mem.Set((r29 + 72u), r16); r2 = ResourcePool_Malloc(r4);
+                r4 = r23;
+                r5 = (uint)4;
+                r1 = 2148401152u;
+                Mem.Set((r1 + 17104u), r2);
+                Mem.Set((r2 + 0u), r23); r2 = CursorGroup_Create(r4, (int)r5);
+                r4 = r23;
+                r5 = r0;
+                r6 = (uint)122;
+                r18 = r5;
+                r30 = (uint)80;
+                r20 = r5;
+                r22 = r5;
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 17104u));
+                r21 = (uint)8;
+                Mem.Set((r3 + 4u), r2); CursorGroup_SetCursorById(r4, (int)r5, (int)r6);
+                r4 = r23;
+                r5 = (uint)1;
+                r6 = (uint)122; CursorGroup_SetCursorById(r4, (int)r5, (int)r6);
+                r4 = r23;
+                r5 = (uint)2;
+                r6 = (uint)122; CursorGroup_SetCursorById(r4, (int)r5, (int)r6);
+                r4 = r23;
+                r5 = (uint)3;
+                r6 = (uint)122; CursorGroup_SetCursorById(r4, (int)r5, (int)r6);
+                r4 = r0;
+                r5 = r4; Arena_Set((int)r4, (int)r5);
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 17104u));
+                r1 = 2148401152u;
+                Cpu.SetW(0, Mem.U32((r1 + 5488u)));
+                r19 = r0;
+                Mem.Set((r2 + 4944u), r0);
+                Mem.Set((r29 + 56u), Cpu.W(0));
+                Mem.Set((r29 + 60u), Cpu.W(0));
+                Mem.Set((r29 + 64u), Cpu.W(0));
+                L_L0041F380: ;
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 17104u));
+                r2 = r2 + r19;
+                Mem.Set((r2 + 12u), r0);
+                r1 = 2148401152u;
+                r1 = r1 + r20;
+                r3 = Mem.U32((r1 + 17108u));
+                Mem.Set((r2 + 8u), r0);
+                Mem.Set((r2 + 20u), r0);
+                Mem.Set((r2 + 24u), r0);
+                Mem.Set((r2 + 1224u), r0);
+                Mem.Set((r2 + 16u), r3);
+                r4 = r3; r2 = (uint)CharSelect_GetCharacterForNode((int)r4);
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 17104u));
+                r17 = r0;
+                r3 = r3 + r19;
+                r4 = Mem.U32((r3 + 16u));
+                r16 = r2; r2 = (uint)CharSelect_FindRowByNode((int)r4);
+                r5 = (uint)9;
+                r6 = r16 + 911u;
+                r7 = r18 << 2;
+                r3 = r2 << 3;
+                r3 = r3 - r2;
+                r3 = r3 << 4;
+                r7 = r7 + r3;
+                r2 = (uint)24000;
+                r3 = r22 + r3;
+                r4 = 2148401152u;
+                r4 = Mem.U32((r4 + 17104u));
+                r1 = 2148401152u;
+                r1 = r1 + r7;
+                Cpu.SetW(0, Mem.U32((r1 + 14940u)));
+                r4 = r4 + r21;
+                Cpu.SetS(1, Cpu.S(0));
+                Cpu.SetS(2, Cpu.S(0));
+                Mem.Set((r29 + 56u), Cpu.W(0));
+                r1 = 2148401152u;
+                r1 = r1 + r7;
+                Cpu.SetW(0, Mem.U32((r1 + 14956u)));
+                r4 = r4 + 24u;
+                Mem.Set((r29 + 60u), Cpu.W(1));
+                Mem.Set((r29 + 64u), Cpu.W(2));
+                Mem.Set((r29 + 16u), r2);
+                r1 = 2148401152u;
+                r1 = r1 + r7;
+                r2 = Mem.U32((r1 + 15020u));
+                r7 = (uint)75;
+                r8 = Mem.U32((r29 + 56u));
+                r9 = Mem.U32((r29 + 60u));
+                r10 = Mem.U32((r29 + 64u));
+                Mem.Set((r29 + 20u), r8);
+                Mem.Set((r29 + 24u), r9);
+                Mem.Set((r29 + 28u), r10);
+                r1 = 2148401152u;
+                r1 = r1 + r3;
+                r8 = Mem.U32((r1 + 14972u));
+                r1 = 2148401152u;
+                r1 = r1 + r3;
+                r9 = Mem.U32((r1 + 14976u));
+                r1 = 2148401152u;
+                r1 = r1 + r3;
+                r10 = Mem.U32((r1 + 14980u));
+                Mem.Set((r29 + 32u), r8);
+                Mem.Set((r29 + 36u), r9);
+                Mem.Set((r29 + 40u), r10);
+                Mem.Set((r29 + 44u), Cpu.W(0));
+                Mem.Set((r29 + 48u), r2); r2 = func_0041CB48_rc(r4, r5, r6, r7, Mem.U32(r29 + 16u), Mem.U32(r29 + 20u), Mem.U32(r29 + 24u), Mem.U32(r29 + 28u), Mem.U32(r29 + 32u), Mem.U32(r29 + 36u), Mem.U32(r29 + 40u), Mem.U32(r29 + 44u), Mem.U32(r29 + 48u)); r3 = Cpu.V1;
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 17104u));
+                r1 = 2148401152u;
+                r1 = r1 + r20;
+                r5 = Mem.U16((r1 + 17118u));
+                r4 = Mem.U32((r2 + 0u));
+                r16 = r20; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r3 = (uint)110;
+                Mem.Set((r2 + 16u), (byte)r3);
+                L_L0041F4C4: ;
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 17104u));
+                r1 = 2148401152u;
+                r1 = r1 + r16;
+                r5 = Mem.U16((r1 + 17122u));
+                r4 = Mem.U32((r2 + 0u));
+                r17 = r17 + 1u; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                Mem.Set((r2 + 16u), (byte)r30);
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 17104u));
+                r1 = 2148401152u;
+                r1 = r1 + r16;
+                r5 = Mem.U16((r1 + 17134u));
+                r4 = Mem.U32((r2 + 0u));
+                r16 = r16 + 4u; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r2;
+                r5 = (uint)1; UiNode_SetVisible(r4, (int)r5);
+                r2 = (uint)((int)r17 < 3 ? 1 : 0);
+                { bool c_ = r2 != 0;  if (c_) goto L_L0041F4C4; }
+                r20 = r20 + 36u;
+                r22 = r22 + 12u;
+                r21 = r21 + 1224u;
+                r18 = r18 + 1u;
+                r2 = (uint)((int)r18 < 4 ? 1 : 0);
+                { bool c_ = r2 != 0; r19 = r19 + 1224u; if (c_) goto L_L0041F380; }
+                r4 = r23;
+                r5 = (uint)172;
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 17104u));
+                r2 = (uint)1;
+                Mem.Set((r3 + 4920u), r2);
+                r2 = (uint)4;
+                Mem.Set((r3 + 4924u), r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = 2148401152u;
+                r6 = Mem.U32((r6 + 17104u));
+                Mem.Set((r6 + 4904u), r2);
+                r3 = Mem.U16((r2 + 20u));
+                r4 = Mem.U16((r2 + 24u));
+                r3 = r3 - r4;
+                Mem.Set((r2 + 20u), (ushort)r3);
+                r2 = Mem.U32((r6 + 4904u));
+                r3 = (uint)(int)Mem.S16((r2 + 24u));
+                if ((int)r3 < 0) { r3 = r3 + 3u; goto L_L0041F58C; }
+                L_L0041F58C: ;
+                r4 = r23;
+                r5 = (uint)147;
+                r3 = (uint)((int)r3 >> 2);
+                Mem.Set((r6 + 4908u), r3);
+                r6 = Mem.U32((r6 + 4904u));
+                r3 = r3 << 2;
+                r7 = (uint)(int)Mem.S16((r6 + 24u));
+                r2 = Mem.U16((r6 + 20u));
+                r7 = r7 - r3;
+                r2 = r2 + r7;
+                Mem.Set((r6 + 20u), (ushort)r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = 2148401152u;
+                r6 = Mem.U32((r6 + 17104u));
+                Mem.Set((r6 + 4912u), r2);
+                r3 = Mem.U16((r2 + 20u));
+                r4 = Mem.U16((r2 + 24u));
+                r3 = r3 + r4;
+                Mem.Set((r2 + 20u), (ushort)r3);
+                r2 = Mem.U32((r6 + 4912u));
+                r3 = (uint)(int)Mem.S16((r2 + 24u));
+                if ((int)r3 < 0) { r3 = r3 + 3u; goto L_L0041F5E8; }
+                L_L0041F5E8: ;
+                r4 = r23;
+                r5 = (uint)118;
+                r18 = r0;
+                r3 = (uint)((int)r3 >> 2);
+                Mem.Set((r6 + 4916u), r3);
+                r6 = Mem.U32((r6 + 4912u));
+                r3 = r3 << 2;
+                r7 = (uint)(int)Mem.S16((r6 + 24u));
+                r2 = Mem.U16((r6 + 20u));
+                r7 = r7 - r3;
+                r2 = r2 - r7;
+                Mem.Set((r6 + 20u), (ushort)r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r23;
+                r5 = (uint)121;
+                r3 = (uint)110;
+                Mem.Set((r2 + 16u), (byte)r3); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = (uint)116;
+                r5 = (uint)255;
+                r3 = (uint)25;
+                Mem.Set((r2 + 16u), (byte)r3); r2 = Flicker_Create(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r23;
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 17104u));
+                r5 = (uint)116;
+                Mem.Set((r3 + 4928u), r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r2;
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 17104u));
+                r5 = r18;
+                Mem.Set((r2 + 4932u), r4); UiNode_SetVisible(r4, (int)r5);
+                r4 = r23;
+                r5 = (uint)123; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r2;
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 17104u));
+                r5 = r18;
+                Mem.Set((r2 + 4936u), r4); UiNode_SetVisible(r4, (int)r5);
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 17104u));
+                r17 = (uint)1;
+                r2 = Mem.U32((r2 + 4936u));
+                r16 = 2148794368u;
+                r16 = r16 + 25496u;
+                Mem.Set((r2 + 16u), (byte)r0);
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 17104u));
+                r2 = (uint)50;
+                Mem.Set((r3 + 4940u), r2); r2 = CharSelect_EnableUnlocked(r4, r5, r6, r7); r3 = Cpu.V1;
+                L_L0041F6C8: ;
+                r2 = Mem.U8((r16 + 120u));
+                if (r2 != r17) { r18 = r18 + 1u; goto L_L0041F6E0; }
+                r4 = r18; CharSelect_JoinPlayer((int)r4);
+                r18 = r18 + 1u;
+                L_L0041F6E0: ;
+                r2 = (uint)((int)r18 < 4 ? 1 : 0);
+                { bool c_ = r2 != 0; r16 = r16 + 150u; if (c_) goto L_L0041F6C8; }
+                Menu_DisableInput();
+                r4 = 2148401152u;
+                r4 = Mem.U32((r4 + 17104u));
+                r3 = (uint)-1;
+                Mem.Set((r4 + 4948u), r3);
+                r31 = Mem.U32((r29 + 108u));
+                r30 = Mem.U32((r29 + 104u));
+                r23 = Mem.U32((r29 + 100u));
+                r22 = Mem.U32((r29 + 96u));
+                r21 = Mem.U32((r29 + 92u));
+                r20 = Mem.U32((r29 + 88u));
+                r19 = Mem.U32((r29 + 84u));
+                r18 = Mem.U32((r29 + 80u));
+                r17 = Mem.U32((r29 + 76u));
+                r16 = Mem.U32((r29 + 72u));
+                r2 = r0;
+                r29 = r29 + 112u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_0041F2A0", r2); Stack.Free(384); }
+    }
+
+    // ==== func_0041F738 @ 0x0041F738 [C]
+    public static int CharSelect_Update(int a0, int a1, int dt)
+    {
+        uint _fp = Stack.Alloc(12);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_0041F738", (uint)a0, (uint)a1, (uint)dt);
+                int i = 0;
+                int x = 0;
+                int y = 0;
+                int t = 0;
+                int ch = 0;
+                int row = 0;
+                uint d = 0u;
+                uint p = 0u;
+                float fv = 0f;
+                switch (new Q2Pg(Mem.U32(0x800E42D0u)).state)
+                {
+                case 1:
+                    new Q2It(new Q2Pg(Mem.U32(0x800E42D0u)).a_).f14_Set((ushort)(((int)(new Q2It(new Q2Pg(Mem.U32(0x800E42D0u)).a_).f14) + (int)((ushort)(new Q2Pg(Mem.U32(0x800E42D0u)).ta)))));
+                    new Q2It(new Q2Pg(Mem.U32(0x800E42D0u)).b_).f14_Set((ushort)(((int)(new Q2It(new Q2Pg(Mem.U32(0x800E42D0u)).b_).f14) - (int)((ushort)(new Q2Pg(Mem.U32(0x800E42D0u)).tb)))));
+                    new Q2Pg(Mem.U32(0x800E42D0u)).timer_Set((new Q2Pg(Mem.U32(0x800E42D0u)).timer - 1));
+                    if ((new Q2Pg(Mem.U32(0x800E42D0u)).timer <= 0))
+                    {
+                        Audio_PlaySound2D(3705);
+                        UiNode_SetVisible(new Q2Pg(Mem.U32(0x800E42D0u)).w24, 1);
+                        Flicker_Trigger(new Q2Pg(Mem.U32(0x800E42D0u)).w20, 4);
+                        new Q2Pg(Mem.U32(0x800E42D0u)).state_Set(4);
+                        new Q2Pg(Mem.U32(0x800E42D0u)).timer_Set(4);
+                    }
+                    break;
+                case 2:
+                    new Q2It(new Q2Pg(Mem.U32(0x800E42D0u)).a_).f14_Set((ushort)(((int)(new Q2It(new Q2Pg(Mem.U32(0x800E42D0u)).a_).f14) - (int)((ushort)(new Q2Pg(Mem.U32(0x800E42D0u)).ta)))));
+                    new Q2It(new Q2Pg(Mem.U32(0x800E42D0u)).b_).f14_Set((ushort)(((int)(new Q2It(new Q2Pg(Mem.U32(0x800E42D0u)).b_).f14) + (int)((ushort)(new Q2Pg(Mem.U32(0x800E42D0u)).tb)))));
+                    new Q2Pg(Mem.U32(0x800E42D0u)).timer_Set((new Q2Pg(Mem.U32(0x800E42D0u)).timer - 1));
+                    if ((new Q2Pg(Mem.U32(0x800E42D0u)).timer <= 0))
+                    {
+                        new Q2Pg(Mem.U32(0x800E42D0u)).state_Set(3);
+                        Menu_ConsumeEvent();
+                        Menu_GotoScreen(new Q2Pg(Mem.U32(0x800E42D0u)).f34);
+                        return 0;
+                    }
+                    break;
+                case 3:
+                    Menu_EnableInput();
+                    break;
+                case 4:
+                    p = Mem.U32(0x800E42D0u);
+                    y = new Q2Pg(p).timer;
+                    x = (y - 1);
+                    if ((x >= 0))
+                    {
+                        t = (y - ((y >= x) ? 1 : 0));
+                    }
+                    else
+                    {
+                        t = 0;
+                    }
+                    new Q2Pg(p).timer_Set(t);
+                    if ((new Q2Pg(Mem.U32(0x800E42D0u)).timer <= 0))
+                    {
+                        if ((Flicker_IsSteady(new Q2Pg(Mem.U32(0x800E42D0u)).w20) != 0))
+                        {
+                            Flicker_Stop(new Q2Pg(Mem.U32(0x800E42D0u)).w20);
+                            new Q2Pg(Mem.U32(0x800E42D0u)).state_Set(6);
+                            new Q2Pg(Mem.U32(0x800E42D0u)).timer_Set(4);
+                            UiNode_SetVisible(new Q2Pg(Mem.U32(0x800E42D0u)).w28_, 1);
+                        }
+                    }
+                    break;
+                case 5:
+                    Audio_PlaySound2D(3704);
+                    new Q2Pg(Mem.U32(0x800E42D0u)).state_Set(2);
+                    new Q2Pg(Mem.U32(0x800E42D0u)).timer_Set(4);
+                    UiNode_SetVisible(new Q2Pg(Mem.U32(0x800E42D0u)).w24, 0);
+                    UiNode_SetVisible(new Q2Pg(Mem.U32(0x800E42D0u)).w28_, 0);
+                    break;
+                case 6:
+                    new Q2Pg(Mem.U32(0x800E42D0u)).w28.alpha_Set((byte)(((int)(new Q2Pg(Mem.U32(0x800E42D0u)).w28.alpha) + (int)((byte)(new Q2Pg(Mem.U32(0x800E42D0u)).f2C)))));
+                    new Q2Pg(Mem.U32(0x800E42D0u)).timer_Set((new Q2Pg(Mem.U32(0x800E42D0u)).timer - 1));
+                    if ((new Q2Pg(Mem.U32(0x800E42D0u)).timer <= 0))
+                    {
+                        new Q2Pg(Mem.U32(0x800E42D0u)).w28.alpha_Set((byte)(200));
+                        new Q2Pg(Mem.U32(0x800E42D0u)).state_Set(3);
+                    }
+                    break;
+                case 7:
+                    break;
+                }
+                if ((new Q2Pg(Mem.U32(0x800E42D0u)).state != 3))
+                {
+                    return 0;
+                }
+                new Q2Pg(Mem.U32(0x800E42D0u)).tick_Set((new Q2Pg(Mem.U32(0x800E42D0u)).tick + dt));
+                for (i = 0; (i < 4); ++i)
+                {
+                    if ((new Q2Pg(Mem.U32(0x800E42D0u)).rec[(int)(i)].state == 1))
+                    {
+                        if ((new Q2Pg(Mem.U32(0x800E42D0u)).rec[(int)(i)].w8_ != 0u))
+                        {
+                            fv = ((cosf(((float)(i) + ((float)(new Q2Pg(Mem.U32(0x800E42D0u)).tick) * 0.00333333341f))) * 70.0f) + 170.0f);
+                            new Q2Pg(Mem.U32(0x800E42D0u)).rec[(int)(i)].w8.alpha_Set((byte)(Cpu.TruncU32(fv)));
+                        }
+                        d = CursorGroup_GetItem((uint)(new Q2Pg(Mem.U32(0x800E42D0u)).rec[(int)(0)].f4), i);
+                        if ((((int)(new Q2Pg(Mem.U32(0x800E42D0u)).rec[(int)(i)].w8.f14) != ((int)(new Q2Dsc(d).f14) - 2)) || ((int)(new Q2Pg(Mem.U32(0x800E42D0u)).rec[(int)(i)].w8.f16) != ((int)(new Q2Dsc(d).f16) - 2))))
+                        {
+                            Audio_PlaySound2D(3711);
+                            if ((UiNode_IsDisabledInherited(d) == 0))
+                            {
+                                if (((int)(new Q2Dsc(d).f0C) != 129))
+                                {
+                                    new Q2Pg(Mem.U32(0x800E42D0u)).rec[(int)(i)].f10_Set((int)(new Q2Dsc(d).f0C));
+                                    ch = CharSelect_GetCharacterForNode(new Q2Pg(Mem.U32(0x800E42D0u)).rec[(int)(i)].f10);
+                                    row = CharSelect_FindRowByNode(new Q2Pg(Mem.U32(0x800E42D0u)).rec[(int)(i)].f10);
+                                    new O3Vec3(_fp).x_Set(new O3Row((0x800E3A50u + (uint)(row * 112))).fC[(int)(i)]);
+                                    new O3Vec3(_fp).y_Set(new O3Row((0x800E3A50u + (uint)(row * 112))).fC[(int)(i)]);
+                                    new O3Vec3(_fp).z_Set(new O3Row((0x800E3A50u + (uint)(row * 112))).fC[(int)(i)]);
+                                    Portrait_CreateActor(new Q2Rec((uint)(((i * 1224) + (int)(Mem.U32(0x800E42D0u))))).sub.P, 9, (ch + 911), 75, 24000, _fp, (new O3Row((0x800E3A50u + (uint)(row * 112))).v2C.P + (uint)(i * 12)), new O3Row((0x800E3A50u + (uint)(row * 112))).f1C[(int)(i)], new O3Row((0x800E3A50u + (uint)(row * 112))).f5C[(int)(i)]);
+                                }
+                                else
+                                {
+                                    CharSelect_PickRandomCharacter(i);
+                                }
+                            }
+                            else
+                            {
+                                new Q2Pg(Mem.U32(0x800E42D0u)).rec[(int)(i)].f10_Set((-1));
+                            }
+                            CharSelect_ResetSkin(i);
+                        }
+                        else
+                        {
+                            if (((int)(new Q2Dsc(d).f0C) == 129))
+                            {
+                                CharSelect_PickRandomCharacter(i);
+                            }
+                        }
+                        new Q2Pg(Mem.U32(0x800E42D0u)).rec[(int)(i)].w8.f14_Set((short)(((int)(new Q2Dsc(d).f14) - 2)));
+                        new Q2Pg(Mem.U32(0x800E42D0u)).rec[(int)(i)].w8.f16_Set((short)(((int)(new Q2Dsc(d).f16) - 2)));
+                    }
+                }
+                return 0;
+            }
+        }
+        finally { Stack.Free(12); }
+    }
+
+    // ==== func_0041FCC0 @ 0x0041FCC0 [C]
+    public static int CharSelect_Draw(int a0, int a1, int a2)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0041FCC0", (uint)a0, (uint)a1, (uint)a2);
+            int i = 0;
+            if (((a2 == 1) && (new Q2Pj(Mem.U32(0x800E42D0u)).f1338 == 3)))
+            {
+                Mem.Set(0x800D15E0u, 0);
+                Mem.Set((0x800D15E4u + (uint)(0 * 4)), 255.0f);
+                Mem.Set((0x800D15E4u + (uint)(1 * 4)), 255.0f);
+                Mem.Set((0x800D15E4u + (uint)(2 * 4)), 255.0f);
+                Mem.Set((0x800D15E4u + (uint)(3 * 4)), 255.0f);
+                for (i = 0; (i < 4); ++i)
+                {
+                    if (((new Q2Pj(Mem.U32(0x800E42D0u)).rec[(int)(i)].state == 1) || (new Q2Pj(Mem.U32(0x800E42D0u)).rec[(int)(i)].state == 3)))
+                    {
+                        if ((new Q2Pj(Mem.U32(0x800E42D0u)).rec[(int)(i)].f8 != (-1)))
+                        {
+                            {
+                                uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                new O3Dl(_g).w0_Set((uint)(((long)((((int)(((float)(Mem.S32(((0x800E41C0u + (uint)(i * 16)) + (uint)(0 * 4)))) * 4.0f)) & 4095) << (int)12)) | (long)(((uint)(((int)(((float)(Mem.S32(((0x800E41C0u + (uint)(i * 16)) + (uint)(1 * 4)))) * 4.0f)) & 4095)) | 3976200192u)))));
+                                new O3Dl(_g).w1_Set((uint)(((((int)(((float)(Mem.S32(((0x800E41C0u + (uint)(i * 16)) + (uint)(2 * 4)))) * 4.0f)) & 4095) << (int)12) | ((int)(((float)(Mem.S32(((0x800E41C0u + (uint)(i * 16)) + (uint)(3 * 4)))) * 4.0f)) & 4095))));
+                            }
+                            if ((new Q2Pj(Mem.U32(0x800E42D0u)).rec[(int)(i)].cnt > 0))
+                            {
+                                Mem.Set((0x800D15E4u + (uint)(0 * 4)), 150.0f);
+                                Mem.Set((0x800D15E4u + (uint)(1 * 4)), (float)(0));
+                                Mem.Set((0x800D15E4u + (uint)(2 * 4)), (float)(0));
+                                Mem.Set((0x800D15E4u + (uint)(3 * 4)), 100.0f);
+                                Mem.Set((0x800D15E4u + (uint)(4 * 4)), 100.0f);
+                                Mem.Set(0x800D15E0u, 3);
+                                new Q2Pj(Mem.U32(0x800E42D0u)).rec[(int)(i)].cnt_Set((new Q2Pj(Mem.U32(0x800E42D0u)).rec[(int)(i)].cnt - 1));
+                            }
+                            else
+                            {
+                                Mem.Set(0x800D15E0u, 0);
+                                Mem.Set((0x800D15E4u + (uint)(0 * 4)), 255.0f);
+                                Mem.Set((0x800D15E4u + (uint)(1 * 4)), 255.0f);
+                                Mem.Set((0x800D15E4u + (uint)(2 * 4)), 255.0f);
+                                Mem.Set((0x800D15E4u + (uint)(3 * 4)), 255.0f);
+                            }
+                            MenuModel_Draw(new Q2Pj(Mem.U32(0x800E42D0u)).rec[(int)(i)].sub.P);
+                        }
+                    }
+                }
+                Mem.Set(0x800D15E0u, 0);
+                {
+                    uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new O3Dl(_g_2).w0_Set(3976200192u);
+                    new O3Dl(_g_2).w1_Set((uint)(((((int)(((float)((Mem.S32(0x800E28D0u) - 1)) * 4.0f)) & 4095) << (int)12) | ((int)(((float)((Mem.S32(0x800E28D4u) - 1)) * 4.0f)) & 4095))));
+                }
+                Mem.Set((0x800D15E4u + (uint)(0 * 4)), 255.0f);
+                Mem.Set((0x800D15E4u + (uint)(1 * 4)), 255.0f);
+                Mem.Set((0x800D15E4u + (uint)(2 * 4)), 255.0f);
+                Mem.Set((0x800D15E4u + (uint)(3 * 4)), 255.0f);
+            }
+            return 0;
+        }
     }
 
     // ==== func_0041FF9C @ 0x0041FF9C [MIPS]
@@ -678,14 +1656,14 @@ public static partial class Game
                 r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 r17 = r2;
                 r4 = r17;
-                r5 = r0; func_0040E9D0(r4, (int)r5);
+                r5 = r0; UiNode_SetDisabled(r4, (int)r5);
                 r4 = r29 + 16u;
                 r5 = r20; r2 = (uint)Bits_Test(r4, (int)r5);
                 { bool c_ = r2 != 0;  if (c_) goto L_L00420184; }
                 { bool c_ = r17 == 0; r4 = r17; if (c_) goto L_L004201D4; }
-                r5 = (uint)1; func_0040E9D0(r4, (int)r5);
+                r5 = (uint)1; UiNode_SetDisabled(r4, (int)r5);
                 r4 = r17;
-                r5 = r0; func_0040E958(r4, (int)r5);
+                r5 = r0; UiNode_SetVisible(r4, (int)r5);
                 r18 = r18 + 112u; goto L_L004201D8;
                 L_L00420184: ;
                 r16 = Mem.U8((r22 + 13u));
@@ -701,7 +1679,7 @@ public static partial class Game
                 r5 = (uint)131; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 r16 = r2;
                 r4 = r16;
-                r5 = (uint)1; func_0040E958(r4, (int)r5);
+                r5 = (uint)1; UiNode_SetVisible(r4, (int)r5);
                 Mem.Set((r16 + 16u), (byte)r19);
                 L_L004201D4: ;
                 r18 = r18 + 112u;
@@ -725,18 +1703,450 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_0041FF9C", r2); Stack.Free(384); }
     }
 
-    // ==== func_00429C10 @ 0x00429C10 [C]
-    public static float func_00429C10_read_float(uint value)
+    // ==== func_00420214 @ 0x00420214 [C]
+    public static uint func_00420214_pj(int i)
     {
         unchecked
         {
-            if (Dbg.On) Dbg.Enter("func_00429C10_read_float", (uint)value);
-            return Mem.F32(value);
+            if (Dbg.On) Dbg.Enter("func_00420214_pj", (uint)i);
+            return (Mem.U32(0x800E42D0u) + (uint)(i * 1224));
         }
     }
 
-    // ==== func_00429C10 @ 0x00429C10 [MIPS]
-    public static uint CharSelect_Open(uint a0, uint a1, uint a2, uint a3)
+    public static void CharSelect_NextSkin(int idx)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00420214", (uint)idx);
+            int cur = 0;
+            int n = 0;
+            int nxt = 0;
+            uint it = 0u;
+            cur = new O3Pj(func_00420214_pj(idx)).f18;
+            it = UiTree_FindNode((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new Q2IdRow((0x800E42D4u + (uint)(idx * 36))).b[(int)(cur)].id)), default(uint), default(uint));
+            UiNode_SetHighlighted(it, 0);
+            new O3Hdr(it).alpha_Set((byte)(80));
+            n = (int)(Mem.U8((0x80102B57u + (uint)(CharSelect_GetCharacterForNode(new O3Pj(func_00420214_pj(idx)).f10) + (idx * 400)))));
+            if ((n <= 0))
+            {
+                n = 1;
+            }
+            cur = ((cur + 1) % n);
+            nxt = cur;
+            it = UiTree_FindNode((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new Q2IdRow((0x800E42D4u + (uint)(idx * 36))).b[(int)(nxt)].id)), default(uint), default(uint));
+            UiNode_SetHighlighted(it, 1);
+            new O3Hdr(it).alpha_Set((byte)(150));
+            new O3Pj(func_00420214_pj(idx)).f18_Set(nxt);
+        }
+    }
+
+    // ==== func_00420378 @ 0x00420378 [C]
+    public static void CharSelect_JoinPlayer(int idx)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00420378", (uint)idx);
+            uint a = 0u;
+            int off = 0;
+            CursorGroup_SetCursorById((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), idx, (int)(new O3IdRow((0x800E42D4u + (uint)(idx * 36))).e[(int)(0)].id));
+            a = UiTree_FindNode((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new O3IdRow((0x800E42D4u + (uint)(idx * 36))).e[(int)(1)].id)), default(uint), default(uint));
+            off = (idx * 1224);
+            new O3Pj((uint)(((int)(Mem.U32(0x800E42D0u)) + off))).f8_Set((int)(a));
+            a = UiTree_FindNode((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new O3IdRow((0x800E42D4u + (uint)(idx * 36))).e[(int)(0)].id)), default(uint), default(uint));
+            new O3Sp((uint)(new O3Pj((uint)(((int)(Mem.U32(0x800E42D0u)) + off))).f8)).f14_Set((short)(((int)(new O3Sp(a).f14) - 2)));
+            new O3Sp((uint)(new O3Pj((uint)(((int)(Mem.U32(0x800E42D0u)) + off))).f8)).f16_Set((short)(((int)(new O3Sp(a).f16) - 2)));
+            UiNode_SetVisible((uint)(new O3Pj((uint)(((int)(Mem.U32(0x800E42D0u)) + off))).f8), 1);
+            new O3Pj((uint)(((int)(Mem.U32(0x800E42D0u)) + off))).state_Set(1);
+            CharSelect_ResetSkin(idx);
+            UiNode_SetVisible(UiTree_FindNode((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new O3IdRow((0x800E42D4u + (uint)(idx * 36))).e[(int)(2)].id)), default(uint), default(uint)), 0);
+        }
+    }
+
+    // ==== func_004204A8 @ 0x004204A8 [C]
+    public static uint func_004204A8_pj(int i)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004204A8_pj", (uint)i);
+            return (Mem.U32(0x800E42D0u) + (uint)(i * 1224));
+        }
+    }
+
+    public static void CharSelect_ResetSkin(int idx)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004204A8", (uint)idx);
+            int i = 0;
+            int a = 0;
+            int n = 0;
+            uint it = 0u;
+            i = 0;
+            do
+            {
+                UiNode_SetVisible(UiTree_FindNode((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new Q2IdRow((0x800E42D4u + (uint)(idx * 36))).c[(int)(i)].id)), default(uint), default(uint)), 1);
+                ++i;
+            }
+            while ((i < 3));
+            it = UiTree_FindNode((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new Q2IdRow((0x800E42D4u + (uint)(idx * 36))).b[(int)(new O3Pj(func_004204A8_pj(idx)).f18)].id)), default(uint), default(uint));
+            UiNode_SetHighlighted(it, 0);
+            new O3Hdr(it).alpha_Set((byte)(80));
+            a = new O3Pj(func_004204A8_pj(idx)).f10;
+            new O3Pj(func_004204A8_pj(idx)).f18_Set(0);
+            if ((a != (-1)))
+            {
+                n = (int)(Mem.U8((0x80102B57u + (uint)(CharSelect_GetCharacterForNode(a) + (idx * 400)))));
+                if ((n <= 0))
+                {
+                    n = 1;
+                }
+                i = 0;
+                if ((n != 0))
+                {
+                    do
+                    {
+                        UiNode_SetVisible(UiTree_FindNode((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new Q2IdRow((0x800E42D4u + (uint)(idx * 36))).c[(int)(i)].id)), default(uint), default(uint)), 0);
+                        ++i;
+                    }
+                    while ((i < n));
+                }
+                it = UiTree_FindNode((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new Q2IdRow((0x800E42D4u + (uint)(idx * 36))).b[(int)(new O3Pj(func_004204A8_pj(idx)).f18)].id)), default(uint), default(uint));
+                UiNode_SetHighlighted(it, 1);
+                new O3Hdr(it).alpha_Set((byte)(150));
+            }
+        }
+    }
+
+    // ==== func_00420688 @ 0x00420688 [C]
+    public static uint func_00420688_pj(int i)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00420688_pj", (uint)i);
+            return (Mem.U32(0x800E42D0u) + (uint)(i * 1224));
+        }
+    }
+
+    public static void CharSelect_LockInCharacter(int idx, int val)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00420688", (uint)idx, (uint)val);
+            int i = 0;
+            int j = 0;
+            int n = 0;
+            int a = 0;
+            sbyte r = 0;
+            uint e = 0u;
+            uint c = 0u;
+            new O3Pj(func_00420688_pj(idx)).state_Set(3);
+            CursorGroup_SetLocked((uint)(new O3Pj(Mem.U32(0x800E42D0u)).menu), idx, 1);
+            Mem.Set((func_00420688_pj(idx) + (uint)1224), 1);
+            i = 0;
+            do
+            {
+                UiNode_SetVisible(UiTree_FindNode((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((ushort)(new Q2IdRow((0x800E42D4u + (uint)(idx * 36))).c[(int)(i)].id)), default(uint), default(uint)), 1);
+                ++i;
+            }
+            while ((i < 3));
+            new O3Pj(func_00420688_pj(idx)).f10_Set(val);
+            CharSelect_FindRowByNode(val);
+            MenuModel_SetWord49C_0041CE80(new O3Pj((uint)(((idx * 1224) + (int)(Mem.U32(0x800E42D0u))))).sub.P, (uint)(0), default(uint), default(uint));
+            n = 0;
+            for (j = 0; (j < 4); ++j)
+            {
+                if (((uint)((new O3Pj((Mem.U32(0x800E42D0u) + (uint)(j * 1224))).state - 1)) < (uint)(2)))
+                {
+                    ++n;
+                }
+            }
+            if ((n == 0))
+            {
+                e = 0x80146398u;
+                for (i = 0; (i < 8); ++i)
+                {
+                    e = (0x80146398u + (uint)(i * 150));
+                    new Q2Ent96_v2(e).f78_Set((byte)(0));
+                    if ((new O3Pj(func_00420688_pj(i)).state == 3))
+                    {
+                        new Q2Ent96_v2(e).f91_Set((byte)(0));
+                        new Q2Ent96_v2(e).f78_Set((byte)(1));
+                        new Q2Ent96_v2(e).f7F_Set((byte)(i));
+                        c = (0x80146398u - (uint)208);
+                        r = (sbyte)(CharSelect_GetCharacterForNode(new O3Pj(func_00420688_pj(i)).f10));
+                        new Q2Ent96_v2(e).f80_Set((byte)(r));
+                        if (((int)(Mem.U8((c + (uint)13))) == 1))
+                        {
+                            Mem.Set((0x80102B0Fu + (uint)(i * 400)), (byte)(r));
+                        }
+                        new Q2Ent96_v2(e).f81_Set(Mem.U8((func_00420688_pj(i) + (uint)27)));
+                    }
+                }
+                a = 8;
+                if (((int)(Mem.U8(0x801462D5u)) == 1))
+                {
+                    a = 10;
+                }
+                Menu_GotoScreen(a);
+            }
+        }
+    }
+
+    // ==== func_004208C0 @ 0x004208C0 [C]
+    public static uint func_004208C0_pj(int i)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004208C0_pj", (uint)i);
+            return (Mem.U32(0x800E42D0u) + (uint)(i * 1224));
+        }
+    }
+
+    public static void CharSelect_PickRandomCharacter(int idx)
+    {
+        uint _fp = Stack.Alloc(12);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_004208C0", (uint)idx);
+                int id = 0;
+                int tries = 0;
+                int done = 0;
+                int ch = 0;
+                int row = 0;
+                int n = 0;
+                tries = 0;
+                done = 0;
+                do
+                {
+                    id = new O3Row((0x800E3A50u + (uint)((Random_Next() % 17) * 112))).f0;
+                    if (((UiNode_IsDisabledInherited((uint)((int)(UiTree_FindNode((uint)(new O3Pj(Mem.U32(0x800E42D0u)).f0), (uint)((id & 65535)), default(uint), default(uint))))) != 0) || (new O3Pj(func_004208C0_pj(idx)).f10 == id)))
+                    {
+                        ++tries;
+                        if ((tries >= 5001))
+                        {
+                            id = 146;
+                            done = 1;
+                        }
+                    }
+                    else
+                    {
+                        done = 1;
+                    }
+                }
+                while ((done == 0));
+                new O3Pj(func_004208C0_pj(idx)).f10_Set(id);
+                ch = CharSelect_GetCharacterForNode(id);
+                row = CharSelect_FindRowByNode(new O3Pj(func_004208C0_pj(idx)).f10);
+                new O3Vec3(_fp).x_Set(new O3Row((0x800E3A50u + (uint)(row * 112))).fC[(int)(idx)]);
+                new O3Vec3(_fp).y_Set(new O3Row((0x800E3A50u + (uint)(row * 112))).fC[(int)(idx)]);
+                new O3Vec3(_fp).z_Set(new O3Row((0x800E3A50u + (uint)(row * 112))).fC[(int)(idx)]);
+                Portrait_CreateActor(new O3Pj((uint)(((idx * 1224) + (int)(Mem.U32(0x800E42D0u))))).sub.P, 9, (ch + 911), 75, 24000, _fp, (new O3Row((0x800E3A50u + (uint)(row * 112))).v2C.P + (uint)(idx * 12)), new O3Row((0x800E3A50u + (uint)(row * 112))).f1C[(int)(idx)], new O3Row((0x800E3A50u + (uint)(row * 112))).f5C[(int)(idx)]);
+                n = (int)(Mem.U8((0x80102B57u + (uint)(ch + (idx * 400)))));
+                if ((n <= 0))
+                {
+                    n = 1;
+                }
+                new O3Pj((Mem.U32(0x800E42D0u) - (uint)(-(idx * 1224)))).f18_Set((Random_Next() % n));
+            }
+        }
+        finally { Stack.Free(12); }
+    }
+
+    // ==== func_00420B44 @ 0x00420B44 [C]
+    public static int CharSelect_CountChoosing()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00420B44");
+            int i = 0;
+            int n = 0;
+            n = 0;
+            for (i = 0; (i < 4); ++i)
+            {
+                if (((uint)((new O3Pj((Mem.U32(0x800E42D0u) + (uint)(i * 1224))).state - 1)) < (uint)(2)))
+                {
+                    ++n;
+                }
+            }
+            return n;
+        }
+    }
+
+    // ==== func_00420B80 @ 0x00420B80 [C]
+    public static int CharSelect_OnClose()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00420B80");
+            ResourcePool_MallocFree(Mem.U32(0x800E42D0u));
+            Mem.Set(0x800E42D0u, 0u);
+            Menu_EnableInput();
+            Menu_SetFixedFov(2);
+            return 0;
+        }
+    }
+
+    // ==== func_00420BC0 @ 0x00420BC0 [C]
+    public static int CharSelect_OnShow()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00420BC0");
+            Menu_SetFixedFov(1);
+            Audio_PlaySound2D(3704);
+            return 0;
+        }
+    }
+
+    // ==== func_00420BE8 @ 0x00420BE8 [C]
+    public static int CharSelect_OnButton(int a0, int a1, uint a2, int a3)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00420BE8", (uint)a0, (uint)a1, (uint)a2, (uint)a3);
+            int idx = (int)((a2 & (uint)(65535)));
+            uint e = 0u;
+            if ((((a2 >> (int)16) == (uint)(3)) && (a3 == 0)))
+            {
+                e = (Mem.U32(0x800E42D0u) + (uint)(idx * 1224));
+                if (((new O3Pj(e).state == 1) && (new O3Pj(e).f10 != (-1))))
+                {
+                    CharSelect_NextSkin(idx);
+                    Audio_PlaySound2D(3708);
+                }
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_00420C60 @ 0x00420C60 [C]
+    public static int CharSelect_OnNavRight()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00420C60");
+            return 0;
+        }
+    }
+
+    // ==== func_00420C68 @ 0x00420C68 [C]
+    public static int CharSelect_OnNavLeft()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00420C68");
+            return 0;
+        }
+    }
+
+    // ==== func_00420C70 @ 0x00420C70 [C]
+    public static int CharSelect_OnNavUp()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00420C70");
+            return 0;
+        }
+    }
+
+    // ==== func_00420C78 @ 0x00420C78 [C]
+    public static int CharSelect_OnNavDown()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00420C78");
+            return 0;
+        }
+    }
+
+    // ==== func_00420C80 @ 0x00420C80 [C]
+    public static int CharSelect_OnBack(int a0, int a1, uint a2)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00420C80", (uint)a0, (uint)a1, (uint)a2);
+            int idx = 0;
+            uint e = 0u;
+            Menu_ConsumeEvent();
+            idx = (int)((a2 & (uint)(65535)));
+            e = (Mem.U32(0x800E42D0u) + (uint)(idx * 1224));
+            switch (new O3Pj(e).state)
+            {
+            case 1:
+                if (((int)(Mem.U8(0x801462D5u)) != 1))
+                {
+                    new O3Pj((Mem.U32(0x800E42D0u) + (uint)(4 * 1224))).f18_Set(5);
+                    new O3Pj((Mem.U32(0x800E42D0u) + (uint)(4 * 1224))).f1C_Set(4);
+                    Mem.Set(((Mem.U32(0x800E42D0u) + (uint)(4 * 1224)) + (uint)52), 3);
+                }
+                break;
+            case 3:
+                new O3Pj(e).state_Set(1);
+                CursorGroup_SetLocked((uint)(new O3Pj(Mem.U32(0x800E42D0u)).menu), idx, 0);
+                MenuModel_SetWord49C_0041CE80((uint)((((idx * 1224) + (int)(Mem.U32(0x800E42D0u))) + 32)), (uint)(1), default(uint), default(uint));
+                CharSelect_ResetSkin(idx);
+                break;
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_00420D4C @ 0x00420D4C [C]
+    public static int CharSelect_OnConfirm(int a0, int a1, uint a2)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00420D4C", (uint)a0, (uint)a1, (uint)a2);
+            int idx = 0;
+            int v = 0;
+            uint e = 0u;
+            idx = (int)((a2 & (uint)(65535)));
+            v = CursorGroup_GetItemId((uint)(new O3Pj(Mem.U32(0x800E42D0u)).menu), idx);
+            Menu_ConsumeEvent();
+            e = (Mem.U32(0x800E42D0u) + (uint)(idx * 1224));
+            if ((new O3Pj(e).state == 1))
+            {
+                if ((v == 129))
+                {
+                    CharSelect_LockInCharacter(idx, new O3Pj(e).f10);
+                }
+                else
+                {
+                    if ((UiNode_IsDisabledInherited((uint)((int)(CursorGroup_GetItem((uint)(new O3Pj(Mem.U32(0x800E42D0u)).menu), idx)))) == 0))
+                    {
+                        CharSelect_LockInCharacter(idx, v);
+                    }
+                }
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_00420E00 @ 0x00420E00 [C]
+    public static int CharSelect_HandleMessage(uint obj, int msg, int a2, int a3, int a4)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00420E00", (uint)obj, (uint)msg, (uint)a2, (uint)a3);
+            int i = 0;
+            for (i = 0; (new O3Msg((0x800E4364u + (uint)(i * 12))).fn != 0u); ++i)
+            {
+                if ((new O3Msg((0x800E4364u + (uint)(i * 12))).msg == msg))
+                {
+                    if (((new O3Msg((0x800E4364u + (uint)(i * 12))).type == (int)(new O3Hdr(obj).id)) || (new O3Msg((0x800E4364u + (uint)(i * 12))).type == 30000)))
+                    {
+                        return (int)(Funcs.CallRegX(new O3Msg((0x800E4364u + (uint)(i * 12))).fn, obj, (uint)(msg), (uint)(a2), (uint)(a3), new uint[] { (uint)(a4) }));
+                    }
+                }
+            }
+            return 0;
+        }
+    }
+
+    // ==== func_00429C04 @ 0x00429C04 [MIPS]
+    public static uint CharSelect_OpenTwin(uint a0, uint a1, uint a2, uint a3)
     {
         uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
         uint lo = 0, hi = 0; bool fcc = false;
@@ -746,11 +2156,13 @@ public static partial class Game
             unchecked
             {
                 Mem.Fill(_fp, 384, 0);
-                if (Dbg.On) Dbg.Enter("func_00429C10", a0, a1, a2, a3);
+                if (Dbg.On) Dbg.Enter("func_00429C04", a0, a1, a2, a3);
                 r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
                 r29 = _fp + 256u;
-                L_func_00429C10: ;
-                r29 = r29 - 128u;
+                L_func_00429C04: ;
+                r3 = r3 + r5;
+                r5 = Mem.U16((r3 + 2u));
+                r29 = r29 - 128u; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 Mem.Set((r29 + 104u), r18);
                 r18 = r4;
                 Mem.Set((r29 + 116u), r31);
@@ -764,22 +2176,22 @@ public static partial class Game
                 r5 = (uint)4;
                 r1 = 2148401152u;
                 Mem.Set((r1 + 20320u), r2);
-                Mem.Set((r2 + 0u), r18); r2 = func_0041B690(r4, (int)r5);
+                Mem.Set((r2 + 0u), r18); r2 = CursorGroup_Create(r4, (int)r5);
                 r4 = r18;
                 r5 = r0;
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 20320u));
                 r6 = (uint)767;
-                Mem.Set((r3 + 968u), r2); func_0041B768(r4, (int)r5, (int)r6);
+                Mem.Set((r3 + 968u), r2); CursorGroup_SetCursorById(r4, (int)r5, (int)r6);
                 r4 = r18;
                 r5 = (uint)1;
-                r6 = (uint)767; func_0041B768(r4, (int)r5, (int)r6);
+                r6 = (uint)767; CursorGroup_SetCursorById(r4, (int)r5, (int)r6);
                 r4 = r18;
                 r5 = (uint)2;
-                r6 = (uint)767; func_0041B768(r4, (int)r5, (int)r6);
+                r6 = (uint)767; CursorGroup_SetCursorById(r4, (int)r5, (int)r6);
                 r4 = r18;
                 r5 = (uint)3;
-                r6 = (uint)767; func_0041B768(r4, (int)r5, (int)r6);
+                r6 = (uint)767; CursorGroup_SetCursorById(r4, (int)r5, (int)r6);
                 r4 = r18;
                 r5 = (uint)774;
                 r3 = 2148401152u;
@@ -845,9 +2257,9 @@ public static partial class Game
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 20320u));
                 r4 = Mem.U32((r2 + 1096u));
-                r5 = r0; func_0040E958(r4, (int)r5);
+                r5 = r0; UiNode_SetVisible(r4, (int)r5);
                 r4 = (uint)771;
-                r5 = (uint)110; r2 = func_00419ED4(r4, r5, r6, r7); r3 = Cpu.V1;
+                r5 = (uint)110; r2 = Flicker_Create(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r18;
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 20320u));
@@ -857,7 +2269,7 @@ public static partial class Game
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 20320u));
                 r5 = r0;
-                Mem.Set((r2 + 1000u), r4); func_0040E958(r4, (int)r5);
+                Mem.Set((r2 + 1000u), r4); UiNode_SetVisible(r4, (int)r5);
                 r4 = r18;
                 r5 = (uint)782; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r18;
@@ -867,12 +2279,12 @@ public static partial class Game
                 Mem.Set((r3 + 1004u), r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 r3 = 2148401152u;
                 r3 = Mem.U32((r3 + 20320u));
-                Mem.Set((r3 + 1008u), r2); func_0042B260();
+                Mem.Set((r3 + 1008u), r2); ArenaSelect_ResetArenaNodes();
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 20320u));
                 Mem.Set((r2 + 1080u), r0);
-                Mem.Set((r2 + 1076u), r0); func_0042AB70();
-                r17 = (uint)-1; func_0042B1C0();
+                Mem.Set((r2 + 1076u), r0); ArenaSelect_RefreshSelection();
+                r17 = (uint)-1; ArenaSelect_UpdateNameText();
                 r4 = r18;
                 r5 = (uint)776;
                 r2 = 2148859904u;
@@ -898,7 +2310,7 @@ public static partial class Game
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 20320u));
                 r4 = Mem.U32((r2 + 1088u));
-                r5 = (uint)1; func_0040E958(r4, (int)r5);
+                r5 = (uint)1; UiNode_SetVisible(r4, (int)r5);
                 r4 = r18;
                 r5 = (uint)781; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 r3 = 2148401152u;
@@ -909,7 +2321,7 @@ public static partial class Game
                 r2 = Mem.U32((r2 + 20320u));
                 r16 = r0;
                 r4 = Mem.U32((r2 + 1092u));
-                r5 = r16; func_0040E958(r4, (int)r5);
+                r5 = r16; UiNode_SetVisible(r4, (int)r5);
                 r4 = r18;
                 r5 = (uint)780; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
                 r4 = r18;
@@ -928,7 +2340,7 @@ public static partial class Game
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 20320u));
                 r5 = (uint)1;
-                Mem.Set((r2 + 1112u), r4); func_0040E958(r4, (int)r5);
+                Mem.Set((r2 + 1112u), r4); UiNode_SetVisible(r4, (int)r5);
                 Menu_DisableInput();
                 r4 = (uint)1;
                 r2 = 2148401152u;
@@ -1065,7 +2477,363 @@ public static partial class Game
                 r7 = Mem.U32((r29 + 88u));
                 r4 = r4 + 776u; { uint s1_ = Stack.Alloc(12); Mem.Set(s1_ + 0u, r5); Mem.Set(s1_ + 4u, r6); Mem.Set(s1_ + 8u, r7); func_00439E10(r4, s1_); Stack.Free(12); }
                 r4 = (uint)3704; r2 = (uint)Audio_PlaySound2D((int)r4);
-                func_004221A0();
+                MenuScene_Enter();
+                r31 = Mem.U32((r29 + 116u));
+                r20 = Mem.U32((r29 + 112u));
+                r19 = Mem.U32((r29 + 108u));
+                r18 = Mem.U32((r29 + 104u));
+                r17 = Mem.U32((r29 + 100u));
+                r16 = Mem.U32((r29 + 96u));
+                Cpu.Fpr[20] = Mem.U64((r29 + 120u));
+                r2 = r0;
+                r29 = r29 + 128u; Cpu.V1 = r3; return r2;
+                Cpu.V1 = r3; return r2;
+            }
+        }
+        finally { if (Dbg.On) Dbg.Leave("func_00429C04", r2); Stack.Free(384); }
+    }
+
+    // ==== func_00429C10 @ 0x00429C10 [C]
+    public static float func_00429C10_read_float(uint value)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00429C10_read_float", (uint)value);
+            return Mem.F32(value);
+        }
+    }
+
+    // ==== func_00429C10 @ 0x00429C10 [MIPS]
+    public static uint CharSelect_Open(uint a0, uint a1, uint a2, uint a3)
+    {
+        uint r0 = 0, r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0, r7 = 0, r8 = 0, r9 = 0, r10 = 0, r11 = 0, r12 = 0, r13 = 0, r14 = 0, r15 = 0, r16 = 0, r17 = 0, r18 = 0, r19 = 0, r20 = 0, r21 = 0, r22 = 0, r23 = 0, r24 = 0, r25 = 0, r26 = 0, r27 = 0, r28 = 0, r29 = 0, r30 = 0, r31 = 0;
+        uint lo = 0, hi = 0; bool fcc = false;
+        uint _fp = Stack.Alloc(384);
+        try
+        {
+            unchecked
+            {
+                Mem.Fill(_fp, 384, 0);
+                if (Dbg.On) Dbg.Enter("func_00429C10", a0, a1, a2, a3);
+                r4 = a0; r5 = a1; r6 = a2; r7 = a3; r31 = 0;
+                r29 = _fp + 256u;
+                L_func_00429C10: ;
+                r29 = r29 - 128u;
+                Mem.Set((r29 + 104u), r18);
+                r18 = r4;
+                Mem.Set((r29 + 116u), r31);
+                Mem.Set((r29 + 112u), r20);
+                Mem.Set((r29 + 108u), r19);
+                Mem.Set((r29 + 100u), r17);
+                Mem.Set((r29 + 96u), r16);
+                Mem.Set((r29 + 120u), Cpu.Fpr[20]);
+                r4 = (uint)1136; r2 = ResourcePool_Malloc(r4);
+                r4 = r18;
+                r5 = (uint)4;
+                r1 = 2148401152u;
+                Mem.Set((r1 + 20320u), r2);
+                Mem.Set((r2 + 0u), r18); r2 = CursorGroup_Create(r4, (int)r5);
+                r4 = r18;
+                r5 = r0;
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 20320u));
+                r6 = (uint)767;
+                Mem.Set((r3 + 968u), r2); CursorGroup_SetCursorById(r4, (int)r5, (int)r6);
+                r4 = r18;
+                r5 = (uint)1;
+                r6 = (uint)767; CursorGroup_SetCursorById(r4, (int)r5, (int)r6);
+                r4 = r18;
+                r5 = (uint)2;
+                r6 = (uint)767; CursorGroup_SetCursorById(r4, (int)r5, (int)r6);
+                r4 = r18;
+                r5 = (uint)3;
+                r6 = (uint)767; CursorGroup_SetCursorById(r4, (int)r5, (int)r6);
+                r4 = r18;
+                r5 = (uint)774;
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 20320u));
+                r2 = (uint)1;
+                Mem.Set((r3 + 988u), r2);
+                r2 = (uint)4;
+                Mem.Set((r3 + 1116u), r0);
+                Mem.Set((r3 + 992u), r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = 2148401152u;
+                r6 = Mem.U32((r6 + 20320u));
+                Mem.Set((r6 + 972u), r2);
+                r3 = Mem.U16((r2 + 20u));
+                r4 = Mem.U16((r2 + 24u));
+                r3 = r3 - r4;
+                Mem.Set((r2 + 20u), (ushort)r3);
+                r2 = Mem.U32((r6 + 972u));
+                r3 = (uint)(int)Mem.S16((r2 + 24u));
+                if ((int)r3 < 0) { r3 = r3 + 3u; goto L_L00429CF4; }
+                L_L00429CF4: ;
+                r4 = r18;
+                r5 = (uint)783;
+                r3 = (uint)((int)r3 >> 2);
+                Mem.Set((r6 + 976u), r3);
+                r6 = Mem.U32((r6 + 972u));
+                r3 = r3 << 2;
+                r7 = (uint)(int)Mem.S16((r6 + 24u));
+                r2 = Mem.U16((r6 + 20u));
+                r17 = r7 - r3;
+                r2 = r2 + r17;
+                Mem.Set((r6 + 20u), (ushort)r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r6 = 2148401152u;
+                r6 = Mem.U32((r6 + 20320u));
+                Mem.Set((r6 + 980u), r2);
+                r3 = Mem.U16((r2 + 20u));
+                r4 = Mem.U16((r2 + 24u));
+                r3 = r3 + r4;
+                Mem.Set((r2 + 20u), (ushort)r3);
+                r2 = Mem.U32((r6 + 980u));
+                r3 = (uint)(int)Mem.S16((r2 + 24u));
+                if ((int)r3 < 0) { r3 = r3 + 3u; goto L_L00429D50; }
+                L_L00429D50: ;
+                r4 = r18;
+                r5 = (uint)778;
+                r3 = (uint)((int)r3 >> 2);
+                Mem.Set((r6 + 984u), r3);
+                r6 = Mem.U32((r6 + 980u));
+                r3 = r3 << 2;
+                r7 = (uint)(int)Mem.S16((r6 + 24u));
+                r2 = Mem.U16((r6 + 20u));
+                r17 = r7 - r3;
+                r2 = r2 - r17;
+                Mem.Set((r6 + 20u), (ushort)r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r18;
+                r5 = (uint)861;
+                r16 = (uint)110;
+                Mem.Set((r2 + 16u), (byte)r16); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 20320u));
+                Mem.Set((r3 + 1096u), r2);
+                r3 = (uint)65;
+                Mem.Set((r2 + 16u), (byte)r3);
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 20320u));
+                r4 = Mem.U32((r2 + 1096u));
+                r5 = r0; UiNode_SetVisible(r4, (int)r5);
+                r4 = (uint)771;
+                r5 = (uint)110; r2 = Flicker_Create(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r18;
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 20320u));
+                r5 = (uint)769;
+                Mem.Set((r3 + 996u), r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r2;
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 20320u));
+                r5 = r0;
+                Mem.Set((r2 + 1000u), r4); UiNode_SetVisible(r4, (int)r5);
+                r4 = r18;
+                r5 = (uint)782; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r18;
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 20320u));
+                r5 = (uint)784;
+                Mem.Set((r3 + 1004u), r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 20320u));
+                Mem.Set((r3 + 1008u), r2); ArenaSelect_ResetArenaNodes();
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 20320u));
+                Mem.Set((r2 + 1080u), r0);
+                Mem.Set((r2 + 1076u), r0); ArenaSelect_RefreshSelection();
+                r17 = (uint)-1; ArenaSelect_UpdateNameText();
+                r4 = r18;
+                r5 = (uint)776;
+                r2 = 2148859904u;
+                r2 = r2 + 16420u;
+                Mem.Set((r2 + 0u), r0);
+                Mem.Set((r2 - 4u), r17); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r18;
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 20320u));
+                r5 = (uint)777;
+                Mem.Set((r3 + 1108u), r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r18;
+                Mem.Set((r2 + 16u), (byte)r16);
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 20320u));
+                r5 = (uint)779;
+                Mem.Set((r2 + 1132u), r0); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 20320u));
+                r16 = (uint)140;
+                Mem.Set((r3 + 1088u), r2);
+                Mem.Set((r2 + 16u), (byte)r16);
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 20320u));
+                r4 = Mem.U32((r2 + 1088u));
+                r5 = (uint)1; UiNode_SetVisible(r4, (int)r5);
+                r4 = r18;
+                r5 = (uint)781; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 20320u));
+                Mem.Set((r3 + 1092u), r2);
+                Mem.Set((r2 + 16u), (byte)r16);
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 20320u));
+                r16 = r0;
+                r4 = Mem.U32((r2 + 1092u));
+                r5 = r16; UiNode_SetVisible(r4, (int)r5);
+                r4 = r18;
+                r5 = (uint)780; r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r18;
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 20320u));
+                r5 = (uint)766;
+                Mem.Set((r3 + 1100u), r2);
+                r3 = (uint)255;
+                Mem.Set((r2 + 16u), (byte)r3); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r18;
+                r3 = 2148401152u;
+                r3 = Mem.U32((r3 + 20320u));
+                r5 = (uint)768;
+                Mem.Set((r3 + 1104u), r2); r2 = UiTree_FindNode(r4, r5, r6, r7); r3 = Cpu.V1;
+                r4 = r2;
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 20320u));
+                r5 = (uint)1;
+                Mem.Set((r2 + 1112u), r4); UiNode_SetVisible(r4, (int)r5);
+                Menu_DisableInput();
+                r4 = (uint)1;
+                r2 = 2148401152u;
+                r2 = Mem.U32((r2 + 20320u));
+                r3 = 2148794368u;
+                r3 = r3 + 25496u;
+                Mem.Set((r2 + 1120u), r0);
+                Mem.Set((r2 + 1124u), r0);
+                Mem.Set((r2 + 1128u), r17);
+                L_L00429F78: ;
+                r2 = Mem.U8((r3 + 145u));
+                { bool c_ = r2 != r4; r16 = r16 + 1u; if (c_) goto L_L00429F8C; }
+                Mem.Set((r3 + 120u), (byte)r0);
+                Mem.Set((r3 + 145u), (byte)r0);
+                L_L00429F8C: ;
+                r2 = (uint)((int)r16 < 8 ? 1 : 0);
+                { bool c_ = r2 != 0; r3 = r3 + 150u; if (c_) goto L_L00429F78; }
+                r4 = (uint)1; Menu_SetFixedFov((int)r4);
+                r17 = r0;
+                r19 = r17;
+                r16 = r17;
+                r20 = (uint)1;
+                r1 = 2148401152u;
+                Cpu.SetW(0, Mem.U32((r1 + 6816u)));
+                r1 = 2148401152u;
+                Cpu.SetW(1, Mem.U32((r1 + 6820u)));
+                r18 = (uint)8;
+                Mem.Set((r29 + 64u), r0);
+                Mem.Set((r29 + 68u), r0);
+                Mem.Set((r29 + 72u), r0);
+                Mem.Set((r29 + 80u), r0);
+                Mem.Set((r29 + 88u), r0);
+                Mem.Set((r29 + 32u), Cpu.W(0));
+                Mem.Set((r29 + 36u), Cpu.W(0));
+                Mem.Set((r29 + 40u), Cpu.W(0));
+                Mem.Set((r29 + 84u), Cpu.W(1));
+                L_L00429FE8: ;
+                { bool c_ = r16 == r20; r2 = (uint)((int)r16 < 2 ? 1 : 0); if (c_) goto L_L0042A02C; }
+                { bool c_ = r2 == 0; r2 = (uint)2; if (c_) goto L_L0042A008; }
+                { bool c_ = r16 == 0; r5 = r19; if (c_) goto L_L0042A020; }
+                 goto L_L0042A050;
+                L_L0042A008: ;
+                { bool c_ = r16 == r2; r2 = (uint)3; if (c_) goto L_L0042A038; }
+                { bool c_ = r16 == r2; r5 = r19; if (c_) goto L_L0042A044; }
+                 goto L_L0042A050;
+                L_L0042A020: ;
+                r17 = r0;
+                r19 = (uint)3750; goto L_L0042A04C;
+                L_L0042A02C: ;
+                r17 = (uint)-6;
+                r19 = (uint)3751; goto L_L0042A04C;
+                L_L0042A038: ;
+                r17 = (uint)-13;
+                r19 = (uint)3752; goto L_L0042A04C;
+                L_L0042A044: ;
+                r17 = (uint)-19;
+                r19 = (uint)3753;
+                L_L0042A04C: ;
+                r5 = r19;
+                L_L0042A050: ;
+                r1 = 2148401152u;
+                Cpu.SetW(1, Mem.U32((r1 + 6824u)));
+                r1 = 2148401152u;
+                Cpu.SetW(20, Mem.U32((r1 + 6828u)));
+                r4 = 2148401152u;
+                r4 = Mem.U32((r4 + 20320u));
+                Cpu.SetW(0, r17);
+                Cpu.SetS(0, (float)(int)Cpu.W(0));
+                Mem.Set((r29 + 48u), Cpu.W(0));
+                Mem.Set((r29 + 52u), Cpu.W(1));
+                Mem.Set((r29 + 56u), Cpu.W(20));
+                r8 = Mem.U32((r29 + 48u));
+                r9 = Mem.U32((r29 + 52u));
+                r10 = Mem.U32((r29 + 56u));
+                Mem.Set((r29 + 20u), r8);
+                Mem.Set((r29 + 24u), r9);
+                Mem.Set((r29 + 28u), r10);
+                r2 = Mem.U32((r29 + 40u));
+                r16 = r16 + 1u;
+                Mem.Set((r29 + 16u), r2);
+                r6 = Mem.U32((r29 + 32u));
+                r7 = Mem.U32((r29 + 36u));
+                r4 = r4 + r18; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); uint s3_ = Stack.Alloc(12); Mem.Set(s3_ + 0u, Mem.U32(r29 + 20u)); Mem.Set(s3_ + 4u, Mem.U32(r29 + 24u)); Mem.Set(s3_ + 8u, Mem.U32(r29 + 28u)); r2 = (uint)func_00439D3C(r4, (int)r5, s2_, s3_); Stack.Free(12); Stack.Free(12); }
+                r5 = Mem.U32((r29 + 64u));
+                r6 = Mem.U32((r29 + 68u));
+                r4 = 2148401152u;
+                r4 = Mem.U32((r4 + 20320u));
+                r7 = Mem.U32((r29 + 72u));
+                r4 = r4 + r18; { uint s1_ = Stack.Alloc(12); Mem.Set(s1_ + 0u, r5); Mem.Set(s1_ + 4u, r6); Mem.Set(s1_ + 8u, r7); func_00439DC0(r4, s1_); Stack.Free(12); }
+                r5 = Mem.U32((r29 + 80u));
+                r6 = Mem.U32((r29 + 84u));
+                r4 = 2148401152u;
+                r4 = Mem.U32((r4 + 20320u));
+                r7 = Mem.U32((r29 + 88u));
+                r4 = r4 + r18; { uint s1_ = Stack.Alloc(12); Mem.Set(s1_ + 0u, r5); Mem.Set(s1_ + 4u, r6); Mem.Set(s1_ + 8u, r7); func_00439E10(r4, s1_); Stack.Free(12); }
+                r2 = (uint)((int)r16 < 4 ? 1 : 0);
+                { bool c_ = r2 != 0; r18 = r18 + 192u; if (c_) goto L_L00429FE8; }
+                r1 = 2148401152u;
+                Cpu.SetW(0, Mem.U32((r1 + 6832u)));
+                r1 = 2148401152u;
+                Cpu.SetW(1, Mem.U32((r1 + 6836u)));
+                r1 = 2148401152u;
+                Cpu.SetW(2, Mem.U32((r1 + 6840u)));
+                r4 = 2148401152u;
+                r4 = Mem.U32((r4 + 20320u));
+                Mem.Set((r29 + 56u), Cpu.W(20));
+                Mem.Set((r29 + 32u), Cpu.W(0));
+                Mem.Set((r29 + 36u), Cpu.W(0));
+                Mem.Set((r29 + 40u), Cpu.W(0));
+                Mem.Set((r29 + 48u), Cpu.W(1));
+                Mem.Set((r29 + 52u), Cpu.W(2));
+                r8 = Mem.U32((r29 + 48u));
+                r9 = Mem.U32((r29 + 52u));
+                r10 = Mem.U32((r29 + 56u));
+                Mem.Set((r29 + 20u), r8);
+                Mem.Set((r29 + 24u), r9);
+                Mem.Set((r29 + 28u), r10);
+                r2 = Mem.U32((r29 + 40u));
+                r5 = (uint)3750;
+                Mem.Set((r29 + 16u), r2);
+                r6 = Mem.U32((r29 + 32u));
+                r7 = Mem.U32((r29 + 36u));
+                r4 = r4 + 776u; { uint s2_ = Stack.Alloc(12); Mem.Set(s2_ + 0u, r6); Mem.Set(s2_ + 4u, r7); Mem.Set(s2_ + 8u, Mem.U32(r29 + 16u)); uint s3_ = Stack.Alloc(12); Mem.Set(s3_ + 0u, Mem.U32(r29 + 20u)); Mem.Set(s3_ + 4u, Mem.U32(r29 + 24u)); Mem.Set(s3_ + 8u, Mem.U32(r29 + 28u)); r2 = (uint)func_00439D3C(r4, (int)r5, s2_, s3_); Stack.Free(12); Stack.Free(12); }
+                r5 = Mem.U32((r29 + 64u));
+                r6 = Mem.U32((r29 + 68u));
+                r4 = 2148401152u;
+                r4 = Mem.U32((r4 + 20320u));
+                r7 = Mem.U32((r29 + 72u));
+                r4 = r4 + 776u; { uint s1_ = Stack.Alloc(12); Mem.Set(s1_ + 0u, r5); Mem.Set(s1_ + 4u, r6); Mem.Set(s1_ + 8u, r7); func_00439DC0(r4, s1_); Stack.Free(12); }
+                r5 = Mem.U32((r29 + 80u));
+                r6 = Mem.U32((r29 + 84u));
+                r4 = 2148401152u;
+                r4 = Mem.U32((r4 + 20320u));
+                r7 = Mem.U32((r29 + 88u));
+                r4 = r4 + 776u; { uint s1_ = Stack.Alloc(12); Mem.Set(s1_ + 0u, r5); Mem.Set(s1_ + 4u, r6); Mem.Set(s1_ + 8u, r7); func_00439E10(r4, s1_); Stack.Free(12); }
+                r4 = (uint)3704; r2 = (uint)Audio_PlaySound2D((int)r4);
+                MenuScene_Enter();
                 r31 = Mem.U32((r29 + 116u));
                 r20 = Mem.U32((r29 + 112u));
                 r19 = Mem.U32((r29 + 108u));
@@ -1121,7 +2889,7 @@ public static partial class Game
                 r2 = (uint)1;
                 { bool c_ = r4 != r2; r2 = r0; if (c_) goto L_L0042BC24; }
                 r4 = (uint)3709; r2 = (uint)Audio_PlaySound2D((int)r4);
-                func_0042B4C4();
+                ArenaSelect_ShowMarkers();
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 20320u));
                 r3 = Mem.U32((r2 + 1084u));
@@ -1132,8 +2900,8 @@ public static partial class Game
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 20320u));
                 r4 = Mem.U32((r2 + 1076u));
-                r2 = (uint)func_0042B474((int)r4);
-                r4 = r2; r2 = (uint)func_0042B334((int)r4);
+                r2 = (uint)ArenaSelect_CategoryToGameType((int)r4);
+                r4 = r2; r2 = (uint)Arena_GetCountForType((int)r4);
                 r4 = 2148401152u;
                 r4 = Mem.U32((r4 + 20320u));
                 r3 = Mem.U32((r4 + 1080u));
@@ -1141,7 +2909,7 @@ public static partial class Game
                 { bool c_ = r3 != 0; r2 = r2 - 1u; if (c_) goto L_L0042BBBC; }
                 Mem.Set((r4 + 1080u), r2);
                 L_L0042BBBC: ;
-                func_0042AB70();
+                ArenaSelect_RefreshSelection();
                 r4 = 2148401152u;
                 r4 = Mem.U32((r4 + 20320u));
                 r2 = Mem.U32((r4 + 1080u));
@@ -1152,7 +2920,7 @@ public static partial class Game
                 r2 = 2148401152u;
                 r2 = Mem.U32((r2 + 20320u));
                 r4 = Mem.U32((r2 + 1096u));
-                r5 = (uint)1; func_0040E958(r4, (int)r5);
+                r5 = (uint)1; UiNode_SetVisible(r4, (int)r5);
                 r4 = 2148401152u;
                 r4 = Mem.U32((r4 + 20320u));
                 r3 = Mem.U32((r4 + 1076u));

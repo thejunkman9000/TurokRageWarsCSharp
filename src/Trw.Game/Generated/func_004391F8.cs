@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004391F8");
             int t = 0;
-            switch (func_0041A4F0(new O05M0A(Mem.U32(0x800E58A0u)).f0))
+            switch (PopupPanel_GetState(new O05M0A(Mem.U32(0x800E58A0u)).f0))
             {
             case 3:
                 break;
@@ -25,13 +25,13 @@ public static partial class Game
                 Menu_GoBack();
                 return 0;
             }
-            t = func_0041A760(new O05M0A(Mem.U32(0x800E58A0u)).fC);
+            t = Slider_GetValue(new O05M0A(Mem.U32(0x800E58A0u)).fC);
             if ((t != (int)(Mem.U8((0x801462E0u + (uint)1)))))
             {
                 Mem.Set((0x801462E0u + (uint)1), (byte)(t));
                 Audio_PlaySound2D(1120);
             }
-            t = func_0041A760(new O05M0A(Mem.U32(0x800E58A0u)).f8);
+            t = Slider_GetValue(new O05M0A(Mem.U32(0x800E58A0u)).f8);
             if ((t != (int)(Mem.U8((0x801462E0u + (uint)0)))))
             {
                 Mem.Set((0x801462E0u + (uint)0), (byte)(t));

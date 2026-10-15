@@ -11,8 +11,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004378F8", (uint)cfg);
             Mem.Set(0x800E5784u, ResourcePool_Malloc((uint)(20)));
-            new O05M84_v3(Mem.U32(0x800E5784u)).f0_Set(func_0041A300(972, 973));
-            new O05M84_v3(Mem.U32(0x800E5784u)).f4_Set(func_00419ED4((uint)(975), (uint)(110), default(uint), default(uint)));
+            new O05M84_v3(Mem.U32(0x800E5784u)).f0_Set(PopupPanel_Create(972, 973));
+            new O05M84_v3(Mem.U32(0x800E5784u)).f4_Set(Flicker_Create((uint)(975), (uint)(110), default(uint), default(uint)));
             new O05M84_v3(Mem.U32(0x800E5784u)).f8_Set(UiTree_FindNode(cfg, (uint)(974), default(uint), default(uint)));
             new O05Obj10(new O05M84_v3(Mem.U32(0x800E5784u)).f8).b10_Set((byte)(15));
             new O05M84_v3(Mem.U32(0x800E5784u)).fC_Set(3);

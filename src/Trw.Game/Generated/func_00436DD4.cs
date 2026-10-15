@@ -17,7 +17,7 @@ public static partial class Game
                 func_00436988(new O05M90_v5(Mem.U32(0x800E5690u)).f28);
                 p = Mem.U32(0x800E5690u);
                 new O05M90_v5(p).f20_Set((-1));
-                func_0041A4B0(new O05M90_v5(p).f0, 2);
+                PopupPanel_SetState(new O05M90_v5(p).f0, 2);
             }
             return 0;
         }

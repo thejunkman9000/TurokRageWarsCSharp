@@ -1883,6 +1883,641 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_002ABA44", r2); Stack.Free(384); }
     }
 
+    // ==== func_00416D74 @ 0x00416D74 [C]
+    public static void Gfx_SetUiCombineMode(int mode)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00416D74", (uint)mode);
+            if ((mode != Mem.S32(0x800E32C0u)))
+            {
+                Mem.Set(0x800E32C0u, mode);
+                func_00416D74_O3_Sync();
+                {
+                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new O3Dl(_g).w0_Set(3808430593u);
+                    new O3Dl(_g).w1_Set((uint)(0));
+                }
+                switch (mode)
+                {
+                case 1:
+                    if ((Mem.S32(0x80153F6Cu) != 0))
+                    {
+                        {
+                            uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            new O3Dl(_g_2).w0_Set(4229083685u);
+                            new O3Dl(_g_2).w1_Set(4284996589u);
+                        }
+                    }
+                    else
+                    {
+                        {
+                            uint _g_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            new O3Dl(_g_3).w0_Set(4229103141u);
+                            new O3Dl(_g_3).w1_Set(4294966782u);
+                        }
+                    }
+                    break;
+                case 2:
+                    if ((Mem.S32(0x80153F6Cu) != 0))
+                    {
+                        {
+                            uint _g_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            new O3Dl(_g_4).w0_Set(4229103141u);
+                            new O3Dl(_g_4).w1_Set(4294965243u);
+                        }
+                    }
+                    else
+                    {
+                        {
+                            uint _g_5 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            new O3Dl(_g_5).w0_Set(4229103141u);
+                            new O3Dl(_g_5).w1_Set(4294966782u);
+                        }
+                    }
+                    break;
+                case 3:
+                    {
+                        uint _g_6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new O3Dl(_g_6).w0_Set(4229103141u);
+                        new O3Dl(_g_6).w1_Set(4294966782u);
+                    }
+                    break;
+                case 4:
+                    if ((Mem.S32(0x80153F6Cu) != 0))
+                    {
+                        {
+                            uint _g_7 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            new O3Dl(_g_7).w0_Set(4229044260u);
+                            new O3Dl(_g_7).w1_Set(4281597951u);
+                        }
+                    }
+                    else
+                    {
+                        {
+                            uint _g_8 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            new O3Dl(_g_8).w0_Set(4229070372u);
+                            new O3Dl(_g_8).w1_Set(4294966782u);
+                        }
+                    }
+                    break;
+                case 5:
+                    if ((Mem.S32(0x80153F6Cu) != 0))
+                    {
+                        {
+                            uint _g_9 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            new O3Dl(_g_9).w0_Set(4244635647u);
+                            new O3Dl(_g_9).w1_Set(4294867260u);
+                        }
+                    }
+                    else
+                    {
+                        {
+                            uint _g_10 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            new O3Dl(_g_10).w0_Set(4244635647u);
+                            new O3Dl(_g_10).w1_Set(4294868286u);
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+    public static void func_00416D74_O3_Sync()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00416D74_O3_Sync");
+            if ((Mem.S32(0x800E32E4u) == 0))
+            {
+                Mem.Set(0x800E32E4u, 1);
+                {
+                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new O3Dl(_g).w0_Set(3875536896u);
+                    new O3Dl(_g).w1_Set((uint)(0));
+                }
+            }
+        }
+    }
+
+    // ==== func_00416F4C @ 0x00416F4C [C]
+    public static void Gfx_SetUiVertexMode_00416F4C(int mode)
+    {
+        uint _fp = Stack.Alloc(96);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_00416F4C", (uint)mode);
+                uint mp = 0u;
+                uint v = 0u;
+                uint vt = 0u;
+                int n = 0;
+                int k = 0;
+                if ((mode != Mem.S32(0x800E32C8u)))
+                {
+                    if ((mode == 9))
+                    {
+                        mp = (_fp + 32u);
+                        Math_MtxSetIdentity(mp);
+                        Gfx_PushMatrixF(mp);
+                        new O02V3(_fp).x_Set((float)(0));
+                        new O02V3(_fp).y_Set((float)(0));
+                        new O02V3(_fp).z_Set(Mem.F32(0x800E142Cu));
+                        Math_MtxTransformPoint(0x80145228u, _fp, (_fp + 16u));
+                        n = 4;
+                        v = (uint)(FrameAlloc_AllocHigh(64));
+                        for (k = 0; (k < n); ++k)
+                        {
+                            new O02Vtx((v + (uint)(k * 16))).x_Set((short)(int)(new O02V3((_fp + 16u)).x));
+                            new O02Vtx((v + (uint)(k * 16))).y_Set((short)(int)(new O02V3((_fp + 16u)).y));
+                            new O02Vtx((v + (uint)(k * 16))).z_Set((short)(int)(new O02V3((_fp + 16u)).z));
+                            new O02Vtx((v + (uint)(k * 16))).s_Set((short)(0));
+                            new O02Vtx((v + (uint)(k * 16))).t_Set((short)(0));
+                            new O02Vtx((v + (uint)(k * 16))).r_Set((byte)(255));
+                            new O02Vtx((v + (uint)(k * 16))).g_Set((byte)(255));
+                            new O02Vtx((v + (uint)(k * 16))).b_Set((byte)(255));
+                            new O02Vtx((v + (uint)(k * 16))).a_Set((byte)(255));
+                        }
+                        {
+                            uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            new O02Gfx(_g).w0_Set((uint)(((16777216 | (n << (int)12)) | (n << (int)1))));
+                            new O02Gfx(_g).w1_Set((uint)(v));
+                        }
+                        for (k = 0; (k < n); ++k)
+                        {
+                            {
+                                uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                new O02Gfx(_g_2).w0_Set((uint)((35389440 | ((k * 2) & 65535))));
+                                new O02Gfx(_g_2).w1_Set((uint)(0));
+                            }
+                        }
+                    }
+                    Mem.Set(0x800E32C8u, mode);
+                }
+            }
+        }
+        finally { Stack.Free(96); }
+    }
+
+    // ==== func_004170B4 @ 0x004170B4 [C]
+    public static void Gfx_SelectRenderMode(int mode)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004170B4", (uint)mode);
+            int x = 0;
+            int y = 0;
+            uint p = 0x80153F64u;
+            int t = 0;
+            if ((Mem.S32((p + (uint)(0 * 4))) == 0))
+            {
+                mode = 11;
+            }
+            if ((mode != Mem.S32(0x800E32CCu)))
+            {
+                Mem.Set(0x800E32CCu, mode);
+                if ((mode == 11))
+                {
+                    Gfx_ResetStateCache();
+                    x = ((Mem.S32((p + (uint)((-1) * 4))) != 0) ? 85 : 83);
+                    x = (int)((int)(x) | ((Mem.S32((p + (uint)(1 * 4))) != 0) ? 768 : 1280));
+                    y = (x | ((Mem.S32(0x80153F6Cu) != 0) ? 12288 : 20480));
+                    Gfx_ApplyRenderFlags((uint)((y | ((Mem.S32(0x80153F70u) != 0) ? 196608 : 327680))));
+                }
+                else
+                {
+                    if ((mode == 12))
+                    {
+                        Gfx_ResetStateCache();
+                        x = ((Mem.S32((p + (uint)((-1) * 4))) != 0) ? 53 : 51);
+                        x = (int)((int)(x) | ((Mem.S32((p + (uint)(1 * 4))) != 0) ? 768 : 1280));
+                        t = (x | ((Mem.S32(0x80153F6Cu) != 0) ? 12288 : 20480));
+                        y = t;
+                        Gfx_ApplyRenderFlags((uint)((y | ((Mem.S32(0x80153F70u) != 0) ? 196608 : 327680))));
+                    }
+                }
+            }
+        }
+    }
+
+    // ==== func_004171B8 @ 0x004171B8 [C]
+    public static void func_004171B8_SyncNC()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004171B8_SyncNC");
+            Mem.Set(0x800E32E4u, 1);
+            {
+                uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                new O3Dl(_g).w0_Set(3875536896u);
+                new O3Dl(_g).w1_Set((uint)(0));
+            }
+        }
+    }
+
+    public static void Gfx_ApplyRenderFlags(uint m)
+    {
+        uint _fp = Stack.Alloc(20);
+        try
+        {
+            unchecked
+            {
+                if (Dbg.On) Dbg.Enter("func_004171B8", (uint)m);
+                uint hi = 0u;
+                uint lo = 0u;
+                int sel = 0;
+                new O02Fl(_fp).f.Set((int)(0), (((m & (uint)(5)) == (uint)(5)) ? 1 : 0));
+                new O02Fl(_fp).f.Set((int)(1), (((m & (uint)(48)) == (uint)(48)) ? 1 : 0));
+                new O02Fl(_fp).f.Set((int)(2), (((m & (uint)(768)) == (uint)(768)) ? 1 : 0));
+                new O02Fl(_fp).f.Set((int)(3), (((m & (uint)(12288)) == (uint)(12288)) ? 1 : 0));
+                new O02Fl(_fp).f.Set((int)(4), (((m & (uint)(196608)) == (uint)(196608)) ? 1 : 0));
+                Gfx_ResetStateCache();
+                Mem.Set(0x800E32E4u, 0);
+                func_004171B8_SyncNC();
+                if ((new O02Fl(_fp).f[(int)(1)] != 0))
+                {
+                    Mem.Set(0x800E32CCu, 12);
+                }
+                else
+                {
+                    Mem.Set(0x800E32CCu, 11);
+                }
+                {
+                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new O3Dl(_g).w0_Set(3808430593u);
+                    new O3Dl(_g).w1_Set((uint)(0));
+                }
+                {
+                    uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new O3Dl(_g_2).w0_Set(3654351354u);
+                    new O3Dl(_g_2).w1_Set((uint)(0));
+                }
+                {
+                    uint _g_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new O3Dl(_g_3).w0_Set(3657433087u);
+                    new O3Dl(_g_3).w1_Set((uint)(2098180));
+                }
+                if ((new O02Fl(_fp).f[(int)(4)] != 0))
+                {
+                    {
+                        uint _g_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new O3Dl(_g_4).w0_Set(3657433087u);
+                        new O3Dl(_g_4).w1_Set((uint)(1));
+                    }
+                }
+                lo = (uint)(0);
+                hi = (uint)(0);
+                sel = ((lo < (uint)(new O02Fl(_fp).f[(int)(3)])) ? 1 : 0);
+                if ((new O02Fl(_fp).f[(int)(4)] != 0))
+                {
+                    sel = (int)((int)(sel) + 2);
+                }
+                switch (sel)
+                {
+                case 0:
+                    lo = (uint)(201867264);
+                    hi = (uint)(50479104);
+                    break;
+                case 1:
+                    lo = (uint)(4211264);
+                    hi = (uint)(1065536);
+                    break;
+                case 2:
+                    lo = (uint)(4465200);
+                    hi = (uint)(1122864);
+                    break;
+                case 3:
+                    lo = (uint)(4213328);
+                    hi = (uint)(1067600);
+                    break;
+                }
+                Mem.Set(0x800E32A0u, 1);
+                {
+                    uint _g_5 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new O3Dl(_g_5).w0_Set(3791650844u);
+                    new O3Dl(_g_5).w1_Set((lo | hi));
+                }
+                Mem.Copy(0x80153F60u, _fp, 20);
+            }
+        }
+        finally { Stack.Free(20); }
+    }
+
+    // ==== func_004173FC @ 0x004173FC [C]
+    public static int Gfx_LoadPalette(int mode, uint tex)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004173FC", (uint)mode, (uint)tex);
+            int ret = 1;
+            if ((Mem.U32(0x800E32D8u) != tex))
+            {
+                Mem.Set(0x800E32D8u, tex);
+                func_004173FC_O3_Sync();
+                if ((mode == 4))
+                {
+                    {
+                        uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new O3Dl(_g).w0_Set(3808432129u);
+                        new O3Dl(_g).w1_Set((uint)(32768));
+                    }
+                    {
+                        uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new O3Dl(_g_2).w0_Set(4245684224u);
+                        new O3Dl(_g_2).w1_Set(tex);
+                    }
+                    {
+                        uint _g_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new O3Dl(_g_3).w0_Set(3892314112u);
+                        new O3Dl(_g_3).w1_Set((uint)(0));
+                    }
+                    {
+                        uint _g_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new O3Dl(_g_4).w0_Set(4110418176u);
+                        new O3Dl(_g_4).w1_Set((uint)(117440512));
+                    }
+                    {
+                        uint _g_5 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new O3Dl(_g_5).w0_Set(3858759680u);
+                        new O3Dl(_g_5).w1_Set((uint)(0));
+                    }
+                    {
+                        uint _g_6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new O3Dl(_g_6).w0_Set(4026531840u);
+                        new O3Dl(_g_6).w1_Set((uint)(117686272));
+                    }
+                    {
+                        uint _g_7 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new O3Dl(_g_7).w0_Set(3875536896u);
+                        new O3Dl(_g_7).w1_Set((uint)(0));
+                    }
+                }
+                else
+                {
+                    if ((mode == 8))
+                    {
+                        {
+                            uint _g_8 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            new O3Dl(_g_8).w0_Set(3808432129u);
+                            new O3Dl(_g_8).w1_Set((uint)(32768));
+                        }
+                        {
+                            uint _g_9 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            new O3Dl(_g_9).w0_Set(4245684224u);
+                            new O3Dl(_g_9).w1_Set(tex);
+                        }
+                        {
+                            uint _g_10 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            new O3Dl(_g_10).w0_Set(3892314112u);
+                            new O3Dl(_g_10).w1_Set((uint)(0));
+                        }
+                        {
+                            uint _g_11 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            new O3Dl(_g_11).w0_Set(4110418176u);
+                            new O3Dl(_g_11).w1_Set((uint)(117440512));
+                        }
+                        {
+                            uint _g_12 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            new O3Dl(_g_12).w0_Set(3858759680u);
+                            new O3Dl(_g_12).w1_Set((uint)(0));
+                        }
+                        {
+                            uint _g_13 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            new O3Dl(_g_13).w0_Set(4026531840u);
+                            new O3Dl(_g_13).w1_Set((uint)(121618432));
+                        }
+                        {
+                            uint _g_14 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            new O3Dl(_g_14).w0_Set(3875536896u);
+                            new O3Dl(_g_14).w1_Set((uint)(0));
+                        }
+                    }
+                    else
+                    {
+                        if ((mode == 16))
+                        {
+                            {
+                                uint _g_15 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                new O3Dl(_g_15).w0_Set(3808432129u);
+                                new O3Dl(_g_15).w1_Set((uint)(0));
+                            }
+                        }
+                    }
+                }
+                ret = 0;
+            }
+            return ret;
+        }
+    }
+
+    public static void func_004173FC_O3_Sync()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004173FC_O3_Sync");
+            if ((Mem.S32(0x800E32E4u) == 0))
+            {
+                Mem.Set(0x800E32E4u, 1);
+                {
+                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new O3Dl(_g).w0_Set(3875536896u);
+                    new O3Dl(_g).w1_Set((uint)(0));
+                }
+            }
+        }
+    }
+
+    // ==== func_00417574 @ 0x00417574 [C]
+    public static void Gfx_LoadTextureImage(uint p)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00417574", (uint)p);
+            uint t = p;
+            int r = 0;
+            int a = 0;
+            int b = 0;
+            if ((p == 0u))
+            {
+                Mem.Set(0x800E32A8u, 0);
+                Mem.Set(0x800E32ACu, 0);
+                Mem.Set(0x800E32A4u, 0u);
+                Mem.Set(0x800E32B0u, 0);
+                Mem.Set(0x800E32B4u, 0);
+                Mem.Set(0x800E32BCu, 0);
+                return;
+            }
+            Mem.Set(0x800E32A4u, t);
+            Mem.Set(0x800E32B4u, 0);
+            Mem.Set(0x800E32A8u, (int)(new Q2Tex(t).unk4));
+            Mem.Set(0x800E32ACu, (int)(new Q2Tex(t).unk6));
+            Mem.Set(0x800E32B8u, Image_GetBitsPerPixel(t));
+            Mem.Set(0x800E32BCu, Image_HasAlpha(Mem.U32(0x800E32A4u)));
+            a = new Q2Tex(t).unk10;
+            b = new Q2Tex(t).unkC;
+            Mem.Set(0x800E32B0u, 0);
+            if (((a > 0) && (b > 2048)))
+            {
+                Mem.Set(0x800E32B0u, 1);
+            }
+            if (((a == 0) && (b > 4096)))
+            {
+                Mem.Set(0x800E32B0u, 1);
+            }
+            r = Gfx_LoadPalette(Mem.S32(0x800E32B8u), (uint)(new Q2Tex(Mem.U32(0x800E32A4u)).unk14));
+            if ((Mem.S32(0x800E32B0u) == 0))
+            {
+                if ((Mem.S32(0x800E32B8u) == 4))
+                {
+                    {
+                        uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new O3Dl(_g).w0_Set(4249878528u);
+                        new O3Dl(_g).w1_Set(new Q2Tex(Mem.U32(0x800E32A4u)).img);
+                    }
+                    {
+                        uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new O3Dl(_g_2).w0_Set(4115660800u);
+                        new O3Dl(_g_2).w1_Set((uint)(117965312));
+                    }
+                    {
+                        uint _g_3 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new O3Dl(_g_3).w0_Set(3858759680u);
+                        new O3Dl(_g_3).w1_Set((uint)(0));
+                    }
+                    {
+                        uint _g_4 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new O3Dl(_g_4).w0_Set(4076863488u);
+                        new O3Dl(_g_4).w1_Set((uint)(((117440512 | (((((((((int)(new Q2Tex(Mem.U32(0x800E32A4u)).w) * (int)(new Q2Tex(Mem.U32(0x800E32A4u)).h)) + 3) >> (int)2) - 1) < 2047) ? (((((int)(new Q2Tex(Mem.U32(0x800E32A4u)).w) * (int)(new Q2Tex(Mem.U32(0x800E32A4u)).h)) + 3) >> (int)2) - 1) : 2047) & 4095) << (int)12)) | ((((2048 + ((1 > ((int)(new Q2Tex(Mem.U32(0x800E32A4u)).w) / 16)) ? 1 : ((int)(new Q2Tex(Mem.U32(0x800E32A4u)).w) / 16))) - 1) / ((1 > ((int)(new Q2Tex(Mem.U32(0x800E32A4u)).w) / 16)) ? 1 : ((int)(new Q2Tex(Mem.U32(0x800E32A4u)).w) / 16))) & 4095))));
+                    }
+                    {
+                        uint _g_5 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new O3Dl(_g_5).w0_Set(3875536896u);
+                        new O3Dl(_g_5).w1_Set((uint)(0));
+                    }
+                    {
+                        uint _g_6 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new O3Dl(_g_6).w0_Set((4114612224u | (uint)((((((((int)((ushort)(new Q2Tex(Mem.U32(0x800E32A4u)).w)) << (int)16) >> (int)17) + 7) >> (int)3) & 511) << (int)9))));
+                        new O3Dl(_g_6).w1_Set((uint)(524800));
+                    }
+                    {
+                        uint _g_7 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                        new O3Dl(_g_7).w0_Set(4060086272u);
+                        new O3Dl(_g_7).w1_Set((uint)(((((((int)(new Q2Tex(Mem.U32(0x800E32A4u)).w) - 1) * 4) & 4095) << (int)12) | ((((int)(new Q2Tex(Mem.U32(0x800E32A4u)).h) - 1) * 4) & 4095))));
+                    }
+                }
+                else
+                {
+                    if ((Mem.S32(0x800E32B8u) == 8))
+                    {
+                        if ((r == 0))
+                        {
+                            {
+                                uint _g_8 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                new O3Dl(_g_8).w0_Set(4115660800u);
+                                new O3Dl(_g_8).w1_Set((uint)(117965312));
+                            }
+                            {
+                                uint _g_9 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                new O3Dl(_g_9).w0_Set(3875536896u);
+                                new O3Dl(_g_9).w1_Set((uint)(0));
+                            }
+                        }
+                        {
+                            uint _g_10 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            new O3Dl(_g_10).w0_Set(3858759680u);
+                            new O3Dl(_g_10).w1_Set((uint)(0));
+                        }
+                        {
+                            uint _g_11 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            new O3Dl(_g_11).w0_Set((4115136512u | (uint)((((((int)(new Q2Tex(Mem.U32(0x800E32A4u)).w) + 7) >> (int)3) & 511) << (int)9))));
+                            new O3Dl(_g_11).w1_Set((uint)(524800));
+                        }
+                        {
+                            uint _g_12 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            new O3Dl(_g_12).w0_Set(4060086272u);
+                            new O3Dl(_g_12).w1_Set((uint)(((((((int)(new Q2Tex(Mem.U32(0x800E32A4u)).w) - 1) * 4) & 4095) << (int)12) | ((((int)(new Q2Tex(Mem.U32(0x800E32A4u)).h) - 1) * 4) & 4095))));
+                        }
+                        {
+                            uint _g_13 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            new O3Dl(_g_13).w0_Set(4249878528u);
+                            new O3Dl(_g_13).w1_Set(new Q2Tex(Mem.U32(0x800E32A4u)).img);
+                        }
+                        {
+                            uint _g_14 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                            new O3Dl(_g_14).w0_Set(4076863488u);
+                            new O3Dl(_g_14).w1_Set((uint)(((117440512 | (((((((((int)(new Q2Tex(Mem.U32(0x800E32A4u)).w) * (int)(new Q2Tex(Mem.U32(0x800E32A4u)).h)) + 1) >> (int)1) - 1) < 2047) ? (((((int)(new Q2Tex(Mem.U32(0x800E32A4u)).w) * (int)(new Q2Tex(Mem.U32(0x800E32A4u)).h)) + 1) >> (int)1) - 1) : 2047) & 4095) << (int)12)) | ((((2048 + ((1 > ((int)(new Q2Tex(Mem.U32(0x800E32A4u)).w) / 8)) ? 1 : ((int)(new Q2Tex(Mem.U32(0x800E32A4u)).w) / 8))) - 1) / ((1 > ((int)(new Q2Tex(Mem.U32(0x800E32A4u)).w) / 8)) ? 1 : ((int)(new Q2Tex(Mem.U32(0x800E32A4u)).w) / 8))) & 4095))));
+                        }
+                    }
+                    else
+                    {
+                        if ((Mem.S32(0x800E32B8u) == 16))
+                        {
+                            {
+                                uint _g_15 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                new O3Dl(_g_15).w0_Set(4245684224u);
+                                new O3Dl(_g_15).w1_Set(new Q2Tex(Mem.U32(0x800E32A4u)).img);
+                            }
+                            {
+                                uint _g_16 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                new O3Dl(_g_16).w0_Set(4111466496u);
+                                new O3Dl(_g_16).w1_Set((uint)(117965312));
+                            }
+                            {
+                                uint _g_17 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                new O3Dl(_g_17).w0_Set(3858759680u);
+                                new O3Dl(_g_17).w1_Set((uint)(0));
+                            }
+                            {
+                                uint _g_18 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                new O3Dl(_g_18).w0_Set(4076863488u);
+                                new O3Dl(_g_18).w1_Set((uint)(((117440512 | (((((((int)(new Q2Tex(Mem.U32(0x800E32A4u)).w) * (int)(new Q2Tex(Mem.U32(0x800E32A4u)).h)) - 1) < 2047) ? (((int)(new Q2Tex(Mem.U32(0x800E32A4u)).w) * (int)(new Q2Tex(Mem.U32(0x800E32A4u)).h)) - 1) : 2047) & 4095) << (int)12)) | ((((2048 + ((1 > ((int)(new Q2Tex(Mem.U32(0x800E32A4u)).w) / 4)) ? 1 : ((int)(new Q2Tex(Mem.U32(0x800E32A4u)).w) / 4))) - 1) / ((1 > ((int)(new Q2Tex(Mem.U32(0x800E32A4u)).w) / 4)) ? 1 : ((int)(new Q2Tex(Mem.U32(0x800E32A4u)).w) / 4))) & 4095))));
+                            }
+                            {
+                                uint _g_19 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                new O3Dl(_g_19).w0_Set(3875536896u);
+                                new O3Dl(_g_19).w1_Set((uint)(0));
+                            }
+                            {
+                                uint _g_20 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                new O3Dl(_g_20).w0_Set((4111466496u | (uint)(((((((int)(new Q2Tex(Mem.U32(0x800E32A4u)).w) * 2) + 7) >> (int)3) & 511) << (int)9))));
+                                new O3Dl(_g_20).w1_Set((uint)(524800));
+                            }
+                            {
+                                uint _g_21 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                                new O3Dl(_g_21).w0_Set(4060086272u);
+                                new O3Dl(_g_21).w1_Set((uint)(((((((int)(new Q2Tex(Mem.U32(0x800E32A4u)).w) - 1) * 4) & 4095) << (int)12) | ((((int)(new Q2Tex(Mem.U32(0x800E32A4u)).h) - 1) * 4) & 4095))));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // ==== func_0041900C @ 0x0041900C [C]
+    public static void Gfx_ResetStateCache()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0041900C");
+            if ((Mem.S32(0x800E32A0u) != 0))
+            {
+                Mem.Set(0x800E32A0u, 0);
+                Mem.Set(0x800E32C0u, 0);
+                Mem.Set(0x800E32C4u, 0);
+                Mem.Set(0x800E32C8u, 0);
+                Mem.Set(0x800E32CCu, 0);
+                Mem.Set(0x800E32D0u, 0);
+                Mem.Set(0x800E32D4u, 0);
+                Mem.Set(0x800E32D8u, 0);
+                Mem.Set(0x800E32DCu, 0);
+                Mem.Set(0x800E32E0u, 0);
+            }
+        }
+    }
+
     // ==== func_00419074 @ 0x00419074 [C]
     public static void Gfx_SetModeA_00419074(int mode)
     {
@@ -1998,6 +2633,41 @@ public static partial class Game
                     uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
                     new O3Dl(_g).w0_Set(3875536896u);
                     new O3Dl(_g).w1_Set((uint)(0));
+                }
+            }
+        }
+    }
+
+    // ==== func_00419268 @ 0x00419268 [C]
+    public static void Gfx_ClearPipeSyncFlag()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00419268");
+            Mem.Set(0x800E32E4u, 0);
+        }
+    }
+
+    // ==== func_00419278 @ 0x00419278 [C]
+    public static void Gfx_SetEnvPrimColor(uint color)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00419278", (uint)color);
+            uint rgb = 0u;
+            if ((color != Mem.U32(0x800E32DCu)))
+            {
+                Mem.Set(0x800E32DCu, color);
+                rgb = ((((color >> (int)16) << (int)24) | ((color & (uint)(65280)) << (int)8)) | ((color & (uint)(255)) << (int)8));
+                {
+                    uint _g = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new O3Dl(_g).w0_Set(4211081216u);
+                    new O3Dl(_g).w1_Set(rgb);
+                }
+                {
+                    uint _g_2 = (Mem.Set(0x80110634u, (uint)(Mem.U32(0x80110634u) + 8u)) - 8u);
+                    new O3Dl(_g_2).w0_Set(4194304000u);
+                    new O3Dl(_g_2).w1_Set((rgb | (color >> (int)24)));
                 }
             }
         }

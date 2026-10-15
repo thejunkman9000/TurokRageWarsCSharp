@@ -5292,7 +5292,7 @@ public static partial class Game
             Player_StubStop938_00218464();
             new Plr(a).unkF54_Set((-1));
             new Plr(a).unkF90_Set((-1));
-            func_00435CF0(default(uint), default(uint), default(uint), default(uint));
+            PauseMenu_ShowTwin(default(uint), default(uint), default(uint), default(uint));
             _f16: ;
             _f15: ;
             _f14: ;

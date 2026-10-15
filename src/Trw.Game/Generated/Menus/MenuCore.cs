@@ -366,7 +366,7 @@ public static partial class Game
                 L_I00297EF0: ;
                 r2 = (uint)Ui_PushScreen();
                 L_I00297EF8: ;
-                r4 = r2; r2 = func_00411E4C((int)r4);
+                r4 = r2; r2 = UiScreen_GetData((int)r4);
                 L_I00297F00: ;
                 r18 = r2;
                 L_I00297F04: ;
@@ -492,14 +492,14 @@ public static partial class Game
                 L_I00298050: ;
                 r4 = r16;
                 L_I00298054: ;
-                r5 = (uint)1; func_0040E9A8(r4, (int)r5);
+                r5 = (uint)1; UiNode_SetHighlighted(r4, (int)r5);
                 L_I0029805C: ;
                 r2 = r0; goto L_L002982E0;
                 L_L00298064: ;
                 L_I00298064: ;
                 r4 = r16;
                 L_I00298068: ;
-                r5 = r0; func_0040E9A8(r4, (int)r5);
+                r5 = r0; UiNode_SetHighlighted(r4, (int)r5);
                 L_I00298070: ;
                 r2 = r0; goto L_L002982E0;
                 L_L00298078: ;
@@ -719,7 +719,7 @@ public static partial class Game
                 L_I002982A8: ;
                 r4 = r16;
                 L_I002982AC: ;
-                r5 = (uint)1; func_0040E9A8(r4, (int)r5);
+                r5 = (uint)1; UiNode_SetHighlighted(r4, (int)r5);
                 L_I002982B4: ;
                 Mem.Set((r21 + 0u), r30); goto L_L002982DC;
                 L_L002982BC: ;
@@ -728,7 +728,7 @@ public static partial class Game
                 L_I002982C0: ;
                 r4 = r16;
                 L_I002982C4: ;
-                r5 = r17; func_0040E9A8(r4, (int)r5);
+                r5 = r17; UiNode_SetHighlighted(r4, (int)r5);
                 L_I002982CC: ;
                 Mem.Set((r21 + 0u), r30); goto L_L002982DC;
                 L_L002982D4: ;
@@ -1086,7 +1086,7 @@ public static partial class Game
                 L_I002985E8: ;
                 r4 = r20;
                 L_I002985EC: ;
-                r5 = (uint)1; func_0040E9A8(r4, (int)r5);
+                r5 = (uint)1; UiNode_SetHighlighted(r4, (int)r5);
                 L_I002985F4: ;
                 r2 = r16; goto L_L0029861C;
                 L_L002985FC: ;
@@ -1095,7 +1095,7 @@ public static partial class Game
                 L_I00298600: ;
                 r4 = r20;
                 L_I00298604: ;
-                r5 = r16; func_0040E9A8(r4, (int)r5);
+                r5 = r16; UiNode_SetHighlighted(r4, (int)r5);
                 L_I0029860C: ;
                 r2 = r16; goto L_L0029861C;
                 L_L00298614: ;
@@ -1288,11 +1288,11 @@ public static partial class Game
                         break;
                     case 15:
                         z = 0;
-                        func_0040E9A8(ctx, 1);
+                        UiNode_SetHighlighted(ctx, 1);
                         break;
                     case 16:
                         z = 0;
-                        func_0040E9A8(ctx, z);
+                        UiNode_SetHighlighted(ctx, z);
                         break;
                     default:
                         z = 0;
@@ -1459,11 +1459,11 @@ public static partial class Game
                         break;
                     case (uint)(15):
                         a = 0;
-                        func_0040E9A8(ctx, 1);
+                        UiNode_SetHighlighted(ctx, 1);
                         break;
                     case (uint)(16):
                         a = 0;
-                        func_0040E9A8(ctx, a);
+                        UiNode_SetHighlighted(ctx, a);
                         break;
                     default:
                         a = 0;
@@ -1616,8 +1616,8 @@ public static partial class Game
             uint s = 0u;
             Mem.Set(0x8014D098u, (-1));
             Video_GetScreenSize(0x8014D088u, 0x8014D08Cu);
-            func_00411F6C();
-            func_0040F5B4(Mem.S32(0x8014D088u), Mem.S32(0x8014D08Cu));
+            Image_InitArchives();
+            Ui_SetScreenSize(Mem.S32(0x8014D088u), Mem.S32(0x8014D08Cu));
             MenuInput_Init();
             Mem.Set(0x8014D084u, 0);
             Mem.Set(0x8014D080u, ResourcePool_Malloc((uint)(1348)));
@@ -1661,7 +1661,7 @@ public static partial class Game
             int t = 0;
             uint ctx = 0u;
             uint e = 0u;
-            x = (int)(func_00411E4C(Ui_PushScreen()));
+            x = (int)(UiScreen_GetData(Ui_PushScreen()));
             for (i = 0; (i < new SndMgr_v2(Mem.U32(0x8014D080u)).unk540); ++i)
             {
                 if (((((new SndCacheEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).unk53C_ + (uint)(i * 12))).unk8 == x) && (new SndCacheEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).unk53C_ + (uint)(i * 12))).id == id)) && (new SndCacheEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).unk53C_ + (uint)(i * 12))).ctx_ != 0u)) && ((int)(new SndCacheEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).unk53C_ + (uint)(i * 12))).ctx.id) == id)))
@@ -1852,8 +1852,8 @@ public static partial class Game
             new Shared_MenuManager(Mem.U32(0x8014D080u)).unk540_Set(0);
             new Shared_MenuManager(Mem.U32(0x8014D080u)).unk528_Set(temp_s4);
             if (!((var_s2 == 0))) goto _f14;
-            func_0041174C(arg0);
-            temp_v0 = func_00411E4C(arg0);
+            UiScreen_Load(arg0);
+            temp_v0 = UiScreen_GetData(arg0);
             temp_a0_2 = (new Shared_MenuManager(Mem.U32(0x8014D080u)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4 * 28));
             new Shared_MenuEntry(temp_a0_2).object__Set(temp_v0);
             new Shared_MenuEntry(temp_a0_2).id_Set(arg0);
@@ -1869,9 +1869,9 @@ public static partial class Game
             temp_v0_2 = new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4_Set((int)(new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4 - 1));
             new Shared_MenuManager(Mem.U32(0x8014D080u)).unk8_Set(temp_v0_2);
             var_a0 = new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4;
-            func_0041174C(new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(0x8014D080u)).unkC_ + (uint)(var_a0 * 28))).id);
+            UiScreen_Load(new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(0x8014D080u)).unkC_ + (uint)(var_a0 * 28))).id);
             temp_s0_2 = new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(0x8014D080u)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4 * 28))).id;
-            temp_v0_3 = func_00411E4C(temp_s0_2);
+            temp_v0_3 = UiScreen_GetData(temp_s0_2);
             temp_a0_3 = (new Shared_MenuManager(Mem.U32(0x8014D080u)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4 * 28));
             new Shared_MenuEntry(temp_a0_3).object__Set(temp_v0_3);
             new Shared_MenuEntry(temp_a0_3).id_Set(temp_s0_2);
@@ -1917,10 +1917,10 @@ public static partial class Game
             L_after_found_callback: ;
             goto L_block_78;
             L_block_not_found: ;
-            func_0041174C(arg0);
-            if (!(((((int)(new Shared_MenuDefinition(func_00411E4C(arg0)).unk12) >> (int)12) & 1) != 0))) goto _f22;
+            UiScreen_Load(arg0);
+            if (!(((((int)(new Shared_MenuDefinition(UiScreen_GetData(arg0)).unk12) >> (int)12) & 1) != 0))) goto _f22;
             temp_a0_4 = new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(0x8014D080u)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4 * 28))).focus_;
-            if (!(((((temp_a0_4 != 0u) && ((C.Seq((object?)((temp_s1 = (int)(new Shared_MenuDefinition(temp_a0_4).unkC))), ((func_00411E70(temp_s1) == 0) ? 1 : 0)) != 0) || (temp_s1 == new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(0x8014D080u)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4 * 28))).id))) && (C.Seq((object?)((focus_index = new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4)), ((temp_s1 != new Shared_MenuManager(Mem.U32(0x8014D080u)).unk528) ? 1 : 0)) != 0)) && (C.Seq((object?)((temp_a1 = (-1))), ((focus_index != temp_a1) ? 1 : 0)) != 0)))) goto _f23;
+            if (!(((((temp_a0_4 != 0u) && ((C.Seq((object?)((temp_s1 = (int)(new Shared_MenuDefinition(temp_a0_4).unkC))), ((UiScreen_IsValidId(temp_s1) == 0) ? 1 : 0)) != 0) || (temp_s1 == new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(0x8014D080u)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4 * 28))).id))) && (C.Seq((object?)((focus_index = new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4)), ((temp_s1 != new Shared_MenuManager(Mem.U32(0x8014D080u)).unk528) ? 1 : 0)) != 0)) && (C.Seq((object?)((temp_a1 = (-1))), ((focus_index != temp_a1) ? 1 : 0)) != 0)))) goto _f23;
             temp_v0_5 = new Shared_MenuManager(Mem.U32(0x8014D080u)).callback;
             if (!((temp_v0_5 != 0u))) goto _f24;
             temp_s0_4 = new Shared_MenuManager(Mem.U32(0x8014D080u)).unk520;
@@ -1943,7 +1943,7 @@ public static partial class Game
             L_after_focus10: ;
             new Shared_MenuManager(Mem.U32(0x8014D080u)).unk528_Set(Ui_PushScreen());
             new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4_Set((new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4 + 1));
-            temp_v0_6 = func_00411E4C(arg0);
+            temp_v0_6 = UiScreen_GetData(arg0);
             temp_a0_5 = (new Shared_MenuManager(Mem.U32(0x8014D080u)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4 * 28));
             new Shared_MenuEntry(temp_a0_5).object__Set(temp_v0_6);
             new Shared_MenuEntry(temp_a0_5).id_Set(arg0);
@@ -2031,7 +2031,7 @@ public static partial class Game
             var_s0 = var_s1_2;
             _f43: ;
             var_s1_2 = (int)((int)(var_s1_2) + 1);
-            func_00411E98(new Shared_MenuEntry((new Shared_MenuManager(temp_v1_2).unkC_ + (uint)(var_s0 * 28))).id);
+            UiScreen_Release(new Shared_MenuEntry((new Shared_MenuManager(temp_v1_2).unkC_ + (uint)(var_s0 * 28))).id);
             temp_v1_2 = Mem.U32(0x8014D080u);
             new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(0x8014D080u)).unkC_ + (uint)(var_s0 * 28))).object__Set(0u);
             new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(0x8014D080u)).unkC_ + (uint)(var_s0 * 28))).focus__Set(0u);
@@ -2054,7 +2054,7 @@ public static partial class Game
             new Shared_MenuManager(temp_v1_2).unk8_Set(new Shared_MenuManager(temp_v1_2).unk4);
             new Shared_MenuManager(Mem.U32(0x8014D080u)).unk528_Set(Ui_PushScreen());
             new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4_Set((new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4 + 1));
-            temp_v0_13 = func_00411E4C(arg0);
+            temp_v0_13 = UiScreen_GetData(arg0);
             temp_a0_6 = (new Shared_MenuManager(Mem.U32(0x8014D080u)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4 * 28));
             new Shared_MenuEntry(temp_a0_6).object__Set(temp_v0_13);
             new Shared_MenuEntry(temp_a0_6).id_Set(arg0);
@@ -2119,7 +2119,7 @@ public static partial class Game
             goto _f57;
             _f58: ;
             temp_a0_7 = new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(0x8014D080u)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4 * 28))).focus_;
-            if (!(((((temp_a0_7 != 0u) && ((C.Seq((object?)((temp_s1_2 = (int)(new Shared_MenuDefinition(temp_a0_7).unkC))), ((func_00411E70(temp_s1_2) == 0) ? 1 : 0)) != 0) || (temp_s1_2 == new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(0x8014D080u)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4 * 28))).id))) && (C.Seq((object?)((focus_index_final = new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4)), ((temp_s1_2 != new Shared_MenuManager(Mem.U32(0x8014D080u)).unk528) ? 1 : 0)) != 0)) && (C.Seq((object?)((temp_a1 = (-1))), ((focus_index_final != temp_a1) ? 1 : 0)) != 0)))) goto _f60;
+            if (!(((((temp_a0_7 != 0u) && ((C.Seq((object?)((temp_s1_2 = (int)(new Shared_MenuDefinition(temp_a0_7).unkC))), ((UiScreen_IsValidId(temp_s1_2) == 0) ? 1 : 0)) != 0) || (temp_s1_2 == new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(0x8014D080u)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4 * 28))).id))) && (C.Seq((object?)((focus_index_final = new Shared_MenuManager(Mem.U32(0x8014D080u)).unk4)), ((temp_s1_2 != new Shared_MenuManager(Mem.U32(0x8014D080u)).unk528) ? 1 : 0)) != 0)) && (C.Seq((object?)((temp_a1 = (-1))), ((focus_index_final != temp_a1) ? 1 : 0)) != 0)))) goto _f60;
             temp_v0_16 = new Shared_MenuManager(Mem.U32(0x8014D080u)).callback;
             if (!((temp_v0_16 != 0u))) goto _f61;
             temp_s0_11 = new Shared_MenuManager(Mem.U32(0x8014D080u)).unk520;
@@ -2171,7 +2171,7 @@ public static partial class Game
             {
                 Menu_DeactivateTopScreen(new SndStkEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).stk_ + (uint)((new SndMgr_v2(Mem.U32(0x8014D080u)).top - 1) * 28))).id);
                 Menu_BufFree(((new SndMgr_v2(Mem.U32(0x8014D080u)).stk_ + (uint)(new SndMgr_v2(Mem.U32(0x8014D080u)).top * 28)) + 12u));
-                func_00411E98((int)(new SndStkEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).stk_ + (uint)(new SndMgr_v2(Mem.U32(0x8014D080u)).top * 28))).ctx.id));
+                UiScreen_Release((int)(new SndStkEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).stk_ + (uint)(new SndMgr_v2(Mem.U32(0x8014D080u)).top * 28))).ctx.id));
             }
             m = Mem.U32(0x8014D080u);
             new SndStkEnt((new SndMgr_v2(m).stk_ + (uint)(new SndMgr_v2(m).top * 28))).ctx__Set(0u);
@@ -2220,8 +2220,8 @@ public static partial class Game
                 for (i = new SndMgr_v2(Mem.U32(0x8014D080u)).unk8; (i <= new SndMgr_v2(Mem.U32(0x8014D080u)).top); ++i)
                 {
                     Ui_EmptyHook_002A28F4();
-                    func_0040E6FC(new SndStkEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).stk_ + (uint)(i * 28))).ctx_, _fp);
-                    func_0040E914();
+                    UiNode_DrawTopLevel(new SndStkEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).stk_ + (uint)(i * 28))).ctx_, _fp);
+                    UiText_FlushAndResetClip();
                     Ui_ResetModeCache_002A28FC();
                     UiNode_ComputeRect((_fp + 40u), (_fp + 56u), new SndStkEnt((new SndMgr_v2(Mem.U32(0x8014D080u)).stk_ + (uint)(i * 28))).ctx_, _fp);
                 }
@@ -2244,7 +2244,7 @@ public static partial class Game
             int minusOne = 0;
             int saved = 0;
             int result = 0;
-            if ((func_00411E70(value) != 0))
+            if ((UiScreen_IsValidId(value) != 0))
             {
                 if ((value != new Entry_func_802991D4_de((new Menu_func_802991D4_de(Mem.U32(0x8014D080u)).entries_ + (uint)(new Menu_func_802991D4_de(Mem.U32(0x8014D080u)).current * 28))).owner))
                 {
@@ -2318,7 +2318,7 @@ public static partial class Game
                 r4 = Mem.U32((r2 + 8u));
                 { bool c_ = r4 == 0;  if (c_) goto L_L0029A32C; }
                 r17 = (uint)(int)Mem.S16((r4 + 12u));
-                r4 = r17; r2 = (uint)func_00411E70((int)r4);
+                r4 = r17; r2 = (uint)UiScreen_IsValidId((int)r4);
                 { bool c_ = r2 == 0;  if (c_) goto L_L0029A270; }
                 r4 = 2148859904u;
                 r4 = Mem.U32((r4 - 12160u));
@@ -2382,7 +2382,7 @@ public static partial class Game
                 r5 = Mem.U32((r6 + 12u));
                 r3 = r3 << 2;
                 r3 = r3 + r5;
-                Mem.Set((r3 + 8u), r2); r2 = (uint)func_00411E70((int)r4);
+                Mem.Set((r3 + 8u), r2); r2 = (uint)UiScreen_IsValidId((int)r4);
                 { bool c_ = r2 == 0;  if (c_) goto L_L0029A394; }
                 r4 = 2148859904u;
                 r4 = Mem.U32((r4 - 12160u));
@@ -2471,8 +2471,8 @@ public static partial class Game
             ResourcePool_MallocFree(Mem.U32(0x8014D080u));
             Mem.Set(0x8014D080u, 0u);
             MenuInput_Free();
-            func_0040F5E8();
-            func_00411FA8();
+            Ui_ShutdownStub_0040F5E8();
+            Image_ClearInitFlag();
         }
     }
 
@@ -2545,7 +2545,7 @@ public static partial class Game
                 Mem.Set((r29 + 36u), r19);
                 r19 = Mem.U32((r29 + 72u));
                 Mem.Set((r29 + 48u), r31);
-                Mem.Set((r29 + 24u), r16); r2 = (uint)func_00411E70((int)r4);
+                Mem.Set((r29 + 24u), r16); r2 = (uint)UiScreen_IsValidId((int)r4);
                 { bool c_ = r2 == 0;  if (c_) goto L_L0029A640; }
                 r4 = 2148859904u;
                 r4 = Mem.U32((r4 - 12160u));
@@ -3122,7 +3122,7 @@ public static partial class Game
                 r6 = r0;
                 r7 = r6; r2 = Menu_SendEvent(r4, r5, r6, r7, Mem.U32(r29 + 16u)); r3 = Cpu.V1;
                 Menu_DrawStack();
-                func_004104C8();
+                Image_EvictExpired();
                 Menu_AdvanceFrameCounter();
                 r2 = (uint)Ui_PushScreen();
                 r5 = (uint)1;
@@ -3147,7 +3147,7 @@ public static partial class Game
                 fcc = Cpu.S(0) < Cpu.S(1);
                 { bool c_ = !fcc;  if (c_) goto L_L002A3174; }
                 AttractDemo_Setup();
-                r2 = func_0042E080(r4, r5, r6, r7); r3 = Cpu.V1;
+                r2 = MatchSetup_StartMatch(r4, r5, r6, r7); r3 = Cpu.V1;
                 Cpu.SetW(12, r0);
                 Menu_SetIdleTime(Cpu.S(12));
                 L_L002A3174: ;
@@ -3201,7 +3201,7 @@ public static partial class Game
                 ScratchHeap_Flip();
                 Menu_SendEvent((uint)(Ui_PushScreen()), (uint)(3592), (uint)(0), (uint)(0), (uint)(0));
                 Menu_DrawStack();
-                func_004104C8();
+                Image_EvictExpired();
                 Menu_AdvanceFrameCounter();
                 type = Ui_PushScreen();
                 a1 = 1;
@@ -3223,7 +3223,7 @@ public static partial class Game
                 if ((((Mem.S32(0x8014694Cu) == 0) && (a1 == 1)) && ((float)((a0 * 15)) < new TimerVar(0x800D2CA0u).t)))
                 {
                     AttractDemo_Setup();
-                    func_0042E080(default(uint), default(uint), default(uint), default(uint));
+                    MatchSetup_StartMatch(default(uint), default(uint), default(uint), default(uint));
                     Menu_SetIdleTime(0.0f);
                 }
                 new TimerVar(0x800D2CA0u).t_Set((new TimerVar(0x800D2CA0u).t + Mem.F32(0x800D2988u)));
@@ -3253,7 +3253,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002A31F4");
             if ((Mem.S32(0x800D2C98u) == 0))
             {
-                func_0041EAE0();
+                BotSetup_Reset();
                 Menu_InitFrontend();
             }
         }
@@ -3267,17 +3267,17 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002A3224");
             MsgPort_Flush(0x8010A248u);
             ResourcePool_Purge();
-            func_004143E0();
+            Menu_InitFileAndMath();
             ScratchHeap_Init(12288);
             Menu_Init(35, 0x0043C500u);
             Image_OpenArchives(0x800CAF30u, default(uint), default(uint), default(uint));
-            func_0041B660();
-            func_0041991C();
-            func_0041A480();
-            func_0041B160();
-            func_00419EA4();
-            func_0041A5D0();
-            func_0041AC10();
+            CursorGroup_RegisterType();
+            ColorCycle_RegisterType();
+            PopupPanel_RegisterType();
+            MenuButton_RegisterType();
+            Flicker_RegisterType();
+            Slider_RegisterType();
+            OptionList_RegisterType();
             NumberField_RegisterType();
             Mem.Set(0x800D0E54u, 60);
             Menu_SetIdleTime(0.0f);
@@ -3307,7 +3307,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002A3318");
             if ((Mem.S32(0x800E28D8u) == 1))
             {
-                UiTree_ScaleForHiRes((uint)((int)(func_00411E4C(Ui_PushScreen()))), (uint)(0));
+                UiTree_ScaleForHiRes((uint)((int)(UiScreen_GetData(Ui_PushScreen()))), (uint)(0));
             }
         }
     }
@@ -3410,9 +3410,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002A342C");
             Menu_Shutdown();
-            func_0041023C();
+            Image_CloseArchives();
             ScratchHeap_Free();
-            func_00414404();
+            Menu_ShutdownFileAndMath();
             Mem.Set((0x800D2C90u + (uint)(2 * 4)), 0);
             Menu_DisableInput();
             Mem.Set((0x800D2C90u + (uint)(0 * 4)), 0);
@@ -3474,6 +3474,28 @@ public static partial class Game
         finally { if (Dbg.On) Dbg.Leave("func_002A80C4", r2); Stack.Free(384); }
     }
 
+    // ==== func_004143E0 @ 0x004143E0 [C]
+    public static void Menu_InitFileAndMath()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_004143E0");
+            File_Init();
+            Math_Init();
+        }
+    }
+
+    // ==== func_00414404 @ 0x00414404 [C]
+    public static void Menu_ShutdownFileAndMath()
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_00414404");
+            Math_Shutdown();
+            File_Shutdown();
+        }
+    }
+
     // ==== func_0042A490 @ 0x0042A490 [C]
     public static int Menu_UpdateTransition_0042A490(uint arg0, int arg1, int arg2)
     {
@@ -3512,16 +3534,16 @@ public static partial class Game
                 new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC_Set(9);
                 if ((new ListScreenScreen(Mem.U32(0x800E4F60u)).selection == 0))
                 {
-                    func_0040E958(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_440_, 1);
+                    UiNode_SetVisible(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_440_, 1);
                     var_a0 = new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_448_;
                 }
                 else
                 {
                     var_a0 = new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_444_;
                 }
-                func_0040E958(var_a0, 1);
-                func_0040E958(new ListScreenScreen(Mem.U32(0x800E4F60u)).label_, 1);
-                func_0040E958(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3F0_, 1);
+                UiNode_SetVisible(var_a0, 1);
+                UiNode_SetVisible(new ListScreenScreen(Mem.U32(0x800E4F60u)).label_, 1);
+                UiNode_SetVisible(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3F0_, 1);
                 goto L_block_7;
             }
             L_block_7: ;
@@ -3538,8 +3560,8 @@ public static partial class Game
                 if ((temp_v0_2 <= 0))
                 {
                     Audio_PlaySound2D(3705);
-                    func_0040E958(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E8_, 1);
-                    func_00419FD8((uint)(new ListScreenScreen(Mem.U32(0x800E4F60u)).text3E4), 4);
+                    UiNode_SetVisible(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E8_, 1);
+                    Flicker_Trigger((uint)(new ListScreenScreen(Mem.U32(0x800E4F60u)).text3E4), 4);
                     new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC_Set(4);
                     new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E0_Set(4);
                 }
@@ -3566,7 +3588,7 @@ public static partial class Game
                     var_a1 = 0;
                     var_a0_3 = new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_458_;
                     new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_460_Set(1);
-                    func_0040E958(var_a0_3, var_a1);
+                    UiNode_SetVisible(var_a0_3, var_a1);
                 }
                 break;
             case 4:
@@ -3582,31 +3604,31 @@ public static partial class Game
                     var_v0 = 0;
                 }
                 new ListScreenScreen(countdown).unk_3E0_Set(var_v0);
-                if (((new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E0 <= 0) && (func_00419FB8((uint)(new ListScreenScreen(Mem.U32(0x800E4F60u)).text3E4)) != 0)))
+                if (((new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E0 <= 0) && (Flicker_IsSteady((uint)(new ListScreenScreen(Mem.U32(0x800E4F60u)).text3E4)) != 0)))
                 {
-                    func_00419FA4((uint)(new ListScreenScreen(Mem.U32(0x800E4F60u)).text3E4));
-                    func_0042A994(10);
+                    Flicker_Stop((uint)(new ListScreenScreen(Mem.U32(0x800E4F60u)).text3E4));
+                    ArenaSelect_SetArenaNodesAlpha(10);
                     new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC_Set(9);
                 }
                 break;
             case 5:
-                func_0040E958(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_458_, 1);
-                func_0040E958(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E8_, 0);
-                func_0042B4C4();
-                func_0042A994(0);
+                UiNode_SetVisible(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_458_, 1);
+                UiNode_SetVisible(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E8_, 0);
+                ArenaSelect_ShowMarkers();
+                ArenaSelect_SetArenaNodesAlpha(0);
                 new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC_Set(2);
                 new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3E0_Set(4);
-                func_0040E958(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_448_, 0);
+                UiNode_SetVisible(new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_448_, 0);
                 Audio_PlaySound2D(3704);
                 break;
             case 8:
                 temp_v0 = (int)(new ListScreenItem(UiTree_FindNode(arg0, (uint)((ushort)(790u)), default(uint), default(uint))).alpha);
                 temp_s0 = (temp_v0 >> (int)1);
-                func_0042A994(temp_s0);
+                ArenaSelect_SetArenaNodesAlpha(temp_s0);
                 if ((temp_s0 < 10))
                 {
                     new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC_Set(3);
-                    func_0042EB68(11);
+                    Menu_RequestScreen(11);
                     return 0;
                 }
                 break;
@@ -3618,12 +3640,12 @@ public static partial class Game
                     temp_s0 = 65;
                     new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_3DC_Set(3);
                 }
-                func_0042A994(temp_s0);
+                ArenaSelect_SetArenaNodesAlpha(temp_s0);
                 var_a1 = 1;
                 if ((new ListScreenScreen(Mem.U32(0x800E4F60u)).selection == 0))
                 {
                     var_a0_3 = new ListScreenScreen(Mem.U32(0x800E4F60u)).unk_448_;
-                    func_0040E958(var_a0_3, var_a1);
+                    UiNode_SetVisible(var_a0_3, var_a1);
                 }
                 break;
             default:
@@ -3650,6 +3672,18 @@ public static partial class Game
                 }
             }
             return 0;
+        }
+    }
+
+    // ==== func_0042EB68 @ 0x0042EB68 [C]
+    public static void Menu_RequestScreen(int a)
+    {
+        unchecked
+        {
+            if (Dbg.On) Dbg.Enter("func_0042EB68", (uint)a);
+            uint p = 0x80154024u;
+            Mem.Set(p, 1);
+            Mem.Set((p + (uint)((-1) * 4)), a);
         }
     }
 
@@ -3951,7 +3985,7 @@ public static partial class Game
                 r2 = r0; goto L_L00439FD8;
                 L_L00439FC4: ;
                 L_I00439FC4: ;
-                r4 = (uint)-1; func_0042EB68((int)r4);
+                r4 = (uint)-1; Menu_RequestScreen((int)r4);
                 L_I00439FCC: ;
                 Menu_GoBack();
                 L_I00439FD4: ;

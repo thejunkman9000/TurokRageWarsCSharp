@@ -3675,653 +3675,653 @@ func_0040C4F4	0x0040C4F4	Video_GetResolution	System/Video.cs	high	returns D_800E
 func_0040C504	0x0040C504	Video_SetViModeAndViewports	System/Video.cs	medium	picks the VI mode id D_80153790 from TV type/width/flags, Vi_EditMode, then sets every camera's viewport size (+0x29C/+0x2A0) to the screen size
 func_0040C638	0x0040C638	UiNode_DrawChildrenClipped	Ui/Widgets.cs	medium	UiNode_ComputeRect; when node flag 0x200 intersects the clip rect (Ui_GetClipRect/Ui_SetClipRect), draws the children (func_0040E87C), restores the clip
 func_0040C640	0x0040C640	UiNode_ReturnZero_0040C640	Ui/Widgets.cs	low	returns 0; no callers or table references found
-func_0040C648	0x0040C648				
-func_0040C77C	0x0040C77C				
-func_0040C9C8	0x0040C9C8				
-func_0040C9D0	0x0040C9D0				
-func_0040CB24	0x0040CB24				
-func_0040CB30	0x0040CB30				
-func_0040CDD0	0x0040CDD0				
-func_0040D00C	0x0040D00C				
-func_0040D350	0x0040D350				
-func_0040DB84	0x0040DB84				
+func_0040C648	0x0040C648	UiNode_DrawChildrenClippedTwin	Ui/Widgets.cs	medium	recompiled copy 0x10 bytes after UiNode_DrawChildrenClipped's C entry: same ComputeRect / flag 0x200 clip / draw child list / restore clip body
+func_0040C77C	0x0040C77C	UiSlider_HandleMessage	Ui/Slider.cs	high	slider widget handler: clamps val to min/max, msgs 5/8 add step, 6/7 subtract, 0x1000-0x1009 get/set val/min/max/step; then updates the thumb and sends 0x100A (value changed)
+func_0040C9C8	0x0040C9C8	UiSlider_EmptyStub_0040C9C8	Ui/Slider.cs	low	empty function between the slider handler and its thumb update; no callers
+func_0040C9D0	0x0040C9D0	UiSlider_UpdateThumb	Ui/Slider.cs	high	positions the thumb child (+0x68) by (val-min)/(max-min) along the track (vertical when flags&1) and centres the label child +0x64 on it; called by UiSlider_HandleMessage
+func_0040CB24	0x0040CB24	UiText_FlushGlyphBatchesHead_0040CB24	Ui/UiText.cs	medium	split piece: the tail Sort_Quick(...,24) call of the previous code, falls into UiText_FlushGlyphBatches at 0x0040CB30
+func_0040CB30	0x0040CB30	UiText_FlushGlyphBatches	Ui/UiText.cs	high	draws the queued text batches D_80153820[0..D_80153800) glyph by glyph (UiFont_GetGlyphTexture per glyph id, func_00418E20 textured rect) inside the batch clip D_80153810, then empties the queue
+func_0040CDD0	0x0040CDD0	UiNode_DrawImage	Ui/Widgets.cs	high	draw of node type 3: flushes overlapping text batches, Texture_GetResourceId(n+0x2C) and a textured rect over the node rect with the context alpha
+func_0040D00C	0x0040D00C	UiNode_DrawGradientRect	Ui/Widgets.cs	high	draw of node type 6: skipped when all four corner alphas (+0x2C..+0x38) are 0; untextured rect func_00418E60 with four corner colours scaled by context alpha
+func_0040D350	0x0040D350	UiNode_DrawText	Ui/Widgets.cs	high	draw of node type 4: string (+0x38 or UiString_Get(+0x34)), font/palette pair by normal/highlight(0x40)/disabled(0x100), alignment +0x32; queues glyph quads into the text batch D_80153820
+func_0040DB84	0x0040DB84	UiNode_Draw	Ui/Widgets.cs	high	switch on node type (+0xE): 3 image, 4 text, 6 gradient rect, 8 state button, 2 screen, 1 group, else Menu_CallClassDraw
 func_0040E154	0x0040E154	UiNode_ComputeRect	Ui/Widgets.cs	medium	harvest: src/ovl_a/func_0040E154.c comment: UI node rectangle transform (screen rect and clipped rect)
-func_0040E6FC	0x0040E6FC				
-func_0040E87C	0x0040E87C				
-func_0040E914	0x0040E914				
-func_0040E958	0x0040E958				
-func_0040E980	0x0040E980				
-func_0040E9A8	0x0040E9A8				
-func_0040E9D0	0x0040E9D0				
-func_0040E9F8	0x0040E9F8				
-func_0040EA04	0x0040EA04				
-func_0040EBC8	0x0040EBC8				
-func_0040EBE8	0x0040EBE8				
-func_0040EC0C	0x0040EC0C				
-func_0040EC2C	0x0040EC2C				
-func_0040EC50	0x0040EC50				
-func_0040EC74	0x0040EC74				
+func_0040E6FC	0x0040E6FC	UiNode_DrawTopLevel	Ui/Widgets.cs	medium	called by Menu_DrawStack: if the node is visible (0x08) computes its rect, clips when context flag 0x200, then UiNode_Draw
+func_0040E87C	0x0040E87C	UiNode_DrawSiblings	Ui/Widgets.cs	high	walks a node's sibling chain (+4) calling UiNode_Draw for each visible (flag 0x08) node
+func_0040E914	0x0040E914	UiText_FlushAndResetClip	Ui/UiText.cs	medium	called by Menu_DrawStack: UiText_FlushGlyphBatches, then resets the batch clip D_80153810 to the full screen D_800E2AB0/B4
+func_0040E958	0x0040E958	UiNode_SetVisible	Ui/Widgets.cs	high	sets/clears flag 0x08 (+0x12), which every draw path requires; ~80 menu callers
+func_0040E980	0x0040E980	UiNode_SetDimmed	Ui/Widgets.cs	medium	sets/clears flag 0x01; UiNode_ComputeRect halves the draw alpha when it is set
+func_0040E9A8	0x0040E9A8	UiNode_SetHighlighted	Ui/Widgets.cs	medium	sets/clears flag 0x40 (highlight font / button state); Menu_DispatchToNode sets it on focus, UiList_RefreshItems on items
+func_0040E9D0	0x0040E9D0	UiNode_SetDisabled	Ui/Widgets.cs	high	sets/clears flag 0x100: Menu_MoveFocusDir skips such nodes and text/buttons draw their disabled variant
+func_0040E9F8	0x0040E9F8	UiNode_SetPosition	Ui/Widgets.cs	high	stores x, y halfwords at +0x14/+0x16 (the node position UiNode_ComputeRect uses)
+func_0040EA04	0x0040EA04	UiTree_HitTest	Ui/Widgets.cs	medium	recursive walk accumulating positions; stores the first node with an id whose rect contains (px,py) and whose class has a handler (Menu_GetClassHandler)
+func_0040EBC8	0x0040EBC8	UiNode_GetInheritedFlags	Ui/Widgets.cs	medium	ORs the flags (+0x12) of the node and every parent (+0)
+func_0040EBE8	0x0040EBE8	UiNode_IsVisibleInherited	Ui/Widgets.cs	medium	OR of flags over the parent chain, returns bit 0x08 (visible)
+func_0040EC0C	0x0040EC0C	UiNode_IsDimmedInherited	Ui/Widgets.cs	medium	OR of flags over the parent chain, returns bit 0x01 (dimmed)
+func_0040EC2C	0x0040EC2C	UiNode_IsHighlightedInherited	Ui/Widgets.cs	medium	OR of flags over the parent chain, returns bit 0x40 (highlighted)
+func_0040EC50	0x0040EC50	UiNode_IsDisabledInherited	Ui/Widgets.cs	medium	OR of flags over the parent chain, returns bit 0x100 (disabled); many menu callers
+func_0040EC74	0x0040EC74	UiNode_GetAbsolutePosition	Ui/Widgets.cs	high	sums x/y (+0x14/+0x16) of the node and all parents into two out pointers
 func_0040ECB0	0x0040ECB0	UiTree_FindNode	Ui/Widgets.cs	medium	harvest: port/overrides/func_0040E958.c: the menu node lookup (func_0040ECB0); func_0040ED28 is its sibling-search variant
 func_0040ED28	0x0040ED28	UiTree_FindPredecessor	Ui/Widgets.cs	medium	harvest: src/ovl_a/func_0040ED28.c comment: finds the node whose next sibling carries the given id (depth first)
 func_0040EDB8	0x0040EDB8	UiTree_ReplaceRefsCopyLinks	Ui/Widgets.cs	medium	harvest: src/ovl_a/func_0040EDB8.c comment: recursively replaces a node reference and copies the old links into the replacement
 func_0040EE64	0x0040EE64	UiTree_InsertBefore	Ui/Widgets.cs	medium	harvest: src/ovl_a/func_0040EE64.c comment: links a new node into a tree just before a given node
 func_0040EF24	0x0040EF24	UiTree_ReplaceNode	Ui/Widgets.cs	medium	harvest: src/ovl_a/func_0040EF24.c comment: puts a new node in a tree node's place, making the old one its child
 func_0040F004	0x0040F004	UiTree_ReplaceRefs	Ui/Widgets.cs	medium	harvest: src/ovl_a/func_0040F004.c comment: walks a node tree replacing every reference to one pointer with another
-func_0040F0C4	0x0040F0C4				
+func_0040F0C4	0x0040F0C4	UiTree_SwapNodes	Ui/Widgets.cs	medium	unlinks two nodes from their parents' child lists and swaps their parent/next links (each takes the other's place)
 func_0040F1E0	0x0040F1E0	Text_MeasureWidth_0040F1E0	Ui/Text.cs	low	harvest: docs/MODERNIZATION.md: text width in func_0040F1E0 (array stride bug broke every text quad)
-func_0040F27C	0x0040F27C				
-func_0040F288	0x0040F288				
-func_0040F290	0x0040F290				
-func_0040F298	0x0040F298				
-func_0040F2B0	0x0040F2B0				
-func_0040F3D0	0x0040F3D0				
-func_0040F508	0x0040F508				
-func_0040F5B4	0x0040F5B4				
-func_0040F5E8	0x0040F5E8				
-func_0040F5F0	0x0040F5F0				
-func_0040F600	0x0040F600				
-func_0040F75C	0x0040F75C				
-func_0040FA60	0x0040FA60				
+func_0040F27C	0x0040F27C	UiNode_SetFont	Ui/Widgets.cs	medium	stores two bytes at +0x2C/+0x2D: the normal font and palette of a text node (read by UiNode_DrawText)
+func_0040F288	0x0040F288	UiNode_SetImage	Ui/Widgets.cs	medium	stores word +0x2C: the image index of an image node (UiNode_DrawImage passes it to Texture_GetResourceId)
+func_0040F290	0x0040F290	UiNode_SetFloat2C_0040F290	Ui/Widgets.cs	low	stores a float at +0x2C; no callers, node type unknown
+func_0040F298	0x0040F298	UiNode_SetCornerColors	Ui/Widgets.cs	medium	stores four words +0x2C..+0x38: the corner colours UiNode_DrawGradientRect uses
+func_0040F2B0	0x0040F2B0	UiNode_DrawStateButton	Ui/Widgets.cs	medium	draw of node type 8: picks sub-node +0x34 (disabled 0x100), +0x30 (highlight 0x40) or +0x2C (normal), offsets by its position, UiNode_Draw
+func_0040F3D0	0x0040F3D0	UiNode_DrawScreen	Ui/Widgets.cs	medium	draw of node type 2: resets the render-mode cache flag D_800E2AB8, optional 0x200 clip, draws the child list
+func_0040F508	0x0040F508	Ui_IntersectRect	Ui/Widgets.cs	high	clips rect a {x0,x1,y0,y1} to rect b, forces at least 1 pixel, returns 0 when empty
+func_0040F5B4	0x0040F5B4	Ui_SetScreenSize	Ui/Widgets.cs	medium	Menu_Init: stores width-1/height-1 in D_800E2AB0/B4 and resets the text batch clip D_80153810
+func_0040F5E8	0x0040F5E8	Ui_ShutdownStub_0040F5E8	Ui/Widgets.cs	low	empty function called by Menu_Shutdown (pair of Ui_SetScreenSize)
+func_0040F5F0	0x0040F5F0	UiText_CompareGlyphs	Ui/UiText.cs	high	qsort comparator (UiNode_DrawText): difference of the u16 glyph id at +0x14 of two glyph quads
+func_0040F600	0x0040F600	UiFont_UnloadAllGlyphs	Ui/UiFont.cs	medium	for each loaded font frees every resident glyph texture (slot flag 1, 0x60 glyphs per palette block), then UiFont_FreeTextures once none remain
+func_0040F75C	0x0040F75C	UiTree_Relocate	Ui/Widgets.cs	medium	rebases a loaded screen's node pointers (parent/next/child, +0x2C..+0x38, +0x44) by new-old base, clamps image ids, resolves type-8 sub-node refs via UiScreen_GetData/UiScreen_Load
+func_0040FA60	0x0040FA60	UiString_LoadBank	Ui/UiStrings.cs	medium	frees and reads string bank idx (table D_80153C30 {offset,count}) from the archive and builds the pointer table D_80153C3C by splitting at NULs
 func_0040FC14	0x0040FC14	Image_OpenArchives	Render/Texture.cs	medium	harvest: src/ovl_a/func_0040FC14.c comment: opens image archives and allocates image, palette and cached-resource tables
-func_0041023C	0x0041023C				
-func_004104C8	0x004104C8				
+func_0041023C	0x0041023C	Image_CloseArchives	Render/Texture.cs	medium	Menu_ShutdownFrontend: releases images, unloads fonts, closes the file, frees screens/images/font blocks and every archive table, clears D_801539B0 (0x2A8)
+func_004104C8	0x004104C8	Image_EvictExpired	Render/Texture.cs	medium	per frontend frame (Menu_UpdateIdleTimer): releases one image or one font glyph texture whose expiry frame is before Menu_GetFrameCounter (not in preload mode)
 func_004106F4	0x004106F4	Texture_GetResourceId	Render/Texture.cs	medium	harvest: src/ovl_a/func_004106F4.c comment: returns a texture's resource id, loading pixels and palette when not yet loaded
-func_00410B94	0x00410B94				
-func_00410E9C	0x00410E9C				
-func_00410FD4	0x00410FD4				
-func_00410FE0	0x00410FE0				
-func_00411598	0x00411598				
-func_0041174C	0x0041174C				
-func_00411964	0x00411964				
-func_00411ABC	0x00411ABC				
-func_00411AC4	0x00411AC4				
-func_00411AD4	0x00411AD4				
-func_00411AE4	0x00411AE4				
-func_00411AF4	0x00411AF4				
-func_00411B04	0x00411B04				
-func_00411B28	0x00411B28				
-func_00411B4C	0x00411B4C				
-func_00411B68	0x00411B68				
-func_00411B70	0x00411B70				
-func_00411C28	0x00411C28				
-func_00411C68	0x00411C68				
-func_00411CA8	0x00411CA8				
-func_00411CE0	0x00411CE0				
-func_00411D18	0x00411D18				
-func_00411D50	0x00411D50				
-func_00411D88	0x00411D88				
-func_00411D90	0x00411D90				
-func_00411D98	0x00411D98				
-func_00411DF8	0x00411DF8				
-func_00411E14	0x00411E14				
-func_00411E24	0x00411E24				
-func_00411E4C	0x00411E4C				
-func_00411E70	0x00411E70				
-func_00411E98	0x00411E98				
-func_00411F6C	0x00411F6C				
-func_00411FA8	0x00411FA8				
-func_00411FB8	0x00411FB8				
-func_00411FC8	0x00411FC8				
-func_0041208C	0x0041208C				
-func_004120B8	0x004120B8				
-func_0041215C	0x0041215C				
-func_00412270	0x00412270				
-func_0041234C	0x0041234C				
-func_00412624	0x00412624				
-func_004126B4	0x004126B4				
-func_00412790	0x00412790				
-func_00412918	0x00412918				
-func_004129C0	0x004129C0				
-func_00412A70	0x00412A70				
-func_00412AD8	0x00412AD8				
-func_00412B40	0x00412B40				
-func_00412B98	0x00412B98				
-func_00412BF8	0x00412BF8				
-func_00412C40	0x00412C40				
-func_00412C8C	0x00412C8C				
-func_00412CD4	0x00412CD4				
-func_00412D20	0x00412D20				
-func_00412D5C	0x00412D5C				
-func_00412E14	0x00412E14				
-func_00412FD4	0x00412FD4				
-func_00413464	0x00413464				
-func_00413484	0x00413484				
-func_004134F8	0x004134F8				
-func_00413500	0x00413500				
-func_0041367C	0x0041367C				
-func_00413688	0x00413688				
-func_004136B4	0x004136B4				
-func_004136E0	0x004136E0				
-func_004136EC	0x004136EC				
-func_004136F8	0x004136F8				
-func_00413704	0x00413704				
-func_00413710	0x00413710				
-func_0041371C	0x0041371C				
-func_00413728	0x00413728				
-func_00413734	0x00413734				
-func_00413740	0x00413740				
-func_0041374C	0x0041374C				
-func_00413758	0x00413758				
-func_00413784	0x00413784				
-func_00413794	0x00413794				
-func_004137A0	0x004137A0				
-func_0041381C	0x0041381C				
-func_00413878	0x00413878				
-func_00413A14	0x00413A14				
-func_00413A60	0x00413A60				
+func_00410B94	0x00410B94	Image_LoadBitmap	Render/Texture.cs	medium	reads image idx pixels (+ palette, finds a transparent entry for the key colour) from the archive into a bitmap via Image_InitBitmap; copies when already resident
+func_00410E9C	0x00410E9C	Image_ReleaseAll	Render/Texture.cs	medium	for every image: mode 1 clears the counters; decrements the ref count or frees the texture (flag 1); called by Image_CloseArchives
+func_00410FD4	0x00410FD4	UiFont_GetGlyphTexture	Ui/UiFont.cs	medium	returns the texture of glyph slot in font idx / palette block: refreshes its expiry (+10 frames) or loads the font data and builds the glyph texture on demand
+func_00410FE0	0x00410FE0	UiFont_GetGlyphTextureTwin	Ui/UiFont.cs	medium	recompiled copy 12 bytes after UiFont_GetGlyphTexture's C entry, same callee set
+func_00411598	0x00411598	UiFont_FreeTextures	Ui/UiFont.cs	high	frees every resident glyph texture of font i and its pixel block (+0x304 offsets cleared), marks it unloaded
+func_0041174C	0x0041174C	UiScreen_Load	Ui/UiScreen.cs	high	Menu_GotoScreen: bumps the screen's ref count, reads its layout block from the archive (optional backup copy), UiTree_Relocate
+func_00411964	0x00411964	UiScreen_FreeAll	Ui/UiScreen.cs	medium	frees every loaded screen layout (and backup) whose ref count is 0; force ignores the keep flag; called by Image_CloseArchives
+func_00411ABC	0x00411ABC	UiScreen_EmptyStub_00411ABC	Ui/UiScreen.cs	low	empty function before UiScreen_GetCount; no callers
+func_00411AC4	0x00411AC4	UiScreen_GetCount	Ui/UiScreen.cs	high	returns D_80153C40, the screen-layout count bounded by UiScreen_IsValidId
+func_00411AD4	0x00411AD4	Image_GetEntryCount	Render/Texture.cs	high	returns D_80153C0C, the archive image count
+func_00411AE4	0x00411AE4	UiFont_GetCount	Ui/UiFont.cs	high	returns D_80153C20, the font count
+func_00411AF4	0x00411AF4	Image_GetArchiveHeaderWord_00411AF4	Render/Texture.cs	low	returns D_80153C08 (archive header word at D_801539B0+0x258); no callers
+func_00411B04	0x00411B04	Image_GetEntryWidth	Render/Texture.cs	high	returns the width halfword (+0xA) of image record i (D_80153C10, 0x1C each)
+func_00411B28	0x00411B28	Image_GetEntryHeight	Render/Texture.cs	high	returns the height halfword (+0xC) of image record i
+func_00411B4C	0x00411B4C	Image_GetEntryKeyColor	Render/Texture.cs	medium	returns D_80153C14[i], the transparent palette colour Image_LoadBitmap records (0xFF000000 when none)
+func_00411B68	0x00411B68	Image_ReturnOne_00411B68	Render/Texture.cs	low	returns 1; no callers
+func_00411B70	0x00411B70	Image_Release	Render/Texture.cs	high	decrements image i's ref count, or frees its texture (func_004196A4) and clears the resident flag when it reaches 0
+func_00411C28	0x00411C28	UiFont_GetGlyphHeight	Ui/UiFont.cs	medium	returns glyph record byte +1 (height; UiNode_DrawText uses it as the quad height) of glyph a in font i
+func_00411C68	0x00411C68	UiFont_GetGlyphPitch_00411C68	Ui/UiFont.cs	low	returns glyph record byte +2 (the texture row width UiFont_GetGlyphTexture uses) of glyph a in font i
+func_00411CA8	0x00411CA8	UiFont_GetMetricE_00411CA8	Ui/UiFont.cs	low	returns font metadata halfword +0xE; no callers
+func_00411CE0	0x00411CE0	UiFont_GetSpacing	Ui/UiFont.cs	medium	returns font metadata +0x10, added to each glyph advance by UiNode_DrawText
+func_00411D18	0x00411D18	UiFont_GetBaseline	Ui/UiFont.cs	medium	returns font metadata +0xA, the top offset UiNode_DrawText subtracts from the text y
+func_00411D50	0x00411D50	UiFont_GetLineHeight	Ui/UiFont.cs	medium	returns font metadata +0xC, the text height used for vertical alignment
+func_00411D88	0x00411D88	UiFont_ReturnOne_00411D88	Ui/UiFont.cs	low	returns 1; no callers
+func_00411D90	0x00411D90	UiFont_ReturnOne_00411D90	Ui/UiFont.cs	low	returns 1; no callers
+func_00411D98	0x00411D98	UiFont_FreeAll	Ui/UiFont.cs	medium	unless fonts are preloaded (mode 1) calls UiFont_FreeTextures for every font; called by Image_CloseArchives
+func_00411DF8	0x00411DF8	UiString_Get	Ui/UiStrings.cs	high	returns D_80153C3C[i] from the loaded string bank; UiNode_DrawText and PlayerMenu_RefreshPanel use it for text ids
+func_00411E14	0x00411E14	UiString_GetBankCount	Ui/UiStrings.cs	medium	returns D_80153C2C, the string bank count (table D_80153C30)
+func_00411E24	0x00411E24	UiString_SelectBank	Ui/UiStrings.cs	medium	if any string banks exist, UiString_LoadBank(idx)
+func_00411E4C	0x00411E4C	UiScreen_GetData	Ui/UiScreen.cs	high	returns the loaded layout pointer of screen i (D_80153C44[i].p); used with UiTree_FindNode by the menu core
+func_00411E70	0x00411E70	UiScreen_IsValidId	Ui/UiScreen.cs	high	0 <= i < D_80153C40
+func_00411E98	0x00411E98	UiScreen_Release	Ui/UiScreen.cs	high	Menu_GotoScreen/Menu_PopScreen: decrements the ref count and frees the layout (and backup) at 0
+func_00411F6C	0x00411F6C	Image_InitArchives	Render/Texture.cs	medium	Menu_Init: clears the archive context D_801539B0 (0x2A8 bytes), init flag D_800E2AC0 = 1, backup flag D_800E2AC4 = 0
+func_00411FA8	0x00411FA8	Image_ClearInitFlag	Render/Texture.cs	medium	Menu_Shutdown: D_800E2AC0 = 0 (pair of Image_InitArchives)
+func_00411FB8	0x00411FB8	UiScreen_SetKeepBackups	Ui/UiScreen.cs	medium	sets D_800E2AC4, which makes UiScreen_Load keep a pristine copy of each layout (D_80153C48)
+func_00411FC8	0x00411FC8	Image_PreloadAll	Render/Texture.cs	medium	sets preload mode, loads every screen layout, every image (Texture_GetResourceId mode 2) and every font
+func_0041208C	0x0041208C	UiFont_Get	Ui/UiFont.cs	high	returns &D_80153C28[i] (0x49C-byte font record); UiNode_DrawText
+func_004120B8	0x004120B8	Image_ReleaseUnused	Render/Texture.cs	medium	Image_Release for every resident image whose ref count is 0
+func_0041215C	0x0041215C	UiTree_LoadImages	Ui/Widgets.cs	medium	recursive over a node tree: image nodes (type 3) are loaded (Texture_GetResourceId mode 3) or released (Image_Release); recurses into type-8 state sub-nodes
+func_00412270	0x00412270	UiGrid_ClampCursor	Ui/Grid.cs	medium	clamps the grid cursor (+0x4C/+0x4D) to rows/cols and the header, scrolls (+0x4E/+0x4F) to keep it inside the visible window
+func_0041234C	0x0041234C	UiGrid_BuildCell	Ui/Grid.cs	medium	fills a temporary text node for cell (row,col): header/body/cursor fonts, position from column widths/row heights, text from the cell table +0x44
+func_00412624	0x00412624	UiGrid_HandleMessage	Ui/Grid.cs	medium	class handler: dispatches through table D_800E2AD0 (msgs 5/6/7/8 cursor moves, 0xE03 destroy)
+func_004126B4	0x004126B4	UiGrid_Draw	Ui/Grid.cs	high	for every visible row/col builds the cell (UiGrid_BuildCell) and draws it with UiNode_DrawText
+func_00412790	0x00412790	UiGrid_Create	Ui/Grid.cs	medium	replaces template node id with a 0x60-byte type-0xB grid node (visible cols/rows, rows, cols, header rows/cols) plus an 8-byte-per-cell table
+func_00412918	0x00412918	UiGrid_SetCell	Ui/Grid.cs	medium	writes the two words of cell (row,col) of grid node id
+func_004129C0	0x004129C0	UiGrid_GetCell	Ui/Grid.cs	medium	reads the two words of cell (row,col) of grid node id
+func_00412A70	0x00412A70	UiGrid_SetFonts	Ui/Grid.cs	medium	sets the header (+0x52), body (+0x54) and cursor (+0x56) fonts of grid node id
+func_00412AD8	0x00412AD8	UiGrid_SetPalettes	Ui/Grid.cs	medium	sets the header (+0x53), body (+0x55) and cursor (+0x57) palettes of grid node id
+func_00412B40	0x00412B40	UiGrid_SetSizeTables	Ui/Grid.cs	medium	stores the column-width (+0x58) and row-height (+0x5C) tables used by UiGrid_BuildCell
+func_00412B98	0x00412B98	UiGrid_GetCursor	Ui/Grid.cs	high	returns the cursor row (+0x4C) and column (+0x4D) of grid node id
+func_00412BF8	0x00412BF8	UiGrid_OnUp	Ui/Grid.cs	high	message 5 (table D_800E2AD0): cursor row - 1 while below the header rows, clamp, consume
+func_00412C40	0x00412C40	UiGrid_OnDown	Ui/Grid.cs	high	message 6: cursor row + 1 up to the row count, clamp, consume
+func_00412C8C	0x00412C8C	UiGrid_OnLeft	Ui/Grid.cs	high	message 7: cursor column - 1 while right of the header columns, clamp, consume
+func_00412CD4	0x00412CD4	UiGrid_OnRight	Ui/Grid.cs	high	message 8: cursor column + 1 up to the column count, clamp, consume
+func_00412D20	0x00412D20	UiGrid_OnDestroy	Ui/Grid.cs	high	message 0xE03: frees the cell table (+0x44) and the node
+func_00412D5C	0x00412D5C	Image_FindPixelFormat	Render/Texture.cs	medium	searches the 36-entry pixel format table D_800E2B20 for the entry with matching bit depths and channel masks, returns its index
+func_00412E14	0x00412E14	Image_ConvertColor	Render/Texture.cs	medium	unpacks a colour with format ia's masks/shifts to ARGB and repacks it for format ib
+func_00412FD4	0x00412FD4	Image_BindSurfaces	Render/Texture.cs	high	selects the destination (a) and source (b) bitmaps for pixel ops: format masks/shifts and the read/write hooks D_80153CD0..CDC by bit depth
+func_00413464	0x00413464	Image_ClearBitmap	Render/Texture.cs	high	Mem_Fill(bitmap, 0, 0x20)
+func_00413484	0x00413484	Image_FreeBitmap	Render/Texture.cs	high	frees the owned pixels (flag 1) and palette (flag 2) and clears the 0x20-byte bitmap
+func_004134F8	0x004134F8	Image_ReturnZero_004134F8	Render/Texture.cs	low	returns 0; no callers
+func_00413500	0x00413500	Image_CopyBitmap	Render/Texture.cs	high	frees dst, copies the header, allocates and copies pixels (+0x18) and palette (+0x14); returns 1 on allocation failure
+func_0041367C	0x0041367C	Image_GetFormat	Render/Texture.cs	high	returns bitmap byte +0 (pixel format index)
+func_00413688	0x00413688	Image_GetBitsPerPixel	Render/Texture.cs	medium	pixel format table entry word 2 (D_800E2B28) for the bitmap's format
+func_004136B4	0x004136B4	Image_GetPaletteBits	Render/Texture.cs	medium	pixel format table word 3 (D_800E2B2C): palette entry bit depth for the bitmap's format
+func_004136E0	0x004136E0	Image_GetPaletteCount	Render/Texture.cs	medium	returns halfword +2 (palette entry count, the last Image_InitBitmap argument)
+func_004136EC	0x004136EC	Image_GetWidth	Render/Texture.cs	high	returns bitmap halfword +4 (width)
+func_004136F8	0x004136F8	Image_GetHeight	Render/Texture.cs	high	returns bitmap halfword +6 (height)
+func_00413704	0x00413704	Image_GetPitch	Render/Texture.cs	medium	returns halfword +8 (row length in pixels used for x + y * pitch addressing)
+func_00413710	0x00413710	Image_GetRowCount	Render/Texture.cs	medium	returns halfword +0xA (allocated rows)
+func_0041371C	0x0041371C	Image_GetPaletteSize	Render/Texture.cs	high	returns word +0x10 (palette byte size, used by Image_CopyBitmap)
+func_00413728	0x00413728	Image_GetPixelDataSize	Render/Texture.cs	high	returns word +0xC (pixel byte size, used by Image_CopyBitmap)
+func_00413734	0x00413734	Image_GetPixels	Render/Texture.cs	high	returns word +0x18 (pixel data pointer)
+func_00413740	0x00413740	Image_GetPalette	Render/Texture.cs	high	returns word +0x14 (palette pointer)
+func_0041374C	0x0041374C	Image_HasPalette	Render/Texture.cs	high	palette size +0x10 > 0
+func_00413758	0x00413758	Image_HasAlpha	Render/Texture.cs	medium	pixel format table alpha mask (D_800E2B40, word 8) != 0 for the bitmap's format
+func_00413784	0x00413784	Image_OwnsPalette	Render/Texture.cs	high	flag byte +1 bit 1 (palette freed by Image_FreeBitmap)
+func_00413794	0x00413794	Image_OwnsPixels	Render/Texture.cs	high	flag byte +1 bit 0 (pixels freed by Image_FreeBitmap)
+func_004137A0	0x004137A0	Image_InitBitmap	Render/Texture.cs	high	fills the 0x20-byte bitmap: format, width, height, pitch, rows, sizes, pixel/palette pointers, owns-pixels/owns-palette flags
+func_0041381C	0x0041381C	Image_GetPixelFormatInfo	Render/Texture.cs	high	copies the 0x34-byte pixel format table entry i (D_800E2B20) to dst
+func_00413878	0x00413878	Image_GetPixelColor	Render/Texture.cs	medium	source pixel (x + y * pitch) read through the index and colour hooks, unpacked to 0xAARRGGBB (alpha 0xFF when the format has none)
+func_00413A14	0x00413A14	Image_GetPixelIndex	Render/Texture.cs	medium	reads the raw source pixel value at x + y * pitch through the read hook D_80153CD8
+func_00413A60	0x00413A60	Image_GetPaletteColor	Render/Texture.cs	medium	source palette entry idx through the colour hook D_80153CD0, unpacked to 0xAARRGGBB
 func_00413BD4	0x00413BD4	Image_SetPixel	Render/Texture.cs	medium	harvest: src/ovl_a/func_00413BD4.c comment: writes a 0xAARRGGBB colour to the pixel (x, y) of the current target image
-func_00413D14	0x00413D14				
-func_00413D60	0x00413D60				
-func_00413E88	0x00413E88				
-func_00413F60	0x00413F60				
-func_0041404C	0x0041404C				
-func_00414078	0x00414078				
-func_004140A4	0x004140A4				
-func_004140EC	0x004140EC				
-func_00414114	0x00414114				
-func_0041413C	0x0041413C				
-func_004141B8	0x004141B8				
-func_004141E8	0x004141E8				
-func_00414240	0x00414240				
-func_00414260	0x00414260				
-func_00414280	0x00414280				
-func_004142A0	0x004142A0				
-func_004142C4	0x004142C4				
-func_0041432C	0x0041432C				
-func_004143C8	0x004143C8				
-func_004143E0	0x004143E0				
-func_00414404	0x00414404				
+func_00413D14	0x00413D14	Image_SetPixelIndex	Render/Texture.cs	medium	writes a raw index at x + y * pitch of the destination bitmap through the hook D_80153CDC
+func_00413D60	0x00413D60	Image_SetPaletteColor	Render/Texture.cs	medium	packs an 0xAARRGGBB colour to the destination format and stores palette entry idx through the hook D_80153CD4
+func_00413E88	0x00413E88	Image_PackColor	Render/Texture.cs	high	0xAARRGGBB to the packed value of pixel format idx (shifts/masks of D_800E2B20)
+func_00413F60	0x00413F60	Image_UnpackColor	Render/Texture.cs	high	packed value of pixel format idx to 0xAARRGGBB
+func_0041404C	0x0041404C	Image_ReadColor16	Render/Texture.cs	high	source colour hook: D_80153C68 = u16 entry D_80153C60 of the source palette/pixels
+func_00414078	0x00414078	Image_ReadColor32	Render/Texture.cs	high	source colour hook: 32-bit entry
+func_004140A4	0x004140A4	Image_ReadColor24	Render/Texture.cs	high	source colour hook: 3-byte RGB entry
+func_004140EC	0x004140EC	Image_WriteColor16	Render/Texture.cs	high	destination colour hook: stores u16 D_80153C76 at index D_80153C6C
+func_00414114	0x00414114	Image_WriteColor32	Render/Texture.cs	high	destination colour hook: stores the 32-bit value D_80153C74
+func_0041413C	0x0041413C	Image_WriteColor24	Render/Texture.cs	high	destination colour hook: stores 3 bytes D_80153C75..77
+func_004141B8	0x004141B8	Image_ReadIndex8	Render/Texture.cs	high	source pixel hook: byte at D_80153C78 -> D_80153C80 and the colour index D_80153C60
+func_004141E8	0x004141E8	Image_ReadIndex4	Render/Texture.cs	high	source pixel hook: high/low nibble by index parity
+func_00414240	0x00414240	Image_ReadDirect16	Render/Texture.cs	medium	source pixel hook for 16-bit direct colour: passes the index through (selected for bit depth 16)
+func_00414260	0x00414260	Image_ReadDirect24	Render/Texture.cs	medium	source pixel hook for 24-bit direct colour (identical body, selected for bit depth 24)
+func_00414280	0x00414280	Image_ReadDirect32	Render/Texture.cs	medium	source pixel hook for 32-bit direct colour (identical body, selected for bit depth 32)
+func_004142A0	0x004142A0	Image_WriteIndex8	Render/Texture.cs	high	destination pixel hook: byte D_80153C8F at D_80153C84
+func_004142C4	0x004142C4	Image_WriteIndex4	Render/Texture.cs	high	destination pixel hook: writes the nibble by index parity
+func_0041432C	0x0041432C	Debug_FormatAssertMessage	Debug/Debug.cs	medium	formats '[ %s : %d ]' (file or 'UNKNOWN', line) then the vprintf message into D_80153D60
+func_004143C8	0x004143C8	Debug_GetAssertMessage	Debug/Debug.cs	medium	returns the buffer D_80153D60 filled by Debug_FormatAssertMessage
+func_004143E0	0x004143E0	Menu_InitFileAndMath	Menus/MenuCore.cs	high	Menu_InitFrontend: File_Init then Math_Init
+func_00414404	0x00414404	Menu_ShutdownFileAndMath	Menus/MenuCore.cs	high	Menu_ShutdownFrontend: Math_Shutdown then File_Shutdown
 func_00414430	0x00414430	Time_GetSeconds	System/Threads.cs	high	harvest: FINDINGS: func_00414430: return (double)osGetTime() / (double)osClockRate
-func_0041447C	0x0041447C				
+func_0041447C	0x0041447C	Printf_FormatDoubleHead_0041447C	Lib/LibC.cs	medium	1-instruction split piece just before Printf_FormatDouble (0x00414480), falls into it
 func_00414480	0x00414480	Printf_FormatDouble	Lib/LibC.cs	high	harvest: C git 66fb668 (fmtDouble) + src comment: printf-style double formatter used by the vfprintf clone func_00414D4C
 func_00414D4C	0x00414D4C	Printf_VFormat	Lib/LibC.cs	medium	harvest: src/ovl_a/func_00414480.c comment: the vfprintf clone func_00414D4C
-func_00415C9C	0x00415C9C				
-func_00415D04	0x00415D04				
+func_00415C9C	0x00415C9C	Debug_HaltFlashScreen	Debug/Debug.cs	medium	endless loop toggling osViBlack with a counter bit (n is never 5): visual halt
+func_00415D04	0x00415D04	Ui_DrawClippedQuadHead_00415D04	Ui/Widgets.cs	medium	3-instruction split piece just before Ui_DrawClippedQuad (0x00415D10)
 func_00415D10	0x00415D10	Ui_DrawClippedQuad	Ui/Widgets.cs	medium	harvest: src/ovl_a/func_00415D10.c comment: clips a screen rectangle to the viewport, draws it as outline or two triangles
-func_00416D74	0x00416D74				
-func_00416F4C	0x00416F4C				
-func_004170B4	0x004170B4				
-func_004171B8	0x004171B8				
-func_004173FC	0x004173FC				
-func_00417574	0x00417574				
-func_00417BA0	0x00417BA0				
+func_00416D74	0x00416D74	Gfx_SetUiCombineMode	Render/RenderMode.cs	medium	cached (D_800E32C0) mode 1..5: pipe sync, SetOtherMode_H and a G_SETCOMBINE (0xFC) variant chosen by D_80153F6C; callers are the UI rect drawers
+func_00416F4C	0x00416F4C	Gfx_SetUiVertexMode_00416F4C	Render/RenderMode.cs	low	cached (D_800E32C8); mode 9 loads 4 identical vertices at a transformed (0,0,z) point and G_MODIFYVTX on each; callers func_00417BA0, func_00418E60
+func_004170B4	0x004170B4	Gfx_SelectRenderMode	Render/RenderMode.cs	medium	mode 11/12 (cached in D_800E32CC): builds a flag mask from the D_80153F60..F70 settings and applies it with Gfx_ApplyRenderFlags; forced to 11 when D_80153F64 is 0
+func_004171B8	0x004171B8	Gfx_ApplyRenderFlags	Render/RenderMode.cs	medium	decodes nibble flags, resets the state cache, emits pipe sync, 1-cycle othermode H, geometry mode (+Z-buffer) and one of four othermode-L render modes (0xE200001C)
+func_004173FC	0x004173FC	Gfx_LoadPalette	Render/RenderMode.cs	high	when the palette address differs from cached D_800E32D8: TLUT mode + SetTImage + LoadTLUT of 16 entries (fmt 4) or 256 entries (fmt 8); fmt 16 turns TLUT off
+func_00417574	0x00417574	Gfx_LoadTextureImage	Render/RenderMode.cs	high	binds an image record (D_800E32A4, size, format via func_00413688), loads its palette (Gfx_LoadPalette) and emits SetTImage/LoadBlock/SetTile/SetTileSize per 4/8/16-bit format; NULL clears
+func_00417BA0	0x00417BA0	Gfx_DrawTexturedRect	Render/Sprites.cs	medium	draws x,y,w,h with uv (u0,v0,u1,v1) and colour: clips to Ui_GetClipRect adjusting the uvs, emits Gfx_EmitTexRect or Gfx_DrawTexRectStrips; without texture draws Ui_DrawClippedQuad
 func_00418224	0x00418224	Gfx_DrawTexRectStrips	Render/Sprites.cs	medium	harvest: C git 9186acc: Match func_00418224 (draw_texrect_strips)
-func_00418E20	0x00418E20				
-func_00418E60	0x00418E60				
-func_0041900C	0x0041900C				
+func_00418E20	0x00418E20	Gfx_DrawTexturedRectFullUv	Render/Sprites.cs	medium	wrapper: Gfx_DrawTexturedRect with uv 0,0..1,1
+func_00418E60	0x00418E60	Gfx_DrawFilledRect	Render/Sprites.cs	medium	untextured path of Gfx_DrawTexturedRect: render mode 12, combine 5, modes A7/BE, Ui_DrawClippedQuad with four colours
+func_0041900C	0x0041900C	Gfx_ResetStateCache	Render/RenderMode.cs	medium	when dirty flag D_800E32A0 is set zeroes the cached render state words D_800E32C0..D_800E32E0 (mode, palette, colour); caller Ui_ResetModeCache_002A28FC
 func_00419074	0x00419074	Gfx_SetModeA_00419074	Render/RenderMode.cs	low	harvest: FINDINGS: display-list render-state inline helper SetModeA
 func_00419144	0x00419144	Gfx_SetModeB_00419144	Render/RenderMode.cs	low	harvest: FINDINGS: display-list render-state inline helper SetModeB
 func_00419224	0x00419224	Gfx_PipeSyncOnce	Render/RenderMode.cs	medium	harvest: FINDINGS: inline helpers func_00419224 PipeSyncOnce, func_00419074 SetModeA, func_00419144 SetModeB
-func_00419268	0x00419268				
-func_00419278	0x00419278				
-func_004192F8	0x004192F8				
-func_004194A8	0x004194A8				
+func_00419268	0x00419268	Gfx_ClearPipeSyncFlag	Render/RenderMode.cs	medium	D_800E32E4 = 0 (the flag set when a pipe sync 0xE7 is emitted; see Gfx_PipeSyncOnce)
+func_00419278	0x00419278	Gfx_SetEnvPrimColor	Render/RenderMode.cs	high	caches 0xAARRGGBB in D_800E32DC and emits SetEnvColor (0xFB) and SetPrimColor (0xFA) from it
+func_004192F8	0x004192F8	Gfx_EmitTexRect	Render/Sprites.cs	high	emits TEXRECT (0xE4) + 0xE1/0xF1 words with s/t and dsdx/dtdy computed from the bound image size D_800E32A4
+func_004194A8	0x004194A8	Gfx_StrayEpilogue_004194A8	Render/Sprites.cs	low	orphan 2-instruction epilogue (jr ra; sp += 24) between Gfx_EmitTexRect and Gfx_PushMatrixF; no callers
 func_004194B0	0x004194B0	Gfx_PushMatrixF	Render/RenderMode.cs	medium	harvest: code: guMtxF2L into a 64-byte allocation and emits G_MTX (0xDA380003) with it
-func_00419510	0x00419510				
-func_00419688	0x00419688				
-func_004196A4	0x004196A4				
-func_004196C0	0x004196C0				
-func_00419748	0x00419748				
-func_00419758	0x00419758				
-func_00419760	0x00419760				
-func_0041991C	0x0041991C				
-func_0041994C	0x0041994C				
-func_00419A5C	0x00419A5C				
-func_00419A64	0x00419A64				
-func_00419A6C	0x00419A6C				
-func_00419A78	0x00419A78				
-func_00419A84	0x00419A84				
-func_00419A8C	0x00419A8C				
-func_00419A98	0x00419A98				
-func_00419AA8	0x00419AA8				
-func_00419ABC	0x00419ABC				
-func_00419ACC	0x00419ACC				
-func_00419B5C	0x00419B5C				
-func_00419B6C	0x00419B6C				
-func_00419B8C	0x00419B8C				
-func_00419B90	0x00419B90				
-func_00419D04	0x00419D04				
-func_00419EA4	0x00419EA4				
-func_00419ED4	0x00419ED4				
-func_00419F98	0x00419F98				
-func_00419FA4	0x00419FA4				
-func_00419FB8	0x00419FB8				
-func_00419FD8	0x00419FD8				
-func_0041A01C	0x0041A01C				
-func_0041A0AC	0x0041A0AC				
-func_0041A0BC	0x0041A0BC				
-func_0041A0DC	0x0041A0DC				
-func_0041A0E0	0x0041A0E0				
-func_0041A300	0x0041A300				
-func_0041A480	0x0041A480				
-func_0041A4B0	0x0041A4B0				
-func_0041A4F0	0x0041A4F0				
-func_0041A4FC	0x0041A4FC				
-func_0041A508	0x0041A508				
-func_0041A510	0x0041A510				
-func_0041A5A0	0x0041A5A0				
-func_0041A5B0	0x0041A5B0				
-func_0041A5D0	0x0041A5D0				
-func_0041A600	0x0041A600				
-func_0041A760	0x0041A760				
-func_0041A76C	0x0041A76C				
-func_0041A7A4	0x0041A7A4				
-func_0041A834	0x0041A834				
-func_0041A968	0x0041A968				
-func_0041A990	0x0041A990				
-func_0041A9C0	0x0041A9C0				
-func_0041A9F8	0x0041A9F8				
-func_0041AA30	0x0041AA30				
-func_0041AA90	0x0041AA90				
-func_0041AB00	0x0041AB00				
-func_0041AB70	0x0041AB70				
-func_0041AB9C	0x0041AB9C				
-func_0041ABF0	0x0041ABF0				
-func_0041AC10	0x0041AC10				
-func_0041AC40	0x0041AC40				
-func_0041AD84	0x0041AD84				
-func_0041AD90	0x0041AD90				
-func_0041ADB4	0x0041ADB4				
-func_0041ADFC	0x0041ADFC				
-func_0041AE8C	0x0041AE8C				
-func_0041AFC0	0x0041AFC0				
-func_0041AFF0	0x0041AFF0				
-func_0041B020	0x0041B020				
-func_0041B078	0x0041B078				
-func_0041B0DC	0x0041B0DC				
-func_0041B140	0x0041B140				
-func_0041B160	0x0041B160				
-func_0041B190	0x0041B190				
-func_0041B2AC	0x0041B2AC				
-func_0041B3C0	0x0041B3C0				
-func_0041B450	0x0041B450				
-func_0041B584	0x0041B584				
-func_0041B5B4	0x0041B5B4				
-func_0041B5E4	0x0041B5E4				
-func_0041B63C	0x0041B63C				
-func_0041B65C	0x0041B65C				
-func_0041B660	0x0041B660				
-func_0041B690	0x0041B690				
-func_0041B768	0x0041B768				
-func_0041B834	0x0041B834				
-func_0041B844	0x0041B844				
-func_0041B87C	0x0041B87C				
-func_0041B890	0x0041B890				
-func_0041B8A8	0x0041B8A8				
-func_0041B95C	0x0041B95C				
-func_0041B9E8	0x0041B9E8				
-func_0041B9F0	0x0041B9F0				
-func_0041BA80	0x0041BA80				
-func_0041BBB4	0x0041BBB4				
-func_0041BBBC	0x0041BBBC				
-func_0041BC50	0x0041BC50				
-func_0041BCE4	0x0041BCE4				
-func_0041BD78	0x0041BD78				
-func_0041BE0C	0x0041BE0C				
-func_0041BE88	0x0041BE88				
+func_00419510	0x00419510	Image_SwapOddRowWords	Render/Texture.cs	medium	when D_800E32F0 is set swaps each pair of 32-bit words on odd rows of the image (TMEM interleave), even rows copied; row size from the pixel format
+func_00419688	0x00419688	Image_Clear	Render/Texture.cs	medium	wrapper: func_00413464 (memset of the 0x20-byte image record); caller Image_OpenArchives
+func_004196A4	0x004196A4	Image_Free	Render/Texture.cs	medium	wrapper: func_00413484 frees the pixel (+0x18) and palette (+0x14) buffers by flags and clears the record
+func_004196C0	0x004196C0	Image_Copy	Render/Texture.cs	medium	func_00413500 copies the source image (new buffers) into the destination, then large images (>0x800/0x1000 bytes) get Image_SwapOddRowWords; caller Texture_GetResourceId
+func_00419748	0x00419748	Image_SetRowSwapEnabled	Render/Texture.cs	medium	D_800E32F0 = v (the enable flag tested by Image_SwapOddRowWords)
+func_00419758	0x00419758	Image_StrayEpilogue_00419758	Render/Texture.cs	low	orphan 2-instruction epilogue (jr ra; sp += 40) between Image_SetRowSwapEnabled and ColorCycle_Update; no callers
+func_00419760	0x00419760	ColorCycle_Update	Ui/ColorCycle.cs	medium	msg 0xE08 of widget class 0xB5F (table D_800E3300): steps an index through a colour table into node +0x2C every period; flags 1 forward, 4 pause, 8 loop, 0x10 ping-pong, 0x20 repeat count
+func_0041991C	0x0041991C	ColorCycle_RegisterType	Ui/ColorCycle.cs	high	Menu_RegisterClass(0xB5F, ColorCycle_HandleMessage, ColorCycle_Draw); called from Menu_InitFrontend
+func_0041994C	0x0041994C	ColorCycle_Create	Ui/ColorCycle.cs	medium	allocates the 0x64-byte class 0xB5F object on node id a with a -1-terminated colour table (counted), flags 1, links it (UiTree_InsertBefore)
+func_00419A5C	0x00419A5C	ColorCycle_SetIndex	Ui/ColorCycle.cs	high	+0x4C = v (current table index used by ColorCycle_Update)
+func_00419A64	0x00419A64	ColorCycle_SetPeriod	Ui/ColorCycle.cs	medium	+0x58 = v (frames per step, compared with timer +0x54)
+func_00419A6C	0x00419A6C	ColorCycle_GetIndex	Ui/ColorCycle.cs	high	returns +0x4C
+func_00419A78	0x00419A78	ColorCycle_GetCount	Ui/ColorCycle.cs	high	returns +0x50 (table length counted in ColorCycle_Create)
+func_00419A84	0x00419A84	ColorCycle_SetRepeatCount	Ui/ColorCycle.cs	medium	+0x60 = v (decremented per wrap with flag 0x20)
+func_00419A8C	0x00419A8C	ColorCycle_GetRepeatCount	Ui/ColorCycle.cs	medium	returns +0x60
+func_00419A98	0x00419A98	ColorCycle_SetFlags	Ui/ColorCycle.cs	high	flags +0x5C |= v
+func_00419AA8	0x00419AA8	ColorCycle_ClearFlags	Ui/ColorCycle.cs	high	flags +0x5C &= ~v
+func_00419ABC	0x00419ABC	ColorCycle_TestFlags	Ui/ColorCycle.cs	high	returns (flags +0x5C & v) != 0
+func_00419ACC	0x00419ACC	ColorCycle_HandleMessage	Ui/ColorCycle.cs	high	dispatches (msg, class) through table D_800E3300 (0xE03 ColorCycle_OnDestroy, 0xE08 ColorCycle_Update)
+func_00419B5C	0x00419B5C	ColorCycle_Draw	Ui/ColorCycle.cs	high	empty draw callback registered by ColorCycle_RegisterType
+func_00419B6C	0x00419B6C	ColorCycle_OnDestroy	Ui/ColorCycle.cs	high	msg 0xE03 of table D_800E3300: frees the widget (ResourcePool_MallocFree)
+func_00419B8C	0x00419B8C	Flicker_Update	Ui/Flicker.cs	medium	C body of the class 0xB62 msg 0xE08 handler: while running, after a countdown a 2% chance per frame starts a burst of random alpha dips (cue 0xE75), then restores base alpha and rerolls (Flicker_Randomize)
+func_00419B90	0x00419B90	Flicker_UpdateTwin	Ui/Flicker.cs	medium	MIPS entry 4 bytes after Flicker_Update's stray 'li v0,2'; the entry table D_800E3330 uses for msg 0xE08
+func_00419D04	0x00419D04	Flicker_Randomize	Ui/Flicker.cs	medium	sets burst length n (or random 1..5) with step durations 1..3 and alpha values base-30..70 clamped to 0..255 (Random_Next)
+func_00419EA4	0x00419EA4	Flicker_RegisterType	Ui/Flicker.cs	high	Menu_RegisterClass(0xB62, Flicker_HandleMessage, Flicker_Draw); called from Menu_InitFrontend
+func_00419ED4	0x00419ED4	Flicker_Create	Ui/Flicker.cs	medium	allocates the 0x88-byte class 0xB62 object on node id a with base alpha arg1 (also stored into the node), Flicker_Randomize(-1), Flicker_Start, links it
+func_00419F98	0x00419F98	Flicker_Start	Ui/Flicker.cs	medium	state +0x84 = 1 (Flicker_Update only runs in state 1)
+func_00419FA4	0x00419FA4	Flicker_Stop	Ui/Flicker.cs	medium	state +0x84 = 0 and node alpha back to base +0x80
+func_00419FB8	0x00419FB8	Flicker_IsSteady	Ui/Flicker.cs	medium	returns 1 when stopped or not inside a dip burst (flag +0x44 == 0)
+func_00419FD8	0x00419FD8	Flicker_Trigger	Ui/Flicker.cs	medium	Flicker_Randomize(n), starts the burst now (flag 1) and applies the first dip alpha
+func_0041A01C	0x0041A01C	Flicker_HandleMessage	Ui/Flicker.cs	high	dispatches through table D_800E3330 (0xE03 Flicker_OnDestroy, 0xE08 Flicker_UpdateTwin)
+func_0041A0AC	0x0041A0AC	Flicker_Draw	Ui/Flicker.cs	high	empty draw callback registered by Flicker_RegisterType
+func_0041A0BC	0x0041A0BC	Flicker_OnDestroy	Ui/Flicker.cs	high	msg 0xE03 of table D_800E3330: frees the widget
+func_0041A0DC	0x0041A0DC	PopupPanel_Update	Ui/PopupPanel.cs	medium	class 0xB60 per-frame: state 1 grows node scale x (+0x20) to 1 then y (+0x24) to 1 and sets state 3; state 2 shrinks y to 0.05 then x to 0 and sets state 4
+func_0041A0E0	0x0041A0E0	PopupPanel_UpdateTwin	Ui/PopupPanel.cs	medium	MIPS entry 4 bytes into PopupPanel_Update; the entry table D_800E3360 uses for msg 0xE08
+func_0041A300	0x0041A300	PopupPanel_Create	Ui/PopupPanel.cs	medium	allocates the 0x7C-byte class 0xB60 object on node a with colour node b, speeds 1/3, scale (0, 0.05), colour steps /75, enables it and opens it (PopupPanel_SetState 1)
+func_0041A480	0x0041A480	PopupPanel_RegisterType	Ui/PopupPanel.cs	high	Menu_RegisterClass(0xB60, PopupPanel_HandleMessage, PopupPanel_Draw); called from Menu_InitFrontend
+func_0041A4B0	0x0041A4B0	PopupPanel_SetState	Ui/PopupPanel.cs	high	state +0x58 = v; 1 (open) plays cue 0xE77, 2 (close) plays cue 0xE76
+func_0041A4F0	0x0041A4F0	PopupPanel_GetState	Ui/PopupPanel.cs	medium	returns +0x58 (3 = fully open, 4 = closed, set by PopupPanel_Update)
+func_0041A4FC	0x0041A4FC	PopupPanel_Enable	Ui/PopupPanel.cs	medium	+0x5C = 1 (PopupPanel_Update only animates while it is 1)
+func_0041A508	0x0041A508	PopupPanel_Disable	Ui/PopupPanel.cs	medium	+0x5C = 0
+func_0041A510	0x0041A510	PopupPanel_HandleMessage	Ui/PopupPanel.cs	high	dispatches through table D_800E3360 (0xE03 PopupPanel_OnDestroy, 0xE08 PopupPanel_UpdateTwin)
+func_0041A5A0	0x0041A5A0	PopupPanel_Draw	Ui/PopupPanel.cs	high	empty draw callback registered by PopupPanel_RegisterType
+func_0041A5B0	0x0041A5B0	PopupPanel_OnDestroy	Ui/PopupPanel.cs	high	msg 0xE03 of table D_800E3360: frees the widget
+func_0041A5D0	0x0041A5D0	Slider_RegisterType	Ui/Slider.cs	high	Menu_RegisterClass(0xB63, Slider_HandleMessage, Slider_Draw); called from Menu_InitFrontend
+func_0041A600	0x0041A600	Slider_Create	Ui/Slider.cs	medium	replaces node a by a 0x58-byte class 0xB63 widget whose bar node b width (+0x18) is the full width; max = arg, value 0 (UiTree_ReplaceNode/ReplaceRefs)
+func_0041A760	0x0041A760	Slider_GetValue	Ui/Slider.cs	high	returns +0x50 (the value Slider_SetValue stores)
+func_0041A76C	0x0041A76C	Slider_SetValue	Ui/Slider.cs	high	value +0x50 = v; bar node width = v / max * full width
+func_0041A7A4	0x0041A7A4	Slider_HandleMessage	Ui/Slider.cs	high	dispatches through table D_800E3390 (0xE07/focus/blur/right/left/destroy/release/update handlers of class 0xB63)
+func_0041A834	0x0041A834	Slider_Draw	Ui/Slider.cs	medium	draw callback: UiNode_ComputeRect, with flag 0x200 narrows the clip rect while drawing the children, then restores it (as NumberField_Draw)
+func_0041A968	0x0041A968	Slider_Decrement	Ui/Slider.cs	high	value > 0 -> Slider_SetValue(value - 1)
+func_0041A990	0x0041A990	Slider_Increment	Ui/Slider.cs	high	value < max -> Slider_SetValue(value + 1)
+func_0041A9C0	0x0041A9C0	Slider_OnMsgE07_0041A9C0	Ui/Slider.cs	low	msg 0xE07 of table D_800E3390: stops repeat (+0x54 = 2), children alpha 100 (as NumberField_OnMsgE07_002A2DE4)
+func_0041A9F8	0x0041A9F8	Slider_OnFocus	Ui/Slider.cs	medium	msg 0xF: stops repeat, children alpha 200 (highlight)
+func_0041AA30	0x0041AA30	Slider_OnBlur	Ui/Slider.cs	medium	msg 0x10: stops repeat, cue 0xE74, children alpha 100
+func_0041AA90	0x0041AA90	Slider_OnNext	Ui/Slider.cs	medium	msg 8 (right): on press starts repeat direction 1 and Slider_Increment; a small stick value stops the repeat
+func_0041AB00	0x0041AB00	Slider_OnPrev	Ui/Slider.cs	medium	msg 7 (left): on press starts repeat direction 0 and Slider_Decrement
+func_0041AB70	0x0041AB70	Slider_OnButtonRelease	Ui/Slider.cs	medium	msg 0xB: release of pad button 6/7 (d-pad left/right) stops the repeat (+0x54 = 2)
+func_0041AB9C	0x0041AB9C	Slider_UpdateRepeat	Ui/Slider.cs	medium	msg 0xE08: repeat state 0 -> Slider_Decrement, 1 -> Slider_Increment, 2 idle
+func_0041ABF0	0x0041ABF0	Slider_OnDestroy	Ui/Slider.cs	high	msg 0xE03 of table D_800E3390: frees the widget
+func_0041AC10	0x0041AC10	OptionList_RegisterType	Ui/OptionList.cs	high	Menu_RegisterClass(0xB64, OptionList_HandleMessage, OptionList_Draw); called from Menu_InitFrontend
+func_0041AC40	0x0041AC40	OptionList_Create	Ui/OptionList.cs	medium	replaces node a by a 0x118-byte class 0xB64 widget with text node b, selection 0, count 0
+func_0041AD84	0x0041AD84	OptionList_GetSelection	Ui/OptionList.cs	high	returns selection +0x110
+func_0041AD90	0x0041AD90	OptionList_SetSelection	Ui/OptionList.cs	high	selection +0x110 = i and the text node shows entry i (20-byte strings at +0x48)
+func_0041ADB4	0x0041ADB4	OptionList_AddOption	Ui/OptionList.cs	high	copies a string into entry [count] (LibC_StrCopy) and increments count +0x114
+func_0041ADFC	0x0041ADFC	OptionList_HandleMessage	Ui/OptionList.cs	high	dispatches through table D_800E3400 (class 0xB64 handlers)
+func_0041AE8C	0x0041AE8C	OptionList_Draw	Ui/OptionList.cs	medium	draw callback: UiNode_ComputeRect, optional clip narrowing (flag 0x200), draws the children
+func_0041AFC0	0x0041AFC0	OptionList_OnMsgE07_0041AFC0	Ui/OptionList.cs	low	msg 0xE07 of table D_800E3400: children alpha 100
+func_0041AFF0	0x0041AFF0	OptionList_OnFocus	Ui/OptionList.cs	medium	msg 0xF: children alpha 200 (highlight)
+func_0041B020	0x0041B020	OptionList_OnBlur	Ui/OptionList.cs	medium	msg 0x10: cue 0xE74, children alpha 100
+func_0041B078	0x0041B078	OptionList_OnNext	Ui/OptionList.cs	high	msg 8 (right) press: selection + 1 wrapping to 0, updates the text, cue 0xE81
+func_0041B0DC	0x0041B0DC	OptionList_OnPrev	Ui/OptionList.cs	high	msg 7 (left) press: selection - 1 wrapping to count - 1, updates the text, cue 0xE81
+func_0041B140	0x0041B140	OptionList_OnDestroy	Ui/OptionList.cs	high	msg 0xE03 of table D_800E3400: frees the widget
+func_0041B160	0x0041B160	MenuButton_RegisterType	Ui/MenuButton.cs	high	Menu_RegisterClass(0xB61, MenuButton_HandleMessage, MenuButton_Draw); called from Menu_InitFrontend
+func_0041B190	0x0041B190	MenuButton_Create	Ui/MenuButton.cs	medium	replaces node id a of the current screen by a 0x44-byte class 0xB61 widget (focus highlight only)
+func_0041B2AC	0x0041B2AC	MenuButton_CreateFromNode	Ui/MenuButton.cs	medium	same as MenuButton_Create for a node pointer; skipped when it already is class 0xB61
+func_0041B3C0	0x0041B3C0	MenuButton_HandleMessage	Ui/MenuButton.cs	high	dispatches through table D_800E3460 (0xE07, focus, blur, destroy)
+func_0041B450	0x0041B450	MenuButton_Draw	Ui/MenuButton.cs	medium	draw callback: UiNode_ComputeRect, optional clip narrowing (flag 0x200), draws the children
+func_0041B584	0x0041B584	MenuButton_OnMsgE07_0041B584	Ui/MenuButton.cs	low	msg 0xE07 of table D_800E3460: children alpha 100
+func_0041B5B4	0x0041B5B4	MenuButton_OnFocus	Ui/MenuButton.cs	medium	msg 0xF: children alpha 200 (highlight)
+func_0041B5E4	0x0041B5E4	MenuButton_OnBlur	Ui/MenuButton.cs	medium	msg 0x10: cue 0xE74, children alpha 100
+func_0041B63C	0x0041B63C	MenuButton_OnDestroy	Ui/MenuButton.cs	high	msg 0xE03 of table D_800E3460: frees the widget
+func_0041B65C	0x0041B65C	CursorGroup_RegisterTypeHead_0041B65C	Ui/CursorGroup.cs	low	stray nop word that falls into CursorGroup_RegisterType (func_0041B660)
+func_0041B660	0x0041B660	CursorGroup_RegisterType	Ui/CursorGroup.cs	high	Menu_RegisterClass(0x7D5, CursorGroup_HandleMessage, CursorGroup_Draw); called from Menu_InitFrontend
+func_0041B690	0x0041B690	CursorGroup_Create	Ui/CursorGroup.cs	medium	allocates the 0x70-byte class 0x7D5 object with n per-pad cursors (items +0x4C, locks +0x5C, shared mode +0x6C) under the screen and stores it in screen +0x44
+func_0041B768	0x0041B768	CursorGroup_SetCursorById	Ui/CursorGroup.cs	medium	screen-level: unless cursor idx is locked sends blur (0x10) to its old item and focus (0xF) to node id and stores it (all four in shared mode), then unlocks it
+func_0041B834	0x0041B834	CursorGroup_SetLocked	Ui/CursorGroup.cs	medium	lock[i] (+0x5C) = v; locked cursors ignore moves (callers PlayerMenu_StepStateMachine/RefreshPanel)
+func_0041B844	0x0041B844	CursorGroup_CountLocked	Ui/CursorGroup.cs	medium	counts non-zero lock words +0x5C over the cursor count +0x48
+func_0041B87C	0x0041B87C	CursorGroup_GetItem	Ui/CursorGroup.cs	high	returns item[i] (+0x4C), the node cursor i is on
+func_0041B890	0x0041B890	CursorGroup_GetItemId	Ui/CursorGroup.cs	high	returns the node id (+0xC) of item[i]
+func_0041B8A8	0x0041B8A8	CursorGroup_MoveCursorById	Ui/CursorGroup.cs	medium	like CursorGroup_SetCursorById on the group itself, without unlocking: blur the old item, focus node id, store it
+func_0041B95C	0x0041B95C	CursorGroup_MoveCursor	Ui/CursorGroup.cs	medium	unless locked clears the highlight flag 0x40 (func_0040E9A8) of the old item, sets it on the new item and stores it (all cursors in shared mode)
+func_0041B9E8	0x0041B9E8	CursorGroup_SetShared	Ui/CursorGroup.cs	medium	+0x6C = v (non-zero: moving one cursor moves all four)
+func_0041B9F0	0x0041B9F0	CursorGroup_HandleMessage	Ui/CursorGroup.cs	high	dispatches through table D_800E34A0 (class 0x7D5: directions, A, update, destroy)
+func_0041BA80	0x0041BA80	CursorGroup_Draw	Ui/CursorGroup.cs	medium	draw callback: UiNode_ComputeRect, optional clip narrowing (flag 0x200), draws the children
+func_0041BBB4	0x0041BBB4	CursorGroup_OnMsgE07_0041BBB4	Ui/CursorGroup.cs	low	msg 0xE07 of table D_800E34A0: returns 0
+func_0041BBBC	0x0041BBBC	CursorGroup_OnLeft	Ui/CursorGroup.cs	high	msg 7 press: moves the pad's cursor to its item's neighbour [2] (CursorGroup_MoveCursor)
+func_0041BC50	0x0041BC50	CursorGroup_OnUp	Ui/CursorGroup.cs	high	msg 5 press: moves the pad's cursor to neighbour [0]
+func_0041BCE4	0x0041BCE4	CursorGroup_OnRight	Ui/CursorGroup.cs	high	msg 8 press: moves the pad's cursor to neighbour [3]
+func_0041BD78	0x0041BD78	CursorGroup_OnDown	Ui/CursorGroup.cs	high	msg 6 press: moves the pad's cursor to neighbour [1]
+func_0041BE0C	0x0041BE0C	CursorGroup_OnAccept	Ui/CursorGroup.cs	medium	msg 1 (A): unless the pad's cursor is locked forwards message 1 to the item it is on (Menu_SendEvent)
+func_0041BE88	0x0041BE88	CursorGroup_OnDestroy	Ui/CursorGroup.cs	high	msg 0xE03 of table D_800E34A0: frees the widget
 func_0041BEA8	0x0041BEA8	UiList_RefreshItems_0041BEA8	Ui/Widgets.cs	low	harvest: src/ovl_a/func_0041BEA8.c comment: calls func_0040E9A8 with flag 1 on each of the list's items
 func_0041BF10	0x0041BF10	SaveSlot_UpdateDialog	Menus/PlayerProfile.cs	medium	harvest: src/ovl_a/func_0041BEA8.c comment: updates the slot-selection dialog after availability and capacity probes (error transition on -4/-3/-1)
-func_0041C1E4	0x0041C1E4				
-func_0041C21C	0x0041C21C				
-func_0041C2C4	0x0041C2C4				
-func_0041C32C	0x0041C32C				
-func_0041C45C	0x0041C45C				
-func_0041C48C	0x0041C48C				
-func_0041C4EC	0x0041C4EC				
-func_0041C4F4	0x0041C4F4				
-func_0041C514	0x0041C514				
-func_0041C5EC	0x0041C5EC				
-func_0041C67C	0x0041C67C				
+func_0041C1E4	0x0041C1E4	TitleScreen_Leave_0041C1E4	Menus/TitleScreen.cs	low	Menu_DisableInput, Menu_GotoScreen(2), D_8014ADA0 = 1; chosen by the screen-29 A handler for menu message 0x3CA
+func_0041C21C	0x0041C21C	TitleScreen_ProbePaks	Menus/TitleScreen.cs	medium	for the 4 ports Pak_DetectPort + CPak_GetStatus; sets page +0x1C when a port reports status 0/-1/-3/-4; caller SaveSlot_UpdateDialog
+func_0041C2C4	0x0041C2C4	TitleScreen_RetryPakCheck	Menus/TitleScreen.cs	medium	counts tries D_800E3510; at 4 leaves to screen 2 (as TitleScreen_Leave), else SaveSlot_UpdateDialog
+func_0041C32C	0x0041C32C	TitleScreen_Open	Menus/TitleScreen.cs	medium	msg 0xE06 of screen 29 (table D_800E351C): allocates page D_800E3518, nodes 0x3C3/0x3C9/0x3C4/0x3C5, Video_RequestResolution(0), input off, Game_InitCameras + Level_Load
+func_0041C45C	0x0041C45C	TitleScreen_Close	Menus/TitleScreen.cs	high	msg 0xE03 of screen 29: frees page D_800E3518 and clears it
+func_0041C48C	0x0041C48C	TitleScreen_Update	Menus/TitleScreen.cs	medium	msg 0xE08 of screen 29: after 6 frames enables input and runs TitleScreen_RetryPakCheck
+func_0041C4EC	0x0041C4EC	TitleScreen_OnButtonDown	Menus/TitleScreen.cs	medium	msg 0xA of screen 29 (table D_800E351C): returns 0
+func_0041C4F4	0x0041C4F4	TitleScreen_OnBack	Menus/TitleScreen.cs	medium	msg 2 (B) of screen 29: consumes the event
+func_0041C514	0x0041C514	TitleScreen_OnAccept	Menus/TitleScreen.cs	medium	msg 1 (A) of screen 29: by Menu_GetMessage 0x3CB recheck, 0x3CA TitleScreen_Leave, 0x3C7 retry, 0x3C6 go to the pak screen 19
+func_0041C5EC	0x0041C5EC	TitleScreen_HandleMessage	Menus/TitleScreen.cs	high	dispatches screen 29 messages through table D_800E351C
+func_0041C67C	0x0041C67C	SaveSlotScreen_ShowAwardModelJump_0041C67C	Menus/PlayerProfile.cs	low	stray 1-instruction stub 'j 0x0041D694' (inside SaveSlotScreen_ShowAwardModel_0041D550) whose delay slot is MenuModel_SelectPose's prologue
 func_0041C680	0x0041C680	MenuModel_SelectPose	Menus/CharacterSelect.cs	medium	harvest: C git: func_0041CE88 forwards a1..a3 to func_0041C680 (pose selection ran with zeros)
-func_0041C864	0x0041C864				
+func_0041C864	0x0041C864	MenuModel_Draw	Menus/CharacterSelect.cs	medium	draws a menu model actor: G_MTX, transforms its position, render flags, Actor_ResetPoseMatrices/Actor_Advance, yaw +0x498 and roll +0x4A0 (deg to rad), Actor_Draw; caller Results_DrawCallback
 func_0041CB48	0x0041CB48	Portrait_CreateActor	Menus/CharacterSelect.cs	medium	harvest: C git (debug prints: portrait actor creation (func_0041CB48 draft)); places models on menu screens (func_00426968 comment)
 func_0041CE20	0x0041CE20	MenuModel_SetVector_0041CE20	Menus/CharacterSelect.cs	low	harvest: src/ovl_a/func_0041CE20.c comment: copies the vector passed by value into the object's vector at 0x480
 func_0041CE80	0x0041CE80	MenuModel_SetWord49C_0041CE80	Menus/CharacterSelect.cs	low	harvest: src/ovl_a/func_0041CE20.c comment: stores a value into the word at 0x49C of an object
 func_0041CE88	0x0041CE88	MenuModel_ResetPose	Menus/CharacterSelect.cs	medium	harvest: port/overrides/func_0041CE88.c + C git: sets the pose field (0x274 = 0xFFFF), then tail-calls the pose selection func_0041C680
-func_0041CEA8	0x0041CEA8				
-func_0041CEB0	0x0041CEB0				
+func_0041CEA8	0x0041CEA8	SaveSlotScreen_OpenHead_0041CEA8	Menus/PlayerProfile.cs	low	stray piece 'jal SaveSlotScreen_ShowAwardText; nop' that falls into SaveSlotScreen_Open (func_0041CEB0)
+func_0041CEB0	0x0041CEB0	SaveSlotScreen_Open	Menus/PlayerProfile.cs	medium	msg 0xE06 of screen 16 (table D_800E3724): allocates D_800E3590 (0x210), cursor group, side panels 0x1EC/0x1EB, Flicker_Create, shows stats and awards
 func_0041D1A4	0x0041D1A4	SaveSlotScreen_Update	Menus/PlayerProfile.cs	medium	harvest: src/ovl_a/func_0041D1A4.c comment: record/slot screen per-tick update (transition state machine, cursor pulse)
-func_0041D550	0x0041D550				
-func_0041D718	0x0041D718				
-func_0041D9D0	0x0041D9D0				
-func_0041DACC	0x0041DACC				
-func_0041DBA0	0x0041DBA0				
-func_0041DC0C	0x0041DC0C				
-func_0041DC3C	0x0041DC3C				
-func_0041DD30	0x0041DD30				
-func_0041DE64	0x0041DE64				
-func_0041DECC	0x0041DECC				
-func_0041DF04	0x0041DF04				
-func_0041DF24	0x0041DF24				
-func_0041DFB4	0x0041DFB4				
-func_0041DFC0	0x0041DFC0				
-func_0041E170	0x0041E170				
-func_0041E2F0	0x0041E2F0				
-func_0041E478	0x0041E478				
-func_0041E668	0x0041E668				
-func_0041E790	0x0041E790				
-func_0041E88C	0x0041E88C				
-func_0041EAE0	0x0041EAE0				
-func_0041EB34	0x0041EB34				
-func_0041EBC0	0x0041EBC0				
-func_0041EBF8	0x0041EBF8				
-func_0041EC2C	0x0041EC2C				
-func_0041ECB4	0x0041ECB4				
-func_0041ECF4	0x0041ECF4				
-func_0041ED24	0x0041ED24				
-func_0041EDE8	0x0041EDE8				
-func_0041EE30	0x0041EE30				
-func_0041EE78	0x0041EE78				
-func_0041EF40	0x0041EF40				
-func_0041F01C	0x0041F01C				
-func_0041F118	0x0041F118				
-func_0041F1A8	0x0041F1A8				
-func_0041F1B0	0x0041F1B0				
-func_0041F1FC	0x0041F1FC				
-func_0041F248	0x0041F248				
-func_0041F298	0x0041F298				
-func_0041F2A0	0x0041F2A0				
-func_0041F738	0x0041F738				
-func_0041FCC0	0x0041FCC0				
+func_0041D550	0x0041D550	SaveSlotScreen_ShowAwardModel_0041D550	Menus/PlayerProfile.cs	low	for the cursor's award (table D_800E3594, 50 ids) unlocked in the profile bits sets the preview model (func_00439E60) id 0xE74..0xE82 and index, else none
+func_0041D718	0x0041D718	SaveSlotScreen_ShowProfileStats	Menus/PlayerProfile.cs	medium	fills text nodes 0x1F3 name, 0x1F2 rank (func_00424FC8), 0x1FD/0x1F4/0x1F6 '%ld' record fields, 0x1F9 award count, 0x1FA '%d' of the selected profile
+func_0041D9D0	0x0041D9D0	SaveSlotScreen_ShowAwardText	Menus/PlayerProfile.cs	medium	sets the description node text to the cursor award's string when unlocked (Bits_Test on profile +0x3A), else the default text D_800E14F8+4
+func_0041DACC	0x0041DACC	SaveSlotScreen_ShowAwardIcons	Menus/PlayerProfile.cs	medium	for the 50 award nodes shows those unlocked in the profile with the given alpha, hides the rest
+func_0041DBA0	0x0041DBA0	Profile_NextActiveSlot	Save/Profile.cs	medium	advances *slot cyclically 0..3 to the next profile whose byte +0xD (D_80102B0D) is >= 0; -1 after 6 tries
+func_0041DC0C	0x0041DC0C	SaveSlotScreen_Close	Menus/PlayerProfile.cs	high	msg 0xE03 of screen 16: frees D_800E3590 and clears it
+func_0041DC3C	0x0041DC3C	SaveSlotScreen_OnShow	Menus/PlayerProfile.cs	medium	msg 0xE07 of screen 16: Menu_SetFixedFov(1), places the preview model (scale 0.14, pos 17,-10,-50), cue 0xE78
+func_0041DD30	0x0041DD30	SaveSlotScreen_Draw	Menus/PlayerProfile.cs	medium	msg 0xE0A of screen 16: in state 3 sets a full-screen scissor (0xED) and draws the preview model (func_00439EA8/func_004399D0)
+func_0041DE64	0x0041DE64	SaveSlotScreen_OnButtonDown	Menus/PlayerProfile.cs	medium	msg 0xA of screen 16: pad button 0 (C-up) switches to the next profile (Profile_NextActiveSlot) and refreshes icons, stats and text
+func_0041DECC	0x0041DECC	SaveSlotScreen_OnBack	Menus/PlayerProfile.cs	medium	msg 2 (B) of screen 16: consumes it and sets state +0xD8 = 5, +0xDC = 4 (leave transition)
+func_0041DF04	0x0041DF04	SaveSlotScreen_OnAccept	Menus/PlayerProfile.cs	medium	msg 1 (A) of screen 16: consumes the event only
+func_0041DF24	0x0041DF24	SaveSlotScreen_HandleMessage	Menus/PlayerProfile.cs	high	dispatches screen 16 messages through table D_800E3724
+func_0041DFB4	0x0041DFB4	BotSetup_Open	Menus/BotSetup.cs	medium	C body of msg 0xE06 of screen 23 (table D_800E39C4): page D_800E39C0, 4-cursor group on 0x389, three bot panels 0x38C/0x395/0x396 (BotSetup_RefreshSlot), read-only under screen 22
+func_0041DFC0	0x0041DFC0	BotSetup_OpenTwin	Menus/BotSetup.cs	medium	MIPS entry 0xC after func_0041DFB4's junk words; the entry table D_800E39C4 uses for msg 0xE06
+func_0041E170	0x0041E170	BotSetup_OnLeft	Menus/BotSetup.cs	high	msg 7 of screen 23: the selected bot steps back through the character x difficulty table D_800E381C (EASY/MEDIUM/HARD rows), copies its name, refreshes, cue 0xE81
+func_0041E2F0	0x0041E2F0	BotSetup_OnRight	Menus/BotSetup.cs	high	msg 8 of screen 23: the selected bot steps forward through the character x difficulty table D_800E381C, copies its name, refreshes, cue 0xE81
+func_0041E478	0x0041E478	BotSetup_RefreshSlot	Menus/BotSetup.cs	medium	fills bot panel i: hides unused, else portrait (+0x2C from D_800E3A50), name, difficulty text EASY/MEDIUM/HARD (D_800E39B4), team colours D_800E3790
+func_0041E668	0x0041E668	BotSetup_ApplyToMatch	Menus/BotSetup.cs	medium	copies the configured bots into free player records of the match settings D_801462C8 from the last slot down (+0x78 active, +0x91 bot flag, name, character, team)
+func_0041E790	0x0041E790	BotSetup_GetDifficultyTier	Menus/BotSetup.cs	medium	sums bot points (EASY 5, MEDIUM 10, HARD 20) and returns the first tier 0..4 of table D_800E37B8[tier][bots-1] that covers it
+func_0041E88C	0x0041E88C	BotSetup_Randomize	Menus/BotSetup.cs	medium	for n bots and a tier: splits the tier's point budget D_800E37B8 randomly (5/10/20 per bot) and picks a random character of that difficulty row for each
+func_0041EAE0	0x0041EAE0	BotSetup_Reset	Menus/BotSetup.cs	high	sets the three bot slots D_80153F80 to empty (id -1, difficulty/team 0); caller Menu_InitFrontendOnce
+func_0041EB34	0x0041EB34	BotSetup_GetMaxBots	Menus/BotSetup.cs	medium	counts active players (D_80146398 +0x78 == 1) and returns the slots left for bots: 1 -> 3, 2 -> 2, 3 -> 1, else 0
+func_0041EBC0	0x0041EBC0	BotSetup_CountBots	Menus/BotSetup.cs	high	counts the 3 bot slots D_80153F80 with character id >= 0; callers BotSetup open/refresh and match-options page func_00429740 (BOTS: value)
+func_0041EBF8	0x0041EBF8	BotSetup_GetStrengthBudget	Menus/BotSetup.cs	medium	returns D_800E37B8[skill][nBots-1] (ROM table 5/10/15..100), the strength budget per overall BOT SKILL used by func_0041E790/func_0041E88C
+func_0041EC2C	0x0041EC2C	BotSetup_GetTotalStrength	Menus/BotSetup.cs	high	sums 5/10/20 per used bot slot by difficulty (EASY/MEDIUM/HARD strings D_800E39B4); same sum func_0041E790 compares with the budget table
+func_0041ECB4	0x0041ECB4	BotSetup_FindBotNameIndex	Menus/BotSetup.cs	medium	index of character id ch in row [difficulty] of the 17-entry bot-name table D_800E381C (TUROK/DRONE.., WARRIOR/GRUNT.., MASTER/SLAVE..)
+func_0041ECF4	0x0041ECF4	BotSetup_OnClose	Menus/BotSetup.cs	high	msg 0xE03 of screen 0x17 table D_800E39C4: frees page D_800E39C0
+func_0041ED24	0x0041ED24	BotSetup_Update	Menus/BotSetup.cs	high	msg 0xE08 (tick): advances timer, pulses alpha of the selected slot's cursor node 0x392 with cosf
+func_0041EDE8	0x0041EDE8	BotSetup_OnConfirm	Menus/BotSetup.cs	medium	msg 1 of D_800E39C4: sets the pending screen (func_0042EB68: -1 under the pause screen 0x16, else 0x15) and Menu_GoBack
+func_0041EE30	0x0041EE30	BotSetup_OnBack	Menus/BotSetup.cs	medium	msg 2 of D_800E39C4: same as BotSetup_OnConfirm (pending -1/0x15, Menu_GoBack)
+func_0041EE78	0x0041EE78	BotSetup_OnNavUp	Menus/BotSetup.cs	medium	msg 5: moves the bot-slot selection back (wraps), swaps cursor nodes 0x392, sound 0xE80
+func_0041EF40	0x0041EF40	BotSetup_OnNavDown	Menus/BotSetup.cs	medium	msg 6: moves the bot-slot selection forward (mod count), swaps cursor nodes 0x392, sound 0xE80
+func_0041F01C	0x0041F01C	BotSetup_OnButton	Menus/BotSetup.cs	medium	msg 0xA button press: cycles the selected bot's team/colour f8 mod 5, refreshes the slot; under the pause screen copies it to player record D_80146398[7-j]+0x92
+func_0041F118	0x0041F118	BotSetup_HandleMessage	Menus/BotSetup.cs	high	walks the message table D_800E39C4 {msg, screen 0x17, fn} and calls the matching handler
+func_0041F1A8	0x0041F1A8	CharSelect_FindRowByCharacter_Entry_0041F1A8	Menus/CharacterSelect.cs	low	MIPS entry 8 bytes before CharSelect_FindRowByCharacter (two stray words), same loop over D_800E3A50+4; no callers
+func_0041F1B0	0x0041F1B0	CharSelect_FindRowByCharacter	Menus/CharacterSelect.cs	high	returns the row of the 17-entry character table D_800E3A50 (0x70 bytes: node id, character id, portrait..) whose character id f4 == key; many callers
+func_0041F1FC	0x0041F1FC	CharSelect_FindRowByNode	Menus/CharacterSelect.cs	high	returns the row of D_800E3A50 whose portrait node id f0 (0x80..0x92) == key
+func_0041F248	0x0041F248	CharSelect_GetCharacterForNode	Menus/CharacterSelect.cs	high	returns character id f4 of the D_800E3A50 row whose portrait node id f0 == key
+func_0041F298	0x0041F298	CharSelect_OnOpen_Entry_0041F298	Menus/CharacterSelect.cs	low	MIPS entry 8 bytes before CharSelect_OnOpen (stray lw/addu then the prologue); the table uses 0x41F2A0
+func_0041F2A0	0x0041F2A0	CharSelect_OnOpen	Menus/CharacterSelect.cs	high	msg 0xE06 of screen 7 table D_800E4364: allocates join page D_800E42D0 (0x1358), 4 player records, portrait models (Portrait_CreateActor), CharSelect_EnableUnlocked, joins active pads
+func_0041F738	0x0041F738	CharSelect_Update	Menus/CharacterSelect.cs	high	msg 0xE08 of screen 7: slide-in/out states, pulses each choosing player's cursor (cosf) and follows the focused portrait node (0x81 = random)
+func_0041FCC0	0x0041FCC0	CharSelect_Draw	Menus/CharacterSelect.cs	medium	msg 0xE0A of screen 7: sets the model tint D_800D15E0/D_800D15E4 (red flash while a record's counter runs) around the draw
 func_0041FF9C	0x0041FF9C	CharSelect_EnableUnlocked	Menus/CharacterSelect.cs	medium	harvest: src/ovl_a/func_0041FF9C.c comment: enables character choices unlocked by active players, highlights the profile's unlocked characters
-func_00420214	0x00420214				
-func_00420378	0x00420378				
-func_004204A8	0x004204A8				
-func_00420688	0x00420688				
-func_004208C0	0x004208C0				
-func_00420B44	0x00420B44				
-func_00420B80	0x00420B80				
-func_00420BC0	0x00420BC0				
-func_00420BE8	0x00420BE8				
-func_00420C60	0x00420C60				
-func_00420C68	0x00420C68				
-func_00420C70	0x00420C70				
-func_00420C78	0x00420C78				
-func_00420C80	0x00420C80				
-func_00420D4C	0x00420D4C				
-func_00420E00	0x00420E00				
-func_00420E90	0x00420E90				
-func_00421158	0x00421158				
-func_004212A4	0x004212A4				
-func_0042144C	0x0042144C				
-func_004215D8	0x004215D8				
-func_004217EC	0x004217EC				
-func_00421844	0x00421844				
-func_004218C4	0x004218C4				
-func_004218F4	0x004218F4				
-func_00421998	0x00421998				
-func_00421A30	0x00421A30				
-func_00421A88	0x00421A88				
-func_00421B18	0x00421B18				
-func_00421B20	0x00421B20				
-func_00421BEC	0x00421BEC				
-func_00421C1C	0x00421C1C				
-func_00421D18	0x00421D18				
-func_00421DC4	0x00421DC4				
-func_00421E00	0x00421E00				
-func_00421E90	0x00421E90				
-func_00421E9C	0x00421E9C				
-func_00421ECC	0x00421ECC				
-func_0042201C	0x0042201C				
-func_0042204C	0x0042204C				
-func_00422050	0x00422050				
-func_004220D8	0x004220D8				
-func_004221A0	0x004221A0				
-func_00422218	0x00422218				
-func_00422258	0x00422258				
-func_00422260	0x00422260				
-func_004222A8	0x004222A8				
-func_004222D8	0x004222D8				
-func_00422370	0x00422370				
-func_004223FC	0x004223FC				
-func_00422444	0x00422444				
-func_0042245C	0x0042245C				
-func_0042247C	0x0042247C				
-func_0042250C	0x0042250C				
-func_00422510	0x00422510				
-func_00422728	0x00422728				
-func_00422C20	0x00422C20				
-func_00422E54	0x00422E54				
-func_0042325C	0x0042325C				
-func_00423280	0x00423280				
-func_00423304	0x00423304				
-func_00423370	0x00423370				
-func_004233DC	0x004233DC				
-func_0042340C	0x0042340C				
-func_00423488	0x00423488				
-func_00423548	0x00423548				
-func_0042358C	0x0042358C				
-func_00423594	0x00423594				
-func_0042359C	0x0042359C				
-func_0042362C	0x0042362C				
-func_004237C0	0x004237C0				
-func_004237F8	0x004237F8				
-func_0042382C	0x0042382C				
-func_004238F8	0x004238F8				
-func_00423930	0x00423930				
-func_004239C0	0x004239C0				
-func_00423A00	0x00423A00				
-func_00423B68	0x00423B68				
-func_00423B88	0x00423B88				
-func_00423C18	0x00423C18				
-func_00423C20	0x00423C20				
-func_00424128	0x00424128				
-func_0042436C	0x0042436C				
-func_0042439C	0x0042439C				
-func_004244B4	0x004244B4				
-func_00424508	0x00424508				
-func_00424528	0x00424528				
-func_004245C0	0x004245C0				
-func_00424D70	0x00424D70				
-func_00424E30	0x00424E30				
-func_00424FC8	0x00424FC8				
-func_004251F4	0x004251F4				
-func_004255A8	0x004255A8				
-func_00425854	0x00425854				
-func_00425BC0	0x00425BC0				
-func_00425E50	0x00425E50				
-func_00425EF4	0x00425EF4				
-func_00425FDC	0x00425FDC				
-func_004260C4	0x004260C4				
-func_004261E4	0x004261E4				
-func_00426270	0x00426270				
-func_00426354	0x00426354				
-func_004263BC	0x004263BC				
-func_00426454	0x00426454				
-func_004264E4	0x004264E4				
-func_004264F0	0x004264F0				
+func_00420214	0x00420214	CharSelect_NextSkin	Menus/CharacterSelect.cs	high	cycles a player's skin index f18 mod the profile's skin count D_80102B57[char + player*0x190], re-highlights the skin nodes (SKINS strings); caller CharSelect_OnButton
+func_00420378	0x00420378	CharSelect_JoinPlayer	Menus/CharacterSelect.cs	medium	attaches the player's cursor sprite to its start node (D_800E42D4 ids) and sets the record state 1 (choosing); called for joined pads on open
+func_004204A8	0x004204A8	CharSelect_ResetSkin	Menus/CharacterSelect.cs	medium	clears the skin highlight, skin index f18 = 0 and re-highlights skin 0 for the player's character
+func_00420688	0x00420688	CharSelect_LockInCharacter	Menus/CharacterSelect.cs	high	record state 3, shows check nodes, stores the character; when nobody is still choosing writes character/skin to D_80146398 and Menu_GotoScreen(8, or 10 in mode 1)
+func_004208C0	0x004208C0	CharSelect_PickRandomCharacter	Menus/CharacterSelect.cs	high	random D_800E3A50 entry (rand % 17) not disabled and not the current one (5000 tries, else 0x92), rebuilds the portrait model, random skin
+func_00420B44	0x00420B44	CharSelect_CountChoosing	Menus/CharacterSelect.cs	high	counts join records with state 1 or 2
+func_00420B80	0x00420B80	CharSelect_OnClose	Menus/CharacterSelect.cs	high	msg 0xE03 of screen 7: frees D_800E42D0, Menu_EnableInput, func_002A33BC(2)
+func_00420BC0	0x00420BC0	CharSelect_OnShow	Menus/CharacterSelect.cs	medium	msg 0xE07 of screen 7: func_002A33BC(1) and sound 0xE78
+func_00420BE8	0x00420BE8	CharSelect_OnButton	Menus/CharacterSelect.cs	high	msg 0xA: on a press by a choosing pad with a character, CharSelect_NextSkin + sound 0xE7C
+func_00420C60	0x00420C60	CharSelect_OnNavRight	Menus/CharacterSelect.cs	medium	msg 8 slot of the screen-7 table D_800E4364; returns 0
+func_00420C68	0x00420C68	CharSelect_OnNavLeft	Menus/CharacterSelect.cs	medium	msg 7 slot of the screen-7 table D_800E4364; returns 0
+func_00420C70	0x00420C70	CharSelect_OnNavUp	Menus/CharacterSelect.cs	medium	msg 5 slot of the screen-7 table D_800E4364; returns 0
+func_00420C78	0x00420C78	CharSelect_OnNavDown	Menus/CharacterSelect.cs	medium	msg 6 slot of the screen-7 table D_800E4364; returns 0
+func_00420C80	0x00420C80	CharSelect_OnBack	Menus/CharacterSelect.cs	high	msg 2: a locked-in pad (state 3) returns to choosing (model pose reset, CharSelect_ResetSkin); a choosing pad starts the leave animation
+func_00420D4C	0x00420D4C	CharSelect_OnConfirm	Menus/CharacterSelect.cs	high	msg 1: locks in the focused portrait (0x81 = keep the random pick) via CharSelect_LockInCharacter
+func_00420E00	0x00420E00	CharSelect_HandleMessage	Menus/CharacterSelect.cs	high	walks the message table D_800E4364 (screen 7) and calls the matching handler
+func_00420E90	0x00420E90	CheatsMenu_OnOpen	Menus/CheatsMenu.cs	medium	msg 0xE06 of screen 0x1C (D_800E4404): allocates D_800E4400, four OFF/ON toggles from D_801462C8 flags 0x08000000/0x10000000/8/0x20000000, CREDITS item 0x3B6
+func_00421158	0x00421158	CheatsMenu_ApplyToggles	Menus/CheatsMenu.cs	high	writes the four toggle values back to D_801462C8 flags (0x08000000, 0x10000000, 8 = unlimited ammo, 0x20000000 = extra modes)
+func_004212A4	0x004212A4	CheatsMenu_UpdateUnlocked	Menus/CheatsMenu.cs	high	sums Profile_CountMedals over loaded profiles (40 after the secret combo) and disables toggles below 6/10/12/14 medals
+func_0042144C	0x0042144C	CheatsMenu_StartCredits	Menus/CheatsMenu.cs	high	hides the menu, shows the scroller, clears the ten text lines 0x3B8..0x3C1 and starts the credit list
+func_004215D8	0x004215D8	CheatsMenu_ScrollCredits	Menus/CheatsMenu.cs	high	shifts the credit strings D_800D7E40 ('RAGE WARS TEAM', 'PROJECT MANAGER'..) into lines 0x3B8..0x3C1; at the list end stops the scroller
+func_004217EC	0x004217EC	CheatsMenu_StopCredits	Menus/CheatsMenu.cs	high	hides the credit scroller, shows node 0x3AB again, f34 = 1 (menu active)
+func_00421844	0x00421844	CheatsMenu_UpdateCredits	Menus/CheatsMenu.cs	medium	moves the scroller sprite up one pixel per tick and calls CheatsMenu_ScrollCredits when a line has scrolled out
+func_004218C4	0x004218C4	CheatsMenu_OnClose	Menus/CheatsMenu.cs	high	msg 0xE03 of screen 0x1C: frees D_800E4400
+func_004218F4	0x004218F4	CheatsMenu_Update	Menus/CheatsMenu.cs	high	msg 0xE08: runs the credits, unlocks every toggle when pad buttons == 0x433 (secret combo), leaves to main menu 3 when the list closes
+func_00421998	0x00421998	CheatsMenu_OnConfirm	Menus/CheatsMenu.cs	high	msg 1: item 0x3AC closes and applies the toggles, item 0x3B6 starts the credits; stops the credits when running
+func_00421A30	0x00421A30	CheatsMenu_OnBack	Menus/CheatsMenu.cs	high	msg 2: stops the credits, or closes the list and CheatsMenu_ApplyToggles
+func_00421A88	0x00421A88	CheatsMenu_HandleMessage	Menus/CheatsMenu.cs	high	walks the message table D_800E4404 (screen 0x1C) and calls the matching handler
+func_00421B18	0x00421B18	PakManageMenu_OnOpen_Entry_00421B18	Menus/PakManageMenu.cs	low	MIPS entry 8 bytes before PakManageMenu_OnOpen (stray UiTree_FindNode delay-slot words); the table uses 0x421B20
+func_00421B20	0x00421B20	PakManageMenu_OnOpen	Menus/PakManageMenu.cs	medium	msg 0xE06 of screen 0x1B (D_800E4454, main-menu item 0x4B): allocates D_800E4450, list 0x39E/0x39F with items 0x3A2..0x3A7, scroller
+func_00421BEC	0x00421BEC	PakManageMenu_OnClose	Menus/PakManageMenu.cs	high	msg 0xE03 of screen 0x1B: frees D_800E4450
+func_00421C1C	0x00421C1C	PakManageMenu_Update	Menus/PakManageMenu.cs	medium	msg 0xE08: blocks input while D_800E28E0 >= 2, scrolls the ticker sprite, on list close Menu_GotoScreen(f10, -1 -> main menu 3)
+func_00421D18	0x00421D18	PakManageMenu_OnConfirm	Menus/PakManageMenu.cs	medium	msg 1: items 0x3A2..0x3A7 set the pak-screen mode (func_00435190 -> D_800E54A0 read by the pak screen) and target screen 0x13, 0x3A6 = back
+func_00421DC4	0x00421DC4	PakManageMenu_OnBack	Menus/PakManageMenu.cs	high	msg 2: target -1 (main menu) and closes the list
+func_00421E00	0x00421E00	PakManageMenu_HandleMessage	Menus/PakManageMenu.cs	high	walks the message table D_800E4454 (screen 0x1B) and calls the matching handler
+func_00421E90	0x00421E90	MenuFade_IsDone	Menus/MenuFade.cs	medium	returns the done flag +4 of a {timer, done, dir, item} fade record (layout of MenuFade_Update); no callers
+func_00421E9C	0x00421E9C	MenuFade_Start	Menus/MenuFade.cs	medium	sets direction +8 when it changes: timer 0 (fade in) or 1000 (fade out), done = 0; no callers
+func_00421ECC	0x00421ECC	MenuFade_Update	Menus/MenuFade.cs	high	alpha = timer*0.255 up to 1000 (in) or down to 0 (out), then done = 1 and Menu_EnableInput; returns done
+func_0042201C	0x0042201C	MenuFade_Init	Menus/MenuFade.cs	medium	clears timer/done/dir, stores the item +0xC, +0x10 = 1, Menu_DisableInput; no callers
+func_0042204C	0x0042204C	MenuScene_Exit_Entry_0042204C	Menus/MenuScene.cs	low	MIPS entry 4 bytes before MenuScene_Exit_00422050 (one stray lw), same code
+func_00422050	0x00422050	MenuScene_Exit_00422050	Menus/MenuScene.cs	low	Flyby_Abort, CameraManager_Init(..,0), func_0044A600, Level_Load(D_8011FE88, 0x24), Flyby_SetLoop(0), full viewport; after the rumble prompt and on closing screen 0x14
+func_004220D8	0x004220D8	MenuScene_PlayFlyby	Menus/MenuScene.cs	medium	camera fov 45 / aspect 4:3, viewport from the flyby D_800E2830, Flyby_QueueById + Level_SetTransitionState; callers pass arena + 0x259 (arena preview flyby)
+func_004221A0	0x004221A0	MenuScene_Enter	Menus/MenuScene.cs	medium	MenuScene_SetupFlybyView, CameraManager_Init(..,1), func_0044A600, queues the menu background flyby 0x27D; callers screen opens (CharSelect_Open, mission tree)
+func_00422218	0x00422218	MenuScene_SetupFlybyView	Menus/MenuScene.cs	high	Flyby_SetLoop(1), Flyby_SetFieldOfView(45), Flyby_SetViewport(0x43, 0x4F, 0x12, 0x80)
+func_00422258	0x00422258	RumblePrompt_OnOpen	Menus/RumblePrompt.cs	medium	C of the screen-0x19 open (two stray words before the prologue): allocates D_800E44A0 (0x24) and a message box 0x67 (func_0043C3F0)
+func_00422260	0x00422260	RumblePrompt_OnOpenTwin	Menus/RumblePrompt.cs	medium	MIPS twin of RumblePrompt_OnOpen at +8; the entry the screen-0x19 table D_800E44A4 uses (msg 0xE06)
+func_004222A8	0x004222A8	RumblePrompt_OnClose	Menus/RumblePrompt.cs	high	msg 0xE03 of screen 0x19: frees D_800E44A0
+func_004222D8	0x004222D8	RumblePrompt_Draw	Menus/RumblePrompt.cs	medium	msg 0xE0A: draws the message box; when it has closed, MenuScene_Exit, func_0042E080 (start the level) and Rumble_SetEnabledAll(1)
+func_00422370	0x00422370	RumblePrompt_Update	Menus/RumblePrompt.cs	medium	msg 0xE08: enables input; once dismissed disables input, (mode 0) Flyby_Abort + func_0042B4C4, then closes the box (Menu_ShowScreen_0043C458)
+func_004223FC	0x004223FC	RumblePrompt_OnButton	Menus/RumblePrompt.cs	medium	msg 0xA: a press of button 0xB (START, 'PRESS START') dismisses the prompt (f20 = 1)
+func_00422444	0x00422444	RumblePrompt_OnConfirm	Menus/RumblePrompt.cs	medium	msg 1: dismisses the prompt (f20 = 1)
+func_0042245C	0x0042245C	RumblePrompt_OnBack	Menus/RumblePrompt.cs	medium	msg 2: consumes the event (B does nothing)
+func_0042247C	0x0042247C	RumblePrompt_HandleMessage	Menus/RumblePrompt.cs	high	walks the message table D_800E44A4 (screen 0x19) and calls the matching handler
+func_0042250C	0x0042250C	OptionsMenu_OnOpen	Menus/OptionsMenu.cs	high	C of the screen-4 open: D_800E4510, BLOOD OFF/RED/GREEN (f1B), 2P layout HORIZONTAL/VERTICAL (f1F), LOREZ/HIREZ/LETTERBOX (f580, hi-res only with 8 MB), brightness slider f10
+func_00422510	0x00422510	OptionsMenu_OnOpenTwin	Menus/OptionsMenu.cs	medium	MIPS twin of OptionsMenu_OnOpen at +4 (ROM has a stray addiu first); the entry the screen-4 table D_800E451C uses
+func_00422728	0x00422728	PauseMenu_OnOpen	Menus/PauseMenu.cs	medium	msg 0xE06 of screen 0x16 (D_800E45AC): D_800E4518 with blood/resolution/brightness widgets, music cues, MenuScene_SetupFlybyView, message box; the in-match pause (RESUME/SKIP MAP/BOT CONFIGURATION)
+func_00422C20	0x00422C20	PauseMenu_Draw	Menus/PauseMenu.cs	medium	msg 0xE0A: message box; result 0 shows the arena flyby (arena + 0x259), result 1 resumes (resolution, random music cue) or reloads the level for a new map
+func_00422E54	0x00422E54	PauseMenu_Update	Menus/PauseMenu.cs	medium	msg 0xE08: slide states, pending screen D_80154020/24 from sub screens (Menu_GotoScreen or refocus 0x37D), reloads the level on leaving
+func_0042325C	0x0042325C	PauseMenu_Show	Menus/PauseMenu.cs	medium	Menu_DisableInput + Menu_GotoScreen(0x16); caller func_00435EB8
+func_00423280	0x00423280	OptionsMenu_ApplySettings	Menus/OptionsMenu.cs	high	copies blood f1B, 2P layout f1F, resolution f580 and brightness f10 from the widgets to D_801462C8
+func_00423304	0x00423304	TrialPauseMenu_ApplyOptions	Menus/TrialPauseMenu.cs	high	copies blood f1B, resolution f580, brightness f10 from the screen-0xB widgets D_800E4514 to D_801462C8
+func_00423370	0x00423370	PauseMenu_ApplyOptions	Menus/PauseMenu.cs	high	copies blood f1B, resolution f580, brightness f10 from the pause widgets D_800E4518 to D_801462C8
+func_004233DC	0x004233DC	OptionsMenu_OnClose	Menus/OptionsMenu.cs	high	msg 0xE03 of screen 4: frees D_800E4510
+func_0042340C	0x0042340C	OptionsMenu_Update	Menus/OptionsMenu.cs	high	msg 0xE08: when the list closes Menu_GotoScreen(target) or Menu_GoBack
+func_00423488	0x00423488	OptionsMenu_OnConfirm	Menus/OptionsMenu.cs	high	msg 1: item 0x50 back, 0x57 -> screen 6, 0x58 -> screen 5; applies the settings and closes the list
+func_00423548	0x00423548	OptionsMenu_OnBack	Menus/OptionsMenu.cs	high	msg 2: target -1, closes the list, OptionsMenu_ApplySettings
+func_0042358C	0x0042358C	OptionsMenu_Nop_0042358C	Menus/OptionsMenu.cs	low	returns 0; between the screen-4 handlers, not in a table, no callers
+func_00423594	0x00423594	OptionsMenu_Nop_00423594	Menus/OptionsMenu.cs	low	returns 0; between the screen-4 handlers, not in a table, no callers
+func_0042359C	0x0042359C	OptionsMenu_HandleMessage	Menus/OptionsMenu.cs	high	walks the message table D_800E451C (screen 4) and calls the matching handler
+func_0042362C	0x0042362C	TrialPauseMenu_OnOpen	Menus/TrialPauseMenu.cs	medium	msg 0xE06 of screen 0xB (D_800E4564): D_800E4514, blood/resolution/brightness widgets, items 0x1BD/0x1C2/0x1C3/0x1C4; pause page without skip map / bot config
+func_004237C0	0x004237C0	TrialPauseMenu_OnClose	Menus/TrialPauseMenu.cs	high	msg 0xE03 of screen 0xB: frees D_800E4514, Menu_EnableInput
+func_004237F8	0x004237F8	TrialPauseMenu_Update	Menus/TrialPauseMenu.cs	medium	msg 0xE08: enables input once (flag +0xC)
+func_0042382C	0x0042382C	TrialPauseMenu_OnConfirm	Menus/TrialPauseMenu.cs	medium	msg 1: 0x1C3 resume (-1), 0x1BD -> 0xD, 0x1C2 -> 0xC, 0x1C4 -> 0xE via func_0042EB68, applies options, Menu_GoBack
+func_004238F8	0x004238F8	TrialPauseMenu_OnBack	Menus/TrialPauseMenu.cs	high	msg 2: pending -1, TrialPauseMenu_ApplyOptions, Menu_GoBack
+func_00423930	0x00423930	TrialPauseMenu_HandleMessage	Menus/TrialPauseMenu.cs	high	walks the message table D_800E4564 (screen 0xB) and calls the matching handler
+func_004239C0	0x004239C0	PauseMenu_OnClose	Menus/PauseMenu.cs	high	msg 0xE03 of screen 0x16: frees D_800E4518, Menu_EnableInput, Flyby_Abort
+func_00423A00	0x00423A00	PauseMenu_OnConfirm	Menus/PauseMenu.cs	medium	msg 1: 0x37D resume, 0x380 bot configuration (0x17), 0x37E skip map (MatchSetup_PickRandomArena), 0x377/0x37C/0x37F -> 0xD/0xC/0xE; then PauseMenu_ApplyOptions
+func_00423B68	0x00423B68	PauseMenu_OnBack	Menus/PauseMenu.cs	medium	msg 2: consumes the event
+func_00423B88	0x00423B88	PauseMenu_HandleMessage	Menus/PauseMenu.cs	high	walks the message table D_800E45AC (screen 0x16) and calls the matching handler
+func_00423C18	0x00423C18	MainMenu_OnOpen	Menus/MainMenu.cs	high	C of the screen-3 open: Arena_Set(0,0), clears players, D_800E4600, hides extra-mode items unless unlocked (profile bits or flag 0x20000000), 2P item needs two pads
+func_00423C20	0x00423C20	MainMenu_OnOpenTwin	Menus/MainMenu.cs	medium	MIPS twin of MainMenu_OnOpen at +8; the entry the screen-3 table D_800E4604 uses (msg 0xE06)
+func_00424128	0x00424128	MainMenu_OnConfirm	Menus/MainMenu.cs	high	msg 1: items 0x45 -> 0x1A (how many players), 0x46 1P trials (pak screen mode 7), 0x47 options (4), 0x49 2P, 0x4B pak manage (0x1B), 0x4C (0x10), 0x48/0x4A extra modes
+func_0042436C	0x0042436C	MainMenu_OnClose	Menus/MainMenu.cs	high	msg 0xE03 of screen 3: frees D_800E4600
+func_0042439C	0x0042439C	MainMenu_Update	Menus/MainMenu.cs	high	msg 0xE08: input lock while D_800E28E0 >= 2, delayed list open, ticker scroll, Menu_GotoScreen(target) when the list closes
+func_004244B4	0x004244B4	MainMenu_OnButton	Menus/MainMenu.cs	medium	msg 0xA: a press of button 10 opens the cheats screen 0x1C (target 0x1C, closes the list)
+func_00424508	0x00424508	MainMenu_OnBack	Menus/MainMenu.cs	medium	msg 2: consumes the event
+func_00424528	0x00424528	MainMenu_HandleMessage	Menus/MainMenu.cs	high	walks the message table D_800E4604 (screen 3) and calls the matching handler
+func_004245C0	0x004245C0	Profile_AwardMatchMedals	Save/Profile.cs	medium	sets medal bits in profile +0x4A (arena wins >= 2 for 0..0x23, frag/time feats 0x24..0x2C), returns up to two new medal ids; caller func_0042D2F8
+func_00424D70	0x00424D70	Profile_AddMatchKillsAndDeaths	Save/Profile.cs	medium	adds the match's frags (+4) and deaths (+2) of each loaded player to profile totals +0x6C/+0x74, capped at 99999
+func_00424E30	0x00424E30	Profile_AddWin	Save/Profile.cs	medium	wins +0x70 += 1 (cap 99999); in a medal-eligible match with limit >= 10 also counts the arena win +0x26[arena] (max 5)
+func_00424FC8	0x00424FC8	Profile_GetRankName	Save/Profile.cs	high	counts the 50 medal bits and returns the rank string NOVICE..CHIEFTAIN (D_800D722C..), stores the rank in +0x25
+func_004251F4	0x004251F4	Trial_CompleteArena	Match/Trials.cs	medium	marks the arena done for the character (grid +0x125) and grants the talisman reward D_800E4680 (lives, Profile_UnlockWeapon/AltFire, fields); returns 5000 + reward
+func_004255A8	0x004255A8	Trial_GetRewardMessage	Match/Trials.cs	high	maps reward 5001.. to strings 'ACQUIRED EAGLE TALISMAN. 1 UP!', 'ACQUIRED BEAR TALISMAN...' (D_800D7510..)
+func_00425854	0x00425854	Trial_UnlockCharacterReward	Match/Trials.cs	medium	trial mode, final arenas (>= 0x23): unlocks a character per the player's character (Profile_UnlockCharacter), returns its id or -1
+func_00425BC0	0x00425BC0	Profile_UnlockSkinsByMedals	Save/Profile.cs	medium	counts medals and raises the per-character skin counts +0x57..+0x69 to 2 / 3 at every second medal (read by CharSelect_NextSkin)
+func_00425E50	0x00425E50	Arena_GetTreeRecord	Menus/MatchSetup.cs	medium	Resource_GetIndexedCached(D_8011FE88, arena), copies record [mode][column] (0x2A bytes: linked arenas, par time +0x24) to D_80153FE0; mission-tree callers
+func_00425EF4	0x00425EF4	Profile_MarkArenaPlayed	Save/Profile.cs	medium	sets bit arena D_8015402C in the per-mode bit set +0x7E/+0x83/+0x88/+0x8D chosen by D_801462D5 (read by the mission tree)
+func_00425FDC	0x00425FDC	Trial_MarkKeyArenaWon_00425FDC	Match/Trials.cs	low	arenas 4/9/0x16/0x23 set bit 0..3 of profile +0x124 once, returning 5052; Profile_AwardKeyArenasMedal_004260C4 tests these four bits
+func_004260C4	0x004260C4	Profile_AwardKeyArenasMedal_004260C4	Save/Profile.cs	low	when the four bits of +0x124 are set awards medal bit 0x31 of +0x4A and reports it in *out
+func_004261E4	0x004261E4	Profile_CountMedals	Save/Profile.cs	high	counts set bits 0..49 of the profile's medal set +0x4A ('/50', MEDALS); callers CheatsMenu_UpdateUnlocked, func_0041D718
+func_00426270	0x00426270	Player_GiveUnlockedLoadoutWeapons	Player/Items.cs	medium	for a human player: weapon pickups (ids >= 0x4C3) of the loadout record p+0x18 that Profile_IsWeaponUnlocked grants go to p+0x602; callers Player_InitWeapons, Player_Restart
+func_00426354	0x00426354	Player_ApplyLoadout	Player/Items.cs	medium	copies the owned flags/slots (+0x4C/+0x62, 22 weapons) of the player's record to p+0x602; caller Player_InitWeapons
+func_004263BC	0x004263BC	Player_GiveArenaWeapons	Player/Items.cs	medium	weapon pickups (ids >= 0x4C3) of the arena record (Resource_GetIndexedCached(D_8011FE88, arena)) go to p+0x602; caller Player_InitWeapons
+func_00426454	0x00426454	Profile_MatchCountsForMedals	Save/Profile.cs	medium	true when a frag/time limit is set and at least two human players have D_80103140[i] >= 0x4C; gate of Profile_AwardMatchMedals / Profile_AddWin
+func_004264E4	0x004264E4	MissionTree_OnOpen	Menus/MissionTree.cs	high	C of the screen 0xA/0xF open: D_800E4690 (0xA80), 36-arena bit sets, played arenas, cursor arena, message box, mode-specific panels (D_801462D5 1..4)
+func_004264F0	0x004264F0	MissionTree_OnOpenTwin	Menus/MissionTree.cs	medium	MIPS twin of MissionTree_OnOpen at +0xC; the entry the tables D_800E4D8C/D_800E4E1C use (msg 0xE06)
 func_00426968	0x00426968	Results_PlacePlayerModels	Menus/Results.cs	medium	harvest: src/ovl_a/func_00426968.c comment: places the models of the first two active players on the screen D_800E4690
-func_00426AF8	0x00426AF8				
+func_00426AF8	0x00426AF8	MissionTree_Update	Menus/MissionTree.cs	medium	msg 0xE08 of screens 0xA/0xF: slide states, map refresh (MissionTree_LoadPlayedArenas), pending screens via func_0042EB68
 func_00426EC4	0x00426EC4	Results_DrawCallback	Menus/Results.cs	medium	harvest: src/ovl_a/func_00426EC4.c comment: draw callback of the results screen D_800E4690 (per-viewport player panel)
-func_004271E8	0x004271E8				
-func_00427430	0x00427430				
-func_004275B4	0x004275B4				
-func_00427690	0x00427690				
-func_00427B98	0x00427B98				
-func_00427CE8	0x00427CE8				
-func_00427F50	0x00427F50				
-func_004280F0	0x004280F0				
-func_0042829C	0x0042829C				
-func_00428300	0x00428300				
-func_00428338	0x00428338				
-func_00428388	0x00428388				
-func_004283F4	0x004283F4				
-func_004284E0	0x004284E0				
-func_004285EC	0x004285EC				
-func_004286A0	0x004286A0				
-func_0042872C	0x0042872C				
-func_0042881C	0x0042881C				
-func_004288E0	0x004288E0				
-func_00428998	0x00428998				
-func_004289D8	0x004289D8				
-func_00428A30	0x00428A30				
-func_00428B94	0x00428B94				
-func_00428CF8	0x00428CF8				
-func_00428E5C	0x00428E5C				
-func_00428FC0	0x00428FC0				
-func_00428FF0	0x00428FF0				
-func_00429058	0x00429058				
-func_004290E8	0x004290E8				
-func_00429178	0x00429178				
-func_00429180	0x00429180				
-func_004291A8	0x004291A8				
-func_004292D4	0x004292D4				
-func_0042931C	0x0042931C				
-func_004293AC	0x004293AC				
-func_004293B0	0x004293B0				
-func_004296A4	0x004296A4				
-func_00429740	0x00429740				
-func_00429834	0x00429834				
-func_004298D4	0x004298D4				
-func_00429904	0x00429904				
-func_0042990C	0x0042990C				
-func_004299D8	0x004299D8				
-func_00429AD8	0x00429AD8				
-func_00429B2C	0x00429B2C				
-func_00429B50	0x00429B50				
-func_00429B74	0x00429B74				
-func_00429C04	0x00429C04				
+func_004271E8	0x004271E8	MissionTree_LoadPlayedArenas	Menus/MissionTree.cs	high	copies the profile's played-arena bits of the current mode (+0x7E/+0x83/+0x88/+0x8D) into the page's set +0xA74, then MissionTree_RefreshMap
+func_00427430	0x00427430	MissionTree_BuildGauntletOrder	Menus/MissionTree.cs	medium	recursive search that chains every available arena through linked arenas (MissionTree_AreArenasLinked) into a -1 terminated sequence ('THE GAUNTLET ... PLAYED AS A SERIES')
+func_004275B4	0x004275B4	MissionTree_HideLinks	Menus/MissionTree.cs	high	hides the nodes of the 64 arena links D_800E4A84 (two ends and the line)
+func_00427690	0x00427690	MissionTree_RefreshMap	Menus/MissionTree.cs	high	shows reachable links, opens neighbours of played arenas (MissionTree_OpenNeighbours) and dims/brightens arena and link nodes (0x46/0xAA)
+func_00427B98	0x00427B98	MissionTree_ShowTrialCharacter	Menus/MissionTree.cs	medium	mode 4: shows the cursor arena's weapons and builds the arena's character model (Portrait_CreateActor, 'TRIAL OF [CHARACTER]')
+func_00427CE8	0x00427CE8	MissionTree_UpdateInfoText	Menus/MissionTree.cs	medium	header text per mode: mode 1 character text, mode 3 best time or par time (mm:ss), mode 4 fixed string
+func_00427F50	0x00427F50	MissionTree_OpenNeighbours	Menus/MissionTree.cs	high	marks the arenas linked from arena a (record bytes 1..4 of Arena_GetTreeRecord for the mode) as newly open (+0xA79) when not played yet
+func_004280F0	0x004280F0	MissionTree_SelectNextArena	Menus/MissionTree.cs	medium	cursor = the current arena D_8015402C, and after a win the first arena it links to
+func_0042829C	0x0042829C	MissionTree_UpdateArenaName	Menus/MissionTree.cs	high	reads the cursor arena's name from the level resource (func_0028D35C) into the name node +0x998
+func_00428300	0x00428300	MissionTree_FindArenaIndex	Menus/MissionTree.cs	high	index i of the 36-entry arena node table D_800E4694 with id == a (0 if none)
+func_00428338	0x00428338	MissionTree_AreArenasLinked	Menus/MissionTree.cs	high	true when a == b or a link {a, b} is in the 64-entry table D_800E4A84
+func_00428388	0x00428388	MissionTree_ShowInfoPanels_00428388	Menus/MissionTree.cs	low	shows the panels +0xA60/+0xA64 (nodes 0x13D/0x147) at full alpha and clears +0xA68; called after cursor moves
+func_004283F4	0x004283F4	MissionTree_ShowPlayersWeapons	Menus/MissionTree.cs	medium	mode 2: weapon icons of the owned weapons (+0x11C flags) of the first two joined players (MissionTree_SetWeaponIcon rows 0/1)
+func_004284E0	0x004284E0	MissionTree_ShowCharacterWeapons	Menus/MissionTree.cs	medium	mode 1: icons of the weapons of the character's loadout record (func_0028CF7C kind 0xB) that Profile_IsWeaponUnlocked allows
+func_004285EC	0x004285EC	MissionTree_ShowOwnedWeapons	Menus/MissionTree.cs	medium	mode 3: icons of the player's owned weapons (+0x11C flags)
+func_004286A0	0x004286A0	MissionTree_ShowArenaWeapons	Menus/MissionTree.cs	medium	icons of the weapon pickups (ids >= 0x4C3) of arena a's record; caller MissionTree_ShowTrialCharacter
+func_0042872C	0x0042872C	MissionTree_SetWeaponIcon	Menus/MissionTree.cs	high	slot 0..4 of row 0 (0x149..0x14F) or row 1 (0x1DF..0x1E3): hides the empty overlay 0x14B and sets icon node 0x14A to MissionTree_GetWeaponIconId(weapon)
+func_0042881C	0x0042881C	MissionTree_GetWeaponIconId	Menus/MissionTree.cs	medium	looks the weapon id up in the {id, icon} tables D_800E5B44 (8), D_800E5BC4 (4), D_800E5B14 (3)
+func_004288E0	0x004288E0	MissionTree_ClearWeaponIcons	Menus/MissionTree.cs	high	shows the empty overlay 0x14B of the five icon slots 0x149, 0x14C..0x14F
+func_00428998	0x00428998	MissionTree_OnClose	Menus/MissionTree.cs	high	msg 0xE03 of screens 0xA/0xF: frees D_800E4690, Menu_EnableInput, Flyby_Abort
+func_004289D8	0x004289D8	MissionTree_OnButton	Menus/MissionTree.cs	medium	msg 0xA: a press of button 0 sets state 8 and dims node +0xA50, sound 0xE7C
+func_00428A30	0x00428A30	MissionTree_OnNavUp	Menus/MissionTree.cs	medium	msg 5: moves the cursor to the arena's up neighbour (+0x14) when it is open, sound 0xE7D, refreshes name/info/character
+func_00428B94	0x00428B94	MissionTree_OnNavDown	Menus/MissionTree.cs	medium	msg 6: moves the cursor to the arena's down neighbour (+0x18) when it is open, sound 0xE7D, refreshes name/info/character
+func_00428CF8	0x00428CF8	TrialMap_OnLeft	Menus/TrialMap.cs	medium	event 7 (left) of screen tables D_800E4D84/D_800E4E20: moves D_800E4690 selection to node link +0x10 if unlocked (Bits_Test A74), sound 0xE7D, refreshes level name/info
+func_00428E5C	0x00428E5C	TrialMap_OnRight	Menus/TrialMap.cs	medium	event 8 (right) twin of TrialMap_OnLeft using link +0xC of the D_800E4694 node table
+func_00428FC0	0x00428FC0	TrialMap_OnBack	Menus/TrialMap.cs	medium	event 2 (B) of the D_800E4690 screen: hides the 0x40 map nodes (func_004275B4), Menu_RequestScreen(0xE)
+func_00428FF0	0x00428FF0	TrialMap_OnSelect	Menus/TrialMap.cs	medium	event 1 (A): Arena_Set(type, level) from the selected D_800E4694 record, Menu_RequestScreen(0x19)
+func_00429058	0x00429058	TrialMap_HandleEvent	Menus/TrialMap.cs	medium	dispatches (event, key 10 or 0x7530) through handler table D_800E4D84 (TrialMap_* and Results_PlacePlayerModels)
+func_004290E8	0x004290E8	TrialMap_HandleEventAlt	Menus/TrialMap.cs	medium	same dispatcher over table D_800E4E20 (identical handlers, key 15)
+func_00429178	0x00429178	QuitConfirm_OpenTwin	Menus/QuitConfirm.cs	medium	recompiled copy 8 bytes before QuitConfirm_Open (adds list items 0x1D9/0x1DA)
+func_00429180	0x00429180	QuitConfirm_Open	Menus/QuitConfirm.cs	medium	open handler (0xE06) of screen key 14 (table D_800E4EC0): adds the two choices 0x1D9 and 0x1DA (func_0041B190)
+func_004291A8	0x004291A8	QuitConfirm_OnSelect	Menus/QuitConfirm.cs	medium	choice 0x1D9: CameraManager_Init + Level_Load(0) and requests the menu of play mode D_801462D5 (0x14/0xA/0xF); 0x1DA: back to 0xB or -1
+func_004292D4	0x004292D4	QuitConfirm_OnBack	Menus/QuitConfirm.cs	medium	event 2 (B) of the key-14 screen: Menu_RequestScreen(0xB or -1) like choice 0x1DA, Menu_GoBack
+func_0042931C	0x0042931C	QuitConfirm_HandleEvent	Menus/QuitConfirm.cs	medium	dispatches events through handler table D_800E4EC0 (key 14)
+func_004293AC	0x004293AC	MatchOptions_Open	Menus/MatchOptions.cs	medium	allocates D_800E4EF0, creates number fields for time/frag/flag/tag limits and bot count, NO/YES (friendly fire) and NOVICE..EXPERT (bot skill) lists by game type D_80154028
+func_004293B0	0x004293B0	MatchOptions_OpenTwin	Menus/MatchOptions.cs	medium	recompiled copy 4 bytes after MatchOptions_Open; it is the 0xE06 slot of table D_800E4EF4 (key 21)
+func_004296A4	0x004296A4	MatchOptions_StoreSettings	Menus/MatchOptions.cs	medium	NumberField_GetValue of the fields into D_801462C8 +0x24 time, +0x25 frags, +0x26 flags, +0x27 tags, +0x28 friendly fire
+func_00429740	0x00429740	MatchOptions_LoadSettings	Menus/MatchOptions.cs	medium	inverse of MatchOptions_StoreSettings: NumberField_SetValue from D_801462C8 +0x24..+0x28, bot count clamped to the maximum
+func_00429834	0x00429834	MatchOptions_UpdateBots	Menus/MatchOptions.cs	medium	reads bot skill list (+0x20) and bot count field (+0x34): count <= 0 clears bots (func_0041EAE0), else re-creates them when changed or forced
+func_004298D4	0x004298D4	MatchOptions_Close	Menus/MatchOptions.cs	medium	0xE03 slot: frees D_800E4EF0 and clears it
+func_00429904	0x00429904	MatchOptions_OnDraw	Menus/MatchOptions.cs	medium	0xE0A (draw) slot of table D_800E4EF4; returns 0
+func_0042990C	0x0042990C	MatchOptions_OnMessage	Menus/MatchOptions.cs	medium	event 0xA, pad message (c>>16 == 3) button 2: resets the focused field (0x363/0x361/0x35F/0x365/0x36C) to its minimum
+func_004299D8	0x004299D8	MatchOptions_OnSelect	Menus/MatchOptions.cs	medium	event 1: item 0x36B stores and goes back (-1), 0x369 (bots > 0) -> screen 0x17, 0x36A stores, updates bots, -> screen 0x19
+func_00429AD8	0x00429AD8	MatchOptions_OnBack	Menus/MatchOptions.cs	medium	event 2: unless transitioning, MatchOptions_StoreSettings, Menu_RequestScreen(-1), Menu_GoBack
+func_00429B2C	0x00429B2C	MatchOptions_OnLeft	Menus/MatchOptions.cs	medium	event 7 (left) for node key 0x878 (bot count): on release calls MatchOptions_UpdateBots(1)
+func_00429B50	0x00429B50	MatchOptions_OnRight	Menus/MatchOptions.cs	medium	event 8 (right) for node key 0x878: on release calls MatchOptions_UpdateBots(1)
+func_00429B74	0x00429B74	MatchOptions_HandleEvent	Menus/MatchOptions.cs	medium	dispatches events through handler table D_800E4EF4 (key 21 / 0x878)
+func_00429C04	0x00429C04	CharSelect_OpenTwin	Menus/CharacterSelect.cs	medium	recompiled copy 12 bytes before CharSelect_Open (0xE06 slot of table D_800E5284, screen D_800E4F60)
 func_00429C10	0x00429C10	CharSelect_Open	Menus/CharacterSelect.cs	medium	harvest: src/ovl_a/func_00429C10.c comment: opens screen D_800E4F60 with list, arrows and the four character models 0xEA6..0xEA9
-func_0042A1D0	0x0042A1D0				
+func_0042A1D0	0x0042A1D0	ArenaSelect_OnDraw	Menus/ArenaSelect.cs	medium	0xE0A slot of D_800E5284: phase 1 draws the 4 category models and highlight (scissor 0xED), phase 0 runs the blink/fade timers of D_800E4F60
 func_0042A490	0x0042A490	Menu_UpdateTransition_0042A490	Menus/MenuCore.cs	low	harvest: src/ovl_a/func_0042A490.c comment: advances the menu transition state and updates its visual effects
-func_0042A994	0x0042A994				
-func_0042AB70	0x0042AB70				
-func_0042ACB0	0x0042ACB0				
+func_0042A994	0x0042A994	ArenaSelect_SetArenaNodesAlpha	Menus/ArenaSelect.cs	medium	for all four game types sets the alpha (and visibility when >= 0xC) of every arena node listed in D_800E51E4/51F8/5214/5240
+func_0042AB70	0x0042AB70	ArenaSelect_RefreshSelection	Menus/ArenaSelect.cs	medium	sets the highlighted arena node and the name text: GAUNTLET for index 0 else Level_CopyLevelName upper-cased; Flyby_Abort
+func_0042ACB0	0x0042ACB0	ArenaSelect_Confirm	Menus/ArenaSelect.cs	medium	hides arena nodes, Arena_Set(game type, level), requests screen 0x15; index 0 starts a gauntlet (Gauntlet_SetGameType, MatchSetup_PickRandomArena)
 func_0042AEB8	0x0042AEB8	MatchSetup_PickRandomArena	Menus/MatchSetup.cs	high	harvest: memory project_port_game_facts.md: custom matches pick a random arena each run (func_0042AEB8: rand % pool + 1)
-func_0042B108	0x0042B108				
-func_0042B11C	0x0042B11C				
-func_0042B198	0x0042B198				
-func_0042B1A0	0x0042B1A0				
-func_0042B1B0	0x0042B1B0				
-func_0042B1C0	0x0042B1C0				
-func_0042B260	0x0042B260				
-func_0042B284	0x0042B284				
-func_0042B334	0x0042B334				
-func_0042B398	0x0042B398				
-func_0042B474	0x0042B474				
-func_0042B4BC	0x0042B4BC				
-func_0042B4C4	0x0042B4C4				
-func_0042B530	0x0042B530				
-func_0042B574	0x0042B574				
-func_0042B5B4	0x0042B5B4				
-func_0042B5BC	0x0042B5BC				
-func_0042B6B4	0x0042B6B4				
-func_0042B824	0x0042B824				
-func_0042B96C	0x0042B96C				
+func_0042B108	0x0042B108	Gauntlet_IsActive	Match/Gauntlet.cs	high	returns D_80154010 != -1 (gauntlet game type set by ArenaSelect_Confirm, -1 = single arena)
+func_0042B11C	0x0042B11C	Gauntlet_IsFinished	Match/Gauntlet.cs	medium	true when no gauntlet or index D_80154014 + 1 equals the arena count of the gauntlet's game type
+func_0042B198	0x0042B198	Gauntlet_AlwaysTrue_0042B198	Match/Gauntlet.cs	low	returns 1; Results_Open checks it with Gauntlet_IsActive before disabling item 0x238
+func_0042B1A0	0x0042B1A0	Gauntlet_SetGameType	Match/Gauntlet.cs	medium	stores D_80154010 (game type of the running gauntlet, -1 = none); callers ArenaSelect_Confirm
+func_0042B1B0	0x0042B1B0	Gauntlet_SetIndex	Match/Gauntlet.cs	medium	stores D_80154014 (arena index/progress of the gauntlet); caller ArenaSelect_Confirm
+func_0042B1C0	0x0042B1C0	ArenaSelect_UpdateNameText	Menus/ArenaSelect.cs	medium	name text of the selection: GAUNTLET (D_800D7500) for index 0 else the level name upper-cased into +0x3F4
+func_0042B260	0x0042B260	ArenaSelect_ResetArenaNodes	Menus/ArenaSelect.cs	medium	ArenaSelect_HideArenaNodes then ArenaSelect_SetArenaNodesAlpha(0)
+func_0042B284	0x0042B284	ArenaSelect_HideArenaNodes	Menus/ArenaSelect.cs	medium	hides the 0x28 arena nodes (and their second node) of table D_800E4F64
+func_0042B334	0x0042B334	Arena_GetCountForType	Menus/MatchSetup.cs	medium	arena count per game type: 0->5, 1->7, 3->11, 2->17; used for list bounds and Gauntlet_IsFinished
+func_0042B398	0x0042B398	Arena_GetLevelForType	Menus/MatchSetup.cs	medium	(game type, index; 0 -> 1) looks the arena key up in D_800E51E4/51F8/5214/5240 and returns its level number from D_800E4F64
+func_0042B474	0x0042B474	ArenaSelect_CategoryToGameType	Menus/ArenaSelect.cs	medium	maps the screen category (+0x434) to the game type: 0->2, 1->3, 2->1, 3->0
+func_0042B4BC	0x0042B4BC	ArenaSelect_Stub_0042B4BC	Menus/ArenaSelect.cs	low	returns 0, no callers or table slot; sits between the arena-select helpers
+func_0042B4C4	0x0042B4C4	ArenaSelect_ShowMarkers	Menus/ArenaSelect.cs	medium	shows nodes +0x450/+0x454 at alpha 0xFF and stops their fade (+0x46C = 0); called on every selection move
+func_0042B530	0x0042B530	Gauntlet_ClearPlayedArenas	Match/Gauntlet.cs	medium	clears bits 0..0x27 of D_80154018 (Bits_Assign) before a new arena choice
+func_0042B574	0x0042B574	ArenaSelect_Close	Menus/ArenaSelect.cs	medium	0xE03 slot of D_800E5284: frees D_800E4F60, Menu_EnableInput
+func_0042B5B4	0x0042B5B4	ArenaSelect_OnEnter	Menus/ArenaSelect.cs	medium	0xE07 (after open) slot of table D_800E5284; returns 0
+func_0042B5BC	0x0042B5BC	ArenaSelect_OnMessage	Menus/ArenaSelect.cs	medium	event 0xA, pad message button 0 while state 3 and no pending screen: state 8, fades arena nodes (0x41), hides markers, sound 0xE7C
+func_0042B6B4	0x0042B6B4	ArenaSelect_OnUp	Menus/ArenaSelect.cs	medium	event 5: moves the arena index (+0x438) up within the category layout, sound 0xE7D, ArenaSelect_RefreshSelection
+func_0042B824	0x0042B824	ArenaSelect_OnDown	Menus/ArenaSelect.cs	medium	event 6: moves the arena index down (two-column layout for category 0), sound 0xE7D
+func_0042B96C	0x0042B96C	ArenaSelect_OnLeft	Menus/ArenaSelect.cs	medium	event 7: previous category (+0x434 - 1) or left column in category 0, clamps the index, shows the category model 0xEA6+n
 func_0042BAE4	0x0042BAE4	CharSelect_NextCategory	Menus/CharacterSelect.cs	medium	harvest: src/ovl_a/func_0042BAE4.c comment: moves the screen D_800E4F60 to its next category on event 1
-func_0042BC34	0x0042BC34				
-func_0042BC78	0x0042BC78				
-func_0042BCB0	0x0042BCB0				
-func_0042BD40	0x0042BD40				
-func_0042C1F8	0x0042C1F8				
-func_0042C8AC	0x0042C8AC				
-func_0042CE54	0x0042CE54				
-func_0042D054	0x0042D054				
-func_0042D190	0x0042D190				
-func_0042D1BC	0x0042D1BC				
-func_0042D214	0x0042D214				
-func_0042D240	0x0042D240				
-func_0042D2F8	0x0042D2F8				
-func_0042D3A8	0x0042D3A8				
-func_0042D46C	0x0042D46C				
-func_0042D4E4	0x0042D4E4				
-func_0042D5F8	0x0042D5F8				
-func_0042D6AC	0x0042D6AC				
-func_0042D6DC	0x0042D6DC				
-func_0042D870	0x0042D870				
-func_0042D968	0x0042D968				
-func_0042DA84	0x0042DA84				
-func_0042DAA4	0x0042DAA4				
-func_0042DAE8	0x0042DAE8				
-func_0042DB38	0x0042DB38				
-func_0042DBC8	0x0042DBC8				
-func_0042DBD0	0x0042DBD0				
-func_0042DCA8	0x0042DCA8				
-func_0042DCD8	0x0042DCD8				
-func_0042DDE4	0x0042DDE4				
-func_0042DEA4	0x0042DEA4				
-func_0042DEE0	0x0042DEE0				
-func_0042DF88	0x0042DF88				
-func_0042DFF0	0x0042DFF0				
-func_0042E080	0x0042E080				
-func_0042E3D0	0x0042E3D0				
-func_0042E640	0x0042E640				
+func_0042BC34	0x0042BC34	ArenaSelect_OnBack	Menus/ArenaSelect.cs	medium	event 2: in state 3 starts the leave transition (state 5)
+func_0042BC78	0x0042BC78	ArenaSelect_OnSelect	Menus/ArenaSelect.cs	medium	event 1: in state 3 calls ArenaSelect_Confirm
+func_0042BCB0	0x0042BCB0	ArenaSelect_HandleEvent	Menus/ArenaSelect.cs	medium	dispatches events through handler table D_800E5284 (key 20)
+func_0042BD40	0x0042BD40	Results_Open	Menus/Results.cs	medium	0xE06 slot of D_800E53C4: allocates D_800E53C0, sorts players, awards, TEAM/HIT%/TAGS/FLAGS column titles, MISSION FAILED, level name
+func_0042C1F8	0x0042C1F8	Results_FillRows	Menus/Results.cs	medium	fills the 4 visible rows from scroll +0xE8: portrait, name, character, frags/deaths (%d), hit% (%d%%), tags/flags, award icons
+func_0042C8AC	0x0042C8AC	Results_SortPlayers	Menus/Results.cs	medium	collects active players into +0xF0 and bubble-sorts them by team rank and frags/tags/flags per Match_GetEndReason mode
+func_0042CE54	0x0042CE54	Results_HideRows	Menus/Results.cs	medium	hides the 10 widgets of each of the 4 rows (D_800E5320) and the team emblems 0x269/0x26E
+func_0042D054	0x0042D054	Results_ShowReward	Menus/Results.cs	medium	if a reward (+0x32C) was won shows node 0x268 with the ACQUIRED ... text table D_800D752C and sets up model +0x20 with it
+func_0042D190	0x0042D190	Results_EnterFromGame	Menus/Results.cs	medium	caller Level_UpdateActors: Menu_InitFrontend, Menu_DisableInput, Menu_GotoScreen(0x11) (results screen)
+func_0042D1BC	0x0042D1BC	Results_ContinueCustomMatch	Menus/Results.cs	medium	clears D_801468A0 +0x78/+0x54; next gauntlet arena -> MatchSetup_StartMatch, else screen 0x14 (arena select); caller PlayerMenu_OnDraw
+func_0042D214	0x0042D214	Results_ContinueMode2_0042D214	Menus/Results.cs	low	clears D_801468A0 +0x78/+0x54 and goes to screen 0xF; PlayerMenu_OnDraw calls it for play mode D_801462D5 == 2
+func_0042D240	0x0042D240	Match_GetEndReason	Match/Rules.cs	medium	0 time ran out, 1 frag limit (Match_CheckFragLimit), 3 team score (CTF), 2 kill limit (frag tag), else D_80146938 == 1
+func_0042D2F8	0x0042D2F8	Results_ComputeMatchAwards_0042D2F8	Menus/Results.cs	low	for each human player in the ranking calls func_004245C0(n, &awards[n]) and func_00425BC0(n); custom-match branch of Results_Open
+func_0042D3A8	0x0042D3A8	Results_ComputeTrialAwards_0042D3A8	Menus/Results.cs	low	trial branch of Results_Open: reward = func_00425FDC(n), func_004260C4(n, &awards[n]), func_00425BC0(n)
+func_0042D46C	0x0042D46C	Results_DrawReward	Menus/Results.cs	medium	if a reward is shown (+0x32C != -1, +0x328) draws model +0x20 (func_004399D0) with a temporary alpha
+func_0042D4E4	0x0042D4E4	Results_ShowTeamEmblem	Menus/Results.cs	medium	in widget c (0x269/0x26E) shows the row's emblem node 0x26A..0x26D with the icon of the player's team (+0x92)
+func_0042D5F8	0x0042D5F8	Results_HideTeamEmblems	Menus/Results.cs	medium	hides emblem nodes 0x26A..0x26D inside the given widget
+func_0042D6AC	0x0042D6AC	Results_Close	Menus/Results.cs	medium	0xE03 slot of D_800E53C4: frees D_800E53C0
+func_0042D6DC	0x0042D6DC	Results_OnDraw	Menus/Results.cs	medium	0xE0A slot: after the fade replays the level (Level_Load) or leaves to 0xF/0x14 / next gauntlet match; otherwise draws the reward
+func_0042D870	0x0042D870	Results_OnTick	Menus/Results.cs	medium	0xE08 slot: first tick focuses item 0x238/0x237 and enables input; handles the pending Menu_RequestScreen target
+func_0042D968	0x0042D968	Results_OnSelect	Menus/Results.cs	medium	event 1: 0x237 continue, 0x238 save -> pak screen mode 5 (0x13), 0x23C quit (gauntlet -> 0x21, else 0x14/0xF)
+func_0042DA84	0x0042DA84	Results_OnBack	Menus/Results.cs	medium	event 2 slot of D_800E53C4: only Menu_ConsumeEvent
+func_0042DAA4	0x0042DAA4	Results_ScrollUp	Menus/Results.cs	medium	event 5: scroll offset +0xE8 - 1, Results_FillRows
+func_0042DAE8	0x0042DAE8	Results_ScrollDown	Menus/Results.cs	medium	event 6: scroll offset +0xE8 + 1 while 4 rows fit, Results_FillRows
+func_0042DB38	0x0042DB38	Results_HandleEvent	Menus/Results.cs	medium	dispatches events through handler table D_800E53C4 (key 17)
+func_0042DBC8	0x0042DBC8	PlayerCount_OpenTwin	Menus/PlayerCount.cs	medium	recompiled copy 8 bytes before PlayerCount_Open
+func_0042DBD0	0x0042DBD0	PlayerCount_Open	Menus/PlayerCount.cs	medium	0xE06 slot of D_800E5434 (screen 26 how many players): allocates D_800E5430, count +0x20 = 1 shown with %d
+func_0042DCA8	0x0042DCA8	PlayerCount_Close	Menus/PlayerCount.cs	medium	0xE03 slot: frees D_800E5430
+func_0042DCD8	0x0042DCD8	PlayerCount_OnTick	Menus/PlayerCount.cs	medium	0xE08 slot: animates node +8, on dialog end goes to the chosen screen (+0x10) or Menu_GoBack
+func_0042DDE4	0x0042DDE4	PlayerCount_OnSelect	Menus/PlayerCount.cs	medium	event 1: target screen 7, activates the first N player records (+0x78 = 1), Profile_InitSlot for empty profiles
+func_0042DEA4	0x0042DEA4	PlayerCount_OnBack	Menus/PlayerCount.cs	medium	event 2: target -1, closes the dialog
+func_0042DEE0	0x0042DEE0	PlayerCount_OnRight	Menus/PlayerCount.cs	medium	event 8: count + 1 while that pad is connected (Pad_IsConnected, Pad_CountConnected), sound 0xE81
+func_0042DF88	0x0042DF88	PlayerCount_OnLeft	Menus/PlayerCount.cs	medium	event 7: count - 1 down to 1, sound 0xE81
+func_0042DFF0	0x0042DFF0	PlayerCount_HandleEvent	Menus/PlayerCount.cs	medium	dispatches events through handler table D_800E5434 (key 26)
+func_0042E080	0x0042E080	MatchSetup_StartMatch	Menus/MatchSetup.cs	medium	Menu_GotoScreen(2), resets player records, trial definition (func_00425E50) + bots, per-game-type rules, names/colours from profiles, resolution, music cue
+func_0042E3D0	0x0042E3D0	MatchSetup_AddTrialBots	Menus/MatchSetup.cs	medium	clears old bots, then for the 7 bot entries of trial definition D_800E4680 adds bots (MatchSetup_AddBot) with their roles (+0x94/+0x95)
+func_0042E640	0x0042E640	MatchSetup_AddBot	Menus/MatchSetup.cs	medium	takes the last free player record, marks it bot (+0x91) and active, sets character (0x13 = random), skin/skill, team, name
 func_0042E7CC	0x0042E7CC	AttractDemo_Setup	Menus/MatchSetup.cs	high	main-menu demo: 8 bots, level = one of 0/3/27/1, type 2 (written directly, bypassing Arena_Set)
-func_0042EB68	0x0042EB68				
+func_0042EB68	0x0042EB68	Menu_RequestScreen	Menus/MenuCore.cs	medium	sets D_80154024 = 1 (pending) and D_80154020 = screen id; Results_OnTick/transitions go there; 20+ menu callers
 func_0042EB80	0x0042EB80	Arena_Set	Menus/MatchSetup.cs	high	stores the game type (D_80154028) and the level number (D_8015402C) for the next match
-func_0042EB94	0x0042EB94				
-func_0042ECF0	0x0042ECF0				
-func_0042ED84	0x0042ED84				
-func_0042EE18	0x0042EE18				
-func_0042EEB8	0x0042EEB8				
+func_0042EB94	0x0042EB94	Str_ReplaceAll	Lib/LibC.cs	high	replaces every occurrence of find with repl in s via Str_FindSubstring/Str_Concat ([CHARACTER], [TIME] placeholders)
+func_0042ECF0	0x0042ECF0	MatchSetup_ApplyFragTagRules	Menus/MatchSetup.cs	medium	game type 1: MatchSetup_ApplySettings(time, 0, tags, flags, 1, 0, 0) from the trial or D_801462C8, then level cue
+func_0042ED84	0x0042ED84	MatchSetup_ApplyCtfRules	Menus/MatchSetup.cs	medium	game type 0: MatchSetup_ApplySettings(time, 0, tags, flags, 0, 1, 1), then level cue
+func_0042EE18	0x0042EE18	MatchSetup_ApplyTeamRules	Menus/MatchSetup.cs	medium	game type 3: MatchSetup_ApplySettings(time, frags, tags, flags, 0, 1, 0), then level cue
+func_0042EEB8	0x0042EEB8	MatchSetup_ApplyBloodlustRules	Menus/MatchSetup.cs	medium	game type 2: MatchSetup_ApplySettings(time, frags, ..., 0, 0, 0), then level cue
 func_0042EF50	0x0042EF50	MatchSetup_ApplySettings	Menus/MatchSetup.cs	high	harvest: memory project_port_game_facts.md: match settings applied by func_0042EF50 (clock = minutes*900 ticks)
-func_0042F014	0x0042F014				
-func_0042F074	0x0042F074				
-func_0042F12C	0x0042F12C				
-func_0042F130	0x0042F130				
-func_0042F988	0x0042F988				
-func_0042FAFC	0x0042FAFC				
-func_0042FD28	0x0042FD28				
+func_0042F014	0x0042F014	MatchSetup_GetLevelCueId_0042F014	Menus/MatchSetup.cs	low	returns 0xBC2 + level*10 (level from the trial table in mode 1); passed to func_0044EACC(D_8011FAC0, id)
+func_0042F074	0x0042F074	MatchSetup_PickRandomBotCharacter	Menus/MatchSetup.cs	medium	Random_Next % 11, re-rolls characters 0 and 5 when an active player already has them
+func_0042F12C	0x0042F12C	PlayerMenu_Open	Menus/PlayerProfile.cs	medium	allocates D_800E54A4 (0x3474), arrows/panels, mode D_800E54A0 headings, per-pad state, Profile_Init, pak probing for modes 5/6/7
+func_0042F130	0x0042F130	PlayerMenu_OpenTwin	Menus/PlayerProfile.cs	medium	recompiled copy 4 bytes after PlayerMenu_Open; it is the 0xE06 slot of table D_800E54A8 (screen 19)
+func_0042F988	0x0042F988	PlayerMenu_OnDraw	Menus/PlayerProfile.cs	medium	0xE0A slot: counts down pending pak probes (PlayerMenu_ProbePak), after the fade in mode 5 continues by play mode
+func_0042FAFC	0x0042FAFC	PlayerMenu_OnTick	Menus/PlayerProfile.cs	medium	0xE08 slot: slide-in/out of the arrow widgets (+0x4C states 1..5), sounds 0xE79/0xE78, then PlayerMenu_AnimateCursors
+func_0042FD28	0x0042FD28	PlayerMenu_OnMessage	Menus/PlayerProfile.cs	medium	event 0xA, pad buttons 10/11/13 per mode: joins the pad's panel (state 2, next state +8) or waits for others (state 14)
 func_00430120	0x00430120	NameEntry_EnterSlot	Menus/PlayerProfile.cs	medium	harvest: TRANSPILER.md + Window/TextEntry.cs: 7 letter slots (func_00430208 / func_00430120; a slot entered for the first time becomes 'A')
 func_00430208	0x00430208	NameEntry_EnterSlot2	Menus/PlayerProfile.cs	medium	harvest: TRANSPILER.md + Window/TextEntry.cs: 7 letter slots (func_00430208 / func_00430120; a slot entered first becomes 'A')
-func_004302F8	0x004302F8				
-func_004305D8	0x004305D8				
+func_004302F8	0x004302F8	PlayerMenu_OnDown	Menus/PlayerProfile.cs	medium	event 6: name entry NameEntry_LetterDown, note list scroll down, or next profile choice by panel state
+func_004305D8	0x004305D8	PlayerMenu_OnUp	Menus/PlayerProfile.cs	medium	event 5: NameEntry_LetterUp, note list scroll up, or previous profile choice by panel state
 func_004308B8	0x004308B8	PlayerMenu_StepStateMachine	Menus/PlayerProfile.cs	high	harvest: TRANSPILER.md/TextEntry.cs (A = DONE copies the slots, trims blanks) + src comment: steps player's menu state machine at 0x58
 func_00432334	0x00432334	NameEntry_Cancel	Menus/PlayerProfile.cs	medium	harvest: Window/TextEntry.cs: B (func_00432334) leaves the pak screen when opened from the 1-player menu
 func_00432488	0x00432488	PlayerMenu_RefreshPanel	Menus/PlayerProfile.cs	medium	harvest: src/ovl_a/func_00432488.c comment: updates the selected player's setup panel and its linked controls
-func_00433574	0x00433574				
-func_004337EC	0x004337EC				
+func_00433574	0x00433574	PlayerMenu_AnimateCursors	Menus/PlayerProfile.cs	medium	per pad: pulses the join prompt / letter / note cursor alpha with cosf, auto-repeats letter up/down after 6 ticks
+func_004337EC	0x004337EC	PlayerMenu_ProbePak	Menus/PlayerProfile.cs	medium	CPak_GetStatus for the pad, finds the RAGE WARS note (Pak_FindFile) and loads it, picks the panel state per mode
 func_00433AF0	0x00433AF0	PlayerMenu_InitSlots	Menus/PlayerProfile.cs	medium	harvest: src/ovl_a/func_00433AF0.c comment: initializes four player-menu slots and selects the first available child node
-func_00433DA8	0x00433DA8				
-func_00433F14	0x00433F14				
-func_0043407C	0x0043407C				
-func_0043442C	0x0043442C				
-func_00434604	0x00434604				
-func_00434814	0x00434814				
-func_0043492C	0x0043492C				
-func_004349A8	0x004349A8				
-func_00434B58	0x00434B58				
-func_00434CE4	0x00434CE4				
-func_00434E08	0x00434E08				
-func_00434F4C	0x00434F4C				
+func_00433DA8	0x00433DA8	PlayerMenu_BindProfileWidgets	Menus/PlayerProfile.cs	medium	widgets 0x28B/0x28D/0x28F/0x291 point at the pad's selected pak record or the profile D_80102B00[i]
+func_00433F14	0x00433F14	PlayerMenu_BindPadWidgets	Menus/PlayerProfile.cs	medium	widgets 0x299..0x29F enabled by Pad_IsConnected, bound to the pad's selected record
+func_0043407C	0x0043407C	PlayerMenu_ListPakNotes	Menus/PlayerProfile.cs	medium	reads the 16 notes (Pak_GetFileInfo) into '%d.%s.%s' lines (<EMPTY>, OTHER GAME), free pages and needed pages
+func_0043442C	0x0043442C	PlayerMenu_ScrollNoteList	Menus/PlayerProfile.cs	medium	moves the note cursor (+scroll, 15 max) up or down, keeps a 3-line window, rebinds the line widgets
+func_00434604	0x00434604	PlayerMenu_SaveToPak	Menus/PlayerProfile.cs	medium	deletes or checks room for the RAGE WARS note, packs 4 profiles (0x640) + id + CPak_Crc32 and Pak_SaveFileVerified
+func_00434814	0x00434814	PlayerMenu_LoadFromPak	Menus/PlayerProfile.cs	medium	CPak_ReadFile 0x648 bytes, verifies CPak_Crc32 and copies the 4 profiles and id; bad note is deleted
+func_0043492C	0x0043492C	PlayerMenu_FindWaitingPad	Menus/PlayerProfile.cs	medium	returns the pad in state 14 when all pads are idle (0/14/17), else -1
+func_004349A8	0x004349A8	PlayerMenu_ReorderProfiles_004349A8	Menus/PlayerProfile.cs	low	backs up D_80102B00, Profile_Init all, copies each profile to the slot chosen at +0xB28, fills free slots with the rest
+func_00434B58	0x00434B58	PlayerMenu_AssignSelectedProfile	Menus/PlayerProfile.cs	medium	copies the pad's selected pak record into the first free profile slot D_80102B00 and claims a slot
+func_00434CE4	0x00434CE4	PlayerMenu_StoreActiveProfiles	Menus/PlayerProfile.cs	medium	copies the active profiles owned by pad k back into its pak records (index +0xC); caller PlayerMenu_StepStateMachine
+func_00434E08	0x00434E08	PlayerMenu_ShowOwnedProfiles	Menus/PlayerProfile.cs	medium	binds widgets 0x2BA/0x2E5..0x2E7 to the active profiles owned by pad k
+func_00434F4C	0x00434F4C	PlayerMenu_HandOverToFirstSlot_00434F4C	Menus/PlayerProfile.cs	low	puts pad idx in state 17 and the pad of slot 0 in state 2 (next 13, sub 3), rebinds pad widgets
 func_00435010	0x00435010	NameEntry_LetterUp	Menus/PlayerProfile.cs	medium	harvest: TRANSPILER.md + TextEntry.cs: D-pad up / down step the letter through 0x20..0x5A (func_00435010 / func_004350D0)
 func_004350D0	0x004350D0	NameEntry_LetterDown	Menus/PlayerProfile.cs	medium	harvest: TRANSPILER.md + TextEntry.cs: D-pad up / down step the letter through 0x20..0x5A (func_00435010 / func_004350D0)
-func_00435190	0x00435190				
-func_004351A0	0x004351A0				
-func_004352A8	0x004352A8				
-func_00435304	0x00435304				
-func_00435360	0x00435360				
-func_004353C0	0x004353C0				
-func_00435400	0x00435400				
-func_0043544C	0x0043544C				
-func_004354A4	0x004354A4				
-func_0043551C	0x0043551C				
-func_00435560	0x00435560				
-func_00435600	0x00435600				
-func_00435608	0x00435608				
-func_0043569C	0x0043569C				
-func_00435704	0x00435704				
-func_00435750	0x00435750				
-func_00435790	0x00435790				
-func_004357C4	0x004357C4				
-func_00435898	0x00435898				
+func_00435190	0x00435190	PlayerMenu_SetMode	Menus/PlayerProfile.cs	medium	stores D_800E54A0, the mode PlayerMenu_Open reads (5 = save after results)
+func_004351A0	0x004351A0	PlayerMenu_PulseJoinPrompt	Menus/PlayerProfile.cs	medium	alpha of panel nodes 0x2C2/0x2C3 = cosf(pad + t*0.00333)*100 + 150
+func_004352A8	0x004352A8	PlayerMenu_ActivatePlayer	Menus/PlayerProfile.cs	medium	sets player record i active (D_80146410 = record +0x78) and the pad panel to state 2
+func_00435304	0x00435304	PlayerMenu_FindFreeRecord	Menus/PlayerProfile.cs	medium	first of the pad's 4 pak records with owner byte +0xD == -1, else -1
+func_00435360	0x00435360	PlayerMenu_AreRecordsEmpty	Menus/PlayerProfile.cs	medium	1 when all 4 pak records of the pad have owner byte +0xD == -1
+func_004353C0	0x004353C0	PlayerMenu_FindFreeSlot	Menus/PlayerProfile.cs	medium	first of the 4 profile slots (12 bytes at D_800E54A4) with pad == -1
+func_00435400	0x00435400	PlayerMenu_FindSlot	Menus/PlayerProfile.cs	medium	index of the slot holding (pad a, record b), else -1
+func_0043544C	0x0043544C	PlayerMenu_ReleaseSlot	Menus/PlayerProfile.cs	medium	frees the slot holding (pad a, record b): pad = -1, state 2
+func_004354A4	0x004354A4	PlayerMenu_ClaimSlot	Menus/PlayerProfile.cs	medium	stores (pad a, record b) in the first free slot, state 1
+func_0043551C	0x0043551C	PlayerMenu_AreSlotsEmpty	Menus/PlayerProfile.cs	medium	1 when all 4 slots have pad == -1
+func_00435560	0x00435560	PlayerMenu_HasRoomForSave	Menus/PlayerProfile.cs	medium	CPak_GetFreePages / CPak_CountFreeNotes vs CPak_BytesToPages(save size): *out = 1 when a note fits
+func_00435600	0x00435600	PlayerMenu_GetSaveSize	Menus/PlayerProfile.cs	high	returns 0x648, the save note size (4 profiles 0x640 + id + crc)
+func_00435608	0x00435608	PlayerMenu_PackSaveBuffer	Menus/PlayerProfile.cs	medium	copies the pad's 4 records into the save buffer, id from +0xB64, CPak_Crc32 of 0x640 bytes
+func_0043569C	0x0043569C	PlayerMenu_UnpackSaveBuffer	Menus/PlayerProfile.cs	medium	copies the save buffer back into the pad's 4 records and the id to +0xB64
+func_00435704	0x00435704	PlayerMenu_CountBusyPads	Menus/PlayerProfile.cs	medium	counts pads whose state is not 0, 14 or 17; caller PlayerMenu_RefreshPanel
+func_00435750	0x00435750	PlayerMenu_CountActivePads	Menus/PlayerProfile.cs	medium	counts pads whose state is not 0 or 17
+func_00435790	0x00435790	PlayerMenu_CountJoinedPads	Menus/PlayerProfile.cs	medium	counts pads whose state is not 0; caller NameEntry_Cancel
+func_004357C4	0x004357C4	PlayerMenu_ApplyAllSlots	Menus/PlayerProfile.cs	medium	for the 4 slots copies the chosen pak record into profile D_80102B00[i] (or marks it unowned)
+func_00435898	0x00435898	PlayerMenu_ApplySlot	Menus/PlayerProfile.cs	medium	same as PlayerMenu_ApplyAllSlots for one slot k
 func_00435958	0x00435958	Menu_EnterSelectedState_00435958	Menus/MenuCore.cs	low	harvest: src/ovl_a/func_00435958.c comment: enters the selected menu state and resolves the default destination from the game mode
-func_00435A18	0x00435A18				
-func_00435A20	0x00435A20				
-func_00435A9C	0x00435A9C				
-func_00435AE8	0x00435AE8				
-func_00435B78	0x00435B78				
-func_00435BA4	0x00435BA4				
-func_00435BAC	0x00435BAC				
-func_00435BEC	0x00435BEC				
-func_00435C54	0x00435C54				
-func_00435CE4	0x00435CE4				
-func_00435CF0	0x00435CF0				
-func_00435D14	0x00435D14				
-func_00435DE0	0x00435DE0				
-func_00435E20	0x00435E20				
-func_00435E40	0x00435E40				
-func_00435E48	0x00435E48				
+func_00435A18	0x00435A18	PlayerMenu_Nop_00435A18	Menus/PlayerProfile.cs	low	empty function, no callers
+func_00435A20	0x00435A20	PlayerMenu_ClearSlotProfile	Menus/PlayerProfile.cs	medium	if slot i is in use (state 1) Profile_Init(D_80102B00[i]), state 2, rebinds profile widgets
+func_00435A9C	0x00435A9C	Profile_FindByIdAndRecord	Save/Profile.cs	medium	returns the profile slot whose id (+8) == a and pak record index (+0xC) == b, else -1
+func_00435AE8	0x00435AE8	PlayerMenu_ProfilesMatchPakId	Menus/PlayerProfile.cs	medium	1 unless an active profile owned by pad idx has an id (+8) different from the pak's id +0xB64
+func_00435B78	0x00435B78	PlayerMenu_SetSlot	Menus/PlayerProfile.cs	medium	slot i = (pad a, record b), state 1
+func_00435BA4	0x00435BA4	PlayerMenu_OnEnter	Menus/PlayerProfile.cs	medium	0xE07 (after open) slot of table D_800E54A8; returns 0
+func_00435BAC	0x00435BAC	PlayerMenu_Close	Menus/PlayerProfile.cs	medium	0xE03 slot: frees D_800E54A4, Menu_EnableInput, Menu_SetPeriodicStateKick(1)
+func_00435BEC	0x00435BEC	PlayerMenu_StopLetterRepeat	Menus/PlayerProfile.cs	medium	event 0xB, pad message 4/5 while entering a name (state 12): stops letter auto-repeat (+0xB48 = 2)
+func_00435C54	0x00435C54	PlayerMenu_HandleEvent	Menus/PlayerProfile.cs	medium	dispatches events through handler table D_800E54A8 (key 19, pak screen)
+func_00435CE4	0x00435CE4	PauseMenu_ShowScreen1_00435CE4	Menus/PauseMenu.cs	low	Menu_InitFrontend then Menu_GotoScreen(1) (screen 1 table D_800E555C; PauseMenu_Show is screen 0x16)
+func_00435CF0	0x00435CF0	PauseMenu_ShowTwin	Menus/PauseMenu.cs	medium	recompiled copy 12 bytes after PauseMenu_Show; called by Player_UpdateAll
+func_00435D14	0x00435D14	PauseMenu_Open	Menus/PauseMenu.cs	medium	0xE06 slot of screen 1: allocates D_800E5550, Audio_StopAllExcept(-1), Rumble_Suspend, layout by Video_GetResolution
+func_00435DE0	0x00435DE0	PauseMenu_Close	Menus/PauseMenu.cs	medium	0xE03 slot: frees D_800E5550, Menu_SetFixedFov(2), Rumble_Resume
+func_00435E20	0x00435E20	PauseMenu_OnEnter	Menus/PauseMenu.cs	medium	0xE07 slot of screen 1: Menu_SetFixedFov(2)
+func_00435E40	0x00435E40	PauseMenu_OnDraw	Menus/PauseMenu.cs	medium	0xE0A slot of screen 1; returns 0
+func_00435E48	0x00435E48	PauseMenu_OnTick	Menus/PauseMenu.cs	medium	0xE08 slot of screen 1; returns 0
 func_00435E50	0x00435E50				
 func_00435E98	0x00435E98				
 func_00435EB8	0x00435EB8				

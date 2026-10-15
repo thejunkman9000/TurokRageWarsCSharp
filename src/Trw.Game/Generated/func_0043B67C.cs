@@ -20,7 +20,7 @@ public static partial class Game
             {
                 return;
             }
-            func_0040E958(new O06Q_v5(p).unk4D0, 1);
+            UiNode_SetVisible(new O06Q_v5(p).unk4D0, 1);
             p2 = (Mem.U32(0x800E59E0u) + (uint)(a * 1232));
             if ((new O06Q_v5(p2).unk4D4 == 1))
             {
@@ -39,7 +39,7 @@ public static partial class Game
                     {
                         func_00439E60((Mem.U32(0x800E59E0u) + (uint)((a * 192) + 4976)), 0);
                         p = (Mem.U32(0x800E59E0u) + (uint)(a * 1232));
-                        func_0040E958(new O06Q_v5(p).unk4D0, 0);
+                        UiNode_SetVisible(new O06Q_v5(p).unk4D0, 0);
                         return;
                     }
                     break;
@@ -65,7 +65,7 @@ public static partial class Game
                     {
                         func_00439E60((Mem.U32(0x800E59E0u) + (uint)((a * 192) + 4976)), 0);
                         p = (Mem.U32(0x800E59E0u) + (uint)(a * 1232));
-                        func_0040E958(new O06Q_v5(p).unk4D0, 0);
+                        UiNode_SetVisible(new O06Q_v5(p).unk4D0, 0);
                         return;
                     }
                     break;

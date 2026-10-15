@@ -11,7 +11,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_004372AC");
             Menu_ConsumeEvent();
-            func_0042EB68(((Menu_GetStackScreenId(0) == 22) ? (-1) : 11));
+            Menu_RequestScreen(((Menu_GetStackScreenId(0) == 22) ? (-1) : 11));
             Menu_GoBack();
             return 0;
         }

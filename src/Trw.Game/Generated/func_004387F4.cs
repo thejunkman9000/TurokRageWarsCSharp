@@ -19,7 +19,7 @@ public static partial class Game
                 if ((v >= 0))
                 {
                     w = UiTree_FindNode(new O05M30(Mem.U32(0x800E5830u)).f20, (uint)(642), default(uint), default(uint));
-                    func_0040E958(w, 1);
+                    UiNode_SetVisible(w, 1);
                     new O05ItemWd(w).b10_Set((byte)(175));
                     new O05ItemWd(w).f38_Set(new O05M30(Mem.U32(0x800E5830u)).ent[(int)(sel)].ac);
                     if ((((((((v == 5001) || (v == 5002)) || (v == 5023)) || (v == 5024)) || (v == 5057)) || (v == 5016)) || (v == 5053)))
