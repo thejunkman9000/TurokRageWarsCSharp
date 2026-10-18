@@ -65,6 +65,10 @@ public static class GameBoot
         Mem.Set(0x8014D330, 1);
         Mem.Set(0x80000300, 1);              // osTvType = NTSC
         Mem.Set(0x80000318, 0x800000);       // osMemSize
+        // osClockRate (s64, BSS): libultra's osInitialize sets it to 62.5 MHz * 3/4, the CPU count rate; the boot path we start from never runs it. The game divides
+        // osGetTime by it for seconds (Time_GetSeconds): left 0 that was infinity, every menu tick saw the same saturated "now" and dt = 0, so the trial map's
+        // selected node never pulsed (MissionTree_Update adds dt to its sine clock). osGetTime (Host.Counter) counts at the same 46.875 MHz.
+        Mem.Set(0x8014FD90u, 46875000L);
     }
 
     /// <summary>--selftest-math: the game's own libm (translated from the ROM) against the host's, on a few inputs.</summary>
