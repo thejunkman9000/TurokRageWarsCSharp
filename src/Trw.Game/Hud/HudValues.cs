@@ -12,7 +12,7 @@ public sealed record HudView(int Index, uint Camera, float X, float Y, float W, 
 /// <item><term>health</term><description>displayed health: (s32 player+0x5E4 + 0xFF) &gt;&gt; 8 (the raw value is in 1/256)</description></item>
 /// <item><term>frags</term><description>the HUD's score: team score (rules+0x2C + team*4) in team games, else the owner record's s16 +0x04 (clamped at -99)</description></item>
 /// <item><term>ammo1..3, ammo1.shown..</term><description>the three ammo counters s16 +0x5F4/+0x5F6/+0x5F8 and whether the game shows that slot (mover +0xE2C + i*0x3C: +0 and +8 set, weapon &lt; 0x12)</description></item>
-/// <item><term>clock</term><description>seconds left (f32 0x801468B4 / 15), clock.shown = the game's blink rule</description></item>
+/// <item><term>clock</term><description>seconds left (f32 Gv.MatchRules_TimeRemaining / 15), clock.shown = the game's blink rule</description></item>
 /// </list>
 /// The full list is in docs/HUD.md.
 /// </summary>
@@ -100,7 +100,7 @@ public sealed class HudValues : IHudValues
             {
                 uint q = Mem.S32(p + 0x594) == 1 ? Mem.U32(t + 0x20) : Mem.U32(t + 0x24);
                 int idx = Ram(q, 2) ? Mem.S16(q) : -1;
-                if (idx >= 0 && idx < 256) ammoType = Mem.S16(0x800D0588u + (uint)idx * 2);
+                if (idx >= 0 && idx < 256) ammoType = Mem.S16(Gv.Weapon_AmmoTypeTable + (uint)idx * 2);
             }
         }
         v["ammo.type"] = ammoType;
@@ -133,8 +133,8 @@ public sealed class HudValues : IHudValues
         v["crosshair.on"] = Mem.S32(p + 0x788) != 0 && Mem.S16(p + 0x650) != 0x27 ? 1 : 0;
         {   // Hud.DrawIconSprite draws it at the centre minus (scale * size - 1), scale by the sprite's class (D_800C767C / 80 / 84), size D_800C7688
             int id = Mem.S32(p + 0x798);
-            uint k = id is 0x2DA or 0x2EF or 0x2F0 ? 0x800C767Cu : id is 0x2BC or 0x2E4 or 0x2F1 or 0x2F2 or 0x302 or 0x320 ? 0x800C7680u : 0x800C7684u;
-            float size = Mem.F32(0x800C7688);
+            uint k = id is 0x2DA or 0x2EF or 0x2F0 ? Gv.Hud_CrosshairScaleA : id is 0x2BC or 0x2E4 or 0x2F1 or 0x2F2 or 0x302 or 0x320 ? Gv.Hud_CrosshairScaleB : Gv.Hud_CrosshairScaleC;
+            float size = Mem.F32(Gv.Hud_CrosshairSize);
             v["crosshair.size"] = size;
             v["crosshair.half"] = Mem.F32(k) * size - 1f;
         }

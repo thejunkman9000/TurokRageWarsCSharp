@@ -9,7 +9,7 @@ namespace Trw.Game.PortHud;
 /// for each one runs the world pass (func_802362E8: loads the camera's 3D projection, camera + 0x380 + 0x40 * frame parity), then Hud.DrawViewOverlay -&gt;
 /// Hud.DrawView2D, which emits <c>G_MTX(projection, load)</c> of the camera's 2D projection at camera + 0x448 + 0x40 * parity (Camera.LoadProjection2D) and then runs
 /// the HUD of that view's player (Hud.DrawPlayer: crosshair, ammo, health, flash, counters, frags, ...), the on-screen messages (Hud.DrawMessages) and the
-/// view's 2-pixel frame. After the last view the "own racer" at 0x80145000 gets the same treatment (the shared pass: the match clock Hud.DrawMatchClock).
+/// view's 2-pixel frame. After the last view the "own racer" at Gv.Hud_SharedView gets the same treatment (the shared pass: the match clock Hud.DrawMatchClock).
 /// No other code loads a projection from those offsets.</para>
 /// <para>So the interpreter tags every draw after such a projection load with the view's index + 1 (<see cref="Shared"/> for the shared pass) until the
 /// next projection load that is a camera's 3D projection (the next view's world pass) or the end of the list. Projections from anywhere else (models
@@ -21,7 +21,7 @@ namespace Trw.Game.PortHud;
 public static class HudTagger
 {
     public const int Shared = 0x40;
-    public const uint SharedRacer = 0x80145000;          // race->self: the full-screen pseudo view of the shared overlays
+    public const uint SharedRacer = Gv.Hud_SharedView;          // race->self: the full-screen pseudo view of the shared overlays
     public const uint Proj2D = 0x448, Proj3D = 0x380, Parity = 0x40;
 
     private static uint[] cams = Array.Empty<uint>();

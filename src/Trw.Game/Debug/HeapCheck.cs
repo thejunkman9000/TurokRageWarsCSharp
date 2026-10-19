@@ -17,7 +17,7 @@ public static class HeapCheck
         if (!on) return;
         lock (Game.kernelLock)
         {
-            uint n = Mem.U32(0x80104584), prev = 0;
+            uint n = Mem.U32(Gv.Resource_AddrSortedList), prev = 0;
             int count = 0, overlaps = 0;
             while (n != 0 && count < 100000 && Mem.IsMapped(n))
             {

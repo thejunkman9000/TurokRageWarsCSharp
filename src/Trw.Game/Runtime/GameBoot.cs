@@ -7,7 +7,7 @@ public static class GameBoot
 {
     public const uint Ram = 0x80000000, RamSize = 0x800000;
     public const uint PagedStart = 0x800000;          // asset space: pages are loaded from the cartridge when first touched
-    private const uint RegionList = 0x80103F88;       // the game's own list of paged regions: next@0, base page@4, pages@6, rom address@8
+    private const uint RegionList = Gv.Pager_RegionList;       // the game's own list of paged regions: next@0, base page@4, pages@6, rom address@8
 
     /// <summary>Maps RAM, the low code/overlay/asset space and the host's helper regions.</summary>
     public static void MapMemory()
@@ -47,7 +47,7 @@ public static class GameBoot
 
     /// <summary>
     /// ROM data to guest RAM. VA = 0x80000000 + (ROM - 0xC00) for the main image's data; overlay A: VA 0x400000 = ROM 0x16E000.
-    /// The boot loader zero-fills RAM from D_800E8000 up (= .bss), so only the data below 0x800E8000 (ROM 0xE8C00) is initialised.
+    /// The boot loader zero-fills RAM from D_800E8000 up (= .bss), so only the data below Gv.Rsp_YieldBuffer (ROM 0xE8C00) is initialised.
     /// </summary>
     public static void LoadGuestData()
     {
@@ -55,20 +55,20 @@ public static class GameBoot
         Mem.Write(Ram + 0xC7010 - 0xC00, rom.AsSpan(0xC7010, 0xE8C00 - 0xC7010));
         Mem.Write(0x400000 + 0x1BCDA0 - 0x16E000, rom.AsSpan(0x1BCDA0, 0x1EE000 - 0x1BCDA0));
         // two data blobs sit inside overlay A's code range (C port asm/1B94A0.s, asm/1B9DD0.s): the overlay code is translated, so they must be copied on their own.
-        // D_44B4A0 is the template table Collision.InitProfiles copies into the collision profiles (0x80103FF0..0x80104460, the flags word Collision.MoveActor gets as arg4
+        // D_44B4A0 is the template table Collision.InitProfiles copies into the collision profiles (Gv.Collision_MoveCtxDeadAlt..0x80104460, the flags word Collision.MoveActor gets as arg4
         // for every actor state); without it every profile stays 0 and actors walk through walls and never fall. D_44BDD0 is passed on by ModelBatch.SetupEnvMapPass.
         Mem.Write(0x400000 + 0x1B94A0 - 0x16E000, rom.AsSpan(0x1B94A0, 0x1B9A40 - 0x1B94A0));
         Mem.Write(0x400000 + 0x1B9DD0 - 0x16E000, rom.AsSpan(0x1B9DD0, 0x1B9FD0 - 0x1B9DD0));
         // Cold boot: the ROM entry point (func_00200400) calls Game_SoftReset, which finds no "systembootdone" marker and sets D_8014D330 = 1. We start at the
-        // boot thread instead, so without this Game_ColdBootInit skips Settings.InitDefaults, the initialiser of the whole settings block Gv.Settings..0x8014684C (Game Speed,
+        // boot thread instead, so without this Game_ColdBootInit skips Settings.InitDefaults, the initialiser of the whole settings block Gv.Settings..Gv.Settings_End (Game Speed,
         // volumes, match / bot / item options): actors never moved, no items, wrong damage (C port 4675740, verified against Project64).
-        Mem.Set(0x8014D330, 1);
+        Mem.Set(Gv.Boot_IsColdBoot, 1);
         Mem.Set(0x80000300, 1);              // osTvType = NTSC
         Mem.Set(0x80000318, 0x800000);       // osMemSize
         // osClockRate (s64, BSS): libultra's osInitialize sets it to 62.5 MHz * 3/4, the CPU count rate; the boot path we start from never runs it. The game divides
         // osGetTime by it for seconds (Time.GetSeconds): left 0 that was infinity, every menu tick saw the same saturated "now" and dt = 0, so the trial map's
         // selected node never pulsed (MissionTree.Update adds dt to its sine clock). osGetTime (Host.Counter) counts at the same 46.875 MHz.
-        Mem.Set(0x8014FD90u, 46875000L);
+        Mem.Set(Gv.osClockRate, 46875000L);
     }
 
     /// <summary>--selftest-math: the game's own libm (translated from the ROM) against the host's, on a few inputs.</summary>
