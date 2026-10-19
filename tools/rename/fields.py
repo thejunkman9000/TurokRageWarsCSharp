@@ -65,6 +65,11 @@ def load_tables():
 def plan(types, objects, fields):
     """(type, current member name) -> new name, with validation"""
     ren, errs = {}, []
+    owner = {}
+    for obj, aliases in objects.items():
+        for t in aliases:
+            if t in owner: errs.append(f'objects.tsv: {t} is listed under both {owner[t]} and {obj}')
+            owner[t] = obj
     for obj, aliases in objects.items():
         named = fields.get(obj, {})
         seen_names = {}
