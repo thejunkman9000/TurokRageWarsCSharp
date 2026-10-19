@@ -51,9 +51,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00209988", (uint)ctl);
-            new B2Ctl(ctl).unk2F4_Set(0);
-            new B2Ctl(ctl).unk2F8_Set(0);
-            new B2Ctl(ctl).unk2FC_Set(1);
+            new B2Ctl(ctl).IsAvoidingEnemies_Set(0);
+            new B2Ctl(ctl).IsAddingTimerCosts_Set(0);
+            new B2Ctl(ctl).IsFavoringPickups_Set(1);
         }
     }
 
@@ -369,7 +369,7 @@ public static partial class Game
                 int s0 = 0;
                 Mem.Copy(_fp, func_0020AF9C_getRec0(m, idx), 12);
                 new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + 61.4399986f));
-                if ((((int)(new S5Actor(a).kind) == 1) && ((new S5Actor(a).flags & (uint)(3145728)) != 0u)))
+                if ((((int)(new S5Actor(a).Type) == 1) && ((new S5Actor(a).Flags & (uint)(3145728)) != 0u)))
                 {
                     Mem.Copy((_fp + 16u), Gv.Collision_MoveCtx, 28);
                 }
@@ -448,9 +448,9 @@ public static partial class Game
                 goto _f0;
                 _f2: ;
                 started = 0;
-                f1 = (int)((new S5Actor(a).flags38 & (uint)(8192)));
-                f2 = (int)((new S5Actor(a).flags38 & (uint)(4096)));
-                Vec_Sub((_fp + 512u), func_0020AF9C_getRec0(m, new S5Actor(a).brain.key), new S5Actor(a).pos.P);
+                f1 = (int)((new S5Actor(a).GroundFlags & (uint)(8192)));
+                f2 = (int)((new S5Actor(a).GroundFlags & (uint)(4096)));
+                Vec_Sub((_fp + 512u), func_0020AF9C_getRec0(m, new S5Actor(a).BrainPtr.key), new S5Actor(a).Position.P);
                 if (!(((f1 != 0) || (f2 != 0)))) goto _f3;
                 dd = (((new Vec3f((_fp + 512u)).x * new Vec3f((_fp + 512u)).x) + (new Vec3f((_fp + 512u)).y * new Vec3f((_fp + 512u)).y)) + (new Vec3f((_fp + 512u)).z * new Vec3f((_fp + 512u)).z));
                 goto _f4;
@@ -462,25 +462,25 @@ public static partial class Game
                 if (!((ady < 0.0f))) goto _f5;
                 ady = (-ady);
                 _f5: ;
-                best = new S5Actor(a).brain.key;
-                if (!((new S5Actor(a).unk1450 != 0))) goto _f6;
-                if (!((new S5Actor(a).brain.unk14 != (-1)))) goto _f7;
+                best = new S5Actor(a).BrainPtr.key;
+                if (!((new S5Actor(a).IsComputer != 0))) goto _f6;
+                if (!((new S5Actor(a).BrainPtr.unk14 != (-1)))) goto _f7;
                 x = Actor_IsOnGround(a);
                 z = 0;
-                w = (((int)(new S5Actor(a).unk650) == 15) ? 1 : 0);
+                w = (((int)(new S5Actor(a).StateId) == 15) ? 1 : 0);
                 if (!((x != 0))) goto _f8;
-                z = ((new S5Actor(a).unk6D0 == 0) ? 1 : 0);
+                z = ((new S5Actor(a).IsOnGround == 0) ? 1 : 0);
                 goto L_b14;
                 _f8: ;
                 if (!(((w != 0) || (f1 != 0)))) goto _f9;
                 L_b14: ;
                 if (!((z == 0))) goto _f10;
-                idx = new S5Actor(a).brain.unk14;
+                idx = new S5Actor(a).BrainPtr.unk14;
                 if (!((idx == (-1)))) goto _f11;
-                idx = new S5Actor(a).brain.unkC;
+                idx = new S5Actor(a).BrainPtr.unkC;
                 _f11: ;
                 rec = func_0020AF9C_getRec0(m, idx);
-                Vec_Sub((_fp + 512u), rec, new S5Actor(a).pos.P);
+                Vec_Sub((_fp + 512u), rec, new S5Actor(a).Position.P);
                 if (!((((f1 != 0) || (f2 != 0)) || (((int)(new B2Rec(rec).flags) & 512) != 0)))) goto _f12;
                 dd = (((new Vec3f((_fp + 512u)).x * new Vec3f((_fp + 512u)).x) + (new Vec3f((_fp + 512u)).y * new Vec3f((_fp + 512u)).y)) + (new Vec3f((_fp + 512u)).z * new Vec3f((_fp + 512u)).z));
                 goto _f13;
@@ -496,14 +496,14 @@ public static partial class Game
                 _f15: ;
                 if (!((new Vec3f((_fp + 512u)).y < 307.199982f))) goto _f18;
                 L_b27: ;
-                new S5Actor(a).brain.prev_Set(new S5Actor(a).brain.key);
-                new S5Actor(a).brain.key_Set(idx);
+                new S5Actor(a).BrainPtr.prev_Set(new S5Actor(a).BrainPtr.key);
+                new S5Actor(a).BrainPtr.key_Set(idx);
                 _f18: ;
                 _f17: ;
                 _f14: ;
                 goto _f19;
                 _f10: ;
-                new S5Actor(a).brain.unk14_Set((-1));
+                new S5Actor(a).BrainPtr.unk14_Set((-1));
                 goto L_b30;
                 _f19: ;
                 goto _f20;
@@ -517,7 +517,7 @@ public static partial class Game
                 goto _f22;
                 _f6: ;
                 L_b30: ;
-                cnt = func_0020AF9C_collect(m, new S5Actor(a).brain.key, _fp, (_fp + 256u));
+                cnt = func_0020AF9C_collect(m, new S5Actor(a).BrainPtr.key, _fp, (_fp + 256u));
                 i = 0;
                 if (!((cnt > 0))) goto _f23;
                 _f24: ;
@@ -525,7 +525,7 @@ public static partial class Game
                 rec = func_0020AF9C_getRec0(m, idx);
                 e = func_0020AF9C_getEdge(m, Mem.S32(((_fp + 256u) + (uint)(i * 4))));
                 if (!(((!((Mem.U32((rec + 12u)) & (uint)(3145728)) != 0u) || (f2 != 0)) || (f1 != 0)))) goto _f27;
-                Vec_Sub((_fp + 512u), rec, new S5Actor(a).pos.P);
+                Vec_Sub((_fp + 512u), rec, new S5Actor(a).Position.P);
                 if (!(((f1 != 0) || (f2 != 0)))) goto _f28;
                 dd = (((new Vec3f((_fp + 512u)).x * new Vec3f((_fp + 512u)).x) + (new Vec3f((_fp + 512u)).y * new Vec3f((_fp + 512u)).y)) + (new Vec3f((_fp + 512u)).z * new Vec3f((_fp + 512u)).z));
                 goto _f29;
@@ -565,10 +565,10 @@ public static partial class Game
                 if ((i < cnt)) goto _f24;
                 _f26: ;
                 _f23: ;
-                if (!((new S5Actor(a).brain.key != best))) goto _f39;
-                new S5Actor(a).brain.prev_Set(new S5Actor(a).brain.key);
+                if (!((new S5Actor(a).BrainPtr.key != best))) goto _f39;
+                new S5Actor(a).BrainPtr.prev_Set(new S5Actor(a).BrainPtr.key);
                 _f39: ;
-                new S5Actor(a).brain.key_Set(best);
+                new S5Actor(a).BrainPtr.key_Set(best);
                 _f22: ;
             }
         }
@@ -1481,7 +1481,7 @@ public static partial class Game
                 int s0 = 0;
                 Mem.Copy(_fp, func_0020CD74_getRec0(m, idx), 12);
                 new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + Mem.F32(0x800C6E84u)));
-                if ((((int)(new B2Actor(a).kind) == 1) && ((new B2Actor(a).flags & (uint)(3145728)) != 0u)))
+                if ((((int)(new B2Actor(a).Type) == 1) && ((new B2Actor(a).Flags & (uint)(3145728)) != 0u)))
                 {
                     Mem.Copy((_fp + 16u), Gv.Collision_MoveCtx, 28);
                 }
@@ -1835,16 +1835,16 @@ public static partial class Game
             n = Mem.U32((row + (uint)off));
             _f4: ;
             if (!((n != 0u))) goto _f6;
-            switch ((int)(new B2Actor(n).type)) { case 1054: goto _f8; case 1026: goto _f9; case 1028: goto _f10; case 1035: goto _f11; case 1039: goto _f12; default: goto _f7; }
+            switch ((int)(new B2Actor(n).TypeIndex)) { case 1054: goto _f8; case 1026: goto _f9; case 1028: goto _f10; case 1035: goto _f11; case 1039: goto _f12; default: goto _f7; }
             _f8: ;
             p = new B2Actor(n).unk12C_;
             if (!((p == 0u))) goto _f13;
             goto _f7;
             _f13: ;
-            if (!(((int)(new B2Actor(p).kind) != 1))) goto _f14;
+            if (!(((int)(new B2Actor(p).Type) != 1))) goto _f14;
             goto _f7;
             _f14: ;
-            if (!(((new B2Actor(p).flags & (uint)(3145728)) == (uint)(0)))) goto _f15;
+            if (!(((new B2Actor(p).Flags & (uint)(3145728)) == (uint)(0)))) goto _f15;
             goto _f7;
             _f15: ;
             if (!((p == new B2Ctl(ctl).owner_))) goto _f16;
@@ -1856,7 +1856,7 @@ public static partial class Game
             _f17: ;
             _f12: ;
             _f20: ;
-            new B2Node(AiNav_FindSearchNode(m, AiNav_FindNearestNode(m, new B2Actor(n).pos.P))).unk18_Set(Mem.F32(0x800C6F50u));
+            new B2Node(AiNav_FindSearchNode(m, AiNav_FindNearestNode(m, new B2Actor(n).Position.P))).unk18_Set(Mem.F32(0x800C6F50u));
             _f21: ;
             if ((0 != 0)) goto _f20;
             _f22: ;
@@ -1889,9 +1889,9 @@ public static partial class Game
             {
                 for (i = 0; (i < 10); ++i)
                 {
-                    if ((new B2Ctl(ctl).a3C[(int)(i)] != 0u))
+                    if ((new B2Ctl(ctl).EnemyPtrs[(int)(i)] != 0u))
                     {
-                        new B2Node(AiNav_FindSearchNode(m, new B2Actor(new B2Ctl(ctl).a3C[(int)(i)]).owner.brain.key)).unk18_Set(Mem.F32(0x800C6FCCu));
+                        new B2Node(AiNav_FindSearchNode(m, new B2Actor(new B2Ctl(ctl).EnemyPtrs[(int)(i)]).OwnerPtr.BrainPtr.key)).unk18_Set(Mem.F32(0x800C6FCCu));
                     }
                 }
             }

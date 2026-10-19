@@ -7535,46 +7535,46 @@ public static partial class Game
             new S11Obj(p).self__Set(p);
             Level_SpawnActorFromRecord((int)(p), a1);
             new S11Obj(p).self__Set(p);
-            new S11Obj(p).flags_Set((uint)((uint)(new S11Obj(p).flags) | (uint)(1048576)));
-            new S11Obj(p).flags_Set((uint)((uint)(new S11Obj(p).flags) | (uint)(65536)));
-            new S11Obj(p).flags_Set((uint)((uint)(new S11Obj(p).flags) | (uint)(16777216)));
-            new S11Obj(p).flags_Set((uint)((uint)(new S11Obj(p).flags) | (uint)(33554432)));
+            new S11Obj(p).Flags_Set((uint)((uint)(new S11Obj(p).Flags) | (uint)(1048576)));
+            new S11Obj(p).Flags_Set((uint)((uint)(new S11Obj(p).Flags) | (uint)(65536)));
+            new S11Obj(p).Flags_Set((uint)((uint)(new S11Obj(p).Flags) | (uint)(16777216)));
+            new S11Obj(p).Flags_Set((uint)((uint)(new S11Obj(p).Flags) | (uint)(33554432)));
             if (((int)(Mem.U8((Gv.Settings_IsMultiplayer + (uint)0))) == 0))
             {
-                new S11Obj(p).flags_Set((uint)((uint)(new S11Obj(p).flags) | (uint)(268435456)));
+                new S11Obj(p).Flags_Set((uint)((uint)(new S11Obj(p).Flags) | (uint)(268435456)));
             }
-            new S11Obj(p).unk28C_Set(0x0024B52Cu);
-            new S11Obj(p).unk290_Set(0x0022E0A0u);
-            new S11Obj(p).unk280_Set(0x00219A40u);
-            new S11Obj(p).unk288_Set(0x0022E250u);
+            new S11Obj(p).TransformCallback_Set(0x0024B52Cu);
+            new S11Obj(p).Callback290_290_Set(0x0022E0A0u);
+            new S11Obj(p).Callback280_280_Set(0x00219A40u);
+            new S11Obj(p).Callback288_288_Set(0x0022E250u);
             if (((int)(Mem.U8((Gv.Settings_IsMultiplayer + (uint)0))) != 0))
             {
-                new S11Obj(p).unk27C_Set(0x0021A2D4u);
+                new S11Obj(p).DrawCallback_Set(0x0021A2D4u);
             }
             new S11Obj(p).self4C0__Set(p);
-            Level_SpawnActorFromRecord((int)(new S11Obj(p).ent2E8.P), a1);
+            Level_SpawnActorFromRecord((int)(new S11Obj(p).WeaponActor.P), a1);
             new S11Obj(p).unk574_Set(0x0022F5D0u);
             new S11Obj(p).unk48C_Set((sbyte)((-1)));
             new S11Obj(p).self4C0__Set(p);
             new S11Obj(p).unk568_Set(0x00219A40u);
             new S11Obj(p).unk570_Set(0x0022E250u);
-            new S11Obj(p).flags3E8_Set((uint)((uint)(new S11Obj(p).flags3E8) | (uint)(2097152)));
-            new S11Obj(p).unk62E_Set((short)((-1)));
+            new S11Obj(p).WeaponActorFlags_Set((uint)((uint)(new S11Obj(p).WeaponActorFlags) | (uint)(2097152)));
+            new S11Obj(p).WeaponIndex_Set((short)((-1)));
             new S11Obj(p).unk338_Set(0.5f);
             new S11Obj(p).unk33C_Set(0.5f);
             new S11Obj(p).unk340_Set(0.5f);
-            new S11Obj(p).flags3E8_Set((uint)((uint)(new S11Obj(p).flags3E8) & 4294901759u));
-            Actor_DispatchEvent(new S11Obj(p).ent2E8.P, new S11Obj(p).ent458.P, 0);
-            Weapon_EquipPending(new S11Obj(p).ent2E8.P, new S11Obj(p).ent458.P);
+            new S11Obj(p).WeaponActorFlags_Set((uint)((uint)(new S11Obj(p).WeaponActorFlags) & 4294901759u));
+            Actor_DispatchEvent(new S11Obj(p).WeaponActor.P, new S11Obj(p).WeaponActorState.P, 0);
+            Weapon_EquipPending(new S11Obj(p).WeaponActor.P, new S11Obj(p).WeaponActorState.P);
             Player_UpdateViewCamera(p, p, default(uint), default(uint));
             if ((new S11Obj(p).hud_ != 0u))
             {
                 Flyby_Hook_00245854(new S11Obj(p).hud_);
             }
-            new S11Obj(p).unk50_Set(new S11Obj(p).cfg.unkFC);
-            new S11Obj(p).unk54_Set(new S11Obj(p).cfg.unk100);
-            new S11Obj(p).unk58_Set(new S11Obj(p).cfg.unk104);
-            new S11Obj(p).cfg.flags_Set((uint)((uint)(new S11Obj(p).cfg.flags) & (uint)((~4))));
+            new S11Obj(p).Scale_Set(new S11Obj(p).DefPtr.unkFC);
+            new S11Obj(p).unk54_Set(new S11Obj(p).DefPtr.unk100);
+            new S11Obj(p).unk58_Set(new S11Obj(p).DefPtr.unk104);
+            new S11Obj(p).DefPtr.flags_Set((uint)((uint)(new S11Obj(p).DefPtr.flags) & (uint)((~4))));
         }
     }
 
@@ -7589,14 +7589,14 @@ public static partial class Game
             uint name = 0u;
             Level_IsRestartPending();
             flag = 0;
-            new S11Obj(p).unk5D0_Set(1);
-            new S11Obj(p).unk5E0_Set(arg1);
-            if ((new S11Obj(p).unk1450 == 0))
+            new S11Obj(p).CameraMode_Set(1);
+            new S11Obj(p).CharacterId_Set(arg1);
+            if ((new S11Obj(p).IsComputer == 0))
             {
                 new S11Obj(p).hud__Set(View_DetachObject_0044B388(Gv.ViewMgr));
                 if ((new S11Big(Gv.ViewMgr).unk18C4 != 0))
                 {
-                    new S11Obj(p).unk1450_Set(1);
+                    new S11Obj(p).IsComputer_Set(1);
                 }
             }
             else
@@ -7605,7 +7605,7 @@ public static partial class Game
             }
             WeaponMenu_Init((p + (uint)2360));
             TeamMenu_Init((p + (uint)3276));
-            new S11Obj(p).unk5E8_Set((short)(0));
+            new S11Obj(p).LifeForce_Set((short)(0));
             for (i = 0; (i < 6); ++i)
             {
                 new S11Obj(p).b644.Set((int)(i), (byte)(0));
@@ -7616,43 +7616,43 @@ public static partial class Game
             }
             if (((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0))
             {
-                if ((((int)(Mem.U8(Gv.Settings_GameMode)) == 1) && (new S11Obj(p).unk1450 == 0)))
+                if ((((int)(Mem.U8(Gv.Settings_GameMode)) == 1) && (new S11Obj(p).IsComputer == 0)))
                 {
-                    new S11Obj(p).unk133C_Set(((((int)((byte)(Profile_GetCharacterLives((Gv.ProfileTable + (uint)(new S11Obj(p).unk5D4 * 400)), (int)(new S11Obj(p).rec.b80)))) & 255) >> (int)1) + 1));
+                    new S11Obj(p).RespawnsLeft_Set(((((int)((byte)(Profile_GetCharacterLives((Gv.ProfileTable + (uint)(new S11Obj(p).PlayerIndex * 400)), (int)(new S11Obj(p).PlayerEntryPtr.b80)))) & 255) >> (int)1) + 1));
                 }
-                if (((((int)(Mem.U8(Gv.Settings_GameMode)) == 4) && (new S11Obj(p).unk1450 == 0)) && (Mem.U32(Gv.ArenaTreeRecordPtr) != 0u)))
+                if (((((int)(Mem.U8(Gv.Settings_GameMode)) == 4) && (new S11Obj(p).IsComputer == 0)) && (Mem.U32(Gv.ArenaTreeRecordPtr) != 0u)))
                 {
-                    new S11Obj(p).unk133C_Set((int)(new S11E4680(Mem.U32(Gv.ArenaTreeRecordPtr)).unk28));
+                    new S11Obj(p).RespawnsLeft_Set((int)(new S11E4680(Mem.U32(Gv.ArenaTreeRecordPtr)).unk28));
                 }
-                new S11Obj(p).unk5EA_Set((short)(1));
+                new S11Obj(p).Lives_Set((short)(1));
             }
             else
             {
-                new S11Obj(p).unk5EA_Set((short)(3));
+                new S11Obj(p).Lives_Set((short)(3));
             }
-            new S11Obj(p).unk13C8_Set(0);
+            new S11Obj(p).IsGibbed_Set(0);
             Player_InitWeapons(p, default(int));
-            new S11Obj(p).unk670_Set(0);
+            new S11Obj(p).InvulnerableTime_Set(0);
             new S11Obj(p).unk674_Set(0);
-            new S11Obj(p).unk86C_Set((-1));
+            new S11Obj(p).AnimId_Set((-1));
             new S11Obj(p).unk870_Set((-1));
             for (i = 0; (i < 8); ++i)
             {
-                new S11Obj(p).rec.a2C.Set((int)(i), (ushort)(0));
-                new S11Obj(p).rec.a3C.Set((int)(i), (ushort)(0));
-                new S11Obj(p).rec.a0C.Set((int)(i), (ushort)(0));
-                new S11Obj(p).rec.a1C.Set((int)(i), (ushort)(0));
+                new S11Obj(p).PlayerEntryPtr.a2C.Set((int)(i), (ushort)(0));
+                new S11Obj(p).PlayerEntryPtr.a3C.Set((int)(i), (ushort)(0));
+                new S11Obj(p).PlayerEntryPtr.a0C.Set((int)(i), (ushort)(0));
+                new S11Obj(p).PlayerEntryPtr.a1C.Set((int)(i), (ushort)(0));
             }
-            new S11Obj(p).rec.h0_Set((ushort)(0));
-            new S11Obj(p).rec.h2_Set((ushort)(0));
-            new S11Obj(p).rec.h4_Set((ushort)(0));
-            new S11Obj(p).rec.h6_Set((ushort)(0));
-            new S11Obj(p).rec.hA_Set((ushort)(0));
-            new S11Obj(p).rec.h8_Set((ushort)(0));
-            new S11Obj(p).rec.b8D_Set((byte)(0));
-            new S11Obj(p).rec.b8E_Set((byte)(0));
-            new S11Obj(p).rec.b8F_Set((byte)(0));
-            new S11Obj(p).rec.b90_Set((byte)(0));
+            new S11Obj(p).PlayerEntryPtr.h0_Set((ushort)(0));
+            new S11Obj(p).PlayerEntryPtr.h2_Set((ushort)(0));
+            new S11Obj(p).PlayerEntryPtr.h4_Set((ushort)(0));
+            new S11Obj(p).PlayerEntryPtr.h6_Set((ushort)(0));
+            new S11Obj(p).PlayerEntryPtr.hA_Set((ushort)(0));
+            new S11Obj(p).PlayerEntryPtr.h8_Set((ushort)(0));
+            new S11Obj(p).PlayerEntryPtr.b8D_Set((byte)(0));
+            new S11Obj(p).PlayerEntryPtr.b8E_Set((byte)(0));
+            new S11Obj(p).PlayerEntryPtr.b8F_Set((byte)(0));
+            new S11Obj(p).PlayerEntryPtr.b90_Set((byte)(0));
             new S11Obj(p).unk638_Set(0);
             new S11Obj(p).unk63C_Set(1);
             new S11Obj(p).unk640_Set(0);
@@ -7666,8 +7666,8 @@ public static partial class Game
             {
                 if (((int)(new S11Game(Gv.Settings).unk1D) != 0))
                 {
-                    new S11Obj(p).rec.b80_Set((sbyte)(0));
-                    new S11Obj(p).unk5E0_Set(0);
+                    new S11Obj(p).PlayerEntryPtr.b80_Set((sbyte)(0));
+                    new S11Obj(p).CharacterId_Set(0);
                     new S11Obj(p).unk85C_Set(1);
                     name = 0x00450830u;
                     if ((new S11Game(Gv.Settings).unk5FC == 0))
@@ -7679,10 +7679,10 @@ public static partial class Game
                 {
                     name = 0x00450BACu;
                 }
-                MenuPanel_Open((new S11Obj(p).hud_ + (uint)1364), name, (int)(p), (int)(new S11Obj(p).unk698), new S11Obj(p).unk5D4);
+                MenuPanel_Open((new S11Obj(p).hud_ + (uint)1364), name, (int)(p), (int)(new S11Obj(p).ControllerPtr), new S11Obj(p).PlayerIndex);
             }
-            Mem.Set((0x80102AE0u + (uint)(new S11Obj(p).unk5D4 * 4)), 0);
-            Mem.Set((Gv.Stats_ShotsFiredTable + (uint)(new S11Obj(p).unk5D4 * 4)), 0);
+            Mem.Set((0x80102AE0u + (uint)(new S11Obj(p).PlayerIndex * 4)), 0);
+            Mem.Set((Gv.Stats_ShotsFiredTable + (uint)(new S11Obj(p).PlayerIndex * 4)), 0);
         }
     }
 

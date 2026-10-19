@@ -5259,20 +5259,20 @@ public readonly struct Q03Lob
     [MethodImpl(Inl)] public static implicit operator uint(Q03Lob v) => v.P;
     [MethodImpl(Inl)] public static explicit operator Q03Lob(uint p) => new(p);
     // +0x0
-    public Q03Hdr h { [MethodImpl(Inl)] get => new(P); }
+    public Q03Hdr Header { [MethodImpl(Inl)] get => new(P); }
     // +0x58
-    public O05Plrx4 plr { [MethodImpl(Inl)] get => new(P + 0x58u); }
+    public O05Plrx4 Players { [MethodImpl(Inl)] get => new(P + 0x58u); }
     // +0x2DF8
-    public O05Slotx4 slot { [MethodImpl(Inl)] get => new(P + 0x2DF8u); }
+    public O05Slotx4 Slots { [MethodImpl(Inl)] get => new(P + 0x2DF8u); }
     // +0x2E28
     public U8x1608 pad2E28 { [MethodImpl(Inl)] get => new(P + 0x2E28u); }
     // +0x3470
-    public int f3470
+    public int NextScreenId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x3470u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x3470u, value);
     }
-    [MethodImpl(Inl)] public int f3470_Set(int v) => Mem.Set(P + 0x3470u, v);
+    [MethodImpl(Inl)] public int NextScreenId_Set(int v) => Mem.Set(P + 0x3470u, v);
 }
 
 /// <summary>struct Q03R24, 0x25 bytes, at a guest address.</summary>

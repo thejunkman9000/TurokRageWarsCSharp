@@ -9786,10 +9786,10 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00281A70", (uint)unused, (uint)o, (uint)arr, (uint)n);
                 int i = 0;
                 int cnt = 0;
-                cnt = new B18Mgr(Gv.LevelMgr).count;
+                cnt = new B18Mgr(Gv.LevelMgr).Class1ActorCount;
                 for (i = 0; (i < cnt); ++i)
                 {
-                    uint e = new B18Mgr(Gv.LevelMgr).ents[(int)(i)];
+                    uint e = new B18Mgr(Gv.LevelMgr).Class1Actors[(int)(i)];
                     if ((new B18Ent(e).HitPoints > 0))
                     {
                         Vec_Sub(_fp, new B18Ent(e).Position.P, new B18Ent(o).Position.P);

@@ -2177,25 +2177,25 @@ public readonly struct O3Lv
     // +0x0
     public U8x36 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x24
-    public int w24
+    public int ObjectsIndexKey
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x24u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x24u, value);
     }
-    [MethodImpl(Inl)] public int w24_Set(int v) => Mem.Set(P + 0x24u, v);
+    [MethodImpl(Inl)] public int ObjectsIndexKey_Set(int v) => Mem.Set(P + 0x24u, v);
     // +0x28
     public U8x44 pad28 { [MethodImpl(Inl)] get => new(P + 0x28u); }
     // +0x54
-    public int w54
+    public int ObjectsIndex
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x54u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x54u, value);
     }
-    [MethodImpl(Inl)] public int w54_Set(int v) => Mem.Set(P + 0x54u, v);
+    [MethodImpl(Inl)] public int ObjectsIndex_Set(int v) => Mem.Set(P + 0x54u, v);
     // +0x58
     public U8x60 pad58 { [MethodImpl(Inl)] get => new(P + 0x58u); }
     // +0x94
-    public O3LvTab tab
+    public O3LvTab ObjectTypeIds
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x94u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x94u, value.P);

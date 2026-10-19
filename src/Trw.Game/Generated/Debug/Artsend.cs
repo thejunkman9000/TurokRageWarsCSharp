@@ -202,7 +202,7 @@ public static partial class Game
                 Mem.Set(Gv.Artsend_ImagePtr, 0u);
                 Mem.Set(Gv.Artsend_PalettePtr, 0u);
                 Mem.Set(Gv.Artsend_TexturePtr, 0u);
-                v0 = (int)(Resource_GetCartridgeKey((uint)(new B21Ctx(c).unk50), (uint)(new B21Ctx(c).unk20), new B21RecX(Gv.Artsend_TextureIndex).unk0, _fp));
+                v0 = (int)(Resource_GetCartridgeKey((uint)(new B21Ctx(c).TextureSetsIndex), (uint)(new B21Ctx(c).TextureSetsIndexKey), new B21RecX(Gv.Artsend_TextureIndex).unk0, _fp));
                 obj = ResourceCache_Hash(0, (uint)((v0 - 1)), v0, (uint)(Mem.S32(_fp)), 9, (uint)((-1)), 0x00295B90u, 0x800CA5D0u, 1);
                 s3 = Mem.U32(obj);
                 s2 = Chunk_Get(s3, 1);

@@ -1010,8 +1010,8 @@ public static partial class Game
             else
             {
                 Pad_ClearPlayerInput((actor + (uint)1672));
-                new Brain(new Actor(actor).BrainPtr).unk23C_Set(0);
-                new Brain(new Actor(actor).BrainPtr).unk240_Set(0);
+                new Brain(new Actor(actor).BrainPtr).IsFireRequested_Set(0);
+                new Brain(new Actor(actor).BrainPtr).SecondaryFireTicks_240_Set(0);
             }
         }
     }

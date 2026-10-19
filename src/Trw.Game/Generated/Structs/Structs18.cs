@@ -3132,34 +3132,34 @@ public readonly struct O05Lobby
     [MethodImpl(Inl)] public static implicit operator uint(O05Lobby v) => v.P;
     [MethodImpl(Inl)] public static explicit operator O05Lobby(uint p) => new(p);
     // +0x0
-    public O05Hdr h { [MethodImpl(Inl)] get => new(P); }
+    public O05Hdr Header { [MethodImpl(Inl)] get => new(P); }
     // +0x58
-    public O05Plrx4 plr { [MethodImpl(Inl)] get => new(P + 0x58u); }
+    public O05Plrx4 Players { [MethodImpl(Inl)] get => new(P + 0x58u); }
     // +0x2DF8
-    public O05Slotx4 slot { [MethodImpl(Inl)] get => new(P + 0x2DF8u); }
+    public O05Slotx4 Slots { [MethodImpl(Inl)] get => new(P + 0x2DF8u); }
     // +0x2E28
-    public O05Recx4 recs { [MethodImpl(Inl)] get => new(P + 0x2E28u); }
+    public O05Recx4 PakSaveRecords { [MethodImpl(Inl)] get => new(P + 0x2E28u); }
     // +0x3468
-    public int f3468
+    public int PakSavePakId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x3468u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x3468u, value);
     }
-    [MethodImpl(Inl)] public int f3468_Set(int v) => Mem.Set(P + 0x3468u, v);
+    [MethodImpl(Inl)] public int PakSavePakId_Set(int v) => Mem.Set(P + 0x3468u, v);
     // +0x346C
-    public int f346C
+    public int PakSaveCrc
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x346Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x346Cu, value);
     }
-    [MethodImpl(Inl)] public int f346C_Set(int v) => Mem.Set(P + 0x346Cu, v);
+    [MethodImpl(Inl)] public int PakSaveCrc_Set(int v) => Mem.Set(P + 0x346Cu, v);
     // +0x3470
-    public int f3470
+    public int NextScreenId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x3470u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x3470u, value);
     }
-    [MethodImpl(Inl)] public int f3470_Set(int v) => Mem.Set(P + 0x3470u, v);
+    [MethodImpl(Inl)] public int NextScreenId_Set(int v) => Mem.Set(P + 0x3470u, v);
 }
 
 /// <summary>struct O05M0A, 0x18 bytes, at a guest address.</summary>

@@ -131,12 +131,12 @@ public readonly struct S7Track
     // +0x0
     public U8x144 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x90
-    public uint resource
+    public uint WarpDests
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x90u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x90u, value);
     }
-    [MethodImpl(Inl)] public uint resource_Set(uint v) => Mem.Set(P + 0x90u, v);
+    [MethodImpl(Inl)] public uint WarpDests_Set(uint v) => Mem.Set(P + 0x90u, v);
 }
 
 /// <summary>struct S7Vec3, 0xC bytes, at a guest address.</summary>

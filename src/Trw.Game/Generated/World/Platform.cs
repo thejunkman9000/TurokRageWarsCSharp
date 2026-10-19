@@ -940,20 +940,20 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00207BB8", (uint)actor, (uint)state);
-            uint info = new B2Actor(actor).def.info.P;
+            uint info = new B2Actor(actor).DefPtr.info.P;
             uint f = new B2Info(info).flags24;
             int ok = 1;
             uint t = 0u;
             if (((f & (uint)(65536)) != 0u))
             {
-                t = (new B2Actor(actor).flags38 & (uint)(64));
+                t = (new B2Actor(actor).GroundFlags & (uint)(64));
                 ok = ((t == (uint)(0)) ? 1 : 0);
             }
-            if ((((f & (uint)(16384)) != 0u) && ((new B2Actor(actor).flags38 & (uint)(64)) == (uint)(0))))
+            if ((((f & (uint)(16384)) != 0u) && ((new B2Actor(actor).GroundFlags & (uint)(64)) == (uint)(0))))
             {
                 ok = 0;
             }
-            if (((new B2Actor(actor).flags38 & (uint)(8)) != 0u))
+            if (((new B2Actor(actor).GroundFlags & (uint)(8)) != 0u))
             {
                 ok = 0;
             }
@@ -974,7 +974,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00207C68", (uint)actor, (uint)state);
-            if (((new B2Actor(actor).def.info.flags24 & (uint)(128)) == (uint)(0)))
+            if (((new B2Actor(actor).DefPtr.info.flags24 & (uint)(128)) == (uint)(0)))
             {
                 new B2State(state).flags_Set((uint)((uint)(new B2State(state).flags) & (uint)((~131072))));
             }
@@ -1023,7 +1023,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00207D34", (uint)actor, (uint)state);
-            uint info = new B2Actor(actor).def.info.P;
+            uint info = new B2Actor(actor).DefPtr.info.P;
             Level_FireEntityTriggers(actor, 131072, (int)(actor));
             if (((new B2Info(info).flags24 & (uint)(128)) == (uint)(0)))
             {
@@ -1038,20 +1038,20 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00207D90", (uint)actor, (uint)state);
-            uint info = new B2Actor(actor).def.info.P;
+            uint info = new B2Actor(actor).DefPtr.info.P;
             uint f = new B2Info(info).flags24;
             int ok = 1;
             uint t = 0u;
             if (((f & (uint)(131072)) != 0u))
             {
-                t = (new B2Actor(actor).flags38 & (uint)(64));
+                t = (new B2Actor(actor).GroundFlags & (uint)(64));
                 ok = ((t == (uint)(0)) ? 1 : 0);
             }
-            if ((((f & (uint)(32768)) != 0u) && ((new B2Actor(actor).flags38 & (uint)(64)) == (uint)(0))))
+            if ((((f & (uint)(32768)) != 0u) && ((new B2Actor(actor).GroundFlags & (uint)(64)) == (uint)(0))))
             {
                 ok = 0;
             }
-            if (((new B2Actor(actor).flags38 & (uint)(8)) != 0u))
+            if (((new B2Actor(actor).GroundFlags & (uint)(8)) != 0u))
             {
                 ok = 0;
             }
@@ -1072,7 +1072,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00207E3C", (uint)actor, (uint)state);
-            new B2Actor(actor).flags_Set((uint)((uint)(new B2Actor(actor).flags) | (uint)(8448)));
+            new B2Actor(actor).Flags_Set((uint)((uint)(new B2Actor(actor).Flags) | (uint)(8448)));
             new B2State(state).flags_Set((uint)((uint)(new B2State(state).flags) | (uint)(65536)));
             Actor_DispatchEvent(actor, state, 1);
         }
@@ -1097,7 +1097,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00207EAC", (uint)actor);
             Level_SetEntitySavedFlag(Gv.LevelMgr, actor, 1);
-            new B2Actor(actor).flags_Set((uint)((uint)(new B2Actor(actor).flags) | (uint)(256)));
+            new B2Actor(actor).Flags_Set((uint)((uint)(new B2Actor(actor).Flags) | (uint)(256)));
         }
     }
 
@@ -1118,7 +1118,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00207F1C", (uint)actor);
             Level_SetEntitySavedFlag(Gv.LevelMgr, actor, 0);
-            new B2Actor(actor).flags_Set((uint)((uint)(new B2Actor(actor).flags) & (uint)((~256))));
+            new B2Actor(actor).Flags_Set((uint)((uint)(new B2Actor(actor).Flags) & (uint)((~256))));
         }
     }
 
@@ -1138,7 +1138,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00207F90", (uint)actor);
-            new B2Actor(actor).flags_Set((uint)((uint)(new B2Actor(actor).flags) | (uint)(8448)));
+            new B2Actor(actor).Flags_Set((uint)((uint)(new B2Actor(actor).Flags) | (uint)(8448)));
         }
     }
 
@@ -1149,7 +1149,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00207FA0", (uint)actor, (uint)state);
             new B2State(state).flags_Set((uint)((uint)(new B2State(state).flags) | (uint)(65536)));
-            new B2Actor(actor).flags_Set((uint)((uint)(new B2Actor(actor).flags) | (uint)(8448)));
+            new B2Actor(actor).Flags_Set((uint)((uint)(new B2Actor(actor).Flags) | (uint)(8448)));
             new B2State(state).unk16C_Set(0);
         }
     }
@@ -1161,7 +1161,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00207FC4", (uint)actor, (uint)state);
             new B2State(state).flags_Set((uint)((uint)(new B2State(state).flags) | (uint)(131072)));
-            new B2Actor(actor).flags_Set((uint)((uint)(new B2Actor(actor).flags) | (uint)(8448)));
+            new B2Actor(actor).Flags_Set((uint)((uint)(new B2Actor(actor).Flags) | (uint)(8448)));
         }
     }
 
@@ -1171,7 +1171,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00207FE4", (uint)actor);
-            new B2Actor(actor).flags_Set((uint)((uint)(new B2Actor(actor).flags) & (uint)((~8192))));
+            new B2Actor(actor).Flags_Set((uint)((uint)(new B2Actor(actor).Flags) & (uint)((~8192))));
         }
     }
 }

@@ -1293,7 +1293,7 @@ public static partial class Game
                 {
                     a1 = (Gv.ViewMgr + 64u);
                 }
-                if ((new SessMgr(Gv.LevelMgr).mode == 4))
+                if ((new SessMgr(Gv.LevelMgr).LoadState == 4))
                 {
                     if (((int)(new Rec14(r).b10) != 0))
                     {
@@ -1382,7 +1382,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00278EEC", (uint)r);
             new Rec14(r).flagsE_Set((byte)((int)(new Rec14(r).flagsE) | 16));
             Level_SetTriggerSavedFlag(Gv.LevelMgr, r, 1);
-            if (((new SessMgr(Gv.LevelMgr).mode == 4) && (((int)(new Rec14(r).flagsE) & 2) != 0)))
+            if (((new SessMgr(Gv.LevelMgr).LoadState == 4) && (((int)(new Rec14(r).flagsE) & 2) != 0)))
             {
                 Level_ScheduleDelayedSpawn(Gv.LevelMgr, r);
             }
@@ -1431,7 +1431,7 @@ public static partial class Game
             for (i = 0; (i < n); r += 20u, ++i)
             {
                 ok = 1;
-                if ((new SessMgr(Gv.LevelMgr).mode != 4))
+                if ((new SessMgr(Gv.LevelMgr).LoadState != 4))
                 {
                     ok = ((Level_IsTriggerSavedFlagSet(Gv.LevelMgr, r) == 0) ? 1 : 0);
                 }
@@ -1668,7 +1668,7 @@ public static partial class Game
             {
                 uint @base = new B19Owner(owner).base_;
                 idx = (-1);
-                if (((p >= @base) && (p <= (@base + (uint)((new B19Owner(owner).cnt * 744) - 744)))))
+                if (((p >= @base) && (p <= (@base + (uint)((new B19Owner(owner).EntityCount * 744) - 744)))))
                 {
                     idx = (int)(((uint)(((int)(p - @base))) / (uint)(744)));
                 }
@@ -1677,9 +1677,9 @@ public static partial class Game
             {
                 idx = (-1);
             }
-            if ((((idx != (-1)) && (C.Seq((object?)((key = new B19Owner(owner).key)), ((new B19Owner(owner).mode != 2) ? 1 : 0)) != 0)) && (C.Seq((object?)((inf = new B19Obj((tmp = (new B19Owner(owner).base_ + (uint)(idx * 744)))).info)), ((((((uint)((new B19Info18(inf).type - 9)) < (uint)(2)) ? 1 : 0) == 0) || !((new B19Info18(inf).f4 & (uint)(512)) != 0u)) ? 1 : 0)) != 0)))
+            if ((((idx != (-1)) && (C.Seq((object?)((key = new B19Owner(owner).LevelIndex)), ((new B19Owner(owner).LoadState != 2) ? 1 : 0)) != 0)) && (C.Seq((object?)((inf = new B19Obj((tmp = (new B19Owner(owner).base_ + (uint)(idx * 744)))).info)), ((((((uint)((new B19Info18(inf).type - 9)) < (uint)(2)) ? 1 : 0) == 0) || !((new B19Info18(inf).f4 & (uint)(512)) != 0u)) ? 1 : 0)) != 0)))
             {
-                n = (int)(Chunk_Get((uint)((int)(Chunk_Get((uint)((int)(Chunk_Get((uint)(new B19Owner(owner).root), 0))), key))), 0));
+                n = (int)(Chunk_Get((uint)((int)(Chunk_Get((uint)((int)(Chunk_Get((uint)(new B19Owner(owner).SaveDataPtr), 0))), key))), 0));
                 Chunk_Get((uint)(n), 0);
                 Chunk_GetSize((uint)(n), 1);
                 bits = (uint)((int)(Chunk_Get((uint)(n), 1)));
@@ -1711,7 +1711,7 @@ public static partial class Game
             {
                 uint @base = new B19Owner(owner).base_;
                 idx = (-1);
-                if (((p >= @base) && (p <= (@base + (uint)((new B19Owner(owner).cnt * 744) - 744)))))
+                if (((p >= @base) && (p <= (@base + (uint)((new B19Owner(owner).EntityCount * 744) - 744)))))
                 {
                     idx = (int)(((uint)(((int)(p - @base))) / (uint)(744)));
                 }
@@ -1724,8 +1724,8 @@ public static partial class Game
             {
                 return 0;
             }
-            key = new B19Owner(owner).key;
-            n = (int)(Chunk_Get((uint)((int)(Chunk_Get((uint)((int)(Chunk_Get((uint)(new B19Owner(owner).root), 0))), key))), 0));
+            key = new B19Owner(owner).LevelIndex;
+            n = (int)(Chunk_Get((uint)((int)(Chunk_Get((uint)((int)(Chunk_Get((uint)(new B19Owner(owner).SaveDataPtr), 0))), key))), 0));
             Chunk_Get((uint)(n), 0);
             Chunk_GetSize((uint)(n), 1);
             bits = (uint)((int)(Chunk_Get((uint)(n), 1)));
@@ -1764,27 +1764,27 @@ public static partial class Game
             new B19Owner(ow).f120_Set(0);
             new B19Owner(ow).f124_Set(0);
             MtxStack_Reset((ow + (uint)296));
-            Resource_MarkUsedInFrame(0, (uint)(new B19Owner(ow).fE8));
+            Resource_MarkUsedInFrame(0, (uint)(new B19Owner(ow).MatrixPoolRes));
             Trail_ResetVertexPool(Gv.Fx_TrailMgr);
             Player_FreeAll(Gv.PlayerPool);
             Level_BuildActiveActorLists(ow);
             Level_StreamVisibleCells(ow);
             Level_CollectPoolPickups(ow);
-            if (((new B19Owner(ow).f1B414 == 0) && (Mem.S32(Gv.GamePaused) == 0)))
+            if (((new B19Owner(ow).FadeState == 0) && (Mem.S32(Gv.GamePaused) == 0)))
             {
                 Effect_UpdateFrame((int)(Gv.Fx_TrailMgr));
                 Level_UpdateActors(ow);
                 PickupPool_UpdateAll((ow + (uint)71544));
-                new B19Owner(ow).f1B308_Set((new B19Owner(ow).f1B308 + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800CA1D4u))));
+                new B19Owner(ow).SceneTime_Set((new B19Owner(ow).SceneTime + (Mem.F32(Gv.FrameTime) * Mem.F32(0x800CA1D4u))));
                 Level_UpdateDelayedSpawns(ow);
             }
             Particle_UpdateAll((ow + (uint)6920));
-            if ((new B19Owner(ow).f1B414 == 0))
+            if ((new B19Owner(ow).FadeState == 0))
             {
                 Player_AnimateBodies(Gv.PlayerPool);
             }
             View_UpdateAll(Gv.ViewMgr, (int)(ow));
-            if (((new B19Owner(ow).f1B414 == 0) && (new B19Glo(Gv.ViewMgr).f180C == 0)))
+            if (((new B19Owner(ow).FadeState == 0) && (new B19Glo(Gv.ViewMgr).f180C == 0)))
             {
                 Level_UpdatePropEffects(ow);
             }
@@ -1801,10 +1801,10 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00286254", (uint)owner);
             int i = 0;
             uint t34 = 0u;
-            int n = new B19Owner(owner).nobj;
+            int n = new B19Owner(owner).ActorCount;
             uint o = 0u;
             uint o2 = 0u;
-            uint arr = new B19Owner(owner).arr.P;
+            uint arr = new B19Owner(owner).Actors.P;
             float sv = 0f;
             while ((i < n))
             {
@@ -1891,7 +1891,7 @@ public static partial class Game
                         new B19Dl(q).w1_Set((uint)(new B19Owner(ow).f124));
                     }
                 }
-                n = new B19Owner(ow).ndraw;
+                n = new B19Owner(ow).TranslucentActorCount;
                 if ((n != 0))
                 {
                     {
@@ -1926,7 +1926,7 @@ public static partial class Game
                     sz = (new B19Vec3((_fp + 16384u)).z * Mem.F32(0x800CA1ECu));
                     for (i = 0; (i < n); ++i)
                     {
-                        o = new B19Owner(ow).draw[(int)(i)];
+                        o = new B19Owner(ow).TranslucentActors[(int)(i)];
                         {
                             int t = (int)(new B19Draw(o).type);
                             if ((t == 1))
@@ -1990,12 +1990,12 @@ public static partial class Game
             uint p = 0u;
             uint inf = 0u;
             p = new B19Owner(owner).base_;
-            new B19Owner(owner).listcnt_Set(0);
+            new B19Owner(owner).Class13EntityCount_Set(0);
             for (i = 15; (i >= 0); --i)
             {
-                new B19Owner(owner).list.Set((int)(i), 0u);
+                new B19Owner(owner).Class13Entities.Set((int)(i), 0u);
             }
-            for (i = 0; (i < new B19Owner(owner).cnt); ++i)
+            for (i = 0; (i < new B19Owner(owner).EntityCount); ++i)
             {
                 inf = new B19Obj(p).info;
                 if ((new B19Info18(inf).type == 13))
@@ -2031,7 +2031,7 @@ public static partial class Game
                             break;
                         }
                     }
-                    new B19Owner(owner).list.Set((int)(n), p);
+                    new B19Owner(owner).Class13Entities.Set((int)(n), p);
                     ++n;
                 }
                 if ((n >= 16))
@@ -2040,7 +2040,7 @@ public static partial class Game
                 }
                 p = (p + (uint)744);
             }
-            new B19Owner(owner).listcnt_Set(n);
+            new B19Owner(owner).Class13EntityCount_Set(n);
         }
     }
 
@@ -3295,9 +3295,9 @@ public static partial class Game
             int u = 0;
             int u_2 = 0;
             mask = new B19bG0(Gv.Settings_DifficultyMask).mask;
-            new B19bWorld(w).n2_Set(0);
-            new B19bWorld(w).n3_Set(0);
-            new B19bWorld(w).n4_Set(0);
+            new B19bWorld(w).ActorCount_Set(0);
+            new B19bWorld(w).Class1ActorCount_Set(0);
+            new B19bWorld(w).ColliderActorCount_Set(0);
             Player_AddToActorLists((Gv.Settings_DifficultyMask - (uint)4752), w);
             s5 = 0;
             if (!(((int)(new B19bG0(Gv.Settings_DifficultyMask).f15) == 0))) goto _f0;
@@ -3305,10 +3305,10 @@ public static partial class Game
             _f0: ;
             sflag = 0;
             if (!((Flyby_IsInWindow() == 0))) goto _f1;
-            sflag = ((new B19bWorld(w).f1B408 == 0) ? 1 : 0);
+            sflag = ((new B19bWorld(w).IsSpecialStart_1B408 == 0) ? 1 : 0);
             _f1: ;
-            i = new B19bWorld(w).first;
-            lim = new B19bWorld(w).count;
+            i = new B19bWorld(w).PlayerEntityCount;
+            lim = new B19bWorld(w).EntityCount;
             objs = new B19bWorld(w).objs_;
             if (!((i < lim))) goto _f2;
             bB = 0x80103214u;
@@ -3383,53 +3383,53 @@ public static partial class Game
             if (!((new B19bInfo(info).kind != 14))) goto _f29;
             Actor_ResetPoseMatrices(o);
             if (!((Actor_IsAlwaysActive_0024D150(o) != 0))) goto _f30;
-            t0 = new B19bWorld(w).n0;
+            t0 = new B19bWorld(w).AlwaysActiveActorCount;
             if (!((t0 != 512))) goto _f31;
-            new B19bWorld(w).l0.Set((int)(t0), o);
-            new B19bWorld(w).n0_Set((t0 + 1));
+            new B19bWorld(w).AlwaysActiveActors.Set((int)(t0), o);
+            new B19bWorld(w).AlwaysActiveActorCount_Set((t0 + 1));
             _f31: ;
             _f30: ;
             if (!((Actor_IsSpawnedVisible_0024E1A4(o) != 0))) goto _f32;
-            t1 = new B19bWorld(w).n1;
+            t1 = new B19bWorld(w).VisibleActorCount;
             if (!((t1 != 128))) goto _f33;
-            new B19bWorld(w).l1.Set((int)(t1), o);
-            new B19bWorld(w).n1_Set((t1 + 1));
+            new B19bWorld(w).VisibleActors.Set((int)(t1), o);
+            new B19bWorld(w).VisibleActorCount_Set((t1 + 1));
             _f33: ;
             _f32: ;
-            t2 = new B19bWorld(w).n2;
+            t2 = new B19bWorld(w).ActorCount;
             if (!((t2 < 128))) goto _f34;
-            new B19bWorld(w).l2.Set((int)(t2), o);
-            new B19bWorld(w).n2_Set((t2 + 1));
+            new B19bWorld(w).Actors.Set((int)(t2), o);
+            new B19bWorld(w).ActorCount_Set((t2 + 1));
             _f34: ;
-            t3 = new B19bWorld(w).n3;
+            t3 = new B19bWorld(w).Class1ActorCount;
             if (!(((t3 < 64) && (new B19bObj(o).DefPtr.kind == 1)))) goto _f35;
-            new B19bWorld(w).l3.Set((int)(t3), o);
-            u = new B19bWorld(w).n3;
+            new B19bWorld(w).Class1Actors.Set((int)(t3), o);
+            u = new B19bWorld(w).Class1ActorCount;
             new B19bObj(o).ActiveListIndex_Set((sbyte)(u));
-            new B19bWorld(w).n3_Set((u + 1));
+            new B19bWorld(w).Class1ActorCount_Set((u + 1));
             _f35: ;
-            t4 = new B19bWorld(w).n4;
+            t4 = new B19bWorld(w).ColliderActorCount;
             if (!(((t4 < 32) && ((new B19bObj(o).Flags & 2) != 0)))) goto _f36;
-            new B19bWorld(w).l4.Set((int)(t4), o);
-            new B19bWorld(w).n4_Set((t4 + 1));
+            new B19bWorld(w).ColliderActors.Set((int)(t4), o);
+            new B19bWorld(w).ColliderActorCount_Set((t4 + 1));
             _f36: ;
-            t5 = new B19bWorld(w).n5;
+            t5 = new B19bWorld(w).Class5ActorCount;
             if (!(((t5 < 16) && (new B19bObj(o).DefPtr.kind == 5)))) goto _f37;
-            new B19bWorld(w).l5.Set((int)(t5), o);
-            new B19bWorld(w).n5_Set((t5 + 1));
+            new B19bWorld(w).Class5Actors.Set((int)(t5), o);
+            new B19bWorld(w).Class5ActorCount_Set((t5 + 1));
             _f37: ;
-            t6 = new B19bWorld(w).n6;
+            t6 = new B19bWorld(w).Type64FActorCount;
             if (!((t6 < 32))) goto _f38;
             if (!(((int)(new B19bObj(o).TypeId) == 1615))) goto _f39;
-            new B19bWorld(w).l6.Set((int)(t6), o);
-            new B19bWorld(w).n6_Set((t6 + 1));
+            new B19bWorld(w).Type64FActors.Set((int)(t6), o);
+            new B19bWorld(w).Type64FActorCount_Set((t6 + 1));
             _f39: ;
             _f38: ;
             if (!(((int)(new B19bObj(o).TypeId) == 1613))) goto _f40;
-            t7 = new B19bWorld(w).n7;
+            t7 = new B19bWorld(w).Type64DActorCount;
             if (!((t7 < 4))) goto _f41;
-            new B19bWorld(w).l7.Set((int)(t7), o);
-            new B19bWorld(w).n7_Set((t7 + 1));
+            new B19bWorld(w).Type64DActors.Set((int)(t7), o);
+            new B19bWorld(w).Type64DActorCount_Set((t7 + 1));
             _f41: ;
             _f40: ;
             _f29: ;
@@ -3448,10 +3448,10 @@ public static partial class Game
             _f5: ;
             _f2: ;
             ActorPool_UpdateInBounds((w + (uint)86920), w);
-            t = (new B19bWorld(w).cur3 + 1);
-            new B19bWorld(w).cur3_Set(t);
-            if (!((t >= new B19bWorld(w).n3))) goto _f43;
-            new B19bWorld(w).cur3_Set(0);
+            t = (new B19bWorld(w).Class1ActorCursor + 1);
+            new B19bWorld(w).Class1ActorCursor_Set(t);
+            if (!((t >= new B19bWorld(w).Class1ActorCount))) goto _f43;
+            new B19bWorld(w).Class1ActorCursor_Set(0);
             _f43: ;
         }
     }
@@ -3497,19 +3497,19 @@ public static partial class Game
                 }
                 i0 = 0;
                 count = 0;
-                r = Chunk_Get((uint)(new B19Owner(ow).f68), 0);
+                r = Chunk_Get((uint)(new B19Owner(ow).CellGrid), 0);
                 j0 = 0;
                 A = (r + (uint)8);
                 cols = Mem.S32((r + (uint)4));
-                r = Chunk_Get((uint)(new B19Owner(ow).f68), 1);
+                r = Chunk_Get((uint)(new B19Owner(ow).CellGrid), 1);
                 B = (r + (uint)8);
                 s7 = (cols - 1);
-                r = Chunk_Get((uint)(new B19Owner(ow).f68), 2);
+                r = Chunk_Get((uint)(new B19Owner(ow).CellGrid), 2);
                 rows = Mem.S32((r + (uint)4));
                 C = (r + (uint)8);
-                r = Chunk_Get((uint)(new B19Owner(ow).f68), 3);
+                r = Chunk_Get((uint)(new B19Owner(ow).CellGrid), 3);
                 D = (r + (uint)8);
-                E = (Chunk_Get((uint)(new B19Owner(ow).f68), 4) + (uint)8);
+                E = (Chunk_Get((uint)(new B19Owner(ow).CellGrid), 4) + (uint)8);
                 fp = (rows - 1);
                 while (((i0 < cols) && (Mem.F32((B + (uint)(i0 * 4))) < Mem.F32(Gv.View_UpdateBounds))))
                 {
@@ -3528,10 +3528,10 @@ public static partial class Game
                     --fp;
                 }
                 @out = (ow + (uint)5384);
-                if ((new B19Owner(ow).f1B92C == 1))
+                if ((new B19Owner(ow).HasPvsGrid == 1))
                 {
-                    ci = (int)(((new B19Cam(cam).x - new B19Owner(ow).f1B910) / new B19Owner(ow).f1B918));
-                    cj = (int)(((new B19Cam(cam).z - new B19Owner(ow).f1B914) / new B19Owner(ow).f1B91C));
+                    ci = (int)(((new B19Cam(cam).x - new B19Owner(ow).PvsOriginX) / new B19Owner(ow).PvsCellSizeX));
+                    cj = (int)(((new B19Cam(cam).z - new B19Owner(ow).PvsOriginZ) / new B19Owner(ow).PvsCellSizeZ));
                 }
                 else
                 {
@@ -3540,12 +3540,12 @@ public static partial class Game
                 }
                 if (((((ci < 0) || (ci >= cols)) || (cj < 0)) || (cj >= rows)))
                 {
-                    new B19Owner(ow).f1B928_Set(0);
+                    new B19Owner(ow).IsCameraInPvsGrid_Set(0);
                 }
                 else
                 {
-                    new B19Owner(ow).f1B928_Set(1);
-                    new B19Owner(ow).f1B6B0__Set(Resource_LoadByCartridgeKey((uint)(0), (uint)(new B19Owner(ow).f8C), (uint)(((ci + (cj * cols)) + 1)), (uint)(new B19Owner(ow).f40), ow, 0x00285130u, 0x800CA310u));
+                    new B19Owner(ow).IsCameraInPvsGrid_Set(1);
+                    new B19Owner(ow).f1B6B0__Set(Resource_LoadByCartridgeKey((uint)(0), (uint)(new B19Owner(ow).PvsIndex), (uint)(((ci + (cj * cols)) + 1)), (uint)(new B19Owner(ow).PvsIndexKey), ow, 0x00285130u, 0x800CA310u));
                     ResourcePool_TouchAndRef(0, new B19Owner(ow).f1B6B0_);
                     Pvs_Load((ow + (uint)112308), ci, cj, (uint)(Mem.S32(new B19Owner(ow).f1B6B0_)), (cam + 296u));
                 }
@@ -3569,7 +3569,7 @@ public static partial class Game
                             }
                             if ((found != 0))
                             {
-                                int t = (int)(Resource_GetCartridgeKey((uint)(new B19Owner(ow).f64), (uint)(new B19Owner(ow).f30), idx, _fp));
+                                int t = (int)(Resource_GetCartridgeKey((uint)(new B19Owner(ow).CellsIndex), (uint)(new B19Owner(ow).CellsIndexKey), idx, _fp));
                                 h = ResourceCache_Hash(0, (uint)(t), t, (uint)(Mem.S32(_fp)), 8, ow, 0x0028795Cu, 0x800CA300u, 0);
                                 if ((h != 0u))
                                 {
@@ -3596,8 +3596,8 @@ public static partial class Game
                     }
                 }
                 L_done: ;
-                new B19Owner(ow).ncount_Set(count);
-                new B19Owner(ow).nent_Set(count);
+                new B19Owner(ow).PrevLoadedCellCount_Set(count);
+                new B19Owner(ow).LoadedCellCount_Set(count);
             }
         }
         finally { Stack.Free(4); }
@@ -4742,75 +4742,75 @@ public static partial class Game
             float t = 0f;
             int v = 0;
             int a1 = 0;
-            p = (0x800D2934u + (uint)(new Level(lv).unk1B410 * 8));
-            switch (new Level(lv).unk1B414)
+            p = (0x800D2934u + (uint)(new Level(lv).FadeType * 8));
+            switch (new Level(lv).FadeState)
             {
             case 1:
-                if ((new Level(lv).unk1B418 == new Pal(p).div))
+                if ((new Level(lv).FadeTime == new Pal(p).div))
                 {
-                    if ((new Level(lv).unk1B438 == 999))
+                    if ((new Level(lv).PendingWarpTarget == 999))
                     {
                         Flyby_SetFlagB4_004037D4();
                         Flyby_QueueById(400);
                     }
-                    if ((new Level(lv).unk1B410 == 0))
+                    if ((new Level(lv).FadeType == 0))
                     {
-                        new Level(lv).unk1B414_Set(0);
+                        new Level(lv).FadeState_Set(0);
                     }
                     else
                     {
-                        new Level(lv).unk1B414_Set(2);
+                        new Level(lv).FadeState_Set(2);
                     }
-                    v = new Level(lv).unk1B438;
+                    v = new Level(lv).PendingWarpTarget;
                     if ((v < 0))
                     {
-                        new Level(lv).unk1B438_Set((~v));
-                        new Level(lv).unk1B41C_Set(0);
+                        new Level(lv).PendingWarpTarget_Set((~v));
+                        new Level(lv).HasWarpDest_Set(0);
                     }
                     else
                     {
-                        new Level(lv).unk1B41C_Set(Level_FindPlacedObjects(lv, (-1), v, new Level(lv).unk1B420.P, 1));
+                        new Level(lv).HasWarpDest_Set(Level_FindPlacedObjects(lv, (-1), v, new Level(lv).WarpDestRecord.P, 1));
                     }
-                    new Level(lv).unk1B434_Set(new Level(lv).unk1B438);
-                    if ((new Level(lv).unk1B41C != 0))
+                    new Level(lv).StartPointId_Set(new Level(lv).PendingWarpTarget);
+                    if ((new Level(lv).HasWarpDest != 0))
                     {
-                        a1 = (int)(new Level(lv).unk1B430);
+                        a1 = (int)(new Level(lv).WarpDestLevel);
                     }
                     else
                     {
-                        a1 = new Level(lv).unk1B438;
+                        a1 = new Level(lv).PendingWarpTarget;
                     }
-                    Level_Load(lv, (uint)(a1), (uint)(new Level(lv).unk1B41C), default(uint));
+                    Level_Load(lv, (uint)(a1), (uint)(new Level(lv).HasWarpDest), default(uint));
                     g = Gv.Settings;
-                    if (((new Level(lv).unk1B44C != new G462(g).unk4) && (Game_IsInState13() != 0)))
+                    if (((new Level(lv).KnownCheatMask != new G462(g).unk4) && (Game_IsInState13() != 0)))
                     {
                         Hud_SpawnTextLineC((g - (uint)4672), (g - (uint)4608), (uint)(Mem.S32(0x800D7AC8u)), 4.0f);
-                        new Level(lv).unk1B44C_Set(new G462(g).unk4);
+                        new Level(lv).KnownCheatMask_Set(new G462(g).unk4);
                         return;
                     }
                 }
                 else
                 {
-                    new Level(lv).unk1B418_Set((new Level(lv).unk1B418 + Mem.F32(Gv.FrameTime)));
-                    if ((new Pal(p).div < new Level(lv).unk1B418))
+                    new Level(lv).FadeTime_Set((new Level(lv).FadeTime + Mem.F32(Gv.FrameTime)));
+                    if ((new Pal(p).div < new Level(lv).FadeTime))
                     {
-                        new Level(lv).unk1B418_Set(new Pal(p).div);
+                        new Level(lv).FadeTime_Set(new Pal(p).div);
                         return;
                     }
                     return;
                 }
                 break;
             case 2:
-                if ((new Level(lv).unk1B418 == 0.0f))
+                if ((new Level(lv).FadeTime == 0.0f))
                 {
-                    new Level(lv).unk1B414_Set(0);
+                    new Level(lv).FadeState_Set(0);
                     return;
                 }
-                t = (new Level(lv).unk1B418 - Mem.F32(Gv.FrameTime));
-                new Level(lv).unk1B418_Set(t);
+                t = (new Level(lv).FadeTime - Mem.F32(Gv.FrameTime));
+                new Level(lv).FadeTime_Set(t);
                 if ((t < 0.0f))
                 {
-                    new Level(lv).unk1B418_Set(0.0f);
+                    new Level(lv).FadeTime_Set(0.0f);
                 }
                 break;
             case 0:
@@ -4869,7 +4869,7 @@ public static partial class Game
             int c = 0;
             uint arr = 0u;
             Model_ClearBatchQueue();
-            n = new Level(lv).numActors;
+            n = new Level(lv).ActorCount;
             g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             new DlCmd(g).w0_Set(3674472452u);
             new DlCmd(g).w1_Set((uint)(5));
@@ -4882,17 +4882,17 @@ public static partial class Game
             g = (Mem.Set(Gv.DisplayListPtr, (uint)(Mem.U32(Gv.DisplayListPtr) + 8u)) - 8u);
             new DlCmd(g).w0_Set(3674472476u);
             new DlCmd(g).w1_Set((uint)(65531));
-            arr = new Level(lv).actors.P;
+            arr = new Level(lv).Actors.P;
             for (i = 0; (i < n); ++i)
             {
                 uint e = Mem.U32((arr + (uint)(i * 4)));
                 if (((new Entity(e).Flags & (uint)(4)) != 0u))
                 {
-                    c = new Level(lv).cnt10BC;
+                    c = new Level(lv).TranslucentActorCount;
                     if ((c != 64))
                     {
-                        new Level(lv).arr10C0.Set((int)(c), e);
-                        new Level(lv).cnt10BC_Set((c + 1));
+                        new Level(lv).TranslucentActors.Set((int)(c), e);
+                        new Level(lv).TranslucentActorCount_Set((c + 1));
                     }
                 }
                 else
@@ -4962,7 +4962,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028B238", (uint)o, (uint)i);
-            return new P4Obj94(o).t.tbl[(int)(i)];
+            return new P4Obj94(o).ObjectTypeIds.tbl[(int)(i)];
         }
     }
 
@@ -4999,7 +4999,7 @@ public static partial class Game
                 {
                     new P4Item(it).idx_Set((short)(i));
                     new P4Item(it).id_Set((ushort)(id));
-                    Actor_ResetAnimObject(it, new P4Owner(o).f54, new P4Owner(o).f24, d);
+                    Actor_ResetAnimObject(it, new P4Owner(o).ObjectsIndex, new P4Owner(o).ObjectsIndexKey, d);
                 }
             }
         }
@@ -5141,7 +5141,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028B4AC", (uint)lv, (uint)bit, (uint)set);
-            int idx = new Level(lv).unk1B40C;
+            int idx = new Level(lv).LevelIndex;
             uint t = Chunk_Get(Chunk_Get(Chunk_Get(new Level(lv).unk84_, 0), idx), 0);
             uint bits = 0u;
             uint b2 = 0u;
@@ -5171,7 +5171,7 @@ public static partial class Game
             uint t = 0u;
             uint bits = 0u;
             int m = 0;
-            int idx = new Level(lv).unk1B40C;
+            int idx = new Level(lv).LevelIndex;
             t = Chunk_Get(Chunk_Get(Chunk_Get(new Level(lv).unk84_, 0), idx), 0);
             Chunk_Get(t, 0);
             Chunk_GetSize(t, 1);
@@ -5192,14 +5192,14 @@ public static partial class Game
             uint b2 = 0u;
             int m = 0;
             uint def = 0u;
-            if ((new Level(lv).unk0 == 2))
+            if ((new Level(lv).LoadState == 2))
             {
                 return;
             }
-            if ((new Level(lv).unk1B40C == a))
+            if ((new Level(lv).LevelIndex == a))
             {
                 {
-                    uint e = (new Level(lv).entities_ + (uint)(bit * 744));
+                    uint e = (new Level(lv).Entities + (uint)(bit * 744));
                     def = new Entity(e).DefPtr;
                 }
                 if (((uint)((new ActorDef(def).type - 9)) < (uint)(2)))
@@ -5260,7 +5260,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0028B964", (uint)lv, (uint)s);
             int bit = (int)(new Src_v2(s).unk19E);
-            int idx = new Level(lv).unk1B40C;
+            int idx = new Level(lv).LevelIndex;
             uint t = Chunk_Get(Chunk_Get(Chunk_Get(new Level(lv).unk80_, 0), idx), 1);
             uint bits = 0u;
             int m = 0;
@@ -5305,7 +5305,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0028BAF8", (uint)lv, (uint)s, (uint)set);
             int bit = (int)(new Src(s).unk13);
-            int idx = new Level(lv).unk1B40C;
+            int idx = new Level(lv).LevelIndex;
             uint t = Chunk_Get(Chunk_Get(Chunk_Get(new Level(lv).unk80_, 0), idx), 2);
             uint bits = 0u;
             uint b2 = 0u;
@@ -5333,7 +5333,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0028BBE8", (uint)lv, (uint)s);
             int bit = (int)(new Src(s).unk13);
-            int idx = new Level(lv).unk1B40C;
+            int idx = new Level(lv).LevelIndex;
             uint t = Chunk_Get(Chunk_Get(Chunk_Get(new Level(lv).unk80_, 0), idx), 2);
             uint bits = 0u;
             int m = 0;
@@ -5444,9 +5444,9 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0028C0E4", (uint)lv, (uint)id);
             uint found = 0u;
             int i = 0;
-            for (i = 0; (i < new Level(lv).n1); ++i)
+            for (i = 0; (i < new Level(lv).Class13EntityCount); ++i)
             {
-                uint a = new Level(lv).list1[(int)(i)];
+                uint a = new Level(lv).Class13Entities[(int)(i)];
                 if (((int)(new DefC_v2(new Entity(a).DefPtr).unkC) == id))
                 {
                     found = a;
@@ -5496,12 +5496,12 @@ public static partial class Game
                 int b = 0;
                 int id = 0;
                 id = (int)(Mem.U16(idp));
-                a = new Level(lv).unk11CC;
-                b = new Level(lv).cnt11C4;
+                a = new Level(lv).RegionTriggerKeys;
+                b = new Level(lv).RegionTriggerCount;
                 r = Sort_FindEqualRange((uint)(a), b, (uint)(id), (_fp + 4u), _fp);
                 if ((r != 0))
                 {
-                    Mem.Set(outRecs, (new Level(lv).recB_ + (uint)(Mem.S32((_fp + 4u)) * 20)));
+                    Mem.Set(outRecs, (new Level(lv).RegionTriggerRecords + (uint)(Mem.S32((_fp + 4u)) * 20)));
                     Mem.Set(outCount, ((Mem.S32(_fp) - Mem.S32((_fp + 4u))) + 1));
                 }
                 else
@@ -5529,11 +5529,11 @@ public static partial class Game
                 uint @base = 0u;
                 if (!((new Entity(e).Flags & (uint)(524288)) != 0u))
                 {
-                    @base = new Level(lv).entities_;
+                    @base = new Level(lv).Entities;
                     idx = (-1);
                     if ((e >= @base))
                     {
-                        if (((@base + (uint)((new Level(lv).numEntities - 1) * 744)) >= e))
+                        if (((@base + (uint)((new Level(lv).EntityCount - 1) * 744)) >= e))
                         {
                             idx = (int)(((uint)(((int)(e - @base))) / (uint)(744)));
                         }
@@ -5548,11 +5548,11 @@ public static partial class Game
                     Mem.Set(outCount, 0);
                     return;
                 }
-                a = new Level(lv).unk11C8;
-                bb = new Level(lv).cnt11C0;
+                a = new Level(lv).EntityTriggerKeys;
+                bb = new Level(lv).EntityTriggerCount;
                 if ((Sort_FindEqualRange((uint)(a), bb, (uint)(idx), _fp, (_fp + 4u)) != 0))
                 {
-                    Mem.Set(outRecs, (new Level(lv).recA_ + (uint)(Mem.S32(_fp) * 20)));
+                    Mem.Set(outRecs, (new Level(lv).EntityTriggerRecords + (uint)(Mem.S32(_fp) * 20)));
                     Mem.Set(outCount, ((Mem.S32((_fp + 4u)) - Mem.S32(_fp)) + 1));
                 }
                 else
@@ -5573,8 +5573,8 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0028C34C", (uint)lv, (uint)key);
             uint r = 0u;
             int n = 0;
-            n = new Level(lv).cnt11C0;
-            r = new Level(lv).recA_;
+            n = new Level(lv).EntityTriggerCount;
+            r = new Level(lv).EntityTriggerRecords;
             while (((--n) != (-1)))
             {
                 if (((int)(new Rec14_v2(r).key) == key))
@@ -5583,8 +5583,8 @@ public static partial class Game
                 }
                 r += 20u;
             }
-            n = new Level(lv).cnt11C4;
-            r = new Level(lv).recB_;
+            n = new Level(lv).RegionTriggerCount;
+            r = new Level(lv).RegionTriggerRecords;
             while (((--n) != (-1)))
             {
                 if (((int)(new Rec14_v2(r).key) == key))
@@ -5604,8 +5604,8 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0028C400", (uint)lv, (uint)key);
             int n = 0;
             uint r = 0u;
-            n = new Level(lv).cnt11C0;
-            r = new Level(lv).recA_;
+            n = new Level(lv).EntityTriggerCount;
+            r = new Level(lv).EntityTriggerRecords;
             while (((--n) != (-1)))
             {
                 if ((((int)(new Rec14_v2(r).key) == key) && !(((int)(new Rec14_v2(r).flags) & 64) != 0)))
@@ -5614,8 +5614,8 @@ public static partial class Game
                 }
                 r += 20u;
             }
-            n = new Level(lv).cnt11C4;
-            r = new Level(lv).recB_;
+            n = new Level(lv).RegionTriggerCount;
+            r = new Level(lv).RegionTriggerRecords;
             while (((--n) != (-1)))
             {
                 if ((((int)(new Rec14_v2(r).key) == key) && !(((int)(new Rec14_v2(r).flags) & 64) != 0)))
@@ -5636,8 +5636,8 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0028C490", (uint)lv, (uint)key);
             uint r = 0u;
             int n = 0;
-            n = new Level(lv).cnt11C0;
-            r = new Level(lv).recA_;
+            n = new Level(lv).EntityTriggerCount;
+            r = new Level(lv).EntityTriggerRecords;
             while (((--n) != (-1)))
             {
                 if (((int)(new Rec14_v2(r).key) == key))
@@ -5646,8 +5646,8 @@ public static partial class Game
                 }
                 r += 20u;
             }
-            n = new Level(lv).cnt11C4;
-            r = new Level(lv).recB_;
+            n = new Level(lv).RegionTriggerCount;
+            r = new Level(lv).RegionTriggerRecords;
             while (((--n) != (-1)))
             {
                 if (((int)(new Rec14_v2(r).key) == key))
@@ -5733,9 +5733,9 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0028C7BC", (uint)lv, (uint)id);
             uint found = 0u;
             int i = 0;
-            for (i = 0; (i < new Level(lv).n2); ++i)
+            for (i = 0; (i < new Level(lv).Class14EntityCount); ++i)
             {
-                uint a = new Level(lv).list2[(int)(i)];
+                uint a = new Level(lv).Class14Entities[(int)(i)];
                 if (((int)(new DefC_v2(new Entity(a).DefPtr).unkC) == id))
                 {
                     found = a;
@@ -5767,11 +5767,11 @@ public static partial class Game
                 bestd = 9999999;
                 i = zero;
                 best = (uint)(zero);
-                if ((new Level(lv).n2 > zero))
+                if ((new Level(lv).Class14EntityCount > zero))
                 {
                     do
                     {
-                        e = new Level(lv).list2[(int)(i)];
+                        e = new Level(lv).Class14Entities[(int)(i)];
                         Vec_Sub(_fp, new Entity(e).Position.P, new Entity(tgt).Position.P);
                         dist = (int)(sqrtf((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z))));
                         if ((bestd >= dist))
@@ -5781,7 +5781,7 @@ public static partial class Game
                         }
                         ++i;
                     }
-                    while ((i < new Level(lv).n2));
+                    while ((i < new Level(lv).Class14EntityCount));
                 }
                 return best;
             }
@@ -5807,64 +5807,64 @@ public static partial class Game
             Actor_ResetPoseMatrices(e);
             if ((Actor_IsAlwaysActive_0024D150(e) != 0))
             {
-                a = new Level(lv).cnt944;
+                a = new Level(lv).AlwaysActiveActorCount;
                 if ((a != 512))
                 {
-                    new Level(lv).arr144.Set((int)(a), e);
-                    new Level(lv).cnt944_Set((a + 1));
+                    new Level(lv).AlwaysActiveActors.Set((int)(a), e);
+                    new Level(lv).AlwaysActiveActorCount_Set((a + 1));
                 }
             }
             if ((Actor_IsSpawnedVisible_0024E1A4(e) != 0))
             {
-                b = new Level(lv).cntB48;
+                b = new Level(lv).VisibleActorCount;
                 if ((b != 128))
                 {
-                    new Level(lv).arr948.Set((int)(b), e);
-                    new Level(lv).cntB48_Set((b + 1));
+                    new Level(lv).VisibleActors.Set((int)(b), e);
+                    new Level(lv).VisibleActorCount_Set((b + 1));
                 }
             }
-            c = new Level(lv).numActors;
+            c = new Level(lv).ActorCount;
             if ((c < 128))
             {
-                new Level(lv).actors.Set((int)(c), e);
-                new Level(lv).numActors_Set((c + 1));
+                new Level(lv).Actors.Set((int)(c), e);
+                new Level(lv).ActorCount_Set((c + 1));
             }
-            d = new Level(lv).cntF54;
+            d = new Level(lv).Class1ActorCount;
             if (((d < 64) && (new ActorDef(new Entity(e).DefPtr).type == 1)))
             {
-                new Level(lv).list4.Set((int)(d), e);
-                j = new Level(lv).cntF54;
+                new Level(lv).Class1Actors.Set((int)(d), e);
+                j = new Level(lv).Class1ActorCount;
                 new Entity(e).ActiveListIndex_Set((sbyte)(j));
-                new Level(lv).cntF54_Set((j + 1));
+                new Level(lv).Class1ActorCount_Set((j + 1));
             }
-            f = new Level(lv).cntFDC;
+            f = new Level(lv).ColliderActorCount;
             if (((f < 32) && ((new Entity(e).Flags & (uint)(2)) != 0u)))
             {
-                new Level(lv).arrF5C.Set((int)(f), e);
-                new Level(lv).cntFDC_Set((f + 1));
+                new Level(lv).ColliderActors.Set((int)(f), e);
+                new Level(lv).ColliderActorCount_Set((f + 1));
             }
-            g = new Level(lv).cnt1020;
+            g = new Level(lv).Class5ActorCount;
             if (((g < 16) && (new ActorDef(new Entity(e).DefPtr).type == 5)))
             {
-                new Level(lv).arrFE0.Set((int)(g), e);
-                new Level(lv).cnt1020_Set((g + 1));
+                new Level(lv).Class5Actors.Set((int)(g), e);
+                new Level(lv).Class5ActorCount_Set((g + 1));
             }
-            h = new Level(lv).cnt10A4;
+            h = new Level(lv).Type64FActorCount;
             if ((h < 32))
             {
                 if (((int)(new Entity(e).TypeId) == 1615))
                 {
-                    new Level(lv).list3.Set((int)(h), e);
-                    new Level(lv).cnt10A4_Set((h + 1));
+                    new Level(lv).Type64FActors.Set((int)(h), e);
+                    new Level(lv).Type64FActorCount_Set((h + 1));
                 }
             }
             if (((int)(new Entity(e).TypeId) == 1613))
             {
-                i = new Level(lv).cnt10B8;
+                i = new Level(lv).Type64DActorCount;
                 if ((i < 4))
                 {
-                    new Level(lv).arr10A8.Set((int)(i), e);
-                    new Level(lv).cnt10B8_Set((i + 1));
+                    new Level(lv).Type64DActors.Set((int)(i), e);
+                    new Level(lv).Type64DActorCount_Set((i + 1));
                 }
             }
         }
@@ -5879,11 +5879,11 @@ public static partial class Game
             int i = 0;
             uint best = 0u;
             float bestd = 3.40282347E+38f;
-            int n = new Level(lv).numEntities;
+            int n = new Level(lv).EntityCount;
             uint e = 0u;
             while ((i < n))
             {
-                e = (new Level(lv).entities_ + (uint)(i * 744));
+                e = (new Level(lv).Entities + (uint)(i * 744));
                 if (((((e != @ref) && ((a == (-1)) || ((int)(new Entity(e).TypeId) == a))) && ((type == (-1)) || (new ActorDef(new Entity(e).DefPtr).type == type))) && ((needFlag == 0) || (new Entity(e).HitPoints != 0))))
                 {
                     float dx = (new Entity(@ref).Position.x - new Entity(e).Position.x);
@@ -5915,9 +5915,9 @@ public static partial class Game
             uint arr = 0u;
             i = 0;
             best = 0u;
-            n = new Level(lv).cnt10A4;
+            n = new Level(lv).Type64FActorCount;
             bestd = 3.40282347E+38f;
-            arr = new Level(lv).list3.P;
+            arr = new Level(lv).Type64FActors.P;
             for (; (i < n); ++i)
             {
                 uint o = Mem.U32((arr + (uint)(i * 4)));
@@ -5943,8 +5943,8 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0028CC10", (uint)m, (uint)key);
             int i = 0;
             uint found = 0u;
-            int n = new P4Mgr(m).count;
-            uint list = new P4Mgr(m).list.P;
+            int n = new P4Mgr(m).ActorCount;
+            uint list = new P4Mgr(m).Actors.P;
             for (i = 0, found = 0u; (i < n); ++i)
             {
                 uint e = Mem.U32((list + (uint)(i * 4)));
@@ -5974,8 +5974,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0028CC80", (uint)lv, (uint)owner);
             int i = 0;
-            int n = new Level(lv).numActors;
-            uint p = new Level(lv).actors.P;
+            int n = new Level(lv).ActorCount;
+            uint p = new Level(lv).Actors.P;
             if ((n > 0))
             {
                 do
@@ -6007,8 +6007,8 @@ public static partial class Game
                 uint arr = 0u;
                 i = 0;
                 DamageInfo_Set(_fp, i, arg1, (int)Cpu.F2U(102.399994f), arg2, 0);
-                n = new Level(lv).cntF54;
-                arr = new Level(lv).list4.P;
+                n = new Level(lv).Class1ActorCount;
+                arr = new Level(lv).Class1Actors.P;
                 for (; (i < n); ++i)
                 {
                     uint a = Mem.U32((arr + (uint)(i * 4)));
@@ -6025,11 +6025,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028CD44", (uint)lv);
-            int n = new Level(lv).numEntities;
+            int n = new Level(lv).EntityCount;
             int i = 0;
             for (i = 0; (i < n); ++i)
             {
-                uint e = (new Level(lv).entities_ + (uint)(i * 744));
+                uint e = (new Level(lv).Entities + (uint)(i * 744));
                 if ((new ActorDef(new Entity(e).DefPtr).type == 3))
                 {
                     Level_SetEntitySavedFlag(lv, e, 1);
@@ -6044,11 +6044,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028CDCC", (uint)lv);
-            int n = new Level(lv).numEntities;
+            int n = new Level(lv).EntityCount;
             int i = 0;
             for (i = 0; (i < n); ++i)
             {
-                uint e = (new Level(lv).entities_ + (uint)(i * 744));
+                uint e = (new Level(lv).Entities + (uint)(i * 744));
                 if ((new ActorDef(new Entity(e).DefPtr).type == 3))
                 {
                     Level_SetEntitySavedFlag(lv, e, 0);
@@ -6117,8 +6117,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028D02C", (uint)m, (uint)id, (uint)w, (uint)h);
-            int i = new P4Mgr2(m).start;
-            int n = new P4Mgr2(m).end;
+            int i = new P4Mgr2(m).PlayerEntityCount;
+            int n = new P4Mgr2(m).EntityCount;
             uint @base = new P4Mgr2(m).ents_;
             int cnt = 0;
             for (; (i < n); ++i)
@@ -6155,20 +6155,20 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_0028D0E4", (uint)lv);
                 float t = 0f;
                 uint p = 0u;
-                int a = new Level(lv).unk1B414;
+                int a = new Level(lv).FadeState;
                 if ((a != 0))
                 {
                     if ((a >= 0))
                     {
                         if ((a < 3))
                         {
-                            p = (0x800D2934u + (uint)(new Level(lv).unk1B410 * 8));
+                            p = (0x800D2934u + (uint)(new Level(lv).FadeType * 8));
                             if ((new Pal(p).div != 0.0f))
                             {
                                 Mem.Set((_fp + (uint)0), new Pal(p).r);
                                 Mem.Set((_fp + (uint)1), new Pal(p).g);
                                 Mem.Set((_fp + (uint)2), new Pal(p).b);
-                                t = ((new Level(lv).unk1B418 * 255.0f) / new Pal(p).div);
+                                t = ((new Level(lv).FadeTime * 255.0f) / new Pal(p).div);
                                 Mem.Set((_fp + (uint)3), (byte)(Cpu.TruncU32(t)));
                                 Gfx_FillRectBlended(Gv.GameCtx, _fp, 0, 0, Mem.S32(Gv.ScreenWidth), Mem.S32(Gv.ScreenHeight));
                             }
@@ -6203,7 +6203,7 @@ public static partial class Game
                 }
                 memcpy(dst, new Blk_v2(b).data, (uint)(n));
                 ResourcePool_Release(0, b);
-                if ((new Level(lv).unk1B40C != idx))
+                if ((new Level(lv).LevelIndex != idx))
                 {
                     ResourcePool_Release(0, h);
                 }
@@ -6218,16 +6218,16 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028D578", (uint)o);
-            if ((new P4Rsrc(o).fF8 != 0))
+            if ((new P4Rsrc(o).StaticPropBlob != 0))
             {
-                uint p = Chunk_Get((uint)(new P4Rsrc(o).f88), 0);
+                uint p = Chunk_Get((uint)(new P4Rsrc(o).StaticPropCache), 0);
                 while ((Mem.S32(p) != 0))
                 {
                     ResourcePool_Unref(0, (uint)(Mem.S32(((p += 4u) - 4u))));
                 }
-                ResourcePool_Release(0, (uint)(new P4Rsrc(o).fF8));
-                new P4Rsrc(o).fF8_Set(0);
-                new P4Rsrc(o).f88_Set(0);
+                ResourcePool_Release(0, (uint)(new P4Rsrc(o).StaticPropBlob));
+                new P4Rsrc(o).StaticPropBlob_Set(0);
+                new P4Rsrc(o).StaticPropCache_Set(0);
             }
         }
     }
@@ -6258,17 +6258,17 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0028D628", (uint)lv);
-            new Level(lv).cnt944_Set(0);
-            new Level(lv).cntB48_Set(0);
-            new Level(lv).cntC4C_Set(0);
-            new Level(lv).numActors_Set(0);
-            new Level(lv).cntF54_Set(0);
-            new Level(lv).cntFDC_Set(0);
-            new Level(lv).cnt1020_Set(0);
-            new Level(lv).cnt10A4_Set(0);
-            new Level(lv).cnt10B8_Set(0);
-            new Level(lv).cnt10BC_Set(0);
-            new Level(lv).cnt1504_Set(0);
+            new Level(lv).AlwaysActiveActorCount_Set(0);
+            new Level(lv).VisibleActorCount_Set(0);
+            new Level(lv).PropActorCount_Set(0);
+            new Level(lv).ActorCount_Set(0);
+            new Level(lv).Class1ActorCount_Set(0);
+            new Level(lv).ColliderActorCount_Set(0);
+            new Level(lv).Class5ActorCount_Set(0);
+            new Level(lv).Type64FActorCount_Set(0);
+            new Level(lv).Type64DActorCount_Set(0);
+            new Level(lv).TranslucentActorCount_Set(0);
+            new Level(lv).LoadedCellCount_Set(0);
         }
     }
 
@@ -6281,8 +6281,8 @@ public static partial class Game
             float f = 0f;
             int flag = 0;
             int i = 0;
-            f = (new Level(lv).unk1B31C + Mem.F32(Gv.FrameTime));
-            new Level(lv).unk1B31C_Set(f);
+            f = (new Level(lv).PropEffectPhase + Mem.F32(Gv.FrameTime));
+            new Level(lv).PropEffectPhase_Set(f);
             flag = 1;
             if (!(f > 0.0f))
             {
@@ -6290,11 +6290,11 @@ public static partial class Game
             }
             if ((flag != 0))
             {
-                new Level(lv).unk1B31C_Set((f - (float)(((int)(f) + 1))));
+                new Level(lv).PropEffectPhase_Set((f - (float)(((int)(f) + 1))));
             }
-            for (i = 0; (i < new Level(lv).cntC4C); ++i)
+            for (i = 0; (i < new Level(lv).PropActorCount); ++i)
             {
-                Prop_SpawnAttachedEffects(new Level(lv).arrB4C[(int)(i)], flag);
+                Prop_SpawnAttachedEffects(new Level(lv).PropActors[(int)(i)], flag);
             }
         }
     }
@@ -6310,8 +6310,8 @@ public static partial class Game
             {
                 return (-1);
             }
-            @base = new Level(lv).entities_;
-            if (((e >= @base) && ((@base + (uint)((new Level(lv).numEntities - 1) * 744)) >= e)))
+            @base = new Level(lv).Entities;
+            if (((e >= @base) && ((@base + (uint)((new Level(lv).EntityCount - 1) * 744)) >= e)))
             {
                 return (int)(((uint)(((int)(e - @base))) / (uint)(744)));
             }
@@ -6333,24 +6333,24 @@ public static partial class Game
                 int off = 0;
                 if ((which != 0))
                 {
-                    a = new Level(lv).unk11CC;
-                    b = new Level(lv).cnt11C4;
+                    a = new Level(lv).RegionTriggerKeys;
+                    b = new Level(lv).RegionTriggerCount;
                 }
                 else
                 {
-                    a = new Level(lv).unk11C8;
-                    b = new Level(lv).cnt11C0;
+                    a = new Level(lv).EntityTriggerKeys;
+                    b = new Level(lv).EntityTriggerCount;
                 }
                 if ((Sort_FindEqualRange((uint)(a), b, (uint)(id), _fp, (_fp + 4u)) != 0))
                 {
                     off = (Mem.S32(_fp) * 20);
                     if ((which != 0))
                     {
-                        Mem.Set(outRecs, (new Level(lv).recB_ + (uint)off));
+                        Mem.Set(outRecs, (new Level(lv).RegionTriggerRecords + (uint)off));
                     }
                     else
                     {
-                        Mem.Set(outRecs, (new Level(lv).recA_ + (uint)off));
+                        Mem.Set(outRecs, (new Level(lv).EntityTriggerRecords + (uint)off));
                     }
                     Mem.Set(outCount, ((Mem.S32((_fp + 4u)) - Mem.S32(_fp)) + 1));
                 }
@@ -6375,18 +6375,18 @@ public static partial class Game
             int t = 0;
             uint arr = 0u;
             i = 0;
-            n = new Level(lv).cnt1504;
-            arr = new Level(lv).ents.P;
+            n = new Level(lv).LoadedCellCount;
+            arr = new Level(lv).LoadedCells.P;
             for (; (i < n); ++i)
             {
                 ResourcePool_Unref(0, new Ent12((arr + (uint)(i * 12))).tblp);
             }
-            t = new Level(lv).cnt1504;
-            new Level(lv).cnt944_Set(0);
-            new Level(lv).cntC4C_Set(0);
-            new Level(lv).cnt10BC_Set(0);
-            new Level(lv).cnt1504_Set(0);
-            new Level(lv).cnt1500_Set(t);
+            t = new Level(lv).LoadedCellCount;
+            new Level(lv).AlwaysActiveActorCount_Set(0);
+            new Level(lv).PropActorCount_Set(0);
+            new Level(lv).TranslucentActorCount_Set(0);
+            new Level(lv).LoadedCellCount_Set(0);
+            new Level(lv).PrevLoadedCellCount_Set(t);
         }
     }
 
@@ -6547,17 +6547,17 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0028E044", (uint)lv);
             int n = 0;
             int i = 0;
-            uint e = new Level(lv).entities_;
-            new Level(lv).n2_Set(0);
+            uint e = new Level(lv).Entities;
+            new Level(lv).Class14EntityCount_Set(0);
             for (i = 15; (i >= 0); --i)
             {
-                new Level(lv).list2.Set((int)(i), 0u);
+                new Level(lv).Class14Entities.Set((int)(i), 0u);
             }
-            for (i = 0; (i < new Level(lv).numEntities); ++i)
+            for (i = 0; (i < new Level(lv).EntityCount); ++i)
             {
                 if ((new ActorDef(new Entity(e).DefPtr).type == 14))
                 {
-                    new Level(lv).list2.Set((int)(n), e);
+                    new Level(lv).Class14Entities.Set((int)(n), e);
                     ++n;
                 }
                 if ((n >= 16))
@@ -6566,7 +6566,7 @@ public static partial class Game
                 }
                 e += 744u;
             }
-            new Level(lv).n2_Set(n);
+            new Level(lv).Class14EntityCount_Set(n);
         }
     }
 
@@ -6577,13 +6577,13 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0028E0E4", (uint)lv);
             int i = 0;
-            uint e = new Level(lv).entities_;
+            uint e = new Level(lv).Entities;
             Mem.Set(Gv.Level_TagObjectiveEntityPtr, 0u);
             for (i = 0; (i < 4); ++i)
             {
                 Mem.Set((0x800F7CF8u + (uint)(i * 4)), 0u);
             }
-            for (i = 0; (i < new Level(lv).numEntities); ++i)
+            for (i = 0; (i < new Level(lv).EntityCount); ++i)
             {
                 if ((new ActorDef(new Entity(e).DefPtr).type == 3))
                 {
@@ -6627,13 +6627,13 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0028E260", (uint)lv);
             int n = 0;
             int i = 0;
-            uint e = new Level(lv).entities_;
+            uint e = new Level(lv).Entities;
             Mem.Set(0x800F7D0Cu, 0u);
             for (i = 0; (i < 10); ++i)
             {
                 Mem.Set((0x800F7CD0u + (uint)(i * 4)), 0u);
             }
-            for (i = 0; (i < new Level(lv).numEntities); ++i)
+            for (i = 0; (i < new Level(lv).EntityCount); ++i)
             {
                 if ((new ActorDef(new Entity(e).DefPtr).type == 3))
                 {
@@ -6670,9 +6670,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0028E6D8", (uint)lv);
             int i = 0;
-            for (i = 0; (i < new Level(lv).cnt1504); ++i)
+            for (i = 0; (i < new Level(lv).LoadedCellCount); ++i)
             {
-                uint t = Chunk_Get(Mem.U32(new Level(lv).ents[(int)(i)].tblp), 2);
+                uint t = Chunk_Get(Mem.U32(new Level(lv).LoadedCells[(int)(i)].tblp), 2);
                 if ((Mem.S32((t + (uint)(1 * 4))) != 0))
                 {
                     return 1;
@@ -7182,88 +7182,88 @@ public static partial class Game
                 uint h2 = 0u;
                 int v = 0;
                 Level_ResetActorLists(lv);
-                new S5Scene(lv).f0_Set(0);
+                new S5Scene(lv).LoadState_Set(0);
                 Level_ResetStateBlock_0044DE04(lv);
-                new S5Scene(lv).f4_Set(0);
+                new S5Scene(lv).IsSaveDataLoaded_Set(0);
                 new S5Scene(lv).f8_Set(0);
-                new S5Scene(lv).f1B40C_Set((-1));
-                new S5Scene(lv).f1B31C_Set(0);
-                new S5Scene(lv).f1B308_Set(0);
+                new S5Scene(lv).LevelIndex_Set((-1));
+                new S5Scene(lv).PropEffectPhase_Set(0);
+                new S5Scene(lv).SceneTime_Set(0);
                 new S5Scene(lv).f1B614_Set(0);
                 new S5Scene(lv).f1B618_Set(0);
                 new S5Scene(lv).f1B61C_Set(0);
-                new S5Scene(lv).f1B660_Set(0);
-                new S5Scene(lv).f1B6A4_Set(0);
+                new S5Scene(lv).Class13EntityCount_Set(0);
+                new S5Scene(lv).Class14EntityCount_Set(0);
                 new S5Scene(lv).f1B6AC_Set(0);
                 Holder_RefreshInstances_0044AA68(Gv.PlayerPool);
                 ResourcePool_Purge();
                 Resource_LoadIndexTableSync(0, _fp, data, Str.Lit("cartridge index"));
                 v = Resource_GetCartridgeKeyNoSize(Mem.U32(_fp), data, 5);
-                new S5Scene(lv).f1C_Set(v);
+                new S5Scene(lv).LevelsIndexKey_Set(v);
                 Resource_LoadIndexTableSync(0, (lv + 76u), v, Str.Lit("levels index"));
                 v = Resource_GetCartridgeKeyNoSize(Mem.U32(_fp), data, 3);
-                new S5Scene(lv).f20_Set(v);
+                new S5Scene(lv).TextureSetsIndexKey_Set(v);
                 Resource_LoadIndexTableSync(0, (lv + 80u), v, Str.Lit("texture sets index"));
                 p = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(2), (uint)(data), lv, 0x00285130u, Str.Lit("object types"));
-                new S5Scene(lv).f94_Set(Mem.U32(p));
+                new S5Scene(lv).ObjectTypeIds_Set(Mem.U32(p));
                 v = Resource_GetCartridgeKeyNoSize(Mem.U32(_fp), data, 0);
-                new S5Scene(lv).f24_Set(v);
+                new S5Scene(lv).ObjectsIndexKey_Set(v);
                 Resource_LoadIndexTableSync(0, (lv + 84u), v, Str.Lit("objects index"));
                 p = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(1), (uint)(data), lv, 0x0044E584u, Str.Lit("intelligence"));
-                new S5Scene(lv).f78_Set(Mem.U32(p));
+                new S5Scene(lv).IntelligenceDefs_Set(Mem.U32(p));
                 p = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(4), (uint)(data), lv, 0x0044E454u, Str.Lit("particle effects"));
-                new S5Scene(lv).fB4_Set(p);
+                new S5Scene(lv).ParticleEffectsRes_Set(p);
                 p = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(10), (uint)(data), lv, 0x00285130u, Str.Lit("object types"));
-                new S5Scene(lv).f98_Set(Mem.U32(p));
+                new S5Scene(lv).BinaryKeyTable_Set(Mem.U32(p));
                 v = Resource_GetCartridgeKeyNoSize(Mem.U32(_fp), data, 9);
-                new S5Scene(lv).f28_Set(v);
+                new S5Scene(lv).BinariesIndexKey_Set(v);
                 Resource_LoadIndexTableSync(0, (lv + 88u), v, Str.Lit("binaries index"));
                 p = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(11), (uint)(data), lv, 0x00285130u, Str.Lit("particle swooshes"));
-                new S5Scene(lv).f70_Set(Mem.U32(p));
+                new S5Scene(lv).ParticleSwooshes_Set(Mem.U32(p));
                 p = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(12), (uint)(data), lv, 0x00285130u, Str.Lit("dynamic lights"));
-                new S5Scene(lv).fA0_Set(Mem.U32(p));
-                new S5Scene(lv).f80_Set(Gv.LevelPersistBuffer);
+                new S5Scene(lv).DynamicLights_Set(Mem.U32(p));
+                new S5Scene(lv).SaveDataPtr_Set(Gv.LevelPersistBuffer);
                 v = (int)(Resource_GetCartridgeKey(Mem.U32(_fp), (uint)(data), 6, (lv + 68u)));
-                new S5Scene(lv).f38_Set(v);
-                new S5Scene(lv).f84_Set(0x800F81F0u);
+                new S5Scene(lv).SaveDataKey_Set(v);
+                new S5Scene(lv).EntityFlagDataPtr_Set(0x800F81F0u);
                 v = (int)(Resource_GetCartridgeKey(Mem.U32(_fp), (uint)(data), 7, (lv + 72u)));
-                new S5Scene(lv).f3C_Set(v);
+                new S5Scene(lv).EntityFlagDataKey_Set(v);
                 p = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(8), (uint)(data), lv, 0x00285130u, Str.Lit("warp dests"));
-                new S5Scene(lv).f10C_Set(p);
-                new S5Scene(lv).f90_Set(Mem.U32(p));
+                new S5Scene(lv).WarpDestsRes_Set(p);
+                new S5Scene(lv).WarpDests_Set(Mem.U32(p));
                 p = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(13), (uint)(data), lv, 0x00285130u, Str.Lit("curves"));
-                new S5Scene(lv).fA4_Set(Mem.U32(p));
+                new S5Scene(lv).Curves_Set(Mem.U32(p));
                 p = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(14), (uint)(data), lv, 0x00285130u, Str.Lit("rumbles"));
-                new S5Scene(lv).fAC_Set(Mem.U32(p));
+                new S5Scene(lv).Rumbles_Set(Mem.U32(p));
                 p = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(15), (uint)(data), lv, 0x00285130u, Str.Lit("rumble types"));
-                new S5Scene(lv).fA8_Set(Mem.U32(p));
+                new S5Scene(lv).RumbleTypes_Set(Mem.U32(p));
                 p = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(17), (uint)(data), lv, 0x00285130u, Str.Lit("graphicset type"));
-                new S5Scene(lv).f9C_Set(Mem.U32(p));
+                new S5Scene(lv).GraphicSetTypes_Set(Mem.U32(p));
                 v = Resource_GetCartridgeKeyNoSize(Mem.U32(_fp), data, 16);
-                new S5Scene(lv).f2C_Set(v);
+                new S5Scene(lv).GraphicSetIndexKey_Set(v);
                 Resource_LoadIndexTableSync(0, (lv + 92u), v, Str.Lit("graphicset index"));
                 v = Resource_GetCartridgeKeyNoSize(Mem.U32(_fp), data, 18);
-                new S5Scene(lv).f34_Set(v);
+                new S5Scene(lv).CinemasIndexKey_Set(v);
                 Resource_LoadIndexTableSync(0, (lv + 116u), v, Str.Lit("Cinemas index"));
                 Flyby_LoadIndexResource_00403BE0();
                 p = Resource_LoadByCartridgeKey((uint)(0), Mem.U32(_fp), (uint)(19), (uint)(data), lv, 0x00285130u, Str.Lit("link group types"));
-                new S5Scene(lv).fB0_Set(Mem.U32(p));
-                new S5Scene(lv).fC_Set(0);
-                new S5Scene(lv).f10_Set(0);
+                new S5Scene(lv).LinkGroupTypes_Set(Mem.U32(p));
+                new S5Scene(lv).LevelDataIndexKey_Set(0);
+                new S5Scene(lv).LevelDataIndexSize_Set(0);
                 new S5Scene(lv).f14_Set(0);
                 new S5Scene(lv).f18_Set((-1));
                 if ((Mem.S32(Mem.U32(_fp)) >= 22))
                 {
-                    new S5Scene(lv).fC_Set(Resource_GetCartridgeKeyNoSize(Mem.U32(_fp), data, 21));
-                    h2 = Resource_LoadIndexTable(0, (_fp + 4u), new S5Scene(lv).fC, Str.Lit("CScene__Construct: BLLevelData Index"), 1);
+                    new S5Scene(lv).LevelDataIndexKey_Set(Resource_GetCartridgeKeyNoSize(Mem.U32(_fp), data, 21));
+                    h2 = Resource_LoadIndexTable(0, (_fp + 4u), new S5Scene(lv).LevelDataIndexKey, Str.Lit("CScene__Construct: BLLevelData Index"), 1);
                     if ((h2 != 0u))
                     {
-                        new S5Scene(lv).f10_Set((((Mem.S32(Mem.U32((_fp + 4u))) * 4) + 15) & (~7)));
+                        new S5Scene(lv).LevelDataIndexSize_Set((((Mem.S32(Mem.U32((_fp + 4u))) * 4) + 15) & (~7)));
                         ResourcePool_Release(0, h2);
                     }
                     else
                     {
-                        new S5Scene(lv).fC_Set(0);
+                        new S5Scene(lv).LevelDataIndexKey_Set(0);
                     }
                 }
                 if ((Mem.S32(Mem.U32(_fp)) >= 24))
@@ -7279,11 +7279,11 @@ public static partial class Game
                 Scene_HelperA_0044C250(lv, (new S5Scene(lv).simp.P + (uint)(2 * 28)), 3502);
                 Scene_HelperA_0044C250(lv, (new S5Scene(lv).simp.P + (uint)(3 * 28)), 3503);
                 Scene_HelperA_0044C250(lv, (new S5Scene(lv).simp.P + (uint)(4 * 28)), 3504);
-                new S5Scene(lv).fF0_Set(0);
-                new S5Scene(lv).fF4_Set(0);
-                new S5Scene(lv).fFC_Set(0);
-                new S5Scene(lv).fF8_Set(0);
-                new S5Scene(lv).f88_Set(0);
+                new S5Scene(lv).NavNodesRes_Set(0);
+                new S5Scene(lv).SectionRes10_F4_Set(0);
+                new S5Scene(lv).SectionRes11_FC_Set(0);
+                new S5Scene(lv).StaticPropBlob_Set(0);
+                new S5Scene(lv).StaticPropCache_Set(0);
                 new S5Scene(lv).f120_Set(0);
                 new S5Scene(lv).f124_Set(0);
                 Level_Load(lv, (uint)(0), (uint)(0), default(uint));
@@ -7336,36 +7336,36 @@ public static partial class Game
                         Mem.Set((hdr + (uint)(1 * 4)), count);
                         recs = (node + (uint)8);
                         actors = (hdr + (uint)(2 * 4));
-                        if ((new S6World_v2(world).ready == 0))
+                        if ((new S6World_v2(world).HasWarpDest == 0))
                         {
-                            new S6World_v2(world).key_Set(Level_FindNearestPlacedObject(world, (node + (uint)12), new S6World_v2(world).group, new S6World_v2(world).cache.P));
-                            if ((new S6World_v2(world).key != 0))
+                            new S6World_v2(world).StartPointId_Set(Level_FindNearestPlacedObject(world, (node + (uint)12), new S6World_v2(world).LevelIndex, new S6World_v2(world).WarpDestRecord.P));
+                            if ((new S6World_v2(world).StartPointId != 0))
                             {
-                                new S6World_v2(world).ready_Set(1);
+                                new S6World_v2(world).HasWarpDest_Set(1);
                             }
                         }
                         idx = 0;
                         nobj = 0;
-                        if ((new S6World_v2(world).ready != 0))
+                        if ((new S6World_v2(world).HasWarpDest != 0))
                         {
-                            nobj = Level_FindPlacedObjects(world, new S6World_v2(world).group, new S6World_v2(world).key, _fp, 8);
+                            nobj = Level_FindPlacedObjects(world, new S6World_v2(world).LevelIndex, new S6World_v2(world).StartPointId, _fp, 8);
                         }
                         new S6World_v2(world).actors__Set(actors);
-                        new S6World_v2(world).nActors_Set(count);
+                        new S6World_v2(world).EntityCount_Set(count);
                         for (i = 0; (i < count); ++i)
                         {
                             rec = (recs + (uint)(i * 40));
                             actor = (actors + (uint)(i * 744));
                             new S6Actor(actor).def__Set(Level_GetDefinition(world, (int)(new S6Rec(rec).id)));
                         }
-                        new S6World_v2(world).nSpawned_Set(0);
+                        new S6World_v2(world).PlayerEntityCount_Set(0);
                         for (i = 0; (i < count); ++i)
                         {
                             rec = (recs + (uint)(i * 40));
                             Level_SpawnActorFromRecord((int)((actors + (uint)(i * 744))), rec);
                             if (((Mem.S32(Level_GetDefinition(world, (int)(new S6Rec(rec).id))) == 11) || (i == 0)))
                             {
-                                new S6World_v2(world).nSpawned_Set((int)(new S6World_v2(world).nSpawned + 1));
+                                new S6World_v2(world).PlayerEntityCount_Set((int)(new S6World_v2(world).PlayerEntityCount + 1));
                                 Mem.Copy(0x80145100u, new S6Rec(rec).pos.P, 12);
                                 new S6V3(0x80145100u).y_Set((float)((float)(new S6V3(0x80145100u).y) + 204.799988f));
                                 Mem.Set(0x80145120u, (int)(Collision_FindFloorTriangle(world, new S6Rec(rec).pos.P)));
@@ -7375,7 +7375,7 @@ public static partial class Game
                                     cfg = (cfg0 + (uint)(p * 150));
                                     if ((nobj != 0))
                                     {
-                                        if (((((int)(new S6Cfg(cfg).kind) == 12) && (Mem.S32((pl + (uint)5200)) != 0)) && (new S6World_v2(world).group == 9)))
+                                        if (((((int)(new S6Cfg(cfg).kind) == 12) && (Mem.S32((pl + (uint)5200)) != 0)) && (new S6World_v2(world).LevelIndex == 9)))
                                         {
                                             Level_FindPlacedObjects(world, 9, 3101, (_fp + 160u), 1);
                                             obj = (_fp + 160u);
@@ -7401,14 +7401,14 @@ public static partial class Game
                                 }
                             }
                         }
-                        for (i = new S6World_v2(world).nSpawned; (i < count); ++i)
+                        for (i = new S6World_v2(world).PlayerEntityCount; (i < count); ++i)
                         {
                             actor = (actors + (uint)(i * 744));
                             best = 3.40282347E+38f;
                             new S6Actor(actor).nearest__Set(0u);
                             if ((Actor_HasDefFlag14x02_0024DDA4(actor) != 0))
                             {
-                                for (j = new S6World_v2(world).nSpawned; (j < count); ++j)
+                                for (j = new S6World_v2(world).PlayerEntityCount; (j < count); ++j)
                                 {
                                     other = (actors + (uint)(j * 744));
                                     if ((((Mem.S32(new S6Actor(actor).def_) == Mem.S32(new S6Actor(other).def_)) && (Actor_HasDefFlag14x01_0024DD7C(other) != 0)) && (actor != other)))
@@ -7433,7 +7433,7 @@ public static partial class Game
                         }
                     }
                     ResourcePool_FreeBlock_00253CB0((uint)(0), handle, blk, default(uint));
-                    new S6World_v2(world).unkF58_Set(0);
+                    new S6World_v2(world).Class1ActorCursor_Set(0);
                 }
             }
         }
@@ -7470,10 +7470,10 @@ public static partial class Game
                 uint objsB = 0u;
                 uint b = 0u;
                 uint handle = 0u;
-                width = new ResourceManagerState(Chunk_Get(new Level_func_8044CD8C_de(level).grid, 0)).count;
+                width = new ResourceManagerState(Chunk_Get(new Level_func_8044CD8C_de(level).CellGrid, 0)).count;
                 row = 0;
-                rows = new ResourceManagerState(Chunk_Get(new Level_func_8044CD8C_de(level).grid, 2)).count;
-                cells = new func_8044D9DC_S1(Chunk_Get(new Level_func_8044CD8C_de(level).grid, 4)).unk8.P;
+                rows = new ResourceManagerState(Chunk_Get(new Level_func_8044CD8C_de(level).CellGrid, 2)).count;
+                cells = new func_8044D9DC_S1(Chunk_Get(new Level_func_8044CD8C_de(level).CellGrid, 4)).unk8.P;
                 lastRow = (rows - 1);
                 lastCol = (width - 1);
                 first = 0;
@@ -7486,7 +7486,7 @@ public static partial class Game
                         {
                             continue;
                         }
-                        key = (int)(Resource_GetCartridgeKey((uint)(new Level_func_8044CD8C_de(level).file), (uint)(new Level_func_8044CD8C_de(level).key), (col + (row * width)), _fp));
+                        key = (int)(Resource_GetCartridgeKey((uint)(new Level_func_8044CD8C_de(level).CellsIndex), (uint)(new Level_func_8044CD8C_de(level).CellsIndexKey), (col + (row * width)), _fp));
                         block = ResourceCache_Hash(0, (uint)(key), key, (uint)(Mem.S32(_fp)), 4, level, 0x0028795Cu, 0x800CA300u, 1);
                         if ((block == 0u))
                         {
@@ -7543,7 +7543,7 @@ public static partial class Game
             Level_LoadPreviewSound_0044DD40(state);
             new func_8044DC48_S1(state).unk1B444_Set(0);
             new func_8044DC48_S1(state).unk1B448_Set(21);
-            new func_8044DC48_S1(state).unk1B44C_Set(new Shape_func_8021A2D4_de_2(Gv.Settings_UnlockedCheats).field_0);
+            new func_8044DC48_S1(state).KnownCheatMask_2_Set(new Shape_func_8021A2D4_de_2(Gv.Settings_UnlockedCheats).field_0);
         }
     }
 
@@ -7557,10 +7557,10 @@ public static partial class Game
             int temp_a1 = 0;
             if ((Level_IsRestartPending() == 0))
             {
-                temp_v0 = ResourceCache_Hash(0, (uint)(new State_func_8044D054_de(arg0).unk38), new State_func_8044D054_de(arg0).unk38, (uint)(new State_func_8044D054_de(arg0).unk44), 0, (uint)(0), 0x00285130u, 0x800CA1A0u, 1);
+                temp_v0 = ResourceCache_Hash(0, (uint)(new State_func_8044D054_de(arg0).SaveDataKey), new State_func_8044D054_de(arg0).SaveDataKey, (uint)(new State_func_8044D054_de(arg0).SaveDataSize), 0, (uint)(0), 0x00285130u, 0x800CA1A0u, 1);
                 memcpy_Recompiled(Gv.LevelPersistBuffer, (uint)(Mem.S32(temp_v0)), (uint)(22528), default(uint));
                 ResourcePool_Release((int)(0u), temp_v0);
-                new State_func_8044D054_de(arg0).unk4_Set(1);
+                new State_func_8044D054_de(arg0).IsSaveDataLoaded_Set(1);
             }
         }
     }
@@ -7575,7 +7575,7 @@ public static partial class Game
             int id = 0;
             if ((Level_IsRestartPending() == 0))
             {
-                resource = ResourceCache_Hash(0, (uint)(new State_func_8044D0F0_de(state).resource), new State_func_8044D0F0_de(state).resource, (uint)(new State_func_8044D0F0_de(state).bank), 0, (uint)(0), 0x00285130u, 0x800CA1BCu, 1);
+                resource = ResourceCache_Hash(0, (uint)(new State_func_8044D0F0_de(state).EntityFlagDataKey), new State_func_8044D0F0_de(state).EntityFlagDataKey, (uint)(new State_func_8044D0F0_de(state).EntityFlagDataSize), 0, (uint)(0), 0x00285130u, 0x800CA1BCu, 1);
                 memcpy_Recompiled(0x800F81F0u, (uint)(Mem.S32(resource)), (uint)(20480), default(uint));
                 ResourcePool_Release(0, resource);
             }
@@ -7587,9 +7587,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0044DDC8", (uint)state, (uint)selection);
-            if ((selection != new State_func_8044D0F0_de(state).selection))
+            if ((selection != new State_func_8044D0F0_de(state).LevelIndex))
             {
-                new State_func_8044D0F0_de(state).changed_Set(0);
+                new State_func_8044D0F0_de(state).HasWarpDest_Set(0);
                 Level_SetTransitionState_0044E178(state, (~selection), 0);
             }
         }
@@ -7600,12 +7600,12 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0044DE04", (uint)state);
-            new func_8044DE04_S1(state).unk1B410_Set(2);
-            new func_8044DE04_S1(state).unk1B414_Set(0);
-            new func_8044DE04_S1(state).unk1B418_Set(0);
-            new func_8044DE04_S1(state).unk1B41C_Set(0);
-            new func_8044DE04_S1(state).unk1B434_Set(0);
-            new func_8044DE04_S1(state).unk1B438_Set(0);
+            new func_8044DE04_S1(state).FadeType_Set(2);
+            new func_8044DE04_S1(state).FadeState_2_Set(0);
+            new func_8044DE04_S1(state).FadeTime_2_Set(0);
+            new func_8044DE04_S1(state).HasWarpDest_2_Set(0);
+            new func_8044DE04_S1(state).StartPointId_Set(0);
+            new func_8044DE04_S1(state).PendingWarpTarget_2_Set(0);
             new func_8044DE04_S1(state).unk1B43C_Set(0);
             new func_8044DE04_S1(state).unk1B440_Set(0);
         }
@@ -7627,9 +7627,9 @@ public static partial class Game
                 int match = 0;
                 int count = 0;
                 found = 0;
-                count = Mem.S32(((keys = Chunk_Get((uint)(new Track_func_8044D220_de(track).resource), 0)) + (uint)(1 * 4)));
+                count = Mem.S32(((keys = Chunk_Get((uint)(new Track_func_8044D220_de(track).WarpDests), 0)) + (uint)(1 * 4)));
                 keys = (uint)(keys + (uint)(2 * 4));
-                objects = (Chunk_Get((uint)(new Track_func_8044D220_de(track).resource), 1) + (uint)(2 * 4));
+                objects = (Chunk_Get((uint)(new Track_func_8044D220_de(track).WarpDests), 1) + (uint)(2 * 4));
                 if ((Sort_FindEqualRange(keys, count, (uint)(key), (_fp + 792u), (_fp + 796u)) != 0))
                 {
                     List_Init(_fp, 4, 8);
@@ -7679,10 +7679,10 @@ public static partial class Game
             uint objs = 0u;
             float bestd = 0f;
             float d = 0f;
-            t = Chunk_Get(new S7Track(track).resource, 0);
+            t = Chunk_Get(new S7Track(track).WarpDests, 0);
             count = Mem.S32((t + (uint)(1 * 4)));
             keys = (t + (uint)(2 * 4));
-            objs = (Chunk_Get(new S7Track(track).resource, 1) + (uint)(2 * 4));
+            objs = (Chunk_Get(new S7Track(track).WarpDests, 1) + (uint)(2 * 4));
             bestd = 3.40282347E+38f;
             for (i = 0; (i < count); ++i)
             {
@@ -7718,9 +7718,9 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0044E178", (uint)state, (uint)selection, (uint)mode);
-            new State_func_8044D528_de(state).active_Set(1);
-            new State_func_8044D528_de(state).mode_Set(mode);
-            new State_func_8044D528_de(state).selection_Set(selection);
+            new State_func_8044D528_de(state).FadeState_Set(1);
+            new State_func_8044D528_de(state).FadeType_Set(mode);
+            new State_func_8044D528_de(state).PendingWarpTarget_Set(selection);
             if (((mode == 2) && (selection != 999)))
             {
                 Audio_PlaySound2D(540);
@@ -7734,7 +7734,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0044E1D0", (uint)state);
             Scene_LoadLight(state);
-            Mem.Set(Gv.Render_FogEnabled, (((int)(new State_func_8044D528_de(state).input.value) >> (int)2) & 1));
+            Mem.Set(Gv.Render_FogEnabled, (((int)(new State_func_8044D528_de(state).LevelHeader.value) >> (int)2) & 1));
         }
     }
 
@@ -7746,15 +7746,15 @@ public static partial class Game
             int i = 0;
             int n = 0;
             Flyby_ClearFlag_002458C8();
-            n = new State_func_8044D5C4_de(arg0).unk11C0;
+            n = new State_func_8044D5C4_de(arg0).EntityTriggerCount;
             for (i = 0; (i < n); ++i)
             {
-                Level_SpawnEntity(arg0, (uint)((new State_func_8044D5C4_de(arg0).unk11D0 + (i * 20))), default(uint), default(uint));
+                Level_SpawnEntity(arg0, (uint)((new State_func_8044D5C4_de(arg0).EntityTriggerRecords + (i * 20))), default(uint), default(uint));
             }
-            n = new State_func_8044D5C4_de(arg0).unk11C4;
+            n = new State_func_8044D5C4_de(arg0).RegionTriggerCount;
             for (i = 0; (i < n); ++i)
             {
-                Level_SpawnEntity(arg0, (uint)((new State_func_8044D5C4_de(arg0).unk11D4 + (i * 20))), default(uint), default(uint));
+                Level_SpawnEntity(arg0, (uint)((new State_func_8044D5C4_de(arg0).RegionTriggerRecords + (i * 20))), default(uint), default(uint));
             }
             Flyby_SetFlag_002458B4();
         }
@@ -7770,19 +7770,19 @@ public static partial class Game
             int n = 0;
             uint item = 0u;
             Flyby_ClearFlag_002458C8();
-            n = new Level_v2(level).counts[(int)(0)];
+            n = new Level_v2(level).EntityTriggerCount[(int)(0)];
             for (i = 0; (i < n); ++i)
             {
-                item = (new Level_v2(level).items[(int)(0)] + (uint)(i * 20));
+                item = (new Level_v2(level).EntityTriggerRecords[(int)(0)] + (uint)(i * 20));
                 if ((((((int)(new Item_func_8044D668_de(item).kind) == 1) || ((int)(new Item_func_8044D668_de(item).kind) == 4)) || ((int)(new Item_func_8044D668_de(item).kind) == 2)) || ((int)(new Item_func_8044D668_de(item).kind) == 10)))
                 {
                     Level_SpawnEntity(level, item, default(uint), default(uint));
                 }
             }
-            n = new Level_v2(level).counts[(int)(1)];
+            n = new Level_v2(level).EntityTriggerCount[(int)(1)];
             for (i = 0; (i < n); ++i)
             {
-                item = (new Level_v2(level).items[(int)(1)] + (uint)(i * 20));
+                item = (new Level_v2(level).EntityTriggerRecords[(int)(1)] + (uint)(i * 20));
                 if ((((((int)(new Item_func_8044D668_de(item).kind) == 1) || ((int)(new Item_func_8044D668_de(item).kind) == 4)) || ((int)(new Item_func_8044D668_de(item).kind) == 2)) || ((int)(new Item_func_8044D668_de(item).kind) == 10)))
                 {
                     Level_SpawnEntity(level, item, default(uint), default(uint));
@@ -7941,7 +7941,7 @@ public static partial class Game
                             index = new Slot_func_8044D794_de(slot).item;
                             if ((index != (-1)))
                             {
-                                bank = Chunk_Get(new Owner_func_8044D794_de(arg0).unk6C, 2);
+                                bank = Chunk_Get(new Owner_func_8044D794_de(arg0).CollisionData, 2);
                                 items = new Bank_func_8044D794_de(bank).items.P;
                                 if (((index < 0) || (index >= new Bank_func_8044D794_de(bank).count)))
                                 {
@@ -7963,7 +7963,7 @@ public static partial class Game
                         while ((j < inner));
                     }
                 }
-                new Owner_func_8044D794_de(arg0).unk7C_Set(obj);
+                new Owner_func_8044D794_de(arg0).LevelPaths_Set(obj);
             }
         }
     }

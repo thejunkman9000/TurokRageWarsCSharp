@@ -127,7 +127,7 @@ def rewrite_code(text, types, ren):
     return ''.join(out)
 
 
-NEW = re.compile(r'\bnew ([A-Z_][A-Za-z0-9_]*)\(')
+NEW = re.compile(r'\bnew ([A-Za-z_][A-Za-z0-9_]*)\(')      # view types can start lower case (func_8044CBE0_S1_v2)
 
 
 def match_close(s, i, open_ch, close_ch):

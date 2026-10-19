@@ -397,7 +397,7 @@ public static partial class Game
             src = new O01Cfg2(c3).unk60C.P;
             {
                 uint d = Gv.LevelPersistBuffer;
-                for (i = zero; (i < new O01G2(g).unk44); ++i)
+                for (i = zero; (i < new O01G2(g).SaveDataSize); ++i)
                 {
                     Mem.Set(((d += 1u) - 1u), Mem.U8(((src += 1u) - 1u)));
                 }

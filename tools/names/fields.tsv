@@ -269,3 +269,264 @@ Player	0x16D0	HoldEffect_16D0	low	Player_HoldByEffect stores arg then state 16
 Player	0x16D4	IsInfraRedOn	medium	Pickup_ToggleInfraRed toggles; Player_Tick copies to camera; suppresses hit direction
 Player	0x16D8	HitShake	medium	ushort capped 100 by Player_AddShake; Player_Tick decays and copies to camera
 Player	0x16E0	Next	high	next player in group list (all Match_*/Player_* loops)
+Player	0x0	Type	high	actor type byte; AiNav_CanReachNode/func_0020AF9C test kind==1 (player) with flags 0x300000 (same as Actor header)
+Player	0x4	TypeIndex	high	AiNav_PenalizeDangerNodes switches on it (1054/1026/1028...) for danger actors; shared actor header field
+Player	0x14	RegionPtr	high	Player_Restart: if nonzero Level_FireRegionTriggers(+0x14,1,p)
+Player	0x18	DefPtr	high	actor def/config pointer; Player_ConstructEntities copies def+0xFC..0x104 to scale +0x50
+Player	0x38	GroundFlags	medium	Ai_Update*Attack tests &0x3000 (water), Ai_Steer* tests 0x1000/0x2000; Player_ResetForNewLife clears
+Player	0x50	Scale	high	Player_ConstructEntities sets x/y/z from def+0xFC/0x100/0x104 (actor header Scale)
+Player	0x100	Flags	high	actor flags; 0x300000 = player body bits tested by AiNav; Platform_* also use it
+Player	0x174	HitPoints	medium	Player_ResetForNewLife copies Health (+0x5E4) into it after respawn
+Player	0x1D8	OwnerPtr	high	owner/controller; Ai_Update*Attack do actor.owner.BrainPtr; for the player it points to itself
+Player	0x27C	DrawCallback	high	Player_ConstructEntities installs 0x0021A2D4
+Player	0x280	Callback280_280	low	Player_ConstructEntities installs 0x00219A40 (actor header callback slot)
+Player	0x284	CollisionCallback	high	actor header callback slot (named by actor pass)
+Player	0x288	Callback288_288	low	Player_ConstructEntities installs 0x0022E250 (actor header callback slot)
+Player	0x28C	TransformCallback	high	Player_ConstructEntities installs 0x0024B52C
+Player	0x290	Callback290_290	low	Player_ConstructEntities installs 0x0022E0A0 (actor header callback slot)
+Player	0x1340	DeadTime	medium	Ai_UpdateBrain increments while StateId==18 (dead); Ai_CheckRespawn resets to 0 past limit; in-game menu respawns at >=76
+PlayerMenu	0x0	Header	high	0x58-byte page header (O05Hdr/Q03Hdr): PlayerMenu_Open sets +0 page node, +4 CursorGroup_Create, +8 ScreenWipe block, +0x4C/+0x50 open/close anim phase+timer, +0x3C/+0x44 sliding panel widgets
+PlayerMenu	0x58	Players	high	4 x 0xB68 per-controller-pad player panels (O05Plr): state, UI widget nodes, 4 embedded 0x190 profile records (+0x18), item list, cursor/scroll, name entry buffer (+0xB34), pak id (+0xB64); used by all PlayerMenu_*/NameEntry_*
+PlayerMenu	0x2DF8	Slots	high	4 x 12-byte player slots {a=pad/player index or -1 free, b=profile record index, c=state 1 assigned/2 applied}; written by PlayerMenu_Open/AssignSelectedProfile, read by ApplySlot/ApplyAllSlots
+PlayerMenu	0x2E28	PakSaveRecords	high	start of the 1608-byte Controller Pak save buffer: 4 x 0x190 profile records copied to/from ProfileTable and Players[i].rec; CPak_ReadFile/CRC32 over 1600 bytes in PlayerMenu_LoadFromPak/SaveToPak/PackSaveBuffer/UnpackSaveBuffer
+PlayerMenu	0x3468	PakSavePakId	medium	save-buffer word after the records: set from Players[idx].fB64 (pak identity compared with ProfileTable rec.w8 in PlayerMenu_ProfilesMatchPakId) before saving, copied back on load; nonzero means delete bad file
+PlayerMenu	0x346C	PakSaveCrc	high	CPak_Crc32(records,1600,7) written by PackSaveBuffer/SaveToPak, compared at buf+1604 in PlayerMenu_LoadFromPak
+PlayerMenu	0x3470	NextScreenId	medium	set to -1 in PlayerMenu_Open; on close animation end PlayerMenu_OnTick calls Menu_GotoScreen(this value)
+MenuManager	0x0	GlobalHandlerFn	high	Menu_SetGlobalHandler stores fn and sends 0xE04; every dispatcher calls it before the stack
+MenuManager	0x4	TopIndex	high	screen stack top index; Menu_Init sets -1, Menu_PopScreen decrements, stack[top*28]
+MenuManager	0x8	BaseIndex	medium	lowest active stack index: DrawStack/BroadcastToStack/Shutdown loop from it to TopIndex; PopScreen clamps it
+MenuManager	0xC	StackPtr	high	Menu_Init mallocs n*28 screen-stack entries (0x1C each); freed in Menu_Shutdown
+MenuManager	0x10	ScreenHandlerLookupFn	high	Menu_Init arg (Menu_GetScreenDispatch); GotoScreen calls it with the screen id, stores result in screen def +0x40
+MenuManager	0x14	StickDeadzone	high	Menu_Init sets 4000; Menu_Set/GetStickDeadzone
+MenuManager	0x18	StackCapacity	high	Menu_Init stores n, the screen-stack entry count it allocates
+MenuManager	0x1C	ClassTable	high	64 x 0x14 class slots (id=-1 init); Menu_RegisterClass / GetClassHandler / GetClassFlag
+MenuManager	0x520	IsEventConsumed	high	Menu_ConsumeEvent sets 1; dispatchers save/clear it around handler calls and stop propagation when 1
+MenuManager	0x524	LastTickTime	medium	Menu_Init/DispatchEvent store Time_GetSecondsSinceStart*k; event 0xE08 gets now-last as delta
+MenuManager	0x528	PreviousScreenId	high	GotoScreen stores current screen id before switching; Menu_GetPreviousScreen returns it
+MenuManager	0x52C	Flags_52C	low	bit 0 set by Menu_Init, toggled by Menu_SetFlag52C_0029A58C; no reader found
+MenuManager	0x530	IsDeactivatePending	medium	set 1 before each Menu_PopScreen (GotoScreen/Shutdown); DeactivateTopScreen only notifies when set, then clears
+MenuManager	0x534	DrawOffsetX	medium	Menu_DrawStack copies into viewport x/x2; Menu_SetPair534 setter
+MenuManager	0x538	DrawOffsetY	medium	Menu_DrawStack copies into viewport y/y2; Menu_SetPair534 setter
+MenuManager	0x53C	NodeCachePtr	high	Menu_Init mallocs 900 bytes (75 x 12 entries); Menu_GetNodeCached searches it
+MenuManager	0x540	NodeCacheCount	high	Menu_GetNodeCached loops/appends (<75); reset to 0 by GotoScreen
+SoundManager	0x7C	BankPtr	medium	Sound_Init stores bank f4; SndPool_AllocVoice indexes its table by priority for alSndpAllocate
+SoundManager	0x84	SndPlayer	high	ALSndPlayer block: alSndpNew/alSndpSetSound/alSndpStop/GetState on it
+SoundManager	0xDC	VoiceSoundHandles	high	16 x s16 alSndpAllocate results per voice, init -1; passed to alSndpSetSound
+SoundManager	0x102	AllocVoiceIndex	medium	SndPool_AllocVoice sets voice idx being allocated; voice loops skip it; != -1 means busy
+SoundManager	0x104	FrameCounter	high	Sound_UpdateFrame increments; (x&3) gating, queue ages (>=16) compare against it
+SoundManager	0x108	NextEmitterId	high	post-incremented into new emitter id in AllocVoice/SndQueue_Add; init 0
+SoundManager	0x10C	NextPlayToken	high	Sound_Play/PlayByIndex return ++counter as play token
+SoundManager	0x110	Lock	high	SndLock: Lock_Init in Sound_Init, func_00257380_SndMgr_Lock/Unlock
+SoundManager	0x130	LastVariantIndex	medium	Sound_PickVariant avoids repeating it; Sound_Play stores chosen idx
+SoundManager	0x134	AmbientLoopSoundId	medium	Sound_UpdateAmbientLoop plays it via Sound_Play when >0 and ambient enabled
+SoundManager	0x138	Queue	high	SndQueue_Init; Sound_Stop* walk q.active list
+SoundManager	0x1D64	SeqPlayer	high	SndSeq: Seq_InitPlayer, Seq_UpdateFade, Sound_StopMusic/DuckMusic
+SoundManager	0x1DA8	Heap	high	alHeapInit target; passed as synth config heap
+SoundManager	0x1DB8	VoicePool	high	SndVoices: SndPool_Init, 17 voices of 204 bytes
+SoundManager	0x2B48	RootChunkPtr	medium	Sound_LoadTables: Resource_AllocVirtualRegion of ROM table 16..20, Chunk_Get root
+SoundManager	0x2B4C	EffectTreePtr	medium	Sound_Play/GetEffectHeader: Chunk_Get(Chunk_Get(tree, sh), 0/1)
+SoundManager	0x2B50	SongNodePtr	medium	Seq_FindSong/LoadSong Chunk_Get(node, i) for song data
+SoundManager	0x2B54	EffectCount	medium	count passed with 0x2B58 to Sort_FindEqualRange in Sound_Play/PickVariant
+SoundManager	0x2B58	EffectIndexTablePtr	medium	sorted id table for Sort_FindEqualRange in Sound_Play/PickVariant
+SoundManager	0x2B60	SongIndexTablePtr	medium	sorted table searched by Seq_FindSong/SndFx_Play via Sort_FindEqualRange
+SoundManager	0x2B64	SongIndexCount	medium	count paired with 0x2B60 in Sort_FindEqualRange
+SoundManager	0x2B7C	TableCount_2B7C	low	Sound_LoadTables stores word 1 of a chunk; no reader
+SoundManager	0x2B80	TableCount_2B80	low	Sound_LoadTables stores word 1 of a chunk; no reader
+SoundManager	0x2B84	TableCount_2B84	low	Sound_LoadTables stores word 1 of a chunk; no reader
+SoundManager	0x2B88	CurrentEffectPtr	medium	Sound_Play sets to the effect header chunk being played; PlayByIndex sets n
+SoundManager	0x2B8C	CurrentSoundId	medium	Sound_Play sets id (256 in PlayByIndex, -1 init); copied as voice tag/emitter kind
+SoundManager	0x2B90	CurrentOwner	medium	Sound_Play sets owner arg (-1 otherwise); FindByTagAndOwner, emitter +0xB4
+SoundManager	0x2B94	CurrentPan	medium	init 64, randomised in Sound_Play; SndVoice_InitPan uses it as pan
+SoundManager	0x2B98	ListenerPtr	medium	CameraManager_FindNearestCamera result / Sound_SetSourceActor; used for distance gain and pan
+SoundManager	0x2B9C	FxMixLevel	medium	Sound_SetFxMixLevel stores r*k; reset in Sound_StopAllExcept
+SoundManager	0x2BA0	SfxVolume	high	Settings_SfxVolume byte * scale in Sound_Init; Sound_SetSfxVolume
+SoundManager	0x2BA4	MusicVolume	high	settings byte at -1 * scale; Sound_SetMusicVolume, Seq_UpdateVolume
+SoundManager	0x2BA8	VoiceVolume	medium	settings byte at +1 * scale; Sound_SetVoiceVolume_00258BDC; clamp in Sound_PlaySndFx
+SoundManager	0x2BAC	PosFlag_2BAC	low	Sound_Set/GetPosFlag; copied into emitter resetFlag on alloc
+SoundManager	0x2BB0	IsStereo	high	Sound_IsStereo / Sound_SetStereo; settings byte at -2
+SoundManager	0x2BB4	IsAmbientEnabled	high	Sound_SetAmbientEnabled; gate in Sound_UpdateAmbientLoop
+SoundManager	0x2BB8	IsMuffled	medium	Sound_SetMuffle_00258D68 setter; Seq_Update/UpdateVolume branch on it
+SoundManager	0x2BC0	SndFxPlayer	high	SndFx block: SndFx_Init/Update/StopLocked
+AiBrain	0x0	OwnerPtr	high	owning bot actor; Ai_InitForActor sets it, every Ai_* reads owner.pos/stats
+AiBrain	0x4	CurrentNode	high	nav node the bot is at; AiNav_SearchFrom(m, unk4), FindEdge(unk4,q[0]), PlanRoute exits when ==GoalNode
+AiBrain	0x8	PreviousNode	medium	set from CurrentNode when -1 (Ai_UpdateBrain); FollowPath uses FindEdge(unk8,from) when at q[0]
+AiBrain	0xC	GoalNode	high	AiNav_AddGoal(m, unkC) in Ai_ThinkPlanRoute; set to item node / target's node in RouteToItem / attack states
+AiBrain	0x10	LastTargetNode	medium	attack states cache target's CurrentNode; on change checks AiNav_IsNodeVisible -> state 1
+AiBrain	0x14	PathNodes	high	s32[4] path from AiNav_BuildPath(m, q, 4); Ai_PopPathNode shifts, Ai_ClearPath fills -1
+AiBrain	0x28	PlannedGoalNode	medium	Ai_ThinkPlanRoute stores GoalNode after building path, skips replanning when equal
+AiBrain	0x2C	MoveTarget	high	Vec3f steer point; FollowPath copies node/edge positions in, Ai_SteerToPoint turns/moves toward it
+AiBrain	0x38	EnemyCount	high	count of EnemyPtrs (Ai_ThinkScanEnemies count_Set; loops i<unk38)
+AiBrain	0x3C	EnemyPtrs	high	10 enemy actor ptrs filled by Ai_ThinkScanEnemies; AiNav_PenalizeEnemyNodes walks them
+AiBrain	0x64	TargetPtr	high	current target actor; combat turns toward target.owner.pos, Ai_ThinkSelectTarget sets it
+AiBrain	0x68	GoalEntityPtr	medium	pickup/entity routed to (Ai_ThinkRouteToItem sets node.unk34); follow state copies its pos to MoveTarget
+AiBrain	0x6C	EnemyVisibleFlags	high	s32[10] Ai_CanSeeCandidate result per EnemyPtrs slot (BrainB.valid)
+AiBrain	0x94	EnemyDistances	high	s32[10] Vec_Distance to each enemy (Ai_ThinkScanEnemies, Ai_FindNearestCandidate)
+AiBrain	0xBC	WantedItemKind	medium	item class to seek (1 health, ammo kind from Ai_GetAmmoItemKind); switch in Ai_ThinkRouteToItem picks item ids
+AiBrain	0xC0	BranchCandidates	medium	B2Ent[10] (from,to,score) for kind-6 branch edges; Ai_ScoreBranch fills, Ai_TakeBestBranch picks max
+AiBrain	0x138	EnemyAwayDirs_138	low	Vec3f per enemy: normalized dir enemy->branch node, averaged in Ai_TakeBestBranch/UpdateBranchOffset
+AiBrain	0x1B0	BranchPoint	medium	Vec3f offset destination near chosen branch node; FollowPath steers here when node flag 2
+AiBrain	0x1BC	BranchStep	medium	branch-pick state machine step (Ai_ThinkPickBranch: 0 find, 1..n score, n+1 take, n+2 offset); reset 0xFFFF
+AiBrain	0x1C0	BranchNode	medium	path node that has kind-6 branch edges (Ai_FindBranchNode)
+AiBrain	0x1C4	BranchTargetNode	medium	chosen branch destination node (Ai_TakeBestBranch nodeId_Set)
+AiBrain	0x1C8	BranchEdgeCount	medium	number of kind-6 edges from BranchNode (Ai_ThinkPickBranch counts)
+AiBrain	0x214	StateTablePtr	high	B2AnimTbl chain set by Ai_SetStateTable, searched by Ai_SetState
+AiBrain	0x218	CurStateEntryPtr	high	found state entry; its cb called on enter, upd called every frame by Ai_UpdateBrain
+AiBrain	0x21C	StateId	high	current AI state id (Ai_SetState; Ai_IsInCombatState/Ai_IsSeekingItem switch on it)
+AiBrain	0x220	ThinkStep	medium	index into the state's think-function list in Ai_RunThinkStep; advances when step returns nonzero
+AiBrain	0x224	RoamPathId	medium	LevelPath index for path-following roam (-1 none, -2 random node); LevelPath_GetHeader/GetPoint
+AiBrain	0x228	RoamPathPoint	medium	point index on RoamPathId, wraps at header count (Ai_UpdateBehavior0)
+AiBrain	0x230	AttackStyle	medium	state id from Ai_PickAttackStyle (Ai_StartAttack/MaybeSwitchAttack); rush sets 5
+AiBrain	0x238	IsFollowTargetReached_238	low	set 1 when bot gets close to GoalEntityPtr in follow state; then state 8
+AiBrain	0x23C	IsFireRequested	high	fire trigger; Ai_Fire* set 1, weapon code (Weapon_ShouldStopFiring etc.) reads and clears it
+AiBrain	0x240	SecondaryFireTicks_240	low	while >0 Ai_UpdateFiring ORs 0x4000 into owner input 6AC/6B0 and decrements
+AiBrain	0x244	AimWobble	high	random-walk yaw offset updated by Ai_UpdateAimWobble, passed to Ai_TurnTowardPoint
+AiBrain	0x248	AimPitch	medium	pitch to target written by Ai_ComputeAimPitch; Ai_TurnTowardPoint uses 248+250 for weapon mode != 2
+AiBrain	0x24C	AimPitchAlt	medium	pitch written by Ai_ComputeAimPitch; used (24C+254) when owner.unk594 == 2
+AiBrain	0x250	LobPitchOffset_250	low	added to AimPitch in Ai_TurnTowardPoint; set by lob-aim solver
+AiBrain	0x254	LobPitchOffsetAlt_254	low	added to AimPitchAlt in Ai_TurnTowardPoint; set by lob-aim solver
+AiBrain	0x258	AimPoint	medium	Vec3f target position set by Ai_ThinkSelectTarget; Ai_IsArcBlocked/lob solver aim at it
+AiBrain	0x264	AimHorizDistance	medium	horizontal distance to AimPoint; Ai_IsArcBlocked divides by it (0 = no shot)
+AiBrain	0x278	LobPitch	medium	launch pitch for arcing weapons (bisection in Ai_ThinkSolveLobAim; sin/cos in Ai_IsArcBlocked)
+AiBrain	0x28C	PreferredTargetPtr_28C	low	player actor ref Ai_ThinkSelectTarget prefers when visible and nearer (BrainB.target)
+AiBrain	0x2D8	StrafeTimer	medium	countdown in attack states; at 0 re-rolls StrafeDir and EngageDistSq
+AiBrain	0x2DC	StrafeDir	medium	0 left / 1 right / 2 blocked strafe in Ai_Update*Attack (sets owner strafe unk6A4)
+AiBrain	0x2E0	EngageDistSq	medium	random preferred squared distance to target; attack states back off/close in against it
+AiBrain	0x2E4	FireDelay	medium	frames before next shot (cfg+0 + rand*cfg+4); -1 while trigger held (Ai_Fire*, Ai_ResetFireTimers)
+AiBrain	0x2E8	ShotsRemaining	medium	shots/frames left in the burst (cfg+8 + rand*cfg+C), decremented per shot
+AiBrain	0x2EC	BurstCooldown	medium	countdown until next burst roll (cfg+0x10 + rand*cfg+0x14) in Ai_RollBurstChance; -1 = bursting
+AiBrain	0x2F4	IsAvoidingEnemies	medium	route bias: Ai_ThinkPlanRoute calls AiNav_PenalizeEnemyNodes when set
+AiBrain	0x2F8	IsAddingTimerCosts	medium	route bias: Ai_ThinkPlanRoute calls AiNav_AddTimerCosts when set
+AiBrain	0x2FC	IsFavoringPickups	medium	route bias: AiNav_FavorPickupNodes when set; Ai_ResetRouteBias sets 1
+AiBrain	0x300	HasNoPath	medium	set 1 by FollowPath when no goal / empty path; Ai_SteerToPoint skips steering when set
+AiBrain	0x304	IsSwimNode_304	low	node flags 0x300000 at q[0]; with owner flags38 0x1000/0x2000 steers pitch toward node
+AiBrain	0x308	IsOnJumpEdge	medium	set when current edge kind 8 (FollowPath jump sequence ORs 6B0 bit 0x10)
+AiBrain	0x30C	IsOnEdgeKind4_30C	low	set when current edge kind 4 in FollowPath; suppresses facing target
+AiBrain	0x310	IsMoveHalted	medium	when set Ai_SteerToPoint zeroes owner forward/strafe (6A4/6A8)
+AiBrain	0x314	EdgeStep	medium	sub-step of traversing a special edge (jump kind 8 / platform kind 5) in Ai_FollowPath
+AiBrain	0x318	LosCheckCounter	medium	frame counter; target LOS re-checked every 4th frame in attack states
+AiBrain	0x31C	IsTargetInSight	medium	Ai_IsTargetReached (ray cast) result; attack states engage when set else path to target
+AiBrain	0x320	JumpCooldown	medium	attack states decrement; at 0 random<agility ORs jump bit 0x10 into owner+0x6B0, re-arms 30-45
+AiBrain	0x324	AttackerTimer	medium	set 500 by damage code when a bot is hit, decremented by Ai_UpdateBrain
+AiBrain	0x328	LastAttackerPtr	medium	damage code (Player/Health.cs) stores the attacker into brain+0x328
+AiBrain	0x32C	CurrentEdgeId	medium	edge whose EdgeStep sequence is running; FollowPath resets EdgeStep when edge changes
+Level	0x0	LoadState	high	Level_Load sets 0,1,2,3,4 through the load (4 = fully loaded); Events/SessMgr/PathTbl test ==4, saved-flag setters skip while ==2
+Level	0x4	IsSaveDataLoaded	medium	Level_LoadSelectedResource sets 1 after copying the save-data resource into LevelPersistBuffer; Scene_LoadLevelData clears it
+Level	0xC	LevelDataIndexKey	medium	Scene_LoadLevelData: cartridge key of section 21 BLLevelData Index
+Level	0x10	LevelDataIndexSize	medium	Scene_LoadLevelData: (count*4+15)&~7 of the BLLevelData index
+Level	0x1C	LevelsIndexKey	high	Scene_LoadLevelData levels index base key; paired with +0x4C in Level_CopyLevelName/Level_Load
+Level	0x20	TextureSetsIndexKey	high	Scene_LoadLevelData texture sets index base key; paired with +0x50 (Level_GetCartKey50, Artsend texture lookup)
+Level	0x24	ObjectsIndexKey	high	Scene_LoadLevelData objects index base key; paired with +0x54 (Level_GetModelKey, Actor_ResetAnimObject)
+Level	0x28	BinariesIndexKey	high	Scene_LoadLevelData binaries index base key; paired with +0x58 in Level_LoadAsset98ByKey
+Level	0x2C	GraphicSetIndexKey	high	Scene_LoadLevelData graphicset index base key; paired with +0x5C in Sprite_Lookup
+Level	0x30	CellsIndexKey	medium	Level_Load: key of level section 5; paired with +0x64 in Level_LoadGridCells/Level_StreamVisibleCells
+Level	0x34	CinemasIndexKey	high	Scene_LoadLevelData Cinemas index base key; paired with +0x74 in Flyby cinema lookup
+Level	0x38	SaveDataKey	medium	Scene_LoadLevelData section 6 key; Level_LoadSelectedResource loads it into LevelPersistBuffer (22528 bytes)
+Level	0x3C	EntityFlagDataKey	medium	Scene_LoadLevelData section 7 key; loaded into buffer 0x800F81F0 (+0x84) by Level_LoadPreviewSound_0044DD40
+Level	0x40	PvsIndexKey	medium	Level_Load: key of level section 12; base key for the PVS cell load in Level_StreamVisibleCells
+Level	0x44	SaveDataSize	high	size out-param of the section-6 key; GameSave/PakMenu copy this many bytes of LevelPersistBuffer
+Level	0x48	EntityFlagDataSize	medium	size out-param of the section-7 key; resource size for Level_LoadPreviewSound_0044DD40
+Level	0x4C	LevelsIndex	high	levels index table loaded in Scene_LoadLevelData; first word = level count (Level_Load clamps the index); Level_CopyLevelName
+Level	0x50	TextureSetsIndex	high	texture sets index table; Resource_GetCartridgeKey(+0x50,+0x20,idx) in Level_GetCartKey50 and Artsend
+Level	0x54	ObjectsIndex	high	objects index table; Level_GetModelKey, CharacterSelect/Actor model loads
+Level	0x58	BinariesIndex	high	binaries index table; Level_LoadAsset98ByKey
+Level	0x5C	GraphicSetIndex	high	graphicset index table; Sprite_Lookup
+Level	0x64	CellsIndex	medium	index table loaded from +0x30 in Level_Load; Level_StreamVisibleCells/Level_LoadGridCells cell keys
+Level	0x68	CellGrid	medium	Level_Load section 4 data; Level_StreamVisibleCells reads the grid bounds/cells chunks 0..4
+Level	0x6C	CollisionData	medium	Level_Load section 1 data; Level_GetRegion/Level_GetFloorTriangle/Collision_FindFloorTriangle chunks; path bank (chunk 2)
+Level	0x70	ParticleSwooshes	medium	Scene_LoadLevelData particle swooshes resource; Level_GetChunk70Entry
+Level	0x74	CinemasIndex	high	Cinemas index table; Flyby Resource_GetCartridgeKey(+0x74,+0x34,0)
+Level	0x78	IntelligenceDefs	medium	Scene_LoadLevelData intelligence resource; Level_GetDefinition/Level_FindDefinition (actor defs by id)
+Level	0x7C	LevelPaths	high	set by Level_OnLoadPaths; LevelPath_GetPoint/FindNearestPoint; Ai state checks its count
+Level	0x80	SaveDataPtr	high	= LevelPersistBuffer (Scene_LoadLevelData); saved entity/pickup/trigger flag bitmaps and trigger counters (Level_SetFlagBit etc.)
+Level	0x84	EntityFlagDataPtr	medium	= buffer 0x800F81F0; per-map entity flag bitmaps (Level_SetEntityFlag84*, Level_GetFlagBitmap sel=0)
+Level	0x88	StaticPropCache	medium	Level_FreeStaticPropCache unrefs every handle of this cached prop list and clears it
+Level	0x8C	PvsIndex	medium	Level_Load section-12 index; Level_StreamVisibleCells loads PVS cell (ci+cj*cols+1) from it
+Level	0x90	WarpDests	high	Scene_LoadLevelData warp dests resource; Level_FindPlacedObjects/FindNearestPlacedObject search it
+Level	0x94	ObjectTypeIds	high	Scene_LoadLevelData object types; Level_FindTypeIndexById u16 id table
+Level	0x98	BinaryKeyTable	medium	section-10 table; Level_LoadAsset98ByKey binary-searches keys here
+Level	0x9C	GraphicSetTypes	high	Scene_LoadLevelData graphicset type; Sprite_Lookup key search
+Level	0xA0	DynamicLights	high	Scene_LoadLevelData dynamic lights; Level_GetLightDef stride table
+Level	0xA4	Curves	high	Scene_LoadLevelData curves; Level_GetEnvelopeDef (rumble envelopes)
+Level	0xA8	RumbleTypes	high	Scene_LoadLevelData rumble types; Rumble_StartById
+Level	0xAC	Rumbles	high	Scene_LoadLevelData rumbles; Level_GetRumbleDef/Rumble_StartById
+Level	0xB0	LinkGroupTypes	medium	Scene_LoadLevelData link group types; Level_GetTriggerCounterByKey key table
+Level	0xB4	ParticleEffectsRes	medium	Scene_LoadLevelData particle effects resource handle; Level_Load passes *it to the particle pool init
+Level	0xB8	LevelSectionIndexRes	medium	Level_Load: handle of the per-level section index (+0x60); released in Scene_Shutdown
+Level	0xBC	CollisionDataRes	medium	Level_Load: section 1 handle whose data is +0x6C; released in Scene_Shutdown
+Level	0xC0	CellGridRes	medium	Level_Load: section 4 handle whose data is +0x68; released in Scene_Shutdown
+Level	0xC4	CellsIndexRes	medium	Level_Load: handle of the +0x64 index table; released in Scene_Shutdown
+Level	0xC8	LevelHeaderRes	medium	Level_Load: section 0 handle whose data is +0x1B2B0; released in Scene_Shutdown
+Level	0xCC	SectionRes6_CC	low	Level_Load: section 6 handle (entries at +0x1B300); released in Scene_Shutdown
+Level	0xD0	SectionRes3_D0	low	Level_Load: section 3 handle; released in Scene_Shutdown
+Level	0xD4	SectionRes7_D4	low	Level_Load: section 7 handle; released in Scene_Shutdown
+Level	0xE8	MatrixPoolRes	medium	Level_Load allocates the 64-byte matrix pool (size by level) here; Resource_MarkUsedInFrame each frame
+Level	0xEC	LevelPathsRes	medium	Level_Load: section 2 handle (paths, Level_OnLoadPaths); released in Scene_Shutdown
+Level	0xF0	NavNodesRes	medium	Level_Load: section 9 handle; its data is the nav graph at +0x1B4DC (AiNavGraph); released in Scene_Shutdown
+Level	0xF4	SectionRes10_F4	low	Level_Load: section 10 handle (data at +0x1B4E4); released in Scene_Shutdown
+Level	0xF8	StaticPropBlob	medium	Level_FreeStaticPropCache releases this blob built by Level_BuildStaticPropDisplayList
+Level	0xFC	SectionRes11_FC	low	Level_Load: section 11 handle (data at +0x1B4EC); released in Scene_Shutdown
+Level	0x100	PvsIndexRes	medium	Level_Load: handle of the section-12 index (+0x8C); released in Scene_Shutdown
+Level	0x10C	WarpDestsRes	medium	Scene_LoadLevelData warp dests resource handle (+0x90 = its data)
+Level	0x138	Entities	high	entity array (744-byte stride) walked by Level_FindNearestEntity/GetEntityIndex/saved-flag functions
+Level	0x13C	PlayerEntityCount	medium	Level_SpawnActors counts the leading player/start entities; later loops start at this index
+Level	0x140	EntityCount	high	number of entities in +0x138 (Level_FindNearestEntity, Level_GetEntityIndex bounds)
+Level	0x144	AlwaysActiveActors	medium	Level_AddActiveActor stores Actor_IsAlwaysActive actors (max 512); Collision/PickupPool walk it
+Level	0x944	AlwaysActiveActorCount	medium	count of +0x144; reset by Level_ResetActorLists/ReleaseLoadedCells
+Level	0x948	VisibleActors	medium	Level_AddActiveActor stores Actor_IsSpawnedVisible actors (max 128); Collision walks it
+Level	0xB48	VisibleActorCount	medium	count of +0x948
+Level	0xB4C	PropActors	medium	Level_UpdatePropEffects calls Prop_SpawnAttachedEffects on each (max 64)
+Level	0xC4C	PropActorCount	medium	count of +0xB4C
+Level	0xC50	Actors	high	every listed actor (max 128); Level_UpdateActors/Level_DrawActors/ClearActorOwnerRefs
+Level	0xE50	ActorCount	high	count of +0xC50
+Level	0xE54	Class1Actors	medium	Level_AddActiveActor stores def type 1 actors (max 64, entity gets its index); Level_DamageAllClass1Actors, Effects
+Level	0xF54	Class1ActorCount	medium	count of +0xE54
+Level	0xF58	Class1ActorCursor	medium	Level_BuildActiveActorLists advances it by one per frame, wrapping at +0xF54
+Level	0xF5C	ColliderActors	medium	Level_AddActiveActor stores actors with entity flag 2 (max 32)
+Level	0xFDC	ColliderActorCount	medium	count of +0xF5C
+Level	0xFE0	Class5Actors	medium	Level_AddActiveActor stores def type 5 actors (max 16)
+Level	0x1020	Class5ActorCount	medium	count of +0xFE0
+Level	0x1024	Type64FActors	medium	actors with type id 0x64F (max 32); Level_FindNearestObject64F
+Level	0x10A4	Type64FActorCount	medium	count of +0x1024
+Level	0x10A8	Type64DActors	medium	actors with type id 0x64D (max 4)
+Level	0x10B8	Type64DActorCount	medium	count of +0x10A8
+Level	0x10BC	TranslucentActorCount	medium	Level_DrawActors appends flag-4 actors here; Level_DrawObjectsSorted draws them
+Level	0x10C0	TranslucentActors	medium	deferred (translucent) draw list filled by Level_DrawActors, sorted by Level_DrawObjectsSorted
+Level	0x11C0	EntityTriggerCount	high	count used with keys +0x11C8 / records +0x11D0 (Level_FindEntityTriggerRecords, FindTriggerRecords which=0)
+Level	0x11C4	RegionTriggerCount	high	count used with keys +0x11CC / records +0x11D4 (Level_FindRegionTriggerRecords, which=1)
+Level	0x11C8	EntityTriggerKeys	high	sorted key array searched by Sort_FindEqualRange in Level_FindTriggerRecords(which=0)
+Level	0x11CC	RegionTriggerKeys	high	sorted key array searched in Level_FindTriggerRecords(which=1)
+Level	0x11D0	EntityTriggerRecords	high	20-byte trigger records (Level_ActivateTriggerRecordsByKey; Level_ProcessPendingObjects spawns them)
+Level	0x11D4	RegionTriggerRecords	high	20-byte region trigger records (same functions, which=1)
+Level	0x11D8	DelayedSpawnList	high	list of pending timed spawns (Level_ScheduleDelayedSpawn adds, Level_UpdateDelayedSpawns/FlushQueuedEntities walk it)
+Level	0x11DC	DelayedSpawnOldest_11DC	low	Level_ScheduleDelayedSpawn recycles this node (spawns it now) when no free node is left
+Level	0x11EC	FreeSpawnNodes	high	free node list for delayed spawns (48 nodes from +0x1200), taken by Level_ScheduleDelayedSpawn
+Level	0x1200	SpawnNodePool	medium	48 x 16-byte nodes appended to the free list in the trigger-record bind callback
+Level	0x1500	PrevLoadedCellCount	medium	Level_ReleaseLoadedCells saves the old +0x1504 count here before clearing
+Level	0x1504	LoadedCellCount	high	cells requested by Level_StreamVisibleCells (max 0x80); Level_HasLightVolumes/ReleaseLoadedCells loop it
+Level	0x1508	LoadedCells	high	12-byte loaded-cell entries (resource handle first); unref by Level_ReleaseLoadedCells, light volumes via Light_FindVolumesAt
+Level	0x1B2B0	LevelHeader	medium	Level_Load: section 0 data; its flags byte (+0x10 bit 2) sets D_800CC380
+Level	0x1B2FC	MinSurfaceY	medium	Level_Load resets it; Collision_BuildSurfaceMesh lowers it to the minimum surface y
+Level	0x1B308	SceneTime	medium	Level_UpdateFrame adds FrameTime*k while not frozen; Scene_LoadLevelData clears it
+Level	0x1B31C	PropEffectPhase	medium	Level_UpdatePropEffects accumulates FrameTime and wraps; flag on wrap triggers prop effects
+Level	0x1B408	IsSpecialStart_1B408	low	Level_Load sets 1 for certain start-point ids (0x123A, 0x1BBC..0x1DB2; larger matrix pool); Level_BuildActiveActorLists and global Game_Flag_8013B290 read it
+Level	0x1B40C	LevelIndex	high	current level index set by Level_Load (clamped to LevelsIndex count), -1 before; saved-flag functions compare map index with it
+Level	0x1B410	FadeType	medium	Level_SetTransitionState mode; palette index into D_800D2934 for Level_Update/DrawTransitionFade; 0 = no fade back in
+Level	0x1B414	FadeState	high	0 idle, 1 fading out, 2 fading in (Level_UpdateTransitionFade); Level_UpdateFrame freezes updates while nonzero (= global Debug_Freeze_8013B29C)
+Level	0x1B418	FadeTime	high	fade progress in seconds vs the palette duration; alpha = t*255/div in Level_DrawTransitionFade
+Level	0x1B41C	HasWarpDest	medium	Level_UpdateTransitionFade stores the Level_FindPlacedObjects result; Level_Load/Level_SpawnActors use the warp record when nonzero
+Level	0x1B420	WarpDestRecord	medium	20-byte placed warp-destination record filled by Level_FindPlacedObjects in Level_UpdateTransitionFade
+Level	0x1B430	WarpDestLevel	medium	short +0x10 of the warp record; passed to Level_Load as the level index when a record was found
+Level	0x1B434	StartPointId	high	copy of the transition target (global Level_StartPointId); Level_Load picks scene flag/pool size from it; Level_SpawnActors key
+Level	0x1B438	PendingWarpTarget	medium	Level_SetTransitionState selection: warp key, ~levelIndex when negative, 999 = flyby; Level_UpdateTransitionFade
+Level	0x1B44C	KnownCheatMask	medium	Level_InitState copies Settings_UnlockedCheats; Level_UpdateTransitionFade shows a HUD line when Settings+4 differs and updates it
+Level	0x1B620	Class13Entities	medium	Level_CollectClass13Entities fills it with class 0xD entities (max 16); Level_FindClass13EntityById
+Level	0x1B660	Class13EntityCount	medium	count of +0x1B620
+Level	0x1B664	Class14Entities	medium	Level_Load fills it with class 0xE entities (max 16); Level_FindClass14EntityById/FindNearestClass14Entity
+Level	0x1B6A4	Class14EntityCount	medium	count of +0x1B664
+Level	0x1B6B0	PvsCellRes	medium	Level_StreamVisibleCells loads the camera PVS cell resource here and passes it to Pvs_Load
+Level	0x1B910	PvsOriginX	medium	Level_StreamVisibleCells: cell column = (cam.x - this) / +0x1B918; copied from the section-12 header in Level_Load
+Level	0x1B914	PvsOriginZ	medium	cell row = (cam.z - this) / +0x1B91C
+Level	0x1B918	PvsCellSizeX	medium	divisor for the PVS cell column
+Level	0x1B91C	PvsCellSizeZ	medium	divisor for the PVS cell row
+Level	0x1B928	IsCameraInPvsGrid	medium	Level_StreamVisibleCells sets 1 when the camera cell is inside the grid, else 0
+Level	0x1B92C	HasPvsGrid	medium	Level_Load sets 1 when the section-12 header has nonzero size words; gates the PVS lookup

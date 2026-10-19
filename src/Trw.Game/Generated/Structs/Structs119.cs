@@ -1563,28 +1563,28 @@ public readonly struct Shared_MenuManager
     [MethodImpl(Inl)] public static implicit operator uint(Shared_MenuManager v) => v.P;
     [MethodImpl(Inl)] public static explicit operator Shared_MenuManager(uint p) => new(p);
     // +0x0
-    public uint callback
+    public uint GlobalHandlerFn
     {
         [MethodImpl(Inl)] get => Mem.U32(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public uint callback_Set(uint v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public uint GlobalHandlerFn_Set(uint v) => Mem.Set(P, v);
     // +0x4
-    public int unk4
+    public int TopIndex
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public int unk4_Set(int v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public int TopIndex_Set(int v) => Mem.Set(P + 0x4u, v);
     // +0x8
-    public int unk8
+    public int BaseIndex
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x8u, value);
     }
-    [MethodImpl(Inl)] public int unk8_Set(int v) => Mem.Set(P + 0x8u, v);
+    [MethodImpl(Inl)] public int BaseIndex_Set(int v) => Mem.Set(P + 0x8u, v);
     // +0xC
-    public Shared_MenuEntry unkC
+    public Shared_MenuEntry StackPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0xCu));
         [MethodImpl(Inl)] set => Mem.Set(P + 0xCu, value.P);
@@ -1596,16 +1596,16 @@ public readonly struct Shared_MenuManager
     }
     [MethodImpl(Inl)] public uint unkC__Set(uint v) => Mem.Set(P + 0xCu, v);
     // +0x10
-    public uint callback2
+    public uint ScreenHandlerLookupFn
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x10u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x10u, value);
     }
-    [MethodImpl(Inl)] public uint callback2_Set(uint v) => Mem.Set(P + 0x10u, v);
+    [MethodImpl(Inl)] public uint ScreenHandlerLookupFn_Set(uint v) => Mem.Set(P + 0x10u, v);
     // +0x14
-    public U32x2 unknown14 { [MethodImpl(Inl)] get => new(P + 0x14u); }
+    public U32x2 StickDeadzone { [MethodImpl(Inl)] get => new(P + 0x14u); }
     // +0x1C
-    public Shared_MenuCachex64 cache { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
+    public Shared_MenuCachex64 ClassTable { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
     // +0x51C
     public uint unknown51C
     {
@@ -1614,49 +1614,49 @@ public readonly struct Shared_MenuManager
     }
     [MethodImpl(Inl)] public uint unknown51C_Set(uint v) => Mem.Set(P + 0x51Cu, v);
     // +0x520
-    public int unk520
+    public int IsEventConsumed
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x520u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x520u, value);
     }
-    [MethodImpl(Inl)] public int unk520_Set(int v) => Mem.Set(P + 0x520u, v);
+    [MethodImpl(Inl)] public int IsEventConsumed_Set(int v) => Mem.Set(P + 0x520u, v);
     // +0x524
-    public int unk524
+    public int LastTickTime
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x524u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x524u, value);
     }
-    [MethodImpl(Inl)] public int unk524_Set(int v) => Mem.Set(P + 0x524u, v);
+    [MethodImpl(Inl)] public int LastTickTime_Set(int v) => Mem.Set(P + 0x524u, v);
     // +0x528
-    public int unk528
+    public int PreviousScreenId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x528u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x528u, value);
     }
-    [MethodImpl(Inl)] public int unk528_Set(int v) => Mem.Set(P + 0x528u, v);
+    [MethodImpl(Inl)] public int PreviousScreenId_Set(int v) => Mem.Set(P + 0x528u, v);
     // +0x52C
-    public uint unknown52C
+    public uint Flags_52C
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x52Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x52Cu, value);
     }
-    [MethodImpl(Inl)] public uint unknown52C_Set(uint v) => Mem.Set(P + 0x52Cu, v);
+    [MethodImpl(Inl)] public uint Flags_52C_Set(uint v) => Mem.Set(P + 0x52Cu, v);
     // +0x530
-    public int unk530
+    public int IsDeactivatePending
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x530u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x530u, value);
     }
-    [MethodImpl(Inl)] public int unk530_Set(int v) => Mem.Set(P + 0x530u, v);
+    [MethodImpl(Inl)] public int IsDeactivatePending_Set(int v) => Mem.Set(P + 0x530u, v);
     // +0x534
-    public U32x3 unknown534 { [MethodImpl(Inl)] get => new(P + 0x534u); }
+    public U32x3 DrawOffsetX { [MethodImpl(Inl)] get => new(P + 0x534u); }
     // +0x540
-    public int unk540
+    public int NodeCacheCount
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x540u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x540u, value);
     }
-    [MethodImpl(Inl)] public int unk540_Set(int v) => Mem.Set(P + 0x540u, v);
+    [MethodImpl(Inl)] public int NodeCacheCount_Set(int v) => Mem.Set(P + 0x540u, v);
 }
 
 /// <summary>struct Shared_MenuObject, 0x17F0 bytes, at a guest address.</summary>

@@ -3058,25 +3058,25 @@ public readonly struct SessMgr
     [MethodImpl(Inl)] public static implicit operator uint(SessMgr v) => v.P;
     [MethodImpl(Inl)] public static explicit operator SessMgr(uint p) => new(p);
     // +0x0
-    public int mode
+    public int LoadState
     {
         [MethodImpl(Inl)] get => Mem.S32(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public int mode_Set(int v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public int LoadState_Set(int v) => Mem.Set(P, v);
     // +0x4
     public U8x5372 pad4 { [MethodImpl(Inl)] get => new(P + 0x4u); }
     // +0x1500
-    public int count
+    public int PrevLoadedCellCount
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1500u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1500u, value);
     }
-    [MethodImpl(Inl)] public int count_Set(int v) => Mem.Set(P + 0x1500u, v);
+    [MethodImpl(Inl)] public int PrevLoadedCellCount_Set(int v) => Mem.Set(P + 0x1500u, v);
     // +0x1504
     public U8x4 pad1504 { [MethodImpl(Inl)] get => new(P + 0x1504u); }
     // +0x1508
-    public SessEntx1 ent { [MethodImpl(Inl)] get => new(P + 0x1508u); }
+    public SessEntx1 LoadedCells { [MethodImpl(Inl)] get => new(P + 0x1508u); }
 }
 
 /// <summary>struct Session, 0xA0 bytes, at a guest address.</summary>

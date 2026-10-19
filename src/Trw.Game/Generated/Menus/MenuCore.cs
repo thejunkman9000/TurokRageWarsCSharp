@@ -201,7 +201,7 @@ public static partial class Game
             uint l = 0u;
             uint c = 0u;
             int id = 0;
-            n = new B21Ent((new B21Menu(Mem.U32(Gv.MenuMgrPtr)).ents_ + (uint)(new B21Menu(Mem.U32(Gv.MenuMgrPtr)).cur * 28))).node_;
+            n = new B21Ent((new B21Menu(Mem.U32(Gv.MenuMgrPtr)).ents_ + (uint)(new B21Menu(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28))).node_;
             id = (-1);
             l = new B21Node(n).link.P;
             if (((n != 0u) && (((int)(new B21Node(n).flags) & 16) != 0)))
@@ -1151,11 +1151,11 @@ public static partial class Game
             uint m2 = 0u;
             int save2 = 0;
             uint lk2 = 0u;
-            if ((new S410Mgr(m).fn0 != 0u))
+            if ((new S410Mgr(m).GlobalHandlerFn != 0u))
             {
                 saved = new S410Mgr(m).@lock;
                 new S410Mgr(m).lock_Set(0);
-                r = (int)(Funcs.CallReg(new S410Mgr(m).fn0, (uint)(cmd), (uint)(a2), (uint)(a3), (uint)(a4)));
+                r = (int)(Funcs.CallReg(new S410Mgr(m).GlobalHandlerFn, (uint)(cmd), (uint)(a2), (uint)(a3), (uint)(a4)));
                 if ((new S410Mgr(m).@lock == 1))
                 {
                     new S410Mgr(m).lock_Set(saved);
@@ -1163,8 +1163,8 @@ public static partial class Game
                 }
                 new S410Mgr(m).lock_Set(saved);
             }
-            last = new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).top;
-            for (i = new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).unk8; (i <= last); ++i)
+            last = new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).TopIndex;
+            for (i = new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).BaseIndex; (i <= last); ++i)
             {
                 if ((cmd < 3587))
                 {
@@ -1280,7 +1280,7 @@ public static partial class Game
                         Menu_GotoScreen(new S410Ctx(ctx).unk3C);
                         break;
                     case 2:
-                        if ((new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).top <= 0))
+                        if ((new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).TopIndex <= 0))
                         {
                             break;
                         }
@@ -1322,7 +1322,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00298A34", (uint)cmd, (uint)a, (uint)b, (uint)c);
             uint flag = (Mem.U32(Gv.MenuMgrPtr) + 1312u);
-            uint ctx = new S410Ent((new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)(new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).top * 28))).ctx_;
+            uint ctx = new S410Ent((new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)(new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28))).ctx_;
             int ret = 0;
             int saved = 0;
             int now = 0;
@@ -1362,7 +1362,7 @@ public static partial class Game
             {
             case 0:
                 {
-                    uint p = new S410Ent((new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)(new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).top * 28))).unk8_;
+                    uint p = new S410Ent((new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)(new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28))).unk8_;
                     ret = (int)(Menu_DispatchToNode((uint)(((p != 0u) ? (int)(new S410Ctx(p).id) : (-1))), (uint)((int)(cmd)), (uint)(a), (uint)(b), (uint)(c)));
                 }
                 break;
@@ -1370,9 +1370,9 @@ public static partial class Game
                 if ((cmd == (uint)(3592)))
                 {
                     now = (int)((Time_GetSecondsSinceStart() * Mem.F64(0x800CA7B0u)));
-                    a = (now - new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).unk524);
+                    a = (now - new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).LastTickTime);
                     b = now;
-                    new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).unk524_Set(b);
+                    new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).LastTickTime_Set(b);
                 }
                 saved = Mem.S32(flag);
                 Mem.Set(flag, 0);
@@ -1383,7 +1383,7 @@ public static partial class Game
             case 3:
                 saved = Mem.S32(flag);
                 Mem.Set(flag, 0);
-                fn = new S410Ent((new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)(new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).top * 28))).ctx.fn;
+                fn = new S410Ent((new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)(new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28))).ctx.fn;
                 if ((fn != 0u))
                 {
                     ret = (int)(Funcs.CallRegX(fn, ctx, (uint)((int)(cmd)), (uint)(a), (uint)(b), new uint[] { (uint)(c) }));
@@ -1451,7 +1451,7 @@ public static partial class Game
                         Menu_GotoScreen(new S410Ctx(ctx).unk3C);
                         goto L_done;
                     case (uint)(2):
-                        if ((new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).top <= 0))
+                        if ((new S410Mgr(Mem.U32(Gv.MenuMgrPtr)).TopIndex <= 0))
                         {
                             break;
                         }
@@ -1573,33 +1573,33 @@ public static partial class Game
             uint m = 0u;
             int saved = 0;
             int b = 0;
-            if (((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).top >= 0) && (new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk530 != 0)))
+            if (((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).TopIndex >= 0) && (new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).IsDeactivatePending != 0)))
             {
-                if ((new SndStkEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).top * 28))).unk8_ != 0u))
+                if ((new SndStkEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28))).unk8_ != 0u))
                 {
-                    Menu_SendEvent((uint)((int)(new SndStkEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).top * 28))).unk8.id)), (uint)(16), (uint)(0), (uint)(0), (uint)(0));
+                    Menu_SendEvent((uint)((int)(new SndStkEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28))).unk8.id)), (uint)(16), (uint)(0), (uint)(0), (uint)(0));
                 }
                 b = a;
                 Menu_FlushResources();
                 m = Mem.U32(Gv.MenuMgrPtr);
-                if ((new SndMgr_v2(m).top != (-1)))
+                if ((new SndMgr_v2(m).TopIndex != (-1)))
                 {
-                    if ((new SndMgr_v2(m).fn0 != 0u))
+                    if ((new SndMgr_v2(m).GlobalHandlerFn != 0u))
                     {
-                        saved = new SndMgr_v2(m).unk520;
-                        new SndMgr_v2(m).unk520_Set(0);
-                        Funcs.CallReg(new SndMgr_v2(m).fn0, (uint)(3587), (uint)(b), (uint)(0), (uint)(0));
-                        if ((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk520 == 1))
+                        saved = new SndMgr_v2(m).IsEventConsumed;
+                        new SndMgr_v2(m).IsEventConsumed_Set(0);
+                        Funcs.CallReg(new SndMgr_v2(m).GlobalHandlerFn, (uint)(3587), (uint)(b), (uint)(0), (uint)(0));
+                        if ((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed == 1))
                         {
-                            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(saved);
+                            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(saved);
                             goto L_done;
                         }
-                        new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(saved);
+                        new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(saved);
                     }
                     Menu_DispatchToTopScreen((uint)(1), (uint)(3587), (uint)(b), (uint)(0), (uint)(0));
                 }
                 L_done: ;
-                new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk530_Set(0);
+                new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).IsDeactivatePending_Set(0);
             }
             return 1;
         }
@@ -1623,9 +1623,9 @@ public static partial class Game
             Mem.Set(Gv.MenuMgrPtr, ResourcePool_Malloc((uint)(1348)));
             Mem_Fill(Mem.U32(Gv.MenuMgrPtr), 0, (uint)(1348));
             m = Mem.U32(Gv.MenuMgrPtr);
-            new SndMgr_v2(m).fn10_Set(fn);
-            new SndMgr_v2(m).unk14_Set(4000);
-            s = new SndMgr_v2(m).slot.P;
+            new SndMgr_v2(m).ScreenHandlerLookupFn_Set(fn);
+            new SndMgr_v2(m).StickDeadzone_Set(4000);
+            s = new SndMgr_v2(m).ClassTable.P;
             for (i = 0; (i < 64); ++i)
             {
                 new SndSlot(s).unk8_Set(0);
@@ -1635,16 +1635,16 @@ public static partial class Game
                 s += 20u;
             }
             Mem_Fill(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C__Set(ResourcePool_Malloc((uint)(900))), 0, (uint)(900));
-            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk540_Set(0);
-            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk524_Set((int)((Time_GetSecondsSinceStart() * Mem.F64(0x800CA7F8u))));
-            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk18_Set(n);
+            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).NodeCacheCount_Set(0);
+            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).LastTickTime_Set((int)((Time_GetSecondsSinceStart() * Mem.F64(0x800CA7F8u))));
+            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).StackCapacity_Set(n);
             Mem_Fill(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).stk__Set(ResourcePool_Malloc((uint)((n * 28)))), 0, (uint)((n * 28)));
             Mem.Set(0x8014D094u, 0);
-            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).top_Set((-1));
-            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk528_Set((-1));
-            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk534_Set(0);
-            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk538_Set(0);
-            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk52C_Set(1);
+            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).TopIndex_Set((-1));
+            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).PreviousScreenId_Set((-1));
+            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).DrawOffsetX_Set(0);
+            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).DrawOffsetY_Set(0);
+            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).Flags_52C_Set(1);
             Menu_RegisterClass(9, (int)(0x0040C640u), (int)(0x0040C648u), 1);
             Menu_RegisterClass(11, (int)(0x00412624u), (int)(0x004126B4u), 1);
         }
@@ -1662,7 +1662,7 @@ public static partial class Game
             uint ctx = 0u;
             uint e = 0u;
             x = (int)(UiScreen_GetData(Menu_GetCurrentScreenId()));
-            for (i = 0; (i < new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk540); ++i)
+            for (i = 0; (i < new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).NodeCacheCount); ++i)
             {
                 if (((((new SndCacheEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C_ + (uint)(i * 12))).unk8 == x) && (new SndCacheEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C_ + (uint)(i * 12))).id == id)) && (new SndCacheEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C_ + (uint)(i * 12))).ctx_ != 0u)) && ((int)(new SndCacheEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C_ + (uint)(i * 12))).ctx.id) == id)))
                 {
@@ -1676,12 +1676,12 @@ public static partial class Game
             {
                 Mem.Set(0x8014D09Cu, t);
             }
-            if ((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk540 < 75))
+            if ((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).NodeCacheCount < 75))
             {
-                new SndCacheEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C_ + (uint)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk540 * 12))).id_Set(id);
-                new SndCacheEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C_ + (uint)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk540 * 12))).ctx__Set(ctx);
-                new SndCacheEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C_ + (uint)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk540 * 12))).unk8_Set(x);
-                new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk540_Set((int)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk540 + 1));
+                new SndCacheEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C_ + (uint)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).NodeCacheCount * 12))).id_Set(id);
+                new SndCacheEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C_ + (uint)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).NodeCacheCount * 12))).ctx__Set(ctx);
+                new SndCacheEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C_ + (uint)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).NodeCacheCount * 12))).unk8_Set(x);
+                new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).NodeCacheCount_Set((int)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).NodeCacheCount + 1));
             }
             return ctx;
         }
@@ -1697,30 +1697,30 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 64); ++i)
             {
-                if ((new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ent[(int)(i)].id == id))
+                if ((new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ClassTable[(int)(i)].id == id))
                 {
                     idx = i;
                     break;
                 }
-                if (((new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ent[(int)(i)].id == (-1)) && (idx == (-1))))
+                if (((new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ClassTable[(int)(i)].id == (-1)) && (idx == (-1))))
                 {
                     idx = i;
                 }
             }
             if ((a != 0))
             {
-                new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ent[(int)(idx)].id_Set(id);
-                new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ent[(int)(idx)].f4_Set(a);
-                new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ent[(int)(idx)].fC_Set(b);
-                new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ent[(int)(idx)].f8_Set(0);
-                new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ent[(int)(idx)].f10_Set(c);
+                new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ClassTable[(int)(idx)].id_Set(id);
+                new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ClassTable[(int)(idx)].f4_Set(a);
+                new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ClassTable[(int)(idx)].fC_Set(b);
+                new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ClassTable[(int)(idx)].f8_Set(0);
+                new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ClassTable[(int)(idx)].f10_Set(c);
             }
             else
             {
-                new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ent[(int)(idx)].id_Set((-1));
-                new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ent[(int)(idx)].f4_Set(0);
-                new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ent[(int)(idx)].fC_Set(0);
-                new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ent[(int)(idx)].f8_Set(0);
+                new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ClassTable[(int)(idx)].id_Set((-1));
+                new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ClassTable[(int)(idx)].f4_Set(0);
+                new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ClassTable[(int)(idx)].fC_Set(0);
+                new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ClassTable[(int)(idx)].f8_Set(0);
             }
         }
     }
@@ -1801,10 +1801,10 @@ public static partial class Game
             Menu_FlushResources();
             var_s2 = 0;
             var_s5 = 1;
-            if (!((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 >= 0))) goto _f0;
+            if (!((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex >= 0))) goto _f0;
             Menu_GetCurrentScreenId();
             _f0: ;
-            temp_v1 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4;
+            temp_v1 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex;
             temp_s0 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_;
             var_a0 = 0;
             if (!((temp_v1 >= 0))) goto _f1;
@@ -1826,8 +1826,8 @@ public static partial class Game
             goto L_block_not_found;
             _f4: ;
             temp_s4 = Menu_GetCurrentScreenId();
-            var_a0_2 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk8;
-            temp_a1 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4;
+            var_a0_2 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).BaseIndex;
+            temp_a1 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex;
             if (!((temp_a1 >= var_a0_2))) goto _f5;
             search_entries = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_;
             _f6: ;
@@ -1840,21 +1840,21 @@ public static partial class Game
             _f8: ;
             _f5: ;
             temp_a0 = Mem.U32(Gv.MenuMgrPtr);
-            if (!((new Shared_MenuEntry((temp_s0 + (uint)(new Shared_MenuManager(temp_a0).unk4 * 28))).id != arg0))) goto _f10;
+            if (!((new Shared_MenuEntry((temp_s0 + (uint)(new Shared_MenuManager(temp_a0).TopIndex * 28))).id != arg0))) goto _f10;
             _f11: ;
-            new Shared_MenuManager(temp_a0).unk530_Set(1);
+            new Shared_MenuManager(temp_a0).IsDeactivatePending_Set(1);
             Menu_PopScreen();
             temp_a0 = Mem.U32(Gv.MenuMgrPtr);
             _f12: ;
-            if ((new Shared_MenuEntry((temp_s0 + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 * 28))).id != arg0)) goto _f11;
+            if ((new Shared_MenuEntry((temp_s0 + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28))).id != arg0)) goto _f11;
             _f13: ;
             _f10: ;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk540_Set(0);
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk528_Set(temp_s4);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).NodeCacheCount_Set(0);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).PreviousScreenId_Set(temp_s4);
             if (!((var_s2 == 0))) goto _f14;
             UiScreen_Load(arg0);
             temp_v0 = UiScreen_GetData(arg0);
-            temp_a0_2 = (new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 * 28));
+            temp_a0_2 = (new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28));
             new Shared_MenuEntry(temp_a0_2).object__Set(temp_v0);
             new Shared_MenuEntry(temp_a0_2).id_Set(arg0);
             new Shared_MenuEntry(temp_a0_2).focus__Set(new Shared_MenuDefinition(temp_v0).unk44_);
@@ -1863,26 +1863,26 @@ public static partial class Game
             Menu_ActivateTopScreen(default(uint), default(uint), default(uint), default(uint));
             if (!(((((int)(new Shared_MenuDefinition(var_s1).unk12) >> (int)12) & 1) != 0))) goto _f15;
             load_flag = 1;
-            temp_s2 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4;
+            temp_s2 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex;
             L_loop_18: ;
             if (!(((((int)(new Shared_MenuDefinition(var_s1).unk12) >> (int)12) & 1) == load_flag))) goto _f16;
-            temp_v0_2 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4_Set((int)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 - 1));
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk8_Set(temp_v0_2);
-            var_a0 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4;
+            temp_v0_2 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex_Set((int)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex - 1));
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).BaseIndex_Set(temp_v0_2);
+            var_a0 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex;
             UiScreen_Load(new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(var_a0 * 28))).id);
-            temp_s0_2 = new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 * 28))).id;
+            temp_s0_2 = new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28))).id;
             temp_v0_3 = UiScreen_GetData(temp_s0_2);
-            temp_a0_3 = (new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 * 28));
+            temp_a0_3 = (new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28));
             new Shared_MenuEntry(temp_a0_3).object__Set(temp_v0_3);
             new Shared_MenuEntry(temp_a0_3).id_Set(temp_s0_2);
             new Shared_MenuEntry(temp_a0_3).focus__Set(new Shared_MenuDefinition(temp_v0_3).unk44_);
             Mem.Set(Gv.Menu_ScreenDefaultFocus, new Shared_MenuDefinition(temp_v0_3).unk44_);
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk540_Set(0);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).NodeCacheCount_Set(0);
             var_s1 = temp_v0_3;
             Menu_ActivateTopScreen(default(uint), default(uint), default(uint), default(uint));
             goto L_loop_18;
             _f16: ;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4_Set(temp_s2);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex_Set(temp_s2);
             _f15: ;
             goto L_block_78;
             L_block_found_trampoline: ;
@@ -1890,21 +1890,21 @@ public static partial class Game
             goto L_block_search_check;
             goto _f17;
             _f14: ;
-            var_s1 = new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 * 28))).object_;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk540_Set(0);
-            if (!((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 != (-1)))) goto _f18;
-            temp_v0_4 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).callback;
+            var_s1 = new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28))).object_;
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).NodeCacheCount_Set(0);
+            if (!((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex != (-1)))) goto _f18;
+            temp_v0_4 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).GlobalHandlerFn;
             if (!((temp_v0_4 != 0u))) goto _f19;
-            temp_s0_3 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(0);
+            temp_s0_3 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed;
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(0);
             Funcs.CallReg(temp_v0_4, (uint)(3591), (uint)(0), (uint)(0), (uint)(0));
-            callback_status = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520;
+            callback_status = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed;
             if (!((callback_status == 1))) goto _f20;
             var_s5 = 0;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(temp_s0_3);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(temp_s0_3);
             goto L_after_found_callback;
             _f20: ;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(temp_s0_3);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(temp_s0_3);
             _f19: ;
             Menu_DispatchToTopScreen((uint)(1), (uint)(3591), (uint)(0), (uint)(0), (uint)(0));
             goto L_block_27;
@@ -1919,21 +1919,21 @@ public static partial class Game
             L_block_not_found: ;
             UiScreen_Load(arg0);
             if (!(((((int)(new Shared_MenuDefinition(UiScreen_GetData(arg0)).unk12) >> (int)12) & 1) != 0))) goto _f22;
-            temp_a0_4 = new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 * 28))).focus_;
-            if (!(((((temp_a0_4 != 0u) && ((C.Seq((object?)((temp_s1 = (int)(new Shared_MenuDefinition(temp_a0_4).unkC))), ((UiScreen_IsValidId(temp_s1) == 0) ? 1 : 0)) != 0) || (temp_s1 == new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 * 28))).id))) && (C.Seq((object?)((focus_index = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4)), ((temp_s1 != new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk528) ? 1 : 0)) != 0)) && (C.Seq((object?)((temp_a1 = (-1))), ((focus_index != temp_a1) ? 1 : 0)) != 0)))) goto _f23;
-            temp_v0_5 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).callback;
+            temp_a0_4 = new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28))).focus_;
+            if (!(((((temp_a0_4 != 0u) && ((C.Seq((object?)((temp_s1 = (int)(new Shared_MenuDefinition(temp_a0_4).unkC))), ((UiScreen_IsValidId(temp_s1) == 0) ? 1 : 0)) != 0) || (temp_s1 == new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28))).id))) && (C.Seq((object?)((focus_index = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex)), ((temp_s1 != new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).PreviousScreenId) ? 1 : 0)) != 0)) && (C.Seq((object?)((temp_a1 = (-1))), ((focus_index != temp_a1) ? 1 : 0)) != 0)))) goto _f23;
+            temp_v0_5 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).GlobalHandlerFn;
             if (!((temp_v0_5 != 0u))) goto _f24;
-            temp_s0_4 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(0);
+            temp_s0_4 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed;
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(0);
             Funcs.CallReg(temp_v0_5, (uint)(16), (uint)(0), (uint)(0), (uint)(0));
-            callback_status = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520;
+            callback_status = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed;
             if (!((callback_status == 1))) goto _f25;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(temp_s0_4);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(temp_s0_4);
             goto L_after_focus10;
             _f25: ;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(temp_s0_4);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(temp_s0_4);
             _f24: ;
-            if (!((temp_s1 == (int)(new Shared_MenuDefinition(new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 * 28))).object_).unkC)))) goto _f26;
+            if (!((temp_s1 == (int)(new Shared_MenuDefinition(new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28))).object_).unkC)))) goto _f26;
             Menu_DispatchEvent((uint)(16), 0, 0, 0);
             goto _f27;
             _f26: ;
@@ -1941,91 +1941,91 @@ public static partial class Game
             _f27: ;
             _f23: ;
             L_after_focus10: ;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk528_Set(Menu_GetCurrentScreenId());
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4_Set((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 + 1));
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).PreviousScreenId_Set(Menu_GetCurrentScreenId());
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex_Set((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex + 1));
             temp_v0_6 = UiScreen_GetData(arg0);
-            temp_a0_5 = (new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 * 28));
+            temp_a0_5 = (new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28));
             new Shared_MenuEntry(temp_a0_5).object__Set(temp_v0_6);
             new Shared_MenuEntry(temp_a0_5).id_Set(arg0);
             new Shared_MenuEntry(temp_a0_5).focus__Set(new Shared_MenuDefinition(temp_v0_6).unk44_);
             var_s1 = temp_v0_6;
             Mem.Set(Gv.Menu_ScreenDefaultFocus, new Shared_MenuDefinition(var_s1).unk44_);
-            Menu_BufFree(((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 * 28)) + 12u));
-            temp_v0_7 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).callback2;
+            Menu_BufFree(((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28)) + 12u));
+            temp_v0_7 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).ScreenHandlerLookupFn;
             if (!((temp_v0_7 != 0u))) goto _f28;
-            new Shared_MenuDefinition(new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 * 28))).object_).unk40_Set((int)(Funcs.CallReg(temp_v0_7, (uint)(arg0), 0u, 0u, 0u)));
+            new Shared_MenuDefinition(new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28))).object_).unk40_Set((int)(Funcs.CallReg(temp_v0_7, (uint)(arg0), 0u, 0u, 0u)));
             _f28: ;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk540_Set(0);
-            if (!((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 != (-1)))) goto _f29;
-            temp_v0_8 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).callback;
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).NodeCacheCount_Set(0);
+            if (!((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex != (-1)))) goto _f29;
+            temp_v0_8 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).GlobalHandlerFn;
             if (!((temp_v0_8 != 0u))) goto _f30;
-            temp_s0_5 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(0);
+            temp_s0_5 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed;
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(0);
             Funcs.CallReg(temp_v0_8, (uint)(3590), (uint)(0), (uint)(0), (uint)(0));
-            callback_status_5 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520;
+            callback_status_5 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed;
             if (!((callback_status_5 == 1))) goto _f31;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(temp_s0_5);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(temp_s0_5);
             goto L_after_e06;
             _f31: ;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(temp_s0_5);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(temp_s0_5);
             _f30: ;
             Menu_DispatchToTopScreen((uint)(1), (uint)(3590), (uint)(0), (uint)(0), (uint)(0));
             _f29: ;
             L_after_e06: ;
-            if (!((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 != (-1)))) goto _f32;
-            temp_v0_9 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).callback;
+            if (!((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex != (-1)))) goto _f32;
+            temp_v0_9 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).GlobalHandlerFn;
             if (!((temp_v0_9 != 0u))) goto _f33;
-            temp_s0_6 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(0);
+            temp_s0_6 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed;
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(0);
             Funcs.CallReg(temp_v0_9, (uint)(3591), (uint)(0), (uint)(0), (uint)(0));
-            callback_status = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520;
+            callback_status = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed;
             if (!((callback_status == 1))) goto _f34;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(temp_s0_6);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(temp_s0_6);
             goto L_block_78;
             _f34: ;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(temp_s0_6);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(temp_s0_6);
             _f33: ;
             Menu_DispatchToTopScreen((uint)(1), (uint)(3591), (uint)(0), (uint)(0), (uint)(0));
             _f32: ;
             goto L_block_78;
             _f22: ;
-            if (!((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 != (-1)))) goto _f35;
-            temp_v0_10 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).callback;
+            if (!((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex != (-1)))) goto _f35;
+            temp_v0_10 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).GlobalHandlerFn;
             if (!((temp_v0_10 != 0u))) goto _f36;
-            temp_s0_7 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(0);
+            temp_s0_7 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed;
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(0);
             Funcs.CallReg(temp_v0_10, (uint)(3585), (uint)(0), (uint)(0), (uint)(0));
-            callback_status = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520;
+            callback_status = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed;
             if (!((callback_status == 1))) goto _f37;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(temp_s0_7);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(temp_s0_7);
             goto L_after_e01;
             _f37: ;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(temp_s0_7);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(temp_s0_7);
             _f36: ;
             Menu_DispatchEvent((uint)(3585), 0, 0, 0);
             _f35: ;
             L_after_e01: ;
             Menu_FlushResources();
             e03_arg_copy = arg0;
-            if (!((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 != (-1)))) goto _f38;
-            temp_v0_11 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).callback;
+            if (!((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex != (-1)))) goto _f38;
+            temp_v0_11 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).GlobalHandlerFn;
             if (!((temp_v0_11 != 0u))) goto _f39;
-            temp_s0_8 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(0);
+            temp_s0_8 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed;
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(0);
             Funcs.CallReg(temp_v0_11, (uint)(3587), (uint)(arg0), (uint)(0), (uint)(0));
-            callback_status = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520;
+            callback_status = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed;
             if (!((callback_status == 1))) goto _f40;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(temp_s0_8);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(temp_s0_8);
             goto L_after_e03;
             _f40: ;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(temp_s0_8);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(temp_s0_8);
             _f39: ;
             Menu_DispatchEvent((uint)(3587), e03_arg_copy, 0, 0);
             _f38: ;
             L_after_e03: ;
             temp_v1_2 = Mem.U32(Gv.MenuMgrPtr);
-            temp_v0_2 = new Shared_MenuManager(temp_v1_2).unk4;
-            var_s1_2 = new Shared_MenuManager(temp_v1_2).unk8;
+            temp_v0_2 = new Shared_MenuManager(temp_v1_2).TopIndex;
+            var_s1_2 = new Shared_MenuManager(temp_v1_2).BaseIndex;
             if (!((temp_v0_2 >= 0))) goto _f41;
             if (!((temp_v0_2 >= var_s1_2))) goto _f42;
             var_s0 = var_s1_2;
@@ -2037,11 +2037,11 @@ public static partial class Game
             new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(var_s0 * 28))).focus__Set(0u);
             var_s0 = (int)((int)(var_s0) + 1);
             _f44: ;
-            if ((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 >= var_s1_2)) goto _f43;
+            if ((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex >= var_s1_2)) goto _f43;
             _f45: ;
             _f42: ;
             var_v1_3 = 63;
-            var_v0_2 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).cache.P;
+            var_v0_2 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).ClassTable.P;
             _f46: ;
             new Shared_MenuCache(var_v0_2).state_Set(0);
             var_v1_3 = (int)((int)(var_v1_3) - 1);
@@ -2051,56 +2051,56 @@ public static partial class Game
             _f48: ;
             temp_v1_2 = Mem.U32(Gv.MenuMgrPtr);
             _f41: ;
-            new Shared_MenuManager(temp_v1_2).unk8_Set(new Shared_MenuManager(temp_v1_2).unk4);
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk528_Set(Menu_GetCurrentScreenId());
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4_Set((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 + 1));
+            new Shared_MenuManager(temp_v1_2).BaseIndex_Set(new Shared_MenuManager(temp_v1_2).TopIndex);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).PreviousScreenId_Set(Menu_GetCurrentScreenId());
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex_Set((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex + 1));
             temp_v0_13 = UiScreen_GetData(arg0);
-            temp_a0_6 = (new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 * 28));
+            temp_a0_6 = (new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28));
             new Shared_MenuEntry(temp_a0_6).object__Set(temp_v0_13);
             new Shared_MenuEntry(temp_a0_6).id_Set(arg0);
             new Shared_MenuEntry(temp_a0_6).focus__Set(new Shared_MenuDefinition(temp_v0_13).unk44_);
             Mem.Set(Gv.Menu_ScreenDefaultFocus, new Shared_MenuDefinition(temp_v0_13).unk44_);
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk8_Set(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4);
-            temp_a2 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).callback2;
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).BaseIndex_Set(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex);
+            temp_a2 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).ScreenHandlerLookupFn;
             var_s1 = temp_v0_13;
             if (!((temp_a2 != 0u))) goto _f49;
-            new Shared_MenuDefinition(new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 * 28))).object_).unk40_Set((int)(Funcs.CallReg(temp_a2, (uint)(arg0), 0u, 0u, 0u)));
+            new Shared_MenuDefinition(new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28))).object_).unk40_Set((int)(Funcs.CallReg(temp_a2, (uint)(arg0), 0u, 0u, 0u)));
             _f49: ;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk540_Set(0);
-            if (!((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 != (-1)))) goto _f50;
-            temp_v0_14 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).callback;
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).NodeCacheCount_Set(0);
+            if (!((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex != (-1)))) goto _f50;
+            temp_v0_14 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).GlobalHandlerFn;
             if (!((temp_v0_14 != 0u))) goto _f51;
-            temp_s0_9 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(0);
+            temp_s0_9 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed;
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(0);
             Funcs.CallReg(temp_v0_14, (uint)(3590), (uint)(0), (uint)(0), (uint)(0));
-            callback_status = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520;
+            callback_status = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed;
             if (!((callback_status == 1))) goto _f52;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(temp_s0_9);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(temp_s0_9);
             goto L_after_e06_second;
             _f52: ;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(temp_s0_9);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(temp_s0_9);
             _f51: ;
             Menu_DispatchToTopScreen((uint)(1), (uint)(3590), (uint)(0), (uint)(0), (uint)(0));
             _f50: ;
             L_after_e06_second: ;
-            if (!((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 != (-1)))) goto _f53;
-            temp_v0_15 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).callback;
+            if (!((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex != (-1)))) goto _f53;
+            temp_v0_15 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).GlobalHandlerFn;
             if (!((temp_v0_15 != 0u))) goto _f54;
-            temp_s0_10 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(0);
+            temp_s0_10 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed;
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(0);
             Funcs.CallReg(temp_v0_15, (uint)(3591), (uint)(0), (uint)(0), (uint)(0));
-            callback_status = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520;
+            callback_status = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed;
             if (!((callback_status == 1))) goto _f55;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(temp_s0_10);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(temp_s0_10);
             goto L_after_e07_second;
             _f55: ;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(temp_s0_10);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(temp_s0_10);
             _f54: ;
             Menu_DispatchToTopScreen((uint)(1), (uint)(3591), (uint)(0), (uint)(0), (uint)(0));
             _f53: ;
             L_after_e07_second: ;
             if (!((Menu_GetCurrentScreenId() != arg0))) goto _f56;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk540_Set(0);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).NodeCacheCount_Set(0);
             return;
             _f56: ;
             L_block_78: ;
@@ -2113,26 +2113,26 @@ public static partial class Game
             temp_a1_2 = new Shared_MenuDefinition(var_s1).unk44_;
             if (!((regpart_temp_v0_2 != temp_a1_2))) goto _f59;
             temp_a0 = Mem.U32(Gv.MenuMgrPtr);
-            temp_v1 = new Shared_MenuManager(temp_a0).unk4;
+            temp_v1 = new Shared_MenuManager(temp_a0).TopIndex;
             new Shared_MenuEntry((new Shared_MenuManager(temp_a0).unkC_ + (uint)(temp_v1 * 28))).focus__Set(temp_a1_2);
             _f59: ;
             goto _f57;
             _f58: ;
-            temp_a0_7 = new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 * 28))).focus_;
-            if (!(((((temp_a0_7 != 0u) && ((C.Seq((object?)((temp_s1_2 = (int)(new Shared_MenuDefinition(temp_a0_7).unkC))), ((UiScreen_IsValidId(temp_s1_2) == 0) ? 1 : 0)) != 0) || (temp_s1_2 == new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 * 28))).id))) && (C.Seq((object?)((focus_index_final = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4)), ((temp_s1_2 != new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk528) ? 1 : 0)) != 0)) && (C.Seq((object?)((temp_a1 = (-1))), ((focus_index_final != temp_a1) ? 1 : 0)) != 0)))) goto _f60;
-            temp_v0_16 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).callback;
+            temp_a0_7 = new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28))).focus_;
+            if (!(((((temp_a0_7 != 0u) && ((C.Seq((object?)((temp_s1_2 = (int)(new Shared_MenuDefinition(temp_a0_7).unkC))), ((UiScreen_IsValidId(temp_s1_2) == 0) ? 1 : 0)) != 0) || (temp_s1_2 == new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28))).id))) && (C.Seq((object?)((focus_index_final = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex)), ((temp_s1_2 != new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).PreviousScreenId) ? 1 : 0)) != 0)) && (C.Seq((object?)((temp_a1 = (-1))), ((focus_index_final != temp_a1) ? 1 : 0)) != 0)))) goto _f60;
+            temp_v0_16 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).GlobalHandlerFn;
             if (!((temp_v0_16 != 0u))) goto _f61;
-            temp_s0_11 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(0);
+            temp_s0_11 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed;
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(0);
             Funcs.CallReg(temp_v0_16, (uint)(15), (uint)(0), (uint)(0), (uint)(0));
-            callback_status = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520;
+            callback_status = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed;
             if (!((callback_status == 1))) goto _f62;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(temp_s0_11);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(temp_s0_11);
             goto L_after_focus;
             _f62: ;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(temp_s0_11);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(temp_s0_11);
             _f61: ;
-            if (!((temp_s1_2 == (int)(new Shared_MenuDefinition(new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 * 28))).object_).unkC)))) goto _f63;
+            if (!((temp_s1_2 == (int)(new Shared_MenuDefinition(new Shared_MenuEntry((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unkC_ + (uint)(new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28))).object_).unkC)))) goto _f63;
             Menu_DispatchEvent((uint)(15), 0, 0, 0);
             goto _f64;
             _f63: ;
@@ -2140,21 +2140,21 @@ public static partial class Game
             _f64: ;
             _f60: ;
             L_after_focus: ;
-            if (!((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk4 != (-1)))) goto _f65;
-            temp_v0_17 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).callback;
+            if (!((new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).TopIndex != (-1)))) goto _f65;
+            temp_v0_17 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).GlobalHandlerFn;
             if (!((temp_v0_17 != 0u))) goto _f66;
-            temp_s0_12 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(0);
+            temp_s0_12 = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed;
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(0);
             Funcs.CallReg(temp_v0_17, (uint)(3592), (uint)(0), (uint)(0), (uint)(0));
-            callback_status = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520;
+            callback_status = new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed;
             if (!((callback_status == 1))) goto _f67;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(temp_s0_12);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(temp_s0_12);
             goto L_after_e08;
             _f67: ;
-            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(temp_s0_12);
+            new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(temp_s0_12);
             _f66: ;
             temp_f2 = (int)((Time_GetSecondsSinceStart() * 1000.0));
-            Menu_DispatchToTopScreen((uint)(1), (uint)(3592), (uint)((temp_f2 - new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).unk524)), (uint)(temp_f2), (uint)(0));
+            Menu_DispatchToTopScreen((uint)(1), (uint)(3592), (uint)((temp_f2 - new Shared_MenuManager(Mem.U32(Gv.MenuMgrPtr)).LastTickTime)), (uint)(temp_f2), (uint)(0));
             _f65: ;
             L_after_e08: ;
         }
@@ -2167,20 +2167,20 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00299ECC");
             uint m = 0u;
-            if ((new SndStkEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).top * 28))).ctx_ != 0u))
+            if ((new SndStkEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28))).ctx_ != 0u))
             {
-                Menu_DeactivateTopScreen(new SndStkEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).top - 1) * 28))).id);
-                Menu_BufFree(((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).top * 28)) + 12u));
-                UiScreen_Release((int)(new SndStkEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).top * 28))).ctx.id));
+                Menu_DeactivateTopScreen(new SndStkEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).TopIndex - 1) * 28))).id);
+                Menu_BufFree(((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28)) + 12u));
+                UiScreen_Release((int)(new SndStkEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28))).ctx.id));
             }
             m = Mem.U32(Gv.MenuMgrPtr);
-            new SndStkEnt((new SndMgr_v2(m).stk_ + (uint)(new SndMgr_v2(m).top * 28))).ctx__Set(0u);
-            new SndStkEnt((new SndMgr_v2(m).stk_ + (uint)(new SndMgr_v2(m).top * 28))).id_Set(0);
-            new SndStkEnt((new SndMgr_v2(m).stk_ + (uint)(new SndMgr_v2(m).top * 28))).unk8__Set(0u);
-            new SndMgr_v2(m).top_Set((int)(new SndMgr_v2(m).top - 1));
-            if ((new SndMgr_v2(m).top < new SndMgr_v2(m).unk8))
+            new SndStkEnt((new SndMgr_v2(m).stk_ + (uint)(new SndMgr_v2(m).TopIndex * 28))).ctx__Set(0u);
+            new SndStkEnt((new SndMgr_v2(m).stk_ + (uint)(new SndMgr_v2(m).TopIndex * 28))).id_Set(0);
+            new SndStkEnt((new SndMgr_v2(m).stk_ + (uint)(new SndMgr_v2(m).TopIndex * 28))).unk8__Set(0u);
+            new SndMgr_v2(m).TopIndex_Set((int)(new SndMgr_v2(m).TopIndex - 1));
+            if ((new SndMgr_v2(m).TopIndex < new SndMgr_v2(m).BaseIndex))
             {
-                new SndMgr_v2(m).unk8_Set(new SndMgr_v2(m).top);
+                new SndMgr_v2(m).BaseIndex_Set(new SndMgr_v2(m).TopIndex);
             }
         }
     }
@@ -2198,15 +2198,15 @@ public static partial class Game
                 int dt = 0;
                 int i = 0;
                 uint m = Mem.U32(Gv.MenuMgrPtr);
-                new B22Viewport(_fp).x_Set(new SndMgr_v2(m).unk534);
-                new B22Viewport(_fp).y_Set(new SndMgr_v2(m).unk538);
+                new B22Viewport(_fp).x_Set(new SndMgr_v2(m).DrawOffsetX);
+                new B22Viewport(_fp).y_Set(new SndMgr_v2(m).DrawOffsetY);
                 new B22Viewport(_fp).alpha_Set((byte)(255));
                 new B22Viewport(_fp).unk8_Set(0);
                 new B22Viewport(_fp).sx_Set(1.0f);
                 new B22Viewport(_fp).sy_Set(1.0f);
                 Mem.Set(0x8014D084u, 0);
-                new B22Viewport(_fp).x2_Set(new SndMgr_v2(m).unk534);
-                new B22Viewport(_fp).y2_Set(new SndMgr_v2(m).unk538);
+                new B22Viewport(_fp).x2_Set(new SndMgr_v2(m).DrawOffsetX);
+                new B22Viewport(_fp).y2_Set(new SndMgr_v2(m).DrawOffsetY);
                 new B22Viewport(_fp).w_Set((Mem.S32(0x8014D088u) - 1));
                 new B22Viewport(_fp).h_Set((Mem.S32(0x8014D08Cu) - 1));
                 now = (int)((Time_GetSecondsSinceStart() * Mem.F64(0x800CA810u)));
@@ -2217,7 +2217,7 @@ public static partial class Game
                 dt = (now - Mem.S32(0x800D2B50u));
                 Mem.Set(0x800D2B50u, now);
                 Menu_BroadcastToStack(0, 3594, 0, (int)(_fp), dt);
-                for (i = new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk8; (i <= new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).top); ++i)
+                for (i = new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).BaseIndex; (i <= new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).TopIndex); ++i)
                 {
                     Ui_EmptyHook_002A28F4();
                     UiNode_DrawTopLevel(new SndStkEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)(i * 28))).ctx_, _fp);
@@ -2246,32 +2246,32 @@ public static partial class Game
             int result = 0;
             if ((UiScreen_IsValidId(value) != 0))
             {
-                if ((value != new Entry_func_802991D4_de((new Menu_func_802991D4_de(Mem.U32(Gv.MenuMgrPtr)).entries_ + (uint)(new Menu_func_802991D4_de(Mem.U32(Gv.MenuMgrPtr)).current * 28))).owner))
+                if ((value != new Entry_func_802991D4_de((new Menu_func_802991D4_de(Mem.U32(Gv.MenuMgrPtr)).entries_ + (uint)(new Menu_func_802991D4_de(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28))).owner))
                 {
                     return 0;
                 }
             }
             manager = Mem.U32(Gv.MenuMgrPtr);
-            locked = new Menu_func_802991D4_de(manager).locked;
-            index = new Menu_func_802991D4_de(manager).current;
+            locked = new Menu_func_802991D4_de(manager).PreviousScreenId;
+            index = new Menu_func_802991D4_de(manager).TopIndex;
             minusOne = (-1);
             if (((value == locked) || (index == minusOne)))
             {
                 return 0;
             }
-            if ((new Menu_func_802991D4_de(Mem.U32(Gv.MenuMgrPtr)).callback != 0u))
+            if ((new Menu_func_802991D4_de(Mem.U32(Gv.MenuMgrPtr)).GlobalHandlerFn != 0u))
             {
-                saved = new Menu_func_802991D4_de(Mem.U32(Gv.MenuMgrPtr)).handled;
-                new Menu_func_802991D4_de(Mem.U32(Gv.MenuMgrPtr)).handled_Set(0);
-                result = (int)(Funcs.CallReg(new Menu_func_802991D4_de(Mem.U32(Gv.MenuMgrPtr)).callback, (uint)(arg1), (uint)(arg2), (uint)(arg3), (uint)(arg4)));
-                if ((new Menu_func_802991D4_de(Mem.U32(Gv.MenuMgrPtr)).handled == 1))
+                saved = new Menu_func_802991D4_de(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed;
+                new Menu_func_802991D4_de(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(0);
+                result = (int)(Funcs.CallReg(new Menu_func_802991D4_de(Mem.U32(Gv.MenuMgrPtr)).GlobalHandlerFn, (uint)(arg1), (uint)(arg2), (uint)(arg3), (uint)(arg4)));
+                if ((new Menu_func_802991D4_de(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed == 1))
                 {
-                    new Menu_func_802991D4_de(Mem.U32(Gv.MenuMgrPtr)).handled_Set(saved);
+                    new Menu_func_802991D4_de(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(saved);
                     return result;
                 }
-                new Menu_func_802991D4_de(Mem.U32(Gv.MenuMgrPtr)).handled_Set(saved);
+                new Menu_func_802991D4_de(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(saved);
             }
-            if ((value == (int)(new func_8021C9B4_S3(new Entry_func_802991D4_de((new Menu_func_802991D4_de(Mem.U32(Gv.MenuMgrPtr)).entries_ + (uint)(new Menu_func_802991D4_de(Mem.U32(Gv.MenuMgrPtr)).current * 28))).primary_).unkC)))
+            if ((value == (int)(new func_8021C9B4_S3(new Entry_func_802991D4_de((new Menu_func_802991D4_de(Mem.U32(Gv.MenuMgrPtr)).entries_ + (uint)(new Menu_func_802991D4_de(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28))).primary_).unkC)))
             {
                 result = Menu_DispatchEvent((uint)(arg1), arg2, arg3, arg4);
             }
@@ -2453,15 +2453,15 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029A468");
-            int t = new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk8;
-            while ((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).top >= t))
+            int t = new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).BaseIndex;
+            while ((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).TopIndex >= t))
             {
-                new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk530_Set(1);
+                new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).IsDeactivatePending_Set(1);
                 Menu_PopScreen();
             }
-            if ((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).fn0 != 0u))
+            if ((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).GlobalHandlerFn != 0u))
             {
-                Funcs.CallReg(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).fn0, (uint)(3589), (uint)(0), (uint)(0), (uint)(0));
+                Funcs.CallReg(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).GlobalHandlerFn, (uint)(3589), (uint)(0), (uint)(0), (uint)(0));
             }
             if ((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk53C_ != 0u))
             {
@@ -2482,7 +2482,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029A550", (uint)fn);
-            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).fn0_Set(fn);
+            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).GlobalHandlerFn_Set(fn);
             if ((fn != 0u))
             {
                 Funcs.CallReg(fn, (uint)(3588), (uint)(0), (uint)(0), (uint)(0));
@@ -2498,11 +2498,11 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0029A58C", (uint)on);
             if ((on != 0))
             {
-                new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk52C_Set((int)((int)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk52C) | 1));
+                new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).Flags_52C_Set((int)((int)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).Flags_52C) | 1));
             }
             else
             {
-                new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk52C_Set((int)((int)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk52C) & (~1)));
+                new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).Flags_52C_Set((int)((int)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).Flags_52C) & (~1)));
             }
         }
     }
@@ -2627,7 +2627,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029A73C");
-            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk520_Set(1);
+            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).IsEventConsumed_Set(1);
         }
     }
 
@@ -2649,7 +2649,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0029A778", (uint)id, (uint)kind, (uint)val);
             int idx = (-1);
             int i = 0;
-            uint p = new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ent.P;
+            uint p = new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ClassTable.P;
             uint e = 0u;
             for (i = 0; (i < 64); ++i, p += 20u)
             {
@@ -2659,7 +2659,7 @@ public static partial class Game
                     break;
                 }
             }
-            e = (new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ent.P + (uint)(idx * 20));
+            e = (new P4SlotTbl(Mem.U32(Gv.MenuMgrPtr)).ClassTable.P + (uint)(idx * 20));
             if ((kind == 1))
             {
                 new P4SlotEnt(e).f4_Set(val);
@@ -2679,7 +2679,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029A7E4", (uint)id);
-            uint s = new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).slot.P;
+            uint s = new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).ClassTable.P;
             int i = 0;
             for (i = 0; (i < 64); ++i)
             {
@@ -2703,7 +2703,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029A838", (uint)id);
-            uint s = new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).slot.P;
+            uint s = new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).ClassTable.P;
             int i = 0;
             for (i = 0; (i < 64); ++i)
             {
@@ -2723,7 +2723,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029A874", (uint)id, (uint)v);
-            uint s = new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).slot.P;
+            uint s = new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).ClassTable.P;
             int i = 0;
             for (i = 0; (i < 64); ++i)
             {
@@ -2742,7 +2742,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029A8A8");
-            if ((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).top > 0))
+            if ((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).TopIndex > 0))
             {
                 Menu_GotoScreen(Menu_GetStackScreenId(0));
             }
@@ -2773,11 +2773,11 @@ public static partial class Game
             int v = Mem.S32(0x8014D098u);
             if ((v < 0))
             {
-                if ((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).top < 0))
+                if ((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).TopIndex < 0))
                 {
                     return (-1);
                 }
-                v = new SndStkEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).top * 28))).id;
+                v = new SndStkEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28))).id;
             }
             return v;
         }
@@ -2789,7 +2789,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029A9A0", (uint)n);
-            int t = (new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).top - 1);
+            int t = (new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).TopIndex - 1);
             int i = (t - n);
             if ((i >= 0))
             {
@@ -2805,7 +2805,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029A9E0");
-            return (new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).top + 1);
+            return (new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).TopIndex + 1);
         }
     }
 
@@ -2815,7 +2815,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029A9F4");
-            return new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk528;
+            return new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).PreviousScreenId;
         }
     }
 
@@ -2825,7 +2825,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029AA08");
-            uint c = new SndStkEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).top * 28))).unk8_;
+            uint c = new SndStkEnt((new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).stk_ + (uint)(new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).TopIndex * 28))).unk8_;
             if ((c != 0u))
             {
                 return (int)(new SndCtx(c).id);
@@ -2840,8 +2840,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029AA48", (uint)a, (uint)b);
-            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk534_Set(a);
-            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk538_Set(b);
+            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).DrawOffsetX_Set(a);
+            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).DrawOffsetY_Set(b);
         }
     }
 
@@ -2851,8 +2851,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029AA5C", (uint)a, (uint)b);
-            Mem.Set(a, new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk534);
-            Mem.Set(b, new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk538);
+            Mem.Set(a, new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).DrawOffsetX);
+            Mem.Set(b, new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).DrawOffsetY);
         }
     }
 
@@ -2862,7 +2862,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029AA80_SlotC", (uint)id);
-            uint s = new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).slot.P;
+            uint s = new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).ClassTable.P;
             int i = 0;
             for (i = 0; (i < 64); ++i)
             {
@@ -2903,7 +2903,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029AB3C", (uint)a);
-            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk14_Set(a);
+            new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).StickDeadzone_Set(a);
         }
     }
 
@@ -2913,7 +2913,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0029AB4C");
-            return new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).unk14;
+            return new SndMgr_v2(Mem.U32(Gv.MenuMgrPtr)).StickDeadzone;
         }
     }
 
@@ -3018,20 +3018,20 @@ public static partial class Game
             if ((n != 0u))
             {
                 m = Mem.U32(Gv.MenuMgrPtr);
-                saved = new SndMgr_v2(m).unk520;
-                new SndMgr_v2(m).unk520_Set(0);
+                saved = new SndMgr_v2(m).IsEventConsumed;
+                new SndMgr_v2(m).IsEventConsumed_Set(0);
                 p = (m + 1312u);
                 if ((new SndCtx(n).child1_ != 0u))
                 {
                     Menu_BroadcastToTree(new SndCtx(n).child1_, cmd, a, b, c, (depth + 1));
                 }
-                if ((new SndMgr_v2(m).unk520 == 0))
+                if ((new SndMgr_v2(m).IsEventConsumed == 0))
                 {
                     if ((new SndCtx(n).child2_ != 0u))
                     {
                         Menu_BroadcastToTree(new SndCtx(n).child2_, cmd, a, b, c, (depth + 1));
                     }
-                    if ((new SndMgr_v2(m).unk520 == 0))
+                    if ((new SndMgr_v2(m).IsEventConsumed == 0))
                     {
                         if ((((depth > 0) && ((int)(new SndCtx(n).id) != (-1))) && ((int)(new SndCtx(n).unkE) > 8)))
                         {

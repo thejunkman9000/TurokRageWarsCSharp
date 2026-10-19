@@ -2775,23 +2775,23 @@ public readonly struct B09World
     // +0x0
     public U8x324 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x144
-    public U32x512 ents { [MethodImpl(Inl)] get => new(P + 0x144u); }
+    public U32x512 AlwaysActiveActors { [MethodImpl(Inl)] get => new(P + 0x144u); }
     // +0x944
-    public int count
+    public int AlwaysActiveActorCount
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x944u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x944u, value);
     }
-    [MethodImpl(Inl)] public int count_Set(int v) => Mem.Set(P + 0x944u, v);
+    [MethodImpl(Inl)] public int AlwaysActiveActorCount_Set(int v) => Mem.Set(P + 0x944u, v);
     // +0x948
-    public U32x128 ents2 { [MethodImpl(Inl)] get => new(P + 0x948u); }
+    public U32x128 VisibleActors { [MethodImpl(Inl)] get => new(P + 0x948u); }
     // +0xB48
-    public int count2
+    public int VisibleActorCount
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xB48u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xB48u, value);
     }
-    [MethodImpl(Inl)] public int count2_Set(int v) => Mem.Set(P + 0xB48u, v);
+    [MethodImpl(Inl)] public int VisibleActorCount_Set(int v) => Mem.Set(P + 0xB48u, v);
 }
 
 /// <summary>struct B09XDef, 0x24 bytes, at a guest address.</summary>
@@ -4730,21 +4730,21 @@ public readonly struct B10Gx
     // +0x0
     public U8x36 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x24
-    public int f24
+    public int ObjectsIndexKey
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x24u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x24u, value);
     }
-    [MethodImpl(Inl)] public int f24_Set(int v) => Mem.Set(P + 0x24u, v);
+    [MethodImpl(Inl)] public int ObjectsIndexKey_Set(int v) => Mem.Set(P + 0x24u, v);
     // +0x28
     public U8x44 pad28 { [MethodImpl(Inl)] get => new(P + 0x28u); }
     // +0x54
-    public int f54
+    public int ObjectsIndex
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x54u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x54u, value);
     }
-    [MethodImpl(Inl)] public int f54_Set(int v) => Mem.Set(P + 0x54u, v);
+    [MethodImpl(Inl)] public int ObjectsIndex_Set(int v) => Mem.Set(P + 0x54u, v);
 }
 
 /// <summary>struct B10H, 0x4 bytes, at a guest address.</summary>

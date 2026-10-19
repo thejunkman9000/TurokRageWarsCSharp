@@ -675,46 +675,46 @@ public readonly struct World_func_8044C108_de_v2
     [MethodImpl(Inl)] public static implicit operator uint(World_func_8044C108_de_v2 v) => v.P;
     [MethodImpl(Inl)] public static explicit operator World_func_8044C108_de_v2(uint p) => new(p);
     // +0x0
-    public S8x128 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x128 LoadState { [MethodImpl(Inl)] get => new(P); }
     // +0x80
-    public uint tree
+    public uint SaveDataPtr
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x80u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x80u, value);
     }
-    [MethodImpl(Inl)] public uint tree_Set(uint v) => Mem.Set(P + 0x80u, v);
+    [MethodImpl(Inl)] public uint SaveDataPtr_Set(uint v) => Mem.Set(P + 0x80u, v);
     // +0x84
-    public S8x4412 pad84 { [MethodImpl(Inl)] get => new(P + 0x84u); }
+    public S8x4412 EntityFlagDataPtr { [MethodImpl(Inl)] get => new(P + 0x84u); }
     // +0x11C0
-    public int nfaces
+    public int EntityTriggerCount
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x11C0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x11C0u, value);
     }
-    [MethodImpl(Inl)] public int nfaces_Set(int v) => Mem.Set(P + 0x11C0u, v);
+    [MethodImpl(Inl)] public int EntityTriggerCount_Set(int v) => Mem.Set(P + 0x11C0u, v);
     // +0x11C4
-    public int nedges
+    public int RegionTriggerCount
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x11C4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x11C4u, value);
     }
-    [MethodImpl(Inl)] public int nedges_Set(int v) => Mem.Set(P + 0x11C4u, v);
+    [MethodImpl(Inl)] public int RegionTriggerCount_Set(int v) => Mem.Set(P + 0x11C4u, v);
     // +0x11C8
-    public uint verts
+    public uint EntityTriggerKeys
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x11C8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x11C8u, value);
     }
-    [MethodImpl(Inl)] public uint verts_Set(uint v) => Mem.Set(P + 0x11C8u, v);
+    [MethodImpl(Inl)] public uint EntityTriggerKeys_Set(uint v) => Mem.Set(P + 0x11C8u, v);
     // +0x11CC
-    public uint edgeData
+    public uint RegionTriggerKeys
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x11CCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x11CCu, value);
     }
-    [MethodImpl(Inl)] public uint edgeData_Set(uint v) => Mem.Set(P + 0x11CCu, v);
+    [MethodImpl(Inl)] public uint RegionTriggerKeys_Set(uint v) => Mem.Set(P + 0x11CCu, v);
     // +0x11D0
-    public Face faces
+    public Face EntityTriggerRecords
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x11D0u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x11D0u, value.P);
@@ -726,7 +726,7 @@ public readonly struct World_func_8044C108_de_v2
     }
     [MethodImpl(Inl)] public uint faces__Set(uint v) => Mem.Set(P + 0x11D0u, v);
     // +0x11D4
-    public Face edges
+    public Face RegionTriggerRecords
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x11D4u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x11D4u, value.P);
@@ -738,20 +738,20 @@ public readonly struct World_func_8044C108_de_v2
     }
     [MethodImpl(Inl)] public uint edges__Set(uint v) => Mem.Set(P + 0x11D4u, v);
     // +0x11D8
-    public IntrusiveList listA { [MethodImpl(Inl)] get => new(P + 0x11D8u); }
+    public IntrusiveList DelayedSpawnList { [MethodImpl(Inl)] get => new(P + 0x11D8u); }
     // +0x11EC
-    public IntrusiveList listB { [MethodImpl(Inl)] get => new(P + 0x11ECu); }
+    public IntrusiveList FreeSpawnNodes { [MethodImpl(Inl)] get => new(P + 0x11ECu); }
     // +0x1200
-    public Bucketx48 buckets { [MethodImpl(Inl)] get => new(P + 0x1200u); }
+    public Bucketx48 SpawnNodePool { [MethodImpl(Inl)] get => new(P + 0x1200u); }
     // +0x1500
-    public S8x106252 pad1500 { [MethodImpl(Inl)] get => new(P + 0x1500u); }
+    public S8x106252 PrevLoadedCellCount { [MethodImpl(Inl)] get => new(P + 0x1500u); }
     // +0x1B40C
-    public int group
+    public int LevelIndex
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1B40Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1B40Cu, value);
     }
-    [MethodImpl(Inl)] public int group_Set(int v) => Mem.Set(P + 0x1B40Cu, v);
+    [MethodImpl(Inl)] public int LevelIndex_Set(int v) => Mem.Set(P + 0x1B40Cu, v);
 }
 
 /// <summary>struct WpnDesc, 0x24 bytes, at a guest address.</summary>

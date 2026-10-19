@@ -900,16 +900,16 @@ public readonly struct M04World
     [MethodImpl(Inl)] public static implicit operator uint(M04World v) => v.P;
     [MethodImpl(Inl)] public static explicit operator M04World(uint p) => new(p);
     // +0x0
-    public int mode
+    public int LoadState
     {
         [MethodImpl(Inl)] get => Mem.S32(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public int mode_Set(int v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public int LoadState_Set(int v) => Mem.Set(P, v);
     // +0x4
     public U8x308 pad4 { [MethodImpl(Inl)] get => new(P + 0x4u); }
     // +0x138
-    public U8Ptr objs
+    public U8Ptr Entities
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x138u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x138u, value.P);
@@ -923,12 +923,12 @@ public readonly struct M04World
     // +0x13C
     public U8x4 pad13C { [MethodImpl(Inl)] get => new(P + 0x13Cu); }
     // +0x140
-    public int nobjs
+    public int EntityCount
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x140u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x140u, value);
     }
-    [MethodImpl(Inl)] public int nobjs_Set(int v) => Mem.Set(P + 0x140u, v);
+    [MethodImpl(Inl)] public int EntityCount_Set(int v) => Mem.Set(P + 0x140u, v);
 }
 
 /// <summary>struct M04WorldB, 0xC54 bytes, at a guest address.</summary>
@@ -945,7 +945,7 @@ public readonly struct M04WorldB
     // +0x0
     public U8x3152 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0xC50
-    public U32x1 tab { [MethodImpl(Inl)] get => new(P + 0xC50u); }
+    public U32x1 Actors { [MethodImpl(Inl)] get => new(P + 0xC50u); }
 }
 
 /// <summary>struct M1Actor, 0x16E4 bytes, at a guest address.</summary>

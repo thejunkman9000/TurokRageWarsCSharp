@@ -3922,8 +3922,8 @@ public static partial class Game
             if ((((new Actor(a).Flags & (uint)(3145728)) != 0u) && (new Actor(c).IsComputer != 0)))
             {
                 uint b = new Actor(c).BrainPtr;
-                int t = new Brain(b).unk23C;
-                new Brain(b).unk23C_Set(0);
+                int t = new Brain(b).IsFireRequested;
+                new Brain(b).IsFireRequested_Set(0);
                 return ((t == 0) ? 1 : 0);
             }
             if (((Mem.U32((c + (uint)1708)) & (uint)(8192)) != 0u))

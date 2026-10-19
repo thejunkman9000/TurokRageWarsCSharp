@@ -1123,31 +1123,31 @@ public readonly struct CloseAttackActor
     [MethodImpl(Inl)] public static implicit operator uint(CloseAttackActor v) => v.P;
     [MethodImpl(Inl)] public static explicit operator CloseAttackActor(uint p) => new(p);
     // +0x0
-    public S8x8 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x8 Type { [MethodImpl(Inl)] get => new(P); }
     // +0x8
-    public Vec3 pos { [MethodImpl(Inl)] get => new(P + 0x8u); }
+    public Vec3 Position { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0x14
-    public S8x36 pad14 { [MethodImpl(Inl)] get => new(P + 0x14u); }
+    public S8x36 RegionPtr { [MethodImpl(Inl)] get => new(P + 0x14u); }
     // +0x38
-    public int flags
+    public int GroundFlags
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x38u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x38u, value);
     }
-    [MethodImpl(Inl)] public int flags_Set(int v) => Mem.Set(P + 0x38u, v);
+    [MethodImpl(Inl)] public int GroundFlags_Set(int v) => Mem.Set(P + 0x38u, v);
     // +0x3C
-    public S8x48 pad3C { [MethodImpl(Inl)] get => new(P + 0x3Cu); }
+    public S8x48 FloorMaterial_3C { [MethodImpl(Inl)] get => new(P + 0x3Cu); }
     // +0x6C
-    public float yaw
+    public float Yaw
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x6Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x6Cu, value);
     }
-    [MethodImpl(Inl)] public float yaw_Set(float v) => Mem.Set(P + 0x6Cu, v);
+    [MethodImpl(Inl)] public float Yaw_Set(float v) => Mem.Set(P + 0x6Cu, v);
     // +0x70
-    public S8x360 pad70 { [MethodImpl(Inl)] get => new(P + 0x70u); }
+    public S8x360 BottomOffset { [MethodImpl(Inl)] get => new(P + 0x70u); }
     // +0x1D8
-    public CloseAttackActor self
+    public CloseAttackActor OwnerPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x1D8u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1D8u, value.P);
@@ -1161,46 +1161,46 @@ public readonly struct CloseAttackActor
     // +0x1DC
     public S8x1016 pad1DC { [MethodImpl(Inl)] get => new(P + 0x1DCu); }
     // +0x5D4
-    public int slot
+    public int PlayerIndex
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x5D4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x5D4u, value);
     }
-    [MethodImpl(Inl)] public int slot_Set(int v) => Mem.Set(P + 0x5D4u, v);
+    [MethodImpl(Inl)] public int PlayerIndex_Set(int v) => Mem.Set(P + 0x5D4u, v);
     // +0x5D8
-    public S8x204 pad5D8 { [MethodImpl(Inl)] get => new(P + 0x5D8u); }
+    public S8x204 PlayerEntryPtr { [MethodImpl(Inl)] get => new(P + 0x5D8u); }
     // +0x6A4
-    public float strafe
+    public float StrafeInput
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x6A4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x6A4u, value);
     }
-    [MethodImpl(Inl)] public float strafe_Set(float v) => Mem.Set(P + 0x6A4u, v);
+    [MethodImpl(Inl)] public float StrafeInput_Set(float v) => Mem.Set(P + 0x6A4u, v);
     // +0x6A8
-    public float forward
+    public float ForwardInput
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x6A8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x6A8u, value);
     }
-    [MethodImpl(Inl)] public float forward_Set(float v) => Mem.Set(P + 0x6A8u, v);
+    [MethodImpl(Inl)] public float ForwardInput_Set(float v) => Mem.Set(P + 0x6A8u, v);
     // +0x6AC
-    public int w6AC
+    public int ButtonsHeld
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x6ACu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x6ACu, value);
     }
-    [MethodImpl(Inl)] public int w6AC_Set(int v) => Mem.Set(P + 0x6ACu, v);
+    [MethodImpl(Inl)] public int ButtonsHeld_Set(int v) => Mem.Set(P + 0x6ACu, v);
     // +0x6B0
-    public int buttons
+    public int ButtonsPressed
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x6B0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x6B0u, value);
     }
-    [MethodImpl(Inl)] public int buttons_Set(int v) => Mem.Set(P + 0x6B0u, v);
+    [MethodImpl(Inl)] public int ButtonsPressed_Set(int v) => Mem.Set(P + 0x6B0u, v);
     // +0x6B4
     public S8x3488 pad6B4 { [MethodImpl(Inl)] get => new(P + 0x6B4u); }
     // +0x1454
-    public CloseAttackBrain brain
+    public CloseAttackBrain BrainPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x1454u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1454u, value.P);

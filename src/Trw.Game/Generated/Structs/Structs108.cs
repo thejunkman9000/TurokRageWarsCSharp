@@ -2593,7 +2593,7 @@ public readonly struct SharedPlayer_func_8044972C_de
     // +0x133C
     public SharedPlayer_func_8044972C_de_views133C RespawnsLeft { [MethodImpl(Inl)] get => new(P + 0x133Cu); }
     // +0x1340
-    public SharedPlayer_func_8044972C_de_views1340 views1340 { [MethodImpl(Inl)] get => new(P + 0x1340u); }
+    public SharedPlayer_func_8044972C_de_views1340 DeadTime { [MethodImpl(Inl)] get => new(P + 0x1340u); }
     // +0x1344
     public S8x112 MessageLines { [MethodImpl(Inl)] get => new(P + 0x1344u); }
     // +0x13B4

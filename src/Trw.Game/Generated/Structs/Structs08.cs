@@ -2126,71 +2126,71 @@ public readonly struct Brain
     // +0x0
     public U8x12 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0xC
-    public int unkC
+    public int GoalNode
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xCu, value);
     }
-    [MethodImpl(Inl)] public int unkC_Set(int v) => Mem.Set(P + 0xCu, v);
+    [MethodImpl(Inl)] public int GoalNode_Set(int v) => Mem.Set(P + 0xCu, v);
     // +0x10
     public U8x528 pad10 { [MethodImpl(Inl)] get => new(P + 0x10u); }
     // +0x220
-    public int unk220
+    public int ThinkStep
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x220u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x220u, value);
     }
-    [MethodImpl(Inl)] public int unk220_Set(int v) => Mem.Set(P + 0x220u, v);
+    [MethodImpl(Inl)] public int ThinkStep_Set(int v) => Mem.Set(P + 0x220u, v);
     // +0x224
     public U8x24 pad224 { [MethodImpl(Inl)] get => new(P + 0x224u); }
     // +0x23C
-    public int unk23C
+    public int IsFireRequested
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x23Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x23Cu, value);
     }
-    [MethodImpl(Inl)] public int unk23C_Set(int v) => Mem.Set(P + 0x23Cu, v);
+    [MethodImpl(Inl)] public int IsFireRequested_Set(int v) => Mem.Set(P + 0x23Cu, v);
     // +0x240
-    public int unk240
+    public int SecondaryFireTicks_240
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x240u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x240u, value);
     }
-    [MethodImpl(Inl)] public int unk240_Set(int v) => Mem.Set(P + 0x240u, v);
+    [MethodImpl(Inl)] public int SecondaryFireTicks_240_Set(int v) => Mem.Set(P + 0x240u, v);
     // +0x244
     public U8x148 pad244 { [MethodImpl(Inl)] get => new(P + 0x244u); }
     // +0x2D8
-    public int unk2D8
+    public int StrafeTimer
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x2D8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x2D8u, value);
     }
-    [MethodImpl(Inl)] public int unk2D8_Set(int v) => Mem.Set(P + 0x2D8u, v);
+    [MethodImpl(Inl)] public int StrafeTimer_Set(int v) => Mem.Set(P + 0x2D8u, v);
     // +0x2DC
-    public int unk2DC
+    public int StrafeDir
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x2DCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x2DCu, value);
     }
-    [MethodImpl(Inl)] public int unk2DC_Set(int v) => Mem.Set(P + 0x2DCu, v);
+    [MethodImpl(Inl)] public int StrafeDir_Set(int v) => Mem.Set(P + 0x2DCu, v);
     // +0x2E0
     public U8x12 pad2E0 { [MethodImpl(Inl)] get => new(P + 0x2E0u); }
     // +0x2EC
-    public int unk2EC
+    public int BurstCooldown
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x2ECu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x2ECu, value);
     }
-    [MethodImpl(Inl)] public int unk2EC_Set(int v) => Mem.Set(P + 0x2ECu, v);
+    [MethodImpl(Inl)] public int BurstCooldown_Set(int v) => Mem.Set(P + 0x2ECu, v);
     // +0x2F0
     public U8x12 pad2F0 { [MethodImpl(Inl)] get => new(P + 0x2F0u); }
     // +0x2FC
-    public int unk2FC
+    public int IsFavoringPickups
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x2FCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x2FCu, value);
     }
-    [MethodImpl(Inl)] public int unk2FC_Set(int v) => Mem.Set(P + 0x2FCu, v);
+    [MethodImpl(Inl)] public int IsFavoringPickups_Set(int v) => Mem.Set(P + 0x2FCu, v);
 }
 
 /// <summary>struct BrainB, 0x32C bytes, at a guest address.</summary>
@@ -2205,109 +2205,109 @@ public readonly struct BrainB
     [MethodImpl(Inl)] public static implicit operator uint(BrainB v) => v.P;
     [MethodImpl(Inl)] public static explicit operator BrainB(uint p) => new(p);
     // +0x0
-    public ActorB actor
+    public ActorB OwnerPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P));
-        [MethodImpl(Inl)] set => Mem.Set(P, value.P);
+        [MethodImpl(Inl)] set => Mem.Set(P, EnemyDistances.P);
     }
     public uint actor_
     {
         [MethodImpl(Inl)] get => Mem.U32(P);
-        [MethodImpl(Inl)] set => Mem.Set(P, value);
+        [MethodImpl(Inl)] set => Mem.Set(P, EnemyDistances);
     }
     [MethodImpl(Inl)] public uint actor__Set(uint v) => Mem.Set(P, v);
     // +0x4
-    public int unk4
+    public int CurrentNode
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x4u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, EnemyDistances);
     }
-    [MethodImpl(Inl)] public int unk4_Set(int v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public int CurrentNode_Set(int v) => Mem.Set(P + 0x4u, v);
     // +0x8
     public U8x4 pad8 { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0xC
-    public int unkC
+    public int GoalNode
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xCu);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0xCu, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0xCu, EnemyDistances);
     }
-    [MethodImpl(Inl)] public int unkC_Set(int v) => Mem.Set(P + 0xCu, v);
+    [MethodImpl(Inl)] public int GoalNode_Set(int v) => Mem.Set(P + 0xCu, v);
     // +0x10
-    public int unk10
+    public int LastTargetNode
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x10u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x10u, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x10u, EnemyDistances);
     }
-    [MethodImpl(Inl)] public int unk10_Set(int v) => Mem.Set(P + 0x10u, v);
+    [MethodImpl(Inl)] public int LastTargetNode_Set(int v) => Mem.Set(P + 0x10u, v);
     // +0x14
-    public int unk14
+    public int PathNodes
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x14u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x14u, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x14u, EnemyDistances);
     }
-    [MethodImpl(Inl)] public int unk14_Set(int v) => Mem.Set(P + 0x14u, v);
+    [MethodImpl(Inl)] public int PathNodes_Set(int v) => Mem.Set(P + 0x14u, v);
     // +0x18
     public U8x16 pad18 { [MethodImpl(Inl)] get => new(P + 0x18u); }
     // +0x28
-    public int unk28
+    public int PlannedGoalNode
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x28u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x28u, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x28u, EnemyDistances);
     }
-    [MethodImpl(Inl)] public int unk28_Set(int v) => Mem.Set(P + 0x28u, v);
+    [MethodImpl(Inl)] public int PlannedGoalNode_Set(int v) => Mem.Set(P + 0x28u, v);
     // +0x2C
-    public Vec3f unk2C { [MethodImpl(Inl)] get => new(P + 0x2Cu); }
+    public Vec3f MoveTarget { [MethodImpl(Inl)] get => new(P + 0x2Cu); }
     // +0x38
-    public int count
+    public int EnemyCount
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x38u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x38u, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x38u, EnemyDistances);
     }
-    [MethodImpl(Inl)] public int count_Set(int v) => Mem.Set(P + 0x38u, v);
+    [MethodImpl(Inl)] public int EnemyCount_Set(int v) => Mem.Set(P + 0x38u, v);
     // +0x3C
-    public U32x10 actors { [MethodImpl(Inl)] get => new(P + 0x3Cu); }
+    public U32x10 EnemyPtrs { [MethodImpl(Inl)] get => new(P + 0x3Cu); }
     // +0x64
-    public ActorB unk64
+    public ActorB TargetPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x64u));
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x64u, value.P);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x64u, EnemyDistances.P);
     }
     public uint unk64_
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x64u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x64u, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x64u, EnemyDistances);
     }
     [MethodImpl(Inl)] public uint unk64__Set(uint v) => Mem.Set(P + 0x64u, v);
     // +0x68
-    public ActorB unk68
+    public ActorB GoalEntityPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x68u));
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x68u, value.P);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x68u, EnemyDistances.P);
     }
     public uint unk68_
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x68u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x68u, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x68u, EnemyDistances);
     }
     [MethodImpl(Inl)] public uint unk68__Set(uint v) => Mem.Set(P + 0x68u, v);
     // +0x6C
-    public S32x10 valid { [MethodImpl(Inl)] get => new(P + 0x6Cu); }
+    public S32x10 EnemyVisibleFlags { [MethodImpl(Inl)] get => new(P + 0x6Cu); }
     // +0x94
-    public S32x10 value { [MethodImpl(Inl)] get => new(P + 0x94u); }
+    public S32x10 EnemyDistances { [MethodImpl(Inl)] get => new(P + 0x94u); }
     // +0xBC
-    public int unkBC
+    public int WantedItemKind
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xBCu);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0xBCu, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0xBCu, EnemyDistances);
     }
-    [MethodImpl(Inl)] public int unkBC_Set(int v) => Mem.Set(P + 0xBCu, v);
+    [MethodImpl(Inl)] public int WantedItemKind_Set(int v) => Mem.Set(P + 0xBCu, v);
     // +0xC0
     public U8x268 padC0 { [MethodImpl(Inl)] get => new(P + 0xC0u); }
     // +0x1CC
     public int step
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1CCu);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x1CCu, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x1CCu, EnemyDistances);
     }
     [MethodImpl(Inl)] public int step_Set(int v) => Mem.Set(P + 0x1CCu, v);
     // +0x1D0
@@ -2318,83 +2318,83 @@ public readonly struct BrainB
     public float unk210
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x210u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x210u, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x210u, EnemyDistances);
     }
     [MethodImpl(Inl)] public float unk210_Set(float v) => Mem.Set(P + 0x210u, v);
     // +0x214
     public U8x8 pad214 { [MethodImpl(Inl)] get => new(P + 0x214u); }
     // +0x21C
-    public uint state
+    public uint StateId
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x21Cu);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x21Cu, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x21Cu, EnemyDistances);
     }
-    [MethodImpl(Inl)] public uint state_Set(uint v) => Mem.Set(P + 0x21Cu, v);
+    [MethodImpl(Inl)] public uint StateId_Set(uint v) => Mem.Set(P + 0x21Cu, v);
     // +0x220
-    public int unk220
+    public int ThinkStep
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x220u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x220u, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x220u, EnemyDistances);
     }
-    [MethodImpl(Inl)] public int unk220_Set(int v) => Mem.Set(P + 0x220u, v);
+    [MethodImpl(Inl)] public int ThinkStep_Set(int v) => Mem.Set(P + 0x220u, v);
     // +0x224
-    public int unk224
+    public int RoamPathId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x224u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x224u, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x224u, EnemyDistances);
     }
-    [MethodImpl(Inl)] public int unk224_Set(int v) => Mem.Set(P + 0x224u, v);
+    [MethodImpl(Inl)] public int RoamPathId_Set(int v) => Mem.Set(P + 0x224u, v);
     // +0x228
-    public int unk228
+    public int RoamPathPoint
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x228u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x228u, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x228u, EnemyDistances);
     }
-    [MethodImpl(Inl)] public int unk228_Set(int v) => Mem.Set(P + 0x228u, v);
+    [MethodImpl(Inl)] public int RoamPathPoint_Set(int v) => Mem.Set(P + 0x228u, v);
     // +0x22C
     public int unk22C
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x22Cu);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x22Cu, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x22Cu, EnemyDistances);
     }
     [MethodImpl(Inl)] public int unk22C_Set(int v) => Mem.Set(P + 0x22Cu, v);
     // +0x230
-    public int unk230
+    public int AttackStyle
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x230u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x230u, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x230u, EnemyDistances);
     }
-    [MethodImpl(Inl)] public int unk230_Set(int v) => Mem.Set(P + 0x230u, v);
+    [MethodImpl(Inl)] public int AttackStyle_Set(int v) => Mem.Set(P + 0x230u, v);
     // +0x234
     public U8x4 pad234 { [MethodImpl(Inl)] get => new(P + 0x234u); }
     // +0x238
-    public int unk238
+    public int IsFollowTargetReached_238
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x238u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x238u, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x238u, EnemyDistances);
     }
-    [MethodImpl(Inl)] public int unk238_Set(int v) => Mem.Set(P + 0x238u, v);
+    [MethodImpl(Inl)] public int IsFollowTargetReached_238_Set(int v) => Mem.Set(P + 0x238u, v);
     // +0x23C
     public U8x28 pad23C { [MethodImpl(Inl)] get => new(P + 0x23Cu); }
     // +0x258
-    public float unk258
+    public float AimPoint
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x258u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x258u, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x258u, EnemyDistances);
     }
-    [MethodImpl(Inl)] public float unk258_Set(float v) => Mem.Set(P + 0x258u, v);
+    [MethodImpl(Inl)] public float AimPoint_Set(float v) => Mem.Set(P + 0x258u, v);
     // +0x25C
     public float unk25C
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x25Cu);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x25Cu, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x25Cu, EnemyDistances);
     }
     [MethodImpl(Inl)] public float unk25C_Set(float v) => Mem.Set(P + 0x25Cu, v);
     // +0x260
     public float unk260
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x260u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x260u, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x260u, EnemyDistances);
     }
     [MethodImpl(Inl)] public float unk260_Set(float v) => Mem.Set(P + 0x260u, v);
     // +0x264
@@ -2403,100 +2403,100 @@ public readonly struct BrainB
     public int unk288
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x288u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x288u, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x288u, EnemyDistances);
     }
     [MethodImpl(Inl)] public int unk288_Set(int v) => Mem.Set(P + 0x288u, v);
     // +0x28C
-    public ActorB target
+    public ActorB PreferredTargetPtr_28C
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x28Cu));
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x28Cu, value.P);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x28Cu, EnemyDistances.P);
     }
     public uint target_
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x28Cu);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x28Cu, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x28Cu, EnemyDistances);
     }
     [MethodImpl(Inl)] public uint target__Set(uint v) => Mem.Set(P + 0x28Cu, v);
     // +0x290
     public U8x72 pad290 { [MethodImpl(Inl)] get => new(P + 0x290u); }
     // +0x2D8
-    public int unk2D8
+    public int StrafeTimer
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x2D8u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x2D8u, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x2D8u, EnemyDistances);
     }
-    [MethodImpl(Inl)] public int unk2D8_Set(int v) => Mem.Set(P + 0x2D8u, v);
+    [MethodImpl(Inl)] public int StrafeTimer_Set(int v) => Mem.Set(P + 0x2D8u, v);
     // +0x2DC
-    public int unk2DC
+    public int StrafeDir
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x2DCu);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x2DCu, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x2DCu, EnemyDistances);
     }
-    [MethodImpl(Inl)] public int unk2DC_Set(int v) => Mem.Set(P + 0x2DCu, v);
+    [MethodImpl(Inl)] public int StrafeDir_Set(int v) => Mem.Set(P + 0x2DCu, v);
     // +0x2E0
-    public int unk2E0
+    public int EngageDistSq
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x2E0u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x2E0u, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x2E0u, EnemyDistances);
     }
-    [MethodImpl(Inl)] public int unk2E0_Set(int v) => Mem.Set(P + 0x2E0u, v);
+    [MethodImpl(Inl)] public int EngageDistSq_Set(int v) => Mem.Set(P + 0x2E0u, v);
     // +0x2E4
     public U8x24 pad2E4 { [MethodImpl(Inl)] get => new(P + 0x2E4u); }
     // +0x2FC
-    public int unk2FC
+    public int IsFavoringPickups
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x2FCu);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x2FCu, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x2FCu, EnemyDistances);
     }
-    [MethodImpl(Inl)] public int unk2FC_Set(int v) => Mem.Set(P + 0x2FCu, v);
+    [MethodImpl(Inl)] public int IsFavoringPickups_Set(int v) => Mem.Set(P + 0x2FCu, v);
     // +0x300
     public U8x20 pad300 { [MethodImpl(Inl)] get => new(P + 0x300u); }
     // +0x314
-    public int unk314
+    public int EdgeStep
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x314u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x314u, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x314u, EnemyDistances);
     }
-    [MethodImpl(Inl)] public int unk314_Set(int v) => Mem.Set(P + 0x314u, v);
+    [MethodImpl(Inl)] public int EdgeStep_Set(int v) => Mem.Set(P + 0x314u, v);
     // +0x318
-    public int unk318
+    public int LosCheckCounter
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x318u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x318u, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x318u, EnemyDistances);
     }
-    [MethodImpl(Inl)] public int unk318_Set(int v) => Mem.Set(P + 0x318u, v);
+    [MethodImpl(Inl)] public int LosCheckCounter_Set(int v) => Mem.Set(P + 0x318u, v);
     // +0x31C
-    public int unk31C
+    public int IsTargetInSight
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x31Cu);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x31Cu, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x31Cu, EnemyDistances);
     }
-    [MethodImpl(Inl)] public int unk31C_Set(int v) => Mem.Set(P + 0x31Cu, v);
+    [MethodImpl(Inl)] public int IsTargetInSight_Set(int v) => Mem.Set(P + 0x31Cu, v);
     // +0x320
-    public int unk320
+    public int JumpCooldown
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x320u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x320u, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x320u, EnemyDistances);
     }
-    [MethodImpl(Inl)] public int unk320_Set(int v) => Mem.Set(P + 0x320u, v);
+    [MethodImpl(Inl)] public int JumpCooldown_Set(int v) => Mem.Set(P + 0x320u, v);
     // +0x324
-    public int unk324
+    public int AttackerTimer
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x324u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x324u, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x324u, EnemyDistances);
     }
-    [MethodImpl(Inl)] public int unk324_Set(int v) => Mem.Set(P + 0x324u, v);
+    [MethodImpl(Inl)] public int AttackerTimer_Set(int v) => Mem.Set(P + 0x324u, v);
     // +0x328
-    public ActorB unk328
+    public ActorB LastAttackerPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x328u));
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x328u, value.P);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x328u, EnemyDistances.P);
     }
     public uint unk328_
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x328u);
-        [MethodImpl(Inl)] set => Mem.Set(P + 0x328u, value);
+        [MethodImpl(Inl)] set => Mem.Set(P + 0x328u, EnemyDistances);
     }
     [MethodImpl(Inl)] public uint unk328__Set(uint v) => Mem.Set(P + 0x328u, v);
 }

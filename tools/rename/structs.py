@@ -33,7 +33,7 @@ def layouts():
 
 def uses():
     n = {}
-    pat = re.compile(r'\bnew ([A-Z_][A-Za-z0-9_]*)\(')
+    pat = re.compile(r'\bnew ([A-Za-z_][A-Za-z0-9_]*)\(')
     for p in an.cs_files(an.GEN):
         if os.sep + 'Structs' + os.sep in p: continue
         for m in pat.finditer(an.read(p)): n[m.group(1)] = n.get(m.group(1), 0) + 1

@@ -2352,7 +2352,7 @@ public static partial class Game
                 Mem.Set((0x801468ACu + (uint)(0 * 4)), new O01CfgE(c).unk14);
                 src = new O01CfgE(c).unk60C.P;
                 dp = Gv.LevelPersistBuffer;
-                for (i = 0; (i < new O01GE(g).unk44); ++i)
+                for (i = 0; (i < new O01GE(g).SaveDataSize); ++i)
                 {
                     Mem.Set(((dp += 1u) - 1u), Mem.U8(((src += 1u) - 1u)));
                 }

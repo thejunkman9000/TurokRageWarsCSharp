@@ -50,8 +50,8 @@ public static partial class Game
             }
             if (((int)(new SndCore(core).snd[(int)(bestIdx)]) == (-1)))
             {
-                uint h = new SndMgr(m).q.active.link.next_;
-                if ((h == new SndMgr(m).q.active.link.P))
+                uint h = new SndMgr(m).Queue.active.link.next_;
+                if ((h == new SndMgr(m).Queue.active.link.P))
                 {
                     return (int)((short)(bestIdx));
                 }
@@ -67,12 +67,12 @@ public static partial class Game
                 m2 = new SndVoice(s).mgr_;
                 new SndVoice(s).unkAC_Set(1);
                 new SndVoice(s).unk50_Set(0);
-                if ((new SndVoice(s).unk10 != new SndMgr(m2).unk104))
+                if ((new SndVoice(s).unk10 != new SndMgr(m2).FrameCounter))
                 {
-                    alSndpSetSound(new SndMgr(m2).player.P, (short)((int)(new SndMgr(m2).snd[(int)(new SndVoice(s).idx)])));
-                    if ((alSndpGetState(new SndMgr(m2).player.P) != 0))
+                    alSndpSetSound(new SndMgr(m2).SndPlayer.P, (short)((int)(new SndMgr(m2).VoiceSoundHandles[(int)(new SndVoice(s).idx)])));
+                    if ((alSndpGetState(new SndMgr(m2).SndPlayer.P) != 0))
                     {
-                        alSndpStop(new SndMgr(m2).player.P);
+                        alSndpStop(new SndMgr(m2).SndPlayer.P);
                     }
                     new SndVoice(s).unk4_Set((-1));
                 }
@@ -113,7 +113,7 @@ public static partial class Game
             pri = (int)((short)(SndInfo_GetSampleIndex(info)));
             flag = (ushort)((sbyte)(SndInfo_GetPriority(info)));
             m = new SndVoices(p).owner_;
-            snd = new SndMgr(m).snd.P;
+            snd = new SndMgr(m).VoiceSoundHandles.P;
             if (!(((int)(new M04Bank2(new SndMgr(m).unk7C_).tab.n) < pri))) goto _f0;
             return 0u;
             _f0: ;
@@ -125,13 +125,13 @@ public static partial class Game
             v = (new SndVoices(p).v.P + (uint)(idx * 204));
             if (!(((int)(idx) == 16))) goto _f3;
             new M04Emitter(v).w4_Set(a3);
-            new M04Emitter(v).id_Set((new SndMgr(new SndVoices(p).owner_).unk108_Set((int)(new SndMgr(new SndVoices(p).owner_).unk108 + 1)) - 1));
+            new M04Emitter(v).id_Set((new SndMgr(new SndVoices(p).owner_).NextEmitterId_Set((int)(new SndMgr(new SndVoices(p).owner_).NextEmitterId + 1)) - 1));
             new M04Emitter(v).w8_Set(99);
             goto L_blk16;
             _f3: ;
-            new SndMgr(new SndVoices(p).owner_).unk102_Set(idx);
+            new SndMgr(new SndVoices(p).owner_).AllocVoiceIndex_Set(idx);
             m2 = new SndVoices(p).owner_;
-            new_var2 = new SndMgr(m2).player.P;
+            new_var2 = new SndMgr(m2).SndPlayer.P;
             core = (m2 + (uint)124);
             Mem.Set((snd + (uint)(idx * 2)), alSndpAllocate(new_var2, (uint)((int)(new M04Bank2(new SndMgr(m2).unk7C_).tab.v[(int)(pri)]))));
             sv = (uint)(Mem.S16((snd + (uint)(idx * 2))));
@@ -139,7 +139,7 @@ public static partial class Game
             new M04Emitter(v).id_Set((int)(sv));
             new M04Emitter(v).w8_Set((int)(sv));
             new M04Emitter(v).vp.s28_Set((short)(0));
-            new SndMgr(new SndVoices(p).owner_).unk102_Set((short)(sv));
+            new SndMgr(new SndVoices(p).owner_).AllocVoiceIndex_Set((short)(sv));
             L_fail: ;
             Sound_Unlock(new SndVoices(p).owner_);
             return 0u;
@@ -148,7 +148,7 @@ public static partial class Game
             Mem.Set((core + (uint)128), (ushort)(Mem.U16((core + (uint)128)) + 1));
             new M04Emitter(v).w4_Set(a3);
             m3 = new SndVoices(p).owner_;
-            new M04Emitter(v).id_Set((new SndMgr(m3).unk108_Set((int)(new SndMgr(m3).unk108 + 1)) - 1));
+            new M04Emitter(v).id_Set((new SndMgr(m3).NextEmitterId_Set((int)(new SndMgr(m3).NextEmitterId + 1)) - 1));
             new M04Emitter(v).w8_Set((int)(Mem.S16((snd + (uint)(idx * 2)))));
             new M04Emitter(v).unkA0_Set((int)(Mem.S16(new_var)));
             if (!(!(Mem.F32(0x800C9060u) <= f))) goto _f5;
@@ -160,8 +160,8 @@ public static partial class Game
             _f6: ;
             alSndpSetPriority(new_var2, Mem.S16((snd + (uint)(idx * 2))), (byte)((pr & 255)));
             L_blk16: ;
-            new M04Emitter(v).kind_Set((int)(new SndMgr(new SndVoices(p).owner_).unk2B8C));
-            new M04Emitter(v).resetFlag_Set(new SndMgr(new SndVoices(p).owner_).unk2BAC);
+            new M04Emitter(v).kind_Set((int)(new SndMgr(new SndVoices(p).owner_).CurrentSoundId));
+            new M04Emitter(v).resetFlag_Set(new SndMgr(new SndVoices(p).owner_).PosFlag_2BAC);
             new M04Emitter(v).unkBC_Set(0);
             i = 0;
             _f7: ;
@@ -186,7 +186,7 @@ public static partial class Game
             ++i;
             goto _f11;
             _f13: ;
-            new M04Emitter(v).unkB4_Set(new SndMgr(new SndVoices(p).owner_).unk2B90);
+            new M04Emitter(v).unkB4_Set(new SndMgr(new SndVoices(p).owner_).CurrentOwner);
             new M04Emitter(v).unkAC_Set(0);
             vp = new M04Emitter(v).vp.P;
             new M04Emitter(v).unkB8_Set(Mem.F32((new SndVoices(p).owner_ + (uint)11196)));
@@ -197,7 +197,7 @@ public static partial class Game
             new M04VP(vp).pan_Set((short)(64));
             new M04VP(vp).s2A_Set((short)(pri));
             new M04VP(vp).s2C_Set((short)(tag));
-            new M04VP(vp).w0_Set(new SndMgr(new SndVoices(p).owner_).unk104);
+            new M04VP(vp).w0_Set(new SndMgr(new SndVoices(p).owner_).FrameCounter);
             new M04VP(vp).f24_Set(Mem.F32(0x800C9064u));
             new M04VP(vp).mode_Set((sbyte)(SndInfo_GetFalloffMode(info)));
             new M04Emitter(v).flags_Set((uint)((short)(SndInfo_GetFlags(info))));
@@ -346,8 +346,8 @@ public static partial class Game
             v = (uint)(((uint)(((int)(idx) * 204)) + (uint)(p)));
             v = (v + (uint)4);
             m = new SndVoice(v).mgr_;
-            alSndpSetSound(new SndMgr(m).player.P, (short)((int)(new SndMgr(m).snd[(int)(new SndVoice(v).idx)])));
-            return alSndpGetState(new SndMgr(m).player.P);
+            alSndpSetSound(new SndMgr(m).SndPlayer.P, (short)((int)(new SndMgr(m).VoiceSoundHandles[(int)(new SndVoice(v).idx)])));
+            return alSndpGetState(new SndMgr(m).SndPlayer.P);
         }
     }
 
@@ -365,7 +365,7 @@ public static partial class Game
             i = 0;
             for (; (i < 16); ++i)
             {
-                if ((((((new SndVoice(v).unk8 != (-1)) && ((int)(new SndMgr(new SndVoices(p).owner_).unk102) != i)) && (new SndVoice(v).tag == (int)(tag))) && ((new SndVoice(v).unkA4 & 64) != 0)) && ((int)(new SndVoice(v).unk3A) == (int)(key))))
+                if ((((((new SndVoice(v).unk8 != (-1)) && ((int)(new SndMgr(new SndVoices(p).owner_).AllocVoiceIndex) != i)) && (new SndVoice(v).tag == (int)(tag))) && ((new SndVoice(v).unkA4 & 64) != 0)) && ((int)(new SndVoice(v).unk3A) == (int)(key))))
                 {
                     j = (int)((short)(i));
                     s = (uint)(((uint)((j * 204)) + (uint)(p)));
@@ -373,12 +373,12 @@ public static partial class Game
                     m = new SndVoice(s).mgr_;
                     new SndVoice(s).unkAC_Set(1);
                     new SndVoice(s).unk50_Set(0);
-                    if ((new SndVoice(s).unk10 != new SndMgr(m).unk104))
+                    if ((new SndVoice(s).unk10 != new SndMgr(m).FrameCounter))
                     {
-                        alSndpSetSound(new SndMgr(m).player.P, (short)((int)(new SndMgr(m).snd[(int)(new SndVoice(s).idx)])));
-                        if ((alSndpGetState(new SndMgr(m).player.P) != 0))
+                        alSndpSetSound(new SndMgr(m).SndPlayer.P, (short)((int)(new SndMgr(m).VoiceSoundHandles[(int)(new SndVoice(s).idx)])));
+                        if ((alSndpGetState(new SndMgr(m).SndPlayer.P) != 0))
                         {
-                            alSndpStop(new SndMgr(m).player.P);
+                            alSndpStop(new SndMgr(m).SndPlayer.P);
                         }
                         new SndVoice(s).unk4_Set((-1));
                     }
@@ -400,7 +400,7 @@ public static partial class Game
             uint v = new SndVoices(p).v.P;
             for (i = 0; (i < 16); ++i)
             {
-                if ((((new SndVoice(v).unk8 != (-1)) && ((int)(new SndMgr(new SndVoices(p).owner_).unk102) != i)) && (new SndVoice(v).tag == tag)))
+                if ((((new SndVoice(v).unk8 != (-1)) && ((int)(new SndMgr(new SndVoices(p).owner_).AllocVoiceIndex) != i)) && (new SndVoice(v).tag == tag)))
                 {
                     return 1;
                 }
@@ -423,12 +423,12 @@ public static partial class Game
             m = new SndVoice(v).mgr_;
             new SndVoice(v).unkAC_Set(1);
             new SndVoice(v).unk50_Set(0);
-            if ((new SndVoice(v).unk10 != new SndMgr(m).unk104))
+            if ((new SndVoice(v).unk10 != new SndMgr(m).FrameCounter))
             {
-                alSndpSetSound(new SndMgr(m).player.P, (short)((int)(new SndMgr(m).snd[(int)(new SndVoice(v).idx)])));
-                if ((alSndpGetState(new SndMgr(m).player.P) != 0))
+                alSndpSetSound(new SndMgr(m).SndPlayer.P, (short)((int)(new SndMgr(m).VoiceSoundHandles[(int)(new SndVoice(v).idx)])));
+                if ((alSndpGetState(new SndMgr(m).SndPlayer.P) != 0))
                 {
-                    alSndpStop(new SndMgr(m).player.P);
+                    alSndpStop(new SndMgr(m).SndPlayer.P);
                 }
                 new SndVoice(v).unk4_Set((-1));
             }
@@ -462,7 +462,7 @@ public static partial class Game
             uint v = new SndVoices(p).v.P;
             for (i = 0; (i < 16); ++i)
             {
-                if (((new SndVoice(v).unk8 != (-1)) && ((int)(new SndMgr(new SndVoices(p).owner_).unk102) != i)))
+                if (((new SndVoice(v).unk8 != (-1)) && ((int)(new SndMgr(new SndVoices(p).owner_).AllocVoiceIndex) != i)))
                 {
                     SndVoice_Update(v, default(uint), default(uint), default(uint));
                     ++n;
@@ -487,7 +487,7 @@ public static partial class Game
             uint v = new SndVoices(p).v.P;
             for (i = 0; (i < 16); ++i)
             {
-                if (((((new SndVoice(v).unk8 != (-1)) && ((int)(new SndMgr(new SndVoices(p).owner_).unk102) != i)) && (new SndVoice(v).tag == tag)) && (new SndVoice(v).unkB4_ == owner)))
+                if (((((new SndVoice(v).unk8 != (-1)) && ((int)(new SndMgr(new SndVoices(p).owner_).AllocVoiceIndex) != i)) && (new SndVoice(v).tag == tag)) && (new SndVoice(v).unkB4_ == owner)))
                 {
                     return i;
                 }
@@ -509,17 +509,17 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 17); ++i)
             {
-                if ((((new SndVoice(v).unk8 != (-1)) && ((int)(new SndMgr(new SndVoices(p).owner_).unk102) != i)) && (new SndVoice(v).tag == tag)))
+                if ((((new SndVoice(v).unk8 != (-1)) && ((int)(new SndMgr(new SndVoices(p).owner_).AllocVoiceIndex) != i)) && (new SndVoice(v).tag == tag)))
                 {
                     m = new SndVoice(v).mgr_;
                     new SndVoice(v).unkAC_Set(1);
                     new SndVoice(v).unk50_Set(0);
-                    if ((new SndVoice(v).unk10 != new SndMgr(m).unk104))
+                    if ((new SndVoice(v).unk10 != new SndMgr(m).FrameCounter))
                     {
-                        alSndpSetSound(new SndMgr(m).player.P, (short)((int)(new SndMgr(m).snd[(int)(new SndVoice(w).idx)])));
-                        if ((alSndpGetState(new SndMgr(m).player.P) != 0))
+                        alSndpSetSound(new SndMgr(m).SndPlayer.P, (short)((int)(new SndMgr(m).VoiceSoundHandles[(int)(new SndVoice(w).idx)])));
+                        if ((alSndpGetState(new SndMgr(m).SndPlayer.P) != 0))
                         {
-                            alSndpStop(new SndMgr(m).player.P);
+                            alSndpStop(new SndMgr(m).SndPlayer.P);
                         }
                         new SndVoice(v).unk4_Set((-1));
                     }
@@ -542,17 +542,17 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 17); ++i)
             {
-                if ((((new SndVoice(v).unk8 != (-1)) && ((int)(new SndMgr(new SndVoices(p).owner_).unk102) != i)) && (new SndVoice(v).unkB4_ == owner)))
+                if ((((new SndVoice(v).unk8 != (-1)) && ((int)(new SndMgr(new SndVoices(p).owner_).AllocVoiceIndex) != i)) && (new SndVoice(v).unkB4_ == owner)))
                 {
                     m = new SndVoice(v).mgr_;
                     new SndVoice(v).unkAC_Set(1);
                     new SndVoice(v).unk50_Set(0);
-                    if ((new SndVoice(v).unk10 != new SndMgr(m).unk104))
+                    if ((new SndVoice(v).unk10 != new SndMgr(m).FrameCounter))
                     {
-                        alSndpSetSound(new SndMgr(m).player.P, (short)((int)(new SndMgr(m).snd[(int)(new SndVoice(w).idx)])));
-                        if ((alSndpGetState(new SndMgr(m).player.P) != 0))
+                        alSndpSetSound(new SndMgr(m).SndPlayer.P, (short)((int)(new SndMgr(m).VoiceSoundHandles[(int)(new SndVoice(w).idx)])));
+                        if ((alSndpGetState(new SndMgr(m).SndPlayer.P) != 0))
                         {
-                            alSndpStop(new SndMgr(m).player.P);
+                            alSndpStop(new SndMgr(m).SndPlayer.P);
                         }
                         new SndVoice(v).unk4_Set((-1));
                     }
@@ -575,17 +575,17 @@ public static partial class Game
             int i = 0;
             for (i = 0; (i < 17); ++i)
             {
-                if ((((new SndVoice(v).unk8 != (-1)) && ((int)(new SndMgr(new SndVoices(p).owner_).unk102) != i)) && ((new SndVoice(v).unkA4 & mask) != 0)))
+                if ((((new SndVoice(v).unk8 != (-1)) && ((int)(new SndMgr(new SndVoices(p).owner_).AllocVoiceIndex) != i)) && ((new SndVoice(v).unkA4 & mask) != 0)))
                 {
                     m = new SndVoice(v).mgr_;
                     new SndVoice(v).unkAC_Set(1);
                     new SndVoice(v).unk50_Set(0);
-                    if ((new SndVoice(v).unk10 != new SndMgr(m).unk104))
+                    if ((new SndVoice(v).unk10 != new SndMgr(m).FrameCounter))
                     {
-                        alSndpSetSound(new SndMgr(m).player.P, (short)((int)(new SndMgr(m).snd[(int)(new SndVoice(w).idx)])));
-                        if ((alSndpGetState(new SndMgr(m).player.P) != 0))
+                        alSndpSetSound(new SndMgr(m).SndPlayer.P, (short)((int)(new SndMgr(m).VoiceSoundHandles[(int)(new SndVoice(w).idx)])));
+                        if ((alSndpGetState(new SndMgr(m).SndPlayer.P) != 0))
                         {
-                            alSndpStop(new SndMgr(m).player.P);
+                            alSndpStop(new SndMgr(m).SndPlayer.P);
                         }
                         new SndVoice(v).unk4_Set((-1));
                     }
@@ -606,7 +606,7 @@ public static partial class Game
             uint v = new SndVoices(p).v.P;
             for (i = 0; (i < 17); ++i)
             {
-                if ((((new SndVoice(v).unk8 != (-1)) && ((int)(new SndMgr(new SndVoices(p).owner_).unk102) != i)) && (new SndVoice(v).tag == tag)))
+                if ((((new SndVoice(v).unk8 != (-1)) && ((int)(new SndMgr(new SndVoices(p).owner_).AllocVoiceIndex) != i)) && (new SndVoice(v).tag == tag)))
                 {
                     return 1;
                 }
@@ -629,7 +629,7 @@ public static partial class Game
             v = (v + (uint)4);
             m = new SndVoice(v).mgr_;
             c = (m + (uint)124);
-            alSndpDeallocate(new SndMgr(m).player.P, (short)((int)(new SndCore(c).snd[(int)(new SndVoice(v).idx)])));
+            alSndpDeallocate(new SndMgr(m).SndPlayer.P, (short)((int)(new SndCore(c).snd[(int)(new SndVoice(v).idx)])));
             new SndCore(c).snd.Set((int)(new SndVoice(v).idx), (short)((-1)));
             new SndVoice(v).unk38_Set((short)(0));
             new SndVoice(v).unkC_Set((-1));

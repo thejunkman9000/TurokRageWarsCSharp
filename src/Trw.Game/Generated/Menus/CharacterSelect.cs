@@ -31,10 +31,10 @@ public static partial class Game
                 uint w = 0u;
                 uint x = 0u;
                 found = (i = 0);
-                n = new O3Lv(Gv.LevelMgr).tab.cnt;
+                n = new O3Lv(Gv.LevelMgr).ObjectTypeIds.cnt;
                 b = (a + (uint)400);
                 new_var2 = 1;
-                t2 = new O3Lv(Gv.LevelMgr).tab.ids.P;
+                t2 = new O3Lv(Gv.LevelMgr).ObjectTypeIds.ids.P;
                 if ((n > 0))
                 {
                     lv = Gv.LevelMgr;
@@ -44,7 +44,7 @@ public static partial class Game
                     {
                         if (((int)(Mem.U16(e)) == id))
                         {
-                            h = Resource_GetCartridgeKeyNoSize((uint)(new O3Lv(lv).w54), new O3Lv(lv).w24, i);
+                            h = Resource_GetCartridgeKeyNoSize((uint)(new O3Lv(lv).ObjectsIndex), new O3Lv(lv).ObjectsIndexKey, i);
                             q = ResourceCache_Hash(0, (uint)(h), h, (uint)(24), 0, (uint)(0), (uint)(0), 0x800E1490u, one);
                             if ((q != 0u))
                             {
@@ -58,7 +58,7 @@ public static partial class Game
                                     {
                                         Mem.Set((new_var + (uint)4), (short)(i));
                                         Mem.Set((b + (uint)228), (ushort)(id));
-                                        Actor_ResetAnimObject(b, new O3Lv(lv).w54, new O3Lv(lv).w24, p);
+                                        Actor_ResetAnimObject(b, new O3Lv(lv).ObjectsIndex, new O3Lv(lv).ObjectsIndexKey, p);
                                         found = new_var2;
                                     }
                                     ResourcePool_Unref(0, w);

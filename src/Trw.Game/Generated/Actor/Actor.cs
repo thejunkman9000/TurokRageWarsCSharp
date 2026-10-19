@@ -575,11 +575,11 @@ public static partial class Game
             uint t = 0u;
             uint e = 0u;
             uint found = 0u;
-            if ((new PathTbl(Gv.LevelMgr).mode == 2))
+            if ((new PathTbl(Gv.LevelMgr).LoadState == 2))
             {
                 return 1;
             }
-            if ((new PathTbl(Gv.LevelMgr).mode == 4))
+            if ((new PathTbl(Gv.LevelMgr).LoadState == 4))
             {
                 new ActorB(a).Flags_Set((uint)((uint)(new ActorB(a).Flags) | (uint)(256)));
             }
@@ -2274,7 +2274,7 @@ public static partial class Game
                 if (!((a5 != (-1)))) goto _f12;
                 LevelPath_InitCursor((o + 516u), a5, (o + 8u));
                 _f12: ;
-                Actor_ResetAnimObject(o, new B10Gx(Gv.LevelMgr).f54, new B10Gx(Gv.LevelMgr).f24, s2);
+                Actor_ResetAnimObject(o, new B10Gx(Gv.LevelMgr).ObjectsIndex, new B10Gx(Gv.LevelMgr).ObjectsIndexKey, s2);
                 if (!((s1 != 0))) goto _f13;
                 new B10Obj(o).AnimTime_Set((float)(s1));
                 new B10Obj(o).Flags_Set((uint)((uint)(new B10Obj(o).Flags) & (uint)((~1024))));

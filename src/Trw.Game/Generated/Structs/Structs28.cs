@@ -2789,106 +2789,106 @@ public readonly struct RespawnPlayer
     [MethodImpl(Inl)] public static implicit operator uint(RespawnPlayer v) => v.P;
     [MethodImpl(Inl)] public static explicit operator RespawnPlayer(uint p) => new(p);
     // +0x0
-    public S8x56 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x56 Type { [MethodImpl(Inl)] get => new(P); }
     // +0x38
-    public int moving
+    public int GroundFlags
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x38u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x38u, value);
     }
-    [MethodImpl(Inl)] public int moving_Set(int v) => Mem.Set(P + 0x38u, v);
+    [MethodImpl(Inl)] public int GroundFlags_Set(int v) => Mem.Set(P + 0x38u, v);
     // +0x3C
-    public S8x312 pad3C { [MethodImpl(Inl)] get => new(P + 0x3Cu); }
+    public S8x312 FloorMaterial_3C { [MethodImpl(Inl)] get => new(P + 0x3Cu); }
     // +0x174
-    public int maxHealth
+    public int HitPoints
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x174u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x174u, value);
     }
-    [MethodImpl(Inl)] public int maxHealth_Set(int v) => Mem.Set(P + 0x174u, v);
+    [MethodImpl(Inl)] public int HitPoints_Set(int v) => Mem.Set(P + 0x174u, v);
     // +0x178
     public S8x1116 pad178 { [MethodImpl(Inl)] get => new(P + 0x178u); }
     // +0x5D4
-    public int character
+    public int PlayerIndex
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x5D4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x5D4u, value);
     }
-    [MethodImpl(Inl)] public int character_Set(int v) => Mem.Set(P + 0x5D4u, v);
+    [MethodImpl(Inl)] public int PlayerIndex_Set(int v) => Mem.Set(P + 0x5D4u, v);
     // +0x5D8
-    public S8x12 pad5D8 { [MethodImpl(Inl)] get => new(P + 0x5D8u); }
+    public S8x12 PlayerEntryPtr { [MethodImpl(Inl)] get => new(P + 0x5D8u); }
     // +0x5E4
-    public int health
+    public int Health
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x5E4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x5E4u, value);
     }
-    [MethodImpl(Inl)] public int health_Set(int v) => Mem.Set(P + 0x5E4u, v);
+    [MethodImpl(Inl)] public int Health_Set(int v) => Mem.Set(P + 0x5E4u, v);
     // +0x5E8
-    public S8x2 pad5E8 { [MethodImpl(Inl)] get => new(P + 0x5E8u); }
+    public S8x2 LifeForce { [MethodImpl(Inl)] get => new(P + 0x5E8u); }
     // +0x5EA
-    public short state
+    public short Lives
     {
         [MethodImpl(Inl)] get => Mem.S16(P + 0x5EAu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x5EAu, value);
     }
-    [MethodImpl(Inl)] public short state_Set(short v) => Mem.Set(P + 0x5EAu, v);
+    [MethodImpl(Inl)] public short Lives_Set(short v) => Mem.Set(P + 0x5EAu, v);
     // +0x5EC
-    public S8x22 pad5EC { [MethodImpl(Inl)] get => new(P + 0x5ECu); }
+    public S8x22 SpawnPointId { [MethodImpl(Inl)] get => new(P + 0x5ECu); }
     // +0x602
-    public RespawnPairx22 effects { [MethodImpl(Inl)] get => new(P + 0x602u); }
+    public RespawnPairx22 WeaponSlots { [MethodImpl(Inl)] get => new(P + 0x602u); }
     // +0x62E
-    public S8x66 pad62E { [MethodImpl(Inl)] get => new(P + 0x62Eu); }
+    public S8x66 WeaponIndex { [MethodImpl(Inl)] get => new(P + 0x62Eu); }
     // +0x670
-    public float bob
+    public float InvulnerableTime
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x670u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x670u, value);
     }
-    [MethodImpl(Inl)] public float bob_Set(float v) => Mem.Set(P + 0x670u, v);
+    [MethodImpl(Inl)] public float InvulnerableTime_Set(float v) => Mem.Set(P + 0x670u, v);
     // +0x674
     public S8x36 pad674 { [MethodImpl(Inl)] get => new(P + 0x674u); }
     // +0x698
-    public uint anim
+    public uint ControllerPtr
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x698u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x698u, value);
     }
-    [MethodImpl(Inl)] public uint anim_Set(uint v) => Mem.Set(P + 0x698u, v);
+    [MethodImpl(Inl)] public uint ControllerPtr_Set(uint v) => Mem.Set(P + 0x698u, v);
     // +0x69C
-    public S8x2840 pad69C { [MethodImpl(Inl)] get => new(P + 0x69Cu); }
+    public S8x2840 TurnInput { [MethodImpl(Inl)] get => new(P + 0x69Cu); }
     // +0x11B4
-    public int field11B4
+    public int IsStickCaptured
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x11B4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x11B4u, value);
     }
-    [MethodImpl(Inl)] public int field11B4_Set(int v) => Mem.Set(P + 0x11B4u, v);
+    [MethodImpl(Inl)] public int IsStickCaptured_Set(int v) => Mem.Set(P + 0x11B4u, v);
     // +0x11B8
-    public int field11B8
+    public int IsButtonsCaptured_11B8
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x11B8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x11B8u, value);
     }
-    [MethodImpl(Inl)] public int field11B8_Set(int v) => Mem.Set(P + 0x11B8u, v);
+    [MethodImpl(Inl)] public int IsButtonsCaptured_11B8_Set(int v) => Mem.Set(P + 0x11B8u, v);
     // +0x11BC
-    public S8x28 pad11BC { [MethodImpl(Inl)] get => new(P + 0x11BCu); }
+    public S8x28 LoopSound1Handle { [MethodImpl(Inl)] get => new(P + 0x11BCu); }
     // +0x11D8
-    public int field11D8
+    public int StunTime
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x11D8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x11D8u, value);
     }
-    [MethodImpl(Inl)] public int field11D8_Set(int v) => Mem.Set(P + 0x11D8u, v);
+    [MethodImpl(Inl)] public int StunTime_Set(int v) => Mem.Set(P + 0x11D8u, v);
     // +0x11DC
-    public S8x8 pad11DC { [MethodImpl(Inl)] get => new(P + 0x11DCu); }
+    public S8x8 SlowTime { [MethodImpl(Inl)] get => new(P + 0x11DCu); }
     // +0x11E4
-    public int field11E4
+    public int EmbryoTimer
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x11E4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x11E4u, value);
     }
-    [MethodImpl(Inl)] public int field11E4_Set(int v) => Mem.Set(P + 0x11E4u, v);
+    [MethodImpl(Inl)] public int EmbryoTimer_Set(int v) => Mem.Set(P + 0x11E4u, v);
     // +0x11E8
     public RespawnCarried carried
     {
@@ -2902,64 +2902,64 @@ public readonly struct RespawnPlayer
     }
     [MethodImpl(Inl)] public uint carried__Set(uint v) => Mem.Set(P + 0x11E8u, v);
     // +0x11EC
-    public int field11EC
+    public int BurnTime_11EC
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x11ECu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x11ECu, value);
     }
-    [MethodImpl(Inl)] public int field11EC_Set(int v) => Mem.Set(P + 0x11ECu, v);
+    [MethodImpl(Inl)] public int BurnTime_11EC_Set(int v) => Mem.Set(P + 0x11ECu, v);
     // +0x11F0
     public S8x12 pad11F0 { [MethodImpl(Inl)] get => new(P + 0x11F0u); }
     // +0x11FC
-    public int field11FC
+    public int MarkerTime
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x11FCu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x11FCu, value);
     }
-    [MethodImpl(Inl)] public int field11FC_Set(int v) => Mem.Set(P + 0x11FCu, v);
+    [MethodImpl(Inl)] public int MarkerTime_Set(int v) => Mem.Set(P + 0x11FCu, v);
     // +0x1200
-    public S8x16 pad1200 { [MethodImpl(Inl)] get => new(P + 0x1200u); }
+    public S8x16 MarkerPos { [MethodImpl(Inl)] get => new(P + 0x1200u); }
     // +0x1210
-    public int field1210
+    public int IsInWeaponStance
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1210u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1210u, value);
     }
-    [MethodImpl(Inl)] public int field1210_Set(int v) => Mem.Set(P + 0x1210u, v);
+    [MethodImpl(Inl)] public int IsInWeaponStance_Set(int v) => Mem.Set(P + 0x1210u, v);
     // +0x1214
-    public S8x172 pad1214 { [MethodImpl(Inl)] get => new(P + 0x1214u); }
+    public S8x172 WeaponStanceTimer_1214 { [MethodImpl(Inl)] get => new(P + 0x1214u); }
     // +0x12C0
-    public float fade
+    public float BodyScale
     {
         [MethodImpl(Inl)] get => Mem.F32(P + 0x12C0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x12C0u, value);
     }
-    [MethodImpl(Inl)] public float fade_Set(float v) => Mem.Set(P + 0x12C0u, v);
+    [MethodImpl(Inl)] public float BodyScale_Set(float v) => Mem.Set(P + 0x12C0u, v);
     // +0x12C4
-    public S8x260 pad12C4 { [MethodImpl(Inl)] get => new(P + 0x12C4u); }
+    public S8x260 TagKillVictimPtr { [MethodImpl(Inl)] get => new(P + 0x12C4u); }
     // +0x13C8
-    public int field13C8
+    public int IsGibbed
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x13C8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x13C8u, value);
     }
-    [MethodImpl(Inl)] public int field13C8_Set(int v) => Mem.Set(P + 0x13C8u, v);
+    [MethodImpl(Inl)] public int IsGibbed_Set(int v) => Mem.Set(P + 0x13C8u, v);
     // +0x13CC
     public S8x8 pad13CC { [MethodImpl(Inl)] get => new(P + 0x13CCu); }
     // +0x13D4
-    public int field13D4
+    public int ToggleFlag_13D4
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x13D4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x13D4u, value);
     }
-    [MethodImpl(Inl)] public int field13D4_Set(int v) => Mem.Set(P + 0x13D4u, v);
+    [MethodImpl(Inl)] public int ToggleFlag_13D4_Set(int v) => Mem.Set(P + 0x13D4u, v);
     // +0x13D8
-    public int field13D8
+    public int ShockAttackerPtr
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x13D8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x13D8u, value);
     }
-    [MethodImpl(Inl)] public int field13D8_Set(int v) => Mem.Set(P + 0x13D8u, v);
+    [MethodImpl(Inl)] public int ShockAttackerPtr_Set(int v) => Mem.Set(P + 0x13D8u, v);
     // +0x13DC
     public int field13DC
     {
@@ -2968,12 +2968,12 @@ public readonly struct RespawnPlayer
     }
     [MethodImpl(Inl)] public int field13DC_Set(int v) => Mem.Set(P + 0x13DCu, v);
     // +0x13E0
-    public int field13E0
+    public int EmbryoOwnerPtr
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x13E0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x13E0u, value);
     }
-    [MethodImpl(Inl)] public int field13E0_Set(int v) => Mem.Set(P + 0x13E0u, v);
+    [MethodImpl(Inl)] public int EmbryoOwnerPtr_Set(int v) => Mem.Set(P + 0x13E0u, v);
     // +0x13E4
     public int field13E4
     {
@@ -2984,19 +2984,19 @@ public readonly struct RespawnPlayer
     // +0x13E8
     public S8x104 pad13E8 { [MethodImpl(Inl)] get => new(P + 0x13E8u); }
     // +0x1450
-    public int isBot
+    public int IsComputer
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1450u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1450u, value);
     }
-    [MethodImpl(Inl)] public int isBot_Set(int v) => Mem.Set(P + 0x1450u, v);
+    [MethodImpl(Inl)] public int IsComputer_Set(int v) => Mem.Set(P + 0x1450u, v);
     // +0x1454
-    public uint brain
+    public uint BrainPtr
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x1454u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1454u, value);
     }
-    [MethodImpl(Inl)] public uint brain_Set(uint v) => Mem.Set(P + 0x1454u, v);
+    [MethodImpl(Inl)] public uint BrainPtr_Set(uint v) => Mem.Set(P + 0x1454u, v);
 }
 
 /// <summary>struct Result_func_802165F8_de, 0x3C bytes, at a guest address.</summary>

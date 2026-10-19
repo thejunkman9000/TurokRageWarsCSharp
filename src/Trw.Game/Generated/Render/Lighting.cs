@@ -1830,9 +1830,9 @@ public static partial class Game
             uint s = Gv.LevelMgr;
             i = 0;
             sum = 0;
-            for (; (i < new SessMgr(s).count); ++i)
+            for (; (i < new SessMgr(s).PrevLoadedCellCount); ++i)
             {
-                uint n = Chunk_Get((uint)(Mem.S32(new SessMgr(s).ent[(int)(i)].p_)), 2);
+                uint n = Chunk_Get((uint)(Mem.S32(new SessMgr(s).LoadedCells[(int)(i)].p_)), 2);
                 sum = (int)((int)(sum) + new SumNode(n).val);
             }
             return sum;
@@ -1894,11 +1894,11 @@ public static partial class Game
             uint bb = 0u;
             int cnt2 = 0;
             x = new B19Vec3(p).x;
-            cnt = new B19Owner(ow).nent;
+            cnt = new B19Owner(ow).LoadedCellCount;
             z = new B19Vec3(p).z;
             for (i = 0; (i < cnt); ++i)
             {
-                b = new B19Owner(ow).ent[(int)(i)].box_;
+                b = new B19Owner(ow).LoadedCells[(int)(i)].box_;
                 if ((new B19Rng(b).x1 < x))
                 {
                     continue;
@@ -1915,7 +1915,7 @@ public static partial class Game
                 {
                     continue;
                 }
-                found = (new B19Owner(ow).ent.P + (uint)(i * 12));
+                found = (new B19Owner(ow).LoadedCells.P + (uint)(i * 12));
                 break;
             }
             if ((found == 0u))
@@ -2228,9 +2228,9 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0028C6B0_hasTbl", (uint)lv);
             int i = 0;
-            for (i = 0; (i < new Level(lv).cnt1504); ++i)
+            for (i = 0; (i < new Level(lv).LoadedCellCount); ++i)
             {
-                uint t = Chunk_Get(Mem.U32(new Level(lv).ents[(int)(i)].tblp), 2);
+                uint t = Chunk_Get(Mem.U32(new Level(lv).LoadedCells[(int)(i)].tblp), 2);
                 if ((Mem.S32((t + (uint)(1 * 4))) != 0))
                 {
                     return 1;
@@ -2320,28 +2320,28 @@ public static partial class Game
             LoopSound_StopAll(LoopSound_GetPool());
             Audio_DetachSoundSources();
             Audio_StopByFlags(4096);
-            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).unk100);
-            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).unkB8);
-            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).unkBC);
-            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).unkC0);
-            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).unkC4);
-            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).unkC8);
-            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).unkD0);
-            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).unkD4);
-            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).unkEC);
-            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).unkCC);
-            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).unkE8);
-            temp_a1 = new func_8044CBE0_S1_v2(arg0).unkF0;
+            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).PvsIndexRes);
+            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).LevelSectionIndexRes);
+            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).CollisionDataRes);
+            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).CellGridRes);
+            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).CellsIndexRes);
+            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).LevelHeaderRes);
+            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).SectionRes3_D0);
+            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).SectionRes7_D4);
+            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).LevelPathsRes);
+            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).SectionRes6_CC);
+            ResourcePool_Release((int)(0u), new func_8044CBE0_S1_v2(arg0).MatrixPoolRes);
+            temp_a1 = new func_8044CBE0_S1_v2(arg0).NavNodesRes;
             if ((temp_a1 != 0u))
             {
                 ResourcePool_Release((int)(0u), temp_a1);
             }
-            temp_a1_2 = new func_8044CBE0_S1_v2(arg0).unkF4;
+            temp_a1_2 = new func_8044CBE0_S1_v2(arg0).SectionRes10_F4;
             if ((temp_a1_2 != 0u))
             {
                 ResourcePool_Release((int)(0u), temp_a1_2);
             }
-            temp_a1_3 = new func_8044CBE0_S1_v2(arg0).unkFC;
+            temp_a1_3 = new func_8044CBE0_S1_v2(arg0).SectionRes11_FC;
             if ((temp_a1_3 != 0u))
             {
                 ResourcePool_Release((int)(0u), temp_a1_3);
@@ -2372,8 +2372,8 @@ public static partial class Game
             uint g = 0u;
             uint bits = 0u;
             int mask = 0;
-            index = new World_func_8044C108_de_v2(world).group;
-            g = Chunk_Get(Chunk_Get(Chunk_Get(new World_func_8044C108_de_v2(world).tree, 0), index), 2);
+            index = new World_func_8044C108_de_v2(world).LevelIndex;
+            g = Chunk_Get(Chunk_Get(Chunk_Get(new World_func_8044C108_de_v2(world).SaveDataPtr, 0), index), 2);
             Chunk_Get(g, 0);
             Chunk_GetSize(g, 1);
             bits = Chunk_Get(g, 1);
@@ -2405,20 +2405,20 @@ public static partial class Game
                 l2 = Chunk_Get(node, 2);
                 l3 = Chunk_Get(node, 3);
                 count = new Shape_func_802764D4_de_2(l0).field_4;
-                new World_func_8044C108_de_v2(world).verts_Set((l0 + 8u));
+                new World_func_8044C108_de_v2(world).EntityTriggerKeys_Set((l0 + 8u));
                 new World_func_8044C108_de_v2(world).faces__Set(new func_8044CD58_S2(l1).unk8.P);
-                new World_func_8044C108_de_v2(world).nfaces_Set(count);
+                new World_func_8044C108_de_v2(world).EntityTriggerCount_Set(count);
                 count = new Shape_func_802764D4_de_2(l2).field_4;
-                new World_func_8044C108_de_v2(world).edgeData_Set((l2 + 8u));
+                new World_func_8044C108_de_v2(world).RegionTriggerKeys_Set((l2 + 8u));
                 new World_func_8044C108_de_v2(world).edges__Set(new func_8044CD58_S2(l3).unk8.P);
-                new World_func_8044C108_de_v2(world).nedges_Set(count);
-                List_Init(new World_func_8044C108_de_v2(world).listA.P, 0, 4);
-                List_Init(new World_func_8044C108_de_v2(world).listB.P, 0, 4);
+                new World_func_8044C108_de_v2(world).RegionTriggerCount_Set(count);
+                List_Init(new World_func_8044C108_de_v2(world).DelayedSpawnList.P, 0, 4);
+                List_Init(new World_func_8044C108_de_v2(world).FreeSpawnNodes.P, 0, 4);
                 for (k = 0; (k < 48); ++k)
                 {
-                    List_Append_00255CB4(new World_func_8044C108_de_v2(world).listB.P, (new World_func_8044C108_de_v2(world).buckets.P + (uint)(k * 16)), default(uint), default(uint));
+                    List_Append_00255CB4(new World_func_8044C108_de_v2(world).FreeSpawnNodes.P, (new World_func_8044C108_de_v2(world).SpawnNodePool.P + (uint)(k * 16)), default(uint), default(uint));
                 }
-                n = new World_func_8044C108_de_v2(world).nfaces;
+                n = new World_func_8044C108_de_v2(world).EntityTriggerCount;
                 for (i = 0; (i < n); ++i)
                 {
                     face = (new World_func_8044C108_de_v2(world).faces_ + (uint)(i * 20));
@@ -2431,7 +2431,7 @@ public static partial class Game
                         new Face(face).flags_Set((byte)((int)(new Face(face).flags) | 240));
                     }
                 }
-                n = new World_func_8044C108_de_v2(world).nedges;
+                n = new World_func_8044C108_de_v2(world).RegionTriggerCount;
                 for (i = 0; (i < n); ++i)
                 {
                     face = (new World_func_8044C108_de_v2(world).edges_ + (uint)(i * 20));

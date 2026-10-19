@@ -1607,27 +1607,27 @@ public readonly struct Owner_func_8044D794_de
     [MethodImpl(Inl)] public static implicit operator uint(Owner_func_8044D794_de v) => v.P;
     [MethodImpl(Inl)] public static explicit operator Owner_func_8044D794_de(uint p) => new(p);
     // +0x0
-    public S8x108 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x108 LoadState { [MethodImpl(Inl)] get => new(P); }
     // +0x6C
-    public uint unk6C
+    public uint CollisionData
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x6Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x6Cu, value);
     }
-    [MethodImpl(Inl)] public uint unk6C_Set(uint v) => Mem.Set(P + 0x6Cu, v);
+    [MethodImpl(Inl)] public uint CollisionData_Set(uint v) => Mem.Set(P + 0x6Cu, v);
     // +0x70
-    public S8x12 pad70 { [MethodImpl(Inl)] get => new(P + 0x70u); }
+    public S8x12 ParticleSwooshes { [MethodImpl(Inl)] get => new(P + 0x70u); }
     // +0x7C
-    public uint unk7C
+    public uint LevelPaths
     {
         [MethodImpl(Inl)] get => Mem.U32(P + 0x7Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x7Cu, value);
     }
-    [MethodImpl(Inl)] public uint unk7C_Set(uint v) => Mem.Set(P + 0x7Cu, v);
+    [MethodImpl(Inl)] public uint LevelPaths_Set(uint v) => Mem.Set(P + 0x7Cu, v);
     // +0x80
-    public S8x4440 pad80 { [MethodImpl(Inl)] get => new(P + 0x80u); }
+    public S8x4440 SaveDataPtr { [MethodImpl(Inl)] get => new(P + 0x80u); }
     // +0x11D8
-    public Entry_func_8044D794_de active
+    public Entry_func_8044D794_de DelayedSpawnList
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x11D8u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x11D8u, value.P);
@@ -1639,9 +1639,9 @@ public readonly struct Owner_func_8044D794_de
     }
     [MethodImpl(Inl)] public uint active__Set(uint v) => Mem.Set(P + 0x11D8u, v);
     // +0x11DC
-    public S8x16 pad11DC { [MethodImpl(Inl)] get => new(P + 0x11DCu); }
+    public S8x16 DelayedSpawnOldest_11DC { [MethodImpl(Inl)] get => new(P + 0x11DCu); }
     // +0x11EC
-    public Entry_func_8044D794_de spare
+    public Entry_func_8044D794_de FreeSpawnNodes
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x11ECu));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x11ECu, value.P);
@@ -3162,14 +3162,14 @@ public readonly struct P4Mgr
     // +0x0
     public U8x3152 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0xC50
-    public U32x128 list { [MethodImpl(Inl)] get => new(P + 0xC50u); }
+    public U32x128 Actors { [MethodImpl(Inl)] get => new(P + 0xC50u); }
     // +0xE50
-    public int count
+    public int ActorCount
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xE50u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xE50u, value);
     }
-    [MethodImpl(Inl)] public int count_Set(int v) => Mem.Set(P + 0xE50u, v);
+    [MethodImpl(Inl)] public int ActorCount_Set(int v) => Mem.Set(P + 0xE50u, v);
 }
 
 /// <summary>struct P4Mgr2, 0x144 bytes, at a guest address.</summary>
@@ -3186,7 +3186,7 @@ public readonly struct P4Mgr2
     // +0x0
     public U8x312 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x138
-    public P4Ent2 ents
+    public P4Ent2 Entities
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x138u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x138u, value.P);
@@ -3198,19 +3198,19 @@ public readonly struct P4Mgr2
     }
     [MethodImpl(Inl)] public uint ents__Set(uint v) => Mem.Set(P + 0x138u, v);
     // +0x13C
-    public int start
+    public int PlayerEntityCount
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x13Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x13Cu, value);
     }
-    [MethodImpl(Inl)] public int start_Set(int v) => Mem.Set(P + 0x13Cu, v);
+    [MethodImpl(Inl)] public int PlayerEntityCount_Set(int v) => Mem.Set(P + 0x13Cu, v);
     // +0x140
-    public int end
+    public int EntityCount
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x140u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x140u, value);
     }
-    [MethodImpl(Inl)] public int end_Set(int v) => Mem.Set(P + 0x140u, v);
+    [MethodImpl(Inl)] public int EntityCount_Set(int v) => Mem.Set(P + 0x140u, v);
 }
 
 /// <summary>struct P4Mgr5, 0x11DC bytes, at a guest address.</summary>
@@ -3227,7 +3227,7 @@ public readonly struct P4Mgr5
     // +0x0
     public U8x4568 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x11D8
-    public P4LNode head
+    public P4LNode DelayedSpawnList
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x11D8u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x11D8u, value.P);
@@ -3372,7 +3372,7 @@ public readonly struct P4Obj94
     // +0x0
     public U8x148 pad { [MethodImpl(Inl)] get => new(P); }
     // +0x94
-    public P4Tbl94 t
+    public P4Tbl94 ObjectTypeIds
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x94u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x94u, value.P);
@@ -3438,25 +3438,25 @@ public readonly struct P4Owner
     // +0x0
     public U8x36 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x24
-    public int f24
+    public int ObjectsIndexKey
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x24u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x24u, value);
     }
-    [MethodImpl(Inl)] public int f24_Set(int v) => Mem.Set(P + 0x24u, v);
+    [MethodImpl(Inl)] public int ObjectsIndexKey_Set(int v) => Mem.Set(P + 0x24u, v);
     // +0x28
     public U8x44 pad28 { [MethodImpl(Inl)] get => new(P + 0x28u); }
     // +0x54
-    public int f54
+    public int ObjectsIndex
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x54u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x54u, value);
     }
-    [MethodImpl(Inl)] public int f54_Set(int v) => Mem.Set(P + 0x54u, v);
+    [MethodImpl(Inl)] public int ObjectsIndex_Set(int v) => Mem.Set(P + 0x54u, v);
     // +0x58
     public U8x60 pad58 { [MethodImpl(Inl)] get => new(P + 0x58u); }
     // +0x94
-    public P4IdTbl tbl
+    public P4IdTbl ObjectTypeIds
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x94u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x94u, value.P);
@@ -3510,21 +3510,21 @@ public readonly struct P4Rsrc
     // +0x0
     public U8x136 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x88
-    public int f88
+    public int StaticPropCache
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x88u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x88u, value);
     }
-    [MethodImpl(Inl)] public int f88_Set(int v) => Mem.Set(P + 0x88u, v);
+    [MethodImpl(Inl)] public int StaticPropCache_Set(int v) => Mem.Set(P + 0x88u, v);
     // +0x8C
     public U8x108 pad8c { [MethodImpl(Inl)] get => new(P + 0x8Cu); }
     // +0xF8
-    public int fF8
+    public int StaticPropBlob
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0xF8u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0xF8u, value);
     }
-    [MethodImpl(Inl)] public int fF8_Set(int v) => Mem.Set(P + 0xF8u, v);
+    [MethodImpl(Inl)] public int StaticPropBlob_Set(int v) => Mem.Set(P + 0xF8u, v);
 }
 
 /// <summary>struct P4SList, 0x2E4 bytes, at a guest address.</summary>
@@ -3641,7 +3641,7 @@ public readonly struct P4SlotTbl
     // +0x0
     public U8x28 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x1C
-    public P4SlotEntx64 ent { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
+    public P4SlotEntx64 ClassTable { [MethodImpl(Inl)] get => new(P + 0x1Cu); }
 }
 
 /// <summary>struct P4Sub, 0xE bytes, at a guest address.</summary>

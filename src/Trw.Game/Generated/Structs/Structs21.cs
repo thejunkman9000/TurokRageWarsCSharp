@@ -5035,7 +5035,7 @@ public readonly struct Obj_v3
     // +0x0
     public U8x160 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0xA0
-    public S32Ptr unkA0
+    public S32Ptr DynamicLights
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0xA0u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0xA0u, value.P);
@@ -5062,7 +5062,7 @@ public readonly struct Obj_v4
     // +0x0
     public U8x164 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0xA4
-    public S32Ptr unkA4
+    public S32Ptr Curves
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0xA4u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0xA4u, value.P);
@@ -5163,7 +5163,7 @@ public readonly struct Obj_v7
     // +0x0
     public U8x172 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0xAC
-    public S32Ptr unkAC
+    public S32Ptr Rumbles
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0xACu));
         [MethodImpl(Inl)] set => Mem.Set(P + 0xACu, value.P);

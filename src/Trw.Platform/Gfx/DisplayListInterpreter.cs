@@ -693,7 +693,7 @@ public sealed class DisplayListInterpreter
     /// <summary>HUD tagging hook (presentation only; null = off, the default, which leaves the command stream exactly as before). Called with the RDRAM
     /// address of every projection-matrix G_MTX; returns the tag the following draws get in <see cref="DrawCommand.Hud"/> (0 = not HUD) with an object they
     /// carry in <see cref="DrawCommand.HudData"/>, or null to keep the current tag. A tag change flushes the batch, so with the hook installed the stream may
-    /// be split into more commands (the oracle runs without it). Trw.Game/Hud/HudTagger.cs: the game's HUD (func_0022A37C -> func_0023941C) loads the view's
+    /// be split into more commands (the oracle runs without it). Trw.Game/Hud/HudTagger.cs: the game's HUD (Hud_DrawView2D -> Camera_LoadProjection2D) loads the view's
     /// 2D projection at camera + 0x448 (+0x40 per frame parity); the next view's world pass loads camera + 0x380.</summary>
     public static Func<uint, (int Tag, object? Data)?>? HudMarker;
     private int hudTag;

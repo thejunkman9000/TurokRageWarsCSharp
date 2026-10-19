@@ -205,58 +205,58 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00208000", (uint)ctl);
             int i = 0;
             int m1 = 0;
-            new B2Ctl(ctl).unk4_Set((-1));
-            new B2Ctl(ctl).unk8_Set((-1));
-            new B2Ctl(ctl).unkC_Set(11);
-            new B2Ctl(ctl).unk10_Set((-1));
-            new B2Ctl(ctl).v2C.x_Set((float)(0));
-            new B2Ctl(ctl).v2C.y_Set((float)(0));
-            new B2Ctl(ctl).v2C.z_Set((float)(0));
+            new B2Ctl(ctl).CurrentNode_Set((-1));
+            new B2Ctl(ctl).PreviousNode_Set((-1));
+            new B2Ctl(ctl).GoalNode_Set(11);
+            new B2Ctl(ctl).LastTargetNode_Set((-1));
+            new B2Ctl(ctl).MoveTarget.x_Set((float)(0));
+            new B2Ctl(ctl).MoveTarget.y_Set((float)(0));
+            new B2Ctl(ctl).MoveTarget.z_Set((float)(0));
             m1 = (-1);
             for (i = 3; (i >= 0); --i)
             {
-                new B2Ctl(ctl).q.Set((int)(i), m1);
+                new B2Ctl(ctl).PathNodes.Set((int)(i), m1);
             }
-            new B2Ctl(ctl).unk28_Set((-1));
-            new B2Ctl(ctl).unk1BC_Set(65535);
-            new B2Ctl(ctl).unk220_Set(0);
-            new B2Ctl(ctl).unk1C8_Set(0);
-            new B2Ctl(ctl).unk38_Set(1);
-            new B2Ctl(ctl).a3C.Set((int)(0), 0u);
+            new B2Ctl(ctl).PlannedGoalNode_Set((-1));
+            new B2Ctl(ctl).BranchStep_Set(65535);
+            new B2Ctl(ctl).ThinkStep_Set(0);
+            new B2Ctl(ctl).BranchEdgeCount_Set(0);
+            new B2Ctl(ctl).EnemyCount_Set(1);
+            new B2Ctl(ctl).EnemyPtrs.Set((int)(0), 0u);
             new B2Ctl(ctl).target__Set(0u);
-            new B2Ctl(ctl).unk28C_Set(0);
+            new B2Ctl(ctl).PreferredTargetPtr_28C_Set(0);
             new B2Ctl(ctl).unk68__Set(0u);
-            new B2Ctl(ctl).unkBC_Set((-1));
-            new B2Ctl(ctl).unk224_Set((-1));
-            new B2Ctl(ctl).unk228_Set(0);
+            new B2Ctl(ctl).WantedItemKind_Set((-1));
+            new B2Ctl(ctl).RoamPathId_Set((-1));
+            new B2Ctl(ctl).RoamPathPoint_Set(0);
             for (i = 0; (i < 10); ++i)
             {
-                new B2Ctl(ctl).a3C.Set((int)(i), 0u);
-                new B2Ctl(ctl).a6C.Set((int)(i), 0);
-                new B2Ctl(ctl).a94.Set((int)(i), 0);
+                new B2Ctl(ctl).EnemyPtrs.Set((int)(i), 0u);
+                new B2Ctl(ctl).EnemyVisibleFlags.Set((int)(i), 0);
+                new B2Ctl(ctl).EnemyDistances.Set((int)(i), 0);
             }
-            new B2Ctl(ctl).unk238_Set(0);
+            new B2Ctl(ctl).IsFollowTargetReached_238_Set(0);
             Ai_SetStateTable(ctl, 0x800CE040u);
             Ai_SetState(ctl, 2);
-            new B2Ctl(ctl).unk244_Set((float)(0));
-            new B2Ctl(ctl).unk23C_Set(0);
-            new B2Ctl(ctl).unk240_Set(0);
-            new B2Ctl(ctl).unk250_Set(new B2Ctl(ctl).unk254_Set(new B2Ctl(ctl).unk248_Set(new B2Ctl(ctl).unk24C_Set(new B2Ctl(ctl).v258.x_Set(new B2Ctl(ctl).v258.y_Set(new B2Ctl(ctl).v258.z_Set(new B2Ctl(ctl).unk244)))))));
+            new B2Ctl(ctl).AimWobble_Set((float)(0));
+            new B2Ctl(ctl).IsFireRequested_Set(0);
+            new B2Ctl(ctl).SecondaryFireTicks_240_Set(0);
+            new B2Ctl(ctl).LobPitchOffset_250_Set(new B2Ctl(ctl).LobPitchOffsetAlt_254_Set(new B2Ctl(ctl).AimPitch_Set(new B2Ctl(ctl).AimPitchAlt_Set(new B2Ctl(ctl).AimPoint.x_Set(new B2Ctl(ctl).AimPoint.y_Set(new B2Ctl(ctl).AimPoint.z_Set(new B2Ctl(ctl).AimWobble)))))));
             Ai_ResetProbes(ctl);
             Ai_ResetRouteBias(ctl);
             Ai_ClearMoveFlags(ctl);
-            new B2Ctl(ctl).unk318_Set(0);
-            new B2Ctl(ctl).unk31C_Set(0);
-            new B2Ctl(ctl).unk320_Set((-1));
-            new B2Ctl(ctl).unk324_Set(0);
-            new B2Ctl(ctl).unk328_Set(0);
-            new B2Ctl(ctl).unk2D8_Set(0);
-            new B2Ctl(ctl).unk2E4_Set(0);
-            new B2Ctl(ctl).unk2EC_Set(0);
-            new B2Ctl(ctl).unk2E8_Set(0);
-            new B2Ctl(ctl).unk2DC_Set(0);
-            new B2Ctl(ctl).unk2E0_Set(0);
-            new B2Ctl(ctl).unk32C_Set((-1));
+            new B2Ctl(ctl).LosCheckCounter_Set(0);
+            new B2Ctl(ctl).IsTargetInSight_Set(0);
+            new B2Ctl(ctl).JumpCooldown_Set((-1));
+            new B2Ctl(ctl).AttackerTimer_Set(0);
+            new B2Ctl(ctl).LastAttackerPtr_Set(0);
+            new B2Ctl(ctl).StrafeTimer_Set(0);
+            new B2Ctl(ctl).FireDelay_Set(0);
+            new B2Ctl(ctl).BurstCooldown_Set(0);
+            new B2Ctl(ctl).ShotsRemaining_Set(0);
+            new B2Ctl(ctl).StrafeDir_Set(0);
+            new B2Ctl(ctl).EngageDistSq_Set(0);
+            new B2Ctl(ctl).CurrentEdgeId_Set((-1));
         }
     }
 
@@ -273,25 +273,25 @@ public static partial class Game
             int t = 0;
             uint o = 0u;
             uint g = 0u;
-            if (!((new B2Ctl(ctl).owner.unk1450 != 0))) goto _f0;
-            if (!((new B2Ctl(ctl).unk8 == (-1)))) goto _f1;
+            if (!((new B2Ctl(ctl).OwnerPtr.IsComputer != 0))) goto _f0;
+            if (!((new B2Ctl(ctl).PreviousNode == (-1)))) goto _f1;
             if (!((ctl != 0u))) goto _f2;
-            new B2Ctl(ctl).unk8_Set(new B2Ctl(ctl).unk4);
+            new B2Ctl(ctl).PreviousNode_Set(new B2Ctl(ctl).CurrentNode);
             goto _f3;
             _f2: ;
-            new B2Ctl(ctl).unk8_Set(new B2Ctl(ctl).unk4);
+            new B2Ctl(ctl).PreviousNode_Set(new B2Ctl(ctl).CurrentNode);
             _f3: ;
             _f1: ;
             Ai_ComputeAimPitch(ctl, default(uint), default(uint), default(uint));
-            if (!((new B2Ctl(ctl).cur.upd != 0u))) goto _f4;
-            Funcs.CallReg(new B2Ctl(ctl).cur.upd, new B2Ctl(ctl).owner_, (uint)(0), 0u, 0u);
+            if (!((new B2Ctl(ctl).CurStateEntryPtr.upd != 0u))) goto _f4;
+            Funcs.CallReg(new B2Ctl(ctl).CurStateEntryPtr.upd, new B2Ctl(ctl).owner_, (uint)(0), 0u, 0u);
             _f4: ;
-            if (!((new B2Ctl(ctl).unk324 > 0))) goto _f5;
-            new B2Ctl(ctl).unk324_Set((int)(new B2Ctl(ctl).unk324 - 1));
+            if (!((new B2Ctl(ctl).AttackerTimer > 0))) goto _f5;
+            new B2Ctl(ctl).AttackerTimer_Set((int)(new B2Ctl(ctl).AttackerTimer - 1));
             _f5: ;
-            if (!(((int)(new B2Ctl(ctl).owner.stats.unk94) != 0))) goto _f6;
-            t = (int)(new B2Ctl(ctl).owner.stats.unk80);
-            s0 = (new B2Ctl(ctl).owner.unk5E4 >> (int)8);
+            if (!(((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk94) != 0))) goto _f6;
+            t = (int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk80);
+            s0 = (new B2Ctl(ctl).OwnerPtr.Health >> (int)8);
             if (!((t == 11))) goto _f7;
             goto L_big;
             _f7: ;
@@ -313,7 +313,7 @@ public static partial class Game
             _f11: ;
             _f9: ;
             fs = (((float)(s0) / (float)(v)) * Mem.F32(0x800C6CA0u));
-            if (!(((int)(new B2Ctl(ctl).owner.stats.unk80) == 14))) goto _f14;
+            if (!(((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk80) == 14))) goto _f14;
             if (!((fs == 0.0f))) goto _f15;
             fs = (float)(((3 - Mem.S32(0x8014693Cu)) * 33));
             goto _f16;
@@ -327,21 +327,21 @@ public static partial class Game
             _f14: ;
             g = Gv.Settings_MatchRules;
             if (!((new B2GameFlags(g).unk98 != 0))) goto _f18;
-            if (!(((int)(new B2Ctl(ctl).owner.stats.unk80) == 11))) goto _f19;
+            if (!(((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk80) == 11))) goto _f19;
             BossBar_SetPercent1(0x8013B7B8u, (int)((float)(new B2GameFlags(g).unkA0)));
             if (!((new B2GameFlags(g).unkA4 > 0))) goto _f20;
             new B2GameFlags(g).unkA4_Set((int)(new B2GameFlags(g).unkA4 - 1));
             Pad_ClearPlayerInput((new B2Ctl(ctl).owner_ + (uint)1672));
-            new B2Ctl(ctl).unk23C_Set(0);
-            new B2Ctl(ctl).unk240_Set(0);
+            new B2Ctl(ctl).IsFireRequested_Set(0);
+            new B2Ctl(ctl).SecondaryFireTicks_240_Set(0);
             _f20: ;
-            if (!(((new B2GameFlags(g).unkA4 == 0) && (new B2Ctl(ctl).owner.unk5E4 > 0)))) goto _f21;
+            if (!(((new B2GameFlags(g).unkA4 == 0) && (new B2Ctl(ctl).OwnerPtr.Health > 0)))) goto _f21;
             new B2GameFlags(g).unkA0_Set(100);
             new B2GameFlags(g).unkA4_Set((-1));
             Player_SetState(new B2Ctl(ctl).owner_, (int)(new B2Ctl(ctl).owner_), 2);
             _f21: ;
             _f19: ;
-            if (!(((int)(new B2Ctl(ctl).owner.stats.unk94) == 1))) goto _f22;
+            if (!(((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk94) == 1))) goto _f22;
             BossBar_SetPercent1(0x8013B7B8u, (int)(fs));
             goto _f23;
             _f22: ;
@@ -350,8 +350,8 @@ public static partial class Game
             _f18: ;
             _f6: ;
             o = new B2Ctl(ctl).owner_;
-            if (!(((int)(new B2Actor(o).unk650) == 18))) goto _f24;
-            new B2Actor(o).unk1340_Set((int)(new B2Actor(o).unk1340 + 1));
+            if (!(((int)(new B2Actor(o).StateId) == 18))) goto _f24;
+            new B2Actor(o).DeadTime_Set((int)(new B2Actor(o).DeadTime + 1));
             Ai_CheckRespawn(ctl);
             _f24: ;
             _f0: ;
@@ -391,17 +391,17 @@ public static partial class Game
                 uint t = 0u;
                 uint m = Gv.AiNavGraph;
                 o = new B2Ctl(ctl).owner_;
-                if (((new B2Ctl(ctl).unkC != (-1)) && (C.Seq((object?)(C.Seq((object?)(C.Seq((object?)(C.Seq((object?)(C.Seq((object?)(new B2Ctl(ctl).unk300_Set(0)), new B2Ctl(ctl).unk310_Set(0))), new B2Ctl(ctl).unk304_Set(0))), new B2Ctl(ctl).unk308_Set(0))), new B2Ctl(ctl).unk30C_Set(0))), ((new B2Ctl(ctl).q[(int)(0)] != (-1)) ? 1 : 0)) != 0)))
+                if (((new B2Ctl(ctl).GoalNode != (-1)) && (C.Seq((object?)(C.Seq((object?)(C.Seq((object?)(C.Seq((object?)(C.Seq((object?)(new B2Ctl(ctl).HasNoPath_Set(0)), new B2Ctl(ctl).IsMoveHalted_Set(0))), new B2Ctl(ctl).IsSwimNode_304_Set(0))), new B2Ctl(ctl).IsOnJumpEdge_Set(0))), new B2Ctl(ctl).IsOnEdgeKind4_30C_Set(0))), ((new B2Ctl(ctl).PathNodes[(int)(0)] != (-1)) ? 1 : 0)) != 0)))
                 {
-                    cur = AiNav_GetNode(m, new B2Ctl(ctl).q[(int)(0)]);
-                    self = new B2Ctl(ctl).owner.pos.P;
+                    cur = AiNav_GetNode(m, new B2Ctl(ctl).PathNodes[(int)(0)]);
+                    self = new B2Ctl(ctl).OwnerPtr.Position.P;
                     dist = Vec_Distance(self, cur);
-                    new B2Ctl(ctl).unk304_Set((((Mem.U32((cur + (uint)12)) & (uint)(3145728)) != (uint)(0)) ? 1 : 0));
-                    from = new B2Ctl(ctl).q[(int)(0)];
-                    v = new B2Ctl(ctl).unk4;
+                    new B2Ctl(ctl).IsSwimNode_304_Set((((Mem.U32((cur + (uint)12)) & (uint)(3145728)) != (uint)(0)) ? 1 : 0));
+                    from = new B2Ctl(ctl).PathNodes[(int)(0)];
+                    v = new B2Ctl(ctl).CurrentNode;
                     if ((from == v))
                     {
-                        edge = AiNav_FindEdge(m, new B2Ctl(ctl).unk8, from);
+                        edge = AiNav_FindEdge(m, new B2Ctl(ctl).PreviousNode, from);
                     }
                     else
                     {
@@ -412,112 +412,112 @@ public static partial class Game
                         e = AiNav_GetEdge(m, edge);
                         if (((int)(new B2Edge(e).kind) == 4))
                         {
-                            new B2Ctl(ctl).unk30C_Set(1);
+                            new B2Ctl(ctl).IsOnEdgeKind4_30C_Set(1);
                         }
                         if (((int)(new B2Edge(e).kind) == 8))
                         {
-                            Vec_Distance(self, AiNav_GetNode(m, new B2Ctl(ctl).unk4));
-                            tgt = AiNav_GetNode(m, new B2Ctl(ctl).q[(int)(0)]);
-                            new B2Ctl(ctl).unk308_Set(1);
-                            if ((edge != new B2Ctl(ctl).unk32C))
+                            Vec_Distance(self, AiNav_GetNode(m, new B2Ctl(ctl).CurrentNode));
+                            tgt = AiNav_GetNode(m, new B2Ctl(ctl).PathNodes[(int)(0)]);
+                            new B2Ctl(ctl).IsOnJumpEdge_Set(1);
+                            if ((edge != new B2Ctl(ctl).CurrentEdgeId))
                             {
-                                new B2Ctl(ctl).unk314_Set(0);
-                                new B2Ctl(ctl).unk32C_Set(edge);
+                                new B2Ctl(ctl).EdgeStep_Set(0);
+                                new B2Ctl(ctl).CurrentEdgeId_Set(edge);
                             }
-                            if ((new B2Ctl(ctl).unk314 == 0))
+                            if ((new B2Ctl(ctl).EdgeStep == 0))
                             {
-                                cur2 = AiNav_GetNode(m, new B2Ctl(ctl).unk4);
+                                cur2 = AiNav_GetNode(m, new B2Ctl(ctl).CurrentNode);
                                 Vec_Sub(_fp, self, cur2);
                                 if ((sqrtf(((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).z * new Vec3f(_fp).z))) < Mem.F32(0x800C6CA8u)))
                                 {
-                                    new B2Ctl(ctl).unk314_Set(1);
+                                    new B2Ctl(ctl).EdgeStep_Set(1);
                                 }
                                 else
                                 {
-                                    Mem.Copy(new B2Ctl(ctl).v2C.P, cur2, 12);
+                                    Mem.Copy(new B2Ctl(ctl).MoveTarget.P, cur2, 12);
                                     return;
                                 }
                             }
-                            if ((new B2Ctl(ctl).unk314 == 1))
+                            if ((new B2Ctl(ctl).EdgeStep == 1))
                             {
-                                Mem.Copy(new B2Ctl(ctl).v2C.P, tgt, 12);
-                                w = Ai_TurnTowardPoint(ctl, new B2Ctl(ctl).v2C.P, 2.0f, 0.0f);
+                                Mem.Copy(new B2Ctl(ctl).MoveTarget.P, tgt, 12);
+                                w = Ai_TurnTowardPoint(ctl, new B2Ctl(ctl).MoveTarget.P, 2.0f, 0.0f);
                                 if ((((w < 0.0f) ? ((Mem.F32(0x800C6CACu) < (-w)) ? 1 : 0) : ((Mem.F32(0x800C6CB0u) < w) ? 1 : 0)) != 0))
                                 {
-                                    new B2Ctl(ctl).unk310_Set(1);
+                                    new B2Ctl(ctl).IsMoveHalted_Set(1);
                                     return;
                                 }
-                                new B2Ctl(ctl).unk314_Set(2);
+                                new B2Ctl(ctl).EdgeStep_Set(2);
                             }
-                            if ((new B2Ctl(ctl).unk314 == 2))
+                            if ((new B2Ctl(ctl).EdgeStep == 2))
                             {
-                                Mem.Copy(new B2Ctl(ctl).v2C.P, tgt, 12);
-                                new B2Ctl(ctl).unk314_Set(3);
+                                Mem.Copy(new B2Ctl(ctl).MoveTarget.P, tgt, 12);
+                                new B2Ctl(ctl).EdgeStep_Set(3);
                                 return;
                             }
-                            if ((new B2Ctl(ctl).unk314 == 3))
+                            if ((new B2Ctl(ctl).EdgeStep == 3))
                             {
-                                Mem.Copy(new B2Ctl(ctl).v2C.P, tgt, 12);
-                                new B2Ctl(ctl).unk314_Set(4);
+                                Mem.Copy(new B2Ctl(ctl).MoveTarget.P, tgt, 12);
+                                new B2Ctl(ctl).EdgeStep_Set(4);
                                 return;
                             }
-                            if ((new B2Ctl(ctl).unk314 == 4))
+                            if ((new B2Ctl(ctl).EdgeStep == 4))
                             {
-                                Mem.Copy(new B2Ctl(ctl).v2C.P, tgt, 12);
-                                new B2Ctl(ctl).unk314_Set(5);
+                                Mem.Copy(new B2Ctl(ctl).MoveTarget.P, tgt, 12);
+                                new B2Ctl(ctl).EdgeStep_Set(5);
                                 return;
                             }
-                            if ((new B2Ctl(ctl).unk314 == 5))
+                            if ((new B2Ctl(ctl).EdgeStep == 5))
                             {
-                                Mem.Copy(new B2Ctl(ctl).v2C.P, tgt, 12);
-                                new B2Actor(o).unk6B0_Set((uint)((uint)(new B2Actor(o).unk6B0) | (uint)(16)));
-                                new B2Ctl(ctl).unk314_Set(6);
+                                Mem.Copy(new B2Ctl(ctl).MoveTarget.P, tgt, 12);
+                                new B2Actor(o).ButtonsPressed_Set((uint)((uint)(new B2Actor(o).ButtonsPressed) | (uint)(16)));
+                                new B2Ctl(ctl).EdgeStep_Set(6);
                                 return;
                             }
-                            if ((new B2Ctl(ctl).unk314 == 6))
+                            if ((new B2Ctl(ctl).EdgeStep == 6))
                             {
-                                fl = (int)(new B2Ctl(ctl).owner.flags38);
+                                fl = (int)(new B2Ctl(ctl).OwnerPtr.GroundFlags);
                                 f1 = (fl & 8192);
                                 f2 = (fl & 4096);
                                 if (((f1 != 0) || (f2 != 0)))
                                 {
-                                    new B2Ctl(ctl).unk314_Set(2);
+                                    new B2Ctl(ctl).EdgeStep_Set(2);
                                 }
-                                Mem.Copy(new B2Ctl(ctl).v2C.P, tgt, 12);
+                                Mem.Copy(new B2Ctl(ctl).MoveTarget.P, tgt, 12);
                             }
                         }
                         else
                         {
                             if (((int)(new B2Edge(e).kind) == 5))
                             {
-                                if ((new B2Ctl(ctl).unk314 == 0))
+                                if ((new B2Ctl(ctl).EdgeStep == 0))
                                 {
-                                    p = AiNav_GetNode(m, new B2Ctl(ctl).unk4);
+                                    p = AiNav_GetNode(m, new B2Ctl(ctl).CurrentNode);
                                     if ((Vec_Distance(self, p) < Mem.F32(0x800C6CB4u)))
                                     {
-                                        new B2Ctl(ctl).unk314_Set(1);
+                                        new B2Ctl(ctl).EdgeStep_Set(1);
                                     }
                                     else
                                     {
-                                        Mem.Copy(new B2Ctl(ctl).v2C.P, p, 12);
+                                        Mem.Copy(new B2Ctl(ctl).MoveTarget.P, p, 12);
                                         return;
                                     }
                                 }
-                                st = new B2Ctl(ctl).unk314;
+                                st = new B2Ctl(ctl).EdgeStep;
                                 if ((st == 1))
                                 {
-                                    n = AiNav_FindSearchNode(m, new B2Ctl(ctl).unk4);
+                                    n = AiNav_FindSearchNode(m, new B2Ctl(ctl).CurrentNode);
                                     if ((Vec_Distance(new B2Node(n).unk40.Position.P, new B2Node(n).v44.P) < Mem.F32(0x800C6CB8u)))
                                     {
-                                        Mem.Copy(new B2Ctl(ctl).v2C.P, new B2Node(n).unk40.Position.P, 12);
-                                        new B2Actor(o).unk6B0_Set((uint)((uint)(new B2Actor(o).unk6B0) | (uint)(16)));
-                                        new B2Ctl(ctl).unk314_Set(2);
+                                        Mem.Copy(new B2Ctl(ctl).MoveTarget.P, new B2Node(n).unk40.Position.P, 12);
+                                        new B2Actor(o).ButtonsPressed_Set((uint)((uint)(new B2Actor(o).ButtonsPressed) | (uint)(16)));
+                                        new B2Ctl(ctl).EdgeStep_Set(2);
                                         return;
                                     }
-                                    Mem.Copy(new B2Ctl(ctl).v2C.P, new B2Node(n).v44.P, 12);
-                                    new B2Ctl(ctl).unk310_Set(st);
+                                    Mem.Copy(new B2Ctl(ctl).MoveTarget.P, new B2Node(n).v44.P, 12);
+                                    new B2Ctl(ctl).IsMoveHalted_Set(st);
                                 }
-                                if ((new B2Ctl(ctl).unk314 == 2))
+                                if ((new B2Ctl(ctl).EdgeStep == 2))
                                 {
                                     flag = 0;
                                     t = (uint)(Actor_GetStandingObject(new B2Ctl(ctl).owner_));
@@ -525,19 +525,19 @@ public static partial class Game
                                     {
                                         flag = ((Mem.S32(new B2T(t).p18_) == 2) ? 1 : 0);
                                     }
-                                    Vec_Sub(_fp, self, new B2Node(AiNav_FindSearchNode(m, new B2Ctl(ctl).unk4)).unk40.Position.P);
+                                    Vec_Sub(_fp, self, new B2Node(AiNav_FindSearchNode(m, new B2Ctl(ctl).CurrentNode)).unk40.Position.P);
                                     len = sqrtf(((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).z * new Vec3f(_fp).z)));
                                     if (((flag != 0) && (len < Mem.F32(0x800C6CBCu))))
                                     {
-                                        new B2Ctl(ctl).unk314_Set(3);
+                                        new B2Ctl(ctl).EdgeStep_Set(3);
                                     }
                                     else
                                     {
-                                        Mem.Copy(new B2Ctl(ctl).v2C.P, new B2Node(AiNav_FindSearchNode(m, new B2Ctl(ctl).unk4)).unk40.Position.P, 12);
+                                        Mem.Copy(new B2Ctl(ctl).MoveTarget.P, new B2Node(AiNav_FindSearchNode(m, new B2Ctl(ctl).CurrentNode)).unk40.Position.P, 12);
                                         return;
                                     }
                                 }
-                                if ((new B2Ctl(ctl).unk314 == 3))
+                                if ((new B2Ctl(ctl).EdgeStep == 3))
                                 {
                                     flag = 0;
                                     t = (uint)(Actor_GetStandingObject(new B2Ctl(ctl).owner_));
@@ -547,34 +547,34 @@ public static partial class Game
                                     }
                                     if ((flag == 0))
                                     {
-                                        new B2Ctl(ctl).unk314_Set(0);
+                                        new B2Ctl(ctl).EdgeStep_Set(0);
                                     }
-                                    cur = AiNav_GetNode(m, new B2Ctl(ctl).q[(int)(0)]);
-                                    n = AiNav_FindSearchNode(m, new B2Ctl(ctl).q[(int)(0)]);
+                                    cur = AiNav_GetNode(m, new B2Ctl(ctl).PathNodes[(int)(0)]);
+                                    n = AiNav_FindSearchNode(m, new B2Ctl(ctl).PathNodes[(int)(0)]);
                                     if ((Vec_Distance(new B2Node(n).unk40.Position.P, new B2Node(n).v44.P) < Mem.F32(0x800C6CC0u)))
                                     {
-                                        Mem.Copy(new B2Ctl(ctl).v2C.P, cur, 12);
-                                        new B2Actor(o).unk6B0_Set((uint)((uint)(new B2Actor(o).unk6B0) | (uint)(16)));
+                                        Mem.Copy(new B2Ctl(ctl).MoveTarget.P, cur, 12);
+                                        new B2Actor(o).ButtonsPressed_Set((uint)((uint)(new B2Actor(o).ButtonsPressed) | (uint)(16)));
                                     }
                                     else
                                     {
-                                        Mem.Copy(new B2Ctl(ctl).v2C.P, cur, 12);
-                                        new B2Ctl(ctl).unk310_Set(1);
+                                        Mem.Copy(new B2Ctl(ctl).MoveTarget.P, cur, 12);
+                                        new B2Ctl(ctl).IsMoveHalted_Set(1);
                                         return;
                                     }
                                 }
                             }
                             else
                             {
-                                new B2Ctl(ctl).unk314_Set(0);
+                                new B2Ctl(ctl).EdgeStep_Set(0);
                             }
                         }
                     }
                     else
                     {
-                        new B2Ctl(ctl).unk314_Set(0);
+                        new B2Ctl(ctl).EdgeStep_Set(0);
                     }
-                    if ((new B2Ctl(ctl).q[(int)(1)] == (-1)))
+                    if ((new B2Ctl(ctl).PathNodes[(int)(1)] == (-1)))
                     {
                         lim = Mem.F32(0x800C6CC8u);
                     }
@@ -586,7 +586,7 @@ public static partial class Game
                             lim = Mem.F32(0x800C6CC8u);
                         }
                     }
-                    if (((dist < lim) && (new B2Ctl(ctl).unk4 == new B2Ctl(ctl).q[(int)(0)])))
+                    if (((dist < lim) && (new B2Ctl(ctl).CurrentNode == new B2Ctl(ctl).PathNodes[(int)(0)])))
                     {
                         if ((Ai_PopPathNode(ctl) == 0))
                         {
@@ -596,18 +596,18 @@ public static partial class Game
                 }
                 else
                 {
-                    new B2Ctl(ctl).unk300_Set(1);
+                    new B2Ctl(ctl).HasNoPath_Set(1);
                     return;
                 }
-                if ((new B2Ctl(ctl).q[(int)(0)] != (-1)))
+                if ((new B2Ctl(ctl).PathNodes[(int)(0)] != (-1)))
                 {
-                    cur = AiNav_GetNode(m, new B2Ctl(ctl).q[(int)(0)]);
+                    cur = AiNav_GetNode(m, new B2Ctl(ctl).PathNodes[(int)(0)]);
                     if ((((int)(Mem.U16((cur + (uint)12))) & 2) != 0))
                     {
-                        Mem.Copy(new B2Ctl(ctl).v2C.P, new B2Ctl(ctl).dst1B0.P, 12);
+                        Mem.Copy(new B2Ctl(ctl).MoveTarget.P, new B2Ctl(ctl).BranchPoint.P, 12);
                         return;
                     }
-                    Mem.Copy(new B2Ctl(ctl).v2C.P, cur, 12);
+                    Mem.Copy(new B2Ctl(ctl).MoveTarget.P, cur, 12);
                 }
             }
         }
@@ -649,14 +649,14 @@ public static partial class Game
                 float ang2 = 0f;
                 uint op = 0u;
                 uint m = 0u;
-                if ((new B2Ctl(ctl).unk300 == 0))
+                if ((new B2Ctl(ctl).HasNoPath == 0))
                 {
-                    ctlp = new B2Ctl(ctl).v2C.P;
-                    op = new B2Ctl(ctl).owner.pos.P;
+                    ctlp = new B2Ctl(ctl).MoveTarget.P;
+                    op = new B2Ctl(ctl).OwnerPtr.Position.P;
                     o = new B2Ctl(ctl).owner_;
-                    f2 = (int)((new B2Actor(o).flags38 & (uint)(8192)));
+                    f2 = (int)((new B2Actor(o).GroundFlags & (uint)(8192)));
                     new_var = op;
-                    f1 = (int)((new B2Actor(o).flags38 & (uint)(4096)));
+                    f1 = (int)((new B2Actor(o).GroundFlags & (uint)(4096)));
                     Vec_Sub(_fp, ctlp, new_var);
                     m = Gv.AiNavGraph;
                     len = sqrtf((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z)));
@@ -667,36 +667,36 @@ public static partial class Game
                             ang = Ai_TurnTowardPoint(ctl, ctlp, 2.0f, 0.0f);
                             if ((((ang < 0.0f) ? (((-ang) < Mem.F32(0x800C6CD0u)) ? 1 : 0) : ((ang < Mem.F32(0x800C6CD4u)) ? 1 : 0)) != 0))
                             {
-                                new B2Actor(o).unk6A8_Set(Mem.F32(0x800C6CD8u));
+                                new B2Actor(o).ForwardInput_Set(Mem.F32(0x800C6CD8u));
                             }
-                            if ((((f2 != 0) || (f1 != 0)) && (new B2Ctl(ctl).unk304 != 0)))
+                            if ((((f2 != 0) || (f1 != 0)) && (new B2Ctl(ctl).IsSwimNode_304 != 0)))
                             {
                                 dy = new Vec3f(_fp).y;
                                 Ai_SetLookPitch(ctl, Math_Atan2(dy, sqrtf(((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).z * new Vec3f(_fp).z)))));
-                                new B2Actor(o).unk6A8_Set(Mem.F32(0x800C6CDCu));
+                                new B2Actor(o).ForwardInput_Set(Mem.F32(0x800C6CDCu));
                             }
                         }
                     }
                     else
                     {
                         Ai_TurnTowardPoint(ctl, ctlp, 2.0f, 0.0f);
-                        ang = (new B2Ctl(ctl).owner.unk6C + Mem.F32(0x800C6CE0u));
+                        ang = (new B2Ctl(ctl).OwnerPtr.Yaw + Mem.F32(0x800C6CE0u));
                         new Vec3f((_fp + 32u)).x_Set(sinf(ang));
                         new Vec3f((_fp + 32u)).y_Set(0.0f);
                         new Vec3f((_fp + 32u)).z_Set(cosf(ang));
-                        ang = Math_Atan2((new B2Ctl(ctl).v2C.z - new Vec3f(new_var).z), (new B2Ctl(ctl).v2C.x - new Vec3f(new_var).x));
+                        ang = Math_Atan2((new B2Ctl(ctl).MoveTarget.z - new Vec3f(new_var).z), (new B2Ctl(ctl).MoveTarget.x - new Vec3f(new_var).x));
                         new Vec3f((_fp + 16u)).x_Set(cosf(ang));
                         new Vec3f((_fp + 16u)).y_Set(0.0f);
                         new Vec3f((_fp + 16u)).z_Set(sinf(ang));
-                        new B2Actor(o).unk6A8_Set((((new Vec3f((_fp + 16u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 16u)).y * new Vec3f((_fp + 32u)).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f((_fp + 32u)).z)));
+                        new B2Actor(o).ForwardInput_Set((((new Vec3f((_fp + 16u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 16u)).y * new Vec3f((_fp + 32u)).y)) + (new Vec3f((_fp + 16u)).z * new Vec3f((_fp + 32u)).z)));
                         do
                         {
-                            p = AiNav_GetNode(m, new B2Ctl(ctl).unk4);
+                            p = AiNav_GetNode(m, new B2Ctl(ctl).CurrentNode);
                         }
                         while ((0 != 0));
                         Mem.Copy((_fp + 48u), p, 12);
-                        new Vec3f((_fp + 48u)).x_Set((new Vec3f((_fp + 48u)).x - new B2Ctl(ctl).v2C.x));
-                        new Vec3f((_fp + 48u)).z_Set((new Vec3f((_fp + 48u)).z - new B2Ctl(ctl).v2C.z));
+                        new Vec3f((_fp + 48u)).x_Set((new Vec3f((_fp + 48u)).x - new B2Ctl(ctl).MoveTarget.x));
+                        new Vec3f((_fp + 48u)).z_Set((new Vec3f((_fp + 48u)).z - new B2Ctl(ctl).MoveTarget.z));
                         new Vec3f((_fp + 48u)).y_Set(new Vec3f((_fp + 48u)).x);
                         new Vec3f((_fp + 48u)).x_Set((-new Vec3f((_fp + 48u)).z));
                         new Vec3f((_fp + 48u)).z_Set(new Vec3f((_fp + 48u)).y);
@@ -711,29 +711,29 @@ public static partial class Game
                         new Vec3f((_fp + 32u)).x_Set(new Vec3f((_fp + 32u)).z);
                         new Vec3f((_fp + 32u)).z_Set((-new Vec3f((_fp + 32u)).y));
                         Mem.Set(((_fp + 32u) + 4u), (uint)(0));
-                        new B2Actor(o).unk6A4_Set(new Vec3f((_fp + 48u)).z_Set(((new Vec3f((_fp + 48u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 48u)).z * new Vec3f((_fp + 32u)).z))));
+                        new B2Actor(o).StrafeInput_Set(new Vec3f((_fp + 48u)).z_Set(((new Vec3f((_fp + 48u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 48u)).z * new Vec3f((_fp + 32u)).z))));
                     }
-                    if ((((f2 != 0) || (f1 != 0)) && (new B2Ctl(ctl).unk304 != 0)))
+                    if ((((f2 != 0) || (f1 != 0)) && (new B2Ctl(ctl).IsSwimNode_304 != 0)))
                     {
                         dy = new Vec3f(_fp).y;
                         Ai_SetLookPitch(ctl, Math_Atan2(dy, sqrtf(((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).z * new Vec3f(_fp).z)))));
-                        new B2Actor(o).unk6A8_Set(Mem.F32(0x800C6CE4u));
+                        new B2Actor(o).ForwardInput_Set(Mem.F32(0x800C6CE4u));
                     }
-                    if (((int)(new B2Ctl(ctl).owner.unk650) == 15))
+                    if (((int)(new B2Ctl(ctl).OwnerPtr.StateId) == 15))
                     {
-                        if ((new Vec3f(new_var).y > new B2Ctl(ctl).v2C.y))
+                        if ((new Vec3f(new_var).y > new B2Ctl(ctl).MoveTarget.y))
                         {
-                            new B2Actor(o).unk6A8_Set(Mem.F32(0x800C6CE8u));
+                            new B2Actor(o).ForwardInput_Set(Mem.F32(0x800C6CE8u));
                         }
                         else
                         {
-                            new B2Actor(o).unk6A8_Set(Mem.F32(0x800C6CECu));
+                            new B2Actor(o).ForwardInput_Set(Mem.F32(0x800C6CECu));
                         }
                     }
-                    if ((new B2Ctl(ctl).unk310 != 0))
+                    if ((new B2Ctl(ctl).IsMoveHalted != 0))
                     {
-                        new B2Actor(o).unk6A4_Set(0.0f);
-                        new B2Actor(o).unk6A8_Set(0.0f);
+                        new B2Actor(o).StrafeInput_Set(0.0f);
+                        new B2Actor(o).ForwardInput_Set(0.0f);
                     }
                 }
             }
@@ -764,23 +764,23 @@ public static partial class Game
                 float dy = 0f;
                 float ang3 = 0f;
                 uint m = 0u;
-                if (((((new B2Ctl(ctl).target_ == 0u) || (new B2Ctl(ctl).unk308 != 0)) || (new B2Ctl(ctl).unk30C != 0)) || (new B2Ctl(ctl).unk314 != 0)))
+                if (((((new B2Ctl(ctl).target_ == 0u) || (new B2Ctl(ctl).IsOnJumpEdge != 0)) || (new B2Ctl(ctl).IsOnEdgeKind4_30C != 0)) || (new B2Ctl(ctl).EdgeStep != 0)))
                 {
-                    Ai_TurnTowardPoint(ctl, new B2Ctl(ctl).v2C.P, 2.0f, 0.0f);
+                    Ai_TurnTowardPoint(ctl, new B2Ctl(ctl).MoveTarget.P, 2.0f, 0.0f);
                 }
                 else
                 {
-                    Ai_TurnTowardPoint(ctl, new B2Ctl(ctl).target.owner.pos.P, 2.0f, 0.0f);
+                    Ai_TurnTowardPoint(ctl, new B2Ctl(ctl).TargetPtr.OwnerPtr.Position.P, 2.0f, 0.0f);
                     Ai_UpdateFiring(ctl);
                 }
-                if ((new B2Ctl(ctl).unk300 == 0))
+                if ((new B2Ctl(ctl).HasNoPath == 0))
                 {
-                    ctlp = new B2Ctl(ctl).v2C.P;
-                    op = new B2Ctl(ctl).owner.pos.P;
+                    ctlp = new B2Ctl(ctl).MoveTarget.P;
+                    op = new B2Ctl(ctl).OwnerPtr.Position.P;
                     o = new B2Ctl(ctl).owner_;
-                    f2 = (int)((new B2Actor(o).flags38 & (uint)(8192)));
+                    f2 = (int)((new B2Actor(o).GroundFlags & (uint)(8192)));
                     new_var = op;
-                    f1 = (int)((new B2Actor(o).flags38 & (uint)(4096)));
+                    f1 = (int)((new B2Actor(o).GroundFlags & (uint)(4096)));
                     Vec_Sub(_fp, ctlp, new_var);
                     len = sqrtf((((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).y * new Vec3f(_fp).y)) + (new Vec3f(_fp).z * new Vec3f(_fp).z)));
                     m = Gv.AiNavGraph;
@@ -791,36 +791,36 @@ public static partial class Game
                             ang = Ai_TurnTowardPoint(ctl, ctlp, 2.0f, 0.0f);
                             if ((((ang < 0.0f) ? (((-ang) < 0.261799425f) ? 1 : 0) : ((ang < 0.261799425f) ? 1 : 0)) != 0))
                             {
-                                new B2Actor(o).unk6A8_Set(0.5f);
+                                new B2Actor(o).ForwardInput_Set(0.5f);
                             }
-                            if ((((f2 != 0) || (f1 != 0)) && (new B2Ctl(ctl).unk304 != 0)))
+                            if ((((f2 != 0) || (f1 != 0)) && (new B2Ctl(ctl).IsSwimNode_304 != 0)))
                             {
                                 dy = new Vec3f(_fp).y;
                                 Ai_SetLookPitch(ctl, Math_Atan2(dy, sqrtf(((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).z * new Vec3f(_fp).z)))));
-                                new B2Actor(o).unk6A8_Set(1.0f);
+                                new B2Actor(o).ForwardInput_Set(1.0f);
                             }
                         }
                     }
                     else
                     {
-                        ang = (new B2Ctl(ctl).owner.unk6C + 3.14159274f);
+                        ang = (new B2Ctl(ctl).OwnerPtr.Yaw + 3.14159274f);
                         new Vec3f((_fp + 32u)).x_Set(sinf(ang));
                         new Vec3f((_fp + 32u)).y_Set(0.0f);
                         new Vec3f((_fp + 32u)).z_Set(cosf(ang));
-                        new Vec3f((_fp + 16u)).x_Set((new B2Ctl(ctl).v2C.x - new Vec3f(new_var).x));
+                        new Vec3f((_fp + 16u)).x_Set((new B2Ctl(ctl).MoveTarget.x - new Vec3f(new_var).x));
                         Mem.Set(((_fp + 16u) + 4u), (uint)(0));
-                        new Vec3f((_fp + 16u)).z_Set((new B2Ctl(ctl).v2C.z - new Vec3f(new_var).z));
+                        new Vec3f((_fp + 16u)).z_Set((new B2Ctl(ctl).MoveTarget.z - new Vec3f(new_var).z));
                         if ((o != 0u))
                         {
-                            p = AiNav_GetNode(m, new B2Ctl(ctl).unk4);
+                            p = AiNav_GetNode(m, new B2Ctl(ctl).CurrentNode);
                         }
                         else
                         {
-                            p = AiNav_GetNode(m, new B2Ctl(ctl).unk4);
+                            p = AiNav_GetNode(m, new B2Ctl(ctl).CurrentNode);
                         }
                         Mem.Copy((_fp + 48u), p, 12);
-                        new Vec3f((_fp + 48u)).x_Set((new Vec3f((_fp + 48u)).x - new B2Ctl(ctl).v2C.x));
-                        new Vec3f((_fp + 48u)).z_Set((new Vec3f((_fp + 48u)).z - new B2Ctl(ctl).v2C.z));
+                        new Vec3f((_fp + 48u)).x_Set((new Vec3f((_fp + 48u)).x - new B2Ctl(ctl).MoveTarget.x));
+                        new Vec3f((_fp + 48u)).z_Set((new Vec3f((_fp + 48u)).z - new B2Ctl(ctl).MoveTarget.z));
                         new Vec3f((_fp + 48u)).y_Set(new Vec3f((_fp + 48u)).x);
                         new Vec3f((_fp + 48u)).x_Set((-new Vec3f((_fp + 48u)).z));
                         new Vec3f((_fp + 48u)).z_Set(new Vec3f((_fp + 48u)).y);
@@ -835,34 +835,34 @@ public static partial class Game
                         new Vec3f((_fp + 64u)).y_Set(0.0f);
                         new Vec3f((_fp + 64u)).z_Set((new Vec3f((_fp + 16u)).z + new Vec3f((_fp + 48u)).z));
                         Vec_Normalize((_fp + 64u));
-                        new B2Actor(o).unk6A8_Set((((new Vec3f((_fp + 64u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 64u)).y * new Vec3f((_fp + 32u)).y)) + (new Vec3f((_fp + 64u)).z * new Vec3f((_fp + 32u)).z)));
+                        new B2Actor(o).ForwardInput_Set((((new Vec3f((_fp + 64u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 64u)).y * new Vec3f((_fp + 32u)).y)) + (new Vec3f((_fp + 64u)).z * new Vec3f((_fp + 32u)).z)));
                         new Vec3f((_fp + 32u)).y_Set(new Vec3f((_fp + 32u)).x);
                         new Vec3f((_fp + 32u)).x_Set(new Vec3f((_fp + 32u)).z);
                         new Vec3f((_fp + 32u)).z_Set((-new Vec3f((_fp + 32u)).y));
                         new Vec3f((_fp + 32u)).y_Set(0.0f);
-                        new B2Actor(o).unk6A4_Set(((new Vec3f((_fp + 64u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 64u)).z * new Vec3f((_fp + 32u)).z)));
+                        new B2Actor(o).StrafeInput_Set(((new Vec3f((_fp + 64u)).x * new Vec3f((_fp + 32u)).x) + (new Vec3f((_fp + 64u)).z * new Vec3f((_fp + 32u)).z)));
                     }
-                    if ((((f2 != 0) || (f1 != 0)) && (new B2Ctl(ctl).unk304 != 0)))
+                    if ((((f2 != 0) || (f1 != 0)) && (new B2Ctl(ctl).IsSwimNode_304 != 0)))
                     {
                         dy = new Vec3f(_fp).y;
                         Ai_SetLookPitch(ctl, Math_Atan2(dy, sqrtf(((new Vec3f(_fp).x * new Vec3f(_fp).x) + (new Vec3f(_fp).z * new Vec3f(_fp).z)))));
-                        new B2Actor(o).unk6A8_Set(1.0f);
+                        new B2Actor(o).ForwardInput_Set(1.0f);
                     }
-                    if (((int)(new B2Ctl(ctl).owner.unk650) == 15))
+                    if (((int)(new B2Ctl(ctl).OwnerPtr.StateId) == 15))
                     {
-                        if ((new Vec3f(new_var).y > new B2Ctl(ctl).v2C.y))
+                        if ((new Vec3f(new_var).y > new B2Ctl(ctl).MoveTarget.y))
                         {
-                            new B2Actor(o).unk6A8_Set((-1.0f));
+                            new B2Actor(o).ForwardInput_Set((-1.0f));
                         }
                         else
                         {
-                            new B2Actor(o).unk6A8_Set(1.0f);
+                            new B2Actor(o).ForwardInput_Set(1.0f);
                         }
                     }
-                    if ((new B2Ctl(ctl).unk310 != 0))
+                    if ((new B2Ctl(ctl).IsMoveHalted != 0))
                     {
-                        new B2Actor(o).unk6A4_Set(0.0f);
-                        new B2Actor(o).unk6A8_Set(0.0f);
+                        new B2Actor(o).StrafeInput_Set(0.0f);
+                        new B2Actor(o).ForwardInput_Set(0.0f);
                     }
                 }
             }
@@ -903,7 +903,7 @@ public static partial class Game
             {
                 if ((((d < 0.0f) ? ((Mem.F32(0x800C6D30u) < (-d)) ? 1 : 0) : ((Mem.F32(0x800C6D34u) < d) ? 1 : 0)) != 0))
                 {
-                    new B2Ctl(ctl).owner.unk69C_Set(sign);
+                    new B2Ctl(ctl).OwnerPtr.TurnInput_Set(sign);
                 }
                 else
                 {
@@ -929,10 +929,10 @@ public static partial class Game
                             }
                         }
                     }
-                    new B2Ctl(ctl).owner.unk69C_Set((sign * v));
+                    new B2Ctl(ctl).OwnerPtr.TurnInput_Set((sign * v));
                 }
             }
-            Ai_SetLookPitch(ctl, (((new B2Ctl(ctl).owner.unk594 == 2) ? (new B2Ctl(ctl).unk24C + new B2Ctl(ctl).unk254) : (new B2Ctl(ctl).unk248 + new B2Ctl(ctl).unk250)) * Mem.F32(0x800C6D60u)));
+            Ai_SetLookPitch(ctl, (((new B2Ctl(ctl).OwnerPtr.FireMode == 2) ? (new B2Ctl(ctl).AimPitchAlt + new B2Ctl(ctl).LobPitchOffsetAlt_254) : (new B2Ctl(ctl).AimPitch + new B2Ctl(ctl).LobPitchOffset_250)) * Mem.F32(0x800C6D60u)));
             return d;
         }
     }
@@ -958,7 +958,7 @@ public static partial class Game
             int v = (-1);
             for (i = 3; (i >= 0); --i)
             {
-                new B2Ctl(ctl).q.Set((int)(i), v);
+                new B2Ctl(ctl).PathNodes.Set((int)(i), v);
             }
         }
     }
@@ -972,10 +972,10 @@ public static partial class Game
             int i = 0;
             for (i = 1; (i < 4); ++i)
             {
-                new B2Ctl(ctl).q.Set((int)((i - 1)), new B2Ctl(ctl).q[(int)(i)]);
+                new B2Ctl(ctl).PathNodes.Set((int)((i - 1)), new B2Ctl(ctl).PathNodes[(int)(i)]);
             }
-            new B2Ctl(ctl).q.Set((int)(3), (-1));
-            return ((new B2Ctl(ctl).q[(int)(0)] != (-1)) ? 1 : 0);
+            new B2Ctl(ctl).PathNodes.Set((int)(3), (-1));
+            return ((new B2Ctl(ctl).PathNodes[(int)(0)] != (-1)) ? 1 : 0);
         }
     }
 
@@ -998,7 +998,7 @@ public static partial class Game
             uint tbl = new B2Ctl(ctl).tbl_;
             uint found = 0u;
             uint e = 0u;
-            new B2Ctl(ctl).curId_Set(id);
+            new B2Ctl(ctl).StateId_Set(id);
             while ((tbl != 0u))
             {
                 for (e = new B2AnimTbl(tbl).ent.P; (new B2AnimEnt(e).id != (-1)); e += 32u)
@@ -1037,7 +1037,7 @@ public static partial class Game
             float v = (x * Mem.F32(0x800C6D78u));
             if ((ctl != 0u))
             {
-                new B2Ctl(ctl).owner.unk6A0_Set((-v));
+                new B2Ctl(ctl).OwnerPtr.PitchInput_Set((-v));
             }
         }
     }
@@ -1048,7 +1048,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020993C", (uint)ctl);
-            return new B2Ctl(ctl).owner.pos.P;
+            return new B2Ctl(ctl).OwnerPtr.Position.P;
         }
     }
 
@@ -1058,11 +1058,11 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020999C", (uint)ctl);
-            new B2Ctl(ctl).unk300_Set(0);
-            new B2Ctl(ctl).unk304_Set(0);
-            new B2Ctl(ctl).unk308_Set(0);
-            new B2Ctl(ctl).unk30C_Set(0);
-            new B2Ctl(ctl).unk310_Set(0);
+            new B2Ctl(ctl).HasNoPath_Set(0);
+            new B2Ctl(ctl).IsSwimNode_304_Set(0);
+            new B2Ctl(ctl).IsOnJumpEdge_Set(0);
+            new B2Ctl(ctl).IsOnEdgeKind4_30C_Set(0);
+            new B2Ctl(ctl).IsMoveHalted_Set(0);
         }
     }
 
@@ -1079,8 +1079,8 @@ public static partial class Game
                 {
                     return 0;
                 }
-                Mem.Copy(_fp, new B2Ctl(ctl).owner.pos.P, 12);
-                Mem.Copy((_fp + 16u), new B2Actor(target).pos.P, 12);
+                Mem.Copy(_fp, new B2Ctl(ctl).OwnerPtr.Position.P, 12);
+                Mem.Copy((_fp + 16u), new B2Actor(target).Position.P, 12);
                 new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + Mem.F32(0x800C6D7Cu)));
                 new Vec3f((_fp + 16u)).y_Set((float)((float)(new Vec3f((_fp + 16u)).y) + Mem.F32(0x800C6D7Cu)));
                 if ((Collision_RayCast(new B2Ctl(ctl).owner_, _fp, (_fp + 16u), Gv.Collision_LosResult) != 0))
@@ -1099,7 +1099,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00209A94", (uint)ctl);
-            switch (new B2Ctl(ctl).curId)
+            switch (new B2Ctl(ctl).StateId)
             {
             case 1:
             case 3:
@@ -1122,7 +1122,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00209AD8", (uint)ctl);
-            return ((new B2Ctl(ctl).curId == 8) ? 1 : 0);
+            return ((new B2Ctl(ctl).StateId == 8) ? 1 : 0);
         }
     }
 
@@ -1158,13 +1158,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00209BE0", (uint)ctl);
-            float v = (new B2Ctl(ctl).owner.def.info.unk20 * Mem.F32(0x800C6D98u));
-            switch ((int)(new B2Ctl(ctl).owner.stats.unk93))
+            float v = (new B2Ctl(ctl).OwnerPtr.DefPtr.info.unk20 * Mem.F32(0x800C6D98u));
+            switch ((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk93))
             {
             case 1:
                 break;
             default:
-                new B2Ctl(ctl).owner.stats.unk93_Set((byte)(0));
+                new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk93_Set((byte)(0));
                 goto case 0;
             case 0:
                 v = (float)((float)(v) * Mem.F32(0x800C6D9Cu));
@@ -1183,13 +1183,13 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00209C5C", (uint)ctl);
-            float v = (new B2Ctl(ctl).owner.def.info.unk1C * Mem.F32(0x800C6DA4u));
-            switch ((int)(new B2Ctl(ctl).owner.stats.unk93))
+            float v = (new B2Ctl(ctl).OwnerPtr.DefPtr.info.unk1C * Mem.F32(0x800C6DA4u));
+            switch ((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk93))
             {
             case 1:
                 break;
             default:
-                new B2Ctl(ctl).owner.stats.unk93_Set((byte)(0));
+                new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk93_Set((byte)(0));
                 goto case 0;
             case 0:
                 v = (float)((float)(v) * Mem.F32(0x800C6DA8u));
@@ -1215,7 +1215,7 @@ public static partial class Game
             uint g = 0u;
             if ((Mem.S32(Gv.Match_FragTagMode) != 0))
             {
-                st = (int)(new B2Ctl(ctl).owner.stats.unk80);
+                st = (int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk80);
                 if ((st != 12))
                 {
                     lim = 30;
@@ -1233,9 +1233,9 @@ public static partial class Game
             {
                 lim = 30;
             }
-            if ((lim < new B2Ctl(ctl).owner.unk1340))
+            if ((lim < new B2Ctl(ctl).OwnerPtr.DeadTime))
             {
-                new B2Ctl(ctl).owner.unk1340_Set(0);
+                new B2Ctl(ctl).OwnerPtr.DeadTime_Set(0);
                 g = Gv.Settings_MatchRules;
                 if ((new B2GameFlags(g).unk98 != 0))
                 {
@@ -1425,30 +1425,30 @@ public static partial class Game
                 return 1;
             }
             {
-                if ((new B2Ctl(ctl).unk1BC == 0))
+                if ((new B2Ctl(ctl).BranchStep == 0))
                 {
                     return Ai_FindBranchNode(ctl);
                 }
-                if (((new B2Ctl(ctl).unk1C0 != (-1)) && (new B2Ctl(ctl).unk1C8 == 0)))
+                if (((new B2Ctl(ctl).BranchNode != (-1)) && (new B2Ctl(ctl).BranchEdgeCount == 0)))
                 {
                     for (i = 0; (i < new B2Mgr(m).count); ++i)
                     {
                         e = AiNav_GetEdge(m, i);
-                        if ((((int)(new B2Edge(e).a) == new B2Ctl(ctl).unk1C0) && ((int)(new B2Edge(e).kind) == 6)))
+                        if ((((int)(new B2Edge(e).a) == new B2Ctl(ctl).BranchNode) && ((int)(new B2Edge(e).kind) == 6)))
                         {
-                            new B2Ctl(ctl).unk1C8_Set((int)(new B2Ctl(ctl).unk1C8 + 1));
+                            new B2Ctl(ctl).BranchEdgeCount_Set((int)(new B2Ctl(ctl).BranchEdgeCount + 1));
                         }
                     }
                 }
-                if (((new B2Ctl(ctl).unk1BC > 0) && (new B2Ctl(ctl).unk1BC < (new B2Ctl(ctl).unk1C8 + 1))))
+                if (((new B2Ctl(ctl).BranchStep > 0) && (new B2Ctl(ctl).BranchStep < (new B2Ctl(ctl).BranchEdgeCount + 1))))
                 {
                     return Ai_ScoreBranch(ctl);
                 }
-                if ((new B2Ctl(ctl).unk1BC == (new B2Ctl(ctl).unk1C8 + 1)))
+                if ((new B2Ctl(ctl).BranchStep == (new B2Ctl(ctl).BranchEdgeCount + 1)))
                 {
                     return Ai_TakeBestBranch(ctl);
                 }
-                if ((new B2Ctl(ctl).unk1BC != (new B2Ctl(ctl).unk1C8 + 2)))
+                if ((new B2Ctl(ctl).BranchStep != (new B2Ctl(ctl).BranchEdgeCount + 2)))
                 {
                     return 1;
                 }
@@ -1566,44 +1566,44 @@ public static partial class Game
                 for (; (i < new B2Mgr(m).count); ++i)
                 {
                     e = AiNav_GetEdge(m, i);
-                    if ((((int)(new B2Edge(e).a) == new B2Ctl(ctl).unk1C0) && ((int)(new B2Edge(e).kind) == 6)))
+                    if ((((int)(new B2Edge(e).a) == new B2Ctl(ctl).BranchNode) && ((int)(new B2Edge(e).kind) == 6)))
                     {
                         tp = AiNav_GetNode(m, (int)(new B2Edge(e).b));
-                        new B2Ctl(ctl).ent[(int)(cnt)].b_Set((int)(new B2Edge(e).a));
-                        new B2Ctl(ctl).ent[(int)(cnt)].a_Set((int)(new B2Edge(e).b));
-                        if (((cnt + 1) == new B2Ctl(ctl).unk1BC))
+                        new B2Ctl(ctl).BranchCandidates[(int)(cnt)].b_Set((int)(new B2Edge(e).a));
+                        new B2Ctl(ctl).BranchCandidates[(int)(cnt)].a_Set((int)(new B2Edge(e).b));
+                        if (((cnt + 1) == new B2Ctl(ctl).BranchStep))
                         {
                             break;
                         }
                         ++cnt;
                     }
                 }
-                k = Vec_DistanceSq(tp, AiNav_GetNode(m, new B2Ctl(ctl).unkC));
+                k = Vec_DistanceSq(tp, AiNav_GetNode(m, new B2Ctl(ctl).GoalNode));
                 i = 0;
                 new Vec3f(_fp).z_Set(Mem.F32(0x800C6EA0u));
                 new Vec3f(_fp).y_Set(Mem.F32(0x800C6EA0u));
                 new Vec3f(_fp).x_Set(Mem.F32(0x800C6EA0u));
-                for (; (i < new B2Ctl(ctl).unk38); ++i)
+                for (; (i < new B2Ctl(ctl).EnemyCount); ++i)
                 {
-                    if ((new B2Ctl(ctl).a3C[(int)(i)] == 0u))
+                    if ((new B2Ctl(ctl).EnemyPtrs[(int)(i)] == 0u))
                     {
                         break;
                     }
-                    new B2Ctl(ctl).v138[(int)(cnt)].x_Set((new Vec3f(tp).x - new B2Actor(new B2Ctl(ctl).a3C[(int)(i)]).pos.x));
-                    new B2Ctl(ctl).v138[(int)(cnt)].y_Set((new Vec3f(tp).y - new B2Actor(new B2Ctl(ctl).a3C[(int)(i)]).pos.y));
-                    new B2Ctl(ctl).v138[(int)(cnt)].z_Set((new Vec3f(tp).z - new B2Actor(new B2Ctl(ctl).a3C[(int)(i)]).pos.z));
-                    Vec_Normalize((new B2Ctl(ctl).v138.P + (uint)(cnt * 12)));
-                    new Vec3f(_fp).x_Set((float)((float)(new Vec3f(_fp).x) * new B2Ctl(ctl).v138[(int)(cnt)].x));
-                    new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) * new B2Ctl(ctl).v138[(int)(cnt)].y));
-                    new Vec3f(_fp).z_Set((float)((float)(new Vec3f(_fp).z) * new B2Ctl(ctl).v138[(int)(cnt)].z));
+                    new B2Ctl(ctl).EnemyAwayDirs_138[(int)(cnt)].x_Set((new Vec3f(tp).x - new B2Actor(new B2Ctl(ctl).EnemyPtrs[(int)(i)]).Position.x));
+                    new B2Ctl(ctl).EnemyAwayDirs_138[(int)(cnt)].y_Set((new Vec3f(tp).y - new B2Actor(new B2Ctl(ctl).EnemyPtrs[(int)(i)]).Position.y));
+                    new B2Ctl(ctl).EnemyAwayDirs_138[(int)(cnt)].z_Set((new Vec3f(tp).z - new B2Actor(new B2Ctl(ctl).EnemyPtrs[(int)(i)]).Position.z));
+                    Vec_Normalize((new B2Ctl(ctl).EnemyAwayDirs_138.P + (uint)(cnt * 12)));
+                    new Vec3f(_fp).x_Set((float)((float)(new Vec3f(_fp).x) * new B2Ctl(ctl).EnemyAwayDirs_138[(int)(cnt)].x));
+                    new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) * new B2Ctl(ctl).EnemyAwayDirs_138[(int)(cnt)].y));
+                    new Vec3f(_fp).z_Set((float)((float)(new Vec3f(_fp).z) * new B2Ctl(ctl).EnemyAwayDirs_138[(int)(cnt)].z));
                 }
                 f = ((new Vec3f(_fp).x + new Vec3f(_fp).y) + new Vec3f(_fp).z);
-                if (((new B2Ctl(ctl).unk38 == 1) && (f < 0.0f)))
+                if (((new B2Ctl(ctl).EnemyCount == 1) && (f < 0.0f)))
                 {
                     f = (-f);
                 }
-                new B2Ctl(ctl).ent[(int)(cnt)].w_Set((f * k));
-                new B2Ctl(ctl).unk1BC_Set((int)(new B2Ctl(ctl).unk1BC + 1));
+                new B2Ctl(ctl).BranchCandidates[(int)(cnt)].w_Set((f * k));
+                new B2Ctl(ctl).BranchStep_Set((int)(new B2Ctl(ctl).BranchStep + 1));
                 return 0;
             }
         }
@@ -1633,38 +1633,38 @@ public static partial class Game
                 m = Gv.AiNavGraph;
                 nxt = (-1);
                 i = 0;
-                sel = new B2Ctl(ctl).unk38;
+                sel = new B2Ctl(ctl).EnemyCount;
                 _f0: ;
                 z = i;
                 _f1: ;
                 if ((0 != 0)) goto _f0;
                 _f2: ;
                 _f3: ;
-                if (!((i < new B2Ctl(ctl).unk38))) goto _f5;
-                if (!(((float)(z) < new B2Ctl(ctl).ent[(int)(i)].w))) goto _f6;
+                if (!((i < new B2Ctl(ctl).EnemyCount))) goto _f5;
+                if (!(((float)(z) < new B2Ctl(ctl).BranchCandidates[(int)(i)].w))) goto _f6;
                 sel = i;
                 _f6: ;
                 _f4: ;
                 ++i;
                 goto _f3;
                 _f5: ;
-                if (!((sel == new B2Ctl(ctl).unk38))) goto _f7;
+                if (!((sel == new B2Ctl(ctl).EnemyCount))) goto _f7;
                 goto L_fail;
                 _f7: ;
                 i = 0;
-                if (!((new B2Ctl(ctl).ent[(int)(sel)].a >= 0))) goto _f8;
+                if (!((new B2Ctl(ctl).BranchCandidates[(int)(sel)].a >= 0))) goto _f8;
                 goto L_search;
                 _f8: ;
                 goto L_fail;
                 L_found: ;
-                nxt = new B2Ctl(ctl).q[(int)((i + 1))];
+                nxt = new B2Ctl(ctl).PathNodes[(int)((i + 1))];
                 m1 = (-1);
                 goto L_cont;
                 L_search: ;
                 i = 0;
                 _f9: ;
                 if (!((i < 3))) goto _f11;
-                if (!((new B2Ctl(ctl).q[(int)(i)] == new B2Ctl(ctl).unk1C0))) goto _f12;
+                if (!((new B2Ctl(ctl).PathNodes[(int)(i)] == new B2Ctl(ctl).BranchNode))) goto _f12;
                 goto L_found;
                 _f12: ;
                 _f10: ;
@@ -1676,23 +1676,23 @@ public static partial class Game
                 if (!((nxt == (-1)))) goto _f13;
                 goto L_fail;
                 _f13: ;
-                if (!((AiNav_FindEdge(m, new B2Ctl(ctl).unk1C0, new B2Ctl(ctl).ent[(int)(sel)].a) == (-1)))) goto _f14;
+                if (!((AiNav_FindEdge(m, new B2Ctl(ctl).BranchNode, new B2Ctl(ctl).BranchCandidates[(int)(sel)].a) == (-1)))) goto _f14;
                 goto L_fail;
                 _f14: ;
-                if (!((AiNav_FindEdge(m, nxt, new B2Ctl(ctl).ent[(int)(sel)].a) == (-1)))) goto _f15;
+                if (!((AiNav_FindEdge(m, nxt, new B2Ctl(ctl).BranchCandidates[(int)(sel)].a) == (-1)))) goto _f15;
                 L_fail: ;
-                new B2Ctl(ctl).unk1C8_Set(0);
-                new B2Ctl(ctl).unk1BC_Set((int)((int)(new B2Ctl(ctl).unk1BC) + 20));
+                new B2Ctl(ctl).BranchEdgeCount_Set(0);
+                new B2Ctl(ctl).BranchStep_Set((int)((int)(new B2Ctl(ctl).BranchStep) + 20));
                 return 1;
                 _f15: ;
                 i = 3;
                 _f16: ;
                 if (!((i > 0))) goto _f18;
-                if (!((new B2Ctl(ctl).q[(int)((i - 1))] == new B2Ctl(ctl).unk1C0))) goto _f19;
-                new B2Ctl(ctl).q.Set((int)(i), new B2Ctl(ctl).ent[(int)(sel)].a);
+                if (!((new B2Ctl(ctl).PathNodes[(int)((i - 1))] == new B2Ctl(ctl).BranchNode))) goto _f19;
+                new B2Ctl(ctl).PathNodes.Set((int)(i), new B2Ctl(ctl).BranchCandidates[(int)(sel)].a);
                 goto _f18;
                 _f19: ;
-                new B2Ctl(ctl).q.Set((int)(i), new B2Ctl(ctl).q[(int)((i - 1))]);
+                new B2Ctl(ctl).PathNodes.Set((int)(i), new B2Ctl(ctl).PathNodes[(int)((i - 1))]);
                 _f17: ;
                 --i;
                 goto _f16;
@@ -1703,28 +1703,28 @@ public static partial class Game
                 new Vec3f(_fp).x_Set(zero);
                 i = 0;
                 _f20: ;
-                if (!((i < new B2Ctl(ctl).unk38))) goto _f22;
-                new Vec3f(_fp).x_Set((float)((float)(new Vec3f(_fp).x) + new B2Ctl(ctl).v138[(int)(i)].x));
-                new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + new B2Ctl(ctl).v138[(int)(i)].y));
-                new Vec3f(_fp).z_Set((float)((float)(new Vec3f(_fp).z) + new B2Ctl(ctl).v138[(int)(i)].z));
+                if (!((i < new B2Ctl(ctl).EnemyCount))) goto _f22;
+                new Vec3f(_fp).x_Set((float)((float)(new Vec3f(_fp).x) + new B2Ctl(ctl).EnemyAwayDirs_138[(int)(i)].x));
+                new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + new B2Ctl(ctl).EnemyAwayDirs_138[(int)(i)].y));
+                new Vec3f(_fp).z_Set((float)((float)(new Vec3f(_fp).z) + new B2Ctl(ctl).EnemyAwayDirs_138[(int)(i)].z));
                 _f21: ;
                 ++i;
                 goto _f20;
                 _f22: ;
-                k = (Mem.F32(0x800C6EA4u) / (float)(new B2Ctl(ctl).unk38));
+                k = (Mem.F32(0x800C6EA4u) / (float)(new B2Ctl(ctl).EnemyCount));
                 new Vec3f(_fp).x_Set((float)((float)(new Vec3f(_fp).x) * k));
                 new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) * k));
                 new Vec3f(_fp).z_Set((float)((float)(new Vec3f(_fp).z) * k));
-                n = AiNav_FindSearchNode(m, new B2Ctl(ctl).ent[(int)(sel)].a);
+                n = AiNav_FindSearchNode(m, new B2Ctl(ctl).BranchCandidates[(int)(sel)].a);
                 new Vec3f(_fp).x_Set((float)((float)(new Vec3f(_fp).x) * new B2Node(n).unk14));
                 new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) * new B2Node(n).unk14));
                 new Vec3f(_fp).z_Set((float)((float)(new Vec3f(_fp).z) * new B2Node(n).unk14));
-                p = AiNav_GetNode(m, new B2Ctl(ctl).ent[(int)(sel)].a);
-                new B2Ctl(ctl).dst1B0.x_Set((new Vec3f(p).x + new Vec3f(_fp).x));
-                new B2Ctl(ctl).dst1B0.y_Set((new Vec3f(p).y + new Vec3f(_fp).y));
-                new B2Ctl(ctl).dst1B0.z_Set((new Vec3f(p).z + new Vec3f(_fp).z));
-                new B2Ctl(ctl).nodeId_Set(new B2Ctl(ctl).ent[(int)(sel)].a);
-                new B2Ctl(ctl).unk1BC_Set((int)(new B2Ctl(ctl).unk1BC + 1));
+                p = AiNav_GetNode(m, new B2Ctl(ctl).BranchCandidates[(int)(sel)].a);
+                new B2Ctl(ctl).BranchPoint.x_Set((new Vec3f(p).x + new Vec3f(_fp).x));
+                new B2Ctl(ctl).BranchPoint.y_Set((new Vec3f(p).y + new Vec3f(_fp).y));
+                new B2Ctl(ctl).BranchPoint.z_Set((new Vec3f(p).z + new Vec3f(_fp).z));
+                new B2Ctl(ctl).BranchTargetNode_Set(new B2Ctl(ctl).BranchCandidates[(int)(sel)].a);
+                new B2Ctl(ctl).BranchStep_Set((int)(new B2Ctl(ctl).BranchStep + 1));
                 z = 0;
                 return 0;
                 return 0;
@@ -1751,28 +1751,28 @@ public static partial class Game
                 new Vec3f(_fp).z_Set(zero);
                 new Vec3f(_fp).y_Set(zero);
                 new Vec3f(_fp).x_Set(zero);
-                for (i = 0; (i < new B2Ctl(ctl).unk38); ++i)
+                for (i = 0; (i < new B2Ctl(ctl).EnemyCount); ++i)
                 {
-                    new Vec3f(_fp).x_Set((float)((float)(new Vec3f(_fp).x) + new B2Ctl(ctl).v138[(int)(i)].x));
-                    new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + new B2Ctl(ctl).v138[(int)(i)].y));
-                    new Vec3f(_fp).z_Set((float)((float)(new Vec3f(_fp).z) + new B2Ctl(ctl).v138[(int)(i)].z));
+                    new Vec3f(_fp).x_Set((float)((float)(new Vec3f(_fp).x) + new B2Ctl(ctl).EnemyAwayDirs_138[(int)(i)].x));
+                    new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) + new B2Ctl(ctl).EnemyAwayDirs_138[(int)(i)].y));
+                    new Vec3f(_fp).z_Set((float)((float)(new Vec3f(_fp).z) + new B2Ctl(ctl).EnemyAwayDirs_138[(int)(i)].z));
                 }
-                if ((new B2Ctl(ctl).unk38 == 0))
+                if ((new B2Ctl(ctl).EnemyCount == 0))
                 {
                     return 1;
                 }
-                k = (Mem.F32(0x800C6EA8u) / (float)(new B2Ctl(ctl).unk38));
+                k = (Mem.F32(0x800C6EA8u) / (float)(new B2Ctl(ctl).EnemyCount));
                 new Vec3f(_fp).x_Set((float)((float)(new Vec3f(_fp).x) * k));
                 new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) * k));
                 new Vec3f(_fp).z_Set((float)((float)(new Vec3f(_fp).z) * k));
-                n = AiNav_FindSearchNode(m, new B2Ctl(ctl).nodeId);
+                n = AiNav_FindSearchNode(m, new B2Ctl(ctl).BranchTargetNode);
                 new Vec3f(_fp).x_Set((float)((float)(new Vec3f(_fp).x) * new B2Node(n).unk14));
                 new Vec3f(_fp).y_Set((float)((float)(new Vec3f(_fp).y) * new B2Node(n).unk14));
                 new Vec3f(_fp).z_Set((float)((float)(new Vec3f(_fp).z) * new B2Node(n).unk14));
-                p = AiNav_GetNode(m, new B2Ctl(ctl).nodeId);
-                new B2Ctl(ctl).dst1B0.x_Set((new Vec3f(p).x + new Vec3f(_fp).x));
-                new B2Ctl(ctl).dst1B0.y_Set((new Vec3f(p).y + new Vec3f(_fp).y));
-                new B2Ctl(ctl).dst1B0.z_Set((new Vec3f(p).z + new Vec3f(_fp).z));
+                p = AiNav_GetNode(m, new B2Ctl(ctl).BranchTargetNode);
+                new B2Ctl(ctl).BranchPoint.x_Set((new Vec3f(p).x + new Vec3f(_fp).x));
+                new B2Ctl(ctl).BranchPoint.y_Set((new Vec3f(p).y + new Vec3f(_fp).y));
+                new B2Ctl(ctl).BranchPoint.z_Set((new Vec3f(p).z + new Vec3f(_fp).z));
                 return 1;
             }
         }
@@ -1788,17 +1788,17 @@ public static partial class Game
             uint m = Gv.AiNavGraph;
             int i = 0;
             int j = 0;
-            new B2Ctl(ctl).unk1C0_Set((-1));
-            new B2Ctl(ctl).unk1C8_Set(0);
+            new B2Ctl(ctl).BranchNode_Set((-1));
+            new B2Ctl(ctl).BranchEdgeCount_Set(0);
             for (i = 0; (i < 4); ++i)
             {
                 for (j = 0; (j < new B2Mgr(m).count); ++j)
                 {
                     uint e = AiNav_GetEdge(m, j);
-                    if ((((int)(new B2Edge(e).a) == new B2Ctl(ctl).q[(int)(i)]) && ((int)(new B2Edge(e).kind) == 6)))
+                    if ((((int)(new B2Edge(e).a) == new B2Ctl(ctl).PathNodes[(int)(i)]) && ((int)(new B2Edge(e).kind) == 6)))
                     {
-                        new B2Ctl(ctl).unk1BC_Set((int)(new B2Ctl(ctl).unk1BC + 1));
-                        new B2Ctl(ctl).unk1C0_Set(new B2Ctl(ctl).q[(int)(i)]);
+                        new B2Ctl(ctl).BranchStep_Set((int)(new B2Ctl(ctl).BranchStep + 1));
+                        new B2Ctl(ctl).BranchNode_Set(new B2Ctl(ctl).PathNodes[(int)(i)]);
                         return 0;
                     }
                 }
@@ -1843,7 +1843,7 @@ public static partial class Game
             {
                 return 1;
             }
-            if (((new B2Ctl(ctl).curId < 3) || (new B2Ctl(ctl).curId > 5)))
+            if (((new B2Ctl(ctl).StateId < 3) || (new B2Ctl(ctl).StateId > 5)))
             {
                 Ai_StartAttack(ctl);
                 return 1;
@@ -1859,8 +1859,8 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0020DC60", (uint)ctl);
-            int v = Ai_PickAttackStyle(new B2Ctl(ctl).owner.def.info.P);
-            new B2Ctl(ctl).unk230_Set(v);
+            int v = Ai_PickAttackStyle(new B2Ctl(ctl).OwnerPtr.DefPtr.info.P);
+            new B2Ctl(ctl).AttackStyle_Set(v);
             Ai_SetState(ctl, v);
         }
     }
@@ -1875,8 +1875,8 @@ public static partial class Game
             int v = 0;
             if ((((n / 4) * 4) == (n - 1)))
             {
-                v = Ai_PickAttackStyle(new B2Ctl(ctl).owner.def.info.P);
-                new B2Ctl(ctl).unk230_Set(v);
+                v = Ai_PickAttackStyle(new B2Ctl(ctl).OwnerPtr.DefPtr.info.P);
+                new B2Ctl(ctl).AttackStyle_Set(v);
                 Ai_SetState(ctl, v);
             }
         }
@@ -1959,7 +1959,7 @@ public static partial class Game
             float v = 0f;
             if ((new B2GameFlags(Gv.Settings_MatchRules).unk78 != 0))
             {
-                if (((int)(new B2Ctl(ctl).owner.stats.unk8F) == 0))
+                if (((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk8F) == 0))
                 {
                     if (((int)(Match_FindTaggedPlayer((Gv.Settings_MatchRules - (uint)6240))) == 0))
                     {
@@ -2001,47 +2001,47 @@ public static partial class Game
             {
                 return 1;
             }
-            if ((new B2Ctl(ctl).unkC == (-1)))
+            if ((new B2Ctl(ctl).GoalNode == (-1)))
             {
                 return 1;
             }
-            if ((new B2Ctl(ctl).unk4 == new B2Ctl(ctl).unkC))
+            if ((new B2Ctl(ctl).CurrentNode == new B2Ctl(ctl).GoalNode))
             {
                 return 1;
             }
-            if ((((new B2Ctl(ctl).unk28 == new B2Ctl(ctl).unkC) && (new B2Ctl(ctl).q[(int)(0)] != (-1))) && (new B2Ctl(ctl).q[(int)(1)] != (-1))))
+            if ((((new B2Ctl(ctl).PlannedGoalNode == new B2Ctl(ctl).GoalNode) && (new B2Ctl(ctl).PathNodes[(int)(0)] != (-1))) && (new B2Ctl(ctl).PathNodes[(int)(1)] != (-1))))
             {
-                if ((new B2Ctl(ctl).unk4 == new B2Ctl(ctl).q[(int)(0)]))
+                if ((new B2Ctl(ctl).CurrentNode == new B2Ctl(ctl).PathNodes[(int)(0)]))
                 {
                     return 1;
                 }
-                if ((AiNav_FindEdge(m, new B2Ctl(ctl).unk4, new B2Ctl(ctl).q[(int)(0)]) != (-1)))
+                if ((AiNav_FindEdge(m, new B2Ctl(ctl).CurrentNode, new B2Ctl(ctl).PathNodes[(int)(0)]) != (-1)))
                 {
                     return 1;
                 }
             }
             AiNav_ResetSearch(m);
-            if ((new B2Ctl(ctl).unk2F4 != 0))
+            if ((new B2Ctl(ctl).IsAvoidingEnemies != 0))
             {
                 AiNav_PenalizeEnemyNodes(ctl);
             }
-            if ((new B2Ctl(ctl).unk2F8 != 0))
+            if ((new B2Ctl(ctl).IsAddingTimerCosts != 0))
             {
                 AiNav_AddTimerCosts_0020EE50(ctl);
             }
-            if ((new B2Ctl(ctl).unk2FC != 0))
+            if ((new B2Ctl(ctl).IsFavoringPickups != 0))
             {
                 AiNav_FavorPickupNodes(ctl);
             }
             AiNav_PenalizeDangerNodes(ctl);
             AiNav_ClearGoals(m);
-            AiNav_AddGoal(m, new B2Ctl(ctl).unkC);
+            AiNav_AddGoal(m, new B2Ctl(ctl).GoalNode);
             new B2Mgr(m).unk18_Set((-1));
-            AiNav_SearchFrom(m, new B2Ctl(ctl).unk4);
-            AiNav_BuildPath(m, new B2Ctl(ctl).q.P, 4);
-            new B2Ctl(ctl).unk1BC_Set(0);
-            new B2Ctl(ctl).unk1C0_Set((-1));
-            new B2Ctl(ctl).unk28_Set(new B2Ctl(ctl).unkC);
+            AiNav_SearchFrom(m, new B2Ctl(ctl).CurrentNode);
+            AiNav_BuildPath(m, new B2Ctl(ctl).PathNodes.P, 4);
+            new B2Ctl(ctl).BranchStep_Set(0);
+            new B2Ctl(ctl).BranchNode_Set((-1));
+            new B2Ctl(ctl).PlannedGoalNode_Set(new B2Ctl(ctl).GoalNode);
             return 1;
         }
     }
@@ -2095,7 +2095,7 @@ public static partial class Game
                 {
                     Mem.Set((_fp + (uint)(i * 4)), 0);
                 }
-                switch (new B2Ctl(ctl).unkBC)
+                switch (new B2Ctl(ctl).WantedItemKind)
                 {
                 case 0:
                     Mem.Set((_fp + (uint)(0 * 4)), 3014);
@@ -2145,27 +2145,27 @@ public static partial class Game
                     if ((AiNav_AddItemGoals(_fp) == 0))
                     {
                         new B2Ctl(ctl).unk68__Set(0u);
-                        new B2Ctl(ctl).unkBC_Set((-1));
+                        new B2Ctl(ctl).WantedItemKind_Set((-1));
                         return 1;
                     }
                     new B2Mgr(m).unk18_Set((-1));
-                    AiNav_SearchFrom(m, new B2Ctl(ctl).unk4);
+                    AiNav_SearchFrom(m, new B2Ctl(ctl).CurrentNode);
                     id = new B2Mgr(m).unk18;
                     if ((id != (-1)))
                     {
                         n = AiNav_FindSearchNode(m, id);
-                        new B2Ctl(ctl).unkC_Set(new B2Mgr(m).unk18);
+                        new B2Ctl(ctl).GoalNode_Set(new B2Mgr(m).unk18);
                         new B2Ctl(ctl).unk68__Set(new B2Node(n).unk34_);
-                        AiNav_BuildPath(m, new B2Ctl(ctl).q.P, 4);
+                        AiNav_BuildPath(m, new B2Ctl(ctl).PathNodes.P, 4);
                         return 1;
                     }
                     new B2Ctl(ctl).unk68__Set(0u);
-                    new B2Ctl(ctl).unkBC_Set(id);
+                    new B2Ctl(ctl).WantedItemKind_Set(id);
                 }
                 else
                 {
                     new B2Ctl(ctl).unk68__Set(0u);
-                    new B2Ctl(ctl).unkBC_Set((-1));
+                    new B2Ctl(ctl).WantedItemKind_Set((-1));
                 }
                 return 1;
             }
@@ -2629,7 +2629,7 @@ public static partial class Game
                 {
                     new BrainB(b).unk64__Set(0u);
                 }
-                if (((Mem.S32(Gv.TeamPlayEnabled) != 0) && ((int)(new BrainB(b).actor.PlayerEntryPtr.unk92) == (int)(new ActorB(cur).PlayerEntryPtr.unk92))))
+                if (((Mem.S32(Gv.TeamPlayEnabled) != 0) && ((int)(new BrainB(b).OwnerPtr.PlayerEntryPtr.unk92) == (int)(new ActorB(cur).PlayerEntryPtr.unk92))))
                 {
                     new BrainB(b).unk64__Set(0u);
                 }
@@ -2650,9 +2650,9 @@ public static partial class Game
                 cur = 0u;
                 curDist = 0.0f;
             }
-            if (((new BrainB(b).target_ != 0u) && ((new BrainB(b).target.Flags & (uint)(3145728)) != 0u)))
+            if (((new BrainB(b).target_ != 0u) && ((new BrainB(b).PreferredTargetPtr_28C.Flags & (uint)(3145728)) != 0u)))
             {
-                tgt = new BrainB(b).target.owner_;
+                tgt = new BrainB(b).PreferredTargetPtr_28C.owner_;
                 tgtDist = Vec_Distance(from, new ActorB(tgt).Position.P);
             }
             else
@@ -2670,14 +2670,14 @@ public static partial class Game
                 if (((tgt != 0u) && (Ai_IsTargetCandidateVisible(b) != 0)))
                 {
                     new BrainB(b).unk64__Set(tgt);
-                    new BrainB(b).unk258_Set(new ActorB(tgt).Position.x);
+                    new BrainB(b).AimPoint_Set(new ActorB(tgt).Position.x);
                     v = tgt;
                 }
                 else
                 {
-                    v = new BrainB(b).actors[(int)(Ai_FindNearestCandidate(b))];
+                    v = new BrainB(b).EnemyPtrs[(int)(Ai_FindNearestCandidate(b))];
                     new BrainB(b).unk64__Set(v);
-                    new BrainB(b).unk258_Set(new ActorB(v).Position.x);
+                    new BrainB(b).AimPoint_Set(new ActorB(v).Position.x);
                 }
             }
             else
@@ -2685,21 +2685,21 @@ public static partial class Game
                 if (((tgt != 0u) && (tgtDist <= curDist)))
                 {
                     new BrainB(b).unk64__Set(tgt);
-                    new BrainB(b).unk258_Set(new ActorB(tgt).Position.x);
+                    new BrainB(b).AimPoint_Set(new ActorB(tgt).Position.x);
                     v = tgt;
                 }
                 else
                 {
                     int i = Ai_FindNearestCandidate(b);
-                    if (((i != (-1)) && ((float)(new BrainB(b).value[(int)(i)]) < curDist)))
+                    if (((i != (-1)) && ((float)(new BrainB(b).EnemyDistances[(int)(i)]) < curDist)))
                     {
-                        v = new BrainB(b).actors[(int)(i)];
+                        v = new BrainB(b).EnemyPtrs[(int)(i)];
                         new BrainB(b).unk64__Set(v);
-                        new BrainB(b).unk258_Set(new ActorB(v).Position.x);
+                        new BrainB(b).AimPoint_Set(new ActorB(v).Position.x);
                     }
                     else
                     {
-                        if (((new BrainB(b).state == (uint)(1)) && (Mem.F32(0x800C7000u) < curDist)))
+                        if (((new BrainB(b).StateId == (uint)(1)) && (Mem.F32(0x800C7000u) < curDist)))
                         {
                             new BrainB(b).unk64__Set(0u);
                             return 1;
@@ -2709,12 +2709,12 @@ public static partial class Game
                             if (((new ActorB(tgt).Position.P != 0u) || (b != 0u)))
                             {
                                 v = new BrainB(b).unk64_;
-                                new BrainB(b).unk258_Set(new ActorB(v).Position.x);
+                                new BrainB(b).AimPoint_Set(new ActorB(v).Position.x);
                             }
                             else
                             {
                                 v = new BrainB(b).unk64_;
-                                new BrainB(b).unk258_Set(new ActorB(v).Position.x);
+                                new BrainB(b).AimPoint_Set(new ActorB(v).Position.x);
                             }
                         }
                     }
@@ -2878,7 +2878,7 @@ public static partial class Game
             }
             for (i = 0; (i < 10); ++i)
             {
-                if (((new BrainB(s).actors[(int)(i)] == new BrainB(s).target_) && (new BrainB(s).valid[(int)(i)] != 0)))
+                if (((new BrainB(s).EnemyPtrs[(int)(i)] == new BrainB(s).target_) && (new BrainB(s).EnemyVisibleFlags[(int)(i)] != 0)))
                 {
                     return 1;
                 }
@@ -2895,13 +2895,13 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0020F93C", (uint)s);
             int n = 0;
             int i = 0;
-            if ((new BrainB(s).count == 0))
+            if ((new BrainB(s).EnemyCount == 0))
             {
                 return 0;
             }
             for (i = 0; (i < 10); ++i)
             {
-                if (((new BrainB(s).actors[(int)(i)] != 0u) && (new BrainB(s).valid[(int)(i)] != 0)))
+                if (((new BrainB(s).EnemyPtrs[(int)(i)] != 0u) && (new BrainB(s).EnemyVisibleFlags[(int)(i)] != 0)))
                 {
                     ++n;
                 }
@@ -2919,12 +2919,12 @@ public static partial class Game
             int best = (-1);
             float min = Mem.F32(0x800C7004u);
             int i = 0;
-            for (i = 0; (i < new BrainB(s).count); ++i)
+            for (i = 0; (i < new BrainB(s).EnemyCount); ++i)
             {
-                if (((new ActorB(new BrainB(s).actors[(int)(i)]).Flags & (uint)(3145728)) != 0u))
+                if (((new ActorB(new BrainB(s).EnemyPtrs[(int)(i)]).Flags & (uint)(3145728)) != 0u))
                 {
-                    float v = (float)(new BrainB(s).value[(int)(i)]);
-                    if ((((v < min) || (min == Mem.F32(0x800C7004u))) && (new BrainB(s).valid[(int)(i)] != 0)))
+                    float v = (float)(new BrainB(s).EnemyDistances[(int)(i)]);
+                    if ((((v < min) || (min == Mem.F32(0x800C7004u))) && (new BrainB(s).EnemyVisibleFlags[(int)(i)] != 0)))
                     {
                         min = v;
                         best = i;
@@ -2956,13 +2956,13 @@ public static partial class Game
             int var_v0 = 0;
             int cur = 0;
             uint st = 0u;
-            s0 = new B2Ctl(ctl).owner.unk5E4;
+            s0 = new B2Ctl(ctl).OwnerPtr.Health;
             _f0: ;
             s0 = (int)((int)(s0) >> (int)8);
             d = (Player_GetMaxHealth(new B2Ctl(ctl).owner_) >> (int)8);
             fs0f = (((float)(s0) / (float)(d)) * (k = Mem.F32(0x800C7010u)));
-            s0 = Player_GetWeaponAmmo(new B2Ctl(ctl).owner_, (int)(new B2Ctl(ctl).owner.unk62E));
-            v = Player_GetAmmoCapacity(new B2Ctl(ctl).owner_, Weapon_GetAmmoSlot(new B2Ctl(ctl).owner_, (int)(new B2Ctl(ctl).owner.unk62E)));
+            s0 = Player_GetWeaponAmmo(new B2Ctl(ctl).owner_, (int)(new B2Ctl(ctl).OwnerPtr.WeaponIndex));
+            v = Player_GetAmmoCapacity(new B2Ctl(ctl).owner_, Weapon_GetAmmoSlot(new B2Ctl(ctl).owner_, (int)(new B2Ctl(ctl).OwnerPtr.WeaponIndex)));
             if (!(((v != 0) && (s0 != (-1))))) goto _f3;
             fs0 = (((float)(s0) / (float)(v)) * k);
             goto _f4;
@@ -2983,12 +2983,12 @@ public static partial class Game
             goto L_done;
             _f7: ;
             _f5: ;
-            if (!(((new B2GameFlags(Gv.Settings_MatchRules).unk54 != 0) && ((int)(new B2Ctl(ctl).owner.stats.unk8F) != 0)))) goto _f8;
+            if (!(((new B2GameFlags(Gv.Settings_MatchRules).unk54 != 0) && ((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk8F) != 0)))) goto _f8;
             if (!((new B2GameFlags(Gv.Settings_MatchRules).unk68 > 0))) goto _f9;
-            if (!((new B2Ctl(ctl).curId != 2))) goto _f10;
+            if (!((new B2Ctl(ctl).StateId != 2))) goto _f10;
             Ai_SetState(ctl, 2);
-            new B2Ctl(ctl).unk2F4_Set(1);
-            new B2Ctl(ctl).unk2F8_Set(1);
+            new B2Ctl(ctl).IsAvoidingEnemies_Set(1);
+            new B2Ctl(ctl).IsAddingTimerCosts_Set(1);
             return 1;
             _f10: ;
             goto L_done;
@@ -2997,31 +2997,31 @@ public static partial class Game
             goto L_done;
             _f8: ;
             var_s0 = (int)(((Mem.F32(0x800C7018u) - Ai_GetAggression_00209B64(ctl)) * Mem.F32(0x800C701Cu)));
-            if (!(((Mem.S32(Gv.Match_FragTagMode) != 0) && ((int)(new B2Ctl(ctl).owner.stats.unk94) != 0)))) goto _f11;
+            if (!(((Mem.S32(Gv.Match_FragTagMode) != 0) && ((int)(new B2Ctl(ctl).OwnerPtr.PlayerEntryPtr.unk94) != 0)))) goto _f11;
             var_s0 = 0;
             _f11: ;
             if (!((Ai_IsSeekingItem(ctl) == 0))) goto _f12;
             var_v0 = 1;
             if (!((fs0f < (float)(var_s0)))) goto _f13;
             L_b20: ;
-            new B2Ctl(ctl).unkBC_Set(var_v0);
+            new B2Ctl(ctl).WantedItemKind_Set(var_v0);
             L_b21: ;
             Ai_SetState(ctl, 8);
             goto L_done;
             _f13: ;
             _f12: ;
             if (!(((Ai_IsSeekingItem(ctl) == 0) && (fs0 < Mem.F32(0x800C7020u))))) goto _f14;
-            new B2Ctl(ctl).unkBC_Set(Ai_GetAmmoItemKind(ctl));
+            new B2Ctl(ctl).WantedItemKind_Set(Ai_GetAmmoItemKind(ctl));
             goto L_b21;
             _f14: ;
-            cur = new B2Ctl(ctl).curId;
+            cur = new B2Ctl(ctl).StateId;
             if (!(((((((uint)((cur - 3)) >= 2u) && (cur != 13)) || !(s2 < 10)) || (s3 >= 10)) || (C.Seq((object?)((var_v0 = 4)), ((s4 > 0) ? 1 : 0)) != 0)))) goto _f15;
             if (!(((Ai_IsInCombatState(ctl) != 0) && (new B2Ctl(ctl).target_ == 0u)))) goto _f16;
             L_b32: ;
             Ai_SetState(ctl, 2);
             goto L_done;
             _f16: ;
-            if (!(((Ai_WantsObjective_0020EA10(ctl) != 0) && (C.Seq((object?)((cur = new B2Ctl(ctl).curId)), ((cur != 9) ? 1 : 0)) != 0)))) goto _f17;
+            if (!(((Ai_WantsObjective_0020EA10(ctl) != 0) && (C.Seq((object?)((cur = new B2Ctl(ctl).StateId)), ((cur != 9) ? 1 : 0)) != 0)))) goto _f17;
             if (!(((uint)((cur - 1)) < 2u))) goto _f18;
             Ai_SetState(ctl, 9);
             goto L_done;
@@ -3030,7 +3030,7 @@ public static partial class Game
             _f17: ;
             if (!((((Ai_IsSeekingItem(ctl) == 0) || !((float)(var_s0) < fs0f)) || !(Mem.F32(0x800C7024u) < fs0)))) goto _f20;
             if (!((((Ai_IsInCombatState(ctl) == 0) && (Ai_IsSeekingItem(ctl) == 0)) && (new B2Ctl(ctl).target_ != 0u)))) goto _f21;
-            st = new B2Ctl(ctl).owner.stats_;
+            st = new B2Ctl(ctl).OwnerPtr.stats_;
             if (!(((int)(new B2Stats(st).unk94) != 0))) goto _f22;
             if (!(((int)(new B2Stats(st).unk80) == 12))) goto _f23;
             Ai_SetState(ctl, 13);
@@ -3165,23 +3165,23 @@ public static partial class Game
             uint gf = 0u;
             for (i = 0; (i < 10); ++i)
             {
-                new BrainB(b).actors.Set((int)(i), 0u);
-                new BrainB(b).valid.Set((int)(i), 0);
-                new BrainB(b).value.Set((int)(i), (-1));
+                new BrainB(b).EnemyPtrs.Set((int)(i), 0u);
+                new BrainB(b).EnemyVisibleFlags.Set((int)(i), 0);
+                new BrainB(b).EnemyDistances.Set((int)(i), (-1));
             }
             n = 0;
             for (i = 0, g = Gv.PlayerPool, gf = new GameB(g).gf.P; (i < 8); ++i)
             {
                 a = Player_GetByIndex(g, (uint)(i));
-                if (((((a != 0u) && (a != new BrainB(b).actor_)) && ((new GameFlagsB(gf).unk24 == 0) || ((int)(new ActorB(a).PlayerEntryPtr.unk92) != (int)(new BrainB(b).actor.PlayerEntryPtr.unk92)))) && ((new ActorB(a).Health >> (int)8) > 0)))
+                if (((((a != 0u) && (a != new BrainB(b).actor_)) && ((new GameFlagsB(gf).unk24 == 0) || ((int)(new ActorB(a).PlayerEntryPtr.unk92) != (int)(new BrainB(b).OwnerPtr.PlayerEntryPtr.unk92)))) && ((new ActorB(a).Health >> (int)8) > 0)))
                 {
-                    new BrainB(b).actors.Set((int)(n), a);
-                    new BrainB(b).value.Set((int)(n), (int)(Vec_Distance(new BrainB(b).actor.Position.P, new ActorB(a).Position.P)));
-                    new BrainB(b).valid.Set((int)(n), Ai_CanSeeCandidate(b, n));
+                    new BrainB(b).EnemyPtrs.Set((int)(n), a);
+                    new BrainB(b).EnemyDistances.Set((int)(n), (int)(Vec_Distance(new BrainB(b).OwnerPtr.Position.P, new ActorB(a).Position.P)));
+                    new BrainB(b).EnemyVisibleFlags.Set((int)(n), Ai_CanSeeCandidate(b, n));
                     ++n;
                 }
             }
-            new BrainB(b).count_Set(n);
+            new BrainB(b).EnemyCount_Set(n);
             return 1;
         }
     }
@@ -3292,7 +3292,7 @@ public static partial class Game
             int v = 0;
             float k = 0f;
             float new_var = 0f;
-            t = new ActorB(new BrainB(b).actors[(int)(idx)]).owner_;
+            t = new ActorB(new BrainB(b).EnemyPtrs[(int)(idx)]).owner_;
             hit = 0;
             if (((new ActorB(t).PowerupFlags & (uint)(32)) != 0u))
             {
@@ -3312,7 +3312,7 @@ public static partial class Game
             }
             if ((d <= Mem.F32(0x800C704Cu)))
             {
-                if ((new BrainB(b).value[(int)(idx)] < th1))
+                if ((new BrainB(b).EnemyDistances[(int)(idx)] < th1))
                 {
                     hit = 1;
                 }
@@ -3322,36 +3322,36 @@ public static partial class Game
             {
                 if (((Mem.F32(0x800C704Cu) < d) && (d <= Mem.F32(0x800C7050u))))
                 {
-                    v = new BrainB(b).value[(int)(idx)];
+                    v = new BrainB(b).EnemyDistances[(int)(idx)];
                     zone = 1;
                     if ((v < th2))
                     {
                         if ((Gv.AiNavGraph != 0u))
                         {
-                            new BrainB(b).value.Set((int)(idx), (int)(((float)(v) * Mem.F32(0x800C7054u))));
+                            new BrainB(b).EnemyDistances.Set((int)(idx), (int)(((float)(v) * Mem.F32(0x800C7054u))));
                             hit = 1;
                         }
                         else
                         {
-                            new BrainB(b).value.Set((int)(idx), (int)(((float)(v) * Mem.F32(0x800C7054u))));
+                            new BrainB(b).EnemyDistances.Set((int)(idx), (int)(((float)(v) * Mem.F32(0x800C7054u))));
                             hit = 1;
                         }
                     }
                 }
                 else
                 {
-                    v = new BrainB(b).value[(int)(idx)];
+                    v = new BrainB(b).EnemyDistances[(int)(idx)];
                     if ((v < th3))
                     {
                         hit = 1;
-                        new BrainB(b).value.Set((int)(idx), (int)(((float)(v) * Mem.F32(0x800C7058u))));
+                        new BrainB(b).EnemyDistances.Set((int)(idx), (int)(((float)(v) * Mem.F32(0x800C7058u))));
                     }
                     zone = 2;
                 }
             }
             if ((Mem.S32(Gv.Match_FragTagMode) != 0))
             {
-                if (((((int)(new BrainB(b).actor.PlayerEntryPtr.unk94) ^ 0) != 0) && ((int)(new BrainB(b).actor.PlayerEntryPtr.unk80) == 12)))
+                if (((((int)(new BrainB(b).OwnerPtr.PlayerEntryPtr.unk94) ^ 0) != 0) && ((int)(new BrainB(b).OwnerPtr.PlayerEntryPtr.unk80) == 12)))
                 {
                     hit = 1;
                 }
@@ -3360,14 +3360,14 @@ public static partial class Game
             {
                 if (((Mem.S32(Gv.Settings_MonkeyTagMode) != 0) && ((int)(new ActorB(t).PlayerEntryPtr.unk8F) != 0)))
                 {
-                    new BrainB(b).value.Set((int)(idx), (int)(((float)(new BrainB(b).value[(int)(idx)]) * Mem.F32(0x800C705Cu))));
+                    new BrainB(b).EnemyDistances.Set((int)(idx), (int)(((float)(new BrainB(b).EnemyDistances[(int)(idx)]) * Mem.F32(0x800C705Cu))));
                 }
                 if ((new ActorB(t).IsComputer == 0))
                 {
-                    new_var = (float)(new BrainB(b).value[(int)(idx)]);
-                    new BrainB(b).value.Set((int)(idx), (int)((new_var * Mem.F32(0x800C7060u))));
+                    new_var = (float)(new BrainB(b).EnemyDistances[(int)(idx)]);
+                    new BrainB(b).EnemyDistances.Set((int)(idx), (int)((new_var * Mem.F32(0x800C7060u))));
                 }
-                if ((AiNav_IsNodeVisible(Gv.AiNavGraph, new BrainB(b).unk4, new ActorB(t).BrainPtr.unk4) != 0))
+                if ((AiNav_IsNodeVisible(Gv.AiNavGraph, new BrainB(b).CurrentNode, new ActorB(t).BrainPtr.CurrentNode) != 0))
                 {
                     return 1;
                 }
@@ -3376,11 +3376,11 @@ public static partial class Game
             {
                 return 0;
             }
-            if ((new BrainB(b).unk324 < 451))
+            if ((new BrainB(b).AttackerTimer < 451))
             {
                 return 0;
             }
-            v = new BrainB(b).value[(int)(idx)];
+            v = new BrainB(b).EnemyDistances[(int)(idx)];
             if ((v < (th1 * 2)))
             {
                 hit = 1;
@@ -3390,14 +3390,14 @@ public static partial class Game
                     break;
                 case 1:
                     k = Mem.F32(0x800C7064u);
-                    new BrainB(b).value.Set((int)(idx), (int)(((float)(v) * k)));
+                    new BrainB(b).EnemyDistances.Set((int)(idx), (int)(((float)(v) * k)));
                     break;
                 case 2:
                     k = Mem.F32(0x800C7068u);
-                    new BrainB(b).value.Set((int)(idx), (int)(((float)(v) * k)));
+                    new BrainB(b).EnemyDistances.Set((int)(idx), (int)(((float)(v) * k)));
                     break;
                 }
-                new BrainB(b).value.Set((int)(idx), (int)(((float)(new BrainB(b).value[(int)(idx)]) * (((Mem.F32(0x800C706Cu) - Ai_GetAggression_00209B64(b)) * Mem.F32(0x800C7070u)) + Mem.F32(0x800C7070u)))));
+                new BrainB(b).EnemyDistances.Set((int)(idx), (int)(((float)(new BrainB(b).EnemyDistances[(int)(idx)]) * (((Mem.F32(0x800C706Cu) - Ai_GetAggression_00209B64(b)) * Mem.F32(0x800C7070u)) + Mem.F32(0x800C7070u)))));
                 return 1;
             }
             return 0;
@@ -4286,7 +4286,7 @@ public static partial class Game
             uint brain = 0u;
             float speed = 0f;
             int pattern = 0;
-            brain = new CloseAttackActor(actor).self.brain_;
+            brain = new CloseAttackActor(actor).OwnerPtr.brain_;
             Ai_RunThinkStep(brain, default(uint), default(uint), default(uint));
             player = new CloseAttackBrain(brain).target_;
             if (!((player != 0u))) goto _f0;
@@ -4295,15 +4295,15 @@ public static partial class Game
             _f1: ;
             new CloseAttackBrain(brain).frames_Set((int)((int)(new CloseAttackBrain(brain).frames) + 1));
             target = new CloseAttackBrain(brain).target.self_;
-            mine = (new CloseAttackBrain(brain).player.flags & 12288);
-            theirs = (((new CloseAttackActor(target).flags & 12288) != 0) ? 1 : 0);
+            mine = (new CloseAttackBrain(brain).player.GroundFlags & 12288);
+            theirs = (((new CloseAttackActor(target).GroundFlags & 12288) != 0) ? 1 : 0);
             if (!(((mine != 0) && !(theirs != 0)))) goto _f2;
             Ai_SetState(brain, 12);
             return;
             _f2: ;
-            route = new CloseAttackActor(target).brain.route;
+            route = new CloseAttackActor(target).BrainPtr.route;
             if (!((new CloseAttackBrain(brain).visible != 0))) goto _f3;
-            if (!((Vec_DistanceSq(new CloseAttackActor(target).pos.P, new CloseAttackBrain(brain).player.pos.P) < 3.6E+5f))) goto _f4;
+            if (!((Vec_DistanceSq(new CloseAttackActor(target).Position.P, new CloseAttackBrain(brain).player.Position.P) < 3.6E+5f))) goto _f4;
             new CloseAttackBrain(brain).combat_Set(3);
             Ai_SetState(brain, 7);
             return;
@@ -4316,16 +4316,16 @@ public static partial class Game
             new CloseAttackBrain(brain).pattern_Set(2);
             _f6: ;
             _f5: ;
-            Ai_TurnTowardPoint(brain, new CloseAttackActor(target).pos.P, 2.0f, Ai_UpdateAimWobble(brain));
+            Ai_TurnTowardPoint(brain, new CloseAttackActor(target).Position.P, 2.0f, Ai_UpdateAimWobble(brain));
             pattern = new CloseAttackBrain(brain).pattern;
             if (!((pattern == 0))) goto _f7;
-            dir = Ai_YawToSector(((new CloseAttackBrain(brain).player.yaw - 3.14159274f) - 1.57079637f));
+            dir = Ai_YawToSector(((new CloseAttackBrain(brain).player.Yaw - 3.14159274f) - 1.57079637f));
             player = new CloseAttackBrain(brain).player_;
-            if (!(((new CloseAttackActor(player).slot % 2) == Mem.S32(Gv.FrameParity)))) goto _f8;
+            if (!(((new CloseAttackActor(player).PlayerIndex % 2) == Mem.S32(Gv.FrameParity)))) goto _f8;
             Ai_ProbeWalkDistance(player, (uint)(dir), default(uint), default(uint));
             _f8: ;
             if (!(!(new CloseAttackBrain(brain).walk[(int)(dir)] < 100.0f))) goto _f9;
-            new CloseAttackBrain(brain).player.strafe_Set((-speed));
+            new CloseAttackBrain(brain).player.StrafeInput_Set((-speed));
             goto _f10;
             _f9: ;
             goto L_halt;
@@ -4333,22 +4333,22 @@ public static partial class Game
             goto _f11;
             _f7: ;
             if (!((pattern == 1))) goto _f12;
-            dir = Ai_YawToSector(((new CloseAttackBrain(brain).player.yaw - 3.14159274f) + 1.57079637f));
+            dir = Ai_YawToSector(((new CloseAttackBrain(brain).player.Yaw - 3.14159274f) + 1.57079637f));
             player = new CloseAttackBrain(brain).player_;
-            if (!(((new CloseAttackActor(player).slot % 2) == Mem.S32(Gv.FrameParity)))) goto _f13;
+            if (!(((new CloseAttackActor(player).PlayerIndex % 2) == Mem.S32(Gv.FrameParity)))) goto _f13;
             Ai_ProbeWalkDistance(player, (uint)(dir), default(uint), default(uint));
             _f13: ;
             if (!((new CloseAttackBrain(brain).walk[(int)(dir)] < 100.0f))) goto _f14;
             L_halt: ;
-            new CloseAttackBrain(brain).player.strafe_Set(0.0f);
+            new CloseAttackBrain(brain).player.StrafeInput_Set(0.0f);
             new CloseAttackBrain(brain).pattern_Set(2);
             goto _f15;
             _f14: ;
-            new CloseAttackBrain(brain).player.strafe_Set(speed);
+            new CloseAttackBrain(brain).player.StrafeInput_Set(speed);
             _f15: ;
             goto _f16;
             _f12: ;
-            new CloseAttackBrain(brain).player.strafe_Set(0.0f);
+            new CloseAttackBrain(brain).player.StrafeInput_Set(0.0f);
             _f16: ;
             _f11: ;
             new CloseAttackBrain(brain).w14_Set((-1));
@@ -4441,8 +4441,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00212FBC", (uint)actor);
             uint b = new Actor(new Actor(actor).OwnerPtr).BrainPtr;
-            new BrainB(b).unk220_Set(0);
-            new BrainB(b).unk224_Set((-1));
+            new BrainB(b).ThinkStep_Set(0);
+            new BrainB(b).RoamPathId_Set((-1));
         }
     }
 
@@ -4462,7 +4462,7 @@ public static partial class Game
                 int n = 0;
                 int id = 0;
                 int first = 0;
-                if ((new BrainB(b).unkBC == (-1)))
+                if ((new BrainB(b).WantedItemKind == (-1)))
                 {
                     Ai_SetState(b, 2);
                     return;
@@ -4472,42 +4472,42 @@ public static partial class Game
                     Ai_RunThinkStep(b, default(uint), default(uint), default(uint));
                     return;
                 }
-                d = Ai_DistanceToNode(b, new BrainB(b).unkC);
-                if (((new BrainB(b).unk4 != new BrainB(b).unkC) && (Mem.F32(0x800C71D0u) < d)))
+                d = Ai_DistanceToNode(b, new BrainB(b).GoalNode);
+                if (((new BrainB(b).CurrentNode != new BrainB(b).GoalNode) && (Mem.F32(0x800C71D0u) < d)))
                 {
                     Ai_FollowPath(b);
                 }
                 else
                 {
-                    if ((new BrainB(b).unk238 != 0))
+                    if ((new BrainB(b).IsFollowTargetReached_238 != 0))
                     {
                         Ai_SetState(b, 8);
                     }
                     else
                     {
-                        Mem.Copy(new BrainB(b).unk2C.P, new BrainB(b).unk68.Position.P, 12);
+                        Mem.Copy(new BrainB(b).MoveTarget.P, new BrainB(b).GoalEntityPtr.Position.P, 12);
                     }
                 }
                 Ai_RunThinkStep(b, default(uint), default(uint), default(uint));
                 if ((new BrainB(b).unk68_ != 0u))
                 {
                     Ai_SteerWhileFacingTarget(b);
-                    if (((Vec_Distance(new BrainB(b).actor.Position.P, new BrainB(b).unk68.Position.P) < Mem.F32(0x800C71D4u)) && (new BrainB(b).unk238 == 0)))
+                    if (((Vec_Distance(new BrainB(b).OwnerPtr.Position.P, new BrainB(b).GoalEntityPtr.Position.P) < Mem.F32(0x800C71D4u)) && (new BrainB(b).IsFollowTargetReached_238 == 0)))
                     {
-                        new BrainB(b).unk238_Set(1);
+                        new BrainB(b).IsFollowTargetReached_238_Set(1);
                         for (i = 0; (i < 64); ++i)
                         {
                             Mem.Set((_fp + (uint)(i * 4)), (-1));
                         }
-                        AiNav_GetNeighborsSorted(L, new BrainB(b).unkC, new BrainB(b).unkC, _fp, 0);
+                        AiNav_GetNeighborsSorted(L, new BrainB(b).GoalNode, new BrainB(b).GoalNode, _fp, 0);
                         first = Mem.S32((_fp + (uint)(0 * 4)));
                         for (i = 0; (i < 64); ++i)
                         {
                             Mem.Set((_fp + (uint)(i * 4)), (-1));
                         }
-                        n = AiNav_GetNeighborsSorted(L, first, new BrainB(b).unkC, _fp, 0);
+                        n = AiNav_GetNeighborsSorted(L, first, new BrainB(b).GoalNode, _fp, 0);
                         Ai_ClearPath(b);
-                        new BrainB(b).unkC_Set(Mem.S32((_fp + (uint)((n - 1) * 4))));
+                        new BrainB(b).GoalNode_Set(Mem.S32((_fp + (uint)((n - 1) * 4))));
                     }
                 }
             }
@@ -4639,8 +4639,8 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_002131AC", (uint)actor);
             uint b = new Actor(new Actor(actor).OwnerPtr).BrainPtr;
             new BrainB(b).unk68__Set(0u);
-            new BrainB(b).unk238_Set(0);
-            new BrainB(b).unk220_Set(0);
+            new BrainB(b).IsFollowTargetReached_238_Set(0);
+            new BrainB(b).ThinkStep_Set(0);
             Ai_ResetRouteBias(b);
         }
     }
@@ -4652,10 +4652,10 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002131D8", (uint)actor);
             uint b = new Actor(new Actor(actor).OwnerPtr).BrainPtr;
-            new BrainB(b).unk220_Set(0);
+            new BrainB(b).ThinkStep_Set(0);
             Ai_ResetRouteBias(b);
-            new BrainB(b).unk320_Set((-1));
-            new BrainB(b).unk2FC_Set(0);
+            new BrainB(b).JumpCooldown_Set((-1));
+            new BrainB(b).IsFavoringPickups_Set(0);
         }
     }
 
@@ -4703,14 +4703,14 @@ public static partial class Game
             uint a = 0u;
             int busy = 0;
             int t = 0;
-            if (((int)(new BrainB(b).actor.PlayerEntryPtr.unk8F) == 0))
+            if (((int)(new BrainB(b).OwnerPtr.PlayerEntryPtr.unk8F) == 0))
             {
                 Ai_SetState(b, 2);
                 return;
             }
             Ai_RunThinkStep(b, default(uint), default(uint), default(uint));
-            new BrainB(b).unk320_Set((new BrainB(b).unk320 - 1));
-            if ((new BrainB(b).unk320 == 0))
+            new BrainB(b).JumpCooldown_Set((new BrainB(b).JumpCooldown - 1));
+            if ((new BrainB(b).JumpCooldown == 0))
             {
                 a = new BrainB(b).actor_;
                 t = (int)(new ActorB(a).StateId);
@@ -4721,13 +4721,13 @@ public static partial class Game
                     new ActorB(a).ButtonsPressed_Set((uint)((uint)(new ActorB(a).ButtonsPressed) | (uint)(16)));
                 }
             }
-            if ((new BrainB(b).unk320 < 0))
+            if ((new BrainB(b).JumpCooldown < 0))
             {
-                new BrainB(b).unk320_Set((((Random_Next() % 5) + 3) * 15));
+                new BrainB(b).JumpCooldown_Set((((Random_Next() % 5) + 3) * 15));
             }
-            if ((Ai_DistanceToNode(b, new BrainB(b).unkC) < Mem.F32(0x800C71E0u)))
+            if ((Ai_DistanceToNode(b, new BrainB(b).GoalNode) < Mem.F32(0x800C71E0u)))
             {
-                new BrainB(b).actor.ButtonsPressed_Set((uint)((uint)(new BrainB(b).actor.ButtonsPressed) | (uint)(16)));
+                new BrainB(b).OwnerPtr.ButtonsPressed_Set((uint)((uint)(new BrainB(b).OwnerPtr.ButtonsPressed) | (uint)(16)));
             }
             Ai_FollowPath(b);
             Ai_SteerToPoint(b);
@@ -4924,14 +4924,14 @@ public static partial class Game
                         id = 1;
                     }
                     new BrainB(b).unk22C_Set(id);
-                    new BrainB(b).unkC_Set(id);
+                    new BrainB(b).GoalNode_Set(id);
                 }
                 else
                 {
                     sel = Mem.S32((_fp + (uint)((Random_Next() % n) * 4)));
                 }
                 new BrainB(b).unk22C_Set(sel);
-                new BrainB(b).unkC_Set(sel);
+                new BrainB(b).GoalNode_Set(sel);
             }
         }
         finally { Stack.Free(128); }
@@ -4952,9 +4952,9 @@ public static partial class Game
             int busy = 0;
             int busy2 = 0;
             int t = 0;
-            if (((new BrainB(b).unk4 == new BrainB(b).unk22C) || (new BrainB(b).unk22C >= Mem.S32(0x8013B368u))))
+            if (((new BrainB(b).CurrentNode == new BrainB(b).unk22C) || (new BrainB(b).unk22C >= Mem.S32(0x8013B368u))))
             {
-                st = new BrainB(b).actor.stats_;
+                st = new BrainB(b).OwnerPtr.stats_;
                 if ((((int)(new ActorStats(st).unk94) != 0) && ((int)(new ActorStats(st).unk80) == 12)))
                 {
                     Ai_PickFlaggedRoamNode(b);
@@ -4990,13 +4990,13 @@ public static partial class Game
                         id = 1;
                     }
                     new BrainB(b).unk22C_Set(id);
-                    new BrainB(b).unkC_Set(id);
+                    new BrainB(b).GoalNode_Set(id);
                 }
             }
-            new BrainB(b).unk320_Set((new BrainB(b).unk320 - 1));
-            if ((new BrainB(b).unk320 == 0))
+            new BrainB(b).JumpCooldown_Set((new BrainB(b).JumpCooldown - 1));
+            if ((new BrainB(b).JumpCooldown == 0))
             {
-                busy2 = ((new BrainB(b).unk314 != 0) ? 1 : 0);
+                busy2 = ((new BrainB(b).EdgeStep != 0) ? 1 : 0);
                 a = new BrainB(b).actor_;
                 t = (int)(new ActorB(a).StateId);
                 t = (int)((int)(t) ^ 15);
@@ -5006,9 +5006,9 @@ public static partial class Game
                     new ActorB(a).ButtonsPressed_Set((uint)((uint)(new ActorB(a).ButtonsPressed) | (uint)(16)));
                 }
             }
-            if ((new BrainB(b).unk320 < 0))
+            if ((new BrainB(b).JumpCooldown < 0))
             {
-                new BrainB(b).unk320_Set((((Random_Next() % 7) + 3) * 15));
+                new BrainB(b).JumpCooldown_Set((((Random_Next() % 7) + 3) * 15));
             }
             Ai_RunThinkStep(b, default(uint), default(uint), default(uint));
             Ai_FollowPath(b);
@@ -5027,8 +5027,8 @@ public static partial class Game
             uint L = 0u;
             int i = 0;
             int id = 0;
-            new BrainB(b).unk220_Set(0);
-            st = new BrainB(b).actor.stats_;
+            new BrainB(b).ThinkStep_Set(0);
+            st = new BrainB(b).OwnerPtr.stats_;
             if ((((int)(new ActorStats(st).unk94) != 0) && ((int)(new ActorStats(st).unk80) == 12)))
             {
                 Ai_PickFlaggedRoamNode(b);
@@ -5064,10 +5064,10 @@ public static partial class Game
                     id = 1;
                 }
                 new BrainB(b).unk22C_Set(id);
-                new BrainB(b).unkC_Set(id);
+                new BrainB(b).GoalNode_Set(id);
             }
             Ai_ResetRouteBias(b);
-            new BrainB(b).unk320_Set((-1));
+            new BrainB(b).JumpCooldown_Set((-1));
         }
     }
 
@@ -5107,7 +5107,7 @@ public static partial class Game
                 id = 1;
             }
             new BrainB(b).unk22C_Set(id);
-            new BrainB(b).unkC_Set(id);
+            new BrainB(b).GoalNode_Set(id);
         }
     }
 

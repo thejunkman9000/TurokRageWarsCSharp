@@ -1947,23 +1947,23 @@ public readonly struct Menu_func_802991D4_de
     [MethodImpl(Inl)] public static implicit operator uint(Menu_func_802991D4_de v) => v.P;
     [MethodImpl(Inl)] public static explicit operator Menu_func_802991D4_de(uint p) => new(p);
     // +0x0
-    public uint callback
+    public uint GlobalHandlerFn
     {
         [MethodImpl(Inl)] get => Mem.U32(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public uint callback_Set(uint v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public uint GlobalHandlerFn_Set(uint v) => Mem.Set(P, v);
     // +0x4
-    public int current
+    public int TopIndex
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public int current_Set(int v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public int TopIndex_Set(int v) => Mem.Set(P + 0x4u, v);
     // +0x8
-    public S8x4 pad8 { [MethodImpl(Inl)] get => new(P + 0x8u); }
+    public S8x4 BaseIndex { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0xC
-    public Entry_func_802991D4_de entries
+    public Entry_func_802991D4_de StackPtr
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0xCu));
         [MethodImpl(Inl)] set => Mem.Set(P + 0xCu, value.P);
@@ -1975,23 +1975,23 @@ public readonly struct Menu_func_802991D4_de
     }
     [MethodImpl(Inl)] public uint entries__Set(uint v) => Mem.Set(P + 0xCu, v);
     // +0x10
-    public S8x1296 pad10 { [MethodImpl(Inl)] get => new(P + 0x10u); }
+    public S8x1296 ScreenHandlerLookupFn { [MethodImpl(Inl)] get => new(P + 0x10u); }
     // +0x520
-    public int handled
+    public int IsEventConsumed
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x520u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x520u, value);
     }
-    [MethodImpl(Inl)] public int handled_Set(int v) => Mem.Set(P + 0x520u, v);
+    [MethodImpl(Inl)] public int IsEventConsumed_Set(int v) => Mem.Set(P + 0x520u, v);
     // +0x524
-    public S8x4 pad524 { [MethodImpl(Inl)] get => new(P + 0x524u); }
+    public S8x4 LastTickTime { [MethodImpl(Inl)] get => new(P + 0x524u); }
     // +0x528
-    public int locked
+    public int PreviousScreenId
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x528u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x528u, value);
     }
-    [MethodImpl(Inl)] public int locked_Set(int v) => Mem.Set(P + 0x528u, v);
+    [MethodImpl(Inl)] public int PreviousScreenId_Set(int v) => Mem.Set(P + 0x528u, v);
 }
 
 /// <summary>struct Menu_func_802A65E0_de, 0xEC bytes, at a guest address.</summary>

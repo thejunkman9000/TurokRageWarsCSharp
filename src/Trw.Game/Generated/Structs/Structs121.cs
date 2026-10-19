@@ -1459,32 +1459,32 @@ public readonly struct State_func_8044D054_de
     [MethodImpl(Inl)] public static implicit operator uint(State_func_8044D054_de v) => v.P;
     [MethodImpl(Inl)] public static explicit operator State_func_8044D054_de(uint p) => new(p);
     // +0x0
-    public S8x4 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x4 LoadState { [MethodImpl(Inl)] get => new(P); }
     // +0x4
-    public int unk4
+    public int IsSaveDataLoaded
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x4u, value);
     }
-    [MethodImpl(Inl)] public int unk4_Set(int v) => Mem.Set(P + 0x4u, v);
+    [MethodImpl(Inl)] public int IsSaveDataLoaded_Set(int v) => Mem.Set(P + 0x4u, v);
     // +0x8
     public S8x48 pad8 { [MethodImpl(Inl)] get => new(P + 0x8u); }
     // +0x38
-    public int unk38
+    public int SaveDataKey
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x38u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x38u, value);
     }
-    [MethodImpl(Inl)] public int unk38_Set(int v) => Mem.Set(P + 0x38u, v);
+    [MethodImpl(Inl)] public int SaveDataKey_Set(int v) => Mem.Set(P + 0x38u, v);
     // +0x3C
-    public S8x8 pad3C { [MethodImpl(Inl)] get => new(P + 0x3Cu); }
+    public S8x8 EntityFlagDataKey { [MethodImpl(Inl)] get => new(P + 0x3Cu); }
     // +0x44
-    public int unk44
+    public int SaveDataSize
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x44u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x44u, value);
     }
-    [MethodImpl(Inl)] public int unk44_Set(int v) => Mem.Set(P + 0x44u, v);
+    [MethodImpl(Inl)] public int SaveDataSize_Set(int v) => Mem.Set(P + 0x44u, v);
 }
 
 /// <summary>struct State_func_8044D0F0_de, 0x1B420 bytes, at a guest address.</summary>
@@ -1499,41 +1499,41 @@ public readonly struct State_func_8044D0F0_de
     [MethodImpl(Inl)] public static implicit operator uint(State_func_8044D0F0_de v) => v.P;
     [MethodImpl(Inl)] public static explicit operator State_func_8044D0F0_de(uint p) => new(p);
     // +0x0
-    public S8x60 pad { [MethodImpl(Inl)] get => new(P); }
+    public S8x60 LoadState { [MethodImpl(Inl)] get => new(P); }
     // +0x3C
-    public int resource
+    public int EntityFlagDataKey
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x3Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x3Cu, value);
     }
-    [MethodImpl(Inl)] public int resource_Set(int v) => Mem.Set(P + 0x3Cu, v);
+    [MethodImpl(Inl)] public int EntityFlagDataKey_Set(int v) => Mem.Set(P + 0x3Cu, v);
     // +0x40
-    public S8x8 pad40 { [MethodImpl(Inl)] get => new(P + 0x40u); }
+    public S8x8 PvsIndexKey { [MethodImpl(Inl)] get => new(P + 0x40u); }
     // +0x48
-    public int bank
+    public int EntityFlagDataSize
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x48u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x48u, value);
     }
-    [MethodImpl(Inl)] public int bank_Set(int v) => Mem.Set(P + 0x48u, v);
+    [MethodImpl(Inl)] public int EntityFlagDataSize_Set(int v) => Mem.Set(P + 0x48u, v);
     // +0x4C
-    public S8x111552 pad4c { [MethodImpl(Inl)] get => new(P + 0x4Cu); }
+    public S8x111552 LevelsIndex { [MethodImpl(Inl)] get => new(P + 0x4Cu); }
     // +0x1B40C
-    public int selection
+    public int LevelIndex
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1B40Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1B40Cu, value);
     }
-    [MethodImpl(Inl)] public int selection_Set(int v) => Mem.Set(P + 0x1B40Cu, v);
+    [MethodImpl(Inl)] public int LevelIndex_Set(int v) => Mem.Set(P + 0x1B40Cu, v);
     // +0x1B410
-    public S8x12 pad1b410 { [MethodImpl(Inl)] get => new(P + 0x1B410u); }
+    public S8x12 FadeType { [MethodImpl(Inl)] get => new(P + 0x1B410u); }
     // +0x1B41C
-    public int changed
+    public int HasWarpDest
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1B41Cu);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1B41Cu, value);
     }
-    [MethodImpl(Inl)] public int changed_Set(int v) => Mem.Set(P + 0x1B41Cu, v);
+    [MethodImpl(Inl)] public int HasWarpDest_Set(int v) => Mem.Set(P + 0x1B41Cu, v);
 }
 
 /// <summary>struct State_func_8044D528_de, 0x1B43C bytes, at a guest address.</summary>
@@ -1548,9 +1548,9 @@ public readonly struct State_func_8044D528_de
     [MethodImpl(Inl)] public static implicit operator uint(State_func_8044D528_de v) => v.P;
     [MethodImpl(Inl)] public static explicit operator State_func_8044D528_de(uint p) => new(p);
     // +0x0
-    public S8x111280 pad { [MethodImpl(Inl)] get => new(P); }
+    public S8x111280 LoadState { [MethodImpl(Inl)] get => new(P); }
     // +0x1B2B0
-    public Resource_func_80419E54_de input
+    public Resource_func_80419E54_de LevelHeader
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x1B2B0u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1B2B0u, value.P);
@@ -1564,73 +1564,73 @@ public readonly struct State_func_8044D528_de
     // +0x1B2B4
     public S8x348 pad1b2b4 { [MethodImpl(Inl)] get => new(P + 0x1B2B4u); }
     // +0x1B410
-    public int mode
+    public int FadeType
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1B410u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1B410u, value);
     }
-    [MethodImpl(Inl)] public int mode_Set(int v) => Mem.Set(P + 0x1B410u, v);
+    [MethodImpl(Inl)] public int FadeType_Set(int v) => Mem.Set(P + 0x1B410u, v);
     // +0x1B414
-    public int active
+    public int FadeState
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1B414u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1B414u, value);
     }
-    [MethodImpl(Inl)] public int active_Set(int v) => Mem.Set(P + 0x1B414u, v);
+    [MethodImpl(Inl)] public int FadeState_Set(int v) => Mem.Set(P + 0x1B414u, v);
     // +0x1B418
-    public S8x32 pad1b418 { [MethodImpl(Inl)] get => new(P + 0x1B418u); }
+    public S8x32 FadeTime { [MethodImpl(Inl)] get => new(P + 0x1B418u); }
     // +0x1B438
-    public int selection
+    public int PendingWarpTarget
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x1B438u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x1B438u, value);
     }
-    [MethodImpl(Inl)] public int selection_Set(int v) => Mem.Set(P + 0x1B438u, v);
+    [MethodImpl(Inl)] public int PendingWarpTarget_Set(int v) => Mem.Set(P + 0x1B438u, v);
 }
 
 /// <summary>struct State_func_8044D5C4_de, 0x11D8 bytes, at a guest address.</summary>
 public readonly struct State_func_8044D5C4_de
 {
     public readonly uint P;
-    [MethodImpl(Inl)] public State_func_8044D5C4_de(uint p) { P = p; }
+    [MethodImpl(Inl)] public State_func_8044D5C4_de(uint LoadState) { P = LoadState; }
     public const int SizeOf = 4568;
     public bool IsNull { [MethodImpl(Inl)] get => P == 0; }
     /// <summary>The i-th struct of an array that starts here.</summary>
     [MethodImpl(Inl)] public State_func_8044D5C4_de At(int i) => new(P + (uint)(i * 4568));
     [MethodImpl(Inl)] public static implicit operator uint(State_func_8044D5C4_de v) => v.P;
-    [MethodImpl(Inl)] public static explicit operator State_func_8044D5C4_de(uint p) => new(p);
+    [MethodImpl(Inl)] public static explicit operator State_func_8044D5C4_de(uint LoadState) => new(LoadState);
     // +0x0
-    public S8x4544 p { [MethodImpl(Inl)] get => new(P); }
+    public S8x4544 LoadState { [MethodImpl(Inl)] get => new(P); }
     // +0x11C0
-    public int unk11C0
+    public int EntityTriggerCount
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x11C0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x11C0u, value);
     }
-    [MethodImpl(Inl)] public int unk11C0_Set(int v) => Mem.Set(P + 0x11C0u, v);
+    [MethodImpl(Inl)] public int EntityTriggerCount_Set(int v) => Mem.Set(P + 0x11C0u, v);
     // +0x11C4
-    public int unk11C4
+    public int RegionTriggerCount
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x11C4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x11C4u, value);
     }
-    [MethodImpl(Inl)] public int unk11C4_Set(int v) => Mem.Set(P + 0x11C4u, v);
+    [MethodImpl(Inl)] public int RegionTriggerCount_Set(int v) => Mem.Set(P + 0x11C4u, v);
     // +0x11C8
-    public S8x8 q { [MethodImpl(Inl)] get => new(P + 0x11C8u); }
+    public S8x8 EntityTriggerKeys { [MethodImpl(Inl)] get => new(P + 0x11C8u); }
     // +0x11D0
-    public int unk11D0
+    public int EntityTriggerRecords
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x11D0u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x11D0u, value);
     }
-    [MethodImpl(Inl)] public int unk11D0_Set(int v) => Mem.Set(P + 0x11D0u, v);
+    [MethodImpl(Inl)] public int EntityTriggerRecords_Set(int v) => Mem.Set(P + 0x11D0u, v);
     // +0x11D4
-    public int unk11D4
+    public int RegionTriggerRecords
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x11D4u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x11D4u, value);
     }
-    [MethodImpl(Inl)] public int unk11D4_Set(int v) => Mem.Set(P + 0x11D4u, v);
+    [MethodImpl(Inl)] public int RegionTriggerRecords_Set(int v) => Mem.Set(P + 0x11D4u, v);
 }
 
 /// <summary>struct State_func_8044DD50_de, 0xB0 bytes, at a guest address.</summary>
@@ -5268,14 +5268,14 @@ public readonly struct Track_func_8044D220_de
     [MethodImpl(Inl)] public static implicit operator uint(Track_func_8044D220_de v) => v.P;
     [MethodImpl(Inl)] public static explicit operator Track_func_8044D220_de(uint p) => new(p);
     // +0x0
-    public S8x144 pad0 { [MethodImpl(Inl)] get => new(P); }
+    public S8x144 LoadState { [MethodImpl(Inl)] get => new(P); }
     // +0x90
-    public int resource
+    public int WarpDests
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x90u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x90u, value);
     }
-    [MethodImpl(Inl)] public int resource_Set(int v) => Mem.Set(P + 0x90u, v);
+    [MethodImpl(Inl)] public int WarpDests_Set(int v) => Mem.Set(P + 0x90u, v);
 }
 
 /// <summary>struct Tracker, 0x68 bytes, at a guest address.</summary>

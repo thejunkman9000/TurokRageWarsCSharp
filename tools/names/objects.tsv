@@ -1,3 +1,8 @@
 # object	alias struct view types (comma separated)	base object	note   (tools/rename/fields.py, docs/NAMING.md)
 Actor	Actor_func_80214624_de,Actor_func_80214DD4_de,B10Obj,B15Flags,B19bObj,B2Obj,Entity,Field_s32_2E0,Obj,P4Ent2,PlrObj,Q4Fx,S6Actor		actor header, 0x2E8 bytes (shared by every actor; players extend it)
-Player	Actor,ActorB,ActorX,B04Act,B14Pl,B18Ent,B19Plr,M04Node,M1Actor,Node_func_80449E18_de,Player_v2,Player_v3,Plr,Plr24d,SharedPlayer_func_80229554_de,SharedPlayer_func_8022A398_de,SharedPlayer_func_8044972C_de,SharedPlayer_func_80449EE4_de,Shared_ActorView	Actor	player object, 0x16E8 bytes (PlayerPool 0x80145040 + i * 0x16E8)
+Player	Actor,ActorB,ActorX,B04Act,B14Pl,B18Ent,B19Plr,M04Node,M1Actor,Node_func_80449E18_de,Player_v2,Player_v3,Plr,Plr24d,SharedPlayer_func_80229554_de,SharedPlayer_func_8022A398_de,SharedPlayer_func_8044972C_de,SharedPlayer_func_80449EE4_de,Shared_ActorView,B2Actor,CloseAttackActor,RespawnPlayer,S11Obj,S5Actor	Actor	player object, 0x16E8 bytes (PlayerPool 0x80145040 + i * 0x16E8)
+PlayerMenu	O05Lobby,Q03Lob		from fields_lobby.tsv
+MenuManager	Shared_MenuManager,SndMgr_v2,S410Mgr,Menu_func_802991D4_de,P4SlotTbl,B21Menu		from fields_menu1.tsv
+SoundManager	SndMgr		from fields_sound.tsv
+AiBrain	B2Ctl,Brain,BrainB		from fields_b2ctl.tsv
+Level	Level,O01G,O01G2,O01GE,B09World,SessMgr,PathTbl,M04World,M04WorldB,O3Lv,O01G_v2,B18Mgr,B10Gx,B21Ctx,B19Owner,B19bWorld,S6World_v2,S5Scene,Owner_func_8044D794_de,P4Mgr5,P4Mgr,P4Mgr2,P4Rsrc,P4Owner,P4Obj94,Obj_v3,Obj_v4,Obj_v7,State_func_8044D5C4_de,Level_v2,State_func_8044D528_de,State_func_8044D0F0_de,State_func_8044D054_de,func_8044DE04_S1,func_8044DC48_S1,Track_func_8044D220_de,S7Track,Level_func_8044CD8C_de,World_func_8044C108_de_v2,func_8044CBE0_S1_v2		from fields_level.tsv

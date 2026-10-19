@@ -299,7 +299,7 @@ public static partial class Game
                 uint cur = 0u;
                 uint @base = 0u;
                 uint o = 0u;
-                if (((new M04World(Gv.LevelMgr).mode == 4) || ((new M04Msg((Gv.Event_HandlerTable + (uint)(kind * 8))).flags & (uint)(16)) != 0u)))
+                if (((new M04World(Gv.LevelMgr).LoadState == 4) || ((new M04Msg((Gv.Event_HandlerTable + (uint)(kind * 8))).flags & (uint)(16)) != 0u)))
                 {
                     if (!((new M04Msg((Gv.Event_HandlerTable + (uint)(kind * 8))).flags & (uint)(2)) != 0u))
                     {
@@ -309,7 +309,7 @@ public static partial class Game
                     {
                         if (((new M04Msg((Gv.Event_HandlerTable + (uint)(kind * 8))).flags & (uint)(8)) != 0u))
                         {
-                            n = new M04World(Gv.LevelMgr).nobjs;
+                            n = new M04World(Gv.LevelMgr).EntityCount;
                             @base = new M04World(Gv.LevelMgr).objs_;
                             i = 0;
                             if ((n > 0))
@@ -344,7 +344,7 @@ public static partial class Game
                             n = Mem.S32((Gv.LevelMgr + (uint)3664));
                             for (i = 0; (i < n); ++i)
                             {
-                                cur = new M04WorldB(Gv.LevelMgr).tab[(int)(i)];
+                                cur = new M04WorldB(Gv.LevelMgr).Actors[(int)(i)];
                                 if ((cur != src))
                                 {
                                     func_00265E30_send_(cur, dst, kind, _fp, (_fp + 16u));

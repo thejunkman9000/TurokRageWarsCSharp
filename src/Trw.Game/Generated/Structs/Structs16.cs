@@ -4140,7 +4140,7 @@ public readonly struct O01G
     // +0x0
     public U8x4560 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x11D0
-    public U8Ptr unk11D0
+    public U8Ptr EntityTriggerRecords
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x11D0u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x11D0u, value.P);
@@ -4152,7 +4152,7 @@ public readonly struct O01G
     }
     [MethodImpl(Inl)] public uint unk11D0__Set(uint v) => Mem.Set(P + 0x11D0u, v);
     // +0x11D4
-    public U8Ptr unk11D4
+    public U8Ptr RegionTriggerRecords
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x11D4u));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x11D4u, value.P);
@@ -4179,12 +4179,12 @@ public readonly struct O01G2
     // +0x0
     public U8x68 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x44
-    public int unk44
+    public int SaveDataSize
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x44u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x44u, value);
     }
-    [MethodImpl(Inl)] public int unk44_Set(int v) => Mem.Set(P + 0x44u, v);
+    [MethodImpl(Inl)] public int SaveDataSize_Set(int v) => Mem.Set(P + 0x44u, v);
 }
 
 /// <summary>struct O01GE, 0x48 bytes, at a guest address.</summary>
@@ -4201,12 +4201,12 @@ public readonly struct O01GE
     // +0x0
     public U8x68 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x44
-    public int unk44
+    public int SaveDataSize
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x44u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x44u, value);
     }
-    [MethodImpl(Inl)] public int unk44_Set(int v) => Mem.Set(P + 0x44u, v);
+    [MethodImpl(Inl)] public int SaveDataSize_Set(int v) => Mem.Set(P + 0x44u, v);
 }
 
 /// <summary>struct O01G, 0x78 bytes, at a guest address.</summary>
@@ -4223,21 +4223,21 @@ public readonly struct O01G_v2
     // +0x0
     public U8x52 pad0 { [MethodImpl(Inl)] get => new(P); }
     // +0x34
-    public int unk34
+    public int CinemasIndexKey
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x34u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x34u, value);
     }
-    [MethodImpl(Inl)] public int unk34_Set(int v) => Mem.Set(P + 0x34u, v);
+    [MethodImpl(Inl)] public int CinemasIndexKey_Set(int v) => Mem.Set(P + 0x34u, v);
     // +0x38
     public U8x60 pad38 { [MethodImpl(Inl)] get => new(P + 0x38u); }
     // +0x74
-    public int unk74
+    public int CinemasIndex
     {
         [MethodImpl(Inl)] get => Mem.S32(P + 0x74u);
         [MethodImpl(Inl)] set => Mem.Set(P + 0x74u, value);
     }
-    [MethodImpl(Inl)] public int unk74_Set(int v) => Mem.Set(P + 0x74u, v);
+    [MethodImpl(Inl)] public int CinemasIndex_Set(int v) => Mem.Set(P + 0x74u, v);
 }
 
 /// <summary>struct O01It, 0x18 bytes, at a guest address.</summary>

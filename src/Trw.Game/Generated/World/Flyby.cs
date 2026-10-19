@@ -3610,7 +3610,7 @@ public static partial class Game
             {
                 if (Dbg.On) Dbg.Enter("func_00403BE0");
                 uint r = 0u;
-                uint p = Resource_GetCartridgeKey((uint)(new O01G_v2(Gv.LevelMgr).unk74), (uint)(new O01G_v2(Gv.LevelMgr).unk34), 0, _fp);
+                uint p = Resource_GetCartridgeKey((uint)(new O01G_v2(Gv.LevelMgr).CinemasIndex), (uint)(new O01G_v2(Gv.LevelMgr).CinemasIndexKey), 0, _fp);
                 if ((p != 0u))
                 {
                     r = ResourceCache_Hash(0, (uint)((int)(p)), (int)(p), (uint)(Mem.S32(_fp)), 51, (uint)(0), 0u, 0x800E0B2Cu, 1);

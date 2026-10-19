@@ -304,11 +304,11 @@ public static partial class Game
                 Pickup_ClearDisplayList(e);
                 if (((((((((((new Entity(e).flags19C & (uint)(196608)) == (uint)(131072)) && (Actor_IsAlwaysActive_0024D150(e) != 0)) && !(((int)(Mem.U16((e + 412u))) & 256) != 0)) && (Mem.F32((Gv.View_UpdateBounds + (uint)(3 * 4))) > new Entity(e).PartMask[(int)(0)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(0 * 4))) < new Entity(e).PartMask[(int)(3)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(5 * 4))) > new Entity(e).PartMask[(int)(2)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(2 * 4))) < new Entity(e).PartMask[(int)(5)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(4 * 4))) > new Entity(e).PartMask[(int)(1)])) && (Mem.F32((Gv.View_UpdateBounds + (uint)(1 * 4))) < new Entity(e).PartMask[(int)(4)])))
                 {
-                    c = new Level(lv).cnt944;
+                    c = new Level(lv).AlwaysActiveActorCount;
                     if ((c != 512))
                     {
-                        new Level(lv).arr144.Set((int)(c), e);
-                        new Level(lv).cnt944_Set((c + 1));
+                        new Level(lv).AlwaysActiveActors.Set((int)(c), e);
+                        new Level(lv).AlwaysActiveActorCount_Set((c + 1));
                     }
                 }
                 e = new Node(e).next_;

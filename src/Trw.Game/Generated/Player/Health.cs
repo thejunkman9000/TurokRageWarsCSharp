@@ -1842,17 +1842,17 @@ public static partial class Game
             {
                 Player_LookupCharacterDef((uint)(p));
                 Player_SetBodyModel_0022BB70(p);
-                if ((((int)(new S11Obj(p).rec.b91) == 0) && ((int)(new S11Game(Gv.Settings).unkD) == 1)))
+                if ((((int)(new S11Obj(p).PlayerEntryPtr.b91) == 0) && ((int)(new S11Game(Gv.Settings).unkD) == 1)))
                 {
                     Player_GiveUnlockedLoadoutWeapons(p);
                 }
             }
-            e = new S11Obj(p).e878.P;
+            e = new S11Obj(p).ZoomEffectBlock_878.P;
             new S11E878(e).unkB4_Set(0);
             new S11E878(e).unk8_Set(0);
             new S11E878(e).unkB8_Set(0);
             new S11E878(e).unk4_Set((-1));
-            new S11Obj(p).e878.unk0_Set((-1));
+            new S11Obj(p).ZoomEffectBlock_878.unk0_Set((-1));
             new S11E878(e).unkA8_Set(0);
             new S11E878(e).unk9C_Set(0);
             new S11E878(e).unkA4_Set(0);
@@ -1862,40 +1862,40 @@ public static partial class Game
             new S11E878(e).unk94_Set(0.1875f);
             new S11E878(e).unk98_Set(0.25f);
             new S11E878(e).unkA0_Set(1.57079649f);
-            new S11Obj(p).unk11B0_Set(0);
-            Rumble_SetEnabled(new S11Obj(p).unk698, 1);
-            new S11Obj(p).unk678_Set(0);
-            new S11Obj(p).unk67C_Set(0);
-            new S11Obj(p).unk680_Set(0);
-            new S11Obj(p).unk684_Set(0);
-            ScreenMover_Init((new S11Obj(p).spr.P + (uint)(0 * 60)), (short)(120), (short)(96));
-            ScreenMover_Start((new S11Obj(p).spr.P + (uint)(0 * 60)), 0x800CE4BCu);
-            ScreenMover_Init((new S11Obj(p).spr.P + (uint)(1 * 60)), (short)(190), (short)(96));
-            ScreenMover_Start((new S11Obj(p).spr.P + (uint)(1 * 60)), 0x800CE52Cu);
-            ScreenMover_Init((new S11Obj(p).spr.P + (uint)(2 * 60)), (short)(260), (short)(96));
-            ScreenMover_Start((new S11Obj(p).spr.P + (uint)(2 * 60)), 0x800CE59Cu);
-            ScreenMover_Init((new S11Obj(p).spr.P + (uint)(3 * 60)), (short)(28), (short)(96));
-            ScreenMover_Start((new S11Obj(p).spr.P + (uint)(3 * 60)), 0x800CE480u);
-            ScreenMover_Init((new S11Obj(p).spr.P + (uint)(4 * 60)), (short)((-64)), (short)(16));
-            ScreenMover_Start((new S11Obj(p).spr.P + (uint)(4 * 60)), 0x800CE60Cu);
-            ScreenMover_Init((new S11Obj(p).spr.P + (uint)(5 * 60)), (short)(40), (short)(16));
-            ScreenMover_Start((new S11Obj(p).spr.P + (uint)(5 * 60)), 0x800CE630u);
-            ScreenMover_Init((new S11Obj(p).spr.P + (uint)(9 * 60)), (short)((-82)), (short)(16));
-            ScreenMover_Start((new S11Obj(p).spr.P + (uint)(9 * 60)), 0x800CE670u);
-            new S11Obj(p).spr[(int)(9)].f34_Set(255.0f);
-            ScreenMover_Init((new S11Obj(p).spr.P + (uint)(10 * 60)), (short)((-82)), (short)(68));
-            ScreenMover_Start((new S11Obj(p).spr.P + (uint)(10 * 60)), 0x800CE69Cu);
-            ScreenMover_Init((new S11Obj(p).spr.P + (uint)(11 * 60)), (short)((-82)), (short)(68));
-            ScreenMover_Start((new S11Obj(p).spr.P + (uint)(11 * 60)), 0x800CE6D8u);
-            ScreenMover_Init((new S11Obj(p).spr.P + (uint)(7 * 60)), (short)(24), (short)(((int)(Mem.U16((0x800E28D6u + (uint)(0 * 2)))) + 96)));
-            ScreenMover_Init((new S11Obj(p).spr.P + (uint)(8 * 60)), (short)(24), (short)(((int)(Mem.U16((0x800E28D6u + (uint)(0 * 2)))) + 96)));
+            new S11Obj(p).WeaponRumbleHandle_Set(0);
+            Rumble_SetEnabled(new S11Obj(p).ControllerPtr, 1);
+            new S11Obj(p).FlashlightTime_Set(0);
+            new S11Obj(p).FlashlightLight1Ptr_Set(0);
+            new S11Obj(p).FlashlightLight2Ptr_Set(0);
+            new S11Obj(p).FlashlightLight3Ptr_Set(0);
+            ScreenMover_Init((new S11Obj(p).Ammo0Mover.P + (uint)(0 * 60)), (short)(120), (short)(96));
+            ScreenMover_Start((new S11Obj(p).Ammo0Mover.P + (uint)(0 * 60)), 0x800CE4BCu);
+            ScreenMover_Init((new S11Obj(p).Ammo0Mover.P + (uint)(1 * 60)), (short)(190), (short)(96));
+            ScreenMover_Start((new S11Obj(p).Ammo0Mover.P + (uint)(1 * 60)), 0x800CE52Cu);
+            ScreenMover_Init((new S11Obj(p).Ammo0Mover.P + (uint)(2 * 60)), (short)(260), (short)(96));
+            ScreenMover_Start((new S11Obj(p).Ammo0Mover.P + (uint)(2 * 60)), 0x800CE59Cu);
+            ScreenMover_Init((new S11Obj(p).Ammo0Mover.P + (uint)(3 * 60)), (short)(28), (short)(96));
+            ScreenMover_Start((new S11Obj(p).Ammo0Mover.P + (uint)(3 * 60)), 0x800CE480u);
+            ScreenMover_Init((new S11Obj(p).Ammo0Mover.P + (uint)(4 * 60)), (short)((-64)), (short)(16));
+            ScreenMover_Start((new S11Obj(p).Ammo0Mover.P + (uint)(4 * 60)), 0x800CE60Cu);
+            ScreenMover_Init((new S11Obj(p).Ammo0Mover.P + (uint)(5 * 60)), (short)(40), (short)(16));
+            ScreenMover_Start((new S11Obj(p).Ammo0Mover.P + (uint)(5 * 60)), 0x800CE630u);
+            ScreenMover_Init((new S11Obj(p).Ammo0Mover.P + (uint)(9 * 60)), (short)((-82)), (short)(16));
+            ScreenMover_Start((new S11Obj(p).Ammo0Mover.P + (uint)(9 * 60)), 0x800CE670u);
+            new S11Obj(p).Ammo0Mover[(int)(9)].f34_Set(255.0f);
+            ScreenMover_Init((new S11Obj(p).Ammo0Mover.P + (uint)(10 * 60)), (short)((-82)), (short)(68));
+            ScreenMover_Start((new S11Obj(p).Ammo0Mover.P + (uint)(10 * 60)), 0x800CE69Cu);
+            ScreenMover_Init((new S11Obj(p).Ammo0Mover.P + (uint)(11 * 60)), (short)((-82)), (short)(68));
+            ScreenMover_Start((new S11Obj(p).Ammo0Mover.P + (uint)(11 * 60)), 0x800CE6D8u);
+            ScreenMover_Init((new S11Obj(p).Ammo0Mover.P + (uint)(7 * 60)), (short)(24), (short)(((int)(Mem.U16((0x800E28D6u + (uint)(0 * 2)))) + 96)));
+            ScreenMover_Init((new S11Obj(p).Ammo0Mover.P + (uint)(8 * 60)), (short)(24), (short)(((int)(Mem.U16((0x800E28D6u + (uint)(0 * 2)))) + 96)));
             ScreenMover_Init(new S11Obj(p).spr12.P, (short)(100), (short)(100));
-            new S11Obj(p).unk11C4_Set(0);
-            new S11Obj(p).unk7BC_Set(0);
-            new S11Obj(p).unk1134_Set(new S11Obj(p).unk5E4);
+            new S11Obj(p).SwimSoundTimer_Set(0);
+            new S11Obj(p).CrosshairAnimTime_Set(0);
+            new S11Obj(p).HealthShown_Set(new S11Obj(p).Health);
             if ((new S11Obj(p).hud_ != 0u))
             {
-                Mem.Copy(new S11Obj(p).quad760.P, new S11Obj(p).hud.quad140.P, 16);
+                Mem.Copy(new S11Obj(p).quad760.P, new S11Obj(p).ViewPtr.quad140.P, 16);
             }
             Player_ResetFields(p);
             flag = 0;
@@ -1909,14 +1909,14 @@ public static partial class Game
             }
             if ((flag != 0))
             {
-                new S11Obj(p).unk5EC_Set(Mem.S32(Gv.Level_StartPointId));
+                new S11Obj(p).SpawnPointId_Set(Mem.S32(Gv.Level_StartPointId));
             }
             new S11Obj(p).unk1228_Set(0);
-            new S11Obj(p).unk1224_Set(0);
+            new S11Obj(p).DroppedPacks_Set(0);
             Flyby_ClearFlag_002458C8();
-            if ((new S11Obj(p).unk14 != 0u))
+            if ((new S11Obj(p).RegionPtr != 0u))
             {
-                Level_FireRegionTriggers(new S11Obj(p).unk14, 1, (int)(p));
+                Level_FireRegionTriggers(new S11Obj(p).RegionPtr, 1, (int)(p));
             }
             Flyby_SetFlag_002458B4();
         }
@@ -2004,58 +2004,58 @@ public static partial class Game
             int i = 0;
             uint carried = 0u;
             Player_ClearTimedEffects_0022B500(player);
-            new RespawnPlayer(player).moving_Set(0);
-            new RespawnPlayer(player).fade_Set(Mem.F32(0x800C7428u));
-            Rumble_SetEnabled(new RespawnPlayer(player).anim, 1);
+            new RespawnPlayer(player).GroundFlags_Set(0);
+            new RespawnPlayer(player).BodyScale_Set(Mem.F32(0x800C7428u));
+            Rumble_SetEnabled(new RespawnPlayer(player).ControllerPtr, 1);
             if (((int)(Mem.U8(Gv.Settings_IsMultiplayer)) != 0))
             {
                 Player_ApplyCharacterClass(player);
             }
             else
             {
-                if ((new RespawnPlayer(player).isBot == 0))
+                if ((new RespawnPlayer(player).IsComputer == 0))
                 {
-                    new RespawnPlayer(player).health_Set((new Entry190((Gv.CharacterClassTable + (uint)(new RespawnPlayer(player).character * 400))).value + 25600));
+                    new RespawnPlayer(player).Health_Set((new Entry190((Gv.CharacterClassTable + (uint)(new RespawnPlayer(player).PlayerIndex * 400))).value + 25600));
                 }
                 else
                 {
-                    new RespawnPlayer(player).health_Set(25600);
+                    new RespawnPlayer(player).Health_Set(25600);
                 }
-                new RespawnPlayer(player).maxHealth_Set(new RespawnPlayer(player).health);
+                new RespawnPlayer(player).HitPoints_Set(new RespawnPlayer(player).Health);
             }
-            new RespawnPlayer(player).bob_Set(Mem.F32(0x800C742Cu));
+            new RespawnPlayer(player).InvulnerableTime_Set(Mem.F32(0x800C742Cu));
             Player_ResetFields(player);
-            new RespawnPlayer(player).field11D8_Set(0);
-            new RespawnPlayer(player).field11FC_Set(0);
-            new RespawnPlayer(player).field13E0_Set(0);
-            new RespawnPlayer(player).field1210_Set(0);
-            new RespawnPlayer(player).field11EC_Set(0);
-            new RespawnPlayer(player).field11E4_Set(0);
-            new RespawnPlayer(player).field13D8_Set(0);
+            new RespawnPlayer(player).StunTime_Set(0);
+            new RespawnPlayer(player).MarkerTime_Set(0);
+            new RespawnPlayer(player).EmbryoOwnerPtr_Set(0);
+            new RespawnPlayer(player).IsInWeaponStance_Set(0);
+            new RespawnPlayer(player).BurnTime_11EC_Set(0);
+            new RespawnPlayer(player).EmbryoTimer_Set(0);
+            new RespawnPlayer(player).ShockAttackerPtr_Set(0);
             new RespawnPlayer(player).field13DC_Set(0);
             new RespawnPlayer(player).field13E4_Set(0);
-            new RespawnPlayer(player).field13D4_Set(0);
-            if (((((Game_IsInState13() != 0) && ((int)(Mem.U8(Gv.Settings_IsMultiplayer)) == 0)) && (Mem.U32(Gv.LevelFrameCount) > (uint)(10))) && ((int)(new RespawnPlayer(player).state) < 11)))
+            new RespawnPlayer(player).ToggleFlag_13D4_Set(0);
+            if (((((Game_IsInState13() != 0) && ((int)(Mem.U8(Gv.Settings_IsMultiplayer)) == 0)) && (Mem.U32(Gv.LevelFrameCount) > (uint)(10))) && ((int)(new RespawnPlayer(player).Lives) < 11)))
             {
-                Audio_PlaySndFx((int)(Mem.S16((0x800CF198u + (uint)(new RespawnPlayer(player).state * 2)))));
+                Audio_PlaySndFx((int)(Mem.S16((0x800CF198u + (uint)(new RespawnPlayer(player).Lives * 2)))));
             }
             if ((func_0044A17C_isOnline() != 0))
             {
                 Player_InitWeapons(player, default(int));
             }
-            new RespawnPlayer(player).field11B4_Set(0);
-            new RespawnPlayer(player).field11B8_Set(0);
-            new RespawnPlayer(player).field13C8_Set(0);
-            if ((new RespawnPlayer(player).isBot != 0))
+            new RespawnPlayer(player).IsStickCaptured_Set(0);
+            new RespawnPlayer(player).IsButtonsCaptured_11B8_Set(0);
+            new RespawnPlayer(player).IsGibbed_Set(0);
+            if ((new RespawnPlayer(player).IsComputer != 0))
             {
-                Ai_ResetBrain(new RespawnPlayer(player).brain);
+                Ai_ResetBrain(new RespawnPlayer(player).BrainPtr);
             }
             for (i = 1; (i < 22); ++i)
             {
-                if ((((int)(new RespawnPlayer(player).effects[(int)(i)].state) == 3) || ((int)(new RespawnPlayer(player).effects[(int)(i)].state) == 7)))
+                if ((((int)(new RespawnPlayer(player).WeaponSlots[(int)(i)].state) == 3) || ((int)(new RespawnPlayer(player).WeaponSlots[(int)(i)].state) == 7)))
                 {
-                    new RespawnPlayer(player).effects[(int)(i)].kind_Set((sbyte)(0));
-                    new RespawnPlayer(player).effects[(int)(i)].state_Set((sbyte)((-1)));
+                    new RespawnPlayer(player).WeaponSlots[(int)(i)].kind_Set((sbyte)(0));
+                    new RespawnPlayer(player).WeaponSlots[(int)(i)].state_Set((sbyte)((-1)));
                 }
             }
             carried = new RespawnPlayer(player).carried_;

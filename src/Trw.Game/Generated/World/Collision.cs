@@ -2520,11 +2520,11 @@ public static partial class Game
                 if ((((int)(new B09BodyDef(d).b4) != 0) && (d != 0x80104170u)))
                 {
                     self = Mem.U32(b);
-                    n = new B09World(Gv.LevelMgr).count;
+                    n = new B09World(Gv.LevelMgr).AlwaysActiveActorCount;
                     func_0023F42C_calc_bounds(b, _fp);
                     for (i = 0; (i < n); ++i)
                     {
-                        e = new B09World(Gv.LevelMgr).ents[(int)(i)];
+                        e = new B09World(Gv.LevelMgr).AlwaysActiveActors[(int)(i)];
                         if ((e == self))
                         {
                             continue;
@@ -2980,7 +2980,7 @@ public static partial class Game
                     k = 0;
                     nhits = 0;
                     owner = new B09Mover(m).owner_;
-                    n = new B09World(Gv.LevelMgr).count2;
+                    n = new B09World(Gv.LevelMgr).VisibleActorCount;
                     opos = new B09Ent(owner).v8.P;
                     for (; (k < n); ++k)
                     {
@@ -2988,7 +2988,7 @@ public static partial class Game
                         {
                             break;
                         }
-                        e = new B09World(Gv.LevelMgr).ents2[(int)(k)];
+                        e = new B09World(Gv.LevelMgr).VisibleActors[(int)(k)];
                         if ((owner == e))
                         {
                             continue;
@@ -8784,11 +8784,11 @@ public static partial class Game
                 return 0u;
             }
             best = 0.0f;
-            tri = (uint)(((int)(Chunk_Get((uint)(new B19Owner(ow).f6C), 2)) + 8));
+            tri = (uint)(((int)(Chunk_Get((uint)(new B19Owner(ow).CollisionData), 2)) + 8));
             idx = 0;
             i = 0;
             bestt = 0u;
-            cells = (uint)((int)(Chunk_Get((uint)(new B19Owner(ow).f6C), 3)));
+            cells = (uint)((int)(Chunk_Get((uint)(new B19Owner(ow).CollisionData), 3)));
             n = new B19Cells(cells).cnt;
             cb = new B19Cells(cells).c.P;
             if ((n > 0))
@@ -8883,8 +8883,8 @@ public static partial class Game
             uint g = 0u;
             uint bits = 0u;
             int mask = 0;
-            index = new S6World_v2(world).group;
-            g = Chunk_Get(Chunk_Get(Chunk_Get(new S6World_v2(world).tree, 0), index), 0);
+            index = new S6World_v2(world).LevelIndex;
+            g = Chunk_Get(Chunk_Get(Chunk_Get(new S6World_v2(world).EntityFlagDataPtr, 0), index), 0);
             Chunk_Get(g, 0);
             Chunk_GetSize(g, 1);
             bits = Chunk_Get(g, 1);
@@ -8970,11 +8970,11 @@ public static partial class Game
                             for (j = 0; (j < 3); ++j)
                             {
                                 y = new S6Vtx(new S6Face(face).vtx[(int)(j)]).y;
-                                if (!(y <= new S6World_v2(world).minY))
+                                if (!(y <= new S6World_v2(world).MinSurfaceY))
                                 {
-                                    y = new S6World_v2(world).minY;
+                                    y = new S6World_v2(world).MinSurfaceY;
                                 }
-                                new S6World_v2(world).minY_Set(y);
+                                new S6World_v2(world).MinSurfaceY_Set(y);
                             }
                             if ((func_0044D024_sectionHas(world, i) != 0))
                             {

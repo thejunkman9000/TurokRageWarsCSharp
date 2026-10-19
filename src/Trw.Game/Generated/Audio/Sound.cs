@@ -220,7 +220,7 @@ public static partial class Game
                 x = Mem.S32(0x801536B0u);
                 y = Mem.S32(0x801536ECu);
                 Mem.Set((m + (uint)216), 0);
-                alHeapInit(new SndMgr(m).heap.P, (uint)(x), y);
+                alHeapInit(new SndMgr(m).Heap.P, (uint)(x), y);
                 new M04SynCfg(_fp).v0_Set(37);
                 new M04SynCfg(_fp).v1_Set(37);
                 new M04SynCfg(_fp).v2_Set(256);
@@ -229,17 +229,17 @@ public static partial class Game
                 new M04AiCfg((_fp + 40u)).rate_Set(22050);
                 new M04AiCfg((_fp + 40u)).one_Set(1);
                 new M04SynCfg(_fp).v4_Set(0);
-                new M04SynCfg(_fp).heap_Set(new SndMgr(m).heap.P);
+                new M04SynCfg(_fp).heap_Set(new SndMgr(m).Heap.P);
                 new M04AiCfg((_fp + 40u)).size_Set(2048);
                 AudioMgr_Init(_fp, Mem.S32(0x800D2B30u), (_fp + 40u));
                 Mem.Set(0x8010B6A0u, Resource_ReadRomTableWord(8));
                 r = Resource_AllocVirtualRegion((uint)((Resource_ReadRomTableWord(4) - Resource_ReadRomTableWord(0))), 0, Resource_ReadRomTableWord(0));
-                new SndMgr(m).seq.unk8__Set((uint)(new M04Res(r).f4));
+                new SndMgr(m).SeqPlayer.unk8__Set((uint)(new M04Res(r).f4));
                 bk = new M04Res(r).fC;
                 Mem.Set((m + (uint)128), bk);
                 new SndMgr(m).unk7C__Set((uint)(new M04Bank(bk).f4));
                 Sound_LoadTables(m);
-                Seq_InitPlayer(new SndMgr(m).seq.P, m);
+                Seq_InitPlayer(new SndMgr(m).SeqPlayer.P, m);
                 t = new M04Bank(new SndMgr(m).unk7C_).tab_;
                 for (i = 0; (i < (int)(new M04SortTab(t).n)); ++i)
                 {
@@ -260,32 +260,32 @@ public static partial class Game
                 }
                 Mem.Set((m + (uint)36), 17);
                 Mem.Set((m + (uint)40), 192);
-                Mem.Set((m + (uint)44), new SndMgr(m).heap.P);
-                alSndpNew(new SndMgr(m).player.P, (m + (uint)36));
+                Mem.Set((m + (uint)44), new SndMgr(m).Heap.P);
+                alSndpNew(new SndMgr(m).SndPlayer.P, (m + (uint)36));
                 for (n = 0; (n < 16); ++n)
                 {
-                    new SndMgr(m).snd.Set((int)(n), (short)((-1)));
+                    new SndMgr(m).VoiceSoundHandles.Set((int)(n), (short)((-1)));
                 }
-                new SndMgr(m).unk102_Set((short)((-1)));
-                new SndMgr(m).unk2B8C_Set((short)((-1)));
-                new SndMgr(m).unk108_Set(0);
-                new SndMgr(m).unk104_Set(0);
-                new SndMgr(m).unk2B88_Set(0u);
-                new SndMgr(m).unk2B94_Set((byte)(64));
-                new SndMgr(m).unk2B98_Set(0);
-                new SndMgr(m).unk2BB8_Set(0);
-                new SndMgr(m).unk2B9C_Set(0);
-                SndQueue_Init(new SndMgr(m).q.P, m);
-                SndPool_Init(new SndMgr(m).pool.P, m);
+                new SndMgr(m).AllocVoiceIndex_Set((short)((-1)));
+                new SndMgr(m).CurrentSoundId_Set((short)((-1)));
+                new SndMgr(m).NextEmitterId_Set(0);
+                new SndMgr(m).FrameCounter_Set(0);
+                new SndMgr(m).CurrentEffectPtr_Set(0u);
+                new SndMgr(m).CurrentPan_Set((byte)(64));
+                new SndMgr(m).ListenerPtr_Set(0);
+                new SndMgr(m).IsMuffled_Set(0);
+                new SndMgr(m).FxMixLevel_Set(0);
+                SndQueue_Init(new SndMgr(m).Queue.P, m);
+                SndPool_Init(new SndMgr(m).VoicePool.P, m);
                 e = Gv.Settings_SfxVolume;
-                new SndMgr(m).unk2BA0_Set(((float)(Mem.U8((e + (uint)0))) * Mem.F32(0x800C8FC0u)));
-                new SndMgr(m).unk2BA4_Set(((float)(Mem.U8((e + (uint)(-1)))) * Mem.F32(0x800C8FC0u)));
-                new SndMgr(m).unk2BA8_Set(((float)(Mem.U8((e + (uint)1))) * Mem.F32(0x800C8FC0u)));
-                new SndMgr(m).unk2BAC_Set(0);
-                new SndMgr(m).unk2BB0_Set((int)(Mem.U8((e + (uint)(-2)))));
-                new SndMgr(m).unk2BB4_Set(1);
+                new SndMgr(m).SfxVolume_Set(((float)(Mem.U8((e + (uint)0))) * Mem.F32(0x800C8FC0u)));
+                new SndMgr(m).MusicVolume_Set(((float)(Mem.U8((e + (uint)(-1)))) * Mem.F32(0x800C8FC0u)));
+                new SndMgr(m).VoiceVolume_Set(((float)(Mem.U8((e + (uint)1))) * Mem.F32(0x800C8FC0u)));
+                new SndMgr(m).PosFlag_2BAC_Set(0);
+                new SndMgr(m).IsStereo_Set((int)(Mem.U8((e + (uint)(-2)))));
+                new SndMgr(m).IsAmbientEnabled_Set(1);
                 Mem.Set((m + (uint)11196), Mem.F32(0x800C8FC4u));
-                SndFx_Init(new SndMgr(m).obj2BC0.P, m);
+                SndFx_Init(new SndMgr(m).SndFxPlayer.P, m);
                 Mem.Set(0x800D0960u, 1);
                 func_00257380_SndMgr_Unlock(m);
             }
@@ -346,32 +346,32 @@ public static partial class Game
             uint n5 = 0u;
             uint r = 0u;
             uint z = 0u;
-            new SndMgr(m).root2B48_Set(Resource_AllocVirtualRegion((uint)((Resource_ReadRomTableWord(20) - Resource_ReadRomTableWord(16))), 0, Resource_ReadRomTableWord(16)));
-            s3 = Chunk_Get(new SndMgr(m).root2B48, 0);
-            Chunk_Get(new SndMgr(m).root2B48, 1);
+            new SndMgr(m).RootChunkPtr_Set(Resource_AllocVirtualRegion((uint)((Resource_ReadRomTableWord(20) - Resource_ReadRomTableWord(16))), 0, Resource_ReadRomTableWord(16)));
+            s3 = Chunk_Get(new SndMgr(m).RootChunkPtr, 0);
+            Chunk_Get(new SndMgr(m).RootChunkPtr, 1);
             do
             {
                 t0 = Chunk_Get(s3, 0);
                 t1 = Chunk_Get(s3, 1);
                 t2 = Chunk_Get(s3, 2);
-                new SndMgr(m).tree2B4C_Set(t2);
-                new SndMgr(m).unk2B54_Set((int)(Mem.U32((t2 + (uint)(0 * 4)))));
-                new SndMgr(m).unk2B58_Set((t0 + (uint)8));
+                new SndMgr(m).EffectTreePtr_Set(t2);
+                new SndMgr(m).EffectCount_Set((int)(Mem.U32((t2 + (uint)(0 * 4)))));
+                new SndMgr(m).EffectIndexTablePtr_Set((t0 + (uint)8));
                 new SndMgr(m).unk2B5C__Set((t1 + (uint)8));
                 n3 = Chunk_Get(s3, 3);
                 n4 = Chunk_Get(s3, 4);
                 n5 = Chunk_Get(s3, 5);
-                new SndMgr(m).unk2B7C_Set((int)(Mem.U32((n3 + (uint)(1 * 4)))));
+                new SndMgr(m).TableCount_2B7C_Set((int)(Mem.U32((n3 + (uint)(1 * 4)))));
                 new SndMgr(m).tab70__Set((n3 + (uint)8));
-                new SndMgr(m).unk2B80_Set((int)(Mem.U32((n4 + (uint)(1 * 4)))));
+                new SndMgr(m).TableCount_2B80_Set((int)(Mem.U32((n4 + (uint)(1 * 4)))));
                 new SndMgr(m).tab74__Set((n4 + (uint)8));
-                new SndMgr(m).unk2B84_Set((int)(Mem.U32((n5 + (uint)(1 * 4)))));
+                new SndMgr(m).TableCount_2B84_Set((int)(Mem.U32((n5 + (uint)(1 * 4)))));
                 new SndMgr(m).tab78__Set((n5 + (uint)8));
-                r = Chunk_Get(new SndMgr(m).root2B48, 1);
+                r = Chunk_Get(new SndMgr(m).RootChunkPtr, 1);
                 z = Chunk_Get(r, 0);
-                new SndMgr(m).unk2B60_Set((z + (uint)8));
-                new SndMgr(m).unk2B64_Set((int)(Mem.U32((z + (uint)(1 * 4)))));
-                new SndMgr(m).node2B50_Set(Chunk_Get(r, 1));
+                new SndMgr(m).SongIndexTablePtr_Set((z + (uint)8));
+                new SndMgr(m).SongIndexCount_Set((int)(Mem.U32((z + (uint)(1 * 4)))));
+                new SndMgr(m).SongNodePtr_Set(Chunk_Get(r, 1));
             }
             while ((0 != 0));
         }
@@ -385,7 +385,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00257814_find17", (uint)m, (uint)id);
             int i = 0;
             uint vv = 0u;
-            for (vv = new SndMgr(m).pool.v.P, i = 0; (i < 17); ++i, vv += 204u)
+            for (vv = new SndMgr(m).VoicePool.v.P, i = 0; (i < 17); ++i, vv += 204u)
             {
                 if ((new SndVoice(vv).unkC == id))
                 {
@@ -555,14 +555,14 @@ public static partial class Game
             }
             {
                 func_00257A34_SndMgr_Lock(m);
-                SndQueue_RemoveByHandle(new SndMgr(m).q.P, tag);
+                SndQueue_RemoveByHandle(new SndMgr(m).Queue.P, tag);
                 c = (m + (uint)124);
                 for (i = 0; (i < 17); ++i)
                 {
-                    if ((new SndMgr(m).pool.v[(int)(i)].unk4 == tag))
+                    if ((new SndMgr(m).VoicePool.v[(int)(i)].unk4 == tag))
                     {
                         ++n;
-                        v = (new SndMgr(m).pool.v.P + (uint)(i * 204));
+                        v = (new SndMgr(m).VoicePool.v.P + (uint)(i * 204));
                         if ((i == 16))
                         {
                             new SndVoice(v).unk4_Set((-1));
@@ -580,7 +580,7 @@ public static partial class Game
                             }
                             if (((int)(new SndCore(c).snd[(int)(i)]) != (-1)))
                             {
-                                SndPool_StopVoice(new SndMgr(m).pool.P, (short)(i));
+                                SndPool_StopVoice(new SndMgr(m).VoicePool.P, (short)(i));
                             }
                         }
                     }
@@ -636,23 +636,23 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00257BD4", (uint)m, (uint)info, (uint)id, (uint)a3);
             uint v = 0u;
-            new SndMgr(m).unk2B98_Set((int)(CameraManager_FindNearestCamera(Gv.ViewMgr, (uint)(id))));
+            new SndMgr(m).ListenerPtr_Set((int)(CameraManager_FindNearestCamera(Gv.ViewMgr, (uint)(id))));
             if ((((int)(new SndInfo(info).bits6) & 1) != 0))
             {
-                if ((SndPool_HasActiveTag(new SndMgr(m).pool.P, (int)(new SndMgr(m).unk2B8C)) != 0))
+                if ((SndPool_HasActiveTag(new SndMgr(m).VoicePool.P, (int)(new SndMgr(m).CurrentSoundId)) != 0))
                 {
                     return (-1);
                 }
-                if ((Sound_GetDistanceGain((uint)(id), (uint)((new SndMgr(m).unk2B98 + 296))) == 0.0f))
+                if ((Sound_GetDistanceGain((uint)(id), (uint)((new SndMgr(m).ListenerPtr + 296))) == 0.0f))
                 {
                     return (-1);
                 }
             }
             if ((((int)(new SndInfo(info).bits6) & 4096) != 0))
             {
-                if ((new SndMgr(m).unk2B90 != (-1)))
+                if ((new SndMgr(m).CurrentOwner != (-1)))
                 {
-                    if ((SndPool_FindByTagAndOwner(new SndMgr(m).pool.P, (int)(new SndMgr(m).unk2B8C), (uint)(new SndMgr(m).unk2B90)) != (-1)))
+                    if ((SndPool_FindByTagAndOwner(new SndMgr(m).VoicePool.P, (int)(new SndMgr(m).CurrentSoundId), (uint)(new SndMgr(m).CurrentOwner)) != (-1)))
                     {
                         return (-1);
                     }
@@ -660,19 +660,19 @@ public static partial class Game
             }
             if (((int)(new SndInfo(info).w2) != 0))
             {
-                return SndQueue_Add(new SndMgr(m).q.P, info, (uint)(id), a3, a5);
+                return SndQueue_Add(new SndMgr(m).Queue.P, info, (uint)(id), a3, a5);
             }
             if ((((int)(new SndInfo(info).bits6) & 64) != 0))
             {
-                SndPool_StopSameSample(new SndMgr(m).pool.P, new SndMgr(m).unk2B8C, new SndInfo(info).w0);
+                SndPool_StopSameSample(new SndMgr(m).VoicePool.P, new SndMgr(m).CurrentSoundId, new SndInfo(info).w0);
             }
-            v = SndPool_AllocVoice(new SndMgr(m).pool.P, info, a3, a4);
+            v = SndPool_AllocVoice(new SndMgr(m).VoicePool.P, info, a3, a4);
             if ((v == 0u))
             {
                 return (-1);
             }
             SndVoice_SetSource(v, (uint)(id), a6);
-            SndVoice_SetTag(v, (int)(new SndMgr(m).unk2B8C));
+            SndVoice_SetTag(v, (int)(new SndMgr(m).CurrentSoundId));
             SndVoice_InitParams(v, info, (uint)(a5));
             func_00257BD4_SndMgr_Lock(m);
             Sound_ApplyVoiceAndPlay(m, (uint)(new SndVoice(v).unkC), (uint)(0), (uint)(id));
@@ -748,7 +748,7 @@ public static partial class Game
                 int sh = 0;
                 uint vp = 0u;
                 uint nd = 0u;
-                if (((int)(new SndMgr(m).unk102) != (-1)))
+                if (((int)(new SndMgr(m).AllocVoiceIndex) != (-1)))
                 {
                     busy = 1;
                     goto L_chk;
@@ -779,9 +779,9 @@ public static partial class Game
                 {
                     last = (short)(Mem.U16((m + (uint)306)));
                     sum = 0;
-                    if ((new SndMgr(m).unk2B54 != 0))
+                    if ((new SndMgr(m).EffectCount != 0))
                     {
-                        if ((Sort_FindEqualRange(new SndMgr(m).unk2B58, new SndMgr(m).unk2B54, (uint)((short)(id)), (_fp + 12u), (_fp + 16u)) != 0))
+                        if ((Sort_FindEqualRange(new SndMgr(m).EffectIndexTablePtr, new SndMgr(m).EffectCount, (uint)((short)(id)), (_fp + 12u), (_fp + 16u)) != 0))
                         {
                             i = Mem.S32((_fp + 12u));
                             if ((i != Mem.S32((_fp + 16u))))
@@ -800,7 +800,7 @@ public static partial class Game
                                         break;
                                     }
                                 }
-                                if ((((int)(last) != 0) && (i == new SndMgr(m).unk130)))
+                                if ((((int)(last) != 0) && (i == new SndMgr(m).LastVariantIndex)))
                                 {
                                     if ((i == Mem.S32((_fp + 16u))))
                                     {
@@ -823,14 +823,14 @@ public static partial class Game
                     {
                         idx = (-1);
                     }
-                    new SndMgr(m).unk2B94_Set((byte)((int)(Random_Float(Mem.F32(0x800C8FCCu)))));
+                    new SndMgr(m).CurrentPan_Set((byte)((int)(Random_Float(Mem.F32(0x800C8FCCu)))));
                 }
                 else
                 {
                     sum = 0;
-                    if ((new SndMgr(m).unk2B54 != 0))
+                    if ((new SndMgr(m).EffectCount != 0))
                     {
-                        if ((Sort_FindEqualRange(new SndMgr(m).unk2B58, new SndMgr(m).unk2B54, (uint)((short)(id)), (_fp + 20u), (_fp + 24u)) != 0))
+                        if ((Sort_FindEqualRange(new SndMgr(m).EffectIndexTablePtr, new SndMgr(m).EffectCount, (uint)((short)(id)), (_fp + 20u), (_fp + 24u)) != 0))
                         {
                             i = Mem.S32((_fp + 20u));
                             if ((i != Mem.S32((_fp + 24u))))
@@ -867,19 +867,19 @@ public static partial class Game
                     return (-1);
                 }
                 sh = (int)((short)(idx));
-                new SndMgr(m).unk2B88_Set(Chunk_Get(Chunk_Get(new SndMgr(m).tree2B4C, sh), 0));
-                new SndMgr(m).unk2B8C_Set((short)(id));
-                new SndMgr(m).unk2B90_Set(a6);
-                nd = Chunk_Get(Chunk_Get(new SndMgr(m).tree2B4C, sh), 1);
+                new SndMgr(m).CurrentEffectPtr_Set(Chunk_Get(Chunk_Get(new SndMgr(m).EffectTreePtr, sh), 0));
+                new SndMgr(m).CurrentSoundId_Set((short)(id));
+                new SndMgr(m).CurrentOwner_Set(a6);
+                nd = Chunk_Get(Chunk_Get(new SndMgr(m).EffectTreePtr, sh), 1);
                 cnt = (int)(new M04Node2(nd).cnt);
                 if ((cnt != 0))
                 {
                     func_00257DF4_SndMgr_Lock(m);
-                    ret = new SndMgr(m).unk10C_Set((new SndMgr(m).unk10C + 1));
+                    ret = new SndMgr(m).NextPlayToken_Set((new SndMgr(m).NextPlayToken + 1));
                     func_00257DF4_SndMgr_Unlock(m);
                     if ((id < 256))
                     {
-                        new SndMgr(m).unk130_Set(idx);
+                        new SndMgr(m).LastVariantIndex_Set(idx);
                     }
                 }
                 else
@@ -896,7 +896,7 @@ public static partial class Game
                     }
                     while (((uint)(s0) < (uint)(cnt)));
                 }
-                new SndMgr(m).unk2B90_Set((-1));
+                new SndMgr(m).CurrentOwner_Set((-1));
                 return ret;
             }
         }
@@ -956,22 +956,22 @@ public static partial class Game
                 uint i = 0u;
                 int token = 0;
                 uint n = 0u;
-                if (!(id < new SndMgr(m).unk2B54))
+                if (!(id < new SndMgr(m).EffectCount))
                 {
                     return (-1);
                 }
-                n = Chunk_Get(new SndMgr(m).tree2B4C, (int)((short)(id)));
+                n = Chunk_Get(new SndMgr(m).EffectTreePtr, (int)((short)(id)));
                 n = Chunk_Get(n, 0);
-                new SndMgr(m).unk2B88_Set(n);
-                new SndMgr(m).unk2B8C_Set((short)(256));
-                new SndMgr(m).unk2B90_Set((-1));
-                n = Chunk_Get(new SndMgr(m).tree2B4C, (int)((short)(id)));
+                new SndMgr(m).CurrentEffectPtr_Set(n);
+                new SndMgr(m).CurrentSoundId_Set((short)(256));
+                new SndMgr(m).CurrentOwner_Set((-1));
+                n = Chunk_Get(new SndMgr(m).EffectTreePtr, (int)((short)(id)));
                 rec = Chunk_Get(n, 1);
                 count = Mem.U32((rec + (uint)(1 * 4)));
                 if ((count != (uint)(0)))
                 {
                     func_0025828C_SndMgr_Lock(m);
-                    token = new SndMgr(m).unk10C_Set((int)(new SndMgr(m).unk10C + 1));
+                    token = new SndMgr(m).NextPlayToken_Set((int)(new SndMgr(m).NextPlayToken + 1));
                     func_0025828C_SndMgr_Unlock(m);
                 }
                 else
@@ -1044,30 +1044,30 @@ public static partial class Game
                 uint o = 0u;
                 uint p = 0u;
                 uint t = Gv.Settings_SfxVolume;
-                new SndMgr(m).unk2BA0_Set(((float)((int)(Mem.U8((t + (uint)0)))) * Mem.F32(0x800C8FD0u)));
-                new SndMgr(m).unk2BA4_Set(((float)((int)(Mem.U8((t + (uint)(-1))))) * Mem.F32(0x800C8FD0u)));
-                new SndMgr(m).unk2BA8_Set(((float)((int)(Mem.U8((t + (uint)1)))) * Mem.F32(0x800C8FD0u)));
-                new SndMgr(m).unk2BB0_Set((int)(Mem.U8((t + (uint)(-2)))));
+                new SndMgr(m).SfxVolume_Set(((float)((int)(Mem.U8((t + (uint)0)))) * Mem.F32(0x800C8FD0u)));
+                new SndMgr(m).MusicVolume_Set(((float)((int)(Mem.U8((t + (uint)(-1))))) * Mem.F32(0x800C8FD0u)));
+                new SndMgr(m).VoiceVolume_Set(((float)((int)(Mem.U8((t + (uint)1)))) * Mem.F32(0x800C8FD0u)));
+                new SndMgr(m).IsStereo_Set((int)(Mem.U8((t + (uint)(-2)))));
                 func_0025844C_SndMgr_Lock(m);
-                SndPool_Update(new SndMgr(m).pool.P);
+                SndPool_Update(new SndMgr(m).VoicePool.P);
                 func_0025844C_SndMgr_Unlock(m);
-                SndQueue_Update(new SndMgr(m).q.P);
-                SndFx_Update(new SndMgr(m).obj2BC0.P, default(uint), default(uint), default(uint));
-                Seq_UpdateFade(new SndMgr(m).seq.P);
-                Seq_Update(new SndMgr(m).seq.P);
-                if (((((Mem.S32(0x800D0960u) != 0) && (new SndMgr(m).unk2BB4 != 0)) && (Game_IsInState13() != 0)) && (new SndMgr(m).unk134 > 0)))
+                SndQueue_Update(new SndMgr(m).Queue.P);
+                SndFx_Update(new SndMgr(m).SndFxPlayer.P, default(uint), default(uint), default(uint));
+                Seq_UpdateFade(new SndMgr(m).SeqPlayer.P);
+                Seq_Update(new SndMgr(m).SeqPlayer.P);
+                if (((((Mem.S32(0x800D0960u) != 0) && (new SndMgr(m).IsAmbientEnabled != 0)) && (Game_IsInState13() != 0)) && (new SndMgr(m).AmbientLoopSoundId > 0)))
                 {
                     new Vec3f(_fp).z_Set(0.0f);
                     new Vec3f(_fp).y_Set(0.0f);
                     new Vec3f(_fp).x_Set(0.0f);
                     o = CameraManager_FindNearestCamera(Gv.ViewMgr, _fp);
                     p = new PosObj(o).pos.P;
-                    if (((new SndMgr(m).unk104 & 3) == 0))
+                    if (((new SndMgr(m).FrameCounter & 3) == 0))
                     {
-                        Sound_Play(m, new SndMgr(m).unk134, p, 0, (-1));
+                        Sound_Play(m, new SndMgr(m).AmbientLoopSoundId, p, 0, (-1));
                     }
                 }
-                new SndMgr(m).unk104_Set((int)(new SndMgr(m).unk104 + 1));
+                new SndMgr(m).FrameCounter_Set((int)(new SndMgr(m).FrameCounter + 1));
             }
         }
         finally { Stack.Free(12); }
@@ -1118,12 +1118,12 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00258614", (uint)m, (uint)tag);
             func_00258614_SndMgr_Lock(m);
-            if ((SndPool_IsTagPlaying(new SndMgr(m).pool.P, tag) != 0))
+            if ((SndPool_IsTagPlaying(new SndMgr(m).VoicePool.P, tag) != 0))
             {
                 func_00258614_SndMgr_Unlock(m);
                 return 1;
             }
-            if ((SndQueue_HasSoundId(new SndMgr(m).q.P, tag) != 0))
+            if ((SndQueue_HasSoundId(new SndMgr(m).Queue.P, tag) != 0))
             {
                 func_00258614_SndMgr_Unlock(m);
                 return 1;
@@ -1227,8 +1227,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00258820", (uint)m, (uint)tag);
             func_00258820_SndMgr_Lock(m);
-            SndPool_StopByTag(new SndMgr(m).pool.P, tag);
-            SndQueue_RemoveBySoundId(new SndMgr(m).q.P, tag);
+            SndPool_StopByTag(new SndMgr(m).VoicePool.P, tag);
+            SndQueue_RemoveBySoundId(new SndMgr(m).Queue.P, tag);
             func_00258820_SndMgr_Unlock(m);
         }
     }
@@ -1278,8 +1278,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002588F4", (uint)m, (uint)tag);
             func_002588F4_SndMgr_Lock(m);
-            SndPool_StopByOwner(new SndMgr(m).pool.P, (uint)(tag));
-            SndQueue_RemoveByOwner(new SndMgr(m).q.P, (uint)(tag));
+            SndPool_StopByOwner(new SndMgr(m).VoicePool.P, (uint)(tag));
+            SndQueue_RemoveByOwner(new SndMgr(m).Queue.P, (uint)(tag));
             func_002588F4_SndMgr_Unlock(m);
         }
     }
@@ -1329,8 +1329,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_002589C8", (uint)m, (uint)tag);
             func_002589C8_SndMgr_Lock(m);
-            SndPool_StopByFlags(new SndMgr(m).pool.P, tag);
-            SndQueue_RemoveByFlags(new SndMgr(m).q.P, tag);
+            SndPool_StopByFlags(new SndMgr(m).VoicePool.P, tag);
+            SndQueue_RemoveByFlags(new SndMgr(m).Queue.P, tag);
             func_002589C8_SndMgr_Unlock(m);
         }
     }
@@ -1437,14 +1437,14 @@ public static partial class Game
                 if (Dbg.On) Dbg.Enter("func_00258B00", (uint)m);
                 uint o = 0u;
                 uint p = 0u;
-                if (((((Mem.S32(0x800D0960u) != 0) && (new SndMgr(m).unk2BB4 != 0)) && (Game_IsInState13() != 0)) && (new SndMgr(m).unk134 > 0)))
+                if (((((Mem.S32(0x800D0960u) != 0) && (new SndMgr(m).IsAmbientEnabled != 0)) && (Game_IsInState13() != 0)) && (new SndMgr(m).AmbientLoopSoundId > 0)))
                 {
                     new Vec3f(_fp).x_Set(new Vec3f(_fp).y_Set(new Vec3f(_fp).z_Set(0.0f)));
                     o = CameraManager_FindNearestCamera(Gv.ViewMgr, _fp);
                     p = new PosObj(o).pos.P;
-                    if (((new SndMgr(m).unk104 & 3) == 0))
+                    if (((new SndMgr(m).FrameCounter & 3) == 0))
                     {
-                        Sound_Play(m, new SndMgr(m).unk134, p, 0, (-1));
+                        Sound_Play(m, new SndMgr(m).AmbientLoopSoundId, p, 0, (-1));
                     }
                 }
             }
@@ -1458,7 +1458,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00258BAC", (uint)m);
-            new SndMgr(m).unk2BA0_Set(v);
+            new SndMgr(m).SfxVolume_Set(v);
         }
     }
 
@@ -1468,7 +1468,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00258BB4", (uint)m, (uint)v);
-            new SndMgr(m).unk2BA4_Set((float)(v));
+            new SndMgr(m).MusicVolume_Set((float)(v));
         }
     }
 
@@ -1478,7 +1478,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00258BDC", (uint)m);
-            new SndMgr(m).unk2BA8_Set(v);
+            new SndMgr(m).VoiceVolume_Set(v);
         }
     }
 
@@ -1519,11 +1519,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00258C2C", (uint)m, (uint)tag);
             func_00258C2C_SndMgr_Lock(m);
-            SndPool_StopAllExcept(new SndMgr(m).pool.P, (uint)(tag), default(uint), default(uint));
-            SndQueue_RemoveAllExcept(new SndMgr(m).q.P, tag);
-            new SndMgr(m).unk2B9C_Set(0);
+            SndPool_StopAllExcept(new SndMgr(m).VoicePool.P, (uint)(tag), default(uint), default(uint));
+            SndQueue_RemoveAllExcept(new SndMgr(m).Queue.P, tag);
+            new SndMgr(m).FxMixLevel_Set(0);
             func_00258C2C_SndMgr_Unlock(m);
-            SndFx_StopLocked(new SndMgr(m).obj2BC0.P);
+            SndFx_StopLocked(new SndMgr(m).SndFxPlayer.P);
         }
     }
 
@@ -1571,7 +1571,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00258D0C", (uint)m);
-            Seq_FadeOut(new SndMgr(m).seq.P);
+            Seq_FadeOut(new SndMgr(m).SeqPlayer.P);
         }
     }
 
@@ -1581,7 +1581,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00258D28", (uint)m, (uint)v);
-            new SndMgr(m).unk2BAC_Set(v);
+            new SndMgr(m).PosFlag_2BAC_Set(v);
         }
     }
 
@@ -1591,7 +1591,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00258D30", (uint)m);
-            return new SndMgr(m).unk2BAC;
+            return new SndMgr(m).PosFlag_2BAC;
         }
     }
 
@@ -1601,7 +1601,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00258D3C", (uint)m, (uint)v);
-            new SndMgr(m).unk2BB4_Set(v);
+            new SndMgr(m).IsAmbientEnabled_Set(v);
         }
     }
 
@@ -1611,7 +1611,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00258D44", (uint)m, (uint)v);
-            new SndMgr(m).unk2B98_Set(v);
+            new SndMgr(m).ListenerPtr_Set(v);
         }
     }
 
@@ -1621,7 +1621,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00258D4C", (uint)m);
-            return new SndMgr(m).unk2BB0;
+            return new SndMgr(m).IsStereo;
         }
     }
 
@@ -1631,7 +1631,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00258D58", (uint)m, (uint)v);
-            new SndMgr(m).unk2BB0_Set(v);
+            new SndMgr(m).IsStereo_Set(v);
         }
     }
 
@@ -1641,7 +1641,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00258D60", (uint)m);
-            return new SndMgr(m).player.P;
+            return new SndMgr(m).SndPlayer.P;
         }
     }
 
@@ -1651,7 +1651,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00258D68", (uint)m, (uint)v);
-            new SndMgr(m).unk2BB8_Set(v);
+            new SndMgr(m).IsMuffled_Set(v);
         }
     }
 
@@ -1666,7 +1666,7 @@ public static partial class Game
             func_00258D70_SndMgr_Lock(m);
             for (i = 0; (i < 17); ++i)
             {
-                if ((new SndMgr(m).pool.v[(int)(i)].unk4 == tag))
+                if ((new SndMgr(m).VoicePool.v[(int)(i)].unk4 == tag))
                 {
                     ++n;
                 }
@@ -1720,7 +1720,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00258E60", (uint)m);
-            Seq_Stop(new SndMgr(m).seq.P);
+            Seq_Stop(new SndMgr(m).SeqPlayer.P);
         }
     }
 
@@ -1752,7 +1752,7 @@ public static partial class Game
                 r = Mem.F32(0x800C8FE0u);
             }
             L_c0: ;
-            new SndMgr(m).unk2B9C_Set((int)((r * Mem.F32(0x800C8FE4u))));
+            new SndMgr(m).FxMixLevel_Set((int)((r * Mem.F32(0x800C8FE4u))));
         }
     }
 
@@ -1762,7 +1762,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00258EDC", (uint)m);
-            Seq_Duck(new SndMgr(m).seq.P);
+            Seq_Duck(new SndMgr(m).SeqPlayer.P);
         }
     }
 
@@ -1772,7 +1772,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00258EF8", (uint)m);
-            Seq_Unduck(new SndMgr(m).seq.P);
+            Seq_Unduck(new SndMgr(m).SeqPlayer.P);
         }
     }
 
@@ -1782,7 +1782,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00258F14", (uint)m);
-            SndPool_DetachAllSources(new SndMgr(m).pool.P);
+            SndPool_DetachAllSources(new SndMgr(m).VoicePool.P);
         }
     }
 
@@ -1793,11 +1793,11 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_00258F30", (uint)m, (uint)a);
             float t = Mem.F32(0x800C8FE8u);
-            if (!(t < new SndMgr(m).unk2BA8))
+            if (!(t < new SndMgr(m).VoiceVolume))
             {
-                t = new SndMgr(m).unk2BA8;
+                t = new SndMgr(m).VoiceVolume;
             }
-            SndFx_Play(new SndMgr(m).obj2BC0.P, a, t);
+            SndFx_Play(new SndMgr(m).SndFxPlayer.P, a, t);
         }
     }
 
@@ -1807,7 +1807,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_00258F70", (uint)m);
-            SndFx_StopLocked(new SndMgr(m).obj2BC0.P);
+            SndFx_StopLocked(new SndMgr(m).SndFxPlayer.P);
         }
     }
 
@@ -1847,7 +1847,7 @@ public static partial class Game
             {
                 return (-1);
             }
-            v = new SndMgr(m).pool.v.P;
+            v = new SndMgr(m).VoicePool.v.P;
             for (i = 0; (i < 17); ++i)
             {
                 if ((new SndVoice(v).unkC == id))
@@ -1875,9 +1875,9 @@ public static partial class Game
                 int r = 0;
                 int j = 0;
                 lst = last;
-                if ((new SndMgr(m).unk2B54 != 0))
+                if ((new SndMgr(m).EffectCount != 0))
                 {
-                    if ((Sort_FindEqualRange(new SndMgr(m).unk2B58, new SndMgr(m).unk2B54, (uint)((short)(key)), _fp, (_fp + 4u)) != 0))
+                    if ((Sort_FindEqualRange(new SndMgr(m).EffectIndexTablePtr, new SndMgr(m).EffectCount, (uint)((short)(key)), _fp, (_fp + 4u)) != 0))
                     {
                         if ((Mem.S32(_fp) != Mem.S32((_fp + 4u))))
                         {
@@ -1895,7 +1895,7 @@ public static partial class Game
                                     break;
                                 }
                             }
-                            if ((((int)((short)(lst)) != 0) && (i == new SndMgr(m).unk130)))
+                            if ((((int)((short)(lst)) != 0) && (i == new SndMgr(m).LastVariantIndex)))
                             {
                                 if ((i == Mem.S32((_fp + 4u))))
                                 {
@@ -1924,7 +1924,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002591C0", (uint)m, (uint)idx);
-            uint n = Chunk_Get(new SndMgr(m).tree2B4C, (int)(idx));
+            uint n = Chunk_Get(new SndMgr(m).EffectTreePtr, (int)(idx));
             Chunk_Get(n, 0);
         }
     }
@@ -1935,7 +1935,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_002591F0", (uint)m, (uint)idx);
-            uint n = Chunk_Get(new SndMgr(m).tree2B4C, (int)(idx));
+            uint n = Chunk_Get(new SndMgr(m).EffectTreePtr, (int)(idx));
             Chunk_Get(n, 1);
         }
     }
@@ -1948,7 +1948,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_00259220", (uint)m, (uint)tag);
             int i = 0;
             int n = 0;
-            if (((int)(new SndMgr(m).unk102) != (-1)))
+            if (((int)(new SndMgr(m).AllocVoiceIndex) != (-1)))
             {
                 return 1;
             }
@@ -1957,7 +1957,7 @@ public static partial class Game
                 n = 0;
                 for (i = 0; (i < 17); ++i)
                 {
-                    if ((new SndMgr(m).pool.v[(int)(i)].tag == tag))
+                    if ((new SndMgr(m).VoicePool.v[(int)(i)].tag == tag))
                     {
                         ++n;
                     }
@@ -2122,7 +2122,7 @@ public static partial class Game
                 new SndLink(l).prev.next__Set(new SndLink(l).next_);
                 new SndLink(l).next.prev__Set(new SndLink(l).prev_);
                 n = l;
-                new SndNode(n).body.unkC_Set((new SndMgr(new SndQueue(q).owner_).unk108_Set((int)(new SndMgr(new SndQueue(q).owner_).unk108 + 1)) - 1));
+                new SndNode(n).body.unkC_Set((new SndMgr(new SndQueue(q).owner_).NextEmitterId_Set((int)(new SndMgr(new SndQueue(q).owner_).NextEmitterId + 1)) - 1));
                 new SndNode(n).body.unk4_Set(a3);
                 new SndNode(n).body.unk40_Set((-1));
                 new SndNode(n).body.unk3C_Set((short)(a3));
@@ -2135,13 +2135,13 @@ public static partial class Game
                 new SndNode(n).body.unk1C_Set(32000);
                 new SndNode(n).body.unk18_Set(32000);
                 new SndNode(n).body.unk24_Set(0);
-                new SndNode(n).body.unk10_Set(new SndMgr(new SndQueue(q).owner_).unk104);
+                new SndNode(n).body.unk10_Set(new SndMgr(new SndQueue(q).owner_).FrameCounter);
                 Mem.Copy(new SndNode(n).body.pos.P, pos, 12);
                 new SndNode(n).body.unk50_Set(0);
                 new SndNode(n).body.unkAC_Set(0);
                 b = new SndNode(n).body.P;
-                SndVoice_SetTag(b, (int)(new SndMgr(new SndQueue(q).owner_).unk2B8C));
-                new SndNode(n).body.unkC0_Set(new SndMgr(new SndQueue(q).owner_).unk2BAC);
+                SndVoice_SetTag(b, (int)(new SndMgr(new SndQueue(q).owner_).CurrentSoundId));
+                new SndNode(n).body.unkC0_Set(new SndMgr(new SndQueue(q).owner_).PosFlag_2BAC);
                 SndVoice_InitParams(b, info, (uint)(flags));
                 pri = (int)(new SndNode(n).body.unk38);
                 for (c = new SndQueue(q).active.link.next_; (c != new SndQueue(q).active.link.P); c = new SndLink(c).next_)
@@ -2177,8 +2177,8 @@ public static partial class Game
             short idx = 0;
             int old = 0;
             Sound_Lock(new SndQueue(q).owner_);
-            ids = new SndMgr(new SndQueue(q).owner_).snd.P;
-            player = new SndMgr(new SndQueue(q).owner_).player.P;
+            ids = new SndMgr(new SndQueue(q).owner_).VoiceSoundHandles.P;
+            player = new SndMgr(new SndQueue(q).owner_).SndPlayer.P;
             bank = (uint)(Mem.S32((new SndMgr(new SndQueue(q).owner_).unk7C_ + (uint)(3 * 4))));
             for (n = new SndQueue(q).active.link.next_; (n != new SndQueue(q).active.P); n = next)
             {
@@ -2187,13 +2187,13 @@ public static partial class Game
                 {
                     if ((new SndNode(n).body.unk14_Set((int)(new SndNode(n).body.unk14 - 1)) == 0))
                     {
-                        new SndNode(n).body.unk10_Set(new SndMgr(new SndQueue(q).owner_).unk104);
-                        new SndNode(n).body.unk40_Set((new SndMgr(new SndQueue(q).owner_).unk108_Set((int)(new SndMgr(new SndQueue(q).owner_).unk108 + 1)) - 1));
+                        new SndNode(n).body.unk10_Set(new SndMgr(new SndQueue(q).owner_).FrameCounter);
+                        new SndNode(n).body.unk40_Set((new SndMgr(new SndQueue(q).owner_).NextEmitterId_Set((int)(new SndMgr(new SndQueue(q).owner_).NextEmitterId + 1)) - 1));
                         new SndNode(n).body.unkA0_Set(0);
                     }
                     continue;
                 }
-                if (((new SndMgr(new SndQueue(q).owner_).unk104 - new SndNode(n).body.unk10) >= 16))
+                if (((new SndMgr(new SndQueue(q).owner_).FrameCounter - new SndNode(n).body.unk10) >= 16))
                 {
                     new SndNode(n).link.prev.next__Set(next);
                     new SndNode(n).link.next.prev__Set(new SndNode(n).link.prev_);
@@ -2201,7 +2201,7 @@ public static partial class Game
                 }
                 else
                 {
-                    idx = (short)(SndPool_FindFreeVoice(new SndMgr(new SndQueue(q).owner_).pool.P, (int)(new SndNode(n).body.unk3C), (int)(new SndNode(n).body.unk3A), new SndNode(n).body.unk38, 0));
+                    idx = (short)(SndPool_FindFreeVoice(new SndMgr(new SndQueue(q).owner_).VoicePool.P, (int)(new SndNode(n).body.unk3C), (int)(new SndNode(n).body.unk3A), new SndNode(n).body.unk38, 0));
                     if ((((int)(idx) == (-1)) || ((int)(idx) == 16)))
                     {
                         break;
@@ -2220,7 +2220,7 @@ public static partial class Game
                     memcpy(v, new SndNode(n).body.P, (uint)(204));
                     new SndVoice(v).unkC_Set(new SndNode(n).body.unk40);
                     new SndVoice(v).unk8_Set((int)(Mem.S16((ids + (uint)(idx * 2)))));
-                    new SndVoice(v).unk10_Set(new SndMgr(new SndQueue(q).owner_).unk104);
+                    new SndVoice(v).unk10_Set(new SndMgr(new SndQueue(q).owner_).FrameCounter);
                     new SndVoice(v).idx_Set((int)(idx));
                     Sound_ApplyVoiceAndPlay(new SndQueue(q).owner_, (uint)(new SndVoice(v).unkC), (uint)(0), new SndVoice(v).pos.P);
                     new SndNode(n).body.unk40_Set(old);
@@ -3804,7 +3804,7 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0025B8DC", (uint)p, (uint)idx);
             uint v = (new SndVoices(p).v.P + (uint)((short)(idx) * 204));
-            alSndpPlay(new SndMgr(new SndVoice(v).mgr_).player.P);
+            alSndpPlay(new SndMgr(new SndVoice(v).mgr_).SndPlayer.P);
             new SndVoices(p).v[(int)((short)(idx))].unkA4_Set((int)((int)(new SndVoices(p).v[(int)((short)(idx))].unkA4) | 8));
         }
     }
@@ -4039,8 +4039,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0025C4D4", (uint)v);
             uint m = new SndVoice(v).mgr_;
-            alSndpSetSound(new SndMgr(m).player.P, (short)((int)(new SndMgr(m).snd[(int)(new SndVoice(v).idx)])));
-            alSndpSetPitch(new SndMgr(m).player.P, ((pitch * new SndVoice(v).unk34) * new SndVoice(v).unkB8));
+            alSndpSetSound(new SndMgr(m).SndPlayer.P, (short)((int)(new SndMgr(m).VoiceSoundHandles[(int)(new SndVoice(v).idx)])));
+            alSndpSetPitch(new SndMgr(m).SndPlayer.P, ((pitch * new SndVoice(v).unk34) * new SndVoice(v).unkB8));
         }
     }
 
@@ -4051,8 +4051,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0025C544", (uint)v, (uint)pan);
             uint m = new SndVoice(v).mgr_;
-            alSndpSetSound(new SndMgr(m).player.P, (short)((int)(new SndMgr(m).snd[(int)(new SndVoice(v).idx)])));
-            alSndpSetPan(new SndMgr(m).player.P, (byte)((pan & 255)));
+            alSndpSetSound(new SndMgr(m).SndPlayer.P, (short)((int)(new SndMgr(m).VoiceSoundHandles[(int)(new SndVoice(v).idx)])));
+            alSndpSetPan(new SndMgr(m).SndPlayer.P, (byte)((pan & 255)));
         }
     }
 
@@ -4063,8 +4063,8 @@ public static partial class Game
         {
             if (Dbg.On) Dbg.Enter("func_0025C598", (uint)v);
             uint m = new SndVoice(v).mgr_;
-            alSndpSetSound(new SndMgr(m).player.P, (short)((int)(new SndMgr(m).snd[(int)(new SndVoice(v).idx)])));
-            return alSndpGetState(new SndMgr(m).player.P);
+            alSndpSetSound(new SndMgr(m).SndPlayer.P, (short)((int)(new SndMgr(m).VoiceSoundHandles[(int)(new SndVoice(v).idx)])));
+            return alSndpGetState(new SndMgr(m).SndPlayer.P);
         }
     }
 
@@ -4074,7 +4074,7 @@ public static partial class Game
         unchecked
         {
             if (Dbg.On) Dbg.Enter("func_0025C5DC", (uint)v);
-            alSndpPlay(new SndMgr(new SndVoice(v).mgr_).player.P);
+            alSndpPlay(new SndMgr(new SndVoice(v).mgr_).SndPlayer.P);
         }
     }
 
@@ -4087,12 +4087,12 @@ public static partial class Game
             uint m = new SndVoice(v).mgr_;
             new SndVoice(v).unkAC_Set(1);
             new SndVoice(v).unk50_Set(0);
-            if ((new SndVoice(v).unk10 != new SndMgr(m).unk104))
+            if ((new SndVoice(v).unk10 != new SndMgr(m).FrameCounter))
             {
-                alSndpSetSound(new SndMgr(m).player.P, (short)((int)(new SndMgr(m).snd[(int)(new SndVoice(v).idx)])));
-                if ((alSndpGetState(new SndMgr(m).player.P) != 0))
+                alSndpSetSound(new SndMgr(m).SndPlayer.P, (short)((int)(new SndMgr(m).VoiceSoundHandles[(int)(new SndVoice(v).idx)])));
+                if ((alSndpGetState(new SndMgr(m).SndPlayer.P) != 0))
                 {
-                    alSndpStop(new SndMgr(m).player.P);
+                    alSndpStop(new SndMgr(m).SndPlayer.P);
                 }
                 new SndVoice(v).unk4_Set((-1));
             }
@@ -4107,7 +4107,7 @@ public static partial class Game
             if (Dbg.On) Dbg.Enter("func_0025C67C", (uint)v);
             uint m = new SndVoice(v).mgr_;
             uint c = (m + (uint)124);
-            alSndpDeallocate(new SndMgr(m).player.P, (short)((int)(new SndCore(c).snd[(int)(new SndVoice(v).idx)])));
+            alSndpDeallocate(new SndMgr(m).SndPlayer.P, (short)((int)(new SndCore(c).snd[(int)(new SndVoice(v).idx)])));
             new SndCore(c).snd.Set((int)(new SndVoice(v).idx), (short)((-1)));
             new SndVoice(v).unk38_Set((short)(0));
             new SndVoice(v).unkC_Set((-1));
@@ -4149,14 +4149,14 @@ public static partial class Game
                 {
                     if (((new SndVoice(v).unkC0 == 0) && (Sound_IsStereo(new SndVoice(v).mgr_) != 0)))
                     {
-                        new SndVoice(v).pan_Set((short)((sbyte)(new SndMgr(new SndVoice(v).mgr_).unk2B94)));
+                        new SndVoice(v).pan_Set((short)((sbyte)(new SndMgr(new SndVoice(v).mgr_).CurrentPan)));
                     }
                 }
                 else
                 {
                     if (((new SndVoice(v).unkC0 == 0) && (Sound_IsStereo(new SndVoice(v).mgr_) != 0)))
                     {
-                        new SndVoice(v).pan_Set((short)(Sound_ComputePan(new SndVoice(v).pos.P, (uint)(new SndMgr(new SndVoice(v).mgr_).unk2B98), default(uint), default(uint))));
+                        new SndVoice(v).pan_Set((short)(Sound_ComputePan(new SndVoice(v).pos.P, (uint)(new SndMgr(new SndVoice(v).mgr_).ListenerPtr), default(uint), default(uint))));
                     }
                 }
             }
@@ -4467,7 +4467,7 @@ public static partial class Game
                 int st = 0;
                 uint pl = 0u;
                 sum = 0;
-                ok = Sort_FindEqualRange((uint)((int)(new SndMgr(new M04FxB(f).owner_).unk2B60)), new SndMgr(new M04FxB(f).owner_).unk2B64, (uint)((short)(id)), _fp, (_fp + 4u));
+                ok = Sort_FindEqualRange((uint)((int)(new SndMgr(new M04FxB(f).owner_).SongIndexTablePtr)), new SndMgr(new M04FxB(f).owner_).SongIndexCount, (uint)((short)(id)), _fp, (_fp + 4u));
                 if ((ok == 0))
                 {
                     idx = (-1);
@@ -4510,7 +4510,7 @@ public static partial class Game
                 new M04FxB(f).idx_Set(idx);
                 new M04FxB(f).unk4_Set((new M04FxB(f).unk4 + 1));
                 ret = new M04FxB(f).unk4;
-                if ((Sort_FindEqualRange((uint)((int)(new SndMgr(new M04FxB(f).owner_).unk2B60)), new SndMgr(new M04FxB(f).owner_).unk2B64, (uint)(Mem.S16((f + (uint)14))), (_fp + 8u), (_fp + 12u)) != 0))
+                if ((Sort_FindEqualRange((uint)((int)(new SndMgr(new M04FxB(f).owner_).SongIndexTablePtr)), new SndMgr(new M04FxB(f).owner_).SongIndexCount, (uint)(Mem.S16((f + (uint)14))), (_fp + 8u), (_fp + 12u)) != 0))
                 {
                     if ((Mem.S32((_fp + 8u)) != Mem.S32((_fp + 12u))))
                     {
@@ -4601,7 +4601,7 @@ public static partial class Game
                 int total = 0;
                 int i = 0;
                 int r = 0;
-                if ((Sort_FindEqualRange(new SndMgr(new SndFx(fx).owner_).unk2B60, new SndMgr(new SndFx(fx).owner_).unk2B64, (uint)((short)(key)), _fp, (_fp + 4u)) == 0))
+                if ((Sort_FindEqualRange(new SndMgr(new SndFx(fx).owner_).SongIndexTablePtr, new SndMgr(new SndFx(fx).owner_).SongIndexCount, (uint)((short)(key)), _fp, (_fp + 4u)) == 0))
                 {
                     return (-1);
                 }
@@ -4930,12 +4930,12 @@ public static partial class Game
             uint r = 0u;
             uint n = 0u;
             int res = 0;
-            i = Sprite_FindIndex(new SndMgr(new SndSeq(s).owner_).unk2B60, new SndMgr(new SndSeq(s).owner_).unk2B64, (uint)(key));
+            i = Sprite_FindIndex(new SndMgr(new SndSeq(s).owner_).SongIndexTablePtr, new SndMgr(new SndSeq(s).owner_).SongIndexCount, (uint)(key));
             if ((i != (-1)))
             {
                 i = (int)((int)(i) << (int)1);
-                r = Chunk_Get(new SndMgr(new SndSeq(s).owner_).node2B50, (i | 1));
-                n = Chunk_Get(new SndMgr(new SndSeq(s).owner_).node2B50, i);
+                r = Chunk_Get(new SndMgr(new SndSeq(s).owner_).SongNodePtr, (i | 1));
+                n = Chunk_Get(new SndMgr(new SndSeq(s).owner_).SongNodePtr, i);
                 new SndSeq(s).unk24_Set(new SndNodeRec(n).w0);
                 new SndSeq(s).unk30_Set(Trunc16ToF32(new SndNodeRec(n).h4));
                 if ((new SndSeq(s).unk30 <= 0.0f))
@@ -4967,7 +4967,7 @@ public static partial class Game
             {
                 alCSPSetChlFXMix(new SndSeq(s).csp, (byte)(i), (byte)(0));
             }
-            f = ((float)(new SndSeq(s).unk24) * (new SndMgr(new SndSeq(s).owner_).unk2BA4 * Mem.F32(0x800C90C4u)));
+            f = ((float)(new SndSeq(s).unk24) * (new SndMgr(new SndSeq(s).owner_).MusicVolume * Mem.F32(0x800C90C4u)));
             alCSPSetVol(new SndSeq(s).csp, (short)(int)((f * Mem.F32(0x800C90C8u))));
             new SndSeq(s).vol_Set(f);
         }
@@ -5037,12 +5037,12 @@ public static partial class Game
             _f13: ;
             if (!((new SndSeq(s).unk38 != 0))) goto _f15;
             vol = (float)(new SndSeq(s).unk24);
-            vol = (vol * (new SndMgr(new SndSeq(s).owner_).unk2BA4 * Mem.F32(0x800C90CCu)));
+            vol = (vol * (new SndMgr(new SndSeq(s).owner_).MusicVolume * Mem.F32(0x800C90CCu)));
             vol = (vol * new SndSeq(s).unk3C);
             goto L_setvol;
             _f15: ;
-            vol = ((float)(new SndSeq(s).unk24) * (new SndMgr(new SndSeq(s).owner_).unk2BA4 * Mem.F32(0x800C90D0u)));
-            if (!((new SndMgr(new SndSeq(s).owner_).unk2BB8 != 0))) goto _f16;
+            vol = ((float)(new SndSeq(s).unk24) * (new SndMgr(new SndSeq(s).owner_).MusicVolume * Mem.F32(0x800C90D0u)));
+            if (!((new SndMgr(new SndSeq(s).owner_).IsMuffled != 0))) goto _f16;
             vol = (float)((float)(vol) * Mem.F32(0x800C90D4u));
             _f16: ;
             if (!((vol != new SndSeq(s).vol))) goto _f17;
@@ -5088,13 +5088,13 @@ public static partial class Game
                 new SeqpCfg(_fp).maxVoices_Set(20);
                 new SeqpCfg(_fp).maxEvents_Set(192);
                 new SeqpCfg(_fp).maxChannels_Set((byte)(20));
-                new SeqpCfg(_fp).heap__Set(new SndMgr(new SndSeq(s).owner_).heap.P);
+                new SeqpCfg(_fp).heap__Set(new SndMgr(new SndSeq(s).owner_).Heap.P);
                 new SeqpCfg(_fp).initOsc_Set(0u);
                 new SeqpCfg(_fp).updateOsc_Set(0u);
                 new SeqpCfg(_fp).stopOsc_Set(0u);
-                new SndSeq(s).csp_Set(alHeapDBAlloc(0u, 0, new SndMgr(new SndSeq(s).owner_).heap.P, 1, 124));
+                new SndSeq(s).csp_Set(alHeapDBAlloc(0u, 0, new SndMgr(new SndSeq(s).owner_).Heap.P, 1, 124));
                 alCSPNew(new SndSeq(s).csp, _fp);
-                new SndSeq(s).unk10_Set(alHeapDBAlloc(0u, 0, new SndMgr(new SndSeq(s).owner_).heap.P, 1, 248));
+                new SndSeq(s).unk10_Set(alHeapDBAlloc(0u, 0, new SndMgr(new SndSeq(s).owner_).Heap.P, 1, 248));
                 new SndSeq(s).unk24_Set(50);
                 new SndSeq(s).unk38_Set(0);
                 new SndSeq(s).unk30_Set(Mem.F32(0x800C90E8u));
@@ -5168,12 +5168,12 @@ public static partial class Game
             uint r = 0u;
             uint n = 0u;
             int res = 0;
-            i = Sprite_FindIndex(new SndMgr(new SndSeq(s).owner_).unk2B60, new SndMgr(new SndSeq(s).owner_).unk2B64, (uint)(key));
+            i = Sprite_FindIndex(new SndMgr(new SndSeq(s).owner_).SongIndexTablePtr, new SndMgr(new SndSeq(s).owner_).SongIndexCount, (uint)(key));
             if ((i != (-1)))
             {
                 i = (int)((int)(i) << (int)1);
-                r = Chunk_Get(new SndMgr(new SndSeq(s).owner_).node2B50, (i | 1));
-                n = Chunk_Get(new SndMgr(new SndSeq(s).owner_).node2B50, i);
+                r = Chunk_Get(new SndMgr(new SndSeq(s).owner_).SongNodePtr, (i | 1));
+                n = Chunk_Get(new SndMgr(new SndSeq(s).owner_).SongNodePtr, i);
                 new SndSeq(s).unk24_Set(new SndNodeRec(n).w0);
                 new SndSeq(s).unk30_Set(Trunc16ToF32(new SndNodeRec(n).h4));
                 if ((new SndSeq(s).unk30 <= 0.0f))
@@ -5254,12 +5254,12 @@ public static partial class Game
             int i = 0;
             uint r = 0u;
             uint n = 0u;
-            i = Sprite_FindIndex(new SndMgr(new SndSeq(s).owner_).unk2B60, new SndMgr(new SndSeq(s).owner_).unk2B64, (uint)(key));
+            i = Sprite_FindIndex(new SndMgr(new SndSeq(s).owner_).SongIndexTablePtr, new SndMgr(new SndSeq(s).owner_).SongIndexCount, (uint)(key));
             if ((i != (-1)))
             {
                 i = (int)((int)(i) << (int)1);
-                r = Chunk_Get(new SndMgr(new SndSeq(s).owner_).node2B50, (i | 1));
-                n = Chunk_Get(new SndMgr(new SndSeq(s).owner_).node2B50, i);
+                r = Chunk_Get(new SndMgr(new SndSeq(s).owner_).SongNodePtr, (i | 1));
+                n = Chunk_Get(new SndMgr(new SndSeq(s).owner_).SongNodePtr, i);
                 new SndSeq(s).unk24_Set(new SndNodeRec(n).w0);
                 new SndSeq(s).unk30_Set(Trunc16ToF32(new SndNodeRec(n).h4));
                 if ((new SndSeq(s).unk30 <= 0.0f))
@@ -5293,13 +5293,13 @@ public static partial class Game
             if ((new SndSeq(s).unk38 != 0))
             {
                 f = (float)(new SndSeq(s).unk24);
-                f = (float)((float)(f) * (new SndMgr(new SndSeq(s).owner_).unk2BA4 * Mem.F32(0x800C9114u)));
+                f = (float)((float)(f) * (new SndMgr(new SndSeq(s).owner_).MusicVolume * Mem.F32(0x800C9114u)));
                 f = (float)((float)(f) * new SndSeq(s).unk3C);
             }
             else
             {
-                f = ((float)(new SndSeq(s).unk24) * (new SndMgr(new SndSeq(s).owner_).unk2BA4 * Mem.F32(0x800C9118u)));
-                if ((new SndMgr(new SndSeq(s).owner_).unk2BB8 != 0))
+                f = ((float)(new SndSeq(s).unk24) * (new SndMgr(new SndSeq(s).owner_).MusicVolume * Mem.F32(0x800C9118u)));
+                if ((new SndMgr(new SndSeq(s).owner_).IsMuffled != 0))
                 {
                     f = (float)((float)(f) * Mem.F32(0x800C911Cu));
                 }
@@ -5328,7 +5328,7 @@ public static partial class Game
             {
                 alCSPSetChlFXMix(new SndSeq(s).csp, (byte)(i), (byte)(0));
             }
-            f = ((float)(new SndSeq(s).unk24) * (new SndMgr(new SndSeq(s).owner_).unk2BA4 * Mem.F32(0x800C9124u)));
+            f = ((float)(new SndSeq(s).unk24) * (new SndMgr(new SndSeq(s).owner_).MusicVolume * Mem.F32(0x800C9124u)));
             alCSPSetVol(new SndSeq(s).csp, (short)(int)((f * Mem.F32(0x800C9128u))));
             new SndSeq(s).vol_Set(f);
         }

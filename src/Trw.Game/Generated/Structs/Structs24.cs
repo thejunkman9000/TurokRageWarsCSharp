@@ -1486,16 +1486,16 @@ public readonly struct PathTbl
     [MethodImpl(Inl)] public static implicit operator uint(PathTbl v) => v.P;
     [MethodImpl(Inl)] public static explicit operator PathTbl(uint p) => new(p);
     // +0x0
-    public int mode
+    public int LoadState
     {
         [MethodImpl(Inl)] get => Mem.S32(P);
         [MethodImpl(Inl)] set => Mem.Set(P, value);
     }
-    [MethodImpl(Inl)] public int mode_Set(int v) => Mem.Set(P, v);
+    [MethodImpl(Inl)] public int LoadState_Set(int v) => Mem.Set(P, v);
     // +0x4
     public U8x120 pad4 { [MethodImpl(Inl)] get => new(P + 0x4u); }
     // +0x7C
-    public S32Ptr cnt
+    public S32Ptr LevelPaths
     {
         [MethodImpl(Inl)] get => new(Mem.U32(P + 0x7Cu));
         [MethodImpl(Inl)] set => Mem.Set(P + 0x7Cu, value.P);
